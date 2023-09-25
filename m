@@ -1,52 +1,53 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 27F887ADA3E
-	for <lists+intel-gfx@lfdr.de>; Mon, 25 Sep 2023 16:47:16 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id D92D67ADAC4
+	for <lists+intel-gfx@lfdr.de>; Mon, 25 Sep 2023 16:59:09 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4B74A10E1DD;
-	Mon, 25 Sep 2023 14:47:08 +0000 (UTC)
-X-Original-To: intel-gfx@lists.freedesktop.org
-Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.65])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7131710E167;
- Mon, 25 Sep 2023 14:47:05 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 101AA10E26E;
+	Mon, 25 Sep 2023 14:59:08 +0000 (UTC)
+X-Original-To: Intel-gfx@lists.freedesktop.org
+Delivered-To: Intel-gfx@lists.freedesktop.org
+Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.120])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2012110E26A;
+ Mon, 25 Sep 2023 14:59:06 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1695653225; x=1727189225;
+ t=1695653946; x=1727189946;
  h=date:from:to:cc:subject:message-id:references:
  mime-version:in-reply-to;
- bh=NdkTznkaJL5bRVNSpikOYSCFuwaf/DHQhhr9SSuILhI=;
- b=OeEgcmlzFW0j389kUKauAma5+APyqLluFZy6SdZ7oLeWteJZ6IXhSFQ8
- B6JZ/EYMl/iIwDnzpbV9hhxNzZv3e4zpWqKr81qckRpU/lg++F2UT+KCf
- U4cjrY02gsUhedIXM03MFDSAAm50o0eDXf/dbbJu4IiSJw5G3wu3MjT04
- soS/c7r5gnORi2upz+cJGe6w7xigdOs+tDqDnOMzpCzBU7qN+agLNLNKw
- PIDoRuP8Ls0kp6E4tOsjeZ/fskMwxv9i7SIFurCsww0fLWIaC1C9V0X+0
- 5KePegfR6DVWPgt12i0jUCUUi8kckFDbwZy8M/oT62QD8RfmIrsr+2/ul A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10843"; a="385102722"
-X-IronPort-AV: E=Sophos;i="6.03,175,1694761200"; d="scan'208";a="385102722"
-Received: from orsmga003.jf.intel.com ([10.7.209.27])
- by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Sep 2023 07:47:04 -0700
+ bh=8UZGcVkG1nS2n5s6l7fxKtmJ88zfeVjcLGHwsUYN9Is=;
+ b=HhRzesjYsROwyqT+MpRBDX0s2OBq/lzTVRfMO3xdx+AAMQ7y/sJCSyW+
+ 7TlBHP4Lqcz8CT3QEtAXie1bWK843km0QbSc/rjLRyLhISDMtkLMnFc6m
+ ymI5trx26qtwVeXMAHTqNrpqpQ8P6jZcfWjTUGMf/Y0gVTnWrQiEPoX1N
+ dPXzJNvV5x5qvyLQUJTl6OAt8N6nxlKaDh/aGG1ENCeoy+5vL/XjhP6PK
+ 8643DsvqiSaXV/dIEyqS+wVpH4FWVf6HnDXjaWBOVM67CYGiZOguIV4ok
+ fnntYMBzRkrz3NATdIqc2J3rPDaaoAqqjBOAcZMCLNwhpVjV9pLHzR3kG Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10843"; a="380144274"
+X-IronPort-AV: E=Sophos;i="6.03,175,1694761200"; d="scan'208";a="380144274"
+Received: from orsmga006.jf.intel.com ([10.7.209.51])
+ by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 25 Sep 2023 07:59:05 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10843"; a="697997431"
-X-IronPort-AV: E=Sophos;i="6.03,175,1694761200"; d="scan'208";a="697997431"
+X-IronPort-AV: E=McAfee;i="6600,9927,10843"; a="725011009"
+X-IronPort-AV: E=Sophos;i="6.03,175,1694761200"; d="scan'208";a="725011009"
 Received: from nurqayrx-mobl2.gar.corp.intel.com (HELO intel.com)
  ([10.213.34.118])
- by orsmga003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Sep 2023 07:47:00 -0700
-Date: Mon, 25 Sep 2023 16:46:54 +0200
+ by orsmga006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 25 Sep 2023 07:59:01 -0700
+Date: Mon, 25 Sep 2023 16:58:56 +0200
 From: Andi Shyti <andi.shyti@linux.intel.com>
-To: Nirmoy Das <nirmoy.das@intel.com>
-Message-ID: <ZRGdXq1WOWpx271q@ashyti-mobl2.lan>
-References: <20230925134938.12043-1-nirmoy.das@intel.com>
+To: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+Message-ID: <ZRGgMIL53LMhlsyq@ashyti-mobl2.lan>
+References: <20230920085715.6905-1-tvrtko.ursulin@linux.intel.com>
+ <ZRGVsijpw4hjzYNz@ashyti-mobl2.lan>
+ <1ab10838-0517-3ad9-c92e-e452f5b97d30@linux.intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20230925134938.12043-1-nirmoy.das@intel.com>
-Subject: Re: [Intel-gfx] [PATCH] drm/i915/gem: Make i915_gem_shrinker
- multi-gt aware
+In-Reply-To: <1ab10838-0517-3ad9-c92e-e452f5b97d30@linux.intel.com>
+Subject: Re: [Intel-gfx] [PATCH] drm/i915: Zap some empty lines
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,61 +60,35 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org,
- Jonathan Cavitt <jonathan.cavitt@intel.com>, dri-devel@lists.freedesktop.org,
- Andrzej Hajda <andrzej.hajda@intel.com>
+Cc: Intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi Nirmoy,
+Hi Tvrtko,
 
-you forgot the v2 here.
-
-On Mon, Sep 25, 2023 at 03:49:38PM +0200, Nirmoy Das wrote:
-> From: Jonathan Cavitt <jonathan.cavitt@intel.com>
+On Mon, Sep 25, 2023 at 03:28:27PM +0100, Tvrtko Ursulin wrote:
 > 
-> Where applicable, use for_each_gt instead of to_gt in the
-> i915_gem_shrinker functions to make them apply to more than just the
-> primary GT.  Specifically, this ensure i915_gem_shrink_all retires all
-> requests across all GTs, and this makes i915_gem_shrinker_vmap unmap
-> VMAs from all GTs.
+> On 25/09/2023 15:14, Andi Shyti wrote:
+> > Hi Tvrtko,
+> > 
+> > On Wed, Sep 20, 2023 at 09:57:15AM +0100, Tvrtko Ursulin wrote:
+> > > From: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+> > > 
+> > > Recent refactoring left an unsightly block of empty lines. Remove them.
+> > > 
+> > > Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+> > > Cc: Dnyaneshwar Bhadane <dnyaneshwar.bhadane@intel.com>
+> > > Cc: Anusha Srivatsa <anusha.srivatsa@intel.com>
+> > > Cc: Radhakrishna Sripada <radhakrishna.sripada@intel.com>
+> > 
+> > as this isn't merged yet:
+> > 
+> > Reviewed-by: Andi Shyti <andi.shyti@linux.intel.com>
 > 
-> v2: Pass correct GT to intel_gt_retire_requests(Andrzej).
-> 
-> Signed-off-by: Jonathan Cavitt <jonathan.cavitt@intel.com>
-> Signed-off-by: Nirmoy Das <nirmoy.das@intel.com>
-> Reviewed-by: Andrzej Hajda <andrzej.hajda@intel.com>
+> Thanks, I am catching up with things and this wasn't so important. If you
+> have a spare moment feel free to push it?
 
-[...]
+All right, pushed to drm-intel-next :)
 
-> -	if (shrink & I915_SHRINK_ACTIVE)
-> -		/* Retire requests to unpin all idle contexts */
-> -		intel_gt_retire_requests(to_gt(i915));
-> +	if (shrink & I915_SHRINK_ACTIVE) {
-> +		for_each_gt(gt, i915, i)
-> +			/* Retire requests to unpin all idle contexts */
-> +			intel_gt_retire_requests(gt);
-> +	}
-
-These two brackets are not needed.
-
->  
->  	/*
->  	 * As we may completely rewrite the (un)bound list whilst unbinding
-> @@ -389,6 +393,8 @@ i915_gem_shrinker_vmap(struct notifier_block *nb, unsigned long event, void *ptr
->  	struct i915_vma *vma, *next;
->  	unsigned long freed_pages = 0;
->  	intel_wakeref_t wakeref;
-> +	struct intel_gt *gt;
-> +	int i;
-
-the trend is to use 'unsigned int' here and I've seen it
-reviewed. Personally, if I really have to express a preference, I
-prefer 'int' because it's a bit safer, generally I don't really
-mind :)
-
-The rest looks good.
-
-Reviewed-by: Andi Shyti <andi.shyti@linux.intel.com> 
-
+Thanks,
 Andi
