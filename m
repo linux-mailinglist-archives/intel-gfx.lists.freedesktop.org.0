@@ -1,60 +1,50 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id A8FD67AD8B7
-	for <lists+intel-gfx@lfdr.de>; Mon, 25 Sep 2023 15:15:43 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id EF4737AD8B8
+	for <lists+intel-gfx@lfdr.de>; Mon, 25 Sep 2023 15:16:08 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 24AB610E177;
-	Mon, 25 Sep 2023 13:15:40 +0000 (UTC)
-X-Original-To: intel-gfx@lists.freedesktop.org
-Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2443110E177
- for <intel-gfx@lists.freedesktop.org>; Mon, 25 Sep 2023 13:15:38 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0253110E24D;
+	Mon, 25 Sep 2023 13:16:07 +0000 (UTC)
+X-Original-To: Intel-gfx@lists.freedesktop.org
+Delivered-To: Intel-gfx@lists.freedesktop.org
+Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 737C610E24D;
+ Mon, 25 Sep 2023 13:16:03 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1695647738; x=1727183738;
- h=message-id:date:mime-version:subject:to:references:from:
- in-reply-to:content-transfer-encoding;
- bh=iQd9rzQEqDSr3HE3nDA3yoNotPhq03Az+0skst5J1Og=;
- b=RYf/wMVgTZe/lFcebFAWwFILVa3hSb9sJ2JDLOg+Tk9tuzqU4pRB+CL1
- +fnf6A+0zqnpSDp5kGoI4x4ubA2A++npqYeGi6Un77SW94sw3e/pDsXux
- kiizd2p143uKob58eInK2L++rGDV3hzWcqifacsoSYCxOdvhXnlVdIgTg
- dG9POFFTrJxBxrUu89Mh7MT1Hw6XjKV4+pbUd7DJa/0sYSkBRh5AVhTOM
- kn8+2g/4hDQyIRPOQ5JVdA/lC9p3nhabK2Lm4R8N3gmOBSBawm9EZnQNU
- bNC2sy8OGFfkg2OG8iRrbhR/tAu63gjy1xkNW+E6kJuFrsOJSXFyJicZq w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10843"; a="412176423"
-X-IronPort-AV: E=Sophos;i="6.03,175,1694761200"; d="scan'208";a="412176423"
-Received: from orsmga006.jf.intel.com ([10.7.209.51])
- by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Sep 2023 06:15:18 -0700
+ t=1695647763; x=1727183763;
+ h=from:to:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=QJDspZdFgilvUCDypj9L73HCr3hsrDu7GEVZMDgdFzg=;
+ b=m4PHkp0Zhb0NeMOUFr1HjXdVBa9X/wHbEgesYOcaaYySh+KuMEFI8Ty0
+ W381almbv+0iAiH1PW4Qrsv8k1+3b+hJbjAjaf3HFqTue4t/miP94STvs
+ y3dT8baaxh+YP1+Wa2yMdyVwEe5Cqa29GhHBiCeSmIN27C1XeH0erUVAD
+ hCvxVvlCtLwKJ9I/L8zPeJcyQw/pXzRjzYuz34d0hkKtOzsEqfltcFVJz
+ sxK1pAm0h8uDHutu7lIFDoIfC+MdF9P5ipMOUA8kt8ln/AURjVvwEY8/l
+ 3K19QK9ftSR/3/C1c2E+G3fh/Cv79bfCdcbBg8ckOSfITQ90qToyF4w2u A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10843"; a="371567050"
+X-IronPort-AV: E=Sophos;i="6.03,175,1694761200"; d="scan'208";a="371567050"
+Received: from orsmga004.jf.intel.com ([10.7.209.38])
+ by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 25 Sep 2023 06:16:02 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10843"; a="724987681"
-X-IronPort-AV: E=Sophos;i="6.03,175,1694761200"; d="scan'208";a="724987681"
-Received: from ahajda-mobl.ger.corp.intel.com (HELO [10.213.8.144])
- ([10.213.8.144])
- by orsmga006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Sep 2023 06:15:17 -0700
-Message-ID: <33d22047-108d-7d5a-36dc-a9183850a20e@intel.com>
-Date: Mon, 25 Sep 2023 15:15:15 +0200
+X-IronPort-AV: E=McAfee;i="6600,9927,10843"; a="872046303"
+X-IronPort-AV: E=Sophos;i="6.03,175,1694761200"; d="scan'208";a="872046303"
+Received: from shaunbis-mobl4.ger.corp.intel.com (HELO localhost.localdomain)
+ ([10.213.220.248])
+ by orsmga004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 25 Sep 2023 06:16:01 -0700
+From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+To: igt-dev@lists.freedesktop.org,
+	Intel-gfx@lists.freedesktop.org
+Date: Mon, 25 Sep 2023 14:15:39 +0100
+Message-Id: <20230925131539.32743-1-tvrtko.ursulin@linux.intel.com>
+X-Mailer: git-send-email 2.39.2
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Firefox/102.0 Thunderbird/102.15.1
-Content-Language: en-US
-To: intel-gfx@lists.freedesktop.org,
- Patchwork <patchwork@emeril.freedesktop.org>
-References: <20230925091600.2941364-1-andrzej.hajda@intel.com>
- <169563827854.21535.10000314074115511685@emeril.freedesktop.org>
-From: Andrzej Hajda <andrzej.hajda@intel.com>
-Organization: Intel Technology Poland sp. z o.o. - ul. Slowackiego 173, 80-298
- Gdansk - KRS 101882 - NIP 957-07-52-316
-In-Reply-To: <169563827854.21535.10000314074115511685@emeril.freedesktop.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-Subject: Re: [Intel-gfx] 
- =?utf-8?b?4pyXIEZpLkNJLkJVSUxEOiBmYWlsdXJlIGZvciBk?=
- =?utf-8?q?ebugobjects=3A_stop_accessing_objects_after_releasing_spinlock?=
+Subject: [Intel-gfx] [RFC/CI] prime_vgem: Add mmap forwarding tests
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -70,42 +60,101 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On 25.09.2023 12:37, Patchwork wrote:
-> == Series Details ==
-> 
-> Series: debugobjects: stop accessing objects after releasing spinlock
-> URL   : https://patchwork.freedesktop.org/series/124185/
-> State : failure
-> 
-> == Summary ==
-> 
-> Error: make failed
->    CALL    scripts/checksyscalls.sh
->    DESCEND objtool
->    INSTALL libsubcmd_headers
->    AR      lib/lib.a
->    CC      lib/debugobjects.o
-> lib/debugobjects.c: In function ‘debug_object_activate’:
-> lib/debugobjects.c:727:3: error: label at end of compound statement
->    727 |   default:
->        |   ^~~~~~~
-> lib/debugobjects.c:748:2: error: label at end of compound statement
->    748 |  default:
->        |  ^~~~~~~
-> lib/debugobjects.c: In function ‘debug_object_destroy’:
-> lib/debugobjects.c:840:2: error: label at end of compound statement
->    840 |  default:
->        |  ^~~~~~~
-> make[3]: *** [scripts/Makefile.build:243: lib/debugobjects.o] Error 1
-> make[2]: *** [scripts/Makefile.build:480: lib] Error 2
-> make[1]: *** [/home/kbuild/kernel/Makefile:1913: .] Error 2
-> make: *** [Makefile:234: __sub-make] Error 2
-> Build failed, no error log produced
-> 
-> 
+From: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
 
-Apparently this compiler is more pedantic, v2 posted.
+...
 
-Regards
-Andrzej
+Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+---
+ tests/prime_vgem.c | 45 +++++++++++++++++++++++++++++++++++++++++----
+ 1 file changed, 41 insertions(+), 4 deletions(-)
+
+diff --git a/tests/prime_vgem.c b/tests/prime_vgem.c
+index 876e04ed02a1..29eb7eccad61 100644
+--- a/tests/prime_vgem.c
++++ b/tests/prime_vgem.c
+@@ -72,6 +72,21 @@
+  * Feature: gtt, prime
+  * Run type: BAT
+  *
++ * SUBTEST: forwarded-wc
++ * Description: Examine access path through imported buffer mmap forwarding
++ * Feature: mmap, prime
++ * Run type: FULL
++ *
++ * SUBTEST: forwarded-uc
++ * Description: Examine access path through imported buffer mmap forwarding
++ * Feature: mmap, prime
++ * Run type: FULL
++ *
++ * SUBTEST: forwarded-wb
++ * Description: Examine access path through imported buffer mmap forwarding
++ * Feature: mmap, prime
++ * Run type: FULL
++ *
+  * SUBTEST: basic-read
+  * Description: Examine read access path.
+  * Feature: gtt, prime
+@@ -420,7 +435,7 @@ static void test_write(int vgem, int i915)
+ 	munmap(ptr, scratch.size);
+ }
+ 
+-static void test_gtt(int vgem, int i915)
++static void test_mmap_offset(int vgem, int i915, unsigned int flags)
+ {
+ 	struct vgem_bo scratch;
+ 	uint32_t handle;
+@@ -436,7 +451,16 @@ static void test_gtt(int vgem, int i915)
+ 	handle = prime_fd_to_handle(i915, dmabuf);
+ 	close(dmabuf);
+ 
+-	ptr = gem_mmap__gtt(i915, handle, scratch.size, PROT_WRITE);
++	ptr = __gem_mmap_offset(i915, handle, 0, scratch.size, PROT_WRITE,
++				flags);
++	if (flags == I915_MMAP_OFFSET_GTT) {
++		/* Only allowed to fail if no aperture. */
++		igt_require(ptr || !gem_mappable_aperture_size(i915));
++
++	} else {
++		/* Skip on old kernels. */
++		igt_require(ptr);
++	}
+ 	for (i = 0; i < 1024; i++)
+ 		ptr[1024*i] = i;
+ 	munmap(ptr, scratch.size);
+@@ -448,7 +472,8 @@ static void test_gtt(int vgem, int i915)
+ 	}
+ 	munmap(ptr, scratch.size);
+ 
+-	ptr = gem_mmap__gtt(i915, handle, scratch.size, PROT_READ);
++	ptr = __gem_mmap_offset(i915, handle, 0, scratch.size, PROT_READ,
++				flags);
+ 	for (i = 0; i < 1024; i++)
+ 		igt_assert_eq(ptr[1024*i], ~i);
+ 	munmap(ptr, scratch.size);
+@@ -1225,9 +1250,21 @@ igt_main
+ 	igt_describe("Examine access path through GTT.");
+ 	igt_subtest("basic-gtt") {
+ 		gem_require_mappable_ggtt(i915);
+-		test_gtt(vgem, i915);
++		test_mmap_offset(vgem, i915, I915_MMAP_OFFSET_GTT);
+ 	}
+ 
++	igt_describe("Examine access path through mmap forwarding.");
++	igt_subtest("forwarded-wc")
++		test_mmap_offset(vgem, i915, I915_MMAP_OFFSET_WC);
++
++	igt_describe("Examine access path through mmap forwarding.");
++	igt_subtest("forwarded-uc")
++		test_mmap_offset(vgem, i915, I915_MMAP_OFFSET_UC);
++
++	igt_describe("Examine access path through mmap forwarding.");
++	igt_subtest("forwarded-wb")
++		test_mmap_offset(vgem, i915, I915_MMAP_OFFSET_WB);
++
+ 	igt_describe("Examine blitter access path.");
+ 	igt_subtest("basic-blt")
+ 		test_blt(vgem, i915);
+-- 
+2.39.2
 
