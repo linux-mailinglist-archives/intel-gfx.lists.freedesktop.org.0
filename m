@@ -1,50 +1,51 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id EF4737AD8B8
-	for <lists+intel-gfx@lfdr.de>; Mon, 25 Sep 2023 15:16:08 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id CE33C7AD8C1
+	for <lists+intel-gfx@lfdr.de>; Mon, 25 Sep 2023 15:16:47 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0253110E24D;
-	Mon, 25 Sep 2023 13:16:07 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3D09D10E177;
+	Mon, 25 Sep 2023 13:16:46 +0000 (UTC)
 X-Original-To: Intel-gfx@lists.freedesktop.org
 Delivered-To: Intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 737C610E24D;
- Mon, 25 Sep 2023 13:16:03 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.93])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id F1B4910E177;
+ Mon, 25 Sep 2023 13:16:44 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1695647763; x=1727183763;
- h=from:to:subject:date:message-id:mime-version:
+ t=1695647805; x=1727183805;
+ h=from:to:cc:subject:date:message-id:mime-version:
  content-transfer-encoding;
- bh=QJDspZdFgilvUCDypj9L73HCr3hsrDu7GEVZMDgdFzg=;
- b=m4PHkp0Zhb0NeMOUFr1HjXdVBa9X/wHbEgesYOcaaYySh+KuMEFI8Ty0
- W381almbv+0iAiH1PW4Qrsv8k1+3b+hJbjAjaf3HFqTue4t/miP94STvs
- y3dT8baaxh+YP1+Wa2yMdyVwEe5Cqa29GhHBiCeSmIN27C1XeH0erUVAD
- hCvxVvlCtLwKJ9I/L8zPeJcyQw/pXzRjzYuz34d0hkKtOzsEqfltcFVJz
- sxK1pAm0h8uDHutu7lIFDoIfC+MdF9P5ipMOUA8kt8ln/AURjVvwEY8/l
- 3K19QK9ftSR/3/C1c2E+G3fh/Cv79bfCdcbBg8ckOSfITQ90qToyF4w2u A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10843"; a="371567050"
-X-IronPort-AV: E=Sophos;i="6.03,175,1694761200"; d="scan'208";a="371567050"
-Received: from orsmga004.jf.intel.com ([10.7.209.38])
- by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Sep 2023 06:16:02 -0700
+ bh=g6xV6AcOQ/Hz6uojX5aFY+07NIvNtfKY2VxsjjJY97E=;
+ b=CdpNspx8WlzDtnfJPTT9iq4T4aORAcqTklLOJrVpc9XU1m8fL+oTUWow
+ owXHH6E47rRz+6vi/oN7NDGQm6dCmQEbhIlZTYggQPwjPerW20tjc6XV8
+ vS8MMqfOLXxV6dQka4J85MvRrL5C78LLipMEYi4QFCge5hBYf+xLpUM2D
+ MjXJcpb+fr4/GPdahYuy+vMfQV0bEkKYR3mdgTQk4+WV5DnB+k8V+IICj
+ J4R0Ey9niww19G7KaaBxU3VkhQ1+NEDOVnI0qzRbGcavNbdNR0YJUyULr
+ PUSiyHAjxpt1kZ+OVmaSS6tnhUk29tAUb2F8+s/oA2lV1DPtdEMUwVLPb Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10843"; a="378519867"
+X-IronPort-AV: E=Sophos;i="6.03,175,1694761200"; d="scan'208";a="378519867"
+Received: from fmsmga007.fm.intel.com ([10.253.24.52])
+ by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 25 Sep 2023 06:16:43 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10843"; a="872046303"
-X-IronPort-AV: E=Sophos;i="6.03,175,1694761200"; d="scan'208";a="872046303"
+X-IronPort-AV: E=McAfee;i="6600,9927,10843"; a="751677676"
+X-IronPort-AV: E=Sophos;i="6.03,175,1694761200"; d="scan'208";a="751677676"
 Received: from shaunbis-mobl4.ger.corp.intel.com (HELO localhost.localdomain)
  ([10.213.220.248])
- by orsmga004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Sep 2023 06:16:01 -0700
+ by fmsmga007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 25 Sep 2023 06:16:41 -0700
 From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-To: igt-dev@lists.freedesktop.org,
-	Intel-gfx@lists.freedesktop.org
-Date: Mon, 25 Sep 2023 14:15:39 +0100
-Message-Id: <20230925131539.32743-1-tvrtko.ursulin@linux.intel.com>
+To: Intel-gfx@lists.freedesktop.org,
+	dri-devel@lists.freedesktop.org
+Date: Mon, 25 Sep 2023 14:16:38 +0100
+Message-Id: <20230925131638.32808-1-tvrtko.ursulin@linux.intel.com>
 X-Mailer: git-send-email 2.39.2
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [RFC/CI] prime_vgem: Add mmap forwarding tests
+Subject: [Intel-gfx] [RFC] drm/i915: Allow dmabuf mmap forwarding
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -57,104 +58,239 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: Daniel Vetter <daniel.vetter@ffwll.ch>,
+ Matthew Auld <matthew.auld@intel.com>, Nirmoy Das <nirmoy.das@intel.com>,
+ =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 From: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
 
-...
+Allow mmap forwarding for imported buffers in order to allow minigbm mmap
+to work on aperture-less platforms such as Meteorlake.
+
+So far i915 did not allow mmap on imported buffers but from minigbm
+perspective that worked because of the DRM_IOCTL_I915_GEM_MMAP_GTT fall-
+back would then be attempted, and would be successful.
+
+This stops working on Meteorlake since there is no aperture.
+
+Allow i915 to mmap imported buffers using forwarding via dma_buf_mmap(),
+which allows the primary minigbm path of DRM_IOCTL_I915_GEM_MMAP_OFFSET /
+I915_MMAP_OFFSET_WB to work.
 
 Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+Cc: Daniel Vetter <daniel.vetter@ffwll.ch>
+Cc: Christian König <christian.koenig@amd.com>
+Cc: Matthew Auld <matthew.auld@intel.com>
+Cc: Nirmoy Das <nirmoy.das@intel.com>
 ---
- tests/prime_vgem.c | 45 +++++++++++++++++++++++++++++++++++++++++----
- 1 file changed, 41 insertions(+), 4 deletions(-)
+1)
+It is unclear to me if any real userspace depends on this, but there are
+certainly compliance suites which fail.
 
-diff --git a/tests/prime_vgem.c b/tests/prime_vgem.c
-index 876e04ed02a1..29eb7eccad61 100644
---- a/tests/prime_vgem.c
-+++ b/tests/prime_vgem.c
-@@ -72,6 +72,21 @@
-  * Feature: gtt, prime
-  * Run type: BAT
-  *
-+ * SUBTEST: forwarded-wc
-+ * Description: Examine access path through imported buffer mmap forwarding
-+ * Feature: mmap, prime
-+ * Run type: FULL
-+ *
-+ * SUBTEST: forwarded-uc
-+ * Description: Examine access path through imported buffer mmap forwarding
-+ * Feature: mmap, prime
-+ * Run type: FULL
-+ *
-+ * SUBTEST: forwarded-wb
-+ * Description: Examine access path through imported buffer mmap forwarding
-+ * Feature: mmap, prime
-+ * Run type: FULL
-+ *
-  * SUBTEST: basic-read
-  * Description: Examine read access path.
-  * Feature: gtt, prime
-@@ -420,7 +435,7 @@ static void test_write(int vgem, int i915)
- 	munmap(ptr, scratch.size);
+2)
+It is also a bit unclear to me if dma_buf_mmap() is exactly intended for
+this kind of use. It seems that it is, but I also found some old mailing
+list discussions suggesting there might be some unresolved questions
+around VMA revocation.
+
+1 + 2 = RFC for now.
+
+Daniel and Christian were involved in 2) in the past so comments would
+be appreciated.
+
+Test-with: 20230925131539.32743-1-tvrtko.ursulin@linux.intel.com
+
+---
+ drivers/gpu/drm/i915/gem/i915_gem_mman.c      | 78 +++++++++++++++----
+ .../gpu/drm/i915/gem/i915_gem_object_types.h  |  1 +
+ 2 files changed, 65 insertions(+), 14 deletions(-)
+
+diff --git a/drivers/gpu/drm/i915/gem/i915_gem_mman.c b/drivers/gpu/drm/i915/gem/i915_gem_mman.c
+index aa4d842d4c5a..78c84c0a8b08 100644
+--- a/drivers/gpu/drm/i915/gem/i915_gem_mman.c
++++ b/drivers/gpu/drm/i915/gem/i915_gem_mman.c
+@@ -5,6 +5,7 @@
+  */
+ 
+ #include <linux/anon_inodes.h>
++#include <linux/dma-buf.h>
+ #include <linux/mman.h>
+ #include <linux/pfn_t.h>
+ #include <linux/sizes.h>
+@@ -664,6 +665,7 @@ insert_mmo(struct drm_i915_gem_object *obj, struct i915_mmap_offset *mmo)
+ static struct i915_mmap_offset *
+ mmap_offset_attach(struct drm_i915_gem_object *obj,
+ 		   enum i915_mmap_type mmap_type,
++		   bool forward_mmap,
+ 		   struct drm_file *file)
+ {
+ 	struct drm_i915_private *i915 = to_i915(obj->base.dev);
+@@ -682,6 +684,7 @@ mmap_offset_attach(struct drm_i915_gem_object *obj,
+ 
+ 	mmo->obj = obj;
+ 	mmo->mmap_type = mmap_type;
++	mmo->forward_mmap = forward_mmap;
+ 	drm_vma_node_reset(&mmo->vma_node);
+ 
+ 	err = drm_vma_offset_add(obj->base.dev->vma_offset_manager,
+@@ -714,12 +717,25 @@ mmap_offset_attach(struct drm_i915_gem_object *obj,
+ 	return ERR_PTR(err);
  }
  
--static void test_gtt(int vgem, int i915)
-+static void test_mmap_offset(int vgem, int i915, unsigned int flags)
++static bool
++should_forward_mmap(struct drm_i915_gem_object *obj,
++		    enum i915_mmap_type mmap_type)
++{
++	if (!obj->base.import_attach)
++		return false;
++
++	return mmap_type == I915_MMAP_TYPE_WB ||
++	       mmap_type == I915_MMAP_TYPE_WC ||
++	       mmap_type == I915_MMAP_TYPE_UC;
++}
++
+ static int
+ __assign_mmap_offset(struct drm_i915_gem_object *obj,
+ 		     enum i915_mmap_type mmap_type,
+ 		     u64 *offset, struct drm_file *file)
  {
- 	struct vgem_bo scratch;
- 	uint32_t handle;
-@@ -436,7 +451,16 @@ static void test_gtt(int vgem, int i915)
- 	handle = prime_fd_to_handle(i915, dmabuf);
- 	close(dmabuf);
+ 	struct i915_mmap_offset *mmo;
++	bool should_forward;
  
--	ptr = gem_mmap__gtt(i915, handle, scratch.size, PROT_WRITE);
-+	ptr = __gem_mmap_offset(i915, handle, 0, scratch.size, PROT_WRITE,
-+				flags);
-+	if (flags == I915_MMAP_OFFSET_GTT) {
-+		/* Only allowed to fail if no aperture. */
-+		igt_require(ptr || !gem_mappable_aperture_size(i915));
+ 	if (i915_gem_object_never_mmap(obj))
+ 		return -ENODEV;
+@@ -735,12 +751,15 @@ __assign_mmap_offset(struct drm_i915_gem_object *obj,
+ 	if (mmap_type == I915_MMAP_TYPE_FIXED)
+ 		return -ENODEV;
+ 
++	should_forward = should_forward_mmap(obj, mmap_type);
 +
-+	} else {
-+		/* Skip on old kernels. */
-+		igt_require(ptr);
+ 	if (mmap_type != I915_MMAP_TYPE_GTT &&
+ 	    !i915_gem_object_has_struct_page(obj) &&
+-	    !i915_gem_object_has_iomem(obj))
++	    !i915_gem_object_has_iomem(obj) &&
++	    !should_forward)
+ 		return -ENODEV;
+ 
+-	mmo = mmap_offset_attach(obj, mmap_type, file);
++	mmo = mmap_offset_attach(obj, mmap_type, should_forward, file);
+ 	if (IS_ERR(mmo))
+ 		return PTR_ERR(mmo);
+ 
+@@ -936,6 +955,32 @@ static struct file *mmap_singleton(struct drm_i915_private *i915)
+ 	return file;
+ }
+ 
++static void
++__vma_mmap_pgprot(struct vm_area_struct *vma, enum i915_mmap_type mmap_type)
++{
++	const pgprot_t pgprot =vm_get_page_prot(vma->vm_flags);
++
++	switch (mmap_type) {
++	case I915_MMAP_TYPE_WC:
++		vma->vm_page_prot = pgprot_writecombine(pgprot);
++		break;
++	case I915_MMAP_TYPE_FIXED:
++		GEM_WARN_ON(1);
++		fallthrough;
++	case I915_MMAP_TYPE_WB:
++		vma->vm_page_prot = pgprot;
++		break;
++	case I915_MMAP_TYPE_UC:
++		vma->vm_page_prot = pgprot_noncached(pgprot);
++		break;
++	case I915_MMAP_TYPE_GTT:
++		vma->vm_page_prot = pgprot_writecombine(pgprot);
++		break;
 +	}
- 	for (i = 0; i < 1024; i++)
- 		ptr[1024*i] = i;
- 	munmap(ptr, scratch.size);
-@@ -448,7 +472,8 @@ static void test_gtt(int vgem, int i915)
- 	}
- 	munmap(ptr, scratch.size);
- 
--	ptr = gem_mmap__gtt(i915, handle, scratch.size, PROT_READ);
-+	ptr = __gem_mmap_offset(i915, handle, 0, scratch.size, PROT_READ,
-+				flags);
- 	for (i = 0; i < 1024; i++)
- 		igt_assert_eq(ptr[1024*i], ~i);
- 	munmap(ptr, scratch.size);
-@@ -1225,9 +1250,21 @@ igt_main
- 	igt_describe("Examine access path through GTT.");
- 	igt_subtest("basic-gtt") {
- 		gem_require_mappable_ggtt(i915);
--		test_gtt(vgem, i915);
-+		test_mmap_offset(vgem, i915, I915_MMAP_OFFSET_GTT);
++
++	vma->vm_page_prot = pgprot_decrypted(vma->vm_page_prot);
++}
++
+ static int
+ i915_gem_object_mmap(struct drm_i915_gem_object *obj,
+ 		     struct i915_mmap_offset *mmo,
+@@ -953,6 +998,20 @@ i915_gem_object_mmap(struct drm_i915_gem_object *obj,
+ 		vm_flags_clear(vma, VM_MAYWRITE);
  	}
  
-+	igt_describe("Examine access path through mmap forwarding.");
-+	igt_subtest("forwarded-wc")
-+		test_mmap_offset(vgem, i915, I915_MMAP_OFFSET_WC);
++	/* dma-buf import */
++	if (mmo && mmo->forward_mmap) {
++		__vma_mmap_pgprot(vma, mmo->mmap_type);
++		vm_flags_set(vma, VM_PFNMAP | VM_DONTEXPAND | VM_DONTDUMP | VM_IO);
 +
-+	igt_describe("Examine access path through mmap forwarding.");
-+	igt_subtest("forwarded-uc")
-+		test_mmap_offset(vgem, i915, I915_MMAP_OFFSET_UC);
++		/*
++		 * Don't have our vm_ops to drop the reference in this case so
++		 * drop it now and if object goes away userspace will fault.
++		 */
++		i915_gem_object_put(mmo->obj);
 +
-+	igt_describe("Examine access path through mmap forwarding.");
-+	igt_subtest("forwarded-wb")
-+		test_mmap_offset(vgem, i915, I915_MMAP_OFFSET_WB);
++		return dma_buf_mmap(obj->base.dma_buf, vma, 0);
++	}
 +
- 	igt_describe("Examine blitter access path.");
- 	igt_subtest("basic-blt")
- 		test_blt(vgem, i915);
+ 	anon = mmap_singleton(to_i915(dev));
+ 	if (IS_ERR(anon)) {
+ 		i915_gem_object_put(obj);
+@@ -982,34 +1041,25 @@ i915_gem_object_mmap(struct drm_i915_gem_object *obj,
+ 
+ 	vma->vm_private_data = mmo;
+ 
++	__vma_mmap_pgprot(vma, mmo->mmap_type);
++
+ 	switch (mmo->mmap_type) {
+ 	case I915_MMAP_TYPE_WC:
+-		vma->vm_page_prot =
+-			pgprot_writecombine(vm_get_page_prot(vma->vm_flags));
+ 		vma->vm_ops = &vm_ops_cpu;
+ 		break;
+-
+ 	case I915_MMAP_TYPE_FIXED:
+ 		GEM_WARN_ON(1);
+ 		fallthrough;
+ 	case I915_MMAP_TYPE_WB:
+-		vma->vm_page_prot = vm_get_page_prot(vma->vm_flags);
+ 		vma->vm_ops = &vm_ops_cpu;
+ 		break;
+-
+ 	case I915_MMAP_TYPE_UC:
+-		vma->vm_page_prot =
+-			pgprot_noncached(vm_get_page_prot(vma->vm_flags));
+ 		vma->vm_ops = &vm_ops_cpu;
+ 		break;
+-
+ 	case I915_MMAP_TYPE_GTT:
+-		vma->vm_page_prot =
+-			pgprot_writecombine(vm_get_page_prot(vma->vm_flags));
+ 		vma->vm_ops = &vm_ops_gtt;
+ 		break;
+ 	}
+-	vma->vm_page_prot = pgprot_decrypted(vma->vm_page_prot);
+ 
+ 	return 0;
+ }
+@@ -1084,7 +1134,7 @@ int i915_gem_fb_mmap(struct drm_i915_gem_object *obj, struct vm_area_struct *vma
+ 	} else {
+ 		/* handle stolen and smem objects */
+ 		mmap_type = i915_ggtt_has_aperture(ggtt) ? I915_MMAP_TYPE_GTT : I915_MMAP_TYPE_WC;
+-		mmo = mmap_offset_attach(obj, mmap_type, NULL);
++		mmo = mmap_offset_attach(obj, mmap_type, false, NULL);
+ 		if (IS_ERR(mmo))
+ 			return PTR_ERR(mmo);
+ 	}
+diff --git a/drivers/gpu/drm/i915/gem/i915_gem_object_types.h b/drivers/gpu/drm/i915/gem/i915_gem_object_types.h
+index 0c5cdab278b6..b4f86fa020aa 100644
+--- a/drivers/gpu/drm/i915/gem/i915_gem_object_types.h
++++ b/drivers/gpu/drm/i915/gem/i915_gem_object_types.h
+@@ -225,6 +225,7 @@ struct i915_mmap_offset {
+ 	struct drm_vma_offset_node vma_node;
+ 	struct drm_i915_gem_object *obj;
+ 	enum i915_mmap_type mmap_type;
++	bool forward_mmap;
+ 
+ 	struct rb_node offset;
+ };
 -- 
 2.39.2
 
