@@ -1,66 +1,49 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 909A87ADE23
-	for <lists+intel-gfx@lfdr.de>; Mon, 25 Sep 2023 19:56:35 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6F1487ADF81
+	for <lists+intel-gfx@lfdr.de>; Mon, 25 Sep 2023 21:21:49 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 87BC510E2C9;
-	Mon, 25 Sep 2023 17:56:31 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7A81A10E049;
+	Mon, 25 Sep 2023 19:21:45 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-oa1-x36.google.com (mail-oa1-x36.google.com
- [IPv6:2001:4860:4864:20::36])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CCF5A10E2C0;
- Mon, 25 Sep 2023 17:56:27 +0000 (UTC)
-Received: by mail-oa1-x36.google.com with SMTP id
- 586e51a60fabf-1bba7717d3bso3845714fac.1; 
- Mon, 25 Sep 2023 10:56:27 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1695664587; x=1696269387; darn=lists.freedesktop.org;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:from:to:cc:subject:date
- :message-id:reply-to;
- bh=a1F9rg4X23ujFzzgF5l8L8aKk/znEnb8MB1jEXGz6ng=;
- b=j2z5q5BckrDbmoUOo5nYCB7I35nP3ucKlIXaalGileiGe6gpPplxWHRsvbV3OiLNxs
- 4M5tr8annXnt6ADod2C2hNHf8ps6wA/7UD0PWA9ieJ4Rz2CCtKQ6zmFIeR/HmrgqUROf
- F5JBJxA8bAv6m0A+lmn/K66ZsB2x8nULnGpdPzGTJMgfJTrvcbsVVOdp+t8PaJoNfTvY
- ghHEuXOn3Oyel9c7y5Wlq1xtURr8z+mIs2a/sSnH6wjWo8hzMsTEGDAj+7Qiqbt0op0y
- dXdDz3xMmGu1Mz72A+E9mdb3nF6NMz82ApiiBOcSxyRP8wjKhWcoPjSn91aKvNaRbccZ
- hmVQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1695664587; x=1696269387;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
- :subject:date:message-id:reply-to;
- bh=a1F9rg4X23ujFzzgF5l8L8aKk/znEnb8MB1jEXGz6ng=;
- b=tEzbJShwrtxfTkECV2hhxAmdsreUDuVdWrJHLebBfNDs6jsQ/xehg13L6OHejAaYYQ
- jkU0nbQ93oOpMHNaugReBVDOTbgjOs7PLWfADNWBVXB/kA7QPpS0C6j+XlDV/5gLCD3q
- UnLcVf91ZirraqxfgwdG4SndR1O6bEE5BA7D8Ssdye7VlawlrmJ4wsH/IP5qisk1Xfzc
- sua+xPvvnICE9hgwVsltyObMlKwbhqNnnOR9VxrwQKhQtxkUejPN2VoidLZwwR4XC94W
- OLASRDaJVJQ8oITKKKI3i4g0quNiTMbY4V+Qauo0caiFg5nCNbCa1swCS7dtGBRJ4iFZ
- nojQ==
-X-Gm-Message-State: AOJu0YzmqFg0lxbRfe7t4WKi2irZgJwbh5OvUQESdEzmDQEVKtgSusgD
- poiPliBhmFeDvli8wBfcZHghbipM4sYV3q8Dh+g=
-X-Google-Smtp-Source: AGHT+IHKGmpSNoLKRlPKgMz3PfLu9l0asTJ/KJeRR4YlCqKx/0xgmJzaJCWHK+NWln0berAZsxELHx2SNeMkUMNHpCU=
-X-Received: by 2002:a05:6870:c227:b0:1db:3679:198a with SMTP id
- z39-20020a056870c22700b001db3679198amr8758871oae.24.1695664587047; Mon, 25
- Sep 2023 10:56:27 -0700 (PDT)
+Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.88])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D625A10E2CF
+ for <intel-gfx@lists.freedesktop.org>; Mon, 25 Sep 2023 19:21:42 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1695669702; x=1727205702;
+ h=from:to:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=PBDA7N9TPQ02V7LUVEGuTUjXwHccjJ0tFqXKXKJlEy8=;
+ b=CEdtnokwypKPl5OmK5YRpvn685aM0Zi3GkF6ttNShl9uJiig6XEERKDx
+ EFd/w/Shb4qpicghZMast8tj56JKVtKlMnPWv8CvcBwOK3q+dFK7vEKoc
+ fKvlOyCvZvQQF2yiyjmQTJWG/iwrGOGSK7ZsdQ6uYTBubRjTgkdluilkW
+ mijwSVcj20NKwlQQuZGN3EKcGGmWY/LPv0zkIQz7HV2Own+8XSQT1wXiW
+ Sg3A3uPMatE/Ixp9585tm/RKsBS0E2XRPJnWMQBbT3sIJzRqGhBaPpunK
+ TD97mQzQe7Mc6uSCOEU5CkMfCCIEETNR5qujEhCJBg6f4V//qZBNuiJZe A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10843"; a="412274380"
+X-IronPort-AV: E=Sophos;i="6.03,175,1694761200"; d="scan'208";a="412274380"
+Received: from orsmga007.jf.intel.com ([10.7.209.58])
+ by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 25 Sep 2023 12:21:23 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10843"; a="742022851"
+X-IronPort-AV: E=Sophos;i="6.03,175,1694761200"; d="scan'208";a="742022851"
+Received: from unerlige-desk.jf.intel.com ([10.165.21.199])
+ by orsmga007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 25 Sep 2023 12:21:22 -0700
+From: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Mon, 25 Sep 2023 12:21:17 -0700
+Message-Id: <20230925192117.2497058-1-umesh.nerlige.ramappa@intel.com>
+X-Mailer: git-send-email 2.38.1
 MIME-Version: 1.0
-References: <20230922173110.work.084-kees@kernel.org>
- <20230922173216.3823169-1-keescook@chromium.org>
- <CADnq5_P2p3bmczci=pU+pG6f9+hqn=-xp1EynP2345CJZRW08w@mail.gmail.com>
- <2635922e-f52a-4e91-40c6-4f1358972786@amd.com>
- <202309251051.EE3ECE7B@keescook>
-In-Reply-To: <202309251051.EE3ECE7B@keescook>
-From: Alex Deucher <alexdeucher@gmail.com>
-Date: Mon, 25 Sep 2023 13:56:16 -0400
-Message-ID: <CADnq5_PaXmFa6N_2-NRp7_2+m3TYt8s--4aYm1UTnQKXDUhwYw@mail.gmail.com>
-To: Kees Cook <keescook@chromium.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-Subject: Re: [Intel-gfx] [PATCH 1/9] drm/amd/pm: Annotate struct
- smu10_voltage_dependency_table with __counted_by
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-gfx] [PATCH] i915/guc: Get runtime pm in busyness worker
+ only if already active
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -73,103 +56,115 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "Pan, Xinhui" <Xinhui.Pan@amd.com>, Karol Herbst <kherbst@redhat.com>,
- Tom Rix <trix@redhat.com>, llvm@lists.linux.dev,
- dri-devel@lists.freedesktop.org, Chris Wilson <chris@chris-wilson.co.uk>,
- Prike Liang <Prike.Liang@amd.com>, Huang Rui <ray.huang@amd.com>,
- Gerd Hoffmann <kraxel@redhat.com>, Andrzej Hajda <andrzej.hajda@intel.com>,
- Marijn Suijten <marijn.suijten@somainline.org>,
- David Airlie <airlied@gmail.com>, Evan Quan <evan.quan@amd.com>,
- Emma Anholt <emma@anholt.net>, amd-gfx@lists.freedesktop.org,
- Kuogee Hsieh <quic_khsieh@quicinc.com>,
- VMware Graphics Reviewers <linux-graphics-maintainer@vmware.com>,
- Ben Skeggs <bskeggs@redhat.com>, nouveau@lists.freedesktop.org,
- David Airlie <airlied@redhat.com>, Alex Deucher <alexander.deucher@amd.com>,
- Lijo Lazar <lijo.lazar@amd.com>, Yifan Zhang <yifan1.zhang@amd.com>,
- linux-arm-msm@vger.kernel.org, intel-gfx@lists.freedesktop.org,
- Kevin Wang <kevin1.wang@amd.com>, Abhinav Kumar <quic_abhinavk@quicinc.com>,
- Maxime Ripard <mripard@kernel.org>, Nathan Chancellor <nathan@kernel.org>,
- Le Ma <le.ma@amd.com>, Gurchetan Singh <gurchetansingh@chromium.org>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- virtualization@lists.linux-foundation.org,
- Neil Armstrong <neil.armstrong@linaro.org>, Xiaojian Du <Xiaojian.Du@amd.com>,
- Lang Yu <Lang.Yu@amd.com>, Bjorn Andersson <andersson@kernel.org>,
- Nick Desaulniers <ndesaulniers@google.com>, linux-kernel@vger.kernel.org,
- Hawking Zhang <Hawking.Zhang@amd.com>, Melissa Wen <mwen@igalia.com>,
- Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
- Nirmoy Das <nirmoy.das@intel.com>, freedreno@lists.freedesktop.org,
- =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>,
- linux-hardening@vger.kernel.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, Sep 25, 2023 at 1:52=E2=80=AFPM Kees Cook <keescook@chromium.org> w=
-rote:
->
-> On Mon, Sep 25, 2023 at 08:30:30AM +0200, Christian K=C3=B6nig wrote:
-> > Am 22.09.23 um 19:41 schrieb Alex Deucher:
-> > > On Fri, Sep 22, 2023 at 1:32=E2=80=AFPM Kees Cook <keescook@chromium.=
-org> wrote:
-> > > > Prepare for the coming implementation by GCC and Clang of the __cou=
-nted_by
-> > > > attribute. Flexible array members annotated with __counted_by can h=
-ave
-> > > > their accesses bounds-checked at run-time checking via CONFIG_UBSAN=
-_BOUNDS
-> > > > (for array indexing) and CONFIG_FORTIFY_SOURCE (for strcpy/memcpy-f=
-amily
-> > > > functions).
-> > > >
-> > > > As found with Coccinelle[1], add __counted_by for struct smu10_volt=
-age_dependency_table.
-> > > >
-> > > > [1] https://github.com/kees/kernel-tools/blob/trunk/coccinelle/exam=
-ples/counted_by.cocci
-> > > >
-> > > > Cc: Evan Quan <evan.quan@amd.com>
-> > > > Cc: Alex Deucher <alexander.deucher@amd.com>
-> > > > Cc: "Christian K=C3=B6nig" <christian.koenig@amd.com>
-> > > > Cc: "Pan, Xinhui" <Xinhui.Pan@amd.com>
-> > > > Cc: David Airlie <airlied@gmail.com>
-> > > > Cc: Daniel Vetter <daniel@ffwll.ch>
-> > > > Cc: Xiaojian Du <Xiaojian.Du@amd.com>
-> > > > Cc: Huang Rui <ray.huang@amd.com>
-> > > > Cc: Kevin Wang <kevin1.wang@amd.com>
-> > > > Cc: amd-gfx@lists.freedesktop.org
-> > > > Cc: dri-devel@lists.freedesktop.org
-> > > > Signed-off-by: Kees Cook <keescook@chromium.org>
-> > > Acked-by: Alex Deucher <alexander.deucher@amd.com>
-> >
-> > Mhm, I'm not sure if this is a good idea. That is a structure filled in=
- by
-> > the firmware, isn't it?
-> >
-> > That would imply that we might need to byte swap count before it is
-> > checkable.
->
-> The script found this instance because of this:
->
-> static int smu10_get_clock_voltage_dependency_table(struct pp_hwmgr *hwmg=
-r,
->                         struct smu10_voltage_dependency_table **pptable,
->                         uint32_t num_entry, const DpmClock_t *pclk_depend=
-ency_table)
-> {
->         uint32_t i;
->         struct smu10_voltage_dependency_table *ptable;
->
->         ptable =3D kzalloc(struct_size(ptable, entries, num_entry), GFP_K=
-ERNEL);
->         if (NULL =3D=3D ptable)
->                 return -ENOMEM;
->
->         ptable->count =3D num_entry;
->
-> So the implication is that it's native byte order... but you tell me! I
-> certainly don't want this annotation if it's going to break stuff. :)
+Ideally the busyness worker should take a gt pm wakeref because the
+worker only needs to be active while gt is awake. However, the gt_park
+path cancels the worker synchronously and this complicates the flow if
+the worker is also running at the same time. The cancel waits for the
+worker and when the worker releases the wakeref, that would call gt_park
+and would lead to a deadlock.
 
-In this case, the code is for an integrated GPU in an x86 CPU so the
-firmware and driver endianness match.  You wouldn't find a stand alone
-dGPU that uses this structure.  In this case it's ok.  False alarm.
+The resolution is to take the global pm wakeref if runtime pm is already
+active. If not, we don't need to update the busyness stats as the stats
+would already be updated when the gt was parked.
 
-Alex
+Note:
+- We do not requeue the worker if we cannot take a reference to runtime
+  pm since intel_guc_busyness_unpark would requeue the worker in the
+  resume path.
+
+- If the gt was parked longer than time taken for GT timestamp to roll
+  over, we ignore those rollovers since we don't care about tracking the
+  exact GT time. We only care about roll overs when the gt is active and
+  running workloads.
+
+- There is a window of time between gt_park and runtime suspend, where
+  the worker may run. This is acceptable since the worker will not find
+  any new data to update busyness.
+
+v2: (Daniele)
+- Edit commit message and code comment
+- Use runtime pm in the worker
+- Put runtime pm after enabling the worker
+- Use Link tag and add Fixes tag
+
+v3: (Daniele)
+- Reword commit and comments and add details
+
+Link: https://gitlab.freedesktop.org/drm/intel/-/issues/7077
+Fixes: 77cdd054dd2c ("drm/i915/pmu: Connect engine busyness stats from GuC to pmu")
+Signed-off-by: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
+Reviewed-by: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
+---
+ .../gpu/drm/i915/gt/uc/intel_guc_submission.c | 38 +++++++++++++++++--
+ 1 file changed, 35 insertions(+), 3 deletions(-)
+
+diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c b/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
+index cabdc645fcdd..ae3495a9c814 100644
+--- a/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
++++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
+@@ -1432,6 +1432,36 @@ static void guc_timestamp_ping(struct work_struct *wrk)
+ 	unsigned long index;
+ 	int srcu, ret;
+ 
++	/*
++	 * Ideally the busyness worker should take a gt pm wakeref because the
++	 * worker only needs to be active while gt is awake. However, the
++	 * gt_park path cancels the worker synchronously and this complicates
++	 * the flow if the worker is also running at the same time. The cancel
++	 * waits for the worker and when the worker releases the wakeref, that
++	 * would call gt_park and would lead to a deadlock.
++	 *
++	 * The resolution is to take the global pm wakeref if runtime pm is
++	 * already active. If not, we don't need to update the busyness stats as
++	 * the stats would already be updated when the gt was parked.
++	 *
++	 * Note:
++	 * - We do not requeue the worker if we cannot take a reference to runtime
++	 *   pm since intel_guc_busyness_unpark would requeue the worker in the
++	 *   resume path.
++	 *
++	 * - If the gt was parked longer than time taken for GT timestamp to roll
++	 *   over, we ignore those rollovers since we don't care about tracking
++	 *   the exact GT time. We only care about roll overs when the gt is
++	 *   active and running workloads.
++	 *
++	 * - There is a window of time between gt_park and runtime suspend,
++	 *   where the worker may run. This is acceptable since the worker will
++	 *   not find any new data to update busyness.
++	 */
++	wakeref = intel_runtime_pm_get_if_active(&gt->i915->runtime_pm);
++	if (!wakeref)
++		return;
++
+ 	/*
+ 	 * Synchronize with gt reset to make sure the worker does not
+ 	 * corrupt the engine/guc stats. NB: can't actually block waiting
+@@ -1440,10 +1470,9 @@ static void guc_timestamp_ping(struct work_struct *wrk)
+ 	 */
+ 	ret = intel_gt_reset_trylock(gt, &srcu);
+ 	if (ret)
+-		return;
++		goto err_trylock;
+ 
+-	with_intel_runtime_pm(&gt->i915->runtime_pm, wakeref)
+-		__update_guc_busyness_stats(guc);
++	__update_guc_busyness_stats(guc);
+ 
+ 	/* adjust context stats for overflow */
+ 	xa_for_each(&guc->context_lookup, index, ce)
+@@ -1452,6 +1481,9 @@ static void guc_timestamp_ping(struct work_struct *wrk)
+ 	intel_gt_reset_unlock(gt, srcu);
+ 
+ 	guc_enable_busyness_worker(guc);
++
++err_trylock:
++	intel_runtime_pm_put(&gt->i915->runtime_pm, wakeref);
+ }
+ 
+ static int guc_action_enable_usage_stats(struct intel_guc *guc)
+-- 
+2.38.1
+
