@@ -1,52 +1,89 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 684F97AD267
-	for <lists+intel-gfx@lfdr.de>; Mon, 25 Sep 2023 09:55:13 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7F6947AD271
+	for <lists+intel-gfx@lfdr.de>; Mon, 25 Sep 2023 09:56:26 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E985010E161;
-	Mon, 25 Sep 2023 07:55:10 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C666210E22B;
+	Mon, 25 Sep 2023 07:56:24 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.24])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2274110E161
- for <intel-gfx@lists.freedesktop.org>; Mon, 25 Sep 2023 07:55:10 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1695628510; x=1727164510;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:in-reply-to;
- bh=4jRsPlcgORxoWy7kckF+1Q0+3CRc8GC5gh9m1Gx2jy4=;
- b=Ld1HSysaI5jCfNenETux4iBfo9v/gJytPEy8Hf6xzpwGu2C+n5FXKQ8+
- TpwH5mjESII4rGqk7jTL2vrwLmSCP5GbmLYjgBQUxQHIVGpwdS5hhua4/
- IdSRXgrUy7ld6nt67XFoqcoyZrZt7nYdcjE4AifFxgvP2zFL8+9tp457Q
- ypJUvwAL8oOU5hMLXfGJyBEYSclo9ihEgyMevOM6HDrtRwhwLApRtaV4S
- 24GBppE4qJ741d38Z1N11onN6lQa4a4P6Bm9FuBdbH47GPDLFvnPiXq3X
- khvB1hiUHBEsqOSSjub4iJBEJ7vVqdYzC4791g9G+N5YRilcSCgIdpaY2 g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10843"; a="383954794"
-X-IronPort-AV: E=Sophos;i="6.03,174,1694761200"; d="scan'208";a="383954794"
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
- by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Sep 2023 00:54:56 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10843"; a="783386916"
-X-IronPort-AV: E=Sophos;i="6.03,174,1694761200"; d="scan'208";a="783386916"
-Received: from unknown (HELO intel.com) ([10.237.72.65])
- by orsmga001-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Sep 2023 00:54:55 -0700
-Date: Mon, 25 Sep 2023 10:54:51 +0300
-From: "Lisovskiy, Stanislav" <stanislav.lisovskiy@intel.com>
-To: Imre Deak <imre.deak@intel.com>
-Message-ID: <ZRE8y0r8nXvfB/H0@intel.com>
-References: <20230914192659.757475-1-imre.deak@intel.com>
- <20230914192659.757475-26-imre.deak@intel.com>
+Received: from smtp-out1.suse.de (smtp-out1.suse.de [195.135.220.28])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3C2F510E1CE;
+ Mon, 25 Sep 2023 07:56:23 +0000 (UTC)
+Received: from imap2.suse-dmz.suse.de (imap2.suse-dmz.suse.de [192.168.254.74])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature ECDSA (P-521) server-digest SHA512)
+ (No client certificate requested)
+ by smtp-out1.suse.de (Postfix) with ESMTPS id DD54221846;
+ Mon, 25 Sep 2023 07:56:21 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
+ t=1695628581; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:content-type:content-type:
+ in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
+ bh=6SNHYuSMfSoXQy5Z3XhTDbcs28+yMHqvRCflRAyCbh4=;
+ b=LI8pL0asuaq/Jmz2ZbXVxwRktB/cUa0gScnRXuTmalYwFQyG+oRxXAMbjtAss5nP/HutoC
+ SsH5b/apIlnt9zUScTUnAazqsy8RhUEms/b5kUVPMFCEEWI1jp/WUHsA7fHYJuVrXr2cjv
+ JdeWqPfkdS2gwSi+f3OEpncg2qr3EL8=
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
+ s=susede2_ed25519; t=1695628581;
+ h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:content-type:content-type:
+ in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
+ bh=6SNHYuSMfSoXQy5Z3XhTDbcs28+yMHqvRCflRAyCbh4=;
+ b=HObIrFItgbmnQ7sLH0rJk/86eU9gkzKa0LwJlW03QJUFA5C3yomtxf3eHV8OiWqXkYL0ij
+ fJneX5N8BxR5kGBg==
+Received: from imap2.suse-dmz.suse.de (imap2.suse-dmz.suse.de [192.168.254.74])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature ECDSA (P-521) server-digest SHA512)
+ (No client certificate requested)
+ by imap2.suse-dmz.suse.de (Postfix) with ESMTPS id 9AD1113A67;
+ Mon, 25 Sep 2023 07:56:21 +0000 (UTC)
+Received: from dovecot-director2.suse.de ([192.168.254.65])
+ by imap2.suse-dmz.suse.de with ESMTPSA id gprpJCU9EWUmSwAAMHmgww
+ (envelope-from <tzimmermann@suse.de>); Mon, 25 Sep 2023 07:56:21 +0000
+Message-ID: <dfada165-fccd-43eb-89e9-91e05ff970f2@suse.de>
+Date: Mon, 25 Sep 2023 09:56:20 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230914192659.757475-26-imre.deak@intel.com>
-Subject: Re: [Intel-gfx] [PATCH v3 25/25] drm/i915/dp_mst: Check BW
- limitations only after all streams are computed
+User-Agent: Mozilla Thunderbird
+To: jani.nikula@linux.intel.com, joonas.lahtinen@linux.intel.com,
+ rodrigo.vivi@intel.com, tvrtko.ursulin@linux.intel.com,
+ ville.syrjala@linux.intel.com, imre.deak@intel.com,
+ tejas.upadhyay@intel.com, javierm@redhat.com, airlied@gmail.com,
+ daniel@ffwll.ch
+References: <20230925073315.11627-1-tzimmermann@suse.de>
+Content-Language: en-US
+From: Thomas Zimmermann <tzimmermann@suse.de>
+Autocrypt: addr=tzimmermann@suse.de; keydata=
+ xsBNBFs50uABCADEHPidWt974CaxBVbrIBwqcq/WURinJ3+2WlIrKWspiP83vfZKaXhFYsdg
+ XH47fDVbPPj+d6tQrw5lPQCyqjwrCPYnq3WlIBnGPJ4/jreTL6V+qfKRDlGLWFjZcsrPJGE0
+ BeB5BbqP5erN1qylK9i3gPoQjXGhpBpQYwRrEyQyjuvk+Ev0K1Jc5tVDeJAuau3TGNgah4Yc
+ hdHm3bkPjz9EErV85RwvImQ1dptvx6s7xzwXTgGAsaYZsL8WCwDaTuqFa1d1jjlaxg6+tZsB
+ 9GluwvIhSezPgnEmimZDkGnZRRSFiGP8yjqTjjWuf0bSj5rUnTGiyLyRZRNGcXmu6hjlABEB
+ AAHNJ1Rob21hcyBaaW1tZXJtYW5uIDx0emltbWVybWFubkBzdXNlLmRlPsLAjgQTAQgAOAIb
+ AwULCQgHAgYVCgkICwIEFgIDAQIeAQIXgBYhBHIX+6yM6c9jRKFo5WgNwR1TC3ojBQJftODH
+ AAoJEGgNwR1TC3ojx1wH/0hKGWugiqDgLNXLRD/4TfHBEKmxIrmfu9Z5t7vwUKfwhFL6hqvo
+ lXPJJKQpQ2z8+X2vZm/slsLn7J1yjrOsoJhKABDi+3QWWSGkaGwRJAdPVVyJMfJRNNNIKwVb
+ U6B1BkX2XDKDGffF4TxlOpSQzdtNI/9gleOoUA8+jy8knnDYzjBNOZqLG2FuTdicBXblz0Mf
+ vg41gd9kCwYXDnD91rJU8tzylXv03E75NCaTxTM+FBXPmsAVYQ4GYhhgFt8S2UWMoaaABLDe
+ 7l5FdnLdDEcbmd8uLU2CaG4W2cLrUaI4jz2XbkcPQkqTQ3EB67hYkjiEE6Zy3ggOitiQGcqp
+ j//OwE0EWznS4AEIAMYmP4M/V+T5RY5at/g7rUdNsLhWv1APYrh9RQefODYHrNRHUE9eosYb
+ T6XMryR9hT8XlGOYRwKWwiQBoWSDiTMo/Xi29jUnn4BXfI2px2DTXwc22LKtLAgTRjP+qbU6
+ 3Y0xnQN29UGDbYgyyK51DW3H0If2a3JNsheAAK+Xc9baj0LGIc8T9uiEWHBnCH+RdhgATnWW
+ GKdDegUR5BkDfDg5O/FISymJBHx2Dyoklv5g4BzkgqTqwmaYzsl8UxZKvbaxq0zbehDda8lv
+ hFXodNFMAgTLJlLuDYOGLK2AwbrS3Sp0AEbkpdJBb44qVlGm5bApZouHeJ/+n+7r12+lqdsA
+ EQEAAcLAdgQYAQgAIAIbDBYhBHIX+6yM6c9jRKFo5WgNwR1TC3ojBQJftOH6AAoJEGgNwR1T
+ C3ojVSkIALpAPkIJPQoURPb1VWjh34l0HlglmYHvZszJWTXYwavHR8+k6Baa6H7ufXNQtThR
+ yIxJrQLW6rV5lm7TjhffEhxVCn37+cg0zZ3j7zIsSS0rx/aMwi6VhFJA5hfn3T0TtrijKP4A
+ SAQO9xD1Zk9/61JWk8OysuIh7MXkl0fxbRKWE93XeQBhIJHQfnc+YBLprdnxR446Sh8Wn/2D
+ Ya8cavuWf2zrB6cZurs048xe0UbSW5AOSo4V9M0jzYI4nZqTmPxYyXbm30Kvmz0rYVRaitYJ
+ 4kyYYMhuULvrJDMjZRvaNe52tkKAvMevcGdt38H4KSVXAylqyQOW5zvPc4/sq9c=
+In-Reply-To: <20230925073315.11627-1-tzimmermann@suse.de>
+Content-Type: multipart/signed; micalg=pgp-sha256;
+ protocol="application/pgp-signature";
+ boundary="------------qz6FN9O0vD81QqO09y9RiMCv"
+Subject: Re: [Intel-gfx] [PATCH 0/7] drm/i915: Convert fbdev to DRM client
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,48 +96,94 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, Sep 14, 2023 at 10:26:59PM +0300, Imre Deak wrote:
-> After the previous patch the BW limits on the whole MST topology will be
-> checked after computing the state for all the streams in the topology.
-> Accordingly remove the check during the stream's encoder compute config
-> step, to prevent failing an atomic commit due to a BW limit, if this can
-> be resolved only by reducing the BW of other streams on the same MST
-> link.
+This is an OpenPGP/MIME signed message (RFC 4880 and 3156)
+--------------qz6FN9O0vD81QqO09y9RiMCv
+Content-Type: multipart/mixed; boundary="------------h4PMOlsh0T6BOyDge2W6iljg";
+ protected-headers="v1"
+From: Thomas Zimmermann <tzimmermann@suse.de>
+To: jani.nikula@linux.intel.com, joonas.lahtinen@linux.intel.com,
+ rodrigo.vivi@intel.com, tvrtko.ursulin@linux.intel.com,
+ ville.syrjala@linux.intel.com, imre.deak@intel.com,
+ tejas.upadhyay@intel.com, javierm@redhat.com, airlied@gmail.com,
+ daniel@ffwll.ch
+Cc: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
+Message-ID: <dfada165-fccd-43eb-89e9-91e05ff970f2@suse.de>
+Subject: Re: [PATCH 0/7] drm/i915: Convert fbdev to DRM client
+References: <20230925073315.11627-1-tzimmermann@suse.de>
+In-Reply-To: <20230925073315.11627-1-tzimmermann@suse.de>
 
-Reviewed-by: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
+--------------h4PMOlsh0T6BOyDge2W6iljg
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: base64
 
-> 
-> Signed-off-by: Imre Deak <imre.deak@intel.com>
-> ---
->  drivers/gpu/drm/i915/display/intel_dp_mst.c | 11 ++---------
->  1 file changed, 2 insertions(+), 9 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/i915/display/intel_dp_mst.c b/drivers/gpu/drm/i915/display/intel_dp_mst.c
-> index bcfd5f19d994f..64867289174d9 100644
-> --- a/drivers/gpu/drm/i915/display/intel_dp_mst.c
-> +++ b/drivers/gpu/drm/i915/display/intel_dp_mst.c
-> @@ -121,15 +121,8 @@ static int intel_dp_mst_find_vcpi_slots_for_bpp(struct intel_encoder *encoder,
->  		if (slots == -EDEADLK)
->  			return slots;
->  
-> -		if (slots >= 0) {
-> -			ret = drm_dp_mst_atomic_check(state);
-> -			/*
-> -			 * If we got slots >= 0 and we can fit those based on check
-> -			 * then we can exit the loop. Otherwise keep trying.
-> -			 */
-> -			if (!ret)
-> -				break;
-> -		}
-> +		if (slots >= 0)
-> +			break;
->  	}
->  
->  	/* We failed to find a proper bpp/timeslots, return error */
-> -- 
-> 2.37.2
-> 
+VGhpcyBpcyB2ZXJzaW9uIDMgb2YgdGhlIHBhdGNoc2V0Lg0KDQpBbSAyNS4wOS4yMyB1bSAw
+OToyNiBzY2hyaWViIFRob21hcyBaaW1tZXJtYW5uOg0KPiBDb252ZXJ0IGk5MTUncyBmYmRl
+diBjb2RlIHRvIHN0cnVjdCBkcm1fY2xpZW50LiBSZXBsYWNlcyB0aGUgY3VycmVudA0KPiBh
+ZC1ob2MgaW50ZWdyYXRpb24uIFRoZSBjb252ZXJzaW9uIGluY2x1ZGVzIGEgbnVtYmVyIG9m
+IGNsZWFudXBzLiBUaGUNCj4gcGF0Y2hzZXQgYWxzbyBlbmFibGVzIHVubG9hZGluZyBvZiBk
+cml2ZXIgbW9kdWxlcyB3aXRoIGluLWtlcm5lbCBEUk0NCj4gY2xpZW50czsgYSBmZWF0dXJl
+IHJlcXVpcmVkIGJ5IGk5MTUuDQo+IA0KPiBBcyB3aXRoIHRoZSBvdGhlciBkcml2ZXJzJyBm
+YmRldiBlbXVsYXRpb24sIGZiZGV2IGluIGk5MTUgaXMgbm93DQo+IGFuIGluLWtlcm5lbCBE
+Uk0gY2xpZW50IHRoYXQgcnVucyBhZnRlciB0aGUgRFJNIGRldmljZSBoYXMgYmVlbg0KPiBy
+ZWdpc3RlcmVkLiBUaGlzIGFsbG93cyB0byByZW1vdmUgdGhlIGFzeW5jaHJvbm91cyBpbml0
+aWFsaXphdGlvbi4NCj4gDQo+IGk5MTUgaXMgdGhlIGxhc3QgZHJpdmVyIHdpdGggYW4gZmJk
+ZXYgZW11bGF0aW9uIHRoYXQgaXMgbm90IGJ1aWxkDQo+IHVwb24gc3RydWN0IGRybV9jbGll
+bnQuIE9uY2UgcmV2aWV3ZWQsIHRoZSBwYXRjaGVzIHdvdWxkIGlkZWFsbHkgZ28NCj4gaW50
+byBkcm0tbWlzYy1uZXh0LCBzbyB0aGF0IHRoZSBvbGQgZmJkZXYgaGVscGVyIGNvZGUgY2Fu
+IGJlIHJlbW92ZWQuDQo+IFdlIGNhbiBhbHNvIGF0dGVtcHQgdG8gYWRkIGFkZGl0aW9uYWwg
+aW4ta2VybmVsIGNsaWVudHMuIEEgRFJNLWJhc2VkDQo+IGRtZXNnIGxvZyBvciBhIGJvb3Rz
+cGxhc2ggYXJlIGNvbW1vbmx5IG1lbnRpb25lZC4gRFJNIGNhbiB0aGVuIHN3aXRjaA0KPiBl
+YXNpbHkgYW1vbmcgdGhlIGV4aXN0aW5nIGNsaWVudHMgaWYvd2hlbiByZXF1aXJlZC4NCj4g
+DQo+IHYzOg0KPiAJKiBzdXBwb3J0IG1vZHVsZSB1bmxvYWRpbmcgKEphbmksIENJIGJvdCkN
+Cj4gCSogYXMgYmVmb3JlLCBzaWxlbnRseSBpZ25vcmUgZGV2aWNlcyB3aXRob3V0IGRpc3Bs
+YXlzIChDSSAgYm90KQ0KPiB2MjoNCj4gCSogZml4IGVycm9yIGhhbmRsaW5nIChKYW5pKQ0K
+PiAJKiBmaXggbm9uLWZiZGV2IGJ1aWxkcw0KPiAJKiB2YXJpb3VzIG1pbm9yIGZpeGVzIGFu
+ZCBjbGVhbnVwcw0KPiANCj4gVGhvbWFzIFppbW1lcm1hbm4gKDcpOg0KPiAgICBkcm0vaTkx
+NTogVW5yZWdpc3RlciBpbi1rZXJuZWwgY2xpZW50cw0KPiAgICBkcm0vY2xpZW50OiBEbyBu
+b3QgYWNxdWlyZSBtb2R1bGUgcmVmZXJlbmNlDQo+ICAgIGRybS9jbGllbnQ6IEV4cG9ydCBk
+cm1fY2xpZW50X2Rldl91bnJlZ2lzdGVyKCkNCj4gICAgZHJtL2k5MTU6IE1vdmUgZmJkZXYg
+ZnVuY3Rpb25zDQo+ICAgIGRybS9pOTE1OiBJbml0aWFsaXplIGZiZGV2IERSTSBjbGllbnQg
+d2l0aCBjYWxsYmFjayBmdW5jdGlvbnMNCj4gICAgZHJtL2k5MTU6IEltcGxlbWVudCBmYmRl
+diBjbGllbnQgY2FsbGJhY2tzDQo+ICAgIGRybS9pOTE1OiBJbXBsZW1lbnQgZmJkZXYgZW11
+bGF0aW9uIGFzIGluLWtlcm5lbCBjbGllbnQNCj4gDQo+ICAgZHJpdmVycy9ncHUvZHJtL2Ry
+bV9jbGllbnQuYyAgICAgICAgICAgICAgICAgIHwgIDI1ICstDQo+ICAgZHJpdmVycy9ncHUv
+ZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kaXNwbGF5LmMgIHwgICAxIC0NCj4gICAuLi4vZHJt
+L2k5MTUvZGlzcGxheS9pbnRlbF9kaXNwbGF5X2RyaXZlci5jICAgfCAgMTkgLS0NCj4gICBk
+cml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2ZiZGV2LmMgICAgfCAyNTAgKysr
+KysrKysrKy0tLS0tLS0tDQo+ICAgZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRl
+bF9mYmRldi5oICAgIHwgIDI5ICstDQo+ICAgZHJpdmVycy9ncHUvZHJtL2k5MTUvaTkxNV9k
+cml2ZXIuYyAgICAgICAgICAgIHwgIDI3ICstDQo+ICAgNiBmaWxlcyBjaGFuZ2VkLCAxNTYg
+aW5zZXJ0aW9ucygrKSwgMTk1IGRlbGV0aW9ucygtKQ0KPiANCg0KLS0gDQpUaG9tYXMgWmlt
+bWVybWFubg0KR3JhcGhpY3MgRHJpdmVyIERldmVsb3Blcg0KU1VTRSBTb2Z0d2FyZSBTb2x1
+dGlvbnMgR2VybWFueSBHbWJIDQpGcmFua2Vuc3RyYXNzZSAxNDYsIDkwNDYxIE51ZXJuYmVy
+ZywgR2VybWFueQ0KR0Y6IEl2byBUb3RldiwgQW5kcmV3IE15ZXJzLCBBbmRyZXcgTWNEb25h
+bGQsIEJvdWRpZW4gTW9lcm1hbg0KSFJCIDM2ODA5IChBRyBOdWVybmJlcmcpDQo=
+
+--------------h4PMOlsh0T6BOyDge2W6iljg--
+
+--------------qz6FN9O0vD81QqO09y9RiMCv
+Content-Type: application/pgp-signature; name="OpenPGP_signature.asc"
+Content-Description: OpenPGP digital signature
+Content-Disposition: attachment; filename="OpenPGP_signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+wsF5BAABCAAjFiEExndm/fpuMUdwYFFolh/E3EQov+AFAmURPSUFAwAAAAAACgkQlh/E3EQov+Ch
+OQ/+OLN/xGIgOQwpHKolK7lD270+1FjXcRvGcyOZatv7cvvIcV9gn7YnKE1iBDTNVGli5GqDdtFw
+ITeeHGcHLTD7/buN59uNULLFSP14sGgv1w0SF/kwfxOGnxsbCvg85Z7M36VypnBaz5VxeSXfWSwB
+rDwKtw+KU84R4+b3uFpIpb1+xNk9PjNqQfk3mXOqjl/q/mOFELbAZQJKf8V9rn47ZYKXQAbEO533
+BvdFBb/dhat2gZxB2DG8GlSFMaTzGAfHcJ7uo2icUhrLxvao523AGEFGV+G/GG+x/4/77srbRHMv
+EKY+/f2hl3+HJIAs+Ju4uiL4dsPwijbhiJsJY6WZ+xV9tmFIOnMJWavpDOwCLKUYm/jeImFtuH0V
+c9xcC44qbS9/iCebNIs+j9bOGCEbyVLiX5C9/E1D8BNCCxPQtHCehgoOBo+k5S7N/C838ZmP3XHT
+gAL58hxLHNolfySTS7FBbnpgVJtgGEaVv6MO9eG102bEXTYheIGwBjwMyLzWktMlfbmII6/Q++2S
+Y+yeU+g8Rbc61YxFWUJnlFClMn471ikANIac9V90oV56b6ANFjvOcxwsvh/6egCCW46jcw3qOhaK
+zTejrsK9CSGk4bDf+gQCScu0hr689EY/kZ5l0k2rHs+q9MqOqQZnmObjecL1gRNmS4/WdD4+C3eb
+4Bk=
+=UXNu
+-----END PGP SIGNATURE-----
+
+--------------qz6FN9O0vD81QqO09y9RiMCv--
