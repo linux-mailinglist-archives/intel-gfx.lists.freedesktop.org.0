@@ -2,49 +2,32 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 268167AF3C0
-	for <lists+intel-gfx@lfdr.de>; Tue, 26 Sep 2023 21:05:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9281D7AF3D9
+	for <lists+intel-gfx@lfdr.de>; Tue, 26 Sep 2023 21:09:28 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7601710E429;
-	Tue, 26 Sep 2023 19:05:25 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 722D110E151;
+	Tue, 26 Sep 2023 19:09:24 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.100])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9EE188920D;
- Tue, 26 Sep 2023 19:05:21 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1695755121; x=1727291121;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=5j2aDuSYGvbS+a+1URJlTiHxAz8NEz0v2Va6vw++TvY=;
- b=WaN1yY6ylQ6lMaN32+fXa54enfyL/iCZ1Rq4/dWoVc2m8xFxxo/RA+Iy
- L3cJy5GjsF5VWtHqu9Dwa+xVY+UDKDr19xbC98p2x+hohq1DVSU76TR82
- JHJGm1RrKJiEViL0citwJdHRf6OrtVAxyNTciL92hRv+1USbucDsVKoKB
- ZhFTS/fPohCBqsmsjmj0lzOGoxX+s4+9s9iaQhWgbUpCkGYxAvMS69+mF
- 5imqLDY5Ln3/imCpywlfCjYbGgavdbUmmpRIFgDAceIqdw8u9HQlizIy7
- e8ap2YK+0+JuSCu2Mhd2E3ZiQ9YOI0qwXvcdiSMNJ//clFdCWA/hCwrNZ A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10845"; a="448141900"
-X-IronPort-AV: E=Sophos;i="6.03,178,1694761200"; d="scan'208";a="448141900"
-Received: from fmsmga004.fm.intel.com ([10.253.24.48])
- by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Sep 2023 12:05:20 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10845"; a="819142184"
-X-IronPort-AV: E=Sophos;i="6.03,178,1694761200"; d="scan'208";a="819142184"
-Received: from aalteres-desk.fm.intel.com ([10.80.57.53])
- by fmsmga004.fm.intel.com with ESMTP; 26 Sep 2023 12:05:19 -0700
-From: Alan Previn <alan.previn.teres.alexis@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Tue, 26 Sep 2023 12:05:18 -0700
-Message-Id: <20230926190518.105393-4-alan.previn.teres.alexis@intel.com>
-X-Mailer: git-send-email 2.39.0
-In-Reply-To: <20230926190518.105393-1-alan.previn.teres.alexis@intel.com>
-References: <20230926190518.105393-1-alan.previn.teres.alexis@intel.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 2EBA710E151;
+ Tue, 26 Sep 2023 19:09:23 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 2A06DAADD8;
+ Tue, 26 Sep 2023 19:09:23 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============6311303744423658244=="
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH v4 3/3] drm/i915/gt: Timeout when waiting for
- idle in suspending
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Tvrtko Ursulin" <tvrtko.ursulin@linux.intel.com>
+Date: Tue, 26 Sep 2023 19:09:23 -0000
+Message-ID: <169575536314.20980.14808352316305351719@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20230926100855.61722-1-tvrtko.ursulin@linux.intel.com>
+In-Reply-To: <20230926100855.61722-1-tvrtko.ursulin@linux.intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
+ =?utf-8?q?/i915=3A_Do_not_disable_preemption_for_resets_=28rev4=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -57,140 +40,307 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: , Alan Previn <alan.previn.teres.alexis@intel.com>,
-	dri-devel@lists.freedesktop.org,
-	Rodrigo Vivi <rodrigo.vivi@intel.com>, intel.com@freedesktop.org,
-	Mousumi Jana <mousumi.jana@intel.com>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-When suspending, add a timeout when calling
-intel_gt_pm_wait_for_idle else if we have a lost
-G2H event that holds a wakeref (which would be
-indicative of a bug elsewhere in the driver),
-driver will at least complete the suspend-resume
-cycle, (albeit not hitting all the targets for
-low power hw counters), instead of hanging in the kernel.
+--===============6311303744423658244==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Signed-off-by: Alan Previn <alan.previn.teres.alexis@intel.com>
-Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
-Tested-by: Mousumi Jana <mousumi.jana@intel.com>
----
- drivers/gpu/drm/i915/gt/intel_engine_cs.c |  2 +-
- drivers/gpu/drm/i915/gt/intel_gt_pm.c     |  6 +++++-
- drivers/gpu/drm/i915/gt/intel_gt_pm.h     |  7 ++++++-
- drivers/gpu/drm/i915/intel_wakeref.c      | 14 ++++++++++----
- drivers/gpu/drm/i915/intel_wakeref.h      |  6 ++++--
- 5 files changed, 26 insertions(+), 9 deletions(-)
+== Series Details ==
 
-diff --git a/drivers/gpu/drm/i915/gt/intel_engine_cs.c b/drivers/gpu/drm/i915/gt/intel_engine_cs.c
-index 84a75c95f3f7..9c6151b78e1d 100644
---- a/drivers/gpu/drm/i915/gt/intel_engine_cs.c
-+++ b/drivers/gpu/drm/i915/gt/intel_engine_cs.c
-@@ -687,7 +687,7 @@ void intel_engines_release(struct intel_gt *gt)
- 		if (!engine->release)
- 			continue;
- 
--		intel_wakeref_wait_for_idle(&engine->wakeref);
-+		intel_wakeref_wait_for_idle(&engine->wakeref, 0);
- 		GEM_BUG_ON(intel_engine_pm_is_awake(engine));
- 
- 		engine->release(engine);
-diff --git a/drivers/gpu/drm/i915/gt/intel_gt_pm.c b/drivers/gpu/drm/i915/gt/intel_gt_pm.c
-index 59b5658a17fb..820217c06dc7 100644
---- a/drivers/gpu/drm/i915/gt/intel_gt_pm.c
-+++ b/drivers/gpu/drm/i915/gt/intel_gt_pm.c
-@@ -289,6 +289,7 @@ int intel_gt_resume(struct intel_gt *gt)
- 
- static void wait_for_suspend(struct intel_gt *gt)
- {
-+	int timeout_ms = CONFIG_DRM_I915_MAX_REQUEST_BUSYWAIT ? : 10000;
- 	/*
- 	 * On rare occasions, we've observed the fence completion trigger
- 	 * free_engines asynchronously via rcu_call. Ensure those are done.
-@@ -308,7 +309,10 @@ static void wait_for_suspend(struct intel_gt *gt)
- 		intel_gt_retire_requests(gt);
- 	}
- 
--	intel_gt_pm_wait_for_idle(gt);
-+	/* we are suspending, so we shouldn't be waiting forever */
-+	if (intel_gt_pm_wait_timeout_for_idle(gt, timeout_ms) == -ETIMEDOUT)
-+		gt_warn(gt, "bailing from %s after %d milisec timeout\n",
-+			__func__, timeout_ms);
- }
- 
- void intel_gt_suspend_prepare(struct intel_gt *gt)
-diff --git a/drivers/gpu/drm/i915/gt/intel_gt_pm.h b/drivers/gpu/drm/i915/gt/intel_gt_pm.h
-index 6c9a46452364..5358acc2b5b1 100644
---- a/drivers/gpu/drm/i915/gt/intel_gt_pm.h
-+++ b/drivers/gpu/drm/i915/gt/intel_gt_pm.h
-@@ -68,7 +68,12 @@ static inline void intel_gt_pm_might_put(struct intel_gt *gt)
- 
- static inline int intel_gt_pm_wait_for_idle(struct intel_gt *gt)
- {
--	return intel_wakeref_wait_for_idle(&gt->wakeref);
-+	return intel_wakeref_wait_for_idle(&gt->wakeref, 0);
-+}
-+
-+static inline int intel_gt_pm_wait_timeout_for_idle(struct intel_gt *gt, int timeout_ms)
-+{
-+	return intel_wakeref_wait_for_idle(&gt->wakeref, timeout_ms);
- }
- 
- void intel_gt_pm_init_early(struct intel_gt *gt);
-diff --git a/drivers/gpu/drm/i915/intel_wakeref.c b/drivers/gpu/drm/i915/intel_wakeref.c
-index 718f2f1b6174..383a37521415 100644
---- a/drivers/gpu/drm/i915/intel_wakeref.c
-+++ b/drivers/gpu/drm/i915/intel_wakeref.c
-@@ -111,14 +111,20 @@ void __intel_wakeref_init(struct intel_wakeref *wf,
- 			 "wakeref.work", &key->work, 0);
- }
- 
--int intel_wakeref_wait_for_idle(struct intel_wakeref *wf)
-+int intel_wakeref_wait_for_idle(struct intel_wakeref *wf, int timeout_ms)
- {
--	int err;
-+	int err = 0;
- 
- 	might_sleep();
- 
--	err = wait_var_event_killable(&wf->wakeref,
--				      !intel_wakeref_is_active(wf));
-+	if (!timeout_ms)
-+		err = wait_var_event_killable(&wf->wakeref,
-+					      !intel_wakeref_is_active(wf));
-+	else if (wait_var_event_timeout(&wf->wakeref,
-+					!intel_wakeref_is_active(wf),
-+					msecs_to_jiffies(timeout_ms)) < 1)
-+		err = -ETIMEDOUT;
-+
- 	if (err)
- 		return err;
- 
-diff --git a/drivers/gpu/drm/i915/intel_wakeref.h b/drivers/gpu/drm/i915/intel_wakeref.h
-index ec881b097368..302694a780d2 100644
---- a/drivers/gpu/drm/i915/intel_wakeref.h
-+++ b/drivers/gpu/drm/i915/intel_wakeref.h
-@@ -251,15 +251,17 @@ __intel_wakeref_defer_park(struct intel_wakeref *wf)
- /**
-  * intel_wakeref_wait_for_idle: Wait until the wakeref is idle
-  * @wf: the wakeref
-+ * @timeout_ms: Timeout in ms, 0 means never timeout.
-  *
-  * Wait for the earlier asynchronous release of the wakeref. Note
-  * this will wait for any third party as well, so make sure you only wait
-  * when you have control over the wakeref and trust no one else is acquiring
-  * it.
-  *
-- * Return: 0 on success, error code if killed.
-+ * Returns 0 on success, -ETIMEDOUT upon a timeout, or the unlikely
-+ * error propagation from wait_var_event_killable if timeout_ms is 0.
-  */
--int intel_wakeref_wait_for_idle(struct intel_wakeref *wf);
-+int intel_wakeref_wait_for_idle(struct intel_wakeref *wf, int timeout_ms);
- 
- struct intel_wakeref_auto {
- 	struct drm_i915_private *i915;
--- 
-2.39.0
+Series: drm/i915: Do not disable preemption for resets (rev4)
+URL   : https://patchwork.freedesktop.org/series/120218/
+State : success
 
+== Summary ==
+
+CI Bug Log - changes from CI_DRM_13682 -> Patchwork_120218v4
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_120218v4/index.html
+
+Participating hosts (41 -> 41)
+------------------------------
+
+  Additional (1): fi-kbl-soraka 
+  Missing    (1): fi-snb-2520m 
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_120218v4 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@gem_huc_copy@huc-copy:
+    - fi-kbl-soraka:      NOTRUN -> [SKIP][1] ([fdo#109271] / [i915#2190])
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_120218v4/fi-kbl-soraka/igt@gem_huc_copy@huc-copy.html
+
+  * igt@gem_lmem_swapping@basic:
+    - fi-kbl-soraka:      NOTRUN -> [SKIP][2] ([fdo#109271] / [i915#4613]) +3 other tests skip
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_120218v4/fi-kbl-soraka/igt@gem_lmem_swapping@basic.html
+
+  * igt@i915_selftest@live@gt_pm:
+    - fi-kbl-soraka:      NOTRUN -> [DMESG-FAIL][3] ([i915#1886] / [i915#7913])
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_120218v4/fi-kbl-soraka/igt@i915_selftest@live@gt_pm.html
+
+  * igt@i915_selftest@live@requests:
+    - bat-mtlp-8:         [PASS][4] -> [ABORT][5] ([i915#9414])
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13682/bat-mtlp-8/igt@i915_selftest@live@requests.html
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_120218v4/bat-mtlp-8/igt@i915_selftest@live@requests.html
+
+  * igt@kms_dsc@dsc-basic:
+    - fi-kbl-soraka:      NOTRUN -> [SKIP][6] ([fdo#109271]) +9 other tests skip
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_120218v4/fi-kbl-soraka/igt@kms_dsc@dsc-basic.html
+
+  * igt@kms_pipe_crc_basic@read-crc-frame-sequence@pipe-c-dp-5:
+    - bat-adlp-11:        [PASS][7] -> [ABORT][8] ([i915#8668])
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13682/bat-adlp-11/igt@kms_pipe_crc_basic@read-crc-frame-sequence@pipe-c-dp-5.html
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_120218v4/bat-adlp-11/igt@kms_pipe_crc_basic@read-crc-frame-sequence@pipe-c-dp-5.html
+
+  
+#### Possible fixes ####
+
+  * igt@kms_chamelium_edid@hdmi-edid-read:
+    - {bat-dg2-13}:       [DMESG-WARN][9] ([i915#7952]) -> [PASS][10]
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13682/bat-dg2-13/igt@kms_chamelium_edid@hdmi-edid-read.html
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_120218v4/bat-dg2-13/igt@kms_chamelium_edid@hdmi-edid-read.html
+
+  * igt@kms_chamelium_frames@dp-crc-fast:
+    - {bat-dg2-13}:       [DMESG-WARN][11] ([Intel XE#485]) -> [PASS][12]
+   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13682/bat-dg2-13/igt@kms_chamelium_frames@dp-crc-fast.html
+   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_120218v4/bat-dg2-13/igt@kms_chamelium_frames@dp-crc-fast.html
+
+  * igt@kms_flip@basic-plain-flip@b-dp6:
+    - bat-adlp-11:        [DMESG-WARN][13] ([i915#6868]) -> [PASS][14] +1 other test pass
+   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13682/bat-adlp-11/igt@kms_flip@basic-plain-flip@b-dp6.html
+   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_120218v4/bat-adlp-11/igt@kms_flip@basic-plain-flip@b-dp6.html
+
+  * igt@kms_flip@basic-plain-flip@c-dp6:
+    - bat-adlp-11:        [FAIL][15] ([i915#6121]) -> [PASS][16] +8 other tests pass
+   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13682/bat-adlp-11/igt@kms_flip@basic-plain-flip@c-dp6.html
+   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_120218v4/bat-adlp-11/igt@kms_flip@basic-plain-flip@c-dp6.html
+
+  * igt@kms_pipe_crc_basic@compare-crc-sanitycheck-nv12@pipe-c-dp-5:
+    - bat-adlp-11:        [DMESG-FAIL][17] ([i915#6868]) -> [PASS][18]
+   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13682/bat-adlp-11/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-nv12@pipe-c-dp-5.html
+   [18]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_120218v4/bat-adlp-11/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-nv12@pipe-c-dp-5.html
+
+  * igt@kms_pipe_crc_basic@compare-crc-sanitycheck-nv12@pipe-d-dp-5:
+    - bat-adlp-11:        [FAIL][19] ([i915#9047]) -> [PASS][20]
+   [19]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13682/bat-adlp-11/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-nv12@pipe-d-dp-5.html
+   [20]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_120218v4/bat-adlp-11/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-nv12@pipe-d-dp-5.html
+
+  * igt@kms_pipe_crc_basic@read-crc-frame-sequence@pipe-b-dp-6:
+    - bat-adlp-11:        [ABORT][21] ([i915#8668]) -> [PASS][22]
+   [21]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13682/bat-adlp-11/igt@kms_pipe_crc_basic@read-crc-frame-sequence@pipe-b-dp-6.html
+   [22]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_120218v4/bat-adlp-11/igt@kms_pipe_crc_basic@read-crc-frame-sequence@pipe-b-dp-6.html
+
+  
+#### Warnings ####
+
+  * igt@kms_force_connector_basic@force-edid:
+    - bat-adlp-11:        [FAIL][23] ([i915#8803]) -> [SKIP][24] ([i915#4093])
+   [23]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13682/bat-adlp-11/igt@kms_force_connector_basic@force-edid.html
+   [24]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_120218v4/bat-adlp-11/igt@kms_force_connector_basic@force-edid.html
+
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+  [Intel XE#485]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/485
+  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
+  [i915#1886]: https://gitlab.freedesktop.org/drm/intel/issues/1886
+  [i915#2190]: https://gitlab.freedesktop.org/drm/intel/issues/2190
+  [i915#4093]: https://gitlab.freedesktop.org/drm/intel/issues/4093
+  [i915#4613]: https://gitlab.freedesktop.org/drm/intel/issues/4613
+  [i915#6121]: https://gitlab.freedesktop.org/drm/intel/issues/6121
+  [i915#6868]: https://gitlab.freedesktop.org/drm/intel/issues/6868
+  [i915#7913]: https://gitlab.freedesktop.org/drm/intel/issues/7913
+  [i915#7952]: https://gitlab.freedesktop.org/drm/intel/issues/7952
+  [i915#8668]: https://gitlab.freedesktop.org/drm/intel/issues/8668
+  [i915#8803]: https://gitlab.freedesktop.org/drm/intel/issues/8803
+  [i915#9047]: https://gitlab.freedesktop.org/drm/intel/issues/9047
+  [i915#9414]: https://gitlab.freedesktop.org/drm/intel/issues/9414
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_13682 -> Patchwork_120218v4
+
+  CI-20190529: 20190529
+  CI_DRM_13682: a42554bf0755b80fdfb8e91ca35ae6835bb3534d @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_7503: 7503
+  Patchwork_120218v4: a42554bf0755b80fdfb8e91ca35ae6835bb3534d @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+### Linux commits
+
+6e3e8a1ec651 drm/i915: Do not disable preemption for resets
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_120218v4/index.html
+
+--===============6311303744423658244==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/i915: Do not disable preemption for resets (rev4)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/120218/">https://patchwork.freedesktop.org/series/120218/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_120218v4/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_120218v4/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_13682 -&gt; Patchwork_120218v4</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_120218v4/index.html</p>
+<h2>Participating hosts (41 -&gt; 41)</h2>
+<p>Additional (1): fi-kbl-soraka <br />
+  Missing    (1): fi-snb-2520m </p>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_120218v4 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@gem_huc_copy@huc-copy:</p>
+<ul>
+<li>fi-kbl-soraka:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_120218v4/fi-kbl-soraka/igt@gem_huc_copy@huc-copy.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/2190">i915#2190</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@gem_lmem_swapping@basic:</p>
+<ul>
+<li>fi-kbl-soraka:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_120218v4/fi-kbl-soraka/igt@gem_lmem_swapping@basic.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/4613">i915#4613</a>) +3 other tests skip</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@gt_pm:</p>
+<ul>
+<li>fi-kbl-soraka:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_120218v4/fi-kbl-soraka/igt@i915_selftest@live@gt_pm.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1886">i915#1886</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/7913">i915#7913</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@requests:</p>
+<ul>
+<li>bat-mtlp-8:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13682/bat-mtlp-8/igt@i915_selftest@live@requests.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_120218v4/bat-mtlp-8/igt@i915_selftest@live@requests.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/9414">i915#9414</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_dsc@dsc-basic:</p>
+<ul>
+<li>fi-kbl-soraka:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_120218v4/fi-kbl-soraka/igt@kms_dsc@dsc-basic.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +9 other tests skip</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_pipe_crc_basic@read-crc-frame-sequence@pipe-c-dp-5:</p>
+<ul>
+<li>bat-adlp-11:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13682/bat-adlp-11/igt@kms_pipe_crc_basic@read-crc-frame-sequence@pipe-c-dp-5.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_120218v4/bat-adlp-11/igt@kms_pipe_crc_basic@read-crc-frame-sequence@pipe-c-dp-5.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/8668">i915#8668</a>)</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>
+<p>igt@kms_chamelium_edid@hdmi-edid-read:</p>
+<ul>
+<li>{bat-dg2-13}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13682/bat-dg2-13/igt@kms_chamelium_edid@hdmi-edid-read.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/7952">i915#7952</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_120218v4/bat-dg2-13/igt@kms_chamelium_edid@hdmi-edid-read.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@kms_chamelium_frames@dp-crc-fast:</p>
+<ul>
+<li>{bat-dg2-13}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13682/bat-dg2-13/igt@kms_chamelium_frames@dp-crc-fast.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/485">Intel XE#485</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_120218v4/bat-dg2-13/igt@kms_chamelium_frames@dp-crc-fast.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@kms_flip@basic-plain-flip@b-dp6:</p>
+<ul>
+<li>bat-adlp-11:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13682/bat-adlp-11/igt@kms_flip@basic-plain-flip@b-dp6.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/6868">i915#6868</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_120218v4/bat-adlp-11/igt@kms_flip@basic-plain-flip@b-dp6.html">PASS</a> +1 other test pass</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_flip@basic-plain-flip@c-dp6:</p>
+<ul>
+<li>bat-adlp-11:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13682/bat-adlp-11/igt@kms_flip@basic-plain-flip@c-dp6.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/6121">i915#6121</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_120218v4/bat-adlp-11/igt@kms_flip@basic-plain-flip@c-dp6.html">PASS</a> +8 other tests pass</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_pipe_crc_basic@compare-crc-sanitycheck-nv12@pipe-c-dp-5:</p>
+<ul>
+<li>bat-adlp-11:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13682/bat-adlp-11/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-nv12@pipe-c-dp-5.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/6868">i915#6868</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_120218v4/bat-adlp-11/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-nv12@pipe-c-dp-5.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@kms_pipe_crc_basic@compare-crc-sanitycheck-nv12@pipe-d-dp-5:</p>
+<ul>
+<li>bat-adlp-11:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13682/bat-adlp-11/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-nv12@pipe-d-dp-5.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/9047">i915#9047</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_120218v4/bat-adlp-11/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-nv12@pipe-d-dp-5.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@kms_pipe_crc_basic@read-crc-frame-sequence@pipe-b-dp-6:</p>
+<ul>
+<li>bat-adlp-11:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13682/bat-adlp-11/igt@kms_pipe_crc_basic@read-crc-frame-sequence@pipe-b-dp-6.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/8668">i915#8668</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_120218v4/bat-adlp-11/igt@kms_pipe_crc_basic@read-crc-frame-sequence@pipe-b-dp-6.html">PASS</a></li>
+</ul>
+</li>
+</ul>
+<h4>Warnings</h4>
+<ul>
+<li>igt@kms_force_connector_basic@force-edid:<ul>
+<li>bat-adlp-11:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13682/bat-adlp-11/igt@kms_force_connector_basic@force-edid.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/8803">i915#8803</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_120218v4/bat-adlp-11/igt@kms_force_connector_basic@force-edid.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4093">i915#4093</a>)</li>
+</ul>
+</li>
+</ul>
+<p>{name}: This element is suppressed. This means it is ignored when computing<br />
+          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_13682 -&gt; Patchwork_120218v4</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_13682: a42554bf0755b80fdfb8e91ca35ae6835bb3534d @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_7503: 7503<br />
+  Patchwork_120218v4: a42554bf0755b80fdfb8e91ca35ae6835bb3534d @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+<h3>Linux commits</h3>
+<p>6e3e8a1ec651 drm/i915: Do not disable preemption for resets</p>
+
+</body>
+</html>
+
+--===============6311303744423658244==--
