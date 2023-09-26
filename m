@@ -1,53 +1,48 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0AFA27AEE6F
-	for <lists+intel-gfx@lfdr.de>; Tue, 26 Sep 2023 16:29:01 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 11CF57AEE76
+	for <lists+intel-gfx@lfdr.de>; Tue, 26 Sep 2023 16:33:20 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1F59610E36F;
-	Tue, 26 Sep 2023 14:28:55 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3E35A10E134;
+	Tue, 26 Sep 2023 14:33:18 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9F41910E120;
- Tue, 26 Sep 2023 14:28:50 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1695738530; x=1727274530;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=S4X8JYWLkzEFTQc5uWVUhRG2/6e5VTT3T8Vo+VOzjS4=;
- b=dh7PWDC6n7ZqBSBMUD7lnjI5juqLQ0s56r/24WU1T14vfMLhpyw+SnaM
- Y8Cvx8qQuXgb49LKypWEa3aCuh+5ejYuX5ZLfAzMqHV68j3QB8bT5d0gm
- qqrBFw97q/oWZXfPJcPdJEg4c4vSOmmARsMWKDBmoR+Ayqr6Zg9zgldZG
- 0MohGUqVdQgMl657KPCmCiPJg4cuZ/heOJNfXLa9T60a7onSQ83GindvD
- t6m9L/vrVZPHhws5Sfc584LVgJCukn86Emhu48tp7YgGg/5grafg4I0VP
- r1xwU8Urm3RFPD+P9KdKELhALBreT0FnWapX1L6aVrPRKjA1ofhrJkp1r Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10845"; a="467867718"
-X-IronPort-AV: E=Sophos;i="6.03,178,1694761200"; d="scan'208";a="467867718"
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
- by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Sep 2023 07:24:12 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10845"; a="783964714"
-X-IronPort-AV: E=Sophos;i="6.03,178,1694761200"; d="scan'208";a="783964714"
-Received: from nirmoyda-desk.igk.intel.com ([10.102.138.190])
- by orsmga001-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Sep 2023 07:24:08 -0700
-From: Nirmoy Das <nirmoy.das@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Tue, 26 Sep 2023 16:24:01 +0200
-Message-ID: <20230926142401.25687-1-nirmoy.das@intel.com>
-X-Mailer: git-send-email 2.41.0
+Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id AF01410E096;
+ Tue, 26 Sep 2023 14:33:16 +0000 (UTC)
+Received: from [192.168.68.123] (unknown [177.98.21.237])
+ (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+ key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+ (No client certificate requested) (Authenticated sender: koike)
+ by madras.collabora.co.uk (Postfix) with ESMTPSA id 08BBC660731A;
+ Tue, 26 Sep 2023 15:33:10 +0100 (BST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+ s=mail; t=1695738795;
+ bh=kju2gE2DGmPfyTnJ7SZakfjZawtSff3X+7D4Qw+lORM=;
+ h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+ b=UjjsOj3W+I95MoF5Xy/PStAzqH89uM4NvZ8CsDWpWS6NOes3aH2/uKodQsO1cAI7x
+ nmTxqPXgVAoGlAiaztBxVk6XZ93qq5cspNBACcn6m4FU56aCh7GTxjO7X26xri371b
+ Hau2XlrJQyqm7IWltqvDuSFAPUncgUebYCZr5TcQKHYcyXuraXfZf3Kv9/bGzPd5hS
+ L4MbW+cMRo+b11fqQ+oF91pWkQI4fuNPNlsDM6/FSv9QUCLW6O4imROo6HMNOeF4O2
+ zUxa2fZBSok5UnrGcuzFQGKigUpltmBdglwpBQ1WHi0+tlXzvmh6oL2roLRecJfy4h
+ O6aI4ykCnTb6w==
+Message-ID: <f9423f48-71cc-ae51-ac58-853e60533851@collabora.com>
+Date: Tue, 26 Sep 2023 11:33:05 -0300
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Organization: Intel Deutschland GmbH, Registered Address: Am Campeon 10,
- 85579 Neubiberg, Germany,
- Commercial Register: Amtsgericht Muenchen HRB 186928 
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH] drm/i915: Don't set PIPE_CONTROL_FLUSH_L3 for
- aux inval
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.15.1
+Content-Language: en-US
+To: Carlos Eduardo Gallo Filho <gcarlos@disroot.org>,
+ intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
+References: <20230926141519.9315-1-gcarlos@disroot.org>
+From: Helen Koike <helen.koike@collabora.com>
+In-Reply-To: <20230926141519.9315-1-gcarlos@disroot.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+Subject: Re: [Intel-gfx] [RESEND PATCH v2 0/2] drm: Refactor plane size
+ calculation by core helper functions
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -60,60 +55,58 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Lucas De Marchi <lucas.demarchi@intel.com>,
- Jonathan Cavitt <jonathan.cavitt@intel.com>, stable@vger.kernel.org,
- dri-devel@lists.freedesktop.org, Andrzej Hajda <andrzej.hajda@intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, Mark Janes <mark.janes@intel.com>,
+Cc: =?UTF-8?Q?Andr=c3=a9_Almeida?= <andrealmeid@igalia.com>,
+ Tales Aparecida <tales.aparecida@gmail.com>,
+ Maxime Ripard <mripard@kernel.org>, Maira Canal <mairacanal@riseup.net>,
+ Thomas Zimmermann <tzimmermann@suse.de>, Rodrigo Vivi <rodrigo.vivi@intel.com>,
  Matt Roper <matthew.d.roper@intel.com>,
- Prathap Kumar Valsan <prathap.kumar.valsan@intel.com>,
- Nirmoy Das <nirmoy.das@intel.com>
+ Arthur Grillo <arthurgrillo@riseup.net>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-PIPE_CONTROL_FLUSH_L3 is not needed for aux invalidation
-so don't set that.
 
-Fixes: 78a6ccd65fa3 ("drm/i915/gt: Ensure memory quiesced before invalidation")
-Cc: Jonathan Cavitt <jonathan.cavitt@intel.com>
-Cc: Andi Shyti <andi.shyti@linux.intel.com>
-Cc: <stable@vger.kernel.org> # v5.8+
-Cc: Andrzej Hajda <andrzej.hajda@intel.com>
-Cc: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
-Cc: Matt Roper <matthew.d.roper@intel.com>
-Cc: Tejas Upadhyay <tejas.upadhyay@intel.com>
-Cc: Lucas De Marchi <lucas.demarchi@intel.com>
-Cc: Prathap Kumar Valsan <prathap.kumar.valsan@intel.com>
-Cc: Tapani Pälli <tapani.palli@intel.com>
-Cc: Mark Janes <mark.janes@intel.com>
-Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
-Signed-off-by: Nirmoy Das <nirmoy.das@intel.com>
----
- drivers/gpu/drm/i915/gt/gen8_engine_cs.c | 11 ++++++++++-
- 1 file changed, 10 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/i915/gt/gen8_engine_cs.c b/drivers/gpu/drm/i915/gt/gen8_engine_cs.c
-index 0143445dba83..ba4c2422b340 100644
---- a/drivers/gpu/drm/i915/gt/gen8_engine_cs.c
-+++ b/drivers/gpu/drm/i915/gt/gen8_engine_cs.c
-@@ -271,8 +271,17 @@ int gen12_emit_flush_rcs(struct i915_request *rq, u32 mode)
- 		if (GRAPHICS_VER_FULL(rq->i915) >= IP_VER(12, 70))
- 			bit_group_0 |= PIPE_CONTROL_CCS_FLUSH;
- 
-+		/*
-+		 * L3 fabric flush is needed for AUX CCS invalidation
-+		 * which happens as part of pipe-control so we can
-+		 * ignore PIPE_CONTROL_FLUSH_L3. Also PIPE_CONTROL_FLUSH_L3
-+		 * deals with Protected Memory which is not needed for
-+		 * AUX CCS invalidation and lead to unwanted side effects.
-+		 */
-+		if (mode & EMIT_FLUSH)
-+			bit_group_1 |= PIPE_CONTROL_FLUSH_L3;
-+
- 		bit_group_1 |= PIPE_CONTROL_TILE_CACHE_FLUSH;
--		bit_group_1 |= PIPE_CONTROL_FLUSH_L3;
- 		bit_group_1 |= PIPE_CONTROL_RENDER_TARGET_CACHE_FLUSH;
- 		bit_group_1 |= PIPE_CONTROL_DEPTH_CACHE_FLUSH;
- 		/* Wa_1409600907:tgl,adl-p */
--- 
-2.41.0
+On 26/09/2023 11:15, Carlos Eduardo Gallo Filho wrote:
+> There's duplicated functions on drm that do the same job of calculating
+> the size of planes from a drm_format_info and the size of its first
+> plane. So this patchset throw away the more specific version intended
+> to be used from a given framebuffer and make the generic version way
+> more portable against the drivers.
+> 
+> Thanks,
+> Carlos
 
+Hey, thanks for your patch.
+
+Do you mind testing on drm/ci and sending here the link of the pipeline 
+with the test? It would be awesome to get your feedback on the CI
+
+See instructions on Documentation/gpu/automated_testing.rst
+
+In short you just need an account on gitlab.freedesktop.org, access
+https://gitlab.freedesktop.org/janedoe/linux/-/settings/ci_cd), change 
+the CI/CD configuration file from .gitlab-ci.yml to 
+drivers/gpu/drm/ci/gitlab-ci.yml, now you can execute tests going to 
+pipelines (the first one you need to create a new pipeline by hand).
+
+Let me know if you have any questions, I'm koike on irc.
+
+Thanks
+Helen
+
+> 
+> ---
+> v2:
+>    - New patch "[PATCH v2 1/2] drm: Remove plane hsub/vsub alignment requirement
+>      for core helpers".
+> 
+> Carlos Eduardo Gallo Filho (2):
+>    drm: Remove plane hsub/vsub alignment requirement for core helpers
+>    drm: Replace drm_framebuffer plane size functions with its equivalents
+> 
+>   drivers/gpu/drm/drm_framebuffer.c       | 64 ++-----------------------
+>   drivers/gpu/drm/i915/display/intel_fb.c |  2 +-
+>   include/drm/drm_fourcc.h                |  5 +-
+>   include/drm/drm_framebuffer.h           |  5 --
+>   4 files changed, 8 insertions(+), 68 deletions(-)
+> 
