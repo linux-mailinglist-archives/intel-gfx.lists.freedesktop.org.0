@@ -2,141 +2,86 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8BF387AEE7D
-	for <lists+intel-gfx@lfdr.de>; Tue, 26 Sep 2023 16:40:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9991E7AEE85
+	for <lists+intel-gfx@lfdr.de>; Tue, 26 Sep 2023 16:47:01 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 38D1910E137;
-	Tue, 26 Sep 2023 14:40:29 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 80A2F10E137;
+	Tue, 26 Sep 2023 14:46:57 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 23AB410E137
- for <intel-gfx@lists.freedesktop.org>; Tue, 26 Sep 2023 14:40:27 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1695739227; x=1727275227;
- h=date:from:to:cc:subject:message-id:references:
- in-reply-to:mime-version;
- bh=W0jw+Z2k0PCSjHERgVpI+mDllRQQ07nh/wS94RjsAfc=;
- b=en4xP9x8CxPhZTtQhByRtHYPanCYLmwl60yg8RUk26DSzFYj7MOSP0i8
- GSLSCptWThihco+vmtSU/QkaB5A8Ci+XMAl61mrJn3deSW2sz4aQvAly8
- ME0W98TCr2ns0LUNGa15YXcbZW3X6+velGAAdC5zXWt9b3watgw0PkX+w
- RsMAzll4EQfIgFJB1l1K42p+3YYKFbudI7NuTBumkbSj5XsmiO6ArRyyU
- m546g63ASlr4bl0a9JISz0IeEAa5eMabf1WJZzrBuzUGi+taQ4z5+2Y3m
- Vd/RwW8Pde5/joTwDl0SYsZxjoEuRlwfJ9mMIcxytHdCbO49xnfvW6bK8 w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10845"; a="467871005"
-X-IronPort-AV: E=Sophos;i="6.03,178,1694761200"; d="scan'208";a="467871005"
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
- by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Sep 2023 07:40:09 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10845"; a="783967935"
-X-IronPort-AV: E=Sophos;i="6.03,178,1694761200"; d="scan'208";a="783967935"
-Received: from orsmsx603.amr.corp.intel.com ([10.22.229.16])
- by orsmga001.jf.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
- 26 Sep 2023 07:40:09 -0700
-Received: from orsmsx611.amr.corp.intel.com (10.22.229.24) by
- ORSMSX603.amr.corp.intel.com (10.22.229.16) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.32; Tue, 26 Sep 2023 07:40:08 -0700
-Received: from orsmsx610.amr.corp.intel.com (10.22.229.23) by
- ORSMSX611.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.32; Tue, 26 Sep 2023 07:40:08 -0700
-Received: from orsedg603.ED.cps.intel.com (10.7.248.4) by
- orsmsx610.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.32 via Frontend Transport; Tue, 26 Sep 2023 07:40:08 -0700
-Received: from NAM11-DM6-obe.outbound.protection.outlook.com (104.47.57.177)
- by edgegateway.intel.com (134.134.137.100) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.32; Tue, 26 Sep 2023 07:40:07 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=ULE/Bh38c7wKifHkzVTPSu3REcrRK3xN5yFVzWRl/kWBjhoDRLhSCuzbT/zCJFH9l6jjAE8rxEraUYZN51oJDIX8cptCaa3h2tJUyTWGCuGib9qkg6f+nEsaHTwxC8YkJ4Z0fIDhKZIEfX5qSTfMZnSYT5/v3b1S+MWM9PyVjtghNsFW2Jy8tiTswrGgopDRCGbp1RSjB5bssjM3tpW33GwKZyKHFPbVHXHa9c94xAXbYbsRvq7OyhDdPHMgB3Pj8UGYf5wcmWpwzRZeLkbJOxvOjqy7XdMx7lY8D6j862oNLvvLV8sA1Wg1II+naYrR6vuo1p/IjoeYeoSjtiy0DQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=XKxJsuWTvdn/yCR62ts/B7/02ZxwEKc2favHW9pRsjI=;
- b=fRIFs6SSznZFzwlxOutm6u1Fm9tTZp36dtc+5O9luvLo3egteIYskgXHGY3RTu5fZLdvRe+ybmjzXNOHzq1vHp9qPRDvuWPYkFt4xzCGEqMr/SQgKqsXa6n12NAE0iTs1Mg1A2NqwP+y5yZ/hAZ4ETFrOSKdkH3QQ4jOZzjZZICjaa68a2bbha44bxcWSvdouYa48aXHfU/XjqlLfWA7IopX8BpMpkr5dMQvGZyp0xGlmgKq8H2nwJhOvdL3uKZEt0xNo4HP0rCu9FCzYYoKOBnhAe1FQA4IN/kumqPaWhvdkN/KWc38GwsUQbbA2tE56VarkVNxcvt+DAkT6TwapA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from DS7PR11MB7859.namprd11.prod.outlook.com (2603:10b6:8:da::22) by
- SJ1PR11MB6130.namprd11.prod.outlook.com (2603:10b6:a03:45f::9) with
- Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.6813.20; Tue, 26 Sep 2023 14:40:05 +0000
-Received: from DS7PR11MB7859.namprd11.prod.outlook.com
- ([fe80::48d9:4c34:35b:f66]) by DS7PR11MB7859.namprd11.prod.outlook.com
- ([fe80::48d9:4c34:35b:f66%4]) with mapi id 15.20.6768.029; Tue, 26 Sep 2023
- 14:40:05 +0000
-Date: Tue, 26 Sep 2023 07:40:00 -0700
-From: Matt Roper <matthew.d.roper@intel.com>
-To: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-Message-ID: <20230926144000.GH2706891@mdroper-desk1.amr.corp.intel.com>
-References: <e038e664-2ab0-75bf-8df5-1158cae9c685@linux.intel.com>
- <20230926020053.245046-1-rodrigo.vivi@intel.com>
- <3dd3f8be-f071-0edb-5613-6732f4f76f02@linux.intel.com>
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <3dd3f8be-f071-0edb-5613-6732f4f76f02@linux.intel.com>
-X-ClientProxiedBy: BY5PR20CA0026.namprd20.prod.outlook.com
- (2603:10b6:a03:1f4::39) To DS7PR11MB7859.namprd11.prod.outlook.com
- (2603:10b6:8:da::22)
+Received: from smtp-out1.suse.de (smtp-out1.suse.de [IPv6:2001:67c:2178:6::1c])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 225F610E137;
+ Tue, 26 Sep 2023 14:46:55 +0000 (UTC)
+Received: from imap2.suse-dmz.suse.de (imap2.suse-dmz.suse.de [192.168.254.74])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature ECDSA (P-521) server-digest SHA512)
+ (No client certificate requested)
+ by smtp-out1.suse.de (Postfix) with ESMTPS id A23AF21857;
+ Tue, 26 Sep 2023 14:46:53 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
+ t=1695739613; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:content-type:content-type:
+ in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
+ bh=NPFpRw40YGFhSZ0dkJaS5uu5x5ldrJSDLdzG+izQHrc=;
+ b=WVmOtb+29itRxhXNqD/8cA/b4Uhh1aEX0qLCJJ7mJ8XAerCMn8fl7K5XrjOp8569eyovFO
+ 0UJk0UcuLW9ME0OOYTAbX4LluAb5i5ayDVv820yW5btAfDEwdY6UklQNK/327tqi0PZ0Y+
+ Hn4dNOhOYsYLQcWvW4/y6lbxWARzkDY=
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
+ s=susede2_ed25519; t=1695739613;
+ h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:content-type:content-type:
+ in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
+ bh=NPFpRw40YGFhSZ0dkJaS5uu5x5ldrJSDLdzG+izQHrc=;
+ b=rbpsKkCyKRi6ITQqjCv8OwMEsZZZwaGAzDq8J755JBXImKh/LD+7DlGBtTpXHkr8+8rSRX
+ AaGd27yENlE1gQBw==
+Received: from imap2.suse-dmz.suse.de (imap2.suse-dmz.suse.de [192.168.254.74])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature ECDSA (P-521) server-digest SHA512)
+ (No client certificate requested)
+ by imap2.suse-dmz.suse.de (Postfix) with ESMTPS id E936C13434;
+ Tue, 26 Sep 2023 14:46:52 +0000 (UTC)
+Received: from dovecot-director2.suse.de ([192.168.254.65])
+ by imap2.suse-dmz.suse.de with ESMTPSA id vZnlNdzuEmWFZgAAMHmgww
+ (envelope-from <tzimmermann@suse.de>); Tue, 26 Sep 2023 14:46:52 +0000
+Message-ID: <ab0a74be-3723-4803-89fa-826298a38679@suse.de>
+Date: Tue, 26 Sep 2023 16:46:51 +0200
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DS7PR11MB7859:EE_|SJ1PR11MB6130:EE_
-X-MS-Office365-Filtering-Correlation-Id: 97cf9d15-da4e-4db1-a5dc-08dbbe9e78e5
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: gpEqcIFLZEDuckYBXuVmHpfw1z22hRXNCNBqwXZYf5QfTtbsiPZMnpoMWO4acLmtXbFQ866XDNQ+4gO3bbYXLWY3Kn0jy4i4zixN5VJv48fsRp7sax7iMC6GagVq2lRgwopMacNm+AviO3gnGFJyzs/pgBVy3kCoreSnudEwnkl0Y/NnPVD085nitcYvwhKj4inhlcRRCtUQheoFPexQv/+++/mNtxoD+NK8k6iV+OZoVQePrtUOkvkek5PUjI0DHxProuDi8D/UWeuzvzbvzjZxqhJBaWUAIojzfKi7BUAredwbcx1eBkzgOOpbNJ60ZIVLl3MNBkOJmpJK7WvF+K0xixJW1mSkQR4CNgqsKuqU1GkB0TNVc2fmpaiWf1XC0teVtJKX+/fOr/hitRsK/m206J3ccy2s1+pSDTJd6ubU596Wd59/uGOnQZC2mKQAHWsHKtibP8Nh8Axsov71hMZERZY8HMrgXaGD5uLvNF9dzsoMRrSF364N6MKCzdT0Yi1stpzDpwBMb7Bz0HnnG2aM3FQqSSpOb1OUxnGaGnBlgPgtam2jpyl9vL20ASH2
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:DS7PR11MB7859.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230031)(136003)(39860400002)(366004)(396003)(376002)(346002)(230922051799003)(451199024)(186009)(1800799009)(6486002)(6506007)(6666004)(53546011)(4326008)(6512007)(478600001)(83380400001)(5660300002)(6916009)(316002)(1076003)(66556008)(2906002)(26005)(66946007)(66476007)(8676002)(8936002)(54906003)(41300700001)(33656002)(82960400001)(38100700002)(86362001);
- DIR:OUT; SFP:1102; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?sSnldnqQXQt95dJnKRH/VYQ+l/CAXXOpYLKAjjQyPbiLJEQQvbFTzwQJqtYd?=
- =?us-ascii?Q?WGNOLaCq5RO3wkkI5MLqWP8kvs//uuGd7EGBogXfmgE2DXavovHOZv5Ce7Nm?=
- =?us-ascii?Q?xQfETx6qsbFy1htZ9kjaztB/ogueSEuH4VpenQRaXDrxK//E5pxGu1Ec1Ta2?=
- =?us-ascii?Q?n4LUW54OP+o8XvdvIf9sRksz/i5oD0QtWS39CTe5EWykUr1CkJpLCjhIdtkS?=
- =?us-ascii?Q?eHK8ppHKxDh4yPKMkv/E5BxUG44UzXAQJdx7fjk9Ab8oQDl3FRKKcqiyXsFQ?=
- =?us-ascii?Q?H79jF32utInbZljBb2RI/tO8c25IOe4jmEs1Fo8noT/omVH5FZVKuEB+yDaj?=
- =?us-ascii?Q?cKZ82QlL2dgTzvl6JDk0DW9NYeKhDz91Z6yhkn22WIzbSCffMwLkI6xCirbm?=
- =?us-ascii?Q?2swAw17/sv/tewEVNhFYwhz0CNOH7Ss/si5lhYs0U/Esi03oBfuWSQpGhs3h?=
- =?us-ascii?Q?36tdN015F2aDfETB6sQ0fMNDuVEQH+tNI/iYUAFdFnvxDEQ+McXeMcfBRlAc?=
- =?us-ascii?Q?4GeVOxZA7Th4P0LBk/HnFGGqAcfMhp9XWAgViKUCcEoYkMUG5k8ptvt5F1w/?=
- =?us-ascii?Q?KGrID4BpTcu7bxyZrJTnUe5Kr6HNusuxW7rPMxD6iI6Qqbw/mMjMj7VhlLh7?=
- =?us-ascii?Q?ObRdAr3qJD01PSK5QfwH7/Plccq5z19YkOdl5IzNlxWrw671NS+Yngm4yJHq?=
- =?us-ascii?Q?ELiwxMMGq/BJ+lOkUsxKQy0BbtsDrXGMAgDVAMV2RTRznprY/mEQLXTXJRDL?=
- =?us-ascii?Q?r+es6j9GrJgOwzOK2yc86RvT/qCKBFGPHNEtMgIByy49olHgpXvCwHHwWoqQ?=
- =?us-ascii?Q?FXkMysodMsPSdE6f3JYKrrgphiy5eNPqNUDN4UxfmNvhAgqETxQ0k84aMere?=
- =?us-ascii?Q?lmOBEot2FaZvw6UjZ/LrX9FlvfETx6Mpf9tmkjez+O0K/i1psDjFnF7nTpPF?=
- =?us-ascii?Q?5qaEXByLJQSPoj+bzQd7ioEVRKGuofyZOvhtrM95gHGIWqTY6pXgbNiuiCSU?=
- =?us-ascii?Q?XA4+qIUtWZ8qhqHo97wCjpKxg/vVp28iu5jKgFnq6algXmgoIEpZpry/O3Oh?=
- =?us-ascii?Q?yG9oK3WNmhiAZIl6gqzvf4cvQG6gNw80x/U63BDBIaFN1vce2twmMCdrZWpO?=
- =?us-ascii?Q?7fLzEFCTjVwkTJU+grmcWOXvpHvd0dOhPiBTVAn0kBAgwMGS966dffyEveJM?=
- =?us-ascii?Q?8hNbBN3tcT4uVeJum9DKF3v366Vwo3Kg4JDpiSBDtp0G0MOEOJy9vkfF8Hbn?=
- =?us-ascii?Q?j56JsqB01oc39jU/IqTLoRITvEz4XuHSaynQzJ9oonY69vIsfidQ5jrvj5Qy?=
- =?us-ascii?Q?X1t6ZzrATavMt6bwywCtT4EORXOMYbHw7g5iOomhPfSAFOeUmvmJ95XHUuTf?=
- =?us-ascii?Q?9d0uCrFXkhkYGAJInDkBOSW8xBXgTalsQidqqsLMufgxUVOX+N+Js70kqIZi?=
- =?us-ascii?Q?iB2rv1SMQbJXfB67r7/EuNNuhoVs0fPGlb9V5zNAgT3hwpxTugCIqRXamiDi?=
- =?us-ascii?Q?1JpKRj6v3dmerJO4gaRZP/WcJK9rugRna6vGS/W9+2JhS4oFakd+T2uEWJRZ?=
- =?us-ascii?Q?AAp49gl4Ye4bN3NmqmHe8Cbi7VipZy0Ddl3N6fxrlJoRzHlYjQEaNtxlI59C?=
- =?us-ascii?Q?SA=3D=3D?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 97cf9d15-da4e-4db1-a5dc-08dbbe9e78e5
-X-MS-Exchange-CrossTenant-AuthSource: DS7PR11MB7859.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 26 Sep 2023 14:40:04.7970 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: /f7GAVJ1+dNm2h03TpsB26rSaX2FwzsoTtUZjom2E+JClkSKzU3IjCm3r8lit/sBcWIBeQsJwxguoZWZFAwA9X3tsIHt2nmAQiOQoB8t2lM=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ1PR11MB6130
-X-OriginatorOrg: intel.com
-Subject: Re: [Intel-gfx] [PATCH] drm/i915: Add missing CCS documentation.
+User-Agent: Mozilla Thunderbird
+Content-Language: en-US
+To: Carlos Eduardo Gallo Filho <gcarlos@disroot.org>,
+ intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
+References: <20230926141519.9315-1-gcarlos@disroot.org>
+From: Thomas Zimmermann <tzimmermann@suse.de>
+Autocrypt: addr=tzimmermann@suse.de; keydata=
+ xsBNBFs50uABCADEHPidWt974CaxBVbrIBwqcq/WURinJ3+2WlIrKWspiP83vfZKaXhFYsdg
+ XH47fDVbPPj+d6tQrw5lPQCyqjwrCPYnq3WlIBnGPJ4/jreTL6V+qfKRDlGLWFjZcsrPJGE0
+ BeB5BbqP5erN1qylK9i3gPoQjXGhpBpQYwRrEyQyjuvk+Ev0K1Jc5tVDeJAuau3TGNgah4Yc
+ hdHm3bkPjz9EErV85RwvImQ1dptvx6s7xzwXTgGAsaYZsL8WCwDaTuqFa1d1jjlaxg6+tZsB
+ 9GluwvIhSezPgnEmimZDkGnZRRSFiGP8yjqTjjWuf0bSj5rUnTGiyLyRZRNGcXmu6hjlABEB
+ AAHNJ1Rob21hcyBaaW1tZXJtYW5uIDx0emltbWVybWFubkBzdXNlLmRlPsLAjgQTAQgAOAIb
+ AwULCQgHAgYVCgkICwIEFgIDAQIeAQIXgBYhBHIX+6yM6c9jRKFo5WgNwR1TC3ojBQJftODH
+ AAoJEGgNwR1TC3ojx1wH/0hKGWugiqDgLNXLRD/4TfHBEKmxIrmfu9Z5t7vwUKfwhFL6hqvo
+ lXPJJKQpQ2z8+X2vZm/slsLn7J1yjrOsoJhKABDi+3QWWSGkaGwRJAdPVVyJMfJRNNNIKwVb
+ U6B1BkX2XDKDGffF4TxlOpSQzdtNI/9gleOoUA8+jy8knnDYzjBNOZqLG2FuTdicBXblz0Mf
+ vg41gd9kCwYXDnD91rJU8tzylXv03E75NCaTxTM+FBXPmsAVYQ4GYhhgFt8S2UWMoaaABLDe
+ 7l5FdnLdDEcbmd8uLU2CaG4W2cLrUaI4jz2XbkcPQkqTQ3EB67hYkjiEE6Zy3ggOitiQGcqp
+ j//OwE0EWznS4AEIAMYmP4M/V+T5RY5at/g7rUdNsLhWv1APYrh9RQefODYHrNRHUE9eosYb
+ T6XMryR9hT8XlGOYRwKWwiQBoWSDiTMo/Xi29jUnn4BXfI2px2DTXwc22LKtLAgTRjP+qbU6
+ 3Y0xnQN29UGDbYgyyK51DW3H0If2a3JNsheAAK+Xc9baj0LGIc8T9uiEWHBnCH+RdhgATnWW
+ GKdDegUR5BkDfDg5O/FISymJBHx2Dyoklv5g4BzkgqTqwmaYzsl8UxZKvbaxq0zbehDda8lv
+ hFXodNFMAgTLJlLuDYOGLK2AwbrS3Sp0AEbkpdJBb44qVlGm5bApZouHeJ/+n+7r12+lqdsA
+ EQEAAcLAdgQYAQgAIAIbDBYhBHIX+6yM6c9jRKFo5WgNwR1TC3ojBQJftOH6AAoJEGgNwR1T
+ C3ojVSkIALpAPkIJPQoURPb1VWjh34l0HlglmYHvZszJWTXYwavHR8+k6Baa6H7ufXNQtThR
+ yIxJrQLW6rV5lm7TjhffEhxVCn37+cg0zZ3j7zIsSS0rx/aMwi6VhFJA5hfn3T0TtrijKP4A
+ SAQO9xD1Zk9/61JWk8OysuIh7MXkl0fxbRKWE93XeQBhIJHQfnc+YBLprdnxR446Sh8Wn/2D
+ Ya8cavuWf2zrB6cZurs048xe0UbSW5AOSo4V9M0jzYI4nZqTmPxYyXbm30Kvmz0rYVRaitYJ
+ 4kyYYMhuULvrJDMjZRvaNe52tkKAvMevcGdt38H4KSVXAylqyQOW5zvPc4/sq9c=
+In-Reply-To: <20230926141519.9315-1-gcarlos@disroot.org>
+Content-Type: multipart/signed; micalg=pgp-sha256;
+ protocol="application/pgp-signature";
+ boundary="------------ks5BiOLYs0vh0jmHiB1L5bxB"
+Subject: Re: [Intel-gfx] [RESEND PATCH v2 0/2] drm: Refactor plane size
+ calculation by core helper functions
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -149,91 +94,94 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org,
- Sushma Venkatesh Reddy <sushma.venkatesh.reddy@intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>
+Cc: Matt Roper <matthew.d.roper@intel.com>,
+ =?UTF-8?Q?Andr=C3=A9_Almeida?= <andrealmeid@igalia.com>,
+ Tales Aparecida <tales.aparecida@gmail.com>,
+ Maxime Ripard <mripard@kernel.org>, Maira Canal <mairacanal@riseup.net>,
+ Daniel Vetter <daniel@ffwll.ch>, Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ David Airlie <airlied@gmail.com>, Arthur Grillo <arthurgrillo@riseup.net>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, Sep 26, 2023 at 09:36:53AM +0100, Tvrtko Ursulin wrote:
-> 
-> On 26/09/2023 03:00, Rodrigo Vivi wrote:
-> > Let's introduce the basic documentation about CCS.
-> > While doing that, also removed the legacy execution flag name. That flag
-> > simply doesn't exist for CCS and it is not needed on current context
-> > submission. Those flag names are only needed on legacy context,
-> > while on new ones we only need to pass the engine ID.
-> > 
-> > It is worth mention that this documentation should probably live with
-> > the engine definitions rather than in the i915.rst file directly and
-> > that more updates are likely need in this section. But this should
-> > come later.
-> > 
-> > v2: Overall improvements from Matt and Tvrtko.
-> > 
-> > Fixes: 944823c94639 ("drm/i915/xehp: Define compute class and engine")
-> > Cc: Matt Roper <matthew.d.roper@intel.com>
-> > Cc: Sushma Venkatesh Reddy <sushma.venkatesh.reddy@intel.com>
-> > Cc: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
-> > Cc: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
-> > Signed-off-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
-> > ---
-> >   Documentation/gpu/i915.rst | 25 ++++++++++++-------------
-> >   1 file changed, 12 insertions(+), 13 deletions(-)
-> > 
-> > diff --git a/Documentation/gpu/i915.rst b/Documentation/gpu/i915.rst
-> > index 378e825754d5..13de8bcaaa29 100644
-> > --- a/Documentation/gpu/i915.rst
-> > +++ b/Documentation/gpu/i915.rst
-> > @@ -267,19 +267,18 @@ i915 driver.
-> >   Intel GPU Basics
-> >   ----------------
-> > -An Intel GPU has multiple engines. There are several engine types.
-> > -
-> > -- RCS engine is for rendering 3D and performing compute, this is named
-> > -  `I915_EXEC_RENDER` in user space.
-> > -- BCS is a blitting (copy) engine, this is named `I915_EXEC_BLT` in user
-> > -  space.
-> > -- VCS is a video encode and decode engine, this is named `I915_EXEC_BSD`
-> > -  in user space
-> > -- VECS is video enhancement engine, this is named `I915_EXEC_VEBOX` in user
-> > -  space.
-> > -- The enumeration `I915_EXEC_DEFAULT` does not refer to specific engine;
-> > -  instead it is to be used by user space to specify a default rendering
-> > -  engine (for 3D) that may or may not be the same as RCS.
-> > +An Intel GPU has multiple engines. There are several engine types:
-> > +
-> > +- Render Command Streamer (RCS). An engine for rendering 3D and
-> > +  performing compute.
-> > +- Blitting Command Streamer (BCS). An engine for performing blitting and/or
-> > +  copying operations.
-> > +- Video Command Streamer. An engine used for video encoding and decoding. Also
-> > +  sometimes called 'BSD' in hardware documentation.
-> > +- Video Enhancement Command Streamer (VECS). An engine for video enhancement.
-> > +  Also sometimes called 'VEBOX' in hardware documentation.
-> > +- Compute Command Streamer (CCS). An engine that has access to the media and
-> > +  GPGPU pipelines, but not the 3D pipeline.
-> >   The Intel GPU family is a family of integrated GPU's using Unified
-> >   Memory Access. For having the GPU "do work", user space will feed the
+This is an OpenPGP/MIME signed message (RFC 4880 and 3156)
+--------------ks5BiOLYs0vh0jmHiB1L5bxB
+Content-Type: multipart/mixed; boundary="------------sbIFnpCcqBy9s2RCAy0DDNHu";
+ protected-headers="v1"
+From: Thomas Zimmermann <tzimmermann@suse.de>
+To: Carlos Eduardo Gallo Filho <gcarlos@disroot.org>,
+ intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
+Cc: =?UTF-8?Q?Andr=C3=A9_Almeida?= <andrealmeid@igalia.com>,
+ Maira Canal <mairacanal@riseup.net>, Arthur Grillo
+ <arthurgrillo@riseup.net>, Tales Aparecida <tales.aparecida@gmail.com>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, David Airlie <airlied@gmail.com>,
+ Daniel Vetter <daniel@ffwll.ch>, Jani Nikula <jani.nikula@linux.intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
+ Juha-Pekka Heikkila <juhapekka.heikkila@gmail.com>,
+ =?UTF-8?B?VmlsbGUgU3lyasOkbMOk?= <ville.syrjala@linux.intel.com>,
+ Matt Roper <matthew.d.roper@intel.com>,
+ Clint Taylor <clinton.a.taylor@intel.com>,
+ Niranjana Vishwanathapura <niranjana.vishwanathapura@intel.com>
+Message-ID: <ab0a74be-3723-4803-89fa-826298a38679@suse.de>
+Subject: Re: [RESEND PATCH v2 0/2] drm: Refactor plane size calculation by
+ core helper functions
+References: <20230926141519.9315-1-gcarlos@disroot.org>
+In-Reply-To: <20230926141519.9315-1-gcarlos@disroot.org>
 
-If this is in the "GPU Basics" section and is focused on explaining the
-hardware rather than the driver/uapi, then shouldn't we add the GSCCS as
-well?
+--------------sbIFnpCcqBy9s2RCAy0DDNHu
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: base64
 
+SGkNCg0KQW0gMjYuMDkuMjMgdW0gMTY6MTUgc2NocmllYiBDYXJsb3MgRWR1YXJkbyBHYWxs
+byBGaWxobzoNCj4gVGhlcmUncyBkdXBsaWNhdGVkIGZ1bmN0aW9ucyBvbiBkcm0gdGhhdCBk
+byB0aGUgc2FtZSBqb2Igb2YgY2FsY3VsYXRpbmcNCj4gdGhlIHNpemUgb2YgcGxhbmVzIGZy
+b20gYSBkcm1fZm9ybWF0X2luZm8gYW5kIHRoZSBzaXplIG9mIGl0cyBmaXJzdA0KPiBwbGFu
+ZS4gU28gdGhpcyBwYXRjaHNldCB0aHJvdyBhd2F5IHRoZSBtb3JlIHNwZWNpZmljIHZlcnNp
+b24gaW50ZW5kZWQNCj4gdG8gYmUgdXNlZCBmcm9tIGEgZ2l2ZW4gZnJhbWVidWZmZXIgYW5k
+IG1ha2UgdGhlIGdlbmVyaWMgdmVyc2lvbiB3YXkNCj4gbW9yZSBwb3J0YWJsZSBhZ2FpbnN0
+IHRoZSBkcml2ZXJzLg0KDQpGb3IgYm90aCBwYXRjaGVzDQoNClJldmlld2VkLWJ5OiBUaG9t
+YXMgWmltbWVybWFubiA8dHppbW1lcm1hbm5Ac3VzZS5kZT4NCg0KQmVzdCByZWdhcmRzDQpU
+aG9tYXMNCg0KPiANCj4gVGhhbmtzLA0KPiBDYXJsb3MNCj4gDQo+IC0tLQ0KPiB2MjoNCj4g
+ICAgLSBOZXcgcGF0Y2ggIltQQVRDSCB2MiAxLzJdIGRybTogUmVtb3ZlIHBsYW5lIGhzdWIv
+dnN1YiBhbGlnbm1lbnQgcmVxdWlyZW1lbnQNCj4gICAgICBmb3IgY29yZSBoZWxwZXJzIi4N
+Cj4gDQo+IENhcmxvcyBFZHVhcmRvIEdhbGxvIEZpbGhvICgyKToNCj4gICAgZHJtOiBSZW1v
+dmUgcGxhbmUgaHN1Yi92c3ViIGFsaWdubWVudCByZXF1aXJlbWVudCBmb3IgY29yZSBoZWxw
+ZXJzDQo+ICAgIGRybTogUmVwbGFjZSBkcm1fZnJhbWVidWZmZXIgcGxhbmUgc2l6ZSBmdW5j
+dGlvbnMgd2l0aCBpdHMgZXF1aXZhbGVudHMNCj4gDQo+ICAgZHJpdmVycy9ncHUvZHJtL2Ry
+bV9mcmFtZWJ1ZmZlci5jICAgICAgIHwgNjQgKystLS0tLS0tLS0tLS0tLS0tLS0tLS0tLQ0K
+PiAgIGRyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZmIuYyB8ICAyICstDQo+
+ICAgaW5jbHVkZS9kcm0vZHJtX2ZvdXJjYy5oICAgICAgICAgICAgICAgIHwgIDUgKy0NCj4g
+ICBpbmNsdWRlL2RybS9kcm1fZnJhbWVidWZmZXIuaCAgICAgICAgICAgfCAgNSAtLQ0KPiAg
+IDQgZmlsZXMgY2hhbmdlZCwgOCBpbnNlcnRpb25zKCspLCA2OCBkZWxldGlvbnMoLSkNCj4g
+DQoNCi0tIA0KVGhvbWFzIFppbW1lcm1hbm4NCkdyYXBoaWNzIERyaXZlciBEZXZlbG9wZXIN
+ClNVU0UgU29mdHdhcmUgU29sdXRpb25zIEdlcm1hbnkgR21iSA0KRnJhbmtlbnN0cmFzc2Ug
+MTQ2LCA5MDQ2MSBOdWVybmJlcmcsIEdlcm1hbnkNCkdGOiBJdm8gVG90ZXYsIEFuZHJldyBN
+eWVycywgQW5kcmV3IE1jRG9uYWxkLCBCb3VkaWVuIE1vZXJtYW4NCkhSQiAzNjgwOSAoQUcg
+TnVlcm5iZXJnKQ0K
 
-Matt
+--------------sbIFnpCcqBy9s2RCAy0DDNHu--
 
-> 
-> LGTM.
-> 
-> Acked-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
-> 
-> Regards,
-> 
-> Tvrtko
+--------------ks5BiOLYs0vh0jmHiB1L5bxB
+Content-Type: application/pgp-signature; name="OpenPGP_signature.asc"
+Content-Description: OpenPGP digital signature
+Content-Disposition: attachment; filename="OpenPGP_signature.asc"
 
--- 
-Matt Roper
-Graphics Software Engineer
-Linux GPU Platform Enablement
-Intel Corporation
+-----BEGIN PGP SIGNATURE-----
+
+wsF5BAABCAAjFiEExndm/fpuMUdwYFFolh/E3EQov+AFAmUS7twFAwAAAAAACgkQlh/E3EQov+Bz
+MxAAkqBvT6Uwh3P/b4qfGDlo/dlOGShngjBLRAOcIxTqNGppptskijN4X7FyYW/XWSZCpv44zo/2
+uZefYRxNw62NSoxlgNlrsCZL2xUK0wcXqx9OiuuEaWfx5aSX+S2QR8NqePKJkcwmeanQG3G4neLb
+X5raLeSbuuM4UQEp5fJelGcxzPIEeruJe3do9EpQufujPfPAiSBNL7IH6izQzwHTMBKD963LFv5O
+EIjf9En9eubRGRSwDFLNTNxlambwBL+dkYU/kb1tGxtwrxmSd1uM7S3fExBQQJpcOoLB35M/im7h
+21hL29UVRdi0rcMB4TuG7Iw30ws2oe32joVl+pGfcKInzrHC5GCE7mf8X7rmgkD3e9ZQx4RcDDPk
+c03Mm61jGr9Y2lwtrceodo3GM8WDuPB4jUJqjq9i441RWfQ03qgzRBot5k01p1GtQY/czM5/4uzu
+2LZlDWrIkBsT5CyXLWn+TsKSIaGBy6MIFrx7FoamgHm9FEfEI2pQBXiHPbb5NQsMIlU1+FjbohAj
+jLLJ4PWhZ1QjKACRSjESl/Tfdev2eIIUZZUmS6R9GYW9pFZKXcNf5HchhcDIy/dsKkT7F+1pXb9l
+Y4WPhL09R/y12jHqst+fCkTcBgmm43ins5i38PU9bMa8+XKJli/xhdzV3lSp+qUUveXwkb2GQvGI
+0pU=
+=+q7s
+-----END PGP SIGNATURE-----
+
+--------------ks5BiOLYs0vh0jmHiB1L5bxB--
