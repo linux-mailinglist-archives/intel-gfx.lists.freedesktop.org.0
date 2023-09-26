@@ -1,51 +1,54 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id AC5A27AE82E
-	for <lists+intel-gfx@lfdr.de>; Tue, 26 Sep 2023 10:37:56 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id C21CC7AE830
+	for <lists+intel-gfx@lfdr.de>; Tue, 26 Sep 2023 10:38:04 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2A4B710E376;
-	Tue, 26 Sep 2023 08:37:55 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 22D8C10E37B;
+	Tue, 26 Sep 2023 08:38:03 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.115])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 009CC10E379
- for <intel-gfx@lists.freedesktop.org>; Tue, 26 Sep 2023 08:37:52 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3D3AB10E379
+ for <intel-gfx@lists.freedesktop.org>; Tue, 26 Sep 2023 08:37:55 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1695717472; x=1727253472;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=6sP2CSRq5sQTgFS7lU56veoti+uy6aFWLaZ9LLBBGYY=;
- b=XwRYgrf3pksXT3xjnIziy/wuaBjAtJBYaYllqZ/FysvmbO8KgIjbfTke
- yh5bRJ1hleom2UImWbhqsAarzmA6WfC6Ng6ZsGkb3zBTm/g/Od1AkPOD/
- Zy6ejZhbV4y894xa8FOc68qmvONtjZPCN006/PWiYNIzJzygn8MwDyzaq
- dZ4lGvLdi/cCNl2iSmCffrhUFZfERuE5k8lwlWDntlHXqoo04v7QH6ZaX
- 5NDjvZtKz6eM66z7EM1R3J7Dxu/F8GEjXVIP648QVVF2YhP2x3bk7h/8z
- 2U8kTBYNNK6+YXk84xJbXC7XN3Bncz+1gDtypq3ja+sUivlu9iA/vgTrj w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10843"; a="381419207"
-X-IronPort-AV: E=Sophos;i="6.03,177,1694761200"; d="scan'208";a="381419207"
+ t=1695717475; x=1727253475;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=jjSVfIKOQAzkB3aQRUqRC5luhVvGxDgaafxWg+3E7p8=;
+ b=ayYtkSYjXv7rVGIoRrW2zTbLIFyYBMQLaDJlY52hl++23HTK/oxkbqHH
+ ieRNnYL/fC1sVBW9E4JbScZbDxE0O6j+/9g4TFn3bDJkALVu6XAbwTCQl
+ 2+RcayFwmRGOcc9OHROsQWG2S9kmazIsVhxjY1xWP/K4xfoo+iiVaij1s
+ oQzvmaRJElgD9AS2X1FAIQZy4SkO5uYR6FrdxZAbRMMxdJkvFinhKMoSd
+ 79l/eZq+1ESWE/qh6jjogwbn14KNQoGYcIaBPoldBqg4//CxyPXt5lrs+
+ X4JynjDGXgGHaR9zgeI+dfILDZLt0R0/zZGQMs9ooLaNXy2KIwFS7YlAK A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10843"; a="381419209"
+X-IronPort-AV: E=Sophos;i="6.03,177,1694761200"; d="scan'208";a="381419209"
 Received: from fmsmga005.fm.intel.com ([10.253.24.32])
  by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Sep 2023 01:37:52 -0700
+ 26 Sep 2023 01:37:55 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10843"; a="1079623487"
-X-IronPort-AV: E=Sophos;i="6.03,177,1694761200"; d="scan'208";a="1079623487"
+X-IronPort-AV: E=McAfee;i="6600,9927,10843"; a="1079623494"
+X-IronPort-AV: E=Sophos;i="6.03,177,1694761200"; d="scan'208";a="1079623494"
 Received: from nirmoyda-desk.igk.intel.com ([10.102.138.190])
  by fmsmga005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Sep 2023 01:37:50 -0700
+ 26 Sep 2023 01:37:52 -0700
 From: Nirmoy Das <nirmoy.das@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Tue, 26 Sep 2023 10:37:35 +0200
-Message-ID: <20230926083742.14740-1-nirmoy.das@intel.com>
+Date: Tue, 26 Sep 2023 10:37:36 +0200
+Message-ID: <20230926083742.14740-2-nirmoy.das@intel.com>
 X-Mailer: git-send-email 2.41.0
+In-Reply-To: <20230926083742.14740-1-nirmoy.das@intel.com>
+References: <20230926083742.14740-1-nirmoy.das@intel.com>
 MIME-Version: 1.0
 Organization: Intel Deutschland GmbH, Registered Address: Am Campeon 10,
  85579 Neubiberg, Germany,
  Commercial Register: Amtsgericht Muenchen HRB 186928 
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH 0/7] Update GGTT with MI_UPDATE_GTT on MTL
+Subject: [Intel-gfx] [PATCH v2 1/7] drm/i915: Lift runtime-pm acquire
+ callbacks out of intel_wakeref.mutex
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -58,55 +61,126 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: andi.shyti@intel.com, chris.p.wilson@linux.intel.com,
- matthew.d.roper@intel.com, Nirmoy Das <nirmoy.das@intel.com>
+Cc: Chris Wilson <chris.p.wilson@intel.com>, andi.shyti@intel.com,
+ chris.p.wilson@linux.intel.com, matthew.d.roper@intel.com,
+ Nirmoy Das <nirmoy.das@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Implement a way to update GGTT using MI_UPDATE_GTT command
-when possible for MTL as a suggested work around for HW bugs,
-Wa_13010847436 and Wa_14019519902.
+From: Chris Wilson <chris.p.wilson@intel.com>
 
-1st patch improve pm wakeref handeling which needed as we
-do GGTT update with vm->mutext held and not allowed to alloc
-memory.
+When runtime pm is first woken, it will synchronously call the
+registered callbacks for the device. These callbacks
+may pull in their own forest of locks, which we do not want to
+conflate with the intel_wakeref.mutex. A second minor benefit to
+reducing the coverage of the mutex, is that it will reduce
+contention for frequent sleeps and wakes (such as when being used
+for soft-rc6).
 
-2: Fix lockdep warning related to GT wakeref vs
-   blitter engine wakeref.
+v2: remove usage of fetch_and_zero() and other improvements(Jani)
 
-v3: Rearrange patches/diffs to fix code mixups(Andi)
+Signed-off-by: Chris Wilson <chris.p.wilson@intel.com>
+Signed-off-by: Nirmoy Das <nirmoy.das@intel.com>
+Reviewed-by: Andi Shyti <andi.shyti@linux.intel.com>
+---
+ drivers/gpu/drm/i915/intel_wakeref.c | 52 +++++++++++++++-------------
+ 1 file changed, 27 insertions(+), 25 deletions(-)
 
-v4: fix ce leak(Oak)
-
-v5: rebase & resend with new "Test-with"
-
-v6: move context ready status chnages to lower levels from
-    i915_driver.c. Add more docs and improve function names.
-
-Chris Wilson (1):
-  drm/i915: Lift runtime-pm acquire callbacks out of intel_wakeref.mutex
-
-Nirmoy Das (6):
-  drm/i915: Create a kernel context for GGTT updates
-  drm/i915: Implement for_each_sgt_daddr_next
-  drm/i915: Parameterize binder context creation
-  drm/i915: Implement GGTT update method with MI_UPDATE_GTT
-  drm/i915: Toggle binder context ready status
-  drm/i915: Enable GGTT updates with binder in MTL
-
- drivers/gpu/drm/i915/gt/intel_engine.h       |   2 +
- drivers/gpu/drm/i915/gt/intel_engine_cs.c    |  40 +++-
- drivers/gpu/drm/i915/gt/intel_engine_types.h |   3 +
- drivers/gpu/drm/i915/gt/intel_ggtt.c         | 235 +++++++++++++++++++
- drivers/gpu/drm/i915/gt/intel_gt.c           |  49 ++++
- drivers/gpu/drm/i915/gt/intel_gt.h           |   3 +
- drivers/gpu/drm/i915/gt/intel_gt_pm.c        |   4 +
- drivers/gpu/drm/i915/gt/intel_gtt.c          |   5 +
- drivers/gpu/drm/i915/gt/intel_gtt.h          |   5 +
- drivers/gpu/drm/i915/i915_scatterlist.h      |  10 +
- drivers/gpu/drm/i915/intel_wakeref.c         |  52 ++--
- 11 files changed, 380 insertions(+), 28 deletions(-)
-
+diff --git a/drivers/gpu/drm/i915/intel_wakeref.c b/drivers/gpu/drm/i915/intel_wakeref.c
+index 718f2f1b6174..623a69089386 100644
+--- a/drivers/gpu/drm/i915/intel_wakeref.c
++++ b/drivers/gpu/drm/i915/intel_wakeref.c
+@@ -10,21 +10,12 @@
+ #include "intel_wakeref.h"
+ #include "i915_drv.h"
+ 
+-static void rpm_get(struct intel_wakeref *wf)
+-{
+-	wf->wakeref = intel_runtime_pm_get(&wf->i915->runtime_pm);
+-}
+-
+-static void rpm_put(struct intel_wakeref *wf)
+-{
+-	intel_wakeref_t wakeref = fetch_and_zero(&wf->wakeref);
+-
+-	intel_runtime_pm_put(&wf->i915->runtime_pm, wakeref);
+-	INTEL_WAKEREF_BUG_ON(!wakeref);
+-}
+-
+ int __intel_wakeref_get_first(struct intel_wakeref *wf)
+ {
++	intel_wakeref_t wakeref;
++	int ret = 0;
++
++	wakeref = intel_runtime_pm_get(&wf->i915->runtime_pm);
+ 	/*
+ 	 * Treat get/put as different subclasses, as we may need to run
+ 	 * the put callback from under the shrinker and do not want to
+@@ -32,41 +23,52 @@ int __intel_wakeref_get_first(struct intel_wakeref *wf)
+ 	 * upon acquiring the wakeref.
+ 	 */
+ 	mutex_lock_nested(&wf->mutex, SINGLE_DEPTH_NESTING);
+-	if (!atomic_read(&wf->count)) {
+-		int err;
+-
+-		rpm_get(wf);
+ 
+-		err = wf->ops->get(wf);
+-		if (unlikely(err)) {
+-			rpm_put(wf);
+-			mutex_unlock(&wf->mutex);
+-			return err;
++	if (!atomic_read(&wf->count)) {
++		INTEL_WAKEREF_BUG_ON(wf->wakeref);
++		wf->wakeref = wakeref;
++		wakeref = 0;
++
++		ret = wf->ops->get(wf);
++		if (ret) {
++			wakeref = xchg(&wf->wakeref, 0);
++			wake_up_var(&wf->wakeref);
++			goto unlock;
+ 		}
+ 
+ 		smp_mb__before_atomic(); /* release wf->count */
+ 	}
++
+ 	atomic_inc(&wf->count);
++	INTEL_WAKEREF_BUG_ON(atomic_read(&wf->count) <= 0);
++
++unlock:
+ 	mutex_unlock(&wf->mutex);
++	if (unlikely(wakeref))
++		intel_runtime_pm_put(&wf->i915->runtime_pm, wakeref);
+ 
+-	INTEL_WAKEREF_BUG_ON(atomic_read(&wf->count) <= 0);
+-	return 0;
++	return ret;
+ }
+ 
+ static void ____intel_wakeref_put_last(struct intel_wakeref *wf)
+ {
++	intel_wakeref_t wakeref = 0;
++
+ 	INTEL_WAKEREF_BUG_ON(atomic_read(&wf->count) <= 0);
+ 	if (unlikely(!atomic_dec_and_test(&wf->count)))
+ 		goto unlock;
+ 
+ 	/* ops->put() must reschedule its own release on error/deferral */
+ 	if (likely(!wf->ops->put(wf))) {
+-		rpm_put(wf);
++		INTEL_WAKEREF_BUG_ON(!wf->wakeref);
++		wakeref = xchg(&wf->wakeref, 0);
+ 		wake_up_var(&wf->wakeref);
+ 	}
+ 
+ unlock:
+ 	mutex_unlock(&wf->mutex);
++	if (wakeref)
++		intel_runtime_pm_put(&wf->i915->runtime_pm, wakeref);
+ }
+ 
+ void __intel_wakeref_put_last(struct intel_wakeref *wf, unsigned long flags)
 -- 
 2.41.0
 
