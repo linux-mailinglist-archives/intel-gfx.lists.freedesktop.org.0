@@ -2,51 +2,32 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6F3DB7AF02A
-	for <lists+intel-gfx@lfdr.de>; Tue, 26 Sep 2023 18:02:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id B56247AF060
+	for <lists+intel-gfx@lfdr.de>; Tue, 26 Sep 2023 18:13:47 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C859010E3EA;
-	Tue, 26 Sep 2023 16:02:02 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1BC2C10E012;
+	Tue, 26 Sep 2023 16:13:45 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.93])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5333910E3EA;
- Tue, 26 Sep 2023 16:02:01 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1695744121; x=1727280121;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=LQ60yoTebnvkUYWkiseliZmd8NtqYh7nY9eX61FUScc=;
- b=PpusmKJ8dLwYjbu6pfEvsvp7fTDhUoqG5sha7FbS47Gh9Y9g19iz3fWO
- zQv7FsJSM7vKgFIu+xBbu0xx4jliqNfIuAiHWfDzDiaMDzoCFbDco504I
- iaD79tkVhfuILXy8pOpiEMeOP7cxX4Crbzgl3N2Rvmp5eJa2/W2FKGPkS
- UOa87fyQiiBklOsIXWvUZwNW9KcuBtZyiAkcjZtz+EJjgiSB4Xiz5yh8X
- eLfheSa5BOzNAviDhNAKbmCMhaDCSUiHgLrlx4kxNfTqZ38leZxqh1DHo
- /HwqpYwUrc0XbKFlRLCx3wufaoPwFIcBYYBfO4yKOjQ41CHIPZ+E9S6Lm A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10845"; a="378878860"
-X-IronPort-AV: E=Sophos;i="6.03,178,1694761200"; d="scan'208";a="378878860"
-Received: from fmsmga006.fm.intel.com ([10.253.24.20])
- by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Sep 2023 09:02:00 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10845"; a="995848129"
-X-IronPort-AV: E=Sophos;i="6.03,178,1694761200"; d="scan'208";a="995848129"
-Received: from clow-mobl1.gar.corp.intel.com (HELO intel.com) ([10.215.242.58])
- by fmsmga006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Sep 2023 09:01:50 -0700
-Date: Tue, 26 Sep 2023 18:01:42 +0200
-From: Andi Shyti <andi.shyti@linux.intel.com>
-To: Nirmoy Das <nirmoy.das@intel.com>
-Message-ID: <ZRMAZgM+0Gg6Sbk6@ashyti-mobl2.lan>
-References: <20230926142401.25687-1-nirmoy.das@intel.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 25E4410E012;
+ Tue, 26 Sep 2023 16:13:43 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 1E1D6AADE1;
+ Tue, 26 Sep 2023 16:13:43 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============0626657306258785602=="
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-15
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20230926142401.25687-1-nirmoy.das@intel.com>
-Subject: Re: [Intel-gfx] [PATCH] drm/i915: Don't set PIPE_CONTROL_FLUSH_L3
- for aux inval
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Nirmoy Das" <nirmoy.das@intel.com>
+Date: Tue, 26 Sep 2023 16:13:43 -0000
+Message-ID: <169574482308.20978.10415611036559208531@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20230926083742.14740-1-nirmoy.das@intel.com>
+In-Reply-To: <20230926083742.14740-1-nirmoy.das@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgVXBk?=
+ =?utf-8?q?ate_GGTT_with_MI=5FUPDATE=5FGTT_on_MTL_=28rev10=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,39 +40,246 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Andrzej Hajda <andrzej.hajda@intel.com>,
- Lucas De Marchi <lucas.demarchi@intel.com>, intel-gfx@lists.freedesktop.org,
- Jonathan Cavitt <jonathan.cavitt@intel.com>, stable@vger.kernel.org,
- dri-devel@lists.freedesktop.org, Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Matt Roper <matthew.d.roper@intel.com>,
- Prathap Kumar Valsan <prathap.kumar.valsan@intel.com>,
- Mark Janes <mark.janes@intel.com>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi Nirmoy,
+--===============0626657306258785602==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-On Tue, Sep 26, 2023 at 04:24:01PM +0200, Nirmoy Das wrote:
-> PIPE_CONTROL_FLUSH_L3 is not needed for aux invalidation
-> so don't set that.
-> 
-> Fixes: 78a6ccd65fa3 ("drm/i915/gt: Ensure memory quiesced before invalidation")
-> Cc: Jonathan Cavitt <jonathan.cavitt@intel.com>
-> Cc: Andi Shyti <andi.shyti@linux.intel.com>
-> Cc: <stable@vger.kernel.org> # v5.8+
-> Cc: Andrzej Hajda <andrzej.hajda@intel.com>
-> Cc: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
-> Cc: Matt Roper <matthew.d.roper@intel.com>
-> Cc: Tejas Upadhyay <tejas.upadhyay@intel.com>
-> Cc: Lucas De Marchi <lucas.demarchi@intel.com>
-> Cc: Prathap Kumar Valsan <prathap.kumar.valsan@intel.com>
-> Cc: Tapani Pälli <tapani.palli@intel.com>
-> Cc: Mark Janes <mark.janes@intel.com>
-> Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
-> Signed-off-by: Nirmoy Das <nirmoy.das@intel.com>
+== Series Details ==
 
-looks better :)
+Series: Update GGTT with MI_UPDATE_GTT on MTL (rev10)
+URL   : https://patchwork.freedesktop.org/series/123329/
+State : success
 
-Tapani, you mind giving this a test?
+== Summary ==
 
-Andi
+CI Bug Log - changes from CI_DRM_13681 -> Patchwork_123329v10
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_123329v10/index.html
+
+Participating hosts (41 -> 29)
+------------------------------
+
+  Additional (1): bat-dg2-14 
+  Missing    (13): fi-kbl-soraka fi-rkl-11600 fi-tgl-1115g4 bat-dg2-9 fi-cfl-8700k fi-snb-2520m fi-cfl-guc fi-glk-j4005 fi-bsw-nick fi-pnv-d510 fi-blb-e6850 bat-jsl-3 bat-jsl-1 
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_123329v10 that come from known issues:
+
+### CI changes ###
+
+#### Possible fixes ####
+
+  * boot:
+    - fi-hsw-4770:        [FAIL][1] ([i915#8293]) -> [PASS][2]
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13681/fi-hsw-4770/boot.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_123329v10/fi-hsw-4770/boot.html
+
+  
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@debugfs_test@basic-hwmon:
+    - fi-hsw-4770:        NOTRUN -> [SKIP][3] ([fdo#109271])
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_123329v10/fi-hsw-4770/igt@debugfs_test@basic-hwmon.html
+
+  * igt@kms_flip@basic-plain-flip@a-dp6:
+    - bat-adlp-11:        [PASS][4] -> [DMESG-WARN][5] ([i915#6868])
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13681/bat-adlp-11/igt@kms_flip@basic-plain-flip@a-dp6.html
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_123329v10/bat-adlp-11/igt@kms_flip@basic-plain-flip@a-dp6.html
+
+  * igt@kms_flip@basic-plain-flip@b-dp6:
+    - bat-adlp-11:        [PASS][6] -> [FAIL][7] ([i915#6121]) +2 other tests fail
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13681/bat-adlp-11/igt@kms_flip@basic-plain-flip@b-dp6.html
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_123329v10/bat-adlp-11/igt@kms_flip@basic-plain-flip@b-dp6.html
+
+  * igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence:
+    - bat-dg2-11:         NOTRUN -> [SKIP][8] ([i915#1845]) +3 other tests skip
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_123329v10/bat-dg2-11/igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence.html
+
+  
+#### Warnings ####
+
+  * igt@i915_selftest@live@requests:
+    - bat-mtlp-8:         [ABORT][9] ([i915#9262]) -> [ABORT][10] ([i915#9414])
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13681/bat-mtlp-8/igt@i915_selftest@live@requests.html
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_123329v10/bat-mtlp-8/igt@i915_selftest@live@requests.html
+
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
+  [fdo#109285]: https://bugs.freedesktop.org/show_bug.cgi?id=109285
+  [i915#1072]: https://gitlab.freedesktop.org/drm/intel/issues/1072
+  [i915#1845]: https://gitlab.freedesktop.org/drm/intel/issues/1845
+  [i915#3555]: https://gitlab.freedesktop.org/drm/intel/issues/3555
+  [i915#3840]: https://gitlab.freedesktop.org/drm/intel/issues/3840
+  [i915#4077]: https://gitlab.freedesktop.org/drm/intel/issues/4077
+  [i915#4079]: https://gitlab.freedesktop.org/drm/intel/issues/4079
+  [i915#4083]: https://gitlab.freedesktop.org/drm/intel/issues/4083
+  [i915#4103]: https://gitlab.freedesktop.org/drm/intel/issues/4103
+  [i915#4212]: https://gitlab.freedesktop.org/drm/intel/issues/4212
+  [i915#4213]: https://gitlab.freedesktop.org/drm/intel/issues/4213
+  [i915#4215]: https://gitlab.freedesktop.org/drm/intel/issues/4215
+  [i915#5190]: https://gitlab.freedesktop.org/drm/intel/issues/5190
+  [i915#5274]: https://gitlab.freedesktop.org/drm/intel/issues/5274
+  [i915#5354]: https://gitlab.freedesktop.org/drm/intel/issues/5354
+  [i915#5608]: https://gitlab.freedesktop.org/drm/intel/issues/5608
+  [i915#6121]: https://gitlab.freedesktop.org/drm/intel/issues/6121
+  [i915#6868]: https://gitlab.freedesktop.org/drm/intel/issues/6868
+  [i915#7359]: https://gitlab.freedesktop.org/drm/intel/issues/7359
+  [i915#7952]: https://gitlab.freedesktop.org/drm/intel/issues/7952
+  [i915#8293]: https://gitlab.freedesktop.org/drm/intel/issues/8293
+  [i915#8981]: https://gitlab.freedesktop.org/drm/intel/issues/8981
+  [i915#9262]: https://gitlab.freedesktop.org/drm/intel/issues/9262
+  [i915#9414]: https://gitlab.freedesktop.org/drm/intel/issues/9414
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_13681 -> Patchwork_123329v10
+
+  CI-20190529: 20190529
+  CI_DRM_13681: b57407d0de043fc22b000a941a404ab103849e06 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_7503: 7503
+  Patchwork_123329v10: b57407d0de043fc22b000a941a404ab103849e06 @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+### Linux commits
+
+cecc823b73b0 drm/i915: Enable GGTT updates with binder in MTL
+c0b3957e2023 drm/i915: Toggle binder context ready status
+61c9b6dcffca drm/i915: Implement GGTT update method with MI_UPDATE_GTT
+e93b7d40c91d drm/i915: Parameterize binder context creation
+3b666f14446b drm/i915: Implement for_each_sgt_daddr_next
+6ecadc0d9349 drm/i915: Create a kernel context for GGTT updates
+d4f22e54c5c7 drm/i915: Lift runtime-pm acquire callbacks out of intel_wakeref.mutex
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_123329v10/index.html
+
+--===============0626657306258785602==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>Update GGTT with MI_UPDATE_GTT on MTL (rev10)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/123329/">https://patchwork.freedesktop.org/series/123329/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_123329v10/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_123329v10/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_13681 -&gt; Patchwork_123329v10</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_123329v10/index.html</p>
+<h2>Participating hosts (41 -&gt; 29)</h2>
+<p>Additional (1): bat-dg2-14 <br />
+  Missing    (13): fi-kbl-soraka fi-rkl-11600 fi-tgl-1115g4 bat-dg2-9 fi-cfl-8700k fi-snb-2520m fi-cfl-guc fi-glk-j4005 fi-bsw-nick fi-pnv-d510 fi-blb-e6850 bat-jsl-3 bat-jsl-1 </p>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_123329v10 that come from known issues:</p>
+<h3>CI changes</h3>
+<h4>Possible fixes</h4>
+<ul>
+<li>boot:<ul>
+<li>fi-hsw-4770:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13681/fi-hsw-4770/boot.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/8293">i915#8293</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_123329v10/fi-hsw-4770/boot.html">PASS</a></li>
+</ul>
+</li>
+</ul>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@debugfs_test@basic-hwmon:</p>
+<ul>
+<li>fi-hsw-4770:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_123329v10/fi-hsw-4770/igt@debugfs_test@basic-hwmon.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_flip@basic-plain-flip@a-dp6:</p>
+<ul>
+<li>bat-adlp-11:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13681/bat-adlp-11/igt@kms_flip@basic-plain-flip@a-dp6.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_123329v10/bat-adlp-11/igt@kms_flip@basic-plain-flip@a-dp6.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/6868">i915#6868</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_flip@basic-plain-flip@b-dp6:</p>
+<ul>
+<li>bat-adlp-11:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13681/bat-adlp-11/igt@kms_flip@basic-plain-flip@b-dp6.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_123329v10/bat-adlp-11/igt@kms_flip@basic-plain-flip@b-dp6.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/6121">i915#6121</a>) +2 other tests fail</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence:</p>
+<ul>
+<li>bat-dg2-11:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_123329v10/bat-dg2-11/igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1845">i915#1845</a>) +3 other tests skip</li>
+</ul>
+</li>
+</ul>
+<h4>Warnings</h4>
+<ul>
+<li>igt@i915_selftest@live@requests:<ul>
+<li>bat-mtlp-8:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13681/bat-mtlp-8/igt@i915_selftest@live@requests.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/9262">i915#9262</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_123329v10/bat-mtlp-8/igt@i915_selftest@live@requests.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/9414">i915#9414</a>)</li>
+</ul>
+</li>
+</ul>
+<p>{name}: This element is suppressed. This means it is ignored when computing<br />
+          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_13681 -&gt; Patchwork_123329v10</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_13681: b57407d0de043fc22b000a941a404ab103849e06 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_7503: 7503<br />
+  Patchwork_123329v10: b57407d0de043fc22b000a941a404ab103849e06 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+<h3>Linux commits</h3>
+<p>cecc823b73b0 drm/i915: Enable GGTT updates with binder in MTL<br />
+c0b3957e2023 drm/i915: Toggle binder context ready status<br />
+61c9b6dcffca drm/i915: Implement GGTT update method with MI_UPDATE_GTT<br />
+e93b7d40c91d drm/i915: Parameterize binder context creation<br />
+3b666f14446b drm/i915: Implement for_each_sgt_daddr_next<br />
+6ecadc0d9349 drm/i915: Create a kernel context for GGTT updates<br />
+d4f22e54c5c7 drm/i915: Lift runtime-pm acquire callbacks out of intel_wakeref.mutex</p>
+
+</body>
+</html>
+
+--===============0626657306258785602==--
