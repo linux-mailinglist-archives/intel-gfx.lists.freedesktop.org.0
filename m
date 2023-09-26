@@ -1,53 +1,60 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id CB81D7AE9A1
-	for <lists+intel-gfx@lfdr.de>; Tue, 26 Sep 2023 11:55:44 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id A13E97AEA07
+	for <lists+intel-gfx@lfdr.de>; Tue, 26 Sep 2023 12:10:57 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CF3BC10E048;
-	Tue, 26 Sep 2023 09:55:38 +0000 (UTC)
-X-Original-To: intel-gfx@lists.freedesktop.org
-Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.65])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D960B10E048
- for <intel-gfx@lists.freedesktop.org>; Tue, 26 Sep 2023 09:55:36 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DC28110E389;
+	Tue, 26 Sep 2023 10:10:55 +0000 (UTC)
+X-Original-To: Intel-gfx@lists.freedesktop.org
+Delivered-To: Intel-gfx@lists.freedesktop.org
+X-Greylist: delayed 425 seconds by postgrey-1.36 at gabe;
+ Tue, 26 Sep 2023 10:10:53 UTC
+Received: from mgamail.intel.com (unknown [198.175.65.43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A4E8810E389;
+ Tue, 26 Sep 2023 10:10:53 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1695722136; x=1727258136;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=MpImtw0f2GFJTMvBus30BBe5OIbpEnhdBgwPDOKJiIQ=;
- b=CG7RCTWZMr6rjJmZJ6qieEGaMG+iVv3FXBOTYludz+oWdg+7yl3GT4P5
- sO7HD/IJ8JACOX449dOXpXE2zWjUKsw+qs3Q44fQv0fBA78tqaGaDtQ50
- N1kug54uCYyq8SGkOqF+3jZknp2Ny9UApe3KdYhDryRJJYvrtzBxCB2XX
- X3tmxuKo4bJa0WuZ1k88lZC8K9R1Eot4ApM+FIHgo3MC6QVfffBzhdtm6
- 26ibQSu03NOnSMIOT1FWe2HqcBXdDWt1PuSq4MbjyQ9mnzOSp2lTBhEay
- 5jpdWlRftCMcnT5RH6FhOwBHHXmm9Lyn4uogo618nM2ngLAFRPgSkE2vk g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10843"; a="385378111"
-X-IronPort-AV: E=Sophos;i="6.03,177,1694761200"; d="scan'208";a="385378111"
-Received: from orsmga003.jf.intel.com ([10.7.209.27])
- by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Sep 2023 02:55:36 -0700
+ t=1695723054; x=1727259054;
+ h=message-id:date:mime-version:subject:to:cc:references:
+ from:in-reply-to:content-transfer-encoding;
+ bh=qwKYWRuF1ObaOkqWlf8IjpbYZ64/s+PDxB2Lmueb5kc=;
+ b=E5NfjV9EHGchA18qAoVvi+0j3WUnJxyFz8yecsbu/FQz53zU8UG3vu5Z
+ 6HbOwCTr3t+QbdFCr3u7e6heHc3cMvGB1FGEYyK+vqme+GNDtfvdcNtDJ
+ jGVPpimu2wPeLZJug4EIMf+fvINSAZimCQCGH50UicliJ9c6xa5yF6bff
+ HQpa9FjZAHqW6u9K+/srKnMAzMuMvj07sjCwq64OeqSLOnvaf5bDenwn1
+ 9m9Jagr7mlPkFnkZ9CSJ9l5eUEN9kEO7OfXd3l3+VoFwv2Kvup59b4PUl
+ xT92iiXM4oCgh4F7ftDXjFx7qvoi8YJa5pqOAtwUG4+rPruFHbgkTQP+x Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10843"; a="174571"
+X-IronPort-AV: E=Sophos;i="6.03,177,1694761200"; 
+   d="scan'208";a="174571"
+Received: from fmsmga003.fm.intel.com ([10.253.24.29])
+ by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 Sep 2023 03:03:48 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10843"; a="698405304"
-X-IronPort-AV: E=Sophos;i="6.03,177,1694761200"; d="scan'208";a="698405304"
-Received: from wagnert-mobl2.ger.corp.intel.com (HELO localhost)
- ([10.252.52.202])
- by orsmga003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Sep 2023 02:55:34 -0700
-From: Jani Nikula <jani.nikula@intel.com>
-To: Rodrigo Vivi <rodrigo.vivi@intel.com>
-In-Reply-To: <ZQypLvTIlF7dsWX0@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20230921155325.3851197-1-jani.nikula@intel.com>
- <ZQypLvTIlF7dsWX0@intel.com>
-Date: Tue, 26 Sep 2023 12:55:32 +0300
-Message-ID: <87msx9l0mj.fsf@intel.com>
+X-IronPort-AV: E=McAfee;i="6600,9927,10843"; a="838973973"
+X-IronPort-AV: E=Sophos;i="6.03,177,1694761200"; d="scan'208";a="838973973"
+Received: from dilipban-mobl.ger.corp.intel.com (HELO [10.213.201.63])
+ ([10.213.201.63])
+ by fmsmga003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 Sep 2023 03:03:45 -0700
+Message-ID: <28a7da40-9589-b81f-f32f-f7c3bb30836c@linux.intel.com>
+Date: Tue, 26 Sep 2023 11:03:43 +0100
 MIME-Version: 1.0
-Content-Type: text/plain
-Subject: Re: [Intel-gfx] [PATCH] drm/i915/cx0: prefer forward declarations
- over includes
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.15.1
+Content-Language: en-US
+To: Andi Shyti <andi.shyti@linux.intel.com>
+References: <20230705093025.3689748-1-tvrtko.ursulin@linux.intel.com>
+ <ZRKhy6QcQ28Z2cPT@ashyti-mobl2.lan>
+From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+Organization: Intel Corporation UK Plc
+In-Reply-To: <ZRKhy6QcQ28Z2cPT@ashyti-mobl2.lan>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+Subject: Re: [Intel-gfx] [PATCH] drm/i915: Do not disable preemption for
+ resets
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -60,67 +67,81 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org
+Cc: Paul Gortmaker <paul.gortmaker@windriver.com>,
+ Intel-gfx@lists.freedesktop.org, Chris Wilson <chris.p.wilson@intel.com>,
+ Sebastian Andrzej Siewior <bigeasy@linutronix.de>,
+ dri-devel@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, 21 Sep 2023, Rodrigo Vivi <rodrigo.vivi@intel.com> wrote:
-> On Thu, Sep 21, 2023 at 06:53:25PM +0300, Jani Nikula wrote:
->> Avoid including the world from headers when forward declarations
->> suffice.
->> 
->> Cc: Radhakrishna Sripada <radhakrishna.sripada@intel.com>
->> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
->
-> Trusting more your compiler then my eyes, but
->
-> Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
 
-Thanks, pushed to drm-intel-next.
-
-BR,
-Jani.
-
->
+On 26/09/2023 10:18, Andi Shyti wrote:
+> Hi Tvrtko,
+> 
+>> Commit ade8a0f59844 ("drm/i915: Make all GPU resets atomic") added a
+>> preempt disable section over the hardware reset callback to prepare the
+>> driver for being able to reset from atomic contexts.
+>>
+>> In retrospect I can see that the work item at a time was about removing
+>> the struct mutex from the reset path. Code base also briefly entertained
+>> the idea of doing the reset under stop_machine in order to serialize
+>> userspace mmap and temporary glitch in the fence registers (see
+>> eb8d0f5af4ec ("drm/i915: Remove GPU reset dependence on struct_mutex"),
+>> but that never materialized and was soon removed in 2caffbf11762
+>> ("drm/i915: Revoke mmaps and prevent access to fence registers across
+>> reset") and replaced with a SRCU based solution.
+>>
+>> As such, as far as I can see, today we still have a requirement that
+>> resets must not sleep (invoked from submission tasklets), but no need to
+>> support invoking them from a truly atomic context.
+>>
+>> Given that the preemption section is problematic on RT kernels, since the
+>> uncore lock becomes a sleeping lock and so is invalid in such section,
+>> lets try and remove it. Potential downside is that our short waits on GPU
+>> to complete the reset may get extended if CPU scheduling interferes, but
+>> in practice that probably isn't a deal breaker.
+>>
+>> In terms of mechanics, since the preemption disabled block is being
+>> removed we just need to replace a few of the wait_for_atomic macros into
+>> busy looping versions which will work (and not complain) when called from
+>> non-atomic sections.
+> 
+> looks reasonable, few unrelated questions
+> 
 >> ---
->>  drivers/gpu/drm/i915/display/intel_cx0_phy.h | 14 ++++++++------
->>  1 file changed, 8 insertions(+), 6 deletions(-)
->> 
->> diff --git a/drivers/gpu/drm/i915/display/intel_cx0_phy.h b/drivers/gpu/drm/i915/display/intel_cx0_phy.h
->> index 4c4db5cdcbd0..912e0eeb0be3 100644
->> --- a/drivers/gpu/drm/i915/display/intel_cx0_phy.h
->> +++ b/drivers/gpu/drm/i915/display/intel_cx0_phy.h
->> @@ -10,14 +10,15 @@
->>  #include <linux/bitfield.h>
->>  #include <linux/bits.h>
->>  
->> -#include "i915_drv.h"
->> -#include "intel_display_types.h"
->> -
->> -struct drm_i915_private;
->> -struct intel_encoder;
->> -struct intel_crtc_state;
->>  enum icl_port_dpll_id;
->>  enum phy;
->> +struct drm_i915_private;
->> +struct intel_atomic_state;
->> +struct intel_c10pll_state;
->> +struct intel_c20pll_state;
->> +struct intel_crtc_state;
->> +struct intel_encoder;
->> +struct intel_hdmi;
->>  
->>  bool intel_is_c10phy(struct drm_i915_private *dev_priv, enum phy phy);
->>  void intel_mtl_pll_enable(struct intel_encoder *encoder,
->> @@ -44,4 +45,5 @@ void intel_cx0_phy_set_signal_levels(struct intel_encoder *encoder,
->>  				     const struct intel_crtc_state *crtc_state);
->>  int intel_cx0_phy_check_hdmi_link_rate(struct intel_hdmi *hdmi, int clock);
->>  int intel_mtl_tbt_calc_port_clock(struct intel_encoder *encoder);
->> +
->>  #endif /* __INTEL_CX0_PHY_H__ */
->> -- 
->> 2.39.2
->> 
+>>   drivers/gpu/drm/i915/gt/intel_reset.c | 12 +++++-------
+>>   1 file changed, 5 insertions(+), 7 deletions(-)
+>>
+>> diff --git a/drivers/gpu/drm/i915/gt/intel_reset.c b/drivers/gpu/drm/i915/gt/intel_reset.c
+>> index e2152f75ba2e..6916eba3bd33 100644
+>> --- a/drivers/gpu/drm/i915/gt/intel_reset.c
+>> +++ b/drivers/gpu/drm/i915/gt/intel_reset.c
+>> @@ -167,13 +167,13 @@ static int i915_do_reset(struct intel_gt *gt,
+>>   	/* Assert reset for at least 20 usec, and wait for acknowledgement. */
+> 
+> is this /20/50/ ?
 
--- 
-Jani Nikula, Intel
+Unrelated change but okay.
+
+> 
+>>   	pci_write_config_byte(pdev, I915_GDRST, GRDOM_RESET_ENABLE);
+>>   	udelay(50);
+>> -	err = wait_for_atomic(i915_in_reset(pdev), 50);
+>> +	err = _wait_for_atomic(i915_in_reset(pdev), 50, 0);
+> 
+> wait_for_atomic() waits in milliseconds, while _wait_for_atomic()
+> waits in microseconds, I think you need to update the timer.
+
+Ah.. well spotted!
+
+> Do you think we might need a wait_for_atomic_preempt() macro?
+> 
+> 	err = wait_for_atomic_preempt(i915_in_reset(pdev), 50);
+
+I don't see what it would do? _wait_for_atomic when ATOMIC == 0 already 
+enables preemption. To allow passing in milliseconds? I fear one more 
+macro would create more confusion.
+
+Regards,
+
+Tvrtko
