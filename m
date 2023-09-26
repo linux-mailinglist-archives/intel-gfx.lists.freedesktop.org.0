@@ -2,47 +2,50 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 91EB97AE8D1
-	for <lists+intel-gfx@lfdr.de>; Tue, 26 Sep 2023 11:20:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1FD627AE8C3
+	for <lists+intel-gfx@lfdr.de>; Tue, 26 Sep 2023 11:18:22 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E121710E384;
-	Tue, 26 Sep 2023 09:20:55 +0000 (UTC)
-X-Original-To: intel-gfx@lists.freedesktop.org
-Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.151])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D7F2E10E384
- for <intel-gfx@lists.freedesktop.org>; Tue, 26 Sep 2023 09:20:53 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9D1BD10E387;
+	Tue, 26 Sep 2023 09:18:20 +0000 (UTC)
+X-Original-To: Intel-gfx@lists.freedesktop.org
+Delivered-To: Intel-gfx@lists.freedesktop.org
+Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.136])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7EA1810E384;
+ Tue, 26 Sep 2023 09:18:18 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1695720053; x=1727256053;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=7bovrBhcVstcZzmzG26nNaqfJ/XlPYL4ClNRaVnnNes=;
- b=HEWSy4yADr+2r4mhxci0Oos/xQDmuxcg48ktClBOYoACBgWD34IFGZXe
- zQYU67JMES7A6BiCLjsTVdp5gNi14+HwTIu2Dxhbtf2RqQBP3QKjnpsCQ
- paSBCgSEK+QX0syU8EnvVft7qPFl0I4fCcF3NZ1TuLmQMFQXbs/wMNNFJ
- UMY1j4jYg2MGIUoLkFrEU0OkaHAcdYypAm5imDMJNySUY/dMjpqpDqFd2
- C2o7Vk43Jlw2QEHGNxg2lrTjgecq9H/sQjqFd+NIxJhc5zOCkCHRtMELn
- 5iY5i09y50w+wBy6CF3LS1lGyF3cI/La/ubTccqvicwH5UBcIWDT4VK8e A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10843"; a="361769032"
-X-IronPort-AV: E=Sophos;i="6.03,177,1694761200"; d="scan'208";a="361769032"
-Received: from fmsmga008.fm.intel.com ([10.253.24.58])
- by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Sep 2023 02:20:53 -0700
+ t=1695719898; x=1727255898;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:in-reply-to;
+ bh=KneAb0S+m+iYRbwqBA9rAbD7+wrrqEvmyHgL9DakO84=;
+ b=nJLvwj8WOnXzzXNET/AerD5JutaMJLaPHQnl4PeX6e6XqPRv2W06bKV6
+ GzIadzDnwd7KkJQ+dtwbbNBMMSj48OyEhsPIHsrV3S854d9gDe/49NeZi
+ 6PaiGMVwUFGOyHgVnfx3DF6upAghR9K+sXFCN+nXaTkwVPhVfUsqUyyuZ
+ AzEzrkKQNM0QNA0tZX+guEFP6sVplDPt5RmSj8I2lwy/IJ9BHHbP3teZZ
+ 5MSsnAtdPd+i6IO7kmUrCv9lCx49g7bJI25Ze+Wn1gOT3APJ2w5XwDFBT
+ 7MTRyK22ApTemLHP8OBQvxzEI0RQTD0lAeZLhrnfD9mNym66E821RmEmU A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10843"; a="360903521"
+X-IronPort-AV: E=Sophos;i="6.03,177,1694761200"; d="scan'208";a="360903521"
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 Sep 2023 02:18:17 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10843"; a="814402606"
-X-IronPort-AV: E=Sophos;i="6.03,177,1694761200"; d="scan'208";a="814402606"
-Received: from srr4-3-linux-106-armuthy.iind.intel.com ([10.190.238.56])
- by fmsmga008.fm.intel.com with ESMTP; 26 Sep 2023 02:20:51 -0700
-From: Arun R Murthy <arun.r.murthy@intel.com>
-To: intel-gfx@lists.freedesktop.org,
-	jani.nikula@intel.com
-Date: Tue, 26 Sep 2023 14:41:57 +0530
-Message-Id: <20230926091157.635438-1-arun.r.murthy@intel.com>
-X-Mailer: git-send-email 2.25.1
+X-IronPort-AV: E=McAfee;i="6600,9927,10843"; a="778072187"
+X-IronPort-AV: E=Sophos;i="6.03,177,1694761200"; d="scan'208";a="778072187"
+Received: from jliew-mobl.gar.corp.intel.com (HELO intel.com) ([10.213.158.52])
+ by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 Sep 2023 02:18:11 -0700
+Date: Tue, 26 Sep 2023 11:18:03 +0200
+From: Andi Shyti <andi.shyti@linux.intel.com>
+To: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+Message-ID: <ZRKhy6QcQ28Z2cPT@ashyti-mobl2.lan>
+References: <20230705093025.3689748-1-tvrtko.ursulin@linux.intel.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH] drm/i915: Remove the module parameter 'fastboot'
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230705093025.3689748-1-tvrtko.ursulin@linux.intel.com>
+Subject: Re: [Intel-gfx] [PATCH] drm/i915: Do not disable preemption for
+ resets
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -55,62 +58,69 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: Paul Gortmaker <paul.gortmaker@windriver.com>,
+ Intel-gfx@lists.freedesktop.org, Chris Wilson <chris.p.wilson@intel.com>,
+ Sebastian Andrzej Siewior <bigeasy@linutronix.de>,
+ dri-devel@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-By default fastboot is enabled on all Display 9+ platforms and disabled
-on older platforms. Its not necessary to retain this as a module
-parameter.
+Hi Tvrtko,
 
-Signed-off-by: Arun R Murthy <arun.r.murthy@intel.com>
----
- drivers/gpu/drm/i915/display/intel_display.c | 3 ---
- drivers/gpu/drm/i915/i915_params.c           | 5 -----
- drivers/gpu/drm/i915/i915_params.h           | 1 -
- 3 files changed, 9 deletions(-)
+> Commit ade8a0f59844 ("drm/i915: Make all GPU resets atomic") added a
+> preempt disable section over the hardware reset callback to prepare the
+> driver for being able to reset from atomic contexts.
+> 
+> In retrospect I can see that the work item at a time was about removing
+> the struct mutex from the reset path. Code base also briefly entertained
+> the idea of doing the reset under stop_machine in order to serialize
+> userspace mmap and temporary glitch in the fence registers (see
+> eb8d0f5af4ec ("drm/i915: Remove GPU reset dependence on struct_mutex"),
+> but that never materialized and was soon removed in 2caffbf11762
+> ("drm/i915: Revoke mmaps and prevent access to fence registers across
+> reset") and replaced with a SRCU based solution.
+> 
+> As such, as far as I can see, today we still have a requirement that
+> resets must not sleep (invoked from submission tasklets), but no need to
+> support invoking them from a truly atomic context.
+> 
+> Given that the preemption section is problematic on RT kernels, since the
+> uncore lock becomes a sleeping lock and so is invalid in such section,
+> lets try and remove it. Potential downside is that our short waits on GPU
+> to complete the reset may get extended if CPU scheduling interferes, but
+> in practice that probably isn't a deal breaker.
+> 
+> In terms of mechanics, since the preemption disabled block is being
+> removed we just need to replace a few of the wait_for_atomic macros into
+> busy looping versions which will work (and not complain) when called from
+> non-atomic sections.
 
-diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
-index edbcf5968804..9d6e2d19d636 100644
---- a/drivers/gpu/drm/i915/display/intel_display.c
-+++ b/drivers/gpu/drm/i915/display/intel_display.c
-@@ -4986,9 +4986,6 @@ pipe_config_mismatch(bool fastset, const struct intel_crtc *crtc,
- 
- static bool fastboot_enabled(struct drm_i915_private *dev_priv)
- {
--	if (dev_priv->params.fastboot != -1)
--		return dev_priv->params.fastboot;
--
- 	/* Enable fastboot by default on Skylake and newer */
- 	if (DISPLAY_VER(dev_priv) >= 9)
- 		return true;
-diff --git a/drivers/gpu/drm/i915/i915_params.c b/drivers/gpu/drm/i915/i915_params.c
-index 0a171b57fd8f..036c4c3ed6ed 100644
---- a/drivers/gpu/drm/i915/i915_params.c
-+++ b/drivers/gpu/drm/i915/i915_params.c
-@@ -137,11 +137,6 @@ i915_param_named_unsafe(enable_ips, int, 0400, "Enable IPS (default: true)");
- i915_param_named_unsafe(enable_dpt, bool, 0400,
- 	"Enable display page table (DPT) (default: true)");
- 
--i915_param_named(fastboot, int, 0400,
--	"Try to skip unnecessary mode sets at boot time "
--	"(0=disabled, 1=enabled) "
--	"Default: -1 (use per-chip default)");
--
- i915_param_named_unsafe(load_detect_test, bool, 0400,
- 	"Force-enable the VGA load detect code for testing (default:false). "
- 	"For developers only.");
-diff --git a/drivers/gpu/drm/i915/i915_params.h b/drivers/gpu/drm/i915/i915_params.h
-index 68abf0ad6c00..d5194b039aab 100644
---- a/drivers/gpu/drm/i915/i915_params.h
-+++ b/drivers/gpu/drm/i915/i915_params.h
-@@ -72,7 +72,6 @@ struct drm_printer;
- 	param(int, edp_vswing, 0, 0400) \
- 	param(unsigned int, reset, 3, 0600) \
- 	param(unsigned int, inject_probe_failure, 0, 0) \
--	param(int, fastboot, -1, 0600) \
- 	param(int, enable_dpcd_backlight, -1, 0600) \
- 	param(char *, force_probe, CONFIG_DRM_I915_FORCE_PROBE, 0400) \
- 	param(unsigned int, request_timeout_ms, CONFIG_DRM_I915_REQUEST_TIMEOUT, CONFIG_DRM_I915_REQUEST_TIMEOUT ? 0600 : 0) \
--- 
-2.25.1
+looks reasonable, few unrelated questions
 
+> ---
+>  drivers/gpu/drm/i915/gt/intel_reset.c | 12 +++++-------
+>  1 file changed, 5 insertions(+), 7 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/i915/gt/intel_reset.c b/drivers/gpu/drm/i915/gt/intel_reset.c
+> index e2152f75ba2e..6916eba3bd33 100644
+> --- a/drivers/gpu/drm/i915/gt/intel_reset.c
+> +++ b/drivers/gpu/drm/i915/gt/intel_reset.c
+> @@ -167,13 +167,13 @@ static int i915_do_reset(struct intel_gt *gt,
+>  	/* Assert reset for at least 20 usec, and wait for acknowledgement. */
+
+is this /20/50/ ?
+
+>  	pci_write_config_byte(pdev, I915_GDRST, GRDOM_RESET_ENABLE);
+>  	udelay(50);
+> -	err = wait_for_atomic(i915_in_reset(pdev), 50);
+> +	err = _wait_for_atomic(i915_in_reset(pdev), 50, 0);
+
+wait_for_atomic() waits in milliseconds, while _wait_for_atomic()
+waits in microseconds, I think you need to update the timer.
+
+Do you think we might need a wait_for_atomic_preempt() macro?
+
+	err = wait_for_atomic_preempt(i915_in_reset(pdev), 50);
+
+Thanks,
+Andi
