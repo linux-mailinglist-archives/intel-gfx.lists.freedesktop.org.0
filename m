@@ -2,48 +2,136 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 911327AF3F2
-	for <lists+intel-gfx@lfdr.de>; Tue, 26 Sep 2023 21:14:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 439977AF415
+	for <lists+intel-gfx@lfdr.de>; Tue, 26 Sep 2023 21:24:10 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8084710E42C;
-	Tue, 26 Sep 2023 19:13:56 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7829510E158;
+	Tue, 26 Sep 2023 19:24:08 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.93])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 44E3A10E151
- for <intel-gfx@lists.freedesktop.org>; Tue, 26 Sep 2023 19:13:53 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1B4E410E158
+ for <intel-gfx@lists.freedesktop.org>; Tue, 26 Sep 2023 19:24:06 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1695755633; x=1727291633;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=0xZLYVldXq1Q88aIaSlotaq48gXBjJDhRu5VL9EbL4o=;
- b=WmCaCxzjNsXl3x1vVFyBWD9OllqJRbV8Zp0y5rwg5fDK8WTP/DinIYuq
- bcN366OmyCsCL90lYKd70NQRcyKxa0YnwONKME+l36BOQm6NuTWIGMKMm
- AmH9OKHJJNcXNKqjIrPm2HkKO4vMJ5vMdV4u5OEemV+Kh9mFvllkcLBmi
- CQ8lFnj+NtAklOe/Ma6cccOhZi0Vso4c2jhihunvxQr6Y1/L7bDXAzFfn
- bB6jRr9uFUYww1qkP0zpn1VLiVaurDzRIrXq4HuTiiaJ5KOx2kHoyqdWZ
- cx8mKm7abqJ4WnUP+cqNjqYiGvKAFcutZfNDK7qAQJ3dBIb7fiSwXw4aa A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10845"; a="378928888"
-X-IronPort-AV: E=Sophos;i="6.03,178,1694761200"; d="scan'208";a="378928888"
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+ t=1695756246; x=1727292246;
+ h=date:from:to:cc:subject:message-id:references:
+ in-reply-to:mime-version;
+ bh=6YUqTlxnlwGPXOOeX2oWtvodmjvK7Gv5gemVD8QsM4w=;
+ b=P8h8W53LA5NoAYmgaBT6ZnYPBgVn8ODXLjoFLo2Bwkxuom2LlH76m56X
+ 8xQ176wjiv1x5Ih4VyRnJqWbXInzqHS/5DMEEttbpZWCaHKssER3z5RLa
+ oH+d9wfZ84c0n1avoxXndUrAeOyCAc6qgIsO/cHeJsTG6JcBMCeDbyUzi
+ swoXLPH6S06SZ4HjDGpUWw7CtipYfirL3TSb3AoxkW/FHV4ZkertBnVTc
+ 1TPd/cpBYOPr7yNIWRWd0fj2qxTyaNNrgJ0r2Sh7PN3UZvNFIelW2YqqF
+ 6Igmki0OPrBkQzJKT+elOUExBEFPrib5/RMTKLes/B66m2K3l0BdKE4Ag g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10845"; a="378931019"
+X-IronPort-AV: E=Sophos;i="6.03,178,1694761200"; d="scan'208";a="378931019"
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
  by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Sep 2023 12:13:52 -0700
+ 26 Sep 2023 12:24:05 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10845"; a="864506800"
-X-IronPort-AV: E=Sophos;i="6.03,178,1694761200"; d="scan'208";a="864506800"
-Received: from cfl-desktop.iind.intel.com ([10.190.239.20])
- by fmsmga002.fm.intel.com with ESMTP; 26 Sep 2023 12:13:51 -0700
-From: Uma Shankar <uma.shankar@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Wed, 27 Sep 2023 00:50:54 +0530
-Message-ID: <20230926192054.1359127-1-uma.shankar@intel.com>
-X-Mailer: git-send-email 2.42.0
+X-IronPort-AV: E=McAfee;i="6600,9927,10845"; a="892320054"
+X-IronPort-AV: E=Sophos;i="6.03,178,1694761200"; d="scan'208";a="892320054"
+Received: from orsmsx602.amr.corp.intel.com ([10.22.229.15])
+ by fmsmga001.fm.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
+ 26 Sep 2023 12:23:00 -0700
+Received: from orsmsx611.amr.corp.intel.com (10.22.229.24) by
+ ORSMSX602.amr.corp.intel.com (10.22.229.15) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.32; Tue, 26 Sep 2023 12:24:05 -0700
+Received: from ORSEDG602.ED.cps.intel.com (10.7.248.7) by
+ orsmsx611.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.32 via Frontend Transport; Tue, 26 Sep 2023 12:24:04 -0700
+Received: from NAM12-DM6-obe.outbound.protection.outlook.com (104.47.59.170)
+ by edgegateway.intel.com (134.134.137.103) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.1.2507.32; Tue, 26 Sep 2023 12:24:04 -0700
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=oeuUd4aJBuwDOhFgeWnrh+laaoTAzTn/elECw9WsLhn4E71dLtaa6c2VdJCQQq83v7k8SKDIZ230c+RLy7JQd+ZKAQBRMvkNV+LlYlLVpGc+4+xctymWK1Z/4D7jd94ldd+OknGMfaz+w4PzPY1pkDTjY3PyPuogXoeyDVyuZOVFz4wF2m5um/2HiwoGMekKCLVvXUPlCCIBZIDUZcPCa5nVA9iuhTGpis16UmwXcXyeEEhk4Hphgjf6JUoMe6NSn47htt1LyoZh7MlBhZrQGRjgEMYhKs4rjgNCuogy6RmkbTvwTLzUqgqo2X2GopI96CYPlVCJkVuLadXomgibiA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=loxIHa2mYZv8RuZd3DnXQNgxkW3GefMHK9wM98IUqT4=;
+ b=eMWBvYzKDaXY42c/AjKsgY1iyzG18fPqJ6qVRZIUJJQhe4qI/LyKznY95SqhJ7Mq6mkow1u+boZLBRSZ5IsOZDG8UDa+AG8BFyEdTUnI20KZ/OaRe8IxUniY102QGkl8tJAds9vkVpJgYr0rlqKvgnTRzgvjkCzUuVwuT2NyZjNK57IAxbZa6jYqcF3H+L8/uDPwpXzHeRQ/FSe2DB9TbDIe6rurL9EA7JwGUzXdvgv5hboqaOZdlxRBJ1N5LKw9/taBVcAIk/FMeTWyYNpVQxVqOF31kjXtO5A/xpDPKOxjgO3RcOfx+76ngwf9WLCBWCX+WS+jK9H2R9Z9r6O8jg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+Received: from DS7PR11MB7859.namprd11.prod.outlook.com (2603:10b6:8:da::22) by
+ CH0PR11MB5690.namprd11.prod.outlook.com (2603:10b6:610:ed::9) with
+ Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.6813.28; Tue, 26 Sep 2023 19:24:01 +0000
+Received: from DS7PR11MB7859.namprd11.prod.outlook.com
+ ([fe80::48d9:4c34:35b:f66]) by DS7PR11MB7859.namprd11.prod.outlook.com
+ ([fe80::48d9:4c34:35b:f66%4]) with mapi id 15.20.6768.029; Tue, 26 Sep 2023
+ 19:24:01 +0000
+Date: Tue, 26 Sep 2023 12:23:58 -0700
+From: Matt Roper <matthew.d.roper@intel.com>
+To: Rodrigo Vivi <rodrigo.vivi@intel.com>
+Message-ID: <20230926192358.GV233750@mdroper-desk1.amr.corp.intel.com>
+References: <20230926172829.GS233750@mdroper-desk1.amr.corp.intel.com>
+ <20230926175554.25968-1-rodrigo.vivi@intel.com>
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+In-Reply-To: <20230926175554.25968-1-rodrigo.vivi@intel.com>
+X-ClientProxiedBy: BYAPR05CA0004.namprd05.prod.outlook.com
+ (2603:10b6:a03:c0::17) To DS7PR11MB7859.namprd11.prod.outlook.com
+ (2603:10b6:8:da::22)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [v3] drm/i915/display: Created exclusive version of vga
- decode setup
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: DS7PR11MB7859:EE_|CH0PR11MB5690:EE_
+X-MS-Office365-Filtering-Correlation-Id: bec01814-dc02-4bd2-0437-08dbbec62375
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: qV2Dgb48BM0az8IZhmv7B9advm92+1cx1i+XgI40Yw478jYLgRVyWvrcRpl7qEQZ6dUF/A3j1snwNcCv+sDbLBtu3xm5fDz5h753r/UwWffyvXTeNHcSzkD6K0nV9RFXQ+8yjSK3yhs3Mfx7Bxj2msPvP/zIR5QxhiCrMz47cmgNpX3K77KFQ8iE240d9wWgL0n8F8M3R9GkPGCP+PdrJXc1z/aTa5fxjGOg9Fx6BOsLSK5dODMVjp5DdxwBw6gsOady7sHzV8uzYB8Z0e2K7SEN0AK2Dt+dm4hFak26ZbCih+jM68HTATxnXHIHHoc9lA0RVEdGOwBpnN48xKY9cC8KnjhYOhujzgtAZ1/N4UMiaLZjCJOkHsRI0IPvwJ4dyA/N4f4Hqc1wQ6jCap68+RU2k/0ayiN1WGXvhD/OHpE+k7Ir7LbKHhLHz16f2Io8GhZUIedcSQRZTTh1wzXeWI/3U9p/hEny94MI3HyKEjv+8z0vLzgyzsXr5NPMIn89QwQPJkcO1RtnWEundfKnyHzl+fN3FtDJk7dEZhjMRhuloVh1EucXGDpW3VnVyuNs
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:DS7PR11MB7859.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230031)(39860400002)(396003)(366004)(136003)(346002)(376002)(230922051799003)(451199024)(186009)(1800799009)(5660300002)(316002)(54906003)(83380400001)(6636002)(41300700001)(8676002)(8936002)(6862004)(4326008)(66476007)(66946007)(33656002)(1076003)(6486002)(6512007)(6666004)(6506007)(86362001)(66556008)(107886003)(82960400001)(26005)(38100700002)(2906002)(478600001);
+ DIR:OUT; SFP:1102; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?+mBUBk8HOtZ4ZjEM9RWwy9Xk4IdFIPKeGlnRBO0lgf5Kvac3tslWneJUZB/9?=
+ =?us-ascii?Q?LH+NOYu3qcGzvheIFnTK5QW29ilLZPsvId6KvzV0jiM223JQ8ghhKIUUdWFS?=
+ =?us-ascii?Q?eiGDz5BzdEdcZzTbireFC9d6RF4XRmCaftyMRiwh5QzK97wEGhkudATuIrTK?=
+ =?us-ascii?Q?8LeyLuYJoOuF5A2Bgxx3UcECm1M+SIBHMvIhhVwIFj+qmOScNkUjdP9EvXX3?=
+ =?us-ascii?Q?q0NhadOKmFKUb1hMxlKHTkweenJ4zqYTWzP1eqRb3esu1Kbgl+RkEqzoZEfZ?=
+ =?us-ascii?Q?BWmONCr/7o9pM757KC8wOVL+IO8qLOUMrLiZZc99KjkCPdS9afY6n0L4FjyS?=
+ =?us-ascii?Q?xxfxj9Blc2z+Nt/As89/R7X4F3uok086OTQh5awdrQtXeK6h/v5/2ByOrkXR?=
+ =?us-ascii?Q?f3MrwUOkbtQtUowBR8hkZQDdl+3UiX14RjFL21rxGQGfTiiw0zlKHycsDiXP?=
+ =?us-ascii?Q?HW46Qz0J15C1xsugSGBY8K756yekCguHZmoOqwXutNL34AC/tF59Slj/jxne?=
+ =?us-ascii?Q?jEJvF9s6YI3Ko4shZYzrlqYmn8YMYlkIEAaVjQQmkq0TwNbk3p/u9YtUIjHb?=
+ =?us-ascii?Q?WhMtk/LnV9BYB/D5BtqL198sjGeF+qaOhewVpZ/CnMkHkEtgOV4G+T8PUG+U?=
+ =?us-ascii?Q?PW+32aRn6pKFWk53ochOEXC8sXrlx+6XtON3hF18mBVU4G+wNfgBCwckX9HX?=
+ =?us-ascii?Q?8pkR+g5iIq7G/V2ZJsLBq/cuNLqDNFLuQ90TAvcgSIBgGW6KkjjkcIionHiS?=
+ =?us-ascii?Q?D7y4U7ECrxOCgnd28FgHHz/A+sR140lI29Dxx7XccymVJCs7S+BWd/r5IdYj?=
+ =?us-ascii?Q?WKQJRqmll9tivEX2ZaLFkRph2cXIcWUuUnTBMppigirfiT9Wy2qtVVy8hTrR?=
+ =?us-ascii?Q?/zV7FEm9eKQ++lh09OS7G9RdZRH9W/l675RzDUVuyXN3qY3XAdlIpqudBnS9?=
+ =?us-ascii?Q?xkspP66lphNsLN+nDjgQYAdM3RDqgaqVBM4iOPAYHdAPiPFivLpBVi9dKXTi?=
+ =?us-ascii?Q?0f/KnYRlg20N1B7aTv6tXaT4fF9I5EqDu4jJvd17Xm8R40oaTd6NX9MSteCM?=
+ =?us-ascii?Q?72wAzqLvj0mEWJAMDnD6/Dud/uzjIR65eeMT/lgIeIUblySdZxcNixvyaBRC?=
+ =?us-ascii?Q?QbBOILfhNm/G74G4s0a1hmyq2tAN7xnMqHwhqBw7WMZJlA6WfZF80/8wHpCI?=
+ =?us-ascii?Q?aVzVB3fHGhfEmiaY89q3smuyC6k3edawPRl7VhvWemPJwdRUeh/vUJSqrM6H?=
+ =?us-ascii?Q?8A8AtmyFIpCCrisx43FPuXYm6VwoDSLK/sWc3rcVc8jet7SIeKmJIYbkjbpy?=
+ =?us-ascii?Q?/x2muVR9WbYxWYGys0D6U8+RYLtnsc4N+Q9uYToPYkknPxlHXCIJvSfuQhjE?=
+ =?us-ascii?Q?fJ4GSy6FHJj5agyGWwm89oRYI3bGrxciXZFJiXwAzy5V0+GPbtSgy0zo6I1N?=
+ =?us-ascii?Q?TkumIvW8wYWuoumzan05jBQJw8wFVobPheJ/Xay/PJOJsSpqWzaphNt/PjGD?=
+ =?us-ascii?Q?gslrQw1pP+c6ZHyACfTsZWyxIF1YFkmkwYQdpDv/YiVk9YmIVByYA/toJVgm?=
+ =?us-ascii?Q?ZOdSsRnKqqh8ntCDgu1KfO07nhamv6vbSwgWEmCpzKUOr+3agVNybfrEiS5G?=
+ =?us-ascii?Q?5w=3D=3D?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: bec01814-dc02-4bd2-0437-08dbbec62375
+X-MS-Exchange-CrossTenant-AuthSource: DS7PR11MB7859.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 26 Sep 2023 19:24:01.2202 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: MyRm6ACN1giZtm/Qekpx0/cUs/SMNo0gJGNEFqnPovPILsLFLPOBBTS7LCyZzhWgNP2eWbdWNi/ZNaEuL7Zl0W0DQwROCQVHC1Z06Q5iKkg=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH0PR11MB5690
+X-OriginatorOrg: intel.com
+Subject: Re: [Intel-gfx] [PATCH] drm/i915: Add missing GSCCS documentation
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -56,119 +144,52 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: jani.nikula@intel.com
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Some of the VGA functionality is not needed by the proposed
-Intel Xe driver, while this will be utilized by i915.
-Created a version of the function to be used exclusively by i915.
-Xe will implement it's own respective version.
+On Tue, Sep 26, 2023 at 01:55:54PM -0400, Rodrigo Vivi wrote:
+> Introduce the basic documentation about GSC CS.
+> 
+> This "GPU Basics" section is focused on explaining the hardware
+> rather than the driver/uapi, so let's make sure GSC is also
+> properly documented here.
+> 
+> v2: Fixes from Matt: typos and acronym.
+> 
+> Fixes: 5fd974d164b4 ("drm/i915/mtl: add initial definitions for GSC CS")
+> Suggested-by: Matt Roper <matthew.d.roper@intel.com>
+> Cc: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
+> Cc: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+> Signed-off-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
 
-v2: Addressed Jani Nikula's review comments.
+Reviewed-by: Matt Roper <matthew.d.roper@intel.com>
 
-v3: Dropped a duplicate function (Jani)
+> ---
+>  Documentation/gpu/i915.rst | 4 ++++
+>  1 file changed, 4 insertions(+)
+> 
+> diff --git a/Documentation/gpu/i915.rst b/Documentation/gpu/i915.rst
+> index 13de8bcaaa29..0ca1550fd9dc 100644
+> --- a/Documentation/gpu/i915.rst
+> +++ b/Documentation/gpu/i915.rst
+> @@ -279,6 +279,10 @@ An Intel GPU has multiple engines. There are several engine types:
+>    Also sometimes called 'VEBOX' in hardware documentation.
+>  - Compute Command Streamer (CCS). An engine that has access to the media and
+>    GPGPU pipelines, but not the 3D pipeline.
+> +- Graphics Security Controller (GSCCS). A dedicated engine for internal
+> +  communication with GSC controller on security related tasks like
+> +  High-bandwidth Digital Content Protection (HDCP), Protected Xe Path (PXP),
+> +  and HuC firmware authentication.
+>  
+>  The Intel GPU family is a family of integrated GPU's using Unified
+>  Memory Access. For having the GPU "do work", user space will feed the
+> -- 
+> 2.41.0
+> 
 
-Signed-off-by: Uma Shankar <uma.shankar@intel.com>
----
- drivers/gpu/drm/i915/display/intel_vga.c | 18 +-----------------
- drivers/gpu/drm/i915/soc/intel_gmch.c    | 14 ++++++++++++++
- drivers/gpu/drm/i915/soc/intel_gmch.h    |  2 ++
- 3 files changed, 17 insertions(+), 17 deletions(-)
-
-diff --git a/drivers/gpu/drm/i915/display/intel_vga.c b/drivers/gpu/drm/i915/display/intel_vga.c
-index 286a0bdd28c6..4b98833bfa8c 100644
---- a/drivers/gpu/drm/i915/display/intel_vga.c
-+++ b/drivers/gpu/drm/i915/display/intel_vga.c
-@@ -3,11 +3,9 @@
-  * Copyright © 2019 Intel Corporation
-  */
- 
--#include <linux/pci.h>
- #include <linux/vgaarb.h>
- 
- #include <video/vga.h>
--
- #include "soc/intel_gmch.h"
- 
- #include "i915_drv.h"
-@@ -99,20 +97,6 @@ void intel_vga_reset_io_mem(struct drm_i915_private *i915)
- 	vga_put(pdev, VGA_RSRC_LEGACY_IO);
- }
- 
--static unsigned int
--intel_vga_set_decode(struct pci_dev *pdev, bool enable_decode)
--{
--	struct drm_i915_private *i915 = pdev_to_i915(pdev);
--
--	intel_gmch_vga_set_state(i915, enable_decode);
--
--	if (enable_decode)
--		return VGA_RSRC_LEGACY_IO | VGA_RSRC_LEGACY_MEM |
--		       VGA_RSRC_NORMAL_IO | VGA_RSRC_NORMAL_MEM;
--	else
--		return VGA_RSRC_NORMAL_IO | VGA_RSRC_NORMAL_MEM;
--}
--
- int intel_vga_register(struct drm_i915_private *i915)
- {
- 
-@@ -127,7 +111,7 @@ int intel_vga_register(struct drm_i915_private *i915)
- 	 * then we do not take part in VGA arbitration and the
- 	 * vga_client_register() fails with -ENODEV.
- 	 */
--	ret = vga_client_register(pdev, intel_vga_set_decode);
-+	ret = vga_client_register(pdev, intel_gmch_vga_set_decode);
- 	if (ret && ret != -ENODEV)
- 		return ret;
- 
-diff --git a/drivers/gpu/drm/i915/soc/intel_gmch.c b/drivers/gpu/drm/i915/soc/intel_gmch.c
-index 49c7fb16e934..f32e9f78770a 100644
---- a/drivers/gpu/drm/i915/soc/intel_gmch.c
-+++ b/drivers/gpu/drm/i915/soc/intel_gmch.c
-@@ -5,6 +5,7 @@
- 
- #include <linux/pci.h>
- #include <linux/pnp.h>
-+#include <linux/vgaarb.h>
- 
- #include <drm/drm_managed.h>
- #include <drm/i915_drm.h>
-@@ -167,3 +168,16 @@ int intel_gmch_vga_set_state(struct drm_i915_private *i915, bool enable_decode)
- 
- 	return 0;
- }
-+
-+unsigned int intel_gmch_vga_set_decode(struct pci_dev *pdev, bool enable_decode)
-+{
-+	struct drm_i915_private *i915 = pdev_to_i915(pdev);
-+
-+	intel_gmch_vga_set_state(i915, enable_decode);
-+
-+	if (enable_decode)
-+		return VGA_RSRC_LEGACY_IO | VGA_RSRC_LEGACY_MEM |
-+		       VGA_RSRC_NORMAL_IO | VGA_RSRC_NORMAL_MEM;
-+	else
-+		return VGA_RSRC_NORMAL_IO | VGA_RSRC_NORMAL_MEM;
-+}
-diff --git a/drivers/gpu/drm/i915/soc/intel_gmch.h b/drivers/gpu/drm/i915/soc/intel_gmch.h
-index d0133eedc720..23be2d113afd 100644
---- a/drivers/gpu/drm/i915/soc/intel_gmch.h
-+++ b/drivers/gpu/drm/i915/soc/intel_gmch.h
-@@ -8,11 +8,13 @@
- 
- #include <linux/types.h>
- 
-+struct pci_dev;
- struct drm_i915_private;
- 
- int intel_gmch_bridge_setup(struct drm_i915_private *i915);
- void intel_gmch_bar_setup(struct drm_i915_private *i915);
- void intel_gmch_bar_teardown(struct drm_i915_private *i915);
- int intel_gmch_vga_set_state(struct drm_i915_private *i915, bool enable_decode);
-+unsigned int intel_gmch_vga_set_decode(struct pci_dev *pdev, bool enable_decode);
- 
- #endif /* __INTEL_GMCH_H__ */
 -- 
-2.42.0
-
+Matt Roper
+Graphics Software Engineer
+Linux GPU Platform Enablement
+Intel Corporation
