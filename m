@@ -2,32 +2,32 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1958B7AF022
-	for <lists+intel-gfx@lfdr.de>; Tue, 26 Sep 2023 18:00:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2DFF37AF025
+	for <lists+intel-gfx@lfdr.de>; Tue, 26 Sep 2023 18:00:27 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8931B10E3FB;
-	Tue, 26 Sep 2023 16:00:18 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 70D4010E3F9;
+	Tue, 26 Sep 2023 16:00:25 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
  [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id D7AEF10E3F9;
- Tue, 26 Sep 2023 16:00:15 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTP id 6613310E3F9;
+ Tue, 26 Sep 2023 16:00:18 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id D2D82A00E8;
- Tue, 26 Sep 2023 16:00:15 +0000 (UTC)
+ by emeril.freedesktop.org (Postfix) with ESMTP id 64BC5A00E8;
+ Tue, 26 Sep 2023 16:00:18 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Nirmoy Das" <nirmoy.das@intel.com>
-Date: Tue, 26 Sep 2023 16:00:15 -0000
-Message-ID: <169574401586.20981.5507129141475240960@emeril.freedesktop.org>
+Date: Tue, 26 Sep 2023 16:00:18 -0000
+Message-ID: <169574401840.20980.13105987707931700288@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
 References: <20230926083742.14740-1-nirmoy.das@intel.com>
 In-Reply-To: <20230926083742.14740-1-nirmoy.das@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
- =?utf-8?q?for_Update_GGTT_with_MI=5FUPDATE=5FGTT_on_MTL_=28rev10=29?=
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLlNQQVJTRTogd2FybmluZyBmb3Ig?=
+ =?utf-8?q?Update_GGTT_with_MI=5FUPDATE=5FGTT_on_MTL_=28rev10=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -53,55 +53,8 @@ State : warning
 
 == Summary ==
 
-Error: dim checkpatch failed
-c8b2a902518b drm/i915: Lift runtime-pm acquire callbacks out of intel_wakeref.mutex
--:66: WARNING:AVOID_BUG: Do not crash the kernel unless it is absolutely unavoidable--use WARN_ON_ONCE() plus recovery code (if feasible) instead of BUG() or variants
-#66: FILE: drivers/gpu/drm/i915/intel_wakeref.c:28:
-+		INTEL_WAKEREF_BUG_ON(wf->wakeref);
-
--:81: WARNING:AVOID_BUG: Do not crash the kernel unless it is absolutely unavoidable--use WARN_ON_ONCE() plus recovery code (if feasible) instead of BUG() or variants
-#81: FILE: drivers/gpu/drm/i915/intel_wakeref.c:43:
-+	INTEL_WAKEREF_BUG_ON(atomic_read(&wf->count) <= 0);
-
--:104: WARNING:AVOID_BUG: Do not crash the kernel unless it is absolutely unavoidable--use WARN_ON_ONCE() plus recovery code (if feasible) instead of BUG() or variants
-#104: FILE: drivers/gpu/drm/i915/intel_wakeref.c:63:
-+		INTEL_WAKEREF_BUG_ON(!wf->wakeref);
-
-total: 0 errors, 3 warnings, 0 checks, 89 lines checked
-c297fbc90fb9 drm/i915: Create a kernel context for GGTT updates
--:111: CHECK:LINE_SPACING: Please don't use multiple blank lines
-#111: FILE: drivers/gpu/drm/i915/gt/intel_engine_cs.c:1573:
-+
-+
-
-total: 0 errors, 0 warnings, 1 checks, 149 lines checked
-8823bb2bb2e2 drm/i915: Implement for_each_sgt_daddr_next
--:41: CHECK:MACRO_ARG_REUSE: Macro argument reuse '__iter' - possible side-effects?
-#41: FILE: drivers/gpu/drm/i915/i915_scatterlist.h:100:
-+#define __for_each_daddr_next(__dp, __iter, __step)                  \
-+	for (; ((__dp) = (__iter).dma + (__iter).curr), (__iter).sgp;   \
-+	     (((__iter).curr += (__step)) >= (__iter).max) ?            \
-+	     (__iter) = __sgt_iter(__sg_next((__iter).sgp), true), 0 : 0)
-
-total: 0 errors, 0 warnings, 1 checks, 25 lines checked
-f198bab7dccb drm/i915: Parameterize binder context creation
-47b75bf29089 drm/i915: Implement GGTT update method with MI_UPDATE_GTT
--:70: WARNING:AVOID_BUG: Do not crash the kernel unless it is absolutely unavoidable--use WARN_ON_ONCE() plus recovery code (if feasible) instead of BUG() or variants
-#70: FILE: drivers/gpu/drm/i915/gt/intel_ggtt.c:276:
-+	GEM_BUG_ON(!ce);
-
--:240: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
-#240: FILE: drivers/gpu/drm/i915/gt/intel_ggtt.c:491:
-+	if (!gen8_ggtt_bind_ptes(ggtt, start, vma_res->bi.pages,
-+	      vma_res->node_size / I915_GTT_PAGE_SIZE, pte_encode))
-
--:288: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
-#288: FILE: drivers/gpu/drm/i915/gt/intel_ggtt.c:553:
-+	if (should_update_ggtt_with_bind(ggtt) && gen8_ggtt_bind_ptes(ggtt, first_entry,
-+	     NULL, num_entries, scratch_pte))
-
-total: 0 errors, 1 warnings, 2 checks, 283 lines checked
-1e67819e4d80 drm/i915: Toggle binder context ready status
-68e661a929ed drm/i915: Enable GGTT updates with binder in MTL
+Error: dim sparse failed
+Sparse version: v0.6.2
+Fast mode used, each commit won't be checked separately.
 
 
