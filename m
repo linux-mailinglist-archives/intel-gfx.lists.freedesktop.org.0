@@ -1,44 +1,44 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id CEC737AE832
-	for <lists+intel-gfx@lfdr.de>; Tue, 26 Sep 2023 10:38:12 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6859C7AE831
+	for <lists+intel-gfx@lfdr.de>; Tue, 26 Sep 2023 10:38:06 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2B49810E37C;
-	Tue, 26 Sep 2023 08:38:11 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 542B810E384;
+	Tue, 26 Sep 2023 08:38:04 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.115])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 035C610E37B
- for <intel-gfx@lists.freedesktop.org>; Tue, 26 Sep 2023 08:37:59 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6A06A10E37B
+ for <intel-gfx@lists.freedesktop.org>; Tue, 26 Sep 2023 08:38:02 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1695717479; x=1727253479;
+ t=1695717482; x=1727253482;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=w3+iFPMtTnj+JslV91VR/Zfon1S9JtUOk5KfXGcZuUQ=;
- b=ceUFMFXNAw8U4Apar+jGYyZgzoWpJ4LAsxAKq33WA6kkCrrmbb49IGob
- sVVrEE1THx18LwYZTLqVDiySJhP5/ORqGSDU+JBy01MCf8D5IT01Bui02
- gzW3h/yN8IjxollNxhNMHPrcmkho5fJo11LSUOw/NstKa+PF+d9oVPobn
- a7kNq01TZwAKZ7oKpEJNWFnDfm+lH/FJIqWeyhDGKHHQHFcUiQe/lrDpb
- 7L+GIsZAemphey27v5D79L4ioQ3uNy8cSUSeIfcSUheqWTGNyepcycJnM
- OcJ8cPuXXng1Z/Ww5ezslwIJSPejfURwDRKbCo6h2XsgZowOJq8yielaP w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10843"; a="381419220"
-X-IronPort-AV: E=Sophos;i="6.03,177,1694761200"; d="scan'208";a="381419220"
+ bh=f7RTHiHWdv+3BKPhcI5v+XT852ZiSlIBVslSx6GIj1E=;
+ b=lE3Ta8U67RoU4q2+sY2+z1vT/TdqzsNSbRr7jMoYsxLQAx1OohYLzYLY
+ Jt/bJHnJulAtC5jZB63fk02XMhIDoNPCRzPY5davr1Y+2HxzhP0WkzQKB
+ 24fpEHv8g3OTNxc4ldy+9ppJZ/MqNyXAyNQwKbndp87aL07GrehS8D/J3
+ eHZ3CkTGpg5wHN33l1hq/cNm33XnC8B+S9tJGRNFvd4JNe3YSSsjL5t5L
+ lgotSPyJgelnXQp2ZYS4JHYZO7CTwBpGpMXuqPEMEhRCwWlzk5VeqWKYu
+ ZzPCYTrvMCcgcDk6b2L8g8W3BntFOzpN6q7+sFuoTG+OwtyAzXh+4erYB A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10843"; a="381419225"
+X-IronPort-AV: E=Sophos;i="6.03,177,1694761200"; d="scan'208";a="381419225"
 Received: from fmsmga005.fm.intel.com ([10.253.24.32])
  by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Sep 2023 01:37:59 -0700
+ 26 Sep 2023 01:38:02 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10843"; a="1079623518"
-X-IronPort-AV: E=Sophos;i="6.03,177,1694761200"; d="scan'208";a="1079623518"
+X-IronPort-AV: E=McAfee;i="6600,9927,10843"; a="1079623529"
+X-IronPort-AV: E=Sophos;i="6.03,177,1694761200"; d="scan'208";a="1079623529"
 Received: from nirmoyda-desk.igk.intel.com ([10.102.138.190])
  by fmsmga005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Sep 2023 01:37:57 -0700
+ 26 Sep 2023 01:37:59 -0700
 From: Nirmoy Das <nirmoy.das@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Tue, 26 Sep 2023 10:37:38 +0200
-Message-ID: <20230926083742.14740-4-nirmoy.das@intel.com>
+Date: Tue, 26 Sep 2023 10:37:39 +0200
+Message-ID: <20230926083742.14740-5-nirmoy.das@intel.com>
 X-Mailer: git-send-email 2.41.0
 In-Reply-To: <20230926083742.14740-1-nirmoy.das@intel.com>
 References: <20230926083742.14740-1-nirmoy.das@intel.com>
@@ -47,7 +47,8 @@ Organization: Intel Deutschland GmbH, Registered Address: Am Campeon 10,
  85579 Neubiberg, Germany,
  Commercial Register: Amtsgericht Muenchen HRB 186928 
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH 3/7] drm/i915: Implement for_each_sgt_daddr_next
+Subject: [Intel-gfx] [PATCH 4/7] drm/i915: Parameterize binder context
+ creation
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -65,52 +66,59 @@ Cc: andi.shyti@intel.com, chris.p.wilson@linux.intel.com,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Implement a way to iterate over sgt with pre-initialized
-sgt_iter state.
+Add i915_ggtt_require_binder() to indicate that i915
+needs to create binder context which will be used
+by subsequent patch to enable i915_address_space vfuncs
+that will use GPU commands to update GGTT.
 
 Signed-off-by: Nirmoy Das <nirmoy.das@intel.com>
 Reviewed-by: Oak Zeng <oak.zeng@intel.com>
 Reviewed-by: Andi Shyti <andi.shyti@linux.intel.com>
 ---
- drivers/gpu/drm/i915/gt/intel_gtt.h     |  3 +++
- drivers/gpu/drm/i915/i915_scatterlist.h | 10 ++++++++++
- 2 files changed, 13 insertions(+)
+ drivers/gpu/drm/i915/gt/intel_engine_cs.c | 2 +-
+ drivers/gpu/drm/i915/gt/intel_gtt.c       | 4 ++++
+ drivers/gpu/drm/i915/gt/intel_gtt.h       | 2 ++
+ 3 files changed, 7 insertions(+), 1 deletion(-)
 
+diff --git a/drivers/gpu/drm/i915/gt/intel_engine_cs.c b/drivers/gpu/drm/i915/gt/intel_engine_cs.c
+index 64f51defc2cb..b1a1d07e2e21 100644
+--- a/drivers/gpu/drm/i915/gt/intel_engine_cs.c
++++ b/drivers/gpu/drm/i915/gt/intel_engine_cs.c
+@@ -1477,7 +1477,7 @@ static int engine_init_common(struct intel_engine_cs *engine)
+ 	 * engines as well but BCS should be less busy engine so pick that for
+ 	 * GGTT updates.
+ 	 */
+-	if (engine->id == BCS0) {
++	if (i915_ggtt_require_binder(engine->i915) && engine->id == BCS0) {
+ 		bce = create_ggtt_bind_context(engine);
+ 		if (IS_ERR(bce)) {
+ 			ret = PTR_ERR(bce);
+diff --git a/drivers/gpu/drm/i915/gt/intel_gtt.c b/drivers/gpu/drm/i915/gt/intel_gtt.c
+index 13944a14ea2d..4c89eb8d9af7 100644
+--- a/drivers/gpu/drm/i915/gt/intel_gtt.c
++++ b/drivers/gpu/drm/i915/gt/intel_gtt.c
+@@ -21,6 +21,10 @@
+ #include "intel_gt_regs.h"
+ #include "intel_gtt.h"
+ 
++bool i915_ggtt_require_binder(struct drm_i915_private *i915)
++{
++	return false;
++}
+ 
+ static bool intel_ggtt_update_needs_vtd_wa(struct drm_i915_private *i915)
+ {
 diff --git a/drivers/gpu/drm/i915/gt/intel_gtt.h b/drivers/gpu/drm/i915/gt/intel_gtt.h
-index 346ec8ec2edd..41e530d0a4e9 100644
+index 41e530d0a4e9..b471edac2699 100644
 --- a/drivers/gpu/drm/i915/gt/intel_gtt.h
 +++ b/drivers/gpu/drm/i915/gt/intel_gtt.h
-@@ -171,6 +171,9 @@ struct intel_gt;
- #define for_each_sgt_daddr(__dp, __iter, __sgt) \
- 	__for_each_sgt_daddr(__dp, __iter, __sgt, I915_GTT_PAGE_SIZE)
+@@ -691,4 +691,6 @@ static inline struct sgt_dma {
+ 	return (struct sgt_dma){ sg, addr, addr + sg_dma_len(sg) };
+ }
  
-+#define for_each_sgt_daddr_next(__dp, __iter) \
-+	__for_each_daddr_next(__dp, __iter, I915_GTT_PAGE_SIZE)
++bool i915_ggtt_require_binder(struct drm_i915_private *i915);
 +
- struct i915_page_table {
- 	struct drm_i915_gem_object *base;
- 	union {
-diff --git a/drivers/gpu/drm/i915/i915_scatterlist.h b/drivers/gpu/drm/i915/i915_scatterlist.h
-index 5a10c1a31183..6cf8a298849f 100644
---- a/drivers/gpu/drm/i915/i915_scatterlist.h
-+++ b/drivers/gpu/drm/i915/i915_scatterlist.h
-@@ -91,6 +91,16 @@ static inline struct scatterlist *__sg_next(struct scatterlist *sg)
- 	     ((__dp) = (__iter).dma + (__iter).curr), (__iter).sgp;	\
- 	     (((__iter).curr += (__step)) >= (__iter).max) ?		\
- 	     (__iter) = __sgt_iter(__sg_next((__iter).sgp), true), 0 : 0)
-+/**
-+ * __for_each_daddr_next - iterates over the device addresses with pre-initialized iterator.
-+ * @__dp:	Device address (output)
-+ * @__iter:	'struct sgt_iter' (iterator state, external)
-+ * @__step:	step size
-+ */
-+#define __for_each_daddr_next(__dp, __iter, __step)                  \
-+	for (; ((__dp) = (__iter).dma + (__iter).curr), (__iter).sgp;   \
-+	     (((__iter).curr += (__step)) >= (__iter).max) ?            \
-+	     (__iter) = __sgt_iter(__sg_next((__iter).sgp), true), 0 : 0)
- 
- /**
-  * for_each_sgt_page - iterate over the pages of the given sg_table
+ #endif
 -- 
 2.41.0
 
