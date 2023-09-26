@@ -1,53 +1,57 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id C2E307AEC5D
-	for <lists+intel-gfx@lfdr.de>; Tue, 26 Sep 2023 14:19:23 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id E65AC7AECFE
+	for <lists+intel-gfx@lfdr.de>; Tue, 26 Sep 2023 14:39:08 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4CF6F10E3C3;
-	Tue, 26 Sep 2023 12:19:22 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D43FB10E3CD;
+	Tue, 26 Sep 2023 12:39:04 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 42C4F10E3C3;
- Tue, 26 Sep 2023 12:19:21 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1695730761; x=1727266761;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=csnqNR1nuw1dHxkrI8FYLIcYFFEpj72l8KuOcQ61jvI=;
- b=k+dBSxEKbX0FoK/cA7ukdYtfTAPzHlSZQuZDhm7GbWjx9MHoVyGqGYVz
- BvSYgsLn5mbirdNoDYYs8xFiMUKr9JZZvvB8tmux/o+GdcrDmn/jm7gQf
- nbxg7k6k8gCXhVFXG+3NK+dMx3foulTn4y9rMctlxXmjFh4yeTpZgJbod
- 3G3o/xN8PKoZy0A8Rqh5LqUK2YHLR8MkYj1H8FzxoqHqXPLBvv72bTgod
- zDV3uVDoZoEOmIVtK14olsq4wKU+DwouSyulczUFhNr1ERiZ+flMAiqrF
- h40yjiws8g8OEsIzv0EI9xVHT2rATVHiKtjWk2xZSMfJEigbmwPQpwG0G w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10843"; a="412467666"
-X-IronPort-AV: E=Sophos;i="6.03,177,1694761200"; d="scan'208";a="412467666"
-Received: from fmsmga005.fm.intel.com ([10.253.24.32])
- by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Sep 2023 05:19:20 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10843"; a="1079681341"
-X-IronPort-AV: E=Sophos;i="6.03,177,1694761200"; d="scan'208";a="1079681341"
-Received: from wagnert-mobl2.ger.corp.intel.com (HELO localhost)
- ([10.252.52.202])
- by fmsmga005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Sep 2023 05:19:19 -0700
-From: Jani Nikula <jani.nikula@intel.com>
-To: intel-gvt-dev@lists.freedesktop.org
-Date: Tue, 26 Sep 2023 15:19:04 +0300
-Message-Id: <20230926121904.499888-4-jani.nikula@intel.com>
-X-Mailer: git-send-email 2.39.2
-In-Reply-To: <20230926121904.499888-1-jani.nikula@intel.com>
-References: <20230926121904.499888-1-jani.nikula@intel.com>
+Received: from mail.loongson.cn (mail.loongson.cn [114.242.206.163])
+ by gabe.freedesktop.org (Postfix) with ESMTP id B721B10E3CB;
+ Tue, 26 Sep 2023 12:38:59 +0000 (UTC)
+Received: from loongson.cn (unknown [10.20.42.43])
+ by gateway (Coremail) with SMTP id _____8BxNujf0BJlOLQsAA--.31868S3;
+ Tue, 26 Sep 2023 20:38:55 +0800 (CST)
+Received: from [10.20.42.43] (unknown [10.20.42.43])
+ by localhost.localdomain (Coremail) with SMTP id
+ AQAAf8AxXNzP0BJlI8ISAA--.38301S3; 
+ Tue, 26 Sep 2023 20:38:52 +0800 (CST)
+Message-ID: <c2f65b2d-67d5-3117-8e04-48a7b5c95855@loongson.cn>
+Date: Tue, 26 Sep 2023 20:38:39 +0800
 MIME-Version: 1.0
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH 4/4] drm/i915/gvt: move structs
- intel_gvt_irq_info and intel_gvt_irq_map to interrupt.c
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.15.1
+To: Mitul Golani <mitulkumar.ajitkumar.golani@intel.com>,
+ dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org
+References: <20230926082331.739705-1-mitulkumar.ajitkumar.golani@intel.com>
+Content-Language: en-US
+From: Sui Jingfeng <suijingfeng@loongson.cn>
+In-Reply-To: <20230926082331.739705-1-mitulkumar.ajitkumar.golani@intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-CM-TRANSID: AQAAf8AxXNzP0BJlI8ISAA--.38301S3
+X-CM-SenderInfo: xvxlyxpqjiv03j6o00pqjv00gofq/
+X-Coremail-Antispam: 1Uk129KBj93XoWxXr1kWF13XF1DGw1kKr18tFc_yoW5XrWkpa
+ y3Ga4Yqr4rXF42qa47AF1j9FW3Xws3Xa4rGrnxK345Z3WUA3Z8Kw1vkFy5GFWDuF13Z3Z7
+ AasxWrW7KFsYyrXCm3ZEXasCq-sJn29KB7ZKAUJUUUUU529EdanIXcx71UUUUU7KY7ZEXa
+ sCq-sGcSsGvfJ3Ic02F40EFcxC0VAKzVAqx4xG6I80ebIjqfuFe4nvWSU5nxnvy29KBjDU
+ 0xBIdaVrnRJUUUv2b4IE77IF4wAFF20E14v26r1j6r4UM7CY07I20VC2zVCF04k26cxKx2
+ IYs7xG6rWj6s0DM7CIcVAFz4kK6r106r15M28lY4IEw2IIxxk0rwA2F7IY1VAKz4vEj48v
+ e4kI8wA2z4x0Y4vE2Ix0cI8IcVAFwI0_Jr0_JF4l84ACjcxK6xIIjxv20xvEc7CjxVAFwI
+ 0_Jr0_Gr1l84ACjcxK6I8E87Iv67AKxVW8Jr0_Cr1UM28EF7xvwVC2z280aVCY1x0267AK
+ xVW8Jr0_Cr1UM2AIxVAIcxkEcVAq07x20xvEncxIr21l57IF6xkI12xvs2x26I8E6xACxx
+ 1l5I8CrVACY4xI64kE6c02F40Ex7xfMcIj6xIIjxv20xvE14v26r1j6r18McIj6I8E87Iv
+ 67AKxVWUJVW8JwAm72CE4IkC6x0Yz7v_Jr0_Gr1lF7xvr2IY64vIr41lc7I2V7IY0VAS07
+ AlzVAYIcxG8wCF04k20xvY0x0EwIxGrwCFx2IqxVCFs4IE7xkEbVWUJVW8JwC20s026c02
+ F40E14v26r1j6r18MI8I3I0E7480Y4vE14v26r106r1rMI8E67AF67kF1VAFwI0_Jw0_GF
+ ylIxkGc2Ij64vIr41lIxAIcVC0I7IYx2IY67AKxVWUJVWUCwCI42IY6xIIjxv20xvEc7Cj
+ xVAFwI0_Jr0_Gr1lIxAIcVCF04k26cxKx2IYs7xG6r1j6r1xMIIF0xvEx4A2jsIE14v26r
+ 1j6r4UMIIF0xvEx4A2jsIEc7CjxVAFwI0_Jr0_GrUvcSsGvfC2KfnxnUUI43ZEXa7IU8cz
+ VUUUUUU==
+Subject: Re: [Intel-gfx] [PATCH 0/8] Add DSC fractional bpp support
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -60,111 +64,67 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Jani Nikula <jani.nikula@intel.com>, intel-gfx@lists.freedesktop.org
+Cc: jani.nikula@intel.com, mripard@kernel.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Structs intel_gvt_irq_info and intel_gvt_irq_map are not used outside of
-interrupt.c. Hide them, and reduce includes.
+Hi,
 
-Signed-off-by: Jani Nikula <jani.nikula@intel.com>
----
- drivers/gpu/drm/i915/gvt/interrupt.c | 17 +++++++++++++++
- drivers/gpu/drm/i915/gvt/interrupt.h | 31 ++++++----------------------
- 2 files changed, 23 insertions(+), 25 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/gvt/interrupt.c b/drivers/gpu/drm/i915/gvt/interrupt.c
-index 68eca023bbc6..de3f5903d1a7 100644
---- a/drivers/gpu/drm/i915/gvt/interrupt.c
-+++ b/drivers/gpu/drm/i915/gvt/interrupt.c
-@@ -36,6 +36,23 @@
- #include "gvt.h"
- #include "trace.h"
- 
-+struct intel_gvt_irq_info {
-+	char *name;
-+	i915_reg_t reg_base;
-+	enum intel_gvt_event_type bit_to_event[INTEL_GVT_IRQ_BITWIDTH];
-+	unsigned long warned;
-+	int group;
-+	DECLARE_BITMAP(downstream_irq_bitmap, INTEL_GVT_IRQ_BITWIDTH);
-+	bool has_upstream_irq;
-+};
-+
-+struct intel_gvt_irq_map {
-+	int up_irq_group;
-+	int up_irq_bit;
-+	int down_irq_group;
-+	u32 down_irq_bitmask;
-+};
-+
- /* common offset among interrupt control registers */
- #define regbase_to_isr(base)	(base)
- #define regbase_to_imr(base)	(base + 0x4)
-diff --git a/drivers/gpu/drm/i915/gvt/interrupt.h b/drivers/gpu/drm/i915/gvt/interrupt.h
-index b62f04ab47cb..e60ad476fe60 100644
---- a/drivers/gpu/drm/i915/gvt/interrupt.h
-+++ b/drivers/gpu/drm/i915/gvt/interrupt.h
-@@ -32,10 +32,13 @@
- #ifndef _GVT_INTERRUPT_H_
- #define _GVT_INTERRUPT_H_
- 
--#include <linux/hrtimer.h>
--#include <linux/kernel.h>
-+#include <linux/bitops.h>
- 
--#include "i915_reg_defs.h"
-+struct intel_gvt;
-+struct intel_gvt_irq;
-+struct intel_gvt_irq_info;
-+struct intel_gvt_irq_map;
-+struct intel_vgpu;
- 
- enum intel_gvt_event_type {
- 	RCS_MI_USER_INTERRUPT = 0,
-@@ -138,10 +141,6 @@ enum intel_gvt_event_type {
- 	INTEL_GVT_EVENT_MAX,
- };
- 
--struct intel_gvt_irq;
--struct intel_gvt;
--struct intel_vgpu;
--
- typedef void (*gvt_event_virt_handler_t)(struct intel_gvt_irq *irq,
- 	enum intel_gvt_event_type event, struct intel_vgpu *vgpu);
- 
-@@ -175,17 +174,6 @@ enum intel_gvt_irq_type {
- 
- #define INTEL_GVT_IRQ_BITWIDTH	32
- 
--/* device specific interrupt bit definitions */
--struct intel_gvt_irq_info {
--	char *name;
--	i915_reg_t reg_base;
--	enum intel_gvt_event_type bit_to_event[INTEL_GVT_IRQ_BITWIDTH];
--	unsigned long warned;
--	int group;
--	DECLARE_BITMAP(downstream_irq_bitmap, INTEL_GVT_IRQ_BITWIDTH);
--	bool has_upstream_irq;
--};
--
- /* per-event information */
- struct intel_gvt_event_info {
- 	int bit;				/* map to register bit */
-@@ -194,13 +182,6 @@ struct intel_gvt_event_info {
- 	gvt_event_virt_handler_t v_handler;	/* for v_event */
- };
- 
--struct intel_gvt_irq_map {
--	int up_irq_group;
--	int up_irq_bit;
--	int down_irq_group;
--	u32 down_irq_bitmask;
--};
--
- /* structure containing device specific IRQ state */
- struct intel_gvt_irq {
- 	const struct intel_gvt_irq_ops *ops;
--- 
-2.39.2
+For coding style and wording part, this version looks fine for me after a brief skim.
+Thanks for the patch. :-)
+
+
+On 2023/9/26 16:23, Mitul Golani wrote:
+> This patch series adds support for DSC fractional compressed bpp
+> for MTL+. The series starts with some fixes, followed by patches that
+> lay groundwork to iterate over valid compressed bpps to select the
+> 'best' compressed bpp with optimal link configuration (taken from
+> upstream series: https://patchwork.freedesktop.org/series/105200/).
+>
+> The later patches, add changes to accommodate compressed bpp with
+> fractional part, including changes to QP calculations.
+> To get the 'best' compressed bpp, we iterate over the valid compressed
+> bpp values, but with fractional step size 1/16, 1/8, 1/4 or 1/2 as per
+> sink support.
+>
+> The last 2 patches add support to depict DSC sink's fractional support,
+> and debugfs to enforce use of fractional bpp, while choosing an
+> appropriate compressed bpp.
+>
+> Ankit Nautiyal (5):
+>    drm/display/dp: Add helper function to get DSC bpp precision
+>    drm/i915/display: Store compressed bpp in U6.4 format
+>    drm/i915/display: Consider fractional vdsc bpp while computing m_n
+>      values
+>    drm/i915/audio : Consider fractional vdsc bpp while computing tu_data
+>    drm/i915/dp: Iterate over output bpp with fractional step size
+>
+> Swati Sharma (2):
+>    drm/i915/dsc: Add debugfs entry to validate DSC fractional bpp
+>    drm/i915/dsc: Allow DSC only with fractional bpp when forced from
+>      debugfs
+>
+> Vandita Kulkarni (1):
+>    drm/i915/dsc/mtl: Add support for fractional bpp
+>
+>   drivers/gpu/drm/display/drm_dp_helper.c       | 27 ++++++
+>   drivers/gpu/drm/i915/display/icl_dsi.c        | 11 +--
+>   drivers/gpu/drm/i915/display/intel_audio.c    | 17 ++--
+>   drivers/gpu/drm/i915/display/intel_bios.c     |  6 +-
+>   drivers/gpu/drm/i915/display/intel_cdclk.c    |  6 +-
+>   drivers/gpu/drm/i915/display/intel_display.c  |  8 +-
+>   drivers/gpu/drm/i915/display/intel_display.h  |  2 +-
+>   .../drm/i915/display/intel_display_debugfs.c  | 84 +++++++++++++++++++
+>   .../drm/i915/display/intel_display_types.h    |  4 +-
+>   drivers/gpu/drm/i915/display/intel_dp.c       | 81 +++++++++++-------
+>   drivers/gpu/drm/i915/display/intel_dp_mst.c   | 32 ++++---
+>   drivers/gpu/drm/i915/display/intel_fdi.c      |  2 +-
+>   .../i915/display/intel_fractional_helper.h    | 36 ++++++++
+>   .../gpu/drm/i915/display/intel_qp_tables.c    |  3 -
+>   drivers/gpu/drm/i915/display/intel_vdsc.c     | 30 +++++--
+>   include/drm/display/drm_dp_helper.h           |  1 +
+>   16 files changed, 276 insertions(+), 74 deletions(-)
+>   create mode 100644 drivers/gpu/drm/i915/display/intel_fractional_helper.h
+>
 
