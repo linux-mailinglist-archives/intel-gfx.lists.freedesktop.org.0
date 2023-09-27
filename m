@@ -1,33 +1,57 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id BB8C37AF9C7
-	for <lists+intel-gfx@lfdr.de>; Wed, 27 Sep 2023 07:02:54 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id AC2097AFA4D
+	for <lists+intel-gfx@lfdr.de>; Wed, 27 Sep 2023 07:48:12 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 83A4A10E466;
-	Wed, 27 Sep 2023 05:02:52 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 343D710E46B;
+	Wed, 27 Sep 2023 05:48:10 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id A217910E464;
- Wed, 27 Sep 2023 05:02:50 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 95363AADD8;
- Wed, 27 Sep 2023 05:02:50 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id AFE7010E46B;
+ Wed, 27 Sep 2023 05:48:08 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1695793688; x=1727329688;
+ h=message-id:date:mime-version:subject:to:cc:references:
+ from:in-reply-to:content-transfer-encoding;
+ bh=WV2GT3MqmgvkaeOdGho0FQtzlWzULGvrDmyXN059hgU=;
+ b=TpjPXIw9Rkrk6tCfkcrCHqXDbbsyWbyhFIFalEnJWC9PBoPfBW/bqxjA
+ eP/Or7kJv1P615gg598hYjsY5VKn3mms38ZTMJ5EGq75O4n6QP9fUnI5q
+ aN5F7qtuapHISbVDTL8QojtPc3ZhS0puTA9slXcJRV3EEokZH5mvTj96l
+ jKN47gfhUqWgMPyQq9T4akzyjMvAvDQbz1qY/S1KuReJklLlNOH3vwAoO
+ oyIaw5ib/NFqhAYg9Fky+tvWbyk2FiWpG+6cezbG94jo0Xgktr7ErQObC
+ MW2VbrGf2gPX2PVqHejo8Q/HUQnP1oRCWkVUX3iXuWERrCn30YXvHhOCF g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10845"; a="468023393"
+X-IronPort-AV: E=Sophos;i="6.03,179,1694761200"; d="scan'208";a="468023393"
+Received: from orsmga007.jf.intel.com ([10.7.209.58])
+ by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 Sep 2023 22:48:07 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10845"; a="742591810"
+X-IronPort-AV: E=Sophos;i="6.03,179,1694761200"; d="scan'208";a="742591810"
+Received: from jchodor-mobl2.ger.corp.intel.com (HELO [10.213.23.248])
+ ([10.213.23.248])
+ by orsmga007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 Sep 2023 22:48:03 -0700
+Message-ID: <af8f0c44-7f4a-f1f7-cd4a-6cae3ea477cc@intel.com>
+Date: Wed, 27 Sep 2023 07:47:57 +0200
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Balasubrawmanian, Vivaik" <vivaik.balasubrawmanian@intel.com>
-Date: Wed, 27 Sep 2023 05:02:50 -0000
-Message-ID: <169579097057.20756.4338570754006359972@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <900c90f4-8db5-b0b3-caec-4d7d76291f2c@intel.com>
-In-Reply-To: <900c90f4-8db5-b0b3-caec-4d7d76291f2c@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJVSUxEOiBmYWlsdXJlIGZvciBk?=
- =?utf-8?q?rm/i915=3A_Add_uAPI_to_query_micro-controller_FW_version?=
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Firefox/102.0 Thunderbird/102.15.1
+Content-Language: en-US
+To: Nirmoy Das <nirmoy.das@intel.com>, intel-gfx@lists.freedesktop.org
+References: <20230926142401.25687-1-nirmoy.das@intel.com>
+From: Andrzej Hajda <andrzej.hajda@intel.com>
+Organization: Intel Technology Poland sp. z o.o. - ul. Slowackiego 173, 80-298
+ Gdansk - KRS 101882 - NIP 957-07-52-316
+In-Reply-To: <20230926142401.25687-1-nirmoy.das@intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+Subject: Re: [Intel-gfx] [PATCH] drm/i915: Don't set PIPE_CONTROL_FLUSH_L3
+ for aux inval
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,28 +64,65 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
+Cc: Lucas De Marchi <lucas.demarchi@intel.com>,
+ Jonathan Cavitt <jonathan.cavitt@intel.com>, stable@vger.kernel.org,
+ dri-devel@lists.freedesktop.org, Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Matt Roper <matthew.d.roper@intel.com>,
+ Prathap Kumar Valsan <prathap.kumar.valsan@intel.com>,
+ Mark Janes <mark.janes@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
 
-Series: drm/i915: Add uAPI to query micro-controller FW version
-URL   : https://patchwork.freedesktop.org/series/124307/
-State : failure
 
-== Summary ==
+On 26.09.2023 16:24, Nirmoy Das wrote:
+> PIPE_CONTROL_FLUSH_L3 is not needed for aux invalidation
+> so don't set that.
+>
+> Fixes: 78a6ccd65fa3 ("drm/i915/gt: Ensure memory quiesced before invalidation")
+> Cc: Jonathan Cavitt <jonathan.cavitt@intel.com>
+> Cc: Andi Shyti <andi.shyti@linux.intel.com>
+> Cc: <stable@vger.kernel.org> # v5.8+
+> Cc: Andrzej Hajda <andrzej.hajda@intel.com>
+> Cc: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+> Cc: Matt Roper <matthew.d.roper@intel.com>
+> Cc: Tejas Upadhyay <tejas.upadhyay@intel.com>
+> Cc: Lucas De Marchi <lucas.demarchi@intel.com>
+> Cc: Prathap Kumar Valsan <prathap.kumar.valsan@intel.com>
+> Cc: Tapani Pälli <tapani.palli@intel.com>
+> Cc: Mark Janes <mark.janes@intel.com>
+> Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
+> Signed-off-by: Nirmoy Das <nirmoy.das@intel.com>
 
-Error: patch https://patchwork.freedesktop.org/api/1.0/series/124307/revisions/1/mbox/ not applied
-Applying: drm/i915: Add uAPI to query micro-controller FW version
-error: patch fragment without header at line 9: @@ -3021,6 +3022,7 @@ struct drm_i915_query_item {
-error: could not build fake ancestor
-hint: Use 'git am --show-current-patch=diff' to see the failed patch
-Patch failed at 0001 drm/i915: Add uAPI to query micro-controller FW version
-When you have resolved this problem, run "git am --continue".
-If you prefer to skip this patch, run "git am --skip" instead.
-To restore the original branch and stop patching, run "git am --abort".
-Build failed, no error log produced
+Reviewed-by: Andrzej Hajda <andrzej.hajda@intel.com>
 
+Regards
+Andrzej
+> ---
+>   drivers/gpu/drm/i915/gt/gen8_engine_cs.c | 11 ++++++++++-
+>   1 file changed, 10 insertions(+), 1 deletion(-)
+>
+> diff --git a/drivers/gpu/drm/i915/gt/gen8_engine_cs.c b/drivers/gpu/drm/i915/gt/gen8_engine_cs.c
+> index 0143445dba83..ba4c2422b340 100644
+> --- a/drivers/gpu/drm/i915/gt/gen8_engine_cs.c
+> +++ b/drivers/gpu/drm/i915/gt/gen8_engine_cs.c
+> @@ -271,8 +271,17 @@ int gen12_emit_flush_rcs(struct i915_request *rq, u32 mode)
+>   		if (GRAPHICS_VER_FULL(rq->i915) >= IP_VER(12, 70))
+>   			bit_group_0 |= PIPE_CONTROL_CCS_FLUSH;
+>   
+> +		/*
+> +		 * L3 fabric flush is needed for AUX CCS invalidation
+> +		 * which happens as part of pipe-control so we can
+> +		 * ignore PIPE_CONTROL_FLUSH_L3. Also PIPE_CONTROL_FLUSH_L3
+> +		 * deals with Protected Memory which is not needed for
+> +		 * AUX CCS invalidation and lead to unwanted side effects.
+> +		 */
+> +		if (mode & EMIT_FLUSH)
+> +			bit_group_1 |= PIPE_CONTROL_FLUSH_L3;
+> +
+>   		bit_group_1 |= PIPE_CONTROL_TILE_CACHE_FLUSH;
+> -		bit_group_1 |= PIPE_CONTROL_FLUSH_L3;
+>   		bit_group_1 |= PIPE_CONTROL_RENDER_TARGET_CACHE_FLUSH;
+>   		bit_group_1 |= PIPE_CONTROL_DEPTH_CACHE_FLUSH;
+>   		/* Wa_1409600907:tgl,adl-p */
 
