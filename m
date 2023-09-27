@@ -1,53 +1,57 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4E1417B0336
-	for <lists+intel-gfx@lfdr.de>; Wed, 27 Sep 2023 13:38:49 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id B67C57B040B
+	for <lists+intel-gfx@lfdr.de>; Wed, 27 Sep 2023 14:27:38 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A588110E4DB;
-	Wed, 27 Sep 2023 11:38:47 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C9F8A10E4FE;
+	Wed, 27 Sep 2023 12:27:33 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.24])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 47B3110E4DB;
- Wed, 27 Sep 2023 11:38:45 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.93])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5E35310E4FD;
+ Wed, 27 Sep 2023 12:27:31 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1695814725; x=1727350725;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:in-reply-to;
- bh=Rp92qpkkaY3VwqKjaObRBWapzifPxcg04ZFJ7CLTD4s=;
- b=BdYhBtyZrriGATCpGpUikGfKtyPDLehCQuwRybZFQUZ29/PqBAUNCfeN
- EnrV9HaAuvCtgOA7pC45EQm6eIc9GOExWC1oWwXayZL5p8xsPZgMFI4gp
- vEc4yUC7UHVvP/HEZGPNr3yQZgeldjodENY1lcBp1m0OyLjyHJV+X3mGe
- rS6/2dS/ol3oNdIQe0TL/7mHRQmcdRnsZ3enGqa6cOXt8amqke/tTqn2a
- xXWvTbqEOjcdrcvFhgx5swS3osGTC9AhUsrpkCW7olcpapQdYUqJMR20M
- Ib6+w30TMZF2rGBvWnAkc7f7NHC6IR5zDt7ypb0s7rf3QqFj8aHDB90KO A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10845"; a="384591144"
-X-IronPort-AV: E=Sophos;i="6.03,179,1694761200"; d="scan'208";a="384591144"
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
- by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Sep 2023 04:38:44 -0700
+ t=1695817651; x=1727353651;
+ h=message-id:date:mime-version:subject:to:cc:references:
+ from:in-reply-to:content-transfer-encoding;
+ bh=MG8Xca4cBgFS+4R9i9HryplabpchKrxHRTPHYqdBHSA=;
+ b=Ll4XY6Ln44q3OPVev+1r9Z6ojQhi+cSMo9ZHsnrKk2eL9NDu60aeUSdA
+ bgV03omOePLx5KFkHttarql2+KtMC58A15cQf9ectOD9r63tzlFy3i2Xk
+ RXMBYxiiJhKxvrw5Rkxz46ubn0gK2s3SrAUy9wJk8RFIIksHzd06a2Puv
+ WiHxcaAT/ptHsPm4c5r2kmYBOlvjV3fG4Fzz/7FeTWG6xgVgDZmb+PfWZ
+ 7wC48pTUuYckOtvRIKz7yEA+MYZkVerScH/QCKH2+fB5f6vCLs4T1d27d
+ kZeVn2ViFttTl2FUPasLwVhqGE705sOg9BN3xdCP3lsyztT27ZYkur3tA g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10845"; a="379089126"
+X-IronPort-AV: E=Sophos;i="6.03,181,1694761200"; d="scan'208";a="379089126"
+Received: from orsmga007.jf.intel.com ([10.7.209.58])
+ by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 27 Sep 2023 05:27:10 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10845"; a="784289895"
-X-IronPort-AV: E=Sophos;i="6.03,179,1694761200"; d="scan'208";a="784289895"
-Received: from xueqilim-mobl2.gar.corp.intel.com (HELO intel.com)
- ([10.214.173.83])
- by orsmga001-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Sep 2023 04:38:39 -0700
-Date: Wed, 27 Sep 2023 13:38:33 +0200
-From: Andi Shyti <andi.shyti@linux.intel.com>
-To: Nirmoy Das <nirmoy.das@intel.com>
-Message-ID: <ZRQUOVzHWzUWs8qZ@ashyti-mobl2.lan>
-References: <20230927102237.30773-1-nirmoy.das@intel.com>
- <20230927102237.30773-3-nirmoy.das@intel.com>
+X-IronPort-AV: E=McAfee;i="6600,9927,10845"; a="742693914"
+X-IronPort-AV: E=Sophos;i="6.03,181,1694761200"; d="scan'208";a="742693914"
+Received: from nirmoyda-mobl.ger.corp.intel.com (HELO [10.252.53.87])
+ ([10.252.53.87])
+ by orsmga007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 27 Sep 2023 05:27:09 -0700
+Message-ID: <cd42c493-a6a9-9293-6ff0-7b76eaca95b5@linux.intel.com>
+Date: Wed, 27 Sep 2023 14:27:07 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230927102237.30773-3-nirmoy.das@intel.com>
-Subject: Re: [Intel-gfx] [PATCH v4 3/3] drm/i915/mtl: Skip MCR ops for ring
- fault register
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.15.1
+Content-Language: en-US
+To: Andi Shyti <andi.shyti@linux.intel.com>, Nirmoy Das <nirmoy.das@intel.com>
+References: <20230927102237.30773-1-nirmoy.das@intel.com>
+ <20230927102237.30773-2-nirmoy.das@intel.com>
+ <ZRQSzq8kU0TuWety@ashyti-mobl2.lan>
+From: Nirmoy Das <nirmoy.das@linux.intel.com>
+In-Reply-To: <ZRQSzq8kU0TuWety@ashyti-mobl2.lan>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+Subject: Re: [Intel-gfx] [PATCH 2/3] drm/i915: Reset steer semaphore for
+ media GT
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,17 +65,33 @@ List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
 Cc: intel-gfx@lists.freedesktop.org, matthew.d.roper@intel.com,
- dri-devel@lists.freedesktop.org, Andrzej Hajda <andrzej.hajda@intel.com>
+ dri-devel@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi Nirmoy,
 
-> +	/*
-> +	 * For the media GT, this ring fault register is not replicated,
-> +	 * so don't do multicast/replicated register read/write operation on it.
-> +	 */
+On 9/27/2023 1:32 PM, Andi Shyti wrote:
+> Hi Nirmoy,
+>
+> On Wed, Sep 27, 2023 at 12:22:36PM +0200, Nirmoy Das wrote:
+>> During resime, the steer semaphore on GT1 was observed to be held. The
+> resime/resume/
+will fix that.
+>
+>> hardware team has confirmed the safety of clearing the steer semaphore
+>> during driver load/resume, as no lock acquisitions can occur in this
+>> process by other agents.
+>>
+>> Signed-off-by: Nirmoy Das <nirmoy.das@intel.com>
+> Reviewed-by: Andi Shyti <andi.shyti@linux.intel.com>
 
-thanks!
+I need to resend. Managed to test on new IFWI and it seems I am doing 
+that on resume.
 
-Andi
+
+Thanks,
+
+Nirmoy
+
+>
+> Andi
