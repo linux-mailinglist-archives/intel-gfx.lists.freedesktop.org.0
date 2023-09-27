@@ -1,56 +1,57 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id BBDA27B0764
-	for <lists+intel-gfx@lfdr.de>; Wed, 27 Sep 2023 16:54:53 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0D5077B07A8
+	for <lists+intel-gfx@lfdr.de>; Wed, 27 Sep 2023 17:08:00 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 51D5A10E1D8;
-	Wed, 27 Sep 2023 14:54:52 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BD9C810E06C;
+	Wed, 27 Sep 2023 15:07:57 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from relay1-d.mail.gandi.net (relay1-d.mail.gandi.net
- [IPv6:2001:4b98:dc4:8::221])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7A56710E06C
- for <intel-gfx@lists.freedesktop.org>; Wed, 27 Sep 2023 14:54:50 +0000 (UTC)
-Received: by mail.gandi.net (Postfix) with ESMTPSA id 1F837240013;
- Wed, 27 Sep 2023 14:54:41 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
- t=1695826488;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=bU7T7dDQ/dHFd7LrSzq4NNGKbKWAKTZ4mfNpbgF6ZUs=;
- b=bh26dm8STTmIX6aEY3yids5BNROji9NHQGCOkljcLJGC7bWQN0oVyOYBbPx8EDjBWSUOhI
- kZlgWMO10lk3atwHM1kAVX27i0xASK7A1e+nfUzrjb2Xg6uNXXXTu++hyN2wXoU7cwNdy0
- hFIpSIr3igF9xMGLltEJ8R9cP7nRW3LXTxsocJd9Ha+COgsVI+DmGUQFre4pi0hPCf6uuO
- 81rLsrDdebLX/bqTcmFAiWGh2863Q5KfTaG3AUzOKMKt4N1HCzB9QKh2kRgmINHh6GLOkE
- yK+sCCVNwpUWbTpGLujlpRxy+fiuTIx5/uIV9fENKj3PD9H0dzqZ5YAOtT8TYw==
-Date: Wed, 27 Sep 2023 16:54:38 +0200
-From: Miquel Raynal <miquel.raynal@bootlin.com>
-To: Mark Brown <broonie@kernel.org>
-Message-ID: <20230927165350.470bea0f@xps-13>
-In-Reply-To: <ZRQ+LzIoD+J0BzVp@finisterre.sirena.org.uk>
-References: <CY5PR11MB63667FBB6AF5B4331419BDAAEDF1A@CY5PR11MB6366.namprd11.prod.outlook.com>
- <0d60a78b-0305-4cb3-babe-4eefe5001b29@sirena.org.uk>
- <CY5PR11MB63667AB9958A23970B4B0D3EEDF1A@CY5PR11MB6366.namprd11.prod.outlook.com>
- <20230912152102.0dfe7558@xps-13>
- <ee4a85be-aa87-4c40-916c-0a796688ad6f@sirena.org.uk>
- <CY5PR11MB6366427A8DD52D9B8B54F25DEDF9A@CY5PR11MB6366.namprd11.prod.outlook.com>
- <1b93fffe-5aac-42f3-9bbe-a307758673cf@sirena.org.uk>
- <MN2PR11MB40938110726F81D8CE305FB8E5F9A@MN2PR11MB4093.namprd11.prod.outlook.com>
- <0682443d-5219-4aa2-a932-ee3e04c0760e@sirena.org.uk>
- <CY5PR11MB63661B36FFAE9455504DACD6EDC2A@CY5PR11MB6366.namprd11.prod.outlook.com>
- <ZRQ+LzIoD+J0BzVp@finisterre.sirena.org.uk>
-Organization: Bootlin
-X-Mailer: Claws Mail 4.0.0 (GTK+ 3.24.33; x86_64-pc-linux-gnu)
+Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.88])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7D01210E1D8
+ for <intel-gfx@lists.freedesktop.org>; Wed, 27 Sep 2023 15:07:56 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1695827276; x=1727363276;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=JbkpjSYQcMq8L70Tx15Ul8x/rfCJ/5ccQk1Iy4CcClQ=;
+ b=LpDDYrkVecxvXnuw8s0Mq7nQZDOBCF6xfR886feVj83adrs+0lzj2ev1
+ F4sPrN2U5wuH94O8bcPSOLuA8mv/sk490q5GVLXGX35OftooyS8Cfu6Pf
+ KvhjZsNd/qs0VOlB3fpJtTmJpFyq5oeLk8ZIAnwnCCNVCjUgMbWVPrMdO
+ ga8OZOOz5liGiNkXE+PbQ52P7hzmfzOKieMa97AgPkvAc+17y/QUR3RqH
+ VkZDSI4M2i77UkYNDbiptbk9xHsAfpkpUXHbYuP6jkpod3YGkGri9VDKk
+ HZoVGZADmp8cb592Pvzp4KmjK/8HFWlyQN/M+lbJZTE4Syw8MWlNHvqOT g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10846"; a="412757018"
+X-IronPort-AV: E=Sophos;i="6.03,181,1694761200"; d="scan'208";a="412757018"
+Received: from fmsmga006.fm.intel.com ([10.253.24.20])
+ by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 27 Sep 2023 08:07:55 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10846"; a="996178547"
+X-IronPort-AV: E=Sophos;i="6.03,181,1694761200"; d="scan'208";a="996178547"
+Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.153])
+ by fmsmga006.fm.intel.com with SMTP; 27 Sep 2023 08:07:52 -0700
+Received: by stinkbox (sSMTP sendmail emulation);
+ Wed, 27 Sep 2023 18:07:52 +0300
+Date: Wed, 27 Sep 2023 18:07:52 +0300
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: Jani Nikula <jani.nikula@linux.intel.com>
+Message-ID: <ZRRFSPuzZmm-pvOa@intel.com>
+References: <20230922193518.723664-1-animesh.manna@intel.com>
+ <87lecumo4z.fsf@intel.com>
+ <BL1PR11MB59796856C4C80FE3461F13B9F9C3A@BL1PR11MB5979.namprd11.prod.outlook.com>
+ <87v8bxl1lg.fsf@intel.com> <ZRQzKU1ePbiqDtUJ@intel.com>
+ <87il7vk6vx.fsf@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-X-GND-Sasl: miquel.raynal@bootlin.com
-Subject: Re: [Intel-gfx] [PATCH 00/10] drm/i915/spi: spi access for discrete
- graphics
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <87il7vk6vx.fsf@intel.com>
+X-Patchwork-Hint: comment
+Subject: Re: [Intel-gfx] [PATCH] drm/i915/dsb: DSB code refactoring
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -63,40 +64,68 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Vignesh Raghavendra <vigneshr@ti.com>, Richard Weinberger <richard@nod.at>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>, "Usyskin,
- Alexander" <alexander.usyskin@intel.com>, Michael Walle <michael@walle.cc>,
- "linux-spi@vger.kernel.org" <linux-spi@vger.kernel.org>,
- Tudor Ambarus <tudor.ambarus@linaro.org>,
- "linux-mtd@lists.infradead.org" <linux-mtd@lists.infradead.org>, "Vivi,
- Rodrigo" <rodrigo.vivi@intel.com>, "Winkler, Tomas" <tomas.winkler@intel.com>,
- "Lubart, Vitaly" <vitaly.lubart@intel.com>,
- Pratyush Yadav <pratyush@kernel.org>
+Cc: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi Mark,
+On Wed, Sep 27, 2023 at 05:50:10PM +0300, Jani Nikula wrote:
+> On Wed, 27 Sep 2023, Ville Syrjälä <ville.syrjala@linux.intel.com> wrote:
+> > On Tue, Sep 26, 2023 at 12:34:35PM +0300, Jani Nikula wrote:
+> >> On Tue, 26 Sep 2023, "Manna, Animesh" <animesh.manna@intel.com> wrote:
+> >> >> -----Original Message-----
+> >> >> From: Jani Nikula <jani.nikula@linux.intel.com>
+> >> >> Sent: Monday, September 25, 2023 6:00 PM
+> >> >> To: Manna, Animesh <animesh.manna@intel.com>; intel-
+> >> >> gfx@lists.freedesktop.org
+> >> >> Subject: Re: [Intel-gfx] [PATCH] drm/i915/dsb: DSB code refactoring
+> >> >> 
+> >> >> On Sat, 23 Sep 2023, Animesh Manna <animesh.manna@intel.com> wrote:
+> >> >> > Refactor DSB implementation to be compatible with Xe driver.
+> >> >> 
+> >> >> Sad trombone.
+> >> >> 
+> >> >> struct intel_dsb should remain an opaque type. I put effort into hiding its
+> >> >> definition, so its guts wouldn't be accessed nilly-willy all over the place. If it's
+> >> >> not hidden, it just will get accessed.
+> >> >
+> >> > Hi Jani,
+> >> >
+> >> > Xe driver need access to intel_dsb structure, so I can create a new header file intel_dsb_ops.h and keep intel_dsb structure in it. Is it ok?
+> >> 
+> >> I just think you need to find a different abstraction level that doesn't
+> >> involve exposing struct intel_dsb.
+> >
+> > I hate the fact that we seem to be adding these ad-hoc wrappers all
+> > over the place. Someone should just fix xe to give us the same API as
+> > i915, or a single wrapper should do whatever conversion is needed.
+> 
+> I think one of the problems is that i915 doesn't really give us a proper
+> API either, but requires us to fiddle with the objects' guts, and thus
+> have access to the struct definitions. In i915, with the include
+> hierarchies, that effectively means including absolutely
+> everything. Can't have that in xe.
 
-broonie@kernel.org wrote on Wed, 27 Sep 2023 16:37:35 +0200:
+obj+vma is a pretty reasonable API IMO. And we're not doing anything
+weird with their guts IIRC. But apparently xe decided to not give us
+that, and instead of adding a single wrapper to bridge the gap we
+now have several different ad-hoc wrappers for whatever reason.
 
-> On Wed, Sep 27, 2023 at 02:11:47PM +0000, Usyskin, Alexander wrote:
->=20
-> > There is a Discreet Graphic device with embedded SPI (controller & flas=
-h).
-> > The embedded SPI is not visible to OS.
-> > There is another HW in the chip that gates access to the controller and
-> > exposes registers for:
-> > region select; read and write (4 and 8 bytes); erase (4K); error regist=
-er;  =20
->=20
-> So assuming that's flash region select it sounds like this is a MTD
-> controller and the fact that there's SPI isn't really relevant at all
-> from a programming model point of view and it should probably be
-> described as a MTD controller of some kind.  Does that sound about
-> right?
+> 
+> Having the same API for both i915 and xe requires turning it into an
+> actual API that doesn't depend on either i915 or xe specific types. But
+> that's kind of tough before xe is upstream. Catch-22.
 
-Yeah in this case it seems the best option if the OS only has access to
-a very small subset of what the spi controller can do.
+Nothing preventing anyone from coming up with the single wrapper and
+upstreaming the i915 side (assuming we even want some kind of extra
+wrapper for i915 given it already uses a reasonable approach).
 
-Thanks,
-Miqu=C3=A8l
+> 
+> Part of the reason we have these ad-hoc wrappers is that they also serve
+> as the todo list of stuff to fix properly.
+
+Feels more like we are trying to polish these to the point where
+they are supposed to be permanent solutions.
+
+-- 
+Ville Syrjälä
+Intel
