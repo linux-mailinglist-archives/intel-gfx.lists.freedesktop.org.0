@@ -2,33 +2,33 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4BBE47AF715
-	for <lists+intel-gfx@lfdr.de>; Wed, 27 Sep 2023 02:13:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 23EAB7AF716
+	for <lists+intel-gfx@lfdr.de>; Wed, 27 Sep 2023 02:13:18 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6F5DA10E06F;
-	Wed, 27 Sep 2023 00:13:12 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 12F6410E122;
+	Wed, 27 Sep 2023 00:13:15 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 1E2EA10E06F;
- Wed, 27 Sep 2023 00:13:11 +0000 (UTC)
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 9341810E122;
+ Wed, 27 Sep 2023 00:13:13 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 1C786AADF4;
- Wed, 27 Sep 2023 00:13:11 +0000 (UTC)
+ by emeril.freedesktop.org (Postfix) with ESMTP id 96450ACC20;
+ Wed, 27 Sep 2023 00:13:13 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Jani Nikula" <jani.nikula@intel.com>
-Date: Wed, 27 Sep 2023 00:13:11 -0000
-Message-ID: <169577359108.20757.18258699891366804085@emeril.freedesktop.org>
+Date: Wed, 27 Sep 2023 00:13:13 -0000
+Message-ID: <169577359361.20756.9324896442051478979@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
 References: <cover.1695747484.git.jani.nikula@intel.com>
 In-Reply-To: <cover.1695747484.git.jani.nikula@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
- =?utf-8?q?for_drm/i915=3A_split_display_from_drm=5Fi915=5Fprivate_and_i91?=
- =?utf-8?q?5=5Fdrv=2Eh?=
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLlNQQVJTRTogd2FybmluZyBmb3Ig?=
+ =?utf-8?q?drm/i915=3A_split_display_from_drm=5Fi915=5Fprivate_and_i915=5F?=
+ =?utf-8?q?drv=2Eh?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -54,12 +54,8 @@ State : warning
 
 == Summary ==
 
-Error: dim checkpatch failed
-a84ff5b4caf4 drm/i915: rough ideas for further separating display code from the rest
-3cba6ac324b0 drm/i915/hdmi: drafting what struct intel_display usage would look like
--:8: WARNING:COMMIT_MESSAGE: Missing commit description - Add an appropriate one
-
-total: 0 errors, 1 warnings, 0 checks, 30 lines checked
-0bc1adbe0bfd drm/i915: draft what feature test macros would look like
+Error: dim sparse failed
+Sparse version: v0.6.2
+Fast mode used, each commit won't be checked separately.
 
 
