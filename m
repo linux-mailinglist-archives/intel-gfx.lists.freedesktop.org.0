@@ -1,47 +1,51 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4DDCF7B05B7
-	for <lists+intel-gfx@lfdr.de>; Wed, 27 Sep 2023 15:46:40 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8C52F7B0596
+	for <lists+intel-gfx@lfdr.de>; Wed, 27 Sep 2023 15:38:59 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A188E10E529;
-	Wed, 27 Sep 2023 13:46:38 +0000 (UTC)
-X-Original-To: intel-gfx@lists.freedesktop.org
-Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.100])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 257E010E529
- for <intel-gfx@lists.freedesktop.org>; Wed, 27 Sep 2023 13:46:37 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7E19810E520;
+	Wed, 27 Sep 2023 13:38:56 +0000 (UTC)
+X-Original-To: Intel-gfx@lists.freedesktop.org
+Delivered-To: Intel-gfx@lists.freedesktop.org
+Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.88])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0619810E521;
+ Wed, 27 Sep 2023 13:38:54 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1695822397; x=1727358397;
+ t=1695821935; x=1727357935;
  h=from:to:cc:subject:date:message-id:mime-version:
  content-transfer-encoding;
- bh=a1u836XjuBYtLYF2vw3pWLRq5SuuDxrR+/1HurSeJSo=;
- b=nV29DjI91//cYlAFrV+sPMX7+WphCiqD8qQW5hB418JLEhs5rasJwm4s
- wTkAAnmjul5I0shHpjdVj8B2cvG8bYsNNIEHcCtmItEqDVbYXFiU2kjEO
- ygR3wRakaENrUCkt4BZWVCeUPTSfXuvg/ptasc599X0gQKFocCSTSU0sa
- 38Wz2qjUquUzKEUrBfoS2NprvqJ1yGxopETMcYSh4vvx4Q+HoQzWv8+Vg
- VQYC9Jj1eilvj9Y5YuBwu9/mrHh+ceqN6lkAn3mP9Pv9wVtK70/6xlTHr
- 1atLbiDWhps9kIkM7GPqsQzSkNegnJ9dujOcxMUl0efMkrOS7ySi6m0EP Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10846"; a="448318963"
-X-IronPort-AV: E=Sophos;i="6.03,181,1694761200"; d="scan'208";a="448318963"
-Received: from orsmga003.jf.intel.com ([10.7.209.27])
- by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Sep 2023 06:46:36 -0700
+ bh=4r77wZ4o0SVEKmZg/D2bsd5cR7zsBwV2DSgPNQA3uL4=;
+ b=W5nqK/M7IlMzPKCeDcXPy+8O6W392/HxDUKnvm+WExoKAJjWCWcAKbgG
+ 1LmwbPXXKvlDwXtY9+0QlxBGkLWWdqgBODddRxs7jqJZHyWlaG9JJD97J
+ obNQoi7M47kzwKlY7kESs7//YjjaBRXUcSaPAxk5+v45neKZ7f5eSz0lr
+ ahOCNDXKT2PcTwe/bqIo6JYIpOEcvShUbUDD6ArXgIVMaCjmIwKUNqX+T
+ XgWIx7VXPXsgW0nb2qCBBAGEZmDYYE5Q2/+6zjUdatvQbOA5mtLBStxS/
+ zz5kBGJnyb8gLpb8rde1EtFBn6AW6qJ00Rr6c1Zxb5qkdQfZMmrK5Qq1Z w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10846"; a="412738597"
+X-IronPort-AV: E=Sophos;i="6.03,181,1694761200"; d="scan'208";a="412738597"
+Received: from fmsmga007.fm.intel.com ([10.253.24.52])
+ by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 27 Sep 2023 06:38:53 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10846"; a="698887799"
-X-IronPort-AV: E=Sophos;i="6.03,181,1694761200"; d="scan'208";a="698887799"
-Received: from srr4-3-linux-101-amanna.iind.intel.com ([10.223.74.76])
- by orsmga003.jf.intel.com with ESMTP; 27 Sep 2023 06:46:35 -0700
-From: Animesh Manna <animesh.manna@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Wed, 27 Sep 2023 19:05:05 +0530
-Message-Id: <20230927133505.1086855-1-animesh.manna@intel.com>
-X-Mailer: git-send-email 2.29.0
+X-IronPort-AV: E=McAfee;i="6600,9927,10846"; a="752597166"
+X-IronPort-AV: E=Sophos;i="6.03,181,1694761200"; d="scan'208";a="752597166"
+Received: from mscanex-mobl.ger.corp.intel.com (HELO localhost.localdomain)
+ ([10.213.204.17])
+ by fmsmga007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 27 Sep 2023 06:38:47 -0700
+From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+To: Intel-gfx@lists.freedesktop.org,
+	dri-devel@lists.freedesktop.org
+Date: Wed, 27 Sep 2023 14:38:36 +0100
+Message-Id: <20230927133843.247957-1-tvrtko.ursulin@linux.intel.com>
+X-Mailer: git-send-email 2.39.2
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH] drm/i915: Add wrapper for getiing display step
+Subject: [Intel-gfx] [PATCH v8 0/7] fdinfo memory stats
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -57,58 +61,147 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-From: Chaitanya Kumar Borah <chaitanya.kumar.borah@intel.com>
+From: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
 
-Add a wrapper around intel_step_name to maintain compatibility with xe
-driver. The wrapper will share the same name as the one to be used by
-xe while both drivers include different files as needed during
-compilation.
+A short series to enable fdinfo memory stats for i915.
 
-Signed-off-by: Chaitanya Kumar Borah <chaitanya.kumar.borah@intel.com>
-Signed-off-by: Animesh Manna <animesh.manna@intel.com>
----
- drivers/gpu/drm/i915/display/intel_dmc.c | 2 +-
- drivers/gpu/drm/i915/intel_step.c        | 5 +++++
- drivers/gpu/drm/i915/intel_step.h        | 1 +
- 3 files changed, 7 insertions(+), 1 deletion(-)
+I added tracking of most classes of objects (user objects, page tables, context
+state, ring buffers) which contribute to client's memory footprint and am
+accouting their memory use along the similar lines as in Rob's msm code, just
+that with i915 specific code we can show a memory region breakdown and so
+support discrete and multi-tile GPUs properly. And also reflect that our objects
+can have multiple allowed backing stores.
 
-diff --git a/drivers/gpu/drm/i915/display/intel_dmc.c b/drivers/gpu/drm/i915/display/intel_dmc.c
-index 1623c0c5e8a1..0b2c38957c32 100644
---- a/drivers/gpu/drm/i915/display/intel_dmc.c
-+++ b/drivers/gpu/drm/i915/display/intel_dmc.c
-@@ -309,7 +309,7 @@ static const struct stepping_info *
- intel_get_stepping_info(struct drm_i915_private *i915,
- 			struct stepping_info *si)
- {
--	const char *step_name = intel_step_name(RUNTIME_INFO(i915)->step.display_step);
-+	const char *step_name = intel_step_display_name(i915);
- 
- 	si->stepping = step_name[0];
- 	si->substepping = step_name[1];
-diff --git a/drivers/gpu/drm/i915/intel_step.c b/drivers/gpu/drm/i915/intel_step.c
-index ee4e5a2c0220..3914cf9970b3 100644
---- a/drivers/gpu/drm/i915/intel_step.c
-+++ b/drivers/gpu/drm/i915/intel_step.c
-@@ -353,3 +353,8 @@ const char *intel_step_name(enum intel_step step)
- 		return "**";
- 	}
- }
-+
-+const char *intel_step_display_name(struct drm_i915_private *i915)
-+{
-+	return intel_step_name(RUNTIME_INFO(i915)->step.display_step);
-+}
-diff --git a/drivers/gpu/drm/i915/intel_step.h b/drivers/gpu/drm/i915/intel_step.h
-index 96dfca4cba73..26795302cdd8 100644
---- a/drivers/gpu/drm/i915/intel_step.h
-+++ b/drivers/gpu/drm/i915/intel_step.h
-@@ -78,5 +78,6 @@ enum intel_step {
- 
- void intel_step_init(struct drm_i915_private *i915);
- const char *intel_step_name(enum intel_step step);
-+const char *intel_step_display_name(struct drm_i915_private *i915);
- 
- #endif /* __INTEL_STEP_H__ */
+The existing helper Rob added is then used to dump the per memory region stats
+to fdinfo.
+
+The basic objects-per-client infrastructure can later be extended to cover all
+objects and so avoid needing to walk the IDR under the client's file table lock,
+which would further avoid distburbing the running clients by parallel fdinfo
+readers.
+
+Example fdinfo format:
+
+# cat /proc/1383/fdinfo/8
+pos:    0
+flags:  02100002
+mnt_id: 21
+ino:    397
+drm-driver:     i915
+drm-client-id:  18
+drm-pdev:       0000:00:02.0
+drm-total-system:       125 MiB
+drm-shared-system:      16 MiB
+drm-active-system:      110 MiB
+drm-resident-system:    125 MiB
+drm-purgeable-system:   2 MiB
+drm-total-stolen-system:        0
+drm-shared-stolen-system:       0
+drm-active-stolen-system:       0
+drm-resident-stolen-system:     0
+drm-purgeable-stolen-system:    0
+drm-engine-render:      25662044495 ns
+drm-engine-copy:        0 ns
+drm-engine-video:       0 ns
+drm-engine-video-enhance:       0 ns
+
+Example gputop output:
+
+DRM minor 0
+ PID     SMEM  SMEMRSS   render     copy     video    NAME
+1233     124M     124M |████████||        ||        ||        | neverball
+1130      59M      59M |█▌      ||        ||        ||        | Xorg
+1207      12M      12M |        ||        ||        ||        | xfwm4
+
+Or with Wayland:
+
+DRM minor 0
+ PID      MEM      RSS    render        copy         video    video-enhance NAME
+2093     191M     191M |▊          ||           ||           ||           | gnome-shell
+DRM minor 128
+ PID      MEM      RSS    render        copy         video    video-enhance NAME
+2551      71M      71M |██▉        ||           ||           ||           | neverball
+2553      50M      50M |           ||           ||           ||           | Xwayland
+
+Example intel_gpu_top output, aggregated mode:
+
+intel-gpu-top: Intel Dg1 (Gen12) @ /dev/dri/card1 -   21/ 577 MHz;  71% RC6
+          8 irqs/s
+
+         ENGINES     BUSY                                   MI_SEMA MI_WAIT
+       Render/3D    2.80% |▉                              |      0%      0%
+         Blitter    0.01% |▏                              |      0%      0%
+           Video    0.00% |                               |      0%      0%
+    VideoEnhance    0.00% |                               |      0%      0%
+
+  PID      MEM      RSS Render/3D  Blitter    Video    NAME
+50783     109M     107M |▎       ||        ||        ||        | neverball
+
+Region breakdown mode (needs more width for best experience):
+
+intel-gpu-top: Intel Dg1 (Gen12) @ /dev/dri/card1 -   18/ 555 MHz;  65% RC6
+          8 irqs/s
+
+         ENGINES     BUSY                                   MI_SEMA MI_WAIT
+       Render/3D    2.52% |▉                              |      0%      0%
+         Blitter    0.00% |                               |      0%      0%
+           Video    0.00% |                               |      0%      0%
+    VideoEnhance    0.00% |                               |      0%      0%
+
+  PID      RAM      RSS     VRAM     VRSS Video NAME
+50783      34M      32M      75M      75M |▏  ||   ||   ||   | neverball
+
+v2:
+ * Now actually per client.
+
+v3:
+ * Track imported dma-buf objects.
+
+v4:
+ * Rely on DRM GEM handles for tracking user objects.
+ * Fix internal object accounting (no placements).
+
+v5:
+ * Fixed brain fart of overwriting the loop cursor.
+ * Fixed object destruction racing with fdinfo reads.
+ * Take reference to GEM context while using it.
+
+v6:
+ * Rebase, cover letter update.
+
+v7:
+ * New patch in series for making region names consistent and stable.
+
+v8:
+ * New patch in series - stop losing accuracy in drm_file.c::print_size().
+
+Test-with: 20230922134437.234888-1-tvrtko.ursulin@linux.intel.com
+
+Tvrtko Ursulin (7):
+  drm: Do not round to megabytes for greater than 1MiB sizes in fdinfo
+    stats
+  drm/i915: Add ability for tracking buffer objects per client
+  drm/i915: Record which client owns a VM
+  drm/i915: Track page table backing store usage
+  drm/i915: Account ring buffer and context state storage
+  drm/i915: Add stable memory region names
+  drm/i915: Implement fdinfo memory stats printing
+
+ drivers/gpu/drm/drm_file.c                    |   2 +-
+ drivers/gpu/drm/i915/gem/i915_gem_context.c   |  11 +-
+ .../gpu/drm/i915/gem/i915_gem_context_types.h |   3 +
+ drivers/gpu/drm/i915/gem/i915_gem_object.c    |  13 ++-
+ .../gpu/drm/i915/gem/i915_gem_object_types.h  |  12 ++
+ .../gpu/drm/i915/gem/selftests/mock_context.c |   4 +-
+ drivers/gpu/drm/i915/gt/intel_context.c       |  14 +++
+ drivers/gpu/drm/i915/gt/intel_gtt.c           |   6 +
+ drivers/gpu/drm/i915/gt/intel_gtt.h           |   1 +
+ drivers/gpu/drm/i915/i915_drm_client.c        | 110 ++++++++++++++++++
+ drivers/gpu/drm/i915/i915_drm_client.h        |  41 +++++++
+ drivers/gpu/drm/i915/intel_memory_region.c    |  19 +++
+ drivers/gpu/drm/i915/intel_memory_region.h    |   1 +
+ 13 files changed, 228 insertions(+), 9 deletions(-)
+
 -- 
-2.29.0
+2.39.2
 
