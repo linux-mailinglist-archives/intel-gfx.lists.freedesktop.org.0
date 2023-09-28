@@ -2,58 +2,32 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id C826B7B1CE7
-	for <lists+intel-gfx@lfdr.de>; Thu, 28 Sep 2023 14:48:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id D1AA57B1CEB
+	for <lists+intel-gfx@lfdr.de>; Thu, 28 Sep 2023 14:50:11 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3BCC210E637;
-	Thu, 28 Sep 2023 12:48:50 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5811010E637;
+	Thu, 28 Sep 2023 12:50:10 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2A90210E637;
- Thu, 28 Sep 2023 12:48:48 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1695905328; x=1727441328;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=bdrsY/kj7jg5CUzDEi2byA8LeQu2etFt6Ye3jbAV3CU=;
- b=dnAxr1IvhVKqBqncZUPkfTeTYLDF3CWnQ+Myx/gtH/fBOSiSY+TuFIbD
- /xBf9Uy8TcEtTZ/af9RkBXIqWmSxW1ttHTw5PpjdF+CVWSnLe83yIG473
- isL0M+YuoExRxmbRDqwrHo/OPBKG7FKLsKSoeiVYUaCSjxETrAJpdtYeC
- 4I97Iiol5JBhH4vUWpjJpqDMWJvh+nR/1xr2sSofNDtRC4PXPXzo5uHoI
- GWBfaTemLslKa2M5VROsh5UsR7PHw2lTzVIv4tY17qorLyKoSOgYh/I+Q
- hpNRQ4zS2MoSgMV3P0YDhzDyXOnu6aILtt44XXnsCLDeAaOhqN/HO2spb Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10846"; a="372404877"
-X-IronPort-AV: E=Sophos;i="6.03,184,1694761200"; d="scan'208";a="372404877"
-Received: from fmsmga007.fm.intel.com ([10.253.24.52])
- by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Sep 2023 05:48:38 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10846"; a="752949922"
-X-IronPort-AV: E=Sophos;i="6.03,184,1694761200"; d="scan'208";a="752949922"
-Received: from nlachman-mobl.ger.corp.intel.com (HELO [10.213.204.130])
- ([10.213.204.130])
- by fmsmga007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Sep 2023 05:48:36 -0700
-Message-ID: <6d8c7fd2-9eca-14fd-6b44-edeb15a6e6ac@linux.intel.com>
-Date: Thu, 28 Sep 2023 13:48:34 +0100
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id CAC2E10E637;
+ Thu, 28 Sep 2023 12:50:08 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id B395CAADD1;
+ Thu, 28 Sep 2023 12:50:08 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============8376379282999714114=="
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.15.1
-Content-Language: en-US
-To: "Belgaumkar, Vinay" <vinay.belgaumkar@intel.com>,
- intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
-References: <20230920215624.3482244-1-vinay.belgaumkar@intel.com>
- <5f7f3950-bc9b-06cf-611c-46c360bb90e9@linux.intel.com>
- <915a5e08-5daf-153d-cb82-b0f9e5bd3b2a@intel.com>
-From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-Organization: Intel Corporation UK Plc
-In-Reply-To: <915a5e08-5daf-153d-cb82-b0f9e5bd3b2a@intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-Subject: Re: [Intel-gfx] [PATCH] drm/i915/gem: Allow users to disable
- waitboost
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Tvrtko Ursulin" <tvrtko.ursulin@linux.intel.com>
+Date: Thu, 28 Sep 2023 12:50:08 -0000
+Message-ID: <169590540873.21268.179480651079869881@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20230928100604.285923-1-tvrtko.ursulin@linux.intel.com>
+In-Reply-To: <20230928100604.285923-1-tvrtko.ursulin@linux.intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
+ =?utf-8?q?/i915/perf=3A_Simplify_perf_query_implementation?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -66,148 +40,334 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Rob Clark <robdclark@chromium.org>, carl.zhang@intel.com,
- Rodrigo Vivi <rodrigo.vivi@intel.com>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+--===============8376379282999714114==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-On 27/09/2023 20:34, Belgaumkar, Vinay wrote:
-> 
-> On 9/21/2023 3:41 AM, Tvrtko Ursulin wrote:
->>
->> On 20/09/2023 22:56, Vinay Belgaumkar wrote:
->>> Provide a bit to disable waitboost while waiting on a gem object.
->>> Waitboost results in increased power consumption by requesting RP0
->>> while waiting for the request to complete. Add a bit in the gem_wait()
->>> IOCTL where this can be disabled.
->>>
->>> This is related to the libva API change here -
->>> Link: 
->>> https://github.com/XinfengZhang/libva/commit/3d90d18c67609a73121bb71b20ee4776b54b61a7
->>
->> This link does not appear to lead to userspace code using this uapi?
-> We have asked Carl (cc'd) to post a patch for the same.
+== Series Details ==
 
-Ack.
+Series: drm/i915/perf: Simplify perf query implementation
+URL   : https://patchwork.freedesktop.org/series/124385/
+State : success
 
->>> Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
->>> Signed-off-by: Vinay Belgaumkar <vinay.belgaumkar@intel.com>
->>> ---
->>>   drivers/gpu/drm/i915/gem/i915_gem_wait.c | 9 ++++++---
->>>   drivers/gpu/drm/i915/i915_request.c      | 3 ++-
->>>   drivers/gpu/drm/i915/i915_request.h      | 1 +
->>>   include/uapi/drm/i915_drm.h              | 1 +
->>>   4 files changed, 10 insertions(+), 4 deletions(-)
->>>
->>> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_wait.c 
->>> b/drivers/gpu/drm/i915/gem/i915_gem_wait.c
->>> index d4b918fb11ce..955885ec859d 100644
->>> --- a/drivers/gpu/drm/i915/gem/i915_gem_wait.c
->>> +++ b/drivers/gpu/drm/i915/gem/i915_gem_wait.c
->>> @@ -72,7 +72,8 @@ i915_gem_object_wait_reservation(struct dma_resv 
->>> *resv,
->>>       struct dma_fence *fence;
->>>       long ret = timeout ?: 1;
->>>   -    i915_gem_object_boost(resv, flags);
->>> +    if (!(flags & I915_WAITBOOST_DISABLE))
->>> +        i915_gem_object_boost(resv, flags);
->>>         dma_resv_iter_begin(&cursor, resv,
->>>                   dma_resv_usage_rw(flags & I915_WAIT_ALL));
->>> @@ -236,7 +237,7 @@ i915_gem_wait_ioctl(struct drm_device *dev, void 
->>> *data, struct drm_file *file)
->>>       ktime_t start;
->>>       long ret;
->>>   -    if (args->flags != 0)
->>> +    if (args->flags != 0 || args->flags != I915_GEM_WAITBOOST_DISABLE)
->>>           return -EINVAL;
->>>         obj = i915_gem_object_lookup(file, args->bo_handle);
->>> @@ -248,7 +249,9 @@ i915_gem_wait_ioctl(struct drm_device *dev, void 
->>> *data, struct drm_file *file)
->>>       ret = i915_gem_object_wait(obj,
->>>                      I915_WAIT_INTERRUPTIBLE |
->>>                      I915_WAIT_PRIORITY |
->>> -                   I915_WAIT_ALL,
->>> +                   I915_WAIT_ALL |
->>> +                   (args->flags & I915_GEM_WAITBOOST_DISABLE ?
->>> +                    I915_WAITBOOST_DISABLE : 0),
->>>                      to_wait_timeout(args->timeout_ns));
->>>         if (args->timeout_ns > 0) {
->>> diff --git a/drivers/gpu/drm/i915/i915_request.c 
->>> b/drivers/gpu/drm/i915/i915_request.c
->>> index f59081066a19..2957409b4b2a 100644
->>> --- a/drivers/gpu/drm/i915/i915_request.c
->>> +++ b/drivers/gpu/drm/i915/i915_request.c
->>> @@ -2044,7 +2044,8 @@ long i915_request_wait_timeout(struct 
->>> i915_request *rq,
->>>        * but at a cost of spending more power processing the workload
->>>        * (bad for battery).
->>>        */
->>> -    if (flags & I915_WAIT_PRIORITY && !i915_request_started(rq))
->>> +    if (!(flags & I915_WAITBOOST_DISABLE) && (flags & 
->>> I915_WAIT_PRIORITY) &&
->>> +        !i915_request_started(rq))
->>>           intel_rps_boost(rq);
->>>         wait.tsk = current;
->>> diff --git a/drivers/gpu/drm/i915/i915_request.h 
->>> b/drivers/gpu/drm/i915/i915_request.h
->>> index 0ac55b2e4223..3cc00e8254dc 100644
->>> --- a/drivers/gpu/drm/i915/i915_request.h
->>> +++ b/drivers/gpu/drm/i915/i915_request.h
->>> @@ -445,6 +445,7 @@ long i915_request_wait(struct i915_request *rq,
->>>   #define I915_WAIT_INTERRUPTIBLE    BIT(0)
->>>   #define I915_WAIT_PRIORITY    BIT(1) /* small priority bump for the 
->>> request */
->>>   #define I915_WAIT_ALL        BIT(2) /* used by 
->>> i915_gem_object_wait() */
->>> +#define I915_WAITBOOST_DISABLE    BIT(3) /* used by 
->>> i915_gem_object_wait() */
->>>     void i915_request_show(struct drm_printer *m,
->>>                  const struct i915_request *rq,
->>> diff --git a/include/uapi/drm/i915_drm.h b/include/uapi/drm/i915_drm.h
->>> index 7000e5910a1d..4adee70e39cf 100644
->>> --- a/include/uapi/drm/i915_drm.h
->>> +++ b/include/uapi/drm/i915_drm.h
->>> @@ -1928,6 +1928,7 @@ struct drm_i915_gem_wait {
->>>       /** Handle of BO we shall wait on */
->>>       __u32 bo_handle;
->>>       __u32 flags;
->>> +#define I915_GEM_WAITBOOST_DISABLE      (1u<<0)
->>
->> Probably would be good to avoid mentioning waitboost in the uapi since 
->> so far it wasn't an explicit feature/contract. Something like 
->> I915_GEM_WAIT_BACKGROUND_PRIORITY? Low priority?
-> sure.
->>
->> I also wonder if there could be a possible angle to help Rob (+cc) 
->> upstream the syncobj/fence deadline code if our media driver might 
->> make use of that somehow.
->>
->> Like if either we could wire up the deadline into GEM_WAIT (in a 
->> backward compatible manner), or if media could use sync fd wait 
->> instead. Assuming they have an out fence already, which may not be true.
-> 
-> Makes sense. We could add a SET_DEADLINE flag or something similar and 
-> pass in the deadline when appropriate.
+== Summary ==
 
-Rob - do you have time and motivation to think about this angle at all 
-currently? If not I guess we just proceed with the new flag for our 
-GEM_WAIT.
+CI Bug Log - changes from CI_DRM_13689 -> Patchwork_124385v1
+====================================================
 
-Regards,
+Summary
+-------
 
-Tvrtko
+  **SUCCESS**
 
-> 
-> Thanks,
-> 
-> Vinay.
-> 
->>
->> Regards,
->>
->> Tvrtko
->>
->>>       /** Number of nanoseconds to wait, Returns time remaining. */
->>>       __s64 timeout_ns;
->>>   };
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_124385v1/index.html
+
+Participating hosts (34 -> 40)
+------------------------------
+
+  Additional (7): fi-kbl-soraka bat-kbl-2 fi-cfl-8700k fi-apl-guc fi-kbl-guc fi-ivb-3770 fi-skl-6600u 
+  Missing    (1): fi-snb-2520m 
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_124385v1 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@fbdev@info:
+    - bat-kbl-2:          NOTRUN -> [SKIP][1] ([fdo#109271] / [i915#1849])
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_124385v1/bat-kbl-2/igt@fbdev@info.html
+    - fi-kbl-guc:         NOTRUN -> [SKIP][2] ([fdo#109271] / [i915#1849])
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_124385v1/fi-kbl-guc/igt@fbdev@info.html
+
+  * igt@gem_huc_copy@huc-copy:
+    - fi-cfl-8700k:       NOTRUN -> [SKIP][3] ([fdo#109271] / [i915#2190])
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_124385v1/fi-cfl-8700k/igt@gem_huc_copy@huc-copy.html
+    - fi-skl-6600u:       NOTRUN -> [SKIP][4] ([fdo#109271] / [i915#2190])
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_124385v1/fi-skl-6600u/igt@gem_huc_copy@huc-copy.html
+    - fi-kbl-soraka:      NOTRUN -> [SKIP][5] ([fdo#109271] / [i915#2190])
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_124385v1/fi-kbl-soraka/igt@gem_huc_copy@huc-copy.html
+
+  * igt@gem_lmem_swapping@basic:
+    - fi-apl-guc:         NOTRUN -> [SKIP][6] ([fdo#109271] / [i915#4613]) +3 other tests skip
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_124385v1/fi-apl-guc/igt@gem_lmem_swapping@basic.html
+    - fi-kbl-soraka:      NOTRUN -> [SKIP][7] ([fdo#109271] / [i915#4613]) +3 other tests skip
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_124385v1/fi-kbl-soraka/igt@gem_lmem_swapping@basic.html
+    - fi-cfl-8700k:       NOTRUN -> [SKIP][8] ([fdo#109271] / [i915#4613]) +3 other tests skip
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_124385v1/fi-cfl-8700k/igt@gem_lmem_swapping@basic.html
+    - fi-kbl-guc:         NOTRUN -> [SKIP][9] ([fdo#109271] / [i915#4613]) +3 other tests skip
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_124385v1/fi-kbl-guc/igt@gem_lmem_swapping@basic.html
+
+  * igt@gem_lmem_swapping@parallel-random-engines:
+    - bat-kbl-2:          NOTRUN -> [SKIP][10] ([fdo#109271]) +39 other tests skip
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_124385v1/bat-kbl-2/igt@gem_lmem_swapping@parallel-random-engines.html
+
+  * igt@gem_lmem_swapping@random-engines:
+    - fi-skl-6600u:       NOTRUN -> [SKIP][11] ([fdo#109271] / [i915#4613]) +3 other tests skip
+   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_124385v1/fi-skl-6600u/igt@gem_lmem_swapping@random-engines.html
+
+  * igt@i915_module_load@reload:
+    - fi-kbl-soraka:      NOTRUN -> [DMESG-WARN][12] ([i915#1982])
+   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_124385v1/fi-kbl-soraka/igt@i915_module_load@reload.html
+
+  * igt@i915_selftest@live@gt_pm:
+    - fi-kbl-soraka:      NOTRUN -> [DMESG-FAIL][13] ([i915#1886] / [i915#7913])
+   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_124385v1/fi-kbl-soraka/igt@i915_selftest@live@gt_pm.html
+
+  * igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic:
+    - fi-kbl-soraka:      NOTRUN -> [SKIP][14] ([fdo#109271]) +9 other tests skip
+   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_124385v1/fi-kbl-soraka/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html
+
+  * igt@kms_cursor_legacy@basic-flip-before-cursor-legacy:
+    - fi-kbl-guc:         NOTRUN -> [SKIP][15] ([fdo#109271] / [i915#1845]) +8 other tests skip
+   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_124385v1/fi-kbl-guc/igt@kms_cursor_legacy@basic-flip-before-cursor-legacy.html
+
+  * igt@kms_dsc@dsc-basic:
+    - fi-skl-6600u:       NOTRUN -> [SKIP][16] ([fdo#109271]) +8 other tests skip
+   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_124385v1/fi-skl-6600u/igt@kms_dsc@dsc-basic.html
+
+  * igt@kms_force_connector_basic@force-load-detect:
+    - fi-cfl-8700k:       NOTRUN -> [SKIP][17] ([fdo#109271]) +10 other tests skip
+   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_124385v1/fi-cfl-8700k/igt@kms_force_connector_basic@force-load-detect.html
+
+  * igt@kms_hdmi_inject@inject-audio:
+    - fi-apl-guc:         NOTRUN -> [SKIP][18] ([fdo#109271]) +16 other tests skip
+   [18]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_124385v1/fi-apl-guc/igt@kms_hdmi_inject@inject-audio.html
+    - fi-kbl-guc:         NOTRUN -> [FAIL][19] ([IGT#3])
+   [19]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_124385v1/fi-kbl-guc/igt@kms_hdmi_inject@inject-audio.html
+
+  * igt@kms_pipe_crc_basic@suspend-read-crc@pipe-c-vga-1:
+    - fi-ivb-3770:        NOTRUN -> [DMESG-WARN][20] ([i915#8841]) +6 other tests dmesg-warn
+   [20]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_124385v1/fi-ivb-3770/igt@kms_pipe_crc_basic@suspend-read-crc@pipe-c-vga-1.html
+
+  * igt@kms_psr@cursor_plane_move:
+    - fi-ivb-3770:        NOTRUN -> [SKIP][21] ([fdo#109271]) +21 other tests skip
+   [21]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_124385v1/fi-ivb-3770/igt@kms_psr@cursor_plane_move.html
+    - fi-kbl-guc:         NOTRUN -> [SKIP][22] ([fdo#109271]) +25 other tests skip
+   [22]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_124385v1/fi-kbl-guc/igt@kms_psr@cursor_plane_move.html
+
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+  [IGT#3]: https://gitlab.freedesktop.org/drm/igt-gpu-tools/issues/3
+  [Intel XE#485]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/485
+  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
+  [i915#1845]: https://gitlab.freedesktop.org/drm/intel/issues/1845
+  [i915#1849]: https://gitlab.freedesktop.org/drm/intel/issues/1849
+  [i915#1886]: https://gitlab.freedesktop.org/drm/intel/issues/1886
+  [i915#1982]: https://gitlab.freedesktop.org/drm/intel/issues/1982
+  [i915#2190]: https://gitlab.freedesktop.org/drm/intel/issues/2190
+  [i915#4613]: https://gitlab.freedesktop.org/drm/intel/issues/4613
+  [i915#7913]: https://gitlab.freedesktop.org/drm/intel/issues/7913
+  [i915#8841]: https://gitlab.freedesktop.org/drm/intel/issues/8841
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_13689 -> Patchwork_124385v1
+
+  CI-20190529: 20190529
+  CI_DRM_13689: 5933eb0a0717a28e668d33e01a707311d31cebbb @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_7506: 4fdf544bd0a38c5a100ef43c30171827e1c8c442 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  Patchwork_124385v1: 5933eb0a0717a28e668d33e01a707311d31cebbb @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+### Linux commits
+
+f3e0bfd2f090 drm/i915/perf: Simplify perf query implementation
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_124385v1/index.html
+
+--===============8376379282999714114==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/i915/perf: Simplify perf query implementation</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/124385/">https://patchwork.freedesktop.org/series/124385/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_124385v1/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_124385v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_13689 -&gt; Patchwork_124385v1</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_124385v1/index.html</p>
+<h2>Participating hosts (34 -&gt; 40)</h2>
+<p>Additional (7): fi-kbl-soraka bat-kbl-2 fi-cfl-8700k fi-apl-guc fi-kbl-guc fi-ivb-3770 fi-skl-6600u <br />
+  Missing    (1): fi-snb-2520m </p>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_124385v1 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@fbdev@info:</p>
+<ul>
+<li>
+<p>bat-kbl-2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_124385v1/bat-kbl-2/igt@fbdev@info.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/1849">i915#1849</a>)</p>
+</li>
+<li>
+<p>fi-kbl-guc:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_124385v1/fi-kbl-guc/igt@fbdev@info.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/1849">i915#1849</a>)</p>
+</li>
+</ul>
+</li>
+<li>
+<p>igt@gem_huc_copy@huc-copy:</p>
+<ul>
+<li>
+<p>fi-cfl-8700k:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_124385v1/fi-cfl-8700k/igt@gem_huc_copy@huc-copy.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/2190">i915#2190</a>)</p>
+</li>
+<li>
+<p>fi-skl-6600u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_124385v1/fi-skl-6600u/igt@gem_huc_copy@huc-copy.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/2190">i915#2190</a>)</p>
+</li>
+<li>
+<p>fi-kbl-soraka:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_124385v1/fi-kbl-soraka/igt@gem_huc_copy@huc-copy.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/2190">i915#2190</a>)</p>
+</li>
+</ul>
+</li>
+<li>
+<p>igt@gem_lmem_swapping@basic:</p>
+<ul>
+<li>
+<p>fi-apl-guc:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_124385v1/fi-apl-guc/igt@gem_lmem_swapping@basic.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/4613">i915#4613</a>) +3 other tests skip</p>
+</li>
+<li>
+<p>fi-kbl-soraka:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_124385v1/fi-kbl-soraka/igt@gem_lmem_swapping@basic.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/4613">i915#4613</a>) +3 other tests skip</p>
+</li>
+<li>
+<p>fi-cfl-8700k:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_124385v1/fi-cfl-8700k/igt@gem_lmem_swapping@basic.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/4613">i915#4613</a>) +3 other tests skip</p>
+</li>
+<li>
+<p>fi-kbl-guc:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_124385v1/fi-kbl-guc/igt@gem_lmem_swapping@basic.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/4613">i915#4613</a>) +3 other tests skip</p>
+</li>
+</ul>
+</li>
+<li>
+<p>igt@gem_lmem_swapping@parallel-random-engines:</p>
+<ul>
+<li>bat-kbl-2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_124385v1/bat-kbl-2/igt@gem_lmem_swapping@parallel-random-engines.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +39 other tests skip</li>
+</ul>
+</li>
+<li>
+<p>igt@gem_lmem_swapping@random-engines:</p>
+<ul>
+<li>fi-skl-6600u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_124385v1/fi-skl-6600u/igt@gem_lmem_swapping@random-engines.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/4613">i915#4613</a>) +3 other tests skip</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_module_load@reload:</p>
+<ul>
+<li>fi-kbl-soraka:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_124385v1/fi-kbl-soraka/igt@i915_module_load@reload.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1982">i915#1982</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@gt_pm:</p>
+<ul>
+<li>fi-kbl-soraka:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_124385v1/fi-kbl-soraka/igt@i915_selftest@live@gt_pm.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1886">i915#1886</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/7913">i915#7913</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic:</p>
+<ul>
+<li>fi-kbl-soraka:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_124385v1/fi-kbl-soraka/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +9 other tests skip</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_cursor_legacy@basic-flip-before-cursor-legacy:</p>
+<ul>
+<li>fi-kbl-guc:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_124385v1/fi-kbl-guc/igt@kms_cursor_legacy@basic-flip-before-cursor-legacy.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/1845">i915#1845</a>) +8 other tests skip</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_dsc@dsc-basic:</p>
+<ul>
+<li>fi-skl-6600u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_124385v1/fi-skl-6600u/igt@kms_dsc@dsc-basic.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +8 other tests skip</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_force_connector_basic@force-load-detect:</p>
+<ul>
+<li>fi-cfl-8700k:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_124385v1/fi-cfl-8700k/igt@kms_force_connector_basic@force-load-detect.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +10 other tests skip</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_hdmi_inject@inject-audio:</p>
+<ul>
+<li>
+<p>fi-apl-guc:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_124385v1/fi-apl-guc/igt@kms_hdmi_inject@inject-audio.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +16 other tests skip</p>
+</li>
+<li>
+<p>fi-kbl-guc:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_124385v1/fi-kbl-guc/igt@kms_hdmi_inject@inject-audio.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/igt-gpu-tools/issues/3">IGT#3</a>)</p>
+</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_pipe_crc_basic@suspend-read-crc@pipe-c-vga-1:</p>
+<ul>
+<li>fi-ivb-3770:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_124385v1/fi-ivb-3770/igt@kms_pipe_crc_basic@suspend-read-crc@pipe-c-vga-1.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/8841">i915#8841</a>) +6 other tests dmesg-warn</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_psr@cursor_plane_move:</p>
+<ul>
+<li>
+<p>fi-ivb-3770:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_124385v1/fi-ivb-3770/igt@kms_psr@cursor_plane_move.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +21 other tests skip</p>
+</li>
+<li>
+<p>fi-kbl-guc:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_124385v1/fi-kbl-guc/igt@kms_psr@cursor_plane_move.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +25 other tests skip</p>
+</li>
+</ul>
+</li>
+</ul>
+<p>{name}: This element is suppressed. This means it is ignored when computing<br />
+          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_13689 -&gt; Patchwork_124385v1</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_13689: 5933eb0a0717a28e668d33e01a707311d31cebbb @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_7506: 4fdf544bd0a38c5a100ef43c30171827e1c8c442 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  Patchwork_124385v1: 5933eb0a0717a28e668d33e01a707311d31cebbb @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+<h3>Linux commits</h3>
+<p>f3e0bfd2f090 drm/i915/perf: Simplify perf query implementation</p>
+
+</body>
+</html>
+
+--===============8376379282999714114==--
