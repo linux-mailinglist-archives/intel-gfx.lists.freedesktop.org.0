@@ -2,69 +2,69 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id B3FDC7B2521
-	for <lists+intel-gfx@lfdr.de>; Thu, 28 Sep 2023 20:20:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6069A7B2520
+	for <lists+intel-gfx@lfdr.de>; Thu, 28 Sep 2023 20:20:33 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BDDD810E671;
-	Thu, 28 Sep 2023 18:20:32 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3F12B10E69D;
+	Thu, 28 Sep 2023 18:20:31 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-ed1-x531.google.com (mail-ed1-x531.google.com
- [IPv6:2a00:1450:4864:20::531])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DD48910E671
- for <intel-gfx@lists.freedesktop.org>; Thu, 28 Sep 2023 18:20:25 +0000 (UTC)
-Received: by mail-ed1-x531.google.com with SMTP id
- 4fb4d7f45d1cf-533c4d20b33so21938069a12.0
- for <intel-gfx@lists.freedesktop.org>; Thu, 28 Sep 2023 11:20:25 -0700 (PDT)
+Received: from mail-ed1-x532.google.com (mail-ed1-x532.google.com
+ [IPv6:2a00:1450:4864:20::532])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id F31E410E42B
+ for <intel-gfx@lists.freedesktop.org>; Thu, 28 Sep 2023 18:20:26 +0000 (UTC)
+Received: by mail-ed1-x532.google.com with SMTP id
+ 4fb4d7f45d1cf-533c8f8f91dso13335275a12.0
+ for <intel-gfx@lists.freedesktop.org>; Thu, 28 Sep 2023 11:20:26 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=grsecurity.net; s=grsec; t=1695925224; x=1696530024;
+ d=grsecurity.net; s=grsec; t=1695925225; x=1696530025;
  darn=lists.freedesktop.org; 
  h=content-transfer-encoding:mime-version:references:in-reply-to
  :message-id:date:subject:cc:to:from:from:to:cc:subject:date
  :message-id:reply-to;
- bh=EI2YzzcKUCiF7lZbRgcHwM4EN4t6CQq5CMaA4SHlRhs=;
- b=fcE01b/6WQjGMBP2YaY4y6PkmWOEiVNG6xEcJuDmvERG/hz8eEB3cm0e+I6BLx5QIl
- /PCzrj8hbgo2t4pxIVA7L61lYAqPf3PAntEeh4lKCnD5e9OYF+Ba/+MVoRO1P0ja3pED
- WVEdnt6n785/OtMedYK6Go7n4d1f5GuaUCabvSH9J+9W3nuwGPg54rZwuHVVU+7MjZ44
- vaPekcyVZkARvHZYoOSEPNu8ZA+gBGhu9DL3ZUu/2uOC+ktjqAUK7f2pmFaPijtFgupe
- QoVwibJzuYMIVP2qtkAA1FfhL8jhc6HsWdpO9XPH0/hCwKQ44b0V5az1SJEDRXZsU6ay
- D8Zg==
+ bh=tJi60qNLYemWDYXP7S9Bz81AcFA5FGWArg4wRZwu8sc=;
+ b=BgKodeqXFwax3vmVnATw8+T2ukggQ6s1Hp/7MW0bQdI4sKKWnC+57MKRj9vy95mBF2
+ CqXuwbItHpgbosEmr6An+z+U64p9rZHsNgRjLblydt1LwIsqHVG61c5yWCpYgPUBma0Y
+ Rf4hYcChPExowBgjQ9rfYgdBgJCDXzrZp+l9VxHOEIVMidwdtdW89hOG6HPKPKVvloC2
+ 6PbaMrbmMt+q69odds5ZmltpiGPEHfyYXev48D19qcnLsnbKx6SU9pQ1xK3CdUOWbL6g
+ 5dJIfIao5Q0+BhF5ywRpLeIFT96fzFPoZUE8oEcAS7t61ekaImK/nkdKWhzMjv/PcTzL
+ RyiQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1695925224; x=1696530024;
+ d=1e100.net; s=20230601; t=1695925225; x=1696530025;
  h=content-transfer-encoding:mime-version:references:in-reply-to
  :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
  :subject:date:message-id:reply-to;
- bh=EI2YzzcKUCiF7lZbRgcHwM4EN4t6CQq5CMaA4SHlRhs=;
- b=gdFu0k9HUu8On2jYqSxr9Mey5OrDZ4KPYfbNMbuRG1QLY1UI1xJWU34Zkt+kZzHUfd
- 3cnheICvBqbGT7uW33xRAktFCssmxAukww4AjeB19MWQHPOcpYdOWt12INfhgVbgs6DC
- +oAhV019cNeOra44KIQV/do1UeS8Rg1SA9AZjiGGPnbum/Nvzcb2phY0dXGwcgKyR3f/
- W1fjjvpY0H6iOkuqs6hkE+4Kd146yCHyepH5RNcBkEpHkA8+b42FnuR15u9kSrD6T4K1
- SKoyiv4RNr2Riw9P/mafBZz5S7jdnptjWYBDCATAf5Rb7FgKdLyzgoudIirH3eNuM24e
- +EKg==
-X-Gm-Message-State: AOJu0YyN6ueTncSvJ/TMLgAcFaQcQv5P7pD4dx4QZmZ0gYERe+KVZZOJ
- 9+2wb4w78ASom3+rkE7WaO87mW9NBvkk/VKdkrw=
-X-Google-Smtp-Source: AGHT+IHVwFgPZNfSjlw6S9i5XTnfUacT2QeNagGfUgRz6l2QOaH+jhOhMpjTBvLXmioc+j8ct5JE3w==
-X-Received: by 2002:a05:6402:50c8:b0:536:169a:4ac3 with SMTP id
- h8-20020a05640250c800b00536169a4ac3mr1709185edb.8.1695925223969; 
- Thu, 28 Sep 2023 11:20:23 -0700 (PDT)
+ bh=tJi60qNLYemWDYXP7S9Bz81AcFA5FGWArg4wRZwu8sc=;
+ b=ijC35GYCVYZ3ChpAstPLEINWogo4wOMimTfkkqJNkT/3aPlT5a3PKE16r2nblOSJ0y
+ wiQD1jS8rKUHjhK/aAq7b4Vmm9xtGtfecHnKIaBd8vHwpAkxmA6UCGikceTkdACRQNiq
+ GKXSHIOsBFV+gkF3W+p+on7USAG8qrdomgQzw2XmG3gIAVqFMV78Bc4r/HlsSEpa6RlY
+ 3F3u8BG5w6CXcwU7Fviuu5poWyDmvmY55b67DiUiR1gkvM69OihHNEHYxHZRRK9IvGJ8
+ auU5IWu6AgUTGK/JpuFxuzECtNiFoiJ4r+tulvwGaK2zFvFyWIOkuJzxR40BuzL/A2/Z
+ xd+g==
+X-Gm-Message-State: AOJu0YxYvsYC0Wd9a6OnuXqc3IEJ/DKABN8Qmvyuw1ga2fdzwy8RuqKq
+ Ac0XFzfZjqZboPuDZ/nJD26XqQlNPPxzS752ebg=
+X-Google-Smtp-Source: AGHT+IG3Bf9BQCzMXzFcHzEqRo/iV2jJJg6pGAwGAZ4gdfHYx5jThvb8PTlX1HNe5abfI6I3NeLAEg==
+X-Received: by 2002:aa7:c1d4:0:b0:532:c72e:26fb with SMTP id
+ d20-20020aa7c1d4000000b00532c72e26fbmr1786461edp.6.1695925224916; 
+ Thu, 28 Sep 2023 11:20:24 -0700 (PDT)
 Received: from x1.fritz.box
  (p200300f6af043200d2a06d439b047d41.dip0.t-ipconnect.de.
  [2003:f6:af04:3200:d2a0:6d43:9b04:7d41])
  by smtp.gmail.com with ESMTPSA id
- g7-20020aa7d1c7000000b0053112d6a40esm10114765edp.82.2023.09.28.11.20.23
+ g7-20020aa7d1c7000000b0053112d6a40esm10114765edp.82.2023.09.28.11.20.24
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Thu, 28 Sep 2023 11:20:23 -0700 (PDT)
+ Thu, 28 Sep 2023 11:20:24 -0700 (PDT)
 From: Mathias Krause <minipli@grsecurity.net>
 To: intel-gfx@lists.freedesktop.org
-Date: Thu, 28 Sep 2023 20:20:18 +0200
-Message-Id: <20230928182019.10256-2-minipli@grsecurity.net>
+Date: Thu, 28 Sep 2023 20:20:19 +0200
+Message-Id: <20230928182019.10256-3-minipli@grsecurity.net>
 X-Mailer: git-send-email 2.39.2
 In-Reply-To: <20230928182019.10256-1-minipli@grsecurity.net>
 References: <20230928182019.10256-1-minipli@grsecurity.net>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH v2 1/2] drm/i915: Register engines early to
- avoid type confusion
+Subject: [Intel-gfx] [PATCH v2 2/2] drm/i915: Clarify type evolution of
+ uabi_node/uabi_engines
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -77,85 +77,144 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Jonathan Cavitt <jonathan.cavitt@intel.com>,
- Mathias Krause <minipli@grsecurity.net>
+Cc: Mathias Krause <minipli@grsecurity.net>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Commit 1ec23ed7126e ("drm/i915: Use uabi engines for the default engine
-map") switched from using for_each_engine() to for_each_uabi_engine() to
-iterate over the user engines. While this seems to be a sensible change,
-it's only safe to do when the engines are actually chained using the
-rb-tree structure which is not the case during early driver
-initialization where it can be either a lock-less list or regular
-double-linked list.
+Chaining user engines happens in multiple passes during driver
+initialization, mutating its type along the way. It starts off with a
+simple lock-less linked list (struct llist_node/head) populated by
+intel_engine_add_user() which later gets sorted and converted to an
+intermediate regular list (struct list_head) just to be converted once
+more to its final rb-tree structure (struct rb_node/root) in
+intel_engines_driver_register().
 
-In fact, the modesetting initialization code may end up calling
-default_engines() through the fb helper code while the engines list
-is still llist_node-based:
+All of these types overlay the uabi_node/uabi_engines members which is
+unfortunate but safe if one takes care about using the rb-tree based
+structure only after the conversion has completed. However, mistakes
+happen and commit 1ec23ed7126e ("drm/i915: Use uabi engines for the
+default engine map") violated that assumption, as the multiple type
+evolution was all to easy hidden behind casts papering over it.
 
-  i915_driver_probe() ->
-    intel_display_driver_probe() ->
-      intel_fbdev_init() ->
-        drm_fb_helper_init() ->
-          drm_client_init() ->
-            drm_client_open() ->
-              drm_file_alloc() ->
-                i915_driver_open() ->
-                  i915_gem_open() ->
-                    i915_gem_context_open() ->
-                      i915_gem_create_context() ->
-                        default_engines()
+Make the type evolution of uabi_node/uabi_engines more visible by
+putting all members into an anonymous union and use the correctly typed
+member in its various users. This allows us to drop quite some ugly
+casts and, hopefully, make the evolution of the members better
+recognisable to avoid future mistakes.
 
-Using for_each_uabi_engine() in default_engines() is therefore wrong, as
-it would try to interpret the llist as rb-tree, making it find no engine
-at all, as the rb_left and rb_right members will still be NULL, as they
-haven't been initialized yet.
-
-To fix this type confusion register the engines earlier and at the same
-time reduce the amount of code that has to deal with the intermediate
-llist state.
-
-Reported-by: sanitiy checks in grsecurity
-Suggested-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
-Fixes: 1ec23ed7126e ("drm/i915: Use uabi engines for the default engine map")
 Signed-off-by: Mathias Krause <minipli@grsecurity.net>
-Cc: Jonathan Cavitt <jonathan.cavitt@intel.com>
-Cc: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
 ---
-Tested on my ADL systems just fine, no rb-tree related type confusion
-any more, as expected.
+ drivers/gpu/drm/i915/gt/intel_engine_types.h | 10 +++++++++-
+ drivers/gpu/drm/i915/gt/intel_engine_user.c  | 17 +++++++----------
+ drivers/gpu/drm/i915/i915_drv.h              | 17 ++++++++++++++++-
+ 3 files changed, 32 insertions(+), 12 deletions(-)
 
- drivers/gpu/drm/i915/i915_gem.c | 9 +++++++--
- 1 file changed, 7 insertions(+), 2 deletions(-)
-
-diff --git a/drivers/gpu/drm/i915/i915_gem.c b/drivers/gpu/drm/i915/i915_gem.c
-index 1f65bb33dd21..a8551ce322de 100644
---- a/drivers/gpu/drm/i915/i915_gem.c
-+++ b/drivers/gpu/drm/i915/i915_gem.c
-@@ -1199,6 +1199,13 @@ int i915_gem_init(struct drm_i915_private *dev_priv)
- 			goto err_unlock;
- 	}
+diff --git a/drivers/gpu/drm/i915/gt/intel_engine_types.h b/drivers/gpu/drm/i915/gt/intel_engine_types.h
+index a7e677598004..7585fffac60b 100644
+--- a/drivers/gpu/drm/i915/gt/intel_engine_types.h
++++ b/drivers/gpu/drm/i915/gt/intel_engine_types.h
+@@ -402,7 +402,15 @@ struct intel_engine_cs {
  
+ 	unsigned long context_tag;
+ 
+-	struct rb_node uabi_node;
 +	/*
-+	 * Register engines early to ensure the engine list is in its final
-+	 * rb-tree form, lowering the amount of code that has to deal with
-+	 * the intermediate llist state.
++	 * The type evolves during initialization, see related comment for
++	 * struct drm_i915_private's uabi_engines member.
 +	 */
-+	intel_engines_driver_register(dev_priv);
-+
- 	return 0;
++	union {
++		struct llist_node uabi_llist;
++		struct list_head uabi_list;
++		struct rb_node uabi_node;
++	};
  
- 	/*
-@@ -1246,8 +1253,6 @@ int i915_gem_init(struct drm_i915_private *dev_priv)
- void i915_gem_driver_register(struct drm_i915_private *i915)
+ 	struct intel_sseu sseu;
+ 
+diff --git a/drivers/gpu/drm/i915/gt/intel_engine_user.c b/drivers/gpu/drm/i915/gt/intel_engine_user.c
+index dcedff41a825..118164ddbb2e 100644
+--- a/drivers/gpu/drm/i915/gt/intel_engine_user.c
++++ b/drivers/gpu/drm/i915/gt/intel_engine_user.c
+@@ -38,8 +38,7 @@ intel_engine_lookup_user(struct drm_i915_private *i915, u8 class, u8 instance)
+ 
+ void intel_engine_add_user(struct intel_engine_cs *engine)
  {
- 	i915_gem_driver_register__shrinker(i915);
--
--	intel_engines_driver_register(i915);
+-	llist_add((struct llist_node *)&engine->uabi_node,
+-		  (struct llist_head *)&engine->i915->uabi_engines);
++	llist_add(&engine->uabi_llist, &engine->i915->uabi_engines_llist);
  }
  
- void i915_gem_driver_unregister(struct drm_i915_private *i915)
+ static const u8 uabi_classes[] = {
+@@ -54,9 +53,9 @@ static int engine_cmp(void *priv, const struct list_head *A,
+ 		      const struct list_head *B)
+ {
+ 	const struct intel_engine_cs *a =
+-		container_of((struct rb_node *)A, typeof(*a), uabi_node);
++		container_of(A, typeof(*a), uabi_list);
+ 	const struct intel_engine_cs *b =
+-		container_of((struct rb_node *)B, typeof(*b), uabi_node);
++		container_of(B, typeof(*b), uabi_list);
+ 
+ 	if (uabi_classes[a->class] < uabi_classes[b->class])
+ 		return -1;
+@@ -73,7 +72,7 @@ static int engine_cmp(void *priv, const struct list_head *A,
+ 
+ static struct llist_node *get_engines(struct drm_i915_private *i915)
+ {
+-	return llist_del_all((struct llist_head *)&i915->uabi_engines);
++	return llist_del_all(&i915->uabi_engines_llist);
+ }
+ 
+ static void sort_engines(struct drm_i915_private *i915,
+@@ -83,9 +82,8 @@ static void sort_engines(struct drm_i915_private *i915,
+ 
+ 	llist_for_each_safe(pos, next, get_engines(i915)) {
+ 		struct intel_engine_cs *engine =
+-			container_of((struct rb_node *)pos, typeof(*engine),
+-				     uabi_node);
+-		list_add((struct list_head *)&engine->uabi_node, engines);
++			container_of(pos, typeof(*engine), uabi_llist);
++		list_add(&engine->uabi_list, engines);
+ 	}
+ 	list_sort(NULL, engines, engine_cmp);
+ }
+@@ -213,8 +211,7 @@ void intel_engines_driver_register(struct drm_i915_private *i915)
+ 	p = &i915->uabi_engines.rb_node;
+ 	list_for_each_safe(it, next, &engines) {
+ 		struct intel_engine_cs *engine =
+-			container_of((struct rb_node *)it, typeof(*engine),
+-				     uabi_node);
++			container_of(it, typeof(*engine), uabi_list);
+ 
+ 		if (intel_gt_has_unrecoverable_error(engine->gt))
+ 			continue; /* ignore incomplete engines */
+diff --git a/drivers/gpu/drm/i915/i915_drv.h b/drivers/gpu/drm/i915/i915_drv.h
+index 7a8ce7239bc9..c8690d1d5e51 100644
+--- a/drivers/gpu/drm/i915/i915_drv.h
++++ b/drivers/gpu/drm/i915/i915_drv.h
+@@ -222,7 +222,22 @@ struct drm_i915_private {
+ 		bool mchbar_need_disable;
+ 	} gmch;
+ 
+-	struct rb_root uabi_engines;
++	/*
++	 * Chaining user engines happens in multiple stages, starting with a
++	 * simple lock-less linked list created by intel_engine_add_user(),
++	 * which later gets sorted and converted to an intermediate regular
++	 * list, just to be converted once again to its final rb tree structure
++	 * in intel_engines_driver_register().
++	 *
++	 * Make sure to use the right iterator helper, depending on if the code
++	 * in question runs before or after intel_engines_driver_register() --
++	 * for_each_uabi_engine() can only be used afterwards!
++	 */
++	union {
++		struct llist_head uabi_engines_llist;
++		struct list_head uabi_engines_list;
++		struct rb_root uabi_engines;
++	};
+ 	unsigned int engine_uabi_class_count[I915_LAST_UABI_ENGINE_CLASS + 1];
+ 
+ 	/* protects the irq masks */
 -- 
 2.39.2
 
