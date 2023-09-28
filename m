@@ -2,51 +2,52 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id D6A987B1E62
-	for <lists+intel-gfx@lfdr.de>; Thu, 28 Sep 2023 15:30:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 66F647B1E5B
+	for <lists+intel-gfx@lfdr.de>; Thu, 28 Sep 2023 15:28:43 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 37CDF10E65E;
-	Thu, 28 Sep 2023 13:30:06 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 37F5C10E662;
+	Thu, 28 Sep 2023 13:28:39 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.100])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2AA9910E65E
- for <intel-gfx@lists.freedesktop.org>; Thu, 28 Sep 2023 13:30:03 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EE70D10E65F;
+ Thu, 28 Sep 2023 13:28:36 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1695907803; x=1727443803;
+ t=1695907717; x=1727443717;
  h=date:from:to:cc:subject:message-id:references:
  mime-version:in-reply-to;
- bh=sSplrfmHP0Vs1N1MPbBZ9krj8vvbCH9pthQp5/xPzEg=;
- b=Q9wPQXGOCLeYA/yPn0Fgl6olNvwOPqjr5b5rliacvYvdGvesX8cUvNr/
- xIlXuDu5IoqyugFeRV3mtf/opJKrciHz3kLJLQGmi78uRqvQTVDpZaFhH
- ElcTglLjlH6eoILRc65Vpebw3Bg9l6UDgLsSatddZeswWzeHace2yiZKk
- T1fzJyO3LVybX3ulul7o+Tv5TdiaZPyHcNnUSbJxZOVm3KNy0uWxgJkLV
- LudFwb2jmS9fuSUGQv592GefeoX0e6g9K6orcg6mcng482UP+4rhmTrP5
- ITgDGdQFvI9Avsnf4gf9UYGL9tkdNbyIcyerVpN3Lf5ekIMJ4AYQ8Xb8M Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10846"; a="448546590"
-X-IronPort-AV: E=Sophos;i="6.03,184,1694761200"; d="scan'208";a="448546590"
-Received: from fmsmga008.fm.intel.com ([10.253.24.58])
- by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Sep 2023 06:25:52 -0700
+ bh=YqaMZ66o5P06nJDpTMUxdS/zsr42Y54Zbu4+HaglCQE=;
+ b=VDwkm46x0zfBOOYZXx4d+JzwEvCytZV7/pfmy5k49cEOOQ2AHaiPuqQI
+ o/zed3r4Fo4mSCkF6I7PqIzIVsfmCGU1V1BZc8s68H6+gW3Hl+iK88yKO
+ 4gz/LYZsZO076Xo9WQwlinTXXnLeHnKHAaj4OblUqibQjA50r5TaFvwE2
+ fVkdaNxJkXk3jWdDCVcz44g8SLezinixP+4Kec0CPkB467G/k9kLKyMJW
+ zn03SVf2Qw0IN49tAv+F5KKi1S9Z3Lbb35qek31CnuvAQ1yUZhoCO+6L3
+ /UDDF1zKqglvTiycgYTvGdcX6nZqH96SpgcZ/wz18rn7P9CakW84ztuXz g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10846"; a="673572"
+X-IronPort-AV: E=Sophos;i="6.03,184,1694761200"; 
+   d="scan'208";a="673572"
+Received: from orsmga006.jf.intel.com ([10.7.209.51])
+ by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 28 Sep 2023 06:28:09 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10846"; a="815224665"
-X-IronPort-AV: E=Sophos;i="6.03,184,1694761200"; d="scan'208";a="815224665"
+X-IronPort-AV: E=McAfee;i="6600,9927,10846"; a="726234015"
+X-IronPort-AV: E=Sophos;i="6.03,184,1694761200"; d="scan'208";a="726234015"
 Received: from mabrazak-mobl.gar.corp.intel.com (HELO intel.com)
  ([10.214.160.185])
- by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Sep 2023 06:25:48 -0700
-Date: Thu, 28 Sep 2023 15:25:39 +0200
+ by orsmga006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 28 Sep 2023 06:28:04 -0700
+Date: Thu, 28 Sep 2023 15:27:57 +0200
 From: Andi Shyti <andi.shyti@linux.intel.com>
-To: Andi Shyti <andi.shyti@linux.intel.com>
-Message-ID: <ZRV+08Cyu5FRSCJp@ashyti-mobl2.lan>
-References: <20230928132235.349258-1-andi.shyti@linux.intel.com>
+To: Nirmoy Das <nirmoy.das@intel.com>
+Message-ID: <ZRV/XR441w0a2Dt0@ashyti-mobl2.lan>
+References: <20230928130015.6758-1-nirmoy.das@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20230928132235.349258-1-andi.shyti@linux.intel.com>
-Subject: Re: [Intel-gfx] [RFC PATCH] drm/i915/gt: Force mcr lock takeover if
- hardware forgot to release it
+In-Reply-To: <20230928130015.6758-1-nirmoy.das@intel.com>
+Subject: Re: [Intel-gfx] [PATCH v7 1/4] drm/i915: Introduce
+ intel_gt_mcr_lock_sanitize()
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,42 +60,23 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx <intel-gfx@lists.freedesktop.org>,
- Matt Roper <matthew.d.roper@intel.com>, Nirmoy Das <nirmoy.das@intel.com>
+Cc: intel-gfx@lists.freedesktop.org, matthew.d.roper@intel.com,
+ dri-devel@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi,
+Hi Nirmoy,
 
-> +	do {
-> +		/*
-> +		 * Starting with MTL, we need to coordinate not only with other
-> +		 * driver threads, but also with hardware/firmware agents.  A
-> +		 * dedicated locking register is used.
-> +		 */
-> +		if (GRAPHICS_VER_FULL(gt->i915) >= IP_VER(12, 70))
-> +			err = wait_for(intel_uncore_read_fw(gt->uncore,
-> +					      MTL_STEER_SEMAPHORE) == 0x1, 100);
-> +		else
-> +			break;
-> +
-> +		/*
-> +		 * In theory we should never fail to acquire the HW semaphore;
-> +		 * this would indicate some hardware/firmware is misbehaving and
-> +		 * not releasing it properly.
-> +		 */
-> +		if (err == -ETIMEDOUT) {
-> +			gt_warn(gt,
-> +				"hardware MCR steering semaphore timed out "
-> +				"forcing lock takeover\n");
-> +			/*
-> +			 * Force lock takeover
-> +			 */
-> +			intel_uncore_write_fw(gt->uncore,
-> +					      MTL_STEER_SEMAPHORE, 0x1);
-> +		}
-> +	} while (err != -ETIMEDOUT);
+On Thu, Sep 28, 2023 at 03:00:12PM +0200, Nirmoy Das wrote:
+> Implement intel_gt_mcr_lock_sanitize() to provide a mechanism
+> for cleaning the steer semaphore when absolutely necessary.
+> 
+> v2: remove unnecessary lock(Andi, Matt)
+>     improve the kernel doc(Matt)
+>     s/intel_gt_mcr_lock_clear/intel_gt_mcr_lock_sanitize
+> 
+> Signed-off-by: Nirmoy Das <nirmoy.das@intel.com>
 
-this is '==' of course... now I missed the CI tests.
+Reviewed-by: Andi Shyti <andi.shyti@linux.intel.com> 
 
 Andi
