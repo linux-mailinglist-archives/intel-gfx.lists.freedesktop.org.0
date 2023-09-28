@@ -2,53 +2,49 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 951BC7B1D2E
-	for <lists+intel-gfx@lfdr.de>; Thu, 28 Sep 2023 15:00:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9F1197B1E89
+	for <lists+intel-gfx@lfdr.de>; Thu, 28 Sep 2023 15:34:14 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6642910E645;
-	Thu, 28 Sep 2023 13:00:31 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 66F1510E65E;
+	Thu, 28 Sep 2023 13:34:10 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.120])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A859410E641;
- Thu, 28 Sep 2023 13:00:29 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.151])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D540310E65D
+ for <intel-gfx@lists.freedesktop.org>; Thu, 28 Sep 2023 13:34:07 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1695906029; x=1727442029;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=yVYOjD16lPxS35jtyj3M+NlpDlByKS0O7iJodZZ3QME=;
- b=D58QlLxnZR1eSzv7XXQWv+oDk+GllzoM60f13IQxIk0elcw//dU/3R6I
- K6pbJtzKKq8QROoW7ZTKVMYozLeL3qRUL1oG6UkKnVQFRQUn8T9mDSBUc
- aXkICh/bNi45Lq/SjTj71cZIR4SG7wsK+2kmKnH/GK3uSYrD9IqU2Ugfl
- UHPhPQ70/O0yuUJrKY9xi9dldQ8h+Jp2DVaANC8UUCcAxCw4i5LwimnOI
- cvGncK5YJ4p0ai8hYsaJ4bjjcm//njoZzKg01bNTi2j4YG+ZyyR9Md/PI
- lZLRAnQSSCl90/Z8QEHKCflsRovMK+uMWT0f1cTlBEbQhf3RbdHzzqKQm g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10846"; a="380925510"
-X-IronPort-AV: E=Sophos;i="6.03,184,1694761200"; d="scan'208";a="380925510"
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
- by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Sep 2023 06:00:29 -0700
+ t=1695908048; x=1727444048;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=pRw2lgjHQe32QRkxxYTZ1Z8TrLKSsXPxTkJfyZbkLt4=;
+ b=SWC8I51Jgtt/34Xl7dASeRtsnLfP4KAXJsPU0DM6+GNcc8IIpnIHgWES
+ vDJqHC9CPJ52tvOsoSjlNH1L7ZPLmbV+gZKuOFsItHmz/d7Sp691/IDgE
+ 5nTrD5CaUNbh9kXxB7IGzKbyJcrCZg1QaiEPgBxCLy51wiWgwNnh1xpFj
+ qJWeunbFiYRd1+xoSoKzYuz4mik+t2kOP7qw2gwXHuslWa/zSFRTFQ0Wy
+ OypAXhq2w03mYw0Ves/FH7w73gGNGo6x2k+icl1xGOdzuABi1yjAI2A5j
+ tSFE91Jj/NUmJD8Ez8syOgHy9Lj25j2cua2JiiEmOqtWxhqsZe+1FEdht w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10846"; a="362304243"
+X-IronPort-AV: E=Sophos;i="6.03,184,1694761200"; d="scan'208";a="362304243"
+Received: from fmsmga007.fm.intel.com ([10.253.24.52])
+ by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 28 Sep 2023 06:23:14 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10846"; a="865247807"
-X-IronPort-AV: E=Sophos;i="6.03,184,1694761200"; d="scan'208";a="865247807"
-Received: from nirmoyda-desk.igk.intel.com ([10.102.138.190])
- by fmsmga002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Sep 2023 06:00:27 -0700
-From: Nirmoy Das <nirmoy.das@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Thu, 28 Sep 2023 15:00:15 +0200
-Message-ID: <20230928130015.6758-4-nirmoy.das@intel.com>
-X-Mailer: git-send-email 2.41.0
-In-Reply-To: <20230928130015.6758-1-nirmoy.das@intel.com>
-References: <20230928130015.6758-1-nirmoy.das@intel.com>
+X-IronPort-AV: E=McAfee;i="6600,9927,10846"; a="752961977"
+X-IronPort-AV: E=Sophos;i="6.03,184,1694761200"; d="scan'208";a="752961977"
+Received: from mabrazak-mobl.gar.corp.intel.com (HELO intel.com)
+ ([10.214.160.185])
+ by fmsmga007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 28 Sep 2023 06:23:10 -0700
+From: Andi Shyti <andi.shyti@linux.intel.com>
+To: intel-gfx <intel-gfx@lists.freedesktop.org>
+Date: Thu, 28 Sep 2023 15:22:35 +0200
+Message-Id: <20230928132235.349258-1-andi.shyti@linux.intel.com>
+X-Mailer: git-send-email 2.40.1
 MIME-Version: 1.0
-Organization: Intel Deutschland GmbH, Registered Address: Am Campeon 10,
- 85579 Neubiberg, Germany,
- Commercial Register: Amtsgericht Muenchen HRB 186928 
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH v7 4/4] drm/i915/mtl: Skip MCR ops for ring
- fault register
+Subject: [Intel-gfx] [RFC PATCH] drm/i915/gt: Force mcr lock takeover if
+ hardware forgot to release it
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,90 +57,102 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Andrzej Hajda <andrzej.hajda@intel.com>, matthew.d.roper@intel.com,
- dri-devel@lists.freedesktop.org, Nirmoy Das <nirmoy.das@intel.com>
+Cc: Matt Roper <matthew.d.roper@intel.com>, Nirmoy Das <nirmoy.das@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On MTL GEN12_RING_FAULT_REG is not replicated so don't
-do mcr based operation for this register.
+While discussing with Nirmoy offline about this other way for
+fixing lock contention, he was a bit sceptical about it.
 
-v2: use MEDIA_VER() instead of GRAPHICS_VER()(Matt).
-v3: s/"MEDIA_VER(i915) == 13"/"MEDIA_VER(i915) >= 13"(Matt)
-    improve comment.
-v4: improve the comment further(Andi)
+But why not? We know that if we fall into this case it's because
+some hardware component has forgotten to release the lock within
+100ms. So that we have two possibilities, either bail out or
+force the unlock.
 
-Signed-off-by: Nirmoy Das <nirmoy.das@intel.com>
-Reviewed-by: Matt Roper <matthew.d.roper@intel.com>
-Reviewed-by: Andi Shyti <andi.shyti@linux.intel.com>
-Reviewed-by: Andrzej Hajda <andrzej.hajda@intel.com>
+Forcing the unlock might not be respectful to the environment,
+but, at the end, i915 should have the highest priority.
+
+Nirmoy's solution here[*] is to force the unlock during gt
+resume, but what happens if meantime the hardware takes the lock
+and doesn't release it?
+
+Open for opinions or profligate rejections :-)
+
+I'm also curious to see what CI has to say about.
+
+[*] https://patchwork.freedesktop.org/series/124397/
+
+Signed-off-by: Andi Shyti <andi.shyti@linux.intel.com>
+Cc: Nirmoy Das <nirmoy.das@intel.com>
+Cc: Matt Roper <matthew.d.roper@intel.com>
 ---
- drivers/gpu/drm/i915/gt/intel_gt.c      | 13 ++++++++++++-
- drivers/gpu/drm/i915/gt/intel_gt_regs.h |  1 +
- drivers/gpu/drm/i915/i915_gpu_error.c   | 11 ++++++++++-
- 3 files changed, 23 insertions(+), 2 deletions(-)
+ drivers/gpu/drm/i915/gt/intel_gt_mcr.c | 46 ++++++++++++++++----------
+ 1 file changed, 28 insertions(+), 18 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/gt/intel_gt.c b/drivers/gpu/drm/i915/gt/intel_gt.c
-index 93062c35e072..dff8bba1f5d4 100644
---- a/drivers/gpu/drm/i915/gt/intel_gt.c
-+++ b/drivers/gpu/drm/i915/gt/intel_gt.c
-@@ -262,10 +262,21 @@ intel_gt_clear_error_registers(struct intel_gt *gt,
- 				   I915_MASTER_ERROR_INTERRUPT);
- 	}
+diff --git a/drivers/gpu/drm/i915/gt/intel_gt_mcr.c b/drivers/gpu/drm/i915/gt/intel_gt_mcr.c
+index bf4a933de03a..e3eb3c2ace68 100644
+--- a/drivers/gpu/drm/i915/gt/intel_gt_mcr.c
++++ b/drivers/gpu/drm/i915/gt/intel_gt_mcr.c
+@@ -371,14 +371,34 @@ void intel_gt_mcr_lock(struct intel_gt *gt, unsigned long *flags)
  
--	if (GRAPHICS_VER_FULL(i915) >= IP_VER(12, 50)) {
-+	/*
-+	 * For the media GT, this ring fault register is not replicated,
-+	 * so don't do multicast/replicated register read/write operation on it.
-+	 */
-+	if (MEDIA_VER(i915) >= 13 && gt->type == GT_MEDIA) {
-+		intel_uncore_rmw(uncore, XELPMP_RING_FAULT_REG,
-+				 RING_FAULT_VALID, 0);
-+		intel_uncore_posting_read(uncore,
-+					  XELPMP_RING_FAULT_REG);
-+
-+	} else if (GRAPHICS_VER_FULL(i915) >= IP_VER(12, 50)) {
- 		intel_gt_mcr_multicast_rmw(gt, XEHP_RING_FAULT_REG,
- 					   RING_FAULT_VALID, 0);
- 		intel_gt_mcr_read_any(gt, XEHP_RING_FAULT_REG);
-+
- 	} else if (GRAPHICS_VER(i915) >= 12) {
- 		intel_uncore_rmw(uncore, GEN12_RING_FAULT_REG, RING_FAULT_VALID, 0);
- 		intel_uncore_posting_read(uncore, GEN12_RING_FAULT_REG);
-diff --git a/drivers/gpu/drm/i915/gt/intel_gt_regs.h b/drivers/gpu/drm/i915/gt/intel_gt_regs.h
-index cca4bac8f8b0..eecd0a87a647 100644
---- a/drivers/gpu/drm/i915/gt/intel_gt_regs.h
-+++ b/drivers/gpu/drm/i915/gt/intel_gt_regs.h
-@@ -1084,6 +1084,7 @@
+ 	lockdep_assert_not_held(&gt->uncore->lock);
  
- #define GEN12_RING_FAULT_REG			_MMIO(0xcec4)
- #define XEHP_RING_FAULT_REG			MCR_REG(0xcec4)
-+#define XELPMP_RING_FAULT_REG			_MMIO(0xcec4)
- #define   GEN8_RING_FAULT_ENGINE_ID(x)		(((x) >> 12) & 0x7)
- #define   RING_FAULT_GTTSEL_MASK		(1 << 11)
- #define   RING_FAULT_SRCID(x)			(((x) >> 3) & 0xff)
-diff --git a/drivers/gpu/drm/i915/i915_gpu_error.c b/drivers/gpu/drm/i915/i915_gpu_error.c
-index f4ebcfb70289..b4e31e59c799 100644
---- a/drivers/gpu/drm/i915/i915_gpu_error.c
-+++ b/drivers/gpu/drm/i915/i915_gpu_error.c
-@@ -1234,7 +1234,16 @@ static void engine_record_registers(struct intel_engine_coredump *ee)
- 	if (GRAPHICS_VER(i915) >= 6) {
- 		ee->rc_psmi = ENGINE_READ(engine, RING_PSMI_CTL);
- 
--		if (GRAPHICS_VER_FULL(i915) >= IP_VER(12, 50))
+-	/*
+-	 * Starting with MTL, we need to coordinate not only with other
+-	 * driver threads, but also with hardware/firmware agents.  A dedicated
+-	 * locking register is used.
+-	 */
+-	if (GRAPHICS_VER_FULL(gt->i915) >= IP_VER(12, 70))
+-		err = wait_for(intel_uncore_read_fw(gt->uncore,
+-						    MTL_STEER_SEMAPHORE) == 0x1, 100);
++	do {
 +		/*
-+		 * For the media GT, this ring fault register is not replicated,
-+		 * so don't do multicast/replicated register read/write
-+		 * operation on it.
++		 * Starting with MTL, we need to coordinate not only with other
++		 * driver threads, but also with hardware/firmware agents.  A
++		 * dedicated locking register is used.
 +		 */
-+		if (MEDIA_VER(i915) >= 13 && engine->gt->type == GT_MEDIA)
-+			ee->fault_reg = intel_uncore_read(engine->uncore,
-+							  XELPMP_RING_FAULT_REG);
++		if (GRAPHICS_VER_FULL(gt->i915) >= IP_VER(12, 70))
++			err = wait_for(intel_uncore_read_fw(gt->uncore,
++					      MTL_STEER_SEMAPHORE) == 0x1, 100);
++		else
++			break;
 +
-+		else if (GRAPHICS_VER_FULL(i915) >= IP_VER(12, 50))
- 			ee->fault_reg = intel_gt_mcr_read_any(engine->gt,
- 							      XEHP_RING_FAULT_REG);
- 		else if (GRAPHICS_VER(i915) >= 12)
++		/*
++		 * In theory we should never fail to acquire the HW semaphore;
++		 * this would indicate some hardware/firmware is misbehaving and
++		 * not releasing it properly.
++		 */
++		if (err == -ETIMEDOUT) {
++			gt_warn(gt,
++				"hardware MCR steering semaphore timed out "
++				"forcing lock takeover\n");
++			/*
++			 * Force lock takeover
++			 */
++			intel_uncore_write_fw(gt->uncore,
++					      MTL_STEER_SEMAPHORE, 0x1);
++		}
++	} while (err != -ETIMEDOUT);
+ 
+ 	/*
+ 	 * Even on platforms with a hardware lock, we'll continue to grab
+@@ -389,16 +409,6 @@ void intel_gt_mcr_lock(struct intel_gt *gt, unsigned long *flags)
+ 	spin_lock_irqsave(&gt->mcr_lock, __flags);
+ 
+ 	*flags = __flags;
+-
+-	/*
+-	 * In theory we should never fail to acquire the HW semaphore; this
+-	 * would indicate some hardware/firmware is misbehaving and not
+-	 * releasing it properly.
+-	 */
+-	if (err == -ETIMEDOUT) {
+-		gt_err_ratelimited(gt, "hardware MCR steering semaphore timed out");
+-		add_taint_for_CI(gt->i915, TAINT_WARN);  /* CI is now unreliable */
+-	}
+ }
+ 
+ /**
 -- 
-2.41.0
+2.40.1
 
