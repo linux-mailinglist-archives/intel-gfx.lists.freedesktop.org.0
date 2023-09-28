@@ -2,56 +2,56 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id B0C827B1BCC
-	for <lists+intel-gfx@lfdr.de>; Thu, 28 Sep 2023 14:10:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id CD9457B1C3F
+	for <lists+intel-gfx@lfdr.de>; Thu, 28 Sep 2023 14:25:58 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D1C2E10E630;
-	Thu, 28 Sep 2023 12:10:40 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 624FE10E63C;
+	Thu, 28 Sep 2023 12:25:55 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.126])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D3CFE10E630
- for <intel-gfx@lists.freedesktop.org>; Thu, 28 Sep 2023 12:10:38 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DDBD210E63C
+ for <intel-gfx@lists.freedesktop.org>; Thu, 28 Sep 2023 12:25:51 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1695903038; x=1727439038;
+ t=1695903952; x=1727439952;
  h=message-id:date:mime-version:subject:to:cc:references:
  from:in-reply-to:content-transfer-encoding;
- bh=Q4tcYi2bdSiIP4U7898XfeX51B8GACfvXPb1S+vUQJk=;
- b=kjkcahZZ1gbYRtcOzZ1xiaDIb5HgaBhNa3uOOT9j85WHv8dSvjXhFtkA
- 0XwZRkNF2POBjev5/bvlYcYVwoPqBuy5HJVoTFGfg5ZgacBJEv4WUmmmK
- nkmC0757uqAL3dw8XqxM3qQoUfEnTq3pEBeJHGXTu+E9I17p/kPw7DoVX
- McP9du2sJDUcY0dgM8HqSNcRFGoNk3NO4IKhbY35Sdf/4Xg3jpO2owFlF
- p1Loiefry8MXqwuTWajBybGd0GpVzcUv4TEv68pkceIh2htn/5s/bzDO6
- WNNBhEU62Xiuzv/Qi9RqVkKKD4mEk0JqG13CdbTxHOi6Y3OwOp+yx5/dV w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10846"; a="367101946"
-X-IronPort-AV: E=Sophos;i="6.03,184,1694761200"; d="scan'208";a="367101946"
-Received: from fmsmga005.fm.intel.com ([10.253.24.32])
- by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Sep 2023 05:10:38 -0700
+ bh=4KnrdSHjforEhtdrY0ft7LJV/CFkidljzn2WRkOB1Hk=;
+ b=BENHDZrgtSPMnEhTKTR9FHH8aTQZeLKNLCy7nz6HZqvkvq2CelPU7OWq
+ Ml4xl5QERjv/OFf/bEik5ZnR7mb2xh7l3DYb9yuOObMiCohX+7SyQHy+v
+ hVWl0OMdihUdGQFLkI3UdlI8gsoUYLiYUA4WBkQCrysz8U03mdONxoWL/
+ b3tFUZ0np8asS2VgbDYMkNG0rTRyoZJt1VI3AXBMTz4z/3p0q1HwPlvj6
+ KXQAD7dNYJjOz3zDxTmwg8Fyj8KXU82EvgOmMXtjm7Ftax4+NqjgzQdRi
+ 2OJLkL+su3vyVAoZ7gyWPNLi3PS/6FkB8KTENGNNO+V4AfAN706EEIKG7 A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10846"; a="468329105"
+X-IronPort-AV: E=Sophos;i="6.03,184,1694761200"; d="scan'208";a="468329105"
+Received: from fmsmga003.fm.intel.com ([10.253.24.29])
+ by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 28 Sep 2023 05:23:51 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10846"; a="1080552213"
-X-IronPort-AV: E=Sophos;i="6.03,184,1694761200"; d="scan'208";a="1080552213"
+X-IronPort-AV: E=McAfee;i="6600,9927,10846"; a="839833167"
+X-IronPort-AV: E=Sophos;i="6.03,184,1694761200"; d="scan'208";a="839833167"
 Received: from nlachman-mobl.ger.corp.intel.com (HELO [10.213.204.130])
  ([10.213.204.130])
- by fmsmga005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Sep 2023 05:10:36 -0700
-Message-ID: <d904d4f9-cea7-b6f4-ba49-a1771057a521@linux.intel.com>
-Date: Thu, 28 Sep 2023 13:10:34 +0100
+ by fmsmga003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 28 Sep 2023 05:23:50 -0700
+Message-ID: <5da7fd51-4253-8b1d-8a3f-37859bbe7173@linux.intel.com>
+Date: Thu, 28 Sep 2023 13:23:48 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.15.1
 Content-Language: en-US
-To: Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Tejas Upadhyay <tejas.upadhyay@intel.com>
-References: <20230828063450.2642748-1-tejas.upadhyay@intel.com>
- <ZQBdmmo8BPZ26JJG@intel.com>
+To: Matt Roper <matthew.d.roper@intel.com>,
+ Dnyaneshwar Bhadane <dnyaneshwar.bhadane@intel.com>
+References: <20230914134724.657957-1-dnyaneshwar.bhadane@intel.com>
+ <20230914164926.GT2706891@mdroper-desk1.amr.corp.intel.com>
 From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
 Organization: Intel Corporation UK Plc
-In-Reply-To: <ZQBdmmo8BPZ26JJG@intel.com>
+In-Reply-To: <20230914164926.GT2706891@mdroper-desk1.amr.corp.intel.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-Subject: Re: [Intel-gfx] [PATCH] drm/i915/mtl: Update workaround 14016712196
+Subject: Re: [Intel-gfx] [PATCH v5] drm/i915: Added Wa_18022495364
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,76 +64,126 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org, Matt Roper <matthew.d.roper@intel.com>
+Cc: intel-gfx@lists.freedesktop.org, Lucas De Marchi <lucas.demarchi@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 
-On 12/09/2023 13:46, Rodrigo Vivi wrote:
-> On Mon, Aug 28, 2023 at 12:04:50PM +0530, Tejas Upadhyay wrote:
->> Now this workaround is permanent workaround on MTL and DG2,
+On 14/09/2023 17:49, Matt Roper wrote:
+> On Thu, Sep 14, 2023 at 07:17:24PM +0530, Dnyaneshwar Bhadane wrote:
+>> Set the instruction and state cache invalidate bit using INDIRECT_CTX on
+>> every gpu context switch.
+>> The goal of this workaround is to actually perform an explicit
+>> invalidation of that cache (by re-writing the register) during every GPU
+>> context switch, which is accomplished via a "workaround batchbuffer"
+>> that's attached to the context via INDIRECT_CTX. (Matt)
+>> BSpec: 11354
+>>
+>> v2:
+>> - Removed extra parentheses from the condition (Lucas)
+>> - Fixed spacing and new line (Lucas)
+>>
+>> v3:
+>> - Fixed commit message.
+>>
+>> v4:
+>> - Only GEN12 changes are kept  (Matt Ropper)
+>> - Fixed the commit message for r-b (Matt Ropper)
+>> - Renamed the register bit in define
+>>
+>> v5:
+>> - Moved out the  from golden context init (Matt Roper)
+>> - Use INDIRECT_CTX to set bit on each GPU context switch (Matt Roper)
+>>
+>> Cc: Lucas De Marchi <lucas.demarchi@intel.com>
+>> Cc: Matt Roper <matthew.d.roper@intel.com>
+>> Signed-off-by: Dnyaneshwar Bhadane <dnyaneshwar.bhadane@intel.com>
+>>
+>> ---
+>>   drivers/gpu/drm/i915/gt/intel_gt_regs.h |  2 ++
+>>   drivers/gpu/drm/i915/gt/intel_lrc.c     | 15 +++++++++++++++
+>>   2 files changed, 17 insertions(+)
+>>
+>> diff --git a/drivers/gpu/drm/i915/gt/intel_gt_regs.h b/drivers/gpu/drm/i915/gt/intel_gt_regs.h
+>> index 0e4c638fcbbf..38f02ef8ed01 100644
+>> --- a/drivers/gpu/drm/i915/gt/intel_gt_regs.h
+>> +++ b/drivers/gpu/drm/i915/gt/intel_gt_regs.h
+>> @@ -164,6 +164,8 @@
+>>   #define GEN9_CSFE_CHICKEN1_RCS			_MMIO(0x20d4)
+>>   #define   GEN9_PREEMPT_GPGPU_SYNC_SWITCH_DISABLE	(1 << 2)
+>>   #define   GEN11_ENABLE_32_PLANE_MODE		(1 << 7)
+>> +#define GEN12_CS_DEBUG_MODE2			_MMIO(0x20d8)
+>> +#define   INSTRUCTION_STATE_CACHE_INVALIDATE	REG_BIT(6)
+>>   
+>>   #define GEN7_FF_SLICE_CS_CHICKEN1		_MMIO(0x20e0)
+>>   #define   GEN9_FFSC_PERCTX_PREEMPT_CTRL		(1 << 14)
+>> diff --git a/drivers/gpu/drm/i915/gt/intel_lrc.c b/drivers/gpu/drm/i915/gt/intel_lrc.c
+>> index 967fe4d77a87..fe98039499c5 100644
+>> --- a/drivers/gpu/drm/i915/gt/intel_lrc.c
+>> +++ b/drivers/gpu/drm/i915/gt/intel_lrc.c
+>> @@ -1332,6 +1332,15 @@ dg2_emit_draw_watermark_setting(u32 *cs)
+>>   	return cs;
+>>   }
+>>   
+>> +static u32 *
+>> +gen12_set_instruction_state_cache_invalid(u32 *cs)
 > 
-> since this also impacts DG2, the subject 'drm/i915/mtl'
-> is wrong. I know, this is water under the bridge now.
+> Minor nitpick:  I'd name this "gen12_invalidate_state_cache."  The
+> general terminology with caches is that we "invalidate" them rather than
+> "set invalid," and that also matches the terminology used by the
+> register bit itself.
+> 
+>> +{
+>> +	*cs++ = MI_LOAD_REGISTER_IMM(1);
+>> +	*cs++ = i915_mmio_reg_offset(GEN12_CS_DEBUG_MODE2);
+>> +	*cs++ = _MASKED_BIT_ENABLE(INSTRUCTION_STATE_CACHE_INVALIDATE);
+>> +	return cs;
+>> +}
+>> +
+>>   static u32 *
+>>   gen12_emit_indirect_ctx_rcs(const struct intel_context *ce, u32 *cs)
+>>   {
+>> @@ -1345,6 +1354,12 @@ gen12_emit_indirect_ctx_rcs(const struct intel_context *ce, u32 *cs)
+>>   
+>>   	cs = gen12_emit_aux_table_inv(ce->engine, cs);
+>>   
+>> +	/* Wa_18022495364 */
+>> +	if (IS_ALDERLAKE_P(ce->engine->i915) || IS_ALDERLAKE_P_N(ce->engine->i915) ||
+> 
+> ADL-N is defined as a subplatform of ADL-P in the driver, so ADL-N
+> platforms will automatically be matched by the IS_ALDERLAKE_P; you don't
+> need the IS_ALDERLAKE_P_N condition here (that's only for the rare
+> places where we want to match ADL-N specifically _without_ matching
+> other ADL-P platforms as well).
+> 
+>> +	    IS_ALDERLAKE_S(ce->engine->i915) || IS_TIGERLAKE(ce->engine->i915) ||
+>> +		IS_ROCKETLAKE(ce->engine->i915) || IS_DG1(ce->engine->i915))
+> 
+> Since this workaround winds up applying to every single gen12lp platform, it's
+> probably simpler to just write the condition as
+> 
+>      if (IS_GFX_GT_IP_RANGE(cs->engine->i915), IP_VER(12, 0), IP_VER(12, 10))
 
+Can we haz a decoder sheet of ip ver to marketing/user platform names? 
+It will be harder and harder to know when the thing is read out from the 
+GPU register at runtime.
 
-Found this while writing the 6.7 pull request as I was assessing 
-individual patches.
-
-Indeed, patch subject is wrong, but function name mtl_dummy_pipe_control 
-is also now wrong. Probably just change the prefix to gen12.
-
-Tejas, can you please send a follow up patch to tidy this up.
+Wishing for platform strings in comments back maybe? :)
 
 Regards,
 
 Tvrtko
 
-> Another thing is this patch doesn't apply clean on drm-intel-fixes
-> because it depends on 5a213086a025 ("drm/i915: Eliminate IS_MTL_GRAPHICS_STEP")
-> that also doesn't apply cleanly so I'm not cherry-picking them.
 > 
-> If this patch is critical for a stable 6.6, please provide a backported
-> version on top of drm-intel-fixes. You don't need to send the patch,
-> just respond to this email pointing to a branch with the patch is enough.
 > 
-> Thanks,
-> Rodrigo.
+> Matt
 > 
->> earlier we used to apply on MTL A0 step only.
->> VLK-45480
->>
->> Fixes: d922b80b1010 ("drm/i915/gt: Add workaround 14016712196")
->> Signed-off-by: Tejas Upadhyay <tejas.upadhyay@intel.com>
->> ---
->>   drivers/gpu/drm/i915/gt/gen8_engine_cs.c | 7 +++----
->>   1 file changed, 3 insertions(+), 4 deletions(-)
->>
->> diff --git a/drivers/gpu/drm/i915/gt/gen8_engine_cs.c b/drivers/gpu/drm/i915/gt/gen8_engine_cs.c
->> index 6187b25b67ab..0143445dba83 100644
->> --- a/drivers/gpu/drm/i915/gt/gen8_engine_cs.c
->> +++ b/drivers/gpu/drm/i915/gt/gen8_engine_cs.c
->> @@ -226,8 +226,8 @@ u32 *gen12_emit_aux_table_inv(struct intel_engine_cs *engine, u32 *cs)
->>   static int mtl_dummy_pipe_control(struct i915_request *rq)
->>   {
->>   	/* Wa_14016712196 */
->> -	if (IS_GFX_GT_IP_STEP(rq->engine->gt, IP_VER(12, 70), STEP_A0, STEP_B0) ||
->> -	    IS_GFX_GT_IP_STEP(rq->engine->gt, IP_VER(12, 71), STEP_A0, STEP_B0)) {
->> +	if (IS_GFX_GT_IP_RANGE(rq->engine->gt, IP_VER(12, 70), IP_VER(12, 71)) ||
->> +	    IS_DG2(rq->i915)) {
->>   		u32 *cs;
->>   
->>   		/* dummy PIPE_CONTROL + depth flush */
->> @@ -810,8 +810,7 @@ u32 *gen12_emit_fini_breadcrumb_rcs(struct i915_request *rq, u32 *cs)
->>   		     PIPE_CONTROL_FLUSH_ENABLE);
->>   
->>   	/* Wa_14016712196 */
->> -	if (IS_GFX_GT_IP_STEP(gt, IP_VER(12, 70), STEP_A0, STEP_B0) ||
->> -	    IS_GFX_GT_IP_STEP(gt, IP_VER(12, 71), STEP_A0, STEP_B0))
->> +	if (IS_GFX_GT_IP_RANGE(gt, IP_VER(12, 70), IP_VER(12, 71)) || IS_DG2(i915))
->>   		/* dummy PIPE_CONTROL + depth flush */
->>   		cs = gen12_emit_pipe_control(cs, 0,
->>   					     PIPE_CONTROL_DEPTH_CACHE_FLUSH, 0);
+>> +		cs = gen12_set_instruction_state_cache_invalid(cs);
+>> +
+>>   	/* Wa_16014892111 */
+>>   	if (IS_GFX_GT_IP_STEP(ce->engine->gt, IP_VER(12, 70), STEP_A0, STEP_B0) ||
+>>   	    IS_GFX_GT_IP_STEP(ce->engine->gt, IP_VER(12, 71), STEP_A0, STEP_B0) ||
 >> -- 
->> 2.25.1
+>> 2.34.1
 >>
+> 
