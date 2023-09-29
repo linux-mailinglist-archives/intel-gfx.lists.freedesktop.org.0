@@ -1,66 +1,78 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 58CE97B3AB7
-	for <lists+intel-gfx@lfdr.de>; Fri, 29 Sep 2023 21:34:12 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 365767B3AE5
+	for <lists+intel-gfx@lfdr.de>; Fri, 29 Sep 2023 22:02:41 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0FA9110E1AE;
-	Fri, 29 Sep 2023 19:34:05 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8B5A510E14F;
+	Fri, 29 Sep 2023 20:02:39 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-pl1-x632.google.com (mail-pl1-x632.google.com
- [IPv6:2607:f8b0:4864:20::632])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 87A2710E1AE
- for <intel-gfx@lists.freedesktop.org>; Fri, 29 Sep 2023 19:34:02 +0000 (UTC)
-Received: by mail-pl1-x632.google.com with SMTP id
- d9443c01a7336-1c60778a3bfso99834945ad.1
- for <intel-gfx@lists.freedesktop.org>; Fri, 29 Sep 2023 12:34:02 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=chromium.org; s=google; t=1696016042; x=1696620842;
- darn=lists.freedesktop.org; 
- h=content-transfer-encoding:mime-version:references:in-reply-to
- :message-id:date:subject:cc:to:from:from:to:cc:subject:date
- :message-id:reply-to;
- bh=Ym+ucW6MHQZimVVr4/aWJAbaMhbjuFeNaLImS0cTOp0=;
- b=TixVQg9xRTeGHwlfS9n7MYmhEjXR+UZBfzh37C5jBHYIYqFoQfwdyK1wK+Tatkhd2E
- 0h85oIfUEYFLzsfSV9ee8gE63919elODziLyRQ2VU4R6CyT0ZhWmfXgTpT+gha4ejyuS
- HiFdd1skfdqQsWthB0iAnmt3peidGawHG0cXo=
+Received: from us-smtp-delivery-124.mimecast.com
+ (us-smtp-delivery-124.mimecast.com [170.10.133.124])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5AA9C10E14F
+ for <intel-gfx@lists.freedesktop.org>; Fri, 29 Sep 2023 20:02:38 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+ s=mimecast20190719; t=1696017757;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references;
+ bh=99dH+phoLQ/qsV0RjI1U+pLDr0i5wOD5VhnbATpTEWU=;
+ b=bMIDPl/D+fBRlR8APeMm7TtHfNgqXGhqP2b5HCLtvlQ7K0qNYgDONakBs9eXSpf7gfJPug
+ wmqZ1+ulMN4HjiUeyQpK4Yi7QuINJfbJF9lUN5E3Y57Rmw9uhrw1xJhLEr082qVsq11Hz0
+ oQmLX6WF7vJTq01a0AulqvHW/KIqvSM=
+Received: from mail-qv1-f69.google.com (mail-qv1-f69.google.com
+ [209.85.219.69]) by relay.mimecast.com with ESMTP with STARTTLS
+ (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
+ us-mta-380-GX9xEVypP-67U-LV_2OBhw-1; Fri, 29 Sep 2023 16:02:35 -0400
+X-MC-Unique: GX9xEVypP-67U-LV_2OBhw-1
+Received: by mail-qv1-f69.google.com with SMTP id
+ 6a1803df08f44-65b23c40cefso112347896d6.1
+ for <intel-gfx@lists.freedesktop.org>; Fri, 29 Sep 2023 13:02:35 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1696016042; x=1696620842;
- h=content-transfer-encoding:mime-version:references:in-reply-to
- :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
- :subject:date:message-id:reply-to;
- bh=Ym+ucW6MHQZimVVr4/aWJAbaMhbjuFeNaLImS0cTOp0=;
- b=oGIjV9sn5looaS7UqV2/u9vNgcTukH5OTP58ZtjUP/pxlxm1fpqWRlQ09yieQw0S+5
- elaCh5+D0mwzN5/1Sp33dMSnKXzAhvZ2BQb2XzsNKAocfku+Q2LXDl7wgzWDGUzP5Onw
- G11TpQG/vZyY5EPK18a8KYV6bH7yi1vDwhkJIe4eLDi82mrtkGLMgtbMOXDYDPxBnQua
- 85j/BP3bfIPsIAekqx/StR7CCyE85Vrl0GCAVH9mqvPe9O8Gz5Ra5vjaFvJXiKTn6BUo
- YpQUL5vl3oucujmgkHCjpqBjUCbJbt6dMoHTIVGmtCdwOAqnSu44/pgr7xEEaUoW+09L
- 4NUg==
-X-Gm-Message-State: AOJu0YyonF4x2yWt/OQhcSTcc8zbdkwcr0e/0AMYAZwa0tCcAyXdCXpk
- Xp5Abp58qKGoCYVL3PGdbfWrsg==
-X-Google-Smtp-Source: AGHT+IGQWTdEpdWeBEvd5foAb6HBvD/EqemA8SP9BycZ81OPm2PcYAndv1e0P5bQalrHP7ERsAZdBw==
-X-Received: by 2002:a17:902:720a:b0:1c1:dbd6:9bf6 with SMTP id
- ba10-20020a170902720a00b001c1dbd69bf6mr4494391plb.41.1696016042045; 
- Fri, 29 Sep 2023 12:34:02 -0700 (PDT)
-Received: from www.outflux.net (198-0-35-241-static.hfc.comcastbusiness.net.
- [198.0.35.241]) by smtp.gmail.com with ESMTPSA id
- jg6-20020a17090326c600b001c61df93afdsm10225856plb.59.2023.09.29.12.34.01
+ d=1e100.net; s=20230601; t=1696017754; x=1696622554;
+ h=mime-version:user-agent:content-transfer-encoding:organization
+ :references:in-reply-to:date:to:from:subject:message-id
+ :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+ bh=BYjr6cVWqyj+5HJdN0jjeWotYlHT79mRFj2yFyq0LFA=;
+ b=d8AOJa7WLAp7i5PjGvWoLxlosCVAe8wmo0cAIsvaY1YGfmbVpVaJ1TYMr/BqPo/wFK
+ udptQ2aMW2aYN0mBygzB3Z7isDcnWB2Tsqc24fzgqOR+qR8cpxqrMkoSJNrTSNIfJIS1
+ beXPkvhxskm8oibcIlMJXsPqOPx+cFtyBtJ7HrXwXWWrqtCYv7Izaxt7USfLRCis+SCP
+ 9t/ww6V9EZeqlALmymrNlcfiRpeOxqf0tQisvga9bvsNcN36z7E9Sn2OTLdXEhXSMF7A
+ 5Q3sKC5+UCdCD/Cui5qyGXd5GzkMBLF/lokfgb930xcuVzA2udy5qAIXljC0Ml5BqMYV
+ fGOQ==
+X-Gm-Message-State: AOJu0YxdXYsSnZ6B0Ig4tLy5JAnCdJxxT1zgwPfnvC7b0hcROiEG6TlW
+ tc8CbFjL5dwqOiAYVw3fvXdFGAMxeQyXJepou1OtcEUHfzE1OrfQvutHGKRzex4KHQtw0YvSqnz
+ V73xqbKiHoi/7gi8//6nxEf8idGOFR6S7lWDs
+X-Received: by 2002:a0c:a899:0:b0:65d:79:b3fe with SMTP id
+ x25-20020a0ca899000000b0065d0079b3femr4263151qva.21.1696017754373; 
+ Fri, 29 Sep 2023 13:02:34 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IFQqahF8lNFCx3eyLT/RgB3FXcv1ZbMGyky5DO0KCZMftTL1B5izkIW4YyDuqsMfwqNfdoGcg==
+X-Received: by 2002:a0c:a899:0:b0:65d:79:b3fe with SMTP id
+ x25-20020a0ca899000000b0065d0079b3femr4263135qva.21.1696017753990; 
+ Fri, 29 Sep 2023 13:02:33 -0700 (PDT)
+Received: from ?IPv6:2600:4040:5c6c:a300::feb? ([2600:4040:5c6c:a300::feb])
+ by smtp.gmail.com with ESMTPSA id
+ l10-20020a0c978a000000b0064f45b8c02bsm4723125qvd.49.2023.09.29.13.02.32
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Fri, 29 Sep 2023 12:34:01 -0700 (PDT)
-From: Kees Cook <keescook@chromium.org>
-To: David Airlie <airlied@gmail.com>,
-	Kees Cook <keescook@chromium.org>
-Date: Fri, 29 Sep 2023 12:33:24 -0700
-Message-Id: <169601600138.3014939.8511343741428844249.b4-ty@chromium.org>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20230922173110.work.084-kees@kernel.org>
-References: <20230922173110.work.084-kees@kernel.org>
+ Fri, 29 Sep 2023 13:02:33 -0700 (PDT)
+Message-ID: <4ead5323bb38156f91b125606b2374cf6088512c.camel@redhat.com>
+From: Lyude Paul <lyude@redhat.com>
+To: Imre Deak <imre.deak@intel.com>, intel-gfx@lists.freedesktop.org
+Date: Fri, 29 Sep 2023 16:02:32 -0400
+In-Reply-To: <20230929154929.343947-1-imre.deak@intel.com>
+References: <20230929154929.343947-1-imre.deak@intel.com>
+Organization: Red Hat Inc.
+User-Agent: Evolution 3.48.4 (3.48.4-1.fc38)
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-Subject: Re: [Intel-gfx] [PATCH 0/9] drm: Annotate structs with __counted_by
+X-Mimecast-Spam-Score: 0
+X-Mimecast-Originator: redhat.com
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+Subject: Re: [Intel-gfx] [PATCH] drm/i915/dp_mst: Make sure pbn_div is
+ up-to-date after sink reconnect
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -73,75 +85,59 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Emma Anholt <emma@anholt.net>, Tom Rix <trix@redhat.com>,
- llvm@lists.linux.dev, dri-devel@lists.freedesktop.org,
- Chris Wilson <chris@chris-wilson.co.uk>, Prike Liang <Prike.Liang@amd.com>,
- Huang Rui <ray.huang@amd.com>, Gerd Hoffmann <kraxel@redhat.com>,
- Andrzej Hajda <andrzej.hajda@intel.com>,
- Marijn Suijten <marijn.suijten@somainline.org>,
- Karol Herbst <kherbst@redhat.com>, Neil Armstrong <neil.armstrong@linaro.org>,
- amd-gfx@lists.freedesktop.org, Kuogee Hsieh <quic_khsieh@quicinc.com>,
- Nathan Chancellor <nathan@kernel.org>,
- VMware Graphics Reviewers <linux-graphics-maintainer@vmware.com>,
- Ben Skeggs <bskeggs@redhat.com>, nouveau@lists.freedesktop.org,
- David Airlie <airlied@redhat.com>, virtualization@lists.linux-foundation.org,
- Chia-I Wu <olvaffe@gmail.com>, linux-hardening@vger.kernel.org,
- Lijo Lazar <lijo.lazar@amd.com>, Yifan Zhang <yifan1.zhang@amd.com>,
- linux-arm-msm@vger.kernel.org, intel-gfx@lists.freedesktop.org,
- Kevin Wang <kevin1.wang@amd.com>, Abhinav Kumar <quic_abhinavk@quicinc.com>,
- Melissa Wen <mwen@igalia.com>, Alex Deucher <alexander.deucher@amd.com>,
- Gurchetan Singh <gurchetansingh@chromium.org>,
- Maxime Ripard <mripard@kernel.org>, Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Evan Quan <evan.quan@amd.com>, Xiaojian Du <Xiaojian.Du@amd.com>,
- Le Ma <le.ma@amd.com>, freedreno@lists.freedesktop.org,
- Bjorn Andersson <andersson@kernel.org>, "Pan, Xinhui" <Xinhui.Pan@amd.com>,
- Nick Desaulniers <ndesaulniers@google.com>, linux-kernel@vger.kernel.org,
- Zack Rusin <zackr@vmware.com>, Daniel Vetter <daniel@ffwll.ch>,
- Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
- Nirmoy Das <nirmoy.das@intel.com>, Lang Yu <Lang.Yu@amd.com>,
- =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
- Hawking Zhang <Hawking.Zhang@amd.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, 22 Sep 2023 10:32:05 -0700, Kees Cook wrote:
-> This is a batch of patches touching drm for preparing for the coming
-> implementation by GCC and Clang of the __counted_by attribute. Flexible
-> array members annotated with __counted_by can have their accesses
-> bounds-checked at run-time checking via CONFIG_UBSAN_BOUNDS (for array
-> indexing) and CONFIG_FORTIFY_SOURCE (for strcpy/memcpy-family functions).
-> 
-> As found with Coccinelle[1], add __counted_by to structs that would
-> benefit from the annotation.
-> 
-> [...]
+Definitely a TODO there that I no longer can remember why I didn't just do
+this in the first place, lol. Thank you for the fix
 
-Since this got Acks, I figure I should carry it in my tree. Let me know
-if this should go via drm instead.
+Reviewed-by: Lyude Paul <lyude@redhat.com>
 
-Applied to for-next/hardening, thanks!
+On Fri, 2023-09-29 at 18:49 +0300, Imre Deak wrote:
+> Atm the MST encoder config computation may use an out-of-date pbn_div
+> value, if the sink is unplugged and a sink is replugged with different
+> link rate/lane count capabilities. The current way of reinitializing
+> pbn_div depends on pbn_div getting cleared via intel_atomic_check() ->
+> drm_dp_mst_atomic_check() ->
+> drm_dp_mst_atomic_check_payload_alloc_limits(), however the clearing
+> won't happen if the sink got unplugged (and hence
+> drm_dp_mst_topology_mgr::mst_state being false).
+>=20
+> To fix the above, simply update pbn_div unconditionally during config
+> computation, making pbn_div always match the link rate and lane count.
+>=20
+> Cc: Lyude Paul <lyude@redhat.com>
+> Signed-off-by: Imre Deak <imre.deak@intel.com>
+> ---
+>  drivers/gpu/drm/i915/display/intel_dp_mst.c | 9 +++------
+>  1 file changed, 3 insertions(+), 6 deletions(-)
+>=20
+> diff --git a/drivers/gpu/drm/i915/display/intel_dp_mst.c b/drivers/gpu/dr=
+m/i915/display/intel_dp_mst.c
+> index 648cf37e02a87..42ddfc85d72d6 100644
+> --- a/drivers/gpu/drm/i915/display/intel_dp_mst.c
+> +++ b/drivers/gpu/drm/i915/display/intel_dp_mst.c
+> @@ -94,12 +94,9 @@ static int intel_dp_mst_find_vcpi_slots_for_bpp(struct=
+ intel_encoder *encoder,
+>  =09crtc_state->lane_count =3D limits->max_lane_count;
+>  =09crtc_state->port_clock =3D limits->max_rate;
+> =20
+> -=09// TODO: Handle pbn_div changes by adding a new MST helper
+> -=09if (!mst_state->pbn_div) {
+> -=09=09mst_state->pbn_div =3D drm_dp_get_vc_payload_bw(&intel_dp->mst_mgr=
+,
+> -=09=09=09=09=09=09=09      crtc_state->port_clock,
+> -=09=09=09=09=09=09=09      crtc_state->lane_count);
+> -=09}
+> +=09mst_state->pbn_div =3D drm_dp_get_vc_payload_bw(&intel_dp->mst_mgr,
+> +=09=09=09=09=09=09      crtc_state->port_clock,
+> +=09=09=09=09=09=09      crtc_state->lane_count);
+> =20
+>  =09for (bpp =3D max_bpp; bpp >=3D min_bpp; bpp -=3D step) {
+>  =09=09drm_dbg_kms(&i915->drm, "Trying bpp %d\n", bpp);
 
-[1/9] drm/amd/pm: Annotate struct smu10_voltage_dependency_table with __counted_by
-      https://git.kernel.org/kees/c/a6046ac659d6
-[2/9] drm/amdgpu/discovery: Annotate struct ip_hw_instance with __counted_by
-      https://git.kernel.org/kees/c/4df33089b46f
-[3/9] drm/i915/selftests: Annotate struct perf_series with __counted_by
-      https://git.kernel.org/kees/c/ffd3f823bdf6
-[4/9] drm/msm/dpu: Annotate struct dpu_hw_intr with __counted_by
-      https://git.kernel.org/kees/c/2de35a989b76
-[5/9] drm/nouveau/pm: Annotate struct nvkm_perfdom with __counted_by
-      https://git.kernel.org/kees/c/188aeb08bfaa
-[6/9] drm/vc4: Annotate struct vc4_perfmon with __counted_by
-      https://git.kernel.org/kees/c/59a54dc896c3
-[7/9] drm/virtio: Annotate struct virtio_gpu_object_array with __counted_by
-      https://git.kernel.org/kees/c/5cd476de33af
-[8/9] drm/vmwgfx: Annotate struct vmw_surface_dirty with __counted_by
-      https://git.kernel.org/kees/c/b426f2e5356a
-[9/9] drm/v3d: Annotate struct v3d_perfmon with __counted_by
-      https://git.kernel.org/kees/c/dc662fa1b0e4
-
-Take care,
-
--- 
-Kees Cook
+--=20
+Cheers,
+ Lyude Paul (she/her)
+ Software Engineer at Red Hat
 
