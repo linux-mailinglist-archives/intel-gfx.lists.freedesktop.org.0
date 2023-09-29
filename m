@@ -2,48 +2,53 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 014997B2DBE
-	for <lists+intel-gfx@lfdr.de>; Fri, 29 Sep 2023 10:23:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 001A27B2DB8
+	for <lists+intel-gfx@lfdr.de>; Fri, 29 Sep 2023 10:22:29 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4D7CB10E58B;
-	Fri, 29 Sep 2023 08:23:43 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 66E7710E123;
+	Fri, 29 Sep 2023 08:22:28 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.65])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CA96F10E58B
- for <intel-gfx@lists.freedesktop.org>; Fri, 29 Sep 2023 08:23:40 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.24])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1F0AF10E6CC
+ for <intel-gfx@lists.freedesktop.org>; Fri, 29 Sep 2023 08:22:26 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1695975820; x=1727511820;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=LtHonzyhyUT4OUSjs8lMb9gxChXwrFCg9WKRMlTZRLQ=;
- b=TG4/aejQA6eTdwxyV8+MD2GmH3XoM65YFdPDBqgct+d5ek6seT2ErcAH
- KK77N29elAzpgxNjRn+wexAverVvqIWiRwSpz/IoVkrX1NGP341Iv4cXW
- QBkxjiLOCqQbFg4FEAZTrTNDaVZjoikstF/NrvL9in/6i9XVSmID2jQUc
- h1CHIukVNCBDdjln0W8zK6aVIyFAvpyPsYMhz4WwLVeaOrjNe0Pj/cu21
- M7uW6dQXieN7PrbrovjIlG5mycR4aHxNgaNAhUNcIYVp74h8CJ+chlBlw
- 1EPcpVAktKYin9BjIJmuMXpdAHre7Zj4cxsE/qi0N7Lf8OXxII/eSHflA g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10847"; a="386115000"
-X-IronPort-AV: E=Sophos;i="6.03,186,1694761200"; d="scan'208";a="386115000"
-Received: from fmsmga005.fm.intel.com ([10.253.24.32])
- by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Sep 2023 00:36:05 -0700
+ t=1695975746; x=1727511746;
+ h=from:to:subject:date:message-id:in-reply-to:references:
+ mime-version:content-transfer-encoding;
+ bh=MFVaQlJQOS52hNgYbpRX7KUH8QE49pqsHGxaCkgexIQ=;
+ b=DKyUOgt0TEAz3kR2tbylSCJ/QhDX90EJ4sE8CPoNHpO0SIpeDxXyWM8k
+ y66jHRJU+P+hmOOf9zPDLrMhUP1aHnWAlLbogRnEDUEba7EoSSONC3bB5
+ iMf59LNrwL4e3BQuhd+ahOxyu8Ls5EljDScMKxlkGLndJqR3WfrvaTJe3
+ Egu6mywCfu3msnXilDXzf7t/Tqm0iygPPOvwZwRaQkIhdYpIYrCqyhfuL
+ Fz3+GWxssIT0b+icDJHdkPq5SSPky9U6s+P+1UfRKNOn5JAgDKFWofEOW
+ 0lDwvWHbeNCPEgrLUGUTY1BbSHAejZaOswdSSO7LQnzFRw+KlSUh0Pc/q w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10847"; a="385070573"
+X-IronPort-AV: E=Sophos;i="6.03,186,1694761200"; d="scan'208";a="385070573"
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+ by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 29 Sep 2023 00:46:44 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10847"; a="1080838405"
-X-IronPort-AV: E=Sophos;i="6.03,186,1694761200"; d="scan'208";a="1080838405"
-Received: from cfl-desktop.iind.intel.com ([10.190.239.20])
- by fmsmga005.fm.intel.com with ESMTP; 29 Sep 2023 00:36:02 -0700
-From: Uma Shankar <uma.shankar@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Fri, 29 Sep 2023 13:13:06 +0530
-Message-ID: <20230929074306.1533859-1-uma.shankar@intel.com>
-X-Mailer: git-send-email 2.42.0
+X-IronPort-AV: E=McAfee;i="6600,9927,10847"; a="865614319"
+X-IronPort-AV: E=Sophos;i="6.03,186,1694761200"; d="scan'208";a="865614319"
+Received: from danielba-mobl1.ger.corp.intel.com (HELO localhost)
+ ([10.252.53.20])
+ by fmsmga002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 29 Sep 2023 00:46:42 -0700
+From: Jani Nikula <jani.nikula@intel.com>
+To: Jani Nikula <jani.nikula@intel.com>,
+	intel-gfx@lists.freedesktop.org
+Date: Fri, 29 Sep 2023 10:46:36 +0300
+Message-Id: <20230929074636.1433475-1-jani.nikula@intel.com>
+X-Mailer: git-send-email 2.39.2
+In-Reply-To: <d5f8aab89835a70c0af741e7f5765fc2c4875bf7.1695924021.git.jani.nikula@intel.com>
+References: <d5f8aab89835a70c0af741e7f5765fc2c4875bf7.1695924021.git.jani.nikula@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [v4] drm/i915/display: Created exclusive version of vga
- decode setup
+Subject: [Intel-gfx] [PATCH v2] drm/i915: do more in
+ i915_gpu_coredump_alloc()
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -56,130 +61,163 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: jani.nikula@intel.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Current vga arbiter implementation in i915 needs a re-design.
-The current approach would cause real problems if anyone actually
-needs to talk another GPU using legacy VGA resources.
+Reduce gpu error interface further by doing more in
+i915_gpu_coredump_alloc().
 
-The main issue is that X becomes a slideshow if it thinks there
-are multiple GPUs that have VGA decoding enabled as it insists
-on adjusting the VGA routing pretty much for every little operation
-involving any of the GPUs.
+v2: Fix build for CONFIG_DRM_I915_CAPTURE_ERROR=n
 
-The cleanup will be planned for i915. Meanwhile to focus on Xe
-upstreaming and have a cleaner separation, the said functionality
-is being moved to a different file exclusive for i915. Xe driver
-will re-use rest of the display code from i915.
-
-v2: Addressed Jani Nikula's review comments.
-
-v3: Dropped a duplicate function (Jani)
-
-v4: Updated commit message with reasoning as sugested by Ville.
-
-Signed-off-by: Uma Shankar <uma.shankar@intel.com>
+Signed-off-by: Jani Nikula <jani.nikula@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_vga.c | 18 +-----------------
- drivers/gpu/drm/i915/soc/intel_gmch.c    | 14 ++++++++++++++
- drivers/gpu/drm/i915/soc/intel_gmch.h    |  2 ++
- 3 files changed, 17 insertions(+), 17 deletions(-)
+ .../drm/i915/gt/intel_execlists_submission.c  | 16 +-------
+ drivers/gpu/drm/i915/i915_gpu_error.c         | 38 +++++++++++++++++--
+ drivers/gpu/drm/i915/i915_gpu_error.h         | 22 +----------
+ 3 files changed, 38 insertions(+), 38 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_vga.c b/drivers/gpu/drm/i915/display/intel_vga.c
-index 286a0bdd28c6..4b98833bfa8c 100644
---- a/drivers/gpu/drm/i915/display/intel_vga.c
-+++ b/drivers/gpu/drm/i915/display/intel_vga.c
-@@ -3,11 +3,9 @@
-  * Copyright © 2019 Intel Corporation
-  */
+diff --git a/drivers/gpu/drm/i915/gt/intel_execlists_submission.c b/drivers/gpu/drm/i915/gt/intel_execlists_submission.c
+index e8f42ec6b1b4..7c7e8c3a12e0 100644
+--- a/drivers/gpu/drm/i915/gt/intel_execlists_submission.c
++++ b/drivers/gpu/drm/i915/gt/intel_execlists_submission.c
+@@ -2261,26 +2261,12 @@ static struct execlists_capture *capture_regs(struct intel_engine_cs *engine)
+ 	if (!cap)
+ 		return NULL;
  
--#include <linux/pci.h>
- #include <linux/vgaarb.h>
+-	cap->error = i915_gpu_coredump_alloc(engine->i915, gfp);
++	cap->error = i915_gpu_coredump_alloc(engine, gfp);
+ 	if (!cap->error)
+ 		goto err_cap;
  
- #include <video/vga.h>
+-	cap->error->gt = intel_gt_coredump_alloc(engine->gt, gfp, CORE_DUMP_FLAG_NONE);
+-	if (!cap->error->gt)
+-		goto err_gpu;
 -
- #include "soc/intel_gmch.h"
+-	cap->error->gt->engine = intel_engine_coredump_alloc(engine, gfp, CORE_DUMP_FLAG_NONE);
+-	if (!cap->error->gt->engine)
+-		goto err_gt;
+-
+-	cap->error->gt->engine->hung = true;
+-
+ 	return cap;
  
- #include "i915_drv.h"
-@@ -99,20 +97,6 @@ void intel_vga_reset_io_mem(struct drm_i915_private *i915)
- 	vga_put(pdev, VGA_RSRC_LEGACY_IO);
+-err_gt:
+-	kfree(cap->error->gt);
+-err_gpu:
+-	kfree(cap->error);
+ err_cap:
+ 	kfree(cap);
+ 	return NULL;
+diff --git a/drivers/gpu/drm/i915/i915_gpu_error.c b/drivers/gpu/drm/i915/i915_gpu_error.c
+index 9b1bb5aeec11..e4185f30f07c 100644
+--- a/drivers/gpu/drm/i915/i915_gpu_error.c
++++ b/drivers/gpu/drm/i915/i915_gpu_error.c
+@@ -63,6 +63,9 @@
+ #define ALLOW_FAIL (__GFP_KSWAPD_RECLAIM | __GFP_RETRY_MAYFAIL | __GFP_NOWARN)
+ #define ATOMIC_MAYFAIL (GFP_ATOMIC | __GFP_NOWARN)
+ 
++struct intel_gt_coredump *
++intel_gt_coredump_alloc(struct intel_gt *gt, gfp_t gfp, u32 dump_flags);
++
+ static void __sg_set_buf(struct scatterlist *sg,
+ 			 void *addr, unsigned int len, loff_t it)
+ {
+@@ -2005,8 +2008,8 @@ static void capture_gen(struct i915_gpu_coredump *error)
+ 	error->driver_caps = i915->caps;
  }
  
--static unsigned int
--intel_vga_set_decode(struct pci_dev *pdev, bool enable_decode)
+-struct i915_gpu_coredump *
+-i915_gpu_coredump_alloc(struct drm_i915_private *i915, gfp_t gfp)
++static struct i915_gpu_coredump *
++__i915_gpu_coredump_alloc(struct drm_i915_private *i915, gfp_t gfp)
+ {
+ 	struct i915_gpu_coredump *error;
+ 
+@@ -2030,6 +2033,35 @@ i915_gpu_coredump_alloc(struct drm_i915_private *i915, gfp_t gfp)
+ 	return error;
+ }
+ 
++struct i915_gpu_coredump *
++i915_gpu_coredump_alloc(struct intel_engine_cs *engine, gfp_t gfp)
++{
++	struct i915_gpu_coredump *error;
++
++	error = __i915_gpu_coredump_alloc(engine->i915, gfp);
++	if (!error)
++		return NULL;
++
++	error->gt = intel_gt_coredump_alloc(engine->gt, gfp, CORE_DUMP_FLAG_NONE);
++	if (!error->gt)
++		goto err_gpu;
++
++	error->gt->engine = intel_engine_coredump_alloc(engine, gfp, CORE_DUMP_FLAG_NONE);
++	if (!error->gt->engine)
++		goto err_gt;
++
++	error->gt->engine->hung = true;
++
++	return error;
++
++err_gt:
++	kfree(error->gt);
++err_gpu:
++	kfree(error);
++
++	return NULL;
++}
++
+ #define DAY_AS_SECONDS(x) (24 * 60 * 60 * (x))
+ 
+ struct intel_gt_coredump *
+@@ -2102,7 +2134,7 @@ __i915_gpu_coredump(struct intel_gt *gt, intel_engine_mask_t engine_mask, u32 du
+ 	if (IS_ERR(error))
+ 		return error;
+ 
+-	error = i915_gpu_coredump_alloc(i915, ALLOW_FAIL);
++	error = __i915_gpu_coredump_alloc(i915, ALLOW_FAIL);
+ 	if (!error)
+ 		return ERR_PTR(-ENOMEM);
+ 
+diff --git a/drivers/gpu/drm/i915/i915_gpu_error.h b/drivers/gpu/drm/i915/i915_gpu_error.h
+index f6f8d284a07d..a0ab187b426d 100644
+--- a/drivers/gpu/drm/i915/i915_gpu_error.h
++++ b/drivers/gpu/drm/i915/i915_gpu_error.h
+@@ -280,13 +280,7 @@ void i915_capture_error_state(struct intel_gt *gt,
+ 			      intel_engine_mask_t engine_mask, u32 dump_flags);
+ 
+ struct i915_gpu_coredump *
+-i915_gpu_coredump_alloc(struct drm_i915_private *i915, gfp_t gfp);
+-
+-struct intel_gt_coredump *
+-intel_gt_coredump_alloc(struct intel_gt *gt, gfp_t gfp, u32 dump_flags);
+-
+-struct intel_engine_coredump *
+-intel_engine_coredump_alloc(struct intel_engine_cs *engine, gfp_t gfp, u32 dump_flags);
++i915_gpu_coredump_alloc(struct intel_engine_cs *engine, gfp_t gfp);
+ 
+ struct intel_engine_capture_vma *
+ intel_engine_coredump_add_request(struct intel_engine_coredump *ee,
+@@ -332,19 +326,7 @@ i915_capture_error_state(struct intel_gt *gt, intel_engine_mask_t engine_mask, u
+ }
+ 
+ static inline struct i915_gpu_coredump *
+-i915_gpu_coredump_alloc(struct drm_i915_private *i915, gfp_t gfp)
 -{
--	struct drm_i915_private *i915 = pdev_to_i915(pdev);
--
--	intel_gmch_vga_set_state(i915, enable_decode);
--
--	if (enable_decode)
--		return VGA_RSRC_LEGACY_IO | VGA_RSRC_LEGACY_MEM |
--		       VGA_RSRC_NORMAL_IO | VGA_RSRC_NORMAL_MEM;
--	else
--		return VGA_RSRC_NORMAL_IO | VGA_RSRC_NORMAL_MEM;
+-	return NULL;
 -}
 -
- int intel_vga_register(struct drm_i915_private *i915)
+-static inline struct intel_gt_coredump *
+-intel_gt_coredump_alloc(struct intel_gt *gt, gfp_t gfp, u32 dump_flags)
+-{
+-	return NULL;
+-}
+-
+-static inline struct intel_engine_coredump *
+-intel_engine_coredump_alloc(struct intel_engine_cs *engine, gfp_t gfp, u32 dump_flags)
++i915_gpu_coredump_alloc(struct intel_engine_cs *engine, gfp_t gfp)
  {
- 
-@@ -127,7 +111,7 @@ int intel_vga_register(struct drm_i915_private *i915)
- 	 * then we do not take part in VGA arbitration and the
- 	 * vga_client_register() fails with -ENODEV.
- 	 */
--	ret = vga_client_register(pdev, intel_vga_set_decode);
-+	ret = vga_client_register(pdev, intel_gmch_vga_set_decode);
- 	if (ret && ret != -ENODEV)
- 		return ret;
- 
-diff --git a/drivers/gpu/drm/i915/soc/intel_gmch.c b/drivers/gpu/drm/i915/soc/intel_gmch.c
-index 49c7fb16e934..f32e9f78770a 100644
---- a/drivers/gpu/drm/i915/soc/intel_gmch.c
-+++ b/drivers/gpu/drm/i915/soc/intel_gmch.c
-@@ -5,6 +5,7 @@
- 
- #include <linux/pci.h>
- #include <linux/pnp.h>
-+#include <linux/vgaarb.h>
- 
- #include <drm/drm_managed.h>
- #include <drm/i915_drm.h>
-@@ -167,3 +168,16 @@ int intel_gmch_vga_set_state(struct drm_i915_private *i915, bool enable_decode)
- 
- 	return 0;
+ 	return NULL;
  }
-+
-+unsigned int intel_gmch_vga_set_decode(struct pci_dev *pdev, bool enable_decode)
-+{
-+	struct drm_i915_private *i915 = pdev_to_i915(pdev);
-+
-+	intel_gmch_vga_set_state(i915, enable_decode);
-+
-+	if (enable_decode)
-+		return VGA_RSRC_LEGACY_IO | VGA_RSRC_LEGACY_MEM |
-+		       VGA_RSRC_NORMAL_IO | VGA_RSRC_NORMAL_MEM;
-+	else
-+		return VGA_RSRC_NORMAL_IO | VGA_RSRC_NORMAL_MEM;
-+}
-diff --git a/drivers/gpu/drm/i915/soc/intel_gmch.h b/drivers/gpu/drm/i915/soc/intel_gmch.h
-index d0133eedc720..23be2d113afd 100644
---- a/drivers/gpu/drm/i915/soc/intel_gmch.h
-+++ b/drivers/gpu/drm/i915/soc/intel_gmch.h
-@@ -8,11 +8,13 @@
- 
- #include <linux/types.h>
- 
-+struct pci_dev;
- struct drm_i915_private;
- 
- int intel_gmch_bridge_setup(struct drm_i915_private *i915);
- void intel_gmch_bar_setup(struct drm_i915_private *i915);
- void intel_gmch_bar_teardown(struct drm_i915_private *i915);
- int intel_gmch_vga_set_state(struct drm_i915_private *i915, bool enable_decode);
-+unsigned int intel_gmch_vga_set_decode(struct pci_dev *pdev, bool enable_decode);
- 
- #endif /* __INTEL_GMCH_H__ */
 -- 
-2.42.0
+2.39.2
 
