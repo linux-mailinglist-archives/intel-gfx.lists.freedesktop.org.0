@@ -1,34 +1,49 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id B05017B3690
-	for <lists+intel-gfx@lfdr.de>; Fri, 29 Sep 2023 17:22:11 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 590DE7B36DF
+	for <lists+intel-gfx@lfdr.de>; Fri, 29 Sep 2023 17:34:07 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 97C0710E155;
-	Fri, 29 Sep 2023 15:22:08 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id EEE8410E15C;
+	Fri, 29 Sep 2023 15:34:00 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 30F7210E155;
- Fri, 29 Sep 2023 15:22:07 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 2B0E1AADE0;
- Fri, 29 Sep 2023 15:22:07 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============3968358356712805510=="
+Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.136])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2F5EF10E155
+ for <intel-gfx@lists.freedesktop.org>; Fri, 29 Sep 2023 15:33:59 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1696001638; x=1727537638;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=UE7bQNoSKQCIsK4Ot5MnsiMxXCaHJCqQq+KhQN5D1jc=;
+ b=d0golDB2M8iKi1aMNf8M5VAAGoSxrXQf77gE52kq4MeEsu8U4IF9Siha
+ 8GkgWilRRmCKx0zd0Kjzcj32x1pYxMlbwsY+tf3fJs9WfB51YUfCbDDAE
+ 2hdIbhMC+P+MC4j7yR+XKJz7iLwS8wcFwlMfXbHRsVs6vs9GgKCgtgURf
+ y2vniaVuvvBji6qomkjQp8dFYFGtOCl+jPYWSyBcntyvRbMqok7XLAAT5
+ DSaYG0Dh2S3yx+iWP/Xx2jMZV+bqdIe6OsdKS5QBO/6XxjDbF5kWlhIxu
+ CVr/tE8hdY7asCdLyG0xpKBsuLsgB/nTM1hY8A+Ah9cGJ/v0mOfRu55+l g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10848"; a="361702187"
+X-IronPort-AV: E=Sophos;i="6.03,187,1694761200"; d="scan'208";a="361702187"
+Received: from fmsmga008.fm.intel.com ([10.253.24.58])
+ by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 29 Sep 2023 08:33:57 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10848"; a="815642534"
+X-IronPort-AV: E=Sophos;i="6.03,187,1694761200"; d="scan'208";a="815642534"
+Received: from dut-internal-9dd7.jf.intel.com ([10.165.21.194])
+ by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 29 Sep 2023 08:33:56 -0700
+From: Jonathan Cavitt <jonathan.cavitt@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Fri, 29 Sep 2023 08:23:14 -0700
+Message-Id: <20230929152315.724900-1-jonathan.cavitt@intel.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Uma Shankar" <uma.shankar@intel.com>
-Date: Fri, 29 Sep 2023 15:22:07 -0000
-Message-ID: <169600092713.19496.5238662456565400126@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20230929074306.1533859-1-uma.shankar@intel.com>
-In-Reply-To: <20230929074306.1533859-1-uma.shankar@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
- =?utf-8?q?/i915/display=3A_Created_exclusive_version_of_vga_decode_setup_?=
- =?utf-8?b?KHJldjIp?=
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-gfx] [PATCH 1/2] drm/i915: Define and use GuC and CTB TLB
+ invalidation routines
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -41,269 +56,557 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
+Cc: janusz.krzysztofik@intel.com, andi.shyti@intel.com,
+ jonathan.cavitt@intel.com, umesh.nirlige.ramappa@intel.com,
+ chris.p.wilson@linux.intel.com, nirmoy.das@intel.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============3968358356712805510==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+From: Prathap Kumar Valsan <prathap.kumar.valsan@intel.com>
 
-== Series Details ==
+The GuC firmware had defined the interface for Translation Look-Aside
+Buffer (TLB) invalidation.  We should use this interface when
+invalidating the engine and GuC TLBs.
+Add additional functionality to intel_gt_invalidate_tlb, invalidating
+the GuC TLBs and falling back to GT invalidation when the GuC is
+disabled.
+The invalidation is done by sending a request directly to the GuC
+tlb_lookup that invalidates the table.  The invalidation is submitted as
+a wait request and is performed in the CT event handler.  This means we
+cannot perform this TLB invalidation path if the CT is not enabled.
+If the request isn't fulfilled in two seconds, this would constitute
+an error in the invalidation as that would constitute either a lost
+request or a severe GuC overload.
 
-Series: drm/i915/display: Created exclusive version of vga decode setup (rev2)
-URL   : https://patchwork.freedesktop.org/series/124296/
-State : success
+With this new invalidation routine, we can perform GuC-based GGTT
+invalidations.  We should only do this when GuC is enabled and fall
+back to the original path when GuC is disabled to prevent concurrent
+issuance between GuC and KMD.
 
-== Summary ==
+Signed-off-by: Prathap Kumar Valsan <prathap.kumar.valsan@intel.com>
+Signed-off-by: Bruce Chang <yu.bruce.chang@intel.com>
+Signed-off-by: Chris Wilson <chris.p.wilson@intel.com>
+Signed-off-by: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
+Signed-off-by: Jonathan Cavitt <jonathan.cavitt@intel.com>
+Signed-off-by: Aravind Iddamsetty <aravind.iddamsetty@intel.com>
+Signed-off-by: Fei Yang <fei.yang@intel.com>
+CC: Andi Shyti <andi.shyti@linux.intel.com>
+---
+ drivers/gpu/drm/i915/gt/intel_ggtt.c          |  42 ++--
+ drivers/gpu/drm/i915/gt/intel_tlb.c           |  14 +-
+ .../gpu/drm/i915/gt/uc/abi/guc_actions_abi.h  |  33 +++
+ drivers/gpu/drm/i915/gt/uc/intel_guc.h        |  22 ++
+ drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c     |   8 +
+ drivers/gpu/drm/i915/gt/uc/intel_guc_fwif.h   |   1 +
+ .../gpu/drm/i915/gt/uc/intel_guc_submission.c | 212 +++++++++++++++++-
+ 7 files changed, 316 insertions(+), 16 deletions(-)
 
-CI Bug Log - changes from CI_DRM_13693 -> Patchwork_124296v2
-====================================================
+diff --git a/drivers/gpu/drm/i915/gt/intel_ggtt.c b/drivers/gpu/drm/i915/gt/intel_ggtt.c
+index da21f2786b5d7..c5b3725be3bf3 100644
+--- a/drivers/gpu/drm/i915/gt/intel_ggtt.c
++++ b/drivers/gpu/drm/i915/gt/intel_ggtt.c
+@@ -201,22 +201,37 @@ static void gen8_ggtt_invalidate(struct i915_ggtt *ggtt)
+ 	intel_uncore_write_fw(uncore, GFX_FLSH_CNTL_GEN6, GFX_FLSH_CNTL_EN);
+ }
+ 
+-static void guc_ggtt_invalidate(struct i915_ggtt *ggtt)
++static void guc_ggtt_ct_invalidate(struct intel_gt *gt)
+ {
+-	struct drm_i915_private *i915 = ggtt->vm.i915;
++	struct intel_uncore *uncore = gt->uncore;
++	intel_wakeref_t wakeref;
++
++	with_intel_runtime_pm_if_active(uncore->rpm, wakeref) {
++		struct intel_guc *guc = &gt->uc.guc;
+ 
+-	gen8_ggtt_invalidate(ggtt);
++		intel_guc_invalidate_tlb(guc);
++	}
++}
+ 
+-	if (GRAPHICS_VER(i915) >= 12) {
+-		struct intel_gt *gt;
++static void guc_ggtt_invalidate(struct i915_ggtt *ggtt)
++{
++	struct drm_i915_private *i915 = ggtt->vm.i915;
++	struct intel_gt *gt;
+ 
+-		list_for_each_entry(gt, &ggtt->gt_list, ggtt_link)
+-			intel_uncore_write_fw(gt->uncore,
+-					      GEN12_GUC_TLB_INV_CR,
+-					      GEN12_GUC_TLB_INV_CR_INVALIDATE);
+-	} else {
+-		intel_uncore_write_fw(ggtt->vm.gt->uncore,
+-				      GEN8_GTCR, GEN8_GTCR_INVALIDATE);
++	if (!IS_GEN9_LP(i915) && GRAPHICS_VER(i915) < 11)
++		gen8_ggtt_invalidate(ggtt);
++
++	list_for_each_entry(gt, &ggtt->gt_list, ggtt_link) {
++		if (intel_guc_is_ready(&gt->uc.guc)) {
++			guc_ggtt_ct_invalidate(gt);
++		} else if (GRAPHICS_VER(i915) >= 12) {
++			intel_uncore_write(gt->uncore,
++					   GEN12_GUC_TLB_INV_CR,
++					   GEN12_GUC_TLB_INV_CR_INVALIDATE);
++		} else {
++			intel_uncore_write(gt->uncore,
++					   GEN8_GTCR, GEN8_GTCR_INVALIDATE);
++		}
+ 	}
+ }
+ 
+@@ -1008,7 +1023,8 @@ static int gen8_gmch_probe(struct i915_ggtt *ggtt)
+ 			I915_VMA_GLOBAL_BIND | I915_VMA_LOCAL_BIND;
+ 	}
+ 
+-	if (intel_uc_wants_guc(&ggtt->vm.gt->uc))
++	if (intel_uc_wants_guc(&ggtt->vm.gt->uc) &&
++	    intel_uc_wants_guc_submission(&ggtt->vm.gt->uc))
+ 		ggtt->invalidate = guc_ggtt_invalidate;
+ 	else
+ 		ggtt->invalidate = gen8_ggtt_invalidate;
+diff --git a/drivers/gpu/drm/i915/gt/intel_tlb.c b/drivers/gpu/drm/i915/gt/intel_tlb.c
+index 139608c30d978..018aeb6bacc66 100644
+--- a/drivers/gpu/drm/i915/gt/intel_tlb.c
++++ b/drivers/gpu/drm/i915/gt/intel_tlb.c
+@@ -12,6 +12,7 @@
+ #include "intel_gt_print.h"
+ #include "intel_gt_regs.h"
+ #include "intel_tlb.h"
++#include "uc/intel_guc.h"
+ 
+ /*
+  * HW architecture suggest typical invalidation time at 40us,
+@@ -131,11 +132,22 @@ void intel_gt_invalidate_tlb_full(struct intel_gt *gt, u32 seqno)
+ 		return;
+ 
+ 	with_intel_gt_pm_if_awake(gt, wakeref) {
++		struct intel_guc *guc = &gt->uc.guc;
++
+ 		mutex_lock(&gt->tlb.invalidate_lock);
+ 		if (tlb_seqno_passed(gt, seqno))
+ 			goto unlock;
+ 
+-		mmio_invalidate_full(gt);
++		if (intel_guc_submission_is_used(guc)) {
++			if (intel_guc_is_ready(guc))
++				intel_guc_invalidate_tlb_full(guc);
++		} else {
++			/*
++			 * Fall back to old path if GuC is disabled.
++			 * This is safe because GuC is not enabled and not writing to MMIO.
++			 */
++			mmio_invalidate_full(gt);
++		}
+ 
+ 		write_seqcount_invalidate(&gt->tlb.seqno);
+ unlock:
+diff --git a/drivers/gpu/drm/i915/gt/uc/abi/guc_actions_abi.h b/drivers/gpu/drm/i915/gt/uc/abi/guc_actions_abi.h
+index f359bef046e0b..9dff8012d5e76 100644
+--- a/drivers/gpu/drm/i915/gt/uc/abi/guc_actions_abi.h
++++ b/drivers/gpu/drm/i915/gt/uc/abi/guc_actions_abi.h
+@@ -138,6 +138,8 @@ enum intel_guc_action {
+ 	INTEL_GUC_ACTION_REGISTER_CONTEXT_MULTI_LRC = 0x4601,
+ 	INTEL_GUC_ACTION_CLIENT_SOFT_RESET = 0x5507,
+ 	INTEL_GUC_ACTION_SET_ENG_UTIL_BUFF = 0x550A,
++	INTEL_GUC_ACTION_TLB_INVALIDATION = 0x7000,
++	INTEL_GUC_ACTION_TLB_INVALIDATION_DONE = 0x7001,
+ 	INTEL_GUC_ACTION_STATE_CAPTURE_NOTIFICATION = 0x8002,
+ 	INTEL_GUC_ACTION_NOTIFY_FLUSH_LOG_BUFFER_TO_FILE = 0x8003,
+ 	INTEL_GUC_ACTION_NOTIFY_CRASH_DUMP_POSTED = 0x8004,
+@@ -181,4 +183,35 @@ enum intel_guc_state_capture_event_status {
+ 
+ #define INTEL_GUC_STATE_CAPTURE_EVENT_STATUS_MASK      0x000000FF
+ 
++#define INTEL_GUC_TLB_INVAL_TYPE_MASK	REG_GENMASK(7, 0)
++#define INTEL_GUC_TLB_INVAL_MODE_MASK	REG_GENMASK(11, 8)
++#define INTEL_GUC_TLB_INVAL_FLUSH_CACHE REG_BIT(31)
++
++enum intel_guc_tlb_invalidation_type {
++	INTEL_GUC_TLB_INVAL_FULL = 0x0,
++	INTEL_GUC_TLB_INVAL_GUC = 0x3,
++};
++
++/*
++ * 0: Heavy mode of Invalidation:
++ * The pipeline of the engine(s) for which the invalidation is targeted to is
++ * blocked, and all the in-flight transactions are guaranteed to be Globally
++ * Observed before completing the TLB invalidation
++ * 1: Lite mode of Invalidation:
++ * TLBs of the targeted engine(s) are immediately invalidated.
++ * In-flight transactions are NOT guaranteed to be Globally Observed before
++ * completing TLB invalidation.
++ * Light Invalidation Mode is to be used only when
++ * it can be guaranteed (by SW) that the address translations remain invariant
++ * for the in-flight transactions across the TLB invalidation. In other words,
++ * this mode can be used when the TLB invalidation is intended to clear out the
++ * stale cached translations that are no longer in use. Light Invalidation Mode
++ * is much faster than the Heavy Invalidation Mode, as it does not wait for the
++ * in-flight transactions to be GOd.
++ */
++enum intel_guc_tlb_inval_mode {
++	INTEL_GUC_TLB_INVAL_MODE_HEAVY = 0x0,
++	INTEL_GUC_TLB_INVAL_MODE_LITE = 0x1,
++};
++
+ #endif /* _ABI_GUC_ACTIONS_ABI_H */
+diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc.h b/drivers/gpu/drm/i915/gt/uc/intel_guc.h
+index 6c392bad29c19..0f74a460bfe56 100644
+--- a/drivers/gpu/drm/i915/gt/uc/intel_guc.h
++++ b/drivers/gpu/drm/i915/gt/uc/intel_guc.h
+@@ -79,6 +79,18 @@ struct intel_guc {
+ 	 */
+ 	atomic_t outstanding_submission_g2h;
+ 
++	/** @tlb_lookup: xarray to store all pending TLB invalidation requests */
++	struct xarray tlb_lookup;
++
++	/**
++	 * @serial_slot: id to the initial waiter created in tlb_lookup,
++	 * which is used only when failed to allocate new waiter.
++	 */
++	u32 serial_slot;
++
++	/** @next_seqno: the next id (sequence no.) to allocate. */
++	u32 next_seqno;
++
+ 	/** @interrupts: pointers to GuC interrupt-managing functions. */
+ 	struct {
+ 		bool enabled;
+@@ -296,6 +308,11 @@ struct intel_guc {
+ #define MAKE_GUC_VER_STRUCT(ver)	MAKE_GUC_VER((ver).major, (ver).minor, (ver).patch)
+ #define GUC_SUBMIT_VER(guc)		MAKE_GUC_VER_STRUCT((guc)->submission_version)
+ 
++struct intel_guc_tlb_wait {
++	struct wait_queue_head wq;
++	u8 status;
++} __aligned(4);
++
+ static inline struct intel_guc *log_to_guc(struct intel_guc_log *log)
+ {
+ 	return container_of(log, struct intel_guc, log);
+@@ -413,6 +430,11 @@ int intel_guc_allocate_and_map_vma(struct intel_guc *guc, u32 size,
+ int intel_guc_self_cfg32(struct intel_guc *guc, u16 key, u32 value);
+ int intel_guc_self_cfg64(struct intel_guc *guc, u16 key, u64 value);
+ 
++int intel_guc_invalidate_tlb_full(struct intel_guc *guc);
++int intel_guc_invalidate_tlb(struct intel_guc *guc);
++int intel_guc_tlb_invalidation_done(struct intel_guc *guc, const u32 *hxg,
++				    u32 size);
++
+ static inline bool intel_guc_is_supported(struct intel_guc *guc)
+ {
+ 	return intel_uc_fw_is_supported(&guc->fw);
+diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c b/drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c
+index 6e22af31513a5..21dd271b68d63 100644
+--- a/drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c
++++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c
+@@ -1186,9 +1186,17 @@ static int ct_handle_event(struct intel_guc_ct *ct, struct ct_incoming_msg *requ
+ 	switch (action) {
+ 	case INTEL_GUC_ACTION_SCHED_CONTEXT_MODE_DONE:
+ 	case INTEL_GUC_ACTION_DEREGISTER_CONTEXT_DONE:
++	case INTEL_GUC_ACTION_TLB_INVALIDATION_DONE:
+ 		g2h_release_space(ct, request->size);
+ 	}
+ 
++	/* Handle tlb invalidation response in interrupt context */
++	if (action == INTEL_GUC_ACTION_TLB_INVALIDATION_DONE) {
++		int ret = intel_guc_tlb_invalidation_done(ct_to_guc(ct), hxg, request->size);
++		ct_free_msg(request);
++		return ret;
++	}
++
+ 	spin_lock_irqsave(&ct->requests.lock, flags);
+ 	list_add_tail(&request->link, &ct->requests.incoming);
+ 	spin_unlock_irqrestore(&ct->requests.lock, flags);
+diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_fwif.h b/drivers/gpu/drm/i915/gt/uc/intel_guc_fwif.h
+index b4d56eccfb1f0..a7c9874e122a3 100644
+--- a/drivers/gpu/drm/i915/gt/uc/intel_guc_fwif.h
++++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_fwif.h
+@@ -22,6 +22,7 @@
+ /* Payload length only i.e. don't include G2H header length */
+ #define G2H_LEN_DW_SCHED_CONTEXT_MODE_SET	2
+ #define G2H_LEN_DW_DEREGISTER_CONTEXT		1
++#define G2H_LEN_DW_INVALIDATE_TLB		1
+ 
+ #define GUC_CONTEXT_DISABLE		0
+ #define GUC_CONTEXT_ENABLE		1
+diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c b/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
+index ae3495a9c8146..6a2dcab63074e 100644
+--- a/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
++++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
+@@ -1796,11 +1796,20 @@ static void __guc_reset_context(struct intel_context *ce, intel_engine_mask_t st
+ 	intel_context_put(parent);
+ }
+ 
++static void wake_up_tlb_invalidate(struct intel_guc_tlb_wait *wait)
++{
++	/* Barrier to ensure the store is observed by the woken thread */
++	smp_store_mb(wait->status, 0);
++	wake_up(&wait->wq);
++}
++
+ void intel_guc_submission_reset(struct intel_guc *guc, intel_engine_mask_t stalled)
+ {
++	struct intel_guc_tlb_wait *wait;
+ 	struct intel_context *ce;
+ 	unsigned long index;
+ 	unsigned long flags;
++	unsigned long i;
+ 
+ 	if (unlikely(!guc_submission_initialized(guc))) {
+ 		/* Reset called during driver load? GuC not yet initialised! */
+@@ -1826,6 +1835,13 @@ void intel_guc_submission_reset(struct intel_guc *guc, intel_engine_mask_t stall
+ 
+ 	/* GuC is blown away, drop all references to contexts */
+ 	xa_destroy(&guc->context_lookup);
++
++	/*
++	 * The full GT reset will have cleared the TLB caches and flushed the
++	 * G2H message queue; we can release all the blocked waiters.
++	 */
++	xa_for_each(&guc->tlb_lookup, i, wait)
++		wake_up_tlb_invalidate(wait);
+ }
+ 
+ static void guc_cancel_context_requests(struct intel_context *ce)
+@@ -1948,6 +1964,41 @@ void intel_guc_submission_reset_finish(struct intel_guc *guc)
+ static void destroyed_worker_func(struct work_struct *w);
+ static void reset_fail_worker_func(struct work_struct *w);
+ 
++static int init_tlb_lookup(struct intel_guc *guc)
++{
++	struct intel_guc_tlb_wait *wait;
++	int err;
++
++	xa_init_flags(&guc->tlb_lookup, XA_FLAGS_ALLOC);
++
++	wait = kzalloc(sizeof(*wait), GFP_KERNEL);
++	if (!wait)
++		return -ENOMEM;
++
++	init_waitqueue_head(&wait->wq);
++	err = xa_alloc_cyclic_irq(&guc->tlb_lookup, &guc->serial_slot, wait,
++				  xa_limit_32b, &guc->next_seqno, GFP_KERNEL);
++	if (err == -ENOMEM) {
++		kfree(wait);
++		return err;
++	}
++
++	return 0;
++}
++
++static void fini_tlb_lookup(struct intel_guc *guc)
++{
++	struct intel_guc_tlb_wait *wait;
++
++	wait = xa_load(&guc->tlb_lookup, guc->serial_slot);
++	if (wait) {
++		GEM_BUG_ON(wait->status);
++		kfree(wait);
++	}
++
++	xa_destroy(&guc->tlb_lookup);
++}
++
+ /*
+  * Set up the memory resources to be shared with the GuC (via the GGTT)
+  * at firmware loading time.
+@@ -1966,11 +2017,15 @@ int intel_guc_submission_init(struct intel_guc *guc)
+ 			return ret;
+ 	}
+ 
++	ret = init_tlb_lookup(guc);
++	if (ret)
++		goto destroy_pool;
++
+ 	guc->submission_state.guc_ids_bitmap =
+ 		bitmap_zalloc(NUMBER_MULTI_LRC_GUC_ID(guc), GFP_KERNEL);
+ 	if (!guc->submission_state.guc_ids_bitmap) {
+ 		ret = -ENOMEM;
+-		goto destroy_pool;
++		goto destroy_tlb;
+ 	}
+ 
+ 	guc->timestamp.ping_delay = (POLL_TIME_CLKS / gt->clock_frequency + 1) * HZ;
+@@ -1979,9 +2034,10 @@ int intel_guc_submission_init(struct intel_guc *guc)
+ 
+ 	return 0;
+ 
++destroy_tlb:
++	fini_tlb_lookup(guc);
+ destroy_pool:
+ 	guc_lrc_desc_pool_destroy_v69(guc);
+-
+ 	return ret;
+ }
+ 
+@@ -1994,6 +2050,7 @@ void intel_guc_submission_fini(struct intel_guc *guc)
+ 	guc_lrc_desc_pool_destroy_v69(guc);
+ 	i915_sched_engine_put(guc->sched_engine);
+ 	bitmap_free(guc->submission_state.guc_ids_bitmap);
++	fini_tlb_lookup(guc);
+ 	guc->submission_initialized = false;
+ }
+ 
+@@ -4624,6 +4681,157 @@ g2h_context_lookup(struct intel_guc *guc, u32 ctx_id)
+ 	return ce;
+ }
+ 
++static void wait_wake_outstanding_tlb_g2h(struct intel_guc *guc, u32 seqno)
++{
++	struct intel_guc_tlb_wait *wait;
++	unsigned long flags;
++
++	xa_lock_irqsave(&guc->tlb_lookup, flags);
++	wait = xa_load(&guc->tlb_lookup, seqno);
++
++	/* We received a response after the waiting task did exit with a timeout */
++	if (unlikely(!wait))
++		drm_dbg(&guc_to_gt(guc)->i915->drm,
++			"Stale TLB invalidation response with seqno %d\n", seqno);
++
++	if (wait)
++		wake_up_tlb_invalidate(wait);
++
++	xa_unlock_irqrestore(&guc->tlb_lookup, flags);
++}
++
++int intel_guc_tlb_invalidation_done(struct intel_guc *guc, const u32 *hxg, u32 size)
++{
++	u32 seqno, hxg_len, len;
++
++	/*
++	 * FIXME: these calculations would be better done signed. That
++	 * way underflow can be detected as well.
++	 */
++	hxg_len = size - GUC_CTB_MSG_MIN_LEN;
++	len = hxg_len - GUC_HXG_MSG_MIN_LEN;
++
++	if (unlikely(len < 1))
++		return -EPROTO;
++
++	seqno = hxg[GUC_HXG_MSG_MIN_LEN];
++	wait_wake_outstanding_tlb_g2h(guc, seqno);
++	return 0;
++}
++
++static long must_wait_woken(struct wait_queue_entry *wq_entry, long timeout)
++{
++	/*
++	 * This is equivalent to wait_woken() with the exception that
++	 * we do not wake up early if the kthread task has been completed.
++	 * As we are called from page reclaim in any task context,
++	 * we may be invoked from stopped kthreads, but we *must*
++	 * complete the wait from the HW .
++	 *
++	 * A second problem is that since we are called under reclaim
++	 * and wait_woken() inspected the thread state, it makes an invalid
++	 * assumption that all PF_KTHREAD tasks have set_kthread_struct()
++	 * called upon them, and will trigger a GPF in is_kthread_should_stop().
++	 */
++	do {
++		set_current_state(TASK_UNINTERRUPTIBLE);
++		if (wq_entry->flags & WQ_FLAG_WOKEN)
++			break;
++
++		timeout = schedule_timeout(timeout);
++	} while (timeout);
++	__set_current_state(TASK_RUNNING);
++
++	/* See wait_woken() and woken_wake_function() */
++	smp_store_mb(wq_entry->flags, wq_entry->flags & ~WQ_FLAG_WOKEN);
++
++	return timeout;
++}
++
++static int guc_send_invalidate_tlb(struct intel_guc *guc, u32 type)
++{
++	struct intel_guc_tlb_wait _wq, *wq = &_wq;
++	DEFINE_WAIT_FUNC(wait, woken_wake_function);
++	struct intel_gt *gt = guc_to_gt(guc);
++	int err = 0;
++	u32 seqno;
++	u32 action[] = {
++		INTEL_GUC_ACTION_TLB_INVALIDATION,
++		0,
++		REG_FIELD_PREP(INTEL_GUC_TLB_INVAL_TYPE_MASK, type) |
++			REG_FIELD_PREP(INTEL_GUC_TLB_INVAL_MODE_MASK, INTEL_GUC_TLB_INVAL_MODE_HEAVY) |
++			INTEL_GUC_TLB_INVAL_FLUSH_CACHE,
++	};
++	u32 size = ARRAY_SIZE(action);
++
++	if (!intel_guc_ct_enabled(&guc->ct))
++		return -EINVAL;
++
++	init_waitqueue_head(&_wq.wq);
++
++	if (xa_alloc_cyclic_irq(&guc->tlb_lookup, &seqno, wq,
++				xa_limit_32b, &guc->next_seqno,
++				GFP_ATOMIC | __GFP_NOWARN) < 0) {
++		/* Under severe memory pressure? Serialise TLB allocations */
++		xa_lock_irq(&guc->tlb_lookup);
++		wq = xa_load(&guc->tlb_lookup, guc->serial_slot);
++		wait_event_lock_irq(wq->wq,
++				    !READ_ONCE(wq->status),
++				    guc->tlb_lookup.xa_lock);
++		/*
++		 * Update wq->status under lock to ensure only one waiter can
++		 * issue the TLB invalidation command using the serial slot at a
++		 * time. The condition is set to false before releasing the lock
++		 * so that other caller continue to wait until woken up again.
++		 */
++		wq->status = 1;
++		xa_unlock_irq(&guc->tlb_lookup);
++
++		seqno = guc->serial_slot;
++	}
++
++	action[1] = seqno;
++
++	add_wait_queue(&wq->wq, &wait);
++
++	err = intel_guc_send_busy_loop(guc, action, size, G2H_LEN_DW_INVALIDATE_TLB, true);
++	if (err) {
++		goto out;
++	}
++	/*
++	 * GuC has a timeout of 1ms for a TLB invalidation response from GAM. On a
++	 * timeout GuC drops the request and has no mechanism to notify the host about
++	 * the timeout. So keep a larger timeout that accounts for this individual
++	 * timeout and max number of outstanding invalidation requests that can be
++	 * queued in CT buffer.
++	 */
++#define OUTSTANDING_GUC_TIMEOUT_PERIOD  (HZ * 2)
++	if (!must_wait_woken(&wait, OUTSTANDING_GUC_TIMEOUT_PERIOD)) {
++		gt_err(gt,
++		       "TLB invalidation response timed out for seqno %u\n", seqno);
++		err = -ETIME;
++	}
++out:
++	remove_wait_queue(&wq->wq, &wait);
++	if (seqno != guc->serial_slot)
++		xa_erase_irq(&guc->tlb_lookup, seqno);
++
++	return err;
++}
++
++/* Full TLB invalidation */
++int intel_guc_invalidate_tlb_full(struct intel_guc *guc)
++{
++	return guc_send_invalidate_tlb(guc, INTEL_GUC_TLB_INVAL_FULL);
++}
++
++/* GuC TLB Invalidation: Invalidate the TLB's of GuC itself. */
++int intel_guc_invalidate_tlb(struct intel_guc *guc)
++{
++	return guc_send_invalidate_tlb(guc, INTEL_GUC_TLB_INVAL_GUC);
++}
++
++
+ int intel_guc_deregister_done_process_msg(struct intel_guc *guc,
+ 					  const u32 *msg,
+ 					  u32 len)
+-- 
+2.25.1
 
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_124296v2/index.html
-
-Participating hosts (38 -> 37)
-------------------------------
-
-  Missing    (1): fi-snb-2520m 
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_124296v2 that come from known issues:
-
-### CI changes ###
-
-#### Possible fixes ####
-
-  * boot:
-    - fi-hsw-4770:        [FAIL][1] ([i915#8293]) -> [PASS][2]
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13693/fi-hsw-4770/boot.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_124296v2/fi-hsw-4770/boot.html
-
-  
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@i915_selftest@live@gt_heartbeat:
-    - bat-jsl-3:          [PASS][3] -> [DMESG-FAIL][4] ([i915#5334])
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13693/bat-jsl-3/igt@i915_selftest@live@gt_heartbeat.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_124296v2/bat-jsl-3/igt@i915_selftest@live@gt_heartbeat.html
-    - fi-apl-guc:         [PASS][5] -> [DMESG-FAIL][6] ([i915#5334])
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13693/fi-apl-guc/igt@i915_selftest@live@gt_heartbeat.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_124296v2/fi-apl-guc/igt@i915_selftest@live@gt_heartbeat.html
-
-  * igt@kms_addfb_basic@addfb25-y-tiled-small-legacy:
-    - fi-hsw-4770:        NOTRUN -> [SKIP][7] ([fdo#109271]) +13 other tests skip
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_124296v2/fi-hsw-4770/igt@kms_addfb_basic@addfb25-y-tiled-small-legacy.html
-
-  * igt@kms_frontbuffer_tracking@basic:
-    - fi-bsw-nick:        [PASS][8] -> [FAIL][9] ([i915#9276])
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13693/fi-bsw-nick/igt@kms_frontbuffer_tracking@basic.html
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_124296v2/fi-bsw-nick/igt@kms_frontbuffer_tracking@basic.html
-
-  * igt@kms_pipe_crc_basic@read-crc-frame-sequence@pipe-c-dp-5:
-    - bat-adlp-11:        NOTRUN -> [ABORT][10] ([i915#8668])
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_124296v2/bat-adlp-11/igt@kms_pipe_crc_basic@read-crc-frame-sequence@pipe-c-dp-5.html
-
-  * igt@kms_pipe_crc_basic@suspend-read-crc@pipe-c-vga-1:
-    - fi-hsw-4770:        NOTRUN -> [DMESG-WARN][11] ([i915#8841]) +6 other tests dmesg-warn
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_124296v2/fi-hsw-4770/igt@kms_pipe_crc_basic@suspend-read-crc@pipe-c-vga-1.html
-
-  * igt@kms_psr@sprite_plane_onoff:
-    - fi-hsw-4770:        NOTRUN -> [SKIP][12] ([fdo#109271] / [i915#1072]) +3 other tests skip
-   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_124296v2/fi-hsw-4770/igt@kms_psr@sprite_plane_onoff.html
-
-  
-#### Possible fixes ####
-
-  * igt@kms_hdmi_inject@inject-audio:
-    - fi-kbl-guc:         [FAIL][13] ([IGT#3]) -> [PASS][14]
-   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13693/fi-kbl-guc/igt@kms_hdmi_inject@inject-audio.html
-   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_124296v2/fi-kbl-guc/igt@kms_hdmi_inject@inject-audio.html
-
-  * igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence@pipe-a-dp-5:
-    - bat-adlp-11:        [DMESG-FAIL][15] ([i915#6868]) -> [PASS][16]
-   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13693/bat-adlp-11/igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence@pipe-a-dp-5.html
-   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_124296v2/bat-adlp-11/igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence@pipe-a-dp-5.html
-
-  * igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence@pipe-c-dp-5:
-    - bat-adlp-11:        [FAIL][17] ([i915#9047]) -> [PASS][18] +2 other tests pass
-   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13693/bat-adlp-11/igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence@pipe-c-dp-5.html
-   [18]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_124296v2/bat-adlp-11/igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence@pipe-c-dp-5.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [IGT#3]: https://gitlab.freedesktop.org/drm/igt-gpu-tools/issues/3
-  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
-  [i915#1072]: https://gitlab.freedesktop.org/drm/intel/issues/1072
-  [i915#5334]: https://gitlab.freedesktop.org/drm/intel/issues/5334
-  [i915#6868]: https://gitlab.freedesktop.org/drm/intel/issues/6868
-  [i915#8293]: https://gitlab.freedesktop.org/drm/intel/issues/8293
-  [i915#8668]: https://gitlab.freedesktop.org/drm/intel/issues/8668
-  [i915#8841]: https://gitlab.freedesktop.org/drm/intel/issues/8841
-  [i915#9047]: https://gitlab.freedesktop.org/drm/intel/issues/9047
-  [i915#9276]: https://gitlab.freedesktop.org/drm/intel/issues/9276
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_13693 -> Patchwork_124296v2
-
-  CI-20190529: 20190529
-  CI_DRM_13693: bb46e837b7e59c22a567ae6913ff4d6bf0e9211a @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_7506: 4fdf544bd0a38c5a100ef43c30171827e1c8c442 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_124296v2: bb46e837b7e59c22a567ae6913ff4d6bf0e9211a @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-### Linux commits
-
-b541ebd58434 drm/i915/display: Created exclusive version of vga decode setup
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_124296v2/index.html
-
---===============3968358356712805510==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915/display: Created exclusive version of vga decode setup (rev2)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/124296/">https://patchwork.freedesktop.org/series/124296/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_124296v2/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_124296v2/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_13693 -&gt; Patchwork_124296v2</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_124296v2/index.html</p>
-<h2>Participating hosts (38 -&gt; 37)</h2>
-<p>Missing    (1): fi-snb-2520m </p>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_124296v2 that come from known issues:</p>
-<h3>CI changes</h3>
-<h4>Possible fixes</h4>
-<ul>
-<li>boot:<ul>
-<li>fi-hsw-4770:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13693/fi-hsw-4770/boot.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/8293">i915#8293</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_124296v2/fi-hsw-4770/boot.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@i915_selftest@live@gt_heartbeat:</p>
-<ul>
-<li>
-<p>bat-jsl-3:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13693/bat-jsl-3/igt@i915_selftest@live@gt_heartbeat.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_124296v2/bat-jsl-3/igt@i915_selftest@live@gt_heartbeat.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/5334">i915#5334</a>)</p>
-</li>
-<li>
-<p>fi-apl-guc:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13693/fi-apl-guc/igt@i915_selftest@live@gt_heartbeat.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_124296v2/fi-apl-guc/igt@i915_selftest@live@gt_heartbeat.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/5334">i915#5334</a>)</p>
-</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_addfb_basic@addfb25-y-tiled-small-legacy:</p>
-<ul>
-<li>fi-hsw-4770:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_124296v2/fi-hsw-4770/igt@kms_addfb_basic@addfb25-y-tiled-small-legacy.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +13 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_frontbuffer_tracking@basic:</p>
-<ul>
-<li>fi-bsw-nick:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13693/fi-bsw-nick/igt@kms_frontbuffer_tracking@basic.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_124296v2/fi-bsw-nick/igt@kms_frontbuffer_tracking@basic.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/9276">i915#9276</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_pipe_crc_basic@read-crc-frame-sequence@pipe-c-dp-5:</p>
-<ul>
-<li>bat-adlp-11:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_124296v2/bat-adlp-11/igt@kms_pipe_crc_basic@read-crc-frame-sequence@pipe-c-dp-5.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/8668">i915#8668</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_pipe_crc_basic@suspend-read-crc@pipe-c-vga-1:</p>
-<ul>
-<li>fi-hsw-4770:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_124296v2/fi-hsw-4770/igt@kms_pipe_crc_basic@suspend-read-crc@pipe-c-vga-1.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/8841">i915#8841</a>) +6 other tests dmesg-warn</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_psr@sprite_plane_onoff:</p>
-<ul>
-<li>fi-hsw-4770:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_124296v2/fi-hsw-4770/igt@kms_psr@sprite_plane_onoff.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/1072">i915#1072</a>) +3 other tests skip</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>
-<p>igt@kms_hdmi_inject@inject-audio:</p>
-<ul>
-<li>fi-kbl-guc:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13693/fi-kbl-guc/igt@kms_hdmi_inject@inject-audio.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/igt-gpu-tools/issues/3">IGT#3</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_124296v2/fi-kbl-guc/igt@kms_hdmi_inject@inject-audio.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence@pipe-a-dp-5:</p>
-<ul>
-<li>bat-adlp-11:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13693/bat-adlp-11/igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence@pipe-a-dp-5.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/6868">i915#6868</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_124296v2/bat-adlp-11/igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence@pipe-a-dp-5.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence@pipe-c-dp-5:</p>
-<ul>
-<li>bat-adlp-11:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13693/bat-adlp-11/igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence@pipe-c-dp-5.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/9047">i915#9047</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_124296v2/bat-adlp-11/igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence@pipe-c-dp-5.html">PASS</a> +2 other tests pass</li>
-</ul>
-</li>
-</ul>
-<p>{name}: This element is suppressed. This means it is ignored when computing<br />
-          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_13693 -&gt; Patchwork_124296v2</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_13693: bb46e837b7e59c22a567ae6913ff4d6bf0e9211a @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_7506: 4fdf544bd0a38c5a100ef43c30171827e1c8c442 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  Patchwork_124296v2: bb46e837b7e59c22a567ae6913ff4d6bf0e9211a @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<h3>Linux commits</h3>
-<p>b541ebd58434 drm/i915/display: Created exclusive version of vga decode setup</p>
-
-</body>
-</html>
-
---===============3968358356712805510==--
