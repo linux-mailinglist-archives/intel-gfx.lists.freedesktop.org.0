@@ -1,57 +1,59 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3D3397B2E06
-	for <lists+intel-gfx@lfdr.de>; Fri, 29 Sep 2023 10:40:24 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2F40D7B2F11
+	for <lists+intel-gfx@lfdr.de>; Fri, 29 Sep 2023 11:20:16 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3581C10E6DE;
-	Fri, 29 Sep 2023 08:40:20 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 682B310E0F4;
+	Fri, 29 Sep 2023 09:20:12 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B1EAC10E6DC;
- Fri, 29 Sep 2023 08:40:17 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.93])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 69D9610E0F4
+ for <intel-gfx@lists.freedesktop.org>; Fri, 29 Sep 2023 09:20:10 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1695976817; x=1727512817;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=EbLaPvxJrAyVGiU2du4lKUNw/vacEQgskxs2ohyuvb4=;
- b=c2Tbxxn57DNp9y4mzeUv6PcmuARumAnP0o6MecnQML3HXyyA41B1jPNf
- 1WkNLNpKQN/F+FCUx6KoFkFtWBdWOZ+Etnu9aaKpVunt3Ggu5qTyaD5JX
- t3+eEqeWO1EtYKXtjygx9eK1uOXvcHIjmboAqCoF15lNYblQIrh92Alge
- sOy3ao5Wkks4rOXLAV8DnHtPP15TFVyWxKc+P8hFLkpxI8k7u4nzEhe9p
- Y9Tx8onFV/5NmLsWE6UA6jgzvLfSWbTatVmtKySFvXWxQx4CQ9HEx5nXI
- FmzLnq2HI9umGfp8OBiLuSMZVN3F1uyWeLmlkFrJ9q39IR7ZNLbZI5MkK g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10847"; a="372611822"
-X-IronPort-AV: E=Sophos;i="6.03,186,1694761200"; d="scan'208";a="372611822"
-Received: from orsmga003.jf.intel.com ([10.7.209.27])
- by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Sep 2023 01:40:17 -0700
+ t=1695979210; x=1727515210;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version:content-transfer-encoding;
+ bh=7MnNfgUUnJL+kG0zbXS+qO1gXE68Vuc4RyRaz1bX+yQ=;
+ b=QNR3Z1N/M/SvqyQXW0z2m2OHpgCx/bbB19LKfHBhxScQoGmcXMQmwruo
+ //477NJzcw4TtQy8dYwAgCxS2hxY9UTj3u0q926CCDRXJrvvsUN7qrItY
+ oc2jYVLPsN4M8opZphS4OpNizpuhFZw14qgcWW/6+pwbEB6Cv9DEXLRjg
+ gppwMFjOfojwTd/hkMoQbZ9hlv3DzVvnQ2arqRboZpCrjN8e/XrSQe106
+ 0JEleFIDJMRIWO5QjAHPv0rti8qj+zpkCUYRJXGyuSZVYxKY3z6Ib/c9s
+ ZH06fgL2n1o68JbR1X0UiF4ntyq53nmhRiYF5WGiR1NqNSDoNTsOpelZR A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10847"; a="379535227"
+X-IronPort-AV: E=Sophos;i="6.03,186,1694761200"; d="scan'208";a="379535227"
+Received: from orsmga006.jf.intel.com ([10.7.209.51])
+ by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 29 Sep 2023 02:19:57 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10847"; a="699575884"
-X-IronPort-AV: E=Sophos;i="6.03,186,1694761200"; d="scan'208";a="699575884"
-Received: from nirmoyda-mobl.ger.corp.intel.com (HELO [10.252.39.203])
- ([10.252.39.203])
- by orsmga003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Sep 2023 01:40:15 -0700
-Message-ID: <04e38c7b-3acc-1f5c-7b7a-aba0ef701b84@linux.intel.com>
-Date: Fri, 29 Sep 2023 10:40:13 +0200
+X-IronPort-AV: E=McAfee;i="6600,9927,10847"; a="726542118"
+X-IronPort-AV: E=Sophos;i="6.03,186,1694761200"; d="scan'208";a="726542118"
+Received: from osalyk-mobl1.ger.corp.intel.com (HELO localhost)
+ ([10.252.53.237])
+ by orsmga006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 29 Sep 2023 02:19:55 -0700
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Ville =?utf-8?B?U3lyasOkbMOk?= <ville.syrjala@linux.intel.com>, Gustavo
+ Sousa <gustavo.sousa@intel.com>
+In-Reply-To: <ZQxd5wLhPELN5hfu@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20230920195351.59421-2-gustavo.sousa@intel.com>
+ <ZQtPR3XtOl3WWW9Q@intel.com>
+ <169524081664.7665.4045864066370477019@gjsousa-mobl2>
+ <ZQtWNlJimAS8V57w@intel.com>
+ <169530722255.1903.12270984235287148195@gjsousa-mobl2>
+ <ZQxd5wLhPELN5hfu@intel.com>
+Date: Fri, 29 Sep 2023 12:19:53 +0300
+Message-ID: <87ttrdibeu.fsf@intel.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.15.1
-Content-Language: en-US
-To: Andrzej Hajda <andrzej.hajda@intel.com>, Nirmoy Das
- <nirmoy.das@intel.com>, intel-gfx@lists.freedesktop.org
-References: <20230928130015.6758-1-nirmoy.das@intel.com>
- <d8f739f9-a40d-1a69-e223-95441b249c98@intel.com>
-From: Nirmoy Das <nirmoy.das@linux.intel.com>
-In-Reply-To: <d8f739f9-a40d-1a69-e223-95441b249c98@intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-Subject: Re: [Intel-gfx] [PATCH v7 1/4] drm/i915: Introduce
- intel_gt_mcr_lock_sanitize()
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+Subject: Re: [Intel-gfx] [PATCH v2] drm/i915/irq: Clear GFX_MSTR_IRQ as part
+ of IRQ reset
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,90 +66,146 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: matthew.d.roper@intel.com, dri-devel@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org, Matt Roper <matthew.d.roper@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+On Thu, 21 Sep 2023, Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com=
+> wrote:
+> On Thu, Sep 21, 2023 at 11:40:22AM -0300, Gustavo Sousa wrote:
+>> Quoting Ville Syrj=C3=A4l=C3=A4 (2023-09-20 17:29:42-03:00)
+>> >On Wed, Sep 20, 2023 at 05:13:36PM -0300, Gustavo Sousa wrote:
+>> >> Quoting Ville Syrj=C3=A4l=C3=A4 (2023-09-20 17:00:07-03:00)
+>> >> >On Wed, Sep 20, 2023 at 04:53:52PM -0300, Gustavo Sousa wrote:
+>> >> >> Starting with Xe_LP+, GFX_MSTR_IRQ contains status bits that have =
+W1C
+>> >> >> behavior. If we do not properly reset them, we would miss delivery=
+ of
+>> >> >> interrupts if a pending bit is set when enabling IRQs.
+>> >> >>=20
+>> >> >> As an example, the display part of our probe routine contains paths
+>> >> >> where we wait for vblank interrupts. If a display interrupt was al=
+ready
+>> >> >> pending when enabling IRQs, we would time out waiting for the vbla=
+nk.
+>> >> >>=20
+>> >> >> Avoid the potential issue by clearing GFX_MSTR_IRQ as part of the =
+IRQ
+>> >> >> reset.
+>> >> >>=20
+>> >> >> v2:
+>> >> >>   - Move logic from gen11_gt_irq_reset() to dg1_irq_reset(). (Matt)
+>> >> >>=20
+>> >> >> BSpec: 50875, 54028
+>> >> >> Cc: Matt Roper <matthew.d.roper@intel.com>
+>> >> >> Signed-off-by: Gustavo Sousa <gustavo.sousa@intel.com>
+>> >> >> ---
+>> >> >>  drivers/gpu/drm/i915/i915_irq.c | 2 ++
+>> >> >>  1 file changed, 2 insertions(+)
+>> >> >>=20
+>> >> >> diff --git a/drivers/gpu/drm/i915/i915_irq.c b/drivers/gpu/drm/i91=
+5/i915_irq.c
+>> >> >> index 1bfcfbe6e30b..8130f043693b 100644
+>> >> >> --- a/drivers/gpu/drm/i915/i915_irq.c
+>> >> >> +++ b/drivers/gpu/drm/i915/i915_irq.c
+>> >> >> @@ -751,6 +751,8 @@ static void dg1_irq_reset(struct drm_i915_priv=
+ate *dev_priv)
+>> >> >>=20=20
+>> >> >>          GEN3_IRQ_RESET(uncore, GEN11_GU_MISC_);
+>> >> >>          GEN3_IRQ_RESET(uncore, GEN8_PCU_);
+>> >> >> +
+>> >> >> +        intel_uncore_write(uncore, GEN11_GFX_MSTR_IRQ, ~0);
+>> >> >
+>> >> >Did you confirm that it's not double buffered?
+>> >>=20
+>> >> Ah, sorry... I forgot to mention on the original thread where you ask=
+ed:
+>> >>=20
+>> >>   - BSpec 50875 and 66434 (for Xe2) does not say that GFX_MSTR_IRQ is
+>> >>     double buffered. In fact they mention the fact that display IIR
+>> >>     registers are double buffered and require multiple writes to fully
+>> >>     clear, but does not say the same about GFX_MSTR_IRQ.
+>> >>=20
+>> >>   - Also, BSpec 54028 does not mention that the register is double
+>> >>     buffered.
+>> >>=20
+>> >> Based on the above, I'm assuming it is not double buffered.
+>> >>=20
+>> >> Should I check other sources? Is there some sort of runtime check that
+>> >> can be done?
+>> >
+>> >I'd probably just poke at it with intel_reg. Eg:
+>> >1. boot w/o driver
+>> >2. unmask+enable eg. pipe vblank interrupt in GEN8_DE_PIPE_IMR/IER
+>> >3. make sure GEN11_DISPLAY_INT_CTL sees it
+>> >4. enable GEN11_DISPLAY_IRQ_ENABLE
+>> >5. make sure GEN11_GFX_MSTR_IRQ see it
+>> >6. toggle GEN11_DISPLAY_IRQ_ENABLE a few more times to generate extra e=
+dges
+>> >7. try to clear the bit in GEN11_GFX_MSTR_IRQ
+>> >8. did the bit clear?
+>> >   yes -> single buffered
+>> >   no -> goto 7 and check again to make sure it clears on the second ti=
+me around -> double buffered
+>>=20
+>> Thanks for the detailed sequence above.
+>>=20
+>> I wrote a small bash script based on the above and ran it on a Lunar
+>> Lake machine. The output is presented below.
+>>=20
+>> I belive the output is self explanatory, but just to be sure: "write
+>> <REG_NAME> <VAL>" tells that we are writing <VAL> to <REG_NAME>; and
+>> "read <REG_NAME> <VAL>" tells that we got <VAL> after reading
+>> <REG_NAME>.
+>>=20
+>>     $ sudo ./confirm-gfx-mstr-irq-is-single-buffered.sh
+>>     Reset stuff
+>>       write GEN8_DE_PIPE_IMR__PIPE_A        0xffffffff
+>>       write GEN8_DE_PIPE_IER__PIPE_A        0x00000000
+>>       write GEN8_DE_PIPE_IIR__PIPE_A        0xffffffff
+>>       write GEN8_DE_PIPE_IIR__PIPE_A        0xffffffff
+>>       write GEN11_DISPLAY_INT_CTL   0x00000000
+>>       write GEN11_GFX_MSTR_IRQ      0xffffffff
+>>       write GEN11_GFX_MSTR_IRQ      0xffffffff
+>>       read  GEN8_DE_PIPE_IIR__PIPE_A        0x00000000
+>>       read  GEN11_DISPLAY_INT_CTL   0x00000000
+>>       read  GEN11_GFX_MSTR_IRQ      0x00000000
+>>=20
+>>     Enable vblank on PIPE A
+>>       write GEN8_DE_PIPE_IMR__PIPE_A        0xfffffffe
+>>       write GEN8_DE_PIPE_IER__PIPE_A        0x00000001
+>>=20
+>>     Check that display interrupt was generated
+>>       read  GEN11_DISPLAY_INT_CTL   0x00010000
+>>=20
+>>     Enable display interrupt
+>>       write GEN11_DISPLAY_INT_CTL   0x80000000
+>>=20
+>>     Check that display bit in GFX_MSTR_IRQ was set
+>>       read  GEN11_GFX_MSTR_IRQ      0x00010000
+>>=20
+>>     Toggle the enable bit to generate edges
+>>       write GEN11_DISPLAY_INT_CTL   0x00000000
+>>       write GEN11_DISPLAY_INT_CTL   0x80000000
+>>       write GEN11_DISPLAY_INT_CTL   0x00000000
+>>       write GEN11_DISPLAY_INT_CTL   0x80000000
+>>=20
+>>     Clear and read GFX_MSTR_IRQ again
+>>       write GEN11_GFX_MSTR_IRQ      0xffffffff
+>>       read  GEN11_GFX_MSTR_IRQ      0x00000000
+>>=20
+>> By the output above, I belive we can conclude that GFX_MSTR_IRQ is
+>> single buffered, right?
+>
+> Aye. Looks conclusive.
+>
+> Reviewed-by: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
 
-On 9/28/2023 11:42 PM, Andrzej Hajda wrote:
-> On 28.09.2023 15:00, Nirmoy Das wrote:
->> Implement intel_gt_mcr_lock_sanitize() to provide a mechanism
->> for cleaning the steer semaphore when absolutely necessary.
->>
->> v2: remove unnecessary lock(Andi, Matt)
->>      improve the kernel doc(Matt)
->>      s/intel_gt_mcr_lock_clear/intel_gt_mcr_lock_sanitize
->>
->> Signed-off-by: Nirmoy Das <nirmoy.das@intel.com>
->> ---
->>   drivers/gpu/drm/i915/gt/intel_gt_mcr.c | 22 ++++++++++++++++++++++
->>   drivers/gpu/drm/i915/gt/intel_gt_mcr.h |  1 +
->>   2 files changed, 23 insertions(+)
->>
->> diff --git a/drivers/gpu/drm/i915/gt/intel_gt_mcr.c 
->> b/drivers/gpu/drm/i915/gt/intel_gt_mcr.c
->> index bf4a933de03a..326c2ed1d99b 100644
->> --- a/drivers/gpu/drm/i915/gt/intel_gt_mcr.c
->> +++ b/drivers/gpu/drm/i915/gt/intel_gt_mcr.c
->> @@ -419,6 +419,28 @@ void intel_gt_mcr_unlock(struct intel_gt *gt, 
->> unsigned long flags)
->>           intel_uncore_write_fw(gt->uncore, MTL_STEER_SEMAPHORE, 0x1);
->>   }
->>   +/**
->> + * intel_gt_mcr_lock_sanitize - Sanitize MCR steering lock
->> + * @gt: GT structure
->> + *
->> + * This will be used to sanitize the initial status of the hardware 
->> lock
->> + * during driver load and resume since there won't be any concurrent 
->> access
->> + * from other agents at those times, but it's possible that boot 
->> firmware
->> + * may have left the lock in a bad state.
->> + *
->> + */
->> +void intel_gt_mcr_lock_sanitize(struct intel_gt *gt)
->> +{
->> +    /*
->> +     * This gets called at load/resume time, so we shouldn't be
->> +     * racing with other driver threads grabbing the mcr lock.
->> +     */
->> +    lockdep_assert_not_held(&gt->mcr_lock);
->> +
->> +    if (GRAPHICS_VER_FULL(gt->i915) >= IP_VER(12, 70))
->> +        intel_uncore_write_fw(gt->uncore, MTL_STEER_SEMAPHORE, 0x1);
->
-> I wonder if it wouldn't be useful to check and report if it is locked 
-> before unconditional release, no strong feelings.
-Not so useful for user but may be as debug log if we need.
->
-> Reviewed-by: Andrzej Hajda <andrzej.hajda@intel.com>
+Should this have been Cc: stable?
+
+BR,
+Jani.
 
 
-Thanks,
-
-Nirmoy
-
->
-> Regards
-> Andrzej
->
->
->> +}
->> +
->>   /**
->>    * intel_gt_mcr_read - read a specific instance of an MCR register
->>    * @gt: GT structure
->> diff --git a/drivers/gpu/drm/i915/gt/intel_gt_mcr.h 
->> b/drivers/gpu/drm/i915/gt/intel_gt_mcr.h
->> index 41684495b7da..01ac565a56a4 100644
->> --- a/drivers/gpu/drm/i915/gt/intel_gt_mcr.h
->> +++ b/drivers/gpu/drm/i915/gt/intel_gt_mcr.h
->> @@ -11,6 +11,7 @@
->>   void intel_gt_mcr_init(struct intel_gt *gt);
->>   void intel_gt_mcr_lock(struct intel_gt *gt, unsigned long *flags);
->>   void intel_gt_mcr_unlock(struct intel_gt *gt, unsigned long flags);
->> +void intel_gt_mcr_lock_sanitize(struct intel_gt *gt);
->>     u32 intel_gt_mcr_read(struct intel_gt *gt,
->>                 i915_mcr_reg_t reg,
->
+--=20
+Jani Nikula, Intel
