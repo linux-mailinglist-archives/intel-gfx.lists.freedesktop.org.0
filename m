@@ -2,124 +2,69 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4EB937B4E86
-	for <lists+intel-gfx@lfdr.de>; Mon,  2 Oct 2023 11:03:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 661CF7B4EE8
+	for <lists+intel-gfx@lfdr.de>; Mon,  2 Oct 2023 11:21:02 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7D1C910E267;
-	Mon,  2 Oct 2023 09:03:05 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9FA4510E26F;
+	Mon,  2 Oct 2023 09:20:54 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from FRA01-MR2-obe.outbound.protection.outlook.com
- (mail-mr2fra01on2071.outbound.protection.outlook.com [40.107.9.71])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9A96910E267;
- Mon,  2 Oct 2023 09:03:01 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=ix63YH6kl9LDCsA8kyCWM5IIPCBWvQQ/NObvRSbxee+pAsZ1yVHrhnzNg3eS0bUca7rYQP2E0x8CWwaARHxhkXAawtqW5Ne6ORACJ1udaeXW/1Uj+PbCxOhnJLjgeJ+0esX6euLDCAtvnVFjB/IQig0Xl5eoW/cCLrdPS1mc8u6HFlAhSMtfwvZvndaKzm3PcHEb4BgOCmZqJXjBUyQcvFJG+9xZ7C4gyUrCzKy1hoZP2c7BTzzZrSlPuqnjvyjBeUjg79eyG1vkoK6kVmGdPW/XxNW4dhYSEA9DGd0EpsXXNxqyWIQ+C6NAYa2wQsZuXzXVMHamJHF654eB3G8TAw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=tT5hiUKlaP3zn5htPJ5De6+jP9HZUKBL5XqW7313Naw=;
- b=WtNfUivDIjAF2SRQhPLgDc4PIUXPq9/ZE7lzeCYLCUxgZvt5zhtjhEaC21rVSC0dyhtWzl/p2su3nuDzs028JWGE3WH47xXJuxGHn4iRaEXYSVI5Zij/2TgxRlZjxW5T+wACZtyjigYbHNFoUyXfHObEuEqf9+iP8U3vHfijz+Lp3xe3IJ+x703Aryf/ai7x4We/LkL6gwGze2zgnJw8s7JLWn8IyTzUNUGb+9SUOzTGgOKabzTc3JqMFuzEivX+QASQrCykvCgvU1mL4FRxluSZ0xepCHwgEOxhOj79S2fXclWfm4UaAVakJFJP3Tj/LJ6C122DPh/Q1oqMlloIMg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=csgroup.eu; dmarc=pass action=none header.from=csgroup.eu;
- dkim=pass header.d=csgroup.eu; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=csgroup.eu;
- s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=tT5hiUKlaP3zn5htPJ5De6+jP9HZUKBL5XqW7313Naw=;
- b=M7KdIW0I4gZYCwG5d1lEioTacEVbawmaO701wxEub4mP92kqkf7bj4ZPhk0E/7TZbj6LVvezI+UTjgIzZes4tOGqw8hi7ohDdRh2wugZPr0PWJYFMOFncZ6ux2bqzJciG4fk6zwjKZa9ITnKLT5RDrln6+BoBJOZPV1BaaC26tTsUMtC78ryNpMf6sZS/RkhsagHKACZFmIqpO3rleRKhKN32nOFBu1Ql3utRhFYY87LtMD4/efrTglWZWqRmmlzOA1x+ma1lwYT1mnSB2Ucr2Xeuq+Aa8E1i3TXzyTs1Nqrr54aAhAZxdvB/AmGGzyXqKFCuI0aHxDot9++JumMFg==
-Received: from MRZP264MB2988.FRAP264.PROD.OUTLOOK.COM (2603:10a6:501:31::15)
- by PR1P264MB1613.FRAP264.PROD.OUTLOOK.COM (2603:10a6:102:1b7::24) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6838.28; Mon, 2 Oct
- 2023 09:02:58 +0000
-Received: from MRZP264MB2988.FRAP264.PROD.OUTLOOK.COM
- ([fe80::27df:697c:bd7d:774f]) by MRZP264MB2988.FRAP264.PROD.OUTLOOK.COM
- ([fe80::27df:697c:bd7d:774f%6]) with mapi id 15.20.6838.024; Mon, 2 Oct 2023
- 09:02:58 +0000
-From: Christophe Leroy <christophe.leroy@csgroup.eu>
-To: Joel Granados <j.granados@samsung.com>
-Thread-Topic: [PATCH 00/15] sysctl: Remove sentinel elements from drivers
-Thread-Index: AQHZ8g7L9GtM3GaC7kiSbpIXyc5PdrAwblgAgAXHowCAAARdgA==
-Date: Mon, 2 Oct 2023 09:02:58 +0000
-Message-ID: <e9966cb5-40dd-6a53-dc22-4a1fd1f8a2e2@csgroup.eu>
-References: <20230928-jag-sysctl_remove_empty_elem_drivers-v1-0-e59120fca9f9@samsung.com>
- <CGME20230928163139eucas1p261a3b6b6cc62bafd5ace2771926911c2@eucas1p2.samsung.com>
- <5fadd85e-f2d7-878c-b709-3523e89dd93a@csgroup.eu>
- <20231002084718.bmme7yi4xfs7sw4b@localhost>
-In-Reply-To: <20231002084718.bmme7yi4xfs7sw4b@localhost>
-Accept-Language: fr-FR, en-US
-Content-Language: fr-FR
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-user-agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.13.0
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=csgroup.eu;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: MRZP264MB2988:EE_|PR1P264MB1613:EE_
-x-ms-office365-filtering-correlation-id: adfe874a-b6fb-4bb7-ae0f-08dbc3265fb8
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: huib1xu4cRxSeJbUhGWDFR4PK9/qZji4WeLJtNogtv9lSbuf6HtlZqV/cIYJM6Dmq9Xc1vyj7FsjZ8JG2ejJDnhR95Kd0FgbGUHvf1hBPgs97LFIc2Id2lYbU2yxHX7B3c4rggYG+C8Umz32FPx10ZZtfdprp89ltz+8JcTH+a3iTixYeIPQqoTerzWrrdco8H9SYIenXjAwxto2DBMkYiLo9gzAVmhmHwEa6FSWP7m6mNDmAkOK/1pXPjJ+mRUizwovh40Thc0QtRiKELqjVAO2qO9Refu5xV7W+eCPtwbXLY0rQjXDKHvE2P9gcG6dFteWKDMqZR//x7ABI1X6dAig8BzIa5A8uL7WD8MgbO5m0liYUz6ZeCDcqHhk7DaLJNiWjVjkGlFALcF7QgLixex2+46SglwaMrkaWpwBG6U8c0HLBYkiGzcoRIipHThLzW2Lwu+t2k9FGPNEirAIydNdWDeI8MU3HW0mKYtsq3bZii7tQEgkmV6GtmqlqGO8iecoQ4mTgCW90AYJe63dCHZoJywXq5Pi0UQ3I+N4EP31y/a7/+YD1wVcucLHhg7Gvt4EiBR/Oi+5udBZEc8q128QztBo/nuIitN1DkQalKWkCc3e2iGx1mx7L5GwP/p9wlfZEmyWE8RK7GVZyHmfQvKTDlHLbGCSgyy9HN5s6L8=
-x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:MRZP264MB2988.FRAP264.PROD.OUTLOOK.COM; PTR:; CAT:NONE;
- SFS:(13230031)(136003)(366004)(39850400004)(396003)(346002)(376002)(230922051799003)(1800799009)(451199024)(186009)(64100799003)(31686004)(2906002)(316002)(41300700001)(54906003)(4326008)(8676002)(8936002)(4744005)(7416002)(7406005)(7366002)(44832011)(36756003)(91956017)(5660300002)(76116006)(6916009)(66556008)(66446008)(66946007)(31696002)(478600001)(86362001)(6506007)(71200400001)(6512007)(38100700002)(2616005)(38070700005)(122000001)(26005)(64756008)(966005)(66476007)(6486002)(45980500001)(43740500002);
- DIR:OUT; SFP:1101; 
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?utf-8?B?cUFkVkpuM3NUdSt5Qk84cEhSVGNvT3FGQmFOZWRuN3pTeVhRa3JHMWFwNTdJ?=
- =?utf-8?B?WG1zdmJLSWdDb3hVWjcwOE1WY3pFVTdmbUpodXpseGhBU3ZxSUcwR0RiMHJr?=
- =?utf-8?B?aFREbThEVGpjMWZFRSt0TDYxOHVNSU1sT3ZjWHhxVTJoSVQzN1psaml0V0RJ?=
- =?utf-8?B?QnJMaHNMdEZHZmhVOEhFaDNUaDdqbG95WHhPMk95clZiREJwNXVkZW9kbE9V?=
- =?utf-8?B?ckExTHYwcVJhM2ZCVStUMEhub0ZnMlBOT0JuVE9jVE9KWnlFYmNqTmhrL1lX?=
- =?utf-8?B?d09mYkdVTVAzRGxreUNMVjJYTkd2MlNUdm9sQitEUjFXRGFmcGpmZEJYWGF2?=
- =?utf-8?B?R1JPSFFteHJ0MHJFT01NeS9XL1RZeURKSk52U25uUEt2a0lXbTllU1BNSVd3?=
- =?utf-8?B?R2lMaXZrV3pQRzlHNHRFYzgwbFRiWWNjWlBFNEF5UUZWOEJSVTZ0RDl3enVk?=
- =?utf-8?B?NE5naWdXWjB2Vm1QK1dUWGwzVzYwTUxrWXFLd00vYnBka2xMWDJ6b3FZSXJI?=
- =?utf-8?B?RWVsbVIxK290ZWYrUW1yQXB5VFc1bTZ0L1d3T1BqV000Z0MzdHN1dHdQa2hH?=
- =?utf-8?B?N2M1eXlxZjlMekZubXJ3dmVDUGUyNzZnM1o4eHA1OE5tSk5uL0dxMldtKzdM?=
- =?utf-8?B?S3A0bEFTZ2lXM1BYK1h3bUNyMldqbjFnS3NaM280RThJZnlOTnRSVko3OHgx?=
- =?utf-8?B?NzVTTU8zS0JuSkdqc0ZuSVBiQ1dQaGd2TEpZWG42M3pkODgyZWFsQjFOS1NF?=
- =?utf-8?B?MHpKSzZnZlNvTWF4MzFZU0d0b3VOT0hVR0lhK1pKYXJ0Rkd5UktnYUQrUVJZ?=
- =?utf-8?B?TE01Umd6em9lb3l5anFWSHZSelliNFpsQjRyNW5zcEtVdGNsQWROcGpnVFR0?=
- =?utf-8?B?ZExaQ0xxQXFsWnJQS3RVMENDeWdYMkF5b1hyRVRxVHMyeGgvNUpNMW01endp?=
- =?utf-8?B?VmJWZ3NWRE1venROeU95eS9ncGx3S2c4amhJMnJ6MUFNa1FrT1NxRENJMTBm?=
- =?utf-8?B?MFY5emNoeWFhYlVGUzNyMDBEaElKRml0OEE0M2VwOWxRbmlxUFZEQ0xFMktU?=
- =?utf-8?B?RExUdWpmd2d5UUdBODBQVDRwaUdiTElpdTNDVGU3dkpxYk5KR0ZZNFdjRHU2?=
- =?utf-8?B?WW92Ums0RFUydnlvdldvanNodXZJUS9tZnUrSlhIWFVFVTE1V2EzckhWQVNL?=
- =?utf-8?B?L0t1bHlGYVk4SHYycVB3V2ZNMDhHZUxTbzZrd1JmZVQ0ZC9UTjhEeURyQ2Er?=
- =?utf-8?B?MElGRXdSL1k3S1hWVW54RVh1bHlaOUI1MXZaQXl5WFNPTWk3TWwwYjhzUlQy?=
- =?utf-8?B?Q2hBTGthOEF0d2xNNXBLVjZxaFlsKzRXdmVRaVNDY2ZzcmtqYUk2Qmp2b09y?=
- =?utf-8?B?aEZ2cHh0TGFaZ1J3QkV1Q2U1Y0xtcDFpKzVxQm05T2tCWmVrSXkxYkVBM3BR?=
- =?utf-8?B?LzRLTUpKcEJKQm9rMGU1U1d2RFpueWZEZkx4ZDU3L2dOTWd4cStBZCtZNjhC?=
- =?utf-8?B?YXlCK2J3YU9DaFlQL2tKckMvVjVQR0xnbmdjYkpLaDRXak8yVFczQXljUzVC?=
- =?utf-8?B?MjJsY3pheUtGK2xuTjZha1BJcGhNZlV6S040dSs2aGsrMkIwSXljZE84MkpC?=
- =?utf-8?B?L2lmeVc3c3BMVm53VWFDeXBleWE0aGJ6OWxGanZ3RkxDajgxN2RkYnlXY3ht?=
- =?utf-8?B?NkRyOUg4UkpjRmdrQlVOMlpMNUt4OWk2MHJMd0ozUit5K1p4U0Nmaml4Z29z?=
- =?utf-8?B?OTg3NVpHaVZ6emJMdlRzNWIySjVsa0tyZzBNUzhOdXhQcmJLUGJ0ZjNpeFFi?=
- =?utf-8?B?blR6ZXlidUNKLzFpTGJ4UjlFTnNBZXprRDNsVi9Bck9ZMHIvaUNXNldGZlFG?=
- =?utf-8?B?Q3oxOEFZWmxxVEhBVnlVVmtPbm5XWmJqTjFYcFY3bFNOc2tSUzhpZjB6N0o5?=
- =?utf-8?B?ZFh4d2l2RFJqSVBLYVpvVTRaZHRjZHdpeGtKcEtVMlUxQU14QlhZRzMwTitp?=
- =?utf-8?B?d2RpQmdzMFViRE9GaTl6K09BcjlkUUdsNjJPdjNHQnBMOVpobklELzFPeGIw?=
- =?utf-8?B?TVlabEg0bFVtb1dZSkl2OC8wbkZaTGpqQVd4RXNoSjk2QUxveEZJSlRaTE1K?=
- =?utf-8?Q?LEsZii/Ui0/fDYRyDQ4Umczsz?=
-Content-Type: text/plain; charset="utf-8"
-Content-ID: <B19610D21F9A0E40914B707EAD7D9548@FRAP264.PROD.OUTLOOK.COM>
-Content-Transfer-Encoding: base64
+Received: from mail-wr1-x42c.google.com (mail-wr1-x42c.google.com
+ [IPv6:2a00:1450:4864:20::42c])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C751D10E26C;
+ Mon,  2 Oct 2023 09:20:17 +0000 (UTC)
+Received: by mail-wr1-x42c.google.com with SMTP id
+ ffacd0b85a97d-31427ddd3fbso14945850f8f.0; 
+ Mon, 02 Oct 2023 02:20:17 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20230601; t=1696238416; x=1696843216; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:in-reply-to:from:references:cc:to
+ :content-language:subject:user-agent:mime-version:date:message-id
+ :from:to:cc:subject:date:message-id:reply-to;
+ bh=vNiEun8BJgZFmuZelXrrpN/XVazT12AxKny5brwsu7w=;
+ b=hpul48jc5wRgYuuq7rjWOuldRr3Cz9nGdNrRFKhLCSavyavqMoagsUnusKybAJHuKA
+ xE046GUSPsZTRflARG4QV+okYn9/EzkY3povCmvJ5Ik1GrCj5Ln9lbAmh48xN4moydyS
+ Ob0E2wJN29J2EQksMeSZ09nE0LGVTMfQwQYSuQk0qsMjIhriV7625WbkTiavmwYjaLqD
+ UHXgnOE3qWqbwPTE1XChcntGdNGGp7w49mOcrOfHtkSnNRlfSSMvU1dMNWke9VL0l3zU
+ sCHGzEt0FvM1pGp6qohTFb5z2sf0rVb6W87Vmo3P3pPk/heYC/hymC4KcrnC0WYc0EL+
+ MVCA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1696238416; x=1696843216;
+ h=content-transfer-encoding:in-reply-to:from:references:cc:to
+ :content-language:subject:user-agent:mime-version:date:message-id
+ :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+ bh=vNiEun8BJgZFmuZelXrrpN/XVazT12AxKny5brwsu7w=;
+ b=EV+IoY/hoj/U/elpIXBrMJjo2eti6i/r6uC0vZ7zP36Ogv4Ehbm+OV2vjkvsAHmIcN
+ DYEslUo4u6DNhyJOUEWXr2dJPqFSu24/OZiG36ERZus5uME1+uPKJK16ycwjwDRVokMu
+ h5eF68WrC1H59Y9xt1X4nbNZcWn3T068qLW4JiowOcH0He62g2zwsxhbn2GST4BcXNh9
+ 3ayItguHqMVMyj8uyBQ8MfYpTPkqGPRqzHEJLdHQWGOPlLsw3vHG9yE2TVK/A4LDNVzu
+ 0Ez17qAq9s+Hxrgd3DAvWjFmnidUAdES7WVwSff99TOeMYrKboJ5az85F6wByCnvwSXu
+ Gb1w==
+X-Gm-Message-State: AOJu0Yxuxi6j+6ZPC8jWUDKviP1iS9xz8P3l4OeXzr1B/1a65fSaNCnL
+ dOiz5T1a81XUOektcnKGqU8=
+X-Google-Smtp-Source: AGHT+IHbGguNFjowt/WUg4Hv4Wpy0nhMxW4/Lz37ilFeyba8QPT16aUDMsJeXvW8elMT4DQ7Chc9QA==
+X-Received: by 2002:adf:ee10:0:b0:319:71be:9248 with SMTP id
+ y16-20020adfee10000000b0031971be9248mr9703358wrn.19.1696238415942; 
+ Mon, 02 Oct 2023 02:20:15 -0700 (PDT)
+Received: from [10.254.108.106] (munvpn.amd.com. [165.204.72.6])
+ by smtp.gmail.com with ESMTPSA id
+ t3-20020a5d5343000000b0030ae53550f5sm27500038wrv.51.2023.10.02.02.20.12
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Mon, 02 Oct 2023 02:20:15 -0700 (PDT)
+Message-ID: <83cd056c-52ae-01dd-7576-42d41da64c26@gmail.com>
+Date: Mon, 2 Oct 2023 11:20:09 +0200
 MIME-Version: 1.0
-X-OriginatorOrg: csgroup.eu
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: MRZP264MB2988.FRAP264.PROD.OUTLOOK.COM
-X-MS-Exchange-CrossTenant-Network-Message-Id: adfe874a-b6fb-4bb7-ae0f-08dbc3265fb8
-X-MS-Exchange-CrossTenant-originalarrivaltime: 02 Oct 2023 09:02:58.4694 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 9914def7-b676-4fda-8815-5d49fb3b45c8
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: NxPxZfZhpijteIMxVFAWbceSw5KI2eWhoFxz+uH4uLMXCZsIZsxfc038Mh5FhXTNxIsSgItv/DkNOE1ITly8Mf3LyYxtnGop2N1fxfK/P3s=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PR1P264MB1613
-Subject: Re: [Intel-gfx] [PATCH 00/15] sysctl: Remove sentinel elements from
- drivers
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.15.1
+Content-Language: en-US
+To: Kees Cook <keescook@chromium.org>, David Airlie <airlied@gmail.com>
+References: <20230922173110.work.084-kees@kernel.org>
+ <169601600138.3014939.8511343741428844249.b4-ty@chromium.org>
+From: =?UTF-8?Q?Christian_K=c3=b6nig?= <ckoenig.leichtzumerken@gmail.com>
+In-Reply-To: <169601600138.3014939.8511343741428844249.b4-ty@chromium.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+Subject: Re: [Intel-gfx] [PATCH 0/9] drm: Annotate structs with __counted_by
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -132,60 +77,86 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "Jason A. Donenfeld" <Jason@zx2c4.com>, Steve Wahl <steve.wahl@hpe.com>,
- Clemens Ladisch <clemens@ladisch.de>,
- "linux-hyperv@vger.kernel.org" <linux-hyperv@vger.kernel.org>,
- "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
- Phillip Potter <phil@philpotter.co.uk>, Song Liu <song@kernel.org>,
- Eric Dumazet <edumazet@google.com>, "K. Y. Srinivasan" <kys@microsoft.com>,
- Jiri Slaby <jirislaby@kernel.org>, Russ Weight <russell.h.weight@intel.com>,
- Wei Liu <wei.liu@kernel.org>, Stefano Stabellini <sstabellini@kernel.org>,
- Corey Minyard <minyard@acm.org>, Leon Romanovsky <leon@kernel.org>,
- "linux-rdma@vger.kernel.org" <linux-rdma@vger.kernel.org>,
- David Airlie <airlied@gmail.com>, "Rafael J.
- Wysocki" <rafael@kernel.org>, Dexuan Cui <decui@microsoft.com>,
- "willy@infradead.org" <willy@infradead.org>, Jason Gunthorpe <jgg@ziepe.ca>,
- "linux-serial@vger.kernel.org" <linux-serial@vger.kernel.org>,
- Doug Gilbert <dgilbert@interlog.com>, Jakub Kicinski <kuba@kernel.org>,
- Paolo Abeni <pabeni@redhat.com>, Haiyang Zhang <haiyangz@microsoft.com>,
- Kees Cook <keescook@chromium.org>, Arnd Bergmann <arnd@arndb.de>,
- "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>, "James
- E.J. Bottomley" <jejb@linux.ibm.com>,
- "josh@joshtriplett.org" <josh@joshtriplett.org>,
- "linux-raid@vger.kernel.org" <linux-raid@vger.kernel.org>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- "xen-devel@lists.xenproject.org" <xen-devel@lists.xenproject.org>,
- "openipmi-developer@lists.sourceforge.net"
- <openipmi-developer@lists.sourceforge.net>, Juergen Gross <jgross@suse.com>,
- Theodore Ts'o <tytso@mit.edu>,
- "linux-scsi@vger.kernel.org" <linux-scsi@vger.kernel.org>,
- "Martin K. Petersen" <martin.petersen@oracle.com>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- David Ahern <dsahern@kernel.org>,
- "linuxppc-dev@lists.ozlabs.org" <linuxppc-dev@lists.ozlabs.org>,
- Robin Holt <robinmholt@gmail.com>, "David S. Miller" <davem@davemloft.net>,
- Oleksandr Tyshchenko <oleksandr_tyshchenko@epam.com>,
- Luis Chamberlain <mcgrof@kernel.org>, Daniel Vetter <daniel@ffwll.ch>,
- "netdev@vger.kernel.org" <netdev@vger.kernel.org>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
- Sudip Mukherjee <sudipm.mukherjee@gmail.com>
+Cc: "Pan, Xinhui" <Xinhui.Pan@amd.com>, Karol Herbst <kherbst@redhat.com>,
+ Tom Rix <trix@redhat.com>, dri-devel@lists.freedesktop.org,
+ Chris Wilson <chris@chris-wilson.co.uk>, Prike Liang <Prike.Liang@amd.com>,
+ Huang Rui <ray.huang@amd.com>, Gerd Hoffmann <kraxel@redhat.com>,
+ Andrzej Hajda <andrzej.hajda@intel.com>,
+ Marijn Suijten <marijn.suijten@somainline.org>, Evan Quan <evan.quan@amd.com>,
+ Emma Anholt <emma@anholt.net>, amd-gfx@lists.freedesktop.org,
+ Kuogee Hsieh <quic_khsieh@quicinc.com>, Lijo Lazar <lijo.lazar@amd.com>,
+ VMware Graphics Reviewers <linux-graphics-maintainer@vmware.com>,
+ Ben Skeggs <bskeggs@redhat.com>, nouveau@lists.freedesktop.org,
+ David Airlie <airlied@redhat.com>,
+ Dmitry Baryshkov <dmitry.baryshkov@linaro.org>, Chia-I Wu <olvaffe@gmail.com>,
+ llvm@lists.linux.dev, Yifan Zhang <yifan1.zhang@amd.com>,
+ linux-arm-msm@vger.kernel.org, intel-gfx@lists.freedesktop.org,
+ Kevin Wang <kevin1.wang@amd.com>, Abhinav Kumar <quic_abhinavk@quicinc.com>,
+ Nathan Chancellor <nathan@kernel.org>, Le Ma <le.ma@amd.com>,
+ Gurchetan Singh <gurchetansingh@chromium.org>,
+ Maxime Ripard <mripard@kernel.org>, Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ virtualization@lists.linux-foundation.org,
+ Neil Armstrong <neil.armstrong@linaro.org>, Xiaojian Du <Xiaojian.Du@amd.com>,
+ Lang Yu <Lang.Yu@amd.com>, Bjorn Andersson <andersson@kernel.org>,
+ Nick Desaulniers <ndesaulniers@google.com>, linux-kernel@vger.kernel.org,
+ Hawking Zhang <Hawking.Zhang@amd.com>, Melissa Wen <mwen@igalia.com>,
+ Daniel Vetter <daniel@ffwll.ch>, Alex Deucher <alexander.deucher@amd.com>,
+ Nirmoy Das <nirmoy.das@intel.com>, freedreno@lists.freedesktop.org,
+ =?UTF-8?Q?Christian_K=c3=b6nig?= <christian.koenig@amd.com>,
+ Zack Rusin <zackr@vmware.com>, linux-hardening@vger.kernel.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-DQoNCkxlIDAyLzEwLzIwMjMgw6AgMTA6NDcsIEpvZWwgR3JhbmFkb3MgYSDDqWNyaXTCoDoNCj4g
-T24gVGh1LCBTZXAgMjgsIDIwMjMgYXQgMDQ6MzE6MzBQTSArMDAwMCwgQ2hyaXN0b3BoZSBMZXJv
-eSB3cm90ZToNCg0KPiBJIGZvbGxvd2VkIHRoaXMgdHJhY2UgYW5kIHByb2NfaGFuZGxlciBpcyBj
-b3JyZWN0bHkgZGVmaW5lZCBpbiB0dHlfdGFibGUNCj4gKHN0cnVjdCBjdGxfdGFibGUpIGluIGRy
-aXZlcnMvdHR5L3R0eV9pby5jOnR0eV9pbml0IGFuZCB0aGVyZSBpcyBub3QNCj4gcGF0aCB0aGF0
-IGNoYW5nZXMgdGhlc2UgdmFsdWVzLg0KPiBBZGRpdGlvbmFsbHksIHdlIHRoZW4gZmFpbCB0cnlp
-bmcgdG8gcHJpbnQgaW5zdGVhZCBvZiBjb250aW51aW5nIHdpdGgNCj4gdGhlIGluaXRpYWxpemF0
-aW9uLiBNeSBjb25qZWN0dXJlIGlzIHRoYXQgdGhpcyBtaWdodCBiZSBkdWUgdG8gc29tZXRoaW5n
-DQo+IGRpZmZlcmVudCB0aGFuIHRodCBzeXNjdGwgcmVnaXN0ZXIgY2FsbC4NCj4gDQo+IERvZXMg
-dGhpcyBoYXBwZW4gY29uc2lzdGVubHkgb3IgaXMgdGhpcyBqdXN0IGEgb25lIG9mZiBpc3N1ZT8N
-Cg0KRG9uJ3Qga25vdy4NCg0KPiANCj4gVG8gd2hhdCBicmFuY2ggYXJlIHRoZXNlIHBhdGNoZXMg
-YmVpbmcgYXBwbGllZCB0bz8NCg0KQXMgZmFyIGFzIEkgdW5kZXJzdGFuZCBmcm9tIA0KaHR0cHM6
-Ly9naXRodWIuY29tL2xpbnV4cHBjL2xpbnV4LXNub3dwYXRjaC9jb21taXRzL3Nub3dwYXRjaC8z
-NzUzMTksIA0KaXQncyBiZWluZyBhcHBsaWVkIG9uIA0KaHR0cHM6Ly9naXQua2VybmVsLm9yZy9w
-dWIvc2NtL2xpbnV4L2tlcm5lbC9naXQvcG93ZXJwYy9saW51eC5naXQvY29tbWl0Lz9pZD1kNzc0
-OTc1DQoNCg0KPiANCj4gSSdtIGdvaW5nIHRvIHBvc3QgbXkgVjIgYW5kIGtlZXAgd29ya2luZyBv
-biB0aGlzIGlzc3VlIGlmIGl0IHBvcHMgdXANCj4gYWdhaW4uDQo+IA0KDQpDaHJpc3RvcGhlDQo=
+Am 29.09.23 um 21:33 schrieb Kees Cook:
+> On Fri, 22 Sep 2023 10:32:05 -0700, Kees Cook wrote:
+>> This is a batch of patches touching drm for preparing for the coming
+>> implementation by GCC and Clang of the __counted_by attribute. Flexible
+>> array members annotated with __counted_by can have their accesses
+>> bounds-checked at run-time checking via CONFIG_UBSAN_BOUNDS (for array
+>> indexing) and CONFIG_FORTIFY_SOURCE (for strcpy/memcpy-family functions).
+>>
+>> As found with Coccinelle[1], add __counted_by to structs that would
+>> benefit from the annotation.
+>>
+>> [...]
+> Since this got Acks, I figure I should carry it in my tree. Let me know
+> if this should go via drm instead.
+>
+> Applied to for-next/hardening, thanks!
+>
+> [1/9] drm/amd/pm: Annotate struct smu10_voltage_dependency_table with __counted_by
+>        https://git.kernel.org/kees/c/a6046ac659d6
+
+STOP! In a follow up discussion Alex and I figured out that this won't work.
+
+The value in the structure is byte swapped based on some firmware 
+endianness which not necessary matches the CPU endianness.
+
+Please revert that one from going upstream if it's already on it's way.
+
+And because of those reasons I strongly think that patches like this 
+should go through the DRM tree :)
+
+Regards,
+Christian.
+
+> [2/9] drm/amdgpu/discovery: Annotate struct ip_hw_instance with __counted_by
+>        https://git.kernel.org/kees/c/4df33089b46f
+> [3/9] drm/i915/selftests: Annotate struct perf_series with __counted_by
+>        https://git.kernel.org/kees/c/ffd3f823bdf6
+> [4/9] drm/msm/dpu: Annotate struct dpu_hw_intr with __counted_by
+>        https://git.kernel.org/kees/c/2de35a989b76
+> [5/9] drm/nouveau/pm: Annotate struct nvkm_perfdom with __counted_by
+>        https://git.kernel.org/kees/c/188aeb08bfaa
+> [6/9] drm/vc4: Annotate struct vc4_perfmon with __counted_by
+>        https://git.kernel.org/kees/c/59a54dc896c3
+> [7/9] drm/virtio: Annotate struct virtio_gpu_object_array with __counted_by
+>        https://git.kernel.org/kees/c/5cd476de33af
+> [8/9] drm/vmwgfx: Annotate struct vmw_surface_dirty with __counted_by
+>        https://git.kernel.org/kees/c/b426f2e5356a
+> [9/9] drm/v3d: Annotate struct v3d_perfmon with __counted_by
+>        https://git.kernel.org/kees/c/dc662fa1b0e4
+>
+> Take care,
+>
+
