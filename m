@@ -2,51 +2,54 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 010D87B555A
-	for <lists+intel-gfx@lfdr.de>; Mon,  2 Oct 2023 16:41:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 579167B5567
+	for <lists+intel-gfx@lfdr.de>; Mon,  2 Oct 2023 16:43:17 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 96A4210E192;
-	Mon,  2 Oct 2023 14:41:05 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3E26810E2CB;
+	Mon,  2 Oct 2023 14:43:11 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.24])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E93DC10E192
- for <intel-gfx@lists.freedesktop.org>; Mon,  2 Oct 2023 14:41:03 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.65])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9C94310E2CA;
+ Mon,  2 Oct 2023 14:43:08 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1696257663; x=1727793663;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:in-reply-to;
- bh=OKkOLCPeTCgmzW58zGc3KxzFFSy0W2QaAQ9KpKlHNC4=;
- b=lVICXMlblKUTABW9WiXDXwjZLpRym55XQ51jN02hC129VyqyCD2iaupa
- QzYuPRW8Az/Mh+ycJjrztG3pt/sfa3Ny5aeT1lxc6ze2T8oan9ayH+cjB
- n4QUFcDAQ3T83nU563MBFzxZ3ZjM2zFnTdCS+oY8IvfsudbsXELyJEZ0F
- ACIzGy+3SALivhhwCFA4heFJrflyyoBH4Rb4FUULjBaqQu6fisIDa/LQa
- CKfv79Kl7vRfQG+0LcgGTkYheW3FIpLmAgGxJHluojDe/Do2yJpNt7D8+
- nQTu9L9osXx4FZ/gmf0D2CxjBW65EglmEHFbDV437TakhOGtjqg7lPaLq g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10851"; a="385474246"
-X-IronPort-AV: E=Sophos;i="6.03,194,1694761200"; d="scan'208";a="385474246"
-Received: from orsmga004.jf.intel.com ([10.7.209.38])
- by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Oct 2023 07:41:01 -0700
+ t=1696257788; x=1727793788;
+ h=message-id:date:mime-version:subject:to:cc:references:
+ from:in-reply-to:content-transfer-encoding;
+ bh=KYCaU6y2EnSrhCGhchgzf8LukcTFtTU33DDRVpcZKJ4=;
+ b=OkyG773ZQnLZfi1seEqylqMJOVpowPrdQEyxSijxYs45oYlOyer28Yqx
+ zRuXsWA7P4MTBAUVmL5igXBI43u5gARdJepimAbGnQQwe6xDrwB80tfhS
+ vwo/awfw7P13xtF6sh64i7ql5NRzQMp6MYaR97+HkFqxTtrUCIgK5uo4q
+ 7fIQCjaGnun0c7GM92Jxcxv43Vg1FvZU21zFFcN2yUciH7qoTfudcR6Fu
+ 4IOlztrfd+prZgF9BEIb6N6OPtc3Oz+tWIAhR/eiSOBjYyxCs9aVXg961
+ ckehmR73pqwWU39TfsADUFuz6FTmKLMswAhnFo9i0c8Js9SCNRUrD4+MJ Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10851"; a="386527169"
+X-IronPort-AV: E=Sophos;i="6.03,194,1694761200"; d="scan'208";a="386527169"
+Received: from fmsmga003.fm.intel.com ([10.253.24.29])
+ by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 Oct 2023 07:42:55 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10851"; a="874372119"
-X-IronPort-AV: E=Sophos;i="6.03,194,1694761200"; d="scan'208";a="874372119"
-Received: from nsusbilx-mobl.gar.corp.intel.com (HELO intel.com)
- ([10.214.161.91])
- by orsmga004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Oct 2023 07:40:54 -0700
-Date: Mon, 2 Oct 2023 16:40:47 +0200
-From: Andi Shyti <andi.shyti@linux.intel.com>
-To: Andi Shyti <andi.shyti@linux.intel.com>
-Message-ID: <ZRrWb5fNh6xt4tYW@ashyti-mobl2.lan>
-References: <cover.1696236329.git.jani.nikula@intel.com>
- <ZRrOA6v1katsED65@ashyti-mobl2.lan>
+X-IronPort-AV: E=McAfee;i="6600,9927,10851"; a="841006979"
+X-IronPort-AV: E=Sophos;i="6.03,194,1694761200"; d="scan'208";a="841006979"
+Received: from tcopilu-mobl.ger.corp.intel.com (HELO [10.252.55.117])
+ ([10.252.55.117])
+ by fmsmga003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 Oct 2023 07:42:53 -0700
+Message-ID: <869a0a2b-fdae-769f-4e1d-08b35633463a@linux.intel.com>
+Date: Mon, 2 Oct 2023 16:42:51 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <ZRrOA6v1katsED65@ashyti-mobl2.lan>
-Subject: Re: [Intel-gfx] [PATCH 0/3] drm/i915: nuke i915->gt0
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.15.1
+Content-Language: en-US
+To: Jonathan Cavitt <jonathan.cavitt@intel.com>,
+ intel-gfx@lists.freedesktop.org
+References: <20231002140742.933530-1-jonathan.cavitt@intel.com>
+From: Nirmoy Das <nirmoy.das@linux.intel.com>
+In-Reply-To: <20231002140742.933530-1-jonathan.cavitt@intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+Subject: Re: [Intel-gfx] [PATCH] drm/i915: Invalidate the TLBs on each GT
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,36 +62,52 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: =?utf-8?Q?Micha=C5=82?= Winiarski <michal.winiarski@intel.com>,
- Jani Nikula <jani.nikula@intel.com>, intel-gfx@lists.freedesktop.org
+Cc: matthew.d.roper@intel.com, chris.p.wilson@linux.intel.com,
+ andi.shyti@intel.com, dri-devel <dri-devel@lists.freedesktop.org>,
+ saurabhg.gupta@intel.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi Jani,
++dri-devel
 
-> adding a few folks in Cc for some extra eyes on this series.
-> 
-> On Mon, Oct 02, 2023 at 11:47:01AM +0300, Jani Nikula wrote:
-> > Chopping up [1] to more digestable pieces. Start off with nuking
-> > i915->gt0.
-> > 
-> > [1] https://patchwork.freedesktop.org/series/124418/
-> > 
-> > Jani Nikula (3):
-> >   drm/i915/mocs: use to_gt() instead of direct &i915->gt
-> >   drm/i915: allocate i915->gt0 dynamically
-> >   drm/i915/gt: remove i915->gt0 in favour of i915->gt[0]
-> > 
-> >  drivers/gpu/drm/i915/gt/intel_gt.c               | 10 +++++++---
-> >  drivers/gpu/drm/i915/gt/intel_mocs.c             |  4 ++--
-> >  drivers/gpu/drm/i915/i915_drv.h                  | 10 ++--------
-> >  drivers/gpu/drm/i915/selftests/mock_gem_device.c |  1 -
-> >  4 files changed, 11 insertions(+), 14 deletions(-)
-> 
-> Michal, Michal and Tomasz, can you please check here?
+On 10/2/2023 4:07 PM, Jonathan Cavitt wrote:
+> From: Chris Wilson <chris.p.wilson@intel.com>
+>
+> With multi-GT devices, the object may have been bound on each GT and so
+> we need to invalidate the TLBs across all GT before releasing the pages
+> back to the system.
+>
+> Fixes: d6c531ab4820 ("drm/i915: Invalidate the TLBs on each GT")
+> Signed-off-by: Chris Wilson <chris.p.wilson@intel.com>
+> Signed-off-by: Jonathan Cavitt <jonathan.cavitt@intel.com>
+> CC: Matt Roper <matthew.d.roper@intel.com>
+> CC: Andi Shyti <andi.shyti@linux.intel.com>
+> Reviewed-by: Andi Shyti <andi.shyti@linux.intel.com>
 
-please don't merge this patch without first receiving a feedback
-by the the guys I Cc'ed.
+Reviewed-by: Nirmoy Das <nirmoy.das@intel.com>
 
-Thanks,
-Andi
+Can't find it in dri-devel but if you didn't then Cc to 
+dri-devel@lists.freedesktop.org for change that touches gt/gem files.
+
+
+Regards,
+
+Nirmoy
+
+> ---
+>   drivers/gpu/drm/i915/gem/i915_gem_pages.c | 2 +-
+>   1 file changed, 1 insertion(+), 1 deletion(-)
+>
+> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_pages.c b/drivers/gpu/drm/i915/gem/i915_gem_pages.c
+> index 6b6d22c194110..0ba955611dfb5 100644
+> --- a/drivers/gpu/drm/i915/gem/i915_gem_pages.c
+> +++ b/drivers/gpu/drm/i915/gem/i915_gem_pages.c
+> @@ -198,7 +198,7 @@ static void flush_tlb_invalidate(struct drm_i915_gem_object *obj)
+>   
+>   	for_each_gt(gt, i915, id) {
+>   		if (!obj->mm.tlb[id])
+> -			return;
+> +			continue;
+>   
+>   		intel_gt_invalidate_tlb_full(gt, obj->mm.tlb[id]);
+>   		obj->mm.tlb[id] = 0;
