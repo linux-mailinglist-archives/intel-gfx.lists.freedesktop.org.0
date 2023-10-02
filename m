@@ -1,149 +1,73 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 620D87B58AF
-	for <lists+intel-gfx@lfdr.de>; Mon,  2 Oct 2023 19:19:30 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 087647B597C
+	for <lists+intel-gfx@lfdr.de>; Mon,  2 Oct 2023 20:02:13 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C535B10E263;
-	Mon,  2 Oct 2023 17:19:27 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E9EAC10E0C1;
+	Mon,  2 Oct 2023 18:02:07 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D227510E263
- for <intel-gfx@lists.freedesktop.org>; Mon,  2 Oct 2023 17:19:25 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1696267166; x=1727803166;
- h=date:from:to:cc:subject:message-id:references:
- content-transfer-encoding:in-reply-to:mime-version;
- bh=J0uDCAznEdIyL7whdmo0m+pTUG3ecWrL81Fdvuy8JiA=;
- b=imF/Gs92/j/xd+USTVgZxptJ9nhpoMZeTtG2hohTdupX3Z1IQ2u7Zemr
- 65qpBUo3CZWMFiOYTOtOFJBuDcWSqZKGJ5Di7SFoiCAfpb7JKllztogRa
- 9lKc7torcGvOKYOSbvNO4AFAC8aPD82VACT8TAoUuH3cLq/u2iNXuRWTw
- GYyUPzFPaMqwx5wD2JJESdqAynoFTvY7/W0ApgmVQE7MPMw7z67LQqs5K
- EpsKrcg69kqGSo7noGKbLXXCOvk+kotI6j/WDSL7Z/4q08Bitb9VvYEIh
- CAyLDNVaDWs0E1zetq/AoC+9DpGq37ElUOB7eqKYHWlTzd+RBbXCikCs5 A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10851"; a="4268591"
-X-IronPort-AV: E=Sophos;i="6.03,194,1694761200"; 
-   d="scan'208";a="4268591"
-Received: from orviesa001.jf.intel.com ([10.64.159.141])
- by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Oct 2023 10:19:07 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.03,194,1694761200"; 
-   d="scan'208";a="1581238"
-Received: from orsmsx602.amr.corp.intel.com ([10.22.229.15])
- by orviesa001.jf.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
- 02 Oct 2023 10:18:25 -0700
-Received: from orsmsx602.amr.corp.intel.com (10.22.229.15) by
- ORSMSX602.amr.corp.intel.com (10.22.229.15) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.32; Mon, 2 Oct 2023 10:19:05 -0700
-Received: from ORSEDG602.ED.cps.intel.com (10.7.248.7) by
- orsmsx602.amr.corp.intel.com (10.22.229.15) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.32 via Frontend Transport; Mon, 2 Oct 2023 10:19:05 -0700
-Received: from NAM11-CO1-obe.outbound.protection.outlook.com (104.47.56.171)
- by edgegateway.intel.com (134.134.137.103) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.32; Mon, 2 Oct 2023 10:19:05 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=j4EOqgJ75VcWcQbsZydI/SN5Ipp6rR0ZSwQIKlCjdlYz3uHQ3szNY+0SgkvcljG8i/GwZdo0O3xjesMdn7HcJJnEetqWMH9yDQblNoKFrPan/KmFArTl5xGtxx708RaAhsS2Hqs0G077C1P7DRPFjFuH3V2r5RUUdGMM4cfa2ssuKuQug+m/OQoINE19wBXZVtwkkSi6Uk7piofSfz/lHLVWTVEgi5Be88mFco+PxBf7ImUGq6aiO9DmfOPuGryf88DenFB0cc1z7hzeeLkizswtxi6TfpgO6wulAERTdFmrmkvAJoxkpLQQgMdxbqTgpFc3IACiuNA3ag77JdEH1A==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=M82TyDQyzl7vtCrED0jp3eejFPJVA8LVYMSmOsucyp8=;
- b=C9PRHEr9TsByLhU+i3iQvP6R3VqW7n+ge7nsAItnK1K5Coi6smyls88fYBZApi+vsA4b5ExPJQ1LhkzdRB541Cp32ArAvAR7LmhmpY3/n7hlzVK99BM5kqDHCrpzlUWHF2URL5g4j6ZlRC9WRQsiKgrstu+XhYguHMsdktpfqfzCgxBjhvYudYqRyu6AarmrL2VdOVaz5S+kGAbOWLamOfg6TGNp0ozS9lREiI2zW7WE0KKW99AwiuVX1TT+nFj88RsFtQpUu9JgCQry8ToSwgqrOAK/SlU9rTQ/uzNuSoV1k/PKPy7LurHxD9wQnNuHulKM7fOEtZeXa8IMWYk5Pg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from DM4PR11MB5373.namprd11.prod.outlook.com (2603:10b6:5:394::7) by
- CO1PR11MB4868.namprd11.prod.outlook.com (2603:10b6:303:90::19) with
- Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.6838.28; Mon, 2 Oct 2023 17:19:03 +0000
-Received: from DM4PR11MB5373.namprd11.prod.outlook.com
- ([fe80::cc5d:d2c9:b39a:3de7]) by DM4PR11MB5373.namprd11.prod.outlook.com
- ([fe80::cc5d:d2c9:b39a:3de7%3]) with mapi id 15.20.6838.030; Mon, 2 Oct 2023
- 17:19:03 +0000
-Date: Mon, 2 Oct 2023 19:18:59 +0200
-From: =?utf-8?Q?Micha=C5=82?= Winiarski <michal.winiarski@intel.com>
-To: Andi Shyti <andi.shyti@linux.intel.com>
-Message-ID: <3jvolprf2zagtsgwc4wrt7oabugg6txi46hmd65nxfsuyecs6i@t37bfbgho3uj>
-References: <cover.1696236329.git.jani.nikula@intel.com>
- <ZRrOA6v1katsED65@ashyti-mobl2.lan>
-Content-Type: text/plain; charset="utf-8"
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <ZRrOA6v1katsED65@ashyti-mobl2.lan>
-X-ClientProxiedBy: BE1P281CA0174.DEUP281.PROD.OUTLOOK.COM
- (2603:10a6:b10:66::20) To DM4PR11MB5373.namprd11.prod.outlook.com
- (2603:10b6:5:394::7)
+Received: from mail-wr1-x435.google.com (mail-wr1-x435.google.com
+ [IPv6:2a00:1450:4864:20::435])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9D1B610E063;
+ Mon,  2 Oct 2023 18:02:05 +0000 (UTC)
+Received: by mail-wr1-x435.google.com with SMTP id
+ ffacd0b85a97d-3226cc3e324so73801f8f.3; 
+ Mon, 02 Oct 2023 11:02:05 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20230601; t=1696269724; x=1696874524; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:in-reply-to:from:references:cc:to
+ :content-language:subject:user-agent:mime-version:date:message-id
+ :from:to:cc:subject:date:message-id:reply-to;
+ bh=zam6JpvTJFSRB7Mf1N6WASAM0s+ax1vMTASmJwGp/GQ=;
+ b=OWyGp/gEByRgyM4MY9Ye5RpslnTSZ2ikYlWyXs3wBpkwUYLljzKUnb32PT8SD96zdT
+ ILULchDT9/U+v9c8aHQL5z4depnGr/yKc7Me1ifAZvHB6o4ioQw3fNmTK1GVSR1RzaMK
+ rgcREADI3fgdEFUTvBcRnpJ1KjvpQliCjIzQPxbAXMcRvZhTfiPjaMt7eNh1l6p+5VeD
+ Z6+nutPI/hL9cPvvVllnmrfTka6dUMiaFg0L1BAvQ01a1Q1RgnbFTcicnFQg4J5HxSvq
+ JzqkXyGtVvSedD8GnIeQZx1+J19IFgZh2qCOdhccJ9OdMjJ+VoufRo5eIbAiCDyXIzEL
+ yqnQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1696269724; x=1696874524;
+ h=content-transfer-encoding:in-reply-to:from:references:cc:to
+ :content-language:subject:user-agent:mime-version:date:message-id
+ :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+ bh=zam6JpvTJFSRB7Mf1N6WASAM0s+ax1vMTASmJwGp/GQ=;
+ b=jHuvBE1XxLQvua1CvNxPd+fRhVQIkz58FSV/NAuuxWFqijsKeg2KCRCrSWyS71NWcD
+ PpECTy5zrPziq9S5ySWNIaJ12KITuExm6/YB2lruuc+buVWbPEkDPeaNBjQcLHIeO/pu
+ Zxp6R9Ble0STZJf7z23U7oRXdLa/R18prlxxra+CwTVPkcviNEU6Z7l/PecPrGGhHSPa
+ 7N1rA9uoDSIbpTUjF25eNwObVyK++RcrPPKeuEpCTVcGH0tgS2LgQXlEjqTmHsANlMXy
+ tehvV/svFA7pLgQcRopyfCA+sp9pgCsPpqjt7dE1ngEK8YCsylupAJyOWz6+qD2umzb8
+ JVHQ==
+X-Gm-Message-State: AOJu0Yz/rNVvj6AZ2v82S6l1HCxEFNAFVDkISa5ec4FfINH5TyatZJyt
+ obBQuyFmMHjQ9d3tq9YnOIs=
+X-Google-Smtp-Source: AGHT+IHXROz9dJDWlLZd0E9oyaIxp9J/Vso2ikdsfsbdxkJUFVX9OGXOEmAj9p/hMQ4gi+RMtS0pLQ==
+X-Received: by 2002:adf:d4c2:0:b0:317:ddd3:1aed with SMTP id
+ w2-20020adfd4c2000000b00317ddd31aedmr10422745wrk.68.1696269723540; 
+ Mon, 02 Oct 2023 11:02:03 -0700 (PDT)
+Received: from [10.254.108.106] (munvpn.amd.com. [165.204.72.6])
+ by smtp.gmail.com with ESMTPSA id
+ g16-20020adfa490000000b003232380ffd5sm20650839wrb.106.2023.10.02.11.01.59
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Mon, 02 Oct 2023 11:02:02 -0700 (PDT)
+Message-ID: <10644b5f-b0a7-85ef-0658-2353ee14df0d@gmail.com>
+Date: Mon, 2 Oct 2023 20:01:57 +0200
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DM4PR11MB5373:EE_|CO1PR11MB4868:EE_
-X-MS-Office365-Filtering-Correlation-Id: 8f95d7ca-e5a8-47d9-8e7a-08dbc36bacbb
-X-LD-Processed: 46c98d88-e344-4ed4-8496-4ed7712e255d,ExtAddr
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: aS/ElXMtRAk3sr8DjvCEBYoDzoGMprIHixPCRh/3yeFCAncdxu55W1oEMvaSw4MGaCGyiQMCVQ/fTDDtCX2OXeG6KKuy2o3QftSswVFHTWrBjqA7RK2TDzCrKweHi8VhmoeBOdpAYH82xWI8dcLDoBOOnJkeC18x/wDUBcidkr0eh7eCK+oXmkCQeDoe9+Te164URf3Rq7OA8Mac5dqlf7riTjuhRDjs1FXfG3pOzzuDGYo/jlgAAS4PZuzINM2H9VcWJ7Dk/zEL86ocpvYCCH2s771JeLRZ8aPjAHO2+0EKeMt1S+jr8gnO9mIotOQElVm86RhTFjZ0q4PL2b8azoBvZwQyNLhxIUhlQlQBoDsOl/oED1UO53ZqwtoI3Lkr1sgeB7+XrRsChpvF9uclvPD9iyMRwv0VipaTl26WRJeISWCCDJPIk1byvpvE0UgAw8jP4sUhfWq7RYGaeji4WEQxNxnZTtbaCG1OsvN2olINXkMuOdSyWkhpan/9DAXwSOCCTG5qQF7rMGtROZqE+RC+YQI3DbmGuXDUrdh0JU0=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:DM4PR11MB5373.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230031)(7916004)(376002)(39860400002)(136003)(366004)(396003)(346002)(230922051799003)(451199024)(186009)(1800799009)(64100799003)(86362001)(66476007)(66946007)(54906003)(38100700002)(316002)(6916009)(82960400001)(66556008)(966005)(2906002)(4744005)(478600001)(5660300002)(83380400001)(41300700001)(4326008)(6666004)(6486002)(9686003)(6512007)(6506007)(26005)(8676002)(8936002)(33716001);
- DIR:OUT; SFP:1102; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?aldLdjhRZFFGQlFlNWxZWWZkcjhkeFNNaHI1SERaayttTVI4MFRzVGZNSVUr?=
- =?utf-8?B?VnFBc1VySnNjU01pUitKR0dOQ0FtYXQ2Tm1INytiTkFPV0cvMWJ2TUU2VmQ4?=
- =?utf-8?B?UmNaazllMFV2VityTzVaSGJkSkZJa0hGYnFnRXhhRWhJRmZ2Ty9IU29pNGFT?=
- =?utf-8?B?N2JjaFI0S0ZSejQwNGJSZFE1YTIvcXdKTU9kbFJBakEvSmoxVVF3Tk4zTDF3?=
- =?utf-8?B?VWpOK1YyUGc2Rlh6Y1A5MjlVRHJ0NmRmQncwWUVyU2gwV041NGgzdEZBdlFL?=
- =?utf-8?B?Ni9Nb0tPR3AyMnBiMzZlajZJYUVXcnUxbVlKRE9XcCt2YmVNZ2l4aHZUMm8r?=
- =?utf-8?B?ZEpLT1MzQURZRVNObDl2M3J6bFBlM0xMQjhRc0hYOTBOcEQ4dUFEVUtFd3o0?=
- =?utf-8?B?TCtRQTk1dHVHRnliU1l0SE5JMm96VVYzVzhrMm9OcStkRUhENStaU3FzRFhG?=
- =?utf-8?B?WSttQWEwamNoaUs4U1c2TjV5NGRqMzY4ZXhQQVlMMVdwZFFvS29Hblk4cStH?=
- =?utf-8?B?c3NKVWpaZ3d6NGRWYkIzSW9kMVBYTUVsVGxuV28zbThURDFmZXM4MThZQkRB?=
- =?utf-8?B?Q0tNWjduU1cvSkQ0L3RLOFdIR0IveDM2VjNCUTBKckh2QTh3RGxqVXRCKzRD?=
- =?utf-8?B?ZWN0NTYyMUxmUFgvNUk5Z0I4R3pkZXJHbWRCSnlXZFVSWlV0MzY3SXZVUi9a?=
- =?utf-8?B?UzgrMnN2bCtHZENaTXNaN2dUQ1VDUng1OVdJbGFIYlBsVnVMa2h2c3RlR2Nq?=
- =?utf-8?B?STVzUW9ubjJvVHJ1bHZHc3Iva3lBZGwwS2tYa2xrTHczNEt0ZkhNU1lLSCtw?=
- =?utf-8?B?TFBYY2lVT3pDcnNteWc0SlBmb0xvVDc2VVI2eXZETnlDalZkTlp4MW1USWVT?=
- =?utf-8?B?VUNJVWhRYkcwVHlmNmJEaWhtQitUb0Rock1jdE54L2d6U3VPeFNzcVM0Mnp2?=
- =?utf-8?B?a2IxclZZRVFpbkFsbis1cWdwbjJvaEp4TERiWEsrbmlLYkN4S1N2M0RJckk2?=
- =?utf-8?B?S2tUengzK2JlYmRBaHhTalBoRUZXZlo5UTVWL3YwZStITVhBVnFCMThHa0Mw?=
- =?utf-8?B?Y1d6RmxiMjRxa0IzUFBOK2x4N2hwUXdtQ0NOVzBvbEJyRXc5T0hsZ3V0WXZh?=
- =?utf-8?B?RjRlQVdZUGdIRG9za2t0RjJsMGJ6Z0pxVUsxZDl5dURJeGN4NTczczlDWUV0?=
- =?utf-8?B?Q1k0STN5NGlFVkFzU0Vrc3U4RG1IaFRrK2I1UEg4NmtaZHZoZkNoeVJ6RUpk?=
- =?utf-8?B?Y08xQjFNRGpXaWowRkh3QmJxUUpNVHNrUVNSOXoyRlRZZTFUSlR3aHI5RG50?=
- =?utf-8?B?QzVOM1cvZzVVQzBXWGJ1QURobkl5K05EVmFIdlloRlNRenMxZ2JtRlRMelB1?=
- =?utf-8?B?aFJ1dHBLMUsydlVQQW5SSVU3aHBnbUFXeFlNVGE1UGtSSmtybk5yMWQ2ejZz?=
- =?utf-8?B?M1hsQjVvMW9tWHFIVXFhOFFENlZuZlBQdWNWU2tUUFZxbEc0amRLRHA5dDBK?=
- =?utf-8?B?bGlLdm5wYlV2S2NuM3B3VnpVRytDVEIrVGV3VHRrZnRDYm1KV0N5VGNSTDV4?=
- =?utf-8?B?SzJhWks3N0p6V2tOMDRwVDB0N1VjM0dOS0Z4cEtNZ2lSSnlQQk9peEdsdnRF?=
- =?utf-8?B?VDZBcnpXVC85Z29jeXc3N2drblRGUHI1N2MzeUFYejFhT1B5cmdvNFNBaDYz?=
- =?utf-8?B?S2UzMnJmWTlZQjVEcnBQdjdtM25LZFFMTFdTSkdWMStBVm9JRUpoRmZXdURW?=
- =?utf-8?B?OHpoN3U2RTQ1bVNlUkRuQithZGs4VlprblF6Ni9VRTVwcmoxd0poTWJQb0JY?=
- =?utf-8?B?U1BmU2hSdG5IVkw4R1UwM2VHNFdBcGZJS2duTEloVS9JMWJ5ditlOUd5R3J0?=
- =?utf-8?B?SVh1a3l4eW5Zd294YzdUZmlaSWtFaWJLUTZ6VGVhSFNqOTJUbVU5VWpjMG9X?=
- =?utf-8?B?cGVVVUpmYkRwemVVNGJHakptQ0hNT3pOdnl2dFh5ZVMxby9WblhCM05aVVhz?=
- =?utf-8?B?RlVEZ1dnSDM4OG9Zd3NCQjFKNFNKaDFCQXFzZ0F5bFhuekNYVXdsNEV3TzFs?=
- =?utf-8?B?cmNRYWxLeXRxaHRWK3kxaXZlUWJNL1laMHhkT3BWYzFEQ0JhZkNzbWdhbjVG?=
- =?utf-8?B?ME01bGx4d2I4NzRscUtTdGt6TWhSRjUzVWNYVnFoeXlRb1UzZ25EcytXL3h4?=
- =?utf-8?B?T2c9PQ==?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 8f95d7ca-e5a8-47d9-8e7a-08dbc36bacbb
-X-MS-Exchange-CrossTenant-AuthSource: DM4PR11MB5373.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 02 Oct 2023 17:19:03.0931 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 9s3+wxlg2YYrMFpYxdLpd97Ld02k6fqH93N0XxE/clXsidFDaYy1+VaGrHqqfknUnmiOQc4D57qWu5vQ7UKk5Ak6m0UCyerTHFxImI1351A=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CO1PR11MB4868
-X-OriginatorOrg: intel.com
-Subject: Re: [Intel-gfx] [PATCH 0/3] drm/i915: nuke i915->gt0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.15.1
+Content-Language: en-US
+To: Kees Cook <keescook@chromium.org>, Alex Deucher <alexdeucher@gmail.com>
+References: <20230922173110.work.084-kees@kernel.org>
+ <169601600138.3014939.8511343741428844249.b4-ty@chromium.org>
+ <83cd056c-52ae-01dd-7576-42d41da64c26@gmail.com>
+ <CADnq5_Ma2CrLYggJHKFEObsNmUoqJwb2p1xai5DfL=m43U6zEA@mail.gmail.com>
+ <202310020952.E7DE0948C0@keescook>
+From: =?UTF-8?Q?Christian_K=c3=b6nig?= <ckoenig.leichtzumerken@gmail.com>
+In-Reply-To: <202310020952.E7DE0948C0@keescook>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+Subject: Re: [Intel-gfx] [PATCH 0/9] drm: Annotate structs with __counted_by
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -156,37 +80,119 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Jani Nikula <jani.nikula@intel.com>, intel-gfx@lists.freedesktop.org
+Cc: Emma Anholt <emma@anholt.net>, Tom Rix <trix@redhat.com>,
+ llvm@lists.linux.dev, dri-devel@lists.freedesktop.org,
+ Chris Wilson <chris@chris-wilson.co.uk>, Prike Liang <Prike.Liang@amd.com>,
+ Huang Rui <ray.huang@amd.com>, Gerd Hoffmann <kraxel@redhat.com>,
+ Andrzej Hajda <andrzej.hajda@intel.com>,
+ Marijn Suijten <marijn.suijten@somainline.org>,
+ David Airlie <airlied@gmail.com>, Karol Herbst <kherbst@redhat.com>,
+ Neil Armstrong <neil.armstrong@linaro.org>, amd-gfx@lists.freedesktop.org,
+ Kuogee Hsieh <quic_khsieh@quicinc.com>,
+ VMware Graphics Reviewers <linux-graphics-maintainer@vmware.com>,
+ Ben Skeggs <bskeggs@redhat.com>, nouveau@lists.freedesktop.org,
+ David Airlie <airlied@redhat.com>, virtualization@lists.linux-foundation.org,
+ Chia-I Wu <olvaffe@gmail.com>, linux-hardening@vger.kernel.org,
+ Alex Deucher <alexander.deucher@amd.com>, Lijo Lazar <lijo.lazar@amd.com>,
+ linux-arm-msm@vger.kernel.org, intel-gfx@lists.freedesktop.org,
+ Kevin Wang <kevin1.wang@amd.com>, Abhinav Kumar <quic_abhinavk@quicinc.com>,
+ Nathan Chancellor <nathan@kernel.org>, Le Ma <le.ma@amd.com>,
+ Gurchetan Singh <gurchetansingh@chromium.org>,
+ Maxime Ripard <mripard@kernel.org>, Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Evan Quan <evan.quan@amd.com>, Yifan Zhang <yifan1.zhang@amd.com>,
+ Xiaojian Du <Xiaojian.Du@amd.com>, freedreno@lists.freedesktop.org,
+ Bjorn Andersson <andersson@kernel.org>, "Pan, Xinhui" <Xinhui.Pan@amd.com>,
+ Nick Desaulniers <ndesaulniers@google.com>, linux-kernel@vger.kernel.org,
+ Melissa Wen <mwen@igalia.com>, Zack Rusin <zackr@vmware.com>,
+ Daniel Vetter <daniel@ffwll.ch>,
+ Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+ Nirmoy Das <nirmoy.das@intel.com>, Lang Yu <Lang.Yu@amd.com>,
+ =?UTF-8?Q?Christian_K=c3=b6nig?= <christian.koenig@amd.com>,
+ Hawking Zhang <Hawking.Zhang@amd.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, Oct 02, 2023 at 04:04:51PM +0200, Andi Shyti wrote:
-> Hi Jani,
-> 
-> adding a few folks in Cc for some extra eyes on this series.
-> 
-> On Mon, Oct 02, 2023 at 11:47:01AM +0300, Jani Nikula wrote:
-> > Chopping up [1] to more digestable pieces. Start off with nuking
-> > i915->gt0.
-> > 
-> > [1] https://patchwork.freedesktop.org/series/124418/
-> > 
-> > Jani Nikula (3):
-> >   drm/i915/mocs: use to_gt() instead of direct &i915->gt
-> >   drm/i915: allocate i915->gt0 dynamically
-> >   drm/i915/gt: remove i915->gt0 in favour of i915->gt[0]
-> > 
-> >  drivers/gpu/drm/i915/gt/intel_gt.c               | 10 +++++++---
-> >  drivers/gpu/drm/i915/gt/intel_mocs.c             |  4 ++--
-> >  drivers/gpu/drm/i915/i915_drv.h                  | 10 ++--------
-> >  drivers/gpu/drm/i915/selftests/mock_gem_device.c |  1 -
-> >  4 files changed, 11 insertions(+), 14 deletions(-)
-> 
-> Michal, Michal and Tomasz, can you please check here?
-> 
-> Thanks,
-> Andi
+Am 02.10.23 um 18:53 schrieb Kees Cook:
+> On Mon, Oct 02, 2023 at 11:06:19AM -0400, Alex Deucher wrote:
+>> On Mon, Oct 2, 2023 at 5:20 AM Christian König
+>> <ckoenig.leichtzumerken@gmail.com> wrote:
+>>> Am 29.09.23 um 21:33 schrieb Kees Cook:
+>>>> On Fri, 22 Sep 2023 10:32:05 -0700, Kees Cook wrote:
+>>>>> This is a batch of patches touching drm for preparing for the coming
+>>>>> implementation by GCC and Clang of the __counted_by attribute. Flexible
+>>>>> array members annotated with __counted_by can have their accesses
+>>>>> bounds-checked at run-time checking via CONFIG_UBSAN_BOUNDS (for array
+>>>>> indexing) and CONFIG_FORTIFY_SOURCE (for strcpy/memcpy-family functions).
+>>>>>
+>>>>> As found with Coccinelle[1], add __counted_by to structs that would
+>>>>> benefit from the annotation.
+>>>>>
+>>>>> [...]
+>>>> Since this got Acks, I figure I should carry it in my tree. Let me know
+>>>> if this should go via drm instead.
+>>>>
+>>>> Applied to for-next/hardening, thanks!
+>>>>
+>>>> [1/9] drm/amd/pm: Annotate struct smu10_voltage_dependency_table with __counted_by
+>>>>         https://git.kernel.org/kees/c/a6046ac659d6
+>>> STOP! In a follow up discussion Alex and I figured out that this won't work.
+> I'm so confused; from the discussion I saw that Alex said both instances
+> were false positives?
+>
+>>> The value in the structure is byte swapped based on some firmware
+>>> endianness which not necessary matches the CPU endianness.
+>> SMU10 is APU only so the endianess of the SMU firmware and the CPU
+>> will always match.
+> Which I think is what is being said here?
+>
+>>> Please revert that one from going upstream if it's already on it's way.
+>>>
+>>> And because of those reasons I strongly think that patches like this
+>>> should go through the DRM tree :)
+> Sure, that's fine -- please let me know. It was others Acked/etc. Who
+> should carry these patches?
 
-Acked-by: Michał Winiarski <michal.winiarski@intel.com>
+Probably best if the relevant maintainer pick them up individually.
 
--Michał
+Some of those structures are filled in by firmware/hardware and only the 
+maintainers can judge if that value actually matches what the compiler 
+needs.
+
+We have cases where individual bits are used as flags or when the size 
+is byte swapped etc...
+
+Even Alex and I didn't immediately say how and where that field is 
+actually used and had to dig that up. That's where the confusion came from.
+
+Regards,
+Christian.
+
+>
+> Thanks!
+>
+> -Kees
+>
+>
+>>> Regards,
+>>> Christian.
+>>>
+>>>> [2/9] drm/amdgpu/discovery: Annotate struct ip_hw_instance with __counted_by
+>>>>         https://git.kernel.org/kees/c/4df33089b46f
+>>>> [3/9] drm/i915/selftests: Annotate struct perf_series with __counted_by
+>>>>         https://git.kernel.org/kees/c/ffd3f823bdf6
+>>>> [4/9] drm/msm/dpu: Annotate struct dpu_hw_intr with __counted_by
+>>>>         https://git.kernel.org/kees/c/2de35a989b76
+>>>> [5/9] drm/nouveau/pm: Annotate struct nvkm_perfdom with __counted_by
+>>>>         https://git.kernel.org/kees/c/188aeb08bfaa
+>>>> [6/9] drm/vc4: Annotate struct vc4_perfmon with __counted_by
+>>>>         https://git.kernel.org/kees/c/59a54dc896c3
+>>>> [7/9] drm/virtio: Annotate struct virtio_gpu_object_array with __counted_by
+>>>>         https://git.kernel.org/kees/c/5cd476de33af
+>>>> [8/9] drm/vmwgfx: Annotate struct vmw_surface_dirty with __counted_by
+>>>>         https://git.kernel.org/kees/c/b426f2e5356a
+>>>> [9/9] drm/v3d: Annotate struct v3d_perfmon with __counted_by
+>>>>         https://git.kernel.org/kees/c/dc662fa1b0e4
+>>>>
+>>>> Take care,
+>>>>
+
