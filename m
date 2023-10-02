@@ -1,39 +1,33 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1FD2F7B4A79
-	for <lists+intel-gfx@lfdr.de>; Mon,  2 Oct 2023 03:08:40 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8565C7B4A8D
+	for <lists+intel-gfx@lfdr.de>; Mon,  2 Oct 2023 03:35:56 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A059410E07C;
-	Mon,  2 Oct 2023 01:08:31 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 738A310E0BC;
+	Mon,  2 Oct 2023 01:35:53 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from bombadil.infradead.org (bombadil.infradead.org
- [IPv6:2607:7c80:54:3::133])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C4BFC10E06F;
- Mon,  2 Oct 2023 01:08:27 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=infradead.org; s=bombadil.20210309; h=Content-Transfer-Encoding:
- MIME-Version:Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:Content-Type:
- Content-ID:Content-Description:In-Reply-To:References;
- bh=wH7/31pgP4Qqz/GTmwVhvDUnl6SdoJ0Kf1GkPu3uznU=; b=tHs/GUKOMlHkTa807tWDqBNT4H
- cgf+NeRvGvMwxk/baCDflZQ7ikjRUP2eB/x/ZHoGYINDM6ddRkjPykT7yZAsI+Y1v6wfiXsYOSKmz
- tWAKyOyp85hT9bOu1imaMhopkTarYjeq+NhzzbqAbl2Gs6nSy8Uoxf1fGGAEQpuQHQ8UcpJYuMBTU
- 9Av5NV5VUJTDSchsVXkORj/vv6t2gwoBK953sqocacVbgQc3PydLkb1k/mdrZDStm27mm2RqG76Mn
- c6nAnYGGGdKSL6Ani0ixCrGELFEbfZBvKeyg4smk3X16W1zOenpXBa3Ie+qZflD9iLF/0Vicd+QJ8
- lyU+ys7Q==;
-Received: from [50.53.46.231] (helo=bombadil.infradead.org)
- by bombadil.infradead.org with esmtpsa (Exim 4.96 #2 (Red Hat Linux))
- id 1qn7Q9-00Bmz0-1k; Mon, 02 Oct 2023 01:08:25 +0000
-From: Randy Dunlap <rdunlap@infradead.org>
-To: linux-kernel@vger.kernel.org
-Date: Sun,  1 Oct 2023 18:08:24 -0700
-Message-ID: <20231002010824.14781-1-rdunlap@infradead.org>
-X-Mailer: git-send-email 2.42.0
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 0AD6910E096;
+ Mon,  2 Oct 2023 01:35:52 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id D8949AADF2;
+ Mon,  2 Oct 2023 01:35:51 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH] drm/i915/uapi: fix doc typos
+Content-Transfer-Encoding: 7bit
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Randy Dunlap" <rdunlap@infradead.org>
+Date: Mon, 02 Oct 2023 01:35:51 -0000
+Message-ID: <169621055185.3206.13167609187229670009@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20231002010824.14781-1-rdunlap@infradead.org>
+In-Reply-To: <20231002010824.14781-1-rdunlap@infradead.org>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLlNQQVJTRTogd2FybmluZyBmb3Ig?=
+ =?utf-8?q?drm/i915/uapi=3A_fix_doc_typos?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -46,46 +40,21 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Randy Dunlap <rdunlap@infradead.org>, dri-devel@lists.freedesktop.org,
- intel-gfx@lists.freedesktop.org, Maxime Ripard <mripard@kernel.org>,
- Thomas Zimmermann <tzimmermann@suse.de>, Rodrigo Vivi <rodrigo.vivi@intel.com>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Correct typo of "its".
-Add a comma for clarity.
+== Series Details ==
 
-Signed-off-by: Randy Dunlap <rdunlap@infradead.org>
-Cc: Jani Nikula <jani.nikula@linux.intel.com>
-Cc: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
-Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
-Cc: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-Cc: intel-gfx@lists.freedesktop.org
-Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-Cc: Maxime Ripard <mripard@kernel.org>
-Cc: Thomas Zimmermann <tzimmermann@suse.de>
-Cc: dri-devel@lists.freedesktop.org
----
- include/uapi/drm/i915_drm.h |    6 +++---
- 1 file changed, 3 insertions(+), 3 deletions(-)
+Series: drm/i915/uapi: fix doc typos
+URL   : https://patchwork.freedesktop.org/series/124498/
+State : warning
 
-diff -- a/include/uapi/drm/i915_drm.h b/include/uapi/drm/i915_drm.h
---- a/include/uapi/drm/i915_drm.h
-+++ b/include/uapi/drm/i915_drm.h
-@@ -38,13 +38,13 @@ extern "C" {
-  */
- 
- /**
-- * DOC: uevents generated by i915 on it's device node
-+ * DOC: uevents generated by i915 on its device node
-  *
-  * I915_L3_PARITY_UEVENT - Generated when the driver receives a parity mismatch
-- *	event from the gpu l3 cache. Additional information supplied is ROW,
-+ *	event from the GPU l3 cache. Additional information supplied is ROW,
-  *	BANK, SUBBANK, SLICE of the affected cacheline. Userspace should keep
-  *	track of these events and if a specific cache-line seems to have a
-- *	persistent error remap it with the l3 remapping tool supplied in
-+ *	persistent error, remap it with the l3 remapping tool supplied in
-  *	intel-gpu-tools.  The value supplied with the event is always 1.
-  *
-  * I915_ERROR_UEVENT - Generated upon error detection, currently only via
+== Summary ==
+
+Error: dim sparse failed
+Sparse version: v0.6.2
+Fast mode used, each commit won't be checked separately.
+
+
