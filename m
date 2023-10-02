@@ -1,73 +1,69 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id BBE4E7B699F
-	for <lists+intel-gfx@lfdr.de>; Tue,  3 Oct 2023 14:58:16 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 37F677B69A0
+	for <lists+intel-gfx@lfdr.de>; Tue,  3 Oct 2023 14:58:18 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DC21710E05D;
-	Tue,  3 Oct 2023 12:58:10 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 61BDD10E0E3;
+	Tue,  3 Oct 2023 12:58:11 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-X-Greylist: delayed 1234 seconds by postgrey-1.36 at gabe;
- Mon, 02 Oct 2023 14:55:09 UTC
-Received: from mx0a-002e3701.pphosted.com (mx0a-002e3701.pphosted.com
- [148.163.147.86])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 65EA610E2CE;
- Mon,  2 Oct 2023 14:55:05 +0000 (UTC)
-Received: from pps.filterd (m0150242.ppops.net [127.0.0.1])
- by mx0a-002e3701.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id
- 392ENRAq010318; Mon, 2 Oct 2023 14:33:28 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=hpe.com;
- h=date : from : to : cc :
- subject : message-id : references : content-type : in-reply-to :
- mime-version; s=pps0720; bh=8kcAx3CglGRn94aeo1HK8iAjrJB5McccnOtaRuGBhlE=;
- b=UDDV9blwhOqG6lS3UsYzzUODsb3/Jv7uk7fyfcblbVHD3X/OLXl4ruM75aG/o029gXU4
- wZf0e0FS+UT7qSUuJhyOAyZlj0F1UOHpXDeBwm3+RPme4yGaLrJ9gQFKalvxH7zeW0Q2
- 9Wal0xHDrZAv4zZfk2yPVG5x6KKVR+62Inf2e5CoAJFSvGqa9XRuymOmZ+CVSG7WUZ0j
- MfjwZN1qCeG6CzxC3CgEIgBeZqSkhI/EtLkuSZrJ0vADwcdmTnlSr+XumB84vemz7JXe
- W34mDYx8DuQrTdltPS/YsslQCZKNQYb9m+YSqJL+3jk+uYK+YsSwbmURt2WthssC/6Wq Jw== 
-Received: from p1lg14881.it.hpe.com ([16.230.97.202])
- by mx0a-002e3701.pphosted.com (PPS) with ESMTPS id 3tfyk4g34b-1
- (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
- Mon, 02 Oct 2023 14:33:28 +0000
-Received: from p1lg14886.dc01.its.hpecorp.net (unknown [10.119.18.237])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
- (No client certificate requested)
- by p1lg14881.it.hpe.com (Postfix) with ESMTPS id 20CF0804DF1;
- Mon,  2 Oct 2023 14:33:14 +0000 (UTC)
-Received: from swahl-home.5wahls.com (unknown [16.231.227.39])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
- (Client did not present a certificate)
- by p1lg14886.dc01.its.hpecorp.net (Postfix) with ESMTPS id 1031080139E;
- Mon,  2 Oct 2023 14:33:05 +0000 (UTC)
-Date: Mon, 2 Oct 2023 09:33:04 -0500
-From: Steve Wahl <steve.wahl@hpe.com>
-To: j.granados@samsung.com
-Message-ID: <ZRrUoISghotzEeu/@swahl-home.5wahls.com>
-References: <20231002-jag-sysctl_remove_empty_elem_drivers-v2-0-02dd0d46f71e@samsung.com>
- <=?utf-8?q?=3C20231002-jag-sysctl=5Fremove=5Fempty=5Felem=5Fdrive?=>
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <=?utf-8?q?=3C20231002-jag-sysctl=5Fremove=5Fempty=5Felem=5Fdrive?=>
-X-Proofpoint-ORIG-GUID: FvQlGBIC2T_f8YdHb4chZeOBKZ5wjbmW
-X-Proofpoint-GUID: FvQlGBIC2T_f8YdHb4chZeOBKZ5wjbmW
-X-Proofpoint-UnRewURL: 0 URL was un-rewritten
+Received: from mail-wm1-x32f.google.com (mail-wm1-x32f.google.com
+ [IPv6:2a00:1450:4864:20::32f])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8820110E255
+ for <intel-gfx@lists.freedesktop.org>; Mon,  2 Oct 2023 21:45:32 +0000 (UTC)
+Received: by mail-wm1-x32f.google.com with SMTP id
+ 5b1f17b1804b1-406618d080eso2485615e9.2
+ for <intel-gfx@lists.freedesktop.org>; Mon, 02 Oct 2023 14:45:32 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=philpotter-co-uk.20230601.gappssmtp.com; s=20230601; t=1696283130;
+ x=1696887930; darn=lists.freedesktop.org; 
+ h=content-transfer-encoding:mime-version:references:in-reply-to
+ :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=3dA79LkNYU7asBXwt/uQxW8bheOGwedQNE5Z+nFIVT0=;
+ b=td5jLO3chvVCW90psAlNyX+PT3g9PLmhOtQkWq/qD0Ou3gAZJMBO8aozFC9d/r0xth
+ ourlryNG/CaG5POD78+BfWOsH5jVScNxtW4Na/126ueDEgdXvIzggtIvc+h3BOoIzuwr
+ MDbaa57mQXzMaZ5AWEVF8bNNFPKkekxdne3BHaWvR4DKBVplHnr9Z66/ddafSq8KleQb
+ trFRgkm+Z0uPFAVqCTLdNdFFkql7ZjJma1rv6p43yjW3EN6HKPtK1PWoNbNpp64O1vg7
+ EVBg23IdVf9I9o8xt8iYew3pgGHElgICvO8hU1Xl/qaGsZzM8k0O8Ike49++9pfN0+XZ
+ Hxww==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1696283130; x=1696887930;
+ h=content-transfer-encoding:mime-version:references:in-reply-to
+ :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+ :subject:date:message-id:reply-to;
+ bh=3dA79LkNYU7asBXwt/uQxW8bheOGwedQNE5Z+nFIVT0=;
+ b=nTk/sKQlwOuuX5OiXxQ0QlqT1Sto/W/v0BbnFeDLnkwrX8DOrzBGQAUve+dLqCSw3e
+ b33ZQZcRLOiEUCJZtucANfCdAhQJnzXcrWvFV5QX7MBl/FJSEQ5BmoDI5rnOwgv0vyUo
+ EI25bP3soczIGvjZcK2hkn+04ebQgTHLnrrIZVY4Q2zJh+EC7N8iuSe5qrlA6eBY8f36
+ Vt+phXU/EH00PXX52gsSYZEYOCYlRBudgIzS8/0r69wWKJLXKwFP5IGOQ/+3Sfg/DlFt
+ AvfbDJzIYfsEv5XTCGTHAxA80amI30Fnru1IEzV8QnTD9432Ch6Y9NsriUjltT3H0D78
+ 90WQ==
+X-Gm-Message-State: AOJu0YxY5qwX7V/5NKci93Hs3Ko/kXzKEk3vZNaqjjijxuWxWJ733eRy
+ Bn6AH7p8GZfEHwaUJyfhHpGYtw==
+X-Google-Smtp-Source: AGHT+IFQqDHrxS5nLVVcz3uYz3zBoh8PRAUblObfkXMiu+127hGE3d4cKV4jcsCeAwYclm/ssvuz7g==
+X-Received: by 2002:a1c:6a05:0:b0:404:757e:c5ba with SMTP id
+ f5-20020a1c6a05000000b00404757ec5bamr10282866wmc.26.1696283130281; 
+ Mon, 02 Oct 2023 14:45:30 -0700 (PDT)
+Received: from localhost.localdomain
+ (3.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.6.1.f.d.0.b.8.0.1.0.0.2.ip6.arpa.
+ [2001:8b0:df16::3]) by smtp.gmail.com with ESMTPSA id
+ a11-20020a05600c2d4b00b004065daba6casm7974630wmg.46.2023.10.02.14.45.28
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Mon, 02 Oct 2023 14:45:29 -0700 (PDT)
+From: Phillip Potter <phil@philpotter.co.uk>
+To: devnull+j.granados.samsung.com@kernel.org
+Date: Mon,  2 Oct 2023 22:45:28 +0100
+Message-ID: <20231002214528.15529-1-phil@philpotter.co.uk>
+X-Mailer: git-send-email 2.41.0
+In-Reply-To: <20231002-jag-sysctl_remove_empty_elem_drivers-v2-1-02dd0d46f71e@samsung.com>
+References: <20231002-jag-sysctl_remove_empty_elem_drivers-v2-1-02dd0d46f71e@samsung.com>
 MIME-Version: 1.0
-X-HPE-SCL: -1
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.267,Aquarius:18.0.980,Hydra:6.0.619,FMLib:17.11.176.26
- definitions=2023-10-02_09,2023-10-02_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- impostorscore=0 mlxscore=0
- adultscore=0 bulkscore=0 malwarescore=0 priorityscore=1501
- lowpriorityscore=0 suspectscore=0 mlxlogscore=999 phishscore=0
- clxscore=1015 spamscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2309180000 definitions=main-2310020109
+Content-Transfer-Encoding: 8bit
 X-Mailman-Approved-At: Tue, 03 Oct 2023 12:58:08 +0000
-Subject: Re: [Intel-gfx] [PATCH v2 11/15] sgi-xp: Remove the now superfluous
+Subject: Re: [Intel-gfx] [PATCH v2 01/15] cdrom: Remove now superfluous
  sentinel element from ctl_table array
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -81,78 +77,65 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "Jason A. Donenfeld" <Jason@zx2c4.com>, Steve Wahl <steve.wahl@hpe.com>,
- Clemens Ladisch <clemens@ladisch.de>, linux-hyperv@vger.kernel.org,
- dri-devel@lists.freedesktop.org, Phillip Potter <phil@philpotter.co.uk>,
- Song Liu <song@kernel.org>, Eric Dumazet <edumazet@google.com>,
- "K. Y. Srinivasan" <kys@microsoft.com>, Jiri Slaby <jirislaby@kernel.org>,
- Russ Weight <russell.h.weight@intel.com>, Wei Liu <wei.liu@kernel.org>,
- Stefano Stabellini <sstabellini@kernel.org>, Corey Minyard <minyard@acm.org>,
- Leon Romanovsky <leon@kernel.org>, linux-rdma@vger.kernel.org,
- David Airlie <airlied@gmail.com>, "Rafael J. Wysocki" <rafael@kernel.org>,
- Dexuan Cui <decui@microsoft.com>, willy@infradead.org,
- Jason Gunthorpe <jgg@ziepe.ca>, linux-serial@vger.kernel.org,
- Doug Gilbert <dgilbert@interlog.com>, Jakub Kicinski <kuba@kernel.org>,
- Paolo Abeni <pabeni@redhat.com>, Haiyang Zhang <haiyangz@microsoft.com>,
- Kees Cook <keescook@chromium.org>, Arnd Bergmann <arnd@arndb.de>,
- linux-kernel@vger.kernel.org, "James E.J. Bottomley" <jejb@linux.ibm.com>,
- intel-gfx@lists.freedesktop.org, josh@joshtriplett.org,
- linux-raid@vger.kernel.org, Rodrigo Vivi <rodrigo.vivi@intel.com>,
- xen-devel@lists.xenproject.org, openipmi-developer@lists.sourceforge.net,
- Juergen Gross <jgross@suse.com>, Theodore Ts'o <tytso@mit.edu>,
- linux-scsi@vger.kernel.org, "Martin K. Petersen" <martin.petersen@oracle.com>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- David Ahern <dsahern@kernel.org>, Robin Holt <robinmholt@gmail.com>,
- "David S. Miller" <davem@davemloft.net>,
- Oleksandr Tyshchenko <oleksandr_tyshchenko@epam.com>,
- Luis Chamberlain <mcgrof@kernel.org>, Daniel Vetter <daniel@ffwll.ch>,
- netdev@vger.kernel.org, linuxppc-dev@lists.ozlabs.org,
- Sudip Mukherjee <sudipm.mukherjee@gmail.com>
+Cc: j.granados@samsung.com, Jason@zx2c4.com, rafael@kernel.org,
+ clemens@ladisch.de, linux-hyperv@vger.kernel.org,
+ dri-devel@lists.freedesktop.org, phil@philpotter.co.uk, song@kernel.org,
+ edumazet@google.com, kys@microsoft.com, jirislaby@kernel.org,
+ russell.h.weight@intel.com, wei.liu@kernel.org, sstabellini@kernel.org,
+ minyard@acm.org, leon@kernel.org, linux-rdma@vger.kernel.org,
+ airlied@gmail.com, steve.wahl@hpe.com, decui@microsoft.com,
+ willy@infradead.org, jgg@ziepe.ca, linux-serial@vger.kernel.org,
+ dgilbert@interlog.com, kuba@kernel.org, pabeni@redhat.com,
+ intel-gfx@lists.freedesktop.org, keescook@chromium.org, arnd@arndb.de,
+ haiyangz@microsoft.com, josh@joshtriplett.org, linux-raid@vger.kernel.org,
+ rodrigo.vivi@intel.com, xen-devel@lists.xenproject.org,
+ openipmi-developer@lists.sourceforge.net, jgross@suse.com, tytso@mit.edu,
+ linux-scsi@vger.kernel.org, martin.petersen@oracle.com,
+ gregkh@linuxfoundation.org, dsahern@kernel.org, linuxppc-dev@lists.ozlabs.org,
+ linux-kernel@vger.kernel.org, sudipm.mukherjee@gmail.com,
+ oleksandr_tyshchenko@epam.com, mcgrof@kernel.org, robinmholt@gmail.com,
+ daniel@ffwll.ch, netdev@vger.kernel.org, jejb@linux.ibm.com,
+ davem@davemloft.net
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, Oct 02, 2023 at 10:55:28AM +0200, Joel Granados via B4 Relay wrote:
 > From: Joel Granados <j.granados@samsung.com>
-> 
+>
 > This commit comes at the tail end of a greater effort to remove the
 > empty elements at the end of the ctl_table arrays (sentinels) which
 > will reduce the overall build time size of the kernel and run time
 > memory bloat by ~64 bytes per sentinel (further information Link :
 > https://lore.kernel.org/all/ZO5Yx5JFogGi%2FcBo@bombadil.infradead.org/)
-> 
-> Remove sentinel from xpc_sys_xpc_hb and xpc_sys_xpc
-> 
+>
+> Remove sentinel element from cdrom_table
+>
 > Signed-off-by: Joel Granados <j.granados@samsung.com>
 > ---
->  drivers/misc/sgi-xp/xpc_main.c | 2 --
->  1 file changed, 2 deletions(-)
-> 
-> diff --git a/drivers/misc/sgi-xp/xpc_main.c b/drivers/misc/sgi-xp/xpc_main.c
-> index 6da509d692bb..3186421e82c3 100644
-> --- a/drivers/misc/sgi-xp/xpc_main.c
-> +++ b/drivers/misc/sgi-xp/xpc_main.c
-> @@ -110,7 +110,6 @@ static struct ctl_table xpc_sys_xpc_hb[] = {
->  	 .proc_handler = proc_dointvec_minmax,
->  	 .extra1 = &xpc_hb_check_min_interval,
->  	 .extra2 = &xpc_hb_check_max_interval},
-> -	{}
+>  drivers/cdrom/cdrom.c | 1 -
+>  1 file changed, 1 deletion(-)
+>
+> diff --git a/drivers/cdrom/cdrom.c b/drivers/cdrom/cdrom.c
+> index cc2839805983..a5e07270e0d4 100644
+> --- a/drivers/cdrom/cdrom.c
+> +++ b/drivers/cdrom/cdrom.c
+> @@ -3655,7 +3655,6 @@ static struct ctl_table cdrom_table[] = {
+>  		.mode		= 0644,
+>  		.proc_handler	= cdrom_sysctl_handler
+>  	},
+> -	{ }
 >  };
->  static struct ctl_table xpc_sys_xpc[] = {
->  	{
-> @@ -121,7 +120,6 @@ static struct ctl_table xpc_sys_xpc[] = {
->  	 .proc_handler = proc_dointvec_minmax,
->  	 .extra1 = &xpc_disengage_min_timelimit,
->  	 .extra2 = &xpc_disengage_max_timelimit},
-> -	{}
->  };
->  
->  static struct ctl_table_header *xpc_sysctl;
-> 
+>  static struct ctl_table_header *cdrom_sysctl_header;
+>
+>
 > -- 
 > 2.30.2
-> 
 
-Reviewed-by: Steve Wahl <steve.wahl@hpe.com>
 
--- 
-Steve Wahl, Hewlett Packard Enterprise
+Hi Joel,
+
+Looks good to me, many thanks. I'll send on for inclusion.
+
+Reviewed-by: Phillip Potter <phil@philpotter.co.uk>
+
+Regards,
+Phil
