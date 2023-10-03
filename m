@@ -2,52 +2,48 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5DB5F7B60C1
-	for <lists+intel-gfx@lfdr.de>; Tue,  3 Oct 2023 08:27:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 922E07B61B5
+	for <lists+intel-gfx@lfdr.de>; Tue,  3 Oct 2023 08:56:49 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A607310E086;
-	Tue,  3 Oct 2023 06:27:04 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 14A5A10E0E7;
+	Tue,  3 Oct 2023 06:56:46 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.100])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5DAE910E086
- for <intel-gfx@lists.freedesktop.org>; Tue,  3 Oct 2023 06:27:02 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.120])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0945F10E0E7
+ for <intel-gfx@lists.freedesktop.org>; Tue,  3 Oct 2023 06:56:44 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1696314422; x=1727850422;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:in-reply-to;
- bh=kMgoZCSi63G0FSrF69TGzCD7PiAnTO5hqszcucQ7iVY=;
- b=mnn+2wgldAD6MuKGflVI+ZwFIzzyFKbK3tSLg30snF7dBuZFrrKQheEL
- ZbSccM0Lmb+zMJb7zB9NDany8J6+4g6Wprmb3iFf02sVBWH2SS3Z7Qtpt
- lDJ3oCHQAM4sB90JTFj20UQ86TmE7p8CSbW1QjqCXAJCuYFFBUeZpGGZM
- vzOHMFGWNKM6CvlfMiPHKhfk+keMQGKFMW8J2irqkrK0FoZjqpuDZUyu1
- 1/CK+taiC2c/EJnCGp6nm+OeqVpd7V5e9NSpgNBoD0ZRLgjHij47v1F9N
- Y0lR8l0WtnjfIqtz02lbaGmSLDUInTWng7BA8ZZkKuiBBLJeYcIThhCAr g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10851"; a="449291231"
-X-IronPort-AV: E=Sophos;i="6.03,196,1694761200"; d="scan'208";a="449291231"
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
- by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Oct 2023 23:27:01 -0700
+ t=1696316204; x=1727852204;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=6qOjX8MeBdBwtbJN/aUgWVbeIQAZMF5dJ5AMsskzM3g=;
+ b=FFSiEpR9/qLd7wr0UGICrtus/eqK1xskqZc6YSMcZTBbkaDtKp/9BTKP
+ KcXexm4BhiCCFsA8edYGLngF1eAsWVE9/8eM5jMXQs7IcZteFdZNYf0cp
+ m8kP8kcOi+8XQH016fH4YGdWMmgg9ufOG2adNECeH/tHexTuhozO4kf/x
+ loNSOh/0LXAwdTSNlEkmNspv1pdJtNw6DISn7M6QpWFV1ORh570aOxXtG
+ GTdADGggoo7f6ZCd3r2nGEBfOb+ml/P+nJBGTs9adGnM3mj0VH/IuwBDJ
+ nEDhJL7PoUghG33vyNxplRqM07ANiVNwG1j3+VY2bPliDLB8ShRLyfsqU Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10851"; a="381689491"
+X-IronPort-AV: E=Sophos;i="6.03,196,1694761200"; d="scan'208";a="381689491"
+Received: from orsmga004.jf.intel.com ([10.7.209.38])
+ by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 Oct 2023 23:56:43 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10851"; a="750810300"
-X-IronPort-AV: E=Sophos;i="6.03,196,1694761200"; d="scan'208";a="750810300"
-Received: from leejiahx-mobl.gar.corp.intel.com (HELO intel.com)
- ([10.214.172.202])
- by orsmga002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Oct 2023 23:26:58 -0700
-Date: Tue, 3 Oct 2023 08:26:52 +0200
-From: Andi Shyti <andi.shyti@linux.intel.com>
-To: Jani Nikula <jani.nikula@intel.com>
-Message-ID: <ZRu0LEx1BuxEAjUF@ashyti-mobl2.lan>
-References: <cover.1696236329.git.jani.nikula@intel.com>
- <63e644f056c7745eb0e8e165c990c392a38ec85c.1696236329.git.jani.nikula@intel.com>
+X-IronPort-AV: E=McAfee;i="6600,9927,10851"; a="874617623"
+X-IronPort-AV: E=Sophos;i="6.03,196,1694761200"; d="scan'208";a="874617623"
+Received: from dut-2a59.iind.intel.com ([10.190.239.113])
+ by orsmga004.jf.intel.com with ESMTP; 02 Oct 2023 23:56:41 -0700
+From: Chaitanya Kumar Borah <chaitanya.kumar.borah@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Tue,  3 Oct 2023 12:22:11 +0530
+Message-Id: <20231003065211.1052385-1-chaitanya.kumar.borah@intel.com>
+X-Mailer: git-send-email 2.25.1
+In-Reply-To: <20230927133505.1086855-1-animesh.manna@intel.com>
+References: <20230927133505.1086855-1-animesh.manna@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <63e644f056c7745eb0e8e165c990c392a38ec85c.1696236329.git.jani.nikula@intel.com>
-Subject: Re: [Intel-gfx] [PATCH 1/3] drm/i915/mocs: use to_gt() instead of
- direct &i915->gt
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-gfx] [PATCH] drm/i915: Add wrapper for getting display step
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -60,19 +56,58 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi Jani,
+Add a wrapper around intel_step_name that takes in driver data as an
+argument. This wrapper will help maintain compatibility with the
+proposed xe driver.
 
-On Mon, Oct 02, 2023 at 11:47:02AM +0300, Jani Nikula wrote:
-> Have to give up the const on i915 pointer, but it's not big of a deal
-> considering non-const i915 gets passed all over the place.
-> 
-> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+Signed-off-by: Chaitanya Kumar Borah <chaitanya.kumar.borah@intel.com>
+Signed-off-by: Animesh Manna <animesh.manna@intel.com>
+---
+ drivers/gpu/drm/i915/display/intel_dmc.c | 2 +-
+ drivers/gpu/drm/i915/intel_step.c        | 5 +++++
+ drivers/gpu/drm/i915/intel_step.h        | 1 +
+ 3 files changed, 7 insertions(+), 1 deletion(-)
 
-Reviewed-by: Andi Shyti <andi.shyti@linux.intel.com> 
+diff --git a/drivers/gpu/drm/i915/display/intel_dmc.c b/drivers/gpu/drm/i915/display/intel_dmc.c
+index 1623c0c5e8a1..63e080e07023 100644
+--- a/drivers/gpu/drm/i915/display/intel_dmc.c
++++ b/drivers/gpu/drm/i915/display/intel_dmc.c
+@@ -309,7 +309,7 @@ static const struct stepping_info *
+ intel_get_stepping_info(struct drm_i915_private *i915,
+ 			struct stepping_info *si)
+ {
+-	const char *step_name = intel_step_name(RUNTIME_INFO(i915)->step.display_step);
++	const char *step_name = intel_display_step_name(i915);
+ 
+ 	si->stepping = step_name[0];
+ 	si->substepping = step_name[1];
+diff --git a/drivers/gpu/drm/i915/intel_step.c b/drivers/gpu/drm/i915/intel_step.c
+index ee4e5a2c0220..b4162f1be765 100644
+--- a/drivers/gpu/drm/i915/intel_step.c
++++ b/drivers/gpu/drm/i915/intel_step.c
+@@ -353,3 +353,8 @@ const char *intel_step_name(enum intel_step step)
+ 		return "**";
+ 	}
+ }
++
++const char *intel_display_step_name(struct drm_i915_private *i915)
++{
++	return intel_step_name(RUNTIME_INFO(i915)->step.display_step);
++}
+diff --git a/drivers/gpu/drm/i915/intel_step.h b/drivers/gpu/drm/i915/intel_step.h
+index 96dfca4cba73..b6f43b624774 100644
+--- a/drivers/gpu/drm/i915/intel_step.h
++++ b/drivers/gpu/drm/i915/intel_step.h
+@@ -78,5 +78,6 @@ enum intel_step {
+ 
+ void intel_step_init(struct drm_i915_private *i915);
+ const char *intel_step_name(enum intel_step step);
++const char *intel_display_step_name(struct drm_i915_private *i915);
+ 
+ #endif /* __INTEL_STEP_H__ */
+-- 
+2.25.1
 
-Thanks,
-Andi
