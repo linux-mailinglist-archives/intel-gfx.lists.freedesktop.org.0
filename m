@@ -2,47 +2,55 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id D7BDD7B7335
-	for <lists+intel-gfx@lfdr.de>; Tue,  3 Oct 2023 23:19:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id F28047B7351
+	for <lists+intel-gfx@lfdr.de>; Tue,  3 Oct 2023 23:29:59 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 95F5410E31E;
-	Tue,  3 Oct 2023 21:19:33 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6346F10E31E;
+	Tue,  3 Oct 2023 21:29:56 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.126])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C63F410E31E
- for <intel-gfx@lists.freedesktop.org>; Tue,  3 Oct 2023 21:19:31 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.151])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 130C410E31E
+ for <intel-gfx@lists.freedesktop.org>; Tue,  3 Oct 2023 21:29:53 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1696367971; x=1727903971;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=TKied/IC7PD++g0wDjlHM6jTQtjPxBFGG8dmyOIHYVI=;
- b=Dkq8cUEi/l+catt+9MK8RYMo38W0HpIvuueg25JX4lUGqRh9QLuNBeJU
- KdiQo6SsYMu/KyMaePLuqktxWbhBDapXzk/ANejq9WF29KJQZO3bLFd7H
- gfyS7VQb8gdTOD2PbBmSX78tzEMCund8NUvH+zFSNokvhmmUsQhyECY50
- kmQtwA795P2oe2cU/lHxPIA82IduulYnrsaSVPN85OCUGnbqVIsZ9j2FP
- j7vfICfapjWkz5oWx8HRdMd3q/cYfbwxTmHD38gOorlSxbHiUv/fWEfk0
- JUjWyD1Pr0TVhr4BMoqZ6GZQsQJfFVacDdLl1fGCS2Nf4wLe3rOJegGXn A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10852"; a="368038627"
-X-IronPort-AV: E=Sophos;i="6.03,198,1694761200"; d="scan'208";a="368038627"
-Received: from orsmga006.jf.intel.com ([10.7.209.51])
- by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Oct 2023 14:19:22 -0700
+ t=1696368594; x=1727904594;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=xvylTcIYLUfC5ADNj47qKdD7q5bXfkFSTFyu3YXFkDs=;
+ b=TGNQU6jeUTB/Rd8rWk0pDChC8EvWkSAq7UwMKptGAwuN5ULHYlnf1Dws
+ +eitd1w8sy1QzuJzZbpfhOGB20/jIyFC/W3mGxMxNGjgLr7m8qEnp4wlk
+ rhnSk0qajewxocjztTE94jTpAcgcMQj7ePVVVAgQqlihCFGHw2Y6U0+ju
+ jVZRctCW1Z6V6QP895Q1c7BwCOdgqCd+s5I+v8M62wsS1EpAJISok9xCo
+ G9jmGfH1jeBbhGH7lfq8FD2VDwmb+WVvYcSbTx13WdJVoui27hTbBswYp
+ fTy/C3L3a/TjpSSNiwADlSSlfTluGTR0Gj2k+LUYKmS01v/pkxe3Wr2QL A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10852"; a="363250230"
+X-IronPort-AV: E=Sophos;i="6.03,198,1694761200"; d="scan'208";a="363250230"
+Received: from orsmga007.jf.intel.com ([10.7.209.58])
+ by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 03 Oct 2023 14:29:37 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10852"; a="727774244"
-X-IronPort-AV: E=Sophos;i="6.03,198,1694761200"; d="scan'208";a="727774244"
-Received: from dut-internal-9dd7.jf.intel.com ([10.165.21.194])
- by orsmga006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Oct 2023 14:19:22 -0700
-From: Jonathan Cavitt <jonathan.cavitt@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Tue,  3 Oct 2023 14:08:40 -0700
-Message-Id: <20231003210840.1173401-1-jonathan.cavitt@intel.com>
-X-Mailer: git-send-email 2.25.1
+X-IronPort-AV: E=McAfee;i="6600,9927,10852"; a="744649910"
+X-IronPort-AV: E=Sophos;i="6.03,198,1694761200"; d="scan'208";a="744649910"
+Received: from adelynhu-mobl1.gar.corp.intel.com (HELO intel.com)
+ ([10.214.161.181])
+ by orsmga007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 03 Oct 2023 14:29:28 -0700
+Date: Tue, 3 Oct 2023 23:29:22 +0200
+From: Andi Shyti <andi.shyti@linux.intel.com>
+To: John Harrison <john.c.harrison@intel.com>
+Message-ID: <ZRyHsv/3olQsONmD@ashyti-mobl2.lan>
+References: <20231002172419.1017044-1-jonathan.cavitt@intel.com>
+ <813ae801-b774-7d7a-df8a-00b5b0e36695@linux.intel.com>
+ <ZRxEOCI6Xq1UEnlw@ashyti-mobl2.lan>
+ <34c8cffc-ece1-dab4-1e41-4fc8b632157d@intel.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH] drm/i915/gt: Increase MCR lock timeout
+In-Reply-To: <34c8cffc-ece1-dab4-1e41-4fc8b632157d@intel.com>
+Subject: Re: [Intel-gfx] [PATCH v3 1/4] drm/i915: Define and use GuC and CTB
+ TLB invalidation routines
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -55,32 +63,40 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: gregory.f.germano@intel.com, saurabhg.gupta@intel.com,
- jonathan.cavitt@intel.com
+Cc: janusz.krzysztofik@intel.com, matthew.d.roper@intel.com,
+ intel-gfx@lists.freedesktop.org, Jonathan Cavitt <jonathan.cavitt@intel.com>,
+ chris.p.wilson@linux.intel.com, nirmoy.das@intel.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Increase the timeout MCR waits for the steering semaphore
-in intel_gt_mcr_lock by a factor of 10.
+Hi John,
 
-Signed-off-by: Jonathan Cavitt <jonathan.cavitt@intel.com>
----
- drivers/gpu/drm/i915/gt/intel_gt_mcr.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+> > > > -		mmio_invalidate_full(gt);
+> > > > +		if (INTEL_GUC_SUPPORTS_TLB_INVALIDATION(guc)) {
+> > > > +			if (intel_guc_is_ready(guc))
+> > > > +				intel_guc_invalidate_tlb_full(guc);
+> > > > +		} else {
+> > > > +			/*
+> > > > +			 * Fall back to old path if GuC is disabled.
+> > > > +			 * This is safe because GuC is not enabled and not writing to MMIO.
+> > > > +			 */
+> > > It is safe for intel_guc_is_ready() transitioning from false to true during GuC init? No way for some path to start issuing invalidations as that is happening?
+> > > 
+> > > > +			mmio_invalidate_full(gt);
+> > > > +		}
+> > supernitpick: as we are at this, brackets are not required.
+> Braces are required on the first half of the 'if' because it is a double if
+> and the else applies to the top level not the inner level. And my
+> understanding of the style guide is that lop-sided bracing is incorrect.
+> i.e. never have "} else". Plus while it might be syntactically valid to not
+> have braces around the five line else clause because it is only one actual
+> code statement, it massively helps readability of the code to have the
+> braces present.
 
-diff --git a/drivers/gpu/drm/i915/gt/intel_gt_mcr.c b/drivers/gpu/drm/i915/gt/intel_gt_mcr.c
-index 326c2ed1d99bb..e3f7fb1248809 100644
---- a/drivers/gpu/drm/i915/gt/intel_gt_mcr.c
-+++ b/drivers/gpu/drm/i915/gt/intel_gt_mcr.c
-@@ -378,7 +378,7 @@ void intel_gt_mcr_lock(struct intel_gt *gt, unsigned long *flags)
- 	 */
- 	if (GRAPHICS_VER_FULL(gt->i915) >= IP_VER(12, 70))
- 		err = wait_for(intel_uncore_read_fw(gt->uncore,
--						    MTL_STEER_SEMAPHORE) == 0x1, 100);
-+						    MTL_STEER_SEMAPHORE) == 0x1, 1000);
- 
- 	/*
- 	 * Even on platforms with a hardware lock, we'll continue to grab
--- 
-2.25.1
+You are right, the 'else' would connect with the innermost 'if'
+and besides gcc complains with a warning like this:
 
+   warning: suggest explicit braces to avoid ambiguous ‘else’ [-Wdangling-else]
+
+Thanks,
+Andi
