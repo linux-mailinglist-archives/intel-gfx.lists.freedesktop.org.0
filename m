@@ -2,53 +2,50 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id CE1017B721F
-	for <lists+intel-gfx@lfdr.de>; Tue,  3 Oct 2023 21:57:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id A40F17B7249
+	for <lists+intel-gfx@lfdr.de>; Tue,  3 Oct 2023 22:06:34 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0A1E210E312;
-	Tue,  3 Oct 2023 19:57:30 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8E55C10E314;
+	Tue,  3 Oct 2023 20:06:28 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.93])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6762C10E312
- for <intel-gfx@lists.freedesktop.org>; Tue,  3 Oct 2023 19:57:27 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9BA0010E071
+ for <intel-gfx@lists.freedesktop.org>; Tue,  3 Oct 2023 20:06:23 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1696363047; x=1727899047;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=u4zW5HeEZZ9XBKcjsLZhaQTgQfy/KX8Q9r0Tl7WN4Qc=;
- b=Htv0TA9h4L6vqhvGKzSGpY8PtW+4y+Koy0ZoJyRC8kNnUritoz8uD4JQ
- cPdoLjAcadxXmIuw9MfaCOjSxz2IJTa7XnlDGGnJBnHDY+88FtMx6AMLb
- ToYzVKeAgkdVAXKaKoQpOZpAE6OfZeQfxZ6mXSzesokaBqgPBFCCJJBjA
- ZBwoawpxh5SXYb6GZLM1G+EQ5QKuYcT5LR4ay3e76v3V/ebeNI5we/2lc
- iXZ4GjIFNak7axXtNmK03o79Tdj69F3iU4lM0W2xxTYyQDuDEVyQaW5ZY
- p45006FeqIsoOsriW8dXTyGq2STAtKyjf+rFV149idSfNwCwDtD6xSY86 A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10852"; a="380241016"
-X-IronPort-AV: E=Sophos;i="6.03,198,1694761200"; d="scan'208";a="380241016"
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+ t=1696363583; x=1727899583;
+ h=from:to:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=Vkabjc2AnPGTQ6pj+/zMZyRdIPTafJoG+PsXUbPGVJM=;
+ b=DJfrgLPa1/+/aAMw1wElswtIG6sKIMrQ2Vvfx8oZsKWySyPnJ1YCDu2n
+ 3Py5iMNxbA5X+BQuElHnVJwZR8x8lSVG1c+k3lFb/Ydk9EzteB8ZinxHB
+ 57kgHPae3KtFJ/NeVcCiPeUq5lDg8H/Tj5iUv7ArLQpUK+qVQ09KEASB9
+ 0xXVmvzbfeWqATMkNL+BtwB+eNy3xvnUC9bubduPBBPqxNOwpN76IYlI2
+ xKEuK4LSphk2pECPXbahWtFf6LGYTctQ6k8Wdfm7JaDfEW6tjrhMRnfpY
+ V3OEuaFdKo4/hY4Oa4QCrlUwGpSNojQf1C4CwqDRwX8VUxIlh63UuQDQm g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10852"; a="380242810"
+X-IronPort-AV: E=Sophos;i="6.03,198,1694761200"; d="scan'208";a="380242810"
+Received: from fmsmga008.fm.intel.com ([10.253.24.58])
  by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Oct 2023 12:57:26 -0700
+ 03 Oct 2023 13:06:23 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10852"; a="894626712"
-X-IronPort-AV: E=Sophos;i="6.03,198,1694761200"; d="scan'208";a="894626712"
+X-IronPort-AV: E=McAfee;i="6600,9927,10852"; a="816829616"
+X-IronPort-AV: E=Sophos;i="6.03,198,1694761200"; d="scan'208";a="816829616"
 Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.153])
- by fmsmga001.fm.intel.com with SMTP; 03 Oct 2023 12:56:00 -0700
+ by fmsmga008.fm.intel.com with SMTP; 03 Oct 2023 13:06:21 -0700
 Received: by stinkbox (sSMTP sendmail emulation);
- Tue, 03 Oct 2023 22:57:24 +0300
-Date: Tue, 3 Oct 2023 22:57:24 +0300
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Jani Nikula <jani.nikula@intel.com>
-Message-ID: <ZRxyJE3p15e1CBph@intel.com>
-References: <cover.1696336887.git.jani.nikula@intel.com>
+ Tue, 03 Oct 2023 23:06:20 +0300
+From: Ville Syrjala <ville.syrjala@linux.intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Tue,  3 Oct 2023 23:06:16 +0300
+Message-ID: <20231003200620.11633-1-ville.syrjala@linux.intel.com>
+X-Mailer: git-send-email 2.41.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <cover.1696336887.git.jani.nikula@intel.com>
-X-Patchwork-Hint: comment
-Subject: Re: [Intel-gfx] [PATCH 0/4] drm/i915: move display info related
- stuff under display/
+Subject: [Intel-gfx] [PATCH v3 0/4] drm/i915: Start cleaning up the DPLL ID
+ mess
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,46 +58,46 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, Oct 03, 2023 at 03:42:06PM +0300, Jani Nikula wrote:
-> Continue separation of display code from the rest.
-> 
-> Jani Nikula (4):
->   drm/i915: convert INTEL_DISPLAY_ENABLED() into a function
->   drm/i915: move display info related macros to display
->   drm/i915: separate display runtime info init
->   drm/i915: separate subplatform init and runtime feature init
+From: Ville Syrj√§l√§ <ville.syrjala@linux.intel.com>
 
-Didn't spot anything wrong. I was a bit suspicious about
-deferring the port_mask mangling, but doesn't look like we
-need it that early anywhere.
+Start to clean up the mess around DPLL IDs a bit by removing
+the nasty assumption that the index of the DPLL in the
+arrays matches its ID. Fortunately we did have a WARN
+i nthere to cathc mistakes, but better to not has such
+silly assumptions i nthe first place.
 
-Series is
-Reviewed-by: Ville Syrj‰l‰ <ville.syrjala@linux.intel.com>
+There's still a lot of mess left since the DPLL IDs in
+the hardware are a mess as well. Eg. the index of the
+register instance often differs from the index used
+to select the DPLL in clock routing thing. So we could
+probably clean up more of that, perhaps by declaring
+separate IDs for each PLL for each use case...
 
-> 
->  drivers/gpu/drm/i915/display/intel_crt.c      |  2 +-
->  .../drm/i915/display/intel_display_device.c   | 43 ++++++++++++++++++-
->  .../drm/i915/display/intel_display_device.h   | 10 +++++
->  drivers/gpu/drm/i915/display/intel_dp.c       |  2 +-
->  drivers/gpu/drm/i915/display/intel_dp_mst.c   |  2 +-
->  drivers/gpu/drm/i915/display/intel_dvo.c      |  2 +-
->  drivers/gpu/drm/i915/display/intel_hdmi.c     |  2 +-
->  drivers/gpu/drm/i915/display/intel_hotplug.c  |  2 +-
->  drivers/gpu/drm/i915/display/intel_panel.c    |  2 +-
->  drivers/gpu/drm/i915/display/intel_sdvo.c     |  2 +-
->  drivers/gpu/drm/i915/display/intel_tv.c       |  2 +-
->  drivers/gpu/drm/i915/i915_driver.c            |  1 +
->  drivers/gpu/drm/i915/i915_drv.h               | 14 ------
->  drivers/gpu/drm/i915/intel_device_info.c      | 22 ----------
->  14 files changed, 62 insertions(+), 46 deletions(-)
-> 
-> -- 
-> 2.39.2
+v2:
+- the trivial patches were already merged
+- introduce pll->index
+- add another patch for for_each_shared_dpll()
+- add another patch s/dev_priv/i915/
+
+v3:
+- deal with pll->index in debugfs code
+- rebase due to other changes
+
+Ville Syrj√§l√§ (4):
+  drm/i915: Stop requiring PLL index == PLL ID
+  drm/i915: Decouple I915_NUM_PLLS from PLL IDs
+  drm/i915: Introduce for_each_shared_dpll()
+  drm/i915: s/dev_priv/i915/ in the shared_dpll code
+
+ .../drm/i915/display/intel_display_debugfs.c  |   9 +-
+ drivers/gpu/drm/i915/display/intel_dpll_mgr.c | 965 +++++++++---------
+ drivers/gpu/drm/i915/display/intel_dpll_mgr.h |  26 +-
+ .../gpu/drm/i915/display/intel_pch_refclk.c   |   7 +-
+ 4 files changed, 522 insertions(+), 485 deletions(-)
 
 -- 
-Ville Syrj‰l‰
-Intel
+2.41.0
+
