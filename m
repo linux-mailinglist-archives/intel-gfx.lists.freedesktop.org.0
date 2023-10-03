@@ -1,53 +1,53 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id C363F7B693D
-	for <lists+intel-gfx@lfdr.de>; Tue,  3 Oct 2023 14:42:36 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9D3B67B69A7
+	for <lists+intel-gfx@lfdr.de>; Tue,  3 Oct 2023 14:59:08 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 498E110E0E3;
-	Tue,  3 Oct 2023 12:42:35 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1429E10E2A5;
+	Tue,  3 Oct 2023 12:59:07 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 99ADA10E0E3
- for <intel-gfx@lists.freedesktop.org>; Tue,  3 Oct 2023 12:42:32 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8FF2F10E2A5;
+ Tue,  3 Oct 2023 12:59:05 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1696336952; x=1727872952;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=1IGom2Z2rAeP4TZyLCSc2vEmaZYXvyIXXmMg/1W9CZs=;
- b=BzHJJMSjgA8OrEs18G6cTK8omRJD+FchtTMUtnkeH7ewJ0VOclWNp7X1
- v6yYfbfTLthov5aLeApwKazSTJXJ71hTFrS6yMP03+C3SN0nWwttNqBNm
- YYrLa3gDHbJiiWDTb+eXvPE74Ab9kdGxUjWF0ism1G8WQZhqzzmYNjzlK
- 94J9lE34wgUUfRQAPVQsBmCXWyY1z3TLtz2MSX/w+ndw4cLgfwvsNf2jU
- V+QDrkyjA3JnVqfc9BLEUdBwbT39n81HxIXcYk4joTnNgAB4HQ7G3hGV9
- Pmj0WPtZLfLMoWqIkvzeEQCEJtHfNtYvOKDH865aiAb098h/7LA3EaWYE w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10851"; a="447020634"
-X-IronPort-AV: E=Sophos;i="6.03,197,1694761200"; d="scan'208";a="447020634"
+ t=1696337945; x=1727873945;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=zKlkaAgnEjQsDarr4vW/Z7F87//Uxp4Ezqyi7LtddYo=;
+ b=Tn+fc7nP9la8A/RuAc3FtVMavcxaY5u6e2+cha6fiebiLh/kBBY08pGW
+ YTpragUzdSq4X9eaiABgDS7uK+rFakzVRwbh4SCcsJefX/mURTyWzChYG
+ KxlGpzf2L+W8FMGwqO7sbaPvh0t1nqoZb1irdiQc2aQQ6wS8tgcIYtyJz
+ //QZCOvPLU8HMyZwsYCr75YSf7GS+mVp+oPoT12+LvCBTj0fBajC/nC+G
+ FqjQbfBFe38XXiI3qtOnKKcCSc83lFCQcAFTfu47IGAUPKR+I/UYDPOgY
+ fheIyEO2GzqgHX83GteJNtw75kfrv2OwpZfcn+k27clphNuB8nu7mVhYB w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10852"; a="447024046"
+X-IronPort-AV: E=Sophos;i="6.03,197,1694761200"; d="scan'208";a="447024046"
 Received: from orsmga006.jf.intel.com ([10.7.209.51])
  by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Oct 2023 05:42:29 -0700
+ 03 Oct 2023 05:58:06 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10851"; a="727601604"
-X-IronPort-AV: E=Sophos;i="6.03,197,1694761200"; d="scan'208";a="727601604"
-Received: from akorotox-mobl.ger.corp.intel.com (HELO localhost)
- ([10.252.55.199])
- by orsmga006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Oct 2023 05:42:27 -0700
-From: Jani Nikula <jani.nikula@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Tue,  3 Oct 2023 15:42:10 +0300
-Message-Id: <1035800e623e13d5e7baf1215b07e7cdad5eb764.1696336887.git.jani.nikula@intel.com>
-X-Mailer: git-send-email 2.39.2
-In-Reply-To: <cover.1696336887.git.jani.nikula@intel.com>
-References: <cover.1696336887.git.jani.nikula@intel.com>
+X-IronPort-AV: E=McAfee;i="6600,9927,10851"; a="727605123"
+X-IronPort-AV: E=Sophos;i="6.03,197,1694761200"; d="scan'208";a="727605123"
+Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.153])
+ by orsmga006.jf.intel.com with SMTP; 03 Oct 2023 05:58:03 -0700
+Received: by stinkbox (sSMTP sendmail emulation);
+ Tue, 03 Oct 2023 15:58:03 +0300
+Date: Tue, 3 Oct 2023 15:58:03 +0300
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: Vinod Govindapillai <vinod.govindapillai@intel.com>
+Message-ID: <ZRwP22BZQseg6vW4@intel.com>
+References: <20230922133003.150578-1-vinod.govindapillai@intel.com>
 MIME-Version: 1.0
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH 4/4] drm/i915: separate subplatform init and
- runtime feature init
+In-Reply-To: <20230922133003.150578-1-vinod.govindapillai@intel.com>
+X-Patchwork-Hint: comment
+Subject: Re: [Intel-gfx] [Intel-xe] [PATCH v5 0/2] fbc on any planes
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -60,70 +60,29 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: jani.nikula@intel.com
+Cc: ville.syrjala@intel.com, intel-gfx@lists.freedesktop.org,
+ matthew.d.roper@intel.com, intel-xe@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Adjusting ->port_mask does not belong in
-intel_device_info_subplatform_init(), but rather
-intel_display_device_info_runtime_init().
+On Fri, Sep 22, 2023 at 04:30:01PM +0300, Vinod Govindapillai wrote:
+> FBC can be supported in first three planes in lnl
+> 
+> Vinod Govindapillai (2):
+>   drm/i915/lnl: possibility to enable FBC on first three planes
+>   drm/i915/lnl: update the supported plane formats with FBC
 
-Signed-off-by: Jani Nikula <jani.nikula@intel.com>
----
- drivers/gpu/drm/i915/display/intel_display_device.c | 7 +++++++
- drivers/gpu/drm/i915/intel_device_info.c            | 5 -----
- 2 files changed, 7 insertions(+), 5 deletions(-)
+Pushed to drm-intel-next. Thanks.
 
-diff --git a/drivers/gpu/drm/i915/display/intel_display_device.c b/drivers/gpu/drm/i915/display/intel_display_device.c
-index 11f4a6c54cc7..9f0266318a41 100644
---- a/drivers/gpu/drm/i915/display/intel_display_device.c
-+++ b/drivers/gpu/drm/i915/display/intel_display_device.c
-@@ -948,6 +948,13 @@ static void __intel_display_device_info_runtime_init(struct drm_i915_private *i9
- 	BUILD_BUG_ON(BITS_PER_TYPE(display_runtime->cpu_transcoder_mask) < I915_MAX_TRANSCODERS);
- 	BUILD_BUG_ON(BITS_PER_TYPE(display_runtime->port_mask) < I915_MAX_PORTS);
- 
-+	/* This covers both ULT and ULX */
-+	if (IS_HASWELL_ULT(i915) || IS_BROADWELL_ULT(i915))
-+		display_runtime->port_mask &= ~BIT(PORT_D);
-+
-+	if (IS_ICL_WITH_PORT_F(i915))
-+		display_runtime->port_mask |= BIT(PORT_F);
-+
- 	/* Wa_14011765242: adl-s A0,A1 */
- 	if (IS_ALDERLAKE_S(i915) && IS_DISPLAY_STEP(i915, STEP_A0, STEP_A2))
- 		for_each_pipe(i915, pipe)
-diff --git a/drivers/gpu/drm/i915/intel_device_info.c b/drivers/gpu/drm/i915/intel_device_info.c
-index db3997cec6ff..59bea1398c91 100644
---- a/drivers/gpu/drm/i915/intel_device_info.c
-+++ b/drivers/gpu/drm/i915/intel_device_info.c
-@@ -27,7 +27,6 @@
- #include <drm/drm_print.h>
- #include <drm/i915_pciids.h>
- 
--#include "display/intel_display_device.h"
- #include "gt/intel_gt_regs.h"
- #include "i915_drv.h"
- #include "i915_reg.h"
-@@ -232,19 +231,15 @@ static void intel_device_info_subplatform_init(struct drm_i915_private *i915)
- 	if (find_devid(devid, subplatform_ult_ids,
- 		       ARRAY_SIZE(subplatform_ult_ids))) {
- 		mask = BIT(INTEL_SUBPLATFORM_ULT);
--		if (IS_HASWELL(i915) || IS_BROADWELL(i915))
--			DISPLAY_RUNTIME_INFO(i915)->port_mask &= ~BIT(PORT_D);
- 	} else if (find_devid(devid, subplatform_ulx_ids,
- 			      ARRAY_SIZE(subplatform_ulx_ids))) {
- 		mask = BIT(INTEL_SUBPLATFORM_ULX);
- 		if (IS_HASWELL(i915) || IS_BROADWELL(i915)) {
- 			/* ULX machines are also considered ULT. */
- 			mask |= BIT(INTEL_SUBPLATFORM_ULT);
--			DISPLAY_RUNTIME_INFO(i915)->port_mask &= ~BIT(PORT_D);
- 		}
- 	} else if (find_devid(devid, subplatform_portf_ids,
- 			      ARRAY_SIZE(subplatform_portf_ids))) {
--		DISPLAY_RUNTIME_INFO(i915)->port_mask |= BIT(PORT_F);
- 		mask = BIT(INTEL_SUBPLATFORM_PORTF);
- 	} else if (find_devid(devid, subplatform_uy_ids,
- 			   ARRAY_SIZE(subplatform_uy_ids))) {
+> 
+>  drivers/gpu/drm/i915/display/intel_fbc.c           | 11 ++++++++++-
+>  drivers/gpu/drm/i915/display/skl_universal_plane.c |  9 ++++++---
+>  drivers/gpu/drm/i915/i915_reg.h                    |  2 ++
+>  3 files changed, 18 insertions(+), 4 deletions(-)
+> 
+> -- 
+> 2.34.1
+
 -- 
-2.39.2
-
+Ville Syrjälä
+Intel
