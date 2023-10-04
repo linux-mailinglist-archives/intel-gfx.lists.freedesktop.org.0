@@ -2,52 +2,52 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 517FD7B7FE0
-	for <lists+intel-gfx@lfdr.de>; Wed,  4 Oct 2023 14:54:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id EDAB87B7FE9
+	for <lists+intel-gfx@lfdr.de>; Wed,  4 Oct 2023 14:55:41 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8FBD510E36F;
-	Wed,  4 Oct 2023 12:54:18 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5EEBA10E369;
+	Wed,  4 Oct 2023 12:55:40 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0A3FF10E109;
- Wed,  4 Oct 2023 12:54:16 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.136])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id ABBD710E36C;
+ Wed,  4 Oct 2023 12:55:38 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1696424056; x=1727960056;
+ t=1696424138; x=1727960138;
  h=from:to:cc:subject:in-reply-to:references:date:
  message-id:mime-version;
- bh=DFqxbhEtmGONcx98EHntjXGDpaCNhrhrEhCQbKeVG/8=;
- b=KvBam2aYNuzuXrXtZZ+HoIeKk/2bpBf6GCOWliTefivZdqeyjX4AaugB
- NMj4nN1C0PGaa+4y7bYMpDZBNSFat75yNzEpgQ18IiARvC7gYeBa+mXfD
- O3vaM5TRXUnYY7DyLXbo3POkklrbEEtEB/ll0cwRIntDi9ryxOvo/hxhN
- NI5BC9C5UJNlCP7lsfzRRf+NXkti7omucVtAwE/OHl9g3rT+N/I9HPq/8
- p4klAL8nwj73OldDeZBN4+roZ1IzEBEWGEFMxlSWBXVHdhTn9EJHiTwdU
- xaFSq57VprYmrRJNSBxQ13JYeJahLMs8FJ3RCYA54its2ceU2Swj+6dIK Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10853"; a="414076142"
-X-IronPort-AV: E=Sophos;i="6.03,200,1694761200"; d="scan'208";a="414076142"
-Received: from orsmga007.jf.intel.com ([10.7.209.58])
- by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Oct 2023 05:54:15 -0700
+ bh=FSbrP4SEDCHk1TQ/mV1THXmdKHiA2kUovZnWxBk21Rs=;
+ b=bHq40djN72gtgDBcxzqVbo5DC0Em33fbtWDUmAo7Oyk+nYwGARloEvoe
+ Oukc2nSFtVjw7vv6R0I7sFJV7FnH9c8q7TLR7x8IVMLR0gtmiE5E13Lm3
+ 2wIHo7uwxLXDphgpxds+29XBRHEA9BD3fjQhz86WREsd4TfRccTe/goLQ
+ uEKszGv77SB83Jdd8hjsmHKE6TXrh/CkfWJtmkAR9+0LouK+0faliqYBz
+ eCzEkXeBDqI3zDGrPhCABQWgn42kXSD53MvHfjrZn8oOgh8iwX2Thrau7
+ fkBoNwzqI7XCVNVttPwhTaaLwsU+XHlRhij93mIlbmmvMOYgixr3Ksdr5 w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10853"; a="362517456"
+X-IronPort-AV: E=Sophos;i="6.03,200,1694761200"; d="scan'208";a="362517456"
+Received: from fmsmga003.fm.intel.com ([10.253.24.29])
+ by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 04 Oct 2023 05:55:38 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10853"; a="744964096"
-X-IronPort-AV: E=Sophos;i="6.03,200,1694761200"; d="scan'208";a="744964096"
+X-IronPort-AV: E=McAfee;i="6600,9927,10853"; a="841834662"
+X-IronPort-AV: E=Sophos;i="6.03,200,1694761200"; d="scan'208";a="841834662"
 Received: from msterni-mobl.ger.corp.intel.com (HELO localhost)
  ([10.252.56.48])
- by orsmga007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Oct 2023 05:54:13 -0700
+ by fmsmga003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 04 Oct 2023 05:55:36 -0700
 From: Jani Nikula <jani.nikula@intel.com>
-To: intel-gvt-dev@lists.freedesktop.org, Zhenyu Wang
- <zhenyuw@linux.intel.com>, Zhi Wang <zhi.a.wang@intel.com>
-In-Reply-To: <20230926121904.499888-1-jani.nikula@intel.com>
+To: dri-devel@lists.freedesktop.org, Dave Airlie <airlied@redhat.com>,
+ Daniel Vetter <daniel.vetter@ffwll.ch>
+In-Reply-To: <20230921153429.3822278-1-jani.nikula@intel.com>
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20230926121904.499888-1-jani.nikula@intel.com>
-Date: Wed, 04 Oct 2023 15:54:11 +0300
-Message-ID: <871qeafszw.fsf@intel.com>
+References: <20230921153429.3822278-1-jani.nikula@intel.com>
+Date: Wed, 04 Oct 2023 15:55:34 +0300
+Message-ID: <87y1gieed5.fsf@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain
-Subject: Re: [Intel-gfx] [PATCH 1/4] drm/i915/gvt: remove unused to_gvt()
- and reduce includes
+Subject: Re: [Intel-gfx] [PATCH] drm/edid/firmware: drop
+ drm_kms_helper.edid_firmware backward compat
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,48 +64,108 @@ Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, 26 Sep 2023, Jani Nikula <jani.nikula@intel.com> wrote:
-> gvt.h has no need to include i915_drv.h once the unused to_gvt() has
-> been removed.
+On Thu, 21 Sep 2023, Jani Nikula <jani.nikula@intel.com> wrote:
+> Since the edid_firmware module parameter was moved from
+> drm_kms_helper.ko to drm.ko in v4.15, we've had a backwards
+> compatibility helper in place, with a DRM_NOTE() suggesting to migrate
+> to drm.edid_firmware. This was added in commit ac6c35a4d8c7 ("drm: add
+> backwards compatibility support for drm_kms_helper.edid_firmware").
 >
-> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+> More than five years and 30+ kernel releases later, see if we could drop
+> the backward compatibility. Leave some warnings in place for a while
+> longer.
 
-Zhenyu, Zhi, ping?
+Dave, Daniel, thoughts?
 
 BR,
 Jani.
 
-
-
-> ---
->  drivers/gpu/drm/i915/gvt/gvt.h | 7 +------
->  1 file changed, 1 insertion(+), 6 deletions(-)
 >
-> diff --git a/drivers/gpu/drm/i915/gvt/gvt.h b/drivers/gpu/drm/i915/gvt/gvt.h
-> index 53a0a42a50db..3a0624fe63bf 100644
-> --- a/drivers/gpu/drm/i915/gvt/gvt.h
-> +++ b/drivers/gpu/drm/i915/gvt/gvt.h
-> @@ -39,7 +39,7 @@
+> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+> ---
+>  drivers/gpu/drm/drm_edid_load.c         | 16 ----------------
+>  drivers/gpu/drm/drm_kms_helper_common.c | 11 ++++++-----
+>  include/drm/drm_edid.h                  |  5 -----
+>  3 files changed, 6 insertions(+), 26 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/drm_edid_load.c b/drivers/gpu/drm/drm_edid_load.c
+> index 5d9ef267ebb3..60fcb80bce61 100644
+> --- a/drivers/gpu/drm/drm_edid_load.c
+> +++ b/drivers/gpu/drm/drm_edid_load.c
+> @@ -23,22 +23,6 @@ module_param_string(edid_firmware, edid_firmware, sizeof(edid_firmware), 0644);
+>  MODULE_PARM_DESC(edid_firmware, "Do not probe monitor, use specified EDID blob "
+>  	"from built-in data or /lib/firmware instead. ");
 >  
->  #include <asm/kvm_page_track.h>
->  
-> -#include "i915_drv.h"
-> +#include "gt/intel_gt.h"
->  #include "intel_gvt.h"
->  
->  #include "debug.h"
-> @@ -368,11 +368,6 @@ struct intel_gvt {
->  	struct dentry *debugfs_root;
->  };
->  
-> -static inline struct intel_gvt *to_gvt(struct drm_i915_private *i915)
+> -/* Use only for backward compatibility with drm_kms_helper.edid_firmware */
+> -int __drm_set_edid_firmware_path(const char *path)
 > -{
-> -	return i915->gvt;
-> -}
+> -	scnprintf(edid_firmware, sizeof(edid_firmware), "%s", path);
 > -
->  enum {
->  	/* Scheduling trigger by timer */
->  	INTEL_GVT_REQUEST_SCHED = 0,
+> -	return 0;
+> -}
+> -EXPORT_SYMBOL(__drm_set_edid_firmware_path);
+> -
+> -/* Use only for backward compatibility with drm_kms_helper.edid_firmware */
+> -int __drm_get_edid_firmware_path(char *buf, size_t bufsize)
+> -{
+> -	return scnprintf(buf, bufsize, "%s", edid_firmware);
+> -}
+> -EXPORT_SYMBOL(__drm_get_edid_firmware_path);
+> -
+>  #define GENERIC_EDIDS 6
+>  static const char * const generic_edid_name[GENERIC_EDIDS] = {
+>  	"edid/800x600.bin",
+> diff --git a/drivers/gpu/drm/drm_kms_helper_common.c b/drivers/gpu/drm/drm_kms_helper_common.c
+> index 0bf0fc1abf54..924e0f7bd5b7 100644
+> --- a/drivers/gpu/drm/drm_kms_helper_common.c
+> +++ b/drivers/gpu/drm/drm_kms_helper_common.c
+> @@ -38,17 +38,18 @@ MODULE_LICENSE("GPL and additional rights");
+>  
+>  #if IS_ENABLED(CONFIG_DRM_LOAD_EDID_FIRMWARE)
+>  
+> -/* Backward compatibility for drm_kms_helper.edid_firmware */
+>  static int edid_firmware_set(const char *val, const struct kernel_param *kp)
+>  {
+> -	DRM_NOTE("drm_kms_helper.edid_firmware is deprecated, please use drm.edid_firmware instead.\n");
+> +	pr_warn("drm_kms_helper.edid_firmware has been removed, please use drm.edid_firmware instead.\n");
+>  
+> -	return __drm_set_edid_firmware_path(val);
+> +	return -ENOENT;
+>  }
+>  
+>  static int edid_firmware_get(char *buffer, const struct kernel_param *kp)
+>  {
+> -	return __drm_get_edid_firmware_path(buffer, PAGE_SIZE);
+> +	pr_warn("drm_kms_helper.edid_firmware has been removed, please use drm.edid_firmware instead.\n");
+> +
+> +	return -ENOENT;
+>  }
+>  
+>  static const struct kernel_param_ops edid_firmware_ops = {
+> @@ -59,6 +60,6 @@ static const struct kernel_param_ops edid_firmware_ops = {
+>  module_param_cb(edid_firmware, &edid_firmware_ops, NULL, 0644);
+>  __MODULE_PARM_TYPE(edid_firmware, "charp");
+>  MODULE_PARM_DESC(edid_firmware,
+> -		 "DEPRECATED. Use drm.edid_firmware module parameter instead.");
+> +		 "REMOVED. Use drm.edid_firmware module parameter instead.");
+>  
+>  #endif
+> diff --git a/include/drm/drm_edid.h b/include/drm/drm_edid.h
+> index 882d2638708e..00f0a778ab62 100644
+> --- a/include/drm/drm_edid.h
+> +++ b/include/drm/drm_edid.h
+> @@ -387,11 +387,6 @@ int drm_edid_to_speaker_allocation(const struct edid *edid, u8 **sadb);
+>  int drm_av_sync_delay(struct drm_connector *connector,
+>  		      const struct drm_display_mode *mode);
+>  
+> -#ifdef CONFIG_DRM_LOAD_EDID_FIRMWARE
+> -int __drm_set_edid_firmware_path(const char *path);
+> -int __drm_get_edid_firmware_path(char *buf, size_t bufsize);
+> -#endif
+> -
+>  bool drm_edid_are_equal(const struct edid *edid1, const struct edid *edid2);
+>  
+>  int
 
 -- 
 Jani Nikula, Intel
