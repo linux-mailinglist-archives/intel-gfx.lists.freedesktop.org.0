@@ -2,32 +2,64 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 676B27B7DB9
-	for <lists+intel-gfx@lfdr.de>; Wed,  4 Oct 2023 13:03:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6B4BE7B7DE0
+	for <lists+intel-gfx@lfdr.de>; Wed,  4 Oct 2023 13:09:43 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DE46E10E360;
-	Wed,  4 Oct 2023 11:03:43 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 72DE310E103;
+	Wed,  4 Oct 2023 11:09:40 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 23BE510E360;
- Wed,  4 Oct 2023 11:03:41 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 1E70AA00E8;
- Wed,  4 Oct 2023 11:03:41 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============8738967881034349240=="
+Received: from mail-wr1-x436.google.com (mail-wr1-x436.google.com
+ [IPv6:2a00:1450:4864:20::436])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4C7A410E103
+ for <intel-gfx@lists.freedesktop.org>; Wed,  4 Oct 2023 11:09:38 +0000 (UTC)
+Received: by mail-wr1-x436.google.com with SMTP id
+ ffacd0b85a97d-323ef9a8b59so1956240f8f.3
+ for <intel-gfx@lists.freedesktop.org>; Wed, 04 Oct 2023 04:09:38 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=linaro.org; s=google; t=1696417776; x=1697022576; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:content-disposition:mime-version
+ :message-id:subject:cc:to:from:date:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=FA+Q3ozL26nhVN1ktuRRhHOkaSUQZ7LcA4Qd9W5gZ1w=;
+ b=SxcoS5bU+Ax8wLj9vnyYw7LacHokuRQh7DaWCbKsRLQQRIzxe2+5xCj6T0ZhvloeRS
+ N3B26kxmbblIeJ6C+9gcRhttt8hceu4oc4ZifVZn4mHeVVL2B6cZpXR6uu4HiHidce0N
+ vVRWMkFmgn/bOkp7BgvUbWxk5akSoa7BSqCdMKKhM0F+Kl5HZBTwK6HOaHRmkllVwWkf
+ S+1IKiClISdUfsDS0vhyJR/wf1Fna2Vf8WYrhTi0sUR8BupaYhj7whSlgrmpr13iOgVj
+ Peh5pGeDZlyCOkuO0VbWHlSsfQbcmBnEQFmsiV/OaEl6jCQX2UNdSsn6g9hi8VT+HH0b
+ I0bQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1696417776; x=1697022576;
+ h=content-transfer-encoding:content-disposition:mime-version
+ :message-id:subject:cc:to:from:date:x-gm-message-state:from:to:cc
+ :subject:date:message-id:reply-to;
+ bh=FA+Q3ozL26nhVN1ktuRRhHOkaSUQZ7LcA4Qd9W5gZ1w=;
+ b=IDA3YZo79EFVLkz5V8gw4pjFNpQOA1+YGDbZMUFYCN93od5VHGmC0zlj5r/nKCiAiI
+ pMLUj8vfOipicI4VLxBptq0UC9KfBokfCoLC4EzjFVckJ1IEQ+zLrFEPQMc0cliqefUz
+ FZH/QVF2I8zRHLZoNKIjszByTYvBnROV2iA9fSodzSIohfKLD+RaB8yvMcr5WUDz3h14
+ OmoBbaXkjStjj5XouJxywLsFy0fZfierS2sBrWoESQxrwYMMb/1QnZ/TelGvtt55MbQm
+ eAXj5gKz6F74ohELFJ84UYJo8r9B0305EvYHXmyH60ZRsm4ACJZF1SURFAisK8DQ75Rh
+ kAAQ==
+X-Gm-Message-State: AOJu0Yzs5S1uNppMq2O5J34ub+3oQB8Z49lbauYXV+SX0hQHxdGUR6Ak
+ NzjGQ5JzJ8TmT6iHrFmvSo1LkA==
+X-Google-Smtp-Source: AGHT+IFuiRqt5VXkktfMCB/t9RoVPvV2n88h1dq4hIe43OnZfrBv1/VChxFauqDoT1Riows7161a4g==
+X-Received: by 2002:adf:e6c4:0:b0:319:841c:ae7a with SMTP id
+ y4-20020adfe6c4000000b00319841cae7amr2090570wrm.41.1696417776405; 
+ Wed, 04 Oct 2023 04:09:36 -0700 (PDT)
+Received: from localhost ([102.36.222.112]) by smtp.gmail.com with ESMTPSA id
+ l7-20020a05600012c700b0031c52e81490sm3744715wrx.72.2023.10.04.04.09.35
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Wed, 04 Oct 2023 04:09:35 -0700 (PDT)
+Date: Wed, 4 Oct 2023 14:09:32 +0300
+From: Dan Carpenter <dan.carpenter@linaro.org>
+To: ville.syrjala@linux.intel.com
+Message-ID: <4c065dc5-ac81-4ef3-a934-a595afe85d5c@moroto.mountain>
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Andi Shyti" <andi.shyti@linux.intel.com>
-Date: Wed, 04 Oct 2023 11:03:41 -0000
-Message-ID: <169641742111.7835.12652252072586754980@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20231004094357.634895-1-andi.shyti@linux.intel.com>
-In-Reply-To: <20231004094357.634895-1-andi.shyti@linux.intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
- =?utf-8?q?/i915/gt=3A_Do_not_treat_MCR_locking_timeouts_as_errors?=
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-gfx] [bug report] drm/i915/dsb: Use DEwake to combat PkgC
+ latency
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,222 +72,72 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
 Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============8738967881034349240==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+Hello Ville Syrjälä,
 
-== Series Details ==
+The patch f83b94d23770: "drm/i915/dsb: Use DEwake to combat PkgC
+latency" from Jun 6, 2023 (linux-next), leads to the following Smatch
+static checker warning:
 
-Series: drm/i915/gt: Do not treat MCR locking timeouts as errors
-URL   : https://patchwork.freedesktop.org/series/124599/
-State : success
+	drivers/gpu/drm/i915/display/intel_dsb.c:363 _intel_dsb_commit()
+	warn: always true condition '(dewake_scanline >= 0) => (0-u32max >= 0)'
 
-== Summary ==
+drivers/gpu/drm/i915/display/intel_dsb.c
+    339 static void _intel_dsb_commit(struct intel_dsb *dsb, u32 ctrl,
+    340                               unsigned int dewake_scanline)
+                                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+unsigned int
 
-CI Bug Log - changes from CI_DRM_13708 -> Patchwork_124599v1
-====================================================
+    341 {
+    342         struct intel_crtc *crtc = dsb->crtc;
+    343         struct drm_i915_private *dev_priv = to_i915(crtc->base.dev);
+    344         enum pipe pipe = crtc->pipe;
+    345         u32 tail;
+    346 
+    347         tail = dsb->free_pos * 4;
+    348         if (drm_WARN_ON(&dev_priv->drm, !IS_ALIGNED(tail, CACHELINE_BYTES)))
+    349                 return;
+    350 
+    351         if (is_dsb_busy(dev_priv, pipe, dsb->id)) {
+    352                 drm_err(&dev_priv->drm, "[CRTC:%d:%s] DSB %d is busy\n",
+    353                         crtc->base.base.id, crtc->base.name, dsb->id);
+    354                 return;
+    355         }
+    356 
+    357         intel_de_write_fw(dev_priv, DSB_CTRL(pipe, dsb->id),
+    358                           ctrl | DSB_ENABLE);
+    359 
+    360         intel_de_write_fw(dev_priv, DSB_HEAD(pipe, dsb->id),
+    361                           i915_ggtt_offset(dsb->vma));
+    362 
+--> 363         if (dewake_scanline >= 0) {
+                    ^^^^^^^^^^^^^^^^^^^^
+always true
 
-Summary
--------
+    364                 int diff, hw_dewake_scanline;
+    365 
+    366                 hw_dewake_scanline = intel_crtc_scanline_to_hw(crtc, dewake_scanline);
+    367 
+    368                 intel_de_write_fw(dev_priv, DSB_PMCTRL(pipe, dsb->id),
+    369                                   DSB_ENABLE_DEWAKE |
+    370                                   DSB_SCANLINE_FOR_DEWAKE(hw_dewake_scanline));
+    371 
+    372                 /*
+    373                  * Force DEwake immediately if we're already past
+    374                  * or close to racing past the target scanline.
+    375                  */
+    376                 diff = dewake_scanline - intel_get_crtc_scanline(crtc);
+    377                 intel_de_write_fw(dev_priv, DSB_PMCTRL_2(pipe, dsb->id),
+    378                                   (diff >= 0 && diff < 5 ? DSB_FORCE_DEWAKE : 0) |
+    379                                   DSB_BLOCK_DEWAKE_EXTENSION);
+    380         }
+    381 
+    382         intel_de_write_fw(dev_priv, DSB_TAIL(pipe, dsb->id),
+    383                           i915_ggtt_offset(dsb->vma) + tail);
+    384 }
 
-  **SUCCESS**
-
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_124599v1/index.html
-
-Participating hosts (40 -> 38)
-------------------------------
-
-  Missing    (2): bat-dg2-9 fi-snb-2520m 
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_124599v1 that come from known issues:
-
-### CI changes ###
-
-#### Issues hit ####
-
-  * boot:
-    - fi-hsw-4770:        [PASS][1] -> [FAIL][2] ([i915#8293])
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13708/fi-hsw-4770/boot.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_124599v1/fi-hsw-4770/boot.html
-
-  
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@i915_selftest@live@hugepages:
-    - bat-mtlp-8:         NOTRUN -> [DMESG-WARN][3] ([i915#8962])
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_124599v1/bat-mtlp-8/igt@i915_selftest@live@hugepages.html
-
-  * igt@i915_suspend@basic-s3-without-i915:
-    - bat-mtlp-8:         NOTRUN -> [SKIP][4] ([i915#6645])
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_124599v1/bat-mtlp-8/igt@i915_suspend@basic-s3-without-i915.html
-
-  * igt@kms_hdmi_inject@inject-audio:
-    - fi-kbl-guc:         [PASS][5] -> [FAIL][6] ([IGT#3])
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13708/fi-kbl-guc/igt@kms_hdmi_inject@inject-audio.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_124599v1/fi-kbl-guc/igt@kms_hdmi_inject@inject-audio.html
-
-  * igt@kms_pipe_crc_basic@read-crc-frame-sequence@pipe-c-dp-5:
-    - bat-adlp-11:        [PASS][7] -> [ABORT][8] ([i915#8668] / [i915#9451])
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13708/bat-adlp-11/igt@kms_pipe_crc_basic@read-crc-frame-sequence@pipe-c-dp-5.html
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_124599v1/bat-adlp-11/igt@kms_pipe_crc_basic@read-crc-frame-sequence@pipe-c-dp-5.html
-
-  
-#### Possible fixes ####
-
-  * igt@i915_selftest@live@requests:
-    - bat-mtlp-8:         [ABORT][9] ([i915#9414]) -> [PASS][10]
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13708/bat-mtlp-8/igt@i915_selftest@live@requests.html
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_124599v1/bat-mtlp-8/igt@i915_selftest@live@requests.html
-
-  * igt@kms_pipe_crc_basic@read-crc-frame-sequence@pipe-d-dp-5:
-    - bat-adlp-11:        [ABORT][11] ([i915#8668]) -> [PASS][12]
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13708/bat-adlp-11/igt@kms_pipe_crc_basic@read-crc-frame-sequence@pipe-d-dp-5.html
-   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_124599v1/bat-adlp-11/igt@kms_pipe_crc_basic@read-crc-frame-sequence@pipe-d-dp-5.html
-
-  
-  [IGT#3]: https://gitlab.freedesktop.org/drm/igt-gpu-tools/issues/3
-  [i915#6645]: https://gitlab.freedesktop.org/drm/intel/issues/6645
-  [i915#8293]: https://gitlab.freedesktop.org/drm/intel/issues/8293
-  [i915#8668]: https://gitlab.freedesktop.org/drm/intel/issues/8668
-  [i915#8962]: https://gitlab.freedesktop.org/drm/intel/issues/8962
-  [i915#9414]: https://gitlab.freedesktop.org/drm/intel/issues/9414
-  [i915#9451]: https://gitlab.freedesktop.org/drm/intel/issues/9451
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_13708 -> Patchwork_124599v1
-
-  CI-20190529: 20190529
-  CI_DRM_13708: e73c26348a1d154ce981707ae3508018267394b1 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_7510: a4b4a33d8312e4e30ca23d26bbd1758e56540e1d @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_124599v1: e73c26348a1d154ce981707ae3508018267394b1 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-### Linux commits
-
-d64a276e4484 drm/i915/gt: Do not treat MCR locking timeouts as errors
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_124599v1/index.html
-
---===============8738967881034349240==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915/gt: Do not treat MCR locking timeouts as errors</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/124599/">https://patchwork.freedesktop.org/series/124599/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_124599v1/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_124599v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_13708 -&gt; Patchwork_124599v1</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_124599v1/index.html</p>
-<h2>Participating hosts (40 -&gt; 38)</h2>
-<p>Missing    (2): bat-dg2-9 fi-snb-2520m </p>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_124599v1 that come from known issues:</p>
-<h3>CI changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>boot:<ul>
-<li>fi-hsw-4770:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13708/fi-hsw-4770/boot.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_124599v1/fi-hsw-4770/boot.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/8293">i915#8293</a>)</li>
-</ul>
-</li>
-</ul>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@i915_selftest@live@hugepages:</p>
-<ul>
-<li>bat-mtlp-8:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_124599v1/bat-mtlp-8/igt@i915_selftest@live@hugepages.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/8962">i915#8962</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_suspend@basic-s3-without-i915:</p>
-<ul>
-<li>bat-mtlp-8:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_124599v1/bat-mtlp-8/igt@i915_suspend@basic-s3-without-i915.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/6645">i915#6645</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_hdmi_inject@inject-audio:</p>
-<ul>
-<li>fi-kbl-guc:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13708/fi-kbl-guc/igt@kms_hdmi_inject@inject-audio.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_124599v1/fi-kbl-guc/igt@kms_hdmi_inject@inject-audio.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/igt-gpu-tools/issues/3">IGT#3</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_pipe_crc_basic@read-crc-frame-sequence@pipe-c-dp-5:</p>
-<ul>
-<li>bat-adlp-11:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13708/bat-adlp-11/igt@kms_pipe_crc_basic@read-crc-frame-sequence@pipe-c-dp-5.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_124599v1/bat-adlp-11/igt@kms_pipe_crc_basic@read-crc-frame-sequence@pipe-c-dp-5.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/8668">i915#8668</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/9451">i915#9451</a>)</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>
-<p>igt@i915_selftest@live@requests:</p>
-<ul>
-<li>bat-mtlp-8:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13708/bat-mtlp-8/igt@i915_selftest@live@requests.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/9414">i915#9414</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_124599v1/bat-mtlp-8/igt@i915_selftest@live@requests.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@kms_pipe_crc_basic@read-crc-frame-sequence@pipe-d-dp-5:</p>
-<ul>
-<li>bat-adlp-11:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13708/bat-adlp-11/igt@kms_pipe_crc_basic@read-crc-frame-sequence@pipe-d-dp-5.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/8668">i915#8668</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_124599v1/bat-adlp-11/igt@kms_pipe_crc_basic@read-crc-frame-sequence@pipe-d-dp-5.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_13708 -&gt; Patchwork_124599v1</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_13708: e73c26348a1d154ce981707ae3508018267394b1 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_7510: a4b4a33d8312e4e30ca23d26bbd1758e56540e1d @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  Patchwork_124599v1: e73c26348a1d154ce981707ae3508018267394b1 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<h3>Linux commits</h3>
-<p>d64a276e4484 drm/i915/gt: Do not treat MCR locking timeouts as errors</p>
-
-</body>
-</html>
-
---===============8738967881034349240==--
+regards,
+dan carpenter
