@@ -1,58 +1,140 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 26A777B8256
-	for <lists+intel-gfx@lfdr.de>; Wed,  4 Oct 2023 16:30:01 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9DE457B827E
+	for <lists+intel-gfx@lfdr.de>; Wed,  4 Oct 2023 16:37:55 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8756E10E10A;
-	Wed,  4 Oct 2023 14:29:57 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C077810E142;
+	Wed,  4 Oct 2023 14:37:53 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.115])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7A79310E10A
- for <intel-gfx@lists.freedesktop.org>; Wed,  4 Oct 2023 14:29:56 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.65])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9342D10E142;
+ Wed,  4 Oct 2023 14:37:52 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1696429796; x=1727965796;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=mj8b36Zu2PB8pAiJU31HW7LMdRNEdkdmS6ho4jlNZYs=;
- b=OfGAmEL5oaDV+4ffznW1/dkLQCLm1LnY+FYl9EBjykvy0gNllfeEdioJ
- CtlMn5u5jVXCexWGFqJChDZbAe3on9lEiVS1lPtfNaw7RAYswCVy9cnND
- l/vAB4iSo9aQ0T6LLgtyvR47UVJcuO3IdJRM8i4fX7BFy0a0T2tXwl9i1
- EdmuTHf1nPCoeuqePbmKWpsOPZNUS16p9L3NUCRsOS8ojYmzU2Nu2yMgn
- KEsGI0koRz6M3JEcuqoYj4S20h9emtmD8HLhtUyI9CWSGuwgPZ4yUmdUf
- rfq8nL69Adc4v3XVc9635u9QbbvDv6lSUKy2fK5M0R0MhgUir4rgHVi70 Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10853"; a="383087251"
-X-IronPort-AV: E=Sophos;i="6.03,200,1694761200"; d="scan'208";a="383087251"
-Received: from fmsmga004.fm.intel.com ([10.253.24.48])
- by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Oct 2023 07:29:55 -0700
+ t=1696430272; x=1727966272;
+ h=date:from:to:cc:subject:message-id:references:
+ content-transfer-encoding:in-reply-to:mime-version;
+ bh=1/YpaC5SNnFS+thTryZS0yzsPXYE3u7NMvE3nVAc9YU=;
+ b=h6YGdfYn80ww4Lr0zzF3px6jHxNa3ngcDfByNnxxyG68xEGJyrqBa3Yj
+ taksLWEtjilOXH6fYMrRgF6zy0sO5/eB0Wo2DnW4Erv6iOnxtvKZbgXWV
+ i3YdFzed0XfwSicY4PVMGo45ftjZiDXjk870fWH60xFCDUCV+IJixhzvc
+ ovAf//3JF4EdQUat6ZW/+n8QlFXCaW3g37s+R+Kep8/eqi6IK0Q92a3F2
+ xYZY10ZbyJFfNpmZ0ZzeMEvX22RXFsC02UH8DysElVjIF3gYbmK+bJpJ8
+ aVueR+2R8bDkIdX4OFaWxm5nCScBSSESN8E0VbSAaSRjNdehDIFWQrPP8 A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10853"; a="387053757"
+X-IronPort-AV: E=Sophos;i="6.03,200,1694761200"; d="scan'208";a="387053757"
+Received: from fmsmga008.fm.intel.com ([10.253.24.58])
+ by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 04 Oct 2023 07:37:51 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10853"; a="821687888"
-X-IronPort-AV: E=Sophos;i="6.03,200,1694761200"; d="scan'208";a="821687888"
-Received: from mridgewa-mobl.ger.corp.intel.com (HELO [10.213.209.90])
- ([10.213.209.90])
- by fmsmga004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Oct 2023 07:29:51 -0700
-Message-ID: <8de8c53b-ab63-7e9a-55ca-e1895da30c36@linux.intel.com>
-Date: Wed, 4 Oct 2023 15:29:49 +0100
+X-IronPort-AV: E=McAfee;i="6600,9927,10853"; a="817124264"
+X-IronPort-AV: E=Sophos;i="6.03,200,1694761200"; d="scan'208";a="817124264"
+Received: from orsmsx602.amr.corp.intel.com ([10.22.229.15])
+ by fmsmga008.fm.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
+ 04 Oct 2023 07:37:48 -0700
+Received: from orsmsx611.amr.corp.intel.com (10.22.229.24) by
+ ORSMSX602.amr.corp.intel.com (10.22.229.15) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.32; Wed, 4 Oct 2023 07:37:46 -0700
+Received: from orsedg603.ED.cps.intel.com (10.7.248.4) by
+ orsmsx611.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.32 via Frontend Transport; Wed, 4 Oct 2023 07:37:46 -0700
+Received: from NAM10-DM6-obe.outbound.protection.outlook.com (104.47.58.101)
+ by edgegateway.intel.com (134.134.137.100) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.1.2507.32; Wed, 4 Oct 2023 07:37:40 -0700
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=BbNkknx9pPPeLkWfsSYQy3yUCWZ+/3LqG0YTDCUaAVFvFo7aboy+MRB8UHCnrJRCfp6kljqFVRCnu1q6Pj9zbKpVdrgH2rY9bvxnkT0Zlknr93BsVvHWe+kLp629IL6s8zElkEb4ulPZYF3lBMigha9maBtp3cTxQx58ffgF/gH8sucDD587cDJwJcvZatVw5raaOP4Cm2b/seVhK7oJpp028adzFO7kVn0Y1sfDfTxUlvkWG9Q5HxYLBBMTZFZtxfQrUn6VMDSJrxAgBaMM58mmVvG0rwP6fdZoal7iBcBwonkERFeeaEMLp6iwkNSFvqJuUDmT77Vga9mcSIyK/g==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=vvOVajb/Tgwsb82OCC4U2uJueBVSnqgDHr/XJNOY410=;
+ b=YOxh1jPgCvhu8CFxQiovJHfdIuTGqhqNH+uU+v6ZtWg9SUkVP/zt0DelhBz33mppjL6VUanS7sekp2/foxKvBbA4PubZHZclvh5vggkSng/eKMesnzLHFs3pXuZPIYuYYcZE/tfrKC1tAwly8+O/Ab0Z7oDk8GxqZm4BMC0GXdvyOZM6m/tz7tjeekMMBd3RCsRsq0SsMJlz5LlMlGCbbfoxU9Or76yuFWRXksmMhFxX1HXVBdmiuJqkigCU21BRqmV4/jLxwvSADsBEzPPCsb7ufHEcASRwYLpyUCx70LP06nIAE25052IUMTb1LLFzo3w0c77ErFkRbGEJnQOX6A==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+Received: from MN0PR11MB6059.namprd11.prod.outlook.com (2603:10b6:208:377::9)
+ by DM4PR11MB6477.namprd11.prod.outlook.com (2603:10b6:8:88::17) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6838.31; Wed, 4 Oct
+ 2023 14:37:33 +0000
+Received: from MN0PR11MB6059.namprd11.prod.outlook.com
+ ([fe80::6d0b:5bc6:8723:593]) by MN0PR11MB6059.namprd11.prod.outlook.com
+ ([fe80::6d0b:5bc6:8723:593%7]) with mapi id 15.20.6838.029; Wed, 4 Oct 2023
+ 14:37:33 +0000
+Date: Wed, 4 Oct 2023 10:37:28 -0400
+From: Rodrigo Vivi <rodrigo.vivi@intel.com>
+To: Nirmoy Das <nirmoy.das@linux.intel.com>
+Message-ID: <ZR14qGUlWRRIlREX@intel.com>
+References: <20231004120407.12251-1-nirmoy.das@intel.com>
+ <ZR1eOHqOFK57OURn@intel.com>
+ <e01e301b-80a8-bf5c-b14c-695ab086d571@linux.intel.com>
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <e01e301b-80a8-bf5c-b14c-695ab086d571@linux.intel.com>
+X-ClientProxiedBy: SJ0PR03CA0246.namprd03.prod.outlook.com
+ (2603:10b6:a03:3a0::11) To MN0PR11MB6059.namprd11.prod.outlook.com
+ (2603:10b6:208:377::9)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.15.1
-Content-Language: en-US
-To: Jonathan Cavitt <jonathan.cavitt@intel.com>,
- intel-gfx@lists.freedesktop.org
-References: <20231003210156.1172732-1-jonathan.cavitt@intel.com>
- <20231003210156.1172732-3-jonathan.cavitt@intel.com>
-From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-Organization: Intel Corporation UK Plc
-In-Reply-To: <20231003210156.1172732-3-jonathan.cavitt@intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-Subject: Re: [Intel-gfx] [PATCH v4 3/3] drm/i915: No TLB invalidation on
- wedged or suspended GT
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: MN0PR11MB6059:EE_|DM4PR11MB6477:EE_
+X-MS-Office365-Filtering-Correlation-Id: 66936df8-3c44-4a9f-e56a-08dbc4e771f2
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: 8czOh1NcahMbUvVXvD0i+ZCVLZvPNgJDPnblj8RTW92dU7tY7ioWFMFrga/hN/iiL5s6oIcV1mo38Sx/k127QhS+h8mS0iLr+xxDWT9aS9egGpbdJtJPZlxGlVTrcQKc34Tfxu3el3QMX4yy26qz8haig0ytFsxlUfs2b58oDeCan713fjBLn34rUCreVDOzp/3/ekBLuyqu3bE7u1JSJAd/A1c51INkBxOu0hO2IumsSvNZAZ0OEBJXrreGJxJ/XIBzlZZqEiWvnVNQ8XuwiApZ1NQIRNTiis0qP12KAld394bf2vYBfBS6qjU2hRQKOwGqTqCe4PAY7uGphud9t6eeO5usalK6mSq9LGeD7QjJGeO8VqoWbj+scNZeqfe1C2vLZ1hz+4jPN40AIZvLM8PIe7vBCZAh3GzuAZuu/p9pDMH9lmtlmeO4AuLao8GHWCbD4rGiTbVd56oeeTr+z8cMs75mm6lPVyOYn/lBa+CmT2m0iMPTmJDJrPYAXNtBtlxH2Z4wycfczknqexfBqhBZboYhO6E+1bg4fp3wg5U=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:MN0PR11MB6059.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230031)(396003)(136003)(376002)(39860400002)(346002)(366004)(230922051799003)(451199024)(186009)(1800799009)(64100799003)(41300700001)(6486002)(966005)(2616005)(478600001)(316002)(53546011)(6506007)(66946007)(6916009)(6512007)(66556008)(66476007)(6666004)(44832011)(8676002)(4326008)(8936002)(5660300002)(26005)(2906002)(83380400001)(38100700002)(82960400001)(36756003)(86362001);
+ DIR:OUT; SFP:1102; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?iso-8859-1?Q?Z+uc6/dC+YRpNuu1nsQOrR2swJzznPhup2Vzr0jnrFcPsKyj/lMdj9JJ2C?=
+ =?iso-8859-1?Q?oQU+d3xpWSpYj/6IegVzh53uhc9q+IMCcxuFbk1+rmezw6QcNlfom88MAY?=
+ =?iso-8859-1?Q?mI8TQe1TL5I/dFBBdhKbWKg6jEFd6GS5MJG5ibDmkzOczkCEkChBi620tJ?=
+ =?iso-8859-1?Q?/FM4aLeRh2ai+II0NcB+6wlkLQyfv8dl0ZsBuOi8IaPUhJchVDKxdcapK7?=
+ =?iso-8859-1?Q?+0Ju7JItgJ/OSwPPoakI/5UhMA759ZXV9s2vnL1f6DzYWuOwmjrvamnWTO?=
+ =?iso-8859-1?Q?UJ3OwuWipP052VdkLxrj5dDrVpYyQmJoaSZ24zTnCfW4C6AObGcivgRNSg?=
+ =?iso-8859-1?Q?3qoUneDcZq+6p12Lb1zfwSUxJ3oARY40fefktQKhEeP6xbTpON5qraoh3A?=
+ =?iso-8859-1?Q?J4m0p64aXvmM/xK4Lczsd//icX2DtROES4UJcryq3ZrEGLTA0nnQX4kPqg?=
+ =?iso-8859-1?Q?3cCN9791a/pAOHQ3rN5OUieN52JrPLsMPKK2rN1hLzPSI9iL77IcRpGKpB?=
+ =?iso-8859-1?Q?j22+zezaA4B0iAsnFiBjwxI5075yCsxdLeeE3/XpCHZvcsLz2x4ww5g8Vf?=
+ =?iso-8859-1?Q?bSOrEMug9GpFfCNvC0BQvkzzUCQCIqRck+6ga5JhZCE5peGOFBJ2GJcKv0?=
+ =?iso-8859-1?Q?A8wRgjqmBlVGO/I8Qjfg5oOKc4N5U2N35IFkdfkY/YIVG4C6/RwZ7LFvF7?=
+ =?iso-8859-1?Q?XOTKy9pb3BLlytGJ1BkxT5J/o//5mP94hCLEw0CgkH2P8Z6pY8rbbXak7J?=
+ =?iso-8859-1?Q?jN4rTxmSUCI1F2ZIOtEpUwA8DRdVGCyr9PJixT6IIs/qCZXkl295FxNf0A?=
+ =?iso-8859-1?Q?/0sPokXeUHkZ/YVAYN8pEabgAiXLM/2y0EMeX5YuNFjpexiaPa0IKe5rbE?=
+ =?iso-8859-1?Q?yhjZplzABZpiF6/4I0395xtlIwbxMy2V1tSF1EKVIIpOhmlbFz8GIiqhLy?=
+ =?iso-8859-1?Q?K7wjcNO4789JFIRE4v+8IXYMFgdZ1J2VhTnCmWDAaPWkpnk45UlnXbab8e?=
+ =?iso-8859-1?Q?nF7tHizgmI3OWVg6ceAScz4q/4da6HWhQewDJCwaJd9LWXr96DUmun3pmk?=
+ =?iso-8859-1?Q?KHMgSq9BcXbmxsgb/78XVs5emyy1EFjuAQZmyqYP8LFN9won3pHRyR81B5?=
+ =?iso-8859-1?Q?WbCPaCUkgXjmI5zT3FHyrpOgfZJABkQkCUKTooHWGbQG2fxeyl77FI7eSl?=
+ =?iso-8859-1?Q?Fm6p7cOSmOYuzIeZ7qYg458aomT3hQP60yimqUNBDjWNUlLfuhQxIZfe3v?=
+ =?iso-8859-1?Q?7PXZBa8dWgb7TxdboQPjY/rZjNxdtbrtVYU4u643W/X5X83iN05gBREsTO?=
+ =?iso-8859-1?Q?batDVYcMnsqnZJ/BYKcrvWY0dnRUJPmt4AT0P0aRkzcrpSbfj93NisK/DL?=
+ =?iso-8859-1?Q?S7kGEXFUQ7rSwVAWQdECo3cby0osZY+dt2rOE58P1PUZ3Uq04l2+HQvBBd?=
+ =?iso-8859-1?Q?UycI+OyHjifyR3hUQtQuC4DY66H0ZGUHcNIJOS5dAY9RwzgqWVW0LNEOiS?=
+ =?iso-8859-1?Q?iRyFN3skkG73mxCaZLL1ko7F+iybSv+NC4thz3JS2BK9RUjJ8iNX7qPefL?=
+ =?iso-8859-1?Q?iUNWY4PK2uAiTt8Rt2vu4LavOdjZug1xa5347pT7mp7m07noGCzayBck+z?=
+ =?iso-8859-1?Q?KBBZ7lOAAZWoOMlRxEW57EC9qajAgjEt2LhU54I4CuUmREJy1NLERYdw?=
+ =?iso-8859-1?Q?=3D=3D?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: 66936df8-3c44-4a9f-e56a-08dbc4e771f2
+X-MS-Exchange-CrossTenant-AuthSource: MN0PR11MB6059.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 04 Oct 2023 14:37:33.6611 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: y39Gyunq3zIpusX4eIgtPFmLiiijYCjcJAOKXlH4mdeQWQgREw5R1tfJncwagJbOT1BvNUjIcd653XqCWC+tHQ==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM4PR11MB6477
+X-OriginatorOrg: intel.com
+Subject: Re: [Intel-gfx] [PATCH v2] drm/i915: Reduce MCR lock surface
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -65,224 +147,154 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: janusz.krzysztofik@intel.com, andi.shyti@intel.com,
- matthew.d.roper@intel.com, chris.p.wilson@linux.intel.com,
- nirmoy.das@intel.com
+Cc: intel-gfx@lists.freedesktop.org, matthew.d.roper@intel.com,
+ dri-devel@lists.freedesktop.org, Nirmoy Das <nirmoy.das@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-
-On 03/10/2023 22:01, Jonathan Cavitt wrote:
-> In case of GT is suspended or wedged, don't allow submission of new TLB
-> invalidation request and cancel all pending requests. The TLB entries
-> will be invalidated either during GuC reload or on system resume.
+On Wed, Oct 04, 2023 at 03:54:59PM +0200, Nirmoy Das wrote:
+> Hi Rodrigo,
 > 
-> Signed-off-by: Fei Yang <fei.yang@intel.com>
-> Signed-off-by: Jonathan Cavitt <jonathan.cavitt@intel.com>
-> CC: John Harrison <john.c.harrison@intel.com>
-> ---
->   drivers/gpu/drm/i915/gt/intel_gt.h            | 26 ++++++++++++
->   drivers/gpu/drm/i915/gt/uc/intel_guc.h        |  1 +
->   .../gpu/drm/i915/gt/uc/intel_guc_submission.c | 41 +++++++++++++++----
->   drivers/gpu/drm/i915/i915_driver.c            |  5 +++
->   4 files changed, 64 insertions(+), 9 deletions(-)
+> On 10/4/2023 2:44 PM, Rodrigo Vivi wrote:
+> > On Wed, Oct 04, 2023 at 02:04:07PM +0200, Nirmoy Das wrote:
+> > > Take the mcr lock only when driver needs to write into a mcr based
+> > > tlb based registers.
+> > > 
+> > > To prevent GT reset interference, employ gt->reset.mutex instead, since
+> > > intel_gt_mcr_multicast_write relies on gt->uncore->lock not being held.
+> > This looks a lot like protecting code and not protecting data [1]
+> > 
+> > But to be really honest I'm afraid we were already doing this before
+> > this patch but with 2 other locks instead.
 > 
-> diff --git a/drivers/gpu/drm/i915/gt/intel_gt.h b/drivers/gpu/drm/i915/gt/intel_gt.h
-> index 970bedf6b78a7..71a0e376ded40 100644
-> --- a/drivers/gpu/drm/i915/gt/intel_gt.h
-> +++ b/drivers/gpu/drm/i915/gt/intel_gt.h
-> @@ -9,6 +9,7 @@
->   #include "intel_engine_types.h"
->   #include "intel_gt_types.h"
->   #include "intel_reset.h"
-> +#include "i915_drv.h"
->   
->   struct drm_i915_private;
->   struct drm_printer;
-> @@ -179,4 +180,29 @@ enum i915_map_type intel_gt_coherent_map_type(struct intel_gt *gt,
->   void intel_gt_bind_context_set_ready(struct intel_gt *gt);
->   void intel_gt_bind_context_set_unready(struct intel_gt *gt);
->   bool intel_gt_is_bind_context_ready(struct intel_gt *gt);
-> +
-> +static inline void intel_tlb_suspend(struct drm_i915_private *i915)
-> +{
-> +	struct intel_gt *gt;
-> +	int i;
-> +
-> +	if (!HAS_GUC_TLB_INVALIDATION(i915))
-> +		return;
-> +	for_each_gt(gt, i915, i)
-> +		wake_up_all_tlb_invalidate(&gt->uc.guc);
-> +}
-> +
-> +static inline void intel_tlb_resume(struct drm_i915_private *i915)
-> +{
-> +	struct intel_gt *gt;
-> +	int i;
-> +
-> +	if (!HAS_GUC_TLB_INVALIDATION(i915))
-> +		return;
-> +	for_each_gt(gt, i915, i) {
-> +		intel_guc_invalidate_tlb_full(&gt->uc.guc);
-> +		intel_guc_invalidate_tlb(&gt->uc.guc);
+> I haven't thought about that but yes, the issue was there already.
+> 
+> 
+> > 
+> > [1] - https://blog.ffwll.ch/2022/07/locking-engineering.html
+> > 
+> > > v2: remove unused var, flags.
+> > > 
+> > > Signed-off-by: Nirmoy Das <nirmoy.das@intel.com>
+> > > ---
+> > >   drivers/gpu/drm/i915/gt/intel_tlb.c | 13 +++++--------
+> > >   1 file changed, 5 insertions(+), 8 deletions(-)
+> > > 
+> > > diff --git a/drivers/gpu/drm/i915/gt/intel_tlb.c b/drivers/gpu/drm/i915/gt/intel_tlb.c
+> > > index 139608c30d97..0ad905df4a98 100644
+> > > --- a/drivers/gpu/drm/i915/gt/intel_tlb.c
+> > > +++ b/drivers/gpu/drm/i915/gt/intel_tlb.c
+> > > @@ -52,15 +52,13 @@ static void mmio_invalidate_full(struct intel_gt *gt)
+> > >   	struct intel_engine_cs *engine;
+> > >   	intel_engine_mask_t awake, tmp;
+> > >   	enum intel_engine_id id;
+> > > -	unsigned long flags;
+> > >   	if (GRAPHICS_VER(i915) < 8)
+> > >   		return;
+> > >   	intel_uncore_forcewake_get(uncore, FORCEWAKE_ALL);
+> > > -	intel_gt_mcr_lock(gt, &flags);
+> > > -	spin_lock(&uncore->lock); /* serialise invalidate with GT reset */
+> > > +	mutex_lock(&gt->reset.mutex);/* serialise invalidate with GT reset */
+> > I'm still looking at this and the commit message above and trying to understand
+> > why we are doing this and changing the previous 2 by this other one. why?
+> 
+> 
+> We need the MCR lock only for intel_gt_mcr_multicast_*() so I am not
+> replacing the two locks here but moving the mcr lock down
+> 
+> where we were doing intel_gt_mcr_multicast_write_fw()
+> 
+> 
+> why s/spin_lock(&uncore->lock)/mutex_lock(&gt->reset.mutex):
+> 
+> intel_gt_mcr_multicast_*() expects gt->uncore->lock to be not held
 
-Why full and not full? At least the naming suggestes first to be 
-superset of the second.
+is there any lockdep assert or primitive that we could/should do
+that to avoid this same issue in the future?
+anyway, this is also another thing that it is important for the
+commit message.
 
-> +	}
-> +}
+and why is that? what I have in mind goes along with the comment
+above intel_de_read_fw():
+"""
+Access to registers should
+ * therefore generally be serialised, by either the dev_priv->uncore.lock or
+"""
 
-I see no justification for static inlines and I see no reason not to 
-have this in intel_tlb.h|c.
+> and to
+> achieve this, I could do something like:
+> 
+> if (engine->tlb_inv.mcr) {
+> 
+>      spin_unlock(&uncore->lock);
+> 
+>      intel_gt_mcr_lock(gt, &flags);
+> 
+>      intel_gt_mcr_multicast_write_fw
+> 
+>      intel_gt_mcr_unlock(gt, flags);
+> 
+>     spin_lock(&uncore->lock);
+> 
+> }
+> 
+> Or take gt->reset.mutex instead which should block any concurrent gt reset.
+> 
+> If this is not acceptable then I can pick the above 1st option but I am not
+> sure how safe is it do release uncore->lock and then take it back again.
 
-Also, I suggested having them called from intel_gt_suspend(_*) and 
-intel_gt_resume. Or there is also intel_uc_suspend/resume. Either of 
-those places would benefit from the existing for_each_gt applied at the 
-GEM level, when it calls into the GT component.
+hmm... probably the gt_reset one is better than releasing and grabbing it
+again.
 
-Are those at the wrong spot in the suspend/resume sequence so it 
-wouldn't work?
+> 
+> > 
+> > >   	awake = 0;
+> > >   	for_each_engine(engine, gt, id) {
+> > > @@ -68,9 +66,9 @@ static void mmio_invalidate_full(struct intel_gt *gt)
+> > >   			continue;
+> > >   		if (engine->tlb_inv.mcr)
+> > > -			intel_gt_mcr_multicast_write_fw(gt,
+> > > -							engine->tlb_inv.reg.mcr_reg,
+> > > -							engine->tlb_inv.request);
+> > > +			intel_gt_mcr_multicast_write(gt,
+> > > +						     engine->tlb_inv.reg.mcr_reg,
+> > > +						     engine->tlb_inv.request);
+> > you are already taking the forcewake_all domain above, so you wouldn't
+> > need to convert this to the variant that grabs the forcewake underneath.
+> > 
+> > Also this is not mentioned in the commit message above.
+> 
+> intel_gt_mcr_multicast_write() takes the mcr lock for us, helps replacing multiple lines into one.
+> Will there be any side-effects for that ?
 
-Maybe it is a matter of taste but since the implementation is so GT 
-centric (everything added operates strictly on a &gt->uc.guc pointer) 
-that it really looks to me it should be better placed in one of those 
-two components.
+hmm... I can't forsee side-effects here... but I'm asking myself why on the non
+MCR ones we are using the global forcewake_all and the _fw to start with.
+Maybe there was a reason for that? Because in general we should prefer the non _fw
+variants to start with. Maybe we should dig into the history there to understand
+why the line below started with the intel_uncore_write_fw below?
 
-Regards,
+> 
+> I should've added that the commit message.
 
-Tvrtko
+I'm even wondering if this should be 2 separated patches?!
 
-> +
->   #endif /* __INTEL_GT_H__ */
-> diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc.h b/drivers/gpu/drm/i915/gt/uc/intel_guc.h
-> index 636edf598946c..e2491f489f1bc 100644
-> --- a/drivers/gpu/drm/i915/gt/uc/intel_guc.h
-> +++ b/drivers/gpu/drm/i915/gt/uc/intel_guc.h
-> @@ -536,4 +536,5 @@ void intel_guc_dump_time_info(struct intel_guc *guc, struct drm_printer *p);
->   
->   int intel_guc_sched_disable_gucid_threshold_max(struct intel_guc *guc);
->   
-> +void wake_up_all_tlb_invalidate(struct intel_guc *guc);
->   #endif
-> diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c b/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
-> index 872014a801c7e..20e9076cf099e 100644
-> --- a/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
-> +++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
-> @@ -32,6 +32,7 @@
->   
->   #include "i915_drv.h"
->   #include "i915_reg.h"
-> +#include "i915_irq.h"
->   #include "i915_trace.h"
->   
->   /**
-> @@ -1796,13 +1797,23 @@ static void __guc_reset_context(struct intel_context *ce, intel_engine_mask_t st
->   	intel_context_put(parent);
->   }
->   
-> -void intel_guc_submission_reset(struct intel_guc *guc, intel_engine_mask_t stalled)
-> +void wake_up_all_tlb_invalidate(struct intel_guc *guc)
->   {
->   	struct intel_guc_tlb_wait *wait;
-> +	unsigned long i;
-> +
-> +	xa_for_each(&guc->tlb_lookup, i, wait) {
-> +		/* Barrier to ensure the store is observed by the woken thread */
-> +		smp_store_mb(wait->busy, 0);
-> +		wake_up(&wait->wq);
-> +	}
-> +}
-> +
-> +void intel_guc_submission_reset(struct intel_guc *guc, intel_engine_mask_t stalled)
-> +{
->   	struct intel_context *ce;
->   	unsigned long index;
->   	unsigned long flags;
-> -	unsigned long i;
->   
->   	if (unlikely(!guc_submission_initialized(guc))) {
->   		/* Reset called during driver load? GuC not yet initialised! */
-> @@ -1833,11 +1844,7 @@ void intel_guc_submission_reset(struct intel_guc *guc, intel_engine_mask_t stall
->   	 * The full GT reset will have cleared the TLB caches and flushed the
->   	 * G2H message queue; we can release all the blocked waiters.
->   	 */
-> -	xa_for_each(&guc->tlb_lookup, i, wait) {
-> -		/* Barrier to ensure the store is observed by the woken thread */
-> -		smp_store_mb(wait->busy, 0);
-> -		wake_up(&wait->wq);
-> -	}
-> +	wake_up_all_tlb_invalidate(guc);
->   }
->   
->   static void guc_cancel_context_requests(struct intel_context *ce)
-> @@ -1933,6 +1940,12 @@ void intel_guc_submission_cancel_requests(struct intel_guc *guc)
->   
->   	/* GuC is blown away, drop all references to contexts */
->   	xa_destroy(&guc->context_lookup);
-> +
-> +	/*
-> +	 * Wedged GT won't respond to any TLB invalidation request. Simply
-> +	 * release all the blocked waiters.
-> +	 */
-> +	wake_up_all_tlb_invalidate(guc);
->   }
->   
->   void intel_guc_submission_reset_finish(struct intel_guc *guc)
-> @@ -4740,6 +4753,14 @@ static long must_wait_woken(struct wait_queue_entry *wq_entry, long timeout)
->   	return timeout;
->   }
->   
-> +static bool intel_gt_is_enabled(const struct intel_gt *gt)
-> +{
-> +	/* Check if GT is wedged or suspended */
-> +	if (intel_gt_is_wedged(gt) || !intel_irqs_enabled(gt->i915))
-> +		return false;
-> +	return true;
-> +}
-> +
->   static int guc_send_invalidate_tlb(struct intel_guc *guc, u32 type)
->   {
->   	struct intel_guc_tlb_wait _wq, *wq = &_wq;
-> @@ -4757,7 +4778,8 @@ static int guc_send_invalidate_tlb(struct intel_guc *guc, u32 type)
->   	};
->   	u32 size = ARRAY_SIZE(action);
->   
-> -	if (!intel_guc_ct_enabled(&guc->ct))
-> +	if (!intel_gt_is_enabled(gt) ||
-> +	    !intel_guc_ct_enabled(&guc->ct))
->   		return -EINVAL;
->   
->   	init_waitqueue_head(&_wq.wq);
-> @@ -4800,7 +4822,8 @@ static int guc_send_invalidate_tlb(struct intel_guc *guc, u32 type)
->   	 * requests that can be queued in CT buffer.
->   	 */
->   #define OUTSTANDING_GUC_TIMEOUT_PERIOD  (HZ * 2)
-> -	if (!must_wait_woken(&wait, OUTSTANDING_GUC_TIMEOUT_PERIOD)) {
-> +	if (intel_gt_is_enabled(gt) &&
-> +	    !must_wait_woken(&wait, OUTSTANDING_GUC_TIMEOUT_PERIOD)) {
->   		gt_err(gt,
->   		       "TLB invalidation response timed out for seqno %u\n", seqno);
->   		err = -ETIME;
-> diff --git a/drivers/gpu/drm/i915/i915_driver.c b/drivers/gpu/drm/i915/i915_driver.c
-> index 78501a83ba109..66bd765d00302 100644
-> --- a/drivers/gpu/drm/i915/i915_driver.c
-> +++ b/drivers/gpu/drm/i915/i915_driver.c
-> @@ -1092,6 +1092,9 @@ static int i915_drm_suspend(struct drm_device *dev)
->   	intel_dp_mst_suspend(dev_priv);
->   
->   	intel_runtime_pm_disable_interrupts(dev_priv);
-> +
-> +	intel_tlb_suspend(dev_priv);
-> +
->   	intel_hpd_cancel_work(dev_priv);
->   
->   	intel_suspend_encoders(dev_priv);
-> @@ -1263,6 +1266,8 @@ static int i915_drm_resume(struct drm_device *dev)
->   
->   	intel_gvt_resume(dev_priv);
->   
-> +	intel_tlb_resume(dev_priv);
-> +
->   	enable_rpm_wakeref_asserts(&dev_priv->runtime_pm);
->   
->   	return 0;
+> 
+> Regards,
+> Nirmoy
+> 
+> 
+> > 
+> > >   		else
+> > >   			intel_uncore_write_fw(uncore,
+> > >   					      engine->tlb_inv.reg.reg,
+> > > @@ -90,8 +88,7 @@ static void mmio_invalidate_full(struct intel_gt *gt)
+> > >   	     IS_ALDERLAKE_P(i915)))
+> > >   		intel_uncore_write_fw(uncore, GEN12_OA_TLB_INV_CR, 1);
+> > > -	spin_unlock(&uncore->lock);
+> > > -	intel_gt_mcr_unlock(gt, flags);
+> > > +	mutex_unlock(&gt->reset.mutex);
+> > >   	for_each_engine_masked(engine, gt, awake, tmp) {
+> > >   		if (wait_for_invalidate(engine))
+> > > -- 
+> > > 2.41.0
+> > > 
