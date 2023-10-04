@@ -2,50 +2,50 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 717DE7B974E
-	for <lists+intel-gfx@lfdr.de>; Thu,  5 Oct 2023 00:18:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 396227B9752
+	for <lists+intel-gfx@lfdr.de>; Thu,  5 Oct 2023 00:18:36 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8E45510E144;
-	Wed,  4 Oct 2023 22:18:25 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0910510E3CF;
+	Wed,  4 Oct 2023 22:18:29 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.120])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5FA2C10E0EA
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7DA1710E07E
  for <intel-gfx@lists.freedesktop.org>; Wed,  4 Oct 2023 22:18:24 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1696457904; x=1727993904;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=yfm0L8pwwccBLmpYUDrz+ZyIUF0BYrjGxFq8Uk7Fc3E=;
- b=Z4+B7LVlqMo5qOQ8pivJDmmu8d0q090F3TKBVLIu9J3qE8fd61O/rkt1
- r10R0daLUBj46A2hVxaT8/xQESUrP0SRu/MKxoa/rFgqjYTc84nakKaXo
- x7GYzEDMsxa6uvri99ERQ0pBO1zS6/oVN+yKfLe1yJ90Ock5wTYw/s7yG
- RBWJYQNYkltw1RI/3wsxKYWYu7mNujQO42hr3lBvy9vypxhYYr5+9SLZf
- FckzEzU64H0OIkgEw3rvaFZIfm+AvhwOJ1+denWf4gsu4dLA5+Ov8v1cI
- 73HW6W+EG91U2nvf2JP1RNK37H2rO1t8niE61n3fs2Q8aMDwfJUqtob/s w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10853"; a="382195133"
-X-IronPort-AV: E=Sophos;i="6.03,201,1694761200"; d="scan'208";a="382195133"
+ bh=ysmzoVubg1403aa43iSZK/OH9WDV57RU0pmYZlOZIMY=;
+ b=JfJLHIKdrqDlX/NSPR4tcMJzidqjVuyU6GaKgggPjlcvQpwGKQtqLTZc
+ frRnVDlbSaeS3ObUf6JjDpm7cJjFBr3epa4+ZZBI0XO3BnRk1xOHVcqLz
+ pywhVGsJoemEIgpCULr300UXeYMj9T6/TalptwBcooXzX4rgu4A1qZf7w
+ VciXJ6nctH4DiHk5IQcehPEB5VhJIT1VrgUL6iX5ldv2iZi2b7ZG4C0lf
+ iHOkSA1fueY7LVSQH98hrm1I1WBxEEgjfyp310SYWZxGjxq3heKh3S7SC
+ /BkAibuftslx2sNZTyxE7F5Z1437g55HpAf9FHCc4PMAT+S6uLDhUZwIN A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10853"; a="382195135"
+X-IronPort-AV: E=Sophos;i="6.03,201,1694761200"; d="scan'208";a="382195135"
 Received: from fmsmga002.fm.intel.com ([10.253.24.26])
  by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Oct 2023 15:18:23 -0700
+ 04 Oct 2023 15:18:24 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10853"; a="867611825"
-X-IronPort-AV: E=Sophos;i="6.03,201,1694761200"; d="scan'208";a="867611825"
+X-IronPort-AV: E=McAfee;i="6600,9927,10853"; a="867611828"
+X-IronPort-AV: E=Sophos;i="6.03,201,1694761200"; d="scan'208";a="867611828"
 Received: from dut-internal-9dd7.jf.intel.com ([10.165.21.194])
  by fmsmga002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  04 Oct 2023 15:18:23 -0700
 From: Jonathan Cavitt <jonathan.cavitt@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Wed,  4 Oct 2023 15:07:38 -0700
-Message-Id: <20231004220739.1313307-6-jonathan.cavitt@intel.com>
+Date: Wed,  4 Oct 2023 15:07:39 -0700
+Message-Id: <20231004220739.1313307-7-jonathan.cavitt@intel.com>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20231004220739.1313307-1-jonathan.cavitt@intel.com>
 References: <20231004220739.1313307-1-jonathan.cavitt@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH dii-client v6 4/5] drm/i915/gt: Increase sleep
- in gt_tlb selftest sanitycheck
+Subject: [Intel-gfx] [PATCH dii-client v6 5/5] drm/i915: Enable GuC TLB
+ invalidations for MTL
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,27 +64,28 @@ Cc: janusz.krzysztofik@intel.com, andi.shyti@intel.com,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-For the gt_tlb live selftest, increase the timeout from 10 ms to 200 ms.
-200 ms should be more than enough time, and 10 ms was too aggressive.
+Enable GuC TLB invalidations for MTL.  Though more platforms than just
+MTL support GuC TLB invalidations, MTL is presently the only platform
+that requires it for any purpose, so only enable it there for now to
+minimize cross-platform impact.
 
 Signed-off-by: Jonathan Cavitt <jonathan.cavitt@intel.com>
 ---
- drivers/gpu/drm/i915/gt/selftest_tlb.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ drivers/gpu/drm/i915/i915_pci.c | 1 +
+ 1 file changed, 1 insertion(+)
 
-diff --git a/drivers/gpu/drm/i915/gt/selftest_tlb.c b/drivers/gpu/drm/i915/gt/selftest_tlb.c
-index 7e41f69fc818f..46e0a1dbecc8d 100644
---- a/drivers/gpu/drm/i915/gt/selftest_tlb.c
-+++ b/drivers/gpu/drm/i915/gt/selftest_tlb.c
-@@ -137,7 +137,7 @@ pte_tlbinv(struct intel_context *ce,
- 	i915_request_add(rq);
+diff --git a/drivers/gpu/drm/i915/i915_pci.c b/drivers/gpu/drm/i915/i915_pci.c
+index df7c261410f79..c3a5d5efb45d1 100644
+--- a/drivers/gpu/drm/i915/i915_pci.c
++++ b/drivers/gpu/drm/i915/i915_pci.c
+@@ -837,6 +837,7 @@ static const struct intel_device_info mtl_info = {
+ 	.memory_regions = REGION_SMEM | REGION_STOLEN_LMEM,
+ 	.platform_engine_mask = BIT(RCS0) | BIT(BCS0) | BIT(CCS0),
+ 	.require_force_probe = 1,
++	.has_guc_tlb_invalidation = 1,
+ 	MTL_CACHELEVEL,
+ };
  
- 	/* Short sleep to sanitycheck the batch is spinning before we begin */
--	msleep(10);
-+	msleep(200);
- 	if (va == vb) {
- 		if (!i915_request_completed(rq)) {
- 			pr_err("%s(%s): Semaphore sanitycheck failed %llx, with alignment %llx, using PTE size %x (phys %x, sg %x)\n",
 -- 
 2.25.1
 
