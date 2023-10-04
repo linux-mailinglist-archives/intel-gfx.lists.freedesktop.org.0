@@ -1,51 +1,52 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 995A77B7EA2
-	for <lists+intel-gfx@lfdr.de>; Wed,  4 Oct 2023 14:04:27 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 475237B7F19
+	for <lists+intel-gfx@lfdr.de>; Wed,  4 Oct 2023 14:28:24 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 350B910E116;
-	Wed,  4 Oct 2023 12:04:24 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C4A6F10E114;
+	Wed,  4 Oct 2023 12:28:22 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9F07110E108;
- Wed,  4 Oct 2023 12:04:21 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1696421062; x=1727957062;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=zjpxRTYgJqVtre7Tj0qCwp0fkQ9Bjrbhc3TAa0X9RSM=;
- b=KmwHF6E0fIAfBPj2rVriv3s3PR71KvIOMpHLoyIYXGOmbD3z94WSIbGs
- PIZ82fpQTnTVfTctHFlhO+q2Fo1jjRncfQ713bsWWNAmLChwv/GSO9VSz
- bAKuZA4WTPItfUjpoB/CXsf8ARaodWECwQJx1ipqE9KHqWs8dZyMOmrpi
- MKRzqmAJ6UJNNNPHI10jk9GRFWjUFVBq26X7r7rsZpmAi55n5TZgOKhbP
- J4aQi74+3cMJF/TGkLaiX0wIyRK6+QMSFIwamgt+HWjKhLc5Pql29n461
- fgpC3/77silMo8RGhH+6qXcgJloU3/b4ZK/bu3ahMYUVq4JYtUws3wnx8 w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10852"; a="414063318"
-X-IronPort-AV: E=Sophos;i="6.03,200,1694761200"; d="scan'208";a="414063318"
-Received: from fmsmga008.fm.intel.com ([10.253.24.58])
- by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Oct 2023 05:04:21 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10852"; a="817063984"
-X-IronPort-AV: E=Sophos;i="6.03,200,1694761200"; d="scan'208";a="817063984"
-Received: from nirmoyda-desk.igk.intel.com ([10.102.138.190])
- by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Oct 2023 05:04:19 -0700
-From: Nirmoy Das <nirmoy.das@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Wed,  4 Oct 2023 14:04:07 +0200
-Message-ID: <20231004120407.12251-1-nirmoy.das@intel.com>
-X-Mailer: git-send-email 2.41.0
+Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E7D4A10E114
+ for <intel-gfx@lists.freedesktop.org>; Wed,  4 Oct 2023 12:28:20 +0000 (UTC)
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+ by ams.source.kernel.org (Postfix) with ESMTP id 459E6B81884
+ for <intel-gfx@lists.freedesktop.org>; Wed,  4 Oct 2023 12:28:19 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9FFC7C433C7
+ for <intel-gfx@lists.freedesktop.org>; Wed,  4 Oct 2023 12:28:18 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=k20201202; t=1696422498;
+ bh=s6MIaYFoLBiUrWFoNZyyjP10lI4I2oeizymP5aERV/E=;
+ h=References:In-Reply-To:From:Date:Subject:To:List-Id:Cc:From;
+ b=nv9/Dup1T6nljnAKcScZCTuGyKY8ZhW3XqoA+GQbJkFwx+WF208+KXkugodO6S+2S
+ GkXneDbqQaB3TuDXuYz1sGeIGvZcmmvVi2g52wUzojKtVp17FxNHKr63KdNA50YjL3
+ S6x1Dego+YkZYNZd6aeyLqF6R+VpsA4s7JNtcswsMn07efr3RmhIS5MiQGnnFVfxcP
+ Kjs9F7p7IAG/5T9xhcC5h+S5vTCaR/E2EmD/bWe9QmZfMIuJhcKy8Va3PMOIktjVEf
+ DAJn2GOEf2RZuG97/k4bd3RUwDg5y86ht+juiaxggtFljGb3hnYMpPO7sQawQ15sq1
+ xAFdJih+E+gFg==
+Received: by mail-yw1-f177.google.com with SMTP id
+ 00721157ae682-59f6041395dso24853547b3.1
+ for <intel-gfx@lists.freedesktop.org>; Wed, 04 Oct 2023 05:28:18 -0700 (PDT)
+X-Gm-Message-State: AOJu0YxLtg7zQdmGF4ITAXJFh7ZmBYyNRDJO1b3UncRd5/bkZomktVFS
+ d5AokgvpyFUwy0MKTLbRRkSETHZOqOOekQ9wQOM=
+X-Google-Smtp-Source: AGHT+IHA9/MbVARLlM8LWdL6THD+U88plnrQK3x9BxLdFGt6e48JR4IfmA7hTsR8Y1DNUquQ4HCRiuoCV33U6e2iw9w=
+X-Received: by 2002:a5b:285:0:b0:d7b:9d44:7574 with SMTP id
+ x5-20020a5b0285000000b00d7b9d447574mr1679243ybl.64.1696422497875; Wed, 04 Oct
+ 2023 05:28:17 -0700 (PDT)
 MIME-Version: 1.0
-Organization: Intel Deutschland GmbH, Registered Address: Am Campeon 10,
- 85579 Neubiberg, Germany,
- Commercial Register: Amtsgericht Muenchen HRB 186928 
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH v2] drm/i915: Reduce MCR lock surface
+References: <thqm4hqbkgqxj5fh6olad5brvwvtlof55tjk3kfzzz6r65xcd4@pww7dj5lvr25>
+In-Reply-To: <thqm4hqbkgqxj5fh6olad5brvwvtlof55tjk3kfzzz6r65xcd4@pww7dj5lvr25>
+From: Josh Boyer <jwboyer@kernel.org>
+Date: Wed, 4 Oct 2023 08:27:00 -0400
+X-Gmail-Original-Message-ID: <CA+5PVA4RVQDWMrZkA3_XVfM8j3y5KjVokhzjLRgNMoQSHHmGrg@mail.gmail.com>
+Message-ID: <CA+5PVA4RVQDWMrZkA3_XVfM8j3y5KjVokhzjLRgNMoQSHHmGrg@mail.gmail.com>
+To: Gustavo Sousa <gustavo.sousa@intel.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+Subject: Re: [Intel-gfx] PR for MTL DMC v2.17
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -58,68 +59,36 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: matthew.d.roper@intel.com, dri-devel@lists.freedesktop.org,
- Nirmoy Das <nirmoy.das@intel.com>
+Cc: kyle@mcmartin.ca, intel-gfx@lists.freedesktop.org, ben@decadent.org.uk,
+ linux-firmware@kernel.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Take the mcr lock only when driver needs to write into a mcr based
-tlb based registers.
+On Mon, Oct 2, 2023 at 8:59=E2=80=AFAM Gustavo Sousa <gustavo.sousa@intel.c=
+om> wrote:
+>
+> The following changes since commit 8b855f3797e6b1d207b7a2b8dae0e9913f907e=
+5b:
+>
+>   Merge branch 'main' into 'main' (2023-09-26 18:31:16 +0000)
+>
+> are available in the Git repository at:
+>
+>   git://anongit.freedesktop.org/drm/drm-firmware dmc-mtl_2.17
 
-To prevent GT reset interference, employ gt->reset.mutex instead, since
-intel_gt_mcr_multicast_write relies on gt->uncore->lock not being held.
+Pulled and pushed out.
 
-v2: remove unused var, flags.
+josh
 
-Signed-off-by: Nirmoy Das <nirmoy.das@intel.com>
----
- drivers/gpu/drm/i915/gt/intel_tlb.c | 13 +++++--------
- 1 file changed, 5 insertions(+), 8 deletions(-)
-
-diff --git a/drivers/gpu/drm/i915/gt/intel_tlb.c b/drivers/gpu/drm/i915/gt/intel_tlb.c
-index 139608c30d97..0ad905df4a98 100644
---- a/drivers/gpu/drm/i915/gt/intel_tlb.c
-+++ b/drivers/gpu/drm/i915/gt/intel_tlb.c
-@@ -52,15 +52,13 @@ static void mmio_invalidate_full(struct intel_gt *gt)
- 	struct intel_engine_cs *engine;
- 	intel_engine_mask_t awake, tmp;
- 	enum intel_engine_id id;
--	unsigned long flags;
- 
- 	if (GRAPHICS_VER(i915) < 8)
- 		return;
- 
- 	intel_uncore_forcewake_get(uncore, FORCEWAKE_ALL);
- 
--	intel_gt_mcr_lock(gt, &flags);
--	spin_lock(&uncore->lock); /* serialise invalidate with GT reset */
-+	mutex_lock(&gt->reset.mutex);/* serialise invalidate with GT reset */
- 
- 	awake = 0;
- 	for_each_engine(engine, gt, id) {
-@@ -68,9 +66,9 @@ static void mmio_invalidate_full(struct intel_gt *gt)
- 			continue;
- 
- 		if (engine->tlb_inv.mcr)
--			intel_gt_mcr_multicast_write_fw(gt,
--							engine->tlb_inv.reg.mcr_reg,
--							engine->tlb_inv.request);
-+			intel_gt_mcr_multicast_write(gt,
-+						     engine->tlb_inv.reg.mcr_reg,
-+						     engine->tlb_inv.request);
- 		else
- 			intel_uncore_write_fw(uncore,
- 					      engine->tlb_inv.reg.reg,
-@@ -90,8 +88,7 @@ static void mmio_invalidate_full(struct intel_gt *gt)
- 	     IS_ALDERLAKE_P(i915)))
- 		intel_uncore_write_fw(uncore, GEN12_OA_TLB_INV_CR, 1);
- 
--	spin_unlock(&uncore->lock);
--	intel_gt_mcr_unlock(gt, flags);
-+	mutex_unlock(&gt->reset.mutex);
- 
- 	for_each_engine_masked(engine, gt, awake, tmp) {
- 		if (wait_for_invalidate(engine))
--- 
-2.41.0
-
+>
+> for you to fetch changes up to 18b60f44e61c72eb5a5a36dc8e0381c77ba670b3:
+>
+>   i915: Update MTL DMC to v2.17 (2023-10-02 09:52:35 -0300)
+>
+> ----------------------------------------------------------------
+> Gustavo Sousa (1):
+>       i915: Update MTL DMC to v2.17
+>
+>  WHENCE           |   2 +-
+>  i915/mtl_dmc.bin | Bin 52388 -> 52508 bytes
+>  2 files changed, 1 insertion(+), 1 deletion(-)
