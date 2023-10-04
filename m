@@ -2,44 +2,44 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 021B97B8615
-	for <lists+intel-gfx@lfdr.de>; Wed,  4 Oct 2023 19:04:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 108927B861B
+	for <lists+intel-gfx@lfdr.de>; Wed,  4 Oct 2023 19:06:23 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 906D110E13E;
-	Wed,  4 Oct 2023 17:04:43 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 940F410E3A2;
+	Wed,  4 Oct 2023 17:06:21 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from ams.source.kernel.org (ams.source.kernel.org
- [IPv6:2604:1380:4601:e00::1])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 759ED10E13E
- for <intel-gfx@lists.freedesktop.org>; Wed,  4 Oct 2023 17:04:42 +0000 (UTC)
+Received: from sin.source.kernel.org (sin.source.kernel.org
+ [IPv6:2604:1380:40e1:4800::1])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CD2D510E3A2
+ for <intel-gfx@lists.freedesktop.org>; Wed,  4 Oct 2023 17:06:18 +0000 (UTC)
 Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
- by ams.source.kernel.org (Postfix) with ESMTP id 4163DB81F60;
- Wed,  4 Oct 2023 17:04:40 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 44BC1C433C8;
- Wed,  4 Oct 2023 17:04:39 +0000 (UTC)
+ by sin.source.kernel.org (Postfix) with ESMTP id ED7B2CE1DC0;
+ Wed,  4 Oct 2023 17:06:16 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D3C80C433C7;
+ Wed,  4 Oct 2023 17:06:15 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
- s=korg; t=1696439079;
- bh=oOUBvx69T+FxkvVfdnPnV2HjfDtDRLulEikRdvqhIkQ=;
+ s=korg; t=1696439176;
+ bh=9fQ/71XWZkr25JSe57qhB13arkFzaoSDxq69rEmLZYg=;
  h=Subject:To:Cc:From:Date:From;
- b=Hr+/KmcbsTFBSCJNe6NGCEIruJXieqCRpwAH/iKBV7dQaIoe+C4DwC7jLEP6+M/Os
- Pkxxus1/PW8HwoaKUMFizFekzm02D/OV6+pdoSjJXkeFRoZZGhvkYUJzidskhQhxTd
- AuJ97+74YI4cA/FxRCddEeSalJHNk00H+D9FdWAE=
+ b=CeG0etFmDYRkOHFyk/54pOj272W0dVpFRfuP8Q4eWtPLtu8B8stSI8jBImUFRdntL
+ wWSJnTxiu3NmEdc0NHFiBUVSIbXeHqty6k3CO75F6JycCvfSZezvthZf4NW/Yb6D3k
+ 3yJQy4IM6apKYuyMGdwcbxA4ghVpp00fKCwT0PRs=
 To: John.C.Harrison@Intel.com, chris@chris-wilson.co.uk,
  daniele.ceraolospurio@intel.com, devel@otheo.eu, fernando.pacheco@intel.com,
  gregkh@linuxfoundation.org, intel-gfx@lists.freedesktop.org,
  jani.nikula@linux.intel.com, joonas.lahtinen@linux.intel.com,
  rodrigo.vivi@intel.com, tvrtko.ursulin@linux.intel.com
 From: <gregkh@linuxfoundation.org>
-Date: Wed, 04 Oct 2023 19:04:12 +0200
-Message-ID: <2023100412-rasping-genre-9ea1@gregkh>
+Date: Wed, 04 Oct 2023 19:04:36 +0200
+Message-ID: <2023100436-crease-unloaded-cec6@gregkh>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=ANSI_X3.4-1968
 Content-Transfer-Encoding: 8bit
 X-stable: commit
 X-Patchwork-Hint: ignore 
 Subject: [Intel-gfx] Patch "drm/i915/gt: Fix reservation address in
- ggtt_reserve_guc_top" has been added to the 6.1-stable tree
+ ggtt_reserve_guc_top" has been added to the 6.5-stable tree
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,12 +61,12 @@ This is a note to let you know that I've just added the patch titled
 
     drm/i915/gt: Fix reservation address in ggtt_reserve_guc_top
 
-to the 6.1-stable tree which can be found at:
+to the 6.5-stable tree which can be found at:
     http://www.kernel.org/git/?p=linux/kernel/git/stable/stable-queue.git;a=summary
 
 The filename of the patch is:
      drm-i915-gt-fix-reservation-address-in-ggtt_reserve_guc_top.patch
-and it can be found in the queue-6.1 subdirectory.
+and it can be found in the queue-6.5 subdirectory.
 
 If you, or anyone else, feels it should not be added to the stable tree,
 please let <stable@vger.kernel.org> know about it.
@@ -120,7 +120,7 @@ Signed-off-by: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
 
 --- a/drivers/gpu/drm/i915/gt/intel_ggtt.c
 +++ b/drivers/gpu/drm/i915/gt/intel_ggtt.c
-@@ -500,20 +500,31 @@ void intel_ggtt_unbind_vma(struct i915_a
+@@ -511,20 +511,31 @@ void intel_ggtt_unbind_vma(struct i915_a
  	vm->clear_range(vm, vma_res->start, vma_res->vma_size);
  }
  
@@ -162,4 +162,4 @@ Signed-off-by: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
 
 Patches currently in stable-queue which might be from devel@otheo.eu are
 
-queue-6.1/drm-i915-gt-fix-reservation-address-in-ggtt_reserve_guc_top.patch
+queue-6.5/drm-i915-gt-fix-reservation-address-in-ggtt_reserve_guc_top.patch
