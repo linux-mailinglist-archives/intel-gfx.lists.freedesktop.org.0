@@ -2,53 +2,58 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id A09D07B7911
-	for <lists+intel-gfx@lfdr.de>; Wed,  4 Oct 2023 09:53:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id C26E47B7921
+	for <lists+intel-gfx@lfdr.de>; Wed,  4 Oct 2023 09:54:31 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8F0FE10E0DD;
-	Wed,  4 Oct 2023 07:53:17 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2EC1910E342;
+	Wed,  4 Oct 2023 07:54:30 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E60BF10E0DD
- for <intel-gfx@lists.freedesktop.org>; Wed,  4 Oct 2023 07:53:15 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CD05010E342
+ for <intel-gfx@lists.freedesktop.org>; Wed,  4 Oct 2023 07:54:27 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1696405995; x=1727941995;
- h=from:to:subject:in-reply-to:references:date:message-id:
- mime-version:content-transfer-encoding;
- bh=sgNlnzc9ikbcubONi4JVh9qAbn63GhMxpUQIQwQ+KQg=;
- b=js+E2lbyDESr7j2VX6LyVS9N1V39EC9uZnmFddeNGiR0kOKPnwSWTUhV
- 65WJPGepXmtY3tsbhyWUoGNXSzH5mVIkW8ih5WOf6TvIp6WIXIW90VzC6
- WLlNKLsll+xsBi4vZS6QTGwpt+Avyp5pPZjBNiOClYrDKgrQlwsnYXDH0
- mfQGJy63Ls5Jz9dYJDtxYa4VpRhHvKP8meQcPAFLt/WgT1EcOYEKXnaCJ
- XEuHK4yBFjZ1AjNH3lKvNKWkfLExVbG8vPiLY8nCh4+VAaiVcdIzXErkQ
- PbiVf9wZoKlqfGrNWA6qiEjkaz5OSFAj0ndn0FQnz69+7eP76u+S9kgDb g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10852"; a="469360576"
-X-IronPort-AV: E=Sophos;i="6.03,199,1694761200"; d="scan'208";a="469360576"
-Received: from orsmga007.jf.intel.com ([10.7.209.58])
- by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Oct 2023 00:53:14 -0700
+ t=1696406068; x=1727942068;
+ h=message-id:date:mime-version:subject:to:cc:references:
+ from:in-reply-to:content-transfer-encoding;
+ bh=HFChfotUGnGFU2dxSxyvafId1zMSKAmZUHuqx87lrBk=;
+ b=IpMjq+2IUEJ2asPTllZCJONNh3Zb/09JUpEkOjXtL60Khw5mti3su1aC
+ GTX7ao2SVQwKDwHtIOxsDYs9lna77OmIwU8cxPDVhqDRrEhkIJexctDTn
+ aC9kfT4B7Sdjl/fFo3rUgjgkPi/cJNKENiyQSYasq7LvCLu9WMA4bHcPb
+ nailWORSwV5GmTmPF7Pq6NJo1KXw21UhRx8F6oXkQLmobleyOQLqfHxcW
+ iwYU6NaA3XRABU/XiYRNX58pG9GEARS2SWXuJLP0RoroWR7aCtaCDUKfy
+ RoiJd4vyKfkEU9pCDkLdIC9phRrawzIOG5Nnlo908CmJ4kqerBbK01nSs Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10852"; a="1693794"
+X-IronPort-AV: E=Sophos;i="6.03,199,1694761200"; 
+   d="scan'208";a="1693794"
+Received: from fmsmga007.fm.intel.com ([10.253.24.52])
+ by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 04 Oct 2023 00:54:28 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10852"; a="744847359"
-X-IronPort-AV: E=Sophos;i="6.03,199,1694761200"; d="scan'208";a="744847359"
-Received: from msterni-mobl.ger.corp.intel.com (HELO localhost)
- ([10.252.56.48])
- by orsmga007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Oct 2023 00:53:11 -0700
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Ville Syrjala <ville.syrjala@linux.intel.com>,
- intel-gfx@lists.freedesktop.org
-In-Reply-To: <20231003200620.11633-1-ville.syrjala@linux.intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20231003200620.11633-1-ville.syrjala@linux.intel.com>
-Date: Wed, 04 Oct 2023 10:53:08 +0300
-Message-ID: <87jzs2g6xn.fsf@intel.com>
+X-IronPort-AV: E=McAfee;i="6600,9927,10852"; a="754765737"
+X-IronPort-AV: E=Sophos;i="6.03,199,1694761200"; d="scan'208";a="754765737"
+Received: from mridgewa-mobl.ger.corp.intel.com (HELO [10.213.209.90])
+ ([10.213.209.90])
+ by fmsmga007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 04 Oct 2023 00:54:24 -0700
+Message-ID: <aa682280-8fb0-811b-f1df-aa86f67daa9c@linux.intel.com>
+Date: Wed, 4 Oct 2023 08:54:22 +0100
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-Subject: Re: [Intel-gfx] [PATCH v3 0/4] drm/i915: Start cleaning up the DPLL
- ID mess
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.15.1
+Content-Language: en-US
+To: Andi Shyti <andi.shyti@linux.intel.com>
+References: <20231002172419.1017044-1-jonathan.cavitt@intel.com>
+ <813ae801-b774-7d7a-df8a-00b5b0e36695@linux.intel.com>
+ <ZRxEOCI6Xq1UEnlw@ashyti-mobl2.lan>
+From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+Organization: Intel Corporation UK Plc
+In-Reply-To: <ZRxEOCI6Xq1UEnlw@ashyti-mobl2.lan>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+Subject: Re: [Intel-gfx] [PATCH v3 1/4] drm/i915: Define and use GuC and CTB
+ TLB invalidation routines
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,52 +66,112 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: janusz.krzysztofik@intel.com, matthew.d.roper@intel.com,
+ intel-gfx@lists.freedesktop.org, Jonathan Cavitt <jonathan.cavitt@intel.com>,
+ chris.p.wilson@linux.intel.com, nirmoy.das@intel.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, 03 Oct 2023, Ville Syrjala <ville.syrjala@linux.intel.com> wrote:
-> From: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
->
-> Start to clean up the mess around DPLL IDs a bit by removing
-> the nasty assumption that the index of the DPLL in the
-> arrays matches its ID. Fortunately we did have a WARN
-> i nthere to cathc mistakes, but better to not has such
-> silly assumptions i nthe first place.
->
-> There's still a lot of mess left since the DPLL IDs in
-> the hardware are a mess as well. Eg. the index of the
-> register instance often differs from the index used
-> to select the DPLL in clock routing thing. So we could
-> probably clean up more of that, perhaps by declaring
-> separate IDs for each PLL for each use case...
 
-Reviewed-by: Jani Nikula <jani.nikula@intel.com>
+On 03/10/2023 17:41, Andi Shyti wrote:
+> Hi,
+> 
+> [...]
+> 
+>>> +static void guc_ggtt_invalidate(struct i915_ggtt *ggtt)
+>>> +{
+>>> +	struct drm_i915_private *i915 = ggtt->vm.i915;
+>>> +	struct intel_gt *gt;
+>>> +
+>>> +	if (!IS_GEN9_LP(i915) && GRAPHICS_VER(i915) < 11)
+>>> +		gen8_ggtt_invalidate(ggtt);
+>>> +
+>>> +	list_for_each_entry(gt, &ggtt->gt_list, ggtt_link) {
+>>> +		if (INTEL_GUC_SUPPORTS_TLB_INVALIDATION(&gt->uc.guc) &&
+>>> +		    intel_guc_is_ready(&gt->uc.guc)) {
+>>
+>> The condition here expands to a relatively heavy one:
+>>
+>> +#define INTEL_GUC_SUPPORTS_TLB_INVALIDATION(guc) \
+>> +	((intel_guc_ct_enabled(&(guc)->ct)) && \
+>> +	 (intel_guc_submission_is_used(guc)) && \
+>> +	 (GRAPHICS_VER(guc_to_gt((guc))->i915) >= 12))
+>>
+>>
+>> &&
+>>
+>> static inline bool intel_guc_is_ready(struct intel_guc *guc)
+>> {
+>> 	return intel_guc_is_fw_running(guc) && intel_guc_ct_enabled(&guc->ct);
+>> }
+>>
+>> intel_guc_ct_enabled is even duplicated.
+> 
+> Maybe this is a smaller set?
+> 
+> 	if (INTEL_GUC_SUPPORTS_TLB_INVALIDATION(&gt->uc.guc) &&
+> 	    intel_guc_is_fw_running(&gt->uc.guc))
+> 
+> The last condition includes intel_guc_submission_is_used() from
+> the macro.
+> 
+>> Is there scope to consolidate the parts which are platform invariant, or even runtime invariant, or at least guaranteed not to transition back and forth but one way only?
+>>
+>> In other words, if we know during init we will want it, mark it as a flag in intel_guc or somewhere, and then at runtime do only those conditions which can transition back and forth due driver flows.
+>>
+>> I am not saying this is performance sensitive, but in terms of elegance, readability and self-documentation the proposed version looks a bit sub-optimal to me.
+> 
+> Are you suggesting some PCI flag? This is actually applying only
+> for MTL.
 
-still holds on the series
+1)
 
+I didn't specifically have an opinion on whether it should be a device 
+info flag or in the guc struct or whatever. More knowledge of GuC state 
+transitions than I have would be required for an informed decision. To 
+me it just felt it raises the question if it can be simplified by 
+splitting the invariant from variant and eliminating the redundant. All 
+upper case macro name was also IMO wrong since we normally use those for 
+static things.
 
->
-> v2:
-> - the trivial patches were already merged
-> - introduce pll->index
-> - add another patch for for_each_shared_dpll()
-> - add another patch s/dev_priv/i915/
->
-> v3:
-> - deal with pll->index in debugfs code
-> - rebase due to other changes
->
-> Ville Syrj=C3=A4l=C3=A4 (4):
->   drm/i915: Stop requiring PLL index =3D=3D PLL ID
->   drm/i915: Decouple I915_NUM_PLLS from PLL IDs
->   drm/i915: Introduce for_each_shared_dpll()
->   drm/i915: s/dev_priv/i915/ in the shared_dpll code
->
->  .../drm/i915/display/intel_display_debugfs.c  |   9 +-
->  drivers/gpu/drm/i915/display/intel_dpll_mgr.c | 965 +++++++++---------
->  drivers/gpu/drm/i915/display/intel_dpll_mgr.h |  26 +-
->  .../gpu/drm/i915/display/intel_pch_refclk.c   |   7 +-
->  4 files changed, 522 insertions(+), 485 deletions(-)
+I'll have a look in the latest version how it looks.
 
---=20
-Jani Nikula, Intel
+2)
+
+Only for MTL - really? I didn't see the patch do that. Why is that?
+
+Regards,
+
+Tvrtko
+
+> 
+>>> +			guc_ggtt_ct_invalidate(gt);
+>>> +		} else if (GRAPHICS_VER(i915) >= 12) {
+>>> +			intel_uncore_write(gt->uncore,
+>>> +					   GEN12_GUC_TLB_INV_CR,
+>>> +					   GEN12_GUC_TLB_INV_CR_INVALIDATE);
+>>> +		} else {
+>>> +			intel_uncore_write(gt->uncore,
+>>> +					   GEN8_GTCR, GEN8_GTCR_INVALIDATE);
+>>> +		}
+> 
+> [...]
+> 
+>>> -		mmio_invalidate_full(gt);
+>>> +		if (INTEL_GUC_SUPPORTS_TLB_INVALIDATION(guc)) {
+>>> +			if (intel_guc_is_ready(guc))
+>>> +				intel_guc_invalidate_tlb_full(guc);
+>>> +		} else {
+>>> +			/*
+>>> +			 * Fall back to old path if GuC is disabled.
+>>> +			 * This is safe because GuC is not enabled and not writing to MMIO.
+>>> +			 */
+>>
+>> It is safe for intel_guc_is_ready() transitioning from false to true during GuC init? No way for some path to start issuing invalidations as that is happening?
+>>
+>>> +			mmio_invalidate_full(gt);
+>>> +		}
+> 
+> supernitpick: as we are at this, brackets are not required.
+> 
+> Andi
