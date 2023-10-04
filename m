@@ -1,52 +1,51 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9A70D7B7E75
-	for <lists+intel-gfx@lfdr.de>; Wed,  4 Oct 2023 13:49:12 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 995A77B7EA2
+	for <lists+intel-gfx@lfdr.de>; Wed,  4 Oct 2023 14:04:27 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5456D10E0DD;
-	Wed,  4 Oct 2023 11:49:05 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 350B910E116;
+	Wed,  4 Oct 2023 12:04:24 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 80E5210E002;
- Wed,  4 Oct 2023 11:49:03 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.88])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9F07110E108;
+ Wed,  4 Oct 2023 12:04:21 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1696420144; x=1727956144;
+ t=1696421062; x=1727957062;
  h=from:to:cc:subject:date:message-id:mime-version:
  content-transfer-encoding;
- bh=ALAKMlfb0feQVeKuHI5P4D4nGOKl3RymOvpE+8IODNA=;
- b=HE3x5g8dzZMHzJOxPSROg731gs0tEpVVFT/cjFoaTEQSMXy3+toMn7rO
- fmzy3tXGyuJh5JLeQg4ineWaeQh/LFyjGH9BYQHT9z9XuCiRPrBkXkPjY
- AI2Rg4ZbVVLHkZtMmR1TGQdzmFxa+E0zr01nYJkoNTqU5xr9krZNR88N9
- tW1fxNnViLh7kBimTvPpQbhx70cbFNQKO6YKNu9FmTsW4QrjwRX6kajLU
- MH/TgBQgv06ZsZYGnAnx2T2odjA+leUQy1r9Yi08obneLSmI6skVb5Gn0
- FY2NmYcL6egOL3QIoh9a3DUHzQLjPShO+kdRQPTyd/c9BrbACVjyN4BMD w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10852"; a="4703423"
-X-IronPort-AV: E=Sophos;i="6.03,200,1694761200"; 
-   d="scan'208";a="4703423"
+ bh=zjpxRTYgJqVtre7Tj0qCwp0fkQ9Bjrbhc3TAa0X9RSM=;
+ b=KmwHF6E0fIAfBPj2rVriv3s3PR71KvIOMpHLoyIYXGOmbD3z94WSIbGs
+ PIZ82fpQTnTVfTctHFlhO+q2Fo1jjRncfQ713bsWWNAmLChwv/GSO9VSz
+ bAKuZA4WTPItfUjpoB/CXsf8ARaodWECwQJx1ipqE9KHqWs8dZyMOmrpi
+ MKRzqmAJ6UJNNNPHI10jk9GRFWjUFVBq26X7r7rsZpmAi55n5TZgOKhbP
+ J4aQi74+3cMJF/TGkLaiX0wIyRK6+QMSFIwamgt+HWjKhLc5Pql29n461
+ fgpC3/77silMo8RGhH+6qXcgJloU3/b4ZK/bu3ahMYUVq4JYtUws3wnx8 w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10852"; a="414063318"
+X-IronPort-AV: E=Sophos;i="6.03,200,1694761200"; d="scan'208";a="414063318"
 Received: from fmsmga008.fm.intel.com ([10.253.24.58])
- by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Oct 2023 04:49:03 -0700
+ by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 04 Oct 2023 05:04:21 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10852"; a="817059227"
-X-IronPort-AV: E=Sophos;i="6.03,200,1694761200"; d="scan'208";a="817059227"
+X-IronPort-AV: E=McAfee;i="6600,9927,10852"; a="817063984"
+X-IronPort-AV: E=Sophos;i="6.03,200,1694761200"; d="scan'208";a="817063984"
 Received: from nirmoyda-desk.igk.intel.com ([10.102.138.190])
  by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Oct 2023 04:49:01 -0700
+ 04 Oct 2023 05:04:19 -0700
 From: Nirmoy Das <nirmoy.das@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Wed,  4 Oct 2023 13:48:54 +0200
-Message-ID: <20231004114854.23237-1-nirmoy.das@intel.com>
+Date: Wed,  4 Oct 2023 14:04:07 +0200
+Message-ID: <20231004120407.12251-1-nirmoy.das@intel.com>
 X-Mailer: git-send-email 2.41.0
 MIME-Version: 1.0
 Organization: Intel Deutschland GmbH, Registered Address: Am Campeon 10,
  85579 Neubiberg, Germany,
  Commercial Register: Amtsgericht Muenchen HRB 186928 
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH] drm/i915: Reduce MCR lock surface
+Subject: [Intel-gfx] [PATCH v2] drm/i915: Reduce MCR lock surface
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -70,16 +69,25 @@ tlb based registers.
 To prevent GT reset interference, employ gt->reset.mutex instead, since
 intel_gt_mcr_multicast_write relies on gt->uncore->lock not being held.
 
+v2: remove unused var, flags.
+
 Signed-off-by: Nirmoy Das <nirmoy.das@intel.com>
 ---
- drivers/gpu/drm/i915/gt/intel_tlb.c | 12 +++++-------
- 1 file changed, 5 insertions(+), 7 deletions(-)
+ drivers/gpu/drm/i915/gt/intel_tlb.c | 13 +++++--------
+ 1 file changed, 5 insertions(+), 8 deletions(-)
 
 diff --git a/drivers/gpu/drm/i915/gt/intel_tlb.c b/drivers/gpu/drm/i915/gt/intel_tlb.c
-index 139608c30d97..7b2d9549e595 100644
+index 139608c30d97..0ad905df4a98 100644
 --- a/drivers/gpu/drm/i915/gt/intel_tlb.c
 +++ b/drivers/gpu/drm/i915/gt/intel_tlb.c
-@@ -59,8 +59,7 @@ static void mmio_invalidate_full(struct intel_gt *gt)
+@@ -52,15 +52,13 @@ static void mmio_invalidate_full(struct intel_gt *gt)
+ 	struct intel_engine_cs *engine;
+ 	intel_engine_mask_t awake, tmp;
+ 	enum intel_engine_id id;
+-	unsigned long flags;
+ 
+ 	if (GRAPHICS_VER(i915) < 8)
+ 		return;
  
  	intel_uncore_forcewake_get(uncore, FORCEWAKE_ALL);
  
@@ -89,7 +97,7 @@ index 139608c30d97..7b2d9549e595 100644
  
  	awake = 0;
  	for_each_engine(engine, gt, id) {
-@@ -68,9 +67,9 @@ static void mmio_invalidate_full(struct intel_gt *gt)
+@@ -68,9 +66,9 @@ static void mmio_invalidate_full(struct intel_gt *gt)
  			continue;
  
  		if (engine->tlb_inv.mcr)
@@ -102,7 +110,7 @@ index 139608c30d97..7b2d9549e595 100644
  		else
  			intel_uncore_write_fw(uncore,
  					      engine->tlb_inv.reg.reg,
-@@ -90,8 +89,7 @@ static void mmio_invalidate_full(struct intel_gt *gt)
+@@ -90,8 +88,7 @@ static void mmio_invalidate_full(struct intel_gt *gt)
  	     IS_ALDERLAKE_P(i915)))
  		intel_uncore_write_fw(uncore, GEN12_OA_TLB_INV_CR, 1);
  
