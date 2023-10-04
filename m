@@ -1,50 +1,55 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id F2C927B76EA
-	for <lists+intel-gfx@lfdr.de>; Wed,  4 Oct 2023 05:40:30 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 129727B76F7
+	for <lists+intel-gfx@lfdr.de>; Wed,  4 Oct 2023 05:54:52 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2EF2410E323;
-	Wed,  4 Oct 2023 03:40:25 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 889CA10E323;
+	Wed,  4 Oct 2023 03:54:50 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.100])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BD0A510E320;
- Wed,  4 Oct 2023 03:40:22 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7A43D10E323;
+ Wed,  4 Oct 2023 03:54:48 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1696390822; x=1727926822;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=/hSDWFRYWYd09ryU4fxVLH3BV1ZYDDqRpoLBrYp55Uw=;
- b=TuXqO8lZaiMs5CEWi+AzXruRwglxVsAH+Luylq+yrxf/dF2JK07dW1r3
- sXJ46Uo3K9KvScZpdk6EXXak9qj9Om7BplKakhiFqMuNsh/BmudKOo5QC
- 7UzGsObYL6uWgSgtWxMtP+jy2KS2BZZ2AUko+fK7tTAujylIjdcQoCCzk
- fiIhnIEZxq4SVuMIa1ovTgDh2NzMKISPuHtJvwsLIJ289sL2O4vsu1/Lm
- yVvrdfCRgVtt0sHZg8sbtaDBM2Z0FKX1aGFIg5Pp+1V6YA+fL2+Oy33YU
- 3TI8PRA1POvMx00og4qIcoaLzL+aZrl9e3etVPEPv5ef/7vo4RcJ+Isx9 A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10852"; a="449538870"
-X-IronPort-AV: E=Sophos;i="6.03,199,1694761200"; d="scan'208";a="449538870"
-Received: from fmsmga003.fm.intel.com ([10.253.24.29])
- by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Oct 2023 20:40:21 -0700
+ t=1696391689; x=1727927689;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:in-reply-to;
+ bh=Gw6rYXRCbRUHGgK7+O+B6viSGlrOBMQMDtbB2BWw1wk=;
+ b=ASpgNDzWllzPRgSS5zJeuSy/c8PRVvlgyP0tqAfjs2xttjXmcpX/gYFf
+ kRnns823R8invzMUZ4DV8E6CDpRKmORQooNLUVFCuZHE7mGGqHuUPkeRJ
+ FCARNXnKpfqrstx1DnT3fEA2MGiLkH0Kj5weaYgPKdBPQuMZ0eFHDELYO
+ iKQ2E4lOOdWn+tgyFKbFxsZAeJnegd6iVHQDaf5mtMqz90nE9F4rIRxOA
+ h9cZqjK2pv6SJheVefbH5BfRunDK1+86HoRh8HZvf3OmHZIYw8v1YFzvH
+ DKwqdSZahy+VW5t4Yhpr+1p5IJGPY5XSb4Xv91tVZUECwAX75OBshVJCm A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10852"; a="1646073"
+X-IronPort-AV: E=Sophos;i="6.03,199,1694761200"; 
+   d="scan'208";a="1646073"
+Received: from fmsmga007.fm.intel.com ([10.253.24.52])
+ by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 03 Oct 2023 20:54:48 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10852"; a="841620847"
-X-IronPort-AV: E=Sophos;i="6.03,199,1694761200"; d="scan'208";a="841620847"
-Received: from orsosgc001.jf.intel.com (HELO unerlige-ril.jf.intel.com)
- ([10.165.21.138])
- by fmsmga003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Oct 2023 20:40:20 -0700
-From: Vivaik Balasubrawmanian <vivaik.balasubrawmanian@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Tue,  3 Oct 2023 20:40:12 -0700
-Message-Id: <20231004034012.66334-1-vivaik.balasubrawmanian@intel.com>
-X-Mailer: git-send-email 2.36.1
+X-IronPort-AV: E=McAfee;i="6600,9927,10852"; a="754685025"
+X-IronPort-AV: E=Sophos;i="6.03,199,1694761200"; d="scan'208";a="754685025"
+Received: from lkp-server02.sh.intel.com (HELO c3b01524d57c) ([10.239.97.151])
+ by fmsmga007.fm.intel.com with ESMTP; 03 Oct 2023 20:54:45 -0700
+Received: from kbuild by c3b01524d57c with local (Exim 4.96)
+ (envelope-from <lkp@intel.com>) id 1qnsyB-000Aqe-2C;
+ Wed, 04 Oct 2023 03:54:43 +0000
+Date: Wed, 4 Oct 2023 11:54:10 +0800
+From: kernel test robot <lkp@intel.com>
+To: Andi Shyti <andi.shyti@linux.intel.com>,
+ Sumit Semwal <sumit.semwal@linaro.org>,
+ Christian =?iso-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>
+Message-ID: <202310041156.Bi2Vshvb-lkp@intel.com>
+References: <20231003230332.513051-1-andi.shyti@linux.intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [Patch v2] Add uAPI to query microcontroller fw version
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20231003230332.513051-1-andi.shyti@linux.intel.com>
+Subject: Re: [Intel-gfx] [PATCH] dma-buf: Deny copy-on-writes mmaps
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -57,173 +62,64 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: dri-devel@lists.freedesktop.org
+Cc: intel-gfx <intel-gfx@lists.freedesktop.org>,
+ dri-devel <dri-devel@lists.freedesktop.org>, oe-kbuild-all@lists.linux.dev,
+ Chris Wilson <chris.p.wilson@linux.intel.com>, linux-media@vger.kernel.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Due to a bug in GuC firmware, Mesa can't enable by default the usage of 
-async compute engines feature in DG2 and newer. A new GuC firmware fixed the issue but 
-until now there was no way for Mesa to know if KMD was running with the fixed GuC version or not,
-so this uAPI is required.
+Hi Andi,
 
-More context on the issue:
-Vulkan allows applications to create types of queues: graphics, compute and copy.
-Today Intel Vulkan driver uses Render engine to implement all those 3 queues types.
+kernel test robot noticed the following build errors:
 
-There is a set of operations that a queue type is required to implement, 
-DG2 compute engine have almost all the operations required by compute queue but still lacks some.
-So the solution is to send those operations not supported by compute engine to render engine 
-and do some synchronization around it. But doing so causes the GuC scheduler to get stuck 
-around the synchronization, until KMD resets the engine and ban the application context.
-This issue was root caused to a GuC firmware issue and was fixed in newer version.
+[auto build test ERROR on drm-misc/drm-misc-next]
+[also build test ERROR on linus/master v6.6-rc4 next-20231003]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
 
-So Mesa can't enable the "async compute" without knowing for sure that KMD is running 
-with a GuC version that has the scheduler fix. Same will happen when Mesa start to use 
-copy engine.
+url:    https://github.com/intel-lab-lkp/linux/commits/Andi-Shyti/dma-buf-Deny-copy-on-writes-mmaps/20231004-070556
+base:   git://anongit.freedesktop.org/drm/drm-misc drm-misc-next
+patch link:    https://lore.kernel.org/r/20231003230332.513051-1-andi.shyti%40linux.intel.com
+patch subject: [PATCH] dma-buf: Deny copy-on-writes mmaps
+config: sh-allyesconfig (https://download.01.org/0day-ci/archive/20231004/202310041156.Bi2Vshvb-lkp@intel.com/config)
+compiler: sh4-linux-gcc (GCC) 13.2.0
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20231004/202310041156.Bi2Vshvb-lkp@intel.com/reproduce)
 
-This uAPI  may be expanded in future to query other firmware versions too.
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202310041156.Bi2Vshvb-lkp@intel.com/
 
-More information:
-https://gitlab.freedesktop.org/mesa/mesa/-/merge_requests/23661
-Mesa usage: https://gitlab.freedesktop.org/mesa/mesa/-/merge_requests/25233
+All errors (new ones prefixed by >>):
 
-v2:
-- incorporated feedback from Tvrtko Ursulin:
-  - updated patch description to clarify the use case that identified
-    this issue.
-  - updated query_uc_fw_version() to use copy_query_item() helper.
-  - updated the implemented GuC version query to return Submission
-    version.
+   drivers/dma-buf/dma-buf.c: In function 'dma_buf_get_unmapped_area':
+>> drivers/dma-buf/dma-buf.c:142:27: error: 'struct mm_struct' has no member named 'get_unmapped_area'
+     142 |         return current->mm->get_unmapped_area(file, addr, len, pgoff, flags);
+         |                           ^~
+   drivers/dma-buf/dma-buf.c:143:1: error: control reaches end of non-void function [-Werror=return-type]
+     143 | }
+         | ^
+   cc1: some warnings being treated as errors
 
-Cc: John Harrison <John.C.Harrison@Intel.com>
-Cc: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
-Cc: José Roberto de Souza <jose.souza@intel.com>
 
-Signed-off-by: Vivaik Balasubrawmanian <vivaik.balasubrawmanian@intel.com>
----
- drivers/gpu/drm/i915/i915_query.c | 42 +++++++++++++++++++++++++++++++
- include/uapi/drm/i915_drm.h       | 32 +++++++++++++++++++++++
- 2 files changed, 74 insertions(+)
+vim +142 drivers/dma-buf/dma-buf.c
 
-diff --git a/drivers/gpu/drm/i915/i915_query.c b/drivers/gpu/drm/i915/i915_query.c
-index 00871ef99792..3e3563ab62b7 100644
---- a/drivers/gpu/drm/i915/i915_query.c
-+++ b/drivers/gpu/drm/i915/i915_query.c
-@@ -551,6 +551,47 @@ static int query_hwconfig_blob(struct drm_i915_private *i915,
- 	return hwconfig->size;
- }
- 
-+static int
-+query_uc_fw_version(struct drm_i915_private *i915, struct drm_i915_query_item *query)
-+{
-+	struct drm_i915_query_uc_fw_version __user *query_ptr = u64_to_user_ptr(query->data_ptr);
-+	size_t size = sizeof(struct drm_i915_query_uc_fw_version);
-+	struct drm_i915_query_uc_fw_version resp;
-+	int ret;
-+
-+	ret = copy_query_item(&resp, size, size, query);
-+	if (ret == size) {
-+		query->length = size;
-+		return 0;
-+	} else if (ret != 0)
-+		return ret;
-+
-+	if (resp.pad || resp.pad2 || resp.reserved) {
-+		drm_dbg(&i915->drm,
-+			"Invalid input fw version query structure parameters received");
-+		return -EINVAL;
-+	}
-+
-+	switch (resp.uc_type) {
-+	case I915_QUERY_UC_TYPE_GUC_SUBMISSION: {
-+		struct intel_guc *guc = &i915->gt0.uc.guc;
-+
-+		resp.major_ver = guc->submission_version.major;
-+		resp.minor_ver = guc->submission_version.minor;
-+		resp.patch_ver = guc->submission_version.patch;
-+		resp.branch_ver = 0;
-+		break;
-+	}
-+	default:
-+		return -EINVAL;
-+	}
-+
-+	if (copy_to_user(query_ptr, &resp, size))
-+		return -EFAULT;
-+
-+	return 0;
-+}
-+
- static int (* const i915_query_funcs[])(struct drm_i915_private *dev_priv,
- 					struct drm_i915_query_item *query_item) = {
- 	query_topology_info,
-@@ -559,6 +600,7 @@ static int (* const i915_query_funcs[])(struct drm_i915_private *dev_priv,
- 	query_memregion_info,
- 	query_hwconfig_blob,
- 	query_geometry_subslices,
-+	query_uc_fw_version,
- };
- 
- int i915_query_ioctl(struct drm_device *dev, void *data, struct drm_file *file)
-diff --git a/include/uapi/drm/i915_drm.h b/include/uapi/drm/i915_drm.h
-index 7000e5910a1d..6f9d52263c77 100644
---- a/include/uapi/drm/i915_drm.h
-+++ b/include/uapi/drm/i915_drm.h
-@@ -3013,6 +3013,7 @@ struct drm_i915_query_item {
- 	 *  - %DRM_I915_QUERY_MEMORY_REGIONS (see struct drm_i915_query_memory_regions)
- 	 *  - %DRM_I915_QUERY_HWCONFIG_BLOB (see `GuC HWCONFIG blob uAPI`)
- 	 *  - %DRM_I915_QUERY_GEOMETRY_SUBSLICES (see struct drm_i915_query_topology_info)
-+	 *  - %DRM_I915_QUERY_UC_FW_VERSION (see struct drm_i915_query_uc_fw_version)
- 	 */
- 	__u64 query_id;
- #define DRM_I915_QUERY_TOPOLOGY_INFO		1
-@@ -3021,6 +3022,7 @@ struct drm_i915_query_item {
- #define DRM_I915_QUERY_MEMORY_REGIONS		4
- #define DRM_I915_QUERY_HWCONFIG_BLOB		5
- #define DRM_I915_QUERY_GEOMETRY_SUBSLICES	6
-+#define DRM_I915_QUERY_UC_FW_VERSION        7
- /* Must be kept compact -- no holes and well documented */
- 
- 	/**
-@@ -3213,6 +3215,36 @@ struct drm_i915_query_topology_info {
- 	__u8 data[];
- };
- 
-+/**
-+* struct drm_i915_query_uc_fw_version - query a micro-controller firmware version
-+*
-+* Given a uc_type this will return the major, minor, patch and branch version
-+* of the micro-controller firmware.
-+*/
-+struct drm_i915_query_uc_fw_version {
-+	/** @uc: The micro-controller type to query firmware version */
-+#define I915_QUERY_UC_TYPE_GUC_SUBMISSION 0
-+	__u16 uc_type;
-+
-+	/** @pad: MBZ */
-+	__u16 pad;
-+
-+	/* @major_ver: major uc fw version */
-+	__u32 major_ver;
-+	/* @minor_ver: minor uc fw version */
-+	__u32 minor_ver;
-+	/* @patch_ver: patch uc fw version */
-+	__u32 patch_ver;
-+	/* @branch_ver: branch uc fw version */
-+	__u32 branch_ver;
-+
-+	/** @pad2: MBZ */
-+	__u32 pad2;
-+
-+	/** @reserved: Reserved */
-+	__u64 reserved;
-+};
-+
- /**
-  * DOC: Engine Discovery uAPI
-  *
+   131	
+   132	static unsigned long
+   133	dma_buf_get_unmapped_area(struct file *file,
+   134				  unsigned long addr,
+   135				  unsigned long len,
+   136				  unsigned long pgoff,
+   137				  unsigned long flags)
+   138	{
+   139		if ((flags & MAP_TYPE) == MAP_PRIVATE)
+   140			return -EINVAL;
+   141	
+ > 142		return current->mm->get_unmapped_area(file, addr, len, pgoff, flags);
+   143	}
+   144	
 
-base-commit: e2d29b46ca6d480bc3bc328a7775c3028bc1e5c8
 -- 
-2.34.1
-
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
