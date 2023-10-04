@@ -2,52 +2,53 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 11DC17B78D6
-	for <lists+intel-gfx@lfdr.de>; Wed,  4 Oct 2023 09:37:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id A09D07B7911
+	for <lists+intel-gfx@lfdr.de>; Wed,  4 Oct 2023 09:53:19 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8E36E10E33A;
-	Wed,  4 Oct 2023 07:37:19 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8F0FE10E0DD;
+	Wed,  4 Oct 2023 07:53:17 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.65])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 47C8B10E0E0;
- Wed,  4 Oct 2023 07:37:17 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E60BF10E0DD
+ for <intel-gfx@lists.freedesktop.org>; Wed,  4 Oct 2023 07:53:15 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1696405037; x=1727941037;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=lH2yySvOsZ4VCwoNxaRVxN1CB8Fiih6UCzosIeY22Rc=;
- b=KBCw7ZGBY2Gj1eM7nIKW1VEsf+2mGxqVE5cug0sZBaT2TNk5jTpDXRwI
- fCv23Ha2ahDxWEWID92dh/DdUxnlOSU5r763dqdC9AdHdYbzTBEzN8Epl
- RGlUIRgT3NFr1R//eKZrznQnXkbgykFoVFLJngKRHSyApHhAxLV+TVMHP
- iekhv+xtFyl15FhHiszw9h5sezqFm6mFcf9MyvI0XIOOXlyoKiFj+DiVF
- VxqNMw/wexsPI2ByRLC+K4MiOu9Nwf436JaJpdl0Ij6k2zAEgTjnyTcM4
- aeJEbRSzoCO0EUiipzzKyV8V2/wUKcxehOUllda2iYQ8azlrEOqgPGFCV w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10852"; a="386955562"
-X-IronPort-AV: E=Sophos;i="6.03,199,1694761200"; d="scan'208";a="386955562"
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
- by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Oct 2023 00:37:16 -0700
+ t=1696405995; x=1727941995;
+ h=from:to:subject:in-reply-to:references:date:message-id:
+ mime-version:content-transfer-encoding;
+ bh=sgNlnzc9ikbcubONi4JVh9qAbn63GhMxpUQIQwQ+KQg=;
+ b=js+E2lbyDESr7j2VX6LyVS9N1V39EC9uZnmFddeNGiR0kOKPnwSWTUhV
+ 65WJPGepXmtY3tsbhyWUoGNXSzH5mVIkW8ih5WOf6TvIp6WIXIW90VzC6
+ WLlNKLsll+xsBi4vZS6QTGwpt+Avyp5pPZjBNiOClYrDKgrQlwsnYXDH0
+ mfQGJy63Ls5Jz9dYJDtxYa4VpRhHvKP8meQcPAFLt/WgT1EcOYEKXnaCJ
+ XEuHK4yBFjZ1AjNH3lKvNKWkfLExVbG8vPiLY8nCh4+VAaiVcdIzXErkQ
+ PbiVf9wZoKlqfGrNWA6qiEjkaz5OSFAj0ndn0FQnz69+7eP76u+S9kgDb g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10852"; a="469360576"
+X-IronPort-AV: E=Sophos;i="6.03,199,1694761200"; d="scan'208";a="469360576"
+Received: from orsmga007.jf.intel.com ([10.7.209.58])
+ by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 04 Oct 2023 00:53:14 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10852"; a="786399736"
-X-IronPort-AV: E=Sophos;i="6.03,199,1694761200"; d="scan'208";a="786399736"
-Received: from azainola-mobl3.gar.corp.intel.com (HELO intel.com)
- ([10.214.163.167])
- by orsmga001-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Oct 2023 00:37:12 -0700
-Date: Wed, 4 Oct 2023 09:37:06 +0200
-From: Andi Shyti <andi.shyti@linux.intel.com>
-To: Vivaik Balasubrawmanian <vivaik.balasubrawmanian@intel.com>
-Message-ID: <ZR0WIngilVQo8ykA@ashyti-mobl2.lan>
-References: <20231004034012.66334-1-vivaik.balasubrawmanian@intel.com>
+X-IronPort-AV: E=McAfee;i="6600,9927,10852"; a="744847359"
+X-IronPort-AV: E=Sophos;i="6.03,199,1694761200"; d="scan'208";a="744847359"
+Received: from msterni-mobl.ger.corp.intel.com (HELO localhost)
+ ([10.252.56.48])
+ by orsmga007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 04 Oct 2023 00:53:11 -0700
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Ville Syrjala <ville.syrjala@linux.intel.com>,
+ intel-gfx@lists.freedesktop.org
+In-Reply-To: <20231003200620.11633-1-ville.syrjala@linux.intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20231003200620.11633-1-ville.syrjala@linux.intel.com>
+Date: Wed, 04 Oct 2023 10:53:08 +0300
+Message-ID: <87jzs2g6xn.fsf@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-15
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20231004034012.66334-1-vivaik.balasubrawmanian@intel.com>
-Subject: Re: [Intel-gfx] [Patch v2] Add uAPI to query microcontroller fw
- version
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+Subject: Re: [Intel-gfx] [PATCH v3 0/4] drm/i915: Start cleaning up the DPLL
+ ID mess
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -60,112 +61,52 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi Vivaik,
+On Tue, 03 Oct 2023, Ville Syrjala <ville.syrjala@linux.intel.com> wrote:
+> From: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
+>
+> Start to clean up the mess around DPLL IDs a bit by removing
+> the nasty assumption that the index of the DPLL in the
+> arrays matches its ID. Fortunately we did have a WARN
+> i nthere to cathc mistakes, but better to not has such
+> silly assumptions i nthe first place.
+>
+> There's still a lot of mess left since the DPLL IDs in
+> the hardware are a mess as well. Eg. the index of the
+> register instance often differs from the index used
+> to select the DPLL in clock routing thing. So we could
+> probably clean up more of that, perhaps by declaring
+> separate IDs for each PLL for each use case...
 
-On Tue, Oct 03, 2023 at 08:40:12PM -0700, Vivaik Balasubrawmanian wrote:
-> Due to a bug in GuC firmware, Mesa can't enable by default the usage of 
-> async compute engines feature in DG2 and newer. A new GuC firmware fixed the issue but 
-> until now there was no way for Mesa to know if KMD was running with the fixed GuC version or not,
-> so this uAPI is required.
-> 
-> More context on the issue:
-> Vulkan allows applications to create types of queues: graphics, compute and copy.
-> Today Intel Vulkan driver uses Render engine to implement all those 3 queues types.
-> 
-> There is a set of operations that a queue type is required to implement, 
-> DG2 compute engine have almost all the operations required by compute queue but still lacks some.
+Reviewed-by: Jani Nikula <jani.nikula@intel.com>
 
-/have/has/
+still holds on the series
 
-> So the solution is to send those operations not supported by compute engine to render engine 
-> and do some synchronization around it. But doing so causes the GuC scheduler to get stuck 
 
-/to get/gets/
-
-> around the synchronization, until KMD resets the engine and ban the application context.
-
-/ban/bans/
-
-> This issue was root caused to a GuC firmware issue and was fixed in newer version.
-> 
-> So Mesa can't enable the "async compute" without knowing for sure that KMD is running 
-> with a GuC version that has the scheduler fix. Same will happen when Mesa start to use 
-> copy engine.
-> 
-> This uAPI  may be expanded in future to query other firmware versions too.
-
-Thanks for the explanation, it's clear and comprehensive.
-
-Can you please wrap it to 75 characters (as per the Kernel
-doc[1]) or 65 characters (as per the e-mail netiquette[2]).
-
-[1] https://docs.kernel.org/process/submitting-patches.html#the-canonical-patch-format
-[2] https://www.ietf.org/rfc/rfc1855.txt
-
-> More information:
-> https://gitlab.freedesktop.org/mesa/mesa/-/merge_requests/23661
-> Mesa usage: https://gitlab.freedesktop.org/mesa/mesa/-/merge_requests/25233
-> 
+>
 > v2:
-> - incorporated feedback from Tvrtko Ursulin:
->   - updated patch description to clarify the use case that identified
->     this issue.
->   - updated query_uc_fw_version() to use copy_query_item() helper.
->   - updated the implemented GuC version query to return Submission
->     version.
-> 
-> Cc: John Harrison <John.C.Harrison@Intel.com>
-> Cc: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
-> Cc: José Roberto de Souza <jose.souza@intel.com>
-> 
-> Signed-off-by: Vivaik Balasubrawmanian <vivaik.balasubrawmanian@intel.com>
+> - the trivial patches were already merged
+> - introduce pll->index
+> - add another patch for for_each_shared_dpll()
+> - add another patch s/dev_priv/i915/
+>
+> v3:
+> - deal with pll->index in debugfs code
+> - rebase due to other changes
+>
+> Ville Syrj=C3=A4l=C3=A4 (4):
+>   drm/i915: Stop requiring PLL index =3D=3D PLL ID
+>   drm/i915: Decouple I915_NUM_PLLS from PLL IDs
+>   drm/i915: Introduce for_each_shared_dpll()
+>   drm/i915: s/dev_priv/i915/ in the shared_dpll code
+>
+>  .../drm/i915/display/intel_display_debugfs.c  |   9 +-
+>  drivers/gpu/drm/i915/display/intel_dpll_mgr.c | 965 +++++++++---------
+>  drivers/gpu/drm/i915/display/intel_dpll_mgr.h |  26 +-
+>  .../gpu/drm/i915/display/intel_pch_refclk.c   |   7 +-
+>  4 files changed, 522 insertions(+), 485 deletions(-)
 
-Please don't leave blank lines in the tag section.
-
-> ---
->  drivers/gpu/drm/i915/i915_query.c | 42 +++++++++++++++++++++++++++++++
->  include/uapi/drm/i915_drm.h       | 32 +++++++++++++++++++++++
->  2 files changed, 74 insertions(+)
-> 
-> diff --git a/drivers/gpu/drm/i915/i915_query.c b/drivers/gpu/drm/i915/i915_query.c
-> index 00871ef99792..3e3563ab62b7 100644
-> --- a/drivers/gpu/drm/i915/i915_query.c
-> +++ b/drivers/gpu/drm/i915/i915_query.c
-> @@ -551,6 +551,47 @@ static int query_hwconfig_blob(struct drm_i915_private *i915,
->  	return hwconfig->size;
->  }
->  
-> +static int
-> +query_uc_fw_version(struct drm_i915_private *i915, struct drm_i915_query_item *query)
-> +{
-> +	struct drm_i915_query_uc_fw_version __user *query_ptr = u64_to_user_ptr(query->data_ptr);
-> +	size_t size = sizeof(struct drm_i915_query_uc_fw_version);
-> +	struct drm_i915_query_uc_fw_version resp;
-> +	int ret;
-> +
-> +	ret = copy_query_item(&resp, size, size, query);
-> +	if (ret == size) {
-> +		query->length = size;
-> +		return 0;
-> +	} else if (ret != 0)
-> +		return ret;
-
-please use braces around the "else if".
-
-> +
-> +	if (resp.pad || resp.pad2 || resp.reserved) {
-
-why do you care to check the padding?
-
-> +		drm_dbg(&i915->drm,
-> +			"Invalid input fw version query structure parameters received");
-
-"Invalid firmware query" maybe it's a bit more understandable.
-
-Andi
-> +		return -EINVAL;
-> +	}
+--=20
+Jani Nikula, Intel
