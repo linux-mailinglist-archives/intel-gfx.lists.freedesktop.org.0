@@ -1,43 +1,43 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2FE687B890D
-	for <lists+intel-gfx@lfdr.de>; Wed,  4 Oct 2023 20:22:19 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5BA137B8AA9
+	for <lists+intel-gfx@lfdr.de>; Wed,  4 Oct 2023 20:37:35 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8B67E10E3B1;
-	Wed,  4 Oct 2023 18:22:17 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C706510E172;
+	Wed,  4 Oct 2023 18:37:33 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from dfw.source.kernel.org (dfw.source.kernel.org
- [IPv6:2604:1380:4641:c500::1])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 56A0D10E3B1
- for <intel-gfx@lists.freedesktop.org>; Wed,  4 Oct 2023 18:22:16 +0000 (UTC)
+Received: from sin.source.kernel.org (sin.source.kernel.org
+ [IPv6:2604:1380:40e1:4800::1])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 51B8110E172
+ for <intel-gfx@lists.freedesktop.org>; Wed,  4 Oct 2023 18:37:32 +0000 (UTC)
 Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
- by dfw.source.kernel.org (Postfix) with ESMTP id 5979F61626;
- Wed,  4 Oct 2023 18:22:15 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8B9F9C433C8;
- Wed,  4 Oct 2023 18:22:14 +0000 (UTC)
+ by sin.source.kernel.org (Postfix) with ESMTP id C23A1CE1E46;
+ Wed,  4 Oct 2023 18:37:30 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7F8E1C433C9;
+ Wed,  4 Oct 2023 18:37:29 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
- s=korg; t=1696443735;
- bh=NPsQPQPR21b20IDKoRJleKF9vdJywS4fJq8fCdUS1og=;
+ s=korg; t=1696444650;
+ bh=53Kj0TDrY1dIUMThVJxLB8dUhQ27mbJxaen1nbfVHOQ=;
  h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
- b=QJLuSZHnNk+BXkLHpaP/NzwGc+JSEv+94yNBCZwYSunM2kBtq+klfJd9+Z4vYjtNC
- GPwjDiIE8yxtcXDtyczDIV2pSEI9NW8rryU3DALueG6OyOcCUMRh7VvFMG9KD4FagI
- NIEmAMEXUDjcSWubONctJeEZHW536jcTZdZm1fpQ=
+ b=yNeyaLKs0GfsoqJU995+Uny1j6QNj7C60QpU4JNPxAojW3tXWRca+7WsgtAw64o/E
+ qBw99GHnbijaFPksp8GMyIdVFozw0sajtQ0yC4xmbsc5pPC76xsa7vjhaW7zjJGWST
+ BT+0WPM0/GDIe8PG4/rzh54uTJUlJM8Xy1DR0ivE=
 From: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
 To: stable@vger.kernel.org
-Date: Wed,  4 Oct 2023 19:57:04 +0200
-Message-ID: <20231004175228.923291189@linuxfoundation.org>
+Date: Wed,  4 Oct 2023 19:57:33 +0200
+Message-ID: <20231004175243.562777225@linuxfoundation.org>
 X-Mailer: git-send-email 2.42.0
-In-Reply-To: <20231004175217.404851126@linuxfoundation.org>
-References: <20231004175217.404851126@linuxfoundation.org>
+In-Reply-To: <20231004175229.211487444@linuxfoundation.org>
+References: <20231004175229.211487444@linuxfoundation.org>
 User-Agent: quilt/0.67
 X-stable: review
 X-Patchwork-Hint: ignore
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH 6.1 251/259] drm/i915/gt: Fix reservation
+Subject: [Intel-gfx] [PATCH 6.5 308/321] drm/i915/gt: Fix reservation
  address in ggtt_reserve_guc_top
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -59,7 +59,7 @@ Cc: Fernando Pacheco <fernando.pacheco@intel.com>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-6.1-stable review patch.  If anyone has any objections, please let me know.
+6.5-stable review patch.  If anyone has any objections, please let me know.
 
 ------------------
 
@@ -106,7 +106,7 @@ Signed-off-by: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
 
 --- a/drivers/gpu/drm/i915/gt/intel_ggtt.c
 +++ b/drivers/gpu/drm/i915/gt/intel_ggtt.c
-@@ -500,20 +500,31 @@ void intel_ggtt_unbind_vma(struct i915_a
+@@ -511,20 +511,31 @@ void intel_ggtt_unbind_vma(struct i915_a
  	vm->clear_range(vm, vma_res->start, vma_res->vma_size);
  }
  
