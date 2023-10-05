@@ -2,56 +2,48 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id B95527BABD1
-	for <lists+intel-gfx@lfdr.de>; Thu,  5 Oct 2023 23:09:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id CDEED7BABD9
+	for <lists+intel-gfx@lfdr.de>; Thu,  5 Oct 2023 23:16:53 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 90C4F10E409;
-	Thu,  5 Oct 2023 21:09:27 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DA32210E409;
+	Thu,  5 Oct 2023 21:16:49 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.100])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CDE5C10E19D;
- Thu,  5 Oct 2023 21:09:25 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.126])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 808CF10E409;
+ Thu,  5 Oct 2023 21:16:48 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1696540165; x=1728076165;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:in-reply-to;
- bh=KaBfSZlS3KurW86jcVx7PGKHp07IiQLjON3hiUbQvW8=;
- b=Ax264OBn2/E9uVsUsyNT9xyaVbae+KX+KHcf2rHmDRDHZDi0nNQv3113
- xNJbiHbbFOWmc22eLFs7du2us05p02QvIxf6FO3dgfOZwWj1yNvV5PGWf
- z7NBAUpL8hWiUC2nHouxKKZYSFXzhGmbOC1kF9v2xkKqm+cQto3Ydf5Hv
- dv4p0jy8DkmTvK93tnkdAJKngPm7FZRmBufdY2bAUrg4Isg9vcPttU9NO
- 0d7VfJt98vZh8Gk9XF6lGVFF3Vz4OD8aK5o1HW9pP5u6aTY/iXTJth5LW
- AYdD6KB9pteeJtSIT7nDioudxu+jhGKdoezF6Mat9Pd0nB5jCGXeo2F/+ w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10854"; a="450113051"
-X-IronPort-AV: E=Sophos;i="6.03,203,1694761200"; d="scan'208";a="450113051"
-Received: from fmsmga006.fm.intel.com ([10.253.24.20])
- by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Oct 2023 14:09:25 -0700
+ t=1696540608; x=1728076608;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=FAkN7O4m38Ls2XkJ7xlrrvbzamnKqkvckJewNIJTidU=;
+ b=NeojmrUsvWjjdMojAae6r1zeK63g7BnxcEuJ/PoZHdB1WMaPk28rzEor
+ d5/HEeHIgdPY/59Y5sizyh4uYciosGsoDX5iBV7LGL0tEDcmbiweEfhvH
+ S6YTcDaO5o/Jzbq4ZCEFaIEMbDacoobbxEbYa8/y3vDWsoBdAm7GCPASb
+ lMTXhlBGGzlweBjGhkMmRpQIdRWBQorzEU6vtXVQJCj++KjTKaz9Dj3PI
+ jNOcRZsJUGYzvV5nG4/Qw2ontZVYKCVS56hE4PfFe8STLzb22cX/P4syR
+ uXE9YDw7rXhlJ6+Nrt0UQEzjg6bUA5eJkAqOD7wEkcNm2s4339u6RnrHV Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10854"; a="368698074"
+X-IronPort-AV: E=Sophos;i="6.03,203,1694761200"; d="scan'208";a="368698074"
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+ by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 05 Oct 2023 14:16:47 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10854"; a="999090435"
-X-IronPort-AV: E=Sophos;i="6.03,203,1694761200"; d="scan'208";a="999090435"
-Received: from kamilkon-desk.igk.intel.com (HELO localhost) ([10.102.138.187])
- by fmsmga006-auth.fm.intel.com with
- ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 05 Oct 2023 14:09:23 -0700
-Date: Thu, 5 Oct 2023 23:09:20 +0200
-From: Kamil Konieczny <kamil.konieczny@linux.intel.com>
-To: igt-dev@lists.freedesktop.org
-Message-ID: <20231005210920.3fsgos77s6ajtkt6@kamilkon-desk.igk.intel.com>
-Mail-Followup-To: Kamil Konieczny <kamil.konieczny@linux.intel.com>,
- igt-dev@lists.freedesktop.org,
- Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>,
- intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
- Mauro Carvalho Chehab <mchehab@kernel.org>
-References: <20231003091044.407965-11-janusz.krzysztofik@linux.intel.com>
- <20231003091044.407965-17-janusz.krzysztofik@linux.intel.com>
+X-IronPort-AV: E=McAfee;i="6600,9927,10854"; a="868093730"
+X-IronPort-AV: E=Sophos;i="6.03,203,1694761200"; d="scan'208";a="868093730"
+Received: from cchew3-mobl.gar.corp.intel.com (HELO intel.com)
+ ([10.213.41.249])
+ by fmsmga002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 05 Oct 2023 14:16:44 -0700
+From: Andi Shyti <andi.shyti@linux.intel.com>
+To: John Harrison <John.C.Harrison@Intel.com>
+Date: Thu,  5 Oct 2023 23:16:26 +0200
+Message-Id: <20231005211626.778227-1-andi.shyti@linux.intel.com>
+X-Mailer: git-send-email 2.40.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20231003091044.407965-17-janusz.krzysztofik@linux.intel.com>
-Subject: Re: [Intel-gfx] [PATCH i-g-t 6/9] tests/kms_selftest: Let subtest
- names match suite names
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-gfx] [PATCH] drm/i915/guc: Create the guc_to_i915() wrapper
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,97 +56,175 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org, Mauro Carvalho Chehab <mchehab@kernel.org>,
- intel-xe@lists.freedesktop.org
+Cc: intel-gfx <intel-gfx@lists.freedesktop.org>,
+ dri-devel <dri-devel@lists.freedesktop.org>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi Janusz,
-On 2023-10-03 at 11:10:51 +0200, Janusz Krzysztofik wrote:
-> There is a rule specified in Kunit Test Style and Nomenclature guidelines
-> [1] that states modules should be named after the test suite, followed by
-> _test.  Of course, that rule applies only to modules that provide one test
-> suite per module.
-> 
-> As long as that rule is obeyed by authors of Kunit test modules, there is
-> no need to hardcode related IGT subtest names in IGT source code.  We are
-> already able to derive subtest names from module names, with their _test
-> or _kunit suffixes stripped.  We may expect those names will match Kunit
-> suite names provided by the modules.
-> 
-> Drop custom subtest names from IGT Kunit tests that still use them.
-> However, keep the mechanism that allows us to provide a name that differs
-> from that derived from module name.  That will be required if we ever need
-> to support a kunit test module that provides multiple test suites (think
-> of i915 selftests code converted to kunit and the i915 module potentially
-> providing three test suites: mock, live and perf).
-> 
-> [1] https://docs.kernel.org/dev-tools/kunit/style.html
-> 
-> Signed-off-by: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
+Given a reference to "guc", the guc_to_i915() returns the
+pointer to "i915" private data.
 
-Reviewed-by: Kamil Konieczny <kamil.konieczny@linux.intel.com>
+Signed-off-by: Andi Shyti <andi.shyti@linux.intel.com>
+---
+ drivers/gpu/drm/i915/gt/intel_gt.h                |  5 +++++
+ drivers/gpu/drm/i915/gt/uc/intel_guc.c            |  2 +-
+ drivers/gpu/drm/i915/gt/uc/intel_guc_capture.c    |  2 +-
+ drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c         |  2 +-
+ drivers/gpu/drm/i915/gt/uc/intel_guc_log.c        | 10 +++++-----
+ drivers/gpu/drm/i915/gt/uc/intel_guc_rc.c         |  2 +-
+ drivers/gpu/drm/i915/gt/uc/intel_guc_slpc.c       |  2 +-
+ drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c |  4 ++--
+ 8 files changed, 17 insertions(+), 12 deletions(-)
 
-> ---
->  tests/kms_selftest.c | 37 ++++++++++++++++---------------------
->  1 file changed, 16 insertions(+), 21 deletions(-)
-> 
-> diff --git a/tests/kms_selftest.c b/tests/kms_selftest.c
-> index 080ffdf2c0..6618dbe50b 100644
-> --- a/tests/kms_selftest.c
-> +++ b/tests/kms_selftest.c
-> @@ -37,35 +37,30 @@
->   *
->   * arg[1]:
->   *
-> - * @drm_cmdline:            drm cmdline
-> - * @drm_damage:             drm damage
-> - * @drm_dp_mst:             drm dp mst
-> + * @drm_cmdline_parser:     drm cmdline parser
-> + * @drm_damage_helper:      drm damage helper
-> + * @drm_dp_mst_helper:      drm dp mst helper
->   * @drm_format_helper:      drm format helper
->   * @drm_format:             drm format
-> - * @drm_plane:              drm plane
-> - * @framebuffer:            framebuffer
-> + * @drm_plane_helper:       drm plane helper
-> + * @drm_framebuffer:        drm framebuffer
->   */
->  
->  IGT_TEST_DESCRIPTION("Basic sanity check of KMS selftests.");
->  
-> -struct kms_kunittests {
-> -	const char *kunit;
-> -	const char *name;
-> -};
-> -
->  igt_main
->  {
-> -	static const struct kms_kunittests kunit_subtests[] = {
-> -		{ "drm_cmdline_parser_test",	"drm_cmdline" },
-> -		{ "drm_damage_helper_test",	"drm_damage" },
-> -		{ "drm_dp_mst_helper_test",	"drm_dp_mst" },
-> -		{ "drm_format_helper_test",	"drm_format_helper" },
-> -		{ "drm_format_test",		"drm_format" },
-> -		{ "drm_framebuffer_test",	"framebuffer" },
-> -		{ "drm_plane_helper_test",	"drm_plane" },
-> -		{ NULL, NULL}
-> +	static const char *kunit_subtests[] = {
-> +		"drm_cmdline_parser_test",
-> +		"drm_damage_helper_test",
-> +		"drm_dp_mst_helper_test",
-> +		"drm_format_helper_test",
-> +		"drm_format_test",
-> +		"drm_framebuffer_test",
-> +		"drm_plane_helper_test",
-> +		NULL,
->  	};
->  
-> -	for (int i = 0; kunit_subtests[i].kunit != NULL; i++)
-> -		igt_kunit(kunit_subtests[i].kunit, kunit_subtests[i].name, NULL);
-> +	for (int i = 0; kunit_subtests[i] != NULL; i++)
-> +		igt_kunit(kunit_subtests[i], NULL, NULL);
->  }
-> -- 
-> 2.42.0
-> 
+diff --git a/drivers/gpu/drm/i915/gt/intel_gt.h b/drivers/gpu/drm/i915/gt/intel_gt.h
+index 970bedf6b78a..12a638f05d63 100644
+--- a/drivers/gpu/drm/i915/gt/intel_gt.h
++++ b/drivers/gpu/drm/i915/gt/intel_gt.h
+@@ -114,6 +114,11 @@ static inline struct intel_gt *gsc_to_gt(struct intel_gsc *gsc)
+ 	return container_of(gsc, struct intel_gt, gsc);
+ }
+ 
++static inline struct drm_i915_private *guc_to_i915(struct intel_guc *guc)
++{
++	return guc_to_gt(guc)->i915;
++}
++
+ void intel_gt_common_init_early(struct intel_gt *gt);
+ int intel_root_gt_init_early(struct drm_i915_private *i915);
+ int intel_gt_assign_ggtt(struct intel_gt *gt);
+diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc.c b/drivers/gpu/drm/i915/gt/uc/intel_guc.c
+index 27df41c53b89..db3ecbcd78c5 100644
+--- a/drivers/gpu/drm/i915/gt/uc/intel_guc.c
++++ b/drivers/gpu/drm/i915/gt/uc/intel_guc.c
+@@ -324,7 +324,7 @@ static u32 guc_ctl_wa_flags(struct intel_guc *guc)
+ 
+ static u32 guc_ctl_devid(struct intel_guc *guc)
+ {
+-	struct drm_i915_private *i915 = guc_to_gt(guc)->i915;
++	struct drm_i915_private *i915 = guc_to_i915(guc);
+ 
+ 	return (INTEL_DEVID(i915) << 16) | INTEL_REVID(i915);
+ }
+diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_capture.c b/drivers/gpu/drm/i915/gt/uc/intel_guc_capture.c
+index 331cec07c125..8cfc93d5d27d 100644
+--- a/drivers/gpu/drm/i915/gt/uc/intel_guc_capture.c
++++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_capture.c
+@@ -355,7 +355,7 @@ guc_capture_alloc_steered_lists(struct intel_guc *guc,
+ static const struct __guc_mmio_reg_descr_group *
+ guc_capture_get_device_reglist(struct intel_guc *guc)
+ {
+-	struct drm_i915_private *i915 = guc_to_gt(guc)->i915;
++	struct drm_i915_private *i915 = guc_to_i915(guc);
+ 	const struct __guc_mmio_reg_descr_group *lists;
+ 
+ 	if (GRAPHICS_VER(i915) >= 12)
+diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c b/drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c
+index 6e22af31513a..2d108a33b4e0 100644
+--- a/drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c
++++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c
+@@ -238,7 +238,7 @@ int intel_guc_ct_init(struct intel_guc_ct *ct)
+ 	u32 *cmds;
+ 	int err;
+ 
+-	err = i915_inject_probe_error(guc_to_gt(guc)->i915, -ENXIO);
++	err = i915_inject_probe_error(guc_to_i915(guc), -ENXIO);
+ 	if (err)
+ 		return err;
+ 
+diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_log.c b/drivers/gpu/drm/i915/gt/uc/intel_guc_log.c
+index 55bc8b55fbc0..bf16351c9349 100644
+--- a/drivers/gpu/drm/i915/gt/uc/intel_guc_log.c
++++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_log.c
+@@ -520,7 +520,7 @@ void intel_guc_log_init_early(struct intel_guc_log *log)
+ static int guc_log_relay_create(struct intel_guc_log *log)
+ {
+ 	struct intel_guc *guc = log_to_guc(log);
+-	struct drm_i915_private *i915 = guc_to_gt(guc)->i915;
++	struct drm_i915_private *i915 = guc_to_i915(guc);
+ 	struct rchan *guc_log_relay_chan;
+ 	size_t n_subbufs, subbuf_size;
+ 	int ret;
+@@ -573,7 +573,7 @@ static void guc_log_relay_destroy(struct intel_guc_log *log)
+ static void guc_log_copy_debuglogs_for_relay(struct intel_guc_log *log)
+ {
+ 	struct intel_guc *guc = log_to_guc(log);
+-	struct drm_i915_private *i915 = guc_to_gt(guc)->i915;
++	struct drm_i915_private *i915 = guc_to_i915(guc);
+ 	intel_wakeref_t wakeref;
+ 
+ 	_guc_log_copy_debuglogs_for_relay(log);
+@@ -589,7 +589,7 @@ static void guc_log_copy_debuglogs_for_relay(struct intel_guc_log *log)
+ static u32 __get_default_log_level(struct intel_guc_log *log)
+ {
+ 	struct intel_guc *guc = log_to_guc(log);
+-	struct drm_i915_private *i915 = guc_to_gt(guc)->i915;
++	struct drm_i915_private *i915 = guc_to_i915(guc);
+ 
+ 	/* A negative value means "use platform/config default" */
+ 	if (i915->params.guc_log_level < 0) {
+@@ -664,7 +664,7 @@ void intel_guc_log_destroy(struct intel_guc_log *log)
+ int intel_guc_log_set_level(struct intel_guc_log *log, u32 level)
+ {
+ 	struct intel_guc *guc = log_to_guc(log);
+-	struct drm_i915_private *i915 = guc_to_gt(guc)->i915;
++	struct drm_i915_private *i915 = guc_to_i915(guc);
+ 	intel_wakeref_t wakeref;
+ 	int ret = 0;
+ 
+@@ -796,7 +796,7 @@ void intel_guc_log_relay_flush(struct intel_guc_log *log)
+ static void guc_log_relay_stop(struct intel_guc_log *log)
+ {
+ 	struct intel_guc *guc = log_to_guc(log);
+-	struct drm_i915_private *i915 = guc_to_gt(guc)->i915;
++	struct drm_i915_private *i915 = guc_to_i915(guc);
+ 
+ 	if (!log->relay.started)
+ 		return;
+diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_rc.c b/drivers/gpu/drm/i915/gt/uc/intel_guc_rc.c
+index 1adec6de223c..9df7927304ae 100644
+--- a/drivers/gpu/drm/i915/gt/uc/intel_guc_rc.c
++++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_rc.c
+@@ -14,7 +14,7 @@ static bool __guc_rc_supported(struct intel_guc *guc)
+ {
+ 	/* GuC RC is unavailable for pre-Gen12 */
+ 	return guc->submission_supported &&
+-		GRAPHICS_VER(guc_to_gt(guc)->i915) >= 12;
++		GRAPHICS_VER(guc_to_i915(guc)) >= 12;
+ }
+ 
+ static bool __guc_rc_selected(struct intel_guc *guc)
+diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_slpc.c b/drivers/gpu/drm/i915/gt/uc/intel_guc_slpc.c
+index 2dfb07cc4b33..3e681ab6fbf9 100644
+--- a/drivers/gpu/drm/i915/gt/uc/intel_guc_slpc.c
++++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_slpc.c
+@@ -34,7 +34,7 @@ static bool __detect_slpc_supported(struct intel_guc *guc)
+ {
+ 	/* GuC SLPC is unavailable for pre-Gen12 */
+ 	return guc->submission_supported &&
+-		GRAPHICS_VER(guc_to_gt(guc)->i915) >= 12;
++		GRAPHICS_VER(guc_to_i915(guc)) >= 12;
+ }
+ 
+ static bool __guc_slpc_selected(struct intel_guc *guc)
+diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c b/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
+index 2cce5ec1ff00..2e6576bcfc14 100644
+--- a/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
++++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
+@@ -4543,12 +4543,12 @@ static bool __guc_submission_supported(struct intel_guc *guc)
+ {
+ 	/* GuC submission is unavailable for pre-Gen11 */
+ 	return intel_guc_is_supported(guc) &&
+-	       GRAPHICS_VER(guc_to_gt(guc)->i915) >= 11;
++	       GRAPHICS_VER(guc_to_i915(guc)) >= 11;
+ }
+ 
+ static bool __guc_submission_selected(struct intel_guc *guc)
+ {
+-	struct drm_i915_private *i915 = guc_to_gt(guc)->i915;
++	struct drm_i915_private *i915 = guc_to_i915(guc);
+ 
+ 	if (!intel_guc_submission_is_supported(guc))
+ 		return false;
+-- 
+2.40.1
+
