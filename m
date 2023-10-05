@@ -2,51 +2,55 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id D365B7B9D12
-	for <lists+intel-gfx@lfdr.de>; Thu,  5 Oct 2023 14:53:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7C3317B9D25
+	for <lists+intel-gfx@lfdr.de>; Thu,  5 Oct 2023 15:00:18 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0CA0B10E166;
-	Thu,  5 Oct 2023 12:53:00 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C627B10E3EF;
+	Thu,  5 Oct 2023 13:00:16 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.100])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E147E10E166
- for <intel-gfx@lists.freedesktop.org>; Thu,  5 Oct 2023 12:52:57 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 49D3810E3ED
+ for <intel-gfx@lists.freedesktop.org>; Thu,  5 Oct 2023 13:00:14 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1696510377; x=1728046377;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version:content-transfer-encoding;
- bh=euRTp85O5pRXcQ0rgJnpuEAkphn4EJq0e9SsqYQJ3ng=;
- b=oCO2MIYHF8bgh96AB4J/ePp76fdItlopEERFyH0VLLQq3QhIo7Qc4NlT
- jVWOqtjMcKCd7+t4ruNhco3b5DdmY7jfFDMOHTIMdxs1LCUeaUnApnMzN
- 6HWVbBCvh5FXWHwSfZqhs/KXBv2kGzpp2OedoaQ5CL0Iq9CAXzBGtEtKY
- MX6UTwExwhmbLuwRBbWuXmucDVVLk0DS7E7Ov4ikTjegMcYqZyD31PDTn
- lfjojRlTMvAK631BjpTYi9c5htxysicZMifZ5tMZuczMv5BzojlWeLfi2
- I4xz8WyEfoU4xOvV3LkVY6MQPDduNp3/9pdqXbsHPOhFMwT5q5tA89wvW g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10854"; a="449976555"
-X-IronPort-AV: E=Sophos;i="6.03,203,1694761200"; d="scan'208";a="449976555"
-Received: from fmsmga007.fm.intel.com ([10.253.24.52])
- by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Oct 2023 05:52:57 -0700
+ t=1696510814; x=1728046814;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=FHOCAHJo3GiwFvf4QIV7xOZNiZXuwVVyFsxSakrxkl4=;
+ b=WqUNrqrFnHMHcPJk00pClP18yJ1MlxCd/4wZlzW0l0FHWyePXZMCZd0x
+ TJ0HGLubncRBC0R3+qKtvHjn6cpYgW6U7CtwKtgCLTwNgLzOZHOlyTd9u
+ 4KixrNtHDkf7o+Ip5+m+fjSDK18TJLCHjdp7HY2Hi0BdFVdcXSrqLX5eP
+ +LvXtN1gTSP3hNMXJ9r8BmGQVjWJ5bxDzGTq9Qad1Kf/rE0hgru6njVSb
+ XmAIx6B3pj1nvrArkCQwe4TpI8ukkBLCejvfZCiNBaMgK0G+JNLlDIexo
+ JxGXZhU+jdK/Hb9H3qVmS0D6vx/jlfXY6kBA6oS4JDLxrkxzCnPBXTBFB g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10854"; a="5049950"
+X-IronPort-AV: E=Sophos;i="6.03,203,1694761200"; 
+   d="scan'208";a="5049950"
+Received: from fmsmga005.fm.intel.com ([10.253.24.32])
+ by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 05 Oct 2023 06:00:13 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10854"; a="755434654"
-X-IronPort-AV: E=Sophos;i="6.03,203,1694761200"; d="scan'208";a="755434654"
-Received: from jnikula-mobl4.fi.intel.com (HELO localhost) ([10.237.66.162])
- by fmsmga007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Oct 2023 05:52:54 -0700
-From: Jani Nikula <jani.nikula@intel.com>
-To: Jouni =?utf-8?Q?H=C3=B6gander?= <jouni.hogander@intel.com>,
- intel-gfx@lists.freedesktop.org
-In-Reply-To: <20231005054500.2053070-1-jouni.hogander@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20231005054500.2053070-1-jouni.hogander@intel.com>
-Date: Thu, 05 Oct 2023 15:52:51 +0300
-Message-ID: <87lechcjto.fsf@intel.com>
+X-IronPort-AV: E=McAfee;i="6600,9927,10854"; a="1083013058"
+X-IronPort-AV: E=Sophos;i="6.03,203,1694761200"; d="scan'208";a="1083013058"
+Received: from yklum-mobl.gar.corp.intel.com (HELO intel.com) ([10.215.244.7])
+ by fmsmga005-auth.fm.intel.com with
+ ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 05 Oct 2023 06:00:10 -0700
+Date: Thu, 5 Oct 2023 15:00:04 +0200
+From: Andi Shyti <andi.shyti@linux.intel.com>
+To: intel-gfx@lists.freedesktop.org
+Message-ID: <ZR6zVOy3GbvbuPIX@ashyti-mobl2.lan>
+References: <20231004220739.1313307-1-jonathan.cavitt@intel.com>
+ <169647579100.7514.15467798178604356829@emeril.freedesktop.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-Subject: Re: [Intel-gfx] [RFC PATCH 0/4] Framework for display parameters
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <169647579100.7514.15467798178604356829@emeril.freedesktop.org>
+Subject: Re: [Intel-gfx] 
+ =?utf-8?b?4pyXIEZpLkNJLkJBVDogZmFpbHVyZSBmb3IgU3Vi?=
+ =?utf-8?q?ject=3A_=5BPATCH_dii-client_v6_0/4=5D_drm/i915=3A_Define_and_us?=
+ =?utf-8?q?e_GuC_and_CTB_TLB_invalidation_routines?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,67 +63,43 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
+Cc: Jonathan Cavitt <jonathan.cavitt@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, 05 Oct 2023, Jouni H=C3=B6gander <jouni.hogander@intel.com> wrote:
-> Currently all module parameters are handled by i915_param.c/h. This
-> is a problem for display parameters when Xe driver is used.
->
-> This patch set adds a mechanism to add parameters specific to the
-> display. This is mainly copied from existing i915 parameters
-> implementation with some naming changes and taking into account
-> varying driver name.
->
-> Also fbc and psr related parameter are moved as an example.
+Hi Jonathan,
 
-Added some more Cc's as FYI.
+> CI changes
+> 
+> Possible regressions
+> 
+>   • boot:
+>       □ bat-dg1-5: PASS -> FAIL
+> 
+> IGT changes
+> 
+> Possible regressions
+> 
+>   • igt@kms_addfb_basic@addfb25-framebuffer-vs-set-tiling:
+> 
+>       □ bat-adlm-1: PASS -> INCOMPLETE
+>   • igt@kms_busy@basic@flip:
+> 
+>       □ bat-adlp-11: PASS -> ABORT
+> 
+>       □ bat-adlp-6: PASS -> INCOMPLETE
+> 
+>   • igt@kms_busy@basic@modeset:
+> 
+>       □ bat-adlp-11: PASS -> DMESG-WARN
+>   • igt@kms_force_connector_basic@force-connector-state:
+> 
+>       □ bat-rpls-1: PASS -> INCOMPLETE
 
-It's not perfect, but I'm okay with the general approach. I've hoped for
-a beautiful solution to the problem, but hopes don't turn into code.
+Although these failures appear very consistently, they don't look
+related to your patch. But still I wonder why they show up so
+consistently.
 
-I'll reply with some bikeshedding comments to the individual patches.
+Is anyone from the list able to provide some thoughts?
 
-BR,
-Jani.
-
-
->
-> Cc: Jani Nikula <jani.nikula@intel.com>
-> Cc: Uma Shankar <uma.shankar@intel.com>
-> Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
->
-> Jouni H=C3=B6gander (4):
->   drm/i915/display: Add framework to add parameters specific to display
->   drm/i915/display: Dump also display parameters into GPU error dump
->   drm/i915/display: Move enable_fbc module parameter under display
->   drm/i915/display: Move psr related module parameters under display
->
->  drivers/gpu/drm/i915/Makefile                 |   2 +
->  drivers/gpu/drm/i915/display/i9xx_wm.c        |   2 +-
->  .../gpu/drm/i915/display/intel_display_core.h |   2 +
->  .../drm/i915/display/intel_display_debugfs.c  |   2 +
->  .../display/intel_display_debugfs_params.c    | 239 ++++++++++++++++++
->  .../display/intel_display_debugfs_params.h    |  14 +
->  .../drm/i915/display/intel_display_device.c   |   8 +
->  .../drm/i915/display/intel_display_device.h   |   1 +
->  .../drm/i915/display/intel_display_params.c   | 166 ++++++++++++
->  .../drm/i915/display/intel_display_params.h   |  65 +++++
->  drivers/gpu/drm/i915/display/intel_fbc.c      |  10 +-
->  drivers/gpu/drm/i915/display/intel_psr.c      |  14 +-
->  drivers/gpu/drm/i915/i915_driver.c            |   2 +
->  drivers/gpu/drm/i915/i915_gpu_error.c         |   3 +
->  drivers/gpu/drm/i915/i915_gpu_error.h         |   2 +
->  drivers/gpu/drm/i915/i915_params.c            |  19 --
->  drivers/gpu/drm/i915/i915_params.h            |   4 -
->  17 files changed, 519 insertions(+), 36 deletions(-)
->  create mode 100644 drivers/gpu/drm/i915/display/intel_display_debugfs_pa=
-rams.c
->  create mode 100644 drivers/gpu/drm/i915/display/intel_display_debugfs_pa=
-rams.h
->  create mode 100644 drivers/gpu/drm/i915/display/intel_display_params.c
->  create mode 100644 drivers/gpu/drm/i915/display/intel_display_params.h
-
---=20
-Jani Nikula, Intel
+Andi
