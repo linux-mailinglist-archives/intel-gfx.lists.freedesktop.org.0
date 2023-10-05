@@ -2,32 +2,32 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id E40F87B9AFE
-	for <lists+intel-gfx@lfdr.de>; Thu,  5 Oct 2023 07:56:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4ED107B9B0B
+	for <lists+intel-gfx@lfdr.de>; Thu,  5 Oct 2023 08:17:49 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 49B0210E1B9;
-	Thu,  5 Oct 2023 05:56:31 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 63C1510E1BA;
+	Thu,  5 Oct 2023 06:17:46 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 70AA510E1B3;
- Thu,  5 Oct 2023 05:56:28 +0000 (UTC)
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 5477910E1B3;
+ Thu,  5 Oct 2023 06:17:43 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 5BC5DAA3D8;
- Thu,  5 Oct 2023 05:56:28 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============8340453726660976304=="
+ by emeril.freedesktop.org (Postfix) with ESMTP id 4EF93AADD6;
+ Thu,  5 Oct 2023 06:17:43 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Murthy, Arun R" <arun.r.murthy@intel.com>
-Date: Thu, 05 Oct 2023 05:56:28 -0000
-Message-ID: <169648538835.7515.3312491369277119036@emeril.freedesktop.org>
+To: =?utf-8?q?Jouni_H=C3=B6gander?= <jouni.hogander@intel.com>
+Date: Thu, 05 Oct 2023 06:17:43 -0000
+Message-ID: <169648666329.7514.17443116874073085645@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
-References: <20230926091157.635438-1-arun.r.murthy@intel.com>
-In-Reply-To: <20230926091157.635438-1-arun.r.murthy@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
- =?utf-8?q?/i915=3A_Remove_the_module_parameter_=27fastboot=27_=28rev2=29?=
+References: <20231005054500.2053070-1-jouni.hogander@intel.com>
+In-Reply-To: <20231005054500.2053070-1-jouni.hogander@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_Framework_for_display_parameters?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -45,321 +45,282 @@ Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============8340453726660976304==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
 == Series Details ==
 
-Series: drm/i915: Remove the module parameter 'fastboot' (rev2)
-URL   : https://patchwork.freedesktop.org/series/124255/
-State : success
+Series: Framework for display parameters
+URL   : https://patchwork.freedesktop.org/series/124645/
+State : warning
 
 == Summary ==
 
-CI Bug Log - changes from CI_DRM_13713 -> Patchwork_124255v2
-====================================================
+Error: dim checkpatch failed
+1f8018f8b9a9 drm/i915/display: Add framework to add parameters specific to display
+Traceback (most recent call last):
+  File "scripts/spdxcheck.py", line 6, in <module>
+    from ply import lex, yacc
+ModuleNotFoundError: No module named 'ply'
+Traceback (most recent call last):
+  File "scripts/spdxcheck.py", line 6, in <module>
+    from ply import lex, yacc
+ModuleNotFoundError: No module named 'ply'
+-:79: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#79: 
+new file mode 100644
 
-Summary
--------
+-:166: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#166: FILE: drivers/gpu/drm/i915/display/intel_display_debugfs_params.c:83:
++static ssize_t intel_display_param_uint_write(struct file *file,
++				     const char __user *ubuf, size_t len,
 
-  **SUCCESS**
+-:219: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#219: FILE: drivers/gpu/drm/i915/display/intel_display_debugfs_params.c:136:
++static ssize_t intel_display_param_charp_write(struct file *file,
++				      const char __user *ubuf, size_t len,
 
-  No regressions found.
+-:261: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#261: FILE: drivers/gpu/drm/i915/display/intel_display_debugfs_params.c:178:
++intel_display_debugfs_create_int(const char *name, umode_t mode,
++			struct dentry *parent, int *value)
 
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_124255v2/index.html
+-:270: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#270: FILE: drivers/gpu/drm/i915/display/intel_display_debugfs_params.c:187:
++intel_display_debugfs_create_uint(const char *name, umode_t mode,
++			 struct dentry *parent, unsigned int *value)
 
-Participating hosts (40 -> 39)
-------------------------------
+-:279: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#279: FILE: drivers/gpu/drm/i915/display/intel_display_debugfs_params.c:196:
++intel_display_debugfs_create_charp(const char *name, umode_t mode,
++			  struct dentry *parent, char **value)
 
-  Additional (1): fi-kbl-soraka 
-  Missing    (2): bat-atsm-1 fi-snb-2520m 
+-:286: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'mode' - possible side-effects?
+#286: FILE: drivers/gpu/drm/i915/display/intel_display_debugfs_params.c:203:
++#define _intel_display_param_create_file(parent, name, mode, valp)	\
++	do {								\
++		if (mode)						\
++			_Generic(valp,					\
++				 bool * : debugfs_create_bool,		\
++				 int * : intel_display_debugfs_create_int, \
++				 unsigned int * : intel_display_debugfs_create_uint, \
++				 unsigned long * : debugfs_create_ulong, \
++				 char ** : intel_display_debugfs_create_charp) \
++				(name, mode, parent, valp);		\
++	} while (0)
 
-Known issues
-------------
+-:286: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'valp' - possible side-effects?
+#286: FILE: drivers/gpu/drm/i915/display/intel_display_debugfs_params.c:203:
++#define _intel_display_param_create_file(parent, name, mode, valp)	\
++	do {								\
++		if (mode)						\
++			_Generic(valp,					\
++				 bool * : debugfs_create_bool,		\
++				 int * : intel_display_debugfs_create_int, \
++				 unsigned int * : intel_display_debugfs_create_uint, \
++				 unsigned long * : debugfs_create_ulong, \
++				 char ** : intel_display_debugfs_create_charp) \
++				(name, mode, parent, valp);		\
++	} while (0)
 
-  Here are the changes found in Patchwork_124255v2 that come from known issues:
+-:289: CHECK:CAMELCASE: Avoid CamelCase: <_Generic>
+#289: FILE: drivers/gpu/drm/i915/display/intel_display_debugfs_params.c:206:
++			_Generic(valp,					\
 
-### CI changes ###
+-:294: CHECK:SPACING: spaces preferred around that '*' (ctx:WxO)
+#294: FILE: drivers/gpu/drm/i915/display/intel_display_debugfs_params.c:211:
++				 char ** : intel_display_debugfs_create_charp) \
+ 				      ^
 
-#### Issues hit ####
+-:294: ERROR:SPACING: space prohibited after that '*' (ctx:OxW)
+#294: FILE: drivers/gpu/drm/i915/display/intel_display_debugfs_params.c:211:
++				 char ** : intel_display_debugfs_create_charp) \
+ 				       ^
 
-  * boot:
-    - fi-hsw-4770:        [PASS][1] -> [FAIL][2] ([i915#8293])
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13713/fi-hsw-4770/boot.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_124255v2/fi-hsw-4770/boot.html
+-:319: WARNING:LONG_LINE: line length of 102 exceeds 100 columns
+#319: FILE: drivers/gpu/drm/i915/display/intel_display_debugfs_params.c:236:
++#define REGISTER(T, x, unused, mode, ...) _intel_display_param_create_file(dir, #x, mode, &params->x);
 
-  
-#### Possible fixes ####
+-:319: CHECK:MACRO_ARG_PRECEDENCE: Macro argument 'x' may be better as '(x)' to avoid precedence issues
+#319: FILE: drivers/gpu/drm/i915/display/intel_display_debugfs_params.c:236:
++#define REGISTER(T, x, unused, mode, ...) _intel_display_param_create_file(dir, #x, mode, &params->x);
 
-  * boot:
-    - fi-bsw-n3050:       [FAIL][3] ([i915#8293]) -> [PASS][4]
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13713/fi-bsw-n3050/boot.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_124255v2/fi-bsw-n3050/boot.html
+-:319: WARNING:TRAILING_SEMICOLON: macros should not use a trailing semicolon
+#319: FILE: drivers/gpu/drm/i915/display/intel_display_debugfs_params.c:236:
++#define REGISTER(T, x, unused, mode, ...) _intel_display_param_create_file(dir, #x, mode, &params->x);
 
-  
+-:387: WARNING:SPDX_LICENSE_TAG: Missing or malformed SPDX-License-Identifier tag in line 1
+#387: FILE: drivers/gpu/drm/i915/display/intel_display_params.c:1:
++/*
 
-### IGT changes ###
+-:418: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'name' - possible side-effects?
+#418: FILE: drivers/gpu/drm/i915/display/intel_display_params.c:32:
++#define intel_display_param_named(name, T, perm, desc) \
++	module_param_named(name, intel_display_modparams.name, T, perm); \
++	MODULE_PARM_DESC(name, desc)
 
-#### Issues hit ####
+-:421: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'name' - possible side-effects?
+#421: FILE: drivers/gpu/drm/i915/display/intel_display_params.c:35:
++#define intel_display_param_named_unsafe(name, T, perm, desc) \
++	module_param_named_unsafe(name, intel_display_modparams.name, T, perm); \
++	MODULE_PARM_DESC(name, desc)
 
-  * igt@core_auth@basic-auth:
-    - fi-kbl-soraka:      NOTRUN -> [DMESG-WARN][5] ([i915#1982])
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_124255v2/fi-kbl-soraka/igt@core_auth@basic-auth.html
+-:430: CHECK:LINE_SPACING: Please use a blank line after function/struct/union/enum declarations
+#430: FILE: drivers/gpu/drm/i915/display/intel_display_params.c:44:
++};
++/*
 
-  * igt@gem_exec_suspend@basic-s0@smem:
-    - bat-dg2-9:          [PASS][6] -> [INCOMPLETE][7] ([i915#9275])
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13713/bat-dg2-9/igt@gem_exec_suspend@basic-s0@smem.html
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_124255v2/bat-dg2-9/igt@gem_exec_suspend@basic-s0@smem.html
+-:448: ERROR:COMPLEX_MACRO: Macros with complex values should be enclosed in parentheses
+#448: FILE: drivers/gpu/drm/i915/display/intel_display_params.c:62:
++#define _param_dup(valp)				\
++	_Generic(valp,					\
++		 char ** : _param_dup_charp,		\
++		 default : _param_nop)			\
++		(valp)
 
-  * igt@gem_huc_copy@huc-copy:
-    - fi-kbl-soraka:      NOTRUN -> [SKIP][8] ([fdo#109271] / [i915#2190])
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_124255v2/fi-kbl-soraka/igt@gem_huc_copy@huc-copy.html
+-:448: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'valp' - possible side-effects?
+#448: FILE: drivers/gpu/drm/i915/display/intel_display_params.c:62:
++#define _param_dup(valp)				\
++	_Generic(valp,					\
++		 char ** : _param_dup_charp,		\
++		 default : _param_nop)			\
++		(valp)
 
-  * igt@gem_lmem_swapping@basic:
-    - fi-kbl-soraka:      NOTRUN -> [SKIP][9] ([fdo#109271] / [i915#4613]) +3 other tests skip
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_124255v2/fi-kbl-soraka/igt@gem_lmem_swapping@basic.html
+-:450: CHECK:SPACING: spaces preferred around that '*' (ctx:WxO)
+#450: FILE: drivers/gpu/drm/i915/display/intel_display_params.c:64:
++		 char ** : _param_dup_charp,		\
+ 		      ^
 
-  * igt@gem_lmem_swapping@random-engines:
-    - fi-bsw-n3050:       NOTRUN -> [SKIP][10] ([fdo#109271]) +18 other tests skip
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_124255v2/fi-bsw-n3050/igt@gem_lmem_swapping@random-engines.html
+-:450: ERROR:SPACING: space prohibited after that '*' (ctx:OxW)
+#450: FILE: drivers/gpu/drm/i915/display/intel_display_params.c:64:
++		 char ** : _param_dup_charp,		\
+ 		       ^
 
-  * igt@i915_selftest@live@gt_pm:
-    - fi-kbl-soraka:      NOTRUN -> [DMESG-FAIL][11] ([i915#1886] / [i915#7913])
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_124255v2/fi-kbl-soraka/igt@i915_selftest@live@gt_pm.html
+-:451: WARNING:TABSTOP: Statements should start on a tabstop
+#451: FILE: drivers/gpu/drm/i915/display/intel_display_params.c:65:
++		 default : _param_nop)			\
 
-  * igt@i915_suspend@basic-s3-without-i915:
-    - bat-mtlp-8:         NOTRUN -> [SKIP][12] ([i915#6645])
-   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_124255v2/bat-mtlp-8/igt@i915_suspend@basic-s3-without-i915.html
+-:451: ERROR:TRAILING_STATEMENTS: trailing statements should be on next line
+#451: FILE: drivers/gpu/drm/i915/display/intel_display_params.c:65:
++		 default : _param_nop)			\
 
-  * igt@kms_dsc@dsc-basic:
-    - fi-kbl-soraka:      NOTRUN -> [SKIP][13] ([fdo#109271]) +9 other tests skip
-   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_124255v2/fi-kbl-soraka/igt@kms_dsc@dsc-basic.html
+-:455: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#455: FILE: drivers/gpu/drm/i915/display/intel_display_params.c:69:
++void intel_display_params_copy(struct intel_display_params *dest,
++		      const struct intel_display_params *src)
 
-  * igt@kms_hdmi_inject@inject-audio:
-    - fi-bsw-n3050:       NOTRUN -> [FAIL][14] ([IGT#3])
-   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_124255v2/fi-bsw-n3050/igt@kms_hdmi_inject@inject-audio.html
+-:458: CHECK:MACRO_ARG_PRECEDENCE: Macro argument 'x' may be better as '(x)' to avoid precedence issues
+#458: FILE: drivers/gpu/drm/i915/display/intel_display_params.c:72:
++#define DUP(T, x, ...) _param_dup(&dest->x);
 
-  
-#### Possible fixes ####
+-:458: WARNING:TRAILING_SEMICOLON: macros should not use a trailing semicolon
+#458: FILE: drivers/gpu/drm/i915/display/intel_display_params.c:72:
++#define DUP(T, x, ...) _param_dup(&dest->x);
 
-  * igt@i915_selftest@live@execlists:
-    - fi-bsw-nick:        [ABORT][15] ([i915#7911] / [i915#7913]) -> [PASS][16]
-   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13713/fi-bsw-nick/igt@i915_selftest@live@execlists.html
-   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_124255v2/fi-bsw-nick/igt@i915_selftest@live@execlists.html
+-:469: ERROR:COMPLEX_MACRO: Macros with complex values should be enclosed in parentheses
+#469: FILE: drivers/gpu/drm/i915/display/intel_display_params.c:83:
++#define _param_free(valp)				\
++	_Generic(valp,					\
++		 char ** : _param_free_charp,		\
++		 default : _param_nop)			\
++		(valp)
 
-  * igt@i915_selftest@live@gt_heartbeat:
-    - fi-apl-guc:         [DMESG-FAIL][17] ([i915#5334]) -> [PASS][18]
-   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13713/fi-apl-guc/igt@i915_selftest@live@gt_heartbeat.html
-   [18]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_124255v2/fi-apl-guc/igt@i915_selftest@live@gt_heartbeat.html
+-:469: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'valp' - possible side-effects?
+#469: FILE: drivers/gpu/drm/i915/display/intel_display_params.c:83:
++#define _param_free(valp)				\
++	_Generic(valp,					\
++		 char ** : _param_free_charp,		\
++		 default : _param_nop)			\
++		(valp)
 
-  * igt@i915_selftest@live@requests:
-    - bat-mtlp-8:         [ABORT][19] ([i915#9414]) -> [PASS][20]
-   [19]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13713/bat-mtlp-8/igt@i915_selftest@live@requests.html
-   [20]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_124255v2/bat-mtlp-8/igt@i915_selftest@live@requests.html
+-:471: CHECK:SPACING: spaces preferred around that '*' (ctx:WxO)
+#471: FILE: drivers/gpu/drm/i915/display/intel_display_params.c:85:
++		 char ** : _param_free_charp,		\
+ 		      ^
 
-  
-#### Warnings ####
+-:471: ERROR:SPACING: space prohibited after that '*' (ctx:OxW)
+#471: FILE: drivers/gpu/drm/i915/display/intel_display_params.c:85:
++		 char ** : _param_free_charp,		\
+ 		       ^
 
-  * igt@i915_suspend@basic-s2idle-without-i915:
-    - fi-ivb-3770:        [DMESG-WARN][21] ([i915#1982] / [i915#8841]) -> [DMESG-WARN][22] ([i915#8841])
-   [21]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13713/fi-ivb-3770/igt@i915_suspend@basic-s2idle-without-i915.html
-   [22]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_124255v2/fi-ivb-3770/igt@i915_suspend@basic-s2idle-without-i915.html
+-:472: WARNING:TABSTOP: Statements should start on a tabstop
+#472: FILE: drivers/gpu/drm/i915/display/intel_display_params.c:86:
++		 default : _param_nop)			\
 
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
+-:472: ERROR:TRAILING_STATEMENTS: trailing statements should be on next line
+#472: FILE: drivers/gpu/drm/i915/display/intel_display_params.c:86:
++		 default : _param_nop)			\
 
-  [IGT#3]: https://gitlab.freedesktop.org/drm/igt-gpu-tools/issues/3
-  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
-  [i915#1886]: https://gitlab.freedesktop.org/drm/intel/issues/1886
-  [i915#1982]: https://gitlab.freedesktop.org/drm/intel/issues/1982
-  [i915#2190]: https://gitlab.freedesktop.org/drm/intel/issues/2190
-  [i915#4613]: https://gitlab.freedesktop.org/drm/intel/issues/4613
-  [i915#5334]: https://gitlab.freedesktop.org/drm/intel/issues/5334
-  [i915#6645]: https://gitlab.freedesktop.org/drm/intel/issues/6645
-  [i915#7911]: https://gitlab.freedesktop.org/drm/intel/issues/7911
-  [i915#7913]: https://gitlab.freedesktop.org/drm/intel/issues/7913
-  [i915#8293]: https://gitlab.freedesktop.org/drm/intel/issues/8293
-  [i915#8841]: https://gitlab.freedesktop.org/drm/intel/issues/8841
-  [i915#9275]: https://gitlab.freedesktop.org/drm/intel/issues/9275
-  [i915#9414]: https://gitlab.freedesktop.org/drm/intel/issues/9414
+-:478: CHECK:MACRO_ARG_PRECEDENCE: Macro argument 'x' may be better as '(x)' to avoid precedence issues
+#478: FILE: drivers/gpu/drm/i915/display/intel_display_params.c:92:
++#define FREE(T, x, ...) _param_free(&params->x);
+
+-:478: WARNING:TRAILING_SEMICOLON: macros should not use a trailing semicolon
+#478: FILE: drivers/gpu/drm/i915/display/intel_display_params.c:92:
++#define FREE(T, x, ...) _param_free(&params->x);
+
+-:488: WARNING:SPDX_LICENSE_TAG: Missing or malformed SPDX-License-Identifier tag in line 1
+#488: FILE: drivers/gpu/drm/i915/display/intel_display_params.h:1:
++/*
+
+-:533: ERROR:MULTISTATEMENT_MACRO_USE_DO_WHILE: Macros with multiple statements should be enclosed in a do - while loop
+#533: FILE: drivers/gpu/drm/i915/display/intel_display_params.h:46:
++#define MEMBER(T, member, ...) T member;
+
+-:533: WARNING:TRAILING_SEMICOLON: macros should not use a trailing semicolon
+#533: FILE: drivers/gpu/drm/i915/display/intel_display_params.h:46:
++#define MEMBER(T, member, ...) T member;
+
+-:537: CHECK:LINE_SPACING: Please use a blank line after function/struct/union/enum declarations
+#537: FILE: drivers/gpu/drm/i915/display/intel_display_params.h:50:
++};
++#undef MEMBER
+
+total: 8 errors, 10 warnings, 21 checks, 483 lines checked
+fdaa5ba4f3f6 drm/i915/display: Dump also display parameters into GPU error dump
+-:55: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'val' - possible side-effects?
+#55: FILE: drivers/gpu/drm/i915/display/intel_display_params.c:83:
++#define _param_print(p, driver_name, name, val)			\
++	_Generic(val,						\
++		 bool : _param_print_bool,			\
++		 int : _param_print_int,			\
++		 unsigned int : _param_print_uint,		\
++		 unsigned long : _param_print_ulong,		\
++		 char * : _param_print_charp)(p, driver_name, name, val)
+
+-:56: CHECK:CAMELCASE: Avoid CamelCase: <_Generic>
+#56: FILE: drivers/gpu/drm/i915/display/intel_display_params.c:84:
++	_Generic(val,						\
+
+-:72: WARNING:TRAILING_SEMICOLON: macros should not use a trailing semicolon
+#72: FILE: drivers/gpu/drm/i915/display/intel_display_params.c:100:
++#define PRINT(T, x, ...) _param_print(p, i915->drm.driver->name, #x, i915->display.params.x);
+
+total: 0 errors, 1 warnings, 2 checks, 108 lines checked
+a9656c6b8ef2 drm/i915/display: Move enable_fbc module parameter under display
+-:11: WARNING:COMMIT_MESSAGE: Missing commit description - Add an appropriate one
+
+-:34: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#34: FILE: drivers/gpu/drm/i915/display/intel_display_params.c:54:
++intel_display_param_named_unsafe(enable_fbc, int, 0400,
++	"Enable frame buffer compression for power savings "
+
+total: 0 errors, 1 warnings, 1 checks, 73 lines checked
+fb71d057ede7 drm/i915/display: Move psr related module parameters under display
+-:11: WARNING:COMMIT_MESSAGE: Missing commit description - Add an appropriate one
+
+-:21: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#21: FILE: drivers/gpu/drm/i915/display/intel_display_params.c:58:
++intel_display_param_named_unsafe(enable_psr, int, 0400,
++	"Enable PSR "
+
+-:26: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#26: FILE: drivers/gpu/drm/i915/display/intel_display_params.c:63:
++intel_display_param_named(psr_safest_params, bool, 0400,
++	"Replace PSR VBT parameters by the safest and not optimal ones. This "
+
+-:31: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#31: FILE: drivers/gpu/drm/i915/display/intel_display_params.c:68:
++intel_display_param_named_unsafe(enable_psr2_sel_fetch, bool, 0400,
++	"Enable PSR2 selective fetch "
+
+total: 0 errors, 1 warnings, 3 checks, 112 lines checked
 
 
-Build changes
--------------
-
-  * Linux: CI_DRM_13713 -> Patchwork_124255v2
-
-  CI-20190529: 20190529
-  CI_DRM_13713: 4540606b1e3d945191858f82b07576e12feb7f26 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_7512: 2eb58faf82d3cd5e2e74154a7319cff56eb40762 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_124255v2: 4540606b1e3d945191858f82b07576e12feb7f26 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-### Linux commits
-
-a89288ffbf4e drm/i915: Remove the module parameter 'fastboot'
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_124255v2/index.html
-
---===============8340453726660976304==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915: Remove the module parameter &#39;fastboot&#39; (rev2)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/124255/">https://patchwork.freedesktop.org/series/124255/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_124255v2/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_124255v2/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_13713 -&gt; Patchwork_124255v2</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_124255v2/index.html</p>
-<h2>Participating hosts (40 -&gt; 39)</h2>
-<p>Additional (1): fi-kbl-soraka <br />
-  Missing    (2): bat-atsm-1 fi-snb-2520m </p>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_124255v2 that come from known issues:</p>
-<h3>CI changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>boot:<ul>
-<li>fi-hsw-4770:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13713/fi-hsw-4770/boot.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_124255v2/fi-hsw-4770/boot.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/8293">i915#8293</a>)</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>boot:<ul>
-<li>fi-bsw-n3050:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13713/fi-bsw-n3050/boot.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/8293">i915#8293</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_124255v2/fi-bsw-n3050/boot.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@core_auth@basic-auth:</p>
-<ul>
-<li>fi-kbl-soraka:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_124255v2/fi-kbl-soraka/igt@core_auth@basic-auth.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1982">i915#1982</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_exec_suspend@basic-s0@smem:</p>
-<ul>
-<li>bat-dg2-9:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13713/bat-dg2-9/igt@gem_exec_suspend@basic-s0@smem.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_124255v2/bat-dg2-9/igt@gem_exec_suspend@basic-s0@smem.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/9275">i915#9275</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_huc_copy@huc-copy:</p>
-<ul>
-<li>fi-kbl-soraka:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_124255v2/fi-kbl-soraka/igt@gem_huc_copy@huc-copy.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/2190">i915#2190</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_lmem_swapping@basic:</p>
-<ul>
-<li>fi-kbl-soraka:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_124255v2/fi-kbl-soraka/igt@gem_lmem_swapping@basic.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/4613">i915#4613</a>) +3 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_lmem_swapping@random-engines:</p>
-<ul>
-<li>fi-bsw-n3050:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_124255v2/fi-bsw-n3050/igt@gem_lmem_swapping@random-engines.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +18 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@gt_pm:</p>
-<ul>
-<li>fi-kbl-soraka:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_124255v2/fi-kbl-soraka/igt@i915_selftest@live@gt_pm.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1886">i915#1886</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/7913">i915#7913</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_suspend@basic-s3-without-i915:</p>
-<ul>
-<li>bat-mtlp-8:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_124255v2/bat-mtlp-8/igt@i915_suspend@basic-s3-without-i915.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/6645">i915#6645</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_dsc@dsc-basic:</p>
-<ul>
-<li>fi-kbl-soraka:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_124255v2/fi-kbl-soraka/igt@kms_dsc@dsc-basic.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +9 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_hdmi_inject@inject-audio:</p>
-<ul>
-<li>fi-bsw-n3050:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_124255v2/fi-bsw-n3050/igt@kms_hdmi_inject@inject-audio.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/igt-gpu-tools/issues/3">IGT#3</a>)</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>
-<p>igt@i915_selftest@live@execlists:</p>
-<ul>
-<li>fi-bsw-nick:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13713/fi-bsw-nick/igt@i915_selftest@live@execlists.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/7911">i915#7911</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/7913">i915#7913</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_124255v2/fi-bsw-nick/igt@i915_selftest@live@execlists.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@gt_heartbeat:</p>
-<ul>
-<li>fi-apl-guc:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13713/fi-apl-guc/igt@i915_selftest@live@gt_heartbeat.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/5334">i915#5334</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_124255v2/fi-apl-guc/igt@i915_selftest@live@gt_heartbeat.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@requests:</p>
-<ul>
-<li>bat-mtlp-8:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13713/bat-mtlp-8/igt@i915_selftest@live@requests.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/9414">i915#9414</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_124255v2/bat-mtlp-8/igt@i915_selftest@live@requests.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<h4>Warnings</h4>
-<ul>
-<li>igt@i915_suspend@basic-s2idle-without-i915:<ul>
-<li>fi-ivb-3770:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13713/fi-ivb-3770/igt@i915_suspend@basic-s2idle-without-i915.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1982">i915#1982</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/8841">i915#8841</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_124255v2/fi-ivb-3770/igt@i915_suspend@basic-s2idle-without-i915.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/8841">i915#8841</a>)</li>
-</ul>
-</li>
-</ul>
-<p>{name}: This element is suppressed. This means it is ignored when computing<br />
-          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_13713 -&gt; Patchwork_124255v2</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_13713: 4540606b1e3d945191858f82b07576e12feb7f26 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_7512: 2eb58faf82d3cd5e2e74154a7319cff56eb40762 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  Patchwork_124255v2: 4540606b1e3d945191858f82b07576e12feb7f26 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<h3>Linux commits</h3>
-<p>a89288ffbf4e drm/i915: Remove the module parameter 'fastboot'</p>
-
-</body>
-</html>
-
---===============8340453726660976304==--
