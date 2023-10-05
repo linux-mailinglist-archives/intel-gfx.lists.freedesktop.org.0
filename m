@@ -2,54 +2,32 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id ABE8E7B9AF8
-	for <lists+intel-gfx@lfdr.de>; Thu,  5 Oct 2023 07:45:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id E40F87B9AFE
+	for <lists+intel-gfx@lfdr.de>; Thu,  5 Oct 2023 07:56:34 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EDAF010E3D4;
-	Thu,  5 Oct 2023 05:45:28 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 49B0210E1B9;
+	Thu,  5 Oct 2023 05:56:31 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 937FF10E3D3
- for <intel-gfx@lists.freedesktop.org>; Thu,  5 Oct 2023 05:45:27 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1696484728; x=1728020728;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=Vo9l2/Ym8KV83CbmDJUSpdVXIQx09Z4J7GBN6cmO7Bg=;
- b=MhJS1yMbSqoB1kg3cWzGsNgAFawc5i9CAf5VL8m4e3cgYhji9UsS9XjF
- z2HejxwXiRHkiIrR/0i5eH4nbdhNsn52dFzlUJIjhddEmBhiECkfs1spH
- +81lf8YypFJ7/rLtHk/a6PiknYLrDJ4gaNaZqm1PUqBJspJAZrMJK1o69
- QO9ppp8QmEu5rycmZNoCNckI1GRmeloPqAC91JFBr2VWa78xVrxdyE2Of
- KrK7oUqssN4bGM5bCzALaE/QP901uJXYArzADnAhvfVepjz4YgnSJD3zu
- ey/Y+b/jueC8hlm+XSMSFQedSQSAQ8PpKva7fXvxNZh2m0+aeFCtmkejM Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10853"; a="4971861"
-X-IronPort-AV: E=Sophos;i="6.03,202,1694761200"; 
-   d="scan'208";a="4971861"
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
- by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Oct 2023 22:45:27 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10853"; a="786821906"
-X-IronPort-AV: E=Sophos;i="6.03,202,1694761200"; d="scan'208";a="786821906"
-Received: from jlmcclen-mobl.amr.corp.intel.com (HELO
- jhogande-mobl1.intel.com) ([10.252.55.79])
- by orsmga001-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Oct 2023 22:45:25 -0700
-From: =?UTF-8?q?Jouni=20H=C3=B6gander?= <jouni.hogander@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Thu,  5 Oct 2023 08:45:00 +0300
-Message-Id: <20231005054500.2053070-5-jouni.hogander@intel.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20231005054500.2053070-1-jouni.hogander@intel.com>
-References: <20231005054500.2053070-1-jouni.hogander@intel.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 70AA510E1B3;
+ Thu,  5 Oct 2023 05:56:28 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 5BC5DAA3D8;
+ Thu,  5 Oct 2023 05:56:28 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============8340453726660976304=="
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [RFC PATCH 4/4] drm/i915/display: Move psr related
- module parameters under display
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Murthy, Arun R" <arun.r.murthy@intel.com>
+Date: Thu, 05 Oct 2023 05:56:28 -0000
+Message-ID: <169648538835.7515.3312491369277119036@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20230926091157.635438-1-arun.r.murthy@intel.com>
+In-Reply-To: <20230926091157.635438-1-arun.r.murthy@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
+ =?utf-8?q?/i915=3A_Remove_the_module_parameter_=27fastboot=27_=28rev2=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -62,160 +40,326 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Signed-off-by: Jouni Högander <jouni.hogander@intel.com>
----
- .../gpu/drm/i915/display/intel_display_params.c   | 15 +++++++++++++++
- .../gpu/drm/i915/display/intel_display_params.h   |  3 +++
- drivers/gpu/drm/i915/display/intel_psr.c          | 14 +++++++-------
- drivers/gpu/drm/i915/i915_params.c                | 15 ---------------
- drivers/gpu/drm/i915/i915_params.h                |  3 ---
- 5 files changed, 25 insertions(+), 25 deletions(-)
+--===============8340453726660976304==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-diff --git a/drivers/gpu/drm/i915/display/intel_display_params.c b/drivers/gpu/drm/i915/display/intel_display_params.c
-index a21d4a3be947..bce43d649344 100644
---- a/drivers/gpu/drm/i915/display/intel_display_params.c
-+++ b/drivers/gpu/drm/i915/display/intel_display_params.c
-@@ -54,6 +54,21 @@ intel_display_param_named_unsafe(enable_fbc, int, 0400,
- 	"Enable frame buffer compression for power savings "
- 	"(default: -1 (use per-chip default))");
- 
-+intel_display_param_named_unsafe(enable_psr, int, 0400,
-+	"Enable PSR "
-+	"(0=disabled, 1=enable up to PSR1, 2=enable up to PSR2) "
-+	"Default: -1 (use per-chip default)");
-+
-+intel_display_param_named(psr_safest_params, bool, 0400,
-+	"Replace PSR VBT parameters by the safest and not optimal ones. This "
-+	"is helpful to detect if PSR issues are related to bad values set in "
-+	" VBT. (0=use VBT parameters, 1=use safest parameters)");
-+
-+intel_display_param_named_unsafe(enable_psr2_sel_fetch, bool, 0400,
-+	"Enable PSR2 selective fetch "
-+	"(0=disabled, 1=enabled) "
-+	"Default: 0");
-+
- static void _param_print_bool(struct drm_printer *p, const char *driver_name,
- 			      const char *name, bool val)
- {
-diff --git a/drivers/gpu/drm/i915/display/intel_display_params.h b/drivers/gpu/drm/i915/display/intel_display_params.h
-index 1b107db226d6..be65ab5ab184 100644
---- a/drivers/gpu/drm/i915/display/intel_display_params.h
-+++ b/drivers/gpu/drm/i915/display/intel_display_params.h
-@@ -44,6 +44,9 @@ struct drm_i915_private;
-  */
- #define INTEL_DISPLAY_PARAMS_FOR_EACH(param) \
- 	param(int, enable_fbc, -1, 0600)     \
-+	param(int, enable_psr, -1, 0600) \
-+	param(bool, psr_safest_params, false, 0400) \
-+	param(bool, enable_psr2_sel_fetch, true, 0400) \
- 
- #define MEMBER(T, member, ...) T member;
- struct intel_display_params {
-diff --git a/drivers/gpu/drm/i915/display/intel_psr.c b/drivers/gpu/drm/i915/display/intel_psr.c
-index 850b11f20285..bcfbbe54419f 100644
---- a/drivers/gpu/drm/i915/display/intel_psr.c
-+++ b/drivers/gpu/drm/i915/display/intel_psr.c
-@@ -179,9 +179,9 @@ static bool psr_global_enabled(struct intel_dp *intel_dp)
- 
- 	switch (intel_dp->psr.debug & I915_PSR_DEBUG_MODE_MASK) {
- 	case I915_PSR_DEBUG_DEFAULT:
--		if (i915->params.enable_psr == -1)
-+		if (i915->display.params.enable_psr == -1)
- 			return connector->panel.vbt.psr.enable;
--		return i915->params.enable_psr;
-+		return i915->display.params.enable_psr;
- 	case I915_PSR_DEBUG_DISABLE:
- 		return false;
- 	default:
-@@ -198,7 +198,7 @@ static bool psr2_global_enabled(struct intel_dp *intel_dp)
- 	case I915_PSR_DEBUG_FORCE_PSR1:
- 		return false;
- 	default:
--		if (i915->params.enable_psr == 1)
-+		if (i915->display.params.enable_psr == 1)
- 			return false;
- 		return true;
- 	}
-@@ -606,7 +606,7 @@ static u32 intel_psr1_get_tp_time(struct intel_dp *intel_dp)
- 	if (DISPLAY_VER(dev_priv) >= 11)
- 		val |= EDP_PSR_TP4_TIME_0us;
- 
--	if (dev_priv->params.psr_safest_params) {
-+	if (dev_priv->display.params.psr_safest_params) {
- 		val |= EDP_PSR_TP1_TIME_2500us;
- 		val |= EDP_PSR_TP2_TP3_TIME_2500us;
- 		goto check_tp3_sel;
-@@ -698,7 +698,7 @@ static u32 intel_psr2_get_tp_time(struct intel_dp *intel_dp)
- 	struct drm_i915_private *dev_priv = dp_to_i915(intel_dp);
- 	u32 val = 0;
- 
--	if (dev_priv->params.psr_safest_params)
-+	if (dev_priv->display.params.psr_safest_params)
- 		return EDP_PSR2_TP2_TIME_2500us;
- 
- 	if (connector->panel.vbt.psr.psr2_tp2_tp3_wakeup_time_us >= 0 &&
-@@ -941,7 +941,7 @@ static bool intel_psr2_sel_fetch_config_valid(struct intel_dp *intel_dp,
- {
- 	struct drm_i915_private *dev_priv = dp_to_i915(intel_dp);
- 
--	if (!dev_priv->params.enable_psr2_sel_fetch &&
-+	if (!dev_priv->display.params.enable_psr2_sel_fetch &&
- 	    intel_dp->psr.debug != I915_PSR_DEBUG_ENABLE_SEL_FETCH) {
- 		drm_dbg_kms(&dev_priv->drm,
- 			    "PSR2 sel fetch not enabled, disabled by parameter\n");
-@@ -1054,7 +1054,7 @@ static bool _compute_psr2_wake_times(struct intel_dp *intel_dp,
- 	    fast_wake_lines > max_wake_lines)
- 		return false;
- 
--	if (i915->params.psr_safest_params)
-+	if (i915->display.params.psr_safest_params)
- 		io_wake_lines = fast_wake_lines = max_wake_lines;
- 
- 	/* According to Bspec lower limit should be set as 7 lines. */
-diff --git a/drivers/gpu/drm/i915/i915_params.c b/drivers/gpu/drm/i915/i915_params.c
-index c52021932b8f..2c66e8cc0953 100644
---- a/drivers/gpu/drm/i915/i915_params.c
-+++ b/drivers/gpu/drm/i915/i915_params.c
-@@ -102,21 +102,6 @@ i915_param_named_unsafe(enable_hangcheck, bool, 0400,
- 	"WARNING: Disabling this can cause system wide hangs. "
- 	"(default: true)");
- 
--i915_param_named_unsafe(enable_psr, int, 0400,
--	"Enable PSR "
--	"(0=disabled, 1=enable up to PSR1, 2=enable up to PSR2) "
--	"Default: -1 (use per-chip default)");
--
--i915_param_named(psr_safest_params, bool, 0400,
--	"Replace PSR VBT parameters by the safest and not optimal ones. This "
--	"is helpful to detect if PSR issues are related to bad values set in "
--	" VBT. (0=use VBT parameters, 1=use safest parameters)");
--
--i915_param_named_unsafe(enable_psr2_sel_fetch, bool, 0400,
--	"Enable PSR2 selective fetch "
--	"(0=disabled, 1=enabled) "
--	"Default: 0");
--
- i915_param_named_unsafe(enable_sagv, bool, 0600,
- 	"Enable system agent voltage/frequency scaling (SAGV) (default: true)");
- 
-diff --git a/drivers/gpu/drm/i915/i915_params.h b/drivers/gpu/drm/i915/i915_params.h
-index 393633f9222b..c8d65c983cb0 100644
---- a/drivers/gpu/drm/i915/i915_params.h
-+++ b/drivers/gpu/drm/i915/i915_params.h
-@@ -52,10 +52,7 @@ struct drm_printer;
- 	param(int, panel_use_ssc, -1, 0600) \
- 	param(int, vbt_sdvo_panel_type, -1, 0400) \
- 	param(int, enable_dc, -1, 0400) \
--	param(int, enable_psr, -1, 0600) \
- 	param(bool, enable_dpt, true, 0400) \
--	param(bool, psr_safest_params, false, 0400) \
--	param(bool, enable_psr2_sel_fetch, true, 0400) \
- 	param(bool, enable_sagv, true, 0600) \
- 	param(int, disable_power_well, -1, 0400) \
- 	param(int, enable_ips, 1, 0600) \
--- 
-2.34.1
+== Series Details ==
 
+Series: drm/i915: Remove the module parameter 'fastboot' (rev2)
+URL   : https://patchwork.freedesktop.org/series/124255/
+State : success
+
+== Summary ==
+
+CI Bug Log - changes from CI_DRM_13713 -> Patchwork_124255v2
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_124255v2/index.html
+
+Participating hosts (40 -> 39)
+------------------------------
+
+  Additional (1): fi-kbl-soraka 
+  Missing    (2): bat-atsm-1 fi-snb-2520m 
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_124255v2 that come from known issues:
+
+### CI changes ###
+
+#### Issues hit ####
+
+  * boot:
+    - fi-hsw-4770:        [PASS][1] -> [FAIL][2] ([i915#8293])
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13713/fi-hsw-4770/boot.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_124255v2/fi-hsw-4770/boot.html
+
+  
+#### Possible fixes ####
+
+  * boot:
+    - fi-bsw-n3050:       [FAIL][3] ([i915#8293]) -> [PASS][4]
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13713/fi-bsw-n3050/boot.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_124255v2/fi-bsw-n3050/boot.html
+
+  
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@core_auth@basic-auth:
+    - fi-kbl-soraka:      NOTRUN -> [DMESG-WARN][5] ([i915#1982])
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_124255v2/fi-kbl-soraka/igt@core_auth@basic-auth.html
+
+  * igt@gem_exec_suspend@basic-s0@smem:
+    - bat-dg2-9:          [PASS][6] -> [INCOMPLETE][7] ([i915#9275])
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13713/bat-dg2-9/igt@gem_exec_suspend@basic-s0@smem.html
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_124255v2/bat-dg2-9/igt@gem_exec_suspend@basic-s0@smem.html
+
+  * igt@gem_huc_copy@huc-copy:
+    - fi-kbl-soraka:      NOTRUN -> [SKIP][8] ([fdo#109271] / [i915#2190])
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_124255v2/fi-kbl-soraka/igt@gem_huc_copy@huc-copy.html
+
+  * igt@gem_lmem_swapping@basic:
+    - fi-kbl-soraka:      NOTRUN -> [SKIP][9] ([fdo#109271] / [i915#4613]) +3 other tests skip
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_124255v2/fi-kbl-soraka/igt@gem_lmem_swapping@basic.html
+
+  * igt@gem_lmem_swapping@random-engines:
+    - fi-bsw-n3050:       NOTRUN -> [SKIP][10] ([fdo#109271]) +18 other tests skip
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_124255v2/fi-bsw-n3050/igt@gem_lmem_swapping@random-engines.html
+
+  * igt@i915_selftest@live@gt_pm:
+    - fi-kbl-soraka:      NOTRUN -> [DMESG-FAIL][11] ([i915#1886] / [i915#7913])
+   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_124255v2/fi-kbl-soraka/igt@i915_selftest@live@gt_pm.html
+
+  * igt@i915_suspend@basic-s3-without-i915:
+    - bat-mtlp-8:         NOTRUN -> [SKIP][12] ([i915#6645])
+   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_124255v2/bat-mtlp-8/igt@i915_suspend@basic-s3-without-i915.html
+
+  * igt@kms_dsc@dsc-basic:
+    - fi-kbl-soraka:      NOTRUN -> [SKIP][13] ([fdo#109271]) +9 other tests skip
+   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_124255v2/fi-kbl-soraka/igt@kms_dsc@dsc-basic.html
+
+  * igt@kms_hdmi_inject@inject-audio:
+    - fi-bsw-n3050:       NOTRUN -> [FAIL][14] ([IGT#3])
+   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_124255v2/fi-bsw-n3050/igt@kms_hdmi_inject@inject-audio.html
+
+  
+#### Possible fixes ####
+
+  * igt@i915_selftest@live@execlists:
+    - fi-bsw-nick:        [ABORT][15] ([i915#7911] / [i915#7913]) -> [PASS][16]
+   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13713/fi-bsw-nick/igt@i915_selftest@live@execlists.html
+   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_124255v2/fi-bsw-nick/igt@i915_selftest@live@execlists.html
+
+  * igt@i915_selftest@live@gt_heartbeat:
+    - fi-apl-guc:         [DMESG-FAIL][17] ([i915#5334]) -> [PASS][18]
+   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13713/fi-apl-guc/igt@i915_selftest@live@gt_heartbeat.html
+   [18]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_124255v2/fi-apl-guc/igt@i915_selftest@live@gt_heartbeat.html
+
+  * igt@i915_selftest@live@requests:
+    - bat-mtlp-8:         [ABORT][19] ([i915#9414]) -> [PASS][20]
+   [19]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13713/bat-mtlp-8/igt@i915_selftest@live@requests.html
+   [20]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_124255v2/bat-mtlp-8/igt@i915_selftest@live@requests.html
+
+  
+#### Warnings ####
+
+  * igt@i915_suspend@basic-s2idle-without-i915:
+    - fi-ivb-3770:        [DMESG-WARN][21] ([i915#1982] / [i915#8841]) -> [DMESG-WARN][22] ([i915#8841])
+   [21]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13713/fi-ivb-3770/igt@i915_suspend@basic-s2idle-without-i915.html
+   [22]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_124255v2/fi-ivb-3770/igt@i915_suspend@basic-s2idle-without-i915.html
+
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+  [IGT#3]: https://gitlab.freedesktop.org/drm/igt-gpu-tools/issues/3
+  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
+  [i915#1886]: https://gitlab.freedesktop.org/drm/intel/issues/1886
+  [i915#1982]: https://gitlab.freedesktop.org/drm/intel/issues/1982
+  [i915#2190]: https://gitlab.freedesktop.org/drm/intel/issues/2190
+  [i915#4613]: https://gitlab.freedesktop.org/drm/intel/issues/4613
+  [i915#5334]: https://gitlab.freedesktop.org/drm/intel/issues/5334
+  [i915#6645]: https://gitlab.freedesktop.org/drm/intel/issues/6645
+  [i915#7911]: https://gitlab.freedesktop.org/drm/intel/issues/7911
+  [i915#7913]: https://gitlab.freedesktop.org/drm/intel/issues/7913
+  [i915#8293]: https://gitlab.freedesktop.org/drm/intel/issues/8293
+  [i915#8841]: https://gitlab.freedesktop.org/drm/intel/issues/8841
+  [i915#9275]: https://gitlab.freedesktop.org/drm/intel/issues/9275
+  [i915#9414]: https://gitlab.freedesktop.org/drm/intel/issues/9414
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_13713 -> Patchwork_124255v2
+
+  CI-20190529: 20190529
+  CI_DRM_13713: 4540606b1e3d945191858f82b07576e12feb7f26 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_7512: 2eb58faf82d3cd5e2e74154a7319cff56eb40762 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  Patchwork_124255v2: 4540606b1e3d945191858f82b07576e12feb7f26 @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+### Linux commits
+
+a89288ffbf4e drm/i915: Remove the module parameter 'fastboot'
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_124255v2/index.html
+
+--===============8340453726660976304==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/i915: Remove the module parameter &#39;fastboot&#39; (rev2)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/124255/">https://patchwork.freedesktop.org/series/124255/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_124255v2/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_124255v2/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_13713 -&gt; Patchwork_124255v2</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_124255v2/index.html</p>
+<h2>Participating hosts (40 -&gt; 39)</h2>
+<p>Additional (1): fi-kbl-soraka <br />
+  Missing    (2): bat-atsm-1 fi-snb-2520m </p>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_124255v2 that come from known issues:</p>
+<h3>CI changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>boot:<ul>
+<li>fi-hsw-4770:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13713/fi-hsw-4770/boot.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_124255v2/fi-hsw-4770/boot.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/8293">i915#8293</a>)</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>boot:<ul>
+<li>fi-bsw-n3050:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13713/fi-bsw-n3050/boot.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/8293">i915#8293</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_124255v2/fi-bsw-n3050/boot.html">PASS</a></li>
+</ul>
+</li>
+</ul>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@core_auth@basic-auth:</p>
+<ul>
+<li>fi-kbl-soraka:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_124255v2/fi-kbl-soraka/igt@core_auth@basic-auth.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1982">i915#1982</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@gem_exec_suspend@basic-s0@smem:</p>
+<ul>
+<li>bat-dg2-9:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13713/bat-dg2-9/igt@gem_exec_suspend@basic-s0@smem.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_124255v2/bat-dg2-9/igt@gem_exec_suspend@basic-s0@smem.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/9275">i915#9275</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@gem_huc_copy@huc-copy:</p>
+<ul>
+<li>fi-kbl-soraka:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_124255v2/fi-kbl-soraka/igt@gem_huc_copy@huc-copy.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/2190">i915#2190</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@gem_lmem_swapping@basic:</p>
+<ul>
+<li>fi-kbl-soraka:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_124255v2/fi-kbl-soraka/igt@gem_lmem_swapping@basic.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/4613">i915#4613</a>) +3 other tests skip</li>
+</ul>
+</li>
+<li>
+<p>igt@gem_lmem_swapping@random-engines:</p>
+<ul>
+<li>fi-bsw-n3050:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_124255v2/fi-bsw-n3050/igt@gem_lmem_swapping@random-engines.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +18 other tests skip</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@gt_pm:</p>
+<ul>
+<li>fi-kbl-soraka:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_124255v2/fi-kbl-soraka/igt@i915_selftest@live@gt_pm.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1886">i915#1886</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/7913">i915#7913</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_suspend@basic-s3-without-i915:</p>
+<ul>
+<li>bat-mtlp-8:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_124255v2/bat-mtlp-8/igt@i915_suspend@basic-s3-without-i915.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/6645">i915#6645</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_dsc@dsc-basic:</p>
+<ul>
+<li>fi-kbl-soraka:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_124255v2/fi-kbl-soraka/igt@kms_dsc@dsc-basic.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +9 other tests skip</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_hdmi_inject@inject-audio:</p>
+<ul>
+<li>fi-bsw-n3050:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_124255v2/fi-bsw-n3050/igt@kms_hdmi_inject@inject-audio.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/igt-gpu-tools/issues/3">IGT#3</a>)</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>
+<p>igt@i915_selftest@live@execlists:</p>
+<ul>
+<li>fi-bsw-nick:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13713/fi-bsw-nick/igt@i915_selftest@live@execlists.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/7911">i915#7911</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/7913">i915#7913</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_124255v2/fi-bsw-nick/igt@i915_selftest@live@execlists.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@gt_heartbeat:</p>
+<ul>
+<li>fi-apl-guc:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13713/fi-apl-guc/igt@i915_selftest@live@gt_heartbeat.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/5334">i915#5334</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_124255v2/fi-apl-guc/igt@i915_selftest@live@gt_heartbeat.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@requests:</p>
+<ul>
+<li>bat-mtlp-8:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13713/bat-mtlp-8/igt@i915_selftest@live@requests.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/9414">i915#9414</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_124255v2/bat-mtlp-8/igt@i915_selftest@live@requests.html">PASS</a></li>
+</ul>
+</li>
+</ul>
+<h4>Warnings</h4>
+<ul>
+<li>igt@i915_suspend@basic-s2idle-without-i915:<ul>
+<li>fi-ivb-3770:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13713/fi-ivb-3770/igt@i915_suspend@basic-s2idle-without-i915.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1982">i915#1982</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/8841">i915#8841</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_124255v2/fi-ivb-3770/igt@i915_suspend@basic-s2idle-without-i915.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/8841">i915#8841</a>)</li>
+</ul>
+</li>
+</ul>
+<p>{name}: This element is suppressed. This means it is ignored when computing<br />
+          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_13713 -&gt; Patchwork_124255v2</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_13713: 4540606b1e3d945191858f82b07576e12feb7f26 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_7512: 2eb58faf82d3cd5e2e74154a7319cff56eb40762 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  Patchwork_124255v2: 4540606b1e3d945191858f82b07576e12feb7f26 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+<h3>Linux commits</h3>
+<p>a89288ffbf4e drm/i915: Remove the module parameter 'fastboot'</p>
+
+</body>
+</html>
+
+--===============8340453726660976304==--
