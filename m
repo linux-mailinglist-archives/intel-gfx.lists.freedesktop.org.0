@@ -2,55 +2,54 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5E91D7B9D2B
-	for <lists+intel-gfx@lfdr.de>; Thu,  5 Oct 2023 15:03:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3973A7B9D34
+	for <lists+intel-gfx@lfdr.de>; Thu,  5 Oct 2023 15:08:51 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E5AA810E3ED;
-	Thu,  5 Oct 2023 13:03:43 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 34B4310E3F3;
+	Thu,  5 Oct 2023 13:08:49 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.24])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 82DFF10E3ED
- for <intel-gfx@lists.freedesktop.org>; Thu,  5 Oct 2023 13:03:42 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3402F10E3F3
+ for <intel-gfx@lists.freedesktop.org>; Thu,  5 Oct 2023 13:08:47 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1696511022; x=1728047022;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=e3Ly11D9WX68Ts8nlQ2oVmy2CVPiIKRaQG3LHfyo6hM=;
- b=Ho9tbLMMkwLV2cOJuqTbc8ZTKhfd8UUXQMCXn1hm61Y/g4Rz1+hEhaIB
- H1DMCnTB2vDfJG+kViP87QkP3OKVKjcKxXBq6iSQzGsk3mepkmhw+2S1x
- ofs47bJ/BSfO72/CBao+NZYxKj5Ypsh6XtmY61Qnd4qQSZofmMg9Au+pE
- LgEsZtPnmS/KqXboq2A9mkThX8pE6GOBZPG6xDLpdHBNhR2yW4SpsCiad
- Z1LO8oVuQ7a3gMetR6lapDheFxBrvixaIsZ9/+rtL/8AukMD00KDFZUXk
- mUKR8nll7Ll3kG7h2MUl1dsHP0mjAQwCoIc4Bv/kx8w7wXzToY3cT6sAg Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10854"; a="386318653"
-X-IronPort-AV: E=Sophos;i="6.03,203,1694761200"; d="scan'208";a="386318653"
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
- by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Oct 2023 06:03:41 -0700
+ t=1696511327; x=1728047327;
+ h=from:to:subject:in-reply-to:references:date:message-id:
+ mime-version:content-transfer-encoding;
+ bh=drZhNZS55yrbyOnwyOCopjn/owR3oUc+hrdAkzxU0W4=;
+ b=BCpf8BohkbkqefcPjzedGWHhL8k6iCMKPD0nwVkJoEZqAFyV0eps681g
+ /+mXFtn1KFHj2l96Rd7JAryYrBUs00tasa/qySWLXbpwanSsXdtkrEMPs
+ tYnkUcM/Jq8Xvw61s8qytPKuql4bThg5MIHKr6hRz0XGNjL7dTF/W9Vxg
+ i76HGJlk1E2UQWt82w3wQf7Zn/PPbj3qU9H5C2ZO4NyIJ0idCZV657/fP
+ +QIqhYSJPvrFUzyV90TmTdR24PoFsGte/OrWNMsRiL6SSa+4G8Dm/OYik
+ qv3Ifh8epjLQ5Wp5p2MfeBFVzpM19t1MOojRJsj1xpO1IRUH5IJydhwIT g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10854"; a="5051587"
+X-IronPort-AV: E=Sophos;i="6.03,203,1694761200"; 
+   d="scan'208";a="5051587"
+Received: from fmsmga005.fm.intel.com ([10.253.24.32])
+ by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 05 Oct 2023 06:08:46 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10854"; a="786959791"
-X-IronPort-AV: E=Sophos;i="6.03,203,1694761200"; d="scan'208";a="786959791"
-Received: from yklum-mobl.gar.corp.intel.com (HELO intel.com) ([10.215.244.7])
- by orsmga001-auth.jf.intel.com with
- ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 05 Oct 2023 06:03:37 -0700
-Date: Thu, 5 Oct 2023 15:03:31 +0200
-From: Andi Shyti <andi.shyti@linux.intel.com>
-To: Andi Shyti <andi.shyti@linux.intel.com>
-Message-ID: <ZR60I2gMgjdlGaXX@ashyti-mobl2.lan>
-References: <20231004220739.1313307-1-jonathan.cavitt@intel.com>
- <169647579100.7514.15467798178604356829@emeril.freedesktop.org>
- <ZR6zVOy3GbvbuPIX@ashyti-mobl2.lan>
+X-IronPort-AV: E=McAfee;i="6600,9927,10854"; a="1083016037"
+X-IronPort-AV: E=Sophos;i="6.03,203,1694761200"; d="scan'208";a="1083016037"
+Received: from jnikula-mobl4.fi.intel.com (HELO localhost) ([10.237.66.162])
+ by fmsmga005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 05 Oct 2023 06:08:45 -0700
+From: Jani Nikula <jani.nikula@intel.com>
+To: Ville Syrjala <ville.syrjala@linux.intel.com>,
+ intel-gfx@lists.freedesktop.org
+In-Reply-To: <20231005122713.3531-1-ville.syrjala@linux.intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20231004155607.7719-7-ville.syrjala@linux.intel.com>
+ <20231005122713.3531-1-ville.syrjala@linux.intel.com>
+Date: Thu, 05 Oct 2023 16:08:42 +0300
+Message-ID: <87edi9cj39.fsf@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <ZR6zVOy3GbvbuPIX@ashyti-mobl2.lan>
-Subject: Re: [Intel-gfx] 
- =?utf-8?b?4pyXIEZpLkNJLkJBVDogZmFpbHVyZSBmb3IgU3Vi?=
- =?utf-8?q?ject=3A_=5BPATCH_dii-client_v6_0/4=5D_drm/i915=3A_Define_and_us?=
- =?utf-8?q?e_GuC_and_CTB_TLB_invalidation_routines?=
+Content-Transfer-Encoding: quoted-printable
+Subject: Re: [Intel-gfx] [PATCH v2 06/12] drm/i915: Simplify watermark state
+ checker calling convention
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -63,47 +62,84 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org,
- Jonathan Cavitt <jonathan.cavitt@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi,
+On Thu, 05 Oct 2023, Ville Syrjala <ville.syrjala@linux.intel.com> wrote:
+> From: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
+>
+> There is never any reason to pass in both the crtc and its state
+> as one can always dig out the crtc from its state. But for more
+> consistency across the whole state checker let's just pass the
+> overall atomic state+crtc here as well.
+>
+> v2: Also pass state+crtc here (Jani)
+>
+> Reviewed-by: Jani Nikula <jani.nikula@intel.com> #v1
 
-> > CI changes
-> > 
-> > Possible regressions
-> > 
-> >   • boot:
-> >       □ bat-dg1-5: PASS -> FAIL
-> > 
-> > IGT changes
-> > 
-> > Possible regressions
-> > 
-> >   • igt@kms_addfb_basic@addfb25-framebuffer-vs-set-tiling:
-> > 
-> >       □ bat-adlm-1: PASS -> INCOMPLETE
-> >   • igt@kms_busy@basic@flip:
-> > 
-> >       □ bat-adlp-11: PASS -> ABORT
-> > 
-> >       □ bat-adlp-6: PASS -> INCOMPLETE
-> > 
-> >   • igt@kms_busy@basic@modeset:
-> > 
-> >       □ bat-adlp-11: PASS -> DMESG-WARN
-> >   • igt@kms_force_connector_basic@force-connector-state:
-> > 
-> >       □ bat-rpls-1: PASS -> INCOMPLETE
-> 
-> Although these failures appear very consistently, they don't look
-> related to your patch. But still I wonder why they show up so
-> consistently.
-> 
-> Is anyone from the list able to provide some thoughts?
+Yup.
 
-Please, ignore, they go through guc_ggtt_invalidate... the log
-was hidden :-)
+> Signed-off-by: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
+> ---
+>  drivers/gpu/drm/i915/display/intel_modeset_verify.c | 2 +-
+>  drivers/gpu/drm/i915/display/skl_watermark.c        | 8 +++++---
+>  drivers/gpu/drm/i915/display/skl_watermark.h        | 4 ++--
+>  3 files changed, 8 insertions(+), 6 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/i915/display/intel_modeset_verify.c b/driver=
+s/gpu/drm/i915/display/intel_modeset_verify.c
+> index 47d45ba1e707..e08c1aa25c4d 100644
+> --- a/drivers/gpu/drm/i915/display/intel_modeset_verify.c
+> +++ b/drivers/gpu/drm/i915/display/intel_modeset_verify.c
+> @@ -233,7 +233,7 @@ void intel_modeset_verify_crtc(struct intel_crtc *crt=
+c,
+>  	    !intel_crtc_needs_fastset(new_crtc_state))
+>  		return;
+>=20=20
+> -	intel_wm_state_verify(crtc, new_crtc_state);
+> +	intel_wm_state_verify(state, crtc);
+>  	verify_connector_state(state, crtc);
+>  	verify_crtc_state(state, crtc);
+>  	intel_shared_dpll_state_verify(state, crtc);
+> diff --git a/drivers/gpu/drm/i915/display/skl_watermark.c b/drivers/gpu/d=
+rm/i915/display/skl_watermark.c
+> index d51cf92c96ae..99b8ccdc3dfa 100644
+> --- a/drivers/gpu/drm/i915/display/skl_watermark.c
+> +++ b/drivers/gpu/drm/i915/display/skl_watermark.c
+> @@ -3134,10 +3134,12 @@ static void skl_wm_get_hw_state_and_sanitize(stru=
+ct drm_i915_private *i915)
+>  	skl_wm_sanitize(i915);
+>  }
+>=20=20
+> -void intel_wm_state_verify(struct intel_crtc *crtc,
+> -			   const struct intel_crtc_state *new_crtc_state)
+> +void intel_wm_state_verify(struct intel_atomic_state *state,
+> +			   struct intel_crtc *crtc)
+>  {
+> -	struct drm_i915_private *i915 =3D to_i915(crtc->base.dev);
+> +	struct drm_i915_private *i915 =3D to_i915(state->base.dev);
+> +	const struct intel_crtc_state *new_crtc_state =3D
+> +		intel_atomic_get_new_crtc_state(state, crtc);
+>  	struct skl_hw_state {
+>  		struct skl_ddb_entry ddb[I915_MAX_PLANES];
+>  		struct skl_ddb_entry ddb_y[I915_MAX_PLANES];
+> diff --git a/drivers/gpu/drm/i915/display/skl_watermark.h b/drivers/gpu/d=
+rm/i915/display/skl_watermark.h
+> index 18e4b0661cbb..fb0da36fd3ec 100644
+> --- a/drivers/gpu/drm/i915/display/skl_watermark.h
+> +++ b/drivers/gpu/drm/i915/display/skl_watermark.h
+> @@ -38,8 +38,8 @@ bool skl_ddb_allocation_overlaps(const struct skl_ddb_e=
+ntry *ddb,
+>  				 const struct skl_ddb_entry *entries,
+>  				 int num_entries, int ignore_idx);
+>=20=20
+> -void intel_wm_state_verify(struct intel_crtc *crtc,
+> -			   const struct intel_crtc_state *new_crtc_state);
+> +void intel_wm_state_verify(struct intel_atomic_state *state,
+> +			   struct intel_crtc *crtc);
+>=20=20
+>  void skl_watermark_ipc_init(struct drm_i915_private *i915);
+>  void skl_watermark_ipc_update(struct drm_i915_private *i915);
 
-Andi
+--=20
+Jani Nikula, Intel
