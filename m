@@ -2,51 +2,63 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3F0FA7BC0DD
-	for <lists+intel-gfx@lfdr.de>; Fri,  6 Oct 2023 23:02:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 41DFF7BC101
+	for <lists+intel-gfx@lfdr.de>; Fri,  6 Oct 2023 23:12:20 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4A85710E56E;
-	Fri,  6 Oct 2023 21:02:54 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 34B1910E585;
+	Fri,  6 Oct 2023 21:12:17 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.93])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7344010E517;
- Fri,  6 Oct 2023 21:02:51 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1696626171; x=1728162171;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:in-reply-to;
- bh=G5qi6qjPHLO8785ySsNeRiEUjzb2UW4Fd5UOqVqDpg0=;
- b=krVLzjFCXVXEZGn+a6c02CzYuofofpX4C8k2drC+QEz6tcLO0dBg+u+N
- a113f2EFE3b3tYwB/52RAgjTopoerQJghxTJlz5/mxqloP577pQhwR08L
- oho/vksztv5zirClzAPchaXkbZokONexJ16ALJNgrl4ABfHaplvufDxnS
- olj4yHCNPMr6tzdGMOXJdXeJDuqvA5rCm+CwJreDaPnCMikP+p6w8QKLE
- TG7npQ+vlcFQz7njOFCHOYtmwWqjYDRqkoPmTipKWDVeGoBjQDx/UQsVK
- qmC6sopozugPwuUordFA3Na5zdT+2TUfZ5UC+d0kmnAAEKZTiVpuBdGOi w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10855"; a="381109603"
-X-IronPort-AV: E=Sophos;i="6.03,204,1694761200"; d="scan'208";a="381109603"
-Received: from fmsmga007.fm.intel.com ([10.253.24.52])
- by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Oct 2023 14:02:50 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10855"; a="755980699"
-X-IronPort-AV: E=Sophos;i="6.03,204,1694761200"; d="scan'208";a="755980699"
-Received: from pmanogar-mobl.gar.corp.intel.com (HELO intel.com)
- ([10.213.157.100])
- by fmsmga007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Oct 2023 14:02:35 -0700
-Date: Fri, 6 Oct 2023 23:02:29 +0200
-From: Andi Shyti <andi.shyti@linux.intel.com>
-To: Kees Cook <keescook@chromium.org>
-Message-ID: <ZSB15XtY8fqewPgW@ashyti-mobl2.lan>
-References: <20231006201744.work.135-kees@kernel.org>
+Received: from mail-vs1-xe36.google.com (mail-vs1-xe36.google.com
+ [IPv6:2607:f8b0:4864:20::e36])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2BF5C89089
+ for <intel-gfx@lists.freedesktop.org>; Fri,  6 Oct 2023 21:12:14 +0000 (UTC)
+Received: by mail-vs1-xe36.google.com with SMTP id
+ ada2fe7eead31-45600aceffbso1150810137.0
+ for <intel-gfx@lists.freedesktop.org>; Fri, 06 Oct 2023 14:12:14 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=google.com; s=20230601; t=1696626733; x=1697231533;
+ darn=lists.freedesktop.org; 
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=ZbAwly3dikrgqzK4k8R0+8k+e23Msjxly1PWuzBfu1g=;
+ b=lm8NtWBTdg8Pho0ofSEybQzLRt4HozbsJFdMdpvcYzSJlufGA25bz1s7fgYOhCaz8g
+ mlX2lDKanwZCIL5ZlOz1Gxc6azfwF62iONq0Ii/8YXUlsbWND7Cm3ByA+IdIs1DYGzoM
+ kHYxq2+GGcFvAKzdj2TbW1NHATurSvYazoTKE0Pre0C00ieOkExNOFAqkXVxA2O+XqCC
+ BfkdhPbUBkbT0uAEG76t6o75joLJVMOrzerr/NznXcCjsUMf0Bwrj6GPUHHucFWNh92r
+ eNA8vk9qQrq3JLPh5CFdgM9/TRVSlqQvKJYnsw6w4H5pW5KIJOm+N+vhB/219cHMEb90
+ oBKA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1696626733; x=1697231533;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+ :subject:date:message-id:reply-to;
+ bh=ZbAwly3dikrgqzK4k8R0+8k+e23Msjxly1PWuzBfu1g=;
+ b=pt6GtLPTqanHuyepo5uIUk2kb1a/HgkXUtfnHqTG6lcRAS6nvbCZ8OVhl7Yo7Hzd4e
+ 0GuS7Q4Q3rBzkUu7sEOcyIl3G89zkg27T/AbJa6pRJUMBijprpHOs+aaNrosEccCLPKy
+ R6QGvh9bhQvpo8q4cR6PjV4Et3Xj5RQtPU/EnbWhCxnwNKaSYUniIwKVaTAlsqqGDKf7
+ A4ZPNglGURPrIPWLSgH+1NobPuRl+Pstu+ZW41Bs8fRGAuVDJddfYvJHFnSKC+teTlqq
+ yiOIg+/OOZ8s9ZsP4nQsRJVqddWxOwYOCAyabmZUTEeOGzh4BRodLFWvdDwAz+yAcyT6
+ jUHA==
+X-Gm-Message-State: AOJu0YxvGt6Cd12aX6/sY035wm4opDBKzFtCNbfp/OInYw/itewRZGzf
+ Sx99PxcCoBHtxr9zAH6zad8mlumPMCyryCYHGjEY2g==
+X-Google-Smtp-Source: AGHT+IFEBXD2wp73cuO/Du0AW1Z2vCNdjoG5TcUTWAONcm55bIcnRmUJtJBUTyJn8wz0plhuvSLhqTMfe4pKQMBO4Sc=
+X-Received: by 2002:a67:f754:0:b0:452:7f81:1502 with SMTP id
+ w20-20020a67f754000000b004527f811502mr8785778vso.26.1696626732971; Fri, 06
+ Oct 2023 14:12:12 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20231006201744.work.135-kees@kernel.org>
-Subject: Re: [Intel-gfx] [PATCH] drm/i915/guc: Annotate struct
- ct_incoming_msg with __counted_by
+References: <cover.1696595500.git.jani.nikula@intel.com>
+ <48f11648d7169687e7242e4c9b4694a0c03c4263.1696595500.git.jani.nikula@intel.com>
+In-Reply-To: <48f11648d7169687e7242e4c9b4694a0c03c4263.1696595500.git.jani.nikula@intel.com>
+From: Nick Desaulniers <ndesaulniers@google.com>
+Date: Fri, 6 Oct 2023 14:12:00 -0700
+Message-ID: <CAKwvOdkWX9GU_kvpqjRDgMuB_91RJTLZND+aDVh2tTEq3eK=Tg@mail.gmail.com>
+To: Jani Nikula <jani.nikula@intel.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+Subject: Re: [Intel-gfx] [PATCH 1/2] drm/i915: drop -Wall and related
+ disables from cflags as redundant
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,46 +71,76 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Nick Desaulniers <ndesaulniers@google.com>, dri-devel@lists.freedesktop.org,
- linux-kernel@vger.kernel.org, linux-hardening@vger.kernel.org,
- David Airlie <airlied@gmail.com>, Tom Rix <trix@redhat.com>,
- llvm@lists.linux.dev, intel-gfx@lists.freedesktop.org,
- Nathan Chancellor <nathan@kernel.org>, Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Matt Roper <matthew.d.roper@intel.com>,
- Jonathan Cavitt <jonathan.cavitt@intel.com>,
- "Gustavo A. R. Silva" <gustavoars@kernel.org>, Daniel Vetter <daniel@ffwll.ch>,
- Nirmoy Das <nirmoy.das@intel.com>
+Cc: Nathan Chancellor <nathan@kernel.org>, intel-gfx@lists.freedesktop.org,
+ Masahiro Yamada <masahiroy@kernel.org>, Arnd Bergmann <arnd@arndb.de>,
+ linux-kbuild@vger.kernel.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi Kees,
+On Fri, Oct 6, 2023 at 5:35=E2=80=AFAM Jani Nikula <jani.nikula@intel.com> =
+wrote:
+>
+> The kernel top level Makefile, and recently scripts/Makefile.extrawarn,
+> have included -Wall, and the disables -Wno-format-security and
+> $(call cc-disable-warning,frame-address,) for a very long time. They're
+> redundant in our local subdir-ccflags-y and can be dropped.
+>
+> Cc: Arnd Bergmann <arnd@arndb.de>
+> Cc: Nick Desaulniers <ndesaulniers@google.com>
+> Cc: Nathan Chancellor <nathan@kernel.org>
+> Cc: Masahiro Yamada <masahiroy@kernel.org>
+> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
 
-On Fri, Oct 06, 2023 at 01:17:45PM -0700, Kees Cook wrote:
-> Prepare for the coming implementation by GCC and Clang of the __counted_by
-> attribute. Flexible array members annotated with __counted_by can have
-> their accesses bounds-checked at run-time via CONFIG_UBSAN_BOUNDS (for
-> array indexing) and CONFIG_FORTIFY_SOURCE (for strcpy/memcpy-family
-> functions).
-> 
-> As found with Coccinelle[1], add __counted_by for struct ct_incoming_msg.
-> 
-> Cc: Jani Nikula <jani.nikula@linux.intel.com>
-> Cc: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
-> Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
-> Cc: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-> Cc: David Airlie <airlied@gmail.com>
-> Cc: Daniel Vetter <daniel@ffwll.ch>
-> Cc: "Gustavo A. R. Silva" <gustavoars@kernel.org>
-> Cc: John Harrison <John.C.Harrison@Intel.com>
-> Cc: Matthew Brost <matthew.brost@intel.com>
-> Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>
-> Cc: Matt Roper <matthew.d.roper@intel.com>
-> Cc: intel-gfx@lists.freedesktop.org
-> Cc: dri-devel@lists.freedesktop.org
-> Cc: linux-hardening@vger.kernel.org
-> Link: https://github.com/kees/kernel-tools/blob/trunk/coccinelle/examples/counted_by.cocci [1]
-> Signed-off-by: Kees Cook <keescook@chromium.org>
+I didn't carefully cross reference these specific flags so I provide
+and ack rather than RB, but the logic in the description checks out
+IMO.
 
-Reviewed-by: Andi Shyti <andi.shyti@linux.intel.com> 
+Acked-by: Nick Desaulniers <ndesaulniers@google.com>
 
-Andi
+> ---
+>  drivers/gpu/drm/i915/Makefile | 8 +++-----
+>  1 file changed, 3 insertions(+), 5 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/i915/Makefile b/drivers/gpu/drm/i915/Makefil=
+e
+> index dec78efa452a..623f81217442 100644
+> --- a/drivers/gpu/drm/i915/Makefile
+> +++ b/drivers/gpu/drm/i915/Makefile
+> @@ -5,22 +5,20 @@
+>
+>  # Add a set of useful warning flags and enable -Werror for CI to prevent
+>  # trivial mistakes from creeping in. We have to do this piecemeal as we =
+reject
+> -# any patch that isn't warning clean, so turning on -Wall -Wextra (or W=
+=3D1) we
+> +# any patch that isn't warning clean, so turning on -Wextra (or W=3D1) w=
+e
+>  # need to filter out dubious warnings.  Still it is our interest
+>  # to keep running locally with W=3D1 C=3D1 until we are completely clean=
+.
+>  #
+> -# Note the danger in using -Wall -Wextra is that when CI updates gcc we
+> +# Note the danger in using -Wextra is that when CI updates gcc we
+>  # will most likely get a sudden build breakage... Hopefully we will fix
+>  # new warnings before CI updates!
+> -subdir-ccflags-y :=3D -Wall -Wextra
+> -subdir-ccflags-y +=3D -Wno-format-security
+> +subdir-ccflags-y :=3D -Wextra
+>  subdir-ccflags-y +=3D -Wno-unused-parameter
+>  subdir-ccflags-y +=3D -Wno-type-limits
+>  subdir-ccflags-y +=3D -Wno-missing-field-initializers
+>  subdir-ccflags-y +=3D -Wno-sign-compare
+>  subdir-ccflags-y +=3D -Wno-shift-negative-value
+>  subdir-ccflags-y +=3D $(call cc-option, -Wunused-but-set-variable)
+> -subdir-ccflags-y +=3D $(call cc-disable-warning, frame-address)
+>  subdir-ccflags-$(CONFIG_DRM_I915_WERROR) +=3D -Werror
+>
+>  # Fine grained warnings disable
+> --
+> 2.39.2
+>
+
+
+--=20
+Thanks,
+~Nick Desaulniers
