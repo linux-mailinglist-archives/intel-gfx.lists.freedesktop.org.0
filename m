@@ -2,43 +2,32 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3EADE7BBDF0
-	for <lists+intel-gfx@lfdr.de>; Fri,  6 Oct 2023 19:45:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 668B57BBE14
+	for <lists+intel-gfx@lfdr.de>; Fri,  6 Oct 2023 19:56:13 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 40AA210E533;
-	Fri,  6 Oct 2023 17:45:54 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 17D9B10E06B;
+	Fri,  6 Oct 2023 17:56:10 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from dfw.source.kernel.org (dfw.source.kernel.org
- [IPv6:2604:1380:4641:c500::1])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4BE2210E533
- for <intel-gfx@lists.freedesktop.org>; Fri,  6 Oct 2023 17:45:53 +0000 (UTC)
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
- by dfw.source.kernel.org (Postfix) with ESMTP id 6C43960C06;
- Fri,  6 Oct 2023 17:45:52 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A5457C433C8;
- Fri,  6 Oct 2023 17:45:51 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1696614352;
- bh=jBKBLIb5gtXFkRdhknEB7nTah9CF01q9K0zVTAHqY/M=;
- h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
- b=HxnfSB9dVqwi5mV+4hZM76JLrZd89qAHAUFLJugE3i3Dm5zvjoOmFhu3ijHqpvsli
- wpO2dWNmy1sJ716bmq+pna3I6nNXVFQr9bRCGd7lBwkhQNJh8sPC4CmwsI5xKwN5R9
- KwHE1xcY9V9N9FTZRZPBxXD00ylZCe9/yD3qKo8ExyIrbg8XZg3DLotTLQjoOKtqWF
- NQs3CrgmkIiHF8m/dgvxV86cpnWggbu3J2Yo7ANzSaRZdWlmlnKk1NTW5MwGIXOrWH
- u0Kv3P6Q0sKOUfkctZP9IqsqBTvVQvbFRgLntf8QnAdakvpX0tsWV+Qv/8au0gmk5k
- dnYW+ttD7h+XQ==
-Date: Fri, 6 Oct 2023 10:45:50 -0700
-From: Nathan Chancellor <nathan@kernel.org>
-To: Jani Nikula <jani.nikula@intel.com>
-Message-ID: <20231006174550.GC3359308@dev-arch.thelio-3990X>
-References: <cover.1696595500.git.jani.nikula@intel.com>
- <f50c8ea0e63615aea28fe7f6049703e1d28ba7eb.1696595500.git.jani.nikula@intel.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 0BD9D10E06B;
+ Fri,  6 Oct 2023 17:56:08 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 06E3EAADE3;
+ Fri,  6 Oct 2023 17:56:08 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <f50c8ea0e63615aea28fe7f6049703e1d28ba7eb.1696595500.git.jani.nikula@intel.com>
-Subject: Re: [Intel-gfx] [PATCH 2/2] drm/i915: enable W=1 warnings by default
+Content-Transfer-Encoding: 7bit
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Imre Deak" <imre.deak@intel.com>
+Date: Fri, 06 Oct 2023 17:56:07 -0000
+Message-ID: <169661496799.6467.11697638538357458433@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20231006133727.1822579-1-imre.deak@intel.com>
+In-Reply-To: <20231006133727.1822579-1-imre.deak@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_drm/i915=3A_Store_DSC_DPCD_capabilities_in_the_connector?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -51,143 +40,43 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org, Nick Desaulniers <ndesaulniers@google.com>,
- Masahiro Yamada <masahiroy@kernel.org>, Arnd Bergmann <arnd@arndb.de>,
- linux-kbuild@vger.kernel.org
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, Oct 06, 2023 at 03:34:47PM +0300, Jani Nikula wrote:
-> We enable a bunch more compiler warnings than the kernel
-> defaults. However, they've drifted to become a unique set of warnings,
-> and have increasingly fallen behind from the W=1 set.
-> 
-> Align with the W=1 warnings from scripts/Makefile.extrawarn for clarity,
-> by copy-pasting them with s/KBUILD_CFLAGS/subdir-ccflags-y/ to make it
-> easier to compare in the future.
-> 
-> Cc: Arnd Bergmann <arnd@arndb.de>
-> Cc: Nick Desaulniers <ndesaulniers@google.com>
-> Cc: Nathan Chancellor <nathan@kernel.org>
-> Cc: Masahiro Yamada <masahiroy@kernel.org>
-> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+== Series Details ==
 
-One meta comment and review comment below. Feel free to carry forward
+Series: drm/i915: Store DSC DPCD capabilities in the connector
+URL   : https://patchwork.freedesktop.org/series/124723/
+State : warning
 
-Reviewed-by: Nathan Chancellor <nathan@kernel.org>
+== Summary ==
 
-on future revisions.
+Error: dim checkpatch failed
+a34e461c1c43 drm/i915/dp: Sanitize DPCD revision check in intel_dp_get_dsc_sink_cap()
+d53d0c044733 drm/i915/dp: Store DSC DPCD capabilities in the connector
+2601054468a1 drm/i915/dp_mst: Set connector DSC capabilities and decompression AUX
+14a104b8c113 drm/i915/dp: Use i915/intel connector local variables in i915_dsc_fec_support_show()
+5e1338b3c2df drm/i915/dp: Use connector DSC DPCD in i915_dsc_fec_support_show()
+-:39: WARNING:LONG_LINE: line length of 103 exceeds 100 columns
+#39: FILE: drivers/gpu/drm/i915/display/intel_display_debugfs.c:1249:
++				   str_yes_no(drm_dp_sink_supports_fec(connector->dp.fec_capability)));
 
-> ---
-> 
-> An alternative or future option would be to have Makefile.extrawarn
-> assign W=1 etc. flags to intermediate variables, say KBUILD_CFLAGS_W1,
-> like this:
-> 
-> KBUILD_CFLAGS_W1 += -Wextra -Wunused -Wno-unused-parameter
-> etc...
-> 
-> export KBUILD_CFLAGS_W1
-> 
-> ifneq ($(findstring 1, $(KBUILD_EXTRA_WARN)),)
-> 
-> KBUILD_CFLAGS += $(KBUILD_CFLAGS_W1)
-> 
-> else
-> etc...
-> 
-> and then drivers and subsystems could simply use:
-> 
-> subdir-ccflags-y += $(KBUILD_CFLAGS_W1)
-> 
-> to enable and remain up-to-date with W=1 warnings.
+total: 0 errors, 1 warnings, 0 checks, 24 lines checked
+e12f0222d790 drm/i915/dp: Use connector DSC DPCD in intel_dp_dsc_compute_max_bpp()
+71a2b1178514 drm/i915/dp: Use connector DSC DPCD in intel_dp_supports_fec()
+437deb7a0cb1 drm/i915/dp: Use connector DSC DPCD in intel_dp_supports_dsc()
+7d24e3ba6c19 drm/i915/dp: Use connector DSC DPCD in intel_dp_dsc_max_sink_compressed_bppx16()
+3876d9b5bdd6 drm/i915/dp: Pass connector DSC DPCD to drm_dp_dsc_sink_supported_input_bpcs()
+e14f16280128 drm/i915/dp: Pass only the required i915 to intel_dp_source_dsc_version_minor()
+c30e9d652751 drm/i915/dp: Pass only the required DSC DPCD to intel_dp_sink_dsc_version_minor()
+dc5dda112095 drm/i915/dp: Use connector DSC DPCD in intel_dp_dsc_compute_params()
+75d44fff8afe drm/i915/dp: Use connector DSC DPCD in intel_dp_dsc_supports_format()
+821c5b466faf drm/i915/dp: Use connector DSC DPCD in intel_dp_dsc_get_slice_count()
+bb21f88dfddf drm/i915/dp: Use connector DSC DPCD in intel_dp_mode_valid()
+5e30b8ceb610 drm/i915/dp: Use connector DSC DPCD in intel_dp_dsc_compute_config()
+d649e3acf8dd drm/i915/dp_mst: Use connector DSC DPCD in intel_dp_mst_mode_valid_ctx()
+9674f9b43d9b drm/i915/dp: Remove unused DSC caps from intel_dp
 
-This has definitely come up a few times and while I am generally in
-favor of something like this, it makes adding warnings to W=1 a little
-bit harder because when we add warnings to W=1, we typically are not
-concerned with breaking the build, as W=1 is not the default build. If a
-subsystem has opted into "whatever the current W=1 is" by default,
-changes to W=1 will have to be reviewed/tested within a normal build.
 
-Doing something like this patch with a more regular cadence (maybe every
-update after the merge window) seems like a reasonable compromise to me,
-although I know that means more work for individual subsystem
-maintainers.
-
-> ---
->  drivers/gpu/drm/i915/Makefile | 33 ++++++++++++++++++---------------
->  1 file changed, 18 insertions(+), 15 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/i915/Makefile b/drivers/gpu/drm/i915/Makefile
-> index 623f81217442..0485157054fc 100644
-> --- a/drivers/gpu/drm/i915/Makefile
-> +++ b/drivers/gpu/drm/i915/Makefile
-> @@ -3,22 +3,25 @@
->  # Makefile for the drm device driver.  This driver provides support for the
->  # Direct Rendering Infrastructure (DRI) in XFree86 4.1.0 and higher.
->  
-> -# Add a set of useful warning flags and enable -Werror for CI to prevent
-> -# trivial mistakes from creeping in. We have to do this piecemeal as we reject
-> -# any patch that isn't warning clean, so turning on -Wextra (or W=1) we
-> -# need to filter out dubious warnings.  Still it is our interest
-> -# to keep running locally with W=1 C=1 until we are completely clean.
-> -#
-> -# Note the danger in using -Wextra is that when CI updates gcc we
-> -# will most likely get a sudden build breakage... Hopefully we will fix
-> -# new warnings before CI updates!
-> -subdir-ccflags-y := -Wextra
-> -subdir-ccflags-y += -Wno-unused-parameter
-> -subdir-ccflags-y += -Wno-type-limits
-> -subdir-ccflags-y += -Wno-missing-field-initializers
-> -subdir-ccflags-y += -Wno-sign-compare
-> -subdir-ccflags-y += -Wno-shift-negative-value
-
-As the test robot points out, you'll want to keep these four, as they
-are only enabled for W=2 or W=3. With this diff on top of these two
-patches:
-
-diff --git a/drivers/gpu/drm/i915/Makefile b/drivers/gpu/drm/i915/Makefile
-index 0485157054fc..9c4e09c8aa4e 100644
---- a/drivers/gpu/drm/i915/Makefile
-+++ b/drivers/gpu/drm/i915/Makefile
-@@ -21,6 +21,12 @@ subdir-ccflags-y += $(call cc-option, -Wstringop-overflow)
- subdir-ccflags-y += $(call cc-option, -Wstringop-truncation)
- # --- end copy-paste
- 
-+# The following turn off the warnings enabled by -Wextra
-+subdir-ccflags-y += -Wno-type-limits
-+subdir-ccflags-y += -Wno-missing-field-initializers
-+subdir-ccflags-y += -Wno-sign-compare
-+subdir-ccflags-y += -Wno-shift-negative-value
-+
- # Enable -Werror in CI and development
- subdir-ccflags-$(CONFIG_DRM_I915_WERROR) += -Werror
- 
-I can continue to build i915 warning free with ARCH=x86_64 allmodconfig
-using all supported versions of LLVM for building the kernel.
-
-> +# Unconditionally enable W=1 warnings locally
-> +# --- begin copy-paste W=1 warnings from scripts/Makefile.extrawarn
-> +subdir-ccflags-y += -Wextra -Wunused -Wno-unused-parameter
-> +subdir-ccflags-y += -Wmissing-declarations
-> +subdir-ccflags-y += $(call cc-option, -Wrestrict)
-> +subdir-ccflags-y += -Wmissing-format-attribute
-> +subdir-ccflags-y += -Wmissing-prototypes
-> +subdir-ccflags-y += -Wold-style-definition
-> +subdir-ccflags-y += -Wmissing-include-dirs
->  subdir-ccflags-y += $(call cc-option, -Wunused-but-set-variable)
-> +subdir-ccflags-y += $(call cc-option, -Wunused-const-variable)
-> +subdir-ccflags-y += $(call cc-option, -Wpacked-not-aligned)
-> +subdir-ccflags-y += $(call cc-option, -Wformat-overflow)
-> +subdir-ccflags-y += $(call cc-option, -Wformat-truncation)
-> +subdir-ccflags-y += $(call cc-option, -Wstringop-overflow)
-> +subdir-ccflags-y += $(call cc-option, -Wstringop-truncation)
-> +# --- end copy-paste
-> +
-> +# Enable -Werror in CI and development
->  subdir-ccflags-$(CONFIG_DRM_I915_WERROR) += -Werror
->  
->  # Fine grained warnings disable
-> -- 
-> 2.39.2
-> 
