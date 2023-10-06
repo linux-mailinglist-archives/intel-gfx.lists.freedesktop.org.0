@@ -2,51 +2,48 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id E98B17BB919
-	for <lists+intel-gfx@lfdr.de>; Fri,  6 Oct 2023 15:30:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7D1AE7BB92A
+	for <lists+intel-gfx@lfdr.de>; Fri,  6 Oct 2023 15:37:19 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 29CCE10E4E9;
-	Fri,  6 Oct 2023 13:30:30 +0000 (UTC)
-X-Original-To: Intel-gfx@lists.freedesktop.org
-Delivered-To: Intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.24])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2BC3510E4E4;
- Fri,  6 Oct 2023 13:30:28 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id AF86F10E4E9;
+	Fri,  6 Oct 2023 13:37:11 +0000 (UTC)
+X-Original-To: intel-gfx@lists.freedesktop.org
+Delivered-To: intel-gfx@lists.freedesktop.org
+Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9EFF810E4E9
+ for <intel-gfx@lists.freedesktop.org>; Fri,  6 Oct 2023 13:37:09 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1696599028; x=1728135028;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:in-reply-to;
- bh=I98yzBK0JubzPDAX0lsVZ6E7MGX7y0noV4cm1KjbcPQ=;
- b=oFgahP9UTElC6nv+vD/LrlQ9uPbM3iekXFc4NNiQdx3JzgCFLpiECiqf
- NG5upDnyj8QpDISPfbcv4hKu2Xf0yTMrSnW5LBM4jFYMOqJcxJPnwzkwK
- iq4jX0QN+MIKsYMHnnNnPDK3hyrJw+ewmRatOaOSuUnTWPMwOtlnVPSnn
- n2KXXzjSKOBKEMHJVsMWAd7Nj8znUBJYM3CK033bf7jLWNIFpHGFnIiL+
- lNCO1MKveID7nGOIcU0RnP+zVARGfJUsv0wTbRjRzcEikjeFpjVv9n39E
- FCAVjJsgTmYsCCIbrfs/EfwthD9SVfs/ExyO9Puc+E0s+iZ+d9W+El7TO w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10855"; a="386572879"
-X-IronPort-AV: E=Sophos;i="6.03,204,1694761200"; d="scan'208";a="386572879"
-Received: from orsmga005.jf.intel.com ([10.7.209.41])
- by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Oct 2023 06:30:27 -0700
+ t=1696599429; x=1728135429;
+ h=from:to:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=KuIV0lFMUZOAMiK93e/sAg9lAqCS/MRdYS+8SRIwM7c=;
+ b=AnO9ekifJtH/mbxnuAhfvp040ppF7R8+onE84czHm2E2bHik4kugs88h
+ Cay3pF6mdJU4OvFH+/44PqlzrKcNZ9z/aRlcKnlxJEhAIm3oaOcKO4DwI
+ 9A3LFQmexvfG2jlmTmihYp9cA+sd0Q0M8JetS9nPRIE5aDI5A5F4bRl8S
+ E6Z5p5oMd5iM0bOY9SGbV55jKO2aBNe9UJuoTLAYCC3c5JsPJst+RaaZw
+ VjK3tQem9ksIfP9pA88VHxQX3Nex3MnrlATjPINnGjI1TjFT081IfRNN+
+ AF+Rgx39IaK/qepeRYm8MNh2OaNZGPp/IjfHmlZmEjgyY3Y+k7SgZZHdi w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10855"; a="470019073"
+X-IronPort-AV: E=Sophos;i="6.03,204,1694761200"; d="scan'208";a="470019073"
+Received: from orsmga006.jf.intel.com ([10.7.209.51])
+ by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 06 Oct 2023 06:37:08 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10855"; a="925963037"
-X-IronPort-AV: E=Sophos;i="6.03,204,1694761200"; d="scan'208";a="925963037"
-Received: from suthengc-mobl1.gar.corp.intel.com (HELO intel.com)
- ([10.215.154.2])
- by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Oct 2023 06:30:20 -0700
-Date: Fri, 6 Oct 2023 15:30:13 +0200
-From: Andi Shyti <andi.shyti@linux.intel.com>
-To: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-Message-ID: <ZSAL5VZ9BFMzDnQR@ashyti-mobl2.lan>
-References: <20231006083103.660153-1-tvrtko.ursulin@linux.intel.com>
- <20231006083103.660153-4-tvrtko.ursulin@linux.intel.com>
+X-IronPort-AV: E=McAfee;i="6600,9927,10855"; a="728841338"
+X-IronPort-AV: E=Sophos;i="6.03,204,1694761200"; d="scan'208";a="728841338"
+Received: from ideak-desk.fi.intel.com ([10.237.72.78])
+ by orsmga006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 06 Oct 2023 06:37:05 -0700
+From: Imre Deak <imre.deak@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Fri,  6 Oct 2023 16:37:08 +0300
+Message-Id: <20231006133727.1822579-1-imre.deak@intel.com>
+X-Mailer: git-send-email 2.39.2
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20231006083103.660153-4-tvrtko.ursulin@linux.intel.com>
-Subject: Re: [Intel-gfx] [PATCH 3/3] drm/i915: Remove xehpsdv support
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-gfx] [PATCH 00/19] drm/i915: Store DSC DPCD capabilities in
+ the connector
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,29 +56,55 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Tvrtko Ursulin <tvrtko.ursulin@intel.com>,
- Jani Nikula <jani.nikula@intel.com>, Intel-gfx@lists.freedesktop.org,
- Lucas De Marchi <lucas.demarchi@intel.com>, dri-devel@lists.freedesktop.org,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, Matt Roper <matthew.d.roper@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi Tvrtko,
+This patchset moves the DSC DPCD capabilities from the encoder
+(intel_dp) to the connector. This is required since in an MST topology
+each connector has its own version of these capabilities, allowing
+to configure/enable the DSC decompression for each stream separately.
 
-On Fri, Oct 06, 2023 at 09:31:03AM +0100, Tvrtko Ursulin wrote:
-> From: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
-> 
-> XeHP SDV was a pre-production hardware used to bring up ATS and was not
-> generally available. Since latter was since explicitly added, there is no
+The changes are needed for a follow-up patchset, fixing the MST DSC
+functionality, making it also possible to enable the BW management on
+MST links. The follow-up changes are based on patches 12-25 in
 
-mmhh?
+https://lore.kernel.org/all/20230914192659.757475-1-imre.deak@intel.com
 
-> need to keep the code for the former around.
-> 
-> Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+Imre Deak (19):
+  drm/i915/dp: Sanitize DPCD revision check in
+    intel_dp_get_dsc_sink_cap()
+  drm/i915/dp: Store DSC DPCD capabilities in the connector
+  drm/i915/dp_mst: Set connector DSC capabilities and decompression AUX
+  drm/i915/dp: Use i915/intel connector local variables in
+    i915_dsc_fec_support_show()
+  drm/i915/dp: Use connector DSC DPCD in i915_dsc_fec_support_show()
+  drm/i915/dp: Use connector DSC DPCD in intel_dp_dsc_compute_max_bpp()
+  drm/i915/dp: Use connector DSC DPCD in intel_dp_supports_fec()
+  drm/i915/dp: Use connector DSC DPCD in intel_dp_supports_dsc()
+  drm/i915/dp: Use connector DSC DPCD in
+    intel_dp_dsc_max_sink_compressed_bppx16()
+  drm/i915/dp: Pass connector DSC DPCD to
+    drm_dp_dsc_sink_supported_input_bpcs()
+  drm/i915/dp: Pass only the required i915 to
+    intel_dp_source_dsc_version_minor()
+  drm/i915/dp: Pass only the required DSC DPCD to
+    intel_dp_sink_dsc_version_minor()
+  drm/i915/dp: Use connector DSC DPCD in intel_dp_dsc_compute_params()
+  drm/i915/dp: Use connector DSC DPCD in intel_dp_dsc_supports_format()
+  drm/i915/dp: Use connector DSC DPCD in intel_dp_dsc_get_slice_count()
+  drm/i915/dp: Use connector DSC DPCD in intel_dp_mode_valid()
+  drm/i915/dp: Use connector DSC DPCD in intel_dp_dsc_compute_config()
+  drm/i915/dp_mst: Use connector DSC DPCD in
+    intel_dp_mst_mode_valid_ctx()
+  drm/i915/dp: Remove unused DSC caps from intel_dp
 
-didn't spot anything odd... looks good:
+ .../drm/i915/display/intel_display_debugfs.c  |  22 +--
+ .../drm/i915/display/intel_display_types.h    |   8 +-
+ drivers/gpu/drm/i915/display/intel_dp.c       | 154 ++++++++++--------
+ drivers/gpu/drm/i915/display/intel_dp.h       |   8 +-
+ drivers/gpu/drm/i915/display/intel_dp_mst.c   |  35 +++-
+ 5 files changed, 136 insertions(+), 91 deletions(-)
 
-Reviewed-by: Andi Shyti <andi.shyti@linux.intel.com> 
+-- 
+2.39.2
 
-Andi
