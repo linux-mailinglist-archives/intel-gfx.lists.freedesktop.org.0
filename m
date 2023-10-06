@@ -2,33 +2,48 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2A8977BB00B
-	for <lists+intel-gfx@lfdr.de>; Fri,  6 Oct 2023 03:20:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6FB507BB011
+	for <lists+intel-gfx@lfdr.de>; Fri,  6 Oct 2023 03:36:26 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E346710E4B2;
-	Fri,  6 Oct 2023 01:20:35 +0000 (UTC)
-X-Original-To: intel-gfx@lists.freedesktop.org
-Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id D9CB810E1DD;
- Fri,  6 Oct 2023 01:20:33 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id D7B5FA02F0;
- Fri,  6 Oct 2023 01:20:33 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3B3D810E085;
+	Fri,  6 Oct 2023 01:36:23 +0000 (UTC)
+X-Original-To: Intel-GFX@lists.freedesktop.org
+Delivered-To: Intel-GFX@lists.freedesktop.org
+Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.24])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A877E10E085;
+ Fri,  6 Oct 2023 01:36:20 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1696556180; x=1728092180;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=+ZViYKmZe7ReuITau9q/rPgU92hNNM1KSvS4l6bgTow=;
+ b=JQrdLU9kMDS0soOTGeN14zRPFTuWaE9usy58KVPHMJJOBWouTfssE+//
+ IPfG+ZUr0HRcz4oRzo2VfnFhTeR4Lzzzn0bR3WBIzlbNdEscsyFPqRbtS
+ GLiraEShM3J9YNjq7NFr0YfVHBaxMkrlD57nZxt6dnwPX38tR8ZJQqvEl
+ RVMuE1BIrl4lRKpm4HIf16Mn0999EZ5xlg1i7CbJK/rh4agucXjVHb0dT
+ O1hYG/aCtH5yySbTEI+3t1EmzehTKNVYQRc1UrUMNNwIHCqovzsYaRsuU
+ 9nDa/B6TnxEpL0o/7QY4LrtBieoKOJUX/6CLlhIdiHxcQg+qRmHFrcist Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10854"; a="386488674"
+X-IronPort-AV: E=Sophos;i="6.03,203,1694761200"; d="scan'208";a="386488674"
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+ by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 05 Oct 2023 18:36:20 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10854"; a="868153123"
+X-IronPort-AV: E=Sophos;i="6.03,203,1694761200"; d="scan'208";a="868153123"
+Received: from relo-linux-5.jf.intel.com ([10.165.21.152])
+ by fmsmga002.fm.intel.com with ESMTP; 05 Oct 2023 18:36:19 -0700
+From: John.C.Harrison@Intel.com
+To: Intel-GFX@Lists.FreeDesktop.Org
+Date: Thu,  5 Oct 2023 18:35:53 -0700
+Message-ID: <20231006013553.1339418-1-John.C.Harrison@Intel.com>
+X-Mailer: git-send-email 2.41.0
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Jonathan Cavitt" <jonathan.cavitt@intel.com>
-Date: Fri, 06 Oct 2023 01:20:33 -0000
-Message-ID: <169655523387.6465.14668704432913962332@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20231005193536.1463159-1-jonathan.cavitt@intel.com>
-In-Reply-To: <20231005193536.1463159-1-jonathan.cavitt@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLlNQQVJTRTogd2FybmluZyBmb3Ig?=
- =?utf-8?q?Subject=3A_=5BPATCH_dii-client_v6_0/4=5D_drm/i915=3A_Define_and?=
- =?utf-8?q?_use_GuC_and_CTB_TLB_invalidation_routines_=28rev2=29?=
+Organization: Intel Corporation (UK) Ltd. - Co. Reg. #1134945 - Pipers Way,
+ Swindon SN3 1RJ
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-gfx] [PATCH] drm/i915/guc: Enable WA 14018913170
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -41,21 +56,65 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
+Cc: DRI-Devel@Lists.FreeDesktop.Org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+From: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
 
-Series: Subject: [PATCH dii-client v6 0/4] drm/i915: Define and use GuC and CTB TLB invalidation routines (rev2)
-URL   : https://patchwork.freedesktop.org/series/124641/
-State : warning
+The GuC handles the WA, the KMD just needs to set the flag to enable
+it on the appropriate platforms.
 
-== Summary ==
+Signed-off-by: John Harrison <John.C.Harrison@Intel.com>
+Signed-off-by: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
+Reviewed-by: Vinay Belgaumkar <vinay.belgaumkar@intel.com>
+---
+ drivers/gpu/drm/i915/gt/uc/intel_guc.c      | 6 ++++++
+ drivers/gpu/drm/i915/gt/uc/intel_guc.h      | 1 +
+ drivers/gpu/drm/i915/gt/uc/intel_guc_fwif.h | 1 +
+ 3 files changed, 8 insertions(+)
 
-Error: dim sparse failed
-Sparse version: v0.6.2
-Fast mode used, each commit won't be checked separately.
-
+diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc.c b/drivers/gpu/drm/i915/gt/uc/intel_guc.c
+index 27df41c53b890..3f3df1166b860 100644
+--- a/drivers/gpu/drm/i915/gt/uc/intel_guc.c
++++ b/drivers/gpu/drm/i915/gt/uc/intel_guc.c
+@@ -319,6 +319,12 @@ static u32 guc_ctl_wa_flags(struct intel_guc *guc)
+ 	if (!RCS_MASK(gt))
+ 		flags |= GUC_WA_RCS_REGS_IN_CCS_REGS_LIST;
+ 
++	/* Wa_14018913170 */
++	if (GUC_FIRMWARE_VER(guc) >= MAKE_GUC_VER(70, 7, 0)) {
++		if (IS_DG2(gt->i915) || IS_METEORLAKE(gt->i915) || IS_PONTEVECCHIO(gt->i915))
++			flags |= GUC_WA_ENABLE_TSC_CHECK_ON_RC6;
++	}
++
+ 	return flags;
+ }
+ 
+diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc.h b/drivers/gpu/drm/i915/gt/uc/intel_guc.h
+index 6c392bad29c19..818c8c146fd47 100644
+--- a/drivers/gpu/drm/i915/gt/uc/intel_guc.h
++++ b/drivers/gpu/drm/i915/gt/uc/intel_guc.h
+@@ -295,6 +295,7 @@ struct intel_guc {
+ #define MAKE_GUC_VER(maj, min, pat)	(((maj) << 16) | ((min) << 8) | (pat))
+ #define MAKE_GUC_VER_STRUCT(ver)	MAKE_GUC_VER((ver).major, (ver).minor, (ver).patch)
+ #define GUC_SUBMIT_VER(guc)		MAKE_GUC_VER_STRUCT((guc)->submission_version)
++#define GUC_FIRMWARE_VER(guc)		MAKE_GUC_VER_STRUCT((guc)->fw.file_selected.ver)
+ 
+ static inline struct intel_guc *log_to_guc(struct intel_guc_log *log)
+ {
+diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_fwif.h b/drivers/gpu/drm/i915/gt/uc/intel_guc_fwif.h
+index b4d56eccfb1f0..123ad75d2eb28 100644
+--- a/drivers/gpu/drm/i915/gt/uc/intel_guc_fwif.h
++++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_fwif.h
+@@ -100,6 +100,7 @@
+ #define   GUC_WA_HOLD_CCS_SWITCHOUT	BIT(17)
+ #define   GUC_WA_POLLCS			BIT(18)
+ #define   GUC_WA_RCS_REGS_IN_CCS_REGS_LIST	BIT(21)
++#define   GUC_WA_ENABLE_TSC_CHECK_ON_RC6	BIT(22)
+ 
+ #define GUC_CTL_FEATURE			2
+ #define   GUC_CTL_ENABLE_SLPC		BIT(2)
+-- 
+2.41.0
 
