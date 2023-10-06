@@ -1,52 +1,33 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6A95A7BBD36
-	for <lists+intel-gfx@lfdr.de>; Fri,  6 Oct 2023 18:50:31 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id DAC2A7BBD58
+	for <lists+intel-gfx@lfdr.de>; Fri,  6 Oct 2023 18:56:22 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 224B910E53B;
-	Fri,  6 Oct 2023 16:50:28 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7F7DB10E028;
+	Fri,  6 Oct 2023 16:56:20 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.120])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 889A810E53B
- for <intel-gfx@lists.freedesktop.org>; Fri,  6 Oct 2023 16:50:26 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1696611026; x=1728147026;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:in-reply-to;
- bh=TyZTCYRndky9FsZgVN2Q0xbD13CmF4KqHE4WAZmVZT0=;
- b=Bt6JHlWyruBhP6GpuklgA9OdsoWl8d4vHNHlZjeUNxrKeHaS1+MrbDaC
- 5ZTtVsMoVxlw7DxlqDvLmnzvGXQjgIPVJLiaelOWYskW2OcwSgC9coRrX
- cbNcRKhHRIMzKH/Iq9p1taoDw9cSRk8k4L5ckHEZNk4Y8TOAKUwCgQPsg
- 0h2WdMygXjMUHzF52bi5Q6x8Oqxpedxb1WFR+C00C4XVe6lOVz3kDBQxP
- luSm2XD3o858Z+TmHlEcJE++yuxkdhtz2j2uR4+UcfISANMmcsQ416lKu
- f4S4Rree+FQUQp9jeIpt9aZDoDIOCq9TS7eeGTjoVXwxNvpc1D/GXWnn+ A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10855"; a="382650036"
-X-IronPort-AV: E=Sophos;i="6.03,204,1694761200"; d="scan'208";a="382650036"
-Received: from fmsmga005.fm.intel.com ([10.253.24.32])
- by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Oct 2023 09:50:25 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10855"; a="1083515255"
-X-IronPort-AV: E=Sophos;i="6.03,204,1694761200"; d="scan'208";a="1083515255"
-Received: from lkp-server01.sh.intel.com (HELO 8a3a91ad4240) ([10.239.97.150])
- by fmsmga005.fm.intel.com with ESMTP; 06 Oct 2023 09:50:22 -0700
-Received: from kbuild by 8a3a91ad4240 with local (Exim 4.96)
- (envelope-from <lkp@intel.com>) id 1qoo1s-0003RN-2o;
- Fri, 06 Oct 2023 16:50:20 +0000
-Date: Sat, 7 Oct 2023 00:49:50 +0800
-From: kernel test robot <lkp@intel.com>
-To: Jani Nikula <jani.nikula@intel.com>, intel-gfx@lists.freedesktop.org
-Message-ID: <202310070011.Fji48IBk-lkp@intel.com>
-References: <f50c8ea0e63615aea28fe7f6049703e1d28ba7eb.1696595500.git.jani.nikula@intel.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id D2AB010E028;
+ Fri,  6 Oct 2023 16:56:17 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id CCC1CA02F0;
+ Fri,  6 Oct 2023 16:56:17 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============8778384947385014695=="
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <f50c8ea0e63615aea28fe7f6049703e1d28ba7eb.1696595500.git.jani.nikula@intel.com>
-Subject: Re: [Intel-gfx] [PATCH 2/2] drm/i915: enable W=1 warnings by default
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Andi Shyti" <andi.shyti@linux.intel.com>
+Date: Fri, 06 Oct 2023 16:56:17 -0000
+Message-ID: <169661137783.6465.12875340366762319147@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20231006132606.810110-1-andi.shyti@linux.intel.com>
+In-Reply-To: <20231006132606.810110-1-andi.shyti@linux.intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
+ =?utf-8?q?/print=3A_Add_drm=5Fdbg=5Fratelimited?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,396 +40,383 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Arnd Bergmann <arnd@arndb.de>, linux-kbuild@vger.kernel.org,
- jani.nikula@intel.com, Masahiro Yamada <masahiroy@kernel.org>,
- llvm@lists.linux.dev, Nick Desaulniers <ndesaulniers@google.com>,
- Nathan Chancellor <nathan@kernel.org>, oe-kbuild-all@lists.linux.dev
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi Jani,
+--===============8778384947385014695==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-kernel test robot noticed the following build warnings:
+== Series Details ==
 
-[auto build test WARNING on drm-tip/drm-tip]
+Series: drm/print: Add drm_dbg_ratelimited
+URL   : https://patchwork.freedesktop.org/series/124722/
+State : success
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Jani-Nikula/drm-i915-drop-Wall-and-related-disables-from-cflags-as-redundant/20231006-203658
-base:   git://anongit.freedesktop.org/drm/drm-tip drm-tip
-patch link:    https://lore.kernel.org/r/f50c8ea0e63615aea28fe7f6049703e1d28ba7eb.1696595500.git.jani.nikula%40intel.com
-patch subject: [Intel-gfx] [PATCH 2/2] drm/i915: enable W=1 warnings by default
-config: x86_64-rhel-8.3-rust (https://download.01.org/0day-ci/archive/20231007/202310070011.Fji48IBk-lkp@intel.com/config)
-compiler: clang version 16.0.4 (https://github.com/llvm/llvm-project.git ae42196bc493ffe877a7e3dff8be32035dea4d07)
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20231007/202310070011.Fji48IBk-lkp@intel.com/reproduce)
+== Summary ==
 
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202310070011.Fji48IBk-lkp@intel.com/
+CI Bug Log - changes from CI_DRM_13722 -> Patchwork_124722v1
+====================================================
 
-All warnings (new ones prefixed by >>):
+Summary
+-------
 
-   In file included from drivers/gpu/drm/i915/i915_driver.c:30:
-   In file included from include/linux/acpi.h:13:
-   In file included from include/linux/resource_ext.h:11:
-   In file included from include/linux/slab.h:16:
-   In file included from include/linux/gfp.h:7:
-   In file included from include/linux/mmzone.h:8:
-   In file included from include/linux/spinlock.h:56:
-   In file included from include/linux/preempt.h:79:
-   In file included from arch/x86/include/asm/preempt.h:9:
->> include/linux/thread_info.h:240:29: warning: comparison of integers of different signs: 'int' and 'size_t' (aka 'unsigned long') [-Wsign-compare]
-           if (unlikely(sz >= 0 && sz < bytes)) {
-                                   ~~ ^ ~~~~~
-   include/linux/compiler.h:77:42: note: expanded from macro 'unlikely'
-   # define unlikely(x)    __builtin_expect(!!(x), 0)
-                                               ^
-   In file included from drivers/gpu/drm/i915/i915_driver.c:30:
-   In file included from include/linux/acpi.h:13:
-   In file included from include/linux/resource_ext.h:11:
-   In file included from include/linux/slab.h:16:
-   In file included from include/linux/gfp.h:7:
-   In file included from include/linux/mmzone.h:22:
->> include/linux/mm_types.h:1036:13: warning: comparison of integers of different signs: 'int' and 'unsigned int' [-Wsign-compare]
-           return cid == MM_CID_UNSET;
-                  ~~~ ^  ~~~~~~~~~~~~
-   include/linux/mm_types.h:1074:2: warning: comparison of integers of different signs: 'int' and 'unsigned int' [-Wsign-compare]
-           for_each_possible_cpu(i) {
-           ^~~~~~~~~~~~~~~~~~~~~~~~
-   include/linux/cpumask.h:974:36: note: expanded from macro 'for_each_possible_cpu'
-   #define for_each_possible_cpu(cpu) for_each_cpu((cpu), cpu_possible_mask)
-                                      ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-   include/linux/cpumask.h:282:2: note: expanded from macro 'for_each_cpu'
-           for_each_set_bit(cpu, cpumask_bits(mask), small_cpumask_bits)
-           ^                ~~~                      ~~~~~~~~~~~~~~~~~~
-   include/linux/find.h:559:70: note: expanded from macro 'for_each_set_bit'
-           for ((bit) = 0; (bit) = find_next_bit((addr), (size), (bit)), (bit) < (size); (bit)++)
-                                                                          ~~~  ^  ~~~~
-   In file included from drivers/gpu/drm/i915/i915_driver.c:30:
-   In file included from include/linux/acpi.h:13:
-   In file included from include/linux/resource_ext.h:11:
-   In file included from include/linux/slab.h:16:
-   In file included from include/linux/gfp.h:7:
->> include/linux/mmzone.h:1627:44: warning: comparison of integers of different signs: 'int' and 'enum zone_type' [-Wsign-compare]
-           if (likely(!nodes && zonelist_zone_idx(z) <= highest_zoneidx))
-                                ~~~~~~~~~~~~~~~~~~~~ ^  ~~~~~~~~~~~~~~~
-   include/linux/compiler.h:76:40: note: expanded from macro 'likely'
-   # define likely(x)      __builtin_expect(!!(x), 1)
-                                               ^
-   In file included from drivers/gpu/drm/i915/i915_driver.c:30:
-   In file included from include/linux/acpi.h:13:
-   In file included from include/linux/resource_ext.h:11:
-   In file included from include/linux/slab.h:20:
->> include/linux/percpu-refcount.h:205:3: warning: comparison of integers of different signs: 'unsigned long' and 'int' [-Wsign-compare]
-                   this_cpu_add(*percpu_count, nr);
-                   ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-   include/linux/percpu-defs.h:491:33: note: expanded from macro 'this_cpu_add'
-   #define this_cpu_add(pcp, val)          __pcpu_size_call(this_cpu_add_, pcp, val)
-                                           ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-   include/linux/percpu-defs.h:368:11: note: expanded from macro '__pcpu_size_call'
-                   case 8: stem##8(variable, __VA_ARGS__);break;           \
-                           ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-   <scratch space>:49:1: note: expanded from here
-   this_cpu_add_8
-   ^
-   arch/x86/include/asm/percpu.h:370:35: note: expanded from macro 'this_cpu_add_8'
-   #define this_cpu_add_8(pcp, val)                percpu_add_op(8, volatile, (pcp), val)
-                                                   ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-   arch/x86/include/asm/percpu.h:127:31: note: expanded from macro 'percpu_add_op'
-                                 ((val) == 1 || (val) == -1)) ?            \
-                                                 ~~~  ^  ~~
-   In file included from drivers/gpu/drm/i915/i915_driver.c:30:
-   In file included from include/linux/acpi.h:13:
-   In file included from include/linux/resource_ext.h:11:
-   In file included from include/linux/slab.h:20:
-   include/linux/percpu-refcount.h:244:3: warning: comparison of integers of different signs: 'unsigned long' and 'int' [-Wsign-compare]
-                   this_cpu_add(*percpu_count, nr);
-                   ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-   include/linux/percpu-defs.h:491:33: note: expanded from macro 'this_cpu_add'
-   #define this_cpu_add(pcp, val)          __pcpu_size_call(this_cpu_add_, pcp, val)
-                                           ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-   include/linux/percpu-defs.h:368:11: note: expanded from macro '__pcpu_size_call'
-                   case 8: stem##8(variable, __VA_ARGS__);break;           \
-                           ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-   <scratch space>:101:1: note: expanded from here
-   this_cpu_add_8
-   ^
-   arch/x86/include/asm/percpu.h:370:35: note: expanded from macro 'this_cpu_add_8'
-   #define this_cpu_add_8(pcp, val)                percpu_add_op(8, volatile, (pcp), val)
-                                                   ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-   arch/x86/include/asm/percpu.h:127:31: note: expanded from macro 'percpu_add_op'
-                                 ((val) == 1 || (val) == -1)) ?            \
-                                                 ~~~  ^  ~~
-   In file included from drivers/gpu/drm/i915/i915_driver.c:30:
-   In file included from include/linux/acpi.h:13:
-   In file included from include/linux/resource_ext.h:11:
-   In file included from include/linux/slab.h:20:
-   include/linux/percpu-refcount.h:333:3: warning: comparison of integers of different signs: 'unsigned long' and 'int' [-Wsign-compare]
-                   this_cpu_sub(*percpu_count, nr);
-                   ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-   include/linux/percpu-defs.h:500:33: note: expanded from macro 'this_cpu_sub'
-   #define this_cpu_sub(pcp, val)          this_cpu_add(pcp, -(typeof(pcp))(val))
-                                           ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-   include/linux/percpu-defs.h:491:33: note: expanded from macro 'this_cpu_add'
-   #define this_cpu_add(pcp, val)          __pcpu_size_call(this_cpu_add_, pcp, val)
-                                           ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-   include/linux/percpu-defs.h:368:11: note: expanded from macro '__pcpu_size_call'
-                   case 8: stem##8(variable, __VA_ARGS__);break;           \
-                           ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-   <scratch space>:209:1: note: expanded from here
-   this_cpu_add_8
-   ^
-   arch/x86/include/asm/percpu.h:370:35: note: expanded from macro 'this_cpu_add_8'
-   #define this_cpu_add_8(pcp, val)                percpu_add_op(8, volatile, (pcp), val)
-                                                   ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-   arch/x86/include/asm/percpu.h:127:31: note: expanded from macro 'percpu_add_op'
-                                 ((val) == 1 || (val) == -1)) ?            \
-                                                 ~~~  ^  ~~
-   In file included from drivers/gpu/drm/i915/i915_driver.c:33:
-   In file included from include/linux/oom.h:11:
-   In file included from include/linux/mm.h:2168:
->> include/linux/vmstat.h:231:2: warning: comparison of integers of different signs: 'int' and 'unsigned int' [-Wsign-compare]
-           for_each_online_cpu(cpu)
-           ^~~~~~~~~~~~~~~~~~~~~~~~
-   include/linux/cpumask.h:975:36: note: expanded from macro 'for_each_online_cpu'
-   #define for_each_online_cpu(cpu)   for_each_cpu((cpu), cpu_online_mask)
-                                      ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-   include/linux/cpumask.h:282:2: note: expanded from macro 'for_each_cpu'
-           for_each_set_bit(cpu, cpumask_bits(mask), small_cpumask_bits)
-           ^                ~~~                      ~~~~~~~~~~~~~~~~~~
-   include/linux/find.h:559:70: note: expanded from macro 'for_each_set_bit'
-           for ((bit) = 0; (bit) = find_next_bit((addr), (size), (bit)), (bit) < (size); (bit)++)
-                                                                          ~~~  ^  ~~~~
-   In file included from drivers/gpu/drm/i915/i915_driver.c:39:
-   In file included from include/linux/vga_switcheroo.h:34:
-   In file included from include/linux/fb.h:7:
-   In file included from include/uapi/linux/fb.h:6:
-   In file included from include/linux/i2c.h:19:
-   In file included from include/linux/regulator/consumer.h:35:
-   In file included from include/linux/suspend.h:5:
-   In file included from include/linux/swap.h:9:
-   In file included from include/linux/memcontrol.h:22:
-   In file included from include/linux/writeback.h:203:
->> include/linux/bio.h:401:14: warning: comparison of integers of different signs: 'int' and 'unsigned int' [-Wsign-compare]
-           if (sectors >= bio_sectors(bio))
-               ~~~~~~~ ^  ~~~~~~~~~~~~~~~~
-   In file included from drivers/gpu/drm/i915/i915_driver.c:39:
-   In file included from include/linux/vga_switcheroo.h:34:
-   In file included from include/linux/fb.h:7:
-   In file included from include/uapi/linux/fb.h:6:
-   In file included from include/linux/i2c.h:19:
-   In file included from include/linux/regulator/consumer.h:35:
-   In file included from include/linux/suspend.h:5:
-   In file included from include/linux/swap.h:13:
->> include/linux/pagemap.h:813:36: warning: comparison of integers of different signs: 'unsigned long' and 'long' [-Wsign-compare]
-           return index - folio_index(folio) < folio_nr_pages(folio);
-                  ~~~~~~~~~~~~~~~~~~~~~~~~~~ ^ ~~~~~~~~~~~~~~~~~~~~~
-   In file included from drivers/gpu/drm/i915/i915_driver.c:52:
-   In file included from drivers/gpu/drm/i915/display/intel_display_types.h:31:
->> include/linux/pwm.h:335:50: warning: comparison of integers of different signs: 'u64' (aka 'unsigned long long') and 'int' [-Wsign-compare]
-           if (state.duty_cycle == duty_ns && state.period == period_ns)
-                                              ~~~~~~~~~~~~ ^  ~~~~~~~~~
-   include/linux/pwm.h:335:23: warning: comparison of integers of different signs: 'u64' (aka 'unsigned long long') and 'int' [-Wsign-compare]
-           if (state.duty_cycle == duty_ns && state.period == period_ns)
-               ~~~~~~~~~~~~~~~~ ^  ~~~~~~~
-   In file included from drivers/gpu/drm/i915/i915_driver.c:52:
-   In file included from drivers/gpu/drm/i915/display/intel_display_types.h:49:
-   In file included from drivers/gpu/drm/i915/i915_vma.h:34:
-   In file included from drivers/gpu/drm/i915/gem/i915_gem_object.h:15:
-   In file included from drivers/gpu/drm/i915/gem/i915_gem_object_types.h:13:
-   In file included from include/drm/ttm/ttm_bo.h:39:
-   In file included from include/drm/ttm/ttm_device.h:30:
->> include/drm/ttm/ttm_resource.h:312:16: warning: comparison of integers of different signs: 'int' and 'unsigned int' [-Wsign-compare]
-           for (i = 0; i < TTM_MAX_BO_PRIORITY; i++)
-                       ~ ^ ~~~~~~~~~~~~~~~~~~~
-   In file included from drivers/gpu/drm/i915/i915_driver.c:52:
-   In file included from drivers/gpu/drm/i915/display/intel_display_types.h:49:
-   In file included from drivers/gpu/drm/i915/i915_vma.h:34:
-   In file included from drivers/gpu/drm/i915/gem/i915_gem_object.h:16:
-   In file included from drivers/gpu/drm/i915/i915_gem_gtt.h:14:
->> drivers/gpu/drm/i915/gt/intel_gtt.h:435:16: warning: comparison of integers of different signs: 'int' and 'unsigned long' [-Wsign-compare]
-           if ((int)type >= ARRAY_SIZE(vm->min_alignment))
-               ~~~~~~~~~ ^  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-   14 warnings generated.
---
-   In file included from drivers/gpu/drm/i915/i915_drm_client.c:7:
-   In file included from include/linux/slab.h:16:
-   In file included from include/linux/gfp.h:7:
-   In file included from include/linux/mmzone.h:8:
-   In file included from include/linux/spinlock.h:56:
-   In file included from include/linux/preempt.h:79:
-   In file included from arch/x86/include/asm/preempt.h:9:
->> include/linux/thread_info.h:240:29: warning: comparison of integers of different signs: 'int' and 'size_t' (aka 'unsigned long') [-Wsign-compare]
-           if (unlikely(sz >= 0 && sz < bytes)) {
-                                   ~~ ^ ~~~~~
-   include/linux/compiler.h:77:42: note: expanded from macro 'unlikely'
-   # define unlikely(x)    __builtin_expect(!!(x), 0)
-                                               ^
-   In file included from drivers/gpu/drm/i915/i915_drm_client.c:7:
-   In file included from include/linux/slab.h:16:
-   In file included from include/linux/gfp.h:7:
-   In file included from include/linux/mmzone.h:22:
->> include/linux/mm_types.h:1036:13: warning: comparison of integers of different signs: 'int' and 'unsigned int' [-Wsign-compare]
-           return cid == MM_CID_UNSET;
-                  ~~~ ^  ~~~~~~~~~~~~
-   include/linux/mm_types.h:1074:2: warning: comparison of integers of different signs: 'int' and 'unsigned int' [-Wsign-compare]
-           for_each_possible_cpu(i) {
-           ^~~~~~~~~~~~~~~~~~~~~~~~
-   include/linux/cpumask.h:974:36: note: expanded from macro 'for_each_possible_cpu'
-   #define for_each_possible_cpu(cpu) for_each_cpu((cpu), cpu_possible_mask)
-                                      ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-   include/linux/cpumask.h:282:2: note: expanded from macro 'for_each_cpu'
-           for_each_set_bit(cpu, cpumask_bits(mask), small_cpumask_bits)
-           ^                ~~~                      ~~~~~~~~~~~~~~~~~~
-   include/linux/find.h:559:70: note: expanded from macro 'for_each_set_bit'
-           for ((bit) = 0; (bit) = find_next_bit((addr), (size), (bit)), (bit) < (size); (bit)++)
-                                                                          ~~~  ^  ~~~~
-   In file included from drivers/gpu/drm/i915/i915_drm_client.c:7:
-   In file included from include/linux/slab.h:16:
-   In file included from include/linux/gfp.h:7:
->> include/linux/mmzone.h:1627:44: warning: comparison of integers of different signs: 'int' and 'enum zone_type' [-Wsign-compare]
-           if (likely(!nodes && zonelist_zone_idx(z) <= highest_zoneidx))
-                                ~~~~~~~~~~~~~~~~~~~~ ^  ~~~~~~~~~~~~~~~
-   include/linux/compiler.h:76:40: note: expanded from macro 'likely'
-   # define likely(x)      __builtin_expect(!!(x), 1)
-                                               ^
-   In file included from drivers/gpu/drm/i915/i915_drm_client.c:7:
-   In file included from include/linux/slab.h:20:
->> include/linux/percpu-refcount.h:205:3: warning: comparison of integers of different signs: 'unsigned long' and 'int' [-Wsign-compare]
-                   this_cpu_add(*percpu_count, nr);
-                   ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-   include/linux/percpu-defs.h:491:33: note: expanded from macro 'this_cpu_add'
-   #define this_cpu_add(pcp, val)          __pcpu_size_call(this_cpu_add_, pcp, val)
-                                           ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-   include/linux/percpu-defs.h:368:11: note: expanded from macro '__pcpu_size_call'
-                   case 8: stem##8(variable, __VA_ARGS__);break;           \
-                           ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-   <scratch space>:28:1: note: expanded from here
-   this_cpu_add_8
-   ^
-   arch/x86/include/asm/percpu.h:370:35: note: expanded from macro 'this_cpu_add_8'
-   #define this_cpu_add_8(pcp, val)                percpu_add_op(8, volatile, (pcp), val)
-                                                   ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-   arch/x86/include/asm/percpu.h:127:31: note: expanded from macro 'percpu_add_op'
-                                 ((val) == 1 || (val) == -1)) ?            \
-                                                 ~~~  ^  ~~
-   In file included from drivers/gpu/drm/i915/i915_drm_client.c:7:
-   In file included from include/linux/slab.h:20:
-   include/linux/percpu-refcount.h:244:3: warning: comparison of integers of different signs: 'unsigned long' and 'int' [-Wsign-compare]
-                   this_cpu_add(*percpu_count, nr);
-                   ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-   include/linux/percpu-defs.h:491:33: note: expanded from macro 'this_cpu_add'
-   #define this_cpu_add(pcp, val)          __pcpu_size_call(this_cpu_add_, pcp, val)
-                                           ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-   include/linux/percpu-defs.h:368:11: note: expanded from macro '__pcpu_size_call'
-                   case 8: stem##8(variable, __VA_ARGS__);break;           \
-                           ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-   <scratch space>:80:1: note: expanded from here
-   this_cpu_add_8
-   ^
-   arch/x86/include/asm/percpu.h:370:35: note: expanded from macro 'this_cpu_add_8'
-   #define this_cpu_add_8(pcp, val)                percpu_add_op(8, volatile, (pcp), val)
-                                                   ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-   arch/x86/include/asm/percpu.h:127:31: note: expanded from macro 'percpu_add_op'
-                                 ((val) == 1 || (val) == -1)) ?            \
-                                                 ~~~  ^  ~~
-   In file included from drivers/gpu/drm/i915/i915_drm_client.c:7:
-   In file included from include/linux/slab.h:20:
-   include/linux/percpu-refcount.h:333:3: warning: comparison of integers of different signs: 'unsigned long' and 'int' [-Wsign-compare]
-                   this_cpu_sub(*percpu_count, nr);
-                   ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-   include/linux/percpu-defs.h:500:33: note: expanded from macro 'this_cpu_sub'
-   #define this_cpu_sub(pcp, val)          this_cpu_add(pcp, -(typeof(pcp))(val))
-                                           ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-   include/linux/percpu-defs.h:491:33: note: expanded from macro 'this_cpu_add'
-   #define this_cpu_add(pcp, val)          __pcpu_size_call(this_cpu_add_, pcp, val)
-                                           ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-   include/linux/percpu-defs.h:368:11: note: expanded from macro '__pcpu_size_call'
-                   case 8: stem##8(variable, __VA_ARGS__);break;           \
-                           ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-   <scratch space>:188:1: note: expanded from here
-   this_cpu_add_8
-   ^
-   arch/x86/include/asm/percpu.h:370:35: note: expanded from macro 'this_cpu_add_8'
-   #define this_cpu_add_8(pcp, val)                percpu_add_op(8, volatile, (pcp), val)
-                                                   ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-   arch/x86/include/asm/percpu.h:127:31: note: expanded from macro 'percpu_add_op'
-                                 ((val) == 1 || (val) == -1)) ?            \
-                                                 ~~~  ^  ~~
-   In file included from drivers/gpu/drm/i915/i915_drm_client.c:14:
-   In file included from drivers/gpu/drm/i915/gem/i915_gem_context.h:10:
-   In file included from drivers/gpu/drm/i915/gem/i915_gem_context_types.h:20:
-   In file included from drivers/gpu/drm/i915/gt/intel_context_types.h:18:
-   In file included from drivers/gpu/drm/i915/gt/intel_engine_types.h:21:
-   In file included from drivers/gpu/drm/i915/i915_pmu.h:11:
-   In file included from include/linux/perf_event.h:18:
-   In file included from include/uapi/linux/bpf_perf_event.h:11:
-   In file included from ./arch/x86/include/generated/uapi/asm/bpf_perf_event.h:1:
-   In file included from include/uapi/asm-generic/bpf_perf_event.h:4:
-   In file included from include/linux/ptrace.h:10:
-   In file included from include/linux/pid_namespace.h:7:
-   In file included from include/linux/mm.h:2168:
->> include/linux/vmstat.h:231:2: warning: comparison of integers of different signs: 'int' and 'unsigned int' [-Wsign-compare]
-           for_each_online_cpu(cpu)
-           ^~~~~~~~~~~~~~~~~~~~~~~~
-   include/linux/cpumask.h:975:36: note: expanded from macro 'for_each_online_cpu'
-   #define for_each_online_cpu(cpu)   for_each_cpu((cpu), cpu_online_mask)
-                                      ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-   include/linux/cpumask.h:282:2: note: expanded from macro 'for_each_cpu'
-           for_each_set_bit(cpu, cpumask_bits(mask), small_cpumask_bits)
-           ^                ~~~                      ~~~~~~~~~~~~~~~~~~
-   include/linux/find.h:559:70: note: expanded from macro 'for_each_set_bit'
-           for ((bit) = 0; (bit) = find_next_bit((addr), (size), (bit)), (bit) < (size); (bit)++)
-                                                                          ~~~  ^  ~~~~
-   In file included from drivers/gpu/drm/i915/i915_drm_client.c:14:
-   In file included from drivers/gpu/drm/i915/gem/i915_gem_context.h:12:
-   In file included from drivers/gpu/drm/i915/gt/intel_context.h:14:
-   In file included from drivers/gpu/drm/i915/i915_drv.h:37:
-   In file included from include/drm/ttm/ttm_device.h:30:
->> include/drm/ttm/ttm_resource.h:312:16: warning: comparison of integers of different signs: 'int' and 'unsigned int' [-Wsign-compare]
-           for (i = 0; i < TTM_MAX_BO_PRIORITY; i++)
-                       ~ ^ ~~~~~~~~~~~~~~~~~~~
-   In file included from drivers/gpu/drm/i915/i915_drm_client.c:14:
-   In file included from drivers/gpu/drm/i915/gem/i915_gem_context.h:12:
-   In file included from drivers/gpu/drm/i915/gt/intel_context.h:14:
-   In file included from drivers/gpu/drm/i915/i915_drv.h:46:
-   In file included from drivers/gpu/drm/i915/gt/intel_engine.h:18:
-   In file included from drivers/gpu/drm/i915/gt/intel_gt_types.h:19:
-   In file included from drivers/gpu/drm/i915/gt/uc/intel_uc.h:9:
-   In file included from drivers/gpu/drm/i915/gt/uc/intel_gsc_uc.h:9:
-   In file included from drivers/gpu/drm/i915/gt/uc/intel_uc_fw.h:14:
-   In file included from drivers/gpu/drm/i915/i915_vma.h:34:
-   In file included from drivers/gpu/drm/i915/gem/i915_gem_object.h:16:
-   In file included from drivers/gpu/drm/i915/i915_gem_gtt.h:14:
->> drivers/gpu/drm/i915/gt/intel_gtt.h:435:16: warning: comparison of integers of different signs: 'int' and 'unsigned long' [-Wsign-compare]
-           if ((int)type >= ARRAY_SIZE(vm->min_alignment))
-               ~~~~~~~~~ ^  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-   10 warnings generated.
-..
+  **SUCCESS**
+
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_124722v1/index.html
+
+Participating hosts (39 -> 39)
+------------------------------
+
+  Additional (1): bat-dg2-9 
+  Missing    (1): fi-snb-2520m 
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_124722v1 that come from known issues:
+
+### CI changes ###
+
+#### Issues hit ####
+
+  * boot:
+    - fi-hsw-4770:        [PASS][1] -> [FAIL][2] ([i915#8293])
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13722/fi-hsw-4770/boot.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_124722v1/fi-hsw-4770/boot.html
+
+  
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@gem_exec_suspend@basic-s0@smem:
+    - bat-dg2-9:          NOTRUN -> [INCOMPLETE][3] ([i915#9275])
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_124722v1/bat-dg2-9/igt@gem_exec_suspend@basic-s0@smem.html
+
+  * igt@gem_mmap@basic:
+    - bat-dg2-9:          NOTRUN -> [SKIP][4] ([i915#4083])
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_124722v1/bat-dg2-9/igt@gem_mmap@basic.html
+
+  * igt@gem_mmap_gtt@basic:
+    - bat-dg2-9:          NOTRUN -> [SKIP][5] ([i915#4077]) +2 other tests skip
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_124722v1/bat-dg2-9/igt@gem_mmap_gtt@basic.html
+
+  * igt@gem_render_tiled_blits@basic:
+    - bat-dg2-9:          NOTRUN -> [SKIP][6] ([i915#4079]) +1 other test skip
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_124722v1/bat-dg2-9/igt@gem_render_tiled_blits@basic.html
+
+  * igt@i915_pm_rps@basic-api:
+    - bat-dg2-9:          NOTRUN -> [SKIP][7] ([i915#6621])
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_124722v1/bat-dg2-9/igt@i915_pm_rps@basic-api.html
+
+  * igt@kms_addfb_basic@addfb25-y-tiled-small-legacy:
+    - bat-dg2-9:          NOTRUN -> [SKIP][8] ([i915#5190])
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_124722v1/bat-dg2-9/igt@kms_addfb_basic@addfb25-y-tiled-small-legacy.html
+
+  * igt@kms_addfb_basic@basic-y-tiled-legacy:
+    - bat-dg2-9:          NOTRUN -> [SKIP][9] ([i915#4215] / [i915#5190])
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_124722v1/bat-dg2-9/igt@kms_addfb_basic@basic-y-tiled-legacy.html
+
+  * igt@kms_addfb_basic@framebuffer-vs-set-tiling:
+    - bat-dg2-9:          NOTRUN -> [SKIP][10] ([i915#4212]) +6 other tests skip
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_124722v1/bat-dg2-9/igt@kms_addfb_basic@framebuffer-vs-set-tiling.html
+
+  * igt@kms_addfb_basic@tile-pitch-mismatch:
+    - bat-dg2-9:          NOTRUN -> [SKIP][11] ([i915#4212] / [i915#5608])
+   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_124722v1/bat-dg2-9/igt@kms_addfb_basic@tile-pitch-mismatch.html
+
+  * igt@kms_cursor_legacy@basic-busy-flip-before-cursor-legacy:
+    - bat-dg2-9:          NOTRUN -> [SKIP][12] ([i915#4103] / [i915#4213] / [i915#5608]) +1 other test skip
+   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_124722v1/bat-dg2-9/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-legacy.html
+
+  * igt@kms_force_connector_basic@force-load-detect:
+    - bat-dg2-9:          NOTRUN -> [SKIP][13] ([fdo#109285])
+   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_124722v1/bat-dg2-9/igt@kms_force_connector_basic@force-load-detect.html
+
+  * igt@kms_force_connector_basic@prune-stale-modes:
+    - bat-dg2-9:          NOTRUN -> [SKIP][14] ([i915#5274])
+   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_124722v1/bat-dg2-9/igt@kms_force_connector_basic@prune-stale-modes.html
+
+  * igt@kms_pipe_crc_basic@read-crc-frame-sequence@pipe-d-dp-5:
+    - bat-adlp-11:        [PASS][15] -> [ABORT][16] ([i915#8668])
+   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13722/bat-adlp-11/igt@kms_pipe_crc_basic@read-crc-frame-sequence@pipe-d-dp-5.html
+   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_124722v1/bat-adlp-11/igt@kms_pipe_crc_basic@read-crc-frame-sequence@pipe-d-dp-5.html
+
+  * igt@kms_psr@sprite_plane_onoff:
+    - bat-dg2-9:          NOTRUN -> [SKIP][17] ([i915#1072]) +3 other tests skip
+   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_124722v1/bat-dg2-9/igt@kms_psr@sprite_plane_onoff.html
+
+  * igt@kms_setmode@basic-clone-single-crtc:
+    - bat-dg2-9:          NOTRUN -> [SKIP][18] ([i915#3555])
+   [18]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_124722v1/bat-dg2-9/igt@kms_setmode@basic-clone-single-crtc.html
+
+  * igt@prime_vgem@basic-fence-flip:
+    - bat-dg2-9:          NOTRUN -> [SKIP][19] ([i915#3708])
+   [19]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_124722v1/bat-dg2-9/igt@prime_vgem@basic-fence-flip.html
+
+  * igt@prime_vgem@basic-fence-mmap:
+    - bat-dg2-9:          NOTRUN -> [SKIP][20] ([i915#3708] / [i915#4077]) +1 other test skip
+   [20]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_124722v1/bat-dg2-9/igt@prime_vgem@basic-fence-mmap.html
+
+  * igt@prime_vgem@basic-write:
+    - bat-dg2-9:          NOTRUN -> [SKIP][21] ([i915#3291] / [i915#3708]) +2 other tests skip
+   [21]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_124722v1/bat-dg2-9/igt@prime_vgem@basic-write.html
+
+  
+#### Possible fixes ####
+
+  * igt@kms_hdmi_inject@inject-audio:
+    - fi-kbl-guc:         [FAIL][22] ([IGT#3]) -> [PASS][23]
+   [22]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13722/fi-kbl-guc/igt@kms_hdmi_inject@inject-audio.html
+   [23]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_124722v1/fi-kbl-guc/igt@kms_hdmi_inject@inject-audio.html
+
+  * igt@kms_pipe_crc_basic@read-crc-frame-sequence@pipe-c-dp-5:
+    - bat-adlp-11:        [ABORT][24] ([i915#8668] / [i915#9451]) -> [PASS][25]
+   [24]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13722/bat-adlp-11/igt@kms_pipe_crc_basic@read-crc-frame-sequence@pipe-c-dp-5.html
+   [25]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_124722v1/bat-adlp-11/igt@kms_pipe_crc_basic@read-crc-frame-sequence@pipe-c-dp-5.html
+
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+  [IGT#3]: https://gitlab.freedesktop.org/drm/igt-gpu-tools/issues/3
+  [fdo#109285]: https://bugs.freedesktop.org/show_bug.cgi?id=109285
+  [i915#1072]: https://gitlab.freedesktop.org/drm/intel/issues/1072
+  [i915#3291]: https://gitlab.freedesktop.org/drm/intel/issues/3291
+  [i915#3555]: https://gitlab.freedesktop.org/drm/intel/issues/3555
+  [i915#3708]: https://gitlab.freedesktop.org/drm/intel/issues/3708
+  [i915#4077]: https://gitlab.freedesktop.org/drm/intel/issues/4077
+  [i915#4079]: https://gitlab.freedesktop.org/drm/intel/issues/4079
+  [i915#4083]: https://gitlab.freedesktop.org/drm/intel/issues/4083
+  [i915#4103]: https://gitlab.freedesktop.org/drm/intel/issues/4103
+  [i915#4212]: https://gitlab.freedesktop.org/drm/intel/issues/4212
+  [i915#4213]: https://gitlab.freedesktop.org/drm/intel/issues/4213
+  [i915#4215]: https://gitlab.freedesktop.org/drm/intel/issues/4215
+  [i915#5190]: https://gitlab.freedesktop.org/drm/intel/issues/5190
+  [i915#5274]: https://gitlab.freedesktop.org/drm/intel/issues/5274
+  [i915#5354]: https://gitlab.freedesktop.org/drm/intel/issues/5354
+  [i915#5608]: https://gitlab.freedesktop.org/drm/intel/issues/5608
+  [i915#6621]: https://gitlab.freedesktop.org/drm/intel/issues/6621
+  [i915#8293]: https://gitlab.freedesktop.org/drm/intel/issues/8293
+  [i915#8668]: https://gitlab.freedesktop.org/drm/intel/issues/8668
+  [i915#9275]: https://gitlab.freedesktop.org/drm/intel/issues/9275
+  [i915#9451]: https://gitlab.freedesktop.org/drm/intel/issues/9451
 
 
-vim +240 include/linux/thread_info.h
+Build changes
+-------------
 
-b0377fedb65280 Al Viro   2017-06-29  235  
-9dd819a15162f8 Kees Cook 2019-09-25  236  static __always_inline __must_check bool
-b0377fedb65280 Al Viro   2017-06-29  237  check_copy_size(const void *addr, size_t bytes, bool is_source)
-b0377fedb65280 Al Viro   2017-06-29  238  {
-c80d92fbb67b2c Kees Cook 2021-06-17  239  	int sz = __builtin_object_size(addr, 0);
-b0377fedb65280 Al Viro   2017-06-29 @240  	if (unlikely(sz >= 0 && sz < bytes)) {
-b0377fedb65280 Al Viro   2017-06-29  241  		if (!__builtin_constant_p(bytes))
-b0377fedb65280 Al Viro   2017-06-29  242  			copy_overflow(sz, bytes);
-b0377fedb65280 Al Viro   2017-06-29  243  		else if (is_source)
-b0377fedb65280 Al Viro   2017-06-29  244  			__bad_copy_from();
-b0377fedb65280 Al Viro   2017-06-29  245  		else
-b0377fedb65280 Al Viro   2017-06-29  246  			__bad_copy_to();
-b0377fedb65280 Al Viro   2017-06-29  247  		return false;
-b0377fedb65280 Al Viro   2017-06-29  248  	}
-6d13de1489b6bf Kees Cook 2019-12-04  249  	if (WARN_ON_ONCE(bytes > INT_MAX))
-6d13de1489b6bf Kees Cook 2019-12-04  250  		return false;
-b0377fedb65280 Al Viro   2017-06-29  251  	check_object_size(addr, bytes, is_source);
-b0377fedb65280 Al Viro   2017-06-29  252  	return true;
-b0377fedb65280 Al Viro   2017-06-29  253  }
-b0377fedb65280 Al Viro   2017-06-29  254  
+  * Linux: CI_DRM_13722 -> Patchwork_124722v1
 
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+  CI-20190529: 20190529
+  CI_DRM_13722: ead693ec2d2fddb30bff4718845d42f9adabcce6 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_7518: 2d4a57e28db0c2ccbf8b2e763074c9aa74a1ae52 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  Patchwork_124722v1: ead693ec2d2fddb30bff4718845d42f9adabcce6 @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+### Linux commits
+
+387840334844 drm/print: Add drm_dbg_ratelimited
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_124722v1/index.html
+
+--===============8778384947385014695==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/print: Add drm_dbg_ratelimited</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/124722/">https://patchwork.freedesktop.org/series/124722/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_124722v1/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_124722v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_13722 -&gt; Patchwork_124722v1</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_124722v1/index.html</p>
+<h2>Participating hosts (39 -&gt; 39)</h2>
+<p>Additional (1): bat-dg2-9 <br />
+  Missing    (1): fi-snb-2520m </p>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_124722v1 that come from known issues:</p>
+<h3>CI changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>boot:<ul>
+<li>fi-hsw-4770:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13722/fi-hsw-4770/boot.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_124722v1/fi-hsw-4770/boot.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/8293">i915#8293</a>)</li>
+</ul>
+</li>
+</ul>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@gem_exec_suspend@basic-s0@smem:</p>
+<ul>
+<li>bat-dg2-9:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_124722v1/bat-dg2-9/igt@gem_exec_suspend@basic-s0@smem.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/9275">i915#9275</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@gem_mmap@basic:</p>
+<ul>
+<li>bat-dg2-9:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_124722v1/bat-dg2-9/igt@gem_mmap@basic.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4083">i915#4083</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@gem_mmap_gtt@basic:</p>
+<ul>
+<li>bat-dg2-9:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_124722v1/bat-dg2-9/igt@gem_mmap_gtt@basic.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4077">i915#4077</a>) +2 other tests skip</li>
+</ul>
+</li>
+<li>
+<p>igt@gem_render_tiled_blits@basic:</p>
+<ul>
+<li>bat-dg2-9:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_124722v1/bat-dg2-9/igt@gem_render_tiled_blits@basic.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4079">i915#4079</a>) +1 other test skip</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_pm_rps@basic-api:</p>
+<ul>
+<li>bat-dg2-9:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_124722v1/bat-dg2-9/igt@i915_pm_rps@basic-api.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/6621">i915#6621</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_addfb_basic@addfb25-y-tiled-small-legacy:</p>
+<ul>
+<li>bat-dg2-9:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_124722v1/bat-dg2-9/igt@kms_addfb_basic@addfb25-y-tiled-small-legacy.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/5190">i915#5190</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_addfb_basic@basic-y-tiled-legacy:</p>
+<ul>
+<li>bat-dg2-9:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_124722v1/bat-dg2-9/igt@kms_addfb_basic@basic-y-tiled-legacy.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4215">i915#4215</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/5190">i915#5190</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_addfb_basic@framebuffer-vs-set-tiling:</p>
+<ul>
+<li>bat-dg2-9:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_124722v1/bat-dg2-9/igt@kms_addfb_basic@framebuffer-vs-set-tiling.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4212">i915#4212</a>) +6 other tests skip</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_addfb_basic@tile-pitch-mismatch:</p>
+<ul>
+<li>bat-dg2-9:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_124722v1/bat-dg2-9/igt@kms_addfb_basic@tile-pitch-mismatch.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4212">i915#4212</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/5608">i915#5608</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_cursor_legacy@basic-busy-flip-before-cursor-legacy:</p>
+<ul>
+<li>bat-dg2-9:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_124722v1/bat-dg2-9/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-legacy.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4103">i915#4103</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/4213">i915#4213</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/5608">i915#5608</a>) +1 other test skip</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_force_connector_basic@force-load-detect:</p>
+<ul>
+<li>bat-dg2-9:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_124722v1/bat-dg2-9/igt@kms_force_connector_basic@force-load-detect.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109285">fdo#109285</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_force_connector_basic@prune-stale-modes:</p>
+<ul>
+<li>bat-dg2-9:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_124722v1/bat-dg2-9/igt@kms_force_connector_basic@prune-stale-modes.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/5274">i915#5274</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_pipe_crc_basic@read-crc-frame-sequence@pipe-d-dp-5:</p>
+<ul>
+<li>bat-adlp-11:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13722/bat-adlp-11/igt@kms_pipe_crc_basic@read-crc-frame-sequence@pipe-d-dp-5.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_124722v1/bat-adlp-11/igt@kms_pipe_crc_basic@read-crc-frame-sequence@pipe-d-dp-5.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/8668">i915#8668</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_psr@sprite_plane_onoff:</p>
+<ul>
+<li>bat-dg2-9:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_124722v1/bat-dg2-9/igt@kms_psr@sprite_plane_onoff.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1072">i915#1072</a>) +3 other tests skip</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_setmode@basic-clone-single-crtc:</p>
+<ul>
+<li>bat-dg2-9:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_124722v1/bat-dg2-9/igt@kms_setmode@basic-clone-single-crtc.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3555">i915#3555</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@prime_vgem@basic-fence-flip:</p>
+<ul>
+<li>bat-dg2-9:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_124722v1/bat-dg2-9/igt@prime_vgem@basic-fence-flip.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3708">i915#3708</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@prime_vgem@basic-fence-mmap:</p>
+<ul>
+<li>bat-dg2-9:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_124722v1/bat-dg2-9/igt@prime_vgem@basic-fence-mmap.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3708">i915#3708</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/4077">i915#4077</a>) +1 other test skip</li>
+</ul>
+</li>
+<li>
+<p>igt@prime_vgem@basic-write:</p>
+<ul>
+<li>bat-dg2-9:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_124722v1/bat-dg2-9/igt@prime_vgem@basic-write.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3291">i915#3291</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/3708">i915#3708</a>) +2 other tests skip</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>
+<p>igt@kms_hdmi_inject@inject-audio:</p>
+<ul>
+<li>fi-kbl-guc:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13722/fi-kbl-guc/igt@kms_hdmi_inject@inject-audio.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/igt-gpu-tools/issues/3">IGT#3</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_124722v1/fi-kbl-guc/igt@kms_hdmi_inject@inject-audio.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@kms_pipe_crc_basic@read-crc-frame-sequence@pipe-c-dp-5:</p>
+<ul>
+<li>bat-adlp-11:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13722/bat-adlp-11/igt@kms_pipe_crc_basic@read-crc-frame-sequence@pipe-c-dp-5.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/8668">i915#8668</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/9451">i915#9451</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_124722v1/bat-adlp-11/igt@kms_pipe_crc_basic@read-crc-frame-sequence@pipe-c-dp-5.html">PASS</a></li>
+</ul>
+</li>
+</ul>
+<p>{name}: This element is suppressed. This means it is ignored when computing<br />
+          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_13722 -&gt; Patchwork_124722v1</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_13722: ead693ec2d2fddb30bff4718845d42f9adabcce6 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_7518: 2d4a57e28db0c2ccbf8b2e763074c9aa74a1ae52 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  Patchwork_124722v1: ead693ec2d2fddb30bff4718845d42f9adabcce6 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+<h3>Linux commits</h3>
+<p>387840334844 drm/print: Add drm_dbg_ratelimited</p>
+
+</body>
+</html>
+
+--===============8778384947385014695==--
