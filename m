@@ -1,85 +1,51 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 73F5A7BCE6E
-	for <lists+intel-gfx@lfdr.de>; Sun,  8 Oct 2023 15:03:57 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0F45F7BCF46
+	for <lists+intel-gfx@lfdr.de>; Sun,  8 Oct 2023 18:48:56 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D5ADA10E0CF;
-	Sun,  8 Oct 2023 13:03:55 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8405A10E083;
+	Sun,  8 Oct 2023 16:48:47 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from us-smtp-delivery-124.mimecast.com
- (us-smtp-delivery-124.mimecast.com [170.10.129.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id F3B2910E0CF
- for <intel-gfx@lists.freedesktop.org>; Sun,  8 Oct 2023 13:03:54 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1696770234;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=57zw0OKPUSzvJpAiJxGXUesAzc/Q2aH2UjVJr2ZxmAg=;
- b=EmNXySAlnBb4wmPiCmPKdsEtNzGJQm4hzx8vqEL9uCDAyWVzn7gP2yE2Ur4kuAv4nmAZBN
- cjryi1KrWx80ER0K9Se9Y2QrO+rtgEDfIPBdQzcyucBWU5lbGGh7PMj0ieg5cWeGYObA/v
- DBT7N0xjH2ZKdsaY+Szm6+1qU3OEPIo=
-Received: from mail-ej1-f69.google.com (mail-ej1-f69.google.com
- [209.85.218.69]) by relay.mimecast.com with ESMTP with STARTTLS
- (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
- us-mta-119-Sw_gsLAcNZmJmGl7rnZhMA-1; Sun, 08 Oct 2023 09:03:37 -0400
-X-MC-Unique: Sw_gsLAcNZmJmGl7rnZhMA-1
-Received: by mail-ej1-f69.google.com with SMTP id
- a640c23a62f3a-9b2e3f315d5so409001066b.1
- for <intel-gfx@lists.freedesktop.org>; Sun, 08 Oct 2023 06:03:37 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1696770216; x=1697375016;
- h=content-transfer-encoding:in-reply-to:from:references:cc:to
- :content-language:subject:user-agent:mime-version:date:message-id
- :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
- bh=57zw0OKPUSzvJpAiJxGXUesAzc/Q2aH2UjVJr2ZxmAg=;
- b=E3rIrKgidL+Dr0ngorRupyGg+uWPjo+4QhSzsv9+zQa4+6MIrqR1Tcl+QxYjYKjZVG
- 6+A+THKYSF5oXQxSVkgBB3743wHY74URc8cPqyN/LgJ2ePah84CecqxWbrksf7mVPs6x
- oia9YAIg6EvU7fj+Ylbh4o2SYiRVPcTYD6LPCQbYiCCJU3zK5Mu0qsUh8VVDwd6rrHQ9
- mIOd6mo1H/rHi3X9W+CM0qknOWTdlwR2hRf8qSkaFy80+Xiw/3vN7l4AQ+SGDIcCDC79
- TsL2+9mGvRoautYYMTdnL1tglKJdUFhBFXwK97bKSssr+OA3nraEBRNZ8tqGOxcvFftF
- 0Wwg==
-X-Gm-Message-State: AOJu0YxhyPcq8F6zitangftiY0h6FgEcN6n/bvek3iXaPOOj1zEuwTss
- boqz1yeZ0thAu/jJsgeThmqhe0TxDgWBjmWjyrsoO2CeDsROCp0VlxwE/uZdsVSIQy39QqH35mx
- u1jfIWznc6R3WoL/Rfu6507bO2nen
-X-Received: by 2002:a17:906:3097:b0:9b2:b30f:deb with SMTP id
- 23-20020a170906309700b009b2b30f0debmr8445275ejv.4.1696770216711; 
- Sun, 08 Oct 2023 06:03:36 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IH3NRRHjlJne5Or8peQMdH9SsX1fkZY8QkB6/VvPTeIFFhjxAtTfcdXCJNvJXeiU7bH85yWfg==
-X-Received: by 2002:a17:906:3097:b0:9b2:b30f:deb with SMTP id
- 23-20020a170906309700b009b2b30f0debmr8445258ejv.4.1696770216410; 
- Sun, 08 Oct 2023 06:03:36 -0700 (PDT)
-Received: from ?IPV6:2001:1c00:c32:7800:5bfa:a036:83f0:f9ec?
- (2001-1c00-0c32-7800-5bfa-a036-83f0-f9ec.cable.dynamic.v6.ziggo.nl.
- [2001:1c00:c32:7800:5bfa:a036:83f0:f9ec])
- by smtp.gmail.com with ESMTPSA id
- x6-20020a170906b08600b009a19701e7b5sm5496519ejy.96.2023.10.08.06.03.35
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Sun, 08 Oct 2023 06:03:35 -0700 (PDT)
-Message-ID: <b308ab49-ceec-e1eb-cbf4-b272cea91e2e@redhat.com>
-Date: Sun, 8 Oct 2023 15:03:34 +0200
+Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.93])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 25FE010E044;
+ Sun,  8 Oct 2023 16:48:45 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1696783725; x=1728319725;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=dNl5OmrmUJZw5IyRI+6izMIu5Y4DVfiRjQzkFmrQT0Y=;
+ b=NTkhHGy2qXzosTAFWuLHoHgmXbjSbAt6BL0cR74vONppPrJyJUVKXhlM
+ neEdN/tBEnRPmuY3IN2Gj9mggHn4C/Pxhi109bKwTVhtOLZdzJIpF2YXR
+ /oQy6cbbTIJTRr2VsNjF86HakvN2BusHyBFQYGJh15f16RTayg0L1PQIy
+ GYY/ui0ji6BOXtXtnpXZCAocA9jRscTTPoy8+9raZCLy92lOyvF+aMBxi
+ ZAfFybG2whp0D0yOMtHVCjQSL8I7G5wrHUuOqyLFe7hEiVKHNCA0W7pAq
+ V5ob3TFQuhvYyz8E4kzYsy1SSIzybnpzj85ULM+8v/OYwjJ9mY6Jzk9Nq w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10857"; a="381286552"
+X-IronPort-AV: E=Sophos;i="6.03,207,1694761200"; d="scan'208";a="381286552"
+Received: from orsmga003.jf.intel.com ([10.7.209.27])
+ by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 Oct 2023 09:48:44 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10857"; a="702638700"
+X-IronPort-AV: E=Sophos;i="6.03,207,1694761200"; d="scan'208";a="702638700"
+Received: from yunningn-mobl1.gar.corp.intel.com (HELO intel.com)
+ ([10.214.162.182])
+ by orsmga003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 Oct 2023 09:48:35 -0700
+From: Andi Shyti <andi.shyti@linux.intel.com>
+To: intel-gfx <intel-gfx@lists.freedesktop.org>,
+ dri-devel <dri-devel@lists.freedesktop.org>
+Date: Sun,  8 Oct 2023 18:48:24 +0200
+Message-Id: <20231008164824.919262-1-andi.shyti@linux.intel.com>
+X-Mailer: git-send-email 2.40.1
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.13.0
-To: Jani Nikula <jani.nikula@linux.intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
- =?UTF-8?B?VmlsbGUgU3lyasOkbMOk?= <ville.syrjala@linux.intel.com>
-References: <20230920195613.304091-1-hdegoede@redhat.com>
-From: Hans de Goede <hdegoede@redhat.com>
-In-Reply-To: <20230920195613.304091-1-hdegoede@redhat.com>
-X-Mimecast-Spam-Score: 0
-X-Mimecast-Originator: redhat.com
-Content-Language: en-US, nl
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-Subject: Re: [Intel-gfx] [PATCH 0/4] drm/i915/vlv_dsi: Add quirks for x86
- android tablets (v3)
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-gfx] [PATCH] drm/i915/mtl: Remove the 'force_probe'
+ requirement for Meteor Lake
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -92,82 +58,74 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx <intel-gfx@lists.freedesktop.org>,
- dri-devel@lists.freedesktop.org
+Cc: Aditya Chauhan <aditya.chauhan@intel.com>,
+ Jonathan Cavitt <jonathan.cavitt@intel.com>,
+ Tvrtko Ursulin <tvrtko.ursulin@intel.com>,
+ Andrzej Hajda <andrzej.hajda@intel.com>, Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Chris Wilson <chris.p.wilson@linux.intel.com>,
+ Nirmoy Das <nirmoy.das@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi All,
+From: Radhakrishna Sripada <radhakrishna.sripada@intel.com>
 
-Ping what is the status of this now? This v3 addresses all review
-remarks from previous versions (specifically the request to file
-+ link gitlab issues).
+Meteor Lake has demonstrated consistent stability for some time.
+All user-space API modifications tide to its core platform
+functions are operational.
 
-So AFAICT this is ready for merging ?
+The necessary firmware components are set up and comprehensive
+testing has been condused over a period.
 
-But I'm waiting for an ack for this before pushing it
-do drm-intel-next myself ...
+Given the recent faborable CI results, as well, we believe it's
+time to eliminate the 'force_probe' prerequisite and activate the
+platform by default.
 
-Regards,
+Signed-off-by: Aditya Chauhan <aditya.chauhan@intel.com>
+Signed-off-by: Andrzej Hajda <andrzej.hajda@intel.com>
+Signed-off-by: Chris Wilson <chris.p.wilson@linux.intel.com>
+Signed-off-by: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
+Signed-off-by: Jonathan Cavitt <jonathan.cavitt@intel.com>
+Signed-off-by: Nirmoy Das <nirmoy.das@intel.com>
+Signed-off-by: Radhakrishna Sripada <radhakrishna.sripada@intel.com>
+Signed-off-by: Andi Shyti <andi.shyti@linux.intel.com>
+Cc: Jani Nikula <jani.nikula@linux.intel.com>
+Cc: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
+Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
+Cc: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+---
+Hello,
 
-Hans
+This patch eliminates the 'force probe' for the MTL platforms. Over the recent
+weeks, MTL has demonstrated stability, consistently passing BAT tests with
+success rates ranging from 98% to 100%.
 
+There's a single issue hindering us from achieving a 100% BAT test coverage.
+Fortunately, we've identified the issue, and the proposed solution can be found
+here[*]. The CI results are encouraging.
 
+Once all reviews are addressed, we plan to submit this series with the "Fixes:"
+tag.
 
+Thank you and best regards,
+Andi and Radhakrishna
 
-On 9/20/23 21:56, Hans de Goede wrote:
-> Hi All,
-> 
-> Some vlv/chv tablets ship with Android as factory OS. The factory OS
-> BSP style kernel on these tablets does not use the normal x86 hw
-> autodetection instead it hardcodes a whole bunch of things including
-> using panel drivers instead of relying on VBT MIPI sequences to
-> turn the panel/backlight on/off.
-> 
-> The normal i915 driver (which does not use panel drivers) mostly works
-> since the VBT still needs to contain valid info for the GOP, but because
-> of the Android kernel relying on panel drivers with various things
-> hardcoded some DMI quirks are necessary to fix some issues on these
-> devices.
-> 
-> Some of these issues also are related to which I2C bus to use for
-> MIPI sequence elements which do I2C transfers. This series also
-> includes a patch adding some extra debugging to mipi_exec_i2c() to
-> help with debugging similar issues in the future.
-> 
-> These patches have been posted before but back then I did not get around
-> to follow up on the series:
-> https://lore.kernel.org/intel-gfx/20220225214934.383168-1-hdegoede@redhat.com/
-> 
-> v2:
-> - Drop the changes how the I2C bus number is found, instead just have
->   the quirks set the right number directly where necessary. This should
->   avoid any chances of causing regressions on devices where the quirks
->   do not apply.
-> - New quirk for backlight control issues on Lenovo Yoga Tab 3
-> - Address Jani Nikula's remark about __func__ being redundant when using
->   drm_dbg_kms()
-> 
-> v3:
-> - File 3 gitlab issues with drm.debug=0xe dmesg output, VBT dump for all
->   3 affected models. Add Closes: tags with links to gitlab issues
-> 
-> Regards,
-> 
-> Hans
-> 
-> 
-> Hans de Goede (4):
->   drm/i915/vlv_dsi: Add DMI quirk for wrong panel modeline in BIOS on
->     Asus TF103C (v3)
->   drm/i915/vlv_dsi: Add DMI quirk for wrong I2C bus and panel size on
->     Lenovo Yoga Tablet 2 series (v3)
->   drm/i915/vlv_dsi: Add DMI quirk for backlight control issues on Lenovo
->     Yoga Tab 3 (v2)
->   drm/i915/dsi: Add some debug logging to mipi_exec_i2c (v2)
-> 
->  drivers/gpu/drm/i915/display/intel_dsi_vbt.c |   3 +
->  drivers/gpu/drm/i915/display/vlv_dsi.c       | 124 +++++++++++++++++++
->  2 files changed, 127 insertions(+)
-> 
+[*] https://patchwork.freedesktop.org/series/124744/
+
+ drivers/gpu/drm/i915/i915_pci.c | 1 -
+ 1 file changed, 1 deletion(-)
+
+diff --git a/drivers/gpu/drm/i915/i915_pci.c b/drivers/gpu/drm/i915/i915_pci.c
+index df7c261410f7..fe748906c06f 100644
+--- a/drivers/gpu/drm/i915/i915_pci.c
++++ b/drivers/gpu/drm/i915/i915_pci.c
+@@ -836,7 +836,6 @@ static const struct intel_device_info mtl_info = {
+ 	.has_pxp = 1,
+ 	.memory_regions = REGION_SMEM | REGION_STOLEN_LMEM,
+ 	.platform_engine_mask = BIT(RCS0) | BIT(BCS0) | BIT(CCS0),
+-	.require_force_probe = 1,
+ 	MTL_CACHELEVEL,
+ };
+ 
+-- 
+2.40.1
 
