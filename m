@@ -1,50 +1,34 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id EA2E27BEF59
-	for <lists+intel-gfx@lfdr.de>; Tue, 10 Oct 2023 01:49:44 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id F3B517BEF4C
+	for <lists+intel-gfx@lfdr.de>; Tue, 10 Oct 2023 01:45:12 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EB37C10E14F;
-	Mon,  9 Oct 2023 23:49:40 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D9BE010E30F;
+	Mon,  9 Oct 2023 23:45:08 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 66C0A10E14F
- for <intel-gfx@lists.freedesktop.org>; Mon,  9 Oct 2023 23:49:39 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1696895380; x=1728431380;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=awEVjPUJZUIA7Eu/R2kci34PejAQviA8Ddx8X6+iRX8=;
- b=NwGvEgx7cF1cySdFHHLfGXB1To2LEVS2ldqLEAPD22F81yejAMu1ovXj
- UxZoMkM3YRSlGzHd1MD/uDJOLMvwG3VRbwNXHX70J86mHYUTDtx8uJhYD
- djllK2zl9COCPF9Lu0X1yZElzdJZ3ysNoZLsUsMEt0pET9ywZK5ZAh/Ox
- n9JdwJdlmyJFSB2jTBySs5vKqXv3Recuiwk+dRs9F+DzHuREDMJNVdULd
- nzLDiBfQi0PAlyt4UmTq3Wi9xaEnhgnIxqfMOIgNYf/Z3nnKYMc6bC8j5
- IXQ9N9UoCxVuyDrxYDdi/qat40TlB4f4fKtNSMBEflSHUbY9H3+x5Rqj0 g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10858"; a="2861177"
-X-IronPort-AV: E=Sophos;i="6.03,211,1694761200"; 
-   d="scan'208";a="2861177"
-Received: from orsmga004.jf.intel.com ([10.7.209.38])
- by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Oct 2023 16:49:39 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10858"; a="877007044"
-X-IronPort-AV: E=Sophos;i="6.03,211,1694761200"; d="scan'208";a="877007044"
-Received: from dut-internal-9dd7.jf.intel.com ([10.165.21.194])
- by orsmga004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Oct 2023 16:49:38 -0700
-From: Jonathan Cavitt <jonathan.cavitt@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Mon,  9 Oct 2023 16:38:56 -0700
-Message-Id: <20231009233856.1932887-1-jonathan.cavitt@intel.com>
-X-Mailer: git-send-email 2.25.1
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 25B1D10E14F;
+ Mon,  9 Oct 2023 23:45:06 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 0E632AADF1;
+ Mon,  9 Oct 2023 23:45:06 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH] drm/i915/gt: Temporarily force MTL into
- uncached mode
+Content-Transfer-Encoding: 7bit
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Jonathan Cavitt" <jonathan.cavitt@intel.com>
+Date: Mon, 09 Oct 2023 23:45:06 -0000
+Message-ID: <169689510603.24831.8772638248027860377@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20231009172919.1769055-1-jonathan.cavitt@intel.com>
+In-Reply-To: <20231009172919.1769055-1-jonathan.cavitt@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_drm/i915=3A_Define_and_use_GuC_and_CTB_TLB_invalidation_rou?=
+ =?utf-8?q?tines_=28rev4=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -57,73 +41,32 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: matthew.d.roper@intel.com, saurabhg.gupta@intel.com,
- jonathan.cavitt@intel.com
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-FIXME: CAT errors are cropping up on MTL.  This removes them,
-but the real root cause must still be diagnosed.
+== Series Details ==
 
-Signed-off-by: Jonathan Cavitt <jonathan.cavitt@intel.com>
----
- drivers/gpu/drm/i915/gt/intel_gt.c     | 6 +++++-
- drivers/gpu/drm/i915/gt/intel_lrc.c    | 5 ++++-
- drivers/gpu/drm/i915/gt/uc/intel_guc.c | 5 ++++-
- 3 files changed, 13 insertions(+), 3 deletions(-)
+Series: drm/i915: Define and use GuC and CTB TLB invalidation routines (rev4)
+URL   : https://patchwork.freedesktop.org/series/124744/
+State : warning
 
-diff --git a/drivers/gpu/drm/i915/gt/intel_gt.c b/drivers/gpu/drm/i915/gt/intel_gt.c
-index ed32bf5b15464..b52c8eb0b033f 100644
---- a/drivers/gpu/drm/i915/gt/intel_gt.c
-+++ b/drivers/gpu/drm/i915/gt/intel_gt.c
-@@ -1026,8 +1026,12 @@ enum i915_map_type intel_gt_coherent_map_type(struct intel_gt *gt,
- 	/*
- 	 * Wa_22016122933: always return I915_MAP_WC for Media
- 	 * version 13.0 when the object is on the Media GT
-+	 *
-+	 * FIXME: CAT errors are cropping up on MTL.  This removes them,
-+	 * but the real root cause must still be diagnosed.
- 	 */
--	if (i915_gem_object_is_lmem(obj) || intel_gt_needs_wa_22016122933(gt))
-+	if (i915_gem_object_is_lmem(obj) || intel_gt_needs_wa_22016122933(gt) ||
-+	    IS_METEORLAKE(gt->i915))
- 		return I915_MAP_WC;
- 	if (HAS_LLC(gt->i915) || always_coherent)
- 		return I915_MAP_WB;
-diff --git a/drivers/gpu/drm/i915/gt/intel_lrc.c b/drivers/gpu/drm/i915/gt/intel_lrc.c
-index eaf66d9031665..8aaa4df84cb3e 100644
---- a/drivers/gpu/drm/i915/gt/intel_lrc.c
-+++ b/drivers/gpu/drm/i915/gt/intel_lrc.c
-@@ -1124,8 +1124,11 @@ __lrc_alloc_state(struct intel_context *ce, struct intel_engine_cs *engine)
- 		 * Wa_22016122933: For Media version 13.0, all Media GT shared
- 		 * memory needs to be mapped as WC on CPU side and UC (PAT
- 		 * index 2) on GPU side.
-+		 *
-+		 * FIXME: CAT errors are cropping up on MTL.  This removes them,
-+		 * but the real root cause must still be diagnosed.
- 		 */
--		if (intel_gt_needs_wa_22016122933(engine->gt))
-+		if (intel_gt_needs_wa_22016122933(engine->gt) || IS_METEORLAKE(engine->i915))
- 			i915_gem_object_set_cache_coherency(obj, I915_CACHE_NONE);
- 	}
- 
-diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc.c b/drivers/gpu/drm/i915/gt/uc/intel_guc.c
-index 27df41c53b890..e3a7d61506188 100644
---- a/drivers/gpu/drm/i915/gt/uc/intel_guc.c
-+++ b/drivers/gpu/drm/i915/gt/uc/intel_guc.c
-@@ -774,8 +774,11 @@ struct i915_vma *intel_guc_allocate_vma(struct intel_guc *guc, u32 size)
- 	 * Wa_22016122933: For Media version 13.0, all Media GT shared
- 	 * memory needs to be mapped as WC on CPU side and UC (PAT
- 	 * index 2) on GPU side.
-+	 *
-+	 * FIXME: CAT errors are cropping up on MTL.  This removes them,
-+	 * but the real root cause must still be diagnosed.
- 	 */
--	if (intel_gt_needs_wa_22016122933(gt))
-+	if (intel_gt_needs_wa_22016122933(gt) || IS_METEORLAKE(gt->i915))
- 		i915_gem_object_set_cache_coherency(obj, I915_CACHE_NONE);
- 
- 	vma = i915_vma_instance(obj, &gt->ggtt->vm, NULL);
--- 
-2.25.1
+== Summary ==
+
+Error: dim checkpatch failed
+36647bbe0ce7 drm/i915: Add GuC TLB Invalidation device info flags
+07632c06461f drm/i915/guc: Add CT size delay helper
+4ee8731d1a12 drm/i915: Define and use GuC and CTB TLB invalidation routines
+-:339: WARNING:NEEDLESS_IF: kfree(NULL) is safe and this check is probably not required
+#339: FILE: drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c:1999:
++	if (wait)
++		kfree(wait);
+
+total: 0 errors, 1 warnings, 0 checks, 431 lines checked
+04d03a27359c drm/i915: No TLB invalidation on suspended GT
+bdb3ec78385d drm/i915: No TLB invalidation on wedged GT
+09dac8ebae98 drm/i915/gt: Increase sleep in gt_tlb selftest sanitycheck
+453962073582 drm/i915: Enable GuC TLB invalidations for MTL
+
 
