@@ -1,52 +1,52 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 966437BDC9E
-	for <lists+intel-gfx@lfdr.de>; Mon,  9 Oct 2023 14:43:49 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2C5547BDC9C
+	for <lists+intel-gfx@lfdr.de>; Mon,  9 Oct 2023 14:43:48 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 55B0110E27F;
-	Mon,  9 Oct 2023 12:43:47 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8576310E27A;
+	Mon,  9 Oct 2023 12:43:46 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.120])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2D76910E273;
- Mon,  9 Oct 2023 12:43:43 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D838A10E273;
+ Mon,  9 Oct 2023 12:43:44 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1696855423; x=1728391423;
+ t=1696855424; x=1728391424;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=NvkhB9YPPTbIkzAmxQZTPm9D9AfHPrS3aL9QG0wiQ2o=;
- b=m4SyQ8EbDbV/hqqWEPRzNBBL1EkuFGCKYrDFMahafNRQ5btLFMC38i6S
- KaynlvDiULAtEx3xEhNF2mXVvRUBsvTzw8epQ/MCkHE5YTHaMa760a2LV
- 2+ClQIuye1mGt0p1d0PlLmSvfrsrxE7DK96ZNoMsiDf0DAQdmN2CfnzRR
- 8oKRD+gIs57SNSYhDn/tv5H0OxpQMLRWPmKZo/bhTgU11WjVMIEUUyj+u
- VV5IdbRsSleMCVxHTH0NnbGFmCiXddDzLjJtQHbpuFY5YWnbB0Dknfrki
- f0pv+kEI56sjJwP5Co6aWI9kEimqn2JaHm2ODZghtVUK2vf4qwu+Kk9Pg A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10858"; a="383010581"
-X-IronPort-AV: E=Sophos;i="6.03,210,1694761200"; d="scan'208";a="383010581"
+ bh=FIF1EHjL7+Al2ztOFOGJaqOUf7ZtpUKJ9/ZVYFlgHv0=;
+ b=A6AJ96WKGRATHbVpusu0HsJ19UKmGA7YU6aitEgKZsiU/loaDbPhnS80
+ ATzok/JrEf9Z3OUmWoalYdO52Vv1hRSYhRVFk9rlg6UzXzP0vWqMmiziY
+ JL0pwsTB5HhOB5109rADQM4aLsfcmthW4XMvEO3sONdx5Xh8X42o9P6zd
+ 3Yebfhm7n83lUmkXl2wEFSDUt8TfWUVoHlZY4ZYWeXTsuHt48kxr7IYKK
+ 5+8zpY12unG2TJPztKFJLqgEkA+9w5Bpk8xopijtvB6ugDqk1tqFL6fKl
+ 0NMim0bkhhc4l3enctBdF43Fu9sZCFXCqqxL070mG+x8eX3V6rvp/w6MD Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10858"; a="383010584"
+X-IronPort-AV: E=Sophos;i="6.03,210,1694761200"; d="scan'208";a="383010584"
 Received: from fmsmga004.fm.intel.com ([10.253.24.48])
  by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Oct 2023 05:43:42 -0700
+ 09 Oct 2023 05:43:44 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10858"; a="823326857"
-X-IronPort-AV: E=Sophos;i="6.03,210,1694761200"; d="scan'208";a="823326857"
+X-IronPort-AV: E=McAfee;i="6600,9927,10858"; a="823326881"
+X-IronPort-AV: E=Sophos;i="6.03,210,1694761200"; d="scan'208";a="823326881"
 Received: from jkrzyszt-mobl2.ger.corp.intel.com (HELO
  jkrzyszt-mobl2.intranet) ([10.213.16.68])
  by fmsmga004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Oct 2023 05:43:40 -0700
+ 09 Oct 2023 05:43:42 -0700
 From: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
 To: igt-dev@lists.freedesktop.org
-Date: Mon,  9 Oct 2023 14:27:57 +0200
-Message-ID: <20231009122750.519112-19-janusz.krzysztofik@linux.intel.com>
+Date: Mon,  9 Oct 2023 14:27:58 +0200
+Message-ID: <20231009122750.519112-20-janusz.krzysztofik@linux.intel.com>
 X-Mailer: git-send-email 2.42.0
 In-Reply-To: <20231009122750.519112-13-janusz.krzysztofik@linux.intel.com>
 References: <20231009122750.519112-13-janusz.krzysztofik@linux.intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH i-g-t v2 06/11] tests/kms_selftest: Let subtest
- names match suite names
+Subject: [Intel-gfx] [PATCH i-g-t v2 07/11] lib/ktap: Drop workaround for
+ missing top level KTAP headers
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,88 +64,55 @@ Cc: intel-gfx@lists.freedesktop.org, Mauro Carvalho Chehab <mchehab@kernel.org>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-There is a rule specified in Kunit Test Style and Nomenclature guidelines
-[1] that states modules should be named after the test suite, followed by
-_test.  Of course, that rule applies only to modules that provide one test
-suite per module.
-
-As long as that rule is obeyed by authors of Kunit test modules, there is
-no need to hardcode related IGT subtest names in IGT source code.  We are
-already able to derive subtest names from module names, with their _test
-or _kunit suffixes stripped.  We may expect those names will match Kunit
-suite names provided by the modules.
-
-Drop custom subtest names from IGT Kunit tests that still use them.
-However, keep the mechanism that allows us to provide a name that differs
-from that derived from module name.  That will be required if we ever need
-to support a kunit test module that provides multiple test suites (think
-of i915 selftests code converted to kunit and the i915 module potentially
-providing three test suites: mock, live and perf).
-
-[1] https://docs.kernel.org/dev-tools/kunit/style.html
+A workaround was implemented in IGT KTAP parser so it could accepted KTAP
+reports with missing top level KTAP version and test suite plan headers.
+Since kernel side commit c95e7c05c139 ("kunit: Report the count of test
+suites in a module"), included in the mainline kernel since v6.6-rc1, has
+fixed that issue, that workaround is no longer needed.  Drop it.
 
 Signed-off-by: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
-Reviewed-by: Kamil Konieczny <kamil.konieczny@linux.intel.com>
 ---
- tests/kms_selftest.c | 37 ++++++++++++++++---------------------
- 1 file changed, 16 insertions(+), 21 deletions(-)
+ lib/igt_ktap.c              | 12 ------------
+ lib/tests/igt_ktap_parser.c |  3 +--
+ 2 files changed, 1 insertion(+), 14 deletions(-)
 
-diff --git a/tests/kms_selftest.c b/tests/kms_selftest.c
-index 080ffdf2c0..6618dbe50b 100644
---- a/tests/kms_selftest.c
-+++ b/tests/kms_selftest.c
-@@ -37,35 +37,30 @@
-  *
-  * arg[1]:
-  *
-- * @drm_cmdline:            drm cmdline
-- * @drm_damage:             drm damage
-- * @drm_dp_mst:             drm dp mst
-+ * @drm_cmdline_parser:     drm cmdline parser
-+ * @drm_damage_helper:      drm damage helper
-+ * @drm_dp_mst_helper:      drm dp mst helper
-  * @drm_format_helper:      drm format helper
-  * @drm_format:             drm format
-- * @drm_plane:              drm plane
-- * @framebuffer:            framebuffer
-+ * @drm_plane_helper:       drm plane helper
-+ * @drm_framebuffer:        drm framebuffer
-  */
- 
- IGT_TEST_DESCRIPTION("Basic sanity check of KMS selftests.");
- 
--struct kms_kunittests {
--	const char *kunit;
--	const char *name;
--};
+diff --git a/lib/igt_ktap.c b/lib/igt_ktap.c
+index 53a6c63288..7c52ba11ed 100644
+--- a/lib/igt_ktap.c
++++ b/lib/igt_ktap.c
+@@ -84,18 +84,6 @@ int igt_ktap_parse(const char *buf, struct igt_ktap_results *ktap)
+ 		   igt_debug_on(sscanf(buf,
+ 				       "%*1[ ]%*1[ ]%*1[ ]%*1[ ]KTAP%*[ ]version%*[ ]%u %n",
+ 				       &n, &len) == 1 && len == strlen(buf))) {
+-		/*
+-		 * TODO: drop the following workaround as soon as
+-		 * kernel side issue of missing lines with top level
+-		 * KTAP version and test suite plan is fixed.
+-		 */
+-		if (ktap->expect == KTAP_START) {
+-			ktap->suite_count = 1;
+-			ktap->suite_last = 0;
+-			ktap->suite_name = NULL;
+-			ktap->expect = SUITE_START;
+-		}
 -
- igt_main
- {
--	static const struct kms_kunittests kunit_subtests[] = {
--		{ "drm_cmdline_parser_test",	"drm_cmdline" },
--		{ "drm_damage_helper_test",	"drm_damage" },
--		{ "drm_dp_mst_helper_test",	"drm_dp_mst" },
--		{ "drm_format_helper_test",	"drm_format_helper" },
--		{ "drm_format_test",		"drm_format" },
--		{ "drm_framebuffer_test",	"framebuffer" },
--		{ "drm_plane_helper_test",	"drm_plane" },
--		{ NULL, NULL}
-+	static const char *kunit_subtests[] = {
-+		"drm_cmdline_parser_test",
-+		"drm_damage_helper_test",
-+		"drm_dp_mst_helper_test",
-+		"drm_format_helper_test",
-+		"drm_format_test",
-+		"drm_framebuffer_test",
-+		"drm_plane_helper_test",
-+		NULL,
- 	};
+ 		if (igt_debug_on(ktap->expect != SUITE_START))
+ 			return -EPROTO;
  
--	for (int i = 0; kunit_subtests[i].kunit != NULL; i++)
--		igt_kunit(kunit_subtests[i].kunit, kunit_subtests[i].name, NULL);
-+	for (int i = 0; kunit_subtests[i] != NULL; i++)
-+		igt_kunit(kunit_subtests[i], NULL, NULL);
- }
+diff --git a/lib/tests/igt_ktap_parser.c b/lib/tests/igt_ktap_parser.c
+index 6357bdf6a5..476e14092f 100644
+--- a/lib/tests/igt_ktap_parser.c
++++ b/lib/tests/igt_ktap_parser.c
+@@ -190,8 +190,7 @@ static void ktap_top_version(void)
+ 
+ 	ktap = igt_ktap_alloc(&results);
+ 	igt_require(ktap);
+-	/* TODO: change to -EPROTO as soon as related workaround is dropped */
+-	igt_assert_eq(igt_ktap_parse("    KTAP version 1\n", ktap), -EINPROGRESS);
++	igt_assert_eq(igt_ktap_parse("    KTAP version 1\n", ktap), -EPROTO);
+ 	igt_ktap_free(ktap);
+ 
+ 	ktap = igt_ktap_alloc(&results);
 -- 
 2.42.0
 
