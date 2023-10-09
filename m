@@ -1,55 +1,54 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2B1017BE372
-	for <lists+intel-gfx@lfdr.de>; Mon,  9 Oct 2023 16:48:25 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4552C7BE3B4
+	for <lists+intel-gfx@lfdr.de>; Mon,  9 Oct 2023 16:57:41 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1A81910E10A;
-	Mon,  9 Oct 2023 14:48:23 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8AECB10E10A;
+	Mon,  9 Oct 2023 14:57:38 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 93FC510E10A
- for <intel-gfx@lists.freedesktop.org>; Mon,  9 Oct 2023 14:48:20 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4460410E10A
+ for <intel-gfx@lists.freedesktop.org>; Mon,  9 Oct 2023 14:57:36 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1696862900; x=1728398900;
+ t=1696863456; x=1728399456;
  h=date:from:to:cc:subject:message-id:references:
  mime-version:content-transfer-encoding:in-reply-to;
- bh=tn1oQJvxxuDBQBOSlZEwvMjmTOJyDPUxY0na3HjTt4o=;
- b=DMqZ9qk1k9Za3uHX9PBDkXujH0o70kmGMQLo5X9q6Vv3vaCqEnldeUw3
- wytlAEe10BsTPgVhi5e86pnStnXzsB46PdB3hJYl/kq+In6l02HDoRHzY
- aPJaH4hZDJkHokr78h1Ot6aRGXa3pAckELWghFhasLwua/thz/3xM1ctL
- Yz6ykt/JJEYJMfRO28/eTJfaEQcy45RuohGqQYwV1ejRGwMII4280T+JG
- PBe1Qg6MJGJ7qVAR30XugTX15mF20d7KqCbaMSYaLe9v/ihCoP5ZswL3a
- slK+uyRaFkWP8kJUsrHcvvLteY9Hj0yatVIsKdYOL/utJEbxXq/g061Tx Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10858"; a="448348310"
-X-IronPort-AV: E=Sophos;i="6.03,210,1694761200"; d="scan'208";a="448348310"
+ bh=HDS/HO4RYSX+2NEckIpkNxDPkQvhsWgokxIijeBiz6M=;
+ b=ZHbJZhC8mbvdDLw6cvE0AEHosNIhkRwmz+m/dFahups1pTRaFzuKeIgm
+ 12egir4SytcUmcuqLOh6UavUy0q1roac1UoqN55T0463r2x74jeVpqyX3
+ Zf1LTyJrsVVCFkHmwQ3mB9R3jOranpTtMoSXjAfa7pwGNDtgytCklvwAC
+ KWiNzCDbCR1N0slEohqVuPmFbRJth8Pg2E5qnmGt4CN9VKryTu7yEovKP
+ eoE7W8fiHZATduzf9MnYfa5OtoMbFdoQaDVY7ZOXWwrw13U23ZxP96cRz
+ HC4EB9JceJ6w7PB8ColaWCy7nm/5wAsCJzsH5+ghsL6QbElw+VuhIBZKq g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10858"; a="448349344"
+X-IronPort-AV: E=Sophos;i="6.03,210,1694761200"; d="scan'208";a="448349344"
 Received: from fmsmga001.fm.intel.com ([10.253.24.23])
  by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Oct 2023 07:48:08 -0700
+ 09 Oct 2023 07:57:35 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10858"; a="896791256"
-X-IronPort-AV: E=Sophos;i="6.03,210,1694761200"; d="scan'208";a="896791256"
+X-IronPort-AV: E=McAfee;i="6600,9927,10858"; a="896794136"
+X-IronPort-AV: E=Sophos;i="6.03,210,1694761200"; d="scan'208";a="896794136"
 Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.153])
- by fmsmga001.fm.intel.com with SMTP; 09 Oct 2023 07:46:25 -0700
+ by fmsmga001.fm.intel.com with SMTP; 09 Oct 2023 07:55:52 -0700
 Received: by stinkbox (sSMTP sendmail emulation);
- Mon, 09 Oct 2023 17:48:04 +0300
-Date: Mon, 9 Oct 2023 17:48:04 +0300
+ Mon, 09 Oct 2023 17:57:32 +0300
+Date: Mon, 9 Oct 2023 17:57:32 +0300
 From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Imre Deak <imre.deak@intel.com>
-Message-ID: <ZSQSpLMK8fVtkjNl@intel.com>
-References: <20231006133727.1822579-1-imre.deak@intel.com>
- <20231006133727.1822579-2-imre.deak@intel.com>
+To: Mika Kahola <mika.kahola@intel.com>
+Message-ID: <ZSQU3Dbc_C3hLmZX@intel.com>
+References: <20231009141303.577061-1-mika.kahola@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20231006133727.1822579-2-imre.deak@intel.com>
+In-Reply-To: <20231009141303.577061-1-mika.kahola@intel.com>
 X-Patchwork-Hint: comment
-Subject: Re: [Intel-gfx] [PATCH 01/19] drm/i915/dp: Sanitize DPCD revision
- check in intel_dp_get_dsc_sink_cap()
+Subject: Re: [Intel-gfx] [PATCH v2] drm/i915/lnl: Remove watchdog timers for
+ PSR
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -66,67 +65,62 @@ Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, Oct 06, 2023 at 04:37:09PM +0300, Imre Deak wrote:
-> Check only the eDP or the DP specific DPCD revision depending on the
-> sink type. Pass the corresponding revision to the function, which allows
-> getting the DSC caps of a branch device (in an MST topology, which has
-> its own DPCD and so DPCD revision).
+On Mon, Oct 09, 2023 at 05:13:03PM +0300, Mika Kahola wrote:
+> Currently we are not using watchdog timers for PSR/PSR2
+> with Lunarlake. The patch removes the use of these timers
+> from the driver code.
+
+That still doesn't seem to say that the timers were removed
+from the hardware. Or at least I can't parse it that way.
+
 > 
-> Signed-off-by: Imre Deak <imre.deak@intel.com>
+> BSpec: 69895
+> 
+> v2: Reword commit message (Ville)
+>     Drop HPD mask from LNL (Ville)
+
+That should probably be a separate patch since it has nothing to do
+with what the commit message is saying.
+
+>     Revise masking logic (Jouni)
+> 
+> Signed-off-by: Mika Kahola <mika.kahola@intel.com>
 > ---
->  drivers/gpu/drm/i915/display/intel_dp.c | 12 +++++++-----
->  1 file changed, 7 insertions(+), 5 deletions(-)
+>  drivers/gpu/drm/i915/display/intel_psr.c | 12 ++++++++----
+>  1 file changed, 8 insertions(+), 4 deletions(-)
 > 
-> diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
-> index 0ef7cb8134b66..1bd11f9e308c1 100644
-> --- a/drivers/gpu/drm/i915/display/intel_dp.c
-> +++ b/drivers/gpu/drm/i915/display/intel_dp.c
-> @@ -3467,7 +3467,7 @@ bool intel_dp_get_colorimetry_status(struct intel_dp *intel_dp)
->  	return dprx & DP_VSC_SDP_EXT_FOR_COLORIMETRY_SUPPORTED;
->  }
+> diff --git a/drivers/gpu/drm/i915/display/intel_psr.c b/drivers/gpu/drm/i915/display/intel_psr.c
+> index 850b11f20285..abdafd04d8e3 100644
+> --- a/drivers/gpu/drm/i915/display/intel_psr.c
+> +++ b/drivers/gpu/drm/i915/display/intel_psr.c
+> @@ -676,7 +676,9 @@ static void hsw_activate_psr1(struct intel_dp *intel_dp)
 >  
-> -static void intel_dp_get_dsc_sink_cap(struct intel_dp *intel_dp)
-> +static void intel_dp_get_dsc_sink_cap(u8 dpcd_rev, struct intel_dp *intel_dp)
->  {
->  	struct drm_i915_private *i915 = dp_to_i915(intel_dp);
+>  	val |= EDP_PSR_IDLE_FRAMES(psr_compute_idle_frames(intel_dp));
 >  
-> @@ -3481,8 +3481,8 @@ static void intel_dp_get_dsc_sink_cap(struct intel_dp *intel_dp)
->  	intel_dp->fec_capable = 0;
+> -	val |= EDP_PSR_MAX_SLEEP_TIME(max_sleep_time);
+> +	if (DISPLAY_VER(dev_priv) < 20)
+> +		val |= EDP_PSR_MAX_SLEEP_TIME(max_sleep_time);
+> +
+>  	if (IS_HASWELL(dev_priv))
+>  		val |= EDP_PSR_MIN_LINK_ENTRY_TIME_8_LINES;
 >  
->  	/* Cache the DSC DPCD if eDP or DP rev >= 1.4 */
-> -	if (intel_dp->dpcd[DP_DPCD_REV] >= 0x14 ||
-> -	    intel_dp->edp_dpcd[0] >= DP_EDP_14) {
-> +	if ((intel_dp_is_edp(intel_dp) && dpcd_rev >= DP_EDP_14) ||
-> +	    (!intel_dp_is_edp(intel_dp) && dpcd_rev >= 0x14)) {
-
-This is horribly confusing. DPCD_REV and EDP_DPCD_REV are not the same
-thing.
-
->  		if (drm_dp_dpcd_read(&intel_dp->aux, DP_DSC_SUPPORT,
->  				     intel_dp->dsc_dpcd,
->  				     sizeof(intel_dp->dsc_dpcd)) < 0)
-> @@ -3674,7 +3674,8 @@ intel_edp_init_dpcd(struct intel_dp *intel_dp)
->  
->  	/* Read the eDP DSC DPCD registers */
->  	if (HAS_DSC(dev_priv))
-> -		intel_dp_get_dsc_sink_cap(intel_dp);
-> +		intel_dp_get_dsc_sink_cap(intel_dp->edp_dpcd[0],
-> +					  intel_dp);
+> @@ -1399,9 +1401,11 @@ static void intel_psr_enable_source(struct intel_dp *intel_dp,
+>  	 * can rely on frontbuffer tracking.
+>  	 */
+>  	mask = EDP_PSR_DEBUG_MASK_MEMUP |
+> -	       EDP_PSR_DEBUG_MASK_HPD |
+> -	       EDP_PSR_DEBUG_MASK_LPSP |
+> -	       EDP_PSR_DEBUG_MASK_MAX_SLEEP;
+> +	       EDP_PSR_DEBUG_MASK_LPSP;
+> +
+> +	if (DISPLAY_VER(dev_priv) < 20)
+> +		mask |= EDP_PSR_DEBUG_MASK_HPD |
+> +			EDP_PSR_DEBUG_MASK_MAX_SLEEP;
 >  
 >  	/*
->  	 * If needed, program our source OUI so we can make various Intel-specific AUX services
-> @@ -5384,7 +5385,8 @@ intel_dp_detect(struct drm_connector *connector,
->  
->  	/* Read DP Sink DSC Cap DPCD regs for DP v1.4 */
->  	if (HAS_DSC(dev_priv))
-> -		intel_dp_get_dsc_sink_cap(intel_dp);
-> +		intel_dp_get_dsc_sink_cap(intel_dp->dpcd[DP_DPCD_REV],
-> +					  intel_dp);
->  
->  	intel_dp_configure_mst(intel_dp);
->  
+>  	 * No separate pipe reg write mask on hsw/bdw, so have to unmask all
 > -- 
-> 2.39.2
+> 2.34.1
 
 -- 
 Ville Syrjälä
