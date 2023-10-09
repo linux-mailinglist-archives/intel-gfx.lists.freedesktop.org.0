@@ -1,57 +1,49 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id A72747BE769
-	for <lists+intel-gfx@lfdr.de>; Mon,  9 Oct 2023 19:10:28 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4A3707BE85B
+	for <lists+intel-gfx@lfdr.de>; Mon,  9 Oct 2023 19:40:12 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 13FDD10E28C;
-	Mon,  9 Oct 2023 17:10:27 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7F43510E296;
+	Mon,  9 Oct 2023 17:40:04 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6E5FC10E289;
- Mon,  9 Oct 2023 17:10:24 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.100])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id AC91910E069
+ for <intel-gfx@lists.freedesktop.org>; Mon,  9 Oct 2023 17:40:01 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1696871424; x=1728407424;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:in-reply-to;
- bh=5VCOKsBuTt9KyEt91qr+KyeC8b1Ga7+bdIEJP5BxLGE=;
- b=QJbGvcw3+JQMKcOStZaKoxNOggD9T0kiySOC8tGyjoPONC+0mEfNp/i9
- dshNu4529NCxCyiFiJ85dxN4v7myfKIg/zusScjV8yM4J1EsocQxuKaul
- JsMb520yfJ4hMfMlNq0gXeqk3rXIS+pO3b+aLqNbD230gCMhDasmrMmb3
- J/F8TM/YpMpMWPef+3mCTE/5s7TAhA5ddIPjW0K9eCGkuIqcUHhDYhJb+
- 4xVw9XHoAk/Eou4OCp/LMfZPXsjfUo40C/8pV6TkaeL4PypdKF4oIncu0
- cHCl8K5SDnklxza/gDRKgTBECV5eAeoDhuPVcLUM2kyVRI3CWsPt117kt Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10858"; a="470459333"
-X-IronPort-AV: E=Sophos;i="6.03,210,1694761200"; d="scan'208";a="470459333"
-Received: from fmsmga007.fm.intel.com ([10.253.24.52])
- by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Oct 2023 10:10:23 -0700
+ t=1696873201; x=1728409201;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=dlpwz9p79/O5uIhqs0EX/UCk0aZOfh6Dvm9Phl73zfU=;
+ b=YFZa9BblNTflazV7mQa3zpERySGWNFZ5xAcIc5GrXomJElwdCg2EUawV
+ undgko/TR6I6Tg+eXFg/AoTifLCz3lEIeUYKLqmBI3zzausFmC5XEbDQs
+ Ekk0A0EVwV6BpzPQGGNZWYTQNo55Uz9BuEwC2iKfnZQObdMM5Uuh3JkRK
+ ZvRucdN5IlLOZ28/8dxgu61Pw7mNHp+2ag+wpYXUHkp7wO8WYIc9k3MZL
+ Z8JJjy/jBoYUzO4l7fWeFPxyIE6pI9xLTsoV3Ofy8dbPMrXgzEyIlYRiU
+ Eraj+U0DMmwvZ/EDFa8gJKbo/Rg0SfTx6fexnaiJMK4jkw1+NTAHa5XT1 A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10858"; a="450705014"
+X-IronPort-AV: E=Sophos;i="6.03,210,1694761200"; d="scan'208";a="450705014"
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+ by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 Oct 2023 10:40:01 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10858"; a="756782151"
-X-IronPort-AV: E=Sophos;i="6.03,210,1694761200"; d="scan'208";a="756782151"
-Received: from kamilkon-desk.igk.intel.com (HELO localhost) ([10.102.138.187])
- by fmsmga007-auth.fm.intel.com with
- ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 09 Oct 2023 10:10:22 -0700
-Date: Mon, 9 Oct 2023 19:10:20 +0200
-From: Kamil Konieczny <kamil.konieczny@linux.intel.com>
-To: igt-dev@lists.freedesktop.org
-Message-ID: <20231009171020.c3zxnz4tkivysr3n@kamilkon-desk.igk.intel.com>
-Mail-Followup-To: Kamil Konieczny <kamil.konieczny@linux.intel.com>,
- igt-dev@lists.freedesktop.org,
- Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>,
- intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
- Mauro Carvalho Chehab <mchehab@kernel.org>
-References: <20231009122750.519112-13-janusz.krzysztofik@linux.intel.com>
- <20231009122750.519112-24-janusz.krzysztofik@linux.intel.com>
+X-IronPort-AV: E=McAfee;i="6600,9927,10858"; a="788251436"
+X-IronPort-AV: E=Sophos;i="6.03,210,1694761200"; d="scan'208";a="788251436"
+Received: from dut-internal-9dd7.jf.intel.com ([10.165.21.194])
+ by orsmga001-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 Oct 2023 10:40:01 -0700
+From: Jonathan Cavitt <jonathan.cavitt@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Mon,  9 Oct 2023 10:29:12 -0700
+Message-Id: <20231009172919.1769055-1-jonathan.cavitt@intel.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20231009122750.519112-24-janusz.krzysztofik@linux.intel.com>
-Subject: Re: [Intel-gfx] [PATCH i-g-t v2 11/11] lib/kunit: Execute kunit
- test cases only when needed
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-gfx] [PATCH v9 0/7] drm/i915: Define and use GuC and CTB TLB
+ invalidation routines
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,140 +56,120 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org, Mauro Carvalho Chehab <mchehab@kernel.org>,
- intel-xe@lists.freedesktop.org
+Cc: janusz.krzysztofik@intel.com, andi.shyti@intel.com,
+ matthew.d.roper@intel.com, jonathan.cavitt@intel.com, saurabhg.gupta@intel.com,
+ chris.p.wilson@linux.intel.com, nirmoy.das@intel.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi Janusz,
-On 2023-10-09 at 14:28:02 +0200, Janusz Krzysztofik wrote:
-> IGT user interface allows to request execution of only those dynamic sub-
-> subtests that match a user provided name pattern.  If the user pattern
-> doesn't match any names of test cases provided by a kunit test module used
-> with the subtest to be run then no results from any dynamic sub-subtests
-> will be reported.  Since we already know the list of test cases provided
-> by the kunit test module, there is no need to load that module to execute
-> them unless the user pattern matches at least one of those test cases.
-> 
-> Don't load the kunit test module in execute mode before entering the loop
-> of dynamic sub-subtests, and do that only from the first actually executed
-> dynamic sub-subtest.
-> 
-> v2: Always pass last result to next dynamic sub-subtest, fetch first
->     result right after loading the kunit test module for execution.
-> 
-> Signed-off-by: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
+Implement GuC-based TLB invalidations and use them on MTL.
 
-Reviewed-by: Kamil Konieczny <kamil.konieczny@linux.intel.com>
+v2:
+- Add missing supporting patches.
 
-> ---
->  lib/igt_kmod.c | 66 ++++++++++++++++++++++++++------------------------
->  1 file changed, 35 insertions(+), 31 deletions(-)
-> 
-> diff --git a/lib/igt_kmod.c b/lib/igt_kmod.c
-> index 150fe49803..69915adc40 100644
-> --- a/lib/igt_kmod.c
-> +++ b/lib/igt_kmod.c
-> @@ -981,33 +981,37 @@ static void __igt_kunit(struct igt_ktest *tst,
->  
->  	igt_skip_on(lseek(tst->kmsg, 0, SEEK_END) < 0);
->  
-> -	igt_skip_on(pthread_mutexattr_init(&attr));
-> -	igt_skip_on(pthread_mutexattr_setrobust(&attr, PTHREAD_MUTEX_ROBUST));
-> -	igt_skip_on(pthread_mutex_init(&modprobe.lock, &attr));
-> -
->  	ktap = igt_ktap_alloc(&results);
->  	igt_require(ktap);
->  
-> -	if (igt_debug_on(pthread_create(&modprobe.thread, NULL,
-> -					modprobe_task, &modprobe))) {
-> -		igt_ktap_free(ktap);
-> -		igt_skip("Failed to create a modprobe thread\n");
-> -	}
-> -
->  	igt_list_for_each_entry(t, tests, link) {
->  		igt_dynamic_f("%s%s%s",
->  			      strcmp(t->suite_name, name) ?  t->suite_name : "",
->  			      strcmp(t->suite_name, name) ? "-" : "",
->  			      t->case_name) {
->  
-> -			if (igt_list_empty(&results)) {
-> +			if (!modprobe.thread) {
-> +				igt_assert_eq(pthread_mutexattr_init(&attr), 0);
-> +				igt_assert_eq(pthread_mutexattr_setrobust(&attr,
-> +							  PTHREAD_MUTEX_ROBUST),
-> +					      0);
-> +				igt_assert_eq(pthread_mutex_init(&modprobe.lock,
-> +								 &attr), 0);
-> +
-> +				modprobe.err = pthread_create(&modprobe.thread,
-> +							      NULL,
-> +							      modprobe_task,
-> +							      &modprobe);
-> +				igt_assert_eq(modprobe.err, 0);
-> +
-> +				igt_assert(igt_list_empty(&results));
->  				igt_assert_eq(ret, -EINPROGRESS);
->  				ret = kunit_kmsg_result_get(&results, &modprobe,
->  							    tst->kmsg, ktap);
->  				igt_fail_on(igt_list_empty(&results));
-> -			}
->  
-> -			r = igt_list_first_entry(&results, r, link);
-> +				r = igt_list_first_entry(&results, r, link);
-> +			}
->  
->  			while (igt_debug_on_f(strcmp(r->suite_name, t->suite_name),
->  					      "suite_name expected: %s, got: %s\n",
-> @@ -1079,30 +1083,30 @@ static void __igt_kunit(struct igt_ktest *tst,
->  			igt_assert_eq(igt_kernel_tainted(&taints), 0);
->  		}
->  
-> -		kunit_result_free(&r, &suite_name, &case_name);
-> -
->  		if (igt_debug_on(ret != -EINPROGRESS))
->  			break;
->  	}
->  
->  	kunit_results_free(&results, &suite_name, &case_name);
->  
-> -	switch (pthread_mutex_lock(&modprobe.lock)) {
-> -	case 0:
-> -		igt_debug_on(pthread_cancel(modprobe.thread));
-> -		igt_debug_on(pthread_mutex_unlock(&modprobe.lock));
-> -		igt_debug_on(pthread_join(modprobe.thread, NULL));
-> -		break;
-> -	case EOWNERDEAD:
-> -		/* leave the mutex unrecoverable */
-> -		igt_debug_on(pthread_mutex_unlock(&modprobe.lock));
-> -		break;
-> -	case ENOTRECOVERABLE:
-> -		break;
-> -	default:
-> -		igt_debug("pthread_mutex_lock() failed\n");
-> -		igt_debug_on(pthread_join(modprobe.thread, NULL));
-> -		break;
-> +	if (modprobe.thread) {
-> +		switch (pthread_mutex_lock(&modprobe.lock)) {
-> +		case 0:
-> +			igt_debug_on(pthread_cancel(modprobe.thread));
-> +			igt_debug_on(pthread_mutex_unlock(&modprobe.lock));
-> +			igt_debug_on(pthread_join(modprobe.thread, NULL));
-> +			break;
-> +		case EOWNERDEAD:
-> +			/* leave the mutex unrecoverable */
-> +			igt_debug_on(pthread_mutex_unlock(&modprobe.lock));
-> +			break;
-> +		case ENOTRECOVERABLE:
-> +			break;
-> +		default:
-> +			igt_debug("pthread_mutex_lock() failed\n");
-> +			igt_debug_on(pthread_join(modprobe.thread, NULL));
-> +			break;
-> +		}
->  	}
->  
->  	igt_ktap_free(ktap);
-> -- 
-> 2.42.0
-> 
+v3:
+- Split suspend/resume changes and multi-gt support into separate
+  patches.
+- Only perform GuC TLB invalidation functions when supported.
+- Move intel_guc_is_enabled check function to usage location.
+- Address comments.
+
+v4:
+- Change conditions for GuC-based tlb invalidation support
+  to a pci tag that's only active for MTL.
+- Address some FIXMEs and formatting issues.
+- Move suspend/resume changes to helper functions in intel_gt.h
+- Improve comment for ct_handle_event change.
+- Use cleaner if-else conditions.
+- Address comments.
+
+v5:
+- Reintroduce missing change to selftest msleep duration
+- Move suspend/resume loops from intel_gt.h to intel_tlb.c,
+  making them no longer static inlines.
+- Remove superfluous blocking and error checks.
+- Move ct_handle_event exception to general case in
+  ct_process_request.
+- Explain usage of xa_alloc_cyclic_irq.
+- Modify explanation of purpose of
+  OUTSTANDING_GUC_TIMEOUT_PERIOD macro.
+- Explain purpose of performing tlb invalidation twice in
+  intel_gt_tlb_resume_all.
+
+v6:
+- Add this cover letter.
+- Fix explanation of purpose of
+  OUTSTANDING_GUC_TIMEOUT_PERIOD macro again.
+- s/pci tags/pci flags
+- Enable GuC TLB Invalidations separately from adding the
+  flags to do so.
+
+v7:
+- Eliminate pci terminology from patches.
+- Order new device info flag correctly.
+- Run gen8_ggtt_invalidate in more cases, specifically when
+  GuC-based TLB invalidation is not supported.
+- Use intel_uncore_write_fw instead of intel_uncore_write
+  during guc_ggtt_invalidate.
+- Remove duplicate request message clear in ct_process_request.
+- Remove faulty tag from series.
+
+v8:
+- Simplify cover letter contents.
+- Fix miscellaneous formatting and typos.
+- Reorder device info flags and defines.
+- Reword commit message.
+- Rename TLB invalidation enums and functions.
+- Add comments explaining confusing points.
+- Add helper function getting expected delay of CT buffer.
+- Simplify intel_guc_tlb_invalidation_done by passing computed
+  values.
+- Remove helper functions for tlb suspend and resume.
+- Move tlb suspend and resume paths to uc.
+- Split suspend/resume and wedged into two patches.
+- Clarify purpose of sleep change in tlb selftest.
+
+v9:
+- Explain complexity of GuC TLB invalidations as required for
+  range-based TLB invalidations, which will be platformed later.
+- Fix CHECKPATCH issues.
+- Explain intel_guc_is_ready tlb invalidation skip in
+  intel_gt_invalidate_tlb_full.
+- Reword comment for unlocked xa_for_each loop in
+  intel_guc_submission_reset.
+- Report all errors in init_tlb_lookup.
+- Remove debug message from fini_tlb_lookup.
+- Use standardized interface for
+  intel_guc_tlb_invalidation_done
+- Remove spurious changes.
+- Move wake_up_all_tlb_invalidate on wedge to correct patch.
+
+Jonathan Cavitt (6):
+  drm/i915: Add GuC TLB Invalidation device info flags
+  drm/i915/guc: Add CT size delay helper
+  drm/i915: No TLB invalidation on suspended GT
+  drm/i915: No TLB invalidation on wedged GT
+  drm/i915/gt: Increase sleep in gt_tlb selftest sanitycheck
+  drm/i915: Enable GuC TLB invalidations for MTL
+
+Prathap Kumar Valsan (1):
+  drm/i915: Define and use GuC and CTB TLB invalidation routines
+
+ drivers/gpu/drm/i915/gt/intel_ggtt.c          |  34 ++-
+ drivers/gpu/drm/i915/gt/intel_tlb.c           |  16 +-
+ drivers/gpu/drm/i915/gt/selftest_tlb.c        |  11 +-
+ .../gpu/drm/i915/gt/uc/abi/guc_actions_abi.h  |  33 +++
+ drivers/gpu/drm/i915/gt/uc/intel_guc.h        |  23 ++
+ drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c     |   4 +
+ drivers/gpu/drm/i915/gt/uc/intel_guc_ct.h     |  13 ++
+ drivers/gpu/drm/i915/gt/uc/intel_guc_fwif.h   |   1 +
+ .../gpu/drm/i915/gt/uc/intel_guc_submission.c | 212 +++++++++++++++++-
+ drivers/gpu/drm/i915/gt/uc/intel_uc.c         |   7 +
+ drivers/gpu/drm/i915/i915_drv.h               |   3 +-
+ drivers/gpu/drm/i915/i915_pci.c               |   1 +
+ drivers/gpu/drm/i915/intel_device_info.h      |   1 +
+ 13 files changed, 344 insertions(+), 15 deletions(-)
+
+-- 
+2.25.1
+
