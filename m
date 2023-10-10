@@ -2,53 +2,49 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 060F17C02F9
-	for <lists+intel-gfx@lfdr.de>; Tue, 10 Oct 2023 19:49:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id DBA377C030C
+	for <lists+intel-gfx@lfdr.de>; Tue, 10 Oct 2023 19:55:20 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5B33510E3B1;
-	Tue, 10 Oct 2023 17:49:50 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B09C010E3B4;
+	Tue, 10 Oct 2023 17:55:16 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.136])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1595210E3B1;
- Tue, 10 Oct 2023 17:49:49 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.120])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 26E0E10E3B1;
+ Tue, 10 Oct 2023 17:55:14 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1696960189; x=1728496189;
- h=from:to:subject:date:message-id:in-reply-to:references:
- mime-version:content-transfer-encoding;
- bh=/LnCuihYfxxgiP50YebE9DCs+lzfy2nr9O3I9IbWLzo=;
- b=jpAqurFK3w+RyCg+4cUQsRmZb35f3w61Cw93d8qGW81SYa4kRINLQqWc
- 1AJzVIlgGj8uO/vwrryxk4yfElK2NyKz1sUPynbvBWSDAf1ot81FeVc7D
- W0TFAeZQ4dAA7qS61HrNUH3mLbRAS3dz5BJjLXpyCdyomBqcmKbERPDTX
- c1sTis6L9qf+BcaM2yGoMtpWUlHlF2KHlg7ivzGlMa/ijFkbwwdunL88x
- Lc/lnTDsOP3h6iv0VRJLg4Rt/triEXlbdvEDqfH43CSuqz3Z9X7+KyPER
- Q/2EO2XnDTO8tYYrM1c46tPMdZCTl1XcbbpYRm4Rq1eAkX5A2kwwKRLlM w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10859"; a="363822284"
-X-IronPort-AV: E=Sophos;i="6.03,213,1694761200"; d="scan'208";a="363822284"
-Received: from fmsmga008.fm.intel.com ([10.253.24.58])
- by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Oct 2023 10:49:40 -0700
+ t=1696960514; x=1728496514;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=vFF/Yucxvn0uJlqfUmSeX2z3Dj2TQJAuluy2Q5WRTZI=;
+ b=fAxVufFEFqwPXIsVp/q6C1/nhDxaMoalrxXyvqO/45QNgsQrz0kf+ap1
+ lnpk5IImGefrKhz8Jr1mmCLeG6q4vuN+X2nkKuexmgOgzYYWKGLYMtN1Q
+ rlh7/qzVTJvmU8N9VPk0g7yvQbLBugjyLvnXc4Mq0aNBsstIc5m1wPHT5
+ ltUNg7gWV4RaywJ9Cz+Vva8WdOAmk9XL1x2vljBFgVJz4maLDWMhTTB6g
+ yWR45cSQvjiVSPlZKeK2ZQAKIXwROq5AvY39rZrb1JQ1r2jKX1fTQcBDx
+ R2ED0iNfDcUEcdDUyzuPV4KZ5tKHWJs7lZmveyf/CM+TRKse/CnpTnPdd w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10859"; a="383342792"
+X-IronPort-AV: E=Sophos;i="6.03,213,1694761200"; d="scan'208";a="383342792"
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+ by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Oct 2023 10:54:49 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10859"; a="819341206"
-X-IronPort-AV: E=Sophos;i="6.03,213,1694761200"; d="scan'208";a="819341206"
+X-IronPort-AV: E=McAfee;i="6600,9927,10859"; a="869795888"
+X-IronPort-AV: E=Sophos;i="6.03,213,1694761200"; d="scan'208";a="869795888"
 Received: from jkrzyszt-mobl2.ger.corp.intel.com ([10.213.0.39])
- by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Oct 2023 10:49:37 -0700
+ by fmsmga002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Oct 2023 10:54:47 -0700
 From: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
-To: Kamil Konieczny <kamil.konieczny@linux.intel.com>,
- igt-dev@lists.freedesktop.org,
- Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>,
- intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
- Mauro Carvalho Chehab <mchehab@kernel.org>
-Date: Tue, 10 Oct 2023 19:49:35 +0200
-Message-ID: <2210123.72vocr9iq0@jkrzyszt-mobl2.ger.corp.intel.com>
+To: Mauro Carvalho Chehab <mauro.chehab@linux.intel.com>
+Date: Tue, 10 Oct 2023 19:54:45 +0200
+Message-ID: <1999837.PIDvDuAF1L@jkrzyszt-mobl2.ger.corp.intel.com>
 Organization: Intel Technology Poland sp. z o.o. - ul. Slowackiego 173,
  80-298 Gdansk - KRS 101882 - NIP 957-07-52-316
-In-Reply-To: <20231010155956.75sootid33ibdwh4@kamilkon-desk.igk.intel.com>
+In-Reply-To: <20231010153357.480aa553@maurocar-mobl2>
 References: <20231009122750.519112-13-janusz.krzysztofik@linux.intel.com>
  <20231009122750.519112-17-janusz.krzysztofik@linux.intel.com>
- <20231010155956.75sootid33ibdwh4@kamilkon-desk.igk.intel.com>
+ <20231010153357.480aa553@maurocar-mobl2>
 MIME-Version: 1.0
 Content-Transfer-Encoding: quoted-printable
 Content-Type: text/plain; charset="iso-8859-1"
@@ -66,16 +62,19 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: igt-dev@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
+ Mauro Carvalho Chehab <mchehab@kernel.org>, intel-xe@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi Kamil,
+Hi Mauro,
 
 Thanks for review.
 
-On Tuesday, 10 October 2023 17:59:56 CEST Kamil Konieczny wrote:
-> Hi Janusz,
-> On 2023-10-09 at 14:27:55 +0200, Janusz Krzysztofik wrote:
+On Tuesday, 10 October 2023 15:33:57 CEST Mauro Carvalho Chehab wrote:
+> On Mon,  9 Oct 2023 14:27:55 +0200
+> Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com> wrote:
+>=20
 > > There was an attempt to parse KTAP reports in the background while a ku=
 nit
 > > test module is loading.  However, since dynamic sub-subtests can be
@@ -145,18 +144,6 @@ ware"),
 > > +#include <unistd.h>
 > > +
 > > +#include "assembler/brw_compat.h"	/* [un]likely() */
-> ------------ ^^^^^^^^^
-> Do we really need this?
-
-I think the correct question is if wee really need [un]likely().  I'm using=
- it=20
-to document unlikely cases, which is a widely accepted method of documentin=
-g=20
-cases like that, I believe.  Having that clarified, I hope you just tell me=
- if=20
-you think we need those cases documented, and how, if not that way.
-
->=20
 > > =20
 > >  #include "igt_aux.h"
 > >  #include "igt_core.h"
@@ -166,20 +153,6 @@ mod,
 > > =20
 > >  struct modprobe_data {
 > > +	pthread_t parent;
-> --- ^^^^^^^^^^^^^^^^
-> Please move it below to other related thread data.
-> Also consider a comment why(or for what purpose)
-> did you put this here.
-
-No problem to move it to the bottom, if that's important to you, but regard=
-ing=20
-the comment, do you think that the purpose of this field of the structure,=
-=20
-compared to other fields, is so unclear form review of the code, despite it=
-s=20
-name, that it requires a comment, unlike the other fields?
-
->=20
 > >  	struct kmod_module *kmod;
 > >  	const char *opts;
 > >  	int err;
@@ -198,6 +171,21 @@ name, that it requires a comment, unlike the other fields?
 > > +		while (err =3D pthread_mutex_trylock(&data->lock),
 > > +		       err && !igt_debug_on(err !=3D EBUSY))
 > > +			igt_debug_on(pthread_kill(data->parent, SIGCHLD));
+>=20
+> I guess you need here an "igt_debug_on_once", as it doesn't make
+> sense to have a (potentially) endless loop here printing error
+> messages.
+
+Right.  Since we don't have igt_debug_on_once() implemented, I'll open code=
+=20
+that improvement.
+
+Thanks,
+Janusz
+
+>=20
+> the other changes LGTM.
+>=20
 > > +	} else {
 > > +		/* let main thread use mutex to detect modprobe completion */
 > > +		igt_debug_on(pthread_mutex_lock(&data->lock));
@@ -209,12 +197,6 @@ name, that it requires a comment, unlike the other fields?
 > > +static void kunit_sigchld_handler(int signal)
 > > +{
 > > +	return;
-> --- ^^^^^^^
-> Why not removing this? checkpatch complains about return from void.
-
-OK.
-
->=20
 > > +}
 > > +
 > > +static int kunit_kmsg_result_get(struct igt_list_head *results,
@@ -250,16 +232,6 @@ OK.
 > > +			igt_debug_on(sigaction(SIGCHLD, saved, NULL));
 > > +			if (igt_debug_on(modprobe->err))
 > > +				return modprobe->err;
->=20
-> Why no 'return -err;' here?
-
-Because modprobe->err, which can tell us more about what has gone bad in th=
-e=20
-modprobe thread, is more important here than err which only informs us abou=
-t=20
-completion of the modprobe thread, also if successful, isn't it?
-
->=20
 > > +			break;
 > > +		case 0:
 > > +			break;
@@ -272,18 +244,6 @@ completion of the modprobe thread, also if successful, isn't it?
 > > +		ret =3D read(fd, record, BUF_LEN);
 > > +
 > > +		if (!err) {
->         ^^^^^^^^^^^
-> Looks strange here.
-
-Here err still carries a return code from pthread_mutex_lock(), then !err=20
-means that the modprobe thread was still running and we have 1) acquired=20
-the mutex which now we have to release, 2) installed a non-default=20
-SIGCHLD handler that we should now reset.  Have you got a better idea=20
-how to encode that so it looks less strange?  Would a comment that reminds=
-=20
-a reader where that err comes from be sufficient?
-
->=20
 > > +			igt_debug_on(pthread_mutex_unlock(&modprobe->lock));
 > > +			igt_debug_on(sigaction(SIGCHLD, saved, NULL));
 > > +		}
@@ -297,18 +257,6 @@ a reader where that err comes from be sufficient?
 > > +
 > > +		/* skip kmsg continuation lines */
 > > +		if (igt_debug_on(*record =3D=3D ' '))
-> ----------- ^^^^^^^^^^^^
-> Why debug here? imho it is not needed.
-
-Because we don't expect continuation lines while reading a KTAP report. Sin=
-ce=20
-the kernel log may still contain them, we want to know about them when=20
-something wrong happens to our KTAP parser.  That's the purpose of all thos=
-e=20
-debug_on() calls: provide as much information on unexpected conditions as=20
-possible when the test fails, isn't it?
-
->=20
 > > +			continue;
 > > +
 > > +		/* NULL-terminate the record */
@@ -317,16 +265,6 @@ possible when the test fails, isn't it?
 > > +		/* detect start of log message, continue if not found */
 > > +		buf =3D strchrnul(record, ';');
 > > +		if (igt_debug_on(*buf =3D=3D '\0'))
-> ----------- ^^^^^^^^^^^^
-> Same here, you just continue loop if no ';'?
-
-That means we are getting incorrectly formatted records from /dev/kmsg, and=
-=20
-I'm sure we would like to be informed about that if something goes wrong wi=
-th=20
-the test, wouldn't we?
-
->=20
 > > +			continue;
 > > +		buf++;
 > > +
@@ -491,30 +429,6 @@ LE_BUILTIN;
 > > +			case ENOTRECOVERABLE:
 > >  				igt_assert_eq(modprobe.err, 0);
 > > +				break;
->=20
-> imho we should also break a do-while loop in case of error.
-
-We are inside igt_dynamic() body, then I don't think we can safely break th=
-e=20
-outer loop from here, only pass, skip, or fail.
-
-If we are not able to check whether the modprobe thread hasn't returned an=
-=20
-error then I don't think that's a good reason for failing or skipping the=20
-current dynamic sub-subtest since we have its KTAP results already collecte=
-d=20
-and we should just report them in that case, I believe.
-
-If the error persists then the loop will get broken on next attempt to lock=
-=20
-the mutex before entering blocking read(), next dynamic sub-subtests won't =
-be=20
-executed, and the whole subtest will inform the user about that incompleten=
-ess=20
-of results from dynamic sub-subtests by returning SKIP.  Isn't that=20
-sufficient?
-
->=20
 > > +			default:
 > > +				igt_debug("pthread_mutex_lock() failed\n");
 > > +				break;
@@ -699,23 +613,6 @@ d.
 per
 > > -	 * https://kernel.org/doc/html/latest/dev-tools/ktap.html#version-lin=
 es
->=20
-> Could you save these two lines comment in some other place?
-
-Why?  Do you think that just that information from a multi-paragraph=20
-description of KTAP format is of particular importance?
-
-Instead, let me add just the reference to the KTAP standard to a comment ab=
-ove=20
-the current parser implementation, OK?
-
-Thanks,
-Janusz
-
->=20
-> Regards,
-> Kamil
->=20
 > > -	 *
 > > -	 * but actually isn't, as it currently depends on the KUnit module
 > > -	 * being built-in, so we can't rely on it every time
