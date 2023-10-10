@@ -2,57 +2,46 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5D2E97BF7C4
-	for <lists+intel-gfx@lfdr.de>; Tue, 10 Oct 2023 11:46:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 24D687BF811
+	for <lists+intel-gfx@lfdr.de>; Tue, 10 Oct 2023 11:58:37 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AC1DF10E1BE;
-	Tue, 10 Oct 2023 09:46:47 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0ECD910E1C0;
+	Tue, 10 Oct 2023 09:58:35 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.24])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AA21A10E1BE;
- Tue, 10 Oct 2023 09:46:45 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BBE5A10E1C0
+ for <intel-gfx@lists.freedesktop.org>; Tue, 10 Oct 2023 09:58:33 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1696931205; x=1728467205;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=rl6knOE9ydiSjJi6QeEGucWZc0t/cpv+Ijwqxq2/V+s=;
- b=AAE/X3aYMdwCAwZdXl5wGcn4MRuSTJn5sl6p/tPQ+b+nHZICYESEQjOK
- JO8yvWdJtoH+C6t1cOupvpyOxYcnTgHvCdqSPVtnURtlAdve3mEdRN5yq
- fzekH1B33a7nWaR1p1gaWC9OTdS4jFHmznzv0i4HSwAXOMMiSD+SVXOMN
- EZnl9fvrQSgvM7TR+bpjKM3OMX4/92S7eZvDXHcBk9EFb8PM5Aa/CZDwj
- hiKEiZD4WN4RkQvTJN/qRDkgKxzo+OeRc27UTcahAZQuG3KQVmD2rqWmK
- iahMk7LuUjLglp+nSD1um0LBYbbj2P5YYX0NrR9SDSYrule9bc8LE15mz g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10858"; a="387190769"
-X-IronPort-AV: E=Sophos;i="6.03,212,1694761200"; d="scan'208";a="387190769"
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ t=1696931913; x=1728467913;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=9+Y4/WwIOd4VHeNPiOnZ4UD7UsjChL/mVN5ke5f9gow=;
+ b=GdK4fRSE/gze4W7AG/IGbEEMywhBpPX9HmsfUiZcYZVickH6MOk3L3lS
+ SfZXuOZneA1lnocUeztDS4tq4KBodzpt4zsE1ndGnHm6otyr+Qlq6a1xm
+ rksOeZVe3XXvfTo5H3MjNIJByEaLQS88NR3R+rSgvvuwVZWzkm8yII2LD
+ 7JxtRvD93PHzIuCG/A/39/cwRe48HdVtYX3Bb608xJetY7BHu8yB+tVO5
+ BpkCRIdlNke8vs6rW2/+g1eU7KqYz2IEi5p+YfL/1RjPD9fo5nSzPVrwX
+ UCbqh6u5BI3cFb+zh2DFltkMqIla03GXFXWO4MBHyXQnIiL1t4tMywmQ/ Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10858"; a="387192315"
+X-IronPort-AV: E=Sophos;i="6.03,212,1694761200"; d="scan'208";a="387192315"
+Received: from orsmga003.jf.intel.com ([10.7.209.27])
  by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Oct 2023 02:46:45 -0700
+ 10 Oct 2023 02:58:33 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10858"; a="782810302"
-X-IronPort-AV: E=Sophos;i="6.03,212,1694761200"; d="scan'208";a="782810302"
-Received: from emikisch-mobl.amr.corp.intel.com (HELO [10.213.174.67])
- ([10.213.174.67])
- by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Oct 2023 02:46:43 -0700
-Message-ID: <741893db-a299-c944-a8ac-e5eac3651eb3@linux.intel.com>
-Date: Tue, 10 Oct 2023 10:46:41 +0100
+X-IronPort-AV: E=McAfee;i="6600,9927,10858"; a="703244419"
+X-IronPort-AV: E=Sophos;i="6.03,212,1694761200"; d="scan'208";a="703244419"
+Received: from sorvi2.fi.intel.com ([10.237.72.194])
+ by orsmga003.jf.intel.com with ESMTP; 10 Oct 2023 02:58:31 -0700
+From: Mika Kahola <mika.kahola@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Tue, 10 Oct 2023 12:52:33 +0300
+Message-Id: <20231010095233.590613-1-mika.kahola@intel.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.15.1
-Content-Language: en-US
-To: Andi Shyti <andi.shyti@linux.intel.com>,
- intel-gfx <intel-gfx@lists.freedesktop.org>,
- dri-devel <dri-devel@lists.freedesktop.org>
-References: <20231008164824.919262-1-andi.shyti@linux.intel.com>
-From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-Organization: Intel Corporation UK Plc
-In-Reply-To: <20231008164824.919262-1-andi.shyti@linux.intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-Subject: Re: [Intel-gfx] [PATCH] drm/i915/mtl: Remove the 'force_probe'
- requirement for Meteor Lake
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-gfx] [PATCH v3] drm/i915/lnl: Remove watchdog timers for PSR
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -65,82 +54,53 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Aditya Chauhan <aditya.chauhan@intel.com>,
- Tvrtko Ursulin <tvrtko.ursulin@intel.com>,
- Jonathan Cavitt <jonathan.cavitt@intel.com>,
- Andrzej Hajda <andrzej.hajda@intel.com>, Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Chris Wilson <chris.p.wilson@linux.intel.com>,
- Nirmoy Das <nirmoy.das@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+Watchdorg timers for Lunarlake HW were removed for PSR/PSR2
+The patch removes the use of these timers from the driver code.
 
-On 08/10/2023 17:48, Andi Shyti wrote:
-> From: Radhakrishna Sripada <radhakrishna.sripada@intel.com>
-> 
-> Meteor Lake has demonstrated consistent stability for some time.
-> All user-space API modifications tide to its core platform
-> functions are operational.
-> 
-> The necessary firmware components are set up and comprehensive
-> testing has been condused over a period.
-> 
-> Given the recent faborable CI results, as well, we believe it's
-> time to eliminate the 'force_probe' prerequisite and activate the
-> platform by default.
-> 
-> Signed-off-by: Aditya Chauhan <aditya.chauhan@intel.com>
-> Signed-off-by: Andrzej Hajda <andrzej.hajda@intel.com>
-> Signed-off-by: Chris Wilson <chris.p.wilson@linux.intel.com>
-> Signed-off-by: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
-> Signed-off-by: Jonathan Cavitt <jonathan.cavitt@intel.com>
-> Signed-off-by: Nirmoy Das <nirmoy.das@intel.com>
-> Signed-off-by: Radhakrishna Sripada <radhakrishna.sripada@intel.com>
-> Signed-off-by: Andi Shyti <andi.shyti@linux.intel.com>
-> Cc: Jani Nikula <jani.nikula@linux.intel.com>
-> Cc: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
-> Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
-> Cc: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
-> ---
-> Hello,
-> 
-> This patch eliminates the 'force probe' for the MTL platforms. Over the recent
-> weeks, MTL has demonstrated stability, consistently passing BAT tests with
-> success rates ranging from 98% to 100%.
-> 
-> There's a single issue hindering us from achieving a 100% BAT test coverage.
-> Fortunately, we've identified the issue, and the proposed solution can be found
-> here[*]. The CI results are encouraging.
-> 
-> Once all reviews are addressed, we plan to submit this series with the "Fixes:"
-> tag.
-> 
-> Thank you and best regards,
-> Andi and Radhakrishna
-> 
-> [*] https://patchwork.freedesktop.org/series/124744/
+BSpec: 69895
 
-Have there been any more recent developments, given 
-https://patchwork.freedesktop.org/series/124866/, or proposal is still 
-to remove force probe?
+v2: Reword commit message (Ville)
+    Drop HPD mask from LNL (Ville)
+    Revise masking logic (Jouni)
+v3: Revise commit message (Ville)
+    Revert HPD mask removal as irrelevant for this patch (Ville)
 
-Regards,
+Signed-off-by: Mika Kahola <mika.kahola@intel.com>
+---
+ drivers/gpu/drm/i915/display/intel_psr.c | 10 +++++++---
+ 1 file changed, 7 insertions(+), 3 deletions(-)
 
-Tvrtko
+diff --git a/drivers/gpu/drm/i915/display/intel_psr.c b/drivers/gpu/drm/i915/display/intel_psr.c
+index bb65881e87cc..4f1f31fc9529 100644
+--- a/drivers/gpu/drm/i915/display/intel_psr.c
++++ b/drivers/gpu/drm/i915/display/intel_psr.c
+@@ -676,7 +676,9 @@ static void hsw_activate_psr1(struct intel_dp *intel_dp)
+ 
+ 	val |= EDP_PSR_IDLE_FRAMES(psr_compute_idle_frames(intel_dp));
+ 
+-	val |= EDP_PSR_MAX_SLEEP_TIME(max_sleep_time);
++	if (DISPLAY_VER(dev_priv) < 20)
++		val |= EDP_PSR_MAX_SLEEP_TIME(max_sleep_time);
++
+ 	if (IS_HASWELL(dev_priv))
+ 		val |= EDP_PSR_MIN_LINK_ENTRY_TIME_8_LINES;
+ 
+@@ -1400,8 +1402,10 @@ static void intel_psr_enable_source(struct intel_dp *intel_dp,
+ 	 */
+ 	mask = EDP_PSR_DEBUG_MASK_MEMUP |
+ 	       EDP_PSR_DEBUG_MASK_HPD |
+-	       EDP_PSR_DEBUG_MASK_LPSP |
+-	       EDP_PSR_DEBUG_MASK_MAX_SLEEP;
++	       EDP_PSR_DEBUG_MASK_LPSP;
++
++	if (DISPLAY_VER(dev_priv) < 20)
++		mask |= EDP_PSR_DEBUG_MASK_MAX_SLEEP;
+ 
+ 	/*
+ 	 * No separate pipe reg write mask on hsw/bdw, so have to unmask all
+-- 
+2.34.1
 
-> 
->   drivers/gpu/drm/i915/i915_pci.c | 1 -
->   1 file changed, 1 deletion(-)
-> 
-> diff --git a/drivers/gpu/drm/i915/i915_pci.c b/drivers/gpu/drm/i915/i915_pci.c
-> index df7c261410f7..fe748906c06f 100644
-> --- a/drivers/gpu/drm/i915/i915_pci.c
-> +++ b/drivers/gpu/drm/i915/i915_pci.c
-> @@ -836,7 +836,6 @@ static const struct intel_device_info mtl_info = {
->   	.has_pxp = 1,
->   	.memory_regions = REGION_SMEM | REGION_STOLEN_LMEM,
->   	.platform_engine_mask = BIT(RCS0) | BIT(BCS0) | BIT(CCS0),
-> -	.require_force_probe = 1,
->   	MTL_CACHELEVEL,
->   };
->   
