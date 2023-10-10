@@ -2,54 +2,51 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 134927C410C
-	for <lists+intel-gfx@lfdr.de>; Tue, 10 Oct 2023 22:22:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 81CFA7C4144
+	for <lists+intel-gfx@lfdr.de>; Tue, 10 Oct 2023 22:31:33 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2198510E17E;
-	Tue, 10 Oct 2023 20:22:41 +0000 (UTC)
-X-Original-To: Intel-GFX@lists.freedesktop.org
-Delivered-To: Intel-GFX@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6267410E3E7;
- Tue, 10 Oct 2023 20:22:38 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 905AA10E3E0;
+	Tue, 10 Oct 2023 20:31:26 +0000 (UTC)
+X-Original-To: intel-gfx@lists.freedesktop.org
+Delivered-To: intel-gfx@lists.freedesktop.org
+Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A0E1610E3DF;
+ Tue, 10 Oct 2023 20:31:24 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1696969358; x=1728505358;
+ t=1696969884; x=1728505884;
  h=date:from:to:cc:subject:message-id:references:
  mime-version:in-reply-to;
- bh=7ccquPyXL/FoCF2zzMIo1DhK/ffkDyyCgIckxDTquY8=;
- b=NnLIkCLJ5KucW3fVmNqNrX59SuVDP494gO/GegsxfB0dgpyXaVY6QZgX
- M7UpSYqO/NqFKMBJES7BQqa/WGeYeXeKc3+3lekuSxuxvTBL67TzwucBC
- NmO2g1zvwCBn1vE8xk5X7YJtCyzcaRx19Ro7QtO8T+ZcfdX41v//uw2o+
- 1Z6Vv7TGeb0kv8vJTWPMOOiRKJ+qZepeR4/3S3qhcAuUcfipZwVvE+Li2
- fMK5iMfXF/Qrfd0e/M88N+X7wpjENuKWrZBUwq2aPN+uXPFzKYhx4295+
- oAOIUCZZrohukwS70ABcvW7wDz62uCq0hV5H+4sRseRr3r77GiZtTf6cs w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10859"; a="470763361"
-X-IronPort-AV: E=Sophos;i="6.03,213,1694761200"; d="scan'208";a="470763361"
-Received: from orsmga003.jf.intel.com ([10.7.209.27])
- by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Oct 2023 13:22:35 -0700
+ bh=qBvsRXPAp8rlG1g/uACPWJkTIGo1tkCFpVM9Tinsmn4=;
+ b=cmk1TYTYpQuxn+5lkovPzwLJvbkFl43l9Wj4d+odOnc/TpizDamdj8DH
+ sNj1Ipkx8NFqVd24Ibf4ZZIlZIxgeF8/MDCo/1GZqiqJO3kbTTiCwhvNR
+ 0dfU1q9LdC8DGJDbqyITtTEC48wnQKinti8bsjJYm8OVQx6cV5CwL5cES
+ h8v1r1JbMzyXIfA9zxsFQLy10/h0Q/9PJGCvh/rkTN6LZwlH3BZDoX17j
+ KBf+aPw3oSB0nUQvITLDSjxFbnmYW3eNtSeQRDGuKGmxttUnwxgwwp90t
+ xTihDHd+4aK9oGozooftbBS0+E1RMu4Dd0IqX8CJp7wS9vnbDSJy8DfiA A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10859"; a="374843876"
+X-IronPort-AV: E=Sophos;i="6.03,213,1694761200"; d="scan'208";a="374843876"
+Received: from orsmga007.jf.intel.com ([10.7.209.58])
+ by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Oct 2023 13:31:23 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10859"; a="703432415"
-X-IronPort-AV: E=Sophos;i="6.03,213,1694761200"; d="scan'208";a="703432415"
+X-IronPort-AV: E=McAfee;i="6600,9927,10859"; a="747180147"
+X-IronPort-AV: E=Sophos;i="6.03,213,1694761200"; d="scan'208";a="747180147"
 Received: from ppalanyk-mobl.gar.corp.intel.com (HELO intel.com)
  ([10.213.148.82])
- by orsmga003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Oct 2023 13:22:30 -0700
-Date: Tue, 10 Oct 2023 22:22:23 +0200
+ by orsmga007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Oct 2023 13:31:07 -0700
+Date: Tue, 10 Oct 2023 22:31:01 +0200
 From: Andi Shyti <andi.shyti@linux.intel.com>
 To: John Harrison <john.c.harrison@intel.com>
-Message-ID: <ZSWyf3eNGH/4MAuG@ashyti-mobl2.lan>
-References: <20231009183802.673882-1-John.C.Harrison@Intel.com>
- <20231009183802.673882-3-John.C.Harrison@Intel.com>
- <ZSRaaVzpL51DA3y+@ashyti-mobl2.lan>
- <1409712e-d495-41df-842b-211fa3f37384@intel.com>
+Message-ID: <ZSW0hY7MWWAWAfcZ@ashyti-mobl2.lan>
+References: <20231010121545.1046793-1-andi.shyti@linux.intel.com>
+ <5f879ced-6d70-43e5-83d5-276f561f66f0@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <1409712e-d495-41df-842b-211fa3f37384@intel.com>
-Subject: Re: [Intel-gfx] [PATCH 2/2] drm/i915: More use of GT specific print
- helpers
+In-Reply-To: <5f879ced-6d70-43e5-83d5-276f561f66f0@intel.com>
+Subject: Re: [Intel-gfx] [PATCH RESEND v2 0/2] Add drm_dbg_ratelimited()
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -62,54 +59,32 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Intel-GFX@lists.freedesktop.org, DRI-Devel@lists.freedesktop.org
+Cc: Maxime Ripard <mripard@kernel.org>, Andrzej Hajda <andrzej.hajda@intel.com>,
+ Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>,
+ intel-gfx <intel-gfx@lists.freedesktop.org>,
+ dri-devel <dri-devel@lists.freedesktop.org>,
+ Matthew Auld <matthew.auld@intel.com>, Daniel Vetter <daniel@ffwll.ch>,
+ Sam Ravnborg <sam@ravnborg.org>, Nirmoy Das <nirmoy.das@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 Hi John,
 
-On Mon, Oct 09, 2023 at 12:57:55PM -0700, John Harrison wrote:
-> On 10/9/2023 12:54, Andi Shyti wrote:
-> > Hi John,
+On Tue, Oct 10, 2023 at 11:25:03AM -0700, John Harrison wrote:
+> On 10/10/2023 05:15, Andi Shyti wrote:
+> > Hi,
 > > 
-> > ...
+> > I might have picked up the wrong series and missed some reviews
+> > and the extra patch from Nirmoy with a real use of the
+> > drm_dbg_ratelimited() that John was looking for.
 > > 
-> > > --- a/drivers/gpu/drm/i915/i915_driver.c
-> > > +++ b/drivers/gpu/drm/i915/i915_driver.c
-> > > @@ -71,6 +71,7 @@
-> > >   #include "gem/i915_gem_pm.h"
-> > >   #include "gt/intel_gt.h"
-> > >   #include "gt/intel_gt_pm.h"
-> > > +#include "gt/intel_gt_print.h"
-> > >   #include "gt/intel_rc6.h"
-> > >   #include "pxp/intel_pxp.h"
-> > > @@ -429,7 +430,7 @@ static int i915_pcode_init(struct drm_i915_private *i915)
-> > >   	for_each_gt(gt, i915, id) {
-> > >   		ret = intel_pcode_init(gt->uncore);
-> > >   		if (ret) {
-> > > -			drm_err(&gt->i915->drm, "gt%d: intel_pcode_init failed %d\n", id, ret);
-> > > +			gt_err(gt, "intel_pcode_init failed %d\n", ret);
-> > using gt_*() print functions in the upper layers looks a bit
-> > wrong to me. If we need GT printing, the prints need to be done
-> > inside the function called, in this case would be
-> > intel_pcode_init().
-> It is less wrong that using gt->i915->drm as a parameter and 'gt%d' in the
-> format string. That is the whole point of the helper. The code has access to
-> a gt object so it should use the gt helper to make use of that object rather
-> than unrolling it and diving in to the gt internals.
+> > Thanks,
+> > Andi
+> I just found the original post of this from back in January
+> (https://patchwork.freedesktop.org/series/112925/). Is there a reason why it
+> was never merged? As noted, it appears to have a whole bunch of r-b's on it.
 
-yes, it's an improvement
+yes, the patch was widely appreciated by reviewers... but I think
+somehow it was forgotten... that's why I am resending it :-)
 
-Reviewed-by: Andi Shyti <andi.shyti@linux.intel.com> 
-
-> As for moving the error message inside the init function itself. That is
-> maybe a valid change but that potentially counts as a functional change and
-> should be done by someone who actually knows the code. All I'm doing is
-> improving the code layering by using the correct helper to hide the internal
-> details of an object this layer should not know about.
-
-maybe one day we need to revisit all the gt dependency in the
-higher levels and the i915 dependencies in gt.
-
-Thanks,
 Andi
