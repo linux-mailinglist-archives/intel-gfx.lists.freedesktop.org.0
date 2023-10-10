@@ -1,51 +1,51 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id F117A7BF9A0
-	for <lists+intel-gfx@lfdr.de>; Tue, 10 Oct 2023 13:24:49 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 435207BF9A1
+	for <lists+intel-gfx@lfdr.de>; Tue, 10 Oct 2023 13:24:51 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D7CB910E1E3;
-	Tue, 10 Oct 2023 11:24:45 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A9AA110E1E4;
+	Tue, 10 Oct 2023 11:24:46 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.24])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6062910E1DF
- for <intel-gfx@lists.freedesktop.org>; Tue, 10 Oct 2023 11:24:42 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id ADBF710E1E3
+ for <intel-gfx@lists.freedesktop.org>; Tue, 10 Oct 2023 11:24:43 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1696937082; x=1728473082;
+ t=1696937083; x=1728473083;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=GVB7NHNzkHSjSpiku7WBQdQJRTjxWWOAKL7/5MeAxnc=;
- b=EVARB71IzIocXnyi26ZBcEUsRAFWprMgcOQWIMVxISUQsFg1mCdnRuoW
- 7xPS8ueTQDUf1xQpjIjx7nd+9qdEsHiXPen6gt26x/lnUsxmlQqT5fOPh
- TLsZjco6WE+wb724U8b0zffgiQBNU1YIrZLvsyx+EdB8Zfw0gpfpP3T/N
- rMbywdCuH2fI8oAGpP0p1lrFl/CndoepZlXXywuhiddbT8fiM4XOfltje
- jI2O0Fhh6wGjIzkH3NJKatpGm6A05RzANlG6lrUylWgioZ4z2ljZTfQ1h
- 9blzrdDdEHlyeIuu4gkZP9vC17EdNuZQWuz9zVneDuT4kgv5mKmMaTe9D A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10858"; a="387206347"
-X-IronPort-AV: E=Sophos;i="6.03,212,1694761200"; d="scan'208";a="387206347"
+ bh=155a0X9dnfmBFkcOJT9WJPneqLGkKbN5E8ye7USNoyU=;
+ b=VWhzrViDFjTAYMqIDu8RKxcRHoN+NQ0QCQJCGT3ju+o5qwULMvC/v37i
+ 7MjO7IS/ZsJC5/czCgPJUM/q1DmOR4bZ9gd376FoQjfB8GYqeHRUdFirG
+ DiA37i9VuP/LGl2nkuDe761U6ntWf1FUDaORNk2+NuHpWGyi6WY9RugnO
+ AJP0w8mmrQEnQ62yAxFVhnyERfnGQva4ZNiJVstuQZxhpmO8mas0HivCy
+ OYvgN789gLk+n3Mwy8cFFhDKuV0qN2v+kSyrjy1fetdP2rKg5vijf93BZ
+ h2oVLlWGv8geipxetLLKpN94zc+itY4Iu4zH1x2uA4rbd/DN/fDa8DrCy w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10858"; a="387206349"
+X-IronPort-AV: E=Sophos;i="6.03,212,1694761200"; d="scan'208";a="387206349"
 Received: from fmsmga007.fm.intel.com ([10.253.24.52])
  by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Oct 2023 04:24:42 -0700
+ 10 Oct 2023 04:24:43 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10858"; a="757078040"
-X-IronPort-AV: E=Sophos;i="6.03,212,1694761200"; d="scan'208";a="757078040"
+X-IronPort-AV: E=McAfee;i="6600,9927,10858"; a="757078045"
+X-IronPort-AV: E=Sophos;i="6.03,212,1694761200"; d="scan'208";a="757078045"
 Received: from ideak-desk.fi.intel.com ([10.237.72.78])
  by fmsmga007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Oct 2023 04:24:41 -0700
+ 10 Oct 2023 04:24:42 -0700
 From: Imre Deak <imre.deak@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Tue, 10 Oct 2023 14:25:03 +0300
-Message-Id: <20231010112504.2156789-3-imre.deak@intel.com>
+Date: Tue, 10 Oct 2023 14:25:04 +0300
+Message-Id: <20231010112504.2156789-4-imre.deak@intel.com>
 X-Mailer: git-send-email 2.39.2
-In-Reply-To: <20231006133727.1822579-4-imre.deak@intel.com>
-References: <20231006133727.1822579-4-imre.deak@intel.com>
+In-Reply-To: <20231006133727.1822579-20-imre.deak@intel.com>
+References: <20231006133727.1822579-20-imre.deak@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH v2 03/19] drm/i915/dp_mst: Set connector DSC
- capabilities and decompression AUX
+Subject: [Intel-gfx] [PATCH v2 19/19] drm/i915/dp: Remove unused DSC caps
+ from intel_dp
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,88 +61,141 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Similarly to eDP and SST-DP connectors read out the DSC capabilities for
-MST connectors as well. Atm these will match the root port's DSC caps
-and only used after a follow-up change enables the decompression for
-each stream separately (vs. the current way of enabling it only globally
-in the first branch device downstream of the root port).
+The previous patches converted all users of the DSC DPCD caps to look
+these up from the connector, so remove the version stored in intel_dp.
 
-Reviewed-by: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
+A follow-up patchset will read out the MST connector specific
+capabilities in intel_dp_add_mst_connector() ->
+intel_dp_mst_read_decompression_port_dsc_caps().
+
+v2:
+- Rebased on intel_edp_get_dsc_sink_cap() addition in the patchset.
+
+Reviewed-by: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com> (v1)
 Signed-off-by: Imre Deak <imre.deak@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_dp.c     |  4 ++--
- drivers/gpu/drm/i915/display/intel_dp.h     |  3 +++
- drivers/gpu/drm/i915/display/intel_dp_mst.c | 23 +++++++++++++++++++++
- 3 files changed, 28 insertions(+), 2 deletions(-)
+ .../drm/i915/display/intel_display_types.h    |  2 --
+ drivers/gpu/drm/i915/display/intel_dp.c       | 28 +++----------------
+ drivers/gpu/drm/i915/display/intel_dp.h       |  3 +-
+ drivers/gpu/drm/i915/display/intel_dp_mst.c   |  2 +-
+ 4 files changed, 6 insertions(+), 29 deletions(-)
 
+diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/drivers/gpu/drm/i915/display/intel_display_types.h
+index d6600079bcf74..65ea37fe8cff3 100644
+--- a/drivers/gpu/drm/i915/display/intel_display_types.h
++++ b/drivers/gpu/drm/i915/display/intel_display_types.h
+@@ -1725,10 +1725,8 @@ struct intel_dp {
+ 	u8 psr_dpcd[EDP_PSR_RECEIVER_CAP_SIZE];
+ 	u8 downstream_ports[DP_MAX_DOWNSTREAM_PORTS];
+ 	u8 edp_dpcd[EDP_DISPLAY_CTL_CAP_SIZE];
+-	u8 dsc_dpcd[DP_DSC_RECEIVER_CAP_SIZE];
+ 	u8 lttpr_common_caps[DP_LTTPR_COMMON_CAP_SIZE];
+ 	u8 lttpr_phy_caps[DP_MAX_LTTPR_COUNT][DP_LTTPR_PHY_CAP_SIZE];
+-	u8 fec_capable;
+ 	u8 pcon_dsc_dpcd[DP_PCON_DSC_ENCODER_CAP_SIZE];
+ 	/* source rates */
+ 	int num_source_rates;
 diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
-index 5b2b0db5c24ec..2b9af92fb8cf8 100644
+index 3ef9cc6e8c88c..b801df1f2ee8f 100644
 --- a/drivers/gpu/drm/i915/display/intel_dp.c
 +++ b/drivers/gpu/drm/i915/display/intel_dp.c
-@@ -3483,8 +3483,8 @@ static void intel_dp_read_dsc_dpcd(struct drm_dp_aux *aux,
+@@ -3490,10 +3490,9 @@ static void intel_dp_read_dsc_dpcd(struct drm_dp_aux *aux,
  		    dsc_dpcd);
  }
  
--static void intel_dp_get_dsc_sink_cap(u8 dpcd_rev, struct intel_dp *intel_dp,
--				      struct intel_connector *connector)
-+void intel_dp_get_dsc_sink_cap(u8 dpcd_rev, struct intel_dp *intel_dp,
-+			       struct intel_connector *connector)
+-void intel_dp_get_dsc_sink_cap(u8 dpcd_rev, struct intel_dp *intel_dp,
+-			       struct intel_connector *connector)
++void intel_dp_get_dsc_sink_cap(u8 dpcd_rev, struct intel_connector *connector)
  {
- 	struct drm_i915_private *i915 = dp_to_i915(intel_dp);
+-	struct drm_i915_private *i915 = dp_to_i915(intel_dp);
++	struct drm_i915_private *i915 = to_i915(connector->base.dev);
+ 
+ 	/*
+ 	 * Clear the cached register set to avoid using stale values
+@@ -3518,27 +3517,14 @@ void intel_dp_get_dsc_sink_cap(u8 dpcd_rev, struct intel_dp *intel_dp,
+ 
+ 	drm_dbg_kms(&i915->drm, "FEC CAPABILITY: %x\n",
+ 		    connector->dp.fec_capability);
+-
+-	/*
+-	 * TODO: remove the following intel_dp copies once all users
+-	 * are converted to look up DSC DPCD/FEC capability via the
+-	 * connector.
+-	 */
+-	memcpy(intel_dp->dsc_dpcd, connector->dp.dsc_dpcd,
+-	       sizeof(intel_dp->dsc_dpcd));
+-	intel_dp->fec_capable = connector->dp.fec_capability;
+ }
+ 
+-static void intel_edp_get_dsc_sink_cap(u8 edp_dpcd_rev, struct intel_dp *intel_dp,
+-				       struct intel_connector *connector)
++static void intel_edp_get_dsc_sink_cap(u8 edp_dpcd_rev, struct intel_connector *connector)
+ {
+ 	if (edp_dpcd_rev < DP_EDP_14)
+ 		return;
+ 
+ 	intel_dp_read_dsc_dpcd(connector->dp.dsc_decompression_aux, connector->dp.dsc_dpcd);
+-
+-	memcpy(intel_dp->dsc_dpcd, connector->dp.dsc_dpcd,
+-	       sizeof(intel_dp->dsc_dpcd));
+ }
+ 
+ static void intel_edp_mso_mode_fixup(struct intel_connector *connector,
+@@ -3710,7 +3696,6 @@ intel_edp_init_dpcd(struct intel_dp *intel_dp, struct intel_connector *connector
+ 	/* Read the eDP DSC DPCD registers */
+ 	if (HAS_DSC(dev_priv))
+ 		intel_edp_get_dsc_sink_cap(intel_dp->edp_dpcd[0],
+-					   intel_dp,
+ 					   connector);
+ 
+ 	/*
+@@ -5406,11 +5391,6 @@ intel_dp_detect(struct drm_connector *connector,
+ 
+ 	if (status == connector_status_disconnected) {
+ 		memset(&intel_dp->compliance, 0, sizeof(intel_dp->compliance));
+-		/*
+-		 * TODO: Remove clearing the DPCD in intel_dp, once all
+-		 * user are converted to using the DPCD in connector.
+-		 */
+-		memset(intel_dp->dsc_dpcd, 0, sizeof(intel_dp->dsc_dpcd));
+ 		memset(intel_connector->dp.dsc_dpcd, 0, sizeof(intel_connector->dp.dsc_dpcd));
+ 
+ 		if (intel_dp->is_mst) {
+@@ -5429,7 +5409,7 @@ intel_dp_detect(struct drm_connector *connector,
+ 	/* Read DP Sink DSC Cap DPCD regs for DP v1.4 */
+ 	if (HAS_DSC(dev_priv))
+ 		intel_dp_get_dsc_sink_cap(intel_dp->dpcd[DP_DPCD_REV],
+-					  intel_dp, intel_connector);
++					  intel_connector);
+ 
+ 	intel_dp_configure_mst(intel_dp);
  
 diff --git a/drivers/gpu/drm/i915/display/intel_dp.h b/drivers/gpu/drm/i915/display/intel_dp.h
-index 2cf3681bac64a..bd9cb9680b4cd 100644
+index 51edb587e4d24..484aea215a251 100644
 --- a/drivers/gpu/drm/i915/display/intel_dp.h
 +++ b/drivers/gpu/drm/i915/display/intel_dp.h
-@@ -162,4 +162,7 @@ intel_dp_compute_config_link_bpp_limits(struct intel_dp *intel_dp,
+@@ -163,7 +163,6 @@ intel_dp_compute_config_link_bpp_limits(struct intel_dp *intel_dp,
  					bool dsc,
  					struct link_config_limits *limits);
  
-+void intel_dp_get_dsc_sink_cap(u8 dpcd_rev, struct intel_dp *intel_dp,
-+			       struct intel_connector *connector);
-+
+-void intel_dp_get_dsc_sink_cap(u8 dpcd_rev, struct intel_dp *intel_dp,
+-			       struct intel_connector *connector);
++void intel_dp_get_dsc_sink_cap(u8 dpcd_rev, struct intel_connector *connector);
+ 
  #endif /* __INTEL_DP_H__ */
 diff --git a/drivers/gpu/drm/i915/display/intel_dp_mst.c b/drivers/gpu/drm/i915/display/intel_dp_mst.c
-index 73e3977364632..e01f669d2c8a1 100644
+index a065388c2199f..47f1efb50ea26 100644
 --- a/drivers/gpu/drm/i915/display/intel_dp_mst.c
 +++ b/drivers/gpu/drm/i915/display/intel_dp_mst.c
-@@ -1126,6 +1126,21 @@ static int intel_dp_mst_add_properties(struct intel_dp *intel_dp,
- 	return drm_connector_set_path_property(connector, pathprop);
+@@ -1136,7 +1136,7 @@ intel_dp_mst_read_decompression_port_dsc_caps(struct intel_dp *intel_dp,
+ 	if (drm_dp_read_dpcd_caps(connector->dp.dsc_decompression_aux, dpcd_caps) < 0)
+ 		return;
+ 
+-	intel_dp_get_dsc_sink_cap(dpcd_caps[DP_DPCD_REV], intel_dp, connector);
++	intel_dp_get_dsc_sink_cap(dpcd_caps[DP_DPCD_REV], connector);
  }
  
-+static void
-+intel_dp_mst_read_decompression_port_dsc_caps(struct intel_dp *intel_dp,
-+					      struct intel_connector *connector)
-+{
-+	u8 dpcd_caps[DP_RECEIVER_CAP_SIZE];
-+
-+	if (!connector->dp.dsc_decompression_aux)
-+		return;
-+
-+	if (drm_dp_read_dpcd_caps(connector->dp.dsc_decompression_aux, dpcd_caps) < 0)
-+		return;
-+
-+	intel_dp_get_dsc_sink_cap(dpcd_caps[DP_DPCD_REV], intel_dp, connector);
-+}
-+
  static struct drm_connector *intel_dp_add_mst_connector(struct drm_dp_mst_topology_mgr *mgr,
- 							struct drm_dp_mst_port *port,
- 							const char *pathprop)
-@@ -1159,6 +1174,14 @@ static struct drm_connector *intel_dp_add_mst_connector(struct drm_dp_mst_topolo
- 
- 	drm_connector_helper_add(connector, &intel_dp_mst_connector_helper_funcs);
- 
-+	/*
-+	 * TODO: set the AUX for the actual MST port decompressing the stream.
-+	 * At the moment the driver only supports enabling this globally in the
-+	 * first downstream MST branch, via intel_dp's (root port) AUX.
-+	 */
-+	intel_connector->dp.dsc_decompression_aux = &intel_dp->aux;
-+	intel_dp_mst_read_decompression_port_dsc_caps(intel_dp, intel_connector);
-+
- 	for_each_pipe(dev_priv, pipe) {
- 		struct drm_encoder *enc =
- 			&intel_dp->mst_encoders[pipe]->base.base;
 -- 
 2.39.2
 
