@@ -1,51 +1,51 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4B10C7C03EB
-	for <lists+intel-gfx@lfdr.de>; Tue, 10 Oct 2023 20:57:38 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 01B927C03EF
+	for <lists+intel-gfx@lfdr.de>; Tue, 10 Oct 2023 20:57:43 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6E32710E3CB;
+	by gabe.freedesktop.org (Postfix) with ESMTP id D6F6710E3CC;
 	Tue, 10 Oct 2023 18:57:30 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 49F3210E3C6
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C4A7E10E3C6
  for <intel-gfx@lists.freedesktop.org>; Tue, 10 Oct 2023 18:57:27 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1696964247; x=1728500247;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=Gx0fKgQ63mPpcjcyMcdaJg8nHI032rvcEtCeYHVNvnE=;
- b=RGLf1spvlURHdZWmagjgvDq98wYMqPkaRFuDukP99GDBSWAdsLbOTKWC
- +9c27YmZMJ3toG+QrtiB5FvuVwH0LzQYWirTu6cTr1G3Q8ITq9yrsuuBV
- Byn/KbhpsA4oX+gmHQXTDyTUC3MfYbNeJ+nZZlWwhg3OmuWUjiiZM/bbX
- f2Q9ZMbsXesYnsFwySSojcCy0fspy7yX3EeLBcMSVByfcL6AES+BlbP7N
- uiNBeXrgFtLOJbNj9nYPcNGkGS24gjcIXecxo+skmwQq6aKy/aBguIMjG
- WSPAC4Xr7CuIxMLtqXQnzerBGsMtMg0l+tGB/9tQo4jALJmptXfFdZf7t g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10859"; a="374830091"
-X-IronPort-AV: E=Sophos;i="6.03,213,1694761200"; d="scan'208";a="374830091"
+ bh=uaylNEXls+33+Xlek+AnCkn1Z3JDjTHHuhG54Dv83RM=;
+ b=a9BjSrS2f9PoJKeGeaVJ2iBMfHNGXe0xbvI1spEkCBjHnjgwqQAqO+xn
+ 4S6XDaIxn8u23i+pqq8Zf3U1KxVb40CT3hk+9QLygO51l6zpSV6kQLZjb
+ VWazTcrlaFL/hIBBhnJUhj7LSZYNxgDW7xNQByWV+XozmilFX3xorgQkW
+ dhgysWyxMZN/DYGhCgxwmhiDjvoXzyWmY2Z9LhfbVC0sKKV0Fv4wJBd47
+ V5HyexSVL0eYDDEoz+fH9RJCXmvVAWgUjn63HvHvuUZzBfmKco9KO8EVh
+ T+2JyEbRtgNVTvqlZoXIJYSQmWSvrl92a+rOEjfS/HwqHG0t8f7aBjpji g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10859"; a="374830092"
+X-IronPort-AV: E=Sophos;i="6.03,213,1694761200"; d="scan'208";a="374830092"
 Received: from fmsmga006.fm.intel.com ([10.253.24.20])
  by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Oct 2023 11:57:26 -0700
+ 10 Oct 2023 11:57:27 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10859"; a="1000802301"
-X-IronPort-AV: E=Sophos;i="6.03,213,1694761200"; d="scan'208";a="1000802301"
+X-IronPort-AV: E=McAfee;i="6600,9927,10859"; a="1000802304"
+X-IronPort-AV: E=Sophos;i="6.03,213,1694761200"; d="scan'208";a="1000802304"
 Received: from dut-internal-9dd7.jf.intel.com ([10.165.21.194])
  by fmsmga006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  10 Oct 2023 11:57:26 -0700
 From: Jonathan Cavitt <jonathan.cavitt@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Tue, 10 Oct 2023 11:46:39 -0700
-Message-Id: <20231010184641.2119129-9-jonathan.cavitt@intel.com>
+Date: Tue, 10 Oct 2023 11:46:40 -0700
+Message-Id: <20231010184641.2119129-10-jonathan.cavitt@intel.com>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20231010184641.2119129-1-jonathan.cavitt@intel.com>
 References: <20231010184641.2119129-1-jonathan.cavitt@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [RFC PATCH 08/10] drm/i915: Define GuC Based TLB
- invalidation routines
+Subject: [Intel-gfx] [RFC PATCH 09/10] drm/i915: Add generic interface for
+ tlb invalidation
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -65,185 +65,234 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 From: Prathap Kumar Valsan <prathap.kumar.valsan@intel.com>
 
-The GuC firmware has defined the interface for selective TLB
-invalidation support. This patch adds routines to interface with GuC.
+This supports selective and full tlb invalidations. When GuC is enabled
+the tlb invalidations use guc ct otherwise use mmio interface.
 
 Signed-off-by: Prathap Kumar Valsan <prathap.kumar.valsan@intel.com>
-CC: Matthew Brost <matthew.brost@intel.com>
+CC: Niranjana Vishwanathapura <niranjana.vishwanathapura@intel.com>
+CC: Fei Yang <fei.yang@intel.com>
+Signed-off-by: Jonathan Cavitt <jonathan.cavitt@intel.com>
 ---
- .../gpu/drm/i915/gt/uc/abi/guc_actions_abi.h  |   2 +
- drivers/gpu/drm/i915/gt/uc/intel_guc.h        |  11 ++
- .../gpu/drm/i915/gt/uc/intel_guc_submission.c | 105 +++++++++++++++---
- 3 files changed, 105 insertions(+), 13 deletions(-)
+ drivers/gpu/drm/i915/gt/intel_gt_regs.h       |  8 ++
+ drivers/gpu/drm/i915/gt/intel_tlb.c           | 52 +++++++++++
+ drivers/gpu/drm/i915/gt/intel_tlb.h           |  1 +
+ drivers/gpu/drm/i915/gt/selftest_tlb.c        | 88 +++++++++++++++++++
+ .../drm/i915/selftests/i915_mock_selftests.h  |  1 +
+ 5 files changed, 150 insertions(+)
 
-diff --git a/drivers/gpu/drm/i915/gt/uc/abi/guc_actions_abi.h b/drivers/gpu/drm/i915/gt/uc/abi/guc_actions_abi.h
-index 33f253410d0c8..7bb710fcd9087 100644
---- a/drivers/gpu/drm/i915/gt/uc/abi/guc_actions_abi.h
-+++ b/drivers/gpu/drm/i915/gt/uc/abi/guc_actions_abi.h
-@@ -189,6 +189,8 @@ enum intel_guc_state_capture_event_status {
+diff --git a/drivers/gpu/drm/i915/gt/intel_gt_regs.h b/drivers/gpu/drm/i915/gt/intel_gt_regs.h
+index eecd0a87a6478..f2ca1c26ecde5 100644
+--- a/drivers/gpu/drm/i915/gt/intel_gt_regs.h
++++ b/drivers/gpu/drm/i915/gt/intel_gt_regs.h
+@@ -1124,6 +1124,14 @@
  
- enum intel_guc_tlb_invalidation_type {
- 	INTEL_GUC_TLB_INVAL_ENGINES = 0x0,
-+	INTEL_GUC_TLB_INVAL_PAGE_SELECTIVE = 0x1,
-+	INTEL_GUC_TLB_INVAL_PAGE_SELECTIVE_CTX = 0x2,
- 	INTEL_GUC_TLB_INVAL_GUC = 0x3,
- };
+ #define GEN12_GAM_DONE				_MMIO(0xcf68)
  
-diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc.h b/drivers/gpu/drm/i915/gt/uc/intel_guc.h
-index 3fbf4b33ce139..369fd2be1c725 100644
---- a/drivers/gpu/drm/i915/gt/uc/intel_guc.h
-+++ b/drivers/gpu/drm/i915/gt/uc/intel_guc.h
-@@ -431,6 +431,17 @@ int intel_guc_allocate_and_map_vma(struct intel_guc *guc, u32 size,
- int intel_guc_self_cfg32(struct intel_guc *guc, u16 key, u32 value);
- int intel_guc_self_cfg64(struct intel_guc *guc, u16 key, u64 value);
- 
-+int intel_guc_g2g_register(struct intel_guc *guc);
++#define XEHPSDV_TLB_INV_DESC0			_MMIO(0xcf7c)
++#define   XEHPSDV_TLB_INV_DESC0_ADDR_LO		REG_GENMASK(31, 12)
++#define   XEHPSDV_TLB_INV_DESC0_ADDR_MASK	REG_GENMASK(8, 3)
++#define   XEHPSDV_TLB_INV_DESC0_G		REG_GENMASK(2, 1)
++#define   XEHPSDV_TLB_INV_DESC0_VALID		REG_BIT(0)
++#define XEHPSDV_TLB_INV_DESC1			_MMIO(0xcf80)
++#define   XEHPSDV_TLB_INV_DESC0_ADDR_HI		REG_GENMASK(31, 0)
 +
-+int intel_guc_invalidate_tlb_full(struct intel_guc *guc);
-+int intel_guc_invalidate_tlb_page_selective(struct intel_guc *guc,
-+					    enum intel_guc_tlb_inval_mode mode,
-+					    u64 start, u64 length);
-+int intel_guc_invalidate_tlb_page_selective_ctx(struct intel_guc *guc,
-+						enum intel_guc_tlb_inval_mode mode,
-+						u64 start, u64 length, u32 ctxid);
-+int intel_guc_invalidate_tlb_guc(struct intel_guc *guc);
-+
- static inline bool intel_guc_is_supported(struct intel_guc *guc)
- {
- 	return intel_uc_fw_is_supported(&guc->fw);
-diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c b/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
-index c3c45d3b9e89b..8c31000525b59 100644
---- a/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
-+++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
-@@ -4753,22 +4753,12 @@ static bool intel_gt_is_enabled(const struct intel_gt *gt)
- 	return true;
+ #define GEN7_HALF_SLICE_CHICKEN1		_MMIO(0xe100) /* IVB GT1 + VLV */
+ #define GEN8_HALF_SLICE_CHICKEN1		MCR_REG(0xe100)
+ #define   GEN7_MAX_PS_THREAD_DEP		(8 << 12)
+diff --git a/drivers/gpu/drm/i915/gt/intel_tlb.c b/drivers/gpu/drm/i915/gt/intel_tlb.c
+index 4bb13d1890e37..c31fd0875ac4f 100644
+--- a/drivers/gpu/drm/i915/gt/intel_tlb.c
++++ b/drivers/gpu/drm/i915/gt/intel_tlb.c
+@@ -157,6 +157,58 @@ void intel_gt_invalidate_tlb_full(struct intel_gt *gt, u32 seqno)
+ 	}
  }
  
--static int guc_send_invalidate_tlb(struct intel_guc *guc,
--				   enum intel_guc_tlb_invalidation_type type)
-+static int guc_send_invalidate_tlb(struct intel_guc *guc, u32 *action, u32 size)
- {
- 	struct intel_guc_tlb_wait _wq, *wq = &_wq;
- 	DEFINE_WAIT_FUNC(wait, woken_wake_function);
- 	int err;
- 	u32 seqno;
--	u32 action[] = {
--		INTEL_GUC_ACTION_TLB_INVALIDATION,
--		0,
--		REG_FIELD_PREP(INTEL_GUC_TLB_INVAL_TYPE_MASK, type) |
--			REG_FIELD_PREP(INTEL_GUC_TLB_INVAL_MODE_MASK,
--				       INTEL_GUC_TLB_INVAL_MODE_HEAVY) |
--			INTEL_GUC_TLB_INVAL_FLUSH_CACHE,
--	};
--	u32 size = ARRAY_SIZE(action);
- 
- 	init_waitqueue_head(&_wq.wq);
- 
-@@ -4822,13 +4812,102 @@ static int guc_send_invalidate_tlb(struct intel_guc *guc,
- /* Full TLB invalidation */
- int intel_guc_invalidate_tlb_engines(struct intel_guc *guc)
- {
--	return guc_send_invalidate_tlb(guc, INTEL_GUC_TLB_INVAL_ENGINES);
-+	u32 action[] = {
-+		INTEL_GUC_ACTION_TLB_INVALIDATION,
-+		0,
-+		REG_FIELD_PREP(INTEL_GUC_TLB_INVAL_TYPE_MASK,
-+			       INTEL_GUC_TLB_INVAL_ENGINES) |
-+			REG_FIELD_PREP(INTEL_GUC_TLB_INVAL_MODE_MASK,
-+				       INTEL_GUC_TLB_INVAL_MODE_HEAVY) |
-+			INTEL_GUC_TLB_INVAL_FLUSH_CACHE,
-+	};
-+	u32 size = ARRAY_SIZE(action);
-+	return guc_send_invalidate_tlb(guc, action, size);
-+}
-+
-+/*
-+ * Selective TLB Invalidation for Address Range:
-+ * TLB's in the Address Range is Invalidated across all engines.
-+ */
-+int intel_guc_invalidate_tlb_page_selective(struct intel_guc *guc,
-+					    enum intel_guc_tlb_inval_mode mode,
-+					    u64 start, u64 length)
++static u64 tlb_page_selective_size(u64 *addr, u64 length)
 +{
-+	u64 vm_total = BIT_ULL(RUNTIME_INFO(guc_to_gt(guc)->i915)->ppgtt_size);
++	const u64 end = *addr + length;
++	u64 start;
 +
 +	/*
-+	 * For page selective invalidations, this specifies the number of contiguous
-+	 * PPGTT pages that needs to be invalidated.
++	 * Minimum invalidation size for a 2MB page that the hardware expects is
++	 * 16MB
 +	 */
-+	u32 address_mask = length >= vm_total ? 0 : ilog2(length) - ilog2(SZ_4K);
-+	u32 action[] = {
-+		INTEL_GUC_ACTION_TLB_INVALIDATION,
-+		0,
-+		REG_FIELD_PREP(INTEL_GUC_TLB_INVAL_TYPE_MASK,
-+			       INTEL_GUC_TLB_INVAL_PAGE_SELECTIVE) |
-+			REG_FIELD_PREP(INTEL_GUC_TLB_INVAL_MODE_MASK, mode) |
-+			INTEL_GUC_TLB_INVAL_FLUSH_CACHE,
-+		0,
-+		length >= vm_total ? 1 : lower_32_bits(start),
-+		upper_32_bits(start),
-+		address_mask,
-+	};
++	length = max_t(u64, roundup_pow_of_two(length), SZ_4K);
++	if (length >= SZ_2M)
++		length = max_t(u64, SZ_16M, length);
 +
-+	GEM_BUG_ON(length < SZ_4K);
-+	GEM_BUG_ON(!is_power_of_2(length));
-+	GEM_BUG_ON(!IS_ALIGNED(start, length));
-+	GEM_BUG_ON(range_overflows(start, length, vm_total));
++	/*
++	 * We need to invalidate a higher granularity if start address is not
++	 * aligned to length. When start is not aligned with length we need to
++	 * find the length large enough to create an address mask covering the
++	 * required range.
++	 */
++	start = round_down(*addr, length);
++	while (start + length < end) {
++		length <<= 1;
++		start = round_down(*addr, length);
++	}
 +
-+	return guc_send_invalidate_tlb(guc, action, ARRAY_SIZE(action));
++	*addr = start;
++	return length;
 +}
 +
-+/*
-+ * Selective TLB Invalidation for Context:
-+ * Invalidates all TLB's for a specific context across all engines.
-+ */
-+int intel_guc_invalidate_tlb_page_selective_ctx(struct intel_guc *guc,
-+                                                enum intel_guc_tlb_inval_mode mode,
-+                                                u64 start, u64 length, u32 ctxid)
++bool intel_gt_invalidate_tlb_range(struct intel_gt *gt,
++				   u64 start, u64 length)
 +{
-+        u64 vm_total = BIT_ULL(RUNTIME_INFO(guc_to_gt(guc)->i915)->ppgtt_size);
-+        u32 address_mask = (ilog2(length) - ilog2(I915_GTT_PAGE_SIZE_4K));
-+        u32 full_range = vm_total == length;
-+        u32 action[] = {
-+                INTEL_GUC_ACTION_TLB_INVALIDATION,
-+                0,
-+                REG_FIELD_PREP(INTEL_GUC_TLB_INVAL_TYPE_MASK,
-+			       INTEL_GUC_TLB_INVAL_PAGE_SELECTIVE_CTX) |
-+                        REG_FIELD_PREP(INTEL_GUC_TLB_INVAL_MODE_MASK, mode) |
-+                        INTEL_GUC_TLB_INVAL_FLUSH_CACHE,
-+                ctxid,
-+                full_range ? full_range : lower_32_bits(start),
-+                full_range ? 0 : upper_32_bits(start),
-+                full_range ? 0 : address_mask,
-+        };
++	struct intel_guc *guc = &gt->uc.guc;
++	intel_wakeref_t wakeref;
++	u64 size, vm_total;
++	bool ret = true;
 +
-+        GEM_BUG_ON(length < SZ_4K);
-+        GEM_BUG_ON(!is_power_of_2(length));
-+        GEM_BUG_ON(length & GENMASK(ilog2(SZ_16M) - 1, ilog2(SZ_2M) + 1));
-+        GEM_BUG_ON(!IS_ALIGNED(start, length));
-+        GEM_BUG_ON(range_overflows(start, length, vm_total));
++	if (intel_gt_is_wedged(gt))
++		return true;
 +
-+        return guc_send_invalidate_tlb(guc, action, ARRAY_SIZE(action));
- }
- 
- /* GuC TLB Invalidation: Invalidate the TLB's of GuC itself. */
- int intel_guc_invalidate_tlb_guc(struct intel_guc *guc)
++	vm_total = BIT_ULL(RUNTIME_INFO(gt->i915)->ppgtt_size);
++	/* Align start and length */
++	size =  min_t(u64, vm_total, tlb_page_selective_size(&start, length));
++
++	with_intel_gt_pm_if_awake(gt, wakeref)
++		ret = intel_guc_invalidate_tlb_page_selective(guc,
++							      INTEL_GUC_TLB_INVAL_MODE_HEAVY,
++							      start, size) == 0;
++
++	return ret;
++}
++
+ void intel_gt_init_tlb(struct intel_gt *gt)
  {
--	return guc_send_invalidate_tlb(guc, INTEL_GUC_TLB_INVAL_GUC);
-+	u32 action[] = {
-+		INTEL_GUC_ACTION_TLB_INVALIDATION,
-+		0,
-+		REG_FIELD_PREP(INTEL_GUC_TLB_INVAL_TYPE_MASK,
-+			       INTEL_GUC_TLB_INVAL_GUC) |
-+			REG_FIELD_PREP(INTEL_GUC_TLB_INVAL_MODE_MASK,
-+				       INTEL_GUC_TLB_INVAL_MODE_HEAVY) |
-+			INTEL_GUC_TLB_INVAL_FLUSH_CACHE,
-+	};
-+	u32 size = ARRAY_SIZE(action);
-+	return guc_send_invalidate_tlb(guc, action, size);
+ 	mutex_init(&gt->tlb.invalidate_lock);
+diff --git a/drivers/gpu/drm/i915/gt/intel_tlb.h b/drivers/gpu/drm/i915/gt/intel_tlb.h
+index 337327af92ac4..9e5fc40c2b08e 100644
+--- a/drivers/gpu/drm/i915/gt/intel_tlb.h
++++ b/drivers/gpu/drm/i915/gt/intel_tlb.h
+@@ -12,6 +12,7 @@
+ #include "intel_gt_types.h"
+ 
+ void intel_gt_invalidate_tlb_full(struct intel_gt *gt, u32 seqno);
++bool intel_gt_invalidate_tlb_range(struct intel_gt *gt, u64 start, u64 length);
+ 
+ void intel_gt_init_tlb(struct intel_gt *gt);
+ void intel_gt_fini_tlb(struct intel_gt *gt);
+diff --git a/drivers/gpu/drm/i915/gt/selftest_tlb.c b/drivers/gpu/drm/i915/gt/selftest_tlb.c
+index 24beb94aa7a37..29f137a6e0362 100644
+--- a/drivers/gpu/drm/i915/gt/selftest_tlb.c
++++ b/drivers/gpu/drm/i915/gt/selftest_tlb.c
+@@ -382,10 +382,45 @@ static int invalidate_full(void *arg)
+ 	return err;
  }
  
- int intel_guc_deregister_done_process_msg(struct intel_guc *guc,
++static void tlbinv_range(struct i915_address_space *vm, u64 addr, u64 length)
++{
++	if (!intel_gt_invalidate_tlb_range(vm->gt, addr, length))
++		pr_err("range invalidate failed\n");
++}
++
++static bool has_invalidate_range(struct intel_gt *gt)
++{
++	intel_wakeref_t wf;
++	bool result = false;
++
++	with_intel_gt_pm(gt, wf)
++		result = intel_gt_invalidate_tlb_range(gt, 0, gt->vm->total);
++
++	return result;
++}
++
++static int invalidate_range(void *arg)
++{
++	struct intel_gt *gt = arg;
++	int err;
++
++	if (!has_invalidate_range(gt))
++		return 0;
++
++	err = mem_tlbinv(gt, create_smem, tlbinv_range);
++	if (err == 0)
++		err = mem_tlbinv(gt, create_lmem, tlbinv_range);
++	if (err == -ENODEV || err == -ENXIO)
++		err = 0;
++
++	return err;
++}
++
+ int intel_tlb_live_selftests(struct drm_i915_private *i915)
+ {
+ 	static const struct i915_subtest tests[] = {
+ 		SUBTEST(invalidate_full),
++		SUBTEST(invalidate_range),
+ 	};
+ 	struct intel_gt *gt;
+ 	unsigned int i;
+@@ -403,3 +438,56 @@ int intel_tlb_live_selftests(struct drm_i915_private *i915)
+ 
+ 	return 0;
+ }
++
++static int tlb_page_size(void *arg)
++{
++	int start, size, offset;
++
++	for (start = 0; start < 57; start++) {
++		for (size = 0; size <= 57 - start; size++) {
++			for (offset = 0; offset <= size; offset++) {
++				u64 len = BIT(size);
++				u64 addr = BIT(start) + len - BIT(offset);
++				u64 expected_start = addr;
++				u64 expected_end = addr + len - 1;
++				int err = 0;
++
++				if (addr + len < addr)
++					continue;
++
++				len = tlb_page_selective_size(&addr, len);
++				if (addr > expected_start) {
++					pr_err("(start:%d, size:%d, offset:%d, range:[%llx, %llx]) invalidate range:[%llx + %llx] after start:%llx\n",
++					       start, size, offset,
++					       expected_start, expected_end,
++					       addr, len,
++					       expected_start);
++					err = -EINVAL;
++				}
++
++				if (addr + len < expected_end) {
++					pr_err("(start:%d, size:%d, offset:%d, range:[%llx, %llx]) invalidate range:[%llx + %llx] before end:%llx\n",
++					       start, size, offset,
++					       expected_start, expected_end,
++					       addr, len,
++					       expected_end);
++					err = -EINVAL;
++				}
++
++				if (err)
++					return err;
++			}
++		}
++	}
++
++	return 0;
++}
++
++int intel_tlb_mock_selftests(void)
++{
++	static const struct i915_subtest tests[] = {
++		SUBTEST(tlb_page_size),
++	};
++
++	return i915_subtests(tests, NULL);
++}
+diff --git a/drivers/gpu/drm/i915/selftests/i915_mock_selftests.h b/drivers/gpu/drm/i915/selftests/i915_mock_selftests.h
+index 0c22e0fc9059c..3e00cd2b6e53c 100644
+--- a/drivers/gpu/drm/i915/selftests/i915_mock_selftests.h
++++ b/drivers/gpu/drm/i915/selftests/i915_mock_selftests.h
+@@ -21,6 +21,7 @@ selftest(fence, i915_sw_fence_mock_selftests)
+ selftest(scatterlist, scatterlist_mock_selftests)
+ selftest(syncmap, i915_syncmap_mock_selftests)
+ selftest(uncore, intel_uncore_mock_selftests)
++selftest(tlb, intel_tlb_mock_selftests)
+ selftest(ring, intel_ring_mock_selftests)
+ selftest(engine, intel_engine_cs_mock_selftests)
+ selftest(timelines, intel_timeline_mock_selftests)
 -- 
 2.25.1
 
