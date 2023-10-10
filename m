@@ -1,50 +1,52 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id EF17E7BFAF4
-	for <lists+intel-gfx@lfdr.de>; Tue, 10 Oct 2023 14:16:31 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id B469A7BFAFF
+	for <lists+intel-gfx@lfdr.de>; Tue, 10 Oct 2023 14:16:47 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 52B0B10E1E7;
-	Tue, 10 Oct 2023 12:16:30 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8059210E33E;
+	Tue, 10 Oct 2023 12:16:45 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.151])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A9E6A10E1E7;
- Tue, 10 Oct 2023 12:16:28 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8875C10E33C;
+ Tue, 10 Oct 2023 12:16:43 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1696940188; x=1728476188;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=TanU+TjJiGWDDPoccsVXHgSShJD0CZuV0MWwk4ETT3Y=;
- b=n54gQQYhnYDpweF/GsqxZt/RjxutChpXzQAX5sfGwdwKes8Dd/KrmZzf
- CKQtkW8NU7PKi2bbCuUk5X3KddZNOEogjOO208DLBRs3qysluVd+/r5Ps
- QCKyY7GqitBkZ9x7MmG0gRQ/VnxHzG9R23rq2x8+bPs2LTOybZXIOIbUn
- /ubLPbieAILqIZeJ/SOLQu2RehT+6yxDLVeNitLe6hEMAi5MT4ZGbvifK
- H2/IZ8f7ZjGzf2JKHwn4X6Op1xzxiw66sViB5WIBDUfOtmjk7VR1TyCiU
- yQGUSkpaPAwYR18ymYaDwBDaWG0llkJINIfbj6ypp62a8OJMG4d7zAjSZ Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10859"; a="364673913"
-X-IronPort-AV: E=Sophos;i="6.03,212,1694761200"; d="scan'208";a="364673913"
-Received: from orsmga007.jf.intel.com ([10.7.209.58])
- by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Oct 2023 05:16:27 -0700
+ t=1696940203; x=1728476203;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=4b290UuADYzo8HimFx6+MUFP60YFM6y6WoHDK+i2AvE=;
+ b=Z+wHlrz/ypoVJFqd3zfJ3mQ7bmOA0eTK6NlIUdp7f9TpEZaw8FjoQ/l9
+ FsC3F89rX+gvWkpLYM2lN3riR+3meZn2UE1Z3t38Q67w99CxdBzLb0BIx
+ rUwMwsboNHop3U1fzdFHfuMNWT4UexApB62eIx1VqcDVEo+z9h8fXIcP1
+ N+RsHo6cm+/yhnb+flcNRYtBzQNYDp7qcQFXI3rpmx4b+y6mm5EEZhUqx
+ ZsiQ9bTy91coql7OT9sfDTFy63u1FS1qu35TQcWmCjdJA4E6yet+gCyVC
+ 74Iwy+4n3dqmS4cUl5oODed/G+eGiZZDgWMR69QBDLmt3fe/ENsDNqXBW g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10859"; a="470641536"
+X-IronPort-AV: E=Sophos;i="6.03,212,1694761200"; d="scan'208";a="470641536"
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+ by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Oct 2023 05:16:42 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10859"; a="747055365"
-X-IronPort-AV: E=Sophos;i="6.03,212,1694761200"; d="scan'208";a="747055365"
+X-IronPort-AV: E=McAfee;i="6600,9927,10859"; a="753384989"
+X-IronPort-AV: E=Sophos;i="6.03,212,1694761200"; d="scan'208";a="753384989"
 Received: from ppalanyk-mobl.gar.corp.intel.com (HELO intel.com)
  ([10.213.148.82])
- by orsmga007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Oct 2023 05:16:19 -0700
+ by orsmga002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Oct 2023 05:16:34 -0700
 From: Andi Shyti <andi.shyti@linux.intel.com>
 To: intel-gfx <intel-gfx@lists.freedesktop.org>,
  dri-devel <dri-devel@lists.freedesktop.org>
-Date: Tue, 10 Oct 2023 14:15:43 +0200
-Message-Id: <20231010121545.1046793-1-andi.shyti@linux.intel.com>
+Date: Tue, 10 Oct 2023 14:15:44 +0200
+Message-Id: <20231010121545.1046793-2-andi.shyti@linux.intel.com>
 X-Mailer: git-send-email 2.40.1
+In-Reply-To: <20231010121545.1046793-1-andi.shyti@linux.intel.com>
+References: <20231010121545.1046793-1-andi.shyti@linux.intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH RESEND v2 0/2] Add drm_dbg_ratelimited()
+Subject: [Intel-gfx] [PATCH RESEND v2 1/2] drm/print: Add drm_dbg_ratelimited
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -65,28 +67,39 @@ Cc: Andrzej Hajda <andrzej.hajda@intel.com>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi,
+From: Nirmoy Das <nirmoy.das@intel.com>
 
-I might have picked up the wrong series and missed some reviews
-and the extra patch from Nirmoy with a real use of the
-drm_dbg_ratelimited() that John was looking for.
+Add a function for ratelimitted debug print.
 
-Thanks,
-Andi
+Signed-off-by: Nirmoy Das <nirmoy.das@intel.com>
+Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+Cc: Maxime Ripard <mripard@kernel.org>
+Cc: Thomas Zimmermann <tzimmermann@suse.de>
+Cc: David Airlie <airlied@gmail.com>
+Cc: Daniel Vetter <daniel@ffwll.ch>
+Reviewed-by: Matthew Auld <matthew.auld@intel.com>
+Reviewed-by: Andrzej Hajda <andrzej.hajda@intel.com>
+Reviewed-by: Andi Shyti <andi.shyti@linux.intel.com>
+Reviewed-by: Sam Ravnborg <sam@ravnborg.org>
+Signed-off-by: Andi Shyti <andi.shyti@linux.intel.com>
+---
+ include/drm/drm_print.h | 3 +++
+ 1 file changed, 3 insertions(+)
 
-v2:
-pick the right patch with the following changes:
- - add more r-b's
- - add a patch 2 where the drm_dbg_ratelimited is actually used.
-
-Nirmoy Das (2):
-  drm/print: Add drm_dbg_ratelimited
-  drm/i915: Ratelimit debug log in vm_fault_ttm
-
- drivers/gpu/drm/i915/gem/i915_gem_ttm.c | 5 +++--
- include/drm/drm_print.h                 | 3 +++
- 2 files changed, 6 insertions(+), 2 deletions(-)
-
+diff --git a/include/drm/drm_print.h b/include/drm/drm_print.h
+index a93a387f8a1a..ad77ac4b6808 100644
+--- a/include/drm/drm_print.h
++++ b/include/drm/drm_print.h
+@@ -602,6 +602,9 @@ void __drm_err(const char *format, ...);
+ 		drm_dev_printk(drm_ ? drm_->dev : NULL, KERN_DEBUG, fmt, ## __VA_ARGS__);	\
+ })
+ 
++#define drm_dbg_ratelimited(drm, fmt, ...) \
++	__DRM_DEFINE_DBG_RATELIMITED(DRIVER, drm, fmt, ## __VA_ARGS__)
++
+ #define drm_dbg_kms_ratelimited(drm, fmt, ...) \
+ 	__DRM_DEFINE_DBG_RATELIMITED(KMS, drm, fmt, ## __VA_ARGS__)
+ 
 -- 
 2.40.1
 
