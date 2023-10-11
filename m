@@ -1,53 +1,58 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2D4BD7C4BC0
-	for <lists+intel-gfx@lfdr.de>; Wed, 11 Oct 2023 09:29:27 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 82AEB7C4BDD
+	for <lists+intel-gfx@lfdr.de>; Wed, 11 Oct 2023 09:31:48 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8BB7910E48A;
-	Wed, 11 Oct 2023 07:29:25 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E88EB10E494;
+	Wed, 11 Oct 2023 07:31:45 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8350110E48A
- for <intel-gfx@lists.freedesktop.org>; Wed, 11 Oct 2023 07:29:23 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.93])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3553B10E494
+ for <intel-gfx@lists.freedesktop.org>; Wed, 11 Oct 2023 07:31:44 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1697009363; x=1728545363;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=0bDVhhRFjtCy3bbgG+aChsC8tbsXgtOqUXfZpFIGH94=;
- b=bl2tolytwYuYNdF93z/U7VwKWxOwkANXRMe3uZ2b1jbEFGVZej/wo1DK
- EeH8R8IFGarKX4tmDQCxwQkcyKBTZ5c1r1wP+AWjLgInG2M7ZovjtHxlV
- wRwQlkFpL61e7ocpWVQVX96haybcc2dA/wTilLejK6Ao1l7zTgKmUOKsr
- Tu0sD6/8MHqUtsNOLL4DS5g49r5JDEvMCdgh2MNzZQAl0L6GvLuB+zo4H
- 9y8nbqdZwKsgf72/hQmu/47DzbgI3ht4/eymQn0NSI45WAyrIpR4IVqot
- r5M/7ngvNDM75EFBFXXvFh7gvcqJlGnn3urdAwo6qvS5b1XqzA9JRs7LA Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10859"; a="3192017"
-X-IronPort-AV: E=Sophos;i="6.03,214,1694761200"; 
-   d="scan'208";a="3192017"
-Received: from orsmga007.jf.intel.com ([10.7.209.58])
- by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Oct 2023 00:29:23 -0700
+ t=1697009504; x=1728545504;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version:content-transfer-encoding;
+ bh=BrYQUkORXNWK96QnfPZBm35az/Tgpuxk/0trKjL9YTs=;
+ b=AlE41056JNljWVv1yYoy+N1/bjCX2WVwTPbMw854PCyYgUj8huVhxwHi
+ EP/3g3SDRXlK3GxvR2UJXjgvUVIXHzQxoNVEJky6BrUCH4GkBK473i9Yu
+ jPVwAYjWv0bBVp75i3gkZ1ncF9xAU4g9otKyowI5KZyJ299qVXb42fcvH
+ Hfdrhmg69XgiN+kMK2e/hJLGI77XNWRB9j14Axl3rdZio+jq9wuiLv55D
+ Q/Xa+cGT0DCIUM6eFeis8hMwf0O+SYSDBxiUWJPozXVur79P/jrvR2+Ju
+ GcLKjGZyAmnIRslNx5YjC7730/RkjSUzD6ehQ6FtrtPGQLSABzOtlW3Oc A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10859"; a="381850587"
+X-IronPort-AV: E=Sophos;i="6.03,214,1694761200"; d="scan'208";a="381850587"
+Received: from fmsmga004.fm.intel.com ([10.253.24.48])
+ by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 Oct 2023 00:31:43 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10859"; a="747352246"
-X-IronPort-AV: E=Sophos;i="6.03,214,1694761200"; d="scan'208";a="747352246"
+X-IronPort-AV: E=McAfee;i="6600,9927,10859"; a="824064122"
+X-IronPort-AV: E=Sophos;i="6.03,214,1694761200"; d="scan'208";a="824064122"
 Received: from wprelogx-mobl.ger.corp.intel.com (HELO localhost)
  ([10.252.56.229])
- by orsmga007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Oct 2023 00:29:19 -0700
+ by fmsmga004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 Oct 2023 00:31:41 -0700
 From: Jani Nikula <jani.nikula@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Wed, 11 Oct 2023 10:29:04 +0300
-Message-Id: <69a812273091b6535ddc7f9346289d71bb30f43d.1697009258.git.jani.nikula@intel.com>
-X-Mailer: git-send-email 2.39.2
-In-Reply-To: <cover.1697009258.git.jani.nikula@intel.com>
-References: <cover.1697009258.git.jani.nikula@intel.com>
-MIME-Version: 1.0
+To: Nick Desaulniers <ndesaulniers@google.com>
+In-Reply-To: <CAKwvOdk-h_Bvz9iFN=fMMn14A=8iwoPgSS27iZVmy4auTXCYvA@mail.gmail.com>
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH v2 2/2] drm/i915: enable W=1 warnings by default
+References: <cover.1696595500.git.jani.nikula@intel.com>
+ <48f11648d7169687e7242e4c9b4694a0c03c4263.1696595500.git.jani.nikula@intel.com>
+ <CAK7LNAT6MzbcjR7KZMEFUCHkq+WXgTB=Qmp_VD4UC7TvMg+dMg@mail.gmail.com>
+ <20231009163837.GA1153868@dev-arch.thelio-3990X>
+ <87o7h66fti.fsf@intel.com> <87h6my6evg.fsf@intel.com>
+ <CAKwvOdk-h_Bvz9iFN=fMMn14A=8iwoPgSS27iZVmy4auTXCYvA@mail.gmail.com>
+Date: Wed, 11 Oct 2023 10:31:38 +0300
+Message-ID: <871qe162ed.fsf@intel.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+Subject: Re: [Intel-gfx] [PATCH 1/2] drm/i915: drop -Wall and related
+ disables from cflags as redundant
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -60,91 +65,41 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Arnd Bergmann <arnd@arndb.de>, linux-kbuild@vger.kernel.org,
- jani.nikula@intel.com, Masahiro Yamada <masahiroy@kernel.org>,
- Nick Desaulniers <ndesaulniers@google.com>,
- Nathan Chancellor <nathan@kernel.org>
+Cc: Nathan Chancellor <nathan@kernel.org>,
+ Masahiro Yamada <masahiroy@kernel.org>, intel-gfx@lists.freedesktop.org,
+ Arnd Bergmann <arnd@arndb.de>, linux-kbuild@vger.kernel.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-We enable a bunch more compiler warnings than the kernel
-defaults. However, they've drifted to become a unique set of warnings,
-and have increasingly fallen behind from the W=1 set.
+On Tue, 10 Oct 2023, Nick Desaulniers <ndesaulniers@google.com> wrote:
+> On Tue, Oct 10, 2023 at 1:50=E2=80=AFAM Jani Nikula <jani.nikula@intel.co=
+m> wrote:
+>> This is the simplest I could think of:
+>>
+>> # The following turn off the warnings enabled by -Wextra
+>> ifeq ($(findstring 2, $(KBUILD_EXTRA_WARN)),)
+>> KBUILD_CFLAGS +=3D -Wno-missing-field-initializers
+>> KBUILD_CFLAGS +=3D -Wno-type-limits
+>> KBUILD_CFLAGS +=3D -Wno-shift-negative-value
+>> endif
+>> ifeq ($(findstring 3, $(KBUILD_EXTRA_WARN)),)
+>> KBUILD_CFLAGS +=3D -Wno-sign-compare
+>> endif
+>>
+>> Masahiro, I'd like to get your feedback on which to choose,
+>> unconditionally silencing the W=3D2/W=3D3 warnings for i915, or looking =
+at
+>> KBUILD_EXTRA_WARN.
+>
+> KBUILD_EXTRA_WARN looks better to me; otherwise they would be hidden
+> forever (or nearly).  Suffer some duplication, w/e.
 
-Align with the W=1 warnings from scripts/Makefile.extrawarn for clarity,
-by copy-pasting them with s/KBUILD_CFLAGS/subdir-ccflags-y/ to make it
-easier to compare in the future.
+Thanks, sent v2 with this [1].
 
-Some of the -Wextra warnings do need to be disabled, just like in
-Makefile.extrawarn, but take care to not disable them for W=2 or W=3
-builds, depending on the warning.
+BR,
+Jani.
 
-v2: Add back some -Wextra warning disables (Nathan)
+[1] https://lore.kernel.org/r/cover.1697009258.git.jani.nikula@intel.com
 
-Cc: Arnd Bergmann <arnd@arndb.de>
-Cc: Nick Desaulniers <ndesaulniers@google.com>
-Cc: Nathan Chancellor <nathan@kernel.org>
-Cc: Masahiro Yamada <masahiroy@kernel.org>
-Reviewed-by: Nathan Chancellor <nathan@kernel.org>
-Signed-off-by: Jani Nikula <jani.nikula@intel.com>
----
- drivers/gpu/drm/i915/Makefile | 42 ++++++++++++++++++++++-------------
- 1 file changed, 27 insertions(+), 15 deletions(-)
-
-diff --git a/drivers/gpu/drm/i915/Makefile b/drivers/gpu/drm/i915/Makefile
-index 623f81217442..94f84befa38f 100644
---- a/drivers/gpu/drm/i915/Makefile
-+++ b/drivers/gpu/drm/i915/Makefile
-@@ -3,22 +3,34 @@
- # Makefile for the drm device driver.  This driver provides support for the
- # Direct Rendering Infrastructure (DRI) in XFree86 4.1.0 and higher.
- 
--# Add a set of useful warning flags and enable -Werror for CI to prevent
--# trivial mistakes from creeping in. We have to do this piecemeal as we reject
--# any patch that isn't warning clean, so turning on -Wextra (or W=1) we
--# need to filter out dubious warnings.  Still it is our interest
--# to keep running locally with W=1 C=1 until we are completely clean.
--#
--# Note the danger in using -Wextra is that when CI updates gcc we
--# will most likely get a sudden build breakage... Hopefully we will fix
--# new warnings before CI updates!
--subdir-ccflags-y := -Wextra
--subdir-ccflags-y += -Wno-unused-parameter
--subdir-ccflags-y += -Wno-type-limits
--subdir-ccflags-y += -Wno-missing-field-initializers
--subdir-ccflags-y += -Wno-sign-compare
--subdir-ccflags-y += -Wno-shift-negative-value
-+# Unconditionally enable W=1 warnings locally
-+# --- begin copy-paste W=1 warnings from scripts/Makefile.extrawarn
-+subdir-ccflags-y += -Wextra -Wunused -Wno-unused-parameter
-+subdir-ccflags-y += -Wmissing-declarations
-+subdir-ccflags-y += $(call cc-option, -Wrestrict)
-+subdir-ccflags-y += -Wmissing-format-attribute
-+subdir-ccflags-y += -Wmissing-prototypes
-+subdir-ccflags-y += -Wold-style-definition
-+subdir-ccflags-y += -Wmissing-include-dirs
- subdir-ccflags-y += $(call cc-option, -Wunused-but-set-variable)
-+subdir-ccflags-y += $(call cc-option, -Wunused-const-variable)
-+subdir-ccflags-y += $(call cc-option, -Wpacked-not-aligned)
-+subdir-ccflags-y += $(call cc-option, -Wformat-overflow)
-+subdir-ccflags-y += $(call cc-option, -Wformat-truncation)
-+subdir-ccflags-y += $(call cc-option, -Wstringop-overflow)
-+subdir-ccflags-y += $(call cc-option, -Wstringop-truncation)
-+# The following turn off the warnings enabled by -Wextra
-+ifeq ($(findstring 2, $(KBUILD_EXTRA_WARN)),)
-+KBUILD_CFLAGS += -Wno-missing-field-initializers
-+KBUILD_CFLAGS += -Wno-type-limits
-+KBUILD_CFLAGS += -Wno-shift-negative-value
-+endif
-+ifeq ($(findstring 3, $(KBUILD_EXTRA_WARN)),)
-+KBUILD_CFLAGS += -Wno-sign-compare
-+endif
-+# --- end copy-paste
-+
-+# Enable -Werror in CI and development
- subdir-ccflags-$(CONFIG_DRM_I915_WERROR) += -Werror
- 
- # Fine grained warnings disable
--- 
-2.39.2
-
+--=20
+Jani Nikula, Intel
