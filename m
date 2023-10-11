@@ -1,33 +1,49 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1FB7D7C48D4
-	for <lists+intel-gfx@lfdr.de>; Wed, 11 Oct 2023 06:30:14 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 456A37C48E9
+	for <lists+intel-gfx@lfdr.de>; Wed, 11 Oct 2023 06:56:46 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A2C1910E1CE;
-	Wed, 11 Oct 2023 04:30:10 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E599210E440;
+	Wed, 11 Oct 2023 04:56:40 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id B212910E1CE;
- Wed, 11 Oct 2023 04:30:08 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id AFC95A7DFF;
- Wed, 11 Oct 2023 04:30:08 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============2332462623068166661=="
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 415E210E440
+ for <intel-gfx@lists.freedesktop.org>; Wed, 11 Oct 2023 04:56:39 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1697000200; x=1728536200;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=okqV1J7r6VQ+e3ftFFh1xfzJa9NvqZx2KUs4E6GoP14=;
+ b=MMkg1PDByG9PhI1mTcZtycLVMVDsnrp/ZQ9H1tQtrffJofiEFOJns5W4
+ d5cvyNHFbqH0NgppKeNI2efC5y5rUzSV7Dbz5CBtQ8rL1sptNuoPm7pfg
+ ejrSwbxXYh7iO5ELfcPQMmG6ApXRSJtWM9OJKkxMY8ZO7HNv2n3T2HyIF
+ CJvRssEsYlNOQFx+1UaIKGDswgwvQET4C/EdjoYHEkKRTTUUO7mLi1xfg
+ Cqy+C9s7Eo8E8pAhoXe9ExXbjI4Zw4qjGdkyfBpM2hzb0MAQR8ox1BSRT
+ 8UBUbvTwMvTXPn/KsFwdaQmVhBAbe+siXMt9TSRoRYNbiZDvfjsG3StcS A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10859"; a="3170010"
+X-IronPort-AV: E=Sophos;i="6.03,214,1694761200"; 
+   d="scan'208";a="3170010"
+Received: from orsmga004.jf.intel.com ([10.7.209.38])
+ by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Oct 2023 21:56:39 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10859"; a="877525974"
+X-IronPort-AV: E=Sophos;i="6.03,214,1694761200"; d="scan'208";a="877525974"
+Received: from shekharc-desk.iind.intel.com ([10.190.239.54])
+ by orsmga004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Oct 2023 21:56:37 -0700
+From: Shekhar Chauhan <shekhar.chauhan@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Wed, 11 Oct 2023 10:26:00 +0530
+Message-Id: <20231011045600.2710486-1-shekhar.chauhan@intel.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Jonathan Cavitt" <jonathan.cavitt@intel.com>
-Date: Wed, 11 Oct 2023 04:30:08 -0000
-Message-ID: <169699860871.26512.5436298878731751842@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20231011000248.2181018-1-jonathan.cavitt@intel.com>
-In-Reply-To: <20231011000248.2181018-1-jonathan.cavitt@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
- =?utf-8?q?/i915=3A_Define_and_use_GuC_and_CTB_TLB_invalidation_routines?=
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-gfx] [PATCH] drm/i915: Add new DG2 PCI IDs
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,195 +56,44 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
+Cc: matthew.d.roper@intel.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============2332462623068166661==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+Add new PCI IDs which are recently added.
 
-== Series Details ==
+BSpec: 44477
+Signed-off-by: Shekhar Chauhan <shekhar.chauhan@intel.com>
+---
+ include/drm/i915_pciids.h | 8 ++++++--
+ 1 file changed, 6 insertions(+), 2 deletions(-)
 
-Series: drm/i915: Define and use GuC and CTB TLB invalidation routines
-URL   : https://patchwork.freedesktop.org/series/124932/
-State : success
+diff --git a/include/drm/i915_pciids.h b/include/drm/i915_pciids.h
+index 1256770d3827..deb2eb0b4979 100644
+--- a/include/drm/i915_pciids.h
++++ b/include/drm/i915_pciids.h
+@@ -692,7 +692,7 @@
+ 	INTEL_VGA_DEVICE(0xA7A9, info), \
+ 	INTEL_VGA_DEVICE(0xA7AC, info), \
+ 	INTEL_VGA_DEVICE(0xA7AD, info)
+-
++h
+ /* RPL-P */
+ #define INTEL_RPLP_IDS(info) \
+ 	INTEL_RPLU_IDS(info), \
+@@ -718,7 +718,11 @@
+ 	INTEL_VGA_DEVICE(0x56A5, info), \
+ 	INTEL_VGA_DEVICE(0x56A6, info), \
+ 	INTEL_VGA_DEVICE(0x56B0, info), \
+-	INTEL_VGA_DEVICE(0x56B1, info)
++	INTEL_VGA_DEVICE(0x56B1, info), \
++	INTEL_VGA_DEVICE(0x56BA, info), \
++	INTEL_VGA_DEVICE(0x56BB, info), \
++	INTEL_VGA_DEVICE(0x56BC, info), \
++	INTEL_VGA_DEVICE(0x56BD, info)
+ 
+ #define INTEL_DG2_G12_IDS(info) \
+ 	INTEL_VGA_DEVICE(0x5696, info), \
+-- 
+2.34.1
 
-== Summary ==
-
-CI Bug Log - changes from CI_DRM_13737 -> Patchwork_124932v1
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_124932v1/index.html
-
-Participating hosts (37 -> 37)
-------------------------------
-
-  Additional (1): fi-kbl-soraka 
-  Missing    (1): bat-dg2-9 
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_124932v1 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@gem_huc_copy@huc-copy:
-    - fi-kbl-soraka:      NOTRUN -> [SKIP][1] ([fdo#109271] / [i915#2190])
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_124932v1/fi-kbl-soraka/igt@gem_huc_copy@huc-copy.html
-
-  * igt@gem_lmem_swapping@basic:
-    - fi-kbl-soraka:      NOTRUN -> [SKIP][2] ([fdo#109271] / [i915#4613]) +3 other tests skip
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_124932v1/fi-kbl-soraka/igt@gem_lmem_swapping@basic.html
-
-  * igt@i915_selftest@live@gt_pm:
-    - fi-kbl-soraka:      NOTRUN -> [DMESG-FAIL][3] ([i915#1886])
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_124932v1/fi-kbl-soraka/igt@i915_selftest@live@gt_pm.html
-
-  * igt@kms_dsc@dsc-basic:
-    - fi-kbl-soraka:      NOTRUN -> [SKIP][4] ([fdo#109271]) +9 other tests skip
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_124932v1/fi-kbl-soraka/igt@kms_dsc@dsc-basic.html
-
-  * igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence:
-    - bat-dg2-11:         NOTRUN -> [SKIP][5] ([i915#1845]) +3 other tests skip
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_124932v1/bat-dg2-11/igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence.html
-
-  
-  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
-  [i915#1845]: https://gitlab.freedesktop.org/drm/intel/issues/1845
-  [i915#1886]: https://gitlab.freedesktop.org/drm/intel/issues/1886
-  [i915#2190]: https://gitlab.freedesktop.org/drm/intel/issues/2190
-  [i915#4613]: https://gitlab.freedesktop.org/drm/intel/issues/4613
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_13737 -> Patchwork_124932v1
-
-  CI-20190529: 20190529
-  CI_DRM_13737: c768959add20d28639e5bfa4cea2544aab51879e @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_7527: 46f98a3041f73a1d6ee7ec3ace6eba79b15369c4 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_124932v1: c768959add20d28639e5bfa4cea2544aab51879e @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-### Linux commits
-
-9c2d2f05c582 drm/i915: Enable GuC TLB invalidations for MTL
-f663fd7b9b34 drm/i915/gt: Increase sleep in gt_tlb selftest sanitycheck
-baa79c5c2bfd drm/i915: No TLB invalidation on wedged GT
-aecc6bc57042 drm/i915: No TLB invalidation on suspended GT
-fde005228698 drm/i915: Define and use GuC and CTB TLB invalidation routines
-80c7acef2d00 drm/i915/guc: Add CT size delay helper
-d14d76eb585b drm/i915: Add GuC TLB Invalidation device info flags
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_124932v1/index.html
-
---===============2332462623068166661==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915: Define and use GuC and CTB TLB invalidation routines</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/124932/">https://patchwork.freedesktop.org/series/124932/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_124932v1/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_124932v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_13737 -&gt; Patchwork_124932v1</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_124932v1/index.html</p>
-<h2>Participating hosts (37 -&gt; 37)</h2>
-<p>Additional (1): fi-kbl-soraka <br />
-  Missing    (1): bat-dg2-9 </p>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_124932v1 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@gem_huc_copy@huc-copy:</p>
-<ul>
-<li>fi-kbl-soraka:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_124932v1/fi-kbl-soraka/igt@gem_huc_copy@huc-copy.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/2190">i915#2190</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_lmem_swapping@basic:</p>
-<ul>
-<li>fi-kbl-soraka:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_124932v1/fi-kbl-soraka/igt@gem_lmem_swapping@basic.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/4613">i915#4613</a>) +3 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@gt_pm:</p>
-<ul>
-<li>fi-kbl-soraka:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_124932v1/fi-kbl-soraka/igt@i915_selftest@live@gt_pm.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1886">i915#1886</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_dsc@dsc-basic:</p>
-<ul>
-<li>fi-kbl-soraka:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_124932v1/fi-kbl-soraka/igt@kms_dsc@dsc-basic.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +9 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence:</p>
-<ul>
-<li>bat-dg2-11:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_124932v1/bat-dg2-11/igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1845">i915#1845</a>) +3 other tests skip</li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_13737 -&gt; Patchwork_124932v1</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_13737: c768959add20d28639e5bfa4cea2544aab51879e @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_7527: 46f98a3041f73a1d6ee7ec3ace6eba79b15369c4 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  Patchwork_124932v1: c768959add20d28639e5bfa4cea2544aab51879e @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<h3>Linux commits</h3>
-<p>9c2d2f05c582 drm/i915: Enable GuC TLB invalidations for MTL<br />
-f663fd7b9b34 drm/i915/gt: Increase sleep in gt_tlb selftest sanitycheck<br />
-baa79c5c2bfd drm/i915: No TLB invalidation on wedged GT<br />
-aecc6bc57042 drm/i915: No TLB invalidation on suspended GT<br />
-fde005228698 drm/i915: Define and use GuC and CTB TLB invalidation routines<br />
-80c7acef2d00 drm/i915/guc: Add CT size delay helper<br />
-d14d76eb585b drm/i915: Add GuC TLB Invalidation device info flags</p>
-
-</body>
-</html>
-
---===============2332462623068166661==--
