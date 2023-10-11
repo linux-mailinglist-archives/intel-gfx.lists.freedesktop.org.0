@@ -2,53 +2,48 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 022217C55DA
-	for <lists+intel-gfx@lfdr.de>; Wed, 11 Oct 2023 15:48:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8C7A27C56D6
+	for <lists+intel-gfx@lfdr.de>; Wed, 11 Oct 2023 16:31:52 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5C7A610E4E4;
-	Wed, 11 Oct 2023 13:48:15 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D217310E8BF;
+	Wed, 11 Oct 2023 14:31:46 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CF26C10E4E4
- for <intel-gfx@lists.freedesktop.org>; Wed, 11 Oct 2023 13:48:12 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.136])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DBC4D10E8B5;
+ Wed, 11 Oct 2023 14:31:43 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1697032093; x=1728568093;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=/76JK+Wq76j7qyq9JLp9YbN46WaZbyD0JDmYbtGvb9Y=;
- b=K8Z98efMGXxCcZGDnXSIzt/zFjK43Q7xs+h8tXBryFHDi46Q/93dyuB0
- 0oqDkTn/Wkn/jxBdjU07tgHbA4ILTwLnligxRJq+ri/kYugg2yN2EkiqC
- 75L+RBxQIhjiM71Ocx/zL8+Ng7hlyw1F1WEfDjFNEyZcfBmWVPp7BLKOQ
- fbPmDrfIjE9zwzRAzfNSuXkjF6rvUnKXMdCEgOsISdyAqGB4JZstlR+WP
- wGotA08qVr18UKRLyA31diRsuxvUcPDn1lz27uaexaWx2TX3lF5S5pD4M
- LS2iC7Eh+QwdTRLI/uQTplxuWppGTAZxdU3swMm0B/aFd3n2QxJEsnfkq w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10860"; a="6225499"
-X-IronPort-AV: E=Sophos;i="6.03,216,1694761200"; 
-   d="scan'208";a="6225499"
-Received: from orsmga007.jf.intel.com ([10.7.209.58])
- by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Oct 2023 06:48:13 -0700
+ t=1697034704; x=1728570704;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=YqKE6jQzfRayftA1btr2QUy3HUbvXyBIHWf55f0qo7c=;
+ b=UxJV1NzwBOsa+BNNUWJXvhvML6ZRhaqL+BwEZqwD+f2yA0y7+7+f0pG8
+ pidWy3nbg+/8g0GduN8DPbXyYXh5GAAill663Gqr6WJS7JMiUgaBM/92k
+ dQA/70wV1y6VbkzpUJ8NlKOmelMd82ogGv4BTXgvDr32dhvXDX54RVvKi
+ QQ3FRocLknlCSACoyYnjme1iGiUUDzXW4K2B91Z3Kyg5Jg2E4i9B6AZK5
+ 5+1b81CZKxRtPHQjXtMtBRoAmx7NF8jI/3yD/DWKYp8FgAUv0xEMrWjJc
+ YAYxW8tVhpdBEjz/OePiqJ7oG75H0PltRHN2Pw+J9y9P/RloJwklawraw g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10860"; a="364042003"
+X-IronPort-AV: E=Sophos;i="6.03,216,1694761200"; d="scan'208";a="364042003"
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+ by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 Oct 2023 07:31:43 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10860"; a="747458240"
-X-IronPort-AV: E=Sophos;i="6.03,216,1694761200"; d="scan'208";a="747458240"
-Received: from unknown (HELO intel.com) ([10.237.72.65])
- by orsmga007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Oct 2023 06:48:11 -0700
-Date: Wed, 11 Oct 2023 16:48:08 +0300
-From: "Lisovskiy, Stanislav" <stanislav.lisovskiy@intel.com>
-To: Ville Syrjala <ville.syrjala@linux.intel.com>
-Message-ID: <ZSanmMxhi1za30wO@intel.com>
-References: <20230907122541.32261-1-ville.syrjala@linux.intel.com>
- <20230907122541.32261-4-ville.syrjala@linux.intel.com>
+X-IronPort-AV: E=McAfee;i="6600,9927,10860"; a="897641530"
+X-IronPort-AV: E=Sophos;i="6.03,216,1694761200"; d="scan'208";a="897641530"
+Received: from jkrzyszt-mobl2.ger.corp.intel.com (HELO
+ jkrzyszt-mobl2.intranet) ([10.213.15.228])
+ by fmsmga001-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 Oct 2023 07:29:54 -0700
+From: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
+To: igt-dev@lists.freedesktop.org
+Date: Wed, 11 Oct 2023 16:17:35 +0200
+Message-ID: <20231011141734.590321-13-janusz.krzysztofik@linux.intel.com>
+X-Mailer: git-send-email 2.42.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20230907122541.32261-4-ville.syrjala@linux.intel.com>
-Subject: Re: [Intel-gfx] [PATCH 3/3] drm/i915: Do plane/etc. updates more
- atomically across pipes
+Subject: [Intel-gfx] [PATCH i-g-t v3 00/11] Kunit fixes and improvements
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,93 +56,57 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org, Mauro Carvalho Chehab <mchehab@kernel.org>,
+ intel-xe@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, Sep 07, 2023 at 03:25:41PM +0300, Ville Syrjala wrote:
-> From: Ville Syrjälä <ville.syrjala@linux.intel.com>
-> 
-> Perform all the intel_pre_update_crtc() stuff for all pipes first,
-> and only then do the intel_update_crtc() vblank evasion stuff for
-> every pipe back to back. This should make it more likely that
-> the plane updates from multiple pipes happen on the same frame
-> (assuming the pipes are running in sync, eg. due to bigjoiner
-> or port sync).
+v3: Preserve backward compatibility with older kernels:
+    - drop "lib/ktap: Drop workaround for missing top level KTAP headers",
+      add "lib/ktap: Improve TODO workaround description" instead,
+    - keep legacy processing patch when obtainig a list of test cases from
+      kunit modules occurs not supported,
+  - print debug message on pthread_kill() error once per loop (Mauro),
+  - move "parent" field of the structure near other pthread_* type fields
+    (Kamil),
+  - drop unneeded explicit return from noop void function (Kamil),
+  - if (!err) looks strange, add a comment (Kamil),
+  - preserve a link to KTAP standard in a comment above the winning
+    implementation of KTAP parser (Kamil).
+v2: Add a new patch that provides all results cleanup helper,
+  - split out changes in handling of modprobe errors and kernel taints from
+    "Fetch a list of test cases in advance" to separate patches (Kamil),
+  - prepare for KTAP parsing after modprobe completed in a separate
+    patch,
+  - drop other modprobe and kernel taint related changes from the series,
+  - fix some string duplicates referenced from filtered out test cases not
+    freed,
+  - always pass last result to next dynamic sub-subtest, fetch first
+    result right after loading the kunit test module for execution,
+  - still break the loop of test cases on unexpected return codes from
+    kunit_kmsg_get_result(),
+  - fix typos (Kamil),
+  - update commit descriptions.
 
-Reviewed-by: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
+Janusz Krzysztofik (11):
+  lib/ktap: Improve TODO workaround description
+  lib/kunit: Fix handling of potential errors from F_GETFL
+  lib/kunit: Be more verbose on errors
+  lib/kunit: Fix misplaced igt_kunit() doc
+  lib/kunit: Parse KTAP report from the main process thread
+  lib/kunit: Omit suite name prefix if the same as subtest name
+  tests/kms_selftest: Let subtest names match suite names
+  lib/kunit: Provide all results cleanup helper
+  lib/kunit: Prepare for KTAP parsing after modprobe completed
+  lib/kunit: Fetch a list of test cases in advance
+  lib/kunit: Execute kunit test cases only when needed
 
-> 
-> Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
-> ---
->  drivers/gpu/drm/i915/display/intel_display.c | 26 ++++++++++++++++++--
->  1 file changed, 24 insertions(+), 2 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
-> index 7c19a0f380ca..f96230232a47 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display.c
-> +++ b/drivers/gpu/drm/i915/display/intel_display.c
-> @@ -6711,6 +6711,12 @@ static void intel_commit_modeset_enables(struct intel_atomic_state *state)
->  
->  		intel_enable_crtc(state, crtc);
->  		intel_pre_update_crtc(state, crtc);
-> +	}
-> +
-> +	for_each_new_intel_crtc_in_state(state, crtc, new_crtc_state, i) {
-> +		if (!new_crtc_state->hw.active)
-> +			continue;
-> +
->  		intel_update_crtc(state, crtc);
->  	}
->  }
-> @@ -6748,6 +6754,15 @@ static void skl_commit_modeset_enables(struct intel_atomic_state *state)
->  	 * So first lets enable all pipes that do not need a fullmodeset as
->  	 * those don't have any external dependency.
->  	 */
-> +	for_each_new_intel_crtc_in_state(state, crtc, new_crtc_state, i) {
-> +		enum pipe pipe = crtc->pipe;
-> +
-> +		if ((update_pipes & BIT(pipe)) == 0)
-> +			continue;
-> +
-> +		intel_pre_update_crtc(state, crtc);
-> +	}
-> +
->  	while (update_pipes) {
->  		for_each_oldnew_intel_crtc_in_state(state, crtc, old_crtc_state,
->  						    new_crtc_state, i) {
-> @@ -6763,7 +6778,6 @@ static void skl_commit_modeset_enables(struct intel_atomic_state *state)
->  			entries[pipe] = new_crtc_state->wm.skl.ddb;
->  			update_pipes &= ~BIT(pipe);
->  
-> -			intel_pre_update_crtc(state, crtc);
->  			intel_update_crtc(state, crtc);
->  
->  			/*
-> @@ -6819,6 +6833,15 @@ static void skl_commit_modeset_enables(struct intel_atomic_state *state)
->  	/*
->  	 * Finally we do the plane updates/etc. for all pipes that got enabled.
->  	 */
-> +	for_each_new_intel_crtc_in_state(state, crtc, new_crtc_state, i) {
-> +		enum pipe pipe = crtc->pipe;
-> +
-> +		if ((update_pipes & BIT(pipe)) == 0)
-> +			continue;
-> +
-> +		intel_pre_update_crtc(state, crtc);
-> +	}
-> +
->  	for_each_new_intel_crtc_in_state(state, crtc, new_crtc_state, i) {
->  		enum pipe pipe = crtc->pipe;
->  
-> @@ -6831,7 +6854,6 @@ static void skl_commit_modeset_enables(struct intel_atomic_state *state)
->  		entries[pipe] = new_crtc_state->wm.skl.ddb;
->  		update_pipes &= ~BIT(pipe);
->  
-> -		intel_pre_update_crtc(state, crtc);
->  		intel_update_crtc(state, crtc);
->  	}
->  
-> -- 
-> 2.41.0
-> 
+ lib/igt_kmod.c       | 571 +++++++++++++++++++++++++++++++++++++-----
+ lib/igt_ktap.c       | 582 +------------------------------------------
+ lib/igt_ktap.h       |  22 --
+ tests/kms_selftest.c |  37 ++-
+ 4 files changed, 540 insertions(+), 672 deletions(-)
+
+-- 
+2.42.0
+
