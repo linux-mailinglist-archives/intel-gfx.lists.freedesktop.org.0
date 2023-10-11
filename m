@@ -2,48 +2,51 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8C7A27C56D6
-	for <lists+intel-gfx@lfdr.de>; Wed, 11 Oct 2023 16:31:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3FC5E7C56D5
+	for <lists+intel-gfx@lfdr.de>; Wed, 11 Oct 2023 16:31:48 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D217310E8BF;
-	Wed, 11 Oct 2023 14:31:46 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7B15910E8BA;
+	Wed, 11 Oct 2023 14:31:45 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.136])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DBC4D10E8B5;
- Wed, 11 Oct 2023 14:31:43 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4761810E8BA;
+ Wed, 11 Oct 2023 14:31:44 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1697034704; x=1728570704;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=YqKE6jQzfRayftA1btr2QUy3HUbvXyBIHWf55f0qo7c=;
- b=UxJV1NzwBOsa+BNNUWJXvhvML6ZRhaqL+BwEZqwD+f2yA0y7+7+f0pG8
- pidWy3nbg+/8g0GduN8DPbXyYXh5GAAill663Gqr6WJS7JMiUgaBM/92k
- dQA/70wV1y6VbkzpUJ8NlKOmelMd82ogGv4BTXgvDr32dhvXDX54RVvKi
- QQ3FRocLknlCSACoyYnjme1iGiUUDzXW4K2B91Z3Kyg5Jg2E4i9B6AZK5
- 5+1b81CZKxRtPHQjXtMtBRoAmx7NF8jI/3yD/DWKYp8FgAUv0xEMrWjJc
- YAYxW8tVhpdBEjz/OePiqJ7oG75H0PltRHN2Pw+J9y9P/RloJwklawraw g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10860"; a="364042003"
-X-IronPort-AV: E=Sophos;i="6.03,216,1694761200"; d="scan'208";a="364042003"
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=KXcU60l+B2Pe8oGTg/ujLfCTJLWW5czT2nkdjrjHMAY=;
+ b=Vc06z0ZYncQ1sgAAzJ9NzCRZ/gvTN6M3inkEcPA9EiLCDiEqJGer/+oU
+ N1Mq+y5lG7O2ipBSiLzxQvkTZOZKWaTdRBi82QbShvR4E/uJ2SVCsO4nR
+ 0J1RcWoMjh+LMUtwGkyM/FUTlSnc0/I07hcnY7lj7sE8kfriKJQVan480
+ a/YfXdbWceKFR7Wf5nexsk/Q+2XifnVLUsho2QH4OVA8d9XFev2n9Jjfk
+ wYlNzuXNJa4cDGC2iFYUWiY9Ty0sHCUOMyi43dlkVR2SB5ZArXDzo5g/5
+ Ceps9xJ0FLG/4RADCubf4dqb680a8LgxCDei72PJKMh/g6UQwuYl1QT7f A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10860"; a="364042015"
+X-IronPort-AV: E=Sophos;i="6.03,216,1694761200"; d="scan'208";a="364042015"
 Received: from fmsmga001.fm.intel.com ([10.253.24.23])
  by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Oct 2023 07:31:43 -0700
+ 11 Oct 2023 07:31:44 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10860"; a="897641530"
-X-IronPort-AV: E=Sophos;i="6.03,216,1694761200"; d="scan'208";a="897641530"
+X-IronPort-AV: E=McAfee;i="6600,9927,10860"; a="897641531"
+X-IronPort-AV: E=Sophos;i="6.03,216,1694761200"; d="scan'208";a="897641531"
 Received: from jkrzyszt-mobl2.ger.corp.intel.com (HELO
  jkrzyszt-mobl2.intranet) ([10.213.15.228])
  by fmsmga001-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Oct 2023 07:29:54 -0700
+ 11 Oct 2023 07:29:56 -0700
 From: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
 To: igt-dev@lists.freedesktop.org
-Date: Wed, 11 Oct 2023 16:17:35 +0200
-Message-ID: <20231011141734.590321-13-janusz.krzysztofik@linux.intel.com>
+Date: Wed, 11 Oct 2023 16:17:36 +0200
+Message-ID: <20231011141734.590321-14-janusz.krzysztofik@linux.intel.com>
 X-Mailer: git-send-email 2.42.0
+In-Reply-To: <20231011141734.590321-13-janusz.krzysztofik@linux.intel.com>
+References: <20231011141734.590321-13-janusz.krzysztofik@linux.intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH i-g-t v3 00/11] Kunit fixes and improvements
+Subject: [Intel-gfx] [PATCH i-g-t v3 01/11] lib/ktap: Improve TODO
+ workaround description
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,52 +64,46 @@ Cc: intel-gfx@lists.freedesktop.org, Mauro Carvalho Chehab <mchehab@kernel.org>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-v3: Preserve backward compatibility with older kernels:
-    - drop "lib/ktap: Drop workaround for missing top level KTAP headers",
-      add "lib/ktap: Improve TODO workaround description" instead,
-    - keep legacy processing patch when obtainig a list of test cases from
-      kunit modules occurs not supported,
-  - print debug message on pthread_kill() error once per loop (Mauro),
-  - move "parent" field of the structure near other pthread_* type fields
-    (Kamil),
-  - drop unneeded explicit return from noop void function (Kamil),
-  - if (!err) looks strange, add a comment (Kamil),
-  - preserve a link to KTAP standard in a comment above the winning
-    implementation of KTAP parser (Kamil).
-v2: Add a new patch that provides all results cleanup helper,
-  - split out changes in handling of modprobe errors and kernel taints from
-    "Fetch a list of test cases in advance" to separate patches (Kamil),
-  - prepare for KTAP parsing after modprobe completed in a separate
-    patch,
-  - drop other modprobe and kernel taint related changes from the series,
-  - fix some string duplicates referenced from filtered out test cases not
-    freed,
-  - always pass last result to next dynamic sub-subtest, fetch first
-    result right after loading the kunit test module for execution,
-  - still break the loop of test cases on unexpected return codes from
-    kunit_kmsg_get_result(),
-  - fix typos (Kamil),
-  - update commit descriptions.
+A workaround was implemented in IGT KTAP parser so it could accepted KTAP
+reports with missing top level KTAP version and test suite plan headers.
+While the issue has been fixed by a kernel side commit c95e7c05c139
+("kunit: Report the count of test suites in a module"), included in the
+mainline kernel since v6.6-rc1, we still need to keep that workaround in
+place to preserve IGT compatibility with LTS kernel version 6.1 as long as
+it is used by major Linux distributions.
 
-Janusz Krzysztofik (11):
-  lib/ktap: Improve TODO workaround description
-  lib/kunit: Fix handling of potential errors from F_GETFL
-  lib/kunit: Be more verbose on errors
-  lib/kunit: Fix misplaced igt_kunit() doc
-  lib/kunit: Parse KTAP report from the main process thread
-  lib/kunit: Omit suite name prefix if the same as subtest name
-  tests/kms_selftest: Let subtest names match suite names
-  lib/kunit: Provide all results cleanup helper
-  lib/kunit: Prepare for KTAP parsing after modprobe completed
-  lib/kunit: Fetch a list of test cases in advance
-  lib/kunit: Execute kunit test cases only when needed
+Update the comment with a reference to the kernel side fix and a
+clarification on why we need to keep the workaround in place.
 
- lib/igt_kmod.c       | 571 +++++++++++++++++++++++++++++++++++++-----
- lib/igt_ktap.c       | 582 +------------------------------------------
- lib/igt_ktap.h       |  22 --
- tests/kms_selftest.c |  37 ++-
- 4 files changed, 540 insertions(+), 672 deletions(-)
+Signed-off-by: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
+---
+ lib/igt_ktap.c | 13 ++++++++++---
+ 1 file changed, 10 insertions(+), 3 deletions(-)
 
+diff --git a/lib/igt_ktap.c b/lib/igt_ktap.c
+index 5eac102417..3df4d6950d 100644
+--- a/lib/igt_ktap.c
++++ b/lib/igt_ktap.c
+@@ -91,9 +91,16 @@ int igt_ktap_parse(const char *buf, struct igt_ktap_results *ktap)
+ 				       "%*1[ ]%*1[ ]%*1[ ]%*1[ ]KTAP%*[ ]version%*[ ]%u %n",
+ 				       &n, &len) == 1 && len == strlen(buf))) {
+ 		/*
+-		 * TODO: drop the following workaround as soon as
+-		 * kernel side issue of missing lines with top level
+-		 * KTAP version and test suite plan is fixed.
++		 * TODO: drop the following workaround, which addresses a kernel
++		 * side issue of missing lines that provide top level KTAP
++		 * version and test suite plan, as soon as no longer needed.
++		 *
++		 * The issue has been fixed in v6.6-rc1, commit c95e7c05c139
++		 * ("kunit: Report the count of test suites in a module"),
++		 * but we still need this workaround for as long as LTS kernel
++		 * version 6.1, with DRM selftests already converted to Kunit,
++		 * but without that missing Kunit headers issue fixed, is used
++		 * by major Linux distributions.
+ 		 */
+ 		if (ktap->expect == KTAP_START) {
+ 			ktap->suite_count = 1;
 -- 
 2.42.0
 
