@@ -2,54 +2,54 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3BC177C5707
-	for <lists+intel-gfx@lfdr.de>; Wed, 11 Oct 2023 16:37:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 451AF7C570F
+	for <lists+intel-gfx@lfdr.de>; Wed, 11 Oct 2023 16:37:53 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 93EF510E00D;
-	Wed, 11 Oct 2023 14:37:29 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 983C510E209;
+	Wed, 11 Oct 2023 14:37:51 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from ams.source.kernel.org (ams.source.kernel.org
- [IPv6:2604:1380:4601:e00::1])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 35BA510E00D
- for <intel-gfx@lists.freedesktop.org>; Wed, 11 Oct 2023 14:37:28 +0000 (UTC)
+Received: from sin.source.kernel.org (sin.source.kernel.org
+ [IPv6:2604:1380:40e1:4800::1])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9217D10E209
+ for <intel-gfx@lists.freedesktop.org>; Wed, 11 Oct 2023 14:37:49 +0000 (UTC)
 Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
- by ams.source.kernel.org (Postfix) with ESMTP id C795FB820E3
- for <intel-gfx@lists.freedesktop.org>; Wed, 11 Oct 2023 14:37:26 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6A801C433AD
- for <intel-gfx@lists.freedesktop.org>; Wed, 11 Oct 2023 14:37:25 +0000 (UTC)
+ by sin.source.kernel.org (Postfix) with ESMTP id C1772CE23A4
+ for <intel-gfx@lists.freedesktop.org>; Wed, 11 Oct 2023 14:37:46 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2121CC433C7
+ for <intel-gfx@lists.freedesktop.org>; Wed, 11 Oct 2023 14:37:45 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1697035045;
- bh=qlrlgNR9c9NwljPSRVXGSLE+ERLcAnEuYmF0m0xExQg=;
+ s=k20201202; t=1697035065;
+ bh=7qhDIjEahUBJY8grbBjPeffhQFkjcEwyxJwNzbhDKXs=;
  h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
- b=tyWbLFfgvJsYS7FBpoeUg3qx+Oiz+orJSVZnUEK0hnBhLKmL3oqaj4riq7gqGX5FR
- ehdNPENRvSnAbpRKnMHZgR4S7C72DLWD+3tD3JpztEB+Evgblsm3dJizcRSUcHDlLA
- pPEK0E0pwHBGBM1pUrUqTlqpTSXYFgvc0qEYEIFn6wROIVflCM50eWKtAEuCqO8RUn
- l4uWo3b1JQzehYMZPqYtk2tZrZAuiF5LGYkyBTRrx6RcwGBFU/MHa60EM8Qv2/A2Yy
- al3yir9PTfhdBI3lg4DVvUZcGqejMpslRfX1SbhIMldQTsqbukLOfoBvUFvtR7c4fd
- BqR8zj/QF9Cew==
-Received: by mail-oa1-f43.google.com with SMTP id
- 586e51a60fabf-1dcead29b3eso4298022fac.3
- for <intel-gfx@lists.freedesktop.org>; Wed, 11 Oct 2023 07:37:25 -0700 (PDT)
-X-Gm-Message-State: AOJu0YxB4/WfUvOiZNl+Wvrpi/0qffRUDyWtI47K3950QMru09sRGd47
- rUPkeJ/pWgM153z4sZx/p3Jz9v8SA1Pk6s0PAKE=
-X-Google-Smtp-Source: AGHT+IHcTYhZ/p2JE4i4+l0tyVjg/hM60s6lkQ6UYCGbU6W0dZvTopmVtUwm+U4kNbdfq54Fog2gUm4sLAFGbuJsBQQ=
-X-Received: by 2002:a05:6871:6a2:b0:1bb:6792:4787 with SMTP id
- l34-20020a05687106a200b001bb67924787mr24260850oao.40.1697035044767; Wed, 11
- Oct 2023 07:37:24 -0700 (PDT)
+ b=qB8vJvODhWp9Q34p8cTwoygz0AzOEtNJLSoD28yET3iNOGC4NAz5ZbVIro/PXKyY6
+ heWZum11DgXOXo3NZ0pF+LM3iATBr4ZIm2wN2TNxg3m43pp+CdAmTjNFGj7rP4FmJq
+ N1oPAtNMMjGw9mBnD+8VyE8RowmPiDsQgM284eby5JQGd6oYT1umbMSCWOIsD9qje5
+ u5wx+0gmUc5JhfqQ+UdsZhwGAssOqQTXlH2bvQLwlAb+46IkLLG/O3sKORy1yQUqyC
+ ntXwYhBjrCtwJzjB6o6jE/HJ1hM4/bntnveWMkwYajzXEBuD5WKro9AAsHAo+xrI/J
+ ypaSOsgJpOiuQ==
+Received: by mail-oa1-f46.google.com with SMTP id
+ 586e51a60fabf-1dcdfeb7e44so4647558fac.0
+ for <intel-gfx@lists.freedesktop.org>; Wed, 11 Oct 2023 07:37:45 -0700 (PDT)
+X-Gm-Message-State: AOJu0YxNpQVtIIwOqj0lzSPAraIA4pOxRQ2MlXqRO83okCWkntaIrT5S
+ kMO7VqdCqTtZvpUx4kRdzalvp6hsO1RAAc+GLZ8=
+X-Google-Smtp-Source: AGHT+IFfoKSfxco6bpMTRC12qYucoC1r/Nc5njdsdncYOsJPff8MzHHBKVsLM6xCm+1bigy+21Tndyy6qA6YN/dySMQ=
+X-Received: by 2002:a05:6870:588c:b0:1d0:f5bd:6d2 with SMTP id
+ be12-20020a056870588c00b001d0f5bd06d2mr25274423oab.38.1697035064584; Wed, 11
+ Oct 2023 07:37:44 -0700 (PDT)
 MIME-Version: 1.0
 References: <cover.1697009258.git.jani.nikula@intel.com>
- <5ab754ddc2e342c75deb8476275984918e573beb.1697009258.git.jani.nikula@intel.com>
-In-Reply-To: <5ab754ddc2e342c75deb8476275984918e573beb.1697009258.git.jani.nikula@intel.com>
+ <69a812273091b6535ddc7f9346289d71bb30f43d.1697009258.git.jani.nikula@intel.com>
+In-Reply-To: <69a812273091b6535ddc7f9346289d71bb30f43d.1697009258.git.jani.nikula@intel.com>
 From: Masahiro Yamada <masahiroy@kernel.org>
-Date: Wed, 11 Oct 2023 23:36:48 +0900
-X-Gmail-Original-Message-ID: <CAK7LNAQxmCMfLrfi9wW5M434Dw+CF_Ld_soq8Q996=Es=knO1g@mail.gmail.com>
-Message-ID: <CAK7LNAQxmCMfLrfi9wW5M434Dw+CF_Ld_soq8Q996=Es=knO1g@mail.gmail.com>
+Date: Wed, 11 Oct 2023 23:37:08 +0900
+X-Gmail-Original-Message-ID: <CAK7LNAQ1K4X6=jW1b8cyS9vs_hpn+YGzF2qw7YTFawo-bs_9gQ@mail.gmail.com>
+Message-ID: <CAK7LNAQ1K4X6=jW1b8cyS9vs_hpn+YGzF2qw7YTFawo-bs_9gQ@mail.gmail.com>
 To: Jani Nikula <jani.nikula@intel.com>
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
-Subject: Re: [Intel-gfx] [PATCH v2 1/2] drm/i915: drop -Wall and related
- disables from cflags as redundant
+Subject: Re: [Intel-gfx] [PATCH v2 2/2] drm/i915: enable W=1 warnings by
+ default
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -71,22 +71,29 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 On Wed, Oct 11, 2023 at 4:29=E2=80=AFPM Jani Nikula <jani.nikula@intel.com>=
  wrote:
 >
-> The kernel top level Makefile, and recently scripts/Makefile.extrawarn,
-> have included -Wall, and the disables -Wno-format-security and
-> $(call cc-disable-warning,frame-address,) for a very long time. They're
-> redundant in our local subdir-ccflags-y and can be dropped.
+> We enable a bunch more compiler warnings than the kernel
+> defaults. However, they've drifted to become a unique set of warnings,
+> and have increasingly fallen behind from the W=3D1 set.
+>
+> Align with the W=3D1 warnings from scripts/Makefile.extrawarn for clarity=
+,
+> by copy-pasting them with s/KBUILD_CFLAGS/subdir-ccflags-y/ to make it
+> easier to compare in the future.
+>
+> Some of the -Wextra warnings do need to be disabled, just like in
+> Makefile.extrawarn, but take care to not disable them for W=3D2 or W=3D3
+> builds, depending on the warning.
+>
+> v2: Add back some -Wextra warning disables (Nathan)
 >
 > Cc: Arnd Bergmann <arnd@arndb.de>
 > Cc: Nick Desaulniers <ndesaulniers@google.com>
 > Cc: Nathan Chancellor <nathan@kernel.org>
 > Cc: Masahiro Yamada <masahiroy@kernel.org>
 > Reviewed-by: Nathan Chancellor <nathan@kernel.org>
-> Acked-by: Nick Desaulniers <ndesaulniers@google.com>
 > Signed-off-by: Jani Nikula <jani.nikula@intel.com>
-> ---
 
 Reviewed-by: Masahiro Yamada <masahiroy@kernel.org>
-
 
 
 --=20
