@@ -1,52 +1,52 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 906B37C56DE
-	for <lists+intel-gfx@lfdr.de>; Wed, 11 Oct 2023 16:32:09 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7C1C47C56DD
+	for <lists+intel-gfx@lfdr.de>; Wed, 11 Oct 2023 16:32:07 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 63FCC10E8E3;
-	Wed, 11 Oct 2023 14:32:06 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4DD8E10E8DC;
+	Wed, 11 Oct 2023 14:32:05 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.136])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CCD2A10E8D2;
- Wed, 11 Oct 2023 14:31:56 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C34BC10E8DB;
+ Wed, 11 Oct 2023 14:31:58 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1697034716; x=1728570716;
+ t=1697034718; x=1728570718;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=NvkhB9YPPTbIkzAmxQZTPm9D9AfHPrS3aL9QG0wiQ2o=;
- b=HjCKe/a9tCbd/zokiDI2wo7gW/L4AU8uDwvDF8AL4TTqzOXCztI1XXJ7
- O+Mu13V+lQUK8R4h6yvHanThYY/kQm+hNtDq8EW+J/M26wyWh4NMWj+vb
- SsjXz8Z5W7qhjH4Q4QcSjsIWSkknin1kQFVkOuJbbsM4zOZlRltmTMjh9
- DC3XgtcfuD1Yv062mDuOJIG+RYhHEBWoB0v4uUwYXQGjvrRNcFbRUBgl+
- I0KPrHvY/mLswTW6/eiGluLuDFPylTpo7hUFjhpoYrGdMLw+0Z4D5f5hc
- OqsSbeJ2zQjlHFqTYbr1ZHhg4NEk2USSwh2WRRZuxcBAT3EQTbGZxx0H4 A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10860"; a="364042058"
-X-IronPort-AV: E=Sophos;i="6.03,216,1694761200"; d="scan'208";a="364042058"
+ bh=F2r4gA67wREUpFTFt6demyQUbKEHwHhQXaRMzkkq3HY=;
+ b=GMQOH5ZAkPu221XaCoiwQjzWxKwjBn18um6HbNimgGI7qkAlqsERt3Cv
+ MRO4KI/2dJEffMdh2pKRNV5TF8ATG13zG26GHSBhFORGghRePLME6IXDD
+ a8jyiyb9spjtRAy62uiQErc150vGsr9qml2JlX66MGRjH61Ml5fQmFHOd
+ hj8loFQU3QsdPN/xB8NFjNcb7Au09GnpUld4tpTESXlzL6x6f6GWMeN9z
+ dJkMN3QvZp8ILPvjHBZ7I9OKXnfbbwYvdKEiy5XxySEUXvdq9Rz82pRgO
+ ILXwD6arJc94NP5V3LjnIRoe8nL2ZQxi/rpGUfWh1xDe16X+bbqfXIkQD g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10860"; a="364042076"
+X-IronPort-AV: E=Sophos;i="6.03,216,1694761200"; d="scan'208";a="364042076"
 Received: from fmsmga001.fm.intel.com ([10.253.24.23])
  by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Oct 2023 07:31:56 -0700
+ 11 Oct 2023 07:31:58 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10860"; a="897641586"
-X-IronPort-AV: E=Sophos;i="6.03,216,1694761200"; d="scan'208";a="897641586"
+X-IronPort-AV: E=McAfee;i="6600,9927,10860"; a="897641593"
+X-IronPort-AV: E=Sophos;i="6.03,216,1694761200"; d="scan'208";a="897641593"
 Received: from jkrzyszt-mobl2.ger.corp.intel.com (HELO
  jkrzyszt-mobl2.intranet) ([10.213.15.228])
  by fmsmga001-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Oct 2023 07:30:09 -0700
+ 11 Oct 2023 07:30:11 -0700
 From: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
 To: igt-dev@lists.freedesktop.org
-Date: Wed, 11 Oct 2023 16:17:42 +0200
-Message-ID: <20231011141734.590321-20-janusz.krzysztofik@linux.intel.com>
+Date: Wed, 11 Oct 2023 16:17:43 +0200
+Message-ID: <20231011141734.590321-21-janusz.krzysztofik@linux.intel.com>
 X-Mailer: git-send-email 2.42.0
 In-Reply-To: <20231011141734.590321-13-janusz.krzysztofik@linux.intel.com>
 References: <20231011141734.590321-13-janusz.krzysztofik@linux.intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH i-g-t v3 07/11] tests/kms_selftest: Let subtest
- names match suite names
+Subject: [Intel-gfx] [PATCH i-g-t v3 08/11] lib/kunit: Provide all results
+ cleanup helper
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,88 +64,60 @@ Cc: intel-gfx@lists.freedesktop.org, Mauro Carvalho Chehab <mchehab@kernel.org>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-There is a rule specified in Kunit Test Style and Nomenclature guidelines
-[1] that states modules should be named after the test suite, followed by
-_test.  Of course, that rule applies only to modules that provide one test
-suite per module.
-
-As long as that rule is obeyed by authors of Kunit test modules, there is
-no need to hardcode related IGT subtest names in IGT source code.  We are
-already able to derive subtest names from module names, with their _test
-or _kunit suffixes stripped.  We may expect those names will match Kunit
-suite names provided by the modules.
-
-Drop custom subtest names from IGT Kunit tests that still use them.
-However, keep the mechanism that allows us to provide a name that differs
-from that derived from module name.  That will be required if we ever need
-to support a kunit test module that provides multiple test suites (think
-of i915 selftests code converted to kunit and the i915 module potentially
-providing three test suites: mock, live and perf).
-
-[1] https://docs.kernel.org/dev-tools/kunit/style.html
+Planned changes require a couple of loops around kunit_result_free().
+Since we already have such loop, move it into a helper in preparation for
+future uses.
 
 Signed-off-by: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
 Reviewed-by: Kamil Konieczny <kamil.konieczny@linux.intel.com>
 ---
- tests/kms_selftest.c | 37 ++++++++++++++++---------------------
- 1 file changed, 16 insertions(+), 21 deletions(-)
+ lib/igt_kmod.c | 20 ++++++++++++++------
+ 1 file changed, 14 insertions(+), 6 deletions(-)
 
-diff --git a/tests/kms_selftest.c b/tests/kms_selftest.c
-index 080ffdf2c0..6618dbe50b 100644
---- a/tests/kms_selftest.c
-+++ b/tests/kms_selftest.c
-@@ -37,35 +37,30 @@
-  *
-  * arg[1]:
-  *
-- * @drm_cmdline:            drm cmdline
-- * @drm_damage:             drm damage
-- * @drm_dp_mst:             drm dp mst
-+ * @drm_cmdline_parser:     drm cmdline parser
-+ * @drm_damage_helper:      drm damage helper
-+ * @drm_dp_mst_helper:      drm dp mst helper
-  * @drm_format_helper:      drm format helper
-  * @drm_format:             drm format
-- * @drm_plane:              drm plane
-- * @framebuffer:            framebuffer
-+ * @drm_plane_helper:       drm plane helper
-+ * @drm_framebuffer:        drm framebuffer
-  */
- 
- IGT_TEST_DESCRIPTION("Basic sanity check of KMS selftests.");
- 
--struct kms_kunittests {
--	const char *kunit;
--	const char *name;
--};
--
- igt_main
- {
--	static const struct kms_kunittests kunit_subtests[] = {
--		{ "drm_cmdline_parser_test",	"drm_cmdline" },
--		{ "drm_damage_helper_test",	"drm_damage" },
--		{ "drm_dp_mst_helper_test",	"drm_dp_mst" },
--		{ "drm_format_helper_test",	"drm_format_helper" },
--		{ "drm_format_test",		"drm_format" },
--		{ "drm_framebuffer_test",	"framebuffer" },
--		{ "drm_plane_helper_test",	"drm_plane" },
--		{ NULL, NULL}
-+	static const char *kunit_subtests[] = {
-+		"drm_cmdline_parser_test",
-+		"drm_damage_helper_test",
-+		"drm_dp_mst_helper_test",
-+		"drm_format_helper_test",
-+		"drm_format_test",
-+		"drm_framebuffer_test",
-+		"drm_plane_helper_test",
-+		NULL,
- 	};
- 
--	for (int i = 0; kunit_subtests[i].kunit != NULL; i++)
--		igt_kunit(kunit_subtests[i].kunit, kunit_subtests[i].name, NULL);
-+	for (int i = 0; kunit_subtests[i] != NULL; i++)
-+		igt_kunit(kunit_subtests[i], NULL, NULL);
+diff --git a/lib/igt_kmod.c b/lib/igt_kmod.c
+index d014644fb4..21c547bf42 100644
+--- a/lib/igt_kmod.c
++++ b/lib/igt_kmod.c
+@@ -888,13 +888,25 @@ static void kunit_result_free(struct igt_ktap_result **r,
+ 	*r = NULL;
  }
+ 
++static void kunit_results_free(struct igt_list_head *results,
++			       char **suite_name, char **case_name)
++{
++	struct igt_ktap_result *r, *rn;
++
++	igt_list_for_each_entry_safe(r, rn, results, link)
++		kunit_result_free(&r, suite_name, case_name);
++
++	free(*case_name);
++	free(*suite_name);
++}
++
+ static void
+ __igt_kunit(struct igt_ktest *tst, const char *name, const char *opts)
+ {
+ 	struct modprobe_data modprobe = { tst->kmod, opts, 0, pthread_self(), };
+ 	char *suite_name = NULL, *case_name = NULL;
+-	struct igt_ktap_result *r, *rn;
+ 	struct igt_ktap_results *ktap;
++	struct igt_ktap_result *r;
+ 	pthread_mutexattr_t attr;
+ 	IGT_LIST_HEAD(results);
+ 	unsigned long taints;
+@@ -1000,11 +1012,7 @@ __igt_kunit(struct igt_ktest *tst, const char *name, const char *opts)
+ 
+ 	} while (ret == -EINPROGRESS);
+ 
+-	igt_list_for_each_entry_safe(r, rn, &results, link)
+-		kunit_result_free(&r, &suite_name, &case_name);
+-
+-	free(case_name);
+-	free(suite_name);
++	kunit_results_free(&results, &suite_name, &case_name);
+ 
+ 	switch (pthread_mutex_lock(&modprobe.lock)) {
+ 	case 0:
 -- 
 2.42.0
 
