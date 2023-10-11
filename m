@@ -1,55 +1,33 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id EAEFA7C4D21
-	for <lists+intel-gfx@lfdr.de>; Wed, 11 Oct 2023 10:29:07 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 83C517C4D2A
+	for <lists+intel-gfx@lfdr.de>; Wed, 11 Oct 2023 10:30:58 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3071310E591;
-	Wed, 11 Oct 2023 08:29:06 +0000 (UTC)
-X-Original-To: Intel-gfx@lists.freedesktop.org
-Delivered-To: Intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EDEF810E591;
- Wed, 11 Oct 2023 08:29:03 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1697012944; x=1728548944;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=OYekpnUKJSKnlJSMp4tXfU94DvFxn3byh6US8nHwg50=;
- b=E4a6GjgaIyFuTxVaPTLDKWFiLFgr6BBPNwC15B9u15AD+ecsTqjgkjps
- 8rPMBBOVmxvEPGWboOC0zH+5rJBKRPeulqnfWzY8WVASh9QtAUSy2iFfM
- FJheMS+DyE8h45oC0bIlto4E4nbQsyO+UQXOxEnti7kgS71E2X3q8mEyW
- aMtjJXVnqiiq8VUxyQiAwMKPHlpVImKWDgK4lmRLusIZbiMkMn9t6wq8V
- vdD14X9y2bvwwQVMc/7LZvGLFfLdn7APqegzRMoeV42P2itV8ifiCtV2H
- ww8a5D+OGdOnKdduEzc5ASDi1KvgL5I+RrzG9ABvhsmqQSQ9NmO0+pJwi g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10859"; a="3201437"
-X-IronPort-AV: E=Sophos;i="6.03,214,1694761200"; 
-   d="scan'208";a="3201437"
-Received: from orsmga006.jf.intel.com ([10.7.209.51])
- by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Oct 2023 01:29:03 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10859"; a="730414393"
-X-IronPort-AV: E=Sophos;i="6.03,214,1694761200"; d="scan'208";a="730414393"
-Received: from cjodwyer-mobl.ger.corp.intel.com (HELO localhost.localdomain)
- ([10.213.194.149])
- by orsmga006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Oct 2023 01:29:02 -0700
-From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-To: igt-dev@lists.freedesktop.org,
-	Intel-gfx@lists.freedesktop.org
-Date: Wed, 11 Oct 2023 09:28:57 +0100
-Message-Id: <20231011082857.797045-1-tvrtko.ursulin@linux.intel.com>
-X-Mailer: git-send-email 2.39.2
-In-Reply-To: <20231010163518.hgcqkap3dx655hrk@kamilkon-desk.igk.intel.com>
-References: <20231010163518.hgcqkap3dx655hrk@kamilkon-desk.igk.intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0B05010E59F;
+	Wed, 11 Oct 2023 08:30:57 +0000 (UTC)
+X-Original-To: intel-gfx@lists.freedesktop.org
+Delivered-To: intel-gfx@lists.freedesktop.org
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 51A1810E59A;
+ Wed, 11 Oct 2023 08:30:55 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 4AA6FAA916;
+ Wed, 11 Oct 2023 08:30:55 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============7022658922712653103=="
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH i-g-t 3/4] tools/intel_gpu_top: Optimise
- interactive display a bit
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Nathan Chancellor" <nathan@kernel.org>
+Date: Wed, 11 Oct 2023 08:30:55 -0000
+Message-ID: <169701305527.26512.3417360422337592318@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <cover.1697009258.git.jani.nikula@intel.com>
+In-Reply-To: <cover.1697009258.git.jani.nikula@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
+ =?utf-8?q?/i915=3A_align_with_W=3D1_warnings_=28rev3=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -62,86 +40,182 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-From: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+--===============7022658922712653103==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Padding the percentage bars and table columns with spaces happens quite a
-lot so lets do better than putchar at a time. Have a table of visually
-empty strings and build the required length out of those chunks.
+== Series Details ==
 
-While at it, also move the percentage bar table into its function scope.
+Series: drm/i915: align with W=1 warnings (rev3)
+URL   : https://patchwork.freedesktop.org/series/124718/
+State : success
 
-v2:
- * Fix checkpatch and use ARRAY_SIZE. (Kamil)
+== Summary ==
 
-Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
-Kamil Konieczny <kamil.konieczny@linux.intel.com>
----
- tools/intel_gpu_top.c | 38 +++++++++++++++++++++++++++++++++-----
- 1 file changed, 33 insertions(+), 5 deletions(-)
+CI Bug Log - changes from CI_DRM_13737 -> Patchwork_124718v3
+====================================================
 
-diff --git a/tools/intel_gpu_top.c b/tools/intel_gpu_top.c
-index c5abd0c92155..6bd03ab8d7fa 100644
---- a/tools/intel_gpu_top.c
-+++ b/tools/intel_gpu_top.c
-@@ -926,14 +926,39 @@ static void free_display_clients(struct igt_drm_clients *clients)
- 	free(clients);
- }
- 
--static const char *bars[] = { " ", "▏", "▎", "▍", "▌", "▋", "▊", "▉", "█" };
--
- static unsigned int n_spaces(const unsigned int n)
- {
--	unsigned int i;
-+	static const char *spaces[] = {
-+		" ",
-+		"  ",
-+		"   ",
-+		"    ",
-+		"     ",
-+		"      ",
-+		"       ",
-+		"        ",
-+		"         ",
-+		"          ",
-+		"           ",
-+		"            ",
-+		"             ",
-+		"              ",
-+		"               ",
-+		"                ",
-+		"                 ",
-+		"                  ",
-+		"                   ",
-+	};
-+	unsigned int i, r = n;
- 
--	for (i = 0; i < n; i++)
--		putchar(' ');
-+	while (r) {
-+		if (r > ARRAY_SIZE(spaces))
-+			i = ARRAY_SIZE(spaces) - 1;
-+		else
-+			i = r - 1;
-+		fputs(spaces[i], stdout);
-+		r -= i + 1;
-+	}
- 
- 	return n;
- }
-@@ -941,6 +966,9 @@ static unsigned int n_spaces(const unsigned int n)
- static void
- print_percentage_bar(double percent, double max, int max_len, bool numeric)
- {
-+	static const char *bars[] = {
-+		" ", "▏", "▎", "▍", "▌", "▋", "▊", "▉", "█"
-+	};
- 	int bar_len, i, len = max_len - 2;
- 	const int w = 8;
- 
--- 
-2.39.2
+Summary
+-------
 
+  **SUCCESS**
+
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_124718v3/index.html
+
+Participating hosts (37 -> 37)
+------------------------------
+
+  No changes in participating hosts
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_124718v3 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@gem_busy@busy@all-engines:
+    - bat-mtlp-8:         [PASS][1] -> [DMESG-FAIL][2] ([i915#8962])
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13737/bat-mtlp-8/igt@gem_busy@busy@all-engines.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_124718v3/bat-mtlp-8/igt@gem_busy@busy@all-engines.html
+
+  * igt@kms_pipe_crc_basic@read-crc-frame-sequence@pipe-d-edp-1:
+    - bat-rplp-1:         [PASS][3] -> [ABORT][4] ([i915#8668])
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13737/bat-rplp-1/igt@kms_pipe_crc_basic@read-crc-frame-sequence@pipe-d-edp-1.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_124718v3/bat-rplp-1/igt@kms_pipe_crc_basic@read-crc-frame-sequence@pipe-d-edp-1.html
+
+  
+#### Possible fixes ####
+
+  * igt@gem_exec_suspend@basic-s0@lmem0:
+    - bat-dg2-9:          [INCOMPLETE][5] ([i915#9275]) -> [PASS][6]
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13737/bat-dg2-9/igt@gem_exec_suspend@basic-s0@lmem0.html
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_124718v3/bat-dg2-9/igt@gem_exec_suspend@basic-s0@lmem0.html
+
+  * igt@kms_hdmi_inject@inject-audio:
+    - fi-kbl-guc:         [FAIL][7] ([IGT#3]) -> [PASS][8]
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13737/fi-kbl-guc/igt@kms_hdmi_inject@inject-audio.html
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_124718v3/fi-kbl-guc/igt@kms_hdmi_inject@inject-audio.html
+
+  
+  [IGT#3]: https://gitlab.freedesktop.org/drm/igt-gpu-tools/issues/3
+  [i915#8668]: https://gitlab.freedesktop.org/drm/intel/issues/8668
+  [i915#8962]: https://gitlab.freedesktop.org/drm/intel/issues/8962
+  [i915#9275]: https://gitlab.freedesktop.org/drm/intel/issues/9275
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_13737 -> Patchwork_124718v3
+
+  CI-20190529: 20190529
+  CI_DRM_13737: c768959add20d28639e5bfa4cea2544aab51879e @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_7527: 46f98a3041f73a1d6ee7ec3ace6eba79b15369c4 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  Patchwork_124718v3: c768959add20d28639e5bfa4cea2544aab51879e @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+### Linux commits
+
+45d58cdf1a7a drm/i915: enable W=1 warnings by default
+1154417f17be drm/i915: drop -Wall and related disables from cflags as redundant
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_124718v3/index.html
+
+--===============7022658922712653103==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/i915: align with W=1 warnings (rev3)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/124718/">https://patchwork.freedesktop.org/series/124718/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_124718v3/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_124718v3/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_13737 -&gt; Patchwork_124718v3</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_124718v3/index.html</p>
+<h2>Participating hosts (37 -&gt; 37)</h2>
+<p>No changes in participating hosts</p>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_124718v3 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@gem_busy@busy@all-engines:</p>
+<ul>
+<li>bat-mtlp-8:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13737/bat-mtlp-8/igt@gem_busy@busy@all-engines.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_124718v3/bat-mtlp-8/igt@gem_busy@busy@all-engines.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/8962">i915#8962</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_pipe_crc_basic@read-crc-frame-sequence@pipe-d-edp-1:</p>
+<ul>
+<li>bat-rplp-1:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13737/bat-rplp-1/igt@kms_pipe_crc_basic@read-crc-frame-sequence@pipe-d-edp-1.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_124718v3/bat-rplp-1/igt@kms_pipe_crc_basic@read-crc-frame-sequence@pipe-d-edp-1.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/8668">i915#8668</a>)</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>
+<p>igt@gem_exec_suspend@basic-s0@lmem0:</p>
+<ul>
+<li>bat-dg2-9:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13737/bat-dg2-9/igt@gem_exec_suspend@basic-s0@lmem0.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/9275">i915#9275</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_124718v3/bat-dg2-9/igt@gem_exec_suspend@basic-s0@lmem0.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@kms_hdmi_inject@inject-audio:</p>
+<ul>
+<li>fi-kbl-guc:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13737/fi-kbl-guc/igt@kms_hdmi_inject@inject-audio.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/igt-gpu-tools/issues/3">IGT#3</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_124718v3/fi-kbl-guc/igt@kms_hdmi_inject@inject-audio.html">PASS</a></li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_13737 -&gt; Patchwork_124718v3</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_13737: c768959add20d28639e5bfa4cea2544aab51879e @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_7527: 46f98a3041f73a1d6ee7ec3ace6eba79b15369c4 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  Patchwork_124718v3: c768959add20d28639e5bfa4cea2544aab51879e @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+<h3>Linux commits</h3>
+<p>45d58cdf1a7a drm/i915: enable W=1 warnings by default<br />
+1154417f17be drm/i915: drop -Wall and related disables from cflags as redundant</p>
+
+</body>
+</html>
+
+--===============7022658922712653103==--
