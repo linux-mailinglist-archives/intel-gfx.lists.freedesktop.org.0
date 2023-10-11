@@ -1,60 +1,50 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0380F7C4CF9
-	for <lists+intel-gfx@lfdr.de>; Wed, 11 Oct 2023 10:22:45 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8CBD17C4CFC
+	for <lists+intel-gfx@lfdr.de>; Wed, 11 Oct 2023 10:24:05 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5A29310E525;
-	Wed, 11 Oct 2023 08:22:43 +0000 (UTC)
-X-Original-To: Intel-gfx@lists.freedesktop.org
-Delivered-To: Intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.115])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1627110E4BF;
- Wed, 11 Oct 2023 08:22:41 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5639F10E595;
+	Wed, 11 Oct 2023 08:24:03 +0000 (UTC)
+X-Original-To: intel-gfx@lists.freedesktop.org
+Delivered-To: intel-gfx@lists.freedesktop.org
+Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.24])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A125C10E58F;
+ Wed, 11 Oct 2023 08:24:00 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1697012561; x=1728548561;
- h=message-id:date:mime-version:subject:to:references:from:
- in-reply-to:content-transfer-encoding;
- bh=aIDPrpRjLsLlIA2mALsueyh23NJ7pslNdwrT007PhY8=;
- b=BJLO5sZ2TvZPaFJN+fx2Z/Ea+JfepothzFsFgYD9AwvT5cJYjhkfvcMn
- Mu7BYBOT5sL7hiIk521UuKsMTj4dXt8/atCMq5fPkdYHLYZwKqIb0F0eL
- IHmlegppWq145SZ9xICYW871Dus3q29vB/0DCoHGyVfmj3YCmylRWVCUW
- pQ+KPEOnDU2e/i4+auFec4wBMKIKOpf4W8dBJund2vKfusiQFvyt++/Ke
- qB/DZ0z4Zvibvkj0nl21Cti9FD2gOAvcvU2Tpng7vG21+IVnzs5qqYaNb
- dRVK30LDMrWmm4WjkHZyjQmeIW1Rs6KzJPHLcI+R+PriU6yiadAsdf6zn Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10859"; a="384461964"
-X-IronPort-AV: E=Sophos;i="6.03,214,1694761200"; d="scan'208";a="384461964"
-Received: from fmsmga007.fm.intel.com ([10.253.24.52])
- by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Oct 2023 01:22:39 -0700
+ t=1697012640; x=1728548640;
+ h=date:from:to:cc:subject:message-id:mime-version: in-reply-to;
+ bh=aPxuHluJUNtOt+9wCSNAgj3FfZ/T+MYXCRG1WJm8JwA=;
+ b=dqwjEpoRWDkAUX4ALOU2xhekRGnZ3qwX4Mu/fvrkk+8k/0rdLNCf2dBa
+ QVoip8PJZPeobIlnEV0nC6MAoGnb4KlTjxaI2gNf+05XWuQwhmXbrEzEY
+ Mfi9DTjwd4qbCY2hhJD1rBQeuyAWVlF1B/pkz6wPeD9UUM1Vn500DBryQ
+ 2twXomhp7FbyHuDJllK4s9ZP8Of8p/B4rCIklnG/fpVDrX332zJfC6IYy
+ lVVmfvqi5wyjlxL7+hN9Y1Ohw0tJTjLZ4cIv2aVZKna4+qIPvtXl7fugN
+ MK7Zpme2ZfQTt8Z5sFKsOUPwnVflpQ2Z7f8enjNeQU7nZxT87uLEXuzAo Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10859"; a="387450890"
+X-IronPort-AV: E=Sophos;i="6.03,214,1694761200"; d="scan'208";a="387450890"
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+ by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 Oct 2023 01:23:59 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10859"; a="757464113"
-X-IronPort-AV: E=Sophos;i="6.03,214,1694761200"; d="scan'208";a="757464113"
-Received: from cjodwyer-mobl.ger.corp.intel.com (HELO [10.213.194.149])
- ([10.213.194.149])
- by fmsmga007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Oct 2023 01:22:38 -0700
-Message-ID: <7c36db01-1534-535a-c1ce-71369bc5405a@linux.intel.com>
-Date: Wed, 11 Oct 2023 09:22:36 +0100
+X-IronPort-AV: E=McAfee;i="6600,9927,10859"; a="870056529"
+X-IronPort-AV: E=Sophos;i="6.03,214,1694761200"; d="scan'208";a="870056529"
+Received: from lyemeeki-mobl2.gar.corp.intel.com (HELO intel.com)
+ ([10.214.156.206])
+ by fmsmga002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 Oct 2023 01:23:51 -0700
+Date: Wed, 11 Oct 2023 10:23:46 +0200
+From: Andi Shyti <andi.shyti@linux.intel.com>
+To: "Lee, Shawn C" <shawn.c.lee@intel.com>
+Message-ID: <ZSZbkgTonPtWXDRl@ashyti-mobl2.lan>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.15.1
-Content-Language: en-US
-To: Kamil Konieczny <kamil.konieczny@linux.intel.com>,
- igt-dev@lists.freedesktop.org, Intel-gfx@lists.freedesktop.org,
- Tvrtko Ursulin <tvrtko.ursulin@intel.com>
-References: <20231010110714.749239-1-tvrtko.ursulin@linux.intel.com>
- <20231010110714.749239-5-tvrtko.ursulin@linux.intel.com>
- <20231010164336.dikudseydggrrux7@kamilkon-desk.igk.intel.com>
-From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-Organization: Intel Corporation UK Plc
-In-Reply-To: <20231010164336.dikudseydggrrux7@kamilkon-desk.igk.intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-Subject: Re: [Intel-gfx] [PATCH i-g-t 4/4] tools/intel_gpu_top: Handle
- narrow terminals more gracefully
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20231008164824.919262-1-andi.shyti@linux.intel.com>
+Subject: Re: [Intel-gfx] drm/i915/mtl: Remove the 'force_probe' requirement
+ for Meteor Lake
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -67,108 +57,91 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: Aditya Chauhan <aditya.chauhan@intel.com>,
+ intel-gfx <intel-gfx@lists.freedesktop.org>,
+ Jonathan Cavitt <jonathan.cavitt@intel.com>,
+ dri-devel <dri-devel@lists.freedesktop.org>,
+ Tvrtko Ursulin <tvrtko.ursulin@intel.com>,
+ Andrzej Hajda <andrzej.hajda@intel.com>, Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Chris Wilson <chris.p.wilson@linux.intel.com>,
+ Nirmoy Das <nirmoy.das@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+Hi Shawn,
 
-On 10/10/2023 17:43, Kamil Konieczny wrote:
-> Hi Tvrtko,
-> On 2023-10-10 at 12:07:14 +0100, Tvrtko Ursulin wrote:
->> From: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
->>
->> Instead of asserting just skip trying to print columns when terminal is
->> too narrow.
->>
->> At the same time fix some type confusion to fix calculations going huge.
->>
->> Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
->> Closes: https://gitlab.freedesktop.org/drm/igt-gpu-tools/-/issues/143
+On Wed, Oct 11, 2023 at 10:03:08AM +0200, Lee, Shawn C wrote:
+> > From: Radhakrishna Sripada <radhakrishna.sripada@intel.com>
+> > 
+> > Meteor Lake has demonstrated consistent stability for some time.
+> > All user-space API modifications tide to its core platform
+> > functions are operational.
+> > 
+> > The necessary firmware components are set up and comprehensive
+> > testing has been condused over a period.
+> > 
+> > Given the recent faborable CI results, as well, we believe it's
+> > time to eliminate the 'force_probe' prerequisite and activate the
+> > platform by default.
+> > 
+> > Signed-off-by: Aditya Chauhan <aditya.chauhan@intel.com>
+> > Signed-off-by: Andrzej Hajda <andrzej.hajda@intel.com>
+> > Signed-off-by: Chris Wilson <chris.p.wilson@linux.intel.com>
+> > Signed-off-by: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
+> > Signed-off-by: Jonathan Cavitt <jonathan.cavitt@intel.com>
+> > Signed-off-by: Nirmoy Das <nirmoy.das@intel.com>
+> > Signed-off-by: Radhakrishna Sripada <radhakrishna.sripada@intel.com>
+> > Signed-off-by: Andi Shyti <andi.shyti@linux.intel.com>
+> > Cc: Jani Nikula <jani.nikula@linux.intel.com>
+> > Cc: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
+> > Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
+> > Cc: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+> > ---
+> > Hello,
+> > 
+> > This patch eliminates the 'force probe' for the MTL platforms. Over the recent
+> > weeks, MTL has demonstrated stability, consistently passing BAT tests with
+> > success rates ranging from 98% to 100%.
+> > 
+> > There's a single issue hindering us from achieving a 100% BAT test coverage.
+> > Fortunately, we've identified the issue, and the proposed solution can be found
+> > here[*]. The CI results are encouraging.
+> > 
+> > Once all reviews are addressed, we plan to submit this series with the "Fixes:"
+> > tag.
+> > 
+> > Thank you and best regards,
+> > Andi and Radhakrishna
+> > 
+> > [*] https://patchwork.freedesktop.org/series/124744/
+> > 
+> >  drivers/gpu/drm/i915/i915_pci.c | 1 -
+> >  1 file changed, 1 deletion(-)
+> > 
+> > diff --git a/drivers/gpu/drm/i915/i915_pci.c b/drivers/gpu/drm/i915/i915_pci.c
+> > index df7c261410f7..fe748906c06f 100644
+> > --- a/drivers/gpu/drm/i915/i915_pci.c
+> > +++ b/drivers/gpu/drm/i915/i915_pci.c
+> > @@ -836,7 +836,6 @@  static const struct intel_device_info mtl_info = {
+> >  	.has_pxp = 1,
+> >  	.memory_regions = REGION_SMEM | REGION_STOLEN_LMEM,
+> >  	.platform_engine_mask = BIT(RCS0) | BIT(BCS0) | BIT(CCS0),
+> > -	.require_force_probe = 1,
+> >  	MTL_CACHELEVEL,
+> >  };
+> >  
 > 
-> Did you tested this in screensaver? I mean running intel_gpu_top
-> in terminal windows under X (Gnome or other) and leaving desktop
-> unattanded, entering screen saver mode (possible with screen
-> turned off) and then re-enabling screen?
-
-I tested it by resizing the terminal to crazy small dimensions and 
-confirmed asserts and endless printing of spaces failure modes are 
-fixed. Also under the screen lock.
-
-But no DPMS and no console screensavers.
-
+> Test on my MTL device and it works properly.
 > 
->> ---
->>   tools/intel_gpu_top.c | 12 +++++++-----
->>   1 file changed, 7 insertions(+), 5 deletions(-)
->>
->> diff --git a/tools/intel_gpu_top.c b/tools/intel_gpu_top.c
->> index 472ce3f13ba9..6d1397cb8214 100644
->> --- a/tools/intel_gpu_top.c
->> +++ b/tools/intel_gpu_top.c
->> @@ -926,7 +926,7 @@ static void free_display_clients(struct igt_drm_clients *clients)
->>   	free(clients);
->>   }
->>   
->> -static unsigned int n_spaces(const unsigned int n)
->> +static int n_spaces(const int n)
-> --------- ^^^
-> Could you make it int at your first patch touching this function?
+> Acked-by: Lee Shawn C <shawn.c.lee@intel.com>
+> Tested-by: Lee Shawn C <shawn.c.lee@intel.com>
 
-Honestly no, can't be bothered to churn this too much. I think argument 
-can be made that this patch is fixing type confusion in many places so 
-hopefully you can accept it as is.
+Thanks a lot for your ack!
 
-Regards,
+In your original mail[*] the "Reply-To" and the "In-Reply-To"
+fields were swapped. I fixed it and added the correct Cc chain.
 
-Tvrtko
+Thanks,
+Andi
 
-> 
-> With or without this suggestion,
-> Reviewed-by: Kamil Konieczny <kamil.konieczny@linux.intel.com>
-> 
-> Regards,
-> Kamil
-> 
->>   {
->>   	static const char *spaces[] = {
->>   		" ",
->> @@ -950,7 +950,7 @@ static unsigned int n_spaces(const unsigned int n)
->>   		"                   ",
->>   #define MAX_SPACES 19
->>   	};
->> -	unsigned int i, r = n;
->> +	int i, r = n;
->>   
->>   	while (r) {
->>   		if (r > MAX_SPACES)
->> @@ -972,7 +972,8 @@ print_percentage_bar(double percent, double max, int max_len, bool numeric)
->>   	int bar_len, i, len = max_len - 2;
->>   	const int w = 8;
->>   
->> -	assert(max_len > 0);
->> +	if (len < 2) /* For edge lines '|' */
->> +		return;
->>   
->>   	bar_len = ceil(w * percent * len / max);
->>   	if (bar_len > w * len)
->> @@ -986,6 +987,8 @@ print_percentage_bar(double percent, double max, int max_len, bool numeric)
->>   		printf("%s", bars[i]);
->>   
->>   	len -= (bar_len + (w - 1)) / w;
->> +	if (len < 1)
->> +		return;
->>   	n_spaces(len);
->>   
->>   	putchar('|');
->> @@ -2001,8 +2004,7 @@ print_clients_header(struct igt_drm_clients *clients, int lines,
->>   				 4 : clients->max_name_len; /* At least "NAME" */
->>   
->>   	if (output_mode == INTERACTIVE) {
->> -		unsigned int num_active = 0;
->> -		int len;
->> +		int len, num_active = 0;
->>   
->>   		if (lines++ >= con_h)
->>   			return lines;
->> -- 
->> 2.39.2
->>
+[*] https://lore.kernel.org/intel-gfx/BYAPR11MB27101EF88CCBDBA430108CD5A3CCA@BYAPR11MB2710.namprd11.prod.outlook.com/
