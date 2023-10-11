@@ -1,33 +1,49 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1CD2E7C459F
-	for <lists+intel-gfx@lfdr.de>; Wed, 11 Oct 2023 01:43:26 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id A8E897C45E8
+	for <lists+intel-gfx@lfdr.de>; Wed, 11 Oct 2023 02:13:39 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0C7E810E401;
-	Tue, 10 Oct 2023 23:43:22 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 95DA210E408;
+	Wed, 11 Oct 2023 00:13:33 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 57EA010E401;
- Tue, 10 Oct 2023 23:43:20 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 43590AADD6;
- Tue, 10 Oct 2023 23:43:20 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============6637798309377343245=="
+Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.136])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4341210E405
+ for <intel-gfx@lists.freedesktop.org>; Wed, 11 Oct 2023 00:13:31 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1696983211; x=1728519211;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=4TeUp7rF71cE04SC+Ko/k7XfFKlYxCOQs73Rh6/np+k=;
+ b=USQ/cSUfVYNFg8oC0CDn7D+Kv3BK+xIr+LZhrTq9e6QtcCRuZVwxIANb
+ +GTfmrQbaXeasdj9f+1gvW7RYhLyeYrJVtZJ4m+/tAKUtSw0jq3JPmkIj
+ W2sIUoimBHmlrgK5prSOfWUuTwpwHVlGUY0wYhIueiehXaS4kwYm/h2ID
+ M9+fQ8wqmT55V/Uw6PBnqwMQnLlUltfutPpPAd4DhQ9QshWLtoqidsTbw
+ L6pNSaS+vF86JdcGr+M34KlT8nFgwiaAS826ccSW+gfbt4Lj2QwlzyJYc
+ AepGLw+jhU8jNBvDrXDK9YesLLlY6Do1DFfRsMc8S7ox+0ro5vjIBS0Ur A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10859"; a="363903216"
+X-IronPort-AV: E=Sophos;i="6.03,214,1694761200"; d="scan'208";a="363903216"
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+ by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Oct 2023 17:13:30 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10859"; a="753626303"
+X-IronPort-AV: E=Sophos;i="6.03,214,1694761200"; d="scan'208";a="753626303"
+Received: from dut-internal-9dd7.jf.intel.com ([10.165.21.194])
+ by orsmga002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Oct 2023 17:13:30 -0700
+From: Jonathan Cavitt <jonathan.cavitt@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Tue, 10 Oct 2023 17:02:41 -0700
+Message-Id: <20231011000248.2181018-1-jonathan.cavitt@intel.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Cavitt, Jonathan" <jonathan.cavitt@intel.com>
-Date: Tue, 10 Oct 2023 23:43:20 -0000
-Message-ID: <169698140023.28098.4262034402699169317@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20231010143615.2010460-1-jonathan.cavitt@intel.com>
-In-Reply-To: <20231010143615.2010460-1-jonathan.cavitt@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
- =?utf-8?q?/i915/gt=3A_Temporarily_force_MTL_into_uncached_mode_=28rev2=29?=
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-gfx] [PATCH v11 0/7] drm/i915: Define and use GuC and CTB
+ TLB invalidation routines
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,291 +56,139 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
+Cc: janusz.krzysztofik@intel.com, andi.shyti@intel.com,
+ matthew.d.roper@intel.com, jonathan.cavitt@intel.com, saurabhg.gupta@intel.com,
+ chris.p.wilson@linux.intel.com, nirmoy.das@intel.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============6637798309377343245==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+Implement GuC-based TLB invalidations and use them on MTL.
 
-== Series Details ==
+Some complexity in the implementation was introduced early on
+and will be required for range-based TLB invalidations.
+RFC: https://patchwork.freedesktop.org/series/124922/
 
-Series: drm/i915/gt: Temporarily force MTL into uncached mode (rev2)
-URL   : https://patchwork.freedesktop.org/series/124866/
-State : success
+v2:
+- Add missing supporting patches.
 
-== Summary ==
+v3:
+- Split suspend/resume changes and multi-gt support into separate
+  patches.
+- Only perform GuC TLB invalidation functions when supported.
+- Move intel_guc_is_enabled check function to usage location.
+- Address comments.
 
-CI Bug Log - changes from CI_DRM_13736 -> Patchwork_124866v2
-====================================================
+v4:
+- Change conditions for GuC-based tlb invalidation support
+  to a pci tag that's only active for MTL.
+- Address some FIXMEs and formatting issues.
+- Move suspend/resume changes to helper functions in intel_gt.h
+- Improve comment for ct_handle_event change.
+- Use cleaner if-else conditions.
+- Address comments.
 
-Summary
--------
+v5:
+- Reintroduce missing change to selftest msleep duration
+- Move suspend/resume loops from intel_gt.h to intel_tlb.c,
+  making them no longer static inlines.
+- Remove superfluous blocking and error checks.
+- Move ct_handle_event exception to general case in
+  ct_process_request.
+- Explain usage of xa_alloc_cyclic_irq.
+- Modify explanation of purpose of
+  OUTSTANDING_GUC_TIMEOUT_PERIOD macro.
+- Explain purpose of performing tlb invalidation twice in
+  intel_gt_tlb_resume_all.
 
-  **SUCCESS**
+v6:
+- Add this cover letter.
+- Fix explanation of purpose of
+  OUTSTANDING_GUC_TIMEOUT_PERIOD macro again.
+- s/pci tags/pci flags
+- Enable GuC TLB Invalidations separately from adding the
+  flags to do so.
 
-  No regressions found.
+v7:
+- Eliminate pci terminology from patches.
+- Order new device info flag correctly.
+- Run gen8_ggtt_invalidate in more cases, specifically when
+  GuC-based TLB invalidation is not supported.
+- Use intel_uncore_write_fw instead of intel_uncore_write
+  during guc_ggtt_invalidate.
+- Remove duplicate request message clear in ct_process_request.
+- Remove faulty tag from series.
 
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_124866v2/index.html
+v8:
+- Simplify cover letter contents.
+- Fix miscellaneous formatting and typos.
+- Reorder device info flags and defines.
+- Reword commit message.
+- Rename TLB invalidation enums and functions.
+- Add comments explaining confusing points.
+- Add helper function getting expected delay of CT buffer.
+- Simplify intel_guc_tlb_invalidation_done by passing computed
+  values.
+- Remove helper functions for tlb suspend and resume.
+- Move tlb suspend and resume paths to uc.
+- Split suspend/resume and wedged into two patches.
+- Clarify purpose of sleep change in tlb selftest.
 
-Participating hosts (36 -> 37)
-------------------------------
+v9:
+- Explain complexity of GuC TLB invalidations as required for
+  range-based TLB invalidations, which will be platformed later.
+- Fix CHECKPATCH issues.
+- Explain intel_guc_is_ready tlb invalidation skip in
+  intel_gt_invalidate_tlb_full.
+- Reword comment for unlocked xa_for_each loop in
+  intel_guc_submission_reset.
+- Report all errors in init_tlb_lookup.
+- Remove debug message from fini_tlb_lookup.
+- Use standardized interface for
+  intel_guc_tlb_invalidation_done
+- Remove spurious changes.
+- Move wake_up_all_tlb_invalidate on wedge to correct patch.
 
-  Additional (1): fi-hsw-4770 
+v10:
+- Add lock to tlb_lookup on guc submission reset.
+- Add comment about why timeout increased from 10 ms to 20 ms
+  by default in gt_tlb selftest.
+- Remove spurious changes.
 
-Known issues
-------------
+v11:
+- Update CT size delay helper to be clearer.
+- Reorder some function declarations.
+- Clarify some comments.
+- Produce error message if attempting to free a busy wait
+  during fini_tlb_lookup.
+- Revert default sleep back to 10 ms.
+- Link to RFC.
 
-  Here are the changes found in Patchwork_124866v2 that come from known issues:
+Jonathan Cavitt (6):
+  drm/i915: Add GuC TLB Invalidation device info flags
+  drm/i915/guc: Add CT size delay helper
+  drm/i915: No TLB invalidation on suspended GT
+  drm/i915: No TLB invalidation on wedged GT
+  drm/i915/gt: Increase sleep in gt_tlb selftest sanitycheck
+  drm/i915: Enable GuC TLB invalidations for MTL
 
-### CI changes ###
+Prathap Kumar Valsan (1):
+  drm/i915: Define and use GuC and CTB TLB invalidation routines
 
-#### Issues hit ####
+ drivers/gpu/drm/i915/gt/intel_ggtt.c          |  34 ++-
+ drivers/gpu/drm/i915/gt/intel_tlb.c           |  16 +-
+ drivers/gpu/drm/i915/gt/selftest_tlb.c        |  11 +-
+ .../gpu/drm/i915/gt/uc/abi/guc_actions_abi.h  |  33 +++
+ drivers/gpu/drm/i915/gt/uc/intel_guc.h        |  22 ++
+ drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c     |  31 +++
+ drivers/gpu/drm/i915/gt/uc/intel_guc_ct.h     |   2 +
+ drivers/gpu/drm/i915/gt/uc/intel_guc_fwif.h   |   1 +
+ .../gpu/drm/i915/gt/uc/intel_guc_submission.c | 211 +++++++++++++++++-
+ drivers/gpu/drm/i915/gt/uc/intel_uc.c         |   7 +
+ drivers/gpu/drm/i915/i915_drv.h               |   2 +
+ drivers/gpu/drm/i915/i915_pci.c               |   1 +
+ drivers/gpu/drm/i915/intel_device_info.h      |   1 +
+ 13 files changed, 358 insertions(+), 14 deletions(-)
 
-  * boot:
-    - fi-bsw-n3050:       [PASS][1] -> [FAIL][2] ([i915#8293])
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13736/fi-bsw-n3050/boot.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_124866v2/fi-bsw-n3050/boot.html
+-- 
+2.25.1
 
-  
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@i915_selftest@live@gt_heartbeat:
-    - fi-apl-guc:         [PASS][3] -> [DMESG-FAIL][4] ([i915#5334])
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13736/fi-apl-guc/igt@i915_selftest@live@gt_heartbeat.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_124866v2/fi-apl-guc/igt@i915_selftest@live@gt_heartbeat.html
-
-  * igt@i915_suspend@basic-s3-without-i915:
-    - bat-mtlp-8:         NOTRUN -> [SKIP][5] ([i915#6645])
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_124866v2/bat-mtlp-8/igt@i915_suspend@basic-s3-without-i915.html
-
-  * igt@kms_addfb_basic@addfb25-y-tiled-small-legacy:
-    - fi-hsw-4770:        NOTRUN -> [SKIP][6] ([fdo#109271] / [i915#5190])
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_124866v2/fi-hsw-4770/igt@kms_addfb_basic@addfb25-y-tiled-small-legacy.html
-
-  * igt@kms_hdmi_inject@inject-audio:
-    - fi-kbl-guc:         [PASS][7] -> [FAIL][8] ([IGT#3])
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13736/fi-kbl-guc/igt@kms_hdmi_inject@inject-audio.html
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_124866v2/fi-kbl-guc/igt@kms_hdmi_inject@inject-audio.html
-
-  * igt@kms_pipe_crc_basic@compare-crc-sanitycheck-nv12@pipe-a-vga-1:
-    - fi-hsw-4770:        NOTRUN -> [SKIP][9] ([fdo#109271]) +12 other tests skip
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_124866v2/fi-hsw-4770/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-nv12@pipe-a-vga-1.html
-
-  * igt@kms_pipe_crc_basic@suspend-read-crc:
-    - fi-kbl-guc:         NOTRUN -> [SKIP][10] ([fdo#109271])
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_124866v2/fi-kbl-guc/igt@kms_pipe_crc_basic@suspend-read-crc.html
-
-  * igt@kms_pipe_crc_basic@suspend-read-crc@pipe-c-vga-1:
-    - fi-hsw-4770:        NOTRUN -> [DMESG-WARN][11] ([i915#8841]) +6 other tests dmesg-warn
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_124866v2/fi-hsw-4770/igt@kms_pipe_crc_basic@suspend-read-crc@pipe-c-vga-1.html
-
-  * igt@kms_psr@sprite_plane_onoff:
-    - fi-hsw-4770:        NOTRUN -> [SKIP][12] ([fdo#109271] / [i915#1072]) +3 other tests skip
-   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_124866v2/fi-hsw-4770/igt@kms_psr@sprite_plane_onoff.html
-
-  
-#### Possible fixes ####
-
-  * igt@i915_selftest@live@requests:
-    - bat-mtlp-8:         [ABORT][13] ([i915#9414]) -> [PASS][14]
-   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13736/bat-mtlp-8/igt@i915_selftest@live@requests.html
-   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_124866v2/bat-mtlp-8/igt@i915_selftest@live@requests.html
-
-  * igt@i915_suspend@basic-s2idle-without-i915:
-    - bat-mtlp-6:         [FAIL][15] ([fdo#103375]) -> [PASS][16] +2 other tests pass
-   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13736/bat-mtlp-6/igt@i915_suspend@basic-s2idle-without-i915.html
-   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_124866v2/bat-mtlp-6/igt@i915_suspend@basic-s2idle-without-i915.html
-    - fi-apl-guc:         [INCOMPLETE][17] ([i915#1982] / [i915#4528]) -> [PASS][18]
-   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13736/fi-apl-guc/igt@i915_suspend@basic-s2idle-without-i915.html
-   [18]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_124866v2/fi-apl-guc/igt@i915_suspend@basic-s2idle-without-i915.html
-
-  * igt@i915_suspend@basic-s3-without-i915:
-    - fi-kbl-guc:         [ABORT][19] -> [PASS][20]
-   [19]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13736/fi-kbl-guc/igt@i915_suspend@basic-s3-without-i915.html
-   [20]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_124866v2/fi-kbl-guc/igt@i915_suspend@basic-s3-without-i915.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [IGT#3]: https://gitlab.freedesktop.org/drm/igt-gpu-tools/issues/3
-  [fdo#103375]: https://bugs.freedesktop.org/show_bug.cgi?id=103375
-  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
-  [i915#1072]: https://gitlab.freedesktop.org/drm/intel/issues/1072
-  [i915#1982]: https://gitlab.freedesktop.org/drm/intel/issues/1982
-  [i915#4528]: https://gitlab.freedesktop.org/drm/intel/issues/4528
-  [i915#5190]: https://gitlab.freedesktop.org/drm/intel/issues/5190
-  [i915#5334]: https://gitlab.freedesktop.org/drm/intel/issues/5334
-  [i915#6645]: https://gitlab.freedesktop.org/drm/intel/issues/6645
-  [i915#8293]: https://gitlab.freedesktop.org/drm/intel/issues/8293
-  [i915#8841]: https://gitlab.freedesktop.org/drm/intel/issues/8841
-  [i915#9414]: https://gitlab.freedesktop.org/drm/intel/issues/9414
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_13736 -> Patchwork_124866v2
-
-  CI-20190529: 20190529
-  CI_DRM_13736: 251e78c6b6f76712187d25034bc2ebed0eb33654 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_7527: 46f98a3041f73a1d6ee7ec3ace6eba79b15369c4 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_124866v2: 251e78c6b6f76712187d25034bc2ebed0eb33654 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-### Linux commits
-
-84158e283a88 drm/i915/gt: Temporarily force MTL into uncached mode
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_124866v2/index.html
-
---===============6637798309377343245==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915/gt: Temporarily force MTL into uncached mode (rev2)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/124866/">https://patchwork.freedesktop.org/series/124866/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_124866v2/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_124866v2/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_13736 -&gt; Patchwork_124866v2</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_124866v2/index.html</p>
-<h2>Participating hosts (36 -&gt; 37)</h2>
-<p>Additional (1): fi-hsw-4770 </p>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_124866v2 that come from known issues:</p>
-<h3>CI changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>boot:<ul>
-<li>fi-bsw-n3050:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13736/fi-bsw-n3050/boot.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_124866v2/fi-bsw-n3050/boot.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/8293">i915#8293</a>)</li>
-</ul>
-</li>
-</ul>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@i915_selftest@live@gt_heartbeat:</p>
-<ul>
-<li>fi-apl-guc:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13736/fi-apl-guc/igt@i915_selftest@live@gt_heartbeat.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_124866v2/fi-apl-guc/igt@i915_selftest@live@gt_heartbeat.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/5334">i915#5334</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_suspend@basic-s3-without-i915:</p>
-<ul>
-<li>bat-mtlp-8:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_124866v2/bat-mtlp-8/igt@i915_suspend@basic-s3-without-i915.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/6645">i915#6645</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_addfb_basic@addfb25-y-tiled-small-legacy:</p>
-<ul>
-<li>fi-hsw-4770:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_124866v2/fi-hsw-4770/igt@kms_addfb_basic@addfb25-y-tiled-small-legacy.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/5190">i915#5190</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_hdmi_inject@inject-audio:</p>
-<ul>
-<li>fi-kbl-guc:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13736/fi-kbl-guc/igt@kms_hdmi_inject@inject-audio.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_124866v2/fi-kbl-guc/igt@kms_hdmi_inject@inject-audio.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/igt-gpu-tools/issues/3">IGT#3</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_pipe_crc_basic@compare-crc-sanitycheck-nv12@pipe-a-vga-1:</p>
-<ul>
-<li>fi-hsw-4770:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_124866v2/fi-hsw-4770/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-nv12@pipe-a-vga-1.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +12 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_pipe_crc_basic@suspend-read-crc:</p>
-<ul>
-<li>fi-kbl-guc:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_124866v2/fi-kbl-guc/igt@kms_pipe_crc_basic@suspend-read-crc.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_pipe_crc_basic@suspend-read-crc@pipe-c-vga-1:</p>
-<ul>
-<li>fi-hsw-4770:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_124866v2/fi-hsw-4770/igt@kms_pipe_crc_basic@suspend-read-crc@pipe-c-vga-1.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/8841">i915#8841</a>) +6 other tests dmesg-warn</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_psr@sprite_plane_onoff:</p>
-<ul>
-<li>fi-hsw-4770:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_124866v2/fi-hsw-4770/igt@kms_psr@sprite_plane_onoff.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/1072">i915#1072</a>) +3 other tests skip</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>
-<p>igt@i915_selftest@live@requests:</p>
-<ul>
-<li>bat-mtlp-8:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13736/bat-mtlp-8/igt@i915_selftest@live@requests.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/9414">i915#9414</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_124866v2/bat-mtlp-8/igt@i915_selftest@live@requests.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@i915_suspend@basic-s2idle-without-i915:</p>
-<ul>
-<li>
-<p>bat-mtlp-6:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13736/bat-mtlp-6/igt@i915_suspend@basic-s2idle-without-i915.html">FAIL</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=103375">fdo#103375</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_124866v2/bat-mtlp-6/igt@i915_suspend@basic-s2idle-without-i915.html">PASS</a> +2 other tests pass</p>
-</li>
-<li>
-<p>fi-apl-guc:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13736/fi-apl-guc/igt@i915_suspend@basic-s2idle-without-i915.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1982">i915#1982</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/4528">i915#4528</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_124866v2/fi-apl-guc/igt@i915_suspend@basic-s2idle-without-i915.html">PASS</a></p>
-</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_suspend@basic-s3-without-i915:</p>
-<ul>
-<li>fi-kbl-guc:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13736/fi-kbl-guc/igt@i915_suspend@basic-s3-without-i915.html">ABORT</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_124866v2/fi-kbl-guc/igt@i915_suspend@basic-s3-without-i915.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<p>{name}: This element is suppressed. This means it is ignored when computing<br />
-          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_13736 -&gt; Patchwork_124866v2</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_13736: 251e78c6b6f76712187d25034bc2ebed0eb33654 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_7527: 46f98a3041f73a1d6ee7ec3ace6eba79b15369c4 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  Patchwork_124866v2: 251e78c6b6f76712187d25034bc2ebed0eb33654 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<h3>Linux commits</h3>
-<p>84158e283a88 drm/i915/gt: Temporarily force MTL into uncached mode</p>
-
-</body>
-</html>
-
---===============6637798309377343245==--
