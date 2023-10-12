@@ -2,50 +2,54 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7838D7C6E60
-	for <lists+intel-gfx@lfdr.de>; Thu, 12 Oct 2023 14:40:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id C38647C6E99
+	for <lists+intel-gfx@lfdr.de>; Thu, 12 Oct 2023 14:56:29 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4080010E189;
-	Thu, 12 Oct 2023 12:40:41 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9D69F10E189;
+	Thu, 12 Oct 2023 12:56:26 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.93])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E59C910E189
- for <intel-gfx@lists.freedesktop.org>; Thu, 12 Oct 2023 12:40:38 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.65])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9E33B10E189
+ for <intel-gfx@lists.freedesktop.org>; Thu, 12 Oct 2023 12:56:24 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1697114438; x=1728650438;
- h=from:to:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=hLfz7nErj5/iBxTGJ90Js4n6Xw6h0q2F4dqmEovVSGo=;
- b=V+Nv+dEmIepKhkvuifn0xqCNcri0UDy0hsRNIyywsl/l/f5APLb8R1b4
- +5zUuNCnxH00A92ZM3Z/LvRiW7qfivbvcgmukXmMMOB3RFIbGQnig8JG0
- cGQy/cCkBIEGsZSvSdXcsT2Wt0Ml+AgYb+jqasSBeLkPBb9CiaQIh6+rv
- wpa7ZilFuZatB0Ey0+T4025uIR9vODJy+rkN/JGbOz4ehYiRVbiU+nC8p
- GlfSxOcaYYJZj0AT530Znm0e8zsG6ulM4TT0x5yCgwAgQFPYCx3AefPDS
- yKDe8npzuWApL+19WRnUxl6P6ndnY7iCPVi16+FU2Ya6K94sYJaETMySH Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10861"; a="382143559"
-X-IronPort-AV: E=Sophos;i="6.03,218,1694761200"; d="scan'208";a="382143559"
+ t=1697115384; x=1728651384;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=NYtIDF2t6kvDSRna1LoP/u1J91XmVwy/L4zd+G5uGT0=;
+ b=Q/xILl34DD0YkJfZVCFTlF5Hsp5S+c4KAWpr5A5hc1VL6TmiVq49NP35
+ trxW7PR3fx1HWPm5tjo9JJs4K/b7en9TMweunaCB/LJ/BfkLfvxbQ7bj9
+ f7yI/ui6MHPyuA2c4Sv+uT6nCNe9PmuwmS311Q3TkzVh/wU9atwbtnVHy
+ ofEknybNj3rvhvm5WMy+ikQwR1C+IKY20dsBKMcwd0Mj0fMIqY2NhyF0o
+ WiYf2G2N8+05jcF+ypk19JMr0rRVqTsLClIYLUe87L9acDj5R6iQIH/VW
+ LNi6J36Oh7P3i2EOU3/F8gJ4mXLVLIjNIwOmPW6XPuq/UiKhmbZqNA7IM g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10861"; a="388768785"
+X-IronPort-AV: E=Sophos;i="6.03,219,1694761200"; d="scan'208";a="388768785"
 Received: from fmsmga003.fm.intel.com ([10.253.24.29])
- by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Oct 2023 05:40:38 -0700
+ by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 12 Oct 2023 05:56:23 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10861"; a="844984390"
-X-IronPort-AV: E=Sophos;i="6.03,218,1694761200"; d="scan'208";a="844984390"
+X-IronPort-AV: E=McAfee;i="6600,9927,10861"; a="844993379"
+X-IronPort-AV: E=Sophos;i="6.03,219,1694761200"; d="scan'208";a="844993379"
 Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.74])
- by FMSMGA003.fm.intel.com with SMTP; 12 Oct 2023 05:40:34 -0700
+ by FMSMGA003.fm.intel.com with SMTP; 12 Oct 2023 05:56:21 -0700
 Received: by stinkbox (sSMTP sendmail emulation);
- Thu, 12 Oct 2023 15:40:33 +0300
-From: Ville Syrjala <ville.syrjala@linux.intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Thu, 12 Oct 2023 15:40:33 +0300
-Message-ID: <20231012124033.26983-1-ville.syrjala@linux.intel.com>
-X-Mailer: git-send-email 2.41.0
+ Thu, 12 Oct 2023 15:56:20 +0300
+Date: Thu, 12 Oct 2023 15:56:20 +0300
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: Melanie Lobo <melanie.lobo@intel.com>
+Message-ID: <ZSfs9DBOmDmcUC2D@intel.com>
+References: <20231011102356.22014-1-melanie.lobo@intel.com>
+ <20231012062620.23886-1-melanie.lobo@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH] drm/i915: Move the g45 PEG band gap HPD
- workaround to the HPD code
+In-Reply-To: <20231012062620.23886-1-melanie.lobo@intel.com>
+X-Patchwork-Hint: comment
+Subject: Re: [Intel-gfx] [PATCH] drm/i915: Support FP16 compressed formats
+ on MTL
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -58,106 +62,61 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: intel-gfx@lists.freedesktop.org, juha-pekka.heikkila@intel.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-From: Ville Syrjälä <ville.syrjala@linux.intel.com>
+On Thu, Oct 12, 2023 at 11:56:20AM +0530, Melanie Lobo wrote:
+> MTL supports FP16 format which is a binary floating-point computer
+> number format that occupies 16 bits in computer memory.Platform shall
+> render compression in display engine to receive FP16 compressed formats.
+> 
+> This kernel change was tested with IGT patch,
+> https://patchwork.freedesktop.org/patch/562014/
+> 
+> Test-with: 20231011095520.10768-1-melanie.lobo@intel.com
+> 
+> Signed-off-by: Melanie Lobo <melanie.lobo@intel.com>
+> ---
+>  drivers/gpu/drm/i915/display/intel_fb.c            | 2 ++
+>  drivers/gpu/drm/i915/display/skl_universal_plane.c | 4 +---
+>  2 files changed, 3 insertions(+), 3 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/i915/display/intel_fb.c b/drivers/gpu/drm/i915/display/intel_fb.c
+> index e7678571b0d7..868cfc75e687 100644
+> --- a/drivers/gpu/drm/i915/display/intel_fb.c
+> +++ b/drivers/gpu/drm/i915/display/intel_fb.c
+> @@ -91,6 +91,8 @@ static const struct drm_format_info gen12_ccs_formats[] = {
+>  	{ .format = DRM_FORMAT_P016, .num_planes = 4,
+>  	  .char_per_block = { 2, 4, 1, 1 }, .block_w = { 1, 1, 2, 2 }, .block_h = { 1, 1, 1, 1 },
+>  	  .hsub = 2, .vsub = 2, .is_yuv = true },
+> +	{ .format = DRM_FORMAT_XRGB16161616F, .depth = 64, .num_planes = 2,
+> +	  .char_per_block = { 4, 1}, .block_w = { 1, 2}, .block_h = { 1, 1}, .hsub = 1, .vsub = 1 },
 
-We are asked to reprogram PEG_BAND_GAP_DATA prior to enabling
-hotplug detection on the g45 HDMI/DP ports. Currently we do said
-reprogamming from the DP/HDMI connector initialization functions.
-That code should be mostly platform agnostic so clearly not the
-best place for this. Move the workaround to the place where we
-actually enable HPD detection.
+That chars_per_block=4 doesn't look sensible for a 64bit format.
+And I suspect the block_w=2 for the CCS is also wrong.
 
-Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
----
- drivers/gpu/drm/i915/display/intel_dp.c          | 10 ----------
- drivers/gpu/drm/i915/display/intel_hdmi.c        | 10 ----------
- drivers/gpu/drm/i915/display/intel_hotplug_irq.c | 16 ++++++++++++++++
- 3 files changed, 16 insertions(+), 20 deletions(-)
+>  };
+>  
+>  /*
+> diff --git a/drivers/gpu/drm/i915/display/skl_universal_plane.c b/drivers/gpu/drm/i915/display/skl_universal_plane.c
+> index 245a64332cc7..6ec5b96904c3 100644
+> --- a/drivers/gpu/drm/i915/display/skl_universal_plane.c
+> +++ b/drivers/gpu/drm/i915/display/skl_universal_plane.c
+> @@ -2122,9 +2122,7 @@ static bool gen12_plane_format_mod_supported(struct drm_plane *_plane,
+>  	case DRM_FORMAT_Y216:
+>  	case DRM_FORMAT_XVYU12_16161616:
+>  	case DRM_FORMAT_XVYU16161616:
+> -		if (!intel_fb_is_ccs_modifier(modifier))
+> -			return true;
+> -		fallthrough;
+> +		return true;
+>  	default:
+>  		return false;
+>  	}
+> -- 
+> 2.17.1
 
-diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
-index 4f6835a7578e..f2d6c4da72ab 100644
---- a/drivers/gpu/drm/i915/display/intel_dp.c
-+++ b/drivers/gpu/drm/i915/display/intel_dp.c
-@@ -6198,16 +6198,6 @@ intel_dp_init_connector(struct intel_digital_port *dig_port,
- 				    "HDCP init failed, skipping.\n");
- 	}
- 
--	/* For G4X desktop chip, PEG_BAND_GAP_DATA 3:0 must first be written
--	 * 0xd.  Failure to do so will result in spurious interrupts being
--	 * generated on the port when a cable is not attached.
--	 */
--	if (IS_G45(dev_priv)) {
--		u32 temp = intel_de_read(dev_priv, PEG_BAND_GAP_DATA);
--		intel_de_write(dev_priv, PEG_BAND_GAP_DATA,
--			       (temp & ~0xf) | 0xd);
--	}
--
- 	intel_dp->frl.is_trained = false;
- 	intel_dp->frl.trained_rate_gbps = 0;
- 
-diff --git a/drivers/gpu/drm/i915/display/intel_hdmi.c b/drivers/gpu/drm/i915/display/intel_hdmi.c
-index ac315f8e7820..ab18cfc19c0a 100644
---- a/drivers/gpu/drm/i915/display/intel_hdmi.c
-+++ b/drivers/gpu/drm/i915/display/intel_hdmi.c
-@@ -3030,16 +3030,6 @@ void intel_hdmi_init_connector(struct intel_digital_port *dig_port,
- 				    "HDCP init failed, skipping.\n");
- 	}
- 
--	/* For G4X desktop chip, PEG_BAND_GAP_DATA 3:0 must first be written
--	 * 0xd.  Failure to do so will result in spurious interrupts being
--	 * generated on the port when a cable is not attached.
--	 */
--	if (IS_G45(dev_priv)) {
--		u32 temp = intel_de_read(dev_priv, PEG_BAND_GAP_DATA);
--		intel_de_write(dev_priv, PEG_BAND_GAP_DATA,
--		               (temp & ~0xf) | 0xd);
--	}
--
- 	cec_fill_conn_info_from_drm(&conn_info, connector);
- 
- 	intel_hdmi->cec_notifier =
-diff --git a/drivers/gpu/drm/i915/display/intel_hotplug_irq.c b/drivers/gpu/drm/i915/display/intel_hotplug_irq.c
-index f07047e9cb30..04f62f27ad74 100644
---- a/drivers/gpu/drm/i915/display/intel_hotplug_irq.c
-+++ b/drivers/gpu/drm/i915/display/intel_hotplug_irq.c
-@@ -1361,11 +1361,24 @@ static void bxt_hpd_irq_setup(struct drm_i915_private *dev_priv)
- 	bxt_hpd_detection_setup(dev_priv);
- }
- 
-+static void g45_hpd_peg_band_gap_wa(struct drm_i915_private *i915)
-+{
-+	/*
-+	 * For G4X desktop chip, PEG_BAND_GAP_DATA 3:0 must first be written
-+	 * 0xd.  Failure to do so will result in spurious interrupts being
-+	 * generated on the port when a cable is not attached.
-+	 */
-+	intel_de_rmw(i915, PEG_BAND_GAP_DATA, 0xf, 0xd);
-+}
-+
- static void i915_hpd_enable_detection(struct intel_encoder *encoder)
- {
- 	struct drm_i915_private *i915 = to_i915(encoder->base.dev);
- 	u32 hotplug_en = hpd_mask_i915[encoder->hpd_pin];
- 
-+	if (IS_G45(i915))
-+		g45_hpd_peg_band_gap_wa(i915);
-+
- 	/* HPD sense and interrupt enable are one and the same */
- 	i915_hotplug_interrupt_update(i915, hotplug_en, hotplug_en);
- }
-@@ -1389,6 +1402,9 @@ static void i915_hpd_irq_setup(struct drm_i915_private *dev_priv)
- 		hotplug_en |= CRT_HOTPLUG_ACTIVATION_PERIOD_64;
- 	hotplug_en |= CRT_HOTPLUG_VOLTAGE_COMPARE_50;
- 
-+	if (IS_G45(dev_priv))
-+		g45_hpd_peg_band_gap_wa(dev_priv);
-+
- 	/* Ignore TV since it's buggy */
- 	i915_hotplug_interrupt_update_locked(dev_priv,
- 					     HOTPLUG_INT_EN_MASK |
 -- 
-2.41.0
-
+Ville Syrj�l�
+Intel
