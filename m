@@ -2,53 +2,53 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 764827C70C9
-	for <lists+intel-gfx@lfdr.de>; Thu, 12 Oct 2023 16:56:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 72C1E7C70CA
+	for <lists+intel-gfx@lfdr.de>; Thu, 12 Oct 2023 16:57:05 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6711110E4F4;
-	Thu, 12 Oct 2023 14:56:40 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C888410E4F5;
+	Thu, 12 Oct 2023 14:57:03 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9DC7B10E4F4
- for <intel-gfx@lists.freedesktop.org>; Thu, 12 Oct 2023 14:56:38 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id AD34210E4F5
+ for <intel-gfx@lists.freedesktop.org>; Thu, 12 Oct 2023 14:57:01 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1697122598; x=1728658598;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version:content-transfer-encoding;
- bh=8ProNSQoNz7Hx6ld4BJtVP/pOLRZi6NtrgGIKPzGiiI=;
- b=mrEbUX/vsb9ouRpCyT5TXoYkFbdRITVyx5+y/Wj+CkTzaPft0MX6QLov
- 2EcJ2gCjrc+GEskP8/QPglr+EiOvy/Avz1rBlqwUSGEN8ihkGoS/pdJ2L
- +2yzu+dcPNE9/msvMPiL9reNnj3KgAlAu3KAhUFIckUPt3TFYfYI/1ECg
- JRm/XQkdNX9gW0QFA36fotgm9Ei0DgcrgEFJxGoOcdF6+YDCcAEEv+Yva
- yRY4tYjoGjCY3CZQ12Tt2yffULi72FTMINzHeL81aN1Zecig/GEa92kUg
- AvGG0oTYpAg+2JIC/LxJgZB8DtbF5VJIrG8tzU6uLK8kmTXUJVxnEfoth w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10861"; a="449130529"
-X-IronPort-AV: E=Sophos;i="6.03,219,1694761200"; d="scan'208";a="449130529"
+ t=1697122621; x=1728658621;
+ h=from:to:subject:in-reply-to:references:date:message-id:
+ mime-version:content-transfer-encoding;
+ bh=tpsYDquD2Q0z0w7jV0+lm5rNY0kJDWRyC6LWqTotOKY=;
+ b=Ioor1HJchIsIYYytLqnS+dc4mKXG7u4oSmysU89YpzN83vmLBbfLlAAO
+ d/4dLrzbTHiEsOxusqnhF2RWgzMht59xYNNCbwe+eTx5ozsP4XFMY6lqz
+ lNWEhtjOYZRvWBNwdTfKrrATzYhBy266IVPivOBKp6tBkzZphFZsl8lip
+ H8ZPOy5vhqxP2C/DUVhZwGHrOGDeH23ZCNwQGE3Bl44BVB5+7nHqvyRv1
+ tOC9Af09XgBZmX2YqzZRTXRLvowD0/6TbxzKmN2yznFwMJpRIUF+11SiC
+ kq80N7qFyWYtuPMdyZgburZof+r8PHLbWtY8OhJLxDVN/FfrCJfdEBc7/ A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10861"; a="449130641"
+X-IronPort-AV: E=Sophos;i="6.03,219,1694761200"; d="scan'208";a="449130641"
 Received: from orsmga007.jf.intel.com ([10.7.209.58])
  by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Oct 2023 07:56:38 -0700
+ 12 Oct 2023 07:57:01 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10861"; a="747906065"
-X-IronPort-AV: E=Sophos;i="6.03,219,1694761200"; d="scan'208";a="747906065"
+X-IronPort-AV: E=McAfee;i="6600,9927,10861"; a="747906130"
+X-IronPort-AV: E=Sophos;i="6.03,219,1694761200"; d="scan'208";a="747906130"
 Received: from jnikula-mobl4.fi.intel.com (HELO localhost) ([10.237.66.162])
  by orsmga007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Oct 2023 07:56:36 -0700
+ 12 Oct 2023 07:57:00 -0700
 From: Jani Nikula <jani.nikula@linux.intel.com>
 To: Ville Syrjala <ville.syrjala@linux.intel.com>,
  intel-gfx@lists.freedesktop.org
-In-Reply-To: <20231012123522.26045-3-ville.syrjala@linux.intel.com>
+In-Reply-To: <20231012123522.26045-4-ville.syrjala@linux.intel.com>
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 References: <20231012123522.26045-1-ville.syrjala@linux.intel.com>
- <20231012123522.26045-3-ville.syrjala@linux.intel.com>
-Date: Thu, 12 Oct 2023 17:56:34 +0300
-Message-ID: <87fs2f28kd.fsf@intel.com>
+ <20231012123522.26045-4-ville.syrjala@linux.intel.com>
+Date: Thu, 12 Oct 2023 17:56:58 +0300
+Message-ID: <87cyxj28jp.fsf@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
-Subject: Re: [Intel-gfx] [PATCH 2/4] drm/i915: Abstract the extra JSL/EHL
- DPLL4 power domain better
+Subject: Re: [Intel-gfx] [PATCH 3/4] drm/i915: Move the DPLL extra power
+ domain handling up one level
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -67,128 +67,89 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 On Thu, 12 Oct 2023, Ville Syrjala <ville.syrjala@linux.intel.com> wrote:
 > From: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
 >
-> Just include the JSL/EHL DPLL4 extra power domain in the dpll_info
-> struct. This way the same approach could be used by other platforms
-> as well (should the need arise), and we don't have to sprinkle
-> platform checks all over the place.
+> The extra DPLL power domain is currently handled in three places:
+> - combo_pll_enable()
+> - combo_pll_disable()
+> - readout_dpll_hw_state()
 >
-> Note that I'm perhaps slightly abusing things here as
-> power_domain=3D=3D0 (which is actually POWER_DOMAIN_DISPLAY_CORE) now
-> indicates that no extra power domain is needed. I suppose using
-> POWER_DOMAIN_INVALID would be more correct, but then we'd have to
-> sprinkle that to all the other DPLLs.
-
-Cc: Imre, how bad do you think that is?
-
-Anyway,
+> First two of those are low level PLL funcs, but the third is a higher
+> level thing. So the current situation is rather inconsistent. Unify
+> this by moving the PLL enable/disable up one level. This also means
+> the extra power domain could be trivially be used by other platforms
+> as well.
+>
+> Signed-off-by: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
 
 Reviewed-by: Jani Nikula <jani.nikula@intel.com>
 
 
->
-> Signed-off-by: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
 > ---
->  drivers/gpu/drm/i915/display/intel_dpll_mgr.c | 30 +++++--------------
->  drivers/gpu/drm/i915/display/intel_dpll_mgr.h |  6 ++++
->  2 files changed, 14 insertions(+), 22 deletions(-)
+>  drivers/gpu/drm/i915/display/intel_dpll_mgr.c | 16 ++++++++++------
+>  1 file changed, 10 insertions(+), 6 deletions(-)
 >
 > diff --git a/drivers/gpu/drm/i915/display/intel_dpll_mgr.c b/drivers/gpu/=
 drm/i915/display/intel_dpll_mgr.c
-> index b7997b096796..4e524cb8ed83 100644
+> index 4e524cb8ed83..556b10eefe66 100644
 > --- a/drivers/gpu/drm/i915/display/intel_dpll_mgr.c
 > +++ b/drivers/gpu/drm/i915/display/intel_dpll_mgr.c
-> @@ -3838,17 +3838,8 @@ static void combo_pll_enable(struct drm_i915_priva=
-te *i915,
->  {
->  	i915_reg_t enable_reg =3D intel_combo_pll_enable_reg(i915, pll);
+> @@ -258,6 +258,10 @@ void intel_enable_shared_dpll(const struct intel_crt=
+c_state *crtc_state)
+>  	drm_WARN_ON(&i915->drm, pll->on);
 >=20=20
-> -	if ((IS_JASPERLAKE(i915) || IS_ELKHARTLAKE(i915)) &&
-> -	    pll->info->id =3D=3D DPLL_ID_EHL_DPLL4) {
-> -
-> -		/*
-> -		 * We need to disable DC states when this DPLL is enabled.
-> -		 * This can be done by taking a reference on DPLL4 power
-> -		 * domain.
-> -		 */
-> -		pll->wakeref =3D intel_display_power_get(i915,
-> -						       POWER_DOMAIN_DC_OFF);
-> -	}
+>  	drm_dbg_kms(&i915->drm, "enabling %s\n", pll->info->name);
+> +
 > +	if (pll->info->power_domain)
 > +		pll->wakeref =3D intel_display_power_get(i915, pll->info->power_domain=
 );
+> +
+>  	pll->info->funcs->enable(i915, pll);
+>  	pll->on =3D true;
 >=20=20
+> @@ -307,6 +311,9 @@ void intel_disable_shared_dpll(const struct intel_crt=
+c_state *crtc_state)
+>  	pll->info->funcs->disable(i915, pll);
+>  	pll->on =3D false;
+>=20=20
+> +	if (pll->info->power_domain)
+> +		intel_display_power_put(i915, pll->info->power_domain, pll->wakeref);
+> +
+>  out:
+>  	mutex_unlock(&i915->display.dpll.lock);
+>  }
+> @@ -3838,9 +3845,6 @@ static void combo_pll_enable(struct drm_i915_privat=
+e *i915,
+>  {
+>  	i915_reg_t enable_reg =3D intel_combo_pll_enable_reg(i915, pll);
+>=20=20
+> -	if (pll->info->power_domain)
+> -		pll->wakeref =3D intel_display_power_get(i915, pll->info->power_domain=
+);
+> -
 >  	icl_pll_power_enable(i915, pll, enable_reg);
 >=20=20
-> @@ -3946,10 +3937,8 @@ static void combo_pll_disable(struct drm_i915_priv=
-ate *i915,
+>  	icl_dpll_write(i915, pll);
+> @@ -3936,9 +3940,6 @@ static void combo_pll_disable(struct drm_i915_priva=
+te *i915,
+>  	i915_reg_t enable_reg =3D intel_combo_pll_enable_reg(i915, pll);
 >=20=20
 >  	icl_pll_disable(i915, pll, enable_reg);
+> -
+> -	if (pll->info->power_domain)
+> -		intel_display_power_put(i915, pll->info->power_domain, pll->wakeref);
+>  }
 >=20=20
-> -	if ((IS_JASPERLAKE(i915) || IS_ELKHARTLAKE(i915)) &&
-> -	    pll->info->id =3D=3D DPLL_ID_EHL_DPLL4)
-> -		intel_display_power_put(i915, POWER_DOMAIN_DC_OFF,
-> -					pll->wakeref);
+>  static void tbt_pll_disable(struct drm_i915_private *i915,
+> @@ -4409,6 +4410,9 @@ static void sanitize_dpll_state(struct drm_i915_pri=
+vate *i915,
+>=20=20
+>  	pll->info->funcs->disable(i915, pll);
+>  	pll->on =3D false;
+> +
 > +	if (pll->info->power_domain)
 > +		intel_display_power_put(i915, pll->info->power_domain, pll->wakeref);
 >  }
 >=20=20
->  static void tbt_pll_disable(struct drm_i915_private *i915,
-> @@ -4041,7 +4030,8 @@ static const struct intel_dpll_mgr icl_pll_mgr =3D {
->  static const struct dpll_info ehl_plls[] =3D {
->  	{ .name =3D "DPLL 0", .funcs =3D &combo_pll_funcs, .id =3D DPLL_ID_ICL_=
-DPLL0, },
->  	{ .name =3D "DPLL 1", .funcs =3D &combo_pll_funcs, .id =3D DPLL_ID_ICL_=
-DPLL1, },
-> -	{ .name =3D "DPLL 4", .funcs =3D &combo_pll_funcs, .id =3D DPLL_ID_EHL_=
-DPLL4, },
-> +	{ .name =3D "DPLL 4", .funcs =3D &combo_pll_funcs, .id =3D DPLL_ID_EHL_=
-DPLL4,
-> +	  .power_domain =3D POWER_DOMAIN_DC_OFF, },
->  	{}
->  };
->=20=20
-> @@ -4369,12 +4359,8 @@ static void readout_dpll_hw_state(struct drm_i915_=
-private *i915,
->=20=20
->  	pll->on =3D intel_dpll_get_hw_state(i915, pll, &pll->state.hw_state);
->=20=20
-> -	if ((IS_JASPERLAKE(i915) || IS_ELKHARTLAKE(i915)) &&
-> -	    pll->on &&
-> -	    pll->info->id =3D=3D DPLL_ID_EHL_DPLL4) {
-> -		pll->wakeref =3D intel_display_power_get(i915,
-> -						       POWER_DOMAIN_DC_OFF);
-> -	}
-> +	if (pll->on && pll->info->power_domain)
-> +		pll->wakeref =3D intel_display_power_get(i915, pll->info->power_domain=
-);
->=20=20
->  	pll->state.pipe_mask =3D 0;
->  	for_each_intel_crtc(&i915->drm, crtc) {
-> diff --git a/drivers/gpu/drm/i915/display/intel_dpll_mgr.h b/drivers/gpu/=
-drm/i915/display/intel_dpll_mgr.h
-> index dd4796a61751..2e7ea0d8d3ff 100644
-> --- a/drivers/gpu/drm/i915/display/intel_dpll_mgr.h
-> +++ b/drivers/gpu/drm/i915/display/intel_dpll_mgr.h
-> @@ -27,6 +27,7 @@
->=20=20
->  #include <linux/types.h>
->=20=20
-> +#include "intel_display_power.h"
->  #include "intel_wakeref.h"
->=20=20
->  #define for_each_shared_dpll(__i915, __pll, __i) \
-> @@ -270,6 +271,11 @@ struct dpll_info {
->  	 */
->  	enum intel_dpll_id id;
->=20=20
-> +	/**
-> +	 * @power_domain: extra power domain required by the DPLL
-> +	 */
-> +	enum intel_display_power_domain power_domain;
-> +
->  #define INTEL_DPLL_ALWAYS_ON	(1 << 0)
->  	/**
->  	 * @flags:
+>  void intel_dpll_sanitize_state(struct drm_i915_private *i915)
 
 --=20
 Jani Nikula, Intel
