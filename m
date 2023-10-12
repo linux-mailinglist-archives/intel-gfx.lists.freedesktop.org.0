@@ -2,47 +2,52 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8D7157C6B22
-	for <lists+intel-gfx@lfdr.de>; Thu, 12 Oct 2023 12:30:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5DD497C6B63
+	for <lists+intel-gfx@lfdr.de>; Thu, 12 Oct 2023 12:46:27 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6C2BF10E4A7;
-	Thu, 12 Oct 2023 10:30:31 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6B1EE10E4AD;
+	Thu, 12 Oct 2023 10:46:24 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.115])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E37F110E4A5;
- Thu, 12 Oct 2023 10:30:28 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 23EF010E4AD
+ for <intel-gfx@lists.freedesktop.org>; Thu, 12 Oct 2023 10:46:23 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1697106628; x=1728642628;
- h=date:from:to:cc:subject:message-id:mime-version;
- bh=2G5aHJXgXzxiNEF12IpXPvDXikJGB7QgCvYazrQTKnk=;
- b=E292HJmaOJyV+BR8d+1Ytla520adJ1rswlCyojPXckRbAE/QwPWGdWiR
- 0bSjHyshoy50quQjcYDb6Q8Ksdca4NyDXqiMy4V/azFKlQ+BRlQIvuVAB
- fiCW7egLsNEh6Nmoj1o5K11sKsB6Iw32L9yJ+ucKXfamopyAamkVYo9I7
- N8CAxOq25TvPnI2d6Cwui0m+dWMMFYmv8a98OophQrjVVtj1loCwFID5h
- GA9LPSI4Jn7sPPXsdUEgaJxJEx6K3MnlNykh3+FrnyxaCpiH+TwRUFLK5
- f/f3AK0cUduDbYQKAgDnLM0h2ZzGu/wYChMWj98zQZXxXJfGp3mgY3Nh1 w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10860"; a="384736230"
-X-IronPort-AV: E=Sophos;i="6.03,218,1694761200"; d="scan'208";a="384736230"
-Received: from orsmga005.jf.intel.com ([10.7.209.41])
- by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Oct 2023 03:30:28 -0700
+ t=1697107583; x=1728643583;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version;
+ bh=sboZPdI+hFGEsu0QbMc3JqCGLWVKU3SHjBBpeTnARU8=;
+ b=fuX5JS5stYHc3vJULAE/lghUvAAnftfVbIiPCdRNsS6J+Ml9Ec3tQl+E
+ fniGozXg36yr71kZ2rWwhkPeHnaLwRR2QVeIhWsqv96YKgGlKfxO4dZxO
+ P7gB6LF6IXt46L7GubtwYkT5nenjMaXbL7Peotcz3qlvNx41Zm4pVVURJ
+ /QnnV2GUL4jRMpVIsPJ/hM/AaGmlLuSLNz91QBVDWMMt20hz0ZM5T+5Xn
+ MTl1UCZMeFkp6Gm1J+yif1T7x3krndRUhwvTPNVCXkj2uUyws6K8UKabb
+ hAXWsA0tqDwb6Aw6JxjHwF/9m6psUISmebgkotvTYxabtwJCrw4dGk79Q A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10860"; a="449076952"
+X-IronPort-AV: E=Sophos;i="6.03,218,1694761200"; d="scan'208";a="449076952"
+Received: from fmsmga003.fm.intel.com ([10.253.24.29])
+ by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 12 Oct 2023 03:46:22 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10860"; a="927940941"
-X-IronPort-AV: E=Sophos;i="6.03,218,1694761200"; d="scan'208";a="927940941"
-Received: from maloneyj-mobl.ger.corp.intel.com (HELO localhost)
- ([10.213.239.225])
- by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Oct 2023 03:30:25 -0700
-Date: Thu, 12 Oct 2023 11:30:23 +0100
-From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-To: Dave Airlie <airlied@gmail.com>, Daniel Vetter <daniel.vetter@ffwll.ch>
-Message-ID: <ZSfKotZVdypU6NaX@tursulin-desk>
+X-IronPort-AV: E=McAfee;i="6600,9927,10860"; a="844951104"
+X-IronPort-AV: E=Sophos;i="6.03,218,1694761200"; d="scan'208";a="844951104"
+Received: from anikafix-mobl.ger.corp.intel.com (HELO localhost)
+ ([10.252.42.188])
+ by fmsmga003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 12 Oct 2023 03:46:20 -0700
+From: Jani Nikula <jani.nikula@intel.com>
+To: Arun R Murthy <arun.r.murthy@intel.com>,
+ intel-gfx@lists.freedesktop.org, ville.syrjala@intel.com
+In-Reply-To: <20231012100834.1333221-1-arun.r.murthy@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20231012100834.1333221-1-arun.r.murthy@intel.com>
+Date: Thu, 12 Oct 2023 13:46:18 +0300
+Message-ID: <87wmvs15l1.fsf@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Subject: [Intel-gfx] [PULL] drm-intel-gt-next
+Content-Type: text/plain
+Subject: Re: [Intel-gfx] [PATCH] drm/i915: Remove the modparam
+ verbose_state_checks
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -55,157 +60,86 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: dim-tools@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi Dave, Daniel,
+On Thu, 12 Oct 2023, Arun R Murthy <arun.r.murthy@intel.com> wrote:
+> By default warn_on are enabled, hence removing this module parameter.
 
-Here is the second pull request for 6.7.
+I'm uneasy about this change, though.
 
-I say second and not final because there is a very small chance we might
-be doing another one next week, to bring Meteorlake out of force probe
-status, which was quite close this week but apparently not quite there.
-At the moment it looks like chances are low, with some last minute
-findings putting a spanner in the works so this will likely end up the
-final pull request after all.
+Do we really want to force people to see WARNs (and oops if
+panic_on_warn=1) on state checker? On the other hand, that's the way to
+get bug reports and fix the stuff...
 
-In terms of content there is not much in this one. Mostly more work on
-enabling Meteorlake and some minor fixes here and there.
+I wonder if distros actually use the module parameter.
 
-Regards,
+An alternative might be to add a debug config option.
 
-Tvrtko
+> Signed-off-by: Arun R Murthy <arun.r.murthy@intel.com>
+> ---
+>  drivers/gpu/drm/i915/display/intel_display.h | 2 +-
+>  drivers/gpu/drm/i915/i915_params.c           | 4 ----
+>  drivers/gpu/drm/i915/i915_params.h           | 1 -
+>  3 files changed, 1 insertion(+), 6 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/i915/display/intel_display.h b/drivers/gpu/drm/i915/display/intel_display.h
+> index 0e5dffe8f018..8e2453e010a7 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display.h
+> +++ b/drivers/gpu/drm/i915/display/intel_display.h
+> @@ -552,7 +552,7 @@ bool assert_port_valid(struct drm_i915_private *i915, enum port port);
+>  	struct drm_device *drm = &(__i915)->drm;			\
+>  	int __ret_warn_on = !!(condition);				\
+>  	if (unlikely(__ret_warn_on))					\
+> -		if (!drm_WARN(drm, i915_modparams.verbose_state_checks, format)) \
+> +		if (!drm_WARN(drm, true, format))			\
+>  			drm_err(drm, format);				\
 
-drm-intel-gt-next-2023-10-12:
-Driver Changes:
+Everything in the whole macro is about that one condition on the verbose
+state checks, and with that taken away, it all simplifies to something
+along the lines of:
 
-Fixes/improvements/new stuff:
+#define I915_STATE_WARN(__i915, condition, ...) \
+	drm_WARN(&(__i915)->drm, condition, ## __VA_ARGS__)
 
-- Register engines early to avoid type confusion (Mathias Krause)
-- Suppress 'ignoring reset notification' message [guc] (John Harrison)
-- Update 'recommended' version to 70.12.1 for DG2/ADL-S/ADL-P/MTL [guc] (John Harrison)
-- Enable WA 14018913170 [guc, dg2] (Daniele Ceraolo Spurio)
+I didn't build check that I got the va arg stuff right, but it's
+something like that *if* we want to remove the condition altogether.
 
-Future platform enablement:
+The comment also becomes stale and needs to be fixed.
 
-- Clean steer semaphore on resume (Nirmoy Das)
-- Skip MCR ops for ring fault register [mtl] (Nirmoy Das)
-- Make i915_gem_shrinker multi-gt aware [gem] (Jonathan Cavitt)
-- Enable GGTT updates with binder in MTL (Nirmoy Das, Chris Wilson)
-- Invalidate the TLBs on each GT (Chris Wilson)
+BR,
+Jani.
 
-Miscellaneous:
 
-- Clarify type evolution of uabi_node/uabi_engines (Mathias Krause)
-- Annotate struct ct_incoming_msg with __counted_by [guc] (Kees Cook)
-- More use of GT specific print helpers [gt] (John Harrison)
-The following changes since commit 03d681412b38558aefe4fb0f46e36efa94bb21ef:
+>  	unlikely(__ret_warn_on);					\
+>  })
+> diff --git a/drivers/gpu/drm/i915/i915_params.c b/drivers/gpu/drm/i915/i915_params.c
+> index 036c4c3ed6ed..23453d9be175 100644
+> --- a/drivers/gpu/drm/i915/i915_params.c
+> +++ b/drivers/gpu/drm/i915/i915_params.c
+> @@ -162,10 +162,6 @@ i915_param_named(mmio_debug, int, 0400,
+>  	"Enable the MMIO debug code for the first N failures (default: off). "
+>  	"This may negatively affect performance.");
+>  
+> -/* Special case writable file */
+> -i915_param_named(verbose_state_checks, bool, 0600,
+> -	"Enable verbose logs (ie. WARN_ON()) in case of unexpected hw state conditions.");
+> -
+>  i915_param_named_unsafe(nuclear_pageflip, bool, 0400,
+>  	"Force enable atomic functionality on platforms that don't have full support yet.");
+>  
+> diff --git a/drivers/gpu/drm/i915/i915_params.h b/drivers/gpu/drm/i915/i915_params.h
+> index d5194b039aab..af675618ab07 100644
+> --- a/drivers/gpu/drm/i915/i915_params.h
+> +++ b/drivers/gpu/drm/i915/i915_params.h
+> @@ -83,7 +83,6 @@ struct drm_printer;
+>  	param(bool, force_reset_modeset_test, false, 0600) \
+>  	param(bool, error_capture, true, IS_ENABLED(CONFIG_DRM_I915_CAPTURE_ERROR) ? 0600 : 0) \
+>  	param(bool, disable_display, false, 0400) \
+> -	param(bool, verbose_state_checks, true, 0) \
+>  	param(bool, nuclear_pageflip, false, 0400) \
+>  	param(bool, enable_dp_mst, true, 0600) \
+>  	param(bool, enable_gvt, false, IS_ENABLED(CONFIG_DRM_I915_GVT) ? 0400 : 0)
 
-  drm/i915: Don't set PIPE_CONTROL_FLUSH_L3 for aux inval (2023-09-28 11:39:30 +0200)
-
-are available in the Git repository at:
-
-  git://anongit.freedesktop.org/drm/drm-intel tags/drm-intel-gt-next-2023-10-12
-
-for you to fetch changes up to 039adf3947252693f7c882607dac2dc67e7f7ab2:
-
-  drm/i915: More use of GT specific print helpers (2023-10-10 15:40:26 -0700)
-
-----------------------------------------------------------------
-Driver Changes:
-
-Fixes/improvements/new stuff:
-
-- Register engines early to avoid type confusion (Mathias Krause)
-- Suppress 'ignoring reset notification' message [guc] (John Harrison)
-- Update 'recommended' version to 70.12.1 for DG2/ADL-S/ADL-P/MTL [guc] (John Harrison)
-- Enable WA 14018913170 [guc, dg2] (Daniele Ceraolo Spurio)
-
-Future platform enablement:
-
-- Clean steer semaphore on resume (Nirmoy Das)
-- Skip MCR ops for ring fault register [mtl] (Nirmoy Das)
-- Make i915_gem_shrinker multi-gt aware [gem] (Jonathan Cavitt)
-- Enable GGTT updates with binder in MTL (Nirmoy Das, Chris Wilson)
-- Invalidate the TLBs on each GT (Chris Wilson)
-
-Miscellaneous:
-
-- Clarify type evolution of uabi_node/uabi_engines (Mathias Krause)
-- Annotate struct ct_incoming_msg with __counted_by [guc] (Kees Cook)
-- More use of GT specific print helpers [gt] (John Harrison)
-
-----------------------------------------------------------------
-Chris Wilson (2):
-      drm/i915: Lift runtime-pm acquire callbacks out of intel_wakeref.mutex
-      drm/i915: Invalidate the TLBs on each GT
-
-Daniele Ceraolo Spurio (1):
-      drm/i915/guc: Enable WA 14018913170
-
-John Harrison (4):
-      drm/i915/guc: Suppress 'ignoring reset notification' message
-      drm/i915/guc: Update 'recommended' version to 70.12.1 for DG2/ADL-S/ADL-P/MTL
-      drm/i915/gt: More use of GT specific print helpers
-      drm/i915: More use of GT specific print helpers
-
-Jonathan Cavitt (1):
-      drm/i915/gem: Make i915_gem_shrinker multi-gt aware
-
-Kees Cook (1):
-      drm/i915/guc: Annotate struct ct_incoming_msg with __counted_by
-
-Mathias Krause (2):
-      drm/i915: Register engines early to avoid type confusion
-      drm/i915: Clarify type evolution of uabi_node/uabi_engines
-
-Nirmoy Das (10):
-      drm/i915: Introduce intel_gt_mcr_lock_sanitize()
-      drm/i915: Introduce the intel_gt_resume_early()
-      drm/i915: Clean steer semaphore on resume
-      drm/i915/mtl: Skip MCR ops for ring fault register
-      drm/i915: Create a kernel context for GGTT updates
-      drm/i915: Implement for_each_sgt_daddr_next
-      drm/i915: Parameterize binder context creation
-      drm/i915: Implement GGTT update method with MI_UPDATE_GTT
-      drm/i915: Toggle binder context ready status
-      drm/i915: Enable GGTT updates with binder in MTL
-
- drivers/gpu/drm/i915/gem/i915_gem_pages.c         |   2 +-
- drivers/gpu/drm/i915/gem/i915_gem_shrinker.c      |  42 ++--
- drivers/gpu/drm/i915/gt/intel_engine.h            |   2 +
- drivers/gpu/drm/i915/gt/intel_engine_cs.c         |  69 +++++--
- drivers/gpu/drm/i915/gt/intel_engine_types.h      |  13 +-
- drivers/gpu/drm/i915/gt/intel_engine_user.c       |  17 +-
- drivers/gpu/drm/i915/gt/intel_ggtt.c              | 235 ++++++++++++++++++++++
- drivers/gpu/drm/i915/gt/intel_gsc.c               |  11 +-
- drivers/gpu/drm/i915/gt/intel_gt.c                |  62 +++++-
- drivers/gpu/drm/i915/gt/intel_gt.h                |   3 +
- drivers/gpu/drm/i915/gt/intel_gt_mcr.c            |  22 ++
- drivers/gpu/drm/i915/gt/intel_gt_mcr.h            |   1 +
- drivers/gpu/drm/i915/gt/intel_gt_pm.c             |  20 ++
- drivers/gpu/drm/i915/gt/intel_gt_pm.h             |   1 +
- drivers/gpu/drm/i915/gt/intel_gt_print.h          |   3 +
- drivers/gpu/drm/i915/gt/intel_gt_regs.h           |   1 +
- drivers/gpu/drm/i915/gt/intel_gtt.c               |   5 +
- drivers/gpu/drm/i915/gt/intel_gtt.h               |   5 +
- drivers/gpu/drm/i915/gt/intel_reset.c             |  26 +--
- drivers/gpu/drm/i915/gt/intel_workarounds.c       |  13 +-
- drivers/gpu/drm/i915/gt/uc/intel_gsc_uc.c         |   8 +-
- drivers/gpu/drm/i915/gt/uc/intel_guc.c            |   6 +
- drivers/gpu/drm/i915/gt/uc/intel_guc.h            |   1 +
- drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c         |   2 +-
- drivers/gpu/drm/i915/gt/uc/intel_guc_fwif.h       |   1 +
- drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c |  10 +-
- drivers/gpu/drm/i915/gt/uc/intel_uc_fw.c          |   8 +-
- drivers/gpu/drm/i915/i915_driver.c                |   9 +-
- drivers/gpu/drm/i915/i915_drv.h                   |  17 +-
- drivers/gpu/drm/i915/i915_gem.c                   |   9 +-
- drivers/gpu/drm/i915/i915_gpu_error.c             |  11 +-
- drivers/gpu/drm/i915/i915_perf.c                  |   8 +-
- drivers/gpu/drm/i915/i915_scatterlist.h           |  10 +
- drivers/gpu/drm/i915/intel_wakeref.c              |  52 ++---
- 34 files changed, 576 insertions(+), 129 deletions(-)
+-- 
+Jani Nikula, Intel
