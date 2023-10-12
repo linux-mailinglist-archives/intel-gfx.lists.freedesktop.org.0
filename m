@@ -2,85 +2,72 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 715767C6C1B
-	for <lists+intel-gfx@lfdr.de>; Thu, 12 Oct 2023 13:15:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id A91FE7C6C1C
+	for <lists+intel-gfx@lfdr.de>; Thu, 12 Oct 2023 13:16:46 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4A31E10E4AD;
-	Thu, 12 Oct 2023 11:15:54 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DEB3A10E4AF;
+	Thu, 12 Oct 2023 11:16:44 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from us-smtp-delivery-124.mimecast.com
- (us-smtp-delivery-124.mimecast.com [170.10.133.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6CE9010E4AC
- for <intel-gfx@lists.freedesktop.org>; Thu, 12 Oct 2023 11:15:52 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1697109351;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=jjHTbxtjG1kVCfXijazC/Uq1BFv5/xWeEj6UoI2TVWE=;
- b=c9/+pq/OZQS5Shrx7of0SbB/lMiVc2XskCzwpw1sguahO8XjsIhODhFXT5B4rb7XIVLZUA
- jmyFexS11DYiUR5lEMV6FzI3z2G5IzSLcrscDOKoWgmRPYM8w9xFhlcHGkDy1yQLWd7bgD
- maKjksBW3DGRd/w873vxHsuZS80XEFk=
-Received: from mail-ej1-f72.google.com (mail-ej1-f72.google.com
- [209.85.218.72]) by relay.mimecast.com with ESMTP with STARTTLS
- (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
- us-mta-410-MnICnbxEOVWmjoEyE7BZUg-1; Thu, 12 Oct 2023 07:15:50 -0400
-X-MC-Unique: MnICnbxEOVWmjoEyE7BZUg-1
-Received: by mail-ej1-f72.google.com with SMTP id
- a640c23a62f3a-9bd86510329so64825666b.0
- for <intel-gfx@lists.freedesktop.org>; Thu, 12 Oct 2023 04:15:50 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1697109348; x=1697714148;
- h=content-transfer-encoding:in-reply-to:from:references:cc:to
- :content-language:subject:user-agent:mime-version:date:message-id
- :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
- bh=jjHTbxtjG1kVCfXijazC/Uq1BFv5/xWeEj6UoI2TVWE=;
- b=cbKFrL3wDXENYF7cKsdbrJyNcABIAOZXe2uAyni85sI5WkpJtJnLrv7B5QUBePlHHj
- Kd2IoTsiRtxiQZxiV3CyfocHtCX1UG2qY1mQMil7v3bjii4gecUFqbk51/Z5qtj8phUu
- Emr3DzFo8UPyC7lfvOuh5970bcuJxd5DeAQc9gwFwLXlHX3xG+O562/RkUMhfZkR894G
- ktDrDbWz60H4amQr9+p63QDXFvEJjmpc+h9lqQPI4FQ3OC05GhwJEhPFU0AixB/CNBvY
- 6DAb512mA4shI1L1krA66mX+2li0LtInrnkubkRI6X3N+dQ9JI/3rC7jc96etX3SbPWV
- 202A==
-X-Gm-Message-State: AOJu0YwkmIKNK7V24mdN4x+PNOEzUL7PW3b3Cw3HykDOhcagQsvf5x2L
- lfHYy42SBm3xnpzWwj3V5GJ+abbtVIBRkC09MAPYohd6CuNRitQ4bVxpRn9zy5iAdb1U3BdWUHp
- tlMTuYKxBRVomvDF/GF7bWDsmS99nNcLjXP1/
-X-Received: by 2002:a17:906:8a64:b0:9bd:84af:e686 with SMTP id
- hy4-20020a1709068a6400b009bd84afe686mr3012792ejc.76.1697109348610; 
- Thu, 12 Oct 2023 04:15:48 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IEnIhitz+9miyik307B04q1LNWOxqxut0E0hWAlp+SfuBx+VA4xeZUjRDlsUY1pv3AcjZyw2g==
-X-Received: by 2002:a17:906:8a64:b0:9bd:84af:e686 with SMTP id
- hy4-20020a1709068a6400b009bd84afe686mr3012769ejc.76.1697109348319; 
- Thu, 12 Oct 2023 04:15:48 -0700 (PDT)
-Received: from ?IPV6:2001:1c00:c32:7800:5bfa:a036:83f0:f9ec?
- (2001-1c00-0c32-7800-5bfa-a036-83f0-f9ec.cable.dynamic.v6.ziggo.nl.
- [2001:1c00:c32:7800:5bfa:a036:83f0:f9ec])
- by smtp.gmail.com with ESMTPSA id
- p26-20020a1709060dda00b0099bc08862b6sm11153558eji.171.2023.10.12.04.15.47
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Thu, 12 Oct 2023 04:15:47 -0700 (PDT)
-Message-ID: <b68666c6-2267-6cc5-c22a-7edfdc68a8d8@redhat.com>
-Date: Thu, 12 Oct 2023 13:15:47 +0200
+Received: from smtp-out1.suse.de (smtp-out1.suse.de [IPv6:2001:67c:2178:6::1c])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 98B0010E4AD;
+ Thu, 12 Oct 2023 11:16:41 +0000 (UTC)
+Received: from imap2.suse-dmz.suse.de (imap2.suse-dmz.suse.de [192.168.254.74])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature ECDSA (P-521) server-digest SHA512)
+ (No client certificate requested)
+ by smtp-out1.suse.de (Postfix) with ESMTPS id 0C0E421860;
+ Thu, 12 Oct 2023 11:16:40 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
+ t=1697109400; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding;
+ bh=xLrDOJhqj12zmtZB80LdWbFDlRd0eSXCC1KQO4sl/k8=;
+ b=BxcJDfL4e92C3J0Xb5Ye1yElkxrXNTVfHZDRLIP+jHqADi2ei0tFjMaVD4jRSOkk9pAFVo
+ LqF+9YMoPLtw/GfScCB+bGkZ6tbunDtJrq2NC2skbEaKUNSqKvQo0KzF9MSn81Mi/A66hV
+ U49mN/yy0q1pj0yzfJii0zNynEpkhtQ=
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
+ s=susede2_ed25519; t=1697109400;
+ h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding;
+ bh=xLrDOJhqj12zmtZB80LdWbFDlRd0eSXCC1KQO4sl/k8=;
+ b=OQC/pC9yoBm/Abm9TeJQhVtD1z87agtcF1dAAM2PT76hvnvqsf1P1z3ZnBNfTC1YmoF4W/
+ 2wyuMVfSspM2WyCw==
+Received: from imap2.suse-dmz.suse.de (imap2.suse-dmz.suse.de [192.168.254.74])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature ECDSA (P-521) server-digest SHA512)
+ (No client certificate requested)
+ by imap2.suse-dmz.suse.de (Postfix) with ESMTPS id C33DD139ED;
+ Thu, 12 Oct 2023 11:16:39 +0000 (UTC)
+Received: from dovecot-director2.suse.de ([192.168.254.65])
+ by imap2.suse-dmz.suse.de with ESMTPSA id 6I7KLpfVJ2VjKgAAMHmgww
+ (envelope-from <tzimmermann@suse.de>); Thu, 12 Oct 2023 11:16:39 +0000
+Date: Thu, 12 Oct 2023 13:16:38 +0200
+From: Thomas Zimmermann <tzimmermann@suse.de>
+To: Dave Airlie <airlied@gmail.com>, Daniel Vetter <daniel.vetter@ffwll.ch>
+Message-ID: <20231012111638.GA25037@linux-uq9g>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.13.0
-To: Jani Nikula <jani.nikula@linux.intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
- =?UTF-8?B?VmlsbGUgU3lyasOkbMOk?= <ville.syrjala@linux.intel.com>
-References: <20230920195613.304091-1-hdegoede@redhat.com>
- <b308ab49-ceec-e1eb-cbf4-b272cea91e2e@redhat.com> <875y3d48e9.fsf@intel.com>
-From: Hans de Goede <hdegoede@redhat.com>
-In-Reply-To: <875y3d48e9.fsf@intel.com>
-X-Mimecast-Spam-Score: 0
-X-Mimecast-Originator: redhat.com
-Content-Language: en-US, nl
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-Subject: Re: [Intel-gfx] [PATCH 0/4] drm/i915/vlv_dsi: Add quirks for x86
- android tablets (v3)
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+Authentication-Results: smtp-out1.suse.de;
+	none
+X-Spam-Level: 
+X-Spam-Score: -6.60
+X-Spamd-Result: default: False [-6.60 / 50.00]; ARC_NA(0.00)[];
+ RCVD_VIA_SMTP_AUTH(0.00)[]; FROM_HAS_DN(0.00)[];
+ TO_DN_SOME(0.00)[]; TO_MATCH_ENVRCPT_ALL(0.00)[];
+ FREEMAIL_ENVRCPT(0.00)[gmail.com];
+ MIME_GOOD(-0.10)[text/plain]; NEURAL_HAM_LONG(-3.00)[-1.000];
+ DKIM_SIGNED(0.00)[suse.de:s=susede2_rsa,suse.de:s=susede2_ed25519];
+ NEURAL_HAM_SHORT(-1.00)[-1.000]; RCPT_COUNT_TWELVE(0.00)[12];
+ FREEMAIL_TO(0.00)[gmail.com,ffwll.ch]; FROM_EQ_ENVFROM(0.00)[];
+ MIME_TRACE(0.00)[0:+]; MID_RHS_NOT_FQDN(0.50)[];
+ RCVD_COUNT_TWO(0.00)[2]; RCVD_TLS_ALL(0.00)[];
+ BAYES_HAM(-3.00)[100.00%]
+X-Spam-Flag: NO
+Subject: [Intel-gfx] [PULL] drm-misc-fixes
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -93,44 +80,103 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx <intel-gfx@lists.freedesktop.org>,
- dri-devel@lists.freedesktop.org
+Cc: dim-tools@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi,
+Hi Dave and Daniel, 
 
-On 10/11/23 15:05, Jani Nikula wrote:
-> On Sun, 08 Oct 2023, Hans de Goede <hdegoede@redhat.com> wrote:
->> Hi All,
->>
->> Ping what is the status of this now? This v3 addresses all review
->> remarks from previous versions (specifically the request to file
->> + link gitlab issues).
->>
->> So AFAICT this is ready for merging ?
->>
->> But I'm waiting for an ack for this before pushing it
->> do drm-intel-next myself ...
-> 
-> There are maybe one or two things I could nitpick about, such as casting
-> away the const in there, but then I just don't have the time to look
-> into this much deeper, it's all fairly isolated, and, let's be honest,
-> you of all people probably have the best idea how well the vlv dsi code
-> works out in the real world.
-> 
-> Thanks for fixing all this stuff, and please just merge.
-> 
-> Acked-by: Jani Nikula <jani.nikula@intel.com>
+here's the PR for drm-misc-fixes.
 
-Thank you, I've pushed this to drm-intel-next now.
+Best regards
+Thomas
 
-Regards,
+drm-misc-fixes-2023-10-12:
+Short summary of fixes pull:
 
-Hans
+ * atomic-helper: Relax checks for unregistered connectors
+ * dma-buf: Work around race condition when retrieving fence timestamp
+ * gem: Avoid OOB access in BO memory range
+ * panel:
+   * boe-tv101wun-ml6: Fix flickering
+ * simpledrm: Fix error output
+ * vwmgfx:
+   * Fix size calculation in texture-state code
+   * Ref GEM BOs in surfaces
+The following changes since commit d59e75eef52d89201aaf5342a3ac23ddf3e9b112:
 
+  drm/nouveau: exec: report max pushs through getparam (2023-10-04 00:10:18 +0200)
 
+are available in the Git repository at:
 
+  git://anongit.freedesktop.org/drm/drm-misc tags/drm-misc-fixes-2023-10-12
 
+for you to fetch changes up to c1165df2be2fffe3adeeaa68f4ee4325108c5e4e:
 
+  drm/tiny: correctly print `struct resource *` on error (2023-10-12 10:57:07 +0200)
 
+----------------------------------------------------------------
+Short summary of fixes pull:
+
+ * atomic-helper: Relax checks for unregistered connectors
+ * dma-buf: Work around race condition when retrieving fence timestamp
+ * gem: Avoid OOB access in BO memory range
+ * panel:
+   * boe-tv101wun-ml6: Fix flickering
+ * simpledrm: Fix error output
+ * vwmgfx:
+   * Fix size calculation in texture-state code
+   * Ref GEM BOs in surfaces
+
+----------------------------------------------------------------
+Christian König (1):
+      dma-buf: add dma_fence_timestamp helper
+
+Joey Gouly (1):
+      drm/tiny: correctly print `struct resource *` on error
+
+Konstantin Meskhidze (1):
+      drm/vmwgfx: fix typo of sizeof argument
+
+Matthew Wilcox (Oracle) (1):
+      drm: Do not overrun array in drm_gem_get_pages()
+
+Ruihai Zhou (1):
+      drm/panel: boe-tv101wum-nl6: Completely pull GPW to VGL before TP term
+
+Simon Ser (1):
+      drm/atomic-helper: relax unregistered connector check
+
+Zack Rusin (1):
+      drm/vmwgfx: Keep a gem reference to user bos in surfaces
+
+ drivers/dma-buf/dma-fence-unwrap.c             | 13 ++++-------
+ drivers/dma-buf/sync_file.c                    |  9 +++-----
+ drivers/gpu/drm/drm_atomic_helper.c            | 17 ++++++++++----
+ drivers/gpu/drm/drm_gem.c                      |  6 +++--
+ drivers/gpu/drm/panel/panel-boe-tv101wum-nl6.c |  4 +---
+ drivers/gpu/drm/scheduler/sched_main.c         |  2 +-
+ drivers/gpu/drm/tiny/simpledrm.c               |  2 +-
+ drivers/gpu/drm/vmwgfx/vmwgfx_bo.c             |  7 +++---
+ drivers/gpu/drm/vmwgfx/vmwgfx_bo.h             | 17 +++++++++-----
+ drivers/gpu/drm/vmwgfx/vmwgfx_cotable.c        |  6 ++---
+ drivers/gpu/drm/vmwgfx/vmwgfx_drv.h            |  4 ++++
+ drivers/gpu/drm/vmwgfx/vmwgfx_execbuf.c        | 12 +++++-----
+ drivers/gpu/drm/vmwgfx/vmwgfx_gem.c            | 18 ++++++++++++---
+ drivers/gpu/drm/vmwgfx/vmwgfx_kms.c            |  6 ++---
+ drivers/gpu/drm/vmwgfx/vmwgfx_overlay.c        |  2 +-
+ drivers/gpu/drm/vmwgfx/vmwgfx_resource.c       | 12 +++++-----
+ drivers/gpu/drm/vmwgfx/vmwgfx_shader.c         |  4 ++--
+ drivers/gpu/drm/vmwgfx/vmwgfx_surface.c        | 31 ++++++++++----------------
+ include/linux/dma-fence.h                      | 19 ++++++++++++++++
+ 19 files changed, 115 insertions(+), 76 deletions(-)
+
+-- 
+Thomas Zimmermann
+Graphics Driver Developer
+SUSE Software Solutions Germany GmbH
+Frankenstrasse 146, 90461 Nuernberg, Germany
+GF: Ivo Totev, Andrew Myers, Andrew McDonald, Boudien Moerman
+HRB 36809 (AG Nuernberg)
