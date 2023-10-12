@@ -1,56 +1,48 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 611917C6AE0
-	for <lists+intel-gfx@lfdr.de>; Thu, 12 Oct 2023 12:21:56 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8D7157C6B22
+	for <lists+intel-gfx@lfdr.de>; Thu, 12 Oct 2023 12:30:38 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C1DF210E49E;
-	Thu, 12 Oct 2023 10:21:54 +0000 (UTC)
-X-Original-To: Intel-GFX@lists.freedesktop.org
-Delivered-To: Intel-GFX@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DBDE810E4B5;
- Thu, 12 Oct 2023 10:21:52 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6C2BF10E4A7;
+	Thu, 12 Oct 2023 10:30:31 +0000 (UTC)
+X-Original-To: intel-gfx@lists.freedesktop.org
+Delivered-To: intel-gfx@lists.freedesktop.org
+Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.115])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E37F110E4A5;
+ Thu, 12 Oct 2023 10:30:28 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1697106112; x=1728642112;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=bIeryaFFXXqt7Z8m1hS0O8SIIr6EhuU+6Mco7+bFbtM=;
- b=UvYi1UN5deJfIiEHHT88r//nVEEaxgsz8H2C+mNa1bGHbNw3VyvX/7kh
- YuxjK0O4g5W23poc6WN8OWaPVVKyrowNk58NIjolDq2NDpdQqIIEUhvpU
- 7IxZq9/CUNIpwfDtfIIwaz5jvwJbCn1mcpeSSR6ukPEyBzpIM/wpCjZPp
- gG3n+2dMq0teKgqklsWBiSHGB6RD/A5T4zH3B3XfR8KEzQLUC7yEjQ4DY
- Hx/FgK2z3nWAnb/LX81aFsyNRo2ZSR1BcfhlEdiNL6En1DOWwK6Do6zzJ
- zlqgJlLmcf31omV3NMk8DWLqYP4EYYH2w4ATj0oWTiGp5fSYdfsRuQM9P w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10860"; a="471144762"
-X-IronPort-AV: E=Sophos;i="6.03,218,1694761200"; d="scan'208";a="471144762"
-Received: from fmsmga003.fm.intel.com ([10.253.24.29])
- by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Oct 2023 03:21:51 -0700
+ t=1697106628; x=1728642628;
+ h=date:from:to:cc:subject:message-id:mime-version;
+ bh=2G5aHJXgXzxiNEF12IpXPvDXikJGB7QgCvYazrQTKnk=;
+ b=E292HJmaOJyV+BR8d+1Ytla520adJ1rswlCyojPXckRbAE/QwPWGdWiR
+ 0bSjHyshoy50quQjcYDb6Q8Ksdca4NyDXqiMy4V/azFKlQ+BRlQIvuVAB
+ fiCW7egLsNEh6Nmoj1o5K11sKsB6Iw32L9yJ+ucKXfamopyAamkVYo9I7
+ N8CAxOq25TvPnI2d6Cwui0m+dWMMFYmv8a98OophQrjVVtj1loCwFID5h
+ GA9LPSI4Jn7sPPXsdUEgaJxJEx6K3MnlNykh3+FrnyxaCpiH+TwRUFLK5
+ f/f3AK0cUduDbYQKAgDnLM0h2ZzGu/wYChMWj98zQZXxXJfGp3mgY3Nh1 w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10860"; a="384736230"
+X-IronPort-AV: E=Sophos;i="6.03,218,1694761200"; d="scan'208";a="384736230"
+Received: from orsmga005.jf.intel.com ([10.7.209.41])
+ by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 12 Oct 2023 03:30:28 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10860"; a="844945996"
-X-IronPort-AV: E=Sophos;i="6.03,218,1694761200"; d="scan'208";a="844945996"
-Received: from maloneyj-mobl.ger.corp.intel.com (HELO [10.213.239.225])
+X-IronPort-AV: E=McAfee;i="6600,9927,10860"; a="927940941"
+X-IronPort-AV: E=Sophos;i="6.03,218,1694761200"; d="scan'208";a="927940941"
+Received: from maloneyj-mobl.ger.corp.intel.com (HELO localhost)
  ([10.213.239.225])
- by fmsmga003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Oct 2023 03:21:50 -0700
-Message-ID: <a13a3cc3-3aca-3a67-637c-01f46f1173a5@linux.intel.com>
-Date: Thu, 12 Oct 2023 11:21:49 +0100
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.15.1
-Content-Language: en-US
-To: John.C.Harrison@Intel.com, Intel-GFX@Lists.FreeDesktop.Org
-References: <20230921182033.135448-1-John.C.Harrison@Intel.com>
+ by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 12 Oct 2023 03:30:25 -0700
+Date: Thu, 12 Oct 2023 11:30:23 +0100
 From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-Organization: Intel Corporation UK Plc
-In-Reply-To: <20230921182033.135448-1-John.C.Harrison@Intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-Subject: Re: [Intel-gfx] [PATCH] drm/i915/guc: Suppress 'ignoring reset
- notification' message
+To: Dave Airlie <airlied@gmail.com>, Daniel Vetter <daniel.vetter@ffwll.ch>
+Message-ID: <ZSfKotZVdypU6NaX@tursulin-desk>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Subject: [Intel-gfx] [PULL] drm-intel-gt-next
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -63,65 +55,157 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: DRI-Devel@Lists.FreeDesktop.Org
+Cc: dim-tools@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+Hi Dave, Daniel,
 
-On 21/09/2023 19:20, John.C.Harrison@Intel.com wrote:
-> From: John Harrison <John.C.Harrison@Intel.com>
-> 
-> If an active context has been banned (e.g. Ctrl+C killed) then it is
-> likely to be reset as part of evicting it from the hardware. That
-> results in a 'ignoring context reset notification: banned = 1'
-> message at info level. This confuses/concerns people and makes them
-> thing something has gone wrong when it hasn't.
+Here is the second pull request for 6.7.
 
-Noticed the "confuses/concerns people" part while preparing the 6.7 pull 
-request, and the fact there is no Fixes: tag. Is this something that 
-would be worth sending to stable (manually and if yes could you do that 
-please? If there were actual user bugs filed I guess.
+I say second and not final because there is a very small chance we might
+be doing another one next week, to bring Meteorlake out of force probe
+status, which was quite close this week but apparently not quite there.
+At the moment it looks like chances are low, with some last minute
+findings putting a spanner in the works so this will likely end up the
+final pull request after all.
+
+In terms of content there is not much in this one. Mostly more work on
+enabling Meteorlake and some minor fixes here and there.
 
 Regards,
 
 Tvrtko
 
-> There is already a debug level message with essentially the same
-> information. So drop the 'ignore' info level one and just add the
-> 'ignore' flag to the debug level one instead (which will therefore not
-> appear by default but will still show up in CI runs).
-> 
-> Signed-off-by: John Harrison <John.C.Harrison@Intel.com>
-> ---
->   drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c | 10 +++++-----
->   1 file changed, 5 insertions(+), 5 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c b/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
-> index cabdc645fcddb..da7331346df1f 100644
-> --- a/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
-> +++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
-> @@ -4770,19 +4770,19 @@ static void guc_context_replay(struct intel_context *ce)
->   static void guc_handle_context_reset(struct intel_guc *guc,
->   				     struct intel_context *ce)
->   {
-> +	bool capture = intel_context_is_schedulable(ce);
-> +
->   	trace_intel_context_reset(ce);
->   
-> -	guc_dbg(guc, "Got context reset notification: 0x%04X on %s, exiting = %s, banned = %s\n",
-> +	guc_dbg(guc, "%s context reset notification: 0x%04X on %s, exiting = %s, banned = %s\n",
-> +		capture ? "Got" : "Ignoring",
->   		ce->guc_id.id, ce->engine->name,
->   		str_yes_no(intel_context_is_exiting(ce)),
->   		str_yes_no(intel_context_is_banned(ce)));
->   
-> -	if (likely(intel_context_is_schedulable(ce))) {
-> +	if (capture) {
->   		capture_error_state(guc, ce);
->   		guc_context_replay(ce);
-> -	} else {
-> -		guc_info(guc, "Ignoring context reset notification of exiting context 0x%04X on %s",
-> -			 ce->guc_id.id, ce->engine->name);
->   	}
->   }
->   
+drm-intel-gt-next-2023-10-12:
+Driver Changes:
+
+Fixes/improvements/new stuff:
+
+- Register engines early to avoid type confusion (Mathias Krause)
+- Suppress 'ignoring reset notification' message [guc] (John Harrison)
+- Update 'recommended' version to 70.12.1 for DG2/ADL-S/ADL-P/MTL [guc] (John Harrison)
+- Enable WA 14018913170 [guc, dg2] (Daniele Ceraolo Spurio)
+
+Future platform enablement:
+
+- Clean steer semaphore on resume (Nirmoy Das)
+- Skip MCR ops for ring fault register [mtl] (Nirmoy Das)
+- Make i915_gem_shrinker multi-gt aware [gem] (Jonathan Cavitt)
+- Enable GGTT updates with binder in MTL (Nirmoy Das, Chris Wilson)
+- Invalidate the TLBs on each GT (Chris Wilson)
+
+Miscellaneous:
+
+- Clarify type evolution of uabi_node/uabi_engines (Mathias Krause)
+- Annotate struct ct_incoming_msg with __counted_by [guc] (Kees Cook)
+- More use of GT specific print helpers [gt] (John Harrison)
+The following changes since commit 03d681412b38558aefe4fb0f46e36efa94bb21ef:
+
+  drm/i915: Don't set PIPE_CONTROL_FLUSH_L3 for aux inval (2023-09-28 11:39:30 +0200)
+
+are available in the Git repository at:
+
+  git://anongit.freedesktop.org/drm/drm-intel tags/drm-intel-gt-next-2023-10-12
+
+for you to fetch changes up to 039adf3947252693f7c882607dac2dc67e7f7ab2:
+
+  drm/i915: More use of GT specific print helpers (2023-10-10 15:40:26 -0700)
+
+----------------------------------------------------------------
+Driver Changes:
+
+Fixes/improvements/new stuff:
+
+- Register engines early to avoid type confusion (Mathias Krause)
+- Suppress 'ignoring reset notification' message [guc] (John Harrison)
+- Update 'recommended' version to 70.12.1 for DG2/ADL-S/ADL-P/MTL [guc] (John Harrison)
+- Enable WA 14018913170 [guc, dg2] (Daniele Ceraolo Spurio)
+
+Future platform enablement:
+
+- Clean steer semaphore on resume (Nirmoy Das)
+- Skip MCR ops for ring fault register [mtl] (Nirmoy Das)
+- Make i915_gem_shrinker multi-gt aware [gem] (Jonathan Cavitt)
+- Enable GGTT updates with binder in MTL (Nirmoy Das, Chris Wilson)
+- Invalidate the TLBs on each GT (Chris Wilson)
+
+Miscellaneous:
+
+- Clarify type evolution of uabi_node/uabi_engines (Mathias Krause)
+- Annotate struct ct_incoming_msg with __counted_by [guc] (Kees Cook)
+- More use of GT specific print helpers [gt] (John Harrison)
+
+----------------------------------------------------------------
+Chris Wilson (2):
+      drm/i915: Lift runtime-pm acquire callbacks out of intel_wakeref.mutex
+      drm/i915: Invalidate the TLBs on each GT
+
+Daniele Ceraolo Spurio (1):
+      drm/i915/guc: Enable WA 14018913170
+
+John Harrison (4):
+      drm/i915/guc: Suppress 'ignoring reset notification' message
+      drm/i915/guc: Update 'recommended' version to 70.12.1 for DG2/ADL-S/ADL-P/MTL
+      drm/i915/gt: More use of GT specific print helpers
+      drm/i915: More use of GT specific print helpers
+
+Jonathan Cavitt (1):
+      drm/i915/gem: Make i915_gem_shrinker multi-gt aware
+
+Kees Cook (1):
+      drm/i915/guc: Annotate struct ct_incoming_msg with __counted_by
+
+Mathias Krause (2):
+      drm/i915: Register engines early to avoid type confusion
+      drm/i915: Clarify type evolution of uabi_node/uabi_engines
+
+Nirmoy Das (10):
+      drm/i915: Introduce intel_gt_mcr_lock_sanitize()
+      drm/i915: Introduce the intel_gt_resume_early()
+      drm/i915: Clean steer semaphore on resume
+      drm/i915/mtl: Skip MCR ops for ring fault register
+      drm/i915: Create a kernel context for GGTT updates
+      drm/i915: Implement for_each_sgt_daddr_next
+      drm/i915: Parameterize binder context creation
+      drm/i915: Implement GGTT update method with MI_UPDATE_GTT
+      drm/i915: Toggle binder context ready status
+      drm/i915: Enable GGTT updates with binder in MTL
+
+ drivers/gpu/drm/i915/gem/i915_gem_pages.c         |   2 +-
+ drivers/gpu/drm/i915/gem/i915_gem_shrinker.c      |  42 ++--
+ drivers/gpu/drm/i915/gt/intel_engine.h            |   2 +
+ drivers/gpu/drm/i915/gt/intel_engine_cs.c         |  69 +++++--
+ drivers/gpu/drm/i915/gt/intel_engine_types.h      |  13 +-
+ drivers/gpu/drm/i915/gt/intel_engine_user.c       |  17 +-
+ drivers/gpu/drm/i915/gt/intel_ggtt.c              | 235 ++++++++++++++++++++++
+ drivers/gpu/drm/i915/gt/intel_gsc.c               |  11 +-
+ drivers/gpu/drm/i915/gt/intel_gt.c                |  62 +++++-
+ drivers/gpu/drm/i915/gt/intel_gt.h                |   3 +
+ drivers/gpu/drm/i915/gt/intel_gt_mcr.c            |  22 ++
+ drivers/gpu/drm/i915/gt/intel_gt_mcr.h            |   1 +
+ drivers/gpu/drm/i915/gt/intel_gt_pm.c             |  20 ++
+ drivers/gpu/drm/i915/gt/intel_gt_pm.h             |   1 +
+ drivers/gpu/drm/i915/gt/intel_gt_print.h          |   3 +
+ drivers/gpu/drm/i915/gt/intel_gt_regs.h           |   1 +
+ drivers/gpu/drm/i915/gt/intel_gtt.c               |   5 +
+ drivers/gpu/drm/i915/gt/intel_gtt.h               |   5 +
+ drivers/gpu/drm/i915/gt/intel_reset.c             |  26 +--
+ drivers/gpu/drm/i915/gt/intel_workarounds.c       |  13 +-
+ drivers/gpu/drm/i915/gt/uc/intel_gsc_uc.c         |   8 +-
+ drivers/gpu/drm/i915/gt/uc/intel_guc.c            |   6 +
+ drivers/gpu/drm/i915/gt/uc/intel_guc.h            |   1 +
+ drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c         |   2 +-
+ drivers/gpu/drm/i915/gt/uc/intel_guc_fwif.h       |   1 +
+ drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c |  10 +-
+ drivers/gpu/drm/i915/gt/uc/intel_uc_fw.c          |   8 +-
+ drivers/gpu/drm/i915/i915_driver.c                |   9 +-
+ drivers/gpu/drm/i915/i915_drv.h                   |  17 +-
+ drivers/gpu/drm/i915/i915_gem.c                   |   9 +-
+ drivers/gpu/drm/i915/i915_gpu_error.c             |  11 +-
+ drivers/gpu/drm/i915/i915_perf.c                  |   8 +-
+ drivers/gpu/drm/i915/i915_scatterlist.h           |  10 +
+ drivers/gpu/drm/i915/intel_wakeref.c              |  52 ++---
+ 34 files changed, 576 insertions(+), 129 deletions(-)
