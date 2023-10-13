@@ -1,56 +1,50 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 00E8D7C8728
-	for <lists+intel-gfx@lfdr.de>; Fri, 13 Oct 2023 15:48:26 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id AF6F87C874F
+	for <lists+intel-gfx@lfdr.de>; Fri, 13 Oct 2023 16:02:31 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 153DC10E0BF;
-	Fri, 13 Oct 2023 13:48:24 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 62E0B10E056;
+	Fri, 13 Oct 2023 14:02:27 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.120])
- by gabe.freedesktop.org (Postfix) with ESMTPS id F39B610E0BF
- for <intel-gfx@lists.freedesktop.org>; Fri, 13 Oct 2023 13:48:20 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.151])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 981B610E04E
+ for <intel-gfx@lists.freedesktop.org>; Fri, 13 Oct 2023 14:02:23 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1697204900; x=1728740900;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=Tfucnk+pJ3cdXFWo/xqWzZyoD2bwgDZKpPvKgKK99Ig=;
- b=S6UJAsSmr12BYMvGknziXx4VMYAUe8AVWsuLlIqGf1KOXYwfpbXV0ILm
- 89e9obUjBwTNxdtVhl2hiTS1iBwwLudID2pXq8ilWyzsk/2RYfqC6tw71
- 2hLliJk8NwgmDyktNOXQC+oMDxjZ8k8aD4lRS47iW+yQHqy9igBixLq/I
- AKZU4a844UloKQQl+8VMwuq8sosn20nDIuJYS8EzR0+xVUr+rAQFMH176
- KQFZGnP1ZwKnij2u1IIKibDXwJM6jXJfV3B5JrhaahyszTe0hXlBqek5J
- 3SRG8fB9weNu58zGlyTBOS//Djah0cH64u3vM/Yxuv36UYx8C39uM2Kz/ g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10862"; a="384046115"
-X-IronPort-AV: E=Sophos;i="6.03,222,1694761200"; d="scan'208";a="384046115"
-Received: from fmsmga008.fm.intel.com ([10.253.24.58])
- by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Oct 2023 06:48:20 -0700
+ t=1697205743; x=1728741743;
+ h=from:to:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=H8kq3T7Ripd/nSupwBMvcN4HJwyBnlfUtQbUg5fX0ZE=;
+ b=eUUWTwVbHMwDgmWTtQNGXg1OI+6uQkgSs7bwQVARya/fmnER23znaNld
+ ygl9NuPJQnAgBkysBXHycbVS07K70mVcwSZLUCCD7hGmg4WgfkiJyXq5i
+ doKGsG+AYHpEHYCeNdSM5LWOSWksRjtNcigQcDpq7AFRJ7wFfU01QIeAH
+ 7lgcnDKMIhpUSCHpl3y/jEDtvpa+jVnxXQZm04Se4n4PYQ+czpJMS57Vq
+ 759841Z21LIf7qEQs/6v4SzN3zgtIgplMP9EYy5kArYRSqHywa+ylzzAo
+ QuCt4fo1MzciVzYXaqe2G3e4xpAFWNOKuebZPuzahfKPfOX7U/FPdSapL g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10862"; a="365446042"
+X-IronPort-AV: E=Sophos;i="6.03,222,1694761200"; d="scan'208";a="365446042"
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+ by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 Oct 2023 07:02:19 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10862"; a="820633796"
-X-IronPort-AV: E=Sophos;i="6.03,222,1694761200"; d="scan'208";a="820633796"
+X-IronPort-AV: E=McAfee;i="6600,9927,10862"; a="789875351"
+X-IronPort-AV: E=Sophos;i="6.03,222,1694761200"; d="scan'208";a="789875351"
 Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.74])
- by fmsmga008.fm.intel.com with SMTP; 13 Oct 2023 06:48:18 -0700
+ by orsmga001.jf.intel.com with SMTP; 13 Oct 2023 07:02:15 -0700
 Received: by stinkbox (sSMTP sendmail emulation);
- Fri, 13 Oct 2023 16:48:17 +0300
-Date: Fri, 13 Oct 2023 16:48:17 +0300
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: "Shankar, Uma" <uma.shankar@intel.com>
-Message-ID: <ZSlKoSr2WMp8eQM8@intel.com>
-References: <20231009132204.15098-1-ville.syrjala@linux.intel.com>
- <20231009132204.15098-2-ville.syrjala@linux.intel.com>
- <DM4PR11MB63604202F27DECE62EA33E99F4D3A@DM4PR11MB6360.namprd11.prod.outlook.com>
+ Fri, 13 Oct 2023 17:02:14 +0300
+From: Ville Syrjala <ville.syrjala@linux.intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Fri, 13 Oct 2023 17:02:14 +0300
+Message-ID: <20231013140214.1713-1-ville.syrjala@linux.intel.com>
+X-Mailer: git-send-email 2.41.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <DM4PR11MB63604202F27DECE62EA33E99F4D3A@DM4PR11MB6360.namprd11.prod.outlook.com>
-X-Patchwork-Hint: comment
-Subject: Re: [Intel-gfx] [PATCH 2/4] drm/i915/dsb: Correct DSB command
- buffer cache coherency settings
+Subject: [Intel-gfx] [PATCH] drm/i915/bios: Clamp VBT HDMI level shift on BDW
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -63,104 +57,66 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, Oct 12, 2023 at 09:40:23PM +0000, Shankar, Uma wrote:
-> 
-> 
-> > -----Original Message-----
-> > From: Intel-gfx <intel-gfx-bounces@lists.freedesktop.org> On Behalf Of Ville
-> > Syrjala
-> > Sent: Monday, October 9, 2023 6:52 PM
-> > To: intel-gfx@lists.freedesktop.org
-> > Subject: [Intel-gfx] [PATCH 2/4] drm/i915/dsb: Correct DSB command buffer
-> > cache coherency settings
-> > 
-> > From: Ville Syrj‰l‰ <ville.syrjala@linux.intel.com>
-> > 
-> > The display engine does not snoop the caches so shoukd to mark the DSB
-> 
-> Nit: Typo here
-> 
-> I am not sure on the cache behaviour so someone from core can also ack.
-> To me , looks logically correct.
-> Reviewed-by: Uma Shankar <uma.shankar@intel.com>
+From: Ville Syrj√§l√§ <ville.syrjala@linux.intel.com>
 
-Thanks. This series is now merged. Fingers crossed DSB will behave
-nicely...
+Apparently some BDW machines (eg. HP Pavilion 15-ab) shipped with
+a VBT inherited from some earlier HSW model. On HSW the HDMI level
+shift value could go up to 11, whereas on BDW the maximum value is
+9.
 
-> 
-> > command buffer as I915_CACHE_NONE.
-> > i915_gem_object_create_internal() always gives us I915_CACHE_LLC on LLC
-> > platforms. And to make things 100% correct we should also clflush at the end, if
-> > necessary.
-> > 
-> > Note that currently this is a non-issue as we always write the command buffer
-> > through a WC mapping, so a cache flush is not actually needed. But we might
-> > actually want to consider a WB mapping since we also end up reading from the
-> > command buffer (in the indexed reg write handling). Either that or we should do
-> > something else to avoid those reads (might actually be even more sensible on
-> > DGFX since we end up reading over PCIe). But we should measure the overhead
-> > first...
-> > 
-> > Anyways, no real harm in adding the belts and suspenders here so that the code
-> > will work correctly regardless of how we map the buffer. If we do get a WC
-> > mapping (as we request)
-> > i915_gem_object_flush_map() will be a nop. Well, apart form a wmb() which may
-> > just flush the WC buffer a bit earlier than would otherwise happen (at the latest
-> > the mmio accesses would trigger the WC flush).
-> > 
-> > Signed-off-by: Ville Syrj‰l‰ <ville.syrjala@linux.intel.com>
-> > ---
-> >  drivers/gpu/drm/i915/display/intel_dsb.c | 15 +++++++++++----
-> >  1 file changed, 11 insertions(+), 4 deletions(-)
-> > 
-> > diff --git a/drivers/gpu/drm/i915/display/intel_dsb.c
-> > b/drivers/gpu/drm/i915/display/intel_dsb.c
-> > index 7410ba3126f9..78b6fe24dcd8 100644
-> > --- a/drivers/gpu/drm/i915/display/intel_dsb.c
-> > +++ b/drivers/gpu/drm/i915/display/intel_dsb.c
-> > @@ -316,6 +316,8 @@ void intel_dsb_finish(struct intel_dsb *dsb)
-> >  				   DSB_FORCE_DEWAKE, 0);
-> > 
-> >  	intel_dsb_align_tail(dsb);
-> > +
-> > +	i915_gem_object_flush_map(dsb->vma->obj);
-> >  }
-> > 
-> >  static int intel_dsb_dewake_scanline(const struct intel_crtc_state *crtc_state)
-> > @@ -462,13 +464,18 @@ struct intel_dsb *intel_dsb_prepare(const struct
-> > intel_crtc_state *crtc_state,
-> >  	/* ~1 qword per instruction, full cachelines */
-> >  	size = ALIGN(max_cmds * 8, CACHELINE_BYTES);
-> > 
-> > -	if (HAS_LMEM(i915))
-> > +	if (HAS_LMEM(i915)) {
-> >  		obj = i915_gem_object_create_lmem(i915, PAGE_ALIGN(size),
-> > 
-> > I915_BO_ALLOC_CONTIGUOUS);
-> > -	else
-> > +		if (IS_ERR(obj))
-> > +			goto out_put_rpm;
-> > +	} else {
-> >  		obj = i915_gem_object_create_internal(i915, PAGE_ALIGN(size));
-> > -	if (IS_ERR(obj))
-> > -		goto out_put_rpm;
-> > +		if (IS_ERR(obj))
-> > +			goto out_put_rpm;
-> > +
-> > +		i915_gem_object_set_cache_coherency(obj,
-> > I915_CACHE_NONE);
-> > +	}
-> > 
-> >  	vma = i915_gem_object_ggtt_pin(obj, NULL, 0, 0, 0);
-> >  	if (IS_ERR(vma)) {
-> > --
-> > 2.41.0
-> 
+The DDI code does clamp the bogus value, but it does so with
+a WARN which we don't really want. To avoid that let's just sanitize
+the bogus VBT HDMI level shift value ahead of time for all BDW machines.
 
+Closes: https://gitlab.freedesktop.org/drm/intel/-/issues/9461
+Signed-off-by: Ville Syrj√§l√§ <ville.syrjala@linux.intel.com>
+---
+ drivers/gpu/drm/i915/display/intel_bios.c | 22 ++++++++++++++++++++++
+ 1 file changed, 22 insertions(+)
+
+diff --git a/drivers/gpu/drm/i915/display/intel_bios.c b/drivers/gpu/drm/i915/display/intel_bios.c
+index 4e8f1e91bb08..8f83f0ead27f 100644
+--- a/drivers/gpu/drm/i915/display/intel_bios.c
++++ b/drivers/gpu/drm/i915/display/intel_bios.c
+@@ -2473,6 +2473,27 @@ static void sanitize_device_type(struct intel_bios_encoder_data *devdata,
+ 	devdata->child.device_type |= DEVICE_TYPE_NOT_HDMI_OUTPUT;
+ }
+ 
++static void sanitize_hdmi_level_shift(struct intel_bios_encoder_data *devdata,
++				      enum port port)
++{
++	struct drm_i915_private *i915 = devdata->i915;
++
++	if (!intel_bios_encoder_supports_dvi(devdata))
++		return;
++
++	/*
++	 * Some BDW machines (eg. HP Pavilion 15-ab) shipped
++	 * with a HSW VBT where the level shifter value goes
++	 * up to 11, whereas the BDW max is 9.
++	 */
++	if (IS_BROADWELL(i915) && devdata->child.hdmi_level_shifter_value > 9) {
++		drm_dbg_kms(&i915->drm, "Bogus port %c VBT HDMI level shift %d, adjusting to %d\n",
++			    port_name(port), devdata->child.hdmi_level_shifter_value, 9);
++
++		devdata->child.hdmi_level_shifter_value = 9;
++	}
++}
++
+ static bool
+ intel_bios_encoder_supports_crt(const struct intel_bios_encoder_data *devdata)
+ {
+@@ -2652,6 +2673,7 @@ static void parse_ddi_port(struct intel_bios_encoder_data *devdata)
+ 	}
+ 
+ 	sanitize_device_type(devdata, port);
++	sanitize_hdmi_level_shift(devdata, port);
+ }
+ 
+ static bool has_ddi_port_info(struct drm_i915_private *i915)
 -- 
-Ville Syrj‰l‰
-Intel
+2.41.0
+
