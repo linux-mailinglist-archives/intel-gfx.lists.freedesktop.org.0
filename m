@@ -1,34 +1,52 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id DD54B7C8274
-	for <lists+intel-gfx@lfdr.de>; Fri, 13 Oct 2023 11:49:34 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 092DC7C8289
+	for <lists+intel-gfx@lfdr.de>; Fri, 13 Oct 2023 11:54:25 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8834E10E04C;
-	Fri, 13 Oct 2023 09:49:31 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C94B710E04C;
+	Fri, 13 Oct 2023 09:54:22 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 82A3C10E09B;
- Fri, 13 Oct 2023 09:49:28 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 7C9CFAADF1;
- Fri, 13 Oct 2023 09:49:28 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============6162362108886737470=="
+Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.136])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id AB93A10E04C
+ for <intel-gfx@lists.freedesktop.org>; Fri, 13 Oct 2023 09:54:21 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1697190861; x=1728726861;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:in-reply-to;
+ bh=DeX1fbkCnnEubewZaZ6UtbUF7/xdSpd/CNNSwIoeHTs=;
+ b=PHZX9Qr5IMtSbQ4dmlNoTqZWTxxt9xzU5s/5D/lsi97dl/bLb4/Jz/bd
+ bev24ClLRQ2vC1yfM0qep1JSOWQ49LIINEE6R792K3KTBRHSckGnWQHxc
+ AnGLAlerP9zmVmUwKnQidXXtUvb/Fno3RpM4MNUBzW8Eg3BokuZ+XAdxi
+ nAknECuUUufzkgVXjJbw78H/OAOGDS4R6kGXag0fgQdEI/Vdv0xKnnhDC
+ r59Bby1184bDSsUd16VPMGssSzuryW67m4mYQoR+JPHVBQ2sqOE0pdDb/
+ 7yiR/t020GLV118fke34+Fpz56v+VPGF1nBxG8YTg8J6KkQTFmnMjDljC Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10861"; a="364510369"
+X-IronPort-AV: E=Sophos;i="6.03,221,1694761200"; d="scan'208";a="364510369"
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 Oct 2023 02:54:21 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10861"; a="784094852"
+X-IronPort-AV: E=Sophos;i="6.03,221,1694761200"; d="scan'208";a="784094852"
+Received: from unknown (HELO intel.com) ([10.237.72.65])
+ by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 Oct 2023 02:54:19 -0700
+Date: Fri, 13 Oct 2023 12:54:10 +0300
+From: "Lisovskiy, Stanislav" <stanislav.lisovskiy@intel.com>
+To: Jani Nikula <jani.nikula@intel.com>
+Message-ID: <ZSkTwnA75GlDFG6x@intel.com>
+References: <20231012123411.17241-1-stanislav.lisovskiy@intel.com>
+ <877cnr28ft.fsf@intel.com>
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Jani Nikula" <jani.nikula@intel.com>
-Date: Fri, 13 Oct 2023 09:49:28 -0000
-Message-ID: <169719056847.31157.5801550762749295279@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20231011142704.985867-1-jani.nikula@intel.com>
-In-Reply-To: <20231011142704.985867-1-jani.nikula@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
- =?utf-8?q?/i915=3A_drop_gt/intel=5Fgt=2Eh_include_from_skl=5Funiversal=5F?=
- =?utf-8?q?plane=2Ec_=28rev3=29?=
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <877cnr28ft.fsf@intel.com>
+Subject: Re: [Intel-gfx] [PATCH] drm/i915: Add bigjoiner force enable option
+ to debugfs
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -41,231 +59,187 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
 Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============6162362108886737470==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+On Thu, Oct 12, 2023 at 05:59:18PM +0300, Jani Nikula wrote:
+> On Thu, 12 Oct 2023, Stanislav Lisovskiy <stanislav.lisovskiy@intel.com> wrote:
+> > For validation purposes, it might be useful to be able to
+> > force Bigjoiner mode, even if current dotclock/resolution
+> > do not require that.
+> > Lets add such to option to debugfs.
+> >
+> > v2: - Apparently intel_dp_need_bigjoiner can't be used, when
+> >       debugfs entry is created so lets just check manually
+> >       the DISPLAY_VER.
+> >
+> > v3: - Switch to intel_connector from drm_connector(Jani Nikula)
+> >     - Remove redundant modeset lock(Jani Nikula)
+> >     - Use kstrtobool_from_user for boolean value(Jani Nikula)
+> >
+> > Signed-off-by: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
+> > ---
+> >  .../drm/i915/display/intel_display_debugfs.c  | 72 ++++++++++++++++++-
+> >  .../drm/i915/display/intel_display_types.h    |  2 +
+> >  drivers/gpu/drm/i915/display/intel_dp.c       |  6 +-
+> >  3 files changed, 76 insertions(+), 4 deletions(-)
+> >
+> > diff --git a/drivers/gpu/drm/i915/display/intel_display_debugfs.c b/drivers/gpu/drm/i915/display/intel_display_debugfs.c
+> > index fbe75d47a165..dea7bbea83ba 100644
+> > --- a/drivers/gpu/drm/i915/display/intel_display_debugfs.c
+> > +++ b/drivers/gpu/drm/i915/display/intel_display_debugfs.c
+> > @@ -1398,13 +1398,37 @@ out:	drm_modeset_unlock(&dev->mode_config.connection_mutex);
+> >  	return ret;
+> >  }
+> >  
+> > +static int i915_bigjoiner_enable_show(struct seq_file *m, void *data)
+> > +{
+> > +	struct intel_connector *connector = to_intel_connector(m->private);
+> > +	struct drm_crtc *crtc;
+> > +	struct intel_encoder *encoder = intel_attached_encoder(connector);
+> > +	struct intel_dp *intel_dp = enc_to_intel_dp(encoder);
+> > +	int ret;
+> > +
+> > +	if (!encoder)
+> > +		return -ENODEV;
+> > +
+> > +	crtc = connector->base.state->crtc;
+> > +	if (connector->base.status != connector_status_connected || !crtc) {
+> > +		ret = -ENODEV;
+> > +		goto out;
+> > +	}
+> > +
+> > +	seq_printf(m, "Bigjoiner enable: %d\n", intel_dp->force_bigjoiner_enable);
+> > +
+> > +out:
+> > +
+> > +	return ret;
+> > +}
+> > +
+> >  static ssize_t i915_dsc_output_format_write(struct file *file,
+> >  					    const char __user *ubuf,
+> >  					    size_t len, loff_t *offp)
+> >  {
+> > -	struct drm_connector *connector =
+> > -		((struct seq_file *)file->private_data)->private;
+> > -	struct intel_encoder *encoder = intel_attached_encoder(to_intel_connector(connector));
+> > +	struct seq_file *m = file->private_data;
+> > +        struct intel_connector *connector = m->private;
+> > +	struct intel_encoder *encoder = intel_attached_encoder(connector);
+> 
+> Ooops, I think you made those changes to the wrong function there. ;)
 
-== Series Details ==
+Ouch, they looked exactly identical! I would say this could have been changed too,
+but not in that patch indeed :)))
+Thanks for spotting..probably really time to think about starting using glasses.
 
-Series: drm/i915: drop gt/intel_gt.h include from skl_universal_plane.c (rev3)
-URL   : https://patchwork.freedesktop.org/series/124980/
-State : success
-
-== Summary ==
-
-CI Bug Log - changes from CI_DRM_13751 -> Patchwork_124980v3
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_124980v3/index.html
-
-Participating hosts (37 -> 36)
-------------------------------
-
-  Additional (1): fi-bsw-n3050 
-  Missing    (2): bat-dg2-9 fi-snb-2520m 
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_124980v3 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@gem_lmem_swapping@random-engines:
-    - fi-bsw-n3050:       NOTRUN -> [SKIP][1] ([fdo#109271]) +18 other tests skip
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_124980v3/fi-bsw-n3050/igt@gem_lmem_swapping@random-engines.html
-
-  * igt@i915_selftest@live@gt_heartbeat:
-    - fi-apl-guc:         [PASS][2] -> [DMESG-FAIL][3] ([i915#5334])
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13751/fi-apl-guc/igt@i915_selftest@live@gt_heartbeat.html
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_124980v3/fi-apl-guc/igt@i915_selftest@live@gt_heartbeat.html
-
-  * igt@i915_suspend@basic-s3-without-i915:
-    - bat-mtlp-8:         NOTRUN -> [SKIP][4] ([i915#6645])
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_124980v3/bat-mtlp-8/igt@i915_suspend@basic-s3-without-i915.html
-
-  * igt@kms_hdmi_inject@inject-audio:
-    - fi-bsw-n3050:       NOTRUN -> [FAIL][5] ([IGT#3])
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_124980v3/fi-bsw-n3050/igt@kms_hdmi_inject@inject-audio.html
-
-  
-#### Possible fixes ####
-
-  * igt@gem_exec_suspend@basic-s0@smem:
-    - bat-jsl-3:          [INCOMPLETE][6] ([i915#9275]) -> [PASS][7]
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13751/bat-jsl-3/igt@gem_exec_suspend@basic-s0@smem.html
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_124980v3/bat-jsl-3/igt@gem_exec_suspend@basic-s0@smem.html
-
-  * igt@i915_selftest@live@gt_heartbeat:
-    - fi-glk-j4005:       [DMESG-FAIL][8] ([i915#5334]) -> [PASS][9]
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13751/fi-glk-j4005/igt@i915_selftest@live@gt_heartbeat.html
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_124980v3/fi-glk-j4005/igt@i915_selftest@live@gt_heartbeat.html
-
-  * igt@i915_selftest@live@requests:
-    - bat-mtlp-8:         [ABORT][10] ([i915#9414]) -> [PASS][11]
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13751/bat-mtlp-8/igt@i915_selftest@live@requests.html
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_124980v3/bat-mtlp-8/igt@i915_selftest@live@requests.html
-
-  * igt@i915_suspend@basic-s3-without-i915:
-    - bat-jsl-3:          [FAIL][12] ([fdo#103375]) -> [PASS][13]
-   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13751/bat-jsl-3/igt@i915_suspend@basic-s3-without-i915.html
-   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_124980v3/bat-jsl-3/igt@i915_suspend@basic-s3-without-i915.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [IGT#3]: https://gitlab.freedesktop.org/drm/igt-gpu-tools/issues/3
-  [fdo#103375]: https://bugs.freedesktop.org/show_bug.cgi?id=103375
-  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
-  [i915#5334]: https://gitlab.freedesktop.org/drm/intel/issues/5334
-  [i915#6645]: https://gitlab.freedesktop.org/drm/intel/issues/6645
-  [i915#9275]: https://gitlab.freedesktop.org/drm/intel/issues/9275
-  [i915#9414]: https://gitlab.freedesktop.org/drm/intel/issues/9414
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_13751 -> Patchwork_124980v3
-
-  CI-20190529: 20190529
-  CI_DRM_13751: 3bfa85ac32f1466e2faedcaea45693922386315f @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_7533: 7533
-  Patchwork_124980v3: 3bfa85ac32f1466e2faedcaea45693922386315f @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-### Linux commits
-
-915802df7b43 drm/i915: drop gt/intel_gt.h include from skl_universal_plane.c
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_124980v3/index.html
-
---===============6162362108886737470==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915: drop gt/intel_gt.h include from skl_universal_plane.c (rev3)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/124980/">https://patchwork.freedesktop.org/series/124980/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_124980v3/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_124980v3/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_13751 -&gt; Patchwork_124980v3</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_124980v3/index.html</p>
-<h2>Participating hosts (37 -&gt; 36)</h2>
-<p>Additional (1): fi-bsw-n3050 <br />
-  Missing    (2): bat-dg2-9 fi-snb-2520m </p>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_124980v3 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@gem_lmem_swapping@random-engines:</p>
-<ul>
-<li>fi-bsw-n3050:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_124980v3/fi-bsw-n3050/igt@gem_lmem_swapping@random-engines.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +18 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@gt_heartbeat:</p>
-<ul>
-<li>fi-apl-guc:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13751/fi-apl-guc/igt@i915_selftest@live@gt_heartbeat.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_124980v3/fi-apl-guc/igt@i915_selftest@live@gt_heartbeat.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/5334">i915#5334</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_suspend@basic-s3-without-i915:</p>
-<ul>
-<li>bat-mtlp-8:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_124980v3/bat-mtlp-8/igt@i915_suspend@basic-s3-without-i915.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/6645">i915#6645</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_hdmi_inject@inject-audio:</p>
-<ul>
-<li>fi-bsw-n3050:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_124980v3/fi-bsw-n3050/igt@kms_hdmi_inject@inject-audio.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/igt-gpu-tools/issues/3">IGT#3</a>)</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>
-<p>igt@gem_exec_suspend@basic-s0@smem:</p>
-<ul>
-<li>bat-jsl-3:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13751/bat-jsl-3/igt@gem_exec_suspend@basic-s0@smem.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/9275">i915#9275</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_124980v3/bat-jsl-3/igt@gem_exec_suspend@basic-s0@smem.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@gt_heartbeat:</p>
-<ul>
-<li>fi-glk-j4005:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13751/fi-glk-j4005/igt@i915_selftest@live@gt_heartbeat.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/5334">i915#5334</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_124980v3/fi-glk-j4005/igt@i915_selftest@live@gt_heartbeat.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@requests:</p>
-<ul>
-<li>bat-mtlp-8:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13751/bat-mtlp-8/igt@i915_selftest@live@requests.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/9414">i915#9414</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_124980v3/bat-mtlp-8/igt@i915_selftest@live@requests.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@i915_suspend@basic-s3-without-i915:</p>
-<ul>
-<li>bat-jsl-3:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13751/bat-jsl-3/igt@i915_suspend@basic-s3-without-i915.html">FAIL</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=103375">fdo#103375</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_124980v3/bat-jsl-3/igt@i915_suspend@basic-s3-without-i915.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<p>{name}: This element is suppressed. This means it is ignored when computing<br />
-          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_13751 -&gt; Patchwork_124980v3</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_13751: 3bfa85ac32f1466e2faedcaea45693922386315f @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_7533: 7533<br />
-  Patchwork_124980v3: 3bfa85ac32f1466e2faedcaea45693922386315f @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<h3>Linux commits</h3>
-<p>915802df7b43 drm/i915: drop gt/intel_gt.h include from skl_universal_plane.c</p>
-
-</body>
-</html>
-
---===============6162362108886737470==--
+> 
+> >  	struct intel_dp *intel_dp = enc_to_intel_dp(encoder);
+> >  	int dsc_output_format = 0;
+> >  	int ret;
+> > @@ -1419,12 +1443,39 @@ static ssize_t i915_dsc_output_format_write(struct file *file,
+> >  	return len;
+> >  }
+> >  
+> > +static ssize_t i915_bigjoiner_enable_fops_write(struct file *file,
+> > +						const char __user *ubuf,
+> > +						size_t len, loff_t *offp)
+> > +{
+> > +	struct drm_connector *connector =
+> > +		((struct seq_file *)file->private_data)->private;
+> > +	struct intel_encoder *encoder = intel_attached_encoder(to_intel_connector(connector));
+> 
+> Should be here.
+> 
+> > +	struct intel_dp *intel_dp = enc_to_intel_dp(encoder);
+> > +	bool bigjoiner_en = 0;
+> > +	int ret;
+> > +
+> > +	ret = kstrtobool_from_user(ubuf, len, &bigjoiner_en);
+> > +	if (ret < 0)
+> > +		return ret;
+> > +
+> > +	intel_dp->force_bigjoiner_enable = bigjoiner_en;
+> > +	*offp += len;
+> > +
+> > +	return len;
+> > +}
+> > +
+> >  static int i915_dsc_output_format_open(struct inode *inode,
+> >  				       struct file *file)
+> >  {
+> >  	return single_open(file, i915_dsc_output_format_show, inode->i_private);
+> >  }
+> >  
+> > +static int i915_bigjoiner_enable_open(struct inode *inode,
+> > +				      struct file *file)
+> > +{
+> > +	return single_open(file, i915_bigjoiner_enable_show, inode->i_private);
+> > +}
+> > +
+> >  static const struct file_operations i915_dsc_output_format_fops = {
+> >  	.owner = THIS_MODULE,
+> >  	.open = i915_dsc_output_format_open,
+> > @@ -1434,6 +1485,15 @@ static const struct file_operations i915_dsc_output_format_fops = {
+> >  	.write = i915_dsc_output_format_write
+> >  };
+> >  
+> > +static const struct file_operations i915_bigjoiner_enable_fops = {
+> > +	.owner = THIS_MODULE,
+> > +	.open = i915_bigjoiner_enable_open,
+> > +	.read = seq_read,
+> > +	.llseek = seq_lseek,
+> > +	.release = single_release,
+> > +	.write = i915_bigjoiner_enable_fops_write
+> > +};
+> > +
+> >  /*
+> >   * Returns the Current CRTC's bpc.
+> >   * Example usage: cat /sys/kernel/debug/dri/0/crtc-0/i915_current_bpc
+> > @@ -1513,6 +1573,12 @@ void intel_connector_debugfs_add(struct intel_connector *intel_connector)
+> >  				    connector, &i915_dsc_output_format_fops);
+> >  	}
+> >  
+> > +	if (DISPLAY_VER(dev_priv) >= 11 &&
+> > +	    intel_connector->base.connector_type == DRM_MODE_CONNECTOR_DisplayPort) {
+> > +		debugfs_create_file("i915_bigjoiner_force_enable", 0644, root,
+> > +				    &intel_connector->base, &i915_bigjoiner_enable_fops);
+> > +	}
+> > +
+> >  	if (connector->connector_type == DRM_MODE_CONNECTOR_DSI ||
+> >  	    connector->connector_type == DRM_MODE_CONNECTOR_eDP ||
+> >  	    connector->connector_type == DRM_MODE_CONNECTOR_DisplayPort ||
+> > diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/drivers/gpu/drm/i915/display/intel_display_types.h
+> > index 8d8b2f8d37a9..e0de6eeaf59e 100644
+> > --- a/drivers/gpu/drm/i915/display/intel_display_types.h
+> > +++ b/drivers/gpu/drm/i915/display/intel_display_types.h
+> > @@ -1753,6 +1753,8 @@ struct intel_dp {
+> >  	bool is_mst;
+> >  	int active_mst_links;
+> >  
+> > +	bool force_bigjoiner_enable;
+> > +
+> >  	/* connector directly attached - won't be use for modeset in mst world */
+> >  	struct intel_connector *attached_connector;
+> >  
+> > diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
+> > index 0ef7cb8134b6..daf9bc0d6838 100644
+> > --- a/drivers/gpu/drm/i915/display/intel_dp.c
+> > +++ b/drivers/gpu/drm/i915/display/intel_dp.c
+> > @@ -1153,7 +1153,11 @@ bool intel_dp_need_bigjoiner(struct intel_dp *intel_dp,
+> >  	if (!intel_dp_can_bigjoiner(intel_dp))
+> >  		return false;
+> >  
+> > -	return clock > i915->max_dotclk_freq || hdisplay > 5120;
+> > +	if (intel_dp->force_bigjoiner_enable)
+> > +		drm_dbg_kms(&i915->drm, "Forcing bigjoiner mode\n");
+> > +
+> > +	return clock > i915->max_dotclk_freq || hdisplay > 5120 ||
+> > +	       intel_dp->force_bigjoiner_enable;
+> >  }
+> >  
+> >  static enum drm_mode_status
+> 
+> -- 
+> Jani Nikula, Intel
