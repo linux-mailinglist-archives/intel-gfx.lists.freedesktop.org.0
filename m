@@ -2,47 +2,33 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 05EC87C7CA7
-	for <lists+intel-gfx@lfdr.de>; Fri, 13 Oct 2023 06:26:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id C8C227C7D0D
+	for <lists+intel-gfx@lfdr.de>; Fri, 13 Oct 2023 07:33:14 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3E4BE10E59D;
-	Fri, 13 Oct 2023 04:26:49 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4903C10E59F;
+	Fri, 13 Oct 2023 05:33:12 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.100])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E7F0A10E59B;
- Fri, 13 Oct 2023 04:26:46 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1697171207; x=1728707207;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=3FEVI6/RwTmA0PZmO3vDhdB+Gm6v7FVAOnPxR9Kq5EM=;
- b=lfobADFUxQXW/NhxWzyj/7wVzqqoiZ97t5gg+OwKkBRWg4DSI/jn/UnE
- /5rBm/k9Py4imOn01V7iHg4IQ1fSVtxpirXI9Nol40piFO5VNl5bcssuA
- 6RdvTulZPg8DQ0v6EeC0JNx6OKx0FIgvxMe86H0vQVaLf5oQ1fGO02Y80
- GhY+kf15GTuCtCMU8ZryKtdjQzeF63JO+cAReyd3+WRZgbcCr8adrO3vb
- yn3CxMDfAr45sGPJMysjINJPIYSD8MXw/tjwQzi2aZiMntGNbkRNm6V45
- s0Sg7if5FBR+8ZiyQy3VLRDt/q21UnW/FnHigADz6ihNOEZXDJPDH5r9T A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10861"; a="451581548"
-X-IronPort-AV: E=Sophos;i="6.03,221,1694761200"; d="scan'208";a="451581548"
-Received: from orsmga003.jf.intel.com ([10.7.209.27])
- by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Oct 2023 21:26:45 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10861"; a="704469255"
-X-IronPort-AV: E=Sophos;i="6.03,221,1694761200"; d="scan'208";a="704469255"
-Received: from shawnle1-i9-build-machine.itwn.intel.com ([10.5.252.80])
- by orsmga003.jf.intel.com with ESMTP; 12 Oct 2023 21:26:43 -0700
-From: Lee Shawn C <shawn.c.lee@intel.com>
-To: intel-gfx@lists.freedesktop.org,
-	igt-dev@lists.freedesktop.org
-Date: Fri, 13 Oct 2023 12:20:12 +0800
-Message-Id: <20231013042012.409376-1-shawn.c.lee@intel.com>
-X-Mailer: git-send-email 2.34.1
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 43AC810E59D;
+ Fri, 13 Oct 2023 05:33:10 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 3CCE1AADF1;
+ Fri, 13 Oct 2023 05:33:10 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH] tests: save GPU engine information more properly
+Content-Transfer-Encoding: 7bit
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Imre Deak" <imre.deak@intel.com>
+Date: Fri, 13 Oct 2023 05:33:10 -0000
+Message-ID: <169717519021.31159.7711354908005317221@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20231006133727.1822579-1-imre.deak@intel.com>
+In-Reply-To: <20231006133727.1822579-1-imre.deak@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_drm/i915=3A_Store_DSC_DPCD_capabilities_in_the_connector_?=
+ =?utf-8?b?KHJldjkp?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -55,154 +41,43 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-We encounter a unexpected error on chrome book device while
-running kms_busy test. It will restore GPU engine's timeout
-value but open incorrect file name (XR24 in below).
+== Series Details ==
 
-openat(AT_FDCWD, "/sys/dev/char/226:0", O_RDONLY) = 12
-openat(12, "dev", O_RDONLY)             = 13
-read(13, "226:0\n", 1023)               = 6
-close(13)                               = 0
-openat(12, "engine", O_RDONLY)          = 13
-close(12)                               = 0
-openat(13, "XR24", O_RDONLY)            = -1 ENOENT (No such file or directory)
+Series: drm/i915: Store DSC DPCD capabilities in the connector (rev9)
+URL   : https://patchwork.freedesktop.org/series/124723/
+State : warning
 
-Test code did not save engine data properly to cause this problem.
-So modify the code to save GPU engine information into a globla variable
-to avoid test deamon to open incorrect file again.
+== Summary ==
 
-Issue: https://gitlab.freedesktop.org/drm/igt-gpu-tools/-/issues/147
-Fixes: 9e635a1c5029 ("tests/kms_busy: Ensure GPU reset when waiting
-for a new FB during modeset")
-Cc: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-Cc: Imre Deak <imre.deak@intel.com>
-Cc: Vidya Srinivas <vidya.srinivas@intel.com>
-Signed-off-by: Lee Shawn C <shawn.c.lee@intel.com>
----
- lib/i915/gem_engine_topology.c | 12 ++++++------
- lib/i915/gem_engine_topology.h |  2 +-
- tests/intel/gem_exec_capture.c |  2 +-
- tests/intel/gem_reset_stats.c  |  2 +-
- tests/intel/i915_hangman.c     |  2 +-
- tests/intel/kms_busy.c         |  2 +-
- 6 files changed, 11 insertions(+), 11 deletions(-)
+Error: dim checkpatch failed
+6f400555c8b5 drm/i915/dp: Sanitize DPCD revision check in intel_dp_get_dsc_sink_cap()
+1aba1e3f919a drm/i915/dp: Store DSC DPCD capabilities in the connector
+95603fc6f5f1 drm/i915/dp_mst: Set connector DSC capabilities and decompression AUX
+829c4940f898 drm/i915/dp: Use i915/intel connector local variables in i915_dsc_fec_support_show()
+8f41f58a5711 drm/i915/dp: Use connector DSC DPCD in i915_dsc_fec_support_show()
+-:40: WARNING:LONG_LINE: line length of 103 exceeds 100 columns
+#40: FILE: drivers/gpu/drm/i915/display/intel_display_debugfs.c:1249:
++				   str_yes_no(drm_dp_sink_supports_fec(connector->dp.fec_capability)));
 
-diff --git a/lib/i915/gem_engine_topology.c b/lib/i915/gem_engine_topology.c
-index 7c6cd9ba97db..afb576afb2dc 100644
---- a/lib/i915/gem_engine_topology.c
-+++ b/lib/i915/gem_engine_topology.c
-@@ -571,23 +571,23 @@ void gem_engine_properties_configure(int fd, struct gem_engine_properties *param
- 	int ret;
- 	struct gem_engine_properties write = *params;
- 
--	ret = gem_engine_property_scanf(fd, write.engine->name,
-+	ret = gem_engine_property_scanf(fd, write.engine.name,
- 					"heartbeat_interval_ms",
- 					"%d", &params->heartbeat_interval);
- 	igt_assert_eq(ret, 1);
- 
--	ret = gem_engine_property_printf(fd, write.engine->name,
-+	ret = gem_engine_property_printf(fd, write.engine.name,
- 					 "heartbeat_interval_ms", "%d",
- 					 write.heartbeat_interval);
- 	igt_assert_lt(0, ret);
- 
- 	if (gem_scheduler_has_preemption(fd)) {
--		ret = gem_engine_property_scanf(fd, write.engine->name,
-+		ret = gem_engine_property_scanf(fd, write.engine.name,
- 						"preempt_timeout_ms",
- 						"%d", &params->preempt_timeout);
- 		igt_assert_eq(ret, 1);
- 
--		ret = gem_engine_property_printf(fd, write.engine->name,
-+		ret = gem_engine_property_printf(fd, write.engine.name,
- 						 "preempt_timeout_ms", "%d",
- 						 write.preempt_timeout);
- 		igt_assert_lt(0, ret);
-@@ -598,13 +598,13 @@ void gem_engine_properties_restore(int fd, const struct gem_engine_properties *s
- {
- 	int ret;
- 
--	ret = gem_engine_property_printf(fd, saved->engine->name,
-+	ret = gem_engine_property_printf(fd, saved->engine.name,
- 					 "heartbeat_interval_ms", "%d",
- 					 saved->heartbeat_interval);
- 	igt_assert_lt(0, ret);
- 
- 	if (gem_scheduler_has_preemption(fd)) {
--		ret = gem_engine_property_printf(fd, saved->engine->name,
-+		ret = gem_engine_property_printf(fd, saved->engine.name,
- 						 "preempt_timeout_ms", "%d",
- 						 saved->preempt_timeout);
- 		igt_assert_lt(0, ret);
-diff --git a/lib/i915/gem_engine_topology.h b/lib/i915/gem_engine_topology.h
-index 89642c31721c..9eb9d5ddc888 100644
---- a/lib/i915/gem_engine_topology.h
-+++ b/lib/i915/gem_engine_topology.h
-@@ -122,7 +122,7 @@ struct intel_execution_engine2 gem_eb_flags_to_engine(unsigned int flags);
- 	     intel_next_engine(&i__##e__))
- 
- struct gem_engine_properties {
--	const struct intel_execution_engine2 *engine;
-+	struct intel_execution_engine2 engine;
- 	int preempt_timeout;
- 	int heartbeat_interval;
- };
-diff --git a/tests/intel/gem_exec_capture.c b/tests/intel/gem_exec_capture.c
-index ab8305e4dfaf..d231c53b98e1 100644
---- a/tests/intel/gem_exec_capture.c
-+++ b/tests/intel/gem_exec_capture.c
-@@ -258,7 +258,7 @@ configure_hangs(int fd, const struct intel_execution_engine2 *e, int ctxt_id)
- 	struct gem_engine_properties props;
- 
- 	/* Ensure fast hang detection */
--	props.engine = e;
-+	props.engine = *e;
- 	props.preempt_timeout = 250;
- 	props.heartbeat_interval = 500;
- 	gem_engine_properties_configure(fd, &props);
-diff --git a/tests/intel/gem_reset_stats.c b/tests/intel/gem_reset_stats.c
-index 6939722c7001..5dfc1fc677ec 100644
---- a/tests/intel/gem_reset_stats.c
-+++ b/tests/intel/gem_reset_stats.c
-@@ -1004,7 +1004,7 @@ static void test_shared_reset_domain(const intel_ctx_cfg_t *base_cfg,
- 
- 	sync_gpu();
- 
--	params.engine = e;
-+	params.engine = *e;
- 	params.preempt_timeout = 1;
- 	params.heartbeat_interval = 250;
- 	gem_engine_properties_configure(device, &params);
-diff --git a/tests/intel/i915_hangman.c b/tests/intel/i915_hangman.c
-index dcd34cd0ebfe..8a7de562609c 100644
---- a/tests/intel/i915_hangman.c
-+++ b/tests/intel/i915_hangman.c
-@@ -600,7 +600,7 @@ igt_main
- 		gem_require_mmap_device_coherent(device);
- 
- 		for_each_physical_engine(device, e) {
--			saved_params[num_engines].engine = e;
-+			saved_params[num_engines].engine = *e;
- 			saved_params[num_engines].preempt_timeout = 500;
- 			saved_params[num_engines].heartbeat_interval = 1000;
- 			gem_engine_properties_configure(device, saved_params + num_engines++);
-diff --git a/tests/intel/kms_busy.c b/tests/intel/kms_busy.c
-index 5b620658fb18..50616513c5ba 100644
---- a/tests/intel/kms_busy.c
-+++ b/tests/intel/kms_busy.c
-@@ -404,7 +404,7 @@ static void gpu_engines_init_timeouts(int fd, int max_engines,
- 	for_each_physical_engine(fd, e) {
- 		igt_assert(*num_engines < max_engines);
- 
--		props[*num_engines].engine = e;
-+		props[*num_engines].engine = *e;
- 		props[*num_engines].preempt_timeout = 0;
- 		props[*num_engines].heartbeat_interval = 250;
- 
--- 
-2.34.1
+total: 0 errors, 1 warnings, 0 checks, 24 lines checked
+2fe014f38422 drm/i915/dp: Use connector DSC DPCD in intel_dp_dsc_compute_max_bpp()
+11cc017b48f2 drm/i915/dp: Use connector DSC DPCD in intel_dp_supports_fec()
+b972f1468520 drm/i915/dp: Use connector DSC DPCD in intel_dp_supports_dsc()
+e031494fff28 drm/i915/dp: Use connector DSC DPCD in intel_dp_dsc_max_sink_compressed_bppx16()
+874948c8d462 drm/i915/dp: Pass connector DSC DPCD to drm_dp_dsc_sink_supported_input_bpcs()
+bda7ff57f054 drm/i915/dp: Pass only the required i915 to intel_dp_source_dsc_version_minor()
+b9386622b7ba drm/i915/dp: Pass only the required DSC DPCD to intel_dp_sink_dsc_version_minor()
+1be8491f96db drm/i915/dp: Use connector DSC DPCD in intel_dp_dsc_compute_params()
+557c53b26902 drm/i915/dp: Use connector DSC DPCD in intel_dp_dsc_supports_format()
+ebdc56f82b04 drm/i915/dp: Use connector DSC DPCD in intel_dp_dsc_get_slice_count()
+bc29cb19228d drm/i915/dp: Use connector DSC DPCD in intel_dp_mode_valid()
+77be7dcd71f9 drm/i915/dp: Use connector DSC DPCD in intel_dp_dsc_compute_config()
+a876486e9097 drm/i915/dp_mst: Use connector DSC DPCD in intel_dp_mst_mode_valid_ctx()
+41aa40c5f39f drm/i915/dp: Remove unused DSC caps from intel_dp
+
 
