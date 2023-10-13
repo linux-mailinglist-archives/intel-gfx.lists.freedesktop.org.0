@@ -2,64 +2,67 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0677D7CB04B
-	for <lists+intel-gfx@lfdr.de>; Mon, 16 Oct 2023 18:51:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8762A7CB04C
+	for <lists+intel-gfx@lfdr.de>; Mon, 16 Oct 2023 18:51:12 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id ECB7610E225;
-	Mon, 16 Oct 2023 16:51:06 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D15A910E226;
+	Mon, 16 Oct 2023 16:51:07 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-pf1-x42e.google.com (mail-pf1-x42e.google.com
- [IPv6:2607:f8b0:4864:20::42e])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 73EE610E580;
- Thu, 12 Oct 2023 23:04:57 +0000 (UTC)
-Received: by mail-pf1-x42e.google.com with SMTP id
- d2e1a72fcca58-690f8e63777so363727b3a.0; 
- Thu, 12 Oct 2023 16:04:57 -0700 (PDT)
+Received: from mail-pl1-x62c.google.com (mail-pl1-x62c.google.com
+ [IPv6:2607:f8b0:4864:20::62c])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 20B2310E5E8;
+ Fri, 13 Oct 2023 12:14:03 +0000 (UTC)
+Received: by mail-pl1-x62c.google.com with SMTP id
+ d9443c01a7336-1c9d132d92cso5612835ad.0; 
+ Fri, 13 Oct 2023 05:14:03 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1697151897; x=1697756697; darn=lists.freedesktop.org;
- h=content-transfer-encoding:mime-version:message-id:date:subject:cc
- :to:from:from:to:cc:subject:date:message-id:reply-to;
- bh=MjY6Bfa7hXy3EtsVkBFJvcxDVqkLy8yAMFEk0tgy2ww=;
- b=g8WnTtjxQAwgvtFqp/Q1qtALSLH5i6giuXTSkj5QQxE09xTHxj1rBJZzpt79WZl7vM
- 9uXmwXN0cxpLHNlj0XdxNmcJDhL+pp9ZGFFd3mly2+3DXvQrRgV4++WgsjuEWQ9p0WXY
- uK0FDkLmFNa5LelNivHNn/yNbOGbkXpt7gg863YWYhic1PZSMK4PBLkbSkrW6xTRGlr2
- 9U/Y1Z5GQvS9kjrqq/CvHKUwwAJURDJP3QnTr+iQZIksvRPJ5igoOrRN3iAyKFNWCFHQ
- TmOBleT+Bg+/7gK/zGWmKAOTpLim7CvFEKQFAsHUeCvAbKRfjz9T2anA6tiezFgaypW7
- u62w==
+ d=gmail.com; s=20230601; t=1697199242; x=1697804042; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:mime-version:references:in-reply-to
+ :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=X4z+hjgZoqLiz+otFUtzfcX1EPVHUCZR+4Ag5x9f1fQ=;
+ b=VwSVLAgETMMmKx534kn8TtMHLpLbyl/hSj0opq91r8fLfBFs5klwuZ55lAQ3xgPcKO
+ rAwn5dHs7+2+kFvHCrnjBtw45v/UqtjPeR9AKHI2eSGlo9hGZBvcxWtmn35T9AuLz5wf
+ 0GJ3ilD9QVhLEMEp6fa729KQ3LDyMnXx0u66Xl8E1Jgm8ETi1ZtTAJQ4lRQv81HFV4M1
+ Ijp1f8POmDNFe7Dhy3rmcOdJ3kgp5FN+xlnYryGTDl28wVc5FmA+tmy1Pf8iXSYQu5OX
+ WZwdyvxcV7FvA9u7dI0vYNJ7dGBSbyQV/HonO/vsRmACbn7ZdeX5m2iem9vNiIgHHu6p
+ csJg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1697151897; x=1697756697;
- h=content-transfer-encoding:mime-version:message-id:date:subject:cc
- :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
- :reply-to;
- bh=MjY6Bfa7hXy3EtsVkBFJvcxDVqkLy8yAMFEk0tgy2ww=;
- b=B2I/TajRFazx3TaN6/0oPSUNtwH3b3jGJT7dWCBt7Ku+duGVqLDAEisjAn4orkGJ8B
- D0pSvvql+mipHVmMde+oqNoM2cP85cmh58ungXmxebbViD1wLtw2XWd6OC+YtzFwRhd8
- MSTO/JNvmzFIaZ5pUdzMbzg0ZjnJsqOFSQcw0bIA92Z7+wZoClMSixKsGJ+qgbBKyXKl
- twKMgFY+MxcUiGK6J/skiDOo9EyjwMThmt8/Oee+QlzjS7XNGUzm0OFPYKpp2pDuNxoN
- qzpRfWvJ+V06IV1XY9F4AZcXqnBUudUGdLX8SDAfo1sQrR3ZVzpglaM/6WGlXFlO9gzm
- H8Yw==
-X-Gm-Message-State: AOJu0YxGrWrRarcvT9dK85oXw/9J4XIwmcIvm+4K0ILysnR9LoCRNkfI
- aBzOGOobDvHyiaAXv0e82Ew=
-X-Google-Smtp-Source: AGHT+IH+4v5f93VcvRkHnnVgNR/Vyt3EU7gWUCAaBPEj/wJkDgmWUDn2+fSuZCy+1+14UNBZQ7kIzw==
-X-Received: by 2002:a05:6a00:2e92:b0:692:b3d4:e6c3 with SMTP id
- fd18-20020a056a002e9200b00692b3d4e6c3mr27619108pfb.0.1697151896807; 
- Thu, 12 Oct 2023 16:04:56 -0700 (PDT)
+ d=1e100.net; s=20230601; t=1697199242; x=1697804042;
+ h=content-transfer-encoding:mime-version:references:in-reply-to
+ :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+ :subject:date:message-id:reply-to;
+ bh=X4z+hjgZoqLiz+otFUtzfcX1EPVHUCZR+4Ag5x9f1fQ=;
+ b=RF6e4NFQoQxgIgCD8f22o38Y1oc3O2Kaxurb07HJbCVsez8/zPD/1ytX328gQmsSTL
+ AN3a5utKp6tXJcaP1zcqnMAITwMFaDXuXOIzOQjjenJU66kaVDpFE59HU8wwG/gd06PE
+ AwC/CaGpb8phIpfjZRewVfalTp/Ap0VBOPWYkAc+BB55+h3ifDr639IkaVdyAOK6uGGP
+ fEIQV4JBMCO/Je8FPprMFloKt2HaG93fmMTozpxbw8QDgkzwdU2EAkEPMmHSLdYcGmj4
+ RF06syLvZBphTxv28MGQ4JuJML4xM96Gl620BGviUXOM2s7X5JEGY3r/yZApSutMF5iX
+ oP2g==
+X-Gm-Message-State: AOJu0YxNKdYfDbiq1eAth+fXKMg7bjRuW3TVx1k2wkSEsdZLHAybqFn2
+ FHDZ9hZuXUamfmjJqDma5DY=
+X-Google-Smtp-Source: AGHT+IEvL0BqKkBivK2O51JqvuzsTo5t+dd4ijMHTK++9Mpa1lZpCfypvnqQ5IeTEfD71vwd34Eezw==
+X-Received: by 2002:a17:902:ce84:b0:1c6:9312:187 with SMTP id
+ f4-20020a170902ce8400b001c693120187mr29212356plg.3.1697199242587; 
+ Fri, 13 Oct 2023 05:14:02 -0700 (PDT)
 Received: from localhost.localdomain ([140.116.154.65])
  by smtp.gmail.com with ESMTPSA id
- e4-20020a62ee04000000b006889664aa6csm12193998pfi.5.2023.10.12.16.04.52
+ ja20-20020a170902efd400b001c1f4edfb9csm3747683plb.173.2023.10.13.05.13.58
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Thu, 12 Oct 2023 16:04:55 -0700 (PDT)
+ Fri, 13 Oct 2023 05:14:01 -0700 (PDT)
 From: Kuan-Wei Chiu <visitorckw@gmail.com>
-To: zhenyuw@linux.intel.com,
-	zhi.a.wang@intel.com
-Date: Fri, 13 Oct 2023 07:04:49 +0800
-Message-Id: <20231012230449.2109078-1-visitorckw@gmail.com>
+To: ville.syrjala@linux.intel.com, zhenyuw@linux.intel.com,
+ zhi.a.wang@intel.com
+Date: Fri, 13 Oct 2023 20:13:55 +0800
+Message-Id: <20231013121355.2125824-1-visitorckw@gmail.com>
 X-Mailer: git-send-email 2.25.1
+In-Reply-To: <ZSkdoVcMxKIbXUOW@intel.com>
+References: <ZSkdoVcMxKIbXUOW@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Mailman-Approved-At: Mon, 16 Oct 2023 16:51:05 +0000
-Subject: [Intel-gfx] [PATCH] drm/i915/gvt: Optimize mmio_offset_compare()
+Subject: [Intel-gfx] [PATCH v2] drm/i915/gvt: Optimize mmio_offset_compare()
  for efficiency
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -90,11 +93,14 @@ subtraction operation, thereby saving the number of instructions.
 
 Signed-off-by: Kuan-Wei Chiu <visitorckw@gmail.com>
 ---
+v1 -> v2:
+- Add explicit type cast in case the sizes of u32 and int differ.
+
  drivers/gpu/drm/i915/gvt/debugfs.c | 6 +-----
  1 file changed, 1 insertion(+), 5 deletions(-)
 
 diff --git a/drivers/gpu/drm/i915/gvt/debugfs.c b/drivers/gpu/drm/i915/gvt/debugfs.c
-index baccbf1761b7..998d82a259c8 100644
+index baccbf1761b7..d85d8a3b5ae5 100644
 --- a/drivers/gpu/drm/i915/gvt/debugfs.c
 +++ b/drivers/gpu/drm/i915/gvt/debugfs.c
 @@ -48,11 +48,7 @@ static int mmio_offset_compare(void *priv,
@@ -106,7 +112,7 @@ index baccbf1761b7..998d82a259c8 100644
 -	else if (ma->offset > mb->offset)
 -		return 1;
 -	return 0;
-+	return ma->offset - mb->offset;
++	return (int)ma->offset - (int)mb->offset;
  }
  
  static inline int mmio_diff_handler(struct intel_gvt *gvt,
