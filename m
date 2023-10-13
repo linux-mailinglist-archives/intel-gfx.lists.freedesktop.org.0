@@ -2,32 +2,48 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id B75687C8FAA
-	for <lists+intel-gfx@lfdr.de>; Fri, 13 Oct 2023 23:56:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8F55D7C903D
+	for <lists+intel-gfx@lfdr.de>; Sat, 14 Oct 2023 00:26:04 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9AAC310E071;
-	Fri, 13 Oct 2023 21:56:14 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 433AC10E077;
+	Fri, 13 Oct 2023 22:26:00 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 1FAB410E071;
- Fri, 13 Oct 2023 21:56:12 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 17E38AADEF;
- Fri, 13 Oct 2023 21:56:12 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============8091552864105979651=="
+Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.115])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B9E2810E071
+ for <intel-gfx@lists.freedesktop.org>; Fri, 13 Oct 2023 22:25:58 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1697235958; x=1728771958;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=5uEgH7jal3qZzxfyAT4UDZ2EQhS8+FMbeIw0wnC+HQU=;
+ b=YjhNgC1TPepgVKCufkQ0+gtwGalkkpeBVbT1hVuZjFVSbrSoQt7LHG9M
+ DIkCzlNff3KUw4QmegCfProGT35UsL+JLiC234bsvsoriclmy1gISBExB
+ 86Qr8G99i5SXnbZp8UXsNlyNKoEijH2k3VBVnOsrWFFevnYJ8iZSEPis9
+ 5liiBqz6XXptlV8ZhOBSWqBZOBftbYrgjnffZuJJkHVaIA7uEyVntOUvG
+ FiViR49jKPKavjxp2abX+KRjpGrvwQtcjp41pg7JfVCo+WIrc3BcAtoml
+ +etdoERm75Z6ZETUHw2Patfd9kxxLbFTw/oPGukxn1uKVuyAQLiNLBgtd w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10862"; a="385115677"
+X-IronPort-AV: E=Sophos;i="6.03,223,1694761200"; d="scan'208";a="385115677"
+Received: from fmsmga003.fm.intel.com ([10.253.24.29])
+ by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 Oct 2023 15:25:08 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10862"; a="845641389"
+X-IronPort-AV: E=Sophos;i="6.03,223,1694761200"; d="scan'208";a="845641389"
+Received: from dut-internal-9dd7.jf.intel.com ([10.165.21.194])
+ by fmsmga003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 Oct 2023 15:25:02 -0700
+From: Jonathan Cavitt <jonathan.cavitt@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Fri, 13 Oct 2023 15:14:12 -0700
+Message-Id: <20231013221419.2710833-1-jonathan.cavitt@intel.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Ville Syrjala" <ville.syrjala@linux.intel.com>
-Date: Fri, 13 Oct 2023 21:56:12 -0000
-Message-ID: <169723417206.31157.6440552032135582945@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20231013140214.1713-1-ville.syrjala@linux.intel.com>
-In-Reply-To: <20231013140214.1713-1-ville.syrjala@linux.intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJBVDogZmFpbHVyZSBmb3IgZHJt?=
- =?utf-8?q?/i915/bios=3A_Clamp_VBT_HDMI_level_shift_on_BDW?=
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-gfx] [PATCH v15 0/7] drm/i915: Define and use GuC and CTB
+ TLB invalidation routines
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,350 +56,175 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
+Cc: janusz.krzysztofik@intel.com, andi.shyti@intel.com,
+ matthew.d.roper@intel.com, jonathan.cavitt@intel.com, saurabhg.gupta@intel.com,
+ chris.p.wilson@linux.intel.com, nirmoy.das@intel.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============8091552864105979651==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+Implement GuC-based TLB invalidations and use them on MTL.
 
-== Series Details ==
+Some complexity in the implementation was introduced early on
+and will be required for range-based TLB invalidations.
+RFC: https://patchwork.freedesktop.org/series/124922/
 
-Series: drm/i915/bios: Clamp VBT HDMI level shift on BDW
-URL   : https://patchwork.freedesktop.org/series/125120/
-State : failure
+v2:
+- Add missing supporting patches.
 
-== Summary ==
+v3:
+- Split suspend/resume changes and multi-gt support into separate
+  patches.
+- Only perform GuC TLB invalidation functions when supported.
+- Move intel_guc_is_enabled check function to usage location.
+- Address comments.
 
-CI Bug Log - changes from CI_DRM_13754 -> Patchwork_125120v1
-====================================================
+v4:
+- Change conditions for GuC-based tlb invalidation support
+  to a pci tag that's only active for MTL.
+- Address some FIXMEs and formatting issues.
+- Move suspend/resume changes to helper functions in intel_gt.h
+- Improve comment for ct_handle_event change.
+- Use cleaner if-else conditions.
+- Address comments.
 
-Summary
--------
+v5:
+- Reintroduce missing change to selftest msleep duration
+- Move suspend/resume loops from intel_gt.h to intel_tlb.c,
+  making them no longer static inlines.
+- Remove superfluous blocking and error checks.
+- Move ct_handle_event exception to general case in
+  ct_process_request.
+- Explain usage of xa_alloc_cyclic_irq.
+- Modify explanation of purpose of
+  OUTSTANDING_GUC_TIMEOUT_PERIOD macro.
+- Explain purpose of performing tlb invalidation twice in
+  intel_gt_tlb_resume_all.
 
-  **FAILURE**
+v6:
+- Add this cover letter.
+- Fix explanation of purpose of
+  OUTSTANDING_GUC_TIMEOUT_PERIOD macro again.
+- s/pci tags/pci flags
+- Enable GuC TLB Invalidations separately from adding the
+  flags to do so.
 
-  Serious unknown changes coming with Patchwork_125120v1 absolutely need to be
-  verified manually.
-  
-  If you think the reported changes have nothing to do with the changes
-  introduced in Patchwork_125120v1, please notify your bug team (lgci.bug.filing@intel.com) to allow them
-  to document this new failure mode, which will reduce false positives in CI.
+v7:
+- Eliminate pci terminology from patches.
+- Order new device info flag correctly.
+- Run gen8_ggtt_invalidate in more cases, specifically when
+  GuC-based TLB invalidation is not supported.
+- Use intel_uncore_write_fw instead of intel_uncore_write
+  during guc_ggtt_invalidate.
+- Remove duplicate request message clear in ct_process_request.
+- Remove faulty tag from series.
 
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_125120v1/index.html
+v8:
+- Simplify cover letter contents.
+- Fix miscellaneous formatting and typos.
+- Reorder device info flags and defines.
+- Reword commit message.
+- Rename TLB invalidation enums and functions.
+- Add comments explaining confusing points.
+- Add helper function getting expected delay of CT buffer.
+- Simplify intel_guc_tlb_invalidation_done by passing computed
+  values.
+- Remove helper functions for tlb suspend and resume.
+- Move tlb suspend and resume paths to uc.
+- Split suspend/resume and wedged into two patches.
+- Clarify purpose of sleep change in tlb selftest.
 
-Participating hosts (38 -> 37)
-------------------------------
+v9:
+- Explain complexity of GuC TLB invalidations as required for
+  range-based TLB invalidations, which will be platformed later.
+- Fix CHECKPATCH issues.
+- Explain intel_guc_is_ready tlb invalidation skip in
+  intel_gt_invalidate_tlb_full.
+- Reword comment for unlocked xa_for_each loop in
+  intel_guc_submission_reset.
+- Report all errors in init_tlb_lookup.
+- Remove debug message from fini_tlb_lookup.
+- Use standardized interface for
+  intel_guc_tlb_invalidation_done
+- Remove spurious changes.
+- Move wake_up_all_tlb_invalidate on wedge to correct patch.
 
-  Additional (2): fi-kbl-soraka fi-hsw-4770 
-  Missing    (3): bat-dg2-9 fi-snb-2520m fi-bsw-n3050 
+v10:
+- Add lock to tlb_lookup on guc submission reset.
+- Add comment about why timeout increased from 10 ms to 20 ms
+  by default in gt_tlb selftest.
+- Remove spurious changes.
 
-Possible new issues
--------------------
+v11:
+- Update CT size delay helper to be clearer.
+- Reorder some function declarations.
+- Clarify some comments.
+- Produce error message if attempting to free a busy wait
+  during fini_tlb_lookup.
+- Revert default sleep back to 10 ms.
+- Link to RFC.
 
-  Here are the unknown changes that may have been introduced in Patchwork_125120v1:
+v12:
+- Add helper for checking if GuC TLB invalidation is
+  supported and guc is ready.
+- Prevent suspend/resume actions involving GuC TLB
+  invalidations if guc is not ready.
+- Add path for INTEL_GUC_ACTION_TLB_INVALIDATION_DONE
+  to immediately process in ct_process_request after
+  it is submitted to ct_handle_event.
 
-### IGT changes ###
+v13:
+- Re-add error check in intel_guc_tlb_invalidation_done
+  for invalid length.
+- Remove intel_guc_is_ready requirement from
+  wake_up_all_tlb_invalidate.
+- Align patches 3 and 4 by adding a check for GuC
+  TLB invalidation support to the former that was
+  added in the latter.
 
-#### Possible regressions ####
+v14:
+- Re-add intel_guc_is_ready requirement to
+  wake_up_all_tlb_invalidate.
+- Move wake_up_all_tlb_invalidate from
+  intel_guc_submission_reset to the end of
+  __uc_hw_init.
+- Remove gen8_ggtt_invalidate changes, as they
+  aren't related to GuC TLB invalidation.
+- Add missing newline.
 
-  * igt@i915_selftest@live@hangcheck:
-    - bat-rpls-1:         [PASS][1] -> [ABORT][2]
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13754/bat-rpls-1/igt@i915_selftest@live@hangcheck.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_125120v1/bat-rpls-1/igt@i915_selftest@live@hangcheck.html
+v15:
+- Move wake_up_all_tlb_invalidate from __uc_hw_init
+  to intel_guc_submission_reset_finish.
+- Change structure of wake_up_all_tlb_invalidate back to
+  the way it was in v12, since it looks better and is
+  functionally equivalent.
+- s/readd/re-add
 
-  
-Known issues
-------------
+Jonathan Cavitt (6):
+  drm/i915: Add GuC TLB Invalidation device info flags
+  drm/i915/guc: Add CT size delay helper
+  drm/i915: No TLB invalidation on suspended GT
+  drm/i915: No TLB invalidation on wedged GT
+  drm/i915/gt: Increase sleep in gt_tlb selftest sanitycheck
+  drm/i915: Enable GuC TLB invalidations for MTL
 
-  Here are the changes found in Patchwork_125120v1 that come from known issues:
+Prathap Kumar Valsan (1):
+  drm/i915: Define and use GuC and CTB TLB invalidation routines
 
-### IGT changes ###
+ drivers/gpu/drm/i915/gt/intel_ggtt.c          |  30 ++-
+ drivers/gpu/drm/i915/gt/intel_tlb.c           |  16 +-
+ drivers/gpu/drm/i915/gt/selftest_tlb.c        |  11 +-
+ .../gpu/drm/i915/gt/uc/abi/guc_actions_abi.h  |  33 +++
+ drivers/gpu/drm/i915/gt/uc/intel_guc.h        |  23 ++
+ drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c     |  38 +++
+ drivers/gpu/drm/i915/gt/uc/intel_guc_ct.h     |   2 +
+ drivers/gpu/drm/i915/gt/uc/intel_guc_fwif.h   |   1 +
+ .../gpu/drm/i915/gt/uc/intel_guc_submission.c | 219 +++++++++++++++++-
+ drivers/gpu/drm/i915/gt/uc/intel_uc.c         |   7 +
+ drivers/gpu/drm/i915/i915_drv.h               |   2 +
+ drivers/gpu/drm/i915/i915_pci.c               |   1 +
+ drivers/gpu/drm/i915/intel_device_info.h      |   1 +
+ 13 files changed, 371 insertions(+), 13 deletions(-)
 
-#### Issues hit ####
+-- 
+2.25.1
 
-  * igt@debugfs_test@basic-hwmon:
-    - bat-adlp-6:         NOTRUN -> [SKIP][3] ([i915#9318])
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_125120v1/bat-adlp-6/igt@debugfs_test@basic-hwmon.html
-
-  * igt@gem_huc_copy@huc-copy:
-    - fi-kbl-soraka:      NOTRUN -> [SKIP][4] ([fdo#109271] / [i915#2190])
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_125120v1/fi-kbl-soraka/igt@gem_huc_copy@huc-copy.html
-
-  * igt@gem_lmem_swapping@basic:
-    - fi-kbl-soraka:      NOTRUN -> [SKIP][5] ([fdo#109271] / [i915#4613]) +3 other tests skip
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_125120v1/fi-kbl-soraka/igt@gem_lmem_swapping@basic.html
-
-  * igt@gem_tiled_pread_basic:
-    - bat-adlp-6:         NOTRUN -> [SKIP][6] ([i915#3282])
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_125120v1/bat-adlp-6/igt@gem_tiled_pread_basic.html
-
-  * igt@i915_selftest@live@gt_pm:
-    - fi-kbl-soraka:      NOTRUN -> [DMESG-FAIL][7] ([i915#1886])
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_125120v1/fi-kbl-soraka/igt@i915_selftest@live@gt_pm.html
-
-  * igt@i915_selftest@live@requests:
-    - bat-mtlp-8:         [PASS][8] -> [ABORT][9] ([i915#9414])
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13754/bat-mtlp-8/igt@i915_selftest@live@requests.html
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_125120v1/bat-mtlp-8/igt@i915_selftest@live@requests.html
-
-  * igt@kms_addfb_basic@addfb25-y-tiled-small-legacy:
-    - fi-hsw-4770:        NOTRUN -> [SKIP][10] ([fdo#109271] / [i915#5190])
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_125120v1/fi-hsw-4770/igt@kms_addfb_basic@addfb25-y-tiled-small-legacy.html
-
-  * igt@kms_cursor_legacy@basic-busy-flip-before-cursor-legacy:
-    - bat-adlp-6:         NOTRUN -> [SKIP][11] ([i915#4103] / [i915#5608]) +1 other test skip
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_125120v1/bat-adlp-6/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-legacy.html
-
-  * igt@kms_dsc@dsc-basic:
-    - fi-kbl-soraka:      NOTRUN -> [SKIP][12] ([fdo#109271]) +9 other tests skip
-   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_125120v1/fi-kbl-soraka/igt@kms_dsc@dsc-basic.html
-    - bat-adlp-6:         NOTRUN -> [SKIP][13] ([i915#3555] / [i915#3840])
-   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_125120v1/bat-adlp-6/igt@kms_dsc@dsc-basic.html
-
-  * igt@kms_force_connector_basic@force-load-detect:
-    - bat-adlp-6:         NOTRUN -> [SKIP][14] ([fdo#109285])
-   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_125120v1/bat-adlp-6/igt@kms_force_connector_basic@force-load-detect.html
-
-  * igt@kms_pipe_crc_basic@compare-crc-sanitycheck-nv12@pipe-a-vga-1:
-    - fi-hsw-4770:        NOTRUN -> [SKIP][15] ([fdo#109271]) +12 other tests skip
-   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_125120v1/fi-hsw-4770/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-nv12@pipe-a-vga-1.html
-
-  * igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence:
-    - bat-adlp-9:         NOTRUN -> [SKIP][16] ([i915#3546]) +2 other tests skip
-   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_125120v1/bat-adlp-9/igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence.html
-
-  * igt@kms_pipe_crc_basic@suspend-read-crc@pipe-c-vga-1:
-    - fi-hsw-4770:        NOTRUN -> [DMESG-WARN][17] ([i915#8841]) +6 other tests dmesg-warn
-   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_125120v1/fi-hsw-4770/igt@kms_pipe_crc_basic@suspend-read-crc@pipe-c-vga-1.html
-
-  * igt@kms_psr@sprite_plane_onoff:
-    - fi-hsw-4770:        NOTRUN -> [SKIP][18] ([fdo#109271] / [i915#1072]) +3 other tests skip
-   [18]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_125120v1/fi-hsw-4770/igt@kms_psr@sprite_plane_onoff.html
-
-  
-#### Possible fixes ####
-
-  * igt@i915_module_load@load:
-    - bat-adlp-6:         [INCOMPLETE][19] ([i915#8449]) -> [PASS][20]
-   [19]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13754/bat-adlp-6/igt@i915_module_load@load.html
-   [20]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_125120v1/bat-adlp-6/igt@i915_module_load@load.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
-  [fdo#109285]: https://bugs.freedesktop.org/show_bug.cgi?id=109285
-  [i915#1072]: https://gitlab.freedesktop.org/drm/intel/issues/1072
-  [i915#1886]: https://gitlab.freedesktop.org/drm/intel/issues/1886
-  [i915#2190]: https://gitlab.freedesktop.org/drm/intel/issues/2190
-  [i915#3282]: https://gitlab.freedesktop.org/drm/intel/issues/3282
-  [i915#3546]: https://gitlab.freedesktop.org/drm/intel/issues/3546
-  [i915#3555]: https://gitlab.freedesktop.org/drm/intel/issues/3555
-  [i915#3840]: https://gitlab.freedesktop.org/drm/intel/issues/3840
-  [i915#4103]: https://gitlab.freedesktop.org/drm/intel/issues/4103
-  [i915#4613]: https://gitlab.freedesktop.org/drm/intel/issues/4613
-  [i915#5190]: https://gitlab.freedesktop.org/drm/intel/issues/5190
-  [i915#5608]: https://gitlab.freedesktop.org/drm/intel/issues/5608
-  [i915#7359]: https://gitlab.freedesktop.org/drm/intel/issues/7359
-  [i915#8449]: https://gitlab.freedesktop.org/drm/intel/issues/8449
-  [i915#8668]: https://gitlab.freedesktop.org/drm/intel/issues/8668
-  [i915#8841]: https://gitlab.freedesktop.org/drm/intel/issues/8841
-  [i915#8981]: https://gitlab.freedesktop.org/drm/intel/issues/8981
-  [i915#9318]: https://gitlab.freedesktop.org/drm/intel/issues/9318
-  [i915#9414]: https://gitlab.freedesktop.org/drm/intel/issues/9414
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_13754 -> Patchwork_125120v1
-
-  CI-20190529: 20190529
-  CI_DRM_13754: 3801f98312c4ae0e31edc6dc69eced1dabbcc694 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_7539: 08e87a32fa113a9b6f30cbd9766fec346b53faac @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_125120v1: 3801f98312c4ae0e31edc6dc69eced1dabbcc694 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-### Linux commits
-
-a2d401641b4b drm/i915/bios: Clamp VBT HDMI level shift on BDW
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_125120v1/index.html
-
---===============8091552864105979651==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915/bios: Clamp VBT HDMI level shift on BDW</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/125120/">https://patchwork.freedesktop.org/series/125120/</a></td></tr>
-<tr><td><b>State:</b></td><td>failure</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_125120v1/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_125120v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_13754 -&gt; Patchwork_125120v1</h1>
-<h2>Summary</h2>
-<p><strong>FAILURE</strong></p>
-<p>Serious unknown changes coming with Patchwork_125120v1 absolutely need to be<br />
-  verified manually.</p>
-<p>If you think the reported changes have nothing to do with the changes<br />
-  introduced in Patchwork_125120v1, please notify your bug team (lgci.bug.filing@intel.com) to allow them<br />
-  to document this new failure mode, which will reduce false positives in CI.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_125120v1/index.html</p>
-<h2>Participating hosts (38 -&gt; 37)</h2>
-<p>Additional (2): fi-kbl-soraka fi-hsw-4770 <br />
-  Missing    (3): bat-dg2-9 fi-snb-2520m fi-bsw-n3050 </p>
-<h2>Possible new issues</h2>
-<p>Here are the unknown changes that may have been introduced in Patchwork_125120v1:</p>
-<h3>IGT changes</h3>
-<h4>Possible regressions</h4>
-<ul>
-<li>igt@i915_selftest@live@hangcheck:<ul>
-<li>bat-rpls-1:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13754/bat-rpls-1/igt@i915_selftest@live@hangcheck.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_125120v1/bat-rpls-1/igt@i915_selftest@live@hangcheck.html">ABORT</a></li>
-</ul>
-</li>
-</ul>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_125120v1 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@debugfs_test@basic-hwmon:</p>
-<ul>
-<li>bat-adlp-6:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_125120v1/bat-adlp-6/igt@debugfs_test@basic-hwmon.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/9318">i915#9318</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_huc_copy@huc-copy:</p>
-<ul>
-<li>fi-kbl-soraka:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_125120v1/fi-kbl-soraka/igt@gem_huc_copy@huc-copy.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/2190">i915#2190</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_lmem_swapping@basic:</p>
-<ul>
-<li>fi-kbl-soraka:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_125120v1/fi-kbl-soraka/igt@gem_lmem_swapping@basic.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/4613">i915#4613</a>) +3 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_tiled_pread_basic:</p>
-<ul>
-<li>bat-adlp-6:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_125120v1/bat-adlp-6/igt@gem_tiled_pread_basic.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3282">i915#3282</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@gt_pm:</p>
-<ul>
-<li>fi-kbl-soraka:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_125120v1/fi-kbl-soraka/igt@i915_selftest@live@gt_pm.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1886">i915#1886</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@requests:</p>
-<ul>
-<li>bat-mtlp-8:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13754/bat-mtlp-8/igt@i915_selftest@live@requests.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_125120v1/bat-mtlp-8/igt@i915_selftest@live@requests.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/9414">i915#9414</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_addfb_basic@addfb25-y-tiled-small-legacy:</p>
-<ul>
-<li>fi-hsw-4770:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_125120v1/fi-hsw-4770/igt@kms_addfb_basic@addfb25-y-tiled-small-legacy.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/5190">i915#5190</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_cursor_legacy@basic-busy-flip-before-cursor-legacy:</p>
-<ul>
-<li>bat-adlp-6:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_125120v1/bat-adlp-6/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-legacy.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4103">i915#4103</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/5608">i915#5608</a>) +1 other test skip</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_dsc@dsc-basic:</p>
-<ul>
-<li>
-<p>fi-kbl-soraka:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_125120v1/fi-kbl-soraka/igt@kms_dsc@dsc-basic.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +9 other tests skip</p>
-</li>
-<li>
-<p>bat-adlp-6:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_125120v1/bat-adlp-6/igt@kms_dsc@dsc-basic.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3555">i915#3555</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/3840">i915#3840</a>)</p>
-</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_force_connector_basic@force-load-detect:</p>
-<ul>
-<li>bat-adlp-6:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_125120v1/bat-adlp-6/igt@kms_force_connector_basic@force-load-detect.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109285">fdo#109285</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_pipe_crc_basic@compare-crc-sanitycheck-nv12@pipe-a-vga-1:</p>
-<ul>
-<li>fi-hsw-4770:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_125120v1/fi-hsw-4770/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-nv12@pipe-a-vga-1.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +12 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence:</p>
-<ul>
-<li>bat-adlp-9:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_125120v1/bat-adlp-9/igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3546">i915#3546</a>) +2 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_pipe_crc_basic@suspend-read-crc@pipe-c-vga-1:</p>
-<ul>
-<li>fi-hsw-4770:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_125120v1/fi-hsw-4770/igt@kms_pipe_crc_basic@suspend-read-crc@pipe-c-vga-1.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/8841">i915#8841</a>) +6 other tests dmesg-warn</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_psr@sprite_plane_onoff:</p>
-<ul>
-<li>fi-hsw-4770:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_125120v1/fi-hsw-4770/igt@kms_psr@sprite_plane_onoff.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/1072">i915#1072</a>) +3 other tests skip</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>igt@i915_module_load@load:<ul>
-<li>bat-adlp-6:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13754/bat-adlp-6/igt@i915_module_load@load.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/8449">i915#8449</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_125120v1/bat-adlp-6/igt@i915_module_load@load.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<p>{name}: This element is suppressed. This means it is ignored when computing<br />
-          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_13754 -&gt; Patchwork_125120v1</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_13754: 3801f98312c4ae0e31edc6dc69eced1dabbcc694 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_7539: 08e87a32fa113a9b6f30cbd9766fec346b53faac @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  Patchwork_125120v1: 3801f98312c4ae0e31edc6dc69eced1dabbcc694 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<h3>Linux commits</h3>
-<p>a2d401641b4b drm/i915/bios: Clamp VBT HDMI level shift on BDW</p>
-
-</body>
-</html>
-
---===============8091552864105979651==--
