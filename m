@@ -2,33 +2,44 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id D71497C7AF3
-	for <lists+intel-gfx@lfdr.de>; Fri, 13 Oct 2023 02:44:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7462A7C7AF4
+	for <lists+intel-gfx@lfdr.de>; Fri, 13 Oct 2023 02:46:13 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 872AA10E514;
-	Fri, 13 Oct 2023 00:44:54 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E7EE910E514;
+	Fri, 13 Oct 2023 00:46:11 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 84B0E10E514;
- Fri, 13 Oct 2023 00:44:53 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 7677CAADEF;
- Fri, 13 Oct 2023 00:44:53 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+Received: from gandalf.ozlabs.org (mail.ozlabs.org
+ [IPv6:2404:9400:2221:ea00::3])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EC81F10E514;
+ Fri, 13 Oct 2023 00:46:09 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canb.auug.org.au;
+ s=201702; t=1697157965;
+ bh=Y2baROFxBkorrLhkUHImSq2kYpiq8E1PZRnYdQ6X+yo=;
+ h=Date:From:To:Cc:Subject:From;
+ b=lmxQcvtq92NM0e4MM/t52kHpPXhBP06zobAL8ZYfHoR4uKWfk0beJXNxUAYdMpt4z
+ q+zm+qZLeYxLO8/GE1ey06jOp+xXBOEEx4wQzLcR0OaPnVUTXJPwhtb8x23d7WkA+r
+ TOKWIXHf7Uv4vgkBwKPZ+7FyKpJ6NBeFCgp+1jad4IblYRFcl3sOXtX0t33b02imQW
+ sYZmZ/Yi05vVdc+tbZW/NB9QW4EuvznCU94Q/JwVVLFfuzI8/UMxisNBfNvK6C7zA8
+ nH6mHNZ+T1VPXujwE5HHRCwyHUvzK8GNPQUNR0EPPZmI9BzLXwnw7CZUiZDWxo+and
+ upuXgCopENTyg==
+Received: from authenticated.ozlabs.org (localhost [127.0.0.1])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+ (No client certificate requested)
+ by mail.ozlabs.org (Postfix) with ESMTPSA id 4S67981Smlz4xKl;
+ Fri, 13 Oct 2023 11:46:03 +1100 (AEDT)
+Date: Fri, 13 Oct 2023 11:46:02 +1100
+From: Stephen Rothwell <sfr@canb.auug.org.au>
+To: Daniel Vetter <daniel.vetter@ffwll.ch>, Intel Graphics
+ <intel-gfx@lists.freedesktop.org>, DRI <dri-devel@lists.freedesktop.org>,
+ Arnd Bergmann <arnd@arndb.de>
+Message-ID: <20231013114602.4cea19d1@canb.auug.org.au>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Jonathan Cavitt" <jonathan.cavitt@intel.com>
-Date: Fri, 13 Oct 2023 00:44:53 -0000
-Message-ID: <169715789345.31157.3884713900384987318@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20231010143615.2010460-1-jonathan.cavitt@intel.com>
-In-Reply-To: <20231010143615.2010460-1-jonathan.cavitt@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLlNQQVJTRTogd2FybmluZyBmb3Ig?=
- =?utf-8?q?drm/i915/gt=3A_Temporarily_force_MTL_into_uncached_mode_=28rev4?=
- =?utf-8?q?=29?=
+Content-Type: multipart/signed; boundary="Sig_/ztYj8dNvgOzPA7znF1RIfx_";
+ protocol="application/pgp-signature"; micalg=pgp-sha256
+Subject: [Intel-gfx] linux-next: manual merge of the drm-misc tree with the
+ asm-generic tree
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -41,21 +52,57 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
+Cc: Linux Next Mailing List <linux-next@vger.kernel.org>,
+ Ard Biesheuvel <ardb@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+ Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+--Sig_/ztYj8dNvgOzPA7znF1RIfx_
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: quoted-printable
 
-Series: drm/i915/gt: Temporarily force MTL into uncached mode (rev4)
-URL   : https://patchwork.freedesktop.org/series/124866/
-State : warning
+Hi all,
 
-== Summary ==
+Today's linux-next merge of the drm-misc tree got a conflict in:
 
-Error: dim sparse failed
-Sparse version: v0.6.2
-Fast mode used, each commit won't be checked separately.
+  arch/ia64/include/asm/fb.h
 
+between commit:
 
+  cf8e8658100d ("arch: Remove Itanium (IA-64) architecture")
+
+from the asm-generic tree and commit:
+
+  052ddf7b86d2 ("fbdev: Replace fb_pgprotect() with pgprot_framebuffer()")
+
+from the drm-misc tree.
+
+I fixed it up (I just removed the file) and can carry the fix as
+necessary. This is now fixed as far as linux-next is concerned, but any
+non trivial conflicts should be mentioned to your upstream maintainer
+when your tree is submitted for merging.  You may also want to consider
+cooperating with the maintainer of the conflicting tree to minimise any
+particularly complex conflicts.
+
+--=20
+Cheers,
+Stephen Rothwell
+
+--Sig_/ztYj8dNvgOzPA7znF1RIfx_
+Content-Type: application/pgp-signature
+Content-Description: OpenPGP digital signature
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAEBCAAdFiEENIC96giZ81tWdLgKAVBC80lX0GwFAmUok0sACgkQAVBC80lX
+0GxB/wf/ROm0rGYuxU6UyfrdITGCdalANh65ZWTeadiilkzDmM3XJnoi/prT1yib
+vMqGzRtE1FVU+axAP6e7KWCT6zkNkFB5dGcBy8wbq1tI2Tni0CH7gey3SeCdd9/o
+4FWMP0WH7Mk9zAjNUU+hl/5aPvkSmLQtqZSoFpiFCrR4O+AzaSC0EmF9UEmmnvar
+hh9ptCupqQsH7c/6eGtt/AS6biv6K448Uv6h0RJoY2TixDSeZyOly01sKWAesGmX
+nol+1oi1pCrb8vw5HxrC+jPt61LbtCa+FKNXUWFB1q6qeBCsDGp812z95o7dxv4h
+zb/s5SJY90S7TiFlQpfl/kFDxbi+Jg==
+=huQp
+-----END PGP SIGNATURE-----
+
+--Sig_/ztYj8dNvgOzPA7znF1RIfx_--
