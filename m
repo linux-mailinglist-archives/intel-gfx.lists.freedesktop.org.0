@@ -2,47 +2,106 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id EBB577C7E51
-	for <lists+intel-gfx@lfdr.de>; Fri, 13 Oct 2023 09:01:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 87B937C7E41
+	for <lists+intel-gfx@lfdr.de>; Fri, 13 Oct 2023 08:57:39 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8AAA410E5BD;
-	Fri, 13 Oct 2023 07:01:32 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id EEEAB10E5B8;
+	Fri, 13 Oct 2023 06:57:37 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.115])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0A57310E5BD
- for <intel-gfx@lists.freedesktop.org>; Fri, 13 Oct 2023 07:01:31 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1697180491; x=1728716491;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=OxR2SUuExcS9uP/hSmP4NlvxtCNYjO0X4rGJ5gzf4M4=;
- b=j6AP81/MmBhnKxmPMLh+XKh0vAaX79A2LV8R5vFojy8y+sBwi5OeS3dC
- L7JzSXmstOAv3TTFeQ0muuYIo2bfR4XUBiQ5h9LrdU48KGr1a6zSGsm3f
- zgBgtSl8bANBzkpNOiPh9HIns9CwJkpeHeyla/yKSMLozdvCghCwPmqxH
- nihp8bA4lrBS00NyMvMvdSMTLx8KpgaBoUzSIzzVnyAwlNmwFG3ZqX6Os
- sFpu5JPnfbZIRq/875F5cdIxLKp10glOGs3f2ZTTDsX4NjCQeNDeoRb/A
- HyG3UWDtGd+RNwE5mXgm1O5IGN0aDO7R03iRg3qwpw8UQq/mOyZg1q3fQ A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10861"; a="384955111"
-X-IronPort-AV: E=Sophos;i="6.03,221,1694761200"; d="scan'208";a="384955111"
-Received: from orsmga005.jf.intel.com ([10.7.209.41])
- by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Oct 2023 00:01:30 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10861"; a="928304037"
-X-IronPort-AV: E=Sophos;i="6.03,221,1694761200"; d="scan'208";a="928304037"
-Received: from sorvi2.fi.intel.com ([10.237.72.194])
- by orsmga005.jf.intel.com with ESMTP; 13 Oct 2023 00:01:28 -0700
-From: Mika Kahola <mika.kahola@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Fri, 13 Oct 2023 09:55:32 +0300
-Message-Id: <20231013065532.634872-1-mika.kahola@intel.com>
-X-Mailer: git-send-email 2.34.1
+Received: from smtp-out1.suse.de (smtp-out1.suse.de [195.135.220.28])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3021F10E5B8;
+ Fri, 13 Oct 2023 06:57:36 +0000 (UTC)
+Received: from imap2.suse-dmz.suse.de (imap2.suse-dmz.suse.de [192.168.254.74])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature ECDSA (P-521) server-digest SHA512)
+ (No client certificate requested)
+ by smtp-out1.suse.de (Postfix) with ESMTPS id C19AA210DD;
+ Fri, 13 Oct 2023 06:57:34 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
+ t=1697180254; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:content-type:content-type:
+ in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
+ bh=rrDa9a7AVtxQJVEoyeqYJjwc23rjqHNO4K3Aj/8eCL4=;
+ b=IyOlKK7oDhKn7KcQNweYGqvIw+vbs39k/qytaALlxamfcwglytV24TvVTF2phi4vKZzurN
+ NL/mv4X6oBt3m5c39WJV5UCjYWIfZ3JDDe2Rhf7jU68U4uvTxs7mxamX9LX28g2yp7x0sD
+ xHYAYYsykl6iOxvEIHv3zgNUmJ6NMp4=
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
+ s=susede2_ed25519; t=1697180254;
+ h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:content-type:content-type:
+ in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
+ bh=rrDa9a7AVtxQJVEoyeqYJjwc23rjqHNO4K3Aj/8eCL4=;
+ b=EUKJpQ52rEng0s3KY+UnpirV8Qtqajz8qYX+zCoC1ve3eFRsEUCsLW8RS2ml9nHAtkhUkC
+ y5k5QtjfqqNU+6Dw==
+Received: from imap2.suse-dmz.suse.de (imap2.suse-dmz.suse.de [192.168.254.74])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature ECDSA (P-521) server-digest SHA512)
+ (No client certificate requested)
+ by imap2.suse-dmz.suse.de (Postfix) with ESMTPS id 89C731358F;
+ Fri, 13 Oct 2023 06:57:34 +0000 (UTC)
+Received: from dovecot-director2.suse.de ([192.168.254.65])
+ by imap2.suse-dmz.suse.de with ESMTPSA id IIjjHl7qKGULRgAAMHmgww
+ (envelope-from <tzimmermann@suse.de>); Fri, 13 Oct 2023 06:57:34 +0000
+Message-ID: <0de116ae-fccb-4c76-8648-2e01c7f980c7@suse.de>
+Date: Fri, 13 Oct 2023 08:57:34 +0200
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH v2] drm/i915/display: Reset message bus after
- each read/write operation
+User-Agent: Mozilla Thunderbird
+Content-Language: en-US
+To: Stephen Rothwell <sfr@canb.auug.org.au>,
+ Daniel Vetter <daniel.vetter@ffwll.ch>,
+ Intel Graphics <intel-gfx@lists.freedesktop.org>,
+ DRI <dri-devel@lists.freedesktop.org>, Arnd Bergmann <arnd@arndb.de>
+References: <20231013114602.4cea19d1@canb.auug.org.au>
+From: Thomas Zimmermann <tzimmermann@suse.de>
+Autocrypt: addr=tzimmermann@suse.de; keydata=
+ xsBNBFs50uABCADEHPidWt974CaxBVbrIBwqcq/WURinJ3+2WlIrKWspiP83vfZKaXhFYsdg
+ XH47fDVbPPj+d6tQrw5lPQCyqjwrCPYnq3WlIBnGPJ4/jreTL6V+qfKRDlGLWFjZcsrPJGE0
+ BeB5BbqP5erN1qylK9i3gPoQjXGhpBpQYwRrEyQyjuvk+Ev0K1Jc5tVDeJAuau3TGNgah4Yc
+ hdHm3bkPjz9EErV85RwvImQ1dptvx6s7xzwXTgGAsaYZsL8WCwDaTuqFa1d1jjlaxg6+tZsB
+ 9GluwvIhSezPgnEmimZDkGnZRRSFiGP8yjqTjjWuf0bSj5rUnTGiyLyRZRNGcXmu6hjlABEB
+ AAHNJ1Rob21hcyBaaW1tZXJtYW5uIDx0emltbWVybWFubkBzdXNlLmRlPsLAjgQTAQgAOAIb
+ AwULCQgHAgYVCgkICwIEFgIDAQIeAQIXgBYhBHIX+6yM6c9jRKFo5WgNwR1TC3ojBQJftODH
+ AAoJEGgNwR1TC3ojx1wH/0hKGWugiqDgLNXLRD/4TfHBEKmxIrmfu9Z5t7vwUKfwhFL6hqvo
+ lXPJJKQpQ2z8+X2vZm/slsLn7J1yjrOsoJhKABDi+3QWWSGkaGwRJAdPVVyJMfJRNNNIKwVb
+ U6B1BkX2XDKDGffF4TxlOpSQzdtNI/9gleOoUA8+jy8knnDYzjBNOZqLG2FuTdicBXblz0Mf
+ vg41gd9kCwYXDnD91rJU8tzylXv03E75NCaTxTM+FBXPmsAVYQ4GYhhgFt8S2UWMoaaABLDe
+ 7l5FdnLdDEcbmd8uLU2CaG4W2cLrUaI4jz2XbkcPQkqTQ3EB67hYkjiEE6Zy3ggOitiQGcqp
+ j//OwE0EWznS4AEIAMYmP4M/V+T5RY5at/g7rUdNsLhWv1APYrh9RQefODYHrNRHUE9eosYb
+ T6XMryR9hT8XlGOYRwKWwiQBoWSDiTMo/Xi29jUnn4BXfI2px2DTXwc22LKtLAgTRjP+qbU6
+ 3Y0xnQN29UGDbYgyyK51DW3H0If2a3JNsheAAK+Xc9baj0LGIc8T9uiEWHBnCH+RdhgATnWW
+ GKdDegUR5BkDfDg5O/FISymJBHx2Dyoklv5g4BzkgqTqwmaYzsl8UxZKvbaxq0zbehDda8lv
+ hFXodNFMAgTLJlLuDYOGLK2AwbrS3Sp0AEbkpdJBb44qVlGm5bApZouHeJ/+n+7r12+lqdsA
+ EQEAAcLAdgQYAQgAIAIbDBYhBHIX+6yM6c9jRKFo5WgNwR1TC3ojBQJftOH6AAoJEGgNwR1T
+ C3ojVSkIALpAPkIJPQoURPb1VWjh34l0HlglmYHvZszJWTXYwavHR8+k6Baa6H7ufXNQtThR
+ yIxJrQLW6rV5lm7TjhffEhxVCn37+cg0zZ3j7zIsSS0rx/aMwi6VhFJA5hfn3T0TtrijKP4A
+ SAQO9xD1Zk9/61JWk8OysuIh7MXkl0fxbRKWE93XeQBhIJHQfnc+YBLprdnxR446Sh8Wn/2D
+ Ya8cavuWf2zrB6cZurs048xe0UbSW5AOSo4V9M0jzYI4nZqTmPxYyXbm30Kvmz0rYVRaitYJ
+ 4kyYYMhuULvrJDMjZRvaNe52tkKAvMevcGdt38H4KSVXAylqyQOW5zvPc4/sq9c=
+In-Reply-To: <20231013114602.4cea19d1@canb.auug.org.au>
+Content-Type: multipart/signed; micalg=pgp-sha256;
+ protocol="application/pgp-signature";
+ boundary="------------Jj4M8tvJgL4lMCz8VmHJKfaM"
+Authentication-Results: smtp-out1.suse.de;
+	none
+X-Spam-Level: 
+X-Spam-Score: -12.00
+X-Spamd-Result: default: False [-12.00 / 50.00]; ARC_NA(0.00)[];
+ RCVD_VIA_SMTP_AUTH(0.00)[]; XM_UA_NO_VERSION(0.01)[];
+ FROM_HAS_DN(0.00)[]; TO_MATCH_ENVRCPT_ALL(0.00)[];
+ BAYES_HAM(-2.91)[99.62%];
+ MIME_GOOD(-0.20)[multipart/signed,multipart/mixed,text/plain];
+ HAS_ATTACHMENT(0.00)[]; REPLY(-4.00)[];
+ MIME_BASE64_TEXT_BOGUS(1.00)[]; NEURAL_HAM_LONG(-3.00)[-1.000];
+ DKIM_SIGNED(0.00)[suse.de:s=susede2_rsa,suse.de:s=susede2_ed25519];
+ TO_DN_ALL(0.00)[]; MIME_BASE64_TEXT(0.10)[];
+ RCPT_COUNT_SEVEN(0.00)[8]; NEURAL_HAM_SHORT(-1.00)[-1.000];
+ SIGNED_PGP(-2.00)[]; FROM_EQ_ENVFROM(0.00)[];
+ MIME_TRACE(0.00)[0:+,1:+,2:+,3:~]; RCVD_COUNT_TWO(0.00)[2];
+ RCVD_TLS_ALL(0.00)[]; MID_RHS_MATCH_FROM(0.00)[]
+X-Spam-Flag: NO
+Subject: Re: [Intel-gfx] linux-next: manual merge of the drm-misc tree with
+ the asm-generic tree
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -55,66 +114,76 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: rodrigo.vivi@intel.com
+Cc: Linux Next Mailing List <linux-next@vger.kernel.org>,
+ Ard Biesheuvel <ardb@kernel.org>,
+ Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Every know and then we receive the following error when running
-for example IGT test kms_flip.
+This is an OpenPGP/MIME signed message (RFC 4880 and 3156)
+--------------Jj4M8tvJgL4lMCz8VmHJKfaM
+Content-Type: multipart/mixed; boundary="------------MNAZkslsIWrk6OO6dNrfId7Q";
+ protected-headers="v1"
+From: Thomas Zimmermann <tzimmermann@suse.de>
+To: Stephen Rothwell <sfr@canb.auug.org.au>,
+ Daniel Vetter <daniel.vetter@ffwll.ch>,
+ Intel Graphics <intel-gfx@lists.freedesktop.org>,
+ DRI <dri-devel@lists.freedesktop.org>, Arnd Bergmann <arnd@arndb.de>
+Cc: Linux Next Mailing List <linux-next@vger.kernel.org>,
+ Ard Biesheuvel <ardb@kernel.org>,
+ Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
+Message-ID: <0de116ae-fccb-4c76-8648-2e01c7f980c7@suse.de>
+Subject: Re: linux-next: manual merge of the drm-misc tree with the
+ asm-generic tree
+References: <20231013114602.4cea19d1@canb.auug.org.au>
+In-Reply-To: <20231013114602.4cea19d1@canb.auug.org.au>
 
-[drm] *ERROR* PHY G Read 0d80 failed after 3 retries.
-[drm] *ERROR* PHY G Write 0d81 failed after 3 retries.
+--------------MNAZkslsIWrk6OO6dNrfId7Q
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: base64
 
-Since the error is sporadic in nature, the patch proposes
-to reset the message bus after every successful or unsuccessful
-read or write operation. However, the testing revealed that this
-alone is not sufficient method and therefore an additional
-delay is introduced anything from 200us to 300us to let HW to
-settle down. This delay is experimental value and has no
-specification to back it up.
+DQpBbSAxMy4xMC4yMyB1bSAwMjo0NiBzY2hyaWViIFN0ZXBoZW4gUm90aHdlbGw6DQo+IEhp
+IGFsbCwNCj4gDQo+IFRvZGF5J3MgbGludXgtbmV4dCBtZXJnZSBvZiB0aGUgZHJtLW1pc2Mg
+dHJlZSBnb3QgYSBjb25mbGljdCBpbjoNCj4gDQo+ICAgIGFyY2gvaWE2NC9pbmNsdWRlL2Fz
+bS9mYi5oDQo+IA0KPiBiZXR3ZWVuIGNvbW1pdDoNCj4gDQo+ICAgIGNmOGU4NjU4MTAwZCAo
+ImFyY2g6IFJlbW92ZSBJdGFuaXVtIChJQS02NCkgYXJjaGl0ZWN0dXJlIikNCj4gDQo+IGZy
+b20gdGhlIGFzbS1nZW5lcmljIHRyZWUgYW5kIGNvbW1pdDoNCj4gDQo+ICAgIDA1MmRkZjdi
+ODZkMiAoImZiZGV2OiBSZXBsYWNlIGZiX3BncHJvdGVjdCgpIHdpdGggcGdwcm90X2ZyYW1l
+YnVmZmVyKCkiKQ0KPiANCj4gZnJvbSB0aGUgZHJtLW1pc2MgdHJlZS4NCj4gDQo+IEkgZml4
+ZWQgaXQgdXAgKEkganVzdCByZW1vdmVkIHRoZSBmaWxlKSBhbmQgY2FuIGNhcnJ5IHRoZSBm
+aXggYXMNCg0KVGhhbmtzLg0KDQo+IG5lY2Vzc2FyeS4gVGhpcyBpcyBub3cgZml4ZWQgYXMg
+ZmFyIGFzIGxpbnV4LW5leHQgaXMgY29uY2VybmVkLCBidXQgYW55DQo+IG5vbiB0cml2aWFs
+IGNvbmZsaWN0cyBzaG91bGQgYmUgbWVudGlvbmVkIHRvIHlvdXIgdXBzdHJlYW0gbWFpbnRh
+aW5lcg0KPiB3aGVuIHlvdXIgdHJlZSBpcyBzdWJtaXR0ZWQgZm9yIG1lcmdpbmcuICBZb3Ug
+bWF5IGFsc28gd2FudCB0byBjb25zaWRlcg0KPiBjb29wZXJhdGluZyB3aXRoIHRoZSBtYWlu
+dGFpbmVyIG9mIHRoZSBjb25mbGljdGluZyB0cmVlIHRvIG1pbmltaXNlIGFueQ0KPiBwYXJ0
+aWN1bGFybHkgY29tcGxleCBjb25mbGljdHMuDQo+IA0KDQotLSANClRob21hcyBaaW1tZXJt
+YW5uDQpHcmFwaGljcyBEcml2ZXIgRGV2ZWxvcGVyDQpTVVNFIFNvZnR3YXJlIFNvbHV0aW9u
+cyBHZXJtYW55IEdtYkgNCkZyYW5rZW5zdHJhc3NlIDE0NiwgOTA0NjEgTnVlcm5iZXJnLCBH
+ZXJtYW55DQpHRjogSXZvIFRvdGV2LCBBbmRyZXcgTXllcnMsIEFuZHJldyBNY0RvbmFsZCwg
+Qm91ZGllbiBNb2VybWFuDQpIUkIgMzY4MDkgKEFHIE51ZXJuYmVyZykNCg==
 
-v2: Add FIXME's to indicate the experimental nature of
-    this workaround (Rodrigo)
+--------------MNAZkslsIWrk6OO6dNrfId7Q--
 
-Signed-off-by: Mika Kahola <mika.kahola@intel.com>
----
- drivers/gpu/drm/i915/display/intel_cx0_phy.c | 16 ++++++++++++++++
- 1 file changed, 16 insertions(+)
+--------------Jj4M8tvJgL4lMCz8VmHJKfaM
+Content-Type: application/pgp-signature; name="OpenPGP_signature.asc"
+Content-Description: OpenPGP digital signature
+Content-Disposition: attachment; filename="OpenPGP_signature.asc"
 
-diff --git a/drivers/gpu/drm/i915/display/intel_cx0_phy.c b/drivers/gpu/drm/i915/display/intel_cx0_phy.c
-index 6e6a1818071e..7c48ec5e54bd 100644
---- a/drivers/gpu/drm/i915/display/intel_cx0_phy.c
-+++ b/drivers/gpu/drm/i915/display/intel_cx0_phy.c
-@@ -221,6 +221,14 @@ static u8 __intel_cx0_read(struct drm_i915_private *i915, enum port port,
- 	for (i = 0; i < 3; i++) {
- 		status = __intel_cx0_read_once(i915, port, lane, addr);
- 
-+		/*
-+		 * FIXME: Workaround to let HW to settle
-+		 * down and let the message bus to end up
-+		 * in a known state
-+		 */
-+		intel_cx0_bus_reset(i915, port, lane);
-+		usleep_range(200, 300);
-+
- 		if (status >= 0)
- 			return status;
- 	}
-@@ -300,6 +308,14 @@ static void __intel_cx0_write(struct drm_i915_private *i915, enum port port,
- 	for (i = 0; i < 3; i++) {
- 		status = __intel_cx0_write_once(i915, port, lane, addr, data, committed);
- 
-+		/*
-+		 * FIXME: Workaround to let HW to settle
-+		 * down and let the message bus to end up
-+		 * in a known state
-+		 */
-+		intel_cx0_bus_reset(i915, port, lane);
-+		usleep_range(200, 300);
-+
- 		if (status == 0)
- 			return;
- 	}
--- 
-2.34.1
+-----BEGIN PGP SIGNATURE-----
 
+wsF5BAABCAAjFiEExndm/fpuMUdwYFFolh/E3EQov+AFAmUo6l4FAwAAAAAACgkQlh/E3EQov+AS
+LRAAkxbHhK8TjDFMp856xrwGzIl1tHo//U4jej2LzxbwHgnpf+xagld/1jvxSzgpr1GDnXtzJKEA
+v3YtY9eAIuuJypN+CjQ/ddG2mnojabe7cTpNSPWQ6UFkSLMnmtdg5wZ7gI9xUCeQ3JXckZvYiEeD
+5Hzlw2RQWl6XuHB/TpTLt6j0q3Fbrf45PBj4BzmWjlbhjsz5m9nAQQFpNyQpVA6p5GUxqVeJKy7B
+dLZ7sXYNhLoV+gW4HWSpkA/Ipxlgy8rOsdqk5WHGD/HGibBoOX1D8YIixyIHH+DXPgCtkvexaf2t
+9yyMn3ucld32ADNDm//zLj+nxPwc+WgERG/LleSDcHQTZ/TiqigAh9TK1TSSvCSvBzAqvX7MGGLa
+RJ9kWZ5Z/7oa76ySRCEJZj2Krl34zCgThTGRtrMuLGYBLKDXGbFv9mWYtx1h/S2buh5u+JhVHyUX
+9tAqhMa8SUk7bBzAUIQlB4inDemK2ZOqIj1F3uas1yUbCLeMFtdw67ernrCRjT7SJQjZ6Il0N4K6
+6ke9vykQfLem8sTmZdNCHINA3tinLeASg2kflEt9xhYOTV27L/J3LVS7pfE59GF+Vkf7zvy5WDZL
+sy0Kh8TOWHSK/H2e7N+ERF6Thw8HSWYjHKid5EXHIAkMolsFXsg5tZt8o4iw7+Rqp2QCx/Ww2qYF
+NUI=
+=vB2k
+-----END PGP SIGNATURE-----
+
+--------------Jj4M8tvJgL4lMCz8VmHJKfaM--
