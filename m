@@ -1,34 +1,34 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 16BC07C9144
-	for <lists+intel-gfx@lfdr.de>; Sat, 14 Oct 2023 01:21:55 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id CE0897C9145
+	for <lists+intel-gfx@lfdr.de>; Sat, 14 Oct 2023 01:21:57 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8157310E071;
-	Fri, 13 Oct 2023 23:21:51 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7790310E07F;
+	Fri, 13 Oct 2023 23:21:55 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 5125310E071;
- Fri, 13 Oct 2023 23:21:49 +0000 (UTC)
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id F3CC210E07A;
+ Fri, 13 Oct 2023 23:21:51 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 4B0CFAADEF;
- Fri, 13 Oct 2023 23:21:49 +0000 (UTC)
+ by emeril.freedesktop.org (Postfix) with ESMTP id F0DB9AADF6;
+ Fri, 13 Oct 2023 23:21:51 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Jonathan Cavitt" <jonathan.cavitt@intel.com>
-Date: Fri, 13 Oct 2023 23:21:49 -0000
-Message-ID: <169723930927.31155.13239654424361847024@emeril.freedesktop.org>
+Date: Fri, 13 Oct 2023 23:21:51 -0000
+Message-ID: <169723931198.31155.9591221883742019205@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
 References: <20231013221419.2710833-1-jonathan.cavitt@intel.com>
 In-Reply-To: <20231013221419.2710833-1-jonathan.cavitt@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
- =?utf-8?q?for_drm/i915=3A_Define_and_use_GuC_and_CTB_TLB_invalidation_rou?=
- =?utf-8?q?tines?=
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLlNQQVJTRTogd2FybmluZyBmb3Ig?=
+ =?utf-8?q?drm/i915=3A_Define_and_use_GuC_and_CTB_TLB_invalidation_routine?=
+ =?utf-8?q?s?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -54,31 +54,8 @@ State : warning
 
 == Summary ==
 
-Error: dim checkpatch failed
-81011600b839 drm/i915: Add GuC TLB Invalidation device info flags
-509d175695bb drm/i915/guc: Add CT size delay helper
-e96d0239cdfc drm/i915: Define and use GuC and CTB TLB invalidation routines
--:284: WARNING:MISORDERED_TYPE: type 'long unsigned int' should be specified in [[un]signed] [short|int|long|long long] order
-#284: FILE: drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c:1929:
-+	long unsigned int i;
-
--:284: WARNING:UNNECESSARY_INT: Prefer 'unsigned long' over 'long unsigned int' as the int is unnecessary
-#284: FILE: drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c:1929:
-+	long unsigned int i;
-
--:447: WARNING:MEMORY_BARRIER: memory barrier without comment
-#447: FILE: drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c:4741:
-+	smp_store_mb(wq_entry->flags, wq_entry->flags & ~WQ_FLAG_WOKEN);
-
-total: 0 errors, 3 warnings, 0 checks, 441 lines checked
-d162b69472b2 drm/i915: No TLB invalidation on suspended GT
-356ec4813ecd drm/i915: No TLB invalidation on wedged GT
-5ea00102c87e drm/i915/gt: Increase sleep in gt_tlb selftest sanitycheck
--:32: WARNING:MSLEEP: msleep < 20ms can sleep for up to 20ms; see Documentation/timers/timers-howto.rst
-#32: FILE: drivers/gpu/drm/i915/gt/selftest_tlb.c:146:
-+		msleep(10);
-
-total: 0 errors, 1 warnings, 0 checks, 17 lines checked
-c611cb1d9fcc drm/i915: Enable GuC TLB invalidations for MTL
+Error: dim sparse failed
+Sparse version: v0.6.2
+Fast mode used, each commit won't be checked separately.
 
 
