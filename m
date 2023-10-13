@@ -2,46 +2,51 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id A61C07C8D1F
-	for <lists+intel-gfx@lfdr.de>; Fri, 13 Oct 2023 20:38:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 911037C8D38
+	for <lists+intel-gfx@lfdr.de>; Fri, 13 Oct 2023 20:41:46 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 403CA10E629;
-	Fri, 13 Oct 2023 18:38:51 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E0F7E10E638;
+	Fri, 13 Oct 2023 18:41:44 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.136])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D24CA10E629
- for <intel-gfx@lists.freedesktop.org>; Fri, 13 Oct 2023 18:38:48 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.24])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A0E6710E637;
+ Fri, 13 Oct 2023 18:41:42 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1697222328; x=1728758328;
- h=from:to:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=l4H395Dg6duY9LjNNgMUe8M6E+QyjCmebBYyT/dCyTw=;
- b=CK7/4h0QGq3HShOD5QVPVolXkOppiXYEEaVNw0NZefQP8kQQPghy9ENi
- UduMe3bIE+INRCGdmkB9vBfqG5frClErMJfpklBta1c4fkRFVEeigRgNK
- I8BDlSoZnEvLLg5vBotsYjq8i5NxY3cGO+y4VzHJab1K3SSrgtxpEwKuI
- AsMCp3RByNSfXIFcfZ+15cZ9Uz1wYXGtdDGP+oFtsjWXIgFOD4oeGeQev
- +yDAiLmpcdM+fw/0wIZN6m5oA1qwZ6RF4EDN3JvyB3SnC2JIX/CfZLBEy
- A0rY7OQu0DoX/A9dcxon6StYhRsV2aV+Q+9ep3Yk9j5Hi7QZ/Iswj6axX w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10862"; a="364602519"
-X-IronPort-AV: E=Sophos;i="6.03,222,1694761200"; d="scan'208";a="364602519"
-Received: from fmsmga008.fm.intel.com ([10.253.24.58])
- by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Oct 2023 11:38:48 -0700
+ t=1697222502; x=1728758502;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:in-reply-to;
+ bh=QmJjnD+2fU4f3fzWVa5jHoDSCbyPRXuG2LGZh92S5I0=;
+ b=U3D2tDIkeKEHFAq2h2XaPbTi2ufpFhg5MaZo20t1EYxgUnbUkyOus/Nl
+ xKBHXLiQR6SuslZqcnoyDZGmIeA5dZ2WJfcRS8THMCefvyRCjwHyGB8Dn
+ 93//uvV8PCt5Ta3qI9znTKDqFq1rFu1ORHTT6dWpm9Ub56yRDcwwboP6f
+ rQcDkdB+2dojBsBdliNPSBNmOw7itBhS7//VqzBVOVJKL5bLH6DrRG1uH
+ f9160krlpDUbVEolxFH25Wl5E79fKYpsgo2lsgC+AgmW8dLcGsePa8ibp
+ aryv6oH0dTqtAICGh9fe29b6BNPeSAVVx6QTk46R1VcOZMKWskGud7O/S g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10862"; a="388090692"
+X-IronPort-AV: E=Sophos;i="6.03,222,1694761200"; d="scan'208";a="388090692"
+Received: from fmsmga004.fm.intel.com ([10.253.24.48])
+ by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 Oct 2023 11:41:40 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10862"; a="820744107"
-X-IronPort-AV: E=Sophos;i="6.03,222,1694761200"; d="scan'208";a="820744107"
-Received: from relo-linux-5.jf.intel.com ([10.165.21.152])
- by fmsmga008.fm.intel.com with ESMTP; 13 Oct 2023 11:38:48 -0700
-From: John.C.Harrison@Intel.com
-To: intel-gfx@lists.freedesktop.org
-Date: Fri, 13 Oct 2023 11:38:33 -0700
-Message-ID: <20231013183834.3490370-1-John.C.Harrison@Intel.com>
-X-Mailer: git-send-email 2.41.0
+X-IronPort-AV: E=McAfee;i="6600,9927,10862"; a="825151085"
+X-IronPort-AV: E=Sophos;i="6.03,222,1694761200"; d="scan'208";a="825151085"
+Received: from phamt-mobl2.ccr.corp.intel.com (HELO intel.com)
+ ([10.214.145.117])
+ by fmsmga004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 Oct 2023 11:41:35 -0700
+Date: Fri, 13 Oct 2023 20:41:29 +0200
+From: Andi Shyti <andi.shyti@linux.intel.com>
+To: Lee Shawn C <shawn.c.lee@intel.com>
+Message-ID: <ZSmPWdt1yFbh23xy@ashyti-mobl2.lan>
+References: <20231013042012.409376-1-shawn.c.lee@intel.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [CI] PR for new GuC v70.13.1
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20231013042012.409376-1-shawn.c.lee@intel.com>
+Subject: Re: [Intel-gfx] [PATCH] tests: save GPU engine information more
+ properly
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -54,28 +59,38 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: igt-dev@lists.freedesktop.org, intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-The following changes since commit 7727f7e3b3358713c7c91c64a835e80c331a6b8b:
+Hi Shawn,
 
-  Merge branch 'patch-1696561325' into 'main' (2023-10-06 03:04:57 +0000)
+without the i-g-t tag in the title this path was picked up by the
+kernel's patchwork.
 
-are available in the Git repository at:
+Can you please use the [PATCH i-g-t] tag?
 
-  git://anongit.freedesktop.org/drm/drm-firmware guc_70.13.1
+On Fri, Oct 13, 2023 at 12:20:12PM +0800, Lee Shawn C wrote:
+> We encounter a unexpected error on chrome book device while
+> running kms_busy test. It will restore GPU engine's timeout
+> value but open incorrect file name (XR24 in below).
+> 
+> openat(AT_FDCWD, "/sys/dev/char/226:0", O_RDONLY) = 12
+> openat(12, "dev", O_RDONLY)             = 13
+> read(13, "226:0\n", 1023)               = 6
+> close(13)                               = 0
+> openat(12, "engine", O_RDONLY)          = 13
+> close(12)                               = 0
+> openat(13, "XR24", O_RDONLY)            = -1 ENOENT (No such file or directory)
+> 
+> Test code did not save engine data properly to cause this problem.
+> So modify the code to save GPU engine information into a globla variable
+> to avoid test deamon to open incorrect file again.
+> 
+> Issue: https://gitlab.freedesktop.org/drm/igt-gpu-tools/-/issues/147
+> Fixes: 9e635a1c5029 ("tests/kms_busy: Ensure GPU reset when waiting
+> for a new FB during modeset")
 
-for you to fetch changes up to 44a9510c94ac0334931b6c89dd240ffe5bf1e5fa:
+please don't break the Fixes: line.
 
-  i915: Add GuC v70.13.1 for DG2, TGL, ADL-P and MTL (2023-10-13 11:34:26 -0700)
-
-----------------------------------------------------------------
-John Harrison (1):
-      i915: Add GuC v70.13.1 for DG2, TGL, ADL-P and MTL
-
- WHENCE               |   8 ++++----
- i915/adlp_guc_70.bin | Bin 297984 -> 342848 bytes
- i915/dg2_guc_70.bin  | Bin 385856 -> 443200 bytes
- i915/mtl_guc_70.bin  | Bin 308032 -> 365376 bytes
- i915/tgl_guc_70.bin  | Bin 285888 -> 330304 bytes
- 5 files changed, 4 insertions(+), 4 deletions(-)
+Andi
