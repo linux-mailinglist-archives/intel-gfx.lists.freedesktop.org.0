@@ -1,53 +1,56 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id B67E77C871D
-	for <lists+intel-gfx@lfdr.de>; Fri, 13 Oct 2023 15:44:59 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 00E8D7C8728
+	for <lists+intel-gfx@lfdr.de>; Fri, 13 Oct 2023 15:48:26 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 266E710E0DA;
-	Fri, 13 Oct 2023 13:44:58 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 153DC10E0BF;
+	Fri, 13 Oct 2023 13:48:24 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C389D10E5F0;
- Fri, 13 Oct 2023 13:44:55 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.120])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id F39B610E0BF
+ for <intel-gfx@lists.freedesktop.org>; Fri, 13 Oct 2023 13:48:20 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1697204696; x=1728740696;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=aRKfFlyEoRw+GwUNjdp0UrKdmqHsUDgV308MuJE5oMA=;
- b=QRPm1CUz17QN7oETvY2nGolj2oHiViVOksq5RyOc9GZ/M0b/8R1cbo/A
- uufPQ3LdBMB8NMxUJi33XWydtKv30uROdC8t7VdWOcyvnUIP4ClLmLNTa
- VnHedjlVLNT6QcCSK/FaZ3oz1s3zQHMmaqM2B+bgYZsHpaULCymMy90cS
- f/4xdncOzOkHYyyABhqknB+ZKgs+8A+aCuGxBydnPFVByp07EPJ3cOXMh
- xmSjiTrUVgxYAedvaPbj69XGVQRXDoaDG24j8PkPQ7yH5tlsTtOXCWmlD
- eRhrTBSul1S80KH4N/Gzc3aBpzfw/BSW09ZhB6OQeJRWRVeOhMx3C/mFH Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10862"; a="471422321"
-X-IronPort-AV: E=Sophos;i="6.03,222,1694761200"; d="scan'208";a="471422321"
+ t=1697204900; x=1728740900;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=Tfucnk+pJ3cdXFWo/xqWzZyoD2bwgDZKpPvKgKK99Ig=;
+ b=S6UJAsSmr12BYMvGknziXx4VMYAUe8AVWsuLlIqGf1KOXYwfpbXV0ILm
+ 89e9obUjBwTNxdtVhl2hiTS1iBwwLudID2pXq8ilWyzsk/2RYfqC6tw71
+ 2hLliJk8NwgmDyktNOXQC+oMDxjZ8k8aD4lRS47iW+yQHqy9igBixLq/I
+ AKZU4a844UloKQQl+8VMwuq8sosn20nDIuJYS8EzR0+xVUr+rAQFMH176
+ KQFZGnP1ZwKnij2u1IIKibDXwJM6jXJfV3B5JrhaahyszTe0hXlBqek5J
+ 3SRG8fB9weNu58zGlyTBOS//Djah0cH64u3vM/Yxuv36UYx8C39uM2Kz/ g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10862"; a="384046115"
+X-IronPort-AV: E=Sophos;i="6.03,222,1694761200"; d="scan'208";a="384046115"
 Received: from fmsmga008.fm.intel.com ([10.253.24.58])
- by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Oct 2023 06:44:55 -0700
+ by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 Oct 2023 06:48:20 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10862"; a="820632321"
-X-IronPort-AV: E=Sophos;i="6.03,222,1694761200"; d="scan'208";a="820632321"
-Received: from nirmoyda-desk.igk.intel.com ([10.102.138.190])
- by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Oct 2023 06:44:52 -0700
-From: Nirmoy Das <nirmoy.das@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Fri, 13 Oct 2023 15:44:39 +0200
-Message-ID: <20231013134439.13579-1-nirmoy.das@intel.com>
-X-Mailer: git-send-email 2.41.0
+X-IronPort-AV: E=McAfee;i="6600,9927,10862"; a="820633796"
+X-IronPort-AV: E=Sophos;i="6.03,222,1694761200"; d="scan'208";a="820633796"
+Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.74])
+ by fmsmga008.fm.intel.com with SMTP; 13 Oct 2023 06:48:18 -0700
+Received: by stinkbox (sSMTP sendmail emulation);
+ Fri, 13 Oct 2023 16:48:17 +0300
+Date: Fri, 13 Oct 2023 16:48:17 +0300
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: "Shankar, Uma" <uma.shankar@intel.com>
+Message-ID: <ZSlKoSr2WMp8eQM8@intel.com>
+References: <20231009132204.15098-1-ville.syrjala@linux.intel.com>
+ <20231009132204.15098-2-ville.syrjala@linux.intel.com>
+ <DM4PR11MB63604202F27DECE62EA33E99F4D3A@DM4PR11MB6360.namprd11.prod.outlook.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Organization: Intel Deutschland GmbH, Registered Address: Am Campeon 10,
- 85579 Neubiberg, Germany,
- Commercial Register: Amtsgericht Muenchen HRB 186928 
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH v2] drm/i915: Flush WC GGTT only on required
- platforms
+In-Reply-To: <DM4PR11MB63604202F27DECE62EA33E99F4D3A@DM4PR11MB6360.namprd11.prod.outlook.com>
+X-Patchwork-Hint: comment
+Subject: Re: [Intel-gfx] [PATCH 2/4] drm/i915/dsb: Correct DSB command
+ buffer cache coherency settings
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -60,99 +63,104 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Jonathan Cavitt <jonathan.cavitt@intel.com>,
- dri-devel@lists.freedesktop.org, Rodrigo Vivi <rodrigo.vivi@intel.com>,
- stable@vger.kernel.org, Matt Roper <matthew.d.roper@intel.com>,
- Nirmoy Das <nirmoy.das@intel.com>
+Cc: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-gen8_ggtt_invalidate() is only needed for limited set of platforms
-where GGTT is mapped as WC otherwise this can cause unwanted
-side-effects on XE_HP platforms where GFX_FLSH_CNTL_GEN6 is not
-valid.
+On Thu, Oct 12, 2023 at 09:40:23PM +0000, Shankar, Uma wrote:
+> 
+> 
+> > -----Original Message-----
+> > From: Intel-gfx <intel-gfx-bounces@lists.freedesktop.org> On Behalf Of Ville
+> > Syrjala
+> > Sent: Monday, October 9, 2023 6:52 PM
+> > To: intel-gfx@lists.freedesktop.org
+> > Subject: [Intel-gfx] [PATCH 2/4] drm/i915/dsb: Correct DSB command buffer
+> > cache coherency settings
+> > 
+> > From: Ville Syrj‰l‰ <ville.syrjala@linux.intel.com>
+> > 
+> > The display engine does not snoop the caches so shoukd to mark the DSB
+> 
+> Nit: Typo here
+> 
+> I am not sure on the cache behaviour so someone from core can also ack.
+> To me , looks logically correct.
+> Reviewed-by: Uma Shankar <uma.shankar@intel.com>
 
-v2: Add a func to detect wc ggtt detection (Ville)
+Thanks. This series is now merged. Fingers crossed DSB will behave
+nicely...
 
-Fixes: d2eae8e98d59 ("drm/i915/dg2: Drop force_probe requirement")
-Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
-Cc: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-Cc: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
-Cc: Jani Nikula <jani.nikula@linux.intel.com>
-Cc: Jonathan Cavitt <jonathan.cavitt@intel.com>
-Cc: John Harrison <john.c.harrison@intel.com>
-Cc: Andi Shyti <andi.shyti@linux.intel.com>
-Cc: Ville Syrj√§l√§ <ville.syrjala@linux.intel.com>
-Cc: <stable@vger.kernel.org> # v6.2+
-Suggested-by: Matt Roper <matthew.d.roper@intel.com>
-Signed-off-by: Nirmoy Das <nirmoy.das@intel.com>
-Acked-by: Andi Shyti <andi.shyti@linux.intel.com>
----
- drivers/gpu/drm/i915/gt/intel_ggtt.c | 35 +++++++++++++++++++---------
- 1 file changed, 24 insertions(+), 11 deletions(-)
+> 
+> > command buffer as I915_CACHE_NONE.
+> > i915_gem_object_create_internal() always gives us I915_CACHE_LLC on LLC
+> > platforms. And to make things 100% correct we should also clflush at the end, if
+> > necessary.
+> > 
+> > Note that currently this is a non-issue as we always write the command buffer
+> > through a WC mapping, so a cache flush is not actually needed. But we might
+> > actually want to consider a WB mapping since we also end up reading from the
+> > command buffer (in the indexed reg write handling). Either that or we should do
+> > something else to avoid those reads (might actually be even more sensible on
+> > DGFX since we end up reading over PCIe). But we should measure the overhead
+> > first...
+> > 
+> > Anyways, no real harm in adding the belts and suspenders here so that the code
+> > will work correctly regardless of how we map the buffer. If we do get a WC
+> > mapping (as we request)
+> > i915_gem_object_flush_map() will be a nop. Well, apart form a wmb() which may
+> > just flush the WC buffer a bit earlier than would otherwise happen (at the latest
+> > the mmio accesses would trigger the WC flush).
+> > 
+> > Signed-off-by: Ville Syrj‰l‰ <ville.syrjala@linux.intel.com>
+> > ---
+> >  drivers/gpu/drm/i915/display/intel_dsb.c | 15 +++++++++++----
+> >  1 file changed, 11 insertions(+), 4 deletions(-)
+> > 
+> > diff --git a/drivers/gpu/drm/i915/display/intel_dsb.c
+> > b/drivers/gpu/drm/i915/display/intel_dsb.c
+> > index 7410ba3126f9..78b6fe24dcd8 100644
+> > --- a/drivers/gpu/drm/i915/display/intel_dsb.c
+> > +++ b/drivers/gpu/drm/i915/display/intel_dsb.c
+> > @@ -316,6 +316,8 @@ void intel_dsb_finish(struct intel_dsb *dsb)
+> >  				   DSB_FORCE_DEWAKE, 0);
+> > 
+> >  	intel_dsb_align_tail(dsb);
+> > +
+> > +	i915_gem_object_flush_map(dsb->vma->obj);
+> >  }
+> > 
+> >  static int intel_dsb_dewake_scanline(const struct intel_crtc_state *crtc_state)
+> > @@ -462,13 +464,18 @@ struct intel_dsb *intel_dsb_prepare(const struct
+> > intel_crtc_state *crtc_state,
+> >  	/* ~1 qword per instruction, full cachelines */
+> >  	size = ALIGN(max_cmds * 8, CACHELINE_BYTES);
+> > 
+> > -	if (HAS_LMEM(i915))
+> > +	if (HAS_LMEM(i915)) {
+> >  		obj = i915_gem_object_create_lmem(i915, PAGE_ALIGN(size),
+> > 
+> > I915_BO_ALLOC_CONTIGUOUS);
+> > -	else
+> > +		if (IS_ERR(obj))
+> > +			goto out_put_rpm;
+> > +	} else {
+> >  		obj = i915_gem_object_create_internal(i915, PAGE_ALIGN(size));
+> > -	if (IS_ERR(obj))
+> > -		goto out_put_rpm;
+> > +		if (IS_ERR(obj))
+> > +			goto out_put_rpm;
+> > +
+> > +		i915_gem_object_set_cache_coherency(obj,
+> > I915_CACHE_NONE);
+> > +	}
+> > 
+> >  	vma = i915_gem_object_ggtt_pin(obj, NULL, 0, 0, 0);
+> >  	if (IS_ERR(vma)) {
+> > --
+> > 2.41.0
+> 
 
-diff --git a/drivers/gpu/drm/i915/gt/intel_ggtt.c b/drivers/gpu/drm/i915/gt/intel_ggtt.c
-index 4d7d88b92632..401667f83f96 100644
---- a/drivers/gpu/drm/i915/gt/intel_ggtt.c
-+++ b/drivers/gpu/drm/i915/gt/intel_ggtt.c
-@@ -195,6 +195,21 @@ void gen6_ggtt_invalidate(struct i915_ggtt *ggtt)
- 	spin_unlock_irq(&uncore->lock);
- }
- 
-+static bool needs_wc_ggtt_mapping(struct drm_i915_private *i915)
-+{
-+	/*
-+	 * On BXT+/ICL+ writes larger than 64 bit to the GTT pagetable range
-+	 * will be dropped. For WC mappings in general we have 64 byte burst
-+	 * writes when the WC buffer is flushed, so we can't use it, but have to
-+	 * resort to an uncached mapping. The WC issue is easily caught by the
-+	 * readback check when writing GTT PTE entries.
-+	 */
-+	if (!IS_GEN9_LP(i915) && GRAPHICS_VER(i915) < 11)
-+		return true;
-+
-+	return false;
-+}
-+
- static void gen8_ggtt_invalidate(struct i915_ggtt *ggtt)
- {
- 	struct intel_uncore *uncore = ggtt->vm.gt->uncore;
-@@ -202,8 +217,12 @@ static void gen8_ggtt_invalidate(struct i915_ggtt *ggtt)
- 	/*
- 	 * Note that as an uncached mmio write, this will flush the
- 	 * WCB of the writes into the GGTT before it triggers the invalidate.
-+	 *
-+	 * Only perform this when GGTT is mapped as WC, see ggtt_probe_common().
- 	 */
--	intel_uncore_write_fw(uncore, GFX_FLSH_CNTL_GEN6, GFX_FLSH_CNTL_EN);
-+	if (needs_wc_ggtt_mapping(ggtt->vm.i915))
-+		intel_uncore_write_fw(uncore, GFX_FLSH_CNTL_GEN6,
-+				      GFX_FLSH_CNTL_EN);
- }
- 
- static void guc_ggtt_invalidate(struct i915_ggtt *ggtt)
-@@ -1126,17 +1145,11 @@ static int ggtt_probe_common(struct i915_ggtt *ggtt, u64 size)
- 	GEM_WARN_ON(pci_resource_len(pdev, GEN4_GTTMMADR_BAR) != gen6_gttmmadr_size(i915));
- 	phys_addr = pci_resource_start(pdev, GEN4_GTTMMADR_BAR) + gen6_gttadr_offset(i915);
- 
--	/*
--	 * On BXT+/ICL+ writes larger than 64 bit to the GTT pagetable range
--	 * will be dropped. For WC mappings in general we have 64 byte burst
--	 * writes when the WC buffer is flushed, so we can't use it, but have to
--	 * resort to an uncached mapping. The WC issue is easily caught by the
--	 * readback check when writing GTT PTE entries.
--	 */
--	if (IS_GEN9_LP(i915) || GRAPHICS_VER(i915) >= 11)
--		ggtt->gsm = ioremap(phys_addr, size);
--	else
-+	if (needs_wc_ggtt_mapping(i915))
- 		ggtt->gsm = ioremap_wc(phys_addr, size);
-+	else
-+		ggtt->gsm = ioremap(phys_addr, size);
-+
- 	if (!ggtt->gsm) {
- 		drm_err(&i915->drm, "Failed to map the ggtt page table\n");
- 		return -ENOMEM;
 -- 
-2.41.0
-
+Ville Syrj‰l‰
+Intel
