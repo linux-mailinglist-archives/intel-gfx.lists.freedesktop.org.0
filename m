@@ -2,50 +2,50 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 393587C9040
-	for <lists+intel-gfx@lfdr.de>; Sat, 14 Oct 2023 00:26:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4E49B7C903F
+	for <lists+intel-gfx@lfdr.de>; Sat, 14 Oct 2023 00:26:09 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 467B610E642;
-	Fri, 13 Oct 2023 22:26:05 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9DD9010E07D;
+	Fri, 13 Oct 2023 22:26:04 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.115])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A2FBD10E072
- for <intel-gfx@lists.freedesktop.org>; Fri, 13 Oct 2023 22:25:59 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 24B8410E072
+ for <intel-gfx@lists.freedesktop.org>; Fri, 13 Oct 2023 22:26:00 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1697235959; x=1728771959;
+ t=1697235960; x=1728771960;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=kH71c7G79c47Sqh7bzx0cMksFEIF8JepRxBiIrAt+fk=;
- b=PJZl/RLLuLVywTvfssyGmac8HFPQj4BCOKX52yfpKdyAzSow5FfxXqUU
- BBZ8OX3gkwl/dcmI+OuGZc7DyslyhSzdCuFtu0Tr37/oftqztlyF9Q5Bc
- mlyzdFe7rACqRA+9SNq2RDm/besyEPlJmczkH880SHb6QOMBcyjJ5RavL
- QNXK0urYki0fXvlLnQ+5heWEIVMtxiZLYAljB4X0gdPP5liiU7v46DrlI
- Z40gZ7DPyKN6kO4N5rhiNCF7dXGGC/R1IKAG8AjVOV9HO5c1wiZpBcOeV
- 3z8ubcCFuk08iyJEsoxxgOTa8JYebpf+ZfPeNJUYH0LEbyS0KFsNAXEXe Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10862"; a="385115689"
-X-IronPort-AV: E=Sophos;i="6.03,223,1694761200"; d="scan'208";a="385115689"
+ bh=v4cbeUbH9TT8GkQkRzb+FF3ZRnBOCxSlZs1GDORJp/w=;
+ b=fEjheyph74lfc0nO8u0SmkWw/Rn/J2UARnkJ2KEGFXrkTqLLCpZFavuS
+ EZcoIq6LJXeFC4aZ9xBm/6pZlqrA0fM6fi577UGpOvFbh4HIkr0kSZDbM
+ CmhetGnvsP8Tb7jnMHMYxLTMJGSNxqxrHxGYkqjA4QidhWlVPwpRxN+c8
+ VurzvcpFkWiusqcwgY6clCGVOBOSd2ygtyi/AknEE9KbuXEI58teQoGvk
+ lecrws9hGn6XnB2FfBn5TikYM6ZpN0tWC6GzkQKueWDF95o72vKm2UbjR
+ 1MjVz3xn1oB2teNFAkoJTJUxoXe6sEjrCeAdUexwoyzBf5xxpW9MXi6wq Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10862"; a="385115685"
+X-IronPort-AV: E=Sophos;i="6.03,223,1694761200"; d="scan'208";a="385115685"
 Received: from fmsmga003.fm.intel.com ([10.253.24.29])
  by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Oct 2023 15:25:11 -0700
+ 13 Oct 2023 15:25:10 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10862"; a="845641480"
-X-IronPort-AV: E=Sophos;i="6.03,223,1694761200"; d="scan'208";a="845641480"
+X-IronPort-AV: E=McAfee;i="6600,9927,10862"; a="845641483"
+X-IronPort-AV: E=Sophos;i="6.03,223,1694761200"; d="scan'208";a="845641483"
 Received: from dut-internal-9dd7.jf.intel.com ([10.165.21.194])
  by fmsmga003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  13 Oct 2023 15:25:04 -0700
 From: Jonathan Cavitt <jonathan.cavitt@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Fri, 13 Oct 2023 15:14:18 -0700
-Message-Id: <20231013221419.2710833-7-jonathan.cavitt@intel.com>
+Date: Fri, 13 Oct 2023 15:14:19 -0700
+Message-Id: <20231013221419.2710833-8-jonathan.cavitt@intel.com>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20231013221419.2710833-1-jonathan.cavitt@intel.com>
 References: <20231013221419.2710833-1-jonathan.cavitt@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH v15 6/7] drm/i915/gt: Increase sleep in gt_tlb
- selftest sanitycheck
+Subject: [Intel-gfx] [PATCH v15 7/7] drm/i915: Enable GuC TLB invalidations
+ for MTL
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,40 +64,31 @@ Cc: janusz.krzysztofik@intel.com, andi.shyti@intel.com,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-For the gt_tlb live selftest, when operating on the GSC engine,
-increase the timeout from 10 ms to 200 ms because the GSC
-engine is a bit slower than the rest.
+Enable GuC TLB invalidations for MTL.  Though more platforms than just
+MTL support GuC TLB invalidations, MTL is presently the only platform
+that requires it for any purpose, so only enable it there for now to
+minimize cross-platform impact.
 
 Signed-off-by: Jonathan Cavitt <jonathan.cavitt@intel.com>
 Reviewed-by: Andi Shyti <andi.shyti@linux.intel.com>
 Acked-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
 Reviewed-by: Nirmoy Das <nirmoy.das@intel.com>
 ---
- drivers/gpu/drm/i915/gt/selftest_tlb.c | 11 +++++++++--
- 1 file changed, 9 insertions(+), 2 deletions(-)
+ drivers/gpu/drm/i915/i915_pci.c | 1 +
+ 1 file changed, 1 insertion(+)
 
-diff --git a/drivers/gpu/drm/i915/gt/selftest_tlb.c b/drivers/gpu/drm/i915/gt/selftest_tlb.c
-index 7e41f69fc818f..00b872b6380b1 100644
---- a/drivers/gpu/drm/i915/gt/selftest_tlb.c
-+++ b/drivers/gpu/drm/i915/gt/selftest_tlb.c
-@@ -136,8 +136,15 @@ pte_tlbinv(struct intel_context *ce,
- 	i915_request_get(rq);
- 	i915_request_add(rq);
- 
--	/* Short sleep to sanitycheck the batch is spinning before we begin */
--	msleep(10);
-+	/*
-+	 * Short sleep to sanitycheck the batch is spinning before we begin.
-+	 * FIXME: Why is GSC so slow?
-+	 */
-+	if (ce->engine->class == OTHER_CLASS)
-+		msleep(200);
-+	else
-+		msleep(10);
-+
- 	if (va == vb) {
- 		if (!i915_request_completed(rq)) {
- 			pr_err("%s(%s): Semaphore sanitycheck failed %llx, with alignment %llx, using PTE size %x (phys %x, sg %x)\n",
+diff --git a/drivers/gpu/drm/i915/i915_pci.c b/drivers/gpu/drm/i915/i915_pci.c
+index df7c261410f79..d4b51ececbb12 100644
+--- a/drivers/gpu/drm/i915/i915_pci.c
++++ b/drivers/gpu/drm/i915/i915_pci.c
+@@ -829,6 +829,7 @@ static const struct intel_device_info mtl_info = {
+ 	.has_flat_ccs = 0,
+ 	.has_gmd_id = 1,
+ 	.has_guc_deprivilege = 1,
++	.has_guc_tlb_invalidation = 1,
+ 	.has_llc = 0,
+ 	.has_mslice_steering = 0,
+ 	.has_snoop = 1,
 -- 
 2.25.1
 
