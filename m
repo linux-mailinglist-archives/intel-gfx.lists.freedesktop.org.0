@@ -2,45 +2,51 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id EB8167CB3B9
-	for <lists+intel-gfx@lfdr.de>; Mon, 16 Oct 2023 22:10:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5DF3D7CB643
+	for <lists+intel-gfx@lfdr.de>; Tue, 17 Oct 2023 00:11:18 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BDF3F10E012;
-	Mon, 16 Oct 2023 20:10:21 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A206510E22B;
+	Mon, 16 Oct 2023 22:11:08 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B3D5E10E0C6;
- Mon, 16 Oct 2023 20:10:19 +0000 (UTC)
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
- by dfw.source.kernel.org (Postfix) with ESMTP id 105396114A;
- Mon, 16 Oct 2023 20:10:19 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 542AFC433C8;
- Mon, 16 Oct 2023 20:10:15 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1697487018;
- bh=IP5/MhvOpJ22HR71PavNc9y5Lf1zUiBmMsVX1ID6KQ8=;
- h=From:To:Cc:Subject:Date:From;
- b=SHWV1KIhS0Yb/wjRj3WQ40LVlhMleM5nkDCeZsHluZwuliokMnSM9uUwBHXjTZvF0
- pmUYwySK4LPu0w5Dx5ic4Kbv3fejLNKmPi7LNvJM+BSkzuU/9G4oWUNwU2oqI2z8Aw
- pSZ4fIx0PfSrNM7cdS8zbPzuj1fiUHLDmNYqcSC09BfoYgJWu3U31IEbDRu8423NvU
- EDvPeNIbenW5x4qughRz//+E4TSzKr0RhFXphJbiO7sr6pfoMJBwmDSf+TZryOQtgw
- jGVqKrGL3EuQ/Pu/I48WX2Ij5kITGsyNiluM5wwGYpcAl223Otnl2tyRcY8GKVH9S9
- nkhKNxCu14y4A==
-From: Arnd Bergmann <arnd@kernel.org>
-To: Jani Nikula <jani.nikula@linux.intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
- David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
- Badal Nilawar <badal.nilawar@intel.com>,
- Ashutosh Dixit <ashutosh.dixit@intel.com>
-Date: Mon, 16 Oct 2023 22:10:04 +0200
-Message-Id: <20231016201012.1022812-1-arnd@kernel.org>
-X-Mailer: git-send-email 2.39.2
+Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.126])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 127DD10E180;
+ Mon, 16 Oct 2023 22:11:06 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1697494266; x=1729030266;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:in-reply-to;
+ bh=uOSGYUIh2bCQLm9WrX2gbSaTh3qGkOYaDbBrkhXMx+E=;
+ b=EsT1VTe+9GsZWYRbiU6wcAamRcTJW+jmyZBTPfpfpDs9VTSSxYW7mq+k
+ /eoYpyZii0cq3+Ml/f+PSd7bzFoVfk8RkwWXIAqwqAyVZSo+ZJazkW0Ca
+ eo2Gzv/UMwyDZ0YeHloTEoHYgyshWSA0PG5gz4NoE8ZBtTEwVwqrKLIa5
+ H6/gn7PhOsxyiNxwNwHcGPCbkxVGM4MCleZl2AkMHDkLtLGUzRkIPXs76
+ Xuc7Xgl/v304+X30yxigJ4/9324h2pir9Jkd0RYCIIxpxkSg2UC3bosPf
+ NhomoR77+XH8X7L78DYz8jw5LCh8PvrG/dDO9ZbmrZo0Imofq2zXYsUWG w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10865"; a="370723373"
+X-IronPort-AV: E=Sophos;i="6.03,230,1694761200"; d="scan'208";a="370723373"
+Received: from fmsmga005.fm.intel.com ([10.253.24.32])
+ by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 16 Oct 2023 15:11:02 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10865"; a="1087243992"
+X-IronPort-AV: E=Sophos;i="6.03,230,1694761200"; d="scan'208";a="1087243992"
+Received: from yckhoo-mobl2.gar.corp.intel.com (HELO intel.com)
+ ([10.215.157.119])
+ by fmsmga005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 16 Oct 2023 15:10:54 -0700
+Date: Tue, 17 Oct 2023 00:10:49 +0200
+From: Andi Shyti <andi.shyti@linux.intel.com>
+To: Arnd Bergmann <arnd@kernel.org>
+Message-ID: <ZS206TuYnhE3PozK@ashyti-mobl2.lan>
+References: <20231016201012.1022812-1-arnd@kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH] drm/i915/mtl: avoid stringop-overflow warning
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20231016201012.1022812-1-arnd@kernel.org>
+Subject: Re: [Intel-gfx] [PATCH] drm/i915/mtl: avoid stringop-overflow
+ warning
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -53,71 +59,31 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Arnd Bergmann <arnd@arndb.de>, intel-gfx@lists.freedesktop.org,
- linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
- Matt Roper <matthew.d.roper@intel.com>
+Cc: Arnd Bergmann <arnd@arndb.de>, Matt Roper <matthew.d.roper@intel.com>,
+ intel-gfx@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+ dri-devel@lists.freedesktop.org, Daniel Vetter <daniel@ffwll.ch>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, David Airlie <airlied@gmail.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-From: Arnd Bergmann <arnd@arndb.de>
+Hi Arnd,
 
-The newly added memset() causes a warning for some reason I could not figure out:
+>  static void rc6_res_reg_init(struct intel_rc6 *rc6)
+>  {
+> -	memset(rc6->res_reg, INVALID_MMIO_REG.reg, sizeof(rc6->res_reg));
 
-In file included from arch/x86/include/asm/string.h:3,
-                 from drivers/gpu/drm/i915/gt/intel_rc6.c:6:
-In function 'rc6_res_reg_init',
-    inlined from 'intel_rc6_init' at drivers/gpu/drm/i915/gt/intel_rc6.c:610:2:
-arch/x86/include/asm/string_32.h:195:29: error: '__builtin_memset' writing 16 bytes into a region of size 0 overflows the destination [-Werror=stringop-overflow=]
-  195 | #define memset(s, c, count) __builtin_memset(s, c, count)
-      |                             ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-drivers/gpu/drm/i915/gt/intel_rc6.c:584:9: note: in expansion of macro 'memset'
-  584 |         memset(rc6->res_reg, INVALID_MMIO_REG.reg, sizeof(rc6->res_reg));
-      |         ^~~~~~
-In function 'intel_rc6_init':
+This is a complex initialization, indeed... how about just
 
-Change it to an normal initializer and an added memcpy() that does not have
-this problem.
+   memset(rc6->res_reg, 0, sizeof(rc6->res_reg));
 
-Fixes: 4bb9ca7ee0745 ("drm/i915/mtl: C6 residency and C state type for MTL SAMedia")
-Signed-off-by: Arnd Bergmann <arnd@arndb.de>
----
- drivers/gpu/drm/i915/gt/intel_rc6.c | 16 ++++++++++------
- 1 file changed, 10 insertions(+), 6 deletions(-)
+> +	i915_reg_t res_reg[INTEL_RC6_RES_MAX] = {
+> +		[0 ... INTEL_RC6_RES_MAX - 1] = INVALID_MMIO_REG,
+> +	};
 
-diff --git a/drivers/gpu/drm/i915/gt/intel_rc6.c b/drivers/gpu/drm/i915/gt/intel_rc6.c
-index 8b67abd720be8..7090e4be29cb6 100644
---- a/drivers/gpu/drm/i915/gt/intel_rc6.c
-+++ b/drivers/gpu/drm/i915/gt/intel_rc6.c
-@@ -581,19 +581,23 @@ static void __intel_rc6_disable(struct intel_rc6 *rc6)
- 
- static void rc6_res_reg_init(struct intel_rc6 *rc6)
- {
--	memset(rc6->res_reg, INVALID_MMIO_REG.reg, sizeof(rc6->res_reg));
-+	i915_reg_t res_reg[INTEL_RC6_RES_MAX] = {
-+		[0 ... INTEL_RC6_RES_MAX - 1] = INVALID_MMIO_REG,
-+	};
- 
- 	switch (rc6_to_gt(rc6)->type) {
- 	case GT_MEDIA:
--		rc6->res_reg[INTEL_RC6_RES_RC6] = MTL_MEDIA_MC6;
-+		res_reg[INTEL_RC6_RES_RC6] = MTL_MEDIA_MC6;
- 		break;
- 	default:
--		rc6->res_reg[INTEL_RC6_RES_RC6_LOCKED] = GEN6_GT_GFX_RC6_LOCKED;
--		rc6->res_reg[INTEL_RC6_RES_RC6] = GEN6_GT_GFX_RC6;
--		rc6->res_reg[INTEL_RC6_RES_RC6p] = GEN6_GT_GFX_RC6p;
--		rc6->res_reg[INTEL_RC6_RES_RC6pp] = GEN6_GT_GFX_RC6pp;
-+		res_reg[INTEL_RC6_RES_RC6_LOCKED] = GEN6_GT_GFX_RC6_LOCKED;
-+		res_reg[INTEL_RC6_RES_RC6] = GEN6_GT_GFX_RC6;
-+		res_reg[INTEL_RC6_RES_RC6p] = GEN6_GT_GFX_RC6p;
-+		res_reg[INTEL_RC6_RES_RC6pp] = GEN6_GT_GFX_RC6pp;
- 		break;
- 	}
-+
-+	memcpy(rc6->res_reg, res_reg, sizeof(res_reg));
- }
- 
- void intel_rc6_init(struct intel_rc6 *rc6)
--- 
-2.39.2
+This is basically a
 
+   i915_reg_t res_reg[INTEL_RC6_RES_MAX] = { };
+
+Don't know which one is clearer.
+
+Andi
