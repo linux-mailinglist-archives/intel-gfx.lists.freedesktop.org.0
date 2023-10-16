@@ -2,33 +2,50 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3DA3B7CA413
-	for <lists+intel-gfx@lfdr.de>; Mon, 16 Oct 2023 11:26:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id B93657CA669
+	for <lists+intel-gfx@lfdr.de>; Mon, 16 Oct 2023 13:17:18 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id ADCC310E16C;
-	Mon, 16 Oct 2023 09:26:11 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 205FF10E04A;
+	Mon, 16 Oct 2023 11:17:16 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 00DD510E16C;
- Mon, 16 Oct 2023 09:26:09 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id E2C68AADEF;
- Mon, 16 Oct 2023 09:26:09 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============7380035553377612602=="
+Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.115])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C6A0E10E04A
+ for <intel-gfx@lists.freedesktop.org>; Mon, 16 Oct 2023 11:17:14 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1697455034; x=1728991034;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=2UWn1CuX5LRL1RaquQ7B9Xcf/CNSZxpXyVdIAfMI8uQ=;
+ b=MqKV20Ls3ggAOLZ6nVXh5XNw1qtLxIcCMxwkdu9z8mLDWYj7b6e+Q3D6
+ O8bdWK+DDBlfZOURiWgVNor26YUeUCt5xzhbottjgciquVrbUeVGTxNA8
+ 5xIED/Tnb6IChxCjXgSS00f91GqQkJWRc6Hk/itb2f83DZYVT7ZKgzY43
+ abwCoIaAghVO1QptOdbkcRXxObajMeirQu7xvK3y9jw2qoqn25HBbtjDP
+ NZGqT4441KQKXAOAVwXEfTXzLU7YRCZO9iFe+NKweX4kcdDozOHwOWtNu
+ winmldu3J1dNEdH76uaC3MInPB/y8u8zJCNojOuZWVcoJshgh+Y6jvuaS A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10863"; a="385341334"
+X-IronPort-AV: E=Sophos;i="6.03,229,1694761200"; d="scan'208";a="385341334"
+Received: from fmsmga008.fm.intel.com ([10.253.24.58])
+ by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 16 Oct 2023 04:17:14 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10863"; a="821532513"
+X-IronPort-AV: E=Sophos;i="6.03,229,1694761200"; d="scan'208";a="821532513"
+Received: from dleve-mobl.ger.corp.intel.com (HELO jhogande-mobl1.intel.com)
+ ([10.252.41.143])
+ by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 16 Oct 2023 04:17:11 -0700
+From: =?UTF-8?q?Jouni=20H=C3=B6gander?= <jouni.hogander@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Mon, 16 Oct 2023 14:16:34 +0300
+Message-Id: <20231016111658.3432581-1-jouni.hogander@intel.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: =?utf-8?q?Jouni_H=C3=B6gander?= <jouni.hogander@intel.com>
-Date: Mon, 16 Oct 2023 09:26:09 -0000
-Message-ID: <169744836989.13509.2543889866309592235@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20231016080803.3313020-1-jouni.hogander@intel.com>
-In-Reply-To: <20231016080803.3313020-1-jouni.hogander@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
- =?utf-8?q?/i915/display=3A_Use_dma=5Ffence_interfaces_instead_of_i915=5Fs?=
- =?utf-8?q?w=5Ffence?=
+Content-Type: text/plain; charset=UTF-8
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-gfx] [PATCH v2 00/24] Framework for display parameters
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -41,171 +58,107 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
+Cc: Jani Nikula <jani.nikula@intel.com>, Rodrigo Vivi <rodrigo.vivi@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============7380035553377612602==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+Currently all module parameters are handled by i915_param.c/h. This
+is a problem for display parameters when Xe driver is used.
 
-== Series Details ==
+This patch set adds a mechanism to add parameters specific to the
+display. This is mainly copied from existing i915 parameters
+implementation with some naming changes and taking into account
+varying driver name.
 
-Series: drm/i915/display: Use dma_fence interfaces instead of i915_sw_fence
-URL   : https://patchwork.freedesktop.org/series/125160/
-State : success
+Also all display specific module parameters are moved under display and the
+module parameter are all converted as non-writable. This should be ok
+as we have writable device parameters under debugfs.
 
-== Summary ==
+v2:
+  - Drop fastboot parameter
+  - Include display parameters into i915_capabilities debugfs interface
 
-CI Bug Log - changes from CI_DRM_13756 -> Patchwork_125160v1
-====================================================
+Cc: Jani Nikula <jani.nikula@intel.com>
+Cc: Uma Shankar <uma.shankar@intel.com>
+Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+Cc: Ville Syrjälä <ville.syrjala@linux.intel.com>
+Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
+Cc: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+Cc: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
 
-Summary
--------
+Jouni Högander (24):
+  drm/i915/display: Add framework to add parameters specific to display
+  drm/i915/display: Dump also display parameters
+  drm/i915/display: Move enable_fbc module parameter under display
+  drm/i915/display: Move psr related module parameters under display
+  drm/i915/display: Move vbt_firmware module parameter under display
+  drm/i915/display: Move lvds_channel_mode module parameter under
+    display
+  drm/i915/display: Move panel_use_ssc module parameter under display
+  drm/i915/display: Move vbt_sdvo_panel_type module parameter under
+    display
+  drm/i915/display: Move enable_dc module parameter under display
+  drm/i915/display: Move enable_dpt module parameter under display
+  drm/i915/display: Move enable_sagv module parameter under display
+  drm/i915/display: Move disable_power_well module parameter under
+    display
+  drm/i915/display: Move enable_ips module parameter under display
+  drm/i915/display: Move invert_brightness module parameter under
+    display
+  drm/i915/display: Move edp_vswing module parameter under display
+  drm/i915/display: Move enable_dpcd_backlightmodule parameter under
+    display
+  drm/i915/display: Move load_detect_test parameter under display
+  drm/i915/display: Move force_reset_modeset_test parameter under
+    display
+  drm/i915/display: Move disable_display parameter under display
+  drm/i915/display: Use device parameters instead of module in
+    I915_STATE_WARN
+  drm/i915/display: Move verbose_state_checks under display
+  drm/i915/display: Move nuclear_pageflip under display
+  drm/i915/display: Move enable_dp_mst under display
+  drm/i915/display: Use same permissions for enable_sagv as for rest
 
-  **SUCCESS**
+ drivers/gpu/drm/i915/Makefile                 |   2 +
+ drivers/gpu/drm/i915/display/hsw_ips.c        |   4 +-
+ drivers/gpu/drm/i915/display/i9xx_wm.c        |   2 +-
+ .../gpu/drm/i915/display/intel_backlight.c    |   9 +-
+ drivers/gpu/drm/i915/display/intel_bios.c     |   6 +-
+ drivers/gpu/drm/i915/display/intel_crt.c      |   4 +-
+ drivers/gpu/drm/i915/display/intel_display.h  |   2 +-
+ .../gpu/drm/i915/display/intel_display_core.h |   2 +
+ .../drm/i915/display/intel_display_debugfs.c  |   2 +
+ .../display/intel_display_debugfs_params.c    | 176 ++++++++++++++
+ .../display/intel_display_debugfs_params.h    |  14 ++
+ .../drm/i915/display/intel_display_device.c   |  13 +-
+ .../drm/i915/display/intel_display_device.h   |   1 +
+ .../drm/i915/display/intel_display_params.c   | 216 ++++++++++++++++++
+ .../drm/i915/display/intel_display_params.h   |  61 +++++
+ .../drm/i915/display/intel_display_power.c    |  14 +-
+ .../drm/i915/display/intel_display_reset.c    |   2 +-
+ drivers/gpu/drm/i915/display/intel_dp.c       |   6 +-
+ .../drm/i915/display/intel_dp_aux_backlight.c |   4 +-
+ drivers/gpu/drm/i915/display/intel_dpt.c      |   6 +-
+ drivers/gpu/drm/i915/display/intel_fb.c       |   2 +-
+ drivers/gpu/drm/i915/display/intel_fbc.c      |  10 +-
+ drivers/gpu/drm/i915/display/intel_lvds.c     |   4 +-
+ drivers/gpu/drm/i915/display/intel_opregion.c |   2 +-
+ drivers/gpu/drm/i915/display/intel_panel.c    |   4 +-
+ drivers/gpu/drm/i915/display/intel_psr.c      |  14 +-
+ .../drm/i915/display/skl_universal_plane.c    |   2 +-
+ drivers/gpu/drm/i915/display/skl_watermark.c  |   5 +-
+ drivers/gpu/drm/i915/i915_debugfs.c           |   3 +
+ drivers/gpu/drm/i915/i915_driver.c            |   2 +
+ drivers/gpu/drm/i915/i915_gpu_error.c         |   3 +
+ drivers/gpu/drm/i915/i915_gpu_error.h         |   2 +
+ drivers/gpu/drm/i915/i915_params.c            |  89 --------
+ drivers/gpu/drm/i915/i915_params.h            |  22 --
+ 34 files changed, 548 insertions(+), 162 deletions(-)
+ create mode 100644 drivers/gpu/drm/i915/display/intel_display_debugfs_params.c
+ create mode 100644 drivers/gpu/drm/i915/display/intel_display_debugfs_params.h
+ create mode 100644 drivers/gpu/drm/i915/display/intel_display_params.c
+ create mode 100644 drivers/gpu/drm/i915/display/intel_display_params.h
 
-  No regressions found.
+-- 
+2.34.1
 
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_125160v1/index.html
-
-Participating hosts (34 -> 22)
-------------------------------
-
-  Additional (1): fi-apl-guc 
-  Missing    (13): fi-kbl-7567u fi-rkl-11600 bat-dg2-14 bat-dg2-8 bat-adlm-1 bat-dg2-9 bat-adlp-6 fi-snb-2520m fi-bsw-nick fi-cfl-8109u fi-pnv-d510 bat-rplp-1 bat-jsl-3 
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_125160v1 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@gem_lmem_swapping@basic:
-    - fi-apl-guc:         NOTRUN -> [SKIP][1] ([fdo#109271] / [i915#4613]) +3 other tests skip
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_125160v1/fi-apl-guc/igt@gem_lmem_swapping@basic.html
-
-  * igt@kms_hdmi_inject@inject-audio:
-    - fi-apl-guc:         NOTRUN -> [SKIP][2] ([fdo#109271]) +16 other tests skip
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_125160v1/fi-apl-guc/igt@kms_hdmi_inject@inject-audio.html
-
-  
-#### Possible fixes ####
-
-  * igt@kms_hdmi_inject@inject-audio:
-    - fi-kbl-guc:         [FAIL][3] ([IGT#3]) -> [PASS][4]
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13756/fi-kbl-guc/igt@kms_hdmi_inject@inject-audio.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_125160v1/fi-kbl-guc/igt@kms_hdmi_inject@inject-audio.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [IGT#3]: https://gitlab.freedesktop.org/drm/igt-gpu-tools/issues/3
-  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
-  [i915#4613]: https://gitlab.freedesktop.org/drm/intel/issues/4613
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_13756 -> Patchwork_125160v1
-
-  CI-20190529: 20190529
-  CI_DRM_13756: c8e15d10895c44b271894850429c74500511cd1c @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_7539: 08e87a32fa113a9b6f30cbd9766fec346b53faac @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_125160v1: c8e15d10895c44b271894850429c74500511cd1c @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-### Linux commits
-
-2fdff34d550f drm/i915/display: Use dma_fence interfaces instead of i915_sw_fence
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_125160v1/index.html
-
---===============7380035553377612602==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915/display: Use dma_fence interfaces instead of i915_sw_fence</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/125160/">https://patchwork.freedesktop.org/series/125160/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_125160v1/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_125160v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_13756 -&gt; Patchwork_125160v1</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_125160v1/index.html</p>
-<h2>Participating hosts (34 -&gt; 22)</h2>
-<p>Additional (1): fi-apl-guc <br />
-  Missing    (13): fi-kbl-7567u fi-rkl-11600 bat-dg2-14 bat-dg2-8 bat-adlm-1 bat-dg2-9 bat-adlp-6 fi-snb-2520m fi-bsw-nick fi-cfl-8109u fi-pnv-d510 bat-rplp-1 bat-jsl-3 </p>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_125160v1 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@gem_lmem_swapping@basic:</p>
-<ul>
-<li>fi-apl-guc:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_125160v1/fi-apl-guc/igt@gem_lmem_swapping@basic.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/4613">i915#4613</a>) +3 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_hdmi_inject@inject-audio:</p>
-<ul>
-<li>fi-apl-guc:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_125160v1/fi-apl-guc/igt@kms_hdmi_inject@inject-audio.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +16 other tests skip</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>igt@kms_hdmi_inject@inject-audio:<ul>
-<li>fi-kbl-guc:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13756/fi-kbl-guc/igt@kms_hdmi_inject@inject-audio.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/igt-gpu-tools/issues/3">IGT#3</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_125160v1/fi-kbl-guc/igt@kms_hdmi_inject@inject-audio.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<p>{name}: This element is suppressed. This means it is ignored when computing<br />
-          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_13756 -&gt; Patchwork_125160v1</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_13756: c8e15d10895c44b271894850429c74500511cd1c @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_7539: 08e87a32fa113a9b6f30cbd9766fec346b53faac @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  Patchwork_125160v1: c8e15d10895c44b271894850429c74500511cd1c @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<h3>Linux commits</h3>
-<p>2fdff34d550f drm/i915/display: Use dma_fence interfaces instead of i915_sw_fence</p>
-
-</body>
-</html>
-
---===============7380035553377612602==--
