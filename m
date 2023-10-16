@@ -1,140 +1,46 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 664367CB21B
-	for <lists+intel-gfx@lfdr.de>; Mon, 16 Oct 2023 20:11:10 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id EB8167CB3B9
+	for <lists+intel-gfx@lfdr.de>; Mon, 16 Oct 2023 22:10:24 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DE89110E00D;
-	Mon, 16 Oct 2023 18:11:06 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BDF3F10E012;
+	Mon, 16 Oct 2023 20:10:21 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.93])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8753C10E00D
- for <intel-gfx@lists.freedesktop.org>; Mon, 16 Oct 2023 18:11:05 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1697479865; x=1729015865;
- h=date:from:to:cc:subject:message-id:references:
- in-reply-to:mime-version;
- bh=Gwo3QRIFu0lyaPPzLxWDkM5qtORMj3/LZZB80jh7FQU=;
- b=SnRGO6qA9/EoWXLG35zt5DEE0WjCR9td5NA1uUfVr0pSJVRcINMLQ9IN
- f3z9wGilvHwXXl3kQ0ASUK0dpEnnxod7J4FyzqbDJJnoSxp78GdLZLGpf
- NR93KHxM83REEM2eqzYZgrGzp+4wmVtKUmyvch/10kIkKrQMIgATs251d
- nHOVosgfyN7JsEvHz26RSVcJCQED40iX/AFQk0vgLRCmNHrxVaArQW75X
- 0l0Pgr6eqx6QjMkeDOLWJEiyMdhhl7cE6Gt0uYYyrPBlDlzxf7spNlPuq
- CblZ6xqcAt3aGVasFJ+wyO5Ap2jRH8Ztj0Uxm35PxoDhJmqlWjVENZN2V w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10865"; a="382821207"
-X-IronPort-AV: E=Sophos;i="6.03,229,1694761200"; d="scan'208";a="382821207"
-Received: from fmsmga005.fm.intel.com ([10.253.24.32])
- by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Oct 2023 11:11:05 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10865"; a="1087183605"
-X-IronPort-AV: E=Sophos;i="6.03,229,1694761200"; d="scan'208";a="1087183605"
-Received: from fmsmsx602.amr.corp.intel.com ([10.18.126.82])
- by fmsmga005.fm.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
- 16 Oct 2023 11:11:03 -0700
-Received: from fmsmsx612.amr.corp.intel.com (10.18.126.92) by
- fmsmsx602.amr.corp.intel.com (10.18.126.82) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.32; Mon, 16 Oct 2023 11:11:04 -0700
-Received: from fmsmsx601.amr.corp.intel.com (10.18.126.81) by
- fmsmsx612.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.32; Mon, 16 Oct 2023 11:11:04 -0700
-Received: from fmsedg601.ED.cps.intel.com (10.1.192.135) by
- fmsmsx601.amr.corp.intel.com (10.18.126.81) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.32 via Frontend Transport; Mon, 16 Oct 2023 11:11:04 -0700
-Received: from NAM11-CO1-obe.outbound.protection.outlook.com (104.47.56.169)
- by edgegateway.intel.com (192.55.55.70) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.32; Mon, 16 Oct 2023 11:11:04 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=TAKeXGvXLtjaFNbsyXHlsi0d05UZg6E6EGeKTD6YO5nnjV1/kyUF9NVaIeAZGj1/kVv0DCqYt7pvbrTyIyDScTuYMSeOp40ToQOAetTzbeK194glb6VUlHPsqbUlB/4OcdVQQVSGH1spZ5LU+QsKiHVWGbSDfaPksJRlYse/JUfKVrwC+jvCFQ05LOkERhWxkAsFz6kU3mgLNaxmNZPwzeTpeGuG6GCd6oULc+KX8gtAwY8rrB3VfVRQOxDiJpxEE1NIS7dtvmUHjqdPBfrPszwAYL5RGJNqYaiOYneMffaW5xaia8GaYBbiMUWyJXnIn0ZXFyavt5BkesSK/Dfaew==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=/cyQhPSc5Q3M8JSXCzzyr6Y7Tt95IoJkPSroAqVWFYs=;
- b=eLWKgcz947c0OcVDqBuOLeXkqO/17iuTdMOGPi/U7Tpa+mq6h+DGO605h4Ymv+x6j6UQul66LMb2m1HIboV1GpIPDrLOKnrtqYUeIgJWSDKrTuYcxThUFVLzZ0Lhdk5N6hbi8eKJUApqYwAWgkz9fYnyTDTOSuBvSxyDDA1rVxpJCv6gm0jz3l/YYSttYv6MW3QbjNg4TQPgoLmuvHqhCrJQMYXhi8y4w5/8eS86e6XLj3Wl0icF2fO271Ayh4TlSOeHYcM/JKYryCPirM4qk+s4PmAzDtX9RmYjdMy+Zg8qIIsWXkR6YSCxQ19F1cyTl6y8TeF5jICkZ5ZAWI7mag==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from MN0PR11MB6059.namprd11.prod.outlook.com (2603:10b6:208:377::9)
- by DS0PR11MB6423.namprd11.prod.outlook.com (2603:10b6:8:c5::14) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6886.34; Mon, 16 Oct
- 2023 18:11:02 +0000
-Received: from MN0PR11MB6059.namprd11.prod.outlook.com
- ([fe80::6d0b:5bc6:8723:593]) by MN0PR11MB6059.namprd11.prod.outlook.com
- ([fe80::6d0b:5bc6:8723:593%7]) with mapi id 15.20.6886.034; Mon, 16 Oct 2023
- 18:11:02 +0000
-Date: Mon, 16 Oct 2023 14:10:58 -0400
-From: Rodrigo Vivi <rodrigo.vivi@intel.com>
-To: Mika Kahola <mika.kahola@intel.com>
-Message-ID: <ZS18stantS5d8c+7@intel.com>
-References: <20231016125544.719963-1-mika.kahola@intel.com>
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <20231016125544.719963-1-mika.kahola@intel.com>
-X-ClientProxiedBy: BYAPR04CA0015.namprd04.prod.outlook.com
- (2603:10b6:a03:40::28) To MN0PR11MB6059.namprd11.prod.outlook.com
- (2603:10b6:208:377::9)
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B3D5E10E0C6;
+ Mon, 16 Oct 2023 20:10:19 +0000 (UTC)
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+ by dfw.source.kernel.org (Postfix) with ESMTP id 105396114A;
+ Mon, 16 Oct 2023 20:10:19 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 542AFC433C8;
+ Mon, 16 Oct 2023 20:10:15 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=k20201202; t=1697487018;
+ bh=IP5/MhvOpJ22HR71PavNc9y5Lf1zUiBmMsVX1ID6KQ8=;
+ h=From:To:Cc:Subject:Date:From;
+ b=SHWV1KIhS0Yb/wjRj3WQ40LVlhMleM5nkDCeZsHluZwuliokMnSM9uUwBHXjTZvF0
+ pmUYwySK4LPu0w5Dx5ic4Kbv3fejLNKmPi7LNvJM+BSkzuU/9G4oWUNwU2oqI2z8Aw
+ pSZ4fIx0PfSrNM7cdS8zbPzuj1fiUHLDmNYqcSC09BfoYgJWu3U31IEbDRu8423NvU
+ EDvPeNIbenW5x4qughRz//+E4TSzKr0RhFXphJbiO7sr6pfoMJBwmDSf+TZryOQtgw
+ jGVqKrGL3EuQ/Pu/I48WX2Ij5kITGsyNiluM5wwGYpcAl223Otnl2tyRcY8GKVH9S9
+ nkhKNxCu14y4A==
+From: Arnd Bergmann <arnd@kernel.org>
+To: Jani Nikula <jani.nikula@linux.intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
+ David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
+ Badal Nilawar <badal.nilawar@intel.com>,
+ Ashutosh Dixit <ashutosh.dixit@intel.com>
+Date: Mon, 16 Oct 2023 22:10:04 +0200
+Message-Id: <20231016201012.1022812-1-arnd@kernel.org>
+X-Mailer: git-send-email 2.39.2
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: MN0PR11MB6059:EE_|DS0PR11MB6423:EE_
-X-MS-Office365-Filtering-Correlation-Id: 6e80effe-a000-4f13-1990-08dbce73415e
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: RpgHELwEi0G36YfAFuLszP3vpyMkxqHpnVxgEa7TDx8M9mxjCK9eguZ4FBgHkaXkPkWIvfC4hWKfqvIurvuWC2qmhf0Juvv3soEo8J+ymLeOamswmcsPL/rGulQQEG/rlD+1SR6Y6ZoW0oXu5JqbkQKBIkbFnb+i2YwhRvzH1jdY0BasSR9HsONzci0bAO/T96xeOVHoMdFqXr1FZbynEyQV0dwdpzTamFlLk/x1qvkW/JmDt1ZknBqOYfxZ+hn3rBjYxuZCNk9YQYLbK7TBHAVPLpHCkEihbcaAbxRy1Oht+kt6ismJUbKnCJQ0F1qakYLts/3H5b/Jus4dXtiUZ3tS/MGCf5DI1sr4RsL2vGDZPInbED4wkbTK0FnxTPn7jeomLKlyuH3nvX0uoW2Q10tmxjSB3DYGxBzX9wvQcMe7cY27FMd6Q5sQD7WA+9YsVSvkYbezGd1RF4B0g0SwYfPhWcUCPyec4cBVYBzJU17tAlzBK8pakFIpIyMgY5JAaM+ftiXG+xqvov8rS+0ee8j7m+twIEgiuhCKanAhtMl3YIgJnUdhjN43CtZkhcnrct7UMRPXjZ0N5EapdU4kyhEFKqFG4Fd4Sh6LJowjqKA=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:MN0PR11MB6059.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230031)(366004)(396003)(346002)(376002)(39860400002)(136003)(230922051799003)(186009)(1800799009)(64100799003)(451199024)(478600001)(26005)(2616005)(6506007)(6512007)(6666004)(4326008)(5660300002)(8936002)(8676002)(83380400001)(41300700001)(66556008)(6862004)(66476007)(44832011)(15650500001)(6636002)(316002)(66946007)(37006003)(2906002)(38100700002)(107886003)(6486002)(86362001)(36756003)(82960400001)(67856001);
- DIR:OUT; SFP:1102; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?Sp3l5RT8Fq6qliOHDSg3jnHCwPu4xPwL6j1F2fmP6xTy1TxeRad3qW8EGvAF?=
- =?us-ascii?Q?jNNe5gwMtDBKMBcvcpfodXsB5MeNgQcs7yK6nptLiT2dBxdQ2duRtPQIQHDi?=
- =?us-ascii?Q?jbPhOBeObjnKyqKfmKMuw+ItF1pmvi4QdUkvdL5nCsJAZHNxWM6brl/7x4+S?=
- =?us-ascii?Q?2OE7TQHLM8GFX7KLBDJ9Vkz4EEpMyEXSgN7Aub6NDS6LlsSy2PTvyP9tdJqV?=
- =?us-ascii?Q?abQlNZJIujlokezc2TH9mLwhnkvs6oVCeyMNJwf0g5Cdpp6Q00b1PAktPJm1?=
- =?us-ascii?Q?ISR60DQJ3HDrFkk55lYhI8upBTZ7H1kaBSuYSiRDi87tXE8ZL2+fgMdHfzNN?=
- =?us-ascii?Q?HPB0Tcu9MqoMKBKV/n+G0Eh44jcpdn2ySxHENkLX3fIoXgub+c+tSWTHmOUx?=
- =?us-ascii?Q?rcztPnE56D+EubOU0zOXicqZkVgI+hExT6dW+O0id/UAqGvW3D+qh05IulNH?=
- =?us-ascii?Q?hgCWW2zgLwt2Cm9lapjcOumlnzypybMmFCu/vv7uhjgzNVYGSqzhcFqhwClK?=
- =?us-ascii?Q?Px5eQphK/0GrcotFex3/s60haScWDvxg4MLASKcOCld77vThTGasl+ckNa5C?=
- =?us-ascii?Q?4rvXcLiGKtJlbTJ/7pjNPuRxnPA6qnbZlougqfO1hsDl6N2sOjJ6dNsB156+?=
- =?us-ascii?Q?fty/Lt0fuVkEA7tZt2gFrCTEjqEtdEhkM3fwcB7U5GHezu6SFXvlRQivxkcI?=
- =?us-ascii?Q?IGmIy8YDsq5m82LYywZH31uiQNKglkfgPf4oe90GJUcY+QKTOVXd9nLsVKKK?=
- =?us-ascii?Q?gTK1tne578+iGCyui32Ks7en9eoOuIFFqmC4jLu4HMiDIc4/gI6OR/PtxRcf?=
- =?us-ascii?Q?I1UTk3gg1bHlxbWeYHAa5LZvk2dKqlkfO6IuIjaGtB1tHbrLENN3FGgENQbv?=
- =?us-ascii?Q?HlbzbHUftJ81PJkwyyd5F49tEWcNCZXcUl7w7rzSRxND5z1KW9eRuVdao5dP?=
- =?us-ascii?Q?VASDv26fQhZX4V13mrvacdywI5xmcauRHC0+AwmXVJu1vj/Sa8EQx6dBqwdt?=
- =?us-ascii?Q?hG4g5+i3jmUh70xwPoMVdlbJXpulOEEB3R0nmLfIPpIHHe6ROvQuVRAaqR7L?=
- =?us-ascii?Q?OSCbWj6SDeCvXDLA75pktZQT2mEmlr+GkSoCH5tS3vWyCeq2KvU6E+3+D04i?=
- =?us-ascii?Q?guelW/DJm0wsGYe/IR+VOXoT/sIhLEJ/bUKuPiBSV12A0nVcDNeWZCcTx6l9?=
- =?us-ascii?Q?Owk/GFDrO9yq7CrqTQ3sNj0exTYj6YnLJvYjvFDDa5RsVSbGL5g2KtPYDuqI?=
- =?us-ascii?Q?ILg91k5e7Q1hD5LC1CtpmNK6vpX2TWHhUwwf8nHay7qDGQZEkZf14alWend9?=
- =?us-ascii?Q?q1Rxo2P59OWrm1VrKlksP5AkbJmUAtk/T8t0kcPjI/nV8//iXApaEJJ+XcTw?=
- =?us-ascii?Q?4v6ikiJkLsf1GG13oIiwTGiiDaKQyWQnntDFvyCvbbMgzGZC/aPCmSk6YgVb?=
- =?us-ascii?Q?I2BYzrM4K3udII1oQIdhSA2/7/Lwa+qCdtuh93284U+FvHApKTbAFhkk8/Pj?=
- =?us-ascii?Q?a0ZUza+MOLCIqEHs2Wxe6bBk0QPRdVPhRpKE3lAkt85otn7uZrGYdk/oAxIi?=
- =?us-ascii?Q?8y7vpCVhwop1zY+QmQZbSrY9mOe+jvK+0UYg9j36?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 6e80effe-a000-4f13-1990-08dbce73415e
-X-MS-Exchange-CrossTenant-AuthSource: MN0PR11MB6059.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 16 Oct 2023 18:11:02.3288 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: IliSb5UWpVUhNPDhdLTDmdQ73r2Se/4myoJH8dv8yQh6njtA0HuK7jF+rEkHjidZz23DcBo0l8Y5llCXsNYIzQ==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS0PR11MB6423
-X-OriginatorOrg: intel.com
-Subject: Re: [Intel-gfx] [PATCH v3] drm/i915/display: Reset message bus
- after each read/write operation
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-gfx] [PATCH] drm/i915/mtl: avoid stringop-overflow warning
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -147,66 +53,71 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org
+Cc: Arnd Bergmann <arnd@arndb.de>, intel-gfx@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
+ Matt Roper <matthew.d.roper@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, Oct 16, 2023 at 03:55:44PM +0300, Mika Kahola wrote:
-> Every know and then we receive the following error when running
-> for example IGT test kms_flip.
-> 
-> [drm] *ERROR* PHY G Read 0d80 failed after 3 retries.
-> [drm] *ERROR* PHY G Write 0d81 failed after 3 retries.
-> 
-> Since the error is sporadic in nature, the patch proposes
-> to reset the message bus after every successful or unsuccessful
-> read or write operation.
-> 
-> v2: Add FIXME's to indicate the experimental nature of
->     this workaround (Rodrigo)
-> v3: Dropping the additional delay as moving reset to *_read_once()
->     and *_write_once() functions seem unnecessary delay
-> 
-> Signed-off-by: Mika Kahola <mika.kahola@intel.com>
+From: Arnd Bergmann <arnd@arndb.de>
 
-Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
+The newly added memset() causes a warning for some reason I could not figure out:
 
-> ---
->  drivers/gpu/drm/i915/display/intel_cx0_phy.c | 14 ++++++++++++++
->  1 file changed, 14 insertions(+)
-> 
-> diff --git a/drivers/gpu/drm/i915/display/intel_cx0_phy.c b/drivers/gpu/drm/i915/display/intel_cx0_phy.c
-> index 6e6a1818071e..9e24f820d4cf 100644
-> --- a/drivers/gpu/drm/i915/display/intel_cx0_phy.c
-> +++ b/drivers/gpu/drm/i915/display/intel_cx0_phy.c
-> @@ -206,6 +206,13 @@ static int __intel_cx0_read_once(struct drm_i915_private *i915, enum port port,
->  
->  	intel_clear_response_ready_flag(i915, port, lane);
->  
-> +	/*
-> +	 * FIXME: Workaround to let HW to settle
-> +	 * down and let the message bus to end up
-> +	 * in a known state
-> +	 */
-> +	intel_cx0_bus_reset(i915, port, lane);
-> +
->  	return REG_FIELD_GET(XELPDP_PORT_P2M_DATA_MASK, val);
->  }
->  
-> @@ -285,6 +292,13 @@ static int __intel_cx0_write_once(struct drm_i915_private *i915, enum port port,
->  
->  	intel_clear_response_ready_flag(i915, port, lane);
->  
-> +	/*
-> +	 * FIXME: Workaround to let HW to settle
-> +	 * down and let the message bus to end up
-> +	 * in a known state
-> +	 */
-> +	intel_cx0_bus_reset(i915, port, lane);
-> +
->  	return 0;
->  }
->  
-> -- 
-> 2.34.1
-> 
+In file included from arch/x86/include/asm/string.h:3,
+                 from drivers/gpu/drm/i915/gt/intel_rc6.c:6:
+In function 'rc6_res_reg_init',
+    inlined from 'intel_rc6_init' at drivers/gpu/drm/i915/gt/intel_rc6.c:610:2:
+arch/x86/include/asm/string_32.h:195:29: error: '__builtin_memset' writing 16 bytes into a region of size 0 overflows the destination [-Werror=stringop-overflow=]
+  195 | #define memset(s, c, count) __builtin_memset(s, c, count)
+      |                             ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+drivers/gpu/drm/i915/gt/intel_rc6.c:584:9: note: in expansion of macro 'memset'
+  584 |         memset(rc6->res_reg, INVALID_MMIO_REG.reg, sizeof(rc6->res_reg));
+      |         ^~~~~~
+In function 'intel_rc6_init':
+
+Change it to an normal initializer and an added memcpy() that does not have
+this problem.
+
+Fixes: 4bb9ca7ee0745 ("drm/i915/mtl: C6 residency and C state type for MTL SAMedia")
+Signed-off-by: Arnd Bergmann <arnd@arndb.de>
+---
+ drivers/gpu/drm/i915/gt/intel_rc6.c | 16 ++++++++++------
+ 1 file changed, 10 insertions(+), 6 deletions(-)
+
+diff --git a/drivers/gpu/drm/i915/gt/intel_rc6.c b/drivers/gpu/drm/i915/gt/intel_rc6.c
+index 8b67abd720be8..7090e4be29cb6 100644
+--- a/drivers/gpu/drm/i915/gt/intel_rc6.c
++++ b/drivers/gpu/drm/i915/gt/intel_rc6.c
+@@ -581,19 +581,23 @@ static void __intel_rc6_disable(struct intel_rc6 *rc6)
+ 
+ static void rc6_res_reg_init(struct intel_rc6 *rc6)
+ {
+-	memset(rc6->res_reg, INVALID_MMIO_REG.reg, sizeof(rc6->res_reg));
++	i915_reg_t res_reg[INTEL_RC6_RES_MAX] = {
++		[0 ... INTEL_RC6_RES_MAX - 1] = INVALID_MMIO_REG,
++	};
+ 
+ 	switch (rc6_to_gt(rc6)->type) {
+ 	case GT_MEDIA:
+-		rc6->res_reg[INTEL_RC6_RES_RC6] = MTL_MEDIA_MC6;
++		res_reg[INTEL_RC6_RES_RC6] = MTL_MEDIA_MC6;
+ 		break;
+ 	default:
+-		rc6->res_reg[INTEL_RC6_RES_RC6_LOCKED] = GEN6_GT_GFX_RC6_LOCKED;
+-		rc6->res_reg[INTEL_RC6_RES_RC6] = GEN6_GT_GFX_RC6;
+-		rc6->res_reg[INTEL_RC6_RES_RC6p] = GEN6_GT_GFX_RC6p;
+-		rc6->res_reg[INTEL_RC6_RES_RC6pp] = GEN6_GT_GFX_RC6pp;
++		res_reg[INTEL_RC6_RES_RC6_LOCKED] = GEN6_GT_GFX_RC6_LOCKED;
++		res_reg[INTEL_RC6_RES_RC6] = GEN6_GT_GFX_RC6;
++		res_reg[INTEL_RC6_RES_RC6p] = GEN6_GT_GFX_RC6p;
++		res_reg[INTEL_RC6_RES_RC6pp] = GEN6_GT_GFX_RC6pp;
+ 		break;
+ 	}
++
++	memcpy(rc6->res_reg, res_reg, sizeof(res_reg));
+ }
+ 
+ void intel_rc6_init(struct intel_rc6 *rc6)
+-- 
+2.39.2
+
