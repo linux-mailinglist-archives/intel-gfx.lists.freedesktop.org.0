@@ -1,60 +1,52 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 170667CA12E
-	for <lists+intel-gfx@lfdr.de>; Mon, 16 Oct 2023 10:02:49 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 62B627CA143
+	for <lists+intel-gfx@lfdr.de>; Mon, 16 Oct 2023 10:08:33 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8949B10E139;
-	Mon, 16 Oct 2023 08:02:44 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A708010E139;
+	Mon, 16 Oct 2023 08:08:31 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 705B010E136;
- Mon, 16 Oct 2023 08:02:42 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 794B010E131
+ for <intel-gfx@lists.freedesktop.org>; Mon, 16 Oct 2023 08:08:30 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1697443362; x=1728979362;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=MiTMN7+aVeZzZCuXYsdQTbp19cEIK9MlBKiSyHgaK7o=;
- b=O+X4l4HjfXPACiZC1if5OlAMoIgfE/HSX+0I7JH367nTHStx3Yz04P+z
- FhWcFMFruqP0peY4keuVEl5GSryC4HjikSRUaFSkjMFT+lzr/kdodVriE
- m5SdTzMhE3Y04QVboHasjoe5lpVtU6QL+NEBAHsh81SgRvyFVU4TeZNXz
- hswPpPoKUEQw/cFp/SDnCWJvWfvFfhIKTExPWkZB6fv3bPN3f8gqJKG7w
- 1xHuws+waLpnXrXvAKbcCRU4VACAviuanWhW2bVi36Axt+GBiO41NJ0BP
- QogoE1MN5Oqds8sfPRuCmNkEKBMlBfAX3K8qtHbJBmAk26gPeDUEOQVXK Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10863"; a="375840319"
-X-IronPort-AV: E=Sophos;i="6.03,228,1694761200"; d="scan'208";a="375840319"
-Received: from fmsmga003.fm.intel.com ([10.253.24.29])
- by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Oct 2023 01:02:41 -0700
+ t=1697443710; x=1728979710;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=LMb1r3Wb8VAz8vm/GCv43D7v40orzPPGSkcnDTodTGk=;
+ b=gvj2dS+6iPC65dju3CylbSvdc7Z1cejpIoRmzn1100Hlr8P5/+/RZ4Jj
+ IPPYqk+oyOxIqn32P7m2vO+6npzEwsEOClConRYp+mRSxlVr85ZZRWmwu
+ hMwKSYiKXQVC22SaZFi0R4dub1l3wOdoT6uM3tpoK60WAmGnNaaCGtqim
+ DMutliz7Y81xZclzHNWYY7nSE8Vq6f4rXKsHHDaXRmimm7KIftON5QZO5
+ 4kezlH7g4whuKbxhS2uFbUNUqk0tACKgXiYOhWYULGRZ2YKFfPdv2p9k9
+ NE1jxNtuffb8wKL+A0W2ng9Ksao3NLIMP+MuVnUHMuGCrhfRNQeg6ph0l Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10863"; a="449679953"
+X-IronPort-AV: E=Sophos;i="6.03,228,1694761200"; d="scan'208";a="449679953"
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+ by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 16 Oct 2023 01:08:29 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10863"; a="846314566"
-X-IronPort-AV: E=Sophos;i="6.03,228,1694761200"; d="scan'208";a="846314566"
-Received: from rannouni-mobl.ger.corp.intel.com (HELO [10.213.216.40])
- ([10.213.216.40])
- by fmsmga003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Oct 2023 01:02:40 -0700
-Message-ID: <01fbd64b-bb38-0086-9aba-dc04a35d4bf1@linux.intel.com>
-Date: Mon, 16 Oct 2023 09:02:38 +0100
+X-IronPort-AV: E=McAfee;i="6600,9927,10863"; a="790722958"
+X-IronPort-AV: E=Sophos;i="6.03,228,1694761200"; d="scan'208";a="790722958"
+Received: from dleve-mobl.ger.corp.intel.com (HELO jhogande-mobl1.intel.com)
+ ([10.252.41.143])
+ by orsmga001-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 16 Oct 2023 01:08:27 -0700
+From: =?UTF-8?q?Jouni=20H=C3=B6gander?= <jouni.hogander@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Mon, 16 Oct 2023 11:08:03 +0300
+Message-Id: <20231016080803.3313020-1-jouni.hogander@intel.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.15.1
-Content-Language: en-US
-To: Rodrigo Vivi <rodrigo.vivi@intel.com>
-References: <20230920215624.3482244-1-vinay.belgaumkar@intel.com>
- <5f7f3950-bc9b-06cf-611c-46c360bb90e9@linux.intel.com>
- <915a5e08-5daf-153d-cb82-b0f9e5bd3b2a@intel.com>
- <6d8c7fd2-9eca-14fd-6b44-edeb15a6e6ac@linux.intel.com>
- <ZSmt1u9fVNDyMFgz@intel.com>
-From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-Organization: Intel Corporation UK Plc
-In-Reply-To: <ZSmt1u9fVNDyMFgz@intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Type: text/plain; charset=UTF-8
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 Content-Transfer-Encoding: 8bit
-Subject: Re: [Intel-gfx] [PATCH] drm/i915/gem: Allow users to disable
- waitboost
+Subject: [Intel-gfx] [PATCH] drm/i915/display: Use dma_fence interfaces
+ instead of i915_sw_fence
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -67,209 +59,283 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Rob Clark <robdclark@chromium.org>, intel-gfx@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org, carl.zhang@intel.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+We are preparing for Xe driver. Xe driver doesn't have i915_sw_fence
+implementation. Lets drop i915_sw_fence usage from display code and
+use dma_fence interfaces directly.
 
-On 13/10/2023 21:51, Rodrigo Vivi wrote:
-> On Thu, Sep 28, 2023 at 01:48:34PM +0100, Tvrtko Ursulin wrote:
->>
->> On 27/09/2023 20:34, Belgaumkar, Vinay wrote:
->>>
->>> On 9/21/2023 3:41 AM, Tvrtko Ursulin wrote:
->>>>
->>>> On 20/09/2023 22:56, Vinay Belgaumkar wrote:
->>>>> Provide a bit to disable waitboost while waiting on a gem object.
->>>>> Waitboost results in increased power consumption by requesting RP0
->>>>> while waiting for the request to complete. Add a bit in the gem_wait()
->>>>> IOCTL where this can be disabled.
->>>>>
->>>>> This is related to the libva API change here -
->>>>> Link: https://github.com/XinfengZhang/libva/commit/3d90d18c67609a73121bb71b20ee4776b54b61a7
->>>>
->>>> This link does not appear to lead to userspace code using this uapi?
->>> We have asked Carl (cc'd) to post a patch for the same.
->>
->> Ack.
-> 
-> I'm glad to see that we will have the end-to-end flow of the high-level API.
-> 
->>
->>>>> Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
->>>>> Signed-off-by: Vinay Belgaumkar <vinay.belgaumkar@intel.com>
->>>>> ---
->>>>>    drivers/gpu/drm/i915/gem/i915_gem_wait.c | 9 ++++++---
->>>>>    drivers/gpu/drm/i915/i915_request.c      | 3 ++-
->>>>>    drivers/gpu/drm/i915/i915_request.h      | 1 +
->>>>>    include/uapi/drm/i915_drm.h              | 1 +
->>>>>    4 files changed, 10 insertions(+), 4 deletions(-)
->>>>>
->>>>> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_wait.c
->>>>> b/drivers/gpu/drm/i915/gem/i915_gem_wait.c
->>>>> index d4b918fb11ce..955885ec859d 100644
->>>>> --- a/drivers/gpu/drm/i915/gem/i915_gem_wait.c
->>>>> +++ b/drivers/gpu/drm/i915/gem/i915_gem_wait.c
->>>>> @@ -72,7 +72,8 @@ i915_gem_object_wait_reservation(struct
->>>>> dma_resv *resv,
->>>>>        struct dma_fence *fence;
->>>>>        long ret = timeout ?: 1;
->>>>>    -    i915_gem_object_boost(resv, flags);
->>>>> +    if (!(flags & I915_WAITBOOST_DISABLE))
->>>>> +        i915_gem_object_boost(resv, flags);
->>>>>          dma_resv_iter_begin(&cursor, resv,
->>>>>                    dma_resv_usage_rw(flags & I915_WAIT_ALL));
->>>>> @@ -236,7 +237,7 @@ i915_gem_wait_ioctl(struct drm_device *dev,
->>>>> void *data, struct drm_file *file)
->>>>>        ktime_t start;
->>>>>        long ret;
->>>>>    -    if (args->flags != 0)
->>>>> +    if (args->flags != 0 || args->flags != I915_GEM_WAITBOOST_DISABLE)
->>>>>            return -EINVAL;
->>>>>          obj = i915_gem_object_lookup(file, args->bo_handle);
->>>>> @@ -248,7 +249,9 @@ i915_gem_wait_ioctl(struct drm_device *dev,
->>>>> void *data, struct drm_file *file)
->>>>>        ret = i915_gem_object_wait(obj,
->>>>>                       I915_WAIT_INTERRUPTIBLE |
->>>>>                       I915_WAIT_PRIORITY |
->>>>> -                   I915_WAIT_ALL,
->>>>> +                   I915_WAIT_ALL |
->>>>> +                   (args->flags & I915_GEM_WAITBOOST_DISABLE ?
->>>>> +                    I915_WAITBOOST_DISABLE : 0),
->>>>>                       to_wait_timeout(args->timeout_ns));
->>>>>          if (args->timeout_ns > 0) {
->>>>> diff --git a/drivers/gpu/drm/i915/i915_request.c
->>>>> b/drivers/gpu/drm/i915/i915_request.c
->>>>> index f59081066a19..2957409b4b2a 100644
->>>>> --- a/drivers/gpu/drm/i915/i915_request.c
->>>>> +++ b/drivers/gpu/drm/i915/i915_request.c
->>>>> @@ -2044,7 +2044,8 @@ long i915_request_wait_timeout(struct
->>>>> i915_request *rq,
->>>>>         * but at a cost of spending more power processing the workload
->>>>>         * (bad for battery).
->>>>>         */
->>>>> -    if (flags & I915_WAIT_PRIORITY && !i915_request_started(rq))
->>>>> +    if (!(flags & I915_WAITBOOST_DISABLE) && (flags &
->>>>> I915_WAIT_PRIORITY) &&
->>>>> +        !i915_request_started(rq))
->>>>>            intel_rps_boost(rq);
->>>>>          wait.tsk = current;
->>>>> diff --git a/drivers/gpu/drm/i915/i915_request.h
->>>>> b/drivers/gpu/drm/i915/i915_request.h
->>>>> index 0ac55b2e4223..3cc00e8254dc 100644
->>>>> --- a/drivers/gpu/drm/i915/i915_request.h
->>>>> +++ b/drivers/gpu/drm/i915/i915_request.h
->>>>> @@ -445,6 +445,7 @@ long i915_request_wait(struct i915_request *rq,
->>>>>    #define I915_WAIT_INTERRUPTIBLE    BIT(0)
->>>>>    #define I915_WAIT_PRIORITY    BIT(1) /* small priority bump
->>>>> for the request */
->>>>>    #define I915_WAIT_ALL        BIT(2) /* used by
->>>>> i915_gem_object_wait() */
->>>>> +#define I915_WAITBOOST_DISABLE    BIT(3) /* used by
-> 
-> maybe name it I915_WAIT_NO_BOOST to align a bit better with the existent ones?
+For this purpose stack dma fences from related objects into old and new
+plane states using drm_gem_plane_helper_prepare_fb. Then wait for these
+stacked fences during atomic commit.
 
-I thought it would be better to not mention wait boost in the uapi, but 
-leave it as implementation detail.
+There is no be need for separate GPU reset handling in
+intel_atomic_commit_fence_wait as the fences are signaled when GPU hang is
+detected and GPU is being reset.
 
-My suggestion was along the lines of I915_GEM_WAIT_BACKGROUND/IDLE.
+Cc: Ville Syrjälä <ville.syrjala@linux.intel.com>
+Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+Cc: José Roberto de Souza <jose.souza@intel.com>
 
-In essence saying allowing userspace to say this is not an important 
-wait. Yes, it implies that other waits are (more) important, but I think 
-this is still better than starting to mention wait boost in the uapi. 
-Since that would kind of cement it exists, while we always just viewed 
-it as an "go faster" driver internal heuristics and could freely decide 
-not to employ it even for default waits.
+Signed-off-by: Jouni Högander <jouni.hogander@intel.com>
+---
+ drivers/gpu/drm/i915/display/intel_atomic.c   |  3 -
+ .../gpu/drm/i915/display/intel_atomic_plane.c | 49 +++---------
+ drivers/gpu/drm/i915/display/intel_display.c  | 78 ++++++-------------
+ .../drm/i915/display/intel_display_types.h    |  2 -
+ 4 files changed, 37 insertions(+), 95 deletions(-)
 
-Historically even we had a period when waits were getting elevated 
-scheduling priority. We removed it, would have to dig through git and 
-email history to remember exactly why, but probably along the lines that 
-it is not always justified. Same as waitboost is not always justified 
-and can be harmful.
+diff --git a/drivers/gpu/drm/i915/display/intel_atomic.c b/drivers/gpu/drm/i915/display/intel_atomic.c
+index 5d18145da279..ec0d5168b503 100644
+--- a/drivers/gpu/drm/i915/display/intel_atomic.c
++++ b/drivers/gpu/drm/i915/display/intel_atomic.c
+@@ -331,9 +331,6 @@ void intel_atomic_state_free(struct drm_atomic_state *_state)
+ 
+ 	drm_atomic_state_default_release(&state->base);
+ 	kfree(state->global_objs);
+-
+-	i915_sw_fence_fini(&state->commit_ready);
+-
+ 	kfree(state);
+ }
+ 
+diff --git a/drivers/gpu/drm/i915/display/intel_atomic_plane.c b/drivers/gpu/drm/i915/display/intel_atomic_plane.c
+index b1074350616c..d4f9168ec42c 100644
+--- a/drivers/gpu/drm/i915/display/intel_atomic_plane.c
++++ b/drivers/gpu/drm/i915/display/intel_atomic_plane.c
+@@ -32,6 +32,7 @@
+  */
+ 
+ #include <drm/drm_atomic_helper.h>
++#include <drm/drm_gem_atomic_helper.h>
+ #include <drm/drm_blend.h>
+ #include <drm/drm_fourcc.h>
+ 
+@@ -1035,7 +1036,7 @@ intel_prepare_plane_fb(struct drm_plane *_plane,
+ 	struct intel_atomic_state *state =
+ 		to_intel_atomic_state(new_plane_state->uapi.state);
+ 	struct drm_i915_private *dev_priv = to_i915(plane->base.dev);
+-	const struct intel_plane_state *old_plane_state =
++	struct intel_plane_state *old_plane_state =
+ 		intel_atomic_get_old_plane_state(state, plane);
+ 	struct drm_i915_gem_object *obj = intel_fb_obj(new_plane_state->hw.fb);
+ 	struct drm_i915_gem_object *old_obj = intel_fb_obj(old_plane_state->hw.fb);
+@@ -1057,56 +1058,30 @@ intel_prepare_plane_fb(struct drm_plane *_plane,
+ 		 * This should only fail upon a hung GPU, in which case we
+ 		 * can safely continue.
+ 		 */
+-		if (new_crtc_state && intel_crtc_needs_modeset(new_crtc_state)) {
+-			ret = i915_sw_fence_await_reservation(&state->commit_ready,
+-							      old_obj->base.resv,
+-							      false, 0,
+-							      GFP_KERNEL);
++		if (new_crtc_state && intel_crtc_needs_modeset(new_crtc_state) &&
++		    !dma_resv_test_signaled(old_obj->base.resv,
++					    dma_resv_usage_rw(false))) {
++			ret = drm_gem_plane_helper_prepare_fb(_plane, &old_plane_state->uapi);
+ 			if (ret < 0)
+ 				return ret;
+ 		}
+ 	}
+ 
+-	if (new_plane_state->uapi.fence) { /* explicit fencing */
+-		i915_gem_fence_wait_priority(new_plane_state->uapi.fence,
+-					     &attr);
+-		ret = i915_sw_fence_await_dma_fence(&state->commit_ready,
+-						    new_plane_state->uapi.fence,
+-						    i915_fence_timeout(dev_priv),
+-						    GFP_KERNEL);
+-		if (ret < 0)
+-			return ret;
+-	}
+-
+ 	if (!obj)
+ 		return 0;
+ 
+-
+ 	ret = intel_plane_pin_fb(new_plane_state);
+ 	if (ret)
+ 		return ret;
+ 
+-	i915_gem_object_wait_priority(obj, 0, &attr);
+-
+-	if (!new_plane_state->uapi.fence) { /* implicit fencing */
+-		struct dma_resv_iter cursor;
+-		struct dma_fence *fence;
++	ret = drm_gem_plane_helper_prepare_fb(_plane, &new_plane_state->uapi);
++	if (ret < 0)
++		goto unpin_fb;
+ 
+-		ret = i915_sw_fence_await_reservation(&state->commit_ready,
+-						      obj->base.resv, false,
+-						      i915_fence_timeout(dev_priv),
+-						      GFP_KERNEL);
+-		if (ret < 0)
+-			goto unpin_fb;
++	if (new_plane_state->uapi.fence) {
++		i915_gem_fence_wait_priority(new_plane_state->uapi.fence,
++					     &attr);
+ 
+-		dma_resv_iter_begin(&cursor, obj->base.resv,
+-				    DMA_RESV_USAGE_WRITE);
+-		dma_resv_for_each_fence_unlocked(&cursor, fence) {
+-			intel_display_rps_boost_after_vblank(new_plane_state->hw.crtc,
+-							     fence);
+-		}
+-		dma_resv_iter_end(&cursor);
+-	} else {
+ 		intel_display_rps_boost_after_vblank(new_plane_state->hw.crtc,
+ 						     new_plane_state->uapi.fence);
+ 	}
+diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
+index 28d85e1e858e..48df0559df00 100644
+--- a/drivers/gpu/drm/i915/display/intel_display.c
++++ b/drivers/gpu/drm/i915/display/intel_display.c
+@@ -48,6 +48,7 @@
+ #include "g4x_dp.h"
+ #include "g4x_hdmi.h"
+ #include "hsw_ips.h"
++#include "i915_config.h"
+ #include "i915_drv.h"
+ #include "i915_reg.h"
+ #include "i915_utils.h"
+@@ -7056,29 +7057,34 @@ void intel_atomic_helper_free_state_worker(struct work_struct *work)
+ 
+ static void intel_atomic_commit_fence_wait(struct intel_atomic_state *intel_state)
+ {
+-	struct wait_queue_entry wait_fence, wait_reset;
+-	struct drm_i915_private *dev_priv = to_i915(intel_state->base.dev);
+-
+-	init_wait_entry(&wait_fence, 0);
+-	init_wait_entry(&wait_reset, 0);
+-	for (;;) {
+-		prepare_to_wait(&intel_state->commit_ready.wait,
+-				&wait_fence, TASK_UNINTERRUPTIBLE);
+-		prepare_to_wait(bit_waitqueue(&to_gt(dev_priv)->reset.flags,
+-					      I915_RESET_MODESET),
+-				&wait_reset, TASK_UNINTERRUPTIBLE);
++	struct drm_i915_private *i915 = to_i915(intel_state->base.dev);
++	struct drm_plane *plane;
++	struct drm_plane_state *new_plane_state, *old_plane_state;
++	int ret, i;
+ 
++	for_each_oldnew_plane_in_state(&intel_state->base, plane,
++				       old_plane_state, new_plane_state, i) {
++		if (new_plane_state->fence) {
++			ret = dma_fence_wait_timeout(new_plane_state->fence,
++						     false,
++						     i915_fence_timeout(i915));
++			if (ret <= 0)
++				break;
+ 
+-		if (i915_sw_fence_done(&intel_state->commit_ready) ||
+-		    test_bit(I915_RESET_MODESET, &to_gt(dev_priv)->reset.flags))
+-			break;
++			dma_fence_put(new_plane_state->fence);
++			new_plane_state->fence = NULL;
++		}
++		if (old_plane_state->fence) {
++			ret = dma_fence_wait_timeout(old_plane_state->fence,
++						     false,
++						     i915_fence_timeout(i915));
++			if (ret <= 0)
++				break;
+ 
+-		schedule();
++			dma_fence_put(old_plane_state->fence);
++			old_plane_state->fence = NULL;
++		}
+ 	}
+-	finish_wait(&intel_state->commit_ready.wait, &wait_fence);
+-	finish_wait(bit_waitqueue(&to_gt(dev_priv)->reset.flags,
+-				  I915_RESET_MODESET),
+-		    &wait_reset);
+ }
+ 
+ static void intel_atomic_cleanup_work(struct work_struct *work)
+@@ -7370,32 +7376,6 @@ static void intel_atomic_commit_work(struct work_struct *work)
+ 	intel_atomic_commit_tail(state);
+ }
+ 
+-static int
+-intel_atomic_commit_ready(struct i915_sw_fence *fence,
+-			  enum i915_sw_fence_notify notify)
+-{
+-	struct intel_atomic_state *state =
+-		container_of(fence, struct intel_atomic_state, commit_ready);
+-
+-	switch (notify) {
+-	case FENCE_COMPLETE:
+-		/* we do blocking waits in the worker, nothing to do here */
+-		break;
+-	case FENCE_FREE:
+-		{
+-			struct drm_i915_private *i915 = to_i915(state->base.dev);
+-			struct intel_atomic_helper *helper =
+-				&i915->display.atomic_helper;
+-
+-			if (llist_add(&state->freed, &helper->free_list))
+-				queue_work(i915->unordered_wq, &helper->free_work);
+-			break;
+-		}
+-	}
+-
+-	return NOTIFY_DONE;
+-}
+-
+ static void intel_atomic_track_fbs(struct intel_atomic_state *state)
+ {
+ 	struct intel_plane_state *old_plane_state, *new_plane_state;
+@@ -7418,10 +7398,6 @@ int intel_atomic_commit(struct drm_device *dev, struct drm_atomic_state *_state,
+ 
+ 	state->wakeref = intel_runtime_pm_get(&dev_priv->runtime_pm);
+ 
+-	drm_atomic_state_get(&state->base);
+-	i915_sw_fence_init(&state->commit_ready,
+-			   intel_atomic_commit_ready);
+-
+ 	/*
+ 	 * The intel_legacy_cursor_update() fast path takes care
+ 	 * of avoiding the vblank waits for simple cursor
+@@ -7454,7 +7430,6 @@ int intel_atomic_commit(struct drm_device *dev, struct drm_atomic_state *_state,
+ 	if (ret) {
+ 		drm_dbg_atomic(&dev_priv->drm,
+ 			       "Preparing state failed with %i\n", ret);
+-		i915_sw_fence_commit(&state->commit_ready);
+ 		intel_runtime_pm_put(&dev_priv->runtime_pm, state->wakeref);
+ 		return ret;
+ 	}
+@@ -7470,8 +7445,6 @@ int intel_atomic_commit(struct drm_device *dev, struct drm_atomic_state *_state,
+ 		struct intel_crtc *crtc;
+ 		int i;
+ 
+-		i915_sw_fence_commit(&state->commit_ready);
+-
+ 		for_each_new_intel_crtc_in_state(state, crtc, new_crtc_state, i)
+ 			intel_color_cleanup_commit(new_crtc_state);
+ 
+@@ -7485,7 +7458,6 @@ int intel_atomic_commit(struct drm_device *dev, struct drm_atomic_state *_state,
+ 	drm_atomic_state_get(&state->base);
+ 	INIT_WORK(&state->base.commit_work, intel_atomic_commit_work);
+ 
+-	i915_sw_fence_commit(&state->commit_ready);
+ 	if (nonblock && state->modeset) {
+ 		queue_work(dev_priv->display.wq.modeset, &state->base.commit_work);
+ 	} else if (nonblock) {
+diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/drivers/gpu/drm/i915/display/intel_display_types.h
+index 8d8b2f8d37a9..a685c527c7d1 100644
+--- a/drivers/gpu/drm/i915/display/intel_display_types.h
++++ b/drivers/gpu/drm/i915/display/intel_display_types.h
+@@ -670,8 +670,6 @@ struct intel_atomic_state {
+ 
+ 	bool rps_interactive;
+ 
+-	struct i915_sw_fence commit_ready;
+-
+ 	struct llist_node freed;
+ };
+ 
+-- 
+2.34.1
 
-So I think a generic name for the uapi leaves more freedom for the 
-driver. Might be a wrong name that I am suggesting and should be 
-something else, not sure.
-
-[Comes back later.]
-
-eec39e441c29 ("drm/i915: Remove wait priority boosting")
-
-So it seems we only removed it because corner cases with the current 
-scheduler were hard. Unfortunately improved deadline based scheduler 
-never got in despite being ready so we can not restore this now.
-
->>>>> i915_gem_object_wait() */
->>>>>      void i915_request_show(struct drm_printer *m,
->>>>>                   const struct i915_request *rq,
->>>>> diff --git a/include/uapi/drm/i915_drm.h b/include/uapi/drm/i915_drm.h
->>>>> index 7000e5910a1d..4adee70e39cf 100644
->>>>> --- a/include/uapi/drm/i915_drm.h
->>>>> +++ b/include/uapi/drm/i915_drm.h
->>>>> @@ -1928,6 +1928,7 @@ struct drm_i915_gem_wait {
->>>>>        /** Handle of BO we shall wait on */
->>>>>        __u32 bo_handle;
->>>>>        __u32 flags;
->>>>> +#define I915_GEM_WAITBOOST_DISABLE      (1u<<0)
->>>>
->>>> Probably would be good to avoid mentioning waitboost in the uapi
->>>> since so far it wasn't an explicit feature/contract. Something like
->>>> I915_GEM_WAIT_BACKGROUND_PRIORITY? Low priority?
->>> sure.
->>>>
->>>> I also wonder if there could be a possible angle to help Rob (+cc)
->>>> upstream the syncobj/fence deadline code if our media driver might
->>>> make use of that somehow.
->>>>
->>>> Like if either we could wire up the deadline into GEM_WAIT (in a
->>>> backward compatible manner), or if media could use sync fd wait
->>>> instead. Assuming they have an out fence already, which may not be
->>>> true.
->>>
->>> Makes sense. We could add a SET_DEADLINE flag or something similar and
->>> pass in the deadline when appropriate.
->>
->> Rob - do you have time and motivation to think about this angle at all
->> currently? If not I guess we just proceed with the new flag for our
->> GEM_WAIT.
-> 
-> Well, this could be the first user for that uapi that Rob was proposing
-> indeed.
-> 
-> The downside is probably because we should implement the deadline in i915
-> and consider all the deadline as 0 (urgent) and boost, unless in this
-> case where before the gem_wait the UMD would use the set_deadline to
-> something higher (max?).
-> 
-> Well, if we have a clarity on how to proceed with the deadline we should
-> probably go there. But for simplicity I would be in favor of this proposed
-> gem_wait flag as is, because this already solves many real important cases.
-
-Yes I don't think we had consensus on the semantics of when no deadline 
-is set, so it does sound better to proceed with i915 specific solution 
-for now. The two wouldn't be incompatible if deadlines were later added.
-
-Regards,
-
-Tvrtko
-
-> 
->>
->> Regards,
->>
->> Tvrtko
->>
->>>
->>> Thanks,
->>>
->>> Vinay.
->>>
->>>>
->>>> Regards,
->>>>
->>>> Tvrtko
->>>>
->>>>>        /** Number of nanoseconds to wait, Returns time remaining. */
->>>>>        __s64 timeout_ns;
->>>>>    };
