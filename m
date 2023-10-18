@@ -1,53 +1,48 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 569937CD92B
-	for <lists+intel-gfx@lfdr.de>; Wed, 18 Oct 2023 12:27:47 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 07E4D7CDADA
+	for <lists+intel-gfx@lfdr.de>; Wed, 18 Oct 2023 13:40:57 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 54B7510E3CE;
-	Wed, 18 Oct 2023 10:27:44 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 76AF310E3CE;
+	Wed, 18 Oct 2023 11:40:55 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.100])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D1B9010E3CE
- for <intel-gfx@lists.freedesktop.org>; Wed, 18 Oct 2023 10:27:42 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3F36010E3CE
+ for <intel-gfx@lists.freedesktop.org>; Wed, 18 Oct 2023 11:40:53 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1697624862; x=1729160862;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=/glehC1cqQX+ltiPy+EGxoW7m0ABEHGtNLaJ8Lx+OGw=;
- b=UN/kwwJLS+CtS5AJ7vCcTs9WSckq4cLa9JcCuff3ImT72SOY0RbArTQL
- xwK7AjaUSOdN7+dP6YAO1+6ExzUr+RwRwgf+4yguL61KC7JicRTO7A6kQ
- yMEcv5BfpUN6bHCOp4v6QXHlE5Tqm4RO6Mh79jGIpIi0dW5zBNNY9XoSZ
- nz8OIYXt0aoDkLlxiwXYUBFn9+OoNuH5zB/pMyaeV5+uRuk5+BSPxhbxD
- B0oAp+MAhrTXbWbfiK5BHWhf8iOb8Q0WLcWcZ2lPGObpTdnDSUjqKirvT
- HoOXNLmDIWWWo35+uHINio0SPt/0FSyd8swriOorepZKIrgFf0grJ3oPB A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10866"; a="452453264"
-X-IronPort-AV: E=Sophos;i="6.03,234,1694761200"; d="scan'208";a="452453264"
-Received: from fmsmga008.fm.intel.com ([10.253.24.58])
- by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Oct 2023 03:27:42 -0700
+ t=1697629253; x=1729165253;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=jCwkZ+PidRSYSvZWegOIRHSOybjP4kVHC13hkVcaqnA=;
+ b=DdFcus9W2Dznb4yndyMbt/hl6AksbDjm3aaOgQXwPsB9zsn9GVBBI/X3
+ QjfWMERNPYW0yHzLKe/oK2HTY7HEUwbd6/sJF0UQagG1NlpT41svvoYb5
+ ZuSctPCmmecs1uEoDHDhEEg7jpD1wEyyC3vD0J7awJCDEy+Hff38klsba
+ D/LeVB3Usw7fe8FYDYCHnQvtXpwwFyvQVndQxQkIV7h3SxKx1Jet6kJ/E
+ F2Jx8UYVstZo2YULQrmbJFGAQkY/Y3GSP1cG3R3JiRhxIw41yVUEkEaIT
+ xfnazcLebGc/H+CDQECl7oh5iWEDmaAmjrHJz/Uobrt2VUM3lAX0SckVP A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10866"; a="450216998"
+X-IronPort-AV: E=Sophos;i="6.03,234,1694761200"; d="scan'208";a="450216998"
+Received: from orsmga003.jf.intel.com ([10.7.209.27])
+ by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 18 Oct 2023 04:40:52 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10866"; a="822393362"
-X-IronPort-AV: E=Sophos;i="6.03,234,1694761200"; d="scan'208";a="822393362"
-Received: from feyang-mobl.ger.corp.intel.com (HELO vgovind2-mobl3.intel.com)
- ([10.252.44.154])
- by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Oct 2023 03:27:40 -0700
-From: Vinod Govindapillai <vinod.govindapillai@intel.com>
+X-IronPort-AV: E=McAfee;i="6600,9927,10866"; a="706419211"
+X-IronPort-AV: E=Sophos;i="6.03,234,1694761200"; d="scan'208";a="706419211"
+Received: from dut-2a59.iind.intel.com ([10.190.239.113])
+ by orsmga003.jf.intel.com with ESMTP; 18 Oct 2023 04:40:50 -0700
+From: Chaitanya Kumar Borah <chaitanya.kumar.borah@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Wed, 18 Oct 2023 13:27:23 +0300
-Message-Id: <20231018102723.16915-3-vinod.govindapillai@intel.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20231018102723.16915-1-vinod.govindapillai@intel.com>
-References: <20231018102723.16915-1-vinod.govindapillai@intel.com>
+Date: Wed, 18 Oct 2023 17:06:22 +0530
+Message-Id: <20231018113622.2761997-1-chaitanya.kumar.borah@intel.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH v4 2/2] drm/i915: remove display device info
- from i915 capabilities
+Subject: [Intel-gfx] [PATCH] drm/i915/mtl: Support HBR3 rate with C10 phy
+ and eDP in MTL
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -60,30 +55,36 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: ville.syrjala@intel.com, stable@vger.kernel.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Display device and display runtime info is exposed as part of
-i915_display_capabilities debugfs entry. Remove this information
-from i915_ capabilities as it is now reduntant.
+eDP specification supports HBR3 link rate since v1.4a. Moreover,
+C10 phy can support HBR3 link rate for both DP and eDP. Therefore,
+do not clamp the supported rates for eDP at 6.75Gbps.
 
-Signed-off-by: Vinod Govindapillai <vinod.govindapillai@intel.com>
+Cc: <stable@vger.kernel.org>
+
+BSpec: 70073 74224
+
+Signed-off-by: Chaitanya Kumar Borah <chaitanya.kumar.borah@intel.com>
 ---
- drivers/gpu/drm/i915/i915_debugfs.c | 1 -
- 1 file changed, 1 deletion(-)
+ drivers/gpu/drm/i915/display/intel_dp.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/i915/i915_debugfs.c b/drivers/gpu/drm/i915/i915_debugfs.c
-index e9b79c2c37d8..bb48feb3b12e 100644
---- a/drivers/gpu/drm/i915/i915_debugfs.c
-+++ b/drivers/gpu/drm/i915/i915_debugfs.c
-@@ -67,7 +67,6 @@ static int i915_capabilities(struct seq_file *m, void *data)
- 	seq_printf(m, "pch: %d\n", INTEL_PCH_TYPE(i915));
+diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
+index 1891c0cc187d..2c1034578984 100644
+--- a/drivers/gpu/drm/i915/display/intel_dp.c
++++ b/drivers/gpu/drm/i915/display/intel_dp.c
+@@ -430,7 +430,7 @@ static int mtl_max_source_rate(struct intel_dp *intel_dp)
+ 	enum phy phy = intel_port_to_phy(i915, dig_port->base.port);
  
- 	intel_device_info_print(INTEL_INFO(i915), RUNTIME_INFO(i915), &p);
--	intel_display_device_info_print(DISPLAY_INFO(i915), DISPLAY_RUNTIME_INFO(i915), &p);
- 	i915_print_iommu_status(i915, &p);
- 	intel_gt_info_print(&to_gt(i915)->info, &p);
- 	intel_driver_caps_print(&i915->caps, &p);
+ 	if (intel_is_c10phy(i915, phy))
+-		return intel_dp_is_edp(intel_dp) ? 675000 : 810000;
++		return 810000;
+ 
+ 	return 2000000;
+ }
 -- 
-2.34.1
+2.25.1
 
