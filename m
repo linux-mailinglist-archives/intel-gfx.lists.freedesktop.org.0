@@ -1,50 +1,50 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8B5257CEB23
-	for <lists+intel-gfx@lfdr.de>; Thu, 19 Oct 2023 00:26:29 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 30B357CEB24
+	for <lists+intel-gfx@lfdr.de>; Thu, 19 Oct 2023 00:26:31 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2106A10E42D;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 96BFB10E45D;
 	Wed, 18 Oct 2023 22:26:26 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.100])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3425C10E42D
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6364A10E45D
  for <intel-gfx@lists.freedesktop.org>; Wed, 18 Oct 2023 22:26:24 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1697667984; x=1729203984;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=ZXihXnB1MIqr6+ygRvuWzrsn0U1Aq5fpVLPIFJUwuXs=;
- b=joyqJK7T4PW66j01MkcfdbUgdl1MgslspKVonr3oGybtJrKwmA/Mv17n
- 6M9lc8f5ILYTGk2RESIXP/zwfp4FQKvgxVJj09yyR23yUDcoRBwtrGlrJ
- RowWnoanaMfwot9trdXBFGIk8g4QETEdjSAXvgqGfX5oRaoLJiQAA1Kzn
- eLt8FuthKTQP3y4VwdkXcEeMcjHgUjbJI40J4GBh6Mvq8MuvikpAa60FV
- HG5zs3gnVHzerAqkXKNdvyDn9Z2PJDR4irrd4E34OVscyzn4Rbtw93yHB
- qLxITHOwT3C/5gorZoGf3zce0oFPTISlMs6Ai8RVSginRh+NjhCS++1GM A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10867"; a="452598205"
-X-IronPort-AV: E=Sophos;i="6.03,236,1694761200"; d="scan'208";a="452598205"
+ bh=FQMBrxoAXfbO4R/8Op3yNfqfQAvTH/Dk48J7O8PkmMU=;
+ b=f0nmwQoflBh9shM0Rac5aDyUkaQrJopnmk/+bnSOibAFBjXWzZPJ2nlz
+ G3AdaRSeHjPu0HTZ30rRuWN1XiryQz/c9owGQPnJy3liGMRPmSTpNO0WU
+ rrOpHyQ+3OHUIU3kbeb7n2/RyoeUZuMUEUsxktpax2xGaAdUZA5kidAzL
+ aFl5wTSpwRn50QpYr3zs6OuQw15q5NzOCBCK8x9JZn3Xs+UTv7Ly9qdxg
+ qCTHwyCUM1KTezVOOSB3mU852NAROoInZvva40Nzws5AIdcgzjwDzwpNB
+ wkkjUYOI4uYtLAmLZwRJwnBXlXPQW1kKyxFtqQWOtoKkm05D19jyDUVun w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10867"; a="452598206"
+X-IronPort-AV: E=Sophos;i="6.03,236,1694761200"; d="scan'208";a="452598206"
 Received: from orsmga007.jf.intel.com ([10.7.209.58])
  by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  18 Oct 2023 15:24:51 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10867"; a="750272581"
-X-IronPort-AV: E=Sophos;i="6.03,236,1694761200"; d="scan'208";a="750272581"
+X-IronPort-AV: E=McAfee;i="6600,9927,10867"; a="750272584"
+X-IronPort-AV: E=Sophos;i="6.03,236,1694761200"; d="scan'208";a="750272584"
 Received: from lucas-s2600cw.jf.intel.com ([10.165.21.196])
  by orsmga007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  18 Oct 2023 15:24:51 -0700
 From: Lucas De Marchi <lucas.demarchi@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Wed, 18 Oct 2023 15:24:40 -0700
-Message-Id: <20231018222441.4131237-2-lucas.demarchi@intel.com>
+Date: Wed, 18 Oct 2023 15:24:41 -0700
+Message-Id: <20231018222441.4131237-3-lucas.demarchi@intel.com>
 X-Mailer: git-send-email 2.40.1
 In-Reply-To: <20231018222441.4131237-1-lucas.demarchi@intel.com>
 References: <20231018222441.4131237-1-lucas.demarchi@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH 1/2] drm/i915/lnl: Extend C10/C20 phy
+Subject: [Intel-gfx] [PATCH 2/2] drm/i915/lnl: Fix check for TC phy
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -62,51 +62,71 @@ Cc: Lucas De Marchi <lucas.demarchi@intel.com>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-For Lunar Lake, DDI-A is connected to C10 PHY, while TC1-TC3 are connected
-to C20 phy, like in Meteor Lake. Update the check in intel_is_c10phy()
-accordingly.
+With MTL adding PICA between the port and the real phy, the path
+add for DG2 stopped being followed and newer platforms are simply using
+the older path for TC phys. LNL is no different than MTL in this aspect,
+so just add it to the mess. In future the phy and port designation and
+deciding if it's TC should better be cleaned up.
 
-This reverts the change in commit e388ae97e225 ("drm/i915/display:
-Eliminate IS_METEORLAKE checks") that turned that into a display engine
-version check. The phy <-> port connection is very SoC-specific and not
-related to that version.
+To make it just a bit better, also change intel_phy_is_snps() to show
+this is DG2-only.
 
-IS_LUNARLAKE() is defined to 0 in i915 as it's expected that the
-(upcoming) xe driver is the one defining the platform, with i915 only
-driving the display side.
-
-Bspec: 70818
 Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_cx0_phy.c | 2 +-
- drivers/gpu/drm/i915/i915_drv.h              | 1 +
- 2 files changed, 2 insertions(+), 1 deletion(-)
+ drivers/gpu/drm/i915/display/intel_display.c | 29 ++++++++++----------
+ 1 file changed, 15 insertions(+), 14 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_cx0_phy.c b/drivers/gpu/drm/i915/display/intel_cx0_phy.c
-index d414f6b7f993..e775f4721158 100644
---- a/drivers/gpu/drm/i915/display/intel_cx0_phy.c
-+++ b/drivers/gpu/drm/i915/display/intel_cx0_phy.c
-@@ -31,7 +31,7 @@
+diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
+index 28d85e1e858e..0797ace31417 100644
+--- a/drivers/gpu/drm/i915/display/intel_display.c
++++ b/drivers/gpu/drm/i915/display/intel_display.c
+@@ -1784,31 +1784,32 @@ bool intel_phy_is_combo(struct drm_i915_private *dev_priv, enum phy phy)
  
- bool intel_is_c10phy(struct drm_i915_private *i915, enum phy phy)
+ bool intel_phy_is_tc(struct drm_i915_private *dev_priv, enum phy phy)
  {
--	if (DISPLAY_VER_FULL(i915) == IP_VER(14, 0) && phy < PHY_C)
-+	if ((IS_LUNARLAKE(i915) || IS_METEORLAKE(i915)) && phy < PHY_C)
- 		return true;
++	/* DG2's "TC1" output uses a SNPS PHY and is handled separately */
+ 	if (IS_DG2(dev_priv))
+-		/* DG2's "TC1" output uses a SNPS PHY */
+ 		return false;
+-	else if (IS_ALDERLAKE_P(dev_priv) || DISPLAY_VER_FULL(dev_priv) == IP_VER(14, 0))
++
++	/*
++	 * TODO: This should mostly match intel_port_to_phy(), considering the
++	 * ports already encode if they are connected to a TC phy in their name.
++	 */
++	if (IS_LUNARLAKE(dev_priv) || IS_METEORLAKE(dev_priv) ||
++	    IS_ALDERLAKE_P(dev_priv))
+ 		return phy >= PHY_F && phy <= PHY_I;
+ 	else if (IS_TIGERLAKE(dev_priv))
+ 		return phy >= PHY_D && phy <= PHY_I;
+ 	else if (IS_ICELAKE(dev_priv))
+ 		return phy >= PHY_C && phy <= PHY_F;
+-	else
+-		return false;
++
++	return false;
+ }
  
- 	return false;
-diff --git a/drivers/gpu/drm/i915/i915_drv.h b/drivers/gpu/drm/i915/i915_drv.h
-index 6a2a78c61f21..259884b10d9a 100644
---- a/drivers/gpu/drm/i915/i915_drv.h
-+++ b/drivers/gpu/drm/i915/i915_drv.h
-@@ -575,6 +575,7 @@ IS_SUBPLATFORM(const struct drm_i915_private *i915,
- #define IS_DG2(i915)	IS_PLATFORM(i915, INTEL_DG2)
- #define IS_PONTEVECCHIO(i915) IS_PLATFORM(i915, INTEL_PONTEVECCHIO)
- #define IS_METEORLAKE(i915) IS_PLATFORM(i915, INTEL_METEORLAKE)
-+#define IS_LUNARLAKE(i915) 0
+ bool intel_phy_is_snps(struct drm_i915_private *dev_priv, enum phy phy)
+ {
+-	if (phy == PHY_NONE)
+-		return false;
+-	else if (IS_DG2(dev_priv))
+-		/*
+-		 * All four "combo" ports and the TC1 port (PHY E) use
+-		 * Synopsis PHYs.
+-		 */
+-		return phy <= PHY_E;
+-
+-	return false;
++	/*
++	 * For DG2, and for DG2 only, all four "combo" ports and the TC1 port
++	 * (PHY E) use Synopsis PHYs.
++	 */
++	return IS_DG2(dev_priv) && phy > PHY_NONE && phy <= PHY_E;
+ }
  
- #define IS_DG2_G10(i915) \
- 	IS_SUBPLATFORM(i915, INTEL_DG2, INTEL_SUBPLATFORM_G10)
+ enum phy intel_port_to_phy(struct drm_i915_private *i915, enum port port)
 -- 
 2.40.1
 
