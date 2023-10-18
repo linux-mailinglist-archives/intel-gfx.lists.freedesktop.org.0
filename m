@@ -2,55 +2,56 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2312B7CDB19
-	for <lists+intel-gfx@lfdr.de>; Wed, 18 Oct 2023 13:58:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0E33E7CDC4D
+	for <lists+intel-gfx@lfdr.de>; Wed, 18 Oct 2023 14:52:53 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 20AAF10E067;
-	Wed, 18 Oct 2023 11:58:20 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 478BE10E3E1;
+	Wed, 18 Oct 2023 12:52:45 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.24])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 83E4610E067;
- Wed, 18 Oct 2023 11:58:18 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.126])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A665D10E3E3;
+ Wed, 18 Oct 2023 12:52:42 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1697630298; x=1729166298;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=EXS+cAUV3j0Z4MHXUwmccjUAF194E0f0gwrqg/vbUXQ=;
- b=YMbnJnxtZ+pv8rsviXRYc3L6ydbh9DSaipfgZ5U36ib1Dm14mWlnX6VB
- tNDACIKFw0qyowY0N7an6AdHq1VSBL96MiRTLeqMIA9NxeduWbStjsPiR
- wUJm+Wh2b+8SbADtdnyCFZrIZ4AEQ/tq9Dl1TtvzT/MIKKSVxpuuhS32o
- HheoGwVLsyRo57qPp2oaNxYWGypUZtgq9p7Q62fldt3iGD81IYVgtCk34
- BSAcRrFHKSCeX1Zbe3zHvBtXXqC27SBF6NPnyzFnuYYh1uHrlGpHij0ko
- b+ycgiQ2NZiyzL7QFzYPJhBmdOYtXWopDEaUVqjsoIckRgmyZkdjyL//c g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10866"; a="388860107"
-X-IronPort-AV: E=Sophos;i="6.03,235,1694761200"; d="scan'208";a="388860107"
-Received: from orviesa001.jf.intel.com ([10.64.159.141])
- by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Oct 2023 04:58:18 -0700
+ t=1697633563; x=1729169563;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:in-reply-to;
+ bh=zFRykA9qO6f1M+eErBq6qWJ1MUa45/kg2R+tq08YzPo=;
+ b=kEnyNcl04Dt8QJhSbjm6AKGcn9cmEmzhgVQT6yWOQllEIsACaGXcs6sg
+ nvc6ZHCooSD78RPpOLnQrFBIXUbFqXZXNZTfV8bH0PJP/iMImOqEA0rwP
+ 3jt9HV9gL9QAYqVkEfHin0MQLsANDrs/VOVCL1o2lReTxzlQH/2oR743o
+ EJmJGu1ysN2T5+4LSYwQbi+8NdoQTFxcKgciZbeaUNcTJnsj+jBx89wMr
+ XbaGu9cl5xdpgjtF8ASz9+jr9Z9fC1eyvDtkvMnjuSd95ZS7EDOLLXVog
+ 07T8WtxatycdfcnLbb5M25UkDPzW9yh382ya4mtvVNUZBQkR6jb4kYacP Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10866"; a="371067699"
+X-IronPort-AV: E=Sophos;i="6.03,235,1694761200"; d="scan'208";a="371067699"
+Received: from orsmga007.jf.intel.com ([10.7.209.58])
+ by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 18 Oct 2023 05:52:42 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.03,235,1694761200"; 
-   d="scan'208";a="4355928"
-Received: from nirmoyda-mobl.ger.corp.intel.com (HELO [10.249.39.1])
- ([10.249.39.1])
- by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Oct 2023 04:57:08 -0700
-Message-ID: <36c0e644-4013-f2f8-a0a7-9b9c3d8423c9@linux.intel.com>
-Date: Wed, 18 Oct 2023 13:58:13 +0200
+X-IronPort-AV: E=McAfee;i="6600,9927,10866"; a="750082057"
+X-IronPort-AV: E=Sophos;i="6.03,235,1694761200"; d="scan'208";a="750082057"
+Received: from smile.fi.intel.com ([10.237.72.54])
+ by orsmga007.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 18 Oct 2023 05:52:39 -0700
+Received: from andy by smile.fi.intel.com with local (Exim 4.97-RC2)
+ (envelope-from <andriy.shevchenko@linux.intel.com>)
+ id 1qt62O-00000006ajn-0ppx; Wed, 18 Oct 2023 15:52:36 +0300
+Date: Wed, 18 Oct 2023 15:52:35 +0300
+From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+To: Hans de Goede <hdegoede@redhat.com>
+Message-ID: <ZS/VE3w7bafj+Kuu@smile.fi.intel.com>
+References: <20231018051052.1328852-1-andriy.shevchenko@linux.intel.com>
+ <0c88666a-ff36-b649-d244-ccce500b6c2f@redhat.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.15.1
-Content-Language: en-US
-To: Andi Shyti <andi.shyti@linux.intel.com>, Nirmoy Das <nirmoy.das@intel.com>
-References: <20231018093815.1349-1-nirmoy.das@intel.com>
- <ZS/GZ0U7rOuuD0Kw@ashyti-mobl2.lan>
-From: Nirmoy Das <nirmoy.das@linux.intel.com>
-In-Reply-To: <ZS/GZ0U7rOuuD0Kw@ashyti-mobl2.lan>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-Subject: Re: [Intel-gfx] [PATCH v3] drm/i915: Flush WC GGTT only on required
- platforms
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <0c88666a-ff36-b649-d244-ccce500b6c2f@redhat.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+Subject: Re: [Intel-gfx] [rft,
+ PATCH v1 0/2] drm/i915/dsi: An attempt to get rid of IOSF GPIO on
+ VLV
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -63,46 +64,38 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org,
- Jonathan Cavitt <jonathan.cavitt@intel.com>, stable@vger.kernel.org,
- dri-devel@lists.freedesktop.org, Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Matt Roper <matthew.d.roper@intel.com>
+Cc: Jani Nikula <jani.nikula@intel.com>, intel-gfx@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
+ Daniel Vetter <daniel@ffwll.ch>, Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ David Airlie <airlied@gmail.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi Andi,
+On Wed, Oct 18, 2023 at 11:09:35AM +0200, Hans de Goede wrote:
+> On 10/18/23 07:10, Andy Shevchenko wrote:
+> > DSI code for VBT has a set of ugly GPIO hacks, one of which is direct
+> > talking to GPIO IP behind the actual driver's back. An attempt to fix
+> > that is here.
+> > 
+> > If I understood correctly, my approach should work in the similar way as
+> > the current IOSF GPIO. 
+> > 
+> > Hans, I believe you have some devices that use this piece of code,
+> > is it possible to give a test run on (one of) them?
+> 
+> Yes I should be able to find a device or 2 which poke GPIOs from the
+> VBT MIPI sequences. Unfortunately I don't know from the top of my head
+> which devices actually use this, so I may need to try quite a few devices
+> before finding one which actually uses this.
+> 
+> I'll try to get this series tested sometime the coming weeks,
+> depending on when I can schedule some time for this.
 
-On 10/18/2023 1:49 PM, Andi Shyti wrote:
-> Hi Nirmoy,
->
-> On Wed, Oct 18, 2023 at 11:38:15AM +0200, Nirmoy Das wrote:
->> gen8_ggtt_invalidate() is only needed for limited set of platforms
->> where GGTT is mapped as WC. This was added as way to fix WC based GGTT in
->> commit 0f9b91c754b7 ("drm/i915: flush system agent TLBs on SNB") and
->> there are no reference in HW docs that forces us to use this on non-WC
->> backed GGTT.
->>
->> This can also cause unwanted side-effects on XE_HP platforms where
->> GFX_FLSH_CNTL_GEN6 is not valid anymore.
->>
->> v2: Add a func to detect wc ggtt detection (Ville)
->> v3: Improve commit log and add reference commit (Daniel)
->>
->> Fixes: d2eae8e98d59 ("drm/i915/dg2: Drop force_probe requirement")
-> I'm wondering if this is the right Fixes, though. Should this
-> rather be:
->
-> Fixes: 6266992cf105 ("drm/i915/gt: remove GRAPHICS_VER == 10")
+No hurry. maybe you simply can add into your usual tree you run on your
+devices?
 
-Hard to find a real Fixes for this. I just want to backport this to dg2 
-where we can have unwanted side-effects.
+-- 
+With Best Regards,
+Andy Shevchenko
 
 
-Regards,
-
-Nirmoy
-
->
-> ?
->
-> Andi
