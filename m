@@ -2,47 +2,47 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 51C627D016A
-	for <lists+intel-gfx@lfdr.de>; Thu, 19 Oct 2023 20:27:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8C2767D0176
+	for <lists+intel-gfx@lfdr.de>; Thu, 19 Oct 2023 20:28:42 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C7A5A10E533;
-	Thu, 19 Oct 2023 18:27:23 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DED3C10E0CC;
+	Thu, 19 Oct 2023 18:28:40 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AC35910E533
- for <intel-gfx@lists.freedesktop.org>; Thu, 19 Oct 2023 18:27:21 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.151])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EC52510E538
+ for <intel-gfx@lists.freedesktop.org>; Thu, 19 Oct 2023 18:28:37 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1697740041; x=1729276041;
+ t=1697740117; x=1729276117;
  h=from:to:cc:subject:date:message-id:mime-version:
  content-transfer-encoding;
- bh=vsjFJqoY/w2pzqPl92Ce8/HrMNxJZAA/vzsllBqoONM=;
- b=fuMBAhoJ/vcN6pBp2OO3tLfhnjgl9qimmdp1I6M1+4oJLRuhIgpreg9T
- RffCbFJTkvZ7iLb4Wx3fokJc/Eg7UmaGqsn/jnmShHTb9TliLwDvJNHLo
- dSM8ioSdR9SBI7ajS4b/wzWhyN4FbhbmqLEHJpG1UF2/ihJc/FJOuTvJ6
- KAuWpo6r31FDCyZBeS6rEeOPW2zxBKGg/Cx6xhDmD1Mtey2zsWGdB7AQV
- 8c/Kcxd7WDu3bnYGpMQ7JVcDfLuUTYojQDkiG+eAFazyV95+Yacm+b1dI
- dRUoLkoKMkNmO9d0Jv10nA/mwTT80jFrez1ssVX1hpxFDNosao+3T6pQi w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10868"; a="450556252"
-X-IronPort-AV: E=Sophos;i="6.03,238,1694761200"; d="scan'208";a="450556252"
-Received: from orsmga004.jf.intel.com ([10.7.209.38])
- by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Oct 2023 11:27:21 -0700
+ bh=jkqoXVr6WMqz4DtBG7jB7az4GdT5+O4uLoSPAZWcVwI=;
+ b=EIVI/V869BLg1kE1Dxt6QWcaXRZ/RBDNU2IUCxuHS+WXRZ6a3rL+CQEo
+ T9wFgzaBQI+H/+ewzrHnBlMd3so2QoNE3TI1VNCHVv7A8PrK54j5JZVOr
+ EkReSmZvQCCMmkf/iImT3q6svDvCLM/2TSUzue3Wz1Q+CaX1p/snFK3Kr
+ MXkqNAqpzdfc+pap1NRQlV8RQ/rWaKpRuj+SIHC0vzXz3bv80gQwKm3R4
+ CfmY2ioem4gO4lLvZ8/3lR/DpVoSwHl37cGaiMr0aAbR9ZlrSQ5FUACPp
+ 0PFY8NkCEu3bLZbGsirCrZrO2lUoUZPsXW2DFlw3LtFnuGjCJSjnTkKdS w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10868"; a="366568687"
+X-IronPort-AV: E=Sophos;i="6.03,238,1694761200"; d="scan'208";a="366568687"
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+ by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 Oct 2023 11:28:37 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10868"; a="880784114"
-X-IronPort-AV: E=Sophos;i="6.03,238,1694761200"; d="scan'208";a="880784114"
+X-IronPort-AV: E=McAfee;i="6600,9927,10868"; a="792104847"
+X-IronPort-AV: E=Sophos;i="6.03,238,1694761200"; d="scan'208";a="792104847"
 Received: from unerlige-desk.jf.intel.com ([10.165.21.199])
- by orsmga004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Oct 2023 11:27:21 -0700
+ by orsmga001-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 Oct 2023 11:28:36 -0700
 From: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Thu, 19 Oct 2023 11:27:20 -0700
-Message-Id: <20231019182720.3742536-1-umesh.nerlige.ramappa@intel.com>
+Date: Thu, 19 Oct 2023 11:28:36 -0700
+Message-Id: <20231019182836.3761023-1-umesh.nerlige.ramappa@intel.com>
 X-Mailer: git-send-email 2.38.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH] drm/i915/pmu: Check is pmu is closed before
+Subject: [Intel-gfx] [PATCH] drm/i915/pmu: Check if pmu is closed before
  stopping event
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -70,6 +70,8 @@ Check for pmu->closed in pmu_event_stop as well.
 
 Based on discussion here -
 https://patchwork.freedesktop.org/patch/492079/?series=105790&rev=2
+
+v2: s/is/if/ in commit title
 
 Signed-off-by: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
 ---
