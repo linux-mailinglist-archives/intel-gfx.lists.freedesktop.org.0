@@ -1,51 +1,70 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8035A7CF728
-	for <lists+intel-gfx@lfdr.de>; Thu, 19 Oct 2023 13:40:42 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 347E77CF751
+	for <lists+intel-gfx@lfdr.de>; Thu, 19 Oct 2023 13:46:21 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 66E4110E4C7;
-	Thu, 19 Oct 2023 11:40:37 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 76C5710E4CA;
+	Thu, 19 Oct 2023 11:46:12 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.100])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2E17F10E4C4;
- Thu, 19 Oct 2023 11:40:34 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1697715634; x=1729251634;
- h=message-id:date:mime-version:from:to:cc:subject:
- content-transfer-encoding;
- bh=O3uBq6T8/HAvXTNuvBs0st+KAtQfDcYivT58TiTtY1I=;
- b=MxAfBd6Fw7rUWHR6T3mTX4B18lBjV/ls0lIBH3V7e+guv2blfE71UAZA
- Dc7FQUItK3OANSAOCIxLoUBdmgnJFUtHGk3Ac9CJh00gKsdTOmED7kuWU
- yC7BtYFMiyMmBvRrA354Skx5LkF37fpouPiiAmx7/uJZn4TfuQtSOBpX4
- vhIi0CZVvcGCU9zr/Onu5ydeio0xlCDLJqDQ+H0D0IhgpDIhrozHxkocM
- BeM37mU/kqZ9HkZosiSNUawDR+7kcig9FC46Spn1IIoZ/hRiC254Uzihg
- qUIPrbiAbqO/pQxZnNN84TXceSU1isXRsI6DqpEntbdp9rHeZqbp/Qese w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10867"; a="452699090"
-X-IronPort-AV: E=Sophos;i="6.03,237,1694761200"; d="scan'208";a="452699090"
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
- by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Oct 2023 04:40:33 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10867"; a="900709812"
-X-IronPort-AV: E=Sophos;i="6.03,237,1694761200"; d="scan'208";a="900709812"
-Received: from lbinmo2x-mobl1.gar.corp.intel.com (HELO [10.249.254.204])
- ([10.249.254.204])
- by fmsmga001-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Oct 2023 04:38:23 -0700
-Message-ID: <475853c2-774c-43df-997e-85ff4bb5dea2@linux.intel.com>
-Date: Thu, 19 Oct 2023 13:40:26 +0200
+Received: from smtp-out2.suse.de (smtp-out2.suse.de [195.135.220.29])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 81B9C10E4C5;
+ Thu, 19 Oct 2023 11:46:09 +0000 (UTC)
+Received: from imap2.suse-dmz.suse.de (imap2.suse-dmz.suse.de [192.168.254.74])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature ECDSA (P-521) server-digest SHA512)
+ (No client certificate requested)
+ by smtp-out2.suse.de (Postfix) with ESMTPS id 7F9271F88B;
+ Thu, 19 Oct 2023 11:46:07 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
+ t=1697715967; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:content-type:content-type;
+ bh=PLDnM/toaIRsi/qxgoUHzTNOVJaQqnYg7Vx9UUzRpZ8=;
+ b=wEssl7BC+7bQ+ifparmKrP/sOWQkl2H4a1l7ULRBlkx4SbC2RP7vWEh/JbOnRYMXxPJb2w
+ jnaTztf5FtX6aBk6te6YSd3kSxprbqX8f3uno3k881FQ6on8jnOYpausBDXXriFcQytVUz
+ 6/+5fsAG3HmZsZ9f+22Q+HG1K9Xs5sg=
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
+ s=susede2_ed25519; t=1697715967;
+ h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:content-type:content-type;
+ bh=PLDnM/toaIRsi/qxgoUHzTNOVJaQqnYg7Vx9UUzRpZ8=;
+ b=0s5Ndoa3SbhmPdkYqzkH9cNTYwqfy+FvRxgxGTeT1a7cJjcMPwEQLEw41NKZGWq3lgrQt5
+ jkIX75At2Y/h8FDQ==
+Received: from imap2.suse-dmz.suse.de (imap2.suse-dmz.suse.de [192.168.254.74])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature ECDSA (P-521) server-digest SHA512)
+ (No client certificate requested)
+ by imap2.suse-dmz.suse.de (Postfix) with ESMTPS id 4CAC9139C2;
+ Thu, 19 Oct 2023 11:46:07 +0000 (UTC)
+Received: from dovecot-director2.suse.de ([192.168.254.65])
+ by imap2.suse-dmz.suse.de with ESMTPSA id NiCqEf8WMWWJJwAAMHmgww
+ (envelope-from <tzimmermann@suse.de>); Thu, 19 Oct 2023 11:46:07 +0000
+Date: Thu, 19 Oct 2023 13:46:05 +0200
+From: Thomas Zimmermann <tzimmermann@suse.de>
+To: Dave Airlie <airlied@gmail.com>, Daniel Vetter <daniel.vetter@ffwll.ch>
+Message-ID: <20231019114605.GA22540@linux-uq9g>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-From: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-To: Daniel Vetter <daniel.vetter@ffwll.ch>, Dave Airlie <airlied@gmail.com>
-Content-Language: en-US
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PULL] drm-misc-next
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Authentication-Results: smtp-out2.suse.de;
+	none
+X-Spam-Level: 
+X-Spam-Score: -6.60
+X-Spamd-Result: default: False [-6.60 / 50.00]; ARC_NA(0.00)[];
+ RCVD_VIA_SMTP_AUTH(0.00)[]; FROM_HAS_DN(0.00)[];
+ TO_DN_SOME(0.00)[]; TO_MATCH_ENVRCPT_ALL(0.00)[];
+ FREEMAIL_ENVRCPT(0.00)[gmail.com];
+ MIME_GOOD(-0.10)[text/plain]; NEURAL_HAM_LONG(-3.00)[-1.000];
+ DKIM_SIGNED(0.00)[suse.de:s=susede2_rsa,suse.de:s=susede2_ed25519];
+ NEURAL_HAM_SHORT(-1.00)[-1.000]; RCPT_COUNT_TWELVE(0.00)[12];
+ FREEMAIL_TO(0.00)[gmail.com,ffwll.ch]; FROM_EQ_ENVFROM(0.00)[];
+ MIME_TRACE(0.00)[0:+]; MID_RHS_NOT_FQDN(0.50)[];
+ RCVD_COUNT_TWO(0.00)[2]; RCVD_TLS_ALL(0.00)[];
+ BAYES_HAM(-3.00)[100.00%]
+X-Spam-Flag: NO
+Subject: [Intel-gfx] [PULL] drm-misc-fixes
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -58,193 +77,142 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: dim-tools@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
- Maxime Ripard <mripard@kernel.org>, dri-devel@lists.freedesktop.org,
- Thomas Zimmermann <tzimmermann@suse.de>, Rodrigo Vivi <rodrigo.vivi@intel.com>
+Cc: dim-tools@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-drm-misc-next-2023-10-19:
-drm-misc-next for v6.7-rc1:
+Hi Dave and Daniel,
 
-UAPI Changes:
+this is the PR for drm-misc-fixes.
 
-Cross-subsystem Changes:
-- Update maintainers entry for megachips STDPxxxxx-GE-B850V3-FW.
+Best regards
+Thomas
 
-Core Changes:
-- Add VM_BIND async document.
-- Dual-license drm_gpuvm to GPL-2.0 OR MIT.
+drm-misc-fixes-2023-10-19:
+Short summary of fixes pull:
 
-Driver Changes:
-- Assorted small fixes in ivpu, bridge/megachips, ssd130x, st7703,
-   bridge/lt9611uxc, rockchip.
-- Handle differences between various adv7511 chips better, and improve
-   HPD handling.
-- Clock fixes for bridge/synopsis dw-mipi-dsi.
-- Add Powkiddy RGB30 support to st7703.
-- Add driver and DT support for ssd132x OLED controller to ssd130x.
-The following changes since commit c395c83aafbb9cdbe4230f044d5b8eaf9080c0c5:
+amdgpu:
+- Disable AMD_CTX_PRIORITY_UNSET
 
-   drm/simpledrm: Fix power domain device link validity check 
-(2023-10-12 10:39:48 +0200)
+bridge:
+- ti-sn65dsi86: Fix device lifetime
+
+edid:
+- Add quirk for BenQ GW2765
+
+ivpu:
+- Extend address range for MMU mmap
+
+nouveau:
+- DP-connector fixes
+- Documentation fixes
+
+panel:
+- Move AUX B116XW03 into panel-simple
+
+scheduler:
+- Eliminate DRM_SCHED_PRIORITY_UNSET
+
+ttm:
+- Fix possible NULL-ptr deref in cleanup
+The following changes since commit c1165df2be2fffe3adeeaa68f4ee4325108c5e4e:
+
+  drm/tiny: correctly print `struct resource *` on error (2023-10-12 10:57:07 +0200)
 
 are available in the Git repository at:
 
-   git://anongit.freedesktop.org/drm/drm-misc tags/drm-misc-next-2023-10-19
+  git://anongit.freedesktop.org/drm/drm-misc tags/drm-misc-fixes-2023-10-19
 
-for you to fetch changes up to 2d23e7d6bacb779c4a740dbd5e18978fb075d15e:
+for you to fetch changes up to 8f5ad367e8b884772945c6c9fb622ac94b7d3e32:
 
-   dt-bindings: display: Add SSD132x OLED controllers (2023-10-18 
-09:53:33 +0200)
-
-----------------------------------------------------------------
-drm-misc-next for v6.7-rc1:
-
-UAPI Changes:
-
-Cross-subsystem Changes:
-- Update maintainers entry for megachips STDPxxxxx-GE-B850V3-FW.
-
-Core Changes:
-- Add VM_BIND async document.
-- Dual-license drm_gpuvm to GPL-2.0 OR MIT.
-
-Driver Changes:
-- Assorted small fixes in ivpu, bridge/megachips, ssd130x, st7703,
-   bridge/lt9611uxc, rockchip.
-- Handle differences between various adv7511 chips better, and improve
-   HPD handling.
-- Clock fixes for bridge/synopsis dw-mipi-dsi.
-- Add Powkiddy RGB30 support to st7703.
-- Add driver and DT support for ssd132x OLED controller to ssd130x.
+  accel/ivpu: Extend address range for MMU mmap (2023-10-19 08:01:20 +0200)
 
 ----------------------------------------------------------------
-Andy Yan (2):
-       drm/rockchip: remove unused struct in vop2
-       drm/rockchip: remove NR_LAYERS macro on vop2
+Short summary of fixes pull:
 
-Biju Das (8):
-       drm: adv7511: Add struct adv7511_chip_info and use 
-i2c_get_match_data()
-       drm: adv7511: Add max_mode_clock_khz variable to struct 
-adv7511_chip_info
-       drm: adv7511: Add max_lane_freq_khz variable to struct 
-adv7511_chip_info
-       drm: adv7511: Add supply_names and num_supplies variables to 
-struct adv7511_chip_info
-       drm: adv7511: Add reg_cec_offset variable to struct adv7511_chip_info
-       drm: adv7511: Add has_dsi variable to struct adv7511_chip_info
-       drm: adv7511: Add link_config variable to struct adv7511_chip_info
-       drm: adv7511: Add hpd_override_enable variable to struct 
-adv7511_chip_info
+amdgpu:
+- Disable AMD_CTX_PRIORITY_UNSET
 
-Chris Morgan (3):
-       dt-bindings: vendor-prefixes: document Powkiddy
-       dt-bindings: panel: Add Powkiddy RGB30 panel compatible
-       drm/panel: st7703: Add Powkiddy RGB30 Panel Support
+bridge:
+- ti-sn65dsi86: Fix device lifetime
 
-Dan Carpenter (1):
-       drm/rockchip: Fix type promotion bug in rockchip_gem_iommu_map()
+edid:
+- Add quirk for BenQ GW2765
 
-Dmitry Baryshkov (1):
-       drm/bridge: lt9611uxc: fix the race in the error path
+ivpu:
+- Extend address range for MMU mmap
 
-Frank Oltmanns (1):
-       drm/panel: st7703: Fix timings when entering/exiting sleep
+nouveau:
+- DP-connector fixes
+- Documentation fixes
 
-Ian Ray (2):
-       drm/bridge: megachips-stdpxxxx-ge-b850v3-fw: switch to 
-drm_do_get_edid()
-       MAINTAINERS: Update entry for megachips-stdpxxxx-ge-b850v3-fw
+panel:
+- Move AUX B116XW03 into panel-simple
+
+scheduler:
+- Eliminate DRM_SCHED_PRIORITY_UNSET
+
+ttm:
+- Fix possible NULL-ptr deref in cleanup
+
+----------------------------------------------------------------
+Douglas Anderson (1):
+      drm/panel: Move AUX B116XW03 out of panel-edp back to panel-simple
+
+Hamza Mahfooz (1):
+      drm/edid: add 8 bpc quirk to the BenQ GW2765
 
 Jacek Lawrynowicz (1):
-       accel/ivpu: Add ivpu_bo_vaddr() and ivpu_bo_size()
+      accel/ivpu: Don't enter d0i3 during FLR
 
-Javier Martinez Canillas (6):
-       drm/ssd130x: Replace .page_height field in device info with a 
-constant
-       drm/ssd130x: Add a controller family id to the device info data
-       drm/ssd130x: Rename commands that are shared across chip families
-       drm/ssd130x: Add support for the SSD132x OLED controller family
-       dt-bindings: display: Split common Solomon properties in their 
-own schema
-       dt-bindings: display: Add SSD132x OLED controllers
+Karol Herbst (1):
+      drm/nouveau/disp: fix DP capable DSM connectors
 
-Liu Ying (9):
-       drm/bridge: synopsys: dw-mipi-dsi: Add dw_mipi_dsi_get_bridge() 
-helper
-       drm/bridge: synopsys: dw-mipi-dsi: Add input bus format 
-negotiation support
-       drm/bridge: synopsys: dw-mipi-dsi: Force input bus flags
-       drm/bridge: synopsys: dw-mipi-dsi: Add mode fixup support
-       drm/bridge: synopsys: dw-mipi-dsi: Use pixel clock rate to 
-calculate lbcc
-       drm/bridge: synopsys: dw-mipi-dsi: Set minimum lane byte clock 
-cycles for HSA and HBP
-       drm/bridge: synopsys: dw-mipi-dsi: Disable HSTX and LPRX timeout 
-check
-       dt-bindings: display: bridge: Document Freescale i.MX93 MIPI DSI
-       drm/bridge: imx: Add i.MX93 MIPI DSI support
+Karolina Stolarek (1):
+      drm/ttm: Reorder sys manager cleanup step
 
-Ondrej Jirman (1):
-       drm/panel: st7703: Pick different reset sequence
+Luben Tuikov (2):
+      drm/amdgpu: Unset context priority is now invalid
+      gpu/drm: Eliminate DRM_SCHED_PRIORITY_UNSET
 
-Thomas Hellström (2):
-       Documentation/gpu: Add a VM_BIND async document
-       drm/gpuvm: Dual-licence the drm_gpuvm code GPL-2.0 OR MIT
+Randy Dunlap (1):
+      drm/nouveau: exec: fix ioctl kernel-doc warning
 
-Thomas Zimmermann (1):
-       drm/ssd130x: Fix atomic_check for disabled planes
+Stanislaw Gruszka (1):
+      Revert "accel/ivpu: Use cached buffers for FW loading"
 
-  .../display/bridge/fsl,imx93-mipi-dsi.yaml         | 115 +++
-  .../display/panel/rocktech,jh057n00900.yaml        |   2 +
-  .../bindings/display/solomon,ssd-common.yaml       |  42 +
-  .../bindings/display/solomon,ssd1307fb.yaml        |  28 +-
-  .../bindings/display/solomon,ssd132x.yaml          |  89 ++
-  .../devicetree/bindings/vendor-prefixes.yaml       |   2 +
-  Documentation/gpu/drm-vm-bind-async.rst            | 309 +++++++
-  Documentation/gpu/implementation_guidelines.rst    |   9 +
-  Documentation/gpu/index.rst                        |   1 +
-  Documentation/gpu/rfc/xe.rst                       |   4 +-
-  MAINTAINERS                                        |   5 +-
-  drivers/accel/ivpu/ivpu_fw.c                       |  18 +-
-  drivers/accel/ivpu/ivpu_fw_log.c                   |   6 +-
-  drivers/accel/ivpu/ivpu_gem.c                      |  30 +-
-  drivers/accel/ivpu/ivpu_gem.h                      |  22 +-
-  drivers/accel/ivpu/ivpu_ipc.c                      |   6 +-
-  drivers/accel/ivpu/ivpu_job.c                      |   8 +-
-  drivers/accel/ivpu/ivpu_pm.c                       |   2 +-
-  drivers/gpu/drm/bridge/adv7511/adv7511.h           |  16 +-
-  drivers/gpu/drm/bridge/adv7511/adv7511_cec.c       |  14 +-
-  drivers/gpu/drm/bridge/adv7511/adv7511_drv.c       | 104 ++-
-  drivers/gpu/drm/bridge/adv7511/adv7533.c           |   7 +-
-  drivers/gpu/drm/bridge/imx/Kconfig                 |  11 +
-  drivers/gpu/drm/bridge/imx/Makefile                |   1 +
-  drivers/gpu/drm/bridge/imx/imx93-mipi-dsi.c        | 917 
-+++++++++++++++++++++
-  drivers/gpu/drm/bridge/lontium-lt9611uxc.c         |  10 +-
-  .../drm/bridge/megachips-stdpxxxx-ge-b850v3-fw.c   |  57 +-
-  drivers/gpu/drm/bridge/synopsys/dw-mipi-dsi.c      |  91 +-
-  drivers/gpu/drm/drm_gpuvm.c                        |   2 +-
-  drivers/gpu/drm/panel/panel-sitronix-st7703.c      | 125 ++-
-  drivers/gpu/drm/rockchip/rockchip_drm_gem.c        |   2 +-
-  drivers/gpu/drm/rockchip/rockchip_drm_vop2.c       |   6 +-
-  drivers/gpu/drm/rockchip/rockchip_drm_vop2.h       |   3 -
-  drivers/gpu/drm/solomon/Kconfig                    |  12 +-
-  drivers/gpu/drm/solomon/ssd130x-i2c.c              |  18 +-
-  drivers/gpu/drm/solomon/ssd130x-spi.c              |  27 +-
-  drivers/gpu/drm/solomon/ssd130x.c                  | 523 ++++++++++--
-  drivers/gpu/drm/solomon/ssd130x.h                  |  17 +-
-  include/drm/bridge/dw_mipi_dsi.h                   |  16 +
-  include/drm/drm_gpuvm.h                            |   2 +-
-  40 files changed, 2385 insertions(+), 294 deletions(-)
-  create mode 100644 
-Documentation/devicetree/bindings/display/bridge/fsl,imx93-mipi-dsi.yaml
-  create mode 100644 
-Documentation/devicetree/bindings/display/solomon,ssd-common.yaml
-  create mode 100644 
-Documentation/devicetree/bindings/display/solomon,ssd132x.yaml
-  create mode 100644 Documentation/gpu/drm-vm-bind-async.rst
-  create mode 100644 Documentation/gpu/implementation_guidelines.rst
-  create mode 100644 drivers/gpu/drm/bridge/imx/imx93-mipi-dsi.c
+Stephen Boyd (1):
+      drm/bridge: ti-sn65dsi86: Associate DSI device lifetime with auxiliary device
+
+Wludzik, Jozef (1):
+      accel/ivpu: Extend address range for MMU mmap
+
+ drivers/accel/ivpu/ivpu_drv.c                    | 11 ++++++--
+ drivers/accel/ivpu/ivpu_drv.h                    |  1 +
+ drivers/accel/ivpu/ivpu_fw.c                     |  9 +++---
+ drivers/accel/ivpu/ivpu_gem.h                    |  5 ----
+ drivers/accel/ivpu/ivpu_hw.h                     |  8 ++++++
+ drivers/accel/ivpu/ivpu_hw_37xx.c                |  1 +
+ drivers/accel/ivpu/ivpu_hw_40xx.c                |  1 +
+ drivers/accel/ivpu/ivpu_mmu_context.c            |  9 ++----
+ drivers/accel/ivpu/ivpu_pm.c                     |  3 +-
+ drivers/gpu/drm/amd/amdgpu/amdgpu_ctx.c          |  5 ++--
+ drivers/gpu/drm/bridge/ti-sn65dsi86.c            | 14 +++++-----
+ drivers/gpu/drm/drm_edid.c                       |  3 ++
+ drivers/gpu/drm/nouveau/nvkm/engine/disp/uconn.c | 14 +++++++++-
+ drivers/gpu/drm/panel/panel-edp.c                | 29 --------------------
+ drivers/gpu/drm/panel/panel-simple.c             | 35 ++++++++++++++++++++++++
+ drivers/gpu/drm/ttm/ttm_device.c                 |  8 +++---
+ include/drm/gpu_scheduler.h                      |  3 +-
+ include/uapi/drm/nouveau_drm.h                   |  4 +--
+ 18 files changed, 96 insertions(+), 67 deletions(-)
+
+-- 
+Thomas Zimmermann
+Graphics Driver Developer
+SUSE Software Solutions Germany GmbH
+Frankenstrasse 146, 90461 Nuernberg, Germany
+GF: Ivo Totev, Andrew Myers, Andrew McDonald, Boudien Moerman
+HRB 36809 (AG Nuernberg)
