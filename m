@@ -1,58 +1,50 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id C000D7CF565
-	for <lists+intel-gfx@lfdr.de>; Thu, 19 Oct 2023 12:32:32 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id F199A7CF5D7
+	for <lists+intel-gfx@lfdr.de>; Thu, 19 Oct 2023 12:52:13 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3548E10E3B0;
-	Thu, 19 Oct 2023 10:32:29 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A8A9610E4C5;
+	Thu, 19 Oct 2023 10:52:10 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E0F0710E3B0
- for <intel-gfx@lists.freedesktop.org>; Thu, 19 Oct 2023 10:32:27 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1697711547; x=1729247547;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=qRBkCTJbRJlP/rxYmWi5U4pxhGfUHsPS+Zw8MPdhUoY=;
- b=FE80kuSka7esHXId06HpbNaaBM4HALpX7niniGhVFlSCS7cheF3FzhhI
- EI6hneTg17cvfd7DN6FM+w/vGktMA+3GSUkqwzV3BhDLLUi8cRsWzJXro
- UhxNCGRma0psx7ulOs/FxMKoTkevaQQtwsTVNCIVA1NcrQb0ddv9f4t1i
- FAIzQwB7WkXAKU2Yhc4dbUlFeLBdapFpq+7I1fZrLVNfPnG4LP5E3XkAj
- yptobj/zU31pbTzOyDEM//A6pySaCdEGcfHSAMYdllPuXdweahVKaflfF
- lXp8pEIbK17QAVr9yF4q9YujYS0kqN9NZWFn8IDde8afMXWhrmlLBeoeO A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10867"; a="376596456"
-X-IronPort-AV: E=Sophos;i="6.03,237,1694761200"; d="scan'208";a="376596456"
-Received: from orsmga003.jf.intel.com ([10.7.209.27])
- by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Oct 2023 03:31:44 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10867"; a="706807168"
-X-IronPort-AV: E=Sophos;i="6.03,237,1694761200"; d="scan'208";a="706807168"
-Received: from ahajda-mobl.ger.corp.intel.com (HELO [10.213.3.232])
- ([10.213.3.232])
- by orsmga003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Oct 2023 03:31:40 -0700
-Message-ID: <62e16250-63f4-4fbb-b00e-db808b600664@intel.com>
-Date: Thu, 19 Oct 2023 12:31:38 +0200
+Received: from metis.whiteo.stw.pengutronix.de
+ (metis.whiteo.stw.pengutronix.de [IPv6:2a0a:edc0:2:b01:1d::104])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D545810E4BD
+ for <intel-gfx@lists.freedesktop.org>; Thu, 19 Oct 2023 10:52:08 +0000 (UTC)
+Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
+ by metis.whiteo.stw.pengutronix.de with esmtps
+ (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256) (Exim 4.92)
+ (envelope-from <ukl@pengutronix.de>)
+ id 1qtQcb-0002Wd-GE; Thu, 19 Oct 2023 12:51:21 +0200
+Received: from [2a0a:edc0:0:900:1d::77] (helo=ptz.office.stw.pengutronix.de)
+ by drehscheibe.grey.stw.pengutronix.de with esmtps (TLS1.3) tls
+ TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (Exim 4.94.2)
+ (envelope-from <ukl@pengutronix.de>)
+ id 1qtQcZ-002lnZ-81; Thu, 19 Oct 2023 12:51:19 +0200
+Received: from ukl by ptz.office.stw.pengutronix.de with local (Exim 4.94.2)
+ (envelope-from <ukl@pengutronix.de>)
+ id 1qtQcY-001W9b-T9; Thu, 19 Oct 2023 12:51:18 +0200
+Date: Thu, 19 Oct 2023 12:51:18 +0200
+From: Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>
+To: Hans de Goede <hdegoede@redhat.com>
+Message-ID: <20231019105118.64gdzzixwqrztjir@pengutronix.de>
+References: <cover.1697534024.git.sean@mess.org>
+ <a7fcd19938d5422abc59c968ff7b3d5c275577ed.1697534024.git.sean@mess.org>
+ <90728c06-4c6c-b3d2-4723-c24711be2fa5@redhat.com>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Content-Language: en-US
-To: Thomas Gleixner <tglx@linutronix.de>, linux-kernel@vger.kernel.org,
- intel-gfx@lists.freedesktop.org, linux-mm@kvack.org
-References: <20230925131359.2948827-1-andrzej.hajda@intel.com>
- <87v8bak6iy.ffs@tglx>
-From: Andrzej Hajda <andrzej.hajda@intel.com>
-Organization: Intel Technology Poland sp. z o.o. - ul. Slowackiego 173, 80-298
- Gdansk - KRS 101882 - NIP 957-07-52-316
-In-Reply-To: <87v8bak6iy.ffs@tglx>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-Subject: Re: [Intel-gfx] [PATCH v2] debugobjects: stop accessing objects
- after releasing spinlock
+Content-Type: multipart/signed; micalg=pgp-sha512;
+ protocol="application/pgp-signature"; boundary="yn2iyczv5acooknv"
+Content-Disposition: inline
+In-Reply-To: <90728c06-4c6c-b3d2-4723-c24711be2fa5@redhat.com>
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
+X-SA-Exim-Mail-From: ukl@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de);
+ SAEximRunCond expanded to false
+X-PTX-Original-Recipient: intel-gfx@lists.freedesktop.org
+Subject: Re: [Intel-gfx] [PATCH v3 1/3] pwm: make it possible to apply pwm
+ changes in atomic context
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -65,63 +57,116 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Nirmoy Das <nirmoy.das@intel.com>
+Cc: linux-fbdev@vger.kernel.org, Sean Young <sean@mess.org>,
+ linux-doc@vger.kernel.org, dri-devel@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org, Pavel Machek <pavel@ucw.cz>,
+ David Airlie <airlied@gmail.com>, linux-leds@vger.kernel.org,
+ Daniel Thompson <daniel.thompson@linaro.org>,
+ Ivaylo Dimitrov <ivo.g.dimitrov.75@gmail.com>,
+ Jonathan Corbet <corbet@lwn.net>, Helge Deller <deller@gmx.de>,
+ Lee Jones <lee@kernel.org>, Javier Martinez Canillas <javierm@redhat.com>,
+ linux-input@vger.kernel.org,
+ Ilpo =?utf-8?B?SsOkcnZpbmVu?= <ilpo.jarvinen@linux.intel.com>,
+ Guenter Roeck <linux@roeck-us.net>, linux-media@vger.kernel.org,
+ platform-driver-x86@vger.kernel.org, linux-pwm@vger.kernel.org,
+ Jean Delvare <jdelvare@suse.com>, intel-gfx@lists.freedesktop.org,
+ Mark Gross <markgross@kernel.org>, Mark Brown <broonie@kernel.org>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Mauro Carvalho Chehab <mchehab@kernel.org>,
+ linux-arm-kernel@lists.infradead.org, linux-hwmon@vger.kernel.org,
+ Support Opensource <support.opensource@diasemi.com>,
+ Jingoo Han <jingoohan1@gmail.com>, Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+ Liam Girdwood <lgirdwood@gmail.com>, Daniel Vetter <daniel@ffwll.ch>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On 13.10.2023 15:15, Thomas Gleixner wrote:
-> On Mon, Sep 25 2023 at 15:13, Andrzej Hajda wrote:
->> After spinlock release object can be modified/freed by concurrent thread.
->> Using it in such case is error prone, even for printing object state.
-> 
-> It cannot be freed. If that happens then the calling code will have an
-> UAF problem on the tracked item too.
 
-Yes, and I have assumed that debugobjects are created also for detecting 
-UAFs. They should be able to handle/detect 'issues due to incorrectly 
-serialized concurrent accesses' scenarios as well, at least some of 
-them. And even if it cannot recover it should at least provide reliable 
-reporting.
+--yn2iyczv5acooknv
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Now we can have scenario:
-1. Thread tries to deactivate destroyed object, debugobjects detects it, 
-spin lock is released, thread is preempted.
-2. Other thread frees debugobject, then allocates new one on the same 
-memory location, ie 'obj' variable from 1st thread point to it - it is 
-possible because there is no locking.
-3. Then preemption occurs, and 1st thread reports error for wrong object.
+On Wed, Oct 18, 2023 at 03:57:48PM +0200, Hans de Goede wrote:
+> Hi Sean,
+>=20
+> On 10/17/23 11:17, Sean Young wrote:
+> > Some drivers require sleeping, for example if the pwm device is connect=
+ed
+> > over i2c. The pwm-ir-tx requires precise timing, and sleeping causes ha=
+voc
+> > with the generated IR signal when sleeping occurs.
+> >=20
+> > This patch makes it possible to use pwm when the driver does not sleep,
+> > by introducing the pwm_can_sleep() function.
+> >=20
+> > Signed-off-by: Sean Young <sean@mess.org>
+>=20
+> I have no objection to this patch by itself, but it seems a bit
+> of unnecessary churn to change all current callers of pwm_apply_state()
+> to a new API.
 
-This seems the most drastic for me, but also with lowest chances to 
-happen due to delayed freeing, but there are also other more probable 
-scenarios when we print the same object but in state different from the 
-one when debugobject detected issue, due to modification by concurrent 
-thread.
+The idea is to improve the semantic of the function name, see
+https://lore.kernel.org/linux-pwm/20231013180449.mcdmklbsz2rlymzz@pengutron=
+ix.de
+for more context. I think it's very subjective if you consider this
+churn or not. While it's nice to have every caller converted in a single
+step, I'd go for
 
-> 
-> If there is a concurrent modification then again, the calling code is
-> lacking serialization on the tracked object.
-> 
-> debugobject fundamentally relies on the call site being consistent
-> simply because it _cannot_ invoke the fixup callbacks with the hash
-> bucket lock held.
+	#define pwm_apply_state(pwm, state) pwm_apply_cansleep(pwm, state)
 
-Hmm, if call site is consistent then 'fixup' seems unnecessary, together 
-with debugobjects.
-I guess 'fixup' users should take care of locking on they own in such 
-case, as it is currently, nothing changed.
+, keep that macro for a while and convert all users step by step. This
+way we don't needlessly break oot code and the changes to convert to the
+new API can go via their usual trees without time pressure.
 
-> 
-> What's the actualy problem you are trying to solve here. The changelog
-> does not explain anything except of handwaving about modified/freed.
+> Why not just keep pwm_apply_state() as is and introduce a new
+> pwm_apply_state_atomic() for callers which want to apply state
+> in a case where sleeping is not allowed ?
 
-Presented above.
+There is a big spontaneous growth of function name patterns. I didn't
+claim having done a complete research, but not using a suffix for the
+fast variant and _cansleep for the sleeping one at least aligns to how
+the gpio subsystem names things.
 
-Regards
-Andrzej
+Grepping a bit more:
 
+ - regmap has: regmap_might_sleep() and struct regmap::can_sleep
+   The actual API doesn't have different functions to differentiate
+   sleeping and non-sleeping calls. (Though there is
+   regmap_read_poll_timeout_atomic().)
 
-> 
-> Thanks,
-> 
->          tglx
+ - kmap() + kmap_atomic()
+ - set_pte() + set_pte_atomic()
 
+ - There is scmi_is_transport_atomic() and scmi_handle::is_transport_atomic=
+()
+   (Is this also about sleeping?)
+
+ - There are quite a lot more symbols ending in _atomic and in
+   _cansleep, but several of them don't exists to differentiate a slow
+   and a fast procedure.  (e.g. drm_mode_atomic)
+
+Not entirely sure what to read out of that.
+
+Best regards
+Uwe
+
+--=20
+Pengutronix e.K.                           | Uwe Kleine-K=F6nig            |
+Industrial Linux Solutions                 | https://www.pengutronix.de/ |
+
+--yn2iyczv5acooknv
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEP4GsaTp6HlmJrf7Tj4D7WH0S/k4FAmUxCiUACgkQj4D7WH0S
+/k4jlwgAgQS/Vm8QPoZFBjT4W6JQXxJRPwUsXBOa7whQZfAYqlzZZ35+WjXKug70
+1nq/INcUz96H0aYtK2aHLUeOEQH+cDau32nAM9dYk0S4qWXOEgC1gFbPwGTrF1SE
+gEPMEkOMezwBlon9ik8cPddAGP5rDSXD8YKeiGy5O6gbXi/iKChFxnamOn5K7B+j
+mgPy/pP0tTP79r0tsVIKta7hnJ1uGfv8cWRQqvPTyT9YuEiBfKRzgi7rxXq9gH2X
+DS+SMO7jtBXFEl5kzKsw1oKpR5VqInvebeBJHSnsH3T/sXAuyJj379046bjbKq7c
+rp0jBis0JVqrfUguEpnfRBuxuTilXQ==
+=OvnQ
+-----END PGP SIGNATURE-----
+
+--yn2iyczv5acooknv--
