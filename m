@@ -2,43 +2,43 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id E82727D0158
-	for <lists+intel-gfx@lfdr.de>; Thu, 19 Oct 2023 20:24:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 51C627D016A
+	for <lists+intel-gfx@lfdr.de>; Thu, 19 Oct 2023 20:27:27 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8582E10E533;
-	Thu, 19 Oct 2023 18:24:05 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C7A5A10E533;
+	Thu, 19 Oct 2023 18:27:23 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.65])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3C26610E533
- for <intel-gfx@lists.freedesktop.org>; Thu, 19 Oct 2023 18:24:04 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id AC35910E533
+ for <intel-gfx@lists.freedesktop.org>; Thu, 19 Oct 2023 18:27:21 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1697739844; x=1729275844;
+ t=1697740041; x=1729276041;
  h=from:to:cc:subject:date:message-id:mime-version:
  content-transfer-encoding;
  bh=vsjFJqoY/w2pzqPl92Ce8/HrMNxJZAA/vzsllBqoONM=;
- b=OGc2aAJTTTEK6MRFHvcAtCBQAB3PcXdSyBAv4/T4oeW3uE3G5SUqfXw1
- fn38fC0J1s1ojxBA20IQVHmx2RqH1RhPYQFH90xc/GYTsEiCQEfEb07I3
- q83Dfbh77EwHsxPZcq1aWM08KHJl/3s1Vha7U2dx5waHce7QZKZsXfNMM
- NGNDTdrgJAcSNr8ChNbw2HlVNGtksRYcjTD/0JafeeWT3uOcbq+H3d3bs
- SiXu1o9f9gTkhWYhDZpDFGKGleGUaVM4R3aQ54hZsGkvf7RVuAdNhb0Xd
- ++vrnrp3Jgm6+7XH2muOdk62oquTCUr6W74kjVe/3lMoYBky5nlMl5GQY Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10868"; a="390219463"
-X-IronPort-AV: E=Sophos;i="6.03,238,1694761200"; d="scan'208";a="390219463"
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
- by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Oct 2023 11:24:03 -0700
+ b=fuMBAhoJ/vcN6pBp2OO3tLfhnjgl9qimmdp1I6M1+4oJLRuhIgpreg9T
+ RffCbFJTkvZ7iLb4Wx3fokJc/Eg7UmaGqsn/jnmShHTb9TliLwDvJNHLo
+ dSM8ioSdR9SBI7ajS4b/wzWhyN4FbhbmqLEHJpG1UF2/ihJc/FJOuTvJ6
+ KAuWpo6r31FDCyZBeS6rEeOPW2zxBKGg/Cx6xhDmD1Mtey2zsWGdB7AQV
+ 8c/Kcxd7WDu3bnYGpMQ7JVcDfLuUTYojQDkiG+eAFazyV95+Yacm+b1dI
+ dRUoLkoKMkNmO9d0Jv10nA/mwTT80jFrez1ssVX1hpxFDNosao+3T6pQi w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10868"; a="450556252"
+X-IronPort-AV: E=Sophos;i="6.03,238,1694761200"; d="scan'208";a="450556252"
+Received: from orsmga004.jf.intel.com ([10.7.209.38])
+ by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 Oct 2023 11:27:21 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10868"; a="757148710"
-X-IronPort-AV: E=Sophos;i="6.03,238,1694761200"; d="scan'208";a="757148710"
+X-IronPort-AV: E=McAfee;i="6600,9927,10868"; a="880784114"
+X-IronPort-AV: E=Sophos;i="6.03,238,1694761200"; d="scan'208";a="880784114"
 Received: from unerlige-desk.jf.intel.com ([10.165.21.199])
- by orsmga002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Oct 2023 11:24:03 -0700
+ by orsmga004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 Oct 2023 11:27:21 -0700
 From: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Thu, 19 Oct 2023 11:23:59 -0700
-Message-Id: <20231019182359.3692458-1-umesh.nerlige.ramappa@intel.com>
+Date: Thu, 19 Oct 2023 11:27:20 -0700
+Message-Id: <20231019182720.3742536-1-umesh.nerlige.ramappa@intel.com>
 X-Mailer: git-send-email 2.38.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
