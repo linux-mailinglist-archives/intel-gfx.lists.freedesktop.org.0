@@ -2,49 +2,59 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id E8BEB7CFD5F
-	for <lists+intel-gfx@lfdr.de>; Thu, 19 Oct 2023 16:54:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 406D67CFD90
+	for <lists+intel-gfx@lfdr.de>; Thu, 19 Oct 2023 17:05:51 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5658310E0B9;
-	Thu, 19 Oct 2023 14:54:20 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CD1FB10E0DB;
+	Thu, 19 Oct 2023 15:05:48 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2213110E0B9;
- Thu, 19 Oct 2023 14:54:19 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.126])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7F43710E0DB
+ for <intel-gfx@lists.freedesktop.org>; Thu, 19 Oct 2023 15:05:47 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1697727259; x=1729263259;
- h=date:from:to:cc:subject:message-id:mime-version:
- content-transfer-encoding;
- bh=Kn71K5mO6K95/W6p7YQmLjomTEZKnpmAbVxRS+0H3FU=;
- b=Xbmqs+WT5Le/MUKp6vnNSicTLFSmv79cZ8fyiz8Nc8Ez8O/D+OFCcwYr
- gY0i2zQXV1b5H2NJqKGmGepeeQ516XN/KezsIOtwc6QbYkYOpFoc9feln
- Z4lnd8TVaDCtGYXX+rWRTfx8EEADsK2FU/KQQyDg/denZJWJzHs0sYfbj
- 8zO/0r3FqIrkE2yDU5j90cQbTBH0B1vFgS+a1vgP4Bn7w5779R4CQ4Txs
- SbyMUgUJwWgA+pCMvkVnx+DB+wU5EVTZ8BxL1vDwCYpxZRNjoOqJIc3sa
- idbN9R/gYyn0S0UIDa7jnD+uGthrYBUu1z/JkkktSb+4rtuaj4S1NsC05 A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10868"; a="472503081"
-X-IronPort-AV: E=Sophos;i="6.03,237,1694761200"; d="scan'208";a="472503081"
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
- by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Oct 2023 07:54:18 -0700
+ t=1697727947; x=1729263947;
+ h=message-id:date:mime-version:subject:to:references:from:
+ in-reply-to:content-transfer-encoding;
+ bh=uyk07KCxotbNUwl/Xi+wRWDIlkuKfbiVSI1vajUVFlE=;
+ b=BWyWyoltdBgOE8NoFfXyUkIU8TTGhyUsIp31I6ivwVM2S7SaCtOBwl/M
+ 1ZshZyNKriqdDccso2nEglt2RLew85gZra3CD8juNPApJsHV3OvLzRyK9
+ sTNLAmMLFLDoVfJJy2i+MwqgwYJbt8T5kPcNeDzaMZG1azI0bYM5pjfdp
+ ci2221TM8J3x4cZjJybsHREmvuaKbreeJ6kHSwfuFAvXkqDOsZk/M2YWS
+ pywYvyE7pGtRR/JnQZSQTr45mXjL5L7sV2OUyqhdqHnxQ+Q+i1F5yDAtF
+ yd88LjIkap+ivDXN12uTwfNJUDtbZ6cDLMNEss7INqWZROya2rRFv0jV6 w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10868"; a="371344188"
+X-IronPort-AV: E=Sophos;i="6.03,237,1694761200"; d="scan'208";a="371344188"
+Received: from orsmga006.jf.intel.com ([10.7.209.51])
+ by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 Oct 2023 08:05:46 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10868"; a="873521556"
-X-IronPort-AV: E=Sophos;i="6.03,237,1694761200"; d="scan'208";a="873521556"
-Received: from vgowrish-mobl1.ger.corp.intel.com (HELO localhost)
- ([10.213.218.20])
- by fmsmga002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Oct 2023 07:54:15 -0700
-Date: Thu, 19 Oct 2023 15:54:13 +0100
-From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-To: Dave Airlie <airlied@gmail.com>, Daniel Vetter <daniel.vetter@ffwll.ch>
-Message-ID: <ZTFDFSbd/U7YP+hI@tursulin-desk>
+X-IronPort-AV: E=McAfee;i="6600,9927,10868"; a="733596484"
+X-IronPort-AV: E=Sophos;i="6.03,237,1694761200"; d="scan'208";a="733596484"
+Received: from nirmoyda-mobl.ger.corp.intel.com (HELO [10.249.39.117])
+ ([10.249.39.117])
+ by orsmga006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 Oct 2023 08:05:45 -0700
+Message-ID: <31c65705-6e9b-add3-93ee-84a5d9fc2f8c@linux.intel.com>
+Date: Thu, 19 Oct 2023 17:05:43 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.15.1
+Content-Language: en-US
+To: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
+ Andi Shyti <andi.shyti@linux.intel.com>, intel-gfx@lists.freedesktop.org
+References: <20231017195309.2476088-1-vinay.belgaumkar@intel.com>
+ <169759328299.15109.5802304051647309440@emeril.freedesktop.org>
+ <ZTALROwYzZNo4Jll@ashyti-mobl2.lan>
+ <22223706-fdcc-d9d7-80e8-bdeb847bc8ef@linux.intel.com>
+From: Nirmoy Das <nirmoy.das@linux.intel.com>
+In-Reply-To: <22223706-fdcc-d9d7-80e8-bdeb847bc8ef@linux.intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PULL] drm-intel-gt-next
+Subject: Re: [Intel-gfx] 
+ =?utf-8?b?4pyXIEZpLkNJLklHVDogZmFpbHVyZSBmb3IgZHJt?=
+ =?utf-8?q?/i915/mtl=3A_Don=27t_set_PIPE=5FCONTROL=5FFLUSH=5FL3_=28rev5=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -57,122 +67,82 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: dim-tools@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi Dave, Daniel,
 
-Here is the final pull request for 6.7.
+On 10/19/2023 10:14 AM, Tvrtko Ursulin wrote:
+>
+> On 18/10/2023 17:43, Andi Shyti wrote:
+>> Hi Vinay,
+>>
+>>> Possible regressions
+>>>
+>>>    • igt@gem_exec_nop@basic-series:
+>>>
+>>>        □ shard-glk: PASS -> INCOMPLETE +1 other test incomplete
+>>>    • 
+>>> igt@kms_big_fb@4-tiled-max-hw-stride-64bpp-rotate-0-hflip-async-flip:
+>>>
+>>>        □ shard-dg2: PASS -> TIMEOUT
+>>>    • igt@kms_cursor_crc@cursor-onscreen-64x21@pipe-d-hdmi-a-1:
+>>>
+>>>        □ shard-tglu: PASS -> INCOMPLETE
+>>>    • igt@kms_psr@psr2_suspend:
+>>>
+>>>        □ shard-mtlp: NOTRUN -> FAIL
+>>
+>> these failures look unrelated and besides they are not related to
+>> MTL.
+>
+> There is something new on the shards which _seems_ to be implicating 
+> this patch.
+>
+> This previously all green test started failing in a bad way:
+>
+> https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13775/shard-mtlp-6/igt@sysfs_preempt_timeout@timeout@vecs0.html 
+>
+>
+> <5> [97.816201] Fence expiration time out 
+> i915-0000:00:02.0:sysfs_preempt_t[1166]:2!
+> <3> [187.682308] INFO: task kworker/0:3:165 blocked for more than 61 
+> seconds.
+> <3> [187.689294]       Tainted: G        W 
+> 6.6.0-rc6-CI_DRM_13775-ge69e078f7bef+ #1
+> <3> [187.697375] "echo 0 > /proc/sys/kernel/hung_task_timeout_secs" 
+> disables this message.
+> <6> [187.705354] task:kworker/0:3     state:D stack:13504 pid:165   
+> ppid:2      flags:0x00004000
+> <6> [187.705375] Workqueue: i915-unordered intel_gt_watchdog_work [i915]
+> <6> [187.705671] Call Trace:
+> <6> [187.705675]  <TASK>
+> <6> [187.705683]  __schedule+0x3a0/0xd70
+> <6> [187.705704]  schedule+0x5c/0xd0
+> <6> [187.705713]  guc_context_cancel_request+0x45e/0x9f0 [i915]
+> <6> [187.706078]  ? __pfx_autoremove_wake_function+0x10/0x10
+> <6> [187.706091]  ? intel_gt_watchdog_work+0x20/0x260 [i915]
+> <6> [187.706377]  intel_gt_watchdog_work+0xd1/0x260 [i915]
+> <6> [187.706624]  ? process_scheduled_works+0x264/0x530
+> <6> [187.706635]  process_scheduled_works+0x2db/0x530
+> <6> [187.706650]  ? __pfx_worker_thread+0x10/0x10
+> <6> [187.706656]  worker_thread+0x18c/0x350
+> <6> [187.706664]  ? __pfx_worker_thread+0x10/0x10
+> <6> [187.706670]  kthread+0xfe/0x130
+> <6> [187.706678]  ? __pfx_kthread+0x10/0x10
+> <6> [187.706687]  ret_from_fork+0x2c/0x50
+> <6> [187.706696]  ? __pfx_kthread+0x10/0x10
+> <6> [187.706704]  ret_from_fork_asm+0x1b/0x30
+> <6> [187.706724]  </TASK>
+>
+> I am not claiming it is at fault but the transition from green to 
+> timing out looks clear.
 
-As indicated that it may happen in the last pull, the remaining
-missing functionality for Meteorlake, enabling the GuC based TLB
-invalidation, has since been merged and platform thought to be ready for
-lifting out of force probe status.
+https://jira.devtools.intel.com/browse/VLK-52300 This happening for a 
+while as per the filter.
 
-Also for Meteorlake a correction on how L3 flushing is done landed.
+(machines are broken so cibuglog will not work till Tuesday)
 
-Otherwise one fix for perf/OA and one for mmap gtt handling and some code
-base cleanups.
-
-Regards,
-
-Tvrtko
-
-drm-intel-gt-next-2023-10-19:
-Driver Changes:
-
-Fixes/improvements/new stuff:
-
-- Retry gtt fault when out of fence registers (Ville Syrj�l�)
-- Determine context valid in OA reports [perf] (Umesh Nerlige Ramappa)
-
-Future platform enablement:
-
-- GuC based TLB invalidation for Meteorlake (Jonathan Cavitt, Prathap Kumar Valsan)
-- Don't set PIPE_CONTROL_FLUSH_L3 [mtl] (Vinay Belgaumkar)
-
-Miscellaneous:
-
-- Clean up zero initializers [guc,pxp] (Ville Syrj�l�)
-- Prevent potential null-ptr-deref in engine_init_common (Nirmoy Das)
-The following changes since commit 039adf3947252693f7c882607dac2dc67e7f7ab2:
-
-  drm/i915: More use of GT specific print helpers (2023-10-10 15:40:26 -0700)
-
-are available in the Git repository at:
-
-  git://anongit.freedesktop.org/drm/drm-intel tags/drm-intel-gt-next-2023-10-19
-
-for you to fetch changes up to 7eeaedf79989a8f131939782832e21e9218ed2a0:
-
-  drm/i915/perf: Determine context valid in OA reports (2023-10-18 16:19:56 -0700)
-
-----------------------------------------------------------------
-Driver Changes:
-
-Fixes/improvements/new stuff:
-
-- Retry gtt fault when out of fence registers (Ville Syrj�l�)
-- Determine context valid in OA reports [perf] (Umesh Nerlige Ramappa)
-
-Future platform enablement:
-
-- GuC based TLB invalidation for Meteorlake (Jonathan Cavitt, Prathap Kumar Valsan)
-- Don't set PIPE_CONTROL_FLUSH_L3 [mtl] (Vinay Belgaumkar)
-
-Miscellaneous:
-
-- Clean up zero initializers [guc,pxp] (Ville Syrj�l�)
-- Prevent potential null-ptr-deref in engine_init_common (Nirmoy Das)
-
-----------------------------------------------------------------
-Jonathan Cavitt (6):
-      drm/i915: Add GuC TLB Invalidation device info flags
-      drm/i915/guc: Add CT size delay helper
-      drm/i915: No TLB invalidation on suspended GT
-      drm/i915: No TLB invalidation on wedged GT
-      drm/i915/gt: Increase sleep in gt_tlb selftest sanitycheck
-      drm/i915: Enable GuC TLB invalidations for MTL
-
-Nirmoy Das (1):
-      drm/i915: Prevent potential null-ptr-deref in engine_init_common
-
-Prathap Kumar Valsan (1):
-      drm/i915: Define and use GuC and CTB TLB invalidation routines
-
-Umesh Nerlige Ramappa (1):
-      drm/i915/perf: Determine context valid in OA reports
-
-Ville Syrj�l� (3):
-      drm/i915: Retry gtt fault when out of fence registers
-      drm/i915/guc: Clean up zero initializers
-      drm/i915/pxp: Clean up zero initializers
-
-Vinay Belgaumkar (1):
-      drm/i915/mtl: Don't set PIPE_CONTROL_FLUSH_L3
-
- drivers/gpu/drm/i915/gem/i915_gem_mman.c          |   1 +
- drivers/gpu/drm/i915/gt/gen8_engine_cs.c          |   7 +-
- drivers/gpu/drm/i915/gt/intel_engine_cs.c         |   3 +-
- drivers/gpu/drm/i915/gt/intel_ggtt.c              |  30 ++-
- drivers/gpu/drm/i915/gt/intel_tlb.c               |  16 +-
- drivers/gpu/drm/i915/gt/selftest_tlb.c            |  11 +-
- drivers/gpu/drm/i915/gt/uc/abi/guc_actions_abi.h  |  33 +++
- drivers/gpu/drm/i915/gt/uc/intel_guc.h            |  23 +++
- drivers/gpu/drm/i915/gt/uc/intel_guc_capture.c    |   4 +-
- drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c         |  38 ++++
- drivers/gpu/drm/i915/gt/uc/intel_guc_ct.h         |   2 +
- drivers/gpu/drm/i915/gt/uc/intel_guc_fwif.h       |   1 +
- drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c | 233 +++++++++++++++++++++-
- drivers/gpu/drm/i915/gt/uc/intel_uc.c             |   7 +
- drivers/gpu/drm/i915/i915_drv.h                   |   2 +
- drivers/gpu/drm/i915/i915_pci.c                   |   1 +
- drivers/gpu/drm/i915/i915_perf.c                  |   4 +-
- drivers/gpu/drm/i915/intel_device_info.h          |   1 +
- drivers/gpu/drm/i915/pxp/intel_pxp_gsccs.c        |   8 +-
- drivers/gpu/drm/i915/pxp/intel_pxp_huc.c          |   4 +-
- drivers/gpu/drm/i915/pxp/intel_pxp_tee.c          |   8 +-
- 21 files changed, 407 insertions(+), 30 deletions(-)
+>
+> Regards,
+>
+> Tvrtko
