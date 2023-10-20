@@ -2,50 +2,157 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id BC3C77D0C27
-	for <lists+intel-gfx@lfdr.de>; Fri, 20 Oct 2023 11:41:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4C4E67D0C33
+	for <lists+intel-gfx@lfdr.de>; Fri, 20 Oct 2023 11:44:58 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 180D710E0EB;
-	Fri, 20 Oct 2023 09:41:38 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 72F0510E0EB;
+	Fri, 20 Oct 2023 09:44:47 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EE3BE10E0EB
- for <intel-gfx@lists.freedesktop.org>; Fri, 20 Oct 2023 09:41:35 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.126])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DE23410E5A5
+ for <intel-gfx@lists.freedesktop.org>; Fri, 20 Oct 2023 09:44:38 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1697794895; x=1729330895;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=dxBcLm1PS9q/TsjdeIbZ9Cb+b+LG9jGpzTVsXNACTew=;
- b=aydH2BcJA/0BicXUMgl5hJFdXGj2ReWEJ9/DfNwTUSB00I29X6i4Smxw
- t9TEmejGKm7qUCgODOo4XXvvKAjP+2dITujyWAqWyoWmtA6odoSwnyfNf
- 4lxWf/BqX7wHHYqOZM8a7Ey2spYxMI+1zHzRkr8gP1A/9W2ZDSljXrW4R
- Q8EzTdUSWxfp3B5Iwo1V7842uw4tTJ9dI5GYWR42+hUAhN2zBQybWtaVe
- avchq96Vq388jw1awMmwoLGM9Sj9kA4R/jtEq5BOj+Ztth2bavEzldt21
- D7mCx/A2NUm/McAvlTHCIGyQ01JAEeNK/mUUru8aQaMVUOD1GLrp+4hgh g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10868"; a="472687687"
-X-IronPort-AV: E=Sophos;i="6.03,238,1694761200"; d="scan'208";a="472687687"
-Received: from orsmga005.jf.intel.com ([10.7.209.41])
- by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Oct 2023 02:41:35 -0700
+ t=1697795082; x=1729331082;
+ h=from:to:cc:subject:date:message-id:references:
+ in-reply-to:content-id:content-transfer-encoding: mime-version;
+ bh=Ni/sMg3G4jO3qGfGvDEarYhBlVolZAU2mwmGLu6+jbo=;
+ b=csfje3w869u3IHFaMMDKIl2hyD6vabY3wItIpOODGp/uvgRpFbWH3zJS
+ 7VCNYOeNyQ9cQuGPkkiRfXc192IBQQrVdqu141V5WdNcZy9SzRpPLiti3
+ /sQi8CuSR/pjdobDDsERmhmRHUD1uqcVfAKuit5AJ19K3qhrp7Y1hg5Rb
+ fYUu3wCnCkICIj7haWnetL36C2oB6PCfEKzjEQnBFYOytkX3bhRdwb4pz
+ 0eRhUbxRJPJR7rq5tNbX035fzpB6c1accpauMD/+ScTnq4PKW24XLuUA1
+ 5snrh7HxFRoA+5CbdYsc5SnTo02JsG5xF5N7M3VutR44dNkqaa/XJeRe3 g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10868"; a="371539980"
+X-IronPort-AV: E=Sophos;i="6.03,238,1694761200"; d="scan'208";a="371539980"
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+ by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 20 Oct 2023 02:44:36 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10868"; a="930959098"
-X-IronPort-AV: E=Sophos;i="6.03,238,1694761200"; d="scan'208";a="930959098"
-Received: from arechkov-mobl.ger.corp.intel.com (HELO
- jhogande-mobl1.intel.com) ([10.252.62.209])
- by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Oct 2023 02:41:32 -0700
-From: =?UTF-8?q?Jouni=20H=C3=B6gander?= <jouni.hogander@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Fri, 20 Oct 2023 12:41:03 +0300
-Message-Id: <20231020094103.1605942-1-jouni.hogander@intel.com>
-X-Mailer: git-send-email 2.34.1
+X-IronPort-AV: E=McAfee;i="6600,9927,10868"; a="757405507"
+X-IronPort-AV: E=Sophos;i="6.03,238,1694761200"; d="scan'208";a="757405507"
+Received: from fmsmsx601.amr.corp.intel.com ([10.18.126.81])
+ by orsmga002.jf.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
+ 20 Oct 2023 02:44:36 -0700
+Received: from fmsmsx610.amr.corp.intel.com (10.18.126.90) by
+ fmsmsx601.amr.corp.intel.com (10.18.126.81) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.32; Fri, 20 Oct 2023 02:44:35 -0700
+Received: from fmsmsx610.amr.corp.intel.com (10.18.126.90) by
+ fmsmsx610.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.32; Fri, 20 Oct 2023 02:44:35 -0700
+Received: from fmsedg601.ED.cps.intel.com (10.1.192.135) by
+ fmsmsx610.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.32 via Frontend Transport; Fri, 20 Oct 2023 02:44:35 -0700
+Received: from NAM10-MW2-obe.outbound.protection.outlook.com (104.47.55.101)
+ by edgegateway.intel.com (192.55.55.70) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.1.2507.32; Fri, 20 Oct 2023 02:44:32 -0700
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=Mgx+TDXoBxOwS/883nnVSI5sjGDo6XI9ts1li19wS8GAfYeJyGnWsOsDtsnHpMb1t7nsP5Y5rxq0A0BSUGqHwMFKh7aqf9Dax8FHQUtY5ESYNLhviARESf6GVnkkA0Kqx+9FB7mndh8o6LO7PgFdVxmwB5v+yfBvpQSrV9Mq8o7oLxdk/JwxIt/z+wSO539vXX7LRIzGMgyCRhFFHA4txfGeNimWqOPqnT4RyxFZ5E9y/fHyqLHVRzk5CHTQQygpwCJMjmIQLud6/yA2l2tlBmN69Z2uJOnL1ATx71wBGlKq93+UIFgW6qp0cOB3wRPkmkEo6tQiICwcuOgTUGUdFw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=Ni/sMg3G4jO3qGfGvDEarYhBlVolZAU2mwmGLu6+jbo=;
+ b=fNMge6V7xoj7bntoXjM9WA1XedL1277pRQHC5pvpG/aEki7NuiwLehUYysl0CdpQRMZ74frbq8ICiyApNzr8uP8qQwLv1VvaPKE1RqpnRwuwjR1kawBxVjIPYCJ5xZHjDcAShGze6DjKqRizhz03ET3pmTWSmA/lojJenR4paFfdS2AlQpugDiFcwIma/rjbKuFNJsZg1HxwVgPnnzetzxzrl7vBX77e4lU706oe4MjCaYo2h0PX7ImfPe6Sgs5zO6H8BHm7BMkgZVMIOJQ/Drna25trDLkk0ld5PEicFB20CSE0KpF17JJ2a/I/6CvWF9H5PgOYexIaPstjACHigA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Received: from DM4PR11MB6019.namprd11.prod.outlook.com (2603:10b6:8:60::5) by
+ DS7PR11MB6078.namprd11.prod.outlook.com (2603:10b6:8:86::6) with
+ Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.6907.23; Fri, 20 Oct 2023 09:44:31 +0000
+Received: from DM4PR11MB6019.namprd11.prod.outlook.com
+ ([fe80::483:8093:febb:f038]) by DM4PR11MB6019.namprd11.prod.outlook.com
+ ([fe80::483:8093:febb:f038%4]) with mapi id 15.20.6907.022; Fri, 20 Oct 2023
+ 09:44:31 +0000
+From: "Hogander, Jouni" <jouni.hogander@intel.com>
+To: "ville.syrjala@linux.intel.com" <ville.syrjala@linux.intel.com>,
+ "maarten.lankhorst@linux.intel.com" <maarten.lankhorst@linux.intel.com>
+Thread-Topic: [PATCH] drm/i915/display: Use dma_fence interfaces instead of
+ i915_sw_fence
+Thread-Index: AQHaAAf3GD4Fye2n6kWtqzjInBAftrBPshgAgAAalwCAAAz5AIACmlKA
+Date: Fri, 20 Oct 2023 09:44:31 +0000
+Message-ID: <58cab73aea0940d0fb2eef14685783a239a8376a.camel@intel.com>
+References: <20231016080803.3313020-1-jouni.hogander@intel.com>
+ <ZS_72os_326uj8ty@intel.com>
+ <eb76fa53-a5b7-24ab-6902-1828e689deed@linux.intel.com>
+ <ZTAdCnY7C9Br2YSy@intel.com>
+In-Reply-To: <ZTAdCnY7C9Br2YSy@intel.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: DM4PR11MB6019:EE_|DS7PR11MB6078:EE_
+x-ms-office365-filtering-correlation-id: 6dbc4ccd-9b13-4be0-6289-08dbd15128df
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: Ts6DKjSt3/BMevDTCbb/ptt4VrgVR3VJqWf0omc1KncSCxDi1gXMezHIOtz+qYBgzFCUrGmJmUqbrBT4ksJLKm3ywIoH05QtDP4jK07NfJLyLIrJGAacA2H0vCshukZ3NSAOv2V51nZtcwkSVwqvZZTbSvxhgcvEUoPuB9sy+AMEFhENtzH2WDIJtDr+lx7klXJfUKjn1We7Eg/CUhCK73pg9HO93O/k4e23F3FXrSk/OUtZhJQd7zKL58rYjti61KteXfZONAQkhuKSYz57gBd7YnwK7/f8Z2UD8UWdTL47bnCKrHYVJtGyiqRKDtisT+LV8WgS9JfNnmaGBCKqJXO17rqMYQP+Gj86RZ+PYfii1SQ9xYF6KEioEZhnsNLOO4Yru7WKPoS4sgziKOW3KMWgwjMC7Zuoj46P5UmpFEtNMn89/A0gevbOI//CAytKwPhyHrqna+JCVsKO0TUvB0iwcZNUdqWscnQRycrd5QRVK6r1CAJA/ej9bbnXcFCy1ErjKnwPxWgtzufVLS/41jDTW8RoEVNM/1+oDUlH43aJj1dogt1BjBaSvZpavzvAkRhmHDW+hFkAaVpFb1VfGVb8l8lWqZ2q09aLbh1s6KxTS2fJpbZjORM4K3V/wODY
+x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:DM4PR11MB6019.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230031)(396003)(366004)(376002)(346002)(39860400002)(136003)(230922051799003)(1800799009)(451199024)(186009)(64100799003)(86362001)(4326008)(316002)(66446008)(64756008)(110136005)(91956017)(76116006)(66476007)(41300700001)(54906003)(66946007)(6506007)(6512007)(66556008)(478600001)(36756003)(5660300002)(6486002)(8676002)(4001150100001)(8936002)(53546011)(122000001)(2906002)(38100700002)(71200400001)(83380400001)(26005)(82960400001)(2616005)(38070700009);
+ DIR:OUT; SFP:1102; 
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?utf-8?B?OWFmQXhQdUE3SjJESlZCMDQ1VnNFcy8vMjhiTVhyQURUVkQ1TzdXcGNDY3dF?=
+ =?utf-8?B?WUV2Q0ovV0RMWHFRV05jeE1FQ094R0hhcXpiNGpwYjVEdFhQZy80cER0aGta?=
+ =?utf-8?B?RGNtd0JheG52SWczalprRHNNbVIzTHU1Z21VRmgvRUNPdnZtZmVGMElCY2NE?=
+ =?utf-8?B?cG9KKzI2bFVXVUJyWUpUeWY5Tk9ZeERtcTBGVEIva1dJSWxFdE9CcGV3OSt4?=
+ =?utf-8?B?b3g0WVkwdEs4c2hnejh4UmxkdGRrejhQcm9UY2UxZWczcXZyVE55dllrU0la?=
+ =?utf-8?B?RVA0NGtVMGlmczBWRHR1SXlXMXFVYkxscXl2QVJyNkJEOWlZbHBHVlhTQ1VE?=
+ =?utf-8?B?RlJCdHpKSU5kc3pzeCtkNGx1eXB5T1FGaTh0U1FzaTd3K2V6MWtaWUwxSlI3?=
+ =?utf-8?B?TWxxbzFOSlp4SE5uWXRXUmRMTzdsUGpuYnQvdzU5L2RxWXpBaEZKT2h4Zy9E?=
+ =?utf-8?B?M1Y3MTNuc2pBY2dQeWt0bnk1akFLODdZcTBxUnk5YjMzTStsVkI5TG5PdUtM?=
+ =?utf-8?B?VVM5aHl1SkNQL2ZHaWEvNGVaYVJMdEpZNm9XczhHWGZoVFBKQ2ZScjBqWlB1?=
+ =?utf-8?B?UDE0TEtWRTVONHhNdlErektqd0F3NHozcjU0K0kyeWpSbVU2YU9jcDQvRnMx?=
+ =?utf-8?B?UlFuT1NnMnVNYnVMNUgvRG9mbWxGTFRkdGhTdEhaNXdOcTRiZDdERm5ySmRI?=
+ =?utf-8?B?eGs1eS9TdGV2ZDg4L2NsellRMmZWNnpmUmRtYXZPVk1waDRjSndrSHczSkUz?=
+ =?utf-8?B?TWU5aGFzdStNM0tTMHpyNUVNUUhPSG5wOC8yK3JZeUZTQk50UmhWSm90V1J1?=
+ =?utf-8?B?QTFaRHl5UmFybFdmMENwalFXWnBkK1ZWSUt2S2M4NjAraVYwQTVSNzhaSDhw?=
+ =?utf-8?B?NVhKcGVxajI2ckZSWlpFczk4MnFQWmJFVFVUM01WSWoyR21RZjlHRGdXZUd5?=
+ =?utf-8?B?alF1TWpBMEJiU28xZFJKMHA3TnY2bEJMSktEaE1RWktKZTFiK3dHSG0rSzRY?=
+ =?utf-8?B?VExnTG5jL2pkYmZ2UTFlU1Vmc1FQSFVVUlNaWmNqYXNLNFpJNHM3QndHYXl0?=
+ =?utf-8?B?L2JzaTRXMWp2dm5GMFZoK1JyZ053OFVIUWF5cGp4L08wREVMa2ZWQnF1RWdN?=
+ =?utf-8?B?OEJ0UkdyR3ZhZjdkWCt2UFlzK2lNd1RMc0pvTEo2N0cwNW1HdEQzaytZbWVK?=
+ =?utf-8?B?Mk1PdWVzL21oRWVvNlovengvWGRUWVBJYjBWUGU1dy9DSzF0azhDTnVyNVpC?=
+ =?utf-8?B?eC9NUG1ObDR6ZVY5SHkvSUxVemtLai9aZlYzWnVaaG5hKzFwTU1OL1pIanNy?=
+ =?utf-8?B?VmQzSDB4clBSZUpwM2VXY2hEemZOUGtFVjc0R1ZwTFNNZHo4bWE4UHNiS0Jn?=
+ =?utf-8?B?b1FhY01DaGFpSmRJM3dmSHBFNlRUYXRTWmVRSkRCZDh2VklNamVxZHlFdGp1?=
+ =?utf-8?B?UEVQc3R0YUhYTUFRemtqSVpqMXM4RlFmbUhRaUswaXlZcUN3empJeDZUdlpS?=
+ =?utf-8?B?RVAxNnNRdjl0eE9UeDVoUktCcThURWRpLzVZN2FUWmI4dFBwZjg2SzYrbVZT?=
+ =?utf-8?B?K0xNSHBGSkt2SmUzcTF2WkRPL1hnejRzZ3NzNzVsaEYwbmh3QWFjM24vMTVM?=
+ =?utf-8?B?d3kxNWVlbFcrTW9YalFyc0lORVdLRVFaOS8zY0hkWVRzY3daeVd2RlVPZTRr?=
+ =?utf-8?B?WGRkLzhPMmw4cTdDdlFWckV2UStoOXJNZHZrVEtwK2JUL1FPMkpmY1V4K2ZH?=
+ =?utf-8?B?TFAwTUZZSGlpSHlna2xjdUxlZVRXc1pLU05Fc2I1OUlId1puU2dCNDBlZ1hu?=
+ =?utf-8?B?NXNYaW9YZ3VaaVRHYndYZlZ6eWJqbjMwUVFFTW1NNkFOUjBZVU84aERuN2Z4?=
+ =?utf-8?B?ZjhobmhoN3VrMW1Jemx1aGQrRUtGQWN5VjhBNC95ZTJuT0FUWVFHbHA4cWtu?=
+ =?utf-8?B?Y05yQ1Q0MmtKRDFrMGVubXRnOXo1aERxMjN1Rm02SlR6Skl1UWtUV1VHaitD?=
+ =?utf-8?B?MzE0ZE4xR3B6cWVBMWNGR3pQaTU5OWFBYXFBRVk1OXZuL1R2TmlZdXRYYmNV?=
+ =?utf-8?B?SWxaZnZuK3hqelh4cWlWWk1Wclo0V3RqcXRkYTZDN3hRTEJEdDc4RDhweUVY?=
+ =?utf-8?B?M2luaVFVUEI1QTV2clpjTUdjRjNmMVk1dnVEejdmMVRJa25NQVNJSE5JcDVn?=
+ =?utf-8?B?MlE9PQ==?=
+Content-Type: text/plain; charset="utf-8"
+Content-ID: <85DA6E9577AAEC4E80BD13BD47F44627@namprd11.prod.outlook.com>
+Content-Transfer-Encoding: base64
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH v2] drm/i915/display: Use dma_fence interfaces
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: DM4PR11MB6019.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 6dbc4ccd-9b13-4be0-6289-08dbd15128df
+X-MS-Exchange-CrossTenant-originalarrivaltime: 20 Oct 2023 09:44:31.0861 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: yP5IYnRL01D4Wc3xGhKx4wkMIO5EXwQie0P9uikHDqSDMS9U96KJ7xc5sa1E5kOV/ameuDyf0D9Y4Dlm6DzWTN/R8KbwImgwHzog9GGjtkI=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS7PR11MB6078
+X-OriginatorOrg: intel.com
+Subject: Re: [Intel-gfx] [PATCH] drm/i915/display: Use dma_fence interfaces
  instead of i915_sw_fence
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -59,336 +166,106 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-We are preparing for Xe driver. Xe driver doesn't have i915_sw_fence
-implementation. Lets drop i915_sw_fence usage from display code and
-use dma_fence interfaces directly.
-
-For this purpose stack dma fences from related objects into new plane
-state. Drm_gem_plane_helper_prepare_fb can be used for fences in new
-fb. Separate local implementation is used for Stacking fences from old fb
-into new plane state. Then wait for these stacked fences during atomic
-commit. There is no be need for separate GPU reset handling in
-intel_atomic_commit_fence_wait as the fences are signaled when GPU hang is
-detected and GPU is being reset.
-
-v2:
-  - Add fences from old fb into new_plane_state->uapi.fence rather than
-    into old_plane_state->uapi.fence
-
-Cc: Ville Syrjälä <ville.syrjala@linux.intel.com>
-Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-Cc: José Roberto de Souza <jose.souza@intel.com>
-
-Signed-off-by: Jouni Högander <jouni.hogander@intel.com>
-Reviewed-by: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
----
- drivers/gpu/drm/i915/display/intel_atomic.c   |  3 -
- .../gpu/drm/i915/display/intel_atomic_plane.c | 89 +++++++++++--------
- drivers/gpu/drm/i915/display/intel_display.c  | 78 ++++++----------
- .../drm/i915/display/intel_display_types.h    |  2 -
- 4 files changed, 77 insertions(+), 95 deletions(-)
-
-diff --git a/drivers/gpu/drm/i915/display/intel_atomic.c b/drivers/gpu/drm/i915/display/intel_atomic.c
-index 5d18145da279..ec0d5168b503 100644
---- a/drivers/gpu/drm/i915/display/intel_atomic.c
-+++ b/drivers/gpu/drm/i915/display/intel_atomic.c
-@@ -331,9 +331,6 @@ void intel_atomic_state_free(struct drm_atomic_state *_state)
- 
- 	drm_atomic_state_default_release(&state->base);
- 	kfree(state->global_objs);
--
--	i915_sw_fence_fini(&state->commit_ready);
--
- 	kfree(state);
- }
- 
-diff --git a/drivers/gpu/drm/i915/display/intel_atomic_plane.c b/drivers/gpu/drm/i915/display/intel_atomic_plane.c
-index b1074350616c..20fd12df6850 100644
---- a/drivers/gpu/drm/i915/display/intel_atomic_plane.c
-+++ b/drivers/gpu/drm/i915/display/intel_atomic_plane.c
-@@ -31,7 +31,10 @@
-  * prepare/check/commit/cleanup steps.
-  */
- 
-+#include <linux/dma-fence-chain.h>
-+
- #include <drm/drm_atomic_helper.h>
-+#include <drm/drm_gem_atomic_helper.h>
- #include <drm/drm_blend.h>
- #include <drm/drm_fourcc.h>
- 
-@@ -1012,6 +1015,44 @@ int intel_plane_check_src_coordinates(struct intel_plane_state *plane_state)
- 	return 0;
- }
- 
-+static int add_fences(struct dma_resv *obj,
-+		      struct drm_plane_state *dst)
-+{
-+	struct dma_fence *fence = dma_fence_get(dst->fence);
-+	enum dma_resv_usage usage;
-+	struct dma_fence *new;
-+	int ret;
-+
-+	usage = fence ? DMA_RESV_USAGE_KERNEL : DMA_RESV_USAGE_WRITE;
-+
-+	ret = dma_resv_get_singleton(obj, usage, &new);
-+	if (ret)
-+		goto error;
-+
-+	if (new && fence) {
-+		struct dma_fence_chain *chain = dma_fence_chain_alloc();
-+
-+		if (!chain) {
-+			ret = -ENOMEM;
-+			goto error;
-+		}
-+
-+		dma_fence_chain_init(chain, fence, new, 1);
-+		fence = &chain->base;
-+
-+	} else if (new) {
-+		fence = new;
-+	}
-+
-+	dma_fence_put(dst->fence);
-+	dst->fence = fence;
-+	return 0;
-+
-+error:
-+	dma_fence_put(fence);
-+	return ret;
-+}
-+
- /**
-  * intel_prepare_plane_fb - Prepare fb for usage on plane
-  * @_plane: drm plane to prepare for
-@@ -1035,7 +1076,7 @@ intel_prepare_plane_fb(struct drm_plane *_plane,
- 	struct intel_atomic_state *state =
- 		to_intel_atomic_state(new_plane_state->uapi.state);
- 	struct drm_i915_private *dev_priv = to_i915(plane->base.dev);
--	const struct intel_plane_state *old_plane_state =
-+	struct intel_plane_state *old_plane_state =
- 		intel_atomic_get_old_plane_state(state, plane);
- 	struct drm_i915_gem_object *obj = intel_fb_obj(new_plane_state->hw.fb);
- 	struct drm_i915_gem_object *old_obj = intel_fb_obj(old_plane_state->hw.fb);
-@@ -1057,56 +1098,30 @@ intel_prepare_plane_fb(struct drm_plane *_plane,
- 		 * This should only fail upon a hung GPU, in which case we
- 		 * can safely continue.
- 		 */
--		if (new_crtc_state && intel_crtc_needs_modeset(new_crtc_state)) {
--			ret = i915_sw_fence_await_reservation(&state->commit_ready,
--							      old_obj->base.resv,
--							      false, 0,
--							      GFP_KERNEL);
-+		if (new_crtc_state && intel_crtc_needs_modeset(new_crtc_state) &&
-+		    !dma_resv_test_signaled(old_obj->base.resv,
-+					    dma_resv_usage_rw(false))) {
-+			ret = add_fences(old_obj->base.resv, &new_plane_state->uapi);
- 			if (ret < 0)
- 				return ret;
- 		}
- 	}
- 
--	if (new_plane_state->uapi.fence) { /* explicit fencing */
--		i915_gem_fence_wait_priority(new_plane_state->uapi.fence,
--					     &attr);
--		ret = i915_sw_fence_await_dma_fence(&state->commit_ready,
--						    new_plane_state->uapi.fence,
--						    i915_fence_timeout(dev_priv),
--						    GFP_KERNEL);
--		if (ret < 0)
--			return ret;
--	}
--
- 	if (!obj)
- 		return 0;
- 
--
- 	ret = intel_plane_pin_fb(new_plane_state);
- 	if (ret)
- 		return ret;
- 
--	i915_gem_object_wait_priority(obj, 0, &attr);
-+	ret = drm_gem_plane_helper_prepare_fb(_plane, &new_plane_state->uapi);
-+	if (ret < 0)
-+		goto unpin_fb;
- 
--	if (!new_plane_state->uapi.fence) { /* implicit fencing */
--		struct dma_resv_iter cursor;
--		struct dma_fence *fence;
--
--		ret = i915_sw_fence_await_reservation(&state->commit_ready,
--						      obj->base.resv, false,
--						      i915_fence_timeout(dev_priv),
--						      GFP_KERNEL);
--		if (ret < 0)
--			goto unpin_fb;
-+	if (new_plane_state->uapi.fence) {
-+		i915_gem_fence_wait_priority(new_plane_state->uapi.fence,
-+					     &attr);
- 
--		dma_resv_iter_begin(&cursor, obj->base.resv,
--				    DMA_RESV_USAGE_WRITE);
--		dma_resv_for_each_fence_unlocked(&cursor, fence) {
--			intel_display_rps_boost_after_vblank(new_plane_state->hw.crtc,
--							     fence);
--		}
--		dma_resv_iter_end(&cursor);
--	} else {
- 		intel_display_rps_boost_after_vblank(new_plane_state->hw.crtc,
- 						     new_plane_state->uapi.fence);
- 	}
-diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
-index 28d85e1e858e..48df0559df00 100644
---- a/drivers/gpu/drm/i915/display/intel_display.c
-+++ b/drivers/gpu/drm/i915/display/intel_display.c
-@@ -48,6 +48,7 @@
- #include "g4x_dp.h"
- #include "g4x_hdmi.h"
- #include "hsw_ips.h"
-+#include "i915_config.h"
- #include "i915_drv.h"
- #include "i915_reg.h"
- #include "i915_utils.h"
-@@ -7056,29 +7057,34 @@ void intel_atomic_helper_free_state_worker(struct work_struct *work)
- 
- static void intel_atomic_commit_fence_wait(struct intel_atomic_state *intel_state)
- {
--	struct wait_queue_entry wait_fence, wait_reset;
--	struct drm_i915_private *dev_priv = to_i915(intel_state->base.dev);
--
--	init_wait_entry(&wait_fence, 0);
--	init_wait_entry(&wait_reset, 0);
--	for (;;) {
--		prepare_to_wait(&intel_state->commit_ready.wait,
--				&wait_fence, TASK_UNINTERRUPTIBLE);
--		prepare_to_wait(bit_waitqueue(&to_gt(dev_priv)->reset.flags,
--					      I915_RESET_MODESET),
--				&wait_reset, TASK_UNINTERRUPTIBLE);
-+	struct drm_i915_private *i915 = to_i915(intel_state->base.dev);
-+	struct drm_plane *plane;
-+	struct drm_plane_state *new_plane_state, *old_plane_state;
-+	int ret, i;
- 
-+	for_each_oldnew_plane_in_state(&intel_state->base, plane,
-+				       old_plane_state, new_plane_state, i) {
-+		if (new_plane_state->fence) {
-+			ret = dma_fence_wait_timeout(new_plane_state->fence,
-+						     false,
-+						     i915_fence_timeout(i915));
-+			if (ret <= 0)
-+				break;
- 
--		if (i915_sw_fence_done(&intel_state->commit_ready) ||
--		    test_bit(I915_RESET_MODESET, &to_gt(dev_priv)->reset.flags))
--			break;
-+			dma_fence_put(new_plane_state->fence);
-+			new_plane_state->fence = NULL;
-+		}
-+		if (old_plane_state->fence) {
-+			ret = dma_fence_wait_timeout(old_plane_state->fence,
-+						     false,
-+						     i915_fence_timeout(i915));
-+			if (ret <= 0)
-+				break;
- 
--		schedule();
-+			dma_fence_put(old_plane_state->fence);
-+			old_plane_state->fence = NULL;
-+		}
- 	}
--	finish_wait(&intel_state->commit_ready.wait, &wait_fence);
--	finish_wait(bit_waitqueue(&to_gt(dev_priv)->reset.flags,
--				  I915_RESET_MODESET),
--		    &wait_reset);
- }
- 
- static void intel_atomic_cleanup_work(struct work_struct *work)
-@@ -7370,32 +7376,6 @@ static void intel_atomic_commit_work(struct work_struct *work)
- 	intel_atomic_commit_tail(state);
- }
- 
--static int
--intel_atomic_commit_ready(struct i915_sw_fence *fence,
--			  enum i915_sw_fence_notify notify)
--{
--	struct intel_atomic_state *state =
--		container_of(fence, struct intel_atomic_state, commit_ready);
--
--	switch (notify) {
--	case FENCE_COMPLETE:
--		/* we do blocking waits in the worker, nothing to do here */
--		break;
--	case FENCE_FREE:
--		{
--			struct drm_i915_private *i915 = to_i915(state->base.dev);
--			struct intel_atomic_helper *helper =
--				&i915->display.atomic_helper;
--
--			if (llist_add(&state->freed, &helper->free_list))
--				queue_work(i915->unordered_wq, &helper->free_work);
--			break;
--		}
--	}
--
--	return NOTIFY_DONE;
--}
--
- static void intel_atomic_track_fbs(struct intel_atomic_state *state)
- {
- 	struct intel_plane_state *old_plane_state, *new_plane_state;
-@@ -7418,10 +7398,6 @@ int intel_atomic_commit(struct drm_device *dev, struct drm_atomic_state *_state,
- 
- 	state->wakeref = intel_runtime_pm_get(&dev_priv->runtime_pm);
- 
--	drm_atomic_state_get(&state->base);
--	i915_sw_fence_init(&state->commit_ready,
--			   intel_atomic_commit_ready);
--
- 	/*
- 	 * The intel_legacy_cursor_update() fast path takes care
- 	 * of avoiding the vblank waits for simple cursor
-@@ -7454,7 +7430,6 @@ int intel_atomic_commit(struct drm_device *dev, struct drm_atomic_state *_state,
- 	if (ret) {
- 		drm_dbg_atomic(&dev_priv->drm,
- 			       "Preparing state failed with %i\n", ret);
--		i915_sw_fence_commit(&state->commit_ready);
- 		intel_runtime_pm_put(&dev_priv->runtime_pm, state->wakeref);
- 		return ret;
- 	}
-@@ -7470,8 +7445,6 @@ int intel_atomic_commit(struct drm_device *dev, struct drm_atomic_state *_state,
- 		struct intel_crtc *crtc;
- 		int i;
- 
--		i915_sw_fence_commit(&state->commit_ready);
--
- 		for_each_new_intel_crtc_in_state(state, crtc, new_crtc_state, i)
- 			intel_color_cleanup_commit(new_crtc_state);
- 
-@@ -7485,7 +7458,6 @@ int intel_atomic_commit(struct drm_device *dev, struct drm_atomic_state *_state,
- 	drm_atomic_state_get(&state->base);
- 	INIT_WORK(&state->base.commit_work, intel_atomic_commit_work);
- 
--	i915_sw_fence_commit(&state->commit_ready);
- 	if (nonblock && state->modeset) {
- 		queue_work(dev_priv->display.wq.modeset, &state->base.commit_work);
- 	} else if (nonblock) {
-diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/drivers/gpu/drm/i915/display/intel_display_types.h
-index 65ea37fe8cff..047fe3f8905a 100644
---- a/drivers/gpu/drm/i915/display/intel_display_types.h
-+++ b/drivers/gpu/drm/i915/display/intel_display_types.h
-@@ -676,8 +676,6 @@ struct intel_atomic_state {
- 
- 	bool rps_interactive;
- 
--	struct i915_sw_fence commit_ready;
--
- 	struct llist_node freed;
- };
- 
--- 
-2.34.1
-
+T24gV2VkLCAyMDIzLTEwLTE4IGF0IDIwOjU5ICswMzAwLCBWaWxsZSBTeXJqw6Rsw6Qgd3JvdGU6
+Cj4gT24gV2VkLCBPY3QgMTgsIDIwMjMgYXQgMDc6MTM6MTJQTSArMDIwMCwgTWFhcnRlbiBMYW5r
+aG9yc3Qgd3JvdGU6Cj4gPiAKPiA+IAo+ID4gT24gMjAyMy0xMC0xOCAxNzozOCwgVmlsbGUgU3ly
+asOkbMOkIHdyb3RlOgo+ID4gPiBPbiBNb24sIE9jdCAxNiwgMjAyMyBhdCAxMTowODowM0FNICsw
+MzAwLCBKb3VuaSBIw7ZnYW5kZXIgd3JvdGU6Cj4gPiA+ID4gV2UgYXJlIHByZXBhcmluZyBmb3Ig
+WGUgZHJpdmVyLiBYZSBkcml2ZXIgZG9lc24ndCBoYXZlCj4gPiA+ID4gaTkxNV9zd19mZW5jZQo+
+ID4gPiA+IGltcGxlbWVudGF0aW9uLiBMZXRzIGRyb3AgaTkxNV9zd19mZW5jZSB1c2FnZSBmcm9t
+IGRpc3BsYXkgY29kZQo+ID4gPiA+IGFuZAo+ID4gPiA+IHVzZSBkbWFfZmVuY2UgaW50ZXJmYWNl
+cyBkaXJlY3RseS4KPiA+ID4gPiAKPiA+ID4gPiBGb3IgdGhpcyBwdXJwb3NlIHN0YWNrIGRtYSBm
+ZW5jZXMgZnJvbSByZWxhdGVkIG9iamVjdHMgaW50byBvbGQKPiA+ID4gPiBhbmQgbmV3Cj4gPiA+
+ID4gcGxhbmUgc3RhdGVzIHVzaW5nIGRybV9nZW1fcGxhbmVfaGVscGVyX3ByZXBhcmVfZmIuIFRo
+ZW4gd2FpdAo+ID4gPiA+IGZvciB0aGVzZQo+ID4gPiA+IHN0YWNrZWQgZmVuY2VzIGR1cmluZyBh
+dG9taWMgY29tbWl0Lgo+ID4gPiA+IAo+ID4gPiA+IFRoZXJlIGlzIG5vIGJlIG5lZWQgZm9yIHNl
+cGFyYXRlIEdQVSByZXNldCBoYW5kbGluZyBpbgo+ID4gPiA+IGludGVsX2F0b21pY19jb21taXRf
+ZmVuY2Vfd2FpdCBhcyB0aGUgZmVuY2VzIGFyZSBzaWduYWxlZCB3aGVuCj4gPiA+ID4gR1BVIGhh
+bmcgaXMKPiA+ID4gPiBkZXRlY3RlZCBhbmQgR1BVIGlzIGJlaW5nIHJlc2V0Lgo+ID4gPiA+IAo+
+ID4gPiA+IENjOiBWaWxsZSBTeXJqw6Rsw6QgPHZpbGxlLnN5cmphbGFAbGludXguaW50ZWwuY29t
+Pgo+ID4gPiA+IENjOiBNYWFydGVuIExhbmtob3JzdCA8bWFhcnRlbi5sYW5raG9yc3RAbGludXgu
+aW50ZWwuY29tPgo+ID4gPiA+IENjOiBKb3PDqSBSb2JlcnRvIGRlIFNvdXphIDxqb3NlLnNvdXph
+QGludGVsLmNvbT4KPiA+ID4gPiAKPiA+ID4gPiBTaWduZWQtb2ZmLWJ5OiBKb3VuaSBIw7ZnYW5k
+ZXIgPGpvdW5pLmhvZ2FuZGVyQGludGVsLmNvbT4KPiA+ID4gPiAtLS0KPiA+ID4gPiDCoCBkcml2
+ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2F0b21pYy5jwqDCoCB8wqAgMyAtCj4gPiA+
+ID4gwqAgLi4uL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2F0b21pY19wbGFuZS5jIHwgNDkg
+KysrLS0tLS0tLQo+ID4gPiA+IC0tCj4gPiA+ID4gwqAgZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlz
+cGxheS9pbnRlbF9kaXNwbGF5LmPCoCB8IDc4ICsrKysrKy0tLS0KPiA+ID4gPiAtLS0tLS0tLS0K
+PiA+ID4gPiDCoCAuLi4vZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kaXNwbGF5X3R5cGVzLmjCoMKg
+wqAgfMKgIDIgLQo+ID4gPiA+IMKgIDQgZmlsZXMgY2hhbmdlZCwgMzcgaW5zZXJ0aW9ucygrKSwg
+OTUgZGVsZXRpb25zKC0pCj4gPiA+ID4gCj4gPiA+ID4gZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1
+L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfYXRvbWljLmMKPiA+ID4gPiBiL2RyaXZlcnMvZ3B1L2Ry
+bS9pOTE1L2Rpc3BsYXkvaW50ZWxfYXRvbWljLmMKPiA+ID4gPiBpbmRleCA1ZDE4MTQ1ZGEyNzku
+LmVjMGQ1MTY4YjUwMyAxMDA2NDQKPiA+ID4gPiAtLS0gYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9k
+aXNwbGF5L2ludGVsX2F0b21pYy5jCj4gPiA+ID4gKysrIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUv
+ZGlzcGxheS9pbnRlbF9hdG9taWMuYwo+ID4gPiA+IEBAIC0zMzEsOSArMzMxLDYgQEAgdm9pZCBp
+bnRlbF9hdG9taWNfc3RhdGVfZnJlZShzdHJ1Y3QKPiA+ID4gPiBkcm1fYXRvbWljX3N0YXRlICpf
+c3RhdGUpCj4gPiA+ID4gwqAgCj4gPiA+ID4gwqDCoMKgwqDCoMKgwqDCoGRybV9hdG9taWNfc3Rh
+dGVfZGVmYXVsdF9yZWxlYXNlKCZzdGF0ZS0+YmFzZSk7Cj4gPiA+ID4gwqDCoMKgwqDCoMKgwqDC
+oGtmcmVlKHN0YXRlLT5nbG9iYWxfb2Jqcyk7Cj4gPiA+ID4gLQo+ID4gPiA+IC3CoMKgwqDCoMKg
+wqDCoGk5MTVfc3dfZmVuY2VfZmluaSgmc3RhdGUtPmNvbW1pdF9yZWFkeSk7Cj4gPiA+ID4gLQo+
+ID4gPiA+IMKgwqDCoMKgwqDCoMKgwqBrZnJlZShzdGF0ZSk7Cj4gPiA+ID4gwqAgfQo+ID4gPiA+
+IMKgIAo+ID4gPiA+IGRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2lu
+dGVsX2F0b21pY19wbGFuZS5jCj4gPiA+ID4gYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5
+L2ludGVsX2F0b21pY19wbGFuZS5jCj4gPiA+ID4gaW5kZXggYjEwNzQzNTA2MTZjLi5kNGY5MTY4
+ZWM0MmMgMTAwNjQ0Cj4gPiA+ID4gLS0tIGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9p
+bnRlbF9hdG9taWNfcGxhbmUuYwo+ID4gPiA+ICsrKyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rp
+c3BsYXkvaW50ZWxfYXRvbWljX3BsYW5lLmMKPiA+ID4gPiBAQCAtMzIsNiArMzIsNyBAQAo+ID4g
+PiA+IMKgwqAgKi8KPiA+ID4gPiDCoCAKPiA+ID4gPiDCoCAjaW5jbHVkZSA8ZHJtL2RybV9hdG9t
+aWNfaGVscGVyLmg+Cj4gPiA+ID4gKyNpbmNsdWRlIDxkcm0vZHJtX2dlbV9hdG9taWNfaGVscGVy
+Lmg+Cj4gPiA+ID4gwqAgI2luY2x1ZGUgPGRybS9kcm1fYmxlbmQuaD4KPiA+ID4gPiDCoCAjaW5j
+bHVkZSA8ZHJtL2RybV9mb3VyY2MuaD4KPiA+ID4gPiDCoCAKPiA+ID4gPiBAQCAtMTAzNSw3ICsx
+MDM2LDcgQEAgaW50ZWxfcHJlcGFyZV9wbGFuZV9mYihzdHJ1Y3QgZHJtX3BsYW5lCj4gPiA+ID4g
+Kl9wbGFuZSwKPiA+ID4gPiDCoMKgwqDCoMKgwqDCoMKgc3RydWN0IGludGVsX2F0b21pY19zdGF0
+ZSAqc3RhdGUgPQo+ID4gPiA+IMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgdG9faW50
+ZWxfYXRvbWljX3N0YXRlKG5ld19wbGFuZV9zdGF0ZS0KPiA+ID4gPiA+dWFwaS5zdGF0ZSk7Cj4g
+PiA+ID4gwqDCoMKgwqDCoMKgwqDCoHN0cnVjdCBkcm1faTkxNV9wcml2YXRlICpkZXZfcHJpdiA9
+IHRvX2k5MTUocGxhbmUtCj4gPiA+ID4gPmJhc2UuZGV2KTsKPiA+ID4gPiAtwqDCoMKgwqDCoMKg
+wqBjb25zdCBzdHJ1Y3QgaW50ZWxfcGxhbmVfc3RhdGUgKm9sZF9wbGFuZV9zdGF0ZSA9Cj4gPiA+
+ID4gK8KgwqDCoMKgwqDCoMKgc3RydWN0IGludGVsX3BsYW5lX3N0YXRlICpvbGRfcGxhbmVfc3Rh
+dGUgPQo+ID4gPiA+IMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgaW50ZWxfYXRvbWlj
+X2dldF9vbGRfcGxhbmVfc3RhdGUoc3RhdGUsIHBsYW5lKTsKPiA+ID4gPiDCoMKgwqDCoMKgwqDC
+oMKgc3RydWN0IGRybV9pOTE1X2dlbV9vYmplY3QgKm9iaiA9Cj4gPiA+ID4gaW50ZWxfZmJfb2Jq
+KG5ld19wbGFuZV9zdGF0ZS0+aHcuZmIpOwo+ID4gPiA+IMKgwqDCoMKgwqDCoMKgwqBzdHJ1Y3Qg
+ZHJtX2k5MTVfZ2VtX29iamVjdCAqb2xkX29iaiA9Cj4gPiA+ID4gaW50ZWxfZmJfb2JqKG9sZF9w
+bGFuZV9zdGF0ZS0+aHcuZmIpOwo+ID4gPiA+IEBAIC0xMDU3LDU2ICsxMDU4LDMwIEBAIGludGVs
+X3ByZXBhcmVfcGxhbmVfZmIoc3RydWN0IGRybV9wbGFuZQo+ID4gPiA+ICpfcGxhbmUsCj4gPiA+
+ID4gwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgKiBUaGlzIHNob3VsZCBvbmx5IGZh
+aWwgdXBvbiBhIGh1bmcgR1BVLCBpbgo+ID4gPiA+IHdoaWNoIGNhc2Ugd2UKPiA+ID4gPiDCoMKg
+wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCAqIGNhbiBzYWZlbHkgY29udGludWUuCj4gPiA+
+ID4gwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgKi8KPiA+ID4gPiAtwqDCoMKgwqDC
+oMKgwqDCoMKgwqDCoMKgwqDCoMKgaWYgKG5ld19jcnRjX3N0YXRlICYmCj4gPiA+ID4gaW50ZWxf
+Y3J0Y19uZWVkc19tb2Rlc2V0KG5ld19jcnRjX3N0YXRlKSkgewo+ID4gPiA+IC3CoMKgwqDCoMKg
+wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgcmV0ID0KPiA+ID4gPiBpOTE1X3N3
+X2ZlbmNlX2F3YWl0X3Jlc2VydmF0aW9uKCZzdGF0ZS0+Y29tbWl0X3JlYWR5LAo+ID4gPiA+IC3C
+oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
+wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
+oMKgwqAKPiA+ID4gPiBvbGRfb2JqLT5iYXNlLnJlc3YsCj4gPiA+ID4gLcKgwqDCoMKgwqDCoMKg
+wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
+oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoAo+ID4gPiA+
+IGZhbHNlLCAwLAo+ID4gPiA+IC3CoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
+oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
+wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAKPiA+ID4gPiBHRlBfS0VSTkVMKTsKPiA+ID4gPiAr
+wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgaWYgKG5ld19jcnRjX3N0YXRlICYmCj4gPiA+
+ID4gaW50ZWxfY3J0Y19uZWVkc19tb2Rlc2V0KG5ld19jcnRjX3N0YXRlKSAmJgo+ID4gPiA+ICvC
+oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgIWRtYV9yZXN2X3Rlc3Rfc2lnbmFs
+ZWQob2xkX29iai0+YmFzZS5yZXN2LAo+ID4gPiA+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
+oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
+wqAKPiA+ID4gPiBkbWFfcmVzdl91c2FnZV9ydyhmYWxzZSkpKSB7Cj4gPiA+ID4gK8KgwqDCoMKg
+wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqByZXQgPQo+ID4gPiA+IGRybV9n
+ZW1fcGxhbmVfaGVscGVyX3ByZXBhcmVfZmIoX3BsYW5lLCAmb2xkX3BsYW5lX3N0YXRlLQo+ID4g
+PiA+ID51YXBpKTsKPiA+ID4gCj4gPiA+IFRoaXMgSSB0aGluayBpcyBicm9rZW4uIFRoZSBvbGQg
+cGxhbmUgc3RhdGUgYW5kIGl0cyBmZW5jZSBjYW4KPiA+ID4gc3RpbGwgYmUKPiA+ID4gaW4gdXNl
+IGJ5IHRoZSBwcmV2aW91cyBjb21taXQsIHNvIHdlIGNhbm5vdCBtdXRhdGUgaXQgaGVyZS4gVGh1
+cwo+ID4gPiB3ZQo+ID4gPiByZWFsbHkgbmVlZCB0byBnZXQgdGhlIGltcGxpY2l0IGZlbmNlIGZy
+b20gdGhlIG9sZCBmYiBjaGFpbmVkCj4gPiA+IGludG8gdGhlCj4gPiA+IG5ldyBwbGFuZSBzdGF0
+ZSdzIGZlbmNlLgo+ID4gSXMgaXQgZXZlbiBuZWVkZWQgdGhvdWdoPyBJZiBuZXdfcGxhbmVfc3Rh
+dGUgYWx3YXlzIGNhbGxzCj4gPiBwcmVwYXJlX2ZiLgo+IAo+IEl0J3MgZXhwbGFpbmVkIGluIHRo
+ZSBjb21tZW50LgoKVGhhbmsgeW91IFZpbGxlIGFuZCBNYWFydGVuIGZvciBjaGVja2luZyBteSBw
+YXRjaC4gSSBoYXZlIGFkZHJlc3NlZApWaWxsZXMgY29tbWVudCBhYm91dCBvbGQgcGxhbmUgc3Rh
+dGUgZmVuY2UuIFBsZWFzZSBjaGVjayBuZXcgdmVyc2lvbi4KCkJSLAoKSm91bmkgSMO2Z2FuZGVy
+Cgo+IAoK
