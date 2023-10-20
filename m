@@ -2,71 +2,71 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0D2347D107E
-	for <lists+intel-gfx@lfdr.de>; Fri, 20 Oct 2023 15:26:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1424E7D107F
+	for <lists+intel-gfx@lfdr.de>; Fri, 20 Oct 2023 15:26:50 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 41ED810E0E2;
-	Fri, 20 Oct 2023 13:26:42 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4FDE010E572;
+	Fri, 20 Oct 2023 13:26:47 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-wr1-x436.google.com (mail-wr1-x436.google.com
- [IPv6:2a00:1450:4864:20::436])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 59B3A10E0E2
- for <intel-gfx@lists.freedesktop.org>; Fri, 20 Oct 2023 13:26:40 +0000 (UTC)
-Received: by mail-wr1-x436.google.com with SMTP id
- ffacd0b85a97d-32003aae100so1191616f8f.0
- for <intel-gfx@lists.freedesktop.org>; Fri, 20 Oct 2023 06:26:40 -0700 (PDT)
+Received: from mail-lj1-x233.google.com (mail-lj1-x233.google.com
+ [IPv6:2a00:1450:4864:20::233])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 74ACC10E572
+ for <intel-gfx@lists.freedesktop.org>; Fri, 20 Oct 2023 13:26:45 +0000 (UTC)
+Received: by mail-lj1-x233.google.com with SMTP id
+ 38308e7fff4ca-2c515527310so11821931fa.2
+ for <intel-gfx@lists.freedesktop.org>; Fri, 20 Oct 2023 06:26:45 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1697808399; x=1698413199; darn=lists.freedesktop.org;
+ d=gmail.com; s=20230601; t=1697808403; x=1698413203; darn=lists.freedesktop.org;
  h=content-transfer-encoding:in-reply-to:from:references:to
  :content-language:subject:reply-to:user-agent:mime-version:date
  :message-id:from:to:cc:subject:date:message-id:reply-to;
- bh=U4zbgB5wEyMK1dw5a8Bbh5vEUCoN8FCPQXyej62QzFI=;
- b=frw6vLhY10D02GvRbIwmTm7Sy2bB4XoV5xUubEm0/sRI2M4HwSdyStVnca6ee3Z6dm
- p8B39nYKOTKM0AtLw//wc6DAkI9RSPECPA3t2VciNomLCwaQ/W4Y/ufeXAmoXN0ITiw5
- uYIJFhMt+a7RqvX3SrHbI1QHFtVyq4lg3F9rQHye9hJxPQ15/EAqWtAmuVHjctAY8WU7
- uJVMqg4pg8fvsa3iof6OKqpp8B/qXozUs/vZKGJmtqzQ16rVyEh6v8140S/1tgGc3+Oq
- 0QVn1+D1h5/k+RKYv9RjMuGKIZNKCXsY+Xy5p0LWq1zELa2kCH9pNjgGpIiySQJ2WU+3
- yOKw==
+ bh=5u+U8tGdcXoDwcvMHbbDlRofKFhQTvO7ZLhj5+3r8lg=;
+ b=LXHX5ZTTgNqTzzxc+cu41fhVT82GFw/C6uSpgcdy7igIut5e2867BItfvg/kadWz+x
+ g8sAYk7Tjt5WY8det4fPqlZ8+mjZCyoo6wmyONhLdd0raMXg2fu8CGNJA2+3M5utnqU5
+ qfii3ld/xFnXgN9wtlNo3suye5wxtYBvTbx6gZ5O/U1Xez2/4oJ1LAPxtT00alNhx8Fo
+ 6RJQxgEpj/nk/1uO7EwAfNv5KV+tk8tEWanU9jjFIoCy+SxYmQTu6cWN7pr/AK1Go3rS
+ gUdhkNuv8o23mmsJR84KKST728kDYxrEnjsMJ348GQ3gxWmPw+OMfQNBRsILkm1wS/41
+ lQ2Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1697808399; x=1698413199;
+ d=1e100.net; s=20230601; t=1697808403; x=1698413203;
  h=content-transfer-encoding:in-reply-to:from:references:to
  :content-language:subject:reply-to:user-agent:mime-version:date
  :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
  :reply-to;
- bh=U4zbgB5wEyMK1dw5a8Bbh5vEUCoN8FCPQXyej62QzFI=;
- b=Usq+QeJso78vSpts/kFAhp5PwcuVVJ9WiICREkHGN/IQ1asbovGz7kkRQdT3QJyi//
- 7iF3YPpivrfYNFU0tLANqHufVztBzd59j25/yP3CcbhPoxBbBxokVxC8wpyikchhaAC5
- qnbjGp9/2aCK6KyNIXNPToI1ylXgpMwMfhKjHoDbGggBJklORLj6TAO0CuOlMcw1JRnh
- uQPkb9XXqbSz2TfSqggroWDmwFS3OsAxMhMz+h9+DLPpI+Dw8J1AHPXnEGQjTLaGKTGD
- KMTniO7XwUXmq+oiuV5JflD9xxGD8Ao6rNriHfPVZGNGdNFm9sMRch4wHDpIImlveTog
- 23Kw==
-X-Gm-Message-State: AOJu0YxJsafqPlvuMytNIbErNusmWOfYvIeZNyDlqaP0aDlDeH4oB3ti
- QCSjtf4hlu4mLixuAhfUSh63/NaO2q1phA==
-X-Google-Smtp-Source: AGHT+IHLln26W56EAvtTkfTmNnQiX8xgX7QsxJOdFAn3L3KOnlM4g77u8EpX5nOWqTs6YXGNWMzBoQ==
-X-Received: by 2002:a5d:46c9:0:b0:32d:de87:1085 with SMTP id
- g9-20020a5d46c9000000b0032dde871085mr4605682wrs.10.1697808398409; 
- Fri, 20 Oct 2023 06:26:38 -0700 (PDT)
+ bh=5u+U8tGdcXoDwcvMHbbDlRofKFhQTvO7ZLhj5+3r8lg=;
+ b=FQEDk7vsxRDIzt2F7t70NzGWBrkOLa8RA5TxSU87K7b8fKjqEWp7bWauofQCKmDX3Q
+ hB4LBIInXSLhFqI+8AwuFrHMJfYY8IH69nY/hQSloIB8s3ypaZypyvf7DkzPJdGybh9h
+ RH7pYuHGUuFuXz03HNX1hKZcLIkiCL2/t3WZOYEF4Al74TexWkkp05d/YnWtzcRdgEpO
+ nPEWbAnA8T79PdpzssqYBKv27Ot9NVisd512ElgI+hBGsas54Hf3Ynbouz9jhFjqhuu3
+ WMxlxFRwt6JA9E1Q0NBLC2Xg+WVaS2oj2E/rw4TlbNuzHumB/93r2enW5rgXepICHh/8
+ VFEA==
+X-Gm-Message-State: AOJu0YyFijmiqpsD2WZXv+MtuhZLbEJDy5dAvHaUS48XC0KaFBPPcya4
+ Of2xh/klymOtU6lEM92T+C0=
+X-Google-Smtp-Source: AGHT+IEaZYyvRSvUUYCqb8szGXG2XXgaNEQSj9mIJzYXXJOnMhb9C+Nj7AoZiXXla1Lixi0Y1WH5Bg==
+X-Received: by 2002:a2e:9f50:0:b0:2bc:f39b:d1a8 with SMTP id
+ v16-20020a2e9f50000000b002bcf39bd1a8mr1248832ljk.46.1697808403263; 
+ Fri, 20 Oct 2023 06:26:43 -0700 (PDT)
 Received: from [0.0.0.0] ([134.134.137.81])
  by smtp.googlemail.com with ESMTPSA id
- k5-20020a05600c1c8500b003fe15ac0934sm871893wms.1.2023.10.20.06.26.36
+ m15-20020a7bcb8f000000b0040523bef620sm2934605wmi.0.2023.10.20.06.26.41
  (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Fri, 20 Oct 2023 06:26:38 -0700 (PDT)
-Message-ID: <1d4c8a42-275a-4983-b579-4928f91de8a1@gmail.com>
-Date: Fri, 20 Oct 2023 16:26:31 +0300
+ Fri, 20 Oct 2023 06:26:42 -0700 (PDT)
+Message-ID: <71f8d747-a93c-4e2e-9163-9d3d1414b925@gmail.com>
+Date: Fri, 20 Oct 2023 16:26:37 +0300
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
 Content-Language: en-US
 To: =?UTF-8?Q?Jouni_H=C3=B6gander?= <jouni.hogander@intel.com>,
  intel-gfx@lists.freedesktop.org
 References: <20231012072158.4115795-1-jouni.hogander@intel.com>
- <20231012072158.4115795-2-jouni.hogander@intel.com>
+ <20231012072158.4115795-3-jouni.hogander@intel.com>
 From: Juha-Pekka Heikkila <juhapekka.heikkila@gmail.com>
-In-Reply-To: <20231012072158.4115795-2-jouni.hogander@intel.com>
+In-Reply-To: <20231012072158.4115795-3-jouni.hogander@intel.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-Subject: Re: [Intel-gfx] [PATCH 1/2] drm/i915/display: Move releasing gem
- object away from fb tracking
+Subject: Re: [Intel-gfx] [PATCH 2/2] drm/i915/display: Use
+ intel_bo_to_drm_bo instead of obj->base
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -86,39 +86,29 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 Reviewed-by: Juha-Pekka Heikkila <juhapekka.heikkila@gmail.com>
 
 On 12.10.2023 10.21, Jouni Högander wrote:
-> As a preparation for Xe we want to remove all i915_gem_object details away
-> from frontbuffer tacking code. Due to this move releasing gem object
-> reference to i915_gem_object_set_frontbuffer.
+> Xe and i915 objects have differing implementation. Use intel_bo_to_drm_bo
+> instead of obj->base as xe_bo doesn't have base pointer.
 > 
 > Signed-off-by: Jouni Högander <jouni.hogander@intel.com>
 > ---
->   drivers/gpu/drm/i915/display/intel_frontbuffer.c       | 2 --
->   drivers/gpu/drm/i915/gem/i915_gem_object_frontbuffer.h | 1 +
->   2 files changed, 1 insertion(+), 2 deletions(-)
+>   drivers/gpu/drm/i915/display/intel_fb.c | 4 ++--
+>   1 file changed, 2 insertions(+), 2 deletions(-)
 > 
-> diff --git a/drivers/gpu/drm/i915/display/intel_frontbuffer.c b/drivers/gpu/drm/i915/display/intel_frontbuffer.c
-> index ec46716b2f49..2ea37c0414a9 100644
-> --- a/drivers/gpu/drm/i915/display/intel_frontbuffer.c
-> +++ b/drivers/gpu/drm/i915/display/intel_frontbuffer.c
-> @@ -265,8 +265,6 @@ static void frontbuffer_release(struct kref *ref)
->   	spin_unlock(&intel_bo_to_i915(obj)->display.fb_tracking.lock);
+> diff --git a/drivers/gpu/drm/i915/display/intel_fb.c b/drivers/gpu/drm/i915/display/intel_fb.c
+> index e7678571b0d7..e1d298efc510 100644
+> --- a/drivers/gpu/drm/i915/display/intel_fb.c
+> +++ b/drivers/gpu/drm/i915/display/intel_fb.c
+> @@ -1930,10 +1930,10 @@ static int intel_user_framebuffer_dirty(struct drm_framebuffer *fb,
+>   	if (!atomic_read(&front->bits))
+>   		return 0;
 >   
->   	i915_active_fini(&front->write);
-> -
-> -	i915_gem_object_put(obj);
->   	kfree_rcu(front, rcu);
->   }
+> -	if (dma_resv_test_signaled(obj->base.resv, dma_resv_usage_rw(false)))
+> +	if (dma_resv_test_signaled(intel_bo_to_drm_bo(obj)->resv, dma_resv_usage_rw(false)))
+>   		goto flush;
 >   
-> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_object_frontbuffer.h b/drivers/gpu/drm/i915/gem/i915_gem_object_frontbuffer.h
-> index e5e870b6f186..9fbf14867a2a 100644
-> --- a/drivers/gpu/drm/i915/gem/i915_gem_object_frontbuffer.h
-> +++ b/drivers/gpu/drm/i915/gem/i915_gem_object_frontbuffer.h
-> @@ -89,6 +89,7 @@ i915_gem_object_set_frontbuffer(struct drm_i915_gem_object *obj,
->   
->   	if (!front) {
->   		RCU_INIT_POINTER(obj->frontbuffer, NULL);
-> +		drm_gem_object_put(intel_bo_to_drm_bo(obj));
->   	} else if (rcu_access_pointer(obj->frontbuffer)) {
->   		cur = rcu_dereference_protected(obj->frontbuffer, true);
->   		kref_get(&cur->ref);
+> -	ret = dma_resv_get_singleton(obj->base.resv, dma_resv_usage_rw(false),
+> +	ret = dma_resv_get_singleton(intel_bo_to_drm_bo(obj)->resv, dma_resv_usage_rw(false),
+>   				     &fence);
+>   	if (ret || !fence)
+>   		goto flush;
 
