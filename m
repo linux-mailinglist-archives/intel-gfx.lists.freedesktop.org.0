@@ -2,141 +2,83 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 584D87D1974
-	for <lists+intel-gfx@lfdr.de>; Sat, 21 Oct 2023 01:04:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id F0A917D1BEC
+	for <lists+intel-gfx@lfdr.de>; Sat, 21 Oct 2023 11:08:33 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 75A0E10E109;
-	Fri, 20 Oct 2023 23:04:55 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7BF1E10E124;
+	Sat, 21 Oct 2023 09:08:30 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.24])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5B1EC10E109
- for <intel-gfx@lists.freedesktop.org>; Fri, 20 Oct 2023 23:04:54 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1697843094; x=1729379094;
- h=date:from:to:cc:subject:message-id:references:
- in-reply-to:mime-version;
- bh=1Liy3AWG4voAFG0qH1aYSVFC+pzgZ5Frfl3jyGXyq/0=;
- b=BFA0facGYb0D6NsHlf0OagoJdGPrG6RMQ9wdGXLCSR7b6M4t7RZqjSTg
- 7kkxg/ytzFgPc6OtsJgfaG1150fcFB7bifQxMRSjf52rJ1qxNlD1YvG9v
- QV9shzuDEjAw0mY2FIoWDSWcskLYwQvklsPw8iq+OELQ/milN1SWBBc/h
- /QT2Dhw7HkRGxNmCKVIUGBX7AkrC6eSFsqxks/VBMJUeG9Pf+HKmefVT3
- bnO0G69711c7cCxcxy+zgvo2BnlM122y8uSTEb8TgK/9xaUMVT/9QHUWZ
- 94gGRYjS9c+MqfezXFzjnONzXq+tHv6Urbj0OZIsyw8xSURUufjt4a6Mf Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10869"; a="389441739"
-X-IronPort-AV: E=Sophos;i="6.03,239,1694761200"; d="scan'208";a="389441739"
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Oct 2023 16:04:53 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10869"; a="786924876"
-X-IronPort-AV: E=Sophos;i="6.03,239,1694761200"; d="scan'208";a="786924876"
-Received: from orsmsx601.amr.corp.intel.com ([10.22.229.14])
- by orsmga008.jf.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
- 20 Oct 2023 16:04:53 -0700
-Received: from orsmsx610.amr.corp.intel.com (10.22.229.23) by
- ORSMSX601.amr.corp.intel.com (10.22.229.14) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.32; Fri, 20 Oct 2023 16:04:53 -0700
-Received: from orsmsx611.amr.corp.intel.com (10.22.229.24) by
- ORSMSX610.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.32; Fri, 20 Oct 2023 16:04:52 -0700
-Received: from orsedg603.ED.cps.intel.com (10.7.248.4) by
- orsmsx611.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.32 via Frontend Transport; Fri, 20 Oct 2023 16:04:52 -0700
-Received: from NAM12-MW2-obe.outbound.protection.outlook.com (104.47.66.41) by
- edgegateway.intel.com (134.134.137.100) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.32; Fri, 20 Oct 2023 16:04:52 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=Dlf/hBXaOBdSAYhaepZKEGtckpPvYyNOSKCgMK5OmURoSTqPyEBiYmEj+w5y/edqDuqLBGvQzqMtMUqLtpknTKCLtaKLhLzYOJD3l4dsDsBnFTAgmu2gMrxYTXmrN/7clLvCVqZNsk0G7xDAw6zl3QrzlGEQW2SjS6XVRaVG1Yh260Urfsz/nAbwQEHpuxIVRf0iRx+Zrv2PqaJRrMgiFIv+lU3jL8n65CWAXxCB3J9U9vRxWrrpcrB6QUTudwvz+8LH/RL+KyjpQBHs4G3XCwObDpvDd5QamfOVZOrA2GFsBr3+U6tchNKl/FibukLKeL4bJwZ5J4/njXacmaxYcw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=MqlfrgOt5xqrsSnKlcvdGKJYwPzDEEURbcPEEmkPW4A=;
- b=Z6eORQWvxbD1T8jc/q8DJK66c9qLrcNaoxalAUhsQabcJ8w1ymucDm+9ENbjeqsaKFASpBGyCGAZ9fUnUYBebQ63tEeln4iJ9ulgznxm6JdPYcWfdAx7/kGiQPZS6LX60CsFgfCjXGhf3XfWau3PN6EDqnhTMZAd8yq736IOEBfWPcf0sC6ozEa/fBqEEY4QiU63NUcKjT/xzcGlsEPxKrv9SyMdoLXOtQ42V0uQWNCdy6JDVnX5AZnghfb5JHejdB3dkowEsZSsStOQsZKGIxNiJBzRbV7d+27DN5TvOWm0zf/bTEaEfwiidhjJGIWOOLMoUDVwfvV1oVOWn/eHnQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from DS7PR11MB7859.namprd11.prod.outlook.com (2603:10b6:8:da::22) by
- DM4PR11MB5357.namprd11.prod.outlook.com (2603:10b6:5:394::11) with
- Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.6907.26; Fri, 20 Oct 2023 23:04:49 +0000
-Received: from DS7PR11MB7859.namprd11.prod.outlook.com
- ([fe80::f957:c15a:9c34:71db]) by DS7PR11MB7859.namprd11.prod.outlook.com
- ([fe80::f957:c15a:9c34:71db%3]) with mapi id 15.20.6907.022; Fri, 20 Oct 2023
- 23:04:49 +0000
-Date: Fri, 20 Oct 2023 16:04:46 -0700
-From: Matt Roper <matthew.d.roper@intel.com>
-To: Jani Nikula <jani.nikula@intel.com>
-Message-ID: <20231020230446.GF1327160@mdroper-desk1.amr.corp.intel.com>
-References: <cover.1695747484.git.jani.nikula@intel.com>
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <cover.1695747484.git.jani.nikula@intel.com>
-X-ClientProxiedBy: BYAPR06CA0019.namprd06.prod.outlook.com
- (2603:10b6:a03:d4::32) To DS7PR11MB7859.namprd11.prod.outlook.com
- (2603:10b6:8:da::22)
+Received: from us-smtp-delivery-124.mimecast.com
+ (us-smtp-delivery-124.mimecast.com [170.10.129.124])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 86AE810E118
+ for <intel-gfx@lists.freedesktop.org>; Sat, 21 Oct 2023 09:08:28 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+ s=mimecast20190719; t=1697879307;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references;
+ bh=Duv/vRzaqiVheQFpKN6BpeiI42/H7vnpG0VOqBtei/A=;
+ b=IkQ68IauB3aI2rTrH0F3TqDpwaBuX3Tr//V8G087haTLkWxe1F/lBYNzhNrclH2vst8GQu
+ ROCFxxVA4NG8DMPIBNEmmLPmqovnuAheJql9tL0EcFG/fzRYokMNmOM3XPC1nTR9d5qQfn
+ /LCQLLAKDkFA2ibJylVad0oCBfBklEs=
+Received: from mail-ej1-f70.google.com (mail-ej1-f70.google.com
+ [209.85.218.70]) by relay.mimecast.com with ESMTP with STARTTLS
+ (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
+ us-mta-475-hE0GH3wWNkCvcAnRbqtehA-1; Sat, 21 Oct 2023 05:08:26 -0400
+X-MC-Unique: hE0GH3wWNkCvcAnRbqtehA-1
+Received: by mail-ej1-f70.google.com with SMTP id
+ a640c23a62f3a-9c7558b7b85so102583766b.3
+ for <intel-gfx@lists.freedesktop.org>; Sat, 21 Oct 2023 02:08:26 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1697879305; x=1698484105;
+ h=content-transfer-encoding:in-reply-to:from:content-language
+ :references:cc:to:subject:user-agent:mime-version:date:message-id
+ :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+ bh=Duv/vRzaqiVheQFpKN6BpeiI42/H7vnpG0VOqBtei/A=;
+ b=lSg2z5m8s8x0w0NmhmrKMXzdFPjff60QSvqGGkp0cBayDM6txJgxPYL0j6Ugo7PsUI
+ wjmiQw5E54YkBVq9BUdZp9fodBOVfZiZViMOG3KS3ajRzzLjyDlAejgnTv48ThYoNWgj
+ mNoVnrwXoUgIA6Yqi5kvlHwamyCu1Ezf5GW0XZTiEc4r2bFRTAWLbW3lGDLIGGaXttGQ
+ L+1x+ZQFAifKUmTTamhiCHFySBJItYnSXGuCaB5di1PwUNI6i96IuXMVP8k6C30uNSXc
+ HyFPpL6MVnTyYB1x4zlHwD8rXGmk0Y3WTkBYuAcLr+/rLeRS8/Atq3Fn6G6aWPyEEqjp
+ DWPw==
+X-Gm-Message-State: AOJu0YxwQQa3Oioe3mtEJHEujyRUmlgcB08XKD0qaQW5vPoIIWu5/te+
+ L3YYWaC9FQYeq98KzQ8IFKLevrzl55OCAuOEO78+6ptswynxTCXZS8eJTgeABBeZCUeMtXB6YIm
+ /8wTF5tMOgjsUZ5cJQSqQgg+uBRC5
+X-Received: by 2002:a17:907:2cc4:b0:9c3:d356:ad0c with SMTP id
+ hg4-20020a1709072cc400b009c3d356ad0cmr3284616ejc.24.1697879305106; 
+ Sat, 21 Oct 2023 02:08:25 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IFNqtW+MndTr+TWmmj2VbzRQsCnDbztAGvz9JDMu9I4Oq15U8bQsUZjmiRgthR6bMx8lB0Nzg==
+X-Received: by 2002:a17:907:2cc4:b0:9c3:d356:ad0c with SMTP id
+ hg4-20020a1709072cc400b009c3d356ad0cmr3284603ejc.24.1697879304753; 
+ Sat, 21 Oct 2023 02:08:24 -0700 (PDT)
+Received: from ?IPV6:2001:1c00:c32:7800:5bfa:a036:83f0:f9ec?
+ (2001-1c00-0c32-7800-5bfa-a036-83f0-f9ec.cable.dynamic.v6.ziggo.nl.
+ [2001:1c00:c32:7800:5bfa:a036:83f0:f9ec])
+ by smtp.gmail.com with ESMTPSA id
+ k9-20020a1709061c0900b0099ce025f8ccsm3201413ejg.186.2023.10.21.02.08.22
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Sat, 21 Oct 2023 02:08:23 -0700 (PDT)
+Message-ID: <01a505ac-320f-3819-a58d-2b82c1bf2a86@redhat.com>
+Date: Sat, 21 Oct 2023 11:08:22 +0200
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DS7PR11MB7859:EE_|DM4PR11MB5357:EE_
-X-MS-Office365-Filtering-Correlation-Id: fd6f8023-8a94-4a49-99ec-08dbd1c0f558
-X-LD-Processed: 46c98d88-e344-4ed4-8496-4ed7712e255d,ExtAddr
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: Dz+sOv7rh5/DwdP0WEfQrxAaHaf7Y5MSbrDT1hHrbfkJS/JFAh8rzh4W2xA8B3ejae6t3Xaf+C1e0eT1pwN281Z20NISZCSQQKQ+edCiYAZv+DoG8SdEzG8ROCgrfO/u8JRLGS0dSX+gTzhCEpzdxJIzOzPDqBdhkeqsKzMwXs0DbcbSmFW6x2T4Iuh3MiWyg+onDIafPERU6LorbEBt4nToLzC0HDW63cIQrBTJWYeMIhwVkvPw2LRC3+1STAGqhS5ghGqCrVfhMTAWPTY7gFcV49eWmjxxWOi0eN8kw750E8o99Xw6P1tDxH/5KzTxrkrA5beBHkKTFNAtZjPSVU2SVhyOvVFQEpbyn78TJGqRtoaLlYAGs0qXvosayI5oOlu2PwgiFzh3w349kX2WAkJRnsijVjQkhLGfVTRyuR93lt1uDV8sKD+txIoHosr1H3gnHRegSLRyrm5NHpLArIjoj2VlRMmtA6ZEboNhxXxuTNE0pc8xjP7Qd3xiLi6W9CMulNUCBMrBNHuDGZCjgqBjEsVQ++w35cHcW5+3Iu8=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:DS7PR11MB7859.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230031)(376002)(39860400002)(396003)(346002)(366004)(136003)(230922051799003)(186009)(1800799009)(64100799003)(451199024)(6862004)(84970400001)(86362001)(2906002)(6486002)(38100700002)(33656002)(6506007)(8936002)(8676002)(83380400001)(4326008)(41300700001)(5660300002)(316002)(82960400001)(66946007)(66476007)(66556008)(1076003)(6636002)(6512007)(26005)(478600001)(6666004);
- DIR:OUT; SFP:1102; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?mkSyEVV2OmocGVZypUNIt3/fnVEQthO+Ea54AAU/Vp0/i8Pc+LZjhDD5Kx3f?=
- =?us-ascii?Q?A2YDitrB/Qb2U9YeHMhE1PpDbXKna8szXZ6cRSdb9ZbcnfWqGXXJb2LiBIx/?=
- =?us-ascii?Q?l8kDSBTgfFnBZ+6P6ko/Nsm5zRI2O3DkrFwrpAJw5WzNUdgCpOPWgdxxqjMS?=
- =?us-ascii?Q?ud3QKJtRgZoNzd4apU/wC3402SD1rIQg5GHmlYbiVvlEwi8scwWEzPqV3uEU?=
- =?us-ascii?Q?sLtUfEtl5cUQ1hiIWYHg+Oc4JAuF1/YGqOgJq6RMBZDHiBDp9xlrOxORaCsy?=
- =?us-ascii?Q?nRL9KOifW/5MuwyOwfirsKw4fMFpI5TWo77uJv2SVgAsEsyT4ucCPylzqCyn?=
- =?us-ascii?Q?Npm+8suU6poe+CfA33b1l52EofWdgDwyTM9+tkFAkqIeAOpmRPV92Q4Zq4az?=
- =?us-ascii?Q?UbuOghfdpn2Caz6ILtXXNhGQFZz6En3ZHPap2eaNYJSlHrPih58AsD4ELGdE?=
- =?us-ascii?Q?B+nk+1dH8vG9W3KZvn3v8anRwYvbqwwCUSAk8tgvD9TC9sT7sIe8WpKjB3z0?=
- =?us-ascii?Q?j2fgn7ppizyCiAjw+k6bhvz1zPLD6AWXFp+MtCivZ/DkPHUzlq3XKxWdLw9N?=
- =?us-ascii?Q?fEtizG5QGWiASpHO0QGk92wmaheCM5//olK+ivsOYKALZ19o45ByXHvyQUXl?=
- =?us-ascii?Q?qSJ67SpJLJTN6gDBl6D1MEscee8bs2G4Nf0DVLJugXB8IUqfWyrgBZggG4o+?=
- =?us-ascii?Q?ox39Y2vvXUIoEaOCt5F0wH8nbhA6H189W0AG5Qf3kJg420uqEvAaWzTKSg1h?=
- =?us-ascii?Q?ERAZ2WMP6mgfH71Fsd+87Tpx7Vz0KbrhRlYPRzA4SbPdsPUhHf3jQCNQOb/B?=
- =?us-ascii?Q?CiVdCRcVs6Krcp8pzfW8dXq0u+A+29GS5fqAVRtiEcIngp2vZH0xnAMzrsf2?=
- =?us-ascii?Q?npVowh30N3W72Y+qtSEeqRMe8BTtNmtZuJmfNNEjvk619IE3VY5cj69ZZXpS?=
- =?us-ascii?Q?U3rwYAlxleqGPghsqeztvo9+wRXE2cWnFweq7ixOgOlVfHr4dvxoWjNbr2mD?=
- =?us-ascii?Q?zHLPbHDhkpZmUKGEJ44umF2EX3QrjEjl2nZEb56E6DB9qSn7BiuGDUSkrqh5?=
- =?us-ascii?Q?ccM0F0S1fmd3AAR0M2T4mFq495YyUj0jgy+pxdVdzRL7YNNs4OhsbjGAyDqT?=
- =?us-ascii?Q?C6BQjVM/ss8iVayynX/oNLkaM7cd8c2uSul5vrxIqb/GU5bPwCDit6lFpG0P?=
- =?us-ascii?Q?1bEqKMy5fXxbant3P/mVq+iXA6eE2h9bg2IuBzgAmET3jLpqIhCgz82kdZ/X?=
- =?us-ascii?Q?TRJmvdCoTp9lMF6dibWu1twdWElCAbEu72nX6VVeLPUYLmz+6R66qKqj+Nrm?=
- =?us-ascii?Q?3WK1LRuJkun6RIDqtiZyFBNz4F81QPZuywgmIwQM0+K0+DMzVO4avylgdMUT?=
- =?us-ascii?Q?cQoH8UQgotdLKLJCcFCZxqWHRVpHyMXiXnODUPjltumQeT6EWTl/NPetgbtL?=
- =?us-ascii?Q?d2MEkRtbmG1axCOqIYX2haqBM6mtVJ46jXK871BGjfC2gKC25y+LGtsLfbMU?=
- =?us-ascii?Q?BFSNito/uk2YwBQDwoHXf/ZY621jfJiFP2q2pcqDleMSFaSGPVwJoa0FAHG2?=
- =?us-ascii?Q?IZl8SdsoYG/uSgNOxvmW+hwApbZna9xOFBT+jbOrPUSnL+HPpzB6KOZQT9ic?=
- =?us-ascii?Q?BQ=3D=3D?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: fd6f8023-8a94-4a49-99ec-08dbd1c0f558
-X-MS-Exchange-CrossTenant-AuthSource: DS7PR11MB7859.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 20 Oct 2023 23:04:48.5272 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: l/XMwpi7AXXn63saO1fRgFTVgWfRujwO7fdKV5mQhzr7nAcqITjbMY4GkXMai4t+MUbVAzqJDiVDt5VcSOXBFYAkWUAS6ekG37QeOEjbf2w=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM4PR11MB5357
-X-OriginatorOrg: intel.com
-Subject: Re: [Intel-gfx] [RFC 0/3] drm/i915: split display from
- drm_i915_private and i915_drv.h
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.13.0
+To: =?UTF-8?Q?Uwe_Kleine-K=c3=b6nig?= <u.kleine-koenig@pengutronix.de>
+References: <cover.1697534024.git.sean@mess.org>
+ <a7fcd19938d5422abc59c968ff7b3d5c275577ed.1697534024.git.sean@mess.org>
+ <90728c06-4c6c-b3d2-4723-c24711be2fa5@redhat.com>
+ <20231019105118.64gdzzixwqrztjir@pengutronix.de>
+From: Hans de Goede <hdegoede@redhat.com>
+In-Reply-To: <20231019105118.64gdzzixwqrztjir@pengutronix.de>
+X-Mimecast-Spam-Score: 0
+X-Mimecast-Originator: redhat.com
+Content-Language: en-US, nl
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+Subject: Re: [Intel-gfx] [PATCH v3 1/3] pwm: make it possible to apply pwm
+ changes in atomic context
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -149,75 +91,101 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org, lucas.demarchi@intel.com,
- rodrigo.vivi@intel.com
+Cc: linux-fbdev@vger.kernel.org, Sean Young <sean@mess.org>,
+ linux-doc@vger.kernel.org, dri-devel@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org, Pavel Machek <pavel@ucw.cz>,
+ David Airlie <airlied@gmail.com>, linux-leds@vger.kernel.org,
+ Daniel Thompson <daniel.thompson@linaro.org>,
+ Ivaylo Dimitrov <ivo.g.dimitrov.75@gmail.com>,
+ Jonathan Corbet <corbet@lwn.net>, Helge Deller <deller@gmx.de>,
+ Lee Jones <lee@kernel.org>, Javier Martinez Canillas <javierm@redhat.com>,
+ linux-input@vger.kernel.org,
+ =?UTF-8?Q?Ilpo_J=c3=a4rvinen?= <ilpo.jarvinen@linux.intel.com>,
+ Guenter Roeck <linux@roeck-us.net>, linux-media@vger.kernel.org,
+ platform-driver-x86@vger.kernel.org, linux-pwm@vger.kernel.org,
+ Jean Delvare <jdelvare@suse.com>, intel-gfx@lists.freedesktop.org,
+ Mark Gross <markgross@kernel.org>, Mark Brown <broonie@kernel.org>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Mauro Carvalho Chehab <mchehab@kernel.org>,
+ linux-arm-kernel@lists.infradead.org, linux-hwmon@vger.kernel.org,
+ Support Opensource <support.opensource@diasemi.com>,
+ Jingoo Han <jingoohan1@gmail.com>, Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+ Liam Girdwood <lgirdwood@gmail.com>, Daniel Vetter <daniel@ffwll.ch>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, Sep 26, 2023 at 08:15:40PM +0300, Jani Nikula wrote:
-> We've been gradually separating display code from the rest of the i915
-> driver code over the past few years. We can't get much further than this
-> without some more drastic changes.
-> 
-> One of them is separating struct drm_i915_private and struct
-> intel_display almost completely. The former would remain for core driver
-> code and gem, while the latter would be for display. Long term, i915
-> display code would not include i915_drv.h, and would not have access to
-> struct drm_i915_private definion.
-> 
-> For display code, struct drm_i915_private would be opaque, and for the
-> rest of the driver, struct intel_display would be opaque.
-> 
-> Naturally, such separation helps the upcoming xe driver integration with
-> i915 display code. It's basically a requirement if (and that's still an
-> if) we decide to use aux-bus to have a i915.ko/xe.ko <->
-> intel-display.ko split. Regardless of that, I think this is a big
-> maintainability plus on its own too. The everything-includes-everything
-> model is really a nightmare.
-> 
-> Here are some draft ideas how this could be started. It will be a lot of
-> churn especially in the display code, but I believe the end result will
-> be cleaner.
+Hi Uwe,
 
-I'm guessing the plan is also to pass some kind of 'ops' callback
-structure down to intel_display when initializing a new device that it
-can use when it needs general functionality from the base driver
-(runtime PM, lowest-level register access, various memory management
-stuff, etc.)?
+On 10/19/23 12:51, Uwe Kleine-König wrote:
+> On Wed, Oct 18, 2023 at 03:57:48PM +0200, Hans de Goede wrote:
+>> Hi Sean,
+>>
+>> On 10/17/23 11:17, Sean Young wrote:
+>>> Some drivers require sleeping, for example if the pwm device is connected
+>>> over i2c. The pwm-ir-tx requires precise timing, and sleeping causes havoc
+>>> with the generated IR signal when sleeping occurs.
+>>>
+>>> This patch makes it possible to use pwm when the driver does not sleep,
+>>> by introducing the pwm_can_sleep() function.
+>>>
+>>> Signed-off-by: Sean Young <sean@mess.org>
+>>
+>> I have no objection to this patch by itself, but it seems a bit
+>> of unnecessary churn to change all current callers of pwm_apply_state()
+>> to a new API.
+> 
+> The idea is to improve the semantic of the function name, see
+> https://lore.kernel.org/linux-pwm/20231013180449.mcdmklbsz2rlymzz@pengutronix.de
+> for more context.
 
-In general, I'm very much in favor of making intel_display
-self-contained with no direct access to drm_i915_private / xe_device,
-and no direct calls outside of the display code.  I've been hoping we'd
-find the time to start moving in that direction.
+Hmm, so the argument here is that the GPIO API has this, but GPIOs
+generally speaking can be set atomically, so there not being able
+to set it atomically is special.
+
+OTOH we have many many many other kernel functions which may sleep
+and we don't all postfix them with _can_sleep.
+
+And for PWM controllers pwm_apply_state is IMHO sorta expected to
+sleep. Many of these are attached over I2C so things will sleep,
+others have a handshake to wait for the current dutycycle to
+end before you can apply a second change on top of an earlier
+change during the current dutycycle which often also involves
+sleeping.
+
+So the natural/expeected thing for pwm_apply_state() is to sleep
+and thus it does not need a postfix for this IMHO.
+
+> I think it's very subjective if you consider this
+> churn or not.
+
+I consider it churn because I don't think adding a postfix
+for what is the default/expected behavior is a good idea
+(with GPIOs not sleeping is the expected behavior).
+
+I agree that this is very subjective and very much goes
+into the territory of bikeshedding. So please consider
+the above my 2 cents on this and lets leave it at that.
+
+> While it's nice to have every caller converted in a single
+> step, I'd go for
+> 
+> 	#define pwm_apply_state(pwm, state) pwm_apply_cansleep(pwm, state)
+> 
+> , keep that macro for a while and convert all users step by step. This
+> way we don't needlessly break oot code and the changes to convert to the
+> new API can go via their usual trees without time pressure.
+
+I don't think there are enough users of pwm_apply_state() to warrant
+such an exercise.
+
+So if people want to move ahead with the _can_sleep postfix addition
+(still not a fan) here is my acked-by for the drivers/platform/x86
+changes, for merging this through the PWM tree in a single commit:
+
+Acked-by: Hans de Goede <hdegoede@redhat.com>
+
+Regards,
+
+Hans
 
 
-Matt
-
-> 
-> BR,
-> Jani.
-> 
-> 
-> Jani Nikula (3):
->   drm/i915: rough ideas for further separating display code from the
->     rest
->   drm/i915/hdmi: drafting what struct intel_display usage would look
->     like
->   drm/i915: draft what feature test macros would look like
-> 
->  .../gpu/drm/i915/display/intel_display_core.h    | 16 ++++++++++++++++
->  .../gpu/drm/i915/display/intel_display_device.c  | 13 +++++++++++++
->  .../gpu/drm/i915/display/intel_display_device.h  |  4 ++++
->  drivers/gpu/drm/i915/display/intel_hdmi.c        | 15 ++++++++++-----
->  drivers/gpu/drm/i915/i915_drv.h                  | 11 ++++++++++-
->  5 files changed, 53 insertions(+), 6 deletions(-)
-> 
-> -- 
-> 2.39.2
-> 
-
--- 
-Matt Roper
-Graphics Software Engineer
-Linux GPU Platform Enablement
-Intel Corporation
