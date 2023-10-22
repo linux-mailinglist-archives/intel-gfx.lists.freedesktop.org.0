@@ -2,53 +2,41 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7ADE07D1DF6
-	for <lists+intel-gfx@lfdr.de>; Sat, 21 Oct 2023 17:44:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1AC6E7D2522
+	for <lists+intel-gfx@lfdr.de>; Sun, 22 Oct 2023 20:16:41 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 48C1F10E131;
-	Sat, 21 Oct 2023 15:44:16 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7C69B10E0EF;
+	Sun, 22 Oct 2023 18:16:38 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.136])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 097F410E131
- for <intel-gfx@lists.freedesktop.org>; Sat, 21 Oct 2023 15:44:15 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1697903055; x=1729439055;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:in-reply-to;
- bh=SWjaaUFZlJfK77jO1ZUaJ0EvRevGpR7sJ4L+9nMAHKk=;
- b=V8LZLSROyquwFBUdAfFJiG4Ox9Nn2SpR7uInumPlw3/VD/ASjSfIATPe
- Bz2MWSWcyzemgQboehB4tK8nuySHkfA7kVNJEBv5Z328N4016TCMugJX9
- OI6uk5qnRdPHzW3BYq/UxtJAkaj+iyPrvXe7A8zh6/X8LVLsxjFD5i1wo
- ejz5nyOzH1ZvMGYYIO2TnrqUNC+ksuV5/ZrBeXNvzTpeo8IFo/wHX7blA
- hyqzbj9ChGMIcRTScofdsN6F1J2/q48gVMNiCKHtbFdr7AoNEE+1fusw/
- DmfRTLgMuDa852fJr5JPuoUE30leI+CxIDONn4uWFQdyfU8d+k4iHdOX2 A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10870"; a="365981794"
-X-IronPort-AV: E=Sophos;i="6.03,241,1694761200"; d="scan'208";a="365981794"
-Received: from orviesa001.jf.intel.com ([10.64.159.141])
- by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Oct 2023 08:44:14 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.03,241,1694761200"; 
-   d="scan'208";a="5383547"
-Received: from lkp-server01.sh.intel.com (HELO 8917679a5d3e) ([10.239.97.150])
- by orviesa001.jf.intel.com with ESMTP; 21 Oct 2023 08:43:00 -0700
-Received: from kbuild by 8917679a5d3e with local (Exim 4.96)
- (envelope-from <lkp@intel.com>) id 1quE94-0004yH-1K;
- Sat, 21 Oct 2023 15:44:10 +0000
-Date: Sat, 21 Oct 2023 23:43:37 +0800
-From: kernel test robot <lkp@intel.com>
-To: Jonathan Cavitt <jonathan.cavitt@intel.com>,
+X-Greylist: delayed 1889 seconds by postgrey-1.36 at gabe;
+ Sun, 22 Oct 2023 18:16:35 UTC
+Received: from coelho.fi (paleale.coelho.fi [176.9.41.70])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 05BF310E0EF
+ for <intel-gfx@lists.freedesktop.org>; Sun, 22 Oct 2023 18:16:35 +0000 (UTC)
+Received: from 91-155-254-243.elisa-laajakaista.fi ([91.155.254.243]
+ helo=hazy.lan)
+ by coelho.fi with esmtpsa (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+ (Exim 4.97-RC1) (envelope-from <luca@coelho.fi>)
+ id 1qucVa-000000007pa-2aHd; Sun, 22 Oct 2023 20:45:04 +0300
+Message-ID: <61677b04c028f3aa1773abce175a07106d8255fa.camel@coelho.fi>
+From: Luca Coelho <luca@coelho.fi>
+To: Jouni =?ISO-8859-1?Q?H=F6gander?= <jouni.hogander@intel.com>, 
  intel-gfx@lists.freedesktop.org
-Message-ID: <202310212325.rC9VhDGf-lkp@intel.com>
-References: <20231010184423.2118908-4-jonathan.cavitt@intel.com>
+Date: Sun, 22 Oct 2023 20:45:01 +0300
+In-Reply-To: <20231016111658.3432581-2-jouni.hogander@intel.com>
+References: <20231016111658.3432581-1-jouni.hogander@intel.com>
+ <20231016111658.3432581-2-jouni.hogander@intel.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.46.4-2 
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20231010184423.2118908-4-jonathan.cavitt@intel.com>
-Subject: Re: [Intel-gfx] [PATCH dii-client 2/2] drm/i915: Use selective tlb
- invalidations where supported
+X-Spam-Checker-Version: SpamAssassin 4.0.0 (2022-12-13) on farmhouse.coelho.fi
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.9 required=5.0 tests=ALL_TRUSTED,BAYES_00,
+ TVD_RCVD_IP autolearn=ham autolearn_force=no version=4.0.0
+Subject: Re: [Intel-gfx] [PATCH v2 01/24] drm/i915/display: Add framework to
+ add parameters specific to display
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,65 +49,127 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: jonathan.cavitt@intel.com, nirmoy.das@intel.com, andi.shyti@intel.com,
- saurabhg.gupta@intel.com, oe-kbuild-all@lists.linux.dev
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi Jonathan,
+On Mon, 2023-10-16 at 14:16 +0300, Jouni H=C3=B6gander wrote:
+> Currently all module parameters are handled by i915_param.c/h. This
+> is a problem for display parameters when Xe driver is used. Add
+> a mechanism to add parameters specific to the display. This is mainly
+> copied from i915_[debugfs]_params.[ch]. Parameters are not yet moved. Thi=
+s
+> is done by subsequent patches.
+>=20
+> Signed-off-by: Jouni H=C3=B6gander <jouni.hogander@intel.com>
+> ---
 
-kernel test robot noticed the following build errors:
+Looks generally good, but I have a couple of comments:
 
-[auto build test ERROR on drm-tip/drm-tip]
+[...]
+> diff --git a/drivers/gpu/drm/i915/display/intel_display_debugfs_params.h =
+b/drivers/gpu/drm/i915/display/intel_display_debugfs_params.h
+> new file mode 100644
+> index 000000000000..0e33f4e90ddc
+> --- /dev/null
+> +++ b/drivers/gpu/drm/i915/display/intel_display_debugfs_params.h
+> @@ -0,0 +1,14 @@
+> +/* SPDX-License-Identifier: MIT */
+> +/*
+> + * Copyright =C2=A9 2023 Intel Corporation
+> + */
+> +
+> +#ifndef __INTEL_DISPLAY_DEBUGFS_PARAMS__
+> +#define __INTEL_DISPLAY_DEBUGFS_PARAMS__
+> +
+> +struct dentry;
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Jonathan-Cavitt/drm-i915-Use-selective-tlb-invalidations-where-supported/20231011-034501
-base:   git://anongit.freedesktop.org/drm/drm-tip drm-tip
-patch link:    https://lore.kernel.org/r/20231010184423.2118908-4-jonathan.cavitt%40intel.com
-patch subject: [Intel-gfx] [PATCH dii-client 2/2] drm/i915: Use selective tlb invalidations where supported
-config: x86_64-allyesconfig (https://download.01.org/0day-ci/archive/20231021/202310212325.rC9VhDGf-lkp@intel.com/config)
-compiler: gcc-12 (Debian 12.2.0-14) 12.2.0
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20231021/202310212325.rC9VhDGf-lkp@intel.com/reproduce)
-
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202310212325.rC9VhDGf-lkp@intel.com/
-
-All errors (new ones prefixed by >>):
-
->> drivers/gpu/drm/i915/i915_vma.c:1343:25: error: expected ';', ',' or ')' before 'u64'
-    1343 |                         u64 start, u64 size)
-         |                         ^~~
+It doesn't seem like you need dentry here...
 
 
-vim +1343 drivers/gpu/drm/i915/i915_vma.c
+> +struct drm_i915_private;
+> +
+> +void intel_display_debugfs_params(struct drm_i915_private *i915);
+> +
+> +#endif /* __INTEL_DISPLAY_DEBUGFS_PARAMS__ */
+> diff --git a/drivers/gpu/drm/i915/display/intel_display_device.c b/driver=
+s/gpu/drm/i915/display/intel_display_device.c
+> index 2b1ec23ba9c3..e80842d1e7c7 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display_device.c
+> +++ b/drivers/gpu/drm/i915/display/intel_display_device.c
+> @@ -12,6 +12,7 @@
+>  #include "intel_de.h"
+>  #include "intel_display.h"
+>  #include "intel_display_device.h"
+> +#include "intel_display_params.h"
+>  #include "intel_display_power.h"
+>  #include "intel_display_reg_defs.h"
+>  #include "intel_fbc.h"
+> @@ -937,6 +938,13 @@ void intel_display_device_probe(struct drm_i915_priv=
+ate *i915)
+>  		DISPLAY_RUNTIME_INFO(i915)->ip.rel =3D rel;
+>  		DISPLAY_RUNTIME_INFO(i915)->ip.step =3D step;
+>  	}
+> +
+> +	intel_display_params_copy(&i915->display.params);
+> +}
+> +
+> +void intel_display_device_remove(struct drm_i915_private *i915)
+> +{
+> +	intel_display_params_free(&i915->display.params);
+>  }
+>=20
 
-  1341	
-  1342	void vma_invalidate_tlb(struct i915_address_space *vm, u32 *tlb
-> 1343				u64 start, u64 size)
-  1344	{
-  1345		struct intel_gt *gt;
-  1346		int id;
-  1347	
-  1348		if (!tlb)
-  1349			return;
-  1350	
-  1351		/*
-  1352		 * Before we release the pages that were bound by this vma, we
-  1353		 * must invalidate all the TLBs that may still have a reference
-  1354		 * back to our physical address. It only needs to be done once,
-  1355		 * so after updating the PTE to point away from the pages, record
-  1356		 * the most recent TLB invalidation seqno, and if we have not yet
-  1357		 * flushed the TLBs upon release, perform a full invalidation.
-  1358		 */
-  1359		for_each_gt(gt, vm->i915, id) {
-  1360			if (!intel_gt_invalidate_tlb_range(gt, start, size))
-  1361				WRITE_ONCE(tlb[id],
-  1362					   intel_gt_next_invalidate_tlb_full(gt));
-  1363		}
-  1364	}
-  1365	
+Why can't you just store the parameters as module globals? They are
+always associated with the module anyway.  Then you don't need to worry
+about the lifetime.
 
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+
+[...]
+> diff --git a/drivers/gpu/drm/i915/display/intel_display_params.h b/driver=
+s/gpu/drm/i915/display/intel_display_params.h
+> new file mode 100644
+> index 000000000000..1b347365988c
+> --- /dev/null
+> +++ b/drivers/gpu/drm/i915/display/intel_display_params.h
+> @@ -0,0 +1,34 @@
+> +// SPDX-License-Identifier: MIT
+> +/*
+> + * Copyright =C2=A9 2023 Intel Corporation
+> + */
+> +
+> +#ifndef _INTEL_DISPLAY_PARAMS_H_
+> +#define _INTEL_DISPLAY_PARAMS_H_
+> +
+> +struct drm_printer;
+> +
+> +/*
+> + * Invoke param, a function-like macro, for each intel display param, wi=
+th
+> + * arguments:
+> + *
+> + * param(type, name, value, mode)
+> + *
+> + * type: parameter type, one of {bool, int, unsigned int, unsigned long,=
+ char *}
+> + * name: name of the parameter
+> + * value: initial/default value of the parameter
+> + * mode: debugfs file permissions, one of {0400, 0600, 0}, use 0 to not =
+create
+> + *       debugfs file
+> + */
+> +#define INTEL_DISPLAY_PARAMS_FOR_EACH(param)
+
+I don't get this.  Here you create a macro that expands to nothing...
+
+> +
+> +#define MEMBER(T, member, ...) T member;
+> +struct intel_display_params {
+> +	INTEL_DISPLAY_PARAMS_FOR_EACH(MEMBER);
+
+...so doesn't this become empty in the end?
+
+[...]
+
+--
+Cheers,
+Luca.
