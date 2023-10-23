@@ -1,51 +1,56 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id EBA957D2EB6
-	for <lists+intel-gfx@lfdr.de>; Mon, 23 Oct 2023 11:43:19 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 92DBE7D2F06
+	for <lists+intel-gfx@lfdr.de>; Mon, 23 Oct 2023 11:55:43 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8B1ED10E1CA;
-	Mon, 23 Oct 2023 09:43:16 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 54C8B10E1AB;
+	Mon, 23 Oct 2023 09:55:40 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.136])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E9FFD10E1AB
- for <intel-gfx@lists.freedesktop.org>; Mon, 23 Oct 2023 09:43:14 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.126])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5158D10E1AA
+ for <intel-gfx@lists.freedesktop.org>; Mon, 23 Oct 2023 09:55:38 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1698054194; x=1729590194;
- h=from:to:subject:in-reply-to:references:date:message-id:
- mime-version; bh=16IrZjrTETqGhw479EgJBe1NNMnkyHexvpypzXMNOuA=;
- b=l/i8zaroTELrUsgYuyohtlH1oY3eHV95CrG/K90LKAY53JsveAnNqjMA
- gj49qrOEMnXARyiTlzOkgSfgepcOL039QELHepUmwkaB8HQ+tlRAMAEW4
- HLEoY6KW+jfOk2Kaq9pRU9GPkyhP0uYTKQIaHoJ1sSdv4AREGX/xToPr4
- THysmxv8mxNq8KMj4fxZJ9886nJPCV9sgxVp23Kj7PE2IUxGG0xWfed7+
- 4l1rjbKj6wX5Ac13Ofao/i4PtOIVhHo4Jiz3GJVxm8EteFRpEVUNKDh/4
- TxOElWKHHdyXJagqLcoqHyCjS3IsDIFz6QNA1d+Bw7ENtybkrsHCBZ21J g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10871"; a="366152852"
-X-IronPort-AV: E=Sophos;i="6.03,244,1694761200"; d="scan'208";a="366152852"
-Received: from orsmga006.jf.intel.com ([10.7.209.51])
- by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Oct 2023 02:43:14 -0700
+ t=1698054938; x=1729590938;
+ h=message-id:date:mime-version:subject:to:cc:references:
+ from:in-reply-to:content-transfer-encoding;
+ bh=p7LZXQd5a444YFudckBR9cctM2VYnab01qzRM4XwybE=;
+ b=PiKCzaxHxDfc+PWMnKRVxC8cjhiVZ4pYV1g/jvxILrfQOYIVgqQ1fy3Q
+ cTnDk9I1jHWvb8iSdcUjS1dPM6e/CNFhrb8AgOb9pRMnOT/8FAqoHZZ72
+ s/JLWy1fibieJOkHdZKnbILyD67TtTXWEc8jmFRFGVm9SrveZqL1/vkWQ
+ XgCVH14Hlkz/Tr5Odf0mnjLGv8YP8ubhCxMdZEEjeAXpfEXfSM1AK32t8
+ 713f0/8p7j1+CJjugGLFEi2X3u5tAsdnCX+7miyWEYJ+dobcAVzriNW1D
+ X5FTzvhs+JzGbzQRG6O8zgiMoG873qTzt90Nbs46p2fG/pijnYurW9Tvj g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10871"; a="371874505"
+X-IronPort-AV: E=Sophos;i="6.03,244,1694761200"; d="scan'208";a="371874505"
+Received: from orsmga003.jf.intel.com ([10.7.209.27])
+ by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 23 Oct 2023 02:55:37 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10871"; a="734614368"
-X-IronPort-AV: E=Sophos;i="6.03,244,1694761200"; d="scan'208";a="734614368"
-Received: from evlad-mobl.ger.corp.intel.com (HELO localhost) ([10.252.47.180])
- by orsmga006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Oct 2023 02:43:13 -0700
-From: Jani Nikula <jani.nikula@intel.com>
-To: Nirmoy Das <nirmoy.das@linux.intel.com>, intel-gfx@lists.freedesktop.org
-In-Reply-To: <7f2aafda-4006-6ab9-a75a-5b4b3b11295c@linux.intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20231011201533.1081368-1-jani.nikula@intel.com>
- <7f2aafda-4006-6ab9-a75a-5b4b3b11295c@linux.intel.com>
-Date: Mon, 23 Oct 2023 12:43:10 +0300
-Message-ID: <877cndd68h.fsf@intel.com>
+X-IronPort-AV: E=McAfee;i="6600,9927,10871"; a="707889950"
+X-IronPort-AV: E=Sophos;i="6.03,244,1694761200"; d="scan'208";a="707889950"
+Received: from nirmoyda-mobl.ger.corp.intel.com (HELO [10.249.40.234])
+ ([10.249.40.234])
+ by orsmga003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 23 Oct 2023 02:55:36 -0700
+Message-ID: <7a83d52f-0bcb-6223-db6c-1bf9cb7ed39b@linux.intel.com>
+Date: Mon, 23 Oct 2023 11:55:34 +0200
 MIME-Version: 1.0
-Content-Type: text/plain
-Subject: Re: [Intel-gfx] [PATCH 1/2] drm/i915/aux: add separate register
- macros and functions for VLV/CHV
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.15.1
+Content-Language: en-US
+To: Andrzej Hajda <andrzej.hajda@intel.com>, intel-gfx@lists.freedesktop.org
+References: <20231023-wabb-v3-0-1a4fbc632440@intel.com>
+ <20231023-wabb-v3-4-1a4fbc632440@intel.com>
+From: Nirmoy Das <nirmoy.das@linux.intel.com>
+In-Reply-To: <20231023-wabb-v3-4-1a4fbc632440@intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+Subject: Re: [Intel-gfx] [PATCH v3 4/4] drm/i915: Set copy engine
+ arbitration for Wa_16018031267 / Wa_16018063123
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -58,194 +63,77 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: Jonathan Cavitt <jonathan.cavitt@intel.com>,
+ Nirmoy Das <nirmoy.das@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, 12 Oct 2023, Nirmoy Das <nirmoy.das@linux.intel.com> wrote:
-> On 10/11/2023 10:15 PM, Jani Nikula wrote:
->> Add separate macros for VLV/CHV registers without the implicit dev_priv,
->> and with the display MMIO base baked in.
->>
->> A number of implicitly used dev_priv local variables can be removed.
->>
->> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
->
-> Reviewed-by: Nirmoy Das <nirmoy.das@intel.com>
+Hi Andrzej,
 
-Thanks, both pushed to din.
-
+On 10/23/2023 9:41 AM, Andrzej Hajda wrote:
+> From: Jonathan Cavitt <jonathan.cavitt@intel.com>
 >
+> Set copy engine arbitration into round robin mode
+> for part of Wa_16018031267 / Wa_16018063123 mitigation.
 >
->> ---
->>   drivers/gpu/drm/i915/display/intel_dp_aux.c   | 43 +++++++++++++++----
->>   .../gpu/drm/i915/display/intel_dp_aux_regs.h  | 14 +++---
->>   drivers/gpu/drm/i915/gvt/handlers.c           |  1 -
->>   3 files changed, 43 insertions(+), 15 deletions(-)
->>
->> diff --git a/drivers/gpu/drm/i915/display/intel_dp_aux.c b/drivers/gpu/drm/i915/display/intel_dp_aux.c
->> index 4431b6290c4c..c106598a78c5 100644
->> --- a/drivers/gpu/drm/i915/display/intel_dp_aux.c
->> +++ b/drivers/gpu/drm/i915/display/intel_dp_aux.c
->> @@ -531,9 +531,40 @@ intel_dp_aux_transfer(struct drm_dp_aux *aux, struct drm_dp_aux_msg *msg)
->>   	return ret;
->>   }
->>   
->> +static i915_reg_t vlv_aux_ctl_reg(struct intel_dp *intel_dp)
->> +{
->> +	struct intel_digital_port *dig_port = dp_to_dig_port(intel_dp);
->> +	enum aux_ch aux_ch = dig_port->aux_ch;
->> +
->> +	switch (aux_ch) {
->> +	case AUX_CH_B:
->> +	case AUX_CH_C:
->> +	case AUX_CH_D:
->> +		return VLV_DP_AUX_CH_CTL(aux_ch);
->> +	default:
->> +		MISSING_CASE(aux_ch);
->> +		return VLV_DP_AUX_CH_CTL(AUX_CH_B);
->> +	}
->> +}
->> +
->> +static i915_reg_t vlv_aux_data_reg(struct intel_dp *intel_dp, int index)
->> +{
->> +	struct intel_digital_port *dig_port = dp_to_dig_port(intel_dp);
->> +	enum aux_ch aux_ch = dig_port->aux_ch;
->> +
->> +	switch (aux_ch) {
->> +	case AUX_CH_B:
->> +	case AUX_CH_C:
->> +	case AUX_CH_D:
->> +		return VLV_DP_AUX_CH_DATA(aux_ch, index);
->> +	default:
->> +		MISSING_CASE(aux_ch);
->> +		return VLV_DP_AUX_CH_DATA(AUX_CH_B, index);
->> +	}
->> +}
->> +
->>   static i915_reg_t g4x_aux_ctl_reg(struct intel_dp *intel_dp)
->>   {
->> -	struct drm_i915_private *dev_priv = dp_to_i915(intel_dp);
->>   	struct intel_digital_port *dig_port = dp_to_dig_port(intel_dp);
->>   	enum aux_ch aux_ch = dig_port->aux_ch;
->>   
->> @@ -550,7 +581,6 @@ static i915_reg_t g4x_aux_ctl_reg(struct intel_dp *intel_dp)
->>   
->>   static i915_reg_t g4x_aux_data_reg(struct intel_dp *intel_dp, int index)
->>   {
->> -	struct drm_i915_private *dev_priv = dp_to_i915(intel_dp);
->>   	struct intel_digital_port *dig_port = dp_to_dig_port(intel_dp);
->>   	enum aux_ch aux_ch = dig_port->aux_ch;
->>   
->> @@ -567,7 +597,6 @@ static i915_reg_t g4x_aux_data_reg(struct intel_dp *intel_dp, int index)
->>   
->>   static i915_reg_t ilk_aux_ctl_reg(struct intel_dp *intel_dp)
->>   {
->> -	struct drm_i915_private *dev_priv = dp_to_i915(intel_dp);
->>   	struct intel_digital_port *dig_port = dp_to_dig_port(intel_dp);
->>   	enum aux_ch aux_ch = dig_port->aux_ch;
->>   
->> @@ -586,7 +615,6 @@ static i915_reg_t ilk_aux_ctl_reg(struct intel_dp *intel_dp)
->>   
->>   static i915_reg_t ilk_aux_data_reg(struct intel_dp *intel_dp, int index)
->>   {
->> -	struct drm_i915_private *dev_priv = dp_to_i915(intel_dp);
->>   	struct intel_digital_port *dig_port = dp_to_dig_port(intel_dp);
->>   	enum aux_ch aux_ch = dig_port->aux_ch;
->>   
->> @@ -605,7 +633,6 @@ static i915_reg_t ilk_aux_data_reg(struct intel_dp *intel_dp, int index)
->>   
->>   static i915_reg_t skl_aux_ctl_reg(struct intel_dp *intel_dp)
->>   {
->> -	struct drm_i915_private *dev_priv = dp_to_i915(intel_dp);
->>   	struct intel_digital_port *dig_port = dp_to_dig_port(intel_dp);
->>   	enum aux_ch aux_ch = dig_port->aux_ch;
->>   
->> @@ -625,7 +652,6 @@ static i915_reg_t skl_aux_ctl_reg(struct intel_dp *intel_dp)
->>   
->>   static i915_reg_t skl_aux_data_reg(struct intel_dp *intel_dp, int index)
->>   {
->> -	struct drm_i915_private *dev_priv = dp_to_i915(intel_dp);
->>   	struct intel_digital_port *dig_port = dp_to_dig_port(intel_dp);
->>   	enum aux_ch aux_ch = dig_port->aux_ch;
->>   
->> @@ -645,7 +671,6 @@ static i915_reg_t skl_aux_data_reg(struct intel_dp *intel_dp, int index)
->>   
->>   static i915_reg_t tgl_aux_ctl_reg(struct intel_dp *intel_dp)
->>   {
->> -	struct drm_i915_private *dev_priv = dp_to_i915(intel_dp);
->>   	struct intel_digital_port *dig_port = dp_to_dig_port(intel_dp);
->>   	enum aux_ch aux_ch = dig_port->aux_ch;
->>   
->> @@ -668,7 +693,6 @@ static i915_reg_t tgl_aux_ctl_reg(struct intel_dp *intel_dp)
->>   
->>   static i915_reg_t tgl_aux_data_reg(struct intel_dp *intel_dp, int index)
->>   {
->> -	struct drm_i915_private *dev_priv = dp_to_i915(intel_dp);
->>   	struct intel_digital_port *dig_port = dp_to_dig_port(intel_dp);
->>   	enum aux_ch aux_ch = dig_port->aux_ch;
->>   
->> @@ -757,6 +781,9 @@ void intel_dp_aux_init(struct intel_dp *intel_dp)
->>   	} else if (HAS_PCH_SPLIT(dev_priv)) {
->>   		intel_dp->aux_ch_ctl_reg = ilk_aux_ctl_reg;
->>   		intel_dp->aux_ch_data_reg = ilk_aux_data_reg;
->> +	} else if (IS_VALLEYVIEW(dev_priv) || IS_CHERRYVIEW(dev_priv)) {
->> +		intel_dp->aux_ch_ctl_reg = vlv_aux_ctl_reg;
->> +		intel_dp->aux_ch_data_reg = vlv_aux_data_reg;
->>   	} else {
->>   		intel_dp->aux_ch_ctl_reg = g4x_aux_ctl_reg;
->>   		intel_dp->aux_ch_data_reg = g4x_aux_data_reg;
->> diff --git a/drivers/gpu/drm/i915/display/intel_dp_aux_regs.h b/drivers/gpu/drm/i915/display/intel_dp_aux_regs.h
->> index 34f6e0a48ed2..e642445364d2 100644
->> --- a/drivers/gpu/drm/i915/display/intel_dp_aux_regs.h
->> +++ b/drivers/gpu/drm/i915/display/intel_dp_aux_regs.h
->> @@ -21,13 +21,14 @@
->>   #define __xe2lpd_aux_ch_idx(aux_ch)						\
->>   	(aux_ch >= AUX_CH_USBC1 ? aux_ch : AUX_CH_USBC4 + 1 + (aux_ch) - AUX_CH_A)
->>   
->> -/* TODO: Remove implicit dev_priv */
->> -#define _DPA_AUX_CH_CTL			(DISPLAY_MMIO_BASE(dev_priv) + 0x64010)
->> -#define _DPB_AUX_CH_CTL			(DISPLAY_MMIO_BASE(dev_priv) + 0x64110)
->> +#define _DPA_AUX_CH_CTL			0x64010
->> +#define _DPB_AUX_CH_CTL			0x64110
->>   #define _XELPDP_USBC1_AUX_CH_CTL	0x16f210
->>   #define _XELPDP_USBC2_AUX_CH_CTL	0x16f410
->>   #define DP_AUX_CH_CTL(aux_ch)		_MMIO_PORT(aux_ch, _DPA_AUX_CH_CTL,	\
->>   						   _DPB_AUX_CH_CTL)
->> +#define VLV_DP_AUX_CH_CTL(aux_ch)	_MMIO(VLV_DISPLAY_BASE + \
->> +					      _PORT(aux_ch, _DPA_AUX_CH_CTL, _DPB_AUX_CH_CTL))
->>   #define _XELPDP_DP_AUX_CH_CTL(aux_ch)						\
->>   		_MMIO(_PICK_EVEN_2RANGES(aux_ch, AUX_CH_USBC1,			\
->>   					 _DPA_AUX_CH_CTL, _DPB_AUX_CH_CTL,	\
->> @@ -69,13 +70,14 @@
->>   #define   DP_AUX_CH_CTL_SYNC_PULSE_SKL_MASK	REG_GENMASK(4, 0) /* skl+ */
->>   #define   DP_AUX_CH_CTL_SYNC_PULSE_SKL(c)	REG_FIELD_PREP(DP_AUX_CH_CTL_SYNC_PULSE_SKL_MASK, (c) - 1)
->>   
->> -/* TODO: Remove implicit dev_priv */
->> -#define _DPA_AUX_CH_DATA1		(DISPLAY_MMIO_BASE(dev_priv) + 0x64014)
->> -#define _DPB_AUX_CH_DATA1		(DISPLAY_MMIO_BASE(dev_priv) + 0x64114)
->> +#define _DPA_AUX_CH_DATA1		0x64014
->> +#define _DPB_AUX_CH_DATA1		0x64114
->>   #define _XELPDP_USBC1_AUX_CH_DATA1	0x16f214
->>   #define _XELPDP_USBC2_AUX_CH_DATA1	0x16f414
->>   #define DP_AUX_CH_DATA(aux_ch, i)	_MMIO(_PORT(aux_ch, _DPA_AUX_CH_DATA1,	\
->>   						    _DPB_AUX_CH_DATA1) + (i) * 4) /* 5 registers */
->> +#define VLV_DP_AUX_CH_DATA(aux_ch, i)	_MMIO(VLV_DISPLAY_BASE + _PORT(aux_ch, _DPA_AUX_CH_DATA1, \
->> +								       _DPB_AUX_CH_DATA1) + (i) * 4) /* 5 registers */
->>   #define _XELPDP_DP_AUX_CH_DATA(aux_ch, i)					\
->>   		_MMIO(_PICK_EVEN_2RANGES(aux_ch, AUX_CH_USBC1,			\
->>   					 _DPA_AUX_CH_DATA1, _DPB_AUX_CH_DATA1,	\
->> diff --git a/drivers/gpu/drm/i915/gvt/handlers.c b/drivers/gpu/drm/i915/gvt/handlers.c
->> index a9f7fa9b90bd..72addd8d380f 100644
->> --- a/drivers/gpu/drm/i915/gvt/handlers.c
->> +++ b/drivers/gpu/drm/i915/gvt/handlers.c
->> @@ -2576,7 +2576,6 @@ static int init_bdw_mmio_info(struct intel_gvt *gvt)
->>   
->>   static int init_skl_mmio_info(struct intel_gvt *gvt)
->>   {
->> -	struct drm_i915_private *dev_priv = gvt->gt->i915;
->>   	int ret;
->>   
->>   	MMIO_DH(FORCEWAKE_RENDER_GEN9, D_SKL_PLUS, NULL, mul_force_wake_write);
+> Signed-off-by: Nirmoy Das <nirmoy.das@intel.com>
+> Signed-off-by: Jonathan Cavitt <jonathan.cavitt@intel.com>
+> Reviewed-by: Andrzej Hajda <andrzej.hajda@intel.com>
+> ---
+>   drivers/gpu/drm/i915/gt/intel_engine_regs.h | 3 +++
+>   drivers/gpu/drm/i915/gt/intel_workarounds.c | 5 +++++
+>   2 files changed, 8 insertions(+)
+>
+> diff --git a/drivers/gpu/drm/i915/gt/intel_engine_regs.h b/drivers/gpu/drm/i915/gt/intel_engine_regs.h
+> index b8618ee3e3041a..c0c8c12edea104 100644
+> --- a/drivers/gpu/drm/i915/gt/intel_engine_regs.h
+> +++ b/drivers/gpu/drm/i915/gt/intel_engine_regs.h
+> @@ -124,6 +124,9 @@
+>   #define RING_INDIRECT_CTX(base)			_MMIO((base) + 0x1c4) /* gen8+ */
+>   #define RING_INDIRECT_CTX_OFFSET(base)		_MMIO((base) + 0x1c8) /* gen8+ */
+>   #define ECOSKPD(base)				_MMIO((base) + 0x1d0)
+> +#define   XEHP_BLITTER_SCHEDULING_MODE_MASK	REG_GENMASK(12, 11)
+> +#define   XEHP_BLITTER_ROUND_ROBIN_MODE		\
+> +		REG_FIELD_PREP(XEHP_BLITTER_SCHEDULING_MODE_MASK, 1)
+>   #define   ECO_CONSTANT_BUFFER_SR_DISABLE	REG_BIT(4)
+>   #define   ECO_GATING_CX_ONLY			REG_BIT(3)
+>   #define   GEN6_BLITTER_FBC_NOTIFY		REG_BIT(3)
+> diff --git a/drivers/gpu/drm/i915/gt/intel_workarounds.c b/drivers/gpu/drm/i915/gt/intel_workarounds.c
+> index 192ac0e59afa13..108d9326735910 100644
+> --- a/drivers/gpu/drm/i915/gt/intel_workarounds.c
+> +++ b/drivers/gpu/drm/i915/gt/intel_workarounds.c
+> @@ -2782,6 +2782,11 @@ xcs_engine_wa_init(struct intel_engine_cs *engine, struct i915_wa_list *wal)
+>   			 RING_SEMA_WAIT_POLL(engine->mmio_base),
+>   			 1);
+>   	}
+> +	/* Wa_16018031267, Wa_16018063123 */
+> +	if (NEEDS_FASTCOLOR_BLT_WABB(engine))
 
--- 
-Jani Nikula, Intel
+
+Not sure if I missed any previous discussion on this, the WA talked 
+about applying this on main copy engine. This needs to be taken into 
+account in
+
+NEEDS_FASTCOLOR_BLT_WABB()
+
+> +		wa_masked_field_set(wal, ECOSKPD(engine->mmio_base),
+> +				    XEHP_BLITTER_SCHEDULING_MODE_MASK,
+> +				    XEHP_BLITTER_ROUND_ROBIN_MODE);
+>   }
+
+This function sets masked_reg = true and will not read the register back 
+and I remember MattR asked internally to not use that if that is not 
+required.
+
+
+With those two concern handled this is  Reviewed-by: Nirmoy Das 
+<nirmoy.das@intel.com>
+
+
+Regards,
+
+Nirmoy
+
+>   
+>   static void
+>
