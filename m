@@ -1,58 +1,67 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1ABB37D3FD7
-	for <lists+intel-gfx@lfdr.de>; Mon, 23 Oct 2023 21:08:45 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id BEBBD7D40CF
+	for <lists+intel-gfx@lfdr.de>; Mon, 23 Oct 2023 22:22:03 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1C8A410E22B;
-	Mon, 23 Oct 2023 19:08:43 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id F0B9310E242;
+	Mon, 23 Oct 2023 20:22:01 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.115])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C0A2C10E22B
- for <intel-gfx@lists.freedesktop.org>; Mon, 23 Oct 2023 19:08:41 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.126])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C995A10E242
+ for <intel-gfx@lists.freedesktop.org>; Mon, 23 Oct 2023 20:21:59 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1698088121; x=1729624121;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=ISJDbCa9vGBfMU+E40CCONiiC/v+9Y98y0746sljYDc=;
- b=kOOWbe/XG8QiSDKndj+2LO6wag6T1SBEtbstZAlKwhUW2+PSXlDS3C4d
- 4khcAU/YN2e6yNS/BqNfvRJKaUGFGXW/vdAeidvl8A2FkBAOd++V8OtFT
- Gx70c4MVx1KPHQ6biQ2PGhCSOJw44EwLEnAQx5DIlSrJK4cWvYedKKC2w
- 1S4Gfna0FrGlwPB3oJQJ5ogJFTxDztLAcv/kf0lSYYYfEnCl3vsKdM0uk
- dNSXZZNzAKni5B6ww0aN5Unn0UnX8r5J63sElSlzSjSbb3EQ09MMhBK7w
- wEetHq+DF9X4oCh/GzFDKK0f5pKqPGsaG5W4nlsb1QJjJOmemq8tgntZb g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10872"; a="386718232"
-X-IronPort-AV: E=Sophos;i="6.03,246,1694761200"; d="scan'208";a="386718232"
-Received: from fmsmga006.fm.intel.com ([10.253.24.20])
- by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Oct 2023 12:08:41 -0700
+ t=1698092519; x=1729628519;
+ h=from:subject:date:message-id:mime-version:
+ content-transfer-encoding:to:cc;
+ bh=pwONa9I43X+woVlXzYwoEtokrW3yMakzuMTHeGtSvXU=;
+ b=YfeAn2/s8o9vJnW3S5S+y8fbBwUCldnDz+AH/d2H9QS+qQiMOpy2xAjt
+ BCnl0lWesN1zFC/94ijIitKIn8UzGs7+FZVBrrVTiOg+RtfWUd71nfhvo
+ zL5y4okKD2JZvGV5hFlYqMQBrpCDBXeyZXKKnopJKfRbb2qww2MogSmf9
+ VXUjcEpAgeS8p3z2LfitsldEsHxi1tar7Ca42YI0awBPjCEGhVl2cSUFh
+ DWSIVb+ZENSEZycOKcANYq2N/ZFXhdopIR7ShCBucbfraxNiplzjUp9uk
+ l8DqvuPgv3P4Zk1bF+D/ai+qYPitkO0AZh4xxDDymVZlaTIMn7wMIVxPy Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10872"; a="371989463"
+X-IronPort-AV: E=Sophos;i="6.03,246,1694761200"; d="scan'208";a="371989463"
+Received: from orsmga006.jf.intel.com ([10.7.209.51])
+ by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 23 Oct 2023 13:21:58 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10872"; a="1005415719"
-X-IronPort-AV: E=Sophos;i="6.03,246,1694761200"; d="scan'208";a="1005415719"
-Received: from ahajda-mobl.ger.corp.intel.com (HELO [10.213.1.152])
- ([10.213.1.152])
- by fmsmga006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Oct 2023 12:08:39 -0700
-Message-ID: <dbce7ad3-ca2c-40d4-9fbf-18784e14ed16@intel.com>
-Date: Mon, 23 Oct 2023 21:08:37 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Content-Language: en-US
-To: Nirmoy Das <nirmoy.das@linux.intel.com>, intel-gfx@lists.freedesktop.org
-References: <20231023-wabb-v3-0-1a4fbc632440@intel.com>
- <20231023-wabb-v3-3-1a4fbc632440@intel.com>
- <85836424-7364-e421-dce2-5d1914ac5904@linux.intel.com>
+X-IronPort-AV: E=McAfee;i="6600,9927,10872"; a="734796460"
+X-IronPort-AV: E=Sophos;i="6.03,246,1694761200"; d="scan'208";a="734796460"
+Received: from lab-ah.igk.intel.com ([10.102.138.202])
+ by orsmga006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 23 Oct 2023 13:21:56 -0700
 From: Andrzej Hajda <andrzej.hajda@intel.com>
-Organization: Intel Technology Poland sp. z o.o. - ul. Slowackiego 173, 80-298
- Gdansk - KRS 101882 - NIP 957-07-52-316
-In-Reply-To: <85836424-7364-e421-dce2-5d1914ac5904@linux.intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-Subject: Re: [Intel-gfx] [PATCH v3 3/4] drm/i915: Add WABB blit for
- Wa_16018031267 / Wa_16018063123
+Date: Mon, 23 Oct 2023 22:21:44 +0200
+Message-Id: <20231023-wabb-v4-0-f75dec962b7d@intel.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIANjVNmUC/1WOyw6CMBBFf8V07ZA+iAFX/odhMS2DrdFCpgQfh
+ H+3aEx0eeZx7p1FIg6UxH4zC6YppNDHDOV2I5zHeCIIbWahpTZKagk3tBaspdroEnc1ViKfDkx
+ duL81xyZzx/0VRs+Ef89Ky1rpQlVVlSegAGPLTzoXHs8tHkIc6VK4/roqLSYCyxidXxUtZ2EY1
+ o0Paez58a48mTXyG2A+7SYDEhSWnXW73LKUP+ZmWZYX5SJ4FfUAAAA=
+To: intel-gfx@lists.freedesktop.org
+X-Mailer: b4 0.12.3
+X-Developer-Signature: v=1; a=openpgp-sha256; l=2571;
+ i=andrzej.hajda@intel.com; h=from:subject:message-id;
+ bh=pwONa9I43X+woVlXzYwoEtokrW3yMakzuMTHeGtSvXU=;
+ b=owEB7QES/pANAwAKASNispPeEP3XAcsmYgBlNtXiMX91iTuCbNDEwdHB4cIMixRVH6sOa9T/WZ2g
+ 3GpQfdmJAbMEAAEKAB0WIQT8qEQxNN2/XeF/A00jYrKT3hD91wUCZTbV4gAKCRAjYrKT3hD91wFNDA
+ CbnNks29hWxhdIIt0q9BZgOxMoVmKBVTvrrCiqgf+bRsQFCI49o3qvAPeyQolz2aGhPkinKf7xfAOr
+ DGJf1CrAkLQIoxqaWnAJEVi6K8RZdEGWTS1/Cq2NCfLXeXHkzTrkJYL6X1+EheQN9BGrZ9grhnEDYd
+ SqUrJ7+Td6VUu5fDBwVzd4UoYlU3rID7ru6JaW9nWlWn6NXQLnudaaRwwiji6/7a0TC6obUMivuzNZ
+ C8w1RspE41wS6B8oHzaiBNMvUWy4J4nZ5v/QwNhy0OHuOEVoypJ3T7NVVZdw4fotYb2nST1YdrQnna
+ Xyb63Vv1D/QktcTwek5ffRjwIVp8m2vNqfOQQfGLNKqtGUYcj4hS0wh0sTCl58oh64b0KRQfPb4CJ6
+ Eg6xYyxNn5gJEYle8PpwYwDsWBFwJsfIBGADCtp2GD9ZjjppECAz1+iH6UbAkCJ4MmjWZ0HbhEUASN
+ DgpVc9mTKOzR/ieOzXPGCNc1tFdY/4wiu8iSRCGvGPaKI=
+X-Developer-Key: i=andrzej.hajda@intel.com; a=openpgp;
+ fpr=FCA8443134DDBF5DE17F034D2362B293DE10FDD7
+Subject: [Intel-gfx] [PATCH v4 0/4] Apply Wa_16018031267 / Wa_16018063123
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -66,389 +75,84 @@ List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
 Cc: Jonathan Cavitt <jonathan.cavitt@intel.com>,
+ Andrzej Hajda <andrzej.hajda@intel.com>,
+ Chris Wilson <chris.p.wilson@linux.intel.com>,
  Nirmoy Das <nirmoy.das@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On 23.10.2023 11:05, Nirmoy Das wrote:
-> 
-> On 10/23/2023 9:41 AM, Andrzej Hajda wrote:
->> From: Jonathan Cavitt <jonathan.cavitt@intel.com>
->>
->> Apply WABB blit for Wa_16018031267 / Wa_16018063123.
-> 
-> Should this be split into two patches, one that adds per_ctx wabb and 
-> another
-> 
-> where this WA is applied on top of per_ctx BB ?
+Hi all,
 
-This way some function, for example setup_per_ctx_bb, will be unused 
-after 1st patch.
-Maybe better would be to separate selftest part?
+This the series from Jonathan:
+[PATCH v12 0/4] Apply Wa_16018031267 / Wa_16018063123
+
+taken over by me.
+
+Changes in this version are described in the patches, in short:
+v2:
+- use real memory as WABB destination,
+- address CI compains - do not decrease vm.total,
+- minor reordering.
+v3:
+- fixed typos,
+- removed spare defs,
+- added tags
+v4:
+- removed NULL PTE patch,
+- separate selftest to separate patch,
+- use BB only on BCS0
 
 Regards
 Andrzej
 
+Andrzej Hajda (1):
+  drm/i915: Reserve some kernel space per vm
 
-> 
-> 
->> Additionally, update the lrc selftest to exercise the new
->> WABB changes.
->>
->> v3: drop unused enum definition
->>
->> Co-developed-by: Nirmoy Das <nirmoy.das@intel.com>
->> Signed-off-by: Jonathan Cavitt <jonathan.cavitt@intel.com>
->> Signed-off-by: Andrzej Hajda <andrzej.hajda@intel.com>
->> Reviewed-by: Jonathan Cavitt <jonathan.cavitt@intel.com>
-> 
-> Don't think Author can also review.
-> 
-> 
-> Regards,
-> 
-> Nirmoy
-> 
->> ---
->>   drivers/gpu/drm/i915/gt/intel_engine_regs.h |   3 +
->>   drivers/gpu/drm/i915/gt/intel_gt.h          |   4 ++
->>   drivers/gpu/drm/i915/gt/intel_lrc.c         | 100 
->> +++++++++++++++++++++++++++-
->>   drivers/gpu/drm/i915/gt/selftest_lrc.c      |  65 +++++++++++++-----
->>   4 files changed, 151 insertions(+), 21 deletions(-)
->>
->> diff --git a/drivers/gpu/drm/i915/gt/intel_engine_regs.h 
->> b/drivers/gpu/drm/i915/gt/intel_engine_regs.h
->> index fdd4ddd3a978a2..b8618ee3e3041a 100644
->> --- a/drivers/gpu/drm/i915/gt/intel_engine_regs.h
->> +++ b/drivers/gpu/drm/i915/gt/intel_engine_regs.h
->> @@ -118,6 +118,9 @@
->>   #define   CCID_EXTENDED_STATE_RESTORE        BIT(2)
->>   #define   CCID_EXTENDED_STATE_SAVE        BIT(3)
->>   #define RING_BB_PER_CTX_PTR(base)        _MMIO((base) + 0x1c0) /* 
->> gen8+ */
->> +#define   PER_CTX_BB_FORCE            BIT(2)
->> +#define   PER_CTX_BB_VALID            BIT(0)
->> +
->>   #define RING_INDIRECT_CTX(base)            _MMIO((base) + 0x1c4) /* 
->> gen8+ */
->>   #define RING_INDIRECT_CTX_OFFSET(base)        _MMIO((base) + 0x1c8) 
->> /* gen8+ */
->>   #define ECOSKPD(base)                _MMIO((base) + 0x1d0)
->> diff --git a/drivers/gpu/drm/i915/gt/intel_gt.h 
->> b/drivers/gpu/drm/i915/gt/intel_gt.h
->> index 970bedf6b78a7b..50989fc2b6debe 100644
->> --- a/drivers/gpu/drm/i915/gt/intel_gt.h
->> +++ b/drivers/gpu/drm/i915/gt/intel_gt.h
->> @@ -82,6 +82,10 @@ struct drm_printer;
->>             ##__VA_ARGS__);                    \
->>   } while (0)
->> +#define NEEDS_FASTCOLOR_BLT_WABB(engine) ( \
->> +    IS_GFX_GT_IP_RANGE(engine->gt, IP_VER(12, 55), IP_VER(12, 71)) && \
->> +    engine->class == COPY_ENGINE_CLASS)
->> +
->>   static inline bool gt_is_root(struct intel_gt *gt)
->>   {
->>       return !gt->info.id;
->> diff --git a/drivers/gpu/drm/i915/gt/intel_lrc.c 
->> b/drivers/gpu/drm/i915/gt/intel_lrc.c
->> index eaf66d90316655..96ef901113eae9 100644
->> --- a/drivers/gpu/drm/i915/gt/intel_lrc.c
->> +++ b/drivers/gpu/drm/i915/gt/intel_lrc.c
->> @@ -828,6 +828,18 @@ lrc_ring_indirect_offset_default(const struct 
->> intel_engine_cs *engine)
->>       return 0;
->>   }
->> +static void
->> +lrc_setup_bb_per_ctx(u32 *regs,
->> +             const struct intel_engine_cs *engine,
->> +             u32 ctx_bb_ggtt_addr)
->> +{
->> +    GEM_BUG_ON(lrc_ring_wa_bb_per_ctx(engine) == -1);
->> +    regs[lrc_ring_wa_bb_per_ctx(engine) + 1] =
->> +        ctx_bb_ggtt_addr |
->> +        PER_CTX_BB_FORCE |
->> +        PER_CTX_BB_VALID;
->> +}
->> +
->>   static void
->>   lrc_setup_indirect_ctx(u32 *regs,
->>                  const struct intel_engine_cs *engine,
->> @@ -1020,7 +1032,13 @@ static u32 context_wa_bb_offset(const struct 
->> intel_context *ce)
->>       return PAGE_SIZE * ce->wa_bb_page;
->>   }
->> -static u32 *context_indirect_bb(const struct intel_context *ce)
->> +/*
->> + * per_ctx below determines which WABB section is used.
->> + * When true, the function returns the location of the
->> + * PER_CTX_BB.  When false, the function returns the
->> + * location of the INDIRECT_CTX.
->> + */
->> +static u32 *context_wabb(const struct intel_context *ce, bool per_ctx)
->>   {
->>       void *ptr;
->> @@ -1029,6 +1047,7 @@ static u32 *context_indirect_bb(const struct 
->> intel_context *ce)
->>       ptr = ce->lrc_reg_state;
->>       ptr -= LRC_STATE_OFFSET; /* back to start of context image */
->>       ptr += context_wa_bb_offset(ce);
->> +    ptr += per_ctx ? PAGE_SIZE : 0;
->>       return ptr;
->>   }
->> @@ -1105,7 +1124,8 @@ __lrc_alloc_state(struct intel_context *ce, 
->> struct intel_engine_cs *engine)
->>       if (GRAPHICS_VER(engine->i915) >= 12) {
->>           ce->wa_bb_page = context_size / PAGE_SIZE;
->> -        context_size += PAGE_SIZE;
->> +        /* INDIRECT_CTX and PER_CTX_BB need separate pages. */
->> +        context_size += PAGE_SIZE * 2;
->>       }
->>       if (intel_context_is_parent(ce) && intel_engine_uses_guc(engine)) {
->> @@ -1407,12 +1427,85 @@ gen12_emit_indirect_ctx_xcs(const struct 
->> intel_context *ce, u32 *cs)
->>       return gen12_emit_aux_table_inv(ce->engine, cs);
->>   }
->> +static u32 *xehp_emit_fastcolor_blt_wabb(const struct intel_context 
->> *ce, u32 *cs)
->> +{
->> +    struct intel_gt *gt = ce->engine->gt;
->> +    int mocs = gt->mocs.uc_index << 1;
->> +
->> +    /**
->> +     * Wa_16018031267 / Wa_16018063123 requires that SW forces the
->> +     * main copy engine arbitration into round robin mode.  We
->> +     * additionally need to submit the following WABB blt command
->> +     * to produce 4 subblits with each subblit generating 0 byte
->> +     * write requests as WABB:
->> +     *
->> +     * XY_FASTCOLOR_BLT
->> +     *  BG0    -> 5100000E
->> +     *  BG1    -> 0000003F (Dest pitch)
->> +     *  BG2    -> 00000000 (X1, Y1) = (0, 0)
->> +     *  BG3    -> 00040001 (X2, Y2) = (1, 4)
->> +     *  BG4    -> scratch
->> +     *  BG5    -> scratch
->> +     *  BG6-12 -> 00000000
->> +     *  BG13   -> 20004004 (Surf. Width= 2,Surf. Height = 5 )
->> +     *  BG14   -> 00000010 (Qpitch = 4)
->> +     *  BG15   -> 00000000
->> +     */
->> +    *cs++ = XY_FAST_COLOR_BLT_CMD | (16 - 2);
->> +    *cs++ = FIELD_PREP(XY_FAST_COLOR_BLT_MOCS_MASK, mocs) | 0x3f;
->> +    *cs++ = 0;
->> +    *cs++ = 4 << 16 | 1;
->> +    *cs++ = lower_32_bits(i915_vma_offset(ce->vm->rsvd));
->> +    *cs++ = upper_32_bits(i915_vma_offset(ce->vm->rsvd));
->> +    *cs++ = 0;
->> +    *cs++ = 0;
->> +    *cs++ = 0;
->> +    *cs++ = 0;
->> +    *cs++ = 0;
->> +    *cs++ = 0;
->> +    *cs++ = 0;
->> +    *cs++ = 0x20004004;
->> +    *cs++ = 0x10;
->> +    *cs++ = 0;
->> +
->> +    return cs;
->> +}
->> +
->> +static u32 *
->> +xehp_emit_per_ctx_bb(const struct intel_context *ce, u32 *cs)
->> +{
->> +    /* Wa_16018031267, Wa_16018063123 */
->> +    if (NEEDS_FASTCOLOR_BLT_WABB(ce->engine))
->> +        cs = xehp_emit_fastcolor_blt_wabb(ce, cs);
->> +
->> +    return cs;
->> +}
->> +
->> +static void
->> +setup_per_ctx_bb(const struct intel_context *ce,
->> +         const struct intel_engine_cs *engine,
->> +         u32 *(*emit)(const struct intel_context *, u32 *))
->> +{
->> +    /* Place PER_CTX_BB on next page after INDIRECT_CTX */
->> +    u32 * const start = context_wabb(ce, true);
->> +    u32 *cs;
->> +
->> +    cs = emit(ce, start);
->> +
->> +    /* PER_CTX_BB must manually terminate */
->> +    *cs++ = MI_BATCH_BUFFER_END;
->> +
->> +    GEM_BUG_ON(cs - start > I915_GTT_PAGE_SIZE / sizeof(*cs));
->> +    lrc_setup_bb_per_ctx(ce->lrc_reg_state, engine,
->> +                 lrc_indirect_bb(ce) + PAGE_SIZE);
->> +}
->> +
->>   static void
->>   setup_indirect_ctx_bb(const struct intel_context *ce,
->>                 const struct intel_engine_cs *engine,
->>                 u32 *(*emit)(const struct intel_context *, u32 *))
->>   {
->> -    u32 * const start = context_indirect_bb(ce);
->> +    u32 * const start = context_wabb(ce, false);
->>       u32 *cs;
->>       cs = emit(ce, start);
->> @@ -1511,6 +1604,7 @@ u32 lrc_update_regs(const struct intel_context *ce,
->>           /* Mutually exclusive wrt to global indirect bb */
->>           GEM_BUG_ON(engine->wa_ctx.indirect_ctx.size);
->>           setup_indirect_ctx_bb(ce, engine, fn);
->> +        setup_per_ctx_bb(ce, engine, xehp_emit_per_ctx_bb);
->>       }
->>       return lrc_descriptor(ce) | CTX_DESC_FORCE_RESTORE;
->> diff --git a/drivers/gpu/drm/i915/gt/selftest_lrc.c 
->> b/drivers/gpu/drm/i915/gt/selftest_lrc.c
->> index 5f826b6dcf5d6f..e17b8777d21dc9 100644
->> --- a/drivers/gpu/drm/i915/gt/selftest_lrc.c
->> +++ b/drivers/gpu/drm/i915/gt/selftest_lrc.c
->> @@ -1555,7 +1555,7 @@ static int live_lrc_isolation(void *arg)
->>       return err;
->>   }
->> -static int indirect_ctx_submit_req(struct intel_context *ce)
->> +static int wabb_ctx_submit_req(struct intel_context *ce)
->>   {
->>       struct i915_request *rq;
->>       int err = 0;
->> @@ -1579,7 +1579,8 @@ static int indirect_ctx_submit_req(struct 
->> intel_context *ce)
->>   #define CTX_BB_CANARY_INDEX  (CTX_BB_CANARY_OFFSET / sizeof(u32))
->>   static u32 *
->> -emit_indirect_ctx_bb_canary(const struct intel_context *ce, u32 *cs)
->> +emit_wabb_ctx_canary(const struct intel_context *ce,
->> +             u32 *cs, bool per_ctx)
->>   {
->>       *cs++ = MI_STORE_REGISTER_MEM_GEN8 |
->>           MI_SRM_LRM_GLOBAL_GTT |
->> @@ -1587,26 +1588,43 @@ emit_indirect_ctx_bb_canary(const struct 
->> intel_context *ce, u32 *cs)
->>       *cs++ = i915_mmio_reg_offset(RING_START(0));
->>       *cs++ = i915_ggtt_offset(ce->state) +
->>           context_wa_bb_offset(ce) +
->> -        CTX_BB_CANARY_OFFSET;
->> +        CTX_BB_CANARY_OFFSET +
->> +        (per_ctx ? PAGE_SIZE : 0);
->>       *cs++ = 0;
->>       return cs;
->>   }
->> +static u32 *
->> +emit_indirect_ctx_bb_canary(const struct intel_context *ce, u32 *cs)
->> +{
->> +    return emit_wabb_ctx_canary(ce, cs, false);
->> +}
->> +
->> +static u32 *
->> +emit_per_ctx_bb_canary(const struct intel_context *ce, u32 *cs)
->> +{
->> +    return emit_wabb_ctx_canary(ce, cs, true);
->> +}
->> +
->>   static void
->> -indirect_ctx_bb_setup(struct intel_context *ce)
->> +wabb_ctx_setup(struct intel_context *ce, bool per_ctx)
->>   {
->> -    u32 *cs = context_indirect_bb(ce);
->> +    u32 *cs = context_wabb(ce, per_ctx);
->>       cs[CTX_BB_CANARY_INDEX] = 0xdeadf00d;
->> -    setup_indirect_ctx_bb(ce, ce->engine, emit_indirect_ctx_bb_canary);
->> +    if (per_ctx)
->> +        setup_per_ctx_bb(ce, ce->engine, emit_per_ctx_bb_canary);
->> +    else
->> +        setup_indirect_ctx_bb(ce, ce->engine, 
->> emit_indirect_ctx_bb_canary);
->>   }
->> -static bool check_ring_start(struct intel_context *ce)
->> +static bool check_ring_start(struct intel_context *ce, bool per_ctx)
->>   {
->>       const u32 * const ctx_bb = (void *)(ce->lrc_reg_state) -
->> -        LRC_STATE_OFFSET + context_wa_bb_offset(ce);
->> +        LRC_STATE_OFFSET + context_wa_bb_offset(ce) +
->> +        (per_ctx ? PAGE_SIZE : 0);
->>       if (ctx_bb[CTX_BB_CANARY_INDEX] == 
->> ce->lrc_reg_state[CTX_RING_START])
->>           return true;
->> @@ -1618,21 +1636,21 @@ static bool check_ring_start(struct 
->> intel_context *ce)
->>       return false;
->>   }
->> -static int indirect_ctx_bb_check(struct intel_context *ce)
->> +static int wabb_ctx_check(struct intel_context *ce, bool per_ctx)
->>   {
->>       int err;
->> -    err = indirect_ctx_submit_req(ce);
->> +    err = wabb_ctx_submit_req(ce);
->>       if (err)
->>           return err;
->> -    if (!check_ring_start(ce))
->> +    if (!check_ring_start(ce, per_ctx))
->>           return -EINVAL;
->>       return 0;
->>   }
->> -static int __live_lrc_indirect_ctx_bb(struct intel_engine_cs *engine)
->> +static int __lrc_wabb_ctx(struct intel_engine_cs *engine, bool per_ctx)
->>   {
->>       struct intel_context *a, *b;
->>       int err;
->> @@ -1667,14 +1685,14 @@ static int __live_lrc_indirect_ctx_bb(struct 
->> intel_engine_cs *engine)
->>        * As ring start is restored apriori of starting the indirect 
->> ctx bb and
->>        * as it will be different for each context, it fits to this 
->> purpose.
->>        */
->> -    indirect_ctx_bb_setup(a);
->> -    indirect_ctx_bb_setup(b);
->> +    wabb_ctx_setup(a, per_ctx);
->> +    wabb_ctx_setup(b, per_ctx);
->> -    err = indirect_ctx_bb_check(a);
->> +    err = wabb_ctx_check(a, per_ctx);
->>       if (err)
->>           goto unpin_b;
->> -    err = indirect_ctx_bb_check(b);
->> +    err = wabb_ctx_check(b, per_ctx);
->>   unpin_b:
->>       intel_context_unpin(b);
->> @@ -1688,7 +1706,7 @@ static int __live_lrc_indirect_ctx_bb(struct 
->> intel_engine_cs *engine)
->>       return err;
->>   }
->> -static int live_lrc_indirect_ctx_bb(void *arg)
->> +static int lrc_wabb_ctx(void *arg, bool per_ctx)
->>   {
->>       struct intel_gt *gt = arg;
->>       struct intel_engine_cs *engine;
->> @@ -1697,7 +1715,7 @@ static int live_lrc_indirect_ctx_bb(void *arg)
->>       for_each_engine(engine, gt, id) {
->>           intel_engine_pm_get(engine);
->> -        err = __live_lrc_indirect_ctx_bb(engine);
->> +        err = __lrc_wabb_ctx(engine, per_ctx);
->>           intel_engine_pm_put(engine);
->>           if (igt_flush_test(gt->i915))
->> @@ -1710,6 +1728,16 @@ static int live_lrc_indirect_ctx_bb(void *arg)
->>       return err;
->>   }
->> +static int live_lrc_indirect_ctx_bb(void *arg)
->> +{
->> +    return lrc_wabb_ctx(arg, false);
->> +}
->> +
->> +static int live_lrc_per_ctx_bb(void *arg)
->> +{
->> +    return lrc_wabb_ctx(arg, true);
->> +}
->> +
->>   static void garbage_reset(struct intel_engine_cs *engine,
->>                 struct i915_request *rq)
->>   {
->> @@ -1947,6 +1975,7 @@ int intel_lrc_live_selftests(struct 
->> drm_i915_private *i915)
->>           SUBTEST(live_lrc_garbage),
->>           SUBTEST(live_pphwsp_runtime),
->>           SUBTEST(live_lrc_indirect_ctx_bb),
->> +        SUBTEST(live_lrc_per_ctx_bb),
->>       };
->>       if (!HAS_LOGICAL_RING_CONTEXTS(i915))
->>
+Jonathan Cavitt (3):
+  drm/i915: Enable NULL PTE support for vm scratch
+  drm/i915: Add WABB blit for Wa_16018031267 / Wa_16018063123
+  drm/i915: Set copy engine arbitration for Wa_16018031267 /
+    Wa_16018063123
+
+.../drm/i915/gem/selftests/i915_gem_context.c |   6 ++
+ drivers/gpu/drm/i915/gt/gen8_ppgtt.c          |  41 +++++++
+ drivers/gpu/drm/i915/gt/intel_engine_regs.h   |   6 ++
+ drivers/gpu/drm/i915/gt/intel_gt.h            |   4 +
+ drivers/gpu/drm/i915/gt/intel_gt_types.h      |   2 +
+ drivers/gpu/drm/i915/gt/intel_gtt.h           |   2 +
+ drivers/gpu/drm/i915/gt/intel_lrc.c           | 100 +++++++++++++++++-
+ drivers/gpu/drm/i915/gt/intel_workarounds.c   |   5 +
+ drivers/gpu/drm/i915/gt/selftest_lrc.c        |  65 ++++++++----
+ drivers/gpu/drm/i915/i915_drv.h               |   2 +
+ drivers/gpu/drm/i915/i915_pci.c               |   2 +
+ drivers/gpu/drm/i915/intel_device_info.h      |   1 +
+ 12 files changed, 215 insertions(+), 21 deletions(-)
+
+---
+- Link to v3: https://lore.kernel.org/r/20231023-wabb-v3-0-1a4fbc632440@intel.com
+
+---
+Andrzej Hajda (3):
+      drm/i915: Reserve some kernel space per vm
+      drm/i915: Add WABB blit for Wa_16018031267 / Wa_16018063123
+      drm/i915/gt: add selftest to exercise WABB
+
+Jonathan Cavitt (1):
+      drm/i915: Set copy engine arbitration for Wa_16018031267 / Wa_16018063123
+
+ drivers/gpu/drm/i915/gt/gen8_ppgtt.c        |  38 +++++++++++
+ drivers/gpu/drm/i915/gt/intel_engine_regs.h |   6 ++
+ drivers/gpu/drm/i915/gt/intel_gt.h          |   4 ++
+ drivers/gpu/drm/i915/gt/intel_gtt.h         |   1 +
+ drivers/gpu/drm/i915/gt/intel_lrc.c         | 100 +++++++++++++++++++++++++++-
+ drivers/gpu/drm/i915/gt/intel_workarounds.c |   5 ++
+ drivers/gpu/drm/i915/gt/selftest_lrc.c      |  65 +++++++++++++-----
+ 7 files changed, 198 insertions(+), 21 deletions(-)
+---
+base-commit: 201c8a7bd1f3f415920a2df4b8a8817e973f42fe
+change-id: 20231020-wabb-bbe9324a69a8
+
+Best regards,
+-- 
+Andrzej Hajda <andrzej.hajda@intel.com>
 
