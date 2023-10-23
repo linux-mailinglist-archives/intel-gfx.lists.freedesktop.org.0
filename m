@@ -1,70 +1,40 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id AC3187D3054
-	for <lists+intel-gfx@lfdr.de>; Mon, 23 Oct 2023 12:48:19 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2DE6F7D3068
+	for <lists+intel-gfx@lfdr.de>; Mon, 23 Oct 2023 12:53:13 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 95E7810E0C1;
-	Mon, 23 Oct 2023 10:48:16 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 317C710E12F;
+	Mon, 23 Oct 2023 10:53:10 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.126])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 942D010E0C1;
- Mon, 23 Oct 2023 10:48:14 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1698058094; x=1729594094;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=j6gkewFE2ehbSRRm8yxR5V6tYph8e2bExlA+57BfIvw=;
- b=lmoNGG2lTcMyOByyGvYHxbKmxR9sbdx4d3rO/y7N9DkC4nXaT51gyiq9
- CWmBA/JO/HOL1qklXMIcf4UwdYmPuNghfaUWYifWGahdKj2zeV6EuTO5J
- 8X2eQoiXd+MIi38ScT8zVvyKsoUMHXoVn8pQZE+gTZJniXe8o1POHw8n4
- OFrxReqV/MSYOiKdT2DWCcekLmXp5nvW5x5px2HWXH8cBZd9fj5kJUes6
- oBjOFSuHqMmvht2AFOVGLPQQGqavF9X6nvaB8OjO+0lJzgJpN+WxxPx/2
- YY/MQcA+v0Al2Tj00JWr3C3Ks6PSoAzj3+QfF2mTauTJZCJnoxjiiwMFJ g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10871"; a="371880228"
-X-IronPort-AV: E=Sophos;i="6.03,244,1694761200"; d="scan'208";a="371880228"
-Received: from fmsmga008.fm.intel.com ([10.253.24.58])
- by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Oct 2023 03:47:58 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10871"; a="823925172"
-X-IronPort-AV: E=Sophos;i="6.03,244,1694761200"; d="scan'208";a="823925172"
-Received: from evlad-mobl.ger.corp.intel.com (HELO localhost) ([10.252.47.180])
- by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Oct 2023 03:47:47 -0700
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Sean Young <sean@mess.org>, linux-media@vger.kernel.org,
- linux-pwm@vger.kernel.org, Ivaylo Dimitrov <ivo.g.dimitrov.75@gmail.com>,
- Thierry Reding <thierry.reding@gmail.com>, Uwe =?utf-8?Q?Kleine-K=C3=B6ni?=
- =?utf-8?Q?g?=
- <u.kleine-koenig@pengutronix.de>, Jonathan Corbet <corbet@lwn.net>, Joonas
- Lahtinen <joonas.lahtinen@linux.intel.com>, Rodrigo Vivi
- <rodrigo.vivi@intel.com>, Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
- David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>, Javier
- Martinez Canillas <javierm@redhat.com>, Jean Delvare <jdelvare@suse.com>,
- Guenter Roeck <linux@roeck-us.net>, Support Opensource
- <support.opensource@diasemi.com>, Dmitry Torokhov
- <dmitry.torokhov@gmail.com>, Pavel Machek <pavel@ucw.cz>, Lee Jones
- <lee@kernel.org>, Sean Young <sean@mess.org>, Mauro Carvalho Chehab
- <mchehab@kernel.org>, Hans de Goede <hdegoede@redhat.com>, Ilpo
- =?utf-8?Q?J=C3=A4rvinen?=
- <ilpo.jarvinen@linux.intel.com>, Mark Gross <markgross@kernel.org>, Liam
- Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, Daniel
- Thompson <daniel.thompson@linaro.org>, Jingoo Han <jingoohan1@gmail.com>,
- Helge Deller <deller@gmx.de>
-In-Reply-To: <a7fcd19938d5422abc59c968ff7b3d5c275577ed.1697534024.git.sean@mess.org>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <cover.1697534024.git.sean@mess.org>
- <a7fcd19938d5422abc59c968ff7b3d5c275577ed.1697534024.git.sean@mess.org>
-Date: Mon, 23 Oct 2023 13:47:44 +0300
-Message-ID: <87y1ftboof.fsf@intel.com>
+Received: from coelho.fi (paleale.coelho.fi [176.9.41.70])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0AC0610E12F
+ for <intel-gfx@lists.freedesktop.org>; Mon, 23 Oct 2023 10:53:08 +0000 (UTC)
+Received: from 91-155-254-243.elisa-laajakaista.fi ([91.155.254.243]
+ helo=pinhengc-mobl2.amr.corp.intel.com)
+ by coelho.fi with esmtpsa (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+ (Exim 4.97-RC1) (envelope-from <luca@coelho.fi>)
+ id 1qusYS-000000008On-1BMS; Mon, 23 Oct 2023 13:53:05 +0300
+Message-ID: <e3e3a4355114863b25dacf3f35aa66c3b65ede90.camel@coelho.fi>
+From: Luca Coelho <luca@coelho.fi>
+To: Jouni =?ISO-8859-1?Q?H=F6gander?= <jouni.hogander@intel.com>, 
+ intel-gfx@lists.freedesktop.org
+Date: Mon, 23 Oct 2023 13:53:03 +0300
+In-Reply-To: <20231016111658.3432581-4-jouni.hogander@intel.com>
+References: <20231016111658.3432581-1-jouni.hogander@intel.com>
+ <20231016111658.3432581-4-jouni.hogander@intel.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.46.4-2 
 MIME-Version: 1.0
-Content-Type: text/plain
-Subject: Re: [Intel-gfx] [PATCH v3 1/3] pwm: make it possible to apply pwm
- changes in atomic context
+X-Spam-Checker-Version: SpamAssassin 4.0.0 (2022-12-13) on farmhouse.coelho.fi
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.9 required=5.0 tests=ALL_TRUSTED,BAYES_00,
+ TVD_RCVD_IP autolearn=ham autolearn_force=no version=4.0.0
+Subject: Re: [Intel-gfx] [PATCH v2 03/24] drm/i915/display: Move enable_fbc
+ module parameter under display
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -77,53 +47,103 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: linux-hwmon@vger.kernel.org, linux-fbdev@vger.kernel.org,
- linux-doc@vger.kernel.org, intel-gfx@lists.freedesktop.org,
- linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
- platform-driver-x86@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-input@vger.kernel.org, linux-leds@vger.kernel.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, 17 Oct 2023, Sean Young <sean@mess.org> wrote:
-> diff --git a/drivers/gpu/drm/i915/display/intel_backlight.c b/drivers/gpu/drm/i915/display/intel_backlight.c
-> index 2e8f17c045222..cf516190cde8f 100644
-> --- a/drivers/gpu/drm/i915/display/intel_backlight.c
-> +++ b/drivers/gpu/drm/i915/display/intel_backlight.c
-> @@ -274,7 +274,7 @@ static void ext_pwm_set_backlight(const struct drm_connector_state *conn_state,
->  	struct intel_panel *panel = &to_intel_connector(conn_state->connector)->panel;
->  
->  	pwm_set_relative_duty_cycle(&panel->backlight.pwm_state, level, 100);
-> -	pwm_apply_state(panel->backlight.pwm, &panel->backlight.pwm_state);
-> +	pwm_apply_cansleep(panel->backlight.pwm, &panel->backlight.pwm_state);
->  }
->  
->  static void
-> @@ -427,7 +427,7 @@ static void ext_pwm_disable_backlight(const struct drm_connector_state *old_conn
->  	intel_backlight_set_pwm_level(old_conn_state, level);
->  
->  	panel->backlight.pwm_state.enabled = false;
-> -	pwm_apply_state(panel->backlight.pwm, &panel->backlight.pwm_state);
-> +	pwm_apply_cansleep(panel->backlight.pwm, &panel->backlight.pwm_state);
->  }
->  
->  void intel_backlight_disable(const struct drm_connector_state *old_conn_state)
-> @@ -749,7 +749,7 @@ static void ext_pwm_enable_backlight(const struct intel_crtc_state *crtc_state,
->  
->  	pwm_set_relative_duty_cycle(&panel->backlight.pwm_state, level, 100);
->  	panel->backlight.pwm_state.enabled = true;
-> -	pwm_apply_state(panel->backlight.pwm, &panel->backlight.pwm_state);
-> +	pwm_apply_cansleep(panel->backlight.pwm, &panel->backlight.pwm_state);
->  }
->  
->  static void __intel_backlight_enable(const struct intel_crtc_state *crtc_state,
+On Mon, 2023-10-16 at 14:16 +0300, Jouni H=C3=B6gander wrote:
+> Signed-off-by: Jouni H=C3=B6gander <jouni.hogander@intel.com>
+> ---
+>  drivers/gpu/drm/i915/display/i9xx_wm.c              |  2 +-
+>  drivers/gpu/drm/i915/display/intel_display_params.c |  4 ++++
+>  drivers/gpu/drm/i915/display/intel_display_params.h |  3 ++-
+>  drivers/gpu/drm/i915/display/intel_fbc.c            | 10 +++++-----
+>  drivers/gpu/drm/i915/i915_params.c                  |  4 ----
+>  drivers/gpu/drm/i915/i915_params.h                  |  1 -
+>  6 files changed, 12 insertions(+), 12 deletions(-)
+>=20
+> diff --git a/drivers/gpu/drm/i915/display/i9xx_wm.c b/drivers/gpu/drm/i91=
+5/display/i9xx_wm.c
+> index af0c79a4c9a4..b37c0d02d500 100644
+> --- a/drivers/gpu/drm/i915/display/i9xx_wm.c
+> +++ b/drivers/gpu/drm/i915/display/i9xx_wm.c
+> @@ -2993,7 +2993,7 @@ static void ilk_wm_merge(struct drm_i915_private *d=
+ev_priv,
+> =20
+>  	/* ILK: LP2+ must be disabled when FBC WM is disabled but FBC enabled *=
+/
+>  	if (DISPLAY_VER(dev_priv) =3D=3D 5 && HAS_FBC(dev_priv) &&
+> -	    dev_priv->params.enable_fbc && !merged->fbc_wm_enabled) {
+> +	    dev_priv->display.params.enable_fbc && !merged->fbc_wm_enabled) {
+>  		for (level =3D 2; level < num_levels; level++) {
+>  			struct intel_wm_level *wm =3D &merged->wm[level];
+> =20
+> diff --git a/drivers/gpu/drm/i915/display/intel_display_params.c b/driver=
+s/gpu/drm/i915/display/intel_display_params.c
+> index 11ee73a98b5b..330613cd64db 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display_params.c
+> +++ b/drivers/gpu/drm/i915/display/intel_display_params.c
+> @@ -27,6 +27,10 @@ static struct intel_display_params intel_display_modpa=
+rams __read_mostly =3D {
+>   * debugfs mode to 0.
+>   */
+> =20
+> +intel_display_param_named_unsafe(enable_fbc, int, 0400,
+> +	"Enable frame buffer compression for power savings "
+> +	"(default: -1 (use per-chip default))");
+> +
+>  __maybe_unused
+>  static void _param_print_bool(struct drm_printer *p, const char *driver_=
+name,
+>  			      const char *name, bool val)
+> diff --git a/drivers/gpu/drm/i915/display/intel_display_params.h b/driver=
+s/gpu/drm/i915/display/intel_display_params.h
+> index a0fb3e1aa2f5..f1bdf2c6e5cd 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display_params.h
+> +++ b/drivers/gpu/drm/i915/display/intel_display_params.h
+> @@ -21,7 +21,8 @@ struct drm_i915_private;
+>   * mode: debugfs file permissions, one of {0400, 0600, 0}, use 0 to not =
+create
+>   *       debugfs file
+>   */
+> -#define INTEL_DISPLAY_PARAMS_FOR_EACH(param)
+> +#define INTEL_DISPLAY_PARAMS_FOR_EACH(param) \
+> +	param(int, enable_fbc, -1, 0600)     \
+> =20
+>  #define MEMBER(T, member, ...) T member;
+>  struct intel_display_params {
+> diff --git a/drivers/gpu/drm/i915/display/intel_fbc.c b/drivers/gpu/drm/i=
+915/display/intel_fbc.c
+> index 4820d21cc942..bde12fe62275 100644
+> --- a/drivers/gpu/drm/i915/display/intel_fbc.c
+> +++ b/drivers/gpu/drm/i915/display/intel_fbc.c
+> @@ -1174,7 +1174,7 @@ static int intel_fbc_check_plane(struct intel_atomi=
+c_state *state,
+>  		return 0;
+>  	}
+> =20
+> -	if (!i915->params.enable_fbc) {
+> +	if (!i915->display.params.enable_fbc) {
+>  		plane_state->no_fbc_reason =3D "disabled per module param or by defaul=
+t";
+>  		return 0;
+>  	}
+> @@ -1751,8 +1751,8 @@ void intel_fbc_handle_fifo_underrun_irq(struct drm_=
+i915_private *i915)
+>   */
+>  static int intel_sanitize_fbc_option(struct drm_i915_private *i915)
+>  {
+> -	if (i915->params.enable_fbc >=3D 0)
+> -		return !!i915->params.enable_fbc;
+> +	if (i915->display.params.enable_fbc >=3D 0)
+> +		return !!i915->display.params.enable_fbc;
 
-The i915 parts are
+It was like this before your change, but just as a side-comment, it
+would e simpler to just return true here, because !!enable_fbc will
+always be true here.
 
-Acked-by: Jani Nikula <jani.nikula@intel.com>
+Reviewed-by: Luca Coelho <luciano.coelho@intel.com>
 
-for merging via whichever tree you find most convenient, and with
-whatever naming you end up with.
+--
+Cheers,
+Luca.
 
--- 
-Jani Nikula, Intel
