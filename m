@@ -2,54 +2,39 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id B728D7D372D
-	for <lists+intel-gfx@lfdr.de>; Mon, 23 Oct 2023 14:49:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id ED7B97D377E
+	for <lists+intel-gfx@lfdr.de>; Mon, 23 Oct 2023 15:13:57 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7E7B710E0E7;
-	Mon, 23 Oct 2023 12:49:52 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0304910E0C3;
+	Mon, 23 Oct 2023 13:13:56 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.120])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E6F2B10E0E7;
- Mon, 23 Oct 2023 12:49:49 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1698065389; x=1729601389;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=/06vn1FESH5ehRnRfIJp0ycCvwF0E4N5zV1BYkmcMd4=;
- b=CJJVLVyjaTpj4HilA1vY97URbnmZ4YaCpmzNmvqBHGPtzwFbJ1DQGa9v
- jX9bBWiZmUhsM90fNB+SgcutaUeNU59GNtR/0OMDSCTPP1MlY/+8xxB8W
- 9/1O3tgjK7lnr+peywHmLoAn5Kcw+QyJekhc4qMKwNrusHcwlGCzdB3t7
- D6rvcTlqI/TN2aRNtUs8GgVvA5ZWrfMIZuxpv0eEo761LlahrGNVfJyc+
- N14GwjeXOzXsWsgiZcPRDhvwz/D+OT6r4SCMb5wIy7QSAGHBX0BJhJQMa
- byeCrrqFohpVz42TEy/x/xfPwj4bTKuesIkyZBjHa0OyVCU3dEfkqhqrR w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10872"; a="385715731"
-X-IronPort-AV: E=Sophos;i="6.03,244,1694761200"; d="scan'208";a="385715731"
-Received: from fmsmga007.fm.intel.com ([10.253.24.52])
- by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Oct 2023 05:49:49 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10872"; a="761731237"
-X-IronPort-AV: E=Sophos;i="6.03,244,1694761200"; d="scan'208";a="761731237"
-Received: from evlad-mobl.ger.corp.intel.com (HELO localhost) ([10.252.47.180])
- by fmsmga007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Oct 2023 05:49:44 -0700
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Arnd Bergmann <arnd@kernel.org>, Joonas Lahtinen
- <joonas.lahtinen@linux.intel.com>, Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>, David Airlie
- <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>, Badal Nilawar
- <badal.nilawar@intel.com>, Ashutosh Dixit <ashutosh.dixit@intel.com>
-In-Reply-To: <20231016201012.1022812-1-arnd@kernel.org>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20231016201012.1022812-1-arnd@kernel.org>
-Date: Mon, 23 Oct 2023 15:49:41 +0300
-Message-ID: <87edhlbj16.fsf@intel.com>
+Received: from coelho.fi (paleale.coelho.fi [176.9.41.70])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2595A10E0C3
+ for <intel-gfx@lists.freedesktop.org>; Mon, 23 Oct 2023 13:13:53 +0000 (UTC)
+Received: from 91-155-254-243.elisa-laajakaista.fi ([91.155.254.243]
+ helo=pinhengc-mobl2.amr.corp.intel.com)
+ by coelho.fi with esmtpsa (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+ (Exim 4.97-RC1) (envelope-from <luca@coelho.fi>)
+ id 1quukf-000000008WE-0pYw; Mon, 23 Oct 2023 16:13:50 +0300
+Message-ID: <dc8eb76fc7c8e7298ffbf15533fed77ac06c509a.camel@coelho.fi>
+From: Luca Coelho <luca@coelho.fi>
+To: Jouni =?ISO-8859-1?Q?H=F6gander?= <jouni.hogander@intel.com>, 
+ intel-gfx@lists.freedesktop.org
+Date: Mon, 23 Oct 2023 16:13:48 +0300
+In-Reply-To: <20231016111658.3432581-7-jouni.hogander@intel.com>
+References: <20231016111658.3432581-1-jouni.hogander@intel.com>
+ <20231016111658.3432581-7-jouni.hogander@intel.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.46.4-2 
 MIME-Version: 1.0
-Content-Type: text/plain
-Subject: Re: [Intel-gfx] [PATCH] drm/i915/mtl: avoid stringop-overflow
- warning
+X-Spam-Checker-Version: SpamAssassin 4.0.0 (2022-12-13) on farmhouse.coelho.fi
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.9 required=5.0 tests=ALL_TRUSTED,BAYES_00,
+ TVD_RCVD_IP autolearn=ham autolearn_force=no version=4.0.0
+Subject: Re: [Intel-gfx] [PATCH v2 06/24] drm/i915/display: Move
+ lvds_channel_mode module parameter under display
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -62,84 +47,58 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Arnd Bergmann <arnd@arndb.de>, intel-gfx@lists.freedesktop.org,
- linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
- Matt Roper <matthew.d.roper@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, 16 Oct 2023, Arnd Bergmann <arnd@kernel.org> wrote:
-> From: Arnd Bergmann <arnd@arndb.de>
->
-> The newly added memset() causes a warning for some reason I could not figure out:
->
-> In file included from arch/x86/include/asm/string.h:3,
->                  from drivers/gpu/drm/i915/gt/intel_rc6.c:6:
-> In function 'rc6_res_reg_init',
->     inlined from 'intel_rc6_init' at drivers/gpu/drm/i915/gt/intel_rc6.c:610:2:
-> arch/x86/include/asm/string_32.h:195:29: error: '__builtin_memset' writing 16 bytes into a region of size 0 overflows the destination [-Werror=stringop-overflow=]
->   195 | #define memset(s, c, count) __builtin_memset(s, c, count)
->       |                             ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-> drivers/gpu/drm/i915/gt/intel_rc6.c:584:9: note: in expansion of macro 'memset'
->   584 |         memset(rc6->res_reg, INVALID_MMIO_REG.reg, sizeof(rc6->res_reg));
->       |         ^~~~~~
-> In function 'intel_rc6_init':
->
-> Change it to an normal initializer and an added memcpy() that does not have
-> this problem.
->
-> Fixes: 4bb9ca7ee0745 ("drm/i915/mtl: C6 residency and C state type for MTL SAMedia")
-> Signed-off-by: Arnd Bergmann <arnd@arndb.de>
+On Mon, 2023-10-16 at 14:16 +0300, Jouni H=C3=B6gander wrote:
+> Signed-off-by: Jouni H=C3=B6gander <jouni.hogander@intel.com>
 > ---
->  drivers/gpu/drm/i915/gt/intel_rc6.c | 16 ++++++++++------
->  1 file changed, 10 insertions(+), 6 deletions(-)
->
-> diff --git a/drivers/gpu/drm/i915/gt/intel_rc6.c b/drivers/gpu/drm/i915/gt/intel_rc6.c
-> index 8b67abd720be8..7090e4be29cb6 100644
-> --- a/drivers/gpu/drm/i915/gt/intel_rc6.c
-> +++ b/drivers/gpu/drm/i915/gt/intel_rc6.c
-> @@ -581,19 +581,23 @@ static void __intel_rc6_disable(struct intel_rc6 *rc6)
->  
->  static void rc6_res_reg_init(struct intel_rc6 *rc6)
->  {
-> -	memset(rc6->res_reg, INVALID_MMIO_REG.reg, sizeof(rc6->res_reg));
-
-That's just bollocks. memset() is byte granularity, while
-INVALID_MMIO_REG.reg is u32. If the value was anything other than 0,
-this would break.
-
-And you're not supposed to look at the guts of i915_reg_t to begin with,
-that's why it's a typedef. Basically any code that accesses the members
-of i915_reg_t outside of its implementation are doing it wrong.
-
-Reviewed-by: Jani Nikula <jani.nikula@intel.com>
-
-
-> +	i915_reg_t res_reg[INTEL_RC6_RES_MAX] = {
-> +		[0 ... INTEL_RC6_RES_MAX - 1] = INVALID_MMIO_REG,
-> +	};
->  
->  	switch (rc6_to_gt(rc6)->type) {
->  	case GT_MEDIA:
-> -		rc6->res_reg[INTEL_RC6_RES_RC6] = MTL_MEDIA_MC6;
-> +		res_reg[INTEL_RC6_RES_RC6] = MTL_MEDIA_MC6;
->  		break;
->  	default:
-> -		rc6->res_reg[INTEL_RC6_RES_RC6_LOCKED] = GEN6_GT_GFX_RC6_LOCKED;
-> -		rc6->res_reg[INTEL_RC6_RES_RC6] = GEN6_GT_GFX_RC6;
-> -		rc6->res_reg[INTEL_RC6_RES_RC6p] = GEN6_GT_GFX_RC6p;
-> -		rc6->res_reg[INTEL_RC6_RES_RC6pp] = GEN6_GT_GFX_RC6pp;
-> +		res_reg[INTEL_RC6_RES_RC6_LOCKED] = GEN6_GT_GFX_RC6_LOCKED;
-> +		res_reg[INTEL_RC6_RES_RC6] = GEN6_GT_GFX_RC6;
-> +		res_reg[INTEL_RC6_RES_RC6p] = GEN6_GT_GFX_RC6p;
-> +		res_reg[INTEL_RC6_RES_RC6pp] = GEN6_GT_GFX_RC6pp;
->  		break;
->  	}
+>  drivers/gpu/drm/i915/display/intel_display_params.c | 4 ++++
+>  drivers/gpu/drm/i915/display/intel_display_params.h | 3 ++-
+>  drivers/gpu/drm/i915/display/intel_lvds.c           | 4 ++--
+>  drivers/gpu/drm/i915/i915_params.c                  | 4 ----
+>  drivers/gpu/drm/i915/i915_params.h                  | 1 -
+>  5 files changed, 8 insertions(+), 8 deletions(-)
+>=20
+> diff --git a/drivers/gpu/drm/i915/display/intel_display_params.c b/driver=
+s/gpu/drm/i915/display/intel_display_params.c
+> index 72f1782e27fe..cdc42bc575b8 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display_params.c
+> +++ b/drivers/gpu/drm/i915/display/intel_display_params.c
+> @@ -30,6 +30,10 @@ static struct intel_display_params intel_display_modpa=
+rams __read_mostly =3D {
+>  intel_display_param_named_unsafe(vbt_firmware, charp, 0400,
+>  	"Load VBT from specified file under /lib/firmware");
+> =20
+> +intel_display_param_named_unsafe(lvds_channel_mode, int, 0400,
+> +	 "Specify LVDS channel mode "
+> +	 "(0=3Dprobe BIOS [default], 1=3Dsingle-channel, 2=3Ddual-channel)");
 > +
-> +	memcpy(rc6->res_reg, res_reg, sizeof(res_reg));
->  }
->  
->  void intel_rc6_init(struct intel_rc6 *rc6)
+>  intel_display_param_named_unsafe(enable_fbc, int, 0400,
+>  	"Enable frame buffer compression for power savings "
+>  	"(default: -1 (use per-chip default))");
+> diff --git a/drivers/gpu/drm/i915/display/intel_display_params.h b/driver=
+s/gpu/drm/i915/display/intel_display_params.h
+> index a6f37c55523d..a4988ef44837 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display_params.h
+> +++ b/drivers/gpu/drm/i915/display/intel_display_params.h
+> @@ -25,7 +25,8 @@ struct drm_i915_private;
+>   */
+>  #define INTEL_DISPLAY_PARAMS_FOR_EACH(param) \
+>  	param(char *, vbt_firmware, NULL, 0400) \
+> -	param(int, enable_fbc, -1, 0600)     \
+> +	param(int, lvds_channel_mode, 0, 0400) \
+> +	param(int, enable_fbc, -1, 0600)	\
 
--- 
-Jani Nikula, Intel
+The enable_fbc line shouldn't be changed here.  Was there some missing
+spaces? If so, it should be fixed in the patch that added enable_fbc.
+
+
+
+With this fixed:
+
+Reviewed-by: Luca Coelho <luciano.coelho@intel.com>
+
+--
+Cheers,
+Luca.
