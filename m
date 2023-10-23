@@ -1,43 +1,54 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 67C7B7D2C71
-	for <lists+intel-gfx@lfdr.de>; Mon, 23 Oct 2023 10:16:22 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id A4A5E7D2CE0
+	for <lists+intel-gfx@lfdr.de>; Mon, 23 Oct 2023 10:38:29 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C790010E175;
-	Mon, 23 Oct 2023 08:16:20 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7945610E183;
+	Mon, 23 Oct 2023 08:38:27 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from coelho.fi (paleale.coelho.fi [176.9.41.70])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0C68310E175
- for <intel-gfx@lists.freedesktop.org>; Mon, 23 Oct 2023 08:16:19 +0000 (UTC)
-Received: from 91-155-254-243.elisa-laajakaista.fi ([91.155.254.243]
- helo=pinhengc-mobl2.amr.corp.intel.com)
- by coelho.fi with esmtpsa (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
- (Exim 4.97-RC1) (envelope-from <luca@coelho.fi>)
- id 1quq6i-000000008HH-043h; Mon, 23 Oct 2023 11:16:16 +0300
-Message-ID: <6ca3f99e65e6f50c6b09a70a21c011bf89ac2757.camel@coelho.fi>
-From: Luca Coelho <luca@coelho.fi>
-To: "Hogander, Jouni" <jouni.hogander@intel.com>, 
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
-Date: Mon, 23 Oct 2023 11:16:15 +0300
-In-Reply-To: <ac0c492c5276bfbe8b558ca868576786452a9860.camel@coelho.fi>
-References: <20231016111658.3432581-1-jouni.hogander@intel.com>
- <20231016111658.3432581-2-jouni.hogander@intel.com>
- <61677b04c028f3aa1773abce175a07106d8255fa.camel@coelho.fi>
- <d39fbafba3d85a3fbbee02916a6b693086eebced.camel@intel.com>
- <ac0c492c5276bfbe8b558ca868576786452a9860.camel@coelho.fi>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.46.4-2 
+Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.120])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B990C10E183
+ for <intel-gfx@lists.freedesktop.org>; Mon, 23 Oct 2023 08:38:24 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1698050304; x=1729586304;
+ h=message-id:date:mime-version:subject:to:cc:references:
+ from:in-reply-to:content-transfer-encoding;
+ bh=wYtZNWlAnc59OxiPHRPWXPS09xwvcopPvfxNqir/hTs=;
+ b=HAQqNVm+KJu/iiWrJybOAA3M3I3uQVsTNbmY0uPHg2wE3fQFsonmBEeX
+ PuaikHnMm6s7sdIBpeHg8rhItCTUHOXCrNlNMG2di8CbS6roMe73dZGkW
+ VFMqo9FQ/qC5/jJqXCcnwyKO7r247a5CqXL1sqGpiEJcJwI2ApqWgyGHc
+ haG6Oii+Pdh9WguNFfyomhJXXbi3upnKaD0zdy5wzpx+/o0xfzzQK7XlZ
+ o9eP7rdUj5PRS/duh8rzczK8YiC7g9yaF2At+ueLqeapOaItfpQQrHyme
+ 0m5qN1GJfQwaHbEFuUVqYDJYUsy+knVc3GYpd3MIPwq4NRcNwP5vPOfjW Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10871"; a="385676792"
+X-IronPort-AV: E=Sophos;i="6.03,244,1694761200"; d="scan'208";a="385676792"
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+ by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 23 Oct 2023 01:38:24 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10871"; a="901742182"
+X-IronPort-AV: E=Sophos;i="6.03,244,1694761200"; d="scan'208";a="901742182"
+Received: from nirmoyda-mobl.ger.corp.intel.com (HELO [10.249.40.234])
+ ([10.249.40.234])
+ by fmsmga001-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 23 Oct 2023 01:36:05 -0700
+Message-ID: <4d4705bb-573d-3c95-3c70-7313c59effe1@linux.intel.com>
+Date: Mon, 23 Oct 2023 10:38:20 +0200
 MIME-Version: 1.0
-X-Spam-Checker-Version: SpamAssassin 4.0.0 (2022-12-13) on farmhouse.coelho.fi
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.9 required=5.0 tests=ALL_TRUSTED,BAYES_00,
- TVD_RCVD_IP autolearn=ham autolearn_force=no version=4.0.0
-Subject: Re: [Intel-gfx] [PATCH v2 01/24] drm/i915/display: Add framework to
- add parameters specific to display
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.15.1
+Content-Language: en-US
+To: Andrzej Hajda <andrzej.hajda@intel.com>, intel-gfx@lists.freedesktop.org
+References: <20231023-wabb-v3-0-1a4fbc632440@intel.com>
+From: Nirmoy Das <nirmoy.das@linux.intel.com>
+In-Reply-To: <20231023-wabb-v3-0-1a4fbc632440@intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+Subject: Re: [Intel-gfx] [PATCH v3 0/4] Apply Wa_16018031267 / Wa_16018063123
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -50,160 +61,88 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: Chris Wilson <chris.p.wilson@linux.intel.com>,
+ Jonathan Cavitt <jonathan.cavitt@intel.com>, Nirmoy Das <nirmoy.das@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, 2023-10-23 at 11:14 +0300, Luca Coelho wrote:
-> On Mon, 2023-10-23 at 07:50 +0000, Hogander, Jouni wrote:
-> > On Sun, 2023-10-22 at 20:45 +0300, Luca Coelho wrote:
-> > > On Mon, 2023-10-16 at 14:16 +0300, Jouni H=C3=B6gander wrote:
-> > > > Currently all module parameters are handled by i915_param.c/h. This
-> > > > is a problem for display parameters when Xe driver is used. Add
-> > > > a mechanism to add parameters specific to the display. This is
-> > > > mainly
-> > > > copied from i915_[debugfs]_params.[ch]. Parameters are not yet
-> > > > moved. This
-> > > > is done by subsequent patches.
-> > > >=20
-> > > > Signed-off-by: Jouni H=C3=B6gander <jouni.hogander@intel.com>
-> > > > ---
-> > >=20
-> > > Looks generally good, but I have a couple of comments:
-> >=20
-> > Thank you Luca for your comments. Please check my responses below.
-> >=20
-> > >=20
-> > > [...]
-> > > > diff --git
-> > > > a/drivers/gpu/drm/i915/display/intel_display_debugfs_params.h
-> > > > b/drivers/gpu/drm/i915/display/intel_display_debugfs_params.h
-> > > > new file mode 100644
-> > > > index 000000000000..0e33f4e90ddc
-> > > > --- /dev/null
-> > > > +++ b/drivers/gpu/drm/i915/display/intel_display_debugfs_params.h
-> > > > @@ -0,0 +1,14 @@
-> > > > +/* SPDX-License-Identifier: MIT */
-> > > > +/*
-> > > > + * Copyright =C2=A9 2023 Intel Corporation
-> > > > + */
-> > > > +
-> > > > +#ifndef __INTEL_DISPLAY_DEBUGFS_PARAMS__
-> > > > +#define __INTEL_DISPLAY_DEBUGFS_PARAMS__
-> > > > +
-> > > > +struct dentry;
-> > >=20
-> > > It doesn't seem like you need dentry here...
-> >=20
-> > Yeah, it seems. I will drop it.
-> >=20
-> > >=20
-> > >=20
-> > > > +struct drm_i915_private;
-> > > > +
-> > > > +void intel_display_debugfs_params(struct drm_i915_private *i915);
-> > > > +
-> > > > +#endif /* __INTEL_DISPLAY_DEBUGFS_PARAMS__ */
-> > > > diff --git a/drivers/gpu/drm/i915/display/intel_display_device.c
-> > > > b/drivers/gpu/drm/i915/display/intel_display_device.c
-> > > > index 2b1ec23ba9c3..e80842d1e7c7 100644
-> > > > --- a/drivers/gpu/drm/i915/display/intel_display_device.c
-> > > > +++ b/drivers/gpu/drm/i915/display/intel_display_device.c
-> > > > @@ -12,6 +12,7 @@
-> > > > =C2=A0#include "intel_de.h"
-> > > > =C2=A0#include "intel_display.h"
-> > > > =C2=A0#include "intel_display_device.h"
-> > > > +#include "intel_display_params.h"
-> > > > =C2=A0#include "intel_display_power.h"
-> > > > =C2=A0#include "intel_display_reg_defs.h"
-> > > > =C2=A0#include "intel_fbc.h"
-> > > > @@ -937,6 +938,13 @@ void intel_display_device_probe(struct
-> > > > drm_i915_private *i915)
-> > > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0DISPLAY_RUNTIME_INFO(i915)->ip.rel =3D rel;
-> > > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0DISPLAY_RUNTIME_INFO(i915)->ip.step =3D step;
-> > > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0}
-> > > > +
-> > > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0intel_display_params_cop=
-y(&i915->display.params);
-> > > > +}
-> > > > +
-> > > > +void intel_display_device_remove(struct drm_i915_private *i915)
-> > > > +{
-> > > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0intel_display_params_fre=
-e(&i915->display.params);
-> > > > =C2=A0}
-> > > >=20
-> > >=20
-> > > Why can't you just store the parameters as module globals? They are
-> > > always associated with the module anyway.=C2=A0 Then you don't need t=
-o
-> > > worry
-> > > about the lifetime.
-> >=20
-> > These are device parameters. Values from equivalent module parameters
-> > are copied when probed. Can be later modified via debugfs without
-> > touching other devices parameters.
->=20
-> Okay, makes sense.
->=20
->=20
-> > > [...]
-> > > > diff --git a/drivers/gpu/drm/i915/display/intel_display_params.h
-> > > > b/drivers/gpu/drm/i915/display/intel_display_params.h
-> > > > new file mode 100644
-> > > > index 000000000000..1b347365988c
-> > > > --- /dev/null
-> > > > +++ b/drivers/gpu/drm/i915/display/intel_display_params.h
-> > > > @@ -0,0 +1,34 @@
-> > > > +// SPDX-License-Identifier: MIT
-> > > > +/*
-> > > > + * Copyright =C2=A9 2023 Intel Corporation
-> > > > + */
-> > > > +
-> > > > +#ifndef _INTEL_DISPLAY_PARAMS_H_
-> > > > +#define _INTEL_DISPLAY_PARAMS_H_
-> > > > +
-> > > > +struct drm_printer;
-> > > > +
-> > > > +/*
-> > > > + * Invoke param, a function-like macro, for each intel display
-> > > > param, with
-> > > > + * arguments:
-> > > > + *
-> > > > + * param(type, name, value, mode)
-> > > > + *
-> > > > + * type: parameter type, one of {bool, int, unsigned int, unsigned
-> > > > long, char *}
-> > > > + * name: name of the parameter
-> > > > + * value: initial/default value of the parameter
-> > > > + * mode: debugfs file permissions, one of {0400, 0600, 0}, use 0
-> > > > to not create
-> > > > + *=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 debugfs file
-> > > > + */
-> > > > +#define INTEL_DISPLAY_PARAMS_FOR_EACH(param)
-> > >=20
-> > > I don't get this.=C2=A0 Here you create a macro that expands to nothi=
-ng...
-> >=20
-> > I wanted to split the patch set in a way that first this framework is
-> > introduced and only after that parameters are added/moved one by one. I
-> > still need to have INTEL_DISPLAY_PARAMS_FOR_EACH defined to avoid build
-> > failure. If you look at patch 03/24 you see when first parameter is
-> > added this gets as:
-> >=20
-> > #define INTEL_DISPLAY_PARAMS_FOR_EACH(param) \
-> > 	param(int, enable_fbc, -1, 0600)
->=20
-> Thanks for clarifying.  A small comment somewhere here (at least while
-> it's empty) would be nice. :)
+Hi Andrzej
 
-Forgot to say that, with this, you have my:
+On 10/23/2023 9:41 AM, Andrzej Hajda wrote:
+> Hi all,
+>
+> This the series from Jonathan:
+> [PATCH v12 0/4] Apply Wa_16018031267 / Wa_16018063123
+>
+> taken over by me.
+>
+> Changes in this version are described in the patches, in short:
+> v2:
+> - use real memory as WABB destination,
 
-Reviewed-by: Luca Coelho <luciano.coelho@intel.com>
+Do we still need the NULL PTE patch now ?
 
-Other patches in the series still pending.
 
---
-Cheers,
-Luca.
+Regards,
+
+Nirmoy
+
+> - address CI compains - do not decrease vm.total,
+> - minor reordering.
+> v3:
+> - fixed typos,
+> - removed spare defs,
+> - added tags
+>
+> Regards
+> Andrzej
+>
+> Andrzej Hajda (1):
+>    drm/i915: Reserve some kernel space per vm
+>
+> Jonathan Cavitt (3):
+>    drm/i915: Enable NULL PTE support for vm scratch
+>    drm/i915: Add WABB blit for Wa_16018031267 / Wa_16018063123
+>    drm/i915: Set copy engine arbitration for Wa_16018031267 /
+>      Wa_16018063123
+>
+> .../drm/i915/gem/selftests/i915_gem_context.c |   6 ++
+>   drivers/gpu/drm/i915/gt/gen8_ppgtt.c          |  41 +++++++
+>   drivers/gpu/drm/i915/gt/intel_engine_regs.h   |   6 ++
+>   drivers/gpu/drm/i915/gt/intel_gt.h            |   4 +
+>   drivers/gpu/drm/i915/gt/intel_gt_types.h      |   2 +
+>   drivers/gpu/drm/i915/gt/intel_gtt.h           |   2 +
+>   drivers/gpu/drm/i915/gt/intel_lrc.c           | 100 +++++++++++++++++-
+>   drivers/gpu/drm/i915/gt/intel_workarounds.c   |   5 +
+>   drivers/gpu/drm/i915/gt/selftest_lrc.c        |  65 ++++++++----
+>   drivers/gpu/drm/i915/i915_drv.h               |   2 +
+>   drivers/gpu/drm/i915/i915_pci.c               |   2 +
+>   drivers/gpu/drm/i915/intel_device_info.h      |   1 +
+>   12 files changed, 215 insertions(+), 21 deletions(-)
+>
+> ---
+> Andrzej Hajda (1):
+>        drm/i915: Reserve some kernel space per vm
+>
+> Jonathan Cavitt (3):
+>        drm/i915: Enable NULL PTE support for vm scratch
+>        drm/i915: Add WABB blit for Wa_16018031267 / Wa_16018063123
+>        drm/i915: Set copy engine arbitration for Wa_16018031267 / Wa_16018063123
+>
+>   .../gpu/drm/i915/gem/selftests/i915_gem_context.c  |   6 ++
+>   drivers/gpu/drm/i915/gt/gen8_ppgtt.c               |  41 +++++++++
+>   drivers/gpu/drm/i915/gt/intel_engine_regs.h        |   6 ++
+>   drivers/gpu/drm/i915/gt/intel_gt.h                 |   4 +
+>   drivers/gpu/drm/i915/gt/intel_gtt.h                |   2 +
+>   drivers/gpu/drm/i915/gt/intel_lrc.c                | 100 ++++++++++++++++++++-
+>   drivers/gpu/drm/i915/gt/intel_workarounds.c        |   5 ++
+>   drivers/gpu/drm/i915/gt/selftest_lrc.c             |  65 ++++++++++----
+>   drivers/gpu/drm/i915/i915_drv.h                    |   2 +
+>   drivers/gpu/drm/i915/i915_pci.c                    |   2 +
+>   drivers/gpu/drm/i915/intel_device_info.h           |   1 +
+>   11 files changed, 213 insertions(+), 21 deletions(-)
+> ---
+> base-commit: 201c8a7bd1f3f415920a2df4b8a8817e973f42fe
+> change-id: 20231020-wabb-bbe9324a69a8
+>
+> Best regards,
