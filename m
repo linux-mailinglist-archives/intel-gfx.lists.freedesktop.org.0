@@ -1,40 +1,84 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7D56A7D3790
-	for <lists+intel-gfx@lfdr.de>; Mon, 23 Oct 2023 15:17:32 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 226CE7D3791
+	for <lists+intel-gfx@lfdr.de>; Mon, 23 Oct 2023 15:17:46 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4E07710E0D5;
-	Mon, 23 Oct 2023 13:17:30 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 38E8510E102;
+	Mon, 23 Oct 2023 13:17:44 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from coelho.fi (paleale.coelho.fi [176.9.41.70])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 47AF310E102
- for <intel-gfx@lists.freedesktop.org>; Mon, 23 Oct 2023 13:17:19 +0000 (UTC)
-Received: from 91-155-254-243.elisa-laajakaista.fi ([91.155.254.243]
- helo=pinhengc-mobl2.amr.corp.intel.com)
- by coelho.fi with esmtpsa (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
- (Exim 4.97-RC1) (envelope-from <luca@coelho.fi>)
- id 1quuny-000000008Wo-1bfY; Mon, 23 Oct 2023 16:17:17 +0300
-Message-ID: <5629eb6f1b759a98fdd48770a929dae8eed7f1c4.camel@coelho.fi>
-From: Luca Coelho <luca@coelho.fi>
-To: Jouni =?ISO-8859-1?Q?H=F6gander?= <jouni.hogander@intel.com>, 
- intel-gfx@lists.freedesktop.org
-Date: Mon, 23 Oct 2023 16:17:13 +0300
-In-Reply-To: <20231016111658.3432581-9-jouni.hogander@intel.com>
-References: <20231016111658.3432581-1-jouni.hogander@intel.com>
- <20231016111658.3432581-9-jouni.hogander@intel.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.46.4-2 
+Received: from us-smtp-delivery-124.mimecast.com
+ (us-smtp-delivery-124.mimecast.com [170.10.133.124])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D527B10E102
+ for <intel-gfx@lists.freedesktop.org>; Mon, 23 Oct 2023 13:17:42 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+ s=mimecast20190719; t=1698067062;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references;
+ bh=sSFfEkjm+TRHFIpNtkrlAc+VslBdL04S4deDLRJut34=;
+ b=aWgaqfJ2O6aWhvM9pzi9tJ+HP+tZTRZ2pMUX8fpFdj8d841VCsNmNUg05AXzg4NaQ7hSOh
+ qzJ3uK57H+b3iiwdAdjrKO3ohM/terwNTdK8yPd7bW8JKNwmGNz6cVlJKTat4EQI6nLlx8
+ nlMQlGOmNrQu7g/ZNcZQbq+5uq0aLcc=
+Received: from mail-ej1-f71.google.com (mail-ej1-f71.google.com
+ [209.85.218.71]) by relay.mimecast.com with ESMTP with STARTTLS
+ (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
+ us-mta-634-HImMuGtoNziwBavKPW4Eag-1; Mon, 23 Oct 2023 09:17:40 -0400
+X-MC-Unique: HImMuGtoNziwBavKPW4Eag-1
+Received: by mail-ej1-f71.google.com with SMTP id
+ a640c23a62f3a-99bcb13d8ddso203092466b.0
+ for <intel-gfx@lists.freedesktop.org>; Mon, 23 Oct 2023 06:17:40 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1698067059; x=1698671859;
+ h=content-transfer-encoding:in-reply-to:from:references:cc:to
+ :content-language:subject:user-agent:mime-version:date:message-id
+ :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+ bh=sSFfEkjm+TRHFIpNtkrlAc+VslBdL04S4deDLRJut34=;
+ b=KHlmVcOZzAyknRWV/dgGOUIaW75Zk8AFPWrcDvnKvqjdR0HYCaa1BM2kxprr8xIiXA
+ /jyxzkvHlBB3S7yI4FYTp6JrsNPgopj4txy/8LkpXVuOqL6Wj7uMr74kUCxZzuNavaLU
+ RGt6WVi2s6kzSLyAZqN7gstR9LNa4s3Kf+cA3BwE8IYa16ABOh3GkPGWBHs4qhRta55f
+ aTzjh6Pq2ITvDwggjXn6tfkZ24204KuqcrI0f3Or7UYQ9M04YOdD1GywnDAsqTFp2kGT
+ 8FzaaHm47djiSmImDHuW49O+KPFdqyXbSIE5ReoLiFBHU4RzlDcPRTvIpbuLTRxtUqN7
+ iBiQ==
+X-Gm-Message-State: AOJu0YygCmxfkaF5MYuXqboTXHRYGrSCHs/zD5oSPZ+I5hEC0MSq1Zqr
+ NTmuk9q/VMCCXa/eXDl/aWhHTZal0Qq/7bwzSkxUTiv631IbgLqQPfmvXP8AGES/W6LdFd60a6B
+ Tx0DgmFwQMrOkRb4v6Qu/TkJFw/Rj
+X-Received: by 2002:a17:907:7da4:b0:9bf:4915:22c9 with SMTP id
+ oz36-20020a1709077da400b009bf491522c9mr7444018ejc.32.1698067059564; 
+ Mon, 23 Oct 2023 06:17:39 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IEEw6I3Skyk2VSTQQ0L/ocw36Hx+FffccCo6LtPT9cF0KLaOGOuHE4Y/IuzoMVRWRlkthG96w==
+X-Received: by 2002:a17:907:7da4:b0:9bf:4915:22c9 with SMTP id
+ oz36-20020a1709077da400b009bf491522c9mr7443986ejc.32.1698067059228; 
+ Mon, 23 Oct 2023 06:17:39 -0700 (PDT)
+Received: from [10.40.98.142] ([78.108.130.194])
+ by smtp.gmail.com with ESMTPSA id
+ a23-20020a1709064a5700b009ad89697c86sm6717636ejv.144.2023.10.23.06.17.37
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Mon, 23 Oct 2023 06:17:38 -0700 (PDT)
+Message-ID: <d1f0c5a5-77e1-a7de-88f7-6097a7338f54@redhat.com>
+Date: Mon, 23 Oct 2023 15:17:37 +0200
 MIME-Version: 1.0
-X-Spam-Checker-Version: SpamAssassin 4.0.0 (2022-12-13) on farmhouse.coelho.fi
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.9 required=5.0 tests=ALL_TRUSTED,BAYES_00,
- TVD_RCVD_IP autolearn=ham autolearn_force=no version=4.0.0
-Subject: Re: [Intel-gfx] [PATCH v2 08/24] drm/i915/display: Move
- vbt_sdvo_panel_type module parameter under display
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.13.0
+To: Sean Young <sean@mess.org>
+References: <cover.1697534024.git.sean@mess.org>
+ <a7fcd19938d5422abc59c968ff7b3d5c275577ed.1697534024.git.sean@mess.org>
+ <90728c06-4c6c-b3d2-4723-c24711be2fa5@redhat.com>
+ <20231019105118.64gdzzixwqrztjir@pengutronix.de>
+ <01a505ac-320f-3819-a58d-2b82c1bf2a86@redhat.com>
+ <ZTT9fvEF+lqfzGJ/@gofer.mess.org>
+From: Hans de Goede <hdegoede@redhat.com>
+In-Reply-To: <ZTT9fvEF+lqfzGJ/@gofer.mess.org>
+X-Mimecast-Spam-Score: 0
+X-Mimecast-Originator: redhat.com
+Content-Language: en-US
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+Subject: Re: [Intel-gfx] [PATCH v3 1/3] pwm: make it possible to apply pwm
+ changes in atomic context
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -47,97 +91,144 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: linux-fbdev@vger.kernel.org, linux-doc@vger.kernel.org,
+ dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+ Pavel Machek <pavel@ucw.cz>, David Airlie <airlied@gmail.com>,
+ linux-leds@vger.kernel.org, Daniel Thompson <daniel.thompson@linaro.org>,
+ Ivaylo Dimitrov <ivo.g.dimitrov.75@gmail.com>,
+ Jonathan Corbet <corbet@lwn.net>, Helge Deller <deller@gmx.de>,
+ Lee Jones <lee@kernel.org>, Javier Martinez Canillas <javierm@redhat.com>,
+ =?UTF-8?Q?Uwe_Kleine-K=c3=b6nig?= <u.kleine-koenig@pengutronix.de>,
+ =?UTF-8?Q?Ilpo_J=c3=a4rvinen?= <ilpo.jarvinen@linux.intel.com>,
+ Guenter Roeck <linux@roeck-us.net>, linux-media@vger.kernel.org,
+ platform-driver-x86@vger.kernel.org, linux-pwm@vger.kernel.org,
+ Jean Delvare <jdelvare@suse.com>, intel-gfx@lists.freedesktop.org,
+ linux-input@vger.kernel.org, Mark Gross <markgross@kernel.org>,
+ Mark Brown <broonie@kernel.org>, Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Mauro Carvalho Chehab <mchehab@kernel.org>,
+ linux-arm-kernel@lists.infradead.org, linux-hwmon@vger.kernel.org,
+ Support Opensource <support.opensource@diasemi.com>,
+ Jingoo Han <jingoohan1@gmail.com>, Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+ Liam Girdwood <lgirdwood@gmail.com>, Daniel Vetter <daniel@ffwll.ch>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, 2023-10-16 at 14:16 +0300, Jouni H=C3=B6gander wrote:
-> Signed-off-by: Jouni H=C3=B6gander <jouni.hogander@intel.com>
-> ---
->  drivers/gpu/drm/i915/display/intel_bios.c           | 2 +-
->  drivers/gpu/drm/i915/display/intel_display_params.c | 4 ++++
->  drivers/gpu/drm/i915/display/intel_display_params.h | 1 +
->  drivers/gpu/drm/i915/i915_params.c                  | 4 ----
->  drivers/gpu/drm/i915/i915_params.h                  | 1 -
->  5 files changed, 6 insertions(+), 6 deletions(-)
->=20
-> diff --git a/drivers/gpu/drm/i915/display/intel_bios.c b/drivers/gpu/drm/=
-i915/display/intel_bios.c
-> index 4e8f1e91bb08..70c0491aac42 100644
-> --- a/drivers/gpu/drm/i915/display/intel_bios.c
-> +++ b/drivers/gpu/drm/i915/display/intel_bios.c
-> @@ -1116,7 +1116,7 @@ parse_sdvo_panel_data(struct drm_i915_private *i915=
-,
->  	struct drm_display_mode *panel_fixed_mode;
->  	int index;
-> =20
-> -	index =3D i915->params.vbt_sdvo_panel_type;
-> +	index =3D i915->display.params.vbt_sdvo_panel_type;
->  	if (index =3D=3D -2) {
->  		drm_dbg_kms(&i915->drm,
->  			    "Ignore SDVO panel mode from BIOS VBT tables.\n");
-> diff --git a/drivers/gpu/drm/i915/display/intel_display_params.c b/driver=
-s/gpu/drm/i915/display/intel_display_params.c
-> index e25d70653c0f..6a5be37ec3af 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display_params.c
-> +++ b/drivers/gpu/drm/i915/display/intel_display_params.c
-> @@ -38,6 +38,10 @@ intel_display_param_named_unsafe(panel_use_ssc, int, 0=
-400,
->  	"Use Spread Spectrum Clock with panels [LVDS/eDP] "
->  	"(default: auto from VBT)");
-> =20
-> +intel_display_param_named_unsafe(vbt_sdvo_panel_type, int, 0400,
-> +	"Override/Ignore selection of SDVO panel mode in the VBT "
-> +	"(-2=3Dignore, -1=3Dauto [default], index in VBT BIOS table)");
-> +
->  intel_display_param_named_unsafe(enable_fbc, int, 0400,
->  	"Enable frame buffer compression for power savings "
->  	"(default: -1 (use per-chip default))");
-> diff --git a/drivers/gpu/drm/i915/display/intel_display_params.h b/driver=
-s/gpu/drm/i915/display/intel_display_params.h
-> index 4b326baf146f..c40a3cd57ffc 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display_params.h
-> +++ b/drivers/gpu/drm/i915/display/intel_display_params.h
-> @@ -27,6 +27,7 @@ struct drm_i915_private;
->  	param(char *, vbt_firmware, NULL, 0400) \
->  	param(int, lvds_channel_mode, 0, 0400) \
->  	param(int, panel_use_ssc, -1, 0600) \
-> +	param(int, vbt_sdvo_panel_type, -1, 0400) \
->  	param(int, enable_fbc, -1, 0600)	\
->  	param(int, enable_psr, -1, 0600) \
->  	param(bool, psr_safest_params, false, 0400) \
-> diff --git a/drivers/gpu/drm/i915/i915_params.c b/drivers/gpu/drm/i915/i9=
-15_params.c
-> index 4123424b2c2e..d0abcbd526a7 100644
-> --- a/drivers/gpu/drm/i915/i915_params.c
-> +++ b/drivers/gpu/drm/i915/i915_params.c
-> @@ -72,10 +72,6 @@ i915_param_named_unsafe(enable_dc, int, 0400,
->  	"(-1=3Dauto [default]; 0=3Ddisable; 1=3Dup to DC5; 2=3Dup to DC6; "
->  	"3=3Dup to DC5 with DC3CO; 4=3Dup to DC6 with DC3CO)");
-> =20
-> -i915_param_named_unsafe(vbt_sdvo_panel_type, int, 0400,
-> -	"Override/Ignore selection of SDVO panel mode in the VBT "
-> -	"(-2=3Dignore, -1=3Dauto [default], index in VBT BIOS table)");
-> -
->  i915_param_named_unsafe(reset, uint, 0400,
->  	"Attempt GPU resets (0=3Ddisabled, 1=3Dfull gpu reset, 2=3Dengine reset=
- [default])");
-> =20
-> diff --git a/drivers/gpu/drm/i915/i915_params.h b/drivers/gpu/drm/i915/i9=
-15_params.h
-> index 0bd365889e73..1ea332dfbb5d 100644
-> --- a/drivers/gpu/drm/i915/i915_params.h
-> +++ b/drivers/gpu/drm/i915/i915_params.h
-> @@ -47,7 +47,6 @@ struct drm_printer;
->   */
->  #define I915_PARAMS_FOR_EACH(param) \
->  	param(int, modeset, -1, 0400) \
-> -	param(int, vbt_sdvo_panel_type, -1, 0400) \
->  	param(int, enable_dc, -1, 0400) \
->  	param(bool, enable_dpt, true, 0400) \
->  	param(bool, enable_sagv, true, 0600) \
+Hi Sean,
 
-Reviewed-by: Luca Coelho <luciano.coelho@intel.com>
+On 10/22/23 12:46, Sean Young wrote:
+> Hi Hans,
+> 
+> On Sat, Oct 21, 2023 at 11:08:22AM +0200, Hans de Goede wrote:
+>> On 10/19/23 12:51, Uwe Kleine-König wrote:
+>>> On Wed, Oct 18, 2023 at 03:57:48PM +0200, Hans de Goede wrote:
+>>>> On 10/17/23 11:17, Sean Young wrote:
+>>>>> Some drivers require sleeping, for example if the pwm device is connected
+>>>>> over i2c. The pwm-ir-tx requires precise timing, and sleeping causes havoc
+>>>>> with the generated IR signal when sleeping occurs.
+>>>>>
+>>>>> This patch makes it possible to use pwm when the driver does not sleep,
+>>>>> by introducing the pwm_can_sleep() function.
+>>>>>
+>>>>> Signed-off-by: Sean Young <sean@mess.org>
+>>>>
+>>>> I have no objection to this patch by itself, but it seems a bit
+>>>> of unnecessary churn to change all current callers of pwm_apply_state()
+>>>> to a new API.
+>>>
+>>> The idea is to improve the semantic of the function name, see
+>>> https://lore.kernel.org/linux-pwm/20231013180449.mcdmklbsz2rlymzz@pengutronix.de
+>>> for more context.
+>>
+>> Hmm, so the argument here is that the GPIO API has this, but GPIOs
+>> generally speaking can be set atomically, so there not being able
+>> to set it atomically is special.
+>>
+>> OTOH we have many many many other kernel functions which may sleep
+>> and we don't all postfix them with _can_sleep.
+>>
+>> And for PWM controllers pwm_apply_state is IMHO sorta expected to
+>> sleep. Many of these are attached over I2C so things will sleep,
+>> others have a handshake to wait for the current dutycycle to
+>> end before you can apply a second change on top of an earlier
+>> change during the current dutycycle which often also involves
+>> sleeping.
+>>
+>> So the natural/expeected thing for pwm_apply_state() is to sleep
+>> and thus it does not need a postfix for this IMHO.
+> 
+> Most pwm drivers look like they can be made to work in atomic context,
+> I think. Like you say this is not the case for all of them. Whatever
+> we choose to be the default for pwm_apply_state(), we should have a
+> clear function name for the alternative. This is essentially why
+> pam_apply_cansleep() was picked.
+> 
+> The alternative to pwm_apply_cansleep() is to have a function name
+> which implies it can be used from atomic context. However, 
+> pwm_apply_atomic() is not great because the "atomic" could be
+> confused with the PWM atomic API, not the kernel process/atomic
+> context.
 
---
-Cheers,
-Luca.
+Well pwm_apply_state() is the atomic PWM interface right?
+
+So to me pwm_apply_state_atomic() would be clearly about
+running atomically.
+
+> So what should the non-sleeping function be called then? 
+>  - pwm_apply_cannotsleep() 
+>  - pwm_apply_nosleep()
+>  - pwm_apply_nonsleeping()
+>  - pwm_apply_atomic_context()
+
+I would just go with:
+
+pwm_apply_state_atomic()
+
+but if this is disliked by others then lets just rename
+
+pwm_apply_state() to pwm_apply_state_cansleep() as
+is done in this patch and use plain pwm_apply_state()
+for the new atomic-context version.
+
+Regards,
+
+Hans
+
+
+
+> 
+>>> I think it's very subjective if you consider this
+>>> churn or not.
+>>
+>> I consider it churn because I don't think adding a postfix
+>> for what is the default/expected behavior is a good idea
+>> (with GPIOs not sleeping is the expected behavior).
+>>
+>> I agree that this is very subjective and very much goes
+>> into the territory of bikeshedding. So please consider
+>> the above my 2 cents on this and lets leave it at that.
+> 
+> You have a valid point. Let's focus on having descriptive function names.
+> 
+>>> While it's nice to have every caller converted in a single
+>>> step, I'd go for
+>>>
+>>> 	#define pwm_apply_state(pwm, state) pwm_apply_cansleep(pwm, state)
+>>>
+>>> , keep that macro for a while and convert all users step by step. This
+>>> way we don't needlessly break oot code and the changes to convert to the
+>>> new API can go via their usual trees without time pressure.
+>>
+>> I don't think there are enough users of pwm_apply_state() to warrant
+>> such an exercise.
+>>
+>> So if people want to move ahead with the _can_sleep postfix addition
+>> (still not a fan) here is my acked-by for the drivers/platform/x86
+>> changes, for merging this through the PWM tree in a single commit:
+>>
+>> Acked-by: Hans de Goede <hdegoede@redhat.com>
+> 
+> Thanks,
+> 
+> Sean
+> 
+
