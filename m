@@ -1,52 +1,52 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5A3917D3625
-	for <lists+intel-gfx@lfdr.de>; Mon, 23 Oct 2023 14:13:19 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id F0B757D362C
+	for <lists+intel-gfx@lfdr.de>; Mon, 23 Oct 2023 14:14:49 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6ADB510E1B5;
-	Mon, 23 Oct 2023 12:13:17 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3884C10E1C3;
+	Mon, 23 Oct 2023 12:14:48 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8710310E1B5;
- Mon, 23 Oct 2023 12:13:15 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.115])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 52FD210E1C3
+ for <intel-gfx@lists.freedesktop.org>; Mon, 23 Oct 2023 12:14:46 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1698063195; x=1729599195;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=yOwcElqlK6VygFlKmmOUYYYj/YezK4k8gr3Pt+hbxRI=;
- b=PV2HDb1r7zX1FNIByHvVJ9Oyr1hqxdgDNXB0JRKEY1F4RcLU4wmKRTWq
- Tc/5wi0EdZGMPEcMejrd2kvcmqWsnq+W35Fau8K6nDHy3iSEnFbU6YCPy
- t4q9e9fwLWZq+U9+fpopUd64hpsvavCeiuYqAEAUo1FBBSoS5w3OnwZvD
- +R3aA2f0YgKUn5iefKK/F4pj6MuOkvCCDWGJf1IdFJgseYoR5E1GO/LmB
- V5KSEFwrKgNysJ3CfqMaUO0rSwJEe7FEWmy4PC6FI48yhF/B6eCNEwvFM
- w1VdYBW4iZV41jmvOvQTWUA72R81hIAF9148jlj5zsa/sI8OVvoSBujHo w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10872"; a="377199037"
-X-IronPort-AV: E=Sophos;i="6.03,244,1694761200"; d="scan'208";a="377199037"
-Received: from orsmga007.jf.intel.com ([10.7.209.58])
- by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Oct 2023 05:13:14 -0700
+ t=1698063286; x=1729599286;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version;
+ bh=yn0snyng4EHPQ0yCzsGQEvC6knhWzxqwdi1nFyXI8ZI=;
+ b=Wu4m8JGLTIKDFyi1xW/L8T174w+VKlZxtEYQ+uWlSbx9zmEZCR+UOCjR
+ lu2IFs0CErm5E5WN2F8O+42tn4m3sjujv5FUdv3H31iA+MXKH6BdV2NAx
+ GfCW5wLeBLMZjun956KzbcgXpEz83BluZNj/caqRZPR32/T6A+NN8Z8VM
+ fV0cp6yBLEhdP/LlemKzFATn+j/6+2h8cl6HT0ueUrXcBsbKEl8KoAIww
+ JXje5vBVylu7pK7OUrHPrtsJ9XJdx91gkAmCrra5IWcS1sL8JOws0+q63
+ 3CQUv/sTfst3vc81yfSh+mKGmrb/Vvh0nOgZr6BebhvZARNt+/o4I0g17 Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10872"; a="386639703"
+X-IronPort-AV: E=Sophos;i="6.03,244,1694761200"; d="scan'208";a="386639703"
+Received: from fmsmga008.fm.intel.com ([10.253.24.58])
+ by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 23 Oct 2023 05:14:45 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10872"; a="751612498"
-X-IronPort-AV: E=Sophos;i="6.03,244,1694761200"; d="scan'208";a="751612498"
-Received: from nirmoyda-desk.igk.intel.com ([10.102.138.190])
- by orsmga007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Oct 2023 05:13:13 -0700
-From: Nirmoy Das <nirmoy.das@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Mon, 23 Oct 2023 14:13:05 +0200
-Message-ID: <20231023121305.12560-1-nirmoy.das@intel.com>
-X-Mailer: git-send-email 2.41.0
+X-IronPort-AV: E=McAfee;i="6600,9927,10872"; a="823947135"
+X-IronPort-AV: E=Sophos;i="6.03,244,1694761200"; d="scan'208";a="823947135"
+Received: from evlad-mobl.ger.corp.intel.com (HELO localhost) ([10.252.47.180])
+ by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 23 Oct 2023 05:14:44 -0700
+From: Jani Nikula <jani.nikula@intel.com>
+To: Andi Shyti <andi.shyti@linux.intel.com>
+In-Reply-To: <ZSq0TBL5E2fKTAnm@ashyti-mobl2.lan>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20231011162102.1030354-1-jani.nikula@intel.com>
+ <ZSq0TBL5E2fKTAnm@ashyti-mobl2.lan>
+Date: Mon, 23 Oct 2023 15:14:41 +0300
+Message-ID: <87msw9bkni.fsf@intel.com>
 MIME-Version: 1.0
-Organization: Intel Deutschland GmbH, Registered Address: Am Campeon 10,
- 85579 Neubiberg, Germany,
- Commercial Register: Amtsgericht Muenchen HRB 186928 
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH] drm/i915/gt: Use proper priority enum instead
- of 0
+Content-Type: text/plain
+Subject: Re: [Intel-gfx] [PATCH] drm/i915: stop including i915_utils.h from
+ intel_runtime_pm.h
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,32 +59,24 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: dri-devel@lists.freedesktop.org, Nirmoy Das <nirmoy.das@intel.com>
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-I915_PRIORITY_NORMAL is 0 so use that instead for better
-readability.
+On Sat, 14 Oct 2023, Andi Shyti <andi.shyti@linux.intel.com> wrote:
+> Hi Jani,
+>
+> On Wed, Oct 11, 2023 at 07:21:02PM +0300, Jani Nikula wrote:
+>> Remove an unnecessary include.
+>> 
+>> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+>
+> Reviewed-by: Andi Shyti <andi.shyti@linux.intel.com>
 
-Cc: John Harrison <John.C.Harrison@Intel.com>
-Signed-off-by: Nirmoy Das <nirmoy.das@intel.com>
----
- drivers/gpu/drm/i915/gt/intel_engine_heartbeat.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+Thanks for the reviews, pushed to din.
 
-diff --git a/drivers/gpu/drm/i915/gt/intel_engine_heartbeat.c b/drivers/gpu/drm/i915/gt/intel_engine_heartbeat.c
-index 9a527e1f5be6..1a8e2b7db013 100644
---- a/drivers/gpu/drm/i915/gt/intel_engine_heartbeat.c
-+++ b/drivers/gpu/drm/i915/gt/intel_engine_heartbeat.c
-@@ -188,7 +188,7 @@ static void heartbeat(struct work_struct *wrk)
- 			 * low latency and no jitter] the chance to naturally
- 			 * complete before being preempted.
- 			 */
--			attr.priority = 0;
-+			attr.priority = I915_PRIORITY_NORMAL;
- 			if (rq->sched.attr.priority >= attr.priority)
- 				attr.priority = I915_PRIORITY_HEARTBEAT;
- 			if (rq->sched.attr.priority >= attr.priority)
+BR,
+Jani.
+
 -- 
-2.41.0
-
+Jani Nikula, Intel
