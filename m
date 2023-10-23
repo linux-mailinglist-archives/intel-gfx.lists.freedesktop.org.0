@@ -1,58 +1,48 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id F2E8D7D3BBF
-	for <lists+intel-gfx@lfdr.de>; Mon, 23 Oct 2023 18:07:09 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 61A567D3BE2
+	for <lists+intel-gfx@lfdr.de>; Mon, 23 Oct 2023 18:11:45 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 01DF710E0BF;
-	Mon, 23 Oct 2023 16:07:05 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0B1D910E21B;
+	Mon, 23 Oct 2023 16:11:42 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A5BB710E0BF
- for <intel-gfx@lists.freedesktop.org>; Mon, 23 Oct 2023 16:07:03 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1698077223; x=1729613223;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=n+GUYtGsQ5LJAMwoKo2zFgSuask/SfrVycdVpa+flEs=;
- b=WbC10ySoW+fn6YUr52R9Iy+dyUwPiGQcSwkNWMK8Yf8KS6lgC8q/U+p6
- z0EKAXComYdoLTk6M9Z8hOMy0OuZ+63I1dHAQmuaHgX2OjXisXHsKvtcj
- 8Q5eEMQ4/tu07Gu1HyxeeBvemva8KHknavYIOAsz/pz9UpIulJY0fmZEO
- 2bmYChQiVH97glvs4OVC5hnG2TpKb+JuMTTD4f5XD2hdeQLWNxTfzvl/L
- bzAddTso3Lt67cK3WGUd+7d3rzMoyCa93ZJ+rdVRG13Pgx1MuOmX150iL
- Wh9Cnh/tX5nNF/EoViHe+bZqsmdRIp3j82TfwntaJEkGGDHvn8T7fGn2e g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10872"; a="418002947"
-X-IronPort-AV: E=Sophos;i="6.03,244,1694761200"; d="scan'208";a="418002947"
-Received: from fmsmga007.fm.intel.com ([10.253.24.52])
- by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Oct 2023 09:06:57 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10872"; a="761788283"
-X-IronPort-AV: E=Sophos;i="6.03,244,1694761200"; d="scan'208";a="761788283"
-Received: from nirmoyda-mobl.ger.corp.intel.com (HELO [10.249.40.246])
- ([10.249.40.246])
- by fmsmga007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Oct 2023 09:06:56 -0700
-Message-ID: <8fca4e5e-ae37-56f9-83d3-fbecd9b1dabb@linux.intel.com>
-Date: Mon, 23 Oct 2023 18:06:54 +0200
+Received: from galois.linutronix.de (Galois.linutronix.de [193.142.43.55])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 92D0910E10E
+ for <intel-gfx@lists.freedesktop.org>; Mon, 23 Oct 2023 16:11:40 +0000 (UTC)
+From: Thomas Gleixner <tglx@linutronix.de>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linutronix.de;
+ s=2020; t=1698077496;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ in-reply-to:in-reply-to:references:references;
+ bh=bO2BXye1lMp4h+BXWFd2ZCWFmLCstWT9fiAOX+cFNvc=;
+ b=Jkk1MIduHCB1MF5WJx4RWCSZ8fW9+U+ytu9yAvC3tDHutUzhDqvVluOFridpUxx1XGgHDe
+ WtnQfGfWAttalqAmdInYz36TOlO0Ll2TFLn5ToLMU5k2bVzRfVUxtYhQPi1bPBgCDwe80e
+ cwoclFaSLruuDzHSDHSTyZvRQjv6b6wJFO9qbTedGGJFNhKrWBvw/Vn3ejgcLcvyLcYNUl
+ jP4+vtixe/mZITuy3GoFdjigXrjl93Nv+4nxTznlItgkpjkemItdzn6AlZW88H8EfQtZLH
+ dhP2XgE0NM2o47ND1nPLwqfZkkO50DCqWpQl3PjxZoMHCOX3ABDFL8tUJah7kw==
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=linutronix.de;
+ s=2020e; t=1698077496;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ in-reply-to:in-reply-to:references:references;
+ bh=bO2BXye1lMp4h+BXWFd2ZCWFmLCstWT9fiAOX+cFNvc=;
+ b=lWLEqAuyKfuaLlXO6AMm4ZKc2+rIWXy1PzymO7xE1YLVZgaQdbJop3PJvcnEPSWd8Yzaxb
+ oiKD8Ywq/zWbA3DQ==
+To: Andrzej Hajda <andrzej.hajda@intel.com>, linux-kernel@vger.kernel.org,
+ intel-gfx@lists.freedesktop.org, linux-mm@kvack.org
+In-Reply-To: <62e16250-63f4-4fbb-b00e-db808b600664@intel.com>
+References: <20230925131359.2948827-1-andrzej.hajda@intel.com>
+ <87v8bak6iy.ffs@tglx> <62e16250-63f4-4fbb-b00e-db808b600664@intel.com>
+Date: Mon, 23 Oct 2023 18:11:35 +0200
+Message-ID: <87r0llco94.ffs@tglx>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.15.1
-Content-Language: en-US
-To: Andrzej Hajda <andrzej.hajda@intel.com>, intel-gfx@lists.freedesktop.org
-References: <20231023-wabb-v3-0-1a4fbc632440@intel.com>
- <20231023-wabb-v3-4-1a4fbc632440@intel.com>
- <7a83d52f-0bcb-6223-db6c-1bf9cb7ed39b@linux.intel.com>
- <9e296a17-5a7a-473d-a213-a1e965a3dc4a@intel.com>
-From: Nirmoy Das <nirmoy.das@linux.intel.com>
-In-Reply-To: <9e296a17-5a7a-473d-a213-a1e965a3dc4a@intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-Subject: Re: [Intel-gfx] [PATCH v3 4/4] drm/i915: Set copy engine
- arbitration for Wa_16018031267 / Wa_16018063123
+Content-Type: text/plain
+Subject: Re: [Intel-gfx] [PATCH v2] debugobjects: stop accessing objects
+ after releasing spinlock
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -65,111 +55,42 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Jonathan Cavitt <jonathan.cavitt@intel.com>,
- Nirmoy Das <nirmoy.das@intel.com>
+Cc: Nirmoy Das <nirmoy.das@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-
-On 10/23/2023 5:24 PM, Andrzej Hajda wrote:
-> On 23.10.2023 11:55, Nirmoy Das wrote:
->> Hi Andrzej,
->>
->> On 10/23/2023 9:41 AM, Andrzej Hajda wrote:
->>> From: Jonathan Cavitt <jonathan.cavitt@intel.com>
->>>
->>> Set copy engine arbitration into round robin mode
->>> for part of Wa_16018031267 / Wa_16018063123 mitigation.
->>>
->>> Signed-off-by: Nirmoy Das <nirmoy.das@intel.com>
->>> Signed-off-by: Jonathan Cavitt <jonathan.cavitt@intel.com>
->>> Reviewed-by: Andrzej Hajda <andrzej.hajda@intel.com>
->>> ---
->>>   drivers/gpu/drm/i915/gt/intel_engine_regs.h | 3 +++
->>>   drivers/gpu/drm/i915/gt/intel_workarounds.c | 5 +++++
->>>   2 files changed, 8 insertions(+)
->>>
->>> diff --git a/drivers/gpu/drm/i915/gt/intel_engine_regs.h 
->>> b/drivers/gpu/drm/i915/gt/intel_engine_regs.h
->>> index b8618ee3e3041a..c0c8c12edea104 100644
->>> --- a/drivers/gpu/drm/i915/gt/intel_engine_regs.h
->>> +++ b/drivers/gpu/drm/i915/gt/intel_engine_regs.h
->>> @@ -124,6 +124,9 @@
->>>   #define RING_INDIRECT_CTX(base)            _MMIO((base) + 0x1c4) 
->>> /* gen8+ */
->>>   #define RING_INDIRECT_CTX_OFFSET(base)        _MMIO((base) + 
->>> 0x1c8) /* gen8+ */
->>>   #define ECOSKPD(base)                _MMIO((base) + 0x1d0)
->>> +#define   XEHP_BLITTER_SCHEDULING_MODE_MASK REG_GENMASK(12, 11)
->>> +#define   XEHP_BLITTER_ROUND_ROBIN_MODE        \
->>> +        REG_FIELD_PREP(XEHP_BLITTER_SCHEDULING_MODE_MASK, 1)
->>>   #define   ECO_CONSTANT_BUFFER_SR_DISABLE    REG_BIT(4)
->>>   #define   ECO_GATING_CX_ONLY            REG_BIT(3)
->>>   #define   GEN6_BLITTER_FBC_NOTIFY        REG_BIT(3)
->>> diff --git a/drivers/gpu/drm/i915/gt/intel_workarounds.c 
->>> b/drivers/gpu/drm/i915/gt/intel_workarounds.c
->>> index 192ac0e59afa13..108d9326735910 100644
->>> --- a/drivers/gpu/drm/i915/gt/intel_workarounds.c
->>> +++ b/drivers/gpu/drm/i915/gt/intel_workarounds.c
->>> @@ -2782,6 +2782,11 @@ xcs_engine_wa_init(struct intel_engine_cs 
->>> *engine, struct i915_wa_list *wal)
->>>                RING_SEMA_WAIT_POLL(engine->mmio_base),
->>>                1);
->>>       }
->>> +    /* Wa_16018031267, Wa_16018063123 */
->>> +    if (NEEDS_FASTCOLOR_BLT_WABB(engine))
->>
->>
->> Not sure if I missed any previous discussion on this, the WA talked 
->> about applying this on main copy engine. This needs to be taken into 
->> account in
->>
->> NEEDS_FASTCOLOR_BLT_WABB()
+On Thu, Oct 19 2023 at 12:31, Andrzej Hajda wrote:
+> On 13.10.2023 15:15, Thomas Gleixner wrote:
+>> It cannot be freed. If that happens then the calling code will have an
+>> UAF problem on the tracked item too.
 >
-> Do you mean we need to check if instance == 0? Now above macro checks 
-> if it is copy engine.
+> Yes, and I have assumed that debugobjects are created also for detecting 
+> UAFs.
 
+Kinda.
 
-Yes, The WA should be limited to  BCS0.
+> They should be able to handle/detect 'issues due to incorrectly 
+> serialized concurrent accesses' scenarios as well, at least some of 
+> them. And even if it cannot recover it should at least provide reliable 
+> reporting.
 
+Fair enough.
+
+> Now we can have scenario:
+> 1. Thread tries to deactivate destroyed object, debugobjects detects it, 
+> spin lock is released, thread is preempted.
+> 2. Other thread frees debugobject, then allocates new one on the same 
+> memory location, ie 'obj' variable from 1st thread point to it - it is 
+> possible because there is no locking.
+> 3. Then preemption occurs, and 1st thread reports error for wrong object.
 >
->
->>
->>> +        wa_masked_field_set(wal, ECOSKPD(engine->mmio_base),
->>> +                    XEHP_BLITTER_SCHEDULING_MODE_MASK,
->>> +                    XEHP_BLITTER_ROUND_ROBIN_MODE);
->>>   }
->>
->> This function sets masked_reg = true and will not read the register 
->> back and I remember MattR asked internally to not use that if that is 
->> not required.
->
-> IIRC, wa_masked_field_set sets read_mask, so read back is performed, 
-> anyway it is the only function (beside low level wa_add), which works 
-> on fields(not bits). Are you sure?
+> This seems the most drastic for me, but also with lowest chances to 
+> happen due to delayed freeing, but there are also other more probable 
+> scenarios when we print the same object but in state different from the 
+> one when debugobject detected issue, due to modification by concurrent 
+> thread.
 
+Now I understand what you mean. This information should be in the
+changelog, no?
 
-Yes, you are right. I misread something. Please ignore that comment.
-
-
-Regards,
-
-Nirmoy
-
->
-> Regards
-> Andrzej
->
->>
->>
->> With those two concern handled this is  Reviewed-by: Nirmoy Das 
->> <nirmoy.das@intel.com>
->>
->>
->> Regards,
->>
->> Nirmoy
->>
->>>   static void
->>>
->
+Let me stare at the patch once more.
