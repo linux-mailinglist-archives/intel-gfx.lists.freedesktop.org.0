@@ -1,40 +1,56 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 695297D362D
-	for <lists+intel-gfx@lfdr.de>; Mon, 23 Oct 2023 14:15:01 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 505367D3654
+	for <lists+intel-gfx@lfdr.de>; Mon, 23 Oct 2023 14:21:05 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A558110E1C5;
-	Mon, 23 Oct 2023 12:14:59 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E5B2910E067;
+	Mon, 23 Oct 2023 12:21:01 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from coelho.fi (paleale.coelho.fi [176.9.41.70])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EEB9910E1C5
- for <intel-gfx@lists.freedesktop.org>; Mon, 23 Oct 2023 12:14:51 +0000 (UTC)
-Received: from 91-155-254-243.elisa-laajakaista.fi ([91.155.254.243]
- helo=pinhengc-mobl2.amr.corp.intel.com)
- by coelho.fi with esmtpsa (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
- (Exim 4.97-RC1) (envelope-from <luca@coelho.fi>)
- id 1qutpY-000000008TV-0ol6; Mon, 23 Oct 2023 15:14:49 +0300
-Message-ID: <6780f2f23be7946186c951f133f3f606afbb7425.camel@coelho.fi>
-From: Luca Coelho <luca@coelho.fi>
-To: Jouni =?ISO-8859-1?Q?H=F6gander?= <jouni.hogander@intel.com>, 
- intel-gfx@lists.freedesktop.org
-Date: Mon, 23 Oct 2023 15:14:47 +0300
-In-Reply-To: <20231016111658.3432581-6-jouni.hogander@intel.com>
-References: <20231016111658.3432581-1-jouni.hogander@intel.com>
- <20231016111658.3432581-6-jouni.hogander@intel.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.46.4-2 
+Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.88])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0323C10E1CF
+ for <intel-gfx@lists.freedesktop.org>; Mon, 23 Oct 2023 12:20:58 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1698063658; x=1729599658;
+ h=message-id:date:mime-version:subject:to:cc:references:
+ from:in-reply-to:content-transfer-encoding;
+ bh=AOQV24s++D4odiG1+OPDAVHgf78meLAi+2Jz1MdxRqI=;
+ b=V7C/vMcxBQ+t8BUZN6jTiO5Iibb/Hkb8u2e4m4TbGwsajdBMScAnBaWR
+ nOS7eouqomvP7djv+im0bC422ZX3jUoM6Urz2y18+XbYHI0RbSdwRXs6b
+ HTjkHFTj6iynHLLPIjv3rf5zieLum7Vv4Gpo6/oZHUaT1JE5+In7ZqHpo
+ lLYNAZfsn1OzYxg11cpAJAXTkHXbOV5lSU9MKt+43WF6eSKdk9i7hmt9M
+ 0hJON/tHaTfd3Z5PkkdfldTRMEHSdKaKDm3pXloNeQR47yFsc77p8K7Qa
+ TtkP6/5FO/NEqX8mx8uwUvsneU/aLYN6Ta9I237yfTYX5d0npmdcNcymk g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10872"; a="417961075"
+X-IronPort-AV: E=Sophos;i="6.03,244,1694761200"; d="scan'208";a="417961075"
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 23 Oct 2023 05:20:57 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10872"; a="787446251"
+X-IronPort-AV: E=Sophos;i="6.03,244,1694761200"; d="scan'208";a="787446251"
+Received: from nirmoyda-mobl.ger.corp.intel.com (HELO [10.249.40.234])
+ ([10.249.40.234])
+ by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 23 Oct 2023 05:20:56 -0700
+Message-ID: <e081e966-5207-2a32-b158-009fcb15f07d@linux.intel.com>
+Date: Mon, 23 Oct 2023 14:20:53 +0200
 MIME-Version: 1.0
-X-Spam-Checker-Version: SpamAssassin 4.0.0 (2022-12-13) on farmhouse.coelho.fi
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.9 required=5.0 tests=ALL_TRUSTED,BAYES_00,
- TVD_RCVD_IP autolearn=ham autolearn_force=no version=4.0.0
-Subject: Re: [Intel-gfx] [PATCH v2 05/24] drm/i915/display: Move
- vbt_firmware module parameter under display
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.15.1
+Content-Language: en-US
+To: Andrzej Hajda <andrzej.hajda@intel.com>, intel-gfx@lists.freedesktop.org
+References: <20231023-wabb-v3-0-1a4fbc632440@intel.com>
+ <4d4705bb-573d-3c95-3c70-7313c59effe1@linux.intel.com>
+ <03fdcc3a-d649-4202-990f-df9cf05e5ae4@intel.com>
+From: Nirmoy Das <nirmoy.das@linux.intel.com>
+In-Reply-To: <03fdcc3a-d649-4202-990f-df9cf05e5ae4@intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+Subject: Re: [Intel-gfx] [PATCH v3 0/4] Apply Wa_16018031267 / Wa_16018063123
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -47,95 +63,115 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: Chris Wilson <chris.p.wilson@linux.intel.com>,
+ Jonathan Cavitt <jonathan.cavitt@intel.com>, Nirmoy Das <nirmoy.das@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, 2023-10-16 at 14:16 +0300, Jouni H=C3=B6gander wrote:
-> Signed-off-by: Jouni H=C3=B6gander <jouni.hogander@intel.com>
-> ---
->  drivers/gpu/drm/i915/display/intel_display_params.c | 3 +++
->  drivers/gpu/drm/i915/display/intel_display_params.h | 1 +
->  drivers/gpu/drm/i915/display/intel_opregion.c       | 2 +-
->  drivers/gpu/drm/i915/i915_params.c                  | 3 ---
->  drivers/gpu/drm/i915/i915_params.h                  | 1 -
->  5 files changed, 5 insertions(+), 5 deletions(-)
->=20
-> diff --git a/drivers/gpu/drm/i915/display/intel_display_params.c b/driver=
-s/gpu/drm/i915/display/intel_display_params.c
-> index eac82deede4c..72f1782e27fe 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display_params.c
-> +++ b/drivers/gpu/drm/i915/display/intel_display_params.c
-> @@ -27,6 +27,9 @@ static struct intel_display_params intel_display_modpar=
-ams __read_mostly =3D {
->   * debugfs mode to 0.
->   */
-> =20
-> +intel_display_param_named_unsafe(vbt_firmware, charp, 0400,
-> +	"Load VBT from specified file under /lib/firmware");
-> +
->  intel_display_param_named_unsafe(enable_fbc, int, 0400,
->  	"Enable frame buffer compression for power savings "
->  	"(default: -1 (use per-chip default))");
-> diff --git a/drivers/gpu/drm/i915/display/intel_display_params.h b/driver=
-s/gpu/drm/i915/display/intel_display_params.h
-> index 99b79bed9363..a6f37c55523d 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display_params.h
-> +++ b/drivers/gpu/drm/i915/display/intel_display_params.h
-> @@ -24,6 +24,7 @@ struct drm_i915_private;
->   *       debugfs file
->   */
->  #define INTEL_DISPLAY_PARAMS_FOR_EACH(param) \
-> +	param(char *, vbt_firmware, NULL, 0400) \
->  	param(int, enable_fbc, -1, 0600)     \
->  	param(int, enable_psr, -1, 0600) \
->  	param(bool, psr_safest_params, false, 0400) \
-> diff --git a/drivers/gpu/drm/i915/display/intel_opregion.c b/drivers/gpu/=
-drm/i915/display/intel_opregion.c
-> index 84078fb82b2f..1ce785db6a5e 100644
-> --- a/drivers/gpu/drm/i915/display/intel_opregion.c
-> +++ b/drivers/gpu/drm/i915/display/intel_opregion.c
-> @@ -841,7 +841,7 @@ static int intel_load_vbt_firmware(struct drm_i915_pr=
-ivate *dev_priv)
->  {
->  	struct intel_opregion *opregion =3D &dev_priv->display.opregion;
->  	const struct firmware *fw =3D NULL;
-> -	const char *name =3D dev_priv->params.vbt_firmware;
-> +	const char *name =3D dev_priv->display.params.vbt_firmware;
->  	int ret;
-> =20
->  	if (!name || !*name)
-> diff --git a/drivers/gpu/drm/i915/i915_params.c b/drivers/gpu/drm/i915/i9=
-15_params.c
-> index c65e3314ae48..9d0535d774c9 100644
-> --- a/drivers/gpu/drm/i915/i915_params.c
-> +++ b/drivers/gpu/drm/i915/i915_params.c
-> @@ -87,9 +87,6 @@ i915_param_named_unsafe(vbt_sdvo_panel_type, int, 0400,
->  i915_param_named_unsafe(reset, uint, 0400,
->  	"Attempt GPU resets (0=3Ddisabled, 1=3Dfull gpu reset, 2=3Dengine reset=
- [default])");
-> =20
-> -i915_param_named_unsafe(vbt_firmware, charp, 0400,
-> -	"Load VBT from specified file under /lib/firmware");
-> -
->  #if IS_ENABLED(CONFIG_DRM_I915_CAPTURE_ERROR)
->  i915_param_named(error_capture, bool, 0400,
->  	"Record the GPU state following a hang. "
-> diff --git a/drivers/gpu/drm/i915/i915_params.h b/drivers/gpu/drm/i915/i9=
-15_params.h
-> index 47a05c4a8e89..37a1d31a233c 100644
-> --- a/drivers/gpu/drm/i915/i915_params.h
-> +++ b/drivers/gpu/drm/i915/i915_params.h
-> @@ -46,7 +46,6 @@ struct drm_printer;
->   *       debugfs file
->   */
->  #define I915_PARAMS_FOR_EACH(param) \
-> -	param(char *, vbt_firmware, NULL, 0400) \
->  	param(int, modeset, -1, 0400) \
->  	param(int, lvds_channel_mode, 0, 0400) \
->  	param(int, panel_use_ssc, -1, 0600) \
 
-Reviewed-by: Luca Coelho <luciano.coelho@intel.com>
+On 10/23/2023 1:35 PM, Andrzej Hajda wrote:
+>
+>
+> On 23.10.2023 10:38, Nirmoy Das wrote:
+>> Hi Andrzej
+>>
+>> On 10/23/2023 9:41 AM, Andrzej Hajda wrote:
+>>> Hi all,
+>>>
+>>> This the series from Jonathan:
+>>> [PATCH v12 0/4] Apply Wa_16018031267 / Wa_16018063123
+>>>
+>>> taken over by me.
+>>>
+>>> Changes in this version are described in the patches, in short:
+>>> v2:
+>>> - use real memory as WABB destination,
+>>
+>> Do we still need the NULL PTE patch now ?
+>
+> In fact no, since we are using real address.
+> On the other side it is still valuable, IMO, but probably better is to 
+> drop it from this patchset.
 
---
-Cheers,
-Luca.
+Yes, sounds good.
+
+
+Thanks,
+
+Nirmoy
+
+>
+>
+> Regards
+> Andrzej
+>
+>>
+>>
+>> Regards,
+>>
+>> Nirmoy
+>>
+>>> - address CI compains - do not decrease vm.total,
+>>> - minor reordering.
+>>> v3:
+>>> - fixed typos,
+>>> - removed spare defs,
+>>> - added tags
+>>>
+>>> Regards
+>>> Andrzej
+>>>
+>>> Andrzej Hajda (1):
+>>>    drm/i915: Reserve some kernel space per vm
+>>>
+>>> Jonathan Cavitt (3):
+>>>    drm/i915: Enable NULL PTE support for vm scratch
+>>>    drm/i915: Add WABB blit for Wa_16018031267 / Wa_16018063123
+>>>    drm/i915: Set copy engine arbitration for Wa_16018031267 /
+>>>      Wa_16018063123
+>>>
+>>> .../drm/i915/gem/selftests/i915_gem_context.c |   6 ++
+>>>   drivers/gpu/drm/i915/gt/gen8_ppgtt.c          |  41 +++++++
+>>>   drivers/gpu/drm/i915/gt/intel_engine_regs.h   |   6 ++
+>>>   drivers/gpu/drm/i915/gt/intel_gt.h            |   4 +
+>>>   drivers/gpu/drm/i915/gt/intel_gt_types.h      |   2 +
+>>>   drivers/gpu/drm/i915/gt/intel_gtt.h           |   2 +
+>>>   drivers/gpu/drm/i915/gt/intel_lrc.c           | 100 
+>>> +++++++++++++++++-
+>>>   drivers/gpu/drm/i915/gt/intel_workarounds.c   |   5 +
+>>>   drivers/gpu/drm/i915/gt/selftest_lrc.c        |  65 ++++++++----
+>>>   drivers/gpu/drm/i915/i915_drv.h               |   2 +
+>>>   drivers/gpu/drm/i915/i915_pci.c               |   2 +
+>>>   drivers/gpu/drm/i915/intel_device_info.h      |   1 +
+>>>   12 files changed, 215 insertions(+), 21 deletions(-)
+>>>
+>>> ---
+>>> Andrzej Hajda (1):
+>>>        drm/i915: Reserve some kernel space per vm
+>>>
+>>> Jonathan Cavitt (3):
+>>>        drm/i915: Enable NULL PTE support for vm scratch
+>>>        drm/i915: Add WABB blit for Wa_16018031267 / Wa_16018063123
+>>>        drm/i915: Set copy engine arbitration for Wa_16018031267 / 
+>>> Wa_16018063123
+>>>
+>>>   .../gpu/drm/i915/gem/selftests/i915_gem_context.c  |   6 ++
+>>>   drivers/gpu/drm/i915/gt/gen8_ppgtt.c               |  41 +++++++++
+>>>   drivers/gpu/drm/i915/gt/intel_engine_regs.h        |   6 ++
+>>>   drivers/gpu/drm/i915/gt/intel_gt.h                 |   4 +
+>>>   drivers/gpu/drm/i915/gt/intel_gtt.h                |   2 +
+>>>   drivers/gpu/drm/i915/gt/intel_lrc.c                | 100 
+>>> ++++++++++++++++++++-
+>>>   drivers/gpu/drm/i915/gt/intel_workarounds.c        |   5 ++
+>>>   drivers/gpu/drm/i915/gt/selftest_lrc.c             |  65 
+>>> ++++++++++----
+>>>   drivers/gpu/drm/i915/i915_drv.h                    |   2 +
+>>>   drivers/gpu/drm/i915/i915_pci.c                    |   2 +
+>>>   drivers/gpu/drm/i915/intel_device_info.h           |   1 +
+>>>   11 files changed, 213 insertions(+), 21 deletions(-)
+>>> ---
+>>> base-commit: 201c8a7bd1f3f415920a2df4b8a8817e973f42fe
+>>> change-id: 20231020-wabb-bbe9324a69a8
+>>>
+>>> Best regards,
+>
