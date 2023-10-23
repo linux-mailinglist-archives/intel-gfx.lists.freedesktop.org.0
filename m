@@ -2,29 +2,29 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 32D557D38C0
-	for <lists+intel-gfx@lfdr.de>; Mon, 23 Oct 2023 16:01:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 38F9A7D38C2
+	for <lists+intel-gfx@lfdr.de>; Mon, 23 Oct 2023 16:02:07 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 03C1910E0DF;
-	Mon, 23 Oct 2023 14:01:12 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2412310E0AB;
+	Mon, 23 Oct 2023 14:02:02 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from coelho.fi (paleale.coelho.fi [176.9.41.70])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8C4F910E0AB
- for <intel-gfx@lists.freedesktop.org>; Mon, 23 Oct 2023 14:01:09 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8210910E0AB
+ for <intel-gfx@lists.freedesktop.org>; Mon, 23 Oct 2023 14:01:59 +0000 (UTC)
 Received: from 91-155-254-243.elisa-laajakaista.fi ([91.155.254.243]
  helo=pinhengc-mobl2.amr.corp.intel.com)
  by coelho.fi with esmtpsa (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
  (Exim 4.97-RC1) (envelope-from <luca@coelho.fi>)
- id 1quvUQ-000000008cL-42kn; Mon, 23 Oct 2023 17:01:07 +0300
-Message-ID: <fb5743ae5a5f7e35b3e3b1124d2cb50d424da1ff.camel@coelho.fi>
+ id 1quvVD-000000008ch-3vl3; Mon, 23 Oct 2023 17:01:57 +0300
+Message-ID: <ad591eaebcefb5f9a1c50034fcbbd4b7b1178a50.camel@coelho.fi>
 From: Luca Coelho <luca@coelho.fi>
 To: Jouni =?ISO-8859-1?Q?H=F6gander?= <jouni.hogander@intel.com>, 
  intel-gfx@lists.freedesktop.org
-Date: Mon, 23 Oct 2023 17:01:06 +0300
-In-Reply-To: <20231016111658.3432581-23-jouni.hogander@intel.com>
+Date: Mon, 23 Oct 2023 17:01:55 +0300
+In-Reply-To: <20231016111658.3432581-24-jouni.hogander@intel.com>
 References: <20231016111658.3432581-1-jouni.hogander@intel.com>
- <20231016111658.3432581-23-jouni.hogander@intel.com>
+ <20231016111658.3432581-24-jouni.hogander@intel.com>
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 User-Agent: Evolution 3.46.4-2 
@@ -33,8 +33,8 @@ X-Spam-Checker-Version: SpamAssassin 4.0.0 (2022-12-13) on farmhouse.coelho.fi
 X-Spam-Level: 
 X-Spam-Status: No, score=-2.9 required=5.0 tests=ALL_TRUSTED,BAYES_00,
  TVD_RCVD_IP autolearn=ham autolearn_force=no version=4.0.0
-Subject: Re: [Intel-gfx] [PATCH v2 22/24] drm/i915/display: Move
- nuclear_pageflip under display
+Subject: Re: [Intel-gfx] [PATCH v2 23/24] drm/i915/display: Move
+ enable_dp_mst under display
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -53,77 +53,95 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 On Mon, 2023-10-16 at 14:16 +0300, Jouni H=C3=B6gander wrote:
 > Signed-off-by: Jouni H=C3=B6gander <jouni.hogander@intel.com>
 > ---
->  drivers/gpu/drm/i915/display/intel_display_device.c | 2 +-
 >  drivers/gpu/drm/i915/display/intel_display_params.c | 3 +++
 >  drivers/gpu/drm/i915/display/intel_display_params.h | 1 +
+>  drivers/gpu/drm/i915/display/intel_dp.c             | 6 +++---
 >  drivers/gpu/drm/i915/i915_params.c                  | 3 ---
 >  drivers/gpu/drm/i915/i915_params.h                  | 1 -
->  5 files changed, 5 insertions(+), 5 deletions(-)
+>  5 files changed, 7 insertions(+), 7 deletions(-)
 >=20
-> diff --git a/drivers/gpu/drm/i915/display/intel_display_device.c b/driver=
-s/gpu/drm/i915/display/intel_display_device.c
-> index 50841818fb59..0b522c6a8d6f 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display_device.c
-> +++ b/drivers/gpu/drm/i915/display/intel_display_device.c
-> @@ -1113,7 +1113,7 @@ void intel_display_device_info_runtime_init(struct =
-drm_i915_private *i915)
->  	}
-> =20
->  	/* Disable nuclear pageflip by default on pre-g4x */
-> -	if (!i915->params.nuclear_pageflip &&
-> +	if (!i915->display.params.nuclear_pageflip &&
->  	    DISPLAY_VER(i915) < 5 && !IS_G4X(i915))
->  		i915->drm.driver_features &=3D ~DRIVER_ATOMIC;
->  }
 > diff --git a/drivers/gpu/drm/i915/display/intel_display_params.c b/driver=
 s/gpu/drm/i915/display/intel_display_params.c
-> index e86766639396..3045a1b9b704 100644
+> index 3045a1b9b704..8e6353c1c25e 100644
 > --- a/drivers/gpu/drm/i915/display/intel_display_params.c
 > +++ b/drivers/gpu/drm/i915/display/intel_display_params.c
-> @@ -90,6 +90,9 @@ intel_display_param_named(disable_display, bool, 0400,
->  intel_display_param_named(verbose_state_checks, bool, 0400,
->  	"Enable verbose logs (ie. WARN_ON()) in case of unexpected hw state con=
-ditions.");
-> =20
-> +intel_display_param_named_unsafe(nuclear_pageflip, bool, 0400,
-> +	"Force enable atomic functionality on platforms that don't have full su=
+> @@ -93,6 +93,9 @@ intel_display_param_named(verbose_state_checks, bool, 0=
+400,
+>  intel_display_param_named_unsafe(nuclear_pageflip, bool, 0400,
+>  	"Force enable atomic functionality on platforms that don't have full su=
 pport yet.");
+> =20
+> +intel_display_param_named_unsafe(enable_dp_mst, bool, 0400,
+> +	"Enable multi-stream transport (MST) for new DisplayPort sinks. (defaul=
+t: true)");
 > +
 >  intel_display_param_named_unsafe(enable_fbc, int, 0400,
 >  	"Enable frame buffer compression for power savings "
 >  	"(default: -1 (use per-chip default))");
 > diff --git a/drivers/gpu/drm/i915/display/intel_display_params.h b/driver=
 s/gpu/drm/i915/display/intel_display_params.h
-> index b35443f51375..d25e17f88a78 100644
+> index d25e17f88a78..83c4429ada35 100644
 > --- a/drivers/gpu/drm/i915/display/intel_display_params.h
 > +++ b/drivers/gpu/drm/i915/display/intel_display_params.h
-> @@ -40,6 +40,7 @@ struct drm_i915_private;
->  	param(bool, force_reset_modeset_test, false, 0600) \
+> @@ -41,6 +41,7 @@ struct drm_i915_private;
 >  	param(bool, disable_display, false, 0400) \
 >  	param(bool, verbose_state_checks, true, 0) \
-> +	param(bool, nuclear_pageflip, false, 0400) \
+>  	param(bool, nuclear_pageflip, false, 0400) \
+> +	param(bool, enable_dp_mst, true, 0600) \
 >  	param(int, enable_fbc, -1, 0600)	\
 >  	param(int, enable_psr, -1, 0600) \
 >  	param(bool, psr_safest_params, false, 0400) \
+> diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i9=
+15/display/intel_dp.c
+> index 4f6835a7578e..f90d8cace6a6 100644
+> --- a/drivers/gpu/drm/i915/display/intel_dp.c
+> +++ b/drivers/gpu/drm/i915/display/intel_dp.c
+> @@ -3749,7 +3749,7 @@ intel_dp_can_mst(struct intel_dp *intel_dp)
+>  {
+>  	struct drm_i915_private *i915 =3D dp_to_i915(intel_dp);
+> =20
+> -	return i915->params.enable_dp_mst &&
+> +	return i915->display.params.enable_dp_mst &&
+>  		intel_dp_mst_source_support(intel_dp) &&
+>  		drm_dp_read_mst_cap(&intel_dp->aux, intel_dp->dpcd);
+>  }
+> @@ -3767,13 +3767,13 @@ intel_dp_configure_mst(struct intel_dp *intel_dp)
+>  		    encoder->base.base.id, encoder->base.name,
+>  		    str_yes_no(intel_dp_mst_source_support(intel_dp)),
+>  		    str_yes_no(sink_can_mst),
+> -		    str_yes_no(i915->params.enable_dp_mst));
+> +		    str_yes_no(i915->display.params.enable_dp_mst));
+> =20
+>  	if (!intel_dp_mst_source_support(intel_dp))
+>  		return;
+> =20
+>  	intel_dp->is_mst =3D sink_can_mst &&
+> -		i915->params.enable_dp_mst;
+> +		i915->display.params.enable_dp_mst;
+> =20
+>  	drm_dp_mst_topology_mgr_set_mst(&intel_dp->mst_mgr,
+>  					intel_dp->is_mst);
 > diff --git a/drivers/gpu/drm/i915/i915_params.c b/drivers/gpu/drm/i915/i9=
 15_params.c
-> index 72614c139222..18424873442d 100644
+> index 18424873442d..de43048543e8 100644
 > --- a/drivers/gpu/drm/i915/i915_params.c
 > +++ b/drivers/gpu/drm/i915/i915_params.c
-> @@ -93,9 +93,6 @@ i915_param_named(mmio_debug, int, 0400,
->  	"Enable the MMIO debug code for the first N failures (default: off). "
->  	"This may negatively affect performance.");
+> @@ -114,9 +114,6 @@ i915_param_named_unsafe(dmc_firmware_path, charp, 040=
+0,
+>  i915_param_named_unsafe(gsc_firmware_path, charp, 0400,
+>  	"GSC firmware path to use instead of the default one");
 > =20
-> -i915_param_named_unsafe(nuclear_pageflip, bool, 0400,
-> -	"Force enable atomic functionality on platforms that don't have full su=
-pport yet.");
+> -i915_param_named_unsafe(enable_dp_mst, bool, 0400,
+> -	"Enable multi-stream transport (MST) for new DisplayPort sinks. (defaul=
+t: true)");
 > -
->  i915_param_named_unsafe(enable_guc, int, 0400,
->  	"Enable GuC load for GuC submission and/or HuC load. "
->  	"Required functionality can be selected using bitmask values. "
+>  #if IS_ENABLED(CONFIG_DRM_I915_DEBUG)
+>  i915_param_named_unsafe(inject_probe_failure, uint, 0400,
+>  	"Force an error after a number of failure check points (0:disabled (def=
+ault), N:force failure at the Nth failure check point)");
 > diff --git a/drivers/gpu/drm/i915/i915_params.h b/drivers/gpu/drm/i915/i9=
 15_params.h
-> index 4b543beb17ca..c7fff571db2c 100644
+> index c7fff571db2c..1315d7fac850 100644
 > --- a/drivers/gpu/drm/i915/i915_params.h
 > +++ b/drivers/gpu/drm/i915/i915_params.h
 > @@ -64,7 +64,6 @@ struct drm_printer;
@@ -131,11 +149,11 @@ pport yet.");
 >  	param(bool, enable_hangcheck, true, 0600) \
 >  	param(bool, error_capture, true, IS_ENABLED(CONFIG_DRM_I915_CAPTURE_ERR=
 OR) ? 0600 : 0) \
-> -	param(bool, nuclear_pageflip, false, 0400) \
->  	param(bool, enable_dp_mst, true, 0600) \
+> -	param(bool, enable_dp_mst, true, 0600) \
 >  	param(bool, enable_gvt, false, IS_ENABLED(CONFIG_DRM_I915_GVT) ? 0400 :=
  0)
 > =20
+>  #define MEMBER(T, member, ...) T member;
 
 Reviewed-by: Luca Coelho <luciano.coelho@intel.com>
 
