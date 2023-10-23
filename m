@@ -2,53 +2,49 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id A4A5E7D2CE0
-	for <lists+intel-gfx@lfdr.de>; Mon, 23 Oct 2023 10:38:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 08AE77D2D04
+	for <lists+intel-gfx@lfdr.de>; Mon, 23 Oct 2023 10:43:44 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7945610E183;
-	Mon, 23 Oct 2023 08:38:27 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8FBB110E19C;
+	Mon, 23 Oct 2023 08:43:41 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.120])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B990C10E183
- for <intel-gfx@lists.freedesktop.org>; Mon, 23 Oct 2023 08:38:24 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.65])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E332A10E18E;
+ Mon, 23 Oct 2023 08:43:38 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1698050304; x=1729586304;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=wYtZNWlAnc59OxiPHRPWXPS09xwvcopPvfxNqir/hTs=;
- b=HAQqNVm+KJu/iiWrJybOAA3M3I3uQVsTNbmY0uPHg2wE3fQFsonmBEeX
- PuaikHnMm6s7sdIBpeHg8rhItCTUHOXCrNlNMG2di8CbS6roMe73dZGkW
- VFMqo9FQ/qC5/jJqXCcnwyKO7r247a5CqXL1sqGpiEJcJwI2ApqWgyGHc
- haG6Oii+Pdh9WguNFfyomhJXXbi3upnKaD0zdy5wzpx+/o0xfzzQK7XlZ
- o9eP7rdUj5PRS/duh8rzczK8YiC7g9yaF2At+ueLqeapOaItfpQQrHyme
- 0m5qN1GJfQwaHbEFuUVqYDJYUsy+knVc3GYpd3MIPwq4NRcNwP5vPOfjW Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10871"; a="385676792"
-X-IronPort-AV: E=Sophos;i="6.03,244,1694761200"; d="scan'208";a="385676792"
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
- by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Oct 2023 01:38:24 -0700
+ t=1698050618; x=1729586618;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=2yz7xZS25QReyb7ul6KHdE7UF8EAhscwtviCavP2Lt4=;
+ b=MiWiAFRQ5I97tYrVTtpds6zUM0rfhSk7n07Je4ZgXQABzBYqAaLjjaHh
+ 28GgT3Dfrj7oRASJD8urWAo9ciYUjPelRDrTWthIl8O9FJq/s2kkdbIDv
+ JXmbgGYgKs3aQ8FsgdyslkEHMD73Shr6LEXeCZadn9LgNLwoJF1O2bc1v
+ 2sJhiEuPLgv7so16sifp8E9F4/QN1EKCtL1V2hka7rPI5q1NCmlc3Pt7B
+ vSAd/yOoa/wlp3QM9RiuIk4pbltTVYH32jIPSIy7E5z37i66CNP1DUmb3
+ nSybyBWP0R7kzW/fHtqNaQGlzNivTx3x6kOumwPS8cRSEu1gJp0mQT+8i g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10871"; a="390683552"
+X-IronPort-AV: E=Sophos;i="6.03,244,1694761200"; d="scan'208";a="390683552"
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+ by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 23 Oct 2023 01:43:38 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10871"; a="901742182"
-X-IronPort-AV: E=Sophos;i="6.03,244,1694761200"; d="scan'208";a="901742182"
-Received: from nirmoyda-mobl.ger.corp.intel.com (HELO [10.249.40.234])
- ([10.249.40.234])
- by fmsmga001-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Oct 2023 01:36:05 -0700
-Message-ID: <4d4705bb-573d-3c95-3c70-7313c59effe1@linux.intel.com>
-Date: Mon, 23 Oct 2023 10:38:20 +0200
+X-IronPort-AV: E=McAfee;i="6600,9927,10871"; a="758084414"
+X-IronPort-AV: E=Sophos;i="6.03,244,1694761200"; d="scan'208";a="758084414"
+Received: from agherasi-mobl.ger.corp.intel.com (HELO hazy.ger.corp.intel.com)
+ ([10.252.47.132])
+ by orsmga002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 23 Oct 2023 01:43:36 -0700
+From: Luca Coelho <luciano.coelho@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Mon, 23 Oct 2023 11:43:22 +0300
+Message-Id: <20231023084322.1482161-1-luciano.coelho@intel.com>
+X-Mailer: git-send-email 2.39.2
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.15.1
-Content-Language: en-US
-To: Andrzej Hajda <andrzej.hajda@intel.com>, intel-gfx@lists.freedesktop.org
-References: <20231023-wabb-v3-0-1a4fbc632440@intel.com>
-From: Nirmoy Das <nirmoy.das@linux.intel.com>
-In-Reply-To: <20231023-wabb-v3-0-1a4fbc632440@intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-Subject: Re: [Intel-gfx] [PATCH v3 0/4] Apply Wa_16018031267 / Wa_16018063123
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-gfx] [PATCH v2] drm/i915: handle uncore spinlock when not
+ available
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,88 +57,145 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Chris Wilson <chris.p.wilson@linux.intel.com>,
- Jonathan Cavitt <jonathan.cavitt@intel.com>, Nirmoy Das <nirmoy.das@intel.com>
+Cc: intel-xe@lists.freedesktop.org, rodrigo.vivi@intel.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi Andrzej
+The uncore code may not always be available (e.g. when we build the
+display code with Xe), so we can't always rely on having the uncore's
+spinlock.
 
-On 10/23/2023 9:41 AM, Andrzej Hajda wrote:
-> Hi all,
->
-> This the series from Jonathan:
-> [PATCH v12 0/4] Apply Wa_16018031267 / Wa_16018063123
->
-> taken over by me.
->
-> Changes in this version are described in the patches, in short:
-> v2:
-> - use real memory as WABB destination,
+To handle this, split the spin_lock/unlock_irqsave/restore() into
+spin_lock/unlock() followed by a call to local_irq_save/restore() and
+create wrapper functions for locking and unlocking the uncore's
+spinlock.  In these functions, we have a condition check and only
+actually try to lock/unlock the spinlock when I915 is defined, and
+thus uncore is available.
 
-Do we still need the NULL PTE patch now ?
+This keeps the ifdefs contained in these new functions and all such
+logic inside the display code.
+
+Signed-off-by: Luca Coelho <luciano.coelho@intel.com>
+---
+
+Note: this patch was accidentally sent only to intel-xe[1], but should
+have been sent to intel-gfx.  Thus, this is v2.
+
+In v2:
+
+   * Renamed uncore_spin_*() to intel_spin_*()
+   * Corrected the order: save, lock, unlock, restore
+
+[1] https://patchwork.freedesktop.org/patch/563288/
 
 
-Regards,
+ drivers/gpu/drm/i915/display/intel_display.h | 22 +++++++++++++++++++-
+ drivers/gpu/drm/i915/display/intel_vblank.c  | 19 ++++++++++-------
+ 2 files changed, 33 insertions(+), 8 deletions(-)
 
-Nirmoy
+diff --git a/drivers/gpu/drm/i915/display/intel_display.h b/drivers/gpu/drm/i915/display/intel_display.h
+index 0e5dffe8f018..099476906f4c 100644
+--- a/drivers/gpu/drm/i915/display/intel_display.h
++++ b/drivers/gpu/drm/i915/display/intel_display.h
+@@ -29,6 +29,7 @@
+ 
+ #include "i915_reg_defs.h"
+ #include "intel_display_limits.h"
++#include "i915_drv.h"
+ 
+ enum drm_scaling_filter;
+ struct dpll;
+@@ -41,7 +42,6 @@ struct drm_file;
+ struct drm_format_info;
+ struct drm_framebuffer;
+ struct drm_i915_gem_object;
+-struct drm_i915_private;
+ struct drm_mode_fb_cmd2;
+ struct drm_modeset_acquire_ctx;
+ struct drm_plane;
+@@ -559,4 +559,24 @@ bool assert_port_valid(struct drm_i915_private *i915, enum port port);
+ 
+ bool intel_scanout_needs_vtd_wa(struct drm_i915_private *i915);
+ 
++/*
++ * The uncore version of the spin lock functions is used to decide
++ * whether we need to lock the uncore lock or not.  This is only
++ * needed in i915, not in Xe.  Keep the decision-making centralized
++ * here.
++ */
++static inline void intel_spin_lock(struct drm_i915_private *i915)
++{
++#ifdef I915
++	spin_lock(&i915->uncore.lock);
++#endif
++}
++
++static inline void intel_spin_unlock(struct drm_i915_private *i915)
++{
++#ifdef I915
++	spin_unlock(&i915->uncore.lock);
++#endif
++}
++
+ #endif
+diff --git a/drivers/gpu/drm/i915/display/intel_vblank.c b/drivers/gpu/drm/i915/display/intel_vblank.c
+index 2cec2abf9746..7c624ea7e902 100644
+--- a/drivers/gpu/drm/i915/display/intel_vblank.c
++++ b/drivers/gpu/drm/i915/display/intel_vblank.c
+@@ -306,7 +306,8 @@ static bool i915_get_crtc_scanoutpos(struct drm_crtc *_crtc,
+ 	 * register reads, potentially with preemption disabled, so the
+ 	 * following code must not block on uncore.lock.
+ 	 */
+-	spin_lock_irqsave(&dev_priv->uncore.lock, irqflags);
++	local_irq_save(irqflags);
++	intel_spin_lock(dev_priv);
+ 
+ 	/* preempt_disable_rt() should go right here in PREEMPT_RT patchset. */
+ 
+@@ -374,7 +375,8 @@ static bool i915_get_crtc_scanoutpos(struct drm_crtc *_crtc,
+ 
+ 	/* preempt_enable_rt() should go right here in PREEMPT_RT patchset. */
+ 
+-	spin_unlock_irqrestore(&dev_priv->uncore.lock, irqflags);
++	intel_spin_unlock(dev_priv);
++	local_irq_restore(irqflags);
+ 
+ 	/*
+ 	 * While in vblank, position will be negative
+@@ -412,9 +414,13 @@ int intel_get_crtc_scanline(struct intel_crtc *crtc)
+ 	unsigned long irqflags;
+ 	int position;
+ 
+-	spin_lock_irqsave(&dev_priv->uncore.lock, irqflags);
++	local_irq_save(irqflags);
++	intel_spin_lock(dev_priv);
++
+ 	position = __intel_get_crtc_scanline(crtc);
+-	spin_unlock_irqrestore(&dev_priv->uncore.lock, irqflags);
++
++	intel_spin_unlock(dev_priv);
++	local_irq_restore(irqflags);
+ 
+ 	return position;
+ }
+@@ -537,7 +543,7 @@ void intel_crtc_update_active_timings(const struct intel_crtc_state *crtc_state,
+ 	 * Need to audit everything to make sure it's safe.
+ 	 */
+ 	spin_lock_irqsave(&i915->drm.vblank_time_lock, irqflags);
+-	spin_lock(&i915->uncore.lock);
++	intel_spin_lock(i915);
+ 
+ 	drm_calc_timestamping_constants(&crtc->base, &adjusted_mode);
+ 
+@@ -546,7 +552,6 @@ void intel_crtc_update_active_timings(const struct intel_crtc_state *crtc_state,
+ 	crtc->mode_flags = mode_flags;
+ 
+ 	crtc->scanline_offset = intel_crtc_scanline_offset(crtc_state);
+-
+-	spin_unlock(&i915->uncore.lock);
++	intel_spin_unlock(i915);
+ 	spin_unlock_irqrestore(&i915->drm.vblank_time_lock, irqflags);
+ }
+-- 
+2.39.2
 
-> - address CI compains - do not decrease vm.total,
-> - minor reordering.
-> v3:
-> - fixed typos,
-> - removed spare defs,
-> - added tags
->
-> Regards
-> Andrzej
->
-> Andrzej Hajda (1):
->    drm/i915: Reserve some kernel space per vm
->
-> Jonathan Cavitt (3):
->    drm/i915: Enable NULL PTE support for vm scratch
->    drm/i915: Add WABB blit for Wa_16018031267 / Wa_16018063123
->    drm/i915: Set copy engine arbitration for Wa_16018031267 /
->      Wa_16018063123
->
-> .../drm/i915/gem/selftests/i915_gem_context.c |   6 ++
->   drivers/gpu/drm/i915/gt/gen8_ppgtt.c          |  41 +++++++
->   drivers/gpu/drm/i915/gt/intel_engine_regs.h   |   6 ++
->   drivers/gpu/drm/i915/gt/intel_gt.h            |   4 +
->   drivers/gpu/drm/i915/gt/intel_gt_types.h      |   2 +
->   drivers/gpu/drm/i915/gt/intel_gtt.h           |   2 +
->   drivers/gpu/drm/i915/gt/intel_lrc.c           | 100 +++++++++++++++++-
->   drivers/gpu/drm/i915/gt/intel_workarounds.c   |   5 +
->   drivers/gpu/drm/i915/gt/selftest_lrc.c        |  65 ++++++++----
->   drivers/gpu/drm/i915/i915_drv.h               |   2 +
->   drivers/gpu/drm/i915/i915_pci.c               |   2 +
->   drivers/gpu/drm/i915/intel_device_info.h      |   1 +
->   12 files changed, 215 insertions(+), 21 deletions(-)
->
-> ---
-> Andrzej Hajda (1):
->        drm/i915: Reserve some kernel space per vm
->
-> Jonathan Cavitt (3):
->        drm/i915: Enable NULL PTE support for vm scratch
->        drm/i915: Add WABB blit for Wa_16018031267 / Wa_16018063123
->        drm/i915: Set copy engine arbitration for Wa_16018031267 / Wa_16018063123
->
->   .../gpu/drm/i915/gem/selftests/i915_gem_context.c  |   6 ++
->   drivers/gpu/drm/i915/gt/gen8_ppgtt.c               |  41 +++++++++
->   drivers/gpu/drm/i915/gt/intel_engine_regs.h        |   6 ++
->   drivers/gpu/drm/i915/gt/intel_gt.h                 |   4 +
->   drivers/gpu/drm/i915/gt/intel_gtt.h                |   2 +
->   drivers/gpu/drm/i915/gt/intel_lrc.c                | 100 ++++++++++++++++++++-
->   drivers/gpu/drm/i915/gt/intel_workarounds.c        |   5 ++
->   drivers/gpu/drm/i915/gt/selftest_lrc.c             |  65 ++++++++++----
->   drivers/gpu/drm/i915/i915_drv.h                    |   2 +
->   drivers/gpu/drm/i915/i915_pci.c                    |   2 +
->   drivers/gpu/drm/i915/intel_device_info.h           |   1 +
->   11 files changed, 213 insertions(+), 21 deletions(-)
-> ---
-> base-commit: 201c8a7bd1f3f415920a2df4b8a8817e973f42fe
-> change-id: 20231020-wabb-bbe9324a69a8
->
-> Best regards,
