@@ -1,51 +1,58 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 515AB7D3A75
-	for <lists+intel-gfx@lfdr.de>; Mon, 23 Oct 2023 17:13:57 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 91E677D3AA5
+	for <lists+intel-gfx@lfdr.de>; Mon, 23 Oct 2023 17:24:56 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1630910E08F;
-	Mon, 23 Oct 2023 15:13:54 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1DAFD10E214;
+	Mon, 23 Oct 2023 15:24:53 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.93])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7DAB110E08F
- for <intel-gfx@lists.freedesktop.org>; Mon, 23 Oct 2023 15:13:51 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.136])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DC57F10E214
+ for <intel-gfx@lists.freedesktop.org>; Mon, 23 Oct 2023 15:24:50 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1698074031; x=1729610031;
- h=from:to:subject:in-reply-to:references:date:message-id:
- mime-version; bh=63CueaqUO5cqIZhH66/iqzX4PbCKhbLYlpmGIqW2qkU=;
- b=UiDAULpoV+rfK6ogNNvvAVZqs3dzMCSAeECiVIfFlH7mLuA/zP6pym0k
- m9IzXaFjMlQBYvBKmASvYmEPPNLplC7vHKQPhLIFXLTYa8Rvs0t1LdtDJ
- zIGwqKcLjnRf8o3id05KtkD2CuHpChLIrIaQOL76GwEQW9jRstZwzlgcN
- RAVFkdgfWro6K3cIwomz3xUuPNhYau/DBmJZhts5zKmSVfM1shmHIG/H2
- +VAVNtWr3t0CF1H0o2CJRBBwr6U46sQ49ewHZ0TPCjdGbwfPuxcI2oZxV
- w1mexKy2Atlh+nnxyBXJE7z2Qbvr8WGMyngXpTuFpHhMl1lR9ZU98W1h0 w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10872"; a="384061470"
-X-IronPort-AV: E=Sophos;i="6.03,244,1694761200"; d="scan'208";a="384061470"
-Received: from fmviesa001.fm.intel.com ([10.60.135.141])
- by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Oct 2023 08:13:50 -0700
+ t=1698074690; x=1729610690;
+ h=message-id:date:mime-version:subject:to:cc:references:
+ from:in-reply-to:content-transfer-encoding;
+ bh=qycrxZCkMH/BZX8chUcR0a+GuxsVdac5Dot0a+h81+Y=;
+ b=RlVL2TTDeG7JPPjf3y5AiIAsG7N6kZYfCYHMFUnrX+zbIad1TxSi7AoB
+ dvtETzQhCZxk3ItbemyO72pTfmMuLglxNvw4yhyWt4ZR7mT+IvWxz5uxZ
+ q07HaPc9SlT71piyBsPiL7bYROLw6MuB5V0zI3JQD5kggCahNgUdj02Bv
+ zddFtCkNJLS/Rg5pj3k2gmtO7B7ZPsWouAI3wIpfxrXTuEKApQaKzWoQo
+ w55Q01LsRzkgRLPeH65qeZTs5tWYn5WJHPBtZ2zfpVG2fmmskwAFVqBz6
+ k8RTUzJZ53kqlgxm8XYjiL3U/e/ozC2g7EiVh3z8tMKORwez4VESdjvWp w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10872"; a="366208531"
+X-IronPort-AV: E=Sophos;i="6.03,244,1694761200"; d="scan'208";a="366208531"
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+ by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 23 Oct 2023 08:24:50 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.03,244,1694761200"; 
-   d="scan'208";a="6113502"
-Received: from evlad-mobl.ger.corp.intel.com (HELO localhost) ([10.252.47.180])
- by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Oct 2023 08:13:44 -0700
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>,
- intel-gfx@lists.freedesktop.org
-In-Reply-To: <20231019182720.3742536-1-umesh.nerlige.ramappa@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20231019182720.3742536-1-umesh.nerlige.ramappa@intel.com>
-Date: Mon, 23 Oct 2023 18:13:46 +0300
-Message-ID: <87bkcpbcd1.fsf@intel.com>
+X-IronPort-AV: E=McAfee;i="6600,9927,10872"; a="874731406"
+X-IronPort-AV: E=Sophos;i="6.03,244,1694761200"; d="scan'208";a="874731406"
+Received: from ahajda-mobl.ger.corp.intel.com (HELO [10.213.1.152])
+ ([10.213.1.152])
+ by fmsmga002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 23 Oct 2023 08:24:48 -0700
+Message-ID: <9e296a17-5a7a-473d-a213-a1e965a3dc4a@intel.com>
+Date: Mon, 23 Oct 2023 17:24:46 +0200
 MIME-Version: 1.0
-Content-Type: text/plain
-Subject: Re: [Intel-gfx] [PATCH] drm/i915/pmu: Check is pmu is closed before
- stopping event
+User-Agent: Mozilla Thunderbird
+Content-Language: en-US
+To: Nirmoy Das <nirmoy.das@linux.intel.com>, intel-gfx@lists.freedesktop.org
+References: <20231023-wabb-v3-0-1a4fbc632440@intel.com>
+ <20231023-wabb-v3-4-1a4fbc632440@intel.com>
+ <7a83d52f-0bcb-6223-db6c-1bf9cb7ed39b@linux.intel.com>
+From: Andrzej Hajda <andrzej.hajda@intel.com>
+Organization: Intel Technology Poland sp. z o.o. - ul. Slowackiego 173, 80-298
+ Gdansk - KRS 101882 - NIP 957-07-52-316
+In-Reply-To: <7a83d52f-0bcb-6223-db6c-1bf9cb7ed39b@linux.intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+Subject: Re: [Intel-gfx] [PATCH v3 4/4] drm/i915: Set copy engine
+ arbitration for Wa_16018031267 / Wa_16018063123
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -58,58 +65,96 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: Jonathan Cavitt <jonathan.cavitt@intel.com>,
+ Nirmoy Das <nirmoy.das@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, 19 Oct 2023, Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com> wrote:
-> When the driver unbinds, pmu is unregistered and i915->uabi_engines is
-> set to RB_ROOT. Due to this, when i915 PMU tries to stop the engine
-> events, it issues a warn_on because engine lookup fails.
->
-> All perf hooks are taking care of this using a pmu->closed flag that is
-> set when PMU unregisters. The stop event seems to have been left out.
->
-> Check for pmu->closed in pmu_event_stop as well.
->
-> Based on discussion here -
-> https://patchwork.freedesktop.org/patch/492079/?series=105790&rev=2
->
-> Signed-off-by: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
-> ---
->  drivers/gpu/drm/i915/i915_pmu.c | 9 +++++++++
->  1 file changed, 9 insertions(+)
->
-> diff --git a/drivers/gpu/drm/i915/i915_pmu.c b/drivers/gpu/drm/i915/i915_pmu.c
-> index 108b675088ba..f861863eb7c1 100644
-> --- a/drivers/gpu/drm/i915/i915_pmu.c
-> +++ b/drivers/gpu/drm/i915/i915_pmu.c
-> @@ -831,9 +831,18 @@ static void i915_pmu_event_start(struct perf_event *event, int flags)
->  
->  static void i915_pmu_event_stop(struct perf_event *event, int flags)
->  {
-> +	struct drm_i915_private *i915 =
-> +		container_of(event->pmu, typeof(*i915), pmu.base);
-> +	struct i915_pmu *pmu = &i915->pmu;
+On 23.10.2023 11:55, Nirmoy Das wrote:
+> Hi Andrzej,
+> 
+> On 10/23/2023 9:41 AM, Andrzej Hajda wrote:
+>> From: Jonathan Cavitt <jonathan.cavitt@intel.com>
+>>
+>> Set copy engine arbitration into round robin mode
+>> for part of Wa_16018031267 / Wa_16018063123 mitigation.
+>>
+>> Signed-off-by: Nirmoy Das <nirmoy.das@intel.com>
+>> Signed-off-by: Jonathan Cavitt <jonathan.cavitt@intel.com>
+>> Reviewed-by: Andrzej Hajda <andrzej.hajda@intel.com>
+>> ---
+>>   drivers/gpu/drm/i915/gt/intel_engine_regs.h | 3 +++
+>>   drivers/gpu/drm/i915/gt/intel_workarounds.c | 5 +++++
+>>   2 files changed, 8 insertions(+)
+>>
+>> diff --git a/drivers/gpu/drm/i915/gt/intel_engine_regs.h 
+>> b/drivers/gpu/drm/i915/gt/intel_engine_regs.h
+>> index b8618ee3e3041a..c0c8c12edea104 100644
+>> --- a/drivers/gpu/drm/i915/gt/intel_engine_regs.h
+>> +++ b/drivers/gpu/drm/i915/gt/intel_engine_regs.h
+>> @@ -124,6 +124,9 @@
+>>   #define RING_INDIRECT_CTX(base)            _MMIO((base) + 0x1c4) /* 
+>> gen8+ */
+>>   #define RING_INDIRECT_CTX_OFFSET(base)        _MMIO((base) + 0x1c8) 
+>> /* gen8+ */
+>>   #define ECOSKPD(base)                _MMIO((base) + 0x1d0)
+>> +#define   XEHP_BLITTER_SCHEDULING_MODE_MASK    REG_GENMASK(12, 11)
+>> +#define   XEHP_BLITTER_ROUND_ROBIN_MODE        \
+>> +        REG_FIELD_PREP(XEHP_BLITTER_SCHEDULING_MODE_MASK, 1)
+>>   #define   ECO_CONSTANT_BUFFER_SR_DISABLE    REG_BIT(4)
+>>   #define   ECO_GATING_CX_ONLY            REG_BIT(3)
+>>   #define   GEN6_BLITTER_FBC_NOTIFY        REG_BIT(3)
+>> diff --git a/drivers/gpu/drm/i915/gt/intel_workarounds.c 
+>> b/drivers/gpu/drm/i915/gt/intel_workarounds.c
+>> index 192ac0e59afa13..108d9326735910 100644
+>> --- a/drivers/gpu/drm/i915/gt/intel_workarounds.c
+>> +++ b/drivers/gpu/drm/i915/gt/intel_workarounds.c
+>> @@ -2782,6 +2782,11 @@ xcs_engine_wa_init(struct intel_engine_cs 
+>> *engine, struct i915_wa_list *wal)
+>>                RING_SEMA_WAIT_POLL(engine->mmio_base),
+>>                1);
+>>       }
+>> +    /* Wa_16018031267, Wa_16018063123 */
+>> +    if (NEEDS_FASTCOLOR_BLT_WABB(engine))
+> 
+> 
+> Not sure if I missed any previous discussion on this, the WA talked 
+> about applying this on main copy engine. This needs to be taken into 
+> account in
+> 
+> NEEDS_FASTCOLOR_BLT_WABB()
 
-This inspired me to write [1]. Please review.
-
-BR,
-Jani.
-
-[1] https://patchwork.freedesktop.org/series/125464/
+Do you mean we need to check if instance == 0? Now above macro checks if 
+it is copy engine.
 
 
-> +
-> +	if (pmu->closed)
-> +		goto out;
-> +
->  	if (flags & PERF_EF_UPDATE)
->  		i915_pmu_event_read(event);
->  	i915_pmu_disable(event);
-> +
-> +out:
->  	event->hw.state = PERF_HES_STOPPED;
->  }
+> 
+>> +        wa_masked_field_set(wal, ECOSKPD(engine->mmio_base),
+>> +                    XEHP_BLITTER_SCHEDULING_MODE_MASK,
+>> +                    XEHP_BLITTER_ROUND_ROBIN_MODE);
+>>   }
+> 
+> This function sets masked_reg = true and will not read the register back 
+> and I remember MattR asked internally to not use that if that is not 
+> required.
 
--- 
-Jani Nikula, Intel
+IIRC, wa_masked_field_set sets read_mask, so read back is performed, 
+anyway it is the only function (beside low level wa_add), which works on 
+fields(not bits). Are you sure?
+
+Regards
+Andrzej
+
+> 
+> 
+> With those two concern handled this is  Reviewed-by: Nirmoy Das 
+> <nirmoy.das@intel.com>
+> 
+> 
+> Regards,
+> 
+> Nirmoy
+> 
+>>   static void
+>>
+
