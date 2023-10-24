@@ -1,54 +1,57 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id F1DBA7D596D
-	for <lists+intel-gfx@lfdr.de>; Tue, 24 Oct 2023 19:08:27 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 353F47D597C
+	for <lists+intel-gfx@lfdr.de>; Tue, 24 Oct 2023 19:11:17 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7876B10E437;
-	Tue, 24 Oct 2023 17:08:26 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 43C2210E312;
+	Tue, 24 Oct 2023 17:11:14 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EDCA010E437
- for <intel-gfx@lists.freedesktop.org>; Tue, 24 Oct 2023 17:08:24 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2205210E312
+ for <intel-gfx@lists.freedesktop.org>; Tue, 24 Oct 2023 17:11:12 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1698167305; x=1729703305;
+ t=1698167473; x=1729703473;
  h=date:from:to:cc:subject:message-id:references:
  mime-version:content-transfer-encoding:in-reply-to;
- bh=hUGirVag7S8n+zT+Bt5TDAK/SLrrk9OVdLzyMdWj1BM=;
- b=MK0rHJbLLv/T5s/Xh7JJJg0HxouXOgh6hV+Tv8dzO0kjvhQ3DvGVXTCw
- 2V0Jel9mU1SFM2FcBkrblU+HU/VjodqXH3/KzqDqzejMGjb9zBQa54O+3
- cOrSot/OYcEbMDHZFOTeZD0aQ5Bd/t+I9UYLrxsIlZNQG9Bcbhfym8hQ2
- 4QIN0Id3JeSLbaNKMdLB/rSUSF1e25uMGk8sEsLy/Z7Z5tcnYk67nxLQI
- s+3QzNxHqs6ZeYuGr1vJOhdbruYg8B6UXePPdGyJHGRp2S0ExyuDTftSt
- ta9cFGaKdzFpqX/AkvBFThLi3yZIL/OEJMv/3HKVRkbv2R7YwTisKtc4/ g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10873"; a="5740568"
+ bh=gjg5VDG7lc3uq494hHNG5+JDII6JKPABQkbpXQHkNS8=;
+ b=C0KFcnBaAMukxPHZjSht/er9PI8qNL7wHNwGvRVhCnO/bIrXxAPHsTbZ
+ EOsuQgbmPvH6jxJgvCCsUibMaumT1mmTp7LC6iW7hdNmKFjtla6gXRId1
+ mZFY3LV6cDjsAIX9gK3SpDi0BHLvADnP2P0B1e/CIWNKpurvjAqUNIhuF
+ Ipc7DO3bKPZWt6rAxHdVj0qBgDor0/frBrdtYIjAq9H1Bq1xrOqarf+9V
+ QSMZXq0/d4uYokwnYTm1YaY44qoIo6icfiVcgDMs/aXEQtNhGsh8KRU/m
+ 2nkSzH1BKjjHkbLROMpxKMgIU8Gljp+vR9yyTmlNNvXiZrZVtZBRiKiAW g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10873"; a="5741287"
 X-IronPort-AV: E=Sophos;i="6.03,248,1694761200"; 
-   d="scan'208";a="5740568"
+   d="scan'208";a="5741287"
 Received: from orsmga002.jf.intel.com ([10.7.209.21])
  by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Oct 2023 10:08:23 -0700
+ 24 Oct 2023 10:11:12 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10873"; a="758546619"
-X-IronPort-AV: E=Sophos;i="6.03,248,1694761200"; d="scan'208";a="758546619"
+X-IronPort-AV: E=McAfee;i="6600,9927,10873"; a="758547737"
+X-IronPort-AV: E=Sophos;i="6.03,248,1694761200"; d="scan'208";a="758547737"
 Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.74])
- by orsmga002.jf.intel.com with SMTP; 24 Oct 2023 10:08:16 -0700
+ by orsmga002.jf.intel.com with SMTP; 24 Oct 2023 10:11:08 -0700
 Received: by stinkbox (sSMTP sendmail emulation);
- Tue, 24 Oct 2023 20:08:16 +0300
-Date: Tue, 24 Oct 2023 20:08:16 +0300
+ Tue, 24 Oct 2023 20:11:07 +0300
+Date: Tue, 24 Oct 2023 20:11:07 +0300
 From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: "David E. Box" <david.e.box@linux.intel.com>
-Message-ID: <ZTf6ALl3xNvhLN6M@intel.com>
-References: <20230411213323.1362300-1-david.e.box@linux.intel.com>
+To: "Pandruvada, Srinivas" <srinivas.pandruvada@intel.com>
+Message-ID: <ZTf6qwCLR3YEwL9K@intel.com>
+References: <20231004183455.27797-1-ville.syrjala@linux.intel.com>
+ <6d207eef73fb2ad32264921ae7d1a536b6b8da61.camel@intel.com>
+ <ZR22I-9YgGW9vADB@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20230411213323.1362300-1-david.e.box@linux.intel.com>
+In-Reply-To: <ZR22I-9YgGW9vADB@intel.com>
 X-Patchwork-Hint: comment
-Subject: Re: [Intel-gfx] [PATCH V2] PCI: Move VMD ASPM/LTR fix to PCI quirk
+Subject: Re: [Intel-gfx] [PATCH] powercap: intel_rapl: Don't warn about BIOS
+ locked limits during resume
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,203 +64,121 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: me@adhityamohan.in, kw@linux.com, lorenzo.pieralisi@arm.com,
- robh@kernel.org, linux-pci@vger.kernel.org, intel-gfx@lists.freedesktop.org,
- rafael@kernel.org, linux-kernel@vger.kernel.org, hch@infradead.org,
- jonathan.derrick@linux.dev, bhelgaas@google.com, nirmal.patel@linux.intel.com,
- michael.a.bottini@intel.com
+Cc: "Zhang, Rui" <rui.zhang@intel.com>,
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>, "Wysocki,
+ Rafael J" <rafael.j.wysocki@intel.com>,
+ "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+ "linux-pm@vger.kernel.org" <linux-pm@vger.kernel.org>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, Apr 11, 2023 at 02:33:23PM -0700, David E. Box wrote:
-> In commit f492edb40b54 ("PCI: vmd: Add quirk to configure PCIe ASPM and
-> LTR") the VMD driver calls pci_enabled_link_state as a callback from
-> pci_bus_walk. Both will acquire the pci_bus_sem lock leading to a lockdep
-> warning. Instead of doing the pci_bus_walk, move the fix to quirks.c using
-> DECLARE_PCI_FIXUP_FINAL.
+On Wed, Oct 04, 2023 at 09:59:47PM +0300, Ville Syrjälä wrote:
+> On Wed, Oct 04, 2023 at 06:45:22PM +0000, Pandruvada, Srinivas wrote:
+> > On Wed, 2023-10-04 at 21:34 +0300, Ville Syrjala wrote:
+> > > From: Ville Syrjälä <ville.syrjala@linux.intel.com>
+> > > 
+> > > Restore enough of the original behaviour to stop spamming
+> > > dmesg with warnings about BIOS locked limits when trying
+> > > to restore them during resume.
+> > > 
+> > > This still doesn't 100% match the original behaviour
+> > > as we no longer attempt to blindly restore the BIOS locked
+> > > limits. No idea if that makes any difference in practice.
+> > > 
+> > I lost the context here. Why can't we simply change pr_warn to pr_debug
+> > here?
+> 
+> I presume someone wanted to make it pr_warn() for a reason.
+> I don't mind either way.
 
-What happened to this patch? We're still carrying a local fix
-for this in drm-tip...
+Ping. Can someone make a decision on how this should get fixed
+so we get this moving forward?
 
 > 
-> Fixes: f492edb40b54 ("PCI: vmd: Add quirk to configure PCIe ASPM and LTR")
-> Suggested-by: Bjorn Helgaas <bhelgaas@google.com>
-> Signed-off-by: David E. Box <david.e.box@linux.intel.com>
-> ---
+> > 
+> > Thanks,
+> > Srinivas
+> > 
+> > > Cc: Zhang Rui <rui.zhang@intel.com>
+> > > Cc: Wang Wendy <wendy.wang@intel.com>
+> > > Cc: Rafael J. Wysocki <rafael.j.wysocki@intel.com>
+> > > Cc: Srinivas Pandruvada <srinivas.pandruvada@intel.com>
+> > > Fixes: 9050a9cd5e4c ("powercap: intel_rapl: Cleanup Power Limits
+> > > support")
+> > > Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
+> > > ---
+> > >  drivers/powercap/intel_rapl_common.c | 28 ++++++++++++++++++++------
+> > > --
+> > >  1 file changed, 20 insertions(+), 8 deletions(-)
+> > > 
+> > > diff --git a/drivers/powercap/intel_rapl_common.c
+> > > b/drivers/powercap/intel_rapl_common.c
+> > > index 40a2cc649c79..9a6a40c83f82 100644
+> > > --- a/drivers/powercap/intel_rapl_common.c
+> > > +++ b/drivers/powercap/intel_rapl_common.c
+> > > @@ -882,22 +882,34 @@ static int rapl_read_pl_data(struct rapl_domain
+> > > *rd, int pl,
+> > >         return rapl_read_data_raw(rd, prim, xlate, data);
+> > >  }
+> > >  
+> > > -static int rapl_write_pl_data(struct rapl_domain *rd, int pl,
+> > > -                              enum pl_prims pl_prim,
+> > > -                              unsigned long long value)
+> > > +static int rapl_write_pl_data_nowarn(struct rapl_domain *rd, int pl,
+> > > +                                    enum pl_prims pl_prim,
+> > > +                                    unsigned long long value)
+> > >  {
+> > >         enum rapl_primitives prim = get_pl_prim(rd, pl, pl_prim);
+> > >  
+> > >         if (!is_pl_valid(rd, pl))
+> > >                 return -EINVAL;
+> > >  
+> > > -       if (rd->rpl[pl].locked) {
+> > > -               pr_warn("%s:%s:%s locked by BIOS\n", rd->rp->name,
+> > > rd->name, pl_names[pl]);
+> > > +       if (rd->rpl[pl].locked)
+> > >                 return -EACCES;
+> > > -       }
+> > >  
+> > >         return rapl_write_data_raw(rd, prim, value);
+> > >  }
+> > > +
+> > > +static int rapl_write_pl_data(struct rapl_domain *rd, int pl,
+> > > +                             enum pl_prims pl_prim,
+> > > +                             unsigned long long value)
+> > > +{
+> > > +       int ret;
+> > > +
+> > > +       ret = rapl_write_pl_data_nowarn(rd, pl, pl_prim, value);
+> > > +       if (ret == -EACCES)
+> > > +               pr_warn("%s:%s:%s locked by BIOS\n", rd->rp->name,
+> > > rd->name, pl_names[pl]);
+> > > +
+> > > +       return ret;
+> > > +}
+> > > +
+> > >  /*
+> > >   * Raw RAPL data stored in MSRs are in certain scales. We need to
+> > >   * convert them into standard units based on the units reported in
+> > > @@ -1634,8 +1646,8 @@ static void power_limit_state_restore(void)
+> > >                 rd = power_zone_to_rapl_domain(rp->power_zone);
+> > >                 for (i = POWER_LIMIT1; i < NR_POWER_LIMITS; i++)
+> > >                         if (rd->rpl[i].last_power_limit)
+> > > -                               rapl_write_pl_data(rd, i, PL_LIMIT,
+> > > -                                              rd-
+> > > >rpl[i].last_power_limit);
+> > > +                               rapl_write_pl_data_nowarn(rd, i,
+> > > PL_LIMIT,
+> > > +                                                         rd-
+> > > >rpl[i].last_power_limit);
+> > >         }
+> > >         cpus_read_unlock();
+> > >  }
+> > 
 > 
-> V2 - Instead of adding a lock flag argument to pci_enabled_link_state, move
->      the fix to quirks.c
-> 
->  drivers/pci/controller/vmd.c | 55 +--------------------------
->  drivers/pci/quirks.c         | 72 ++++++++++++++++++++++++++++++++++++
->  2 files changed, 73 insertions(+), 54 deletions(-)
-> 
-> diff --git a/drivers/pci/controller/vmd.c b/drivers/pci/controller/vmd.c
-> index 990630ec57c6..47fa3e5f2dc5 100644
-> --- a/drivers/pci/controller/vmd.c
-> +++ b/drivers/pci/controller/vmd.c
-> @@ -66,22 +66,11 @@ enum vmd_features {
->  	 * interrupt handling.
->  	 */
->  	VMD_FEAT_CAN_BYPASS_MSI_REMAP		= (1 << 4),
-> -
-> -	/*
-> -	 * Enable ASPM on the PCIE root ports and set the default LTR of the
-> -	 * storage devices on platforms where these values are not configured by
-> -	 * BIOS. This is needed for laptops, which require these settings for
-> -	 * proper power management of the SoC.
-> -	 */
-> -	VMD_FEAT_BIOS_PM_QUIRK		= (1 << 5),
->  };
->  
-> -#define VMD_BIOS_PM_QUIRK_LTR	0x1003	/* 3145728 ns */
-> -
->  #define VMD_FEATS_CLIENT	(VMD_FEAT_HAS_MEMBAR_SHADOW_VSCAP |	\
->  				 VMD_FEAT_HAS_BUS_RESTRICTIONS |	\
-> -				 VMD_FEAT_OFFSET_FIRST_VECTOR |		\
-> -				 VMD_FEAT_BIOS_PM_QUIRK)
-> +				 VMD_FEAT_OFFSET_FIRST_VECTOR)
->  
->  static DEFINE_IDA(vmd_instance_ida);
->  
-> @@ -724,46 +713,6 @@ static void vmd_copy_host_bridge_flags(struct pci_host_bridge *root_bridge,
->  	vmd_bridge->native_dpc = root_bridge->native_dpc;
->  }
->  
-> -/*
-> - * Enable ASPM and LTR settings on devices that aren't configured by BIOS.
-> - */
-> -static int vmd_pm_enable_quirk(struct pci_dev *pdev, void *userdata)
-> -{
-> -	unsigned long features = *(unsigned long *)userdata;
-> -	u16 ltr = VMD_BIOS_PM_QUIRK_LTR;
-> -	u32 ltr_reg;
-> -	int pos;
-> -
-> -	if (!(features & VMD_FEAT_BIOS_PM_QUIRK))
-> -		return 0;
-> -
-> -	pci_enable_link_state(pdev, PCIE_LINK_STATE_ALL);
-> -
-> -	pos = pci_find_ext_capability(pdev, PCI_EXT_CAP_ID_LTR);
-> -	if (!pos)
-> -		return 0;
-> -
-> -	/*
-> -	 * Skip if the max snoop LTR is non-zero, indicating BIOS has set it
-> -	 * so the LTR quirk is not needed.
-> -	 */
-> -	pci_read_config_dword(pdev, pos + PCI_LTR_MAX_SNOOP_LAT, &ltr_reg);
-> -	if (!!(ltr_reg & (PCI_LTR_VALUE_MASK | PCI_LTR_SCALE_MASK)))
-> -		return 0;
-> -
-> -	/*
-> -	 * Set the default values to the maximum required by the platform to
-> -	 * allow the deepest power management savings. Write as a DWORD where
-> -	 * the lower word is the max snoop latency and the upper word is the
-> -	 * max non-snoop latency.
-> -	 */
-> -	ltr_reg = (ltr << 16) | ltr;
-> -	pci_write_config_dword(pdev, pos + PCI_LTR_MAX_SNOOP_LAT, ltr_reg);
-> -	pci_info(pdev, "VMD: Default LTR value set by driver\n");
-> -
-> -	return 0;
-> -}
-> -
->  static int vmd_enable_domain(struct vmd_dev *vmd, unsigned long features)
->  {
->  	struct pci_sysdata *sd = &vmd->sysdata;
-> @@ -936,8 +885,6 @@ static int vmd_enable_domain(struct vmd_dev *vmd, unsigned long features)
->  
->  	pci_assign_unassigned_bus_resources(vmd->bus);
->  
-> -	pci_walk_bus(vmd->bus, vmd_pm_enable_quirk, &features);
-> -
->  	/*
->  	 * VMD root buses are virtual and don't return true on pci_is_pcie()
->  	 * and will fail pcie_bus_configure_settings() early. It can instead be
-> diff --git a/drivers/pci/quirks.c b/drivers/pci/quirks.c
-> index 44cab813bf95..2d86623f96e3 100644
-> --- a/drivers/pci/quirks.c
-> +++ b/drivers/pci/quirks.c
-> @@ -6023,3 +6023,75 @@ DECLARE_PCI_FIXUP_HEADER(PCI_VENDOR_ID_INTEL, 0x9a2d, dpc_log_size);
->  DECLARE_PCI_FIXUP_HEADER(PCI_VENDOR_ID_INTEL, 0x9a2f, dpc_log_size);
->  DECLARE_PCI_FIXUP_HEADER(PCI_VENDOR_ID_INTEL, 0x9a31, dpc_log_size);
->  #endif
-> +
-> +#ifdef CONFIG_VMD
-> +/*
-> + * Enable ASPM on the PCIE root ports under VMD and set the default LTR of the
-> + * storage devices on platforms where these values are not configured by BIOS.
-> + * This is needed for laptops, which require these settings for proper power
-> + * management of the SoC.
-> + */
-> +#define VMD_DEVICE_LTR	0x1003	/* 3145728 ns */
-> +static void quirk_intel_vmd(struct pci_dev *pdev)
-> +{
-> +	struct pci_dev *parent;
-> +	u16 ltr = VMD_DEVICE_LTR;
-> +	u32 ltr_reg;
-> +	int pos;
-> +
-> +	/* Check in VMD domain */
-> +	if (pci_domain_nr(pdev->bus) < 0x10000)
-> +		return;
-> +
-> +	/* Get Root Port */
-> +	parent = pci_upstream_bridge(pdev);
-> +	if (!parent || parent->vendor != PCI_VENDOR_ID_INTEL)
-> +		return;
-> +
-> +	/* Get VMD Host Bridge */
-> +	parent = to_pci_dev(parent->dev.parent);
-> +	if (!parent)
-> +		return;
-> +
-> +	/* Get RAID controller */
-> +	parent = to_pci_dev(parent->dev.parent);
-> +	if (!parent)
-> +		return;
-> +
-> +	switch (parent->device) {
-> +	case 0x467f:
-> +	case 0x4c3d:
-> +	case 0xa77f:
-> +	case 0x7d0b:
-> +	case 0xad0b:
-> +	case 0x9a0b:
-> +		break;
-> +	default:
-> +		return;
-> +	}
-> +
-> +	pci_enable_link_state(pdev, PCIE_LINK_STATE_ALL);
-> +
-> +	pos = pci_find_ext_capability(pdev, PCI_EXT_CAP_ID_LTR);
-> +	if (!pos)
-> +		return;
-> +
-> +	/* Skip if the max snoop LTR is non-zero, indicating BIOS has set it */
-> +	pci_read_config_dword(pdev, pos + PCI_LTR_MAX_SNOOP_LAT, &ltr_reg);
-> +	if (!!(ltr_reg & (PCI_LTR_VALUE_MASK | PCI_LTR_SCALE_MASK)))
-> +		return;
-> +
-> +	/*
-> +	 * Set the LTR values to the maximum required by the platform to
-> +	 * allow the deepest power management savings. Write as a DWORD where
-> +	 * the lower word is the max snoop latency and the upper word is the
-> +	 * max non-snoop latency.
-> +	 */
-> +	ltr_reg = (ltr << 16) | ltr;
-> +	pci_write_config_dword(pdev, pos + PCI_LTR_MAX_SNOOP_LAT, ltr_reg);
-> +	pci_info(pdev, "LTR set by VMD PCI quick\n");
-> +
-> +}
-> +DECLARE_PCI_FIXUP_CLASS_FINAL(PCI_ANY_ID, PCI_ANY_ID,
-> +			      PCI_CLASS_STORAGE_EXPRESS, 0, quirk_intel_vmd);
-> +#endif
 > -- 
-> 2.34.1
+> Ville Syrjälä
+> Intel
 
 -- 
 Ville Syrjälä
