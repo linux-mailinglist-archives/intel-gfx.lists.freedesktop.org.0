@@ -2,41 +2,52 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id EA74F7D4ED8
-	for <lists+intel-gfx@lfdr.de>; Tue, 24 Oct 2023 13:33:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3C3D07D4F05
+	for <lists+intel-gfx@lfdr.de>; Tue, 24 Oct 2023 13:37:43 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id F0A4D10E33E;
-	Tue, 24 Oct 2023 11:33:50 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id F2A3F10E349;
+	Tue, 24 Oct 2023 11:37:39 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from coelho.fi (paleale.coelho.fi [176.9.41.70])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 80C4F10E34E
- for <intel-gfx@lists.freedesktop.org>; Tue, 24 Oct 2023 11:33:49 +0000 (UTC)
-Received: from 91-155-254-243.elisa-laajakaista.fi ([91.155.254.243]
- helo=[192.168.100.137])
- by coelho.fi with esmtpsa (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
- (Exim 4.97-RC1) (envelope-from <luca@coelho.fi>)
- id 1qvFfO-000000009br-0cN2; Tue, 24 Oct 2023 14:33:47 +0300
-Message-ID: <639a31dea0e79b90735d14d4b40ef1531b9cd7f9.camel@coelho.fi>
-From: Luca Coelho <luca@coelho.fi>
-To: "Hogander, Jouni" <jouni.hogander@intel.com>, 
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
-Date: Tue, 24 Oct 2023 14:33:45 +0300
-In-Reply-To: <c9e5a54c56a1855cdca2f5e390dad48acc3ff5f3.camel@intel.com>
-References: <20231016111658.3432581-1-jouni.hogander@intel.com>
- <20231016111658.3432581-25-jouni.hogander@intel.com>
- <51352e16166514540e90e7ef2c7a07fb42d47241.camel@coelho.fi>
- <c9e5a54c56a1855cdca2f5e390dad48acc3ff5f3.camel@intel.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.46.4-2 
+Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.93])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E9D2510E349
+ for <intel-gfx@lists.freedesktop.org>; Tue, 24 Oct 2023 11:37:38 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1698147459; x=1729683459;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:in-reply-to;
+ bh=Us3iGXsvXowNncdb5YJrDeESu6aPkaxxYljhnBFmBFs=;
+ b=fnArszkgpaBUrFnrUCjr1MUtqlRaSiCCu48ddAK7CL3z8rikTREOCVql
+ /BXL3BjuBDNZ58LLgfZ2goT1eHJXRX08BV7/O6K7rtnpLiDRzvSxN4J1J
+ Hl7Z9DzAdiibPCSTrqWznXayvpO7t1dog6BTyfknqpKen4nG/RPah5Q/a
+ yFB2y0NBFCTWFutqzcwYQjgRnQOCFc7cymjhQUc4nUOIXnyKmKVPJ1ZW4
+ bOouNWxWtx/t2h+BcEdgCyrVefGPXYacauc1n/bXNjBUu+m+yKK+h8+cg
+ W0k1wkOPpR8A2SH7t16iflUHy7WuWbpgxUTT+snUi90LUk/4E8zRja6rF Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10872"; a="384236911"
+X-IronPort-AV: E=Sophos;i="6.03,247,1694761200"; d="scan'208";a="384236911"
+Received: from orviesa001.jf.intel.com ([10.64.159.141])
+ by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 24 Oct 2023 04:37:37 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.03,247,1694761200"; 
+   d="scan'208";a="6146864"
+Received: from yaminehx-mobl.ger.corp.intel.com (HELO intel.com)
+ ([10.252.33.158])
+ by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 24 Oct 2023 04:36:17 -0700
+Date: Tue, 24 Oct 2023 13:37:32 +0200
+From: Andi Shyti <andi.shyti@linux.intel.com>
+To: Andrzej Hajda <andrzej.hajda@intel.com>
+Message-ID: <ZTesfLICnBOyO4E-@ashyti-mobl2.lan>
+References: <20231023-wabb-v4-0-f75dec962b7d@intel.com>
+ <20231023-wabb-v4-2-f75dec962b7d@intel.com>
 MIME-Version: 1.0
-X-Spam-Checker-Version: SpamAssassin 4.0.0 (2022-12-13) on farmhouse.coelho.fi
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.9 required=5.0 tests=ALL_TRUSTED,BAYES_00,
- TVD_RCVD_IP autolearn=ham autolearn_force=no version=4.0.0
-Subject: Re: [Intel-gfx] [PATCH v2 24/24] drm/i915/display: Use same
- permissions for enable_sagv as for rest
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20231023-wabb-v4-2-f75dec962b7d@intel.com>
+Subject: Re: [Intel-gfx] [PATCH v4 2/4] drm/i915: Add WABB blit for
+ Wa_16018031267 / Wa_16018063123
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -49,61 +60,132 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: intel-gfx@lists.freedesktop.org,
+ Jonathan Cavitt <jonathan.cavitt@intel.com>, Nirmoy Das <nirmoy.das@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, 2023-10-24 at 08:51 +0000, Hogander, Jouni wrote:
-> On Mon, 2023-10-23 at 17:06 +0300, Luca Coelho wrote:
-> > On Mon, 2023-10-16 at 14:16 +0300, Jouni H=C3=B6gander wrote:
-> > > Generally we have writable device parameters in debugfs. No need
-> > > to allow writing module parameters.
-> > >=20
-> > > Signed-off-by: Jouni H=C3=B6gander <jouni.hogander@intel.com>
-> > > ---
-> > > =C2=A0drivers/gpu/drm/i915/display/intel_display_params.c | 2 +-
-> > > =C2=A01 file changed, 1 insertion(+), 1 deletion(-)
-> > >=20
-> > > diff --git a/drivers/gpu/drm/i915/display/intel_display_params.c
-> > > b/drivers/gpu/drm/i915/display/intel_display_params.c
-> > > index 8e6353c1c25e..077f2dee2975 100644
-> > > --- a/drivers/gpu/drm/i915/display/intel_display_params.c
-> > > +++ b/drivers/gpu/drm/i915/display/intel_display_params.c
-> > > @@ -50,7 +50,7 @@ intel_display_param_named_unsafe(enable_dc, int,
-> > > 0400,
-> > > =C2=A0intel_display_param_named_unsafe(enable_dpt, bool, 0400,
-> > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0"Enable display page =
-table (DPT) (default: true)");
-> > > =C2=A0
-> > > -intel_display_param_named_unsafe(enable_sagv, bool, 0600,
-> > > +intel_display_param_named_unsafe(enable_sagv, bool, 0400,
-> > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0"Enable system agent =
-voltage/frequency scaling (SAGV)
-> > > (default: true)");
-> > > =C2=A0
-> > > =C2=A0intel_display_param_named_unsafe(disable_power_well, int, 0400,
-> >=20
-> > This, as well as other similar changes throughout this series, could
-> > be
-> > controversial, since it's a userspace API change of sorts.=C2=A0 It use=
-d
-> > to
-> > be possible to write but it won't be anymore.=C2=A0 But, as we discusse=
-d
-> > offline, it shouldn't be problem, because probably nobody is writing
-> > to
-> > them, and most likely doing so wouldn't have the expected result,
-> > since
-> > the device copies were not getting updated.
-> >=20
-> > Reviewed-by: Luca Coelho <luciano.coelho@intel.com>
->=20
-> Thank you Luca. I actually moved this change to patch 11 due to your
-> comment there and added your rb tag there. I was planning to drop this
-> patch. Are you fine with this?
+Hi Andrzej,
 
-Yes, this is fine.  I'll review your cahnges in v3 and give the missing
-r-b tags there, if applicable.
+On Mon, Oct 23, 2023 at 10:21:46PM +0200, Andrzej Hajda wrote:
+> Apply WABB blit for Wa_16018031267 / Wa_16018063123.
+> 
+> v3: drop unused enum definition
+> v4: move selftest to separate patch, use wa only on BCS0.
+> 
+> Co-developed-by: Nirmoy Das <nirmoy.das@intel.com>
+> Co-developed-by: Jonathan Cavitt <jonathan.cavitt@intel.com>
 
---
-Cheers,
-Luca.
+Signed-off-by: Nirmoy Das <nirmoy.das@intel.com>
+Signed-off-by: Jonathan Cavitt <jonathan.cavitt@intel.com>
+
+> Signed-off-by: Andrzej Hajda <andrzej.hajda@intel.com>
+
+Reviewed-by: Andi Shyti <andi.shyti@linux.intel.com>
+
+Two little not binding notes below.
+
+...
+
+> -static u32 *context_indirect_bb(const struct intel_context *ce)
+> +/*
+> + * per_ctx below determines which WABB section is used.
+> + * When true, the function returns the location of the
+> + * PER_CTX_BB.  When false, the function returns the
+> + * location of the INDIRECT_CTX.
+> + */
+> +static u32 *context_wabb(const struct intel_context *ce, bool per_ctx)
+>  {
+>  	void *ptr;
+>  
+> @@ -1029,6 +1047,7 @@ static u32 *context_indirect_bb(const struct intel_context *ce)
+>  	ptr = ce->lrc_reg_state;
+>  	ptr -= LRC_STATE_OFFSET; /* back to start of context image */
+>  	ptr += context_wa_bb_offset(ce);
+> +	ptr += per_ctx ? PAGE_SIZE : 0;
+
+I'm not a big fan of bools here... I'd rather add as parameter
+an offset value and just do:
+
+	ptr += offset;
+
+Your choice, not strong on this.
+
+>  
+>  	return ptr;
+>  }
+> @@ -1105,7 +1124,8 @@ __lrc_alloc_state(struct intel_context *ce, struct intel_engine_cs *engine)
+>  
+>  	if (GRAPHICS_VER(engine->i915) >= 12) {
+>  		ce->wa_bb_page = context_size / PAGE_SIZE;
+> -		context_size += PAGE_SIZE;
+> +		/* INDIRECT_CTX and PER_CTX_BB need separate pages. */
+> +		context_size += PAGE_SIZE * 2;
+>  	}
+>  
+>  	if (intel_context_is_parent(ce) && intel_engine_uses_guc(engine)) {
+> @@ -1407,12 +1427,85 @@ gen12_emit_indirect_ctx_xcs(const struct intel_context *ce, u32 *cs)
+>  	return gen12_emit_aux_table_inv(ce->engine, cs);
+>  }
+>  
+> +static u32 *xehp_emit_fastcolor_blt_wabb(const struct intel_context *ce, u32 *cs)
+> +{
+> +	struct intel_gt *gt = ce->engine->gt;
+> +	int mocs = gt->mocs.uc_index << 1;
+> +
+> +	/**
+> +	 * Wa_16018031267 / Wa_16018063123 requires that SW forces the
+> +	 * main copy engine arbitration into round robin mode.  We
+> +	 * additionally need to submit the following WABB blt command
+> +	 * to produce 4 subblits with each subblit generating 0 byte
+> +	 * write requests as WABB:
+> +	 *
+> +	 * XY_FASTCOLOR_BLT
+> +	 *  BG0    -> 5100000E
+> +	 *  BG1    -> 0000003F (Dest pitch)
+> +	 *  BG2    -> 00000000 (X1, Y1) = (0, 0)
+> +	 *  BG3    -> 00040001 (X2, Y2) = (1, 4)
+> +	 *  BG4    -> scratch
+> +	 *  BG5    -> scratch
+> +	 *  BG6-12 -> 00000000
+> +	 *  BG13   -> 20004004 (Surf. Width= 2,Surf. Height = 5 )
+> +	 *  BG14   -> 00000010 (Qpitch = 4)
+> +	 *  BG15   -> 00000000
+> +	 */
+> +	*cs++ = XY_FAST_COLOR_BLT_CMD | (16 - 2);
+> +	*cs++ = FIELD_PREP(XY_FAST_COLOR_BLT_MOCS_MASK, mocs) | 0x3f;
+> +	*cs++ = 0;
+> +	*cs++ = 4 << 16 | 1;
+> +	*cs++ = lower_32_bits(i915_vma_offset(ce->vm->rsvd));
+> +	*cs++ = upper_32_bits(i915_vma_offset(ce->vm->rsvd));
+> +	*cs++ = 0;
+> +	*cs++ = 0;
+> +	*cs++ = 0;
+> +	*cs++ = 0;
+> +	*cs++ = 0;
+> +	*cs++ = 0;
+> +	*cs++ = 0;
+> +	*cs++ = 0x20004004;
+> +	*cs++ = 0x10;
+> +	*cs++ = 0;
+> +
+> +	return cs;
+> +}
+> +
+> +static u32 *
+> +xehp_emit_per_ctx_bb(const struct intel_context *ce, u32 *cs)
+> +{
+> +	/* Wa_16018031267, Wa_16018063123 */
+> +	if (NEEDS_FASTCOLOR_BLT_WABB(ce->engine))
+> +		cs = xehp_emit_fastcolor_blt_wabb(ce, cs);
+> +
+> +	return cs;
+> +}
+
+Is this function necessary? Can't we just add in
+xehp_emit_fastcolor_blt_wabb()
+
+	if (!NEEDS_FASTCOLOR_BLT_WABB(ce->engine))
+		return cs;
+
+Andi
