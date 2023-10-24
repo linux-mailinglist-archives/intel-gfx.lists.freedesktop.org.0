@@ -1,52 +1,51 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id D62467D4495
-	for <lists+intel-gfx@lfdr.de>; Tue, 24 Oct 2023 03:09:33 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 344EA7D449B
+	for <lists+intel-gfx@lfdr.de>; Tue, 24 Oct 2023 03:09:37 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5185310E2B9;
-	Tue, 24 Oct 2023 01:09:32 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6A91E10E2C4;
+	Tue, 24 Oct 2023 01:09:34 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.136])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3879110E2BC
- for <intel-gfx@lists.freedesktop.org>; Tue, 24 Oct 2023 01:09:17 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8474B10E2BD
+ for <intel-gfx@lists.freedesktop.org>; Tue, 24 Oct 2023 01:09:18 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1698109757; x=1729645757;
+ t=1698109758; x=1729645758;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=VipEmG4+3dc3pyvdbVMqh7AQMohfj9IaMp5pxtEXXEs=;
- b=knMrp3L3lVV6WFfGm3z5+CDEQLTJPVYYGjwyRGdTWfI75c4Unv/cjKTP
- 3cCT9FJ4pcFmBa9Houo+lTTewVs1ssw1ClnzzVn9u4RUuzrZyq1TaS0VN
- eqcjS+kKnEJV+BdBT89bxSy81UqiIi6Kzctq4+Ggrxjqve7a/KDvu+txu
- PQmJF4TyS8f48DV/6XTYCFZqROA/sLr0TOyTilcHVXdyachTHTHhhSkbI
- uI5vgR9yYuTSJSj33WUb8tRfeC2RD1ggsrmOD7aqCBU+mhlNuOpI9nIuI
- AX0Kg1UYke1W/2JptfGA1+4FvL6veP0PVAQb6HcucPyebfx+W6OFK1oQM A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10872"; a="366304366"
-X-IronPort-AV: E=Sophos;i="6.03,246,1694761200"; d="scan'208";a="366304366"
+ bh=TxTyW9e9CnaFmlIIekAwYCxH/w7soH3jsOmf32iZj3g=;
+ b=Iiyjbs7zy4nTN4v6VH571dt+mTQCD05g//8LlMlGh5H2yzkv4a/j+k1B
+ A4sIrEN0Osj+dUB0Y+BCMsISbvhGqG5Ymlf9VYK5OkDquwEXb1/WIacSz
+ qgcJrj00TEi/jbcsww5CEXjYKMHxGSgd8N21oNDOABSY/H/H80UnHA7pc
+ fWLHFwCRFtodgpXE5ssxQA9h1osB4Lldnetd8XO0Ou1BRgnziOu9LcvB9
+ vGN6UkazO7kDvbYmAh2UlQDzCadhcl4bLyekKZWnV9fUGl+/11oapLbdY
+ CbN5pi0WPr+AzmQeOyWAA9z92JVjtVUIT2tSy4I7F9VKAtW9y/lx/q7+s A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10872"; a="366304368"
+X-IronPort-AV: E=Sophos;i="6.03,246,1694761200"; d="scan'208";a="366304368"
 Received: from orsmga005.jf.intel.com ([10.7.209.41])
  by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Oct 2023 18:09:16 -0700
+ 23 Oct 2023 18:09:18 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10872"; a="931870060"
-X-IronPort-AV: E=Sophos;i="6.03,246,1694761200"; d="scan'208";a="931870060"
+X-IronPort-AV: E=McAfee;i="6600,9927,10872"; a="931870067"
+X-IronPort-AV: E=Sophos;i="6.03,246,1694761200"; d="scan'208";a="931870067"
 Received: from ideak-desk.fi.intel.com ([10.237.72.78])
  by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Oct 2023 18:09:15 -0700
+ 23 Oct 2023 18:09:17 -0700
 From: Imre Deak <imre.deak@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Tue, 24 Oct 2023 04:09:09 +0300
-Message-Id: <20231024010925.3949910-14-imre.deak@intel.com>
+Date: Tue, 24 Oct 2023 04:09:10 +0300
+Message-Id: <20231024010925.3949910-15-imre.deak@intel.com>
 X-Mailer: git-send-email 2.39.2
 In-Reply-To: <20231024010925.3949910-1-imre.deak@intel.com>
 References: <20231024010925.3949910-1-imre.deak@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH 13/29] drm/i915/dp_mst: Add atomic state for all
- streams on pre-tgl platforms
+Subject: [Intel-gfx] [PATCH 14/29] drm/i915/dp_mst: Program the DSC PPS SDP
+ for each stream
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -62,74 +61,74 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-If an MST stream is modeset, its state must be checked along all the
-other streams on the same MST link, for instance to resolve a BW
-overallocation of a non-sink MST port or to make sure that the FEC is
-enabled/disabled the same way for all these streams.
+Atm the DSC PPS SDP is programmed only if the first stream is compressed
+and then it's programmed only for the first stream. This left all other
+compressed streams blank. Program the SDP for all streams.
 
-To prepare for that this patch adds all the stream CRTCs to the atomic
-state and marks them for modeset similarly to tgl+ platforms. (If the
-state computation doesn't change the state the CRTC is switched back to
-fastset mode.)
-
-So far on tgl+ this was required because all streams in the topology
-shared the master transcoder. For older platforms this didn't apply but
-adding all the state is required now on all platforms based on the
-above.
-
-v2:
-- Add code and commit log comment clarifying the requirements on old/new
-  platforms. (Stan)
-- Rename the function based on the new semantic. (Ville)
-
-Cc: Ville Syrjälä <ville.syrjala@linux.intel.com>
 Reviewed-by: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
 Signed-off-by: Imre Deak <imre.deak@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_dp_mst.c | 16 ++++++++++------
- 1 file changed, 10 insertions(+), 6 deletions(-)
+ drivers/gpu/drm/i915/display/intel_ddi.c    | 12 +++++++-----
+ drivers/gpu/drm/i915/display/intel_dp_mst.c |  2 ++
+ 2 files changed, 9 insertions(+), 5 deletions(-)
 
+diff --git a/drivers/gpu/drm/i915/display/intel_ddi.c b/drivers/gpu/drm/i915/display/intel_ddi.c
+index 9151d5add9605..721a5f28be808 100644
+--- a/drivers/gpu/drm/i915/display/intel_ddi.c
++++ b/drivers/gpu/drm/i915/display/intel_ddi.c
+@@ -2505,7 +2505,8 @@ static void mtl_ddi_pre_enable_dp(struct intel_atomic_state *state,
+ 	/* 6.o Configure and enable FEC if needed */
+ 	intel_ddi_enable_fec(encoder, crtc_state);
+ 
+-	intel_dsc_dp_pps_write(encoder, crtc_state);
++	if (!is_mst)
++		intel_dsc_dp_pps_write(encoder, crtc_state);
+ }
+ 
+ static void tgl_ddi_pre_enable_dp(struct intel_atomic_state *state,
+@@ -2643,7 +2644,8 @@ static void tgl_ddi_pre_enable_dp(struct intel_atomic_state *state,
+ 	/* 7.l Configure and enable FEC if needed */
+ 	intel_ddi_enable_fec(encoder, crtc_state);
+ 
+-	intel_dsc_dp_pps_write(encoder, crtc_state);
++	if (!is_mst)
++		intel_dsc_dp_pps_write(encoder, crtc_state);
+ }
+ 
+ static void hsw_ddi_pre_enable_dp(struct intel_atomic_state *state,
+@@ -2705,10 +2707,10 @@ static void hsw_ddi_pre_enable_dp(struct intel_atomic_state *state,
+ 
+ 	intel_ddi_enable_fec(encoder, crtc_state);
+ 
+-	if (!is_mst)
++	if (!is_mst) {
+ 		intel_ddi_enable_transcoder_clock(encoder, crtc_state);
+-
+-	intel_dsc_dp_pps_write(encoder, crtc_state);
++		intel_dsc_dp_pps_write(encoder, crtc_state);
++	}
+ }
+ 
+ static void intel_ddi_pre_enable_dp(struct intel_atomic_state *state,
 diff --git a/drivers/gpu/drm/i915/display/intel_dp_mst.c b/drivers/gpu/drm/i915/display/intel_dp_mst.c
-index 2fbb6022e0c25..3d11eb1134f46 100644
+index 3d11eb1134f46..02da25631b6ef 100644
 --- a/drivers/gpu/drm/i915/display/intel_dp_mst.c
 +++ b/drivers/gpu/drm/i915/display/intel_dp_mst.c
-@@ -533,19 +533,23 @@ static int intel_dp_mst_compute_config_late(struct intel_encoder *encoder,
-  * that shares the same MST stream as mode changed,
-  * intel_modeset_pipe_config()+intel_crtc_check_fastset() will take care to do
-  * a fastset when possible.
-+ *
-+ * On TGL+ this is required since each stream go through a master transcoder,
-+ * so if the master transcoder needs modeset, all other streams in the
-+ * topology need a modeset. All platforms need to add the atomic state
-+ * for all streams in the topology, since a modeset on one may require
-+ * changing the MST link BW usage of the others, which in turn needs a
-+ * recomputation of the corresponding CRTC states.
-  */
- static int
--intel_dp_mst_atomic_master_trans_check(struct intel_connector *connector,
--				       struct intel_atomic_state *state)
-+intel_dp_mst_atomic_topology_check(struct intel_connector *connector,
-+				   struct intel_atomic_state *state)
- {
- 	struct drm_i915_private *dev_priv = to_i915(state->base.dev);
- 	struct drm_connector_list_iter connector_list_iter;
- 	struct intel_connector *connector_iter;
- 	int ret = 0;
+@@ -43,6 +43,7 @@
+ #include "intel_dpio_phy.h"
+ #include "intel_hdcp.h"
+ #include "intel_hotplug.h"
++#include "intel_vdsc.h"
+ #include "skl_scaler.h"
  
--	if (DISPLAY_VER(dev_priv) < 12)
--		return  0;
--
- 	if (!intel_connector_needs_modeset(state, &connector->base))
- 		return 0;
+ static int intel_dp_mst_check_constraints(struct drm_i915_private *i915, int bpp,
+@@ -834,6 +835,7 @@ static void intel_mst_pre_enable_dp(struct intel_atomic_state *state,
+ 	if (DISPLAY_VER(dev_priv) < 12 || !first_mst_stream)
+ 		intel_ddi_enable_transcoder_clock(encoder, pipe_config);
  
-@@ -599,7 +603,7 @@ intel_dp_mst_atomic_check(struct drm_connector *connector,
- 	if (ret)
- 		return ret;
- 
--	ret = intel_dp_mst_atomic_master_trans_check(intel_connector, state);
-+	ret = intel_dp_mst_atomic_topology_check(intel_connector, state);
- 	if (ret)
- 		return ret;
++	intel_dsc_dp_pps_write(&dig_port->base, pipe_config);
+ 	intel_ddi_set_dp_msa(pipe_config, conn_state);
+ }
  
 -- 
 2.39.2
