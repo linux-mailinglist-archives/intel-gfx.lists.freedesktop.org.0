@@ -1,59 +1,59 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5FF497D4F89
-	for <lists+intel-gfx@lfdr.de>; Tue, 24 Oct 2023 14:12:43 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id B47B27D4F92
+	for <lists+intel-gfx@lfdr.de>; Tue, 24 Oct 2023 14:15:38 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1313C10E35A;
-	Tue, 24 Oct 2023 12:12:40 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D1B0210E35C;
+	Tue, 24 Oct 2023 12:15:35 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.136])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E203310E365
- for <intel-gfx@lists.freedesktop.org>; Tue, 24 Oct 2023 12:12:37 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.115])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1C57B10E35C
+ for <intel-gfx@lists.freedesktop.org>; Tue, 24 Oct 2023 12:15:33 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1698149557; x=1729685557;
+ t=1698149733; x=1729685733;
  h=from:to:subject:in-reply-to:references:date:message-id:
  mime-version:content-transfer-encoding;
- bh=Gxdrh0RAXSvDdQpvaT/sPxJxFbuyFWqCbAGMc+Y8bMU=;
- b=X+KbvmofZnquoMACqzKbUXg/46+UC0U6kfK9YcVCUGzMnEEfpEziZWZo
- xs631csW9A7K8XBzLK9bMlKhC5YyfV+92Fenf3ST35I7+pghHN3r1vjEe
- Nz0Kcv3oYTIAL+2lX5roc4xGe+kk4Haj81mAYFZsni76PZ/HLEmZz583u
- oZhCUFC/sVxKFTS53lOHJ4te7Bn6tA1n24teeQ/bmoHVMG0Q/XpjTESh2
- 09CsCF50iYj7dFkPzhTwc9UPp9cDgiBvkq+Sl72ABEBdKxZD1hFfm9jCb
- KOIKLuts/ruiqS80hZGkNbOR6OK+ayCM/GeKlUX8TFeACJkoIkgnhVpwd A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10872"; a="366386395"
-X-IronPort-AV: E=Sophos;i="6.03,247,1694761200"; d="scan'208";a="366386395"
-Received: from fmsmga003.fm.intel.com ([10.253.24.29])
- by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Oct 2023 05:12:37 -0700
+ bh=PXnziaTzojU3OxKwzld5yrVaQX6s24LWs5yvYa9dzpA=;
+ b=CQib5HI++wiuLCFwu/gPwQQxcsVIeTxf8Ahz7+Cgl3LlmmLmozDQ29X9
+ d/aFQpzD4guU/WNVVvTRVEMG5a6H+1Pu1A511u04ympU7CUcpUcYlFeqo
+ N6ck2S7H2M0UwhaFCNSrjpazvi83WBrysjW806UySjipxZBWNhyfYaDMC
+ 8MBgFcFEXW3zo2cvkW2cE6lW+KLb6NmTuz/kl9VUKFarJhN0jMtwLF/24
+ kL0NQ3nd2iMReN54Iy84vPTPoaa1Is7PTjTEYagCWb5TLrej96nSbslqI
+ d2vM8tuWbLPpRWEGIrc2GTz0GNCHIafq7NEanRQ9Ad1PqJm1IW/a00Hc0 g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10872"; a="386853750"
+X-IronPort-AV: E=Sophos;i="6.03,247,1694761200"; d="scan'208";a="386853750"
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+ by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 24 Oct 2023 05:15:32 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10872"; a="849108055"
-X-IronPort-AV: E=Sophos;i="6.03,247,1694761200"; d="scan'208";a="849108055"
+X-IronPort-AV: E=McAfee;i="6600,9927,10872"; a="758456489"
+X-IronPort-AV: E=Sophos;i="6.03,247,1694761200"; d="scan'208";a="758456489"
 Received: from goepfrim-mobl1.ger.corp.intel.com (HELO localhost)
  ([10.252.48.28])
- by fmsmga003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Oct 2023 05:12:35 -0700
-From: Jani Nikula <jani.nikula@intel.com>
+ by orsmga002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 24 Oct 2023 05:15:30 -0700
+From: Jani Nikula <jani.nikula@linux.intel.com>
 To: Luca Coelho <luca@coelho.fi>, "Hogander, Jouni"
  <jouni.hogander@intel.com>, "intel-gfx@lists.freedesktop.org"
  <intel-gfx@lists.freedesktop.org>
-In-Reply-To: <c6e2a0afa151f361ac920994cd105a9ce0b6bf9d.camel@coelho.fi>
+In-Reply-To: <639a31dea0e79b90735d14d4b40ef1531b9cd7f9.camel@coelho.fi>
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 References: <20231016111658.3432581-1-jouni.hogander@intel.com>
- <20231016111658.3432581-22-jouni.hogander@intel.com>
- <daf1bc85a60793a55c5c9371778bb4e17319e8da.camel@coelho.fi>
- <f68c3d2669013b16f3bf3263dacbc13f267d2572.camel@intel.com>
- <c6e2a0afa151f361ac920994cd105a9ce0b6bf9d.camel@coelho.fi>
-Date: Tue, 24 Oct 2023 15:12:32 +0300
-Message-ID: <87msw89q33.fsf@intel.com>
+ <20231016111658.3432581-25-jouni.hogander@intel.com>
+ <51352e16166514540e90e7ef2c7a07fb42d47241.camel@coelho.fi>
+ <c9e5a54c56a1855cdca2f5e390dad48acc3ff5f3.camel@intel.com>
+ <639a31dea0e79b90735d14d4b40ef1531b9cd7f9.camel@coelho.fi>
+Date: Tue, 24 Oct 2023 15:15:27 +0300
+Message-ID: <87jzrc9py8.fsf@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: base64
-Subject: Re: [Intel-gfx] [PATCH v2 21/24] drm/i915/display: Move
- verbose_state_checks under display
+Content-Transfer-Encoding: quoted-printable
+Subject: Re: [Intel-gfx] [PATCH v2 24/24] drm/i915/display: Use same
+ permissions for enable_sagv as for rest
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -69,90 +69,73 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-T24gVHVlLCAyNCBPY3QgMjAyMywgTHVjYSBDb2VsaG8gPGx1Y2FAY29lbGhvLmZpPiB3cm90ZToN
-Cj4gT24gVHVlLCAyMDIzLTEwLTI0IGF0IDA4OjIyICswMDAwLCBIb2dhbmRlciwgSm91bmkgd3Jv
-dGU6DQo+PiBPbiBNb24sIDIwMjMtMTAtMjMgYXQgMTc6MDAgKzAzMDAsIEx1Y2EgQ29lbGhvIHdy
-b3RlOg0KPj4gPiBPbiBNb24sIDIwMjMtMTAtMTYgYXQgMTQ6MTYgKzAzMDAsIEpvdW5pIEjDtmdh
-bmRlciB3cm90ZToNCj4+ID4gPiBTaWduZWQtb2ZmLWJ5OiBKb3VuaSBIw7ZnYW5kZXIgPGpvdW5p
-LmhvZ2FuZGVyQGludGVsLmNvbT4NCj4+ID4gPiAtLS0NCj4+ID4gPiDCoGRyaXZlcnMvZ3B1L2Ry
-bS9pOTE1L2Rpc3BsYXkvaW50ZWxfZGlzcGxheS5owqDCoMKgwqDCoMKgwqAgfCAyICstDQo+PiA+
-ID4gwqBkcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2Rpc3BsYXlfcGFyYW1zLmMg
-fCAzICsrKw0KPj4gPiA+IMKgZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kaXNw
-bGF5X3BhcmFtcy5oIHwgMSArDQo+PiA+ID4gwqBkcml2ZXJzL2dwdS9kcm0vaTkxNS9pOTE1X3Bh
-cmFtcy5jwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCB8IDMgLS0tDQo+PiA+ID4g
-wqBkcml2ZXJzL2dwdS9kcm0vaTkxNS9pOTE1X3BhcmFtcy5owqDCoMKgwqDCoMKgwqDCoMKgwqDC
-oMKgwqDCoMKgwqDCoCB8IDEgLQ0KPj4gPiA+IMKgNSBmaWxlcyBjaGFuZ2VkLCA1IGluc2VydGlv
-bnMoKyksIDUgZGVsZXRpb25zKC0pDQo+PiA+ID4gDQo+PiA+ID4gZGlmZiAtLWdpdCBhL2RyaXZl
-cnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZGlzcGxheS5oDQo+PiA+ID4gYi9kcml2ZXJz
-L2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2Rpc3BsYXkuaA0KPj4gPiA+IGluZGV4IGJhMzU0
-OGY5NzY4ZC4uYmM5NWZiMzc3Mzg2IDEwMDY0NA0KPj4gPiA+IC0tLSBhL2RyaXZlcnMvZ3B1L2Ry
-bS9pOTE1L2Rpc3BsYXkvaW50ZWxfZGlzcGxheS5oDQo+PiA+ID4gKysrIGIvZHJpdmVycy9ncHUv
-ZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kaXNwbGF5LmgNCj4+ID4gPiBAQCAtNTUyLDcgKzU1Miw3
-IEBAIGJvb2wgYXNzZXJ0X3BvcnRfdmFsaWQoc3RydWN0IGRybV9pOTE1X3ByaXZhdGUNCj4+ID4g
-PiAqaTkxNSwgZW51bSBwb3J0IHBvcnQpOw0KPj4gPiA+IMKgwqDCoMKgwqDCoMKgwqBzdHJ1Y3Qg
-ZHJtX2RldmljZSAqZHJtID0gJihfX2k5MTUpLQ0KPj4gPiA+ID4gZHJtO8KgwqDCoMKgwqDCoMKg
-wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoFwNCj4+ID4gPiDCoMKgwqDCoMKgwqDC
-oMKgaW50IF9fcmV0X3dhcm5fb24gPQ0KPj4gPiA+ICEhKGNvbmRpdGlvbik7wqDCoMKgwqDCoMKg
-wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgXA0KPj4gPiA+
-IMKgwqDCoMKgwqDCoMKgwqBpZg0KPj4gPiA+ICh1bmxpa2VseShfX3JldF93YXJuX29uKSnCoMKg
-wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
-oMKgwqDCoMKgwqBcDQo+PiA+ID4gLcKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoGlmICgh
-ZHJtX1dBUk4oZHJtLCBfX2k5MTUtDQo+PiA+ID4gPiBwYXJhbXMudmVyYm9zZV9zdGF0ZV9jaGVj
-a3MsIGZvcm1hdCkpIFwNCj4+ID4gPiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgaWYg
-KCFkcm1fV0FSTihkcm0sIF9faTkxNS0NCj4+ID4gPiA+IGRpc3BsYXkucGFyYW1zLnZlcmJvc2Vf
-c3RhdGVfY2hlY2tzLCBmb3JtYXQpKSBcDQo+PiA+ID4gwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
-wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgZHJtX2Vycihkcm0sDQo+PiA+ID4gZm9ybWF0KTvCoMKg
-wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqBcDQo+PiA+
-ID4gwqDCoMKgwqDCoMKgwqDCoHVubGlrZWx5KF9fcmV0X3dhcm5fb24pO8KgwqDCoMKgwqDCoMKg
-wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAN
-Cj4+ID4gPiDCoMKgwqDCoMKgXA0KPj4gPiA+IMKgfSkNCj4+ID4gPiBkaWZmIC0tZ2l0IGEvZHJp
-dmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kaXNwbGF5X3BhcmFtcy5jDQo+PiA+ID4g
-Yi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2Rpc3BsYXlfcGFyYW1zLmMNCj4+
-ID4gPiBpbmRleCAwNmU2OGM3ZmVjMWMuLmU4Njc2NjYzOTM5NiAxMDA2NDQNCj4+ID4gPiAtLS0g
-YS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2Rpc3BsYXlfcGFyYW1zLmMNCj4+
-ID4gPiArKysgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2Rpc3BsYXlfcGFy
-YW1zLmMNCj4+ID4gPiBAQCAtODcsNiArODcsOSBAQA0KPj4gPiA+IGludGVsX2Rpc3BsYXlfcGFy
-YW1fbmFtZWRfdW5zYWZlKGZvcmNlX3Jlc2V0X21vZGVzZXRfdGVzdCwgYm9vbCwNCj4+ID4gPiAw
-NDAwLA0KPj4gPiA+IMKgaW50ZWxfZGlzcGxheV9wYXJhbV9uYW1lZChkaXNhYmxlX2Rpc3BsYXks
-IGJvb2wsIDA0MDAsDQo+PiA+ID4gwqDCoMKgwqDCoMKgwqDCoCJEaXNhYmxlIGRpc3BsYXkgKGRl
-ZmF1bHQ6IGZhbHNlKSIpOw0KPj4gPiA+IMKgDQo+PiA+ID4gK2ludGVsX2Rpc3BsYXlfcGFyYW1f
-bmFtZWQodmVyYm9zZV9zdGF0ZV9jaGVja3MsIGJvb2wsIDA0MDAsDQo+PiA+ID4gK8KgwqDCoMKg
-wqDCoMKgIkVuYWJsZSB2ZXJib3NlIGxvZ3MgKGllLiBXQVJOX09OKCkpIGluIGNhc2Ugb2YgdW5l
-eHBlY3RlZA0KPj4gPiA+IGh3IHN0YXRlIGNvbmRpdGlvbnMuIik7DQo+PiA+ID4gKw0KPj4gPiA+
-IMKgaW50ZWxfZGlzcGxheV9wYXJhbV9uYW1lZF91bnNhZmUoZW5hYmxlX2ZiYywgaW50LCAwNDAw
-LA0KPj4gPiA+IMKgwqDCoMKgwqDCoMKgwqAiRW5hYmxlIGZyYW1lIGJ1ZmZlciBjb21wcmVzc2lv
-biBmb3IgcG93ZXIgc2F2aW5ncyAiDQo+PiA+ID4gwqDCoMKgwqDCoMKgwqDCoCIoZGVmYXVsdDog
-LTEgKHVzZSBwZXItY2hpcCBkZWZhdWx0KSkiKTsNCj4+ID4gPiBkaWZmIC0tZ2l0IGEvZHJpdmVy
-cy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kaXNwbGF5X3BhcmFtcy5oDQo+PiA+ID4gYi9k
-cml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2Rpc3BsYXlfcGFyYW1zLmgNCj4+ID4g
-PiBpbmRleCA2MGQ5YzNkNTlmZTQuLmIzNTQ0M2Y1MTM3NSAxMDA2NDQNCj4+ID4gPiAtLS0gYS9k
-cml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2Rpc3BsYXlfcGFyYW1zLmgNCj4+ID4g
-PiArKysgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2Rpc3BsYXlfcGFyYW1z
-LmgNCj4+ID4gPiBAQCAtMzksNiArMzksNyBAQCBzdHJ1Y3QgZHJtX2k5MTVfcHJpdmF0ZTsNCj4+
-ID4gPiDCoMKgwqDCoMKgwqDCoMKgcGFyYW0oYm9vbCwgbG9hZF9kZXRlY3RfdGVzdCwgZmFsc2Us
-IDA2MDApIFwNCj4+ID4gPiDCoMKgwqDCoMKgwqDCoMKgcGFyYW0oYm9vbCwgZm9yY2VfcmVzZXRf
-bW9kZXNldF90ZXN0LCBmYWxzZSwgMDYwMCkgXA0KPj4gPiA+IMKgwqDCoMKgwqDCoMKgwqBwYXJh
-bShib29sLCBkaXNhYmxlX2Rpc3BsYXksIGZhbHNlLCAwNDAwKSBcDQo+PiA+ID4gK8KgwqDCoMKg
-wqDCoMKgcGFyYW0oYm9vbCwgdmVyYm9zZV9zdGF0ZV9jaGVja3MsIHRydWUsIDApIFwNCj4+ID4g
-DQo+PiA+IFdoeSBpcyB0aGlzIG9uZSAwPyBXaHkgY2FuJ3Qgd2UgZXZlbiByZWFkIGl0Pw0KPj4g
-DQo+PiBJIGZvdW5kIHRoaXMgY29tbWVudCBpbiBvbGRlciBjb21taXQgbWVzc2FnZSB3cml0dGVu
-IGJ5IEphbmkgTmlrdWxhOg0KPj4gDQo+PiAiMCBtb2RlIHdpbGwgYnlwYXNzIGRlYnVnZnMgY3Jl
-YXRpb24uIFVzZSBpdCBmb3IgdmVyYm9zZV9zdGF0ZV9jaGVja3MNCj4+IHdoaWNoIHdpbGwgbmVl
-ZCBzcGVjaWFsIGF0dGVudGlvbiBpbiBmb2xsb3ctdXAgd29yay4iDQo+DQo+IFRoaXMgc291bmRz
-IHByZXR0eSBvZGQsIHdoeSB3b3VsZG4ndCB3ZSB3YW50IGl0IHRvIGJlIGV2ZW4gcmVhZD8NCg0K
-SSAqdGhpbmsqIEkgcmVtZW1iZXIgd2h5Lg0KDQpXaGVuIEkgYWRkZWQgdGhlIGRldmljZSBwYXJh
-bWV0ZXJzLCBJOTE1X1NUQVRFX1dBUk4oKSwgdGhlIG9ubHkgdXNlciBvZg0KdmVyYm9zZV9zdGF0
-ZV9jaGVja3MsIGRpZCBub3QgaGF2ZSB0aGUgaTkxNSBwYXJhbWV0ZXIgeWV0LiBTbyBpdCBjb3Vs
-ZA0Kbm90IGFjY2VzcyB0aGUgZGV2aWNlIHBhcmFtZXRlci4NCg0KVGh1cyB0aGUgdmVyYm9zZV9z
-dGF0ZV9jaGVja3MgKm1vZHVsZSogcGFyYW1ldGVyIGhhZCB0byBoYXZlIDA2MDAgbW9kZSwNCmFu
-ZCBtb2RpZnlpbmcgdGhhdCBydW50aW1lIG1lYW50IHRoYXQgdGhlICpkZXZpY2UqIHBhcmFtZXRl
-ciwgZXZlbiBhcw0KcmVhZC1vbmx5LCB3b3VsZCBoYXZlIGdvbmUgb3V0IG9mIHN5bmMgYW5kIHNo
-b3duIGEgZGlmZmVyZW50IHZhbHVlLg0KDQpJIG9ubHkgYWRkZWQgdGhlIGk5MTUgcGFyYW1ldGVy
-IHRvIEk5MTVfU1RBVEVfV0FSTigpIGxhc3QgTWF5LCBidXQNCmNsZWFybHkgZGlkIG5vdCBmb2xs
-b3cgdGhyb3VnaCB3aXRoIHRoZSBwYXJhbWV0ZXIgY2hhbmdlLg0KDQpGcm9tIG5vdyBvbiwgaXQg
-c2hvdWxkIHVzZSB0aGUgZGV2aWNlIHBhcmFtIGxpa2UgdGhlIHJlc3Qgb2YgdGhlIGNvZGUsDQpp
-dCBzaG91bGQgaGF2ZSBhIG11dGFibGUgZGVidWdmcyBmaWxlLCBhbmQgdGhlIG1vZHVsZSBwYXJh
-bWV0ZXIgc2hvdWxkDQpiZSAwNDAwLg0KDQoNCkJSLA0KSmFuaS4NCg0KDQo+DQo+IEluIGFueSBj
-YXNlLCBpdCdzIG5vdCByZWxhdGVkIHRvIHRoaXMgcGF0Y2gsIHNvOg0KPg0KPiBSZXZpZXdlZC1i
-eTogTHVjYSBDb2VsaG8gPGx1Y2lhbm8uY29lbGhvQGludGVsLmNvbT4NCj4NCj4gLS0NCj4gQ2hl
-ZXJzLA0KPiBMdWNhLg0KDQotLSANCkphbmkgTmlrdWxhLCBJbnRlbA0K
+On Tue, 24 Oct 2023, Luca Coelho <luca@coelho.fi> wrote:
+> On Tue, 2023-10-24 at 08:51 +0000, Hogander, Jouni wrote:
+>> On Mon, 2023-10-23 at 17:06 +0300, Luca Coelho wrote:
+>> > On Mon, 2023-10-16 at 14:16 +0300, Jouni H=C3=B6gander wrote:
+>> > > Generally we have writable device parameters in debugfs. No need
+>> > > to allow writing module parameters.
+>> > >=20
+>> > > Signed-off-by: Jouni H=C3=B6gander <jouni.hogander@intel.com>
+>> > > ---
+>> > > =C2=A0drivers/gpu/drm/i915/display/intel_display_params.c | 2 +-
+>> > > =C2=A01 file changed, 1 insertion(+), 1 deletion(-)
+>> > >=20
+>> > > diff --git a/drivers/gpu/drm/i915/display/intel_display_params.c
+>> > > b/drivers/gpu/drm/i915/display/intel_display_params.c
+>> > > index 8e6353c1c25e..077f2dee2975 100644
+>> > > --- a/drivers/gpu/drm/i915/display/intel_display_params.c
+>> > > +++ b/drivers/gpu/drm/i915/display/intel_display_params.c
+>> > > @@ -50,7 +50,7 @@ intel_display_param_named_unsafe(enable_dc, int,
+>> > > 0400,
+>> > > =C2=A0intel_display_param_named_unsafe(enable_dpt, bool, 0400,
+>> > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0"Enable display page=
+ table (DPT) (default: true)");
+>> > > =C2=A0
+>> > > -intel_display_param_named_unsafe(enable_sagv, bool, 0600,
+>> > > +intel_display_param_named_unsafe(enable_sagv, bool, 0400,
+>> > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0"Enable system agent=
+ voltage/frequency scaling (SAGV)
+>> > > (default: true)");
+>> > > =C2=A0
+>> > > =C2=A0intel_display_param_named_unsafe(disable_power_well, int, 0400,
+>> >=20
+>> > This, as well as other similar changes throughout this series, could
+>> > be
+>> > controversial, since it's a userspace API change of sorts.=C2=A0 It us=
+ed
+>> > to
+>> > be possible to write but it won't be anymore.=C2=A0 But, as we discuss=
+ed
+>> > offline, it shouldn't be problem, because probably nobody is writing
+>> > to
+>> > them, and most likely doing so wouldn't have the expected result,
+>> > since
+>> > the device copies were not getting updated.
+>> >=20
+>> > Reviewed-by: Luca Coelho <luciano.coelho@intel.com>
+>>=20
+>> Thank you Luca. I actually moved this change to patch 11 due to your
+>> comment there and added your rb tag there. I was planning to drop this
+>> patch. Are you fine with this?
+>
+> Yes, this is fine.  I'll review your cahnges in v3 and give the missing
+> r-b tags there, if applicable.
+
+I think this change is good and frankly needed. It's confusing to be
+able to modify the module param without it having any effect.
+
+These are for debug, the param is designated "unsafe", and for these I
+don't really care if someone complains they can't write to the file
+anymore.
+
+BR,
+Jani.
+
+>
+> --
+> Cheers,
+> Luca.
+
+--=20
+Jani Nikula, Intel
