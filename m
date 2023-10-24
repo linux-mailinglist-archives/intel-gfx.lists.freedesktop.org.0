@@ -1,57 +1,33 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9896B7D57EB
-	for <lists+intel-gfx@lfdr.de>; Tue, 24 Oct 2023 18:20:58 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id B35957D5805
+	for <lists+intel-gfx@lfdr.de>; Tue, 24 Oct 2023 18:21:30 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CADA710E427;
-	Tue, 24 Oct 2023 16:20:54 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3614410E428;
+	Tue, 24 Oct 2023 16:21:29 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D1C7110E426;
- Tue, 24 Oct 2023 16:20:52 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1698164452; x=1729700452;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:in-reply-to;
- bh=stAV+c+m6ur0U0ftL1kJBRBWT7RqDc7NNlJHBqfAKF0=;
- b=YK0oXkQl8WBRqt0t/slZ68JEj2N9oqXls3Luok4XsWUuR39RgjTlezq4
- Fm7gPQEpAPhP647OEaZ1pmqiNcINEFME7gOaodpuUSnzR4n6ueoxWXPwv
- Ss2zt4SFF1Bz891rfUAoD4MN3slEYlHnBHd/fR7pm2pag+BhmebdLsZbF
- vmel7gy9StMqKCC/gptX5P7R3zMAuVMTpMdR14ZFeT/hVT4cWTTrBdyjm
- YtUyIeAtgZlPH050taSX92UGNZ2oarW5N2Bi6k2g192aEZvxql65qJkNw
- 5Y/2DFeMtJl7+ZAEMW5hxzOe/5VL+RW+KOQSyzL1ArKKWMQfgHEOW67qX A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10873"; a="473333360"
-X-IronPort-AV: E=Sophos;i="6.03,248,1694761200"; d="scan'208";a="473333360"
-Received: from fmsmga004.fm.intel.com ([10.253.24.48])
- by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Oct 2023 09:11:37 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10873"; a="828906405"
-X-IronPort-AV: E=Sophos;i="6.03,248,1694761200"; d="scan'208";a="828906405"
-Received: from smile.fi.intel.com ([10.237.72.54])
- by fmsmga004.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Oct 2023 09:11:34 -0700
-Received: from andy by smile.fi.intel.com with local (Exim 4.97-RC3)
- (envelope-from <andriy.shevchenko@linux.intel.com>)
- id 1qvK0B-00000008KRg-2l0V; Tue, 24 Oct 2023 19:11:31 +0300
-Date: Tue, 24 Oct 2023 19:11:31 +0300
-From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-To: Jani Nikula <jani.nikula@intel.com>, intel-gfx@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org
-Message-ID: <ZTfssxRsrDxhzSQ6@smile.fi.intel.com>
-References: <20231024155739.3861342-1-andriy.shevchenko@linux.intel.com>
- <20231024155739.3861342-7-andriy.shevchenko@linux.intel.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id B97DD10E428;
+ Tue, 24 Oct 2023 16:21:27 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id B3971A0003;
+ Tue, 24 Oct 2023 16:21:27 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20231024155739.3861342-7-andriy.shevchenko@linux.intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-Subject: Re: [Intel-gfx] [PATCH v2 6/7] drm/i915/dsi: Replace poking of CHV
- GPIOs behind the driver's back
+Content-Transfer-Encoding: 7bit
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Lucas De Marchi" <lucas.demarchi@intel.com>
+Date: Tue, 24 Oct 2023 16:21:27 -0000
+Message-ID: <169816448773.18361.9189723453122922036@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20231018222441.4131237-1-lucas.demarchi@intel.com>
+In-Reply-To: <20231018222441.4131237-1-lucas.demarchi@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJVSUxEOiBmYWlsdXJlIGZvciBk?=
+ =?utf-8?q?rm/i915/lnl=3A_Assign_correct_phys_=28rev2=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,27 +40,32 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Hans de Goede <hdegoede@redhat.com>, Daniel Vetter <daniel@ffwll.ch>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, David Airlie <airlied@gmail.com>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, Oct 24, 2023 at 06:57:38PM +0300, Andy Shevchenko wrote:
-> It's a dirty hack in the driver that pokes GPIO registers behind
-> the driver's back. Moreoever it might be problematic as simultaneous
-> I/O may hang the system, see the commit 0bd50d719b00 ("pinctrl:
-> cherryview: prevent concurrent access to GPIO controllers") for
-> the details. Taking all this into consideration replace the hack
-> with proper GPIO APIs being used.
+== Series Details ==
 
-Ah, just realised that this won't work if it happens to request to GPIOs with
-the same index but different communities. I will fix that in v3, but will wait
-for Hans to test VLV and it might even work in most of the cases on CHV as it
-seems quite unlikely that the above mentioned assertion is going to happen in
-real life.
+Series: drm/i915/lnl: Assign correct phys (rev2)
+URL   : https://patchwork.freedesktop.org/series/125322/
+State : failure
 
--- 
-With Best Regards,
-Andy Shevchenko
+== Summary ==
+
+Error: patch https://patchwork.freedesktop.org/api/1.0/series/125322/revisions/2/mbox/ not applied
+Applying: drm/i915/lnl: Extend C10/C20 phy
+Applying: drm/i915/lnl: Fix check for TC phy
+error: patch failed: drivers/gpu/drm/i915/display/intel_display.c:1784
+error: drivers/gpu/drm/i915/display/intel_display.c: patch does not apply
+error: Did you hand edit your patch?
+It does not apply to blobs recorded in its index.
+hint: Use 'git am --show-current-patch=diff' to see the failed patch
+Using index info to reconstruct a base tree...
+Patch failed at 0002 drm/i915/lnl: Fix check for TC phy
+When you have resolved this problem, run "git am --continue".
+If you prefer to skip this patch, run "git am --skip" instead.
+To restore the original branch and stop patching, run "git am --abort".
+Build failed, no error log produced
 
 
