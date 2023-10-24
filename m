@@ -1,53 +1,51 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7E5B37D4B9C
-	for <lists+intel-gfx@lfdr.de>; Tue, 24 Oct 2023 11:11:01 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 73C0C7D4D97
+	for <lists+intel-gfx@lfdr.de>; Tue, 24 Oct 2023 12:22:02 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5DA3310E301;
-	Tue, 24 Oct 2023 09:10:58 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 960DD10E31E;
+	Tue, 24 Oct 2023 10:21:54 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0F80B10E301
- for <intel-gfx@lists.freedesktop.org>; Tue, 24 Oct 2023 09:10:56 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 01B9C10E31C;
+ Tue, 24 Oct 2023 10:21:51 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1698138656; x=1729674656;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:in-reply-to;
- bh=NhiextLkErs42qHeuVCrUDh1ybmraaW81X3dUsW9CkM=;
- b=EzFUtpCvvJ5wLy7qEJdUSY52KbGAjb8oL8zRdWEVMSXSZfrHCG237BOX
- un4XWuXn8oLk4yEj4y9vF/5kdzx1Vm0EQSBx9p8Q0j53764pOKBwqWcyX
- BJT4RTsvNH+3Z7DDc590DSlFjm0Y0gex1IOMLVTLpi/4yyKP4jtkvKtcS
- PNLi6q9+OE3B2OXD7+rVEMBovW3G8r9LYO4tTXX9Ig0h2OvAxq/6iIwxo
- uo1zGgLvt6VWP4BEaKwy6P1iotMNyc79dz3mteVsKkseMPkXcLngNVzvI
- GXF0Gsxo7eDbRt/L75ONKAEXtRAMV5WJxK6b91a9euLkp1vVjphygFZaK g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10872"; a="418142621"
-X-IronPort-AV: E=Sophos;i="6.03,247,1694761200"; d="scan'208";a="418142621"
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
- by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Oct 2023 02:10:55 -0700
+ t=1698142912; x=1729678912;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=XPyfBpnhxXPgf0FDxskGfQUAM2UFQpJmgvZkgov5+/Q=;
+ b=ASRcxcy1CqVYJJD/ZhftVvZEhrtF1uC+6bBoMfgD62J4tCe577j4qGnX
+ OB0tB5S6gpY46NYK1S2dkXL4XBvoUsW0JQTKOYMUjgiCJ/UsACshjjAdk
+ 15mb+ILfXJ2gNM31SyJbKle2W9Gtz9LC4NamycbAG2jrHzoh04VpwfaLv
+ VP74nom2pNZ40RnsGlCW1lVsTd5YI1kdacoSYEP7B5qy3Npnwn+bx6qMH
+ oVpI4ew2nueH5s6VT5a3KP6mKBJUQrzKxPzXF0vRCEcO8Yp9Ot3jNC9Gb
+ Y9iSH1ISq5Mv+aH15j/P+PkgDKiDH0qbLCZ8ka+UEZ0z2stEXz2XE755K Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10872"; a="473251949"
+X-IronPort-AV: E=Sophos;i="6.03,247,1694761200"; d="scan'208";a="473251949"
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+ by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 24 Oct 2023 03:21:51 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10872"; a="875003973"
-X-IronPort-AV: E=Sophos;i="6.03,247,1694761200"; d="scan'208";a="875003973"
-Received: from yaminehx-mobl.ger.corp.intel.com (HELO intel.com)
- ([10.252.33.158])
- by fmsmga002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Oct 2023 02:10:53 -0700
-Date: Tue, 24 Oct 2023 11:10:51 +0200
-From: Andi Shyti <andi.shyti@linux.intel.com>
-To: Andrzej Hajda <andrzej.hajda@intel.com>
-Message-ID: <ZTeKG8S1moLtfsGh@ashyti-mobl2.lan>
-References: <20231023-wabb-v4-0-f75dec962b7d@intel.com>
- <20231023-wabb-v4-1-f75dec962b7d@intel.com>
+X-IronPort-AV: E=McAfee;i="6600,9927,10872"; a="902118275"
+X-IronPort-AV: E=Sophos;i="6.03,247,1694761200"; d="scan'208";a="902118275"
+Received: from ideak-desk.fi.intel.com ([10.237.72.78])
+ by fmsmga001-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 24 Oct 2023 03:19:30 -0700
+From: Imre Deak <imre.deak@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Tue, 24 Oct 2023 13:22:16 +0300
+Message-Id: <20231024102219.4035939-1-imre.deak@intel.com>
+X-Mailer: git-send-email 2.39.2
+In-Reply-To: <20231024010925.3949910-8-imre.deak@intel.com>
+References: <20231024010925.3949910-8-imre.deak@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20231023-wabb-v4-1-f75dec962b7d@intel.com>
-Subject: Re: [Intel-gfx] [PATCH v4 1/4] drm/i915: Reserve some kernel space
- per vm
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-gfx] [PATCH v2 07/29] drm/dp_mst: Add HBLANK expansion quirk
+ for Synaptics MST hubs
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -60,25 +58,57 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org,
- Jonathan Cavitt <jonathan.cavitt@intel.com>,
- Chris Wilson <chris.p.wilson@linux.intel.com>
+Cc: dri-devel@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi Andrzej,
+Add a quirk for Synaptics MST hubs, which require a workaround - at leat
+on i915 - for some modes, on which the hub applies HBLANK expansion.
+These modes will only work by enabling DSC decompression for them, a
+follow-up patch will do this in i915.
 
-On Mon, Oct 23, 2023 at 10:21:45PM +0200, Andrzej Hajda wrote:
-> Reserve one page in each vm for kernel space to use for things
-> such as workarounds.
-> 
-> v2: use real memory, do not decrease vm.total
-> v4: reserve only one page and explain flag
-> 
-> Suggested-by: Chris Wilson <chris.p.wilson@linux.intel.com>
-> Signed-off-by: Andrzej Hajda <andrzej.hajda@intel.com>
-> Reviewed-by: Jonathan Cavitt <jonathan.cavitt@intel.com>
+v2:
+- Fix the quirk name in its docbook description.
 
-Reviewed-by: Andi Shyti <andi.shyti@linux.intel.com>
+Cc: Lyude Paul <lyude@redhat.com>
+Cc: dri-devel@lists.freedesktop.org
+Signed-off-by: Imre Deak <imre.deak@intel.com>
+---
+ drivers/gpu/drm/display/drm_dp_helper.c | 2 ++
+ include/drm/display/drm_dp_helper.h     | 7 +++++++
+ 2 files changed, 9 insertions(+)
 
-Andi
+diff --git a/drivers/gpu/drm/display/drm_dp_helper.c b/drivers/gpu/drm/display/drm_dp_helper.c
+index f3680f4e69708..e5d7970a9ddd0 100644
+--- a/drivers/gpu/drm/display/drm_dp_helper.c
++++ b/drivers/gpu/drm/display/drm_dp_helper.c
+@@ -2245,6 +2245,8 @@ static const struct dpcd_quirk dpcd_quirk_list[] = {
+ 	{ OUI(0x00, 0x00, 0x00), DEVICE_ID('C', 'H', '7', '5', '1', '1'), false, BIT(DP_DPCD_QUIRK_NO_SINK_COUNT) },
+ 	/* Synaptics DP1.4 MST hubs can support DSC without virtual DPCD */
+ 	{ OUI(0x90, 0xCC, 0x24), DEVICE_ID_ANY, true, BIT(DP_DPCD_QUIRK_DSC_WITHOUT_VIRTUAL_DPCD) },
++	/* Synaptics DP1.4 MST hubs require DSC for some modes on which it applies HBLANK expansion. */
++	{ OUI(0x90, 0xCC, 0x24), DEVICE_ID_ANY, true, BIT(DP_DPCD_QUIRK_HBLANK_EXPANSION_REQUIRES_DSC) },
+ 	/* Apple MacBookPro 2017 15 inch eDP Retina panel reports too low DP_MAX_LINK_RATE */
+ 	{ OUI(0x00, 0x10, 0xfa), DEVICE_ID(101, 68, 21, 101, 98, 97), false, BIT(DP_DPCD_QUIRK_CAN_DO_MAX_LINK_RATE_3_24_GBPS) },
+ };
+diff --git a/include/drm/display/drm_dp_helper.h b/include/drm/display/drm_dp_helper.h
+index 3d74b2cec72fd..da94932f4262b 100644
+--- a/include/drm/display/drm_dp_helper.h
++++ b/include/drm/display/drm_dp_helper.h
+@@ -632,6 +632,13 @@ enum drm_dp_quirk {
+ 	 * the DP_MAX_LINK_RATE register reporting a lower max multiplier.
+ 	 */
+ 	DP_DPCD_QUIRK_CAN_DO_MAX_LINK_RATE_3_24_GBPS,
++	/**
++	 * @DP_DPCD_QUIRK_HBLANK_EXPANSION_REQUIRES_DSC:
++	 *
++	 * The device applies HBLANK expansion for some modes, but this
++	 * requires enabling DSC.
++	 */
++	DP_DPCD_QUIRK_HBLANK_EXPANSION_REQUIRES_DSC,
+ };
+ 
+ /**
+-- 
+2.39.2
+
