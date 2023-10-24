@@ -1,55 +1,55 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 01DE47D5661
-	for <lists+intel-gfx@lfdr.de>; Tue, 24 Oct 2023 17:30:07 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id D9A4F7D570F
+	for <lists+intel-gfx@lfdr.de>; Tue, 24 Oct 2023 17:57:56 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5BAAB10E3D5;
-	Tue, 24 Oct 2023 15:30:05 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B549510E0C9;
+	Tue, 24 Oct 2023 15:57:49 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.100])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6C78C10E3D5
- for <intel-gfx@lists.freedesktop.org>; Tue, 24 Oct 2023 15:30:03 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 82B9A10E0C9;
+ Tue, 24 Oct 2023 15:57:47 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1698161403; x=1729697403;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:in-reply-to;
- bh=S9MyHCjMDShPa6EdDiT20WKOLwmwo5wjDiydtd+Rk3Y=;
- b=J7toAPiNstlvrCt/mn8Yx0vGtF6olsPPSftqIxkqEIYSfEPy5AVO0FRF
- yZRM2d8/aj1BK25ObFDywo8Dq4bBOlcRnrcDfsLmxhuhuA5MoXPJENT0E
- hwIOdSpmwo5YEaT8KsDUgtO6hiEXK+8/kn/XFrJfPjISm5uQBQolzIbAn
- T1axyvZOIVvdBlbdKZwXMvNVeJEM9dbRMZANmHy+g8sz0LeUFgD9hODNp
- ugm51vB/rAmPCUG1N972kjh6h2PRQC6oD5RhdCNAdmclc/n1YcS7v79pM
- HhMVMgM0VLvJ0B+dY51CxdKwPdLa757eTzYGkNWdxT0orbi3u8O3qbu35 A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10873"; a="453562530"
-X-IronPort-AV: E=Sophos;i="6.03,248,1694761200"; d="scan'208";a="453562530"
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
- by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Oct 2023 08:29:37 -0700
+ t=1698163067; x=1729699067;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=CGHK9hVViLLRXP1qkBxDzBZsDUdNwG2+XztuBNrzymU=;
+ b=dYm6W+TioAhJprMmfDWw9LJwR2KUqpOCCeXWaSbKWDmnxHZ7K2Tb/VOQ
+ sQguHy8+e8VX5wg/0fTi7ujETNqzqFZJQY1w7Id/FTIF7ILp612suSnxx
+ xB5Qe3gYKMXvlyvLnnUbCyhDbhVfUKeL4fBMF6ZDF8zH/twgMIYBOWoYy
+ Zx8BgliFATA3/46Te4J27pPtPAuv8cSu2yEdBpubS6MaIcZcfs3ywFED9
+ t3546oJBY3AoOueaM1TpHJhWeBpNyA8tb+Oue0pYQYr7Jed85Br7sjB9+
+ K0+cynmWc3G1pp1pMLxr4+Wz2ziYrQuyTpCjcPkBTuvEWxnSSzaEyH6iS g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10873"; a="8649783"
+X-IronPort-AV: E=Sophos;i="6.03,248,1694761200"; 
+   d="scan'208";a="8649783"
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+ by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 24 Oct 2023 08:57:46 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10873"; a="758500609"
-X-IronPort-AV: E=Sophos;i="6.03,248,1694761200"; d="scan'208";a="758500609"
-Received: from yaminehx-mobl.ger.corp.intel.com (HELO intel.com)
- ([10.252.33.158])
- by orsmga002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Oct 2023 08:29:35 -0700
-Date: Tue, 24 Oct 2023 17:29:33 +0200
-From: Andi Shyti <andi.shyti@linux.intel.com>
-To: Matt Roper <matthew.d.roper@intel.com>
-Message-ID: <ZTfi3Y57b-GObc4t@ashyti-mobl2.lan>
-References: <20231019163913.2097183-2-matthew.d.roper@intel.com>
- <20231019170241.2102037-2-matthew.d.roper@intel.com>
- <ZTeySSFGbBpmfn-7@ashyti-mobl2.lan>
- <20231024152139.GU5757@mdroper-desk1.amr.corp.intel.com>
+X-IronPort-AV: E=McAfee;i="6600,9927,10873"; a="902233850"
+X-IronPort-AV: E=Sophos;i="6.03,248,1694761200"; d="scan'208";a="902233850"
+Received: from black.fi.intel.com ([10.237.72.28])
+ by fmsmga001.fm.intel.com with ESMTP; 24 Oct 2023 08:55:22 -0700
+Received: by black.fi.intel.com (Postfix, from userid 1003)
+ id 094E814F; Tue, 24 Oct 2023 18:57:41 +0300 (EEST)
+From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+To: Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+ Jani Nikula <jani.nikula@intel.com>, intel-gfx@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org
+Date: Tue, 24 Oct 2023 18:57:33 +0300
+Message-Id: <20231024155739.3861342-2-andriy.shevchenko@linux.intel.com>
+X-Mailer: git-send-email 2.40.0.1.gaa8946217a0b
+In-Reply-To: <20231024155739.3861342-1-andriy.shevchenko@linux.intel.com>
+References: <20231024155739.3861342-1-andriy.shevchenko@linux.intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20231024152139.GU5757@mdroper-desk1.amr.corp.intel.com>
-Subject: Re: [Intel-gfx] [PATCH v2] drm/i915/mcr: Hold GT forcewake during
- steering operations
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-gfx] [PATCH v2 1/7] drm/i915/dsi: Replace while(1) with one
+ with clear exit condition
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -62,40 +62,38 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org,
- Jonathan Cavitt <jonathan.cavitt@intel.com>
+Cc: Hans de Goede <hdegoede@redhat.com>, Daniel Vetter <daniel@ffwll.ch>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, David Airlie <airlied@gmail.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi Matt,
+Move existing condition to while(), so it will be clear on what
+circumstances the loop is successfully finishing.
 
-...
+Signed-off-by: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+---
+ drivers/gpu/drm/i915/display/intel_dsi_vbt.c | 5 +----
+ 1 file changed, 1 insertion(+), 4 deletions(-)
 
-> > Cc: <stable@vger.kernel.org> # v6.3+
-> 
-> No stable kernels support MTL (even if they have some of the commits,
-> it's all dead code).  We don't want to tag things for stable if they
-> don't meet the stable kernel requirements.
+diff --git a/drivers/gpu/drm/i915/display/intel_dsi_vbt.c b/drivers/gpu/drm/i915/display/intel_dsi_vbt.c
+index 24b2cbcfc1ef..a6a6f1814967 100644
+--- a/drivers/gpu/drm/i915/display/intel_dsi_vbt.c
++++ b/drivers/gpu/drm/i915/display/intel_dsi_vbt.c
+@@ -707,13 +707,10 @@ static void intel_dsi_vbt_exec(struct intel_dsi *intel_dsi,
+ 	if (connector->panel.vbt.dsi.seq_version >= 3)
+ 		data += 4;
+ 
+-	while (1) {
++	while (*data != MIPI_SEQ_ELEM_END) {
+ 		u8 operation_byte = *data++;
+ 		u8 operation_size = 0;
+ 
+-		if (operation_byte == MIPI_SEQ_ELEM_END)
+-			break;
+-
+ 		if (operation_byte < ARRAY_SIZE(exec_elem))
+ 			mipi_elem_exec = exec_elem[operation_byte];
+ 		else
+-- 
+2.40.0.1.gaa8946217a0b
 
-yes, right... how could I have missed that :-D
-
-> > When the access to the hardware was added.
-> > 
-> > BTW, given that currently we hold the forcewake already, is this
-> > really a fix or is this more looking at the future? Is the Fixes
-> > tag necessary?
-> 
-> I'm not 100% sure we hold forcewake in all the cases where we work with
-> MCR registers.  For example, some of the big ones like wa_list_apply()
-> don't grab forcewake until after we've already acquired the MCR
-> semaphore.
-
-yeah... OK!
-
-> > Reviewed-by: Andi Shyti <andi.shyti@linux.intel.com>
-
-This stands.
-
-Thanks, Matt!
-
-Andi
