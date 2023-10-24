@@ -1,42 +1,42 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 19BA07D4ED5
-	for <lists+intel-gfx@lfdr.de>; Tue, 24 Oct 2023 13:31:53 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id EA74F7D4ED8
+	for <lists+intel-gfx@lfdr.de>; Tue, 24 Oct 2023 13:33:52 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 00C4410E346;
-	Tue, 24 Oct 2023 11:31:50 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id F0A4D10E33E;
+	Tue, 24 Oct 2023 11:33:50 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from coelho.fi (paleale.coelho.fi [176.9.41.70])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 05A9210E346
- for <intel-gfx@lists.freedesktop.org>; Tue, 24 Oct 2023 11:31:48 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 80C4F10E34E
+ for <intel-gfx@lists.freedesktop.org>; Tue, 24 Oct 2023 11:33:49 +0000 (UTC)
 Received: from 91-155-254-243.elisa-laajakaista.fi ([91.155.254.243]
  helo=[192.168.100.137])
  by coelho.fi with esmtpsa (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
  (Exim 4.97-RC1) (envelope-from <luca@coelho.fi>)
- id 1qvFdQ-000000009bZ-0baD; Tue, 24 Oct 2023 14:31:45 +0300
-Message-ID: <c6e2a0afa151f361ac920994cd105a9ce0b6bf9d.camel@coelho.fi>
+ id 1qvFfO-000000009br-0cN2; Tue, 24 Oct 2023 14:33:47 +0300
+Message-ID: <639a31dea0e79b90735d14d4b40ef1531b9cd7f9.camel@coelho.fi>
 From: Luca Coelho <luca@coelho.fi>
 To: "Hogander, Jouni" <jouni.hogander@intel.com>, 
  "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
-Date: Tue, 24 Oct 2023 14:31:42 +0300
-In-Reply-To: <f68c3d2669013b16f3bf3263dacbc13f267d2572.camel@intel.com>
+Date: Tue, 24 Oct 2023 14:33:45 +0300
+In-Reply-To: <c9e5a54c56a1855cdca2f5e390dad48acc3ff5f3.camel@intel.com>
 References: <20231016111658.3432581-1-jouni.hogander@intel.com>
- <20231016111658.3432581-22-jouni.hogander@intel.com>
- <daf1bc85a60793a55c5c9371778bb4e17319e8da.camel@coelho.fi>
- <f68c3d2669013b16f3bf3263dacbc13f267d2572.camel@intel.com>
+ <20231016111658.3432581-25-jouni.hogander@intel.com>
+ <51352e16166514540e90e7ef2c7a07fb42d47241.camel@coelho.fi>
+ <c9e5a54c56a1855cdca2f5e390dad48acc3ff5f3.camel@intel.com>
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: base64
+Content-Transfer-Encoding: quoted-printable
 User-Agent: Evolution 3.46.4-2 
 MIME-Version: 1.0
 X-Spam-Checker-Version: SpamAssassin 4.0.0 (2022-12-13) on farmhouse.coelho.fi
 X-Spam-Level: 
 X-Spam-Status: No, score=-2.9 required=5.0 tests=ALL_TRUSTED,BAYES_00,
  TVD_RCVD_IP autolearn=ham autolearn_force=no version=4.0.0
-Subject: Re: [Intel-gfx] [PATCH v2 21/24] drm/i915/display: Move
- verbose_state_checks under display
+Subject: Re: [Intel-gfx] [PATCH v2 24/24] drm/i915/display: Use same
+ permissions for enable_sagv as for rest
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -49,78 +49,61 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "Nikula, Jani" <jani.nikula@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-T24gVHVlLCAyMDIzLTEwLTI0IGF0IDA4OjIyICswMDAwLCBIb2dhbmRlciwgSm91bmkgd3JvdGU6
-Cj4gT24gTW9uLCAyMDIzLTEwLTIzIGF0IDE3OjAwICswMzAwLCBMdWNhIENvZWxobyB3cm90ZToK
-PiA+IE9uIE1vbiwgMjAyMy0xMC0xNiBhdCAxNDoxNiArMDMwMCwgSm91bmkgSMO2Z2FuZGVyIHdy
-b3RlOgo+ID4gPiBTaWduZWQtb2ZmLWJ5OiBKb3VuaSBIw7ZnYW5kZXIgPGpvdW5pLmhvZ2FuZGVy
-QGludGVsLmNvbT4KPiA+ID4gLS0tCj4gPiA+IMKgZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxh
-eS9pbnRlbF9kaXNwbGF5LmjCoMKgwqDCoMKgwqDCoCB8IDIgKy0KPiA+ID4gwqBkcml2ZXJzL2dw
-dS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2Rpc3BsYXlfcGFyYW1zLmMgfCAzICsrKwo+ID4gPiDC
-oGRyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZGlzcGxheV9wYXJhbXMuaCB8IDEg
-Kwo+ID4gPiDCoGRyaXZlcnMvZ3B1L2RybS9pOTE1L2k5MTVfcGFyYW1zLmPCoMKgwqDCoMKgwqDC
-oMKgwqDCoMKgwqDCoMKgwqDCoMKgIHwgMyAtLS0KPiA+ID4gwqBkcml2ZXJzL2dwdS9kcm0vaTkx
-NS9pOTE1X3BhcmFtcy5owqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCB8IDEgLQo+
-ID4gPiDCoDUgZmlsZXMgY2hhbmdlZCwgNSBpbnNlcnRpb25zKCspLCA1IGRlbGV0aW9ucygtKQo+
-ID4gPiAKPiA+ID4gZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50
-ZWxfZGlzcGxheS5oCj4gPiA+IGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9k
-aXNwbGF5LmgKPiA+ID4gaW5kZXggYmEzNTQ4Zjk3NjhkLi5iYzk1ZmIzNzczODYgMTAwNjQ0Cj4g
-PiA+IC0tLSBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZGlzcGxheS5oCj4g
-PiA+ICsrKyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZGlzcGxheS5oCj4g
-PiA+IEBAIC01NTIsNyArNTUyLDcgQEAgYm9vbCBhc3NlcnRfcG9ydF92YWxpZChzdHJ1Y3QgZHJt
-X2k5MTVfcHJpdmF0ZQo+ID4gPiAqaTkxNSwgZW51bSBwb3J0IHBvcnQpOwo+ID4gPiDCoMKgwqDC
-oMKgwqDCoMKgc3RydWN0IGRybV9kZXZpY2UgKmRybSA9ICYoX19pOTE1KS0KPiA+ID4gPiBkcm07
-wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgXAo+ID4gPiDC
-oMKgwqDCoMKgwqDCoMKgaW50IF9fcmV0X3dhcm5fb24gPQo+ID4gPiAhIShjb25kaXRpb24pO8Kg
-wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
-oFwKPiA+ID4gwqDCoMKgwqDCoMKgwqDCoGlmCj4gPiA+ICh1bmxpa2VseShfX3JldF93YXJuX29u
-KSnCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
-oMKgwqDCoMKgwqDCoMKgwqBcCj4gPiA+IC3CoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqBp
-ZiAoIWRybV9XQVJOKGRybSwgX19pOTE1LQo+ID4gPiA+IHBhcmFtcy52ZXJib3NlX3N0YXRlX2No
-ZWNrcywgZm9ybWF0KSkgXAo+ID4gPiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgaWYg
-KCFkcm1fV0FSTihkcm0sIF9faTkxNS0KPiA+ID4gPiBkaXNwbGF5LnBhcmFtcy52ZXJib3NlX3N0
-YXRlX2NoZWNrcywgZm9ybWF0KSkgXAo+ID4gPiDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
-wqDCoMKgwqDCoMKgwqDCoMKgwqBkcm1fZXJyKGRybSwKPiA+ID4gZm9ybWF0KTvCoMKgwqDCoMKg
-wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqBcCj4gPiA+IMKgwqDC
-oMKgwqDCoMKgwqB1bmxpa2VseShfX3JldF93YXJuX29uKTvCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
-wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgCj4gPiA+IMKg
-wqDCoMKgwqBcCj4gPiA+IMKgfSkKPiA+ID4gZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9p
-OTE1L2Rpc3BsYXkvaW50ZWxfZGlzcGxheV9wYXJhbXMuYwo+ID4gPiBiL2RyaXZlcnMvZ3B1L2Ry
-bS9pOTE1L2Rpc3BsYXkvaW50ZWxfZGlzcGxheV9wYXJhbXMuYwo+ID4gPiBpbmRleCAwNmU2OGM3
-ZmVjMWMuLmU4Njc2NjYzOTM5NiAxMDA2NDQKPiA+ID4gLS0tIGEvZHJpdmVycy9ncHUvZHJtL2k5
-MTUvZGlzcGxheS9pbnRlbF9kaXNwbGF5X3BhcmFtcy5jCj4gPiA+ICsrKyBiL2RyaXZlcnMvZ3B1
-L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZGlzcGxheV9wYXJhbXMuYwo+ID4gPiBAQCAtODcsNiAr
-ODcsOSBAQAo+ID4gPiBpbnRlbF9kaXNwbGF5X3BhcmFtX25hbWVkX3Vuc2FmZShmb3JjZV9yZXNl
-dF9tb2Rlc2V0X3Rlc3QsIGJvb2wsCj4gPiA+IDA0MDAsCj4gPiA+IMKgaW50ZWxfZGlzcGxheV9w
-YXJhbV9uYW1lZChkaXNhYmxlX2Rpc3BsYXksIGJvb2wsIDA0MDAsCj4gPiA+IMKgwqDCoMKgwqDC
-oMKgwqAiRGlzYWJsZSBkaXNwbGF5IChkZWZhdWx0OiBmYWxzZSkiKTsKPiA+ID4gwqAKPiA+ID4g
-K2ludGVsX2Rpc3BsYXlfcGFyYW1fbmFtZWQodmVyYm9zZV9zdGF0ZV9jaGVja3MsIGJvb2wsIDA0
-MDAsCj4gPiA+ICvCoMKgwqDCoMKgwqDCoCJFbmFibGUgdmVyYm9zZSBsb2dzIChpZS4gV0FSTl9P
-TigpKSBpbiBjYXNlIG9mIHVuZXhwZWN0ZWQKPiA+ID4gaHcgc3RhdGUgY29uZGl0aW9ucy4iKTsK
-PiA+ID4gKwo+ID4gPiDCoGludGVsX2Rpc3BsYXlfcGFyYW1fbmFtZWRfdW5zYWZlKGVuYWJsZV9m
-YmMsIGludCwgMDQwMCwKPiA+ID4gwqDCoMKgwqDCoMKgwqDCoCJFbmFibGUgZnJhbWUgYnVmZmVy
-IGNvbXByZXNzaW9uIGZvciBwb3dlciBzYXZpbmdzICIKPiA+ID4gwqDCoMKgwqDCoMKgwqDCoCIo
-ZGVmYXVsdDogLTEgKHVzZSBwZXItY2hpcCBkZWZhdWx0KSkiKTsKPiA+ID4gZGlmZiAtLWdpdCBh
-L2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZGlzcGxheV9wYXJhbXMuaAo+ID4g
-PiBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZGlzcGxheV9wYXJhbXMuaAo+
-ID4gPiBpbmRleCA2MGQ5YzNkNTlmZTQuLmIzNTQ0M2Y1MTM3NSAxMDA2NDQKPiA+ID4gLS0tIGEv
-ZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kaXNwbGF5X3BhcmFtcy5oCj4gPiA+
-ICsrKyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZGlzcGxheV9wYXJhbXMu
-aAo+ID4gPiBAQCAtMzksNiArMzksNyBAQCBzdHJ1Y3QgZHJtX2k5MTVfcHJpdmF0ZTsKPiA+ID4g
-wqDCoMKgwqDCoMKgwqDCoHBhcmFtKGJvb2wsIGxvYWRfZGV0ZWN0X3Rlc3QsIGZhbHNlLCAwNjAw
-KSBcCj4gPiA+IMKgwqDCoMKgwqDCoMKgwqBwYXJhbShib29sLCBmb3JjZV9yZXNldF9tb2Rlc2V0
-X3Rlc3QsIGZhbHNlLCAwNjAwKSBcCj4gPiA+IMKgwqDCoMKgwqDCoMKgwqBwYXJhbShib29sLCBk
-aXNhYmxlX2Rpc3BsYXksIGZhbHNlLCAwNDAwKSBcCj4gPiA+ICvCoMKgwqDCoMKgwqDCoHBhcmFt
-KGJvb2wsIHZlcmJvc2Vfc3RhdGVfY2hlY2tzLCB0cnVlLCAwKSBcCj4gPiAKPiA+IFdoeSBpcyB0
-aGlzIG9uZSAwPyBXaHkgY2FuJ3Qgd2UgZXZlbiByZWFkIGl0Pwo+IAo+IEkgZm91bmQgdGhpcyBj
-b21tZW50IGluIG9sZGVyIGNvbW1pdCBtZXNzYWdlIHdyaXR0ZW4gYnkgSmFuaSBOaWt1bGE6Cj4g
-Cj4gIjAgbW9kZSB3aWxsIGJ5cGFzcyBkZWJ1Z2ZzIGNyZWF0aW9uLiBVc2UgaXQgZm9yIHZlcmJv
-c2Vfc3RhdGVfY2hlY2tzCj4gd2hpY2ggd2lsbCBuZWVkIHNwZWNpYWwgYXR0ZW50aW9uIGluIGZv
-bGxvdy11cCB3b3JrLiIKClRoaXMgc291bmRzIHByZXR0eSBvZGQsIHdoeSB3b3VsZG4ndCB3ZSB3
-YW50IGl0IHRvIGJlIGV2ZW4gcmVhZD8KCkluIGFueSBjYXNlLCBpdCdzIG5vdCByZWxhdGVkIHRv
-IHRoaXMgcGF0Y2gsIHNvOgoKUmV2aWV3ZWQtYnk6IEx1Y2EgQ29lbGhvIDxsdWNpYW5vLmNvZWxo
-b0BpbnRlbC5jb20+CgotLQpDaGVlcnMsCkx1Y2EuCg==
+On Tue, 2023-10-24 at 08:51 +0000, Hogander, Jouni wrote:
+> On Mon, 2023-10-23 at 17:06 +0300, Luca Coelho wrote:
+> > On Mon, 2023-10-16 at 14:16 +0300, Jouni H=C3=B6gander wrote:
+> > > Generally we have writable device parameters in debugfs. No need
+> > > to allow writing module parameters.
+> > >=20
+> > > Signed-off-by: Jouni H=C3=B6gander <jouni.hogander@intel.com>
+> > > ---
+> > > =C2=A0drivers/gpu/drm/i915/display/intel_display_params.c | 2 +-
+> > > =C2=A01 file changed, 1 insertion(+), 1 deletion(-)
+> > >=20
+> > > diff --git a/drivers/gpu/drm/i915/display/intel_display_params.c
+> > > b/drivers/gpu/drm/i915/display/intel_display_params.c
+> > > index 8e6353c1c25e..077f2dee2975 100644
+> > > --- a/drivers/gpu/drm/i915/display/intel_display_params.c
+> > > +++ b/drivers/gpu/drm/i915/display/intel_display_params.c
+> > > @@ -50,7 +50,7 @@ intel_display_param_named_unsafe(enable_dc, int,
+> > > 0400,
+> > > =C2=A0intel_display_param_named_unsafe(enable_dpt, bool, 0400,
+> > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0"Enable display page =
+table (DPT) (default: true)");
+> > > =C2=A0
+> > > -intel_display_param_named_unsafe(enable_sagv, bool, 0600,
+> > > +intel_display_param_named_unsafe(enable_sagv, bool, 0400,
+> > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0"Enable system agent =
+voltage/frequency scaling (SAGV)
+> > > (default: true)");
+> > > =C2=A0
+> > > =C2=A0intel_display_param_named_unsafe(disable_power_well, int, 0400,
+> >=20
+> > This, as well as other similar changes throughout this series, could
+> > be
+> > controversial, since it's a userspace API change of sorts.=C2=A0 It use=
+d
+> > to
+> > be possible to write but it won't be anymore.=C2=A0 But, as we discusse=
+d
+> > offline, it shouldn't be problem, because probably nobody is writing
+> > to
+> > them, and most likely doing so wouldn't have the expected result,
+> > since
+> > the device copies were not getting updated.
+> >=20
+> > Reviewed-by: Luca Coelho <luciano.coelho@intel.com>
+>=20
+> Thank you Luca. I actually moved this change to patch 11 due to your
+> comment there and added your rb tag there. I was planning to drop this
+> patch. Are you fine with this?
 
+Yes, this is fine.  I'll review your cahnges in v3 and give the missing
+r-b tags there, if applicable.
+
+--
+Cheers,
+Luca.
