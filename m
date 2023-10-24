@@ -2,46 +2,51 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id DEB7C7D5076
-	for <lists+intel-gfx@lfdr.de>; Tue, 24 Oct 2023 14:56:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id C1A577D50E2
+	for <lists+intel-gfx@lfdr.de>; Tue, 24 Oct 2023 15:04:30 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3A69D10E38F;
-	Tue, 24 Oct 2023 12:56:52 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1358810E3AD;
+	Tue, 24 Oct 2023 13:04:29 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from galois.linutronix.de (Galois.linutronix.de [193.142.43.55])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1251810E38F
- for <intel-gfx@lists.freedesktop.org>; Tue, 24 Oct 2023 12:56:50 +0000 (UTC)
-From: Thomas Gleixner <tglx@linutronix.de>
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linutronix.de;
- s=2020; t=1698152207;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- in-reply-to:in-reply-to:references:references;
- bh=0k8EHTgBuYIMb5TY+j+PPtTNGdHZXI6Ls9DQ9MAsNmk=;
- b=rLBcBr8dvCVZuquAzh672WEPpfBrFWcikNj5FTfBv9PZnSF3iMSIWacvbOCZgMnEDajR3z
- GfmwbayApVpSZChqvv8adT2Mcenm5s4bNnh8KprmpziVvtXgZCoZUdC2xyMdFZTzTFGkbg
- mBjyJ2qaFhWJVKQhx2bNwFm/UQd9XCRZyC0f0MYf1GDVqLHlToLAyvTZOcIbJoQ0khNjzq
- 12PPHQtWB0yY7tRqjqGfnncDkxEoY/DBluzkn7QFAF5KhSMLvzXqW6AbhKtbp/9Gx8bKVm
- jab0H2JIALcE4ADMf7Rcfzy44VhzYPyZW3SXGn1DPzsvFa97Slm14+/TwooUMw==
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=linutronix.de;
- s=2020e; t=1698152207;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- in-reply-to:in-reply-to:references:references;
- bh=0k8EHTgBuYIMb5TY+j+PPtTNGdHZXI6Ls9DQ9MAsNmk=;
- b=HxurSiTuKO2wgC3txgFea08jZZeAAJs30rR0Ke9IgRU24WtZGATMAAdfbbvR7s2lDkpLTQ
- GnYhPtF3hQn+XxCQ==
-To: Andrzej Hajda <andrzej.hajda@intel.com>, linux-kernel@vger.kernel.org,
- intel-gfx@lists.freedesktop.org, linux-mm@kvack.org
-In-Reply-To: <20230925131359.2948827-1-andrzej.hajda@intel.com>
-References: <20230925131359.2948827-1-andrzej.hajda@intel.com>
-Date: Tue, 24 Oct 2023 14:56:47 +0200
-Message-ID: <874jigch68.ffs@tglx>
+Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 87B7210E3AD
+ for <intel-gfx@lists.freedesktop.org>; Tue, 24 Oct 2023 13:04:26 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1698152666; x=1729688666;
+ h=from:to:subject:in-reply-to:references:date:message-id:
+ mime-version; bh=hp0DPqzzHFzr6wXlrhu0Zr5b64PsrprgUaGbQ2g965g=;
+ b=VwE83ioMy70grXr7GiH0TmK6US+LE4uphBMoNx+5VmECa54UxHzGMNaD
+ /W2uMKzgzEklIZxkpnv7ERQ+vgimx2eMz0w1DdGn9RYYpJiu4xy7KyFtw
+ vxkU6Cu8uT31vG3G/IeaCzayE7X86KRYZOCim+SNZ1FpfKVdnFuuLLvGh
+ 1KhQ1JvOkqnUulM/SxGM0RYTpOmmOYRrAYsIf/GNyT5LX8QzGH0HUA/gL
+ e2pMaQy5WLHbMLEQtsHjAKiPvrPGeoDQTx7KnpclpEhKVI5xFbTQT238O
+ o+3w9hBGFctMaEGOkFRS7G5U2ikGsrbLxmbastHOh/9+ikZjBUPehMw0J g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10873"; a="473272924"
+X-IronPort-AV: E=Sophos;i="6.03,247,1694761200"; d="scan'208";a="473272924"
+Received: from orsmga003.jf.intel.com ([10.7.209.27])
+ by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 24 Oct 2023 06:04:26 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10873"; a="708272954"
+X-IronPort-AV: E=Sophos;i="6.03,247,1694761200"; d="scan'208";a="708272954"
+Received: from goepfrim-mobl1.ger.corp.intel.com (HELO localhost)
+ ([10.252.48.28])
+ by orsmga003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 24 Oct 2023 06:04:24 -0700
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>,
+ intel-gfx@lists.freedesktop.org
+In-Reply-To: <20231024125256.11954-1-stanislav.lisovskiy@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20231024125256.11954-1-stanislav.lisovskiy@intel.com>
+Date: Tue, 24 Oct 2023 16:04:19 +0300
+Message-ID: <87edhk9nos.fsf@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain
-Subject: Re: [Intel-gfx] [PATCH v2] debugobjects: stop accessing objects
- after releasing spinlock
+Subject: Re: [Intel-gfx] [PATCH] drm/i915/adl: Initialize all GV points as
+ restricted in bw_state
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -54,192 +59,98 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Andrzej Hajda <andrzej.hajda@intel.com>, Nirmoy Das <nirmoy.das@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, Sep 25 2023 at 15:13, Andrzej Hajda wrote:
-> @@ -620,9 +620,8 @@ static void debug_objects_fill_pool(void)
->  static void
->  __debug_object_init(void *addr, const struct debug_obj_descr *descr, int onstack)
+On Tue, 24 Oct 2023, Stanislav Lisovskiy <stanislav.lisovskiy@intel.com> wrote:
+> In some customer cases, machine can start up with all
+> GV points restricted. However we don't ever read those
+> from hw and initial driver qgv_points_mask is initialized
+> as 0, which would make driver think that all points are unrestricted,
+> so we never update them with proper value, unless
+> some demanding scenario is requested or we have to toggle SAGV
+> and we have to restrict some of those.
+> Lets fix that by initializing all points as restricted,
+> then on first modeset, that will make sure driver will naturally
+> calculate, which of those need to be relaxed and do correspondent update.
+>
+> Signed-off-by: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
+> ---
+>  drivers/gpu/drm/i915/display/intel_bw.c            |  7 ++++---
+>  drivers/gpu/drm/i915/display/intel_bw.h            |  1 +
+>  drivers/gpu/drm/i915/display/intel_modeset_setup.c | 13 +++++++++++++
+>  3 files changed, 18 insertions(+), 3 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/i915/display/intel_bw.c b/drivers/gpu/drm/i915/display/intel_bw.c
+> index bef96db62c80..fbfa01f38db8 100644
+> --- a/drivers/gpu/drm/i915/display/intel_bw.c
+> +++ b/drivers/gpu/drm/i915/display/intel_bw.c
+> @@ -119,7 +119,7 @@ static int adls_pcode_read_psf_gv_point_info(struct drm_i915_private *dev_priv,
+>  	return 0;
+>  }
+>  
+> -static u16 icl_qgv_points_mask(struct drm_i915_private *i915)
+> +u16 icl_qgv_points_mask(struct drm_i915_private *i915)
 >  {
-> -	enum debug_obj_state state;
->  	struct debug_bucket *db;
-> -	struct debug_obj *obj;
-> +	struct debug_obj *obj, o;
->  	unsigned long flags;
+>  	unsigned int num_psf_gv_points = i915->display.bw.max[0].num_psf_gv_points;
+>  	unsigned int num_qgv_points = i915->display.bw.max[0].num_qgv_points;
+> @@ -1277,9 +1277,10 @@ int intel_bw_atomic_check(struct intel_atomic_state *state)
 >  
->  	debug_objects_fill_pool();
-> @@ -644,23 +643,19 @@ __debug_object_init(void *addr, const struct debug_obj_descr *descr, int onstack
->  	case ODEBUG_STATE_INACTIVE:
->  		obj->state = ODEBUG_STATE_INIT;
->  		break;
-> -
-> -	case ODEBUG_STATE_ACTIVE:
-> -		state = obj->state;
-> -		raw_spin_unlock_irqrestore(&db->lock, flags);
-> -		debug_print_object(obj, "init");
-> -		debug_object_fixup(descr->fixup_init, addr, state);
-> -		return;
-> -
-> -	case ODEBUG_STATE_DESTROYED:
-> -		raw_spin_unlock_irqrestore(&db->lock, flags);
-> -		debug_print_object(obj, "init");
-> -		return;
->  	default:
-> -		break;
-> +		o = *obj;
-> +		obj = NULL;
->  	}
->  
->  	raw_spin_unlock_irqrestore(&db->lock, flags);
-> +
-> +	if (obj)
-> +		return;
-
-Hmm. I'd rather write is this way:
-
- 	case ODEBUG_STATE_INIT:
- 	case ODEBUG_STATE_INACTIVE:
- 		obj->state = ODEBUG_STATE_INIT;
- 		raw_spin_unlock_irqrestore(&db->lock, flags);
- 		return;
- 	default:
- 		break;
- 	}
- 
-	o = *obj;
- 	raw_spin_unlock_irqrestore(&db->lock, flags);
-
-	debug_print_object(&o, "init");
-	if (o.state == ODEBUG_STATE_ACTIVE)
-		debug_object_fixup(descr->fixup_init, addr, o.state);
-
-This spares the 'obj' pointer modification and the conditional. The
-extra raw_spin_unlock_irqrestore() is not the end of the world.
-
->  void debug_object_activate(void *addr, const struct debug_obj_descr *descr)
-...
->  		default:
-> -			ret = 0;
->  			break;
->  		}
-> -		raw_spin_unlock_irqrestore(&db->lock, flags);
-> -		if (print_object)
-> -			debug_print_object(obj, "activate");
-> -		return ret;
-> +	} else {
-> +		o.object = addr;
-> +		o.state = ODEBUG_STATE_NOTAVAILABLE;
-> +		o.descr = descr;
-> +		obj = NULL;
-
-Hrmm. Just keep the
-
-	struct debug_obj o = { .object = addr, .state = ODEBUG_STATE_NOTAVAILABLE, .descr = descr };
-
-around and get rid of this else clause.
-
->  	}
->  
->  	raw_spin_unlock_irqrestore(&db->lock, flags);
->  
-> -	/* If NULL the allocation has hit OOM */
-> -	if (!obj) {
-> -		debug_objects_oom();
-> +	if (obj)
+>  	/*
+>  	 * If none of our inputs (data rates, number of active
+> -	 * planes, SAGV yes/no) changed then nothing to do here.
+> +	 * planes, SAGV yes/no) changed then nothing to do here,
+> +	 * except if mask turns out to be in wrong state initially.
+>  	 */
+> -	if (!changed)
+> +	if (!changed && (new_bw_state->qgv_points_mask != icl_qgv_points_mask(i915)))
 >  		return 0;
+>  
+>  	ret = intel_bw_check_qgv_points(i915, old_bw_state, new_bw_state);
+> diff --git a/drivers/gpu/drm/i915/display/intel_bw.h b/drivers/gpu/drm/i915/display/intel_bw.h
+> index 59cb4fc5db76..0a706ec79ce3 100644
+> --- a/drivers/gpu/drm/i915/display/intel_bw.h
+> +++ b/drivers/gpu/drm/i915/display/intel_bw.h
+> @@ -70,6 +70,7 @@ void intel_bw_crtc_update(struct intel_bw_state *bw_state,
+>  			  const struct intel_crtc_state *crtc_state);
+>  int icl_pcode_restrict_qgv_points(struct drm_i915_private *dev_priv,
+>  				  u32 points_mask);
+> +u16 icl_qgv_points_mask(struct drm_i915_private *i915);
+>  int intel_bw_calc_min_cdclk(struct intel_atomic_state *state,
+>  			    bool *need_cdclk_calc);
+>  int intel_bw_min_cdclk(struct drm_i915_private *i915,
+> diff --git a/drivers/gpu/drm/i915/display/intel_modeset_setup.c b/drivers/gpu/drm/i915/display/intel_modeset_setup.c
+> index b8f43efb0ab5..230090c6e994 100644
+> --- a/drivers/gpu/drm/i915/display/intel_modeset_setup.c
+> +++ b/drivers/gpu/drm/i915/display/intel_modeset_setup.c
+> @@ -871,6 +871,19 @@ static void intel_modeset_readout_hw_state(struct drm_i915_private *i915)
+>  		intel_pmdemand_update_port_clock(i915, pmdemand_state, pipe,
+>  						 crtc_state->port_clock);
+>  
+> +		/*
+> +		 * In some customer cases, machine can start up with all
+> +		 * GV points restricted. However we don't ever read those
+> +		 * from hw and qgv_points_mask initialized as 0, would
+> +		 * make driver think that all points are unrestricted,
+> +		 * so we never update them with proper value, unless
+> +		 * some demanding scenario is requested and we have to
+> +		 * restrict some of those. Lets fix that by initializing
+> +		 * all points as restricted, then on first modeset, driver
+> +		 * will naturally calculate, which of those need to be
+> +		 * relaxed and do correspondent update.
+> +		 */
+> +		bw_state->qgv_points_mask = icl_qgv_points_mask(i915);
 
-Plus a similar change as above to get rid of this conditional and just
-have the failure path here.
+Sad trombone for having to expose highly specific functions and stuff
+from intel_bw.c. Can't the below call handle it?
 
-> @@ -788,30 +777,29 @@ void debug_object_deactivate(void *addr, const struct debug_obj_descr *descr)
->  		case ODEBUG_STATE_INIT:
->  		case ODEBUG_STATE_INACTIVE:
->  		case ODEBUG_STATE_ACTIVE:
-> -			if (!obj->astate)
-> +			if (!obj->astate) {
->  				obj->state = ODEBUG_STATE_INACTIVE;
-> -			else
-> -				print_object = true;
-> -			break;
-> -
-> +				break;
-> +			}
-> +			fallthrough;
->  		case ODEBUG_STATE_DESTROYED:
-> -			print_object = true;
-> +			o = *obj;
-> +			obj = NULL;
->  			break;
->  		default:
->  			break;
->  		}
-> +	} else {
-> +		o.object = addr;
-> +		o.state = ODEBUG_STATE_NOTAVAILABLE;
-> +		o.descr = descr;
-> +		obj = NULL;
+BR,
+Jani.
+
+
+
+>  		intel_bw_crtc_update(bw_state, crtc_state);
 >  	}
 
-Same here.
-	struct debug_obj o = { .object = addr, .state = ODEBUG_STATE_NOTAVAILABLE, .descr = descr };
-        ...
-        
- 	if (obj) {
- 		switch (obj->state) {
-		case ODEBUG_STATE_DESTROYED:
-			o = *obj;
-			break;
- 		case ODEBUG_STATE_INIT:
- 		case ODEBUG_STATE_INACTIVE:
- 		case ODEBUG_STATE_ACTIVE:
-			if (obj->astate) {
-				o = *obj;
-				break;
-			}
-			obj->state = ODEBUG_STATE_INACTIVE;
-			fallthrough;
- 		default:
-			raw_spin_unlock_irqrestore(&db->lock, flags);
-			return;
- 		}
- 	}
-
- 	raw_spin_unlock_irqrestore(&db->lock, flags);
-	debug_print_object(&o, "deactivate");
-
-Hmm?
-
-> @@ -970,28 +962,27 @@ debug_object_active_state(void *addr, const struct debug_obj_descr *descr,
->  	if (obj) {
->  		switch (obj->state) {
->  		case ODEBUG_STATE_ACTIVE:
-> -			if (obj->astate == expect)
-> +			if (obj->astate == expect) {
->  				obj->astate = next;
-> -			else
-> -				print_object = true;
-> -			break;
-> -
-> +				break;
-> +			}
-> +			fallthrough;
->  		default:
-> -			print_object = true;
-> +			o = *obj;
-> +			obj = NULL;
->  			break;
->  		}
-> +	} else {
-> +		o.object = addr;
-> +		o.state = ODEBUG_STATE_NOTAVAILABLE;
-> +		o.descr = descr;
-> +		obj = NULL;
->  	}
-
-Same pattern here.
-  
-Thanks,
-
-        tglx
+-- 
+Jani Nikula, Intel
