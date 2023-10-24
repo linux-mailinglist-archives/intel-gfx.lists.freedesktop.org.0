@@ -2,32 +2,53 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 06E1C7D593A
-	for <lists+intel-gfx@lfdr.de>; Tue, 24 Oct 2023 18:59:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id F1DBA7D596D
+	for <lists+intel-gfx@lfdr.de>; Tue, 24 Oct 2023 19:08:27 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6423110E431;
-	Tue, 24 Oct 2023 16:59:18 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7876B10E437;
+	Tue, 24 Oct 2023 17:08:26 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id DE53610E431;
- Tue, 24 Oct 2023 16:59:16 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id D626DA7DFF;
- Tue, 24 Oct 2023 16:59:16 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============4013399504597677387=="
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EDCA010E437
+ for <intel-gfx@lists.freedesktop.org>; Tue, 24 Oct 2023 17:08:24 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1698167305; x=1729703305;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=hUGirVag7S8n+zT+Bt5TDAK/SLrrk9OVdLzyMdWj1BM=;
+ b=MK0rHJbLLv/T5s/Xh7JJJg0HxouXOgh6hV+Tv8dzO0kjvhQ3DvGVXTCw
+ 2V0Jel9mU1SFM2FcBkrblU+HU/VjodqXH3/KzqDqzejMGjb9zBQa54O+3
+ cOrSot/OYcEbMDHZFOTeZD0aQ5Bd/t+I9UYLrxsIlZNQG9Bcbhfym8hQ2
+ 4QIN0Id3JeSLbaNKMdLB/rSUSF1e25uMGk8sEsLy/Z7Z5tcnYk67nxLQI
+ s+3QzNxHqs6ZeYuGr1vJOhdbruYg8B6UXePPdGyJHGRp2S0ExyuDTftSt
+ ta9cFGaKdzFpqX/AkvBFThLi3yZIL/OEJMv/3HKVRkbv2R7YwTisKtc4/ g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10873"; a="5740568"
+X-IronPort-AV: E=Sophos;i="6.03,248,1694761200"; 
+   d="scan'208";a="5740568"
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+ by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 24 Oct 2023 10:08:23 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10873"; a="758546619"
+X-IronPort-AV: E=Sophos;i="6.03,248,1694761200"; d="scan'208";a="758546619"
+Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.74])
+ by orsmga002.jf.intel.com with SMTP; 24 Oct 2023 10:08:16 -0700
+Received: by stinkbox (sSMTP sendmail emulation);
+ Tue, 24 Oct 2023 20:08:16 +0300
+Date: Tue, 24 Oct 2023 20:08:16 +0300
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: "David E. Box" <david.e.box@linux.intel.com>
+Message-ID: <ZTf6ALl3xNvhLN6M@intel.com>
+References: <20230411213323.1362300-1-david.e.box@linux.intel.com>
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Lobo, Melanie" <melanie.lobo@intel.com>
-Date: Tue, 24 Oct 2023 16:59:16 -0000
-Message-ID: <169816675684.18359.11129158285544278563@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20231011102356.22014-1-melanie.lobo@intel.com>
-In-Reply-To: <20231011102356.22014-1-melanie.lobo@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
- =?utf-8?q?/i915=3A_Support_FP16_compressed_formats_on_MTL_=28rev4=29?=
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20230411213323.1362300-1-david.e.box@linux.intel.com>
+X-Patchwork-Hint: comment
+Subject: Re: [Intel-gfx] [PATCH V2] PCI: Move VMD ASPM/LTR fix to PCI quirk
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,287 +61,204 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
+Cc: me@adhityamohan.in, kw@linux.com, lorenzo.pieralisi@arm.com,
+ robh@kernel.org, linux-pci@vger.kernel.org, intel-gfx@lists.freedesktop.org,
+ rafael@kernel.org, linux-kernel@vger.kernel.org, hch@infradead.org,
+ jonathan.derrick@linux.dev, bhelgaas@google.com, nirmal.patel@linux.intel.com,
+ michael.a.bottini@intel.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============4013399504597677387==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+On Tue, Apr 11, 2023 at 02:33:23PM -0700, David E. Box wrote:
+> In commit f492edb40b54 ("PCI: vmd: Add quirk to configure PCIe ASPM and
+> LTR") the VMD driver calls pci_enabled_link_state as a callback from
+> pci_bus_walk. Both will acquire the pci_bus_sem lock leading to a lockdep
+> warning. Instead of doing the pci_bus_walk, move the fix to quirks.c using
+> DECLARE_PCI_FIXUP_FINAL.
 
-== Series Details ==
+What happened to this patch? We're still carrying a local fix
+for this in drm-tip...
 
-Series: drm/i915: Support FP16 compressed formats on MTL (rev4)
-URL   : https://patchwork.freedesktop.org/series/124957/
-State : success
+> 
+> Fixes: f492edb40b54 ("PCI: vmd: Add quirk to configure PCIe ASPM and LTR")
+> Suggested-by: Bjorn Helgaas <bhelgaas@google.com>
+> Signed-off-by: David E. Box <david.e.box@linux.intel.com>
+> ---
+> 
+> V2 - Instead of adding a lock flag argument to pci_enabled_link_state, move
+>      the fix to quirks.c
+> 
+>  drivers/pci/controller/vmd.c | 55 +--------------------------
+>  drivers/pci/quirks.c         | 72 ++++++++++++++++++++++++++++++++++++
+>  2 files changed, 73 insertions(+), 54 deletions(-)
+> 
+> diff --git a/drivers/pci/controller/vmd.c b/drivers/pci/controller/vmd.c
+> index 990630ec57c6..47fa3e5f2dc5 100644
+> --- a/drivers/pci/controller/vmd.c
+> +++ b/drivers/pci/controller/vmd.c
+> @@ -66,22 +66,11 @@ enum vmd_features {
+>  	 * interrupt handling.
+>  	 */
+>  	VMD_FEAT_CAN_BYPASS_MSI_REMAP		= (1 << 4),
+> -
+> -	/*
+> -	 * Enable ASPM on the PCIE root ports and set the default LTR of the
+> -	 * storage devices on platforms where these values are not configured by
+> -	 * BIOS. This is needed for laptops, which require these settings for
+> -	 * proper power management of the SoC.
+> -	 */
+> -	VMD_FEAT_BIOS_PM_QUIRK		= (1 << 5),
+>  };
+>  
+> -#define VMD_BIOS_PM_QUIRK_LTR	0x1003	/* 3145728 ns */
+> -
+>  #define VMD_FEATS_CLIENT	(VMD_FEAT_HAS_MEMBAR_SHADOW_VSCAP |	\
+>  				 VMD_FEAT_HAS_BUS_RESTRICTIONS |	\
+> -				 VMD_FEAT_OFFSET_FIRST_VECTOR |		\
+> -				 VMD_FEAT_BIOS_PM_QUIRK)
+> +				 VMD_FEAT_OFFSET_FIRST_VECTOR)
+>  
+>  static DEFINE_IDA(vmd_instance_ida);
+>  
+> @@ -724,46 +713,6 @@ static void vmd_copy_host_bridge_flags(struct pci_host_bridge *root_bridge,
+>  	vmd_bridge->native_dpc = root_bridge->native_dpc;
+>  }
+>  
+> -/*
+> - * Enable ASPM and LTR settings on devices that aren't configured by BIOS.
+> - */
+> -static int vmd_pm_enable_quirk(struct pci_dev *pdev, void *userdata)
+> -{
+> -	unsigned long features = *(unsigned long *)userdata;
+> -	u16 ltr = VMD_BIOS_PM_QUIRK_LTR;
+> -	u32 ltr_reg;
+> -	int pos;
+> -
+> -	if (!(features & VMD_FEAT_BIOS_PM_QUIRK))
+> -		return 0;
+> -
+> -	pci_enable_link_state(pdev, PCIE_LINK_STATE_ALL);
+> -
+> -	pos = pci_find_ext_capability(pdev, PCI_EXT_CAP_ID_LTR);
+> -	if (!pos)
+> -		return 0;
+> -
+> -	/*
+> -	 * Skip if the max snoop LTR is non-zero, indicating BIOS has set it
+> -	 * so the LTR quirk is not needed.
+> -	 */
+> -	pci_read_config_dword(pdev, pos + PCI_LTR_MAX_SNOOP_LAT, &ltr_reg);
+> -	if (!!(ltr_reg & (PCI_LTR_VALUE_MASK | PCI_LTR_SCALE_MASK)))
+> -		return 0;
+> -
+> -	/*
+> -	 * Set the default values to the maximum required by the platform to
+> -	 * allow the deepest power management savings. Write as a DWORD where
+> -	 * the lower word is the max snoop latency and the upper word is the
+> -	 * max non-snoop latency.
+> -	 */
+> -	ltr_reg = (ltr << 16) | ltr;
+> -	pci_write_config_dword(pdev, pos + PCI_LTR_MAX_SNOOP_LAT, ltr_reg);
+> -	pci_info(pdev, "VMD: Default LTR value set by driver\n");
+> -
+> -	return 0;
+> -}
+> -
+>  static int vmd_enable_domain(struct vmd_dev *vmd, unsigned long features)
+>  {
+>  	struct pci_sysdata *sd = &vmd->sysdata;
+> @@ -936,8 +885,6 @@ static int vmd_enable_domain(struct vmd_dev *vmd, unsigned long features)
+>  
+>  	pci_assign_unassigned_bus_resources(vmd->bus);
+>  
+> -	pci_walk_bus(vmd->bus, vmd_pm_enable_quirk, &features);
+> -
+>  	/*
+>  	 * VMD root buses are virtual and don't return true on pci_is_pcie()
+>  	 * and will fail pcie_bus_configure_settings() early. It can instead be
+> diff --git a/drivers/pci/quirks.c b/drivers/pci/quirks.c
+> index 44cab813bf95..2d86623f96e3 100644
+> --- a/drivers/pci/quirks.c
+> +++ b/drivers/pci/quirks.c
+> @@ -6023,3 +6023,75 @@ DECLARE_PCI_FIXUP_HEADER(PCI_VENDOR_ID_INTEL, 0x9a2d, dpc_log_size);
+>  DECLARE_PCI_FIXUP_HEADER(PCI_VENDOR_ID_INTEL, 0x9a2f, dpc_log_size);
+>  DECLARE_PCI_FIXUP_HEADER(PCI_VENDOR_ID_INTEL, 0x9a31, dpc_log_size);
+>  #endif
+> +
+> +#ifdef CONFIG_VMD
+> +/*
+> + * Enable ASPM on the PCIE root ports under VMD and set the default LTR of the
+> + * storage devices on platforms where these values are not configured by BIOS.
+> + * This is needed for laptops, which require these settings for proper power
+> + * management of the SoC.
+> + */
+> +#define VMD_DEVICE_LTR	0x1003	/* 3145728 ns */
+> +static void quirk_intel_vmd(struct pci_dev *pdev)
+> +{
+> +	struct pci_dev *parent;
+> +	u16 ltr = VMD_DEVICE_LTR;
+> +	u32 ltr_reg;
+> +	int pos;
+> +
+> +	/* Check in VMD domain */
+> +	if (pci_domain_nr(pdev->bus) < 0x10000)
+> +		return;
+> +
+> +	/* Get Root Port */
+> +	parent = pci_upstream_bridge(pdev);
+> +	if (!parent || parent->vendor != PCI_VENDOR_ID_INTEL)
+> +		return;
+> +
+> +	/* Get VMD Host Bridge */
+> +	parent = to_pci_dev(parent->dev.parent);
+> +	if (!parent)
+> +		return;
+> +
+> +	/* Get RAID controller */
+> +	parent = to_pci_dev(parent->dev.parent);
+> +	if (!parent)
+> +		return;
+> +
+> +	switch (parent->device) {
+> +	case 0x467f:
+> +	case 0x4c3d:
+> +	case 0xa77f:
+> +	case 0x7d0b:
+> +	case 0xad0b:
+> +	case 0x9a0b:
+> +		break;
+> +	default:
+> +		return;
+> +	}
+> +
+> +	pci_enable_link_state(pdev, PCIE_LINK_STATE_ALL);
+> +
+> +	pos = pci_find_ext_capability(pdev, PCI_EXT_CAP_ID_LTR);
+> +	if (!pos)
+> +		return;
+> +
+> +	/* Skip if the max snoop LTR is non-zero, indicating BIOS has set it */
+> +	pci_read_config_dword(pdev, pos + PCI_LTR_MAX_SNOOP_LAT, &ltr_reg);
+> +	if (!!(ltr_reg & (PCI_LTR_VALUE_MASK | PCI_LTR_SCALE_MASK)))
+> +		return;
+> +
+> +	/*
+> +	 * Set the LTR values to the maximum required by the platform to
+> +	 * allow the deepest power management savings. Write as a DWORD where
+> +	 * the lower word is the max snoop latency and the upper word is the
+> +	 * max non-snoop latency.
+> +	 */
+> +	ltr_reg = (ltr << 16) | ltr;
+> +	pci_write_config_dword(pdev, pos + PCI_LTR_MAX_SNOOP_LAT, ltr_reg);
+> +	pci_info(pdev, "LTR set by VMD PCI quick\n");
+> +
+> +}
+> +DECLARE_PCI_FIXUP_CLASS_FINAL(PCI_ANY_ID, PCI_ANY_ID,
+> +			      PCI_CLASS_STORAGE_EXPRESS, 0, quirk_intel_vmd);
+> +#endif
+> -- 
+> 2.34.1
 
-== Summary ==
-
-CI Bug Log - changes from CI_DRM_13780 -> Patchwork_124957v4
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_124957v4/index.html
-
-Participating hosts (40 -> 39)
-------------------------------
-
-  Additional (1): fi-kbl-soraka 
-  Missing    (2): bat-mtlp-8 fi-snb-2520m 
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_124957v4 that come from known issues:
-
-### CI changes ###
-
-#### Possible fixes ####
-
-  * boot:
-    - bat-adlp-11:        [FAIL][1] -> [PASS][2]
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13780/bat-adlp-11/boot.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_124957v4/bat-adlp-11/boot.html
-
-  
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@debugfs_test@basic-hwmon:
-    - bat-adlp-11:        NOTRUN -> [SKIP][3] ([i915#9318])
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_124957v4/bat-adlp-11/igt@debugfs_test@basic-hwmon.html
-
-  * igt@gem_exec_suspend@basic-s3@smem:
-    - bat-adlp-9:         [PASS][4] -> [FAIL][5] ([fdo#103375]) +5 other tests fail
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13780/bat-adlp-9/igt@gem_exec_suspend@basic-s3@smem.html
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_124957v4/bat-adlp-9/igt@gem_exec_suspend@basic-s3@smem.html
-
-  * igt@gem_huc_copy@huc-copy:
-    - fi-kbl-soraka:      NOTRUN -> [SKIP][6] ([fdo#109271] / [i915#2190])
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_124957v4/fi-kbl-soraka/igt@gem_huc_copy@huc-copy.html
-
-  * igt@gem_lmem_swapping@basic:
-    - fi-kbl-soraka:      NOTRUN -> [SKIP][7] ([fdo#109271] / [i915#4613]) +3 other tests skip
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_124957v4/fi-kbl-soraka/igt@gem_lmem_swapping@basic.html
-
-  * igt@gem_tiled_pread_basic:
-    - bat-adlp-11:        NOTRUN -> [SKIP][8] ([i915#3282])
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_124957v4/bat-adlp-11/igt@gem_tiled_pread_basic.html
-
-  * igt@i915_selftest@live@gt_heartbeat:
-    - fi-kbl-soraka:      NOTRUN -> [DMESG-FAIL][9] ([i915#5334] / [i915#7872])
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_124957v4/fi-kbl-soraka/igt@i915_selftest@live@gt_heartbeat.html
-
-  * igt@i915_selftest@live@gt_pm:
-    - fi-kbl-soraka:      NOTRUN -> [DMESG-FAIL][10] ([i915#1886])
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_124957v4/fi-kbl-soraka/igt@i915_selftest@live@gt_pm.html
-
-  * igt@kms_cursor_legacy@basic-busy-flip-before-cursor-legacy:
-    - bat-adlp-11:        NOTRUN -> [SKIP][11] ([i915#4103] / [i915#5608]) +1 other test skip
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_124957v4/bat-adlp-11/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-legacy.html
-
-  * igt@kms_dsc@dsc-basic:
-    - fi-kbl-soraka:      NOTRUN -> [SKIP][12] ([fdo#109271]) +9 other tests skip
-   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_124957v4/fi-kbl-soraka/igt@kms_dsc@dsc-basic.html
-    - bat-adlp-11:        NOTRUN -> [SKIP][13] ([i915#3555] / [i915#3840])
-   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_124957v4/bat-adlp-11/igt@kms_dsc@dsc-basic.html
-
-  * igt@kms_force_connector_basic@prune-stale-modes:
-    - bat-adlp-11:        NOTRUN -> [SKIP][14] ([i915#4093]) +3 other tests skip
-   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_124957v4/bat-adlp-11/igt@kms_force_connector_basic@prune-stale-modes.html
-
-  * igt@kms_hdmi_inject@inject-audio:
-    - bat-adlp-11:        NOTRUN -> [SKIP][15] ([i915#4369])
-   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_124957v4/bat-adlp-11/igt@kms_hdmi_inject@inject-audio.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [fdo#103375]: https://bugs.freedesktop.org/show_bug.cgi?id=103375
-  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
-  [i915#1886]: https://gitlab.freedesktop.org/drm/intel/issues/1886
-  [i915#2190]: https://gitlab.freedesktop.org/drm/intel/issues/2190
-  [i915#3282]: https://gitlab.freedesktop.org/drm/intel/issues/3282
-  [i915#3546]: https://gitlab.freedesktop.org/drm/intel/issues/3546
-  [i915#3555]: https://gitlab.freedesktop.org/drm/intel/issues/3555
-  [i915#3840]: https://gitlab.freedesktop.org/drm/intel/issues/3840
-  [i915#4093]: https://gitlab.freedesktop.org/drm/intel/issues/4093
-  [i915#4103]: https://gitlab.freedesktop.org/drm/intel/issues/4103
-  [i915#4369]: https://gitlab.freedesktop.org/drm/intel/issues/4369
-  [i915#4613]: https://gitlab.freedesktop.org/drm/intel/issues/4613
-  [i915#5334]: https://gitlab.freedesktop.org/drm/intel/issues/5334
-  [i915#5608]: https://gitlab.freedesktop.org/drm/intel/issues/5608
-  [i915#7872]: https://gitlab.freedesktop.org/drm/intel/issues/7872
-  [i915#8668]: https://gitlab.freedesktop.org/drm/intel/issues/8668
-  [i915#9318]: https://gitlab.freedesktop.org/drm/intel/issues/9318
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_13780 -> Patchwork_124957v4
-
-  CI-20190529: 20190529
-  CI_DRM_13780: 8dc266dc02693bf7175ef9f862ddb7368de41325 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_7552: 557856802dfee103802f1157f97c65bb476d5468 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_124957v4: 8dc266dc02693bf7175ef9f862ddb7368de41325 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-### Linux commits
-
-21f8218ca355 drm/i915: Support FP16 compressed formats on MTL
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_124957v4/index.html
-
---===============4013399504597677387==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915: Support FP16 compressed formats on MTL (rev4)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/124957/">https://patchwork.freedesktop.org/series/124957/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_124957v4/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_124957v4/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_13780 -&gt; Patchwork_124957v4</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_124957v4/index.html</p>
-<h2>Participating hosts (40 -&gt; 39)</h2>
-<p>Additional (1): fi-kbl-soraka <br />
-  Missing    (2): bat-mtlp-8 fi-snb-2520m </p>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_124957v4 that come from known issues:</p>
-<h3>CI changes</h3>
-<h4>Possible fixes</h4>
-<ul>
-<li>boot:<ul>
-<li>bat-adlp-11:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13780/bat-adlp-11/boot.html">FAIL</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_124957v4/bat-adlp-11/boot.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@debugfs_test@basic-hwmon:</p>
-<ul>
-<li>bat-adlp-11:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_124957v4/bat-adlp-11/igt@debugfs_test@basic-hwmon.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/9318">i915#9318</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_exec_suspend@basic-s3@smem:</p>
-<ul>
-<li>bat-adlp-9:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13780/bat-adlp-9/igt@gem_exec_suspend@basic-s3@smem.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_124957v4/bat-adlp-9/igt@gem_exec_suspend@basic-s3@smem.html">FAIL</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=103375">fdo#103375</a>) +5 other tests fail</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_huc_copy@huc-copy:</p>
-<ul>
-<li>fi-kbl-soraka:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_124957v4/fi-kbl-soraka/igt@gem_huc_copy@huc-copy.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/2190">i915#2190</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_lmem_swapping@basic:</p>
-<ul>
-<li>fi-kbl-soraka:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_124957v4/fi-kbl-soraka/igt@gem_lmem_swapping@basic.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/4613">i915#4613</a>) +3 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_tiled_pread_basic:</p>
-<ul>
-<li>bat-adlp-11:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_124957v4/bat-adlp-11/igt@gem_tiled_pread_basic.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3282">i915#3282</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@gt_heartbeat:</p>
-<ul>
-<li>fi-kbl-soraka:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_124957v4/fi-kbl-soraka/igt@i915_selftest@live@gt_heartbeat.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/5334">i915#5334</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/7872">i915#7872</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@gt_pm:</p>
-<ul>
-<li>fi-kbl-soraka:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_124957v4/fi-kbl-soraka/igt@i915_selftest@live@gt_pm.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1886">i915#1886</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_cursor_legacy@basic-busy-flip-before-cursor-legacy:</p>
-<ul>
-<li>bat-adlp-11:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_124957v4/bat-adlp-11/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-legacy.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4103">i915#4103</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/5608">i915#5608</a>) +1 other test skip</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_dsc@dsc-basic:</p>
-<ul>
-<li>
-<p>fi-kbl-soraka:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_124957v4/fi-kbl-soraka/igt@kms_dsc@dsc-basic.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +9 other tests skip</p>
-</li>
-<li>
-<p>bat-adlp-11:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_124957v4/bat-adlp-11/igt@kms_dsc@dsc-basic.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3555">i915#3555</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/3840">i915#3840</a>)</p>
-</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_force_connector_basic@prune-stale-modes:</p>
-<ul>
-<li>bat-adlp-11:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_124957v4/bat-adlp-11/igt@kms_force_connector_basic@prune-stale-modes.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4093">i915#4093</a>) +3 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_hdmi_inject@inject-audio:</p>
-<ul>
-<li>bat-adlp-11:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_124957v4/bat-adlp-11/igt@kms_hdmi_inject@inject-audio.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4369">i915#4369</a>)</li>
-</ul>
-</li>
-</ul>
-<p>{name}: This element is suppressed. This means it is ignored when computing<br />
-          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_13780 -&gt; Patchwork_124957v4</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_13780: 8dc266dc02693bf7175ef9f862ddb7368de41325 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_7552: 557856802dfee103802f1157f97c65bb476d5468 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  Patchwork_124957v4: 8dc266dc02693bf7175ef9f862ddb7368de41325 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<h3>Linux commits</h3>
-<p>21f8218ca355 drm/i915: Support FP16 compressed formats on MTL</p>
-
-</body>
-</html>
-
---===============4013399504597677387==--
+-- 
+Ville Syrjälä
+Intel
