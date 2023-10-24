@@ -2,50 +2,53 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id CA4FF7D4DCF
-	for <lists+intel-gfx@lfdr.de>; Tue, 24 Oct 2023 12:32:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 29C437D4DD1
+	for <lists+intel-gfx@lfdr.de>; Tue, 24 Oct 2023 12:32:51 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4367E10E321;
-	Tue, 24 Oct 2023 10:32:43 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C144F10E329;
+	Tue, 24 Oct 2023 10:32:47 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.115])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 821D710E321
- for <intel-gfx@lists.freedesktop.org>; Tue, 24 Oct 2023 10:32:42 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0E70510E325
+ for <intel-gfx@lists.freedesktop.org>; Tue, 24 Oct 2023 10:32:44 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1698143562; x=1729679562;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=vRwUgBOcMkCbo9i3a7r6bYJtDwukc41onRK9rBH8jV8=;
- b=ZpkqfIEC2Cp+2QKwsi/OI7AVH/c8YrYEExWiGIRVaONbwVoEi4qq1BeM
- INgf8DnNud/cQg1cnyfxUeEDuGzcf8bH7GqtVhj2huIrzNZW8lGAH2Dx2
- tJcFiT+5BG1N8nK41BobBLSI7ewbDc829ClDdXzwRKlzPASlteXer4F3m
- COxMd8Rcydb3Tba5voGZCWtBko0FSXa9g/4JY8Blc9miWiWx2vatTgQJJ
- uT8ro6I8OX/fFK44OFlRRrmBCWWVJXwsWcBhJHjpaY2GTql6EeNJ/heMD
- gzCdo6Z0hRSN5sx4m6m3a1l7s8OuUgWNMmw4cDOiG+fgA1ouGGAyZUP6D A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10872"; a="386839366"
-X-IronPort-AV: E=Sophos;i="6.03,247,1694761200"; d="scan'208";a="386839366"
+ t=1698143564; x=1729679564;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=LjxylJohKGaBY2dyFIdjaXLiauwr39TQm9JHsOGWdpk=;
+ b=TJXCUz9l+dNrlu4Cx6HqQ/rEJ3GDx5cCdldLS03FYMBjs9USCdArXFuW
+ ynqXmHygIgLC2/TKqd5eBYR+oXfVsNtEDEec54J0uOIZ4pzFmpLELgYZj
+ Mc+4TTSB7LeMVkKjBJzrHvWNgQ6VWc2+/+tQbTh+LkCE0WOerq8SLE9Fc
+ cBTLq2TRQcbTayrP9EfLQv40DG7Bs7nz4im2xbpw8U10stFf4pGG0o7tz
+ 3Fy3M7e4f4nzNa9G3+7TZ3+1KTCRpFEML8s6ASNQpqMmsErr/wiUzM7G/
+ zErnA9Wl0zEvdFSnwr28/9dXpPYa77QxfvUZBG7H8zflTL+YZRfPWrHO5 A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10872"; a="386839380"
+X-IronPort-AV: E=Sophos;i="6.03,247,1694761200"; d="scan'208";a="386839380"
 Received: from orsmga001.jf.intel.com ([10.7.209.18])
  by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Oct 2023 03:32:41 -0700
+ 24 Oct 2023 03:32:43 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10872"; a="793439258"
-X-IronPort-AV: E=Sophos;i="6.03,247,1694761200"; d="scan'208";a="793439258"
+X-IronPort-AV: E=McAfee;i="6600,9927,10872"; a="793439285"
+X-IronPort-AV: E=Sophos;i="6.03,247,1694761200"; d="scan'208";a="793439285"
 Received: from cpantea-mobl.ger.corp.intel.com (HELO jhogande-mobl1.intel.com)
  ([10.252.63.253])
  by orsmga001-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Oct 2023 03:32:36 -0700
+ 24 Oct 2023 03:32:41 -0700
 From: =?UTF-8?q?Jouni=20H=C3=B6gander?= <jouni.hogander@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Tue, 24 Oct 2023 13:31:59 +0300
-Message-Id: <20231024103222.302256-1-jouni.hogander@intel.com>
+Date: Tue, 24 Oct 2023 13:32:00 +0300
+Message-Id: <20231024103222.302256-2-jouni.hogander@intel.com>
 X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20231024103222.302256-1-jouni.hogander@intel.com>
+References: <20231024103222.302256-1-jouni.hogander@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH v3 00/23] Framework for display parameters
+Subject: [Intel-gfx] [PATCH v3 01/23] drm/i915/display: Add framework to add
+ parameters specific to display
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -58,112 +61,468 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Jani Nikula <jani.nikula@intel.com>, Rodrigo Vivi <rodrigo.vivi@intel.com>
+Cc: Luca Coelho <luciano.coelho@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 Currently all module parameters are handled by i915_param.c/h. This
-is a problem for display parameters when Xe driver is used.
+is a problem for display parameters when Xe driver is used. Add
+a mechanism to add parameters specific to the display. This is mainly
+copied from i915_[debugfs]_params.[ch]. Parameters are not yet moved. This
+is done by subsequent patches.
 
-This patch set adds a mechanism to add parameters specific to the
-display. This is mainly copied from existing i915 parameters
-implementation with some naming changes and taking into account
-varying driver name.
-
-Also all display specific module parameters are moved under display and the
-module parameter are all converted as non-writable. This should be ok
-as we have writable device parameters under debugfs.
-
-v3:
-  - Change enable_ip as boolean
-  - Fix enable_psr2_sel_fetch description
-  - Add default value into psr_safest_params description
-  - Drop unused predefinition (dentry) from intel_display_debugfs_params.h
 v2:
-  - Drop fastboot parameter
-  - Include display parameters into i915_capabilities debugfs interface
+  - Drop unused predefinition (dentry)
+  - Clarify need for empty INTEL_DISPLAY_PARAMS_FOR_EACH in comment
 
-Cc: Jani Nikula <jani.nikula@intel.com>
-Cc: Uma Shankar <uma.shankar@intel.com>
-Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-Cc: Ville Syrjälä <ville.syrjala@linux.intel.com>
-Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
-Cc: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-Cc: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
-Cc: Luca Coelho <luca@coelho.fi>
-
-Jouni Högander (23):
-  drm/i915/display: Add framework to add parameters specific to display
-  drm/i915/display: Dump also display parameters
-  drm/i915/display: Move enable_fbc module parameter under display
-  drm/i915/display: Move psr related module parameters under display
-  drm/i915/display: Move vbt_firmware module parameter under display
-  drm/i915/display: Move lvds_channel_mode module parameter under
-    display
-  drm/i915/display: Move panel_use_ssc module parameter under display
-  drm/i915/display: Move vbt_sdvo_panel_type module parameter under
-    display
-  drm/i915/display: Move enable_dc module parameter under display
-  drm/i915/display: Move enable_dpt module parameter under display
-  drm/i915/display: Move enable_sagv module parameter under display
-  drm/i915/display: Move disable_power_well module parameter under
-    display
-  drm/i915/display: Move enable_ips module parameter under display
-  drm/i915/display: Move invert_brightness module parameter under
-    display
-  drm/i915/display: Move edp_vswing module parameter under display
-  drm/i915/display: Move enable_dpcd_backlight module parameter under
-    display
-  drm/i915/display: Move load_detect_test parameter under display
-  drm/i915/display: Move force_reset_modeset_test parameter under
-    display
-  drm/i915/display: Move disable_display parameter under display
-  drm/i915/display: Use device parameters instead of module in
-    I915_STATE_WARN
-  drm/i915/display: Move verbose_state_checks under display
-  drm/i915/display: Move nuclear_pageflip under display
-  drm/i915/display: Move enable_dp_mst under display
-
+Signed-off-by: Jouni Högander <jouni.hogander@intel.com>
+Reviewed-by: Luca Coelho <luciano.coelho@intel.com>
+---
  drivers/gpu/drm/i915/Makefile                 |   2 +
- drivers/gpu/drm/i915/display/hsw_ips.c        |   4 +-
- drivers/gpu/drm/i915/display/i9xx_wm.c        |   2 +-
- .../gpu/drm/i915/display/intel_backlight.c    |   9 +-
- drivers/gpu/drm/i915/display/intel_bios.c     |   6 +-
- drivers/gpu/drm/i915/display/intel_crt.c      |   4 +-
- drivers/gpu/drm/i915/display/intel_display.h  |   2 +-
  .../gpu/drm/i915/display/intel_display_core.h |   2 +
  .../drm/i915/display/intel_display_debugfs.c  |   2 +
- .../display/intel_display_debugfs_params.c    | 176 ++++++++++++++
+ .../display/intel_display_debugfs_params.c    | 176 ++++++++++++++++++
  .../display/intel_display_debugfs_params.h    |  13 ++
- .../drm/i915/display/intel_display_device.c   |  13 +-
+ .../drm/i915/display/intel_display_device.c   |   8 +
  .../drm/i915/display/intel_display_device.h   |   1 +
- .../drm/i915/display/intel_display_params.c   | 217 ++++++++++++++++++
- .../drm/i915/display/intel_display_params.h   |  61 +++++
- .../drm/i915/display/intel_display_power.c    |  14 +-
- .../drm/i915/display/intel_display_reset.c    |   2 +-
- drivers/gpu/drm/i915/display/intel_dp.c       |   6 +-
- .../drm/i915/display/intel_dp_aux_backlight.c |   4 +-
- drivers/gpu/drm/i915/display/intel_dpt.c      |   6 +-
- drivers/gpu/drm/i915/display/intel_fb.c       |   2 +-
- drivers/gpu/drm/i915/display/intel_fbc.c      |  10 +-
- drivers/gpu/drm/i915/display/intel_lvds.c     |   4 +-
- drivers/gpu/drm/i915/display/intel_opregion.c |   2 +-
- drivers/gpu/drm/i915/display/intel_panel.c    |   4 +-
- drivers/gpu/drm/i915/display/intel_psr.c      |  14 +-
- .../drm/i915/display/skl_universal_plane.c    |   2 +-
- drivers/gpu/drm/i915/display/skl_watermark.c  |   5 +-
- drivers/gpu/drm/i915/i915_debugfs.c           |   3 +
+ .../drm/i915/display/intel_display_params.c   |  71 +++++++
+ .../drm/i915/display/intel_display_params.h   |  34 ++++
  drivers/gpu/drm/i915/i915_driver.c            |   2 +
- drivers/gpu/drm/i915/i915_gpu_error.c         |   3 +
- drivers/gpu/drm/i915/i915_gpu_error.h         |   2 +
- drivers/gpu/drm/i915/i915_params.c            |  89 -------
- drivers/gpu/drm/i915/i915_params.h            |  22 --
- 34 files changed, 548 insertions(+), 162 deletions(-)
+ 10 files changed, 311 insertions(+)
  create mode 100644 drivers/gpu/drm/i915/display/intel_display_debugfs_params.c
  create mode 100644 drivers/gpu/drm/i915/display/intel_display_debugfs_params.h
  create mode 100644 drivers/gpu/drm/i915/display/intel_display_params.c
  create mode 100644 drivers/gpu/drm/i915/display/intel_display_params.h
 
+diff --git a/drivers/gpu/drm/i915/Makefile b/drivers/gpu/drm/i915/Makefile
+index 88b2bb005014..3b9dcb606fc1 100644
+--- a/drivers/gpu/drm/i915/Makefile
++++ b/drivers/gpu/drm/i915/Makefile
+@@ -95,6 +95,7 @@ i915-$(CONFIG_DEBUG_FS) += \
+ 	i915_debugfs.o \
+ 	i915_debugfs_params.o \
+ 	display/intel_display_debugfs.o \
++	display/intel_display_debugfs_params.o \
+ 	display/intel_pipe_crc.o
+ i915-$(CONFIG_PERF_EVENTS) += i915_pmu.o
+ 
+@@ -257,6 +258,7 @@ i915-y += \
+ 	display/intel_display.o \
+ 	display/intel_display_driver.o \
+ 	display/intel_display_irq.o \
++	display/intel_display_params.o \
+ 	display/intel_display_power.o \
+ 	display/intel_display_power_map.o \
+ 	display/intel_display_power_well.o \
+diff --git a/drivers/gpu/drm/i915/display/intel_display_core.h b/drivers/gpu/drm/i915/display/intel_display_core.h
+index ccfe27630fb6..aa8be02c9e54 100644
+--- a/drivers/gpu/drm/i915/display/intel_display_core.h
++++ b/drivers/gpu/drm/i915/display/intel_display_core.h
+@@ -19,6 +19,7 @@
+ #include "intel_cdclk.h"
+ #include "intel_display_device.h"
+ #include "intel_display_limits.h"
++#include "intel_display_params.h"
+ #include "intel_display_power.h"
+ #include "intel_dpll_mgr.h"
+ #include "intel_fbc.h"
+@@ -520,6 +521,7 @@ struct intel_display {
+ 	struct intel_hotplug hotplug;
+ 	struct intel_opregion opregion;
+ 	struct intel_overlay *overlay;
++	struct intel_display_params params;
+ 	struct intel_vbt_data vbt;
+ 	struct intel_wm wm;
+ };
+diff --git a/drivers/gpu/drm/i915/display/intel_display_debugfs.c b/drivers/gpu/drm/i915/display/intel_display_debugfs.c
+index 2836826f8c05..10a482f746c3 100644
+--- a/drivers/gpu/drm/i915/display/intel_display_debugfs.c
++++ b/drivers/gpu/drm/i915/display/intel_display_debugfs.c
+@@ -17,6 +17,7 @@
+ #include "intel_de.h"
+ #include "intel_crtc_state_dump.h"
+ #include "intel_display_debugfs.h"
++#include "intel_display_debugfs_params.h"
+ #include "intel_display_power.h"
+ #include "intel_display_power_well.h"
+ #include "intel_display_types.h"
+@@ -1098,6 +1099,7 @@ void intel_display_debugfs_register(struct drm_i915_private *i915)
+ 	intel_hpd_debugfs_register(i915);
+ 	intel_psr_debugfs_register(i915);
+ 	intel_wm_debugfs_register(i915);
++	intel_display_debugfs_params(i915);
+ }
+ 
+ static int i915_panel_show(struct seq_file *m, void *data)
+diff --git a/drivers/gpu/drm/i915/display/intel_display_debugfs_params.c b/drivers/gpu/drm/i915/display/intel_display_debugfs_params.c
+new file mode 100644
+index 000000000000..b7e68eb62452
+--- /dev/null
++++ b/drivers/gpu/drm/i915/display/intel_display_debugfs_params.c
+@@ -0,0 +1,176 @@
++// SPDX-License-Identifier: MIT
++/*
++ * Copyright © 2023 Intel Corporation
++ */
++
++#include <linux/kernel.h>
++
++#include <drm/drm_drv.h>
++
++#include "intel_display_debugfs_params.h"
++#include "i915_drv.h"
++#include "intel_display_params.h"
++
++/* int param */
++static int intel_display_param_int_show(struct seq_file *m, void *data)
++{
++	int *value = m->private;
++
++	seq_printf(m, "%d\n", *value);
++
++	return 0;
++}
++
++static int intel_display_param_int_open(struct inode *inode, struct file *file)
++{
++	return single_open(file, intel_display_param_int_show, inode->i_private);
++}
++
++static ssize_t intel_display_param_int_write(struct file *file,
++					     const char __user *ubuf, size_t len,
++					     loff_t *offp)
++{
++	struct seq_file *m = file->private_data;
++	int *value = m->private;
++	int ret;
++
++	ret = kstrtoint_from_user(ubuf, len, 0, value);
++	if (ret) {
++		/* support boolean values too */
++		bool b;
++
++		ret = kstrtobool_from_user(ubuf, len, &b);
++		if (!ret)
++			*value = b;
++	}
++
++	return ret ?: len;
++}
++
++static const struct file_operations intel_display_param_int_fops = {
++	.owner = THIS_MODULE,
++	.open = intel_display_param_int_open,
++	.read = seq_read,
++	.write = intel_display_param_int_write,
++	.llseek = default_llseek,
++	.release = single_release,
++};
++
++static const struct file_operations intel_display_param_int_fops_ro = {
++	.owner = THIS_MODULE,
++	.open = intel_display_param_int_open,
++	.read = seq_read,
++	.llseek = default_llseek,
++	.release = single_release,
++};
++
++/* unsigned int param */
++static int intel_display_param_uint_show(struct seq_file *m, void *data)
++{
++	unsigned int *value = m->private;
++
++	seq_printf(m, "%u\n", *value);
++
++	return 0;
++}
++
++static int intel_display_param_uint_open(struct inode *inode, struct file *file)
++{
++	return single_open(file, intel_display_param_uint_show, inode->i_private);
++}
++
++static ssize_t intel_display_param_uint_write(struct file *file,
++					      const char __user *ubuf, size_t len,
++					      loff_t *offp)
++{
++	struct seq_file *m = file->private_data;
++	unsigned int *value = m->private;
++	int ret;
++
++	ret = kstrtouint_from_user(ubuf, len, 0, value);
++	if (ret) {
++		/* support boolean values too */
++		bool b;
++
++		ret = kstrtobool_from_user(ubuf, len, &b);
++		if (!ret)
++			*value = b;
++	}
++
++	return ret ?: len;
++}
++
++static const struct file_operations intel_display_param_uint_fops = {
++	.owner = THIS_MODULE,
++	.open = intel_display_param_uint_open,
++	.read = seq_read,
++	.write = intel_display_param_uint_write,
++	.llseek = default_llseek,
++	.release = single_release,
++};
++
++static const struct file_operations intel_display_param_uint_fops_ro = {
++	.owner = THIS_MODULE,
++	.open = intel_display_param_uint_open,
++	.read = seq_read,
++	.llseek = default_llseek,
++	.release = single_release,
++};
++
++#define RO(mode) (((mode) & 0222) == 0)
++
++__maybe_unused static struct dentry *
++intel_display_debugfs_create_int(const char *name, umode_t mode,
++			struct dentry *parent, int *value)
++{
++	return debugfs_create_file_unsafe(name, mode, parent, value,
++					  RO(mode) ? &intel_display_param_int_fops_ro :
++					  &intel_display_param_int_fops);
++}
++
++__maybe_unused static struct dentry *
++intel_display_debugfs_create_uint(const char *name, umode_t mode,
++			 struct dentry *parent, unsigned int *value)
++{
++	return debugfs_create_file_unsafe(name, mode, parent, value,
++					  RO(mode) ? &intel_display_param_uint_fops_ro :
++					  &intel_display_param_uint_fops);
++}
++
++#define _intel_display_param_create_file(parent, name, mode, valp)	\
++	do {								\
++		if (mode)						\
++			_Generic(valp,					\
++				 bool * : debugfs_create_bool,		\
++				 int * : intel_display_debugfs_create_int, \
++				 unsigned int * : intel_display_debugfs_create_uint, \
++				 unsigned long * : debugfs_create_ulong, \
++				 char ** : debugfs_create_str) \
++				(name, mode, parent, valp);		\
++	} while (0)
++
++/* add a subdirectory with files for each intel display param */
++void intel_display_debugfs_params(struct drm_i915_private *i915)
++{
++	struct drm_minor *minor = i915->drm.primary;
++	struct dentry *dir;
++	char dirname[16];
++
++	snprintf(dirname, sizeof(dirname), "%s_params", i915->drm.driver->name);
++	dir = debugfs_lookup(dirname, minor->debugfs_root);
++	if (!dir)
++		dir = debugfs_create_dir(dirname, minor->debugfs_root);
++	if (IS_ERR(dir))
++		return;
++
++	/*
++	 * Note: We could create files for params needing special handling
++	 * here. Set mode in params to 0 to skip the generic create file, or
++	 * just let the generic create file fail silently with -EEXIST.
++	 */
++
++#define REGISTER(T, x, unused, mode, ...) _intel_display_param_create_file( \
++		dir, #x, mode, &i915->display.params.x);
++	INTEL_DISPLAY_PARAMS_FOR_EACH(REGISTER);
++#undef REGISTER
++}
+diff --git a/drivers/gpu/drm/i915/display/intel_display_debugfs_params.h b/drivers/gpu/drm/i915/display/intel_display_debugfs_params.h
+new file mode 100644
+index 000000000000..1e9945a4044c
+--- /dev/null
++++ b/drivers/gpu/drm/i915/display/intel_display_debugfs_params.h
+@@ -0,0 +1,13 @@
++/* SPDX-License-Identifier: MIT */
++/*
++ * Copyright © 2023 Intel Corporation
++ */
++
++#ifndef __INTEL_DISPLAY_DEBUGFS_PARAMS__
++#define __INTEL_DISPLAY_DEBUGFS_PARAMS__
++
++struct drm_i915_private;
++
++void intel_display_debugfs_params(struct drm_i915_private *i915);
++
++#endif /* __INTEL_DISPLAY_DEBUGFS_PARAMS__ */
+diff --git a/drivers/gpu/drm/i915/display/intel_display_device.c b/drivers/gpu/drm/i915/display/intel_display_device.c
+index 2b1ec23ba9c3..e80842d1e7c7 100644
+--- a/drivers/gpu/drm/i915/display/intel_display_device.c
++++ b/drivers/gpu/drm/i915/display/intel_display_device.c
+@@ -12,6 +12,7 @@
+ #include "intel_de.h"
+ #include "intel_display.h"
+ #include "intel_display_device.h"
++#include "intel_display_params.h"
+ #include "intel_display_power.h"
+ #include "intel_display_reg_defs.h"
+ #include "intel_fbc.h"
+@@ -937,6 +938,13 @@ void intel_display_device_probe(struct drm_i915_private *i915)
+ 		DISPLAY_RUNTIME_INFO(i915)->ip.rel = rel;
+ 		DISPLAY_RUNTIME_INFO(i915)->ip.step = step;
+ 	}
++
++	intel_display_params_copy(&i915->display.params);
++}
++
++void intel_display_device_remove(struct drm_i915_private *i915)
++{
++	intel_display_params_free(&i915->display.params);
+ }
+ 
+ static void __intel_display_device_info_runtime_init(struct drm_i915_private *i915)
+diff --git a/drivers/gpu/drm/i915/display/intel_display_device.h b/drivers/gpu/drm/i915/display/intel_display_device.h
+index 5b5c0e53307f..4299cc452e05 100644
+--- a/drivers/gpu/drm/i915/display/intel_display_device.h
++++ b/drivers/gpu/drm/i915/display/intel_display_device.h
+@@ -161,6 +161,7 @@ struct intel_display_device_info {
+ 
+ bool intel_display_device_enabled(struct drm_i915_private *i915);
+ void intel_display_device_probe(struct drm_i915_private *i915);
++void intel_display_device_remove(struct drm_i915_private *i915);
+ void intel_display_device_info_runtime_init(struct drm_i915_private *i915);
+ 
+ void intel_display_device_info_print(const struct intel_display_device_info *info,
+diff --git a/drivers/gpu/drm/i915/display/intel_display_params.c b/drivers/gpu/drm/i915/display/intel_display_params.c
+new file mode 100644
+index 000000000000..91953ae27144
+--- /dev/null
++++ b/drivers/gpu/drm/i915/display/intel_display_params.c
+@@ -0,0 +1,71 @@
++// SPDX-License-Identifier: MIT
++/*
++ * Copyright © 2023 Intel Corporation
++ */
++
++#include "intel_display_params.h"
++#include "i915_drv.h"
++
++#define intel_display_param_named(name, T, perm, desc) \
++	module_param_named(name, intel_display_modparams.name, T, perm); \
++	MODULE_PARM_DESC(name, desc)
++#define intel_display_param_named_unsafe(name, T, perm, desc) \
++	module_param_named_unsafe(name, intel_display_modparams.name, T, perm); \
++	MODULE_PARM_DESC(name, desc)
++
++static struct intel_display_params intel_display_modparams __read_mostly = {
++#define MEMBER(T, member, value, ...) .member = (value),
++	INTEL_DISPLAY_PARAMS_FOR_EACH(MEMBER)
++#undef MEMBER
++};
++/*
++ * Note: As a rule, keep module parameter sysfs permissions read-only
++ * 0400. Runtime changes are only supported through i915 debugfs.
++ *
++ * For any exceptions requiring write access and runtime changes through module
++ * parameter sysfs, prevent debugfs file creation by setting the parameter's
++ * debugfs mode to 0.
++ */
++
++__maybe_unused static void _param_dup_charp(char **valp)
++{
++	*valp = kstrdup(*valp ? *valp : "", GFP_ATOMIC);
++}
++
++__maybe_unused static void _param_nop(void *valp)
++{
++}
++
++#define _param_dup(valp)				\
++	_Generic(valp,					\
++		 char ** : _param_dup_charp,		\
++		 default : _param_nop)			\
++		(valp)
++
++void intel_display_params_copy(struct intel_display_params *dest)
++{
++	*dest = intel_display_modparams;
++#define DUP(T, x, ...) _param_dup(&dest->x);
++	INTEL_DISPLAY_PARAMS_FOR_EACH(DUP);
++#undef DUP
++}
++
++__maybe_unused static void _param_free_charp(char **valp)
++{
++	kfree(*valp);
++	*valp = NULL;
++}
++
++#define _param_free(valp)				\
++	_Generic(valp,					\
++		 char ** : _param_free_charp,		\
++		 default : _param_nop)			\
++		(valp)
++
++/* free the allocated members, *not* the passed in params itself */
++void intel_display_params_free(struct intel_display_params *params)
++{
++#define FREE(T, x, ...) _param_free(&params->x);
++	INTEL_DISPLAY_PARAMS_FOR_EACH(FREE);
++#undef FREE
++}
+diff --git a/drivers/gpu/drm/i915/display/intel_display_params.h b/drivers/gpu/drm/i915/display/intel_display_params.h
+new file mode 100644
+index 000000000000..9f4f45d410a3
+--- /dev/null
++++ b/drivers/gpu/drm/i915/display/intel_display_params.h
+@@ -0,0 +1,34 @@
++// SPDX-License-Identifier: MIT
++/*
++ * Copyright © 2023 Intel Corporation
++ */
++
++#ifndef _INTEL_DISPLAY_PARAMS_H_
++#define _INTEL_DISPLAY_PARAMS_H_
++
++struct drm_printer;
++
++/*
++ * Invoke param, a function-like macro, for each intel display param, with
++ * arguments:
++ *
++ * param(type, name, value, mode)
++ *
++ * type: parameter type, one of {bool, int, unsigned int, unsigned long, char *}
++ * name: name of the parameter
++ * value: initial/default value of the parameter
++ * mode: debugfs file permissions, one of {0400, 0600, 0}, use 0 to not create
++ *       debugfs file
++ */
++#define INTEL_DISPLAY_PARAMS_FOR_EACH(param) /* empty define to avoid build failure */
++
++#define MEMBER(T, member, ...) T member;
++struct intel_display_params {
++	INTEL_DISPLAY_PARAMS_FOR_EACH(MEMBER);
++};
++#undef MEMBER
++
++void intel_display_params_copy(struct intel_display_params *dest);
++void intel_display_params_free(struct intel_display_params *params);
++
++#endif
+diff --git a/drivers/gpu/drm/i915/i915_driver.c b/drivers/gpu/drm/i915/i915_driver.c
+index 8a0e2c745e1f..80e85cadb9a2 100644
+--- a/drivers/gpu/drm/i915/i915_driver.c
++++ b/drivers/gpu/drm/i915/i915_driver.c
+@@ -909,6 +909,8 @@ static void i915_driver_release(struct drm_device *dev)
+ 	intel_runtime_pm_driver_release(rpm);
+ 
+ 	i915_driver_late_release(dev_priv);
++
++	intel_display_device_remove(dev_priv);
+ }
+ 
+ static int i915_driver_open(struct drm_device *dev, struct drm_file *file)
 -- 
 2.34.1
 
