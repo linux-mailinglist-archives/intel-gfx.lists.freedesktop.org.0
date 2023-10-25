@@ -2,58 +2,54 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id B212E7D699F
-	for <lists+intel-gfx@lfdr.de>; Wed, 25 Oct 2023 12:58:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id DF7507D69DE
+	for <lists+intel-gfx@lfdr.de>; Wed, 25 Oct 2023 13:18:35 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1D32910E5AA;
-	Wed, 25 Oct 2023 10:58:21 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 59C2210E0F8;
+	Wed, 25 Oct 2023 11:18:33 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.120])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C936810E5AA;
- Wed, 25 Oct 2023 10:58:18 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 916CE10E0F8
+ for <intel-gfx@lists.freedesktop.org>; Wed, 25 Oct 2023 11:18:31 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1698231498; x=1729767498;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=yKLEkbUjTvX9F3cS1OLBXTJ8ct6oQ4xF7SbQlUMCpf4=;
- b=iS+TJNvVMD881XgG+0LEhnPiRD1a++SVbwuTJAx36pghgAJSJGhzxiZI
- NLuhFwoP9DAC01fS03I91+LwX1LBnY9jkBl0lfqOpKfF0ae1Ap6xVez1C
- mdpuXn3w+veFDersJjpavMkfmvTjoONshT/ERPqoqNxQhH1l0bHnBhXsO
- FfCLJoNnISgGGYMJk5PA+n8DulZdf9Gov/ycV2o/+t1MlhILk4n+OIVC8
- MwW8w+RQS7v4zIiB7LZq4VgpBVjuNTvlzJ6AhC17xoYP9oHKTLHMfUrFn
- 6ZXqK3Wg679u44KO3Soe6qwJZ/t0wHqhMg/5RcA1ElI1HIeHfv0hVjEIF g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10873"; a="386166690"
-X-IronPort-AV: E=Sophos;i="6.03,250,1694761200"; d="scan'208";a="386166690"
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
- by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Oct 2023 03:58:18 -0700
+ t=1698232711; x=1729768711;
+ h=from:to:subject:in-reply-to:references:date:message-id:
+ mime-version:content-transfer-encoding;
+ bh=pmqOSToYWctG65Ox1rVSghf4FMKThkoP3kLhFbPnukM=;
+ b=H5+Wr/qvAC60Vgc0SVx3yxnrrG3Oh0eV97xYBiWf7WZRa/0BNLgEeyb9
+ kNVd62kfqrc1A8epCA5lPytB7iUr3O6XphI5xIu/nwYMMHi1VpeAQpa0u
+ C/tIy2JFF8Sf/YZoN7uwerOpy+ixFzWsgQqFThutdiclP82rRmWdqfQxr
+ 4aN2EYSG44h7jPnHd+vaM7Xuuj01QLc02AVPmkT8nCrRauj2kkhnUqbDy
+ GP/bgVu7SxXKZuNFXinTP+zZ/5RUoMDfwYZdBdII+wcULI2SLvKVAkOdK
+ VR7hlPMmQyvrXZj4kzQu4fw1EOPAfVZ+QntwIxlAzgbIWUSlA1MkxnPPM Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10873"; a="5900730"
+X-IronPort-AV: E=Sophos;i="6.03,250,1694761200"; 
+   d="scan'208";a="5900730"
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+ by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 25 Oct 2023 04:18:31 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10873"; a="902521780"
-X-IronPort-AV: E=Sophos;i="6.03,250,1694761200"; d="scan'208";a="902521780"
-Received: from lababeix-mobl1.ger.corp.intel.com (HELO [10.249.41.109])
- ([10.249.41.109])
- by fmsmga001-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Oct 2023 03:55:54 -0700
-Message-ID: <1dedcd11-ac0c-465e-bbe4-079767f5813e@linux.intel.com>
-Date: Wed, 25 Oct 2023 11:58:15 +0100
+X-IronPort-AV: E=McAfee;i="6600,9927,10873"; a="875461929"
+X-IronPort-AV: E=Sophos;i="6.03,250,1694761200"; d="scan'208";a="875461929"
+Received: from dtorrice-mobl1.ger.corp.intel.com (HELO localhost)
+ ([10.252.33.83])
+ by fmsmga002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 25 Oct 2023 04:18:29 -0700
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Nemesa Garg <nemesa.garg@intel.com>, intel-gfx@lists.freedesktop.org
+In-Reply-To: <20231025102734.2783492-2-nemesa.garg@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20231025102734.2783492-1-nemesa.garg@intel.com>
+ <20231025102734.2783492-2-nemesa.garg@intel.com>
+Date: Wed, 25 Oct 2023 14:18:26 +0300
+Message-ID: <874jif9chp.fsf@intel.com>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Content-Language: en-US
-To: "Coelho, Luciano" <luciano.coelho@intel.com>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
-References: <20231023103328.1495942-1-luciano.coelho@intel.com>
- <cf874768-7951-4dcc-90b1-7f3457c4923e@linux.intel.com>
- <463b540d-fd0d-4988-9ad1-63447a5d6948@linux.intel.com>
- <86c395f6b2e529943007aca94dd0862c1bb0004d.camel@intel.com>
-From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-Organization: Intel Corporation UK Plc
-In-Reply-To: <86c395f6b2e529943007aca94dd0862c1bb0004d.camel@intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-Subject: Re: [Intel-gfx] [PATCH v3] drm/i915: handle uncore spinlock when
- not available
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+Subject: Re: [Intel-gfx] [PATCH 1/2] drm/i915: Add Darkscreen registers and
+ timer handler.
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -66,131 +62,312 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>, "Vivi,
- Rodrigo" <rodrigo.vivi@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+On Wed, 25 Oct 2023, Nemesa Garg <nemesa.garg@intel.com> wrote:
+> Add new registers for Darkscreen
+> The logic checks for any black screen at pipe level and upon such detecti=
+on prints error.
+> Darkscreen compares the pixels with the compare value(0x00 - black) for t=
+he detection purpose.
+> This feature can be enable/disable through debugfs.
 
-On 25/10/2023 11:32, Coelho, Luciano wrote:
-> On Wed, 2023-10-25 at 11:25 +0100, Tvrtko Ursulin wrote:
->> On 25/10/2023 11:18, Tvrtko Ursulin wrote:
->>>
->>> On 23/10/2023 11:33, Luca Coelho wrote:
->>>> The uncore code may not always be available (e.g. when we build the
->>>> display code with Xe), so we can't always rely on having the uncore's
->>>> spinlock.
->>>>
->>>> To handle this, split the spin_lock/unlock_irqsave/restore() into
->>>> spin_lock/unlock() followed by a call to local_irq_save/restore() and
->>>> create wrapper functions for locking and unlocking the uncore's
->>>> spinlock.  In these functions, we have a condition check and only
->>>> actually try to lock/unlock the spinlock when I915 is defined, and
->>>> thus uncore is available.
->>>>
->>>> This keeps the ifdefs contained in these new functions and all such
->>>> logic inside the display code.
->>>>
->>>> Signed-off-by: Luca Coelho <luciano.coelho@intel.com>
->>>> ---
->>>>
->>>> In v2:
->>>>
->>>>      * Renamed uncore_spin_*() to intel_spin_*()
->>>>      * Corrected the order: save, lock, unlock, restore
->>>>
->>>> In v3:
->>>>
->>>>      * Undid the change to pass drm_i915_private instead of the lock
->>>>        itself, since we would have to include i915_drv.h and that pulls
->>>>        in a truckload of other includes.
->>>>
->>>>    drivers/gpu/drm/i915/display/intel_display.h | 20 ++++++++++++++++++++
->>>>    drivers/gpu/drm/i915/display/intel_vblank.c  | 19 ++++++++++++-------
->>>>    2 files changed, 32 insertions(+), 7 deletions(-)
->>>>
->>>> diff --git a/drivers/gpu/drm/i915/display/intel_display.h
->>>> b/drivers/gpu/drm/i915/display/intel_display.h
->>>> index 0e5dffe8f018..2a33fcc8ce68 100644
->>>> --- a/drivers/gpu/drm/i915/display/intel_display.h
->>>> +++ b/drivers/gpu/drm/i915/display/intel_display.h
->>>> @@ -559,4 +559,24 @@ bool assert_port_valid(struct drm_i915_private
->>>> *i915, enum port port);
->>>>    bool intel_scanout_needs_vtd_wa(struct drm_i915_private *i915);
->>>> +/*
->>>> + * The uncore version of the spin lock functions is used to decide
->>>> + * whether we need to lock the uncore lock or not.  This is only
->>>> + * needed in i915, not in Xe.  Keep the decision-making centralized
->>>> + * here.
->>>> + */
->>>> +static inline void intel_spin_lock(spinlock_t *lock)
->>>> +{
->>>> +#ifdef I915
->>>> +    spin_lock(lock);
->>>> +#endif
->>>> +}
->>>> +
->>>> +static inline void intel_spin_unlock(spinlock_t *lock)
->>>> +{
->>>> +#ifdef I915
->>>> +    spin_unlock(lock);
->>>> +#endif
->>>> +}
->>>> +
->>>>    #endif
->>>> diff --git a/drivers/gpu/drm/i915/display/intel_vblank.c
->>>> b/drivers/gpu/drm/i915/display/intel_vblank.c
->>>> index 2cec2abf9746..9b482d648762 100644
->>>> --- a/drivers/gpu/drm/i915/display/intel_vblank.c
->>>> +++ b/drivers/gpu/drm/i915/display/intel_vblank.c
->>>> @@ -306,7 +306,8 @@ static bool i915_get_crtc_scanoutpos(struct
->>>> drm_crtc *_crtc,
->>>>         * register reads, potentially with preemption disabled, so the
->>>>         * following code must not block on uncore.lock.
->>>>         */
->>>> -    spin_lock_irqsave(&dev_priv->uncore.lock, irqflags);
->>>> +    local_irq_save(irqflags);
->>>
->>> Does Xe needs interrupts off?
-> 
-> I'm actually not sure, but this is how it was in the Xe driver code, so
-> I kept it.
-> 
-> 
->>>> +    intel_spin_lock(&dev_priv->uncore.lock);
->>>
->>> My 2p/c is that intel_spin_lock as a name does not work when it is
->>> specifically about the single and specific (uncore) lock. One cannot
->>> call intel_spin_lock(some->other->lock) etc.
-> 
-> Right, this was changed when I was passing only dev_priv, but I
-> couldn't do that wihtout adding i915_drv.h, which was not good
-> either... But yeah, this is too generic, while the actual case is not.
-> 
-> 
->>> Perhaps call it i915_uncore_lock_irqsave(i915, flags) so it is clear it
->>> is only for i915.
-> 
-> I wanted to avoid "i915", since we also call it when the display is
-> used with xe...
-> 
-> 
->> Or, if the implementation will later gain the #else block for Xe,
->> perhaps intel_uncore_lock_...?
-> 
-> But still, uncore doesn't exist in Xe, so this is still not good...
-> 
-> Any other suggestions?
+The most important question a commit message should answer is *why*.
 
-I think it will boil down to the reason uncore lock is held over the 
-respective sections ie. the comment in i915_get_crtc_scanoutpos.
+Why do we need this, what is it for?
 
-If it is timing sensitive to the extent irq off was needed it may apply 
-to Xe as well. Likewise the need to use mmio helpers which rely on the 
-uncore lock already held. Question of whether there is conceptual 
-commonality, will probably drive the best name, or the best approach in 
-general.
+Please find a number of nitpicks below.
 
-Regards,
+First, the commit subject does not describe the patch. Registers and
+timer handling? Huh?
 
-Tvrtko
+The commit message should be wrapped. This is all explained in
+Documentation/process/submitting-patches.rst; please read it.
+
+>
+> Signed-off-by: Nemesa Garg <nemesa.garg@intel.com>
+> ---
+>  drivers/gpu/drm/i915/Makefile                 |  1 +
+>  .../gpu/drm/i915/display/intel_darkscreen.c   | 69 +++++++++++++++++++
+>  .../gpu/drm/i915/display/intel_darkscreen.h   | 40 +++++++++++
+>  .../drm/i915/display/intel_display_types.h    |  3 +
+>  drivers/gpu/drm/i915/i915_reg.h               |  9 +++
+>  5 files changed, 122 insertions(+)
+>  create mode 100644 drivers/gpu/drm/i915/display/intel_darkscreen.c
+>  create mode 100644 drivers/gpu/drm/i915/display/intel_darkscreen.h
+>
+> diff --git a/drivers/gpu/drm/i915/Makefile b/drivers/gpu/drm/i915/Makefile
+> index 88b2bb005014..538d5a42f9e3 100644
+> --- a/drivers/gpu/drm/i915/Makefile
+> +++ b/drivers/gpu/drm/i915/Makefile
+> @@ -254,6 +254,7 @@ i915-y +=3D \
+>  	display/intel_crtc.o \
+>  	display/intel_crtc_state_dump.o \
+>  	display/intel_cursor.o \
+> +	display/intel_darkscreen.o \
+>  	display/intel_display.o \
+>  	display/intel_display_driver.o \
+>  	display/intel_display_irq.o \
+> diff --git a/drivers/gpu/drm/i915/display/intel_darkscreen.c b/drivers/gp=
+u/drm/i915/display/intel_darkscreen.c
+> new file mode 100644
+> index 000000000000..ef68dbc7a296
+> --- /dev/null
+> +++ b/drivers/gpu/drm/i915/display/intel_darkscreen.c
+> @@ -0,0 +1,69 @@
+> +// SPDX-License-Identifier: MIT
+> +/*
+> + * Copyright =C2=A9 2018 Intel Corporation
+
+It's 2023 now.
+
+> + *
+> + * Author: Nemesa Garg <nemesa.garg@intel.com>
+
+Please don't add Author: lines in source code.
+
+The git history says who has done what, and is always up-to-date. Adding
+authors in source presents a problem: when do you amend it? Some people
+update them with a typo fix, some people almost never, even when they
+rewrite the entire file. Then it's just stale information.
+
+I, for example, have modified almost every file in the entire i915
+driver. Should I add my name to all of them? What would be the point?
+
+Finally, I think author lines give a false sense of ownership in a
+fundamentally shared project.
+
+Yes, we have existing author lines, but that's just because of another
+problem with author lines: they're actually incredibly hard to remove.
+
+> + */
+
+Blank line here.
+
+> +#include "i915_reg.h"
+> +#include "intel_display_types.h"
+> +#include "intel_de.h"
+
+Please sort includes.
+
+> +
+> +/*
+> + * Dark screen detection check if all pixels
+> + * in a frame are less than or equal to compare
+> + * value.Check the color format and compute the
+> + * compare value based on bpc.
+
+Rewrap, space after '.'.
+
+> + */
+> +void dark_screen_enable(struct intel_crtc_state *crtc_state)
+
+Non-static functions should have prefix that matches the file name.
+
+E.g. intel_foo.[ch] -> intel_foo_bar().
+
+> +{
+> +	u32 comparevalue;
+
+Usually the longer declarations go first.
+
+> +	enum transcoder cpu_transcoder =3D crtc_state->cpu_transcoder;
+> +	struct intel_crtc *crtc =3D to_intel_crtc(crtc_state->uapi.crtc);
+> +	struct drm_i915_private *dev_priv =3D to_i915(crtc->base.dev);
+> +
+> +	if (!crtc->dark_screen.enable)
+> +		return;
+> +
+> +	if (crtc_state->output_format !=3D INTEL_OUTPUT_FORMAT_RGB)
+> +		return;
+
+Blank line here.
+
+> +	drm_err(&dev_priv->drm,
+> +		"RGB format is not present%c\n",
+
+Is this a useful log line:
+
+RGB format is not presentB
+
+Is it worth an *error* in the dmesg?
+
+> +		pipe_name(crtc->pipe));
+
+The whole thing fits on two  lines.
+
+> +
+> +	switch (crtc_state->pipe_bpp / 3) {
+> +	case DD_COLOR_DEPTH_6BPC:
+> +		comparevalue =3D DARKSCREEN_COMPARE_VALUE_LIMITED_RANGE_6_BPC;
+> +		break;
+> +	case DD_COLOR_DEPTH_8BPC:
+> +		comparevalue =3D DARKSCREEN_COMPARE_VALUE_LIMITED_RANGE_8_BPC;
+> +		break;
+> +	case DD_COLOR_DEPTH_10BPC:
+> +		comparevalue =3D DARKSCREEN_COMPARE_VALUE_LIMITED_RANGE_10_BPC;
+> +		break;
+> +	case DD_COLOR_DEPTH_12BPC:
+> +		comparevalue =3D DARKSCREEN_COMPARE_VALUE_LIMITED_RANGE_12_BPC;
+> +		break;
+> +	default:
+
+You'll get a warning about uninitialized comparevalue on this code path.
+
+> +		break;
+> +	}
+> +
+> +	comparevalue =3D comparevalue <<
+> +		(DARKSCREEN_PROGRAMMED_COMPARE_VALUE_CALCULATION_FACTOR - crtc->dark_s=
+creen.bpc);
+
+That macro name is silly long.
+
+> +
+> +	intel_de_write(dev_priv, DARK_SCREEN(cpu_transcoder),
+> +		       DARK_SCREEN_ENABLE | DARK_SCREEN_DETECT |
+> +		       DARK_SCREEN_DONE | DARK_SCREEN_COMPARE_VAL(comparevalue));
+> +
+> +	intel_de_wait_for_set(dev_priv,
+> +			      DARK_SCREEN(crtc->config->cpu_transcoder), DARK_SCREEN_DONE, 1);
+> +
+> +	if (intel_de_read(dev_priv, DARK_SCREEN(crtc->config->cpu_transcoder)) &
+> +			  DARK_SCREEN_DETECT) {
+> +		drm_err(&dev_priv->drm,
+> +			"Dark Screen detected %c\n",
+> +			pipe_name(crtc->pipe));
+
+Error for detected? What is this?
+
+> +	}
+> +
+> +	intel_de_rmw(dev_priv, DARK_SCREEN(crtc->config->cpu_transcoder), 0, DA=
+RK_SCREEN_DETECT |
+> +		       DARK_SCREEN_DONE);
+> +}
+> diff --git a/drivers/gpu/drm/i915/display/intel_darkscreen.h b/drivers/gp=
+u/drm/i915/display/intel_darkscreen.h
+> new file mode 100644
+> index 000000000000..69da1ea56829
+> --- /dev/null
+> +++ b/drivers/gpu/drm/i915/display/intel_darkscreen.h
+> @@ -0,0 +1,40 @@
+> +/* SPDX-License-Identifier: MIT */
+> +/*
+> + * Copyright =C2=A9 2018 Intel Corporation
+> + *
+> + * Author: Nemesa Garg <nemesa.garg@intel.com>
+
+Same things about copyright year and author lines.
+
+> + */
+> +
+> +#ifndef __INTEL_DARKSCREEN_H__
+> +#define __INTEL_DARKSCREEN_H__
+> +
+> +#include <drm/drm_device.h>
+
+You don't need that. Use minimal includes in headers.
+
+> +
+> +#define DD_COLOR_DEPTH_6BPC 6
+> +#define DD_COLOR_DEPTH_8BPC 8
+> +#define DD_COLOR_DEPTH_10BPC 10
+> +#define DD_COLOR_DEPTH_12BPC 12
+> +
+> +// HW Darkscreen Detection Macros
+
+Please use /* */ comments.
+
+> +#define DARKSCREEN_PROGRAMMED_COMPARE_VALUE_CALCULATION_FACTOR 12
+> +
+> +// Compare Value =3D 16*(2 ^ (bpc-8))
+
+Ditto.
+
+> +#define DARKSCREEN_COMPARE_VALUE_LIMITED_RANGE_6_BPC 4
+> +#define DARKSCREEN_COMPARE_VALUE_LIMITED_RANGE_8_BPC 16
+> +#define DARKSCREEN_COMPARE_VALUE_LIMITED_RANGE_10_BPC 64
+> +#define DARKSCREEN_COMPARE_VALUE_LIMITED_RANGE_12_BPC 256
+
+All of the above could be in intel_darkscreen.c.
+
+> +
+> +struct intel_crtc_state;
+> +struct intel_crtc;
+> +
+> +struct intel_darkscreen {
+> +	bool enable;
+> +	u64 timer_value;
+> +	u8 bpc;
+> +	struct hrtimer timer;
+> +};
+> +
+> +void dark_screen_enable(struct intel_crtc_state *crtc_state);
+> +void intel_darkscreen_crtc_debugfs_add(struct intel_crtc *crtc);
+> +
+> +#endif /* __INTEL_DARKSCREEN_H_ */
+
+The comment does not match the #ifdef.
+
+> diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/drivers=
+/gpu/drm/i915/display/intel_display_types.h
+> index 65ea37fe8cff..289ecda2e032 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display_types.h
+> +++ b/drivers/gpu/drm/i915/display/intel_display_types.h
+> @@ -54,6 +54,7 @@
+>  #include "intel_display_power.h"
+>  #include "intel_dpll_mgr.h"
+>  #include "intel_wm_types.h"
+> +#include "intel_darkscreen.h"
+
+Please keep includes sorted.
+
+>=20=20
+>  struct drm_printer;
+>  struct __intel_global_objs_state;
+> @@ -1515,6 +1516,8 @@ struct intel_crtc {
+>  	/* for loading single buffered registers during vblank */
+>  	struct pm_qos_request vblank_pm_qos;
+>=20=20
+> +	struct intel_darkscreen dark_screen;
+> +
+
+If it's debugfs only (is it?) you could add this below the #ifdef.
+
+>  #ifdef CONFIG_DEBUG_FS
+>  	struct intel_pipe_crc pipe_crc;
+>  #endif
+> diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_=
+reg.h
+> index 135e8d8dbdf0..01d9de14f79c 100644
+> --- a/drivers/gpu/drm/i915/i915_reg.h
+> +++ b/drivers/gpu/drm/i915/i915_reg.h
+> @@ -2097,6 +2097,15 @@
+>  #define   TRANS_PUSH_EN			REG_BIT(31)
+>  #define   TRANS_PUSH_SEND		REG_BIT(30)
+>=20=20
+> +/* Dark SCREEN */
+
+It's pretty obvious from the macro names. The comment adds no value.
+
+> +#define _DARK_SCREEN_PIPE_A             0x60120
+> +#define DARK_SCREEN(trans)              _MMIO_TRANS2(trans, _DARK_SCREEN=
+_PIPE_A)
+> +#define   DARK_SCREEN_ENABLE            REG_BIT(31)
+> +#define   DARK_SCREEN_DETECT            REG_BIT(29)
+> +#define   DARK_SCREEN_DONE		REG_BIT(28)
+> +#define DARK_SCREEN_COMPARE_MASK        REG_GENMASK(9, 0)
+> +#define DARK_SCREEN_COMPARE_VAL(x)	REG_FIELD_PREP(DARK_SCREEN_COMPARE_MA=
+SK, (x))
+
+Please use tabs for indenting the values.
+
+> +
+>  /* VGA port control */
+>  #define ADPA			_MMIO(0x61100)
+>  #define PCH_ADPA                _MMIO(0xe1100)
+
+--=20
+Jani Nikula, Intel
