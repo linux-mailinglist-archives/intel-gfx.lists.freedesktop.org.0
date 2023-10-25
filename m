@@ -1,66 +1,66 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id AB6E57D6E81
-	for <lists+intel-gfx@lfdr.de>; Wed, 25 Oct 2023 16:14:06 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8173B7D6E7F
+	for <lists+intel-gfx@lfdr.de>; Wed, 25 Oct 2023 16:14:01 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A6BA810E66C;
-	Wed, 25 Oct 2023 14:14:02 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6EDC810E5BF;
+	Wed, 25 Oct 2023 14:13:59 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.126])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 83BEE10E5A9
- for <intel-gfx@lists.freedesktop.org>; Wed, 25 Oct 2023 14:13:55 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 489D410E5BF
+ for <intel-gfx@lists.freedesktop.org>; Wed, 25 Oct 2023 14:13:57 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1698243235; x=1729779235;
+ t=1698243237; x=1729779237;
  h=from:date:subject:mime-version:content-transfer-encoding:
  message-id:references:in-reply-to:to:cc;
- bh=lDV6MmYUQn+iFYqJKktjVgr+6KFHTYhmu1bI+lcfc+A=;
- b=CkBFxpLkfoyANbED3FYgVyzzsz5RkaLFAZ6CdoQXZcHNV4/ojzGAq87m
- cIXr5eCavkO6vM7MGyLhZmkgww8Pz0QhWlpuXhc7yIUembUycomIvPwj5
- Brmu2JPGjOHW3NEX7XfNJ4qm4V/iQaRgMB9btaPTwTYY4jSZPnXFUdO3c
- HmMxrcAMyYn0huP5NZulznhcNyxkPI2fWFcM6tcltjHvSWRC3ZpiiGFYZ
- 7+qtRrx5rAK4QG5Wne5nDaAOHRDT2sIf9KXSVrpIN6ToqEE8FfgeBpKUE
- CYb9GI7NH4FXNbxqknEOjI5+ANcXDHvc+OfeKt+7t1W05BcqiI0u7nBjN g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10874"; a="372367121"
-X-IronPort-AV: E=Sophos;i="6.03,250,1694761200"; d="scan'208";a="372367121"
+ bh=SRG34D7TfrcAIb+0ha84zpf1GFglof/9rPuKpx2QwZ8=;
+ b=VuXVoNl+/lZhUO/G6oSOIGBiPE4SA7QjRa8bYYZU8ay4gB4DAm5JnMzu
+ BVsYaVk72YD0gE8uhTE+rl/yhBpmuBFSz7QInS2FbyXM1jgOzm6yoPEGD
+ EJQiLA+l1ni4hWpsgTvpLX/KJQixl7MzWffMQzs17NPvQInaE7Zh8UmwG
+ atrkk/EMsA7P/LWMYuuqQzasQy1CmIb7uU7QbZp4Q5SxffV5XAkBordyC
+ PlhmvoO2dYpDgoXo0Gv1DiGp7sFh3vKnN/MoX8w439ZD7HX+9uXrTT/3+
+ 2EPpajW1zl3+z2SnCiqbh67g5VBHmfQiZ01D2mbmgv5HKWiNwZQ7RAJIK w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10874"; a="372367131"
+X-IronPort-AV: E=Sophos;i="6.03,250,1694761200"; d="scan'208";a="372367131"
 Received: from orsmga004.jf.intel.com ([10.7.209.38])
  by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Oct 2023 07:13:55 -0700
+ 25 Oct 2023 07:13:57 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10874"; a="882458722"
-X-IronPort-AV: E=Sophos;i="6.03,250,1694761200"; d="scan'208";a="882458722"
+X-IronPort-AV: E=McAfee;i="6600,9927,10874"; a="882458731"
+X-IronPort-AV: E=Sophos;i="6.03,250,1694761200"; d="scan'208";a="882458731"
 Received: from lab-ah.igk.intel.com ([10.102.138.202])
  by orsmga004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Oct 2023 07:13:53 -0700
+ 25 Oct 2023 07:13:55 -0700
 From: Andrzej Hajda <andrzej.hajda@intel.com>
-Date: Wed, 25 Oct 2023 16:13:40 +0200
+Date: Wed, 25 Oct 2023 16:13:41 +0200
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20231025-wabb-v5-1-398e42309e9d@intel.com>
+Message-Id: <20231025-wabb-v5-2-398e42309e9d@intel.com>
 References: <20231025-wabb-v5-0-398e42309e9d@intel.com>
 In-Reply-To: <20231025-wabb-v5-0-398e42309e9d@intel.com>
 To: intel-gfx@lists.freedesktop.org
 X-Mailer: b4 0.12.3
-X-Developer-Signature: v=1; a=openpgp-sha256; l=3201;
+X-Developer-Signature: v=1; a=openpgp-sha256; l=7349;
  i=andrzej.hajda@intel.com; h=from:subject:message-id;
- bh=lDV6MmYUQn+iFYqJKktjVgr+6KFHTYhmu1bI+lcfc+A=;
- b=owEB7QES/pANAwAKASNispPeEP3XAcsmYgBlOSKdz+wzvN+FR6zMc6HUjx7Tf6dIbD0zXVmlozTM
- QGSAqBGJAbMEAAEKAB0WIQT8qEQxNN2/XeF/A00jYrKT3hD91wUCZTkinQAKCRAjYrKT3hD91x7+C/
- 9C4+slMRxdOaV+DvBoEtaNLrdqNAIWfChsXo7fv2BLr8BdqlAu3JbCVMxshPkebxesoRzNisLq4/9s
- 2N3ANSFPfBE2UsnNKCVT+oXoPKisKau9sH7iUrA68qYFnWZfYzEHxmNL5+/tMZX/yh2Gp7OTl5qS2E
- tL26zuA6xHm8ELumQsQmOT4emdpmX4R1ZZNC+jVfqJ93Ie80Xkdez38xEAggwvcB5//BP1ViqLq0/8
- CbZvAO0VGg1nH9QmtYXmj2LCHWAitn7KEXEHdtsswCo4iF7XyQvZf7mbNiolm1TqnB2CokuGkUM2H8
- p6PN60ecKuN5JDkaZ1pnpdxmAuJ9yJp8jJzipFZLZMm6qUpeP7qp5Mcl4dlbVUgaZommTRqA8MwB5C
- uk7k5O3cUQN8h89vPKrpryN6GUq8cV/PGNddlqFDsuDnpzjpBUhVPWhkWLyOFjoKc7MEbiTvBgnVrM
- Tc4I8eovbcgTe6KLCxs1mqofFC7mY8kjORP0ynC/nPTDY=
+ bh=SRG34D7TfrcAIb+0ha84zpf1GFglof/9rPuKpx2QwZ8=;
+ b=owEB7QES/pANAwAKASNispPeEP3XAcsmYgBlOSKd4rQ57xm5Puq295VOEws4eyo9hv+am3OWVJr+
+ y3bU0kyJAbMEAAEKAB0WIQT8qEQxNN2/XeF/A00jYrKT3hD91wUCZTkinQAKCRAjYrKT3hD91zF9DA
+ CkWBu9UHkUT4iDi403Vgx2sijblTU/2lvVp1uQWpd3So0yPMx6UXUqKeJAXA63cCeLIEN5mz3Rc3Si
+ 1rYabQVxFpgzJRXQx1LyIJc1DngtNzkPYMg1NmjS6dExnd+wM197BIzbhq60Sqqvb0q0ZZfLfqmPX/
+ KY94P1dB4WOq493kcQ09CbppZg4u/UHCkVbm+w5BjGFNzHu/GavW5OJxHATGNJvjkv+kquURtsj4Ph
+ 5Whb9q2ADoagPRYzwfpDZoT67GvHQ7dRRlL79TMvf5591D6tJf5/j6X4/JUss37T1qktVdwVY5oTXp
+ YekosTJEyBpWl25nBfc0O6BWms4a5+MKUC0Xd9eGCJBYPLbETx07DzGJn2fmTAICc3QhS11isczXVI
+ bwyLqi+zTRF9BsiQlI8XBKKcrXbWspCARVXzOOsQEJ+E4HslATXptjkQt/fNQLLLtYpz0Q/TfyBIT1
+ 8Kq21I6qY5yDv2maTIXQs9DPiJA0TEgwhyiIfU9PuQPc4=
 X-Developer-Key: i=andrzej.hajda@intel.com; a=openpgp;
  fpr=FCA8443134DDBF5DE17F034D2362B293DE10FDD7
-Subject: [Intel-gfx] [PATCH v5 1/4] drm/i915: Reserve some kernel space per
- vm
+Subject: [Intel-gfx] [PATCH v5 2/4] drm/i915: Add WABB blit for
+ Wa_16018031267 / Wa_16018063123
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -74,118 +74,220 @@ List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
 Cc: Jonathan Cavitt <jonathan.cavitt@intel.com>,
- Andrzej Hajda <andrzej.hajda@intel.com>,
- Chris Wilson <chris.p.wilson@linux.intel.com>,
- Nirmoy Das <nirmoy.das@intel.com>
+ Andrzej Hajda <andrzej.hajda@intel.com>, Nirmoy Das <nirmoy.das@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Reserve one page in each vm for kernel space to use for things
-such as workarounds.
+Apply WABB blit for Wa_16018031267 / Wa_16018063123.
 
-v2: use real memory, do not decrease vm.total
-v4: reserve only one page and explain flag
-v5: remove allocated object on ppgtt cleanup
+v3: drop unused enum definition
+v4: move selftest to separate patch, use wa only on BCS0.
+v5: fixed selftest caller to context_wabb
 
-Suggested-by: Chris Wilson <chris.p.wilson@linux.intel.com>
+Signed-off-by: Nirmoy Das <nirmoy.das@intel.com>
+Signed-off-by: Jonathan Cavitt <jonathan.cavitt@intel.com>
 Signed-off-by: Andrzej Hajda <andrzej.hajda@intel.com>
-Reviewed-by: Jonathan Cavitt <jonathan.cavitt@intel.com>
-Reviewed-by: Nirmoy Das <nirmoy.das@intel.com>
 Reviewed-by: Andi Shyti <andi.shyti@linux.intel.com>
 ---
- drivers/gpu/drm/i915/gt/gen8_ppgtt.c | 42 ++++++++++++++++++++++++++++++++++++
- drivers/gpu/drm/i915/gt/intel_gtt.h  |  4 ++++
- 2 files changed, 46 insertions(+)
+ drivers/gpu/drm/i915/gt/intel_engine_regs.h |   3 +
+ drivers/gpu/drm/i915/gt/intel_gt.h          |   4 ++
+ drivers/gpu/drm/i915/gt/intel_lrc.c         | 100 +++++++++++++++++++++++++++-
+ drivers/gpu/drm/i915/gt/selftest_lrc.c      |   2 +-
+ 4 files changed, 105 insertions(+), 4 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/gt/gen8_ppgtt.c b/drivers/gpu/drm/i915/gt/gen8_ppgtt.c
-index 9895e18df0435a..90adb4751c4d8a 100644
---- a/drivers/gpu/drm/i915/gt/gen8_ppgtt.c
-+++ b/drivers/gpu/drm/i915/gt/gen8_ppgtt.c
-@@ -5,6 +5,7 @@
- 
- #include <linux/log2.h>
- 
-+#include "gem/i915_gem_internal.h"
- #include "gem/i915_gem_lmem.h"
- 
- #include "gen8_ppgtt.h"
-@@ -222,6 +223,9 @@ static void gen8_ppgtt_cleanup(struct i915_address_space *vm)
- {
- 	struct i915_ppgtt *ppgtt = i915_vm_to_ppgtt(vm);
- 
-+	if (vm->rsvd.obj)
-+		i915_gem_object_put(vm->rsvd.obj);
+diff --git a/drivers/gpu/drm/i915/gt/intel_engine_regs.h b/drivers/gpu/drm/i915/gt/intel_engine_regs.h
+index fdd4ddd3a978a2..b8618ee3e3041a 100644
+--- a/drivers/gpu/drm/i915/gt/intel_engine_regs.h
++++ b/drivers/gpu/drm/i915/gt/intel_engine_regs.h
+@@ -118,6 +118,9 @@
+ #define   CCID_EXTENDED_STATE_RESTORE		BIT(2)
+ #define   CCID_EXTENDED_STATE_SAVE		BIT(3)
+ #define RING_BB_PER_CTX_PTR(base)		_MMIO((base) + 0x1c0) /* gen8+ */
++#define   PER_CTX_BB_FORCE			BIT(2)
++#define   PER_CTX_BB_VALID			BIT(0)
 +
- 	if (intel_vgpu_active(vm->i915))
- 		gen8_ppgtt_notify_vgt(ppgtt, false);
+ #define RING_INDIRECT_CTX(base)			_MMIO((base) + 0x1c4) /* gen8+ */
+ #define RING_INDIRECT_CTX_OFFSET(base)		_MMIO((base) + 0x1c8) /* gen8+ */
+ #define ECOSKPD(base)				_MMIO((base) + 0x1d0)
+diff --git a/drivers/gpu/drm/i915/gt/intel_gt.h b/drivers/gpu/drm/i915/gt/intel_gt.h
+index 970bedf6b78a7b..9ffdb05e231e21 100644
+--- a/drivers/gpu/drm/i915/gt/intel_gt.h
++++ b/drivers/gpu/drm/i915/gt/intel_gt.h
+@@ -82,6 +82,10 @@ struct drm_printer;
+ 		  ##__VA_ARGS__);					\
+ } while (0)
  
-@@ -950,6 +954,40 @@ gen8_alloc_top_pd(struct i915_address_space *vm)
- 	return ERR_PTR(err);
++#define NEEDS_FASTCOLOR_BLT_WABB(engine) ( \
++	IS_GFX_GT_IP_RANGE(engine->gt, IP_VER(12, 55), IP_VER(12, 71)) && \
++	engine->class == COPY_ENGINE_CLASS && engine->instance == 0)
++
+ static inline bool gt_is_root(struct intel_gt *gt)
+ {
+ 	return !gt->info.id;
+diff --git a/drivers/gpu/drm/i915/gt/intel_lrc.c b/drivers/gpu/drm/i915/gt/intel_lrc.c
+index eaf66d90316655..7c367ba8d9dcf1 100644
+--- a/drivers/gpu/drm/i915/gt/intel_lrc.c
++++ b/drivers/gpu/drm/i915/gt/intel_lrc.c
+@@ -828,6 +828,18 @@ lrc_ring_indirect_offset_default(const struct intel_engine_cs *engine)
+ 	return 0;
  }
  
-+static int gen8_init_rsvd(struct i915_address_space *vm)
++static void
++lrc_setup_bb_per_ctx(u32 *regs,
++		     const struct intel_engine_cs *engine,
++		     u32 ctx_bb_ggtt_addr)
 +{
-+	struct drm_i915_private *i915 = vm->i915;
-+	struct drm_i915_gem_object *obj;
-+	struct i915_vma *vma;
-+	int ret;
-+
-+	/* The memory will be used only by GPU. */
-+	obj = i915_gem_object_create_lmem(i915, PAGE_SIZE,
-+					  I915_BO_ALLOC_VOLATILE |
-+					  I915_BO_ALLOC_GPU_ONLY);
-+	if (IS_ERR(obj))
-+		obj = i915_gem_object_create_internal(i915, PAGE_SIZE);
-+	if (IS_ERR(obj))
-+		return PTR_ERR(obj);
-+
-+	vma = i915_vma_instance(obj, vm, NULL);
-+	if (IS_ERR(vma)) {
-+		ret = PTR_ERR(vma);
-+		goto unref;
-+	}
-+
-+	ret = i915_vma_pin(vma, 0, 0, PIN_USER | PIN_HIGH);
-+	if (ret)
-+		goto unref;
-+
-+	vm->rsvd.vma = i915_vma_make_unshrinkable(vma);
-+	vm->rsvd.obj = obj;
-+	return 0;
-+unref:
-+	i915_gem_object_put(obj);
-+	return ret;
++	GEM_BUG_ON(lrc_ring_wa_bb_per_ctx(engine) == -1);
++	regs[lrc_ring_wa_bb_per_ctx(engine) + 1] =
++		ctx_bb_ggtt_addr |
++		PER_CTX_BB_FORCE |
++		PER_CTX_BB_VALID;
 +}
 +
- /*
-  * GEN8 legacy ppgtt programming is accomplished through a max 4 PDP registers
-  * with a net effect resembling a 2-level page table in normal x86 terms. Each
-@@ -1031,6 +1069,10 @@ struct i915_ppgtt *gen8_ppgtt_create(struct intel_gt *gt,
- 	if (intel_vgpu_active(gt->i915))
- 		gen8_ppgtt_notify_vgt(ppgtt, true);
+ static void
+ lrc_setup_indirect_ctx(u32 *regs,
+ 		       const struct intel_engine_cs *engine,
+@@ -1020,7 +1032,13 @@ static u32 context_wa_bb_offset(const struct intel_context *ce)
+ 	return PAGE_SIZE * ce->wa_bb_page;
+ }
  
-+	err = gen8_init_rsvd(&ppgtt->vm);
-+	if (err)
-+		goto err_put;
+-static u32 *context_indirect_bb(const struct intel_context *ce)
++/*
++ * per_ctx below determines which WABB section is used.
++ * When true, the function returns the location of the
++ * PER_CTX_BB.  When false, the function returns the
++ * location of the INDIRECT_CTX.
++ */
++static u32 *context_wabb(const struct intel_context *ce, bool per_ctx)
+ {
+ 	void *ptr;
+ 
+@@ -1029,6 +1047,7 @@ static u32 *context_indirect_bb(const struct intel_context *ce)
+ 	ptr = ce->lrc_reg_state;
+ 	ptr -= LRC_STATE_OFFSET; /* back to start of context image */
+ 	ptr += context_wa_bb_offset(ce);
++	ptr += per_ctx ? PAGE_SIZE : 0;
+ 
+ 	return ptr;
+ }
+@@ -1105,7 +1124,8 @@ __lrc_alloc_state(struct intel_context *ce, struct intel_engine_cs *engine)
+ 
+ 	if (GRAPHICS_VER(engine->i915) >= 12) {
+ 		ce->wa_bb_page = context_size / PAGE_SIZE;
+-		context_size += PAGE_SIZE;
++		/* INDIRECT_CTX and PER_CTX_BB need separate pages. */
++		context_size += PAGE_SIZE * 2;
+ 	}
+ 
+ 	if (intel_context_is_parent(ce) && intel_engine_uses_guc(engine)) {
+@@ -1407,12 +1427,85 @@ gen12_emit_indirect_ctx_xcs(const struct intel_context *ce, u32 *cs)
+ 	return gen12_emit_aux_table_inv(ce->engine, cs);
+ }
+ 
++static u32 *xehp_emit_fastcolor_blt_wabb(const struct intel_context *ce, u32 *cs)
++{
++	struct intel_gt *gt = ce->engine->gt;
++	int mocs = gt->mocs.uc_index << 1;
 +
- 	return ppgtt;
++	/**
++	 * Wa_16018031267 / Wa_16018063123 requires that SW forces the
++	 * main copy engine arbitration into round robin mode.  We
++	 * additionally need to submit the following WABB blt command
++	 * to produce 4 subblits with each subblit generating 0 byte
++	 * write requests as WABB:
++	 *
++	 * XY_FASTCOLOR_BLT
++	 *  BG0    -> 5100000E
++	 *  BG1    -> 0000003F (Dest pitch)
++	 *  BG2    -> 00000000 (X1, Y1) = (0, 0)
++	 *  BG3    -> 00040001 (X2, Y2) = (1, 4)
++	 *  BG4    -> scratch
++	 *  BG5    -> scratch
++	 *  BG6-12 -> 00000000
++	 *  BG13   -> 20004004 (Surf. Width= 2,Surf. Height = 5 )
++	 *  BG14   -> 00000010 (Qpitch = 4)
++	 *  BG15   -> 00000000
++	 */
++	*cs++ = XY_FAST_COLOR_BLT_CMD | (16 - 2);
++	*cs++ = FIELD_PREP(XY_FAST_COLOR_BLT_MOCS_MASK, mocs) | 0x3f;
++	*cs++ = 0;
++	*cs++ = 4 << 16 | 1;
++	*cs++ = lower_32_bits(i915_vma_offset(ce->vm->rsvd.vma));
++	*cs++ = upper_32_bits(i915_vma_offset(ce->vm->rsvd.vma));
++	*cs++ = 0;
++	*cs++ = 0;
++	*cs++ = 0;
++	*cs++ = 0;
++	*cs++ = 0;
++	*cs++ = 0;
++	*cs++ = 0;
++	*cs++ = 0x20004004;
++	*cs++ = 0x10;
++	*cs++ = 0;
++
++	return cs;
++}
++
++static u32 *
++xehp_emit_per_ctx_bb(const struct intel_context *ce, u32 *cs)
++{
++	/* Wa_16018031267, Wa_16018063123 */
++	if (NEEDS_FASTCOLOR_BLT_WABB(ce->engine))
++		cs = xehp_emit_fastcolor_blt_wabb(ce, cs);
++
++	return cs;
++}
++
++static void
++setup_per_ctx_bb(const struct intel_context *ce,
++		 const struct intel_engine_cs *engine,
++		 u32 *(*emit)(const struct intel_context *, u32 *))
++{
++	/* Place PER_CTX_BB on next page after INDIRECT_CTX */
++	u32 * const start = context_wabb(ce, true);
++	u32 *cs;
++
++	cs = emit(ce, start);
++
++	/* PER_CTX_BB must manually terminate */
++	*cs++ = MI_BATCH_BUFFER_END;
++
++	GEM_BUG_ON(cs - start > I915_GTT_PAGE_SIZE / sizeof(*cs));
++	lrc_setup_bb_per_ctx(ce->lrc_reg_state, engine,
++			     lrc_indirect_bb(ce) + PAGE_SIZE);
++}
++
+ static void
+ setup_indirect_ctx_bb(const struct intel_context *ce,
+ 		      const struct intel_engine_cs *engine,
+ 		      u32 *(*emit)(const struct intel_context *, u32 *))
+ {
+-	u32 * const start = context_indirect_bb(ce);
++	u32 * const start = context_wabb(ce, false);
+ 	u32 *cs;
  
- err_put:
-diff --git a/drivers/gpu/drm/i915/gt/intel_gtt.h b/drivers/gpu/drm/i915/gt/intel_gtt.h
-index b471edac269920..028a5a988eea02 100644
---- a/drivers/gpu/drm/i915/gt/intel_gtt.h
-+++ b/drivers/gpu/drm/i915/gt/intel_gtt.h
-@@ -249,6 +249,10 @@ struct i915_address_space {
- 	struct work_struct release_work;
+ 	cs = emit(ce, start);
+@@ -1511,6 +1604,7 @@ u32 lrc_update_regs(const struct intel_context *ce,
+ 		/* Mutually exclusive wrt to global indirect bb */
+ 		GEM_BUG_ON(engine->wa_ctx.indirect_ctx.size);
+ 		setup_indirect_ctx_bb(ce, engine, fn);
++		setup_per_ctx_bb(ce, engine, xehp_emit_per_ctx_bb);
+ 	}
  
- 	struct drm_mm mm;
-+	struct {
-+		struct drm_i915_gem_object *obj;
-+		struct i915_vma *vma;
-+	} rsvd;
- 	struct intel_gt *gt;
- 	struct drm_i915_private *i915;
- 	struct device *dma;
+ 	return lrc_descriptor(ce) | CTX_DESC_FORCE_RESTORE;
+diff --git a/drivers/gpu/drm/i915/gt/selftest_lrc.c b/drivers/gpu/drm/i915/gt/selftest_lrc.c
+index 5f826b6dcf5d6f..823d38aa393467 100644
+--- a/drivers/gpu/drm/i915/gt/selftest_lrc.c
++++ b/drivers/gpu/drm/i915/gt/selftest_lrc.c
+@@ -1596,7 +1596,7 @@ emit_indirect_ctx_bb_canary(const struct intel_context *ce, u32 *cs)
+ static void
+ indirect_ctx_bb_setup(struct intel_context *ce)
+ {
+-	u32 *cs = context_indirect_bb(ce);
++	u32 *cs = context_wabb(ce, false);
+ 
+ 	cs[CTX_BB_CANARY_INDEX] = 0xdeadf00d;
+ 
 
 -- 
 2.34.1
