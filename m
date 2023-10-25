@@ -2,54 +2,53 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 904227D6AA9
-	for <lists+intel-gfx@lfdr.de>; Wed, 25 Oct 2023 14:00:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id C60D47D6A6D
+	for <lists+intel-gfx@lfdr.de>; Wed, 25 Oct 2023 13:53:52 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 25ED510E59B;
-	Wed, 25 Oct 2023 12:00:35 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CD07510E5A2;
+	Wed, 25 Oct 2023 11:53:50 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-X-Greylist: delayed 428 seconds by postgrey-1.36 at gabe;
- Wed, 25 Oct 2023 12:00:33 UTC
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1F37D10E59B
- for <intel-gfx@lists.freedesktop.org>; Wed, 25 Oct 2023 12:00:33 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 14C8110E5A2;
+ Wed, 25 Oct 2023 11:53:49 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1698235233; x=1729771233;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:in-reply-to;
- bh=TNzg+MIBwG6SSa/l4BUCesBK7A6YbR+V303xAXDElSA=;
- b=Lz/qIYHTuFRnkxKwVGrXIKk/b6DOtbmWgQ84AJA7bTXo2tDDP2ZJW69h
- eil0Q/GfaYKrdTRZHT+tkK1fjsBnAWBF8KFICasaN9GYdpOhmjv31oDpp
- aNy9Ni3ep9GEHEvGovOQPXmJWMHerPMX3/KCps4RpZ8Y3T2SLjml3fckV
- may5yqrehg6JiLKfC4MFc3IO4hW5r2ZArMa/DCkUq7lfJilvZh2+bGRpl
- R7nbQmgYU91gYqBbGcW+FdkReWxmyaRKijO4R/Z0sKw5b08fQAZDDYuMG
- vw0xC0fAb+NgRgPFdZclo6uG2AN7EWBP/3pex4cN/MD5sQCeuPOv3xNlB Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10873"; a="44869"
-X-IronPort-AV: E=Sophos;i="6.03,250,1694761200"; 
-   d="scan'208";a="44869"
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
- by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Oct 2023 04:53:25 -0700
+ t=1698234829; x=1729770829;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version;
+ bh=WGLwc5iTwr+p0DGCwq0HmPdYYtDkR3qB+ype1OEIfNA=;
+ b=h4b9o338cxZdqEWP6IuEeryAbMhWehqhjR9mNTZIJFvOZMp1r5GHzQR/
+ dtueqXz+4+qUeuUacyIOfT4W5ncfA13PxiC/tXth5J42gJbEHd/AH3EnC
+ rU7yvH1fH3FZPPF/3k2oYFEfcmEyHA9L8cYz8MbE+2KolWvevWvaevJ/Z
+ FcH2cYuniJ9x7ollfxxswVu0woPsetkhDQhZ+zFDmH21xeJ1yZ3tg9syU
+ O3L4/2L6a2inN2zDkjTcgwiPxvtc6Xa2/eBn9ZScyHEiJKMA9FPfaZx9T
+ UtYJg0bGzebpDxFmvPliybFVfGkbcUhnrJlBbExPbuV8H0o5UdNLRQMKE Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10873"; a="377656075"
+X-IronPort-AV: E=Sophos;i="6.03,250,1694761200"; d="scan'208";a="377656075"
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 25 Oct 2023 04:53:48 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10873"; a="758847846"
-X-IronPort-AV: E=Sophos;i="6.03,250,1694761200"; d="scan'208";a="758847846"
-Received: from shenkel-mobl.ger.corp.intel.com (HELO intel.com)
- ([10.252.63.39])
- by orsmga002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Oct 2023 04:53:23 -0700
-Date: Wed, 25 Oct 2023 13:53:20 +0200
-From: Andi Shyti <andi.shyti@linux.intel.com>
-To: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
-Message-ID: <ZTkBsAW2l6ESAlnB@ashyti-mobl2.lan>
-References: <20231020152441.3764850-1-umesh.nerlige.ramappa@intel.com>
+X-IronPort-AV: E=McAfee;i="6600,9927,10873"; a="788100608"
+X-IronPort-AV: E=Sophos;i="6.03,250,1694761200"; d="scan'208";a="788100608"
+Received: from dtorrice-mobl1.ger.corp.intel.com (HELO localhost)
+ ([10.252.33.83])
+ by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 25 Oct 2023 04:53:41 -0700
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Andi Shyti <andi.shyti@kernel.org>
+In-Reply-To: <20231024174153.byeq7ctssvxuwa4z@zenone.zhora.eu>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20231016201012.1022812-1-arnd@kernel.org>
+ <87edhlbj16.fsf@intel.com>
+ <20231024174153.byeq7ctssvxuwa4z@zenone.zhora.eu>
+Date: Wed, 25 Oct 2023 14:53:38 +0300
+Message-ID: <87o7gm9av1.fsf@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20231020152441.3764850-1-umesh.nerlige.ramappa@intel.com>
-Subject: Re: [Intel-gfx] [PATCH] drm/i915/pmu: Check if pmu is closed before
- stopping event
+Content-Type: text/plain
+Subject: Re: [Intel-gfx] [PATCH] drm/i915/mtl: avoid stringop-overflow
+ warning
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -62,39 +61,66 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org, stable@vger.kernel.org
+Cc: Arnd Bergmann <arnd@kernel.org>, Arnd Bergmann <arnd@arndb.de>,
+ Matt Roper <matthew.d.roper@intel.com>, intel-gfx@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
+ Daniel Vetter <daniel@ffwll.ch>, Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ David Airlie <airlied@gmail.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi Umesh,
+On Tue, 24 Oct 2023, Andi Shyti <andi.shyti@kernel.org> wrote:
+> Hi Jani,
+>
+>> >  static void rc6_res_reg_init(struct intel_rc6 *rc6)
+>> >  {
+>> > -	memset(rc6->res_reg, INVALID_MMIO_REG.reg, sizeof(rc6->res_reg));
+>> 
+>> That's just bollocks. memset() is byte granularity, while
+>> INVALID_MMIO_REG.reg is u32. If the value was anything other than 0,
+>> this would break.
+>
+> Actually it's:
+>
+>    void *memset(void *s, int c, size_t count)
 
-On Fri, Oct 20, 2023 at 08:24:41AM -0700, Umesh Nerlige Ramappa wrote:
-> When the driver unbinds, pmu is unregistered and i915->uabi_engines is
-> set to RB_ROOT. Due to this, when i915 PMU tries to stop the engine
-> events, it issues a warn_on because engine lookup fails.
-> 
-> All perf hooks are taking care of this using a pmu->closed flag that is
-> set when PMU unregisters. The stop event seems to have been left out.
-> 
-> Check for pmu->closed in pmu_event_stop as well.
-> 
-> Based on discussion here -
-> https://patchwork.freedesktop.org/patch/492079/?series=105790&rev=2
-> 
-> v2: s/is/if/ in commit title
-> v3: Add fixes tag and cc stable
-> 
-> Cc: <stable@vger.kernel.org> # v5.11+
-> Fixes: b00bccb3f0bb ("drm/i915/pmu: Handle PCI unbind")
-> Signed-off-by: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
-> Reviewed-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+And? It still sets each byte in s to (the lowest 8 bits of) c.
 
-the failure from the shards tests looks unrelated.
+>
+>> And you're not supposed to look at the guts of i915_reg_t to begin with,
+>> that's why it's a typedef. Basically any code that accesses the members
+>> of i915_reg_t outside of its implementation are doing it wrong.
+>> 
+>> Reviewed-by: Jani Nikula <jani.nikula@intel.com>
+>
+> in any case, I agree with your argument, but why can't we simply
+> do:
+>
+>    memset(rc6->res_reg, 0, sizeof(rc6->res_reg));
+>
+> ?
 
-Please next time don't forget to add a versioning to the patches
-you are sending.
+We can simply do a lot of things in C, but IMO that's semantically
+wrong. i915_reg_t is supposed to be an opaque type. We're not supposed
+to know what it contains, and what values are valid or invalid for it.
+That's one of the reasons we have i915_reg_t in the first place (type
+safety being the primary one).
 
-Pushed in drm-intel-gt-next.
+Basically you should be able to do
 
-Thank you,
-Andi
+-#define INVALID_MMIO_REG _MMIO(0)
++#define INVALID_MMIO_REG _MMIO(0xdeadbeef)
+
+and expect everything to still work.
+
+BR,
+Jani.
+
+>
+> The patch looks to me like it's being more complex that it
+> should.
+>
+> Andi
+
+-- 
+Jani Nikula, Intel
