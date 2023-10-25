@@ -1,61 +1,54 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5791C7D6C86
-	for <lists+intel-gfx@lfdr.de>; Wed, 25 Oct 2023 14:59:02 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 69A187D6C8A
+	for <lists+intel-gfx@lfdr.de>; Wed, 25 Oct 2023 14:59:57 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C4DCC10E5B6;
-	Wed, 25 Oct 2023 12:58:55 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BFA7410E650;
+	Wed, 25 Oct 2023 12:59:55 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.151])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 81F0D10E5B6;
- Wed, 25 Oct 2023 12:58:52 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.120])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8617010E650
+ for <intel-gfx@lists.freedesktop.org>; Wed, 25 Oct 2023 12:59:53 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1698238732; x=1729774732;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=psA/xCLXS6dYWJyQx9n3vCLD6NvH6t11xB6SltUFoeE=;
- b=HWnQ49gtZen3rCWPJLezkta/1qP+5ClQHN28+x5cfRHjXpvyV0z2o2M9
- CaLnMiK2bhEffOJsN8oWpq9inF+HN8qqdVZsG4Qwz+xjp/j04XMObfkB/
- fqtCQKZ5YCizEF5a6sNMNvYD7G4qMbaQ8oY8Y25kfDIR0UBuIhq17+Iyr
- 5gxMZUmFlGs+WeyEfoIrabox843fdzAYoRlnhgdfn02GnFvLNINUObl56
- 6xBYj5ajhJ3NyjSoh4v9bfwRYjJ1xKuFFoBFHjwLGC7yarcISnAYiDyO2
- B8juxI6mTqbtCoA8ELNXa9heEAdozJEqdc5tiveh0F02NimTMh3rMwYst A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10873"; a="367512269"
-X-IronPort-AV: E=Sophos;i="6.03,250,1694761200"; d="scan'208";a="367512269"
-Received: from fmviesa001.fm.intel.com ([10.60.135.141])
- by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Oct 2023 05:58:52 -0700
+ t=1698238793; x=1729774793;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=dGpZs6XmbdHe7Rf5YJaHHAME/AVKCHnkefo50Hms3tg=;
+ b=mRgRDjovZlq8m8rA7QORmVCXpybJho9pOEjnC7qws8xJ4MO6Yj7ol1o4
+ 6r0GumCt8N9O4PWbMS1CPMdr21bWVlmFc3upASLXrm92OOJ8iRVDcqFrZ
+ kKh26tJhEBQ57Fl5dILLV+S/KZlFSnDBNDKeLvjv91DH6AxC4K7U240lX
+ LEoLc9BlRLxCSDv5/OIZ5eznIVYkbLdhgSmM/ORs2VUKEjZs3Xrl1RJ6+
+ AqdcBxOJKyvxo3Bsma9yAWZJIJxElviw4tIUALQmFqV63trluvGmtWDtk
+ MDMlPJVDnw9KyItkahmFpViyZAktxleHg3gVf7axxIsoqllSXz9fUENjy g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10873"; a="386183679"
+X-IronPort-AV: E=Sophos;i="6.03,250,1694761200"; d="scan'208";a="386183679"
+Received: from orsmga006.jf.intel.com ([10.7.209.51])
+ by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 25 Oct 2023 05:59:52 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.03,250,1694761200"; 
-   d="scan'208";a="6835834"
-Received: from lababeix-mobl1.ger.corp.intel.com (HELO [10.249.41.109])
- ([10.249.41.109])
- by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Oct 2023 05:58:42 -0700
-Message-ID: <ace7375e-d9a8-4b6f-aa92-6360ca3bfa96@linux.intel.com>
-Date: Wed, 25 Oct 2023 13:58:48 +0100
+X-IronPort-AV: E=McAfee;i="6600,9927,10873"; a="735382666"
+X-IronPort-AV: E=Sophos;i="6.03,250,1694761200"; d="scan'208";a="735382666"
+Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.74])
+ by orsmga006.jf.intel.com with SMTP; 25 Oct 2023 05:59:50 -0700
+Received: by stinkbox (sSMTP sendmail emulation);
+ Wed, 25 Oct 2023 15:59:49 +0300
+Date: Wed, 25 Oct 2023 15:59:49 +0300
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
+Message-ID: <ZTkRRRf2lTksA_a2@intel.com>
+References: <20231018132400.1446-1-stanislav.lisovskiy@intel.com>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Content-Language: en-US
-To: "Teres Alexis, Alan Previn" <alan.previn.teres.alexis@intel.com>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
-References: <20230926190518.105393-1-alan.previn.teres.alexis@intel.com>
- <20230926190518.105393-4-alan.previn.teres.alexis@intel.com>
- <9ca17c5c-7bb4-ff6b-69cb-3983299729c1@linux.intel.com>
- <123edf6b37aa982de20279d64c213156a2dc8c2e.camel@intel.com>
- <fad657e7-beec-75fc-9003-5883412d6e6b@linux.intel.com>
- <0c1e1e713fc46bf0783ca6e0a72a39d6671a6b57.camel@intel.com>
-From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-Organization: Intel Corporation UK Plc
-In-Reply-To: <0c1e1e713fc46bf0783ca6e0a72a39d6671a6b57.camel@intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-Subject: Re: [Intel-gfx] [PATCH v4 3/3] drm/i915/gt: Timeout when waiting
- for idle in suspending
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20231018132400.1446-1-stanislav.lisovskiy@intel.com>
+X-Patchwork-Hint: comment
+Subject: Re: [Intel-gfx] [PATCH] drm/i915: Add bigjoiner force enable option
+ to debugfs
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -68,80 +61,179 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "Jana, Mousumi" <mousumi.jana@intel.com>,
- "intel.com@freedesktop.org" <intel.com@freedesktop.org>,
- "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>, "Vivi,
- Rodrigo" <rodrigo.vivi@intel.com>
+Cc: jani.nikula@intel.com, intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-
-On 04/10/2023 18:59, Teres Alexis, Alan Previn wrote:
-> On Thu, 2023-09-28 at 13:46 +0100, Tvrtko Ursulin wrote:
->> On 27/09/2023 17:36, Teres Alexis, Alan Previn wrote:
->>> Thanks for taking the time to review this Tvrtko, replies inline below.
-> alan:snip
+On Wed, Oct 18, 2023 at 04:24:00PM +0300, Stanislav Lisovskiy wrote:
+> For validation purposes, it might be useful to be able to
+> force Bigjoiner mode, even if current dotclock/resolution
+> do not require that.
+> Lets add such to option to debugfs.
 > 
->>>>
->>>> Main concern is that we need to be sure there are no possible
->>>> ill-effects, like letting the GPU/GuC scribble on some memory we
->>>> unmapped (or will unmap), having let the suspend continue after timing
->>>> out, and not perhaps doing the forced wedge like wait_for_suspend() does
->>>> on the existing timeout path.
->>> alan: this will not happen because the held wakeref is never force-released
->>> after the timeout - so what happens is the kernel would bail the suspend.
->>
->> How does it know to fail the suspend when there is no error code
->> returned with this timeout? Maybe a stupid question.. my knowledge of
->> suspend-resume paths was not great even before I forgot it all.
-> alan:Tvrtko, you and I both sir. (apologies for the tardy response yet again busy week).
-> So i did trace back the gt->wakeref before i posted these patches and discovered that
-> runtime get/put call, i believe that the first 'get' leads to __intel_wakeref_get_first
-> which calls intel_runtime_pm_get via rpm_get helper and eventually executes a
-> pm_runtime_get_sync(rpm->kdev); (hanging off i915). (ofc, there is a corresponding
-> for '_put_last') - so non-first, non-last increases the counter for the gt...
-> but this last miss will mean kernel knows i915 hasnt 'put' everything.
+> v2: - Apparently intel_dp_need_bigjoiner can't be used, when
+>       debugfs entry is created so lets just check manually
+>       the DISPLAY_VER.
 > 
-> alan:snip
->>>
->>> Recap: so in both cases (original vs this patch), if we had a buggy gt-wakeref leak,
->>> we dont get invalid guc-accesses, but without this patch, we wait forever,
->>> and with this patch, we get some messages and eventually bail the suspend.
->>
->> It is not possible to wait for lost G2H in something like
->> intel_uc_suspend() and simply declare "bad things happened" if it times
->> out there, and forcibly clean it all up? (Which would include releasing
->> all the abandoned pm refs, so this patch wouldn't be needed.)
->>
-> alan: I'm not sure if intel_uc_suspend should be held up by gt-level wakeref
-> check unless huc/guc/gsc-uc are the only ones ever taking a gt wakeref.
+> v3: - Switch to intel_connector from drm_connector(Jani Nikula)
+>     - Remove redundant modeset lock(Jani Nikula)
+>     - Use kstrtobool_from_user for boolean value(Jani Nikula)
 > 
-> As we already know, what we do know from a uc-perspective:
-> -  ensure the outstanding guc related workers is flushed which we didnt before
-> (addressed by patch #1).
-> - any further late H2G-SchedDisable is not leaking wakerefs when calling H2G
-> and not realizing it failed (addressed by patch #2).
-> - (we already), "forcibly clean it all up" at the end of the intel_uc_suspend
-> when we do the guc reset and cleanup all guc-ids. (pre-existing upstream code)
-> - we previously didnt have a coherrent guarantee that "this is the end" i.e. no
-> more new request after intel_uc_suspend. I mean by code logic, we thought we did
-> (thats why intel_uc_suspend ends wth a guc reset), but we now know otherwise.
-> So we that fix by adding the additional rcu_barrier (also part of patch #2).
-
-It is not clear to me from the above if that includes cleaning up the 
-outstanding CT replies or no. But anyway..
-
+> v4: - Apply the changes to proper function(Jani Nikula)
 > 
-> That said, patch-3 is NOT fixing a bug in guc -its about "if we ever have
-> a future racy gt-wakeref late-leak somewhere - no matter which subsystem
-> took it (guc is not the only subsystem taking gt wakerefs), we at
-> least don't hang forever in this code. Ofc, based on that, even without
-> patch-3 i am confident the issue is resolved anyway.
-> So we could just drop patch-3 is you prefer?
+> Signed-off-by: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
+> ---
+>  .../drm/i915/display/intel_display_debugfs.c  | 66 +++++++++++++++++++
+>  .../drm/i915/display/intel_display_types.h    |  2 +
+>  drivers/gpu/drm/i915/display/intel_dp.c       |  6 +-
+>  3 files changed, 73 insertions(+), 1 deletion(-)
+> 
+> diff --git a/drivers/gpu/drm/i915/display/intel_display_debugfs.c b/drivers/gpu/drm/i915/display/intel_display_debugfs.c
+> index fbe75d47a165..9b810c6f96ea 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display_debugfs.c
+> +++ b/drivers/gpu/drm/i915/display/intel_display_debugfs.c
+> @@ -1398,6 +1398,30 @@ out:	drm_modeset_unlock(&dev->mode_config.connection_mutex);
+>  	return ret;
+>  }
+>  
+> +static int i915_bigjoiner_enable_show(struct seq_file *m, void *data)
+> +{
+> +	struct intel_connector *connector = to_intel_connector(m->private);
+> +	struct drm_crtc *crtc;
+> +	struct intel_encoder *encoder = intel_attached_encoder(connector);
+> +	struct intel_dp *intel_dp = enc_to_intel_dp(encoder);
+> +	int ret = 0;
+> +
+> +	if (!encoder)
+> +		return -ENODEV;
+> +
+> +	crtc = connector->base.state->crtc;
+> +	if (connector->base.status != connector_status_connected || !crtc) {
+> +		ret = -ENODEV;
 
-.. given this it does sound to me that if you are confident patch 3 
-isn't fixing anything today that it should be dropped.
+Why do we need this extra complication?
 
-Regards,
+> +		goto out;
+> +	}
+> +
+> +	seq_printf(m, "Bigjoiner enable: %d\n", intel_dp->force_bigjoiner_enable);
+> +
+> +out:
+> +
+> +	return ret;
+> +}
+> +
+>  static ssize_t i915_dsc_output_format_write(struct file *file,
+>  					    const char __user *ubuf,
+>  					    size_t len, loff_t *offp)
+> @@ -1419,12 +1443,39 @@ static ssize_t i915_dsc_output_format_write(struct file *file,
+>  	return len;
+>  }
+>  
+> +static ssize_t i915_bigjoiner_enable_fops_write(struct file *file,
+> +						const char __user *ubuf,
+> +						size_t len, loff_t *offp)
+> +{
+> +	struct seq_file *m = file->private_data;
+> +	struct intel_connector *connector = m->private;
+> +	struct intel_encoder *encoder = intel_attached_encoder(connector);
+> +	struct intel_dp *intel_dp = enc_to_intel_dp(encoder);
+> +	bool bigjoiner_en = 0;
+> +	int ret;
+> +
+> +	ret = kstrtobool_from_user(ubuf, len, &bigjoiner_en);
+> +	if (ret < 0)
+> +		return ret;
+> +
+> +	intel_dp->force_bigjoiner_enable = bigjoiner_en;
+> +	*offp += len;
+> +
+> +	return len;
+> +}
+> +
+>  static int i915_dsc_output_format_open(struct inode *inode,
+>  				       struct file *file)
+>  {
+>  	return single_open(file, i915_dsc_output_format_show, inode->i_private);
+>  }
+>  
+> +static int i915_bigjoiner_enable_open(struct inode *inode,
+> +				      struct file *file)
+> +{
+> +	return single_open(file, i915_bigjoiner_enable_show, inode->i_private);
+> +}
+> +
+>  static const struct file_operations i915_dsc_output_format_fops = {
+>  	.owner = THIS_MODULE,
+>  	.open = i915_dsc_output_format_open,
+> @@ -1434,6 +1485,15 @@ static const struct file_operations i915_dsc_output_format_fops = {
+>  	.write = i915_dsc_output_format_write
+>  };
+>  
+> +static const struct file_operations i915_bigjoiner_enable_fops = {
+> +	.owner = THIS_MODULE,
+> +	.open = i915_bigjoiner_enable_open,
+> +	.read = seq_read,
+> +	.llseek = seq_lseek,
+> +	.release = single_release,
+> +	.write = i915_bigjoiner_enable_fops_write
+> +};
+> +
+>  /*
+>   * Returns the Current CRTC's bpc.
+>   * Example usage: cat /sys/kernel/debug/dri/0/crtc-0/i915_current_bpc
+> @@ -1513,6 +1573,12 @@ void intel_connector_debugfs_add(struct intel_connector *intel_connector)
+>  				    connector, &i915_dsc_output_format_fops);
+>  	}
+>  
+> +	if (DISPLAY_VER(dev_priv) >= 11 &&
+> +	    intel_connector->base.connector_type == DRM_MODE_CONNECTOR_DisplayPort) {
 
-Tvrtko
+eDP missing
+
+> +		debugfs_create_file("i915_bigjoiner_force_enable", 0644, root,
+> +				    &intel_connector->base, &i915_bigjoiner_enable_fops);
+> +	}
+> +
+>  	if (connector->connector_type == DRM_MODE_CONNECTOR_DSI ||
+>  	    connector->connector_type == DRM_MODE_CONNECTOR_eDP ||
+>  	    connector->connector_type == DRM_MODE_CONNECTOR_DisplayPort ||
+> diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/drivers/gpu/drm/i915/display/intel_display_types.h
+> index 8d8b2f8d37a9..e0de6eeaf59e 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display_types.h
+> +++ b/drivers/gpu/drm/i915/display/intel_display_types.h
+> @@ -1753,6 +1753,8 @@ struct intel_dp {
+>  	bool is_mst;
+>  	int active_mst_links;
+>  
+> +	bool force_bigjoiner_enable;
+> +
+>  	/* connector directly attached - won't be use for modeset in mst world */
+>  	struct intel_connector *attached_connector;
+>  
+> diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
+> index 4f6835a7578e..6a9148232a9c 100644
+> --- a/drivers/gpu/drm/i915/display/intel_dp.c
+> +++ b/drivers/gpu/drm/i915/display/intel_dp.c
+> @@ -1153,7 +1153,11 @@ bool intel_dp_need_bigjoiner(struct intel_dp *intel_dp,
+>  	if (!intel_dp_can_bigjoiner(intel_dp))
+>  		return false;
+>  
+> -	return clock > i915->max_dotclk_freq || hdisplay > 5120;
+> +	if (intel_dp->force_bigjoiner_enable)
+> +		drm_dbg_kms(&i915->drm, "Forcing bigjoiner mode\n");
+
+That's going to cause excessive dmesg spam.
+
+> +
+> +	return clock > i915->max_dotclk_freq || hdisplay > 5120 ||
+> +	       intel_dp->force_bigjoiner_enable;
+>  }
+>  
+>  static enum drm_mode_status
+> -- 
+> 2.37.3
+
+-- 
+Ville Syrjälä
+Intel
