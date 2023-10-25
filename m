@@ -2,50 +2,50 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9E53F7D68E4
-	for <lists+intel-gfx@lfdr.de>; Wed, 25 Oct 2023 12:37:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8B5BA7D687A
+	for <lists+intel-gfx@lfdr.de>; Wed, 25 Oct 2023 12:28:40 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E5C7B10E63E;
-	Wed, 25 Oct 2023 10:37:11 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CE84610E642;
+	Wed, 25 Oct 2023 10:28:37 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4C07910E62F
- for <intel-gfx@lists.freedesktop.org>; Wed, 25 Oct 2023 10:37:08 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.65])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 64A9610E62F
+ for <intel-gfx@lists.freedesktop.org>; Wed, 25 Oct 2023 10:28:35 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1698230228; x=1729766228;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=Xhb2iRZR1ft8RqOjtfXp8G2rGX64HIUluEMSlQT5ads=;
- b=SOafeUJRLZls5gMv7uTgXYD3Hjh1RgYU+1JdOU0O9t315pHGA+2IxbrS
- ViTk5d7Z8YAhcuHBoukiKVKLU9Poxj0ASh9grFmDRYORex7BHl3B9BgfV
- 648rQFLRQocPTspEkmrIx6SjDTct3FjYD63cKpXde64iT/TqHOwIA0GvT
- kuL6JXbJkVVlmRzXvYvn19DfHqlyual8sQW8tYAdPKo91/UigdKPkCA8h
- XG4IRlZq81DfThT67NK5F/Tww/+6QQVEDaGJNxXj/G4+TKd8t2cTzQEtl
- 3xFpguJZMSmEc3jKdOsreyclFidwrCFaPupMGQl0Ufb2UF9LUZ3JZQywv g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10873"; a="43857"
-X-IronPort-AV: E=Sophos;i="6.03,250,1694761200"; 
-   d="scan'208";a="43857"
-Received: from orsmga004.jf.intel.com ([10.7.209.38])
- by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Oct 2023 03:30:03 -0700
+ t=1698229715; x=1729765715;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=0A8eHtzBhg4YwjB7BPLmtcOmgtv5FlxTsVm0qCk9trk=;
+ b=W2/AeZPsXJSRXR+3PWF/YpsS1lMsI6gWhPTHRdZryn5I6q5EhZUKv9c3
+ CF44Z7D576Ib6KngTajDT0dlR1svYl+n19uhqyk1sf+QgId4461YZST46
+ x9cjFMoBsy6KqFn9PtN4Q9xuTMeJ87e9S1heMCFK0Op5pEEWozV4FvBob
+ sOs//OyG/Tgyxr6ftFh/4Yse5mR8ZcX6fkWemfbIohydyPEpqJ87+956a
+ ZS+uCI7anraF+kUTMl+bZAdXuJE4XK8jzIzvVAEMh/Nau5O8ErOZWvizJ
+ LcH9mgxIMq9euSHTNpD1v9cNDJgPHpx/Ja70HwJi7cf4E75KjVp0CBssi Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10873"; a="391148933"
+X-IronPort-AV: E=Sophos;i="6.03,250,1694761200"; d="scan'208";a="391148933"
+Received: from fmsmga005.fm.intel.com ([10.253.24.32])
+ by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 25 Oct 2023 03:28:34 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10873"; a="882409907"
-X-IronPort-AV: E=Sophos;i="6.03,250,1694761200"; d="scan'208";a="882409907"
-Received: from nemesa.iind.intel.com ([10.190.239.22])
- by orsmga004.jf.intel.com with ESMTP; 25 Oct 2023 03:30:01 -0700
-From: Nemesa Garg <nemesa.garg@intel.com>
+X-IronPort-AV: E=McAfee;i="6600,9927,10873"; a="1090170810"
+X-IronPort-AV: E=Sophos;i="6.03,250,1694761200"; d="scan'208";a="1090170810"
+Received: from nirmoyda-desk.igk.intel.com ([10.102.138.190])
+ by fmsmga005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 25 Oct 2023 03:28:32 -0700
+From: Nirmoy Das <nirmoy.das@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Wed, 25 Oct 2023 15:57:34 +0530
-Message-Id: <20231025102734.2783492-3-nemesa.garg@intel.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20231025102734.2783492-1-nemesa.garg@intel.com>
-References: <20231025102734.2783492-1-nemesa.garg@intel.com>
+Date: Wed, 25 Oct 2023 12:28:26 +0200
+Message-ID: <20231025102826.16955-1-nirmoy.das@intel.com>
+X-Mailer: git-send-email 2.41.0
 MIME-Version: 1.0
+Organization: Intel Deutschland GmbH, Registered Address: Am Campeon 10,
+ 85579 Neubiberg, Germany,
+ Commercial Register: Amtsgericht Muenchen HRB 186928 
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH 2/2] drm/i915: Add the darkscreen debugfs under
- crtc
+Subject: [Intel-gfx] [PATCH] drm/i915/mtl: Apply notify_guc to all GTs
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -58,84 +58,47 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: Andrzej Hajda <andrzej.hajda@intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, Nirmoy Das <nirmoy.das@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Add debugfs entry for darkscreen to know the status
-bpc and timer value .
+Handle platforms with multiple GTs by iterate over all GTs.
+Add a Fixes commit so this gets propagated for MTL support.
 
-Signed-off-by: Nemesa Garg <nemesa.garg@intel.com>
+Fixes: 213c43676beb ("drm/i915/mtl: Remove the 'force_probe' requirement for Meteor Lake")
+Suggested-by: John Harrison <john.c.harrison@intel.com>
+Cc: Jani Nikula <jani.nikula@linux.intel.com>
+Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
+Cc: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+Cc: Andi Shyti <andi.shyti@linux.intel.com>
+Cc: Andrzej Hajda <andrzej.hajda@intel.com>
+Signed-off-by: Nirmoy Das <nirmoy.das@intel.com>
 ---
- .../gpu/drm/i915/display/intel_darkscreen.c   | 38 +++++++++++++++++++
- .../drm/i915/display/intel_display_debugfs.c  |  2 +
- 2 files changed, 40 insertions(+)
+ drivers/gpu/drm/i915/i915_debugfs_params.c | 9 ++++++---
+ 1 file changed, 6 insertions(+), 3 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_darkscreen.c b/drivers/gpu/drm/i915/display/intel_darkscreen.c
-index ef68dbc7a296..c6490c16fdb5 100644
---- a/drivers/gpu/drm/i915/display/intel_darkscreen.c
-+++ b/drivers/gpu/drm/i915/display/intel_darkscreen.c
-@@ -67,3 +67,41 @@ void dark_screen_enable(struct intel_crtc_state *crtc_state)
- 	intel_de_rmw(dev_priv, DARK_SCREEN(crtc->config->cpu_transcoder), 0, DARK_SCREEN_DETECT |
- 		       DARK_SCREEN_DONE);
- }
-+
-+static int intel_darkscreen_debugfs_status_get(void *data, u64 *val)
-+{
-+	struct intel_crtc *crtc = data;
-+
-+	*val = crtc->dark_screen.enable;
-+
-+	return 0;
-+}
-+
-+static int intel_darkscreen_debugfs_status_set(void *data, u64 val)
-+{
-+	struct intel_crtc *crtc = data;
-+	struct intel_crtc_state *crtc_state;
-+
-+	crtc->dark_screen.enable = val;
-+
-+	crtc_state = to_intel_crtc_state(crtc->base.state);
-+
-+	if (crtc_state)
-+		dark_screen_enable(crtc_state);
-+
-+	return 0;
-+}
-+
-+/*
-+ * Check the status whether the darkscreen
-+ * is enabled or not.
-+ */
-+DEFINE_DEBUGFS_ATTRIBUTE(intel_darkscreen_debugfs_status_fops,
-+			 intel_darkscreen_debugfs_status_get,
-+			 intel_darkscreen_debugfs_status_set, "%llu\n");
-+
-+void intel_darkscreen_crtc_debugfs_add(struct intel_crtc *crtc)
-+{
-+	debugfs_create_file("i915_darkscreen_status", 0644, crtc->base.debugfs_entry,
-+			    crtc, &intel_darkscreen_debugfs_status_fops);
-+}
-diff --git a/drivers/gpu/drm/i915/display/intel_display_debugfs.c b/drivers/gpu/drm/i915/display/intel_display_debugfs.c
-index 2836826f8c05..27a6141eab3e 100644
---- a/drivers/gpu/drm/i915/display/intel_display_debugfs.c
-+++ b/drivers/gpu/drm/i915/display/intel_display_debugfs.c
-@@ -33,6 +33,7 @@
- #include "intel_psr.h"
- #include "intel_psr_regs.h"
- #include "intel_wm.h"
-+#include "intel_darkscreen.h"
+diff --git a/drivers/gpu/drm/i915/i915_debugfs_params.c b/drivers/gpu/drm/i915/i915_debugfs_params.c
+index 614bde321589..8bca02025e09 100644
+--- a/drivers/gpu/drm/i915/i915_debugfs_params.c
++++ b/drivers/gpu/drm/i915/i915_debugfs_params.c
+@@ -38,10 +38,13 @@ static int i915_param_int_open(struct inode *inode, struct file *file)
  
- static inline struct drm_i915_private *node_to_i915(struct drm_info_node *node)
+ static int notify_guc(struct drm_i915_private *i915)
  {
-@@ -1539,6 +1540,7 @@ void intel_crtc_debugfs_add(struct intel_crtc *crtc)
- 	intel_drrs_crtc_debugfs_add(crtc);
- 	intel_fbc_crtc_debugfs_add(crtc);
- 	hsw_ips_crtc_debugfs_add(crtc);
-+	intel_darkscreen_crtc_debugfs_add(crtc);
+-	int ret = 0;
++	struct intel_gt *gt;
++	int i, ret = 0;
  
- 	debugfs_create_file("i915_current_bpc", 0444, root, crtc,
- 			    &i915_current_bpc_fops);
+-	if (intel_uc_uses_guc_submission(&to_gt(i915)->uc))
+-		ret = intel_guc_global_policies_update(&to_gt(i915)->uc.guc);
++	for_each_gt(gt, i915, i) {
++		if (intel_uc_uses_guc_submission(&gt->uc))
++			ret = intel_guc_global_policies_update(&gt->uc.guc);
++	}
+ 
+ 	return ret;
+ }
 -- 
-2.25.1
+2.41.0
 
