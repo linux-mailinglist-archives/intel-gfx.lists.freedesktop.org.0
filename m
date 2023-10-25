@@ -1,71 +1,56 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 60B5D7D7399
-	for <lists+intel-gfx@lfdr.de>; Wed, 25 Oct 2023 20:53:22 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 42E9C7D739B
+	for <lists+intel-gfx@lfdr.de>; Wed, 25 Oct 2023 20:54:10 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 72B9010E6D1;
-	Wed, 25 Oct 2023 18:53:19 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A331510E6CF;
+	Wed, 25 Oct 2023 18:54:08 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-lf1-x135.google.com (mail-lf1-x135.google.com
- [IPv6:2a00:1450:4864:20::135])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8C68C10E6CF
- for <intel-gfx@lists.freedesktop.org>; Wed, 25 Oct 2023 18:53:17 +0000 (UTC)
-Received: by mail-lf1-x135.google.com with SMTP id
- 2adb3069b0e04-507ac66a969so31109e87.3
- for <intel-gfx@lists.freedesktop.org>; Wed, 25 Oct 2023 11:53:17 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=linux-foundation.org; s=google; t=1698259995; x=1698864795;
- darn=lists.freedesktop.org; 
- h=cc:to:subject:message-id:date:from:in-reply-to:references
- :mime-version:from:to:cc:subject:date:message-id:reply-to;
- bh=OWfmfKqnYPPYgQ6+yx/cPVKlRsSm9gZz+0CuEi4JgDk=;
- b=LmsQdhoEg2pJnoMAVIOOn+WH7RMeaUN+bZ5cab1KpmbIqqQWx/TkuCjc1m+jqp8VDd
- NAbeWzszIvovUJSa5Wgv2JWtZCiQu4PNbe4ij0vx4CRMnZVEF08Eetk/Kd6jlO6lH4/Z
- ETR2gD+0YhNB7RNylZs0TKWKyWjxSc84TJcWQ=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1698259995; x=1698864795;
- h=cc:to:subject:message-id:date:from:in-reply-to:references
- :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
- :reply-to;
- bh=OWfmfKqnYPPYgQ6+yx/cPVKlRsSm9gZz+0CuEi4JgDk=;
- b=kymNrswtc4HCJk3LdqpHjpXVcA+jXso0welFk40I3yDCvEnUP3Our/TkvV4Izyi7BL
- hEWhOd/8tAECsdOPbvz/R+C1uLOB/9VPMku8v+sGxtiRgsBoAx2cNXybnM2XHNH10TRH
- +/MUd+JyqroGSQdQ11orl+ijbaPgAnDzKLqIQ6we/Vq3chQjh6YfQEQfiyeTau2jGULu
- IWNkgQby22PJc4f8YcUX+S9Wh8J1oituY/QyygWwyZqmXQKSznlcIeTd5kZmn3jQ0gsn
- SEvig8q88ffkNTM4qcVkXHvguDLgsw3jri66ufZqZHWz5w+QUUBAMCWshfhIFmdjf2s7
- /wlQ==
-X-Gm-Message-State: AOJu0Yxws/AAxqqtjTOLlnJKayRYv85dwyShxQz0W1ivLF6aDi9dYELt
- jwULI0HAbBkCLJXpuqrJLHu+XCgzHwnIdDbqYkDsiWHZ
-X-Google-Smtp-Source: AGHT+IFpTaSU2oSWPPSMiHVVlnI3WJKoTpc6T5sdBokZAY0LLxQ0aUcub0tI2dyKP5MM9fNoJQBt5g==
-X-Received: by 2002:a05:6512:2034:b0:507:b0f7:ec92 with SMTP id
- s20-20020a056512203400b00507b0f7ec92mr10353402lfs.59.1698259995253; 
- Wed, 25 Oct 2023 11:53:15 -0700 (PDT)
-Received: from mail-ej1-f51.google.com (mail-ej1-f51.google.com.
- [209.85.218.51]) by smtp.gmail.com with ESMTPSA id
- e24-20020a50a698000000b0052febc781bfsm10239932edc.36.2023.10.25.11.53.14
- for <intel-gfx@lists.freedesktop.org>
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Wed, 25 Oct 2023 11:53:14 -0700 (PDT)
-Received: by mail-ej1-f51.google.com with SMTP id
- a640c23a62f3a-9b9faf05f51so14577566b.2
- for <intel-gfx@lists.freedesktop.org>; Wed, 25 Oct 2023 11:53:14 -0700 (PDT)
-X-Received: by 2002:a17:907:9450:b0:9ad:f7e5:67d9 with SMTP id
- dl16-20020a170907945000b009adf7e567d9mr12171532ejc.4.1698259994083; Wed, 25
- Oct 2023 11:53:14 -0700 (PDT)
+Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.151])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 00DAC10E6CF
+ for <intel-gfx@lists.freedesktop.org>; Wed, 25 Oct 2023 18:54:06 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1698260047; x=1729796047;
+ h=message-id:date:mime-version:subject:to:cc:references:
+ from:in-reply-to:content-transfer-encoding;
+ bh=kBUUJAMWjFw6V8tlapmdipj8IYbwhIFa+VXTGpzFT1M=;
+ b=W937olrsq41vsQvQOYIIyEs11mX33H4V5CCBO1mLNIBGTqUFblGNZBDK
+ ziaXDjPK558hy2GAuqKR+JxgJTD+xRZYmLOlheiJNxVWRcDlqF+1kVc0U
+ z8b+EdPXTK9vrPamjG70actHQNC3PC1dEKSb7b23vIhEfdgAKVQjw+gLd
+ xw1siU/L2YyIGjXlNCSsbXO7DB/qGeDXAsF6+ZfEB+DQy/TJQ9Xq+BQ8B
+ Wi+WqGFUZ58iTrWiK18JA5NE4aWKMUNimkyJz5AwKSR5ESN3i/zc7sS1/
+ szHDJvA64/7fJFAaYbV0+KwInxmHBRQeYxHEED2bgHWHYba0DY3E8fB0t Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10874"; a="367588798"
+X-IronPort-AV: E=Sophos;i="6.03,250,1694761200"; d="scan'208";a="367588798"
+Received: from orsmga005.jf.intel.com ([10.7.209.41])
+ by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 25 Oct 2023 11:54:06 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10874"; a="932462913"
+X-IronPort-AV: E=Sophos;i="6.03,250,1694761200"; d="scan'208";a="932462913"
+Received: from ahajda-mobl.ger.corp.intel.com (HELO [10.213.18.52])
+ ([10.213.18.52])
+ by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 25 Oct 2023 11:54:04 -0700
+Message-ID: <6c03b101-64a5-4316-91ad-991ddcf17456@intel.com>
+Date: Wed, 25 Oct 2023 20:54:02 +0200
 MIME-Version: 1.0
-References: <20231025-formfrage-watscheln-84526cd3bd7d@brauner>
-In-Reply-To: <20231025-formfrage-watscheln-84526cd3bd7d@brauner>
-From: Linus Torvalds <torvalds@linux-foundation.org>
-Date: Wed, 25 Oct 2023 08:52:57 -1000
-X-Gmail-Original-Message-ID: <CAHk-=wiPAM0MzHvtbD_=rO81DWO0ZPHE=Bp+TWqke_ZhEDOoZQ@mail.gmail.com>
-Message-ID: <CAHk-=wiPAM0MzHvtbD_=rO81DWO0ZPHE=Bp+TWqke_ZhEDOoZQ@mail.gmail.com>
-To: Christian Brauner <brauner@kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-Subject: Re: [Intel-gfx] [PATCH] file,
- i915: fix file reference for mmap_singleton()
+User-Agent: Mozilla Thunderbird
+Content-Language: en-US
+To: Nirmoy Das <nirmoy.das@intel.com>, intel-gfx@lists.freedesktop.org
+References: <20231025170834.22691-1-nirmoy.das@intel.com>
+From: Andrzej Hajda <andrzej.hajda@intel.com>
+Organization: Intel Technology Poland sp. z o.o. - ul. Slowackiego 173, 80-298
+ Gdansk - KRS 101882 - NIP 957-07-52-316
+In-Reply-To: <20231025170834.22691-1-nirmoy.das@intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+Subject: Re: [Intel-gfx] [PATCH v2] drm/i915/tc: Fix -Wformat-truncation in
+ intel_tc_port_init
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -78,110 +63,74 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Jann Horn <jannh@google.com>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>, "Kurmi,
- Suresh Kumar" <suresh.kumar.kurmi@intel.com>
+Cc: Jani Nikula <jani.nikula@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, 25 Oct 2023 at 02:01, Christian Brauner <brauner@kernel.org> wrote:
->
->         rcu_read_lock();
-> -       file = get_file_rcu(&i915->gem.mmap_singleton);
-> +       file = get_file_rcu_once(&i915->gem.mmap_singleton);
->         rcu_read_unlock();
->         if (file)
->                 return file;
+On 25.10.2023 19:08, Nirmoy Das wrote:
+> Fix below compiler warning:
+> 
+> intel_tc.c:1879:11: error: ‘%d’ directive output may be truncated
+> writing between 1 and 11 bytes into a region of size 3
+> [-Werror=format-truncation=]
+> "%c/TC#%d", port_name(port), tc_port + 1);
+>             ^~
+> intel_tc.c:1878:2: note: ‘snprintf’ output between 7 and 17 bytes
+> into a destination of size 8
+>    snprintf(tc->port_name, sizeof(tc->port_name),
+>    ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+>      "%c/TC#%d", port_name(port), tc_port + 1);
+>      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+> 
+> v2: use kasprintf(Imre)
+> 
+> Fixes: 3eafcddf766b ("drm/i915/tc: Move TC port fields to a new intel_tc_port struct")
+> Cc: Mika Kahola <mika.kahola@intel.com>
+> Cc: Imre Deak <imre.deak@intel.com>
+> Cc: Jani Nikula <jani.nikula@intel.com>
+> Signed-off-by: Nirmoy Das <nirmoy.das@intel.com>
 
-Honestly, the get_file_rcu_once() function seems a bit pointless.
+Reviewed-by: Andrzej Hajda <andrzej.hajda@intel.com>
 
-The above doesn't want a loop at all. Yet your "once" still does loop,
-because "even get_file_rcu_once() is trying to deal with the whole
-"the pointer itself changed".
+Regards
+Andrzej
 
-And the i915 code is actually designed to just depend on the atomicity
-of the mmap_singleton access itself, in how it uses
+> ---
+>   drivers/gpu/drm/i915/display/intel_tc.c | 9 ++++++---
+>   1 file changed, 6 insertions(+), 3 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/i915/display/intel_tc.c b/drivers/gpu/drm/i915/display/intel_tc.c
+> index 37b0f8529b4f..0fa54450d51b 100644
+> --- a/drivers/gpu/drm/i915/display/intel_tc.c
+> +++ b/drivers/gpu/drm/i915/display/intel_tc.c
+> @@ -58,7 +58,7 @@ struct intel_tc_port {
+>   	struct delayed_work link_reset_work;
+>   	int link_refcount;
+>   	bool legacy_port:1;
+> -	char port_name[8];
+> +	char *port_name;
+>   	enum tc_port_mode mode;
+>   	enum tc_port_mode init_mode;
+>   	enum phy_fia phy_fia;
+> @@ -1875,8 +1875,10 @@ int intel_tc_port_init(struct intel_digital_port *dig_port, bool is_legacy)
+>   	else
+>   		tc->phy_ops = &icl_tc_phy_ops;
+>   
+> -	snprintf(tc->port_name, sizeof(tc->port_name),
+> -		 "%c/TC#%d", port_name(port), tc_port + 1);
+> +	tc->port_name = kasprintf(GFP_KERNEL, "%c/TC#%d", port_name(port),
+> +				  tc_port + 1);
+> +	if (!tc->port_name)
+> +		return -ENOMEM;
+>   
+>   	mutex_init(&tc->lock);
+>   	/* TODO: Combine the two works */
+> @@ -1897,6 +1899,7 @@ void intel_tc_port_cleanup(struct intel_digital_port *dig_port)
+>   {
+>   	intel_tc_port_suspend(dig_port);
+>   
+> +	kfree(dig_port->tc->port_name);
+>   	kfree(dig_port->tc);
+>   	dig_port->tc = NULL;
+>   }
 
-        cmpxchg(&i915->gem.mmap_singleton, file, NULL);
-...
-        file = READ_ONCE(i915->gem.mmap_singleton);
-
-and literally says "I'll remove my singleton as it is released". The
-important part there is that the 'map_singleton' pointer itself isn't
-actually reference-counted - it's the reverse, where
-reference-counting *other* instances will then auto-clear it.
-
-And that's what then makes that get_file_rcu() model not work with it,
-because get_file_rcu() kind of assumes that the argument it gets is
-*part* of the reference counting, not a cached *result* of the
-reference counting that gets cleared as a result of the ref going down
-to zero.
-
-I may explain my objections badly, but hopefully you get what I mean.
-
-And I think that also means that using that new get_file_rcu_once()
-may be hiding the actual problem, but it's still conceptually wrong,
-because it still has that conceptual model of "the pointer I'm getting
-is part of the reference counting", when it really isn't.
-
-So I think we'd actually be better off with something that is more
-clearly different from get_file_rcu() in naming, so make that
-conceptual difference clearer. Make it be something like
-"get_active_file(struct file **)", and make the implementation be just
-exactly what your current __get_file_rcu() is with no loops at all.
-
-Then thew i915 code ends up being
-
-        rcu_read_lock();
-        file = get_active_file(&i915->gem.mmap_singleton);
-        rcu_read_unlock();
-
-        if (!IS_ERR_OR_NULL(file))
-                return file;
-
-       .. create new mmap_singleton ..
-
-and that's it.
-
-If you don't want to expose __get_file_rcu() as-is, you could maybe just do
-
-  struct file *get_active_file(struct file **fp)
-  {
-        struct file *file;
-        rcu_read_lock();
-        file = __get_file_rcu(fp);
-        rcu_read_unlock();
-        return file;
-  }
-
-and then the i916 code would just drop the RCU locking that it has no
-business even knowing about.
-
-I realize that my complaints are a bit conceptual, and that the
-practical end result is pretty much the same, but I do think that it
-is worth noting this conceptual difference between "file pointer is
-ref-counted" and "file counter is *controlled* by ref-counting".
-
-Add a comment to the effect at get_active_file() users.
-
-The old i915 code is already racy, in that it's called a "singleton",
-but if you have multiple concurrent callers to mmap_singleton(), they
-all might see a NULL file at first, and then they all create
-*separate* new "singleton" files, and they *all* do that
-
-        smp_store_mb(i915->gem.mmap_singleton, file);
-
-and one random case of them happens to win the race and set *its* file
-as "THE singleton" file.
-
-So your "let's loop if it changes" is not fixing anything as-is, and
-it's just actually hiding what is going on.
-
-If the i915 code wants to be consistent and really have just one
-singleton, it needs to do the looping with some cmpxchg or whatever
-itself. Doing the loop in some get_file_rcu_once() function for when
-the file pointer changed isn't going to fix the race.
-
-Am I missing something?
-
-              Linus
