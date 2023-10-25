@@ -2,32 +2,68 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 682A87D76E1
-	for <lists+intel-gfx@lfdr.de>; Wed, 25 Oct 2023 23:36:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 111887D76E6
+	for <lists+intel-gfx@lfdr.de>; Wed, 25 Oct 2023 23:39:26 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 05D1C10E5EA;
-	Wed, 25 Oct 2023 21:36:07 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E40D510E5E2;
+	Wed, 25 Oct 2023 21:39:23 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id BB44D10E5E2;
- Wed, 25 Oct 2023 21:36:04 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 9D46CA03D2;
- Wed, 25 Oct 2023 21:36:04 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============7907412539136287756=="
+Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.24])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DB66D10E5E2
+ for <intel-gfx@lists.freedesktop.org>; Wed, 25 Oct 2023 21:39:21 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1698269961; x=1729805961;
+ h=from:date:subject:mime-version:content-transfer-encoding:
+ message-id:to:cc;
+ bh=M9YR0XWgWOmEjasdaF5dvVIdmizBqpKx0yyPpSgRQEE=;
+ b=Ht77Mgblu311F+jcWZzC0kO8EdTLQDtqF45MKDUbanFi91w8oda2KYru
+ QTdmRQXWLcuF6YlRhc0zaYMOIPE+81cqAOTr2FhK5mQrvmOnYvd/Yj3xg
+ 24v6oFnlSlKmMWmAmCaiAAYpRZoOq4IsoQ3+h9SPDxB82jkhA91pXLwKA
+ 4L1eJ4MYUP0PRraWdYGREzf28lcEcz+fWesBNxEO4NV5kEjWLO1nxsDqm
+ h9tsVktIRAbeibVwCc3ZMK5AIL0Dmn568Jhd7iCw8RkL3wsEDew/ZHaGO
+ c9RLkDzGeFKAZgXS0WG3lcVOgzilcxr35S6a073ep7/nuC/Quix2b0/0h w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10874"; a="390263665"
+X-IronPort-AV: E=Sophos;i="6.03,250,1694761200"; d="scan'208";a="390263665"
+Received: from fmsmga003.fm.intel.com ([10.253.24.29])
+ by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 25 Oct 2023 14:39:19 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10874"; a="849677457"
+X-IronPort-AV: E=Sophos;i="6.03,250,1694761200"; d="scan'208";a="849677457"
+Received: from lab-ah.igk.intel.com ([10.102.138.202])
+ by fmsmga003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 25 Oct 2023 14:39:16 -0700
+From: Andrzej Hajda <andrzej.hajda@intel.com>
+Date: Wed, 25 Oct 2023 23:39:07 +0200
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Dnyaneshwar Bhadane" <dnyaneshwar.bhadane@intel.com>
-Date: Wed, 25 Oct 2023 21:36:04 -0000
-Message-ID: <169826976461.20489.2373996470701985245@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20231025131709.3368517-1-dnyaneshwar.bhadane@intel.com>
-In-Reply-To: <20231025131709.3368517-1-dnyaneshwar.bhadane@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
- =?utf-8?q?/i915/mtl=3A_Add_Wa=5F22016670082?=
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+Message-Id: <20231025-debugobjects_fix-v3-1-2bc3bf7084c2@intel.com>
+X-B4-Tracking: v=1; b=H4sIAPqKOWUC/z3MTQ7CIBCG4as0rKUWKK115T2MMQNMC40FA/UnN
+ r271IXLdzLfs5CE0WEix2IhEZ8uueBziF1BtAU/IHUmN+EVF6zikhpUjyGoEfWcrr1706ZByTs
+ uZatrkmf3iPn8I8+X3H0ME51tRPhDVX5nggnZlbyrDwfeUkbBm/jBsbQwGjg5P+Ot1GHaSAUJq
+ Yrgtd0IVe9foBRZ1y/zpBUyvwAAAA==
+To: linux-kernel@vger.kernel.org, intel-gfx@lists.freedesktop.org, 
+ linux-mm@kvack.org
+X-Mailer: b4 0.12.3
+X-Developer-Signature: v=1; a=openpgp-sha256; l=11404;
+ i=andrzej.hajda@intel.com; h=from:subject:message-id;
+ bh=M9YR0XWgWOmEjasdaF5dvVIdmizBqpKx0yyPpSgRQEE=;
+ b=owEB7QES/pANAwAKASNispPeEP3XAcsmYgBlOYsDrBMPiLwxsaT9p7frP5Jp6GZUcLUmVQuloKaH
+ 0KwwZ0OJAbMEAAEKAB0WIQT8qEQxNN2/XeF/A00jYrKT3hD91wUCZTmLAwAKCRAjYrKT3hD910unC/
+ 9guaFzM2bfO+yD/g91t70H8/PquAzFoHsNO9DiLcYCUy0lVikzyP0xydf1mfrpC1M4zua8pdhsmkUJ
+ DJ4o1CJ2ofv4Z8kBXJ2P2J/BCmzIfcl6dDYWFJ3D5TOwdG09AC1ftUET1OtRXh1xPV8YjH9+EMGdcK
+ L3s+dap7EOqC5DCXYAp8mk6VYiZOCf9dJzmq9TpW619cEnqhfKT4XA2fXXMwyYSmLtxok3kAqvS+8B
+ F3AqbqvoljTNxSnGZ/IOCk7jaBlA8gjbbI3IQLSSpmxHFlhuWMIRn6aCePS2LhSlKt4pe+uyM+uQZC
+ MZKBMP/FnZp6xFB1GaCpid0yfnrkYdFw+N0iHDJ4e6W/dMHFZ94VsZDcFW0bsH9c3x4/I2gEUhgoWB
+ EQYr09yu9uASGfdmEQxZWs5wXdRZnu62jQQ+kQbr97HgfSHv28i8GJAU+Mn1y1KdZEE5pVegvlwLqI
+ kIFmWqUEu5IhaIRv7gpQFpOnqgX+5V7Hvwnl75KH25b1Y=
+X-Developer-Key: i=andrzej.hajda@intel.com; a=openpgp;
+ fpr=FCA8443134DDBF5DE17F034D2362B293DE10FDD7
+Subject: [Intel-gfx] [PATCH v3] debugobjects: stop accessing objects after
+ releasing spinlock
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,442 +76,405 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
+Cc: Thomas Gleixner <tglx@linutronix.de>,
+ Andrzej Hajda <andrzej.hajda@intel.com>, Nirmoy Das <nirmoy.das@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============7907412539136287756==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+After spinlock release object can be modified/freed by concurrent thread.
+Using it in such case is error prone, even for printing object state.
+To avoid such situation local copy of the object is created if necessary.
+
+Sample buggy scenario:
+1. Thread tries to deactivate destroyed object, debugobjects detects it,
+   spin lock is released, thread is preempted.
+2. Other thread frees debugobject, then allocates new one on the same memory
+   location, ie 'obj' variable from 1st thread point to it - it is possible
+   because there is no locking.
+3. Then preemption occurs, and 1st thread reports error for wrong object.
+
+Signed-off-by: Andrzej Hajda <andrzej.hajda@intel.com>
+---
+v2: add missing switch breaks
+v3: abandon single-point-of-unlock approach
+---
+ lib/debugobjects.c | 196 +++++++++++++++++++++--------------------------------
+ 1 file changed, 77 insertions(+), 119 deletions(-)
+
+diff --git a/lib/debugobjects.c b/lib/debugobjects.c
+index a517256a270b71..c074dbbec084a6 100644
+--- a/lib/debugobjects.c
++++ b/lib/debugobjects.c
+@@ -620,9 +620,8 @@ static void debug_objects_fill_pool(void)
+ static void
+ __debug_object_init(void *addr, const struct debug_obj_descr *descr, int onstack)
+ {
+-	enum debug_obj_state state;
+ 	struct debug_bucket *db;
+-	struct debug_obj *obj;
++	struct debug_obj *obj, o;
+ 	unsigned long flags;
+ 
+ 	debug_objects_fill_pool();
+@@ -643,24 +642,18 @@ __debug_object_init(void *addr, const struct debug_obj_descr *descr, int onstack
+ 	case ODEBUG_STATE_INIT:
+ 	case ODEBUG_STATE_INACTIVE:
+ 		obj->state = ODEBUG_STATE_INIT;
+-		break;
+-
+-	case ODEBUG_STATE_ACTIVE:
+-		state = obj->state;
+ 		raw_spin_unlock_irqrestore(&db->lock, flags);
+-		debug_print_object(obj, "init");
+-		debug_object_fixup(descr->fixup_init, addr, state);
+-		return;
+-
+-	case ODEBUG_STATE_DESTROYED:
+-		raw_spin_unlock_irqrestore(&db->lock, flags);
+-		debug_print_object(obj, "init");
+ 		return;
+ 	default:
+ 		break;
+ 	}
+ 
++	o = *obj;
+ 	raw_spin_unlock_irqrestore(&db->lock, flags);
++	debug_print_object(&o, "init");
++
++	if (o.state == ODEBUG_STATE_ACTIVE)
++		debug_object_fixup(descr->fixup_init, addr, o.state);
+ }
+ 
+ /**
+@@ -701,11 +694,9 @@ EXPORT_SYMBOL_GPL(debug_object_init_on_stack);
+ int debug_object_activate(void *addr, const struct debug_obj_descr *descr)
+ {
+ 	struct debug_obj o = { .object = addr, .state = ODEBUG_STATE_NOTAVAILABLE, .descr = descr };
+-	enum debug_obj_state state;
+ 	struct debug_bucket *db;
+ 	struct debug_obj *obj;
+ 	unsigned long flags;
+-	int ret;
+ 
+ 	if (!debug_objects_enabled)
+ 		return 0;
+@@ -717,49 +708,38 @@ int debug_object_activate(void *addr, const struct debug_obj_descr *descr)
+ 	raw_spin_lock_irqsave(&db->lock, flags);
+ 
+ 	obj = lookup_object_or_alloc(addr, db, descr, false, true);
+-	if (likely(!IS_ERR_OR_NULL(obj))) {
+-		bool print_object = false;
+-
++	if (unlikely(!obj)) {
++		raw_spin_unlock_irqrestore(&db->lock, flags);
++		debug_objects_oom();
++		return 0;
++	} else if (likely(!IS_ERR(obj))) {
+ 		switch (obj->state) {
+-		case ODEBUG_STATE_INIT:
+-		case ODEBUG_STATE_INACTIVE:
+-			obj->state = ODEBUG_STATE_ACTIVE;
+-			ret = 0;
+-			break;
+-
+ 		case ODEBUG_STATE_ACTIVE:
+-			state = obj->state;
+-			raw_spin_unlock_irqrestore(&db->lock, flags);
+-			debug_print_object(obj, "activate");
+-			ret = debug_object_fixup(descr->fixup_activate, addr, state);
+-			return ret ? 0 : -EINVAL;
+-
+ 		case ODEBUG_STATE_DESTROYED:
+-			print_object = true;
+-			ret = -EINVAL;
+ 			break;
++		case ODEBUG_STATE_INIT:
++		case ODEBUG_STATE_INACTIVE:
++			obj->state = ODEBUG_STATE_ACTIVE;
++			fallthrough;
+ 		default:
+-			ret = 0;
+-			break;
++			raw_spin_unlock_irqrestore(&db->lock, flags);
++			return 0;
+ 		}
+-		raw_spin_unlock_irqrestore(&db->lock, flags);
+-		if (print_object)
+-			debug_print_object(obj, "activate");
+-		return ret;
+ 	}
+ 
++	o = *obj;
+ 	raw_spin_unlock_irqrestore(&db->lock, flags);
++	debug_print_object(&o, "activate");
+ 
+-	/* If NULL the allocation has hit OOM */
+-	if (!obj) {
+-		debug_objects_oom();
+-		return 0;
++	switch (o.state) {
++	case ODEBUG_STATE_ACTIVE:
++	case ODEBUG_STATE_NOTAVAILABLE:
++		if (debug_object_fixup(descr->fixup_activate, addr, o.state))
++			return 0;
++		fallthrough;
++	default:
++		return -EINVAL;
+ 	}
+-
+-	/* Object is neither static nor tracked. It's not initialized */
+-	debug_print_object(&o, "activate");
+-	ret = debug_object_fixup(descr->fixup_activate, addr, ODEBUG_STATE_NOTAVAILABLE);
+-	return ret ? 0 : -EINVAL;
+ }
+ EXPORT_SYMBOL_GPL(debug_object_activate);
+ 
+@@ -770,10 +750,10 @@ EXPORT_SYMBOL_GPL(debug_object_activate);
+  */
+ void debug_object_deactivate(void *addr, const struct debug_obj_descr *descr)
+ {
++	struct debug_obj o = { .object = addr, .state = ODEBUG_STATE_NOTAVAILABLE, .descr = descr };
+ 	struct debug_bucket *db;
+ 	struct debug_obj *obj;
+ 	unsigned long flags;
+-	bool print_object = false;
+ 
+ 	if (!debug_objects_enabled)
+ 		return;
+@@ -785,33 +765,24 @@ void debug_object_deactivate(void *addr, const struct debug_obj_descr *descr)
+ 	obj = lookup_object(addr, db);
+ 	if (obj) {
+ 		switch (obj->state) {
++		case ODEBUG_STATE_DESTROYED:
++			break;
+ 		case ODEBUG_STATE_INIT:
+ 		case ODEBUG_STATE_INACTIVE:
+ 		case ODEBUG_STATE_ACTIVE:
+-			if (!obj->astate)
+-				obj->state = ODEBUG_STATE_INACTIVE;
+-			else
+-				print_object = true;
+-			break;
+-
+-		case ODEBUG_STATE_DESTROYED:
+-			print_object = true;
+-			break;
++			if (obj->astate)
++				break;
++			obj->state = ODEBUG_STATE_INACTIVE;
++			fallthrough;
+ 		default:
+-			break;
++			raw_spin_unlock_irqrestore(&db->lock, flags);
++			return;
+ 		}
++		o = *obj;
+ 	}
+ 
+ 	raw_spin_unlock_irqrestore(&db->lock, flags);
+-	if (!obj) {
+-		struct debug_obj o = { .object = addr,
+-				       .state = ODEBUG_STATE_NOTAVAILABLE,
+-				       .descr = descr };
+-
+-		debug_print_object(&o, "deactivate");
+-	} else if (print_object) {
+-		debug_print_object(obj, "deactivate");
+-	}
++	debug_print_object(&o, "deactivate");
+ }
+ EXPORT_SYMBOL_GPL(debug_object_deactivate);
+ 
+@@ -822,11 +793,9 @@ EXPORT_SYMBOL_GPL(debug_object_deactivate);
+  */
+ void debug_object_destroy(void *addr, const struct debug_obj_descr *descr)
+ {
+-	enum debug_obj_state state;
+ 	struct debug_bucket *db;
+-	struct debug_obj *obj;
++	struct debug_obj *obj, o;
+ 	unsigned long flags;
+-	bool print_object = false;
+ 
+ 	if (!debug_objects_enabled)
+ 		return;
+@@ -836,32 +805,31 @@ void debug_object_destroy(void *addr, const struct debug_obj_descr *descr)
+ 	raw_spin_lock_irqsave(&db->lock, flags);
+ 
+ 	obj = lookup_object(addr, db);
+-	if (!obj)
+-		goto out_unlock;
++	if (!obj) {
++		raw_spin_unlock_irqrestore(&db->lock, flags);
++		return;
++	}
+ 
+ 	switch (obj->state) {
++	case ODEBUG_STATE_ACTIVE:
++	case ODEBUG_STATE_DESTROYED:
++		break;
+ 	case ODEBUG_STATE_NONE:
+ 	case ODEBUG_STATE_INIT:
+ 	case ODEBUG_STATE_INACTIVE:
+ 		obj->state = ODEBUG_STATE_DESTROYED;
+-		break;
+-	case ODEBUG_STATE_ACTIVE:
+-		state = obj->state;
++		fallthrough;
++	default:
+ 		raw_spin_unlock_irqrestore(&db->lock, flags);
+-		debug_print_object(obj, "destroy");
+-		debug_object_fixup(descr->fixup_destroy, addr, state);
+ 		return;
+-
+-	case ODEBUG_STATE_DESTROYED:
+-		print_object = true;
+-		break;
+-	default:
+-		break;
+ 	}
+-out_unlock:
++
++	o = *obj;
+ 	raw_spin_unlock_irqrestore(&db->lock, flags);
+-	if (print_object)
+-		debug_print_object(obj, "destroy");
++	debug_print_object(&o, "destroy");
++
++	if (o.state == ODEBUG_STATE_ACTIVE)
++		debug_object_fixup(descr->fixup_destroy, addr, o.state);
+ }
+ EXPORT_SYMBOL_GPL(debug_object_destroy);
+ 
+@@ -872,9 +840,8 @@ EXPORT_SYMBOL_GPL(debug_object_destroy);
+  */
+ void debug_object_free(void *addr, const struct debug_obj_descr *descr)
+ {
+-	enum debug_obj_state state;
+ 	struct debug_bucket *db;
+-	struct debug_obj *obj;
++	struct debug_obj *obj, o;
+ 	unsigned long flags;
+ 
+ 	if (!debug_objects_enabled)
+@@ -885,24 +852,26 @@ void debug_object_free(void *addr, const struct debug_obj_descr *descr)
+ 	raw_spin_lock_irqsave(&db->lock, flags);
+ 
+ 	obj = lookup_object(addr, db);
+-	if (!obj)
+-		goto out_unlock;
++	if (!obj) {
++		raw_spin_unlock_irqrestore(&db->lock, flags);
++		return;
++	}
+ 
+ 	switch (obj->state) {
+ 	case ODEBUG_STATE_ACTIVE:
+-		state = obj->state;
+-		raw_spin_unlock_irqrestore(&db->lock, flags);
+-		debug_print_object(obj, "free");
+-		debug_object_fixup(descr->fixup_free, addr, state);
+-		return;
++		break;
+ 	default:
+ 		hlist_del(&obj->node);
+ 		raw_spin_unlock_irqrestore(&db->lock, flags);
+ 		free_object(obj);
+ 		return;
+ 	}
+-out_unlock:
++
++	o = *obj;
+ 	raw_spin_unlock_irqrestore(&db->lock, flags);
++	debug_print_object(&o, "free");
++
++	debug_object_fixup(descr->fixup_free, addr, o.state);
+ }
+ EXPORT_SYMBOL_GPL(debug_object_free);
+ 
+@@ -954,10 +923,10 @@ void
+ debug_object_active_state(void *addr, const struct debug_obj_descr *descr,
+ 			  unsigned int expect, unsigned int next)
+ {
++	struct debug_obj o = { .object = addr, .state = ODEBUG_STATE_NOTAVAILABLE, .descr = descr };
+ 	struct debug_bucket *db;
+ 	struct debug_obj *obj;
+ 	unsigned long flags;
+-	bool print_object = false;
+ 
+ 	if (!debug_objects_enabled)
+ 		return;
+@@ -970,28 +939,20 @@ debug_object_active_state(void *addr, const struct debug_obj_descr *descr,
+ 	if (obj) {
+ 		switch (obj->state) {
+ 		case ODEBUG_STATE_ACTIVE:
+-			if (obj->astate == expect)
++			if (obj->astate == expect) {
+ 				obj->astate = next;
+-			else
+-				print_object = true;
++				raw_spin_unlock_irqrestore(&db->lock, flags);
++				return;
++			}
+ 			break;
+-
+ 		default:
+-			print_object = true;
+ 			break;
+ 		}
++		o = *obj;
+ 	}
+ 
+ 	raw_spin_unlock_irqrestore(&db->lock, flags);
+-	if (!obj) {
+-		struct debug_obj o = { .object = addr,
+-				       .state = ODEBUG_STATE_NOTAVAILABLE,
+-				       .descr = descr };
+-
+-		debug_print_object(&o, "active_state");
+-	} else if (print_object) {
+-		debug_print_object(obj, "active_state");
+-	}
++	debug_print_object(&o, "active_state");
+ }
+ EXPORT_SYMBOL_GPL(debug_object_active_state);
+ 
+@@ -999,11 +960,9 @@ EXPORT_SYMBOL_GPL(debug_object_active_state);
+ static void __debug_check_no_obj_freed(const void *address, unsigned long size)
+ {
+ 	unsigned long flags, oaddr, saddr, eaddr, paddr, chunks;
+-	const struct debug_obj_descr *descr;
+-	enum debug_obj_state state;
+ 	struct debug_bucket *db;
+ 	struct hlist_node *tmp;
+-	struct debug_obj *obj;
++	struct debug_obj *obj, o;
+ 	int cnt, objs_checked = 0;
+ 
+ 	saddr = (unsigned long) address;
+@@ -1026,12 +985,11 @@ static void __debug_check_no_obj_freed(const void *address, unsigned long size)
+ 
+ 			switch (obj->state) {
+ 			case ODEBUG_STATE_ACTIVE:
+-				descr = obj->descr;
+-				state = obj->state;
++				o = *obj;
+ 				raw_spin_unlock_irqrestore(&db->lock, flags);
+-				debug_print_object(obj, "free");
+-				debug_object_fixup(descr->fixup_free,
+-						   (void *) oaddr, state);
++				debug_print_object(&o, "free");
++				debug_object_fixup(o.descr->fixup_free,
++						   (void *) oaddr, o.state);
+ 				goto repeat;
+ 			default:
+ 				hlist_del(&obj->node);
+
+---
+base-commit: 201c8a7bd1f3f415920a2df4b8a8817e973f42fe
+change-id: 20231025-debugobjects_fix-66e5292557c4
+
+Best regards,
+-- 
+Andrzej Hajda <andrzej.hajda@intel.com>
 
-== Series Details ==
-
-Series: drm/i915/mtl: Add Wa_22016670082
-URL   : https://patchwork.freedesktop.org/series/125574/
-State : success
-
-== Summary ==
-
-CI Bug Log - changes from CI_DRM_13786 -> Patchwork_125574v1
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_125574v1/index.html
-
-Participating hosts (38 -> 39)
-------------------------------
-
-  Additional (3): fi-kbl-soraka bat-adlp-11 bat-dg1-5 
-  Missing    (2): bat-mtlp-8 fi-snb-2520m 
-
-Possible new issues
--------------------
-
-  Here are the unknown changes that may have been introduced in Patchwork_125574v1:
-
-### IGT changes ###
-
-#### Suppressed ####
-
-  The following results come from untrusted machines, tests, or statuses.
-  They do not affect the overall result.
-
-  * {igt@kms_pm_backlight@basic-brightness@edp-1}:
-    - bat-rplp-1:         [ABORT][1] ([i915#8668]) -> [ABORT][2]
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13786/bat-rplp-1/igt@kms_pm_backlight@basic-brightness@edp-1.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_125574v1/bat-rplp-1/igt@kms_pm_backlight@basic-brightness@edp-1.html
-
-  
-Known issues
-------------
-
-  Here are the changes found in Patchwork_125574v1 that come from known issues:
-
-### CI changes ###
-
-#### Issues hit ####
-
-  * boot:
-    - bat-adlp-11:        NOTRUN -> [FAIL][3] ([i915#8293])
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_125574v1/bat-adlp-11/boot.html
-
-  
-#### Possible fixes ####
-
-  * boot:
-    - bat-jsl-1:          [FAIL][4] ([i915#8293]) -> [PASS][5]
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13786/bat-jsl-1/boot.html
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_125574v1/bat-jsl-1/boot.html
-
-  
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@debugfs_test@basic-hwmon:
-    - bat-jsl-1:          NOTRUN -> [SKIP][6] ([i915#9318])
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_125574v1/bat-jsl-1/igt@debugfs_test@basic-hwmon.html
-
-  * igt@gem_huc_copy@huc-copy:
-    - bat-jsl-1:          NOTRUN -> [SKIP][7] ([i915#2190])
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_125574v1/bat-jsl-1/igt@gem_huc_copy@huc-copy.html
-    - fi-kbl-soraka:      NOTRUN -> [SKIP][8] ([fdo#109271] / [i915#2190])
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_125574v1/fi-kbl-soraka/igt@gem_huc_copy@huc-copy.html
-
-  * igt@gem_lmem_swapping@basic:
-    - fi-kbl-soraka:      NOTRUN -> [SKIP][9] ([fdo#109271] / [i915#4613]) +3 other tests skip
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_125574v1/fi-kbl-soraka/igt@gem_lmem_swapping@basic.html
-
-  * igt@gem_lmem_swapping@verify-random:
-    - bat-jsl-1:          NOTRUN -> [SKIP][10] ([i915#4613]) +3 other tests skip
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_125574v1/bat-jsl-1/igt@gem_lmem_swapping@verify-random.html
-
-  * igt@gem_mmap@basic:
-    - bat-dg1-5:          NOTRUN -> [SKIP][11] ([i915#4083])
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_125574v1/bat-dg1-5/igt@gem_mmap@basic.html
-
-  * igt@gem_tiled_fence_blits@basic:
-    - bat-dg1-5:          NOTRUN -> [SKIP][12] ([i915#4077]) +2 other tests skip
-   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_125574v1/bat-dg1-5/igt@gem_tiled_fence_blits@basic.html
-
-  * igt@gem_tiled_pread_basic:
-    - bat-dg1-5:          NOTRUN -> [SKIP][13] ([i915#4079]) +1 other test skip
-   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_125574v1/bat-dg1-5/igt@gem_tiled_pread_basic.html
-
-  * igt@i915_pm_rps@basic-api:
-    - bat-dg1-5:          NOTRUN -> [SKIP][14] ([i915#6621])
-   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_125574v1/bat-dg1-5/igt@i915_pm_rps@basic-api.html
-
-  * igt@i915_selftest@live@gt_pm:
-    - fi-kbl-soraka:      NOTRUN -> [DMESG-FAIL][15] ([i915#1886])
-   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_125574v1/fi-kbl-soraka/igt@i915_selftest@live@gt_pm.html
-
-  * igt@kms_addfb_basic@basic-x-tiled-legacy:
-    - bat-dg1-5:          NOTRUN -> [SKIP][16] ([i915#4212]) +7 other tests skip
-   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_125574v1/bat-dg1-5/igt@kms_addfb_basic@basic-x-tiled-legacy.html
-
-  * igt@kms_addfb_basic@basic-y-tiled-legacy:
-    - bat-dg1-5:          NOTRUN -> [SKIP][17] ([i915#4215])
-   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_125574v1/bat-dg1-5/igt@kms_addfb_basic@basic-y-tiled-legacy.html
-
-  * igt@kms_cursor_legacy@basic-busy-flip-before-cursor-legacy:
-    - bat-jsl-1:          NOTRUN -> [SKIP][18] ([i915#4103]) +1 other test skip
-   [18]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_125574v1/bat-jsl-1/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-legacy.html
-    - bat-dg1-5:          NOTRUN -> [SKIP][19] ([i915#4103] / [i915#4213]) +1 other test skip
-   [19]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_125574v1/bat-dg1-5/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-legacy.html
-
-  * igt@kms_dsc@dsc-basic:
-    - fi-kbl-soraka:      NOTRUN -> [SKIP][20] ([fdo#109271]) +9 other tests skip
-   [20]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_125574v1/fi-kbl-soraka/igt@kms_dsc@dsc-basic.html
-    - bat-jsl-1:          NOTRUN -> [SKIP][21] ([i915#3555]) +1 other test skip
-   [21]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_125574v1/bat-jsl-1/igt@kms_dsc@dsc-basic.html
-    - bat-dg1-5:          NOTRUN -> [SKIP][22] ([i915#3555] / [i915#3840])
-   [22]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_125574v1/bat-dg1-5/igt@kms_dsc@dsc-basic.html
-
-  * igt@kms_force_connector_basic@force-load-detect:
-    - bat-jsl-1:          NOTRUN -> [SKIP][23] ([fdo#109285])
-   [23]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_125574v1/bat-jsl-1/igt@kms_force_connector_basic@force-load-detect.html
-    - bat-dg1-5:          NOTRUN -> [SKIP][24] ([fdo#109285])
-   [24]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_125574v1/bat-dg1-5/igt@kms_force_connector_basic@force-load-detect.html
-
-  * igt@kms_hdmi_inject@inject-audio:
-    - bat-dg1-5:          NOTRUN -> [SKIP][25] ([i915#433])
-   [25]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_125574v1/bat-dg1-5/igt@kms_hdmi_inject@inject-audio.html
-
-  * igt@kms_psr@sprite_plane_onoff:
-    - bat-dg1-5:          NOTRUN -> [SKIP][26] ([i915#1072] / [i915#4078]) +3 other tests skip
-   [26]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_125574v1/bat-dg1-5/igt@kms_psr@sprite_plane_onoff.html
-
-  * igt@kms_setmode@basic-clone-single-crtc:
-    - bat-dg1-5:          NOTRUN -> [SKIP][27] ([i915#3555])
-   [27]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_125574v1/bat-dg1-5/igt@kms_setmode@basic-clone-single-crtc.html
-
-  * igt@prime_vgem@basic-fence-read:
-    - bat-dg1-5:          NOTRUN -> [SKIP][28] ([i915#3708]) +3 other tests skip
-   [28]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_125574v1/bat-dg1-5/igt@prime_vgem@basic-fence-read.html
-
-  * igt@prime_vgem@basic-gtt:
-    - bat-dg1-5:          NOTRUN -> [SKIP][29] ([i915#3708] / [i915#4077]) +1 other test skip
-   [29]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_125574v1/bat-dg1-5/igt@prime_vgem@basic-gtt.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
-  [fdo#109285]: https://bugs.freedesktop.org/show_bug.cgi?id=109285
-  [i915#1072]: https://gitlab.freedesktop.org/drm/intel/issues/1072
-  [i915#1886]: https://gitlab.freedesktop.org/drm/intel/issues/1886
-  [i915#2190]: https://gitlab.freedesktop.org/drm/intel/issues/2190
-  [i915#3555]: https://gitlab.freedesktop.org/drm/intel/issues/3555
-  [i915#3708]: https://gitlab.freedesktop.org/drm/intel/issues/3708
-  [i915#3840]: https://gitlab.freedesktop.org/drm/intel/issues/3840
-  [i915#4077]: https://gitlab.freedesktop.org/drm/intel/issues/4077
-  [i915#4078]: https://gitlab.freedesktop.org/drm/intel/issues/4078
-  [i915#4079]: https://gitlab.freedesktop.org/drm/intel/issues/4079
-  [i915#4083]: https://gitlab.freedesktop.org/drm/intel/issues/4083
-  [i915#4103]: https://gitlab.freedesktop.org/drm/intel/issues/4103
-  [i915#4212]: https://gitlab.freedesktop.org/drm/intel/issues/4212
-  [i915#4213]: https://gitlab.freedesktop.org/drm/intel/issues/4213
-  [i915#4215]: https://gitlab.freedesktop.org/drm/intel/issues/4215
-  [i915#433]: https://gitlab.freedesktop.org/drm/intel/issues/433
-  [i915#4613]: https://gitlab.freedesktop.org/drm/intel/issues/4613
-  [i915#5354]: https://gitlab.freedesktop.org/drm/intel/issues/5354
-  [i915#6621]: https://gitlab.freedesktop.org/drm/intel/issues/6621
-  [i915#8293]: https://gitlab.freedesktop.org/drm/intel/issues/8293
-  [i915#8668]: https://gitlab.freedesktop.org/drm/intel/issues/8668
-  [i915#9318]: https://gitlab.freedesktop.org/drm/intel/issues/9318
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_13786 -> Patchwork_125574v1
-
-  CI-20190529: 20190529
-  CI_DRM_13786: e8d777a5e7e0ec452142ad0073022733f99c1eb7 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_7557: 18fc864d68d382847596594d7eb3488f2c8fb45e @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_125574v1: e8d777a5e7e0ec452142ad0073022733f99c1eb7 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-### Linux commits
-
-e1f62892afa9 drm/i915/mtl: Add Wa_22016670082
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_125574v1/index.html
-
---===============7907412539136287756==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915/mtl: Add Wa_22016670082</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/125574/">https://patchwork.freedesktop.org/series/125574/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_125574v1/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_125574v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_13786 -&gt; Patchwork_125574v1</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_125574v1/index.html</p>
-<h2>Participating hosts (38 -&gt; 39)</h2>
-<p>Additional (3): fi-kbl-soraka bat-adlp-11 bat-dg1-5 <br />
-  Missing    (2): bat-mtlp-8 fi-snb-2520m </p>
-<h2>Possible new issues</h2>
-<p>Here are the unknown changes that may have been introduced in Patchwork_125574v1:</p>
-<h3>IGT changes</h3>
-<h4>Suppressed</h4>
-<p>The following results come from untrusted machines, tests, or statuses.<br />
-  They do not affect the overall result.</p>
-<ul>
-<li>{igt@kms_pm_backlight@basic-brightness@edp-1}:<ul>
-<li>bat-rplp-1:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13786/bat-rplp-1/igt@kms_pm_backlight@basic-brightness@edp-1.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/8668">i915#8668</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_125574v1/bat-rplp-1/igt@kms_pm_backlight@basic-brightness@edp-1.html">ABORT</a></li>
-</ul>
-</li>
-</ul>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_125574v1 that come from known issues:</p>
-<h3>CI changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>boot:<ul>
-<li>bat-adlp-11:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_125574v1/bat-adlp-11/boot.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/8293">i915#8293</a>)</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>boot:<ul>
-<li>bat-jsl-1:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13786/bat-jsl-1/boot.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/8293">i915#8293</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_125574v1/bat-jsl-1/boot.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@debugfs_test@basic-hwmon:</p>
-<ul>
-<li>bat-jsl-1:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_125574v1/bat-jsl-1/igt@debugfs_test@basic-hwmon.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/9318">i915#9318</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_huc_copy@huc-copy:</p>
-<ul>
-<li>
-<p>bat-jsl-1:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_125574v1/bat-jsl-1/igt@gem_huc_copy@huc-copy.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2190">i915#2190</a>)</p>
-</li>
-<li>
-<p>fi-kbl-soraka:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_125574v1/fi-kbl-soraka/igt@gem_huc_copy@huc-copy.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/2190">i915#2190</a>)</p>
-</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_lmem_swapping@basic:</p>
-<ul>
-<li>fi-kbl-soraka:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_125574v1/fi-kbl-soraka/igt@gem_lmem_swapping@basic.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/4613">i915#4613</a>) +3 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_lmem_swapping@verify-random:</p>
-<ul>
-<li>bat-jsl-1:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_125574v1/bat-jsl-1/igt@gem_lmem_swapping@verify-random.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4613">i915#4613</a>) +3 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_mmap@basic:</p>
-<ul>
-<li>bat-dg1-5:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_125574v1/bat-dg1-5/igt@gem_mmap@basic.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4083">i915#4083</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_tiled_fence_blits@basic:</p>
-<ul>
-<li>bat-dg1-5:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_125574v1/bat-dg1-5/igt@gem_tiled_fence_blits@basic.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4077">i915#4077</a>) +2 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_tiled_pread_basic:</p>
-<ul>
-<li>bat-dg1-5:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_125574v1/bat-dg1-5/igt@gem_tiled_pread_basic.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4079">i915#4079</a>) +1 other test skip</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_pm_rps@basic-api:</p>
-<ul>
-<li>bat-dg1-5:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_125574v1/bat-dg1-5/igt@i915_pm_rps@basic-api.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/6621">i915#6621</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@gt_pm:</p>
-<ul>
-<li>fi-kbl-soraka:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_125574v1/fi-kbl-soraka/igt@i915_selftest@live@gt_pm.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1886">i915#1886</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_addfb_basic@basic-x-tiled-legacy:</p>
-<ul>
-<li>bat-dg1-5:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_125574v1/bat-dg1-5/igt@kms_addfb_basic@basic-x-tiled-legacy.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4212">i915#4212</a>) +7 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_addfb_basic@basic-y-tiled-legacy:</p>
-<ul>
-<li>bat-dg1-5:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_125574v1/bat-dg1-5/igt@kms_addfb_basic@basic-y-tiled-legacy.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4215">i915#4215</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_cursor_legacy@basic-busy-flip-before-cursor-legacy:</p>
-<ul>
-<li>
-<p>bat-jsl-1:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_125574v1/bat-jsl-1/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-legacy.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4103">i915#4103</a>) +1 other test skip</p>
-</li>
-<li>
-<p>bat-dg1-5:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_125574v1/bat-dg1-5/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-legacy.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4103">i915#4103</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/4213">i915#4213</a>) +1 other test skip</p>
-</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_dsc@dsc-basic:</p>
-<ul>
-<li>
-<p>fi-kbl-soraka:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_125574v1/fi-kbl-soraka/igt@kms_dsc@dsc-basic.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +9 other tests skip</p>
-</li>
-<li>
-<p>bat-jsl-1:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_125574v1/bat-jsl-1/igt@kms_dsc@dsc-basic.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3555">i915#3555</a>) +1 other test skip</p>
-</li>
-<li>
-<p>bat-dg1-5:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_125574v1/bat-dg1-5/igt@kms_dsc@dsc-basic.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3555">i915#3555</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/3840">i915#3840</a>)</p>
-</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_force_connector_basic@force-load-detect:</p>
-<ul>
-<li>
-<p>bat-jsl-1:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_125574v1/bat-jsl-1/igt@kms_force_connector_basic@force-load-detect.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109285">fdo#109285</a>)</p>
-</li>
-<li>
-<p>bat-dg1-5:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_125574v1/bat-dg1-5/igt@kms_force_connector_basic@force-load-detect.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109285">fdo#109285</a>)</p>
-</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_hdmi_inject@inject-audio:</p>
-<ul>
-<li>bat-dg1-5:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_125574v1/bat-dg1-5/igt@kms_hdmi_inject@inject-audio.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/433">i915#433</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_psr@sprite_plane_onoff:</p>
-<ul>
-<li>bat-dg1-5:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_125574v1/bat-dg1-5/igt@kms_psr@sprite_plane_onoff.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1072">i915#1072</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/4078">i915#4078</a>) +3 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_setmode@basic-clone-single-crtc:</p>
-<ul>
-<li>bat-dg1-5:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_125574v1/bat-dg1-5/igt@kms_setmode@basic-clone-single-crtc.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3555">i915#3555</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@prime_vgem@basic-fence-read:</p>
-<ul>
-<li>bat-dg1-5:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_125574v1/bat-dg1-5/igt@prime_vgem@basic-fence-read.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3708">i915#3708</a>) +3 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@prime_vgem@basic-gtt:</p>
-<ul>
-<li>bat-dg1-5:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_125574v1/bat-dg1-5/igt@prime_vgem@basic-gtt.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3708">i915#3708</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/4077">i915#4077</a>) +1 other test skip</li>
-</ul>
-</li>
-</ul>
-<p>{name}: This element is suppressed. This means it is ignored when computing<br />
-          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_13786 -&gt; Patchwork_125574v1</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_13786: e8d777a5e7e0ec452142ad0073022733f99c1eb7 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_7557: 18fc864d68d382847596594d7eb3488f2c8fb45e @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  Patchwork_125574v1: e8d777a5e7e0ec452142ad0073022733f99c1eb7 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<h3>Linux commits</h3>
-<p>e1f62892afa9 drm/i915/mtl: Add Wa_22016670082</p>
-
-</body>
-</html>
-
---===============7907412539136287756==--
