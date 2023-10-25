@@ -2,52 +2,52 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 604187D6693
-	for <lists+intel-gfx@lfdr.de>; Wed, 25 Oct 2023 11:18:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7A5B87D66B3
+	for <lists+intel-gfx@lfdr.de>; Wed, 25 Oct 2023 11:25:06 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6673A10E615;
-	Wed, 25 Oct 2023 09:18:54 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1645510E611;
+	Wed, 25 Oct 2023 09:24:58 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.93])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C15DD10E60F;
- Wed, 25 Oct 2023 09:18:51 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8516710E610;
+ Wed, 25 Oct 2023 09:24:55 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1698225531; x=1729761531;
+ t=1698225895; x=1729761895;
  h=date:from:to:cc:subject:message-id:references:
  mime-version:in-reply-to;
- bh=VKZaWKRzncOuvfeeEacHAU7Yg5OLgefyKjeLOiPbgx0=;
- b=ZdqHge3wkExYzluKVLZG+wY7rplnKrFJjK5EsOIL0IWcE/FCDIGdluHy
- 0JoEXsNlvTLRKK468qD/KE8C29BlMZl4x49FrIyMsb5dluLV1/Re4jGz9
- 2m0czt8P47SSY8D27oqOG9hX9cvU3oWxE+5EILPUSouDh7AUrW7Xb5HiN
- TwcTqF1jiC/Grd86y+msCb9PbmaR2vK8LQKUD0h1KAR6+gK1bZl6WYl6o
- Bta7dUZJTd3iKjkfqybDmu02cp5gZoOB096fgBGxyR4it/3dWglW8hUsW
- ZpmOUNoPE39BXABMT9NoMllS0KRUXqnAlB+KZAuD5UBsg3KZ9PG/qD++c Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10873"; a="384480468"
-X-IronPort-AV: E=Sophos;i="6.03,250,1694761200"; d="scan'208";a="384480468"
-Received: from orsmga004.jf.intel.com ([10.7.209.38])
- by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Oct 2023 02:18:51 -0700
+ bh=Z5QuHEH9/Il1E5F4X+UOg9jbSOOGe6HK4yUv0ZPfB/w=;
+ b=idUasxdNicP7LVYk+nceEsvJXvMxxbvsbEuZbLkrbNtuqtEQi+wT4tH+
+ QV1DsIOg1x/jfZyti+41vfmshBDw+4YsoogUyDKhPm74yLUcwtx9Pt+9w
+ +Dl8hqBXL25E5ZHeNyCtZMfBSDT0Vw4OgK5W0mnNze+pEUw3+S6h8kvz6
+ C9xTSt55C5YOst/YKjf3QqCvXHmPRwli4AGnuY9ary4tD6jBpjUSDoVZe
+ qSa0jqIxGaqNFh1+Q3nDa5xjbuGBUS/LyNwynSDCk4/sw0hbTpBe+0Ytx
+ 8K6vkZfam4IpJn58z+WrHkIsLef0wsJR5hwiiuarJvzHCkYHM45LT25aO g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10873"; a="473508353"
+X-IronPort-AV: E=Sophos;i="6.03,250,1694761200"; d="scan'208";a="473508353"
+Received: from fmsmga006.fm.intel.com ([10.253.24.20])
+ by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 25 Oct 2023 02:24:54 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10873"; a="882394875"
-X-IronPort-AV: E=Sophos;i="6.03,250,1694761200"; d="scan'208";a="882394875"
+X-IronPort-AV: E=McAfee;i="6600,9927,10873"; a="1005946234"
+X-IronPort-AV: E=Sophos;i="6.03,250,1694761200"; d="scan'208";a="1005946234"
 Received: from shenkel-mobl.ger.corp.intel.com (HELO intel.com)
  ([10.252.63.39])
- by orsmga004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Oct 2023 02:18:48 -0700
-Date: Wed, 25 Oct 2023 11:18:45 +0200
+ by fmsmga006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 25 Oct 2023 02:24:52 -0700
+Date: Wed, 25 Oct 2023 11:24:49 +0200
 From: Andi Shyti <andi.shyti@linux.intel.com>
 To: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-Message-ID: <ZTjddaEfiDAZQ2a1@ashyti-mobl2.lan>
+Message-ID: <ZTje4ZFzDLuVWkxB@ashyti-mobl2.lan>
 References: <20231024155739.3861342-1-andriy.shevchenko@linux.intel.com>
- <20231024155739.3861342-3-andriy.shevchenko@linux.intel.com>
+ <20231024155739.3861342-4-andriy.shevchenko@linux.intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20231024155739.3861342-3-andriy.shevchenko@linux.intel.com>
-Subject: Re: [Intel-gfx] [PATCH v2 2/7] drm/i915/dsi: Get rid of redundant
- 'else'
+In-Reply-To: <20231024155739.3861342-4-andriy.shevchenko@linux.intel.com>
+Subject: Re: [Intel-gfx] [PATCH v2 3/7] drm/i915/dsi: Replace check with a
+ (missing) MIPI sequence name
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -67,17 +67,11 @@ Cc: Jani Nikula <jani.nikula@intel.com>, intel-gfx@lists.freedesktop.org,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi Andy,
-
-On Tue, Oct 24, 2023 at 06:57:34PM +0300, Andy Shevchenko wrote:
-> In the snippets like the following
-> 
-> 	if (...)
-> 		return / goto / break / continue ...;
-> 	else
-> 		...
-> 
-> the 'else' is redundant. Get rid of it.
+On Tue, Oct 24, 2023 at 06:57:35PM +0300, Andy Shevchenko wrote:
+> Names of the MIPI sequence steps are sequential and defined, no
+> need to check for the gaps. However in seq_name the MIPI_SEQ_END
+> is missing. Add it there, and drop unneeded NULL check in
+> sequence_name().
 > 
 > Signed-off-by: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
 
