@@ -2,163 +2,50 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 181587D6548
-	for <lists+intel-gfx@lfdr.de>; Wed, 25 Oct 2023 10:37:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id A968E7D6556
+	for <lists+intel-gfx@lfdr.de>; Wed, 25 Oct 2023 10:38:59 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 94FE610E59F;
-	Wed, 25 Oct 2023 08:36:58 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id F0B4B10E5E1;
+	Wed, 25 Oct 2023 08:38:57 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.93])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7553110E590;
- Wed, 25 Oct 2023 08:36:56 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.65])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B297910E5E1
+ for <intel-gfx@lists.freedesktop.org>; Wed, 25 Oct 2023 08:38:56 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1698223016; x=1729759016;
- h=from:to:cc:subject:date:message-id:references:
- in-reply-to:content-id:content-transfer-encoding: mime-version;
- bh=wzp+m6ZUrieY0F/XmoCqgfTsFQiXLvZ+IGAkionwWZY=;
- b=IAFeEpm06Fx9bUxGdJ1mXBbp9AHeb/2wmXMEVjvsGD4m17fvV9xNtGHt
- qFobH/WfErXlamx77BhCnwnlv3lQHpLCaxPDwp3irHUQfkmWtToQzsKt3
- SWlyXCApVqGL72xPOJHpHUkvB+NfB/y2YD2C7SWfYb6Wo9Jw3HvzS+nVo
- bD+i0wyAkQbMM8RjhZ/XW8h0SslnbennHkYRULPbJluGug3TXXi/T6JiB
- DZBTX4ctKCBDGoypIW1tDZUp3xscbjn3dFY0RabCKxwultOQxw2NFOsUW
- ndCr9L+vautDwQs3s1o+Wf79slgJggQM8yvf1s5kwit3sV/IoR4SjONRP A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10873"; a="384474640"
-X-IronPort-AV: E=Sophos;i="6.03,250,1694761200"; d="scan'208";a="384474640"
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
- by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Oct 2023 01:36:55 -0700
+ t=1698223136; x=1729759136;
+ h=date:from:to:cc:subject:in-reply-to:message-id:
+ references:mime-version:content-id;
+ bh=I38QlpUe3v1pEBGiWrdhG1N+IsOTdBzI0QWTg8Einzg=;
+ b=hsU31vsdN88OnBef8+dmnMimGXvgqnPreD5T7NGXvid1SK/CO+Y6dw9n
+ kcS0n+sj71PZ+U2yBjzH+bNMcLeJjdizSj5KtYm/UrT9GBj1rSiu27xqJ
+ ZNxAjwM0B3QHwUTTgFc7w+OPb9srYMEZXqvHZ9RdZLSMkJ4oaaJIfdIcN
+ /d68SNThZkLQANLPtSJ4OdiDfFL7TUicl5Fe6f5lJr7EWPaFxHQh71dLN
+ PXRdosgCk84GQ7MQQADaXg0olAMCkhgrN+rUTKZWi16GYGFEQb6lSvKVU
+ d99MZksodkSkpuo54GqHUHAhZAd+NSUFY4KJVnl1f5qG3gFUiOYJ5rmQa g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10873"; a="391132695"
+X-IronPort-AV: E=Sophos;i="6.03,250,1694761200"; d="scan'208";a="391132695"
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+ by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 25 Oct 2023 01:38:56 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10873"; a="875420445"
-X-IronPort-AV: E=Sophos;i="6.03,250,1694761200"; d="scan'208";a="875420445"
-Received: from orsmsx601.amr.corp.intel.com ([10.22.229.14])
- by fmsmga002.fm.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
- 25 Oct 2023 01:36:55 -0700
-Received: from orsmsx610.amr.corp.intel.com (10.22.229.23) by
- ORSMSX601.amr.corp.intel.com (10.22.229.14) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.34; Wed, 25 Oct 2023 01:36:54 -0700
-Received: from orsmsx602.amr.corp.intel.com (10.22.229.15) by
- ORSMSX610.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.34; Wed, 25 Oct 2023 01:36:54 -0700
-Received: from ORSEDG601.ED.cps.intel.com (10.7.248.6) by
- orsmsx602.amr.corp.intel.com (10.22.229.15) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.32 via Frontend Transport; Wed, 25 Oct 2023 01:36:54 -0700
-Received: from NAM10-DM6-obe.outbound.protection.outlook.com (104.47.58.101)
- by edgegateway.intel.com (134.134.137.102) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.32; Wed, 25 Oct 2023 01:36:54 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=Fora+7VMNPJOdV25M9sHiE7xGnXLaoTEVIfzgP2+hC5MxYszzhD0FOogeAZew7o3HQxt2Y3h61DnFhoWl8k7WpOl36g/urdc5zF/dfUkdR4jP1sKgjFWCfmeGYMthm1TIsLYgFYSTVNkRvmS/v/MPY2mBsSp7IlHL07qZlivFLXRpoaEtd3hBEp/dNJ35V9GzHn4wOVpf82uJ6l2orAStIs6hDy8IOrrDfwY4sGPUAd/C8EILq2fwDtvXc6ecYJII91GNzeZg4zl7vrK8yWpoF8vnGLOh2P9OFf7204jplgupq+iqjk4udp9JfivI4KvzfVOK9U75BHFob3J8anSYQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=wzp+m6ZUrieY0F/XmoCqgfTsFQiXLvZ+IGAkionwWZY=;
- b=iPU3/swsKM+2f98mLwCDzPFpP9V3w8C5SDUMuQHf2f3nNtSb/57oklwhWhQ/0JM/t1PCF7zzudAu5RvgTewgExGAiuAO0kFCqxLhiP5YYdZI6uHtppF0pRTrku9/VNLvhNUwH+jKIlOKezJarRgUYr2JquoQB8lVJ6OIrdJvPNkmmOK7Se19cR924w+IPPyOgWbGoelp4Zyb2qb606GwjHIFtfRIk4YSu1FVK7z2f3lLV54jNxpJxEdMluXgHr0TtqWv8L9POE2McqrW0F5wc346hfN2AAasma8LPf/hQEuLTRMR31bq9LnrJ6YITH9UESXoCMPTrtO1+7teLc85GQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Received: from DM4PR11MB6019.namprd11.prod.outlook.com (2603:10b6:8:60::5) by
- DM4PR11MB6118.namprd11.prod.outlook.com (2603:10b6:8:b2::20) with
- Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.6907.26; Wed, 25 Oct 2023 08:36:52 +0000
-Received: from DM4PR11MB6019.namprd11.prod.outlook.com
- ([fe80::ea97:f0a2:fffc:b892]) by DM4PR11MB6019.namprd11.prod.outlook.com
- ([fe80::ea97:f0a2:fffc:b892%3]) with mapi id 15.20.6907.028; Wed, 25 Oct 2023
- 08:36:52 +0000
-From: "Hogander, Jouni" <jouni.hogander@intel.com>
-To: "Upadhyay, Tejas" <tejas.upadhyay@intel.com>, "tzimmermann@suse.de"
- <tzimmermann@suse.de>, "ville.syrjala@linux.intel.com"
- <ville.syrjala@linux.intel.com>, "Vivi, Rodrigo" <rodrigo.vivi@intel.com>,
- "joonas.lahtinen@linux.intel.com" <joonas.lahtinen@linux.intel.com>,
- "javierm@redhat.com" <javierm@redhat.com>, "tvrtko.ursulin@linux.intel.com"
- <tvrtko.ursulin@linux.intel.com>, "Deak, Imre" <imre.deak@intel.com>,
- "airlied@gmail.com" <airlied@gmail.com>, "jani.nikula@linux.intel.com"
- <jani.nikula@linux.intel.com>, "daniel@ffwll.ch" <daniel@ffwll.ch>
-Thread-Topic: [Intel-gfx] [PATCH v5 5/7] drm/i915: Initialize fbdev DRM client
- with callback functions
-Thread-Index: AQHZ8S1p27EtMmEpjk6s1S3ZaAPFDLBaWnAA
-Date: Wed, 25 Oct 2023 08:36:52 +0000
-Message-ID: <62b2e622370df7557ea7d98ea65eaf2c5a09bb6e.camel@intel.com>
-References: <20230927102808.18650-1-tzimmermann@suse.de>
- <20230927102808.18650-6-tzimmermann@suse.de>
-In-Reply-To: <20230927102808.18650-6-tzimmermann@suse.de>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: DM4PR11MB6019:EE_|DM4PR11MB6118:EE_
-x-ms-office365-filtering-correlation-id: 0af7df3b-cc2c-4e0a-d799-08dbd53589a0
-x-ld-processed: 46c98d88-e344-4ed4-8496-4ed7712e255d,ExtAddr
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: sbFe/9PfsKV4xRBSwnmMSkgR3Y2Es54DoNiLsLv0X2+0yrPqrN+Df5Z/oSBTjdr/4dyCJNBPMNwk8Oy1j5SnRPoCoMdonP6Dv96phmSt6q8a2larU0bmJQO4oxd0RIihqCtKyPasKqjUpAe3LuHWphgTQUC5HAoUfO5I3/SCgU07frwb+4ggfXXO+5K7hYC1aMmfrtsc7gWvhFw0PWFtBieK5WOmLShfV9igEj+QPw5kbitEp5bgKOhU5iGbFEr2KrbQDbBePrCJJazSWBHBAljbCA9y3wKTB14hx6xM4UB3m38FMntiiCW5BPekatdc5+sknK9sSanJn7mJxpgvFias6aTDenBWQTrvSH5BSqC/oXku2u/ll/ZYpoEw+41lSWrtKq8DCVmRXiRxfl811fQeOIlPGb97cfbIrXd4B3TdkY7uZNziwwIQctDb5EbG/0RpoJYgUh9tFRJ1KidNdTwvaKoM673o+9j07prIwZYCF9Y2cjyVMuYVO8y60kmVGosVajocmaDK9z0g4Wk3+GwvgyK5mt8H24ZBodQ2+27ggz91D+elSkEol0pja7bvFEvXnBYS3Sg6Gx/ICFhQ9jCTZiqdt4/OyuHd0LTjuzwhHt6lEz4pa2u6Lb5iHzIAodZhjzXPDVb6mG7dDgO5Sw==
-x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:DM4PR11MB6019.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230031)(136003)(39860400002)(346002)(366004)(396003)(376002)(230922051799003)(64100799003)(451199024)(1800799009)(186009)(7416002)(2906002)(41300700001)(478600001)(110136005)(66556008)(66476007)(91956017)(64756008)(66446008)(54906003)(76116006)(8936002)(71200400001)(6486002)(66946007)(316002)(8676002)(5660300002)(83380400001)(4326008)(6506007)(38100700002)(82960400001)(36756003)(2616005)(66574015)(26005)(86362001)(122000001)(6512007)(38070700009)(921008);
- DIR:OUT; SFP:1102; 
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?utf-8?B?cDZmOU1DWmxDcHBsbzRYZzB2cTFiTEZBNXhtUVB6ZlE0cDlmSXdtaDYwNGFl?=
- =?utf-8?B?ZExETUl3Nm5wWm82UHlRTGlJbmQySGZSNjlvb3Q1TUR2c1hnZTcvVlNBa25G?=
- =?utf-8?B?dGZ0YW1NYlVTZEYzSHpyYW11OFFXNFFzSTBSdERWbjJkK0hmSDZIQmJ5Ym1G?=
- =?utf-8?B?ekdNVlZGUzFJWDhwai9tTTI5cDZmL1N3bUdhZG9xLzZ5QU1jT2VmN2NrMUtO?=
- =?utf-8?B?R1RxdjltTzVJTDlINHJ1eTc2cHJFYXNYaTJuTXZYa0crb1prL0hUdUpyZi9J?=
- =?utf-8?B?TGNrSmhha0lFYkVlczBwZmxXUUNyMVBMNWZhL0txTndPSGRyN2NmREoySnRp?=
- =?utf-8?B?UEFqNGRza2ZqMTMrZEZGeS9NbDM2cXZpUEhzNDBLRlFSdUVqa0JaT3FZR3RN?=
- =?utf-8?B?NjZjSVRmNmVqZENpMUE3c0xJbGZNZlBJZ2tGcGVMN1I2SjdFd0tQUGFtZ0pS?=
- =?utf-8?B?QmFxbEQySEJodmJEU1ljc291NUYrbjYwc2lqaTVpaSsvRnZGL1BBZm9QdUxC?=
- =?utf-8?B?SDZYRzJSM3F5Mk5wL3hPTFVYaXg0K3RSNTg5ZmJDdXp6LzlsbXI0VVZyQlhl?=
- =?utf-8?B?c2MyTmRmNCtaVHNqeDZpdFdIYlNMd3NDOGVnNWZoWEVCY1YzbWNWOEc1a1lv?=
- =?utf-8?B?ai81RVJIdCtVNlJURDhqcDU4cU1PYkhlNHREdUlGMktLNm80ZkMwUUl3ejhK?=
- =?utf-8?B?L0YwVU1DVmVXVDZWWUduazdpN1VrVjJaaFgwcUNZdFVZRmUxcTFISHluOUJI?=
- =?utf-8?B?UWZLSi9odjRmTkZGck9tR2lVdk4zL2ZyY1BmTG1WaWx5dVZpQTVmMk1hdWtr?=
- =?utf-8?B?ME1YVkp0c3R4Rll0RkR1aUppVVRUN0FLMERnNk9PcWNPeDBzOUVyVjU3Mkt6?=
- =?utf-8?B?a2V5cXRnWEg5d1ZJRi9hb2FWa0RFaHRnSHo3cHBTNzY0K0JaNE9rZTdiWHdU?=
- =?utf-8?B?WDZpWVdKVVU4Vlc5NURldEwyYmRDVUo3d2FiOStudVorcWEwRFJ2VThMQ3Zh?=
- =?utf-8?B?c3hhZ1IyM0NQMGl6VGMrZFhMSkdwYzM2aFhmOHEvZWg5TXFUTGoxbm1hWUdp?=
- =?utf-8?B?akhUN0VDRjhIUVBkYWo4WXVSVnBrQUpUOTZqM3NVYUcxeEJQczVLbGRNZmg2?=
- =?utf-8?B?TEtGUnk2L2JLNkh0VE0rUERqUE5tNDVPY1pzYlZrWnVaOFlCanFzNTQvNmZq?=
- =?utf-8?B?aEZsUTFCRlphTzJQRDlvYnhFZHFLQllRcEJUSU9OUXJSSGVIMnNvZXJneGhW?=
- =?utf-8?B?dDVMaFVTL1Q3OGVEeFZYbnpPNmpDSW5iT0l5NHkweEJ3OHNPTVgxUTFId1c0?=
- =?utf-8?B?Q1RNQjVFdW8zWnBkdGdmdHZpcW1ObmcwajYybzVvRkJvdTd3b2hsMStpdVZ3?=
- =?utf-8?B?MjZaRVkrL2N0V0dta2JJMlBlanRQc3VJWllGQWV6MFhZbElnemhGZUlUdTFs?=
- =?utf-8?B?bTVNOXkxNFZCL3RDUjdvVVMyZjBSNFdQZER4THJSLzVpb2FMbzdoVHpRTUVo?=
- =?utf-8?B?ZFlTbEh3Nk5zcmV2bXN6Tm9qdXFNdXZVZjMrYlV6SU5IdFdSclRTQWlWOFZJ?=
- =?utf-8?B?VHBqT3hDSWRxdENmRk56d3ZJN0NlU1hUQVJQOGh5M0MxZ1h4M3VWdUFFNWZq?=
- =?utf-8?B?cmNVYUhmSGpHUUVwZ3FYZllxUzBWNjI4cUsrYmtFV1B2Q1hkd0dwa2V3eFpW?=
- =?utf-8?B?RERtT0Ezay9UL3lEdG1JMmszQ3VHQzB2dmIxcC91NXAvV1duZTB3elM3cFVw?=
- =?utf-8?B?Y3RReUZCTTF1MW5IOHJRcU5NNTRmbWFDQnB6b3pnTDlBQWFQd21WOU1YNnpu?=
- =?utf-8?B?cnhoZW9LeGVPKzVyaDB6cTN6eWI3bFdHZ1FyVGxqaDdnbWs1RDBVQ2xKb011?=
- =?utf-8?B?ZXNCZkVIaURid1cxRjNrNlk0L3hLeDd4VEgvZFdYN09mWUxNeGpjV1ZMb2Er?=
- =?utf-8?B?Z0tEcUx5amtCOEwydVBnYmd6OEFJbDdVcmFRNE5nOGlSL2l1ZkJudEtrS09R?=
- =?utf-8?B?TkxtL2xWUzNQNmZSZzJsUC9EWnpZc3lUWTZkemZvVk5majgvek9tWmVFR1Bz?=
- =?utf-8?B?Kzh1c1NmSjdsQ1ZodlpRQm0yaWJKdU5SMm1WdTlNUW5hU3VmM0tjcndCOXVT?=
- =?utf-8?B?UCtrNGxCRUxzMDNpVjJPQWcwWVByRHNmenJrUWxHeVdCa2ZxOUhkbE8yYTV2?=
- =?utf-8?B?MFE9PQ==?=
-Content-Type: text/plain; charset="utf-8"
-Content-ID: <2DC3FA46BC329348AC550E7CAE633653@namprd11.prod.outlook.com>
-Content-Transfer-Encoding: base64
+X-IronPort-AV: E=McAfee;i="6600,9927,10873"; a="758800777"
+X-IronPort-AV: E=Sophos;i="6.03,250,1694761200"; d="scan'208";a="758800777"
+Received: from cristina-mobl3.ger.corp.intel.com ([10.251.212.45])
+ by orsmga002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 25 Oct 2023 01:38:51 -0700
+Date: Wed, 25 Oct 2023 11:38:46 +0300 (EEST)
+From: =?ISO-8859-15?Q?Ilpo_J=E4rvinen?= <ilpo.jarvinen@linux.intel.com>
+To: =?ISO-8859-15?Q?Ville_Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+In-Reply-To: <ZTf6ALl3xNvhLN6M@intel.com>
+Message-ID: <ab823587-1e2b-474e-f0e7-14e4782ce49f@linux.intel.com>
+References: <20230411213323.1362300-1-david.e.box@linux.intel.com>
+ <ZTf6ALl3xNvhLN6M@intel.com>
 MIME-Version: 1.0
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: DM4PR11MB6019.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 0af7df3b-cc2c-4e0a-d799-08dbd53589a0
-X-MS-Exchange-CrossTenant-originalarrivaltime: 25 Oct 2023 08:36:52.1658 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: arvHIwI5c2wR/uO+/gcLPhr9Gj9WiI4Pw17h+XHuwz1IF2McMjqPobBf8VydXxqdiFCNj+UK40xw7NDJRCycTCqgRwlhTICxY+25Mgk2mhQ=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM4PR11MB6118
-X-OriginatorOrg: intel.com
-Subject: Re: [Intel-gfx] [PATCH v5 5/7] drm/i915: Initialize fbdev DRM
- client with callback functions
+Content-Type: multipart/mixed; BOUNDARY="8323329-1564197198-1698222874=:1881"
+Content-ID: <f4607477-96fb-95c1-42e4-b229f896a124@linux.intel.com>
+Subject: Re: [Intel-gfx] [PATCH V2] PCI: Move VMD ASPM/LTR fix to PCI quirk
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -171,76 +58,224 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
- "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>
+Cc: me@adhityamohan.in, kw@linux.com, lorenzo.pieralisi@arm.com,
+ "David E. Box" <david.e.box@linux.intel.com>, robh@kernel.org,
+ linux-pci@vger.kernel.org, intel-gfx@lists.freedesktop.org,
+ "Rafael J. Wysocki" <rafael@kernel.org>, LKML <linux-kernel@vger.kernel.org>,
+ hch@infradead.org, jonathan.derrick@linux.dev, bhelgaas@google.com,
+ nirmal.patel@linux.intel.com, michael.a.bottini@intel.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-SGkgVGhvbWFzLCBPbmUgbWlub3IgY29tbWVudCBpbmxpbmUgYmVsb3cuCgpPbiBXZWQsIDIwMjMt
-MDktMjcgYXQgMTI6MjYgKzAyMDAsIFRob21hcyBaaW1tZXJtYW5uIHdyb3RlOgo+IEluaXRpYWxp
-emUgaTkxNSdzIGZiZGV2IGNsaWVudCBieSBnaXZpbmcgYW4gaW5zdGFuY2Ugb2Ygc3RydWN0Cj4g
-ZHJtX2NsaWVudF9mdW5jcyB0byBkcm1fY2xpZW50X2luaXQoKS4gQWxzbyBjbGVhbiB1cCB3aXRo
-Cj4gZHJtX2NsaWVudF9yZWxlYXNlKCkuCj4gCj4gRG9pbmcgdGhpcyBpbiBpOTE1IHByZXZlbnRz
-IGZiZGV2IGhlbHBlcnMgZnJvbSBpbml0aWFsaXppbmcgYW5kCj4gcmVsZWFzaW5nIHRoZSBjbGll
-bnQgaW50ZXJuYWxseSAoc2VlIGRybV9mYl9oZWxwZXJfaW5pdCgpKS4gTm8KPiBmdW5jdGlvbmFs
-IGNoYW5nZSB5ZXQ7IHRoZSBjbGllbnQgY2FsbGJhY2tzIHdpbGwgYmUgZmlsbGVkIGxhdGVyLgo+
-IAo+IHYyOgo+IMKgwqDCoMKgwqDCoMKgwqAqIGNhbGwgZHJtX2ZiX2hlbHBlcl91bnByZXBhcmUo
-KSBpbiBlcnJvciBoYW5kbGluZyAoSmFuaSkKPiDCoMKgwqDCoMKgwqDCoMKgKiBmaXggdHlwbyBp
-biBjb21taXQgbWVzc2FnZSAoU2FtKQo+IAo+IFNpZ25lZC1vZmYtYnk6IFRob21hcyBaaW1tZXJt
-YW5uIDx0emltbWVybWFubkBzdXNlLmRlPgo+IC0tLQo+IMKgZHJpdmVycy9ncHUvZHJtL2k5MTUv
-ZGlzcGxheS9pbnRlbF9mYmRldi5jIHwgNDMKPiArKysrKysrKysrKysrKysrKysrKy0tCj4gwqAx
-IGZpbGUgY2hhbmdlZCwgMzkgaW5zZXJ0aW9ucygrKSwgNCBkZWxldGlvbnMoLSkKPiAKPiBkaWZm
-IC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9mYmRldi5jCj4gYi9k
-cml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2ZiZGV2LmMKPiBpbmRleCAyNjk1YzY1
-YjU1ZGRjLi5kOWU2OTQ3MWE3ODJhIDEwMDY0NAo+IC0tLSBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1
-L2Rpc3BsYXkvaW50ZWxfZmJkZXYuYwo+ICsrKyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3Bs
-YXkvaW50ZWxfZmJkZXYuYwo+IEBAIC0zNzgsNiArMzc4LDcgQEAgc3RhdGljIHZvaWQgaW50ZWxf
-ZmJkZXZfZGVzdHJveShzdHJ1Y3QKPiBpbnRlbF9mYmRldiAqaWZiZGV2KQo+IMKgwqDCoMKgwqDC
-oMKgwqBpZiAoaWZiZGV2LT5mYikKPiDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoGRy
-bV9mcmFtZWJ1ZmZlcl9yZW1vdmUoJmlmYmRldi0+ZmItPmJhc2UpOwo+IMKgCj4gK8KgwqDCoMKg
-wqDCoMKgZHJtX2NsaWVudF9yZWxlYXNlKCZpZmJkZXYtPmhlbHBlci5jbGllbnQpOwo+IMKgwqDC
-oMKgwqDCoMKgwqBkcm1fZmJfaGVscGVyX3VucHJlcGFyZSgmaWZiZGV2LT5oZWxwZXIpOwo+IMKg
-wqDCoMKgwqDCoMKgwqBrZnJlZShpZmJkZXYpOwo+IMKgfQo+IEBAIC02NzEsNiArNjcyLDMwIEBA
-IHZvaWQgaW50ZWxfZmJkZXZfcmVzdG9yZV9tb2RlKHN0cnVjdAo+IGRybV9pOTE1X3ByaXZhdGUg
-KmRldl9wcml2KQo+IMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgaW50ZWxfZmJkZXZf
-aW52YWxpZGF0ZShpZmJkZXYpOwo+IMKgfQo+IMKgCj4gKy8qCj4gKyAqIEZiZGV2IGNsaWVudCBh
-bmQgc3RydWN0IGRybV9jbGllbnRfZnVuY3MKPiArICovCj4gKwo+ICtzdGF0aWMgdm9pZCBpbnRl
-bF9mYmRldl9jbGllbnRfdW5yZWdpc3RlcihzdHJ1Y3QgZHJtX2NsaWVudF9kZXYKPiAqY2xpZW50
-KQo+ICt7IH0KPiArCj4gK3N0YXRpYyBpbnQgaW50ZWxfZmJkZXZfY2xpZW50X3Jlc3RvcmUoc3Ry
-dWN0IGRybV9jbGllbnRfZGV2ICpjbGllbnQpCj4gK3sKPiArwqDCoMKgwqDCoMKgwqByZXR1cm4g
-MDsKPiArfQo+ICsKPiArc3RhdGljIGludCBpbnRlbF9mYmRldl9jbGllbnRfaG90cGx1ZyhzdHJ1
-Y3QgZHJtX2NsaWVudF9kZXYgKmNsaWVudCkKPiArewo+ICvCoMKgwqDCoMKgwqDCoHJldHVybiAw
-Owo+ICt9Cj4gKwo+ICtzdGF0aWMgY29uc3Qgc3RydWN0IGRybV9jbGllbnRfZnVuY3MgaW50ZWxf
-ZmJkZXZfY2xpZW50X2Z1bmNzID0gewo+ICvCoMKgwqDCoMKgwqDCoC5vd25lcsKgwqDCoMKgwqDC
-oMKgwqDCoMKgPSBUSElTX01PRFVMRSwKPiArwqDCoMKgwqDCoMKgwqAudW5yZWdpc3RlcsKgwqDC
-oMKgwqA9IGludGVsX2ZiZGV2X2NsaWVudF91bnJlZ2lzdGVyLAo+ICvCoMKgwqDCoMKgwqDCoC5y
-ZXN0b3JlwqDCoMKgwqDCoMKgwqDCoD0gaW50ZWxfZmJkZXZfY2xpZW50X3Jlc3RvcmUsCj4gK8Kg
-wqDCoMKgwqDCoMKgLmhvdHBsdWfCoMKgwqDCoMKgwqDCoMKgPSBpbnRlbF9mYmRldl9jbGllbnRf
-aG90cGx1ZywKPiArfTsKPiArCj4gwqBpbnQgaW50ZWxfZmJkZXZfaW5pdChzdHJ1Y3QgZHJtX2Rl
-dmljZSAqZGV2KQo+IMKgewo+IMKgwqDCoMKgwqDCoMKgwqBzdHJ1Y3QgZHJtX2k5MTVfcHJpdmF0
-ZSAqZGV2X3ByaXYgPSB0b19pOTE1KGRldik7Cj4gQEAgLTY5MiwxNiArNzE3LDI2IEBAIGludCBp
-bnRlbF9mYmRldl9pbml0KHN0cnVjdCBkcm1fZGV2aWNlICpkZXYpCj4gwqDCoMKgwqDCoMKgwqDC
-oGVsc2UKPiDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoGlmYmRldi0+cHJlZmVycmVk
-X2JwcCA9IGlmYmRldi0+aGVscGVyLnByZWZlcnJlZF9icHA7Cj4gwqAKPiArwqDCoMKgwqDCoMKg
-wqByZXQgPSBkcm1fY2xpZW50X2luaXQoZGV2LCAmaWZiZGV2LT5oZWxwZXIuY2xpZW50LCAiaTkx
-NS0KPiBmYmRldiIsCgpXZSBhcmUgY3VycmVudGx5IHdvcmtpbmcgb24gbmV3IGRyaXZlciBuYW1l
-ZCBhcyBYZS4gRHVlIHRvIHRoaXMgaXQKbWlnaHQgYWN0dWFsbHkgbWFrZSBzZW5zZSB0byB1c2Ug
-aW50ZWwtZmJkZXYgaGVyZSByYXRoZXIgdGhhbiBpOTE1LQpmYmRldi4KCkJSLAoKSm91bmkgSMO2
-Z2FuZGVyCgo+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
-wqDCoMKgwqDCoCAmaW50ZWxfZmJkZXZfY2xpZW50X2Z1bmNzKTsKPiArwqDCoMKgwqDCoMKgwqBp
-ZiAocmV0KQo+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqBnb3RvIGVycl9kcm1fZmJf
-aGVscGVyX3VucHJlcGFyZTsKPiArCj4gwqDCoMKgwqDCoMKgwqDCoHJldCA9IGRybV9mYl9oZWxw
-ZXJfaW5pdChkZXYsICZpZmJkZXYtPmhlbHBlcik7Cj4gLcKgwqDCoMKgwqDCoMKgaWYgKHJldCkg
-ewo+IC3CoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqBrZnJlZShpZmJkZXYpOwo+IC3CoMKg
-wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqByZXR1cm4gcmV0Owo+IC3CoMKgwqDCoMKgwqDCoH0K
-PiArwqDCoMKgwqDCoMKgwqBpZiAocmV0KQo+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
-wqBnb3RvIGVycl9kcm1fY2xpZW50X3JlbGVhc2U7Cj4gwqAKPiDCoMKgwqDCoMKgwqDCoMKgZGV2
-X3ByaXYtPmRpc3BsYXkuZmJkZXYuZmJkZXYgPSBpZmJkZXY7Cj4gwqDCoMKgwqDCoMKgwqDCoElO
-SVRfV09SSygmZGV2X3ByaXYtPmRpc3BsYXkuZmJkZXYuc3VzcGVuZF93b3JrLAo+IGludGVsX2Zi
-ZGV2X3N1c3BlbmRfd29ya2VyKTsKPiDCoAo+IMKgwqDCoMKgwqDCoMKgwqByZXR1cm4gMDsKPiAr
-Cj4gK2Vycl9kcm1fY2xpZW50X3JlbGVhc2U6Cj4gK8KgwqDCoMKgwqDCoMKgZHJtX2NsaWVudF9y
-ZWxlYXNlKCZpZmJkZXYtPmhlbHBlci5jbGllbnQpOwo+ICtlcnJfZHJtX2ZiX2hlbHBlcl91bnBy
-ZXBhcmU6Cj4gK8KgwqDCoMKgwqDCoMKgZHJtX2ZiX2hlbHBlcl91bnByZXBhcmUoJmlmYmRldi0+
-aGVscGVyKTsKPiArwqDCoMKgwqDCoMKgwqBrZnJlZShpZmJkZXYpOwo+ICvCoMKgwqDCoMKgwqDC
-oHJldHVybiByZXQ7Cj4gwqB9Cj4gwqAKPiDCoHN0YXRpYyB2b2lkIGludGVsX2ZiZGV2X2luaXRp
-YWxfY29uZmlnKHZvaWQgKmRhdGEsIGFzeW5jX2Nvb2tpZV90Cj4gY29va2llKQoK
+  This message is in MIME format.  The first part should be readable text,
+  while the remaining parts are likely unreadable without MIME-aware tools.
+
+--8323329-1564197198-1698222874=:1881
+Content-Type: text/plain; CHARSET=ISO-8859-15
+Content-Transfer-Encoding: 8BIT
+Content-ID: <7a409998-66d4-3482-222-b4908db15982@linux.intel.com>
+
+On Tue, 24 Oct 2023, Ville Syrjälä wrote:
+
+> On Tue, Apr 11, 2023 at 02:33:23PM -0700, David E. Box wrote:
+> > In commit f492edb40b54 ("PCI: vmd: Add quirk to configure PCIe ASPM and
+> > LTR") the VMD driver calls pci_enabled_link_state as a callback from
+> > pci_bus_walk. Both will acquire the pci_bus_sem lock leading to a lockdep
+> > warning. Instead of doing the pci_bus_walk, move the fix to quirks.c using
+> > DECLARE_PCI_FIXUP_FINAL.
+> 
+> What happened to this patch? We're still carrying a local fix
+> for this in drm-tip...
+> 
+> > 
+> > Fixes: f492edb40b54 ("PCI: vmd: Add quirk to configure PCIe ASPM and LTR")
+> > Suggested-by: Bjorn Helgaas <bhelgaas@google.com>
+> > Signed-off-by: David E. Box <david.e.box@linux.intel.com>
+> > ---
+> > 
+> > V2 - Instead of adding a lock flag argument to pci_enabled_link_state, move
+> >      the fix to quirks.c
+> > 
+> >  drivers/pci/controller/vmd.c | 55 +--------------------------
+> >  drivers/pci/quirks.c         | 72 ++++++++++++++++++++++++++++++++++++
+> >  2 files changed, 73 insertions(+), 54 deletions(-)
+> > 
+> > diff --git a/drivers/pci/controller/vmd.c b/drivers/pci/controller/vmd.c
+> > index 990630ec57c6..47fa3e5f2dc5 100644
+> > --- a/drivers/pci/controller/vmd.c
+> > +++ b/drivers/pci/controller/vmd.c
+> > @@ -66,22 +66,11 @@ enum vmd_features {
+> >  	 * interrupt handling.
+> >  	 */
+> >  	VMD_FEAT_CAN_BYPASS_MSI_REMAP		= (1 << 4),
+> > -
+> > -	/*
+> > -	 * Enable ASPM on the PCIE root ports and set the default LTR of the
+> > -	 * storage devices on platforms where these values are not configured by
+> > -	 * BIOS. This is needed for laptops, which require these settings for
+> > -	 * proper power management of the SoC.
+> > -	 */
+> > -	VMD_FEAT_BIOS_PM_QUIRK		= (1 << 5),
+> >  };
+> >  
+> > -#define VMD_BIOS_PM_QUIRK_LTR	0x1003	/* 3145728 ns */
+> > -
+> >  #define VMD_FEATS_CLIENT	(VMD_FEAT_HAS_MEMBAR_SHADOW_VSCAP |	\
+> >  				 VMD_FEAT_HAS_BUS_RESTRICTIONS |	\
+> > -				 VMD_FEAT_OFFSET_FIRST_VECTOR |		\
+> > -				 VMD_FEAT_BIOS_PM_QUIRK)
+> > +				 VMD_FEAT_OFFSET_FIRST_VECTOR)
+> >  
+> >  static DEFINE_IDA(vmd_instance_ida);
+> >  
+> > @@ -724,46 +713,6 @@ static void vmd_copy_host_bridge_flags(struct pci_host_bridge *root_bridge,
+> >  	vmd_bridge->native_dpc = root_bridge->native_dpc;
+> >  }
+> >  
+> > -/*
+> > - * Enable ASPM and LTR settings on devices that aren't configured by BIOS.
+> > - */
+> > -static int vmd_pm_enable_quirk(struct pci_dev *pdev, void *userdata)
+> > -{
+> > -	unsigned long features = *(unsigned long *)userdata;
+> > -	u16 ltr = VMD_BIOS_PM_QUIRK_LTR;
+> > -	u32 ltr_reg;
+> > -	int pos;
+> > -
+> > -	if (!(features & VMD_FEAT_BIOS_PM_QUIRK))
+> > -		return 0;
+> > -
+> > -	pci_enable_link_state(pdev, PCIE_LINK_STATE_ALL);
+> > -
+> > -	pos = pci_find_ext_capability(pdev, PCI_EXT_CAP_ID_LTR);
+> > -	if (!pos)
+> > -		return 0;
+> > -
+> > -	/*
+> > -	 * Skip if the max snoop LTR is non-zero, indicating BIOS has set it
+> > -	 * so the LTR quirk is not needed.
+> > -	 */
+> > -	pci_read_config_dword(pdev, pos + PCI_LTR_MAX_SNOOP_LAT, &ltr_reg);
+> > -	if (!!(ltr_reg & (PCI_LTR_VALUE_MASK | PCI_LTR_SCALE_MASK)))
+> > -		return 0;
+> > -
+> > -	/*
+> > -	 * Set the default values to the maximum required by the platform to
+> > -	 * allow the deepest power management savings. Write as a DWORD where
+> > -	 * the lower word is the max snoop latency and the upper word is the
+> > -	 * max non-snoop latency.
+> > -	 */
+> > -	ltr_reg = (ltr << 16) | ltr;
+> > -	pci_write_config_dword(pdev, pos + PCI_LTR_MAX_SNOOP_LAT, ltr_reg);
+> > -	pci_info(pdev, "VMD: Default LTR value set by driver\n");
+> > -
+> > -	return 0;
+> > -}
+> > -
+> >  static int vmd_enable_domain(struct vmd_dev *vmd, unsigned long features)
+> >  {
+> >  	struct pci_sysdata *sd = &vmd->sysdata;
+> > @@ -936,8 +885,6 @@ static int vmd_enable_domain(struct vmd_dev *vmd, unsigned long features)
+> >  
+> >  	pci_assign_unassigned_bus_resources(vmd->bus);
+> >  
+> > -	pci_walk_bus(vmd->bus, vmd_pm_enable_quirk, &features);
+> > -
+> >  	/*
+> >  	 * VMD root buses are virtual and don't return true on pci_is_pcie()
+> >  	 * and will fail pcie_bus_configure_settings() early. It can instead be
+> > diff --git a/drivers/pci/quirks.c b/drivers/pci/quirks.c
+> > index 44cab813bf95..2d86623f96e3 100644
+> > --- a/drivers/pci/quirks.c
+> > +++ b/drivers/pci/quirks.c
+> > @@ -6023,3 +6023,75 @@ DECLARE_PCI_FIXUP_HEADER(PCI_VENDOR_ID_INTEL, 0x9a2d, dpc_log_size);
+> >  DECLARE_PCI_FIXUP_HEADER(PCI_VENDOR_ID_INTEL, 0x9a2f, dpc_log_size);
+> >  DECLARE_PCI_FIXUP_HEADER(PCI_VENDOR_ID_INTEL, 0x9a31, dpc_log_size);
+> >  #endif
+> > +
+> > +#ifdef CONFIG_VMD
+> > +/*
+> > + * Enable ASPM on the PCIE root ports under VMD and set the default LTR of the
+> > + * storage devices on platforms where these values are not configured by BIOS.
+> > + * This is needed for laptops, which require these settings for proper power
+> > + * management of the SoC.
+> > + */
+> > +#define VMD_DEVICE_LTR	0x1003	/* 3145728 ns */
+
+This should be defined using FIELD_PREP()s. It is better to construct both 
+snoop and nosnoop registers here and not do the shift below at all.
+
+There are new defines for the nosnoop reg in pci/field-get branch for the 
+nosnoop reg fields.
+
+-- 
+ i.
+
+> > +static void quirk_intel_vmd(struct pci_dev *pdev)
+> > +{
+> > +	struct pci_dev *parent;
+> > +	u16 ltr = VMD_DEVICE_LTR;
+> > +	u32 ltr_reg;
+> > +	int pos;
+> > +
+> > +	/* Check in VMD domain */
+> > +	if (pci_domain_nr(pdev->bus) < 0x10000)
+> > +		return;
+> > +
+> > +	/* Get Root Port */
+> > +	parent = pci_upstream_bridge(pdev);
+> > +	if (!parent || parent->vendor != PCI_VENDOR_ID_INTEL)
+> > +		return;
+> > +
+> > +	/* Get VMD Host Bridge */
+> > +	parent = to_pci_dev(parent->dev.parent);
+> > +	if (!parent)
+> > +		return;
+> > +
+> > +	/* Get RAID controller */
+> > +	parent = to_pci_dev(parent->dev.parent);
+> > +	if (!parent)
+> > +		return;
+> > +
+> > +	switch (parent->device) {
+> > +	case 0x467f:
+> > +	case 0x4c3d:
+> > +	case 0xa77f:
+> > +	case 0x7d0b:
+> > +	case 0xad0b:
+> > +	case 0x9a0b:
+> > +		break;
+> > +	default:
+> > +		return;
+> > +	}
+> > +
+> > +	pci_enable_link_state(pdev, PCIE_LINK_STATE_ALL);
+> > +
+> > +	pos = pci_find_ext_capability(pdev, PCI_EXT_CAP_ID_LTR);
+> > +	if (!pos)
+> > +		return;
+> > +
+> > +	/* Skip if the max snoop LTR is non-zero, indicating BIOS has set it */
+> > +	pci_read_config_dword(pdev, pos + PCI_LTR_MAX_SNOOP_LAT, &ltr_reg);
+> > +	if (!!(ltr_reg & (PCI_LTR_VALUE_MASK | PCI_LTR_SCALE_MASK)))
+> > +		return;
+> > +
+> > +	/*
+> > +	 * Set the LTR values to the maximum required by the platform to
+> > +	 * allow the deepest power management savings. Write as a DWORD where
+> > +	 * the lower word is the max snoop latency and the upper word is the
+> > +	 * max non-snoop latency.
+> > +	 */
+> > +	ltr_reg = (ltr << 16) | ltr;
+> > +	pci_write_config_dword(pdev, pos + PCI_LTR_MAX_SNOOP_LAT, ltr_reg);
+> > +	pci_info(pdev, "LTR set by VMD PCI quick\n");
+> > +
+> > +}
+> > +DECLARE_PCI_FIXUP_CLASS_FINAL(PCI_ANY_ID, PCI_ANY_ID,
+> > +			      PCI_CLASS_STORAGE_EXPRESS, 0, quirk_intel_vmd);
+> > +#endif
+> > -- 
+> > 2.34.1
+> 
+> 
+--8323329-1564197198-1698222874=:1881--
