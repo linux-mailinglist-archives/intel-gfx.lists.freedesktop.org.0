@@ -1,55 +1,61 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id D83FC7D6C4D
-	for <lists+intel-gfx@lfdr.de>; Wed, 25 Oct 2023 14:50:33 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5791C7D6C86
+	for <lists+intel-gfx@lfdr.de>; Wed, 25 Oct 2023 14:59:02 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4D52510E666;
-	Wed, 25 Oct 2023 12:50:32 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C4DCC10E5B6;
+	Wed, 25 Oct 2023 12:58:55 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.120])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 49B5510E65D
- for <intel-gfx@lists.freedesktop.org>; Wed, 25 Oct 2023 12:50:30 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.151])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 81F0D10E5B6;
+ Wed, 25 Oct 2023 12:58:52 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1698238230; x=1729774230;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=8taXk9d8dDqVCmFn7qhn74+1CDDAAIOfz4zkFuEdF3I=;
- b=jk6BW3Q1B6owVkhBS8J9u9eLlSVWg2cijhKLcW3R4ZEVmxbx7aUtiawJ
- FUO0Ofz8v48R9G4mB7TxPmo2+/aDkGZkTgbzlj0oXVOAzLu7EC47QNUT8
- vBrRbqFaebCDuaJfj1iS1jwWjALCz1lz5/wBmztaPajxCIN02KPFcEj/1
- RCt+g/+fmyN6/q06UqXfRzfHrRQw25F9W42zXMtRClGgx/8M9QYyoemKa
- 9wv8BGGi4nVYhDJ8jKwWPNtKWITaHBF9iLMllKzOOU0BHsVya0WFI9oCe
- JTGweTHG7y0f8xAvk9VpDC/Wgde4AUXmbFyd66G9URzX/38syeltyIFmG g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10873"; a="386182198"
-X-IronPort-AV: E=Sophos;i="6.03,250,1694761200"; d="scan'208";a="386182198"
-Received: from orsmga006.jf.intel.com ([10.7.209.51])
- by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Oct 2023 05:50:29 -0700
+ t=1698238732; x=1729774732;
+ h=message-id:date:mime-version:subject:to:cc:references:
+ from:in-reply-to:content-transfer-encoding;
+ bh=psA/xCLXS6dYWJyQx9n3vCLD6NvH6t11xB6SltUFoeE=;
+ b=HWnQ49gtZen3rCWPJLezkta/1qP+5ClQHN28+x5cfRHjXpvyV0z2o2M9
+ CaLnMiK2bhEffOJsN8oWpq9inF+HN8qqdVZsG4Qwz+xjp/j04XMObfkB/
+ fqtCQKZ5YCizEF5a6sNMNvYD7G4qMbaQ8oY8Y25kfDIR0UBuIhq17+Iyr
+ 5gxMZUmFlGs+WeyEfoIrabox843fdzAYoRlnhgdfn02GnFvLNINUObl56
+ 6xBYj5ajhJ3NyjSoh4v9bfwRYjJ1xKuFFoBFHjwLGC7yarcISnAYiDyO2
+ B8juxI6mTqbtCoA8ELNXa9heEAdozJEqdc5tiveh0F02NimTMh3rMwYst A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10873"; a="367512269"
+X-IronPort-AV: E=Sophos;i="6.03,250,1694761200"; d="scan'208";a="367512269"
+Received: from fmviesa001.fm.intel.com ([10.60.135.141])
+ by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 25 Oct 2023 05:58:52 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10873"; a="735381596"
-X-IronPort-AV: E=Sophos;i="6.03,250,1694761200"; d="scan'208";a="735381596"
-Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.74])
- by orsmga006.jf.intel.com with SMTP; 25 Oct 2023 05:50:26 -0700
-Received: by stinkbox (sSMTP sendmail emulation);
- Wed, 25 Oct 2023 15:50:25 +0300
-Date: Wed, 25 Oct 2023 15:50:25 +0300
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
-Message-ID: <ZTkPEZVq8aIgyUI3@intel.com>
-References: <20231025121318.2732051-1-ankit.k.nautiyal@intel.com>
- <20231025121318.2732051-5-ankit.k.nautiyal@intel.com>
+X-IronPort-AV: E=Sophos;i="6.03,250,1694761200"; 
+   d="scan'208";a="6835834"
+Received: from lababeix-mobl1.ger.corp.intel.com (HELO [10.249.41.109])
+ ([10.249.41.109])
+ by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 25 Oct 2023 05:58:42 -0700
+Message-ID: <ace7375e-d9a8-4b6f-aa92-6360ca3bfa96@linux.intel.com>
+Date: Wed, 25 Oct 2023 13:58:48 +0100
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20231025121318.2732051-5-ankit.k.nautiyal@intel.com>
-X-Patchwork-Hint: comment
-Subject: Re: [Intel-gfx] [PATCH 4/4] drm/i915/dp: Limit max_requested_bpc
- based on src DSC bpc limits
+User-Agent: Mozilla Thunderbird
+Content-Language: en-US
+To: "Teres Alexis, Alan Previn" <alan.previn.teres.alexis@intel.com>,
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
+References: <20230926190518.105393-1-alan.previn.teres.alexis@intel.com>
+ <20230926190518.105393-4-alan.previn.teres.alexis@intel.com>
+ <9ca17c5c-7bb4-ff6b-69cb-3983299729c1@linux.intel.com>
+ <123edf6b37aa982de20279d64c213156a2dc8c2e.camel@intel.com>
+ <fad657e7-beec-75fc-9003-5883412d6e6b@linux.intel.com>
+ <0c1e1e713fc46bf0783ca6e0a72a39d6671a6b57.camel@intel.com>
+From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+Organization: Intel Corporation UK Plc
+In-Reply-To: <0c1e1e713fc46bf0783ca6e0a72a39d6671a6b57.camel@intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+Subject: Re: [Intel-gfx] [PATCH v4 3/3] drm/i915/gt: Timeout when waiting
+ for idle in suspending
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -62,53 +68,80 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: jani.nikula@intel.com, intel-gfx@lists.freedesktop.org
+Cc: "Jana, Mousumi" <mousumi.jana@intel.com>,
+ "intel.com@freedesktop.org" <intel.com@freedesktop.org>,
+ "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>, "Vivi,
+ Rodrigo" <rodrigo.vivi@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, Oct 25, 2023 at 05:43:18PM +0530, Ankit Nautiyal wrote:
-> At the moment the max requested bpc is limited to 6 to 10/12.
-> For platforms that support DSC, min and max src bpc with DSC are
-> different.
-> 
-> Account for DSC bpc limitations, when setting min and max value for
-> max_requested_bpc property.
 
-NAK. DSC capabiliies change dynamically, the property does not.
+On 04/10/2023 18:59, Teres Alexis, Alan Previn wrote:
+> On Thu, 2023-09-28 at 13:46 +0100, Tvrtko Ursulin wrote:
+>> On 27/09/2023 17:36, Teres Alexis, Alan Previn wrote:
+>>> Thanks for taking the time to review this Tvrtko, replies inline below.
+> alan:snip
+> 
+>>>>
+>>>> Main concern is that we need to be sure there are no possible
+>>>> ill-effects, like letting the GPU/GuC scribble on some memory we
+>>>> unmapped (or will unmap), having let the suspend continue after timing
+>>>> out, and not perhaps doing the forced wedge like wait_for_suspend() does
+>>>> on the existing timeout path.
+>>> alan: this will not happen because the held wakeref is never force-released
+>>> after the timeout - so what happens is the kernel would bail the suspend.
+>>
+>> How does it know to fail the suspend when there is no error code
+>> returned with this timeout? Maybe a stupid question.. my knowledge of
+>> suspend-resume paths was not great even before I forgot it all.
+> alan:Tvrtko, you and I both sir. (apologies for the tardy response yet again busy week).
+> So i did trace back the gt->wakeref before i posted these patches and discovered that
+> runtime get/put call, i believe that the first 'get' leads to __intel_wakeref_get_first
+> which calls intel_runtime_pm_get via rpm_get helper and eventually executes a
+> pm_runtime_get_sync(rpm->kdev); (hanging off i915). (ofc, there is a corresponding
+> for '_put_last') - so non-first, non-last increases the counter for the gt...
+> but this last miss will mean kernel knows i915 hasnt 'put' everything.
+> 
+> alan:snip
+>>>
+>>> Recap: so in both cases (original vs this patch), if we had a buggy gt-wakeref leak,
+>>> we dont get invalid guc-accesses, but without this patch, we wait forever,
+>>> and with this patch, we get some messages and eventually bail the suspend.
+>>
+>> It is not possible to wait for lost G2H in something like
+>> intel_uc_suspend() and simply declare "bad things happened" if it times
+>> out there, and forcibly clean it all up? (Which would include releasing
+>> all the abandoned pm refs, so this patch wouldn't be needed.)
+>>
+> alan: I'm not sure if intel_uc_suspend should be held up by gt-level wakeref
+> check unless huc/guc/gsc-uc are the only ones ever taking a gt wakeref.
+> 
+> As we already know, what we do know from a uc-perspective:
+> -  ensure the outstanding guc related workers is flushed which we didnt before
+> (addressed by patch #1).
+> - any further late H2G-SchedDisable is not leaking wakerefs when calling H2G
+> and not realizing it failed (addressed by patch #2).
+> - (we already), "forcibly clean it all up" at the end of the intel_uc_suspend
+> when we do the guc reset and cleanup all guc-ids. (pre-existing upstream code)
+> - we previously didnt have a coherrent guarantee that "this is the end" i.e. no
+> more new request after intel_uc_suspend. I mean by code logic, we thought we did
+> (thats why intel_uc_suspend ends wth a guc reset), but we now know otherwise.
+> So we that fix by adding the additional rcu_barrier (also part of patch #2).
+
+It is not clear to me from the above if that includes cleaning up the 
+outstanding CT replies or no. But anyway..
 
 > 
-> Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
-> ---
->  drivers/gpu/drm/i915/display/intel_dp.c | 13 +++++++++++--
->  1 file changed, 11 insertions(+), 2 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
-> index abc718f1a878..1935b9014b12 100644
-> --- a/drivers/gpu/drm/i915/display/intel_dp.c
-> +++ b/drivers/gpu/drm/i915/display/intel_dp.c
-> @@ -5907,8 +5907,17 @@ intel_dp_add_properties(struct intel_dp *intel_dp, struct drm_connector *connect
->  	intel_attach_broadcast_rgb_property(connector);
->  	if (HAS_GMCH(dev_priv))
->  		drm_connector_attach_max_bpc_property(connector, 6, 10);
-> -	else if (DISPLAY_VER(dev_priv) >= 5)
-> -		drm_connector_attach_max_bpc_property(connector, 6, 12);
-> +	else if (DISPLAY_VER(dev_priv) >= 5) {
-> +		int min_bpc = 6, max_bpc = 12;
-> +		struct intel_connector *intel_connector = to_intel_connector(connector);
-> +
-> +		if (HAS_DSC(dev_priv) && drm_dp_sink_supports_dsc(intel_connector->dp.dsc_dpcd)) {
-> +			min_bpc = intel_dp_dsc_min_src_input_bpc(dev_priv);
-> +			max_bpc = intel_dp_dsc_max_src_input_bpc(dev_priv);
-> +		}
-> +
-> +		drm_connector_attach_max_bpc_property(connector, min_bpc, max_bpc);
-> +	}
->  
->  	/* Register HDMI colorspace for case of lspcon */
->  	if (intel_bios_encoder_is_lspcon(dp_to_dig_port(intel_dp)->base.devdata)) {
-> -- 
-> 2.40.1
+> That said, patch-3 is NOT fixing a bug in guc -its about "if we ever have
+> a future racy gt-wakeref late-leak somewhere - no matter which subsystem
+> took it (guc is not the only subsystem taking gt wakerefs), we at
+> least don't hang forever in this code. Ofc, based on that, even without
+> patch-3 i am confident the issue is resolved anyway.
+> So we could just drop patch-3 is you prefer?
 
--- 
-Ville Syrjälä
-Intel
+.. given this it does sound to me that if you are confident patch 3 
+isn't fixing anything today that it should be dropped.
+
+Regards,
+
+Tvrtko
