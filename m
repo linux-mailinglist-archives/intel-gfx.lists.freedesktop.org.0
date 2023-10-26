@@ -2,49 +2,49 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 16FEB7D7FAD
-	for <lists+intel-gfx@lfdr.de>; Thu, 26 Oct 2023 11:38:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1DC797D7FAF
+	for <lists+intel-gfx@lfdr.de>; Thu, 26 Oct 2023 11:39:00 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8A15310E789;
-	Thu, 26 Oct 2023 09:38:53 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 929BF10E78D;
+	Thu, 26 Oct 2023 09:38:58 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.93])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1573810E789
- for <intel-gfx@lists.freedesktop.org>; Thu, 26 Oct 2023 09:38:52 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0435610E78D
+ for <intel-gfx@lists.freedesktop.org>; Thu, 26 Oct 2023 09:38:54 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1698313132; x=1729849132;
+ t=1698313135; x=1729849135;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=X5c8tRDw6F72ykz6230EYg7dSf+JJbagUswe5wYcxS8=;
- b=UujpMhwZca5iVPZ3oyRAaBAF/dVASwiY7tIlcB9J4U4BjIuytNSlPxq8
- CntoVfzCspHa8gC+DRKx1O8PRgjI/INgRTZC4UpfgsHXKQr/9cKLO3kQr
- idg7pLKfHzFPR7XJrZ8VMocW4zgkR+fHRcAny+7n2AtGdIHPgJUK+1bJ7
- RCSMeOQkL9NFclBfXkMYKkuEiezKOmvhvjV5GpLL0TQB/ujFOkC9nr31b
- nnv9rJPrGAKvag1Q9DRMfLgPkgZJpwVI4pQMiGIZSBFc1GpTBxhrGnME2
- AGW43XDsDpFXrr5RN5T7E96wNGUh4wapOTJZ8RmEF6duFdhHMaRLc8vlx w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10874"; a="384708156"
-X-IronPort-AV: E=Sophos;i="6.03,253,1694761200"; d="scan'208";a="384708156"
+ bh=W/fHAENlDO9hNkn73jHnNfjgvDWIVrsoXGhb14wpsXQ=;
+ b=Y59vpv7mfaq1YUztGZ7xIIcXhBySAA4mVZe32+nfDvFFd0J1VDYtcU/E
+ VLyAJdyPiXxfmWxReCgZIEGCnz6PMkQHq9PoDwrFYF/BasgeLPFwT1CKe
+ OKV9JZ1H1lu6piR7EguHrJLGzGNxHLvW/jrBqcrKZCdOZ2yH3R1/QNotq
+ G/AnQ+svFcW6zUiYvaCdE8UCdEpEOjEfRIzpW2/mpUm69c8X3YTBel/RN
+ fI55i6HYcbxHzEOJlnTWAjS1L7F6qxS1SdaT3DXp2Q5gFr5KK0P9ctC1v
+ bumvAh+IzQMX5YLMTa8FYR3kCrlWWoX6iWQ80iHarL8Nxs7k298onHWPU g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10874"; a="384708160"
+X-IronPort-AV: E=Sophos;i="6.03,253,1694761200"; d="scan'208";a="384708160"
 Received: from orsmga006.jf.intel.com ([10.7.209.51])
  by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Oct 2023 02:38:51 -0700
+ 26 Oct 2023 02:38:54 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10874"; a="735688274"
-X-IronPort-AV: E=Sophos;i="6.03,253,1694761200"; d="scan'208";a="735688274"
+X-IronPort-AV: E=McAfee;i="6600,9927,10874"; a="735688303"
+X-IronPort-AV: E=Sophos;i="6.03,253,1694761200"; d="scan'208";a="735688303"
 Received: from kandpal-x299-ud4-pro.iind.intel.com ([10.190.239.32])
- by orsmga006.jf.intel.com with ESMTP; 26 Oct 2023 02:38:49 -0700
+ by orsmga006.jf.intel.com with ESMTP; 26 Oct 2023 02:38:52 -0700
 From: Suraj Kandpal <suraj.kandpal@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Thu, 26 Oct 2023 15:06:46 +0530
-Message-Id: <20231026093647.987267-3-suraj.kandpal@intel.com>
+Date: Thu, 26 Oct 2023 15:06:47 +0530
+Message-Id: <20231026093647.987267-4-suraj.kandpal@intel.com>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20231026093647.987267-1-suraj.kandpal@intel.com>
 References: <20231026093647.987267-1-suraj.kandpal@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH 2/3] drm/i915/hdcp: Convert intel_hdcp_enable to
- a blanket function
+Subject: [Intel-gfx] [PATCH 2/3] drm/i915/hdcp: Create a blanket hdcp enable
+ function
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -60,9 +60,8 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Let's convert intel_hdcp_enable to a blanket function
-which just has some conditions which needs to be checked
-before connectors enable hdcp.
+Let's create a blanket function which just has some conditions
+which need to be checked before connectors enable hdcp.
 This cleans up code and avoids code duplication.
 
 --v3
