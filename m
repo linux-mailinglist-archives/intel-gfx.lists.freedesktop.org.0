@@ -1,50 +1,48 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 607F57D8259
-	for <lists+intel-gfx@lfdr.de>; Thu, 26 Oct 2023 14:13:49 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 17AB97D825D
+	for <lists+intel-gfx@lfdr.de>; Thu, 26 Oct 2023 14:16:25 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D428D10E11F;
-	Thu, 26 Oct 2023 12:13:47 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D91B010E7BF;
+	Thu, 26 Oct 2023 12:16:22 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.115])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 205A910E11F
- for <intel-gfx@lists.freedesktop.org>; Thu, 26 Oct 2023 12:13:44 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1698322424; x=1729858424;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=vwz96pz43KWeaGcjMdHLWyTRK0IpC26rZxDF8MbINxw=;
- b=DJ7WoBn1mThpxraQK7ni/m5xpMsnTzRSQaObA+kS4a8qd45RRnaTH0tk
- Km2AMaiaqEZKP4m0zYngPpJqfZEZ5/2y++nA79LI/La0rP46T+QPkyHl1
- TBzaKHoIU7JXCP2ZQA+UBbS7Xr5qGC/6z7OnLFIe99z1QXWlafSm2Yg7u
- O9vBDgAmv06PpexYiuvpjE6mvpTW2bC0u8pmOJXSmV3EnHAJireDsBNVy
- Pyey/icTx+tHE41JvWgMaRzvxxRf1LgCdda1wRDR9lU1aJ5Wfp2bKkCfe
- dl1cL/qUP1mbk3Ych/hLKu/C+bCI467GwYELIxEdw0rJpKpKLM12fHcPK Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10874"; a="387354597"
-X-IronPort-AV: E=Sophos;i="6.03,253,1694761200"; d="scan'208";a="387354597"
-Received: from fmsmga007.fm.intel.com ([10.253.24.52])
- by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Oct 2023 05:13:44 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10874"; a="762809254"
-X-IronPort-AV: E=Sophos;i="6.03,253,1694761200"; d="scan'208";a="762809254"
-Received: from kandpal-x299-ud4-pro.iind.intel.com ([10.190.239.32])
- by fmsmga007.fm.intel.com with ESMTP; 26 Oct 2023 05:13:42 -0700
-From: Suraj Kandpal <suraj.kandpal@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Thu, 26 Oct 2023 17:41:40 +0530
-Message-Id: <20231026121139.987437-4-suraj.kandpal@intel.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20231026121139.987437-1-suraj.kandpal@intel.com>
-References: <20231026121139.987437-1-suraj.kandpal@intel.com>
+Received: from sin.source.kernel.org (sin.source.kernel.org
+ [IPv6:2604:1380:40e1:4800::1])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2AB7C10E7BF
+ for <intel-gfx@lists.freedesktop.org>; Thu, 26 Oct 2023 12:16:20 +0000 (UTC)
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+ by sin.source.kernel.org (Postfix) with ESMTP id 06B1ACE3EA1;
+ Thu, 26 Oct 2023 12:16:18 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0212AC433C8;
+ Thu, 26 Oct 2023 12:16:15 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=k20201202; t=1698322577;
+ bh=LX8PNdOl705w1KrULo8nTRL4NiuX+51wFwempmD/sso=;
+ h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+ b=p+eaGzRd8csgdt8UBBYbNJVtNYkx5akrlrhOEcAWKBPaBZq1mAgeGTxTNX+9c4QPG
+ zMW/O0TArHmXlbiLlonQFeCeGErPp6ICZae3L2gQQGGpYx3erQZlpW2GYHWVxYR0jy
+ nRJmGfy+SwMczouEf9gum9h5RkHn7kz81/orCUAXL5YefFE70g1YzYyXwAK80tJrYm
+ dXR1XW5U6a8iyeyNkWyAXVDiavm4c4ycijsrfoAJNDB7aMQWuDxxPSbF0u11bXXB4I
+ g6PIeEDnMqtPcJP+l8J/eZA50HOql1n+mTCyJNGGjm8kvG/52VQeRX8LZZ4qExW4cu
+ q7+zQp4RZqy7g==
+Date: Thu, 26 Oct 2023 14:16:13 +0200
+From: Christian Brauner <brauner@kernel.org>
+To: "Borah, Chaitanya Kumar" <chaitanya.kumar.borah@intel.com>
+Message-ID: <20231026-ohnedies-endmontage-9592e293c728@brauner>
+References: <SJ1PR11MB6129E1EA583B3DA3B45E37A4B9CAA@SJ1PR11MB6129.namprd11.prod.outlook.com>
+ <SJ1PR11MB6129B9D6396E5BECB46A25A6B9DBA@SJ1PR11MB6129.namprd11.prod.outlook.com>
+ <SJ1PR11MB6129CB39EED831784C331BAFB9DEA@SJ1PR11MB6129.namprd11.prod.outlook.com>
+ <20231025-zubetoniert-estrich-398e12164835@brauner>
+ <SJ1PR11MB6129D4C000D5AC82E4C69710B9DEA@SJ1PR11MB6129.namprd11.prod.outlook.com>
+ <SJ1PR11MB61291333B84FB20B3A910177B9DDA@SJ1PR11MB6129.namprd11.prod.outlook.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH 3/3] drm/i915/hdcp: Add more conditions to
- enable hdcp
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <SJ1PR11MB61291333B84FB20B3A910177B9DDA@SJ1PR11MB6129.namprd11.prod.outlook.com>
+Subject: Re: [Intel-gfx] Regression on linux-next (next-20231013)
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -57,49 +55,58 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>, "Kurmi,
+ Suresh Kumar" <suresh.kumar.kurmi@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-When we dock a monitor we end up with a enable and disable connector
-cycle but if hdcp content is running we get the userspace in
-enabled state and driver maintaining a undesired state which causes
-the content to stop playing and we only enabe hdcp if the userspace
-state in desired. This patch fixes that.
+On Thu, Oct 26, 2023 at 10:14:23AM +0000, Borah, Chaitanya Kumar wrote:
+> Hello Christian,
+> 
+> > -----Original Message-----
+> > From: Borah, Chaitanya Kumar
+> > Sent: Wednesday, October 25, 2023 7:15 PM
+> > To: Christian Brauner <brauner@kernel.org>
+> > Cc: intel-gfx@lists.freedesktop.org; Kurmi, Suresh Kumar
+> > <Suresh.Kumar.Kurmi@intel.com>; Saarinen, Jani <jani.saarinen@intel.com>
+> > Subject: RE: Regression on linux-next (next-20231013)
+> > 
+> > Hello Christian,
+> > 
+> > > -----Original Message-----
+> > > From: Christian Brauner <brauner@kernel.org>
+> > > Sent: Wednesday, October 25, 2023 1:02 PM
+> > > To: Borah, Chaitanya Kumar <chaitanya.kumar.borah@intel.com>
+> > > Cc: intel-gfx@lists.freedesktop.org; Kurmi, Suresh Kumar
+> > > <suresh.kumar.kurmi@intel.com>; Saarinen, Jani
+> > > <jani.saarinen@intel.com>
+> > > Subject: Re: Regression on linux-next (next-20231013)
+> > >
+> > > On Wed, Oct 25, 2023 at 06:32:01AM +0000, Borah, Chaitanya Kumar wrote:
+> > > >  Hello Christian,
+> > > >
+> > > >  Hope you are doing well. I am Chaitanya from the linux graphics
+> > > > team in
+> > > Intel.
+> > > >
+> > > >  This mail is regarding a regression we are seeing in our CI runs[1]
+> > > > on linux-next  repository.
+> > >
+> > > Any chance I can reproduce this locally?
+> > 
+> > Thank you for your response.
+> > 
+> > I see that you have already floated a patch [1] to fix the issue. We will test it
+> > and get back to you ASAP.
+> 
+> The solution is working for us.
+> 
+> Also, linux-next turned green.
 
---v2
--Move code to intel_hdcp [Jani]
+Great! That already has the final version of the patch.
 
-Signed-off-by: Suraj Kandpal <suraj.kandpal@intel.com>
----
- drivers/gpu/drm/i915/display/intel_hdcp.c | 14 ++++++++++++--
- 1 file changed, 12 insertions(+), 2 deletions(-)
+> http://gfx-ci.igk.intel.com/tree/linux-next/igt@i915_selftest@live@mman.html
+> 
+> Thank you.
 
-diff --git a/drivers/gpu/drm/i915/display/intel_hdcp.c b/drivers/gpu/drm/i915/display/intel_hdcp.c
-index 44c0a93f3af8..39b3f7c0c77c 100644
---- a/drivers/gpu/drm/i915/display/intel_hdcp.c
-+++ b/drivers/gpu/drm/i915/display/intel_hdcp.c
-@@ -2409,9 +2409,19 @@ void intel_hdcp_enable(struct intel_atomic_state *state,
- 		       const struct intel_crtc_state *crtc_state,
- 		       const struct drm_connector_state *conn_state)
- {
--	/* Enable hdcp if it's desired */
-+	struct intel_connector *connector =
-+		to_intel_connector(conn_state->connector);
-+	struct intel_hdcp *hdcp = &connector->hdcp;
-+
-+	/*
-+	 * Enable hdcp if it's desired or if userspace is enabled and
-+	 * driver set its state to undesired
-+	 */
- 	if (conn_state->content_protection ==
--	    DRM_MODE_CONTENT_PROTECTION_DESIRED)
-+	    DRM_MODE_CONTENT_PROTECTION_DESIRED ||
-+	    (conn_state->content_protection ==
-+	    DRM_MODE_CONTENT_PROTECTION_ENABLED && hdcp->value ==
-+	    DRM_MODE_CONTENT_PROTECTION_UNDESIRED))
- 		_intel_hdcp_enable(state, encoder, crtc_state, conn_state);
- }
- 
--- 
-2.25.1
-
+Thanks for the report!
