@@ -1,62 +1,58 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6E6F57D8163
-	for <lists+intel-gfx@lfdr.de>; Thu, 26 Oct 2023 12:56:49 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6F0947D8166
+	for <lists+intel-gfx@lfdr.de>; Thu, 26 Oct 2023 12:58:41 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B7D2110E7AC;
-	Thu, 26 Oct 2023 10:56:46 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 040DD10E7B1;
+	Thu, 26 Oct 2023 10:58:40 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-wr1-x42d.google.com (mail-wr1-x42d.google.com
- [IPv6:2a00:1450:4864:20::42d])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B96AE10E7AC
- for <intel-gfx@lists.freedesktop.org>; Thu, 26 Oct 2023 10:56:44 +0000 (UTC)
-Received: by mail-wr1-x42d.google.com with SMTP id
- ffacd0b85a97d-32dff202b4bso540839f8f.1
- for <intel-gfx@lists.freedesktop.org>; Thu, 26 Oct 2023 03:56:44 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1698317803; x=1698922603; darn=lists.freedesktop.org;
- h=content-transfer-encoding:mime-version:message-id:date:subject:cc
- :to:from:from:to:cc:subject:date:message-id:reply-to;
- bh=jzx8zJPqdnSI7cMOVXmYNiYspGfExF/RPyaR7yY8Fa0=;
- b=Endl5WKXY16huEeLwq+kR6/PISY54JwtXmiWWfuKpr7DbB4/vCWu2MOufMyJy0XbRc
- XdJzJnvKao4LqnnE0/UY2FjpIVcKzImOdb2LYCyN/5lOszAHjIjkv5KBlStKmYJSy8jZ
- u2ACXOR+TwOPv/YOHQR8t1KBFmPwPhielaqUjL0fV1udeKNJnlg/aqAxPjSiZ98/gBI9
- m5oI+DPF2T6f/gP1F7Fdu6UwY0NkLcxLiZYi5EwOBqQbmq65mHXWE/xu8wPQObWtC6Ra
- y73R3gCjEyOD1F3gLlGXipN3H0ko6qo3FSGEX726o9uRDXlWUTvByuNc9/7/zv5cA4Zp
- r+Lg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1698317803; x=1698922603;
- h=content-transfer-encoding:mime-version:message-id:date:subject:cc
- :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
- :reply-to;
- bh=jzx8zJPqdnSI7cMOVXmYNiYspGfExF/RPyaR7yY8Fa0=;
- b=WRVLquKFWoZDTQv5ffAu04biE9zMzWYNRSpRJFK3mBmfv0veD4JLdZvC/HY44ExfM5
- H5/gSdWVTqOmn2qTn0UxshyHm61ByEp3uXLJ5OXHGo5AHLVr427nZ1+7ytzU7QRKCzG0
- XG6xWlN6JEsle1/M0qcX/hrUzP4FMuPl/6YqT0oPGocdWfxiiYBZO0rX93ZC6+MjHHUG
- yEk00AO13ZVGDdKqAs7Pyv5qGQk3+32n7rtMZXQ759ZNx6dqs3OpG9Q9rhQrqdvT1J13
- Wc3gRygEJ+vBXkoPglALAad7kSrvqVu4UlX+MADOLo4FdM7GxgY5TLoEdTbVVe2IrcGv
- PO3g==
-X-Gm-Message-State: AOJu0Yzcvt8s6thG8xOf5s+MHBRkkeVquUyLWL1SkoYpvyz4prz38lK1
- ts6A8nubJGsbQAkiOKr0vdb5UcbOsXaUejJJ
-X-Google-Smtp-Source: AGHT+IFzzWgw9crv+jT9ZuIRu1I5k26k+AoS6FrdFWOmZRKktQIFYA9Xb2c9j+DqwtknLLMJzkaghA==
-X-Received: by 2002:a5d:4407:0:b0:31f:f1f4:ca8e with SMTP id
- z7-20020a5d4407000000b0031ff1f4ca8emr12211027wrq.36.1698317802925; 
- Thu, 26 Oct 2023 03:56:42 -0700 (PDT)
-Received: from gilbert-PC ([105.112.31.135]) by smtp.gmail.com with ESMTPSA id
- o15-20020adfcf0f000000b00327de0173f6sm13922695wrj.115.2023.10.26.03.56.41
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Thu, 26 Oct 2023 03:56:42 -0700 (PDT)
-From: Gilbert Adikankwu <gilbertadikankwu@gmail.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Thu, 26 Oct 2023 11:56:23 +0100
-Message-Id: <20231026105623.480172-1-gilbertadikankwu@gmail.com>
-X-Mailer: git-send-email 2.34.1
+Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.100])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A347810E7B1
+ for <intel-gfx@lists.freedesktop.org>; Thu, 26 Oct 2023 10:58:38 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1698317918; x=1729853918;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:in-reply-to;
+ bh=34epZCSn5e60L7RZE1C5Sw/f+3fmqBww7wQqIeZS9wQ=;
+ b=GDe9Cl1rl/wG8frTSMECy7lv8jQxTQiZwQ8EtlF0tm+NfwghuaeIEmsl
+ KOeqkvVbuMY5yWpXFa2K9ttsCSkDUejjjxYWjTFnmYsXX6eHSdmlOpJqP
+ WrfXE0l8XcSWj6+xvcxxCPZdMjXsNBA+U3lCCd2TJll8f5XG66S1vQ6x/
+ YDwGaPy1v95GG9zmB394QoKXMxUmlhribFTiZ6/fKDSG4W2BBrAdWfCyD
+ cj5yrmMG3PvO121AsOeR78lCPskM672xClKOgoP7XsGdiZLUIftH8XRbi
+ cEmiWovqeKf/2iXSDZtk3XTh6MuAh467gLgJw4oEgXRj0QTDVhsxW+o3w g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10874"; a="453984627"
+X-IronPort-AV: E=Sophos;i="6.03,253,1694761200"; d="scan'208";a="453984627"
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+ by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 Oct 2023 03:58:37 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10874"; a="875893111"
+X-IronPort-AV: E=Sophos;i="6.03,253,1694761200"; d="scan'208";a="875893111"
+Received: from kacperbu-mobl1.ger.corp.intel.com (HELO intel.com)
+ ([10.252.49.190])
+ by fmsmga002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 Oct 2023 03:58:36 -0700
+Date: Thu, 26 Oct 2023 12:58:33 +0200
+From: Andi Shyti <andi.shyti@linux.intel.com>
+To: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+Message-ID: <ZTpGWZn2cm1VhUVN@ashyti-mobl2.lan>
+References: <20231023150256.438331-1-jani.nikula@intel.com>
+ <20231023150256.438331-2-jani.nikula@intel.com>
+ <ZTe4uzgC7sIPGzwV@ashyti-mobl2.lan> <87h6mg9op4.fsf@intel.com>
+ <6b642bcd-6152-42b8-88ad-21b039d9898b@linux.intel.com>
+ <ZTjuBar5FeoMPYo6@ashyti-mobl2.lan> <8734xx8yz4.fsf@intel.com>
+ <05993162-ce64-4b34-bfe5-5f33240c519e@linux.intel.com>
+ <ZTpBG_cqdVfBb2uE@ashyti-mobl2.lan>
+ <a752d570-132b-46b6-b7c3-a45cab34f29c@linux.intel.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH] drm/i915/gt: Remove unncessary {} from if-else
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <a752d570-132b-46b6-b7c3-a45cab34f29c@linux.intel.com>
+Subject: Re: [Intel-gfx] [PATCH 2/3] drm/i915/pmu: add event_to_pmu() helper
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -69,40 +65,80 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: andi.shyti@intel.com
+Cc: Jani Nikula <jani.nikula@intel.com>, intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Fix checkpatch.pl error:
+On Thu, Oct 26, 2023 at 11:51:02AM +0100, Tvrtko Ursulin wrote:
+> On 26/10/2023 11:36, Andi Shyti wrote:
+> > > On 26/10/2023 11:22, Jani Nikula wrote:
+> > > > On Wed, 25 Oct 2023, Andi Shyti <andi.shyti@linux.intel.com> wrote:
+> > > > > On Wed, Oct 25, 2023 at 11:20:25AM +0100, Tvrtko Ursulin wrote:
+> > > > > > 
+> > > > > > On 24/10/2023 13:42, Jani Nikula wrote:
+> > > > > > > On Tue, 24 Oct 2023, Andi Shyti <andi.shyti@linux.intel.com> wrote:
+> > > > > > > > Hi Jani,
+> > > > > > > > 
+> > > > > > > > On Mon, Oct 23, 2023 at 06:02:55PM +0300, Jani Nikula wrote:
+> > > > > > > > > It's tedious to duplicate the container_of() everywhere. Add a helper.
+> > > > > > > > > 
+> > > > > > > > > Also do the logical steps of first getting from struct perf_event to
+> > > > > > > > > struct i915_pmu, and then from struct i915_pmu to struct
+> > > > > > > > > drm_i915_private if needed, instead of perf_event->i915->pmu. Not all
+> > > > > > > > > places even need the i915 pointer.
+> > > > > > > > > 
+> > > > > > > > > Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+> > > > > > > > > ---
+> > > > > > > > >     drivers/gpu/drm/i915/i915_pmu.c | 45 +++++++++++++++------------------
+> > > > > > > > >     1 file changed, 20 insertions(+), 25 deletions(-)
+> > > > > > > > > 
+> > > > > > > > > diff --git a/drivers/gpu/drm/i915/i915_pmu.c b/drivers/gpu/drm/i915/i915_pmu.c
+> > > > > > > > > index dcae2fcd8d36..d45b40ec6d47 100644
+> > > > > > > > > --- a/drivers/gpu/drm/i915/i915_pmu.c
+> > > > > > > > > +++ b/drivers/gpu/drm/i915/i915_pmu.c
+> > > > > > > > > @@ -31,6 +31,11 @@
+> > > > > > > > >     static cpumask_t i915_pmu_cpumask;
+> > > > > > > > >     static unsigned int i915_pmu_target_cpu = -1;
+> > > > > > > > > +static struct i915_pmu *event_to_pmu(struct perf_event *event)
+> > > > > > > > 
+> > > > > > > > I would call it perfevent (or perf_event), event is too generic.
+> > > > > > > > We have other kind of events, too.
+> > > > > > > 
+> > > > > > > Fair enough.
+> > > > > > 
+> > > > > > Counter argument is that i915_pmu.c consistently names this event (which is
+> > > > > > likely lifted from other PMU drivers) so is the proposal to churn it all, or
+> > > > > > create an inconsistency?
+> > > > > 
+> > > > > The first that comes to my mind is that the debugger is also
+> > > > > using the term "event"... on the other hand there is no debugger
+> > > > > in i915.
+> > > > 
+> > > > Have you settled on this? I don't care either way, could apply either
+> > > > patch.
+> > 
+> > no... unfortunately not...
+> 
+> :(
+> 
+> $ grep "struct perf_event \*event" . -r | wc -l
+> 1912
+> $ grep "struct perf_event \*perf_event" . -r | wc -l
+> 5
+> 
+> ;)
 
-WARNING: braces {} are not necessary for any arm of this statement
+with "I haven't settled on this", I meant that the debugger has
+not been posted upstream for i915 and it won't be. It's going to
+go in the XE driver.
 
-Signed-off-by: Gilbert Adikankwu <gilbertadikankwu@gmail.com>
----
- drivers/gpu/drm/i915/gt/intel_sseu.c | 7 +++----
- 1 file changed, 3 insertions(+), 4 deletions(-)
+> Now seriously, I don't mind perf_event, as long as _whole_ i915_pmu.c is
+> switched over. At which point I questioned would the churn be worth it.
 
-diff --git a/drivers/gpu/drm/i915/gt/intel_sseu.c b/drivers/gpu/drm/i915/gt/intel_sseu.c
-index f602895f6d0d..6a3246240e81 100644
---- a/drivers/gpu/drm/i915/gt/intel_sseu.c
-+++ b/drivers/gpu/drm/i915/gt/intel_sseu.c
-@@ -849,13 +849,12 @@ void intel_sseu_print_topology(struct drm_i915_private *i915,
- 			       const struct sseu_dev_info *sseu,
- 			       struct drm_printer *p)
- {
--	if (sseu->max_slices == 0) {
-+	if (sseu->max_slices == 0)
- 		drm_printf(p, "Unavailable\n");
--	} else if (GRAPHICS_VER_FULL(i915) >= IP_VER(12, 50)) {
-+	else if (GRAPHICS_VER_FULL(i915) >= IP_VER(12, 50))
- 		sseu_print_xehp_topology(sseu, p);
--	} else {
-+	else
- 		sseu_print_hsw_topology(sseu, p);
--	}
- }
- 
- void intel_sseu_print_ss_info(const char *type,
--- 
-2.34.1
+I like Jani's patch, of course your grep search concludes the
+the discussion, so that I'm not going to argue agains "event"
+as name :-)
 
+Acked-by: Andi Shyti <andi.shyti@linux.intel.com>
+
+Andi
