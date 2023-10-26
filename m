@@ -1,53 +1,53 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1BC9B7D82C1
-	for <lists+intel-gfx@lfdr.de>; Thu, 26 Oct 2023 14:36:37 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 846347D82C2
+	for <lists+intel-gfx@lfdr.de>; Thu, 26 Oct 2023 14:36:40 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0B4D210E7C7;
-	Thu, 26 Oct 2023 12:36:34 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D904E10E7C8;
+	Thu, 26 Oct 2023 12:36:38 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1527D10E7C7
- for <intel-gfx@lists.freedesktop.org>; Thu, 26 Oct 2023 12:36:33 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 706E210E7C8
+ for <intel-gfx@lists.freedesktop.org>; Thu, 26 Oct 2023 12:36:34 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1698323793; x=1729859793;
+ t=1698323794; x=1729859794;
  h=from:to:cc:subject:in-reply-to:references:date:
  message-id:mime-version;
- bh=RJvvUZeqAPfnnOaXvBXJ7RKllioSyczcQPuw7DTtkY0=;
- b=bjEtnu62pWsNddrls4zumYb+lukv2ys215TrBZ4nBwd9LVsJgHQIBVFX
- 3JdAoCKmpSJD9b5VV/i/0PCQvmzEyvFHwo34w/zfSY5U54qSubUuualCh
- yil1+sRxZGgIKHe6CGmtN9WVt8SLNxLyO2p9ZjcBrihLJdqYAEBlDnMm0
- 7F1fs2oK2CJ5qypWBSjYWuUDe2p36RzitofciDysTc4TLYZqFIoFaMRzP
- nIu6yyQsOjfLkrt/TrGySwEp5l8Jcj5VKjXJKH3fWQUhCZpsCWp9PSTGU
- 06dIexiSyHOlZ0n8IWXMnbvz/LV0e/tMGK8homBRSTPXt0MhgZOsisBWz A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10874"; a="9087174"
+ bh=9ZWhB7miTOLjB+T95GONG1MSkJ/f8jBi/ZKIK02XLWI=;
+ b=FyxJHPn6zfHL10w6saQmIle2oPjWmtwdlYB/StFy039yPyYhAM+rkxNq
+ Ue4CFh/rBYQe/7qWn5hTCtSGQnCeCF2msVMXr9ueGoUniUuoxcjwNNJxO
+ jz0lE3Mk+3rk6q4CvkfbkmVtX9MmWAndBn/qe0wbrsReThlMCW3yVGHmi
+ aHhwTF5kcfatqOv8uiAdWKT4K8HMazEtkhK/271mdJQ5y7HVvFHVTxOJG
+ C74B6P04047C6XB5DEO3dOzFUOiCU+IPX442Oh67GjZsP2HdfD+5OK7xZ
+ kwF8/CKtSIH7qtdH1ml55uSx6N1aiayEJXIILZ2D7EQc6i0LYyEIE4lbY Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10874"; a="335885"
 X-IronPort-AV: E=Sophos;i="6.03,253,1694761200"; 
-   d="scan'208";a="9087174"
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
- by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Oct 2023 05:36:09 -0700
+   d="scan'208";a="335885"
+Received: from orsmga005.jf.intel.com ([10.7.209.41])
+ by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 Oct 2023 05:36:34 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10874"; a="875928246"
-X-IronPort-AV: E=Sophos;i="6.03,253,1694761200"; d="scan'208";a="875928246"
+X-IronPort-AV: E=McAfee;i="6600,9927,10874"; a="932720348"
+X-IronPort-AV: E=Sophos;i="6.03,253,1694761200"; d="scan'208";a="932720348"
 Received: from tzirr-desk2.ger.corp.intel.com (HELO localhost) ([10.252.49.68])
- by fmsmga002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Oct 2023 05:36:07 -0700
+ by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 Oct 2023 05:36:31 -0700
 From: Jani Nikula <jani.nikula@linux.intel.com>
 To: Suraj Kandpal <suraj.kandpal@intel.com>, intel-gfx@lists.freedesktop.org
-In-Reply-To: <20231026121139.987437-2-suraj.kandpal@intel.com>
+In-Reply-To: <20231026121139.987437-3-suraj.kandpal@intel.com>
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 References: <20231026121139.987437-1-suraj.kandpal@intel.com>
- <20231026121139.987437-2-suraj.kandpal@intel.com>
-Date: Thu, 26 Oct 2023 15:36:05 +0300
-Message-ID: <87ttqd7e8a.fsf@intel.com>
+ <20231026121139.987437-3-suraj.kandpal@intel.com>
+Date: Thu, 26 Oct 2023 15:36:29 +0300
+Message-ID: <87r0lh7e7m.fsf@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain
-Subject: Re: [Intel-gfx] [PATCH 1/3] drm/i915/hdcp: Rename HCDP 1.4
- enablement function
+Subject: Re: [Intel-gfx] [PATCH 2/3] drm/i915/hdcp: Convert
+ intel_hdcp_enable to a blanket function
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,9 +64,13 @@ Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 On Thu, 26 Oct 2023, Suraj Kandpal <suraj.kandpal@intel.com> wrote:
-> Rename hdcp 1.4 enablement function from _intel_hdcp_enable to
-> intel_hdcp1_enable to better represent what version of hdcp is
-> being enabled
+> Let's convert intel_hdcp_enable to a blanket function
+> which just has some conditions which needs to be checked
+> before connectors enable hdcp.
+> This cleans up code and avoids code duplication.
+>
+> --v3
+> -Keep function name as intel_hdcp_enable() [Jani]
 >
 > Signed-off-by: Suraj Kandpal <suraj.kandpal@intel.com>
 
