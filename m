@@ -1,56 +1,59 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id BD9A27D84E8
-	for <lists+intel-gfx@lfdr.de>; Thu, 26 Oct 2023 16:37:42 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id E1ECA7D84FB
+	for <lists+intel-gfx@lfdr.de>; Thu, 26 Oct 2023 16:43:46 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CE48410E7FC;
-	Thu, 26 Oct 2023 14:37:39 +0000 (UTC)
-X-Original-To: intel-gfx@lists.freedesktop.org
-Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.120])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AE1E210E7FC
- for <intel-gfx@lists.freedesktop.org>; Thu, 26 Oct 2023 14:37:38 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5918910E803;
+	Thu, 26 Oct 2023 14:43:45 +0000 (UTC)
+X-Original-To: Intel-gfx@lists.freedesktop.org
+Delivered-To: Intel-gfx@lists.freedesktop.org
+Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.93])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4387F10E803;
+ Thu, 26 Oct 2023 14:43:43 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1698331058; x=1729867058;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=TGbbr140RZ0RZF3U6hzkFLcGRn0wjqix5KiM3gVjOiQ=;
- b=d1o01LpuFbE4hKyeLT8dSwJPa2l42+5hsMFMpRHVeSiMkGKOhOjIhLQ5
- dQZRdaUB4PoDel08LBsevv64YeHAmXEKJy8mUfayP341uEa99SQUSoikQ
- 7HQhTMmmZ5ULZfz57uZDjWxy2sesiMaDDRciuKwgNZTtFhlCCpLysxWfk
- yZKnI0KBakJQAq5gWkCbvbLbo/J9gfI1h5dQmrxAR7hFgGHgvkmV9USqT
- SpZnoBnCFwsPdnGinCjjwgQ7Sdmh6CgM9k1lGTken7CWu22ofy8PPphtf
- oHP5Vq1Wrdr0UX0O9f7U4wZiPWLcIdblGOR/+LC9OlVXtRRGfLL7KjobY g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10875"; a="386450527"
-X-IronPort-AV: E=Sophos;i="6.03,253,1694761200"; d="scan'208";a="386450527"
-Received: from orsmga003.jf.intel.com ([10.7.209.27])
- by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Oct 2023 07:37:37 -0700
+ t=1698331423; x=1729867423;
+ h=message-id:date:mime-version:subject:from:to:cc:
+ references:in-reply-to:content-transfer-encoding;
+ bh=gvRj8zoEAQvNHFPvydfFtoWh9Gm+3/cEfgKjtecgi2A=;
+ b=PdTlvvoG4NhMN6UYnGLUPVGhA2GZZhVnufsJkk8mqXk8s1ifSP0Mf8jK
+ CfR83m7MOqT9IaVR+e/5AubP4yBJu2sn+TtR0O5G+fGZyql4RGP96dGMw
+ PC8MNj8qKHgLBnUpAkvlBAuK/VDcJHcNxFA7gkEC+m0qSJgmJycGxpNBy
+ fXLUpYyyhHA3B0hptNQPY/+GUBQqW1mHU4kkRIrnr2wh1J/WdEcisTda0
+ hr6wCy8x3rbEyqqSpE+wHT2fVVVS3yNJsrjNJqSZMQmuXiwEeVoRc5VKR
+ fiQFih2mKqM0v9bx1BVqxdu7ZKubtKwl0AayMv4g0KTehB4x91GNpk8Ax A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10875"; a="384770003"
+X-IronPort-AV: E=Sophos;i="6.03,253,1694761200"; d="scan'208";a="384770003"
+Received: from orsmga004.jf.intel.com ([10.7.209.38])
+ by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 Oct 2023 07:43:42 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10875"; a="709091830"
-X-IronPort-AV: E=Sophos;i="6.03,253,1694761200"; d="scan'208";a="709091830"
+X-IronPort-AV: E=McAfee;i="6600,9927,10875"; a="882843733"
+X-IronPort-AV: E=Sophos;i="6.03,253,1694761200"; d="scan'208";a="882843733"
 Received: from lthwaite-mobl.ger.corp.intel.com (HELO [10.213.229.85])
  ([10.213.229.85])
- by orsmga003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Oct 2023 07:37:36 -0700
-Message-ID: <2a91c5c0-9048-4b16-bdb4-53313c0e6f48@linux.intel.com>
-Date: Thu, 26 Oct 2023 15:37:29 +0100
+ by orsmga004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 Oct 2023 07:43:39 -0700
+Message-ID: <6b4eb4bd-fe32-477e-836a-4f745a173772@linux.intel.com>
+Date: Thu, 26 Oct 2023 15:43:37 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-To: Gilbert Adikankwu <gilbertadikankwu@gmail.com>,
- intel-gfx@lists.freedesktop.org
-References: <20231026135839.486894-1-gilbertadikankwu@gmail.com>
 Content-Language: en-US
 From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+To: Steven Price <steven.price@arm.com>, Intel-gfx@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org
+References: <20230927133843.247957-1-tvrtko.ursulin@linux.intel.com>
+ <20230927133843.247957-2-tvrtko.ursulin@linux.intel.com>
+ <3344d3cf-2883-27d1-424e-d33b739dceb5@arm.com>
+ <d1a3df17-4c50-68ba-35d4-8a7ef62b84fb@linux.intel.com>
 Organization: Intel Corporation UK Plc
-In-Reply-To: <20231026135839.486894-1-gilbertadikankwu@gmail.com>
+In-Reply-To: <d1a3df17-4c50-68ba-35d4-8a7ef62b84fb@linux.intel.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-Subject: Re: [Intel-gfx] [PATCH] drm/i915/gt: Remove assignment from if
- condition
+Content-Transfer-Encoding: 8bit
+Subject: Re: [Intel-gfx] [PATCH 1/7] drm: Do not round to megabytes for
+ greater than 1MiB sizes in fdinfo stats
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -63,50 +66,77 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: chris@chris-wilson.co.uk
+Cc: Tvrtko Ursulin <tvrtko.ursulin@intel.com>,
+ =?UTF-8?Q?Adri=C3=A1n_Larumbe?= <adrian.larumbe@collabora.com>,
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 
-On 26/10/2023 14:58, Gilbert Adikankwu wrote:
-> Initialize variable "entry" during declaration. Remove assignment from if
-> condition.
+On 28/09/2023 13:47, Tvrtko Ursulin wrote:
 > 
-> Fix checkpatch.pl error:
-> ERROR: do not use assignment in if condition
+> On 27/09/2023 14:48, Steven Price wrote:
+>> On 27/09/2023 14:38, Tvrtko Ursulin wrote:
+>>> From: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+>>>
+>>> It is better not to lose precision and not revert to 1 MiB size
+>>> granularity for every size greater than 1 MiB.
+>>>
+>>> Sizes in KiB should not be so troublesome to read (and in fact machine
+>>> parsing is I expect the norm here), they align with other api like
+>>> /proc/meminfo, and they allow writing tests for the interface without
+>>> having to embed drm.ko implementation knowledge into them. (Like knowing
+>>> that minimum buffer size one can use for successful verification has 
+>>> to be
+>>> 1MiB aligned, and on top account for any pre-existing memory utilisation
+>>> outside of driver's control.)
+>>>
+>>> But probably even more importantly I think that it is just better to 
+>>> show
+>>> the accurate sizes and not arbitrary lose precision for a little bit 
+>>> of a
+>>> stretched use case of eyeballing fdinfo text directly.
+>>>
+>>> Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+>>> Cc: Rob Clark <robdclark@gmail.com>
+>>> Cc: Adrián Larumbe <adrian.larumbe@collabora.com>
+>>> Cc: steven.price@arm.com
+>>
+>> Reviewed-by: Steven Price <steven.price@arm.com>
 > 
-> Signed-off-by: Gilbert Adikankwu <gilbertadikankwu@gmail.com>
-> ---
->   drivers/gpu/drm/i915/gt/intel_execlists_submission.c | 4 ++--
->   1 file changed, 2 insertions(+), 2 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/i915/gt/intel_execlists_submission.c b/drivers/gpu/drm/i915/gt/intel_execlists_submission.c
-> index e8f42ec6b1b4..cbc4ecf26d8b 100644
-> --- a/drivers/gpu/drm/i915/gt/intel_execlists_submission.c
-> +++ b/drivers/gpu/drm/i915/gt/intel_execlists_submission.c
-> @@ -1751,7 +1751,7 @@ static bool gen8_csb_parse(const u64 csb)
->   static noinline u64
->   wa_csb_read(const struct intel_engine_cs *engine, u64 * const csb)
->   {
-> -	u64 entry;
-> +	u64 entry = READ_ONCE(*csb);
->   
->   	/*
->   	 * Reading from the HWSP has one particular advantage: we can detect
-> @@ -1763,7 +1763,7 @@ wa_csb_read(const struct intel_engine_cs *engine, u64 * const csb)
->   	 * tgl,dg1:HSDES#22011327657
->   	 */
->   	preempt_disable();
-> -	if (wait_for_atomic_us((entry = READ_ONCE(*csb)) != -1, 10)) {
-> +	if (wait_for_atomic_us(entry != -1, 10)) {
+> Thanks! Rob? Can we have your blessing? Could you live with KiBs? :)
 
-Wait_for_atomic_us is a macro which needs to keep reading the csb until 
-it changes so this will not work.
+Acked received on #dri-devel:
+
+[12:15] <tursulin> robclark: ping on https://lists.freedesktop.org/archives/dri-devel/2023-September/424905.html - can you live with it or object?
+[14:41] <robclark> tursulin: a-b
+
+Adding the drm-misc maintainers with an ask to merge please.
 
 Regards,
 
 Tvrtko
 
->   		int idx = csb - engine->execlists.csb_status;
->   		int status;
->   
+> 
+> Regards,
+> 
+> Tvrtko
+> 
+>>> ---
+>>>   drivers/gpu/drm/drm_file.c | 2 +-
+>>>   1 file changed, 1 insertion(+), 1 deletion(-)
+>>>
+>>> diff --git a/drivers/gpu/drm/drm_file.c b/drivers/gpu/drm/drm_file.c
+>>> index e692770ef6d3..ecb5038009e7 100644
+>>> --- a/drivers/gpu/drm/drm_file.c
+>>> +++ b/drivers/gpu/drm/drm_file.c
+>>> @@ -913,7 +913,7 @@ static void print_size(struct drm_printer *p, 
+>>> const char *stat,
+>>>       unsigned u;
+>>>       for (u = 0; u < ARRAY_SIZE(units) - 1; u++) {
+>>> -        if (sz < SZ_1K)
+>>> +        if (sz == 0 || !IS_ALIGNED(sz, SZ_1K))
+>>>               break;
+>>>           sz = div_u64(sz, SZ_1K);
+>>>       }
+>>
