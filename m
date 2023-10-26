@@ -2,65 +2,65 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 350FC7D886E
-	for <lists+intel-gfx@lfdr.de>; Thu, 26 Oct 2023 20:36:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6D2467D8870
+	for <lists+intel-gfx@lfdr.de>; Thu, 26 Oct 2023 20:36:59 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1A9EF10E854;
-	Thu, 26 Oct 2023 18:36:50 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C545910E857;
+	Thu, 26 Oct 2023 18:36:57 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.65])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 909F410E851
- for <intel-gfx@lists.freedesktop.org>; Thu, 26 Oct 2023 18:36:44 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 57E2010E854
+ for <intel-gfx@lists.freedesktop.org>; Thu, 26 Oct 2023 18:36:46 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1698345404; x=1729881404;
+ t=1698345406; x=1729881406;
  h=from:date:subject:mime-version:content-transfer-encoding:
  message-id:references:in-reply-to:to:cc;
- bh=Dyd8vcYo8Tt5xV/PmQ4i/KezAADpjs3tCIKM12CJ+Ls=;
- b=cUm8SyryjOau5lnx+cxpE1j27X7k4c/6yRwC1toON+2Iw+eelyIVKbZj
- IxoQJkNsHMqdTdaWhHMjAuk3sIqH0EXYnBWyxeX0eYNRGEGLnApnNlHf0
- a1NdUWwhHwWMisv3PXq0+vNmUiQQR+TLmOnhKu/6S++I2lVkXt/KuiW4t
- 9uFi+LhO/liqhCBcvZevm/KkTr7huEuvZM+bB+evNdyZgGN3Qoz83Rvsd
- a7X5J7aF7dmRNuHLufIG6dwzK9q8kcDCD99/hBWLZ7br4Ne4y7/b14QJd
- b0XVUZzLgp8kbF/e0BBs8YIDmX5fbE7aQQJYwx4suR5OiQEeD2+FyVzeS w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10875"; a="391497778"
-X-IronPort-AV: E=Sophos;i="6.03,254,1694761200"; d="scan'208";a="391497778"
+ bh=MaIIC5+jLotuZfswE6jbxOhim++eaDpNW2KNVSpJeug=;
+ b=cmgP64NiNyXI40Iwk0drC8xkxgHAbMoN0Waietss+G/6Q2Dg86rOgzV1
+ 1fN32Ykh4K23vFCBsehOey88FsdEXQeEOzjQxFvfZ1Q4TZK9GkvEoo/IN
+ Jqw38lOUweu1uG5f17kVOZK3R1kLO4PuzizpUK3MTnK9LpqqzgZBaYQhi
+ FyJn+QT7AClUDcifmVNX5hs9sJ9I+P6nELnUZuRJ/UoQoiYgFBEDArkpE
+ ysGsGNdCqQErqu21xYcM3yAagZpgazfYKqCPytn5YAvF5dutaate/zoE6
+ vkLgfNti+HaYp4AzEPG75AbS2rvxXjvKDhFQw3L6tt2oxgNIFuh3DuFUP A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10875"; a="391497780"
+X-IronPort-AV: E=Sophos;i="6.03,254,1694761200"; d="scan'208";a="391497780"
 Received: from fmsmga007.fm.intel.com ([10.253.24.52])
  by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Oct 2023 11:36:44 -0700
+ 26 Oct 2023 11:36:46 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10875"; a="762941922"
-X-IronPort-AV: E=Sophos;i="6.03,254,1694761200"; d="scan'208";a="762941922"
+X-IronPort-AV: E=McAfee;i="6600,9927,10875"; a="762941937"
+X-IronPort-AV: E=Sophos;i="6.03,254,1694761200"; d="scan'208";a="762941937"
 Received: from lab-ah.igk.intel.com ([10.102.138.202])
  by fmsmga007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Oct 2023 11:36:42 -0700
+ 26 Oct 2023 11:36:44 -0700
 From: Andrzej Hajda <andrzej.hajda@intel.com>
-Date: Thu, 26 Oct 2023 20:36:28 +0200
+Date: Thu, 26 Oct 2023 20:36:29 +0200
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20231026-wabb-v6-3-4aa7d55d0a8a@intel.com>
+Message-Id: <20231026-wabb-v6-4-4aa7d55d0a8a@intel.com>
 References: <20231026-wabb-v6-0-4aa7d55d0a8a@intel.com>
 In-Reply-To: <20231026-wabb-v6-0-4aa7d55d0a8a@intel.com>
 To: intel-gfx@lists.freedesktop.org
 X-Mailer: b4 0.12.3
-X-Developer-Signature: v=1; a=openpgp-sha256; l=5319;
+X-Developer-Signature: v=1; a=openpgp-sha256; l=1937;
  i=andrzej.hajda@intel.com; h=from:subject:message-id;
- bh=Dyd8vcYo8Tt5xV/PmQ4i/KezAADpjs3tCIKM12CJ+Ls=;
- b=owEB7QES/pANAwAKASNispPeEP3XAcsmYgBlOrG0wAKR7hBCrAmXbv9I0W8cUWDZ4PzqvdA2JTdH
- /NnsjwKJAbMEAAEKAB0WIQT8qEQxNN2/XeF/A00jYrKT3hD91wUCZTqxtAAKCRAjYrKT3hD919DaC/
- sH9LW75fLioaJAREVDdhWaLgIoKtqwJDhydiXO850f42ekTzJtfzEmmIeWyQHdXVWwBRyaCIOscklp
- U24SeEz8WJRXfbWqwDeaHdd1sIChE7B0nLM5y4Bdhz7zMFJJFP/KPVYJCB00uXmRuu1p3Uqgzd5s32
- 1xZP7NoRfoqjXtO09Hfsv32RCJXZI8Q2zMxcQcxi5ChAaDJZAIjeIQyaFVVl7vbIE8UFSft1FQ/YCI
- Yv02qzOw2BY95ap1zZ/bbskmYHeHf67ZoUrdvj3C0BGMp+eYT6jjOxj/du05ol2/3IdnU38EKolzZb
- Gym8v002hfdVfnCY8DnW4T6nyO4ABFjtQ2pfuuQkmIj6Z+QnOe2VhyweuxmBFa6A+tf3+reIvwPmtO
- lCRycdIQ8uLJDryc6RtHeumZmUvmP8q90lHR3u1nXrdQFEYO5UP0uzyFfPOIIGuUrh/CQLTy3/9jIU
- XolCyB3sl9n40g8e2VeF1S3qFR58ILjDFdJ27fC8+Oza0=
+ bh=9gE7Hw27KBcB9MG25aFN/4oXxak8vUVcOmAtGhnJbio=;
+ b=owEB7QES/pANAwAKASNispPeEP3XAcsmYgBlOrG0j4eM+ZP9dk58b9OdlZtixanDFO30HDqARQE9
+ zMFPPsyJAbMEAAEKAB0WIQT8qEQxNN2/XeF/A00jYrKT3hD91wUCZTqxtAAKCRAjYrKT3hD91zOeC/
+ 99WFrhLkmZKuOEvSzRyuiWplOOyrzhaGilSsvU03Qy8tHQzmObo+MGp6JblsqvdlZjgaXB7z1TZSCy
+ /2YL16NFLH+uMWA9WMJvOuKHlYY2v25dNgjqOUbkvoMPAHH4HfVzQ6xXNqtkosRXHK2NjpA0xNxMmH
+ rYPhlr+rmBir1JtUyxUeUtFK8oxTlcKp7ZIpQwioxT0swI53C5SAYCn6qWB5jk7D8PzaaxTdMKnqf1
+ TOo2ZvnsqFY+ik3yNQr1WVVEvy/fkX89PFu2PCiGnBaJCwmaTq34XMSgE8ox8qStXsCvbXdVvL/jr1
+ /oazwUHqRC/v+7SkCGfaNbLXqvEEbqn4kT6lQKb/FUx5+1GyiRIlfyReQJ2qiK7k9EgyUCWrgD+qI9
+ nRzvQUMh19SZ1xYEc/VvVWcTwwKeahXE79y0oBkiHRDgvE0DUhjBtXI/78w3vYIEDQ6PifG8OKlFlD
+ 0Ak0jDE9DJu9Gy5z1/WOg7VLxdV//5NIofuj7qc/wX9xY=
 X-Developer-Key: i=andrzej.hajda@intel.com; a=openpgp;
  fpr=FCA8443134DDBF5DE17F034D2362B293DE10FDD7
-Subject: [Intel-gfx] [PATCH v6 3/4] drm/i915/gt: add selftest to exercise
- WABB
+Subject: [Intel-gfx] [PATCH v6 4/4] drm/i915: Set copy engine arbitration
+ for Wa_16018031267 / Wa_16018063123
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -80,177 +80,50 @@ Cc: Jonathan Cavitt <jonathan.cavitt@intel.com>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Test re-uses logic form indirect ctx BB selftest.
+From: Jonathan Cavitt <jonathan.cavitt@intel.com>
+
+Set copy engine arbitration into round robin mode
+for part of Wa_16018031267 / Wa_16018063123 mitigation.
 
 Signed-off-by: Nirmoy Das <nirmoy.das@intel.com>
 Signed-off-by: Jonathan Cavitt <jonathan.cavitt@intel.com>
 Signed-off-by: Andrzej Hajda <andrzej.hajda@intel.com>
 Reviewed-by: Andi Shyti <andi.shyti@linux.intel.com>
 ---
- drivers/gpu/drm/i915/gt/selftest_lrc.c | 65 ++++++++++++++++++++++++----------
- 1 file changed, 47 insertions(+), 18 deletions(-)
+ drivers/gpu/drm/i915/gt/intel_engine_regs.h | 3 +++
+ drivers/gpu/drm/i915/gt/intel_workarounds.c | 5 +++++
+ 2 files changed, 8 insertions(+)
 
-diff --git a/drivers/gpu/drm/i915/gt/selftest_lrc.c b/drivers/gpu/drm/i915/gt/selftest_lrc.c
-index 823d38aa393467..e17b8777d21dc9 100644
---- a/drivers/gpu/drm/i915/gt/selftest_lrc.c
-+++ b/drivers/gpu/drm/i915/gt/selftest_lrc.c
-@@ -1555,7 +1555,7 @@ static int live_lrc_isolation(void *arg)
- 	return err;
+diff --git a/drivers/gpu/drm/i915/gt/intel_engine_regs.h b/drivers/gpu/drm/i915/gt/intel_engine_regs.h
+index b8618ee3e3041a..c0c8c12edea104 100644
+--- a/drivers/gpu/drm/i915/gt/intel_engine_regs.h
++++ b/drivers/gpu/drm/i915/gt/intel_engine_regs.h
+@@ -124,6 +124,9 @@
+ #define RING_INDIRECT_CTX(base)			_MMIO((base) + 0x1c4) /* gen8+ */
+ #define RING_INDIRECT_CTX_OFFSET(base)		_MMIO((base) + 0x1c8) /* gen8+ */
+ #define ECOSKPD(base)				_MMIO((base) + 0x1d0)
++#define   XEHP_BLITTER_SCHEDULING_MODE_MASK	REG_GENMASK(12, 11)
++#define   XEHP_BLITTER_ROUND_ROBIN_MODE		\
++		REG_FIELD_PREP(XEHP_BLITTER_SCHEDULING_MODE_MASK, 1)
+ #define   ECO_CONSTANT_BUFFER_SR_DISABLE	REG_BIT(4)
+ #define   ECO_GATING_CX_ONLY			REG_BIT(3)
+ #define   GEN6_BLITTER_FBC_NOTIFY		REG_BIT(3)
+diff --git a/drivers/gpu/drm/i915/gt/intel_workarounds.c b/drivers/gpu/drm/i915/gt/intel_workarounds.c
+index 192ac0e59afa13..108d9326735910 100644
+--- a/drivers/gpu/drm/i915/gt/intel_workarounds.c
++++ b/drivers/gpu/drm/i915/gt/intel_workarounds.c
+@@ -2782,6 +2782,11 @@ xcs_engine_wa_init(struct intel_engine_cs *engine, struct i915_wa_list *wal)
+ 			 RING_SEMA_WAIT_POLL(engine->mmio_base),
+ 			 1);
+ 	}
++	/* Wa_16018031267, Wa_16018063123 */
++	if (NEEDS_FASTCOLOR_BLT_WABB(engine))
++		wa_masked_field_set(wal, ECOSKPD(engine->mmio_base),
++				    XEHP_BLITTER_SCHEDULING_MODE_MASK,
++				    XEHP_BLITTER_ROUND_ROBIN_MODE);
  }
  
--static int indirect_ctx_submit_req(struct intel_context *ce)
-+static int wabb_ctx_submit_req(struct intel_context *ce)
- {
- 	struct i915_request *rq;
- 	int err = 0;
-@@ -1579,7 +1579,8 @@ static int indirect_ctx_submit_req(struct intel_context *ce)
- #define CTX_BB_CANARY_INDEX  (CTX_BB_CANARY_OFFSET / sizeof(u32))
- 
- static u32 *
--emit_indirect_ctx_bb_canary(const struct intel_context *ce, u32 *cs)
-+emit_wabb_ctx_canary(const struct intel_context *ce,
-+		     u32 *cs, bool per_ctx)
- {
- 	*cs++ = MI_STORE_REGISTER_MEM_GEN8 |
- 		MI_SRM_LRM_GLOBAL_GTT |
-@@ -1587,26 +1588,43 @@ emit_indirect_ctx_bb_canary(const struct intel_context *ce, u32 *cs)
- 	*cs++ = i915_mmio_reg_offset(RING_START(0));
- 	*cs++ = i915_ggtt_offset(ce->state) +
- 		context_wa_bb_offset(ce) +
--		CTX_BB_CANARY_OFFSET;
-+		CTX_BB_CANARY_OFFSET +
-+		(per_ctx ? PAGE_SIZE : 0);
- 	*cs++ = 0;
- 
- 	return cs;
- }
- 
-+static u32 *
-+emit_indirect_ctx_bb_canary(const struct intel_context *ce, u32 *cs)
-+{
-+	return emit_wabb_ctx_canary(ce, cs, false);
-+}
-+
-+static u32 *
-+emit_per_ctx_bb_canary(const struct intel_context *ce, u32 *cs)
-+{
-+	return emit_wabb_ctx_canary(ce, cs, true);
-+}
-+
  static void
--indirect_ctx_bb_setup(struct intel_context *ce)
-+wabb_ctx_setup(struct intel_context *ce, bool per_ctx)
- {
--	u32 *cs = context_wabb(ce, false);
-+	u32 *cs = context_wabb(ce, per_ctx);
- 
- 	cs[CTX_BB_CANARY_INDEX] = 0xdeadf00d;
- 
--	setup_indirect_ctx_bb(ce, ce->engine, emit_indirect_ctx_bb_canary);
-+	if (per_ctx)
-+		setup_per_ctx_bb(ce, ce->engine, emit_per_ctx_bb_canary);
-+	else
-+		setup_indirect_ctx_bb(ce, ce->engine, emit_indirect_ctx_bb_canary);
- }
- 
--static bool check_ring_start(struct intel_context *ce)
-+static bool check_ring_start(struct intel_context *ce, bool per_ctx)
- {
- 	const u32 * const ctx_bb = (void *)(ce->lrc_reg_state) -
--		LRC_STATE_OFFSET + context_wa_bb_offset(ce);
-+		LRC_STATE_OFFSET + context_wa_bb_offset(ce) +
-+		(per_ctx ? PAGE_SIZE : 0);
- 
- 	if (ctx_bb[CTX_BB_CANARY_INDEX] == ce->lrc_reg_state[CTX_RING_START])
- 		return true;
-@@ -1618,21 +1636,21 @@ static bool check_ring_start(struct intel_context *ce)
- 	return false;
- }
- 
--static int indirect_ctx_bb_check(struct intel_context *ce)
-+static int wabb_ctx_check(struct intel_context *ce, bool per_ctx)
- {
- 	int err;
- 
--	err = indirect_ctx_submit_req(ce);
-+	err = wabb_ctx_submit_req(ce);
- 	if (err)
- 		return err;
- 
--	if (!check_ring_start(ce))
-+	if (!check_ring_start(ce, per_ctx))
- 		return -EINVAL;
- 
- 	return 0;
- }
- 
--static int __live_lrc_indirect_ctx_bb(struct intel_engine_cs *engine)
-+static int __lrc_wabb_ctx(struct intel_engine_cs *engine, bool per_ctx)
- {
- 	struct intel_context *a, *b;
- 	int err;
-@@ -1667,14 +1685,14 @@ static int __live_lrc_indirect_ctx_bb(struct intel_engine_cs *engine)
- 	 * As ring start is restored apriori of starting the indirect ctx bb and
- 	 * as it will be different for each context, it fits to this purpose.
- 	 */
--	indirect_ctx_bb_setup(a);
--	indirect_ctx_bb_setup(b);
-+	wabb_ctx_setup(a, per_ctx);
-+	wabb_ctx_setup(b, per_ctx);
- 
--	err = indirect_ctx_bb_check(a);
-+	err = wabb_ctx_check(a, per_ctx);
- 	if (err)
- 		goto unpin_b;
- 
--	err = indirect_ctx_bb_check(b);
-+	err = wabb_ctx_check(b, per_ctx);
- 
- unpin_b:
- 	intel_context_unpin(b);
-@@ -1688,7 +1706,7 @@ static int __live_lrc_indirect_ctx_bb(struct intel_engine_cs *engine)
- 	return err;
- }
- 
--static int live_lrc_indirect_ctx_bb(void *arg)
-+static int lrc_wabb_ctx(void *arg, bool per_ctx)
- {
- 	struct intel_gt *gt = arg;
- 	struct intel_engine_cs *engine;
-@@ -1697,7 +1715,7 @@ static int live_lrc_indirect_ctx_bb(void *arg)
- 
- 	for_each_engine(engine, gt, id) {
- 		intel_engine_pm_get(engine);
--		err = __live_lrc_indirect_ctx_bb(engine);
-+		err = __lrc_wabb_ctx(engine, per_ctx);
- 		intel_engine_pm_put(engine);
- 
- 		if (igt_flush_test(gt->i915))
-@@ -1710,6 +1728,16 @@ static int live_lrc_indirect_ctx_bb(void *arg)
- 	return err;
- }
- 
-+static int live_lrc_indirect_ctx_bb(void *arg)
-+{
-+	return lrc_wabb_ctx(arg, false);
-+}
-+
-+static int live_lrc_per_ctx_bb(void *arg)
-+{
-+	return lrc_wabb_ctx(arg, true);
-+}
-+
- static void garbage_reset(struct intel_engine_cs *engine,
- 			  struct i915_request *rq)
- {
-@@ -1947,6 +1975,7 @@ int intel_lrc_live_selftests(struct drm_i915_private *i915)
- 		SUBTEST(live_lrc_garbage),
- 		SUBTEST(live_pphwsp_runtime),
- 		SUBTEST(live_lrc_indirect_ctx_bb),
-+		SUBTEST(live_lrc_per_ctx_bb),
- 	};
- 
- 	if (!HAS_LOGICAL_RING_CONTEXTS(i915))
 
 -- 
 2.34.1
