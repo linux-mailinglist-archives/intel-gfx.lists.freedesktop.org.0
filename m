@@ -2,56 +2,57 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 77EDF7D826D
-	for <lists+intel-gfx@lfdr.de>; Thu, 26 Oct 2023 14:18:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id D16E97D829F
+	for <lists+intel-gfx@lfdr.de>; Thu, 26 Oct 2023 14:27:49 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3F99C10E7C0;
-	Thu, 26 Oct 2023 12:18:49 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3A59310E7C3;
+	Thu, 26 Oct 2023 12:27:47 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 380B710E7C0;
- Thu, 26 Oct 2023 12:18:47 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1CCB110E7C3
+ for <intel-gfx@lists.freedesktop.org>; Thu, 26 Oct 2023 12:27:46 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1698322727; x=1729858727;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=WhTiCYyZcaMi9T72mL68Bxhk4qs+XbYizDsbg8rk2pk=;
- b=he8nOJhcCktLoIUiYUp+Tpw5KSua6n3+NuVRN0sD7/iJeiL1AVySDBdr
- 2qV7ZfbOeu7hbUoAJxhAPk5Kc0nQhZtfgsN4tp3jKyLfOtqNo6P8dcM9X
- zFM95H/Qz9F2wpYnAQzvn5iRNSUNDknWDTFmSUuRMrqBmjZWhCAr/DaEH
- nOIlxlfyiE9eXhEAdnfiKLRqN4iBHY9Ai7SPcLT2FPBPK/Ycv0Vz5QVAv
- L2/j1VydH3zgGh6GYtCO2pjfjtWA87c2FxwpZyk34Y1rLwDqvRooTS188
- luEyQCzHdjII4TjBmY5yUun8JudCJKu1cnYi6pudsca+g3lsmpimLVH5/ w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10874"; a="9083937"
+ t=1698323266; x=1729859266;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=/WUc+gZfvTVxMA4x1x8HeH+qR1DkGOiuMqL38f2bElo=;
+ b=eDLlcoAAJz10Stldl/dMpsJQN+crPq4GYG9ap0zEiRpAJP50QREqHOGv
+ cEQRZapSazuiMHMc9HOeBwQ7ILdtznVgNetTpjRbSLDePS/WCLWWh4UJr
+ 5bYs4UJzdiC5UkQKIG0KUKv4jMNbYCE+WKG9bbIQMQ+Ba+3kRbg3D2N+w
+ BIi7ulaKanBaMNVVlsofBYol/nEwBmPf0lCay3nMCs6mAYOygBbuLlLiV
+ Az9HYI2g/fXXcjXxGVfmy9thCRY797EDdhl3Uw0RCXcIN5DmAlcGiXrL5
+ TmDHTtsq7be7NbJ0YD2hQcj5yJQucfrOdm51zylceBifUSA6kt8SJ4U09 Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10874"; a="334271"
 X-IronPort-AV: E=Sophos;i="6.03,253,1694761200"; 
-   d="scan'208";a="9083937"
-Received: from orsmga003.jf.intel.com ([10.7.209.27])
- by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Oct 2023 05:18:46 -0700
+   d="scan'208";a="334271"
+Received: from orsmga005.jf.intel.com ([10.7.209.41])
+ by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 Oct 2023 05:27:45 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10874"; a="709055919"
-X-IronPort-AV: E=Sophos;i="6.03,253,1694761200"; d="scan'208";a="709055919"
-Received: from tzirr-desk2.ger.corp.intel.com (HELO localhost) ([10.252.49.68])
- by orsmga003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Oct 2023 05:18:42 -0700
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Arnd Bergmann <arnd@kernel.org>, Joonas Lahtinen
- <joonas.lahtinen@linux.intel.com>, Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>, David Airlie
- <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>, Badal Nilawar
- <badal.nilawar@intel.com>, Ashutosh Dixit <ashutosh.dixit@intel.com>
-In-Reply-To: <87edhlbj16.fsf@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20231016201012.1022812-1-arnd@kernel.org>
- <87edhlbj16.fsf@intel.com>
-Date: Thu, 26 Oct 2023 15:18:39 +0300
-Message-ID: <87wmv97f1c.fsf@intel.com>
+X-IronPort-AV: E=McAfee;i="6600,9927,10874"; a="932719443"
+X-IronPort-AV: E=Sophos;i="6.03,253,1694761200"; d="scan'208";a="932719443"
+Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.74])
+ by orsmga005.jf.intel.com with SMTP; 26 Oct 2023 05:27:42 -0700
+Received: by stinkbox (sSMTP sendmail emulation);
+ Thu, 26 Oct 2023 15:27:42 +0300
+Date: Thu, 26 Oct 2023 15:27:42 +0300
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: "Nautiyal, Ankit K" <ankit.k.nautiyal@intel.com>
+Message-ID: <ZTpbPtR0e3JqWfJv@intel.com>
+References: <20231025121318.2732051-1-ankit.k.nautiyal@intel.com>
+ <20231025121318.2732051-5-ankit.k.nautiyal@intel.com>
+ <ZTkPEZVq8aIgyUI3@intel.com>
+ <1e1777bf-561a-5f22-b578-9a20f0afd48b@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain
-Subject: Re: [Intel-gfx] [PATCH] drm/i915/mtl: avoid stringop-overflow
- warning
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <1e1777bf-561a-5f22-b578-9a20f0afd48b@intel.com>
+X-Patchwork-Hint: comment
+Subject: Re: [Intel-gfx] [PATCH 4/4] drm/i915/dp: Limit max_requested_bpc
+ based on src DSC bpc limits
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,91 +65,39 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
- Matt Roper <matthew.d.roper@intel.com>, linux-kernel@vger.kernel.org,
- Arnd Bergmann <arnd@arndb.de>
+Cc: jani.nikula@intel.com, intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, 23 Oct 2023, Jani Nikula <jani.nikula@linux.intel.com> wrote:
-> On Mon, 16 Oct 2023, Arnd Bergmann <arnd@kernel.org> wrote:
->> From: Arnd Bergmann <arnd@arndb.de>
->>
->> The newly added memset() causes a warning for some reason I could not figure out:
->>
->> In file included from arch/x86/include/asm/string.h:3,
->>                  from drivers/gpu/drm/i915/gt/intel_rc6.c:6:
->> In function 'rc6_res_reg_init',
->>     inlined from 'intel_rc6_init' at drivers/gpu/drm/i915/gt/intel_rc6.c:610:2:
->> arch/x86/include/asm/string_32.h:195:29: error: '__builtin_memset' writing 16 bytes into a region of size 0 overflows the destination [-Werror=stringop-overflow=]
->>   195 | #define memset(s, c, count) __builtin_memset(s, c, count)
->>       |                             ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~
->> drivers/gpu/drm/i915/gt/intel_rc6.c:584:9: note: in expansion of macro 'memset'
->>   584 |         memset(rc6->res_reg, INVALID_MMIO_REG.reg, sizeof(rc6->res_reg));
->>       |         ^~~~~~
->> In function 'intel_rc6_init':
->>
->> Change it to an normal initializer and an added memcpy() that does not have
->> this problem.
->>
->> Fixes: 4bb9ca7ee0745 ("drm/i915/mtl: C6 residency and C state type for MTL SAMedia")
->> Signed-off-by: Arnd Bergmann <arnd@arndb.de>
->> ---
->>  drivers/gpu/drm/i915/gt/intel_rc6.c | 16 ++++++++++------
->>  1 file changed, 10 insertions(+), 6 deletions(-)
->>
->> diff --git a/drivers/gpu/drm/i915/gt/intel_rc6.c b/drivers/gpu/drm/i915/gt/intel_rc6.c
->> index 8b67abd720be8..7090e4be29cb6 100644
->> --- a/drivers/gpu/drm/i915/gt/intel_rc6.c
->> +++ b/drivers/gpu/drm/i915/gt/intel_rc6.c
->> @@ -581,19 +581,23 @@ static void __intel_rc6_disable(struct intel_rc6 *rc6)
->>  
->>  static void rc6_res_reg_init(struct intel_rc6 *rc6)
->>  {
->> -	memset(rc6->res_reg, INVALID_MMIO_REG.reg, sizeof(rc6->res_reg));
->
-> That's just bollocks. memset() is byte granularity, while
-> INVALID_MMIO_REG.reg is u32. If the value was anything other than 0,
-> this would break.
->
-> And you're not supposed to look at the guts of i915_reg_t to begin with,
-> that's why it's a typedef. Basically any code that accesses the members
-> of i915_reg_t outside of its implementation are doing it wrong.
->
-> Reviewed-by: Jani Nikula <jani.nikula@intel.com>
+On Thu, Oct 26, 2023 at 11:24:38AM +0530, Nautiyal, Ankit K wrote:
+> 
+> On 10/25/2023 6:20 PM, Ville Syrjälä wrote:
+> > On Wed, Oct 25, 2023 at 05:43:18PM +0530, Ankit Nautiyal wrote:
+> >> At the moment the max requested bpc is limited to 6 to 10/12.
+> >> For platforms that support DSC, min and max src bpc with DSC are
+> >> different.
+> >>
+> >> Account for DSC bpc limitations, when setting min and max value for
+> >> max_requested_bpc property.
+> > NAK. DSC capabiliies change dynamically, the property does not.
+> 
+> Hmm, perhaps I should remove the check for sink DSC support and have 
+> only Platform check HAS_DSC.
+> 
+> The problem I am trying to fix is that our HW does not support DSC with 
+> 6bpc, but we are allowing the max_requested_bpc to be 6 bpc.
+> 
+> This can be a problem with some eDP panels that support modes like 
+> 4k@120 which will always need DSC and when max requested bpc property is 
+> set to 6.
+> 
+> I am wondering how to avoid this. Does it make sense to have the min 
+> value for the max_requested_bpc to be 8, for platforms that support DSC?
 
-Thanks for the patch, pushed to drm-intel-gt-next.
-
-BR,
-Jani.
-
->
->
->> +	i915_reg_t res_reg[INTEL_RC6_RES_MAX] = {
->> +		[0 ... INTEL_RC6_RES_MAX - 1] = INVALID_MMIO_REG,
->> +	};
->>  
->>  	switch (rc6_to_gt(rc6)->type) {
->>  	case GT_MEDIA:
->> -		rc6->res_reg[INTEL_RC6_RES_RC6] = MTL_MEDIA_MC6;
->> +		res_reg[INTEL_RC6_RES_RC6] = MTL_MEDIA_MC6;
->>  		break;
->>  	default:
->> -		rc6->res_reg[INTEL_RC6_RES_RC6_LOCKED] = GEN6_GT_GFX_RC6_LOCKED;
->> -		rc6->res_reg[INTEL_RC6_RES_RC6] = GEN6_GT_GFX_RC6;
->> -		rc6->res_reg[INTEL_RC6_RES_RC6p] = GEN6_GT_GFX_RC6p;
->> -		rc6->res_reg[INTEL_RC6_RES_RC6pp] = GEN6_GT_GFX_RC6pp;
->> +		res_reg[INTEL_RC6_RES_RC6_LOCKED] = GEN6_GT_GFX_RC6_LOCKED;
->> +		res_reg[INTEL_RC6_RES_RC6] = GEN6_GT_GFX_RC6;
->> +		res_reg[INTEL_RC6_RES_RC6p] = GEN6_GT_GFX_RC6p;
->> +		res_reg[INTEL_RC6_RES_RC6pp] = GEN6_GT_GFX_RC6pp;
->>  		break;
->>  	}
->> +
->> +	memcpy(rc6->res_reg, res_reg, sizeof(res_reg));
->>  }
->>  
->>  void intel_rc6_init(struct intel_rc6 *rc6)
+I think the easy fix is to just use 'min_bpc = max(dsc_min_bpc, max_bpc*3)'
+with DSC. And likely we should do something like that for YCbCr output
+as well.
 
 -- 
-Jani Nikula, Intel
+Ville Syrjälä
+Intel
