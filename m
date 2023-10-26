@@ -2,32 +2,56 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0DC287D826A
-	for <lists+intel-gfx@lfdr.de>; Thu, 26 Oct 2023 14:18:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 77EDF7D826D
+	for <lists+intel-gfx@lfdr.de>; Thu, 26 Oct 2023 14:18:54 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1F28910E130;
-	Thu, 26 Oct 2023 12:18:32 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3F99C10E7C0;
+	Thu, 26 Oct 2023 12:18:49 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 6D11010E130;
- Thu, 26 Oct 2023 12:18:29 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 620A9A0003;
- Thu, 26 Oct 2023 12:18:29 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============8124355649814911171=="
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 380B710E7C0;
+ Thu, 26 Oct 2023 12:18:47 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1698322727; x=1729858727;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version;
+ bh=WhTiCYyZcaMi9T72mL68Bxhk4qs+XbYizDsbg8rk2pk=;
+ b=he8nOJhcCktLoIUiYUp+Tpw5KSua6n3+NuVRN0sD7/iJeiL1AVySDBdr
+ 2qV7ZfbOeu7hbUoAJxhAPk5Kc0nQhZtfgsN4tp3jKyLfOtqNo6P8dcM9X
+ zFM95H/Qz9F2wpYnAQzvn5iRNSUNDknWDTFmSUuRMrqBmjZWhCAr/DaEH
+ nOIlxlfyiE9eXhEAdnfiKLRqN4iBHY9Ai7SPcLT2FPBPK/Ycv0Vz5QVAv
+ L2/j1VydH3zgGh6GYtCO2pjfjtWA87c2FxwpZyk34Y1rLwDqvRooTS188
+ luEyQCzHdjII4TjBmY5yUun8JudCJKu1cnYi6pudsca+g3lsmpimLVH5/ w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10874"; a="9083937"
+X-IronPort-AV: E=Sophos;i="6.03,253,1694761200"; 
+   d="scan'208";a="9083937"
+Received: from orsmga003.jf.intel.com ([10.7.209.27])
+ by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 Oct 2023 05:18:46 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10874"; a="709055919"
+X-IronPort-AV: E=Sophos;i="6.03,253,1694761200"; d="scan'208";a="709055919"
+Received: from tzirr-desk2.ger.corp.intel.com (HELO localhost) ([10.252.49.68])
+ by orsmga003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 Oct 2023 05:18:42 -0700
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Arnd Bergmann <arnd@kernel.org>, Joonas Lahtinen
+ <joonas.lahtinen@linux.intel.com>, Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>, David Airlie
+ <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>, Badal Nilawar
+ <badal.nilawar@intel.com>, Ashutosh Dixit <ashutosh.dixit@intel.com>
+In-Reply-To: <87edhlbj16.fsf@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20231016201012.1022812-1-arnd@kernel.org>
+ <87edhlbj16.fsf@intel.com>
+Date: Thu, 26 Oct 2023 15:18:39 +0300
+Message-ID: <87wmv97f1c.fsf@intel.com>
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Imre Deak" <imre.deak@intel.com>
-Date: Thu, 26 Oct 2023 12:18:29 -0000
-Message-ID: <169832270936.20470.6711814733400478573@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20231024010925.3949910-1-imre.deak@intel.com>
-In-Reply-To: <20231024010925.3949910-1-imre.deak@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLklHVDogZmFpbHVyZSBmb3IgZHJt?=
- =?utf-8?q?/i915=3A_Improve_BW_management_on_MST_links_=28rev5=29?=
+Content-Type: text/plain
+Subject: Re: [Intel-gfx] [PATCH] drm/i915/mtl: avoid stringop-overflow
+ warning
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,127 +64,91 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
+Cc: dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
+ Matt Roper <matthew.d.roper@intel.com>, linux-kernel@vger.kernel.org,
+ Arnd Bergmann <arnd@arndb.de>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============8124355649814911171==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+On Mon, 23 Oct 2023, Jani Nikula <jani.nikula@linux.intel.com> wrote:
+> On Mon, 16 Oct 2023, Arnd Bergmann <arnd@kernel.org> wrote:
+>> From: Arnd Bergmann <arnd@arndb.de>
+>>
+>> The newly added memset() causes a warning for some reason I could not figure out:
+>>
+>> In file included from arch/x86/include/asm/string.h:3,
+>>                  from drivers/gpu/drm/i915/gt/intel_rc6.c:6:
+>> In function 'rc6_res_reg_init',
+>>     inlined from 'intel_rc6_init' at drivers/gpu/drm/i915/gt/intel_rc6.c:610:2:
+>> arch/x86/include/asm/string_32.h:195:29: error: '__builtin_memset' writing 16 bytes into a region of size 0 overflows the destination [-Werror=stringop-overflow=]
+>>   195 | #define memset(s, c, count) __builtin_memset(s, c, count)
+>>       |                             ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+>> drivers/gpu/drm/i915/gt/intel_rc6.c:584:9: note: in expansion of macro 'memset'
+>>   584 |         memset(rc6->res_reg, INVALID_MMIO_REG.reg, sizeof(rc6->res_reg));
+>>       |         ^~~~~~
+>> In function 'intel_rc6_init':
+>>
+>> Change it to an normal initializer and an added memcpy() that does not have
+>> this problem.
+>>
+>> Fixes: 4bb9ca7ee0745 ("drm/i915/mtl: C6 residency and C state type for MTL SAMedia")
+>> Signed-off-by: Arnd Bergmann <arnd@arndb.de>
+>> ---
+>>  drivers/gpu/drm/i915/gt/intel_rc6.c | 16 ++++++++++------
+>>  1 file changed, 10 insertions(+), 6 deletions(-)
+>>
+>> diff --git a/drivers/gpu/drm/i915/gt/intel_rc6.c b/drivers/gpu/drm/i915/gt/intel_rc6.c
+>> index 8b67abd720be8..7090e4be29cb6 100644
+>> --- a/drivers/gpu/drm/i915/gt/intel_rc6.c
+>> +++ b/drivers/gpu/drm/i915/gt/intel_rc6.c
+>> @@ -581,19 +581,23 @@ static void __intel_rc6_disable(struct intel_rc6 *rc6)
+>>  
+>>  static void rc6_res_reg_init(struct intel_rc6 *rc6)
+>>  {
+>> -	memset(rc6->res_reg, INVALID_MMIO_REG.reg, sizeof(rc6->res_reg));
+>
+> That's just bollocks. memset() is byte granularity, while
+> INVALID_MMIO_REG.reg is u32. If the value was anything other than 0,
+> this would break.
+>
+> And you're not supposed to look at the guts of i915_reg_t to begin with,
+> that's why it's a typedef. Basically any code that accesses the members
+> of i915_reg_t outside of its implementation are doing it wrong.
+>
+> Reviewed-by: Jani Nikula <jani.nikula@intel.com>
 
-== Series Details ==
+Thanks for the patch, pushed to drm-intel-gt-next.
 
-Series: drm/i915: Improve BW management on MST links (rev5)
-URL   : https://patchwork.freedesktop.org/series/125490/
-State : failure
+BR,
+Jani.
 
-== Summary ==
+>
+>
+>> +	i915_reg_t res_reg[INTEL_RC6_RES_MAX] = {
+>> +		[0 ... INTEL_RC6_RES_MAX - 1] = INVALID_MMIO_REG,
+>> +	};
+>>  
+>>  	switch (rc6_to_gt(rc6)->type) {
+>>  	case GT_MEDIA:
+>> -		rc6->res_reg[INTEL_RC6_RES_RC6] = MTL_MEDIA_MC6;
+>> +		res_reg[INTEL_RC6_RES_RC6] = MTL_MEDIA_MC6;
+>>  		break;
+>>  	default:
+>> -		rc6->res_reg[INTEL_RC6_RES_RC6_LOCKED] = GEN6_GT_GFX_RC6_LOCKED;
+>> -		rc6->res_reg[INTEL_RC6_RES_RC6] = GEN6_GT_GFX_RC6;
+>> -		rc6->res_reg[INTEL_RC6_RES_RC6p] = GEN6_GT_GFX_RC6p;
+>> -		rc6->res_reg[INTEL_RC6_RES_RC6pp] = GEN6_GT_GFX_RC6pp;
+>> +		res_reg[INTEL_RC6_RES_RC6_LOCKED] = GEN6_GT_GFX_RC6_LOCKED;
+>> +		res_reg[INTEL_RC6_RES_RC6] = GEN6_GT_GFX_RC6;
+>> +		res_reg[INTEL_RC6_RES_RC6p] = GEN6_GT_GFX_RC6p;
+>> +		res_reg[INTEL_RC6_RES_RC6pp] = GEN6_GT_GFX_RC6pp;
+>>  		break;
+>>  	}
+>> +
+>> +	memcpy(rc6->res_reg, res_reg, sizeof(res_reg));
+>>  }
+>>  
+>>  void intel_rc6_init(struct intel_rc6 *rc6)
 
-CI Bug Log - changes from CI_DRM_13782_full -> Patchwork_125490v5_full
-====================================================
-
-Summary
--------
-
-  **FAILURE**
-
-  Serious unknown changes coming with Patchwork_125490v5_full absolutely need to be
-  verified manually.
-  
-  If you think the reported changes have nothing to do with the changes
-  introduced in Patchwork_125490v5_full, please notify your bug team (lgci.bug.filing@intel.com) to allow them
-  to document this new failure mode, which will reduce false positives in CI.
-
-  
-
-Participating hosts (12 -> 0)
-------------------------------
-
-  ERROR: It appears as if the changes made in Patchwork_125490v5_full prevented too many machines from booting.
-
-  Missing    (12): shard-mtlp0 shard-skl shard-tglu shard-rkl0 shard-dg1 shard-apl shard-glk shard-mtlp shard-snb shard-rkl shard-dg2 shard-dg20 
-
-
-Changes
--------
-
-  No changes found
-
-
-Build changes
--------------
-
-  * CI: CI-20190529 -> None
-  * IGT: IGT_7552 -> None
-  * Linux: CI_DRM_13782 -> Patchwork_125490v5
-
-  CI-20190529: 20190529
-  CI_DRM_13782: 16c18fef1215015ab3d1a0dd3b06cf6131fe23bd @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_7552: 557856802dfee103802f1157f97c65bb476d5468 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_125490v5: 16c18fef1215015ab3d1a0dd3b06cf6131fe23bd @ git://anongit.freedesktop.org/gfx-ci/linux
-  piglit_4509: fdc5a4ca11124ab8413c7988896eec4c97336694 @ git://anongit.freedesktop.org/piglit
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_125490v5/index.html
-
---===============8124355649814911171==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915: Improve BW management on MST links (rev5)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/125490/">https://patchwork.freedesktop.org/series/125490/</a></td></tr>
-<tr><td><b>State:</b></td><td>failure</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_125490v5/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_125490v5/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_13782_full -&gt; Patchwork_125490v5_full</h1>
-<h2>Summary</h2>
-<p><strong>FAILURE</strong></p>
-<p>Serious unknown changes coming with Patchwork_125490v5_full absolutely need to be<br />
-  verified manually.</p>
-<p>If you think the reported changes have nothing to do with the changes<br />
-  introduced in Patchwork_125490v5_full, please notify your bug team (lgci.bug.filing@intel.com) to allow them<br />
-  to document this new failure mode, which will reduce false positives in CI.</p>
-<h2>Participating hosts (12 -&gt; 0)</h2>
-<p>ERROR: It appears as if the changes made in Patchwork_125490v5_full prevented too many machines from booting.</p>
-<p>Missing    (12): shard-mtlp0 shard-skl shard-tglu shard-rkl0 shard-dg1 shard-apl shard-glk shard-mtlp shard-snb shard-rkl shard-dg2 shard-dg20 </p>
-<h2>Changes</h2>
-<p>No changes found</p>
-<h2>Build changes</h2>
-<ul>
-<li>CI: CI-20190529 -&gt; None</li>
-<li>IGT: IGT_7552 -&gt; None</li>
-<li>Linux: CI_DRM_13782 -&gt; Patchwork_125490v5</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_13782: 16c18fef1215015ab3d1a0dd3b06cf6131fe23bd @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_7552: 557856802dfee103802f1157f97c65bb476d5468 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  Patchwork_125490v5: 16c18fef1215015ab3d1a0dd3b06cf6131fe23bd @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  piglit_4509: fdc5a4ca11124ab8413c7988896eec4c97336694 @ git://anongit.freedesktop.org/piglit</p>
-
-</body>
-</html>
-
---===============8124355649814911171==--
+-- 
+Jani Nikula, Intel
