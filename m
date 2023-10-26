@@ -2,47 +2,32 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 17AB97D825D
-	for <lists+intel-gfx@lfdr.de>; Thu, 26 Oct 2023 14:16:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0DC287D826A
+	for <lists+intel-gfx@lfdr.de>; Thu, 26 Oct 2023 14:18:34 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D91B010E7BF;
-	Thu, 26 Oct 2023 12:16:22 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1F28910E130;
+	Thu, 26 Oct 2023 12:18:32 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from sin.source.kernel.org (sin.source.kernel.org
- [IPv6:2604:1380:40e1:4800::1])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2AB7C10E7BF
- for <intel-gfx@lists.freedesktop.org>; Thu, 26 Oct 2023 12:16:20 +0000 (UTC)
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
- by sin.source.kernel.org (Postfix) with ESMTP id 06B1ACE3EA1;
- Thu, 26 Oct 2023 12:16:18 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0212AC433C8;
- Thu, 26 Oct 2023 12:16:15 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1698322577;
- bh=LX8PNdOl705w1KrULo8nTRL4NiuX+51wFwempmD/sso=;
- h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
- b=p+eaGzRd8csgdt8UBBYbNJVtNYkx5akrlrhOEcAWKBPaBZq1mAgeGTxTNX+9c4QPG
- zMW/O0TArHmXlbiLlonQFeCeGErPp6ICZae3L2gQQGGpYx3erQZlpW2GYHWVxYR0jy
- nRJmGfy+SwMczouEf9gum9h5RkHn7kz81/orCUAXL5YefFE70g1YzYyXwAK80tJrYm
- dXR1XW5U6a8iyeyNkWyAXVDiavm4c4ycijsrfoAJNDB7aMQWuDxxPSbF0u11bXXB4I
- g6PIeEDnMqtPcJP+l8J/eZA50HOql1n+mTCyJNGGjm8kvG/52VQeRX8LZZ4qExW4cu
- q7+zQp4RZqy7g==
-Date: Thu, 26 Oct 2023 14:16:13 +0200
-From: Christian Brauner <brauner@kernel.org>
-To: "Borah, Chaitanya Kumar" <chaitanya.kumar.borah@intel.com>
-Message-ID: <20231026-ohnedies-endmontage-9592e293c728@brauner>
-References: <SJ1PR11MB6129E1EA583B3DA3B45E37A4B9CAA@SJ1PR11MB6129.namprd11.prod.outlook.com>
- <SJ1PR11MB6129B9D6396E5BECB46A25A6B9DBA@SJ1PR11MB6129.namprd11.prod.outlook.com>
- <SJ1PR11MB6129CB39EED831784C331BAFB9DEA@SJ1PR11MB6129.namprd11.prod.outlook.com>
- <20231025-zubetoniert-estrich-398e12164835@brauner>
- <SJ1PR11MB6129D4C000D5AC82E4C69710B9DEA@SJ1PR11MB6129.namprd11.prod.outlook.com>
- <SJ1PR11MB61291333B84FB20B3A910177B9DDA@SJ1PR11MB6129.namprd11.prod.outlook.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 6D11010E130;
+ Thu, 26 Oct 2023 12:18:29 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 620A9A0003;
+ Thu, 26 Oct 2023 12:18:29 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============8124355649814911171=="
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <SJ1PR11MB61291333B84FB20B3A910177B9DDA@SJ1PR11MB6129.namprd11.prod.outlook.com>
-Subject: Re: [Intel-gfx] Regression on linux-next (next-20231013)
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Imre Deak" <imre.deak@intel.com>
+Date: Thu, 26 Oct 2023 12:18:29 -0000
+Message-ID: <169832270936.20470.6711814733400478573@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20231024010925.3949910-1-imre.deak@intel.com>
+In-Reply-To: <20231024010925.3949910-1-imre.deak@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLklHVDogZmFpbHVyZSBmb3IgZHJt?=
+ =?utf-8?q?/i915=3A_Improve_BW_management_on_MST_links_=28rev5=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -55,58 +40,127 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>, "Kurmi,
- Suresh Kumar" <suresh.kumar.kurmi@intel.com>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, Oct 26, 2023 at 10:14:23AM +0000, Borah, Chaitanya Kumar wrote:
-> Hello Christian,
-> 
-> > -----Original Message-----
-> > From: Borah, Chaitanya Kumar
-> > Sent: Wednesday, October 25, 2023 7:15 PM
-> > To: Christian Brauner <brauner@kernel.org>
-> > Cc: intel-gfx@lists.freedesktop.org; Kurmi, Suresh Kumar
-> > <Suresh.Kumar.Kurmi@intel.com>; Saarinen, Jani <jani.saarinen@intel.com>
-> > Subject: RE: Regression on linux-next (next-20231013)
-> > 
-> > Hello Christian,
-> > 
-> > > -----Original Message-----
-> > > From: Christian Brauner <brauner@kernel.org>
-> > > Sent: Wednesday, October 25, 2023 1:02 PM
-> > > To: Borah, Chaitanya Kumar <chaitanya.kumar.borah@intel.com>
-> > > Cc: intel-gfx@lists.freedesktop.org; Kurmi, Suresh Kumar
-> > > <suresh.kumar.kurmi@intel.com>; Saarinen, Jani
-> > > <jani.saarinen@intel.com>
-> > > Subject: Re: Regression on linux-next (next-20231013)
-> > >
-> > > On Wed, Oct 25, 2023 at 06:32:01AM +0000, Borah, Chaitanya Kumar wrote:
-> > > >  Hello Christian,
-> > > >
-> > > >  Hope you are doing well. I am Chaitanya from the linux graphics
-> > > > team in
-> > > Intel.
-> > > >
-> > > >  This mail is regarding a regression we are seeing in our CI runs[1]
-> > > > on linux-next  repository.
-> > >
-> > > Any chance I can reproduce this locally?
-> > 
-> > Thank you for your response.
-> > 
-> > I see that you have already floated a patch [1] to fix the issue. We will test it
-> > and get back to you ASAP.
-> 
-> The solution is working for us.
-> 
-> Also, linux-next turned green.
+--===============8124355649814911171==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Great! That already has the final version of the patch.
+== Series Details ==
 
-> http://gfx-ci.igk.intel.com/tree/linux-next/igt@i915_selftest@live@mman.html
-> 
-> Thank you.
+Series: drm/i915: Improve BW management on MST links (rev5)
+URL   : https://patchwork.freedesktop.org/series/125490/
+State : failure
 
-Thanks for the report!
+== Summary ==
+
+CI Bug Log - changes from CI_DRM_13782_full -> Patchwork_125490v5_full
+====================================================
+
+Summary
+-------
+
+  **FAILURE**
+
+  Serious unknown changes coming with Patchwork_125490v5_full absolutely need to be
+  verified manually.
+  
+  If you think the reported changes have nothing to do with the changes
+  introduced in Patchwork_125490v5_full, please notify your bug team (lgci.bug.filing@intel.com) to allow them
+  to document this new failure mode, which will reduce false positives in CI.
+
+  
+
+Participating hosts (12 -> 0)
+------------------------------
+
+  ERROR: It appears as if the changes made in Patchwork_125490v5_full prevented too many machines from booting.
+
+  Missing    (12): shard-mtlp0 shard-skl shard-tglu shard-rkl0 shard-dg1 shard-apl shard-glk shard-mtlp shard-snb shard-rkl shard-dg2 shard-dg20 
+
+
+Changes
+-------
+
+  No changes found
+
+
+Build changes
+-------------
+
+  * CI: CI-20190529 -> None
+  * IGT: IGT_7552 -> None
+  * Linux: CI_DRM_13782 -> Patchwork_125490v5
+
+  CI-20190529: 20190529
+  CI_DRM_13782: 16c18fef1215015ab3d1a0dd3b06cf6131fe23bd @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_7552: 557856802dfee103802f1157f97c65bb476d5468 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  Patchwork_125490v5: 16c18fef1215015ab3d1a0dd3b06cf6131fe23bd @ git://anongit.freedesktop.org/gfx-ci/linux
+  piglit_4509: fdc5a4ca11124ab8413c7988896eec4c97336694 @ git://anongit.freedesktop.org/piglit
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_125490v5/index.html
+
+--===============8124355649814911171==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/i915: Improve BW management on MST links (rev5)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/125490/">https://patchwork.freedesktop.org/series/125490/</a></td></tr>
+<tr><td><b>State:</b></td><td>failure</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_125490v5/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_125490v5/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_13782_full -&gt; Patchwork_125490v5_full</h1>
+<h2>Summary</h2>
+<p><strong>FAILURE</strong></p>
+<p>Serious unknown changes coming with Patchwork_125490v5_full absolutely need to be<br />
+  verified manually.</p>
+<p>If you think the reported changes have nothing to do with the changes<br />
+  introduced in Patchwork_125490v5_full, please notify your bug team (lgci.bug.filing@intel.com) to allow them<br />
+  to document this new failure mode, which will reduce false positives in CI.</p>
+<h2>Participating hosts (12 -&gt; 0)</h2>
+<p>ERROR: It appears as if the changes made in Patchwork_125490v5_full prevented too many machines from booting.</p>
+<p>Missing    (12): shard-mtlp0 shard-skl shard-tglu shard-rkl0 shard-dg1 shard-apl shard-glk shard-mtlp shard-snb shard-rkl shard-dg2 shard-dg20 </p>
+<h2>Changes</h2>
+<p>No changes found</p>
+<h2>Build changes</h2>
+<ul>
+<li>CI: CI-20190529 -&gt; None</li>
+<li>IGT: IGT_7552 -&gt; None</li>
+<li>Linux: CI_DRM_13782 -&gt; Patchwork_125490v5</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_13782: 16c18fef1215015ab3d1a0dd3b06cf6131fe23bd @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_7552: 557856802dfee103802f1157f97c65bb476d5468 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  Patchwork_125490v5: 16c18fef1215015ab3d1a0dd3b06cf6131fe23bd @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  piglit_4509: fdc5a4ca11124ab8413c7988896eec4c97336694 @ git://anongit.freedesktop.org/piglit</p>
+
+</body>
+</html>
+
+--===============8124355649814911171==--
