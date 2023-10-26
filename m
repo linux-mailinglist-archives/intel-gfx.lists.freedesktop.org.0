@@ -2,59 +2,54 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 13D2B7D8072
-	for <lists+intel-gfx@lfdr.de>; Thu, 26 Oct 2023 12:16:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id D46FE7D80A0
+	for <lists+intel-gfx@lfdr.de>; Thu, 26 Oct 2023 12:22:49 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4319910E7A1;
-	Thu, 26 Oct 2023 10:15:59 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C66EA10E7A2;
+	Thu, 26 Oct 2023 10:22:46 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DF87210E7A1
- for <intel-gfx@lists.freedesktop.org>; Thu, 26 Oct 2023 10:15:56 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.126])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B968C10E7A2
+ for <intel-gfx@lists.freedesktop.org>; Thu, 26 Oct 2023 10:22:44 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1698315357; x=1729851357;
- h=message-id:date:mime-version:subject:to:references:from:
- in-reply-to:content-transfer-encoding;
- bh=eRRMtFRd/cS8lnjHiO3j2RvSvd3N0s/dpHxOMhXkUr0=;
- b=jnThD/yu04XPvOypRN71s6WNvwZpVzE+/mXJqyu1mAkaSBGXx51oJNQR
- o3hHCQPEwdh2dYBPJU0PLAbqwhdgXzNpSMeKH+94g83x5o2D8jiM3D96M
- hl9aW6OIMjDHC3RKmo0J6MB9JjDTNATB6GtUgVwQjzNmMko31ZlBnE9Kv
- 6C+2VyeUbCwYISAiEsbR0DFsSYPKA8L2/jRYXYBF98IFpCVo13ixBaLVU
- EKt+oi5ZC9kpJxCudYxEOFDgaQ2kBGnhetINX/qGv9QqV4hBQMnR/Eb58
- bsRg8Qy2p9aoG5PYVexBxHhSI4ES8TpM0EfCMmGOV5w02mxcw3VtMLIPs w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10874"; a="306910"
-X-IronPort-AV: E=Sophos;i="6.03,253,1694761200"; 
-   d="scan'208";a="306910"
-Received: from fmsmga006.fm.intel.com ([10.253.24.20])
- by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Oct 2023 03:15:30 -0700
+ t=1698315764; x=1729851764;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version;
+ bh=AI7FI6R64zyBp8B8qGB0vK7M09tGfLS2eebun2XRyXI=;
+ b=bK3aOu3meeIhzj+617lskzCQ+xD/rrIzCudS3OwfEnctpG+SN4g9ux7d
+ ntjla0H4nnf3bQq9KFiUO54InwK+XDuAP7NTljx5CCWlCcgDz513ZOh9B
+ PF0Au/SiaKaXjqAIytbXyBK6tPdj9P/dPl08tWybNpnRwIby5M6Z+TX5O
+ R0AOTrSy+O11fj/vdCRFqmj4p2LQ5fU65g0psWqHfMJ2EW5kdnYzXGxjg
+ RWTRP4sBFBLXymFJl5vhyiUbC5qUNyzPQ2RqVK51QU3wEOTQxE4EyjNa7
+ Aku8v90OMmR2CcKAdCIwZvd8bSVcL5aS6fSBvE8qMWXLZXbV5ReNOf0Gg w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10874"; a="372559940"
+X-IronPort-AV: E=Sophos;i="6.03,253,1694761200"; d="scan'208";a="372559940"
+Received: from orviesa001.jf.intel.com ([10.64.159.141])
+ by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 Oct 2023 03:22:44 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10874"; a="1006335650"
-X-IronPort-AV: E=Sophos;i="6.03,253,1694761200"; d="scan'208";a="1006335650"
-Received: from nirmoyda-mobl.ger.corp.intel.com (HELO [10.249.41.172])
- ([10.249.41.172])
- by fmsmga006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Oct 2023 03:15:28 -0700
-Message-ID: <96d3e8f1-ebeb-6849-a0e9-ba07b89946a0@linux.intel.com>
-Date: Thu, 26 Oct 2023 12:15:26 +0200
+X-IronPort-AV: E=Sophos;i="6.03,253,1694761200"; 
+   d="scan'208";a="6880097"
+Received: from tzirr-desk2.ger.corp.intel.com (HELO localhost) ([10.252.49.68])
+ by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 Oct 2023 03:21:21 -0700
+From: Jani Nikula <jani.nikula@intel.com>
+To: Andi Shyti <andi.shyti@linux.intel.com>, Tvrtko Ursulin
+ <tvrtko.ursulin@linux.intel.com>
+In-Reply-To: <ZTjuBar5FeoMPYo6@ashyti-mobl2.lan>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20231023150256.438331-1-jani.nikula@intel.com>
+ <20231023150256.438331-2-jani.nikula@intel.com>
+ <ZTe4uzgC7sIPGzwV@ashyti-mobl2.lan> <87h6mg9op4.fsf@intel.com>
+ <6b642bcd-6152-42b8-88ad-21b039d9898b@linux.intel.com>
+ <ZTjuBar5FeoMPYo6@ashyti-mobl2.lan>
+Date: Thu, 26 Oct 2023 13:22:39 +0300
+Message-ID: <8734xx8yz4.fsf@intel.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.15.1
-Content-Language: en-US
-To: imre.deak@intel.com, Nirmoy Das <nirmoy.das@intel.com>,
- intel-gfx@lists.freedesktop.org, Mika Kahola <mika.kahola@intel.com>,
- Jani Nikula <jani.nikula@intel.com>
-References: <20231025170834.22691-1-nirmoy.das@intel.com>
- <ZTorwwfEiJm+n1pY@ideak-desk.fi.intel.com>
- <ZTo7Qv6eZbzrQYj9@ideak-desk.fi.intel.com>
-From: Nirmoy Das <nirmoy.das@linux.intel.com>
-In-Reply-To: <ZTo7Qv6eZbzrQYj9@ideak-desk.fi.intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-Subject: Re: [Intel-gfx] [PATCH v2] drm/i915/tc: Fix -Wformat-truncation in
- intel_tc_port_init
+Content-Type: text/plain
+Subject: Re: [Intel-gfx] [PATCH 2/3] drm/i915/pmu: add event_to_pmu() helper
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -67,86 +62,59 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-
-On 10/26/2023 12:11 PM, Imre Deak wrote:
-> On Thu, Oct 26, 2023 at 12:05:13PM +0300, Imre Deak wrote:
->> On Wed, Oct 25, 2023 at 07:08:34PM +0200, Nirmoy Das wrote:
->>> Fix below compiler warning:
->>>
->>> intel_tc.c:1879:11: error: ‘%d’ directive output may be truncated
->>> writing between 1 and 11 bytes into a region of size 3
->>> [-Werror=format-truncation=]
->>> "%c/TC#%d", port_name(port), tc_port + 1);
->>>             ^~
->>> intel_tc.c:1878:2: note: ‘snprintf’ output between 7 and 17 bytes
->>> into a destination of size 8
->>>    snprintf(tc->port_name, sizeof(tc->port_name),
->>>    ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
->>>      "%c/TC#%d", port_name(port), tc_port + 1);
->>>      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
->>>
->>> v2: use kasprintf(Imre)
->>>
->>> Fixes: 3eafcddf766b ("drm/i915/tc: Move TC port fields to a new intel_tc_port struct")
->>> Cc: Mika Kahola <mika.kahola@intel.com>
->>> Cc: Imre Deak <imre.deak@intel.com>
->>> Cc: Jani Nikula <jani.nikula@intel.com>
->>> Signed-off-by: Nirmoy Das <nirmoy.das@intel.com>
->> Reviewed-by: Imre Deak <imre.deak@intel.com>
->>
->> Nit: port_name could be const.
->>
->>> ---
->>>   drivers/gpu/drm/i915/display/intel_tc.c | 9 ++++++---
->>>   1 file changed, 6 insertions(+), 3 deletions(-)
->>>
->>> diff --git a/drivers/gpu/drm/i915/display/intel_tc.c b/drivers/gpu/drm/i915/display/intel_tc.c
->>> index 37b0f8529b4f..0fa54450d51b 100644
->>> --- a/drivers/gpu/drm/i915/display/intel_tc.c
->>> +++ b/drivers/gpu/drm/i915/display/intel_tc.c
->>> @@ -58,7 +58,7 @@ struct intel_tc_port {
->>>   	struct delayed_work link_reset_work;
->>>   	int link_refcount;
->>>   	bool legacy_port:1;
->>> -	char port_name[8];
->>> +	char *port_name;
->>>   	enum tc_port_mode mode;
->>>   	enum tc_port_mode init_mode;
->>>   	enum phy_fia phy_fia;
->>> @@ -1875,8 +1875,10 @@ int intel_tc_port_init(struct intel_digital_port *dig_port, bool is_legacy)
->>>   	else
->>>   		tc->phy_ops = &icl_tc_phy_ops;
->>>   
->>> -	snprintf(tc->port_name, sizeof(tc->port_name),
->>> -		 "%c/TC#%d", port_name(port), tc_port + 1);
->>> +	tc->port_name = kasprintf(GFP_KERNEL, "%c/TC#%d", port_name(port),
->>> +				  tc_port + 1);
->>> +	if (!tc->port_name)
->>> +		return -ENOMEM;
-> Missed it, but this needs to free tc;
-
-Oh, thanks for catching it.
-
-
-Regards,
-
-Nirmoy
-
+On Wed, 25 Oct 2023, Andi Shyti <andi.shyti@linux.intel.com> wrote:
+> On Wed, Oct 25, 2023 at 11:20:25AM +0100, Tvrtko Ursulin wrote:
+>> 
+>> On 24/10/2023 13:42, Jani Nikula wrote:
+>> > On Tue, 24 Oct 2023, Andi Shyti <andi.shyti@linux.intel.com> wrote:
+>> > > Hi Jani,
+>> > > 
+>> > > On Mon, Oct 23, 2023 at 06:02:55PM +0300, Jani Nikula wrote:
+>> > > > It's tedious to duplicate the container_of() everywhere. Add a helper.
+>> > > > 
+>> > > > Also do the logical steps of first getting from struct perf_event to
+>> > > > struct i915_pmu, and then from struct i915_pmu to struct
+>> > > > drm_i915_private if needed, instead of perf_event->i915->pmu. Not all
+>> > > > places even need the i915 pointer.
+>> > > > 
+>> > > > Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+>> > > > ---
+>> > > >   drivers/gpu/drm/i915/i915_pmu.c | 45 +++++++++++++++------------------
+>> > > >   1 file changed, 20 insertions(+), 25 deletions(-)
+>> > > > 
+>> > > > diff --git a/drivers/gpu/drm/i915/i915_pmu.c b/drivers/gpu/drm/i915/i915_pmu.c
+>> > > > index dcae2fcd8d36..d45b40ec6d47 100644
+>> > > > --- a/drivers/gpu/drm/i915/i915_pmu.c
+>> > > > +++ b/drivers/gpu/drm/i915/i915_pmu.c
+>> > > > @@ -31,6 +31,11 @@
+>> > > >   static cpumask_t i915_pmu_cpumask;
+>> > > >   static unsigned int i915_pmu_target_cpu = -1;
+>> > > > +static struct i915_pmu *event_to_pmu(struct perf_event *event)
+>> > > 
+>> > > I would call it perfevent (or perf_event), event is too generic.
+>> > > We have other kind of events, too.
+>> > 
+>> > Fair enough.
+>> 
+>> Counter argument is that i915_pmu.c consistently names this event (which is
+>> likely lifted from other PMU drivers) so is the proposal to churn it all, or
+>> create an inconsistency?
 >
->>>   
->>>   	mutex_init(&tc->lock);
->>>   	/* TODO: Combine the two works */
->>> @@ -1897,6 +1899,7 @@ void intel_tc_port_cleanup(struct intel_digital_port *dig_port)
->>>   {
->>>   	intel_tc_port_suspend(dig_port);
->>>   
->>> +	kfree(dig_port->tc->port_name);
->>>   	kfree(dig_port->tc);
->>>   	dig_port->tc = NULL;
->>>   }
->>> -- 
->>> 2.41.0
->>>
+> The first that comes to my mind is that the debugger is also
+> using the term "event"... on the other hand there is no debugger
+> in i915.
+
+Have you settled on this? I don't care either way, could apply either
+patch.
+
+BR,
+Jani.
+
+
+
+-- 
+Jani Nikula, Intel
