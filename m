@@ -1,64 +1,65 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id BB62F7D9EF6
-	for <lists+intel-gfx@lfdr.de>; Fri, 27 Oct 2023 19:38:36 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id EDB787D9F06
+	for <lists+intel-gfx@lfdr.de>; Fri, 27 Oct 2023 19:48:22 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6AF9310EA22;
-	Fri, 27 Oct 2023 17:38:30 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id AECFD10EA27;
+	Fri, 27 Oct 2023 17:48:20 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1F76010EA20;
- Fri, 27 Oct 2023 17:38:28 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1698428308; x=1729964308;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=5JgsC4GZg9gDVZXuMx2csQQc1LKj5KoYBp4nu6PMc0Y=;
- b=N3PIu6ikfoDH1XfR/BADhPVUjFGLFoIIrbrPglsUw837oRQBmaQJ5E+I
- Ba1hyJxgsUrJoV6RvvErZN/7wX+75JKwFPy9MWm3M+LpFAL+jHbX6GzUO
- DhxHkRHQ1gVZnryyul2g/miOOvn4q7zoN59y7+KqmWmiA2yxmljkonBBU
- kRj4V+8JmlKMvjtwzshB6Cfu/NGkbJ/kDc5x4v3bQHofzDJaAcbUqgG8N
- +EY5kvDQIINAgl75U0cUyf3uma10p+uHR4iIijETCY4AagNP5fQFUZreJ
- HpsLQ/7T0+KR9DOjR3Uy8lObXw+H8PvWGX97cjFst+NNXuMJz6xkUCNop A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10876"; a="378188584"
-X-IronPort-AV: E=Sophos;i="6.03,256,1694761200"; d="scan'208";a="378188584"
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Oct 2023 10:38:27 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10876"; a="788862211"
-X-IronPort-AV: E=Sophos;i="6.03,256,1694761200"; d="scan'208";a="788862211"
-Received: from dhanlon-mobl1.ger.corp.intel.com (HELO [10.213.221.114])
- ([10.213.221.114])
- by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Oct 2023 10:38:23 -0700
-Message-ID: <29c2bf2b-82b1-457d-ba42-29b0b30ecf32@linux.intel.com>
-Date: Fri, 27 Oct 2023 18:38:21 +0100
+Received: from mail-wr1-x42d.google.com (mail-wr1-x42d.google.com
+ [IPv6:2a00:1450:4864:20::42d])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0E8A010EA27
+ for <intel-gfx@lists.freedesktop.org>; Fri, 27 Oct 2023 17:48:17 +0000 (UTC)
+Received: by mail-wr1-x42d.google.com with SMTP id
+ ffacd0b85a97d-32da7ac5c4fso1516521f8f.1
+ for <intel-gfx@lists.freedesktop.org>; Fri, 27 Oct 2023 10:48:17 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20230601; t=1698428896; x=1699033696; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+ :to:from:from:to:cc:subject:date:message-id:reply-to;
+ bh=RxlMB6f5FjKRC+o9CZB8BUKNFLGDY3FqBgnOramGfWM=;
+ b=nh9OJ1my7VE2nVJJwvPicbcaetGp3SWQ49oGHkBMMq9sPMOCFE4YniWu5sp2FTkpt3
+ vCNsgp+xR1v/LrN1IloE/+BSxAe0cZ0xLtGyxw75B/Ghym6BhvT/afPyvr23nwFNHt5U
+ PEgP2EjmRllC3AVYkGPNKApE8PMWRRDJs7TkWWC8WHHb/Y9NBHaDhMtcGGmEsJebn70w
+ f+BpBEPe0dCCZhM9ITXQkrj2ZwmU4r6X6R3zS9uw1/xcsPot0eZ0Y+gT5LlmGIaJ/Rp1
+ MQzRfv3g3AWG0s/R1ECf+ShajPpanEnvzfNlZ7tK7h1cUBidus7AZ1xcReUZgWx1Vul2
+ T/ew==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1698428896; x=1699033696;
+ h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+ :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+ :reply-to;
+ bh=RxlMB6f5FjKRC+o9CZB8BUKNFLGDY3FqBgnOramGfWM=;
+ b=IbFHcJVZG3gMryzudckAAZ/NxUFPSUcp5Gq2j0aJYYlowaC8yV+SEF2jIrJZr4ny7m
+ 5lM7Ughpia0//h96XynHG6ZyNKiw5RJTgAIk92KqUmYwETCj+LwzyUimVrhDK9UzEFgY
+ GpXbcFCbqJ1m1hH+m0Tn7yLdL9wdI4sbdxt+JkzgWoxgVtYX7v6Z0gFDz3oy55BzQCuC
+ Bu1V7h5Aj8IxAaNsoW1igQqDTtaPqMuwt2bdXbd9TpT1QNefVHcxQ+0xafgtip4gf3U1
+ +JAO5Nega6UTrUYtPk+CnKZS+XYy4cBESjA9EYuxXg3A7gdMZcOpSEofmua4m0rSgGJ6
+ Qugg==
+X-Gm-Message-State: AOJu0YyaUoF2oawBc8Ll+AkBA2/7E3E9M7JQDEpRr6umNpovLSj9Vz8P
+ Shv6sYn8F/Cv3ZpAUhrlXw==
+X-Google-Smtp-Source: AGHT+IFQAaTooRRBwbuoSlrVeLAjG0h8Jfn+MhkCkgy6a3Cw1dDoPmtRzwpl6KES4y27M/+RF3J2lQ==
+X-Received: by 2002:a5d:68c7:0:b0:32d:8830:edb with SMTP id
+ p7-20020a5d68c7000000b0032d88300edbmr2456212wrw.38.1698428896039; 
+ Fri, 27 Oct 2023 10:48:16 -0700 (PDT)
+Received: from dorcaslitunya-virtual-machine.localdomain ([105.163.156.68])
+ by smtp.gmail.com with ESMTPSA id
+ t13-20020a5d534d000000b0032d9548240fsm2213063wrv.82.2023.10.27.10.48.13
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Fri, 27 Oct 2023 10:48:14 -0700 (PDT)
+From: Dorcas AnonoLitunya <anonolitunya@gmail.com>
+To: karolina.stolarek@intel.com,
+	andi.shyti@intel.com
+Date: Fri, 27 Oct 2023 20:47:45 +0300
+Message-ID: <20231027174745.4058-1-anonolitunya@gmail.com>
+X-Mailer: git-send-email 2.42.0.345.gaab89be2eb
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Content-Language: en-US
-To: Harshit Mogalapalli <harshit.m.mogalapalli@oracle.com>,
- Jani Nikula <jani.nikula@linux.intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, David Airlie <airlied@gmail.com>,
- Daniel Vetter <daniel@ffwll.ch>, Andrzej Hajda <andrzej.hajda@intel.com>,
- Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>,
- Matt Roper <matthew.d.roper@intel.com>,
- Lionel Landwerlin <lionel.g.landwerlin@intel.com>,
- intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- linux-kernel@vger.kernel.org
-References: <20231027172822.2753059-1-harshit.m.mogalapalli@oracle.com>
-From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-Organization: Intel Corporation UK Plc
-In-Reply-To: <20231027172822.2753059-1-harshit.m.mogalapalli@oracle.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-Subject: Re: [Intel-gfx] [PATCH v2] i915/perf: Fix NULL deref bugs with
- drm_dbg() calls
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-gfx] [PATCH] drm/i915/gt: Remove prohibited space after
+ opening parenthesis
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -71,77 +72,33 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: kernel-janitors@vger.kernel.org, error27@gmail.com,
- dan.carpenter@linaro.org, Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+Cc: intel-gfx@lists.freedesktop.org, karolinadrobnik@gmail.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+Removes space after opening parenthesis.
 
-On 27/10/2023 18:28, Harshit Mogalapalli wrote:
-> When i915 perf interface is not available dereferencing it will lead to
-> NULL dereferences.
-> 
-> As returning -ENOTSUPP is pretty clear return when perf interface is not
-> available.
-> 
-> Fixes: 2fec539112e8 ("i915/perf: Replace DRM_DEBUG with driver specific drm_dbg call")
-> Suggested-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
-> Signed-off-by: Harshit Mogalapalli <harshit.m.mogalapalli@oracle.com>
-> ---
-> v1 --> v2: Remove the debug calls as they don't add much value and
-> -ENOTSUPP is a good enough return value.
-> ---
->   drivers/gpu/drm/i915/i915_perf.c | 15 +++------------
->   1 file changed, 3 insertions(+), 12 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/i915/i915_perf.c b/drivers/gpu/drm/i915/i915_perf.c
-> index 2f3ecd7d4804..7b1c8de2f9cb 100644
-> --- a/drivers/gpu/drm/i915/i915_perf.c
-> +++ b/drivers/gpu/drm/i915/i915_perf.c
-> @@ -4227,11 +4227,8 @@ int i915_perf_open_ioctl(struct drm_device *dev, void *data,
->   	u32 known_open_flags;
->   	int ret;
->   
-> -	if (!perf->i915) {
-> -		drm_dbg(&perf->i915->drm,
-> -			"i915 perf interface not available for this system\n");
-> +	if (!perf->i915)
->   		return -ENOTSUPP;
-> -	}
->   
->   	known_open_flags = I915_PERF_FLAG_FD_CLOEXEC |
->   			   I915_PERF_FLAG_FD_NONBLOCK |
-> @@ -4607,11 +4604,8 @@ int i915_perf_add_config_ioctl(struct drm_device *dev, void *data,
->   	struct i915_oa_reg *regs;
->   	int err, id;
->   
-> -	if (!perf->i915) {
-> -		drm_dbg(&perf->i915->drm,
-> -			"i915 perf interface not available for this system\n");
-> +	if (!perf->i915)
->   		return -ENOTSUPP;
-> -	}
->   
->   	if (!perf->metrics_kobj) {
->   		drm_dbg(&perf->i915->drm,
-> @@ -4773,11 +4767,8 @@ int i915_perf_remove_config_ioctl(struct drm_device *dev, void *data,
->   	struct i915_oa_config *oa_config;
->   	int ret;
->   
-> -	if (!perf->i915) {
-> -		drm_dbg(&perf->i915->drm,
-> -			"i915 perf interface not available for this system\n");
-> +	if (!perf->i915)
->   		return -ENOTSUPP;
-> -	}
->   
->   	if (i915_perf_stream_paranoid && !perfmon_capable()) {
->   		drm_dbg(&perf->i915->drm,
+Fixes the checkpatch.pl error:
+ERROR: space prohibited after that opening parenthesis '('
 
-Thanks for re-spinning it so quickly! LGTM.
+Signed-off-by: Dorcas AnonoLitunya <anonolitunya@gmail.com>
+---
+ drivers/gpu/drm/i915/gt/intel_engine_cs.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-Reviewed-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+diff --git a/drivers/gpu/drm/i915/gt/intel_engine_cs.c b/drivers/gpu/drm/i915/gt/intel_engine_cs.c
+index 4a11219e560e..40687806d22a 100644
+--- a/drivers/gpu/drm/i915/gt/intel_engine_cs.c
++++ b/drivers/gpu/drm/i915/gt/intel_engine_cs.c
+@@ -47,7 +47,7 @@
+ #define GEN9_LR_CONTEXT_RENDER_SIZE	(22 * PAGE_SIZE)
+ #define GEN11_LR_CONTEXT_RENDER_SIZE	(14 * PAGE_SIZE)
+ 
+-#define GEN8_LR_CONTEXT_OTHER_SIZE	( 2 * PAGE_SIZE)
++#define GEN8_LR_CONTEXT_OTHER_SIZE	(2 * PAGE_SIZE)
+ 
+ #define MAX_MMIO_BASES 3
+ struct engine_info {
+-- 
+2.42.0.345.gaab89be2eb
 
-Regards,
-
-Tvrtko
