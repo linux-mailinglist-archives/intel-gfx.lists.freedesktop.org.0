@@ -1,65 +1,52 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 62B4B7D9C09
-	for <lists+intel-gfx@lfdr.de>; Fri, 27 Oct 2023 16:47:54 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id D550F7D9C1D
+	for <lists+intel-gfx@lfdr.de>; Fri, 27 Oct 2023 16:49:38 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A830C10E9D7;
-	Fri, 27 Oct 2023 14:47:52 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 57E9E10E9CF;
+	Fri, 27 Oct 2023 14:49:37 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.93])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B65A910E9CE;
- Fri, 27 Oct 2023 14:47:49 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 73D6310E9CF
+ for <intel-gfx@lists.freedesktop.org>; Fri, 27 Oct 2023 14:49:34 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1698418069; x=1729954069;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=Y4P9Bqeterqdl3jqcGwjUkIBi2NtNxgmJccLiuc5rHI=;
- b=gDBeQykvwtLguwvkT2t+ruVqzLo5Gcnc0ABQf+q453K1G3fJifhiRPmy
- tsEdZc95wM9YXJXypJaSkrf45Wri94oPoum+0Yy8n9Yk5QN4YCbc3mwPJ
- QPq25MYni9kjOtfHudNWJL3ulrtD4Jy333fg/eHCL89RENI6PTUm1Zbm/
- yTdxz9NoqKGi3ZbWulCw1iifmGVUg1at8idHHskLmLIFDLtpJ9r0HefpH
- sR8TWAjNk/aLQCZsvmyHBtJReXP/4M4cez3DdxsfYCrY3aB4cvuKUDQ/B
- pw66lm25C7ubjCegCt7lcovYVd1rePVhhbVX4E+hnK/iyTzqLT70+lpMh A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10876"; a="384990204"
-X-IronPort-AV: E=Sophos;i="6.03,256,1694761200"; d="scan'208";a="384990204"
-Received: from fmsmga005.fm.intel.com ([10.253.24.32])
+ t=1698418174; x=1729954174;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:in-reply-to;
+ bh=RA9zykf93U/VJ6ppP8svdSAAmRAba2jLiTQYK+AIbBc=;
+ b=Sd1aShu6MSrWEy0dXkAZELoMA4nkW3G+vREX0pJI8GeMhda/nGMHoLT9
+ fSCNmotctZVzsm8DZF35/6ZGyA+sZwNwX+SDoodqqnNfjjz5II8p7mZO9
+ kvEhX2OZ+SaZJPBIw2Rl9L6ttHKas8mdFpijLEF/+ukcAqBagUv35FVHl
+ qw1EFwTV0uwLNifFWbAIfo+tC6dMv8IYJlCcQp9oVcPZom0OxI2x0hAWm
+ 0EAMxqUumhdvtbvsGc4EjOpW/zGJLkdnhSSPKQLPffbTAc2cOw+UJf0xX
+ hLW9accx19yrFIWq21kMeb57c5upN3HNXfwLXBZcLjs++g4aPG8WFigDl A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10876"; a="384990426"
+X-IronPort-AV: E=Sophos;i="6.03,256,1694761200"; d="scan'208";a="384990426"
+Received: from fmsmga008.fm.intel.com ([10.253.24.58])
  by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Oct 2023 07:47:48 -0700
+ 27 Oct 2023 07:49:34 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10876"; a="1090946608"
-X-IronPort-AV: E=Sophos;i="6.03,256,1694761200"; d="scan'208";a="1090946608"
-Received: from dhanlon-mobl1.ger.corp.intel.com (HELO [10.213.221.114])
- ([10.213.221.114])
- by fmsmga005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Oct 2023 07:47:45 -0700
-Message-ID: <4d850f3c-c199-470f-b83e-00bd9fddbd7a@linux.intel.com>
-Date: Fri, 27 Oct 2023 15:47:43 +0100
+X-IronPort-AV: E=McAfee;i="6600,9927,10876"; a="825350927"
+X-IronPort-AV: E=Sophos;i="6.03,256,1694761200"; d="scan'208";a="825350927"
+Received: from unknown (HELO intel.com) ([10.237.72.65])
+ by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 27 Oct 2023 07:49:32 -0700
+Date: Fri, 27 Oct 2023 17:49:29 +0300
+From: "Lisovskiy, Stanislav" <stanislav.lisovskiy@intel.com>
+To: Imre Deak <imre.deak@intel.com>
+Message-ID: <ZTvN+WYnxzRSbeOZ@intel.com>
+References: <20231024010925.3949910-1-imre.deak@intel.com>
+ <20231024010925.3949910-11-imre.deak@intel.com>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Content-Language: en-US
-To: Andrzej Hajda <andrzej.hajda@intel.com>,
- Harshit Mogalapalli <harshit.m.mogalapalli@oracle.com>,
- Jani Nikula <jani.nikula@linux.intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, David Airlie <airlied@gmail.com>,
- Daniel Vetter <daniel@ffwll.ch>,
- Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>,
- Lionel Landwerlin <lionel.g.landwerlin@intel.com>,
- Matt Roper <matthew.d.roper@intel.com>, intel-gfx@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org
-References: <20231027140729.2505993-1-harshit.m.mogalapalli@oracle.com>
- <1e844f00-fc16-4788-8d90-ebe115eb9313@intel.com>
-From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-Organization: Intel Corporation UK Plc
-In-Reply-To: <1e844f00-fc16-4788-8d90-ebe115eb9313@intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-Subject: Re: [Intel-gfx] [PATCH] i915/perf: Fix NULL deref bugs with
- drm_dbg() calls
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20231024010925.3949910-11-imre.deak@intel.com>
+Subject: Re: [Intel-gfx] [PATCH 10/29] drm/i915/dp: Specify the FEC overhead
+ as an increment vs. a remainder
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -72,78 +59,51 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: kernel-janitors@vger.kernel.org, error27@gmail.com,
- dan.carpenter@linaro.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-
-On 27/10/2023 15:11, Andrzej Hajda wrote:
-> On 27.10.2023 16:07, Harshit Mogalapalli wrote:
->> When i915 perf interface is not available dereferencing it will lead to
->> NULL dereferences.
->>
->> Fix this by using DRM_DEBUG() which the scenario before the commit in
->> the Fixes tag.
->>
->> Fixes: 2fec539112e8 ("i915/perf: Replace DRM_DEBUG with driver 
->> specific drm_dbg call")
->> Signed-off-by: Harshit Mogalapalli <harshit.m.mogalapalli@oracle.com>
+On Tue, Oct 24, 2023 at 04:09:06AM +0300, Imre Deak wrote:
+> A follow-up patch will add up all the overheads on a DP link, where it
+> makes more sense to specify each overhead factor in terms of the added
+> overhead amount vs. the reciprocal remainder (of usable BW remaining
+> after deducting the overhead). Prepare for that here, keeping the
+> existing behavior.
 > 
+> Signed-off-by: Imre Deak <imre.deak@intel.com>
+
+Reviewed-by: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
+
+> ---
+>  drivers/gpu/drm/i915/display/intel_dp.c | 8 ++++----
+>  1 file changed, 4 insertions(+), 4 deletions(-)
 > 
-> Reviewed-by: Andrzej Hajda <andrzej.hajda@intel.com>
-
-Please hold off merging.
-
->> ---
->> This is found using smatch(static analysis tool), only compile tested.
->> ---
->>   drivers/gpu/drm/i915/i915_perf.c | 9 +++------
->>   1 file changed, 3 insertions(+), 6 deletions(-)
->>
->> diff --git a/drivers/gpu/drm/i915/i915_perf.c 
->> b/drivers/gpu/drm/i915/i915_perf.c
->> index 2f3ecd7d4804..bb48c96b7950 100644
->> --- a/drivers/gpu/drm/i915/i915_perf.c
->> +++ b/drivers/gpu/drm/i915/i915_perf.c
->> @@ -4228,8 +4228,7 @@ int i915_perf_open_ioctl(struct drm_device *dev, 
->> void *data,
->>       int ret;
->>       if (!perf->i915) {
->> -        drm_dbg(&perf->i915->drm,
->> -            "i915 perf interface not available for this system\n");
->> +        DRM_DEBUG("i915 perf interface not available for this 
->> system\n");
-
-What's that struct drm_device *dev function argument a few lines up? :)
-
-Although TBH all these these could just be removed since I doubt they 
-are adding any value and ENOTSUPP is pretty clear.
-
-Regards,
-
-Tvrtko
-
->>           return -ENOTSUPP;
->>       }
->> @@ -4608,8 +4607,7 @@ int i915_perf_add_config_ioctl(struct drm_device 
->> *dev, void *data,
->>       int err, id;
->>       if (!perf->i915) {
->> -        drm_dbg(&perf->i915->drm,
->> -            "i915 perf interface not available for this system\n");
->> +        DRM_DEBUG("i915 perf interface not available for this 
->> system\n");
->>           return -ENOTSUPP;
->>       }
->> @@ -4774,8 +4772,7 @@ int i915_perf_remove_config_ioctl(struct 
->> drm_device *dev, void *data,
->>       int ret;
->>       if (!perf->i915) {
->> -        drm_dbg(&perf->i915->drm,
->> -            "i915 perf interface not available for this system\n");
->> +        DRM_DEBUG("i915 perf interface not available for this 
->> system\n");
->>           return -ENOTSUPP;
->>       }
+> diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
+> index 2048649b420b2..0c0f026fb3161 100644
+> --- a/drivers/gpu/drm/i915/display/intel_dp.c
+> +++ b/drivers/gpu/drm/i915/display/intel_dp.c
+> @@ -85,8 +85,8 @@
+>  #define DP_DSC_MAX_ENC_THROUGHPUT_0		340000
+>  #define DP_DSC_MAX_ENC_THROUGHPUT_1		400000
+>  
+> -/* DP DSC FEC Overhead factor = 1/(0.972261) */
+> -#define DP_DSC_FEC_OVERHEAD_FACTOR		972261
+> +/* DP DSC FEC Overhead factor = 1/(0.972261) = 1.028530 ppm */
+> +#define DP_DSC_FEC_OVERHEAD_FACTOR		1028530
+>  
+>  /* Compliance test status bits  */
+>  #define INTEL_DP_RESOLUTION_SHIFT_MASK	0
+> @@ -680,8 +680,8 @@ int intel_dp_get_link_train_fallback_values(struct intel_dp *intel_dp,
+>  
+>  u32 intel_dp_mode_to_fec_clock(u32 mode_clock)
+>  {
+> -	return div_u64(mul_u32_u32(mode_clock, 1000000U),
+> -		       DP_DSC_FEC_OVERHEAD_FACTOR);
+> +	return div_u64(mul_u32_u32(mode_clock, DP_DSC_FEC_OVERHEAD_FACTOR),
+> +		       1000000U);
+>  }
+>  
+>  static int
+> -- 
+> 2.39.2
 > 
