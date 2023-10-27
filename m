@@ -1,54 +1,54 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 330057D9C32
-	for <lists+intel-gfx@lfdr.de>; Fri, 27 Oct 2023 16:52:54 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 343587D9C6D
+	for <lists+intel-gfx@lfdr.de>; Fri, 27 Oct 2023 17:00:09 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9E06510E9D8;
-	Fri, 27 Oct 2023 14:52:52 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9212510E9D6;
+	Fri, 27 Oct 2023 15:00:07 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1A71910E9D4
- for <intel-gfx@lists.freedesktop.org>; Fri, 27 Oct 2023 14:52:50 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.115])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5677810E9D6
+ for <intel-gfx@lists.freedesktop.org>; Fri, 27 Oct 2023 15:00:05 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1698418370; x=1729954370;
+ t=1698418805; x=1729954805;
  h=date:from:to:cc:subject:message-id:reply-to:references:
- mime-version:in-reply-to;
- bh=N/DxtVWlEaGrctyhApndq5YDJicbdt6ZACcj7ksg4bg=;
- b=ZSwAmCLEq1W6KpSFJLA0c4E+Kwk3AtKtadu3iT0Iqt5Q9r7+SL6hA2tB
- zctfpj5igcEfOWWwD/eSR1NApXc/97FE6bPi1LMVSVRotmrQfogOPz4sR
- wn7qA2YYKTbwfOvO8fRMU1jNrVv3ikx0jFNbOyoj6MRlBUWyOx2odKRqT
- P9L47G6SqyuDb4mY4Deuf8KtBCU6rl1Qc+vmq3RrnPYKfWRgrfT4FqHw/
- 5lXEkSkXy3+9FQBJYlVtzYxsIhYTzj0z6VsXJtfiGnsurwK5F4elYV+qu
- fHku5dJD4+Z0SN+0clrIlChr5c8uT91N8tocjhyFzkf0hFMkUy0zw9XXr g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10876"; a="608505"
-X-IronPort-AV: E=Sophos;i="6.03,256,1694761200"; 
-   d="scan'208";a="608505"
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
- by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Oct 2023 07:52:50 -0700
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=+j0hPV5FgcJrYOsdUxvfoaa5eI+yzhXnLtwAr+t4wHc=;
+ b=KyFLj1F4WVQBeHlbDc5QCkn+sy/ylBQMBAZfkyfQqABZXOG5/gD8oH7v
+ OTNdZc6R/7mVafli8vJPCRM8VvtVOLPP2i+Ze3HKDTpdnDImZbcldU3NG
+ BxqOjQoMRTqFTaTfuQkOBkpHg0N7GFmx/ET9TdpaC3h78ssFbDK/D9eHh
+ 2u7yeb+dFgB9V1vmfO8Qk0jmXKqUVaUB307BBHQ1A/1f0un6oq/7/h5pl
+ w7+nx3FQZtQWb5rDorExxheBVTQkO+7W+t2hq/+8xJYQ6hMUIR5z2a03F
+ SUq8tyIkLwp6rqJfwc83f9fY16VD9rUcVBnb1GwrAfT0p9ORqdDZ3FDmO Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10876"; a="387600121"
+X-IronPort-AV: E=Sophos;i="6.03,256,1694761200"; d="scan'208";a="387600121"
+Received: from orsmga007.jf.intel.com ([10.7.209.58])
+ by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 27 Oct 2023 08:00:04 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10876"; a="876354485"
-X-IronPort-AV: E=Sophos;i="6.03,256,1694761200"; d="scan'208";a="876354485"
+X-IronPort-AV: E=McAfee;i="6600,9927,10876"; a="753146430"
+X-IronPort-AV: E=Sophos;i="6.03,256,1694761200"; d="scan'208";a="753146430"
 Received: from ideak-desk.fi.intel.com ([10.237.72.78])
- by fmsmga002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Oct 2023 07:52:48 -0700
-Date: Fri, 27 Oct 2023 17:53:17 +0300
+ by orsmga007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 27 Oct 2023 08:00:03 -0700
+Date: Fri, 27 Oct 2023 18:00:33 +0300
 From: Imre Deak <imre.deak@intel.com>
-To: "Lisovskiy, Stanislav" <stanislav.lisovskiy@intel.com>
-Message-ID: <ZTvO3VK+sMksD69l@ideak-desk.fi.intel.com>
+To: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+Message-ID: <ZTvQkdDYAMRcMnuA@ideak-desk.fi.intel.com>
 References: <20231024010925.3949910-1-imre.deak@intel.com>
- <20231024010925.3949910-25-imre.deak@intel.com>
- <ZTvNCgO9NF/rl1t+@intel.com>
+ <20231024010925.3949910-24-imre.deak@intel.com>
+ <ZTvOoUQPrhnyMoLN@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
-In-Reply-To: <ZTvNCgO9NF/rl1t+@intel.com>
-Subject: Re: [Intel-gfx] [PATCH 24/29] drm/i915/dp_mst: Enable MST DSC
- decompression for all streams
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <ZTvOoUQPrhnyMoLN@intel.com>
+Subject: Re: [Intel-gfx] [PATCH 23/29] drm/i915/dp_mst: Enable DSC
+ passthrough
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -66,165 +66,81 @@ Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, Oct 27, 2023 at 05:45:30PM +0300, Lisovskiy, Stanislav wrote:
-> On Tue, Oct 24, 2023 at 04:09:20AM +0300, Imre Deak wrote:
-> > Enable DSC decompression for all streams. In particular atm if a sink is
-> > connected to a last branch device that is downstream of the first branch
-> > device connected to the source, decompression is not enabled for it.
-> > Similarly it's not enabled if the sink supports this with the last
-> > branch device passing through the compressed stream to it.
-> > 
-> > Enable DSC in the above cases as well. Since last branch devices may
-> > handle the decompression for multiple ports, toggling DSC needs to be
-> > refcounted, add this using the DSC AUX device as a reference.
+On Fri, Oct 27, 2023 at 05:52:17PM +0300, Ville Syrjälä wrote:
+> On Tue, Oct 24, 2023 at 04:09:19AM +0300, Imre Deak wrote:
+> > Enable passing through DSC streams to the sink in last branch devices.
 > > 
 > > Signed-off-by: Imre Deak <imre.deak@intel.com>
 > > ---
-> >  .../drm/i915/display/intel_display_types.h    |  1 +
-> >  drivers/gpu/drm/i915/display/intel_dp.c       |  3 +
-> >  drivers/gpu/drm/i915/display/intel_dp_mst.c   | 57 ++++++++++++-------
-> >  3 files changed, 42 insertions(+), 19 deletions(-)
+> >  drivers/gpu/drm/i915/display/intel_dp.c | 26 ++++++++++++++++++++++++-
+> >  1 file changed, 25 insertions(+), 1 deletion(-)
 > > 
-> > diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/drivers/gpu/drm/i915/display/intel_display_types.h
-> > index 409dbf8a2a1cd..b2744a9b4678c 100644
-> > --- a/drivers/gpu/drm/i915/display/intel_display_types.h
-> > +++ b/drivers/gpu/drm/i915/display/intel_display_types.h
-> > @@ -626,6 +626,7 @@ struct intel_connector {
-> >  		u8 fec_capability;
-> >  
-> >  		u8 dsc_hblank_expansion_quirk:1;
-> > +		u8 dsc_decompression_enabled:1;
-> >  	} dp;
-> >  
-> >  	/* Work struct to schedule a uevent on link train failure */
 > > diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
-> > index bb8951f89f61f..c89e1a4393d0f 100644
+> > index a7eb31b489947..bb8951f89f61f 100644
 > > --- a/drivers/gpu/drm/i915/display/intel_dp.c
 > > +++ b/drivers/gpu/drm/i915/display/intel_dp.c
-> > @@ -1403,6 +1403,7 @@ static bool intel_dp_supports_dsc(const struct intel_connector *connector,
-> >  		return false;
-> >  
-> >  	return intel_dsc_source_support(crtc_state) &&
-> > +		connector->dp.dsc_decompression_aux &&
-> >  		drm_dp_sink_supports_dsc(connector->dp.dsc_dpcd);
+> > @@ -2950,6 +2950,24 @@ intel_dp_sink_set_dsc_decompression(struct intel_connector *connector,
+> >  			    str_enable_disable(enable));
 > >  }
 > >  
-> > @@ -2948,6 +2949,8 @@ intel_dp_sink_set_dsc_decompression(struct intel_connector *connector,
-> >  		drm_dbg_kms(&i915->drm,
-> >  			    "Failed to %s sink decompression state\n",
-> >  			    str_enable_disable(enable));
+> > +static void
+> > +intel_dp_sink_set_dsc_passthrough(const struct intel_connector *connector,
+> > +				  bool enable)
+> > +{
+> > +	struct drm_i915_private *i915 = to_i915(connector->base.dev);
+> > +	struct drm_dp_aux *aux = connector->port ?
+> > +				 connector->port->passthrough_aux : NULL;
+> 
+> I was worried that we're now setting conflicting compress+passthrough
+> bits at the same time, but looks like this magic passthrough_aux thing
+> gets sneakily populated by drm_dp_mst_dsc_aux_for_port() whereas the 
+> decompression_aux gets just returned directly and tracked by the driver.
+> Very confusing.
+
+Yes, probably would be better to have both tracked in connector->port
+only.
+> 
+> But I guess it kinda works
+
+The reason they don't conflict is because a passthrough_aux will be set
+only for a DP-to-DP peer branch device if the sink supports this (so not
+in a UFP DPCD for instance), in which case decompression_aux will be
+NULL. 
+
+> Reviewed-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
+> 
 > > +
-> > +	connector->dp.dsc_decompression_enabled = enable;
+> > +	if (!aux)
+> > +		return;
+> > +
+> > +	if (drm_dp_dpcd_writeb(aux, DP_DSC_PASSTHROUGH_EN,
+> > +			       enable ? DP_DSC_PASSTHROUGH_EN : 0) < 0)
+> > +		drm_dbg_kms(&i915->drm,
+> > +			    "Failed to %s sink compression passthrough state\n",
+> > +			    str_enable_disable(enable));
+> > +}
+> > +
+> >  void intel_dp_sink_set_decompression_state(struct intel_connector *connector,
+> >  					   const struct intel_crtc_state *crtc_state,
+> >  					   bool enable)
+> > @@ -2962,7 +2980,13 @@ void intel_dp_sink_set_decompression_state(struct intel_connector *connector,
+> >  	if (drm_WARN_ON(&i915->drm, !connector->dp.dsc_decompression_aux))
+> >  		return;
+> >  
+> > -	intel_dp_sink_set_dsc_decompression(connector, enable);
+> > +	if (enable) {
+> > +		intel_dp_sink_set_dsc_passthrough(connector, true);
+> > +		intel_dp_sink_set_dsc_decompression(connector, true);
+> > +	} else {
+> > +		intel_dp_sink_set_dsc_decompression(connector, false);
+> > +		intel_dp_sink_set_dsc_passthrough(connector, false);
+> > +	}
 > >  }
 > >  
 > >  static void
-> > diff --git a/drivers/gpu/drm/i915/display/intel_dp_mst.c b/drivers/gpu/drm/i915/display/intel_dp_mst.c
-> > index 8ef3a2611207c..9f4894c2e7860 100644
-> > --- a/drivers/gpu/drm/i915/display/intel_dp_mst.c
-> > +++ b/drivers/gpu/drm/i915/display/intel_dp_mst.c
-> > @@ -660,6 +660,39 @@ intel_dp_mst_atomic_topology_check(struct intel_connector *connector,
-> >  	return ret;
-> >  }
-> >  
-> > +static int intel_dp_mst_dsc_aux_use_count(struct intel_atomic_state *state,
-> > +					  const struct intel_connector *connector)
-> > +{
-> > +	struct intel_connector *connector_iter;
-> > +	struct intel_digital_connector_state *conn_state;
-> > +	int use_count = 0;
-> > +	int i;
-> > +
-> > +	for_each_new_intel_connector_in_state(state, connector_iter, conn_state, i) {
-> > +		if (connector_iter->mst_port != connector->mst_port ||
-> > +		    !conn_state->base.crtc)
-> > +			continue;
-> > +
-> > +		if (!connector_iter->dp.dsc_decompression_enabled)
-> > +			continue;
-> > +
-> > +		if (connector_iter->dp.dsc_decompression_aux ==
-> > +		    connector->dp.dsc_decompression_aux)
-> > +			use_count++;
-> > +	}
-> > +
-> > +	return use_count;
-> > +}
-> > +
-> > +static void intel_dp_mst_sink_set_decompression_state(struct intel_atomic_state *state,
-> > +						      struct intel_connector *connector,
-> > +						      const struct intel_crtc_state *crtc_state,
-> > +						      bool enable)
-> > +{
-> > +	if (!intel_dp_mst_dsc_aux_use_count(state, connector))
-> > +		intel_dp_sink_set_decompression_state(connector, crtc_state, enable);
-> 
-> But where the use count is decremented?
-> As I understand we will be able to set this with enable==false also when use_count is 0.
-
-use_count is recalculated for the current state, based on
-each connector's dsc_decompression_enabled flag and whether the
-given connector's AUX device matches what this function wants to use to
-enable/disable the decompression. So use_count will be the number of
-connectors at the moment which have decompression enabled through the
-AUX device in question.
-
-> For that we need to have intel_connector->dp.dsc_decompression_aux NULLed somewhere?
-
-No, it stays set, but dsc_decompression_enabled does get set/cleared.
-
-> Stan
-> > +}
-> > +
-> >  static int
-> >  intel_dp_mst_atomic_check(struct drm_connector *connector,
-> >  			  struct drm_atomic_state *_state)
-> > @@ -730,12 +763,7 @@ static void intel_mst_disable_dp(struct intel_atomic_state *state,
-> >  
-> >  	intel_audio_codec_disable(encoder, old_crtc_state, old_conn_state);
-> >  
-> > -	if (intel_dp->active_mst_links == 1) /* last stream ? */
-> > -		/*
-> > -		 * TODO: disable decompression for all streams/in any MST ports, not
-> > -		 * only in the first downstream branch device.
-> > -		 */
-> > -		intel_dp_sink_set_decompression_state(connector, old_crtc_state, false);
-> > +	intel_dp_mst_sink_set_decompression_state(state, connector, old_crtc_state, false);
-> >  }
-> >  
-> >  static void intel_mst_post_disable_dp(struct intel_atomic_state *state,
-> > @@ -890,15 +918,11 @@ static void intel_mst_pre_enable_dp(struct intel_atomic_state *state,
-> >  
-> >  	drm_dp_send_power_updown_phy(&intel_dp->mst_mgr, connector->port, true);
-> >  
-> > -	if (first_mst_stream) {
-> > -		/*
-> > -		 * TODO: enable decompression for all streams/in any MST ports, not
-> > -		 * only in the first downstream branch device.
-> > -		 */
-> > -		intel_dp_sink_set_decompression_state(connector, pipe_config, true);
-> > +	intel_dp_mst_sink_set_decompression_state(state, connector, pipe_config, true);
-> > +
-> > +	if (first_mst_stream)
-> >  		dig_port->base.pre_enable(state, &dig_port->base,
-> >  						pipe_config, NULL);
-> > -	}
-> >  
-> >  	intel_dp->active_mst_links++;
-> >  
-> > @@ -1350,12 +1374,7 @@ static struct drm_connector *intel_dp_add_mst_connector(struct drm_dp_mst_topolo
-> >  
-> >  	drm_connector_helper_add(connector, &intel_dp_mst_connector_helper_funcs);
-> >  
-> > -	/*
-> > -	 * TODO: set the AUX for the actual MST port decompressing the stream.
-> > -	 * At the moment the driver only supports enabling this globally in the
-> > -	 * first downstream MST branch, via intel_dp's (root port) AUX.
-> > -	 */
-> > -	intel_connector->dp.dsc_decompression_aux = &intel_dp->aux;
-> > +	intel_connector->dp.dsc_decompression_aux = drm_dp_mst_dsc_aux_for_port(port);
-> >  	intel_dp_mst_read_decompression_port_dsc_caps(intel_dp, intel_connector);
-> >  	intel_connector->dp.dsc_hblank_expansion_quirk =
-> >  		detect_dsc_hblank_expansion_quirk(intel_connector);
 > > -- 
 > > 2.39.2
-> > 
+> 
+> -- 
+> Ville Syrjälä
+> Intel
