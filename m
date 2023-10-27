@@ -2,51 +2,54 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id F2E5B7D97FC
-	for <lists+intel-gfx@lfdr.de>; Fri, 27 Oct 2023 14:27:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id C8EF07D99A1
+	for <lists+intel-gfx@lfdr.de>; Fri, 27 Oct 2023 15:21:33 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 52FC110E996;
-	Fri, 27 Oct 2023 12:27:09 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A1BB510E9A4;
+	Fri, 27 Oct 2023 13:21:30 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.93])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4F6E010E997
- for <intel-gfx@lists.freedesktop.org>; Fri, 27 Oct 2023 12:27:08 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.88])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2FCE910E97F
+ for <intel-gfx@lists.freedesktop.org>; Fri, 27 Oct 2023 13:21:28 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1698409628; x=1729945628;
+ t=1698412888; x=1729948888;
  h=date:from:to:cc:subject:message-id:references:
- mime-version:in-reply-to;
- bh=Z8fs+X2mJCrx9Iwr0PluHypQdkKN0dUkmKsLRlbpCjQ=;
- b=Gxk7JNV2h3NZFW5R87p8q7+0RhBYPdCix0QyUSAYMzq5kHJnI46GkWY7
- StLV0jkpcxPWy1dA9eNzSReZlEbQcJpAUW8PSjNIzdChSQPzaAHXzQW8l
- MwQdHaiIRnpVQLjYR7JZdLEKcRBIMQX8svRy63hfh4tG3Wr0PBpZ85CSz
- Gpw6YHI+zNdIHr8QHUD+RTop7MP2MBJYBymMEcwxq3dazQ8c+jwoMt6tT
- cqUufvi7Lulg4pGsOgH4Xn3FWxcij0QM7UltcjFEpPITAFQYbfb3dmQuH
- GxjCMCTPHHQLp/4b593LPDi+VXo4zZBmFsrqZBRwFe0iK1o+LMUod6Kol g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10875"; a="384973711"
-X-IronPort-AV: E=Sophos;i="6.03,256,1694761200"; d="scan'208";a="384973711"
-Received: from orsmga006.jf.intel.com ([10.7.209.51])
- by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Oct 2023 05:27:06 -0700
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=FB7FYBcm9oJiYqfDnXa6gSb86qdE5GvKY5xyIB6vhJk=;
+ b=EXFjvapQLRN1dPtL953CZTpE9iJYx9ynEeRwCE64ZJGQFlDNclRZUVFj
+ pgtEoGb6pKIpFCZ7LWGc6LxM+IlaNO9ew0uF81oojH1qCdo/GqxfWgNkB
+ mZTfP6Ujth/11ZpmtjtmlOPzwE/NkGaXd+Wyr3CvahNxnVzEtS3fxYVCx
+ XzMS1RkxVnBQshy4TxL78L0fO2hcO1CK6qPGXbiZH1j0p44Ai56oTwwbJ
+ fh2UbiBD2Vhui7OkLJCVV+HN9oeOt0nQCk7BOnqAzAnO3ZCO1DayZsvuv
+ qkd4/k6lDRXLybJBaC2K4gveou6nYVxME/ri84E7wEA80rdeI0Z3TR0g7 w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10875"; a="418883478"
+X-IronPort-AV: E=Sophos;i="6.03,256,1694761200"; d="scan'208";a="418883478"
+Received: from fmsmga007.fm.intel.com ([10.253.24.52])
+ by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 27 Oct 2023 06:21:27 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10875"; a="736069924"
-X-IronPort-AV: E=Sophos;i="6.03,256,1694761200"; d="scan'208";a="736069924"
-Received: from unknown (HELO intel.com) ([10.237.72.65])
- by orsmga006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Oct 2023 05:27:04 -0700
-Date: Fri, 27 Oct 2023 15:27:01 +0300
-From: "Lisovskiy, Stanislav" <stanislav.lisovskiy@intel.com>
-To: Imre Deak <imre.deak@intel.com>
-Message-ID: <ZTuslUaoujxkZbPz@intel.com>
-References: <20231024010925.3949910-23-imre.deak@intel.com>
- <20231024102219.4035939-3-imre.deak@intel.com>
+X-IronPort-AV: E=McAfee;i="6600,9927,10875"; a="763209274"
+X-IronPort-AV: E=Sophos;i="6.03,256,1694761200"; d="scan'208";a="763209274"
+Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.74])
+ by fmsmga007.fm.intel.com with SMTP; 27 Oct 2023 06:21:25 -0700
+Received: by stinkbox (sSMTP sendmail emulation);
+ Fri, 27 Oct 2023 16:21:24 +0300
+Date: Fri, 27 Oct 2023 16:21:24 +0300
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: "Manna, Animesh" <animesh.manna@intel.com>
+Message-ID: <ZTu1lLZ3M-nV-Dxn@intel.com>
+References: <20231008101206.1665236-1-animesh.manna@intel.com>
+ <ZTp4ib-FKyX0r9ct@intel.com>
+ <BL1PR11MB5979B66B0F9B7A336FA1EB51F9DCA@BL1PR11MB5979.namprd11.prod.outlook.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
-In-Reply-To: <20231024102219.4035939-3-imre.deak@intel.com>
-Subject: Re: [Intel-gfx] [PATCH v2 22/29] drm/i915/dp: Enable DSC via the
- connector decompression AUX
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <BL1PR11MB5979B66B0F9B7A336FA1EB51F9DCA@BL1PR11MB5979.namprd11.prod.outlook.com>
+X-Patchwork-Hint: comment
+Subject: Re: [Intel-gfx] [PATCH v3] drm/i915/dsb: DSB code refactoring
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,186 +62,435 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org
+Cc: "Nikula, Jani" <jani.nikula@intel.com>,
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, Oct 24, 2023 at 01:22:18PM +0300, Imre Deak wrote:
-> Enable DSC using the DSC AUX device stored for this purpose in the
-> connector. This prepares for a follow-up patch which toggles DSC for
-> each stream as needed, but for now keeps the current behavior, as DSC is
-> still only enabled for the first MST stream.
+On Fri, Oct 27, 2023 at 05:59:45AM +0000, Manna, Animesh wrote:
 > 
-> While at it set/clear only the DP_DECOMPRESSION_EN flag in the
-> DP_DSC_ENABLE DPCD register, preserving the reserved register bits.
 > 
-> v2:
-> - Add a helper function setting/clearing the decompression flag,
->   preserving the reserved register bits.
+> > -----Original Message-----
+> > From: Ville Syrjälä <ville.syrjala@linux.intel.com>
+> > Sent: Thursday, October 26, 2023 8:03 PM
+> > To: Manna, Animesh <animesh.manna@intel.com>
+> > Cc: intel-gfx@lists.freedesktop.org; Nikula, Jani <jani.nikula@intel.com>
+> > Subject: Re: [Intel-gfx] [PATCH v3] drm/i915/dsb: DSB code refactoring
+> > 
+> > On Sun, Oct 08, 2023 at 03:42:06PM +0530, Animesh Manna wrote:
+> > > Refactor DSB implementation to be compatible with Xe driver.
+> > >
+> > > v1: RFC version.
+> > > v2: Make intel_dsb structure opaque from external usage. [Jani]
+> > > v3: Rebased on latest.
+> > >
+> > > Cc: Jani Nikula <jani.nikula@intel.com>
+> > > Signed-off-by: Animesh Manna <animesh.manna@intel.com>
+> > > ---
+> > >  drivers/gpu/drm/i915/Makefile                 |  1 +
+> > >  drivers/gpu/drm/i915/display/intel_dsb.c      | 84 ++++++++-----------
+> > >  .../gpu/drm/i915/display/intel_dsb_buffer.c   | 64 ++++++++++++++
+> > >  .../gpu/drm/i915/display/intel_dsb_buffer.h   | 26 ++++++
+> > >  4 files changed, 126 insertions(+), 49 deletions(-)  create mode
+> > > 100644 drivers/gpu/drm/i915/display/intel_dsb_buffer.c
+> > >  create mode 100644 drivers/gpu/drm/i915/display/intel_dsb_buffer.h
+> > >
+> > > diff --git a/drivers/gpu/drm/i915/Makefile
+> > > b/drivers/gpu/drm/i915/Makefile index dec78efa452a..7c3f91c2375a
+> > > 100644
+> > > --- a/drivers/gpu/drm/i915/Makefile
+> > > +++ b/drivers/gpu/drm/i915/Makefile
+> > > @@ -260,6 +260,7 @@ i915-y += \
+> > >  	display/intel_dpt.o \
+> > >  	display/intel_drrs.o \
+> > >  	display/intel_dsb.o \
+> > > +	display/intel_dsb_buffer.o \
+> > >  	display/intel_fb.o \
+> > >  	display/intel_fb_pin.o \
+> > >  	display/intel_fbc.o \
+> > > diff --git a/drivers/gpu/drm/i915/display/intel_dsb.c
+> > > b/drivers/gpu/drm/i915/display/intel_dsb.c
+> > > index 3e32aa49b8eb..ec89d968a873 100644
+> > > --- a/drivers/gpu/drm/i915/display/intel_dsb.c
+> > > +++ b/drivers/gpu/drm/i915/display/intel_dsb.c
+> > > @@ -13,12 +13,13 @@
+> > >  #include "intel_de.h"
+> > >  #include "intel_display_types.h"
+> > >  #include "intel_dsb.h"
+> > > +#include "intel_dsb_buffer.h"
+> > >  #include "intel_dsb_regs.h"
+> > >  #include "intel_vblank.h"
+> > >  #include "intel_vrr.h"
+> > >  #include "skl_watermark.h"
+> > >
+> > > -struct i915_vma;
+> > > +#define CACHELINE_BYTES 64
+> > >
+> > >  enum dsb_id {
+> > >  	INVALID_DSB = -1,
+> > > @@ -31,8 +32,7 @@ enum dsb_id {
+> > >  struct intel_dsb {
+> > >  	enum dsb_id id;
+> > >
+> > > -	u32 *cmd_buf;
+> > > -	struct i915_vma *vma;
+> > > +	struct intel_dsb_buffer dsb_buf;
+> > >  	struct intel_crtc *crtc;
+> > >
+> > >  	/*
+> > > @@ -108,15 +108,17 @@ static void intel_dsb_dump(struct intel_dsb
+> > > *dsb)  {
+> > >  	struct intel_crtc *crtc = dsb->crtc;
+> > >  	struct drm_i915_private *i915 = to_i915(crtc->base.dev);
+> > > -	const u32 *buf = dsb->cmd_buf;
+> > >  	int i;
+> > >
+> > >  	drm_dbg_kms(&i915->drm, "[CRTC:%d:%s] DSB %d commands {\n",
+> > >  		    crtc->base.base.id, crtc->base.name, dsb->id);
+> > >  	for (i = 0; i < ALIGN(dsb->free_pos, 64 / 4); i += 4)
+> > >  		drm_dbg_kms(&i915->drm,
+> > > -			    " 0x%08x: 0x%08x 0x%08x 0x%08x 0x%08x\n",
+> > > -			    i * 4, buf[i], buf[i+1], buf[i+2], buf[i+3]);
+> > > +			    " 0x%08x: 0x%08x 0x%08x 0x%08x 0x%08x\n", i * 4,
+> > > +			    intel_dsb_buffer_read(&dsb->dsb_buf, i),
+> > > +			    intel_dsb_buffer_read(&dsb->dsb_buf, i + 1),
+> > > +			    intel_dsb_buffer_read(&dsb->dsb_buf, i + 2),
+> > > +			    intel_dsb_buffer_read(&dsb->dsb_buf, i + 3));
+> > >  	drm_dbg_kms(&i915->drm, "}\n");
+> > >  }
+> > >
+> > > @@ -128,8 +130,6 @@ static bool is_dsb_busy(struct drm_i915_private
+> > > *i915, enum pipe pipe,
+> > >
+> > >  static void intel_dsb_emit(struct intel_dsb *dsb, u32 ldw, u32 udw)
+> > > {
+> > > -	u32 *buf = dsb->cmd_buf;
+> > > -
+> > >  	if (!assert_dsb_has_room(dsb))
+> > >  		return;
+> > >
+> > > @@ -138,14 +138,13 @@ static void intel_dsb_emit(struct intel_dsb
+> > > *dsb, u32 ldw, u32 udw)
+> > >
+> > >  	dsb->ins_start_offset = dsb->free_pos;
+> > >
+> > > -	buf[dsb->free_pos++] = ldw;
+> > > -	buf[dsb->free_pos++] = udw;
+> > > +	intel_dsb_buffer_write(&dsb->dsb_buf, dsb->free_pos++, ldw);
+> > > +	intel_dsb_buffer_write(&dsb->dsb_buf, dsb->free_pos++, udw);
+> > >  }
+> > >
+> > >  static bool intel_dsb_prev_ins_is_write(struct intel_dsb *dsb,
+> > >  					u32 opcode, i915_reg_t reg)
+> > >  {
+> > > -	const u32 *buf = dsb->cmd_buf;
+> > >  	u32 prev_opcode, prev_reg;
+> > >
+> > >  	/*
+> > > @@ -156,8 +155,10 @@ static bool intel_dsb_prev_ins_is_write(struct
+> > intel_dsb *dsb,
+> > >  	if (dsb->free_pos == 0)
+> > >  		return false;
+> > >
+> > > -	prev_opcode = buf[dsb->ins_start_offset + 1] &
+> > ~DSB_REG_VALUE_MASK;
+> > > -	prev_reg = buf[dsb->ins_start_offset + 1] & DSB_REG_VALUE_MASK;
+> > > +	prev_opcode = intel_dsb_buffer_read(&dsb->dsb_buf,
+> > > +					    dsb->ins_start_offset + 1) >>
+> > DSB_OPCODE_SHIFT;
+> > > +	prev_reg =  intel_dsb_buffer_read(&dsb->dsb_buf,
+> > > +					  dsb->ins_start_offset + 1) &
+> > DSB_REG_VALUE_MASK;
+> > >
+> > >  	return prev_opcode == opcode && prev_reg ==
+> > > i915_mmio_reg_offset(reg);  } @@ -190,6 +191,8 @@ static bool
+> > > intel_dsb_prev_ins_is_indexed_write(struct intel_dsb *dsb, i915_reg_
+> > > void intel_dsb_reg_write(struct intel_dsb *dsb,
+> > >  			 i915_reg_t reg, u32 val)
+> > >  {
+> > > +	u32 old_val;
+> > > +
+> > >  	/*
+> > >  	 * For example the buffer will look like below for 3 dwords for auto
+> > >  	 * increment register:
+> > > @@ -213,31 +216,32 @@ void intel_dsb_reg_write(struct intel_dsb *dsb,
+> > >  			       (DSB_BYTE_EN << DSB_BYTE_EN_SHIFT) |
+> > >  			       i915_mmio_reg_offset(reg));
+> > >  	} else {
+> > > -		u32 *buf = dsb->cmd_buf;
+> > > -
+> > >  		if (!assert_dsb_has_room(dsb))
+> > >  			return;
+> > >
+> > >  		/* convert to indexed write? */
+> > >  		if (intel_dsb_prev_ins_is_mmio_write(dsb, reg)) {
+> > > -			u32 prev_val = buf[dsb->ins_start_offset + 0];
+> > > +			u32 prev_val = intel_dsb_buffer_read(&dsb-
+> > >dsb_buf,
+> > > +							     dsb-
+> > >ins_start_offset + 0);
+> > >
+> > > -			buf[dsb->ins_start_offset + 0] = 1; /* count */
+> > > -			buf[dsb->ins_start_offset + 1] =
+> > > -				(DSB_OPCODE_INDEXED_WRITE <<
+> > DSB_OPCODE_SHIFT) |
+> > > -				i915_mmio_reg_offset(reg);
+> > > -			buf[dsb->ins_start_offset + 2] = prev_val;
+> > > +			intel_dsb_buffer_write(&dsb->dsb_buf,
+> > > +					       dsb->ins_start_offset + 0, 1); /*
+> > count */
+> > > +			intel_dsb_buffer_write(&dsb->dsb_buf, dsb-
+> > >ins_start_offset + 1,
+> > > +					       (DSB_OPCODE_INDEXED_WRITE
+> > << DSB_OPCODE_SHIFT) |
+> > > +					       i915_mmio_reg_offset(reg));
+> > > +			intel_dsb_buffer_write(&dsb->dsb_buf, dsb-
+> > >ins_start_offset + 2,
+> > > +prev_val);
+> > >
+> > >  			dsb->free_pos++;
+> > >  		}
+> > >
+> > > -		buf[dsb->free_pos++] = val;
+> > > +		intel_dsb_buffer_write(&dsb->dsb_buf, dsb->free_pos++,
+> > val);
+> > >  		/* Update the count */
+> > > -		buf[dsb->ins_start_offset]++;
+> > > +		old_val = intel_dsb_buffer_read(&dsb->dsb_buf, dsb-
+> > >ins_start_offset);
+> > > +		intel_dsb_buffer_write(&dsb->dsb_buf, dsb-
+> > >ins_start_offset,
+> > > +old_val + 1);
+> > >
+> > >  		/* if number of data words is odd, then the last dword
+> > should be 0.*/
+> > >  		if (dsb->free_pos & 0x1)
+> > > -			buf[dsb->free_pos] = 0;
+> > > +			intel_dsb_buffer_write(&dsb->dsb_buf, dsb-
+> > >free_pos, 0);
+> > >  	}
+> > >  }
+> > >
+> > > @@ -296,8 +300,8 @@ static void intel_dsb_align_tail(struct intel_dsb
+> > *dsb)
+> > >  	aligned_tail = ALIGN(tail, CACHELINE_BYTES);
+> > >
+> > >  	if (aligned_tail > tail)
+> > > -		memset(&dsb->cmd_buf[dsb->free_pos], 0,
+> > > -		       aligned_tail - tail);
+> > > +		intel_dsb_buffer_memset(&dsb->dsb_buf, dsb->free_pos, 0,
+> > > +					aligned_tail - tail);
+> > >
+> > >  	dsb->free_pos = aligned_tail / 4;
+> > >  }
+> > > @@ -358,7 +362,7 @@ static void _intel_dsb_commit(struct intel_dsb
+> > *dsb, u32 ctrl,
+> > >  			  ctrl | DSB_ENABLE);
+> > >
+> > >  	intel_de_write_fw(dev_priv, DSB_HEAD(pipe, dsb->id),
+> > > -			  i915_ggtt_offset(dsb->vma));
+> > > +			  intel_dsb_buffer_ggtt_offset(&dsb->dsb_buf));
+> > >
+> > >  	if (dewake_scanline >= 0) {
+> > >  		int diff, hw_dewake_scanline;
+> > > @@ -380,7 +384,7 @@ static void _intel_dsb_commit(struct intel_dsb
+> > *dsb, u32 ctrl,
+> > >  	}
+> > >
+> > >  	intel_de_write_fw(dev_priv, DSB_TAIL(pipe, dsb->id),
+> > > -			  i915_ggtt_offset(dsb->vma) + tail);
+> > > +			  intel_dsb_buffer_ggtt_offset(&dsb->dsb_buf) + tail);
+> > >  }
+> > >
+> > >  /**
+> > > @@ -405,7 +409,7 @@ void intel_dsb_wait(struct intel_dsb *dsb)
+> > >  	enum pipe pipe = crtc->pipe;
+> > >
+> > >  	if (wait_for(!is_dsb_busy(dev_priv, pipe, dsb->id), 1)) {
+> > > -		u32 offset = i915_ggtt_offset(dsb->vma);
+> > > +		u32 offset = intel_dsb_buffer_ggtt_offset(&dsb->dsb_buf);
+> > >
+> > >  		intel_de_write_fw(dev_priv, DSB_CTRL(pipe, dsb->id),
+> > >  				  DSB_ENABLE | DSB_HALT);
+> > > @@ -442,12 +446,9 @@ struct intel_dsb *intel_dsb_prepare(const struct
+> > > intel_crtc_state *crtc_state,  {
+> > >  	struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
+> > >  	struct drm_i915_private *i915 = to_i915(crtc->base.dev);
+> > > -	struct drm_i915_gem_object *obj;
+> > >  	intel_wakeref_t wakeref;
+> > >  	struct intel_dsb *dsb;
+> > > -	struct i915_vma *vma;
+> > >  	unsigned int size;
+> > > -	u32 *buf;
+> > >
+> > >  	if (!HAS_DSB(i915))
+> > >  		return NULL;
+> > > @@ -461,28 +462,13 @@ struct intel_dsb *intel_dsb_prepare(const struct
+> > intel_crtc_state *crtc_state,
+> > >  	/* ~1 qword per instruction, full cachelines */
+> > >  	size = ALIGN(max_cmds * 8, CACHELINE_BYTES);
+> > >
+> > > -	obj = i915_gem_object_create_internal(i915, PAGE_ALIGN(size));
+> > > -	if (IS_ERR(obj))
+> > > -		goto out_put_rpm;
+> > > -
+> > > -	vma = i915_gem_object_ggtt_pin(obj, NULL, 0, 0, 0);
+> > > -	if (IS_ERR(vma)) {
+> > > -		i915_gem_object_put(obj);
+> > > +	if (!intel_dsb_buffer_create(crtc, &dsb->dsb_buf, size))
+> > >  		goto out_put_rpm;
+> > > -	}
+> > > -
+> > > -	buf = i915_gem_object_pin_map_unlocked(vma->obj,
+> > I915_MAP_WC);
+> > > -	if (IS_ERR(buf)) {
+> > > -		i915_vma_unpin_and_release(&vma,
+> > I915_VMA_RELEASE_MAP);
+> > > -		goto out_put_rpm;
+> > > -	}
+> > >
+> > >  	intel_runtime_pm_put(&i915->runtime_pm, wakeref);
+> > >
+> > >  	dsb->id = DSB1;
+> > > -	dsb->vma = vma;
+> > >  	dsb->crtc = crtc;
+> > > -	dsb->cmd_buf = buf;
+> > >  	dsb->size = size / 4; /* in dwords */
+> > >  	dsb->free_pos = 0;
+> > >  	dsb->ins_start_offset = 0;
+> > > @@ -510,6 +496,6 @@ struct intel_dsb *intel_dsb_prepare(const struct
+> > intel_crtc_state *crtc_state,
+> > >   */
+> > >  void intel_dsb_cleanup(struct intel_dsb *dsb)  {
+> > > -	i915_vma_unpin_and_release(&dsb->vma,
+> > I915_VMA_RELEASE_MAP);
+> > > +	intel_dsb_buffer_cleanup(&dsb->dsb_buf);
+> > >  	kfree(dsb);
+> > >  }
+> > > diff --git a/drivers/gpu/drm/i915/display/intel_dsb_buffer.c
+> > > b/drivers/gpu/drm/i915/display/intel_dsb_buffer.c
+> > > new file mode 100644
+> > > index 000000000000..723937591831
+> > > --- /dev/null
+> > > +++ b/drivers/gpu/drm/i915/display/intel_dsb_buffer.c
+> > > @@ -0,0 +1,64 @@
+> > > +// SPDX-License-Identifier: MIT
+> > > +/*
+> > > + * Copyright 2023, Intel Corporation.
+> > > + */
+> > > +
+> > > +#include "gem/i915_gem_internal.h"
+> > > +#include "i915_drv.h"
+> > > +#include "i915_vma.h"
+> > > +#include "intel_display_types.h"
+> > > +#include "intel_dsb_buffer.h"
+> > > +
+> > > +u32 intel_dsb_buffer_ggtt_offset(struct intel_dsb_buffer *dsb_buf) {
+> > > +	return i915_ggtt_offset(dsb_buf->vma); }
+> > > +
+> > > +void intel_dsb_buffer_write(struct intel_dsb_buffer *dsb_buf, u32
+> > > +idx, u32 val) {
+> > > +	dsb_buf->cmd_buf[idx] = val;
+> > > +}
+> > > +
+> > > +u32 intel_dsb_buffer_read(struct intel_dsb_buffer *dsb_buf, u32 idx)
+> > > +{
+> > > +	return dsb_buf->cmd_buf[idx];
+> > > +}
+> > > +
+> > > +void intel_dsb_buffer_memset(struct intel_dsb_buffer *dsb_buf, u32
+> > > +idx, u32 val, u32 sz) {
+> > > +	memset(&dsb_buf->cmd_buf[idx], val, sz); }
+> > 
+> > What's the point in abstracting that stuff?
+> 
+> For xe driver the memset implementation will be done differently,
 
-Reviewed-by: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
+Differently how?
 
+> so created this abstraction. The same thing is followed other xe-refactoring code as well.
+> If you want me to change the code any specific way please let me, will try to modify accordingly. 
 > 
-> Signed-off-by: Imre Deak <imre.deak@intel.com>
-> ---
->  drivers/gpu/drm/i915/display/intel_ddi.c    | 14 ++++---
->  drivers/gpu/drm/i915/display/intel_dp.c     | 46 +++++++++++++++++----
->  drivers/gpu/drm/i915/display/intel_dp.h     |  2 +-
->  drivers/gpu/drm/i915/display/intel_dp_mst.c |  4 +-
->  4 files changed, 49 insertions(+), 17 deletions(-)
+> Regards,
+> Animesh
 > 
-> diff --git a/drivers/gpu/drm/i915/display/intel_ddi.c b/drivers/gpu/drm/i915/display/intel_ddi.c
-> index bc438272d6d1a..79e36939d92d1 100644
-> --- a/drivers/gpu/drm/i915/display/intel_ddi.c
-> +++ b/drivers/gpu/drm/i915/display/intel_ddi.c
-> @@ -2539,7 +2539,8 @@ static void mtl_ddi_pre_enable_dp(struct intel_atomic_state *state,
->  
->  	intel_dp_configure_protocol_converter(intel_dp, crtc_state);
->  	if (!is_mst)
-> -		intel_dp_sink_set_decompression_state(intel_dp, crtc_state, true);
-> +		intel_dp_sink_set_decompression_state(to_intel_connector(conn_state->connector),
-> +						      crtc_state, true);
->  
->  	/*
->  	 * DDI FEC: "anticipates enabling FEC encoding sets the FEC_READY bit
-> @@ -2692,7 +2693,8 @@ static void tgl_ddi_pre_enable_dp(struct intel_atomic_state *state,
->  
->  	intel_dp_configure_protocol_converter(intel_dp, crtc_state);
->  	if (!is_mst)
-> -		intel_dp_sink_set_decompression_state(intel_dp, crtc_state, true);
-> +		intel_dp_sink_set_decompression_state(to_intel_connector(conn_state->connector),
-> +						      crtc_state, true);
->  	/*
->  	 * DDI FEC: "anticipates enabling FEC encoding sets the FEC_READY bit
->  	 * in the FEC_CONFIGURATION register to 1 before initiating link
-> @@ -2773,8 +2775,8 @@ static void hsw_ddi_pre_enable_dp(struct intel_atomic_state *state,
->  		intel_dp_set_power(intel_dp, DP_SET_POWER_D0);
->  	intel_dp_configure_protocol_converter(intel_dp, crtc_state);
->  	if (!is_mst)
-> -		intel_dp_sink_set_decompression_state(intel_dp, crtc_state,
-> -						      true);
-> +		intel_dp_sink_set_decompression_state(to_intel_connector(conn_state->connector),
-> +						      crtc_state, true);
->  	intel_dp_sink_set_fec_ready(intel_dp, crtc_state, true);
->  	intel_dp_start_link_train(intel_dp, crtc_state);
->  	if ((port != PORT_A || DISPLAY_VER(dev_priv) >= 9) &&
-> @@ -3354,6 +3356,8 @@ static void intel_disable_ddi_dp(struct intel_atomic_state *state,
->  				 const struct drm_connector_state *old_conn_state)
->  {
->  	struct intel_dp *intel_dp = enc_to_intel_dp(encoder);
-> +	struct intel_connector *connector =
-> +		to_intel_connector(old_conn_state->connector);
->  
->  	intel_dp->link_trained = false;
->  
-> @@ -3362,7 +3366,7 @@ static void intel_disable_ddi_dp(struct intel_atomic_state *state,
->  	intel_psr_disable(intel_dp, old_crtc_state);
->  	intel_edp_backlight_off(old_conn_state);
->  	/* Disable the decompression in DP Sink */
-> -	intel_dp_sink_set_decompression_state(intel_dp, old_crtc_state,
-> +	intel_dp_sink_set_decompression_state(connector, old_crtc_state,
->  					      false);
->  	/* Disable Ignore_MSA bit in DP Sink */
->  	intel_dp_sink_set_msa_timing_par_ignore_state(intel_dp, old_crtc_state,
-> diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
-> index 7d185d6b2fe9d..0101e17515b33 100644
-> --- a/drivers/gpu/drm/i915/display/intel_dp.c
-> +++ b/drivers/gpu/drm/i915/display/intel_dp.c
-> @@ -2937,22 +2937,50 @@ static bool downstream_hpd_needs_d0(struct intel_dp *intel_dp)
->  		intel_dp->downstream_ports[0] & DP_DS_PORT_HPD;
->  }
->  
-> -void intel_dp_sink_set_decompression_state(struct intel_dp *intel_dp,
-> +static int
-> +write_dsc_decompression_flag(struct drm_dp_aux *aux, u8 flag, bool set)
-> +{
-> +	int err;
-> +	u8 val;
-> +
-> +	err = drm_dp_dpcd_readb(aux, DP_DSC_ENABLE, &val);
-> +	if (err < 0)
-> +		return err;
-> +
-> +	if (set)
-> +		val |= flag;
-> +	else
-> +		val &= ~flag;
-> +
-> +	return drm_dp_dpcd_writeb(aux, DP_DSC_ENABLE, val);
-> +}
-> +
-> +static void
-> +intel_dp_sink_set_dsc_decompression(struct intel_connector *connector,
-> +				    bool enable)
-> +{
-> +	struct drm_i915_private *i915 = to_i915(connector->base.dev);
-> +
-> +	if (write_dsc_decompression_flag(connector->dp.dsc_decompression_aux,
-> +					 DP_DECOMPRESSION_EN, enable) < 0)
-> +		drm_dbg_kms(&i915->drm,
-> +			    "Failed to %s sink decompression state\n",
-> +			    str_enable_disable(enable));
-> +}
-> +
-> +void intel_dp_sink_set_decompression_state(struct intel_connector *connector,
->  					   const struct intel_crtc_state *crtc_state,
->  					   bool enable)
->  {
-> -	struct drm_i915_private *i915 = dp_to_i915(intel_dp);
-> -	int ret;
-> +	struct drm_i915_private *i915 = to_i915(connector->base.dev);
->  
->  	if (!crtc_state->dsc.compression_enable)
->  		return;
->  
-> -	ret = drm_dp_dpcd_writeb(&intel_dp->aux, DP_DSC_ENABLE,
-> -				 enable ? DP_DECOMPRESSION_EN : 0);
-> -	if (ret < 0)
-> -		drm_dbg_kms(&i915->drm,
-> -			    "Failed to %s sink decompression state\n",
-> -			    str_enable_disable(enable));
-> +	if (drm_WARN_ON(&i915->drm, !connector->dp.dsc_decompression_aux))
-> +		return;
-> +
-> +	intel_dp_sink_set_dsc_decompression(connector, enable);
->  }
->  
->  static void
-> diff --git a/drivers/gpu/drm/i915/display/intel_dp.h b/drivers/gpu/drm/i915/display/intel_dp.h
-> index 2080575fef69a..a231d234f6e9d 100644
-> --- a/drivers/gpu/drm/i915/display/intel_dp.h
-> +++ b/drivers/gpu/drm/i915/display/intel_dp.h
-> @@ -57,7 +57,7 @@ int intel_dp_retrain_link(struct intel_encoder *encoder,
->  void intel_dp_set_power(struct intel_dp *intel_dp, u8 mode);
->  void intel_dp_configure_protocol_converter(struct intel_dp *intel_dp,
->  					   const struct intel_crtc_state *crtc_state);
-> -void intel_dp_sink_set_decompression_state(struct intel_dp *intel_dp,
-> +void intel_dp_sink_set_decompression_state(struct intel_connector *connector,
->  					   const struct intel_crtc_state *crtc_state,
->  					   bool enable);
->  void intel_dp_encoder_suspend(struct intel_encoder *intel_encoder);
-> diff --git a/drivers/gpu/drm/i915/display/intel_dp_mst.c b/drivers/gpu/drm/i915/display/intel_dp_mst.c
-> index b0310f464c1cd..8ef3a2611207c 100644
-> --- a/drivers/gpu/drm/i915/display/intel_dp_mst.c
-> +++ b/drivers/gpu/drm/i915/display/intel_dp_mst.c
-> @@ -735,7 +735,7 @@ static void intel_mst_disable_dp(struct intel_atomic_state *state,
->  		 * TODO: disable decompression for all streams/in any MST ports, not
->  		 * only in the first downstream branch device.
->  		 */
-> -		intel_dp_sink_set_decompression_state(intel_dp, old_crtc_state, false);
-> +		intel_dp_sink_set_decompression_state(connector, old_crtc_state, false);
->  }
->  
->  static void intel_mst_post_disable_dp(struct intel_atomic_state *state,
-> @@ -895,7 +895,7 @@ static void intel_mst_pre_enable_dp(struct intel_atomic_state *state,
->  		 * TODO: enable decompression for all streams/in any MST ports, not
->  		 * only in the first downstream branch device.
->  		 */
-> -		intel_dp_sink_set_decompression_state(intel_dp, pipe_config, true);
-> +		intel_dp_sink_set_decompression_state(connector, pipe_config, true);
->  		dig_port->base.pre_enable(state, &dig_port->base,
->  						pipe_config, NULL);
->  	}
-> -- 
-> 2.39.2
-> 
+> > 
+> > > +
+> > > +bool intel_dsb_buffer_create(struct intel_crtc *crtc, struct
+> > > +intel_dsb_buffer *dsb_buf, u32 size) {
+> > > +	struct drm_i915_private *i915 = to_i915(crtc->base.dev);
+> > > +	struct drm_i915_gem_object *obj;
+> > > +	struct i915_vma *vma;
+> > > +	u32 *buf;
+> > > +
+> > > +	obj = i915_gem_object_create_internal(i915, PAGE_ALIGN(size));
+> > > +	if (IS_ERR(obj))
+> > > +		return false;
+> > > +
+> > > +	vma = i915_gem_object_ggtt_pin(obj, NULL, 0, 0, 0);
+> > > +	if (IS_ERR(vma)) {
+> > > +		i915_gem_object_put(obj);
+> > > +		return false;
+> > > +	}
+> > > +
+> > > +	buf = i915_gem_object_pin_map_unlocked(vma->obj,
+> > I915_MAP_WC);
+> > > +	if (IS_ERR(buf)) {
+> > > +		i915_vma_unpin_and_release(&vma,
+> > I915_VMA_RELEASE_MAP);
+> > > +		return false;
+> > > +	}
+> > > +
+> > > +	dsb_buf->vma = vma;
+> > > +	dsb_buf->cmd_buf = buf;
+> > > +
+> > > +	return true;
+> > > +}
+> > > +
+> > > +void intel_dsb_buffer_cleanup(struct intel_dsb_buffer *dsb_buf) {
+> > > +	i915_vma_unpin_and_release(&dsb_buf->vma,
+> > I915_VMA_RELEASE_MAP); }
+> > > diff --git a/drivers/gpu/drm/i915/display/intel_dsb_buffer.h
+> > > b/drivers/gpu/drm/i915/display/intel_dsb_buffer.h
+> > > new file mode 100644
+> > > index 000000000000..7dbfd23b52a9
+> > > --- /dev/null
+> > > +++ b/drivers/gpu/drm/i915/display/intel_dsb_buffer.h
+> > > @@ -0,0 +1,26 @@
+> > > +/* SPDX-License-Identifier: MIT
+> > > + *
+> > > + * Copyright © 2023 Intel Corporation  */
+> > > +
+> > > +#ifndef _INTEL_DSB_BUFFER_H
+> > > +#define _INTEL_DSB_BUFFER_H
+> > > +
+> > > +#include <linux/types.h>
+> > > +
+> > > +struct intel_crtc;
+> > > +struct i915_vma;
+> > > +
+> > > +struct intel_dsb_buffer {
+> > > +	u32 *cmd_buf;
+> > > +	struct i915_vma *vma;
+> > > +};
+> > > +
+> > > +u32 intel_dsb_buffer_ggtt_offset(struct intel_dsb_buffer *dsb_buf);
+> > > +void intel_dsb_buffer_write(struct intel_dsb_buffer *dsb_buf, u32
+> > > +idx, u32 val);
+> > > +u32 intel_dsb_buffer_read(struct intel_dsb_buffer *dsb_buf, u32 idx);
+> > > +void intel_dsb_buffer_memset(struct intel_dsb_buffer *dsb_buf, u32
+> > > +idx, u32 val, u32 sz); bool intel_dsb_buffer_create(struct intel_crtc
+> > > +*crtc, struct intel_dsb_buffer *dsb_buf, u32 size); void
+> > > +intel_dsb_buffer_cleanup(struct intel_dsb_buffer *dsb_buf);
+> > > +
+> > > +#endif
+> > > --
+> > > 2.29.0
+> > 
+> > --
+> > Ville Syrjälä
+> > Intel
+
+-- 
+Ville Syrjälä
+Intel
