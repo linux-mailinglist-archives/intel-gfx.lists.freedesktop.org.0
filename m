@@ -1,55 +1,52 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id D83167D9C2F
-	for <lists+intel-gfx@lfdr.de>; Fri, 27 Oct 2023 16:52:24 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id D6CD47D9C30
+	for <lists+intel-gfx@lfdr.de>; Fri, 27 Oct 2023 16:52:52 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6C70110E9D2;
-	Fri, 27 Oct 2023 14:52:23 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3CC5610E9D4;
+	Fri, 27 Oct 2023 14:52:51 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.126])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4127910E9D2
- for <intel-gfx@lists.freedesktop.org>; Fri, 27 Oct 2023 14:52:21 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6BB5310E9D4
+ for <intel-gfx@lists.freedesktop.org>; Fri, 27 Oct 2023 14:52:50 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1698418341; x=1729954341;
+ t=1698418370; x=1729954370;
  h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=CrY94DHEe6cmGcAR/e8W3XQoFFEWNkMaKTS7GNZi4nk=;
- b=E+MeqDX4/m1E2szYRiNUAllnX5L0L3nUq8fAP68ueN5pPH9GhSHSWcTy
- FCwy4WsfSr6Mj4k7kbegvJW8DqvlLBUOjHoPRHF1roZ8dxOFkaEhCmt2B
- L1DURMZwZLSoYUifKCE9QSP2X3/s/hiBNN0ehRt6ANCGWeE+TulEyIRFM
- n1nJxvHM4tY3v0Y7M8vul6j8q08mPssBTZ3IrRlT6axDYUga2UmEDMd04
- ubi7wlbsAh8IAnsp2DIjhuvMqfgtEF7fR1cGnx/B4RF3FIqNT0hQhWdD5
- CBKInyRMNx1050ZjVm8PyI+cPN5TZrZZcazC/5RGUpM2E2h272ooDdMFW w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10876"; a="372836603"
-X-IronPort-AV: E=Sophos;i="6.03,256,1694761200"; d="scan'208";a="372836603"
-Received: from fmsmga007.fm.intel.com ([10.253.24.52])
- by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Oct 2023 07:52:20 -0700
+ mime-version:in-reply-to;
+ bh=JnG4Dyswy8lgynQKniabdfT7JuNS1uVG3grqJHH9Oxk=;
+ b=C+8CqrH9n2iVI7La2AYLyrexq1DvqlMba1E9Onpj8yDN8br0FMOxRaF5
+ BBy1XlY4gVHMx1Ukar7zUFFMVGwRsBthYOtPsXz5h/vUauXwzc0KanqOG
+ 9PedIqIfmQ47RoBOizdMPmg4tgjMJFbi8I719xwNtBWgbDN+rlK7VMubx
+ Dfy56Se6vQ1UXVibn22pbPLWE3B/fQ4bN8LnAG8//XkCq7kMIFYFASIpw
+ 7gl7i2SgvOC3zFUEnufkvR5M28li2DwWBdlC+oC0AvoPISeYpSCQrjKHI
+ g/ZYBghr5R66yBmTcD03BIW0sd2lOm9ShVvgE4F2XWyKlf/uVazAKSr04 w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10876"; a="474026581"
+X-IronPort-AV: E=Sophos;i="6.03,256,1694761200"; d="scan'208";a="474026581"
+Received: from fmsmga003.fm.intel.com ([10.253.24.29])
+ by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 27 Oct 2023 07:52:50 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10876"; a="763229657"
-X-IronPort-AV: E=Sophos;i="6.03,256,1694761200"; d="scan'208";a="763229657"
-Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.74])
- by fmsmga007.fm.intel.com with SMTP; 27 Oct 2023 07:52:18 -0700
-Received: by stinkbox (sSMTP sendmail emulation);
- Fri, 27 Oct 2023 17:52:17 +0300
-Date: Fri, 27 Oct 2023 17:52:17 +0300
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+X-IronPort-AV: E=McAfee;i="6600,9927,10876"; a="850255422"
+X-IronPort-AV: E=Sophos;i="6.03,256,1694761200"; d="scan'208";a="850255422"
+Received: from unknown (HELO intel.com) ([10.237.72.65])
+ by fmsmga003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 27 Oct 2023 07:52:49 -0700
+Date: Fri, 27 Oct 2023 17:52:45 +0300
+From: "Lisovskiy, Stanislav" <stanislav.lisovskiy@intel.com>
 To: Imre Deak <imre.deak@intel.com>
-Message-ID: <ZTvOoUQPrhnyMoLN@intel.com>
+Message-ID: <ZTvOvXBWEoODupY8@intel.com>
 References: <20231024010925.3949910-1-imre.deak@intel.com>
- <20231024010925.3949910-24-imre.deak@intel.com>
+ <20231024010925.3949910-26-imre.deak@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20231024010925.3949910-24-imre.deak@intel.com>
-X-Patchwork-Hint: comment
-Subject: Re: [Intel-gfx] [PATCH 23/29] drm/i915/dp_mst: Enable DSC
- passthrough
+In-Reply-To: <20231024010925.3949910-26-imre.deak@intel.com>
+Subject: Re: [Intel-gfx] [PATCH 25/29] drm/i915: Factor out function to
+ clear pipe update flags
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -66,71 +63,120 @@ Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, Oct 24, 2023 at 04:09:19AM +0300, Imre Deak wrote:
-> Enable passing through DSC streams to the sink in last branch devices.
+On Tue, Oct 24, 2023 at 04:09:21AM +0300, Imre Deak wrote:
+> Factor out a helper to clear the pipe update flags, used by a follow-up
+> patch to modeset an MST topology.
 > 
 > Signed-off-by: Imre Deak <imre.deak@intel.com>
+
+
+Was willing to do that myself :)) Spotted when doing bigjoiner related
+refactoring, thanks for doing.
+
+Reviewed-by: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
+
 > ---
->  drivers/gpu/drm/i915/display/intel_dp.c | 26 ++++++++++++++++++++++++-
->  1 file changed, 25 insertions(+), 1 deletion(-)
+>  drivers/gpu/drm/i915/display/intel_display.c | 52 ++++++++++----------
+>  1 file changed, 27 insertions(+), 25 deletions(-)
 > 
-> diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
-> index a7eb31b489947..bb8951f89f61f 100644
-> --- a/drivers/gpu/drm/i915/display/intel_dp.c
-> +++ b/drivers/gpu/drm/i915/display/intel_dp.c
-> @@ -2950,6 +2950,24 @@ intel_dp_sink_set_dsc_decompression(struct intel_connector *connector,
->  			    str_enable_disable(enable));
+> diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
+> index de352d9c43439..22f88389035bd 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display.c
+> +++ b/drivers/gpu/drm/i915/display/intel_display.c
+> @@ -5551,6 +5551,16 @@ int intel_modeset_pipes_in_mask_early(struct intel_atomic_state *state,
+>  	return 0;
 >  }
 >  
-> +static void
-> +intel_dp_sink_set_dsc_passthrough(const struct intel_connector *connector,
-> +				  bool enable)
+> +static void clear_pipe_update_flags_on_modeset_crtc(struct intel_crtc_state *crtc_state)
 > +{
-> +	struct drm_i915_private *i915 = to_i915(connector->base.dev);
-> +	struct drm_dp_aux *aux = connector->port ?
-> +				 connector->port->passthrough_aux : NULL;
-
-I was worried that we're now setting conflicting compress+passthrough
-bits at the same time, but looks like this magic passthrough_aux thing
-gets sneakily populated by drm_dp_mst_dsc_aux_for_port() whereas the 
-decompression_aux gets just returned directly and tracked by the driver.
-Very confusing.
-
-But I guess it kinda works
-Reviewed-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
-
-> +
-> +	if (!aux)
+> +	if (!intel_crtc_needs_modeset(crtc_state))
 > +		return;
 > +
-> +	if (drm_dp_dpcd_writeb(aux, DP_DSC_PASSTHROUGH_EN,
-> +			       enable ? DP_DSC_PASSTHROUGH_EN : 0) < 0)
-> +		drm_dbg_kms(&i915->drm,
-> +			    "Failed to %s sink compression passthrough state\n",
-> +			    str_enable_disable(enable));
+> +	crtc_state->update_pipe = false;
+> +	crtc_state->update_m_n = false;
+> +	crtc_state->update_lrr = false;
 > +}
 > +
->  void intel_dp_sink_set_decompression_state(struct intel_connector *connector,
->  					   const struct intel_crtc_state *crtc_state,
->  					   bool enable)
-> @@ -2962,7 +2980,13 @@ void intel_dp_sink_set_decompression_state(struct intel_connector *connector,
->  	if (drm_WARN_ON(&i915->drm, !connector->dp.dsc_decompression_aux))
->  		return;
+>  /**
+>   * intel_modeset_all_pipes_late - force a full modeset on all pipes
+>   * @state: intel atomic state
+> @@ -5584,9 +5594,8 @@ int intel_modeset_all_pipes_late(struct intel_atomic_state *state,
+>  		if (ret)
+>  			return ret;
 >  
-> -	intel_dp_sink_set_dsc_decompression(connector, enable);
-> +	if (enable) {
-> +		intel_dp_sink_set_dsc_passthrough(connector, true);
-> +		intel_dp_sink_set_dsc_decompression(connector, true);
-> +	} else {
-> +		intel_dp_sink_set_dsc_decompression(connector, false);
-> +		intel_dp_sink_set_dsc_passthrough(connector, false);
-> +	}
->  }
+> -		crtc_state->update_pipe = false;
+> -		crtc_state->update_m_n = false;
+> -		crtc_state->update_lrr = false;
+> +		clear_pipe_update_flags_on_modeset_crtc(crtc_state);
+> +
+>  		crtc_state->update_planes |= crtc_state->active_planes;
+>  		crtc_state->async_flip_planes = 0;
+>  		crtc_state->do_async_flip = false;
+> @@ -5699,13 +5708,13 @@ static void intel_crtc_check_fastset(const struct intel_crtc_state *old_crtc_sta
+>  	else
+>  		new_crtc_state->uapi.mode_changed = false;
 >  
->  static void
+> -	if (intel_crtc_needs_modeset(new_crtc_state) ||
+> -	    intel_compare_link_m_n(&old_crtc_state->dp_m_n,
+> +	clear_pipe_update_flags_on_modeset_crtc(new_crtc_state);
+> +
+> +	if (intel_compare_link_m_n(&old_crtc_state->dp_m_n,
+>  				   &new_crtc_state->dp_m_n))
+>  		new_crtc_state->update_m_n = false;
+>  
+> -	if (intel_crtc_needs_modeset(new_crtc_state) ||
+> -	    (old_crtc_state->hw.adjusted_mode.crtc_vtotal == new_crtc_state->hw.adjusted_mode.crtc_vtotal &&
+> +	if ((old_crtc_state->hw.adjusted_mode.crtc_vtotal == new_crtc_state->hw.adjusted_mode.crtc_vtotal &&
+>  	     old_crtc_state->hw.adjusted_mode.crtc_vblank_end == new_crtc_state->hw.adjusted_mode.crtc_vblank_end))
+>  		new_crtc_state->update_lrr = false;
+>  
+> @@ -6484,12 +6493,9 @@ int intel_atomic_check(struct drm_device *dev,
+>  		if (intel_dp_mst_is_slave_trans(new_crtc_state)) {
+>  			enum transcoder master = new_crtc_state->mst_master_transcoder;
+>  
+> -			if (intel_cpu_transcoders_need_modeset(state, BIT(master))) {
+> -				new_crtc_state->uapi.mode_changed = true;
+> -				new_crtc_state->update_pipe = false;
+> -				new_crtc_state->update_m_n = false;
+> -				new_crtc_state->update_lrr = false;
+> -			}
+> +			if (intel_cpu_transcoders_need_modeset(state, BIT(master)))
+> +				intel_modeset_pipes_in_mask_early(state, "MST master transcoder",
+> +								  BIT(crtc->pipe));
+>  		}
+>  
+>  		if (is_trans_port_sync_mode(new_crtc_state)) {
+> @@ -6498,22 +6504,18 @@ int intel_atomic_check(struct drm_device *dev,
+>  			if (new_crtc_state->master_transcoder != INVALID_TRANSCODER)
+>  				trans |= BIT(new_crtc_state->master_transcoder);
+>  
+> -			if (intel_cpu_transcoders_need_modeset(state, trans)) {
+> -				new_crtc_state->uapi.mode_changed = true;
+> -				new_crtc_state->update_pipe = false;
+> -				new_crtc_state->update_m_n = false;
+> -				new_crtc_state->update_lrr = false;
+> -			}
+> +			if (intel_cpu_transcoders_need_modeset(state, trans))
+> +				intel_modeset_pipes_in_mask_early(state, "port sync",
+> +								  BIT(crtc->pipe));
+>  		}
+>  
+>  		if (new_crtc_state->bigjoiner_pipes) {
+> -			if (intel_pipes_need_modeset(state, new_crtc_state->bigjoiner_pipes)) {
+> -				new_crtc_state->uapi.mode_changed = true;
+> -				new_crtc_state->update_pipe = false;
+> -				new_crtc_state->update_m_n = false;
+> -				new_crtc_state->update_lrr = false;
+> -			}
+> +			if (intel_pipes_need_modeset(state, new_crtc_state->bigjoiner_pipes))
+> +				intel_modeset_pipes_in_mask_early(state, "bigjoiner pipes",
+> +								  BIT(crtc->pipe));
+>  		}
+> +
+> +		clear_pipe_update_flags_on_modeset_crtc(new_crtc_state);
+>  	}
+>  
+>  	for_each_oldnew_intel_crtc_in_state(state, crtc, old_crtc_state,
 > -- 
 > 2.39.2
-
--- 
-Ville Syrjälä
-Intel
+> 
