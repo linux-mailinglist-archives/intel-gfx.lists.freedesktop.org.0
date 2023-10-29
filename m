@@ -1,51 +1,59 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 00B927DABF3
-	for <lists+intel-gfx@lfdr.de>; Sun, 29 Oct 2023 11:03:49 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id E29A17DAC42
+	for <lists+intel-gfx@lfdr.de>; Sun, 29 Oct 2023 12:41:17 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0F6B710E09E;
-	Sun, 29 Oct 2023 10:03:45 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BC9E310E09F;
+	Sun, 29 Oct 2023 11:41:14 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6859910E09E
- for <intel-gfx@lists.freedesktop.org>; Sun, 29 Oct 2023 10:03:43 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1698573824; x=1730109824;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:in-reply-to;
- bh=Eacjoc+a/i6xrDcJ2N9CgwYJ/MPyk7Kay7bgxRyaEcU=;
- b=eaUh95kLnE2n8fN8UUxE4CJhVueJC7gJJ+prY+74OZ72qa7Liubxtt+W
- HyV+hM10QXS5t0RDn4Ifnxw424856sXksIlJwFNjQKO7c9TtJ1hT9YnKi
- s9pyjyfczlT5M9qpnpoq/HDSj2cEEgxm7YnZu5qD1I2OkpAy7WL+uAZub
- +HthrSB7s39WAQOqEHU5uZVenCi1xe4rK9I9onO4jsar51L6tlXLLveUI
- Bruk0xKDOdqNiHasEJ7YL9Np3ZtqCb3PhQMX7NeUhJu6kHYg7ECGejPKq
- 92fpUnggtz0J5pd/TYjWvvyXt34wS0Tw+sCEfyQKBfOo/x5ZXx2bSAApM Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10877"; a="6573325"
-X-IronPort-AV: E=Sophos;i="6.03,261,1694761200"; 
-   d="scan'208";a="6573325"
-Received: from orsmga007.jf.intel.com ([10.7.209.58])
- by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Oct 2023 03:03:43 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10877"; a="753533747"
-X-IronPort-AV: E=Sophos;i="6.03,261,1694761200"; d="scan'208";a="753533747"
-Received: from mmocanu-mobl1.ger.corp.intel.com (HELO intel.com)
- ([10.249.41.135])
- by orsmga007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Oct 2023 03:03:41 -0700
-Date: Sun, 29 Oct 2023 11:03:38 +0100
-From: Andi Shyti <andi.shyti@linux.intel.com>
-To: Gilbert Adikankwu <gilbertadikankwu@gmail.com>
-Message-ID: <ZT4t-kRN18CAC9Sh@ashyti-mobl2.lan>
-References: <20231026105623.480172-1-gilbertadikankwu@gmail.com>
+Received: from mail-lj1-x231.google.com (mail-lj1-x231.google.com
+ [IPv6:2a00:1450:4864:20::231])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2C5EB10E09F
+ for <intel-gfx@lists.freedesktop.org>; Sun, 29 Oct 2023 11:41:12 +0000 (UTC)
+Received: by mail-lj1-x231.google.com with SMTP id
+ 38308e7fff4ca-2c59a4dcdacso53102621fa.1
+ for <intel-gfx@lists.freedesktop.org>; Sun, 29 Oct 2023 04:41:12 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20230601; t=1698579670; x=1699184470; darn=lists.freedesktop.org;
+ h=cc:to:subject:message-id:date:from:in-reply-to:references
+ :mime-version:from:to:cc:subject:date:message-id:reply-to;
+ bh=KHCgBS2Uhss2xyvzw4yGcFyywrP35VzwQw1nBkJ3Y6E=;
+ b=lVZPbPaSgCHItw/0DUt5iw2ODgnw7kTZkciDU10nbvZDej/7lMdhUm7zM5myaxQbUa
+ jgaINDy38gw7zmTI20h7E7ZEL9Fe01GHXRj9HeHjQpbCQixU+RtDL+Wv5FVNdSxXJikZ
+ aqI4QNrZB5KUN7rIzZzIVq9FhjnkamNJiXTrUhyYD+BSSA17o9sgG8KUCsSOTK8GOR6i
+ 2CVdBN6ZR13eqMk7R4b9gi0wNDJmvAKX/zivRKv+50ML167Xb8BtYokGNbJK9fJcLoBm
+ QaXUnK6iwaj42+FIxqzppMNC1QZx9QNj+z8QHS6LkmqE88h8jyV37VE8bHQy0XMp5a4z
+ Z2xA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1698579670; x=1699184470;
+ h=cc:to:subject:message-id:date:from:in-reply-to:references
+ :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+ :reply-to;
+ bh=KHCgBS2Uhss2xyvzw4yGcFyywrP35VzwQw1nBkJ3Y6E=;
+ b=E3ILzcPic8Yiv50lyMd7d8qFD9W3gFqkR14JTxZ0he8JFIEjlonJ+IT7a5HrderOB3
+ DcU3a55vAgD1CfGx8yQZv6nAoXzTwcwCtP/hKJRoL+rGOen1GJlOpzNlkD/B1sQouWWi
+ KRGx5c+odNS3kQDTsIKaw2NIjhulaPmt+8D6a92LuSGVIr8ekHyaTcjoC0ECaAMiPwUy
+ 4iSCvsRNrZR7ysM6NKXA+QPNUaY0f3l8zKKRTWb4KZTev2QX0E5KKPb3GrpKVwdAtaVU
+ 8WBRL7yEPb92v1Wd08RSDW85h6Hvjqm1rF3/f/ms4AGcH6r2fUpmuq+Yow3dyhmQx8sK
+ wXDg==
+X-Gm-Message-State: AOJu0YzLmmm95OYVuaWTLDFFbNWtMM7tKQLOe7kUgxU/1zvoq2iH7Kf+
+ 3EaTe2sxCznNpHsMUlkvuyIuSLykxBSPlbfsxEGgz41jECylzw==
+X-Google-Smtp-Source: AGHT+IEFELN8QuQRxyNOZ1MK9FHA8JLPTF2NGMYW7WukrkQFJOxXlgp+ZD254svM6XMBeE1H9G0CAU1lKEDmcc2ozqE=
+X-Received: by 2002:a2e:988e:0:b0:2c5:38d:f80b with SMTP id
+ b14-20020a2e988e000000b002c5038df80bmr5567667ljj.6.1698579669937; Sun, 29 Oct
+ 2023 04:41:09 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20231026105623.480172-1-gilbertadikankwu@gmail.com>
+References: <20231026105623.480172-1-gilbertadikankwu@gmail.com>
+ <ZT4t-kRN18CAC9Sh@ashyti-mobl2.lan>
+In-Reply-To: <ZT4t-kRN18CAC9Sh@ashyti-mobl2.lan>
+From: Gilbert Adikankwu <gilbertadikankwu@gmail.com>
+Date: Sun, 29 Oct 2023 12:40:57 +0100
+Message-ID: <CAKrXSsa2-pzO8oEh0huW_mEe36WbJHHd2uOkjrBxw3PWqjXcSA@mail.gmail.com>
+To: Andi Shyti <andi.shyti@linux.intel.com>
+Content-Type: multipart/alternative; boundary="000000000000d972350608d965e9"
 Subject: Re: [Intel-gfx] [PATCH] drm/i915/gt: Remove unncessary {} from
  if-else
 X-BeenThere: intel-gfx@lists.freedesktop.org
@@ -64,17 +72,64 @@ Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi Gilbert,
+--000000000000d972350608d965e9
+Content-Type: text/plain; charset="UTF-8"
 
-On Thu, Oct 26, 2023 at 11:56:23AM +0100, Gilbert Adikankwu wrote:
-> Fix checkpatch.pl error:
-> 
-> WARNING: braces {} are not necessary for any arm of this statement
-> 
-> Signed-off-by: Gilbert Adikankwu <gilbertadikankwu@gmail.com>
+Hi,
 
-the errors from CI are obviously unrelated to this patch.
+On Sun, 29 Oct 2023, 11:03 Andi Shyti, <andi.shyti@linux.intel.com> wrote:
 
-Applied in drm-intel-gt-next.
+> Hi Gilbert,
+>
+> On Thu, Oct 26, 2023 at 11:56:23AM +0100, Gilbert Adikankwu wrote:
+> > Fix checkpatch.pl error:
+> >
+> > WARNING: braces {} are not necessary for any arm of this statement
+> >
+> > Signed-off-by: Gilbert Adikankwu <gilbertadikankwu@gmail.com>
+>
+> the errors from CI are obviously unrelated to this patch.
+>
+> Applied in drm-intel-gt-next.
+>
+> Andi
+>
 
-Andi
+Thanks for the feedback.
+
+Gilbert.
+
+>
+
+--000000000000d972350608d965e9
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"auto"><div>Hi,=C2=A0<br><br><div class=3D"gmail_quote"><div dir=
+=3D"ltr" class=3D"gmail_attr">On Sun, 29 Oct 2023, 11:03 Andi Shyti, &lt;<a=
+ href=3D"mailto:andi.shyti@linux.intel.com">andi.shyti@linux.intel.com</a>&=
+gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0 0 0=
+ .8ex;border-left:1px #ccc solid;padding-left:1ex">Hi Gilbert,<br>
+<br>
+On Thu, Oct 26, 2023 at 11:56:23AM +0100, Gilbert Adikankwu wrote:<br>
+&gt; Fix <a href=3D"http://checkpatch.pl" rel=3D"noreferrer noreferrer" tar=
+get=3D"_blank">checkpatch.pl</a> error:<br>
+&gt; <br>
+&gt; WARNING: braces {} are not necessary for any arm of this statement<br>
+&gt; <br>
+&gt; Signed-off-by: Gilbert Adikankwu &lt;<a href=3D"mailto:gilbertadikankw=
+u@gmail.com" target=3D"_blank" rel=3D"noreferrer">gilbertadikankwu@gmail.co=
+m</a>&gt;<br>
+<br>
+the errors from CI are obviously unrelated to this patch.<br>
+<br>
+Applied in drm-intel-gt-next.<br>
+<br>
+Andi<br></blockquote></div></div><div dir=3D"auto"><br></div><div dir=3D"au=
+to">Thanks for the feedback.</div><div dir=3D"auto"><br></div><div dir=3D"a=
+uto">Gilbert.</div><div dir=3D"auto"><div class=3D"gmail_quote"><blockquote=
+ class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1px #ccc soli=
+d;padding-left:1ex">
+</blockquote></div></div></div>
+
+--000000000000d972350608d965e9--
