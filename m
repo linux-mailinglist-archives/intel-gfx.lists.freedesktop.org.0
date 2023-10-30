@@ -2,52 +2,52 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 20F2E7DBD0C
-	for <lists+intel-gfx@lfdr.de>; Mon, 30 Oct 2023 16:58:23 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4BF297DBD0E
+	for <lists+intel-gfx@lfdr.de>; Mon, 30 Oct 2023 16:58:28 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 53BD510E306;
-	Mon, 30 Oct 2023 15:58:19 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8BA5A10E0F2;
+	Mon, 30 Oct 2023 15:58:24 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9EC6E10E303
- for <intel-gfx@lists.freedesktop.org>; Mon, 30 Oct 2023 15:58:17 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A369A10E307
+ for <intel-gfx@lists.freedesktop.org>; Mon, 30 Oct 2023 15:58:20 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1698681498; x=1730217498;
+ t=1698681501; x=1730217501;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=keq+xRutvzuhmtoBg9c6hK+UUAjPb4VlrjiqGYuRS+4=;
- b=k6E42qA2X3YMrvDejbZQcLeDT78Yqhko2GmCroeIugA65Zw6v5u+oFA2
- pWwf+SNKHLLPKZvlxOwNcrPC+F7OOrD7yU5mJw2WcDMgNU3Rp2+0Dp/9y
- EIPjRGGssBRvWZCLMlrx/NhXuF0vwo2g9zC95iQGmSwLICc+jqgy3/EbD
- 6DM7fNsjgeGBBpHB3uobqLCzLv/0T6JaUQ0Mm8a16wmgnEja8+txYN/B2
- sEwh4J2kdkWFjn5pgAUGVq1pMKmOBhP7b7IyqfCtQoqE3Wy7y/fVrr+cH
- PduGsO41E+CGoLkiczUej3BCckvEI44vrN2OED6RcP3m3hn6tXJ8LKhFq w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10879"; a="974355"
+ bh=Svx1G+93xgCrjK7/r3zowSFWQl/mJ/89P/NP536jSWk=;
+ b=C298zjR+AZiGAL5VIsDHSbm8CA900U6w3i05aboUwHm5fI0wLtX0nY1E
+ ZrIdbwhRKTyr6EgEvY0cgeSBjP+YnU9c3IL+lbf9W5SWopL772OU+Ctid
+ 8YAjYjNY4aeHJnXFpnfRfvsezR6h6P5xZcOR1MY5vLH+OrfFnL9prM7aV
+ bvcOzXwHeZ6N4eY/3ir9QuSN0yoPjMeGb0ZIpY/10Vxyge8x2RiFPIpX2
+ JtOlYPz0XuRXn0vEjOAHDL9Hw+eRZYDlWF5LnaynAh5sWkrk/qkJfkMvX
+ a4SsgwTLKLypytcdFrOxlYRhCVJRWnvkwUV6QaNs7hrcR9qGMg2MEkEFx w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10879"; a="974372"
 X-IronPort-AV: E=Sophos;i="6.03,263,1694761200"; 
-   d="scan'208";a="974355"
+   d="scan'208";a="974372"
 Received: from orsmga008.jf.intel.com ([10.7.209.65])
  by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Oct 2023 08:58:17 -0700
+ 30 Oct 2023 08:58:20 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10879"; a="789493943"
-X-IronPort-AV: E=Sophos;i="6.03,263,1694761200"; d="scan'208";a="789493943"
+X-IronPort-AV: E=McAfee;i="6600,9927,10879"; a="789493946"
+X-IronPort-AV: E=Sophos;i="6.03,263,1694761200"; d="scan'208";a="789493946"
 Received: from ideak-desk.fi.intel.com ([10.237.72.78])
  by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Oct 2023 08:58:14 -0700
+ 30 Oct 2023 08:58:16 -0700
 From: Imre Deak <imre.deak@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Mon, 30 Oct 2023 17:58:14 +0200
-Message-Id: <20231030155843.2251023-2-imre.deak@intel.com>
+Date: Mon, 30 Oct 2023 17:58:15 +0200
+Message-Id: <20231030155843.2251023-3-imre.deak@intel.com>
 X-Mailer: git-send-email 2.39.2
 In-Reply-To: <20231030155843.2251023-1-imre.deak@intel.com>
 References: <20231030155843.2251023-1-imre.deak@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH v4 01/30] drm/i915/dp_mst: Fix race between
- connector registration and setup
+Subject: [Intel-gfx] [PATCH v4 02/30] drm/dp_mst: Fix fractional DSC bpp
+ handling
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -60,61 +60,199 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: David Francis <David.Francis@amd.com>,
+ Manasi Navare <manasi.d.navare@intel.com>,
+ Alex Deucher <alexander.deucher@amd.com>,
+ Mikita Lipski <mikita.lipski@amd.com>, Harry Wentland <harry.wentland@amd.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-After drm_connector_init() is called the connector is visible to the
-rest of the kernel via the drm_mode_config::connector_list. Make
-sure that the DSC AUX device and capabilities are setup by that time.
+From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-Another race condition is adding the connector to the connector list
-before drm_connector_helper_add() sets the connector helper functions.
-That's an unrelated issue, for which the fix is for a follow-up. One
-solution would be adding the connector to the connector list only
-during its registration in drm_connector_register().
+The current code does '(bpp << 4) / 16' in the MST PBN
+calculation, but that is just the same as 'bpp' so the
+DSC codepath achieves absolutely nothing. Fix it up so that
+the fractional part of the bpp value is actually used instead
+of truncated away. 64*1006 has enough zero lsbs that we can
+just shift that down in the dividend and thus still manage
+to stick to a 32bit divisor.
 
-Cc: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
-Cc: Ville Syrjälä <ville.syrjala@linux.intel.com>
-Fixes: 808b43fa7e56 ("drm/i915/dp_mst: Set connector DSC capabilities and decompression AUX")
+And while touching this, let's just make the whole thing more
+straightforward by making the passed in bpp value .4 binary
+fixed point always, instead of having to pass in different
+things based on whether DSC is enabled or not.
+
+v2:
+- Fix DSC kunit test cases.
+
+Cc: Manasi Navare <manasi.d.navare@intel.com>
+Cc: Lyude Paul <lyude@redhat.com>
+Cc: Harry Wentland <harry.wentland@amd.com>
+Cc: David Francis <David.Francis@amd.com>
+Cc: Mikita Lipski <mikita.lipski@amd.com>
+Cc: Alex Deucher <alexander.deucher@amd.com>
+Fixes: dc48529fb14e ("drm/dp_mst: Add PBN calculation for DSC modes")
+Reviewed-by: Lyude Paul <lyude@redhat.com> (v1)
+Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
+[Imre: Fix kunit test cases]
 Signed-off-by: Imre Deak <imre.deak@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_dp_mst.c | 16 ++++++++--------
- 1 file changed, 8 insertions(+), 8 deletions(-)
+ .../gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c |  2 +-
+ .../display/amdgpu_dm/amdgpu_dm_mst_types.c   |  2 +-
+ drivers/gpu/drm/display/drm_dp_mst_topology.c | 20 +++++--------------
+ drivers/gpu/drm/i915/display/intel_dp_mst.c   |  5 ++---
+ drivers/gpu/drm/nouveau/dispnv50/disp.c       |  3 +--
+ .../gpu/drm/tests/drm_dp_mst_helper_test.c    |  6 +++---
+ include/drm/display/drm_dp_mst_helper.h       |  2 +-
+ 7 files changed, 14 insertions(+), 26 deletions(-)
 
+diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
+index 9a712791f309f..ada3773869ff0 100644
+--- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
++++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
+@@ -6918,7 +6918,7 @@ static int dm_encoder_helper_atomic_check(struct drm_encoder *encoder,
+ 								    max_bpc);
+ 		bpp = convert_dc_color_depth_into_bpc(color_depth) * 3;
+ 		clock = adjusted_mode->clock;
+-		dm_new_connector_state->pbn = drm_dp_calc_pbn_mode(clock, bpp, false);
++		dm_new_connector_state->pbn = drm_dp_calc_pbn_mode(clock, bpp << 4);
+ 	}
+ 
+ 	dm_new_connector_state->vcpi_slots =
+diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_mst_types.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_mst_types.c
+index d3b13d362edac..9a58e1a4c5f49 100644
+--- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_mst_types.c
++++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_mst_types.c
+@@ -1642,7 +1642,7 @@ enum dc_status dm_dp_mst_is_port_support_mode(
+ 	} else {
+ 		/* check if mode could be supported within full_pbn */
+ 		bpp = convert_dc_color_depth_into_bpc(stream->timing.display_color_depth) * 3;
+-		pbn = drm_dp_calc_pbn_mode(stream->timing.pix_clk_100hz / 10, bpp, false);
++		pbn = drm_dp_calc_pbn_mode(stream->timing.pix_clk_100hz / 10, bpp << 4);
+ 
+ 		if (pbn > aconnector->mst_output_port->full_pbn)
+ 			return DC_FAIL_BANDWIDTH_VALIDATE;
+diff --git a/drivers/gpu/drm/display/drm_dp_mst_topology.c b/drivers/gpu/drm/display/drm_dp_mst_topology.c
+index 0e0d0e76de065..772b00ebd57bd 100644
+--- a/drivers/gpu/drm/display/drm_dp_mst_topology.c
++++ b/drivers/gpu/drm/display/drm_dp_mst_topology.c
+@@ -4718,13 +4718,12 @@ EXPORT_SYMBOL(drm_dp_check_act_status);
+ 
+ /**
+  * drm_dp_calc_pbn_mode() - Calculate the PBN for a mode.
+- * @clock: dot clock for the mode
+- * @bpp: bpp for the mode.
+- * @dsc: DSC mode. If true, bpp has units of 1/16 of a bit per pixel
++ * @clock: dot clock
++ * @bpp: bpp as .4 binary fixed point
+  *
+  * This uses the formula in the spec to calculate the PBN value for a mode.
+  */
+-int drm_dp_calc_pbn_mode(int clock, int bpp, bool dsc)
++int drm_dp_calc_pbn_mode(int clock, int bpp)
+ {
+ 	/*
+ 	 * margin 5300ppm + 300ppm ~ 0.6% as per spec, factor is 1.006
+@@ -4735,18 +4734,9 @@ int drm_dp_calc_pbn_mode(int clock, int bpp, bool dsc)
+ 	 * peak_kbps *= (1006/1000)
+ 	 * peak_kbps *= (64/54)
+ 	 * peak_kbps *= 8    convert to bytes
+-	 *
+-	 * If the bpp is in units of 1/16, further divide by 16. Put this
+-	 * factor in the numerator rather than the denominator to avoid
+-	 * integer overflow
+ 	 */
+-
+-	if (dsc)
+-		return DIV_ROUND_UP_ULL(mul_u32_u32(clock * (bpp / 16), 64 * 1006),
+-					8 * 54 * 1000 * 1000);
+-
+-	return DIV_ROUND_UP_ULL(mul_u32_u32(clock * bpp, 64 * 1006),
+-				8 * 54 * 1000 * 1000);
++	return DIV_ROUND_UP_ULL(mul_u32_u32(clock * bpp, 64 * 1006 >> 4),
++				1000 * 8 * 54 * 1000);
+ }
+ EXPORT_SYMBOL(drm_dp_calc_pbn_mode);
+ 
 diff --git a/drivers/gpu/drm/i915/display/intel_dp_mst.c b/drivers/gpu/drm/i915/display/intel_dp_mst.c
-index 7b4628f4f1240..851b312bd8449 100644
+index 851b312bd8449..5bf45a2a85b0e 100644
 --- a/drivers/gpu/drm/i915/display/intel_dp_mst.c
 +++ b/drivers/gpu/drm/i915/display/intel_dp_mst.c
-@@ -1161,6 +1161,14 @@ static struct drm_connector *intel_dp_add_mst_connector(struct drm_dp_mst_topolo
- 	intel_connector->port = port;
- 	drm_dp_mst_get_port_malloc(port);
+@@ -106,8 +106,7 @@ static int intel_dp_mst_find_vcpi_slots_for_bpp(struct intel_encoder *encoder,
+ 			continue;
  
-+	/*
-+	 * TODO: set the AUX for the actual MST port decompressing the stream.
-+	 * At the moment the driver only supports enabling this globally in the
-+	 * first downstream MST branch, via intel_dp's (root port) AUX.
-+	 */
-+	intel_connector->dp.dsc_decompression_aux = &intel_dp->aux;
-+	intel_dp_mst_read_decompression_port_dsc_caps(intel_dp, intel_connector);
-+
- 	connector = &intel_connector->base;
- 	ret = drm_connector_init(dev, connector, &intel_dp_mst_connector_funcs,
- 				 DRM_MODE_CONNECTOR_DisplayPort);
-@@ -1172,14 +1180,6 @@ static struct drm_connector *intel_dp_add_mst_connector(struct drm_dp_mst_topolo
+ 		crtc_state->pbn = drm_dp_calc_pbn_mode(adjusted_mode->crtc_clock,
+-						       dsc ? bpp << 4 : bpp,
+-						       dsc);
++						       bpp << 4);
  
- 	drm_connector_helper_add(connector, &intel_dp_mst_connector_helper_funcs);
+ 		slots = drm_dp_atomic_find_time_slots(state, &intel_dp->mst_mgr,
+ 						      connector->port,
+@@ -975,7 +974,7 @@ intel_dp_mst_mode_valid_ctx(struct drm_connector *connector,
+ 		return ret;
  
--	/*
--	 * TODO: set the AUX for the actual MST port decompressing the stream.
--	 * At the moment the driver only supports enabling this globally in the
--	 * first downstream MST branch, via intel_dp's (root port) AUX.
--	 */
--	intel_connector->dp.dsc_decompression_aux = &intel_dp->aux;
--	intel_dp_mst_read_decompression_port_dsc_caps(intel_dp, intel_connector);
--
- 	for_each_pipe(dev_priv, pipe) {
- 		struct drm_encoder *enc =
- 			&intel_dp->mst_encoders[pipe]->base.base;
+ 	if (mode_rate > max_rate || mode->clock > max_dotclk ||
+-	    drm_dp_calc_pbn_mode(mode->clock, min_bpp, false) > port->full_pbn) {
++	    drm_dp_calc_pbn_mode(mode->clock, min_bpp << 4) > port->full_pbn) {
+ 		*status = MODE_CLOCK_HIGH;
+ 		return 0;
+ 	}
+diff --git a/drivers/gpu/drm/nouveau/dispnv50/disp.c b/drivers/gpu/drm/nouveau/dispnv50/disp.c
+index d2be40337b92e..153717e1df1a2 100644
+--- a/drivers/gpu/drm/nouveau/dispnv50/disp.c
++++ b/drivers/gpu/drm/nouveau/dispnv50/disp.c
+@@ -982,8 +982,7 @@ nv50_msto_atomic_check(struct drm_encoder *encoder,
+ 		const int clock = crtc_state->adjusted_mode.clock;
+ 
+ 		asyh->or.bpc = connector->display_info.bpc;
+-		asyh->dp.pbn = drm_dp_calc_pbn_mode(clock, asyh->or.bpc * 3,
+-						    false);
++		asyh->dp.pbn = drm_dp_calc_pbn_mode(clock, asyh->or.bpc * 3 << 4);
+ 	}
+ 
+ 	mst_state = drm_atomic_get_mst_topology_state(state, &mstm->mgr);
+diff --git a/drivers/gpu/drm/tests/drm_dp_mst_helper_test.c b/drivers/gpu/drm/tests/drm_dp_mst_helper_test.c
+index 545beea33e8c7..e3c818dfc0e6d 100644
+--- a/drivers/gpu/drm/tests/drm_dp_mst_helper_test.c
++++ b/drivers/gpu/drm/tests/drm_dp_mst_helper_test.c
+@@ -42,13 +42,13 @@ static const struct drm_dp_mst_calc_pbn_mode_test drm_dp_mst_calc_pbn_mode_cases
+ 		.clock = 332880,
+ 		.bpp = 24,
+ 		.dsc = true,
+-		.expected = 50
++		.expected = 1191
+ 	},
+ 	{
+ 		.clock = 324540,
+ 		.bpp = 24,
+ 		.dsc = true,
+-		.expected = 49
++		.expected = 1161
+ 	},
+ };
+ 
+@@ -56,7 +56,7 @@ static void drm_test_dp_mst_calc_pbn_mode(struct kunit *test)
+ {
+ 	const struct drm_dp_mst_calc_pbn_mode_test *params = test->param_value;
+ 
+-	KUNIT_EXPECT_EQ(test, drm_dp_calc_pbn_mode(params->clock, params->bpp, params->dsc),
++	KUNIT_EXPECT_EQ(test, drm_dp_calc_pbn_mode(params->clock, params->bpp << 4),
+ 			params->expected);
+ }
+ 
+diff --git a/include/drm/display/drm_dp_mst_helper.h b/include/drm/display/drm_dp_mst_helper.h
+index 4429d3b1745b6..655862b3d2a49 100644
+--- a/include/drm/display/drm_dp_mst_helper.h
++++ b/include/drm/display/drm_dp_mst_helper.h
+@@ -842,7 +842,7 @@ struct edid *drm_dp_mst_get_edid(struct drm_connector *connector,
+ int drm_dp_get_vc_payload_bw(const struct drm_dp_mst_topology_mgr *mgr,
+ 			     int link_rate, int link_lane_count);
+ 
+-int drm_dp_calc_pbn_mode(int clock, int bpp, bool dsc);
++int drm_dp_calc_pbn_mode(int clock, int bpp);
+ 
+ void drm_dp_mst_update_slots(struct drm_dp_mst_topology_state *mst_state, uint8_t link_encoding_cap);
+ 
 -- 
 2.39.2
 
