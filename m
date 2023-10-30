@@ -1,52 +1,66 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 681BE7DBD37
-	for <lists+intel-gfx@lfdr.de>; Mon, 30 Oct 2023 16:59:03 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 110657DBF2E
+	for <lists+intel-gfx@lfdr.de>; Mon, 30 Oct 2023 18:40:35 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AE46810E330;
-	Mon, 30 Oct 2023 15:59:01 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5CFD810E34D;
+	Mon, 30 Oct 2023 17:40:33 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1A60110E32F
- for <intel-gfx@lists.freedesktop.org>; Mon, 30 Oct 2023 15:59:00 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.115])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 94E4310E34D
+ for <intel-gfx@lists.freedesktop.org>; Mon, 30 Oct 2023 17:40:31 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1698681540; x=1730217540;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=6ojVUkBRyvBl+bq5e0Zm+Fzt9ESgbtFmqqOBjbbcx1A=;
- b=CLX6rB/GizGn4neaJhVr5W3lGtA7IZx81prb47djiJ6J+qLr2Pqa13vs
- LRwVVqBqpHCVbczIpjjYvCcbbR1VSsV3aKwsUgkgZTWCSzKmTzn01Ko0g
- jAnt6rWpIm+PZ0Js1zNnLNSybFKa7MwNTZrgatZ/WyIIUMrGx8/pbEcAG
- 3wKZcRQvTnUJ0FVerdEHxvu2jlfMdXffQs0qKv0eCZ7XIwSjO3t2aqMJ5
- U558brucjCiK3pzgnXagb/CY+I1jVzbo5Y57PT773Lt7n2AjdV9+J+T3S
- +TB5q89VX6SOs6v030SM0h2ORackVETtAjjkoAIY3ry+EygW5erCba9MZ A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10879"; a="974541"
-X-IronPort-AV: E=Sophos;i="6.03,263,1694761200"; 
-   d="scan'208";a="974541"
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Oct 2023 08:59:00 -0700
+ t=1698687631; x=1730223631;
+ h=from:subject:date:message-id:mime-version:
+ content-transfer-encoding:to:cc;
+ bh=0dEwqdyQ9TmaW+iIJsMGuc9fpOpQgfjqeI67URdYEYw=;
+ b=VRSPGUc/goVBlsuuWQip52AhNHiyW0r3HX5sb71pdfipghTCmZmmD388
+ n6GzbRbuQyr/SLiP73cHEq6N2JHl2NjPUyw0dOpzNkJBNhBwqRihYzFEM
+ /Zz4gilbrZCq/nNpsqnvedVZ9GRsVWDAbhL9es/zlwmttGKp8L6QKUmH8
+ 5TZdbrOB7INpZjsXQguYofVfiEtqfxaRlNhqn1PPldER7zXUso3pNyIdp
+ 2im04/557gqpPT/mnJQqRzqvY4qTQThjmi3AIOd2wsw+k9yB5P3xqg2Dr
+ z7y/H81ijWH22S82YTuDvJ8nTQAwqw5ZJ+AxOdtK5nolXXtHB1m7i8Qxa A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10879"; a="387947850"
+X-IronPort-AV: E=Sophos;i="6.03,263,1694761200"; d="scan'208";a="387947850"
+Received: from fmsmga006.fm.intel.com ([10.253.24.20])
+ by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 30 Oct 2023 10:40:30 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10879"; a="789494071"
-X-IronPort-AV: E=Sophos;i="6.03,263,1694761200"; d="scan'208";a="789494071"
-Received: from ideak-desk.fi.intel.com ([10.237.72.78])
- by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Oct 2023 08:58:58 -0700
-From: Imre Deak <imre.deak@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Mon, 30 Oct 2023 17:58:43 +0200
-Message-Id: <20231030155843.2251023-31-imre.deak@intel.com>
-X-Mailer: git-send-email 2.39.2
-In-Reply-To: <20231030155843.2251023-1-imre.deak@intel.com>
-References: <20231030155843.2251023-1-imre.deak@intel.com>
+X-IronPort-AV: E=McAfee;i="6600,9927,10879"; a="1007493912"
+X-IronPort-AV: E=Sophos;i="6.03,263,1694761200"; d="scan'208";a="1007493912"
+Received: from lab-ah.igk.intel.com ([10.102.138.202])
+ by fmsmga006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 30 Oct 2023 10:40:29 -0700
+From: Andrzej Hajda <andrzej.hajda@intel.com>
+Date: Mon, 30 Oct 2023 18:40:11 +0100
+Message-Id: <20231030-ref_tracker_i915-v1-0-006fe6b96421@intel.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH v4 30/30] drm/i915: Query compressed bpp
- properly using correct DPCD and DP Spec info
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAHvqP2UC/x3MWwrCQAyF4a2UPBuYROptK1LKXKIN4lgyRYTSv
+ Rt9/OCcf4UmptLg0q1g8tamr+qgXQd5ivUuqMUNHHhPgY9ochsXi/khNuqZegzEfQnpRJkP4Lf
+ ZF/r5J6+DO8UmmCzWPP1CxZ646Azb9gW9/i/vfAAAAA==
+To: intel-gfx@lists.freedesktop.org
+X-Mailer: b4 0.12.3
+X-Developer-Signature: v=1; a=openpgp-sha256; l=2532;
+ i=andrzej.hajda@intel.com; h=from:subject:message-id;
+ bh=0dEwqdyQ9TmaW+iIJsMGuc9fpOpQgfjqeI67URdYEYw=;
+ b=owEB7QES/pANAwAKASNispPeEP3XAcsmYgBlP+qMrhJZfaA2vvb1rzr5rJiE3s8UJ05j9Mmrw14V
+ 0y3rH/uJAbMEAAEKAB0WIQT8qEQxNN2/XeF/A00jYrKT3hD91wUCZT/qjAAKCRAjYrKT3hD913h/C/
+ 9F+aVTuVmXi9HawZRnS6hs00aK/8lMhLe3pwjNYXCqqeEVY2OhM+oqSRoq2M5cJudHhp0PxR2I07X9
+ oSQP04jzdGEPBt8xhOLn3c/atXIbDDFC8buGIFZ8sNu/fzbH24jByyWUlrv2sEc6aLbN1zvOs0DSu4
+ Q88BpT6avoKo4MB91Ym5J7hVGR80SajDne9o0dRPzbMhizJFnFXX1D1KeoGlEodfdEIul1ZiKcCgTH
+ yQ+qyRruSAh1xXvf9PtfzHM56d0ns/uY0OtmQpZUrbIuSuCk9YzABDWu/six+GDGpQoQdweVMc5jEl
+ ABJlUL0PvmdMlzh69ftz+0HQFE51Y1bKd4b24wcgAJY1Vny9sHRdH6LpCO9QDRutghZy+i1nco3dsv
+ SKkDTW35VSjt432zv9nEkeIfSmkovm1WOgxJQbTkaAJsOQpTVEvIuE/SZ51WlsJxajKQKpJ/WXYMnI
+ WrWqhWy82AOAaPyWFT+xWLWgNngEsHcQUchHOm9EmZIfQ=
+X-Developer-Key: i=andrzej.hajda@intel.com; a=openpgp;
+ fpr=FCA8443134DDBF5DE17F034D2362B293DE10FDD7
+Subject: [Intel-gfx] [PATCH 0/2] drm/i915: use ref_tracker library in i915
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,197 +73,58 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: Andrzej Hajda <andrzej.hajda@intel.com>, Nirmoy Das <nirmoy.das@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-From: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
+This patchset replaces custom tracking solution
+with ref_tracker library. This is follow-up of the
+work from patchset[1]. Core part is already merged
+and present in drm-tip. This is actually re-base of [1]
+with minor fixes for code introduced later.
 
-Currently we seem to be using wrong DPCD register for reading
-compressed bpps, reading min/max input bpc instead of compressed bpp.
-Fix that, so that we now apply min/max compressed bpp limitations we
-get from DP Spec Table 2-157 DP v2.0 and/or correspondent DPCD
-register DP_DSC_MAX_BITS_PER_PIXEL_LOW/HIGH.
+[1]: https://lore.kernel.org/r/20230224-track_gt-v8-0-4b6517e61be6@intel.com
 
-This might also allow us to get rid of an ugly compressed bpp
-recalculation, which we had to add to make some MST hubs usable.
-
-v2: - Fix operator precedence
-v3: - Added debug info about compressed bpps
-v4: - Don't try to intersect Sink input bpp and compressed bpps.
-v5: - Decrease step while looking for suitable compressed bpp to
-      accommodate.
-v6: - Use helper for getting min and max compressed_bpp (Ankit)
-v7: - Fix checkpatch warning (Ankit)
-
-Signed-off-by: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
-Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
-Reviewed-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
-Reviewed-by: Arun R Murthy <arun.r.murthy@intel.com>
+Signed-off-by: Andrzej Hajda <andrzej.hajda@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_dp.c     | 20 +++++---
- drivers/gpu/drm/i915/display/intel_dp.h     |  4 ++
- drivers/gpu/drm/i915/display/intel_dp_mst.c | 54 ++++++++++-----------
- 3 files changed, 41 insertions(+), 37 deletions(-)
+Andrzej Hajda (2):
+      drm/i915: Replace custom intel runtime_pm tracker with ref_tracker library
+      drm/i915: Track gt pm wakerefs
 
-diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
-index 230a599ba4f40..524390240eaf2 100644
---- a/drivers/gpu/drm/i915/display/intel_dp.c
-+++ b/drivers/gpu/drm/i915/display/intel_dp.c
-@@ -1811,7 +1811,7 @@ u16 intel_dp_dsc_max_sink_compressed_bppx16(const struct intel_connector *connec
- 	return 0;
- }
- 
--static int dsc_sink_min_compressed_bpp(struct intel_crtc_state *pipe_config)
-+int intel_dp_dsc_sink_min_compressed_bpp(struct intel_crtc_state *pipe_config)
- {
- 	/* From Mandatory bit rate range Support Table 2-157 (DP v2.0) */
- 	switch (pipe_config->output_format) {
-@@ -1828,9 +1828,9 @@ static int dsc_sink_min_compressed_bpp(struct intel_crtc_state *pipe_config)
- 	return 0;
- }
- 
--static int dsc_sink_max_compressed_bpp(const struct intel_connector *connector,
--				       struct intel_crtc_state *pipe_config,
--				       int bpc)
-+int intel_dp_dsc_sink_max_compressed_bpp(const struct intel_connector *connector,
-+					 struct intel_crtc_state *pipe_config,
-+					 int bpc)
- {
- 	return intel_dp_dsc_max_sink_compressed_bppx16(connector,
- 						       pipe_config, bpc) >> 4;
-@@ -1944,12 +1944,14 @@ static int dsc_compute_compressed_bpp(struct intel_dp *intel_dp,
- 	int dsc_joiner_max_bpp;
- 
- 	dsc_src_min_bpp = dsc_src_min_compressed_bpp();
--	dsc_sink_min_bpp = dsc_sink_min_compressed_bpp(pipe_config);
-+	dsc_sink_min_bpp = intel_dp_dsc_sink_min_compressed_bpp(pipe_config);
- 	dsc_min_bpp = max(dsc_src_min_bpp, dsc_sink_min_bpp);
- 	dsc_min_bpp = max(dsc_min_bpp, to_bpp_int_roundup(limits->link.min_bpp_x16));
- 
- 	dsc_src_max_bpp = dsc_src_max_compressed_bpp(intel_dp);
--	dsc_sink_max_bpp = dsc_sink_max_compressed_bpp(connector, pipe_config, pipe_bpp / 3);
-+	dsc_sink_max_bpp = intel_dp_dsc_sink_max_compressed_bpp(connector,
-+								pipe_config,
-+								pipe_bpp / 3);
- 	dsc_max_bpp = dsc_sink_max_bpp ? min(dsc_sink_max_bpp, dsc_src_max_bpp) : dsc_src_max_bpp;
- 
- 	dsc_joiner_max_bpp = get_max_compressed_bpp_with_joiner(i915, adjusted_mode->clock,
-@@ -2104,12 +2106,14 @@ static int intel_edp_dsc_compute_pipe_bpp(struct intel_dp *intel_dp,
- 	pipe_config->lane_count = limits->max_lane_count;
- 
- 	dsc_src_min_bpp = dsc_src_min_compressed_bpp();
--	dsc_sink_min_bpp = dsc_sink_min_compressed_bpp(pipe_config);
-+	dsc_sink_min_bpp = intel_dp_dsc_sink_min_compressed_bpp(pipe_config);
- 	dsc_min_bpp = max(dsc_src_min_bpp, dsc_sink_min_bpp);
- 	dsc_min_bpp = max(dsc_min_bpp, to_bpp_int_roundup(limits->link.min_bpp_x16));
- 
- 	dsc_src_max_bpp = dsc_src_max_compressed_bpp(intel_dp);
--	dsc_sink_max_bpp = dsc_sink_max_compressed_bpp(connector, pipe_config, pipe_bpp / 3);
-+	dsc_sink_max_bpp = intel_dp_dsc_sink_max_compressed_bpp(connector,
-+								pipe_config,
-+								pipe_bpp / 3);
- 	dsc_max_bpp = dsc_sink_max_bpp ? min(dsc_sink_max_bpp, dsc_src_max_bpp) : dsc_src_max_bpp;
- 	dsc_max_bpp = min(dsc_max_bpp, to_bpp_int(limits->link.max_bpp_x16));
- 
-diff --git a/drivers/gpu/drm/i915/display/intel_dp.h b/drivers/gpu/drm/i915/display/intel_dp.h
-index 91051973be2d5..e80da67554196 100644
---- a/drivers/gpu/drm/i915/display/intel_dp.h
-+++ b/drivers/gpu/drm/i915/display/intel_dp.h
-@@ -129,6 +129,10 @@ u16 intel_dp_dsc_get_max_compressed_bpp(struct drm_i915_private *i915,
- 					enum intel_output_format output_format,
- 					u32 pipe_bpp,
- 					u32 timeslots);
-+int intel_dp_dsc_sink_min_compressed_bpp(struct intel_crtc_state *pipe_config);
-+int intel_dp_dsc_sink_max_compressed_bpp(const struct intel_connector *connector,
-+					 struct intel_crtc_state *pipe_config,
-+					 int bpc);
- u8 intel_dp_dsc_get_slice_count(const struct intel_connector *connector,
- 				int mode_clock, int mode_hdisplay,
- 				bool bigjoiner);
-diff --git a/drivers/gpu/drm/i915/display/intel_dp_mst.c b/drivers/gpu/drm/i915/display/intel_dp_mst.c
-index cf82832d6a951..cecd2fa365ed6 100644
---- a/drivers/gpu/drm/i915/display/intel_dp_mst.c
-+++ b/drivers/gpu/drm/i915/display/intel_dp_mst.c
-@@ -164,6 +164,9 @@ static int intel_dp_mst_find_vcpi_slots_for_bpp(struct intel_encoder *encoder,
- 						      crtc_state->port_clock,
- 						      crtc_state->lane_count);
- 
-+	drm_dbg_kms(&i915->drm, "Looking for slots in range min bpp %d max bpp %d\n",
-+		    min_bpp, max_bpp);
-+
- 	for (bpp = max_bpp; bpp >= min_bpp; bpp -= step) {
- 		struct intel_link_m_n remote_m_n;
- 		int link_bpp;
-@@ -261,8 +264,7 @@ static int intel_dp_dsc_mst_compute_link_config(struct intel_encoder *encoder,
- 	u8 dsc_bpc[3] = {};
- 	int min_bpp, max_bpp, sink_min_bpp, sink_max_bpp;
- 	u8 dsc_max_bpc;
--	bool need_timeslot_recalc = false;
--	u32 last_compressed_bpp;
-+	int min_compressed_bpp, max_compressed_bpp;
- 
- 	/* Max DSC Input BPC for ICL is 10 and for TGL+ is 12 */
- 	if (DISPLAY_VER(i915) >= 12)
-@@ -298,38 +300,32 @@ static int intel_dp_dsc_mst_compute_link_config(struct intel_encoder *encoder,
- 	if (max_bpp > sink_max_bpp)
- 		max_bpp = sink_max_bpp;
- 
--	min_bpp = max(min_bpp, to_bpp_int_roundup(limits->link.min_bpp_x16));
--	max_bpp = min(max_bpp, to_bpp_int(limits->link.max_bpp_x16));
-+	max_compressed_bpp = intel_dp_dsc_sink_max_compressed_bpp(connector,
-+								  crtc_state,
-+								  max_bpp / 3);
-+	max_compressed_bpp = min(max_compressed_bpp,
-+				 to_bpp_int(limits->link.max_bpp_x16));
- 
--	slots = intel_dp_mst_find_vcpi_slots_for_bpp(encoder, crtc_state, max_bpp,
--						     min_bpp, limits,
--						     conn_state, 2 * 3, true);
-+	min_compressed_bpp = intel_dp_dsc_sink_min_compressed_bpp(crtc_state);
-+	min_compressed_bpp = max(min_compressed_bpp,
-+				 to_bpp_int_roundup(limits->link.min_bpp_x16));
-+
-+	drm_dbg_kms(&i915->drm, "DSC Sink supported compressed min bpp %d compressed max bpp %d\n",
-+		    min_compressed_bpp, max_compressed_bpp);
-+
-+	/* Align compressed bpps according to our own constraints */
-+	max_compressed_bpp = intel_dp_dsc_nearest_valid_bpp(i915, max_compressed_bpp,
-+							    crtc_state->pipe_bpp);
-+	min_compressed_bpp = intel_dp_dsc_nearest_valid_bpp(i915, min_compressed_bpp,
-+							    crtc_state->pipe_bpp);
-+
-+	slots = intel_dp_mst_find_vcpi_slots_for_bpp(encoder, crtc_state, max_compressed_bpp,
-+						     min_compressed_bpp, limits,
-+						     conn_state, 1, true);
- 
- 	if (slots < 0)
- 		return slots;
- 
--	last_compressed_bpp = crtc_state->dsc.compressed_bpp;
--
--	crtc_state->dsc.compressed_bpp = intel_dp_dsc_nearest_valid_bpp(i915,
--									last_compressed_bpp,
--									crtc_state->pipe_bpp);
--
--	if (crtc_state->dsc.compressed_bpp != last_compressed_bpp)
--		need_timeslot_recalc = true;
--
--	/*
--	 * Apparently some MST hubs dislike if vcpi slots are not matching precisely
--	 * the actual compressed bpp we use.
--	 */
--	if (need_timeslot_recalc) {
--		slots = intel_dp_mst_find_vcpi_slots_for_bpp(encoder, crtc_state,
--							     crtc_state->dsc.compressed_bpp,
--							     crtc_state->dsc.compressed_bpp,
--							     limits, conn_state, 2 * 3, true);
--		if (slots < 0)
--			return slots;
--	}
--
- 	return 0;
- }
- static int intel_dp_mst_update_slots(struct intel_encoder *encoder,
+ drivers/gpu/drm/i915/Kconfig.debug                 |  18 ++
+ drivers/gpu/drm/i915/display/intel_display_power.c |   2 +-
+ drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c     |  14 +-
+ .../drm/i915/gem/selftests/i915_gem_coherency.c    |  10 +-
+ drivers/gpu/drm/i915/gem/selftests/i915_gem_mman.c |  14 +-
+ drivers/gpu/drm/i915/gt/intel_breadcrumbs.c        |  13 +-
+ drivers/gpu/drm/i915/gt/intel_breadcrumbs_types.h  |   3 +-
+ drivers/gpu/drm/i915/gt/intel_context.h            |   4 +-
+ drivers/gpu/drm/i915/gt/intel_context_types.h      |   2 +
+ drivers/gpu/drm/i915/gt/intel_engine_pm.c          |   7 +-
+ drivers/gpu/drm/i915/gt/intel_engine_types.h       |   2 +
+ .../gpu/drm/i915/gt/intel_execlists_submission.c   |   2 +-
+ drivers/gpu/drm/i915/gt/intel_ggtt.c               |  16 +-
+ drivers/gpu/drm/i915/gt/intel_gt_pm.c              |  12 +-
+ drivers/gpu/drm/i915/gt/intel_gt_pm.h              |  38 +++-
+ drivers/gpu/drm/i915/gt/intel_gt_pm_debugfs.c      |   4 +-
+ drivers/gpu/drm/i915/gt/selftest_engine_cs.c       |  20 +-
+ drivers/gpu/drm/i915/gt/selftest_gt_pm.c           |   5 +-
+ drivers/gpu/drm/i915/gt/selftest_reset.c           |  10 +-
+ drivers/gpu/drm/i915/gt/selftest_rps.c             |  17 +-
+ drivers/gpu/drm/i915/gt/selftest_slpc.c            |   5 +-
+ drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c  |  14 +-
+ drivers/gpu/drm/i915/i915_driver.c                 |   2 +-
+ drivers/gpu/drm/i915/i915_pmu.c                    |  16 +-
+ drivers/gpu/drm/i915/intel_runtime_pm.c            | 221 ++-------------------
+ drivers/gpu/drm/i915/intel_runtime_pm.h            |  11 +-
+ drivers/gpu/drm/i915/intel_wakeref.c               |  35 +++-
+ drivers/gpu/drm/i915/intel_wakeref.h               |  73 ++++++-
+ 28 files changed, 283 insertions(+), 307 deletions(-)
+---
+base-commit: 9f8df32473d5eeef04b74b97c190f839349a2652
+change-id: 20231027-ref_tracker_i915-0125d0b81c26
+
+Best regards,
 -- 
-2.39.2
+Andrzej Hajda <andrzej.hajda@intel.com>
 
