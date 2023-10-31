@@ -1,150 +1,54 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id DCD157DC62D
-	for <lists+intel-gfx@lfdr.de>; Tue, 31 Oct 2023 07:01:09 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 24D2F7DC6C3
+	for <lists+intel-gfx@lfdr.de>; Tue, 31 Oct 2023 07:53:47 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7882910E405;
-	Tue, 31 Oct 2023 06:01:00 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B768310E085;
+	Tue, 31 Oct 2023 06:53:44 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.93])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 25BC210E404;
- Tue, 31 Oct 2023 06:00:59 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.100])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8DDAA10E085
+ for <intel-gfx@lists.freedesktop.org>; Tue, 31 Oct 2023 06:53:42 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1698732059; x=1730268059;
- h=from:to:cc:subject:date:message-id:references:
- in-reply-to:content-transfer-encoding:mime-version;
- bh=n9lWu2hQvVKZ++3I1jvjuqX4cIpFefKLadSO3gdrmPA=;
- b=P54VTyvMtvHyigf+8qE2b1DoiDbPnNMFNL8HFOrojFjs3gj4vDe3B9jI
- Sv0SU3G4kR8G/Y2+aIABd2NSKRBb5IJ/W+7lj+3tyzNpr3GzMmJvdc7rS
- 5BNomJ7owQ0p0UB9V99MMURToSrWOdozDos8NjQkzeHlYP4YZyndE4gYe
- kNXtHB/WHjBhb8jxkazNVXrtmh3ukBLnr8mMlBlRI4WtYrwfUFHQSbfqH
- rnlxKmPao6sx7l/P7y7mu7woGe8BmazTtaXgvKG0PHHLoMR1osDF+yipw
- 7yRfxtbdCCdKzEAqGNxr7k0AS2oMQc28dLIGC52D7Rei+erw9EJ77edh+ Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10879"; a="385411219"
-X-IronPort-AV: E=Sophos;i="6.03,265,1694761200"; d="scan'208";a="385411219"
-Received: from fmsmga005.fm.intel.com ([10.253.24.32])
- by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Oct 2023 23:00:58 -0700
+ t=1698735222; x=1730271222;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=wsk9IOJEInm2A1rWO5zp//IWxm83MpM9SJNKBnm7FHQ=;
+ b=V+hYUjCZ7ckqcsH0x8cHcYPyTdpLiOoGzMnVhfnk9/YFy7bSNA1/9pPE
+ 6UxFPjgmsNfw89EVB7TUVUmGtzx/wThz0eTEte+XyieKEKtFSBAT0AL3R
+ 3BU2+ZWjYa3Rj0z4znDc/TY1HiGL+XClHiNAhPRR/suux4ga6QMv2Xg6d
+ HO/wr7CQ3S0gzoSh8nsonMnmgXXsaVnzflokYgUCw5qai/exLIkxDtWrO
+ ZJqU8i5fesrQPX0vFat63896nRDjbCes4eES2yjeSa+N9SaOAIB6dJ9Dp
+ bhcSsaFIYrugWEZfmB1YaEaBowmuoTqH62fdgO9ZpmUh6gHsDTmECesMp w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10879"; a="454694317"
+X-IronPort-AV: E=Sophos;i="6.03,265,1694761200"; d="scan'208";a="454694317"
+Received: from fmsmga007.fm.intel.com ([10.253.24.52])
+ by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 30 Oct 2023 23:53:41 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10879"; a="1091888734"
-X-IronPort-AV: E=Sophos;i="6.03,265,1694761200"; d="scan'208";a="1091888734"
-Received: from fmsmsx601.amr.corp.intel.com ([10.18.126.81])
- by fmsmga005.fm.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
- 30 Oct 2023 23:00:58 -0700
-Received: from fmsmsx610.amr.corp.intel.com (10.18.126.90) by
- fmsmsx601.amr.corp.intel.com (10.18.126.81) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.34; Mon, 30 Oct 2023 23:00:54 -0700
-Received: from fmsedg602.ED.cps.intel.com (10.1.192.136) by
- fmsmsx610.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.34 via Frontend Transport; Mon, 30 Oct 2023 23:00:54 -0700
-Received: from NAM10-BN7-obe.outbound.protection.outlook.com (104.47.70.101)
- by edgegateway.intel.com (192.55.55.71) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.34; Mon, 30 Oct 2023 23:00:54 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=CbRWlF1yMjZzOHTyurz49NHsbQhc3/iVty6GvEni4Us+AeQw7wnMJR/jsYCpWSMn476odQPDp/zIW+L8Un2+q2M7CSNcW5RfO5lf9rvnrI7AHwmvBg/TKzL3MqeH2hODNCL+VfAlpsyzt2d2XVd6kF/5sAB0f18KaOsOdoDBjPAL5bKYjXlMz7E8G5JGrWHa/rxuv10JDIBQqVkSH1vkVv/+eS1uF67trCvkK0E7nXRwFQ8lSJLMZX8ZqAEMTSk8OPaZVv3hELlLYsFBRBKXKoFcPRqdhj+nreTH3vaA+TwjdGSJBHJS3Dk7+7Q58EoDchXKKUg3LBFTGJizSdYjlg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=n9lWu2hQvVKZ++3I1jvjuqX4cIpFefKLadSO3gdrmPA=;
- b=nfm/fpZqzUnud/tRXO1PHZPeP8inn3qs9fPh996sOxG5kLKcQNYBN+8VDVB6idPpbFQT49C0sF1nAaeDKb2qMuaMLUSNHM7Obb5iGPP4kUEgWZVaetcf8m98SykgMGqPieaD22lp2hWWDgphxPwUByVTwCZ1qK9NNqJxExJ++TELvUASwsxb0QiHMc4PWXTJZyNT0Fx0QO7paBKLBXQVH7mBZV+vt/XpH3nkACUQfbf1Hk71DTfx3V/A+KqjgFceMgWAzd053/VsenbdUEChDIRqsmPMyubgmUaLsNv7GmKi5twLbNvg4PlvQGZ2Y/p0L+BVy1N9ihl0BjjMK4CJWw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Received: from SJ1PR11MB6129.namprd11.prod.outlook.com (2603:10b6:a03:488::12)
- by MN2PR11MB4661.namprd11.prod.outlook.com (2603:10b6:208:26b::16)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6933.29; Tue, 31 Oct
- 2023 06:00:52 +0000
-Received: from SJ1PR11MB6129.namprd11.prod.outlook.com
- ([fe80::9bdd:1d20:1b4e:3e92]) by SJ1PR11MB6129.namprd11.prod.outlook.com
- ([fe80::9bdd:1d20:1b4e:3e92%7]) with mapi id 15.20.6933.028; Tue, 31 Oct 2023
- 06:00:52 +0000
-From: "Borah, Chaitanya Kumar" <chaitanya.kumar.borah@intel.com>
-To: Dave Airlie <airlied@gmail.com>
-Thread-Topic: Build broken in drm-tip
-Thread-Index: AdoLt162ne2GlDzsQMCYNHkLIkPwDwAAvNiAAAEEeYAAAEChkA==
-Date: Tue, 31 Oct 2023 06:00:51 +0000
-Message-ID: <SJ1PR11MB6129B080791C13146FC0EB8DB9A0A@SJ1PR11MB6129.namprd11.prod.outlook.com>
-References: <SJ1PR11MB61297BF7764AF1207571A872B9A0A@SJ1PR11MB6129.namprd11.prod.outlook.com>
- <CAPM=9txw6gYP+GoBvMBCWAP_W6_LSYg6SnHXQ9w1EjxA0UoOvQ@mail.gmail.com>
- <CAPM=9tzRY_UbddDSmfFP_Bi54HkB3m0F7xwNcO8J5pibuyZBhQ@mail.gmail.com>
-In-Reply-To: <CAPM=9tzRY_UbddDSmfFP_Bi54HkB3m0F7xwNcO8J5pibuyZBhQ@mail.gmail.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: SJ1PR11MB6129:EE_|MN2PR11MB4661:EE_
-x-ms-office365-filtering-correlation-id: 908a7369-387a-4d51-6caa-08dbd9d6bcfb
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: nGf+TrTh9Te/13cooAHC1JY8gBomrddsHcRoKvKus2K9YXhLlEDxysZ004c/LUICFkRC9DgZ/QqUbceap9o50qI/HVNUWOhvRfuLl4aFYBQlSQB/+I4yNEgBKbVZ69B3AhgNlSKh8IC47howZe2vx/p0qR4V3uTgBFux82JCE6pbHJaE5nlgtSjzeOsm6bJlqS0tH9TORKbsKOB8TGqJMkz+7LWBZ/Dms84CGr6EwCV1bBjxvbIbmr4Mnm/JRIOu5wB+eSgVV5DCKgmEFlK4lJzMwlt1nqIwG8xiJL7BCHvWRJu4Ve/j4bQJ8OJQtPXPO2gT631Q3TsyKy+R7QWEQeP42XXDpHjzNdXMP8u2xs2eRKY5FARraehIHEifSNVGfXRmaQFzqCPTZfYoARcXz5ZVEPrWFEQ78rO0xB3vDKZENWB0Ne6OoMyAReUNPK7yg9A01oGDYjSUkXlGCJCd556pmnTIeHRgeY0Z81c2C7P+qxZ9tADqkT12pabqWQgPWfX0njLCGcTQT6fIfYvN23O1VBHTN5ds9Kj142arbUvBYvBBuyp1zjMPs8ZfOl75y/6T3CeOOxnqUmsaUuh/SA43pmvG/+knoAs1rqeaYB9FGiJyf/JcyxkNg60KUY3D
-x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:SJ1PR11MB6129.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230031)(346002)(396003)(376002)(136003)(366004)(39860400002)(230922051799003)(451199024)(186009)(1800799009)(64100799003)(316002)(38100700002)(4744005)(7696005)(2906002)(6506007)(9686003)(41300700001)(53546011)(478600001)(64756008)(54906003)(6916009)(66446008)(66476007)(66556008)(66946007)(76116006)(8936002)(8676002)(4326008)(52536014)(5660300002)(83380400001)(86362001)(26005)(71200400001)(107886003)(82960400001)(33656002)(38070700009)(122000001)(55016003);
- DIR:OUT; SFP:1102; 
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?utf-8?B?WDlDZ2g0V1dCTnh4clcyYTBFa3lCTTlkQ1pPUnFaY3lGckNadmhJSHRFQXJH?=
- =?utf-8?B?T2dFYzkwbVdDb1BwblpINXZtS0VkNG5uQ3kxaU5NZ2k0eWZpdzc0cWVJUjVw?=
- =?utf-8?B?SlBmbytFeGFSM3dhQ25JdFRHc1piNFRMclNoYTBTa1ZYQVQ5TTZjZXZiZzBx?=
- =?utf-8?B?OXB4Y0Z2eFZVaHF1OXFWMXcyci91aWNVU1B0U1hDNy9HbEJRRVVNVm56dGF4?=
- =?utf-8?B?OUxSWkZsdEFLa25hZUtQOElEcFJUN2xXOERJWFZwejFrYUpHYnRxN1hES25U?=
- =?utf-8?B?Uy9XNHZXQnhaL3BjeUVRVDZYcmxlUVlLOHdReExtZVBzMituS2k4UGY3R1Fk?=
- =?utf-8?B?Slo2eDRvcGVsMmNRV0xudmNGRXBqOHhFVXd3R25MZEhvWUswb1hINXp0d2tS?=
- =?utf-8?B?czdEQ0FCOTlGblFIaTZKQUU5RzJqL1B2RkpTUWZxejhoVEJ2cHk1dE00QXk4?=
- =?utf-8?B?TERVL3Z0TS9LWDVRZm40c0lWbFFaUFBZeERDTlVScXBHajRBVXcwTVV6bmly?=
- =?utf-8?B?cGMxdUpyL0xEeFhZV1NQZmpxUkRXc2NLeVNlK05LdkVIWDVSMzJ5WkZlUlFu?=
- =?utf-8?B?YUtkb3E5OVJMWTVlT1FuSVBHd2RHa09WY09Pc2pLeXRndFJTb0Y5T2RMdWZS?=
- =?utf-8?B?S24rV3dxL24wRDcrQ2V2MElhM3lneVVvTCtEdW8wK2gwRjBFQmxlNjRmVUd1?=
- =?utf-8?B?Wjc1RlQzVTVxLzlzWmZlNGs5UzlNcFdnN2ZrOG92Z2NrZE9FWnZsWmd6eU1B?=
- =?utf-8?B?bU1EUGNrZkZZVEdWOE9hMjJxV01MYW1NaFg4b2ZwTlh5cU5Hb2lxRDVNZGFi?=
- =?utf-8?B?S3pLM2JkeXdRS3Vtd0o0QmJ0VUtOOVFiMkxzNDRhempvT2pRSjdYbTJxbHZl?=
- =?utf-8?B?UkgyZU9jY01MWk9jVU10bzhMekFxb0pxMkRKU3BXVC9mUmJmRjFVaWNVeUNB?=
- =?utf-8?B?R0JFbWZtMi9DRE5yS0tkNlBYNHoyQWNxa2NBMDREb1F1NG9rSS8yelg3dzZz?=
- =?utf-8?B?elF6TnV2M3VGalQwbWExQWR5d2NFREVTenlaVDdTZmdWVy96V2lIV25LOG5P?=
- =?utf-8?B?K2tJOE1YakxDWHRtZWdFYjIvYVZyY1FBN2NDSXhzOXBUdUdSLzRGenIrdVla?=
- =?utf-8?B?OFpOdXMrZnQ5V1IrNkFScDB1SnRnK0Rpa3FON3BjakZ3RzNkR1V6Tzk1a1V6?=
- =?utf-8?B?YXhYY0lWNHFXNTM5bWZPMHFZR1pPMnBsb2NTTm42d1Yrc2hOYXJEUjVkUmtn?=
- =?utf-8?B?OGVIRUxUa1B6SmtoRFFyV293N05GMkY4UkdTdHdyYXFIY0w0VG9KTVB3YUI2?=
- =?utf-8?B?Qy80bkREbWN1eDZ2YmFxZHh0aWJsdWlOY2sxWE5kYWpjOHFtOFhZakNtdHJp?=
- =?utf-8?B?aEdRWEpleWFoQzdsUVZ0OURac05mOWdXUGJhUGt5QTE0aFpOek5EVEE2eGIy?=
- =?utf-8?B?NEJkSkxFZ2QyT1RINHd1NlRnVy9SNStZdE1PcnJ0cDVta1h2ZUQ2WkZTY2hx?=
- =?utf-8?B?OWNDdWFnMHlHaVJhUU0zeXdRb3l4MVhMY2JPejBxTU4vU1FWcXdWWFdaMEFu?=
- =?utf-8?B?VlRKYWNNaXZEc055MlFXTmN1TXNHMU15VW91dWNtcVB5NFFrVFNwdDcvTG0x?=
- =?utf-8?B?ai9KeFlxSUJWdjJyR0hMM1pSYTZ0TmFnc1MzaUxTNmJkSkdmUzJCc0d4RHJB?=
- =?utf-8?B?ODJONHJ0M1NnSy9tRG90OTR5bmNHTFdhdXcwTHJ5RnljVWxvKzZRamVHNGc2?=
- =?utf-8?B?MnAzVlZaUGVsd05Pa2pHQjVqYUNRZTRiTjY2VXlQamtSeGV3eGZvdEhhNnFr?=
- =?utf-8?B?NkYxNDMzT1dxb1B2QjhwNWI1THdoS3ZQNzFxODE1YzJZZ2dzLzdlaTFDd1lL?=
- =?utf-8?B?QU9wdXRJUXh2bFhWSi82Qmo0Q2NVRitISDJJV1B0VHVXeFhGYWRVbTI0cGl4?=
- =?utf-8?B?OWllRUVtVVRlVGQrZ0xlS3lVTTVId0lxTncvV04xeU5TYVRXcFYzdG0xNm1Z?=
- =?utf-8?B?bnRjUGdGYzZNZW1IYjJlZGc5ZUo0MkJmdHA2U1c0by9GWkFJZ1ZwZEhiNk9I?=
- =?utf-8?B?eG9oby9MR3NlQ3ZZZnFycWl3ZTZkbDlEeXBsQVkzK1VnZ0YxNWNvL0lCY2hI?=
- =?utf-8?B?RHBsN2JFTDdKWXFGaVFqalhYaWdubHcwZVFqU2Z3SFdKeW9vT1ZVZkpOdnd6?=
- =?utf-8?B?dVE9PQ==?=
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+X-IronPort-AV: E=McAfee;i="6600,9927,10879"; a="764150806"
+X-IronPort-AV: E=Sophos;i="6.03,265,1694761200"; d="scan'208";a="764150806"
+Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.74])
+ by fmsmga007.fm.intel.com with SMTP; 30 Oct 2023 23:53:38 -0700
+Received: by stinkbox (sSMTP sendmail emulation);
+ Tue, 31 Oct 2023 08:53:38 +0200
+Date: Tue, 31 Oct 2023 08:53:38 +0200
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: Jouni =?iso-8859-1?Q?H=F6gander?= <jouni.hogander@intel.com>
+Message-ID: <ZUCkcoxKPkOl9U2b@intel.com>
+References: <20231030120915.760752-1-jouni.hogander@intel.com>
 MIME-Version: 1.0
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: SJ1PR11MB6129.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 908a7369-387a-4d51-6caa-08dbd9d6bcfb
-X-MS-Exchange-CrossTenant-originalarrivaltime: 31 Oct 2023 06:00:51.9767 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: Hb0lOSLwHF0gtDhJijL9CYhoAUZ4T8G+sESBrXO02XcOVvlXLxMr2s5Pa7H4eUjwwJGy5kvpMs+aGyeccsac6tdE1D0XyQGy5FQHnT3KblE=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN2PR11MB4661
-X-OriginatorOrg: intel.com
-Subject: Re: [Intel-gfx] Build broken in drm-tip
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20231030120915.760752-1-jouni.hogander@intel.com>
+X-Patchwork-Hint: comment
+Subject: Re: [Intel-gfx] [PATCH v3] drm/i915/display: Use dma_fence
+ interfaces instead of i915_sw_fence
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -157,29 +61,342 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
- "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
- "mario.limonciello@amd.com" <mario.limonciello@amd.com>, "Kurmi,
- Suresh Kumar" <suresh.kumar.kurmi@intel.com>
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-SGVsbG8gRGF2ZSwNCg0KPiAtLS0tLU9yaWdpbmFsIE1lc3NhZ2UtLS0tLQ0KPiBGcm9tOiBEYXZl
-IEFpcmxpZSA8YWlybGllZEBnbWFpbC5jb20+DQo+IFNlbnQ6IFR1ZXNkYXksIE9jdG9iZXIgMzEs
-IDIwMjMgMTE6MjIgQU0NCj4gVG86IEJvcmFoLCBDaGFpdGFueWEgS3VtYXIgPGNoYWl0YW55YS5r
-dW1hci5ib3JhaEBpbnRlbC5jb20+DQo+IENjOiBtYXJpby5saW1vbmNpZWxsb0BhbWQuY29tOyBp
-bnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnOyBTYWFyaW5lbiwNCj4gSmFuaSA8amFuaS5z
-YWFyaW5lbkBpbnRlbC5jb20+OyBOYXV0aXlhbCwgQW5raXQgSw0KPiA8YW5raXQuay5uYXV0aXlh
-bEBpbnRlbC5jb20+OyBkcmktZGV2ZWxAbGlzdHMuZnJlZWRlc2t0b3Aub3JnOyBLdXJtaSwgU3Vy
-ZXNoDQo+IEt1bWFyIDxzdXJlc2gua3VtYXIua3VybWlAaW50ZWwuY29tPg0KPiBTdWJqZWN0OiBS
-ZTogQnVpbGQgYnJva2VuIGluIGRybS10aXANCj4gDQo+IE9uIFR1ZSwgMzEgT2N0IDIwMjMgYXQg
-MTU6MjMsIERhdmUgQWlybGllIDxhaXJsaWVkQGdtYWlsLmNvbT4gd3JvdGU6DQo+ID4NCj4gPiBP
-biBUdWUsIDMxIE9jdCAyMDIzIGF0IDE1OjA5LCBCb3JhaCwgQ2hhaXRhbnlhIEt1bWFyDQo+ID4g
-PGNoYWl0YW55YS5rdW1hci5ib3JhaEBpbnRlbC5jb20+IHdyb3RlOg0KPiA+ID4NCj4gPiA+IEhl
-bGxvIE1hcmlvLA0KPiA+ID4NCj4gPiA+IFRoaXMgaXMgQ2hhaXRhbnlhIGZyb20gdGhlIExpbnV4
-IGdyYXBoaWNzIHRlYW0gaW4gSW50ZWwuDQo+ID4gPg0KPiA+ID4gV2UgYXJlIHNlZWluZyBhIGJ1
-aWxkIGlzc3VlIGluIGRybS10aXBbMV0NCj4gPg0KPiA+IFNvcnJ5IHRoYXQgd2FzIGEgbWlzbWVy
-Z2UgZnJvbSBtZSwgbGV0IG1lIGdvIGZpeCBpdCBmb3Igc3VtbW9uIHNvbWVvbmUNCj4gZWxzZS4N
-Cj4gDQo+IFNob3VsZCBiZSBmaXhlZCBub3cuDQo+IA0KDQpUaGFuayB5b3UgZm9yIHRoZSBxdWlj
-ayBmaXguDQoNClJlZ2FyZHMNCg0KQ2hhaXRhbnlhDQoNCj4gc29ycnkgZm9yIG5vaXNlLA0KPiBE
-YXZlLg0K
+On Mon, Oct 30, 2023 at 02:09:15PM +0200, Jouni Högander wrote:
+> We are preparing for Xe driver. Xe driver doesn't have i915_sw_fence
+> implementation. Lets drop i915_sw_fence usage from display code and
+> use dma_fence interfaces directly.
+> 
+> For this purpose stack dma fences from related objects into new plane
+> state. Drm_gem_plane_helper_prepare_fb can be used for fences in new
+> fb. Separate local implementation is used for Stacking fences from old fb
+> into new plane state. Then wait for these stacked fences during atomic
+> commit. There is no be need for separate GPU reset handling in
+> intel_atomic_commit_fence_wait as the fences are signaled when GPU hang is
+> detected and GPU is being reset.
+> 
+> v3:
+>   - Rename add_fences and it's parameters
+>   - Remove signaled check
+>   - Remove waiting old_plane_state fences
+> v2:
+>   - Add fences from old fb into new_plane_state->uapi.fence rather than
+>     into old_plane_state->uapi.fence
+> 
+> Cc: Ville Syrjälä <ville.syrjala@linux.intel.com>
+> Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+> Cc: José Roberto de Souza <jose.souza@intel.com>
+> 
+> Signed-off-by: Jouni Högander <jouni.hogander@intel.com>
+> Reviewed-by: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+> ---
+>  drivers/gpu/drm/i915/display/intel_atomic.c   |  3 -
+>  .../gpu/drm/i915/display/intel_atomic_plane.c | 86 +++++++++++--------
+>  drivers/gpu/drm/i915/display/intel_display.c  | 68 +++------------
+>  .../drm/i915/display/intel_display_types.h    |  2 -
+>  4 files changed, 64 insertions(+), 95 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/i915/display/intel_atomic.c b/drivers/gpu/drm/i915/display/intel_atomic.c
+> index 5d18145da279..ec0d5168b503 100644
+> --- a/drivers/gpu/drm/i915/display/intel_atomic.c
+> +++ b/drivers/gpu/drm/i915/display/intel_atomic.c
+> @@ -331,9 +331,6 @@ void intel_atomic_state_free(struct drm_atomic_state *_state)
+>  
+>  	drm_atomic_state_default_release(&state->base);
+>  	kfree(state->global_objs);
+> -
+> -	i915_sw_fence_fini(&state->commit_ready);
+> -
+>  	kfree(state);
+>  }
+>  
+> diff --git a/drivers/gpu/drm/i915/display/intel_atomic_plane.c b/drivers/gpu/drm/i915/display/intel_atomic_plane.c
+> index b1074350616c..d7a2d7ff6090 100644
+> --- a/drivers/gpu/drm/i915/display/intel_atomic_plane.c
+> +++ b/drivers/gpu/drm/i915/display/intel_atomic_plane.c
+> @@ -31,7 +31,10 @@
+>   * prepare/check/commit/cleanup steps.
+>   */
+>  
+> +#include <linux/dma-fence-chain.h>
+> +
+>  #include <drm/drm_atomic_helper.h>
+> +#include <drm/drm_gem_atomic_helper.h>
+>  #include <drm/drm_blend.h>
+>  #include <drm/drm_fourcc.h>
+>  
+> @@ -1012,6 +1015,44 @@ int intel_plane_check_src_coordinates(struct intel_plane_state *plane_state)
+>  	return 0;
+>  }
+>  
+> +static int add_dma_resv_fences_to_new_plane_state(struct dma_resv *resv,
+> +						  struct drm_plane_state *new_plane_state)
+
+The 'to_new_plane_state' part in the name seems a bit redundant.
+
+> +{
+> +	struct dma_fence *fence = dma_fence_get(new_plane_state->fence);
+> +	enum dma_resv_usage usage;
+> +	struct dma_fence *new;
+> +	int ret;
+> +
+> +	usage = fence ? DMA_RESV_USAGE_KERNEL : DMA_RESV_USAGE_WRITE;
+
+I believe we want USAGE_WRITE here always. We aren't attempting
+to make the regular implicit vs. explicit sync decision here.
+
+Apart from that everything else looks good to me. So with that
+sorted this is
+Reviewed-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
+
+> +
+> +	ret = dma_resv_get_singleton(resv, usage, &new);
+> +	if (ret)
+> +		goto error;
+> +
+> +	if (new && fence) {
+> +		struct dma_fence_chain *chain = dma_fence_chain_alloc();
+> +
+> +		if (!chain) {
+> +			ret = -ENOMEM;
+> +			goto error;
+> +		}
+> +
+> +		dma_fence_chain_init(chain, fence, new, 1);
+> +		fence = &chain->base;
+> +
+> +	} else if (new) {
+> +		fence = new;
+> +	}
+> +
+> +	dma_fence_put(new_plane_state->fence);
+> +	new_plane_state->fence = fence;
+> +	return 0;
+> +
+> +error:
+> +	dma_fence_put(fence);
+> +	return ret;
+> +}
+> +
+>  /**
+>   * intel_prepare_plane_fb - Prepare fb for usage on plane
+>   * @_plane: drm plane to prepare for
+> @@ -1035,7 +1076,7 @@ intel_prepare_plane_fb(struct drm_plane *_plane,
+>  	struct intel_atomic_state *state =
+>  		to_intel_atomic_state(new_plane_state->uapi.state);
+>  	struct drm_i915_private *dev_priv = to_i915(plane->base.dev);
+> -	const struct intel_plane_state *old_plane_state =
+> +	struct intel_plane_state *old_plane_state =
+>  		intel_atomic_get_old_plane_state(state, plane);
+>  	struct drm_i915_gem_object *obj = intel_fb_obj(new_plane_state->hw.fb);
+>  	struct drm_i915_gem_object *old_obj = intel_fb_obj(old_plane_state->hw.fb);
+> @@ -1058,55 +1099,28 @@ intel_prepare_plane_fb(struct drm_plane *_plane,
+>  		 * can safely continue.
+>  		 */
+>  		if (new_crtc_state && intel_crtc_needs_modeset(new_crtc_state)) {
+> -			ret = i915_sw_fence_await_reservation(&state->commit_ready,
+> -							      old_obj->base.resv,
+> -							      false, 0,
+> -							      GFP_KERNEL);
+> +			ret = add_dma_resv_fences_to_new_plane_state(old_obj->base.resv,
+> +								     &new_plane_state->uapi);
+>  			if (ret < 0)
+>  				return ret;
+>  		}
+>  	}
+>  
+> -	if (new_plane_state->uapi.fence) { /* explicit fencing */
+> -		i915_gem_fence_wait_priority(new_plane_state->uapi.fence,
+> -					     &attr);
+> -		ret = i915_sw_fence_await_dma_fence(&state->commit_ready,
+> -						    new_plane_state->uapi.fence,
+> -						    i915_fence_timeout(dev_priv),
+> -						    GFP_KERNEL);
+> -		if (ret < 0)
+> -			return ret;
+> -	}
+> -
+>  	if (!obj)
+>  		return 0;
+>  
+> -
+>  	ret = intel_plane_pin_fb(new_plane_state);
+>  	if (ret)
+>  		return ret;
+>  
+> -	i915_gem_object_wait_priority(obj, 0, &attr);
+> +	ret = drm_gem_plane_helper_prepare_fb(&plane->base, &new_plane_state->uapi);
+> +	if (ret < 0)
+> +		goto unpin_fb;
+>  
+> -	if (!new_plane_state->uapi.fence) { /* implicit fencing */
+> -		struct dma_resv_iter cursor;
+> -		struct dma_fence *fence;
+> -
+> -		ret = i915_sw_fence_await_reservation(&state->commit_ready,
+> -						      obj->base.resv, false,
+> -						      i915_fence_timeout(dev_priv),
+> -						      GFP_KERNEL);
+> -		if (ret < 0)
+> -			goto unpin_fb;
+> +	if (new_plane_state->uapi.fence) {
+> +		i915_gem_fence_wait_priority(new_plane_state->uapi.fence,
+> +					     &attr);
+>  
+> -		dma_resv_iter_begin(&cursor, obj->base.resv,
+> -				    DMA_RESV_USAGE_WRITE);
+> -		dma_resv_for_each_fence_unlocked(&cursor, fence) {
+> -			intel_display_rps_boost_after_vblank(new_plane_state->hw.crtc,
+> -							     fence);
+> -		}
+> -		dma_resv_iter_end(&cursor);
+> -	} else {
+>  		intel_display_rps_boost_after_vblank(new_plane_state->hw.crtc,
+>  						     new_plane_state->uapi.fence);
+>  	}
+> diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
+> index 1caf46e3e569..6a37573c3d82 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display.c
+> +++ b/drivers/gpu/drm/i915/display/intel_display.c
+> @@ -48,6 +48,7 @@
+>  #include "g4x_dp.h"
+>  #include "g4x_hdmi.h"
+>  #include "hsw_ips.h"
+> +#include "i915_config.h"
+>  #include "i915_drv.h"
+>  #include "i915_reg.h"
+>  #include "i915_utils.h"
+> @@ -7056,29 +7057,22 @@ void intel_atomic_helper_free_state_worker(struct work_struct *work)
+>  
+>  static void intel_atomic_commit_fence_wait(struct intel_atomic_state *intel_state)
+>  {
+> -	struct wait_queue_entry wait_fence, wait_reset;
+> -	struct drm_i915_private *dev_priv = to_i915(intel_state->base.dev);
+> -
+> -	init_wait_entry(&wait_fence, 0);
+> -	init_wait_entry(&wait_reset, 0);
+> -	for (;;) {
+> -		prepare_to_wait(&intel_state->commit_ready.wait,
+> -				&wait_fence, TASK_UNINTERRUPTIBLE);
+> -		prepare_to_wait(bit_waitqueue(&to_gt(dev_priv)->reset.flags,
+> -					      I915_RESET_MODESET),
+> -				&wait_reset, TASK_UNINTERRUPTIBLE);
+> -
+> +	struct drm_i915_private *i915 = to_i915(intel_state->base.dev);
+> +	struct drm_plane *plane;
+> +	struct drm_plane_state *new_plane_state;
+> +	int ret, i;
+>  
+> -		if (i915_sw_fence_done(&intel_state->commit_ready) ||
+> -		    test_bit(I915_RESET_MODESET, &to_gt(dev_priv)->reset.flags))
+> -			break;
+> +	for_each_new_plane_in_state(&intel_state->base, plane, new_plane_state, i) {
+> +		if (new_plane_state->fence) {
+> +			ret = dma_fence_wait_timeout(new_plane_state->fence, false,
+> +						     i915_fence_timeout(i915));
+> +			if (ret <= 0)
+> +				break;
+>  
+> -		schedule();
+> +			dma_fence_put(new_plane_state->fence);
+> +			new_plane_state->fence = NULL;
+> +		}
+>  	}
+> -	finish_wait(&intel_state->commit_ready.wait, &wait_fence);
+> -	finish_wait(bit_waitqueue(&to_gt(dev_priv)->reset.flags,
+> -				  I915_RESET_MODESET),
+> -		    &wait_reset);
+>  }
+>  
+>  static void intel_atomic_cleanup_work(struct work_struct *work)
+> @@ -7370,32 +7364,6 @@ static void intel_atomic_commit_work(struct work_struct *work)
+>  	intel_atomic_commit_tail(state);
+>  }
+>  
+> -static int
+> -intel_atomic_commit_ready(struct i915_sw_fence *fence,
+> -			  enum i915_sw_fence_notify notify)
+> -{
+> -	struct intel_atomic_state *state =
+> -		container_of(fence, struct intel_atomic_state, commit_ready);
+> -
+> -	switch (notify) {
+> -	case FENCE_COMPLETE:
+> -		/* we do blocking waits in the worker, nothing to do here */
+> -		break;
+> -	case FENCE_FREE:
+> -		{
+> -			struct drm_i915_private *i915 = to_i915(state->base.dev);
+> -			struct intel_atomic_helper *helper =
+> -				&i915->display.atomic_helper;
+> -
+> -			if (llist_add(&state->freed, &helper->free_list))
+> -				queue_work(i915->unordered_wq, &helper->free_work);
+> -			break;
+> -		}
+> -	}
+> -
+> -	return NOTIFY_DONE;
+> -}
+> -
+>  static void intel_atomic_track_fbs(struct intel_atomic_state *state)
+>  {
+>  	struct intel_plane_state *old_plane_state, *new_plane_state;
+> @@ -7418,10 +7386,6 @@ int intel_atomic_commit(struct drm_device *dev, struct drm_atomic_state *_state,
+>  
+>  	state->wakeref = intel_runtime_pm_get(&dev_priv->runtime_pm);
+>  
+> -	drm_atomic_state_get(&state->base);
+> -	i915_sw_fence_init(&state->commit_ready,
+> -			   intel_atomic_commit_ready);
+> -
+>  	/*
+>  	 * The intel_legacy_cursor_update() fast path takes care
+>  	 * of avoiding the vblank waits for simple cursor
+> @@ -7454,7 +7418,6 @@ int intel_atomic_commit(struct drm_device *dev, struct drm_atomic_state *_state,
+>  	if (ret) {
+>  		drm_dbg_atomic(&dev_priv->drm,
+>  			       "Preparing state failed with %i\n", ret);
+> -		i915_sw_fence_commit(&state->commit_ready);
+>  		intel_runtime_pm_put(&dev_priv->runtime_pm, state->wakeref);
+>  		return ret;
+>  	}
+> @@ -7470,8 +7433,6 @@ int intel_atomic_commit(struct drm_device *dev, struct drm_atomic_state *_state,
+>  		struct intel_crtc *crtc;
+>  		int i;
+>  
+> -		i915_sw_fence_commit(&state->commit_ready);
+> -
+>  		for_each_new_intel_crtc_in_state(state, crtc, new_crtc_state, i)
+>  			intel_color_cleanup_commit(new_crtc_state);
+>  
+> @@ -7485,7 +7446,6 @@ int intel_atomic_commit(struct drm_device *dev, struct drm_atomic_state *_state,
+>  	drm_atomic_state_get(&state->base);
+>  	INIT_WORK(&state->base.commit_work, intel_atomic_commit_work);
+>  
+> -	i915_sw_fence_commit(&state->commit_ready);
+>  	if (nonblock && state->modeset) {
+>  		queue_work(dev_priv->display.wq.modeset, &state->base.commit_work);
+>  	} else if (nonblock) {
+> diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/drivers/gpu/drm/i915/display/intel_display_types.h
+> index 65ea37fe8cff..047fe3f8905a 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display_types.h
+> +++ b/drivers/gpu/drm/i915/display/intel_display_types.h
+> @@ -676,8 +676,6 @@ struct intel_atomic_state {
+>  
+>  	bool rps_interactive;
+>  
+> -	struct i915_sw_fence commit_ready;
+> -
+>  	struct llist_node freed;
+>  };
+>  
+> -- 
+> 2.34.1
+
+-- 
+Ville Syrjälä
+Intel
