@@ -2,57 +2,57 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4B2617DD157
-	for <lists+intel-gfx@lfdr.de>; Tue, 31 Oct 2023 17:15:06 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0DFC37DD176
+	for <lists+intel-gfx@lfdr.de>; Tue, 31 Oct 2023 17:23:09 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 759B610E565;
-	Tue, 31 Oct 2023 16:15:04 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5765F10E56C;
+	Tue, 31 Oct 2023 16:23:07 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EF22410E566
- for <intel-gfx@lists.freedesktop.org>; Tue, 31 Oct 2023 16:15:02 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.93])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 88E7E10E56A;
+ Tue, 31 Oct 2023 16:23:05 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1698768902; x=1730304902;
- h=message-id:date:mime-version:subject:to:references:from:
- in-reply-to:content-transfer-encoding;
- bh=Ic9zJim7pUYwLHh8ObMh8xYdzq8sj9TiFNYw3OvtDsA=;
- b=VCxSDUdO0SEO5wJylaUESLrDKhqqRwDiDbMYO4Cg3M+LwMKc1jVjWpnA
- ygMIP434Rr3+qSF1YviMMWJPpm6MQEmTT0xteYv/tpnjWUSe46jmTsQNz
- v3KWK6mTIkNnv8scoB7IX5+2rhrAsGxSDBtbIkWyimf7pfmsuYa9m31RY
- ScOEEb0G18VSbmPfz02K77p7Kkh1EXkICiq1R2aCOw8E4WSHF0i6yQApO
- o7mAXbMWU2Bg32xkqp1vUxeDKLvbtAHdtBQaJlR5KYt6aieczKsFftZ9p
- XnBflHk/KPxG7CNwNzO2Za433hQRC/1QgX/j395IGq8kwgn5tHwTzmN7U w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10880"; a="419431381"
-X-IronPort-AV: E=Sophos;i="6.03,265,1694761200"; d="scan'208";a="419431381"
-Received: from orsmga006.jf.intel.com ([10.7.209.51])
- by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 31 Oct 2023 09:12:13 -0700
+ t=1698769385; x=1730305385;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:in-reply-to;
+ bh=RwuuNJAK+7sQSJQmSTHK9qohrsSPiOemxUURP/vRQkk=;
+ b=b/H0RaI862kHPc2dZWVDpQru/Atu3Pr2wBxSg+JCMBaMHrN1bdjaZ7QG
+ O13+KUt4oSK4XHqpfoj8FFBBSXSOlI1q65sgoiP5N/qfHm/lziB2gM88P
+ EVY1szwGH+QfYAaA4yNGE9o5J3nj9W74l4pyLwfD+IDvXDjrhMVRfnkIW
+ oLWbSY0zbtXeqoY31QufeqkoA96todZ8Vj1o4PAUiMrkTLCgZWzSryb4n
+ 5LfjLrfDLq/zozT9tI9fmocWi0TOiwreyVSm+L57/o3//U7wFm6gDH+32
+ D9xR8fAtojq7F4Nf/+XdkSjQxoWMb3LcEyg/NN+D+fE0/u5yFA/Puy4wN g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10880"; a="385509628"
+X-IronPort-AV: E=Sophos;i="6.03,265,1694761200"; d="scan'208";a="385509628"
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+ by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 31 Oct 2023 09:21:50 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10880"; a="737104328"
-X-IronPort-AV: E=Sophos;i="6.03,265,1694761200"; d="scan'208";a="737104328"
-Received: from nirmoyda-mobl.ger.corp.intel.com (HELO [10.252.48.220])
- ([10.252.48.220])
- by orsmga006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 31 Oct 2023 09:12:12 -0700
-Message-ID: <d6c1b211-c088-5e79-7c43-d6df95b9c9d9@linux.intel.com>
-Date: Tue, 31 Oct 2023 17:12:10 +0100
+X-IronPort-AV: E=McAfee;i="6600,9927,10880"; a="904391019"
+X-IronPort-AV: E=Sophos;i="6.03,265,1694761200"; d="scan'208";a="904391019"
+Received: from smile.fi.intel.com ([10.237.72.54])
+ by fmsmga001.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 31 Oct 2023 09:21:47 -0700
+Received: from andy by smile.fi.intel.com with local (Exim 4.97-RC3)
+ (envelope-from <andriy.shevchenko@linux.intel.com>)
+ id 1qxrUu-0000000ACaZ-1HwF; Tue, 31 Oct 2023 18:21:44 +0200
+Date: Tue, 31 Oct 2023 18:21:43 +0200
+From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+To: Hans de Goede <hdegoede@redhat.com>
+Message-ID: <ZUEplxH51geCyHdb@smile.fi.intel.com>
+References: <20231024155739.3861342-1-andriy.shevchenko@linux.intel.com>
+ <20231024155739.3861342-7-andriy.shevchenko@linux.intel.com>
+ <ZTfssxRsrDxhzSQ6@smile.fi.intel.com>
+ <b489675d-e9de-4bca-9622-78545aa8606d@redhat.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.15.1
-Content-Language: en-US
-To: Jani Nikula <jani.nikula@intel.com>, intel-gfx@lists.freedesktop.org
-References: <20231031124502.1772160-1-jani.nikula@intel.com>
- <20231031124502.1772160-2-jani.nikula@intel.com>
- <a2684135-1bda-f705-8462-11c0122c3bb2@linux.intel.com>
- <87v8am50zy.fsf@intel.com>
-From: Nirmoy Das <nirmoy.das@linux.intel.com>
-In-Reply-To: <87v8am50zy.fsf@intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-Subject: Re: [Intel-gfx] [PATCH RESEND 2/3] drm/i915: move gpu error debugfs
- to i915_gpu_error.c
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <b489675d-e9de-4bca-9622-78545aa8606d@redhat.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+Subject: Re: [Intel-gfx] [PATCH v2 6/7] drm/i915/dsi: Replace poking of CHV
+ GPIOs behind the driver's back
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -65,34 +65,47 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: Jani Nikula <jani.nikula@intel.com>, intel-gfx@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
+ Daniel Vetter <daniel@ffwll.ch>, Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ David Airlie <airlied@gmail.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+On Tue, Oct 31, 2023 at 05:07:39PM +0100, Hans de Goede wrote:
+> On 10/24/23 18:11, Andy Shevchenko wrote:
+> > On Tue, Oct 24, 2023 at 06:57:38PM +0300, Andy Shevchenko wrote:
+> >> It's a dirty hack in the driver that pokes GPIO registers behind
+> >> the driver's back. Moreoever it might be problematic as simultaneous
+> >> I/O may hang the system, see the commit 0bd50d719b00 ("pinctrl:
+> >> cherryview: prevent concurrent access to GPIO controllers") for
+> >> the details. Taking all this into consideration replace the hack
+> >> with proper GPIO APIs being used.
+> > 
+> > Ah, just realised that this won't work if it happens to request to GPIOs with
+> > the same index but different communities. I will fix that in v3, but will wait
+> > for Hans to test VLV and it might even work in most of the cases on CHV as it
+> > seems quite unlikely that the above mentioned assertion is going to happen in
+> > real life.
+> 
+> I have added patches 1-5 to my personal tree + a small debug patch on top
+> which logs when soc_exec_opaque_gpio() actually gets called.
+> 
+> So these patches will now get run every time I run some tests on
+> one my tablets.
+> 
+> I'll get back to you with testing results when I've found a device where
+> the new soc_exec_opaque_gpio() actually gets called.
 
-On 10/31/2023 3:18 PM, Jani Nikula wrote:
-> On Tue, 31 Oct 2023, Nirmoy Das <nirmoy.das@linux.intel.com> wrote:
->> On 10/31/2023 1:45 PM, Jani Nikula wrote:
->>> +void i915_gpu_error_debugfs_register(struct drm_i915_private *i915)
->>> +{
->>> +	struct drm_minor *minor = i915->drm.primary;
->>> +
->>> +	debugfs_create_file("i915_error_state", 0644,
->> nit: s/0644/S_IRUGO | S_IWUSR
-> The direction pretty much across the kernel is to go towards octal
-> permissions because the macros are harder to understand.
+Thank you!
 
-Personally I prefer octal but didn't realize this is preferred in 
-general[*].
+> As for the CHT support, I have not added that to my tree yet, I would
+> prefer to directly test the correct/fixed patch.
 
-[*]https://lore.kernel.org/lkml/7232ef011d05a92f4caa86a5e9830d87966a2eaf.1470180926.git.joe@perches.com/
+Noted, I'll prepare a new version then.
+
+-- 
+With Best Regards,
+Andy Shevchenko
 
 
-Regards,
-
-Nirmoy
-
->
->> Reviewed-by: Nirmoy Das <nirmoy.das@intel.com>
-> Thanks,
-> Jani.
->
