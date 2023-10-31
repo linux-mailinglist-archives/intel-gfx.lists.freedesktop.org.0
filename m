@@ -1,52 +1,52 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 917B87DC89B
-	for <lists+intel-gfx@lfdr.de>; Tue, 31 Oct 2023 09:46:21 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 82DBE7DC89C
+	for <lists+intel-gfx@lfdr.de>; Tue, 31 Oct 2023 09:47:45 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6D1D010E114;
-	Tue, 31 Oct 2023 08:46:17 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0AD9D10E11B;
+	Tue, 31 Oct 2023 08:47:44 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.126])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7303510E114
- for <intel-gfx@lists.freedesktop.org>; Tue, 31 Oct 2023 08:46:15 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.136])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1DBC310E11B
+ for <intel-gfx@lists.freedesktop.org>; Tue, 31 Oct 2023 08:47:42 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1698741975; x=1730277975;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=C29yI6apWPQmR1kJdu8EH9p7LvWtxHYTh79SkE4ub+8=;
- b=Ph1xmtYM6k0Vcyq8T5bc9sx2xtuOOfsjRSIq0hBU0SdtOM3dj3MKRKfX
- e9Sxlot8BP5AkUSzKZJvRHYJCJ7QI/KP5vzvOc0Dc1HHCCz7u7gO3JrQS
- Kox9/jhvrYNyK9R1EmBZwg8gx19xMW5/R8TcSGHCBVhKZ4jUjhMhbjSdy
- s8jakTBMJikT41D1zMrkDCTebpzfX2+fUm5xPJfVEqbeVjvOhZ1WMdA9q
- Itol/QTWpkHwIvP7dWt32t5eM1XYLsF78rPr3zSv0UNGOmGm9XMTxgdiF
- VEUHWBASREWWSTR/0yx339a2u2azg+pYIOcYfIDZK4Nd35TLGN6jKXXGu g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10879"; a="373292852"
-X-IronPort-AV: E=Sophos;i="6.03,265,1694761200"; d="scan'208";a="373292852"
-Received: from fmsmga007.fm.intel.com ([10.253.24.52])
- by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 31 Oct 2023 01:46:14 -0700
+ t=1698742062; x=1730278062;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:in-reply-to;
+ bh=sUwpQhdrymlNnyW4gjRAXzfem1GF1qTHMx6barWlpIA=;
+ b=HBDF92OSXsygNwCPJWXZHgjrMKfXhGdk3I4AHnxTpluH4WKpPOM3WZ5S
+ xOZkmg88bnoruuVFn9FhpgfRJz/OcaPdgEDXvU3/VvqlEKjH4EdShqFJQ
+ fZiKGAKnqg/AJGUJPNLrdk3NyJ808JYvHr0pT12GwlZ3w5bQglNdHBndZ
+ oi1wuNmUNZYUNB36UD2lL7VCk0R8oWN94Kz8mpRlFZMLymye3gnBstwuc
+ m2dTCf/XHzTjfvxIT12vIsu2/LGgV1OnxtDF0yQHeBxsRwywruheQohc/
+ Lh0pW9RDgOtSgRJupVhbdvf8/B/yvmo9M0DufriTE44FsXj0ye+cFcyd7 w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10879"; a="367586772"
+X-IronPort-AV: E=Sophos;i="6.03,265,1694761200"; d="scan'208";a="367586772"
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+ by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 31 Oct 2023 01:47:41 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10879"; a="764164841"
-X-IronPort-AV: E=Sophos;i="6.03,265,1694761200"; d="scan'208";a="764164841"
-Received: from iswiersz-mobl.ger.corp.intel.com (HELO
- jhogande-mobl1.intel.com) ([10.252.51.222])
- by fmsmga007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 31 Oct 2023 01:46:11 -0700
-From: =?UTF-8?q?Jouni=20H=C3=B6gander?= <jouni.hogander@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Tue, 31 Oct 2023 10:45:57 +0200
-Message-Id: <20231031084557.1181630-1-jouni.hogander@intel.com>
-X-Mailer: git-send-email 2.34.1
+X-IronPort-AV: E=McAfee;i="6600,9927,10879"; a="904271898"
+X-IronPort-AV: E=Sophos;i="6.03,265,1694761200"; d="scan'208";a="904271898"
+Received: from unknown (HELO intel.com) ([10.237.72.65])
+ by fmsmga001-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 31 Oct 2023 01:47:40 -0700
+Date: Tue, 31 Oct 2023 10:47:32 +0200
+From: "Lisovskiy, Stanislav" <stanislav.lisovskiy@intel.com>
+To: Imre Deak <imre.deak@intel.com>
+Message-ID: <ZUC/JH79FSWVX4VC@intel.com>
+References: <20231030155843.2251023-1-imre.deak@intel.com>
+ <20231030155843.2251023-26-imre.deak@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH v4] drm/i915/display: Use dma_fence interfaces
- instead of i915_sw_fence
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20231030155843.2251023-26-imre.deak@intel.com>
+Subject: Re: [Intel-gfx] [PATCH v4 25/30] drm/i915/dp_mst: Enable MST DSC
+ decompression for all streams
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,327 +59,222 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-We are preparing for Xe driver. Xe driver doesn't have i915_sw_fence
-implementation. Lets drop i915_sw_fence usage from display code and
-use dma_fence interfaces directly.
+On Mon, Oct 30, 2023 at 05:58:38PM +0200, Imre Deak wrote:
+> Enable DSC decompression for all streams. In particular atm if a sink is
+> connected to a last branch device that is downstream of the first branch
+> device connected to the source, decompression is not enabled for it.
+> Similarly it's not enabled if the sink supports this with the last
+> branch device passing through the compressed stream to it.
+> 
+> Enable DSC in the above cases as well. Since last branch devices may
+> handle the decompression for multiple ports, toggling DSC needs to be
+> refcounted, add this using the DSC AUX device as a reference.
+> 
+> v2:
+> 
+> - Fix refcounting, setting/clearing
+>   connector->dp.dsc_decompression_enabled always as needed. (Stan)
+> - Make the refcounting more uniform for the SST vs. MST case.
+> - Add state checks for connector->dp.dsc_decompression_enabled and
+>   connector crtc.
+> - Sanitize connector DSC decompression state during HW setup.
+> - s/use_count/ref_count/
 
-For this purpose stack dma fences from related objects into new plane
-state. Drm_gem_plane_helper_prepare_fb can be used for fences in new
-fb. Separate local implementation is used for Stacking fences from old fb
-into new plane state. Then wait for these stacked fences during atomic
-commit. There is no be need for separate GPU reset handling in
-intel_atomic_commit_fence_wait as the fences are signaled when GPU hang is
-detected and GPU is being reset.
+Reviewed-by: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
 
-v4:
-  - Drop to_new_plane_state suffix from add_dma_resv_fences
-  - Use dma_resv_usage_rw(false) (DMA_RESV_USAGE_WRITE)
-v3:
-  - Rename add_fences and it's parameters
-  - Remove signaled check
-  - Remove waiting old_plane_state fences
-v2:
-  - Add fences from old fb into new_plane_state->uapi.fence rather than
-    into old_plane_state->uapi.fence
-
-Cc: Ville Syrjälä <ville.syrjala@linux.intel.com>
-Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-Cc: José Roberto de Souza <jose.souza@intel.com>
-
-Signed-off-by: Jouni Högander <jouni.hogander@intel.com>
-Reviewed-by: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-Reviewed-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
----
- drivers/gpu/drm/i915/display/intel_atomic.c   |  3 -
- .../gpu/drm/i915/display/intel_atomic_plane.c | 83 +++++++++++--------
- drivers/gpu/drm/i915/display/intel_display.c  | 68 ++++-----------
- .../drm/i915/display/intel_display_types.h    |  2 -
- 4 files changed, 61 insertions(+), 95 deletions(-)
-
-diff --git a/drivers/gpu/drm/i915/display/intel_atomic.c b/drivers/gpu/drm/i915/display/intel_atomic.c
-index 5d18145da279..ec0d5168b503 100644
---- a/drivers/gpu/drm/i915/display/intel_atomic.c
-+++ b/drivers/gpu/drm/i915/display/intel_atomic.c
-@@ -331,9 +331,6 @@ void intel_atomic_state_free(struct drm_atomic_state *_state)
- 
- 	drm_atomic_state_default_release(&state->base);
- 	kfree(state->global_objs);
--
--	i915_sw_fence_fini(&state->commit_ready);
--
- 	kfree(state);
- }
- 
-diff --git a/drivers/gpu/drm/i915/display/intel_atomic_plane.c b/drivers/gpu/drm/i915/display/intel_atomic_plane.c
-index b1074350616c..3b9a66923422 100644
---- a/drivers/gpu/drm/i915/display/intel_atomic_plane.c
-+++ b/drivers/gpu/drm/i915/display/intel_atomic_plane.c
-@@ -31,7 +31,10 @@
-  * prepare/check/commit/cleanup steps.
-  */
- 
-+#include <linux/dma-fence-chain.h>
-+
- #include <drm/drm_atomic_helper.h>
-+#include <drm/drm_gem_atomic_helper.h>
- #include <drm/drm_blend.h>
- #include <drm/drm_fourcc.h>
- 
-@@ -1012,6 +1015,41 @@ int intel_plane_check_src_coordinates(struct intel_plane_state *plane_state)
- 	return 0;
- }
- 
-+static int add_dma_resv_fences(struct dma_resv *resv,
-+			       struct drm_plane_state *new_plane_state)
-+{
-+	struct dma_fence *fence = dma_fence_get(new_plane_state->fence);
-+	struct dma_fence *new;
-+	int ret;
-+
-+	ret = dma_resv_get_singleton(resv, dma_resv_usage_rw(false), &new);
-+	if (ret)
-+		goto error;
-+
-+	if (new && fence) {
-+		struct dma_fence_chain *chain = dma_fence_chain_alloc();
-+
-+		if (!chain) {
-+			ret = -ENOMEM;
-+			goto error;
-+		}
-+
-+		dma_fence_chain_init(chain, fence, new, 1);
-+		fence = &chain->base;
-+
-+	} else if (new) {
-+		fence = new;
-+	}
-+
-+	dma_fence_put(new_plane_state->fence);
-+	new_plane_state->fence = fence;
-+	return 0;
-+
-+error:
-+	dma_fence_put(fence);
-+	return ret;
-+}
-+
- /**
-  * intel_prepare_plane_fb - Prepare fb for usage on plane
-  * @_plane: drm plane to prepare for
-@@ -1035,7 +1073,7 @@ intel_prepare_plane_fb(struct drm_plane *_plane,
- 	struct intel_atomic_state *state =
- 		to_intel_atomic_state(new_plane_state->uapi.state);
- 	struct drm_i915_private *dev_priv = to_i915(plane->base.dev);
--	const struct intel_plane_state *old_plane_state =
-+	struct intel_plane_state *old_plane_state =
- 		intel_atomic_get_old_plane_state(state, plane);
- 	struct drm_i915_gem_object *obj = intel_fb_obj(new_plane_state->hw.fb);
- 	struct drm_i915_gem_object *old_obj = intel_fb_obj(old_plane_state->hw.fb);
-@@ -1058,55 +1096,28 @@ intel_prepare_plane_fb(struct drm_plane *_plane,
- 		 * can safely continue.
- 		 */
- 		if (new_crtc_state && intel_crtc_needs_modeset(new_crtc_state)) {
--			ret = i915_sw_fence_await_reservation(&state->commit_ready,
--							      old_obj->base.resv,
--							      false, 0,
--							      GFP_KERNEL);
-+			ret = add_dma_resv_fences(old_obj->base.resv,
-+						  &new_plane_state->uapi);
- 			if (ret < 0)
- 				return ret;
- 		}
- 	}
- 
--	if (new_plane_state->uapi.fence) { /* explicit fencing */
--		i915_gem_fence_wait_priority(new_plane_state->uapi.fence,
--					     &attr);
--		ret = i915_sw_fence_await_dma_fence(&state->commit_ready,
--						    new_plane_state->uapi.fence,
--						    i915_fence_timeout(dev_priv),
--						    GFP_KERNEL);
--		if (ret < 0)
--			return ret;
--	}
--
- 	if (!obj)
- 		return 0;
- 
--
- 	ret = intel_plane_pin_fb(new_plane_state);
- 	if (ret)
- 		return ret;
- 
--	i915_gem_object_wait_priority(obj, 0, &attr);
-+	ret = drm_gem_plane_helper_prepare_fb(&plane->base, &new_plane_state->uapi);
-+	if (ret < 0)
-+		goto unpin_fb;
- 
--	if (!new_plane_state->uapi.fence) { /* implicit fencing */
--		struct dma_resv_iter cursor;
--		struct dma_fence *fence;
--
--		ret = i915_sw_fence_await_reservation(&state->commit_ready,
--						      obj->base.resv, false,
--						      i915_fence_timeout(dev_priv),
--						      GFP_KERNEL);
--		if (ret < 0)
--			goto unpin_fb;
-+	if (new_plane_state->uapi.fence) {
-+		i915_gem_fence_wait_priority(new_plane_state->uapi.fence,
-+					     &attr);
- 
--		dma_resv_iter_begin(&cursor, obj->base.resv,
--				    DMA_RESV_USAGE_WRITE);
--		dma_resv_for_each_fence_unlocked(&cursor, fence) {
--			intel_display_rps_boost_after_vblank(new_plane_state->hw.crtc,
--							     fence);
--		}
--		dma_resv_iter_end(&cursor);
--	} else {
- 		intel_display_rps_boost_after_vblank(new_plane_state->hw.crtc,
- 						     new_plane_state->uapi.fence);
- 	}
-diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
-index 1caf46e3e569..6a37573c3d82 100644
---- a/drivers/gpu/drm/i915/display/intel_display.c
-+++ b/drivers/gpu/drm/i915/display/intel_display.c
-@@ -48,6 +48,7 @@
- #include "g4x_dp.h"
- #include "g4x_hdmi.h"
- #include "hsw_ips.h"
-+#include "i915_config.h"
- #include "i915_drv.h"
- #include "i915_reg.h"
- #include "i915_utils.h"
-@@ -7056,29 +7057,22 @@ void intel_atomic_helper_free_state_worker(struct work_struct *work)
- 
- static void intel_atomic_commit_fence_wait(struct intel_atomic_state *intel_state)
- {
--	struct wait_queue_entry wait_fence, wait_reset;
--	struct drm_i915_private *dev_priv = to_i915(intel_state->base.dev);
--
--	init_wait_entry(&wait_fence, 0);
--	init_wait_entry(&wait_reset, 0);
--	for (;;) {
--		prepare_to_wait(&intel_state->commit_ready.wait,
--				&wait_fence, TASK_UNINTERRUPTIBLE);
--		prepare_to_wait(bit_waitqueue(&to_gt(dev_priv)->reset.flags,
--					      I915_RESET_MODESET),
--				&wait_reset, TASK_UNINTERRUPTIBLE);
--
-+	struct drm_i915_private *i915 = to_i915(intel_state->base.dev);
-+	struct drm_plane *plane;
-+	struct drm_plane_state *new_plane_state;
-+	int ret, i;
- 
--		if (i915_sw_fence_done(&intel_state->commit_ready) ||
--		    test_bit(I915_RESET_MODESET, &to_gt(dev_priv)->reset.flags))
--			break;
-+	for_each_new_plane_in_state(&intel_state->base, plane, new_plane_state, i) {
-+		if (new_plane_state->fence) {
-+			ret = dma_fence_wait_timeout(new_plane_state->fence, false,
-+						     i915_fence_timeout(i915));
-+			if (ret <= 0)
-+				break;
- 
--		schedule();
-+			dma_fence_put(new_plane_state->fence);
-+			new_plane_state->fence = NULL;
-+		}
- 	}
--	finish_wait(&intel_state->commit_ready.wait, &wait_fence);
--	finish_wait(bit_waitqueue(&to_gt(dev_priv)->reset.flags,
--				  I915_RESET_MODESET),
--		    &wait_reset);
- }
- 
- static void intel_atomic_cleanup_work(struct work_struct *work)
-@@ -7370,32 +7364,6 @@ static void intel_atomic_commit_work(struct work_struct *work)
- 	intel_atomic_commit_tail(state);
- }
- 
--static int
--intel_atomic_commit_ready(struct i915_sw_fence *fence,
--			  enum i915_sw_fence_notify notify)
--{
--	struct intel_atomic_state *state =
--		container_of(fence, struct intel_atomic_state, commit_ready);
--
--	switch (notify) {
--	case FENCE_COMPLETE:
--		/* we do blocking waits in the worker, nothing to do here */
--		break;
--	case FENCE_FREE:
--		{
--			struct drm_i915_private *i915 = to_i915(state->base.dev);
--			struct intel_atomic_helper *helper =
--				&i915->display.atomic_helper;
--
--			if (llist_add(&state->freed, &helper->free_list))
--				queue_work(i915->unordered_wq, &helper->free_work);
--			break;
--		}
--	}
--
--	return NOTIFY_DONE;
--}
--
- static void intel_atomic_track_fbs(struct intel_atomic_state *state)
- {
- 	struct intel_plane_state *old_plane_state, *new_plane_state;
-@@ -7418,10 +7386,6 @@ int intel_atomic_commit(struct drm_device *dev, struct drm_atomic_state *_state,
- 
- 	state->wakeref = intel_runtime_pm_get(&dev_priv->runtime_pm);
- 
--	drm_atomic_state_get(&state->base);
--	i915_sw_fence_init(&state->commit_ready,
--			   intel_atomic_commit_ready);
--
- 	/*
- 	 * The intel_legacy_cursor_update() fast path takes care
- 	 * of avoiding the vblank waits for simple cursor
-@@ -7454,7 +7418,6 @@ int intel_atomic_commit(struct drm_device *dev, struct drm_atomic_state *_state,
- 	if (ret) {
- 		drm_dbg_atomic(&dev_priv->drm,
- 			       "Preparing state failed with %i\n", ret);
--		i915_sw_fence_commit(&state->commit_ready);
- 		intel_runtime_pm_put(&dev_priv->runtime_pm, state->wakeref);
- 		return ret;
- 	}
-@@ -7470,8 +7433,6 @@ int intel_atomic_commit(struct drm_device *dev, struct drm_atomic_state *_state,
- 		struct intel_crtc *crtc;
- 		int i;
- 
--		i915_sw_fence_commit(&state->commit_ready);
--
- 		for_each_new_intel_crtc_in_state(state, crtc, new_crtc_state, i)
- 			intel_color_cleanup_commit(new_crtc_state);
- 
-@@ -7485,7 +7446,6 @@ int intel_atomic_commit(struct drm_device *dev, struct drm_atomic_state *_state,
- 	drm_atomic_state_get(&state->base);
- 	INIT_WORK(&state->base.commit_work, intel_atomic_commit_work);
- 
--	i915_sw_fence_commit(&state->commit_ready);
- 	if (nonblock && state->modeset) {
- 		queue_work(dev_priv->display.wq.modeset, &state->base.commit_work);
- 	} else if (nonblock) {
-diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/drivers/gpu/drm/i915/display/intel_display_types.h
-index 65ea37fe8cff..047fe3f8905a 100644
---- a/drivers/gpu/drm/i915/display/intel_display_types.h
-+++ b/drivers/gpu/drm/i915/display/intel_display_types.h
-@@ -676,8 +676,6 @@ struct intel_atomic_state {
- 
- 	bool rps_interactive;
- 
--	struct i915_sw_fence commit_ready;
--
- 	struct llist_node freed;
- };
- 
--- 
-2.34.1
-
+> 
+> Cc: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
+> Signed-off-by: Imre Deak <imre.deak@intel.com>
+> ---
+>  .../drm/i915/display/intel_display_types.h    |  1 +
+>  drivers/gpu/drm/i915/display/intel_dp.c       | 72 ++++++++++++++++++-
+>  drivers/gpu/drm/i915/display/intel_dp_mst.c   | 19 ++---
+>  .../drm/i915/display/intel_modeset_setup.c    |  6 ++
+>  4 files changed, 82 insertions(+), 16 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/drivers/gpu/drm/i915/display/intel_display_types.h
+> index 409dbf8a2a1cd..b2744a9b4678c 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display_types.h
+> +++ b/drivers/gpu/drm/i915/display/intel_display_types.h
+> @@ -626,6 +626,7 @@ struct intel_connector {
+>  		u8 fec_capability;
+>  
+>  		u8 dsc_hblank_expansion_quirk:1;
+> +		u8 dsc_decompression_enabled:1;
+>  	} dp;
+>  
+>  	/* Work struct to schedule a uevent on link train failure */
+> diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
+> index 8bc4faa142a62..6d2fd068b8359 100644
+> --- a/drivers/gpu/drm/i915/display/intel_dp.c
+> +++ b/drivers/gpu/drm/i915/display/intel_dp.c
+> @@ -1403,6 +1403,7 @@ static bool intel_dp_supports_dsc(const struct intel_connector *connector,
+>  		return false;
+>  
+>  	return intel_dsc_source_support(crtc_state) &&
+> +		connector->dp.dsc_decompression_aux &&
+>  		drm_dp_sink_supports_dsc(connector->dp.dsc_dpcd);
+>  }
+>  
+> @@ -2986,6 +2987,65 @@ intel_dp_sink_set_dsc_passthrough(const struct intel_connector *connector,
+>  			    str_enable_disable(enable));
+>  }
+>  
+> +static int intel_dp_dsc_aux_ref_count(struct intel_atomic_state *state,
+> +				      const struct intel_connector *connector,
+> +				      bool for_get_ref)
+> +{
+> +	struct drm_i915_private *i915 = to_i915(state->base.dev);
+> +	struct drm_connector *_connector_iter;
+> +	struct drm_connector_state *old_conn_state;
+> +	struct drm_connector_state *new_conn_state;
+> +	int ref_count = 0;
+> +	int i;
+> +
+> +	/*
+> +	 * On SST the decompression AUX device won't be shared, each connector
+> +	 * uses for this its own AUX targeting the sink device.
+> +	 */
+> +	if (!connector->mst_port)
+> +		return connector->dp.dsc_decompression_enabled ? 1 : 0;
+> +
+> +	for_each_oldnew_connector_in_state(&state->base, _connector_iter,
+> +					   old_conn_state, new_conn_state, i) {
+> +		const struct intel_connector *
+> +			connector_iter = to_intel_connector(_connector_iter);
+> +
+> +		if (connector_iter->mst_port != connector->mst_port)
+> +			continue;
+> +
+> +		if (!connector_iter->dp.dsc_decompression_enabled)
+> +			continue;
+> +
+> +		drm_WARN_ON(&i915->drm,
+> +			    (for_get_ref && !new_conn_state->crtc) ||
+> +			    (!for_get_ref && !old_conn_state->crtc));
+> +
+> +		if (connector_iter->dp.dsc_decompression_aux ==
+> +		    connector->dp.dsc_decompression_aux)
+> +			ref_count++;
+> +	}
+> +
+> +	return ref_count;
+> +}
+> +
+> +static bool intel_dp_dsc_aux_get_ref(struct intel_atomic_state *state,
+> +				     struct intel_connector *connector)
+> +{
+> +	bool ret = intel_dp_dsc_aux_ref_count(state, connector, true) == 0;
+> +
+> +	connector->dp.dsc_decompression_enabled = true;
+> +
+> +	return ret;
+> +}
+> +
+> +static bool intel_dp_dsc_aux_put_ref(struct intel_atomic_state *state,
+> +				     struct intel_connector *connector)
+> +{
+> +	connector->dp.dsc_decompression_enabled = false;
+> +
+> +	return intel_dp_dsc_aux_ref_count(state, connector, false) == 0;
+> +}
+> +
+>  /**
+>   * intel_dp_sink_enable_decompression - Enable DSC decompression in sink/last branch device
+>   * @state: atomic state
+> @@ -3009,7 +3069,11 @@ void intel_dp_sink_enable_decompression(struct intel_atomic_state *state,
+>  		return;
+>  
+>  	if (drm_WARN_ON(&i915->drm,
+> -			!connector->dp.dsc_decompression_aux))
+> +			!connector->dp.dsc_decompression_aux ||
+> +			connector->dp.dsc_decompression_enabled))
+> +		return;
+> +
+> +	if (!intel_dp_dsc_aux_get_ref(state, connector))
+>  		return;
+>  
+>  	intel_dp_sink_set_dsc_passthrough(connector, true);
+> @@ -3036,7 +3100,11 @@ void intel_dp_sink_disable_decompression(struct intel_atomic_state *state,
+>  		return;
+>  
+>  	if (drm_WARN_ON(&i915->drm,
+> -			!connector->dp.dsc_decompression_aux))
+> +			!connector->dp.dsc_decompression_aux ||
+> +			!connector->dp.dsc_decompression_enabled))
+> +		return;
+> +
+> +	if (!intel_dp_dsc_aux_put_ref(state, connector))
+>  		return;
+>  
+>  	intel_dp_sink_set_dsc_decompression(connector, false);
+> diff --git a/drivers/gpu/drm/i915/display/intel_dp_mst.c b/drivers/gpu/drm/i915/display/intel_dp_mst.c
+> index 355a573c97930..9037e11ec6e0d 100644
+> --- a/drivers/gpu/drm/i915/display/intel_dp_mst.c
+> +++ b/drivers/gpu/drm/i915/display/intel_dp_mst.c
+> @@ -748,12 +748,7 @@ static void intel_mst_disable_dp(struct intel_atomic_state *state,
+>  
+>  	intel_audio_codec_disable(encoder, old_crtc_state, old_conn_state);
+>  
+> -	if (intel_dp->active_mst_links == 1) /* last stream ? */
+> -		/*
+> -		 * TODO: disable decompression for all streams/in any MST ports, not
+> -		 * only in the first downstream branch device.
+> -		 */
+> -		intel_dp_sink_disable_decompression(state, connector, old_crtc_state);
+> +	intel_dp_sink_disable_decompression(state, connector, old_crtc_state);
+>  }
+>  
+>  static void intel_mst_post_disable_dp(struct intel_atomic_state *state,
+> @@ -908,15 +903,11 @@ static void intel_mst_pre_enable_dp(struct intel_atomic_state *state,
+>  
+>  	drm_dp_send_power_updown_phy(&intel_dp->mst_mgr, connector->port, true);
+>  
+> -	if (first_mst_stream) {
+> -		/*
+> -		 * TODO: enable decompression for all streams/in any MST ports, not
+> -		 * only in the first downstream branch device.
+> -		 */
+> -		intel_dp_sink_enable_decompression(state, connector, pipe_config);
+> +	intel_dp_sink_enable_decompression(state, connector, pipe_config);
+> +
+> +	if (first_mst_stream)
+>  		dig_port->base.pre_enable(state, &dig_port->base,
+>  						pipe_config, NULL);
+> -	}
+>  
+>  	intel_dp->active_mst_links++;
+>  
+> @@ -1362,7 +1353,7 @@ static struct drm_connector *intel_dp_add_mst_connector(struct drm_dp_mst_topolo
+>  	 * At the moment the driver only supports enabling this globally in the
+>  	 * first downstream MST branch, via intel_dp's (root port) AUX.
+>  	 */
+> -	intel_connector->dp.dsc_decompression_aux = &intel_dp->aux;
+> +	intel_connector->dp.dsc_decompression_aux = drm_dp_mst_dsc_aux_for_port(port);
+>  	intel_dp_mst_read_decompression_port_dsc_caps(intel_dp, intel_connector);
+>  	intel_connector->dp.dsc_hblank_expansion_quirk =
+>  		detect_dsc_hblank_expansion_quirk(intel_connector);
+> diff --git a/drivers/gpu/drm/i915/display/intel_modeset_setup.c b/drivers/gpu/drm/i915/display/intel_modeset_setup.c
+> index b8f43efb0ab5a..94eece7f63be3 100644
+> --- a/drivers/gpu/drm/i915/display/intel_modeset_setup.c
+> +++ b/drivers/gpu/drm/i915/display/intel_modeset_setup.c
+> @@ -318,6 +318,12 @@ static void intel_modeset_update_connector_atomic_state(struct drm_i915_private
+>  			const struct intel_crtc_state *crtc_state =
+>  				to_intel_crtc_state(crtc->base.state);
+>  
+> +			if (crtc_state->dsc.compression_enable) {
+> +				drm_WARN_ON(&i915->drm, !connector->dp.dsc_decompression_aux);
+> +				connector->dp.dsc_decompression_enabled = true;
+> +			} else {
+> +				connector->dp.dsc_decompression_enabled = false;
+> +			}
+>  			conn_state->max_bpc = (crtc_state->pipe_bpp ?: 24) / 3;
+>  		}
+>  	}
+> -- 
+> 2.39.2
+> 
