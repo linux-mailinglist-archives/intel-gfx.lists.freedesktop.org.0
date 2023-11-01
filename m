@@ -1,54 +1,53 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id CE24F7DDF38
-	for <lists+intel-gfx@lfdr.de>; Wed,  1 Nov 2023 11:17:01 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id AAC257DDF31
+	for <lists+intel-gfx@lfdr.de>; Wed,  1 Nov 2023 11:16:56 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2A06510E6B1;
-	Wed,  1 Nov 2023 10:17:00 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2174A10E6AF;
+	Wed,  1 Nov 2023 10:16:55 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 43C8910E6B1
- for <intel-gfx@lists.freedesktop.org>; Wed,  1 Nov 2023 10:16:57 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.93])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CCFC510E6AF
+ for <intel-gfx@lists.freedesktop.org>; Wed,  1 Nov 2023 10:16:53 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1698833817; x=1730369817;
+ t=1698833813; x=1730369813;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=o51TB2f+HWDRIokLvvlWQYFq0c3/JFb95C/fYIKVF3c=;
- b=Z7KY01oIoZSWobyNqENUel5F0lmf3MasIL4vDrMisugUVIGohKKttJ/K
- g56nZ90/NKgwqztUOagZOMMUqZ5oyvAIqXRGm2zFzh4aBjdLIm6OPv7QD
- epy2i3kdlUag7UNL7p0D8uhiHUd8vkTCpJDY78HVkC5MY5WpqDBsueSik
- XvxKVpDlxAV46A2POPsTjMtVdIw2E5aD9JA1XidpkQA/+UNwVUKvVGF40
- sWNmyk2YAJLyW542+5hatVc7NqtBTIyRFo/BIkHdC6al7Cq+5eyi9vu0j
- csJ9P5rZiZkpe2142B0Fdsl0k/CPKjWCA91enSWjben51Ok42yIiJ+Axn A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10880"; a="1323433"
-X-IronPort-AV: E=Sophos;i="6.03,267,1694761200"; 
-   d="scan'208";a="1323433"
-Received: from fmsmga008.fm.intel.com ([10.253.24.58])
- by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Nov 2023 03:16:48 -0700
+ bh=3xZOzAKYJbCb7DVW9Olo4MJCz2OD7dy7zIJpzIs/YPA=;
+ b=htrjTFWSeAt41DRaOl/E9Q8KBd1maE+FFb4FVqYl1PMgAFwslvq3bpkd
+ LSzP0IRyufI1j7bYnldRMUqrooRrLfxBz5M39U+NodSCppw7Sil8+TKcP
+ SZL3XL4VzbB4sYswDU7nRfv+OH0IywNerv+l0PjnQpkr0r3V0HH06ELDF
+ P9T2npY+PEjU0GMLsv8K+ClupMjAQO4UqGsm45tEQh4QUwiwqYRtOIYSi
+ vs/bPYPtqJ8KxrWjwfmL/4vZj5YhqQLpw2QtBzVchfkxvSbbCiRbRAsQv
+ oNsy24uvorRxdnSHEsxN7V6lebxVVEwXoNAdRiwjVJ80ny6/F6CaAUh8h Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10880"; a="385647431"
+X-IronPort-AV: E=Sophos;i="6.03,267,1694761200"; d="scan'208";a="385647431"
+Received: from orviesa002.jf.intel.com ([10.64.159.142])
+ by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 01 Nov 2023 03:16:52 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10880"; a="826732527"
-X-IronPort-AV: E=Sophos;i="6.03,267,1694761200"; d="scan'208";a="826732527"
+X-IronPort-AV: E=Sophos;i="6.03,267,1694761200"; 
+   d="scan'208";a="2044718"
 Received: from sartorig-mobl.ger.corp.intel.com (HELO localhost)
  ([10.252.50.166])
- by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Nov 2023 03:16:46 -0700
+ by orviesa002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 01 Nov 2023 03:16:51 -0700
 From: Jani Nikula <jani.nikula@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Wed,  1 Nov 2023 12:16:19 +0200
-Message-Id: <9c4a95baa462c6d7af5a416050268ad33eb82c28.1698833543.git.jani.nikula@intel.com>
+Date: Wed,  1 Nov 2023 12:16:20 +0200
+Message-Id: <251ce78472dc3dffd522043dc366be0afa2ad75e.1698833543.git.jani.nikula@intel.com>
 X-Mailer: git-send-email 2.39.2
 In-Reply-To: <cover.1698833543.git.jani.nikula@intel.com>
 References: <cover.1698833543.git.jani.nikula@intel.com>
 MIME-Version: 1.0
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH 4/5] drm/i915/dsi: rename platform specific
- *_exec_gpio() to *_gpio_set_value()
+Subject: [Intel-gfx] [PATCH 5/5] drm/i915/dsi: bxt/icl GPIO set value do not
+ need gpio source
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -66,50 +65,25 @@ Cc: jani.nikula@intel.com, Hans de Goede <hdegoede@redhat.com>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-The lowest level functions are about setting GPIO values, not about
-executing any sequences anymore.
+Drop the unused parameter.
 
 Cc: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
 Cc: Hans de Goede <hdegoede@redhat.com>
 Signed-off-by: Jani Nikula <jani.nikula@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_dsi_vbt.c | 20 ++++++++++----------
- 1 file changed, 10 insertions(+), 10 deletions(-)
+ drivers/gpu/drm/i915/display/intel_dsi_vbt.c | 6 +++---
+ 1 file changed, 3 insertions(+), 3 deletions(-)
 
 diff --git a/drivers/gpu/drm/i915/display/intel_dsi_vbt.c b/drivers/gpu/drm/i915/display/intel_dsi_vbt.c
-index 11073efe26c0..f977d63a0ad4 100644
+index f977d63a0ad4..4af43cf3cee0 100644
 --- a/drivers/gpu/drm/i915/display/intel_dsi_vbt.c
 +++ b/drivers/gpu/drm/i915/display/intel_dsi_vbt.c
-@@ -243,8 +243,8 @@ static const u8 *mipi_exec_delay(struct intel_dsi *intel_dsi, const u8 *data)
- 	return data;
+@@ -346,7 +346,7 @@ static void chv_gpio_set_value(struct intel_connector *connector,
  }
  
--static void vlv_exec_gpio(struct intel_connector *connector,
--			  u8 gpio_source, u8 gpio_index, bool value)
-+static void vlv_gpio_set_value(struct intel_connector *connector,
-+			       u8 gpio_source, u8 gpio_index, bool value)
- {
- 	struct drm_i915_private *dev_priv = to_i915(connector->base.dev);
- 	struct gpio_map *map;
-@@ -291,8 +291,8 @@ static void vlv_exec_gpio(struct intel_connector *connector,
- 	vlv_iosf_sb_put(dev_priv, BIT(VLV_IOSF_SB_GPIO));
- }
- 
--static void chv_exec_gpio(struct intel_connector *connector,
--			  u8 gpio_source, u8 gpio_index, bool value)
-+static void chv_gpio_set_value(struct intel_connector *connector,
-+			       u8 gpio_source, u8 gpio_index, bool value)
- {
- 	struct drm_i915_private *dev_priv = to_i915(connector->base.dev);
- 	u16 cfg0, cfg1;
-@@ -345,8 +345,8 @@ static void chv_exec_gpio(struct intel_connector *connector,
- 	vlv_iosf_sb_put(dev_priv, BIT(VLV_IOSF_SB_GPIO));
- }
- 
--static void bxt_exec_gpio(struct intel_connector *connector,
--			  u8 gpio_source, u8 gpio_index, bool value)
-+static void bxt_gpio_set_value(struct intel_connector *connector,
-+			       u8 gpio_source, u8 gpio_index, bool value)
+ static void bxt_gpio_set_value(struct intel_connector *connector,
+-			       u8 gpio_source, u8 gpio_index, bool value)
++			       u8 gpio_index, bool value)
  {
  	struct drm_i915_private *dev_priv = to_i915(connector->base.dev);
  	/* XXX: this table is a quick ugly hack. */
@@ -117,17 +91,15 @@ index 11073efe26c0..f977d63a0ad4 100644
  	if (native)
  		icl_native_gpio_set_value(i915, gpio_number, value);
  	else if (DISPLAY_VER(i915) >= 11)
--		bxt_exec_gpio(connector, gpio_source, gpio_index, value);
-+		bxt_gpio_set_value(connector, gpio_source, gpio_index, value);
+-		bxt_gpio_set_value(connector, gpio_source, gpio_index, value);
++		bxt_gpio_set_value(connector, gpio_index, value);
  	else if (IS_VALLEYVIEW(i915))
--		vlv_exec_gpio(connector, gpio_source, gpio_number, value);
-+		vlv_gpio_set_value(connector, gpio_source, gpio_number, value);
+ 		vlv_gpio_set_value(connector, gpio_source, gpio_number, value);
  	else if (IS_CHERRYVIEW(i915))
--		chv_exec_gpio(connector, gpio_source, gpio_number, value);
-+		chv_gpio_set_value(connector, gpio_source, gpio_number, value);
+ 		chv_gpio_set_value(connector, gpio_source, gpio_number, value);
  	else
--		bxt_exec_gpio(connector, gpio_source, gpio_index, value);
-+		bxt_gpio_set_value(connector, gpio_source, gpio_index, value);
+-		bxt_gpio_set_value(connector, gpio_source, gpio_index, value);
++		bxt_gpio_set_value(connector, gpio_index, value);
  
  	return data + size;
  }
