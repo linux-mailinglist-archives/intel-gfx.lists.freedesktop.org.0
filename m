@@ -2,51 +2,51 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 156637DE073
-	for <lists+intel-gfx@lfdr.de>; Wed,  1 Nov 2023 12:42:25 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id C2ED77DE074
+	for <lists+intel-gfx@lfdr.de>; Wed,  1 Nov 2023 12:42:27 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DEB3F10E6D0;
-	Wed,  1 Nov 2023 11:42:22 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1C98110E6CF;
+	Wed,  1 Nov 2023 11:42:26 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.65])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2CD1810E6CE
- for <intel-gfx@lists.freedesktop.org>; Wed,  1 Nov 2023 11:42:21 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4480089C28
+ for <intel-gfx@lists.freedesktop.org>; Wed,  1 Nov 2023 11:42:24 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1698838941; x=1730374941;
+ t=1698838944; x=1730374944;
  h=from:to:subject:date:message-id:in-reply-to:references:
  mime-version:content-transfer-encoding;
- bh=8jKE4SEAeA6Tt/r0D+aFOnLwDL0l3SgGrCZbYapPya0=;
- b=I4WWqA9czavW81LmnpsSeH30ymi2A9XgSjP0MpEvDmZ1SRWRLXXxscmR
- rYBS/AaR8QKHgrlHLoeDhxG3hmHCTKkvOW5h5PYTvbFDbDs2vUzhKU/Xv
- BdbyxUroifv0yXao0mC1xex9iLHSzaBXtG3n68IzqOD1rvjmZv8hocuss
- R7PWRZOCclf/7XFctIBi/HI2zZqOnpJNMottVylxzwgWxRh15OLft5yX7
- x7AL2qMke/F6ReYwTWUjCTdcpCefuGfawguILTh4JBaNy+Pk4Pw9wKSdq
- W3zS2Onx8HWoB8TOfMycUQ2HDShW5g2Nr6WKGFrGOnNrxwkToVyVov+WD A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10880"; a="392338774"
-X-IronPort-AV: E=Sophos;i="6.03,268,1694761200"; d="scan'208";a="392338774"
+ bh=Zy9qoKmoeT71avM6pjuJ6MpTv0iIQkOxfxHnOfuLYPQ=;
+ b=IVKJhvVw820VfIZthebwvPguziulR3saWnqhvoHqDe+llXPCdQbchjLC
+ UsYCfKAuaikY0bqwY7BEyVRIlJvkvGectsrAL0wl40d1Tsqhg4spP+2dJ
+ C2ufOvcadZddJct0f8tWj9hQfkursmg/KWSgS71TYMYDQwTKAuyafibUu
+ B+Fsx6wPsW0ro+mB6lp9EMUeT3DnOugIBCbVm+CE5cYX50njTEG3dw/Mf
+ B327aQFBfMcJHPtHRnOZcTxyHyKn2NS7bMlI5zGT+aUhTClZhQnoNdiVm
+ JvW20AP2EkVKhZwMmb3IT5m5iq0GhfEL0ZnBtJMDnzpy+xfWclLAu8hSG Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10880"; a="392338775"
+X-IronPort-AV: E=Sophos;i="6.03,268,1694761200"; d="scan'208";a="392338775"
 Received: from orsmga007.jf.intel.com ([10.7.209.58])
  by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Nov 2023 04:42:21 -0700
+ 01 Nov 2023 04:42:24 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10880"; a="754450269"
-X-IronPort-AV: E=Sophos;i="6.03,268,1694761200"; d="scan'208";a="754450269"
+X-IronPort-AV: E=McAfee;i="6600,9927,10880"; a="754450274"
+X-IronPort-AV: E=Sophos;i="6.03,268,1694761200"; d="scan'208";a="754450274"
 Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.74])
- by orsmga007.jf.intel.com with SMTP; 01 Nov 2023 04:42:19 -0700
+ by orsmga007.jf.intel.com with SMTP; 01 Nov 2023 04:42:22 -0700
 Received: by stinkbox (sSMTP sendmail emulation);
- Wed, 01 Nov 2023 13:42:18 +0200
+ Wed, 01 Nov 2023 13:42:21 +0200
 From: Ville Syrjala <ville.syrjala@linux.intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Wed,  1 Nov 2023 13:42:09 +0200
-Message-ID: <20231101114212.9345-3-ville.syrjala@linux.intel.com>
+Date: Wed,  1 Nov 2023 13:42:10 +0200
+Message-ID: <20231101114212.9345-4-ville.syrjala@linux.intel.com>
 X-Mailer: git-send-email 2.41.0
 In-Reply-To: <20231101114212.9345-1-ville.syrjala@linux.intel.com>
 References: <20231101114212.9345-1-ville.syrjala@linux.intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH 2/5] drm/i915: Stop using a 'reg' variable
+Subject: [Intel-gfx] [PATCH 3/5] drm/i915: Extract mchbar_reg()
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,74 +64,105 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-'reg' is a very non-descriptive name. Just get rid of the silly
-local variable and spell out the full register name always.
+Stop repeating the same logic to determine the correct
+config space register for MCHBAR.
 
 Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_display.c | 15 ++++++---------
- 1 file changed, 6 insertions(+), 9 deletions(-)
+ drivers/gpu/drm/i915/soc/intel_gmch.c | 27 ++++++++++++++-------------
+ 1 file changed, 14 insertions(+), 13 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
-index 1abb81981ef5..751c36679b01 100644
---- a/drivers/gpu/drm/i915/display/intel_display.c
-+++ b/drivers/gpu/drm/i915/display/intel_display.c
-@@ -397,7 +397,6 @@ void intel_enable_transcoder(const struct intel_crtc_state *new_crtc_state)
- 	struct drm_i915_private *dev_priv = to_i915(crtc->base.dev);
- 	enum transcoder cpu_transcoder = new_crtc_state->cpu_transcoder;
- 	enum pipe pipe = crtc->pipe;
--	i915_reg_t reg;
- 	u32 val;
+diff --git a/drivers/gpu/drm/i915/soc/intel_gmch.c b/drivers/gpu/drm/i915/soc/intel_gmch.c
+index f32e9f78770a..40874ebfb64c 100644
+--- a/drivers/gpu/drm/i915/soc/intel_gmch.c
++++ b/drivers/gpu/drm/i915/soc/intel_gmch.c
+@@ -33,18 +33,22 @@ int intel_gmch_bridge_setup(struct drm_i915_private *i915)
+ 					i915->gmch.pdev);
+ }
  
- 	drm_dbg_kms(&dev_priv->drm, "enabling pipe %c\n", pipe_name(pipe));
-@@ -430,16 +429,16 @@ void intel_enable_transcoder(const struct intel_crtc_state *new_crtc_state)
- 		intel_de_rmw(dev_priv, PIPE_ARB_CTL(pipe),
- 			     0, PIPE_ARB_USE_PROG_SLOTS);
++static int mchbar_reg(struct drm_i915_private *i915)
++{
++	return GRAPHICS_VER(i915) >= 4 ? MCHBAR_I965 : MCHBAR_I915;
++}
++
+ /* Allocate space for the MCH regs if needed, return nonzero on error */
+ static int
+ intel_alloc_mchbar_resource(struct drm_i915_private *i915)
+ {
+-	int reg = GRAPHICS_VER(i915) >= 4 ? MCHBAR_I965 : MCHBAR_I915;
+ 	u32 temp_lo, temp_hi = 0;
+ 	u64 mchbar_addr;
+ 	int ret;
  
--	reg = TRANSCONF(cpu_transcoder);
--	val = intel_de_read(dev_priv, reg);
-+	val = intel_de_read(dev_priv, TRANSCONF(cpu_transcoder));
- 	if (val & TRANSCONF_ENABLE) {
- 		/* we keep both pipes enabled on 830 */
- 		drm_WARN_ON(&dev_priv->drm, !IS_I830(dev_priv));
- 		return;
+ 	if (GRAPHICS_VER(i915) >= 4)
+-		pci_read_config_dword(i915->gmch.pdev, reg + 4, &temp_hi);
+-	pci_read_config_dword(i915->gmch.pdev, reg, &temp_lo);
++		pci_read_config_dword(i915->gmch.pdev, mchbar_reg(i915) + 4, &temp_hi);
++	pci_read_config_dword(i915->gmch.pdev, mchbar_reg(i915), &temp_lo);
+ 	mchbar_addr = ((u64)temp_hi << 32) | temp_lo;
+ 
+ 	/* If ACPI doesn't have it, assume we need to allocate it ourselves */
+@@ -68,10 +72,10 @@ intel_alloc_mchbar_resource(struct drm_i915_private *i915)
  	}
  
--	intel_de_write(dev_priv, reg, val | TRANSCONF_ENABLE);
--	intel_de_posting_read(dev_priv, reg);
-+	intel_de_write(dev_priv, TRANSCONF(cpu_transcoder),
-+		       val | TRANSCONF_ENABLE);
-+	intel_de_posting_read(dev_priv, TRANSCONF(cpu_transcoder));
+ 	if (GRAPHICS_VER(i915) >= 4)
+-		pci_write_config_dword(i915->gmch.pdev, reg + 4,
++		pci_write_config_dword(i915->gmch.pdev, mchbar_reg(i915) + 4,
+ 				       upper_32_bits(i915->gmch.mch_res.start));
  
- 	/*
- 	 * Until the pipe starts PIPEDSL reads will return a stale value,
-@@ -458,7 +457,6 @@ void intel_disable_transcoder(const struct intel_crtc_state *old_crtc_state)
- 	struct drm_i915_private *dev_priv = to_i915(crtc->base.dev);
- 	enum transcoder cpu_transcoder = old_crtc_state->cpu_transcoder;
- 	enum pipe pipe = crtc->pipe;
--	i915_reg_t reg;
- 	u32 val;
+-	pci_write_config_dword(i915->gmch.pdev, reg,
++	pci_write_config_dword(i915->gmch.pdev, mchbar_reg(i915),
+ 			       lower_32_bits(i915->gmch.mch_res.start));
+ 	return 0;
+ }
+@@ -79,7 +83,6 @@ intel_alloc_mchbar_resource(struct drm_i915_private *i915)
+ /* Setup MCHBAR if possible, return true if we should disable it again */
+ void intel_gmch_bar_setup(struct drm_i915_private *i915)
+ {
+-	int mchbar_reg = GRAPHICS_VER(i915) >= 4 ? MCHBAR_I965 : MCHBAR_I915;
+ 	u32 temp;
+ 	bool enabled;
  
- 	drm_dbg_kms(&dev_priv->drm, "disabling pipe %c\n", pipe_name(pipe));
-@@ -469,8 +467,7 @@ void intel_disable_transcoder(const struct intel_crtc_state *old_crtc_state)
- 	 */
- 	assert_planes_disabled(crtc);
+@@ -92,7 +95,7 @@ void intel_gmch_bar_setup(struct drm_i915_private *i915)
+ 		pci_read_config_dword(i915->gmch.pdev, DEVEN, &temp);
+ 		enabled = !!(temp & DEVEN_MCHBAR_EN);
+ 	} else {
+-		pci_read_config_dword(i915->gmch.pdev, mchbar_reg, &temp);
++		pci_read_config_dword(i915->gmch.pdev, mchbar_reg(i915), &temp);
+ 		enabled = temp & 1;
+ 	}
  
--	reg = TRANSCONF(cpu_transcoder);
--	val = intel_de_read(dev_priv, reg);
-+	val = intel_de_read(dev_priv, TRANSCONF(cpu_transcoder));
- 	if ((val & TRANSCONF_ENABLE) == 0)
- 		return;
+@@ -110,15 +113,13 @@ void intel_gmch_bar_setup(struct drm_i915_private *i915)
+ 		pci_write_config_dword(i915->gmch.pdev, DEVEN,
+ 				       temp | DEVEN_MCHBAR_EN);
+ 	} else {
+-		pci_read_config_dword(i915->gmch.pdev, mchbar_reg, &temp);
+-		pci_write_config_dword(i915->gmch.pdev, mchbar_reg, temp | 1);
++		pci_read_config_dword(i915->gmch.pdev, mchbar_reg(i915), &temp);
++		pci_write_config_dword(i915->gmch.pdev, mchbar_reg(i915), temp | 1);
+ 	}
+ }
  
-@@ -485,7 +482,7 @@ void intel_disable_transcoder(const struct intel_crtc_state *old_crtc_state)
- 	if (!IS_I830(dev_priv))
- 		val &= ~TRANSCONF_ENABLE;
+ void intel_gmch_bar_teardown(struct drm_i915_private *i915)
+ {
+-	int mchbar_reg = GRAPHICS_VER(i915) >= 4 ? MCHBAR_I965 : MCHBAR_I915;
+-
+ 	if (i915->gmch.mchbar_need_disable) {
+ 		if (IS_I915G(i915) || IS_I915GM(i915)) {
+ 			u32 deven_val;
+@@ -131,10 +132,10 @@ void intel_gmch_bar_teardown(struct drm_i915_private *i915)
+ 		} else {
+ 			u32 mchbar_val;
  
--	intel_de_write(dev_priv, reg, val);
-+	intel_de_write(dev_priv, TRANSCONF(cpu_transcoder), val);
- 
- 	if (DISPLAY_VER(dev_priv) >= 12)
- 		intel_de_rmw(dev_priv, hsw_chicken_trans_reg(dev_priv, cpu_transcoder),
+-			pci_read_config_dword(i915->gmch.pdev, mchbar_reg,
++			pci_read_config_dword(i915->gmch.pdev, mchbar_reg(i915),
+ 					      &mchbar_val);
+ 			mchbar_val &= ~1;
+-			pci_write_config_dword(i915->gmch.pdev, mchbar_reg,
++			pci_write_config_dword(i915->gmch.pdev, mchbar_reg(i915),
+ 					       mchbar_val);
+ 		}
+ 	}
 -- 
 2.41.0
 
