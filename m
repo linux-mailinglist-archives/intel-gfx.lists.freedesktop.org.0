@@ -1,53 +1,50 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 113387DDEEC
-	for <lists+intel-gfx@lfdr.de>; Wed,  1 Nov 2023 11:06:53 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id C17587DDF2B
+	for <lists+intel-gfx@lfdr.de>; Wed,  1 Nov 2023 11:16:32 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 40EF410E6A2;
-	Wed,  1 Nov 2023 10:06:50 +0000 (UTC)
-X-Original-To: Intel-gfx@lists.freedesktop.org
-Delivered-To: Intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.120])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6AA1F10E6A2;
- Wed,  1 Nov 2023 10:06:48 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2A2F810E009;
+	Wed,  1 Nov 2023 10:16:29 +0000 (UTC)
+X-Original-To: intel-gfx@lists.freedesktop.org
+Delivered-To: intel-gfx@lists.freedesktop.org
+Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.93])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 45BD210E009
+ for <intel-gfx@lists.freedesktop.org>; Wed,  1 Nov 2023 10:16:27 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1698833208; x=1730369208;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=p5R2iZQRJG+abCenQeDgAs1cs0KVgUBJ1kB6ME2nghA=;
- b=jYgWGcIWOsBfBnK9IKGV2IMwgBKCEl4WyULC4MxjJo3WcLqUKQgy9JyO
- zxUTSOU0IRJuxrGHKVJlPmpucUKuoiAokrJNgXPeVfs+DZmYdcmEGziXt
- a3wLqhQS5KicHDR8YNvjf/fUWfsmTbpqXTQnqadBJW3LY8JBGmHLH38uD
- CEa8iK29sF+NtP5ZnM+k7thaikeMchX1X17Y+QNERIAsC0QJH0+2+Gfwy
- ngyV89GB/l25iGRxMwWLtJGNPHa9VQQIvcG+caXBHUWm2CB0VtXuAVkYn
- A91wXnMaLFZiL6A6x1Pcs65HdMMX6H5ANA62sQL6zdp2MchZlXtGmcRNc w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10880"; a="387352401"
-X-IronPort-AV: E=Sophos;i="6.03,267,1694761200"; d="scan'208";a="387352401"
-Received: from fmsmga005.fm.intel.com ([10.253.24.32])
- by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Nov 2023 03:06:47 -0700
+ t=1698833787; x=1730369787;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=5rbaMPwnNvDFyGEvrSCIyCCljfNhCKQd2fRdL4OV4EY=;
+ b=L1zViLw4VUjrHakXiq5tOP0SwZS45ko+vLZmwL6LJ6F67AcfTQeaS37L
+ su0CbykwLQsVa8VL2lHBSVWO3JihyWykpDSS+ZAmSgeYh9W046QtXyjZW
+ oPxpeoFdJ6p39T8DKK+p23huhF4/u2MK+Yz3cGTb5xr/8hS38sZb1k5Js
+ vgkH2m7DeR14/e6mqY3KOOzzbjW0+dvfMjPtS2Sp0acjZADmONFCPI3NM
+ 7xCoU5/V/+TIWaSCvpBOx+m+AH5rroaXRAvSR54HCenQRplU/JB9xOjsE
+ xYKdV+zDBd5gQLl7TZVKqQRULesMysuaufBey5RobzGflh3AaDvunCgDP A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10880"; a="385647399"
+X-IronPort-AV: E=Sophos;i="6.03,267,1694761200"; d="scan'208";a="385647399"
+Received: from orviesa002.jf.intel.com ([10.64.159.142])
+ by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 01 Nov 2023 03:16:26 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10880"; a="1092307405"
-X-IronPort-AV: E=Sophos;i="6.03,267,1694761200"; d="scan'208";a="1092307405"
+X-IronPort-AV: E=Sophos;i="6.03,267,1694761200"; 
+   d="scan'208";a="2044682"
 Received: from sartorig-mobl.ger.corp.intel.com (HELO localhost)
  ([10.252.50.166])
- by fmsmga005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Nov 2023 03:06:45 -0700
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
- Intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
-In-Reply-To: <20231101100124.303739-1-tvrtko.ursulin@linux.intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20231101100124.303739-1-tvrtko.ursulin@linux.intel.com>
-Date: Wed, 01 Nov 2023 12:06:42 +0200
-Message-ID: <87sf5p4wjx.fsf@intel.com>
+ by orviesa002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 01 Nov 2023 03:16:24 -0700
+From: Jani Nikula <jani.nikula@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Wed,  1 Nov 2023 12:16:15 +0200
+Message-Id: <cover.1698833543.git.jani.nikula@intel.com>
+X-Mailer: git-send-email 2.39.2
 MIME-Version: 1.0
-Content-Type: text/plain
-Subject: Re: [Intel-gfx] [PATCH] drm/i915: Remove unused
- for_each_uabi_class_engine
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-gfx] [PATCH 0/5] drm/i915/dsi: gpio refactors
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -60,46 +57,34 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+Cc: jani.nikula@intel.com, Hans de Goede <hdegoede@redhat.com>,
+ Andy Shevchenko <andriy.shevchenko@linux.intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, 01 Nov 2023, Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com> wrote:
-> From: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
->
-> Unused macro after 99919be74aa3 ("drm/i915/gem: Zap the i915_gem_object_blt code")
-> removed some code.
->
-> Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+This is something I've had laying around for more than a year I
+think. Andy's series [1] reminded me of it. I don't think the two series
+conflict, or if they do, it's trivial.
 
-\o/
+BR,
+Jani.
 
-Reviewed-by: Jani Nikula <jani.nikula@intel.com>
+[1] https://patchwork.freedesktop.org/series/125516/
 
-Could I persuade you to move for_each_engine(),
-for_each_engine_masked(), rb_to_uabi_engine(), and
-for_each_uabi_engine() to a more suitable header?
+Cc: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+Cc: Hans de Goede <hdegoede@redhat.com>
 
-> ---
->  drivers/gpu/drm/i915/i915_drv.h | 5 -----
->  1 file changed, 5 deletions(-)
->
-> diff --git a/drivers/gpu/drm/i915/i915_drv.h b/drivers/gpu/drm/i915/i915_drv.h
-> index bfcbe93bd9fe..744c8c4a50fa 100644
-> --- a/drivers/gpu/drm/i915/i915_drv.h
-> +++ b/drivers/gpu/drm/i915/i915_drv.h
-> @@ -418,11 +418,6 @@ static inline struct intel_gt *to_gt(const struct drm_i915_private *i915)
->  	     (engine__); \
->  	     (engine__) = rb_to_uabi_engine(rb_next(&(engine__)->uabi_node)))
->  
-> -#define for_each_uabi_class_engine(engine__, class__, i915__) \
-> -	for ((engine__) = intel_engine_lookup_user((i915__), (class__), 0); \
-> -	     (engine__) && (engine__)->uabi_class == (class__); \
-> -	     (engine__) = rb_to_uabi_engine(rb_next(&(engine__)->uabi_node)))
-> -
->  #define INTEL_INFO(i915)	((i915)->__info)
->  #define RUNTIME_INFO(i915)	(&(i915)->__runtime)
->  #define DRIVER_CAPS(i915)	(&(i915)->caps)
+Jani Nikula (5):
+  drm/i915/dsi: assume BXT gpio works for non-native GPIO
+  drm/i915/dsi: switch mipi_exec_gpio() from dev_priv to i915
+  drm/i915/dsi: clarify GPIO exec sequence
+  drm/i915/dsi: rename platform specific *_exec_gpio() to
+    *_gpio_set_value()
+  drm/i915/dsi: bxt/icl GPIO set value do not need gpio source
+
+ drivers/gpu/drm/i915/display/intel_dsi_vbt.c | 73 +++++++++-----------
+ 1 file changed, 34 insertions(+), 39 deletions(-)
 
 -- 
-Jani Nikula, Intel
+2.39.2
+
