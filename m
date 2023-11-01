@@ -1,57 +1,33 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3C4357DE251
-	for <lists+intel-gfx@lfdr.de>; Wed,  1 Nov 2023 15:24:04 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id C5C187DE267
+	for <lists+intel-gfx@lfdr.de>; Wed,  1 Nov 2023 15:31:55 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7A02610E6D8;
-	Wed,  1 Nov 2023 14:24:02 +0000 (UTC)
-X-Original-To: Intel-gfx@lists.freedesktop.org
-Delivered-To: Intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 70A4310E6D8;
- Wed,  1 Nov 2023 14:24:00 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1698848640; x=1730384640;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=RM043y1sDLmBArzaGUYvGKIMnzq4WD/zMKvKWDxKEhM=;
- b=PQRSW/keEaiol23N0JtwfYedmMq5B+utcggwoE1tisoVKxcvI0wbtRXZ
- YZ+tX2cYI1W/koStnB7npA5hKvtvy+ZllNGy1Ro7V//gKxQ01eoB/j5TK
- tJ2DB8kh8MOdF7AJD7dXGSxu1NkJRed7MLRTvvsiRfEoQtwE64QMYiJPl
- V8yvGo+kiU/Z6BaUBYDtQgizNX8cNjb0isPU+732IT72Mtk4MeY8p2rXk
- djsv8bDIyJFl4CpYceLvE85pTlJSmTwfWic9vTGsHrb3S1WA5YO/5wU0j
- VEpCZVxLkKHgidpbLyYQNinzlyva9WDxvulidHlLZdOVb5V5Qtyh0QLKI A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10881"; a="474743640"
-X-IronPort-AV: E=Sophos;i="6.03,268,1694761200"; d="scan'208";a="474743640"
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Nov 2023 07:23:59 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10881"; a="790121866"
-X-IronPort-AV: E=Sophos;i="6.03,268,1694761200"; d="scan'208";a="790121866"
-Received: from cwilso3-mobl1.ger.corp.intel.com (HELO [10.213.231.239])
- ([10.213.231.239])
- by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Nov 2023 07:23:57 -0700
-Message-ID: <1d8b9bb8-1368-436f-9fb6-125e6bb04e40@linux.intel.com>
-Date: Wed, 1 Nov 2023 14:23:55 +0000
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3532410E703;
+	Wed,  1 Nov 2023 14:31:54 +0000 (UTC)
+X-Original-To: intel-gfx@lists.freedesktop.org
+Delivered-To: intel-gfx@lists.freedesktop.org
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 0FCE010E703;
+ Wed,  1 Nov 2023 14:31:52 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 09B46ACC21;
+ Wed,  1 Nov 2023 14:31:52 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Content-Language: en-US
-To: Jani Nikula <jani.nikula@linux.intel.com>,
- Intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
-References: <20231101100124.303739-1-tvrtko.ursulin@linux.intel.com>
- <87sf5p4wjx.fsf@intel.com>
-From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-Organization: Intel Corporation UK Plc
-In-Reply-To: <87sf5p4wjx.fsf@intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-Subject: Re: [Intel-gfx] [PATCH] drm/i915: Remove unused
- for_each_uabi_class_engine
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Ville Syrjala" <ville.syrjala@linux.intel.com>
+Date: Wed, 01 Nov 2023 14:31:52 -0000
+Message-ID: <169884911203.29322.96775856429978067@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20231101114212.9345-1-ville.syrjala@linux.intel.com>
+In-Reply-To: <20231101114212.9345-1-ville.syrjala@linux.intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_drm/i915=3A_Some_register_cleanups?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,144 +40,29 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+== Series Details ==
 
-On 01/11/2023 10:06, Jani Nikula wrote:
-> On Wed, 01 Nov 2023, Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com> wrote:
->> From: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
->>
->> Unused macro after 99919be74aa3 ("drm/i915/gem: Zap the i915_gem_object_blt code")
->> removed some code.
->>
->> Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
-> 
-> \o/
-> 
-> Reviewed-by: Jani Nikula <jani.nikula@intel.com>
-> 
-> Could I persuade you to move for_each_engine(),
-> for_each_engine_masked(), rb_to_uabi_engine(), and
-> for_each_uabi_engine() to a more suitable header?
+Series: drm/i915: Some register cleanups
+URL   : https://patchwork.freedesktop.org/series/125853/
+State : warning
 
-Former to intel_gt.h, but latter a better place is not coming to me. Like:
+== Summary ==
 
-diff --git a/drivers/gpu/drm/i915/gt/intel_engine_pm.h b/drivers/gpu/drm/i915/gt/intel_engine_pm.h
-index d68675925b79..1d97c435a015 100644
---- a/drivers/gpu/drm/i915/gt/intel_engine_pm.h
-+++ b/drivers/gpu/drm/i915/gt/intel_engine_pm.h
-@@ -10,6 +10,7 @@
-  #include "i915_request.h"
-  #include "intel_engine_types.h"
-  #include "intel_wakeref.h"
-+#include "intel_gt.h"
-  #include "intel_gt_pm.h"
-  
-  static inline bool
-diff --git a/drivers/gpu/drm/i915/gt/intel_gt.h b/drivers/gpu/drm/i915/gt/intel_gt.h
-index 9ffdb05e231e..b0e453e27ea8 100644
---- a/drivers/gpu/drm/i915/gt/intel_gt.h
-+++ b/drivers/gpu/drm/i915/gt/intel_gt.h
-@@ -171,6 +171,20 @@ void intel_gt_release_all(struct drm_i915_private *i915);
-              (id__)++) \
-                 for_each_if(((gt__) = (i915__)->gt[(id__)]))
-  
-+/* Simple iterator over all initialised engines */
-+#define for_each_engine(engine__, gt__, id__) \
-+       for ((id__) = 0; \
-+            (id__) < I915_NUM_ENGINES; \
-+            (id__)++) \
-+               for_each_if ((engine__) = (gt__)->engine[(id__)])
-+
-+/* Iterator over subset of engines selected by mask */
-+#define for_each_engine_masked(engine__, gt__, mask__, tmp__) \
-+       for ((tmp__) = (mask__) & (gt__)->info.engine_mask; \
-+            (tmp__) ? \
-+            ((engine__) = (gt__)->engine[__mask_next_bit(tmp__)]), 1 : \
-+            0;)
-+
-  void intel_gt_info_print(const struct intel_gt_info *info,
-                          struct drm_printer *p);
-  
-diff --git a/drivers/gpu/drm/i915/gt/intel_gt_engines_debugfs.c b/drivers/gpu/drm/i915/gt/intel_gt_engines_debugfs.c
-index 8f9b874fdc9c..3aa1d014c14d 100644
---- a/drivers/gpu/drm/i915/gt/intel_gt_engines_debugfs.c
-+++ b/drivers/gpu/drm/i915/gt/intel_gt_engines_debugfs.c
-@@ -6,8 +6,8 @@
-  
-  #include <drm/drm_print.h>
-  
--#include "i915_drv.h" /* for_each_engine! */
-  #include "intel_engine.h"
-+#include "intel_gt.h"
-  #include "intel_gt_debugfs.h"
-  #include "intel_gt_engines_debugfs.h"
-  
-diff --git a/drivers/gpu/drm/i915/i915_drv.h b/drivers/gpu/drm/i915/i915_drv.h
-index 744c8c4a50fa..3feec04a2b1c 100644
---- a/drivers/gpu/drm/i915/i915_drv.h
-+++ b/drivers/gpu/drm/i915/i915_drv.h
-@@ -396,20 +396,6 @@ static inline struct intel_gt *to_gt(const struct drm_i915_private *i915)
-         return i915->gt[0];
-  }
-  
--/* Simple iterator over all initialised engines */
--#define for_each_engine(engine__, gt__, id__) \
--       for ((id__) = 0; \
--            (id__) < I915_NUM_ENGINES; \
--            (id__)++) \
--               for_each_if ((engine__) = (gt__)->engine[(id__)])
--
--/* Iterator over subset of engines selected by mask */
--#define for_each_engine_masked(engine__, gt__, mask__, tmp__) \
--       for ((tmp__) = (mask__) & (gt__)->info.engine_mask; \
--            (tmp__) ? \
--            ((engine__) = (gt__)->engine[__mask_next_bit(tmp__)]), 1 : \
--            0;)
--
-  #define rb_to_uabi_engine(rb) \
-         rb_entry_safe(rb, struct intel_engine_cs, uabi_node)
-  
-diff --git a/drivers/gpu/drm/i915/selftests/intel_uncore.c b/drivers/gpu/drm/i915/selftests/intel_uncore.c
-index 7a5f4adc1b8b..c998f15d505c 100644
---- a/drivers/gpu/drm/i915/selftests/intel_uncore.c
-+++ b/drivers/gpu/drm/i915/selftests/intel_uncore.c
-@@ -24,6 +24,8 @@
-  
-  #include "../i915_selftest.h"
-  
-+#include "gt/intel_gt.h"
-+
-  static int intel_fw_table_check(const struct intel_forcewake_range *ranges,
-                                 unsigned int num_ranges,
-                                 bool is_watertight)
+Error: dim checkpatch failed
+2e6d356676a5 drm/i915: Extract hsw_chicken_trans_reg()
+-:90: WARNING:LONG_LINE: line length of 108 exceeds 100 columns
+#90: FILE: drivers/gpu/drm/i915/display/intel_display.c:3788:
++		tmp = intel_de_read(dev_priv, hsw_chicken_trans_reg(dev_priv, pipe_config->cpu_transcoder));
 
-Beneficial?
+total: 0 errors, 1 warnings, 0 checks, 97 lines checked
+4798c13d37f9 drm/i915: Stop using a 'reg' variable
+803e0d93ee36 drm/i915: Extract mchbar_reg()
+416d7840879e drm/i915/dsi: Remove dead GLK checks
+9b48d88053c6 drm/i915/dsi: Extract port_ctrl_reg()
 
-Regards,
 
-Tvrtko
-  
->> ---
->>   drivers/gpu/drm/i915/i915_drv.h | 5 -----
->>   1 file changed, 5 deletions(-)
->>
->> diff --git a/drivers/gpu/drm/i915/i915_drv.h b/drivers/gpu/drm/i915/i915_drv.h
->> index bfcbe93bd9fe..744c8c4a50fa 100644
->> --- a/drivers/gpu/drm/i915/i915_drv.h
->> +++ b/drivers/gpu/drm/i915/i915_drv.h
->> @@ -418,11 +418,6 @@ static inline struct intel_gt *to_gt(const struct drm_i915_private *i915)
->>   	     (engine__); \
->>   	     (engine__) = rb_to_uabi_engine(rb_next(&(engine__)->uabi_node)))
->>   
->> -#define for_each_uabi_class_engine(engine__, class__, i915__) \
->> -	for ((engine__) = intel_engine_lookup_user((i915__), (class__), 0); \
->> -	     (engine__) && (engine__)->uabi_class == (class__); \
->> -	     (engine__) = rb_to_uabi_engine(rb_next(&(engine__)->uabi_node)))
->> -
->>   #define INTEL_INFO(i915)	((i915)->__info)
->>   #define RUNTIME_INFO(i915)	(&(i915)->__runtime)
->>   #define DRIVER_CAPS(i915)	(&(i915)->caps)
-> 
