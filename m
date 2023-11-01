@@ -1,52 +1,78 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5DAE67DE076
-	for <lists+intel-gfx@lfdr.de>; Wed,  1 Nov 2023 12:42:34 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7AA877DE0A0
+	for <lists+intel-gfx@lfdr.de>; Wed,  1 Nov 2023 13:01:28 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D1DCE10E6D3;
-	Wed,  1 Nov 2023 11:42:32 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id EBD1E10E6CC;
+	Wed,  1 Nov 2023 12:01:26 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.65])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3E6B310E6D2
- for <intel-gfx@lists.freedesktop.org>; Wed,  1 Nov 2023 11:42:30 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1698838950; x=1730374950;
- h=from:to:subject:date:message-id:in-reply-to:references:
- mime-version:content-transfer-encoding;
- bh=7M9ykptrqo8gPBex6t4tZoVspztrbxT/7wvSXshXzAY=;
- b=TbQ8hbc47pdcK3zRwfjmrgP58uWjlIYfyAD+zBpQr+UUB4IIk364sX4s
- kU8CxXa7yaujZ3MGH7U5PEetzCYNwzvNXnl53dmis7NIvRgdtRC83XQGt
- QCYfEOosEcS3Fi3UiFuK8JnY1ApFRi+fTioIzacRoUU6IJPV30ri4W2a+
- YuEf0sq8B/9h4iWwzmXQx96BRtvQSb+naWR3Kyy3+pE1GuugT9garx5KX
- ZYPBiZYpCliM9MapoTq2P9agI+XsiBk/MN6HnKQtTPyitjd167DPJGupq
- /Wp2o4/KfZmUwfk4aVa0alZqzLDE5sdqPifHYij5yIA7Ke1dPSpJORapT w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10880"; a="392338780"
-X-IronPort-AV: E=Sophos;i="6.03,268,1694761200"; d="scan'208";a="392338780"
-Received: from orsmga007.jf.intel.com ([10.7.209.58])
- by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Nov 2023 04:42:30 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10880"; a="754450301"
-X-IronPort-AV: E=Sophos;i="6.03,268,1694761200"; d="scan'208";a="754450301"
-Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.74])
- by orsmga007.jf.intel.com with SMTP; 01 Nov 2023 04:42:28 -0700
-Received: by stinkbox (sSMTP sendmail emulation);
- Wed, 01 Nov 2023 13:42:27 +0200
-From: Ville Syrjala <ville.syrjala@linux.intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Wed,  1 Nov 2023 13:42:12 +0200
-Message-ID: <20231101114212.9345-6-ville.syrjala@linux.intel.com>
-X-Mailer: git-send-email 2.41.0
-In-Reply-To: <20231101114212.9345-1-ville.syrjala@linux.intel.com>
-References: <20231101114212.9345-1-ville.syrjala@linux.intel.com>
+Received: from us-smtp-delivery-124.mimecast.com
+ (us-smtp-delivery-124.mimecast.com [170.10.129.124])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 69AFA10E6CC
+ for <intel-gfx@lists.freedesktop.org>; Wed,  1 Nov 2023 12:01:25 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+ s=mimecast20190719; t=1698840084;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ in-reply-to:in-reply-to:references:references;
+ bh=HFG3zX5V5RjxlXQbZojzLeljMHWLMjLWQqVlWICX4sc=;
+ b=fQhz6hIZLcOdD/WVQzS4gQN8pwLzNX6Vj2D3zQ+JMzAurmStBH15t0llKXsds9vC6WXjvX
+ JifQvbBD+QiesinXZqSwuB1Z9qiIr1kYgBCmHc+yPH76n3naN4xx00fM5Xty9tkYmcwtMM
+ EOFRhwGdtEOy6v7Bjdk8eqsefYaCZYU=
+Received: from mail-wm1-f71.google.com (mail-wm1-f71.google.com
+ [209.85.128.71]) by relay.mimecast.com with ESMTP with STARTTLS
+ (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
+ us-mta-529-AmecQCT0PuaGjnIEmLG1Ww-1; Wed, 01 Nov 2023 08:01:19 -0400
+X-MC-Unique: AmecQCT0PuaGjnIEmLG1Ww-1
+Received: by mail-wm1-f71.google.com with SMTP id
+ 5b1f17b1804b1-4084e4ce543so49920215e9.3
+ for <intel-gfx@lists.freedesktop.org>; Wed, 01 Nov 2023 05:01:15 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1698840074; x=1699444874;
+ h=mime-version:message-id:date:references:in-reply-to:subject:cc:to
+ :from:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+ bh=HFG3zX5V5RjxlXQbZojzLeljMHWLMjLWQqVlWICX4sc=;
+ b=BlQcaX5N6dc+XnBFGT9ps/CHSVSL/sybRfVlOzCw08lTP3nH1WlgiSIsCrGIKQfvLF
+ ms8yi3h4Drom3kAPgyIl1g7JtoKNkzugAUdE8BAxzccLukgtSc2jFII5uh/A1qsnS4aH
+ j9P+QhTrLHz3LeXGzJ2DAiHnSUDeI8IWrpxFcg8YQ10i1jZ3mvOg85/84UUa6ACNrMmj
+ bmngHU9dDTNbD6xtjZFpjLRnMaQaHAoohSkQJN3vV4x3x0Qxype0Lu9JYEucJ8DQrzIE
+ jRcGU8QH5llGqNfta2Xw0SBpezwaDsOvUPxmhstl4TGWCK0RKBtk1WqXOZuJwZsvxfJ0
+ 9FOQ==
+X-Gm-Message-State: AOJu0YzoIi15Dpq9da9rpRTbA6EZKprL4WlIH5f8IwS3Xq7os5JmJ2Tv
+ BOMhSAIuX0yGQ3ym6bW5h8ig3PGPregdsjCdfWEmqXnHJiRnZOQHW6zn4LzRvlnl32Tzrca/yYq
+ +v9toIs8grNcoFZfyTXffJXVhnJw6
+X-Received: by 2002:a05:600c:450a:b0:407:8e85:89ad with SMTP id
+ t10-20020a05600c450a00b004078e8589admr12771499wmo.14.1698840074101; 
+ Wed, 01 Nov 2023 05:01:14 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IEK2+PSw1U5BBXhsW0tWh67cjNOABSJ94OWquafP+g6y35Pq9Tj4Yt5CkZXCcdATZodCqe6dQ==
+X-Received: by 2002:a05:600c:450a:b0:407:8e85:89ad with SMTP id
+ t10-20020a05600c450a00b004078e8589admr12771467wmo.14.1698840073635; 
+ Wed, 01 Nov 2023 05:01:13 -0700 (PDT)
+Received: from localhost (205.pool92-176-231.dynamic.orange.es.
+ [92.176.231.205]) by smtp.gmail.com with ESMTPSA id
+ g8-20020a056000118800b0032db8cccd3asm3987701wrx.114.2023.11.01.05.01.13
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Wed, 01 Nov 2023 05:01:13 -0700 (PDT)
+From: Javier Martinez Canillas <javierm@redhat.com>
+To: Thomas Zimmermann <tzimmermann@suse.de>, jani.nikula@linux.intel.com,
+ joonas.lahtinen@linux.intel.com, rodrigo.vivi@intel.com,
+ tvrtko.ursulin@linux.intel.com, ville.syrjala@linux.intel.com,
+ imre.deak@intel.com, tejas.upadhyay@intel.com, airlied@gmail.com,
+ daniel@ffwll.ch
+In-Reply-To: <20230927102808.18650-3-tzimmermann@suse.de>
+References: <20230927102808.18650-1-tzimmermann@suse.de>
+ <20230927102808.18650-3-tzimmermann@suse.de>
+Date: Wed, 01 Nov 2023 13:01:12 +0100
+Message-ID: <87bkcdhed3.fsf@minerva.mail-host-address-is-not-set>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH 5/5] drm/i915/dsi: Extract port_ctrl_reg()
+X-Mimecast-Spam-Score: 0
+X-Mimecast-Originator: redhat.com
+Content-Type: text/plain
+Subject: Re: [Intel-gfx] [PATCH v5 2/7] drm/client: Do not acquire module
+ reference
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,71 +85,40 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: intel-gfx@lists.freedesktop.org, Thomas Zimmermann <tzimmermann@suse.de>,
+ dri-devel@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-From: Ville Syrjälä <ville.syrjala@linux.intel.com>
+Thomas Zimmermann <tzimmermann@suse.de> writes:
 
-The code to determine the pre-ICL DSI port control register is
-repeated several times. Consolidate.
+> Do not acquire a reference on the module that provides a client's
+> callback functions in drm_client_init(). The additional reference
+> prevents the user from unloading the callback functions' module and
+> thus creating dangling pointers.
+>
+> This is only necessary if there is no direct dependency between the
+> caller of drm_client_init() and the provider of the callbacks in
+> struct drm_client_funcs. If this case ever existed, it has been
+> removed from the DRM code. Callers of drm_client_init() also provide
+> the callback implementation. The lifetime of the clients is tied to
+> the dependency chain's outer-most module, which is the hardware's
+> DRM driver. Before client helpers could be unloaded, the driver module
+> would have to be unloaded, which also unregisters all clients.
+>
+> Driver modules that set up DRM clients can now be unloaded.
+>
+> Signed-off-by: Thomas Zimmermann <tzimmermann@suse.de>
+> ---
 
-vlv_dsi_clear_device_ready() is left with the open-coded version
-due to the weirdness with port A vs. C on VLV/CHV.
+The change makes sense to me.
 
-Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
----
- drivers/gpu/drm/i915/display/vlv_dsi.c | 17 ++++++++++-------
- 1 file changed, 10 insertions(+), 7 deletions(-)
+Acked-by: Javier Martinez Canillas <javierm@redhat.com>
 
-diff --git a/drivers/gpu/drm/i915/display/vlv_dsi.c b/drivers/gpu/drm/i915/display/vlv_dsi.c
-index 64023fb8dd74..bda49734ca33 100644
---- a/drivers/gpu/drm/i915/display/vlv_dsi.c
-+++ b/drivers/gpu/drm/i915/display/vlv_dsi.c
-@@ -561,6 +561,12 @@ static void glk_dsi_clear_device_ready(struct intel_encoder *encoder)
- 	glk_dsi_disable_mipi_io(encoder);
- }
- 
-+static i915_reg_t port_ctrl_reg(struct drm_i915_private *i915, enum port port)
-+{
-+	return IS_GEMINILAKE(i915) || IS_BROXTON(i915) ?
-+		BXT_MIPI_PORT_CTRL(port) : MIPI_PORT_CTRL(port);
-+}
-+
- static void vlv_dsi_clear_device_ready(struct intel_encoder *encoder)
- {
- 	struct drm_i915_private *dev_priv = to_i915(encoder->base.dev);
-@@ -627,8 +633,7 @@ static void intel_dsi_port_enable(struct intel_encoder *encoder,
- 	}
- 
- 	for_each_dsi_port(port, intel_dsi->ports) {
--		i915_reg_t port_ctrl = IS_GEMINILAKE(dev_priv) || IS_BROXTON(dev_priv) ?
--			BXT_MIPI_PORT_CTRL(port) : MIPI_PORT_CTRL(port);
-+		i915_reg_t port_ctrl = port_ctrl_reg(dev_priv, port);
- 		u32 temp;
- 
- 		temp = intel_de_read(dev_priv, port_ctrl);
-@@ -664,8 +669,7 @@ static void intel_dsi_port_disable(struct intel_encoder *encoder)
- 	enum port port;
- 
- 	for_each_dsi_port(port, intel_dsi->ports) {
--		i915_reg_t port_ctrl = IS_GEMINILAKE(dev_priv) || IS_BROXTON(dev_priv) ?
--			BXT_MIPI_PORT_CTRL(port) : MIPI_PORT_CTRL(port);
-+		i915_reg_t port_ctrl = port_ctrl_reg(dev_priv, port);
- 
- 		/* de-assert ip_tg_enable signal */
- 		intel_de_rmw(dev_priv, port_ctrl, DPI_ENABLE, 0);
-@@ -955,9 +959,8 @@ static bool intel_dsi_get_hw_state(struct intel_encoder *encoder,
- 
- 	/* XXX: this only works for one DSI output */
- 	for_each_dsi_port(port, intel_dsi->ports) {
--		i915_reg_t ctrl_reg = IS_GEMINILAKE(dev_priv) || IS_BROXTON(dev_priv) ?
--			BXT_MIPI_PORT_CTRL(port) : MIPI_PORT_CTRL(port);
--		bool enabled = intel_de_read(dev_priv, ctrl_reg) & DPI_ENABLE;
-+		i915_reg_t port_ctrl = port_ctrl_reg(dev_priv, port);
-+		bool enabled = intel_de_read(dev_priv, port_ctrl) & DPI_ENABLE;
- 
- 		/*
- 		 * Due to some hardware limitations on VLV/CHV, the DPI enable
 -- 
-2.41.0
+Best regards,
+
+Javier Martinez Canillas
+Core Platforms
+Red Hat
 
