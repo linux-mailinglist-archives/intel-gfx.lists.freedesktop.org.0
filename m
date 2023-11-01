@@ -2,96 +2,48 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 069097DDDC1
-	for <lists+intel-gfx@lfdr.de>; Wed,  1 Nov 2023 09:33:53 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id CF6E47DDDEE
+	for <lists+intel-gfx@lfdr.de>; Wed,  1 Nov 2023 09:58:05 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 90B5B10E66A;
-	Wed,  1 Nov 2023 08:33:46 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 91C6D10E140;
+	Wed,  1 Nov 2023 08:58:03 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from smtp-out2.suse.de (smtp-out2.suse.de [195.135.220.29])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8687F10E668;
- Wed,  1 Nov 2023 08:33:44 +0000 (UTC)
-Received: from imap2.suse-dmz.suse.de (imap2.suse-dmz.suse.de [192.168.254.74])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature ECDSA (P-521) server-digest SHA512)
- (No client certificate requested)
- by smtp-out2.suse.de (Postfix) with ESMTPS id 0A7821F74B;
- Wed,  1 Nov 2023 08:33:43 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
- t=1698827623; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:content-type:content-type:
- in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
- bh=73BC/T2qEhLolic3vHtDIp7MXRCD0nsN2cLtxJrPV8A=;
- b=OiCsFLzPydyJszfFsdH9Koo/AZk4NTDeyTu5/GjCKu7zsoPVfAIysm+i2aHHgHlipfKQHZ
- BxyNhjTubIAAxHzepRnO4iEpWqJNCA3T+yUL4Ld4pAP3bVS+wMwnHSNR/ySFaLPfh89zSn
- DiwCZru34vksqcvQkqFtqMHsaPT3rzM=
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
- s=susede2_ed25519; t=1698827623;
- h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:content-type:content-type:
- in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
- bh=73BC/T2qEhLolic3vHtDIp7MXRCD0nsN2cLtxJrPV8A=;
- b=SUogv+k/C2IdH1jT0s6jdfsMoS/VCQgwkexIPLt5fw9p59nQOlmkoaSXDpx4zxMSuBy2Vq
- XcWOuAnEeFBUbaDw==
-Received: from imap2.suse-dmz.suse.de (imap2.suse-dmz.suse.de [192.168.254.74])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature ECDSA (P-521) server-digest SHA512)
- (No client certificate requested)
- by imap2.suse-dmz.suse.de (Postfix) with ESMTPS id BBE741348D;
- Wed,  1 Nov 2023 08:33:42 +0000 (UTC)
-Received: from dovecot-director2.suse.de ([192.168.254.65])
- by imap2.suse-dmz.suse.de with ESMTPSA id zwjtLGYNQmX0bQAAMHmgww
- (envelope-from <tzimmermann@suse.de>); Wed, 01 Nov 2023 08:33:42 +0000
-Message-ID: <99033596-d875-4cfe-9105-730a57cf6013@suse.de>
-Date: Wed, 1 Nov 2023 09:33:41 +0100
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id AE25610E140
+ for <intel-gfx@lists.freedesktop.org>; Wed,  1 Nov 2023 08:58:01 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1698829082; x=1730365082;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=TR76xuDWrmvP6RXTcFWOuFkUOQ2n4sCvqlxadNHwzFA=;
+ b=O0cY9chmQqaq5MOh6oQ+0LegcqVcjkPkXUrscMcrRKfMqZAM1p2okcRN
+ TLAOhuVsQtqGDN7Ok++5quFLGRtnXSQi2CRHINLFvj7zWPaiKkByJ2s/q
+ q8JV6/8Wd8xeyDtLQ7I1CaZCYXJ9gA68xvfLIYymU4Rbj4MMDmaMNsaKF
+ z3miyKa6K9WakOLQmee8Qv74g/uk7Pf7ss8yTl7NRwAV5+FFjHEYH9eIR
+ Yant28FgcRhkbRKq3TRsGzUfgizyIo7zH9MQL2L0bt9HYE3WqHKlqSP1Y
+ mtXrkh6urzJUpkzzY0k5mtroxnpN6CW3SEZ9VbVeo0HV1NzvXs+MMoSG2 g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10880"; a="1361638"
+X-IronPort-AV: E=Sophos;i="6.03,267,1694761200"; 
+   d="scan'208";a="1361638"
+Received: from orsmga007.jf.intel.com ([10.7.209.58])
+ by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 01 Nov 2023 01:58:01 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10880"; a="754420924"
+X-IronPort-AV: E=Sophos;i="6.03,267,1694761200"; d="scan'208";a="754420924"
+Received: from sorvi2.fi.intel.com ([10.237.72.194])
+ by orsmga007.jf.intel.com with ESMTP; 01 Nov 2023 01:57:58 -0700
+From: Mika Kahola <mika.kahola@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Wed,  1 Nov 2023 10:57:57 +0200
+Message-Id: <20231101085757.148899-1-mika.kahola@intel.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Content-Language: en-US
-To: "Hogander, Jouni" <jouni.hogander@intel.com>,
- "Upadhyay, Tejas" <tejas.upadhyay@intel.com>,
- "ville.syrjala@linux.intel.com" <ville.syrjala@linux.intel.com>,
- "Vivi, Rodrigo" <rodrigo.vivi@intel.com>,
- "joonas.lahtinen@linux.intel.com" <joonas.lahtinen@linux.intel.com>,
- "javierm@redhat.com" <javierm@redhat.com>,
- "tvrtko.ursulin@linux.intel.com" <tvrtko.ursulin@linux.intel.com>,
- "Deak, Imre" <imre.deak@intel.com>, "airlied@gmail.com" <airlied@gmail.com>,
- "jani.nikula@linux.intel.com" <jani.nikula@linux.intel.com>,
- "daniel@ffwll.ch" <daniel@ffwll.ch>
-References: <20230927102808.18650-1-tzimmermann@suse.de>
- <20230927102808.18650-8-tzimmermann@suse.de>
- <199bdb57b0f48e6f77f7effc90dcffcae8213285.camel@intel.com>
-From: Thomas Zimmermann <tzimmermann@suse.de>
-Autocrypt: addr=tzimmermann@suse.de; keydata=
- xsBNBFs50uABCADEHPidWt974CaxBVbrIBwqcq/WURinJ3+2WlIrKWspiP83vfZKaXhFYsdg
- XH47fDVbPPj+d6tQrw5lPQCyqjwrCPYnq3WlIBnGPJ4/jreTL6V+qfKRDlGLWFjZcsrPJGE0
- BeB5BbqP5erN1qylK9i3gPoQjXGhpBpQYwRrEyQyjuvk+Ev0K1Jc5tVDeJAuau3TGNgah4Yc
- hdHm3bkPjz9EErV85RwvImQ1dptvx6s7xzwXTgGAsaYZsL8WCwDaTuqFa1d1jjlaxg6+tZsB
- 9GluwvIhSezPgnEmimZDkGnZRRSFiGP8yjqTjjWuf0bSj5rUnTGiyLyRZRNGcXmu6hjlABEB
- AAHNJ1Rob21hcyBaaW1tZXJtYW5uIDx0emltbWVybWFubkBzdXNlLmRlPsLAjgQTAQgAOAIb
- AwULCQgHAgYVCgkICwIEFgIDAQIeAQIXgBYhBHIX+6yM6c9jRKFo5WgNwR1TC3ojBQJftODH
- AAoJEGgNwR1TC3ojx1wH/0hKGWugiqDgLNXLRD/4TfHBEKmxIrmfu9Z5t7vwUKfwhFL6hqvo
- lXPJJKQpQ2z8+X2vZm/slsLn7J1yjrOsoJhKABDi+3QWWSGkaGwRJAdPVVyJMfJRNNNIKwVb
- U6B1BkX2XDKDGffF4TxlOpSQzdtNI/9gleOoUA8+jy8knnDYzjBNOZqLG2FuTdicBXblz0Mf
- vg41gd9kCwYXDnD91rJU8tzylXv03E75NCaTxTM+FBXPmsAVYQ4GYhhgFt8S2UWMoaaABLDe
- 7l5FdnLdDEcbmd8uLU2CaG4W2cLrUaI4jz2XbkcPQkqTQ3EB67hYkjiEE6Zy3ggOitiQGcqp
- j//OwE0EWznS4AEIAMYmP4M/V+T5RY5at/g7rUdNsLhWv1APYrh9RQefODYHrNRHUE9eosYb
- T6XMryR9hT8XlGOYRwKWwiQBoWSDiTMo/Xi29jUnn4BXfI2px2DTXwc22LKtLAgTRjP+qbU6
- 3Y0xnQN29UGDbYgyyK51DW3H0If2a3JNsheAAK+Xc9baj0LGIc8T9uiEWHBnCH+RdhgATnWW
- GKdDegUR5BkDfDg5O/FISymJBHx2Dyoklv5g4BzkgqTqwmaYzsl8UxZKvbaxq0zbehDda8lv
- hFXodNFMAgTLJlLuDYOGLK2AwbrS3Sp0AEbkpdJBb44qVlGm5bApZouHeJ/+n+7r12+lqdsA
- EQEAAcLAdgQYAQgAIAIbDBYhBHIX+6yM6c9jRKFo5WgNwR1TC3ojBQJftOH6AAoJEGgNwR1T
- C3ojVSkIALpAPkIJPQoURPb1VWjh34l0HlglmYHvZszJWTXYwavHR8+k6Baa6H7ufXNQtThR
- yIxJrQLW6rV5lm7TjhffEhxVCn37+cg0zZ3j7zIsSS0rx/aMwi6VhFJA5hfn3T0TtrijKP4A
- SAQO9xD1Zk9/61JWk8OysuIh7MXkl0fxbRKWE93XeQBhIJHQfnc+YBLprdnxR446Sh8Wn/2D
- Ya8cavuWf2zrB6cZurs048xe0UbSW5AOSo4V9M0jzYI4nZqTmPxYyXbm30Kvmz0rYVRaitYJ
- 4kyYYMhuULvrJDMjZRvaNe52tkKAvMevcGdt38H4KSVXAylqyQOW5zvPc4/sq9c=
-In-Reply-To: <199bdb57b0f48e6f77f7effc90dcffcae8213285.camel@intel.com>
-Content-Type: multipart/signed; micalg=pgp-sha256;
- protocol="application/pgp-signature";
- boundary="------------oqyOs2P7m1HegQ25kFG05YKD"
-Subject: Re: [Intel-gfx] [PATCH v5 7/7] drm/i915: Implement fbdev emulation
- as in-kernel client
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-gfx] [PATCH v2] drm/i915/display: Support PSR entry VSC
+ packet to be transmitted one frame earlier
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -104,210 +56,204 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
- "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-This is an OpenPGP/MIME signed message (RFC 4880 and 3156)
---------------oqyOs2P7m1HegQ25kFG05YKD
-Content-Type: multipart/mixed; boundary="------------Ip6WEhfQN58wsBJc0DebPeEx";
- protected-headers="v1"
-From: Thomas Zimmermann <tzimmermann@suse.de>
-To: "Hogander, Jouni" <jouni.hogander@intel.com>,
- "Upadhyay, Tejas" <tejas.upadhyay@intel.com>,
- "ville.syrjala@linux.intel.com" <ville.syrjala@linux.intel.com>,
- "Vivi, Rodrigo" <rodrigo.vivi@intel.com>,
- "joonas.lahtinen@linux.intel.com" <joonas.lahtinen@linux.intel.com>,
- "javierm@redhat.com" <javierm@redhat.com>,
- "tvrtko.ursulin@linux.intel.com" <tvrtko.ursulin@linux.intel.com>,
- "Deak, Imre" <imre.deak@intel.com>, "airlied@gmail.com" <airlied@gmail.com>,
- "jani.nikula@linux.intel.com" <jani.nikula@linux.intel.com>,
- "daniel@ffwll.ch" <daniel@ffwll.ch>
-Cc: "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
-Message-ID: <99033596-d875-4cfe-9105-730a57cf6013@suse.de>
-Subject: Re: [PATCH v5 7/7] drm/i915: Implement fbdev emulation as in-kernel
- client
-References: <20230927102808.18650-1-tzimmermann@suse.de>
- <20230927102808.18650-8-tzimmermann@suse.de>
- <199bdb57b0f48e6f77f7effc90dcffcae8213285.camel@intel.com>
-In-Reply-To: <199bdb57b0f48e6f77f7effc90dcffcae8213285.camel@intel.com>
+Display driver shall read DPCD 00071h[3:1] during configuration
+to get PSR setup time. This register provides the setup time
+requirement on the VSC SDP entry packet. If setup time cannot be
+met with the current timings
+(e.g., PSR setup time + other blanking requirements > blanking time),
+driver should enable sending VSC SDP one frame earlier before sending
+the capture frame.
 
---------------Ip6WEhfQN58wsBJc0DebPeEx
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: base64
+BSpec: 69895 (PSR Entry Setup Frames 17:16)
 
-SGkNCg0KQW0gMjUuMTAuMjMgdW0gMTM6MzYgc2NocmllYiBIb2dhbmRlciwgSm91bmk6DQpb
-Li4uXQ0KPj4gKw0KPj4gK8KgwqDCoMKgwqDCoMKgaWYgKCFkcm1fZHJ2X3VzZXNfYXRvbWlj
-X21vZGVzZXQoZGV2KSkNCj4+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqBkcm1f
-aGVscGVyX2Rpc2FibGVfdW51c2VkX2Z1bmN0aW9ucyhkZXYpOw0KPiANCj4gQ2FuIHlvdSBw
-bGVhc2UgZXhwbGFpbiB3aHkgdGhpcyBpcyBuZWVkZWQgaGVyZT8NCg0KVGhpcyBkaXNhYmxl
-cyBzb21lIHBhcnRzIG9mIHRoZSBtb2RlLXNldHRpbmcgcGlwZWxpbmUgYW5kIGlzIHJlcXVp
-cmVkIA0KZm9yIGRyaXZlcnMgd2l0aCBub24tYXRvbWljIGNvbW1pdHMuICBBRkFJQ1QgYXRv
-bWljIG1vZGUgc2V0dGluZyBpcyBub3QgDQpzdXBwb3J0ZWQgb24gc29tZSB2ZXJ5IG9sZCBJ
-bnRlbCBjaGlwcy4gWzFdICBJJ2xsIGxlYXZlIGEgc2hvcnQgY29tbWVudCANCm9uIHRoZSBj
-b2RlLg0KDQpbMV0gDQpodHRwczovL2VsaXhpci5ib290bGluLmNvbS9saW51eC92Ni42L3Nv
-dXJjZS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9pbnRlbF9kZXZpY2VfaW5mby5jI0wzOTkNCg0K
-QmVzdCByZWdhcmQNClRob21hcw0KDQo+IA0KPj4gKw0KPj4gK8KgwqDCoMKgwqDCoMKgcmV0
-ID0gZHJtX2ZiX2hlbHBlcl9pbml0aWFsX2NvbmZpZyhmYl9oZWxwZXIpOw0KPj4gK8KgwqDC
-oMKgwqDCoMKgaWYgKHJldCkNCj4+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqBn
-b3RvIGVycl9kcm1fZmJfaGVscGVyX2Zpbmk7DQo+PiArDQo+PiArwqDCoMKgwqDCoMKgwqB2
-Z2Ffc3dpdGNoZXJvb19jbGllbnRfZmJfc2V0KHBkZXYsIGZiX2hlbHBlci0+aW5mbyk7DQo+
-PiAgIA0KPj4gIMKgwqDCoMKgwqDCoMKgwqByZXR1cm4gMDsNCj4+ICsNCj4+ICtlcnJfZHJt
-X2ZiX2hlbHBlcl9maW5pOg0KPj4gK8KgwqDCoMKgwqDCoMKgZHJtX2ZiX2hlbHBlcl9maW5p
-KGZiX2hlbHBlcik7DQo+PiArZXJyX2RybV9lcnI6DQo+PiArwqDCoMKgwqDCoMKgwqBkcm1f
-ZXJyKGRldiwgIkZhaWxlZCB0byBzZXR1cCBpOTE1IGZiZGV2IGVtdWxhdGlvbg0KPj4gKHJl
-dD0lZClcbiIsIHJldCk7DQo+PiArwqDCoMKgwqDCoMKgwqByZXR1cm4gcmV0Ow0KPj4gIMKg
-fQ0KPj4gICANCj4+ICDCoHN0YXRpYyBjb25zdCBzdHJ1Y3QgZHJtX2NsaWVudF9mdW5jcyBp
-bnRlbF9mYmRldl9jbGllbnRfZnVuY3MgPSB7DQo+PiBAQCAtNzAzLDIyICs3MjksMjMgQEAg
-c3RhdGljIGNvbnN0IHN0cnVjdCBkcm1fY2xpZW50X2Z1bmNzDQo+PiBpbnRlbF9mYmRldl9j
-bGllbnRfZnVuY3MgPSB7DQo+PiAgwqDCoMKgwqDCoMKgwqDCoC5ob3RwbHVnwqDCoMKgwqDC
-oMKgwqDCoD0gaW50ZWxfZmJkZXZfY2xpZW50X2hvdHBsdWcsDQo+PiAgwqB9Ow0KPj4gICAN
-Cj4+IC1pbnQgaW50ZWxfZmJkZXZfaW5pdChzdHJ1Y3QgZHJtX2RldmljZSAqZGV2KQ0KPj4g
-K3ZvaWQgaW50ZWxfZmJkZXZfc2V0dXAoc3RydWN0IGRybV9pOTE1X3ByaXZhdGUgKmRldl9w
-cml2KQ0KPiANCj4gVXNlIGk5MTUgcmF0aGVyIHRoYW4gZGV2X3ByaXYuDQo+IA0KPiBCUiwN
-Cj4gDQo+IEpvdW5pIEjDtmdhbmRlcg0KPiANCj4+ICDCoHsNCj4+IC3CoMKgwqDCoMKgwqDC
-oHN0cnVjdCBkcm1faTkxNV9wcml2YXRlICpkZXZfcHJpdiA9IHRvX2k5MTUoZGV2KTsNCj4+
-ICvCoMKgwqDCoMKgwqDCoHN0cnVjdCBkcm1fZGV2aWNlICpkZXYgPSAmZGV2X3ByaXYtPmRy
-bTsNCj4+ICDCoMKgwqDCoMKgwqDCoMKgc3RydWN0IGludGVsX2ZiZGV2ICppZmJkZXY7DQo+
-PiAgwqDCoMKgwqDCoMKgwqDCoGludCByZXQ7DQo+PiAgIA0KPj4gLcKgwqDCoMKgwqDCoMKg
-aWYgKGRybV9XQVJOX09OKGRldiwgIUhBU19ESVNQTEFZKGRldl9wcml2KSkpDQo+PiAtwqDC
-oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgcmV0dXJuIC1FTk9ERVY7DQo+PiArwqDCoMKg
-wqDCoMKgwqBpZiAoIUhBU19ESVNQTEFZKGRldl9wcml2KSkNCj4+ICvCoMKgwqDCoMKgwqDC
-oMKgwqDCoMKgwqDCoMKgwqByZXR1cm47DQo+PiAgIA0KPj4gIMKgwqDCoMKgwqDCoMKgwqBp
-ZmJkZXYgPSBremFsbG9jKHNpemVvZigqaWZiZGV2KSwgR0ZQX0tFUk5FTCk7DQo+PiAgwqDC
-oMKgwqDCoMKgwqDCoGlmICghaWZiZGV2KQ0KPj4gLcKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
-oMKgwqDCoHJldHVybiAtRU5PTUVNOw0KPj4gLQ0KPj4gLcKgwqDCoMKgwqDCoMKgbXV0ZXhf
-aW5pdCgmaWZiZGV2LT5ocGRfbG9jayk7DQo+PiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
-wqDCoMKgcmV0dXJuOw0KPj4gIMKgwqDCoMKgwqDCoMKgwqBkcm1fZmJfaGVscGVyX3ByZXBh
-cmUoZGV2LCAmaWZiZGV2LT5oZWxwZXIsIDMyLA0KPj4gJmludGVsX2ZiX2hlbHBlcl9mdW5j
-cyk7DQo+PiAgIA0KPj4gK8KgwqDCoMKgwqDCoMKgZGV2X3ByaXYtPmRpc3BsYXkuZmJkZXYu
-ZmJkZXYgPSBpZmJkZXY7DQo+PiArwqDCoMKgwqDCoMKgwqBJTklUX1dPUksoJmRldl9wcml2
-LT5kaXNwbGF5LmZiZGV2LnN1c3BlbmRfd29yaywNCj4+IGludGVsX2ZiZGV2X3N1c3BlbmRf
-d29ya2VyKTsNCj4+ICvCoMKgwqDCoMKgwqDCoG11dGV4X2luaXQoJmlmYmRldi0+aHBkX2xv
-Y2spOw0KPj4gIMKgwqDCoMKgwqDCoMKgwqBpZiAoaW50ZWxfZmJkZXZfaW5pdF9iaW9zKGRl
-diwgaWZiZGV2KSkNCj4+ICDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoGlmYmRl
-di0+aGVscGVyLnByZWZlcnJlZF9icHAgPSBpZmJkZXYtPnByZWZlcnJlZF9icHA7DQo+PiAg
-wqDCoMKgwqDCoMKgwqDCoGVsc2UNCj4+IEBAIC03MjYsNjggKzc1MywxOSBAQCBpbnQgaW50
-ZWxfZmJkZXZfaW5pdChzdHJ1Y3QgZHJtX2RldmljZSAqZGV2KQ0KPj4gICANCj4+ICDCoMKg
-wqDCoMKgwqDCoMKgcmV0ID0gZHJtX2NsaWVudF9pbml0KGRldiwgJmlmYmRldi0+aGVscGVy
-LmNsaWVudCwgImk5MTUtDQo+PiBmYmRldiIsDQo+PiAgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
-oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCAmaW50ZWxfZmJkZXZfY2xp
-ZW50X2Z1bmNzKTsNCj4+IC3CoMKgwqDCoMKgwqDCoGlmIChyZXQpDQo+PiArwqDCoMKgwqDC
-oMKgwqBpZiAocmV0KSB7DQo+PiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgZHJt
-X2VycihkZXYsICJGYWlsZWQgdG8gcmVnaXN0ZXIgY2xpZW50OiAlZFxuIiwgcmV0KTsNCj4+
-ICDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoGdvdG8gZXJyX2RybV9mYl9oZWxw
-ZXJfdW5wcmVwYXJlOw0KPj4gK8KgwqDCoMKgwqDCoMKgfQ0KPj4gICANCj4+IC3CoMKgwqDC
-oMKgwqDCoHJldCA9IGRybV9mYl9oZWxwZXJfaW5pdChkZXYsICZpZmJkZXYtPmhlbHBlcik7
-DQo+PiAtwqDCoMKgwqDCoMKgwqBpZiAocmV0KQ0KPj4gLcKgwqDCoMKgwqDCoMKgwqDCoMKg
-wqDCoMKgwqDCoGdvdG8gZXJyX2RybV9jbGllbnRfcmVsZWFzZTsNCj4+IC0NCj4+IC3CoMKg
-wqDCoMKgwqDCoGRldl9wcml2LT5kaXNwbGF5LmZiZGV2LmZiZGV2ID0gaWZiZGV2Ow0KPj4g
-LcKgwqDCoMKgwqDCoMKgSU5JVF9XT1JLKCZkZXZfcHJpdi0+ZGlzcGxheS5mYmRldi5zdXNw
-ZW5kX3dvcmssDQo+PiBpbnRlbF9mYmRldl9zdXNwZW5kX3dvcmtlcik7DQo+PiArwqDCoMKg
-wqDCoMKgwqBkcm1fY2xpZW50X3JlZ2lzdGVyKCZpZmJkZXYtPmhlbHBlci5jbGllbnQpOw0K
-Pj4gICANCj4+IC3CoMKgwqDCoMKgwqDCoHJldHVybiAwOw0KPj4gK8KgwqDCoMKgwqDCoMKg
-cmV0dXJuOw0KPj4gICANCj4+IC1lcnJfZHJtX2NsaWVudF9yZWxlYXNlOg0KPj4gLcKgwqDC
-oMKgwqDCoMKgZHJtX2NsaWVudF9yZWxlYXNlKCZpZmJkZXYtPmhlbHBlci5jbGllbnQpOw0K
-Pj4gIMKgZXJyX2RybV9mYl9oZWxwZXJfdW5wcmVwYXJlOg0KPj4gIMKgwqDCoMKgwqDCoMKg
-wqBkcm1fZmJfaGVscGVyX3VucHJlcGFyZSgmaWZiZGV2LT5oZWxwZXIpOw0KPj4gK8KgwqDC
-oMKgwqDCoMKgbXV0ZXhfZGVzdHJveSgmaWZiZGV2LT5ocGRfbG9jayk7DQo+PiAgwqDCoMKg
-wqDCoMKgwqDCoGtmcmVlKGlmYmRldik7DQo+PiAtwqDCoMKgwqDCoMKgwqByZXR1cm4gcmV0
-Ow0KPj4gLX0NCj4+IC0NCj4+IC1zdGF0aWMgdm9pZCBpbnRlbF9mYmRldl9pbml0aWFsX2Nv
-bmZpZyh2b2lkICpkYXRhLCBhc3luY19jb29raWVfdA0KPj4gY29va2llKQ0KPj4gLXsNCj4+
-IC3CoMKgwqDCoMKgwqDCoHN0cnVjdCBpbnRlbF9mYmRldiAqaWZiZGV2ID0gZGF0YTsNCj4+
-IC0NCj4+IC3CoMKgwqDCoMKgwqDCoC8qIER1ZSB0byBwZWN1bGlhciBpbml0IG9yZGVyIHdy
-dCB0byBocGQgaGFuZGxpbmcgdGhpcyBpcw0KPj4gc2VwYXJhdGUuICovDQo+PiAtwqDCoMKg
-wqDCoMKgwqBpZiAoZHJtX2ZiX2hlbHBlcl9pbml0aWFsX2NvbmZpZygmaWZiZGV2LT5oZWxw
-ZXIpKQ0KPj4gLcKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoGludGVsX2ZiZGV2X3Vu
-cmVnaXN0ZXIodG9faTkxNShpZmJkZXYtPmhlbHBlci5kZXYpKTsNCj4+IC19DQo+PiAtDQo+
-PiAtdm9pZCBpbnRlbF9mYmRldl9pbml0aWFsX2NvbmZpZ19hc3luYyhzdHJ1Y3QgZHJtX2k5
-MTVfcHJpdmF0ZQ0KPj4gKmRldl9wcml2KQ0KPj4gLXsNCj4+IC3CoMKgwqDCoMKgwqDCoHN0
-cnVjdCBpbnRlbF9mYmRldiAqaWZiZGV2ID0gZGV2X3ByaXYtPmRpc3BsYXkuZmJkZXYuZmJk
-ZXY7DQo+PiAtDQo+PiAtwqDCoMKgwqDCoMKgwqBpZiAoIWlmYmRldikNCj4+IC3CoMKgwqDC
-oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqByZXR1cm47DQo+PiAtDQo+PiAtwqDCoMKgwqDCoMKg
-wqBpZmJkZXYtPmNvb2tpZSA9IGFzeW5jX3NjaGVkdWxlKGludGVsX2ZiZGV2X2luaXRpYWxf
-Y29uZmlnLA0KPj4gaWZiZGV2KTsNCj4+IC19DQo+PiAtDQo+PiAtdm9pZCBpbnRlbF9mYmRl
-dl91bnJlZ2lzdGVyKHN0cnVjdCBkcm1faTkxNV9wcml2YXRlICpkZXZfcHJpdikNCj4+IC17
-DQo+PiAtwqDCoMKgwqDCoMKgwqBzdHJ1Y3QgaW50ZWxfZmJkZXYgKmlmYmRldiA9IGRldl9w
-cml2LT5kaXNwbGF5LmZiZGV2LmZiZGV2Ow0KPj4gLQ0KPj4gLcKgwqDCoMKgwqDCoMKgaWYg
-KCFpZmJkZXYpDQo+PiAtwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgcmV0dXJuOw0K
-Pj4gLQ0KPj4gLcKgwqDCoMKgwqDCoMKgaW50ZWxfZmJkZXZfc2V0X3N1c3BlbmQoJmRldl9w
-cml2LT5kcm0sDQo+PiBGQklORk9fU1RBVEVfU1VTUEVOREVELCB0cnVlKTsNCj4+IC0NCj4+
-IC3CoMKgwqDCoMKgwqDCoGlmICghY3VycmVudF9pc19hc3luYygpKQ0KPj4gLcKgwqDCoMKg
-wqDCoMKgwqDCoMKgwqDCoMKgwqDCoGludGVsX2ZiZGV2X3N5bmMoaWZiZGV2KTsNCj4+IC0N
-Cj4+IC3CoMKgwqDCoMKgwqDCoGRybV9mYl9oZWxwZXJfdW5yZWdpc3Rlcl9pbmZvKCZpZmJk
-ZXYtPmhlbHBlcik7DQo+PiAtfQ0KPj4gLQ0KPj4gLXZvaWQgaW50ZWxfZmJkZXZfZmluaShz
-dHJ1Y3QgZHJtX2k5MTVfcHJpdmF0ZSAqZGV2X3ByaXYpDQo+PiAtew0KPj4gLcKgwqDCoMKg
-wqDCoMKgc3RydWN0IGludGVsX2ZiZGV2ICppZmJkZXYgPSBmZXRjaF9hbmRfemVybygmZGV2
-X3ByaXYtDQo+Pj4gZGlzcGxheS5mYmRldi5mYmRldik7DQo+PiAtDQo+PiAtwqDCoMKgwqDC
-oMKgwqBpZiAoIWlmYmRldikNCj4+IC3CoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqBy
-ZXR1cm47DQo+PiAtDQo+PiAtwqDCoMKgwqDCoMKgwqBpbnRlbF9mYmRldl9kZXN0cm95KGlm
-YmRldik7DQo+PiAgwqB9DQo+PiAgIA0KPj4gIMKgc3RydWN0IGludGVsX2ZyYW1lYnVmZmVy
-ICppbnRlbF9mYmRldl9mcmFtZWJ1ZmZlcihzdHJ1Y3QgaW50ZWxfZmJkZXYNCj4+ICpmYmRl
-dikNCj4+IGRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVs
-X2ZiZGV2LmgNCj4+IGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9mYmRl
-di5oDQo+PiBpbmRleCA4Yzk1M2YxMDJiYTIyLi4wOGRlMmQ1YjM0MzM4IDEwMDY0NA0KPj4g
-LS0tIGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9mYmRldi5oDQo+PiAr
-KysgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2ZiZGV2LmgNCj4+IEBA
-IC0xNCwyNyArMTQsMTEgQEAgc3RydWN0IGludGVsX2ZiZGV2Ow0KPj4gIMKgc3RydWN0IGlu
-dGVsX2ZyYW1lYnVmZmVyOw0KPj4gICANCj4+ICDCoCNpZmRlZiBDT05GSUdfRFJNX0ZCREVW
-X0VNVUxBVElPTg0KPj4gLWludCBpbnRlbF9mYmRldl9pbml0KHN0cnVjdCBkcm1fZGV2aWNl
-ICpkZXYpOw0KPj4gLXZvaWQgaW50ZWxfZmJkZXZfaW5pdGlhbF9jb25maWdfYXN5bmMoc3Ry
-dWN0IGRybV9pOTE1X3ByaXZhdGUNCj4+ICpkZXZfcHJpdik7DQo+PiAtdm9pZCBpbnRlbF9m
-YmRldl91bnJlZ2lzdGVyKHN0cnVjdCBkcm1faTkxNV9wcml2YXRlICpkZXZfcHJpdik7DQo+
-PiAtdm9pZCBpbnRlbF9mYmRldl9maW5pKHN0cnVjdCBkcm1faTkxNV9wcml2YXRlICpkZXZf
-cHJpdik7DQo+PiArdm9pZCBpbnRlbF9mYmRldl9zZXR1cChzdHJ1Y3QgZHJtX2k5MTVfcHJp
-dmF0ZSAqZGV2X3ByaXYpOw0KPj4gIMKgdm9pZCBpbnRlbF9mYmRldl9zZXRfc3VzcGVuZChz
-dHJ1Y3QgZHJtX2RldmljZSAqZGV2LCBpbnQgc3RhdGUsIGJvb2wNCj4+IHN5bmNocm9ub3Vz
-KTsNCj4+ICDCoHN0cnVjdCBpbnRlbF9mcmFtZWJ1ZmZlciAqaW50ZWxfZmJkZXZfZnJhbWVi
-dWZmZXIoc3RydWN0IGludGVsX2ZiZGV2DQo+PiAqZmJkZXYpOw0KPj4gIMKgI2Vsc2UNCj4+
-IC1zdGF0aWMgaW5saW5lIGludCBpbnRlbF9mYmRldl9pbml0KHN0cnVjdCBkcm1fZGV2aWNl
-ICpkZXYpDQo+PiAtew0KPj4gLcKgwqDCoMKgwqDCoMKgcmV0dXJuIDA7DQo+PiAtfQ0KPj4g
-LQ0KPj4gLXN0YXRpYyBpbmxpbmUgdm9pZCBpbnRlbF9mYmRldl9pbml0aWFsX2NvbmZpZ19h
-c3luYyhzdHJ1Y3QNCj4+IGRybV9pOTE1X3ByaXZhdGUgKmRldl9wcml2KQ0KPj4gLXsNCj4+
-IC19DQo+PiAtDQo+PiAtc3RhdGljIGlubGluZSB2b2lkIGludGVsX2ZiZGV2X3VucmVnaXN0
-ZXIoc3RydWN0IGRybV9pOTE1X3ByaXZhdGUNCj4+ICpkZXZfcHJpdikNCj4+IC17DQo+PiAt
-fQ0KPj4gLQ0KPj4gLXN0YXRpYyBpbmxpbmUgdm9pZCBpbnRlbF9mYmRldl9maW5pKHN0cnVj
-dCBkcm1faTkxNV9wcml2YXRlDQo+PiAqZGV2X3ByaXYpDQo+PiArc3RhdGljIGlubGluZSB2
-b2lkIGludGVsX2ZiZGV2X3NldHVwKHN0cnVjdCBkcm1faTkxNV9wcml2YXRlDQo+PiAqZGV2
-X3ByaXYpDQo+PiAgwqB7DQo+PiAgwqB9DQo+PiAgIA0KPj4gZGlmZiAtLWdpdCBhL2RyaXZl
-cnMvZ3B1L2RybS9pOTE1L2k5MTVfZHJpdmVyLmMNCj4+IGIvZHJpdmVycy9ncHUvZHJtL2k5
-MTUvaTkxNV9kcml2ZXIuYw0KPj4gaW5kZXggODY0NjBjZDgxNjdkMS4uNTM2NjNjMGNjM2Jl
-NCAxMDA2NDQNCj4+IC0tLSBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2k5MTVfZHJpdmVyLmMN
-Cj4+ICsrKyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2k5MTVfZHJpdmVyLmMNCj4+IEBAIC04
-MTcsNiArODE3LDggQEAgaW50IGk5MTVfZHJpdmVyX3Byb2JlKHN0cnVjdCBwY2lfZGV2ICpw
-ZGV2LCBjb25zdA0KPj4gc3RydWN0IHBjaV9kZXZpY2VfaWQgKmVudCkNCj4+ICAgDQo+PiAg
-wqDCoMKgwqDCoMKgwqDCoGk5MTUtPmRvX3JlbGVhc2UgPSB0cnVlOw0KPj4gICANCj4+ICvC
-oMKgwqDCoMKgwqDCoGludGVsX2ZiZGV2X3NldHVwKGk5MTUpOw0KPj4gKw0KPj4gIMKgwqDC
-oMKgwqDCoMKgwqByZXR1cm4gMDsNCj4+ICAgDQo+PiAgwqBvdXRfY2xlYW51cF9nZW06DQo+
-IA0KDQotLSANClRob21hcyBaaW1tZXJtYW5uDQpHcmFwaGljcyBEcml2ZXIgRGV2ZWxvcGVy
-DQpTVVNFIFNvZnR3YXJlIFNvbHV0aW9ucyBHZXJtYW55IEdtYkgNCkZyYW5rZW5zdHJhc3Nl
-IDE0NiwgOTA0NjEgTnVlcm5iZXJnLCBHZXJtYW55DQpHRjogSXZvIFRvdGV2LCBBbmRyZXcg
-TXllcnMsIEFuZHJldyBNY0RvbmFsZCwgQm91ZGllbiBNb2VybWFuDQpIUkIgMzY4MDkgKEFH
-IE51ZXJuYmVyZykNCg==
+v2: Write frames before su entry to correct register (Ville, Jouni)
+    Move frames before su entry calculation to it's own function (Ville, Jouni)
+    Rename PSR Entry Setup Frames register to indicate Lunarlake specificity (Jouni)
 
---------------Ip6WEhfQN58wsBJc0DebPeEx--
+Signed-off-by: Mika Kahola <mika.kahola@intel.com>
+---
+ .../drm/i915/display/intel_display_types.h    |  1 +
+ drivers/gpu/drm/i915/display/intel_psr.c      | 77 ++++++++++++++-----
+ drivers/gpu/drm/i915/display/intel_psr_regs.h |  2 +
+ 3 files changed, 62 insertions(+), 18 deletions(-)
 
---------------oqyOs2P7m1HegQ25kFG05YKD
-Content-Type: application/pgp-signature; name="OpenPGP_signature.asc"
-Content-Description: OpenPGP digital signature
-Content-Disposition: attachment; filename="OpenPGP_signature.asc"
+diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/drivers/gpu/drm/i915/display/intel_display_types.h
+index 65ea37fe8cff..a0bcab6f2bec 100644
+--- a/drivers/gpu/drm/i915/display/intel_display_types.h
++++ b/drivers/gpu/drm/i915/display/intel_display_types.h
+@@ -1710,6 +1710,7 @@ struct intel_psr {
+ 	u32 dc3co_exitline;
+ 	u32 dc3co_exit_delay;
+ 	struct delayed_work dc3co_work;
++	u8 entry_setup_frames;
+ };
+ 
+ struct intel_dp {
+diff --git a/drivers/gpu/drm/i915/display/intel_psr.c b/drivers/gpu/drm/i915/display/intel_psr.c
+index ecd24a0b86cb..c9e6651fb3b2 100644
+--- a/drivers/gpu/drm/i915/display/intel_psr.c
++++ b/drivers/gpu/drm/i915/display/intel_psr.c
+@@ -592,6 +592,9 @@ static void intel_psr_enable_sink(struct intel_dp *intel_dp)
+ 	if (intel_dp->psr.req_psr2_sdp_prior_scanline)
+ 		dpcd_val |= DP_PSR_SU_REGION_SCANLINE_CAPTURE;
+ 
++	if (intel_dp->psr.entry_setup_frames > 0)
++		dpcd_val |= DP_PSR_FRAME_CAPTURE;
++
+ 	drm_dp_dpcd_writeb(&intel_dp->aux, DP_PSR_EN_CFG, dpcd_val);
+ 
+ 	drm_dp_dpcd_writeb(&intel_dp->aux, DP_SET_POWER, DP_SET_POWER_D0);
+@@ -690,6 +693,9 @@ static void hsw_activate_psr1(struct intel_dp *intel_dp)
+ 	if (DISPLAY_VER(dev_priv) >= 8)
+ 		val |= EDP_PSR_CRC_ENABLE;
+ 
++	if (DISPLAY_VER(dev_priv) >= 20)
++		val |= LNL_EDP_PSR_ENTRY_SETUP_FRAMES(intel_dp->psr.entry_setup_frames);
++
+ 	intel_de_rmw(dev_priv, psr_ctl_reg(dev_priv, cpu_transcoder),
+ 		     ~EDP_PSR_RESTORE_PSR_ACTIVE_CTX_MASK, val);
+ }
+@@ -727,11 +733,27 @@ static int psr2_block_count(struct intel_dp *intel_dp)
+ 	return psr2_block_count_lines(intel_dp) / 4;
+ }
+ 
++static u8 get_frames_before_su_entry(struct intel_dp *intel_dp)
++{
++	u8 frames_before_su_entry;
++
++	frames_before_su_entry = max_t(u8,
++				       intel_dp->psr.sink_sync_latency + 1,
++				       2);
++
++	/* Entry setup frames must be at least 1 less than frames before SU entry */
++	if (intel_dp->psr.entry_setup_frames >= frames_before_su_entry)
++		frames_before_su_entry += 1;
++
++	return frames_before_su_entry;
++}
++
+ static void hsw_activate_psr2(struct intel_dp *intel_dp)
+ {
+ 	struct drm_i915_private *dev_priv = dp_to_i915(intel_dp);
+ 	enum transcoder cpu_transcoder = intel_dp->psr.transcoder;
+ 	u32 val = EDP_PSR2_ENABLE;
++	u32 psr_val = 0;
+ 
+ 	val |= EDP_PSR2_IDLE_FRAMES(psr_compute_idle_frames(intel_dp));
+ 
+@@ -741,7 +763,8 @@ static void hsw_activate_psr2(struct intel_dp *intel_dp)
+ 	if (DISPLAY_VER(dev_priv) >= 10 && DISPLAY_VER(dev_priv) <= 12)
+ 		val |= EDP_Y_COORDINATE_ENABLE;
+ 
+-	val |= EDP_PSR2_FRAME_BEFORE_SU(max_t(u8, intel_dp->psr.sink_sync_latency + 1, 2));
++	val |= EDP_PSR2_FRAME_BEFORE_SU(get_frames_before_su_entry(intel_dp));
++
+ 	val |= intel_psr2_get_tp_time(intel_dp);
+ 
+ 	if (DISPLAY_VER(dev_priv) >= 12) {
+@@ -785,6 +808,9 @@ static void hsw_activate_psr2(struct intel_dp *intel_dp)
+ 	if (intel_dp->psr.req_psr2_sdp_prior_scanline)
+ 		val |= EDP_PSR2_SU_SDP_SCANLINE;
+ 
++	if (DISPLAY_VER(dev_priv) >= 20)
++		psr_val |= LNL_EDP_PSR_ENTRY_SETUP_FRAMES(intel_dp->psr.entry_setup_frames);
++
+ 	if (intel_dp->psr.psr2_sel_fetch_enabled) {
+ 		u32 tmp;
+ 
+@@ -798,7 +824,7 @@ static void hsw_activate_psr2(struct intel_dp *intel_dp)
+ 	 * PSR2 HW is incorrectly using EDP_PSR_TP1_TP3_SEL and BSpec is
+ 	 * recommending keep this bit unset while PSR2 is enabled.
+ 	 */
+-	intel_de_write(dev_priv, psr_ctl_reg(dev_priv, cpu_transcoder), 0);
++	intel_de_write(dev_priv, psr_ctl_reg(dev_priv, cpu_transcoder), psr_val);
+ 
+ 	intel_de_write(dev_priv, EDP_PSR2_CTL(cpu_transcoder), val);
+ }
+@@ -1066,6 +1092,36 @@ static bool _compute_psr2_wake_times(struct intel_dp *intel_dp,
+ 	return true;
+ }
+ 
++static void intel_psr_set_entry_setup_frames(struct intel_dp *intel_dp,
++					     const struct drm_display_mode *adjusted_mode)
++{
++	struct drm_i915_private *dev_priv = dp_to_i915(intel_dp);
++	int psr_setup_time = drm_dp_psr_setup_time(intel_dp->psr_dpcd);
++
++	intel_dp->psr.entry_setup_frames = 0;
++
++	if (psr_setup_time < 0) {
++		drm_dbg_kms(&dev_priv->drm,
++			    "PSR condition failed: Invalid PSR setup time (0x%02x)\n",
++			    intel_dp->psr_dpcd[1]);
++		return;
++	}
++
++	if (intel_usecs_to_scanlines(adjusted_mode, psr_setup_time) >
++	    adjusted_mode->crtc_vtotal - adjusted_mode->crtc_vdisplay - 1) {
++		if (DISPLAY_VER(dev_priv) >= 20) {
++			intel_dp->psr.entry_setup_frames = 1;
++			drm_dbg_kms(&dev_priv->drm,
++				    "PSR setup entry frames: %d\n",
++				    intel_dp->psr.entry_setup_frames);
++		} else {
++			drm_dbg_kms(&dev_priv->drm,
++				    "PSR condition failed: PSR setup time (%d us) too long\n",
++				    psr_setup_time);
++		}
++	}
++}
++
+ static bool intel_psr2_config_valid(struct intel_dp *intel_dp,
+ 				    struct intel_crtc_state *crtc_state)
+ {
+@@ -1213,7 +1269,6 @@ void intel_psr_compute_config(struct intel_dp *intel_dp,
+ 	struct drm_i915_private *dev_priv = dp_to_i915(intel_dp);
+ 	const struct drm_display_mode *adjusted_mode =
+ 		&crtc_state->hw.adjusted_mode;
+-	int psr_setup_time;
+ 
+ 	/*
+ 	 * Current PSR panels don't work reliably with VRR enabled
+@@ -1242,21 +1297,7 @@ void intel_psr_compute_config(struct intel_dp *intel_dp,
+ 		return;
+ 	}
+ 
+-	psr_setup_time = drm_dp_psr_setup_time(intel_dp->psr_dpcd);
+-	if (psr_setup_time < 0) {
+-		drm_dbg_kms(&dev_priv->drm,
+-			    "PSR condition failed: Invalid PSR setup time (0x%02x)\n",
+-			    intel_dp->psr_dpcd[1]);
+-		return;
+-	}
+-
+-	if (intel_usecs_to_scanlines(adjusted_mode, psr_setup_time) >
+-	    adjusted_mode->crtc_vtotal - adjusted_mode->crtc_vdisplay - 1) {
+-		drm_dbg_kms(&dev_priv->drm,
+-			    "PSR condition failed: PSR setup time (%d us) too long\n",
+-			    psr_setup_time);
+-		return;
+-	}
++	intel_psr_set_entry_setup_frames(intel_dp, adjusted_mode);
+ 
+ 	crtc_state->has_psr = true;
+ 	crtc_state->has_psr2 = intel_psr2_config_valid(intel_dp, crtc_state);
+diff --git a/drivers/gpu/drm/i915/display/intel_psr_regs.h b/drivers/gpu/drm/i915/display/intel_psr_regs.h
+index d39951383c92..efe4306b37e0 100644
+--- a/drivers/gpu/drm/i915/display/intel_psr_regs.h
++++ b/drivers/gpu/drm/i915/display/intel_psr_regs.h
+@@ -35,6 +35,8 @@
+ #define   EDP_PSR_MIN_LINK_ENTRY_TIME_0_LINES	REG_FIELD_PREP(EDP_PSR_MIN_LINK_ENTRY_TIME_MASK, 3)
+ #define   EDP_PSR_MAX_SLEEP_TIME_MASK		REG_GENMASK(24, 20)
+ #define   EDP_PSR_MAX_SLEEP_TIME(x)		REG_FIELD_PREP(EDP_PSR_MAX_SLEEP_TIME_MASK, (x))
++#define   LNL_EDP_PSR_ENTRY_SETUP_FRAMES_MASK	REG_GENMASK(17, 16)
++#define   LNL_EDP_PSR_ENTRY_SETUP_FRAMES(x)	REG_FIELD_PREP(LNL_EDP_PSR_ENTRY_SETUP_FRAMES_MASK, (x))
+ #define   EDP_PSR_SKIP_AUX_EXIT			REG_BIT(12)
+ #define   EDP_PSR_TP_MASK			REG_BIT(11)
+ #define   EDP_PSR_TP_TP1_TP2			REG_FIELD_PREP(EDP_PSR_TP_MASK, 0)
+-- 
+2.34.1
 
------BEGIN PGP SIGNATURE-----
-
-wsF5BAABCAAjFiEExndm/fpuMUdwYFFolh/E3EQov+AFAmVCDWYFAwAAAAAACgkQlh/E3EQov+DY
-RBAAsPIG+o2tfhjCeqai10HobzkSOacgmhMAgvbrKJt2Km3mbhi2Nx7ngAgA5y/z8SbXBh0NncBg
-a/43QUach+Igj2yvm+UDW0RsaIRP8GTdXi+E9/4HljmAUK0N6lgsf7twrYRSaKzk7EizL2iAa+ry
-AlubGYpVz0+kBu+04c1eLzgNjCayDHrCRKM6uJ9isjwV9GMxZaGKLZ7oAESncN7jIrcuhCUebfqp
-yFNFUuDpwpz8HY7/OJEmMAS+OebFZ6eeFCWjljLT1SmpNN9fz1eL2rPHpa1H4DO914SPw3r4YLrl
-/HdChC24Oym4Dnx2OONfqxmOWTXgN1NGn2N53HUPA+3MSxqTNIlRhoNA17cTuglhrTCphF33i66V
-3Z/sH1Rr/Q5vj8RfCl+gNnmMnSzZSb7yXV/vumnby/FdAD42lnmbCxaDkWkZdGgyZK9iesUatQ7n
-gg4+DM4kADh8I6SLooi36rdee62gszg0B4GfbJpFOYbBTJ+PKRzIGKQCO1vcxgXo575QbpTvR8WY
-vIf/pgnfjp2X3bVVpjBVRo0BxMhCUMPtDtW2Z5zY9B+IpwuVydUjNBx4KV6aa43V6dPOdmG87heU
-wNflT2d442Pbxt7AsWp5gwKcB86nPS9nHr1Vwznx/4TrgUbA25mLKY65wv+4FYZfE67AmtUOfm4p
-Tpw=
-=Bq+W
------END PGP SIGNATURE-----
-
---------------oqyOs2P7m1HegQ25kFG05YKD--
