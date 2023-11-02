@@ -2,56 +2,56 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id ECCE17DF7F0
-	for <lists+intel-gfx@lfdr.de>; Thu,  2 Nov 2023 17:49:21 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3E1557DF82E
+	for <lists+intel-gfx@lfdr.de>; Thu,  2 Nov 2023 17:58:57 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 97EBB10E947;
-	Thu,  2 Nov 2023 16:49:16 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9744F10E936;
+	Thu,  2 Nov 2023 16:58:55 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CB16610E08F;
- Thu,  2 Nov 2023 16:49:13 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.88])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 499E710E949
+ for <intel-gfx@lists.freedesktop.org>; Thu,  2 Nov 2023 16:58:54 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1698943753; x=1730479753;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:in-reply-to;
- bh=HKl+m4Zjr7h+atr2oTK1n7KhWyPIB1bTDQkuRUWLgbk=;
- b=XZ7VlFjIeDCx7M5tkbevGdM+f0CP30Zp7l2z/0hGjcciLphXUvXtFsW8
- nIHeEFJ23Ew9q9PsPwC/J9TVFIyMqYRnCDT8feahrRkvEws1f2JunL2V5
- 7L5bnoETFecV6hbDu63X56XjeQyP7papWt7Eprvo6mvU1+g0lxm6GpRIh
- 29xSiCNKDok4KXx25KatNmm0q2TwsTVujDBXUOJz8cz0+MJg0PzLix+Ol
- VtTd5NTWb+JsvGvmrACRwxoVi9oR87cSX1v2kVTA6RV7Gq5AUlj/FG3ho
- GOSKLnFwRiqw4ZpQdfVDnI483qzePfH0I3GEXbXwMdCx26Td+OjUVDt8P Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10882"; a="453060189"
-X-IronPort-AV: E=Sophos;i="6.03,272,1694761200"; d="scan'208";a="453060189"
-Received: from fmsmga007.fm.intel.com ([10.253.24.52])
- by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Nov 2023 09:49:11 -0700
+ t=1698944334; x=1730480334;
+ h=message-id:date:mime-version:subject:to:cc:references:
+ from:in-reply-to:content-transfer-encoding;
+ bh=X7xaOaKsER4RHdJPl2qR3Iscp0BV+gfYMbNcL+1TF3Q=;
+ b=DXtR6YdwKnQBDE9qClLFvWy+Lq4sJ5bzieBmhPWaFV9OUuJDrYWGBQaa
+ NltytTR6qFR7sGEe2vQfOZkl0JNDEqAhvyXZ27sRnNyvD/ZmPOfmZG2X3
+ uBM4aNkJE7SHPf822MeAlpMES3zhPbSh08d4SfxoGqsdiVoqwoLBQziLE
+ ZR/A7fKV1a+Sj//DgfNKpJWZ0TQ47PHletgoxji/FTttOaMB8i/5PCT57
+ k2rceEAp4i0me/7jgH7J1dG5dFSuiWlduYMeKIB5ixuPNPlbPPwaX2hd5
+ mqZquN2KvOuhRRd8MNwHcGeLK4YFhq28PywxQRUHCXBtKibl72rRTWb1e A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10882"; a="419868888"
+X-IronPort-AV: E=Sophos;i="6.03,272,1694761200"; d="scan'208";a="419868888"
+Received: from fmsmga005.fm.intel.com ([10.253.24.32])
+ by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 Nov 2023 09:58:43 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10882"; a="764985106"
-X-IronPort-AV: E=Sophos;i="6.03,272,1694761200"; d="scan'208";a="764985106"
-Received: from smile.fi.intel.com ([10.237.72.54])
- by fmsmga007.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Nov 2023 09:49:07 -0700
-Received: from andy by smile.fi.intel.com with local (Exim 4.97-RC3)
- (envelope-from <andriy.shevchenko@linux.intel.com>)
- id 1qyasT-0000000AkGd-0B1U; Thu, 02 Nov 2023 18:49:05 +0200
-Date: Thu, 2 Nov 2023 18:49:04 +0200
-From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-To: Hans de Goede <hdegoede@redhat.com>
-Message-ID: <ZUPTAG5ZuxKoOugs@smile.fi.intel.com>
-References: <20231102151228.668842-1-andriy.shevchenko@linux.intel.com>
- <20231102151228.668842-15-andriy.shevchenko@linux.intel.com>
- <34b4f396-ecf3-576d-69e5-f8eac2a5d488@redhat.com>
+X-IronPort-AV: E=McAfee;i="6600,9927,10882"; a="1092774611"
+X-IronPort-AV: E=Sophos;i="6.03,272,1694761200"; d="scan'208";a="1092774611"
+Received: from ahajda-mobl.ger.corp.intel.com (HELO [10.213.6.224])
+ ([10.213.6.224])
+ by fmsmga005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 Nov 2023 09:58:42 -0700
+Message-ID: <495ea80c-06e5-4557-8c82-badb9c1be7ac@intel.com>
+Date: Thu, 2 Nov 2023 17:58:38 +0100
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <34b4f396-ecf3-576d-69e5-f8eac2a5d488@redhat.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-Subject: Re: [Intel-gfx] [PATCH v3 14/15] drm/i915/dsi: Replace poking of
- CHV GPIOs behind the driver's back
+User-Agent: Mozilla Thunderbird
+Content-Language: en-US
+To: Radhakrishna Sripada <radhakrishna.sripada@intel.com>,
+ intel-gfx@lists.freedesktop.org
+References: <20231102160644.1279801-1-radhakrishna.sripada@intel.com>
+From: Andrzej Hajda <andrzej.hajda@intel.com>
+Organization: Intel Technology Poland sp. z o.o. - ul. Slowackiego 173, 80-298
+ Gdansk - KRS 101882 - NIP 957-07-52-316
+In-Reply-To: <20231102160644.1279801-1-radhakrishna.sripada@intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+Subject: Re: [Intel-gfx] [PATCH] drm/i915/mtl: Increase guard pages when
+ vt-d is enabled
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,29 +64,50 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Jani Nikula <jani.nikula@intel.com>, intel-gfx@lists.freedesktop.org,
- linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
- Daniel Vetter <daniel@ffwll.ch>, Rodrigo Vivi <rodrigo.vivi@intel.com>,
- David Airlie <airlied@gmail.com>
+Cc: Chris Wilson <chris.p.wilson@linux.intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, Nov 02, 2023 at 04:47:41PM +0100, Hans de Goede wrote:
-> On 11/2/23 16:12, Andy Shevchenko wrote:
-
-...
-
-> > +			soc_exec_opaque_gpio(connector, gpio_index, "INT33FF:03", "Panel SE",
-> > +					     gpio_index - CHV_GPIO_IDX_START_SW, value);
+On 02.11.2023 17:06, Radhakrishna Sripada wrote:
+> Experiments were conducted with different multipliers to VTD_GUARD macro
+> with multiplier of 185 we were observing occasional pipe faults when
+> running kms_cursor_legacy --run-subtest single-bo
 > 
-> The "gpio_index - CHV_GPIO_IDX_START_SW" here needs to be "gpio_index - CHV_GPIO_IDX_START_SE".
+> There could possibly be an underlying issue that is being investigated, for
+> now bump the guard pages for MTL.
 > 
-> Also this patch needs s/soc_exec_opaque_gpio/soc_opaque_gpio_set_value/ to compile ...
+> Closes: https://gitlab.freedesktop.org/drm/intel/-/issues/2017
+> Cc: Gustavo Sousa <gustavo.sousa@intel.com>
+> Cc: Chris Wilson <chris.p.wilson@linux.intel.com>
+> Signed-off-by: Radhakrishna Sripada <radhakrishna.sripada@intel.com>
+> ---
+>   drivers/gpu/drm/i915/gem/i915_gem_domain.c | 3 +++
+>   1 file changed, 3 insertions(+)
+> 
+> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_domain.c b/drivers/gpu/drm/i915/gem/i915_gem_domain.c
+> index 3770828f2eaf..b65f84c6bb3f 100644
+> --- a/drivers/gpu/drm/i915/gem/i915_gem_domain.c
+> +++ b/drivers/gpu/drm/i915/gem/i915_gem_domain.c
+> @@ -456,6 +456,9 @@ i915_gem_object_pin_to_display_plane(struct drm_i915_gem_object *obj,
+>   	if (intel_scanout_needs_vtd_wa(i915)) {
+>   		unsigned int guard = VTD_GUARD;
+>   
+> +		if (IS_METEORLAKE(i915))
+> +			guard *= 200;
+> +
 
-Ah, indeed. I looks like I run the test build, but forgot to look into the result. :-(
+200 * VTD_GUARD = 200 * 168 * 4K = 131MB
 
--- 
-With Best Regards,
-Andy Shevchenko
+Looks insanely high, 131MB for padding, if this is before and after it 
+becomes even 262MB of wasted address per plane. Just signalling, I do 
+not know if this actually hurts.
 
+Regards
+Andrzej
+
+
+
+>   		if (i915_gem_object_is_tiled(obj))
+>   			guard = max(guard,
+>   				    i915_gem_object_get_tile_row_size(obj));
 
