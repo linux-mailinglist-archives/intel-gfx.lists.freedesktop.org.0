@@ -2,50 +2,52 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 579D07DF23D
-	for <lists+intel-gfx@lfdr.de>; Thu,  2 Nov 2023 13:23:57 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id E538C7DF249
+	for <lists+intel-gfx@lfdr.de>; Thu,  2 Nov 2023 13:26:35 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 13ADA10E158;
-	Thu,  2 Nov 2023 12:23:54 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4576410E088;
+	Thu,  2 Nov 2023 12:26:34 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.100])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 966BE10E097
- for <intel-gfx@lists.freedesktop.org>; Thu,  2 Nov 2023 12:23:52 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 845C010E088
+ for <intel-gfx@lists.freedesktop.org>; Thu,  2 Nov 2023 12:26:32 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1698927832; x=1730463832;
- h=from:to:subject:in-reply-to:references:date:message-id:
- mime-version; bh=V1Lpq+c3Sguu4OZujJgBnjpPynCUMsUkgJHy65QKAqY=;
- b=j2SgDNIJb1WpGuwb+26nkEiP/UTD4yY8gFXUQ2gEcJUL6cqK+zOQ1UeH
- mtrj5WzpzhhLvhVeQM/ZNo4dN5B4lq0bmRYAbXFE7EhNPF1OQC3jxVcVn
- wFlAFxAxIu/HyCPkQVTQutVkp84LUyi8mm7Jmb4aD2wwVje1cvGcSKYy2
- Xl1rCUJ7QhD/rXsAW/ygsw9z2H65ODhgG0Klp0T7wr7Ea9gLiVf5zTbfY
- JA5AibriwoWd6IM/5KucibtQ8QBCD74AMCZnj/iey+u8QwP95f91v9fnj
- fL0fbqkMr+Z/5kiDgS47Cph8eBAK3n/CjbmEOxbjAFCJxL+S4NqA4dkM2 w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10881"; a="455181654"
-X-IronPort-AV: E=Sophos;i="6.03,271,1694761200"; d="scan'208";a="455181654"
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
- by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Nov 2023 05:23:52 -0700
+ t=1698927992; x=1730463992;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version;
+ bh=8YbYvBdzZrIHNg3eMn8NeYgT5cS4n83s+3SXHmQIj80=;
+ b=NjV7dcN0/pGFVnFiruFFWxjP7z+NmEF9mf+PPPLeSENB4igsSSBU1Jgp
+ Z7gbpUs1tv4z8a16K9oU7Pp63WaZDv8QLcDFA7vL7mXTbT9ehR/TNhyt0
+ l+s+NJb+IWMhaQUnto3M4ivgZ7PIvnSp4gQJQGBUJaPti0cSVO6Xp2GCX
+ gteJ19lINTakPduzWcAsJ+bnvOcNQR+v7rQ4lHXPRGxoHU7SIvjz3Ls1B
+ esv8Cll/z8acJTrN6aaMWqiGBetz5Od4fv6UtUTnmQ9mPL/dT6Oi6WtLj
+ LcpKfDt+N63HPNPFOyedGkbX9Z8m4dMKqE2QhQ29Pemqo4Cx5LPgDaNNQ g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10881"; a="474941568"
+X-IronPort-AV: E=Sophos;i="6.03,271,1694761200"; d="scan'208";a="474941568"
+Received: from orviesa001.jf.intel.com ([10.64.159.141])
+ by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 Nov 2023 05:26:31 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10881"; a="796222070"
-X-IronPort-AV: E=Sophos;i="6.03,271,1694761200"; d="scan'208";a="796222070"
+X-IronPort-AV: E=Sophos;i="6.03,271,1694761200"; 
+   d="scan'208";a="8977591"
 Received: from unknown (HELO localhost) ([10.237.66.162])
- by orsmga001-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Nov 2023 05:23:51 -0700
-From: Jani Nikula <jani.nikula@intel.com>
-To: Nirmoy Das <nirmoy.das@linux.intel.com>, intel-gfx@lists.freedesktop.org
-In-Reply-To: <4ac1d8f8-d108-9ff4-024f-85bc5394fb5d@linux.intel.com>
+ by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 Nov 2023 05:26:30 -0700
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Andi Shyti <andi.shyti@linux.intel.com>, Dorcas AnonoLitunya
+ <anonolitunya@gmail.com>
+In-Reply-To: <ZT_5InkXDfIzzonu@ashyti-mobl2.lan>
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20231031124502.1772160-1-jani.nikula@intel.com>
- <4ac1d8f8-d108-9ff4-024f-85bc5394fb5d@linux.intel.com>
-Date: Thu, 02 Nov 2023 14:23:47 +0200
-Message-ID: <87msvw2vjg.fsf@intel.com>
+References: <20231027174745.4058-1-anonolitunya@gmail.com>
+ <ZT_5InkXDfIzzonu@ashyti-mobl2.lan>
+Date: Thu, 02 Nov 2023 14:26:26 +0200
+Message-ID: <87jzr02vf1.fsf@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain
-Subject: Re: [Intel-gfx] [PATCH RESEND 1/3] drm/i915: make some error
- capture functions static
+Subject: Re: [Intel-gfx] [PATCH] drm/i915/gt: Remove prohibited space after
+ opening parenthesis
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -58,68 +60,59 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: intel-gfx@lists.freedesktop.org, karolinadrobnik@gmail.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, 31 Oct 2023, Nirmoy Das <nirmoy.das@linux.intel.com> wrote:
-> On 10/31/2023 1:45 PM, Jani Nikula wrote:
->> Not needed outside of i915_gpu_error.c.
->>
->> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
-> Reviewed-by: Nirmoy Das <nirmoy.das@intel.com>
+On Mon, 30 Oct 2023, Andi Shyti <andi.shyti@linux.intel.com> wrote:
+> Hi Dorcas,
+>
+> On Fri, Oct 27, 2023 at 08:47:45PM +0300, Dorcas AnonoLitunya wrote:
+>> Removes space after opening parenthesis.
+>> 
+>> Fixes the checkpatch.pl error:
+>> ERROR: space prohibited after that opening parenthesis '('
+>> 
+>> Signed-off-by: Dorcas AnonoLitunya <anonolitunya@gmail.com>
+>> ---
+>>  drivers/gpu/drm/i915/gt/intel_engine_cs.c | 2 +-
+>>  1 file changed, 1 insertion(+), 1 deletion(-)
+>> 
+>> diff --git a/drivers/gpu/drm/i915/gt/intel_engine_cs.c b/drivers/gpu/drm/i915/gt/intel_engine_cs.c
+>> index 4a11219e560e..40687806d22a 100644
+>> --- a/drivers/gpu/drm/i915/gt/intel_engine_cs.c
+>> +++ b/drivers/gpu/drm/i915/gt/intel_engine_cs.c
+>> @@ -47,7 +47,7 @@
+>>  #define GEN9_LR_CONTEXT_RENDER_SIZE	(22 * PAGE_SIZE)
+>>  #define GEN11_LR_CONTEXT_RENDER_SIZE	(14 * PAGE_SIZE)
+>>  
+>> -#define GEN8_LR_CONTEXT_OTHER_SIZE	( 2 * PAGE_SIZE)
+>> +#define GEN8_LR_CONTEXT_OTHER_SIZE	(2 * PAGE_SIZE)
+>
+> I'm actually having second thoughts on this change. The space was
+> left on purpose in order to be aligned with the defines above.
 
-Thanks, series pushed to din.
+I'd merge the patch.
 
 BR,
 Jani.
 
->> ---
->>   drivers/gpu/drm/i915/i915_gpu_error.c | 8 ++++----
->>   drivers/gpu/drm/i915/i915_gpu_error.h | 5 -----
->>   2 files changed, 4 insertions(+), 9 deletions(-)
->>
->> diff --git a/drivers/gpu/drm/i915/i915_gpu_error.c b/drivers/gpu/drm/i915/i915_gpu_error.c
->> index 8275f9b6a47d..889db834f07d 100644
->> --- a/drivers/gpu/drm/i915/i915_gpu_error.c
->> +++ b/drivers/gpu/drm/i915/i915_gpu_error.c
->> @@ -520,7 +520,7 @@ __find_vma(struct i915_vma_coredump *vma, const char *name)
->>   	return NULL;
->>   }
->>   
->> -struct i915_vma_coredump *
->> +static struct i915_vma_coredump *
->>   intel_gpu_error_find_batch(const struct intel_engine_coredump *ee)
->>   {
->>   	return __find_vma(ee->vma, "batch");
->> @@ -609,9 +609,9 @@ void i915_error_printf(struct drm_i915_error_state_buf *e, const char *f, ...)
->>   	va_end(args);
->>   }
->>   
->> -void intel_gpu_error_print_vma(struct drm_i915_error_state_buf *m,
->> -			       const struct intel_engine_cs *engine,
->> -			       const struct i915_vma_coredump *vma)
->> +static void intel_gpu_error_print_vma(struct drm_i915_error_state_buf *m,
->> +				      const struct intel_engine_cs *engine,
->> +				      const struct i915_vma_coredump *vma)
->>   {
->>   	char out[ASCII85_BUFSZ];
->>   	struct page *page;
->> diff --git a/drivers/gpu/drm/i915/i915_gpu_error.h b/drivers/gpu/drm/i915/i915_gpu_error.h
->> index 4ce227f7e1e1..8f9cdf056181 100644
->> --- a/drivers/gpu/drm/i915/i915_gpu_error.h
->> +++ b/drivers/gpu/drm/i915/i915_gpu_error.h
->> @@ -277,11 +277,6 @@ static inline void intel_klog_error_capture(struct intel_gt *gt,
->>   
->>   __printf(2, 3)
->>   void i915_error_printf(struct drm_i915_error_state_buf *e, const char *f, ...);
->> -void intel_gpu_error_print_vma(struct drm_i915_error_state_buf *m,
->> -			       const struct intel_engine_cs *engine,
->> -			       const struct i915_vma_coredump *vma);
->> -struct i915_vma_coredump *
->> -intel_gpu_error_find_batch(const struct intel_engine_coredump *ee);
->>   
->>   struct i915_gpu_coredump *i915_gpu_coredump(struct intel_gt *gt,
->>   					    intel_engine_mask_t engine_mask, u32 dump_flags);
+
+>
+> On the other hand, this is a bit detached from the others and
+> this change makes checkpatch happy.
+>
+> This is one of those patches that are not right and not wrong
+> either.
+>
+> I'll give it a bit more time and merge if no complains arise.
+>
+> Andi
+>
+>>  #define MAX_MMIO_BASES 3
+>>  struct engine_info {
+>> -- 
+>> 2.42.0.345.gaab89be2eb
 
 -- 
 Jani Nikula, Intel
