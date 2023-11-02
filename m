@@ -1,62 +1,54 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4CA6D7DF24E
-	for <lists+intel-gfx@lfdr.de>; Thu,  2 Nov 2023 13:27:39 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6188A7DF30D
+	for <lists+intel-gfx@lfdr.de>; Thu,  2 Nov 2023 14:00:08 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BB36110E154;
-	Thu,  2 Nov 2023 12:27:33 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0C08610E870;
+	Thu,  2 Nov 2023 13:00:06 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DBB6A10E097;
- Thu,  2 Nov 2023 12:27:30 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1698928050; x=1730464050;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:in-reply-to;
- bh=BsFcEvID3o2aSRzfUsZHlx4fPPpNDg9aadUfPiE9Bk4=;
- b=WMK9USgjEYT1H2N8/KCjn6CW86lLAdBPtQpcbKTEtp6yULmf9x8pNOL5
- GWGBeUpn9dN2GGgSfkYF4HDXauE2KtrzLQvNMFBbZ2YI/k/hk1saU6KoY
- DzU3SQN9XqVSLI6xByRLS1QvrjXwY9MmMPIIHO6jTe3flWSnRM8iWNYqe
- lGSvz8JL7fL3NiNelD93sA9TjBKtbeKZ7SW4FKM7HY2+YgByI7HKc+/LV
- yUE3JH1pt1W9Ktw5O6yXPMtsnJppW88SQLGCANIvQcYLq/O1/vRCWEogu
- gkY/Ds5mDs8KUTLijHvdHs1r3sTMnOB5GAqrjgYdP3lL+Ifet540Xt1vs Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10881"; a="379093668"
-X-IronPort-AV: E=Sophos;i="6.03,271,1694761200"; d="scan'208";a="379093668"
-Received: from orsmga004.jf.intel.com ([10.7.209.38])
- by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Nov 2023 05:27:30 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10881"; a="884877367"
-X-IronPort-AV: E=Sophos;i="6.03,271,1694761200"; d="scan'208";a="884877367"
-Received: from smile.fi.intel.com ([10.237.72.54])
- by orsmga004.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Nov 2023 05:27:27 -0700
-Received: from andy by smile.fi.intel.com with local (Exim 4.97-RC3)
- (envelope-from <andriy.shevchenko@linux.intel.com>)
- id 1qyWnD-0000000AgTQ-4Aci; Thu, 02 Nov 2023 14:27:23 +0200
-Date: Thu, 2 Nov 2023 14:27:23 +0200
-From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-To: Hans de Goede <hdegoede@redhat.com>
-Message-ID: <ZUOVq2LREbHgFL6R@smile.fi.intel.com>
-References: <20231024155739.3861342-1-andriy.shevchenko@linux.intel.com>
- <20231024155739.3861342-7-andriy.shevchenko@linux.intel.com>
- <ZTfssxRsrDxhzSQ6@smile.fi.intel.com>
- <b489675d-e9de-4bca-9622-78545aa8606d@redhat.com>
- <16e533e2-81bb-47ba-9e23-460a626bcad7@redhat.com>
- <ZUIbPtEEbl6pjdqg@smile.fi.intel.com>
- <f68dca47-d9ed-a146-b152-c19bcc9d8828@redhat.com>
- <437a20fe-121e-0d8c-04a0-da30db71d2ea@redhat.com>
+Received: from smtp-out2.suse.de (smtp-out2.suse.de [IPv6:2001:67c:2178:6::1d])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A86DE10E87D;
+ Thu,  2 Nov 2023 13:00:04 +0000 (UTC)
+Received: from imap2.suse-dmz.suse.de (imap2.suse-dmz.suse.de [192.168.254.74])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature ECDSA (P-521) server-digest SHA512)
+ (No client certificate requested)
+ by smtp-out2.suse.de (Postfix) with ESMTPS id DB6421F8C8;
+ Thu,  2 Nov 2023 13:00:02 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
+ t=1698930002; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:content-type:content-type;
+ bh=oGfP7JxMoxVg3I2CyDHRkHzhR9ppHJenaxjMVcrJan8=;
+ b=B1rkXyyp0UUlsUjGqavTwu1H+65lGHj1KK+DaiNjRUKH5X7eBBX2pMYpQGNA2aiPPp41ou
+ 3U6CfHY0Mo2MjpBNETfR2HnNqOmZOTKCFD9G5BYwO981QlbqoJoT0rlX5yE2sW6rsoq7gU
+ n6CJ3+ysDYvCxgtYU8IhiEPrQ/j9WHg=
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
+ s=susede2_ed25519; t=1698930002;
+ h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:content-type:content-type;
+ bh=oGfP7JxMoxVg3I2CyDHRkHzhR9ppHJenaxjMVcrJan8=;
+ b=PpSDI1FLRHw2p8aNoHwntAlqrNTt0kCsQBXJKHuRWL3eLtUN4PpTegvS5oXvxYFk+SXYfK
+ o9uqpc+Pa/L5fyAA==
+Received: from imap2.suse-dmz.suse.de (imap2.suse-dmz.suse.de [192.168.254.74])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature ECDSA (P-521) server-digest SHA512)
+ (No client certificate requested)
+ by imap2.suse-dmz.suse.de (Postfix) with ESMTPS id A127D13A8C;
+ Thu,  2 Nov 2023 13:00:02 +0000 (UTC)
+Received: from dovecot-director2.suse.de ([192.168.254.65])
+ by imap2.suse-dmz.suse.de with ESMTPSA id 4vttJVKdQ2W3WQAAMHmgww
+ (envelope-from <tzimmermann@suse.de>); Thu, 02 Nov 2023 13:00:02 +0000
+Date: Thu, 2 Nov 2023 14:00:00 +0100
+From: Thomas Zimmermann <tzimmermann@suse.de>
+To: Dave Airlie <airlied@gmail.com>, Daniel Vetter <daniel.vetter@ffwll.ch>
+Message-ID: <20231102130000.GA6353@linux-uq9g>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <437a20fe-121e-0d8c-04a0-da30db71d2ea@redhat.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-Subject: Re: [Intel-gfx] [PATCH v2 6/7] drm/i915/dsi: Replace poking of CHV
- GPIOs behind the driver's back
+Subject: [Intel-gfx] [PULL] drm-misc-fixes
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -69,35 +61,64 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Jani Nikula <jani.nikula@intel.com>, intel-gfx@lists.freedesktop.org,
- linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
- Daniel Vetter <daniel@ffwll.ch>, Rodrigo Vivi <rodrigo.vivi@intel.com>,
- David Airlie <airlied@gmail.com>
+Cc: dim-tools@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, Nov 01, 2023 at 12:01:31PM +0100, Hans de Goede wrote:
-> On 11/1/23 11:20, Hans de Goede wrote:
+Hi,
 
-...
+this is the PR for drm-misc-fixes.
 
-> Attached is this patch, this should probably be one of
-> the first patches in the v3 submission.
+Best regards
+Thomas
 
-Thanks, noted!
+drm-misc-fixes-2023-11-02:
+Short summary of fixes pull:
 
-> Note that if you go with Ville's suggestion to preparse
-> the MIPI sequences, things will change significantly
-> and then the attached patch will likely be unnecessary.
+syncobj:
+- Fix waiting for DRM_SYNCOBJ_WAIT_FLAGS_WAIT_AVAILABLE
 
-I don't think so I'm for that. My task is to get rid of the poking registers
-of the GPIO IPs in the kernel when driver has no clue about them.
+vc4:
+- Fix UAF in mock helpers
+The following changes since commit b132ac51d7a50c37683be56c96ff64f8c887930f:
 
-That's why I want to do minimum in that sense with less possible invasion
-into existing flow.
+  accel/ivpu/37xx: Fix missing VPUIP interrupts (2023-10-26 07:43:28 +0200)
+
+are available in the Git repository at:
+
+  git://anongit.freedesktop.org/drm/drm-misc tags/drm-misc-fixes-2023-11-02
+
+for you to fetch changes up to 101c9f637efa1655f55876644d4439e552267527:
+
+  drm/syncobj: fix DRM_SYNCOBJ_WAIT_FLAGS_WAIT_AVAILABLE (2023-10-26 21:20:25 +0200)
+
+----------------------------------------------------------------
+Short summary of fixes pull:
+
+syncobj:
+- Fix waiting for DRM_SYNCOBJ_WAIT_FLAGS_WAIT_AVAILABLE
+
+vc4:
+- Fix UAF in mock helpers
+
+----------------------------------------------------------------
+Erik Kurzinger (1):
+      drm/syncobj: fix DRM_SYNCOBJ_WAIT_FLAGS_WAIT_AVAILABLE
+
+Maxime Ripard (1):
+      drm/vc4: tests: Fix UAF in the mock helpers
+
+ drivers/gpu/drm/drm_syncobj.c               | 3 ++-
+ drivers/gpu/drm/vc4/tests/vc4_mock_crtc.c   | 2 +-
+ drivers/gpu/drm/vc4/tests/vc4_mock_output.c | 2 +-
+ 3 files changed, 4 insertions(+), 3 deletions(-)
 
 -- 
-With Best Regards,
-Andy Shevchenko
-
-
+Thomas Zimmermann
+Graphics Driver Developer
+SUSE Software Solutions Germany GmbH
+Frankenstrasse 146, 90461 Nuernberg, Germany
+GF: Ivo Totev, Andrew Myers, Andrew McDonald, Boudien Moerman
+HRB 36809 (AG Nuernberg)
