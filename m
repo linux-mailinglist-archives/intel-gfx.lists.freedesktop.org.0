@@ -1,34 +1,58 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id C4A8E7DF8C2
-	for <lists+intel-gfx@lfdr.de>; Thu,  2 Nov 2023 18:33:09 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 357227DF8EC
+	for <lists+intel-gfx@lfdr.de>; Thu,  2 Nov 2023 18:40:59 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3141B10E968;
-	Thu,  2 Nov 2023 17:33:08 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 52E2410E96C;
+	Thu,  2 Nov 2023 17:40:55 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 88A8610E968;
- Thu,  2 Nov 2023 17:33:06 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 820F5AADD6;
- Thu,  2 Nov 2023 17:33:06 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7A26F10E96C;
+ Thu,  2 Nov 2023 17:40:53 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1698946854; x=1730482854;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=nsYlMTWUww8YnOWzQWMLZoiChKl1M1Xnh9+qYn0rJ5Q=;
+ b=M1IJDcCsYRAQYqbeNQMlw8Gjyv76DrwFYZiJ7rBPDl0/C0o6Fy8+F+5S
+ bKsNGu2pesnxiHt22lmhX/l0MLkACP5ZT6vxssnQyZyEM/pFDck5rkQ/X
+ vmsKYVkh7AUAp0Welhb7ssIdwC8Td5gKI3KlPt0cg4fcfCrI6Ewu6SvSH
+ 6yxh4No9hmG0Bv0eY5lD2Gic9G5K8HVgEhKJfgzFCxI9/BoSSj5B9aqlS
+ S58QFMwFxeRCmz6II18GcnsCudFeHjUGIXIOKh5lq7N4MYrzSMDHENLCz
+ OAPfGVAYJcjCLokqsuuzpZffI5G1gvc9Zjh/yshDguYdfE+s/ChOovBcz w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10882"; a="10306072"
+X-IronPort-AV: E=Sophos;i="6.03,272,1694761200"; d="scan'208";a="10306072"
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+ by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 Nov 2023 10:40:52 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10882"; a="761348091"
+X-IronPort-AV: E=Sophos;i="6.03,272,1694761200"; d="scan'208";a="761348091"
+Received: from smile.fi.intel.com ([10.237.72.54])
+ by orsmga002.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 Nov 2023 10:40:49 -0700
+Received: from andy by smile.fi.intel.com with local (Exim 4.97-RC3)
+ (envelope-from <andriy.shevchenko@linux.intel.com>)
+ id 1qybgU-0000000AlQ2-1Eg2; Thu, 02 Nov 2023 19:40:46 +0200
+Date: Thu, 2 Nov 2023 19:40:46 +0200
+From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+To: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+Message-ID: <ZUPfHhHOMqrBEFZZ@smile.fi.intel.com>
+References: <20231102151228.668842-1-andriy.shevchenko@linux.intel.com>
+ <20231102151228.668842-2-andriy.shevchenko@linux.intel.com>
+ <ZUPX8RgtrCX8B_Cg@intel.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Andrzej Hajda" <andrzej.hajda@intel.com>
-Date: Thu, 02 Nov 2023 17:33:06 -0000
-Message-ID: <169894638652.28157.11935627979201246481@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20231025-debugobjects_fix-v3-1-2bc3bf7084c2@intel.com>
-In-Reply-To: <20231025-debugobjects_fix-v3-1-2bc3bf7084c2@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
- =?utf-8?q?for_debugobjects=3A_stop_accessing_objects_after_releasing_spin?=
- =?utf-8?q?lock_=28rev4=29?=
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <ZUPX8RgtrCX8B_Cg@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+Subject: Re: [Intel-gfx] [PATCH v3 01/15] drm/i915/dsi: assume BXT gpio
+ works for non-native GPIO
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -41,33 +65,37 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
+Cc: Jani Nikula <jani.nikula@intel.com>, intel-gfx@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
+ Hans de Goede <hdegoede@redhat.com>, Daniel Vetter <daniel@ffwll.ch>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, David Airlie <airlied@gmail.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+On Thu, Nov 02, 2023 at 07:10:09PM +0200, Ville Syrjälä wrote:
+> On Thu, Nov 02, 2023 at 05:12:14PM +0200, Andy Shevchenko wrote:
 
-Series: debugobjects: stop accessing objects after releasing spinlock (rev4)
-URL   : https://patchwork.freedesktop.org/series/124185/
-State : warning
+...
 
-== Summary ==
+> >  	if (native)
+> >  		icl_native_gpio_set_value(dev_priv, gpio_number, value);
+> >  	else if (DISPLAY_VER(dev_priv) >= 11)
+> > -		icl_exec_gpio(connector, gpio_source, gpio_index, value);
+> > +		bxt_exec_gpio(connector, gpio_source, gpio_index, value);
+> 
+> We could just drop this whole branch since we end up in bxt_exec_gpio()
+> in the end anyway. Or we drop the final else and make this one check for
+> DISPLAY_VER >=9.
 
-Error: dim checkpatch failed
-d3d4d06720a6 debugobjects: stop accessing objects after releasing spinlock
--:13: WARNING:COMMIT_LOG_LONG_LINE: Prefer a maximum 75 chars per line (possible unwrapped commit description?)
-#13: 
-2. Other thread frees debugobject, then allocates new one on the same memory
+Looking at the code, I'm not sure how we can get rid of it, but the second
+option is feasible.
 
--:88: WARNING:LIKELY_MISUSE: nested (un)?likely() calls, IS_ERR already uses unlikely() internally
-#88: FILE: lib/debugobjects.c:715:
-+	} else if (likely(!IS_ERR(obj))) {
+> >  	else if (IS_VALLEYVIEW(dev_priv))
+> >  		vlv_exec_gpio(connector, gpio_source, gpio_number, value);
+> >  	else if (IS_CHERRYVIEW(dev_priv))
 
--:384: CHECK:SPACING: No space is necessary after a cast
-#384: FILE: lib/debugobjects.c:992:
-+						   (void *) oaddr, o.state);
-
-total: 0 errors, 2 warnings, 1 checks, 350 lines checked
+-- 
+With Best Regards,
+Andy Shevchenko
 
 
