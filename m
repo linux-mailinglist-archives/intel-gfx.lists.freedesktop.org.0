@@ -1,49 +1,51 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id C190A7DF6AF
-	for <lists+intel-gfx@lfdr.de>; Thu,  2 Nov 2023 16:43:05 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id C88B67DF6A9
+	for <lists+intel-gfx@lfdr.de>; Thu,  2 Nov 2023 16:42:54 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2FD9010E931;
-	Thu,  2 Nov 2023 15:43:04 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 35FDF10E919;
+	Thu,  2 Nov 2023 15:42:53 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.93])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2285410E907
- for <intel-gfx@lists.freedesktop.org>; Thu,  2 Nov 2023 15:43:01 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.136])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 69F3710E907
+ for <intel-gfx@lists.freedesktop.org>; Thu,  2 Nov 2023 15:42:50 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1698939782; x=1730475782;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=9rQvv113HoLh9YP5KQK6D4lcTs2PhDePCmX3cyhhzsA=;
- b=YRuHHVUw0MTflLhpXOk2cDfrK4VHjzDg759bk+va9kerl8xOGbLy8FHL
- 2vUYjFBNWmnHyxKLr9F/FGlGD+tud+ViqryEcUIu03bx7PynwrRDpVpbW
- YnMaIFBHJJNLtFuQ96mbmbCWVM67E5YREIniaZagXnCeVzQU2pX55wGHk
- IZHe3Zn0iQ8zu2gF2V0O08PN84FJubOXBakXjYZamkkChZf9x58qXeBFL
- YeSJl7qFQ1gQMlPftK4B+CNyXQZaWgH0//zYXpYePeITDvQOxKlMQ8tzo
- i/xJLJgqRqzR38YVRM+BLE09PqUyLH2SbDZkCzbkQtcfx2oIKoNFGXSrD A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10882"; a="385918414"
-X-IronPort-AV: E=Sophos;i="6.03,271,1694761200"; d="scan'208";a="385918414"
-Received: from fmviesa002.fm.intel.com ([10.60.135.142])
- by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Nov 2023 08:42:35 -0700
+ t=1698939770; x=1730475770;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=7WTQBY7r/dGq42iSTj/VjkyEtoHA0N5bakRHYDIer/Q=;
+ b=cn32VW+x/5DmzlmugDSlPC/AgxxJJ5qQ1/VSnhwewclBw1oDRQ1Tn4ti
+ XneS3vOy+/AaxYtODzR8SeIsBlZxrB3E7i1368mrIBxTA91X47ZswdniV
+ Wfu5iXCVOBJVz4fJNKqq+e0tYq2HNuutgUKOAY9XA+GI6Er4KJFwPjhZD
+ JUsj/yIjcESyA9xXtHxn9SC26Nzen+q4ZQnJ3k3+L1BiEInwFy0cder7J
+ 7xEUes3nvftMbE3ERx//7g8EezT/ygoboNwChsP2PldQWb1K7rpa2INNu
+ KYFE+nnmL83m0HnsHC05sKqwpbeFFRLXxSS/I0Bhhn0vb/Ba1nwTr+PSz g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10882"; a="368087348"
+X-IronPort-AV: E=Sophos;i="6.03,271,1694761200"; d="scan'208";a="368087348"
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+ by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 Nov 2023 08:42:42 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.03,271,1694761200"; 
-   d="scan'208";a="2590495"
+X-IronPort-AV: E=McAfee;i="6600,9927,10882"; a="878294676"
+X-IronPort-AV: E=Sophos;i="6.03,271,1694761200"; d="scan'208";a="878294676"
 Received: from unknown (HELO localhost) ([10.237.66.162])
- by fmviesa002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Nov 2023 08:42:34 -0700
+ by fmsmga002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 Nov 2023 08:42:37 -0700
 From: Jani Nikula <jani.nikula@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Thu,  2 Nov 2023 17:42:25 +0200
-Message-Id: <cover.1698939671.git.jani.nikula@intel.com>
+Date: Thu,  2 Nov 2023 17:42:26 +0200
+Message-Id: <26018446c6aef2386dddc8814dd9d352ababe508.1698939671.git.jani.nikula@intel.com>
 X-Mailer: git-send-email 2.39.2
+In-Reply-To: <cover.1698939671.git.jani.nikula@intel.com>
+References: <cover.1698939671.git.jani.nikula@intel.com>
 MIME-Version: 1.0
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH 0/5] drm/i915/pmu: hide struct i915_pmu
+Subject: [Intel-gfx] [PATCH 1/5] drm/i915/pmu: report irqs to pmu code
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -60,38 +62,69 @@ Cc: jani.nikula@intel.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-The implementation details of pmu should be implementation details
-hidden inside i915_pmu.c. Make it so.
+Avoid accessing PMU details directly from irq code.
 
-BR,
-Jani.
+Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+---
+ drivers/gpu/drm/i915/i915_irq.c | 6 +-----
+ drivers/gpu/drm/i915/i915_pmu.c | 9 +++++++++
+ drivers/gpu/drm/i915/i915_pmu.h | 2 ++
+ 3 files changed, 12 insertions(+), 5 deletions(-)
 
-
-Jani Nikula (5):
-  drm/i915/pmu: report irqs to pmu code
-  drm/i915/pmu: convert one more container_of() to event_to_pmu()
-  drm/i915/pmu: change attr_group allocation and initialization
-  drm/i915/pmu: hide struct i915_pmu inside i915_pmu.c
-  drm/i915: add a number of explicit includes to avoid implicit ones
-
- .../gpu/drm/i915/gem/i915_gem_execbuffer.c    |   1 +
- drivers/gpu/drm/i915/gem/i915_gem_mman.c      |   1 +
- .../gpu/drm/i915/gem/selftests/huge_pages.c   |   1 +
- .../drm/i915/gem/selftests/i915_gem_context.c |   2 +
- drivers/gpu/drm/i915/gt/intel_engine_cs.c     |   1 +
- drivers/gpu/drm/i915/gt/selftest_execlists.c  |   1 +
- drivers/gpu/drm/i915/gt/selftest_migrate.c    |   1 +
- drivers/gpu/drm/i915/gt/selftest_slpc.c       |   2 +
- drivers/gpu/drm/i915/i915_drv.h               |   5 +-
- drivers/gpu/drm/i915/i915_irq.c               |   6 +-
- drivers/gpu/drm/i915/i915_pmu.c               | 216 ++++++++++++++++--
- drivers/gpu/drm/i915/i915_pmu.h               | 138 +----------
- drivers/gpu/drm/i915/selftests/i915_gem_gtt.c |   1 +
- drivers/gpu/drm/i915/selftests/i915_request.c |   4 +-
- drivers/gpu/drm/i915/selftests/igt_mmap.c     |   2 +
- .../drm/i915/selftests/intel_memory_region.c  |   1 +
- 16 files changed, 214 insertions(+), 169 deletions(-)
-
+diff --git a/drivers/gpu/drm/i915/i915_irq.c b/drivers/gpu/drm/i915/i915_irq.c
+index 8130f043693b..183520ba06bd 100644
+--- a/drivers/gpu/drm/i915/i915_irq.c
++++ b/drivers/gpu/drm/i915/i915_irq.c
+@@ -71,11 +71,7 @@ static inline void pmu_irq_stats(struct drm_i915_private *i915,
+ 	if (unlikely(res != IRQ_HANDLED))
+ 		return;
+ 
+-	/*
+-	 * A clever compiler translates that into INC. A not so clever one
+-	 * should at least prevent store tearing.
+-	 */
+-	WRITE_ONCE(i915->pmu.irq_count, i915->pmu.irq_count + 1);
++	i915_pmu_irq(i915);
+ }
+ 
+ void gen3_irq_reset(struct intel_uncore *uncore, i915_reg_t imr,
+diff --git a/drivers/gpu/drm/i915/i915_pmu.c b/drivers/gpu/drm/i915/i915_pmu.c
+index 878a27e1c8ef..ef4b907a799b 100644
+--- a/drivers/gpu/drm/i915/i915_pmu.c
++++ b/drivers/gpu/drm/i915/i915_pmu.c
+@@ -1348,3 +1348,12 @@ void i915_pmu_unregister(struct drm_i915_private *i915)
+ 		kfree(pmu->name);
+ 	free_event_attributes(pmu);
+ }
++
++void i915_pmu_irq(struct drm_i915_private *i915)
++{
++	/*
++	 * A clever compiler translates that into INC. A not so clever one
++	 * should at least prevent store tearing.
++	 */
++	WRITE_ONCE(i915->pmu.irq_count, i915->pmu.irq_count + 1);
++}
+diff --git a/drivers/gpu/drm/i915/i915_pmu.h b/drivers/gpu/drm/i915/i915_pmu.h
+index 41af038c3738..26b06132a44f 100644
+--- a/drivers/gpu/drm/i915/i915_pmu.h
++++ b/drivers/gpu/drm/i915/i915_pmu.h
+@@ -159,6 +159,7 @@ int i915_pmu_init(void);
+ void i915_pmu_exit(void);
+ void i915_pmu_register(struct drm_i915_private *i915);
+ void i915_pmu_unregister(struct drm_i915_private *i915);
++void i915_pmu_irq(struct drm_i915_private *i915);
+ void i915_pmu_gt_parked(struct intel_gt *gt);
+ void i915_pmu_gt_unparked(struct intel_gt *gt);
+ #else
+@@ -166,6 +167,7 @@ static inline int i915_pmu_init(void) { return 0; }
+ static inline void i915_pmu_exit(void) {}
+ static inline void i915_pmu_register(struct drm_i915_private *i915) {}
+ static inline void i915_pmu_unregister(struct drm_i915_private *i915) {}
++static inline void i915_pmu_irq(struct drm_i915_private *i915) {}
+ static inline void i915_pmu_gt_parked(struct intel_gt *gt) {}
+ static inline void i915_pmu_gt_unparked(struct intel_gt *gt) {}
+ #endif
 -- 
 2.39.2
 
