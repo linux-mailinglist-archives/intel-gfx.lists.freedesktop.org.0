@@ -2,56 +2,54 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3E1557DF82E
-	for <lists+intel-gfx@lfdr.de>; Thu,  2 Nov 2023 17:58:57 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 065E17DF861
+	for <lists+intel-gfx@lfdr.de>; Thu,  2 Nov 2023 18:10:39 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9744F10E936;
-	Thu,  2 Nov 2023 16:58:55 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 79B6F10E954;
+	Thu,  2 Nov 2023 17:10:37 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 499E710E949
- for <intel-gfx@lists.freedesktop.org>; Thu,  2 Nov 2023 16:58:54 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4C94C10E954;
+ Thu,  2 Nov 2023 17:10:35 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1698944334; x=1730480334;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=X7xaOaKsER4RHdJPl2qR3Iscp0BV+gfYMbNcL+1TF3Q=;
- b=DXtR6YdwKnQBDE9qClLFvWy+Lq4sJ5bzieBmhPWaFV9OUuJDrYWGBQaa
- NltytTR6qFR7sGEe2vQfOZkl0JNDEqAhvyXZ27sRnNyvD/ZmPOfmZG2X3
- uBM4aNkJE7SHPf822MeAlpMES3zhPbSh08d4SfxoGqsdiVoqwoLBQziLE
- ZR/A7fKV1a+Sj//DgfNKpJWZ0TQ47PHletgoxji/FTttOaMB8i/5PCT57
- k2rceEAp4i0me/7jgH7J1dG5dFSuiWlduYMeKIB5ixuPNPlbPPwaX2hd5
- mqZquN2KvOuhRRd8MNwHcGeLK4YFhq28PywxQRUHCXBtKibl72rRTWb1e A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10882"; a="419868888"
-X-IronPort-AV: E=Sophos;i="6.03,272,1694761200"; d="scan'208";a="419868888"
-Received: from fmsmga005.fm.intel.com ([10.253.24.32])
- by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Nov 2023 09:58:43 -0700
+ t=1698945035; x=1730481035;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=l3DEo/2hyL2Es/18G2qmyrNiJQ7yZh7GfBi7w0KGeh8=;
+ b=VlJ39CpDwyhtf1GCTOMYTB0kSzmOLDQfO4SvY9LMeoyZvvbimjwWFiPl
+ xEm028MIs5gbQ1dEefFJT062D4hJSxDCbxG7AZQ+qsy1/h0/tIPJKXCj5
+ TGmMFsYBg9C3u14/jvme5XK1Xvs+E5RwcbutNdfEMkdCBCZ7M+AyUbGdm
+ XBsIhKIDtTVdw0mcwF7I72FQpkbFVhjIjU37dwQsapDz4LOTuq4zQ5iF9
+ 0oFXtleXzBhvnSGps1nkXM5efILJlrlsb65iEglhBniddd7yMo4u1qzrI
+ 1mps8jNuSR3cfFXlfWx4M6kkICtTcj89k3oiC2uIoIa4RKg913T4/3pWh w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10882"; a="379158856"
+X-IronPort-AV: E=Sophos;i="6.03,272,1694761200"; d="scan'208";a="379158856"
+Received: from orsmga007.jf.intel.com ([10.7.209.58])
+ by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 Nov 2023 10:10:34 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10882"; a="1092774611"
-X-IronPort-AV: E=Sophos;i="6.03,272,1694761200"; d="scan'208";a="1092774611"
-Received: from ahajda-mobl.ger.corp.intel.com (HELO [10.213.6.224])
- ([10.213.6.224])
- by fmsmga005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Nov 2023 09:58:42 -0700
-Message-ID: <495ea80c-06e5-4557-8c82-badb9c1be7ac@intel.com>
-Date: Thu, 2 Nov 2023 17:58:38 +0100
+X-IronPort-AV: E=McAfee;i="6600,9927,10882"; a="754861339"
+X-IronPort-AV: E=Sophos;i="6.03,272,1694761200"; d="scan'208";a="754861339"
+Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.74])
+ by orsmga007.jf.intel.com with SMTP; 02 Nov 2023 10:10:10 -0700
+Received: by stinkbox (sSMTP sendmail emulation);
+ Thu, 02 Nov 2023 19:10:09 +0200
+Date: Thu, 2 Nov 2023 19:10:09 +0200
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+Message-ID: <ZUPX8RgtrCX8B_Cg@intel.com>
+References: <20231102151228.668842-1-andriy.shevchenko@linux.intel.com>
+ <20231102151228.668842-2-andriy.shevchenko@linux.intel.com>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Content-Language: en-US
-To: Radhakrishna Sripada <radhakrishna.sripada@intel.com>,
- intel-gfx@lists.freedesktop.org
-References: <20231102160644.1279801-1-radhakrishna.sripada@intel.com>
-From: Andrzej Hajda <andrzej.hajda@intel.com>
-Organization: Intel Technology Poland sp. z o.o. - ul. Slowackiego 173, 80-298
- Gdansk - KRS 101882 - NIP 957-07-52-316
-In-Reply-To: <20231102160644.1279801-1-radhakrishna.sripada@intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-Subject: Re: [Intel-gfx] [PATCH] drm/i915/mtl: Increase guard pages when
- vt-d is enabled
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20231102151228.668842-2-andriy.shevchenko@linux.intel.com>
+X-Patchwork-Hint: comment
+Subject: Re: [Intel-gfx] [PATCH v3 01/15] drm/i915/dsi: assume BXT gpio
+ works for non-native GPIO
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,50 +62,62 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Chris Wilson <chris.p.wilson@linux.intel.com>
+Cc: Jani Nikula <jani.nikula@intel.com>, intel-gfx@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
+ Hans de Goede <hdegoede@redhat.com>, Daniel Vetter <daniel@ffwll.ch>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, David Airlie <airlied@gmail.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On 02.11.2023 17:06, Radhakrishna Sripada wrote:
-> Experiments were conducted with different multipliers to VTD_GUARD macro
-> with multiplier of 185 we were observing occasional pipe faults when
-> running kms_cursor_legacy --run-subtest single-bo
+On Thu, Nov 02, 2023 at 05:12:14PM +0200, Andy Shevchenko wrote:
+> From: Jani Nikula <jani.nikula@intel.com>
 > 
-> There could possibly be an underlying issue that is being investigated, for
-> now bump the guard pages for MTL.
+> Purely a guess. Drop the nop function.
 > 
-> Closes: https://gitlab.freedesktop.org/drm/intel/-/issues/2017
-> Cc: Gustavo Sousa <gustavo.sousa@intel.com>
-> Cc: Chris Wilson <chris.p.wilson@linux.intel.com>
-> Signed-off-by: Radhakrishna Sripada <radhakrishna.sripada@intel.com>
+> Cc: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+> Cc: Hans de Goede <hdegoede@redhat.com>
+> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+> Signed-off-by: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
 > ---
->   drivers/gpu/drm/i915/gem/i915_gem_domain.c | 3 +++
->   1 file changed, 3 insertions(+)
+>  drivers/gpu/drm/i915/display/intel_dsi_vbt.c | 10 +---------
+>  1 file changed, 1 insertion(+), 9 deletions(-)
 > 
-> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_domain.c b/drivers/gpu/drm/i915/gem/i915_gem_domain.c
-> index 3770828f2eaf..b65f84c6bb3f 100644
-> --- a/drivers/gpu/drm/i915/gem/i915_gem_domain.c
-> +++ b/drivers/gpu/drm/i915/gem/i915_gem_domain.c
-> @@ -456,6 +456,9 @@ i915_gem_object_pin_to_display_plane(struct drm_i915_gem_object *obj,
->   	if (intel_scanout_needs_vtd_wa(i915)) {
->   		unsigned int guard = VTD_GUARD;
->   
-> +		if (IS_METEORLAKE(i915))
-> +			guard *= 200;
-> +
+> diff --git a/drivers/gpu/drm/i915/display/intel_dsi_vbt.c b/drivers/gpu/drm/i915/display/intel_dsi_vbt.c
+> index 24b2cbcfc1ef..b2c0cc11f8c1 100644
+> --- a/drivers/gpu/drm/i915/display/intel_dsi_vbt.c
+> +++ b/drivers/gpu/drm/i915/display/intel_dsi_vbt.c
+> @@ -372,14 +372,6 @@ static void bxt_exec_gpio(struct intel_connector *connector,
+>  	gpiod_set_value(gpio_desc, value);
+>  }
+>  
+> -static void icl_exec_gpio(struct intel_connector *connector,
+> -			  u8 gpio_source, u8 gpio_index, bool value)
+> -{
+> -	struct drm_i915_private *dev_priv = to_i915(connector->base.dev);
+> -
+> -	drm_dbg_kms(&dev_priv->drm, "Skipping ICL GPIO element execution\n");
+> -}
+> -
+>  enum {
+>  	MIPI_RESET_1 = 0,
+>  	MIPI_AVDD_EN_1,
+> @@ -491,7 +483,7 @@ static const u8 *mipi_exec_gpio(struct intel_dsi *intel_dsi, const u8 *data)
+>  	if (native)
+>  		icl_native_gpio_set_value(dev_priv, gpio_number, value);
+>  	else if (DISPLAY_VER(dev_priv) >= 11)
+> -		icl_exec_gpio(connector, gpio_source, gpio_index, value);
+> +		bxt_exec_gpio(connector, gpio_source, gpio_index, value);
 
-200 * VTD_GUARD = 200 * 168 * 4K = 131MB
+We could just drop this whole branch since we end up in bxt_exec_gpio()
+in the end anyway. Or we drop the final else and make this one check for
+DISPLAY_VER >=9.
 
-Looks insanely high, 131MB for padding, if this is before and after it 
-becomes even 262MB of wasted address per plane. Just signalling, I do 
-not know if this actually hurts.
+>  	else if (IS_VALLEYVIEW(dev_priv))
+>  		vlv_exec_gpio(connector, gpio_source, gpio_number, value);
+>  	else if (IS_CHERRYVIEW(dev_priv))
+> -- 
+> 2.40.0.1.gaa8946217a0b
 
-Regards
-Andrzej
-
-
-
->   		if (i915_gem_object_is_tiled(obj))
->   			guard = max(guard,
->   				    i915_gem_object_get_tile_row_size(obj));
-
+-- 
+Ville Syrjälä
+Intel
