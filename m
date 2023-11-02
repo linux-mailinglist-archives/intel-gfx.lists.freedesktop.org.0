@@ -1,53 +1,59 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id A9D787DF10F
-	for <lists+intel-gfx@lfdr.de>; Thu,  2 Nov 2023 12:22:37 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 478CF7DF139
+	for <lists+intel-gfx@lfdr.de>; Thu,  2 Nov 2023 12:32:53 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1715810E094;
-	Thu,  2 Nov 2023 11:22:36 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0D3EA10E859;
+	Thu,  2 Nov 2023 11:32:51 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C7DC110E094
- for <intel-gfx@lists.freedesktop.org>; Thu,  2 Nov 2023 11:22:34 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.151])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5015A10E143;
+ Thu,  2 Nov 2023 11:32:49 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1698924155; x=1730460155;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=BZlp9rrY9hOYXXECGDhJVJyfxrA8zDTV7ZNwyz3Bazg=;
- b=iKkwpWwXJ5c8Tu+EGQdYwavGfV4OIK0tij7xIiZgUh5LE3rKCnOTFFwm
- /Oc89GmsnEvY2pOpU0pNjCIHqTQiyYfK5f7wKCz2tn/XE5YYWEMdyFh75
- VLyTFcxn04NWbCgdw8yVALTDtkF5H/I509RYX3WeZmrK/fPcmSkQeQeP/
- C/eFliKxyOzAf1uYInB104Z1vOlT9MzZCiEiRsFHZcZwoY83RVJ+RzyxG
- KZczdn9/1L1mV537Tg74v/i7FeCVAyp4xj21RZ5Yv9rRIe36/0SJNzI4b
- 6Le/d6wDkUdwXBQS+G2KtmlZBDqI1epGVLn4RGTl0D+cSpqvwELJGIP1g Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10881"; a="1562563"
-X-IronPort-AV: E=Sophos;i="6.03,271,1694761200"; 
-   d="scan'208";a="1562563"
-Received: from orsmga003.jf.intel.com ([10.7.209.27])
- by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Nov 2023 04:22:34 -0700
+ t=1698924769; x=1730460769;
+ h=message-id:date:mime-version:subject:to:cc:references:
+ from:in-reply-to:content-transfer-encoding;
+ bh=bPWnpkOl5c9kDmguqwCqZvb1rbVMV26DYRpjZF2/004=;
+ b=bUdcMZBlwYrFgif2O3mARwr53kmewQ8R9HoVIMG2ssNv3GIulkV1mMVU
+ O3Xz4JiSksL4YrMS9O288dOcf9b3EqcyGbbL6DKJu4GQpM84OpSWCdu4L
+ SdX86LUIzn6TYNJ7cOA3071sa8/oasGuUid36it+6u8zJYGgS3RqOmAE5
+ AzuZ9QNvYHn3sUGUWkM7jfkO5F+iWYGMqJKO5QWEO9L5PvHkWWFpQ6jTU
+ 7HThdsyE6XRKH+ICkiiwEvqr8w02SJJ7Rvzv3KOqlUL8dojXDD3TuAoIj
+ rwwBaPzd/Z7wKJv5IWspa7s1E99Zu78f1P1Q87k3d7niD9llxDxzD3OsR w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10881"; a="368896841"
+X-IronPort-AV: E=Sophos;i="6.03,271,1694761200"; d="scan'208";a="368896841"
+Received: from fmsmga006.fm.intel.com ([10.253.24.20])
+ by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 Nov 2023 04:32:48 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10881"; a="711125153"
-X-IronPort-AV: E=Sophos;i="6.03,271,1694761200"; d="scan'208";a="711125153"
-Received: from avhiruda-mobl1.amr.corp.intel.com (HELO
- jhogande-mobl1.intel.com) ([10.252.34.224])
- by orsmga003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Nov 2023 04:22:31 -0700
-From: =?UTF-8?q?Jouni=20H=C3=B6gander?= <jouni.hogander@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Thu,  2 Nov 2023 13:22:19 +0200
-Message-Id: <20231102112219.1039362-1-jouni.hogander@intel.com>
-X-Mailer: git-send-email 2.34.1
+X-IronPort-AV: E=McAfee;i="6600,9927,10881"; a="1008439715"
+X-IronPort-AV: E=Sophos;i="6.03,271,1694761200"; d="scan'208";a="1008439715"
+Received: from stevenwo-mobl1.ger.corp.intel.com (HELO [10.213.233.30])
+ ([10.213.233.30])
+ by fmsmga006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 Nov 2023 04:32:45 -0700
+Message-ID: <d300506c-ab82-4cc1-b750-61e54ec2ad9e@linux.intel.com>
+Date: Thu, 2 Nov 2023 11:32:43 +0000
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH] drm/i915/display: Use intel_bo_to_drm_bo
- instead of obj->base
+User-Agent: Mozilla Thunderbird
+Content-Language: en-US
+To: chentao <chentao@kylinos.cn>, jani.nikula@linux.intel.com,
+ joonas.lahtinen@linux.intel.com, rodrigo.vivi@intel.com, airlied@gmail.com,
+ daniel@ffwll.ch, andi.shyti@linux.intel.com, robdclark@chromium.org,
+ jonathan.cavitt@intel.com, andrzej.hajda@intel.com,
+ chris.p.wilson@intel.com, alan.previn.teres.alexis@intel.com
+References: <20231102101642.52988-1-chentao@kylinos.cn>
+From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+Organization: Intel Corporation UK Plc
+In-Reply-To: <20231102101642.52988-1-chentao@kylinos.cn>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+Subject: Re: [Intel-gfx] [PATCH] drm/i915: Fix potential spectre
+ vulnerability
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -60,31 +66,45 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: jani.nikula@intel.com
+Cc: intel-gfx@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+ dri-devel@lists.freedesktop.org, kunwu.chan@hotmail.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-We are preparing for Xe. Xe_bo doesn't have obj->base. Due to this
-use intel_bo_to_drm_bo instead in intel_prepare_plane_fb.
 
-Signed-off-by: Jouni Högander <jouni.hogander@intel.com>
----
- drivers/gpu/drm/i915/display/intel_atomic_plane.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+On 02/11/2023 10:16, chentao wrote:
+> Fix smatch warning:
+> drivers/gpu/drm/i915/gem/i915_gem_context.c:847 set_proto_ctx_sseu()
+> warn: potential spectre issue 'pc->user_engines' [r] (local cap)
+> 
+> Signed-off-by: chentao <chentao@kylinos.cn>
 
-diff --git a/drivers/gpu/drm/i915/display/intel_atomic_plane.c b/drivers/gpu/drm/i915/display/intel_atomic_plane.c
-index 3b9a66923422..06c2455bdd78 100644
---- a/drivers/gpu/drm/i915/display/intel_atomic_plane.c
-+++ b/drivers/gpu/drm/i915/display/intel_atomic_plane.c
-@@ -1096,7 +1096,7 @@ intel_prepare_plane_fb(struct drm_plane *_plane,
- 		 * can safely continue.
- 		 */
- 		if (new_crtc_state && intel_crtc_needs_modeset(new_crtc_state)) {
--			ret = add_dma_resv_fences(old_obj->base.resv,
-+			ret = add_dma_resv_fences(intel_bo_to_drm_bo(old_obj)->resv,
- 						  &new_plane_state->uapi);
- 			if (ret < 0)
- 				return ret;
--- 
-2.34.1
+I don't know if this is actually exploitable given the time deltas between the index is read from userspace and acted upon here, which is at least two ioctls apart. But I suppose no harm in fixing and for safety so we need to add:
 
+Fixes: d4433c7600f7 ("drm/i915/gem: Use the proto-context to handle create parameters (v5)")
+Cc: <stable@vger.kernel.org> # v5.15+
+
+> ---
+>   drivers/gpu/drm/i915/gem/i915_gem_context.c | 2 +-
+>   1 file changed, 1 insertion(+), 1 deletion(-)
+> 
+> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_context.c b/drivers/gpu/drm/i915/gem/i915_gem_context.c
+> index 9a9ff84c90d7..b2fdfc7ca4de 100644
+> --- a/drivers/gpu/drm/i915/gem/i915_gem_context.c
+> +++ b/drivers/gpu/drm/i915/gem/i915_gem_context.c
+> @@ -843,7 +843,7 @@ static int set_proto_ctx_sseu(struct drm_i915_file_private *fpriv,
+>   
+>   		if (idx >= pc->num_user_engines)
+>   			return -EINVAL;
+> -
+
+Just please refrain from random whitespace modifications like this blank line removal. If you resend without that you can add my r-b.
+
+Regards,
+
+Tvrtko
+
+> +		idx = array_index_nospec(idx, pc->num_user_engines);
+>   		pe = &pc->user_engines[idx];
+>   
+>   		/* Only render engine supports RPCS configuration. */
