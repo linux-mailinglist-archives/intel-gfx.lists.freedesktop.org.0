@@ -2,55 +2,48 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4CE2A7E01B7
-	for <lists+intel-gfx@lfdr.de>; Fri,  3 Nov 2023 12:06:47 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 337BA7E01BA
+	for <lists+intel-gfx@lfdr.de>; Fri,  3 Nov 2023 12:09:32 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 804D810E09E;
-	Fri,  3 Nov 2023 11:06:44 +0000 (UTC)
-X-Original-To: intel-gfx@lists.freedesktop.org
-Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.151])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4AB2C10E09E
- for <intel-gfx@lists.freedesktop.org>; Fri,  3 Nov 2023 11:06:42 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2B75710E54B;
+	Fri,  3 Nov 2023 11:09:30 +0000 (UTC)
+X-Original-To: Intel-gfx@lists.freedesktop.org
+Delivered-To: Intel-gfx@lists.freedesktop.org
+Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.100])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D1ABE10E54B
+ for <Intel-gfx@lists.freedesktop.org>; Fri,  3 Nov 2023 11:09:28 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1699009602; x=1730545602;
- h=message-id:date:mime-version:subject:to:references:from:
- in-reply-to:content-transfer-encoding;
- bh=9JLmuNwCiu8gTw5/3ixubSDLU45KLv7g4D0zDzj8lDE=;
- b=FjqLGOHdaSDtkeVfh4DrsZYjRcJdwuPs2SLWGyKq8rYJRLzlDasliHfp
- p3mY15CLU1hkpYx0HHGhtSQ/3r4SVym3tRL6zGt7hBYC5pFmp7TUKo/Ny
- 2tHm7EmWE+qUQYEIuelFBTygIFqK/X+Zy4HFbCajJhPlYXPwE+BuUVdAO
- K9pVvW7plY8gVh6v0EyT7rfeUlm8dJ4WW+yywulGFHqbiHRSwvjbsJFYN
- 3QnH4xTmripa0uLWte8dv+q9Gmgdb3ADlUU6QUCO987ctE2jM1qMHM5Ue
- lNffzTbQGztxXDFdyA5E8s+V4iux9HGcnk0Q2rPzwtV8bOk+sWrvepx9V A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10882"; a="369133047"
-X-IronPort-AV: E=Sophos;i="6.03,273,1694761200"; d="scan'208";a="369133047"
-Received: from orsmga004.jf.intel.com ([10.7.209.38])
- by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Nov 2023 04:06:41 -0700
+ t=1699009768; x=1730545768;
+ h=from:to:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=P2sfapWyYFCTwd1rlWKG3mEhhOSOofsyfQ5FaL6WQZU=;
+ b=JPnhsnmTH2R3dhakrVlHGgm/Z9+Vp+H6owEdTzqvIZ0kCLiCSeDltk8/
+ t+qFJYsJ6QqfAtrNMw8RNnNlTge2usOZoH1qE7vUxOMQ4wJp/ivU8VH3w
+ 7r7i+z2RyOBwP2tIsTFPLoy3+B5Vp38W6tqry8odJUUMOVNPrt0JLnhMM
+ pTPf3bZHyX1uQ8tJb9hZAkCUQVSQisk3g7C6ScuaR04o27zqP8fF7t7KN
+ IteypiXrJoZ5P5Cgyrvk9udi2RP5DNvnqHAZs6jRCr3RT7t24whT/8bwN
+ kJdTVYVbe+7Fzkww470RCEypJsyTaQ7BCOiiBc9oaULyYJKZPSbQP5MTK w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10882"; a="455416490"
+X-IronPort-AV: E=Sophos;i="6.03,273,1694761200"; d="scan'208";a="455416490"
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+ by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 03 Nov 2023 04:09:28 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10882"; a="885198202"
-X-IronPort-AV: E=Sophos;i="6.03,273,1694761200"; d="scan'208";a="885198202"
-Received: from sdobbela-mobl.ger.corp.intel.com (HELO [10.213.223.51])
+X-IronPort-AV: E=McAfee;i="6600,9927,10882"; a="796592520"
+X-IronPort-AV: E=Sophos;i="6.03,273,1694761200"; d="scan'208";a="796592520"
+Received: from sdobbela-mobl.ger.corp.intel.com (HELO localhost.localdomain)
  ([10.213.223.51])
- by orsmga004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Nov 2023 04:06:40 -0700
-Message-ID: <4b259843-c3e2-4fd0-9160-14f1d67ed27d@linux.intel.com>
-Date: Fri, 3 Nov 2023 11:06:38 +0000
-MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Content-Language: en-US
-To: Jani Nikula <jani.nikula@intel.com>, intel-gfx@lists.freedesktop.org
-References: <cover.1698939671.git.jani.nikula@intel.com>
- <9941f1d6-8466-4c69-8b06-34177a658299@linux.intel.com>
- <87wmv014rc.fsf@intel.com>
+ by orsmga001-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 03 Nov 2023 04:09:27 -0700
 From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-Organization: Intel Corporation UK Plc
-In-Reply-To: <87wmv014rc.fsf@intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-Subject: Re: [Intel-gfx] [PATCH 0/5] drm/i915/pmu: hide struct i915_pmu
+To: Intel-gfx@lists.freedesktop.org
+Date: Fri,  3 Nov 2023 11:09:22 +0000
+Message-Id: <20231103110922.430122-1-tvrtko.ursulin@linux.intel.com>
+X-Mailer: git-send-email 2.39.2
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-gfx] [CI] drm/i915: Fix potential spectre vulnerability
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -66,85 +59,33 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+From: Kunwu Chan <chentao@kylinos.cn>
 
-On 02/11/2023 16:47, Jani Nikula wrote:
-> On Thu, 02 Nov 2023, Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com> wrote:
->> On 02/11/2023 15:42, Jani Nikula wrote:
->>> The implementation details of pmu should be implementation details
->>> hidden inside i915_pmu.c. Make it so.
->>
->> Don't tell me i915->pmu bothers xe somehow?
-> 
-> It doesn't bother xe, it bothers me...
-> 
->> I am not a fan of the series
->> on a glance. Replacing an increment with a function call for instance.
-> 
-> I think you glanced at the wart of this series. ;)
-> 
-> It just bugs me that we expose a plethora of data that should be
-> internal to pmu, basically just for that one increment.
-> 
-> And we pull in a bunch of headers to define struct i915_pmu, and then we
-> implicitly depend on those headers in a ton of places through incredible
-> chains of includes.
-> 
-> And we rebuild everything and a half when those headers change. Or when
-> the pmu implementation details change.
+Fix smatch warning:
+drivers/gpu/drm/i915/gem/i915_gem_context.c:847 set_proto_ctx_sseu()
+warn: potential spectre issue 'pc->user_engines' [r] (local cap)
 
-On the other hand i915_pmu.h is a small header file, which does not 
-include _any_ other internal i915 headers (only uapi) and is always 
-present (if you ignore gens <= 2) which does not driver the allocate on 
-demand approach. In the past three years it had like seven edits.
+Fixes: d4433c7600f7 ("drm/i915/gem: Use the proto-context to handle create parameters (v5)")
+Cc: <stable@vger.kernel.org> # v5.15+
+Signed-off-by: Kunwu Chan <chentao@kylinos.cn>
+Reviewed-by: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+---
+ drivers/gpu/drm/i915/gem/i915_gem_context.c | 1 +
+ 1 file changed, 1 insertion(+)
 
-Given all that, the change of direction you propose here sounds a bit 
-radical and I would rather not replace that increment with a function 
-call, when it is questionable if the same separation of components 
-approach can be, or will be, applied to the whole driver. Gut feeling 
-says it is bound to be hard and possibly not happen in which case I 
-don't see what is gained by churning on the tiny and quiet i915_pmu.h|c.
+diff --git a/drivers/gpu/drm/i915/gem/i915_gem_context.c b/drivers/gpu/drm/i915/gem/i915_gem_context.c
+index 9a9ff84c90d7..e38f06a6e56e 100644
+--- a/drivers/gpu/drm/i915/gem/i915_gem_context.c
++++ b/drivers/gpu/drm/i915/gem/i915_gem_context.c
+@@ -844,6 +844,7 @@ static int set_proto_ctx_sseu(struct drm_i915_file_private *fpriv,
+ 		if (idx >= pc->num_user_engines)
+ 			return -EINVAL;
+ 
++		idx = array_index_nospec(idx, pc->num_user_engines);
+ 		pe = &pc->user_engines[idx];
+ 
+ 		/* Only render engine supports RPCS configuration. */
+-- 
+2.39.2
 
-Regards,
-
-Tvrtko
-
-> 
-> 
-> BR,
-> Jani.
-> 
->>
->> Regards,
->>
->> Tvrtko
->>
->>> BR,
->>> Jani.
->>>
->>>
->>> Jani Nikula (5):
->>>     drm/i915/pmu: report irqs to pmu code
->>>     drm/i915/pmu: convert one more container_of() to event_to_pmu()
->>>     drm/i915/pmu: change attr_group allocation and initialization
->>>     drm/i915/pmu: hide struct i915_pmu inside i915_pmu.c
->>>     drm/i915: add a number of explicit includes to avoid implicit ones
->>>
->>>    .../gpu/drm/i915/gem/i915_gem_execbuffer.c    |   1 +
->>>    drivers/gpu/drm/i915/gem/i915_gem_mman.c      |   1 +
->>>    .../gpu/drm/i915/gem/selftests/huge_pages.c   |   1 +
->>>    .../drm/i915/gem/selftests/i915_gem_context.c |   2 +
->>>    drivers/gpu/drm/i915/gt/intel_engine_cs.c     |   1 +
->>>    drivers/gpu/drm/i915/gt/selftest_execlists.c  |   1 +
->>>    drivers/gpu/drm/i915/gt/selftest_migrate.c    |   1 +
->>>    drivers/gpu/drm/i915/gt/selftest_slpc.c       |   2 +
->>>    drivers/gpu/drm/i915/i915_drv.h               |   5 +-
->>>    drivers/gpu/drm/i915/i915_irq.c               |   6 +-
->>>    drivers/gpu/drm/i915/i915_pmu.c               | 216 ++++++++++++++++--
->>>    drivers/gpu/drm/i915/i915_pmu.h               | 138 +----------
->>>    drivers/gpu/drm/i915/selftests/i915_gem_gtt.c |   1 +
->>>    drivers/gpu/drm/i915/selftests/i915_request.c |   4 +-
->>>    drivers/gpu/drm/i915/selftests/igt_mmap.c     |   2 +
->>>    .../drm/i915/selftests/intel_memory_region.c  |   1 +
->>>    16 files changed, 214 insertions(+), 169 deletions(-)
->>>
-> 
