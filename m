@@ -1,57 +1,56 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1A33E7E08CA
-	for <lists+intel-gfx@lfdr.de>; Fri,  3 Nov 2023 20:06:08 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2B7B47E096F
+	for <lists+intel-gfx@lfdr.de>; Fri,  3 Nov 2023 20:28:20 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0167C10EA52;
-	Fri,  3 Nov 2023 19:06:05 +0000 (UTC)
-X-Original-To: Intel-gfx@lists.freedesktop.org
-Delivered-To: Intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.136])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B59F210EA52;
- Fri,  3 Nov 2023 19:06:03 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 07CAC10EA85;
+	Fri,  3 Nov 2023 19:28:17 +0000 (UTC)
+X-Original-To: intel-gfx@lists.freedesktop.org
+Delivered-To: intel-gfx@lists.freedesktop.org
+Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1F4B310EA4C;
+ Fri,  3 Nov 2023 19:28:14 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1699038363; x=1730574363;
+ t=1699039694; x=1730575694;
  h=date:from:to:cc:subject:message-id:references:
  mime-version:in-reply-to;
- bh=Pffxw+AQxFS7LBw3sU4Gj25/by/EqqGvkaqe4MIp20Q=;
- b=Mzo72ASTnNXr6RgMwB2JFNuwTHYq841k2Az7M87RUpmv6coLSWD0aPuM
- 6uIl3Rw0fRa0hY4OTEUdo8tS3qTIm1XhFzqQ4R7YzvR5i6bqhokKdfCvb
- VrLXi+cQ78kwI3ctOvGJb0NOklcJz933rcpBEN+gfnaKIEiSXRIISTMch
- SXt5vbo2qEOJgcAcDPCgfBbq4Na4dnrbLJXktUifAcKl3hv5MPNXHORW/
- edEmK4YeePzLskNTbhD6d//UyNeFSlocV12QT/Y9uJKWf6Ozrd7rh5sZf
- IlJqkyhXgrgiG5Ja/5ZlyyRLQHL8bKGdvXjcRfXbq/zqAc0nUKRz+IaEn Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10883"; a="368343807"
-X-IronPort-AV: E=Sophos;i="6.03,275,1694761200"; d="scan'208";a="368343807"
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
- by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Nov 2023 12:06:02 -0700
+ bh=ThhEdvjT1+j0oUILnpjOIFzFwnHfbfJKfong+lTksrA=;
+ b=FcDAsNP2SGtWgFu7e2gp4MF0FE6n0CyvSR9WfBT8Rp2GW1Du42VW6qt7
+ TyHFs2lQKBD5tNPiNUPxPA484L/ai1bqmHr9QOGgy5XyXHEbHs4We/Gpz
+ NLX4yEoohJCx1xNXuYusB1xPMUJcHrtLNoV4xo48wTUrKnQVFscjXN2Ci
+ JGYLJA1bjbW6gQYYMSEJkva1pNq96bohEYfC70VqTkacw5afnNFQw1Hnk
+ YoKxBPA6llfgtqtEEXDshs38uGjnW9og07yet70P5g2anaQbzvxsuOLjI
+ DRBAo5SgWgCfTCHwJKV1IY3vOGmAgiCXyksSCgaY3T1OHQKpUm0MeXZjL Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10883"; a="453305924"
+X-IronPort-AV: E=Sophos;i="6.03,275,1694761200"; d="scan'208";a="453305924"
+Received: from orsmga006.jf.intel.com ([10.7.209.51])
+ by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 03 Nov 2023 12:28:13 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10883"; a="796711696"
-X-IronPort-AV: E=Sophos;i="6.03,275,1694761200"; d="scan'208";a="796711696"
-Received: from kamilkon-desk.igk.intel.com (HELO localhost) ([10.102.138.187])
- by orsmga001-auth.jf.intel.com with
- ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 03 Nov 2023 12:05:56 -0700
-Date: Fri, 3 Nov 2023 20:05:53 +0100
-From: Kamil Konieczny <kamil.konieczny@linux.intel.com>
-To: igt-dev@lists.freedesktop.org
-Message-ID: <20231103190553.tvxjgmzw5vft5zev@kamilkon-desk.igk.intel.com>
-Mail-Followup-To: Kamil Konieczny <kamil.konieczny@linux.intel.com>,
- igt-dev@lists.freedesktop.org,
- Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
- Intel-gfx@lists.freedesktop.org,
- Tvrtko Ursulin <tvrtko.ursulin@intel.com>
-References: <20231012081547.852052-1-tvrtko.ursulin@linux.intel.com>
- <20231012081547.852052-4-tvrtko.ursulin@linux.intel.com>
+X-IronPort-AV: E=McAfee;i="6600,9927,10883"; a="738169231"
+X-IronPort-AV: E=Sophos;i="6.03,275,1694761200"; d="scan'208";a="738169231"
+Received: from lkp-server01.sh.intel.com (HELO 17d9e85e5079) ([10.239.97.150])
+ by orsmga006.jf.intel.com with ESMTP; 03 Nov 2023 12:28:10 -0700
+Received: from kbuild by 17d9e85e5079 with local (Exim 4.96)
+ (envelope-from <lkp@intel.com>) id 1qyzpw-0002sg-02;
+ Fri, 03 Nov 2023 19:28:08 +0000
+Date: Sat, 4 Nov 2023 03:27:54 +0800
+From: kernel test robot <lkp@intel.com>
+To: Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+ Jani Nikula <jani.nikula@intel.com>,
+ intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org
+Message-ID: <202311040312.Tf6bTkw0-lkp@intel.com>
+References: <20231102151228.668842-15-andriy.shevchenko@linux.intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20231012081547.852052-4-tvrtko.ursulin@linux.intel.com>
-Subject: Re: [Intel-gfx] [PATCH i-g-t 3/9] tests/i915/drm_fdinfo: Add some
- memory info tests
+In-Reply-To: <20231102151228.668842-15-andriy.shevchenko@linux.intel.com>
+Subject: Re: [Intel-gfx] [PATCH v3 14/15] drm/i915/dsi: Replace poking of
+ CHV GPIOs behind the driver's back
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,280 +63,99 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Intel-gfx@lists.freedesktop.org, Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+Cc: llvm@lists.linux.dev, Hans de Goede <hdegoede@redhat.com>,
+ oe-kbuild-all@lists.linux.dev, Daniel Vetter <daniel@ffwll.ch>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, David Airlie <airlied@gmail.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi Tvrtko,
-On 2023-10-12 at 09:15:41 +0100, Tvrtko Ursulin wrote:
-> From: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
-> 
-> A few basic smoke tests to check per client memory info looks legit.
-> 
-> Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+Hi Andy,
 
-Reviewed-by: Kamil Konieczny <kamil.konieczny@linux.intel.com>
+kernel test robot noticed the following build errors:
 
-> ---
->  tests/intel/drm_fdinfo.c | 217 +++++++++++++++++++++++++++++++++++++++
->  1 file changed, 217 insertions(+)
-> 
-> diff --git a/tests/intel/drm_fdinfo.c b/tests/intel/drm_fdinfo.c
-> index c4218b0d16e6..3ced658f2faa 100644
-> --- a/tests/intel/drm_fdinfo.c
-> +++ b/tests/intel/drm_fdinfo.c
-> @@ -23,6 +23,7 @@
->   */
->  
->  #include <fcntl.h>
-> +#include <sys/ioctl.h>
->  
->  #include "igt.h"
->  #include "igt_core.h"
-> @@ -76,6 +77,16 @@
->   *
->   * SUBTEST: virtual-idle
->   *
-> + * SUBTEST: memory-info-idle
-> + *
-> + * SUBTEST: memory-info-active
-> + *
-> + * SUBTEST: memory-info-resident
-> + *
-> + * SUBTEST: memory-info-purgeable
-> + *
-> + * SUBTEST: memory-info-shared
-> + *
->   * SUBTEST: context-close-stress
->   */
->  
-> @@ -143,6 +154,11 @@ static unsigned int measured_usleep(unsigned int usec)
->  #define FLAG_HANG (8)
->  #define TEST_ISOLATION (16)
->  
-> +#define TEST_ACTIVE TEST_BUSY
-> +#define TEST_RESIDENT (32)
-> +#define TEST_PURGEABLE (64)
-> +#define TEST_SHARED (128)
-> +
->  static void end_spin(int fd, igt_spin_t *spin, unsigned int flags)
->  {
->  	if (!spin)
-> @@ -772,6 +788,172 @@ static void stress_context_close(int i915)
->  	igt_stop_helper(&reader);
->  }
->  
-> +static size_t read_fdinfo(char *buf, const size_t sz, int at, const char *name)
-> +{
-> +	size_t count;
-> +	int fd;
-> +
-> +	fd = openat(at, name, O_RDONLY);
-> +	if (fd < 0)
-> +		return 0;
-> +
-> +	count = read(fd, buf, sz - 1);
-> +	if (count > 0)
-> +		buf[count - 1] = 0;
-> +	close(fd);
-> +
-> +	return count > 0 ? count : 0;
-> +}
-> +
-> +/*
-> + * At least this much, but maybe less if we started with a driver internal
-> + * baseline which can go away behind our back.
-> + */
-> +#define fdinfo_assert_gte(cur, prev, sz, base) \
-> +({ \
-> +	int64_t __sz = (sz) - (base); \
-> +	int64_t __d = (cur) - (prev); \
-> +	igt_assert_f(__d >= __sz, \
-> +		     "prev=%"PRIu64" cur=%"PRIu64" delta=%"PRId64" sz=%"PRIu64" baseline=%"PRIu64"\n%s\n", \
-> +		     (prev), (cur), __d, (sz), (base), fdinfo_buf); \
-> +})
-> +
-> +#define fdinfo_assert_eq(cur, prev, sz, base) \
-> +({ \
-> +	int64_t __d = (cur) - (prev); \
-> +	igt_assert_f(__d == 0, \
-> +		     "prev=%"PRIu64" cur=%"PRIu64" delta=%"PRId64" sz=%"PRIu64" baseline=%"PRIu64"\n%s\n", \
-> +		     (prev), (cur), __d, (sz), (base), fdinfo_buf); \
-> +})
-> +
-> +static void
-> +test_memory(int i915, struct gem_memory_region *mr, unsigned int flags)
-> +{
-> +	const unsigned int r = mr->ci.memory_class == I915_MEMORY_CLASS_SYSTEM ? 0 : 1; /* See region map */
-> +	const uint64_t max_mem = 512ull * 1024 * 1024;
-> +	const uint64_t max_bo = 16ull * 1024 * 1024;
-> +	struct drm_client_fdinfo base_info, prev_info = { };
-> +	struct drm_client_fdinfo info = { };
-> +	char buf[64], fdinfo_buf[4096];
-> +	igt_spin_t *spin = NULL;
-> +	uint64_t total = 0, sz;
-> +	uint64_t ahnd;
-> +	int ret, dir;
-> +
-> +	i915 = drm_reopen_driver(i915);
-> +
-> +	ahnd = get_reloc_ahnd(i915, 0);
-> +
-> +	ret = snprintf(buf, sizeof(buf), "%u", i915);
-> +	igt_assert(ret > 0 && ret < sizeof(buf));
-> +
-> +	dir = open("/proc/self/fdinfo", O_DIRECTORY | O_RDONLY);
-> +	igt_assert_fd(dir);
-> +
-> +	gem_quiescent_gpu(i915);
-> +	ret =  __igt_parse_drm_fdinfo(dir, buf, &info, NULL, 0, NULL, 0);
-> +	igt_assert(ret > 0);
-> +	igt_require(info.num_regions);
-> +	memcpy(&prev_info, &info, sizeof(info));
-> +	memcpy(&base_info, &info, sizeof(info));
-> +
-> +	while (total < max_mem) {
-> +		static const char *region_map[] = {
-> +			"system0",
-> +			"local0",
-> +		};
-> +		uint32_t bo;
-> +
-> +		sz = random() % max_bo;
-> +		ret = __gem_create_in_memory_region_list(i915, &bo, &sz, 0,
-> +							 &mr->ci, 1);
-> +		igt_assert_eq(ret, 0);
-> +		total += sz;
-> +
-> +		if (flags & (TEST_RESIDENT | TEST_PURGEABLE | TEST_ACTIVE))
-> +			spin = igt_spin_new(i915,
-> +					    .dependency = bo,
-> +					    .ahnd = ahnd);
-> +		else
-> +			spin = NULL;
-> +
-> +		if (flags & TEST_PURGEABLE) {
-> +			gem_madvise(i915, bo, I915_MADV_DONTNEED);
-> +			igt_spin_free(i915, spin);
-> +			gem_quiescent_gpu(i915);
-> +			spin = NULL;
-> +		}
-> +
-> +		if (flags & TEST_SHARED) {
-> +			struct drm_gem_open open_struct;
-> +			struct drm_gem_flink flink;
-> +
-> +			flink.handle = bo;
-> +			ret = ioctl(i915, DRM_IOCTL_GEM_FLINK, &flink);
-> +			igt_assert_eq(ret, 0);
-> +
-> +			open_struct.name = flink.name;
-> +			ret = ioctl(i915, DRM_IOCTL_GEM_OPEN, &open_struct);
-> +			igt_assert_eq(ret, 0);
-> +			igt_assert(open_struct.handle != 0);
-> +		}
-> +
-> +		memset(&info, 0, sizeof(info));
-> +		ret =  __igt_parse_drm_fdinfo(dir, buf, &info,
-> +					      NULL, 0,
-> +					      region_map, ARRAY_SIZE(region_map));
-> +		igt_assert(ret > 0);
-> +		igt_assert(info.num_regions);
-> +
-> +		read_fdinfo(fdinfo_buf, sizeof(fdinfo_buf), dir, buf);
-> +
-> +		/* >= to account for objects out of our control */
-> +		fdinfo_assert_gte(info.region_mem[r].total,
-> +				  prev_info.region_mem[r].total,
-> +				  sz,
-> +				  base_info.region_mem[r].total);
-> +
-> +		if (flags & TEST_SHARED)
-> +			fdinfo_assert_gte(info.region_mem[r].shared,
-> +					  prev_info.region_mem[r].shared,
-> +					  sz,
-> +					  base_info.region_mem[r].shared);
-> +		else
-> +			fdinfo_assert_eq(info.region_mem[r].shared,
-> +					 prev_info.region_mem[r].shared,
-> +					 sz,
-> +					 base_info.region_mem[r].shared);
-> +
-> +		if (flags & (TEST_RESIDENT | TEST_PURGEABLE | TEST_ACTIVE))
-> +			fdinfo_assert_gte(info.region_mem[r].resident,
-> +					  (uint64_t)0, /* We can only be sure the current buffer is resident. */
-> +					  sz,
-> +					  (uint64_t)0);
-> +
-> +		if (flags & TEST_PURGEABLE)
-> +			fdinfo_assert_gte(info.region_mem[r].purgeable,
-> +					  (uint64_t)0, /* We can only be sure the current buffer is purgeable (subset of resident). */
-> +					  sz,
-> +					  (uint64_t)0);
-> +
-> +		if (flags & TEST_ACTIVE)
-> +			fdinfo_assert_gte(info.region_mem[r].active,
-> +					  (uint64_t)0, /* We can only be sure the current buffer is active. */
-> +					  sz,
-> +					  (uint64_t)0);
-> +
-> +		memcpy(&prev_info, &info, sizeof(info));
-> +
-> +		if (spin) {
-> +			igt_spin_free(i915, spin);
-> +			gem_quiescent_gpu(i915);
-> +		}
-> +	}
-> +
-> +	put_ahnd(ahnd);
-> +	close(i915);
-> +}
-> +
->  #define test_each_engine(T, i915, ctx, e) \
->  	igt_subtest_with_dynamic(T) for_each_ctx_engine(i915, ctx, e) \
->  		igt_dynamic_f("%s", e->name)
-> @@ -903,6 +1085,41 @@ igt_main
->  	test_each_engine("isolation", i915, ctx, e)
->  		single(i915, ctx, e, TEST_BUSY | TEST_ISOLATION);
->  
-> +	igt_subtest_with_dynamic("memory-info-idle") {
-> +		for_each_memory_region(r, i915) {
-> +			igt_dynamic_f("%s", r->name)
-> +				test_memory(i915, r, 0);
-> +		}
-> +	}
-> +
-> +	igt_subtest_with_dynamic("memory-info-resident") {
-> +		for_each_memory_region(r, i915) {
-> +			igt_dynamic_f("%s", r->name)
-> +				test_memory(i915, r, TEST_RESIDENT);
-> +		}
-> +	}
-> +
-> +	igt_subtest_with_dynamic("memory-info-purgeable") {
-> +		for_each_memory_region(r, i915) {
-> +			igt_dynamic_f("%s", r->name)
-> +				test_memory(i915, r, TEST_PURGEABLE);
-> +		}
-> +	}
-> +
-> +	igt_subtest_with_dynamic("memory-info-active") {
-> +		for_each_memory_region(r, i915) {
-> +			igt_dynamic_f("%s", r->name)
-> +				test_memory(i915, r, TEST_ACTIVE);
-> +		}
-> +	}
-> +
-> +	igt_subtest_with_dynamic("memory-info-shared") {
-> +		for_each_memory_region(r, i915) {
-> +			igt_dynamic_f("%s", r->name)
-> +				test_memory(i915, r, TEST_SHARED);
-> +		}
-> +	}
-> +
->  	igt_subtest_group {
->  		int newfd;
->  
-> -- 
-> 2.39.2
-> 
+[auto build test ERROR on drm-intel/for-linux-next]
+[also build test ERROR on drm-intel/for-linux-next-fixes linus/master v6.6 next-20231103]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
+
+url:    https://github.com/intel-lab-lkp/linux/commits/Andy-Shevchenko/drm-i915-dsi-assume-BXT-gpio-works-for-non-native-GPIO/20231103-064642
+base:   git://anongit.freedesktop.org/drm-intel for-linux-next
+patch link:    https://lore.kernel.org/r/20231102151228.668842-15-andriy.shevchenko%40linux.intel.com
+patch subject: [PATCH v3 14/15] drm/i915/dsi: Replace poking of CHV GPIOs behind the driver's back
+config: x86_64-rhel-8.3-rust (https://download.01.org/0day-ci/archive/20231104/202311040312.Tf6bTkw0-lkp@intel.com/config)
+compiler: clang version 16.0.4 (https://github.com/llvm/llvm-project.git ae42196bc493ffe877a7e3dff8be32035dea4d07)
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20231104/202311040312.Tf6bTkw0-lkp@intel.com/reproduce)
+
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202311040312.Tf6bTkw0-lkp@intel.com/
+
+All errors (new ones prefixed by >>):
+
+>> drivers/gpu/drm/i915/display/intel_dsi_vbt.c:272:4: error: call to undeclared function 'soc_exec_opaque_gpio'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
+                           soc_exec_opaque_gpio(connector, gpio_index, "INT33FF:03", "Panel SE",
+                           ^
+   drivers/gpu/drm/i915/display/intel_dsi_vbt.c:275:4: error: call to undeclared function 'soc_exec_opaque_gpio'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
+                           soc_exec_opaque_gpio(connector, gpio_index, "INT33FF:00", "Panel SW",
+                           ^
+   drivers/gpu/drm/i915/display/intel_dsi_vbt.c:278:4: error: call to undeclared function 'soc_exec_opaque_gpio'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
+                           soc_exec_opaque_gpio(connector, gpio_index, "INT33FF:02", "Panel E",
+                           ^
+   drivers/gpu/drm/i915/display/intel_dsi_vbt.c:281:4: error: call to undeclared function 'soc_exec_opaque_gpio'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
+                           soc_exec_opaque_gpio(connector, gpio_index, "INT33FF:01", "Panel N",
+                           ^
+   drivers/gpu/drm/i915/display/intel_dsi_vbt.c:299:3: error: call to undeclared function 'soc_exec_opaque_gpio'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
+                   soc_exec_opaque_gpio(connector, gpio_index, "INT33FF:01", "Panel N",
+                   ^
+   5 errors generated.
+
+
+vim +/soc_exec_opaque_gpio +272 drivers/gpu/drm/i915/display/intel_dsi_vbt.c
+
+   263	
+   264	static void chv_gpio_set_value(struct intel_connector *connector,
+   265				       u8 gpio_source, u8 gpio_index, bool value)
+   266	{
+   267		struct drm_i915_private *dev_priv = to_i915(connector->base.dev);
+   268	
+   269		if (connector->panel.vbt.dsi.seq_version >= 3) {
+   270			if (gpio_index >= CHV_GPIO_IDX_START_SE) {
+   271				/* XXX: it's unclear whether 255->57 is part of SE. */
+ > 272				soc_exec_opaque_gpio(connector, gpio_index, "INT33FF:03", "Panel SE",
+   273						     gpio_index - CHV_GPIO_IDX_START_SW, value);
+   274			} else if (gpio_index >= CHV_GPIO_IDX_START_SW) {
+   275				soc_exec_opaque_gpio(connector, gpio_index, "INT33FF:00", "Panel SW",
+   276						     gpio_index - CHV_GPIO_IDX_START_SW, value);
+   277			} else if (gpio_index >= CHV_GPIO_IDX_START_E) {
+   278				soc_exec_opaque_gpio(connector, gpio_index, "INT33FF:02", "Panel E",
+   279						     gpio_index - CHV_GPIO_IDX_START_E, value);
+   280			} else {
+   281				soc_exec_opaque_gpio(connector, gpio_index, "INT33FF:01", "Panel N",
+   282						     gpio_index - CHV_GPIO_IDX_START_N, value);
+   283			}
+   284		} else {
+   285			/* XXX: The spec is unclear about CHV GPIO on seq v2 */
+   286			if (gpio_source != 0) {
+   287				drm_dbg_kms(&dev_priv->drm,
+   288					    "unknown gpio source %u\n", gpio_source);
+   289				return;
+   290			}
+   291	
+   292			if (gpio_index >= CHV_GPIO_IDX_START_E) {
+   293				drm_dbg_kms(&dev_priv->drm,
+   294					    "invalid gpio index %u for GPIO N\n",
+   295					    gpio_index);
+   296				return;
+   297			}
+   298	
+   299			soc_exec_opaque_gpio(connector, gpio_index, "INT33FF:01", "Panel N",
+   300					     gpio_index - CHV_GPIO_IDX_START_N, value);
+   301		}
+   302	}
+   303	
+
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
