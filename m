@@ -2,57 +2,55 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id C20697E1DCB
-	for <lists+intel-gfx@lfdr.de>; Mon,  6 Nov 2023 11:02:05 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id A828A7E1DF1
+	for <lists+intel-gfx@lfdr.de>; Mon,  6 Nov 2023 11:09:27 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AF15610E2AD;
-	Mon,  6 Nov 2023 10:01:58 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id EE73A10E2A5;
+	Mon,  6 Nov 2023 10:09:25 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 11E3110E2AC;
- Mon,  6 Nov 2023 10:01:57 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.100])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5F76110E2A5
+ for <intel-gfx@lists.freedesktop.org>; Mon,  6 Nov 2023 10:09:24 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1699264917; x=1730800917;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to;
- bh=6bHMkATEJ+mnbjtM+ryLL2gOSS19x5PGbIDvtB91e5E=;
- b=FZi/wVXswIXrM2FxIxCoKP+GQBU4jU7Aa7drdjrw+erA2ZzPFa2AJsUw
- g0JCeAUUx4R6s3EBZbgBd98gXJUlgwh4q91PHBZSe5gNhP3G3P0gIewE4
- ERVgrK/WTzkbGThohVpzOfYCdItpZjeTEcCOKqG+PkdOS2bQru/WE7NNK
- vuFSuLIWE0Ab6XXTJvsa32F2zpi+9gLC5JTlApju+rHdzgHqpwAuIgmhL
- 4jZo25NGtaWpCtTEApsOjTHb94z54ijn8YzkS/bBm+6niausf8IJiBZIs
- 9r0BMkQu5j78z4gfDpl4bYxzCZ9PzVBIsNLNKpL7/b8FksEZ36DYu7vrr A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10885"; a="379634830"
-X-IronPort-AV: E=Sophos;i="6.03,281,1694761200"; 
- d="scan'208,217";a="379634830"
-Received: from fmsmga008.fm.intel.com ([10.253.24.58])
- by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Nov 2023 02:01:56 -0800
+ t=1699265364; x=1730801364;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version:content-transfer-encoding;
+ bh=iTtdn9NTSCorllxnKuTlQUAZPiNQtDDB2OWZ4jvpSUE=;
+ b=maKKiFqb7Y4cIOKTnuilmUz/okqpDhmPpM3T5yXP9OkAPohKD6yh9ojS
+ CQMgJb9XjpqVDTW3bEMEJinn6XXxj4CjvPBJEiLfOBqxzo5RGPpMZgW9P
+ H0ksWkSIEcDXaGV9OJPVrlr5mAAZ/3BYVTPrHitCXtw4kwbEwSCc0gjqw
+ +g9pCpZZ8OmAJX6a3VU7va/3BvZbEdKrpE/Ge+GbHqUGDVw97h9gfHS2f
+ 2eGCZNUpIbQZd5Ng/eUTu/NNo4jKFU3k/5rL8IxfLD1ajkX9gO445U7YT
+ ormK78e+FafT3Mbw55hwX/7GGvFyipPA0yfRV78Ns6ahF20gvUmXPcsYW Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10885"; a="455728350"
+X-IronPort-AV: E=Sophos;i="6.03,281,1694761200"; d="scan'208";a="455728350"
+Received: from fmsmga007.fm.intel.com ([10.253.24.52])
+ by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 06 Nov 2023 02:09:23 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10885"; a="828166822"
-X-IronPort-AV: E=Sophos;i="6.03,281,1694761200"; 
- d="scan'208,217";a="828166822"
-Received: from lapeders-mobl1.ger.corp.intel.com (HELO [10.249.254.193])
- ([10.249.254.193])
- by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Nov 2023 02:01:53 -0800
-Content-Type: multipart/alternative;
- boundary="------------0g10498400YEkOTckBcQl0xI"
-Message-ID: <1807db8f-2ba6-0838-1d4c-39ff4cb7a34d@linux.intel.com>
-Date: Mon, 6 Nov 2023 11:01:51 +0100
+X-IronPort-AV: E=McAfee;i="6600,9927,10885"; a="765905577"
+X-IronPort-AV: E=Sophos;i="6.03,281,1694761200"; d="scan'208";a="765905577"
+Received: from lpilolli-mobl.ger.corp.intel.com (HELO localhost)
+ ([10.252.36.222])
+ by fmsmga007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 06 Nov 2023 02:09:21 -0800
+From: Jani Nikula <jani.nikula@intel.com>
+To: "Kahola, Mika" <mika.kahola@intel.com>, "Das, Nirmoy"
+ <nirmoy.das@intel.com>, "intel-gfx@lists.freedesktop.org"
+ <intel-gfx@lists.freedesktop.org>
+In-Reply-To: <MW4PR11MB705438E90C76E5AD9B537476EFDCA@MW4PR11MB7054.namprd11.prod.outlook.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20231026125636.5080-1-nirmoy.das@intel.com>
+ <MW4PR11MB705438E90C76E5AD9B537476EFDCA@MW4PR11MB7054.namprd11.prod.outlook.com>
+Date: Mon, 06 Nov 2023 12:09:18 +0200
+Message-ID: <878r7b19dd.fsf@intel.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.15.1
-Content-Language: en-US
-To: David Edelsohn <dje.gcc@gmail.com>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Daniel Vetter <daniel.vetter@ffwll.ch>, Dave Airlie <airlied@gmail.com>
-References: <CAGWvnynOWoKT1EWkL8ELfRVxSUjm-hBQnnjb-w2Gq-tmOFm0Hg@mail.gmail.com>
-From: =?UTF-8?Q?Thomas_Hellstr=c3=b6m?= <thomas.hellstrom@linux.intel.com>
-In-Reply-To: <CAGWvnynOWoKT1EWkL8ELfRVxSUjm-hBQnnjb-w2Gq-tmOFm0Hg@mail.gmail.com>
-Subject: Re: [Intel-gfx] [PULL] drm-misc-next
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+Subject: Re: [Intel-gfx] [PATCH v3] drm/i915/tc: Fix -Wformat-truncation in
+ intel_tc_port_init
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -65,151 +63,100 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: dim-tools@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org, Maxime Ripard <mripard@kernel.org>,
- Thomas Zimmermann <tzimmermann@suse.de>, Rodrigo Vivi <rodrigo.vivi@intel.com>
+Cc: "Hajda, Andrzej" <andrzej.hajda@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-This is a multi-part message in MIME format.
---------------0g10498400YEkOTckBcQl0xI
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+On Fri, 27 Oct 2023, "Kahola, Mika" <mika.kahola@intel.com> wrote:
+>> -----Original Message-----
+>> From: Das, Nirmoy <nirmoy.das@intel.com>
+>> Sent: Thursday, October 26, 2023 3:57 PM
+>> To: intel-gfx@lists.freedesktop.org
+>> Cc: Das, Nirmoy <nirmoy.das@intel.com>; Kahola, Mika <mika.kahola@intel.=
+com>; Deak, Imre <imre.deak@intel.com>; Nikula,
+>> Jani <jani.nikula@intel.com>; Hajda, Andrzej <andrzej.hajda@intel.com>
+>> Subject: [PATCH v3] drm/i915/tc: Fix -Wformat-truncation in intel_tc_por=
+t_init
+>>
+>> Fix below compiler warning:
+>>
+>> intel_tc.c:1879:11: error: =E2=80=98%d=E2=80=99 directive output may be =
+truncated writing between 1 and 11 bytes into a region of size 3 [-
+>> Werror=3Dformat-truncation=3D] "%c/TC#%d", port_name(port), tc_port + 1);
+>>            ^~
+>> intel_tc.c:1878:2: note: =E2=80=98snprintf=E2=80=99 output between 7 and=
+ 17 bytes into a destination of size 8
+>>   snprintf(tc->port_name, sizeof(tc->port_name),
+>>   ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+>>     "%c/TC#%d", port_name(port), tc_port + 1);
+>>     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+>>
+>> v2: use kasprintf(Imre)
+>> v3: use const for port_name, and fix tc mem leak(Imre)
+>>
+>> Fixes: 3eafcddf766b ("drm/i915/tc: Move TC port fields to a new intel_tc=
+_port struct")
+>> Cc: Mika Kahola <mika.kahola@intel.com>
+>> Cc: Imre Deak <imre.deak@intel.com>
+>> Cc: Jani Nikula <jani.nikula@intel.com>
+>> Signed-off-by: Nirmoy Das <nirmoy.das@intel.com>
+>> Reviewed-by: Andrzej Hajda <andrzej.hajda@intel.com>
+>> Reviewed-by: Imre Deak <imre.deak@intel.com>
+>
+> Reviewed-by: Mika Kahola <mika.kahola@intel.com>
 
-Hi, David.
+Thanks for the patch and reviews, pushed to din.
 
-On 11/3/23 17:37, David Edelsohn wrote:
-> Dual-license drm_gpuvm to GPL-2.0 OR MIT.
-> diff --git a/drivers/gpu/drm/drm_gpuvm.c b/drivers/gpu/drm/drm_gpuvm.c 
-> index 02ce6baacdad..08c088319652 100644 --- 
-> a/drivers/gpu/drm/drm_gpuvm.c 
-> <https://cgit.freedesktop.org/drm/drm-misc/tree/drivers/gpu/drm/drm_gpuvm.c?id=6f2eeef4a0aa9791bbba9d353641a6e067bb86c1> 
-> +++ b/drivers/gpu/drm/drm_gpuvm.c 
-> <https://cgit.freedesktop.org/drm/drm-misc/tree/drivers/gpu/drm/drm_gpuvm.c?id=f7749a549b4f4db0c02e6b3d3800ea400dd76c12>
-> @@ -1,4 +1,4 @@
-> -// SPDX-License-Identifier: GPL-2.0-only
-> +// SPDX-License-Identifier: GPL-2.0 OR MIT
-> /*
-> * Copyright (c) 2022 Red Hat.
-> *
-> The above SPDX License Identifier change is incorrect and no longer
-> valid. The change misunderstood the syntax of SPDX license identifiers
-> and boolean operations. GPL-2.0-only is the name of the license and means
-> GPL 2.0 only, as opposed to GPL 2.0 or later. The "only" does not
-> refer to restrictions on other licenses in the identifier and should 
-> not have been
-> removed. The hyphens designated that the name was a single unit.
-> The SPDX License Identifier boolean operators, such as OR, are a 
-> separate layer
-> of syntax.
-> The SPDX License Identifier should be
-> GPL-2.0-only OR MIT
-> Thanks, David
+BR,
+Jani.
 
-The author has acked the change / relicensing, which is also described 
-in the commit title so could you please elaborate why you think it is 
-not valid?
+>
+>> ---
+>>  drivers/gpu/drm/i915/display/intel_tc.c | 11 ++++++++---
+>>  1 file changed, 8 insertions(+), 3 deletions(-)
+>>
+>> diff --git a/drivers/gpu/drm/i915/display/intel_tc.c b/drivers/gpu/drm/i=
+915/display/intel_tc.c
+>> index 37b0f8529b4f..f64d348a969e 100644
+>> --- a/drivers/gpu/drm/i915/display/intel_tc.c
+>> +++ b/drivers/gpu/drm/i915/display/intel_tc.c
+>> @@ -58,7 +58,7 @@ struct intel_tc_port {
+>>       struct delayed_work link_reset_work;
+>>       int link_refcount;
+>>       bool legacy_port:1;
+>> -     char port_name[8];
+>> +     const char *port_name;
+>>       enum tc_port_mode mode;
+>>       enum tc_port_mode init_mode;
+>>       enum phy_fia phy_fia;
+>> @@ -1875,8 +1875,12 @@ int intel_tc_port_init(struct intel_digital_port =
+*dig_port, bool is_legacy)
+>>       else
+>>               tc->phy_ops =3D &icl_tc_phy_ops;
+>>
+>> -     snprintf(tc->port_name, sizeof(tc->port_name),
+>> -              "%c/TC#%d", port_name(port), tc_port + 1);
+>> +     tc->port_name =3D kasprintf(GFP_KERNEL, "%c/TC#%d", port_name(port=
+),
+>> +                               tc_port + 1);
+>> +     if (!tc->port_name) {
+>> +             kfree(tc);
+>> +             return -ENOMEM;
+>> +     }
+>>
+>>       mutex_init(&tc->lock);
+>>       /* TODO: Combine the two works */
+>> @@ -1897,6 +1901,7 @@ void intel_tc_port_cleanup(struct intel_digital_po=
+rt *dig_port)  {
+>>       intel_tc_port_suspend(dig_port);
+>>
+>> +     kfree(dig_port->tc->port_name);
+>>       kfree(dig_port->tc);
+>>       dig_port->tc =3D NULL;
+>>  }
+>> --
+>> 2.42.0
+>
 
-Thanks,
-
-Thomas
-
-
-
---------------0g10498400YEkOTckBcQl0xI
-Content-Type: text/html; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-
-<html>
-  <head>
-    <meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3DUTF=
--8">
-  </head>
-  <body>
-    <p>Hi, David.<br>
-    </p>
-    <div class=3D"moz-cite-prefix">On 11/3/23 17:37, David Edelsohn wrote=
-:<br>
-    </div>
-    <blockquote type=3D"cite"
-cite=3D"mid:CAGWvnynOWoKT1EWkL8ELfRVxSUjm-hBQnnjb-w2Gq-tmOFm0Hg@mail.gmai=
-l.com">
-      <meta http-equiv=3D"content-type" content=3D"text/html; charset=3DU=
-TF-8">
-      <div dir=3D"ltr">
-        <pre id=3D"gmail-b" style=3D"font-size:13px;background-image:init=
-ial;background-position:initial;background-size:initial;background-repeat=
-:initial;background-origin:initial;background-clip:initial;color:rgb(0,0,=
-51)">Dual-license drm_gpuvm to GPL-2.0 OR MIT.</pre>
-        <pre id=3D"gmail-b" style=3D"font-size:13px;background-image:init=
-ial;background-position:initial;background-size:initial;background-repeat=
-:initial;background-origin:initial;background-clip:initial;color:rgb(0,0,=
-51)"><div class=3D"gmail-head" style=3D"font-weight:bold;margin-top:1em;c=
-olor:black;font-size:13.3333px">diff --git a/drivers/gpu/drm/drm_gpuvm.c =
-b/drivers/gpu/drm/drm_gpuvm.c
-index 02ce6baacdad..08c088319652 100644
---- a/<a href=3D"https://cgit.freedesktop.org/drm/drm-misc/tree/drivers/g=
-pu/drm/drm_gpuvm.c?id=3D6f2eeef4a0aa9791bbba9d353641a6e067bb86c1" style=3D=
-"color:blue;text-decoration-line:none" moz-do-not-send=3D"true">drivers/g=
-pu/drm/drm_gpuvm.c</a>
-+++ b/<a href=3D"https://cgit.freedesktop.org/drm/drm-misc/tree/drivers/g=
-pu/drm/drm_gpuvm.c?id=3Df7749a549b4f4db0c02e6b3d3800ea400dd76c12" style=3D=
-"color:blue;text-decoration-line:none" moz-do-not-send=3D"true">drivers/g=
-pu/drm/drm_gpuvm.c</a></div><div class=3D"gmail-hunk" style=3D"color:rgb(=
-0,0,153);font-size:13.3333px">@@ -1,4 +1,4 @@</div><div class=3D"gmail-de=
-l" style=3D"color:red;font-size:13.3333px">-// SPDX-License-Identifier: G=
-PL-2.0-only</div><div class=3D"gmail-add" style=3D"color:green;font-size:=
-13.3333px">+// SPDX-License-Identifier: GPL-2.0 OR MIT</div><div class=3D=
-"gmail-ctx" style=3D"color:rgb(51,51,51);font-size:13.3333px"> /*</div><d=
-iv class=3D"gmail-ctx" style=3D"color:rgb(51,51,51);font-size:13.3333px">=
-  * Copyright (c) 2022 Red Hat.</div><div class=3D"gmail-ctx" style=3D"co=
-lor:rgb(51,51,51);font-size:13.3333px">  *</div><div class=3D"gmail-ctx" =
-style=3D"color:rgb(51,51,51);font-size:13.3333px">
-</div><div class=3D"gmail-ctx" style=3D"color:rgb(51,51,51);font-size:13.=
-3333px"><font face=3D"arial, sans-serif">The above SPDX License Identifie=
-r change is incorrect and no longer</font></div><div class=3D"gmail-ctx" =
-style=3D"color:rgb(51,51,51);font-size:13.3333px"><font face=3D"arial, sa=
-ns-serif">valid.  The change misunderstood the syntax of SPDX license ide=
-ntifiers</font></div><div class=3D"gmail-ctx" style=3D"color:rgb(51,51,51=
-);font-size:13.3333px"><font face=3D"arial, sans-serif">and boolean opera=
-tions.  GPL-2.0-only is the name of the license and means</font></div><di=
-v class=3D"gmail-ctx" style=3D"color:rgb(51,51,51);font-size:13.3333px"><=
-font face=3D"arial, sans-serif">GPL 2.0 only, as opposed to GPL 2.0 or la=
-ter.  The "only" does not</font></div><div class=3D"gmail-ctx" style=3D"c=
-olor:rgb(51,51,51);font-size:13.3333px"><font face=3D"arial, sans-serif">=
-refer to restrictions on other licenses in the identifier and should not =
-have been</font></div><div class=3D"gmail-ctx" style=3D"color:rgb(51,51,5=
-1);font-size:13.3333px"><font face=3D"arial, sans-serif">removed.  The hy=
-phens designated that the name was a single unit.</font></div><div class=3D=
-"gmail-ctx" style=3D"color:rgb(51,51,51);font-size:13.3333px"><font face=3D=
-"arial, sans-serif">The SPDX License Identifier boolean operators, such a=
-s OR, are a separate layer</font></div><div class=3D"gmail-ctx" style=3D"=
-color:rgb(51,51,51);font-size:13.3333px"><font face=3D"arial, sans-serif"=
->of syntax. </font></div><div class=3D"gmail-ctx" style=3D"color:rgb(51,5=
-1,51);font-size:13.3333px"><font face=3D"arial, sans-serif">
-</font></div><div class=3D"gmail-ctx" style=3D"color:rgb(51,51,51);font-s=
-ize:13.3333px"><font face=3D"arial, sans-serif">The SPDX License Identifi=
-er should be</font></div><div class=3D"gmail-ctx" style=3D"color:rgb(51,5=
-1,51);font-size:13.3333px"><font face=3D"arial, sans-serif">
-</font></div><div class=3D"gmail-ctx" style=3D"color:rgb(51,51,51);font-s=
-ize:13.3333px"><font face=3D"arial, sans-serif">GPL-2.0-only OR MIT</font=
-></div><div class=3D"gmail-ctx" style=3D"color:rgb(51,51,51);font-size:13=
-=2E3333px"><font face=3D"arial, sans-serif">
-</font></div><div class=3D"gmail-ctx" style=3D"color:rgb(51,51,51);font-s=
-ize:13.3333px"><font face=3D"arial, sans-serif">Thanks, David</font></div=
-></pre>
-      </div>
-    </blockquote>
-    <p>The author has acked the change / relicensing, which is also
-      described in the commit title so could you please elaborate why
-      you think it is not valid?</p>
-    <p>Thanks,</p>
-    <p>Thomas</p>
-    <p><br>
-    </p>
-    <p><br>
-    </p>
-  </body>
-</html>
-
---------------0g10498400YEkOTckBcQl0xI--
+--=20
+Jani Nikula, Intel
