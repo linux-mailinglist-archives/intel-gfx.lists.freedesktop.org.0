@@ -1,45 +1,45 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 653217E2E4C
-	for <lists+intel-gfx@lfdr.de>; Mon,  6 Nov 2023 21:39:32 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2BB027E2E6A
+	for <lists+intel-gfx@lfdr.de>; Mon,  6 Nov 2023 21:49:20 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D311210E40E;
-	Mon,  6 Nov 2023 20:39:30 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6785310E417;
+	Mon,  6 Nov 2023 20:49:18 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.126])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6626C10E40E
- for <intel-gfx@lists.freedesktop.org>; Mon,  6 Nov 2023 20:39:29 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.93])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 302D910E417
+ for <intel-gfx@lists.freedesktop.org>; Mon,  6 Nov 2023 20:49:17 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1699303169; x=1730839169;
+ t=1699303757; x=1730839757;
  h=date:from:to:cc:subject:message-id:references:
  mime-version:content-transfer-encoding:in-reply-to;
- bh=nPwfxgID7FDngRqZc4mgfkMCaNuNbi+7U/9GIYn4D1A=;
- b=KWYWDPFLimV/nHcGfZD25Eo8V4YklQBjjRltc1uLxVOadL/kYZcG8gkS
- 2zGMWXfzbdbMBSfsIj5xdE+6EMLdheOykTbQUOAawdL6bNZZKOzdEolHw
- vWY2P2Ic/ZLl77fnquBi1xad7DClkpDteJi4qi1wYXUhv7dXt1KW/5K55
- J61Qu3bnBxKB+YL3g38epP7Of6iroHdTmey890p+1+57aGtGxGHNgWraT
- U1EKmnffV3HmHwJJ9w5O6oMBgR3U5brS9eWQVufyWVgv7aRGL3M1FUeXI
- 7s1g1mTduj6X/M5CykVLsgLZ0UkEFFglJuKXxXj7VOXyKnx3aO76wAQRQ g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10886"; a="374394557"
-X-IronPort-AV: E=Sophos;i="6.03,282,1694761200"; d="scan'208";a="374394557"
+ bh=OMeoPBJsSVMVun6b6aKZ2/fYUUN9RTxyso/+Jyc22cI=;
+ b=n12F3diZ6QdquRE9xR4WuYSKBJYY2lAa0XkBd6VqlmiU6ZoOGn5Omuoe
+ f3bsgflMQuACM7JnbQ1kCCke5nEbUhUaG6jY4RiNTr9G0m4Fl/njRTES1
+ UxHpuxkNLHxoYQ1UwnEifbsNOtG9QqUIjoEnkszXksgFTlAsVeMBpVHcB
+ nXoY0ZFFWzL6zbcpPUxuO1mTwpLDwy4rntXWCe3uQAzmszDtdndFaDr/2
+ 6XBbM2UR5tpTD+Hp92vqD1F9VuNl/ts7Zh7FxorpZBtWnGuG/x0YC2Z85
+ Nya35RpRl5ST/cPaJQY77iNx3JQxi/1fLsVFlnrIX2KYdZHXpEOtIypTN Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10886"; a="386539357"
+X-IronPort-AV: E=Sophos;i="6.03,282,1694761200"; d="scan'208";a="386539357"
 Received: from orsmga007.jf.intel.com ([10.7.209.58])
- by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Nov 2023 12:39:28 -0800
+ by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 06 Nov 2023 12:49:16 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10886"; a="755953403"
-X-IronPort-AV: E=Sophos;i="6.03,282,1694761200"; d="scan'208";a="755953403"
+X-IronPort-AV: E=McAfee;i="6600,9927,10886"; a="755955190"
+X-IronPort-AV: E=Sophos;i="6.03,282,1694761200"; d="scan'208";a="755955190"
 Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.74])
- by orsmga007.jf.intel.com with SMTP; 06 Nov 2023 12:39:26 -0800
+ by orsmga007.jf.intel.com with SMTP; 06 Nov 2023 12:49:14 -0800
 Received: by stinkbox (sSMTP sendmail emulation);
- Mon, 06 Nov 2023 22:39:25 +0200
-Date: Mon, 6 Nov 2023 22:39:25 +0200
+ Mon, 06 Nov 2023 22:49:13 +0200
+Date: Mon, 6 Nov 2023 22:49:13 +0200
 From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
 To: Imre Deak <imre.deak@intel.com>
-Message-ID: <ZUlO_YusjgqsD-PJ@intel.com>
+Message-ID: <ZUlRSXU1b0x_uN19@intel.com>
 References: <20231030155843.2251023-1-imre.deak@intel.com>
  <20231030155843.2251023-14-imre.deak@intel.com>
 MIME-Version: 1.0
@@ -199,13 +199,6 @@ On Mon, Oct 30, 2023 at 05:58:26PM +0200, Imre Deak wrote:
 > +		 * device's payload table.
 > +		 */
 > +		crtc_state->dp_m_n.tu = remote_m_n.tu;
-
-The fact we use the "remote" value here is because the mst manager code
-assumes the two numbers are the same, right? Should perhaps highlight
-that fact a bit better.
-
-Maybe we want a WARN_ON(remote_m_n.tu < dp_m_n.tu) here as well?
-
 > +
 > +		crtc_state->pbn = DIV_ROUND_UP_ULL(mul_u32_u32(mst_state->pbn_div * 64,
 > +							       remote_m_n.data_m),
@@ -279,6 +272,10 @@ Maybe we want a WARN_ON(remote_m_n.tu < dp_m_n.tu) here as well?
 >  		return ret;
 >  
 > +	/* TODO: also check if compression would allow for the mode */
+
+We should also stop using drm_dp_calc_pbn_mode() since it makes some
+wild assumptions, no?
+
 >  	if (mode_rate > max_rate || mode->clock > max_dotclk ||
 >  	    drm_dp_calc_pbn_mode(mode->clock, min_bpp << 4) > port->full_pbn) {
 >  		*status = MODE_CLOCK_HIGH;
