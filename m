@@ -2,52 +2,52 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 140FD7E21CD
-	for <lists+intel-gfx@lfdr.de>; Mon,  6 Nov 2023 13:35:39 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6A9607E21CE
+	for <lists+intel-gfx@lfdr.de>; Mon,  6 Nov 2023 13:35:40 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2E7D010E2E8;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3146410E2E9;
 	Mon,  6 Nov 2023 12:35:35 +0000 (UTC)
 X-Original-To: Intel-gfx@lists.freedesktop.org
 Delivered-To: Intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.65])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 54D4C10E2FA;
- Mon,  6 Nov 2023 12:35:30 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 750F410E2EB;
+ Mon,  6 Nov 2023 12:35:31 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1699274130; x=1730810130;
+ t=1699274131; x=1730810131;
  h=from:to:subject:date:message-id:in-reply-to:references:
  mime-version:content-transfer-encoding;
- bh=Z8sUXaTQUMTttpL/OhbVUqAFI8NVmMNXqYMbm042WKE=;
- b=BZFVcFEbpJkF6tP7ZEMH8QR4VRnzU8JQOZT7DC47vIo74DJcXOWGWubY
- +WHj6OOlWbrnwFSgT0n3pJOmfB54ZTUt1BDxlAjTfpzSc97TOY5aGQ7VM
- P4yowTU8Ur/Kdp40JSwzn/Cv6unrEZ4uwGXJVfy4GqfCVvtbwfYfwu6Ge
- ciCqZSe3Lv2mNwxWrcMvJ+dFaqcnEo2bpy7rGQAZd+Q/2S8ajetljTdOM
- FpUVMmUFzhU1adAnsYbckAWxKfqHyoigfpTk0gmwZShK1ECDk/VSTkCtx
- 5w3OmJA1Asowf4nms0OzYVeeaIM+7smjZHaA+SbqOQaJBtSpgrpiJpyFj w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10885"; a="393159558"
-X-IronPort-AV: E=Sophos;i="6.03,281,1694761200"; d="scan'208";a="393159558"
+ bh=MvW69wRPENKImeWqtKwMB7Rl691414E6AiHsVBnItmo=;
+ b=CjVP98LOvr82L3jG9Kip5TmYu853XMPIbgm8DYJiw/ZQeP0zljb2VJRI
+ LxcVJFihTZunypwiBjjMBh489xHJnMcOBs3RkUqYMGy57l2LzSgUsVtnL
+ uWnvlO8HLuqr7jfTnBFgvHk/hYa08DvY4ypONWyPdPUV6y17PQ4DK/SZh
+ j8jXats5n65w5ED9P3caBrBgBNoSzBXWrXhrP6hOcYQbpIJrsqPDFRS4d
+ 7uNUKG4bTZQmgkN72QvqoTHOJqPYp91utae2x6C9ZpoIkGXpCemfpQTL+
+ B/d4S/NqtZpOggmYvW2aE1rc+8rvxpaRH6uTtL1hDjxwx45WautptW7H4 Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10885"; a="393159563"
+X-IronPort-AV: E=Sophos;i="6.03,281,1694761200"; d="scan'208";a="393159563"
 Received: from orsmga003.jf.intel.com ([10.7.209.27])
  by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Nov 2023 04:35:30 -0800
+ 06 Nov 2023 04:35:31 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10885"; a="712188496"
-X-IronPort-AV: E=Sophos;i="6.03,281,1694761200"; d="scan'208";a="712188496"
+X-IronPort-AV: E=McAfee;i="6600,9927,10885"; a="712188502"
+X-IronPort-AV: E=Sophos;i="6.03,281,1694761200"; d="scan'208";a="712188502"
 Received: from ajayshan-mobl.ger.corp.intel.com (HELO localhost.localdomain)
  ([10.213.234.152])
  by orsmga003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Nov 2023 04:35:28 -0800
+ 06 Nov 2023 04:35:30 -0800
 From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
 To: igt-dev@lists.freedesktop.org,
 	Intel-gfx@lists.freedesktop.org
-Date: Mon,  6 Nov 2023 12:35:14 +0000
-Message-Id: <20231106123518.588528-5-tvrtko.ursulin@linux.intel.com>
+Date: Mon,  6 Nov 2023 12:35:15 +0000
+Message-Id: <20231106123518.588528-6-tvrtko.ursulin@linux.intel.com>
 X-Mailer: git-send-email 2.39.2
 In-Reply-To: <20231106123518.588528-1-tvrtko.ursulin@linux.intel.com>
 References: <20231106123518.588528-1-tvrtko.ursulin@linux.intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [CI 5/9] lib/igt_drm_clients: Fix client id type
- confusion
+Subject: [Intel-gfx] [CI 6/9] lib/igt_drm_clients: Allow passing in the
+ memory region map
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -65,56 +65,104 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 From: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
 
-Igt_drm_fdinfo defines it as an unsigned long so it is best that it
-matches here as well.
+Same concept as with the engine map, allowing callers to pass in fixed
+map of names to indices, simplifying their implementation and avoiding
+auto-detection while parsing.
 
 Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
 Reviewed-by: Kamil Konieczny <kamil.konieczny@linux.intel.com>
 ---
- lib/igt_drm_clients.c | 2 +-
- lib/igt_drm_clients.h | 2 +-
- tools/intel_gpu_top.c | 2 +-
- 3 files changed, 3 insertions(+), 3 deletions(-)
+ lib/igt_drm_clients.c | 5 +++--
+ lib/igt_drm_clients.h | 3 ++-
+ tools/gputop.c        | 4 ++--
+ tools/intel_gpu_top.c | 8 +++++---
+ 4 files changed, 12 insertions(+), 8 deletions(-)
 
 diff --git a/lib/igt_drm_clients.c b/lib/igt_drm_clients.c
-index 47ad137d5f1f..da51d7335b2b 100644
+index da51d7335b2b..025d60c51503 100644
 --- a/lib/igt_drm_clients.c
 +++ b/lib/igt_drm_clients.c
-@@ -49,7 +49,7 @@ struct igt_drm_clients *igt_drm_clients_init(void *private_data)
- static struct igt_drm_client *
- igt_drm_clients_find(struct igt_drm_clients *clients,
- 		     enum igt_drm_client_status status,
--		     unsigned int drm_minor, unsigned int id)
-+		     unsigned int drm_minor, unsigned long id)
+@@ -445,7 +445,8 @@ struct igt_drm_clients *
+ igt_drm_clients_scan(struct igt_drm_clients *clients,
+ 		     bool (*filter_client)(const struct igt_drm_clients *,
+ 					   const struct drm_client_fdinfo *),
+-		     const char **name_map, unsigned int map_entries)
++		     const char **name_map, unsigned int map_entries,
++		     const char **region_map, unsigned int region_entries)
  {
- 	unsigned int start, num;
+ 	struct dirent *proc_dent;
  	struct igt_drm_client *c;
+@@ -524,7 +525,7 @@ igt_drm_clients_scan(struct igt_drm_clients *clients,
+ 			if (!__igt_parse_drm_fdinfo(dirfd(fdinfo_dir),
+ 						    fdinfo_dent->d_name, &info,
+ 						    name_map, map_entries,
+-						    NULL, 0))
++						    region_map, region_entries))
+ 				continue;
+ 
+ 			if (filter_client && !filter_client(clients, &info))
 diff --git a/lib/igt_drm_clients.h b/lib/igt_drm_clients.h
-index 07bd236d43bf..cd37f8508b20 100644
+index cd37f8508b20..52888aedc25a 100644
 --- a/lib/igt_drm_clients.h
 +++ b/lib/igt_drm_clients.h
-@@ -56,7 +56,7 @@ struct igt_drm_client {
- 	enum igt_drm_client_status status;
- 	struct igt_drm_client_regions *regions; /* Memory regions present in this client, to map with memory usage. */
- 	struct igt_drm_client_engines *engines; /* Engines used by this client, to map with busynees data. */
--	unsigned int id; /* DRM client id from fdinfo. */
-+	unsigned long id; /* DRM client id from fdinfo. */
- 	unsigned int drm_minor; /* DRM minor of this client. */
- 	unsigned int pid; /* PID which has this DRM fd open. */
- 	char pid_str[10]; /* Cached PID representation. */
+@@ -93,7 +93,8 @@ struct igt_drm_clients *
+ igt_drm_clients_scan(struct igt_drm_clients *clients,
+ 		     bool (*filter_client)(const struct igt_drm_clients *,
+ 					   const struct drm_client_fdinfo *),
+-		     const char **name_map, unsigned int map_entries);
++		     const char **name_map, unsigned int map_entries,
++		     const char **region_map, unsigned int region_entries);
+ 
+ struct igt_drm_clients *
+ igt_drm_clients_sort(struct igt_drm_clients *clients,
+diff --git a/tools/gputop.c b/tools/gputop.c
+index ea95e0333dd2..71e28f43ee4c 100644
+--- a/tools/gputop.c
++++ b/tools/gputop.c
+@@ -253,7 +253,7 @@ int main(int argc, char **argv)
+ 	if (!clients)
+ 		exit(1);
+ 
+-	igt_drm_clients_scan(clients, NULL, NULL, 0);
++	igt_drm_clients_scan(clients, NULL, NULL, 0, NULL, 0);
+ 
+ 	for (;;) {
+ 		struct igt_drm_client *c, *prevc = NULL;
+@@ -270,7 +270,7 @@ int main(int argc, char **argv)
+ 			}
+ 		}
+ 
+-		igt_drm_clients_scan(clients, NULL, NULL, 0);
++		igt_drm_clients_scan(clients, NULL, NULL, 0, NULL, 0);
+ 		igt_drm_clients_sort(clients, client_cmp);
+ 
+ 		printf("\033[H\033[J");
 diff --git a/tools/intel_gpu_top.c b/tools/intel_gpu_top.c
-index 00506c63db4e..34fa99235e11 100644
+index 34fa99235e11..091fe28068dc 100644
 --- a/tools/intel_gpu_top.c
 +++ b/tools/intel_gpu_top.c
-@@ -2106,7 +2106,7 @@ print_client(struct igt_drm_client *c, struct engines *engines, double t, int li
- 	} else if (output_mode == JSON) {
- 		char buf[64];
+@@ -2619,8 +2619,9 @@ int main(int argc, char **argv)
+ 	}
  
--		snprintf(buf, sizeof(buf), "%u", c->id);
-+		snprintf(buf, sizeof(buf), "%lu", c->id);
- 		pops->open_struct(buf);
+ 	pmu_sample(engines);
+-	igt_drm_clients_scan(clients, client_match, engine_map,
+-			     ARRAY_SIZE(engine_map));
++	igt_drm_clients_scan(clients, client_match,
++			     engine_map, ARRAY_SIZE(engine_map),
++			     NULL, 0);
+ 	gettime(&ts);
  
- 		__json_add_member("name", c->print_name);
+ 	if (output_mode == JSON)
+@@ -2655,7 +2656,8 @@ int main(int argc, char **argv)
+ 			display_clients(igt_drm_clients_scan(clients,
+ 							     client_match,
+ 							     engine_map,
+-							     ARRAY_SIZE(engine_map)));
++							     ARRAY_SIZE(engine_map),
++							     NULL, 0));
+ 		scan_us = elapsed_us(&ts, period_us);
+ 
+ 		if (stop_top)
 -- 
 2.39.2
 
