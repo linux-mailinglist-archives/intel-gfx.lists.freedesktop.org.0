@@ -2,58 +2,54 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1C1327E21E2
-	for <lists+intel-gfx@lfdr.de>; Mon,  6 Nov 2023 13:38:53 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8CD347E21EF
+	for <lists+intel-gfx@lfdr.de>; Mon,  6 Nov 2023 13:41:34 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4E53810E2E7;
-	Mon,  6 Nov 2023 12:38:51 +0000 (UTC)
-X-Original-To: Intel-gfx@lists.freedesktop.org
-Delivered-To: Intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.115])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CD21210E2E7;
- Mon,  6 Nov 2023 12:38:49 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C40E110E2EF;
+	Mon,  6 Nov 2023 12:41:30 +0000 (UTC)
+X-Original-To: intel-gfx@lists.freedesktop.org
+Delivered-To: intel-gfx@lists.freedesktop.org
+Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.24])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5AF7310E2EE;
+ Mon,  6 Nov 2023 12:41:27 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1699274329; x=1730810329;
- h=message-id:date:mime-version:subject:to:references:from:
- in-reply-to:content-transfer-encoding;
- bh=c73WlJaTLAhvkX0X0zarhgZBmrnKQRsq+q3ffVWbJos=;
- b=DdylIFcbBgzVYAEFw51vuaQqjmdlYXNG5jc/OIc38SIX8NL5POoEvu1A
- K2GWTZw4llaxMJY12FMRWQwyPuK7lbERcjQQCQp5u6z/cW0FqQNjnED1q
- UUJmQCVHaZtEAHZ6vSaBzIpLtlt6kvlIiXh8s6Y3mn1sPdGkQ1VO/acN3
- Dec+KlgfwBoCHNwc9RivuRPpuMFjqq/43PH2p42tun81LD2O8JRSYhGuR
- ZBlZ+gI6FyqqZIl2BDUhqzzGxW1tkD24RppexxrwNfMBS9Su+D5EoFlHZ
- umWXEw9wu9AYKUKYVbjaX/ibfMgMDQTTO1b2Bk1ZXBb6i8yrMY5Thi8Va w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10885"; a="389075151"
-X-IronPort-AV: E=Sophos;i="6.03,281,1694761200"; d="scan'208";a="389075151"
-Received: from orviesa002.jf.intel.com ([10.64.159.142])
- by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Nov 2023 04:38:49 -0800
+ t=1699274487; x=1730810487;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version;
+ bh=tin5at6g+aCnWnHDBCks7edCPP8uK/BV3MXuC1ocNfQ=;
+ b=Zihmc4clHuZUsdbkeno1rHpKsJxqQ19wuI9xLVsTrttgRDfq+OaAuqoA
+ B9AUY0k7dBKTeNxYHu485LMIHsEN94a8wIzDB1xgzcN8dqdyZTumQ3A6Y
+ RTWaiEHTjQuyObPlBR0dnBBPzGUpVMhFTUeyc2d1h5u+REi9WKEU2E4ak
+ F4RVoM2QHVD6pfMtZXW7wH84JdadMAUqoN+9vCarffxNJGxhOiVMf2C35
+ FnbfmZfoNIlyj/9/qzDKZHNLDACrCBLk5Y+WAraCi2tejgdc8JHOUI9tY
+ UNRnsm62PPTewuGoZo4vL9Gt8CJ38R2VG4Adt2cirTQ3hAGQ6ovPmSL/K g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10885"; a="392132715"
+X-IronPort-AV: E=Sophos;i="6.03,281,1694761200"; d="scan'208";a="392132715"
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+ by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 06 Nov 2023 04:41:26 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.03,281,1694761200"; 
-   d="scan'208";a="3434807"
-Received: from ajayshan-mobl.ger.corp.intel.com (HELO [10.213.234.152])
- ([10.213.234.152])
- by orviesa002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Nov 2023 04:38:48 -0800
-Message-ID: <710eaf92-46d5-42e8-9c46-b59571401494@linux.intel.com>
-Date: Mon, 6 Nov 2023 12:38:45 +0000
+X-IronPort-AV: E=McAfee;i="6600,9927,10885"; a="762307918"
+X-IronPort-AV: E=Sophos;i="6.03,281,1694761200"; d="scan'208";a="762307918"
+Received: from lpilolli-mobl.ger.corp.intel.com (HELO localhost)
+ ([10.252.36.222])
+ by orsmga002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 06 Nov 2023 04:41:23 -0800
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>,
+ intel-gfx@lists.freedesktop.org
+In-Reply-To: <4844651.GXAFRqVoOG@jkrzyszt-mobl2.ger.corp.intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20231106091603.231100-2-janusz.krzysztofik@linux.intel.com>
+ <87bkc71a48.fsf@intel.com>
+ <4844651.GXAFRqVoOG@jkrzyszt-mobl2.ger.corp.intel.com>
+Date: Mon, 06 Nov 2023 14:41:20 +0200
+Message-ID: <87pm0nyryn.fsf@intel.com>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Content-Language: en-US
-To: Kamil Konieczny <kamil.konieczny@linux.intel.com>,
- igt-dev@lists.freedesktop.org, Intel-gfx@lists.freedesktop.org,
- Tvrtko Ursulin <tvrtko.ursulin@intel.com>
-References: <20231012081547.852052-1-tvrtko.ursulin@linux.intel.com>
- <20231012081547.852052-3-tvrtko.ursulin@linux.intel.com>
- <20231103183254.kl4uhqzbfw7nw6i4@kamilkon-desk.igk.intel.com>
-From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-Organization: Intel Corporation UK Plc
-In-Reply-To: <20231103183254.kl4uhqzbfw7nw6i4@kamilkon-desk.igk.intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-Subject: Re: [Intel-gfx] [PATCH i-g-t 2/9] tests/i915/drm_fdinfo: Stress
- test context close versus fdinfo reads
+Content-Type: text/plain
+Subject: Re: [Intel-gfx] [PATCH] drm/i915/vma: Fix potential UAF on
+ multi-tile platforms
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -66,158 +62,155 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: Andrzej Hajda <andrzej.hajda@intel.com>, dri-devel@lists.freedesktop.org,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Chris Wilson <chris.p.wilson@linux.intel.com>,
+ Nirmoy Das <nirmoy.das@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+On Mon, 06 Nov 2023, Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com> wrote:
+> Hi Jani,
+>
+> Thanks for looking at this.
+>
+> On Monday, 6 November 2023 10:53:11 CET Jani Nikula wrote:
+>> On Mon, 06 Nov 2023, Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com> 
+> wrote:
+>> > Object debugging tools were sporadically reporting illegal attempts to
+>> > free a still active i915 VMA object from when parking a GPU tile believed
+>> > to be idle.
+>> >
+>> > [161.359441] ODEBUG: free active (active state 0) object: ffff88811643b958 
+> object type: i915_active hint: __i915_vma_active+0x0/0x50 [i915]
+>> > [161.360082] WARNING: CPU: 5 PID: 276 at lib/debugobjects.c:514 
+> debug_print_object+0x80/0xb0
+>> > ...
+>> > [161.360304] CPU: 5 PID: 276 Comm: kworker/5:2 Not tainted 6.5.0-rc1-
+> CI_DRM_13375-g003f860e5577+ #1
+>> > [161.360314] Hardware name: Intel Corporation Rocket Lake Client Platform/
+> RocketLake S UDIMM 6L RVP, BIOS RKLSFWI1.R00.3173.A03.2204210138 04/21/2022
+>> > [161.360322] Workqueue: i915-unordered __intel_wakeref_put_work [i915]
+>> > [161.360592] RIP: 0010:debug_print_object+0x80/0xb0
+>> > ...
+>> > [161.361347] debug_object_free+0xeb/0x110
+>> > [161.361362] i915_active_fini+0x14/0x130 [i915]
+>> > [161.361866] release_references+0xfe/0x1f0 [i915]
+>> > [161.362543] i915_vma_parked+0x1db/0x380 [i915]
+>> > [161.363129] __gt_park+0x121/0x230 [i915]
+>> > [161.363515] ____intel_wakeref_put_last+0x1f/0x70 [i915]
+>> >
+>> > That has been tracked down to be happening when another thread was
+>> > deactivating the VMA inside __active_retire() helper, after the VMA's
+>> > active counter was already decremented to 0, but before deactivation of
+>> > the VMA's object was reported to the object debugging tools.  Root cause
+>> > has been identified as premature release of last wakeref for the GPU tile
+>> > to which the active VMA belonged.
+>> >
+>> > In case of single tile platforms, an engine associated with a request that
+>> > uses the VMA is keeping the tile's wakeref long enough for that VMA to be
+>> > deactivated on time, before it is going to be freed.  However, on multi-
+>> > tile platforms, a request may use a VMA from a tile other than the one
+>> > that hosts the request's engine, then, not protected with the engine's
+>> > wakeref.
+>> >
+>> > Get an extra wakeref for the VMA's tile when activating it, and put that
+>> > wakeref only after the VMA is deactivated.  However, exclude GGTT from
+>> > that processing path, otherwise the GPU never goes idle.  Since
+>> > __i915_vma_retire() may be called from atomic contexts, use async variant
+>> > of wakeref put.
+>> >
+>> > Closes: https://gitlab.freedesktop.org/drm/intel/issues/8875
+>> > Fixes: Fixes: 213c43676beb ("drm/i915/mtl: Remove the 'force_probe' 
+> requirement for Meteor Lake")
+>> 
+>> I get the motivation, but this is hardly true. 
+>
+> Hmm, do you suggest to blame a commit that was actually guilty, or to drop the 
+> Fixes: tag completely?  IOW, are we interested in fixing former stable 
+> releases that had no single multi-tile platform officially supported?
 
-On 03/11/2023 18:32, Kamil Konieczny wrote:
-> Hi Tvrtko,
-> On 2023-10-12 at 09:15:40 +0100, Tvrtko Ursulin wrote:
->> From: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
->>
->> A short smoke tests to exercise fdinfo reads in parallel to contexts
->> getting created and destroyed.
->>
->> Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
->> ---
->>   tests/intel/drm_fdinfo.c | 68 ++++++++++++++++++++++++++++++++++++++++
->>   1 file changed, 68 insertions(+)
->>
->> diff --git a/tests/intel/drm_fdinfo.c b/tests/intel/drm_fdinfo.c
->> index 344c44dce78b..c4218b0d16e6 100644
->> --- a/tests/intel/drm_fdinfo.c
->> +++ b/tests/intel/drm_fdinfo.c
->> @@ -22,11 +22,14 @@
->>    *
->>    */
->>   
->> +#include <fcntl.h>
->> +
->>   #include "igt.h"
->>   #include "igt_core.h"
->>   #include "igt_device.h"
->>   #include "igt_drm_fdinfo.h"
->>   #include "i915/gem.h"
->> +#include "i915/gem_create.h"
->>   #include "i915/gem_vm.h"
->>   #include "intel_ctx.h"
->>   /**
->> @@ -72,6 +75,8 @@
->>    * SUBTEST: virtual-busy-idle-all
->>    *
->>    * SUBTEST: virtual-idle
->> + *
->> + * SUBTEST: context-close-stress
->>    */
->>   
->>   IGT_TEST_DESCRIPTION("Test the i915 drm fdinfo data");
->> @@ -717,6 +722,56 @@ virtual_all(int i915, const intel_ctx_cfg_t *base_cfg, unsigned int flags)
->>   	}
->>   }
->>   
->> +static void stress_context_close(int i915)
->> +{
->> +	const uint32_t bbe = MI_BATCH_BUFFER_END;
->> +	struct igt_helper_process reader = { };
->> +	struct drm_client_fdinfo info;
->> +	uint32_t batch;
->> +	int dir, ret;
->> +	char buf[64];
->> +
->> +	ret = snprintf(buf, sizeof(buf), "%u", i915);
->> +	igt_assert(ret > 0 && ret < sizeof(buf));
->> +
->> +	dir = open("/proc/self/fdinfo", O_DIRECTORY | O_RDONLY);
->> +	igt_assert_fd(dir);
->> +
->> +	memset(&info, 0, sizeof(info));
->> +	ret = __igt_parse_drm_fdinfo(dir, buf, &info, NULL, 0, NULL, 0);
->> +	igt_assert(ret > 0);
-> 
-> You repeat this pattern later, it can be made into
-> function:
-> 
-> igt_parse_drm_fdinfo(dir, buf, *info, p1, i1, p2, i2)
-> {
-> 	memset(info, 0, sizeof(*info));
-> 	ret = __igt_parse_drm_fdinfo(dir, buf, info, p1, i1, p2, i2);
-> 	igt_assert(ret > 0);
-> }
-> 
->> +	igt_require(info.num_regions);
->> +
->> +	batch = gem_create(i915, 4096);
->> +	gem_write(i915, batch, 0, &bbe, sizeof(bbe));
->> +
->> +	igt_fork_helper(&reader) {
->> +		for (;;) {
->> +			memset(&info, 0, sizeof(info));
->> +			ret = __igt_parse_drm_fdinfo(dir, buf, &info,
->> +						     NULL, 0, NULL, 0);
->> +			igt_assert(ret > 0);
-> 
-> Here you repeat this.
-> 
-> With or without makeing this a function,
-> Reviewed-by: Kamil Konieczny <kamil.konieczny@linux.intel.com>
+IMO Fixes: should only point at the actually broken commits.
 
-Thanks Kamil!
+If you want to get the backport to a specific stable kernel, please use
 
-I opted to keep it as is to avoid having to come with a name for a new 
-helper, and because it is only two instances.
+Cc: stable@vger.kernel.org # v6.6+
 
-Doing another CI pass on both IGT and i915 series and fingers crossed it 
-is still all healthy.
+or similar.
 
-Regards,
+IIUC in this case you want the fix to go to v6.7 which doesn't exist
+yet, so you'll just have to ask the maintainers to pick it up in fixes.
 
-Tvrtko
 
-> 
->> +		}
->> +	}
->> +
->> +	igt_until_timeout(10) {
->> +		struct drm_i915_gem_exec_object2 obj = {
->> +			.handle = batch,
->> +		};
->> +		struct drm_i915_gem_execbuffer2 eb = {
->> +			.buffers_ptr = to_user_pointer(&obj),
->> +			.buffer_count = 1,
->> +		};
->> +
->> +		eb.rsvd1 = gem_context_create(i915);
->> +		igt_assert(eb.rsvd1);
->> +		gem_execbuf(i915, &eb);
->> +		gem_context_destroy(i915, eb.rsvd1);
->> +	}
->> +
->> +	igt_stop_helper(&reader);
->> +}
->> +
->>   #define test_each_engine(T, i915, ctx, e) \
->>   	igt_subtest_with_dynamic(T) for_each_ctx_engine(i915, ctx, e) \
->>   		igt_dynamic_f("%s", e->name)
->> @@ -848,6 +903,19 @@ igt_main
->>   	test_each_engine("isolation", i915, ctx, e)
->>   		single(i915, ctx, e, TEST_BUSY | TEST_ISOLATION);
->>   
->> +	igt_subtest_group {
->> +		int newfd;
->> +
->> +		igt_fixture
->> +			newfd = drm_reopen_driver(i915);
->> +
->> +		igt_subtest("context-close-stress")
->> +			stress_context_close(newfd);
->> +
->> +		igt_fixture
->> +			drm_close_driver(newfd);
->> +	}
->> +
->>   	igt_fixture {
->>   		intel_ctx_destroy(i915, ctx);
->>   		drm_close_driver(i915);
->> -- 
->> 2.39.2
->>
+BR,
+Jani.
+
+
+
+>
+>> Also, double Fixes.
+>
+> Ops, sorry.
+>
+> Janusz
+>
+>> 
+>> BR,
+>> Jani.
+>> 
+>> > Signed-off-by: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
+>> > ---
+>> >  drivers/gpu/drm/i915/i915_vma.c | 18 ++++++++++++++++--
+>> >  1 file changed, 16 insertions(+), 2 deletions(-)
+>> >
+>> > diff --git a/drivers/gpu/drm/i915/i915_vma.c b/drivers/gpu/drm/i915/
+> i915_vma.c
+>> > index d09aad34ba37f..70c68f614c6db 100644
+>> > --- a/drivers/gpu/drm/i915/i915_vma.c
+>> > +++ b/drivers/gpu/drm/i915/i915_vma.c
+>> > @@ -34,6 +34,7 @@
+>> >  #include "gt/intel_engine.h"
+>> >  #include "gt/intel_engine_heartbeat.h"
+>> >  #include "gt/intel_gt.h"
+>> > +#include "gt/intel_gt_pm.h"
+>> >  #include "gt/intel_gt_requests.h"
+>> >  #include "gt/intel_tlb.h"
+>> >  
+>> > @@ -103,12 +104,25 @@ static inline struct i915_vma *active_to_vma(struct 
+> i915_active *ref)
+>> >  
+>> >  static int __i915_vma_active(struct i915_active *ref)
+>> >  {
+>> > -	return i915_vma_tryget(active_to_vma(ref)) ? 0 : -ENOENT;
+>> > +	struct i915_vma *vma = active_to_vma(ref);
+>> > +
+>> > +	if (!i915_vma_tryget(vma))
+>> > +		return -ENOENT;
+>> > +
+>> > +	if (!i915_vma_is_ggtt(vma))
+>> > +		intel_gt_pm_get(vma->vm->gt);
+>> > +
+>> > +	return 0;
+>> >  }
+>> >  
+>> >  static void __i915_vma_retire(struct i915_active *ref)
+>> >  {
+>> > -	i915_vma_put(active_to_vma(ref));
+>> > +	struct i915_vma *vma = active_to_vma(ref);
+>> > +
+>> > +	if (!i915_vma_is_ggtt(vma))
+>> > +		intel_gt_pm_put_async(vma->vm->gt);
+>> > +
+>> > +	i915_vma_put(vma);
+>> >  }
+>> >  
+>> >  static struct i915_vma *
+>> 
+>> 
+>
+>
+>
+>
+
+-- 
+Jani Nikula, Intel
