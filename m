@@ -1,34 +1,54 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8A3087E2D26
-	for <lists+intel-gfx@lfdr.de>; Mon,  6 Nov 2023 20:47:19 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 87BA77E2D9D
+	for <lists+intel-gfx@lfdr.de>; Mon,  6 Nov 2023 21:06:56 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D670E10E3FB;
-	Mon,  6 Nov 2023 19:47:17 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2E4C810E0F0;
+	Mon,  6 Nov 2023 20:06:53 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 76E2510E3ED;
- Mon,  6 Nov 2023 19:47:14 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 6E131AA3D8;
- Mon,  6 Nov 2023 19:47:14 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============8276020497907244342=="
+Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.65])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B6E6110E0F0
+ for <intel-gfx@lists.freedesktop.org>; Mon,  6 Nov 2023 20:06:50 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1699301210; x=1730837210;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=NsOS87yAmJXveTh2OB2FOG+AhLEL8jBZN7D/hhZkkRM=;
+ b=Ol2yCPuqytsPL43c1P4ZuUSKkDwGvh3mfru09OSSVyZsFPYIIZMqsX+n
+ zCi5OL09rO2bhlE3poK8tAyfb0cKJ/p092eYyUIwYKUyTgJ1BwWNVG+q4
+ l4cSBwjwCUmDG2BnzD8d6sBa/EmYLZikWzU/9CiZIVx6h6oOSDB9ZwBUz
+ WJpfY0YGbx5RlAtjfdtORUxfmw1ky7MSWhVecEWnF1/CWzSp0NETVhO+M
+ /VIeY5djCUH2Bo7zdz/JDC0K5/zLPYhV7cytNzEC6HJTG9teIh8ZI2+94
+ S0d4FGM+9+uq58rOlqAWr0AGapnOPq19tiufb4RZIQxMpCeLp1FMQDimE g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10886"; a="393251872"
+X-IronPort-AV: E=Sophos;i="6.03,282,1694761200"; d="scan'208";a="393251872"
+Received: from orsmga007.jf.intel.com ([10.7.209.58])
+ by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 06 Nov 2023 12:06:50 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10886"; a="755947931"
+X-IronPort-AV: E=Sophos;i="6.03,282,1694761200"; d="scan'208";a="755947931"
+Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.74])
+ by orsmga007.jf.intel.com with SMTP; 06 Nov 2023 12:06:47 -0800
+Received: by stinkbox (sSMTP sendmail emulation);
+ Mon, 06 Nov 2023 22:06:46 +0200
+Date: Mon, 6 Nov 2023 22:06:46 +0200
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: Jouni =?iso-8859-1?Q?H=F6gander?= <jouni.hogander@intel.com>
+Message-ID: <ZUlHVorO6cqHOVRi@intel.com>
+References: <20231031084557.1181630-1-jouni.hogander@intel.com>
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Tvrtko Ursulin" <tvrtko.ursulin@linux.intel.com>
-Date: Mon, 06 Nov 2023 19:47:14 -0000
-Message-ID: <169930003444.20425.14300020526344129881@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20231106092634.481749-1-tvrtko.ursulin@linux.intel.com>
-In-Reply-To: <20231106092634.481749-1-tvrtko.ursulin@linux.intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3Igc2Vy?=
- =?utf-8?q?ies_starting_with_=5BCI=2C1/2=5D_drm/i915=3A_Remove_incomplete_?=
- =?utf-8?q?PVC_plumbing?=
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20231031084557.1181630-1-jouni.hogander@intel.com>
+X-Patchwork-Hint: comment
+Subject: Re: [Intel-gfx] [PATCH v4] drm/i915/display: Use dma_fence
+ interfaces instead of i915_sw_fence
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -41,193 +61,37 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
 Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============8276020497907244342==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+On Tue, Oct 31, 2023 at 10:45:57AM +0200, Jouni Högander wrote:
+>  	intel_atomic_commit_tail(state);
+>  }
+>  
+> -static int
+> -intel_atomic_commit_ready(struct i915_sw_fence *fence,
+> -			  enum i915_sw_fence_notify notify)
+> -{
+> -	struct intel_atomic_state *state =
+> -		container_of(fence, struct intel_atomic_state, commit_ready);
+> -
+> -	switch (notify) {
+> -	case FENCE_COMPLETE:
+> -		/* we do blocking waits in the worker, nothing to do here */
+> -		break;
+> -	case FENCE_FREE:
+> -		{
+> -			struct drm_i915_private *i915 = to_i915(state->base.dev);
+> -			struct intel_atomic_helper *helper =
+> -				&i915->display.atomic_helper;
+> -
+> -			if (llist_add(&state->freed, &helper->free_list))
+> -				queue_work(i915->unordered_wq, &helper->free_work);
 
-== Series Details ==
+BTW looks like we're left with a bunch of dead code
+around this free_list stuff...
 
-Series: series starting with [CI,1/2] drm/i915: Remove incomplete PVC plumbing
-URL   : https://patchwork.freedesktop.org/series/126013/
-State : success
-
-== Summary ==
-
-CI Bug Log - changes from CI_DRM_13844 -> Patchwork_126013v1
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_126013v1/index.html
-
-Participating hosts (33 -> 32)
-------------------------------
-
-  Missing    (1): fi-snb-2520m 
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_126013v1 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@i915_module_load@load:
-    - bat-adlp-6:         [PASS][1] -> [INCOMPLETE][2] ([i915#8449])
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13844/bat-adlp-6/igt@i915_module_load@load.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_126013v1/bat-adlp-6/igt@i915_module_load@load.html
-
-  * igt@i915_suspend@basic-s3-without-i915:
-    - bat-rpls-1:         NOTRUN -> [ABORT][3] ([i915#7978] / [i915#9631])
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_126013v1/bat-rpls-1/igt@i915_suspend@basic-s3-without-i915.html
-
-  * igt@kms_hdmi_inject@inject-audio:
-    - fi-kbl-guc:         [PASS][4] -> [FAIL][5] ([IGT#3])
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13844/fi-kbl-guc/igt@kms_hdmi_inject@inject-audio.html
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_126013v1/fi-kbl-guc/igt@kms_hdmi_inject@inject-audio.html
-
-  
-#### Possible fixes ####
-
-  * igt@gem_exec_suspend@basic-s0@smem:
-    - fi-rkl-11600:       [FAIL][6] ([fdo#103375]) -> [PASS][7]
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13844/fi-rkl-11600/igt@gem_exec_suspend@basic-s0@smem.html
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_126013v1/fi-rkl-11600/igt@gem_exec_suspend@basic-s0@smem.html
-
-  * igt@i915_selftest@live@workarounds:
-    - bat-rpls-1:         [INCOMPLETE][8] -> [PASS][9]
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13844/bat-rpls-1/igt@i915_selftest@live@workarounds.html
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_126013v1/bat-rpls-1/igt@i915_selftest@live@workarounds.html
-
-  
-  [IGT#3]: https://gitlab.freedesktop.org/drm/igt-gpu-tools/issues/3
-  [fdo#103375]: https://bugs.freedesktop.org/show_bug.cgi?id=103375
-  [i915#7978]: https://gitlab.freedesktop.org/drm/intel/issues/7978
-  [i915#8449]: https://gitlab.freedesktop.org/drm/intel/issues/8449
-  [i915#9631]: https://gitlab.freedesktop.org/drm/intel/issues/9631
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_13844 -> Patchwork_126013v1
-
-  CI-20190529: 20190529
-  CI_DRM_13844: 98a039fc048898d9ecec16153267968fd18a5a52 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_7574: 0485a4bf66f69aaf7244a3e689402b522f636780 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_126013v1: 98a039fc048898d9ecec16153267968fd18a5a52 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-### Linux commits
-
-4422a2d855f9 drm/i915: Remove xehpsdv support
-c51c6ea4c37a drm/i915: Remove incomplete PVC plumbing
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_126013v1/index.html
-
---===============8276020497907244342==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>series starting with [CI,1/2] drm/i915: Remove incomplete PVC plumbing</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/126013/">https://patchwork.freedesktop.org/series/126013/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_126013v1/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_126013v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_13844 -&gt; Patchwork_126013v1</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_126013v1/index.html</p>
-<h2>Participating hosts (33 -&gt; 32)</h2>
-<p>Missing    (1): fi-snb-2520m </p>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_126013v1 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@i915_module_load@load:</p>
-<ul>
-<li>bat-adlp-6:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13844/bat-adlp-6/igt@i915_module_load@load.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_126013v1/bat-adlp-6/igt@i915_module_load@load.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/8449">i915#8449</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_suspend@basic-s3-without-i915:</p>
-<ul>
-<li>bat-rpls-1:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_126013v1/bat-rpls-1/igt@i915_suspend@basic-s3-without-i915.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/7978">i915#7978</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/9631">i915#9631</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_hdmi_inject@inject-audio:</p>
-<ul>
-<li>fi-kbl-guc:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13844/fi-kbl-guc/igt@kms_hdmi_inject@inject-audio.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_126013v1/fi-kbl-guc/igt@kms_hdmi_inject@inject-audio.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/igt-gpu-tools/issues/3">IGT#3</a>)</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>
-<p>igt@gem_exec_suspend@basic-s0@smem:</p>
-<ul>
-<li>fi-rkl-11600:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13844/fi-rkl-11600/igt@gem_exec_suspend@basic-s0@smem.html">FAIL</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=103375">fdo#103375</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_126013v1/fi-rkl-11600/igt@gem_exec_suspend@basic-s0@smem.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@workarounds:</p>
-<ul>
-<li>bat-rpls-1:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13844/bat-rpls-1/igt@i915_selftest@live@workarounds.html">INCOMPLETE</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_126013v1/bat-rpls-1/igt@i915_selftest@live@workarounds.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_13844 -&gt; Patchwork_126013v1</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_13844: 98a039fc048898d9ecec16153267968fd18a5a52 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_7574: 0485a4bf66f69aaf7244a3e689402b522f636780 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  Patchwork_126013v1: 98a039fc048898d9ecec16153267968fd18a5a52 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<h3>Linux commits</h3>
-<p>4422a2d855f9 drm/i915: Remove xehpsdv support<br />
-c51c6ea4c37a drm/i915: Remove incomplete PVC plumbing</p>
-
-</body>
-</html>
-
---===============8276020497907244342==--
+-- 
+Ville Syrjälä
+Intel
