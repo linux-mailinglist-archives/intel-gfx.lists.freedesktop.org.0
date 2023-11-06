@@ -1,56 +1,57 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id A828A7E1DF1
-	for <lists+intel-gfx@lfdr.de>; Mon,  6 Nov 2023 11:09:27 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4CC567E1E10
+	for <lists+intel-gfx@lfdr.de>; Mon,  6 Nov 2023 11:15:29 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EE73A10E2A5;
-	Mon,  6 Nov 2023 10:09:25 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C371010E2B2;
+	Mon,  6 Nov 2023 10:15:27 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.100])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5F76110E2A5
- for <intel-gfx@lists.freedesktop.org>; Mon,  6 Nov 2023 10:09:24 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0075C10E2B2;
+ Mon,  6 Nov 2023 10:15:26 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1699265364; x=1730801364;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version:content-transfer-encoding;
- bh=iTtdn9NTSCorllxnKuTlQUAZPiNQtDDB2OWZ4jvpSUE=;
- b=maKKiFqb7Y4cIOKTnuilmUz/okqpDhmPpM3T5yXP9OkAPohKD6yh9ojS
- CQMgJb9XjpqVDTW3bEMEJinn6XXxj4CjvPBJEiLfOBqxzo5RGPpMZgW9P
- H0ksWkSIEcDXaGV9OJPVrlr5mAAZ/3BYVTPrHitCXtw4kwbEwSCc0gjqw
- +g9pCpZZ8OmAJX6a3VU7va/3BvZbEdKrpE/Ge+GbHqUGDVw97h9gfHS2f
- 2eGCZNUpIbQZd5Ng/eUTu/NNo4jKFU3k/5rL8IxfLD1ajkX9gO445U7YT
- ormK78e+FafT3Mbw55hwX/7GGvFyipPA0yfRV78Ns6ahF20gvUmXPcsYW Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10885"; a="455728350"
-X-IronPort-AV: E=Sophos;i="6.03,281,1694761200"; d="scan'208";a="455728350"
+ t=1699265726; x=1730801726;
+ h=message-id:date:mime-version:subject:to:cc:references:
+ from:in-reply-to:content-transfer-encoding;
+ bh=x338Ogbpp9uWR2sIcLcKna5qVpCr3xQ+iG9tZ2WPL/g=;
+ b=jgbbYbfmxTAOJA77GviU4LKgrJ6UmAuveOvnIV3zjJ/+wE7Pj9Jm3wJl
+ sC4SqsC3dBeosQLlLaSWdNiZ2uHKvMX2dD1aqjBOcSIAY8MtxUW8H3ISO
+ +82eUjBx6OIHyam33HgxZ1KYb7729477vWFB2wCEzJFi6nM5gil+e+W53
+ SiDmi/E3vtxNzKq+WeVVkfb/pfHxMRX+dsDEfmwo/+pIYvuV882mT402w
+ c+wRiR9yLsUbpx6TOiVl70uYkSBL78Lp+A1ifO+v01CeaVK4tLAleYL42
+ NR+ffED14Lv+pltmKl/6qaFZOI2U/VtkgwOlqqedQLem3JWjlwQqRV7ea Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10885"; a="455729335"
+X-IronPort-AV: E=Sophos;i="6.03,281,1694761200"; d="scan'208";a="455729335"
 Received: from fmsmga007.fm.intel.com ([10.253.24.52])
  by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Nov 2023 02:09:23 -0800
+ 06 Nov 2023 02:15:25 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10885"; a="765905577"
-X-IronPort-AV: E=Sophos;i="6.03,281,1694761200"; d="scan'208";a="765905577"
-Received: from lpilolli-mobl.ger.corp.intel.com (HELO localhost)
- ([10.252.36.222])
+X-IronPort-AV: E=McAfee;i="6600,9927,10885"; a="765906552"
+X-IronPort-AV: E=Sophos;i="6.03,281,1694761200"; d="scan'208";a="765906552"
+Received: from ajayshan-mobl.ger.corp.intel.com (HELO [10.213.234.152])
+ ([10.213.234.152])
  by fmsmga007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Nov 2023 02:09:21 -0800
-From: Jani Nikula <jani.nikula@intel.com>
-To: "Kahola, Mika" <mika.kahola@intel.com>, "Das, Nirmoy"
- <nirmoy.das@intel.com>, "intel-gfx@lists.freedesktop.org"
- <intel-gfx@lists.freedesktop.org>
-In-Reply-To: <MW4PR11MB705438E90C76E5AD9B537476EFDCA@MW4PR11MB7054.namprd11.prod.outlook.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20231026125636.5080-1-nirmoy.das@intel.com>
- <MW4PR11MB705438E90C76E5AD9B537476EFDCA@MW4PR11MB7054.namprd11.prod.outlook.com>
-Date: Mon, 06 Nov 2023 12:09:18 +0200
-Message-ID: <878r7b19dd.fsf@intel.com>
+ 06 Nov 2023 02:15:22 -0800
+Message-ID: <b4fa0e2b-53f6-4015-9be0-41b45a6b5f4e@linux.intel.com>
+Date: Mon, 6 Nov 2023 10:15:20 +0000
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-Subject: Re: [Intel-gfx] [PATCH v3] drm/i915/tc: Fix -Wformat-truncation in
- intel_tc_port_init
+User-Agent: Mozilla Thunderbird
+Content-Language: en-US
+To: Andi Shyti <andi.shyti@linux.intel.com>, Kunwu Chan <chentao@kylinos.cn>
+References: <d300506c-ab82-4cc1-b750-61e54ec2ad9e@linux.intel.com>
+ <20231103023257.58199-1-chentao@kylinos.cn>
+ <ZUi4ploYfYyZvmO7@ashyti-mobl2.lan>
+From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+Organization: Intel Corporation UK Plc
+In-Reply-To: <ZUi4ploYfYyZvmO7@ashyti-mobl2.lan>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+Subject: Re: [Intel-gfx] [PATCH v2] drm/i915: Fix potential spectre
+ vulnerability
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -63,100 +64,58 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "Hajda, Andrzej" <andrzej.hajda@intel.com>
+Cc: robdclark@chromium.org, andrzej.hajda@intel.com,
+ alan.previn.teres.alexis@intel.com, kunwu.chan@hotmail.com,
+ intel-gfx@lists.freedesktop.org, jonathan.cavitt@intel.com,
+ linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
+ chris.p.wilson@intel.com, daniel@ffwll.ch, rodrigo.vivi@intel.com,
+ stable@vger.kernel.org, airlied@gmail.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, 27 Oct 2023, "Kahola, Mika" <mika.kahola@intel.com> wrote:
->> -----Original Message-----
->> From: Das, Nirmoy <nirmoy.das@intel.com>
->> Sent: Thursday, October 26, 2023 3:57 PM
->> To: intel-gfx@lists.freedesktop.org
->> Cc: Das, Nirmoy <nirmoy.das@intel.com>; Kahola, Mika <mika.kahola@intel.=
-com>; Deak, Imre <imre.deak@intel.com>; Nikula,
->> Jani <jani.nikula@intel.com>; Hajda, Andrzej <andrzej.hajda@intel.com>
->> Subject: [PATCH v3] drm/i915/tc: Fix -Wformat-truncation in intel_tc_por=
-t_init
->>
->> Fix below compiler warning:
->>
->> intel_tc.c:1879:11: error: =E2=80=98%d=E2=80=99 directive output may be =
-truncated writing between 1 and 11 bytes into a region of size 3 [-
->> Werror=3Dformat-truncation=3D] "%c/TC#%d", port_name(port), tc_port + 1);
->>            ^~
->> intel_tc.c:1878:2: note: =E2=80=98snprintf=E2=80=99 output between 7 and=
- 17 bytes into a destination of size 8
->>   snprintf(tc->port_name, sizeof(tc->port_name),
->>   ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
->>     "%c/TC#%d", port_name(port), tc_port + 1);
->>     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
->>
->> v2: use kasprintf(Imre)
->> v3: use const for port_name, and fix tc mem leak(Imre)
->>
->> Fixes: 3eafcddf766b ("drm/i915/tc: Move TC port fields to a new intel_tc=
-_port struct")
->> Cc: Mika Kahola <mika.kahola@intel.com>
->> Cc: Imre Deak <imre.deak@intel.com>
->> Cc: Jani Nikula <jani.nikula@intel.com>
->> Signed-off-by: Nirmoy Das <nirmoy.das@intel.com>
->> Reviewed-by: Andrzej Hajda <andrzej.hajda@intel.com>
->> Reviewed-by: Imre Deak <imre.deak@intel.com>
->
-> Reviewed-by: Mika Kahola <mika.kahola@intel.com>
 
-Thanks for the patch and reviews, pushed to din.
-
-BR,
-Jani.
-
->
+On 06/11/2023 09:57, Andi Shyti wrote:
+> Hi Kunwu,
+> 
+> On Fri, Nov 03, 2023 at 10:32:57AM +0800, Kunwu Chan wrote:
+>> Fix smatch warning:
+>> drivers/gpu/drm/i915/gem/i915_gem_context.c:847 set_proto_ctx_sseu()
+>> warn: potential spectre issue 'pc->user_engines' [r] (local cap)
+>>
+>> Fixes: d4433c7600f7 ("drm/i915/gem: Use the proto-context to handle create parameters (v5)")
+>> Cc: <stable@vger.kernel.org> # v5.15+
+>> Signed-off-by: Kunwu Chan <chentao@kylinos.cn>
+>> Suggested-by: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+>> Reviewed-by: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+>> Link: https://lore.kernel.org/all/20231102101642.52988-1-chentao@kylinos.cn
 >> ---
->>  drivers/gpu/drm/i915/display/intel_tc.c | 11 ++++++++---
->>  1 file changed, 8 insertions(+), 3 deletions(-)
+>>   drivers/gpu/drm/i915/gem/i915_gem_context.c | 1 +
+>>   1 file changed, 1 insertion(+)
 >>
->> diff --git a/drivers/gpu/drm/i915/display/intel_tc.c b/drivers/gpu/drm/i=
-915/display/intel_tc.c
->> index 37b0f8529b4f..f64d348a969e 100644
->> --- a/drivers/gpu/drm/i915/display/intel_tc.c
->> +++ b/drivers/gpu/drm/i915/display/intel_tc.c
->> @@ -58,7 +58,7 @@ struct intel_tc_port {
->>       struct delayed_work link_reset_work;
->>       int link_refcount;
->>       bool legacy_port:1;
->> -     char port_name[8];
->> +     const char *port_name;
->>       enum tc_port_mode mode;
->>       enum tc_port_mode init_mode;
->>       enum phy_fia phy_fia;
->> @@ -1875,8 +1875,12 @@ int intel_tc_port_init(struct intel_digital_port =
-*dig_port, bool is_legacy)
->>       else
->>               tc->phy_ops =3D &icl_tc_phy_ops;
->>
->> -     snprintf(tc->port_name, sizeof(tc->port_name),
->> -              "%c/TC#%d", port_name(port), tc_port + 1);
->> +     tc->port_name =3D kasprintf(GFP_KERNEL, "%c/TC#%d", port_name(port=
-),
->> +                               tc_port + 1);
->> +     if (!tc->port_name) {
->> +             kfree(tc);
->> +             return -ENOMEM;
->> +     }
->>
->>       mutex_init(&tc->lock);
->>       /* TODO: Combine the two works */
->> @@ -1897,6 +1901,7 @@ void intel_tc_port_cleanup(struct intel_digital_po=
-rt *dig_port)  {
->>       intel_tc_port_suspend(dig_port);
->>
->> +     kfree(dig_port->tc->port_name);
->>       kfree(dig_port->tc);
->>       dig_port->tc =3D NULL;
->>  }
->> --
->> 2.42.0
->
+>> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_context.c b/drivers/gpu/drm/i915/gem/i915_gem_context.c
+>> index 9a9ff84c90d7..e38f06a6e56e 100644
+>> --- a/drivers/gpu/drm/i915/gem/i915_gem_context.c
+>> +++ b/drivers/gpu/drm/i915/gem/i915_gem_context.c
+>> @@ -844,6 +844,7 @@ static int set_proto_ctx_sseu(struct drm_i915_file_private *fpriv,
+>>   		if (idx >= pc->num_user_engines)
+>>   			return -EINVAL;
+>>   
+>> +		idx = array_index_nospec(idx, pc->num_user_engines);
+> 
+> you ignored my comment, though.
 
---=20
-Jani Nikula, Intel
+Sorry it was me, I considered it fine as is given it is the same pattern 
+as elsewhere in the file. I've merged the patch btw.
+
+Regards,
+
+Tvrtko
+
+> 
+> Andi
+> 
+>>   		pe = &pc->user_engines[idx];
+>>   
+>>   		/* Only render engine supports RPCS configuration. */
+>> -- 
+>> 2.34.1
