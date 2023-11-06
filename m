@@ -2,54 +2,48 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id B406B7E2DD5
-	for <lists+intel-gfx@lfdr.de>; Mon,  6 Nov 2023 21:12:16 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 10A547E2E14
+	for <lists+intel-gfx@lfdr.de>; Mon,  6 Nov 2023 21:20:23 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3B1B410E3F5;
-	Mon,  6 Nov 2023 20:12:12 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 339ED10E3F7;
+	Mon,  6 Nov 2023 20:20:20 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.65])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EB94810E3F3
- for <intel-gfx@lists.freedesktop.org>; Mon,  6 Nov 2023 20:12:08 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D613D10E3F7
+ for <intel-gfx@lists.freedesktop.org>; Mon,  6 Nov 2023 20:20:17 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1699301529; x=1730837529;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=SmmcSNBdmYLdmIz7D1KB61w7Qfu0N+Da1BEEX6paL5M=;
- b=ZcVKxc/XBrMjd6tiUz37hiX3e5uEy/sZE7MWv6bwP4tcZ4ApSA5tIEbr
- 6wmhY09rZ+VBS54Da+06pDBZsUIhXOKzWc4ThnGsAup9HCMJg65twFpEp
- fBDv8jCoTgTFGESIOACS1LJbflhn4dzpfTvhTTeVQmenzX5SYuZ9cQ8Fd
- Wu/Dlv2Ytwv5DF8IdRES1PPMz9piuIjEiGozYToR4adeoSCCcb5FsPONW
- /9VocQzJ6HO0X8B56zrNck5nGzMJDFa6UOtTeLLk/pzyTFQJP6gi+TF3o
- 7djQ02/gB7sk5+J4pMvfGellkCdwhV2ZLfj78z83aEbXrlqeBAiA0SXcK Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10886"; a="393253324"
-X-IronPort-AV: E=Sophos;i="6.03,282,1694761200"; d="scan'208";a="393253324"
-Received: from orsmga007.jf.intel.com ([10.7.209.58])
- by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Nov 2023 12:12:08 -0800
+ t=1699302017; x=1730838017;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=VbtxDnZAMlJKIwiZE0vlS4BKTaOK9tJN0f8my9FHIwk=;
+ b=XpNwkbGeFCGDctPsHSuOYrEJ9TWtOgOUZzcusB7NvUHO3TQEVdV5EgWO
+ cuXGpmDkxXl8P1DmPx+2YIIqNB1psKNZmCSejTn51JWs80ZgUFUKp1OHR
+ YjaWcscVyGg/aZ7KJ/VPiyIGUnG+6aNi44H/bTLZhi3YdMk/Ae/RW5M7B
+ VH4+O8Jp4hzfperl6fo7+t0qxQ/6BI6rEhf4+ZuEjvv3NqjWt6ceIR+ee
+ POtV95MTm24KtDVdoGHcG4y735X0hlb7XddeY/b6v/+D4t7BxUBjeWFNg
+ U1r2ABP4JZQ+JcMXLThSJDsN+ia89NOC1p/tWFckOMbQ02Ymxe2yCm22R w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10886"; a="7994957"
+X-IronPort-AV: E=Sophos;i="6.03,282,1694761200"; 
+   d="scan'208";a="7994957"
+Received: from fmviesa001.fm.intel.com ([10.60.135.141])
+ by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 06 Nov 2023 12:20:17 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10886"; a="755948476"
-X-IronPort-AV: E=Sophos;i="6.03,282,1694761200"; d="scan'208";a="755948476"
-Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.74])
- by orsmga007.jf.intel.com with SMTP; 06 Nov 2023 12:12:05 -0800
-Received: by stinkbox (sSMTP sendmail emulation);
- Mon, 06 Nov 2023 22:12:04 +0200
-Date: Mon, 6 Nov 2023 22:12:04 +0200
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Vinod Govindapillai <vinod.govindapillai@intel.com>
-Message-ID: <ZUlIlPtbb-Mmfb3g@intel.com>
-References: <20231102215519.135847-1-vinod.govindapillai@intel.com>
- <20231102215519.135847-2-vinod.govindapillai@intel.com>
+X-IronPort-AV: E=Sophos;i="6.03,282,1694761200"; d="scan'208";a="10573051"
+Received: from elyang-mobl1.amr.corp.intel.com (HELO gjsousa-mobl2.intel.com)
+ ([10.92.96.190])
+ by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 06 Nov 2023 12:20:16 -0800
+From: Gustavo Sousa <gustavo.sousa@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Mon,  6 Nov 2023 17:19:59 -0300
+Message-ID: <20231106201959.156943-1-gustavo.sousa@intel.com>
+X-Mailer: git-send-email 2.42.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20231102215519.135847-2-vinod.govindapillai@intel.com>
-X-Patchwork-Hint: comment
-Subject: Re: [Intel-gfx] [PATCH v1 1/2] drm/i915/xe2lpd: check selective
- fetch is optimal in some cases
+Subject: [Intel-gfx] [PATCH v2] drm/i915/xelpmp: Add Wa_16021867713
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -62,125 +56,64 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: matthew.d.roper@intel.com, intel-gfx@lists.freedesktop.org,
- ville.syrjala@intel.com
+Cc: Matt Roper <matthew.d.roper@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, Nov 02, 2023 at 11:55:18PM +0200, Vinod Govindapillai wrote:
-> If both PSR2 + FBC is supported, in cases where the selective
-> fetch area is greater than 25% of the screen area, FBC might
-> be more efficient.
+This workaround applies to all steppings of Xe_LPM+. Implement the KMD
+part.
 
-"might be more efficient" is a very weak justification.
+v2:
+    - Put the definition of VDBOX_CGCTL3F1C() in the correct sort order.
+      (Matt)
 
-This sort of stuff would really need to be accompanied by 
-some actual power numbers (for some actually reasonable
-workloads) to justify the extra complication.
+Reviewed-by: Matt Roper <matthew.d.roper@intel.com>
+Signed-off-by: Gustavo Sousa <gustavo.sousa@intel.com>
+---
+ drivers/gpu/drm/i915/gt/intel_engine_regs.h |  2 ++
+ drivers/gpu/drm/i915/gt/intel_workarounds.c | 14 ++++++++++++++
+ 2 files changed, 16 insertions(+)
 
-> So have a possibility to check this and add
-> provision to enable FBC in such cases.
-> 
-> Bspec: 68881
-> Signed-off-by: Vinod Govindapillai <vinod.govindapillai@intel.com>
-> ---
->  .../drm/i915/display/intel_display_types.h    |  1 +
->  drivers/gpu/drm/i915/display/intel_psr.c      | 42 ++++++++++++++++---
->  2 files changed, 38 insertions(+), 5 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/drivers/gpu/drm/i915/display/intel_display_types.h
-> index 047fe3f8905a..bcc5fd8d8a00 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display_types.h
-> +++ b/drivers/gpu/drm/i915/display/intel_display_types.h
-> @@ -1207,6 +1207,7 @@ struct intel_crtc_state {
->  	bool has_psr;
->  	bool has_psr2;
->  	bool enable_psr2_sel_fetch;
-> +	bool full_frame_fetch;
->  	bool req_psr2_sdp_prior_scanline;
->  	bool wm_level_disabled;
->  	u32 dc3co_exitline;
-> diff --git a/drivers/gpu/drm/i915/display/intel_psr.c b/drivers/gpu/drm/i915/display/intel_psr.c
-> index ecd24a0b86cb..6cb32fd29d10 100644
-> --- a/drivers/gpu/drm/i915/display/intel_psr.c
-> +++ b/drivers/gpu/drm/i915/display/intel_psr.c
-> @@ -1987,10 +1987,35 @@ static bool psr2_sel_fetch_pipe_state_supported(const struct intel_crtc_state *c
->  	return true;
->  }
->  
-> +/*
-> + * Check selective fetch is optimum
-> + *
-> + * Compare selective fetch area w.r.t screen size in case both FBC and PSR2
-> + * is supported. If the selective fetch area is more than 25% of screen
-> + * size, FBC is might be more efficient than PSR2. So force full frame
-> + * update.
-> + */
-> +static bool psr2_sel_fetch_not_optimal(struct drm_i915_private *i915,
-> +				       struct drm_rect *sel_fetch,
-> +				       struct drm_rect *src)
-> +{
-> +	int screen_area, selfetch_area;
-> +
-> +	/* This is needed where FBC + PSR can be supported */
-> +	if (DISPLAY_VER(i915) < 20 || !i915->display.params.enable_fbc ||
-> +	    !HAS_FBC(i915))
-> +		return false;
-> +
-> +	selfetch_area = drm_rect_height(sel_fetch) * drm_rect_width(sel_fetch);
-> +	screen_area = drm_rect_height(src) * drm_rect_width(src);
-> +
-> +	return DIV_ROUND_CLOSEST(screen_area, selfetch_area) <= 4;
-> +}
-> +
->  int intel_psr2_sel_fetch_update(struct intel_atomic_state *state,
->  				struct intel_crtc *crtc)
->  {
-> -	struct drm_i915_private *dev_priv = to_i915(state->base.dev);
-> +	struct drm_i915_private *i915 = to_i915(state->base.dev);
->  	struct intel_crtc_state *crtc_state = intel_atomic_get_new_crtc_state(state, crtc);
->  	struct drm_rect pipe_clip = { .x1 = 0, .y1 = -1, .x2 = INT_MAX, .y2 = -1 };
->  	struct intel_plane_state *new_plane_state, *old_plane_state;
-> @@ -2082,7 +2107,7 @@ int intel_psr2_sel_fetch_update(struct intel_atomic_state *state,
->  	 * calculation for those.
->  	 */
->  	if (pipe_clip.y1 == -1) {
-> -		drm_info_once(&dev_priv->drm,
-> +		drm_info_once(&i915->drm,
->  			      "Selective fetch area calculation failed in pipe %c\n",
->  			      pipe_name(crtc->pipe));
->  		full_update = true;
-> @@ -2092,9 +2117,9 @@ int intel_psr2_sel_fetch_update(struct intel_atomic_state *state,
->  		goto skip_sel_fetch_set_loop;
->  
->  	/* Wa_14014971492 */
-> -	if ((IS_DISPLAY_IP_STEP(dev_priv, IP_VER(14, 0), STEP_A0, STEP_B0) ||
-> -	     IS_ALDERLAKE_P(dev_priv) || IS_TIGERLAKE(dev_priv)) &&
-> -	    crtc_state->splitter.enable)
-> +	if ((IS_DISPLAY_IP_STEP(i915, IP_VER(14, 0), STEP_A0, STEP_B0) ||
-> +	     IS_ALDERLAKE_P(i915) || IS_TIGERLAKE(i915)) &&
-> +	     crtc_state->splitter.enable)
->  		pipe_clip.y1 = 0;
->  
->  	ret = drm_atomic_add_affected_planes(&state->base, &crtc->base);
-> @@ -2149,7 +2174,14 @@ int intel_psr2_sel_fetch_update(struct intel_atomic_state *state,
->  		}
->  	}
->  
-> +	if (full_update)
-> +		goto skip_sel_fetch_set_loop;
-> +
-> +	full_update = psr2_sel_fetch_not_optimal(i915, &pipe_clip,
-> +						 &crtc_state->pipe_src);
-> +
->  skip_sel_fetch_set_loop:
-> +	crtc_state->full_frame_fetch = full_update;
->  	psr2_man_trk_ctl_calc(crtc_state, &pipe_clip, full_update);
->  	return 0;
->  }
-> -- 
-> 2.34.1
-
+diff --git a/drivers/gpu/drm/i915/gt/intel_engine_regs.h b/drivers/gpu/drm/i915/gt/intel_engine_regs.h
+index c0c8c12edea1..a8eac59e3779 100644
+--- a/drivers/gpu/drm/i915/gt/intel_engine_regs.h
++++ b/drivers/gpu/drm/i915/gt/intel_engine_regs.h
+@@ -263,5 +263,7 @@
+ #define VDBOX_CGCTL3F18(base)			_MMIO((base) + 0x3f18)
+ #define   ALNUNIT_CLKGATE_DIS			REG_BIT(13)
+ 
++#define VDBOX_CGCTL3F1C(base)			_MMIO((base) + 0x3f1c)
++#define   MFXPIPE_CLKGATE_DIS			REG_BIT(3)
+ 
+ #endif /* __INTEL_ENGINE_REGS__ */
+diff --git a/drivers/gpu/drm/i915/gt/intel_workarounds.c b/drivers/gpu/drm/i915/gt/intel_workarounds.c
+index 12859b8d2092..63205edfea50 100644
+--- a/drivers/gpu/drm/i915/gt/intel_workarounds.c
++++ b/drivers/gpu/drm/i915/gt/intel_workarounds.c
+@@ -1662,9 +1662,23 @@ xelpg_gt_workarounds_init(struct intel_gt *gt, struct i915_wa_list *wal)
+ 	debug_dump_steering(gt);
+ }
+ 
++static void
++wa_16021867713(struct intel_gt *gt, struct i915_wa_list *wal)
++{
++	struct intel_engine_cs *engine;
++	int id;
++
++	for_each_engine(engine, gt, id)
++		if (engine->class == VIDEO_DECODE_CLASS)
++			wa_write_or(wal, VDBOX_CGCTL3F1C(engine->mmio_base),
++				    MFXPIPE_CLKGATE_DIS);
++}
++
+ static void
+ xelpmp_gt_workarounds_init(struct intel_gt *gt, struct i915_wa_list *wal)
+ {
++	wa_16021867713(gt, wal);
++
+ 	/*
+ 	 * Wa_14018778641
+ 	 * Wa_18018781329
 -- 
-Ville Syrjälä
-Intel
+2.42.0
+
