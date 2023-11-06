@@ -2,146 +2,54 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 995697E2E1B
-	for <lists+intel-gfx@lfdr.de>; Mon,  6 Nov 2023 21:23:16 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 653217E2E4C
+	for <lists+intel-gfx@lfdr.de>; Mon,  6 Nov 2023 21:39:32 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0CE2B10E3F4;
-	Mon,  6 Nov 2023 20:23:15 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D311210E40E;
+	Mon,  6 Nov 2023 20:39:30 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A9C0910E3F4
- for <intel-gfx@lists.freedesktop.org>; Mon,  6 Nov 2023 20:23:13 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.126])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6626C10E40E
+ for <intel-gfx@lists.freedesktop.org>; Mon,  6 Nov 2023 20:39:29 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1699302193; x=1730838193;
- h=content-transfer-encoding:in-reply-to:references:subject:
- from:cc:to:date:message-id:mime-version;
- bh=x2Eua9GWegdGnqbZatWc+OEAR6X3lJ/yCBAoeEw9U+I=;
- b=guorRPBJYjh6N8ED2F6AOfpKMcaHntYi9pF7nXxf0IbvlW56bKO1raWQ
- rl9NG6Zmpt5hAlyTPMuc3+EvAiA6wVTJc0RkmTTZYd6FAP9PIW8gVxMRJ
- KunLZMr7XagrSPlS+efOU79lf7Tua9P8ESSa3y8eGf+pB98tIoSMY+h7w
- LDBauvphssHN3+3q+Li9lqKz7W8JYB6LbpK99uAkjIo9zphfHL5hwKRtw
- Wq/3vUUw6ovkPz9nkAoBpWU1lcd38K3NHCEfmM4fUsTGkw4eyhi4e7VO9
- bZ9GqBRjlJwmwFoL0KIoXPnQ8lUYa6PhIGIjdP3usIKjvq2qqQUzNZWkC g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10886"; a="379754994"
-X-IronPort-AV: E=Sophos;i="6.03,282,1694761200"; d="scan'208";a="379754994"
-Received: from orsmga004.jf.intel.com ([10.7.209.38])
- by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Nov 2023 12:23:13 -0800
+ t=1699303169; x=1730839169;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=nPwfxgID7FDngRqZc4mgfkMCaNuNbi+7U/9GIYn4D1A=;
+ b=KWYWDPFLimV/nHcGfZD25Eo8V4YklQBjjRltc1uLxVOadL/kYZcG8gkS
+ 2zGMWXfzbdbMBSfsIj5xdE+6EMLdheOykTbQUOAawdL6bNZZKOzdEolHw
+ vWY2P2Ic/ZLl77fnquBi1xad7DClkpDteJi4qi1wYXUhv7dXt1KW/5K55
+ J61Qu3bnBxKB+YL3g38epP7Of6iroHdTmey890p+1+57aGtGxGHNgWraT
+ U1EKmnffV3HmHwJJ9w5O6oMBgR3U5brS9eWQVufyWVgv7aRGL3M1FUeXI
+ 7s1g1mTduj6X/M5CykVLsgLZ0UkEFFglJuKXxXj7VOXyKnx3aO76wAQRQ g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10886"; a="374394557"
+X-IronPort-AV: E=Sophos;i="6.03,282,1694761200"; d="scan'208";a="374394557"
+Received: from orsmga007.jf.intel.com ([10.7.209.58])
+ by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 06 Nov 2023 12:39:28 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10886"; a="886024039"
-X-IronPort-AV: E=Sophos;i="6.03,282,1694761200"; d="scan'208";a="886024039"
-Received: from orsmsx602.amr.corp.intel.com ([10.22.229.15])
- by orsmga004.jf.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
- 06 Nov 2023 12:23:13 -0800
-Received: from orsmsx603.amr.corp.intel.com (10.22.229.16) by
- ORSMSX602.amr.corp.intel.com (10.22.229.15) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.34; Mon, 6 Nov 2023 12:23:12 -0800
-Received: from ORSEDG602.ED.cps.intel.com (10.7.248.7) by
- orsmsx603.amr.corp.intel.com (10.22.229.16) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.34 via Frontend Transport; Mon, 6 Nov 2023 12:23:12 -0800
-Received: from NAM10-MW2-obe.outbound.protection.outlook.com (104.47.55.100)
- by edgegateway.intel.com (134.134.137.103) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.34; Mon, 6 Nov 2023 12:23:12 -0800
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=j2n/gbEWaFW/oCn0DOmI0uBfhgi+yeejziOqIh2IO41Kzr5oLA/DV3QR1huSJMAltz9c80cGlUJbbSsjB29293TAswTiVPi00eCkW37qWarcK8ynhbcUxAcY/BES1kFAEj2HENCiMKDpLy6ebQViUndIQ7wPPNxrj5OXJM/J28V77XihNAtS+J10rVA3KgfEHgJqE5kZYYLhfSRXfqsBX5aESjozLemeMCvxSEfVrTz5lXA202g1FjyH8WSyt5QNOUrWZErQJA/onX5pKZfvdAypOb9dz46oFh13sNQAEHUjIR9e7dCeuelGA8hJAxAdfIIVnKNfKcZHmomf2QwG7A==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=/iEGjcq9n563joEhJ68oXUyrwofvW0zvYOymeOjKn6s=;
- b=P2DAUjepmMIi+8thjZEmA1QvBW0YzWxyJChJYYX5gWdbd+DYkcwbICczTA4Nvdj1cMlio7GIVtxoz19Nl6jVqjZm2jn35fm3ZSMaU/WE1tW6zMGbZC772Gj6RjOVNQXmPSm7RWgvouEn/3J3VGAibhY9sNBcY8VM0DO8L7yw7xqgFaDpWlK9Xv6xr8YSR+8rJ8Bkyxgp7sTQR3FYwG+vX+WdogWm2qFAuvxIZuzERGXp7IamZ/qFuIUzFePIjV5wmIKs4WzW39CPY6LxHatqcm4nAe0XmCGTG2QHjqcJ6/o7F8RHw5QxOH+G5+4pN0e/zmbqU7tc7aQWF0xvhpRc4w==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from BN8PR11MB3556.namprd11.prod.outlook.com (2603:10b6:408:8d::31)
- by IA0PR11MB8380.namprd11.prod.outlook.com (2603:10b6:208:485::21)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6954.27; Mon, 6 Nov
- 2023 20:23:09 +0000
-Received: from BN8PR11MB3556.namprd11.prod.outlook.com
- ([fe80::2c36:38a9:79f6:914a]) by BN8PR11MB3556.namprd11.prod.outlook.com
- ([fe80::2c36:38a9:79f6:914a%5]) with mapi id 15.20.6954.028; Mon, 6 Nov 2023
- 20:23:09 +0000
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <20231106200721.GT1327160@mdroper-desk1.amr.corp.intel.com>
-References: <20231106194627.144435-1-gustavo.sousa@intel.com>
- <20231106200721.GT1327160@mdroper-desk1.amr.corp.intel.com>
-From: Gustavo Sousa <gustavo.sousa@intel.com>
-To: Matt Roper <matthew.d.roper@intel.com>
-Date: Mon, 6 Nov 2023 17:23:03 -0300
-Message-ID: <169930218322.10401.436318199641297810@gjsousa-mobl2>
-User-Agent: alot/0.10
-X-ClientProxiedBy: MW4P221CA0013.NAMP221.PROD.OUTLOOK.COM
- (2603:10b6:303:8b::18) To BN8PR11MB3556.namprd11.prod.outlook.com
- (2603:10b6:408:8d::31)
+X-IronPort-AV: E=McAfee;i="6600,9927,10886"; a="755953403"
+X-IronPort-AV: E=Sophos;i="6.03,282,1694761200"; d="scan'208";a="755953403"
+Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.74])
+ by orsmga007.jf.intel.com with SMTP; 06 Nov 2023 12:39:26 -0800
+Received: by stinkbox (sSMTP sendmail emulation);
+ Mon, 06 Nov 2023 22:39:25 +0200
+Date: Mon, 6 Nov 2023 22:39:25 +0200
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: Imre Deak <imre.deak@intel.com>
+Message-ID: <ZUlO_YusjgqsD-PJ@intel.com>
+References: <20231030155843.2251023-1-imre.deak@intel.com>
+ <20231030155843.2251023-14-imre.deak@intel.com>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: BN8PR11MB3556:EE_|IA0PR11MB8380:EE_
-X-MS-Office365-Filtering-Correlation-Id: 08f03d66-f43b-4fa4-a708-08dbdf06312d
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: Yo8/Wuw90hrHeB6eCa2REVD+EQua2K/CvTPT4BtxppDBvuwBIQSnui3Fecp1HN1JqKSZcTGMCeWnCuqV7tYLbdZZlDUKEeuM2xOTPT+DXmtDfMcj6tJnkUYCLqKV1KACBITGZRPP1TlXKxjpUCKC9raSATdg8qRBku6wnAn8Tf57tcWlFq75Tm0ApKnD1SySOU+itoWGFOM4SGP/x3Lfyjwb5rOlfxeXiU6vP8sPsfJ1F250Ezjveq00jJX1F2hWmt9y/JLFFkl4o8p4cXEsB5jhlF9GZ5fjO7faLo9BQGSL9sYQSoyPtZvOipe9j0TAV4tqSMm8h4mP4SBUt1y4YQ3f9E1CzhhfvRptrDJp/1wVPbZc1YVNqDn5wHS00ZzxBDA9wcy+veTCWKwqT4cInHFtB2/CvKyYab5yhKIIEZwUJJzZX7UhAkK1Cp3vhlV+dQ68XhOwNWxxDz5PSmaPXSy1fjZa2KZ4tPtrIMQH8y7rKRF1a9gAo6C5Ca5A9oF3nEOPNOPnanpYwLmhBJ/4J4VII3ACQi8mBwN8Nzl8yuWYwL9W8iBMEDMAwwF1bz8v
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:BN8PR11MB3556.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230031)(7916004)(346002)(376002)(396003)(136003)(366004)(39860400002)(230922051799003)(451199024)(1800799009)(64100799003)(186009)(8676002)(44832011)(6512007)(9686003)(5660300002)(82960400001)(6486002)(26005)(478600001)(66946007)(66556008)(66476007)(6636002)(316002)(6666004)(33716001)(6506007)(6862004)(4326008)(2906002)(38100700002)(8936002)(41300700001)(86362001)(83380400001);
- DIR:OUT; SFP:1102; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?T04rY3Z3ckNqNU5mcnN6RkJvOTJDK2NDSTBBenJwMTJGSXp1aHdvbW5aY1Rn?=
- =?utf-8?B?cG1VUmN1WERCK3hHRHgxU3VWMzRMREplZXAyS2ZMUDBJdDVvMG1CbWVEd0J5?=
- =?utf-8?B?RlV0dTczRm9yQ3g5K2F5R3V2MXk2MXR6L0JLRTBRMC9CSHdiQjFMTVMxT1A3?=
- =?utf-8?B?anRSdlBLalpvL29pTHpCK3Nva01FWVFYWXV1STBEZTVTcEwvaWU1MlZyRzdM?=
- =?utf-8?B?Ty9jSm9IZC9ZdGxpeGx6QkdPM3dNQlY1V2l6QUUveFViR0FVM2dxRTk5eFg5?=
- =?utf-8?B?aWJVVkRtWGJCOUEvVFlua0dVM2RKbHVkZnBNZzI2U1V6N3hPKzNqZlJWaVdi?=
- =?utf-8?B?ZlJJbFJpVHkyUGwvdDY3S3VQaUZmNFVWR3M1ZHFDQVB3ZEdKaWNNT0FZRFVn?=
- =?utf-8?B?R2ZGUEVMR0I0b3ZBaWhxeVJLVmVLWGJGbjlmNC9XTEpXK0IxWkQrUDc0T3V6?=
- =?utf-8?B?MHUwc0dpK0plK3NJRGUyWFBxanFaeGhUNVgrNmMyVkMxaGJvNHhCYVhUbG9k?=
- =?utf-8?B?TTNnK2Y1ZGZId283eUx0cCtpZFNqVUpFQno4MlBjMU95Z3lRTVZsM0s3c1Qr?=
- =?utf-8?B?NGZxanp0aCtDbXEyaEwzK1RPSi9yK1o3bVZiQ2I0UHM4MUZLUWluVkpiSmRt?=
- =?utf-8?B?aVBBSkVSYlNad2I1RTBmc2RlbGk5czNhckU1M1BGelBaUTYySXYvUUUwY3Qz?=
- =?utf-8?B?VWlYK0EwdXFmNXlrMjNRSHdiTjRIRC9BckJQR1NuMitPZTdOS0NicGlZNUFB?=
- =?utf-8?B?WmtkNHNLQkRld1ppTWxWdHdRd3pwQ1F0VjdETDZpcHYyNUNIRnFFZTNxUjlN?=
- =?utf-8?B?NzNTRXZmZy83NmdDaW9lT3ZhVEV0WjZkYkJFZzFublo5TkpMQ3ZRbGhCSnN3?=
- =?utf-8?B?QTFsNTJ2MjNrbjhNemhmYkZJR0dacGc2VEdEL05MTWZPTjIrWVZzQzBWUlV6?=
- =?utf-8?B?M0N6YTlsdDA2NTdqZkVwbllCelZseTI4ME9Pc3h1MFNWOXNDZEVlYkkwMm0z?=
- =?utf-8?B?NkNXMEZ1dUk3QU5IeWFFMnpLYmFaSWFiVW1pTTFBcFFIRHIySFJ2MTNVMGIr?=
- =?utf-8?B?YXdLVHlhT1M5TGxreUI1VmU1c2tpTWZrTUpKeStCZnArNC9OelRlS3lVbWpQ?=
- =?utf-8?B?aGtBcUVqYld4MmplUXhndk5CcWRLOWxrLytXVWlrUXZjbHQ2cUIrRDVKdEZO?=
- =?utf-8?B?UDNIVmgyNFp1TWdPZ2FqYWc4STRUSGZXSk5vTVBmVDlzVHhoNWYxc2Y3VXlw?=
- =?utf-8?B?WkxoVDhjNkpNdGd0cjNtZVp1dkpTL1pZMjJBd2FLOU11RSsxR2ViSmxRQjQz?=
- =?utf-8?B?RmllTTNkQnBqVnYxMCtjWE8wVVVXalhaMGhMY0plUmVjcEtialQ0aktWQjNW?=
- =?utf-8?B?RGxNZzAzNlVyQzJDN0R0OTY1QTIvRWxkY2M3eXdkVEt6MzAvRUh6b2doNk42?=
- =?utf-8?B?WlBPWVlNWmV6Q0pTU0ZvTlQybUlNd2NGUVVtbEE3R2dtbGdiYjlzaXA2azdM?=
- =?utf-8?B?QXg0UHI1c1E3NEtZYXFRZjhzY2ZmZ01UZ2VtaDlGc1hjRGo1dk1BS1hualhv?=
- =?utf-8?B?bkl4ODA0LzRBek52TmpsL3FtaGJoMFFwdjAwellxMXlPOFZodnJDaUNMRGVj?=
- =?utf-8?B?dmkwSnloaXAvOWJJamVVWGRnUi9LWFc3dXh3djgvdUVmb3V2OU4zUHZXN2tl?=
- =?utf-8?B?eTN1Wnh1TXpycWtWWEkxWFg5NHNkbW5FdUt3NmhPVkE4VjlzV01QQ3BzSFQz?=
- =?utf-8?B?dTFnWG1EZnBsNnJaSzFEZTkyZk9vWWx4UjJlVUVLK0RvSzlsV1RYcGhDNld6?=
- =?utf-8?B?cHU0bDZmL2NreDJoa1JSVzVHQ2NYU2h6cjcyTit0T0V2ZHY1d3VoY1VXUTNo?=
- =?utf-8?B?Z1pxalA4M2JvSUNvdTlXM2RzeGlaRXllYnhYRmpkYmNWdXRtYmVaOG9HMGdx?=
- =?utf-8?B?TjdGcWErSUp6NE9mbFdQdU9hMER2elVqTXRnV0Q5a0FwcGlqdk5GWlhyd1c1?=
- =?utf-8?B?bWEvSGllb0hWa3FKZ1lYZ0E2RzQ0VXFDMmNPY2dHNW9yZ3g1WGQ0UXJ2bnVl?=
- =?utf-8?B?QWhmTWZxb1U2QzhSeXlaNno3clVPMEpaZy9Ba256K2QrbXB2MzhqaXhLZHo0?=
- =?utf-8?B?UkxxYTlFeDlYMHVJZzJZeU5CMm1heUVRRmk3VjRkNnR5UVUzZFRLRmlHdG9T?=
- =?utf-8?B?OWc9PQ==?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 08f03d66-f43b-4fa4-a708-08dbdf06312d
-X-MS-Exchange-CrossTenant-AuthSource: BN8PR11MB3556.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 06 Nov 2023 20:23:09.2948 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: huXboTHn0Y4EfF5Z74Ci1Yh5s/2o0cvpInPRvMuNMMqL3q8avMKJNscGVsrZggnh9HLRjqYaqxtUC0KN20kI2w==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA0PR11MB8380
-X-OriginatorOrg: intel.com
-Subject: Re: [Intel-gfx] [PATCH] drm/i915/xelpmp: Add Wa_16021867713
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20231030155843.2251023-14-imre.deak@intel.com>
+X-Patchwork-Hint: comment
+Subject: Re: [Intel-gfx] [PATCH v4 13/30] drm/i915/dp_mst: Account for FEC
+ and DSC overhead during BW allocation
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -158,91 +66,225 @@ Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Quoting Matt Roper (2023-11-06 17:07:21-03:00)
->On Mon, Nov 06, 2023 at 04:46:27PM -0300, Gustavo Sousa wrote:
->> This workaround applies to all steppings of Xe_LPM+. Implement the KMD
->> part.
->>=20
->> Signed-off-by: Gustavo Sousa <gustavo.sousa@intel.com>
->> ---
->>  drivers/gpu/drm/i915/gt/intel_engine_regs.h |  3 +++
->>  drivers/gpu/drm/i915/gt/intel_workarounds.c | 14 ++++++++++++++
->>  2 files changed, 17 insertions(+)
->>=20
->> diff --git a/drivers/gpu/drm/i915/gt/intel_engine_regs.h b/drivers/gpu/d=
-rm/i915/gt/intel_engine_regs.h
->> index c0c8c12edea1..7060ce4fe058 100644
->> --- a/drivers/gpu/drm/i915/gt/intel_engine_regs.h
->> +++ b/drivers/gpu/drm/i915/gt/intel_engine_regs.h
->> @@ -260,6 +260,9 @@
->>  #define VDBOX_CGCTL3F10(base)                        _MMIO((base) + 0x3=
-f10)
->>  #define   IECPUNIT_CLKGATE_DIS                        REG_BIT(22)
->> =20
->> +#define VDBOX_CGCTL3F1C(base)                        _MMIO((base) + 0x3=
-f1c)
->> +#define   MFXPIPE_CLKGATE_DIS                        REG_BIT(3)
->> +
->>  #define VDBOX_CGCTL3F18(base)                        _MMIO((base) + 0x3=
-f18)
->>  #define   ALNUNIT_CLKGATE_DIS                        REG_BIT(13)
->
->Nitpick:  3f1c should be sorted after 3f18 to keep the registers in
->order.
+On Mon, Oct 30, 2023 at 05:58:26PM +0200, Imre Deak wrote:
+> Atm, the BW allocated for an MST stream doesn't take into account the
+> DSC control symbol (EOC) and data alignment overhead on the local (first
+> downstream) MST link (reflected by the data M/N/TU values) and - besides
+> the above overheads - the FEC symbol overhead on 8b/10b remote
+> (after a downstream branch device) MST links.
+> 
+> In addition the FEC overhead used on the local link is a fixed amount,
+> which only applies to certain modes, but not enough for all modes; add a
+> code comment clarifying this.
+> 
+> Fix the above by calculating the data M/N values with the total BW
+> overhead (not including the SSC overhead, since this isn't enabled by
+> the source device) and using this the PBN and TU values for the local
+> link and PBN for remote links (including SSC, since this is mandatory
+> for links after downstream branch devices).
+> 
+> For now keep the current fixed FEC overhead as a minimum, since this is
+> what bspec requires for audio functionality.
+> 
+> Calculate the effective link BW in a clearer way, applying the channel
+> coding efficiency based on the coding type. The calculation was correct
+> for 8b/10b, but not for 128b/132b links; this patch leaves the behavior
+> for this unchanged, leaving the fix for a follow-up.
+> 
+> v2:
+> - Fix TU size programmed to the HW, making it match the payload size
+>   programmed to the payload table.
+> 
+> Reviewed-by: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com> (v1)
+> Signed-off-by: Imre Deak <imre.deak@intel.com>
+> ---
+>  drivers/gpu/drm/i915/display/intel_dp_mst.c | 107 +++++++++++++++-----
+>  1 file changed, 82 insertions(+), 25 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/i915/display/intel_dp_mst.c b/drivers/gpu/drm/i915/display/intel_dp_mst.c
+> index dcbc5d3aa7bc3..05b2d5d547c85 100644
+> --- a/drivers/gpu/drm/i915/display/intel_dp_mst.c
+> +++ b/drivers/gpu/drm/i915/display/intel_dp_mst.c
+> @@ -66,6 +66,63 @@ static int intel_dp_mst_check_constraints(struct drm_i915_private *i915, int bpp
+>  	return 0;
+>  }
+>  
+> +static int intel_dp_mst_bw_overhead(const struct intel_crtc_state *crtc_state,
+> +				    const struct intel_connector *connector,
+> +				    bool ssc, bool dsc, int bpp)
+> +{
+> +	const struct drm_display_mode *adjusted_mode =
+> +		&crtc_state->hw.adjusted_mode;
+> +	unsigned long flags = DRM_DP_BW_OVERHEAD_MST;
+> +	int dsc_slice_count = 0;
+> +	int overhead;
+> +
+> +	flags |= intel_dp_is_uhbr(crtc_state) ? DRM_DP_BW_OVERHEAD_UHBR : 0;
+> +	flags |= ssc ? DRM_DP_BW_OVERHEAD_SSC_REF_CLK : 0;
+> +	flags |= crtc_state->fec_enable ? DRM_DP_BW_OVERHEAD_FEC : 0;
+> +
+> +	if (dsc) {
+> +		flags |= DRM_DP_BW_OVERHEAD_DSC;
+> +		/* TODO: add support for bigjoiner */
+> +		dsc_slice_count = intel_dp_dsc_get_slice_count(connector,
+> +							       adjusted_mode->clock,
+> +							       adjusted_mode->hdisplay,
+> +							       false);
+> +	}
+> +
+> +	overhead = drm_dp_bw_overhead(crtc_state->lane_count,
+> +				      adjusted_mode->hdisplay,
+> +				      dsc_slice_count,
+> +				      to_bpp_x16(bpp),
+> +				      flags);
+> +
+> +	/*
+> +	 * TODO: clarify whether a minimum required by the fixed FEC overhead
+> +	 * in the bspec audio programming sequence is required here.
+> +	 */
+> +	return max(overhead, intel_dp_bw_fec_overhead(crtc_state->fec_enable));
+> +}
+> +
+> +static void intel_dp_mst_compute_m_n(const struct intel_crtc_state *crtc_state,
+> +				     const struct intel_connector *connector,
+> +				     bool ssc, bool dsc,
+> +				     int bpp,
+> +				     struct intel_link_m_n *m_n)
+> +{
+> +	const struct drm_display_mode *adjusted_mode =
+> +		&crtc_state->hw.adjusted_mode;
+> +	int overhead = intel_dp_mst_bw_overhead(crtc_state,
+> +						connector,
+> +						ssc, dsc, bpp);
+> +
+> +	intel_link_compute_m_n(bpp, crtc_state->lane_count,
+> +			       adjusted_mode->crtc_clock,
+> +			       crtc_state->port_clock,
+> +			       overhead,
+> +			       m_n);
+> +
+> +	m_n->tu = DIV_ROUND_UP_ULL(mul_u32_u32(m_n->data_m, 64), m_n->data_n);
+> +}
+> +
+>  static int intel_dp_mst_find_vcpi_slots_for_bpp(struct intel_encoder *encoder,
+>  						struct intel_crtc_state *crtc_state,
+>  						int max_bpp,
+> @@ -106,14 +163,34 @@ static int intel_dp_mst_find_vcpi_slots_for_bpp(struct intel_encoder *encoder,
+>  						      crtc_state->lane_count);
+>  
+>  	for (bpp = max_bpp; bpp >= min_bpp; bpp -= step) {
+> +		struct intel_link_m_n remote_m_n;
+> +		int link_bpp;
+> +
+>  		drm_dbg_kms(&i915->drm, "Trying bpp %d\n", bpp);
+>  
+>  		ret = intel_dp_mst_check_constraints(i915, bpp, adjusted_mode, crtc_state, dsc);
+>  		if (ret)
+>  			continue;
+>  
+> -		crtc_state->pbn = drm_dp_calc_pbn_mode(adjusted_mode->crtc_clock,
+> -						       bpp << 4);
+> +		link_bpp = dsc ? bpp :
+> +			intel_dp_output_bpp(crtc_state->output_format, bpp);
+> +
+> +		intel_dp_mst_compute_m_n(crtc_state, connector, false, dsc, link_bpp,
+> +					 &crtc_state->dp_m_n);
+> +		intel_dp_mst_compute_m_n(crtc_state, connector, true, dsc, link_bpp,
+> +					 &remote_m_n);
+> +
+> +		/*
+> +		 * The TU size programmed to the HW determines which slots in
+> +		 * an MTP frame are used for this stream, which needs to match
+> +		 * the payload size programmed to the first downstream branch
+> +		 * device's payload table.
+> +		 */
+> +		crtc_state->dp_m_n.tu = remote_m_n.tu;
 
-Oops.
+The fact we use the "remote" value here is because the mst manager code
+assumes the two numbers are the same, right? Should perhaps highlight
+that fact a bit better.
 
->
->Aside from that,
->
->Reviewed-by: Matt Roper <matthew.d.roper@intel.com>
+Maybe we want a WARN_ON(remote_m_n.tu < dp_m_n.tu) here as well?
 
-Thanks! I just sent a v2.
+> +
+> +		crtc_state->pbn = DIV_ROUND_UP_ULL(mul_u32_u32(mst_state->pbn_div * 64,
+> +							       remote_m_n.data_m),
+> +						   remote_m_n.data_n);
+>  
+>  		slots = drm_dp_atomic_find_time_slots(state, &intel_dp->mst_mgr,
+>  						      connector->port,
+> @@ -122,6 +199,8 @@ static int intel_dp_mst_find_vcpi_slots_for_bpp(struct intel_encoder *encoder,
+>  			return slots;
+>  
+>  		if (slots >= 0) {
+> +			drm_WARN_ON(&i915->drm, slots != remote_m_n.tu);
+> +
+>  			ret = drm_dp_mst_atomic_check(state);
+>  			/*
+>  			 * If we got slots >= 0 and we can fit those based on check
+> @@ -155,10 +234,7 @@ static int intel_dp_mst_compute_link_config(struct intel_encoder *encoder,
+>  					    struct drm_connector_state *conn_state,
+>  					    struct link_config_limits *limits)
+>  {
+> -	const struct drm_display_mode *adjusted_mode =
+> -		&crtc_state->hw.adjusted_mode;
+>  	int slots = -EINVAL;
+> -	int link_bpp;
+>  
+>  	/*
+>  	 * FIXME: allocate the BW according to link_bpp, which in the case of
+> @@ -173,16 +249,6 @@ static int intel_dp_mst_compute_link_config(struct intel_encoder *encoder,
+>  	if (slots < 0)
+>  		return slots;
+>  
+> -	link_bpp = intel_dp_output_bpp(crtc_state->output_format, crtc_state->pipe_bpp);
+> -
+> -	intel_link_compute_m_n(link_bpp,
+> -			       crtc_state->lane_count,
+> -			       adjusted_mode->crtc_clock,
+> -			       crtc_state->port_clock,
+> -			       intel_dp_bw_fec_overhead(crtc_state->fec_enable),
+> -			       &crtc_state->dp_m_n);
+> -	crtc_state->dp_m_n.tu = slots;
+> -
+>  	return 0;
+>  }
+>  
+> @@ -194,8 +260,6 @@ static int intel_dp_dsc_mst_compute_link_config(struct intel_encoder *encoder,
+>  	struct intel_connector *connector =
+>  		to_intel_connector(conn_state->connector);
+>  	struct drm_i915_private *i915 = to_i915(connector->base.dev);
+> -	const struct drm_display_mode *adjusted_mode =
+> -		&crtc_state->hw.adjusted_mode;
+>  	int slots = -EINVAL;
+>  	int i, num_bpc;
+>  	u8 dsc_bpc[3] = {};
+> @@ -270,14 +334,6 @@ static int intel_dp_dsc_mst_compute_link_config(struct intel_encoder *encoder,
+>  			return slots;
+>  	}
+>  
+> -	intel_link_compute_m_n(crtc_state->dsc.compressed_bpp,
+> -			       crtc_state->lane_count,
+> -			       adjusted_mode->crtc_clock,
+> -			       crtc_state->port_clock,
+> -			       intel_dp_bw_fec_overhead(crtc_state->fec_enable),
+> -			       &crtc_state->dp_m_n);
+> -	crtc_state->dp_m_n.tu = slots;
+> -
+>  	return 0;
+>  }
+>  static int intel_dp_mst_update_slots(struct intel_encoder *encoder,
+> @@ -980,6 +1036,7 @@ intel_dp_mst_mode_valid_ctx(struct drm_connector *connector,
+>  	if (ret)
+>  		return ret;
+>  
+> +	/* TODO: also check if compression would allow for the mode */
+>  	if (mode_rate > max_rate || mode->clock > max_dotclk ||
+>  	    drm_dp_calc_pbn_mode(mode->clock, min_bpp << 4) > port->full_pbn) {
+>  		*status = MODE_CLOCK_HIGH;
+> -- 
+> 2.39.2
 
---
-Gustavo Sousa
-
->
->
->> =20
->> diff --git a/drivers/gpu/drm/i915/gt/intel_workarounds.c b/drivers/gpu/d=
-rm/i915/gt/intel_workarounds.c
->> index 12859b8d2092..63205edfea50 100644
->> --- a/drivers/gpu/drm/i915/gt/intel_workarounds.c
->> +++ b/drivers/gpu/drm/i915/gt/intel_workarounds.c
->> @@ -1662,9 +1662,23 @@ xelpg_gt_workarounds_init(struct intel_gt *gt, st=
-ruct i915_wa_list *wal)
->>          debug_dump_steering(gt);
->>  }
->> =20
->> +static void
->> +wa_16021867713(struct intel_gt *gt, struct i915_wa_list *wal)
->> +{
->> +        struct intel_engine_cs *engine;
->> +        int id;
->> +
->> +        for_each_engine(engine, gt, id)
->> +                if (engine->class =3D=3D VIDEO_DECODE_CLASS)
->> +                        wa_write_or(wal, VDBOX_CGCTL3F1C(engine->mmio_b=
-ase),
->> +                                    MFXPIPE_CLKGATE_DIS);
->> +}
->> +
->>  static void
->>  xelpmp_gt_workarounds_init(struct intel_gt *gt, struct i915_wa_list *wa=
-l)
->>  {
->> +        wa_16021867713(gt, wal);
->> +
->>          /*
->>           * Wa_14018778641
->>           * Wa_18018781329
->> --=20
->> 2.42.0
->>=20
->
->--=20
->Matt Roper
->Graphics Software Engineer
->Linux GPU Platform Enablement
->Intel Corporation
+-- 
+Ville Syrjälä
+Intel
