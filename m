@@ -1,51 +1,52 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8DFCB7E21DE
-	for <lists+intel-gfx@lfdr.de>; Mon,  6 Nov 2023 13:36:37 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id C382F7E21DD
+	for <lists+intel-gfx@lfdr.de>; Mon,  6 Nov 2023 13:36:36 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EC26410E2E2;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 45EC310E2DC;
 	Mon,  6 Nov 2023 12:36:35 +0000 (UTC)
 X-Original-To: Intel-gfx@lists.freedesktop.org
 Delivered-To: Intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.126])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C6B9A10E06F
- for <Intel-gfx@lists.freedesktop.org>; Mon,  6 Nov 2023 12:36:31 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A21BB10E2DC
+ for <Intel-gfx@lists.freedesktop.org>; Mon,  6 Nov 2023 12:36:32 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1699274191; x=1730810191;
+ t=1699274192; x=1730810192;
  h=from:to:subject:date:message-id:in-reply-to:references:
  mime-version:content-transfer-encoding;
- bh=5CRMsZ/Xo77x8MpOTWT2wIbKnZJOTNjBNZ7D9PYtkWk=;
- b=RIwViav27W5d1nHH1eH12qd4YkVId7N5UaHmBf95KFT3NZOWcNEwKwbn
- OblirKTVcQgcpCtGI6ljaw4f+zaxhqkkQs/UwugEe1gL8+37PqFw9Ql8V
- eqDdCL+8LoBkBCQuG8hl4VYLExVaB2wrSN3uVlt5h2MDx05Qua23OskuT
- ++AOPgCSbk7eERosGaWpS6lzPx1H9sdfMGkfJznY7lSYo7MLyLx24vmue
- /YklU2ubHUqF0ApdWzN64pG5kQmGu+RiY+QtjMRPoFNZz2AQREYW81UzN
- YsI2kAI99ELqCf+DAfVEcwOdV/H9SUXXt1Vomo0vTs9BOn8FjFc0qVY7P A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10885"; a="374293571"
-X-IronPort-AV: E=Sophos;i="6.03,281,1694761200"; d="scan'208";a="374293571"
+ bh=OMEwk0X8NNrrJfGShu2S3rKH+WcQr9i/VJ2no0E2OfU=;
+ b=heNalo0MN4Yzk3Og3q+EoZCMRH/mxwUjvf4Qn1YrVPb6s2KXGZitDgub
+ /xhvg4pxaH75Prj3FsBI5MkcN+V/nf4QH2cJTku7lSUObM31ZGOlXxrpJ
+ fVaxDKV5BcxJBPJaunfU/i8hZyz++2iEFliFZyakTeT42o9+UyxVafSr/
+ Dkmd9ctZEepKQqDnaodtGewZqHBYyU51Q17uPCn1BtP3obGG9QbV+fwOy
+ F1zGb6mvMoSqytnz0Jj7PUCRMV2fDcCA8eCyov2RasI2COoJY9070erjl
+ 4QKkXiFthl5lZxzeBB7AGG6cnQSYoztqZkUKZ5n6kQSYYAx5Dkxm1BTrL g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10885"; a="374293575"
+X-IronPort-AV: E=Sophos;i="6.03,281,1694761200"; d="scan'208";a="374293575"
 Received: from fmsmga001.fm.intel.com ([10.253.24.23])
  by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Nov 2023 04:36:31 -0800
+ 06 Nov 2023 04:36:32 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10885"; a="906046118"
-X-IronPort-AV: E=Sophos;i="6.03,281,1694761200"; d="scan'208";a="906046118"
+X-IronPort-AV: E=McAfee;i="6600,9927,10885"; a="906046124"
+X-IronPort-AV: E=Sophos;i="6.03,281,1694761200"; d="scan'208";a="906046124"
 Received: from ajayshan-mobl.ger.corp.intel.com (HELO localhost.localdomain)
  ([10.213.234.152])
  by fmsmga001-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Nov 2023 04:36:30 -0800
+ 06 Nov 2023 04:36:31 -0800
 From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
 To: Intel-gfx@lists.freedesktop.org
-Date: Mon,  6 Nov 2023 12:36:22 +0000
-Message-Id: <20231106123625.588659-4-tvrtko.ursulin@linux.intel.com>
+Date: Mon,  6 Nov 2023 12:36:23 +0000
+Message-Id: <20231106123625.588659-5-tvrtko.ursulin@linux.intel.com>
 X-Mailer: git-send-email 2.39.2
 In-Reply-To: <20231106123625.588659-1-tvrtko.ursulin@linux.intel.com>
 References: <20231106123625.588659-1-tvrtko.ursulin@linux.intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [CI 3/6] drm/i915: Track page table backing store usage
+Subject: [Intel-gfx] [CI 4/6] drm/i915: Account ring buffer and context
+ state storage
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -63,39 +64,109 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 From: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
 
-Account page table backing store against the owning client memory usage
-stats.
+Account ring buffers and logical context space against the owning client
+memory usage stats.
 
 Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
 Reviewed-by: Aravind Iddamsetty <aravind.iddamsetty@intel.com>
 ---
- drivers/gpu/drm/i915/gt/intel_gtt.c | 6 ++++++
- 1 file changed, 6 insertions(+)
+ drivers/gpu/drm/i915/gt/intel_context.c | 14 ++++++++++++++
+ drivers/gpu/drm/i915/i915_drm_client.c  | 10 ++++++++++
+ drivers/gpu/drm/i915/i915_drm_client.h  |  9 +++++++++
+ 3 files changed, 33 insertions(+)
 
-diff --git a/drivers/gpu/drm/i915/gt/intel_gtt.c b/drivers/gpu/drm/i915/gt/intel_gtt.c
-index 4fbed27ef0ec..3bef6d0769c6 100644
---- a/drivers/gpu/drm/i915/gt/intel_gtt.c
-+++ b/drivers/gpu/drm/i915/gt/intel_gtt.c
-@@ -63,6 +63,9 @@ struct drm_i915_gem_object *alloc_pt_lmem(struct i915_address_space *vm, int sz)
- 	if (!IS_ERR(obj)) {
- 		obj->base.resv = i915_vm_resv_get(vm);
- 		obj->shares_resv_from = vm;
+diff --git a/drivers/gpu/drm/i915/gt/intel_context.c b/drivers/gpu/drm/i915/gt/intel_context.c
+index a53b26178f0a..a2f1245741bb 100644
+--- a/drivers/gpu/drm/i915/gt/intel_context.c
++++ b/drivers/gpu/drm/i915/gt/intel_context.c
+@@ -6,6 +6,7 @@
+ #include "gem/i915_gem_context.h"
+ #include "gem/i915_gem_pm.h"
+ 
++#include "i915_drm_client.h"
+ #include "i915_drv.h"
+ #include "i915_trace.h"
+ 
+@@ -50,6 +51,7 @@ intel_context_create(struct intel_engine_cs *engine)
+ 
+ int intel_context_alloc_state(struct intel_context *ce)
+ {
++	struct i915_gem_context *ctx;
+ 	int err = 0;
+ 
+ 	if (mutex_lock_interruptible(&ce->pin_mutex))
+@@ -66,6 +68,18 @@ int intel_context_alloc_state(struct intel_context *ce)
+ 			goto unlock;
+ 
+ 		set_bit(CONTEXT_ALLOC_BIT, &ce->flags);
 +
-+		if (vm->fpriv)
-+			i915_drm_client_add_object(vm->fpriv->client, obj);
++		rcu_read_lock();
++		ctx = rcu_dereference(ce->gem_context);
++		if (ctx && !kref_get_unless_zero(&ctx->ref))
++			ctx = NULL;
++		rcu_read_unlock();
++		if (ctx) {
++			if (ctx->client)
++				i915_drm_client_add_context_objects(ctx->client,
++								    ce);
++			i915_gem_context_put(ctx);
++		}
  	}
  
- 	return obj;
-@@ -84,6 +87,9 @@ struct drm_i915_gem_object *alloc_pt_dma(struct i915_address_space *vm, int sz)
- 	if (!IS_ERR(obj)) {
- 		obj->base.resv = i915_vm_resv_get(vm);
- 		obj->shares_resv_from = vm;
-+
-+		if (vm->fpriv)
-+			i915_drm_client_add_object(vm->fpriv->client, obj);
- 	}
+ unlock:
+diff --git a/drivers/gpu/drm/i915/i915_drm_client.c b/drivers/gpu/drm/i915/i915_drm_client.c
+index 2e5e69edc0f9..a61356012df8 100644
+--- a/drivers/gpu/drm/i915/i915_drm_client.c
++++ b/drivers/gpu/drm/i915/i915_drm_client.c
+@@ -144,4 +144,14 @@ bool i915_drm_client_remove_object(struct drm_i915_gem_object *obj)
  
- 	return obj;
+ 	return true;
+ }
++
++void i915_drm_client_add_context_objects(struct i915_drm_client *client,
++					 struct intel_context *ce)
++{
++	if (ce->state)
++		i915_drm_client_add_object(client, ce->state->obj);
++
++	if (ce->ring != ce->engine->legacy.ring && ce->ring->vma)
++		i915_drm_client_add_object(client, ce->ring->vma->obj);
++}
+ #endif
+diff --git a/drivers/gpu/drm/i915/i915_drm_client.h b/drivers/gpu/drm/i915/i915_drm_client.h
+index 5f58fdf7dcb8..69cedfcd3d69 100644
+--- a/drivers/gpu/drm/i915/i915_drm_client.h
++++ b/drivers/gpu/drm/i915/i915_drm_client.h
+@@ -14,6 +14,7 @@
+ 
+ #include "i915_file_private.h"
+ #include "gem/i915_gem_object_types.h"
++#include "gt/intel_context_types.h"
+ 
+ #define I915_LAST_UABI_ENGINE_CLASS I915_ENGINE_CLASS_COMPUTE
+ 
+@@ -70,6 +71,8 @@ void i915_drm_client_fdinfo(struct drm_printer *p, struct drm_file *file);
+ void i915_drm_client_add_object(struct i915_drm_client *client,
+ 				struct drm_i915_gem_object *obj);
+ bool i915_drm_client_remove_object(struct drm_i915_gem_object *obj);
++void i915_drm_client_add_context_objects(struct i915_drm_client *client,
++					 struct intel_context *ce);
+ #else
+ static inline void i915_drm_client_add_object(struct i915_drm_client *client,
+ 					      struct drm_i915_gem_object *obj)
+@@ -79,6 +82,12 @@ static inline void i915_drm_client_add_object(struct i915_drm_client *client,
+ static inline bool i915_drm_client_remove_object(struct drm_i915_gem_object *obj)
+ {
+ }
++
++static inline void
++i915_drm_client_add_context_objects(struct i915_drm_client *client,
++				    struct intel_context *ce)
++{
++}
+ #endif
+ 
+ #endif /* !__I915_DRM_CLIENT_H__ */
 -- 
 2.39.2
 
