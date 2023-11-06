@@ -1,53 +1,53 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8AFD87E2ED6
-	for <lists+intel-gfx@lfdr.de>; Mon,  6 Nov 2023 22:19:25 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id BD6AA7E2ED7
+	for <lists+intel-gfx@lfdr.de>; Mon,  6 Nov 2023 22:19:29 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2C88E10E42D;
-	Mon,  6 Nov 2023 21:19:24 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3E7C310E42E;
+	Mon,  6 Nov 2023 21:19:28 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4B7E010E42D
- for <intel-gfx@lists.freedesktop.org>; Mon,  6 Nov 2023 21:19:22 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C6E6F10E42E
+ for <intel-gfx@lists.freedesktop.org>; Mon,  6 Nov 2023 21:19:25 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1699305562; x=1730841562;
+ t=1699305566; x=1730841566;
  h=from:to:subject:date:message-id:in-reply-to:references:
  mime-version:content-transfer-encoding;
- bh=Rz9TNJHxSjR0eicpC0yga+NCH3n7umke4KKIZMGfRk8=;
- b=MQ8yCyY7FxFGi5uoyn2C+YAF5XhUrWWuE3zMKaEAJusB8gKqNGJ4gIdG
- 7dJwMHw3Qmx5pN6J1U+3F23kAUjaYU+j9zDp5pkL6zc3TJ5j87RBr2q7d
- FMyYbm7DkDVJTWKRINS+//C7yRy3vkd8WSqFXQHP4EzlIBPt/Ssju6Vdn
- 3sdZw9aKB6X6szX2Kmz0HJwCzRkd9WN/m57dq0ElXuYKNyQUzj5JTKdZG
- 296drRHi5yc7tNDBCl/wd5Wx2zFFQb1qYGSw8a5ruYgwSxbzNyISqDPl/
- zORrMj3744sgd2ubfF7Z5CWkYBWhcKskvDmbLqfM25eQsJx+dqse0n4KU A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10886"; a="10911470"
-X-IronPort-AV: E=Sophos;i="6.03,282,1694761200"; d="scan'208";a="10911470"
+ bh=dsQUV4mqohM8O4zarMVtcKPHCbLLlp8mirGEpSWh8Wo=;
+ b=UnXgihftbiXBZS3G9Ldtuwm5YVoU3rXvZ44Ej6Q5WkykbSnF7uzpbO9C
+ q9DmU/I2fjyJxiC4E45Wf7RSaSGBmcAFS+tayIcw2rLS4qw1WQtHbmNC7
+ 53QjZWhXlThUTAYCct3Mtodv1I7+iFf3OTX83K20Yu4hvb8VDb4IyXr9h
+ 5hFgPesZwDXRnM1+awQP4zPjwWS76/azEIUDjeHBl8jNn4HfNcrtf+ter
+ uCqx/1U/zNB2UjLNShQeEemO7S5/XhvrfYnHfqvidp1NaeFcmRo5GlkVZ
+ wWqV3w5b2fSiph2WHIZbBVOnsrLhEa4mWIcC4xqtqlt5CdkbpuJ7v70Gv w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10886"; a="10911492"
+X-IronPort-AV: E=Sophos;i="6.03,282,1694761200"; d="scan'208";a="10911492"
 Received: from orsmga007.jf.intel.com ([10.7.209.58])
  by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Nov 2023 13:19:22 -0800
+ 06 Nov 2023 13:19:25 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10886"; a="755964179"
-X-IronPort-AV: E=Sophos;i="6.03,282,1694761200"; d="scan'208";a="755964179"
+X-IronPort-AV: E=McAfee;i="6600,9927,10886"; a="755964185"
+X-IronPort-AV: E=Sophos;i="6.03,282,1694761200"; d="scan'208";a="755964185"
 Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.74])
- by orsmga007.jf.intel.com with SMTP; 06 Nov 2023 13:19:19 -0800
+ by orsmga007.jf.intel.com with SMTP; 06 Nov 2023 13:19:23 -0800
 Received: by stinkbox (sSMTP sendmail emulation);
- Mon, 06 Nov 2023 23:19:18 +0200
+ Mon, 06 Nov 2023 23:19:22 +0200
 From: Ville Syrjala <ville.syrjala@linux.intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Mon,  6 Nov 2023 23:19:05 +0200
-Message-ID: <20231106211915.13406-2-ville.syrjala@linux.intel.com>
+Date: Mon,  6 Nov 2023 23:19:06 +0200
+Message-ID: <20231106211915.13406-3-ville.syrjala@linux.intel.com>
 X-Mailer: git-send-email 2.41.0
 In-Reply-To: <20231106211915.13406-1-ville.syrjala@linux.intel.com>
 References: <20231106211915.13406-1-ville.syrjala@linux.intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH 01/11] drm/i915: Check pipe active state in
- {planes, vrr}_{enabling, disabling}()
+Subject: [Intel-gfx] [PATCH 02/11] drm/i915: Call intel_pre_plane_updates()
+ also for pipes getting enabled
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -65,66 +65,34 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-{planes,vrr}_{enabling,disabling}() are supposed to indicate
-whether the specific hardware feature is supposed to be enabling
-or disabling. That can only makes sense if the pipe is active
-overall. So check for that before we go poking at the hardware.
+We used to call intel_pre_plane_updates() for any pipe going through
+a modeset whether the pipe was previously enabled or not. This in
+fact needed to apply all the necessary clock gating workarounds/etc.
+Restore the correct behaviour.
 
-I think we're semi-safe currently on due to:
-- intel_pre_plane_update() doesn't get called when the pipe
-  was not-active prior to the commit, but this is actually a bug.
-  This saves vrr_disabling(), and vrr_enabling() is called from
-  deeper down where we have already checked hw.active.
-- active_planes mirrors the crtc's hw.active
-
+Fixes: 39919997322f ("drm/i915: Disable all planes before modesetting any pipes")
 Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_display.c | 12 ++++++++++++
- 1 file changed, 12 insertions(+)
+ drivers/gpu/drm/i915/display/intel_display.c | 3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
 
 diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
-index 9e9c03287869..f24c410cbd8f 100644
+index f24c410cbd8f..dad8dac0ebbe 100644
 --- a/drivers/gpu/drm/i915/display/intel_display.c
 +++ b/drivers/gpu/drm/i915/display/intel_display.c
-@@ -902,12 +902,18 @@ static bool needs_async_flip_vtd_wa(const struct intel_crtc_state *crtc_state)
- static bool planes_enabling(const struct intel_crtc_state *old_crtc_state,
- 			    const struct intel_crtc_state *new_crtc_state)
- {
-+	if (!new_crtc_state->hw.active)
-+		return false;
-+
- 	return is_enabling(active_planes, old_crtc_state, new_crtc_state);
- }
+@@ -6856,10 +6856,11 @@ static void intel_commit_modeset_disables(struct intel_atomic_state *state)
+ 		if (!intel_crtc_needs_modeset(new_crtc_state))
+ 			continue;
  
- static bool planes_disabling(const struct intel_crtc_state *old_crtc_state,
- 			     const struct intel_crtc_state *new_crtc_state)
- {
-+	if (!old_crtc_state->hw.active)
-+		return false;
++		intel_pre_plane_update(state, crtc);
 +
- 	return is_disabling(active_planes, old_crtc_state, new_crtc_state);
- }
+ 		if (!old_crtc_state->hw.active)
+ 			continue;
  
-@@ -924,6 +930,9 @@ static bool vrr_params_changed(const struct intel_crtc_state *old_crtc_state,
- static bool vrr_enabling(const struct intel_crtc_state *old_crtc_state,
- 			 const struct intel_crtc_state *new_crtc_state)
- {
-+	if (!new_crtc_state->hw.active)
-+		return false;
-+
- 	return is_enabling(vrr.enable, old_crtc_state, new_crtc_state) ||
- 		(new_crtc_state->vrr.enable &&
- 		 (new_crtc_state->update_m_n || new_crtc_state->update_lrr ||
-@@ -933,6 +942,9 @@ static bool vrr_enabling(const struct intel_crtc_state *old_crtc_state,
- static bool vrr_disabling(const struct intel_crtc_state *old_crtc_state,
- 			  const struct intel_crtc_state *new_crtc_state)
- {
-+	if (!old_crtc_state->hw.active)
-+		return false;
-+
- 	return is_disabling(vrr.enable, old_crtc_state, new_crtc_state) ||
- 		(old_crtc_state->vrr.enable &&
- 		 (new_crtc_state->update_m_n || new_crtc_state->update_lrr ||
+-		intel_pre_plane_update(state, crtc);
+ 		intel_crtc_disable_planes(state, crtc);
+ 	}
+ 
 -- 
 2.41.0
 
