@@ -2,69 +2,69 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id F27A87E4BF5
-	for <lists+intel-gfx@lfdr.de>; Tue,  7 Nov 2023 23:42:30 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 43EE47E4BFD
+	for <lists+intel-gfx@lfdr.de>; Tue,  7 Nov 2023 23:45:38 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7D9F310E132;
-	Tue,  7 Nov 2023 22:42:27 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8EC4710E15A;
+	Tue,  7 Nov 2023 22:45:31 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from us-smtp-delivery-124.mimecast.com
  (us-smtp-delivery-124.mimecast.com [170.10.129.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4F35810E132
- for <intel-gfx@lists.freedesktop.org>; Tue,  7 Nov 2023 22:42:25 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D006110E153
+ for <intel-gfx@lists.freedesktop.org>; Tue,  7 Nov 2023 22:45:28 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1699396944;
+ s=mimecast20190719; t=1699397128;
  h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
  to:to:cc:cc:mime-version:mime-version:content-type:content-type:
  content-transfer-encoding:content-transfer-encoding:
  in-reply-to:in-reply-to:references:references;
- bh=r770s0hBc6xCr5UVaIfcftOeFRT3y4sOGAcYqvavaPk=;
- b=YnytB5EfIGq8hDVLPv7WBWDWaOK8oz+9oK9iYs992/BpLOdO/4o3506TlQ7v5oV23dXPkf
- c56o8yYpSLxDMdUHF3XjirjYyEhCmbzEJxWB/NH3J6ZBmHI+GBok9NSFZJDuRFEU9LfW2L
- NGNlF138nMN3XHq0r9/LjMPedXXZPTA=
-Received: from mail-qv1-f72.google.com (mail-qv1-f72.google.com
- [209.85.219.72]) by relay.mimecast.com with ESMTP with STARTTLS
+ bh=6iKh9csB9alchwNpZOODVIQFvUx0Qrq82u3XPPQK6oc=;
+ b=KIvBAU8tSQSCwqg0YiysyH5WcLU0q1NqZeRufdQ7en5y8BVY0kc5EOZ2Qftr7MpsvOofJN
+ InFgWnFqZQMhBSqQYkKMeks34zLWEmprv/Ghcjql5IlGZRdIb29gZjhRx9KPfZdbqbeUnP
+ Bi5MBwP0IdqvAWiYAsJFcn6C7fFevh0=
+Received: from mail-qk1-f200.google.com (mail-qk1-f200.google.com
+ [209.85.222.200]) by relay.mimecast.com with ESMTP with STARTTLS
  (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
- us-mta-397-gF98-MJYPwuTBMd--PZCZA-1; Tue, 07 Nov 2023 17:42:23 -0500
-X-MC-Unique: gF98-MJYPwuTBMd--PZCZA-1
-Received: by mail-qv1-f72.google.com with SMTP id
- 6a1803df08f44-66fe14725aeso75992826d6.2
- for <intel-gfx@lists.freedesktop.org>; Tue, 07 Nov 2023 14:42:23 -0800 (PST)
+ us-mta-421-fRdth-f6MLi-el39xGjpXg-1; Tue, 07 Nov 2023 17:45:26 -0500
+X-MC-Unique: fRdth-f6MLi-el39xGjpXg-1
+Received: by mail-qk1-f200.google.com with SMTP id
+ af79cd13be357-779ffb552eeso721230385a.3
+ for <intel-gfx@lists.freedesktop.org>; Tue, 07 Nov 2023 14:45:26 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1699396943; x=1700001743;
+ d=1e100.net; s=20230601; t=1699397126; x=1700001926;
  h=mime-version:user-agent:content-transfer-encoding:organization
  :references:in-reply-to:date:cc:to:from:subject:message-id
  :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
- bh=Mqgw3uLwveCoRC2zmBdDO5ikMedbOwVFuuUu40kuhSM=;
- b=RZSBxaAhTw/50te7GQ4Yewkp0CDivegrCmM+zaYC/IcTch2XDvxoiX4Lqeakwd3ZjG
- ZSxuDwFiRLdW0VsXPPuIlYoV2GtSO/BPcM/YacpELP71DZ7Nm/aPv2pZ+EfFjFiQIbBr
- t7I76iQcscBBpVK+6adenc9vK4U2h6NpND9V06wNwX/zd1UPtceoVEVt2TV9iVx1CRcT
- v1+DfqUBPBQ4I4jMUGhY0y8Ci80Hi+CkGC3UX8QkpcGGkZRax/qCgFYdSeIi8tD4CdHy
- wRhBvEyAvTp9tHMg2MQ7dHn0b9fJqY0i9rIje0DptiKMXvMo4q5pkoyBmaOq5HwYl0lD
- KUWQ==
-X-Gm-Message-State: AOJu0Yw5Kn1QXqDx0ucHgbf1DP4A9NPnPuq6poxxAmdUSrOxDAm9TC05
- WjjajKgMwp4xS232sqNOGGkRFFU2z5keke/k+mWRi3m4ROqqmB1KLOcbquSqBDIo94kpBKM6D8w
- YkoFfhKki0s+L9T1JJ/XCmV+S+LWW
-X-Received: by 2002:a05:6214:225:b0:66c:fc97:fbcf with SMTP id
- j5-20020a056214022500b0066cfc97fbcfmr105118qvt.48.1699396943011; 
- Tue, 07 Nov 2023 14:42:23 -0800 (PST)
-X-Google-Smtp-Source: AGHT+IG+tFOklUe/kinxjKffnyZqvMEtEWSrDQmRsr0HtVAiPmhBe4RUK7MVdJtO0WpZR2f3mXx41g==
-X-Received: by 2002:a05:6214:225:b0:66c:fc97:fbcf with SMTP id
- j5-20020a056214022500b0066cfc97fbcfmr105105qvt.48.1699396942725; 
- Tue, 07 Nov 2023 14:42:22 -0800 (PST)
+ bh=BkG3U5juIJKNauzZgFT2hs63Pyxgqumx0bBfuuTOQq0=;
+ b=p9avFqzIjCFWvt3OizL9Gyo57Xjb1a3kpm/hVbtZUDl61t26U7DvhDLRWwd7gMjWOO
+ EOBXLhK9rnP2ybhHIpU7aZIsleAcBf7eBrUTflVFYQMLx4dGchEBKeb0lSNmtXTF1zB8
+ XLRGOpGCwtAvW8cfROINWZfdlXASpNMRnmgm1sOXMlRcUcnY/5l3SiT9YS/A/kGsHjIH
+ 15RCsYo2QssK8VT8roe42Ltr7B8vA74ZiwrEGpLQGbNfRkklDJSgLYXkwAf6bESTcrS/
+ jKH07c8WPCmKhI2weY3xTiF2WOHpdGiKQR6tYLAQNVznUumuanqMNI0h783RSoNh1hKG
+ DhqQ==
+X-Gm-Message-State: AOJu0YwuH8AH6VAQ4SK9d1mhN25wkZ4VGb4jmbR4ydKNeJ2v/C9Chcek
+ GGVzsA1qH1Nh0W/w5qe0QkqnqZBCHwr+v8Dy1WEtBZsr8xXU/y2N1eMV0xjJuwQFpxWUKGk8RwM
+ ygjLUddAjD5GYbzYxQYOUXgHkg5zS
+X-Received: by 2002:a05:620a:2ae2:b0:77a:1476:fb6d with SMTP id
+ bn34-20020a05620a2ae200b0077a1476fb6dmr33779430qkb.41.1699397126283; 
+ Tue, 07 Nov 2023 14:45:26 -0800 (PST)
+X-Google-Smtp-Source: AGHT+IF+nggIsfxTxG2AlIA6wdCoiNkHNEoidVexg9BlhA+X4ykwMzaXdrdtLNGQEGjVrRXMt/aZHw==
+X-Received: by 2002:a05:620a:2ae2:b0:77a:1476:fb6d with SMTP id
+ bn34-20020a05620a2ae200b0077a1476fb6dmr33779409qkb.41.1699397125974; 
+ Tue, 07 Nov 2023 14:45:25 -0800 (PST)
 Received: from ?IPv6:2600:4040:5c6c:a300::feb? ([2600:4040:5c6c:a300::feb])
  by smtp.gmail.com with ESMTPSA id
- i2-20020a056214020200b0067101efa98asm366731qvt.69.2023.11.07.14.42.21
+ l18-20020a37f512000000b00774830b40d4sm370851qkk.47.2023.11.07.14.45.24
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Tue, 07 Nov 2023 14:42:22 -0800 (PST)
-Message-ID: <2e5b2f878ddc0051a8fef21528705a9ec994c57a.camel@redhat.com>
+ Tue, 07 Nov 2023 14:45:25 -0800 (PST)
+Message-ID: <f0f4f8c69d2a794f71cc75092db7eaa5e2465fb8.camel@redhat.com>
 From: Lyude Paul <lyude@redhat.com>
 To: Imre Deak <imre.deak@intel.com>, intel-gfx@lists.freedesktop.org
-Date: Tue, 07 Nov 2023 17:42:21 -0500
-In-Reply-To: <20231030155843.2251023-10-imre.deak@intel.com>
-References: <20231030155843.2251023-1-imre.deak@intel.com>
- <20231030155843.2251023-10-imre.deak@intel.com>
+Date: Tue, 07 Nov 2023 17:45:24 -0500
+In-Reply-To: <20231107001505.3370108-1-imre.deak@intel.com>
+References: <20231030155843.2251023-10-imre.deak@intel.com>
+ <20231107001505.3370108-1-imre.deak@intel.com>
 Organization: Red Hat Inc.
 User-Agent: Evolution 3.48.4 (3.48.4-1.fc38)
 MIME-Version: 1.0
@@ -72,7 +72,7 @@ X-Mimecast-Spam-Score: 0
 X-Mimecast-Originator: redhat.com
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
-Subject: Re: [Intel-gfx] [PATCH v4 09/30] drm/dp: Add helpers to calculate
+Subject: Re: [Intel-gfx] [PATCH v5 09/30] drm/dp: Add helpers to calculate
  the link BW overhead
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -86,13 +86,13 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: dri-devel@lists.freedesktop.org
+Cc: dri-devel@lists.freedesktop.org, Maxime Ripard <mripard@kernel.org>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 Reviewed-by: Lyude Paul <lyude@redhat.com>
 
-On Mon, 2023-10-30 at 17:58 +0200, Imre Deak wrote:
+On Tue, 2023-11-07 at 02:14 +0200, Imre Deak wrote:
 > Add helpers drivers can use to calculate the BW allocation overhead -
 > due to SSC, FEC, DSC and data alignment on symbol cycles - and the
 > channel coding efficiency - due to the 8b/10b, 128b/132b encoding. On
@@ -108,11 +108,12 @@ On Mon, 2023-10-30 at 17:58 +0200, Imre Deak wrote:
 >=20
 > ratio for a given link and pixel stream and with that the
 >=20
-> mtp_count =3D CEIL(64 * m / n)
+> slots_per_mtp =3D CEIL(64 * m / n)
 >=20
-> allocated MTPs for the stream in a link frame and
+> allocated slots per MTP for the stream in a link frame and with
+> that the
 >=20
-> pbn =3D CEIL(64 * dm_mst_get_pbn_divider() * m / n)
+> pbn =3D slots_per_mtp * drm_mst_get_pbn_divider()
 >=20
 > allocated PBNs for the stream on the MST link path.
 >=20
@@ -129,12 +130,16 @@ On Mon, 2023-10-30 at 17:58 +0200, Imre Deak wrote:
 >   with the formula to calculate the total FEC overhead. (Ville)
 > v4:
 > - Rename DRM_DP_OVERHEAD_SSC to DRM_DP_OVERHEAD_SSC_REF_CLK. (Ville)
+> v5:
+> - Clarify in the commit log what MTP means.
+> - Simplify the commit log's formula to calculate PBN.
 >=20
 > Cc: Lyude Paul <lyude@redhat.com>
 > Cc: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
 > Cc: kernel test robot <lkp@intel.com>
 > Cc: dri-devel@lists.freedesktop.org
 > Reviewed-by: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com> (v2)
+> Acked-by: Maxime Ripard <mripard@kernel.org>
 > Signed-off-by: Imre Deak <imre.deak@intel.com>
 > ---
 >  drivers/gpu/drm/display/drm_dp_helper.c       | 132 ++++++++++++++++++
