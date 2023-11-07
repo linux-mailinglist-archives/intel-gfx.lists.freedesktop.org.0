@@ -1,33 +1,149 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2562F7E32A7
-	for <lists+intel-gfx@lfdr.de>; Tue,  7 Nov 2023 02:42:04 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 81EFF7E3326
+	for <lists+intel-gfx@lfdr.de>; Tue,  7 Nov 2023 03:40:52 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1EEDD10E4A5;
-	Tue,  7 Nov 2023 01:42:00 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E98D410E4A6;
+	Tue,  7 Nov 2023 02:40:48 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 2223A10E06A;
- Tue,  7 Nov 2023 01:41:58 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 1B927A0078;
- Tue,  7 Nov 2023 01:41:58 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============5250488181667392112=="
+Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.88])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7927510E4A3
+ for <intel-gfx@lists.freedesktop.org>; Tue,  7 Nov 2023 02:40:46 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1699324846; x=1730860846;
+ h=from:to:cc:subject:date:message-id:references:
+ in-reply-to:reply-to:content-transfer-encoding: mime-version;
+ bh=FrZ/ehUxVXQAJIKxg8nwSN0nFi/paM90LM+6FW0pIXo=;
+ b=nRIE77GufDCvybzv6GPJQ4htkojapX373LsEbZgnvf2o3yYHN3/w7hcr
+ ZZp4hKXWX7uDf80wXChSZW5p5lbOHhRVciGOfaZy/U9Oc3OF8dBcRmJ62
+ eNTlIlRa7I60rAk+vX6PflSJkloIlTMm/3F9R3SVGQ0zIY0+Oktq0xEZK
+ dtJzJ2PiKv+iCUQY7yQbiXUAJD2VzaKSrxezOhXw1VdnWPHL5HTo/Xoed
+ Fz/NGLTjTyv806rezvUTjnrjWK8+vpOQkyFvt7680BaVjFpfTlG6hG8lE
+ gLlNZkX5XS9tjCgjneDdR39yGTKg7yc6D/xva2ucT5MkRbE1Anlzz4o3v Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10886"; a="420525873"
+X-IronPort-AV: E=Sophos;i="6.03,282,1694761200"; d="scan'208";a="420525873"
+Received: from fmsmga005.fm.intel.com ([10.253.24.32])
+ by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 06 Nov 2023 18:40:45 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10886"; a="1093997498"
+X-IronPort-AV: E=Sophos;i="6.03,282,1694761200"; d="scan'208";a="1093997498"
+Received: from fmsmsx603.amr.corp.intel.com ([10.18.126.83])
+ by fmsmga005.fm.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
+ 06 Nov 2023 18:40:45 -0800
+Received: from fmsmsx611.amr.corp.intel.com (10.18.126.91) by
+ fmsmsx603.amr.corp.intel.com (10.18.126.83) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.34; Mon, 6 Nov 2023 18:40:45 -0800
+Received: from fmsmsx602.amr.corp.intel.com (10.18.126.82) by
+ fmsmsx611.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.34; Mon, 6 Nov 2023 18:40:44 -0800
+Received: from FMSEDG603.ED.cps.intel.com (10.1.192.133) by
+ fmsmsx602.amr.corp.intel.com (10.18.126.82) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.34 via Frontend Transport; Mon, 6 Nov 2023 18:40:44 -0800
+Received: from NAM11-CO1-obe.outbound.protection.outlook.com (104.47.56.169)
+ by edgegateway.intel.com (192.55.55.68) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.1.2507.34; Mon, 6 Nov 2023 18:40:43 -0800
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=Ty7jOHq/ZN30Fe0Yd3OKY6Q948BoE0DEjUOXdaWiI0Rq2aGgiCBUrZ/RIN80W5Rm677fT4XRiDS03d2KsVRiLCh+hsUjGfwoIwxB1VzubovhV2Tca1LjOnYIECfLcJmbavzLSYdsuqvMx8sQktpslemuGtc+JBQzKYHq0yunG/JoehjGvsAkaLPEU+b6YVK6oV/h/QJV2Ku8asgpJhEHdUPXC8c8OH7oPMT2I6EXkoBGVhh6Yo+LIAJ6jGkpEkAXWjIT2TpaDfsW8j79buBOCvboN+7u/EkkO8+a1h5w7PSWAqtx/H6oczbgWf8tYiKFl103VNMk99dzYY2+sL8v1w==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=hX8VI5gS0NywQQusn+f5qL73HEsB2FIrBv4icTKHapA=;
+ b=awXW1JLVbRogCWKQ3vt78zQkZ57i4Gbbz+XfEOnTTODGHJQPguiTBBN26I2FtDRUfyNjon9EqlMLHAMwZAOam0dMDt1e0xDZUb+grrPPVJEN8dehJ/oSJTRyKZmaj1HjwJDfphfwZbl0epWARKIplrqB5WIWZQ8QuLYLqfCm3JAFOGtIvKScM4G6fA6Qey0FDKja7iKfZcsI9O9/gz6Fgi6BwM1fzJ3fYGRdFTM7sJoQq45CBi64wtSnTmpMTQZ4AT7GV3W26UGT7BCXjxLxvKCrFL/MjbWfqIk+Z3TEX0xx1NyaGWSb6ZIkTfVck64OUEgAMQIx12EJkoLN8e93vw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Received: from PH0PR11MB5128.namprd11.prod.outlook.com (2603:10b6:510:39::17)
+ by LV3PR11MB8601.namprd11.prod.outlook.com (2603:10b6:408:1b8::8)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6954.28; Tue, 7 Nov
+ 2023 02:40:41 +0000
+Received: from PH0PR11MB5128.namprd11.prod.outlook.com
+ ([fe80::77df:fe1e:dcfc:6868]) by PH0PR11MB5128.namprd11.prod.outlook.com
+ ([fe80::77df:fe1e:dcfc:6868%4]) with mapi id 15.20.6954.029; Tue, 7 Nov 2023
+ 02:40:41 +0000
+From: "Yu, Gareth" <gareth.yu@intel.com>
+To: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>, "Roper, Matthew D"
+ <matthew.d.roper@intel.com>
+Thread-Topic: [Intel-gfx] [PATCH] drm/i915/mtl: Print SSEU information of all
+ GTs for debugfs
+Thread-Index: AQHaDhZQQuRZKxPu5UqCrDmE/x1aWrBocm8AgABmgwCABGTdAIAA1iEw
+Date: Tue, 7 Nov 2023 02:40:41 +0000
+Message-ID: <PH0PR11MB5128CA4E9D007ED1A897CEF4E0A9A@PH0PR11MB5128.namprd11.prod.outlook.com>
+References: <20231103052959.3537-1-gareth.yu@intel.com>
+ <35c88e1e-0f2a-411e-b224-a9526723b2dd@linux.intel.com>
+ <20231103172412.GQ1327160@mdroper-desk1.amr.corp.intel.com>
+ <b1f7c0aa-1a3f-4c91-bd6f-77033676244b@linux.intel.com>
+In-Reply-To: <b1f7c0aa-1a3f-4c91-bd6f-77033676244b@linux.intel.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: PH0PR11MB5128:EE_|LV3PR11MB8601:EE_
+x-ms-office365-filtering-correlation-id: e2b69570-2106-458c-a131-08dbdf3aeef6
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: kx6Q/D2eqzj35YCTNrQCL5ys0As6ZFGE1LrNgfvUvfdq9zBOKDDjflEjHetUa0HoPNdw3jZPuNuowXYtAcn/kTIh38lzR9iBxjAvcGhLyKf5kC+5pn4a0q96e0sMexxtOh1DTl15jI9wWvVAb73NbSSYWush7euyef2LbdTMuXtv1LqlaHkVv85d09zmIzi4dBHMFoWt6eDAqWVEz7MnHbDzoSeDRU+UGF1qVHQuiD+hB0djSBuzxhuUam0RTLNMyTIrApiRoL02RDrPXeAv40KH0sEIgOpCUBhCx7NzYMQDsnmG9R9xhR2JSoTna6mV31wIKycDOBiLL0s2fNM94rocbQUSzdN8lPsLO6Gda7XcH/eO4784xqDi64lYJkgZFUC1zozqUsEDgPMSltdq1zx1WhE/KtBgPy44g0eR+VXpcryph3xSYak1M/tQ/V7X3+o/gUKHql9LZWQI1L1v+bNAxGoP2jCxSXfLzoOgYeSIE28Gzd8bll5qFUgKt/bcxUwPibxAaX0O60ZLfulRzyfYc8pKKDSFHk0aDodedjB3xlFOPG84WajyVDPWppTEESGuTIt0CkkU3P+emfBcqlXU3iYmcskwrB/TtP+yy+XSAS7Uumo9w3bQ6ZFpjIsd
+x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:PH0PR11MB5128.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230031)(39860400002)(136003)(366004)(396003)(346002)(376002)(230922051799003)(64100799003)(1800799009)(186009)(451199024)(38070700009)(33656002)(55016003)(54906003)(66574015)(8936002)(52536014)(8676002)(8796002)(83380400001)(316002)(26005)(66946007)(66476007)(66446008)(110136005)(6636002)(66556008)(64756008)(76116006)(5660300002)(2906002)(478600001)(41300700001)(9686003)(71200400001)(53546011)(7696005)(6506007)(82960400001)(4326008)(122000001)(86362001)(38100700002);
+ DIR:OUT; SFP:1102; 
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?iso-8859-1?Q?80wuSN7oh2HBQB5iH7dO+JUeKIroQ1cjA63iyBYGtK9Xgh2kKg69oizCx2?=
+ =?iso-8859-1?Q?xAoR0uRFQLHHLlIGJIXzbD52tT/ymgo8wjKwO+tYxw9j8KkwBTTJEu4jXs?=
+ =?iso-8859-1?Q?KqiiDjox66pZBfmD+yrsRlomh6q2kaRMxlZ5JZkTeIvMPbOHB6yenMVA2Z?=
+ =?iso-8859-1?Q?DiS+mHFc2593vJVHfzWLtudtpO1ha+8S5bV0QHabYNjnejKOEOvQR4GwxD?=
+ =?iso-8859-1?Q?LWFUQt6lbahP4T+ccagkP+TI4jCsFssiev67sFewELRi42MWEOChAMx0vA?=
+ =?iso-8859-1?Q?or6T828qC27IvgbAqV0J8AtS63G8M0jYnYLwJKY1FdLdhyX3l7Ho5jDtKr?=
+ =?iso-8859-1?Q?xjwnElHHBhr/NRqUBIDHdbvuWN0NF9F3e49Y/JBGME/3aQk3baXjuLb3xS?=
+ =?iso-8859-1?Q?nHLCSO2jdsGjgF5IhRPozBBYZd2atYzNgbLRo/UYOf8vdH/2YCoiCPocQz?=
+ =?iso-8859-1?Q?yIL/N7IcxEGe0cXS4GJcJzoZ6ziKsBoSD3WtLhi2Ag94EIhhY1sSpkQRH8?=
+ =?iso-8859-1?Q?mlHQkMNOqi9LBG2pUxKpFVVCf8Im7F478WtptMpEcx0WO6SB5Q4Xhno5mH?=
+ =?iso-8859-1?Q?gEEW2fWPy2+fctZFP3gI8lhbmt8/hdV4nOAPd6CbZJr2oXKSqfrJy7TQH5?=
+ =?iso-8859-1?Q?3rwNXNmwmNcTpCAXg/oo+MaP+eK/X9Rvhq7VwswTr/ZMnJb29CVEn4wSHm?=
+ =?iso-8859-1?Q?N16kp8JVnJoiMWgtCSm8ula3OGgCScnxqjaXyUgfyr7FKgSQD6/dxkHtC7?=
+ =?iso-8859-1?Q?kDVdWjUIiEjguCSmbSS/sJN1YNmN/WhmlpPwVuhm288ZSnZpE2fJdd0jMR?=
+ =?iso-8859-1?Q?tBNNCO37RVFNes1ATJ1dFR93kRVMst+Y9cSX4l9b3V6QtXS1zu8JKdOnHM?=
+ =?iso-8859-1?Q?O3XpUTQ2NifutgPon3hOgTq5GNUuJUB9sFW7fVfa65o3Msd7NP+kkH90L+?=
+ =?iso-8859-1?Q?Dqm/VfoDIFSanx3Mf/AXA42777GEUC3KKDnV9p//aarkfZgEbtaCuiK/Ra?=
+ =?iso-8859-1?Q?fPi1S/2E1ZzEDcQHDiZtfd6XwLpS9cGdkBidhe5JDz69Hn6mbVbLAvsmjT?=
+ =?iso-8859-1?Q?aLIQpQvpf8qbbZIRUsWY3tqvcNdS5k+0FgN7NGrnV+tKn1XMN5Ol6Dw5ES?=
+ =?iso-8859-1?Q?r6+RtLEYvrut9lqVe/DhZs7ypf77kmgXidzEdv7PSf5mRgLzGRIROJtJgI?=
+ =?iso-8859-1?Q?+NNrpciPcbdF6F1talE9+daohUvkIKX2JwAg+61csSphqZZPSQW1sdfL/W?=
+ =?iso-8859-1?Q?vhr9d2EHh5V6FToF0IXXAp5YLICn+QhRe7/Zv8oCFsU7MsWTUR9/RMJtRY?=
+ =?iso-8859-1?Q?K65A2sLFsWW4vvVszwDDFPWMO/LPHx65sNQflLUdZ8lYHy5OUynGmRgX5t?=
+ =?iso-8859-1?Q?XqYfSvl5GW7l1QCAkLImCuqYX2r75mPZmZAVRu9pkMtEp/E4PzFLKcRxqN?=
+ =?iso-8859-1?Q?+b6OScj/y3P06EMdNJ9we01Jw5W4x6vnOFcS/NZN8A7IAukKj7aTZVe0ys?=
+ =?iso-8859-1?Q?zxYWS5GpON95ebYZH6SwLUAAXl2UmTH7+j6UZS6Kx8b9/9zlIaeitwf2mF?=
+ =?iso-8859-1?Q?nHBx0sKkXQzwb0IjGoQ0Q8gg+qpjIqN+t83Dw5SLDMWfxmWdNTq/9qh2ZP?=
+ =?iso-8859-1?Q?gMhanNQbrlaPNegUIi3IjZn/LoRlUcZ5Tq?=
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Imre Deak" <imre.deak@intel.com>
-Date: Tue, 07 Nov 2023 01:41:58 -0000
-Message-ID: <169932131808.21167.182152736702271245@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20231030155843.2251023-1-imre.deak@intel.com>
-In-Reply-To: <20231030155843.2251023-1-imre.deak@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
- =?utf-8?q?/i915=3A_Improve_BW_management_on_MST_links_=28rev16=29?=
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: PH0PR11MB5128.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: e2b69570-2106-458c-a131-08dbdf3aeef6
+X-MS-Exchange-CrossTenant-originalarrivaltime: 07 Nov 2023 02:40:41.3268 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: LGjllZ4to9LfxYTLGt4zVelR7JG3Lbc9KyPCb81/x+B8l8a9R498sHJjXorIyV2sa+fR2GP6nlpFuB47NupZvA==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: LV3PR11MB8601
+X-OriginatorOrg: intel.com
+Subject: Re: [Intel-gfx] [PATCH] drm/i915/mtl: Print SSEU information of all
+ GTs for debugfs
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,249 +156,165 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
+Reply-To: "20231103052959.3537-1-gareth.yu@intel.com"
+ <20231103052959.3537-1-gareth.yu@intel.com>
+Cc: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>, "Shyti,
+ Andi" <andi.shyti@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============5250488181667392112==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+The reason to dump on GTs is to make consistent SSEU information in i915. I=
+t is fine that the information was moved to i915/gt*.
 
-== Series Details ==
-
-Series: drm/i915: Improve BW management on MST links (rev16)
-URL   : https://patchwork.freedesktop.org/series/125490/
-State : success
-
-== Summary ==
-
-CI Bug Log - changes from CI_DRM_13844 -> Patchwork_125490v16
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_125490v16/index.html
-
-Participating hosts (33 -> 31)
-------------------------------
-
-  Missing    (2): bat-adlp-11 fi-snb-2520m 
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_125490v16 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@i915_suspend@basic-s3-without-i915:
-    - bat-rpls-1:         NOTRUN -> [ABORT][1] ([i915#7978] / [i915#9631])
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_125490v16/bat-rpls-1/igt@i915_suspend@basic-s3-without-i915.html
-
-  * igt@kms_hdmi_inject@inject-audio:
-    - fi-kbl-guc:         [PASS][2] -> [FAIL][3] ([IGT#3])
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13844/fi-kbl-guc/igt@kms_hdmi_inject@inject-audio.html
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_125490v16/fi-kbl-guc/igt@kms_hdmi_inject@inject-audio.html
-
-  
-#### Possible fixes ####
-
-  * igt@gem_exec_suspend@basic-s0@smem:
-    - fi-rkl-11600:       [FAIL][4] ([fdo#103375]) -> [PASS][5]
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13844/fi-rkl-11600/igt@gem_exec_suspend@basic-s0@smem.html
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_125490v16/fi-rkl-11600/igt@gem_exec_suspend@basic-s0@smem.html
-
-  * igt@i915_selftest@live@gt_heartbeat:
-    - fi-apl-guc:         [DMESG-FAIL][6] ([i915#5334]) -> [PASS][7]
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13844/fi-apl-guc/igt@i915_selftest@live@gt_heartbeat.html
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_125490v16/fi-apl-guc/igt@i915_selftest@live@gt_heartbeat.html
-
-  * igt@i915_selftest@live@workarounds:
-    - bat-rpls-1:         [INCOMPLETE][8] -> [PASS][9]
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13844/bat-rpls-1/igt@i915_selftest@live@workarounds.html
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_125490v16/bat-rpls-1/igt@i915_selftest@live@workarounds.html
-
-  
-  [IGT#3]: https://gitlab.freedesktop.org/drm/igt-gpu-tools/issues/3
-  [fdo#103375]: https://bugs.freedesktop.org/show_bug.cgi?id=103375
-  [i915#5334]: https://gitlab.freedesktop.org/drm/intel/issues/5334
-  [i915#7978]: https://gitlab.freedesktop.org/drm/intel/issues/7978
-  [i915#9631]: https://gitlab.freedesktop.org/drm/intel/issues/9631
+-----Original Message-----
+From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>=20
+Sent: Monday, November 6, 2023 8:30 PM
+To: Roper, Matthew D <matthew.d.roper@intel.com>
+Cc: Yu, Gareth <gareth.yu@intel.com>; intel-gfx@lists.freedesktop.org; Shyt=
+i, Andi <andi.shyti@intel.com>
+Subject: Re: [Intel-gfx] [PATCH] drm/i915/mtl: Print SSEU information of al=
+l GTs for debugfs
 
 
-Build changes
--------------
+On 03/11/2023 17:24, Matt Roper wrote:
+> On Fri, Nov 03, 2023 at 11:17:18AM +0000, Tvrtko Ursulin wrote:
+>>
+>> On 03/11/2023 05:29, Gareth Yu wrote:
+>>> Print another SSEU information addition to the first one.
+>>>
+>>> Cc : Tejas Upadhyay <tejaskumarx.surendrakumar.upadhyay@intel.com>
+>>> Cc : Matt Roper <matthew.d.roper@intel.com> Cc : Ville Syrj=E4l=E4=20
+>>> <ville.syrjala@linux.intel.com>
+>>> Signed-off-by: Gareth Yu <gareth.yu@intel.com>
+>>> ---
+>>>    drivers/gpu/drm/i915/i915_debugfs.c   | 13 ++++++++++---
+>>>    drivers/gpu/drm/i915/i915_gpu_error.c |  6 +++++-
+>>>    2 files changed, 15 insertions(+), 4 deletions(-)
+>>>
+>>> diff --git a/drivers/gpu/drm/i915/i915_debugfs.c=20
+>>> b/drivers/gpu/drm/i915/i915_debugfs.c
+>>> index e9b79c2c37d8..b5914a2c0597 100644
+>>> --- a/drivers/gpu/drm/i915/i915_debugfs.c
+>>> +++ b/drivers/gpu/drm/i915/i915_debugfs.c
+>>> @@ -63,13 +63,16 @@ static int i915_capabilities(struct seq_file *m, vo=
+id *data)
+>>>    {
+>>>    	struct drm_i915_private *i915 =3D node_to_i915(m->private);
+>>>    	struct drm_printer p =3D drm_seq_file_printer(m);
+>>> +	struct intel_gt *gt;
+>>> +	unsigned int i;
+>>>    	seq_printf(m, "pch: %d\n", INTEL_PCH_TYPE(i915));
+>>>    	intel_device_info_print(INTEL_INFO(i915), RUNTIME_INFO(i915), &p);
+>>>    	intel_display_device_info_print(DISPLAY_INFO(i915), DISPLAY_RUNTIME=
+_INFO(i915), &p);
+>>>    	i915_print_iommu_status(i915, &p);
+>>> -	intel_gt_info_print(&to_gt(i915)->info, &p);
+>>> +	for_each_gt(gt, i915, i)
+>>> +		intel_gt_info_print(&gt->info, &p);
+>>>    	intel_driver_caps_print(&i915->caps, &p);
+>>>    	kernel_param_lock(THIS_MODULE);
+>>> @@ -783,9 +786,13 @@ DEFINE_SIMPLE_ATTRIBUTE(i915_drop_caches_fops,
+>>>    static int i915_sseu_status(struct seq_file *m, void *unused)
+>>>    {
+>>>    	struct drm_i915_private *i915 =3D node_to_i915(m->private);
+>>> -	struct intel_gt *gt =3D to_gt(i915);
+>>> +	struct intel_gt *gt;
+>>> +	unsigned int i;
+>>> +
+>>> +	for_each_gt(gt, i915, i)
+>>> +		intel_sseu_status(m, gt);
+>>
+>> Don't we have the per GT debugfs directories and files already!?
+>=20
+> Yeah, we shouldn't be updating this.  Commit a00eda7d8996 ("drm/i915:
+> Move sseu debugfs under gt/") notes:
+>=20
+>          "The sseu_status debugfs has also been kept at the top level as
+>          we do have tests that use it; it will be removed once we teach
+>          the tests to look into the new path."
+>=20
+> If there are still IGT tests that haven't been updated, dumping both=20
+> GTs here will probably break them since they aren't expecting it.  If=20
+> they have all been updated, then we should just move forward with=20
+> deleting this device-level SSEU instead.
 
-  * Linux: CI_DRM_13844 -> Patchwork_125490v16
+Thanks for confirming the debugfs parts should be dropped.
 
-  CI-20190529: 20190529
-  CI_DRM_13844: 98a039fc048898d9ecec16153267968fd18a5a52 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_7574: 0485a4bf66f69aaf7244a3e689402b522f636780 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_125490v16: 98a039fc048898d9ecec16153267968fd18a5a52 @ git://anongit.freedesktop.org/gfx-ci/linux
+>=20
+>>
+>>> -	return intel_sseu_status(m, gt);
+>>> +	return 0;
+>>>    }
+>>>    static int i915_forcewake_open(struct inode *inode, struct file=20
+>>> *file) diff --git a/drivers/gpu/drm/i915/i915_gpu_error.c=20
+>>> b/drivers/gpu/drm/i915/i915_gpu_error.c
+>>> index b4e31e59c799..2adc317af944 100644
+>>> --- a/drivers/gpu/drm/i915/i915_gpu_error.c
+>>> +++ b/drivers/gpu/drm/i915/i915_gpu_error.c
+>>> @@ -722,9 +722,13 @@ static void err_print_gt_info(struct drm_i915_erro=
+r_state_buf *m,
+>>>    			      struct intel_gt_coredump *gt)
+>>>    {
+>>>    	struct drm_printer p =3D i915_error_printer(m);
+>>> +	struct drm_i915_private *i915 =3D gt->_gt->i915;
+>>> +	struct intel_gt *gt_n;
+>>> +	unsigned int n;
+>>>    	intel_gt_info_print(&gt->info, &p);
+>>> -	intel_sseu_print_topology(gt->_gt->i915, &gt->info.sseu, &p);
+>>> +	for_each_gt(gt_n, i915, n)
+>>> +		intel_sseu_print_topology(gt_n->i915, &gt_n->info.sseu, &p);
+>>
+>> Do we need a consistent story across all error capture? Aka why is=20
+>> sseu special.
+>>
+>> Also the intel_gt_info_print() above calls intel_sseu_dump so we end=20
+>> up with root tile SSEU printed twice?
+>=20
+> I'm guessing this call was supposed to be deleted by 0b6613c6b91e
+> ("drm/i915/sseu: Move sseu_info under gt_info").  We should probably=20
+> go ahead and do that now do remove the redundancy.
 
+Okay, just need a volunteer! :)
 
-### Linux commits
+> err_print_gt_info() should be printing the GT information (including
+> SSEU) for whichever GT had the error.  I don't see a reason why we'd=20
+> want to dump extra SSEU information for a different GT that wasn't=20
+> involved in the error.
+>=20
+> Actually, SSEU is the _least_ useful thing to print for extra GTs=20
+> because once xehpsdv/pvc are gone from i915, the only platforms that=20
+> have multiple GTs are MTL/ARL and the SSEU information will always be=20
+> empty on the media GT (there's no DSS or EUs there).
 
-00ffe2cb401d drm/i915: Query compressed bpp properly using correct DPCD and DP Spec info
-07edaac2b3e8 drm/i915/dp_mst: Check BW limitations only after all streams are computed
-ab0f11f7cbcb drm/i915/dp_mst: Improve BW sharing between MST streams
-b2a102ea5143 drm/i915/dp_mst: Force modeset CRTC if DSC toggling requires it
-95d629cb30f3 drm/i915: Factor out function to clear pipe update flags
-766324a18ac2 drm/i915/dp_mst: Enable MST DSC decompression for all streams
-a65145fe4476 drm/i915/dp_mst: Enable DSC passthrough
-97346f74dfaa drm/i915/dp: Enable DSC via the connector decompression AUX
-4a453f366092 drm/i915/dp_mst: Enable decompression in the sink from the MST encoder hooks
-2c62b16c173e drm/i915/dp_mst: Handle the Synaptics HBlank expansion quirk
-62a34f5076ea drm/i915/dp: Disable FEC ready flag in the sink
-4ed6a9950148 drm/i915/dp: Wait for FEC detected status in the sink
-bca078d9b963 drm/i915/dp: Rename intel_ddi_disable_fec_state() to intel_ddi_disable_fec()
-ff9aac6d8dd5 drm/i915/dp_mst: Add missing DSC compression disabling
-f27a60c9027b drm/i915/dp: Make sure the DSC PPS SDP is disabled whenever DSC is disabled
-644a564e38cc drm/i915/dp_mst: Program the DSC PPS SDP for each stream
-dfa14b3b77f9 drm/i915/dp_mst: Add atomic state for all streams on pre-tgl platforms
-5b13209046aa drm/i915/dp_mst: Account for FEC and DSC overhead during BW allocation
-f8ee10079f67 drm/i915/dp: Pass actual BW overhead to m_n calculation
-acbf8cf8f789 drm/i915/dp: Specify the FEC overhead as an increment vs. a remainder
-8ab47a012cd9 drm/i915/dp_mst: Enable FEC early once it's known DSC is needed
-6a73b43d5a03 drm/dp: Add helpers to calculate the link BW overhead
-3543c0ae6f14 drm/dp_mst: Add HBLANK expansion quirk for Synaptics MST hubs
-2de99e537246 drm/dp: Add DP_HBLANK_EXPANSION_CAPABLE and DSC_PASSTHROUGH_EN DPCD flags
-d174b202711f drm/dp_mst: Allow DSC in any Synaptics last branch device
-9aaae5e4bdf9 drm/dp_mst: Swap the order of checking root vs. non-root port BW limitations
-e0d7271edaf6 drm/dp_mst: Factor out a helper to check the atomic state of a topology manager
-7e37e6bedf15 drm/dp_mst: Add helper to determine if an MST port is downstream of another port
-c5e975c5cb2b drm/dp_mst: Fix fractional DSC bpp handling
-5d58750803d2 drm/i915/dp_mst: Fix race between connector registration and setup
+Yes all good points. Perhaps Yu can shed more light on why the need to dump=
+ on GTs came about?
 
-== Logs ==
+Then, on a second look, the correct GT info is already captured. What is mi=
+ssing is teaching, probably intel_gt_info_print, to skip dumping the SSEU i=
+nfo on media tiles. That coupled with removing one of the redundant calls s=
+hould complete the picture. Although I don't know which one between intel_s=
+seu_print_topology and intel_sseu_dump to keep. Or the data from intel_sseu=
+_print_topology is a genuine value add on top of intel_sseu_dump?
 
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_125490v16/index.html
+Regards,
 
---===============5250488181667392112==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+Tvrtko
 
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915: Improve BW management on MST links (rev16)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/125490/">https://patchwork.freedesktop.org/series/125490/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_125490v16/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_125490v16/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_13844 -&gt; Patchwork_125490v16</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_125490v16/index.html</p>
-<h2>Participating hosts (33 -&gt; 31)</h2>
-<p>Missing    (2): bat-adlp-11 fi-snb-2520m </p>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_125490v16 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@i915_suspend@basic-s3-without-i915:</p>
-<ul>
-<li>bat-rpls-1:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_125490v16/bat-rpls-1/igt@i915_suspend@basic-s3-without-i915.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/7978">i915#7978</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/9631">i915#9631</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_hdmi_inject@inject-audio:</p>
-<ul>
-<li>fi-kbl-guc:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13844/fi-kbl-guc/igt@kms_hdmi_inject@inject-audio.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_125490v16/fi-kbl-guc/igt@kms_hdmi_inject@inject-audio.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/igt-gpu-tools/issues/3">IGT#3</a>)</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>
-<p>igt@gem_exec_suspend@basic-s0@smem:</p>
-<ul>
-<li>fi-rkl-11600:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13844/fi-rkl-11600/igt@gem_exec_suspend@basic-s0@smem.html">FAIL</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=103375">fdo#103375</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_125490v16/fi-rkl-11600/igt@gem_exec_suspend@basic-s0@smem.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@gt_heartbeat:</p>
-<ul>
-<li>fi-apl-guc:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13844/fi-apl-guc/igt@i915_selftest@live@gt_heartbeat.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/5334">i915#5334</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_125490v16/fi-apl-guc/igt@i915_selftest@live@gt_heartbeat.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@workarounds:</p>
-<ul>
-<li>bat-rpls-1:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13844/bat-rpls-1/igt@i915_selftest@live@workarounds.html">INCOMPLETE</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_125490v16/bat-rpls-1/igt@i915_selftest@live@workarounds.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_13844 -&gt; Patchwork_125490v16</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_13844: 98a039fc048898d9ecec16153267968fd18a5a52 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_7574: 0485a4bf66f69aaf7244a3e689402b522f636780 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  Patchwork_125490v16: 98a039fc048898d9ecec16153267968fd18a5a52 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<h3>Linux commits</h3>
-<p>00ffe2cb401d drm/i915: Query compressed bpp properly using correct DPCD and DP Spec info<br />
-07edaac2b3e8 drm/i915/dp_mst: Check BW limitations only after all streams are computed<br />
-ab0f11f7cbcb drm/i915/dp_mst: Improve BW sharing between MST streams<br />
-b2a102ea5143 drm/i915/dp_mst: Force modeset CRTC if DSC toggling requires it<br />
-95d629cb30f3 drm/i915: Factor out function to clear pipe update flags<br />
-766324a18ac2 drm/i915/dp_mst: Enable MST DSC decompression for all streams<br />
-a65145fe4476 drm/i915/dp_mst: Enable DSC passthrough<br />
-97346f74dfaa drm/i915/dp: Enable DSC via the connector decompression AUX<br />
-4a453f366092 drm/i915/dp_mst: Enable decompression in the sink from the MST encoder hooks<br />
-2c62b16c173e drm/i915/dp_mst: Handle the Synaptics HBlank expansion quirk<br />
-62a34f5076ea drm/i915/dp: Disable FEC ready flag in the sink<br />
-4ed6a9950148 drm/i915/dp: Wait for FEC detected status in the sink<br />
-bca078d9b963 drm/i915/dp: Rename intel_ddi_disable_fec_state() to intel_ddi_disable_fec()<br />
-ff9aac6d8dd5 drm/i915/dp_mst: Add missing DSC compression disabling<br />
-f27a60c9027b drm/i915/dp: Make sure the DSC PPS SDP is disabled whenever DSC is disabled<br />
-644a564e38cc drm/i915/dp_mst: Program the DSC PPS SDP for each stream<br />
-dfa14b3b77f9 drm/i915/dp_mst: Add atomic state for all streams on pre-tgl platforms<br />
-5b13209046aa drm/i915/dp_mst: Account for FEC and DSC overhead during BW allocation<br />
-f8ee10079f67 drm/i915/dp: Pass actual BW overhead to m_n calculation<br />
-acbf8cf8f789 drm/i915/dp: Specify the FEC overhead as an increment vs. a remainder<br />
-8ab47a012cd9 drm/i915/dp_mst: Enable FEC early once it's known DSC is needed<br />
-6a73b43d5a03 drm/dp: Add helpers to calculate the link BW overhead<br />
-3543c0ae6f14 drm/dp_mst: Add HBLANK expansion quirk for Synaptics MST hubs<br />
-2de99e537246 drm/dp: Add DP_HBLANK_EXPANSION_CAPABLE and DSC_PASSTHROUGH_EN DPCD flags<br />
-d174b202711f drm/dp_mst: Allow DSC in any Synaptics last branch device<br />
-9aaae5e4bdf9 drm/dp_mst: Swap the order of checking root vs. non-root port BW limitations<br />
-e0d7271edaf6 drm/dp_mst: Factor out a helper to check the atomic state of a topology manager<br />
-7e37e6bedf15 drm/dp_mst: Add helper to determine if an MST port is downstream of another port<br />
-c5e975c5cb2b drm/dp_mst: Fix fractional DSC bpp handling<br />
-5d58750803d2 drm/i915/dp_mst: Fix race between connector registration and setup</p>
-
-</body>
-</html>
-
---===============5250488181667392112==--
+>=20
+>=20
+> Matt
+>=20
+>>
+>> There possibly was a Jira years ago to do stuff about multi-tile=20
+>> error capture but maybe it got lost.
+>>
+>> Adding Andi if he has comments.
+>>
+>> Regards,
+>>
+>> Tvrtko
+>>
+>>>    }
+>>>    static void err_print_gt_display(struct drm_i915_error_state_buf=20
+>>> *m,
+>=20
