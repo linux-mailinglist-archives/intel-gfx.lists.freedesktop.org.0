@@ -2,52 +2,52 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7141B7E38B9
-	for <lists+intel-gfx@lfdr.de>; Tue,  7 Nov 2023 11:18:26 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4D8467E39F5
+	for <lists+intel-gfx@lfdr.de>; Tue,  7 Nov 2023 11:36:50 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 157EA10E509;
-	Tue,  7 Nov 2023 10:18:24 +0000 (UTC)
-X-Original-To: Intel-gfx@lists.freedesktop.org
-Delivered-To: Intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B93C610E509
- for <Intel-gfx@lists.freedesktop.org>; Tue,  7 Nov 2023 10:18:18 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B938E10E3B4;
+	Tue,  7 Nov 2023 10:36:48 +0000 (UTC)
+X-Original-To: intel-gfx@lists.freedesktop.org
+Delivered-To: intel-gfx@lists.freedesktop.org
+Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.65])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6586C10E3B4
+ for <intel-gfx@lists.freedesktop.org>; Tue,  7 Nov 2023 10:36:47 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1699352298; x=1730888298;
- h=from:to:subject:date:message-id:in-reply-to:references:
- mime-version:content-transfer-encoding;
- bh=ycOkpB+R9jja9jSuqGVzv/LnNbj4VCoYI3aCTs5avhQ=;
- b=bFOutDI4v2VYHnSUn1xEDYFwWDe8e6wlOwhYFaxsgmR5Oa38R/4BW6nf
- bO+dD8IppDXqYn2ZEsMe+141Cm7LR7GSekyi7OrEJFru1mgYl8wW8eaKY
- LRIzSt5K6hOsEY4opCmuchsvGGZatbn2FUJdhNQu30qcZcuDo/2W6GVPF
- PlIlkY47QfDHv/LBUXwVw3fDZPu1EELbhsGpdI0bCwXnZrV+um5jPalzr
- fXoX6JLMKKLQ4Nds+qtd7ZgunPBiXr4T3lPB71o8yqH+iO6avE+Q/jbJO
- iguJYYrIKWvNBFpvTai/83/00Tsv5kfWu8b7A63dhFOYXennn+lrq/18w A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10886"; a="8127422"
-X-IronPort-AV: E=Sophos;i="6.03,283,1694761200"; 
-   d="scan'208";a="8127422"
-Received: from orsmga006.jf.intel.com ([10.7.209.51])
- by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Nov 2023 02:18:18 -0800
+ t=1699353407; x=1730889407;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version;
+ bh=UCaKcc9TFMHmFunpnj07cQyspc08N7MQEeXahm4Fi14=;
+ b=AMKOFZeL0B3xdmZXf/odo5aPivjLerZzhKExMNoXz8/D/MOK026kTgwD
+ TjHxhPi327i6lQhRVuJ5wy9xX6aBolJyV7Q4mK0+pks/16RPTCwRb9eg9
+ TtMcUS+HcFd1vFh/Wkhej3iZ8GVICp1itxJph8tjgtfLrAfZlRM2BCx8k
+ f0xwYqbMH9cd/6sgQWd4lzmKoC9Ihl+k4WhiLI6KLoMJrCOKofw7NHZaU
+ kMrGWw2Drz+vPff4tDGOaiBJ01C8f6sGuo+khAKkmjbIhoxcJFqLVFjAB
+ AZ//A2A46pBOsho2mU4XdfJmy9gvcEBu913SLP+d3bv0ZP03cvpWSbrI2 A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10886"; a="393374227"
+X-IronPort-AV: E=Sophos;i="6.03,283,1694761200"; d="scan'208";a="393374227"
+Received: from orviesa002.jf.intel.com ([10.64.159.142])
+ by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 Nov 2023 02:36:46 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10886"; a="739083150"
-X-IronPort-AV: E=Sophos;i="6.03,283,1694761200"; d="scan'208";a="739083150"
-Received: from nchauh1x-mobl.ger.corp.intel.com (HELO localhost.localdomain)
- ([10.213.235.212])
- by orsmga006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Nov 2023 02:18:17 -0800
-From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-To: Intel-gfx@lists.freedesktop.org
-Date: Tue,  7 Nov 2023 10:18:06 +0000
-Message-Id: <20231107101806.608990-6-tvrtko.ursulin@linux.intel.com>
-X-Mailer: git-send-email 2.39.2
-In-Reply-To: <20231107101806.608990-1-tvrtko.ursulin@linux.intel.com>
-References: <20231107101806.608990-1-tvrtko.ursulin@linux.intel.com>
+X-IronPort-AV: E=Sophos;i="6.03,283,1694761200"; 
+   d="scan'208";a="3761218"
+Received: from ezorina-mobl2.ger.corp.intel.com (HELO localhost)
+ ([10.252.52.183])
+ by orviesa002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 Nov 2023 02:36:46 -0800
+From: Jani Nikula <jani.nikula@intel.com>
+To: Matt Roper <matthew.d.roper@intel.com>
+In-Reply-To: <20231102204846.GE5757@mdroper-desk1.amr.corp.intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20231102155223.2298316-1-jani.nikula@intel.com>
+ <20231102204846.GE5757@mdroper-desk1.amr.corp.intel.com>
+Date: Tue, 07 Nov 2023 12:36:43 +0200
+Message-ID: <874jhxzw78.fsf@intel.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [CI 6/6] drm/i915: Implement fdinfo memory stats
- printing
+Content-Type: text/plain
+Subject: Re: [Intel-gfx] [PATCH 1/2] drm/i915: move display mutex inits to
+ display code
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -60,119 +60,71 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-From: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+On Thu, 02 Nov 2023, Matt Roper <matthew.d.roper@intel.com> wrote:
+> On Thu, Nov 02, 2023 at 05:52:22PM +0200, Jani Nikula wrote:
+>> The core code has no business accessing i915->display directly. These
+>> could be further spread to respective files, but this is a start.
+>> 
+>> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+>
+> Reviewed-by: Matt Roper <matthew.d.roper@intel.com>
 
-Use the newly added drm_print_memory_stats helper to show memory
-utilisation of our objects in drm/driver specific fdinfo output.
+Thanks, both pushed to din.
 
-To collect the stats we walk the per memory regions object lists
-and accumulate object size into the respective drm_memory_stats
-categories.
+BR,
+Jani.
 
-v2:
- * Only account against the active region.
- * Use DMA_RESV_USAGE_BOOKKEEP when testing for active. (Tejas)
+>
+>> ---
+>>  drivers/gpu/drm/i915/display/intel_display_driver.c | 6 ++++++
+>>  drivers/gpu/drm/i915/i915_driver.c                  | 6 ------
+>>  2 files changed, 6 insertions(+), 6 deletions(-)
+>> 
+>> diff --git a/drivers/gpu/drm/i915/display/intel_display_driver.c b/drivers/gpu/drm/i915/display/intel_display_driver.c
+>> index 44b59ac301e6..0a5b922f2ad6 100644
+>> --- a/drivers/gpu/drm/i915/display/intel_display_driver.c
+>> +++ b/drivers/gpu/drm/i915/display/intel_display_driver.c
+>> @@ -181,6 +181,12 @@ void intel_display_driver_early_probe(struct drm_i915_private *i915)
+>>  	if (!HAS_DISPLAY(i915))
+>>  		return;
+>>  
+>> +	mutex_init(&i915->display.backlight.lock);
+>> +	mutex_init(&i915->display.audio.mutex);
+>> +	mutex_init(&i915->display.wm.wm_mutex);
+>> +	mutex_init(&i915->display.pps.mutex);
+>> +	mutex_init(&i915->display.hdcp.hdcp_mutex);
+>> +
+>>  	intel_display_irq_init(i915);
+>>  	intel_dkl_phy_init(i915);
+>>  	intel_color_init_hooks(i915);
+>> diff --git a/drivers/gpu/drm/i915/i915_driver.c b/drivers/gpu/drm/i915/i915_driver.c
+>> index 80e85cadb9a2..01fd25b622d1 100644
+>> --- a/drivers/gpu/drm/i915/i915_driver.c
+>> +++ b/drivers/gpu/drm/i915/i915_driver.c
+>> @@ -231,16 +231,10 @@ static int i915_driver_early_probe(struct drm_i915_private *dev_priv)
+>>  
+>>  	spin_lock_init(&dev_priv->irq_lock);
+>>  	spin_lock_init(&dev_priv->gpu_error.lock);
+>> -	mutex_init(&dev_priv->display.backlight.lock);
+>>  
+>>  	mutex_init(&dev_priv->sb_lock);
+>>  	cpu_latency_qos_add_request(&dev_priv->sb_qos, PM_QOS_DEFAULT_VALUE);
+>>  
+>> -	mutex_init(&dev_priv->display.audio.mutex);
+>> -	mutex_init(&dev_priv->display.wm.wm_mutex);
+>> -	mutex_init(&dev_priv->display.pps.mutex);
+>> -	mutex_init(&dev_priv->display.hdcp.hdcp_mutex);
+>> -
+>>  	i915_memcpy_init_early(dev_priv);
+>>  	intel_runtime_pm_init_early(&dev_priv->runtime_pm);
+>>  
+>> -- 
+>> 2.39.2
+>> 
 
-v3:
- * Update commit text. (Aravind)
- * Update to use memory regions uabi names.
-
-Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
-Cc: Aravind Iddamsetty <aravind.iddamsetty@intel.com>
-Cc: Rob Clark <robdclark@gmail.com>
-Cc: Andi Shyti <andi.shyti@linux.intel.com>
-Cc: Tejas Upadhyay <tejas.upadhyay@intel.com>
-Reviewed-by: Andi Shyti <andi.shyti@linux.intel.com>
-Reviewed-by: Aravind Iddamsetty <aravind.iddamsetty@intel.com>
----
- drivers/gpu/drm/i915/i915_drm_client.c | 64 ++++++++++++++++++++++++++
- 1 file changed, 64 insertions(+)
-
-diff --git a/drivers/gpu/drm/i915/i915_drm_client.c b/drivers/gpu/drm/i915/i915_drm_client.c
-index a61356012df8..7efffdaa508d 100644
---- a/drivers/gpu/drm/i915/i915_drm_client.c
-+++ b/drivers/gpu/drm/i915/i915_drm_client.c
-@@ -45,6 +45,68 @@ void __i915_drm_client_free(struct kref *kref)
- }
- 
- #ifdef CONFIG_PROC_FS
-+static void
-+obj_meminfo(struct drm_i915_gem_object *obj,
-+	    struct drm_memory_stats stats[INTEL_REGION_UNKNOWN])
-+{
-+	const enum intel_region_id id = obj->mm.region ?
-+					obj->mm.region->id : INTEL_REGION_SMEM;
-+	const u64 sz = obj->base.size;
-+
-+	if (obj->base.handle_count > 1)
-+		stats[id].shared += sz;
-+	else
-+		stats[id].private += sz;
-+
-+	if (i915_gem_object_has_pages(obj)) {
-+		stats[id].resident += sz;
-+
-+		if (!dma_resv_test_signaled(obj->base.resv,
-+					    DMA_RESV_USAGE_BOOKKEEP))
-+			stats[id].active += sz;
-+		else if (i915_gem_object_is_shrinkable(obj) &&
-+			 obj->mm.madv == I915_MADV_DONTNEED)
-+			stats[id].purgeable += sz;
-+	}
-+}
-+
-+static void show_meminfo(struct drm_printer *p, struct drm_file *file)
-+{
-+	struct drm_memory_stats stats[INTEL_REGION_UNKNOWN] = {};
-+	struct drm_i915_file_private *fpriv = file->driver_priv;
-+	struct i915_drm_client *client = fpriv->client;
-+	struct drm_i915_private *i915 = fpriv->i915;
-+	struct drm_i915_gem_object *obj;
-+	struct intel_memory_region *mr;
-+	struct list_head *pos;
-+	unsigned int id;
-+
-+	/* Public objects. */
-+	spin_lock(&file->table_lock);
-+	idr_for_each_entry(&file->object_idr, obj, id)
-+		obj_meminfo(obj, stats);
-+	spin_unlock(&file->table_lock);
-+
-+	/* Internal objects. */
-+	rcu_read_lock();
-+	list_for_each_rcu(pos, &client->objects_list) {
-+		obj = i915_gem_object_get_rcu(list_entry(pos, typeof(*obj),
-+							 client_link));
-+		if (!obj)
-+			continue;
-+		obj_meminfo(obj, stats);
-+		i915_gem_object_put(obj);
-+	}
-+	rcu_read_unlock();
-+
-+	for_each_memory_region(mr, i915, id)
-+		drm_print_memory_stats(p,
-+				       &stats[id],
-+				       DRM_GEM_OBJECT_RESIDENT |
-+				       DRM_GEM_OBJECT_PURGEABLE,
-+				       mr->uabi_name);
-+}
-+
- static const char * const uabi_class_names[] = {
- 	[I915_ENGINE_CLASS_RENDER] = "render",
- 	[I915_ENGINE_CLASS_COPY] = "copy",
-@@ -106,6 +168,8 @@ void i915_drm_client_fdinfo(struct drm_printer *p, struct drm_file *file)
- 	 * ******************************************************************
- 	 */
- 
-+	show_meminfo(p, file);
-+
- 	if (GRAPHICS_VER(i915) < 8)
- 		return;
- 
 -- 
-2.39.2
-
+Jani Nikula, Intel
