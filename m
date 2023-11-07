@@ -1,33 +1,33 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 929687E327B
-	for <lists+intel-gfx@lfdr.de>; Tue,  7 Nov 2023 02:06:40 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 13F707E3294
+	for <lists+intel-gfx@lfdr.de>; Tue,  7 Nov 2023 02:28:21 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 07F1510E49E;
-	Tue,  7 Nov 2023 01:06:36 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0A1B210E05A;
+	Tue,  7 Nov 2023 01:28:19 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
  [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id A69CD10E49F;
- Tue,  7 Nov 2023 01:06:33 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTP id 19E6B10E05A;
+ Tue,  7 Nov 2023 01:28:17 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 9F8F3AADD1;
- Tue,  7 Nov 2023 01:06:33 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============9024351740342833043=="
+ by emeril.freedesktop.org (Postfix) with ESMTP id 023CAAADD8;
+ Tue,  7 Nov 2023 01:28:16 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: john.c.harrison@intel.com
-Date: Tue, 07 Nov 2023 01:06:33 -0000
-Message-ID: <169931919364.21169.5460221785574776860@emeril.freedesktop.org>
+To: "Imre Deak" <imre.deak@intel.com>
+Date: Tue, 07 Nov 2023 01:28:16 -0000
+Message-ID: <169932049697.21166.15839905263011535103@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
-References: <20231106235929.454983-1-John.C.Harrison@Intel.com>
-In-Reply-To: <20231106235929.454983-1-John.C.Harrison@Intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgU2Vs?=
- =?utf-8?q?ftest_for_FAST=5FREQUEST_feature?=
+References: <20231030155843.2251023-1-imre.deak@intel.com>
+In-Reply-To: <20231030155843.2251023-1-imre.deak@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_drm/i915=3A_Improve_BW_management_on_MST_links_=28rev16=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -45,200 +45,64 @@ Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============9024351740342833043==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
 == Series Details ==
 
-Series: Selftest for FAST_REQUEST feature
-URL   : https://patchwork.freedesktop.org/series/126044/
-State : success
+Series: drm/i915: Improve BW management on MST links (rev16)
+URL   : https://patchwork.freedesktop.org/series/125490/
+State : warning
 
 == Summary ==
 
-CI Bug Log - changes from CI_DRM_13844 -> Patchwork_126044v1
-====================================================
+Error: dim checkpatch failed
+7c2ff14192aa drm/i915/dp_mst: Fix race between connector registration and setup
+3ddb8fb6b152 drm/dp_mst: Fix fractional DSC bpp handling
+a880f8588c27 drm/dp_mst: Add helper to determine if an MST port is downstream of another port
+3563665ec2b6 drm/dp_mst: Factor out a helper to check the atomic state of a topology manager
+0455c3a13132 drm/dp_mst: Swap the order of checking root vs. non-root port BW limitations
+eb065c73226a drm/dp_mst: Allow DSC in any Synaptics last branch device
+52dd2c737276 drm/dp: Add DP_HBLANK_EXPANSION_CAPABLE and DSC_PASSTHROUGH_EN DPCD flags
+db6aa30cc4c4 drm/dp_mst: Add HBLANK expansion quirk for Synaptics MST hubs
+-:27: WARNING:LONG_LINE_COMMENT: line length of 103 exceeds 100 columns
+#27: FILE: drivers/gpu/drm/display/drm_dp_helper.c:2248:
++	/* Synaptics DP1.4 MST hubs require DSC for some modes on which it applies HBLANK expansion. */
 
-Summary
--------
+-:28: WARNING:LONG_LINE: line length of 105 exceeds 100 columns
+#28: FILE: drivers/gpu/drm/display/drm_dp_helper.c:2249:
++	{ OUI(0x90, 0xCC, 0x24), DEVICE_ID_ANY, true, BIT(DP_DPCD_QUIRK_HBLANK_EXPANSION_REQUIRES_DSC) },
 
-  **SUCCESS**
+total: 0 errors, 2 warnings, 0 checks, 21 lines checked
+d8070519d92f drm/dp: Add helpers to calculate the link BW overhead
+-:189: WARNING:UNNECESSARY_ELSE: else is not generally useful after a break or return
+#189: FILE: drivers/gpu/drm/display/drm_dp_helper.c:4026:
++		return 967100;
++	else
 
-  No regressions found.
+total: 0 errors, 1 warnings, 0 checks, 184 lines checked
+670895fde1b7 drm/i915/dp_mst: Enable FEC early once it's known DSC is needed
+1c7d2a43854c drm/i915/dp: Specify the FEC overhead as an increment vs. a remainder
+426af8244abb drm/i915/dp: Pass actual BW overhead to m_n calculation
+595c839f30ca drm/i915/dp_mst: Account for FEC and DSC overhead during BW allocation
+822b677dc0d1 drm/i915/dp_mst: Add atomic state for all streams on pre-tgl platforms
+1f34ef565508 drm/i915/dp_mst: Program the DSC PPS SDP for each stream
+bb67bb6f6118 drm/i915/dp: Make sure the DSC PPS SDP is disabled whenever DSC is disabled
+0a39af92185b drm/i915/dp_mst: Add missing DSC compression disabling
+1bc3fc51e963 drm/i915/dp: Rename intel_ddi_disable_fec_state() to intel_ddi_disable_fec()
+ac3f04fc6901 drm/i915/dp: Wait for FEC detected status in the sink
+15cb069f5551 drm/i915/dp: Disable FEC ready flag in the sink
+7ea3b4d6eccb drm/i915/dp_mst: Handle the Synaptics HBlank expansion quirk
+0f92537096dd drm/i915/dp_mst: Enable decompression in the sink from the MST encoder hooks
+95e452a8965e drm/i915/dp: Enable DSC via the connector decompression AUX
+a4e5bd38ee12 drm/i915/dp_mst: Enable DSC passthrough
+714cb24cac97 drm/i915/dp_mst: Enable MST DSC decompression for all streams
+0e794cbc4123 drm/i915: Factor out function to clear pipe update flags
+-:70: WARNING:LONG_LINE: line length of 108 exceeds 100 columns
+#70: FILE: drivers/gpu/drm/i915/display/intel_display.c:5706:
++	if ((old_crtc_state->hw.adjusted_mode.crtc_vtotal == new_crtc_state->hw.adjusted_mode.crtc_vtotal &&
 
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_126044v1/index.html
-
-Participating hosts (33 -> 31)
-------------------------------
-
-  Missing    (2): bat-mtlp-8 fi-snb-2520m 
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_126044v1 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@i915_suspend@basic-s3-without-i915:
-    - bat-rpls-1:         NOTRUN -> [ABORT][1] ([i915#7978] / [i915#9631])
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_126044v1/bat-rpls-1/igt@i915_suspend@basic-s3-without-i915.html
-
-  * igt@kms_hdmi_inject@inject-audio:
-    - fi-kbl-guc:         [PASS][2] -> [FAIL][3] ([IGT#3])
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13844/fi-kbl-guc/igt@kms_hdmi_inject@inject-audio.html
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_126044v1/fi-kbl-guc/igt@kms_hdmi_inject@inject-audio.html
-
-  * igt@kms_pipe_crc_basic@read-crc-frame-sequence@pipe-d-edp-1:
-    - bat-rplp-1:         [PASS][4] -> [ABORT][5] ([i915#8668])
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13844/bat-rplp-1/igt@kms_pipe_crc_basic@read-crc-frame-sequence@pipe-d-edp-1.html
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_126044v1/bat-rplp-1/igt@kms_pipe_crc_basic@read-crc-frame-sequence@pipe-d-edp-1.html
-
-  
-#### Possible fixes ####
-
-  * igt@gem_exec_suspend@basic-s0@smem:
-    - fi-rkl-11600:       [FAIL][6] ([fdo#103375]) -> [PASS][7]
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13844/fi-rkl-11600/igt@gem_exec_suspend@basic-s0@smem.html
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_126044v1/fi-rkl-11600/igt@gem_exec_suspend@basic-s0@smem.html
-
-  * igt@i915_selftest@live@gt_heartbeat:
-    - fi-apl-guc:         [DMESG-FAIL][8] ([i915#5334]) -> [PASS][9]
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13844/fi-apl-guc/igt@i915_selftest@live@gt_heartbeat.html
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_126044v1/fi-apl-guc/igt@i915_selftest@live@gt_heartbeat.html
-
-  * igt@i915_selftest@live@workarounds:
-    - bat-rpls-1:         [INCOMPLETE][10] -> [PASS][11]
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13844/bat-rpls-1/igt@i915_selftest@live@workarounds.html
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_126044v1/bat-rpls-1/igt@i915_selftest@live@workarounds.html
-
-  
-  [IGT#3]: https://gitlab.freedesktop.org/drm/igt-gpu-tools/issues/3
-  [fdo#103375]: https://bugs.freedesktop.org/show_bug.cgi?id=103375
-  [i915#5334]: https://gitlab.freedesktop.org/drm/intel/issues/5334
-  [i915#7978]: https://gitlab.freedesktop.org/drm/intel/issues/7978
-  [i915#8668]: https://gitlab.freedesktop.org/drm/intel/issues/8668
-  [i915#9631]: https://gitlab.freedesktop.org/drm/intel/issues/9631
+total: 0 errors, 1 warnings, 0 checks, 88 lines checked
+22d2ca44735c drm/i915/dp_mst: Force modeset CRTC if DSC toggling requires it
+39e97673b217 drm/i915/dp_mst: Improve BW sharing between MST streams
+c873fa1d162e drm/i915/dp_mst: Check BW limitations only after all streams are computed
+54df926b454a drm/i915: Query compressed bpp properly using correct DPCD and DP Spec info
 
 
-Build changes
--------------
-
-  * Linux: CI_DRM_13844 -> Patchwork_126044v1
-
-  CI-20190529: 20190529
-  CI_DRM_13844: 98a039fc048898d9ecec16153267968fd18a5a52 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_7574: 0485a4bf66f69aaf7244a3e689402b522f636780 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_126044v1: 98a039fc048898d9ecec16153267968fd18a5a52 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-### Linux commits
-
-8ebabf854ec2 drm/i915/guc: Add a selftest for FAST_REQUEST errors
-515da7cad2bb drm/i915/guc: Fix for potential false positives in GuC hang selftest
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_126044v1/index.html
-
---===============9024351740342833043==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>Selftest for FAST_REQUEST feature</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/126044/">https://patchwork.freedesktop.org/series/126044/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_126044v1/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_126044v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_13844 -&gt; Patchwork_126044v1</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_126044v1/index.html</p>
-<h2>Participating hosts (33 -&gt; 31)</h2>
-<p>Missing    (2): bat-mtlp-8 fi-snb-2520m </p>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_126044v1 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@i915_suspend@basic-s3-without-i915:</p>
-<ul>
-<li>bat-rpls-1:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_126044v1/bat-rpls-1/igt@i915_suspend@basic-s3-without-i915.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/7978">i915#7978</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/9631">i915#9631</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_hdmi_inject@inject-audio:</p>
-<ul>
-<li>fi-kbl-guc:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13844/fi-kbl-guc/igt@kms_hdmi_inject@inject-audio.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_126044v1/fi-kbl-guc/igt@kms_hdmi_inject@inject-audio.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/igt-gpu-tools/issues/3">IGT#3</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_pipe_crc_basic@read-crc-frame-sequence@pipe-d-edp-1:</p>
-<ul>
-<li>bat-rplp-1:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13844/bat-rplp-1/igt@kms_pipe_crc_basic@read-crc-frame-sequence@pipe-d-edp-1.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_126044v1/bat-rplp-1/igt@kms_pipe_crc_basic@read-crc-frame-sequence@pipe-d-edp-1.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/8668">i915#8668</a>)</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>
-<p>igt@gem_exec_suspend@basic-s0@smem:</p>
-<ul>
-<li>fi-rkl-11600:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13844/fi-rkl-11600/igt@gem_exec_suspend@basic-s0@smem.html">FAIL</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=103375">fdo#103375</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_126044v1/fi-rkl-11600/igt@gem_exec_suspend@basic-s0@smem.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@gt_heartbeat:</p>
-<ul>
-<li>fi-apl-guc:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13844/fi-apl-guc/igt@i915_selftest@live@gt_heartbeat.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/5334">i915#5334</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_126044v1/fi-apl-guc/igt@i915_selftest@live@gt_heartbeat.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@workarounds:</p>
-<ul>
-<li>bat-rpls-1:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13844/bat-rpls-1/igt@i915_selftest@live@workarounds.html">INCOMPLETE</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_126044v1/bat-rpls-1/igt@i915_selftest@live@workarounds.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_13844 -&gt; Patchwork_126044v1</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_13844: 98a039fc048898d9ecec16153267968fd18a5a52 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_7574: 0485a4bf66f69aaf7244a3e689402b522f636780 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  Patchwork_126044v1: 98a039fc048898d9ecec16153267968fd18a5a52 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<h3>Linux commits</h3>
-<p>8ebabf854ec2 drm/i915/guc: Add a selftest for FAST_REQUEST errors<br />
-515da7cad2bb drm/i915/guc: Fix for potential false positives in GuC hang selftest</p>
-
-</body>
-</html>
-
---===============9024351740342833043==--
