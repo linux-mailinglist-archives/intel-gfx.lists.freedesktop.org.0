@@ -1,52 +1,52 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 309D77E31C2
-	for <lists+intel-gfx@lfdr.de>; Tue,  7 Nov 2023 00:59:22 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id B47267E3218
+	for <lists+intel-gfx@lfdr.de>; Tue,  7 Nov 2023 01:15:17 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5D3DF10E46A;
-	Mon,  6 Nov 2023 23:59:11 +0000 (UTC)
-X-Original-To: Intel-GFX@lists.freedesktop.org
-Delivered-To: Intel-GFX@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.100])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1C05E10E467;
- Mon,  6 Nov 2023 23:59:08 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 36D4910E483;
+	Tue,  7 Nov 2023 00:15:13 +0000 (UTC)
+X-Original-To: intel-gfx@lists.freedesktop.org
+Delivered-To: intel-gfx@lists.freedesktop.org
+Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.151])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8D2EB10E48B;
+ Tue,  7 Nov 2023 00:15:10 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1699315148; x=1730851148;
+ t=1699316110; x=1730852110;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=ZKixas2mR9aepgmG63a1N+R64rh7ErCLJToCcVTHYuU=;
- b=fPCwP5iWqIdAXNhdL07kLWeJwludPmAz94icq3uKBP9WKDfe5rHo84CF
- EiQ52tD8mwWtYuT0LIVxO6i8Fi820z1EoUKCaBbl7mu0YWY65ZSeSDEgF
- Y/xg5oUKP8fjyRBLRFpZQfT0Neax5kM24/Z7ltQ0E/C+Q1qpy+SFrgKMI
- sRiKNWJUBDWKc9YlEtTVR49Udsf394G23Cn7jfoKQUdkJaMRF9WKWVuFz
- K0YMQfF7wSQnajb/7tFQ2VPjm4R2/rvGyTIRTrbOfHhor5u50cZPDoxOk
- uFVpwOO4d/PeYDBAXr5YwP4/tANRVfIV7eGM9Nj8a7yx8oxUAPTFmCmcX Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10886"; a="455871439"
-X-IronPort-AV: E=Sophos;i="6.03,282,1694761200"; d="scan'208";a="455871439"
-Received: from fmviesa002.fm.intel.com ([10.60.135.142])
- by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Nov 2023 15:59:07 -0800
+ bh=CesbfyjL4I7PK4dqIP+5yt8TLL9yr35zx0S2rfjlcIU=;
+ b=HE81X+ipYqBiKjsQE5JDbf6p7ypyrEiv6yPN3OhgwS75QznTq8OeBdUO
+ om/TNNsdkDw2ZJ8DWo0nRbyZVNhQxzwxax7OJs8sb5KTXjmWyd5GzrD6J
+ 7sBWHZ3pj0blMZMs1fFG181TkwQVg7oJAP+cE6C2HgkZkk40ryksdiQ5E
+ j32jbQXCsdRIyqcQgRs2oYUve5NP8iGOpHn78+2QSZo+0G13zMPVIvP2u
+ +LuVhv6meqXJFIRdhHgHYRDadYz63G3SJ3SBrwqQi+BgWBQT5cW2sJYov
+ L7KkUzgEUvgZ9iNTF5RnaB0bHa0To7+rxJ5vbpSVKmmA1SCCqFsvO3RmM g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10886"; a="369596194"
+X-IronPort-AV: E=Sophos;i="6.03,282,1694761200"; d="scan'208";a="369596194"
+Received: from fmsmga003.fm.intel.com ([10.253.24.29])
+ by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 06 Nov 2023 16:15:10 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.03,282,1694761200"; 
-   d="scan'208";a="3789323"
-Received: from relo-linux-5.jf.intel.com ([10.165.21.152])
- by fmviesa002.fm.intel.com with ESMTP; 06 Nov 2023 15:59:06 -0800
-From: John.C.Harrison@Intel.com
-To: Intel-GFX@Lists.FreeDesktop.Org
-Date: Mon,  6 Nov 2023 15:59:28 -0800
-Message-ID: <20231106235929.454983-3-John.C.Harrison@Intel.com>
-X-Mailer: git-send-email 2.41.0
-In-Reply-To: <20231106235929.454983-1-John.C.Harrison@Intel.com>
-References: <20231106235929.454983-1-John.C.Harrison@Intel.com>
+X-IronPort-AV: E=McAfee;i="6600,9927,10886"; a="853177980"
+X-IronPort-AV: E=Sophos;i="6.03,282,1694761200"; d="scan'208";a="853177980"
+Received: from ideak-desk.fi.intel.com ([10.237.72.78])
+ by fmsmga003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 06 Nov 2023 16:15:07 -0800
+From: Imre Deak <imre.deak@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Tue,  7 Nov 2023 02:14:58 +0200
+Message-Id: <20231107001505.3370108-1-imre.deak@intel.com>
+X-Mailer: git-send-email 2.39.2
+In-Reply-To: <20231030155843.2251023-10-imre.deak@intel.com>
+References: <20231030155843.2251023-10-imre.deak@intel.com>
 MIME-Version: 1.0
-Organization: Intel Corporation (UK) Ltd. - Co. Reg. #1134945 - Pipers Way,
- Swindon SN3 1RJ
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH 2/2] drm/i915/guc: Add a selftest for
- FAST_REQUEST errors
+Subject: [Intel-gfx] [PATCH v5 09/30] drm/dp: Add helpers to calculate the
+ link BW overhead
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,197 +59,263 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: DRI-Devel@Lists.FreeDesktop.Org
+Cc: dri-devel@lists.freedesktop.org, Maxime Ripard <mripard@kernel.org>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-From: John Harrison <John.C.Harrison@Intel.com>
+Add helpers drivers can use to calculate the BW allocation overhead -
+due to SSC, FEC, DSC and data alignment on symbol cycles - and the
+channel coding efficiency - due to the 8b/10b, 128b/132b encoding. On
+128b/132b links the FEC overhead is part of the coding efficiency, so
+not accounted for in the BW allocation overhead.
 
-There is a mechanism for reporting errors from fire and forget H2G
-messages. This is the only way to find out about almost any error in
-the GuC backend submission path. So it would be useful to know that it
-is working.
+The drivers can use these functions to calculate a ratio, controlling
+the stream symbol insertion rate of the source device in each SST TU
+or MST MTP frame. Drivers can calculate this
 
-Signed-off-by: John Harrison <John.C.Harrison@Intel.com>
+m/n = (pixel_data_rate * drm_dp_bw_overhead()) /
+      (link_data_rate * drm_dp_bw_channel_coding_efficiency())
+
+ratio for a given link and pixel stream and with that the
+
+slots_per_mtp = CEIL(64 * m / n)
+
+allocated slots per MTP for the stream in a link frame and with
+that the
+
+pbn = slots_per_mtp * drm_mst_get_pbn_divider()
+
+allocated PBNs for the stream on the MST link path.
+
+Take drm_dp_bw_overhead() into use in drm_dp_calc_pbn_mode(), for
+drivers calculating the PBN value directly.
+
+v2:
+- Add dockbook description to drm_dp_bw_channel_coding_efficiency().
+  (LKP).
+- Clarify the way m/n ratio is calculated in the commit log.
+v3:
+- Fix compile breakage for !CONFIG_BACKLIGHT_CLASS_DEVICE. (LKP)
+- Account for FEC_PM overhead (+ 0.0015625 %), add comment
+  with the formula to calculate the total FEC overhead. (Ville)
+v4:
+- Rename DRM_DP_OVERHEAD_SSC to DRM_DP_OVERHEAD_SSC_REF_CLK. (Ville)
+v5:
+- Clarify in the commit log what MTP means.
+- Simplify the commit log's formula to calculate PBN.
+
+Cc: Lyude Paul <lyude@redhat.com>
+Cc: Ville Syrjälä <ville.syrjala@linux.intel.com>
+Cc: kernel test robot <lkp@intel.com>
+Cc: dri-devel@lists.freedesktop.org
+Reviewed-by: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com> (v2)
+Acked-by: Maxime Ripard <mripard@kernel.org>
+Signed-off-by: Imre Deak <imre.deak@intel.com>
 ---
- drivers/gpu/drm/i915/gt/uc/intel_guc.h    |   4 +
- drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c |   9 ++
- drivers/gpu/drm/i915/gt/uc/selftest_guc.c | 122 ++++++++++++++++++++++
- 3 files changed, 135 insertions(+)
+ drivers/gpu/drm/display/drm_dp_helper.c       | 132 ++++++++++++++++++
+ drivers/gpu/drm/display/drm_dp_mst_topology.c |  23 ++-
+ include/drm/display/drm_dp_helper.h           |  11 ++
+ 3 files changed, 160 insertions(+), 6 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc.h b/drivers/gpu/drm/i915/gt/uc/intel_guc.h
-index 2b6dfe62c8f2a..e22c12ce245ad 100644
---- a/drivers/gpu/drm/i915/gt/uc/intel_guc.h
-+++ b/drivers/gpu/drm/i915/gt/uc/intel_guc.h
-@@ -297,6 +297,10 @@ struct intel_guc {
- 	 * @number_guc_id_stolen: The number of guc_ids that have been stolen
- 	 */
- 	int number_guc_id_stolen;
-+	/**
-+	 * @fast_response_selftest: Backdoor to CT handler for fast response selftest
-+	 */
-+	u32 fast_response_selftest;
+diff --git a/drivers/gpu/drm/display/drm_dp_helper.c b/drivers/gpu/drm/display/drm_dp_helper.c
+index e5d7970a9ddd0..72ba9ae89f862 100644
+--- a/drivers/gpu/drm/display/drm_dp_helper.c
++++ b/drivers/gpu/drm/display/drm_dp_helper.c
+@@ -3900,3 +3900,135 @@ int drm_panel_dp_aux_backlight(struct drm_panel *panel, struct drm_dp_aux *aux)
+ EXPORT_SYMBOL(drm_panel_dp_aux_backlight);
+ 
  #endif
- };
- 
-diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c b/drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c
-index 89e314b3756bb..9d958afb78b7f 100644
---- a/drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c
-+++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c
-@@ -1076,6 +1076,15 @@ static int ct_handle_response(struct intel_guc_ct *ct, struct ct_incoming_msg *r
- 		found = true;
- 		break;
- 	}
 +
-+#ifdef CONFIG_DRM_I915_SELFTEST
-+	if (!found && ct_to_guc(ct)->fast_response_selftest) {
-+		CT_DEBUG(ct, "Assuming unsolicited response due to FAST_REQUEST selftest\n");
-+		ct_to_guc(ct)->fast_response_selftest++;
-+		found = 1;
-+	}
-+#endif
-+
- 	if (!found) {
- 		CT_ERROR(ct, "Unsolicited response message: len %u, data %#x (fence %u, last %u)\n",
- 			 len, hxg[0], fence, ct->requests.last_fence);
-diff --git a/drivers/gpu/drm/i915/gt/uc/selftest_guc.c b/drivers/gpu/drm/i915/gt/uc/selftest_guc.c
-index bfb72143566f6..97fbbb396336c 100644
---- a/drivers/gpu/drm/i915/gt/uc/selftest_guc.c
-+++ b/drivers/gpu/drm/i915/gt/uc/selftest_guc.c
-@@ -286,11 +286,133 @@ static int intel_guc_steal_guc_ids(void *arg)
- 	return ret;
- }
- 
-+/*
-+ * Send a context schedule H2G message with an invalid context id.
-+ * This should generate a GUC_RESULT_INVALID_CONTEXT response.
-+ */
-+static int bad_h2g(struct intel_guc *guc)
++/* See DP Standard v2.1 2.6.4.4.1.1, 2.8.4.4, 2.8.7 */
++static int drm_dp_link_symbol_cycles(int lane_count, int pixels, int bpp_x16,
++				     int symbol_size, bool is_mst)
 +{
-+	u32 action[3], len = 0;
++	int cycles = DIV_ROUND_UP(pixels * bpp_x16, 16 * symbol_size * lane_count);
++	int align = is_mst ? 4 / lane_count : 1;
 +
-+	action[len++] = INTEL_GUC_ACTION_SCHED_CONTEXT;
-+	action[len++] = 0x12345678;
-+
-+	return intel_guc_send_nb(guc, action, len, 0);
++	return ALIGN(cycles, align);
 +}
 +
-+/*
-+ * Set a spinner running to make sure the system is alive and active,
-+ * then send a bad but asynchronous H2G command and wait to see if an
-+ * error response is returned. If no response is received or if the
-+ * spinner dies then the test will fail.
-+ */
-+#define FAST_RESPONSE_TIMEOUT_MS	1000
-+static int intel_guc_fast_request(void *arg)
++static int drm_dp_link_dsc_symbol_cycles(int lane_count, int pixels, int slice_count,
++					 int bpp_x16, int symbol_size, bool is_mst)
 +{
-+	struct intel_gt *gt = arg;
-+	struct intel_context *ce;
-+	struct igt_spinner spin;
-+	struct i915_request *rq;
-+	intel_wakeref_t wakeref;
-+	struct intel_engine_cs *engine = intel_selftest_find_any_engine(gt);
-+	ktime_t before, now, delta;
-+	bool spinning = false;
-+	u64 delta_ms;
-+	int ret = 0;
++	int slice_pixels = DIV_ROUND_UP(pixels, slice_count);
++	int slice_data_cycles = drm_dp_link_symbol_cycles(lane_count, slice_pixels,
++							  bpp_x16, symbol_size, is_mst);
++	int slice_eoc_cycles = is_mst ? 4 / lane_count : 1;
 +
-+	if (!engine)
-+		return 0;
-+
-+	wakeref = intel_runtime_pm_get(gt->uncore->rpm);
-+
-+	ce = intel_context_create(engine);
-+	if (IS_ERR(ce)) {
-+		ret = PTR_ERR(ce);
-+		gt_err(gt, "Failed to create spinner request: %pe\n", ce);
-+		goto err_pm;
-+	}
-+
-+	ret = igt_spinner_init(&spin, engine->gt);
-+	if (ret) {
-+		gt_err(gt, "Failed to create spinner: %pe\n", ERR_PTR(ret));
-+		goto err_pm;
-+	}
-+	spinning = true;
-+
-+	rq = igt_spinner_create_request(&spin, ce, MI_ARB_CHECK);
-+	intel_context_put(ce);
-+	if (IS_ERR(rq)) {
-+		ret = PTR_ERR(rq);
-+		gt_err(gt, "Failed to create spinner request: %pe\n", rq);
-+		goto err_spin;
-+	}
-+
-+	ret = request_add_spin(rq, &spin);
-+	if (ret) {
-+		gt_err(gt, "Failed to add Spinner request: %pe\n", ERR_PTR(ret));
-+		goto err_rq;
-+	}
-+
-+	gt->uc.guc.fast_response_selftest = 1;
-+
-+	ret = bad_h2g(&gt->uc.guc);
-+	if (ret) {
-+		gt_err(gt, "Failed to send H2G: %pe\n", ERR_PTR(ret));
-+		goto err_rq;
-+	}
-+
-+	before = ktime_get();
-+	while (gt->uc.guc.fast_response_selftest == 1) {
-+		ret = i915_request_wait(rq, 0, 1);
-+		if (ret != -ETIME) {
-+			gt_err(gt, "Request wait failed: %pe\n", ERR_PTR(ret));
-+			goto err_rq;
-+		}
-+		now = ktime_get();
-+		delta = ktime_sub(now, before);
-+		delta_ms = ktime_to_ms(delta);
-+
-+		if (delta_ms > FAST_RESPONSE_TIMEOUT_MS) {
-+			gt_err(gt, "Timed out waiting for fast request error!\n");
-+			ret = -ETIME;
-+			goto err_rq;
-+		}
-+	}
-+
-+	if (gt->uc.guc.fast_response_selftest != 2) {
-+		gt_err(gt, "Unexpected fast response count: %d\n",
-+		       gt->uc.guc.fast_response_selftest);
-+		goto err_rq;
-+	}
-+
-+	igt_spinner_end(&spin);
-+	spinning = false;
-+
-+	ret = intel_selftest_wait_for_rq(rq);
-+	if (ret) {
-+		gt_err(gt, "Request failed to complete: %pe\n", ERR_PTR(ret));
-+		goto err_rq;
-+	}
-+
-+err_rq:
-+	i915_request_put(rq);
-+
-+err_spin:
-+	if (spinning)
-+		igt_spinner_end(&spin);
-+	igt_spinner_fini(&spin);
-+
-+err_pm:
-+	intel_runtime_pm_put(gt->uncore->rpm, wakeref);
-+	return ret;
++	return slice_count * (slice_data_cycles + slice_eoc_cycles);
 +}
 +
- int intel_guc_live_selftests(struct drm_i915_private *i915)
++/**
++ * drm_dp_bw_overhead - Calculate the BW overhead of a DP link stream
++ * @lane_count: DP link lane count
++ * @hactive: pixel count of the active period in one scanline of the stream
++ * @dsc_slice_count: DSC slice count if @flags/DRM_DP_LINK_BW_OVERHEAD_DSC is set
++ * @bpp_x16: bits per pixel in .4 binary fixed point
++ * @flags: DRM_DP_OVERHEAD_x flags
++ *
++ * Calculate the BW allocation overhead of a DP link stream, depending
++ * on the link's
++ * - @lane_count
++ * - SST/MST mode (@flags / %DRM_DP_OVERHEAD_MST)
++ * - symbol size (@flags / %DRM_DP_OVERHEAD_UHBR)
++ * - FEC mode (@flags / %DRM_DP_OVERHEAD_FEC)
++ * - SSC/REF_CLK mode (@flags / %DRM_DP_OVERHEAD_SSC_REF_CLK)
++ * as well as the stream's
++ * - @hactive timing
++ * - @bpp_x16 color depth
++ * - compression mode (@flags / %DRM_DP_OVERHEAD_DSC).
++ * Note that this overhead doesn't account for the 8b/10b, 128b/132b
++ * channel coding efficiency, for that see
++ * @drm_dp_link_bw_channel_coding_efficiency().
++ *
++ * Returns the overhead as 100% + overhead% in 1ppm units.
++ */
++int drm_dp_bw_overhead(int lane_count, int hactive,
++		       int dsc_slice_count,
++		       int bpp_x16, unsigned long flags)
++{
++	int symbol_size = flags & DRM_DP_BW_OVERHEAD_UHBR ? 32 : 8;
++	bool is_mst = flags & DRM_DP_BW_OVERHEAD_MST;
++	u32 overhead = 1000000;
++	int symbol_cycles;
++
++	/*
++	 * DP Standard v2.1 2.6.4.1
++	 * SSC downspread and ref clock variation margin:
++	 *   5300ppm + 300ppm ~ 0.6%
++	 */
++	if (flags & DRM_DP_BW_OVERHEAD_SSC_REF_CLK)
++		overhead += 6000;
++
++	/*
++	 * DP Standard v2.1 2.6.4.1.1, 3.5.1.5.4:
++	 * FEC symbol insertions for 8b/10b channel coding:
++	 * After each 250 data symbols on 2-4 lanes:
++	 *   250 LL + 5 FEC_PARITY_PH + 1 CD_ADJ   (256 byte FEC block)
++	 * After each 2 x 250 data symbols on 1 lane:
++	 *   2 * 250 LL + 11 FEC_PARITY_PH + 1 CD_ADJ (512 byte FEC block)
++	 * After 256 (2-4 lanes) or 128 (1 lane) FEC blocks:
++	 *   256 * 256 bytes + 1 FEC_PM
++	 * or
++	 *   128 * 512 bytes + 1 FEC_PM
++	 * (256 * 6 + 1) / (256 * 250) = 2.4015625 %
++	 */
++	if (flags & DRM_DP_BW_OVERHEAD_FEC)
++		overhead += 24016;
++
++	/*
++	 * DP Standard v2.1 2.7.9, 5.9.7
++	 * The FEC overhead for UHBR is accounted for in its 96.71% channel
++	 * coding efficiency.
++	 */
++	WARN_ON((flags & DRM_DP_BW_OVERHEAD_UHBR) &&
++		(flags & DRM_DP_BW_OVERHEAD_FEC));
++
++	if (flags & DRM_DP_BW_OVERHEAD_DSC)
++		symbol_cycles = drm_dp_link_dsc_symbol_cycles(lane_count, hactive,
++							      dsc_slice_count,
++							      bpp_x16, symbol_size,
++							      is_mst);
++	else
++		symbol_cycles = drm_dp_link_symbol_cycles(lane_count, hactive,
++							  bpp_x16, symbol_size,
++							  is_mst);
++
++	return DIV_ROUND_UP_ULL(mul_u32_u32(symbol_cycles * symbol_size * lane_count,
++					    overhead * 16),
++				hactive * bpp_x16);
++}
++EXPORT_SYMBOL(drm_dp_bw_overhead);
++
++/**
++ * drm_dp_bw_channel_coding_efficiency - Get a DP link's channel coding efficiency
++ * @is_uhbr: Whether the link has a 128b/132b channel coding
++ *
++ * Return the channel coding efficiency of the given DP link type, which is
++ * either 8b/10b or 128b/132b (aka UHBR). The corresponding overhead includes
++ * the 8b -> 10b, 128b -> 132b pixel data to link symbol conversion overhead
++ * and for 128b/132b any link or PHY level control symbol insertion overhead
++ * (LLCP, FEC, PHY sync, see DP Standard v2.1 3.5.2.18). For 8b/10b the
++ * corresponding FEC overhead is BW allocation specific, included in the value
++ * returned by drm_dp_bw_overhead().
++ *
++ * Returns the efficiency in the 100%/coding-overhead% ratio in
++ * 1ppm units.
++ */
++int drm_dp_bw_channel_coding_efficiency(bool is_uhbr)
++{
++	if (is_uhbr)
++		return 967100;
++	else
++		/*
++		 * Note that on 8b/10b MST the efficiency is only
++		 * 78.75% due to the 1 out of 64 MTPH packet overhead,
++		 * not accounted for here.
++		 */
++		return 800000;
++}
++EXPORT_SYMBOL(drm_dp_bw_channel_coding_efficiency);
+diff --git a/drivers/gpu/drm/display/drm_dp_mst_topology.c b/drivers/gpu/drm/display/drm_dp_mst_topology.c
+index cc0a8fe84d290..4d72c9a32026e 100644
+--- a/drivers/gpu/drm/display/drm_dp_mst_topology.c
++++ b/drivers/gpu/drm/display/drm_dp_mst_topology.c
+@@ -4726,17 +4726,28 @@ EXPORT_SYMBOL(drm_dp_check_act_status);
+ int drm_dp_calc_pbn_mode(int clock, int bpp)
  {
- 	static const struct i915_subtest tests[] = {
- 		SUBTEST(intel_guc_scrub_ctbs),
- 		SUBTEST(intel_guc_steal_guc_ids),
-+		SUBTEST(intel_guc_fast_request),
- 	};
- 	struct intel_gt *gt = to_gt(i915);
+ 	/*
+-	 * margin 5300ppm + 300ppm ~ 0.6% as per spec, factor is 1.006
+ 	 * The unit of 54/64Mbytes/sec is an arbitrary unit chosen based on
+ 	 * common multiplier to render an integer PBN for all link rate/lane
+ 	 * counts combinations
+ 	 * calculate
+-	 * peak_kbps *= (1006/1000)
+-	 * peak_kbps *= (64/54)
+-	 * peak_kbps *= 8    convert to bytes
++	 * peak_kbps = clock * bpp / 16
++	 * peak_kbps *= SSC overhead / 1000000
++	 * peak_kbps /= 8    convert to Kbytes
++	 * peak_kBps *= (64/54) / 1000    convert to PBN
+ 	 */
+-	return DIV_ROUND_UP_ULL(mul_u32_u32(clock * bpp, 64 * 1006 >> 4),
+-				1000 * 8 * 54 * 1000);
++	/*
++	 * TODO: Use the actual link and mode parameters to calculate
++	 * the overhead. For now it's assumed that these are
++	 * 4 link lanes, 4096 hactive pixels, which don't add any
++	 * significant data padding overhead and that there is no DSC
++	 * or FEC overhead.
++	 */
++	int overhead = drm_dp_bw_overhead(4, 4096, 0, bpp,
++					  DRM_DP_BW_OVERHEAD_MST |
++					  DRM_DP_BW_OVERHEAD_SSC_REF_CLK);
++
++	return DIV64_U64_ROUND_UP(mul_u32_u32(clock * bpp, 64 * overhead >> 4),
++				  1000000ULL * 8 * 54 * 1000);
+ }
+ EXPORT_SYMBOL(drm_dp_calc_pbn_mode);
  
+diff --git a/include/drm/display/drm_dp_helper.h b/include/drm/display/drm_dp_helper.h
+index da94932f4262b..caee29d28463c 100644
+--- a/include/drm/display/drm_dp_helper.h
++++ b/include/drm/display/drm_dp_helper.h
+@@ -788,4 +788,15 @@ bool drm_dp_downstream_rgb_to_ycbcr_conversion(const u8 dpcd[DP_RECEIVER_CAP_SIZ
+ 					       const u8 port_cap[4], u8 color_spc);
+ int drm_dp_pcon_convert_rgb_to_ycbcr(struct drm_dp_aux *aux, u8 color_spc);
+ 
++#define DRM_DP_BW_OVERHEAD_MST		BIT(0)
++#define DRM_DP_BW_OVERHEAD_UHBR		BIT(1)
++#define DRM_DP_BW_OVERHEAD_SSC_REF_CLK	BIT(2)
++#define DRM_DP_BW_OVERHEAD_FEC		BIT(3)
++#define DRM_DP_BW_OVERHEAD_DSC		BIT(4)
++
++int drm_dp_bw_overhead(int lane_count, int hactive,
++		       int dsc_slice_count,
++		       int bpp_x16, unsigned long flags);
++int drm_dp_bw_channel_coding_efficiency(bool is_uhbr);
++
+ #endif /* _DRM_DP_HELPER_H_ */
 -- 
-2.41.0
+2.39.2
 
