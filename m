@@ -2,49 +2,33 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6D6FA7E5846
-	for <lists+intel-gfx@lfdr.de>; Wed,  8 Nov 2023 15:04:26 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 164587E5896
+	for <lists+intel-gfx@lfdr.de>; Wed,  8 Nov 2023 15:22:11 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 542F010E769;
-	Wed,  8 Nov 2023 14:04:24 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5803410E778;
+	Wed,  8 Nov 2023 14:22:08 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9E56110E769;
- Wed,  8 Nov 2023 14:04:22 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1699452262; x=1730988262;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=OQXd+4A0w+JEXnh2fy0cwHh2h1EnDbHpdtdbyL/M5j8=;
- b=N6Be2qXfGoAMEi4ss3nlhFwCAT/P+WZPTGwJGbt+xDf0uBiVDNP2asZ9
- sz5Fm6YDI21mYlV9nm1U5dnV55HcFFFEm9XTcZXlrslxR0Cx578S7+FNj
- 8EgLsk+/jDSZc4RupD+vANZQfNeC+ob013iyUv+FCBdUhnai7JVXiZv2s
- 4JTGTyRvf4ENYi3dQXhV2nGaT4t8d4TtURJ2wV961SdZ3pNsGpqBcy3Kc
- eE21mcnsQPoWuSpCjkKWFwfIgwpV5zqNzR6FK9Ob2onCVk2XzT14mMlSz
- GXU+rgL2tdIX1u5MpwfBKTXTfgPNwdJMNkedU0UL9DHaQJGNFK56TK6RY g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10888"; a="380164865"
-X-IronPort-AV: E=Sophos;i="6.03,286,1694761200"; d="scan'208";a="380164865"
-Received: from orviesa002.jf.intel.com ([10.64.159.142])
- by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Nov 2023 06:04:21 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.03,286,1694761200"; 
-   d="scan'208";a="4196622"
-Received: from vseredyx-mobl.ger.corp.intel.com (HELO localhost)
- ([10.252.38.119])
- by orviesa002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Nov 2023 06:04:17 -0800
-From: Jani Nikula <jani.nikula@intel.com>
-To: Dave Airlie <airlied@gmail.com>, Daniel Vetter <daniel.vetter@ffwll.ch>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-Date: Wed, 08 Nov 2023 16:04:14 +0200
-Message-ID: <878r78xrxd.fsf@intel.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 3137510E778;
+ Wed,  8 Nov 2023 14:22:07 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 2ACF4AADFA;
+ Wed,  8 Nov 2023 14:22:07 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-Subject: [Intel-gfx] [PULL] drm-intel-next-fixes
+Content-Transfer-Encoding: 7bit
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Tvrtko Ursulin" <tvrtko.ursulin@linux.intel.com>
+Date: Wed, 08 Nov 2023 14:22:07 -0000
+Message-ID: <169945332714.24274.13012132093595615608@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20231107101806.608990-1-tvrtko.ursulin@linux.intel.com>
+In-Reply-To: <20231107101806.608990-1-tvrtko.ursulin@linux.intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLlNQQVJTRTogd2FybmluZyBmb3Ig?=
+ =?utf-8?q?series_starting_with_=5BCI=2C1/6=5D_drm/i915=3A_Add_ability_for?=
+ =?utf-8?q?_tracking_buffer_objects_per_client_=28rev3=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -57,89 +41,21 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: dim-tools@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, intel-gfx@lists.freedesktop.org
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+== Series Details ==
 
-Hi Dave & Daniel -
+Series: series starting with [CI,1/6] drm/i915: Add ability for tracking buffer objects per client (rev3)
+URL   : https://patchwork.freedesktop.org/series/126064/
+State : warning
 
-I see Dave already sent the pull request for v6.7-rc1 fixes, but here's
-some more.
+== Summary ==
 
-drm-intel-next-fixes-2023-11-08:
-drm/i915 fixes for v6.7-rc1:
-- Fix null dereference when perf interface is not available
-- Fix a -Wstringop-overflow warning
-- Fix a -Wformat-truncation warning in intel_tc_port_init
-- Flush WC GGTT only on required platforms
-- Fix MTL HBR3 rate support on C10 phy and eDP
-- Fix MTL notify_guc for multi-GT
-- Bump GLK CDCLK frequency when driving multiple pipes
-- Fix potential spectre vulnerability
+Error: dim sparse failed
+Sparse version: v0.6.2
+Fast mode used, each commit won't be checked separately.
 
-BR,
-Jani.
 
-The following changes since commit 5258dfd4a6adb5f45f046b0dd2e73c680f880d9d:
-
-  usb: typec: altmodes/displayport: fixup drm internal api change vs new us=
-er. (2023-10-27 07:55:41 +1000)
-
-are available in the Git repository at:
-
-  git://anongit.freedesktop.org/drm/drm-intel tags/drm-intel-next-fixes-202=
-3-11-08
-
-for you to fetch changes up to 9506fba463fcbdf8c8b7af3ec9ee34360df843fe:
-
-  drm/i915/tc: Fix -Wformat-truncation in intel_tc_port_init (2023-11-06 14=
-:42:58 +0200)
-
-----------------------------------------------------------------
-drm/i915 fixes for v6.7-rc1:
-- Fix null dereference when perf interface is not available
-- Fix a -Wstringop-overflow warning
-- Fix a -Wformat-truncation warning in intel_tc_port_init
-- Flush WC GGTT only on required platforms
-- Fix MTL HBR3 rate support on C10 phy and eDP
-- Fix MTL notify_guc for multi-GT
-- Bump GLK CDCLK frequency when driving multiple pipes
-- Fix potential spectre vulnerability
-
-----------------------------------------------------------------
-Arnd Bergmann (1):
-      drm/i915/mtl: avoid stringop-overflow warning
-
-Chaitanya Kumar Borah (1):
-      drm/i915/mtl: Support HBR3 rate with C10 phy and eDP in MTL
-
-Harshit Mogalapalli (1):
-      i915/perf: Fix NULL deref bugs with drm_dbg() calls
-
-Kunwu Chan (1):
-      drm/i915: Fix potential spectre vulnerability
-
-Nirmoy Das (3):
-      drm/i915: Flush WC GGTT only on required platforms
-      drm/i915/mtl: Apply notify_guc to all GTs
-      drm/i915/tc: Fix -Wformat-truncation in intel_tc_port_init
-
-Ville Syrj=C3=A4l=C3=A4 (1):
-      drm/i915: Bump GLK CDCLK frequency when driving multiple pipes
-
- drivers/gpu/drm/i915/display/intel_cdclk.c  | 12 ++++++++++
- drivers/gpu/drm/i915/display/intel_dp.c     |  2 +-
- drivers/gpu/drm/i915/display/intel_tc.c     | 11 ++++++---
- drivers/gpu/drm/i915/gem/i915_gem_context.c |  1 +
- drivers/gpu/drm/i915/gt/intel_ggtt.c        | 35 ++++++++++++++++++++-----=
-----
- drivers/gpu/drm/i915/gt/intel_rc6.c         | 16 ++++++++-----
- drivers/gpu/drm/i915/i915_debugfs_params.c  |  9 +++++---
- drivers/gpu/drm/i915/i915_perf.c            | 15 +++----------
- 8 files changed, 65 insertions(+), 36 deletions(-)
-
---=20
-Jani Nikula, Intel
