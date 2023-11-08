@@ -1,51 +1,50 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3D3A67E57E0
-	for <lists+intel-gfx@lfdr.de>; Wed,  8 Nov 2023 14:18:52 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6D6FA7E5846
+	for <lists+intel-gfx@lfdr.de>; Wed,  8 Nov 2023 15:04:26 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5E49510E754;
-	Wed,  8 Nov 2023 13:18:48 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 542F010E769;
+	Wed,  8 Nov 2023 14:04:24 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.93])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A220B10E754;
- Wed,  8 Nov 2023 13:18:46 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9E56110E769;
+ Wed,  8 Nov 2023 14:04:22 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1699449526; x=1730985526;
- h=message-id:date:mime-version:from:to:cc:subject:
+ t=1699452262; x=1730988262;
+ h=from:to:cc:subject:date:message-id:mime-version:
  content-transfer-encoding;
- bh=oofh0GlpQP69Q40Z1USLcXp/o16a6nYtM0nOttSfwq8=;
- b=MrmHqlEgSoTz+HM9X4ua8lAZUjeUMp/UScDR8zwd/FEPq41Z2WhssG76
- QG+Jmflnz2c+YF3qHN4G96dcESer26AGvf1Rx4Q+mTv/W4Y4ALbyCa0UP
- vN9+GRAJQvNS+w38csXy0qOW3c2XUIc3yV129WEa7YlwSSLxBVtLuOVyY
- 8fIR36PCGbggO34Y68j202jRWar0yZ6fRVKQljtcXEdeK4YHEbqRp6WkC
- jXvG8Qf8KH/fAzwPFraryWHQSEddSpx7+H+TQ1Ue+XebBrg693hrV2Q+2
- sjbVjmH/KmOj5szOJiFBR0hxE4cG5AQgiLE31XtkxmIFnx4u/Sf17lER6 Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10887"; a="386931822"
-X-IronPort-AV: E=Sophos;i="6.03,286,1694761200"; d="scan'208";a="386931822"
-Received: from fmsmga007.fm.intel.com ([10.253.24.52])
- by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Nov 2023 05:18:45 -0800
+ bh=OQXd+4A0w+JEXnh2fy0cwHh2h1EnDbHpdtdbyL/M5j8=;
+ b=N6Be2qXfGoAMEi4ss3nlhFwCAT/P+WZPTGwJGbt+xDf0uBiVDNP2asZ9
+ sz5Fm6YDI21mYlV9nm1U5dnV55HcFFFEm9XTcZXlrslxR0Cx578S7+FNj
+ 8EgLsk+/jDSZc4RupD+vANZQfNeC+ob013iyUv+FCBdUhnai7JVXiZv2s
+ 4JTGTyRvf4ENYi3dQXhV2nGaT4t8d4TtURJ2wV961SdZ3pNsGpqBcy3Kc
+ eE21mcnsQPoWuSpCjkKWFwfIgwpV5zqNzR6FK9Ob2onCVk2XzT14mMlSz
+ GXU+rgL2tdIX1u5MpwfBKTXTfgPNwdJMNkedU0UL9DHaQJGNFK56TK6RY g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10888"; a="380164865"
+X-IronPort-AV: E=Sophos;i="6.03,286,1694761200"; d="scan'208";a="380164865"
+Received: from orviesa002.jf.intel.com ([10.64.159.142])
+ by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 Nov 2023 06:04:21 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10887"; a="766642871"
-X-IronPort-AV: E=Sophos;i="6.03,286,1694761200"; d="scan'208";a="766642871"
-Received: from ishachar-mobl1.ger.corp.intel.com (HELO [10.252.52.206])
- ([10.252.52.206])
- by fmsmga007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Nov 2023 05:18:42 -0800
-Message-ID: <bc8598ee-d427-4616-8ebd-64107ab9a2d8@linux.intel.com>
-Date: Wed, 8 Nov 2023 14:18:28 +0100
+X-IronPort-AV: E=Sophos;i="6.03,286,1694761200"; 
+   d="scan'208";a="4196622"
+Received: from vseredyx-mobl.ger.corp.intel.com (HELO localhost)
+ ([10.252.38.119])
+ by orviesa002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 Nov 2023 06:04:17 -0800
+From: Jani Nikula <jani.nikula@intel.com>
+To: Dave Airlie <airlied@gmail.com>, Daniel Vetter <daniel.vetter@ffwll.ch>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+Date: Wed, 08 Nov 2023 16:04:14 +0200
+Message-ID: <878r78xrxd.fsf@intel.com>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-From: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-To: Daniel Vetter <daniel.vetter@ffwll.ch>, Dave Airlie <airlied@gmail.com>
-Content-Language: en-US
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PULL] drm-misc-fixes
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+Subject: [Intel-gfx] [PULL] drm-intel-next-fixes
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -58,74 +57,89 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: dim-tools@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
- Maxime Ripard <mripard@kernel.org>, dri-devel@lists.freedesktop.org,
- Thomas Zimmermann <tzimmermann@suse.de>, Rodrigo Vivi <rodrigo.vivi@intel.com>
+Cc: dim-tools@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi Dave, Daniel,
 
-drm-misc-next-fixes is empty, have a pull request for drm-misc-fixes.
+Hi Dave & Daniel -
 
-Cheers,
-~Maarten
+I see Dave already sent the pull request for v6.7-rc1 fixes, but here's
+some more.
 
-drm-misc-fixes-2023-11-08:
-drm-misc-fixes for v6.7-rc1:
+drm-intel-next-fixes-2023-11-08:
+drm/i915 fixes for v6.7-rc1:
+- Fix null dereference when perf interface is not available
+- Fix a -Wstringop-overflow warning
+- Fix a -Wformat-truncation warning in intel_tc_port_init
+- Flush WC GGTT only on required platforms
+- Fix MTL HBR3 rate support on C10 phy and eDP
+- Fix MTL notify_guc for multi-GT
+- Bump GLK CDCLK frequency when driving multiple pipes
+- Fix potential spectre vulnerability
 
-- drm-misc-fixes from 2023-11-02 + a single qxl memory leak fix.
-The following changes since commit 8f5ad367e8b884772945c6c9fb622ac94b7d3e32:
+BR,
+Jani.
 
-   accel/ivpu: Extend address range for MMU mmap (2023-10-19 08:01:20 +0200)
+The following changes since commit 5258dfd4a6adb5f45f046b0dd2e73c680f880d9d:
+
+  usb: typec: altmodes/displayport: fixup drm internal api change vs new us=
+er. (2023-10-27 07:55:41 +1000)
 
 are available in the Git repository at:
 
-   git://anongit.freedesktop.org/drm/drm-misc tags/drm-misc-fixes-2023-11-08
+  git://anongit.freedesktop.org/drm/drm-intel tags/drm-intel-next-fixes-202=
+3-11-08
 
-for you to fetch changes up to 0e8b9f258baed25f1c5672613699247c76b007b5:
+for you to fetch changes up to 9506fba463fcbdf8c8b7af3ec9ee34360df843fe:
 
-   drm/qxl: prevent memory leak (2023-11-06 09:37:03 +0100)
-
-----------------------------------------------------------------
-drm-misc-fixes for v6.7-rc1:
-
-- drm-misc-fixes from 2023-11-02 + a single qxl memory leak fix.
+  drm/i915/tc: Fix -Wformat-truncation in intel_tc_port_init (2023-11-06 14=
+:42:58 +0200)
 
 ----------------------------------------------------------------
-Christian König (2):
-       drm/amdgpu: ignore duplicate BOs again
-       drm/amdkfd: reserve a fence slot while locking the BO
+drm/i915 fixes for v6.7-rc1:
+- Fix null dereference when perf interface is not available
+- Fix a -Wstringop-overflow warning
+- Fix a -Wformat-truncation warning in intel_tc_port_init
+- Flush WC GGTT only on required platforms
+- Fix MTL HBR3 rate support on C10 phy and eDP
+- Fix MTL notify_guc for multi-GT
+- Bump GLK CDCLK frequency when driving multiple pipes
+- Fix potential spectre vulnerability
 
-Erik Kurzinger (1):
-       drm/syncobj: fix DRM_SYNCOBJ_WAIT_FLAGS_WAIT_AVAILABLE
+----------------------------------------------------------------
+Arnd Bergmann (1):
+      drm/i915/mtl: avoid stringop-overflow warning
 
-Karol Wachowski (1):
-       accel/ivpu/37xx: Fix missing VPUIP interrupts
+Chaitanya Kumar Borah (1):
+      drm/i915/mtl: Support HBR3 rate with C10 phy and eDP in MTL
 
-Luben Tuikov (1):
-       drm/amdgpu: Remove redundant call to priority_is_valid()
+Harshit Mogalapalli (1):
+      i915/perf: Fix NULL deref bugs with drm_dbg() calls
 
-Lukasz Majczak (1):
-       drm/dp_mst: Fix NULL deref in get_mst_branch_device_by_guid_helper()
+Kunwu Chan (1):
+      drm/i915: Fix potential spectre vulnerability
 
-Maxime Ripard (1):
-       drm/vc4: tests: Fix UAF in the mock helpers
+Nirmoy Das (3):
+      drm/i915: Flush WC GGTT only on required platforms
+      drm/i915/mtl: Apply notify_guc to all GTs
+      drm/i915/tc: Fix -Wformat-truncation in intel_tc_port_init
 
-Sui Jingfeng (1):
-       drm/logicvc: Kconfig: select REGMAP and REGMAP_MMIO
+Ville Syrj=C3=A4l=C3=A4 (1):
+      drm/i915: Bump GLK CDCLK frequency when driving multiple pipes
 
-Zongmin Zhou (1):
-       drm/qxl: prevent memory leak
+ drivers/gpu/drm/i915/display/intel_cdclk.c  | 12 ++++++++++
+ drivers/gpu/drm/i915/display/intel_dp.c     |  2 +-
+ drivers/gpu/drm/i915/display/intel_tc.c     | 11 ++++++---
+ drivers/gpu/drm/i915/gem/i915_gem_context.c |  1 +
+ drivers/gpu/drm/i915/gt/intel_ggtt.c        | 35 ++++++++++++++++++++-----=
+----
+ drivers/gpu/drm/i915/gt/intel_rc6.c         | 16 ++++++++-----
+ drivers/gpu/drm/i915/i915_debugfs_params.c  |  9 +++++---
+ drivers/gpu/drm/i915/i915_perf.c            | 15 +++----------
+ 8 files changed, 65 insertions(+), 36 deletions(-)
 
-  drivers/accel/ivpu/ivpu_hw_37xx.c                | 11 +++++------
-  drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd_gpuvm.c |  2 +-
-  drivers/gpu/drm/amd/amdgpu/amdgpu_cs.c           |  3 ++-
-  drivers/gpu/drm/amd/amdgpu/amdgpu_ctx.c          | 15 ++++++++-------
-  drivers/gpu/drm/display/drm_dp_mst_topology.c    |  6 +++---
-  drivers/gpu/drm/drm_syncobj.c                    |  3 ++-
-  drivers/gpu/drm/logicvc/Kconfig                  |  2 ++
-  drivers/gpu/drm/qxl/qxl_display.c                |  3 +++
-  drivers/gpu/drm/vc4/tests/vc4_mock_crtc.c        |  2 +-
-  drivers/gpu/drm/vc4/tests/vc4_mock_output.c      |  2 +-
-  10 files changed, 28 insertions(+), 21 deletions(-)
+--=20
+Jani Nikula, Intel
