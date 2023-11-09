@@ -2,51 +2,53 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id A461F7E6CA1
-	for <lists+intel-gfx@lfdr.de>; Thu,  9 Nov 2023 15:47:57 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 004897E6D75
+	for <lists+intel-gfx@lfdr.de>; Thu,  9 Nov 2023 16:33:53 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9CAC310E8BA;
-	Thu,  9 Nov 2023 14:47:54 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8416F10E8CD;
+	Thu,  9 Nov 2023 15:33:51 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 90CF910E8BA;
- Thu,  9 Nov 2023 14:47:51 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 00CC210E8CA;
+ Thu,  9 Nov 2023 15:33:40 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1699541273; x=1731077273;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:in-reply-to;
- bh=pMCoir8lhajIvq9ksZxeg9xETGP9/e+PhBR2qqVkxjs=;
- b=EW3OYeVsQel+gIXUQ4o/gF8sj8TKJg0wG3dBYtr8PLxOMLI40yONMtqg
- D4DnsMK+gTHuJGKTzYa1as4aSDEjyBahhxxJlQ2DY7/zSyyh4jYY1pIeJ
- aFG4W6PCV23EB1S+ss+O0FOlt/z3oz10il1UC81jFkx2CGxK33Bs1Rgt7
- NTT4f3ipSqCqSar1WTMs/s6o884XJNzecrrGyBGrXZPu9/qL17r1hpxAD
- f6t2OKPSmSmIXCKzKJ9uhFQFUfzCrwz0pMWBvkScjL7D9Q3KNEJOastww
- Qf128kV25xvlj2kIo/Q20zL0oRmGx/YqQJO1zFyyCrQywks7NT/YfxAfr A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10889"; a="11544207"
-X-IronPort-AV: E=Sophos;i="6.03,289,1694761200"; d="scan'208";a="11544207"
-Received: from fmviesa002.fm.intel.com ([10.60.135.142])
+ t=1699544021; x=1731080021;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version;
+ bh=tbZO18Gel9lZlrdpPSwwRYT3gC3jFkA9CmWrS6PEOS4=;
+ b=F7/ttde6eYpSwJD3AqSKYATfsZdWl3gkqwFv6m+eqmBaL5VSHKp2h7Ek
+ vYqJXzDr0mrpLjK0lnzn1cWmT0W7+PkBy9T7INpyKCp8ODuBHCvuwYLBF
+ kNiBguvXiYJeS5HyGmfrjcU8vpsRXzKP3HJhKL+PZGTavWeTK9ytuZRlR
+ 0dKkuzvC1BpwWJIfq4dknhIgme8vl96JPSRz28rPrHvj5Y13aGyf2mJPT
+ BdejmDFCFkjCpTYoSwD00M44h+BCpXzADA1B8L0VvS61WtIxASVKqsajB
+ 7rOP4gwZM7CM5LJir0uccfC/YeIkbn62qOLy4Q5Uy40+Zp0fXhUtFdoyh w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10889"; a="11554021"
+X-IronPort-AV: E=Sophos;i="6.03,289,1694761200"; d="scan'208";a="11554021"
+Received: from fmsmga004.fm.intel.com ([10.253.24.48])
  by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Nov 2023 06:47:51 -0800
+ 09 Nov 2023 07:33:32 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.03,289,1694761200"; 
-   d="scan'208";a="4732983"
-Received: from aheinala-mobl.ger.corp.intel.com (HELO intel.com)
- ([10.251.217.174])
- by fmviesa002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Nov 2023 06:47:48 -0800
-Date: Thu, 9 Nov 2023 15:47:45 +0100
-From: Andi Shyti <andi.shyti@linux.intel.com>
-To: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
-Message-ID: <ZUzxEQF-PDspWWbS@ashyti-mobl2.lan>
-References: <20231108162905.77602-2-janusz.krzysztofik@linux.intel.com>
+X-IronPort-AV: E=McAfee;i="6600,9927,10889"; a="833855753"
+X-IronPort-AV: E=Sophos;i="6.03,289,1694761200"; d="scan'208";a="833855753"
+Received: from unknown (HELO localhost) ([10.237.66.162])
+ by fmsmga004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 Nov 2023 07:33:29 -0800
+From: Jani Nikula <jani.nikula@intel.com>
+To: dri-devel@lists.freedesktop.org, Maxime Ripard <mripard@kernel.org>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Thomas Zimmermann
+ <tzimmermann@suse.de>
+In-Reply-To: <877cn04hvq.fsf@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <cover.1698747331.git.jani.nikula@intel.com>
+ <877cn04hvq.fsf@intel.com>
+Date: Thu, 09 Nov 2023 17:33:26 +0200
+Message-ID: <87ttpvvt4p.fsf@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20231108162905.77602-2-janusz.krzysztofik@linux.intel.com>
-Subject: Re: [Intel-gfx] [PATCH v2] drm/i915/vma: Fix potential UAF on
- multi-tile platforms
+Content-Type: text/plain
+Subject: Re: [Intel-gfx] [PATCH v2 0/6] drm/edid: split out drm_eld.[ch],
+ add some SAD helpers
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,83 +61,65 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Andrzej Hajda <andrzej.hajda@intel.com>, intel-gfx@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org, Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Chris Wilson <chris.p.wilson@linux.intel.com>,
- Nirmoy Das <nirmoy.das@intel.com>
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi Janusz,
+On Thu, 02 Nov 2023, Jani Nikula <jani.nikula@intel.com> wrote:
+> On Tue, 31 Oct 2023, Jani Nikula <jani.nikula@intel.com> wrote:
+>> v2 of https://patchwork.freedesktop.org/series/123384/
+>>
+>> Jani Nikula (6):
+>>   drm/edid: split out drm_eld.h from drm_edid.h
+>>   drm/eld: replace uint8_t with u8
+>>   drm/edid: include drm_eld.h only where required
+>>   drm/edid: use a temp variable for sads to drop one level of
+>>     dereferences
+>>   drm/edid: add helpers to get/set struct cea_sad from/to 3-byte sad
+>>   drm/eld: add helpers to modify the SADs of an ELD
+>
+> Maxime, Maarten, Thomas -
+>
+> I'm moving a bunch of code around here, and would like to get your acks
+> before merging. I'm planning on merging this via drm-misc-next, it's
+> just that it only has Intel reviews, and don't want to feel like I'm
+> sneaking this in.
 
-On Wed, Nov 08, 2023 at 05:29:06PM +0100, Janusz Krzysztofik wrote:
-> Object debugging tools were sporadically reporting illegal attempts to
-> free a still active i915 VMA object from when parking a GPU tile believed
-> to be idle.
-> 
-> [161.359441] ODEBUG: free active (active state 0) object: ffff88811643b958 object type: i915_active hint: __i915_vma_active+0x0/0x50 [i915]
-> [161.360082] WARNING: CPU: 5 PID: 276 at lib/debugobjects.c:514 debug_print_object+0x80/0xb0
-> ...
-> [161.360304] CPU: 5 PID: 276 Comm: kworker/5:2 Not tainted 6.5.0-rc1-CI_DRM_13375-g003f860e5577+ #1
-> [161.360314] Hardware name: Intel Corporation Rocket Lake Client Platform/RocketLake S UDIMM 6L RVP, BIOS RKLSFWI1.R00.3173.A03.2204210138 04/21/2022
-> [161.360322] Workqueue: i915-unordered __intel_wakeref_put_work [i915]
-> [161.360592] RIP: 0010:debug_print_object+0x80/0xb0
-> ...
-> [161.361347] debug_object_free+0xeb/0x110
-> [161.361362] i915_active_fini+0x14/0x130 [i915]
-> [161.361866] release_references+0xfe/0x1f0 [i915]
-> [161.362543] i915_vma_parked+0x1db/0x380 [i915]
-> [161.363129] __gt_park+0x121/0x230 [i915]
-> [161.363515] ____intel_wakeref_put_last+0x1f/0x70 [i915]
-> 
-> That has been tracked down to be happening when another thread was
-> deactivating the VMA inside __active_retire() helper, after the VMA's
-> active counter was already decremented to 0, but before deactivation of
-> the VMA's object was reported to the object debugging tools.  Root cause
-> has been identified as premature release of last wakeref for the GPU tile
-> to which the active VMA belonged.
-> 
-> In case of single-tile platforms, an engine associated with a request that
-> uses the VMA is usually keeping the tile's wakeref long enough for that
-> VMA to be deactivated on time, before it is going to be freed on last put
-> of that wakeref.  However, on multi-tile platforms, a request may use a
-> VMA from a tile other than the one that hosts the request's engine, then,
-> not protected with the engine's wakeref.
-> 
-> Get an extra wakeref for the VMA's tile when activating it, and put that
-> wakeref only after the VMA is deactivated.  However, exclude GGTT from
-> that processing path, otherwise the GPU never goes idle.  Since
-> __i915_vma_retire() may be called from atomic contexts, use async variant
-> of wakeref put.
-> 
-> CI reports indicate that single-tile platforms also suffer sporadically
-> from the same race, however, unlike in case of multi-tile, exact scenario
-> when that happens hasn't been discovered yet.  Then, while I submit this
-> patch as fix for multi-tile cases, and in hope it also addresses single-
-> tile, I'm not able to blame any particular commit for that issue.
-> However, I'm going to ask i915 maintainers to include this fix, if
-> accepted, in the current rc cycle (6.7-rc) as important for the first
-> supported multi-tile platform -- Meteor Lake.
-> 
-> v2: Get the wakeref before vm mutex to avoid circular locking dependency,
->   - drop questionable Fixes: tag.
-> 
-> Closes: https://gitlab.freedesktop.org/drm/intel/issues/8875
-> Signed-off-by: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
+Merged with Maxime's IRC ack, which I forgot to add to the commit
+messages. *facepalm*. Sorry about that.
 
-Can it be:
+Thanks Mitul for reviews!
 
-Fixes: 12c255b5dad1 ("drm/i915: Provide an i915_active.acquire callback")
-Cc: Chris Wilson <chris@chris-wilson.co.uk>
-Cc: <stable@vger.kernel.org> # v5.4+
+BR,
+Jani.
 
-It's not exactly the one fix we need for as this patch is fixing
-something on its own but not explicitely stated (maybe it was a
-precautionary measure).
+>
+> Thanks,
+> Jani.
+>
+>>
+>>  Documentation/gpu/drm-kms-helpers.rst         |   6 +
+>>  drivers/gpu/drm/Makefile                      |   1 +
+>>  .../gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c |   1 +
+>>  drivers/gpu/drm/drm_edid.c                    |  43 +++--
+>>  drivers/gpu/drm/drm_eld.c                     |  55 ++++++
+>>  drivers/gpu/drm/drm_internal.h                |   6 +
+>>  drivers/gpu/drm/i915/display/intel_audio.c    |   1 +
+>>  .../drm/i915/display/intel_crtc_state_dump.c  |   1 +
+>>  drivers/gpu/drm/i915/display/intel_sdvo.c     |   1 +
+>>  drivers/gpu/drm/nouveau/dispnv50/disp.c       |   1 +
+>>  drivers/gpu/drm/radeon/radeon_audio.c         |   1 +
+>>  drivers/gpu/drm/tegra/hdmi.c                  |   1 +
+>>  drivers/gpu/drm/tegra/sor.c                   |   1 +
+>>  include/drm/drm_edid.h                        | 148 ----------------
+>>  include/drm/drm_eld.h                         | 164 ++++++++++++++++++
+>>  sound/core/pcm_drm_eld.c                      |   1 +
+>>  sound/soc/codecs/hdac_hdmi.c                  |   1 +
+>>  sound/soc/codecs/hdmi-codec.c                 |   1 +
+>>  sound/x86/intel_hdmi_audio.c                  |   1 +
+>>  19 files changed, 275 insertions(+), 160 deletions(-)
+>>  create mode 100644 drivers/gpu/drm/drm_eld.c
+>>  create mode 100644 include/drm/drm_eld.h
 
-But if the fix has to be applied, it has to date back to that
-period, I guess.
-
-Reviewed-by: Andi Shyti <andi.shyti@linux.intel.com>
-
-Andi
+-- 
+Jani Nikula, Intel
