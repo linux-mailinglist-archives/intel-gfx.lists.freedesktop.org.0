@@ -2,46 +2,53 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 85A627E6987
-	for <lists+intel-gfx@lfdr.de>; Thu,  9 Nov 2023 12:28:08 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8359E7E6A0A
+	for <lists+intel-gfx@lfdr.de>; Thu,  9 Nov 2023 12:57:23 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C07A510E208;
-	Thu,  9 Nov 2023 11:28:05 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 862D510E8AF;
+	Thu,  9 Nov 2023 11:57:21 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.151])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1F17010E208
- for <intel-gfx@lists.freedesktop.org>; Thu,  9 Nov 2023 11:28:03 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EFE6810E8AF
+ for <intel-gfx@lists.freedesktop.org>; Thu,  9 Nov 2023 11:57:17 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1699529283; x=1731065283;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=m/w4BDqMtF1SHIhd3BnjHEtgmSlbAZTgTSF4JRZ4fsM=;
- b=KcdlK3m8WtHVb9vVJ2j9ONsihys5zzwd5m8+KoFHH5aOkiRJuxWbgBpy
- Y5D9f5na3IK+FPFhfd3S+1uAvroUqgbIqXbgEhF38SXqIB/DnWTmDTJsy
- KZU8S7UrP96YOHEDN0SCLrfyKjIsPHMgr9O47mMKL1OVKSHXXHFpfFo10
- R72bomPl3lSphLieUNKyJyyYEDMaA1No+ppn0CYkfM72ZqpIiwbMW7Uvt
- nl3+xC3M0wuqwRgC899TtjqVzZuYuUAaQ/iPv8gg2iq/Gwo81drZzRDJf
- plqFmA+JwvcRZtG1Tm3ovSxiSmpBp3iRBdhZUQFyS8f/sW2kyFKVUfb6s Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10888"; a="370168328"
-X-IronPort-AV: E=Sophos;i="6.03,289,1694761200"; d="scan'208";a="370168328"
-Received: from orsmga003.jf.intel.com ([10.7.209.27])
- by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Nov 2023 03:28:02 -0800
+ t=1699531037; x=1731067037;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:in-reply-to;
+ bh=NULZRFNtY76IlyVBq8N2Ydy1/r/hZvUAG2fmPMqM/RA=;
+ b=L97RV4L9Ga0hQpl4zd9Y2uYVi1V/i+66oqRs1C8/i+ebrVUMlFgov9pQ
+ hzRkAbCwNd7VTfkSV+3Sq8yGV3A1VhUnXOJNuAUjeS7/c6C84zTKZPBfU
+ u9sSgsHSybCl7v9KaplCnzAhcY+/4u/5dAWWp8bG9h3LejQROU5wycZ9l
+ HB3rOWDkhFbb9C0/yDMelPbjtAhzI1Xv/Z+h5/ne3Ct8HaMV1tCaRLInI
+ Uk367HeknwERje7cah6J+ASJyvyx9NRuuEKCRTvbneCqsCDa23Y5YW74m
+ wN4Ctww5IHrKhmuwoic2074qxs5fQkTBM2GmMN0d1fBLUczXHD8JGxayS A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10888"; a="476201544"
+X-IronPort-AV: E=Sophos;i="6.03,289,1694761200"; d="scan'208";a="476201544"
+Received: from fmsmga004.fm.intel.com ([10.253.24.48])
+ by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 Nov 2023 03:57:17 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10888"; a="713266509"
-X-IronPort-AV: E=Sophos;i="6.03,289,1694761200"; d="scan'208";a="713266509"
-Received: from sorvi2.fi.intel.com ([10.237.72.194])
- by orsmga003.jf.intel.com with ESMTP; 09 Nov 2023 03:28:00 -0800
-From: Mika Kahola <mika.kahola@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Thu,  9 Nov 2023 13:21:48 +0200
-Message-Id: <20231109112148.309669-1-mika.kahola@intel.com>
-X-Mailer: git-send-email 2.34.1
+X-IronPort-AV: E=McAfee;i="6600,9927,10888"; a="833805799"
+X-IronPort-AV: E=Sophos;i="6.03,289,1694761200"; d="scan'208";a="833805799"
+Received: from lkp-server01.sh.intel.com (HELO 17d9e85e5079) ([10.239.97.150])
+ by fmsmga004.fm.intel.com with ESMTP; 09 Nov 2023 03:57:16 -0800
+Received: from kbuild by 17d9e85e5079 with local (Exim 4.96)
+ (envelope-from <lkp@intel.com>) id 1r13es-0008hI-0R;
+ Thu, 09 Nov 2023 11:57:14 +0000
+Date: Thu, 9 Nov 2023 19:56:10 +0800
+From: kernel test robot <lkp@intel.com>
+To: Somalapuram Amaranath <Amaranath.Somalapuram@amd.com>,
+ intel-gfx@lists.freedesktop.org
+Message-ID: <202311091943.7pZTiigS-lkp@intel.com>
+References: <20231109023843.32326-1-Amaranath.Somalapuram@amd.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH v2] drm/i915/mtl: C20 state verification
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20231109023843.32326-1-Amaranath.Somalapuram@amd.com>
+Subject: Re: [Intel-gfx] [PATCH] drm/ttm: replace busy placement with flags
+ v2
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -54,200 +61,69 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: Somalapuram Amaranath <Amaranath.Somalapuram@amd.com>,
+ Christian =?iso-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>,
+ oe-kbuild-all@lists.linux.dev
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Add state verification for C20 as we have one
-for C10.
+Hi Somalapuram,
 
-V2: Use abstractation of HW readout (Gustavo)
-    Drop MPLLA/B from message for TX and CMN
-    parameters (Gustavo)
+kernel test robot noticed the following build warnings:
 
-Reviewed-by: Gustavo Sousa <gustavo.sousa@intel.com> (v1)
-Signed-off-by: Mika Kahola <mika.kahola@intel.com>
----
- drivers/gpu/drm/i915/display/intel_cx0_phy.c  | 120 +++++++++++++-----
- drivers/gpu/drm/i915/display/intel_cx0_phy.h  |   2 +-
- .../drm/i915/display/intel_modeset_verify.c   |   2 +-
- 3 files changed, 88 insertions(+), 36 deletions(-)
+[auto build test WARNING on drm-tip/drm-tip]
 
-diff --git a/drivers/gpu/drm/i915/display/intel_cx0_phy.c b/drivers/gpu/drm/i915/display/intel_cx0_phy.c
-index b2ad4c6172f6..a8fa76580802 100644
---- a/drivers/gpu/drm/i915/display/intel_cx0_phy.c
-+++ b/drivers/gpu/drm/i915/display/intel_cx0_phy.c
-@@ -3017,55 +3017,33 @@ intel_mtl_port_pll_type(struct intel_encoder *encoder,
- 		return ICL_PORT_DPLL_DEFAULT;
- }
- 
--void intel_c10pll_state_verify(struct intel_atomic_state *state,
--			       struct intel_crtc *crtc)
-+static void intel_c10pll_state_verify(const struct intel_crtc_state *state,
-+				      struct intel_crtc *crtc,
-+				      struct intel_encoder *encoder,
-+				      struct intel_c10pll_state *mpllb_hw_state)
- {
--	struct drm_i915_private *i915 = to_i915(state->base.dev);
--	const struct intel_crtc_state *new_crtc_state =
--		intel_atomic_get_new_crtc_state(state, crtc);
--	struct intel_c10pll_state mpllb_hw_state = {};
--	const struct intel_c10pll_state *mpllb_sw_state = &new_crtc_state->cx0pll_state.c10;
--	struct intel_encoder *encoder;
--	enum phy phy;
-+	struct drm_i915_private *i915 = to_i915(crtc->base.dev);
-+	const struct intel_c10pll_state *mpllb_sw_state = &state->cx0pll_state.c10;
- 	int i;
- 
--	if (DISPLAY_VER(i915) < 14)
--		return;
--
--	if (!new_crtc_state->hw.active)
--		return;
--
--	/* intel_get_crtc_new_encoder() only works for modeset/fastset commits */
--	if (!intel_crtc_needs_modeset(new_crtc_state) &&
--	    !intel_crtc_needs_fastset(new_crtc_state))
--		return;
--
--	encoder = intel_get_crtc_new_encoder(state, new_crtc_state);
--	phy = intel_port_to_phy(i915, encoder->port);
--
--	if (!intel_is_c10phy(i915, phy))
--		return;
--
--	intel_c10pll_readout_hw_state(encoder, &mpllb_hw_state);
--
- 	for (i = 0; i < ARRAY_SIZE(mpllb_sw_state->pll); i++) {
- 		u8 expected = mpllb_sw_state->pll[i];
- 
--		I915_STATE_WARN(i915, mpllb_hw_state.pll[i] != expected,
-+		I915_STATE_WARN(i915, mpllb_hw_state->pll[i] != expected,
- 				"[CRTC:%d:%s] mismatch in C10MPLLB: Register[%d] (expected 0x%02x, found 0x%02x)",
- 				crtc->base.base.id, crtc->base.name, i,
--				expected, mpllb_hw_state.pll[i]);
-+				expected, mpllb_hw_state->pll[i]);
- 	}
- 
--	I915_STATE_WARN(i915, mpllb_hw_state.tx != mpllb_sw_state->tx,
-+	I915_STATE_WARN(i915, mpllb_hw_state->tx != mpllb_sw_state->tx,
- 			"[CRTC:%d:%s] mismatch in C10MPLLB: Register TX0 (expected 0x%02x, found 0x%02x)",
- 			crtc->base.base.id, crtc->base.name,
--			mpllb_sw_state->tx, mpllb_hw_state.tx);
-+			mpllb_sw_state->tx, mpllb_hw_state->tx);
- 
--	I915_STATE_WARN(i915, mpllb_hw_state.cmn != mpllb_sw_state->cmn,
-+	I915_STATE_WARN(i915, mpllb_hw_state->cmn != mpllb_sw_state->cmn,
- 			"[CRTC:%d:%s] mismatch in C10MPLLB: Register CMN0 (expected 0x%02x, found 0x%02x)",
- 			crtc->base.base.id, crtc->base.name,
--			mpllb_sw_state->cmn, mpllb_hw_state.cmn);
-+			mpllb_sw_state->cmn, mpllb_hw_state->cmn);
- }
- 
- void intel_cx0pll_readout_hw_state(struct intel_encoder *encoder,
-@@ -3091,3 +3069,77 @@ int intel_cx0pll_calc_port_clock(struct intel_encoder *encoder,
- 
- 	return intel_c20pll_calc_port_clock(encoder, &pll_state->c20);
- }
-+
-+static void intel_c20pll_state_verify(const struct intel_crtc_state *state,
-+				      struct intel_crtc *crtc,
-+				      struct intel_encoder *encoder,
-+				      struct intel_c20pll_state *mpll_hw_state)
-+{
-+	struct drm_i915_private *i915 = to_i915(crtc->base.dev);
-+	const struct intel_c20pll_state *mpll_sw_state = &state->cx0pll_state.c20;
-+	bool use_mplla;
-+	int i;
-+
-+	use_mplla = intel_c20_use_mplla(mpll_hw_state->clock);
-+	if (use_mplla) {
-+		for (i = 0; i < ARRAY_SIZE(mpll_sw_state->mplla); i++) {
-+			I915_STATE_WARN(i915, mpll_hw_state->mplla[i] != mpll_sw_state->mplla[i],
-+					"[CRTC:%d:%s] mismatch in C20MPLLA: Register[%d] (expected 0x%04x, found 0x%04x)",
-+					crtc->base.base.id, crtc->base.name, i,
-+					mpll_sw_state->mplla[i], mpll_hw_state->mplla[i]);
-+		}
-+	} else {
-+		for (i = 0; i < ARRAY_SIZE(mpll_sw_state->mpllb); i++) {
-+			I915_STATE_WARN(i915, mpll_hw_state->mpllb[i] != mpll_sw_state->mpllb[i],
-+					"[CRTC:%d:%s] mismatch in C20MPLLB: Register[%d] (expected 0x%04x, found 0x%04x)",
-+					crtc->base.base.id, crtc->base.name, i,
-+					mpll_sw_state->mpllb[i], mpll_hw_state->mpllb[i]);
-+		}
-+	}
-+
-+	for (i = 0; i < ARRAY_SIZE(mpll_sw_state->tx); i++) {
-+		I915_STATE_WARN(i915, mpll_hw_state->tx[i] != mpll_sw_state->tx[i],
-+				"[CRTC:%d:%s] mismatch in C20: Register TX[%i] (expected 0x%04x, found 0x%04x)",
-+				crtc->base.base.id, crtc->base.name, i,
-+				mpll_sw_state->tx[i], mpll_hw_state->tx[i]);
-+	}
-+
-+	for (i = 0; i < ARRAY_SIZE(mpll_sw_state->cmn); i++) {
-+		I915_STATE_WARN(i915, mpll_hw_state->cmn[i] != mpll_sw_state->cmn[i],
-+				"[CRTC:%d:%s] mismatch in C20: Register CMN[%i] (expected 0x%04x, found 0x%04x)",
-+				crtc->base.base.id, crtc->base.name, i,
-+				mpll_sw_state->cmn[i], mpll_hw_state->cmn[i]);
-+	}
-+}
-+
-+void intel_cx0pll_state_verify(struct intel_atomic_state *state,
-+			       struct intel_crtc *crtc)
-+{
-+	struct drm_i915_private *i915 = to_i915(state->base.dev);
-+	const struct intel_crtc_state *new_crtc_state =
-+		intel_atomic_get_new_crtc_state(state, crtc);
-+	struct intel_encoder *encoder;
-+	struct intel_cx0pll_state mpll_hw_state = {};
-+	enum phy phy;
-+
-+	if (DISPLAY_VER(i915) < 14)
-+		return;
-+
-+	if (!new_crtc_state->hw.active)
-+		return;
-+
-+	/* intel_get_crtc_new_encoder() only works for modeset/fastset commits */
-+	if (!intel_crtc_needs_modeset(new_crtc_state) &&
-+	    !intel_crtc_needs_fastset(new_crtc_state))
-+		return;
-+
-+	encoder = intel_get_crtc_new_encoder(state, new_crtc_state);
-+	phy = intel_port_to_phy(i915, encoder->port);
-+
-+	intel_cx0pll_readout_hw_state(encoder, &mpll_hw_state);
-+
-+	if (intel_is_c10phy(i915, phy))
-+		intel_c10pll_state_verify(new_crtc_state, crtc, encoder, &mpll_hw_state.c10);
-+	else
-+		intel_c20pll_state_verify(new_crtc_state, crtc, encoder, &mpll_hw_state.c20);
-+}
-diff --git a/drivers/gpu/drm/i915/display/intel_cx0_phy.h b/drivers/gpu/drm/i915/display/intel_cx0_phy.h
-index 222aed16e739..c6682677253a 100644
---- a/drivers/gpu/drm/i915/display/intel_cx0_phy.h
-+++ b/drivers/gpu/drm/i915/display/intel_cx0_phy.h
-@@ -38,7 +38,7 @@ int intel_cx0pll_calc_port_clock(struct intel_encoder *encoder,
- 
- void intel_c10pll_dump_hw_state(struct drm_i915_private *dev_priv,
- 				const struct intel_c10pll_state *hw_state);
--void intel_c10pll_state_verify(struct intel_atomic_state *state,
-+void intel_cx0pll_state_verify(struct intel_atomic_state *state,
- 			       struct intel_crtc *crtc);
- void intel_c20pll_dump_hw_state(struct drm_i915_private *i915,
- 				const struct intel_c20pll_state *hw_state);
-diff --git a/drivers/gpu/drm/i915/display/intel_modeset_verify.c b/drivers/gpu/drm/i915/display/intel_modeset_verify.c
-index 5e1c2c780412..076298a8d405 100644
---- a/drivers/gpu/drm/i915/display/intel_modeset_verify.c
-+++ b/drivers/gpu/drm/i915/display/intel_modeset_verify.c
-@@ -244,7 +244,7 @@ void intel_modeset_verify_crtc(struct intel_atomic_state *state,
- 	verify_crtc_state(state, crtc);
- 	intel_shared_dpll_state_verify(state, crtc);
- 	intel_mpllb_state_verify(state, crtc);
--	intel_c10pll_state_verify(state, crtc);
-+	intel_cx0pll_state_verify(state, crtc);
- }
- 
- void intel_modeset_verify_disabled(struct intel_atomic_state *state)
+url:    https://github.com/intel-lab-lkp/linux/commits/Somalapuram-Amaranath/drm-ttm-replace-busy-placement-with-flags-v2/20231109-104055
+base:   git://anongit.freedesktop.org/drm/drm-tip drm-tip
+patch link:    https://lore.kernel.org/r/20231109023843.32326-1-Amaranath.Somalapuram%40amd.com
+patch subject: [Intel-gfx] [PATCH] drm/ttm: replace busy placement with flags v2
+config: i386-randconfig-012-20231109 (https://download.01.org/0day-ci/archive/20231109/202311091943.7pZTiigS-lkp@intel.com/config)
+compiler: gcc-9 (Debian 9.3.0-22) 9.3.0
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20231109/202311091943.7pZTiigS-lkp@intel.com/reproduce)
+
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202311091943.7pZTiigS-lkp@intel.com/
+
+All warnings (new ones prefixed by >>):
+
+   drivers/gpu/drm/i915/gem/i915_gem_ttm.c: In function 'i915_ttm_get_pages':
+>> drivers/gpu/drm/i915/gem/i915_gem_ttm.c:165:18: warning: 'places.flags' is used uninitialized in this function [-Wuninitialized]
+     165 |  places[0].flags |= TTM_PL_FLAG_IDLE;
+         |                  ^~
+
+
+vim +165 drivers/gpu/drm/i915/gem/i915_gem_ttm.c
+
+   155	
+   156	static void
+   157	i915_ttm_placement_from_obj(const struct drm_i915_gem_object *obj,
+   158				    struct ttm_place *places,
+   159				    struct ttm_placement *placement)
+   160	{
+   161		unsigned int num_allowed = obj->mm.n_placements;
+   162		unsigned int flags = obj->flags;
+   163		unsigned int i;
+   164	
+ > 165		places[0].flags |= TTM_PL_FLAG_IDLE;
+   166		i915_ttm_place_from_region(num_allowed ? obj->mm.placements[0] :
+   167					   obj->mm.region, &places[0], obj->bo_offset,
+   168					   obj->base.size, flags);
+   169	
+   170		/* Cache this on object? */
+   171		for (i = 0; i < num_allowed; ++i) {
+   172			i915_ttm_place_from_region(obj->mm.placements[i],
+   173						   &places[i + 1], obj->bo_offset,
+   174						   obj->base.size, flags);
+   175			places[i + 1].flags |= TTM_PL_FLAG_BUSY;
+   176		}
+   177	
+   178		placement->num_placement = num_allowed + 1;
+   179		placement->placement = places;
+   180	}
+   181	
+
 -- 
-2.34.1
-
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
