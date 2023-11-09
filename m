@@ -1,54 +1,27 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 004897E6D75
-	for <lists+intel-gfx@lfdr.de>; Thu,  9 Nov 2023 16:33:53 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id C4B757E6D7B
+	for <lists+intel-gfx@lfdr.de>; Thu,  9 Nov 2023 16:35:01 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8416F10E8CD;
-	Thu,  9 Nov 2023 15:33:51 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8795310E8D1;
+	Thu,  9 Nov 2023 15:34:58 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 00CC210E8CA;
- Thu,  9 Nov 2023 15:33:40 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1699544021; x=1731080021;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=tbZO18Gel9lZlrdpPSwwRYT3gC3jFkA9CmWrS6PEOS4=;
- b=F7/ttde6eYpSwJD3AqSKYATfsZdWl3gkqwFv6m+eqmBaL5VSHKp2h7Ek
- vYqJXzDr0mrpLjK0lnzn1cWmT0W7+PkBy9T7INpyKCp8ODuBHCvuwYLBF
- kNiBguvXiYJeS5HyGmfrjcU8vpsRXzKP3HJhKL+PZGTavWeTK9ytuZRlR
- 0dKkuzvC1BpwWJIfq4dknhIgme8vl96JPSRz28rPrHvj5Y13aGyf2mJPT
- BdejmDFCFkjCpTYoSwD00M44h+BCpXzADA1B8L0VvS61WtIxASVKqsajB
- 7rOP4gwZM7CM5LJir0uccfC/YeIkbn62qOLy4Q5Uy40+Zp0fXhUtFdoyh w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10889"; a="11554021"
-X-IronPort-AV: E=Sophos;i="6.03,289,1694761200"; d="scan'208";a="11554021"
-Received: from fmsmga004.fm.intel.com ([10.253.24.48])
- by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Nov 2023 07:33:32 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10889"; a="833855753"
-X-IronPort-AV: E=Sophos;i="6.03,289,1694761200"; d="scan'208";a="833855753"
-Received: from unknown (HELO localhost) ([10.237.66.162])
- by fmsmga004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Nov 2023 07:33:29 -0800
-From: Jani Nikula <jani.nikula@intel.com>
-To: dri-devel@lists.freedesktop.org, Maxime Ripard <mripard@kernel.org>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Thomas Zimmermann
- <tzimmermann@suse.de>
-In-Reply-To: <877cn04hvq.fsf@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <cover.1698747331.git.jani.nikula@intel.com>
- <877cn04hvq.fsf@intel.com>
-Date: Thu, 09 Nov 2023 17:33:26 +0200
-Message-ID: <87ttpvvt4p.fsf@intel.com>
+X-Greylist: delayed 103464 seconds by postgrey-1.36 at gabe;
+ Thu, 09 Nov 2023 15:34:54 UTC
+Received: from mblankhorst.nl (lankhorst.se [141.105.120.124])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9E3B410E8CE
+ for <intel-gfx@lists.freedesktop.org>; Thu,  9 Nov 2023 15:34:54 +0000 (UTC)
+From: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Thu,  9 Nov 2023 16:34:48 +0100
+Message-Id: <20231109153450.142185-1-maarten.lankhorst@linux.intel.com>
+X-Mailer: git-send-email 2.39.2
 MIME-Version: 1.0
-Content-Type: text/plain
-Subject: Re: [Intel-gfx] [PATCH v2 0/6] drm/edid: split out drm_eld.[ch],
- add some SAD helpers
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-gfx] [PATCH 1/3] drm: Add drm_vblank_work_flush_all().
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,65 +34,70 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, 02 Nov 2023, Jani Nikula <jani.nikula@intel.com> wrote:
-> On Tue, 31 Oct 2023, Jani Nikula <jani.nikula@intel.com> wrote:
->> v2 of https://patchwork.freedesktop.org/series/123384/
->>
->> Jani Nikula (6):
->>   drm/edid: split out drm_eld.h from drm_edid.h
->>   drm/eld: replace uint8_t with u8
->>   drm/edid: include drm_eld.h only where required
->>   drm/edid: use a temp variable for sads to drop one level of
->>     dereferences
->>   drm/edid: add helpers to get/set struct cea_sad from/to 3-byte sad
->>   drm/eld: add helpers to modify the SADs of an ELD
->
-> Maxime, Maarten, Thomas -
->
-> I'm moving a bunch of code around here, and would like to get your acks
-> before merging. I'm planning on merging this via drm-misc-next, it's
-> just that it only has Intel reviews, and don't want to feel like I'm
-> sneaking this in.
+In some cases we want to flush all vblank work, right before vblank_off
+for example. Add a simple function to make this possible.
 
-Merged with Maxime's IRC ack, which I forgot to add to the commit
-messages. *facepalm*. Sorry about that.
+Signed-off-by: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+---
+ drivers/gpu/drm/drm_vblank_work.c | 22 ++++++++++++++++++++++
+ include/drm/drm_vblank_work.h     |  2 ++
+ 2 files changed, 24 insertions(+)
 
-Thanks Mitul for reviews!
-
-BR,
-Jani.
-
->
-> Thanks,
-> Jani.
->
->>
->>  Documentation/gpu/drm-kms-helpers.rst         |   6 +
->>  drivers/gpu/drm/Makefile                      |   1 +
->>  .../gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c |   1 +
->>  drivers/gpu/drm/drm_edid.c                    |  43 +++--
->>  drivers/gpu/drm/drm_eld.c                     |  55 ++++++
->>  drivers/gpu/drm/drm_internal.h                |   6 +
->>  drivers/gpu/drm/i915/display/intel_audio.c    |   1 +
->>  .../drm/i915/display/intel_crtc_state_dump.c  |   1 +
->>  drivers/gpu/drm/i915/display/intel_sdvo.c     |   1 +
->>  drivers/gpu/drm/nouveau/dispnv50/disp.c       |   1 +
->>  drivers/gpu/drm/radeon/radeon_audio.c         |   1 +
->>  drivers/gpu/drm/tegra/hdmi.c                  |   1 +
->>  drivers/gpu/drm/tegra/sor.c                   |   1 +
->>  include/drm/drm_edid.h                        | 148 ----------------
->>  include/drm/drm_eld.h                         | 164 ++++++++++++++++++
->>  sound/core/pcm_drm_eld.c                      |   1 +
->>  sound/soc/codecs/hdac_hdmi.c                  |   1 +
->>  sound/soc/codecs/hdmi-codec.c                 |   1 +
->>  sound/x86/intel_hdmi_audio.c                  |   1 +
->>  19 files changed, 275 insertions(+), 160 deletions(-)
->>  create mode 100644 drivers/gpu/drm/drm_eld.c
->>  create mode 100644 include/drm/drm_eld.h
-
+diff --git a/drivers/gpu/drm/drm_vblank_work.c b/drivers/gpu/drm/drm_vblank_work.c
+index bd481fdd6b870..27c8646a79c8e 100644
+--- a/drivers/gpu/drm/drm_vblank_work.c
++++ b/drivers/gpu/drm/drm_vblank_work.c
+@@ -229,6 +229,28 @@ void drm_vblank_work_flush(struct drm_vblank_work *work)
+ }
+ EXPORT_SYMBOL(drm_vblank_work_flush);
+ 
++/**
++ * drm_vblank_work_flush_all - flush all currently pending vblank work on crtc.
++ * @crtc: crtc for which vblank work to flush
++ *
++ * Wait until all currently queued vblank work on @crtc
++ * has finished executing once.
++ */
++void drm_vblank_work_flush_all(struct drm_crtc *crtc)
++{
++	struct drm_device *dev = crtc->dev;
++	struct drm_vblank_crtc *vblank = &dev->vblank[drm_crtc_index(crtc)];
++
++	spin_lock_irq(&dev->event_lock);
++	wait_event_lock_irq(vblank->work_wait_queue,
++			    waitqueue_active(&vblank->work_wait_queue),
++			    dev->event_lock);
++	spin_unlock_irq(&dev->event_lock);
++
++	kthread_flush_worker(vblank->worker);
++}
++EXPORT_SYMBOL(drm_vblank_work_flush_all);
++
+ /**
+  * drm_vblank_work_init - initialize a vblank work item
+  * @work: vblank work item
+diff --git a/include/drm/drm_vblank_work.h b/include/drm/drm_vblank_work.h
+index eb41d0810c4ff..e04d436b72973 100644
+--- a/include/drm/drm_vblank_work.h
++++ b/include/drm/drm_vblank_work.h
+@@ -17,6 +17,7 @@ struct drm_crtc;
+  * drm_vblank_work_init()
+  * drm_vblank_work_cancel_sync()
+  * drm_vblank_work_flush()
++ * drm_vblank_work_flush_all()
+  */
+ struct drm_vblank_work {
+ 	/**
+@@ -67,5 +68,6 @@ void drm_vblank_work_init(struct drm_vblank_work *work, struct drm_crtc *crtc,
+ 			  void (*func)(struct kthread_work *work));
+ bool drm_vblank_work_cancel_sync(struct drm_vblank_work *work);
+ void drm_vblank_work_flush(struct drm_vblank_work *work);
++void drm_vblank_work_flush_all(struct drm_crtc *crtc);
+ 
+ #endif /* !_DRM_VBLANK_WORK_H_ */
 -- 
-Jani Nikula, Intel
+2.39.2
+
