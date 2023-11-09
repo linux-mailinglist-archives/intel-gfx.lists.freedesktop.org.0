@@ -1,28 +1,49 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4D6CE7E6D79
-	for <lists+intel-gfx@lfdr.de>; Thu,  9 Nov 2023 16:35:00 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id A28E67E6E4B
+	for <lists+intel-gfx@lfdr.de>; Thu,  9 Nov 2023 17:08:49 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5182310E8CF;
-	Thu,  9 Nov 2023 15:34:58 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8547510E8E5;
+	Thu,  9 Nov 2023 16:08:46 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mblankhorst.nl (lankhorst.se [141.105.120.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id F38E510E8CE
- for <intel-gfx@lists.freedesktop.org>; Thu,  9 Nov 2023 15:34:55 +0000 (UTC)
-From: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.88])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 202F810E8E6
+ for <intel-gfx@lists.freedesktop.org>; Thu,  9 Nov 2023 16:08:41 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1699546121; x=1731082121;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=p3NGGKTgArN/v6ynAQZHcTrirQMLDaqxV4ChcLW3UMA=;
+ b=QaE9u7Hc6aP2kTvdKs8hz4fqCtJP7MSUU7OftE0a7LOiRAxa6AHVVVg1
+ XYOMI8qvhOnDhc+2KjmxWxhkqLO074p3k1amgQ8QqSgI+rPQ/sfdAhc0S
+ eAA623u1JiewcxGctKwC4NZkMfQqgLc0aF0OAgKCgETr7INzqNBL3RVxq
+ U7eGeUQGPzomOkmuOFSxwJjuRPzOJZOrH1uFHCwrkgEkRuDShr1VXZWEB
+ 5fY1qNtINJJOAvkj+JOeXyvyt1nTGTEgbe/mu2yl14iBMzA9xwmHqknTB
+ 3sRKIVk0nGmYS4azs8D6xxUyM6eRgnCqy1m4nVG8CsiqqrxlY2IB4ayP7 g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10889"; a="421110765"
+X-IronPort-AV: E=Sophos;i="6.03,289,1694761200"; d="scan'208";a="421110765"
+Received: from orsmga004.jf.intel.com ([10.7.209.38])
+ by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 Nov 2023 08:07:30 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10889"; a="887050493"
+X-IronPort-AV: E=Sophos;i="6.03,289,1694761200"; d="scan'208";a="887050493"
+Received: from unknown (HELO localhost) ([10.237.66.162])
+ by orsmga004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 Nov 2023 08:07:28 -0800
+From: Jani Nikula <jani.nikula@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Thu,  9 Nov 2023 16:34:50 +0100
-Message-Id: <20231109153450.142185-3-maarten.lankhorst@linux.intel.com>
+Date: Thu,  9 Nov 2023 18:07:21 +0200
+Message-Id: <20231109160722.3372379-1-jani.nikula@intel.com>
 X-Mailer: git-send-email 2.39.2
-In-Reply-To: <20231109153450.142185-1-maarten.lankhorst@linux.intel.com>
-References: <20231109153450.142185-1-maarten.lankhorst@linux.intel.com>
 MIME-Version: 1.0
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH 3/3] drm/i915: Use a different vblank worker for
- atomic unpin
+Subject: [Intel-gfx] [PATCH 1/2] drm/i915: abstract plane protection check
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -35,113 +56,53 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: jani.nikula@intel.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-For the atomic codepath we unpin_work in old_plane_state to unpin the
-old fb. As this happened after swapping state, this is allowed.
+Centralize the conditions in a function.
 
-Use the unpin_work only as a barrier, and keep doing the actual
-unpinning in the atomic path.
-
-Signed-off-by: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+Signed-off-by: Jani Nikula <jani.nikula@intel.com>
 ---
- .../gpu/drm/i915/display/intel_atomic_plane.c | 18 ++++++++++++
- .../gpu/drm/i915/display/intel_atomic_plane.h |  2 ++
- drivers/gpu/drm/i915/display/intel_crtc.c     | 28 +++++++++++++++++++
- 3 files changed, 48 insertions(+)
+ .../gpu/drm/i915/display/skl_universal_plane.c | 18 ++++++++++++++----
+ 1 file changed, 14 insertions(+), 4 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_atomic_plane.c b/drivers/gpu/drm/i915/display/intel_atomic_plane.c
-index 06c2455bdd788..6ddb4f4ec79ac 100644
---- a/drivers/gpu/drm/i915/display/intel_atomic_plane.c
-+++ b/drivers/gpu/drm/i915/display/intel_atomic_plane.c
-@@ -1164,6 +1164,9 @@ intel_cleanup_plane_fb(struct drm_plane *plane,
- 	intel_display_rps_mark_interactive(dev_priv, state, false);
- 
- 	/* Should only be called after a successful intel_prepare_plane_fb()! */
-+	if (old_plane_state->unpin_work.vblank)
-+		drm_vblank_work_flush(&old_plane_state->unpin_work);
-+
- 	intel_plane_unpin_fb(old_plane_state);
+diff --git a/drivers/gpu/drm/i915/display/skl_universal_plane.c b/drivers/gpu/drm/i915/display/skl_universal_plane.c
+index 68035675ae3c..98acf25a5ca3 100644
+--- a/drivers/gpu/drm/i915/display/skl_universal_plane.c
++++ b/drivers/gpu/drm/i915/display/skl_universal_plane.c
+@@ -1866,6 +1866,19 @@ static bool pxp_is_borked(struct drm_i915_gem_object *obj)
+ 	return i915_gem_object_is_protected(obj) && !bo_has_valid_encryption(obj);
  }
  
-@@ -1176,3 +1179,18 @@ void intel_plane_helper_add(struct intel_plane *plane)
- {
- 	drm_plane_helper_add(&plane->base, &intel_plane_helper_funcs);
- }
-+
-+/* Completion is enough */
-+static void intel_plane_cursor_vblank_work(struct kthread_work *base)
-+{ }
-+
-+void intel_plane_init_cursor_vblank_work(struct intel_plane_state *old_plane_state,
-+					 struct intel_plane_state *new_plane_state)
++static void check_protection(struct intel_plane_state *plane_state)
 +{
-+	if (!old_plane_state->ggtt_vma ||
-+	    old_plane_state->ggtt_vma == new_plane_state->ggtt_vma)
++	struct intel_plane *plane = to_intel_plane(plane_state->uapi.plane);
++	struct drm_i915_private *i915 = to_i915(plane->base.dev);
++	const struct drm_framebuffer *fb = plane_state->hw.fb;
++
++	if (DISPLAY_VER(i915) < 11)
 +		return;
 +
-+	drm_vblank_work_init(&old_plane_state->unpin_work, old_plane_state->uapi.crtc,
-+			     intel_plane_cursor_vblank_work);
++	plane_state->decrypt = bo_has_valid_encryption(intel_fb_obj(fb));
++	plane_state->force_black = pxp_is_borked(intel_fb_obj(fb));
 +}
-diff --git a/drivers/gpu/drm/i915/display/intel_atomic_plane.h b/drivers/gpu/drm/i915/display/intel_atomic_plane.h
-index 191dad0efc8e6..5a897cf6fa021 100644
---- a/drivers/gpu/drm/i915/display/intel_atomic_plane.h
-+++ b/drivers/gpu/drm/i915/display/intel_atomic_plane.h
-@@ -66,5 +66,7 @@ int intel_plane_check_src_coordinates(struct intel_plane_state *plane_state);
- void intel_plane_set_invisible(struct intel_crtc_state *crtc_state,
- 			       struct intel_plane_state *plane_state);
- void intel_plane_helper_add(struct intel_plane *plane);
-+void intel_plane_init_cursor_vblank_work(struct intel_plane_state *old_plane_state,
-+					 struct intel_plane_state *new_plane_state);
++
+ static int skl_plane_check(struct intel_crtc_state *crtc_state,
+ 			   struct intel_plane_state *plane_state)
+ {
+@@ -1910,10 +1923,7 @@ static int skl_plane_check(struct intel_crtc_state *crtc_state,
+ 	if (ret)
+ 		return ret;
  
- #endif /* __INTEL_ATOMIC_PLANE_H__ */
-diff --git a/drivers/gpu/drm/i915/display/intel_crtc.c b/drivers/gpu/drm/i915/display/intel_crtc.c
-index 1fd068e6e26ca..755c40fd0ac13 100644
---- a/drivers/gpu/drm/i915/display/intel_crtc.c
-+++ b/drivers/gpu/drm/i915/display/intel_crtc.c
-@@ -559,6 +559,19 @@ void intel_pipe_update_start(struct intel_atomic_state *state,
- 	if (intel_crtc_needs_vblank_work(new_crtc_state))
- 		intel_crtc_vblank_work_init(new_crtc_state);
+-	if (DISPLAY_VER(dev_priv) >= 11) {
+-		plane_state->decrypt = bo_has_valid_encryption(intel_fb_obj(fb));
+-		plane_state->force_black = pxp_is_borked(intel_fb_obj(fb));
+-	}
++	check_protection(plane_state);
  
-+	if (state->base.legacy_cursor_update) {
-+		struct intel_plane *plane;
-+		struct intel_plane_state *old_plane_state, *new_plane_state;
-+		int i;
-+
-+		for_each_oldnew_intel_plane_in_state(state, plane, old_plane_state,
-+						     new_plane_state, i) {
-+			if (old_plane_state->uapi.crtc == &crtc->base)
-+				intel_plane_init_cursor_vblank_work(old_plane_state,
-+								    new_plane_state);
-+		}
-+	}
-+
- 	intel_crtc_vblank_evade_scanlines(state, crtc, &min, &max, &vblank_start);
- 	if (min <= 0 || max <= 0)
- 		goto irq_disable;
-@@ -721,6 +734,21 @@ void intel_pipe_update_end(struct intel_atomic_state *state,
- 		new_crtc_state->uapi.event = NULL;
- 	}
- 
-+	if (state->base.legacy_cursor_update) {
-+		struct intel_plane *plane;
-+		struct intel_plane_state *old_plane_state;
-+		int i;
-+
-+		for_each_old_intel_plane_in_state(state, plane, old_plane_state, i) {
-+			if (old_plane_state->uapi.crtc == &crtc->base &&
-+			    old_plane_state->unpin_work.vblank) {
-+				drm_vblank_work_schedule(&old_plane_state->unpin_work,
-+							 drm_crtc_accurate_vblank_count(&crtc->base) + 1,
-+							 false);
-+			}
-+		}
-+	}
-+
- 	/*
- 	 * Send VRR Push to terminate Vblank. If we are already in vblank
- 	 * this has to be done _after_ sampling the frame counter, as
+ 	/* HW only has 8 bits pixel precision, disable plane if invisible */
+ 	if (!(plane_state->hw.alpha >> 8))
 -- 
 2.39.2
 
