@@ -1,54 +1,55 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8359E7E6A0A
-	for <lists+intel-gfx@lfdr.de>; Thu,  9 Nov 2023 12:57:23 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id A63687E6AFB
+	for <lists+intel-gfx@lfdr.de>; Thu,  9 Nov 2023 14:07:48 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 862D510E8AF;
-	Thu,  9 Nov 2023 11:57:21 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5581110E20B;
+	Thu,  9 Nov 2023 13:07:41 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EFE6810E8AF
- for <intel-gfx@lists.freedesktop.org>; Thu,  9 Nov 2023 11:57:17 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0053B897FD;
+ Thu,  9 Nov 2023 13:07:30 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1699531037; x=1731067037;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:in-reply-to;
- bh=NULZRFNtY76IlyVBq8N2Ydy1/r/hZvUAG2fmPMqM/RA=;
- b=L97RV4L9Ga0hQpl4zd9Y2uYVi1V/i+66oqRs1C8/i+ebrVUMlFgov9pQ
- hzRkAbCwNd7VTfkSV+3Sq8yGV3A1VhUnXOJNuAUjeS7/c6C84zTKZPBfU
- u9sSgsHSybCl7v9KaplCnzAhcY+/4u/5dAWWp8bG9h3LejQROU5wycZ9l
- HB3rOWDkhFbb9C0/yDMelPbjtAhzI1Xv/Z+h5/ne3Ct8HaMV1tCaRLInI
- Uk367HeknwERje7cah6J+ASJyvyx9NRuuEKCRTvbneCqsCDa23Y5YW74m
- wN4Ctww5IHrKhmuwoic2074qxs5fQkTBM2GmMN0d1fBLUczXHD8JGxayS A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10888"; a="476201544"
-X-IronPort-AV: E=Sophos;i="6.03,289,1694761200"; d="scan'208";a="476201544"
-Received: from fmsmga004.fm.intel.com ([10.253.24.48])
- by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Nov 2023 03:57:17 -0800
+ t=1699535251; x=1731071251;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version:content-transfer-encoding;
+ bh=MV/LBNRocjn0Ihe7CbSO7WVNI/djzRaXdqZKrienFTs=;
+ b=Jf2Id6wJrupoyaN1VAJg4hdpyJ6Gmn8aAQ0cYX017U+dRnDxesFll17B
+ ODJLMOXosg0FyMrKO0PWJpGVq/tbeSoUdxyFLyjMcOzjlUOmDBpEYQyfF
+ wc1y2NH20Xko05lM0Jq/tlONnx1HuVYhUK0wNCOmrP1h94nD5SfJaXlbt
+ 7PN4Dv3FNSkY+jlWECLAQ04FJN3VB/6anXxujFFP0Rxej+Mwz1CgYc4I+
+ 1IAojzi7Z4NPFCUkI/bAeudXsr+mccrL4m4ZdNQsVmdj1dtIfADAMEnqA
+ jXhbroxbvmNBqR//oDiJ3pQFhAqvcvHMoWjTBNQ1C3IZNQEX6ae7+QXA2 g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10888"; a="3008554"
+X-IronPort-AV: E=Sophos;i="6.03,289,1694761200"; 
+   d="scan'208";a="3008554"
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+ by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 Nov 2023 05:07:31 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10888"; a="833805799"
-X-IronPort-AV: E=Sophos;i="6.03,289,1694761200"; d="scan'208";a="833805799"
-Received: from lkp-server01.sh.intel.com (HELO 17d9e85e5079) ([10.239.97.150])
- by fmsmga004.fm.intel.com with ESMTP; 09 Nov 2023 03:57:16 -0800
-Received: from kbuild by 17d9e85e5079 with local (Exim 4.96)
- (envelope-from <lkp@intel.com>) id 1r13es-0008hI-0R;
- Thu, 09 Nov 2023 11:57:14 +0000
-Date: Thu, 9 Nov 2023 19:56:10 +0800
-From: kernel test robot <lkp@intel.com>
-To: Somalapuram Amaranath <Amaranath.Somalapuram@amd.com>,
- intel-gfx@lists.freedesktop.org
-Message-ID: <202311091943.7pZTiigS-lkp@intel.com>
-References: <20231109023843.32326-1-Amaranath.Somalapuram@amd.com>
+X-IronPort-AV: E=McAfee;i="6600,9927,10888"; a="798314514"
+X-IronPort-AV: E=Sophos;i="6.03,289,1694761200"; d="scan'208";a="798314514"
+Received: from unknown (HELO localhost) ([10.237.66.162])
+ by orsmga001-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 Nov 2023 05:07:27 -0800
+From: Jani Nikula <jani.nikula@intel.com>
+To: Animesh Manna <animesh.manna@intel.com>,
+ intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
+In-Reply-To: <20231108072303.3414118-2-animesh.manna@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20231108072303.3414118-1-animesh.manna@intel.com>
+ <20231108072303.3414118-2-animesh.manna@intel.com>
+Date: Thu, 09 Nov 2023 15:07:24 +0200
+Message-ID: <87wmurvzw3.fsf@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20231109023843.32326-1-Amaranath.Somalapuram@amd.com>
-Subject: Re: [Intel-gfx] [PATCH] drm/ttm: replace busy placement with flags
- v2
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+Subject: Re: [Intel-gfx] [PATCH v9 1/6] drm/panelreplay: dpcd register
+ definition for panelreplay
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,69 +62,80 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Somalapuram Amaranath <Amaranath.Somalapuram@amd.com>,
- Christian =?iso-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>,
- oe-kbuild-all@lists.linux.dev
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi Somalapuram,
+On Wed, 08 Nov 2023, Animesh Manna <animesh.manna@intel.com> wrote:
+> Add DPCD register definition for discovering, enabling and
+> checking status of panel replay of the sink.
+>
+> Cc: Jouni H=C3=B6gander <jouni.hogander@intel.com>
+> Cc: Arun R Murthy <arun.r.murthy@intel.com>
+> Cc: Jani Nikula <jani.nikula@intel.com>
+> Reviewed-by: Arun R Murthy <arun.r.murthy@intel.com>
+> Signed-off-by: Animesh Manna <animesh.manna@intel.com>
 
-kernel test robot noticed the following build warnings:
+You got the ack, please keep track of it.
 
-[auto build test WARNING on drm-tip/drm-tip]
+https://lore.kernel.org/r/elcebygxs432bcj7oez7ndlfvb3lru7m7yznyqp2ei4ocjkvx=
+p@23lf2rh45fmt
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Somalapuram-Amaranath/drm-ttm-replace-busy-placement-with-flags-v2/20231109-104055
-base:   git://anongit.freedesktop.org/drm/drm-tip drm-tip
-patch link:    https://lore.kernel.org/r/20231109023843.32326-1-Amaranath.Somalapuram%40amd.com
-patch subject: [Intel-gfx] [PATCH] drm/ttm: replace busy placement with flags v2
-config: i386-randconfig-012-20231109 (https://download.01.org/0day-ci/archive/20231109/202311091943.7pZTiigS-lkp@intel.com/config)
-compiler: gcc-9 (Debian 9.3.0-22) 9.3.0
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20231109/202311091943.7pZTiigS-lkp@intel.com/reproduce)
+> ---
+>  include/drm/display/drm_dp.h | 23 +++++++++++++++++++++++
+>  1 file changed, 23 insertions(+)
+>
+> diff --git a/include/drm/display/drm_dp.h b/include/drm/display/drm_dp.h
+> index e69cece404b3..fc42b622ef32 100644
+> --- a/include/drm/display/drm_dp.h
+> +++ b/include/drm/display/drm_dp.h
+> @@ -543,6 +543,10 @@
+>  /* DFP Capability Extension */
+>  #define DP_DFP_CAPABILITY_EXTENSION_SUPPORT	0x0a3	/* 2.0 */
+>=20=20
+> +#define DP_PANEL_REPLAY_CAP                 0x0b0  /* DP 2.0 */
+> +# define DP_PANEL_REPLAY_SUPPORT            (1 << 0)
+> +# define DP_PANEL_REPLAY_SU_SUPPORT         (1 << 1)
+> +
+>  /* Link Configuration */
+>  #define	DP_LINK_BW_SET		            0x100
+>  # define DP_LINK_RATE_TABLE		    0x00    /* eDP 1.4 */
+> @@ -716,6 +720,13 @@
+>  #define DP_BRANCH_DEVICE_CTRL		    0x1a1
+>  # define DP_BRANCH_DEVICE_IRQ_HPD	    (1 << 0)
+>=20=20
+> +#define PANEL_REPLAY_CONFIG                             0x1b0  /* DP 2.0=
+ */
+> +# define DP_PANEL_REPLAY_ENABLE                         (1 << 0)
+> +# define DP_PANEL_REPLAY_UNRECOVERABLE_ERROR_EN         (1 << 3)
+> +# define DP_PANEL_REPLAY_RFB_STORAGE_ERROR_EN           (1 << 4)
+> +# define DP_PANEL_REPLAY_ACTIVE_FRAME_CRC_ERROR_EN      (1 << 5)
+> +# define DP_PANEL_REPLAY_SU_ENABLE                      (1 << 6)
+> +
+>  #define DP_PAYLOAD_ALLOCATE_SET		    0x1c0
+>  #define DP_PAYLOAD_ALLOCATE_START_TIME_SLOT 0x1c1
+>  #define DP_PAYLOAD_ALLOCATE_TIME_SLOT_COUNT 0x1c2
+> @@ -1105,6 +1116,18 @@
+>  #define DP_LANE_ALIGN_STATUS_UPDATED_ESI       0x200e /* status same as =
+0x204 */
+>  #define DP_SINK_STATUS_ESI                     0x200f /* status same as =
+0x205 */
+>=20=20
+> +#define DP_PANEL_REPLAY_ERROR_STATUS                   0x2020  /* DP 2.1=
+*/
+> +# define DP_PANEL_REPLAY_LINK_CRC_ERROR                (1 << 0)
+> +# define DP_PANEL_REPLAY_RFB_STORAGE_ERROR             (1 << 1)
+> +# define DP_PANEL_REPLAY_VSC_SDP_UNCORRECTABLE_ERROR   (1 << 2)
+> +
+> +#define DP_SINK_DEVICE_PR_AND_FRAME_LOCK_STATUS        0x2022  /* DP 2.1=
+ */
+> +# define DP_SINK_DEVICE_PANEL_REPLAY_STATUS_MASK       (7 << 0)
+> +# define DP_SINK_FRAME_LOCKED_SHIFT                    3
+> +# define DP_SINK_FRAME_LOCKED_MASK                     (3 << 3)
+> +# define DP_SINK_FRAME_LOCKED_STATUS_VALID_SHIFT       5
+> +# define DP_SINK_FRAME_LOCKED_STATUS_VALID_MASK        (1 << 5)
+> +
+>  /* Extended Receiver Capability: See DP_DPCD_REV for definitions */
+>  #define DP_DP13_DPCD_REV                    0x2200
 
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202311091943.7pZTiigS-lkp@intel.com/
-
-All warnings (new ones prefixed by >>):
-
-   drivers/gpu/drm/i915/gem/i915_gem_ttm.c: In function 'i915_ttm_get_pages':
->> drivers/gpu/drm/i915/gem/i915_gem_ttm.c:165:18: warning: 'places.flags' is used uninitialized in this function [-Wuninitialized]
-     165 |  places[0].flags |= TTM_PL_FLAG_IDLE;
-         |                  ^~
-
-
-vim +165 drivers/gpu/drm/i915/gem/i915_gem_ttm.c
-
-   155	
-   156	static void
-   157	i915_ttm_placement_from_obj(const struct drm_i915_gem_object *obj,
-   158				    struct ttm_place *places,
-   159				    struct ttm_placement *placement)
-   160	{
-   161		unsigned int num_allowed = obj->mm.n_placements;
-   162		unsigned int flags = obj->flags;
-   163		unsigned int i;
-   164	
- > 165		places[0].flags |= TTM_PL_FLAG_IDLE;
-   166		i915_ttm_place_from_region(num_allowed ? obj->mm.placements[0] :
-   167					   obj->mm.region, &places[0], obj->bo_offset,
-   168					   obj->base.size, flags);
-   169	
-   170		/* Cache this on object? */
-   171		for (i = 0; i < num_allowed; ++i) {
-   172			i915_ttm_place_from_region(obj->mm.placements[i],
-   173						   &places[i + 1], obj->bo_offset,
-   174						   obj->base.size, flags);
-   175			places[i + 1].flags |= TTM_PL_FLAG_BUSY;
-   176		}
-   177	
-   178		placement->num_placement = num_allowed + 1;
-   179		placement->placement = places;
-   180	}
-   181	
-
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+--=20
+Jani Nikula, Intel
