@@ -1,54 +1,56 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id BA70B7E6855
-	for <lists+intel-gfx@lfdr.de>; Thu,  9 Nov 2023 11:37:40 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 166487E6957
+	for <lists+intel-gfx@lfdr.de>; Thu,  9 Nov 2023 12:12:51 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A1DDA10E8A7;
-	Thu,  9 Nov 2023 10:37:38 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C072810E8AC;
+	Thu,  9 Nov 2023 11:12:44 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.115])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0C0D110E8A7
- for <intel-gfx@lists.freedesktop.org>; Thu,  9 Nov 2023 10:37:34 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CE66A10E8AA;
+ Thu,  9 Nov 2023 11:12:39 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1699526255; x=1731062255;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:in-reply-to;
- bh=+JdNMcsV/YWtRNNN+2L1nCPCt/sckzWDNWX0QlGRq8g=;
- b=NIMSbHXuj+Yzt+ovCjiODAOAXI9b6HWUWNWRhUtlEpUQkQ7tcznpISwu
- aF6i42s1FCdaaSUVuE2aX/a+e7e5g4BFiUDImQPjT6NWQrybcjZVTeXTs
- RZfDzYlksDFIx+aVg1BiduG6u9vtYlDGBUNN/O3dpEKtTJAt2cAbkfNDE
- AjWHnuEPnEPvFWMAwIFJ7O65AdAHLywATD8fA6beitj/RTiT8eQJ+I0Pf
- p1prtvM9V5ZUGSK8BmZgdPtMy+kgO1thtKHwXikRVHd0L/XeYFfHyNFec
- 43X/nf1/CAEaKED0T7HBH2eqsR1hMWGqofhWlxXJzro6A3rg6xzmuupDQ w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10888"; a="389763615"
-X-IronPort-AV: E=Sophos;i="6.03,289,1694761200"; d="scan'208";a="389763615"
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Nov 2023 02:37:34 -0800
+ t=1699528360; x=1731064360;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version:content-transfer-encoding;
+ bh=2cMk8afTZ0xpcpYsxBrVnE5QK3wysPs4tqRdgoKLhzg=;
+ b=nho9Jgyvw9kYQF8LcSyYpgLpA4JDPJ9NTUHoRfJ4KpLH63+hrI09YbEV
+ v4oguR+tZ4oCFkJJWdr5/IoeCTCyfokOfxbbJRe5oNuIAtPP6kMAEz6zH
+ 8R6dEM89Qc8J2gEKb/RUvVvYYeQN4W/iY83/KyIhu/vRSQVPJTDSzFAD8
+ NHQQMwYQRAA1dsIBCl6gNevruMJF+Oa8TPupa/riZ35rc8oxZfhlhTvyj
+ m4oVK1V+Q/MIL4n5tWu9nRHB69f2oMf0ptqX9532tlMzSAVqqL0SDYjaz
+ GR/2m782eh1iuyGX7TtDWnH5DR+jKVshXWmDGkiZK3Xs7FfRBjQDwCG7s w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10888"; a="380357063"
+X-IronPort-AV: E=Sophos;i="6.03,289,1694761200"; d="scan'208";a="380357063"
+Received: from orviesa001.jf.intel.com ([10.64.159.141])
+ by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 Nov 2023 03:12:39 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10888"; a="792499829"
-X-IronPort-AV: E=Sophos;i="6.03,289,1694761200"; d="scan'208";a="792499829"
-Received: from lkp-server01.sh.intel.com (HELO 17d9e85e5079) ([10.239.97.150])
- by orsmga008.jf.intel.com with ESMTP; 09 Nov 2023 02:37:32 -0800
-Received: from kbuild by 17d9e85e5079 with local (Exim 4.96)
- (envelope-from <lkp@intel.com>) id 1r12Ph-0008fE-2A;
- Thu, 09 Nov 2023 10:37:29 +0000
-Date: Thu, 9 Nov 2023 18:36:17 +0800
-From: kernel test robot <lkp@intel.com>
-To: Somalapuram Amaranath <Amaranath.Somalapuram@amd.com>,
- intel-gfx@lists.freedesktop.org
-Message-ID: <202311091846.P6fN32iP-lkp@intel.com>
-References: <20231109023843.32326-1-Amaranath.Somalapuram@amd.com>
+X-IronPort-AV: E=Sophos;i="6.03,289,1694761200"; d="scan'208";a="11116551"
+Received: from kchurina-mobl.ger.corp.intel.com (HELO localhost)
+ ([10.252.53.220])
+ by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 Nov 2023 03:12:36 -0800
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Sam James <sam@gentoo.org>, intel-gfx@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org, David Airlie <airlied@gmail.com>, Daniel
+ Vetter <daniel@ffwll.ch>, Joonas Lahtinen
+ <joonas.lahtinen@linux.intel.com>, Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+In-Reply-To: <87jzqsy3sp.fsf@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20231107215538.1891359-1-sam@gentoo.org>
+ <87jzqsy3sp.fsf@intel.com>
+Date: Thu, 09 Nov 2023 13:12:33 +0200
+Message-ID: <87zfznw57i.fsf@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20231109023843.32326-1-Amaranath.Somalapuram@amd.com>
-Subject: Re: [Intel-gfx] [PATCH] drm/ttm: replace busy placement with flags
- v2
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+Subject: Re: [Intel-gfx] [PATCH] drm: i915: Adapt to -Walloc-size
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,74 +63,79 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Somalapuram Amaranath <Amaranath.Somalapuram@amd.com>,
- Christian =?iso-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>,
- oe-kbuild-all@lists.linux.dev
+Cc: Sam James <sam@gentoo.org>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi Somalapuram,
+On Wed, 08 Nov 2023, Jani Nikula <jani.nikula@linux.intel.com> wrote:
+> On Tue, 07 Nov 2023, Sam James <sam@gentoo.org> wrote:
+>> GCC 14 introduces a new -Walloc-size included in -Wextra which errors out
+>> like:
+>> ```
+>> drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c: In function =E2=80=98eb_=
+copy_relocations=E2=80=99:
+>> drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c:1681:24: error: allocatio=
+n of insufficient size =E2=80=981=E2=80=99 for type =E2=80=98struct drm_i91=
+5_gem_relocation_entry=E2=80=99 with size =E2=80=9832=E2=80=99 [-Werror=3Da=
+lloc-size]
+>>  1681 |                 relocs =3D kvmalloc_array(size, 1, GFP_KERNEL);
+>>       |                        ^
+>>
+>> ```
+>>
+>> So, just swap the number of members and size arguments to match the prot=
+otype, as
+>> we're initialising 1 element of size `size`. GCC then sees we're not
+>> doing anything wrong.
+>>
+>> Signed-off-by: Sam James <sam@gentoo.org>
+>
+> The short answer,
+>
+> Reviewed-by: Jani Nikula <jani.nikula@intel.com>
 
-kernel test robot noticed the following build warnings:
+And pushed to drm-intel-gt-next, thanks for the patch.
 
-[auto build test WARNING on drm-tip/drm-tip]
+BR,
+Jani.
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Somalapuram-Amaranath/drm-ttm-replace-busy-placement-with-flags-v2/20231109-104055
-base:   git://anongit.freedesktop.org/drm/drm-tip drm-tip
-patch link:    https://lore.kernel.org/r/20231109023843.32326-1-Amaranath.Somalapuram%40amd.com
-patch subject: [Intel-gfx] [PATCH] drm/ttm: replace busy placement with flags v2
-config: i386-buildonly-randconfig-001-20231109 (https://download.01.org/0day-ci/archive/20231109/202311091846.P6fN32iP-lkp@intel.com/config)
-compiler: gcc-12 (Debian 12.2.0-14) 12.2.0
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20231109/202311091846.P6fN32iP-lkp@intel.com/reproduce)
+>
+> but please read on.
+>
+>> ---
+>>  drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c | 2 +-
+>>  1 file changed, 1 insertion(+), 1 deletion(-)
+>>
+>> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c b/drivers/gp=
+u/drm/i915/gem/i915_gem_execbuffer.c
+>> index 683fd8d3151c..45b9d9e34b8b 100644
+>> --- a/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
+>> +++ b/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
+>> @@ -1678,7 +1678,7 @@ static int eb_copy_relocations(const struct i915_e=
+xecbuffer *eb)
+>>  		urelocs =3D u64_to_user_ptr(eb->exec[i].relocs_ptr);
+>>  		size =3D nreloc * sizeof(*relocs);
+>>=20=20
+>> -		relocs =3D kvmalloc_array(size, 1, GFP_KERNEL);
+>> +		relocs =3D kvmalloc_array(1, size, GFP_KERNEL);
+>
+> Based on the patch context, we should really be calling:
+>
+> 	kvmalloc_array(nreloc, sizeof(*relocs), GFP_KERNEL);
+>
+> and we'd get mul overflow checks too.
+>
+> However, the code below also needs size, unless it's refactored to
+> operate on multiples of sizeof(*relocs) and it all gets a bit annoying.
+>
+> Maybe there's a better way, but for the short term the patch at hand is
+> no worse than what we currently have, and it'll silence the warning, so
+> let's go with this.
+>
+>
+>>  		if (!relocs) {
+>>  			err =3D -ENOMEM;
+>>  			goto err;
 
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202311091846.P6fN32iP-lkp@intel.com/
-
-All warnings (new ones prefixed by >>):
-
-   In function 'i915_ttm_placement_from_obj',
-       inlined from 'i915_ttm_get_pages' at drivers/gpu/drm/i915/gem/i915_gem_ttm.c:847:2:
->> drivers/gpu/drm/i915/gem/i915_gem_ttm.c:165:18: warning: 'places[0].flags' is used uninitialized [-Wuninitialized]
-     165 |         places[0].flags |= TTM_PL_FLAG_IDLE;
-         |         ~~~~~~~~~^~~~~~
-   drivers/gpu/drm/i915/gem/i915_gem_ttm.c: In function 'i915_ttm_get_pages':
-   drivers/gpu/drm/i915/gem/i915_gem_ttm.c:837:26: note: 'places' declared here
-     837 |         struct ttm_place places[I915_TTM_MAX_PLACEMENTS + 1];
-         |                          ^~~~~~
-
-
-vim +165 drivers/gpu/drm/i915/gem/i915_gem_ttm.c
-
-   155	
-   156	static void
-   157	i915_ttm_placement_from_obj(const struct drm_i915_gem_object *obj,
-   158				    struct ttm_place *places,
-   159				    struct ttm_placement *placement)
-   160	{
-   161		unsigned int num_allowed = obj->mm.n_placements;
-   162		unsigned int flags = obj->flags;
-   163		unsigned int i;
-   164	
- > 165		places[0].flags |= TTM_PL_FLAG_IDLE;
-   166		i915_ttm_place_from_region(num_allowed ? obj->mm.placements[0] :
-   167					   obj->mm.region, &places[0], obj->bo_offset,
-   168					   obj->base.size, flags);
-   169	
-   170		/* Cache this on object? */
-   171		for (i = 0; i < num_allowed; ++i) {
-   172			i915_ttm_place_from_region(obj->mm.placements[i],
-   173						   &places[i + 1], obj->bo_offset,
-   174						   obj->base.size, flags);
-   175			places[i + 1].flags |= TTM_PL_FLAG_BUSY;
-   176		}
-   177	
-   178		placement->num_placement = num_allowed + 1;
-   179		placement->placement = places;
-   180	}
-   181	
-
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+--=20
+Jani Nikula, Intel
