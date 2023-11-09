@@ -2,28 +2,27 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5B08D7E6D7A
+	by mail.lfdr.de (Postfix) with ESMTPS id 4D6CE7E6D79
 	for <lists+intel-gfx@lfdr.de>; Thu,  9 Nov 2023 16:35:00 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 47AE510E8CE;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5182310E8CF;
 	Thu,  9 Nov 2023 15:34:58 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mblankhorst.nl (lankhorst.se [141.105.120.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7306110E8CF
+ by gabe.freedesktop.org (Postfix) with ESMTPS id F38E510E8CE
  for <intel-gfx@lists.freedesktop.org>; Thu,  9 Nov 2023 15:34:55 +0000 (UTC)
 From: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Thu,  9 Nov 2023 16:34:49 +0100
-Message-Id: <20231109153450.142185-2-maarten.lankhorst@linux.intel.com>
+Date: Thu,  9 Nov 2023 16:34:50 +0100
+Message-Id: <20231109153450.142185-3-maarten.lankhorst@linux.intel.com>
 X-Mailer: git-send-email 2.39.2
 In-Reply-To: <20231109153450.142185-1-maarten.lankhorst@linux.intel.com>
 References: <20231109153450.142185-1-maarten.lankhorst@linux.intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH 2/3] drm/i915: Use vblank worker to unpin old
- legacy cursor fb safely
+Subject: [Intel-gfx] [PATCH 3/3] drm/i915: Use a different vblank worker for
+ atomic unpin
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,135 +38,110 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-From: Ville Syrjälä <ville.syrjala@linux.intel.com>
+For the atomic codepath we unpin_work in old_plane_state to unpin the
+old fb. As this happened after swapping state, this is allowed.
 
-The cursor hardware only does sync updates, and thus the hardware
-will be scanning out from the old fb until the next start of vblank.
-So in order to make the legacy cursor fastpath actually safe we
-should not unpin the old fb until we're sure the hardware has
-ceased accessing it. The simplest approach is to just use a vblank
-work here to do the delayed unpin.
+Use the unpin_work only as a barrier, and keep doing the actual
+unpinning in the atomic path.
 
-Not 100% sure it's a good idea to put this onto the same high
-priority vblank worker as eg. our timing critical gamma updates.
-But let's keep it simple for now, and it we later discover that
-this is causing problems we can think about adding a lower
-priority worker for such things.
-
-This patch is slightly reworked by Maarten
-
-Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 Signed-off-by: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_cursor.c   | 37 ++++++++++++++++---
- drivers/gpu/drm/i915/display/intel_display.c  |  3 ++
- .../drm/i915/display/intel_display_types.h    |  3 ++
- 3 files changed, 38 insertions(+), 5 deletions(-)
+ .../gpu/drm/i915/display/intel_atomic_plane.c | 18 ++++++++++++
+ .../gpu/drm/i915/display/intel_atomic_plane.h |  2 ++
+ drivers/gpu/drm/i915/display/intel_crtc.c     | 28 +++++++++++++++++++
+ 3 files changed, 48 insertions(+)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_cursor.c b/drivers/gpu/drm/i915/display/intel_cursor.c
-index b342fad180ca5..1728ecd5cc782 100644
---- a/drivers/gpu/drm/i915/display/intel_cursor.c
-+++ b/drivers/gpu/drm/i915/display/intel_cursor.c
-@@ -603,6 +603,17 @@ static bool intel_cursor_format_mod_supported(struct drm_plane *_plane,
- 	return format == DRM_FORMAT_ARGB8888;
+diff --git a/drivers/gpu/drm/i915/display/intel_atomic_plane.c b/drivers/gpu/drm/i915/display/intel_atomic_plane.c
+index 06c2455bdd788..6ddb4f4ec79ac 100644
+--- a/drivers/gpu/drm/i915/display/intel_atomic_plane.c
++++ b/drivers/gpu/drm/i915/display/intel_atomic_plane.c
+@@ -1164,6 +1164,9 @@ intel_cleanup_plane_fb(struct drm_plane *plane,
+ 	intel_display_rps_mark_interactive(dev_priv, state, false);
+ 
+ 	/* Should only be called after a successful intel_prepare_plane_fb()! */
++	if (old_plane_state->unpin_work.vblank)
++		drm_vblank_work_flush(&old_plane_state->unpin_work);
++
+ 	intel_plane_unpin_fb(old_plane_state);
  }
  
-+static void intel_cursor_unpin_work(struct kthread_work *base)
+@@ -1176,3 +1179,18 @@ void intel_plane_helper_add(struct intel_plane *plane)
+ {
+ 	drm_plane_helper_add(&plane->base, &intel_plane_helper_funcs);
+ }
++
++/* Completion is enough */
++static void intel_plane_cursor_vblank_work(struct kthread_work *base)
++{ }
++
++void intel_plane_init_cursor_vblank_work(struct intel_plane_state *old_plane_state,
++					 struct intel_plane_state *new_plane_state)
 +{
-+	struct drm_vblank_work *work = to_drm_vblank_work(base);
-+	struct intel_plane_state *plane_state =
-+		container_of(work, typeof(*plane_state), unpin_work);
-+	struct intel_plane *plane = to_intel_plane(plane_state->uapi.plane);
++	if (!old_plane_state->ggtt_vma ||
++	    old_plane_state->ggtt_vma == new_plane_state->ggtt_vma)
++		return;
 +
-+	intel_plane_unpin_fb(plane_state);
-+	intel_plane_destroy_state(&plane->base, &plane_state->uapi);
++	drm_vblank_work_init(&old_plane_state->unpin_work, old_plane_state->uapi.crtc,
++			     intel_plane_cursor_vblank_work);
 +}
-+
- static int
- intel_legacy_cursor_update(struct drm_plane *_plane,
- 			   struct drm_crtc *_crtc,
-@@ -688,9 +699,14 @@ intel_legacy_cursor_update(struct drm_plane *_plane,
- 	if (ret)
- 		goto out_free;
+diff --git a/drivers/gpu/drm/i915/display/intel_atomic_plane.h b/drivers/gpu/drm/i915/display/intel_atomic_plane.h
+index 191dad0efc8e6..5a897cf6fa021 100644
+--- a/drivers/gpu/drm/i915/display/intel_atomic_plane.h
++++ b/drivers/gpu/drm/i915/display/intel_atomic_plane.h
+@@ -66,5 +66,7 @@ int intel_plane_check_src_coordinates(struct intel_plane_state *plane_state);
+ void intel_plane_set_invisible(struct intel_crtc_state *crtc_state,
+ 			       struct intel_plane_state *plane_state);
+ void intel_plane_helper_add(struct intel_plane *plane);
++void intel_plane_init_cursor_vblank_work(struct intel_plane_state *old_plane_state,
++					 struct intel_plane_state *new_plane_state);
  
--	ret = intel_plane_pin_fb(new_plane_state);
--	if (ret)
--		goto out_free;
-+	if (new_plane_state->uapi.fb != old_plane_state->uapi.fb) {
-+		ret = intel_plane_pin_fb(new_plane_state);
-+		if (ret)
-+			goto out_free;
-+	} else {
-+		/* magic trick */
-+		swap(new_plane_state->ggtt_vma, old_plane_state->ggtt_vma);
+ #endif /* __INTEL_ATOMIC_PLANE_H__ */
+diff --git a/drivers/gpu/drm/i915/display/intel_crtc.c b/drivers/gpu/drm/i915/display/intel_crtc.c
+index 1fd068e6e26ca..755c40fd0ac13 100644
+--- a/drivers/gpu/drm/i915/display/intel_crtc.c
++++ b/drivers/gpu/drm/i915/display/intel_crtc.c
+@@ -559,6 +559,19 @@ void intel_pipe_update_start(struct intel_atomic_state *state,
+ 	if (intel_crtc_needs_vblank_work(new_crtc_state))
+ 		intel_crtc_vblank_work_init(new_crtc_state);
+ 
++	if (state->base.legacy_cursor_update) {
++		struct intel_plane *plane;
++		struct intel_plane_state *old_plane_state, *new_plane_state;
++		int i;
++
++		for_each_oldnew_intel_plane_in_state(state, plane, old_plane_state,
++						     new_plane_state, i) {
++			if (old_plane_state->uapi.crtc == &crtc->base)
++				intel_plane_init_cursor_vblank_work(old_plane_state,
++								    new_plane_state);
++		}
 +	}
- 
- 	intel_frontbuffer_flush(to_intel_frontbuffer(new_plane_state->hw.fb),
- 				ORIGIN_CURSOR_UPDATE);
-@@ -730,14 +746,25 @@ intel_legacy_cursor_update(struct drm_plane *_plane,
- 
- 	local_irq_enable();
- 
--	intel_plane_unpin_fb(old_plane_state);
-+	if (old_plane_state->uapi.fb != new_plane_state->uapi.fb) {
-+		drm_vblank_work_init(&old_plane_state->unpin_work, &crtc->base,
-+				     intel_cursor_unpin_work);
 +
-+		drm_vblank_work_schedule(&old_plane_state->unpin_work,
-+					 drm_crtc_accurate_vblank_count(&crtc->base) + 1,
-+					 false);
-+
-+		old_plane_state = NULL;
-+	} else {
-+		intel_plane_unpin_fb(old_plane_state);
-+	}
- 
- out_free:
- 	if (new_crtc_state)
- 		intel_crtc_destroy_state(&crtc->base, &new_crtc_state->uapi);
- 	if (ret)
- 		intel_plane_destroy_state(&plane->base, &new_plane_state->uapi);
--	else
-+	else if (old_plane_state)
- 		intel_plane_destroy_state(&plane->base, &old_plane_state->uapi);
- 	return ret;
- 
-diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
-index 3effafcbb411a..9b43810f9a934 100644
---- a/drivers/gpu/drm/i915/display/intel_display.c
-+++ b/drivers/gpu/drm/i915/display/intel_display.c
-@@ -64,6 +64,7 @@
- #include "intel_crt.h"
- #include "intel_crtc.h"
- #include "intel_crtc_state_dump.h"
-+#include "intel_cursor.h"
- #include "intel_ddi.h"
- #include "intel_de.h"
- #include "intel_display_driver.h"
-@@ -6883,6 +6884,8 @@ static void intel_commit_modeset_disables(struct intel_atomic_state *state)
- 
- 		intel_pre_plane_update(state, crtc);
- 		intel_crtc_disable_planes(state, crtc);
-+
-+		drm_vblank_work_flush_all(&crtc->base);
+ 	intel_crtc_vblank_evade_scanlines(state, crtc, &min, &max, &vblank_start);
+ 	if (min <= 0 || max <= 0)
+ 		goto irq_disable;
+@@ -721,6 +734,21 @@ void intel_pipe_update_end(struct intel_atomic_state *state,
+ 		new_crtc_state->uapi.event = NULL;
  	}
  
- 	/* Only disable port sync and MST slaves */
-diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/drivers/gpu/drm/i915/display/intel_display_types.h
-index 926bf9c1a3ede..6d27cfb4f08e7 100644
---- a/drivers/gpu/drm/i915/display/intel_display_types.h
-+++ b/drivers/gpu/drm/i915/display/intel_display_types.h
-@@ -709,6 +709,9 @@ struct intel_plane_state {
- 
- 	struct intel_fb_view view;
- 
-+	/* for legacy cursor fb unpin */
-+	struct drm_vblank_work unpin_work;
++	if (state->base.legacy_cursor_update) {
++		struct intel_plane *plane;
++		struct intel_plane_state *old_plane_state;
++		int i;
 +
- 	/* Plane pxp decryption state */
- 	bool decrypt;
- 
++		for_each_old_intel_plane_in_state(state, plane, old_plane_state, i) {
++			if (old_plane_state->uapi.crtc == &crtc->base &&
++			    old_plane_state->unpin_work.vblank) {
++				drm_vblank_work_schedule(&old_plane_state->unpin_work,
++							 drm_crtc_accurate_vblank_count(&crtc->base) + 1,
++							 false);
++			}
++		}
++	}
++
+ 	/*
+ 	 * Send VRR Push to terminate Vblank. If we are already in vblank
+ 	 * this has to be done _after_ sampling the frame counter, as
 -- 
 2.39.2
 
