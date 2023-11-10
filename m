@@ -2,57 +2,48 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 80FA47E9D92
-	for <lists+intel-gfx@lfdr.de>; Mon, 13 Nov 2023 14:45:48 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 06C167E7B35
+	for <lists+intel-gfx@lfdr.de>; Fri, 10 Nov 2023 11:16:21 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EA88710E378;
-	Mon, 13 Nov 2023 13:45:44 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8E3F810E963;
+	Fri, 10 Nov 2023 10:16:19 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-ej1-x633.google.com (mail-ej1-x633.google.com
- [IPv6:2a00:1450:4864:20::633])
- by gabe.freedesktop.org (Postfix) with ESMTPS id F2D3010E960
- for <intel-gfx@lists.freedesktop.org>; Fri, 10 Nov 2023 09:44:50 +0000 (UTC)
-Received: by mail-ej1-x633.google.com with SMTP id
- a640c23a62f3a-9e28724ac88so302848866b.2
- for <intel-gfx@lists.freedesktop.org>; Fri, 10 Nov 2023 01:44:50 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=szeredi.hu; s=google; t=1699609489; x=1700214289; darn=lists.freedesktop.org;
- h=cc:to:subject:message-id:date:from:in-reply-to:references
- :mime-version:from:to:cc:subject:date:message-id:reply-to;
- bh=uNNVKkYwl/rOA9GX9/SH18oSRKfcJIfb4LTGsk7JdWQ=;
- b=pHd38LzlI2Z+QhohfyE8tlQ5l+009oUpSHYbWjvRCh3UZO1VH3pawOTMkCI/GYQylW
- iW65Vd1R1GPtp9X4g9LbnJXn5I4vNINxBdkP1j6hOFLcbdEg7Cd/HScYFDgxogAwguqv
- k7pFzUa9spbrWkTDfIrbnxCd9PPnogVubJv30=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1699609489; x=1700214289;
- h=cc:to:subject:message-id:date:from:in-reply-to:references
- :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
- :reply-to;
- bh=uNNVKkYwl/rOA9GX9/SH18oSRKfcJIfb4LTGsk7JdWQ=;
- b=mFSF88JPAXRzcT830fS9aE+orDn/njynvB+jVlD2t0dMd6CVXeJeAXhVJmzU93cIZs
- iyTZLHS3vDLo5GYo5eaBVqsowmf3t5vOX7XiyM/t9DhdWO3TPHu2E5XOjbUfry7udkG5
- a9kY21k2iVrQfVladkclVCaI/w/HzWVD7cCZwKp0uAhvo2lt/DmIa/MXzob5O5AC7jI1
- dGodYkymYJMa4uiSM2HW7cXZClBdLqRZGZneLFQXiCCzkBYFEJ1QS6jN4PYC82X011kq
- 7n1FeVruYfC3s13g8GKvfJVkfqXCx4tLVOsgvT+v+iacTkQcNwL+VBIMcMXm/ig5uvRT
- ztaQ==
-X-Gm-Message-State: AOJu0Yy6jtn4nDdFUbvp10eL1uX+I+DPOxGr63RGf0B+aaUPf/5UIhxs
- W5LMG6U+hzFkxRYF2eeq+7F8CWwjvLPNlp9+QQAB3A==
-X-Google-Smtp-Source: AGHT+IHEDrhaS3SWGbZqZuG8sNPuZIIpHaBGL3VI6Da90hnwL9tRuf2Y3uqzB5/P6YHOqBSOAeAfq99hTGSbttzq3wg=
-X-Received: by 2002:a17:906:8910:b0:9e4:121c:c292 with SMTP id
- fr16-20020a170906891000b009e4121cc292mr3096666ejc.77.1699609488646; Fri, 10
- Nov 2023 01:44:48 -0800 (PST)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5E1B110E963;
+ Fri, 10 Nov 2023 10:16:17 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1699611377; x=1731147377;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=8ePbLA/SR0H2puoLIk0ypOkX+vCkB23hrJ4880K3Nc4=;
+ b=fHZ5zhs4nX0P1KqHxCZT2IppwCL2YaZhIKQrnvHMuhlTaHa0OQ1VChuW
+ /EMbXQxkPEKjpMcxDopmirsCJSbyhXxlJFWT895PqVlQduFqlqgcuz/Cr
+ 9+sBVCIgP4iCPJFHQlxJtSPz3ZOzn2lBvx/tsFJj3qDIEvHigeqsZ4e9e
+ KJ1lscEVfvCl3uy/dxRK7PmpEPc2XEANXcQzuJ5DmGtGSmn2fNXnnECwU
+ OjrAkjr9i+zO3G5Rehisq/hvgtS9Xd6vE+X4Cs3300aJC93XBqtWcj0In
+ kA8l+GvhI2QaWhibDVG1RcjqC1j+F3hKBpE9s8Ivoxpt96c4MOOQcj1U4 w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10889"; a="11712784"
+X-IronPort-AV: E=Sophos;i="6.03,291,1694761200"; d="scan'208";a="11712784"
+Received: from orviesa002.jf.intel.com ([10.64.159.142])
+ by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Nov 2023 02:16:16 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.03,291,1694761200"; 
+   d="scan'208";a="4816390"
+Received: from srr4-3-linux-103-aknautiy.iind.intel.com ([10.223.34.160])
+ by orviesa002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Nov 2023 02:16:14 -0800
+From: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+To: dri-devel@lists.freedesktop.org,
+	intel-gfx@lists.freedesktop.org
+Date: Fri, 10 Nov 2023 15:40:09 +0530
+Message-Id: <20231110101020.4067342-1-ankit.k.nautiyal@intel.com>
+X-Mailer: git-send-email 2.40.1
 MIME-Version: 1.0
-References: <cover.1699564053.git.kjlx@templeofstupid.com>
-In-Reply-To: <cover.1699564053.git.kjlx@templeofstupid.com>
-From: Miklos Szeredi <miklos@szeredi.hu>
-Date: Fri, 10 Nov 2023 10:44:37 +0100
-Message-ID: <CAJfpegtOKLDy-j=oi8BsT+xjFnO+Mk7=8VxSDuyi-bxhRSGMKQ@mail.gmail.com>
-To: Krister Johansen <kjlx@templeofstupid.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Mailman-Approved-At: Mon, 13 Nov 2023 13:45:43 +0000
-Subject: Re: [Intel-gfx] [PATCH 0/2] Fuse submount_lookup needs to be
- initialized
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-gfx] [PATCH 00/11] Add DSC fractional bpp support
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -65,28 +56,66 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Miklos Szeredi <mszeredi@redhat.com>, linux-kselftest@vger.kernel.org,
- German Maglione <gmaglione@redhat.com>,
- Bernd Schubert <bernd.schubert@fastmail.fm>,
- Naresh Kamboju <naresh.kamboju@linaro.org>, linux-kernel@vger.kernel.org,
- lkft-triage@lists.linaro.org, Max Reitz <mreitz@redhat.com>,
- Greg Kurz <groug@kaod.org>, "Kurmi,
- Suresh Kumar" <suresh.kumar.kurmi@intel.com>, linux-fsdevel@vger.kernel.org,
- intel-gfx@lists.freedesktop.org, Dan Carpenter <dan.carpenter@linaro.org>,
- regressions@lists.linux.dev
+Cc: suijingfeng@loongson.cn
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, 9 Nov 2023 at 23:37, Krister Johansen <kjlx@templeofstupid.com> wrote:
+This patch series adds support for DSC fractional compressed bpp
+for MTL+. The series starts with some fixes, followed by patches that
+lay groundwork to iterate over valid compressed bpps to select the
+'best' compressed bpp with optimal link configuration (taken from
+upstream series: https://patchwork.freedesktop.org/series/105200/).
 
-> Either should do, but I wasn't sure which approach was preferable.
+The later patches, add changes to accommodate compressed bpp with
+fractional part, including changes to QP calculations.
+To get the 'best' compressed bpp, we iterate over the valid compressed
+bpp values, but with fractional step size 1/16, 1/8, 1/4 or 1/2 as per
+sink support.
 
-An incremental is better in this situation.   Applied and pushed.
+The last 2 patches add support to depict DSC sink's fractional support,
+and debugfs to enforce use of fractional bpp, while choosing an
+appropriate compressed bpp.
 
-> Thanks, and my apologies for the inconvenience.
+Rev10: Rebased and added DSC Fractional support for DP MST.
 
-Really no need to apologize, this happens and the best possible
-outcome is that it get fixed before being released.
+Ankit Nautiyal (8):
+  drm/display/dp: Add helper function to get DSC bpp precision
+  drm/i915/display: Store compressed bpp in U6.4 format
+  drm/i915/display: Consider fractional vdsc bpp while computing m_n
+    values
+  drm/i915/audio: Consider fractional vdsc bpp while computing tu_data
+  drm/i915/dp: Iterate over output bpp with fractional step size
+  drm/i915/dp_mst: Use precision of 1/16 for computing bpp
+  drm/i916/dp_mst: Iterate over the DSC bpps as per DSC precision
+    support
+  drm/i915/dp_mst: Add support for forcing dsc fractional bpp via
+    debugfs
 
-Thanks,
-Miklos
+Swati Sharma (2):
+  drm/i915/dsc: Add debugfs entry to validate DSC fractional bpp
+  drm/i915/dsc: Allow DSC only with fractional bpp when forced from
+    debugfs
+
+Vandita Kulkarni (1):
+  drm/i915/dsc/mtl: Add support for fractional bpp
+
+ drivers/gpu/drm/display/drm_dp_helper.c       | 27 ++++++
+ drivers/gpu/drm/i915/display/icl_dsi.c        | 10 +--
+ drivers/gpu/drm/i915/display/intel_audio.c    | 16 ++--
+ drivers/gpu/drm/i915/display/intel_bios.c     |  4 +-
+ drivers/gpu/drm/i915/display/intel_cdclk.c    |  5 +-
+ drivers/gpu/drm/i915/display/intel_display.c  |  6 +-
+ .../drm/i915/display/intel_display_debugfs.c  | 84 ++++++++++++++++++
+ .../drm/i915/display/intel_display_types.h    |  4 +-
+ drivers/gpu/drm/i915/display/intel_dp.c       | 87 +++++++++++--------
+ drivers/gpu/drm/i915/display/intel_dp_mst.c   | 85 +++++++++++-------
+ drivers/gpu/drm/i915/display/intel_fdi.c      |  3 +-
+ drivers/gpu/drm/i915/display/intel_link_bw.c  |  2 +-
+ .../gpu/drm/i915/display/intel_qp_tables.c    |  3 -
+ drivers/gpu/drm/i915/display/intel_vdsc.c     | 29 +++++--
+ include/drm/display/drm_dp_helper.h           |  1 +
+ 15 files changed, 266 insertions(+), 100 deletions(-)
+
+-- 
+2.40.1
+
