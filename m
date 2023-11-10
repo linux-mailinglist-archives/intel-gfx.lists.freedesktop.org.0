@@ -1,51 +1,50 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id DAE947E80F1
-	for <lists+intel-gfx@lfdr.de>; Fri, 10 Nov 2023 19:21:03 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1ACAC7E81D2
+	for <lists+intel-gfx@lfdr.de>; Fri, 10 Nov 2023 19:37:17 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 96EF910E131;
-	Fri, 10 Nov 2023 18:21:00 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D4C8B10E16E;
+	Fri, 10 Nov 2023 18:37:13 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.24])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D3D1D10E130;
- Fri, 10 Nov 2023 18:20:58 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 98EF210E16E;
+ Fri, 10 Nov 2023 18:37:12 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1699640458; x=1731176458;
+ t=1699641433; x=1731177433;
  h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=dZi44k3TgPgnnNlNBP+yBAC74XU+dQcO86pQx+Yfm7U=;
- b=nWXy27U0EuvU4pGOs+ONkUH5SOEMtyXvGf0uhHcKvLBO72Pjcn8xp5bk
- UaKhiNtOeSqhFo3S0MbPzzyqcd8nGGWcnWfXBxwulGn5LUix5XYUJxvAs
- Iix+yc+lL9H/wZKG6HMbj4RDadxJv92nucJdR5ShqWbPBYI8RddivEdOh
- fN/TfHY75sBUdwMiTe7Em6MD+szzwrcrWN1hnnHCK4iaITL23xLjvTfWx
- 5H7OhWRKkhsANT0zoESWqRl4RcqxrhXKVz8b8D9wTgJUJpk5DbE++iUry
- mMFwccmW+vMOCvP+mvw8RTlhZw6QCljq39odr8B/w+DCMOXzhJYPSoMkh Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10890"; a="393091180"
-X-IronPort-AV: E=Sophos;i="6.03,291,1694761200"; d="scan'208";a="393091180"
-Received: from fmsmga006.fm.intel.com ([10.253.24.20])
- by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Nov 2023 10:20:57 -0800
+ mime-version:in-reply-to;
+ bh=Ma8woTlLXt37OgJ3lG1H9hM4J+sMKQ6o3z6BV4rfNfw=;
+ b=bojEpu4zAeJdXECh/g+1554JLyJdb94OeDZU8bGGYFuOgPsbcq9vZakJ
+ 88cU9eSIt1yk2wwMtc1f3+/8UjKkRtMS8SVFdwcmTCcnu6c648/ypXlLb
+ AIjkkbtOTc26maqC4VnPFbpYheRFAWM3A1hCIKhj8r77gjDDtrtmAIGlh
+ +VMupg96wre3//eoNSdV20oSinPq6XVIMh87NZgyt1qV0zUb3dkMMAGUX
+ r3vnn8nU55X0c76Cb95+9NcK0lNykUoyFgLQG8zdqJWMGCQ90/fP2c6r2
+ e9hvF7h6Zo/4nS1Duhha6i47AXlLnfonCzjK9050x/Znc8Rjj+665Jtfa w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10890"; a="3205535"
+X-IronPort-AV: E=Sophos;i="6.03,291,1694761200"; 
+   d="scan'208";a="3205535"
+Received: from orviesa001.jf.intel.com ([10.64.159.141])
+ by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Nov 2023 10:37:12 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10890"; a="1011009099"
-X-IronPort-AV: E=Sophos;i="6.03,291,1694761200"; d="scan'208";a="1011009099"
+X-IronPort-AV: E=Sophos;i="6.03,291,1694761200"; d="scan'208";a="11548609"
 Received: from lkp-server01.sh.intel.com (HELO 17d9e85e5079) ([10.239.97.150])
- by fmsmga006.fm.intel.com with ESMTP; 10 Nov 2023 10:20:55 -0800
+ by orviesa001.jf.intel.com with ESMTP; 10 Nov 2023 10:37:10 -0800
 Received: from kbuild by 17d9e85e5079 with local (Exim 4.96)
- (envelope-from <lkp@intel.com>) id 1r1W7g-0009oA-2D;
- Fri, 10 Nov 2023 18:20:52 +0000
-Date: Sat, 11 Nov 2023 02:20:00 +0800
+ (envelope-from <lkp@intel.com>) id 1r1WNO-0009p0-1a;
+ Fri, 10 Nov 2023 18:37:06 +0000
+Date: Sat, 11 Nov 2023 02:37:00 +0800
 From: kernel test robot <lkp@intel.com>
 To: Dipam Turkar <dipamt1729@gmail.com>, jani.nikula@linux.intel.com
-Message-ID: <202311110234.QjYxC2bv-lkp@intel.com>
+Message-ID: <202311110226.CsxS1u1i-lkp@intel.com>
 References: <20231110105811.380646-1-dipamt1729@gmail.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
 In-Reply-To: <20231110105811.380646-1-dipamt1729@gmail.com>
 Subject: Re: [Intel-gfx] [PATCH] Remove custom dumb_map_offset
  implementations in i915 driver
@@ -70,72 +69,80 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 Hi Dipam,
 
-kernel test robot noticed the following build errors:
+kernel test robot noticed the following build warnings:
 
-[auto build test ERROR on drm-tip/drm-tip]
+[auto build test WARNING on drm-tip/drm-tip]
 
 url:    https://github.com/intel-lab-lkp/linux/commits/Dipam-Turkar/Remove-custom-dumb_map_offset-implementations-in-i915-driver/20231110-185942
 base:   git://anongit.freedesktop.org/drm/drm-tip drm-tip
 patch link:    https://lore.kernel.org/r/20231110105811.380646-1-dipamt1729%40gmail.com
 patch subject: [Intel-gfx] [PATCH] Remove custom dumb_map_offset implementations in i915 driver
-config: x86_64-randconfig-014-20231110 (https://download.01.org/0day-ci/archive/20231111/202311110234.QjYxC2bv-lkp@intel.com/config)
-compiler: gcc-12 (Debian 12.2.0-14) 12.2.0
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20231111/202311110234.QjYxC2bv-lkp@intel.com/reproduce)
+config: x86_64-randconfig-001-20231110 (https://download.01.org/0day-ci/archive/20231111/202311110226.CsxS1u1i-lkp@intel.com/config)
+compiler: gcc-7 (Ubuntu 7.5.0-6ubuntu2) 7.5.0
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20231111/202311110226.CsxS1u1i-lkp@intel.com/reproduce)
 
 If you fix the issue in a separate patch/commit (i.e. not just a new version of
 the same patch/commit), kindly add following tags
 | Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202311110234.QjYxC2bv-lkp@intel.com/
+| Closes: https://lore.kernel.org/oe-kbuild-all/202311110226.CsxS1u1i-lkp@intel.com/
 
-All errors (new ones prefixed by >>):
+All warnings (new ones prefixed by >>):
 
    drivers/gpu/drm/i915/gem/i915_gem_mman.c: In function 'i915_gem_mmap_offset_ioctl':
-   drivers/gpu/drm/i915/gem/i915_gem_mman.c:673:16: error: implicit declaration of function '__assign_mmap_offset_handle' [-Werror=implicit-function-declaration]
-     673 |         return __assign_mmap_offset_handle(file, args->handle, type, &args->offset);
-         |                ^~~~~~~~~~~~~~~~~~~~~~~~~~~
+   drivers/gpu/drm/i915/gem/i915_gem_mman.c:673:9: error: implicit declaration of function '__assign_mmap_offset_handle'; did you mean 'i915_gem_mmap_offset_ioctl'? [-Werror=implicit-function-declaration]
+     return __assign_mmap_offset_handle(file, args->handle, type, &args->offset);
+            ^~~~~~~~~~~~~~~~~~~~~~~~~~~
+            i915_gem_mmap_offset_ioctl
    drivers/gpu/drm/i915/gem/i915_gem_mman.c: In function 'i915_gem_fb_mmap':
-   drivers/gpu/drm/i915/gem/i915_gem_mman.c:896:23: error: implicit declaration of function 'mmap_offset_attach' [-Werror=implicit-function-declaration]
-     896 |                 mmo = mmap_offset_attach(obj, mmap_type, NULL);
-         |                       ^~~~~~~~~~~~~~~~~~
-   drivers/gpu/drm/i915/gem/i915_gem_mman.c:896:21: warning: assignment to 'struct i915_mmap_offset *' from 'int' makes pointer from integer without a cast [-Wint-conversion]
-     896 |                 mmo = mmap_offset_attach(obj, mmap_type, NULL);
-         |                     ^
-   In file included from drivers/gpu/drm/i915/gem/i915_gem_mman.c:912:
-   drivers/gpu/drm/i915/gem/selftests/i915_gem_mman.c: In function 'assert_mmap_offset':
->> drivers/gpu/drm/i915/gem/selftests/i915_gem_mman.c:624:15: error: implicit declaration of function '__assign_mmap_offset'; did you mean 'assert_mmap_offset'? [-Werror=implicit-function-declaration]
-     624 |         ret = __assign_mmap_offset(obj, default_mapping(i915), &offset, NULL);
-         |               ^~~~~~~~~~~~~~~~~~~~
-         |               assert_mmap_offset
+   drivers/gpu/drm/i915/gem/i915_gem_mman.c:896:9: error: implicit declaration of function 'mmap_offset_attach'; did you mean 'dma_free_attrs'? [-Werror=implicit-function-declaration]
+      mmo = mmap_offset_attach(obj, mmap_type, NULL);
+            ^~~~~~~~~~~~~~~~~~
+            dma_free_attrs
+>> drivers/gpu/drm/i915/gem/i915_gem_mman.c:896:7: warning: assignment makes pointer from integer without a cast [-Wint-conversion]
+      mmo = mmap_offset_attach(obj, mmap_type, NULL);
+          ^
    cc1: some warnings being treated as errors
 
-Kconfig warnings: (for reference only)
-   WARNING: unmet direct dependencies detected for DRM_I915_DEBUG_GEM
-   Depends on [n]: HAS_IOMEM [=y] && DRM_I915 [=y] && EXPERT [=y] && DRM_I915_WERROR [=n]
-   Selected by [y]:
-   - DRM_I915_DEBUG [=y] && HAS_IOMEM [=y] && DRM_I915 [=y] && EXPERT [=y] && !COMPILE_TEST [=n]
 
+vim +896 drivers/gpu/drm/i915/gem/i915_gem_mman.c
 
-vim +624 drivers/gpu/drm/i915/gem/selftests/i915_gem_mman.c
-
-450cede7f3804c Thomas Hellström  2021-08-31  611  
-b414fcd5be0b00 Chris Wilson      2019-05-28  612  static bool assert_mmap_offset(struct drm_i915_private *i915,
-b414fcd5be0b00 Chris Wilson      2019-05-28  613  			       unsigned long size,
-b414fcd5be0b00 Chris Wilson      2019-05-28  614  			       int expected)
-b414fcd5be0b00 Chris Wilson      2019-05-28  615  {
-b414fcd5be0b00 Chris Wilson      2019-05-28  616  	struct drm_i915_gem_object *obj;
-cf3e3e86d77970 Maarten Lankhorst 2021-06-10  617  	u64 offset;
-cf3e3e86d77970 Maarten Lankhorst 2021-06-10  618  	int ret;
-b414fcd5be0b00 Chris Wilson      2019-05-28  619  
-450cede7f3804c Thomas Hellström  2021-08-31  620  	obj = create_sys_or_internal(i915, size);
-b414fcd5be0b00 Chris Wilson      2019-05-28  621  	if (IS_ERR(obj))
-cf3e3e86d77970 Maarten Lankhorst 2021-06-10  622  		return expected && expected == PTR_ERR(obj);
-b414fcd5be0b00 Chris Wilson      2019-05-28  623  
-7961c5b60f23df Maarten Lankhorst 2021-07-14 @624  	ret = __assign_mmap_offset(obj, default_mapping(i915), &offset, NULL);
-b414fcd5be0b00 Chris Wilson      2019-05-28  625  	i915_gem_object_put(obj);
-b414fcd5be0b00 Chris Wilson      2019-05-28  626  
-cf3e3e86d77970 Maarten Lankhorst 2021-06-10  627  	return ret == expected;
-b414fcd5be0b00 Chris Wilson      2019-05-28  628  }
-b414fcd5be0b00 Chris Wilson      2019-05-28  629  
+eaee1c085863951 Nirmoy Das    2023-04-04  874  
+eaee1c085863951 Nirmoy Das    2023-04-04  875  int i915_gem_fb_mmap(struct drm_i915_gem_object *obj, struct vm_area_struct *vma)
+eaee1c085863951 Nirmoy Das    2023-04-04  876  {
+eaee1c085863951 Nirmoy Das    2023-04-04  877  	struct drm_i915_private *i915 = to_i915(obj->base.dev);
+eaee1c085863951 Nirmoy Das    2023-04-04  878  	struct drm_device *dev = &i915->drm;
+eaee1c085863951 Nirmoy Das    2023-04-04  879  	struct i915_mmap_offset *mmo = NULL;
+eaee1c085863951 Nirmoy Das    2023-04-04  880  	enum i915_mmap_type mmap_type;
+eaee1c085863951 Nirmoy Das    2023-04-04  881  	struct i915_ggtt *ggtt = to_gt(i915)->ggtt;
+eaee1c085863951 Nirmoy Das    2023-04-04  882  
+eaee1c085863951 Nirmoy Das    2023-04-04  883  	if (drm_dev_is_unplugged(dev))
+eaee1c085863951 Nirmoy Das    2023-04-04  884  		return -ENODEV;
+eaee1c085863951 Nirmoy Das    2023-04-04  885  
+eaee1c085863951 Nirmoy Das    2023-04-04  886  	/* handle ttm object */
+eaee1c085863951 Nirmoy Das    2023-04-04  887  	if (obj->ops->mmap_ops) {
+eaee1c085863951 Nirmoy Das    2023-04-04  888  		/*
+eaee1c085863951 Nirmoy Das    2023-04-04  889  		 * ttm fault handler, ttm_bo_vm_fault_reserved() uses fake offset
+eaee1c085863951 Nirmoy Das    2023-04-04  890  		 * to calculate page offset so set that up.
+eaee1c085863951 Nirmoy Das    2023-04-04  891  		 */
+eaee1c085863951 Nirmoy Das    2023-04-04  892  		vma->vm_pgoff += drm_vma_node_start(&obj->base.vma_node);
+eaee1c085863951 Nirmoy Das    2023-04-04  893  	} else {
+eaee1c085863951 Nirmoy Das    2023-04-04  894  		/* handle stolen and smem objects */
+eaee1c085863951 Nirmoy Das    2023-04-04  895  		mmap_type = i915_ggtt_has_aperture(ggtt) ? I915_MMAP_TYPE_GTT : I915_MMAP_TYPE_WC;
+eaee1c085863951 Nirmoy Das    2023-04-04 @896  		mmo = mmap_offset_attach(obj, mmap_type, NULL);
+274d4b96b12f78c Dan Carpenter 2023-06-06  897  		if (IS_ERR(mmo))
+274d4b96b12f78c Dan Carpenter 2023-06-06  898  			return PTR_ERR(mmo);
+eaee1c085863951 Nirmoy Das    2023-04-04  899  	}
+eaee1c085863951 Nirmoy Das    2023-04-04  900  
+eaee1c085863951 Nirmoy Das    2023-04-04  901  	/*
+eaee1c085863951 Nirmoy Das    2023-04-04  902  	 * When we install vm_ops for mmap we are too late for
+eaee1c085863951 Nirmoy Das    2023-04-04  903  	 * the vm_ops->open() which increases the ref_count of
+eaee1c085863951 Nirmoy Das    2023-04-04  904  	 * this obj and then it gets decreased by the vm_ops->close().
+eaee1c085863951 Nirmoy Das    2023-04-04  905  	 * To balance this increase the obj ref_count here.
+eaee1c085863951 Nirmoy Das    2023-04-04  906  	 */
+eaee1c085863951 Nirmoy Das    2023-04-04  907  	obj = i915_gem_object_get(obj);
+eaee1c085863951 Nirmoy Das    2023-04-04  908  	return i915_gem_object_mmap(obj, mmo, vma);
+eaee1c085863951 Nirmoy Das    2023-04-04  909  }
+eaee1c085863951 Nirmoy Das    2023-04-04  910  
 
 -- 
 0-DAY CI Kernel Test Service
