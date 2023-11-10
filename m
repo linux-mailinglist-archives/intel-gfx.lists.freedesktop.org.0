@@ -2,151 +2,53 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id C269F7E7DB8
-	for <lists+intel-gfx@lfdr.de>; Fri, 10 Nov 2023 17:20:41 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0AC1C7E7DE8
+	for <lists+intel-gfx@lfdr.de>; Fri, 10 Nov 2023 17:53:35 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CB61D10E119;
-	Fri, 10 Nov 2023 16:20:38 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7E4FD10E157;
+	Fri, 10 Nov 2023 16:53:28 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.151])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EA84310E119
- for <intel-gfx@lists.freedesktop.org>; Fri, 10 Nov 2023 16:20:37 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.24])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B956010E125;
+ Fri, 10 Nov 2023 16:53:25 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1699633237; x=1731169237;
- h=from:to:subject:date:message-id:references:in-reply-to:
- content-transfer-encoding:mime-version;
- bh=HjeW9kX5P1jPVOoA6K/ULMxwCUqHjq1vq2EHYuKaf5k=;
- b=DQ85gZwRvY2/9xgkh9RvvQWcq5I4aCwo5LcyA0rU6b8gEPiFFPFruVja
- /Iut/9rLAKb5u132jyKb+Py42YnlxuZ7J2NFEkAH/VeZdKs+VoPxaXuwr
- AAf6QeHmCe0GXrOuLSUkSkXuQXV9d55PP/W4ffdtNJl/rH4hnhvs7qNxP
- OsEadg4rSkE9fc6UuhNR9TE9TVoOs08TwtM4/aLk0qBAXYHkbzn4yDv25
- uMmkv90TB2yP7hGBPKR507/QfBwxNEVWth4i0oMrKPwOf/9zcGRDCNPEZ
- ZgLuGb+St2raG3o5kXXYIP3o2ZiOuuGdjLzXPUfvTQqv68/17Qgolufw9 g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10890"; a="370407104"
-X-IronPort-AV: E=Sophos;i="6.03,291,1694761200"; d="scan'208";a="370407104"
-Received: from fmsmga005.fm.intel.com ([10.253.24.32])
- by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Nov 2023 08:20:37 -0800
+ t=1699635205; x=1731171205;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=R9/TiweBvX/91g5bNaHjTqb1OT2ta6eiBlXafdqpk7k=;
+ b=As66f9zKLSqMTbd+uhLwoRkFn6gYj3km2C49jHRCDmhrC8tQap7jLvJv
+ 1g5eGHkN19i3/04wQJl+lk3ZAzuAp+iHWqqnVPcg1WrWvGadXHhG1JljS
+ QobCYb2IG2U1Q9+2E2OAzF03SJTXSCyT5XY0X/vXTee9swyQW0UW21EFG
+ Eg0yqEAB8fI7fVMu6ZpQMK0TkNt6eBI5aOrs9CAdM/4Q/2/OjOgE4nLKV
+ NUYzf4COBwvS+m2PeE0HsS7hKxDoD0Sq1kQFcFZDi88MKSmDph9bqou7A
+ xAIhCfRZ2VCb/Rlv/yMsF4qmf8c7Gkp2rMHAVuyyb7bTC5bmJdsaFiYTJ A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10890"; a="393079657"
+X-IronPort-AV: E=Sophos;i="6.03,291,1694761200"; d="scan'208";a="393079657"
+Received: from orsmga005.jf.intel.com ([10.7.209.41])
+ by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Nov 2023 08:53:20 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10890"; a="1095223538"
-X-IronPort-AV: E=Sophos;i="6.03,291,1694761200"; d="scan'208";a="1095223538"
-Received: from fmsmsx601.amr.corp.intel.com ([10.18.126.81])
- by fmsmga005.fm.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
- 10 Nov 2023 08:20:36 -0800
-Received: from fmsmsx611.amr.corp.intel.com (10.18.126.91) by
- fmsmsx601.amr.corp.intel.com (10.18.126.81) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.34; Fri, 10 Nov 2023 08:20:36 -0800
-Received: from fmsmsx611.amr.corp.intel.com (10.18.126.91) by
- fmsmsx611.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.34; Fri, 10 Nov 2023 08:20:36 -0800
-Received: from fmsedg602.ED.cps.intel.com (10.1.192.136) by
- fmsmsx611.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.34 via Frontend Transport; Fri, 10 Nov 2023 08:20:36 -0800
-Received: from NAM11-DM6-obe.outbound.protection.outlook.com (104.47.57.169)
- by edgegateway.intel.com (192.55.55.71) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.34; Fri, 10 Nov 2023 08:20:35 -0800
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=IJLiTdCApOhJt38e9B60YXL6kioEDityQJmdPrzbu06W7Q/C/E+FK506ETXHNBpsJZMhGM+zSABR8LlbDpHcIFxxEgDE6OqcIfjuWV7A8CerYKyUkVNHhNJd1tbSbEFNhoX+ZogXYKwspT4XR9EUDgzOq2Y6DMCLIZzjo1gU61pplJuVxkOqER15rjSlD0XfxGGokxvKE/0/yn+l/DIki9GGkHimt9xg7XBdWg4iWzAeh+w4GclIQ2qZchNGWRLBndOrGvOf6RQHwH1duKIN21ek/eX0g49a3b6pqRg1pZrQEcVyIlydn6skWn48OWqs0TSYKpDgJ0bwOAxPVGEJcw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=HjeW9kX5P1jPVOoA6K/ULMxwCUqHjq1vq2EHYuKaf5k=;
- b=hKvqFgHuuoZiA+ws5S5phq2FMWiOQV9ulK0mDcpASEnWIzPbKGCUK9CdMUyorBzB715r//NYLPfcQ8Y8Lpa9iYjGTtImJQ0gFRXAWorXymaAoyqqzf+8r6ox5WeGf4748p2cFZ/FUmsMeTxdF+MMzs4kQvXpF6X0ojtVMuUyLLl6/if0sObMYpkA7UOM8j/JRVyeQtYSPIbB5G0hKwZXeu+WixnKRJYzzTiIVfAtuedWS8VPD2X/75vMTaKwxTr+8GOWrYX/Xtg2QouGcd9dXMCR0qNKtJ6cR0xAYfHpOwK0O6Ke03hELqKIP6VRIhOmWPLueXpb8DugWMJmHlRE+Q==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Received: from DM8PR11MB5655.namprd11.prod.outlook.com (2603:10b6:8:28::10) by
- SJ1PR11MB6276.namprd11.prod.outlook.com (2603:10b6:a03:455::8) with
- Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.6954.28; Fri, 10 Nov 2023 16:20:33 +0000
-Received: from DM8PR11MB5655.namprd11.prod.outlook.com
- ([fe80::a98b:5c7d:8396:267b]) by DM8PR11MB5655.namprd11.prod.outlook.com
- ([fe80::a98b:5c7d:8396:267b%4]) with mapi id 15.20.6977.020; Fri, 10 Nov 2023
- 16:20:33 +0000
-From: "Saarinen, Jani" <jani.saarinen@intel.com>
-To: VDRU VDRU <user.vdr@gmail.com>, "intel-gfx@lists.freedesktop.org"
- <intel-gfx@lists.freedesktop.org>
-Thread-Topic: [Intel-gfx] Getting black screen with stable kernel 6.6
-Thread-Index: AQHaE+aMYfjUGmWnyEiGdpdAPyAckLBzu7kA
-Date: Fri, 10 Nov 2023 16:20:33 +0000
-Message-ID: <DM8PR11MB565504177D595CA4B3BC1DB4E0AEA@DM8PR11MB5655.namprd11.prod.outlook.com>
-References: <CAA7C2qgoUsXQDDFvK-kwqXVAxT7eXgQzY1eyTEzW+T+gncQXNg@mail.gmail.com>
-In-Reply-To: <CAA7C2qgoUsXQDDFvK-kwqXVAxT7eXgQzY1eyTEzW+T+gncQXNg@mail.gmail.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: DM8PR11MB5655:EE_|SJ1PR11MB6276:EE_
-x-ms-office365-filtering-correlation-id: ac4a4bd3-5a5b-43a0-cc46-08dbe208f6c0
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: 2ArLlNoeqNaisEU6EIGn8N6FHxGC7SF7gAEaaNs+leSWUG+qX97kob+YuvJF5LJpj+ouH8wZ4SEGFZJBX5533adbsNT5fbGTdflzQnB3fYejiQt3jL8yXtqIk0ueN5xqnwmYY75uHKnUR//M0aZmQhLfAvtu3YzRms+oAL1sxlIhdkNLPQH2k5IEKdoSZvDbepUOVUp/u02k3MElC2wqbFyU128Ez++ej3b8L6czVHYHdpUDRAplOShhcXJpYkyu0GN064gDn6JeWniXz8619Pwh+vIFbjbhyG7jlc2W3heyqjOxkQ8b+PDAVCp4V13jbDvFawFhkfkOoaJvp0Jjnc/OiROmnCvou59k62U910Nopi26Dpa5WKXcxyo1bbIz6AS87Lgu+6AOY/86Tr68roUrHJlB7kb83gklNNcTvtWDBXLtq+xAAMHLWeP2Usftb9nyPAN+WavDcDW9TI3Liiqst5x8yhbzrZ4DCsnXdbYCOtutR50+g+eLdl9s0URSc+CT84l1CIJGVVue68XqXANN+iQQTH1vBvGNNahsBzLIYfFVsooQ29fZNdbJpGwYCaw10Bub3nCmB72Q6Gl+YKCXZ58NzEneYiKkpWt/EFU=
-x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:DM8PR11MB5655.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230031)(366004)(376002)(39860400002)(346002)(136003)(396003)(230922051799003)(451199024)(186009)(64100799003)(1800799009)(38100700002)(55016003)(7696005)(71200400001)(6506007)(53546011)(83380400001)(82960400001)(122000001)(9686003)(86362001)(41300700001)(66556008)(76116006)(2906002)(66946007)(8936002)(33656002)(5660300002)(8676002)(52536014)(110136005)(316002)(66446008)(966005)(64756008)(26005)(66476007)(478600001)(38070700009);
- DIR:OUT; SFP:1102; 
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?utf-8?B?SEJmZzNjMUpBV2h2NE5SY1V4cFJaV0JCK1UxZDZubkVST2lnL2JUb1NrNk93?=
- =?utf-8?B?Uk1vYnRmSzk1SDlqcFRUcmNyMzVyRUg2bjRJNGE4Nmw1VTF2MkhTMXlwU2Js?=
- =?utf-8?B?dFg4aTJzV3l6K2hjK3YrVGRWWmRibmQ4RGUyREFudFZnWkZyT3VqNlBSMXRJ?=
- =?utf-8?B?blJtREpwRjRYcjUrV0ltQmtvZGFoYkVmT2kxYkh1ZWoxQzRsQWtFRTFVSzFm?=
- =?utf-8?B?VUMxbm5oK2t6cUcyejZ1YWhuczd6Z0NtL29nNjVtSlJzS2E3VGtvbmY2bzRr?=
- =?utf-8?B?REJ5Z2lERHc0VXBjZC9FUlN1OXZ4Z3U5WmtTaDJSRmpWVW9hR1djSktnWTFz?=
- =?utf-8?B?czZXQjNXenF0eUhKRnJJTU9PcWtCYlVuZ3ZxQlVLT212UnBQb0srOHF0ZXJz?=
- =?utf-8?B?ZFVCOGE2RmMwblBIRmUyQjR3K2xOV2FYVWUxMmJkWjE1NGtjc1JubE9WSUV5?=
- =?utf-8?B?VVpoZTB6UkpWVE53eHV0Nkx3dzNuaVFHamJvQy9QMGJkc0dldGxDdXJCR0NZ?=
- =?utf-8?B?Rkx3TkVWY2VXM0pRK01lWUFoSVdheXpETmFWUWNTajFRWEhDdWlZWVpMeU9V?=
- =?utf-8?B?WURnT1pkWWZCVVVWZVdnand6aHEycVdjUFNybzQ1UkRQSEVJa1p0QnhwNHpo?=
- =?utf-8?B?RkJsWVFUNnZ4WHQ1cmVrelR4cHhYT3B0RE9kckJRUlF6ci9XM0ZFSi84dTkz?=
- =?utf-8?B?aGFvN2JNRTZ3WVFkMEZNK25kQ3k0U0VrcytSTjV5ZEZIVjkrMGJsbk9obFZV?=
- =?utf-8?B?UTVNYkY4enk4QVlacmdlM01WdWVRY0xWR0dWUndlb2EySW5tVUcvbUN1aXNl?=
- =?utf-8?B?TDFzbVZ6YVZWK3RIRXlzVzZMSzR6ZVQvM0lhVjFZVlNqUThCWHpxaDZhLzlO?=
- =?utf-8?B?UVFVZEc3a2IzczdOK05MTlNucnYyc0VjUUEzVjBOYklkYU9DWmIwVnNCWDVT?=
- =?utf-8?B?dS92ZloweS9PblF6LzhSM05IK3l1K2tpV3ZjaTl5ZWZWTkJRU0ROR3VvTU5S?=
- =?utf-8?B?UjVXd29PRFJFY1dLMWVzeXp1QldSZzZKdXVvdWZ1dHQzdCtHRmJmSDN6Qy9t?=
- =?utf-8?B?NVd3ZEV6N1hNK0RONk51d0xoNG5MZ09jTnRLNVpvZTRBU09iN3BydmUrYkkw?=
- =?utf-8?B?NFl3UWZRSXdsQjBVdWdCVDlORVoxY1h0Zkt4dnlmZnV4ZzNnME5JMTJ6Umo2?=
- =?utf-8?B?dDE4d3Z2OHFqd2VQNHkyMnJPOE5zY2dWL1Z2VnU1ME04ekczczkvK3VKYW1i?=
- =?utf-8?B?TWpLdHdpL3pLQThZTkpyMTBnWHJlZDZ1S1JRTEZpNTdOWTI3RDFQNUdCMmpX?=
- =?utf-8?B?VWY3RDlRN29nNHhCSGE2YVR5dTV4WTJ1bzVsTFNpL1J2Y2FvVlVjeTdka292?=
- =?utf-8?B?Z29ndXlvY1MyamFVTVd4aTlkZks1bnkyQ2JzZmpnSkZEWkUrM1R5T0pxR1NH?=
- =?utf-8?B?RGkybnBWV3hoa0dKZ2NIZUwwVWNNSFlDcGxKbnpZbldsVktpV2t3d0VZSktP?=
- =?utf-8?B?K0JOa2J0c3RHN2NUOWFqQUlRVDYzeTR6RmhPZXBnbm1iVmRVVzRTYXE2NGI3?=
- =?utf-8?B?cE1KVnZ2OWppeXMySGQ5dFY1U0lqbEpYQzNieWNQQURSd2ZqaGEzWW5pcXlo?=
- =?utf-8?B?NTZxVW9RV0lVZzF3VUIzSmpPU01BdTdwbjkxNytSMVAzRG5vL3V0VEU1c3hh?=
- =?utf-8?B?SXVJazRjV2d4MElyL29ERGtOdVRLR2JRdndNcFp0VmFIeFV1UCtXRG4ybGNB?=
- =?utf-8?B?Y3NadDd4K08yUXJyZzRhcmtsUGFIOHFzdEhRdk5JbnowWFlVRGJOaHUrS0hR?=
- =?utf-8?B?UzdVZU1sNXFDYnNjeVNBbS80UlVUdnNmUVdNakJ6b3FHYnRXM3ViZGFnTUhM?=
- =?utf-8?B?L1JBS1c3Zm02T3BibEE4Vyt2K1UxUkFDVWhTTmtnSUc4dmJ3KzVwYVgzZHR6?=
- =?utf-8?B?Tk9lZ2c1bVVWVkdHakRKYlVRRlJQdnk4OFBUc2k1bTJkVkRVRCtWYit4QnUx?=
- =?utf-8?B?VXQ0UjVSck11azV1cXU2MHlTWEo4QVhRYk1vSENJVWdvZVdLakFnSHpGQmhw?=
- =?utf-8?B?ZHdYNkpNemgrNEVmeWxPdGxwQjhEaUtQZnZFVjdnSjkxNUxYekxaMVAwS285?=
- =?utf-8?Q?Nm4UCn20hcXoM55KOcLslXXTG?=
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+X-IronPort-AV: E=McAfee;i="6600,9927,10890"; a="937207578"
+X-IronPort-AV: E=Sophos;i="6.03,291,1694761200"; d="scan'208";a="937207578"
+Received: from lkp-server01.sh.intel.com (HELO 17d9e85e5079) ([10.239.97.150])
+ by orsmga005.jf.intel.com with ESMTP; 10 Nov 2023 08:53:18 -0800
+Received: from kbuild by 17d9e85e5079 with local (Exim 4.96)
+ (envelope-from <lkp@intel.com>) id 1r1Uku-0009ko-03;
+ Fri, 10 Nov 2023 16:53:16 +0000
+Date: Sat, 11 Nov 2023 00:52:27 +0800
+From: kernel test robot <lkp@intel.com>
+To: Dipam Turkar <dipamt1729@gmail.com>, jani.nikula@linux.intel.com
+Message-ID: <202311110053.K5lNjN1W-lkp@intel.com>
+References: <20231110105811.380646-1-dipamt1729@gmail.com>
 MIME-Version: 1.0
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: DM8PR11MB5655.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: ac4a4bd3-5a5b-43a0-cc46-08dbe208f6c0
-X-MS-Exchange-CrossTenant-originalarrivaltime: 10 Nov 2023 16:20:33.0404 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: 7bueVq/wSAh28jIt+5Ex/yQxVNqBbLJer41254Y+DFSOo7ElaYrg87/Ew0JXE6FiDNdeOPvpit/Bt193smdOTw==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ1PR11MB6276
-X-OriginatorOrg: intel.com
-Subject: Re: [Intel-gfx] Getting black screen with stable kernel 6.6
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20231110105811.380646-1-dipamt1729@gmail.com>
+Subject: Re: [Intel-gfx] [PATCH] Remove custom dumb_map_offset
+ implementations in i915 driver
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -159,28 +61,129 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: Dipam Turkar <dipamt1729@gmail.com>, intel-gfx@lists.freedesktop.org,
+ rodrigo.vivi@intel.com, linux-kernel@vger.kernel.org,
+ dri-devel@lists.freedesktop.org, daniel@ffwll.ch,
+ oe-kbuild-all@lists.linux.dev, airlied@gmail.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-SGksDQpQbGVhc2UgcmVwb3J0IHdpdGggdGhlc2UgaW5zdHJ1Y3Rpb25zOiBodHRwczovL2RybS5w
-YWdlcy5mcmVlZGVza3RvcC5vcmcvaW50ZWwtZG9jcy9ob3ctdG8tZmlsZS1pOTE1LWJ1Z3MuaHRt
-bCANCg0KPiAtLS0tLU9yaWdpbmFsIE1lc3NhZ2UtLS0tLQ0KPiBGcm9tOiBJbnRlbC1nZnggPGlu
-dGVsLWdmeC1ib3VuY2VzQGxpc3RzLmZyZWVkZXNrdG9wLm9yZz4gT24gQmVoYWxmIE9mIFZEUlUN
-Cj4gVkRSVQ0KPiBTZW50OiBGcmlkYXksIE5vdmVtYmVyIDEwLCAyMDIzIDQ6NTkgUE0NCj4gVG86
-IGludGVsLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmcNCj4gU3ViamVjdDogW0ludGVsLWdmeF0g
-R2V0dGluZyBibGFjayBzY3JlZW4gd2l0aCBzdGFibGUga2VybmVsIDYuNg0KPiANCj4gSGksDQo+
-IEkndmUgYmVlbiB1c2luZyBrZXJuZWwgNi41LjEwIG9uIERlYmlhbiBTaWQgd2l0aG91dCBpc3N1
-ZS4gSSBqdXN0IHRyaWVkIGtlcm5lbCA2LjYsDQo+IChhbmQgY29uc2VxdWVudGx5IDYuNi4xKSBi
-dXQgb25seSBnZXQgYSBibGFjayBzY3JlZW4uIFRoZSBzeXN0ZW0gZG9lc24ndCBydW4gYQ0KPiBk
-ZXNrdG9wIGVudmlyb25tZW50IGJ1dCBydW5zIGFzIGEgS29kaSBjbGllbnQgdXNpbmcgR0JNIGZv
-ciBkaXNwbGF5IG91dHB1dC4gVGhlDQo+IHN5c3RlbSBpcyBhIEJlZWxpbmsgTWluaQ0KPiBTMTIg
-UHJvICgxMnRoIGdlbiBBbGRlciBMYWtlIE4xMDAgY3B1IHcvaW50ZWdyYXRlZCBncHUgQWxkZXIg
-TGFrZS1OIFtVSEQNCj4gR3JhcGhpY3NdIFs4MDg2OjQ2RDFdKSBjb25uZWN0ZWQgdG8gYW4gTEcg
-dHYuDQo+IA0KPiBJJ20gbm90IHN1cmUgaWYgdGhlIGlzc3VlIGlzIHRoZSBpOTE1IGRyaXZlciBp
-dHNlbGYgb3Igc29tZXRoaW5nIGVsc2UgdGhhdCB3YXMNCj4gY2hhbmdlZCBiZXR3ZWVuIDYuNS4x
-MCBhbmQgNi42IGFuZCBhbSBob3Bpbmcgc29tZW9uZSBtb3JlIGtub3dsZWRnZWFibGUNCj4gY2Fu
-IGhlbHAvcG9pbnQgbWUgaW4gdGhlIHJpZ2h0IGRpcmVjdGlvbiB0byBmaW5kaW5nIHRoYXQgb3V0
-LiBJZiBpdCBpcyBhbiBpOTE1IGRyaXZlcg0KPiBidWcsIEknZCBsaWtlIHRvIGdldCBpdCByZXBv
-cnRlZCBjb3JyZWN0bHkuDQo+IA0KPiBJZiB0aGlzIGlzbid0IHRoZSBhcHByb3ByaWF0ZSBwbGFj
-ZSBmb3IgcmVwb3J0aW5nIHRoaXMsIHBsZWFzZSBsZXQgbWUga25vdy4NCj4gDQo+IFRoYW5rcywN
-Cj4gRGVyZWsNCg==
+Hi Dipam,
+
+kernel test robot noticed the following build errors:
+
+[auto build test ERROR on drm-tip/drm-tip]
+
+url:    https://github.com/intel-lab-lkp/linux/commits/Dipam-Turkar/Remove-custom-dumb_map_offset-implementations-in-i915-driver/20231110-185942
+base:   git://anongit.freedesktop.org/drm/drm-tip drm-tip
+patch link:    https://lore.kernel.org/r/20231110105811.380646-1-dipamt1729%40gmail.com
+patch subject: [Intel-gfx] [PATCH] Remove custom dumb_map_offset implementations in i915 driver
+config: x86_64-randconfig-012-20231110 (https://download.01.org/0day-ci/archive/20231111/202311110053.K5lNjN1W-lkp@intel.com/config)
+compiler: gcc-12 (Debian 12.2.0-14) 12.2.0
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20231111/202311110053.K5lNjN1W-lkp@intel.com/reproduce)
+
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202311110053.K5lNjN1W-lkp@intel.com/
+
+All error/warnings (new ones prefixed by >>):
+
+   drivers/gpu/drm/i915/gem/i915_gem_mman.c: In function 'i915_gem_mmap_offset_ioctl':
+>> drivers/gpu/drm/i915/gem/i915_gem_mman.c:673:16: error: implicit declaration of function '__assign_mmap_offset_handle' [-Werror=implicit-function-declaration]
+     673 |         return __assign_mmap_offset_handle(file, args->handle, type, &args->offset);
+         |                ^~~~~~~~~~~~~~~~~~~~~~~~~~~
+   drivers/gpu/drm/i915/gem/i915_gem_mman.c: In function 'i915_gem_fb_mmap':
+>> drivers/gpu/drm/i915/gem/i915_gem_mman.c:896:23: error: implicit declaration of function 'mmap_offset_attach' [-Werror=implicit-function-declaration]
+     896 |                 mmo = mmap_offset_attach(obj, mmap_type, NULL);
+         |                       ^~~~~~~~~~~~~~~~~~
+>> drivers/gpu/drm/i915/gem/i915_gem_mman.c:896:21: warning: assignment to 'struct i915_mmap_offset *' from 'int' makes pointer from integer without a cast [-Wint-conversion]
+     896 |                 mmo = mmap_offset_attach(obj, mmap_type, NULL);
+         |                     ^
+   cc1: some warnings being treated as errors
+--
+>> drivers/gpu/drm/i915/i915_driver.c:1826:28: error: 'drm_gem_dumb_mmap_offset' undeclared here (not in a function); did you mean 'drm_gem_dumb_map_offset'?
+    1826 |         .dumb_map_offset = drm_gem_dumb_mmap_offset,
+         |                            ^~~~~~~~~~~~~~~~~~~~~~~~
+         |                            drm_gem_dumb_map_offset
+
+
+vim +/__assign_mmap_offset_handle +673 drivers/gpu/drm/i915/gem/i915_gem_mman.c
+
+cc662126b4134e Abdiel Janulgue   2019-12-04  603  
+b414fcd5be0b00 Chris Wilson      2019-05-28  604  /**
+cc662126b4134e Abdiel Janulgue   2019-12-04  605   * i915_gem_mmap_offset_ioctl - prepare an object for GTT mmap'ing
+b414fcd5be0b00 Chris Wilson      2019-05-28  606   * @dev: DRM device
+b414fcd5be0b00 Chris Wilson      2019-05-28  607   * @data: GTT mapping ioctl data
+b414fcd5be0b00 Chris Wilson      2019-05-28  608   * @file: GEM object info
+b414fcd5be0b00 Chris Wilson      2019-05-28  609   *
+b414fcd5be0b00 Chris Wilson      2019-05-28  610   * Simply returns the fake offset to userspace so it can mmap it.
+b414fcd5be0b00 Chris Wilson      2019-05-28  611   * The mmap call will end up in drm_gem_mmap(), which will set things
+b414fcd5be0b00 Chris Wilson      2019-05-28  612   * up so we can get faults in the handler above.
+b414fcd5be0b00 Chris Wilson      2019-05-28  613   *
+b414fcd5be0b00 Chris Wilson      2019-05-28  614   * The fault handler will take care of binding the object into the GTT
+b414fcd5be0b00 Chris Wilson      2019-05-28  615   * (since it may have been evicted to make room for something), allocating
+b414fcd5be0b00 Chris Wilson      2019-05-28  616   * a fence register, and mapping the appropriate aperture address into
+b414fcd5be0b00 Chris Wilson      2019-05-28  617   * userspace.
+b414fcd5be0b00 Chris Wilson      2019-05-28  618   */
+b414fcd5be0b00 Chris Wilson      2019-05-28  619  int
+cc662126b4134e Abdiel Janulgue   2019-12-04  620  i915_gem_mmap_offset_ioctl(struct drm_device *dev, void *data,
+b414fcd5be0b00 Chris Wilson      2019-05-28  621  			   struct drm_file *file)
+b414fcd5be0b00 Chris Wilson      2019-05-28  622  {
+cc662126b4134e Abdiel Janulgue   2019-12-04  623  	struct drm_i915_private *i915 = to_i915(dev);
+cc662126b4134e Abdiel Janulgue   2019-12-04  624  	struct drm_i915_gem_mmap_offset *args = data;
+cc662126b4134e Abdiel Janulgue   2019-12-04  625  	enum i915_mmap_type type;
+126d5de38542d4 Chris Wilson      2019-12-04  626  	int err;
+cc662126b4134e Abdiel Janulgue   2019-12-04  627  
+8d65859a4cbae9 Chris Wilson      2019-12-07  628  	/*
+8d65859a4cbae9 Chris Wilson      2019-12-07  629  	 * Historically we failed to check args.pad and args.offset
+8d65859a4cbae9 Chris Wilson      2019-12-07  630  	 * and so we cannot use those fields for user input and we cannot
+8d65859a4cbae9 Chris Wilson      2019-12-07  631  	 * add -EINVAL for them as the ABI is fixed, i.e. old userspace
+8d65859a4cbae9 Chris Wilson      2019-12-07  632  	 * may be feeding in garbage in those fields.
+8d65859a4cbae9 Chris Wilson      2019-12-07  633  	 *
+8d65859a4cbae9 Chris Wilson      2019-12-07  634  	 * if (args->pad) return -EINVAL; is verbotten!
+8d65859a4cbae9 Chris Wilson      2019-12-07  635  	 */
+8d65859a4cbae9 Chris Wilson      2019-12-07  636  
+126d5de38542d4 Chris Wilson      2019-12-04  637  	err = i915_user_extensions(u64_to_user_ptr(args->extensions),
+126d5de38542d4 Chris Wilson      2019-12-04  638  				   NULL, 0, NULL);
+126d5de38542d4 Chris Wilson      2019-12-04  639  	if (err)
+126d5de38542d4 Chris Wilson      2019-12-04  640  		return err;
+cc662126b4134e Abdiel Janulgue   2019-12-04  641  
+cc662126b4134e Abdiel Janulgue   2019-12-04  642  	switch (args->flags) {
+cc662126b4134e Abdiel Janulgue   2019-12-04  643  	case I915_MMAP_OFFSET_GTT:
+5c24c9d227e9bb Michał Winiarski  2021-12-19  644  		if (!i915_ggtt_has_aperture(to_gt(i915)->ggtt))
+cc662126b4134e Abdiel Janulgue   2019-12-04  645  			return -ENODEV;
+cc662126b4134e Abdiel Janulgue   2019-12-04  646  		type = I915_MMAP_TYPE_GTT;
+cc662126b4134e Abdiel Janulgue   2019-12-04  647  		break;
+cc662126b4134e Abdiel Janulgue   2019-12-04  648  
+cc662126b4134e Abdiel Janulgue   2019-12-04  649  	case I915_MMAP_OFFSET_WC:
+bdd8b6c98239ca Lucas De Marchi   2021-12-01  650  		if (!pat_enabled())
+cc662126b4134e Abdiel Janulgue   2019-12-04  651  			return -ENODEV;
+cc662126b4134e Abdiel Janulgue   2019-12-04  652  		type = I915_MMAP_TYPE_WC;
+cc662126b4134e Abdiel Janulgue   2019-12-04  653  		break;
+cc662126b4134e Abdiel Janulgue   2019-12-04  654  
+cc662126b4134e Abdiel Janulgue   2019-12-04  655  	case I915_MMAP_OFFSET_WB:
+cc662126b4134e Abdiel Janulgue   2019-12-04  656  		type = I915_MMAP_TYPE_WB;
+cc662126b4134e Abdiel Janulgue   2019-12-04  657  		break;
+cc662126b4134e Abdiel Janulgue   2019-12-04  658  
+cc662126b4134e Abdiel Janulgue   2019-12-04  659  	case I915_MMAP_OFFSET_UC:
+bdd8b6c98239ca Lucas De Marchi   2021-12-01  660  		if (!pat_enabled())
+cc662126b4134e Abdiel Janulgue   2019-12-04  661  			return -ENODEV;
+cc662126b4134e Abdiel Janulgue   2019-12-04  662  		type = I915_MMAP_TYPE_UC;
+cc662126b4134e Abdiel Janulgue   2019-12-04  663  		break;
+cc662126b4134e Abdiel Janulgue   2019-12-04  664  
+7961c5b60f23df Maarten Lankhorst 2021-07-14  665  	case I915_MMAP_OFFSET_FIXED:
+7961c5b60f23df Maarten Lankhorst 2021-07-14  666  		type = I915_MMAP_TYPE_FIXED;
+7961c5b60f23df Maarten Lankhorst 2021-07-14  667  		break;
+7961c5b60f23df Maarten Lankhorst 2021-07-14  668  
+cc662126b4134e Abdiel Janulgue   2019-12-04  669  	default:
+cc662126b4134e Abdiel Janulgue   2019-12-04  670  		return -EINVAL;
+cc662126b4134e Abdiel Janulgue   2019-12-04  671  	}
+cc662126b4134e Abdiel Janulgue   2019-12-04  672  
+cf3e3e86d77970 Maarten Lankhorst 2021-06-10 @673  	return __assign_mmap_offset_handle(file, args->handle, type, &args->offset);
+cc662126b4134e Abdiel Janulgue   2019-12-04  674  }
+cc662126b4134e Abdiel Janulgue   2019-12-04  675  
+
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
