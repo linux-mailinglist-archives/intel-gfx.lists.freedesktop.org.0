@@ -1,33 +1,33 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 761437E8247
-	for <lists+intel-gfx@lfdr.de>; Fri, 10 Nov 2023 20:12:18 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id B10617E8248
+	for <lists+intel-gfx@lfdr.de>; Fri, 10 Nov 2023 20:12:20 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D82E910E1D9;
-	Fri, 10 Nov 2023 19:12:14 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 73CB210E1DB;
+	Fri, 10 Nov 2023 19:12:17 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
  [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 4D81C10E1D9;
- Fri, 10 Nov 2023 19:12:13 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTP id D1C7610E1DB;
+ Fri, 10 Nov 2023 19:12:15 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 3CEABAADF0;
- Fri, 10 Nov 2023 19:12:13 +0000 (UTC)
+ by emeril.freedesktop.org (Postfix) with ESMTP id D09CAACC28;
+ Fri, 10 Nov 2023 19:12:15 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Ankit Nautiyal" <ankit.k.nautiyal@intel.com>
-Date: Fri, 10 Nov 2023 19:12:13 -0000
-Message-ID: <169964353322.31679.10214919058926767623@emeril.freedesktop.org>
+Date: Fri, 10 Nov 2023 19:12:15 -0000
+Message-ID: <169964353585.31676.15755862825811425409@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
 References: <20231110101020.4067342-1-ankit.k.nautiyal@intel.com>
 In-Reply-To: <20231110101020.4067342-1-ankit.k.nautiyal@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
- =?utf-8?q?for_Add_DSC_fractional_bpp_support_=28rev10=29?=
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLlNQQVJTRTogd2FybmluZyBmb3Ig?=
+ =?utf-8?q?Add_DSC_fractional_bpp_support_=28rev10=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -53,32 +53,8 @@ State : warning
 
 == Summary ==
 
-Error: dim checkpatch failed
-83db4cff7777 drm/display/dp: Add helper function to get DSC bpp precision
-f72f3f2aa067 drm/i915/display: Store compressed bpp in U6.4 format
--:190: WARNING:MISSING_SPACE: break quoted strings at a space character
-#190: FILE: drivers/gpu/drm/i915/display/intel_dp.c:2216:
-+			    "Cannot compute valid DSC parameters for Input Bpp = %d"
-+			    "Compressed BPP = " BPP_X16_FMT "\n",
-
--:222: WARNING:LONG_LINE: line length of 108 exceeds 100 columns
-#222: FILE: drivers/gpu/drm/i915/display/intel_dp.c:2407:
-+						   to_bpp_int_roundup(pipe_config->dsc.compressed_bpp_x16)),
-
-total: 0 errors, 2 warnings, 0 checks, 188 lines checked
-01fb8003d41c drm/i915/display: Consider fractional vdsc bpp while computing m_n values
-57ed990aae02 drm/i915/audio: Consider fractional vdsc bpp while computing tu_data
-2740e517bfd7 drm/i915/dsc/mtl: Add support for fractional bpp
-63e6de65f109 drm/i915/dp: Iterate over output bpp with fractional step size
-8dfd5cbd96cf drm/i915/dsc: Add debugfs entry to validate DSC fractional bpp
-c5cf2099ecf2 drm/i915/dsc: Allow DSC only with fractional bpp when forced from debugfs
-0cb1cafe567e drm/i915/dp_mst: Use precision of 1/16 for computing bpp
--:68: WARNING:LONG_LINE: line length of 111 exceeds 100 columns
-#68: FILE: drivers/gpu/drm/i915/display/intel_dp_mst.c:169:
-+	drm_dbg_kms(&i915->drm, "Looking for slots in range min bpp " BPP_X16_FMT " max bpp " BPP_X16_FMT "\n",
-
-total: 0 errors, 1 warnings, 0 checks, 119 lines checked
-513f074fefef drm/i916/dp_mst: Iterate over the DSC bpps as per DSC precision support
-da4e0d8b6686 drm/i915/dp_mst: Add support for forcing dsc fractional bpp via debugfs
+Error: dim sparse failed
+Sparse version: v0.6.2
+Fast mode used, each commit won't be checked separately.
 
 
