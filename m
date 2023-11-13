@@ -1,64 +1,53 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 395F87E92BB
-	for <lists+intel-gfx@lfdr.de>; Sun, 12 Nov 2023 21:38:28 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3B9837E9D97
+	for <lists+intel-gfx@lfdr.de>; Mon, 13 Nov 2023 14:45:55 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8E51A10E31A;
-	Sun, 12 Nov 2023 20:38:21 +0000 (UTC)
-X-Original-To: Intel-gfx@lists.freedesktop.org
-Delivered-To: Intel-gfx@lists.freedesktop.org
-Received: from mail-qk1-x734.google.com (mail-qk1-x734.google.com
- [IPv6:2607:f8b0:4864:20::734])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7805A10E0E3;
- Sun, 12 Nov 2023 20:38:19 +0000 (UTC)
-Received: by mail-qk1-x734.google.com with SMTP id
- af79cd13be357-778711ee748so251715185a.2; 
- Sun, 12 Nov 2023 12:38:19 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1699821498; x=1700426298; darn=lists.freedesktop.org;
- h=in-reply-to:content-disposition:mime-version:references:message-id
- :subject:cc:to:from:date:sender:from:to:cc:subject:date:message-id
- :reply-to; bh=6YztxOL1r/fnKaUwBDzI6/qa/Ai7h1WY5G4jeElcAzw=;
- b=PJvKgjuiItigPtyr84syIf07yqFht2byq29yMEtCVtyyhJbYD5AyUPKxojb96XAdrx
- N/SCOQ48uOy3VEf+G5A3a4/R0//dFdBJxKwe0Cu4sZwWcqfsy53WTU3OZy4wqkqsYa/b
- ILToig3+o0v7deerLQVlHCrm/AkShngPi5/Ls8Hzzbr+sF5ucktrP/d2+8A0NiZb/oPk
- 4LuyWUBvlI9JzVvxSynnWGW8uP6v9q3gD4YzZQ2Da9gqL1OAM+aa0PzUyytXUsZrH9T5
- aQrLCt2OXhQomgwPRZXMBEWGvzTD4EpQQLgzSrF1ArC6iobvw1K8BlW46Sa8XxFuHynK
- zYUA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1699821498; x=1700426298;
- h=in-reply-to:content-disposition:mime-version:references:message-id
- :subject:cc:to:from:date:sender:x-gm-message-state:from:to:cc
- :subject:date:message-id:reply-to;
- bh=6YztxOL1r/fnKaUwBDzI6/qa/Ai7h1WY5G4jeElcAzw=;
- b=CGQcqE3jANW0Qyo44VWJz1hxXxrfeqAPlOiOK/k3J5N0Iw2/rUB319JQGLJDJYMHDR
- +sKkoM6QhttnDPoC5+TC0hEQ+tafQVJenqBKTqsxO2lkmafr0K8oguSb6R3d5S8dBQ18
- ufFjuam8t1jCyVWPVYtCw1ZYkPxpiqO16bZKcWt/PsXydUoGFkH9v7DIuR0/tw/JoWSz
- /asnqgGbKQRApSqiOjClHhjIx2VYZu17fVABqirexiSa5FnWAA2gIm9fi+YBJ7xXUzJx
- dYVfbg2OQECv0/tN5BD61AeamHzUYCqGbxHC6RlWbtNNzpJtH+XFSjy4DxAcTCVDjBFO
- zB3Q==
-X-Gm-Message-State: AOJu0YydxZI+OppuNDfkKBYv+w9h71UerX2lJcMATi/6WNevxrs78QJw
- gAWzhVLkeVorz52ZRYqoE7Q=
-X-Google-Smtp-Source: AGHT+IGs5uzQNsy8dAyelpniyvgTA/dFx1GFzoBnbdFUnNl8n2tb7aZwz5JLw71uKRant/cErWKjZw==
-X-Received: by 2002:a0c:c58d:0:b0:66d:4a22:d7cd with SMTP id
- a13-20020a0cc58d000000b0066d4a22d7cdmr5381678qvj.60.1699821498368; 
- Sun, 12 Nov 2023 12:38:18 -0800 (PST)
-Received: from localhost ([164.86.0.75]) by smtp.gmail.com with ESMTPSA id
- bo9-20020a05621414a900b0065b02eaeee7sm1491349qvb.83.2023.11.12.12.38.17
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Sun, 12 Nov 2023 12:38:18 -0800 (PST)
-Date: Sun, 12 Nov 2023 14:38:10 -0600
-From: Tejun Heo <tj@kernel.org>
-To: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-Message-ID: <ZVE3shwiRbUQyAqs@mtj.duckdns.org>
-References: <20231024160727.282960-1-tvrtko.ursulin@linux.intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id B5EB610E373;
+	Mon, 13 Nov 2023 13:45:53 +0000 (UTC)
+X-Original-To: intel-gfx@lists.freedesktop.org
+Delivered-To: intel-gfx@lists.freedesktop.org
+Received: from mailgw.kylinos.cn (mailgw.kylinos.cn [124.126.103.232])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 47AC910E0FB;
+ Mon, 13 Nov 2023 03:36:41 +0000 (UTC)
+X-UUID: d2f97b69a6fe4cc58d719ffe4d8ba132-20231113
+X-CID-O-RULE: Release_Ham
+X-CID-RULE: Release_Ham
+X-CID-O-INFO: VERSION:1.1.32, REQID:3696d87d-a252-4f52-a8fd-2f3009e7089d, IP:15,
+ URL:0,TC:0,Content:0,EDM:0,RT:0,SF:-5,FILE:0,BULK:0,RULE:Release_Ham,ACTIO
+ N:release,TS:10
+X-CID-INFO: VERSION:1.1.32, REQID:3696d87d-a252-4f52-a8fd-2f3009e7089d, IP:15,
+ UR
+ L:0,TC:0,Content:0,EDM:0,RT:0,SF:-5,FILE:0,BULK:0,RULE:Release_Ham,ACTION:
+ release,TS:10
+X-CID-META: VersionHash:5f78ec9, CLOUDID:7fb15095-10ce-4e4b-85c2-c9b5229ff92b,
+ B
+ ulkID:231113113630XH0FCV1I,BulkQuantity:0,Recheck:0,SF:24|17|19|44|66|38|1
+ 02,TC:nil,Content:0,EDM:-3,IP:-2,URL:11|1,File:nil,Bulk:nil,QS:nil,BEC:nil
+ ,COL:0,OSI:0,OSA:0,AV:0,LES:1,SPR:NO,DKR:0,DKP:0,BRR:0,BRE:0
+X-CID-BVR: 0,NGT
+X-CID-BAS: 0,NGT,0,_
+X-CID-FACTOR: TF_CID_SPAM_SNR, TF_CID_SPAM_FAS, TF_CID_SPAM_FSD,
+ TF_CID_SPAM_FSI, TF_CID_SPAM_ULN
+X-UUID: d2f97b69a6fe4cc58d719ffe4d8ba132-20231113
+X-User: heminhong@kylinos.cn
+Received: from localhost.localdomain [(116.128.244.169)] by mailgw
+ (envelope-from <heminhong@kylinos.cn>) (Generic MTA)
+ with ESMTP id 1227971306; Mon, 13 Nov 2023 11:36:29 +0800
+From: heminhong <heminhong@kylinos.cn>
+To: jani.nikula@linux.intel.com, joonas.lahtinen@linux.intel.com,
+ rodrigo.vivi@intel.com, tvrtko.ursulin@linux.intel.com, airlied@gmail.com,
+ daniel@ffwll.ch, ville.syrjala@linux.intel.com, animesh.manna@intel.com,
+ uma.shankar@intel.com, ankit.k.nautiyal@intel.com
+Date: Mon, 13 Nov 2023 11:36:13 +0800
+Message-Id: <20231113033613.30339-1-heminhong@kylinos.cn>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20231024160727.282960-1-tvrtko.ursulin@linux.intel.com>
-Subject: Re: [Intel-gfx] [RFC v6 0/8] DRM scheduling cgroup controller
+Content-Transfer-Encoding: 8bit
+X-Mailman-Approved-At: Mon, 13 Nov 2023 13:45:43 +0000
+Subject: [Intel-gfx] [PATCH] drm/i915: eliminate warnings
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -71,48 +60,35 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Rob Clark <robdclark@chromium.org>, Kenny.Ho@amd.com,
- Dave Airlie <airlied@redhat.com>,
- =?iso-8859-1?Q?St=E9phane?= Marchesin <marcheu@chromium.org>,
- Daniel Vetter <daniel.vetter@ffwll.ch>, Intel-gfx@lists.freedesktop.org,
- linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
- Christian =?iso-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>,
- Tvrtko Ursulin <tvrtko.ursulin@intel.com>, Zefan Li <lizefan.x@bytedance.com>,
- Johannes Weiner <hannes@cmpxchg.org>, cgroups@vger.kernel.org,
- "T . J . Mercier" <tjmercier@google.com>
+Cc: intel-gfx@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+ dri-devel@lists.freedesktop.org, heminhong <heminhong@kylinos.cn>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hello,
+Current, the dewake_scanline variable is defined as unsigned int,
+an unsigned int variable that is always greater than or equal to 0.
+when _intel_dsb_commit function is called by intel_dsb_commit function,
+the dewake_scanline variable may have an int value.
+So the dewake_scanline variable is necessary to defined as an int.
 
-From cgroup POV, it generally looks fine to me. As before, I'm really
-curious whether this is something other non-intel drivers can get behind.
-Just one nit.
+Signed-off-by: heminhong <heminhong@kylinos.cn>
+---
+ drivers/gpu/drm/i915/display/intel_dsb.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-On Tue, Oct 24, 2023 at 05:07:19PM +0100, Tvrtko Ursulin wrote:
->  * Allowing per DRM card configuration and queries is deliberatly left out but
->    it is compatible in principle with the current proposal.
-> 
->    Where today we have, for drm.weight:
-> 
->    100
-> 
->    We can later extend with:
-> 
->    100
->    card0 80
->    card1 20
->
->    Similarly for drm.stat:
-> 
->    usage_usec 1000
->    card0.usage_usec 500
->    card1.usage_usec 500
-
-These dont't match what blkcg is doing. Please use nested keyed format
-instead.
-
-Thanks.
-
+diff --git a/drivers/gpu/drm/i915/display/intel_dsb.c b/drivers/gpu/drm/i915/display/intel_dsb.c
+index 78b6fe24dcd8..7fd6280c54a7 100644
+--- a/drivers/gpu/drm/i915/display/intel_dsb.c
++++ b/drivers/gpu/drm/i915/display/intel_dsb.c
+@@ -340,7 +340,7 @@ static int intel_dsb_dewake_scanline(const struct intel_crtc_state *crtc_state)
+ }
+ 
+ static void _intel_dsb_commit(struct intel_dsb *dsb, u32 ctrl,
+-			      unsigned int dewake_scanline)
++			      int dewake_scanline)
+ {
+ 	struct intel_crtc *crtc = dsb->crtc;
+ 	struct drm_i915_private *dev_priv = to_i915(crtc->base.dev);
 -- 
-tejun
+2.25.1
+
