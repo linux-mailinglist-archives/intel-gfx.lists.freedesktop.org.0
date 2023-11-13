@@ -1,49 +1,34 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id C6AD57E9E7E
-	for <lists+intel-gfx@lfdr.de>; Mon, 13 Nov 2023 15:20:59 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 80BC57E9F0D
+	for <lists+intel-gfx@lfdr.de>; Mon, 13 Nov 2023 15:45:18 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E864010E379;
-	Mon, 13 Nov 2023 14:20:55 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id EFB8E10E380;
+	Mon, 13 Nov 2023 14:45:16 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.151])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0C24710E379
- for <intel-gfx@lists.freedesktop.org>; Mon, 13 Nov 2023 14:20:54 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1699885254; x=1731421254;
- h=from:to:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=0E+wTtGezluU7wAItl1rBh4ahKTGRr5gKNMOYQ9y0zI=;
- b=CtOTiqxVqtZRe/ww05UfpHoyPZDd8fwNxQ/9Mj3FhH5h/mepvwnPK0G2
- B/9wha8B6OX6WGArGsviZXF/iefKi9OZn0bdtEEZjL6dPNK1nUfHrYZcJ
- rIt7W9+9sFKj5F7twK+f29fdbSriWiYqYSs7j7DcKESeWCvDX7qlaG2hf
- BASbqc+oSdswQ0XvRc6fcJ6jIaA+UJg3ycdSgPndeLJp+cAcG8f0Dpj3T
- L5AS2b7PB/OlXYCMYp/xLxTwFDmL8zlgtBUpQ/JmPFfN4pR2thrdBE/wP
- D3gWMeG2yO3lFVcSFfHMhRuB9V9vJBOmOsdA8dmzN60TpEEEfq530yzle A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10893"; a="370640588"
-X-IronPort-AV: E=Sophos;i="6.03,299,1694761200"; d="scan'208";a="370640588"
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
- by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Nov 2023 06:20:53 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10893"; a="799202266"
-X-IronPort-AV: E=Sophos;i="6.03,299,1694761200"; d="scan'208";a="799202266"
-Received: from ideak-desk.fi.intel.com ([10.237.72.78])
- by orsmga001-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Nov 2023 06:20:51 -0800
-From: Imre Deak <imre.deak@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Mon, 13 Nov 2023 16:20:51 +0200
-Message-Id: <20231113142051.258864-1-imre.deak@intel.com>
-X-Mailer: git-send-email 2.39.2
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 8F99110E380;
+ Mon, 13 Nov 2023 14:45:14 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 8B69DAADF5;
+ Mon, 13 Nov 2023 14:45:14 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH] drm/i915/dp: Tune down FEC detection timeout
- error message
+Content-Transfer-Encoding: 7bit
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Tvrtko Ursulin" <tvrtko.ursulin@linux.intel.com>
+Date: Mon, 13 Nov 2023 14:45:14 -0000
+Message-ID: <169988671456.24211.10135770910445970505@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20231113085457.199053-1-tvrtko.ursulin@linux.intel.com>
+In-Reply-To: <20231113085457.199053-1-tvrtko.ursulin@linux.intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLlNQQVJTRTogd2FybmluZyBmb3Ig?=
+ =?utf-8?q?series_starting_with_=5B1/2=5D_drm/i915=3A_Remove_return_type_f?=
+ =?utf-8?q?rom_i915=5Fdrm=5Fclient=5Fremove=5Fobject?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -56,36 +41,21 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-At least a Realtek DP branch device with the
+== Series Details ==
 
-OUI 00-e0-4c dev-ID Dp1.4 HW-rev 1.0 SW-rev 131.1
+Series: series starting with [1/2] drm/i915: Remove return type from i915_drm_client_remove_object
+URL   : https://patchwork.freedesktop.org/series/126323/
+State : warning
 
-device identification doesn't report detecting the FEC decoding start
-symbol. Tune down the corresponding error to a debug message.
+== Summary ==
 
-Signed-off-by: Imre Deak <imre.deak@intel.com>
----
- drivers/gpu/drm/i915/display/intel_ddi.c | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+Error: dim sparse failed
+Sparse version: v0.6.2
+Fast mode used, each commit won't be checked separately.
 
-diff --git a/drivers/gpu/drm/i915/display/intel_ddi.c b/drivers/gpu/drm/i915/display/intel_ddi.c
-index 0712a5200ad35..f70af660dfcfa 100644
---- a/drivers/gpu/drm/i915/display/intel_ddi.c
-+++ b/drivers/gpu/drm/i915/display/intel_ddi.c
-@@ -2257,8 +2257,8 @@ static void wait_for_fec_detected(struct drm_dp_aux *aux, bool enabled)
- 		return;
- 
- 	if (err == -ETIMEDOUT)
--		drm_err(&i915->drm, "Timeout waiting for FEC %s to get detected\n",
--			str_enabled_disabled(enabled));
-+		drm_dbg_kms(&i915->drm, "Timeout waiting for FEC %s to get detected\n",
-+			    str_enabled_disabled(enabled));
- 	else
- 		drm_dbg_kms(&i915->drm, "FEC detected status read error: %d\n", status);
- }
--- 
-2.39.2
 
