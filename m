@@ -2,41 +2,40 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id F3E8A7EA071
-	for <lists+intel-gfx@lfdr.de>; Mon, 13 Nov 2023 16:47:09 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2BEA37EA073
+	for <lists+intel-gfx@lfdr.de>; Mon, 13 Nov 2023 16:47:25 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 91A1B10E3C2;
-	Mon, 13 Nov 2023 15:47:07 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id AE9E610E3C1;
+	Mon, 13 Nov 2023 15:47:23 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C106A10E3C2
- for <intel-gfx@lists.freedesktop.org>; Mon, 13 Nov 2023 15:47:05 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.126])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E877510E3C1
+ for <intel-gfx@lists.freedesktop.org>; Mon, 13 Nov 2023 15:47:21 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1699890426; x=1731426426;
+ t=1699890441; x=1731426441;
  h=from:to:subject:in-reply-to:references:date:message-id:
  mime-version:content-transfer-encoding;
- bh=VcoUEl70PvYM2RSQbcXjUyObE+k7uNocCUxp1R+L2+A=;
- b=ijXDU3R+K1B9/TZWvzxcmu+xN4y+jL5kz9/eEmZalNnA9D63QeFSHenn
- mp9sbKS8J5YjPMqsp9x1hdB6ZDeHYuN8ikVAF2VwPFAGDgT6eb1JjAfB+
- Gthq/gyF2CF2aSKreTKJH1okBme3+YEZ6ry7+iExFnCkAfuRoAFC8J8Y1
- o449rzOEOUjTnBDLvFQ5mBPk4MzWv/YmIWKORlKLldDsWMCuFdiYdzVr1
- jk/XlLVnnYCWAYanqNODv139SmcNFAUTMTF7IDgPIWzb5+OQ6ASg19Lvj
- xpCqnSAsfJgqoGmvxmvkMWUwFxqiLSIIp1hBYpW+xgSZr6N3OiClA2My8 A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10893"; a="3539016"
-X-IronPort-AV: E=Sophos;i="6.03,299,1694761200"; 
-   d="scan'208";a="3539016"
-Received: from orsmga007.jf.intel.com ([10.7.209.58])
- by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Nov 2023 07:47:05 -0800
+ bh=DlSPyJ6MDWkBDZlqDntdQrmthyec3xq5BIt6HSnjjaw=;
+ b=l9WzFQc6DFuDgwo5nqh94fFDi6GxOeKn19uUIaDdx6nr4rbscwKvHXoa
+ QbP5KYUxxbDhKttyrENTtwGAT8j5WVN9gbOyy/kBMRIziuQKD/c+QBN8G
+ x/rTfQReXXNPG0TdxOzwoBQ2qNtVLrnNLUQ+qydj/FTJ8maDAwCvSKQV2
+ VHiiHe6ORQTKZvm8PBSzF0k/KGCGQUqlqKwQCeZ76jGs59lOVppq6xb3L
+ Wl8Ps1W/SlMFLx533cCGfbw2g7/KpY3idErEzVK1wF1kwoxPEOswdHiv/
+ +XSY2/syQjxWXCJ5hBUzs5ORQQRpvjbtnCN68OgxtTjP3NyPhuVoZ9dLZ g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10893"; a="375483084"
+X-IronPort-AV: E=Sophos;i="6.03,299,1694761200"; d="scan'208";a="375483084"
+Received: from fmsmga006.fm.intel.com ([10.253.24.20])
+ by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 Nov 2023 07:47:21 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10893"; a="757845544"
-X-IronPort-AV: E=Sophos;i="6.03,299,1694761200"; d="scan'208";a="757845544"
+X-IronPort-AV: E=McAfee;i="6600,9927,10893"; a="1011572918"
+X-IronPort-AV: E=Sophos;i="6.03,299,1694761200"; d="scan'208";a="1011572918"
 Received: from cgheban-mobl.ger.corp.intel.com (HELO localhost)
  ([10.252.55.92])
- by orsmga007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Nov 2023 07:47:03 -0800
+ by fmsmga006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 Nov 2023 07:47:19 -0800
 From: Jani Nikula <jani.nikula@linux.intel.com>
 To: Ville Syrjala <ville.syrjala@linux.intel.com>,
  intel-gfx@lists.freedesktop.org
@@ -44,8 +43,8 @@ In-Reply-To: <20231106211915.13406-10-ville.syrjala@linux.intel.com>
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 References: <20231106211915.13406-1-ville.syrjala@linux.intel.com>
  <20231106211915.13406-10-ville.syrjala@linux.intel.com>
-Date: Mon, 13 Nov 2023 17:47:00 +0200
-Message-ID: <87r0ktu03v.fsf@intel.com>
+Date: Mon, 13 Nov 2023 17:47:17 +0200
+Message-ID: <87o7fxu03e.fsf@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
@@ -70,12 +69,12 @@ On Mon, 06 Nov 2023, Ville Syrjala <ville.syrjala@linux.intel.com> wrote:
 > From: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
 >
 > Push he encoder->audio_{enable,disable}() calls out from the
+
+*the
+
 > encoder->{enable,disable}() hooks. Moving towards audio fastset.
 >
 > Signed-off-by: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
-
-Reviewed-by: Jani Nikula <jani.nikula@intel.com>
-
 > ---
 >  drivers/gpu/drm/i915/display/g4x_dp.c        |  2 -
 >  drivers/gpu/drm/i915/display/g4x_hdmi.c      | 10 ----
