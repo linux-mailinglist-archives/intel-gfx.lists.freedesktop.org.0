@@ -1,34 +1,51 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id F3B607E9812
-	for <lists+intel-gfx@lfdr.de>; Mon, 13 Nov 2023 09:52:53 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id E39147E982B
+	for <lists+intel-gfx@lfdr.de>; Mon, 13 Nov 2023 09:55:14 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7B97810E166;
-	Mon, 13 Nov 2023 08:52:52 +0000 (UTC)
-X-Original-To: intel-gfx@lists.freedesktop.org
-Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 2AB9910E2D7;
- Mon, 13 Nov 2023 08:52:51 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 21880AADD7;
- Mon, 13 Nov 2023 08:52:51 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============0219223845321424345=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id 354E710E17A;
+	Mon, 13 Nov 2023 08:55:11 +0000 (UTC)
+X-Original-To: Intel-gfx@lists.freedesktop.org
+Delivered-To: Intel-gfx@lists.freedesktop.org
+Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.120])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6DC7010E16B;
+ Mon, 13 Nov 2023 08:55:09 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1699865709; x=1731401709;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=kr53hq0K6ejIKFS7mCnet1pLbfxTsAgWiXjChgU54gg=;
+ b=KCu+Gx/atyHYqqDPN/Dk7slsSjbfNUhif/OzE+Tv21pNpsn7xzr64orE
+ mAayQQXcXMocgTxXbxJn73ZnnAk8fb4ycnwLlhkiMlqpxfLmu5S872T5f
+ 5XP2d2FpjxB4pJHnC8cgklHbV6C3KFe2xr/BmIA62+wPBSF2HUOhuSS51
+ ag4z9o0ivBr2vfcwa/eP7PDfGFEsfbq5ICmUO5Wr6Koj9cneAs7JCkwx5
+ zLepKgouaef40Pr6La3jVkDASC5B9FB5NkULxR8/Fg8j6KIIRASmRQrRv
+ eY0T2VAFZixWhVpHtYDY6zZx6M9ErOvxsG0d1pQ/2IEBnd/UvZGpEepeF w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10892"; a="389265782"
+X-IronPort-AV: E=Sophos;i="6.03,299,1694761200"; d="scan'208";a="389265782"
+Received: from fmsmga007.fm.intel.com ([10.253.24.52])
+ by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 Nov 2023 00:55:08 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10892"; a="767845806"
+X-IronPort-AV: E=Sophos;i="6.03,299,1694761200"; d="scan'208";a="767845806"
+Received: from jbarry-mobl1.ger.corp.intel.com (HELO localhost.localdomain)
+ ([10.213.209.239])
+ by fmsmga007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 Nov 2023 00:55:06 -0800
+From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+To: Intel-gfx@lists.freedesktop.org,
+	dri-devel@lists.freedesktop.org
+Date: Mon, 13 Nov 2023 08:54:56 +0000
+Message-Id: <20231113085457.199053-1-tvrtko.ursulin@linux.intel.com>
+X-Mailer: git-send-email 2.40.1
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Hogander, Jouni" <jouni.hogander@intel.com>
-Date: Mon, 13 Nov 2023 08:52:51 -0000
-Message-ID: <169986557110.24212.4530959987958496105@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20231110082455.3061913-1-jouni.hogander@intel.com>
-In-Reply-To: <20231110082455.3061913-1-jouni.hogander@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJBVDogZmFpbHVyZSBmb3IgZHJt?=
- =?utf-8?q?/i915/display=3A_Remove_dead_code_around_intel=5Fatomic=5Fhelpe?=
- =?utf-8?q?r-=3Efree=5Flist_=28rev2=29?=
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-gfx] [PATCH 1/2] drm/i915: Remove return type from
+ i915_drm_client_remove_object
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -41,190 +58,78 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
+Cc: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============0219223845321424345==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+From: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
 
-== Series Details ==
+There is no need to return anything in the version which was merged and
+also the implementation of the !CONFIG_PROC_FS wasn't returning anything,
+causing a build failure there.
 
-Series: drm/i915/display: Remove dead code around intel_atomic_helper->free_list (rev2)
-URL   : https://patchwork.freedesktop.org/series/126250/
-State : failure
+Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+Fixes: e4ae85e364fc ("drm/i915: Add ability for tracking buffer objects per client")
+Cc: Aravind Iddamsetty <aravind.iddamsetty@intel.com>
+Reported-by: kernel test robot <lkp@intel.com>
+Closes: https://lore.kernel.org/oe-kbuild-all/202311110104.8TlHVxUI-lkp@intel.com/
+---
+ drivers/gpu/drm/i915/i915_drm_client.c | 6 ++----
+ drivers/gpu/drm/i915/i915_drm_client.h | 5 +++--
+ 2 files changed, 5 insertions(+), 6 deletions(-)
 
-== Summary ==
+diff --git a/drivers/gpu/drm/i915/i915_drm_client.c b/drivers/gpu/drm/i915/i915_drm_client.c
+index 7efffdaa508d..be9acfd9410e 100644
+--- a/drivers/gpu/drm/i915/i915_drm_client.c
++++ b/drivers/gpu/drm/i915/i915_drm_client.c
+@@ -191,22 +191,20 @@ void i915_drm_client_add_object(struct i915_drm_client *client,
+ 	spin_unlock_irqrestore(&client->objects_lock, flags);
+ }
+ 
+-bool i915_drm_client_remove_object(struct drm_i915_gem_object *obj)
++void i915_drm_client_remove_object(struct drm_i915_gem_object *obj)
+ {
+ 	struct i915_drm_client *client = fetch_and_zero(&obj->client);
+ 	unsigned long flags;
+ 
+ 	/* Object may not be associated with a client. */
+ 	if (!client)
+-		return false;
++		return;
+ 
+ 	spin_lock_irqsave(&client->objects_lock, flags);
+ 	list_del_rcu(&obj->client_link);
+ 	spin_unlock_irqrestore(&client->objects_lock, flags);
+ 
+ 	i915_drm_client_put(client);
+-
+-	return true;
+ }
+ 
+ void i915_drm_client_add_context_objects(struct i915_drm_client *client,
+diff --git a/drivers/gpu/drm/i915/i915_drm_client.h b/drivers/gpu/drm/i915/i915_drm_client.h
+index 69cedfcd3d69..a439dd789936 100644
+--- a/drivers/gpu/drm/i915/i915_drm_client.h
++++ b/drivers/gpu/drm/i915/i915_drm_client.h
+@@ -70,7 +70,7 @@ void i915_drm_client_fdinfo(struct drm_printer *p, struct drm_file *file);
+ #ifdef CONFIG_PROC_FS
+ void i915_drm_client_add_object(struct i915_drm_client *client,
+ 				struct drm_i915_gem_object *obj);
+-bool i915_drm_client_remove_object(struct drm_i915_gem_object *obj);
++void i915_drm_client_remove_object(struct drm_i915_gem_object *obj);
+ void i915_drm_client_add_context_objects(struct i915_drm_client *client,
+ 					 struct intel_context *ce);
+ #else
+@@ -79,7 +79,8 @@ static inline void i915_drm_client_add_object(struct i915_drm_client *client,
+ {
+ }
+ 
+-static inline bool i915_drm_client_remove_object(struct drm_i915_gem_object *obj)
++static inline void
++i915_drm_client_remove_object(struct drm_i915_gem_object *obj)
+ {
+ }
+ 
+-- 
+2.40.1
 
-CI Bug Log - changes from CI_DRM_13867 -> Patchwork_126250v2
-====================================================
-
-Summary
--------
-
-  **FAILURE**
-
-  Serious unknown changes coming with Patchwork_126250v2 absolutely need to be
-  verified manually.
-  
-  If you think the reported changes have nothing to do with the changes
-  introduced in Patchwork_126250v2, please notify your bug team (lgci.bug.filing@intel.com) to allow them
-  to document this new failure mode, which will reduce false positives in CI.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_126250v2/index.html
-
-Participating hosts (34 -> 29)
-------------------------------
-
-  Missing    (5): bat-adlp-11 bat-dg2-8 bat-adlm-1 bat-dg2-9 bat-atsm-1 
-
-Possible new issues
--------------------
-
-  Here are the unknown changes that may have been introduced in Patchwork_126250v2:
-
-### IGT changes ###
-
-#### Possible regressions ####
-
-  * igt@gem_exec_store@basic:
-    - bat-adls-5:         [PASS][1] -> [INCOMPLETE][2]
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13867/bat-adls-5/igt@gem_exec_store@basic.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_126250v2/bat-adls-5/igt@gem_exec_store@basic.html
-
-  
-Known issues
-------------
-
-  Here are the changes found in Patchwork_126250v2 that come from known issues:
-
-### CI changes ###
-
-#### Issues hit ####
-
-  * boot:
-    - fi-hsw-4770:        [PASS][3] -> [FAIL][4] ([i915#8293])
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13867/fi-hsw-4770/boot.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_126250v2/fi-hsw-4770/boot.html
-
-  
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@kms_hdmi_inject@inject-audio:
-    - fi-kbl-guc:         [PASS][5] -> [FAIL][6] ([IGT#3])
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13867/fi-kbl-guc/igt@kms_hdmi_inject@inject-audio.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_126250v2/fi-kbl-guc/igt@kms_hdmi_inject@inject-audio.html
-
-  
-  [IGT#3]: https://gitlab.freedesktop.org/drm/igt-gpu-tools/issues/3
-  [i915#8293]: https://gitlab.freedesktop.org/drm/intel/issues/8293
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_13867 -> Patchwork_126250v2
-
-  CI-20190529: 20190529
-  CI_DRM_13867: 9f915320c4175ba86dfe59142b1d2a64337152d1 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_7582: 453b9df12fbc9fff561bdb4eb97992983e74c3d4 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_126250v2: 9f915320c4175ba86dfe59142b1d2a64337152d1 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-### Linux commits
-
-72bb98207ca2 drm/i915/display: Remove dead code around intel_atomic_helper->free_list
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_126250v2/index.html
-
---===============0219223845321424345==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915/display: Remove dead code around intel_atomic_helper-&gt;free_list (rev2)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/126250/">https://patchwork.freedesktop.org/series/126250/</a></td></tr>
-<tr><td><b>State:</b></td><td>failure</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_126250v2/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_126250v2/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_13867 -&gt; Patchwork_126250v2</h1>
-<h2>Summary</h2>
-<p><strong>FAILURE</strong></p>
-<p>Serious unknown changes coming with Patchwork_126250v2 absolutely need to be<br />
-  verified manually.</p>
-<p>If you think the reported changes have nothing to do with the changes<br />
-  introduced in Patchwork_126250v2, please notify your bug team (lgci.bug.filing@intel.com) to allow them<br />
-  to document this new failure mode, which will reduce false positives in CI.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_126250v2/index.html</p>
-<h2>Participating hosts (34 -&gt; 29)</h2>
-<p>Missing    (5): bat-adlp-11 bat-dg2-8 bat-adlm-1 bat-dg2-9 bat-atsm-1 </p>
-<h2>Possible new issues</h2>
-<p>Here are the unknown changes that may have been introduced in Patchwork_126250v2:</p>
-<h3>IGT changes</h3>
-<h4>Possible regressions</h4>
-<ul>
-<li>igt@gem_exec_store@basic:<ul>
-<li>bat-adls-5:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13867/bat-adls-5/igt@gem_exec_store@basic.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_126250v2/bat-adls-5/igt@gem_exec_store@basic.html">INCOMPLETE</a></li>
-</ul>
-</li>
-</ul>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_126250v2 that come from known issues:</p>
-<h3>CI changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>boot:<ul>
-<li>fi-hsw-4770:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13867/fi-hsw-4770/boot.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_126250v2/fi-hsw-4770/boot.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/8293">i915#8293</a>)</li>
-</ul>
-</li>
-</ul>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>igt@kms_hdmi_inject@inject-audio:<ul>
-<li>fi-kbl-guc:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13867/fi-kbl-guc/igt@kms_hdmi_inject@inject-audio.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_126250v2/fi-kbl-guc/igt@kms_hdmi_inject@inject-audio.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/igt-gpu-tools/issues/3">IGT#3</a>)</li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_13867 -&gt; Patchwork_126250v2</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_13867: 9f915320c4175ba86dfe59142b1d2a64337152d1 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_7582: 453b9df12fbc9fff561bdb4eb97992983e74c3d4 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  Patchwork_126250v2: 9f915320c4175ba86dfe59142b1d2a64337152d1 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<h3>Linux commits</h3>
-<p>72bb98207ca2 drm/i915/display: Remove dead code around intel_atomic_helper-&gt;free_list</p>
-
-</body>
-</html>
-
---===============0219223845321424345==--
