@@ -2,33 +2,52 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6380E7EA1FB
-	for <lists+intel-gfx@lfdr.de>; Mon, 13 Nov 2023 18:36:55 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9A6707EA21D
+	for <lists+intel-gfx@lfdr.de>; Mon, 13 Nov 2023 18:38:08 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0CD6A10E3DC;
-	Mon, 13 Nov 2023 17:36:52 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D05A310E3DC;
+	Mon, 13 Nov 2023 17:38:06 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 30BAB10E3DC;
- Mon, 13 Nov 2023 17:36:50 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 2B6EAAADF5;
- Mon, 13 Nov 2023 17:36:50 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B014210E3DC;
+ Mon, 13 Nov 2023 17:38:03 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1699897083; x=1731433083;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version:content-transfer-encoding;
+ bh=tQwJKn5GMbmfpgON4rV066EJD/Pxhm3hDl+bMUfR99A=;
+ b=ZSbt/tRJIGljSPyDYuzHe/B0EeVvAb0VKlB40Hc7zJVB2xPfEhG00sd7
+ 6AW9FfW6QS8R3zAdsXsWQ92zN20yb9iwqjZTI1ZOizlqvvumhWnGtVjmR
+ c3Ng/CgKxFG9qDTsIwmqDlXmmPKkeACgRcJ8/SlDW4v/pI6EFUWJVWuyN
+ 5AmhbT7mSzIh8XxpWUC4WjOsQF9ndQlr+Nosl9Uzps4Z6Q4ZEdz7jS5eL
+ SMluRTkY1S5h6EXIqP+ewuzWU8H3P8QsRnfTyRkGp4uPyoZdTsUiE6V8v
+ kVK9X1er2na3rpBQH1Cx/OVj+gVafNZsQvYo9BRMukxt4PhxJz+1o5mxd A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10893"; a="476695456"
+X-IronPort-AV: E=Sophos;i="6.03,299,1694761200"; d="scan'208";a="476695456"
+Received: from orsmga005.jf.intel.com ([10.7.209.41])
+ by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 Nov 2023 09:38:02 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10893"; a="937795819"
+X-IronPort-AV: E=Sophos;i="6.03,299,1694761200"; d="scan'208";a="937795819"
+Received: from cgheban-mobl.ger.corp.intel.com (HELO localhost)
+ ([10.252.55.92])
+ by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 Nov 2023 09:38:00 -0800
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Ville Syrjala <ville.syrjala@linux.intel.com>,
+ intel-gfx@lists.freedesktop.org
+In-Reply-To: <20231013131402.24072-1-ville.syrjala@linux.intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20231013131402.24072-1-ville.syrjala@linux.intel.com>
+Date: Mon, 13 Nov 2023 19:37:57 +0200
+Message-ID: <87cywdtuyy.fsf@intel.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Hogander, Jouni" <jouni.hogander@intel.com>
-Date: Mon, 13 Nov 2023 17:36:50 -0000
-Message-ID: <169989701017.24215.5828629540541154401@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20231110082455.3061913-1-jouni.hogander@intel.com>
-In-Reply-To: <20231110082455.3061913-1-jouni.hogander@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLlNQQVJTRTogd2FybmluZyBmb3Ig?=
- =?utf-8?q?drm/i915/display=3A_Remove_dead_code_around_intel=5Fatomic=5Fhe?=
- =?utf-8?q?lper-=3Efree=5Flist_=28rev3=29?=
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+Subject: Re: [Intel-gfx] [PATCH 0/4] drm/i915: Fix LUT rounding
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -41,21 +60,28 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
+Cc: dri-devel@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+On Fri, 13 Oct 2023, Ville Syrjala <ville.syrjala@linux.intel.com> wrote:
+> From: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
+>
+> The current LUT rounding is generating weird results. Adjust
+> it to follow the OpenGL int<->float conversion rules.
 
-Series: drm/i915/display: Remove dead code around intel_atomic_helper->free_list (rev3)
-URL   : https://patchwork.freedesktop.org/series/126250/
-State : warning
+Reviewed-by: Jani Nikula <jani.nikula@intel.com>
 
-== Summary ==
+>
+> Ville Syrj=C3=A4l=C3=A4 (4):
+>   drm: Fix color LUT rounding
+>   drm/i915: Adjust LUT rounding rules
+>   drm/i915: s/clamp()/min()/ in i965_lut_11p6_max_pack()
+>   drm/i915: Fix glk+ degamma LUT conversions
+>
+>  drivers/gpu/drm/i915/display/intel_color.c | 70 +++++++++++-----------
+>  include/drm/drm_color_mgmt.h               | 18 +++---
+>  2 files changed, 42 insertions(+), 46 deletions(-)
 
-Error: dim sparse failed
-Sparse version: v0.6.2
-Fast mode used, each commit won't be checked separately.
-
-
+--=20
+Jani Nikula, Intel
