@@ -1,63 +1,54 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 35CA07EA52A
-	for <lists+intel-gfx@lfdr.de>; Mon, 13 Nov 2023 22:00:08 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id E74AD7EA262
+	for <lists+intel-gfx@lfdr.de>; Mon, 13 Nov 2023 18:50:46 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CE7C310E429;
-	Mon, 13 Nov 2023 21:00:02 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 66CA310E3E5;
+	Mon, 13 Nov 2023 17:50:45 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
- by gabe.freedesktop.org (Postfix) with ESMTPS id F2BEC10E17D;
- Mon, 13 Nov 2023 17:49:58 +0000 (UTC)
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
- by ams.source.kernel.org (Postfix) with ESMTP id 1DF57B80EF4;
- Mon, 13 Nov 2023 17:49:57 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4991AC433C7;
- Mon, 13 Nov 2023 17:49:56 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1699897796;
- bh=OlVdpAafS+/TnL2gNZWocfkiT+WXch7O/Gj4jH3CWTI=;
- h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
- b=LIjkaZQjXatW09ZeXbTIPo+q5RrNWjCsOk0HG3uQ9jZx/Jj/JwWg8masZL8QKT0ZZ
- WQhSyQhVc2mhkpHTByG3kY/lTylyhO+Jz5Xe32ZS4JAfPZ3uZEtnt2UfkpAMfVaYra
- Z3MLkka6LfZyMsAw09xuTPN7X38dJDuZgUxM5ddajimSmVXShqJDnkUemjsy82m6XW
- kfYKsF2y/34lhawChlHd8v7/XDDz13zS5JPzIQ0wGWvUiEcJxhx8/E8P39xxN3f2nj
- yON8dcggobGU7B0jvYDgW8cWNd2lF2xwMBQwNELv/PcH6ryjBoTuxjmxRgM7bnhZrW
- B1cIyTJrNKMmw==
-Date: Mon, 13 Nov 2023 12:49:53 -0500
-From: Wolfram Sang <wsa@kernel.org>
-To: Heiner Kallweit <hkallweit1@gmail.com>
-Message-ID: <ZVJhwSS16+/Zzt0f@shikoro>
-Mail-Followup-To: Wolfram Sang <wsa@kernel.org>,
- Heiner Kallweit <hkallweit1@gmail.com>,
- intel-gfx@lists.freedesktop.org, linux-i2c@vger.kernel.org,
- Jernej Skrabec <jernej.skrabec@gmail.com>,
- Jonas Karlman <jonas@kwiboo.se>,
- Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
- linux-fbdev@vger.kernel.org, amd-gfx@lists.freedesktop.org,
- linux-rockchip@lists.infradead.org,
- linux-arm-kernel@lists.infradead.org,
- dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
- Thomas Zimmermann <tzimmermann@suse.de>,
- Jocelyn Falempe <jfalempe@redhat.com>, linux-sunxi@lists.linux.dev,
- linux-mediatek@lists.infradead.org, Sean Paul <sean@poorly.run>,
- Marijn Suijten <marijn.suijten@somainline.org>,
- linux-arm-msm@vger.kernel.org, freedreno@lists.freedesktop.org,
- Xinwei Kong <kong.kongxinwei@hisilicon.com>,
- Sumit Semwal <sumit.semwal@linaro.org>,
- Yongqin Liu <yongqin.liu@linaro.org>,
- John Stultz <jstultz@google.com>
+Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.100])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6034F10E3E5;
+ Mon, 13 Nov 2023 17:50:43 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1699897843; x=1731433843;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version;
+ bh=x3fSoSQz6UCNu3JdEMAXXt9H/432BZE0hvyfGRoi6Hc=;
+ b=TJk7qqHkioV73o8EbWt4cTfBNc3zwObAQx3WysnvwCBo7sM7VJDn1Kt8
+ OGkdFOycbnRouRWs3HAIghP6J6XD5Nq6ibwKxtz/5dDw3oxrNQnSIwyj5
+ 60gCrMutE/RMAjSUIlyZXJzOVLooB64fZewcJmbX8JG0k6KYZoLnrxClo
+ vkBdrLicg9+H4t4YZIRRJpra2uYblih0pxWJ5cPQGJpYny1ZOw066M0ID
+ qDU0SYU1XIgSi5lPSaTNUENj0bXpzFwRZO893WODQQbYtfv7iW12xVBue
+ +OspGZ24YVBijXvwpwB00ogfPAUGjKjoV/dXt/SlyySYv2S8n76E4m5O/ g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10893"; a="456972053"
+X-IronPort-AV: E=Sophos;i="6.03,299,1694761200"; d="scan'208";a="456972053"
+Received: from fmsmga006.fm.intel.com ([10.253.24.20])
+ by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 Nov 2023 09:50:42 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10893"; a="1011613445"
+X-IronPort-AV: E=Sophos;i="6.03,299,1694761200"; d="scan'208";a="1011613445"
+Received: from cgheban-mobl.ger.corp.intel.com (HELO localhost)
+ ([10.252.55.92])
+ by fmsmga006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 Nov 2023 09:50:39 -0800
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Heiner Kallweit <hkallweit1@gmail.com>, Wolfram Sang <wsa@kernel.org>
+In-Reply-To: <6f924890-a5a0-48b4-973d-3c0f88b0d294@gmail.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 References: <20231113112344.719-1-hkallweit1@gmail.com>
+ <20231113112344.719-16-hkallweit1@gmail.com> <87sf59vodx.fsf@intel.com>
+ <6f924890-a5a0-48b4-973d-3c0f88b0d294@gmail.com>
+Date: Mon, 13 Nov 2023 19:50:36 +0200
+Message-ID: <878r71tudv.fsf@intel.com>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
- protocol="application/pgp-signature"; boundary="Zxnb7iIcQAl5ewYC"
-Content-Disposition: inline
-In-Reply-To: <20231113112344.719-1-hkallweit1@gmail.com>
-X-Mailman-Approved-At: Mon, 13 Nov 2023 21:00:01 +0000
-Subject: Re: [Intel-gfx] [PATCH 00/20] remove I2C_CLASS_DDC support
+Content-Type: text/plain
+Subject: Re: [Intel-gfx] [PATCH 15/20] drivers/gpu/drm/i915/display: remove
+ I2C_CLASS_DDC support
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -70,54 +61,96 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: linux-fbdev@vger.kernel.org, dri-devel@lists.freedesktop.org,
- Yongqin Liu <yongqin.liu@linaro.org>,
- Jernej Skrabec <jernej.skrabec@gmail.com>,
- Marijn Suijten <marijn.suijten@somainline.org>,
- Sumit Semwal <sumit.semwal@linaro.org>, amd-gfx@lists.freedesktop.org,
- linux-rockchip@lists.infradead.org,
- Xinwei Kong <kong.kongxinwei@hisilicon.com>, linux-sunxi@lists.linux.dev,
- Jonas Karlman <jonas@kwiboo.se>, linux-arm-msm@vger.kernel.org,
- intel-gfx@lists.freedesktop.org, linux-mediatek@lists.infradead.org,
- linux-arm-kernel@lists.infradead.org, Jocelyn Falempe <jfalempe@redhat.com>,
- linux-kernel@vger.kernel.org, linux-i2c@vger.kernel.org,
- Thomas Zimmermann <tzimmermann@suse.de>, John Stultz <jstultz@google.com>,
- freedreno@lists.freedesktop.org,
- Laurent Pinchart <Laurent.pinchart@ideasonboard.com>
+Cc: intel-gfx@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+ dri-devel@lists.freedesktop.org, linux-i2c@vger.kernel.org,
+ Daniel Vetter <daniel@ffwll.ch>, Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ David Airlie <airlied@gmail.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+On Mon, 13 Nov 2023, Heiner Kallweit <hkallweit1@gmail.com> wrote:
+> On 13.11.2023 13:17, Jani Nikula wrote:
+>> On Mon, 13 Nov 2023, Heiner Kallweit <hkallweit1@gmail.com> wrote:
+>>> After removal of the legacy EEPROM driver and I2C_CLASS_DDC support in
+>>> olpc_dcon there's no i2c client driver left supporting I2C_CLASS_DDC.
+>>> Class-based device auto-detection is a legacy mechanism and shouldn't
+>>> be used in new code. So we can remove this class completely now.
+>> 
+>> So this is copy-pasted to all commits and the cover letter, but please
+>> do explain why there are no functional changes here (or are there?),
+>> without me having to go through the i2c stack and try to find the
+>> commits alluded to in "After removal of the legacy ...".
+>> 
+> Legacy eeprom driver was marked deprecated 4 yrs ago with:
+> 3079b54aa9a0 ("eeprom: Warn that the driver is deprecated")
+> Now it has been removed with:
+> 0113a99b8a75 ("eeprom: Remove deprecated legacy eeprom driver")
+>
+> Declaration of I2C_CLASS_DDC support is a no-op now, so there's
+> no functional change in this patch.
+>
+> If loaded manually, the legacy eeprom driver exposed the DDC EEPROM
+> to userspace. If this functionality is needed, then now the DDC
+> EEPROM has to be explicitly instantiated using at24.
+>
+> See also:
+> https://docs.kernel.org/i2c/instantiating-devices.html
 
---Zxnb7iIcQAl5ewYC
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+I'll take your word for it. Though none of the documentation I can find
+say that setting the class is legacy or deprecated or should be
+avoided. *shrug*.
+
+Acked-by: Jani Nikula <jani.nikula@intel.com>
 
 
-> Preferably this series should be applied via the i2c tree.
+>
+>
+>> What does this mean?
+>> 
+>> 
+>> BR,
+>> Jani.
+>> 
+> Heiner
+>
+>> 
+>>>
+>>> Preferably this series should be applied via the i2c tree.
+>>>
+>>> Signed-off-by: Heiner Kallweit <hkallweit1@gmail.com>
+>>>
+>>> ---
+>>>  drivers/gpu/drm/i915/display/intel_gmbus.c |    1 -
+>>>  drivers/gpu/drm/i915/display/intel_sdvo.c  |    1 -
+>>>  2 files changed, 2 deletions(-)
+>>>
+>>> diff --git a/drivers/gpu/drm/i915/display/intel_gmbus.c b/drivers/gpu/drm/i915/display/intel_gmbus.c
+>>> index 40d7b6f3f..e9e4dcf34 100644
+>>> --- a/drivers/gpu/drm/i915/display/intel_gmbus.c
+>>> +++ b/drivers/gpu/drm/i915/display/intel_gmbus.c
+>>> @@ -899,7 +899,6 @@ int intel_gmbus_setup(struct drm_i915_private *i915)
+>>>  		}
+>>>  
+>>>  		bus->adapter.owner = THIS_MODULE;
+>>> -		bus->adapter.class = I2C_CLASS_DDC;
+>>>  		snprintf(bus->adapter.name,
+>>>  			 sizeof(bus->adapter.name),
+>>>  			 "i915 gmbus %s", gmbus_pin->name);
+>>> diff --git a/drivers/gpu/drm/i915/display/intel_sdvo.c b/drivers/gpu/drm/i915/display/intel_sdvo.c
+>>> index a636f42ce..5e64d1baf 100644
+>>> --- a/drivers/gpu/drm/i915/display/intel_sdvo.c
+>>> +++ b/drivers/gpu/drm/i915/display/intel_sdvo.c
+>>> @@ -3311,7 +3311,6 @@ intel_sdvo_init_ddc_proxy(struct intel_sdvo_ddc *ddc,
+>>>  	ddc->ddc_bus = ddc_bus;
+>>>  
+>>>  	ddc->ddc.owner = THIS_MODULE;
+>>> -	ddc->ddc.class = I2C_CLASS_DDC;
+>>>  	snprintf(ddc->ddc.name, I2C_NAME_SIZE, "SDVO %c DDC%d",
+>>>  		 port_name(sdvo->base.port), ddc_bus);
+>>>  	ddc->ddc.dev.parent = &pdev->dev;
+>>>
+>> 
+>
 
-Are we in a hurry here, i.e. does it block further development of the
-i801 smbus driver? My gut feeling says the patches should rather go via
-drm and fbdev trees, but I may be convinced otherwise.
-
-
---Zxnb7iIcQAl5ewYC
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCgAdFiEEOZGx6rniZ1Gk92RdFA3kzBSgKbYFAmVSYcEACgkQFA3kzBSg
-KbZH2w//eUnZg+R48cg2NHPwlDqb/Y0KJdo6xOk9tXkaIu+sNP9+GauuCw1EMTe3
-AIDZoh7pkBamF2ZsoBRIOQOkzRpNj4bN+2L9mbd8SrPSpxaRa8jU3E1prJ7+/NS0
-FJUPmwO6XA9JCOmTtkNvivsp16QjSQfVE+UjbBT0qH0+lKo6RQ9PDbwtIdkmzVOZ
-vGvEqYzOpUB9UkUekEYESgJ/SCbm2lm397qC+d79JXapjDjD8AZliufTjd/jiOCG
-MTVbm6mw9CPGThQsyNd9bjUbaNnqyoz3D0SjxKUG3NPlEYy9uigCj853+J56xO27
-JjENHBt0RFz/oPHWpKko6kfMaDCS7m/aNnETGRuZ4fHBb6rviz/3EGLWYc0HoRds
-6kw7kmMfmh4T0ZMERMDnRsgRiLHzueUujA9Uhh972jiX62CCaWuSjQm/s6lXpAzC
-TT+UETbrdSSX6IJN5eP4E9Rg6ouyKxWGT1N+B4/NPMEjPUfzMFQQgna0ph8aHNcd
-JEI9d/HAUvjvf8tQwo2+1UajwmmX1Yf/C905CT+IGqOLF21LsX7B0zoXELDRsPMD
-ISj6RpuOXI0jhWV6YPlFTA8pFvqvG+lFfpP6kW1VEkYnXMwSbp+K8aN9bcYITWeH
-4OB/vXxnxxEtQ8CgH6yC+jwJWW6jd7KllJQjmD5qi+F4xxOCzwY=
-=fxbp
------END PGP SIGNATURE-----
-
---Zxnb7iIcQAl5ewYC--
+-- 
+Jani Nikula, Intel
