@@ -1,56 +1,52 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3EDE67EAFE8
-	for <lists+intel-gfx@lfdr.de>; Tue, 14 Nov 2023 13:35:22 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1B7A87EB093
+	for <lists+intel-gfx@lfdr.de>; Tue, 14 Nov 2023 14:07:58 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 40B0710E04F;
-	Tue, 14 Nov 2023 12:35:18 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 93A1D10E202;
+	Tue, 14 Nov 2023 13:07:56 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6C4A910E04F;
- Tue, 14 Nov 2023 12:35:17 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.115])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DA28910E202
+ for <intel-gfx@lists.freedesktop.org>; Tue, 14 Nov 2023 13:07:54 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1699965317; x=1731501317;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version:content-transfer-encoding;
- bh=rgBX+6BNPPignD2WXoRNHkw+DgIpZgv7ToDXL12eqIQ=;
- b=YdVDvZv+BLGjTK0cTYfZigEGON1ikNLF7NO+/b6LvUaLbuYBBZjsmQIb
- JvfH8V45GYdns5pLKx+r8FG3qfd9NX17TuTTTMBLqr665eFMnfCgCe7WK
- o3DsdsRiydhFa5/u8K1w02CcUDWvU/wJDj1oWt4LuF9cIAQa2HPUsBhdt
- XL3VoQUVoEuRWR09Do8ZPooDWUpaqzs7MYUQBg1G+kyjGiqJbuv6fnhMN
- 2fa0FmQ7jiiOV3JwHbe4Zmq/8Qxy78sPgnTiSbSs9TXl5DPeXrwr96h+A
- 3eVRDDxkwJNaa33onKaRmNSHKewUKBC/QkRbcS/7NxuJgd4uCejm+f7SH g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10893"; a="421743945"
-X-IronPort-AV: E=Sophos;i="6.03,302,1694761200"; d="scan'208";a="421743945"
-Received: from orviesa002.jf.intel.com ([10.64.159.142])
- by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Nov 2023 04:35:16 -0800
+ t=1699967274; x=1731503274;
+ h=date:from:to:cc:subject:message-id:reply-to:references:
+ mime-version:in-reply-to;
+ bh=pSl0ezsO8ROnWkFFIXtNMuY3IdvSdf1xtHI2bxXFBw4=;
+ b=bMvkbjurV9iVbwDJ6YEhEloZ+xw5pOytYat3pHpiPiczgb2ggTWUcdoX
+ ui3DHwpZXb/8czxrezF8sE61uFZ1AhAhaFllWaE7V3wzfyRWqg5HyEyj4
+ VSsJH6kOdkWitrX3CqkRbMMLGRo5cQHeWTDCCNC8Ww82mtf/pD5ka4KoY
+ IgLafmxXng3Bq2KkLd/U/LsC2AWZrm+ZTfYIx9w1FgEreWkkhimbpdp+s
+ sfPvQoN7Iz4z3ii0J9Np4a9Aj4jOdUsrT+avlqVgSA2mGsD50LOY3i6Y2
+ 7YJiEcOHBuyzuLZF0MVjVg78/E8v1YfLfqqqpTbKeDslkl4IrwTu2eqnp Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10893"; a="390443337"
+X-IronPort-AV: E=Sophos;i="6.03,302,1694761200"; d="scan'208";a="390443337"
+Received: from fmsmga003.fm.intel.com ([10.253.24.29])
+ by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 14 Nov 2023 05:07:54 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.03,302,1694761200"; 
-   d="scan'208";a="5792560"
-Received: from hatran1-mobl1.ccr.corp.intel.com (HELO localhost)
- ([10.252.56.145])
- by orviesa002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Nov 2023 04:35:14 -0800
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Ville =?utf-8?B?U3lyasOkbMOk?= <ville.syrjala@linux.intel.com>,
- maarten.lankhorst@linux.intel.com
-In-Reply-To: <ZVNUxZzCGcxQzqJX@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20231002193847.7134-1-maarten.lankhorst@linux.intel.com>
- <20231002193847.7134-11-maarten.lankhorst@linux.intel.com>
- <ZVNUxZzCGcxQzqJX@intel.com>
-Date: Tue, 14 Nov 2023 14:35:10 +0200
-Message-ID: <87bkbwsebl.fsf@intel.com>
+X-IronPort-AV: E=McAfee;i="6600,9927,10893"; a="855273524"
+X-IronPort-AV: E=Sophos;i="6.03,302,1694761200"; d="scan'208";a="855273524"
+Received: from ideak-desk.fi.intel.com ([10.237.72.78])
+ by fmsmga003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 14 Nov 2023 05:07:53 -0800
+Date: Tue, 14 Nov 2023 15:07:52 +0200
+From: Imre Deak <imre.deak@intel.com>
+To: Jani Nikula <jani.nikula@linux.intel.com>
+Message-ID: <ZVNxKGcc86jIQ8/a@ideak-desk.fi.intel.com>
+References: <20231113201110.510724-1-imre.deak@intel.com>
+ <87v8a4so8u.fsf@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-Subject: Re: [Intel-gfx] [Intel-xe] [PATCH 11/14] ALSA: hda/intel: Move
- snd_hdac_i915_init to before probe_work.
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <87v8a4so8u.fsf@intel.com>
+Subject: Re: [Intel-gfx] [PATCH 1/4] drm/i915/dp: Account for channel coding
+ efficiency on UHBR links
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -63,133 +59,64 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: alsa-devel@alsa-project.org, Takashi Iwai <tiwai@suse.de>,
- intel-gfx@lists.freedesktop.org, "Kurmi,
- Suresh Kumar" <suresh.kumar.kurmi@intel.com>, intel-xe@lists.freedesktop.org
+Reply-To: imre.deak@intel.com
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, 14 Nov 2023, Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com=
-> wrote:
-> On Mon, Oct 02, 2023 at 09:38:44PM +0200, maarten.lankhorst@linux.intel.c=
-om wrote:
->> From: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
->>=20
->> Now that we can use -EPROBE_DEFER, it's no longer required to spin off
->> the snd_hdac_i915_init into a workqueue.
->>=20
->> Use the -EPROBE_DEFER mechanism instead, which must be returned in the
->> probe function.
->
-> This completely broke i915 audio!
->
-> I also can't see any trace of this stuff ever being posted to=20
-> intel-gfx so it never went through the CI.
->
-> Please fix or revert ASAP.
+On Tue, Nov 14, 2023 at 11:00:49AM +0200, Jani Nikula wrote:
+> On Mon, 13 Nov 2023, Imre Deak <imre.deak@intel.com> wrote:
+> > Apply the correct BW allocation overhead and channel coding efficiency
+> > on UHBR link rates, similarly to DP1.4 link rates.
+> >
+> > Signed-off-by: Imre Deak <imre.deak@intel.com>
+> > ---
+> >  drivers/gpu/drm/i915/display/intel_display.c | 10 ----------
+> >  1 file changed, 10 deletions(-)
+> >
+> > diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
+> > index 3effafcbb411a..24aebdb715e7d 100644
+> > --- a/drivers/gpu/drm/i915/display/intel_display.c
+> > +++ b/drivers/gpu/drm/i915/display/intel_display.c
+> > @@ -2398,16 +2398,6 @@ add_bw_alloc_overhead(int link_clock, int bw_overhead,
+> >  	int ch_coding_efficiency =
+> >  		drm_dp_bw_channel_coding_efficiency(is_uhbr);
+> 
+> Why do we have this and intel_dp_max_data_rate() separately?
 
-Cc: Jani, Suresh
+This function calculates an m/n ratio for a given pixel/data rate,
+applying both the allocation overhead (FEC, SSC, etc.) and the channel
+coding efficiency. intel_dp_max_data_rate() calculates a maximum data
+rate applying only the channel coding efficiency.
 
-Ville, please file a bug at gitlab so we can track this, thanks.
+I think intel_dp_max_data_rate() could be simplified, so the two
+functions use the same channel coding efficiency to:
 
-BR,
-Jani.
+    DIV_ROUND_UP_ULL(mul_u32_u32(max_link_rate_kbps * max_lanes,
+    				 drm_dp_bw_channel_coding_efficiency(is_uhbr)),
+		     1000000ULL * 8)
 
+--Imre
 
-
->
->>=20
->> Signed-off-by: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
->> Reviewed-by: Kai Vehmanen <kai.vehmanen@linux.intel.com>
->> Reviewed-by: Pierre-Louis Bossart <pierre-louis.bossart@linux.intel.com>
->> Signed-off-by: Maarten Lankhorst <dev@lankhorst.se>
->> ---
->>  sound/pci/hda/hda_intel.c | 54 +++++++++++++++++++--------------------
->>  1 file changed, 27 insertions(+), 27 deletions(-)
->>=20
->> diff --git a/sound/pci/hda/hda_intel.c b/sound/pci/hda/hda_intel.c
->> index e42ad0e816e1..9dad3607596a 100644
->> --- a/sound/pci/hda/hda_intel.c
->> +++ b/sound/pci/hda/hda_intel.c
->> @@ -2135,6 +2135,33 @@ static int azx_probe(struct pci_dev *pci,
->>=20=20
->>  	pci_set_drvdata(pci, card);
->>=20=20
->> +#ifdef CONFIG_SND_HDA_I915
->> +	/* bind with i915 if needed */
->> +	if (chip->driver_caps & AZX_DCAPS_I915_COMPONENT) {
->> +		err =3D snd_hdac_i915_init(azx_bus(chip), false);
->> +		if (err < 0) {
->> +			/* if the controller is bound only with HDMI/DP
->> +			 * (for HSW and BDW), we need to abort the probe;
->> +			 * for other chips, still continue probing as other
->> +			 * codecs can be on the same link.
->> +			 */
->> +			if (HDA_CONTROLLER_IN_GPU(pci)) {
->> +				goto out_free;
->> +			} else {
->> +				/* don't bother any longer */
->> +				chip->driver_caps &=3D ~AZX_DCAPS_I915_COMPONENT;
->> +			}
->> +		}
->> +
->> +		/* HSW/BDW controllers need this power */
->> +		if (HDA_CONTROLLER_IN_GPU(pci))
->> +			hda->need_i915_power =3D true;
->> +	}
->> +#else
->> +	if (HDA_CONTROLLER_IN_GPU(pci))
->> +		dev_err(card->dev, "Haswell/Broadwell HDMI/DP must build in CONFIG_SN=
-D_HDA_I915\n");
->> +#endif
->> +
->>  	err =3D register_vga_switcheroo(chip);
->>  	if (err < 0) {
->>  		dev_err(card->dev, "Error registering vga_switcheroo client\n");
->> @@ -2162,11 +2189,6 @@ static int azx_probe(struct pci_dev *pci,
->>  	}
->>  #endif /* CONFIG_SND_HDA_PATCH_LOADER */
->>=20=20
->> -#ifndef CONFIG_SND_HDA_I915
->> -	if (HDA_CONTROLLER_IN_GPU(pci))
->> -		dev_err(card->dev, "Haswell/Broadwell HDMI/DP must build in CONFIG_SN=
-D_HDA_I915\n");
->> -#endif
->> -
->>  	if (schedule_probe)
->>  		schedule_delayed_work(&hda->probe_work, 0);
->>=20=20
->> @@ -2264,28 +2286,6 @@ static int azx_probe_continue(struct azx *chip)
->>  	to_hda_bus(bus)->bus_probing =3D 1;
->>  	hda->probe_continued =3D 1;
->>=20=20
->> -	/* bind with i915 if needed */
->> -	if (chip->driver_caps & AZX_DCAPS_I915_COMPONENT) {
->> -		err =3D snd_hdac_i915_init(bus, true);
->> -		if (err < 0) {
->> -			/* if the controller is bound only with HDMI/DP
->> -			 * (for HSW and BDW), we need to abort the probe;
->> -			 * for other chips, still continue probing as other
->> -			 * codecs can be on the same link.
->> -			 */
->> -			if (HDA_CONTROLLER_IN_GPU(pci)) {
->> -				goto out_free;
->> -			} else {
->> -				/* don't bother any longer */
->> -				chip->driver_caps &=3D ~AZX_DCAPS_I915_COMPONENT;
->> -			}
->> -		}
->> -
->> -		/* HSW/BDW controllers need this power */
->> -		if (HDA_CONTROLLER_IN_GPU(pci))
->> -			hda->need_i915_power =3D true;
->> -	}
->> -
->>  	/* Request display power well for the HDA controller or codec. For
->>  	 * Haswell/Broadwell, both the display HDA controller and codec need
->>  	 * this power. For other platforms, like Baytrail/Braswell, only the
->> --=20
->> 2.40.1
-
---=20
-Jani Nikula, Intel
+> 
+> BR,
+> Jani.
+> 
+> 
+> >  
+> > -	/*
+> > -	 * TODO: adjust for actual UHBR channel coding efficiency and BW
+> > -	 * overhead.
+> > -	 */
+> > -	if (is_uhbr) {
+> > -		*data_m = pixel_data_rate;
+> > -		*data_n = link_data_rate * 8 / 10;
+> > -		return;
+> > -	}
+> > -
+> >  	*data_m = DIV_ROUND_UP_ULL(mul_u32_u32(pixel_data_rate, bw_overhead),
+> >  				   1000000);
+> >  	*data_n = DIV_ROUND_DOWN_ULL(mul_u32_u32(link_data_rate, ch_coding_efficiency),
+> 
+> -- 
+> Jani Nikula, Intel
