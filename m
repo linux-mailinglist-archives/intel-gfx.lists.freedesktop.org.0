@@ -2,51 +2,82 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8E9C97EA802
-	for <lists+intel-gfx@lfdr.de>; Tue, 14 Nov 2023 01:59:52 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 14C317EA819
+	for <lists+intel-gfx@lfdr.de>; Tue, 14 Nov 2023 02:08:35 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B3DDB10E43F;
-	Tue, 14 Nov 2023 00:59:45 +0000 (UTC)
-X-Original-To: Intel-GFX@lists.freedesktop.org
-Delivered-To: Intel-GFX@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B06BF10E43E;
- Tue, 14 Nov 2023 00:59:43 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1699923583; x=1731459583;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=CH3JUL2YGwNRgKeCjfzGAgYZScE+mF2K/RfRmi4lvRM=;
- b=Lem9IUPxGTneu2jZ1e8eKbbWg7dfwYVemPYtkrCdkW2THW9cWbTOZkLq
- z2H7anmdwjb8mv/Icx+jOW5ke7lMmCFJSqxFtkcVXhZpyXPGXgabiwK7U
- sYJ1sMEENyB2DFPaCFDI7VIm137QqTJsGJlTiFPQVg31fMlke450yCs2g
- EJL34O82Wdbx2nYeupEx9+/TGpk3W4698I4oqKzmQ7JEQ+f4aU59l2Ow8
- lUl9W7any9sbKzvIy6HJ0PIkk5CvOUKNNI9zVyHSYmkazdYZmORsJrInN
- UVkUCe6T/NVMvmpDMmk7u31jjEPMcyJs/lOu5lph9tAnGvClO5zLX34WS A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10893"; a="476758180"
-X-IronPort-AV: E=Sophos;i="6.03,299,1694761200"; d="scan'208";a="476758180"
-Received: from orsmga003.jf.intel.com ([10.7.209.27])
- by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Nov 2023 16:59:43 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10893"; a="714392482"
-X-IronPort-AV: E=Sophos;i="6.03,299,1694761200"; d="scan'208";a="714392482"
-Received: from relo-linux-5.jf.intel.com ([10.165.21.152])
- by orsmga003.jf.intel.com with ESMTP; 13 Nov 2023 16:59:42 -0800
-From: John.C.Harrison@Intel.com
-To: Intel-GFX@Lists.FreeDesktop.Org
-Date: Mon, 13 Nov 2023 17:00:16 -0800
-Message-ID: <20231114010016.234570-3-John.C.Harrison@Intel.com>
-X-Mailer: git-send-email 2.41.0
-In-Reply-To: <20231114010016.234570-1-John.C.Harrison@Intel.com>
-References: <20231114010016.234570-1-John.C.Harrison@Intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3CE0110E433;
+	Tue, 14 Nov 2023 01:08:27 +0000 (UTC)
+X-Original-To: intel-gfx@lists.freedesktop.org
+Delivered-To: intel-gfx@lists.freedesktop.org
+Received: from mail-qk1-x72c.google.com (mail-qk1-x72c.google.com
+ [IPv6:2607:f8b0:4864:20::72c])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CE73C10E0A4;
+ Tue, 14 Nov 2023 01:08:24 +0000 (UTC)
+Received: by mail-qk1-x72c.google.com with SMTP id
+ af79cd13be357-77891c236fcso329597585a.3; 
+ Mon, 13 Nov 2023 17:08:24 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20230601; t=1699924104; x=1700528904; darn=lists.freedesktop.org;
+ h=in-reply-to:autocrypt:from:references:cc:to:content-language
+ :subject:user-agent:mime-version:date:message-id:from:to:cc:subject
+ :date:message-id:reply-to;
+ bh=JKcvvlyi44mL6KlohMsUtHtgv16cdE0L7BYR9br9JrA=;
+ b=beLZI2Q5uFzjEy3g/E0FkEfsNwy6mEKHVgM4zNCCyJSM3/qybfuny8ueU8A28S8B/F
+ co+57Q9YESvkAVkGqDQblq9UkK2iIgdAlExmka1yQMhe0rh8pxW7bAtDMjodNwTwAGJP
+ XFewwyiMr7fxb0sMKeKJ6BCAUM0vjdVHsuPa0Rb+1DZ+GbFCLN48rfDH4yp/9sQ1/vfw
+ CLE+38enhQK0Xp//CutBbgyKf4RrBSqBFgM5m7LaXHz3jBuwoUPdgQI6a75E7mRKrMCD
+ 1PnUPwcS4szzG4EA/ShzaANctUCdOmqo3lNGSGmwb2eKiv0j9ysoiTWxtiud3OBtRcQx
+ IrKQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1699924104; x=1700528904;
+ h=in-reply-to:autocrypt:from:references:cc:to:content-language
+ :subject:user-agent:mime-version:date:message-id:x-gm-message-state
+ :from:to:cc:subject:date:message-id:reply-to;
+ bh=JKcvvlyi44mL6KlohMsUtHtgv16cdE0L7BYR9br9JrA=;
+ b=E+Et6EK0CKgLCx6aRs1r8rDRtYQjS3IFgHrcyqGfEO/DXTS89PN9qxEVoQaJAy0GBq
+ Vf6kyHGxW5txuDr0lz6+4AUEYAPrGvGPMmOmi+5iU5rc043dS89I46RVuBdFNpi1ZrUR
+ SUgMVSqaDql6bNexiaiTOieIIiwa8Wc8RdH1FHHYh3hKqwxXdHu3lS76i+uzPj4DINUp
+ WUGIhy8nSCzRm9gHYrKwIRZCzYCcOLim/IRAf94QHjOjkgpM3zPjynIJjrTo+7f9aCZS
+ BC7/fiY0DkEoWUO0G6bNb+RFmieB0xBlp6gNGbLiH3vflpTq3tPkvoZ3ydaUq3VZMt2M
+ PDZg==
+X-Gm-Message-State: AOJu0Yz+KiS4HL3U/44GoxjmDjagQQ0WF3hYeFM3f17SiBmqZQCqaIxj
+ KhX1xEgZdpqGzrHh/RWXMZE=
+X-Google-Smtp-Source: AGHT+IFiQWl24h9GC1sLTorOF/ZdWCUlUOYvQPa91zZrJC9cw0bp+El0mMCJWAMiyBDFPfqhTaNV+g==
+X-Received: by 2002:a05:620a:19a1:b0:779:d1ea:c5da with SMTP id
+ bm33-20020a05620a19a100b00779d1eac5damr972334qkb.37.1699924103773; 
+ Mon, 13 Nov 2023 17:08:23 -0800 (PST)
+Received: from [192.168.2.14] ([76.65.20.140])
+ by smtp.gmail.com with ESMTPSA id
+ qf6-20020a05620a660600b0077407e3d68asm2268274qkn.111.2023.11.13.17.08.23
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Mon, 13 Nov 2023 17:08:23 -0800 (PST)
+Message-ID: <19740d41-dd5a-47e4-b3e8-539b45bbd3e5@gmail.com>
+Date: Mon, 13 Nov 2023 20:08:14 -0500
 MIME-Version: 1.0
-Organization: Intel Corporation (UK) Ltd. - Co. Reg. #1134945 - Pipers Way,
- Swindon SN3 1RJ
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH v2 2/2] drm/i915/guc: Add a selftest for
- FAST_REQUEST errors
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:115.0) Gecko/20100101
+ Thunderbird/115.4.2
+Content-Language: en-CA, en-US
+To: Stephen Rothwell <sfr@canb.auug.org.au>,
+ Daniel Vetter <daniel.vetter@ffwll.ch>,
+ Intel Graphics <intel-gfx@lists.freedesktop.org>,
+ DRI <dri-devel@lists.freedesktop.org>
+References: <20231114075501.61321c29@canb.auug.org.au>
+From: Luben Tuikov <ltuikov89@gmail.com>
+Autocrypt: addr=ltuikov89@gmail.com; keydata=
+ xjMEZTohOhYJKwYBBAHaRw8BAQdAWSq76k+GsENjDTMVCy9Vr4fAO9Rb57/bPT1APnbnnRHN
+ Ikx1YmVuIFR1aWtvdiA8bHR1aWtvdjg5QGdtYWlsLmNvbT7CmQQTFgoAQRYhBJkj7+VmFO9b
+ eaAl10wVR5QxozSvBQJlOiE6AhsDBQkJZgGABQsJCAcCAiICBhUKCQgLAgQWAgMBAh4HAheA
+ AAoJEEwVR5QxozSvSm4BAOwCpX53DTQhE20FBGlTMqKCOQyJqlMcIQ9SO1qPWX1iAQCv3vfy
+ JwktF7REl1yt7IU2Sye1qmQMfJxdt9JMbMNNBs44BGU6IToSCisGAQQBl1UBBQEBB0BT9wSP
+ cCE8uGe7FWo8C+nTSyWPXKTx9F0gpEnlqReRBwMBCAfCfgQYFgoAJhYhBJkj7+VmFO9beaAl
+ 10wVR5QxozSvBQJlOiE6AhsMBQkJZgGAAAoJEEwVR5QxozSvSsYA/2LIFjbxQ2ikbU5S0pKo
+ aMDzO9eGz69uNhNWJcvIKJK6AQC9228Mqc1JeZMIyjYWr2HKYHi8S2q2/zHrSZwAWYYwDA==
+In-Reply-To: <20231114075501.61321c29@canb.auug.org.au>
+Content-Type: multipart/signed; micalg=pgp-sha256;
+ protocol="application/pgp-signature";
+ boundary="------------vEfybuPWDPn3tC0gL2qgH3Ql"
+Subject: Re: [Intel-gfx] linux-next: Signed-off-by missing for commit in the
+ drm-misc tree
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,193 +90,94 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: DRI-Devel@Lists.FreeDesktop.Org
+Cc: Linux Next Mailing List <linux-next@vger.kernel.org>,
+ Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-From: John Harrison <John.C.Harrison@Intel.com>
+This is an OpenPGP/MIME signed message (RFC 4880 and 3156)
+--------------vEfybuPWDPn3tC0gL2qgH3Ql
+Content-Type: multipart/mixed; boundary="------------B4ohSNNGqjiBnNCLqzuihuRH";
+ protected-headers="v1"
+From: Luben Tuikov <ltuikov89@gmail.com>
+To: Stephen Rothwell <sfr@canb.auug.org.au>,
+ Daniel Vetter <daniel.vetter@ffwll.ch>,
+ Intel Graphics <intel-gfx@lists.freedesktop.org>,
+ DRI <dri-devel@lists.freedesktop.org>
+Cc: Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+ Linux Next Mailing List <linux-next@vger.kernel.org>
+Message-ID: <19740d41-dd5a-47e4-b3e8-539b45bbd3e5@gmail.com>
+Subject: Re: linux-next: Signed-off-by missing for commit in the drm-misc tree
+References: <20231114075501.61321c29@canb.auug.org.au>
+In-Reply-To: <20231114075501.61321c29@canb.auug.org.au>
 
-There is a mechanism for reporting errors from fire and forget H2G
-messages. This is the only way to find out about almost any error in
-the GuC backend submission path. So it would be useful to know that it
-is working.
+--------------B4ohSNNGqjiBnNCLqzuihuRH
+Content-Type: multipart/mixed; boundary="------------qvDQOYufPGufy4Mj2qrN1Ci0"
 
-v2: Fix some dumb over-complications and a couple of typos - review
-feedback from Daniele.
+--------------qvDQOYufPGufy4Mj2qrN1Ci0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
 
-Signed-off-by: John Harrison <John.C.Harrison@Intel.com>
----
- drivers/gpu/drm/i915/gt/uc/intel_guc.h    |   4 +
- drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c |   9 ++
- drivers/gpu/drm/i915/gt/uc/selftest_guc.c | 115 ++++++++++++++++++++++
- 3 files changed, 128 insertions(+)
+On 2023-11-13 15:55, Stephen Rothwell wrote:
+> Hi all,
+>=20
+> Commit
+>=20
+>   0da611a87021 ("dma-buf: add dma_fence_timestamp helper")
+>=20
+> is missing a Signed-off-by from its committer.
+>=20
 
-diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc.h b/drivers/gpu/drm/i915/gt/uc/intel_guc.h
-index 2b6dfe62c8f2a..e22c12ce245ad 100644
---- a/drivers/gpu/drm/i915/gt/uc/intel_guc.h
-+++ b/drivers/gpu/drm/i915/gt/uc/intel_guc.h
-@@ -297,6 +297,10 @@ struct intel_guc {
- 	 * @number_guc_id_stolen: The number of guc_ids that have been stolen
- 	 */
- 	int number_guc_id_stolen;
-+	/**
-+	 * @fast_response_selftest: Backdoor to CT handler for fast response selftest
-+	 */
-+	u32 fast_response_selftest;
- #endif
- };
- 
-diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c b/drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c
-index 89e314b3756bb..ed6ce73ef3b07 100644
---- a/drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c
-+++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c
-@@ -1076,6 +1076,15 @@ static int ct_handle_response(struct intel_guc_ct *ct, struct ct_incoming_msg *r
- 		found = true;
- 		break;
- 	}
-+
-+#ifdef CONFIG_DRM_I915_SELFTEST
-+	if (!found && ct_to_guc(ct)->fast_response_selftest) {
-+		CT_DEBUG(ct, "Assuming unsolicited response due to FAST_REQUEST selftest\n");
-+		ct_to_guc(ct)->fast_response_selftest++;
-+		found = true;
-+	}
-+#endif
-+
- 	if (!found) {
- 		CT_ERROR(ct, "Unsolicited response message: len %u, data %#x (fence %u, last %u)\n",
- 			 len, hxg[0], fence, ct->requests.last_fence);
-diff --git a/drivers/gpu/drm/i915/gt/uc/selftest_guc.c b/drivers/gpu/drm/i915/gt/uc/selftest_guc.c
-index bfb72143566f6..c900aac85adba 100644
---- a/drivers/gpu/drm/i915/gt/uc/selftest_guc.c
-+++ b/drivers/gpu/drm/i915/gt/uc/selftest_guc.c
-@@ -286,11 +286,126 @@ static int intel_guc_steal_guc_ids(void *arg)
- 	return ret;
- }
- 
-+/*
-+ * Send a context schedule H2G message with an invalid context id.
-+ * This should generate a GUC_RESULT_INVALID_CONTEXT response.
-+ */
-+static int bad_h2g(struct intel_guc *guc)
-+{
-+	u32 action[] = {
-+	   INTEL_GUC_ACTION_SCHED_CONTEXT,
-+	   0x12345678,
-+	};
-+
-+	return intel_guc_send_nb(guc, action, ARRAY_SIZE(action), 0);
-+}
-+
-+/*
-+ * Set a spinner running to make sure the system is alive and active,
-+ * then send a bad but asynchronous H2G command and wait to see if an
-+ * error response is returned. If no response is received or if the
-+ * spinner dies then the test will fail.
-+ */
-+#define FAST_RESPONSE_TIMEOUT_MS	1000
-+static int intel_guc_fast_request(void *arg)
-+{
-+	struct intel_gt *gt = arg;
-+	struct intel_context *ce;
-+	struct igt_spinner spin;
-+	struct i915_request *rq;
-+	intel_wakeref_t wakeref;
-+	struct intel_engine_cs *engine = intel_selftest_find_any_engine(gt);
-+	bool spinning = false;
-+	int ret = 0;
-+
-+	if (!engine)
-+		return 0;
-+
-+	wakeref = intel_runtime_pm_get(gt->uncore->rpm);
-+
-+	ce = intel_context_create(engine);
-+	if (IS_ERR(ce)) {
-+		ret = PTR_ERR(ce);
-+		gt_err(gt, "Failed to create spinner request: %pe\n", ce);
-+		goto err_pm;
-+	}
-+
-+	ret = igt_spinner_init(&spin, engine->gt);
-+	if (ret) {
-+		gt_err(gt, "Failed to create spinner: %pe\n", ERR_PTR(ret));
-+		goto err_pm;
-+	}
-+	spinning = true;
-+
-+	rq = igt_spinner_create_request(&spin, ce, MI_ARB_CHECK);
-+	intel_context_put(ce);
-+	if (IS_ERR(rq)) {
-+		ret = PTR_ERR(rq);
-+		gt_err(gt, "Failed to create spinner request: %pe\n", rq);
-+		goto err_spin;
-+	}
-+
-+	ret = request_add_spin(rq, &spin);
-+	if (ret) {
-+		gt_err(gt, "Failed to add Spinner request: %pe\n", ERR_PTR(ret));
-+		goto err_rq;
-+	}
-+
-+	gt->uc.guc.fast_response_selftest = 1;
-+
-+	ret = bad_h2g(&gt->uc.guc);
-+	if (ret) {
-+		gt_err(gt, "Failed to send H2G: %pe\n", ERR_PTR(ret));
-+		goto err_rq;
-+	}
-+
-+	ret = wait_for(gt->uc.guc.fast_response_selftest != 1 || i915_request_completed(rq),
-+		       FAST_RESPONSE_TIMEOUT_MS);
-+	if (ret) {
-+		gt_err(gt, "Request wait failed: %pe\n", ERR_PTR(ret));
-+		goto err_rq;
-+	}
-+
-+	if (i915_request_completed(rq)) {
-+		gt_err(gt, "Spinner died waiting for fast request error!\n");
-+		ret = -EIO;
-+		goto err_rq;
-+	}
-+
-+	if (gt->uc.guc.fast_response_selftest != 2) {
-+		gt_err(gt, "Unexpected fast response count: %d\n",
-+		       gt->uc.guc.fast_response_selftest);
-+		goto err_rq;
-+	}
-+
-+	igt_spinner_end(&spin);
-+	spinning = false;
-+
-+	ret = intel_selftest_wait_for_rq(rq);
-+	if (ret) {
-+		gt_err(gt, "Request failed to complete: %pe\n", ERR_PTR(ret));
-+		goto err_rq;
-+	}
-+
-+err_rq:
-+	i915_request_put(rq);
-+
-+err_spin:
-+	if (spinning)
-+		igt_spinner_end(&spin);
-+	igt_spinner_fini(&spin);
-+
-+err_pm:
-+	intel_runtime_pm_put(gt->uncore->rpm, wakeref);
-+	return ret;
-+}
-+
- int intel_guc_live_selftests(struct drm_i915_private *i915)
- {
- 	static const struct i915_subtest tests[] = {
- 		SUBTEST(intel_guc_scrub_ctbs),
- 		SUBTEST(intel_guc_steal_guc_ids),
-+		SUBTEST(intel_guc_fast_request),
- 	};
- 	struct intel_gt *gt = to_gt(i915);
- 
--- 
-2.41.0
+In order to merge the scheduler changes necessary for the Xe driver, thos=
+e changes
+were based on drm-tip, which included this change from drm-misc-fixes, bu=
+t which
+wasn't present in drm-misc-next.
 
+I didn't want to create a merge conflict between drm-misc-next and drm-mi=
+sc-fixes,
+when pulling that change from drm-misc-next to drm-misc-fixes, so that I =
+can apply
+the Xe scheduler changes on top of drm-misc-next.
+--=20
+Regards,
+Luben
+
+--------------qvDQOYufPGufy4Mj2qrN1Ci0
+Content-Type: application/pgp-keys; name="OpenPGP_0x4C15479431A334AF.asc"
+Content-Disposition: attachment; filename="OpenPGP_0x4C15479431A334AF.asc"
+Content-Description: OpenPGP public key
+Content-Transfer-Encoding: quoted-printable
+
+-----BEGIN PGP PUBLIC KEY BLOCK-----
+
+xjMEZTohOhYJKwYBBAHaRw8BAQdAWSq76k+GsENjDTMVCy9Vr4fAO9Rb57/bPT1A
+PnbnnRHNIkx1YmVuIFR1aWtvdiA8bHR1aWtvdjg5QGdtYWlsLmNvbT7CmQQTFgoA
+QRYhBJkj7+VmFO9beaAl10wVR5QxozSvBQJlOiE6AhsDBQkJZgGABQsJCAcCAiIC
+BhUKCQgLAgQWAgMBAh4HAheAAAoJEEwVR5QxozSvSm4BAOwCpX53DTQhE20FBGlT
+MqKCOQyJqlMcIQ9SO1qPWX1iAQCv3vfyJwktF7REl1yt7IU2Sye1qmQMfJxdt9JM
+bMNNBs44BGU6IToSCisGAQQBl1UBBQEBB0BT9wSPcCE8uGe7FWo8C+nTSyWPXKTx
+9F0gpEnlqReRBwMBCAfCfgQYFgoAJhYhBJkj7+VmFO9beaAl10wVR5QxozSvBQJl
+OiE6AhsMBQkJZgGAAAoJEEwVR5QxozSvSsYA/2LIFjbxQ2ikbU5S0pKoaMDzO9eG
+z69uNhNWJcvIKJK6AQC9228Mqc1JeZMIyjYWr2HKYHi8S2q2/zHrSZwAWYYwDA=3D=3D
+=3DqCaZ
+-----END PGP PUBLIC KEY BLOCK-----
+
+--------------qvDQOYufPGufy4Mj2qrN1Ci0--
+
+--------------B4ohSNNGqjiBnNCLqzuihuRH--
+
+--------------vEfybuPWDPn3tC0gL2qgH3Ql
+Content-Type: application/pgp-signature; name="OpenPGP_signature.asc"
+Content-Description: OpenPGP digital signature
+Content-Disposition: attachment; filename="OpenPGP_signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+wnsEABYIACMWIQSZI+/lZhTvW3mgJddMFUeUMaM0rwUCZVLIfgUDAAAAAAAKCRBMFUeUMaM0r7zT
+AQCiNDNdfwwEl1fqI+vA0gRQhPhPspazrejdUdFVOa2rkwD9Ey1+rknoP3/l6BG/sMCB6KcSvzYM
+VqgKbrH9xS0SCQk=
+=MWyy
+-----END PGP SIGNATURE-----
+
+--------------vEfybuPWDPn3tC0gL2qgH3Ql--
