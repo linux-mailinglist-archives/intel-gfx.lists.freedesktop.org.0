@@ -2,55 +2,33 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id ABF667EAB89
-	for <lists+intel-gfx@lfdr.de>; Tue, 14 Nov 2023 09:22:54 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id BA4257EABBE
+	for <lists+intel-gfx@lfdr.de>; Tue, 14 Nov 2023 09:39:35 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8F90710E1D3;
-	Tue, 14 Nov 2023 08:22:47 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 914C710E1C0;
+	Tue, 14 Nov 2023 08:39:32 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9710010E1CE;
- Tue, 14 Nov 2023 08:22:44 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1699950164; x=1731486164;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=MZt/KOjjeBEpZwQs4CWWZOvi6VhSAlgvO9Gjd3zyI/c=;
- b=W764FDrKioTUtlarug7y1+m3SzDamcPKdFm3YKj8s9g5G7FArkboLbpB
- drMZyGwg6bBV/10nk2JOW5jSHFOHPj7V8Oa+3bkJ+zv/3fO4H5hL9KdAA
- BscyuUxPSJdu4rJ3onVBtjFrBlcUS60U1Bms1uOFaQQQvsD33Na/SUAnV
- 8RyyFBQljDFgqytlx3cL5/myKj7kPG87d1OvvLVaEsFABF9zEf/P8Fvh/
- MXCURDhOH825Bp+wUu59PihZ9lEzZd7TStr/4VauR6hOqdS5hvyqgaSJR
- oJbv4QKcNarsolSC7S1oMDAulAaKpd8AH0jtP5NdRe1UCDiJlN0tSWR95 g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10893"; a="421706973"
-X-IronPort-AV: E=Sophos;i="6.03,301,1694761200"; d="scan'208";a="421706973"
-Received: from orsmga006.jf.intel.com ([10.7.209.51])
- by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Nov 2023 00:22:32 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10893"; a="741025692"
-X-IronPort-AV: E=Sophos;i="6.03,301,1694761200"; d="scan'208";a="741025692"
-Received: from hatran1-mobl1.ccr.corp.intel.com (HELO localhost)
- ([10.252.56.145])
- by orsmga006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Nov 2023 00:22:28 -0800
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Stephen Rothwell <sfr@canb.auug.org.au>, Daniel Vetter
- <daniel.vetter@ffwll.ch>, Joonas Lahtinen
- <joonas.lahtinen@linux.intel.com>, Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Intel Graphics <intel-gfx@lists.freedesktop.org>, DRI
- <dri-devel@lists.freedesktop.org>
-In-Reply-To: <20231114141715.6f435118@canb.auug.org.au>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20231114141715.6f435118@canb.auug.org.au>
-Date: Tue, 14 Nov 2023 10:22:25 +0200
-Message-ID: <8734x8u4la.fsf@intel.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 4CFD410E1C0;
+ Tue, 14 Nov 2023 08:39:31 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 459EBA47E9;
+ Tue, 14 Nov 2023 08:39:31 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: text/plain
-Subject: Re: [Intel-gfx] linux-next: build warning after merge of the
- drm-intel tree
+Content-Transfer-Encoding: 7bit
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Bagas Sanjaya" <bagasdotme@gmail.com>
+Date: Tue, 14 Nov 2023 08:39:31 -0000
+Message-ID: <169995117125.29256.8185079921721644398@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20231114081033.27343-1-bagasdotme@gmail.com>
+In-Reply-To: <20231114081033.27343-1-bagasdotme@gmail.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_drm/dp=5Fmst=3A_Separate_=40failing=5Fport_list_in_drm=5Fdp?=
+ =?utf-8?q?=5Fmst=5Fatomic=5Fcheck=5Fmgr=28=29_comment?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -63,28 +41,25 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Linux Next Mailing List <linux-next@vger.kernel.org>,
- Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, 14 Nov 2023, Stephen Rothwell <sfr@canb.auug.org.au> wrote:
-> Hi all,
->
-> After merging the drm-intel tree, today's linux-next build (htmldocs)
-> produced this warning:
->
-> Documentation/gpu/drm-kms-helpers:296: drivers/gpu/drm/display/drm_dp_mst_topology.c:5484: ERROR: Unexpected indentation.
-> Documentation/gpu/drm-kms-helpers:296: drivers/gpu/drm/display/drm_dp_mst_topology.c:5488: WARNING: Block quote ends without a blank line; unexpected unindent.
->
-> Introduced by commit
->
->   1cd0a5ea4279 ("drm/dp_mst: Factor out a helper to check the atomic state of a topology manager")
+== Series Details ==
 
-Imre, please fix this.
+Series: drm/dp_mst: Separate @failing_port list in drm_dp_mst_atomic_check_mgr() comment
+URL   : https://patchwork.freedesktop.org/series/126377/
+State : warning
 
-Thanks,
-Jani.
+== Summary ==
 
--- 
-Jani Nikula, Intel
+Error: dim checkpatch failed
+1382ca77e2f0 drm/dp_mst: Separate @failing_port list in drm_dp_mst_atomic_check_mgr() comment
+-:16: WARNING:BAD_FIXES_TAG: Please use correct Fixes: style 'Fixes: <12 chars of sha1> ("<title line>")' - ie: 'Fixes: 1cd0a5ea4279 ("drm/dp_mst: Factor out a helper to check the atomic state of a topology manager")'
+#16: 
+Fixes: 1cd0a5ea427931 ("drm/dp_mst: Factor out a helper to check the atomic state of a topology manager")
+
+total: 0 errors, 1 warnings, 0 checks, 14 lines checked
+
+
