@@ -1,33 +1,48 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 95C0B7EB483
-	for <lists+intel-gfx@lfdr.de>; Tue, 14 Nov 2023 17:11:04 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id D010F7EB4AC
+	for <lists+intel-gfx@lfdr.de>; Tue, 14 Nov 2023 17:22:57 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1476310E46C;
-	Tue, 14 Nov 2023 16:11:03 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 02F4B10E46F;
+	Tue, 14 Nov 2023 16:22:55 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 3842C10E46C;
- Tue, 14 Nov 2023 16:11:00 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 30CC9AADD8;
- Tue, 14 Nov 2023 16:11:00 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 94A6E10E480;
+ Tue, 14 Nov 2023 16:22:53 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1699978973; x=1731514973;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=0Xb5RtL4MOwoAH3rwXAzxpRWwQJkipyVc3sXvBP2y/k=;
+ b=QBOQu6fj5J+xOUomTSg84XPLCKku0SvQB271RIBnD39Ebkw/6vUqqEQY
+ ynNd0puuJ4PPLEnQpE4Gseqx//dQJYzHkrY+7khfJjad3Pn32lpYTUBor
+ e1LaRiHfDzI0e3hSpU5kxs5gm6si7VxiRyGc7yGWF6U2Lx5imD5FJR+c/
+ midkgaA1G1/4Mh+edzNdt1xTNBm2uOKTzr/a7gWAl3DBGxPZqdc3IDXHw
+ izZ39o9XOLIj8dDWVFLDNx1uVobGQkylnGsAZJrcS8lwHvjQDEJpv0ARL
+ YxRgxLHz5ojjW0/yCAijL70c5xX7Ba/2NwfckYkLa2JPlRK+/mf89nuua g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10894"; a="476903805"
+X-IronPort-AV: E=Sophos;i="6.03,302,1694761200"; d="scan'208";a="476903805"
+Received: from orsmga004.jf.intel.com ([10.7.209.38])
+ by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 14 Nov 2023 08:22:29 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10894"; a="888292308"
+X-IronPort-AV: E=Sophos;i="6.03,302,1694761200"; d="scan'208";a="888292308"
+Received: from aalteres-desk.fm.intel.com ([10.80.57.53])
+ by orsmga004.jf.intel.com with ESMTP; 14 Nov 2023 08:22:27 -0800
+From: Alan Previn <alan.previn.teres.alexis@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Tue, 14 Nov 2023 08:22:27 -0800
+Message-Id: <20231114162227.756974-1-alan.previn.teres.alexis@intel.com>
+X-Mailer: git-send-email 2.39.0
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Andrzej Hajda" <andrzej.hajda@intel.com>
-Date: Tue, 14 Nov 2023 16:11:00 -0000
-Message-ID: <169997826019.29256.13936241951160227968@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20231114-dont_clean_gt_on_error_path-v1-1-37f2fa827fd2@intel.com>
-In-Reply-To: <20231114-dont_clean_gt_on_error_path-v1-1-37f2fa827fd2@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
- =?utf-8?q?for_drm/i915=3A_do_not_clean_GT_table_on_error_path?=
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-gfx] [PATCH v1 1/1] drm/i915/gt: Dont wait forever when
+ idling in suspend
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,29 +55,143 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
+Cc: Mousumi Jana <mousumi.jana@intel.com>, dri-devel@lists.freedesktop.org,
+ Alan Previn <alan.previn.teres.alexis@intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+When suspending, add a timeout when calling
+intel_gt_pm_wait_for_idle else if we have a leaked
+wakeref (which would be indicative of a bug elsewhere
+in the driver), driver will at exit the suspend-resume
+cycle, after the kernel detects the held reference and
+prints a message to abort suspending instead of hanging
+in the kernel forever which then requires serial connection
+or ramoops dump to debug further.
 
-Series: drm/i915: do not clean GT table on error path
-URL   : https://patchwork.freedesktop.org/series/126385/
-State : warning
+Signed-off-by: Alan Previn <alan.previn.teres.alexis@intel.com>
+Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
+Tested-by: Mousumi Jana <mousumi.jana@intel.com>
+---
+ drivers/gpu/drm/i915/gt/intel_engine_cs.c |  2 +-
+ drivers/gpu/drm/i915/gt/intel_gt_pm.c     |  7 ++++++-
+ drivers/gpu/drm/i915/gt/intel_gt_pm.h     |  7 ++++++-
+ drivers/gpu/drm/i915/intel_wakeref.c      | 14 ++++++++++----
+ drivers/gpu/drm/i915/intel_wakeref.h      |  6 ++++--
+ 5 files changed, 27 insertions(+), 9 deletions(-)
 
-== Summary ==
+diff --git a/drivers/gpu/drm/i915/gt/intel_engine_cs.c b/drivers/gpu/drm/i915/gt/intel_engine_cs.c
+index 40687806d22a..ffef963037f2 100644
+--- a/drivers/gpu/drm/i915/gt/intel_engine_cs.c
++++ b/drivers/gpu/drm/i915/gt/intel_engine_cs.c
+@@ -686,7 +686,7 @@ void intel_engines_release(struct intel_gt *gt)
+ 		if (!engine->release)
+ 			continue;
+ 
+-		intel_wakeref_wait_for_idle(&engine->wakeref);
++		intel_wakeref_wait_for_idle(&engine->wakeref, 0);
+ 		GEM_BUG_ON(intel_engine_pm_is_awake(engine));
+ 
+ 		engine->release(engine);
+diff --git a/drivers/gpu/drm/i915/gt/intel_gt_pm.c b/drivers/gpu/drm/i915/gt/intel_gt_pm.c
+index f5899d503e23..25cb39ba9fdf 100644
+--- a/drivers/gpu/drm/i915/gt/intel_gt_pm.c
++++ b/drivers/gpu/drm/i915/gt/intel_gt_pm.c
+@@ -306,6 +306,8 @@ int intel_gt_resume(struct intel_gt *gt)
+ 
+ static void wait_for_suspend(struct intel_gt *gt)
+ {
++	int final_timeout_ms = (I915_GT_SUSPEND_IDLE_TIMEOUT * 10);
++
+ 	if (!intel_gt_pm_is_awake(gt))
+ 		return;
+ 
+@@ -318,7 +320,10 @@ static void wait_for_suspend(struct intel_gt *gt)
+ 		intel_gt_retire_requests(gt);
+ 	}
+ 
+-	intel_gt_pm_wait_for_idle(gt);
++	/* we are suspending, so we shouldn't be waiting forever */
++	if (intel_gt_pm_wait_timeout_for_idle(gt, final_timeout_ms) == -ETIMEDOUT)
++		gt_warn(gt, "bailing from %s after %d milisec timeout\n",
++			__func__, final_timeout_ms);
+ }
+ 
+ void intel_gt_suspend_prepare(struct intel_gt *gt)
+diff --git a/drivers/gpu/drm/i915/gt/intel_gt_pm.h b/drivers/gpu/drm/i915/gt/intel_gt_pm.h
+index b1eeb5b33918..1757ca4c3077 100644
+--- a/drivers/gpu/drm/i915/gt/intel_gt_pm.h
++++ b/drivers/gpu/drm/i915/gt/intel_gt_pm.h
+@@ -68,7 +68,12 @@ static inline void intel_gt_pm_might_put(struct intel_gt *gt)
+ 
+ static inline int intel_gt_pm_wait_for_idle(struct intel_gt *gt)
+ {
+-	return intel_wakeref_wait_for_idle(&gt->wakeref);
++	return intel_wakeref_wait_for_idle(&gt->wakeref, 0);
++}
++
++static inline int intel_gt_pm_wait_timeout_for_idle(struct intel_gt *gt, int timeout_ms)
++{
++	return intel_wakeref_wait_for_idle(&gt->wakeref, timeout_ms);
+ }
+ 
+ void intel_gt_pm_init_early(struct intel_gt *gt);
+diff --git a/drivers/gpu/drm/i915/intel_wakeref.c b/drivers/gpu/drm/i915/intel_wakeref.c
+index 623a69089386..f2611c65246b 100644
+--- a/drivers/gpu/drm/i915/intel_wakeref.c
++++ b/drivers/gpu/drm/i915/intel_wakeref.c
+@@ -113,14 +113,20 @@ void __intel_wakeref_init(struct intel_wakeref *wf,
+ 			 "wakeref.work", &key->work, 0);
+ }
+ 
+-int intel_wakeref_wait_for_idle(struct intel_wakeref *wf)
++int intel_wakeref_wait_for_idle(struct intel_wakeref *wf, int timeout_ms)
+ {
+-	int err;
++	int err = 0;
+ 
+ 	might_sleep();
+ 
+-	err = wait_var_event_killable(&wf->wakeref,
+-				      !intel_wakeref_is_active(wf));
++	if (!timeout_ms)
++		err = wait_var_event_killable(&wf->wakeref,
++					      !intel_wakeref_is_active(wf));
++	else if (wait_var_event_timeout(&wf->wakeref,
++					!intel_wakeref_is_active(wf),
++					msecs_to_jiffies(timeout_ms)) < 1)
++		err = -ETIMEDOUT;
++
+ 	if (err)
+ 		return err;
+ 
+diff --git a/drivers/gpu/drm/i915/intel_wakeref.h b/drivers/gpu/drm/i915/intel_wakeref.h
+index ec881b097368..302694a780d2 100644
+--- a/drivers/gpu/drm/i915/intel_wakeref.h
++++ b/drivers/gpu/drm/i915/intel_wakeref.h
+@@ -251,15 +251,17 @@ __intel_wakeref_defer_park(struct intel_wakeref *wf)
+ /**
+  * intel_wakeref_wait_for_idle: Wait until the wakeref is idle
+  * @wf: the wakeref
++ * @timeout_ms: Timeout in ms, 0 means never timeout.
+  *
+  * Wait for the earlier asynchronous release of the wakeref. Note
+  * this will wait for any third party as well, so make sure you only wait
+  * when you have control over the wakeref and trust no one else is acquiring
+  * it.
+  *
+- * Return: 0 on success, error code if killed.
++ * Returns 0 on success, -ETIMEDOUT upon a timeout, or the unlikely
++ * error propagation from wait_var_event_killable if timeout_ms is 0.
+  */
+-int intel_wakeref_wait_for_idle(struct intel_wakeref *wf);
++int intel_wakeref_wait_for_idle(struct intel_wakeref *wf, int timeout_ms);
+ 
+ struct intel_wakeref_auto {
+ 	struct drm_i915_private *i915;
 
-Error: dim checkpatch failed
-272a68a547e9 drm/i915: do not clean GT table on error path
--:14: WARNING:COMMIT_LOG_LONG_LINE: Prefer a maximum 75 chars per line (possible unwrapped commit description?)
-#14: 
-BUG i915_request (...): Objects remaining in i915_request on __kmem_cache_shutdown()
-
--:27: WARNING:BAD_FIXES_TAG: Please use correct Fixes: style 'Fixes: <12 chars of sha1> ("<title line>")' - ie: 'Fixes: bec68cc9ea42 ("drm/i915: Prepare for multiple GTs")'
-#27: 
-Fixes: bec68cc9ea42d8 ("drm/i915: Prepare for multiple GTs")
-
-total: 0 errors, 2 warnings, 0 checks, 16 lines checked
-
+base-commit: 3d1e36691e73b3946b4a9ca8132a34f0319ff984
+-- 
+2.39.0
 
