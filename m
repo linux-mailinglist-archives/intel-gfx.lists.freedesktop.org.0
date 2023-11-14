@@ -2,50 +2,57 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 855A07EB20A
-	for <lists+intel-gfx@lfdr.de>; Tue, 14 Nov 2023 15:23:40 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 45C777EB287
+	for <lists+intel-gfx@lfdr.de>; Tue, 14 Nov 2023 15:39:44 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BFB0710E20C;
-	Tue, 14 Nov 2023 14:23:38 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 392A910E44D;
+	Tue, 14 Nov 2023 14:39:41 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.136])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 68B5910E20C
- for <intel-gfx@lists.freedesktop.org>; Tue, 14 Nov 2023 14:23:37 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.115])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6BB1110E0A0;
+ Tue, 14 Nov 2023 14:39:39 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1699971817; x=1731507817;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=RFjXrnDWh/GfkSTw3CQFmrkYOoh0zJlNiAsI7U8PUzg=;
- b=Yd8EhFMQNAgjHq/YEFNK3k/xQxtSDpcRNAm/IU0NG1P5uvNHovsKzbVM
- vdssdGaXMlALhuG3sv3tW56TwaoKiSRVMC4TnG8MDA0KQ0XMcmVygPebo
- Q68nm30diITK5Og5Qtuwj6q8DzKHfuCxer5zZDttVzME/VSg4vwpaNDMw
- TIfQx4G6NgMmGSJxnSvJgS/jsZ90QSLf9MS/g56cb4ik6ZOQaKiJanP/0
- x7SCKix3We0uG7JQOyP95ckINA+X2KwXO7o5uvFGs69GKSMH0tA/f3ruN
- O43vslVFZl3g5PAmAkAqUyGJmog17t5KatOjrrQwC8lBpNZiIgOgnh1Uw g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10894"; a="370007646"
-X-IronPort-AV: E=Sophos;i="6.03,302,1694761200"; d="scan'208";a="370007646"
-Received: from orsmga007.jf.intel.com ([10.7.209.58])
- by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Nov 2023 06:23:36 -0800
+ t=1699972779; x=1731508779;
+ h=message-id:date:mime-version:subject:to:cc:references:
+ from:in-reply-to;
+ bh=RNu88Qa8kRK+fGGgkqNdrWpncasm0z6GqSV1j3RyLMc=;
+ b=X/U51jxu0lFEgTdgkj8qjIkQ788SUdWcz6O7Rj2qk5wLys84LpLwd6SK
+ PDcFoo2Y5ElCz3nJXDzggbKka3onQM2LJC71mxCmCR6u+1s8GhKIJjG9n
+ /YVr0ME+EG2tfE9U6IYkt0lpiD3XbvMfJFUms1/lT+CVydnmlwxF7TR52
+ IdBcIkcwCLXvlvdLECH5yVnKGpbqJa6065s1qwrTeAQKFFIRBxv9Qtf+8
+ y6HyALkuB2E3FVFbx28r3woHRN3dterM8mXifBLvm4YcBI6RJShjAZb/z
+ 0puuHQM9x1TMG2BXphOpSF9z51/Za4ln8CTAIFcLGlHK6Q+dzSY8TbijK w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10894"; a="390459805"
+X-IronPort-AV: E=Sophos;i="6.03,302,1694761200"; 
+ d="scan'208,217";a="390459805"
+Received: from fmviesa002.fm.intel.com ([10.60.135.142])
+ by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 14 Nov 2023 06:39:20 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10894"; a="758188201"
-X-IronPort-AV: E=Sophos;i="6.03,302,1694761200"; d="scan'208";a="758188201"
-Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.74])
- by orsmga007.jf.intel.com with SMTP; 14 Nov 2023 06:23:34 -0800
-Received: by stinkbox (sSMTP sendmail emulation);
- Tue, 14 Nov 2023 16:23:33 +0200
-From: Ville Syrjala <ville.syrjala@linux.intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Tue, 14 Nov 2023 16:23:33 +0200
-Message-ID: <20231114142333.15799-1-ville.syrjala@linux.intel.com>
-X-Mailer: git-send-email 2.41.0
+X-IronPort-AV: E=Sophos;i="6.03,302,1694761200"; d="scan'208,217";a="6045497"
+Received: from pchochol-mobl.ger.corp.intel.com (HELO [10.251.218.4])
+ ([10.251.218.4])
+ by fmviesa002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 14 Nov 2023 06:39:18 -0800
+Content-Type: multipart/alternative;
+ boundary="------------AjDDkQ5gEu4F90u0JvOrwefa"
+Message-ID: <f72ce7ff-19a4-4a12-9ede-615a964e7228@linux.intel.com>
+Date: Tue, 14 Nov 2023 15:39:16 +0100
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH] drm/i915: Also check for VGA converter in eDP
- probe
+User-Agent: Mozilla Thunderbird
+Content-Language: en-US
+To: =?UTF-8?B?VmlsbGUgU3lyasOkbMOk?= <ville.syrjala@linux.intel.com>,
+ Jani Nikula <jani.nikula@linux.intel.com>
+References: <20231002193847.7134-1-maarten.lankhorst@linux.intel.com>
+ <20231002193847.7134-11-maarten.lankhorst@linux.intel.com>
+ <ZVNUxZzCGcxQzqJX@intel.com> <87bkbwsebl.fsf@intel.com>
+ <ZVN4rQjLxROOjTE-@intel.com>
+From: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+In-Reply-To: <ZVN4rQjLxROOjTE-@intel.com>
+Subject: Re: [Intel-gfx] [Intel-xe] [PATCH 11/14] ALSA: hda/intel: Move
+ snd_hdac_i915_init to before probe_work.
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -58,81 +65,132 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: stable@vger.kernel.org
+Cc: alsa-devel@alsa-project.org, Takashi Iwai <tiwai@suse.de>,
+ intel-gfx@lists.freedesktop.org, "Kurmi,
+ Suresh Kumar" <suresh.kumar.kurmi@intel.com>, intel-xe@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-From: Ville Syrjälä <ville.syrjala@linux.intel.com>
+This is a multi-part message in MIME format.
+--------------AjDDkQ5gEu4F90u0JvOrwefa
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 
-Unfortunately even the HPD based detection added in
-commit cfe5bdfb27fa ("drm/i915: Check HPD live state during eDP probe")
-fails to detect that the VBT's eDP/DDI-A is a ghost on
-Asus B360M-A (CFL+CNP). On that board eDP/DDI-A has its HPD
-asserted despite nothing being actually connected there :(
-The straps/fuses also indicate that the eDP port is present.
+Hey,
 
-So if one boots with a VGA monitor connected the eDP probe will
-mistake the DP->VGA converter hooked to DDI-E for an eDP panel
-on DDI-A.
+Den 2023-11-14 kl. 14:39, skrev Ville Syrjälä:
+> On Tue, Nov 14, 2023 at 02:35:10PM +0200, Jani Nikula wrote:
+>> On Tue, 14 Nov 2023, Ville Syrjälä<ville.syrjala@linux.intel.com>  wrote:
+>>> On Mon, Oct 02, 2023 at 09:38:44PM +0200,maarten.lankhorst@linux.intel.com  wrote:
+>>>> From: Maarten Lankhorst<maarten.lankhorst@linux.intel.com>
+>>>>
+>>>> Now that we can use -EPROBE_DEFER, it's no longer required to spin off
+>>>> the snd_hdac_i915_init into a workqueue.
+>>>>
+>>>> Use the -EPROBE_DEFER mechanism instead, which must be returned in the
+>>>> probe function.
+>>> This completely broke i915 audio!
+>>>
+>>> I also can't see any trace of this stuff ever being posted to
+>>> intel-gfx so it never went through the CI.
+>>>
+>>> Please fix or revert ASAP.
+>> Cc: Jani, Suresh
+>>
+>> Ville, please file a bug at gitlab so we can track this, thanks.
+> https://gitlab.freedesktop.org/drm/intel/-/issues/9671
 
-As a last resort check what kind of DP device we've detected,
-and if it looks like a DP->VGA converter then conclude that
-the eDP port should be ignored.
+Looks like a simple patch should be enough, can you test below?
 
-Cc: stable@vger.kernel.org
-Closes: https://gitlab.freedesktop.org/drm/intel/-/issues/9636
-Fixes: cfe5bdfb27fa ("drm/i915: Check HPD live state during eDP probe")
-Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
----
- drivers/gpu/drm/i915/display/intel_dp.c | 28 +++++++++++++++++++------
- 1 file changed, 22 insertions(+), 6 deletions(-)
+----
 
-diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
-index 54bd0bffa9f0..14ee05fabd05 100644
---- a/drivers/gpu/drm/i915/display/intel_dp.c
-+++ b/drivers/gpu/drm/i915/display/intel_dp.c
-@@ -6277,8 +6277,7 @@ static bool intel_edp_init_connector(struct intel_dp *intel_dp,
- 	 * (eg. Acer Chromebook C710), so we'll check it only if multiple
- 	 * ports are attempting to use the same AUX CH, according to VBT.
- 	 */
--	if (intel_bios_dp_has_shared_aux_ch(encoder->devdata) &&
--	    !intel_digital_port_connected(encoder)) {
-+	if (intel_bios_dp_has_shared_aux_ch(encoder->devdata)) {
- 		/*
- 		 * If this fails, presume the DPCD answer came
- 		 * from some other port using the same AUX CH.
-@@ -6286,10 +6285,27 @@ static bool intel_edp_init_connector(struct intel_dp *intel_dp,
- 		 * FIXME maybe cleaner to check this before the
- 		 * DPCD read? Would need sort out the VDD handling...
- 		 */
--		drm_info(&dev_priv->drm,
--			 "[ENCODER:%d:%s] HPD is down, disabling eDP\n",
--			 encoder->base.base.id, encoder->base.name);
--		goto out_vdd_off;
-+		if (!intel_digital_port_connected(encoder)) {
-+			drm_info(&dev_priv->drm,
-+				 "[ENCODER:%d:%s] HPD is down, disabling eDP\n",
-+				 encoder->base.base.id, encoder->base.name);
-+			goto out_vdd_off;
-+		}
-+
-+		/*
-+		 * Unfortunately even the HPD based detection fails on
-+		 * eg. Asus B360M-A (CFL+CNP), so as a last resort fall
-+		 * back to checking for a VGA branch device. Only do this
-+		 * on known affected platforms to minimize false positives.
-+		 */
-+		if (DISPLAY_VER(dev_priv) == 9 && drm_dp_is_branch(intel_dp->dpcd) &&
-+		    (intel_dp->dpcd[DP_DOWNSTREAMPORT_PRESENT] & DP_DWN_STRM_PORT_TYPE_MASK) ==
-+		    DP_DWN_STRM_PORT_TYPE_ANALOG) {
-+			drm_info(&dev_priv->drm,
-+				 "[ENCODER:%d:%s] VGA converter detected, disabling eDP\n",
-+				 encoder->base.base.id, encoder->base.name);
-+			goto out_vdd_off;
-+		}
- 	}
- 
- 	mutex_lock(&dev_priv->drm.mode_config.mutex);
--- 
-2.41.0
+diff --git a/sound/pci/hda/hda_intel.c b/sound/pci/hda/hda_intel.c
+index 058f6e6491f9a..946aaa487f200 100644
+--- a/sound/pci/hda/hda_intel.c
++++ b/sound/pci/hda/hda_intel.c
+@@ -2145,7 +2145,8 @@ static int azx_probe(struct pci_dev *pci,
+  			 * for other chips, still continue probing as other
+  			 * codecs can be on the same link.
+  			 */
+-			if (HDA_CONTROLLER_IN_GPU(pci)) {
++			if (HDA_CONTROLLER_IN_GPU(pci) ||
++			    err == -EPROBE_DEFER) {
+  				goto out_free;
+  			} else {
+  				/* don't bother any longer */
 
+--------------AjDDkQ5gEu4F90u0JvOrwefa
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  </head>
+  <body>
+    <p>Hey,<br>
+    </p>
+    <div class="moz-cite-prefix">Den 2023-11-14 kl. 14:39, skrev Ville
+      Syrjälä:<br>
+    </div>
+    <blockquote type="cite" cite="mid:ZVN4rQjLxROOjTE-@intel.com">
+      <pre class="moz-quote-pre" wrap="">On Tue, Nov 14, 2023 at 02:35:10PM +0200, Jani Nikula wrote:
+</pre>
+      <blockquote type="cite">
+        <pre class="moz-quote-pre" wrap="">On Tue, 14 Nov 2023, Ville Syrjälä <a class="moz-txt-link-rfc2396E" href="mailto:ville.syrjala@linux.intel.com">&lt;ville.syrjala@linux.intel.com&gt;</a> wrote:
+</pre>
+        <blockquote type="cite">
+          <pre class="moz-quote-pre" wrap="">On Mon, Oct 02, 2023 at 09:38:44PM +0200, <a class="moz-txt-link-abbreviated" href="mailto:maarten.lankhorst@linux.intel.com">maarten.lankhorst@linux.intel.com</a> wrote:
+</pre>
+          <blockquote type="cite">
+            <pre class="moz-quote-pre" wrap="">From: Maarten Lankhorst <a class="moz-txt-link-rfc2396E" href="mailto:maarten.lankhorst@linux.intel.com">&lt;maarten.lankhorst@linux.intel.com&gt;</a>
+
+Now that we can use -EPROBE_DEFER, it's no longer required to spin off
+the snd_hdac_i915_init into a workqueue.
+
+Use the -EPROBE_DEFER mechanism instead, which must be returned in the
+probe function.
+</pre>
+          </blockquote>
+          <pre class="moz-quote-pre" wrap="">
+This completely broke i915 audio!
+
+I also can't see any trace of this stuff ever being posted to 
+intel-gfx so it never went through the CI.
+
+Please fix or revert ASAP.
+</pre>
+        </blockquote>
+        <pre class="moz-quote-pre" wrap="">
+Cc: Jani, Suresh
+
+Ville, please file a bug at gitlab so we can track this, thanks.
+</pre>
+      </blockquote>
+      <pre class="moz-quote-pre" wrap="">
+<a class="moz-txt-link-freetext" href="https://gitlab.freedesktop.org/drm/intel/-/issues/9671">https://gitlab.freedesktop.org/drm/intel/-/issues/9671</a></pre>
+    </blockquote>
+    <p>Looks like a simple patch should be enough, can you test below?</p>
+    <p>----<br>
+    </p>
+    <pre>diff --git a/sound/pci/hda/hda_intel.c b/sound/pci/hda/hda_intel.c
+index 058f6e6491f9a..946aaa487f200 100644
+--- a/sound/pci/hda/hda_intel.c
++++ b/sound/pci/hda/hda_intel.c
+@@ -2145,7 +2145,8 @@ static int azx_probe(struct pci_dev *pci,
+ 			 * for other chips, still continue probing as other
+ 			 * codecs can be on the same link.
+ 			 */
+-			if (HDA_CONTROLLER_IN_GPU(pci)) {
++			if (HDA_CONTROLLER_IN_GPU(pci) ||
++			    err == -EPROBE_DEFER) {
+ 				goto out_free;
+ 			} else {
+ 				/* don't bother any longer */
+
+</pre>
+  </body>
+</html>
+
+--------------AjDDkQ5gEu4F90u0JvOrwefa--
