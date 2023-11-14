@@ -1,52 +1,55 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id BB66C7EACBA
-	for <lists+intel-gfx@lfdr.de>; Tue, 14 Nov 2023 10:13:34 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2CB327EACBE
+	for <lists+intel-gfx@lfdr.de>; Tue, 14 Nov 2023 10:14:03 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 35FFE10E1E2;
-	Tue, 14 Nov 2023 09:13:33 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8821710E1E4;
+	Tue, 14 Nov 2023 09:14:01 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from relay3-d.mail.gandi.net (relay3-d.mail.gandi.net
- [217.70.183.195])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 72E3210E1E2
- for <intel-gfx@lists.freedesktop.org>; Tue, 14 Nov 2023 09:13:31 +0000 (UTC)
-Received: by mail.gandi.net (Postfix) with ESMTPSA id AF65360006;
- Tue, 14 Nov 2023 09:13:26 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
- t=1699953209;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=ZXmsKLNlIkRZMpVqTBmk5kgsfULJhH/NpiCWOxqXxtY=;
- b=cnhAecl47Pph553zwzCpGbMzCwKPl4F+Aqw9i6T5ZgP9NEYIDf1z1phS/tErjuIK6MPb0H
- dOo15Y2zyGDmq66Y9BvE+eTm+3AesXDFfGevrIT6dLX8seutsVB9tOU/0UpyhTy62RE2tr
- cLdWlgZXg9rk0uGRB+DmEtv+sC4Orw9vfbAmeoESiaMhBsfJYL8slJArKgBuoLo4aPxCkA
- ASQ9/GvIGOzYqAA98R9hcbobLAecCFqxZaH5YqUN/ryCeGuJS+eW9nmZReTG9IvV/5yIsh
- 2tBer13nDxMyqAkHcHHEGGF+HZqbeDo0c5Pl6xKePWaTa6VAnh/nOyMxt0lhHg==
-Date: Tue, 14 Nov 2023 10:13:24 +0100
-From: Miquel Raynal <miquel.raynal@bootlin.com>
-To: "Usyskin, Alexander" <alexander.usyskin@intel.com>
-Message-ID: <20231114101324.39569e96@xps-13>
-In-Reply-To: <CY5PR11MB6366383C8C0DCA9B3D41BF63EDB2A@CY5PR11MB6366.namprd11.prod.outlook.com>
-References: <20230910123949.1251964-1-alexander.usyskin@intel.com>
- <20230910123949.1251964-7-alexander.usyskin@intel.com>
- <20231016103939.67445bee@xps-13>
- <CY5PR11MB6366850CCE851BCA05A9DC2BEDD6A@CY5PR11MB6366.namprd11.prod.outlook.com>
- <20231017155544.6cceb6a6@xps-13>
- <CY5PR11MB63663DB0C17321A1A0C46FF3EDD6A@CY5PR11MB6366.namprd11.prod.outlook.com>
- <20231017164615.5b58fcc6@xps-13>
- <CY5PR11MB6366383C8C0DCA9B3D41BF63EDB2A@CY5PR11MB6366.namprd11.prod.outlook.com>
-Organization: Bootlin
-X-Mailer: Claws Mail 4.0.0 (GTK+ 3.24.33; x86_64-pc-linux-gnu)
+Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.24])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8741710E1E4
+ for <intel-gfx@lists.freedesktop.org>; Tue, 14 Nov 2023 09:13:58 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1699953238; x=1731489238;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=rVlzoNHyyaKn99VZGPCh88b6jhDWsPxCWcAjaRLP1SY=;
+ b=Jx1GupLjRO0a6lSkJAEjbG5q44Ftbn2pM+MzrSUlEi6t1JBxaSKpDDwr
+ R/S2/jnGoyMOHlqn32j+Wu0UZCtV/cGG9hbhhuOMg6ZI6SqjTvm2KzZ5F
+ /Pcp7Eciw39OnwN7YlYDiRfHi26sXuiujsWyWDWXAeSaFK/Wmkg+W2Vqj
+ ZuoqcBJDau/8LiRij7EINKXJRGZIZlesyAiorEmGcFqprxD6tcqtSu34+
+ N3PAlpJnlFB40zpaOiWPrs7Tmnknz4k6JIEMtvIpVyWg4TKqONQYRhu0N
+ 6O2SeY/AVFf/wkfMk4EsS50Pjf0VaVml89ICJwWLRyOZFVUFzqxTXSP9R g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10893"; a="393474975"
+X-IronPort-AV: E=Sophos;i="6.03,301,1694761200"; d="scan'208";a="393474975"
+Received: from orsmga007.jf.intel.com ([10.7.209.58])
+ by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 14 Nov 2023 01:13:58 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10893"; a="758114123"
+X-IronPort-AV: E=Sophos;i="6.03,301,1694761200"; d="scan'208";a="758114123"
+Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.74])
+ by orsmga007.jf.intel.com with SMTP; 14 Nov 2023 01:13:55 -0800
+Received: by stinkbox (sSMTP sendmail emulation);
+ Tue, 14 Nov 2023 11:13:55 +0200
+Date: Tue, 14 Nov 2023 11:13:55 +0200
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: Jani Nikula <jani.nikula@intel.com>
+Message-ID: <ZVM6UwJOeOU_9Pdl@intel.com>
+References: <20231113164711.4100548-1-jani.nikula@intel.com>
+ <20231113164711.4100548-3-jani.nikula@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-X-GND-Sasl: miquel.raynal@bootlin.com
-Subject: Re: [Intel-gfx] [PATCH 06/10] drm/i915/spi: spi register with mtd
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20231113164711.4100548-3-jani.nikula@intel.com>
+X-Patchwork-Hint: comment
+Subject: Re: [Intel-gfx] [PATCH 3/4] drm/i915: convert
+ vlv_dpio_read()/write() from pipe to phy
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,57 +62,55 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Vignesh Raghavendra <vigneshr@ti.com>, Richard Weinberger <richard@nod.at>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
- "De Marchi, Lucas" <lucas.demarchi@intel.com>,
- Tudor Ambarus <tudor.ambarus@linaro.org>, Michael Walle <michael@walle.cc>,
- "linux-mtd@lists.infradead.org" <linux-mtd@lists.infradead.org>, "Vivi,
- Rodrigo" <rodrigo.vivi@intel.com>, "Winkler, Tomas" <tomas.winkler@intel.com>,
- "Lubart, Vitaly" <vitaly.lubart@intel.com>
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi Alexander,
+On Mon, Nov 13, 2023 at 06:47:10PM +0200, Jani Nikula wrote:
+> vlv_dpio_read() and vlv_dpio_write() really operate on the phy, not
+> pipe. Passing the pipe instead of the phy as parameter is supposed to be
+> a convenience, but when the caller has the phy, it becomes an
+> inconvenience. See e.g. chv_dpio_cmn_power_well_enable() and
+> assert_chv_phy_powergate().
+> 
+> Figure out the phy in the callers, and pass phy to the dpio functions.
+> 
+> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+> ---
+>  .../i915/display/intel_display_power_well.c   |  23 +--
+>  drivers/gpu/drm/i915/display/intel_dpio_phy.c | 160 +++++++++---------
+>  drivers/gpu/drm/i915/display/intel_dpll.c     | 106 ++++++------
+>  drivers/gpu/drm/i915/vlv_sideband.c           |  10 +-
+>  drivers/gpu/drm/i915/vlv_sideband.h           |   6 +-
+>  5 files changed, 152 insertions(+), 153 deletions(-)
+<snip>
+> diff --git a/drivers/gpu/drm/i915/display/intel_dpio_phy.c b/drivers/gpu/drm/i915/display/intel_dpio_phy.c
+> index d6af46e33424..32886c0ec2cc 100644
+> --- a/drivers/gpu/drm/i915/display/intel_dpio_phy.c
+> +++ b/drivers/gpu/drm/i915/display/intel_dpio_phy.c
+> @@ -1107,24 +1109,24 @@ void vlv_phy_pre_encoder_enable(struct intel_encoder *encoder,
+>  	struct drm_i915_private *dev_priv = to_i915(encoder->base.dev);
+>  	struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
+>  	enum dpio_channel port = vlv_dig_port_to_channel(dig_port);
+> -	enum pipe pipe = crtc->pipe;
+> +	enum dpio_phy phy = vlv_pipe_to_phy(crtc->pipe);
+>  	u32 val;
+>  
+>  	vlv_dpio_get(dev_priv);
+>  
+>  	/* Enable clock channels for this port */
+> -	val = vlv_dpio_read(dev_priv, pipe, VLV_PCS01_DW8(port));
+> +	val = vlv_dpio_read(dev_priv, phy, VLV_PCS01_DW8(port));
+>  	val = 0;
+> -	if (pipe)
+> +	if (phy)
 
-+ Michael and Tudor
+That is wrong. Apart from that looks identical to what I have in
+one of my branches :)
 
-Folks, any interesting thought about the below discussion?
+With that bogus change dropped:
+Reviewed-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-alexander.usyskin@intel.com wrote on Tue, 14 Nov 2023 08:47:34 +0000:
-
-> >  =20
-> > > > > > > +	spi->mtd.writesize =3D SZ_1; /* 1 byte granularity */ =20
-> > > > > >
-> > > > > > You say writesize should be aligned with 4 in your next patch? =
-=20
-> > > > >
-> > > > > We support unaligned write by reading aligned 4bytes,
-> > > > > replacing changed bytes there and writing whole 4bytes back.
-> > > > > Is there any problem with this approach? =20
-> > > >
-> > > > Is there a reason to do that manually rather than letting the core
-> > > > handle the complexity?
-> > > > =20
-> > > I was not aware that core can do this. The core implements above logic
-> > > if I put SZ_4 here and caller try to write, say, one byte?
-> > > And sync multiple writers?
-> > > If so, I can remove manual work, I think, and make the patches smalle=
-r. =20
-> >=20
-> > I haven't checked in detail but I would expect this yes. Please have a
-> > round of tests and if it works, please simplify this part.
-> >=20
-> > Thanks,
-> > Miqu=C3=A8l =20
->=20
-> When I put SZ_4 here the "mtd_debug info /dev/mtd0" prints "mtd.writesize=
- =3D 4",
-> but "mtd_debug write /dev/mtd0 128 1 c" passes one byte to
-> i915_spi_write (mtd._write callback).
-> I suppose that mtd subsystem do not support this.
-> Or I did something wrong?
->=20
-
-
-Thanks,
-Miqu=C3=A8l
+-- 
+Ville Syrjälä
+Intel
