@@ -2,53 +2,54 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 978DC7EC96F
-	for <lists+intel-gfx@lfdr.de>; Wed, 15 Nov 2023 18:10:45 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id C09AA7EC9B4
+	for <lists+intel-gfx@lfdr.de>; Wed, 15 Nov 2023 18:32:02 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 67DDA10E102;
-	Wed, 15 Nov 2023 17:10:41 +0000 (UTC)
-X-Original-To: Intel-gfx@lists.freedesktop.org
-Delivered-To: Intel-gfx@lists.freedesktop.org
+	by gabe.freedesktop.org (Postfix) with ESMTP id AABE210E103;
+	Wed, 15 Nov 2023 17:31:59 +0000 (UTC)
+X-Original-To: intel-gfx@lists.freedesktop.org
+Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.126])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 138EB10E102;
- Wed, 15 Nov 2023 17:10:39 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3086710E103
+ for <intel-gfx@lists.freedesktop.org>; Wed, 15 Nov 2023 17:31:57 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1700068239; x=1731604239;
- h=date:from:to:cc:subject:message-id:references:
+ t=1700069517; x=1731605517;
+ h=date:from:to:subject:message-id:reply-to:references:
  mime-version:in-reply-to;
- bh=Qgux1RxgmOdTrZ+XM5YJR3vYYmq5dU/OrRR/xq6hqUc=;
- b=U1lbhbpwosTGJsLKh74fJAv4RSY5A13iV5ZqU/KK/f/m+3UKpfQcij7o
- qujXwQKqpFqkfZGlbu1LrktoXq0myWFDZZ0jAp7yqeiKAWa+EXjXPGZfk
- I5W6Ky3nkgor9q8ABKngdK1bWIQJsWmZqL35ad3qqNWG35ObubbkinbC4
- bexaGi/35wQnuT/5B7OJ4ywOq+68Oyxo/snMb76eEqlX6LdjjsN3nEBSF
- AidWYks0GAy7qwadbEZV3c5kvI9/AvM13ClohqeqWKvBPcndHP2AI3rkr
- jVOGecG5HmHF5MZca41jtj7anxWHSj9Eds8GV2p3C7g8CCKclliLwT1Vo A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10895"; a="375955668"
-X-IronPort-AV: E=Sophos;i="6.03,305,1694761200"; d="scan'208";a="375955668"
-Received: from fmsmga006.fm.intel.com ([10.253.24.20])
+ bh=+pPJT8Y8HjJk+wx98uSWnodyp0C9/rTbOTdTKnSiW1w=;
+ b=nwmUwL7dgdzsrYVohZivHg19AWjQT7LuzSNRFoRxhPdWXdBqMv+l90Iz
+ JUuEBzzbucrIYQ6O3865gRRMNP/AI3viO4z97zNTpmpFhDSVNf7zEkbwN
+ 5CDLwKGHuv1yTNOxmxPeHEq1bTVQTTMPVK2+RyJbbH6o1gm9dfVTWqlkI
+ qCc9Q17qBVhlU1PyB0RmEjuFZhd0Grx9/crbdF5it0TFNRm6I7ImhPTPM
+ mg7tkzqkkEfH2ncvPdECYcjK3jB3tv5mvEWsC6VFJMuIydJBq8xKs1aOb
+ MgSVCRjo7BTnmLqG4LHlUrAxTFJ8bkU78C7M6+g8D7od0ZW7XcYXTud5q A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10895"; a="375959927"
+X-IronPort-AV: E=Sophos;i="6.03,305,1694761200"; d="scan'208";a="375959927"
+Received: from fmsmga003.fm.intel.com ([10.253.24.29])
  by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Nov 2023 09:10:04 -0800
+ 15 Nov 2023 09:31:56 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10895"; a="1012339208"
-X-IronPort-AV: E=Sophos;i="6.03,305,1694761200"; d="scan'208";a="1012339208"
-Received: from lkp-server02.sh.intel.com (HELO b8de5498638e) ([10.239.97.151])
- by fmsmga006.fm.intel.com with ESMTP; 15 Nov 2023 09:10:02 -0800
-Received: from kbuild by b8de5498638e with local (Exim 4.96)
- (envelope-from <lkp@intel.com>) id 1r3JOo-0000dw-0k;
- Wed, 15 Nov 2023 17:09:58 +0000
-Date: Thu, 16 Nov 2023 01:09:47 +0800
-From: kernel test robot <lkp@intel.com>
-To: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
- Intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
-Message-ID: <202311160136.EtOH3ghf-lkp@intel.com>
-References: <20231115110216.267138-1-tvrtko.ursulin@linux.intel.com>
+X-IronPort-AV: E=McAfee;i="6600,9927,10895"; a="855712770"
+X-IronPort-AV: E=Sophos;i="6.03,305,1694761200"; d="scan'208";a="855712770"
+Received: from ideak-desk.fi.intel.com ([10.237.72.78])
+ by fmsmga003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 Nov 2023 09:31:54 -0800
+Date: Wed, 15 Nov 2023 19:31:53 +0200
+From: Imre Deak <imre.deak@intel.com>
+To: intel-gfx@lists.freedesktop.org,
+ Ankit K Nautiyal <ankit.k.nautiyal@intel.com>
+Message-ID: <ZVUASAgpMvN6ALL2@ideak-desk.fi.intel.com>
+References: <20231114141012.603960-1-imre.deak@intel.com>
+ <169999863717.29255.9722156725801248194@emeril.freedesktop.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20231115110216.267138-1-tvrtko.ursulin@linux.intel.com>
-Subject: Re: [Intel-gfx] [PATCH] drm/i915/gsc: Mark internal GSC engine with
- reserved uabi class
+In-Reply-To: <169999863717.29255.9722156725801248194@emeril.freedesktop.org>
+Subject: Re: [Intel-gfx] 
+ =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
+ =?utf-8?q?/i915=3A_Fix_fractional_bpp_handling_in_intel=5Flink=5Fbw=5Fred?=
+ =?utf-8?b?dWNlX2JwcCgp?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,162 +62,181 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Alan Previn <alan.previn.teres.alexis@intel.com>,
- Tvrtko Ursulin <tvrtko.ursulin@intel.com>, llvm@lists.linux.dev,
- oe-kbuild-all@lists.linux.dev, Matt Roper <matthew.d.roper@intel.com>
+Reply-To: imre.deak@intel.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi Tvrtko,
+On Tue, Nov 14, 2023 at 09:50:37PM +0000, Patchwork wrote:
+> == Series Details ==
+> 
+> Series: drm/i915: Fix fractional bpp handling in intel_link_bw_reduce_bpp()
+> URL   : https://patchwork.freedesktop.org/series/126403/
+> State : success
 
-kernel test robot noticed the following build warnings:
+I didn't receive any CI shards results and I can't see the patch in the
+test queue either. However it fixes an obvious issue during module
+loading, so pushed it do -din, thanks for the review.
 
-[auto build test WARNING on drm-intel/for-linux-next-fixes]
-[also build test WARNING on drm-tip/drm-tip drm/drm-next drm-exynos/exynos-drm-next drm-misc/drm-misc-next linus/master v6.7-rc1 next-20231115]
-[cannot apply to drm-intel/for-linux-next]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
-
-url:    https://github.com/intel-lab-lkp/linux/commits/Tvrtko-Ursulin/drm-i915-gsc-Mark-internal-GSC-engine-with-reserved-uabi-class/20231115-190507
-base:   git://anongit.freedesktop.org/drm-intel for-linux-next-fixes
-patch link:    https://lore.kernel.org/r/20231115110216.267138-1-tvrtko.ursulin%40linux.intel.com
-patch subject: [PATCH] drm/i915/gsc: Mark internal GSC engine with reserved uabi class
-config: x86_64-rhel-8.3-rust (https://download.01.org/0day-ci/archive/20231116/202311160136.EtOH3ghf-lkp@intel.com/config)
-compiler: clang version 16.0.4 (https://github.com/llvm/llvm-project.git ae42196bc493ffe877a7e3dff8be32035dea4d07)
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20231116/202311160136.EtOH3ghf-lkp@intel.com/reproduce)
-
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202311160136.EtOH3ghf-lkp@intel.com/
-
-All warnings (new ones prefixed by >>):
-
->> drivers/gpu/drm/i915/gt/intel_engine_user.c:225:26: warning: result of comparison of constant -1 with expression of type 'u16' (aka 'unsigned short') is always false [-Wtautological-constant-out-of-range-compare]
-                   if (engine->uabi_class == I915_NO_UABI_CLASS) {
-                       ~~~~~~~~~~~~~~~~~~ ^  ~~~~~~~~~~~~~~~~~~
-   drivers/gpu/drm/i915/gt/intel_engine_user.c:243:26: warning: result of comparison of constant -1 with expression of type 'u16' (aka 'unsigned short') is always false [-Wtautological-constant-out-of-range-compare]
-                   if (engine->uabi_class == I915_NO_UABI_CLASS)
-                       ~~~~~~~~~~~~~~~~~~ ^  ~~~~~~~~~~~~~~~~~~
-   2 warnings generated.
-
-
-vim +225 drivers/gpu/drm/i915/gt/intel_engine_user.c
-
-   203	
-   204	void intel_engines_driver_register(struct drm_i915_private *i915)
-   205	{
-   206		u16 name_instance, other_instance = 0;
-   207		struct legacy_ring ring = {};
-   208		struct list_head *it, *next;
-   209		struct rb_node **p, *prev;
-   210		LIST_HEAD(engines);
-   211	
-   212		sort_engines(i915, &engines);
-   213	
-   214		prev = NULL;
-   215		p = &i915->uabi_engines.rb_node;
-   216		list_for_each_safe(it, next, &engines) {
-   217			struct intel_engine_cs *engine =
-   218				container_of(it, typeof(*engine), uabi_list);
-   219	
-   220			if (intel_gt_has_unrecoverable_error(engine->gt))
-   221				continue; /* ignore incomplete engines */
-   222	
-   223			GEM_BUG_ON(engine->class >= ARRAY_SIZE(uabi_classes));
-   224			engine->uabi_class = uabi_classes[engine->class];
- > 225			if (engine->uabi_class == I915_NO_UABI_CLASS) {
-   226				name_instance = other_instance++;
-   227			} else {
-   228				GEM_BUG_ON(engine->uabi_class >=
-   229					   ARRAY_SIZE(i915->engine_uabi_class_count));
-   230				name_instance =
-   231					i915->engine_uabi_class_count[engine->uabi_class]++;
-   232			}
-   233			engine->uabi_instance = name_instance;
-   234	
-   235			/*
-   236			 * Replace the internal name with the final user and log facing
-   237			 * name.
-   238			 */
-   239			engine_rename(engine,
-   240				      intel_engine_class_repr(engine->class),
-   241				      name_instance);
-   242	
-   243			if (engine->uabi_class == I915_NO_UABI_CLASS)
-   244				continue;
-   245	
-   246			rb_link_node(&engine->uabi_node, prev, p);
-   247			rb_insert_color(&engine->uabi_node, &i915->uabi_engines);
-   248	
-   249			GEM_BUG_ON(intel_engine_lookup_user(i915,
-   250							    engine->uabi_class,
-   251							    engine->uabi_instance) != engine);
-   252	
-   253			/* Fix up the mapping to match default execbuf::user_map[] */
-   254			add_legacy_ring(&ring, engine);
-   255	
-   256			prev = &engine->uabi_node;
-   257			p = &prev->rb_right;
-   258		}
-   259	
-   260		if (IS_ENABLED(CONFIG_DRM_I915_SELFTESTS) &&
-   261		    IS_ENABLED(CONFIG_DRM_I915_DEBUG_GEM)) {
-   262			struct intel_engine_cs *engine;
-   263			unsigned int isolation;
-   264			int class, inst;
-   265			int errors = 0;
-   266	
-   267			for (class = 0; class < ARRAY_SIZE(i915->engine_uabi_class_count); class++) {
-   268				for (inst = 0; inst < i915->engine_uabi_class_count[class]; inst++) {
-   269					engine = intel_engine_lookup_user(i915,
-   270									  class, inst);
-   271					if (!engine) {
-   272						pr_err("UABI engine not found for { class:%d, instance:%d }\n",
-   273						       class, inst);
-   274						errors++;
-   275						continue;
-   276					}
-   277	
-   278					if (engine->uabi_class != class ||
-   279					    engine->uabi_instance != inst) {
-   280						pr_err("Wrong UABI engine:%s { class:%d, instance:%d } found for { class:%d, instance:%d }\n",
-   281						       engine->name,
-   282						       engine->uabi_class,
-   283						       engine->uabi_instance,
-   284						       class, inst);
-   285						errors++;
-   286						continue;
-   287					}
-   288				}
-   289			}
-   290	
-   291			/*
-   292			 * Make sure that classes with multiple engine instances all
-   293			 * share the same basic configuration.
-   294			 */
-   295			isolation = intel_engines_has_context_isolation(i915);
-   296			for_each_uabi_engine(engine, i915) {
-   297				unsigned int bit = BIT(engine->uabi_class);
-   298				unsigned int expected = engine->default_state ? bit : 0;
-   299	
-   300				if ((isolation & bit) != expected) {
-   301					pr_err("mismatching default context state for class %d on engine %s\n",
-   302					       engine->uabi_class, engine->name);
-   303					errors++;
-   304				}
-   305			}
-   306	
-   307			if (drm_WARN(&i915->drm, errors,
-   308				     "Invalid UABI engine mapping found"))
-   309				i915->uabi_engines = RB_ROOT;
-   310		}
-   311	
-   312		set_scheduler_caps(i915);
-   313	}
-   314	
-
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+> 
+> == Summary ==
+> 
+> CI Bug Log - changes from CI_DRM_13875 -> Patchwork_126403v1
+> ====================================================
+> 
+> Summary
+> -------
+> 
+>   **SUCCESS**
+> 
+>   No regressions found.
+> 
+>   External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_126403v1/index.html
+> 
+> Participating hosts (39 -> 38)
+> ------------------------------
+> 
+>   Additional (1): fi-pnv-d510 
+>   Missing    (2): fi-snb-2520m bat-dg1-5 
+> 
+> Known issues
+> ------------
+> 
+>   Here are the changes found in Patchwork_126403v1 that come from known issues:
+> 
+> ### CI changes ###
+> 
+> #### Issues hit ####
+> 
+>   * boot:
+>     - bat-jsl-1:          [PASS][1] -> [FAIL][2] ([i915#8293])
+>    [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13875/bat-jsl-1/boot.html
+>    [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_126403v1/bat-jsl-1/boot.html
+> 
+>   
+> #### Possible fixes ####
+> 
+>   * boot:
+>     - fi-hsw-4770:        [FAIL][3] ([i915#8293]) -> [PASS][4]
+>    [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13875/fi-hsw-4770/boot.html
+>    [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_126403v1/fi-hsw-4770/boot.html
+> 
+>   
+> 
+> ### IGT changes ###
+> 
+> #### Issues hit ####
+> 
+>   * igt@gem_exec_suspend@basic-s3@smem:
+>     - bat-rpls-1:         [PASS][5] -> [ABORT][6] ([i915#7978])
+>    [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13875/bat-rpls-1/igt@gem_exec_suspend@basic-s3@smem.html
+>    [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_126403v1/bat-rpls-1/igt@gem_exec_suspend@basic-s3@smem.html
+> 
+>   * igt@i915_selftest@live@gt_heartbeat:
+>     - fi-glk-j4005:       [PASS][7] -> [DMESG-FAIL][8] ([i915#5334])
+>    [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13875/fi-glk-j4005/igt@i915_selftest@live@gt_heartbeat.html
+>    [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_126403v1/fi-glk-j4005/igt@i915_selftest@live@gt_heartbeat.html
+> 
+>   * igt@i915_selftest@live@hangcheck:
+>     - fi-hsw-4770:        NOTRUN -> [INCOMPLETE][9] ([i915#9527])
+>    [9]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_126403v1/fi-hsw-4770/igt@i915_selftest@live@hangcheck.html
+> 
+>   * igt@i915_suspend@basic-s3-without-i915:
+>     - bat-atsm-1:         NOTRUN -> [SKIP][10] ([i915#6645])
+>    [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_126403v1/bat-atsm-1/igt@i915_suspend@basic-s3-without-i915.html
+> 
+>   * igt@kms_addfb_basic@addfb25-y-tiled-small-legacy:
+>     - fi-hsw-4770:        NOTRUN -> [SKIP][11] ([fdo#109271] / [i915#5190])
+>    [11]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_126403v1/fi-hsw-4770/igt@kms_addfb_basic@addfb25-y-tiled-small-legacy.html
+> 
+>   * igt@kms_busy@basic@modeset:
+>     - bat-adlp-11:        [PASS][12] -> [DMESG-FAIL][13] ([i915#6868])
+>    [12]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13875/bat-adlp-11/igt@kms_busy@basic@modeset.html
+>    [13]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_126403v1/bat-adlp-11/igt@kms_busy@basic@modeset.html
+> 
+>   * igt@kms_pipe_crc_basic@compare-crc-sanitycheck-nv12@pipe-a-vga-1:
+>     - fi-hsw-4770:        NOTRUN -> [SKIP][14] ([fdo#109271]) +12 other tests skip
+>    [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_126403v1/fi-hsw-4770/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-nv12@pipe-a-vga-1.html
+> 
+>   * igt@kms_pipe_crc_basic@nonblocking-crc:
+>     - bat-dg2-11:         NOTRUN -> [SKIP][15] ([i915#1845] / [i915#9197])
+>    [15]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_126403v1/bat-dg2-11/igt@kms_pipe_crc_basic@nonblocking-crc.html
+> 
+>   * igt@kms_pipe_crc_basic@suspend-read-crc:
+>     - bat-atsm-1:         NOTRUN -> [SKIP][16] ([i915#1836])
+>    [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_126403v1/bat-atsm-1/igt@kms_pipe_crc_basic@suspend-read-crc.html
+> 
+>   * igt@kms_psr@primary_page_flip:
+>     - fi-pnv-d510:        NOTRUN -> [SKIP][17] ([fdo#109271]) +29 other tests skip
+>    [17]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_126403v1/fi-pnv-d510/igt@kms_psr@primary_page_flip.html
+> 
+>   * igt@kms_psr@sprite_plane_onoff:
+>     - fi-hsw-4770:        NOTRUN -> [SKIP][18] ([fdo#109271] / [i915#1072]) +3 other tests skip
+>    [18]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_126403v1/fi-hsw-4770/igt@kms_psr@sprite_plane_onoff.html
+> 
+>   
+> #### Possible fixes ####
+> 
+>   * igt@i915_selftest@live@gem_contexts:
+>     - bat-atsm-1:         [INCOMPLETE][19] ([i915#9174]) -> [PASS][20]
+>    [19]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13875/bat-atsm-1/igt@i915_selftest@live@gem_contexts.html
+>    [20]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_126403v1/bat-atsm-1/igt@i915_selftest@live@gem_contexts.html
+> 
+>   * igt@i915_selftest@live@gt_heartbeat:
+>     - fi-apl-guc:         [DMESG-FAIL][21] ([i915#5334]) -> [PASS][22]
+>    [21]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13875/fi-apl-guc/igt@i915_selftest@live@gt_heartbeat.html
+>    [22]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_126403v1/fi-apl-guc/igt@i915_selftest@live@gt_heartbeat.html
+> 
+>   * igt@kms_flip@basic-flip-vs-modeset@d-dp5:
+>     - bat-adlp-11:        [DMESG-FAIL][23] ([i915#6868]) -> [PASS][24]
+>    [23]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13875/bat-adlp-11/igt@kms_flip@basic-flip-vs-modeset@d-dp5.html
+>    [24]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_126403v1/bat-adlp-11/igt@kms_flip@basic-flip-vs-modeset@d-dp5.html
+> 
+>   * igt@kms_hdmi_inject@inject-audio:
+>     - fi-kbl-guc:         [FAIL][25] ([IGT#3]) -> [PASS][26]
+>    [25]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13875/fi-kbl-guc/igt@kms_hdmi_inject@inject-audio.html
+>    [26]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_126403v1/fi-kbl-guc/igt@kms_hdmi_inject@inject-audio.html
+> 
+>   * igt@kms_pipe_crc_basic@read-crc-frame-sequence@pipe-d-edp-1:
+>     - bat-rplp-1:         [ABORT][27] ([i915#8668]) -> [PASS][28]
+>    [27]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13875/bat-rplp-1/igt@kms_pipe_crc_basic@read-crc-frame-sequence@pipe-d-edp-1.html
+>    [28]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_126403v1/bat-rplp-1/igt@kms_pipe_crc_basic@read-crc-frame-sequence@pipe-d-edp-1.html
+> 
+>   
+>   {name}: This element is suppressed. This means it is ignored when computing
+>           the status of the difference (SUCCESS, WARNING, or FAILURE).
+> 
+>   [IGT#3]: https://gitlab.freedesktop.org/drm/igt-gpu-tools/issues/3
+>   [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
+>   [i915#1072]: https://gitlab.freedesktop.org/drm/intel/issues/1072
+>   [i915#1836]: https://gitlab.freedesktop.org/drm/intel/issues/1836
+>   [i915#1845]: https://gitlab.freedesktop.org/drm/intel/issues/1845
+>   [i915#5190]: https://gitlab.freedesktop.org/drm/intel/issues/5190
+>   [i915#5334]: https://gitlab.freedesktop.org/drm/intel/issues/5334
+>   [i915#6645]: https://gitlab.freedesktop.org/drm/intel/issues/6645
+>   [i915#6868]: https://gitlab.freedesktop.org/drm/intel/issues/6868
+>   [i915#7978]: https://gitlab.freedesktop.org/drm/intel/issues/7978
+>   [i915#8293]: https://gitlab.freedesktop.org/drm/intel/issues/8293
+>   [i915#8668]: https://gitlab.freedesktop.org/drm/intel/issues/8668
+>   [i915#9174]: https://gitlab.freedesktop.org/drm/intel/issues/9174
+>   [i915#9197]: https://gitlab.freedesktop.org/drm/intel/issues/9197
+>   [i915#9527]: https://gitlab.freedesktop.org/drm/intel/issues/9527
+> 
+> 
+> Build changes
+> -------------
+> 
+>   * Linux: CI_DRM_13875 -> Patchwork_126403v1
+> 
+>   CI-20190529: 20190529
+>   CI_DRM_13875: 00536be456cfe5f687c0e782f8dfba7db666d89b @ git://anongit.freedesktop.org/gfx-ci/linux
+>   IGT_7588: 328c5873b8f061267fdf86ed32cb5ecc611ba081 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+>   Patchwork_126403v1: 00536be456cfe5f687c0e782f8dfba7db666d89b @ git://anongit.freedesktop.org/gfx-ci/linux
+> 
+> 
+> ### Linux commits
+> 
+> bd5b812fe42c drm/i915: Fix fractional bpp handling in intel_link_bw_reduce_bpp()
+> 
+> == Logs ==
+> 
+> For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_126403v1/index.html
