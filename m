@@ -2,52 +2,76 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3B5537EC290
-	for <lists+intel-gfx@lfdr.de>; Wed, 15 Nov 2023 13:40:26 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id DFF877EC2B1
+	for <lists+intel-gfx@lfdr.de>; Wed, 15 Nov 2023 13:43:29 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6564810E113;
-	Wed, 15 Nov 2023 12:40:24 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 74F1E10E54D;
+	Wed, 15 Nov 2023 12:43:26 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.115])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 71EAF10E113
- for <intel-gfx@lists.freedesktop.org>; Wed, 15 Nov 2023 12:40:22 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1700052022; x=1731588022;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=UUvvd/4hhTHApfEJk/+nFKLjqKSEKnTIVhOWsSObMlM=;
- b=OliRztpjvy9X1JZgN5vSptoJHzVTKkv+2E57uU7IWzYmZD1/cnHlOuTb
- n60jssz2+JDgQ95gWDtN66ILIwwm3N4392myexDPSUB1JH3tE5kfO+pVD
- 30Z38ZVTbL0TwySsm28houH53TOUu6Wl7wW8pJFLE3gkjx2lUP1SgNKD0
- 7j45I8AAUN0ju1nOcoqnzX5T9zlc1uzShPA3+l/I/ytf8r+kafsvvpg8G
- 5HaqITjtGftgU5Bv8Q94cejnRhojORSc6s/CaVvakVscQGGGgueL0p0U5
- cbn8sulWPWDRs9MAS6QI1eY8jl5H86cFE9sJfkotyGEJbfjM7AYYmwZA2 w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10894"; a="390665605"
-X-IronPort-AV: E=Sophos;i="6.03,304,1694761200"; d="scan'208";a="390665605"
-Received: from fmsmga005.fm.intel.com ([10.253.24.32])
- by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Nov 2023 04:40:22 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10894"; a="1096431620"
-X-IronPort-AV: E=Sophos;i="6.03,304,1694761200"; d="scan'208";a="1096431620"
-Received: from jkrzyszt-mobl2.ger.corp.intel.com ([10.213.10.45])
- by fmsmga005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Nov 2023 04:40:19 -0800
-From: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
-To: intel-gfx@lists.freedesktop.org, Andrzej Hajda <andrzej.hajda@intel.com>
-Date: Wed, 15 Nov 2023 13:40:17 +0100
-Message-ID: <3378498.VqM8IeB0Os@jkrzyszt-mobl2.ger.corp.intel.com>
-Organization: Intel Technology Poland sp. z o.o. - ul. Slowackiego 173,
- 80-298 Gdansk - KRS 101882 - NIP 957-07-52-316
-In-Reply-To: <20231115-eols-v1-1-d47a2f52b807@intel.com>
-References: <20231115-eols-v1-1-d47a2f52b807@intel.com>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
-Subject: Re: [Intel-gfx] [PATCH] drm/i915/gt: add missing new-line to
- GT_TRACE
+Received: from smtp-out1.suse.de (smtp-out1.suse.de [195.135.220.28])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DD74D10E244;
+ Wed, 15 Nov 2023 12:43:24 +0000 (UTC)
+Received: from imap2.suse-dmz.suse.de (imap2.suse-dmz.suse.de [192.168.254.74])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature ECDSA (P-521) server-digest SHA512)
+ (No client certificate requested)
+ by smtp-out1.suse.de (Postfix) with ESMTPS id 197FA228E1;
+ Wed, 15 Nov 2023 12:43:23 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
+ t=1700052203; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references;
+ bh=I3kP+FWiCjTFG4z5PsXOPa2z26/Vk2OryY4GARldTl8=;
+ b=oAKnYGjGugashDL9ZtHFzYBXcKIYL9hJgbithWWisoYQVe0KQTNzG5sTFuxNYs0XYPoz01
+ GKKKPREG2x/t1075mi/W1E4taHINRWl2yXN0KSoKPoBeC7IBdsNQ7HyJbWMbcaSiCtopSU
+ Xi6HWICEFpk2oYdtHswRP/KF80BlylM=
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
+ s=susede2_ed25519; t=1700052203;
+ h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references;
+ bh=I3kP+FWiCjTFG4z5PsXOPa2z26/Vk2OryY4GARldTl8=;
+ b=EtUnjFR6x6jIpMHZYaHyJK+aP7gcPrZOp3ToSN49umgGtDoV8SKCao/pvTRLPj9wwn+FIW
+ yf4mGLqv6UOsFFDg==
+Received: from imap2.suse-dmz.suse.de (imap2.suse-dmz.suse.de [192.168.254.74])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature ECDSA (P-521) server-digest SHA512)
+ (No client certificate requested)
+ by imap2.suse-dmz.suse.de (Postfix) with ESMTPS id 0008E13592;
+ Wed, 15 Nov 2023 12:43:22 +0000 (UTC)
+Received: from dovecot-director2.suse.de ([192.168.254.65])
+ by imap2.suse-dmz.suse.de with ESMTPSA id XmSCOuq8VGX1IAAAMHmgww
+ (envelope-from <tiwai@suse.de>); Wed, 15 Nov 2023 12:43:22 +0000
+Date: Wed, 15 Nov 2023 13:43:22 +0100
+Message-ID: <877cmjuqz9.wl-tiwai@suse.de>
+From: Takashi Iwai <tiwai@suse.de>
+To: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+In-Reply-To: <20231115123625.74286-1-maarten.lankhorst@linux.intel.com>
+References: <20231115123625.74286-1-maarten.lankhorst@linux.intel.com>
+User-Agent: Wanderlust/2.15.9 (Almost Unreal) Emacs/27.2 Mule/6.0
+MIME-Version: 1.0 (generated by SEMI-EPG 1.14.7 - "Harue")
+Content-Type: text/plain; charset=ISO-8859-1
+Content-Transfer-Encoding: 8bit
+Authentication-Results: smtp-out1.suse.de;
+	none
+X-Spam-Level: 
+X-Spam-Score: -10.08
+X-Spamd-Result: default: False [-10.08 / 50.00]; ARC_NA(0.00)[];
+ RCVD_VIA_SMTP_AUTH(0.00)[]; FROM_HAS_DN(0.00)[];
+ TO_DN_SOME(0.00)[]; TO_MATCH_ENVRCPT_ALL(0.00)[];
+ NEURAL_HAM_LONG(-3.00)[-1.000]; MIME_GOOD(-0.10)[text/plain];
+ REPLY(-4.00)[];
+ DKIM_SIGNED(0.00)[suse.de:s=susede2_rsa,suse.de:s=susede2_ed25519];
+ NEURAL_HAM_SHORT(-1.00)[-1.000]; RCPT_COUNT_SEVEN(0.00)[7];
+ MID_CONTAINS_FROM(1.00)[]; FUZZY_BLOCKED(0.00)[rspamd.com];
+ FROM_EQ_ENVFROM(0.00)[]; MIME_TRACE(0.00)[0:+];
+ RCVD_COUNT_TWO(0.00)[2]; RCVD_TLS_ALL(0.00)[];
+ BAYES_HAM(-2.98)[99.90%]
+X-Spam-Flag: NO
+Subject: Re: [Intel-gfx] [PATCH] ALSA: hda: i915: Alays handle -EPROBE_DEFER
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -60,43 +84,30 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Andrzej Hajda <andrzej.hajda@intel.com>, Nirmoy Das <nirmoy.das@intel.com>
+Cc: alsa-devel@alsa-project.org, intel-gfx@lists.freedesktop.org,
+ intel-xe@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wednesday, 15 November 2023 13:10:33 CET Andrzej Hajda wrote:
-> Trace requires new-line at the end of message (in opposition to printk),
-> otherwise trace dump becomes messy.
+On Wed, 15 Nov 2023 13:36:25 +0100,
+Maarten Lankhorst wrote:
 > 
-> Signed-off-by: Andrzej Hajda <andrzej.hajda@intel.com>
-
-Acked-by: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
-
-> ---
->  drivers/gpu/drm/i915/gt/intel_gt_pm.c | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
+> It turns out that even if the comment says that the driver can load
+> fine, it's not really the case and no codecs are detected.
+> Specifically for -EPROBE_DEFER, always fail the probe.
 > 
-> diff --git a/drivers/gpu/drm/i915/gt/intel_gt_pm.c b/drivers/gpu/drm/i915/gt/intel_gt_pm.c
-> index f5899d503e234b..471b7cdc10ba0f 100644
-> --- a/drivers/gpu/drm/i915/gt/intel_gt_pm.c
-> +++ b/drivers/gpu/drm/i915/gt/intel_gt_pm.c
-> @@ -167,7 +167,7 @@ static void gt_sanitize(struct intel_gt *gt, bool force)
->  	enum intel_engine_id id;
->  	intel_wakeref_t wakeref;
->  
-> -	GT_TRACE(gt, "force:%s", str_yes_no(force));
-> +	GT_TRACE(gt, "force:%s\n", str_yes_no(force));
->  
->  	/* Use a raw wakeref to avoid calling intel_display_power_get early */
->  	wakeref = intel_runtime_pm_get(gt->uncore->rpm);
+> This fixes a regression when HDA-intel is loaded before i915.
+> 
+> Reported-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
+> Signed-off-by: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+> Tested-by: Kai Vehmanen <kai.vehmanen@linux.intel.com>
+> Fixes: e6d0c13e9f46 ("ALSA: hda: i915: Remove extra argument from snd_hdac_i915_init")
+> Cc: Takashi Iwai <tiwai@suse.de>
 > 
 > ---
-> base-commit: 1489bab52c281a869295414031a56506a375b036
-> change-id: 20231115-eols-20f9f52cf338
-> 
-> Best regards,
-> 
+> Using Takashi's version, as I like the separate -EPROBE_DEFER if more.
+
+Applied now.  Thanks.
 
 
-
-
+Takashi
