@@ -2,33 +2,56 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 04A827EC200
-	for <lists+intel-gfx@lfdr.de>; Wed, 15 Nov 2023 13:16:34 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 48D567EC250
+	for <lists+intel-gfx@lfdr.de>; Wed, 15 Nov 2023 13:33:24 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 314F410E54B;
-	Wed, 15 Nov 2023 12:16:33 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C4B1A10E54E;
+	Wed, 15 Nov 2023 12:33:22 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id CA67A10E54B;
- Wed, 15 Nov 2023 12:16:30 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id C2324AADEF;
- Wed, 15 Nov 2023 12:16:30 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============2223457141559123135=="
+Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.115])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BEF0D10E54E
+ for <intel-gfx@lists.freedesktop.org>; Wed, 15 Nov 2023 12:33:21 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1700051601; x=1731587601;
+ h=message-id:date:mime-version:subject:to:cc:references:
+ from:in-reply-to:content-transfer-encoding;
+ bh=t1dW6o2nTHz2o6AFCdNOcaRMy7d6+pwh7NWq+AsApkY=;
+ b=iOpV+Foy70E4ZRSgqwc0MG/wNA3SZhycCyRTfquW02vE7cFqHUaaWJSQ
+ K9NMTWo7MXjlZmjQ+lOMc89FjVFUdupLNh3yJZjrmJrvJhiueGK9dZ6hU
+ /HgQr+zsdONgnWhunWJSOzYBXk7wJCoPNIrDSOsw5zIjCnDFo/WaRGM2N
+ 1T57HffwjBc6xkc3Sk24A0l4uZ5rHGOJ67fC0wvb60YVwvMuk/uZSHad/
+ 1l/QiEAWDuN7VYwo8TcQXYlSC52ljz9UrqSaBz91awCRp+37GAOeML2dY
+ 1U1tkVz4P9t0ST9QZQfcYjiQ4V3lYHWT9ZeGRuxgfThiR9hixek7S6Euw Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10894"; a="390664926"
+X-IronPort-AV: E=Sophos;i="6.03,304,1694761200"; d="scan'208";a="390664926"
+Received: from fmsmga005.fm.intel.com ([10.253.24.32])
+ by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 Nov 2023 04:33:21 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10894"; a="1096429926"
+X-IronPort-AV: E=Sophos;i="6.03,304,1694761200"; d="scan'208";a="1096429926"
+Received: from ahajda-mobl.ger.corp.intel.com (HELO [10.213.26.106])
+ ([10.213.26.106])
+ by fmsmga005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 Nov 2023 04:33:19 -0800
+Message-ID: <2f72313b-2fb4-4f62-a9d7-3fe05f1051c4@intel.com>
+Date: Wed, 15 Nov 2023 13:33:17 +0100
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Maarten Lankhorst" <maarten.lankhorst@linux.intel.com>
-Date: Wed, 15 Nov 2023 12:16:30 -0000
-Message-ID: <170005059076.649.7984999266156519290@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20231109153450.142185-1-maarten.lankhorst@linux.intel.com>
-In-Reply-To: <20231109153450.142185-1-maarten.lankhorst@linux.intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3Igc2Vy?=
- =?utf-8?q?ies_starting_with_=5B1/3=5D_drm=3A_Add_drm=5Fvblank=5Fwork=5Ffl?=
- =?utf-8?b?dXNoX2FsbCgpLg==?=
+User-Agent: Mozilla Thunderbird
+Content-Language: en-US
+To: linux-kernel@vger.kernel.org, intel-gfx@lists.freedesktop.org,
+ linux-mm@kvack.org, Thomas Gleixner <tglx@linutronix.de>
+References: <20231025-debugobjects_fix-v3-1-2bc3bf7084c2@intel.com>
+From: Andrzej Hajda <andrzej.hajda@intel.com>
+Organization: Intel Technology Poland sp. z o.o. - ul. Slowackiego 173, 80-298
+ Gdansk - KRS 101882 - NIP 957-07-52-316
+In-Reply-To: <20231025-debugobjects_fix-v3-1-2bc3bf7084c2@intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+Subject: Re: [Intel-gfx] [PATCH v3] debugobjects: stop accessing objects
+ after releasing spinlock
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -41,271 +64,410 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
+Cc: Nirmoy Das <nirmoy.das@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============2223457141559123135==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+On 25.10.2023 23:39, Andrzej Hajda wrote:
+> After spinlock release object can be modified/freed by concurrent thread.
+> Using it in such case is error prone, even for printing object state.
+> To avoid such situation local copy of the object is created if necessary.
+> 
+> Sample buggy scenario:
+> 1. Thread tries to deactivate destroyed object, debugobjects detects it,
+>     spin lock is released, thread is preempted.
+> 2. Other thread frees debugobject, then allocates new one on the same memory
+>     location, ie 'obj' variable from 1st thread point to it - it is possible
+>     because there is no locking.
+> 3. Then preemption occurs, and 1st thread reports error for wrong object.
+> 
+> Signed-off-by: Andrzej Hajda <andrzej.hajda@intel.com>
+> ---
+> v2: add missing switch breaks
+> v3: abandon single-point-of-unlock approach
 
-== Series Details ==
+Gently ping.
 
-Series: series starting with [1/3] drm: Add drm_vblank_work_flush_all().
-URL   : https://patchwork.freedesktop.org/series/126202/
-State : success
-
-== Summary ==
-
-CI Bug Log - changes from CI_DRM_13856 -> Patchwork_126202v1
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_126202v1/index.html
-
-Participating hosts (34 -> 34)
-------------------------------
-
-  Additional (1): fi-hsw-4770 
-  Missing    (1): bat-dg2-8 
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_126202v1 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@i915_selftest@live@ring_submission:
-    - fi-hsw-4770:        NOTRUN -> [INCOMPLETE][1] ([i915#9677])
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_126202v1/fi-hsw-4770/igt@i915_selftest@live@ring_submission.html
-
-  * igt@kms_addfb_basic@addfb25-y-tiled-small-legacy:
-    - fi-hsw-4770:        NOTRUN -> [SKIP][2] ([fdo#109271] / [i915#5190])
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_126202v1/fi-hsw-4770/igt@kms_addfb_basic@addfb25-y-tiled-small-legacy.html
-
-  * igt@kms_pipe_crc_basic@compare-crc-sanitycheck-nv12@pipe-a-vga-1:
-    - fi-hsw-4770:        NOTRUN -> [SKIP][3] ([fdo#109271]) +12 other tests skip
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_126202v1/fi-hsw-4770/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-nv12@pipe-a-vga-1.html
-
-  * igt@kms_pipe_crc_basic@compare-crc-sanitycheck-nv12@pipe-c-dp-5:
-    - bat-adlp-11:        [PASS][4] -> [DMESG-FAIL][5] ([i915#6868])
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13856/bat-adlp-11/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-nv12@pipe-c-dp-5.html
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_126202v1/bat-adlp-11/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-nv12@pipe-c-dp-5.html
-
-  * igt@kms_pipe_crc_basic@compare-crc-sanitycheck-nv12@pipe-d-dp-5:
-    - bat-adlp-11:        [PASS][6] -> [FAIL][7] ([i915#9666])
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13856/bat-adlp-11/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-nv12@pipe-d-dp-5.html
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_126202v1/bat-adlp-11/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-nv12@pipe-d-dp-5.html
-
-  * igt@kms_pipe_crc_basic@suspend-read-crc@pipe-b-hdmi-a-1:
-    - fi-rkl-11600:       [PASS][8] -> [FAIL][9] ([fdo#103375])
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13856/fi-rkl-11600/igt@kms_pipe_crc_basic@suspend-read-crc@pipe-b-hdmi-a-1.html
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_126202v1/fi-rkl-11600/igt@kms_pipe_crc_basic@suspend-read-crc@pipe-b-hdmi-a-1.html
-
-  * igt@kms_psr@sprite_plane_onoff:
-    - fi-hsw-4770:        NOTRUN -> [SKIP][10] ([fdo#109271] / [i915#1072]) +3 other tests skip
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_126202v1/fi-hsw-4770/igt@kms_psr@sprite_plane_onoff.html
-
-  
-#### Possible fixes ####
-
-  * igt@gem_exec_suspend@basic-s0@lmem0:
-    - bat-dg2-9:          [INCOMPLETE][11] ([i915#9275]) -> [PASS][12]
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13856/bat-dg2-9/igt@gem_exec_suspend@basic-s0@lmem0.html
-   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_126202v1/bat-dg2-9/igt@gem_exec_suspend@basic-s0@lmem0.html
-
-  * igt@i915_module_load@reload:
-    - fi-skl-6600u:       [DMESG-WARN][13] ([i915#1982]) -> [PASS][14]
-   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13856/fi-skl-6600u/igt@i915_module_load@reload.html
-   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_126202v1/fi-skl-6600u/igt@i915_module_load@reload.html
-
-  * igt@kms_pipe_crc_basic@read-crc-frame-sequence@pipe-d-edp-1:
-    - bat-rplp-1:         [ABORT][15] ([i915#8668]) -> [PASS][16]
-   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13856/bat-rplp-1/igt@kms_pipe_crc_basic@read-crc-frame-sequence@pipe-d-edp-1.html
-   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_126202v1/bat-rplp-1/igt@kms_pipe_crc_basic@read-crc-frame-sequence@pipe-d-edp-1.html
-
-  * igt@kms_psr@sprite_plane_onoff:
-    - bat-jsl-3:          [SKIP][17] ([i915#9648]) -> [PASS][18] +3 other tests pass
-   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13856/bat-jsl-3/igt@kms_psr@sprite_plane_onoff.html
-   [18]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_126202v1/bat-jsl-3/igt@kms_psr@sprite_plane_onoff.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [fdo#103375]: https://bugs.freedesktop.org/show_bug.cgi?id=103375
-  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
-  [i915#1072]: https://gitlab.freedesktop.org/drm/intel/issues/1072
-  [i915#1982]: https://gitlab.freedesktop.org/drm/intel/issues/1982
-  [i915#5190]: https://gitlab.freedesktop.org/drm/intel/issues/5190
-  [i915#6868]: https://gitlab.freedesktop.org/drm/intel/issues/6868
-  [i915#8668]: https://gitlab.freedesktop.org/drm/intel/issues/8668
-  [i915#9275]: https://gitlab.freedesktop.org/drm/intel/issues/9275
-  [i915#9648]: https://gitlab.freedesktop.org/drm/intel/issues/9648
-  [i915#9666]: https://gitlab.freedesktop.org/drm/intel/issues/9666
-  [i915#9677]: https://gitlab.freedesktop.org/drm/intel/issues/9677
+Regards
+Andrzej
 
 
-Build changes
--------------
+> ---
+>   lib/debugobjects.c | 196 +++++++++++++++++++++--------------------------------
+>   1 file changed, 77 insertions(+), 119 deletions(-)
+> 
+> diff --git a/lib/debugobjects.c b/lib/debugobjects.c
+> index a517256a270b71..c074dbbec084a6 100644
+> --- a/lib/debugobjects.c
+> +++ b/lib/debugobjects.c
+> @@ -620,9 +620,8 @@ static void debug_objects_fill_pool(void)
+>   static void
+>   __debug_object_init(void *addr, const struct debug_obj_descr *descr, int onstack)
+>   {
+> -	enum debug_obj_state state;
+>   	struct debug_bucket *db;
+> -	struct debug_obj *obj;
+> +	struct debug_obj *obj, o;
+>   	unsigned long flags;
+>   
+>   	debug_objects_fill_pool();
+> @@ -643,24 +642,18 @@ __debug_object_init(void *addr, const struct debug_obj_descr *descr, int onstack
+>   	case ODEBUG_STATE_INIT:
+>   	case ODEBUG_STATE_INACTIVE:
+>   		obj->state = ODEBUG_STATE_INIT;
+> -		break;
+> -
+> -	case ODEBUG_STATE_ACTIVE:
+> -		state = obj->state;
+>   		raw_spin_unlock_irqrestore(&db->lock, flags);
+> -		debug_print_object(obj, "init");
+> -		debug_object_fixup(descr->fixup_init, addr, state);
+> -		return;
+> -
+> -	case ODEBUG_STATE_DESTROYED:
+> -		raw_spin_unlock_irqrestore(&db->lock, flags);
+> -		debug_print_object(obj, "init");
+>   		return;
+>   	default:
+>   		break;
+>   	}
+>   
+> +	o = *obj;
+>   	raw_spin_unlock_irqrestore(&db->lock, flags);
+> +	debug_print_object(&o, "init");
+> +
+> +	if (o.state == ODEBUG_STATE_ACTIVE)
+> +		debug_object_fixup(descr->fixup_init, addr, o.state);
+>   }
+>   
+>   /**
+> @@ -701,11 +694,9 @@ EXPORT_SYMBOL_GPL(debug_object_init_on_stack);
+>   int debug_object_activate(void *addr, const struct debug_obj_descr *descr)
+>   {
+>   	struct debug_obj o = { .object = addr, .state = ODEBUG_STATE_NOTAVAILABLE, .descr = descr };
+> -	enum debug_obj_state state;
+>   	struct debug_bucket *db;
+>   	struct debug_obj *obj;
+>   	unsigned long flags;
+> -	int ret;
+>   
+>   	if (!debug_objects_enabled)
+>   		return 0;
+> @@ -717,49 +708,38 @@ int debug_object_activate(void *addr, const struct debug_obj_descr *descr)
+>   	raw_spin_lock_irqsave(&db->lock, flags);
+>   
+>   	obj = lookup_object_or_alloc(addr, db, descr, false, true);
+> -	if (likely(!IS_ERR_OR_NULL(obj))) {
+> -		bool print_object = false;
+> -
+> +	if (unlikely(!obj)) {
+> +		raw_spin_unlock_irqrestore(&db->lock, flags);
+> +		debug_objects_oom();
+> +		return 0;
+> +	} else if (likely(!IS_ERR(obj))) {
+>   		switch (obj->state) {
+> -		case ODEBUG_STATE_INIT:
+> -		case ODEBUG_STATE_INACTIVE:
+> -			obj->state = ODEBUG_STATE_ACTIVE;
+> -			ret = 0;
+> -			break;
+> -
+>   		case ODEBUG_STATE_ACTIVE:
+> -			state = obj->state;
+> -			raw_spin_unlock_irqrestore(&db->lock, flags);
+> -			debug_print_object(obj, "activate");
+> -			ret = debug_object_fixup(descr->fixup_activate, addr, state);
+> -			return ret ? 0 : -EINVAL;
+> -
+>   		case ODEBUG_STATE_DESTROYED:
+> -			print_object = true;
+> -			ret = -EINVAL;
+>   			break;
+> +		case ODEBUG_STATE_INIT:
+> +		case ODEBUG_STATE_INACTIVE:
+> +			obj->state = ODEBUG_STATE_ACTIVE;
+> +			fallthrough;
+>   		default:
+> -			ret = 0;
+> -			break;
+> +			raw_spin_unlock_irqrestore(&db->lock, flags);
+> +			return 0;
+>   		}
+> -		raw_spin_unlock_irqrestore(&db->lock, flags);
+> -		if (print_object)
+> -			debug_print_object(obj, "activate");
+> -		return ret;
+>   	}
+>   
+> +	o = *obj;
+>   	raw_spin_unlock_irqrestore(&db->lock, flags);
+> +	debug_print_object(&o, "activate");
+>   
+> -	/* If NULL the allocation has hit OOM */
+> -	if (!obj) {
+> -		debug_objects_oom();
+> -		return 0;
+> +	switch (o.state) {
+> +	case ODEBUG_STATE_ACTIVE:
+> +	case ODEBUG_STATE_NOTAVAILABLE:
+> +		if (debug_object_fixup(descr->fixup_activate, addr, o.state))
+> +			return 0;
+> +		fallthrough;
+> +	default:
+> +		return -EINVAL;
+>   	}
+> -
+> -	/* Object is neither static nor tracked. It's not initialized */
+> -	debug_print_object(&o, "activate");
+> -	ret = debug_object_fixup(descr->fixup_activate, addr, ODEBUG_STATE_NOTAVAILABLE);
+> -	return ret ? 0 : -EINVAL;
+>   }
+>   EXPORT_SYMBOL_GPL(debug_object_activate);
+>   
+> @@ -770,10 +750,10 @@ EXPORT_SYMBOL_GPL(debug_object_activate);
+>    */
+>   void debug_object_deactivate(void *addr, const struct debug_obj_descr *descr)
+>   {
+> +	struct debug_obj o = { .object = addr, .state = ODEBUG_STATE_NOTAVAILABLE, .descr = descr };
+>   	struct debug_bucket *db;
+>   	struct debug_obj *obj;
+>   	unsigned long flags;
+> -	bool print_object = false;
+>   
+>   	if (!debug_objects_enabled)
+>   		return;
+> @@ -785,33 +765,24 @@ void debug_object_deactivate(void *addr, const struct debug_obj_descr *descr)
+>   	obj = lookup_object(addr, db);
+>   	if (obj) {
+>   		switch (obj->state) {
+> +		case ODEBUG_STATE_DESTROYED:
+> +			break;
+>   		case ODEBUG_STATE_INIT:
+>   		case ODEBUG_STATE_INACTIVE:
+>   		case ODEBUG_STATE_ACTIVE:
+> -			if (!obj->astate)
+> -				obj->state = ODEBUG_STATE_INACTIVE;
+> -			else
+> -				print_object = true;
+> -			break;
+> -
+> -		case ODEBUG_STATE_DESTROYED:
+> -			print_object = true;
+> -			break;
+> +			if (obj->astate)
+> +				break;
+> +			obj->state = ODEBUG_STATE_INACTIVE;
+> +			fallthrough;
+>   		default:
+> -			break;
+> +			raw_spin_unlock_irqrestore(&db->lock, flags);
+> +			return;
+>   		}
+> +		o = *obj;
+>   	}
+>   
+>   	raw_spin_unlock_irqrestore(&db->lock, flags);
+> -	if (!obj) {
+> -		struct debug_obj o = { .object = addr,
+> -				       .state = ODEBUG_STATE_NOTAVAILABLE,
+> -				       .descr = descr };
+> -
+> -		debug_print_object(&o, "deactivate");
+> -	} else if (print_object) {
+> -		debug_print_object(obj, "deactivate");
+> -	}
+> +	debug_print_object(&o, "deactivate");
+>   }
+>   EXPORT_SYMBOL_GPL(debug_object_deactivate);
+>   
+> @@ -822,11 +793,9 @@ EXPORT_SYMBOL_GPL(debug_object_deactivate);
+>    */
+>   void debug_object_destroy(void *addr, const struct debug_obj_descr *descr)
+>   {
+> -	enum debug_obj_state state;
+>   	struct debug_bucket *db;
+> -	struct debug_obj *obj;
+> +	struct debug_obj *obj, o;
+>   	unsigned long flags;
+> -	bool print_object = false;
+>   
+>   	if (!debug_objects_enabled)
+>   		return;
+> @@ -836,32 +805,31 @@ void debug_object_destroy(void *addr, const struct debug_obj_descr *descr)
+>   	raw_spin_lock_irqsave(&db->lock, flags);
+>   
+>   	obj = lookup_object(addr, db);
+> -	if (!obj)
+> -		goto out_unlock;
+> +	if (!obj) {
+> +		raw_spin_unlock_irqrestore(&db->lock, flags);
+> +		return;
+> +	}
+>   
+>   	switch (obj->state) {
+> +	case ODEBUG_STATE_ACTIVE:
+> +	case ODEBUG_STATE_DESTROYED:
+> +		break;
+>   	case ODEBUG_STATE_NONE:
+>   	case ODEBUG_STATE_INIT:
+>   	case ODEBUG_STATE_INACTIVE:
+>   		obj->state = ODEBUG_STATE_DESTROYED;
+> -		break;
+> -	case ODEBUG_STATE_ACTIVE:
+> -		state = obj->state;
+> +		fallthrough;
+> +	default:
+>   		raw_spin_unlock_irqrestore(&db->lock, flags);
+> -		debug_print_object(obj, "destroy");
+> -		debug_object_fixup(descr->fixup_destroy, addr, state);
+>   		return;
+> -
+> -	case ODEBUG_STATE_DESTROYED:
+> -		print_object = true;
+> -		break;
+> -	default:
+> -		break;
+>   	}
+> -out_unlock:
+> +
+> +	o = *obj;
+>   	raw_spin_unlock_irqrestore(&db->lock, flags);
+> -	if (print_object)
+> -		debug_print_object(obj, "destroy");
+> +	debug_print_object(&o, "destroy");
+> +
+> +	if (o.state == ODEBUG_STATE_ACTIVE)
+> +		debug_object_fixup(descr->fixup_destroy, addr, o.state);
+>   }
+>   EXPORT_SYMBOL_GPL(debug_object_destroy);
+>   
+> @@ -872,9 +840,8 @@ EXPORT_SYMBOL_GPL(debug_object_destroy);
+>    */
+>   void debug_object_free(void *addr, const struct debug_obj_descr *descr)
+>   {
+> -	enum debug_obj_state state;
+>   	struct debug_bucket *db;
+> -	struct debug_obj *obj;
+> +	struct debug_obj *obj, o;
+>   	unsigned long flags;
+>   
+>   	if (!debug_objects_enabled)
+> @@ -885,24 +852,26 @@ void debug_object_free(void *addr, const struct debug_obj_descr *descr)
+>   	raw_spin_lock_irqsave(&db->lock, flags);
+>   
+>   	obj = lookup_object(addr, db);
+> -	if (!obj)
+> -		goto out_unlock;
+> +	if (!obj) {
+> +		raw_spin_unlock_irqrestore(&db->lock, flags);
+> +		return;
+> +	}
+>   
+>   	switch (obj->state) {
+>   	case ODEBUG_STATE_ACTIVE:
+> -		state = obj->state;
+> -		raw_spin_unlock_irqrestore(&db->lock, flags);
+> -		debug_print_object(obj, "free");
+> -		debug_object_fixup(descr->fixup_free, addr, state);
+> -		return;
+> +		break;
+>   	default:
+>   		hlist_del(&obj->node);
+>   		raw_spin_unlock_irqrestore(&db->lock, flags);
+>   		free_object(obj);
+>   		return;
+>   	}
+> -out_unlock:
+> +
+> +	o = *obj;
+>   	raw_spin_unlock_irqrestore(&db->lock, flags);
+> +	debug_print_object(&o, "free");
+> +
+> +	debug_object_fixup(descr->fixup_free, addr, o.state);
+>   }
+>   EXPORT_SYMBOL_GPL(debug_object_free);
+>   
+> @@ -954,10 +923,10 @@ void
+>   debug_object_active_state(void *addr, const struct debug_obj_descr *descr,
+>   			  unsigned int expect, unsigned int next)
+>   {
+> +	struct debug_obj o = { .object = addr, .state = ODEBUG_STATE_NOTAVAILABLE, .descr = descr };
+>   	struct debug_bucket *db;
+>   	struct debug_obj *obj;
+>   	unsigned long flags;
+> -	bool print_object = false;
+>   
+>   	if (!debug_objects_enabled)
+>   		return;
+> @@ -970,28 +939,20 @@ debug_object_active_state(void *addr, const struct debug_obj_descr *descr,
+>   	if (obj) {
+>   		switch (obj->state) {
+>   		case ODEBUG_STATE_ACTIVE:
+> -			if (obj->astate == expect)
+> +			if (obj->astate == expect) {
+>   				obj->astate = next;
+> -			else
+> -				print_object = true;
+> +				raw_spin_unlock_irqrestore(&db->lock, flags);
+> +				return;
+> +			}
+>   			break;
+> -
+>   		default:
+> -			print_object = true;
+>   			break;
+>   		}
+> +		o = *obj;
+>   	}
+>   
+>   	raw_spin_unlock_irqrestore(&db->lock, flags);
+> -	if (!obj) {
+> -		struct debug_obj o = { .object = addr,
+> -				       .state = ODEBUG_STATE_NOTAVAILABLE,
+> -				       .descr = descr };
+> -
+> -		debug_print_object(&o, "active_state");
+> -	} else if (print_object) {
+> -		debug_print_object(obj, "active_state");
+> -	}
+> +	debug_print_object(&o, "active_state");
+>   }
+>   EXPORT_SYMBOL_GPL(debug_object_active_state);
+>   
+> @@ -999,11 +960,9 @@ EXPORT_SYMBOL_GPL(debug_object_active_state);
+>   static void __debug_check_no_obj_freed(const void *address, unsigned long size)
+>   {
+>   	unsigned long flags, oaddr, saddr, eaddr, paddr, chunks;
+> -	const struct debug_obj_descr *descr;
+> -	enum debug_obj_state state;
+>   	struct debug_bucket *db;
+>   	struct hlist_node *tmp;
+> -	struct debug_obj *obj;
+> +	struct debug_obj *obj, o;
+>   	int cnt, objs_checked = 0;
+>   
+>   	saddr = (unsigned long) address;
+> @@ -1026,12 +985,11 @@ static void __debug_check_no_obj_freed(const void *address, unsigned long size)
+>   
+>   			switch (obj->state) {
+>   			case ODEBUG_STATE_ACTIVE:
+> -				descr = obj->descr;
+> -				state = obj->state;
+> +				o = *obj;
+>   				raw_spin_unlock_irqrestore(&db->lock, flags);
+> -				debug_print_object(obj, "free");
+> -				debug_object_fixup(descr->fixup_free,
+> -						   (void *) oaddr, state);
+> +				debug_print_object(&o, "free");
+> +				debug_object_fixup(o.descr->fixup_free,
+> +						   (void *) oaddr, o.state);
+>   				goto repeat;
+>   			default:
+>   				hlist_del(&obj->node);
+> 
+> ---
+> base-commit: 201c8a7bd1f3f415920a2df4b8a8817e973f42fe
+> change-id: 20231025-debugobjects_fix-66e5292557c4
+> 
+> Best regards,
 
-  * Linux: CI_DRM_13856 -> Patchwork_126202v1
-
-  CI-20190529: 20190529
-  CI_DRM_13856: b81818fa6745cf79a86da57dc3a379bd80c7ea5f @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_7580: 847ee1e7d365e2fb08bf4198d3bf5ee8a852649f @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_126202v1: b81818fa6745cf79a86da57dc3a379bd80c7ea5f @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-### Linux commits
-
-e087ba6f01b5 drm/i915: Use a different vblank worker for atomic unpin
-a5c3bfc7f2b9 drm/i915: Use vblank worker to unpin old legacy cursor fb safely
-9a08db9c7e44 drm: Add drm_vblank_work_flush_all().
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_126202v1/index.html
-
---===============2223457141559123135==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>series starting with [1/3] drm: Add drm_vblank_work_flush_all().</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/126202/">https://patchwork.freedesktop.org/series/126202/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_126202v1/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_126202v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_13856 -&gt; Patchwork_126202v1</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_126202v1/index.html</p>
-<h2>Participating hosts (34 -&gt; 34)</h2>
-<p>Additional (1): fi-hsw-4770 <br />
-  Missing    (1): bat-dg2-8 </p>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_126202v1 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@i915_selftest@live@ring_submission:</p>
-<ul>
-<li>fi-hsw-4770:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_126202v1/fi-hsw-4770/igt@i915_selftest@live@ring_submission.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/9677">i915#9677</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_addfb_basic@addfb25-y-tiled-small-legacy:</p>
-<ul>
-<li>fi-hsw-4770:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_126202v1/fi-hsw-4770/igt@kms_addfb_basic@addfb25-y-tiled-small-legacy.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/5190">i915#5190</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_pipe_crc_basic@compare-crc-sanitycheck-nv12@pipe-a-vga-1:</p>
-<ul>
-<li>fi-hsw-4770:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_126202v1/fi-hsw-4770/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-nv12@pipe-a-vga-1.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +12 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_pipe_crc_basic@compare-crc-sanitycheck-nv12@pipe-c-dp-5:</p>
-<ul>
-<li>bat-adlp-11:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13856/bat-adlp-11/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-nv12@pipe-c-dp-5.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_126202v1/bat-adlp-11/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-nv12@pipe-c-dp-5.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/6868">i915#6868</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_pipe_crc_basic@compare-crc-sanitycheck-nv12@pipe-d-dp-5:</p>
-<ul>
-<li>bat-adlp-11:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13856/bat-adlp-11/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-nv12@pipe-d-dp-5.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_126202v1/bat-adlp-11/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-nv12@pipe-d-dp-5.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/9666">i915#9666</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_pipe_crc_basic@suspend-read-crc@pipe-b-hdmi-a-1:</p>
-<ul>
-<li>fi-rkl-11600:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13856/fi-rkl-11600/igt@kms_pipe_crc_basic@suspend-read-crc@pipe-b-hdmi-a-1.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_126202v1/fi-rkl-11600/igt@kms_pipe_crc_basic@suspend-read-crc@pipe-b-hdmi-a-1.html">FAIL</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=103375">fdo#103375</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_psr@sprite_plane_onoff:</p>
-<ul>
-<li>fi-hsw-4770:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_126202v1/fi-hsw-4770/igt@kms_psr@sprite_plane_onoff.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/1072">i915#1072</a>) +3 other tests skip</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>
-<p>igt@gem_exec_suspend@basic-s0@lmem0:</p>
-<ul>
-<li>bat-dg2-9:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13856/bat-dg2-9/igt@gem_exec_suspend@basic-s0@lmem0.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/9275">i915#9275</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_126202v1/bat-dg2-9/igt@gem_exec_suspend@basic-s0@lmem0.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@i915_module_load@reload:</p>
-<ul>
-<li>fi-skl-6600u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13856/fi-skl-6600u/igt@i915_module_load@reload.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1982">i915#1982</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_126202v1/fi-skl-6600u/igt@i915_module_load@reload.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@kms_pipe_crc_basic@read-crc-frame-sequence@pipe-d-edp-1:</p>
-<ul>
-<li>bat-rplp-1:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13856/bat-rplp-1/igt@kms_pipe_crc_basic@read-crc-frame-sequence@pipe-d-edp-1.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/8668">i915#8668</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_126202v1/bat-rplp-1/igt@kms_pipe_crc_basic@read-crc-frame-sequence@pipe-d-edp-1.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@kms_psr@sprite_plane_onoff:</p>
-<ul>
-<li>bat-jsl-3:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13856/bat-jsl-3/igt@kms_psr@sprite_plane_onoff.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/9648">i915#9648</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_126202v1/bat-jsl-3/igt@kms_psr@sprite_plane_onoff.html">PASS</a> +3 other tests pass</li>
-</ul>
-</li>
-</ul>
-<p>{name}: This element is suppressed. This means it is ignored when computing<br />
-          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_13856 -&gt; Patchwork_126202v1</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_13856: b81818fa6745cf79a86da57dc3a379bd80c7ea5f @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_7580: 847ee1e7d365e2fb08bf4198d3bf5ee8a852649f @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  Patchwork_126202v1: b81818fa6745cf79a86da57dc3a379bd80c7ea5f @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<h3>Linux commits</h3>
-<p>e087ba6f01b5 drm/i915: Use a different vblank worker for atomic unpin<br />
-a5c3bfc7f2b9 drm/i915: Use vblank worker to unpin old legacy cursor fb safely<br />
-9a08db9c7e44 drm: Add drm_vblank_work_flush_all().</p>
-
-</body>
-</html>
-
---===============2223457141559123135==--
