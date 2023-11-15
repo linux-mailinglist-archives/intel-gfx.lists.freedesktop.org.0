@@ -2,52 +2,46 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6D6FF7EC3EF
-	for <lists+intel-gfx@lfdr.de>; Wed, 15 Nov 2023 14:42:29 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id EAE847EC409
+	for <lists+intel-gfx@lfdr.de>; Wed, 15 Nov 2023 14:48:45 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C719C10E05B;
-	Wed, 15 Nov 2023 13:42:27 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D72D610E046;
+	Wed, 15 Nov 2023 13:48:43 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D68D810E05B
- for <intel-gfx@lists.freedesktop.org>; Wed, 15 Nov 2023 13:42:26 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.88])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3D52F10E046
+ for <intel-gfx@lists.freedesktop.org>; Wed, 15 Nov 2023 13:48:41 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1700055746; x=1731591746;
- h=date:from:to:subject:message-id:reply-to:references:
- mime-version:in-reply-to;
- bh=kiAQbakITRqCADLO3GRtdPleyF7mb6ulEjZKadyPZRA=;
- b=jp0+RECxDvcGnG6FEF2vKAqxe/QpuOeZvnuGJB4uN8e6B4ifVdIwzjzH
- hz5TKn0bYDpsoOV6t18NLyBhGd4zoJRujX8udBe5YscRapGH1Dz++PSjA
- NMXnx7cqtpDVGhXgBUbDqHE8cte+Kb8SD9EEtXkP1/m7KmTXC3y/6bW4X
- 2yuRpcY7VbU34IUjqoDu0DPFEYMTsT7poRZTlyr0v1hKPbN0l98z7EE45
- Oj8DOD41Gwgj1wxuu0VCsawbUAJwpVWI7s2OjFjkH46N7kXE37xtqa2lm
- EFBV3ijL70dxFYMuzjWKvz2hY90wsLE1Ryg4mxhkICQEp20oOSfrCMJ9w Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10894"; a="455166704"
-X-IronPort-AV: E=Sophos;i="6.03,305,1694761200"; d="scan'208";a="455166704"
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Nov 2023 05:42:26 -0800
+ t=1700056121; x=1731592121;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=0tvKTA9Kbd2WFiB4tzZZOVvQVJWphGKfNNFCGsIngzQ=;
+ b=lEKo+xrEvL5XqvSgnuSBb/ALg8Df5Bf2k84/jUMcthMMSeehhshZ8yjL
+ bcG5CToycJF1cu9oFIhubLsvBWnEPT81c95BrcaItZlegwQJe5tS1yKM5
+ dyaA/IEGAlhkN980PFH9enC9iS0eg5N/6oj0gy5v/TnBqY2TI7ZW4uVBv
+ h1ypYg/Oo6ErJ+5yG1c05CKJQIusxMqzNn3Mr9XZ3Xw7kP0j41MXw2AVG
+ AY4tC7DpwtoRMJgqIADyzzzI7NwDJDCJ25Qcq9yWJdS3/j4kgb4EPXLKC
+ AwWXO5/eiY0IOY0AezCl0YPQiMq+erjx4sjZcnNEOEvUNTrFQ80CbAw4i A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10894"; a="421975269"
+X-IronPort-AV: E=Sophos;i="6.03,305,1694761200"; d="scan'208";a="421975269"
+Received: from orviesa002.jf.intel.com ([10.64.159.142])
+ by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 Nov 2023 05:48:40 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10894"; a="794155224"
-X-IronPort-AV: E=Sophos;i="6.03,305,1694761200"; d="scan'208";a="794155224"
-Received: from ideak-desk.fi.intel.com ([10.237.72.78])
- by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Nov 2023 05:42:25 -0800
-Date: Wed, 15 Nov 2023 15:42:24 +0200
-From: Imre Deak <imre.deak@intel.com>
-To: Jani Nikula <jani.nikula@linux.intel.com>, intel-gfx@lists.freedesktop.org
-Message-ID: <ZVTKwKtzxXo0ZEcM@ideak-desk.fi.intel.com>
-References: <20231113201110.510724-1-imre.deak@intel.com>
- <87v8a4so8u.fsf@intel.com>
- <ZVNxKGcc86jIQ8/a@ideak-desk.fi.intel.com>
+X-IronPort-AV: E=Sophos;i="6.03,305,1694761200"; 
+   d="scan'208";a="6170491"
+Received: from mgolanimitul-x299-ud4-pro.iind.intel.com ([10.190.239.114])
+ by orviesa002.jf.intel.com with ESMTP; 15 Nov 2023 05:48:39 -0800
+From: Mitul Golani <mitulkumar.ajitkumar.golani@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Wed, 15 Nov 2023 19:13:23 +0530
+Message-Id: <20231115134326.3794326-1-mitulkumar.ajitkumar.golani@intel.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <ZVNxKGcc86jIQ8/a@ideak-desk.fi.intel.com>
-Subject: Re: [Intel-gfx] [PATCH 1/4] drm/i915/dp: Account for channel coding
- efficiency on UHBR links
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-gfx] [PATCH 0/3] Implement CMRR Support
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -60,68 +54,38 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: imre.deak@intel.com
+Cc: jani.nikula@intel.com, ville.syrjala@intel.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, Nov 14, 2023 at 03:07:52PM +0200, Imre Deak wrote:
-> On Tue, Nov 14, 2023 at 11:00:49AM +0200, Jani Nikula wrote:
-> > On Mon, 13 Nov 2023, Imre Deak <imre.deak@intel.com> wrote:
-> > > Apply the correct BW allocation overhead and channel coding efficiency
-> > > on UHBR link rates, similarly to DP1.4 link rates.
-> > >
-> > > Signed-off-by: Imre Deak <imre.deak@intel.com>
-> > > ---
-> > >  drivers/gpu/drm/i915/display/intel_display.c | 10 ----------
-> > >  1 file changed, 10 deletions(-)
-> > >
-> > > diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
-> > > index 3effafcbb411a..24aebdb715e7d 100644
-> > > --- a/drivers/gpu/drm/i915/display/intel_display.c
-> > > +++ b/drivers/gpu/drm/i915/display/intel_display.c
-> > > @@ -2398,16 +2398,6 @@ add_bw_alloc_overhead(int link_clock, int bw_overhead,
-> > >  	int ch_coding_efficiency =
-> > >  		drm_dp_bw_channel_coding_efficiency(is_uhbr);
-> > 
-> > Why do we have this and intel_dp_max_data_rate() separately?
-> 
-> This function calculates an m/n ratio for a given pixel/data rate,
-> applying both the allocation overhead (FEC, SSC, etc.) and the channel
-> coding efficiency. intel_dp_max_data_rate() calculates a maximum data
-> rate applying only the channel coding efficiency.
-> 
-> I think intel_dp_max_data_rate() could be simplified, so the two
-> functions use the same channel coding efficiency to:
-> 
->     DIV_ROUND_UP_ULL(mul_u32_u32(max_link_rate_kbps * max_lanes,
->     				 drm_dp_bw_channel_coding_efficiency(is_uhbr)),
-> 		     1000000ULL * 8)
+CMRR is a display feature that uses adaptive sync
+framework to vary Vtotal slightly to match the
+content rate exactly without frame drops. This
+feature is a variation of VRR where it varies Vtotal
+slightly (between additional 0 and 1 Vtotal scanlines)
+to match content rate exactly without frame drops
+using the adaptive sync framework.
 
-Actually, it does make sense to reuse intel_dp_max_data_rate() in 
-intel_link_compute_m_n() -> add_bw_alloc_overhead(), I'll send a new
-version with that (and the above simplification).
-> 
-> --Imre
-> 
-> > 
-> > BR,
-> > Jani.
-> > 
-> > 
-> > >  
-> > > -	/*
-> > > -	 * TODO: adjust for actual UHBR channel coding efficiency and BW
-> > > -	 * overhead.
-> > > -	 */
-> > > -	if (is_uhbr) {
-> > > -		*data_m = pixel_data_rate;
-> > > -		*data_n = link_data_rate * 8 / 10;
-> > > -		return;
-> > > -	}
-> > > -
-> > >  	*data_m = DIV_ROUND_UP_ULL(mul_u32_u32(pixel_data_rate, bw_overhead),
-> > >  				   1000000);
-> > >  	*data_n = DIV_ROUND_DOWN_ULL(mul_u32_u32(link_data_rate, ch_coding_efficiency),
-> > 
-> > -- 
-> > Jani Nikula, Intel
+enable this feature by programing new registers for
+CMRR enable, CMRR_M, CMRR_N, vmin=vmax=flipline.The
+CMRR_M/CMRR_N ratio represents the fractional part
+in (actual refresh rate/target refresh rate) * origVTotal.
+
+Signed-off-by: Mitul Golani <mitulkumar.ajitkumar.golani@intel.com>
+
+Mitul Golani (3):
+  drm/i915: Define and compute Transcoder CMRR registers
+  drm/i915: Add Enable/Disable for CMRR based on VRR state
+  drm/i915: Compute CMRR and calculate vtotal
+
+ .../drm/i915/display/intel_crtc_state_dump.c  |   4 +-
+ drivers/gpu/drm/i915/display/intel_display.c  |  51 ++++++-
+ .../drm/i915/display/intel_display_device.h   |   1 +
+ .../drm/i915/display/intel_display_types.h    |   6 +
+ drivers/gpu/drm/i915/display/intel_vrr.c      | 126 ++++++++++++++++--
+ drivers/gpu/drm/i915/i915_reg.h               |  10 ++
+ 6 files changed, 178 insertions(+), 20 deletions(-)
+
+-- 
+2.25.1
+
