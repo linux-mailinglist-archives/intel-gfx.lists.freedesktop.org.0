@@ -2,66 +2,50 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2A75C7EC0FB
-	for <lists+intel-gfx@lfdr.de>; Wed, 15 Nov 2023 11:54:45 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 777697EC10E
+	for <lists+intel-gfx@lfdr.de>; Wed, 15 Nov 2023 12:02:32 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3548210E549;
-	Wed, 15 Nov 2023 10:54:42 +0000 (UTC)
-X-Original-To: intel-gfx@lists.freedesktop.org
-Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.24])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9FEE210E549
- for <intel-gfx@lists.freedesktop.org>; Wed, 15 Nov 2023 10:54:39 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6A8FB10E546;
+	Wed, 15 Nov 2023 11:02:28 +0000 (UTC)
+X-Original-To: Intel-gfx@lists.freedesktop.org
+Delivered-To: Intel-gfx@lists.freedesktop.org
+Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.88])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4A9A910E542;
+ Wed, 15 Nov 2023 11:02:25 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1700045679; x=1731581679;
- h=from:date:subject:mime-version:content-transfer-encoding:
- message-id:to:cc;
- bh=ZMCsqqCrzaHwSmxTAElmqFjM8Y7OOuhnwqUbSqZflwM=;
- b=M6d6g37+NBxMZF56pS89OQtGLE3tHrqIR6xCgQUPHviVwJ99JjQcfL51
- GKnknlQcF1dgABjif12yYf3FNhzaiZ0TWFvk+GRT3ZIJi5wQ7wNz24Fko
- NlM6oBwY5ivMhMABH4uadxGVcyG83sf+ivMk0YPwmDXo6nLDw8aRGBH20
- a/kPE9L6e+7G5kGw3TNjY942+8cBP3Hx3YcIt1P8Cq7H57wLq/iZNE0wq
- mhBD4NHKJun3SD70jNgwx4VEmMlM6wUg9uJw6MIeop6P+CEmuxu7esQ8S
- yvAAfQDWGylYDTiW4JDMkNtBLiTZdoQnY8GmeDdNCeYx80IkdkkOtTsCq Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10894"; a="393713008"
-X-IronPort-AV: E=Sophos;i="6.03,304,1694761200"; d="scan'208";a="393713008"
-Received: from fmsmga007.fm.intel.com ([10.253.24.52])
- by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Nov 2023 02:54:38 -0800
+ t=1700046145; x=1731582145;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=A1jD3pp9Ww79dbHlgMKPCb/ew2abLukNSeZGWRbQLlo=;
+ b=QGKRWkd7nXUk7Z5E3hPLGhtLrzO4BnRIvjoxdu0tGSJHbt/svq4BSQoe
+ xKJ/Wj+v7dBKg9qIzXe0q7GGybgMnM4dYKzVc0H9zDp2pEuinKLBm1+0I
+ nLrPF89FMJTRf5U4IRZsdnDy1mTM8/uKtfIuMXk6MVbXox4+lP22DGSRr
+ BTe38CZgNPWLSb1Ff2gz+XMC3gtPfq9Beoc1HLeERHKYKFlvfY4qOaJKw
+ TpWoGCNrVowlfgTiwNuG7QZQOX8SVU7ecei+fdanibbttnanGAOMnBRd4
+ nVLmzoLqJsj0umEOANjJiYoKtb0k1IKgALq0XUhC1p1W52BHcZF5qC0ow A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10894"; a="421953828"
+X-IronPort-AV: E=Sophos;i="6.03,304,1694761200"; d="scan'208";a="421953828"
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+ by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 Nov 2023 03:02:24 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10894"; a="768554246"
-X-IronPort-AV: E=Sophos;i="6.03,304,1694761200"; d="scan'208";a="768554246"
-Received: from lab-ah.igk.intel.com ([10.102.138.202])
- by fmsmga007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Nov 2023 02:54:36 -0800
-From: Andrzej Hajda <andrzej.hajda@intel.com>
-Date: Wed, 15 Nov 2023 11:54:03 +0100
+X-IronPort-AV: E=McAfee;i="6600,9927,10894"; a="799811849"
+X-IronPort-AV: E=Sophos;i="6.03,304,1694761200"; d="scan'208";a="799811849"
+Received: from jcornall-mobl3.ger.corp.intel.com (HELO localhost.localdomain)
+ ([10.213.211.209])
+ by orsmga001-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 Nov 2023 03:02:22 -0800
+From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+To: Intel-gfx@lists.freedesktop.org,
+	dri-devel@lists.freedesktop.org
+Date: Wed, 15 Nov 2023 11:02:16 +0000
+Message-Id: <20231115110216.267138-1-tvrtko.ursulin@linux.intel.com>
+X-Mailer: git-send-email 2.40.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20231115-dont_clean_gt_on_error_path-v2-1-54250125470a@intel.com>
-X-B4-Tracking: v=1; b=H4sIAEqjVGUC/42OQQ6DIBBFr9KwLq1gE2tXvUdjyAiDkiiQgZo2x
- rsXPUGXb/He/ytLSA4Te5xWRri45IIvIM8npkfwA3JnCjNZyVoIceMm+Kz0hODVkFXwCokCqQh
- 55K3QptW1BqiAlUIktO5z1F9d4R4S8p7A63FvvmPKhDBfDc08u7gro0s50Pf4s4hd/G96EVzwu
- rHSwl021sin8xmniw4z67Zt+wFMZipk6QAAAA==
-To: intel-gfx@lists.freedesktop.org
-X-Mailer: b4 0.12.3
-X-Developer-Signature: v=1; a=openpgp-sha256; l=3121;
- i=andrzej.hajda@intel.com; h=from:subject:message-id;
- bh=ZMCsqqCrzaHwSmxTAElmqFjM8Y7OOuhnwqUbSqZflwM=;
- b=owEB7QES/pANAwAKASNispPeEP3XAcsmYgBlVKNraD6SIRdJbTHWqOvjLwjNnyXWUUD4MasW71H5
- Lk78/q6JAbMEAAEKAB0WIQT8qEQxNN2/XeF/A00jYrKT3hD91wUCZVSjawAKCRAjYrKT3hD910ciDA
- CCibgSqphMbUuOolpeGjqLa6+yhKOkGJZw1AsFBfqUO7kP8gFliEItm/vL5ITraSDUwHwhd0q6WAiA
- lIrG5xjAsEpG56fF2pfMftZqmIJDkVEW+t5I7hwOZT+Lzo2yxln1qG4aWDOqgELI45nXtn8Bcv9Ek9
- UQ37eUSoNNbDaf8FOhSvzHfKSkcFwVrpto1D8Pv2ijBO8NJ/2agQy3nYpOGcSKURdgnW9pKxaagEhB
- ysykWxcQfYUydXnztPrXBCIe1FFhDGUr4i0pK5NGqMLZWdhgogFWleETbT0FsbKvtycfJNu/gpihtR
- D0QD58RPrTtArZJL3pW7DylmmBT6Ybc5B97zWNx5yOVtRntDhLbe1CNdXquGLCa8maruduBQJMo/Hb
- 6Sp44n8T8s0xeOjFwwFyYz14GjL7yWMGuQ0fY2ZddZl4ixQqfH7DVKiZ+rIiGXhDgEwfROVN/t3fe9
- 5Dnb2EmSGkZ2Ui5JbYXtpt1sO37lZOD0cby+g8q5b/poE=
-X-Developer-Key: i=andrzej.hajda@intel.com; a=openpgp;
- fpr=FCA8443134DDBF5DE17F034D2362B293DE10FDD7
-Subject: [Intel-gfx] [PATCH v2] drm/i915: do not clean GT table on error path
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-gfx] [PATCH] drm/i915/gsc: Mark internal GSC engine with
+ reserved uabi class
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -74,101 +58,115 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Andrzej Hajda <andrzej.hajda@intel.com>,
- Tvrtko Ursulin <tvrtko.ursulin@intel.com>,
- Matthew Auld <matthew.auld@intel.com>
+Cc: Matt Roper <matthew.d.roper@intel.com>,
+ Alan Previn <alan.previn.teres.alexis@intel.com>,
+ Tvrtko Ursulin <tvrtko.ursulin@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-The only task of intel_gt_release_all is to zero gt table. Calling
-it on error path prevents intel_gt_driver_late_release_all (called from
-i915_driver_late_release) to cleanup GTs, causing leakage.
-After i915_driver_late_release GT array is not used anymore so
-it does not need cleaning at all.
+From: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
 
-Sample leak report:
+The GSC CS is not exposed to the user, so we skipped assigning a uabi
+class number for it. However, the trace logs use the uabi class and
+instance to identify the engine, so leaving uabi class unset makes the
+GSC CS show up as the RCS in those logs.
 
-BUG i915_request (...): Objects remaining in i915_request on __kmem_cache_shutdown()
-...
-Object 0xffff888113420040 @offset=64
-Allocated in __i915_request_create+0x75/0x610 [i915] age=18339 cpu=1 pid=1454
- kmem_cache_alloc+0x25b/0x270
- __i915_request_create+0x75/0x610 [i915]
- i915_request_create+0x109/0x290 [i915]
- __engines_record_defaults+0xca/0x440 [i915]
- intel_gt_init+0x275/0x430 [i915]
- i915_gem_init+0x135/0x2c0 [i915]
- i915_driver_probe+0x8d1/0xdc0 [i915]
+Given that the engine is not exposed to the user, we can't add a new
+case in the uabi enum, so we insted internally define a kernel
+internal class as -1.
 
-v2: removed whole intel_gt_release_all
+At the same time remove special handling for the name and complete
+the uabi_classes array so internal class is automatically correctly
+assigned.
 
-Closes: https://gitlab.freedesktop.org/drm/intel/-/issues/8489
-Fixes: bec68cc9ea42d8 ("drm/i915: Prepare for multiple GTs")
-Signed-off-by: Andrzej Hajda <andrzej.hajda@intel.com>
+Engine will show as 65535:0 other0 in the logs/traces which should
+be unique enough.
+
+Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+Fixes: 194babe26bdc ("drm/i915/mtl: don't expose GSC command streamer to the user")
+Cc: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
+Cc: Alan Previn <alan.previn.teres.alexis@intel.com>
+Cc: Matt Roper <matthew.d.roper@intel.com>
 ---
-- Link to v1: https://lore.kernel.org/r/20231114-dont_clean_gt_on_error_path-v1-1-37f2fa827fd2@intel.com
+Daniele I borrowed most of your commit text as is, hope you don't mind but
+I was lazy. See if you like this solution. It is also untested so lets see.
 ---
- drivers/gpu/drm/i915/gt/intel_gt.c | 11 -----------
- drivers/gpu/drm/i915/i915_driver.c |  4 +---
- 2 files changed, 1 insertion(+), 14 deletions(-)
+ drivers/gpu/drm/i915/gt/intel_engine_user.c | 37 ++++++++++++---------
+ 1 file changed, 21 insertions(+), 16 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/gt/intel_gt.c b/drivers/gpu/drm/i915/gt/intel_gt.c
-index ed32bf5b15464e..ba1186fc524f84 100644
---- a/drivers/gpu/drm/i915/gt/intel_gt.c
-+++ b/drivers/gpu/drm/i915/gt/intel_gt.c
-@@ -982,8 +982,6 @@ int intel_gt_probe_all(struct drm_i915_private *i915)
- 
- err:
- 	i915_probe_error(i915, "Failed to initialize %s! (%d)\n", gtdef->name, ret);
--	intel_gt_release_all(i915);
--
- 	return ret;
+diff --git a/drivers/gpu/drm/i915/gt/intel_engine_user.c b/drivers/gpu/drm/i915/gt/intel_engine_user.c
+index 118164ddbb2e..7693ccfac1f9 100644
+--- a/drivers/gpu/drm/i915/gt/intel_engine_user.c
++++ b/drivers/gpu/drm/i915/gt/intel_engine_user.c
+@@ -41,12 +41,15 @@ void intel_engine_add_user(struct intel_engine_cs *engine)
+ 	llist_add(&engine->uabi_llist, &engine->i915->uabi_engines_llist);
  }
  
-@@ -1002,15 +1000,6 @@ int intel_gt_tiles_init(struct drm_i915_private *i915)
- 	return 0;
- }
++#define I915_NO_UABI_CLASS (-1)
++
+ static const u8 uabi_classes[] = {
+ 	[RENDER_CLASS] = I915_ENGINE_CLASS_RENDER,
+ 	[COPY_ENGINE_CLASS] = I915_ENGINE_CLASS_COPY,
+ 	[VIDEO_DECODE_CLASS] = I915_ENGINE_CLASS_VIDEO,
+ 	[VIDEO_ENHANCEMENT_CLASS] = I915_ENGINE_CLASS_VIDEO_ENHANCE,
+ 	[COMPUTE_CLASS] = I915_ENGINE_CLASS_COMPUTE,
++	[OTHER_CLASS] = I915_NO_UABI_CLASS, /* Not exposed to users, no uabi class. */
+ };
  
--void intel_gt_release_all(struct drm_i915_private *i915)
--{
--	struct intel_gt *gt;
--	unsigned int id;
--
--	for_each_gt(gt, i915, id)
--		i915->gt[id] = NULL;
--}
--
- void intel_gt_info_print(const struct intel_gt_info *info,
- 			 struct drm_printer *p)
+ static int engine_cmp(void *priv, const struct list_head *A,
+@@ -200,6 +203,7 @@ static void engine_rename(struct intel_engine_cs *engine, const char *name, u16
+ 
+ void intel_engines_driver_register(struct drm_i915_private *i915)
  {
-diff --git a/drivers/gpu/drm/i915/i915_driver.c b/drivers/gpu/drm/i915/i915_driver.c
-index 01fd25b622d16c..2a1faf4039659c 100644
---- a/drivers/gpu/drm/i915/i915_driver.c
-+++ b/drivers/gpu/drm/i915/i915_driver.c
-@@ -776,7 +776,7 @@ int i915_driver_probe(struct pci_dev *pdev, const struct pci_device_id *ent)
++	u16 name_instance, other_instance = 0;
+ 	struct legacy_ring ring = {};
+ 	struct list_head *it, *next;
+ 	struct rb_node **p, *prev;
+@@ -216,27 +220,28 @@ void intel_engines_driver_register(struct drm_i915_private *i915)
+ 		if (intel_gt_has_unrecoverable_error(engine->gt))
+ 			continue; /* ignore incomplete engines */
  
- 	ret = i915_driver_mmio_probe(i915);
- 	if (ret < 0)
--		goto out_tiles_cleanup;
-+		goto out_runtime_pm_put;
+-		/*
+-		 * We don't want to expose the GSC engine to the users, but we
+-		 * still rename it so it is easier to identify in the debug logs
+-		 */
+-		if (engine->id == GSC0) {
+-			engine_rename(engine, "gsc", 0);
+-			continue;
+-		}
+-
+ 		GEM_BUG_ON(engine->class >= ARRAY_SIZE(uabi_classes));
+ 		engine->uabi_class = uabi_classes[engine->class];
++		if (engine->uabi_class == I915_NO_UABI_CLASS) {
++			name_instance = other_instance++;
++		} else {
++			GEM_BUG_ON(engine->uabi_class >=
++				   ARRAY_SIZE(i915->engine_uabi_class_count));
++			name_instance =
++				i915->engine_uabi_class_count[engine->uabi_class]++;
++		}
++		engine->uabi_instance = name_instance;
  
- 	ret = i915_driver_hw_probe(i915);
- 	if (ret < 0)
-@@ -836,8 +836,6 @@ int i915_driver_probe(struct pci_dev *pdev, const struct pci_device_id *ent)
- 	i915_ggtt_driver_late_release(i915);
- out_cleanup_mmio:
- 	i915_driver_mmio_release(i915);
--out_tiles_cleanup:
--	intel_gt_release_all(i915);
- out_runtime_pm_put:
- 	enable_rpm_wakeref_asserts(&i915->runtime_pm);
- 	i915_driver_late_release(i915);
-
----
-base-commit: 1489bab52c281a869295414031a56506a375b036
-change-id: 20231114-dont_clean_gt_on_error_path-91cd9c3caa0a
-
-Best regards,
+-		GEM_BUG_ON(engine->uabi_class >=
+-			   ARRAY_SIZE(i915->engine_uabi_class_count));
+-		engine->uabi_instance =
+-			i915->engine_uabi_class_count[engine->uabi_class]++;
+-
+-		/* Replace the internal name with the final user facing name */
++		/*
++		 * Replace the internal name with the final user and log facing
++		 * name.
++		 */
+ 		engine_rename(engine,
+ 			      intel_engine_class_repr(engine->class),
+-			      engine->uabi_instance);
++			      name_instance);
++
++		if (engine->uabi_class == I915_NO_UABI_CLASS)
++			continue;
+ 
+ 		rb_link_node(&engine->uabi_node, prev, p);
+ 		rb_insert_color(&engine->uabi_node, &i915->uabi_engines);
 -- 
-Andrzej Hajda <andrzej.hajda@intel.com>
+2.40.1
 
