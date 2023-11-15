@@ -1,54 +1,48 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 44B1A7EC518
-	for <lists+intel-gfx@lfdr.de>; Wed, 15 Nov 2023 15:25:51 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 01E937EC7F7
+	for <lists+intel-gfx@lfdr.de>; Wed, 15 Nov 2023 16:54:55 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5F52010E02B;
-	Wed, 15 Nov 2023 14:25:47 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C47A910E086;
+	Wed, 15 Nov 2023 15:54:51 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E06AA10E047
- for <intel-gfx@lists.freedesktop.org>; Wed, 15 Nov 2023 14:25:43 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D71D410E086
+ for <intel-gfx@lists.freedesktop.org>; Wed, 15 Nov 2023 15:54:49 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1700058343; x=1731594343;
- h=date:from:to:cc:subject:message-id:reply-to:references:
- mime-version:in-reply-to;
- bh=WAIVs8+MhLWGM6Coc3f6TohjRZUb7MmOSQum3SB+vCQ=;
- b=mRpoY3z2sEeGZ/9Q7W49H4zlACuQK26OdnNF/NWEd2ppBRH8wEVXA/T+
- HZp9VG2iSFsH70vZg9UEVx3UeXg9jzeY8jtCl63GwBaEdGSbpTzfJrakk
- MKQ/PTMrUSLhXy4bVAN5wudIYCepQet3xGTH+0d4mk9Vl9gEErHMuYh5W
- OB/U5uvwn1mQvKSy26iZNcgCf6PJVjnbXDm9ovcIliiUMtdCT/W+mrZKb
- eBNw0lP/Wn0uGHiTgcApB0lrksJ/rqg77JL271tq7O9aQNXezeLt2wuWI
- ZInvClbHrR7Y42PPQtniN/FXYab4GR9St5UT8s7td8xCmolB2eyWNfUbn Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10895"; a="381277168"
-X-IronPort-AV: E=Sophos;i="6.03,305,1694761200"; d="scan'208";a="381277168"
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
- by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Nov 2023 06:25:43 -0800
+ t=1700063690; x=1731599690;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=VIv8OjLt61iPy4byMZL8kTrpL+tqYDwFEvjckuJZTo8=;
+ b=WeDPcnebq1Lx2CU6NlxrQORM4hLaUoiGGqqy6YVAcPxWbBQNN+Ja2kOX
+ UmgSVryObeLTh4XZwA0lf+EisQ2ZPoaoWWeLD1P3wfl+U34da2tzhiNWa
+ uvYMeaqnXn1McGXSd7ExAFMNEnHQ5YHhyGy8EdlROWV2jV3pALZDwiyAl
+ nNZfhcsfGx2HIThlLoZE0lJ6+eocl/fNRrSjzDk3fuQVxPDf4vi1Pedtg
+ 88a4vcgNi2YL2E6XYC3QfT5UWAVPayHF0t7yRwaF4SNoXDPrOf2+/p88D
+ mEdtx7edPrb2oFy2A1TMccGqExzjMoon+ovU/oihwcDhlxWkFERp2VUAE g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10895"; a="9537385"
+X-IronPort-AV: E=Sophos;i="6.03,305,1694761200"; 
+   d="scan'208";a="9537385"
+Received: from fmsmga004.fm.intel.com ([10.253.24.48])
+ by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 Nov 2023 07:54:49 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10895"; a="882404349"
-X-IronPort-AV: E=Sophos;i="6.03,305,1694761200"; d="scan'208";a="882404349"
-Received: from ideak-desk.fi.intel.com ([10.237.72.78])
- by fmsmga002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Nov 2023 06:25:41 -0800
-Date: Wed, 15 Nov 2023 16:25:40 +0200
-From: Imre Deak <imre.deak@intel.com>
-To: "Murthy, Arun R" <arun.r.murthy@intel.com>
-Message-ID: <ZVTU5DJDmqOCreRi@ideak-desk.fi.intel.com>
-References: <20231113201110.510724-1-imre.deak@intel.com>
- <20231113201110.510724-3-imre.deak@intel.com>
- <ZVTJ0L37KLZLIWfu@ideak-desk.fi.intel.com>
- <DS0PR11MB8740BC7EB6F27C3B12E6910ABAB1A@DS0PR11MB8740.namprd11.prod.outlook.com>
+X-IronPort-AV: E=McAfee;i="6600,9927,10895"; a="835426517"
+X-IronPort-AV: E=Sophos;i="6.03,305,1694761200"; d="scan'208";a="835426517"
+Received: from mgolanimitul-x299-ud4-pro.iind.intel.com ([10.190.239.114])
+ by fmsmga004.fm.intel.com with ESMTP; 15 Nov 2023 07:54:47 -0800
+From: Mitul Golani <mitulkumar.ajitkumar.golani@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Wed, 15 Nov 2023 21:19:40 +0530
+Message-Id: <20231115154943.3801663-1-mitulkumar.ajitkumar.golani@intel.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <DS0PR11MB8740BC7EB6F27C3B12E6910ABAB1A@DS0PR11MB8740.namprd11.prod.outlook.com>
-Subject: Re: [Intel-gfx] [PATCH 3/4] drm/i915/dp_mst: Fix PBN / MTP_TU size
- calculation for UHBR rates
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-gfx] [RFC 0/3] Implement CMRR Support
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,99 +55,38 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: imre.deak@intel.com
-Cc: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
+Cc: jani.nikula@intel.com, ville.syrjala@intel.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, Nov 15, 2023 at 03:41:08PM +0200, Murthy, Arun R wrote:
-> 
-> 
-> > -----Original Message-----
-> > From: Intel-gfx <intel-gfx-bounces@lists.freedesktop.org> On Behalf Of Imre
-> > Deak
-> > Sent: Wednesday, November 15, 2023 7:08 PM
-> > To: intel-gfx@lists.freedesktop.org
-> > Subject: Re: [Intel-gfx] [PATCH 3/4] drm/i915/dp_mst: Fix PBN / MTP_TU size
-> > calculation for UHBR rates
-> >
-> > On Mon, Nov 13, 2023 at 10:11:09PM +0200, Imre Deak wrote:
-> > > Atm the allocated MST PBN value is calculated from the TU size (number
-> > > of allocated MTP slots) as
-> > >
-> > >   PBN = TU * pbn_div
-> > >
-> > > pbn_div being the link BW for each MTP slot. For DP 1.4 link rates
-> > > this worked, as pbn_div there is guraranteed to be an integer number,
-> > > however on UHBR this isn't the case. To get a PBN, TU pair where TU is
-> > > a properly rounded-up value covering all the BW corresponding to PBN,
-> > > calculate first PBN and from PBN the TU value.
-> > >
-> > > Signed-off-by: Imre Deak <imre.deak@intel.com>
-> > > ---
-> > >  drivers/gpu/drm/i915/display/intel_dp_mst.c | 10 ++++++++--
-> > >  1 file changed, 8 insertions(+), 2 deletions(-)
-> > >
-> > > diff --git a/drivers/gpu/drm/i915/display/intel_dp_mst.c
-> > > b/drivers/gpu/drm/i915/display/intel_dp_mst.c
-> > > index b943dbf394a22..a32ab0b4fc9d7 100644
-> > > --- a/drivers/gpu/drm/i915/display/intel_dp_mst.c
-> > > +++ b/drivers/gpu/drm/i915/display/intel_dp_mst.c
-> > > @@ -170,6 +170,7 @@ static int
-> > > intel_dp_mst_find_vcpi_slots_for_bpp(struct intel_encoder *encoder,
-> > >
-> > >     for (bpp = max_bpp; bpp >= min_bpp; bpp -= step) {
-> > >             struct intel_link_m_n remote_m_n;
-> > > +           int alloc_tu;
-> > >             int link_bpp;
-> > >
-> > >             drm_dbg_kms(&i915->drm, "Trying bpp %d\n", bpp); @@ -
-> > 200,9 +201,14
-> > > @@ static int intel_dp_mst_find_vcpi_slots_for_bpp(struct intel_encoder
-> > *encoder,
-> > >              * crtc_state->dp_m_n.tu), provided that the driver doesn't
-> > >              * enable SSC on the corresponding link.
-> > >              */
-> > > +           crtc_state->pbn =
-> > DIV_ROUND_UP_ULL(mul_u32_u32(mst_state->pbn_div * 64,
-> > > +
-> > remote_m_n.data_m),
-> > > +                                              remote_m_n.data_n);
-> >
-> > I realized this may allocate fewer PBNs than required, since the actual pbn_div
-> > value is not an integer. Also PBN can be calculated in a more direct way from
-> > the effective pixel data rate, so I'd like to do that instead.
-> >
-> > I'll send a new version with the above changes.
-> >
-> Also spec says about a constant value of 64 for TU size.
+CMRR is a display feature that uses adaptive sync
+framework to vary Vtotal slightly to match the
+content rate exactly without frame drops. This
+feature is a variation of VRR where it varies Vtotal
+slightly (between additional 0 and 1 Vtotal scanlines)
+to match content rate exactly without frame drops
+using the adaptive sync framework.
 
-I suppose you refer to WA 14013163432 (Bspec / 54369), yes we considered
-this with Ville. For that one data M/N needs to be configured for full
-BW utilization, that is M=TU-size N=64. It's for the case where FEC is
-enabled and applies to ADLP A0-C0 only (need to check other platforms).
-The corresponding issue is supposed to be fixed on ADLP D0 (which
-requires enabling some HW workarounds), so not sure if/how we should
-enable this SW WA.
+enable this feature by programing new registers for
+CMRR enable, CMRR_M, CMRR_N, vmin=vmax=flipline.The
+CMRR_M/CMRR_N ratio represents the fractional part
+in (actual refresh rate/target refresh rate) * origVTotal.
 
-> Thanks and Regards,
-> Arun R Murthy
-> -------------------
-> > > +
-> > > +           alloc_tu = DIV_ROUND_UP_ULL(crtc_state->pbn, mst_state-
-> > >pbn_div);
-> >
-> >
-> > > +           drm_WARN_ON(&i915->drm, alloc_tu < remote_m_n.tu);
-> > >             drm_WARN_ON(&i915->drm, remote_m_n.tu < crtc_state-
-> > >dp_m_n.tu);
-> > > -           crtc_state->dp_m_n.tu = remote_m_n.tu;
-> > > -           crtc_state->pbn = remote_m_n.tu * mst_state->pbn_div;
-> > > +           crtc_state->dp_m_n.tu = alloc_tu;
-> > >
-> > >             slots = drm_dp_atomic_find_time_slots(state, &intel_dp-
-> > >mst_mgr,
-> > >                                                   connector->port,
-> > > --
-> > > 2.39.2
-> > >
+Signed-off-by: Mitul Golani <mitulkumar.ajitkumar.golani@intel.com>
+
+Mitul Golani (3):
+  drm/i915: Define and compute Transcoder CMRR registers
+  drm/i915: Add Enable/Disable for CMRR based on VRR state
+  drm/i915: Compute CMRR and calculate vtotal
+
+ .../drm/i915/display/intel_crtc_state_dump.c  |   4 +-
+ drivers/gpu/drm/i915/display/intel_display.c  |  54 +++++++-
+ .../drm/i915/display/intel_display_device.h   |   1 +
+ .../drm/i915/display/intel_display_types.h    |   6 +
+ drivers/gpu/drm/i915/display/intel_vrr.c      | 126 ++++++++++++++++--
+ drivers/gpu/drm/i915/i915_reg.h               |  10 ++
+ 6 files changed, 181 insertions(+), 20 deletions(-)
+
+-- 
+2.25.1
+
