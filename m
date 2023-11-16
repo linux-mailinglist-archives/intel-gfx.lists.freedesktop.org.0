@@ -1,50 +1,51 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id B50C67EDFD2
-	for <lists+intel-gfx@lfdr.de>; Thu, 16 Nov 2023 12:27:26 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id D1DE47EDFF7
+	for <lists+intel-gfx@lfdr.de>; Thu, 16 Nov 2023 12:39:18 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E900410E275;
-	Thu, 16 Nov 2023 11:27:24 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 178A110E276;
+	Thu, 16 Nov 2023 11:39:16 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.100])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EF87310E271;
- Thu, 16 Nov 2023 11:27:22 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.136])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2F59410E27C
+ for <intel-gfx@lists.freedesktop.org>; Thu, 16 Nov 2023 11:39:14 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1700134043; x=1731670043;
+ t=1700134754; x=1731670754;
  h=from:to:cc:subject:date:message-id:mime-version:
  content-transfer-encoding;
- bh=TzULG04AncIyOj8d8iGnUExuGAQrTn5d8ix8NC3RJf4=;
- b=ieijUv4N3hwPqokAon5Mz781mqv5VSjQ4j6SaOVmHTObYqZvcCQhmwdX
- Rs0RpQkqQhKD79OiNJAYZhSeh1VINfhqDwMh3/KZ+kILyIvk5L9PXBCC2
- fNZA1AtePdf/AxNulS1cyxL6tb02banyqPEUpVUe5rJmzi90/sMId1D88
- 4O6OsMQ+ze3rTbajGWrjrFDqvcBMPtz5wznTmkZ68PzpEUJiZ2c/xWLXc
- 9IFPZtE66wEZ3LYlzePB/cCcSlLtC8N9RcWPVxuMIYY1h50HYRuQD969T
- mdyuTqdVPMpXwG+qAHmiM5lpnWmmVe9BPeFOCIbfmzKcizlJ68FNru2/B w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10895"; a="457562869"
-X-IronPort-AV: E=Sophos;i="6.04,308,1695711600"; d="scan'208";a="457562869"
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
- by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Nov 2023 03:27:13 -0800
+ bh=zSHrReE8+499ihyphtqPBaQlqbPHoL7uhFz2N3ieOds=;
+ b=GfxRQd6wAM1XeM3eJBI5CikAAI77A0xgU/wLgaX61e2bxg3eEmacC+GG
+ AF6g5FBxkc7ivXLoSMgL6A8/5JTUdKj/irGO7z2MYgwOcE2wTXHcv6YkP
+ 8MaPmCnclb9fafvnMWHrwv0eNLZ8g4UUys83jvpI5g8IS0slDqgc1Vrtq
+ gP5zXvezwyjuv2b3MbsbSq07BjwgGRPYgc52MUdcXQYH9nNXR7gEUaNB+
+ FS4uHmQ6ungoeSHVi6ouW13gdnKckg2I2VGYAj2dbXkZEpHTrDq4yW5sh
+ c8+QME0lt46o2I3Hmj7AOtpzTFDfiFQndR3bdvJoGY06VJjesB5Z8PhDS Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10895"; a="370428563"
+X-IronPort-AV: E=Sophos;i="6.04,308,1695711600"; d="scan'208";a="370428563"
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+ by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 16 Nov 2023 03:39:13 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10895"; a="765272948"
-X-IronPort-AV: E=Sophos;i="6.04,308,1695711600"; d="scan'208";a="765272948"
-Received: from rlocatel-mobl1.ger.corp.intel.com (HELO
- hazy.ger.corp.intel.com) ([10.252.41.49])
- by orsmga002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Nov 2023 03:27:11 -0800
-From: Luca Coelho <luciano.coelho@intel.com>
+X-IronPort-AV: E=McAfee;i="6600,9927,10895"; a="800145431"
+X-IronPort-AV: E=Sophos;i="6.04,308,1695711600"; d="scan'208";a="800145431"
+Received: from dcarcium-mobl.ger.corp.intel.com (HELO
+ jhogande-mobl1.intel.com) ([10.252.40.251])
+ by orsmga001-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 16 Nov 2023 03:39:11 -0800
+From: =?UTF-8?q?Jouni=20H=C3=B6gander?= <jouni.hogander@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Thu, 16 Nov 2023 13:27:00 +0200
-Message-Id: <20231116112700.648963-1-luciano.coelho@intel.com>
-X-Mailer: git-send-email 2.39.2
+Date: Thu, 16 Nov 2023 13:38:56 +0200
+Message-Id: <20231116113859.4151950-1-jouni.hogander@intel.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH] drm/i915: don't use uncore spinlock to protect
- critical section in vblank
+Subject: [Intel-gfx] [PATCH v2 0/3] Prepare intel_fb for Xe
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -57,117 +58,40 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-xe@lists.freedesktop.org, rodrigo.vivi@intel.com
+Cc: Jani Nikula <jani.nikula@intel.com>, Rodrigo Vivi <rodrigo.vivi@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Since we're abstracting the display code from the underlying driver
-(i.e. i915 vs xe), we can't use the uncore's spinlock to protect
-critical sections of our code.
+Intel fb creation is differing between Xe and i915 due to different
+implementations of backing object. This patch set is splitting i915
+specific code into it's own source file. Similar source files will be
+introduced for Xe as well.
 
-After further inspection, it seems that the spinlock is not needed at
-all and this can be handled by disabling preemption and interrupts
-instead.
+Also use intel_bo_to_drm_bo instead of directly referring
+i915_gem_object->base. One i915_gem_object_put is changed to
+drm_gem_object_put.
 
-Change the vblank code so that we don't use uncore's spinlock anymore
-and update the comments accordingly.  While at it, also remove
-comments pointing out where to insert RT-specific calls, since we're
-now explicitly calling preempt_disable/enable() anywyay.
+v2: Couple of fixes to error value handling
 
-Cc: Jani Nikula <jani.nikula@intel.com>
 Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
-Cc: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
-Signed-off-by: Luca Coelho <luciano.coelho@intel.com>
----
+Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+Cc: Jani Nikula <jani.nikula@intel.com>
+Cc: Uma Shankar <uma.shankar@intel.com>
 
-Note: this replaces my previous patch discussed here:
-https://patchwork.freedesktop.org/patch/563857/
+Jouni Högander (3):
+  drm/i915/display: use intel_bo_to_drm_bo in intel_fb.c
+  drm/i915/display: Convert intel_fb_modifier_to_tiling as non-static
+  drm/i915/display: Split i915 specific code away from intel_fb.c
 
+ drivers/gpu/drm/i915/Makefile              |   1 +
+ drivers/gpu/drm/i915/display/intel_fb.c    | 124 ++++++---------------
+ drivers/gpu/drm/i915/display/intel_fb.h    |   2 +
+ drivers/gpu/drm/i915/display/intel_fb_bo.c |  93 ++++++++++++++++
+ drivers/gpu/drm/i915/display/intel_fb_bo.h |  24 ++++
+ 5 files changed, 157 insertions(+), 87 deletions(-)
+ create mode 100644 drivers/gpu/drm/i915/display/intel_fb_bo.c
+ create mode 100644 drivers/gpu/drm/i915/display/intel_fb_bo.h
 
- drivers/gpu/drm/i915/display/intel_vblank.c | 32 ++++++++++-----------
- 1 file changed, 15 insertions(+), 17 deletions(-)
-
-diff --git a/drivers/gpu/drm/i915/display/intel_vblank.c b/drivers/gpu/drm/i915/display/intel_vblank.c
-index 2cec2abf9746..28e38960806e 100644
---- a/drivers/gpu/drm/i915/display/intel_vblank.c
-+++ b/drivers/gpu/drm/i915/display/intel_vblank.c
-@@ -302,13 +302,12 @@ static bool i915_get_crtc_scanoutpos(struct drm_crtc *_crtc,
- 	}
- 
- 	/*
--	 * Lock uncore.lock, as we will do multiple timing critical raw
--	 * register reads, potentially with preemption disabled, so the
--	 * following code must not block on uncore.lock.
-+	 * We will do multiple timing critical raw register reads, so
-+	 * disable interrupts and preemption to make sure this code
-+	 * doesn't get blocked.
- 	 */
--	spin_lock_irqsave(&dev_priv->uncore.lock, irqflags);
--
--	/* preempt_disable_rt() should go right here in PREEMPT_RT patchset. */
-+	local_irq_save(irqflags);
-+	preempt_disable();
- 
- 	/* Get optional system timestamp before query. */
- 	if (stime)
-@@ -372,9 +371,8 @@ static bool i915_get_crtc_scanoutpos(struct drm_crtc *_crtc,
- 	if (etime)
- 		*etime = ktime_get();
- 
--	/* preempt_enable_rt() should go right here in PREEMPT_RT patchset. */
--
--	spin_unlock_irqrestore(&dev_priv->uncore.lock, irqflags);
-+	preempt_enable();
-+	local_irq_restore(irqflags);
- 
- 	/*
- 	 * While in vblank, position will be negative
-@@ -408,13 +406,14 @@ bool intel_crtc_get_vblank_timestamp(struct drm_crtc *crtc, int *max_error,
- 
- int intel_get_crtc_scanline(struct intel_crtc *crtc)
- {
--	struct drm_i915_private *dev_priv = to_i915(crtc->base.dev);
- 	unsigned long irqflags;
- 	int position;
- 
--	spin_lock_irqsave(&dev_priv->uncore.lock, irqflags);
-+	local_irq_save(irqflags);
-+	preempt_disable();
- 	position = __intel_get_crtc_scanline(crtc);
--	spin_unlock_irqrestore(&dev_priv->uncore.lock, irqflags);
-+	preempt_enable();
-+	local_irq_restore(irqflags);
- 
- 	return position;
- }
-@@ -528,16 +527,16 @@ void intel_crtc_update_active_timings(const struct intel_crtc_state *crtc_state,
- 	 * Belts and suspenders locking to guarantee everyone sees 100%
- 	 * consistent state during fastset seamless refresh rate changes.
- 	 *
--	 * vblank_time_lock takes care of all drm_vblank.c stuff, and
--	 * uncore.lock takes care of __intel_get_crtc_scanline() which
--	 * may get called elsewhere as well.
-+	 * vblank_time_lock takes care of all drm_vblank.c stuff.  For
-+	 * __intel_get_crtc_scanline() we don't need locking or
-+	 * disabling preemption and irqs, since this is already done
-+	 * by the vblank_time_lock spinlock calls.
- 	 *
- 	 * TODO maybe just protect everything (including
- 	 * __intel_get_crtc_scanline()) with vblank_time_lock?
- 	 * Need to audit everything to make sure it's safe.
- 	 */
- 	spin_lock_irqsave(&i915->drm.vblank_time_lock, irqflags);
--	spin_lock(&i915->uncore.lock);
- 
- 	drm_calc_timestamping_constants(&crtc->base, &adjusted_mode);
- 
-@@ -547,6 +546,5 @@ void intel_crtc_update_active_timings(const struct intel_crtc_state *crtc_state,
- 
- 	crtc->scanline_offset = intel_crtc_scanline_offset(crtc_state);
- 
--	spin_unlock(&i915->uncore.lock);
- 	spin_unlock_irqrestore(&i915->drm.vblank_time_lock, irqflags);
- }
 -- 
-2.39.2
+2.34.1
 
