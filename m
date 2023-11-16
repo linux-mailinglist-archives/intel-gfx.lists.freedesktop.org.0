@@ -1,52 +1,34 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 195B37EE851
-	for <lists+intel-gfx@lfdr.de>; Thu, 16 Nov 2023 21:30:58 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id B98F07EE856
+	for <lists+intel-gfx@lfdr.de>; Thu, 16 Nov 2023 21:32:22 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 35B8E10E2C5;
-	Thu, 16 Nov 2023 20:30:56 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 433B210E6E2;
+	Thu, 16 Nov 2023 20:32:21 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.115])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2B3B010E2C5
- for <intel-gfx@lists.freedesktop.org>; Thu, 16 Nov 2023 20:30:51 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1700166651; x=1731702651;
- h=from:to:subject:date:message-id:in-reply-to:references:
- mime-version:content-transfer-encoding;
- bh=r1LARUgnifE+d91t0Dwn/wwyhodoZ154k78BURBl55o=;
- b=OFfrCDrLuK42YW88txXjtDuodxhamRE0QGmGX+wzVMjOXHKgItPC7w4o
- jXp054KqX3yN51QB1ugmGZy4Adcparf3Qp2GAjnpPoPnadDz3bF0rKINp
- i0Ukq7KQGJkRJY5BhJrpt7fh/jL8vqiIcIuuA+JRRpmjWmH3oszDPpWVF
- wfKYCJtJLxxHM9RfNIu4itjTtJBDj122++oYEW2kMdBtEtP00P9pIctFy
- FKwHP+mpZz8YpMs18pohOoD6kpK7y25KaWfu6Jk9RjjreFU7doIqt9uZ8
- WtEq2kPfcYpXHtJtDUu6JS0s5EC4Z/m+X9ilDLMpkE0dSSjhHlJ8kY2iG g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10896"; a="390960837"
-X-IronPort-AV: E=Sophos;i="6.04,205,1695711600"; d="scan'208";a="390960837"
-Received: from fmsmga004.fm.intel.com ([10.253.24.48])
- by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Nov 2023 12:30:50 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10896"; a="835856470"
-X-IronPort-AV: E=Sophos;i="6.04,205,1695711600"; d="scan'208";a="835856470"
-Received: from tjlunife-mobl3.amr.corp.intel.com (HELO
- gjsousa-mobl2.intel.com) ([10.255.34.202])
- by fmsmga004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Nov 2023 12:30:50 -0800
-From: Gustavo Sousa <gustavo.sousa@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Thu, 16 Nov 2023 17:30:27 -0300
-Message-ID: <20231116203027.64176-2-gustavo.sousa@intel.com>
-X-Mailer: git-send-email 2.42.0
-In-Reply-To: <20231116203027.64176-1-gustavo.sousa@intel.com>
-References: <20231116203027.64176-1-gustavo.sousa@intel.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 1D8A910E6E2;
+ Thu, 16 Nov 2023 20:32:19 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 10DE1A3ECB;
+ Thu, 16 Nov 2023 20:32:19 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH 1/1] [CI] drm/i915/dmc: Hardcode path to MTL DMC
- v2.19
+Content-Transfer-Encoding: 7bit
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Juha-Pekka Heikkila" <juhapekka.heikkila@gmail.com>
+Date: Thu, 16 Nov 2023 20:32:19 -0000
+Message-ID: <170016673906.3091.4221667259071321474@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20231116150225.204233-1-juhapekka.heikkila@gmail.com>
+In-Reply-To: <20231116150225.204233-1-juhapekka.heikkila@gmail.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_series_starting_with_=5B1/3=5D_drm/i915/display=3A_Separate?=
+ =?utf-8?q?_xe_and_i915_common_dpt_code_into_own_file_=28rev2=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,31 +41,35 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-NOT TO BE REVIEWED/MERGED
+== Series Details ==
 
-Hardcode path to DMC firmware for CI purposes only.
+Series: series starting with [1/3] drm/i915/display: Separate xe and i915 common dpt code into own file (rev2)
+URL   : https://patchwork.freedesktop.org/series/126538/
+State : warning
 
-Signed-off-by: Gustavo Sousa <gustavo.sousa@intel.com>
----
- drivers/gpu/drm/i915/display/intel_dmc.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+== Summary ==
 
-diff --git a/drivers/gpu/drm/i915/display/intel_dmc.c b/drivers/gpu/drm/i915/display/intel_dmc.c
-index 63e080e07023..1e56a02cafdc 100644
---- a/drivers/gpu/drm/i915/display/intel_dmc.c
-+++ b/drivers/gpu/drm/i915/display/intel_dmc.c
-@@ -93,7 +93,7 @@ static struct intel_dmc *i915_to_dmc(struct drm_i915_private *i915)
- #define DISPLAY_VER13_DMC_MAX_FW_SIZE	0x20000
- #define DISPLAY_VER12_DMC_MAX_FW_SIZE	ICL_DMC_MAX_FW_SIZE
- 
--#define MTL_DMC_PATH			DMC_PATH(mtl)
-+#define MTL_DMC_PATH			"i915/mtl_dmc_ver2_19.bin"
- MODULE_FIRMWARE(MTL_DMC_PATH);
- 
- #define DG2_DMC_PATH			DMC_LEGACY_PATH(dg2, 2, 08)
--- 
-2.42.0
+Error: dim checkpatch failed
+0d8793c8afbd drm/i915/display: Separate xe and i915 common dpt code into own file
+Traceback (most recent call last):
+  File "scripts/spdxcheck.py", line 6, in <module>
+    from ply import lex, yacc
+ModuleNotFoundError: No module named 'ply'
+Traceback (most recent call last):
+  File "scripts/spdxcheck.py", line 6, in <module>
+    from ply import lex, yacc
+ModuleNotFoundError: No module named 'ply'
+-:101: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#101: 
+new file mode 100644
+
+total: 0 errors, 1 warnings, 0 checks, 85 lines checked
+857ed1d010f7 drm/i915/display: in skl_surf_address check for dpt-vma
+eb2c69d20c3c drm/i915/display: In intel_framebuffer_init switch to use intel_bo_to_drm_bo
+
 
