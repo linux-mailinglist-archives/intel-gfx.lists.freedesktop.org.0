@@ -1,68 +1,34 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id AB1917EE3CE
-	for <lists+intel-gfx@lfdr.de>; Thu, 16 Nov 2023 16:02:42 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7DD317EE410
+	for <lists+intel-gfx@lfdr.de>; Thu, 16 Nov 2023 16:21:35 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2472410E618;
-	Thu, 16 Nov 2023 15:02:39 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 365FB10E61B;
+	Thu, 16 Nov 2023 15:21:33 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-lf1-x12e.google.com (mail-lf1-x12e.google.com
- [IPv6:2a00:1450:4864:20::12e])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 714C710E611
- for <intel-gfx@lists.freedesktop.org>; Thu, 16 Nov 2023 15:02:36 +0000 (UTC)
-Received: by mail-lf1-x12e.google.com with SMTP id
- 2adb3069b0e04-507a5f2193bso976340e87.1
- for <intel-gfx@lists.freedesktop.org>; Thu, 16 Nov 2023 07:02:36 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1700146954; x=1700751754; darn=lists.freedesktop.org;
- h=content-transfer-encoding:mime-version:references:in-reply-to
- :message-id:date:subject:cc:to:from:from:to:cc:subject:date
- :message-id:reply-to;
- bh=icY2ED59vLVz/u05dBPuZZW32XDbBgeLiheTHFnk+Pk=;
- b=NkbnOAuiOCJFjVpD/m2B6Atw/mAEFRR66nSDW2lYAblIE5WlCuFA13tpXBsW5myVFO
- EF6IJvH8El5fiy+5MPyS2Hu8LotFSWEHPeNH9+LZwHP6laNWF1msJbWaruLcp/M89Nu/
- LVcTL+3UYKLIyMQUGoUmcbWeFnTtwFIx0g679uFmSBEeQQRX10uSu0Pc658y+twe/GRz
- 00CkVsQKHbgoewfqDKPKM/o6drgSFg9aSmhL/VLGU4iObmaYJBYIKPLCFzoM1bkH761v
- FyZcqSGrlmgNwH57b+f1TjM6I7wuj6ZOw3dzXyZi3YBqTk1AE8YkvAFle6eloNUTUsUe
- Co9A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1700146954; x=1700751754;
- h=content-transfer-encoding:mime-version:references:in-reply-to
- :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
- :subject:date:message-id:reply-to;
- bh=icY2ED59vLVz/u05dBPuZZW32XDbBgeLiheTHFnk+Pk=;
- b=lkt/3V1rky2K465depH8bMdA3MZOJ3t0s1HVkALoetU/1946ruvmIQXS7Yzy55OvQK
- m8juZhGXBuTlGEQZyGzrSnQIyVnlYw064FA0qHlJrKHDaBSOJiE5b8nYEgr0zKYnXp4K
- 1OMH3EgwUW6jlRuDlQl7kjaA43jr8mSDREb7/CUlYOal3yHWSr0aA7Aduyxd6Eg9pnSu
- 9cKTjkF2a1xERraGv6rpJZwwgc1RoryiaiQvJkHvxr2PRGrozVxS1XUALvg/zHAM9HHI
- qIVrDfN+/ml7fbec13CxKKI+QUjTl1Q2ccBKMBjBBVW4NznYdE5v1kx+BRoGLgeXI18i
- Sswg==
-X-Gm-Message-State: AOJu0YxCK56U1qV6gOPWHA2sY+TDqQxG5e7hTW0Y2qmcrt8l6AW8bCyQ
- 8lrfgciJDMNHtJAwJMeX8BmrHrog9VBAaWsd
-X-Google-Smtp-Source: AGHT+IGit4rqBjqjB5lEW721eEu5ej9YfttUjMFHgwhQGd3lYX7ZIZjcNAY1sHE/3KKbphrwfOgMPw==
-X-Received: by 2002:a05:6512:3f07:b0:509:4730:9103 with SMTP id
- y7-20020a0565123f0700b0050947309103mr1056357lfa.6.1700146954257; 
- Thu, 16 Nov 2023 07:02:34 -0800 (PST)
-Received: from jheikkil-mobl1.. ([2001:998:22:0:a48a:cde7:e984:4fbc])
- by smtp.gmail.com with ESMTPSA id
- c27-20020ac25f7b000000b00500b561285bsm18055lfc.292.2023.11.16.07.02.33
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Thu, 16 Nov 2023 07:02:33 -0800 (PST)
-From: Juha-Pekka Heikkila <juhapekka.heikkila@gmail.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Thu, 16 Nov 2023 17:02:25 +0200
-Message-Id: <20231116150225.204233-3-juhapekka.heikkila@gmail.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20231116150225.204233-1-juhapekka.heikkila@gmail.com>
-References: <20231116150225.204233-1-juhapekka.heikkila@gmail.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 60AA410E61E;
+ Thu, 16 Nov 2023 15:21:31 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 55393A0078;
+ Thu, 16 Nov 2023 15:21:31 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============8372816935935858175=="
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH 3/3] drm/i915/display: In intel_framebuffer_init
- switch to use intel_bo_to_drm_bo
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Stanislav Lisovskiy" <stanislav.lisovskiy@intel.com>
+Date: Thu, 16 Nov 2023 15:21:31 -0000
+Message-ID: <170014809134.3094.6380175694024001213@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20231116103704.11353-1-stanislav.lisovskiy@intel.com>
+In-Reply-To: <20231116103704.11353-1-stanislav.lisovskiy@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
+ =?utf-8?q?/i915=3A_Add_bigjoiner_force_enable_option_to_debugfs_=28rev6?=
+ =?utf-8?q?=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -75,32 +41,220 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-We are preparing for Xe driver. I915 and Xe object implementation are
-differing. Use intel_bo_to_drm_bo instead of &obj->base.
+--===============8372816935935858175==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Signed-off-by: Juha-Pekka Heikkila <juhapekka.heikkila@gmail.com>
-Reviewed-by: Jouni Högander <jouni.hogander@intel.com>
-Reviewed-by: Uma Shankar <uma.shankar@intel.com>
----
- drivers/gpu/drm/i915/display/intel_fb.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+== Series Details ==
 
-diff --git a/drivers/gpu/drm/i915/display/intel_fb.c b/drivers/gpu/drm/i915/display/intel_fb.c
-index c1777ea35761..6d48aa3af95a 100644
---- a/drivers/gpu/drm/i915/display/intel_fb.c
-+++ b/drivers/gpu/drm/i915/display/intel_fb.c
-@@ -2093,7 +2093,7 @@ int intel_framebuffer_init(struct intel_framebuffer *intel_fb,
- 			}
- 		}
- 
--		fb->obj[i] = &obj->base;
-+		fb->obj[i] = intel_bo_to_drm_bo(obj);
- 	}
- 
- 	ret = intel_fill_fb_info(dev_priv, intel_fb);
--- 
-2.25.1
+Series: drm/i915: Add bigjoiner force enable option to debugfs (rev6)
+URL   : https://patchwork.freedesktop.org/series/124730/
+State : success
 
+== Summary ==
+
+CI Bug Log - changes from CI_DRM_13884 -> Patchwork_124730v6
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_124730v6/index.html
+
+Participating hosts (39 -> 35)
+------------------------------
+
+  Additional (1): fi-kbl-soraka 
+  Missing    (5): bat-dg2-8 fi-snb-2520m fi-hsw-4770 fi-pnv-d510 bat-jsl-1 
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_124730v6 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@gem_huc_copy@huc-copy:
+    - fi-kbl-soraka:      NOTRUN -> [SKIP][1] ([fdo#109271] / [i915#2190])
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_124730v6/fi-kbl-soraka/igt@gem_huc_copy@huc-copy.html
+
+  * igt@gem_lmem_swapping@basic:
+    - fi-kbl-soraka:      NOTRUN -> [SKIP][2] ([fdo#109271] / [i915#4613]) +3 other tests skip
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_124730v6/fi-kbl-soraka/igt@gem_lmem_swapping@basic.html
+
+  * igt@i915_selftest@live@gt_pm:
+    - fi-kbl-soraka:      NOTRUN -> [DMESG-FAIL][3] ([i915#1886])
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_124730v6/fi-kbl-soraka/igt@i915_selftest@live@gt_pm.html
+
+  * igt@i915_suspend@basic-s3-without-i915:
+    - bat-rpls-1:         [PASS][4] -> [ABORT][5] ([i915#7978] / [i915#9631])
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13884/bat-rpls-1/igt@i915_suspend@basic-s3-without-i915.html
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_124730v6/bat-rpls-1/igt@i915_suspend@basic-s3-without-i915.html
+
+  * igt@kms_dsc@dsc-basic:
+    - fi-kbl-soraka:      NOTRUN -> [SKIP][6] ([fdo#109271]) +9 other tests skip
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_124730v6/fi-kbl-soraka/igt@kms_dsc@dsc-basic.html
+
+  
+#### Possible fixes ####
+
+  * igt@i915_selftest@live@gt_heartbeat:
+    - fi-apl-guc:         [DMESG-FAIL][7] ([i915#5334]) -> [PASS][8]
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13884/fi-apl-guc/igt@i915_selftest@live@gt_heartbeat.html
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_124730v6/fi-apl-guc/igt@i915_selftest@live@gt_heartbeat.html
+
+  * igt@kms_pipe_crc_basic@read-crc-frame-sequence@pipe-d-edp-1:
+    - bat-rplp-1:         [ABORT][9] ([i915#8668]) -> [PASS][10]
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13884/bat-rplp-1/igt@kms_pipe_crc_basic@read-crc-frame-sequence@pipe-d-edp-1.html
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_124730v6/bat-rplp-1/igt@kms_pipe_crc_basic@read-crc-frame-sequence@pipe-d-edp-1.html
+
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
+  [i915#1886]: https://gitlab.freedesktop.org/drm/intel/issues/1886
+  [i915#2190]: https://gitlab.freedesktop.org/drm/intel/issues/2190
+  [i915#4613]: https://gitlab.freedesktop.org/drm/intel/issues/4613
+  [i915#5334]: https://gitlab.freedesktop.org/drm/intel/issues/5334
+  [i915#7978]: https://gitlab.freedesktop.org/drm/intel/issues/7978
+  [i915#8668]: https://gitlab.freedesktop.org/drm/intel/issues/8668
+  [i915#9631]: https://gitlab.freedesktop.org/drm/intel/issues/9631
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_13884 -> Patchwork_124730v6
+
+  CI-20190529: 20190529
+  CI_DRM_13884: 9739fd04dfe62f6b46eb8f6af604decabb45a87b @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_7590: c484e1422184a3183d11f1595e53a6715574520f @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  Patchwork_124730v6: 9739fd04dfe62f6b46eb8f6af604decabb45a87b @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+### Linux commits
+
+24255c88cb63 drm/i915: Add bigjoiner force enable option to debugfs
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_124730v6/index.html
+
+--===============8372816935935858175==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/i915: Add bigjoiner force enable option to debugfs (rev6)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/124730/">https://patchwork.freedesktop.org/series/124730/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_124730v6/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_124730v6/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_13884 -&gt; Patchwork_124730v6</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_124730v6/index.html</p>
+<h2>Participating hosts (39 -&gt; 35)</h2>
+<p>Additional (1): fi-kbl-soraka <br />
+  Missing    (5): bat-dg2-8 fi-snb-2520m fi-hsw-4770 fi-pnv-d510 bat-jsl-1 </p>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_124730v6 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@gem_huc_copy@huc-copy:</p>
+<ul>
+<li>fi-kbl-soraka:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_124730v6/fi-kbl-soraka/igt@gem_huc_copy@huc-copy.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/2190">i915#2190</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@gem_lmem_swapping@basic:</p>
+<ul>
+<li>fi-kbl-soraka:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_124730v6/fi-kbl-soraka/igt@gem_lmem_swapping@basic.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/4613">i915#4613</a>) +3 other tests skip</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@gt_pm:</p>
+<ul>
+<li>fi-kbl-soraka:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_124730v6/fi-kbl-soraka/igt@i915_selftest@live@gt_pm.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1886">i915#1886</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_suspend@basic-s3-without-i915:</p>
+<ul>
+<li>bat-rpls-1:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13884/bat-rpls-1/igt@i915_suspend@basic-s3-without-i915.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_124730v6/bat-rpls-1/igt@i915_suspend@basic-s3-without-i915.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/7978">i915#7978</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/9631">i915#9631</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_dsc@dsc-basic:</p>
+<ul>
+<li>fi-kbl-soraka:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_124730v6/fi-kbl-soraka/igt@kms_dsc@dsc-basic.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +9 other tests skip</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>
+<p>igt@i915_selftest@live@gt_heartbeat:</p>
+<ul>
+<li>fi-apl-guc:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13884/fi-apl-guc/igt@i915_selftest@live@gt_heartbeat.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/5334">i915#5334</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_124730v6/fi-apl-guc/igt@i915_selftest@live@gt_heartbeat.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@kms_pipe_crc_basic@read-crc-frame-sequence@pipe-d-edp-1:</p>
+<ul>
+<li>bat-rplp-1:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13884/bat-rplp-1/igt@kms_pipe_crc_basic@read-crc-frame-sequence@pipe-d-edp-1.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/8668">i915#8668</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_124730v6/bat-rplp-1/igt@kms_pipe_crc_basic@read-crc-frame-sequence@pipe-d-edp-1.html">PASS</a></li>
+</ul>
+</li>
+</ul>
+<p>{name}: This element is suppressed. This means it is ignored when computing<br />
+          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_13884 -&gt; Patchwork_124730v6</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_13884: 9739fd04dfe62f6b46eb8f6af604decabb45a87b @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_7590: c484e1422184a3183d11f1595e53a6715574520f @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  Patchwork_124730v6: 9739fd04dfe62f6b46eb8f6af604decabb45a87b @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+<h3>Linux commits</h3>
+<p>24255c88cb63 drm/i915: Add bigjoiner force enable option to debugfs</p>
+
+</body>
+</html>
+
+--===============8372816935935858175==--
