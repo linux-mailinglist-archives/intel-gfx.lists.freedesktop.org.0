@@ -1,66 +1,64 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id EB2317EDCA4
-	for <lists+intel-gfx@lfdr.de>; Thu, 16 Nov 2023 09:11:54 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 74D8E7EDCD8
+	for <lists+intel-gfx@lfdr.de>; Thu, 16 Nov 2023 09:28:08 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5168810E2A7;
-	Thu, 16 Nov 2023 08:11:51 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CD2A110E099;
+	Thu, 16 Nov 2023 08:28:05 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from us-smtp-delivery-124.mimecast.com
- (us-smtp-delivery-124.mimecast.com [170.10.129.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0BE0310E243
- for <intel-gfx@lists.freedesktop.org>; Thu, 16 Nov 2023 08:11:48 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1700122308;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- in-reply-to:in-reply-to:references:references;
- bh=QdxgmAIHvXZQQ6jHVUpXaSiCgu9Ax2tLuylEkXqKU7s=;
- b=LPDCrJ/NnJm4tqE1HYwvabQ4pWdMxYeC8IqWY3ic2r/cnvpJxzOwjo0Nu2TKdez7KgWtUy
- tccFBxBsNfbFD/0rJ2cgDzfP/I1OAoC6nx1KjVWo9ZZ9EWRBsaE8fjdG9oTbRS7hzq6R4+
- X29m5+g2uPbTbV+rvwQGZpXNKWFkqP8=
-Received: from mail-wm1-f69.google.com (mail-wm1-f69.google.com
- [209.85.128.69]) by relay.mimecast.com with ESMTP with STARTTLS
- (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
- us-mta-193-allgV3iwPcqtwi_y-8tj4Q-1; Thu, 16 Nov 2023 03:11:46 -0500
-X-MC-Unique: allgV3iwPcqtwi_y-8tj4Q-1
-Received: by mail-wm1-f69.google.com with SMTP id
- 5b1f17b1804b1-40a5290de84so2988235e9.0
- for <intel-gfx@lists.freedesktop.org>; Thu, 16 Nov 2023 00:11:45 -0800 (PST)
+Received: from mail-wr1-x431.google.com (mail-wr1-x431.google.com
+ [IPv6:2a00:1450:4864:20::431])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8B9BE10E099
+ for <intel-gfx@lists.freedesktop.org>; Thu, 16 Nov 2023 08:28:03 +0000 (UTC)
+Received: by mail-wr1-x431.google.com with SMTP id
+ ffacd0b85a97d-32da4180ca2so145404f8f.1
+ for <intel-gfx@lists.freedesktop.org>; Thu, 16 Nov 2023 00:28:03 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=ffwll.ch; s=google; t=1700123282; x=1700728082; darn=lists.freedesktop.org; 
+ h=in-reply-to:content-disposition:mime-version:references
+ :mail-followup-to:message-id:subject:cc:to:from:date:from:to:cc
+ :subject:date:message-id:reply-to;
+ bh=HoR8YFv2MRX2a6fvRuNrZzhShp2SKZc+/FizpnyYo48=;
+ b=XAjjTBnO07lllD42MnIBZtU8Nvz+rPwvgtLunR4p2z2YmEvKeVXLPY+yoCt97CSL9+
+ XCB74760nEI1zrWFiuIKz2GDkvKZMW0oIUg+7d6wXBoqq9hIzMv1/jpQMo+sIvXykDwL
+ XZOpe7vahtU4emPvOF09T1K13nU8IbFLrs/WU=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1700122305; x=1700727105;
- h=in-reply-to:content-disposition:mime-version:references:message-id
- :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
- :message-id:reply-to;
- bh=QdxgmAIHvXZQQ6jHVUpXaSiCgu9Ax2tLuylEkXqKU7s=;
- b=dCU0dL4POZBmFnvEEqn+t/Jrzj+j1w1vEmBhG5K+86jArF5icqF9OEgbUlajMq1juw
- 8gHOPSHeHJR0xbR/U/YrXyfVwonOmWHTvfZuEWhsXNkyTKBXagluK5TuqNSU9fNoCtLD
- GePqG8wPbmJziwt9DOVp5SH1b4gDD4wO31h208QFz+ZnNatwjPG4iagGuojHiSwzTPpE
- sUcMkjmR2jWy8t1NKj06QHAD0Bx4w6oiIY+qjOL/7dkfYcg3S3TdyiMBvlZty+izDyCk
- NfUPX3xXBPkHDkyTAXmByISpaqpuI8asn/l/knaJBcYPuu6Zx6kb0he+E/FV0stKpscY
- /s5w==
-X-Gm-Message-State: AOJu0YzTSt3PatBBV65bbi1N1Wpd7kNtdVN+4Hic5fwcJ3t97RmcWRGU
- KHKgY3nzQbPJ/XjQQjzjHjDUiIq9hbOsaU/DKGs6O6J7H43vcYdwlEt8LJ5KtkT/k1+VnueRLLB
- +QLWDnCrH/zOK9jYC2wE5N38je51W
-X-Received: by 2002:a05:600c:c14:b0:409:51c2:1192 with SMTP id
- fm20-20020a05600c0c1400b0040951c21192mr11997535wmb.38.1700122305002; 
- Thu, 16 Nov 2023 00:11:45 -0800 (PST)
-X-Google-Smtp-Source: AGHT+IGFArIjVMDUnueoI1XD+Bo6xsKtSuttRwG0IUwtvvb5tgUEIqUlUQnkr13VMXQfIq5mmPwWJw==
-X-Received: by 2002:a05:600c:c14:b0:409:51c2:1192 with SMTP id
- fm20-20020a05600c0c1400b0040951c21192mr11997506wmb.38.1700122304611; 
- Thu, 16 Nov 2023 00:11:44 -0800 (PST)
-Received: from localhost ([2a01:e0a:b25:f902::ff])
+ d=1e100.net; s=20230601; t=1700123282; x=1700728082;
+ h=in-reply-to:content-disposition:mime-version:references
+ :mail-followup-to:message-id:subject:cc:to:from:date
+ :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+ bh=HoR8YFv2MRX2a6fvRuNrZzhShp2SKZc+/FizpnyYo48=;
+ b=XFrzTEVgwLkzuPsBjmXFZAqx2ryWGVWDqjKg+yog14xoyG70MnBS+RlSpXJ/mnkbu1
+ IC8uNy8tpEfpPHWi493NJqaRwFX5oqdsprzm3z267WuiPkuFkju+fNIUgMWMgkhN59iJ
+ DEXH3GE232eAAg5u2xuf66JJdhOZ95/ZMW85OM6OnznaunQMPCHXgYSZRvWqAiTQ4gDG
+ jNLdSZRFaHFh98QV52AlPmCQpjuRqbuVKm0fcz88YVhU385MNktwjP7gjLWiPOPyAvl3
+ LbhHNJthxlGeBH3uijR+POD2HyZrPvTjFgzFJEAQhSnJyfZk11yZoNdjA0f/IhFTyEt9
+ ZQ3g==
+X-Gm-Message-State: AOJu0YzcTAwgaIQ2j2PIbkZlYw7ZPS5RV2xx/qLU6FXSxEfASaH6EWlB
+ spx5N5jKJDlfvwe9HoOdbWIFxczjrYLkAeLsthM=
+X-Google-Smtp-Source: AGHT+IFWJ7X36hbELNZsu2Qoy7W883Jbwkj5/xgqtPBcjfnu1qrR6mv1JUwfPmOD8HEOYxyeIbfYIw==
+X-Received: by 2002:a5d:6d85:0:b0:32d:c217:8307 with SMTP id
+ l5-20020a5d6d85000000b0032dc2178307mr5571891wrs.5.1700123281310; 
+ Thu, 16 Nov 2023 00:28:01 -0800 (PST)
+Received: from phenom.ffwll.local ([2a02:168:57f4:0:efd0:b9e5:5ae6:c2fa])
  by smtp.gmail.com with ESMTPSA id
- o22-20020a05600c4fd600b004064741f855sm2504399wmq.47.2023.11.16.00.11.44
+ j30-20020adfb31e000000b003197869bcd7sm12910569wrd.13.2023.11.16.00.28.00
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Thu, 16 Nov 2023 00:11:44 -0800 (PST)
-Date: Thu, 16 Nov 2023 09:11:43 +0100
-From: Maxime Ripard <mripard@redhat.com>
-To: Luben Tuikov <ltuikov89@gmail.com>
-Message-ID: <73cg637ax5cahqocscx5cjvtqkwlt4ves6cxgprbwqllasxq6v@gk6vzsqfc46j>
+ Thu, 16 Nov 2023 00:28:00 -0800 (PST)
+Date: Thu, 16 Nov 2023 09:27:58 +0100
+From: Daniel Vetter <daniel@ffwll.ch>
+To: Maxime Ripard <mripard@redhat.com>
+Message-ID: <ZVXSjt_1uWHuYXsq@phenom.ffwll.local>
+Mail-Followup-To: Maxime Ripard <mripard@redhat.com>,
+ Luben Tuikov <ltuikov89@gmail.com>,
+ Stephen Rothwell <sfr@canb.auug.org.au>,
+ Intel Graphics <intel-gfx@lists.freedesktop.org>,
+ DRI <dri-devel@lists.freedesktop.org>,
+ Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+ Linux Next Mailing List <linux-next@vger.kernel.org>
 References: <20231114075501.61321c29@canb.auug.org.au>
  <19740d41-dd5a-47e4-b3e8-539b45bbd3e5@gmail.com>
  <3c306310-04b3-4658-a197-4b2d22a88274@gmail.com>
@@ -68,11 +66,12 @@ References: <20231114075501.61321c29@canb.auug.org.au>
  <530b6100-4f4e-4b3d-8fea-5b316e989633@gmail.com>
  <20231114140855.0b259b2d@canb.auug.org.au>
  <f1b21cbd-5bb6-4030-ae7d-a0ca2fbc76a9@gmail.com>
+ <73cg637ax5cahqocscx5cjvtqkwlt4ves6cxgprbwqllasxq6v@gk6vzsqfc46j>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
- protocol="application/pgp-signature"; boundary="7hqxyzpgktklwnyb"
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <f1b21cbd-5bb6-4030-ae7d-a0ca2fbc76a9@gmail.com>
+In-Reply-To: <73cg637ax5cahqocscx5cjvtqkwlt4ves6cxgprbwqllasxq6v@gk6vzsqfc46j>
+X-Operating-System: Linux phenom 6.5.0-4-amd64 
 Subject: Re: [Intel-gfx] linux-next: Signed-off-by missing for commit in the
  drm-misc tree
 X-BeenThere: intel-gfx@lists.freedesktop.org
@@ -87,7 +86,7 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Stephen Rothwell <sfr@canb.auug.org.au>,
+Cc: Stephen Rothwell <sfr@canb.auug.org.au>, Luben Tuikov <ltuikov89@gmail.com>,
  Daniel Vetter <daniel.vetter@ffwll.ch>,
  Intel Graphics <intel-gfx@lists.freedesktop.org>,
  Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
@@ -96,52 +95,67 @@ Cc: Stephen Rothwell <sfr@canb.auug.org.au>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+On Thu, Nov 16, 2023 at 09:11:43AM +0100, Maxime Ripard wrote:
+> On Tue, Nov 14, 2023 at 06:46:21PM -0500, Luben Tuikov wrote:
+> > On 2023-11-13 22:08, Stephen Rothwell wrote:
+> > > BTW, cherry picking commits does not avoid conflicts - in fact it can
+> > > cause conflicts if there are further changes to the files affected by
+> > > the cherry picked commit in either the tree/branch the commit was
+> > > cheery picked from or the destination tree/branch (I have to deal with
+> > > these all the time when merging the drm trees in linux-next).  Much
+> > > better is to cross merge the branches so that the patch only appears
+> > > once or have a shared branches that are merged by any other branch that
+> > > needs the changes.
+> > > 
+> > > I understand that things are not done like this in the drm trees :-(
+> > 
+> > Hi Stephen,
+> > 
+> > Thank you for the clarification--understood. I'll be more careful in the future.
+> > Thanks again! :-)
+> 
+> In this case, the best thing to do would indeed have been to ask the
+> drm-misc maintainers to merge drm-misc-fixes into drm-misc-next.
+> 
+> We're doing that all the time, but we're not ubiquitous so you need to
+> ask us :)
+> 
+> Also, dim should have caught that when you pushed the branch. Did you
+> use it?
 
---7hqxyzpgktklwnyb
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Yeah dim must be used, exactly to avoid these issues. Both for applying
+patches (so not git am directly, or cherry-picking from your own
+development branch), and for pushing. The latter is even checked for by
+the server (dim sets a special push flag which is very long and contains a
+very clear warning if you bypass it).
 
-On Tue, Nov 14, 2023 at 06:46:21PM -0500, Luben Tuikov wrote:
-> On 2023-11-13 22:08, Stephen Rothwell wrote:
-> > BTW, cherry picking commits does not avoid conflicts - in fact it can
-> > cause conflicts if there are further changes to the files affected by
-> > the cherry picked commit in either the tree/branch the commit was
-> > cheery picked from or the destination tree/branch (I have to deal with
-> > these all the time when merging the drm trees in linux-next).  Much
-> > better is to cross merge the branches so that the patch only appears
-> > once or have a shared branches that are merged by any other branch that
-> > needs the changes.
-> >=20
-> > I understand that things are not done like this in the drm trees :-(
->=20
-> Hi Stephen,
->=20
-> Thank you for the clarification--understood. I'll be more careful in the =
-future.
-> Thanks again! :-)
+If dim was used, this would be a bug in the dim script that we need to
+fix.
 
-In this case, the best thing to do would indeed have been to ask the
-drm-misc maintainers to merge drm-misc-fixes into drm-misc-next.
+Also backmerges (and in generally anything that is about cross-tree patch
+wrangling, like cherry-picking) are maintainer duties in drm-misc and not
+for committers:
 
-We're doing that all the time, but we're not ubiquitous so you need to
-ask us :)
+https://drm.pages.freedesktop.org/maintainer-tools/maintainer-drm-misc.html#maintainer-s-duties
 
-Also, dim should have caught that when you pushed the branch. Did you
-use it?
+I think it'd be really good for Luben to go through the docs and supply a
+patch to clarify this, if it's not clear from the existing docs.
 
-Maxime
+We have some wording in the committer docs, but maybe it's not clear
+enough:
 
---7hqxyzpgktklwnyb
-Content-Type: application/pgp-signature; name="signature.asc"
+https://drm.pages.freedesktop.org/maintainer-tools/committer-drm-misc.html#merge-criteria
 
------BEGIN PGP SIGNATURE-----
+"Any non-linear actions (backmerges, merging topic branches and sending
+out pull requests) are only done by the official drm-misc maintainers (see
+MAINTAINERS, or ask #dri-devel), and not by committers. See the examples
+section in dim for more info"
 
-iHUEABYKAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCZVXOvwAKCRDj7w1vZxhR
-xSpoAP9R6u/FDuWma6CxU5HZBYqMkt5dLAFaBh09JkKgEgODsQEA+ff+2mfWZWks
-JIa2770u4xDDPwvd4rX6nTK1ILbicQk=
-=OXab
------END PGP SIGNATURE-----
+Minor screw-ups like this gives us a great opportunity to improve the
+tooling&docs, let's use it.
 
---7hqxyzpgktklwnyb--
-
+Cheers, Sima
+-- 
+Daniel Vetter
+Software Engineer, Intel Corporation
+http://blog.ffwll.ch
