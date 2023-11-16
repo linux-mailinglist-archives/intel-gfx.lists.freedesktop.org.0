@@ -2,50 +2,50 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 796E97EE15F
-	for <lists+intel-gfx@lfdr.de>; Thu, 16 Nov 2023 14:19:04 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 392C87EE165
+	for <lists+intel-gfx@lfdr.de>; Thu, 16 Nov 2023 14:19:08 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7746110E5E7;
-	Thu, 16 Nov 2023 13:18:58 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 56BBD10E5ED;
+	Thu, 16 Nov 2023 13:19:01 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E8A7C10E5E6
- for <intel-gfx@lists.freedesktop.org>; Thu, 16 Nov 2023 13:18:56 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3DDF610E5E6
+ for <intel-gfx@lists.freedesktop.org>; Thu, 16 Nov 2023 13:18:58 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1700140736; x=1731676736;
+ t=1700140738; x=1731676738;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=Zcpd0Pofl6bYKgkjg5ll2Em7uUMT6yg6yiZlrtFP9EE=;
- b=BIbImlqiKehOA/gQHhh+2W/gCTwL/JpTlRIRepjex6RsriFU+n9tgik5
- b1kE1pCUB5MfewH6Ex6u6/JfaFzWdZq6lXpTlziqz36So4v+WUi9yvxf7
- h4TP3A2MDtAahCGQmjy+MbvxAWj/FdSix0UfIOOW8QTOURrEs+x3cVifj
- LoIMKsGQFAJwMO/NSAJjP1tfDLudyKIFTWmpNUAxawnZO5/ATtgsQu4hk
- 6+MbmeboPDFBJ7l/yxtbLCvdJFHQFb9xNubk0MdZXkb0eqMBa379YJSGu
- EVU2JrVjvpMojeMvY4UURYYF/+T+/37vbVsKdmWYVoyAqOtZzGvOEmbH8 Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10895"; a="422177183"
-X-IronPort-AV: E=Sophos;i="6.04,308,1695711600"; d="scan'208";a="422177183"
+ bh=IRc4p+jRwfxZroxJSn/irAL2vcaomMYpak79qT8Hwck=;
+ b=hOLtGqTjP6s5n7Jq7nfxXO8H+yNkGovtQJJypiuXzp6Hib+53lcr0InN
+ rnEy8SO28za237X+Ap61sLFzLvyU4E0qjE7JmD1Japk0D3jj57hiEyS+q
+ l6xifVDjxZ8kCcAP9bL4z0MjBeLos22fcpXXr6wJFhjSzBAz08KNyu76D
+ w8pCXYeCkiRWFpaq/6sV/psHFcS6zyuhAzKgZGOhcYYK/dAMTOTlw6ZMI
+ ZAWXcv1VuHB/03LB85dyzlfLOXNo1U3X2rpJBU2O+2z74gwkf5L/rTAX3
+ mzIaJx5rGnUJZkI+1dNQos8LcH/YRDfkNsxyMX+WukIZEu7vMD9fqdMjL A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10895"; a="422177188"
+X-IronPort-AV: E=Sophos;i="6.04,308,1695711600"; d="scan'208";a="422177188"
 Received: from orsmga005.jf.intel.com ([10.7.209.41])
  by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Nov 2023 05:18:56 -0800
+ 16 Nov 2023 05:18:57 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10895"; a="938834367"
-X-IronPort-AV: E=Sophos;i="6.04,308,1695711600"; d="scan'208";a="938834367"
+X-IronPort-AV: E=McAfee;i="6600,9927,10895"; a="938834370"
+X-IronPort-AV: E=Sophos;i="6.04,308,1695711600"; d="scan'208";a="938834370"
 Received: from ideak-desk.fi.intel.com ([10.237.72.78])
  by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Nov 2023 05:18:55 -0800
+ 16 Nov 2023 05:18:56 -0800
 From: Imre Deak <imre.deak@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Thu, 16 Nov 2023 15:18:40 +0200
-Message-Id: <20231116131841.1588781-11-imre.deak@intel.com>
+Date: Thu, 16 Nov 2023 15:18:41 +0200
+Message-Id: <20231116131841.1588781-12-imre.deak@intel.com>
 X-Mailer: git-send-email 2.39.2
 In-Reply-To: <20231116131841.1588781-1-imre.deak@intel.com>
 References: <20231116131841.1588781-1-imre.deak@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH v2 10/11] drm/i915/dp: Simplify
- intel_dp_max_data_rate()
+Subject: [Intel-gfx] [PATCH v2 11/11] drm/i915/dp: Reuse intel_dp_{max,
+ effective}_data_rate in intel_link_compute_m_n()
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,63 +61,62 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Simplify intel_dp_max_data_rate() using
-drm_dp_bw_channel_coding_efficiency() to calculate the max data rate for
-both DP1.4 and UHBR link rates. This trades a redundant multiply/divide
-for readability.
+Reuse intel_dp_max_data_rate() and intel_dp_effective_data_rate() in
+intel_link_compute_m_n(), instead of open-coding the equivalent. Note
+the kbit/sec -> kByte/sec unit change in the M/N values, but this not
+reducing the precision, as the link rate value is based anyway on a less
+precise 10 kbit/sec value.
 
-Cc: Jani Nikula <jani.nikula@linux.intel.com>
+Suggested-by: Jani Nikula <jani.nikula@linux.intel.com>
 Signed-off-by: Imre Deak <imre.deak@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_dp.c | 26 ++++++++++++-------------
- 1 file changed, 12 insertions(+), 14 deletions(-)
+ drivers/gpu/drm/i915/display/intel_display.c | 25 +++-----------------
+ 1 file changed, 3 insertions(+), 22 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
-index 209c27167e057..a93e8f6429d85 100644
---- a/drivers/gpu/drm/i915/display/intel_dp.c
-+++ b/drivers/gpu/drm/i915/display/intel_dp.c
-@@ -405,29 +405,27 @@ int intel_dp_effective_data_rate(int pixel_clock, int bpp_x16,
- int
- intel_dp_max_data_rate(int max_link_rate, int max_lanes)
- {
--	if (max_link_rate >= 1000000) {
--		/*
--		 * UHBR rates always use 128b/132b channel encoding, and have
--		 * 97.71% data bandwidth efficiency. Consider max_link_rate the
--		 * link bit rate in units of 10000 bps.
--		 */
--		int max_link_rate_kbps = max_link_rate * 10;
--
--		max_link_rate_kbps = DIV_ROUND_DOWN_ULL(mul_u32_u32(max_link_rate_kbps, 9671), 10000);
--		max_link_rate = max_link_rate_kbps / 8;
--	}
-+	int ch_coding_efficiency =
-+		drm_dp_bw_channel_coding_efficiency(drm_dp_is_uhbr_rate(max_link_rate));
-+	int max_link_rate_kbps = max_link_rate * 10;
- 
-+	/*
-+	 * UHBR rates always use 128b/132b channel encoding, and have
-+	 * 97.71% data bandwidth efficiency. Consider max_link_rate the
-+	 * link bit rate in units of 10000 bps.
-+	 */
- 	/*
- 	 * Lower than UHBR rates always use 8b/10b channel encoding, and have
- 	 * 80% data bandwidth efficiency for SST non-FEC. However, this turns
--	 * out to be a nop by coincidence, and can be skipped:
-+	 * out to be a nop by coincidence:
- 	 *
- 	 *	int max_link_rate_kbps = max_link_rate * 10;
- 	 *	max_link_rate_kbps = DIV_ROUND_DOWN_ULL(max_link_rate_kbps * 8, 10);
- 	 *	max_link_rate = max_link_rate_kbps / 8;
- 	 */
--
--	return max_link_rate * max_lanes;
-+	return DIV_ROUND_DOWN_ULL(mul_u32_u32(max_link_rate_kbps * max_lanes,
-+					      ch_coding_efficiency),
-+				  1000000 * 8);
+diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
+index 744c321792fcf..199ecd8879461 100644
+--- a/drivers/gpu/drm/i915/display/intel_display.c
++++ b/drivers/gpu/drm/i915/display/intel_display.c
+@@ -2389,36 +2389,17 @@ static void compute_m_n(u32 *ret_m, u32 *ret_n,
+ 	intel_reduce_m_n_ratio(ret_m, ret_n);
  }
  
- bool intel_dp_can_bigjoiner(struct intel_dp *intel_dp)
+-static void
+-add_bw_alloc_overhead(int link_clock, int bw_overhead,
+-		      int pixel_data_rate, int link_data_rate,
+-		      u32 *data_m, u32 *data_n)
+-{
+-	bool is_uhbr = drm_dp_is_uhbr_rate(link_clock);
+-	int ch_coding_efficiency =
+-		drm_dp_bw_channel_coding_efficiency(is_uhbr);
+-
+-	*data_m = DIV_ROUND_UP_ULL(mul_u32_u32(pixel_data_rate, bw_overhead),
+-				   1000000);
+-	*data_n = DIV_ROUND_DOWN_ULL(mul_u32_u32(link_data_rate, ch_coding_efficiency),
+-				     1000000);
+-}
+-
+ void
+ intel_link_compute_m_n(u16 bits_per_pixel_x16, int nlanes,
+ 		       int pixel_clock, int link_clock,
+ 		       int bw_overhead,
+ 		       struct intel_link_m_n *m_n)
+ {
+-	u32 data_clock = DIV_ROUND_UP(bits_per_pixel_x16 * pixel_clock, 16);
+ 	u32 link_symbol_clock = intel_dp_link_symbol_clock(link_clock);
+-	u32 data_m;
+-	u32 data_n;
++	u32 data_m = intel_dp_effective_data_rate(pixel_clock, bits_per_pixel_x16,
++						  bw_overhead);
++	u32 data_n = intel_dp_max_data_rate(link_clock, nlanes);
+ 
+-	add_bw_alloc_overhead(link_clock, bw_overhead,
+-			      data_clock,
+-			      link_clock * 10 * nlanes,
+-			      &data_m, &data_n);
+ 	/*
+ 	 * Windows/BIOS uses fixed M/N values always. Follow suit.
+ 	 *
 -- 
 2.39.2
 
