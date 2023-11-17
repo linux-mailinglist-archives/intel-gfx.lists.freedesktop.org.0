@@ -2,33 +2,56 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id A79A57EF8F1
-	for <lists+intel-gfx@lfdr.de>; Fri, 17 Nov 2023 21:59:02 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id E26457EF924
+	for <lists+intel-gfx@lfdr.de>; Fri, 17 Nov 2023 22:06:07 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2F45710E0BF;
-	Fri, 17 Nov 2023 20:59:01 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1927510E31A;
+	Fri, 17 Nov 2023 21:06:05 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 82F7510E0BF;
- Fri, 17 Nov 2023 20:58:59 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 7C896AADEF;
- Fri, 17 Nov 2023 20:58:59 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.151])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8EECB10E31A;
+ Fri, 17 Nov 2023 21:06:02 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1700255162; x=1731791162;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:in-reply-to;
+ bh=aT2WVaBK/OG0nienKZxPLkMpvLciTyV3MOhYksMFC+c=;
+ b=AkPGj9Sbz7mdYrI+zeLq6Ws6Xdrc3mvMoECObTWcVKANDIOxF9Of+R6d
+ 2rT5k5SigzfdE9XxvlUBfDwjBlixkr9ybMNggv0z2vLUrzy3tulcLBuIV
+ W8NBEzjBrLp4eq9UUrJdAZrfQ61N4HoeNmzC4Z8hgcO6i/f26fKGAvKjc
+ M+h7uXgibC0v7UKDlWfuLcqR14X32xRNa0wMV59P1Pu74S7rZlJ0JaQ58
+ OFp2SNdMEdgJ/xbyivZl7omNlSVx3PxlRBUeBKuxaIUQIEh23JzwGjGje
+ xStGupoW3/qx+pfovCikvtEz1wxyCd3tob8mTqkSYDK1Ilo4MZ0wi91Jy g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10897"; a="371546987"
+X-IronPort-AV: E=Sophos;i="6.04,206,1695711600"; d="scan'208";a="371546987"
+Received: from orsmga006.jf.intel.com ([10.7.209.51])
+ by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 17 Nov 2023 13:06:00 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10897"; a="742187505"
+X-IronPort-AV: E=Sophos;i="6.04,206,1695711600"; d="scan'208";a="742187505"
+Received: from smile.fi.intel.com ([10.237.72.54])
+ by orsmga006.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 17 Nov 2023 13:05:57 -0800
+Received: from andy by smile.fi.intel.com with local (Exim 4.97)
+ (envelope-from <andriy.shevchenko@linux.intel.com>)
+ id 1r462E-0000000Eu2D-0uzm; Fri, 17 Nov 2023 23:05:54 +0200
+Date: Fri, 17 Nov 2023 23:05:53 +0200
+From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+To: Jani Nikula <jani.nikula@intel.com>
+Message-ID: <ZVfVsVDQ9j7nMsnW@smile.fi.intel.com>
+References: <20231103201831.1037416-1-andriy.shevchenko@linux.intel.com>
+ <e66638b0-bbad-4ac7-ad93-6fb0c6147005@redhat.com>
+ <871qcqqa1k.fsf@intel.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Ville Syrjala" <ville.syrjala@linux.intel.com>
-Date: Fri, 17 Nov 2023 20:58:59 -0000
-Message-ID: <170025473950.7875.2507153690185944968@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20231117171833.25816-1-ville.syrjala@linux.intel.com>
-In-Reply-To: <20231117171833.25816-1-ville.syrjala@linux.intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
- =?utf-8?q?for_series_starting_with_=5B1/3=5D_drm/i915/fbc=3A_Split_plane_?=
- =?utf-8?q?size_vs=2E_surface_size_checks_apart?=
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <871qcqqa1k.fsf@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+Subject: Re: [Intel-gfx] [rft,
+ PATCH v4 00/16] drm/i915/dsi: 4th attempt to get rid of IOSF GPIO
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -41,27 +64,41 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+ dri-devel@lists.freedesktop.org, Hans de Goede <hdegoede@redhat.com>,
+ Daniel Vetter <daniel@ffwll.ch>, Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ David Airlie <airlied@gmail.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+On Thu, Nov 16, 2023 at 12:15:03PM +0200, Jani Nikula wrote:
+> On Thu, 16 Nov 2023, Hans de Goede <hdegoede@redhat.com> wrote:
+> > Ok, this now has been testen on both a BYT and a CHT device which
+> > actually use GPIO controls in their MIPI sequences so this
+> > series is:
+> >
+> > Tested-by: Hans de Goede <hdegoede@redhat.com>
+> >
+> > And the code of the entire series also looks good to me:
+> >
+> > Reviewed-by: Hans de Goede <hdegoede@redhat.com>
+> >
+> > for the series.
+> 
+> Thanks Andy & Hans!
+> 
+> I'll merge this once the test results are in. The BAT results have been
+> a bit flaky recently, so needed to do a rerun.
+> 
+> That said, I'm not sure if we have any hardware in CI that would
+> actually exercise the modifications, so in that sense I trust Hans'
+> testing much more.
 
-Series: series starting with [1/3] drm/i915/fbc: Split plane size vs. surface size checks apart
-URL   : https://patchwork.freedesktop.org/series/126594/
-State : warning
+Thank you!
+Should I fix checkpatch warnings CI reported about?
 
-== Summary ==
-
-Error: dim checkpatch failed
-fb15693f91d5 drm/i915/fbc: Split plane size vs. surface size checks apart
-7d9c4bb29a29 drm/i915/fbc: Bump max surface size to 8kx4k on icl+
-b860e6f6341c drm/i915/fbc: Bump ivb FBC max surface size to 4kx4k
--:10: WARNING:COMMIT_LOG_LONG_LINE: Prefer a maximum 75 chars per line (possible unwrapped commit description?)
-#10: 
-"Frame Buffer Compression is only supported with memory surfaces of 4096 lines
-
-total: 0 errors, 1 warnings, 0 checks, 8 lines checked
+-- 
+With Best Regards,
+Andy Shevchenko
 
 
