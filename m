@@ -1,53 +1,53 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id C6E027EF6E0
-	for <lists+intel-gfx@lfdr.de>; Fri, 17 Nov 2023 18:18:43 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3752F7EF6E1
+	for <lists+intel-gfx@lfdr.de>; Fri, 17 Nov 2023 18:18:46 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2BD1310E304;
-	Fri, 17 Nov 2023 17:18:41 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9730610E307;
+	Fri, 17 Nov 2023 17:18:44 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4FFC210E304
- for <intel-gfx@lists.freedesktop.org>; Fri, 17 Nov 2023 17:18:39 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8881310E307
+ for <intel-gfx@lists.freedesktop.org>; Fri, 17 Nov 2023 17:18:42 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1700241519; x=1731777519;
+ t=1700241522; x=1731777522;
  h=from:to:subject:date:message-id:in-reply-to:references:
  mime-version:content-transfer-encoding;
- bh=MiMETA8HdxTg+wLYy/746siWrI6LutuvEChIzlILR/w=;
- b=FfZ+KdNrhxjQcIetZljfJezQhubyRoegvbjrjEb3OMIVmG8OKEHAGamd
- 1jKRp9yzIE9MCc78In1Cb/hiLonZdWv5ED6wt9G8XQnG3EcWWCF1wc0gj
- GY0VbXcFQ7r4TjE8QBu6z94yAUOk09kDpwhqJ4YHwV6aRCj96eLq+X0Nj
- 9N6FS4A0on0+jbCzAqgQHil/W4gvr8WjPJD+nwmgeHMsSh9QKCMsITUpN
- DY26V+ZyHlkabjI1IUIE9FxdqqtO0nG1ohwYuIf81FlR3oUXpHdxmJrWP
- EIhuePbmnlhsSnswllhpD+xU3gqLExTEL/iOQ9znfDijyqyHUhjub1xK3 w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10897"; a="422428575"
-X-IronPort-AV: E=Sophos;i="6.04,206,1695711600"; d="scan'208";a="422428575"
+ bh=4Efv1LYaYC8bmtKnCehiDmDn7hopzAW2YJ2AA9mHQpk=;
+ b=Qt9RaUBVbKxGkgojmSk113/DC2Yc2zInQCNKa+T8AwPOZXbbxAHy+nI0
+ 1kYMR/TXDSzpbgOxa/yZl8Wjviv2JFrd5esQ+oDQkDRd6VWZN+82B7q0k
+ hC6NVqX3WL+pwOTMsPcsuNNs+AxswIwKPChcClAdxJqpFV6CHzsGhJJ49
+ 99hii8C6SP0VIfpEXZ8NyCGJsyF2bnlznu0BOawdji9vk6RAZ6vRzC67R
+ ZBl/LjQgIrRu+TyS96FV61bECot3ENFibDGi2UoS7PLoNeBfYOlg9CB6U
+ lNSHGzNWtojLKu1pJHImk+AVXsdkZ+M2SQzSjyUWYGjUiDxYu9y0vGzbu g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10897"; a="422428580"
+X-IronPort-AV: E=Sophos;i="6.04,206,1695711600"; d="scan'208";a="422428580"
 Received: from orsmga007.jf.intel.com ([10.7.209.58])
  by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Nov 2023 09:18:39 -0800
+ 17 Nov 2023 09:18:42 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10897"; a="759225802"
-X-IronPort-AV: E=Sophos;i="6.04,206,1695711600"; d="scan'208";a="759225802"
+X-IronPort-AV: E=McAfee;i="6600,9927,10897"; a="759225804"
+X-IronPort-AV: E=Sophos;i="6.04,206,1695711600"; d="scan'208";a="759225804"
 Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.74])
- by orsmga007.jf.intel.com with SMTP; 17 Nov 2023 09:18:37 -0800
+ by orsmga007.jf.intel.com with SMTP; 17 Nov 2023 09:18:40 -0800
 Received: by stinkbox (sSMTP sendmail emulation);
- Fri, 17 Nov 2023 19:18:36 +0200
+ Fri, 17 Nov 2023 19:18:39 +0200
 From: Ville Syrjala <ville.syrjala@linux.intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Fri, 17 Nov 2023 19:18:32 +0200
-Message-ID: <20231117171833.25816-2-ville.syrjala@linux.intel.com>
+Date: Fri, 17 Nov 2023 19:18:33 +0200
+Message-ID: <20231117171833.25816-3-ville.syrjala@linux.intel.com>
 X-Mailer: git-send-email 2.41.0
 In-Reply-To: <20231117171833.25816-1-ville.syrjala@linux.intel.com>
 References: <20231117171833.25816-1-ville.syrjala@linux.intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH 2/3] drm/i915/fbc: Bump max surface size to
- 8kx4k on icl+
+Subject: [Intel-gfx] [PATCH 3/3] drm/i915/fbc: Bump ivb FBC max surface size
+ to 4kx4k
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -65,30 +65,31 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-FBC on icl+ should supposedly be fine with surface sizes up to
-8kx4k. Bump up the limit.
+IVB Bspec says:
+"Frame Buffer Compression is only supported with memory surfaces of 4096 lines
+or less and pipe source sizes of 4096 pixels by 2048 lines or less. "
+
+so seems like we should be able to bump the offset+size limit to
+at least 4kx4k. Make it so.
 
 Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_fbc.c | 5 ++++-
- 1 file changed, 4 insertions(+), 1 deletion(-)
+ drivers/gpu/drm/i915/display/intel_fbc.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
 diff --git a/drivers/gpu/drm/i915/display/intel_fbc.c b/drivers/gpu/drm/i915/display/intel_fbc.c
-index fe21371db38c..0ac222eaddd2 100644
+index 0ac222eaddd2..63f389a1707d 100644
 --- a/drivers/gpu/drm/i915/display/intel_fbc.c
 +++ b/drivers/gpu/drm/i915/display/intel_fbc.c
-@@ -1028,7 +1028,10 @@ static bool intel_fbc_hw_tracking_covers_screen(const struct intel_plane_state *
- 	struct drm_i915_private *i915 = to_i915(plane_state->uapi.plane->dev);
- 	unsigned int effective_w, effective_h, max_w, max_h;
- 
--	if (DISPLAY_VER(i915) >= 10) {
-+	if (DISPLAY_VER(i915) >= 11) {
-+		max_w = 8192;
-+		max_h = 4096;
-+	} else if (DISPLAY_VER(i915) >= 10) {
+@@ -1034,7 +1034,7 @@ static bool intel_fbc_hw_tracking_covers_screen(const struct intel_plane_state *
+ 	} else if (DISPLAY_VER(i915) >= 10) {
  		max_w = 5120;
  		max_h = 4096;
- 	} else if (DISPLAY_VER(i915) >= 8 || IS_HASWELL(i915)) {
+-	} else if (DISPLAY_VER(i915) >= 8 || IS_HASWELL(i915)) {
++	} else if (DISPLAY_VER(i915) >= 7) {
+ 		max_w = 4096;
+ 		max_h = 4096;
+ 	} else if (IS_G4X(i915) || DISPLAY_VER(i915) >= 5) {
 -- 
 2.41.0
 
