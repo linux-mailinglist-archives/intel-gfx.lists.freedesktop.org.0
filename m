@@ -1,53 +1,55 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 678067EF69B
-	for <lists+intel-gfx@lfdr.de>; Fri, 17 Nov 2023 17:52:39 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 76EA57EF6D2
+	for <lists+intel-gfx@lfdr.de>; Fri, 17 Nov 2023 18:13:52 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4404810E0C9;
-	Fri, 17 Nov 2023 16:52:37 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BEBE810E2F8;
+	Fri, 17 Nov 2023 17:13:50 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from ams.source.kernel.org (ams.source.kernel.org
- [IPv6:2604:1380:4601:e00::1])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5CB4610E0C9
- for <intel-gfx@lists.freedesktop.org>; Fri, 17 Nov 2023 16:52:35 +0000 (UTC)
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
- by ams.source.kernel.org (Postfix) with ESMTP id BCF1AB81FA1
- for <intel-gfx@lists.freedesktop.org>; Fri, 17 Nov 2023 16:52:33 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1F712C433C9
- for <intel-gfx@lists.freedesktop.org>; Fri, 17 Nov 2023 16:52:33 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1700239953;
- bh=f9rtcK56mhDLhOp4RKNpeUtKt+ICIAmxCI82XE6Z37Y=;
- h=References:In-Reply-To:From:Date:Subject:To:List-Id:Cc:From;
- b=FNXa8Eqei7viAqPYvU8GZz9CLHcuHSNWDRWRntRPyvK0S4ReCF43hHgvCfyEsnne/
- /UrF1mk4r3L5x3CWj2M3RRtnBPIhTyiBuSrZZUWEbDMXtx/WFIQ5b7R6pEqeVNoOUa
- EGocN91fiighO9HxRH4OaGnSuGqVxxcVYQCGNKEbGVgTgko5SZ+TEJCvXRDTw49B9x
- 4VgyCLQ/yZ1BSeYO5YHGnZXPVrcsHBwS6rtZWVNUvbtxM+XpZiFDN4Sf+ifzyDGhYD
- 4W5L3WZp00BQs5+rcUJA3JmEV0YoFaYkstVBXZ3JTTC6LQKvHbEWQ52U4y1PuU/I35
- R8Nh7C/d5KPsg==
-Received: by mail-yw1-f178.google.com with SMTP id
- 00721157ae682-5c6705515d8so11781367b3.2
- for <intel-gfx@lists.freedesktop.org>; Fri, 17 Nov 2023 08:52:33 -0800 (PST)
-X-Gm-Message-State: AOJu0YyzBl8qmhg0zvfwMSDavcMDTXoOGbzS42DvQGoBzfgVsy4Njwfk
- O5eryLMa4TjVo4pZgzTSnfyRKUgS+V0pLoU8/T4=
-X-Google-Smtp-Source: AGHT+IGinxPFXo5mERoJL+vrqJ92Z5DnP2b6xg9usz1TN6JSUcn7bOPY5ismH06tT8bELfD0NHiOwIBkrs/HTucB11M=
-X-Received: by 2002:a0d:e615:0:b0:5c1:25f:5674 with SMTP id
- p21-20020a0de615000000b005c1025f5674mr141383ywe.32.1700239952266; Fri, 17 Nov
- 2023 08:52:32 -0800 (PST)
+Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.88])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D036E10E2F8
+ for <intel-gfx@lists.freedesktop.org>; Fri, 17 Nov 2023 17:13:47 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1700241227; x=1731777227;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=fAM8n8y1i203LaTFPflKm4ffo/gDPIrMLs11vGu4jwQ=;
+ b=iT2HbJOEIJktVpp1FcuBQz3o/Gr11CMB4S9f5ngN2Z2g+46nKrMI7BXT
+ 11eXIXg7S4JEfh+U8Sqh2gzs29TnKhzkvOpTSgrV5VTHFKDXXXGNHV0VF
+ T/Q9CW9aF2siedrJlU5zZArAssJWUONWVhyWtYfI1wX4Sw0ONmS5zGSgx
+ zM8YN39bQ4d1mWnWeQuvybmUTrOYX1YIrn4cqzBUunZvuNfg2pP6SInzV
+ mEuCwjZulTg/h22L+eMx++hI0FQH9Wh6c9Rp66bPvNAB22Xj/nMWPUpXk
+ e+vxsk2q3vCDp7XLZQZYcVxWT5SLi38L9j0pZHcBmHSbYpKXtEj2oFeA6 g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10897"; a="422427641"
+X-IronPort-AV: E=Sophos;i="6.04,206,1695711600"; d="scan'208";a="422427641"
+Received: from orsmga007.jf.intel.com ([10.7.209.58])
+ by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 17 Nov 2023 09:10:54 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10897"; a="759224804"
+X-IronPort-AV: E=Sophos;i="6.04,206,1695711600"; d="scan'208";a="759224804"
+Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.74])
+ by orsmga007.jf.intel.com with SMTP; 17 Nov 2023 09:10:51 -0800
+Received: by stinkbox (sSMTP sendmail emulation);
+ Fri, 17 Nov 2023 19:10:50 +0200
+Date: Fri, 17 Nov 2023 19:10:50 +0200
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: Imre Deak <imre.deak@intel.com>
+Message-ID: <ZVeemgslQIdZnsvT@intel.com>
+References: <20231116131841.1588781-1-imre.deak@intel.com>
+ <20231116131841.1588781-11-imre.deak@intel.com>
 MIME-Version: 1.0
-References: <20231117150711.24379-1-gustavo.sousa@intel.com>
-In-Reply-To: <20231117150711.24379-1-gustavo.sousa@intel.com>
-From: Josh Boyer <jwboyer@kernel.org>
-Date: Fri, 17 Nov 2023 11:52:21 -0500
-X-Gmail-Original-Message-ID: <CA+5PVA5QSZqFiTkyTnWeWOW-_9iyEjRu2SZSAL+sD4JaiCkc8w@mail.gmail.com>
-Message-ID: <CA+5PVA5QSZqFiTkyTnWeWOW-_9iyEjRu2SZSAL+sD4JaiCkc8w@mail.gmail.com>
-To: Gustavo Sousa <gustavo.sousa@intel.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-Subject: Re: [Intel-gfx] PR for MTL DMC v2.19
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20231116131841.1588781-11-imre.deak@intel.com>
+X-Patchwork-Hint: comment
+Subject: Re: [Intel-gfx] [PATCH v2 10/11] drm/i915/dp: Simplify
+ intel_dp_max_data_rate()
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -60,38 +62,74 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org, kyle@kernel.org, ben@decadent.org.uk,
- linux-firmware@kernel.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, Nov 17, 2023 at 10:07=E2=80=AFAM Gustavo Sousa <gustavo.sousa@intel=
-.com> wrote:
->
-> The following changes since commit 6723a8d9092325d00a125a1b3ca058644f74d3=
-14:
->
->   Merge branch 'robot/pr-5-1700153542' into 'main' (2023-11-16 16:54:38 +=
-0000)
->
-> are available in the Git repository at:
->
->   git://anongit.freedesktop.org/drm/drm-firmware mtl_dmc_2.19
+On Thu, Nov 16, 2023 at 03:18:40PM +0200, Imre Deak wrote:
+> Simplify intel_dp_max_data_rate() using
+> drm_dp_bw_channel_coding_efficiency() to calculate the max data rate for
+> both DP1.4 and UHBR link rates. This trades a redundant multiply/divide
+> for readability.
+> 
+> Cc: Jani Nikula <jani.nikula@linux.intel.com>
+> Signed-off-by: Imre Deak <imre.deak@intel.com>
 
-Pulled and pushed out.
-https://gitlab.com/kernel-firmware/linux-firmware/-/merge_requests/65
+Reviewed-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-josh
+> ---
+>  drivers/gpu/drm/i915/display/intel_dp.c | 26 ++++++++++++-------------
+>  1 file changed, 12 insertions(+), 14 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
+> index 209c27167e057..a93e8f6429d85 100644
+> --- a/drivers/gpu/drm/i915/display/intel_dp.c
+> +++ b/drivers/gpu/drm/i915/display/intel_dp.c
+> @@ -405,29 +405,27 @@ int intel_dp_effective_data_rate(int pixel_clock, int bpp_x16,
+>  int
+>  intel_dp_max_data_rate(int max_link_rate, int max_lanes)
+>  {
+> -	if (max_link_rate >= 1000000) {
+> -		/*
+> -		 * UHBR rates always use 128b/132b channel encoding, and have
+> -		 * 97.71% data bandwidth efficiency. Consider max_link_rate the
+> -		 * link bit rate in units of 10000 bps.
+> -		 */
+> -		int max_link_rate_kbps = max_link_rate * 10;
+> -
+> -		max_link_rate_kbps = DIV_ROUND_DOWN_ULL(mul_u32_u32(max_link_rate_kbps, 9671), 10000);
+> -		max_link_rate = max_link_rate_kbps / 8;
+> -	}
+> +	int ch_coding_efficiency =
+> +		drm_dp_bw_channel_coding_efficiency(drm_dp_is_uhbr_rate(max_link_rate));
+> +	int max_link_rate_kbps = max_link_rate * 10;
+>  
+> +	/*
+> +	 * UHBR rates always use 128b/132b channel encoding, and have
+> +	 * 97.71% data bandwidth efficiency. Consider max_link_rate the
+> +	 * link bit rate in units of 10000 bps.
+> +	 */
+>  	/*
+>  	 * Lower than UHBR rates always use 8b/10b channel encoding, and have
+>  	 * 80% data bandwidth efficiency for SST non-FEC. However, this turns
+> -	 * out to be a nop by coincidence, and can be skipped:
+> +	 * out to be a nop by coincidence:
+>  	 *
+>  	 *	int max_link_rate_kbps = max_link_rate * 10;
+>  	 *	max_link_rate_kbps = DIV_ROUND_DOWN_ULL(max_link_rate_kbps * 8, 10);
+>  	 *	max_link_rate = max_link_rate_kbps / 8;
+>  	 */
+> -
+> -	return max_link_rate * max_lanes;
+> +	return DIV_ROUND_DOWN_ULL(mul_u32_u32(max_link_rate_kbps * max_lanes,
+> +					      ch_coding_efficiency),
+> +				  1000000 * 8);
+>  }
+>  
+>  bool intel_dp_can_bigjoiner(struct intel_dp *intel_dp)
+> -- 
+> 2.39.2
 
->
-> for you to fetch changes up to 451090149cecfae5e674d24944579a564afefe8a:
->
->   i915: Update MTL DMC to v2.19 (2023-11-17 11:03:16 -0300)
->
-> ----------------------------------------------------------------
-> Gustavo Sousa (1):
->       i915: Update MTL DMC to v2.19
->
->  WHENCE           |   2 +-
->  i915/mtl_dmc.bin | Bin 52508 -> 52476 bytes
->  2 files changed, 1 insertion(+), 1 deletion(-)
+-- 
+Ville Syrjälä
+Intel
