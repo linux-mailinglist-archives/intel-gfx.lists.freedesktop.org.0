@@ -1,55 +1,54 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8FB047EEC7F
-	for <lists+intel-gfx@lfdr.de>; Fri, 17 Nov 2023 08:14:39 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 06E247EEC91
+	for <lists+intel-gfx@lfdr.de>; Fri, 17 Nov 2023 08:20:09 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6133410E71B;
-	Fri, 17 Nov 2023 07:14:37 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 625A210E71C;
+	Fri, 17 Nov 2023 07:20:05 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.93])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CDB3A10E71B
- for <intel-gfx@lists.freedesktop.org>; Fri, 17 Nov 2023 07:14:35 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 07CA110E71C;
+ Fri, 17 Nov 2023 07:20:04 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1700205275; x=1731741275;
+ t=1700205604; x=1731741604;
  h=date:from:to:cc:subject:message-id:references:
  mime-version:content-transfer-encoding:in-reply-to;
- bh=8QrVuxMz+d10MISgleFV3QVyYE0RTw8nLxDccOw4L8U=;
- b=fxAFOWFL4QMUGIWjnO4f0MHbN8NartU91ELznmO2YG896Yy/PPoMqnK0
- poEBvCWFtMAn8YrFS7HItbwQKfhutoH20lTBUf0CAyK9OYfAfPmKaNlZT
- icQ/TbiHVaeMXbTgr4BhT5VPNCGcpDRpnq5wflsVtKskVem5BbyZxszFp
- eykldEc8hKXmBAX6vD0UMfvI36Cw+hEVflPFmQgiX4gUXQx9k/z5xwX2j
- DxxbHGt7THcmg3vIErGMFvSDLwZGFFm/EDX2h2xqyMI0JwZ8AmwCODUNh
- t1S7IPS1s15AvqPF7u0MGnhKTzOqGZCZ8OnBIRTr2O0MaekHDc5EEIBeV A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10896"; a="388403854"
-X-IronPort-AV: E=Sophos;i="6.04,206,1695711600"; d="scan'208";a="388403854"
+ bh=nalAqsEdm/bhxi86eeELNA5u1nlAf6aleAY2oUcLIyY=;
+ b=V/SvNyQjvq5z6RQ7pGUJGPRWuCvomG7wvwWBGY0SxTL0On25nzMf6LOT
+ gJe8+ujdZt6jmDzYU95WFaoEk+ZjNdN6Lx4EZOuZP4zu1B7PQlBhjl0wN
+ XpD4X7FU15sn2oQx65R/VFX03wKkdiQwAbwpRbgvTAl09Hpt9XuC6+5E4
+ oxCpz+nTRcEutBDlzaEhVEm02pw/ev+SeB2vzqg25vdoXcVul/qtHyDAI
+ 0rxtn8iCDlcWEfu9z3Wt1KdlT62km1ka9oTtV8kr+9XlyRPPYJYOo428s
+ n6OBKT9aE5NX1qh8HeT59MKPU7HNBxGoB7PuENfZzbhl/gMWugxsBCf3+ g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10896"; a="388404512"
+X-IronPort-AV: E=Sophos;i="6.04,206,1695711600"; d="scan'208";a="388404512"
 Received: from orsmga007.jf.intel.com ([10.7.209.58])
  by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Nov 2023 23:14:34 -0800
+ 16 Nov 2023 23:20:03 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10896"; a="759090098"
-X-IronPort-AV: E=Sophos;i="6.04,206,1695711600"; d="scan'208";a="759090098"
+X-IronPort-AV: E=McAfee;i="6600,9927,10896"; a="759090935"
+X-IronPort-AV: E=Sophos;i="6.04,206,1695711600"; d="scan'208";a="759090935"
 Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.74])
- by orsmga007.jf.intel.com with SMTP; 16 Nov 2023 23:14:31 -0800
+ by orsmga007.jf.intel.com with SMTP; 16 Nov 2023 23:19:59 -0800
 Received: by stinkbox (sSMTP sendmail emulation);
- Fri, 17 Nov 2023 09:14:31 +0200
-Date: Fri, 17 Nov 2023 09:14:31 +0200
+ Fri, 17 Nov 2023 09:19:59 +0200
+Date: Fri, 17 Nov 2023 09:19:59 +0200
 From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-Message-ID: <ZVcS19ZKt2ui-4AH@intel.com>
-References: <20231109153450.142185-1-maarten.lankhorst@linux.intel.com>
- <20231109153450.142185-3-maarten.lankhorst@linux.intel.com>
+To: Luca Coelho <luciano.coelho@intel.com>
+Message-ID: <ZVcUH7G40NQ4Q-R7@intel.com>
+References: <20231116112700.648963-1-luciano.coelho@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20231109153450.142185-3-maarten.lankhorst@linux.intel.com>
+In-Reply-To: <20231116112700.648963-1-luciano.coelho@intel.com>
 X-Patchwork-Hint: comment
-Subject: Re: [Intel-gfx] [PATCH 3/3] drm/i915: Use a different vblank worker
- for atomic unpin
+Subject: Re: [Intel-gfx] [Intel-xe] [PATCH] drm/i915: don't use uncore
+ spinlock to protect critical section in vblank
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -62,119 +61,127 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
+ rodrigo.vivi@intel.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, Nov 09, 2023 at 04:34:50PM +0100, Maarten Lankhorst wrote:
-> For the atomic codepath we unpin_work in old_plane_state to unpin the
-> old fb. As this happened after swapping state, this is allowed.
+On Thu, Nov 16, 2023 at 01:27:00PM +0200, Luca Coelho wrote:
+> Since we're abstracting the display code from the underlying driver
+> (i.e. i915 vs xe), we can't use the uncore's spinlock to protect
+> critical sections of our code.
 > 
-> Use the unpin_work only as a barrier, and keep doing the actual
-> unpinning in the atomic path.
+> After further inspection, it seems that the spinlock is not needed at
+> all and this can be handled by disabling preemption and interrupts
+> instead.
+
+uncore.lock has multiple purposes:
+1. serialize all register accesses to the same cacheline as on
+   certain platforms that can hang the machine
+2. protect the forcewake/etc. state
+
+1 is relevant here, 2 is not.
+
 > 
-> Signed-off-by: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+> Change the vblank code so that we don't use uncore's spinlock anymore
+> and update the comments accordingly.  While at it, also remove
+> comments pointing out where to insert RT-specific calls, since we're
+> now explicitly calling preempt_disable/enable() anywyay.
+> 
+> Cc: Jani Nikula <jani.nikula@intel.com>
+> Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
+> Cc: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+> Signed-off-by: Luca Coelho <luciano.coelho@intel.com>
 > ---
->  .../gpu/drm/i915/display/intel_atomic_plane.c | 18 ++++++++++++
->  .../gpu/drm/i915/display/intel_atomic_plane.h |  2 ++
->  drivers/gpu/drm/i915/display/intel_crtc.c     | 28 +++++++++++++++++++
->  3 files changed, 48 insertions(+)
 > 
-> diff --git a/drivers/gpu/drm/i915/display/intel_atomic_plane.c b/drivers/gpu/drm/i915/display/intel_atomic_plane.c
-> index 06c2455bdd788..6ddb4f4ec79ac 100644
-> --- a/drivers/gpu/drm/i915/display/intel_atomic_plane.c
-> +++ b/drivers/gpu/drm/i915/display/intel_atomic_plane.c
-> @@ -1164,6 +1164,9 @@ intel_cleanup_plane_fb(struct drm_plane *plane,
->  	intel_display_rps_mark_interactive(dev_priv, state, false);
->  
->  	/* Should only be called after a successful intel_prepare_plane_fb()! */
-> +	if (old_plane_state->unpin_work.vblank)
-> +		drm_vblank_work_flush(&old_plane_state->unpin_work);
-
-This feels rather convoluted. Can't we just schedule the cleanup work
-to the vblank worker instead of the normal wq?
-
-> +
->  	intel_plane_unpin_fb(old_plane_state);
->  }
->  
-> @@ -1176,3 +1179,18 @@ void intel_plane_helper_add(struct intel_plane *plane)
->  {
->  	drm_plane_helper_add(&plane->base, &intel_plane_helper_funcs);
->  }
-> +
-> +/* Completion is enough */
-> +static void intel_plane_cursor_vblank_work(struct kthread_work *base)
-> +{ }
-> +
-> +void intel_plane_init_cursor_vblank_work(struct intel_plane_state *old_plane_state,
-> +					 struct intel_plane_state *new_plane_state)
-> +{
-> +	if (!old_plane_state->ggtt_vma ||
-> +	    old_plane_state->ggtt_vma == new_plane_state->ggtt_vma)
-> +		return;
-> +
-> +	drm_vblank_work_init(&old_plane_state->unpin_work, old_plane_state->uapi.crtc,
-> +			     intel_plane_cursor_vblank_work);
-> +}
-> diff --git a/drivers/gpu/drm/i915/display/intel_atomic_plane.h b/drivers/gpu/drm/i915/display/intel_atomic_plane.h
-> index 191dad0efc8e6..5a897cf6fa021 100644
-> --- a/drivers/gpu/drm/i915/display/intel_atomic_plane.h
-> +++ b/drivers/gpu/drm/i915/display/intel_atomic_plane.h
-> @@ -66,5 +66,7 @@ int intel_plane_check_src_coordinates(struct intel_plane_state *plane_state);
->  void intel_plane_set_invisible(struct intel_crtc_state *crtc_state,
->  			       struct intel_plane_state *plane_state);
->  void intel_plane_helper_add(struct intel_plane *plane);
-> +void intel_plane_init_cursor_vblank_work(struct intel_plane_state *old_plane_state,
-> +					 struct intel_plane_state *new_plane_state);
->  
->  #endif /* __INTEL_ATOMIC_PLANE_H__ */
-> diff --git a/drivers/gpu/drm/i915/display/intel_crtc.c b/drivers/gpu/drm/i915/display/intel_crtc.c
-> index 1fd068e6e26ca..755c40fd0ac13 100644
-> --- a/drivers/gpu/drm/i915/display/intel_crtc.c
-> +++ b/drivers/gpu/drm/i915/display/intel_crtc.c
-> @@ -559,6 +559,19 @@ void intel_pipe_update_start(struct intel_atomic_state *state,
->  	if (intel_crtc_needs_vblank_work(new_crtc_state))
->  		intel_crtc_vblank_work_init(new_crtc_state);
->  
-> +	if (state->base.legacy_cursor_update) {
-> +		struct intel_plane *plane;
-> +		struct intel_plane_state *old_plane_state, *new_plane_state;
-> +		int i;
-> +
-> +		for_each_oldnew_intel_plane_in_state(state, plane, old_plane_state,
-> +						     new_plane_state, i) {
-> +			if (old_plane_state->uapi.crtc == &crtc->base)
-> +				intel_plane_init_cursor_vblank_work(old_plane_state,
-> +								    new_plane_state);
-> +		}
-> +	}
-> +
->  	intel_crtc_vblank_evade_scanlines(state, crtc, &min, &max, &vblank_start);
->  	if (min <= 0 || max <= 0)
->  		goto irq_disable;
-> @@ -721,6 +734,21 @@ void intel_pipe_update_end(struct intel_atomic_state *state,
->  		new_crtc_state->uapi.event = NULL;
+> Note: this replaces my previous patch discussed here:
+> https://patchwork.freedesktop.org/patch/563857/
+> 
+> 
+>  drivers/gpu/drm/i915/display/intel_vblank.c | 32 ++++++++++-----------
+>  1 file changed, 15 insertions(+), 17 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/i915/display/intel_vblank.c b/drivers/gpu/drm/i915/display/intel_vblank.c
+> index 2cec2abf9746..28e38960806e 100644
+> --- a/drivers/gpu/drm/i915/display/intel_vblank.c
+> +++ b/drivers/gpu/drm/i915/display/intel_vblank.c
+> @@ -302,13 +302,12 @@ static bool i915_get_crtc_scanoutpos(struct drm_crtc *_crtc,
 >  	}
 >  
-> +	if (state->base.legacy_cursor_update) {
-> +		struct intel_plane *plane;
-> +		struct intel_plane_state *old_plane_state;
-> +		int i;
-> +
-> +		for_each_old_intel_plane_in_state(state, plane, old_plane_state, i) {
-> +			if (old_plane_state->uapi.crtc == &crtc->base &&
-> +			    old_plane_state->unpin_work.vblank) {
-> +				drm_vblank_work_schedule(&old_plane_state->unpin_work,
-> +							 drm_crtc_accurate_vblank_count(&crtc->base) + 1,
-> +							 false);
-> +			}
-> +		}
-> +	}
-> +
 >  	/*
->  	 * Send VRR Push to terminate Vblank. If we are already in vblank
->  	 * this has to be done _after_ sampling the frame counter, as
+> -	 * Lock uncore.lock, as we will do multiple timing critical raw
+> -	 * register reads, potentially with preemption disabled, so the
+> -	 * following code must not block on uncore.lock.
+> +	 * We will do multiple timing critical raw register reads, so
+> +	 * disable interrupts and preemption to make sure this code
+> +	 * doesn't get blocked.
+>  	 */
+> -	spin_lock_irqsave(&dev_priv->uncore.lock, irqflags);
+> -
+> -	/* preempt_disable_rt() should go right here in PREEMPT_RT patchset. */
+> +	local_irq_save(irqflags);
+> +	preempt_disable();
+>  
+>  	/* Get optional system timestamp before query. */
+>  	if (stime)
+> @@ -372,9 +371,8 @@ static bool i915_get_crtc_scanoutpos(struct drm_crtc *_crtc,
+>  	if (etime)
+>  		*etime = ktime_get();
+>  
+> -	/* preempt_enable_rt() should go right here in PREEMPT_RT patchset. */
+> -
+> -	spin_unlock_irqrestore(&dev_priv->uncore.lock, irqflags);
+> +	preempt_enable();
+> +	local_irq_restore(irqflags);
+>  
+>  	/*
+>  	 * While in vblank, position will be negative
+> @@ -408,13 +406,14 @@ bool intel_crtc_get_vblank_timestamp(struct drm_crtc *crtc, int *max_error,
+>  
+>  int intel_get_crtc_scanline(struct intel_crtc *crtc)
+>  {
+> -	struct drm_i915_private *dev_priv = to_i915(crtc->base.dev);
+>  	unsigned long irqflags;
+>  	int position;
+>  
+> -	spin_lock_irqsave(&dev_priv->uncore.lock, irqflags);
+> +	local_irq_save(irqflags);
+> +	preempt_disable();
+>  	position = __intel_get_crtc_scanline(crtc);
+> -	spin_unlock_irqrestore(&dev_priv->uncore.lock, irqflags);
+> +	preempt_enable();
+> +	local_irq_restore(irqflags);
+>  
+>  	return position;
+>  }
+> @@ -528,16 +527,16 @@ void intel_crtc_update_active_timings(const struct intel_crtc_state *crtc_state,
+>  	 * Belts and suspenders locking to guarantee everyone sees 100%
+>  	 * consistent state during fastset seamless refresh rate changes.
+>  	 *
+> -	 * vblank_time_lock takes care of all drm_vblank.c stuff, and
+> -	 * uncore.lock takes care of __intel_get_crtc_scanline() which
+> -	 * may get called elsewhere as well.
+> +	 * vblank_time_lock takes care of all drm_vblank.c stuff.  For
+> +	 * __intel_get_crtc_scanline() we don't need locking or
+> +	 * disabling preemption and irqs, since this is already done
+> +	 * by the vblank_time_lock spinlock calls.
+>  	 *
+>  	 * TODO maybe just protect everything (including
+>  	 * __intel_get_crtc_scanline()) with vblank_time_lock?
+>  	 * Need to audit everything to make sure it's safe.
+>  	 */
+>  	spin_lock_irqsave(&i915->drm.vblank_time_lock, irqflags);
+> -	spin_lock(&i915->uncore.lock);
+>  
+>  	drm_calc_timestamping_constants(&crtc->base, &adjusted_mode);
+>  
+> @@ -547,6 +546,5 @@ void intel_crtc_update_active_timings(const struct intel_crtc_state *crtc_state,
+>  
+>  	crtc->scanline_offset = intel_crtc_scanline_offset(crtc_state);
+>  
+> -	spin_unlock(&i915->uncore.lock);
+>  	spin_unlock_irqrestore(&i915->drm.vblank_time_lock, irqflags);
+>  }
 > -- 
 > 2.39.2
 
