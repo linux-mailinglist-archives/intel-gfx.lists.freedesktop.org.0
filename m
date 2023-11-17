@@ -1,55 +1,55 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 766747EF156
-	for <lists+intel-gfx@lfdr.de>; Fri, 17 Nov 2023 12:04:09 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id F28DE7EF171
+	for <lists+intel-gfx@lfdr.de>; Fri, 17 Nov 2023 12:09:33 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C944710E13C;
-	Fri, 17 Nov 2023 11:04:07 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 670EB10E74C;
+	Fri, 17 Nov 2023 11:09:32 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.126])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 19A3110E13C;
- Fri, 17 Nov 2023 11:04:06 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6E78710E74D
+ for <intel-gfx@lists.freedesktop.org>; Fri, 17 Nov 2023 11:09:30 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1700219046; x=1731755046;
+ t=1700219370; x=1731755370;
  h=date:from:to:cc:subject:message-id:references:
  mime-version:content-transfer-encoding:in-reply-to;
- bh=Z9RsAm3o2jfovCTdjbIWszu7G+Fiy1WpwELkjJwU2+M=;
- b=Yev+eit4CJM95ROqqPiZ53mZT3nXpKOERMdd3pcCvg9tDzPaXoR+XO/s
- clSYdEQhcxcjjf2geUGtSa3rwOaS2FEBFAUkYgVj/FUhm9PHnyZxYI+WS
- OSTa0a03N7SA9rMW/khi7cGfkMHnZKHn6DiXlKFx2lqLzXt+wISPp1c+o
- Njh+e2SmJqDvOu5p7A4nIsZDZwiB27itnU/4gbVMZr201pJKI99+USduL
- KLNHoOliSKXiQOdTlyp2QAjL+JYUSSwsynjVtTfqK8lCwnI2cwdI2NW67
- l/fwjSzFG7AvNvGbFA8Zet0xlJh/kWHE/iTBn1/S5VEqToWqCvIF2/cOW w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10896"; a="376328547"
-X-IronPort-AV: E=Sophos;i="6.04,206,1695711600"; d="scan'208";a="376328547"
+ bh=XC4fdSySuBO7/aYlPHrubWx0VisqL3huds8bWiP1K7E=;
+ b=Lobiel82mu4M/5C1VG5ewAnJlG9H0QX2CD11NoKrCAmChNy4XJHiMHCC
+ SyS4BfrtS2XB5FAxEZzDk7KT9MsEEUSEjtsf4zRlmV7v6SXVCLEQnCcjw
+ yND8wuEjzKdt28HEXsR4bQBLUPou/H1iLaVw4+Np9jc1HIFh0heDhbLnI
+ gHRPt6OdazMsCvUqC/anwUPHXXTlQSfvaJ+1g7NFVvyc8lPI90WsAWv3z
+ wqCr0o7T9/g7r6wnTtojhWKjSqjmZpEDGcu1fd2V1QynBlCU+yJ/6lN9l
+ VQD7SaQj8PFheJLXX35TBd3MXPHNXzMYupIw8cJL7r18LZINqkrGcmx2b Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10896"; a="376329351"
+X-IronPort-AV: E=Sophos;i="6.04,206,1695711600"; d="scan'208";a="376329351"
 Received: from orsmga007.jf.intel.com ([10.7.209.58])
  by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Nov 2023 03:04:05 -0800
+ 17 Nov 2023 03:09:29 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10896"; a="759144440"
-X-IronPort-AV: E=Sophos;i="6.04,206,1695711600"; d="scan'208";a="759144440"
+X-IronPort-AV: E=McAfee;i="6600,9927,10896"; a="759147862"
+X-IronPort-AV: E=Sophos;i="6.04,206,1695711600"; d="scan'208";a="759147862"
 Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.74])
- by orsmga007.jf.intel.com with SMTP; 17 Nov 2023 03:04:03 -0800
+ by orsmga007.jf.intel.com with SMTP; 17 Nov 2023 03:09:27 -0800
 Received: by stinkbox (sSMTP sendmail emulation);
- Fri, 17 Nov 2023 13:04:02 +0200
-Date: Fri, 17 Nov 2023 13:04:02 +0200
+ Fri, 17 Nov 2023 13:09:26 +0200
+Date: Fri, 17 Nov 2023 13:09:26 +0200
 From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Imre Deak <imre.deak@intel.com>
-Message-ID: <ZVdIoq7j83nBrD_c@intel.com>
-References: <20231116131841.1588781-1-imre.deak@intel.com>
- <20231116131841.1588781-4-imre.deak@intel.com>
+To: Jouni =?iso-8859-1?Q?H=F6gander?= <jouni.hogander@intel.com>
+Message-ID: <ZVdJ5v8ZfiKWn3-g@intel.com>
+References: <20231117100227.609261-1-jouni.hogander@intel.com>
+ <20231117100227.609261-3-jouni.hogander@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20231116131841.1588781-4-imre.deak@intel.com>
+In-Reply-To: <20231117100227.609261-3-jouni.hogander@intel.com>
 X-Patchwork-Hint: comment
-Subject: Re: [Intel-gfx] [PATCH v2 03/11] drm/dp_mst: Add kunit tests for
- drm_dp_get_vc_payload_bw()
+Subject: Re: [Intel-gfx] [PATCH v2 2/2] drm/i915/psr: Add proper handling
+ for disabling sel fetch for planes
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -62,190 +62,140 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, Nov 16, 2023 at 03:18:33PM +0200, Imre Deak wrote:
-> Add kunit test cases for drm_dp_get_vc_payload_bw() with all the DP1.4
-> and UHBR link configurations.
+On Fri, Nov 17, 2023 at 12:02:27PM +0200, Jouni Högander wrote:
+> Currently we are enabling selective fetch for all planes that are visible.
+> This is suboptimal as we might be fetching for memory for planes that are
+> not part of selective update.
 > 
-> Cc: Lyude Paul <lyude@redhat.com>
-> Cc: dri-devel@lists.freedesktop.org
-> Signed-off-by: Imre Deak <imre.deak@intel.com>
+> Fix this by adding proper handling for disabling plane selective fetch:
+> If plane previously part of selective update is now not part of update:
+> Add it into updated planes and let the plane configuration to disable
+> selective fetch for it.
+> 
+> v2:
+>   - Add setting sel_fetch_area->y1/y2 to -1
+>   - Remove setting again local sel_fetch_area variable
+> 
+> Signed-off-by: Jouni Högander <jouni.hogander@intel.com>
 > ---
->  .../gpu/drm/tests/drm_dp_mst_helper_test.c    | 145 ++++++++++++++++++
->  1 file changed, 145 insertions(+)
+>  drivers/gpu/drm/i915/display/intel_cursor.c   | 22 +++++++++++--------
+>  drivers/gpu/drm/i915/display/intel_psr.c      | 13 ++++++++++-
+>  .../drm/i915/display/skl_universal_plane.c    |  8 +++++--
+>  3 files changed, 31 insertions(+), 12 deletions(-)
 > 
-> diff --git a/drivers/gpu/drm/tests/drm_dp_mst_helper_test.c b/drivers/gpu/drm/tests/drm_dp_mst_helper_test.c
-> index e3c818dfc0e6d..cafb463124f71 100644
-> --- a/drivers/gpu/drm/tests/drm_dp_mst_helper_test.c
-> +++ b/drivers/gpu/drm/tests/drm_dp_mst_helper_test.c
-> @@ -68,6 +68,150 @@ static void dp_mst_calc_pbn_mode_desc(const struct drm_dp_mst_calc_pbn_mode_test
->  KUNIT_ARRAY_PARAM(drm_dp_mst_calc_pbn_mode, drm_dp_mst_calc_pbn_mode_cases,
->  		  dp_mst_calc_pbn_mode_desc);
+> diff --git a/drivers/gpu/drm/i915/display/intel_cursor.c b/drivers/gpu/drm/i915/display/intel_cursor.c
+> index c089dd6f9781..299d22708fa4 100644
+> --- a/drivers/gpu/drm/i915/display/intel_cursor.c
+> +++ b/drivers/gpu/drm/i915/display/intel_cursor.c
+> @@ -485,22 +485,22 @@ static int i9xx_check_cursor(struct intel_crtc_state *crtc_state,
+>  	return 0;
+>  }
 >  
-> +struct drm_dp_mst_calc_pbn_div_test {
-> +	int link_rate;
-> +	int lane_count;
-> +	fixed20_12 expected;
-> +};
+> -static void i9xx_cursor_update_sel_fetch_arm(struct intel_plane *plane,
+> -					     const struct intel_crtc_state *crtc_state,
+> -					     const struct intel_plane_state *plane_state)
+> +static void i9xx_cursor_disable_sel_fetch_arm(struct intel_plane *plane,
+> +					    const struct intel_crtc_state *crtc_state)
+>  {
+> -	struct drm_i915_private *i915 = to_i915(plane->base.dev);
+> +	struct drm_i915_private *dev_priv = to_i915(plane->base.dev);
+>  	enum pipe pipe = plane->pipe;
+>  
+>  	if (!crtc_state->enable_psr2_sel_fetch)
+>  		return;
+>  
+> -	intel_de_write_fw(i915, PLANE_SEL_FETCH_CTL(pipe, plane->id),
+> -			  plane_state->ctl);
 > +
-> +#define fp_init(__int, __frac) { \
-> +	.full = (__int) * (1 << 12) + \
-> +		(__frac) * (1 << 12) / 100000 \
-> +}
-> +
-> +static const struct drm_dp_mst_calc_pbn_div_test drm_dp_mst_calc_pbn_div_dp1_4_cases[] = {
-> +	/*
-> +	 * DP1.4 rates:
-> +	 * .expected = .link_rate * .lane_count * 0.8000 / 8 / 54 / 100
-> +	 * UHBR rates:
-> +	 * .expected = .link_rate * .lane_count * 0.9671 / 8 / 54 / 100
-> +	 * truncated to 5 decimal places.
-> +	 */
-> +	{
-> +		.link_rate = 162000,
-> +		.lane_count = 1,
-> +		.expected = fp_init(3, 0),
-> +	},
+> +	intel_de_write_fw(dev_priv, PLANE_SEL_FETCH_CTL(pipe, plane->id), 0);
+>  }
+>  
+> -static void i9xx_cursor_disable_sel_fetch_arm(struct intel_plane *plane,
+> -					    const struct intel_crtc_state *crtc_state)
+> +static void i9xx_cursor_update_sel_fetch_arm(struct intel_plane *plane,
+> +					     const struct intel_crtc_state *crtc_state,
+> +					     const struct intel_plane_state *plane_state)
+>  {
+>  	struct drm_i915_private *i915 = to_i915(plane->base.dev);
+>  	enum pipe pipe = plane->pipe;
+> @@ -508,7 +508,11 @@ static void i9xx_cursor_disable_sel_fetch_arm(struct intel_plane *plane,
+>  	if (!crtc_state->enable_psr2_sel_fetch)
+>  		return;
+>  
+> -	intel_de_write_fw(i915, PLANE_SEL_FETCH_CTL(pipe, plane->id), 0);
+> +	if (drm_rect_height(&plane_state->psr2_sel_fetch_area) > 0)
 
-Would be nice to sort this to match the tables in the spec.
-A bit hard to do a quick visual comparison now.
+drm_rect_visible() is less magic.
 
-> +	{
-> +		.link_rate = 162000,
-> +		.lane_count = 2,
-> +		.expected = fp_init(6, 0),
-> +	},
-> +	{
-> +		.link_rate = 162000,
-> +		.lane_count = 4,
-> +		.expected = fp_init(12, 0),
-> +	},
-> +	{
-> +		.link_rate = 270000,
-> +		.lane_count = 1,
-> +		.expected = fp_init(5, 0),
-> +	},
-> +	{
-> +		.link_rate = 270000,
-> +		.lane_count = 2,
-> +		.expected = fp_init(10, 0),
-> +	},
-> +	{
-> +		.link_rate = 270000,
-> +		.lane_count = 4,
-> +		.expected = fp_init(20, 0),
-> +	},
-> +	{
-> +		.link_rate = 540000,
-> +		.lane_count = 1,
-> +		.expected = fp_init(10, 0),
-> +	},
-> +	{
-> +		.link_rate = 540000,
-> +		.lane_count = 2,
-> +		.expected = fp_init(20, 0),
-> +	},
-> +	{
-> +		.link_rate = 540000,
-> +		.lane_count = 4,
-> +		.expected = fp_init(40, 0),
-> +	},
-> +	{
-> +		.link_rate = 810000,
-> +		.lane_count = 1,
-> +		.expected = fp_init(15, 0),
-> +	},
-> +	{
-> +		.link_rate = 810000,
-> +		.lane_count = 2,
-> +		.expected = fp_init(30, 0),
-> +	},
-> +	{
-> +		.link_rate = 810000,
-> +		.lane_count = 4,
-> +		.expected = fp_init(60, 0),
-> +	},
-> +	{
-> +		.link_rate = 1000000,
-> +		.lane_count = 1,
-> +		.expected = fp_init(22, 38657),
-> +	},
-> +	{
-> +		.link_rate = 1000000,
-> +		.lane_count = 2,
-> +		.expected = fp_init(44, 77314),
-> +	},
-> +	{
-> +		.link_rate = 1000000,
-> +		.lane_count = 4,
-> +		.expected = fp_init(89, 54629),
-> +	},
-> +	{
-> +		.link_rate = 1350000,
-> +		.lane_count = 1,
-> +		.expected = fp_init(30, 22187),
-> +	},
-> +	{
-> +		.link_rate = 1350000,
-> +		.lane_count = 2,
-> +		.expected = fp_init(60, 44375),
-> +	},
-> +	{
-> +		.link_rate = 1350000,
-> +		.lane_count = 4,
-> +		.expected = fp_init(120, 88750),
-> +	},
-> +	{
-> +		.link_rate = 2000000,
-> +		.lane_count = 1,
-> +		.expected = fp_init(44, 77314),
-> +	},
-> +	{
-> +		.link_rate = 2000000,
-> +		.lane_count = 2,
-> +		.expected = fp_init(89, 54629),
-> +	},
-> +	{
-> +		.link_rate = 2000000,
-> +		.lane_count = 4,
-> +		.expected = fp_init(179,  9259),  /* 179.09259 */
-> +	},
-> +};
-> +
-> +static void drm_test_dp_mst_calc_pbn_div(struct kunit *test)
-> +{
-> +	const struct drm_dp_mst_calc_pbn_div_test *params = test->param_value;
-> +	/* mgr->dev is only needed by drm_dbg_kms(), but it's not called for the test cases. */
-> +	struct drm_dp_mst_topology_mgr mgr = {};
-> +
-> +	KUNIT_EXPECT_EQ(test, drm_dp_get_vc_payload_bw(&mgr, params->link_rate, params->lane_count).full,
-> +			params->expected.full);
-> +}
-> +
-> +static void dp_mst_calc_pbn_div_desc(const struct drm_dp_mst_calc_pbn_div_test *t, char *desc)
-> +{
-> +	sprintf(desc, "Link rate %d lane count %d", t->link_rate, t->lane_count);
-> +}
-> +
-> +KUNIT_ARRAY_PARAM(drm_dp_mst_calc_pbn_div, drm_dp_mst_calc_pbn_div_dp1_4_cases,
-> +		  dp_mst_calc_pbn_div_desc);
-> +
->  static u8 data[] = { 0xff, 0x00, 0xdd };
+> +		intel_de_write_fw(i915, PLANE_SEL_FETCH_CTL(pipe, plane->id),
+> +				  plane_state->ctl);
+
+Does this even have anything besides the enable bit?
+
+> +	else
+> +		i9xx_cursor_disable_sel_fetch_arm(plane, crtc_state);
+>  }
 >  
->  struct drm_dp_mst_sideband_msg_req_test {
-> @@ -416,6 +560,7 @@ KUNIT_ARRAY_PARAM(drm_dp_mst_sideband_msg_req, drm_dp_mst_sideband_msg_req_cases
+>  /* TODO: split into noarm+arm pair */
+> diff --git a/drivers/gpu/drm/i915/display/intel_psr.c b/drivers/gpu/drm/i915/display/intel_psr.c
+> index 87eb1535ba98..239365c666e2 100644
+> --- a/drivers/gpu/drm/i915/display/intel_psr.c
+> +++ b/drivers/gpu/drm/i915/display/intel_psr.c
+> @@ -2173,8 +2173,19 @@ int intel_psr2_sel_fetch_update(struct intel_atomic_state *state,
+>  			continue;
 >  
->  static struct kunit_case drm_dp_mst_helper_tests[] = {
->  	KUNIT_CASE_PARAM(drm_test_dp_mst_calc_pbn_mode, drm_dp_mst_calc_pbn_mode_gen_params),
-> +	KUNIT_CASE_PARAM(drm_test_dp_mst_calc_pbn_div, drm_dp_mst_calc_pbn_div_gen_params),
->  	KUNIT_CASE_PARAM(drm_test_dp_mst_sideband_msg_req_decode,
->  			 drm_dp_mst_sideband_msg_req_gen_params),
->  	{ }
+>  		inter = pipe_clip;
+> -		if (!drm_rect_intersect(&inter, &new_plane_state->uapi.dst))
+> +		sel_fetch_area = &new_plane_state->psr2_sel_fetch_area;
+> +		if (!drm_rect_intersect(&inter, &new_plane_state->uapi.dst)) {
+> +			sel_fetch_area->y1 = -1;
+> +			sel_fetch_area->y2 = -1;
+> +			/*
+> +			 * if plane sel fetch was previously enabled ->
+> +			 * disable it
+> +			 */
+> +			if (drm_rect_height(&old_plane_state->psr2_sel_fetch_area) > 0)
+> +				crtc_state->update_planes |= BIT(plane->id);
+> +
+>  			continue;
+> +		}
+
+I tried to look at this code, but it just looks entirely confused
+about things.
+
+I had a quick stab at rewriting it all:
+ https://github.com/vsyrjala/linux.git sel_fetch_redo_2
+but I don't have a machine to test it, so can't guarantee that it's 100%
+correct.
+
+>  
+>  		if (!psr2_sel_fetch_plane_state_supported(new_plane_state)) {
+>  			full_update = true;
+> diff --git a/drivers/gpu/drm/i915/display/skl_universal_plane.c b/drivers/gpu/drm/i915/display/skl_universal_plane.c
+> index 99d33ac5ceee..a969bb835baf 100644
+> --- a/drivers/gpu/drm/i915/display/skl_universal_plane.c
+> +++ b/drivers/gpu/drm/i915/display/skl_universal_plane.c
+> @@ -1336,8 +1336,12 @@ static void icl_plane_update_sel_fetch_arm(struct intel_plane *plane,
+>  	if (!crtc_state->enable_psr2_sel_fetch)
+>  		return;
+>  
+> -	intel_de_write_fw(i915, PLANE_SEL_FETCH_CTL(pipe, plane->id),
+> -			  PLANE_SEL_FETCH_CTL_ENABLE);
+> +
+> +	if (drm_rect_height(&plane_state->psr2_sel_fetch_area) > 0)
+> +		intel_de_write_fw(i915, PLANE_SEL_FETCH_CTL(pipe, plane->id),
+> +				  PLANE_SEL_FETCH_CTL_ENABLE);
+> +	else
+> +		icl_plane_disable_sel_fetch_arm(plane, crtc_state);
+>  }
+>  
+>  static void
 > -- 
-> 2.39.2
+> 2.34.1
 
 -- 
 Ville Syrjälä
