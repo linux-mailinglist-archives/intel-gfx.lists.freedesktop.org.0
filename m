@@ -1,65 +1,138 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 89F9B7EFBF9
-	for <lists+intel-gfx@lfdr.de>; Sat, 18 Nov 2023 00:01:56 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id E59817EFC25
+	for <lists+intel-gfx@lfdr.de>; Sat, 18 Nov 2023 00:36:14 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E0BD010E77A;
-	Fri, 17 Nov 2023 23:01:54 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3B38810E004;
+	Fri, 17 Nov 2023 23:36:11 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-qk1-x72a.google.com (mail-qk1-x72a.google.com
- [IPv6:2607:f8b0:4864:20::72a])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 30A0410E77A
- for <intel-gfx@lists.freedesktop.org>; Fri, 17 Nov 2023 23:01:53 +0000 (UTC)
-Received: by mail-qk1-x72a.google.com with SMTP id
- af79cd13be357-77897c4ac1fso157302485a.3
- for <intel-gfx@lists.freedesktop.org>; Fri, 17 Nov 2023 15:01:53 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=chromium.org; s=google; t=1700262112; x=1700866912;
- darn=lists.freedesktop.org; 
- h=in-reply-to:content-disposition:mime-version:references:message-id
- :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
- bh=fVbP8CyiBZehwmNjDxKXZZtGdp94/xgeZ0x/AluKOVY=;
- b=LT6EVT/S1xFyRjG6fh2IoLd5qeg3W2nWdf1UowqGeNeVkUd/Gjg12xejA8tMVR7vUy
- iLyTV1ImYwelJyrIVK+dhPWidInmz+Lgm1CjvYtXdh8Q0G1KQefTz58l7KAt8i0mt/QN
- +vQxrCxC/TfOOBIKaxxYccpQwVLOHhmREMhF4=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1700262112; x=1700866912;
- h=in-reply-to:content-disposition:mime-version:references:message-id
- :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
- :message-id:reply-to;
- bh=fVbP8CyiBZehwmNjDxKXZZtGdp94/xgeZ0x/AluKOVY=;
- b=urOvGlP1+Qzn4hb7UNtXwHaHfsFfQJm4lwh3faxCVcP9+0WuQ/i6+AVwsMKnlNoXTq
- u0RbIeIKdR/cwNNZPH8Eo9f19xaPyWDpnHwBQfcLLFzml7DCYeUdk11OTaT2ttevlez0
- o3iE8ZoL+ECVjTGHLrq0nKIA66Qq2MdtvwNRM3DNY9xqpRVGN3jt60joDvqd9xqp+jtU
- sB8BL32Nu0abNWpBdFIjXxVB+AvxVR/R+Bvo5+xR0Jf9m8305LTsOScuC3QaF/dVi3y2
- BgF08MTMBArzIr56jsCOdkfNU50Ge4d3XUgeWi5ksKmo0HR3YyvQfF+fsaZsIecuoJt6
- fvMg==
-X-Gm-Message-State: AOJu0Yyd/cIKaaLKpek4cvSZQ8RXhEguWTWY9rc0wNXqDklEnDGBokvj
- 7RdHGlBN5KcnbUkmZljccxPnOokdDoLNlNZZlKgvFg==
-X-Google-Smtp-Source: AGHT+IGo/j+JjI7nVgbEx1Oh0K7fiN+Cgcz8UA9x0+i23g0mH+S4fJxvJq/lN51n2QT7YE/f9oL0bA==
-X-Received: by 2002:a05:620a:4541:b0:778:9148:3c2c with SMTP id
- u1-20020a05620a454100b0077891483c2cmr1044309qkp.18.1700262112282; 
- Fri, 17 Nov 2023 15:01:52 -0800 (PST)
-Received: from google.com (193.132.150.34.bc.googleusercontent.com.
- [34.150.132.193]) by smtp.gmail.com with ESMTPSA id
- rr7-20020a05620a678700b0076cc0a6e127sm936543qkn.116.2023.11.17.15.01.51
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Fri, 17 Nov 2023 15:01:51 -0800 (PST)
-Date: Fri, 17 Nov 2023 23:01:50 +0000
-From: Paz Zcharya <pazz@chromium.org>
-To: Rodrigo Vivi <rodrigo.vivi@intel.com>
-Message-ID: <ZVfw3ghfBLdHB7uk@google.com>
-References: <20231105172718.18673-1-pazz@chromium.org>
- <ZVQ3d8FFqxsy0OX7@intel.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.151])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6110310E004
+ for <intel-gfx@lists.freedesktop.org>; Fri, 17 Nov 2023 23:36:09 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1700264169; x=1731800169;
+ h=date:from:to:cc:subject:message-id:references:
+ in-reply-to:mime-version;
+ bh=HBOPMoT8hRZYNFplT06wTxhdy6gQ0ucjjp37LKVrN5o=;
+ b=O+Ht1DHpRxRZMw3A1teEXcSwRVdj2q0iPoU/lZZxrkAC98Nb50MTZF9V
+ sQu1edLyjLY8OEiRiriZwrbvsy1z5kOOlAF1k/gbbvovYRptn3qRvdVBW
+ luEW8chHIeVRSEsXb7AJ+1S+dgnDzKqRBZvZYaSuT+5AbiaXSwLETOBGg
+ xEwT0NMMohRAP9hMaOCUR7DHcp3cq+8QEuPePohHA5Y0q+Wh4rvKd72aJ
+ C18u7i4JWBD2tvb/n3IvOJ+LaHiXJ5UVnIcUF85yb+MjLn1CV9QJMG/4a
+ 9uqM4ROSzsWAvCP/C1eg+xW88TMH0KeNkvjuQh0Kv/7cHr0htSv4rF7FU w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10897"; a="371564153"
+X-IronPort-AV: E=Sophos;i="6.04,206,1695711600"; d="scan'208";a="371564153"
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+ by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 17 Nov 2023 15:36:03 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10897"; a="883260431"
+X-IronPort-AV: E=Sophos;i="6.04,206,1695711600"; d="scan'208";a="883260431"
+Received: from fmsmsx601.amr.corp.intel.com ([10.18.126.81])
+ by fmsmga002.fm.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
+ 17 Nov 2023 15:36:03 -0800
+Received: from fmsmsx610.amr.corp.intel.com (10.18.126.90) by
+ fmsmsx601.amr.corp.intel.com (10.18.126.81) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.34; Fri, 17 Nov 2023 15:36:02 -0800
+Received: from fmsedg601.ED.cps.intel.com (10.1.192.135) by
+ fmsmsx610.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.34 via Frontend Transport; Fri, 17 Nov 2023 15:36:02 -0800
+Received: from NAM04-BN8-obe.outbound.protection.outlook.com (104.47.74.41) by
+ edgegateway.intel.com (192.55.55.70) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.1.2507.34; Fri, 17 Nov 2023 15:36:02 -0800
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=VxjwSE96uFL3ugiJGjxyB0gJ5KOVnC8RFUTjK7yqbVM2hP5ZkQZDsVPlzH8CPTaVGi83g0NWxHhB3SHkHsCCHuIz8defZ4kTJ+H5IgSQwK7E/U6g955PE0zOXzH2tYsxBi/nzDV+OGLzs/a+MKz5Q3CtnswLEw2TV4jSIrBrZYvBJSxiWw+PyXiewaguHUimRpNxptf120Zdvk5GKk9JqJPbPWo81uPZ9kdimCv0urkaxgt95e2k0iJcq66hbnUDgIBNPlGofM2boj9pI+WB3S+TNLB1BwKvYZ62qFWkLKdD6nqt3ulvp5/beujo1adbWsuG9iQj7RkOeWlbf95/YA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=glBSvm2RQ7kipjNQ/fVJ/MsGZqawX/42h2mg+r9RsQQ=;
+ b=Jy7Yz8zLiIPwuhGkk+rp6U2IcnxkZxUZ1Mp6qrF4tXaeUNaZy86iTlC/BRuPTbwnotENvxipwtddSdUsmRd9DjGjGtO9uIf3/a9swO9Am/CHJWoephxjivyzPfdW+4lVT9u1ud78+j13HKUg/tNEv4SmXVf4lmn7qGnwTSqIfx6BbO42dArAAtu4b0AfpE8NWaONGRYCDPLpuIzf1uIf2FWeRpLe8GAnaMTJvoPqg3xVR9YQEeLoq/z/kr9fUDNbz0OSH0aN4n6MeeaMmTnV3BiuD13W2HzctAwOqdnN5NyOYgf7eNOt8psrWVMnIXA4mT5bx4mdX72veyoN/DBnEg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+Received: from CY5PR11MB6139.namprd11.prod.outlook.com (2603:10b6:930:29::17)
+ by PH8PR11MB7021.namprd11.prod.outlook.com (2603:10b6:510:223::16)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7002.23; Fri, 17 Nov
+ 2023 23:35:58 +0000
+Received: from CY5PR11MB6139.namprd11.prod.outlook.com
+ ([fe80::b870:a8ae:c4f1:c39b]) by CY5PR11MB6139.namprd11.prod.outlook.com
+ ([fe80::b870:a8ae:c4f1:c39b%4]) with mapi id 15.20.7002.021; Fri, 17 Nov 2023
+ 23:35:58 +0000
+Date: Fri, 17 Nov 2023 17:35:55 -0600
+From: Lucas De Marchi <lucas.demarchi@intel.com>
+To: Chaitanya Kumar Borah <chaitanya.kumar.borah@intel.com>
+Message-ID: <qttczeukv7fu4dnq3rh7xua5vimhhu6kfqwhqbf3aes2aze5ty@pejh24rjpnvk>
+References: <20230130100806.1373883-1-chaitanya.kumar.borah@intel.com>
+ <20230130100806.1373883-2-chaitanya.kumar.borah@intel.com>
+Content-Type: text/plain; charset="us-ascii"; format=flowed
 Content-Disposition: inline
-In-Reply-To: <ZVQ3d8FFqxsy0OX7@intel.com>
-Subject: Re: [Intel-gfx] [PATCH] drm/i915/display: Fix phys_base to be
- relative not absolute
+In-Reply-To: <20230130100806.1373883-2-chaitanya.kumar.borah@intel.com>
+X-ClientProxiedBy: BYAPR08CA0043.namprd08.prod.outlook.com
+ (2603:10b6:a03:117::20) To CY5PR11MB6139.namprd11.prod.outlook.com
+ (2603:10b6:930:29::17)
+MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: CY5PR11MB6139:EE_|PH8PR11MB7021:EE_
+X-MS-Office365-Filtering-Correlation-Id: b20958d7-90f7-4144-e30a-08dbe7c5f373
+X-LD-Processed: 46c98d88-e344-4ed4-8496-4ed7712e255d,ExtAddr
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: 3Zw7Sn3TL2Aa5y2ACE8ZUaJukvx4DNcgAfWv91dlMOOwB7z6bJROjOKqDo96pAEkoz0Ntk8kqghKPdqIb7lGFR+OM494n5zoSYglZl5jhPiKV2gQdHGjaEVBjvKrMQ62JKVStFKBhB+KtiE0ddnxR/544d3KGkEEwj9ow0ptecRig5wEppHugpv3aNXmXNPkcAvbrtenwaNfJ1eSOKPLJPWuC5ZLTA43OHiPId8+VI+80gkBMkTDUoqhBoL9sbADhFCYKel/FQOEqX8T+d5VXgStGx1DiMQb3/EaVswS7pPZoGSTCQ8HfB+nk2hnEY28ybSvLS+e0Z2HbQz5H5qPRok7I217dRUC6YD0P9Rl1o7WySxJa3cvVDBeg5OFgawFuzv0cp3AT/PKgnrzheVFHG4JCXEHlsOSjsrw4OqndbADRQAce7zB37vhAA1PU1E9mDrsB6SwkSHyvVmU6dB1n+gYATPOZkT4JUik8POnhOhmZ3Y8a3aoixR/b/7YV9Fo6o7wh6LDsJau82sHU09IbY5YoYOhC3/HiXiZM4GBTFzNxxI/qZ1yd8WAhfUhYTRG
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:CY5PR11MB6139.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230031)(7916004)(346002)(39860400002)(396003)(136003)(376002)(366004)(230922051799003)(186009)(64100799003)(1800799009)(451199024)(33716001)(38100700002)(41300700001)(6666004)(86362001)(6486002)(9686003)(66476007)(6512007)(478600001)(82960400001)(66556008)(66946007)(2906002)(6506007)(26005)(316002)(6636002)(6862004)(8676002)(5660300002)(8936002)(4326008);
+ DIR:OUT; SFP:1102; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?qDKJ+jHO7S0s0zDsS/1mSCh9kdfykz+oZ1KgdvRDwZchbnImIZkUkAgnEsrI?=
+ =?us-ascii?Q?KPHGki3Zru/J9xiz/gIJU3WkIt0XT5RFOhetCcv/A5DyCD4YhF7TRFljWDYu?=
+ =?us-ascii?Q?dWJfFQvEWzZHEC9AzhFcNh6eigH3r7xAEB5RMMUPwz3wZUA3+lxYX7iL8DOF?=
+ =?us-ascii?Q?IRLlx6eEJ5fYGTLJpA4SAPiK6bpLE9fgIQNUq2gz4zpiG2JEKwM29NL7h2zy?=
+ =?us-ascii?Q?o6ucfNz+TIfwkKZYU6OY/s0fPq9q0TTEjdCDs7XdsY+wxkK2bMnPyOEN3+Io?=
+ =?us-ascii?Q?SAwRf/bo9FevXOdyy2e2io6GL3UdxdUzD5Ool52YN60UgaHVBBsXAdqjSprw?=
+ =?us-ascii?Q?ndqV3LbcjhhrDCtEKGsGMz8AKfRWdf9VAUzCv9/I58Kw3I0C3ELjiL41creC?=
+ =?us-ascii?Q?/tM0W3NybmcXWtgBtb9oN8XBEbUv4gBE+ygIAg23i0Rx+ZkuvvFdCSIdNRFs?=
+ =?us-ascii?Q?0qWNtotPHjUXvDL99gJxat3SJfecj0sKRVEDEVb3yYVeUVcwy+JMwKc1qVh5?=
+ =?us-ascii?Q?/aA08nuL0KKz3Gza5td3E6pgJxT1iYUv9sNa1sWexn4GMAUUjkF6UxUnup86?=
+ =?us-ascii?Q?ZIFOPDB7zHQEEUuXUqQeFZ9coejQmPFMaa3+L79r4Mt25CjjBMZTZq+1JlPf?=
+ =?us-ascii?Q?S3dBY3NCAU4ibHTtd3DodsO4P+22azp1MF1rfNH+t4QKCYGKbTVkMk4sGCBP?=
+ =?us-ascii?Q?fVw/XjYaIdXV7KupTcOksdmHyBC/wdK2uPdUEOsNQkYhVGGb9mScJdjQLsKl?=
+ =?us-ascii?Q?nTLbf+oTPMbKI2DRVk1g+oP4ueOHxOlRuAIahgbFIXmJgCotM0qsNZocyYrr?=
+ =?us-ascii?Q?U8uxBUWKMW/o88jGzvXhmSF6qtmlqPgCqbAm7qGi/oQWScm7rUXptMEc4qew?=
+ =?us-ascii?Q?Rsy2rv74DYSo+hsx5tUyF718HaNvYLmYhh1pBMeJz93E7f8tEVVh0j3aPddz?=
+ =?us-ascii?Q?gZypu+4uNE4ZwudPfd8/RygxQ+VRlcUJLTYuLdHWT87ADb8BrokwgwXImueR?=
+ =?us-ascii?Q?8WfpoPpNTgYkjR6elNdfD8ZiI7k1erl8hJVY6J5uqi5zbuZX51Fgjwoet+kX?=
+ =?us-ascii?Q?VXQV9YENH3EW46n9YPkKaAE86JdTVKVo5n+IbsKUzS3eVbOmhFvS7FuloZIg?=
+ =?us-ascii?Q?xLpdpQRohSZcdgCh3rg5Hp5WPwVnBbfe3KqDeHd67MNkw4P6TbV60UtdbWf8?=
+ =?us-ascii?Q?OJQFEN7eYMh/nvbbWXb6T/Xu8uFb1bQQ8nkVCE9tcficuixGVh5w6eQ+mNho?=
+ =?us-ascii?Q?BI/RjEYh/E3aNQ5FjvGoEXkgqLdJDvIMkubFbaUHRU27V2Jql7UitI2WXZlL?=
+ =?us-ascii?Q?mhppXBAFFkLSBCHo4hbwwpb6alck3t65l0vWeeERZCWeTP6+JWR02zuPuodK?=
+ =?us-ascii?Q?hLw0a6449rFW+LAAQ8LBiP7qD1vT2Y/zIZCZKLZqzifVTg2OypJnqYH8afhP?=
+ =?us-ascii?Q?n8nXEGcqgu3QfICo9VWo+OyBpeKIWvEc9Pd7sbKrvjkmPxfV7VYyr0kA4qEz?=
+ =?us-ascii?Q?p0TsmGcf/dd/S2X6DC3YuROyqXLJ6LykCzIYgW8vPdM3D9mgmnj3eGtoUFQB?=
+ =?us-ascii?Q?haNPYfldWngvVswNG70jPFpGESyLPLVefnfadtAtdHJ7IVGYUlzWFlCHqdxY?=
+ =?us-ascii?Q?Ow=3D=3D?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: b20958d7-90f7-4144-e30a-08dbe7c5f373
+X-MS-Exchange-CrossTenant-AuthSource: CY5PR11MB6139.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 17 Nov 2023 23:35:58.3960 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: NImWQ9KwlqUJqIevWKqYin+IZuliQCC34Q1hL7W8Yak2oBtQU0y3dmWUVEeXouxikbsUF4l5jnATJtvDh5MMIUZ4mhtA5gs3IPIb1sT+tn4=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH8PR11MB7021
+X-OriginatorOrg: intel.com
+Subject: Re: [Intel-gfx] [RFC v4 1/2] drm/i915: Add RPL-U sub platform
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -72,137 +145,50 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Andrzej Hajda <andrzej.hajda@intel.com>,
- Subrata Banik <subratabanik@google.com>,
- Tvrtko Ursulin <tvrtko.ursulin@intel.com>, intel-gfx@lists.freedesktop.org,
- linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
- Sean Paul <seanpaul@chromium.org>, matthew.auld@intel.com,
- Daniel Vetter <daniel@ffwll.ch>, Marcin Wojtas <mwojtas@chromium.org>,
- Drew Davenport <ddavenport@chromium.org>, David Airlie <airlied@gmail.com>,
- Nirmoy Das <nirmoy.das@intel.com>
+Cc: intel-gfx@lists.freedesktop.org, ville.syrjala@intel.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, Nov 14, 2023 at 10:13:59PM -0500, Rodrigo Vivi wrote:
-> On Sun, Nov 05, 2023 at 05:27:03PM +0000, Paz Zcharya wrote:
-> > Fix the value of variable `phys_base` to be the relative offset in
-> > stolen memory, and not the absolute offset of the GSM.
-> 
-> to me it looks like the other way around. phys_base is the physical
-> base address for the frame_buffer. Setting it to zero doesn't seem
-> to make that relative. And also doesn't look right.
+On Mon, Jan 30, 2023 at 03:38:05PM +0530, Chaitanya Kumar Borah wrote:
+>Separate out RPLU device ids and add them to both RPL and
+>newly created RPL-U subplatforms.
 >
-> > 
-> > Currently, the value of `phys_base` is set to "Surface Base Address,"
-> > which in the case of Meter Lake is 0xfc00_0000.
-> 
-> I don't believe this is a fixed value. IIRC this comes from the register
-> set by video bios, where the idea is to reuse the fb that was used so
-> far.
-> 
-> With this in mind I don't understand how that could overflow. Maybe
-> the size of the stolen is not right? maybe the size? maybe different
-> memory region?
+>v2: (Matt)
+>    - Sort PCI-IDs numerically
+>    - Name the sub-platform to accurately depict what it is for
+>    - Make RPL-U part of RPL subplatform
 >
+>v3: revert to RPL-U subplatform (Jani)
+>
+>v4: (Jani)
+>    - Add RPL-U ids to RPL-P platform
 
-Hi Rodrigo, thanks for the great comments.
+humn...
 
-Apologies for using a wrong/confusing terminology. I think 'phys_base'
-is supposed to be the offset in the GEM BO, where base (or
-"Surface Base Address") is supposed to be the GTT offset.
+>diff --git a/include/drm/i915_pciids.h b/include/drm/i915_pciids.h
+>index 4a4c190f7698..5824e1d7d162 100644
+>--- a/include/drm/i915_pciids.h
+>+++ b/include/drm/i915_pciids.h
+>@@ -684,14 +684,18 @@
+> 	INTEL_VGA_DEVICE(0xA78A, info), \
+> 	INTEL_VGA_DEVICE(0xA78B, info)
+>
+>+/* RPL-U */
+>+#define INTEL_RPLU_IDS(info) \
+>+	INTEL_VGA_DEVICE(0xA721, info), \
+>+	INTEL_VGA_DEVICE(0xA7A1, info), \
+>+	INTEL_VGA_DEVICE(0xA7A9, info)
+>+
+> /* RPL-P */
+> #define INTEL_RPLP_IDS(info) \
+>+	INTEL_RPLU_IDS(info), \
 
-Other than what I wrote before, I noticed that the function 'i915_vma_pin'
-which calls to 'i915_gem_gtt_reserve' is the one that binds the right
-address space in the GTT for that stolen region.
+drive by comment while reviewing other stuff. Why was U added to the
+P macro? That looks odd. Adding it to the rpl subplatform, together with P would
+be ok, but in this macro it looks wrong. Doing it the other way I think the
+only affected place would be the early-quirks, which would need a separate entry,
+but admitedly they should had been INTEL_RPL_IDS() with all the
+variants.
 
-I see that in the function 'i915_vma_insert' (full call stack below),
-where if (flags & PIN_OFFSET_FIXED), then when calling 'i915_gem_gtt_reserve'
-we add an offset.
 
-Specifically in MeteorLake, and specifically when using GOP driver, this
-offset is equal to 0xfc00_0000. But as you mentioned, this is not strict.
-
-The if statement always renders true because in the function
-'initial_plane_vma' we always set
-pinctl = PIN_GLOBAL | PIN_OFFSET_FIXED | base;
-where pinctl == flags (see file 'intel_plane_initial.c' line 145).
-
-Call stack:
-drm_mm_reserve_node
-i915_gem_gtt_reserve
-	i915_vma_insert
-i915_vma_pin_ww
-i915_vma_pin
-initial_plane_vma
-intel_alloc_initial_plane_obj
-intel_find_initial_plane_obj
-
-Therefore, I believe the variable 'phys_base' in the
-function 'initial_plane_vma,' should be the the offset in the GEM BO
-and not the GTT offset, and because the base is added later on
-in the function 'i915_gem_gtt_reserve', this value should not be
-equal to base and be 0.
-
-Hope it makes more sense.
-
-> > This causes the
-> > function `i915_gem_object_create_region_at` to fail in line 128, when
-> > it attempts to verify that the range does not overflow:
-> > 
-> > if (range_overflows(offset, size, resource_size(&mem->region)))
-> >       return ERR_PTR(-EINVAL);
-> > 
-> > where:
-> >   offset = 0xfc000000
-> >   size = 0x8ca000
-> >   mem->region.end + 1 = 0x4400000
-> >   mem->region.start = 0x800000
-> >   resource_size(&mem->region) = 0x3c00000
-> > 
-> > call stack:
-> >   i915_gem_object_create_region_at
-> >   initial_plane_vma
-> >   intel_alloc_initial_plane_obj
-> >   intel_find_initial_plane_obj
-> >   intel_crtc_initial_plane_config
-> > 
-> > Looking at the flow coming next, we see that `phys_base` is only used
-> > once, in function `_i915_gem_object_stolen_init`, in the context of
-> > the offset *in* the stolen memory. Combining that with an
-> > examinination of the history of the file seems to indicate the
-> > current value set is invalid.
-> > 
-> > call stack (functions using `phys_base`)
-> >   _i915_gem_object_stolen_init
-> >   __i915_gem_object_create_region
-> >   i915_gem_object_create_region_at
-> >   initial_plane_vma
-> >   intel_alloc_initial_plane_obj
-> >   intel_find_initial_plane_obj
-> >   intel_crtc_initial_plane_config
-> > 
-> > [drm:_i915_gem_object_stolen_init] creating preallocated stolen
-> > object: stolen_offset=0x0000000000000000, size=0x00000000008ca000
-> > 
-> > Signed-off-by: Paz Zcharya <pazz@chromium.org>
-> > ---
-> > 
-> >  drivers/gpu/drm/i915/display/intel_plane_initial.c | 2 +-
-> >  1 file changed, 1 insertion(+), 1 deletion(-)
-> > 
-> > diff --git a/drivers/gpu/drm/i915/display/intel_plane_initial.c b/drivers/gpu/drm/i915/display/intel_plane_initial.c
-> > index a55c09cbd0e4..e696cb13756a 100644
-> > --- a/drivers/gpu/drm/i915/display/intel_plane_initial.c
-> > +++ b/drivers/gpu/drm/i915/display/intel_plane_initial.c
-> > @@ -90,7 +90,7 @@ initial_plane_vma(struct drm_i915_private *i915,
-> >  			"Using phys_base=%pa, based on initial plane programming\n",
-> >  			&phys_base);
-> >  	} else {
-> > -		phys_base = base;
-> > +		phys_base = 0;
-> >  		mem = i915->mm.stolen_region;
-> >  	}
-> >  
-> > -- 
-> > 2.42.0.869.gea05f2083d-goog
-> > 
+Lucas De Marchi
