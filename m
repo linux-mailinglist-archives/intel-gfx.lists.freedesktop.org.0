@@ -2,65 +2,69 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 426C67F05A5
-	for <lists+intel-gfx@lfdr.de>; Sun, 19 Nov 2023 12:28:40 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 382847F05D3
+	for <lists+intel-gfx@lfdr.de>; Sun, 19 Nov 2023 12:29:04 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0DBDE10E1C9;
-	Sun, 19 Nov 2023 11:28:33 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 785AF10E1D1;
+	Sun, 19 Nov 2023 11:28:54 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mail-ej1-x62f.google.com (mail-ej1-x62f.google.com
  [IPv6:2a00:1450:4864:20::62f])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 335BE10E1C0;
- Sun, 19 Nov 2023 11:28:31 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 859BF10E1E2;
+ Sun, 19 Nov 2023 11:28:44 +0000 (UTC)
 Received: by mail-ej1-x62f.google.com with SMTP id
- a640c23a62f3a-9e62ab773f1so479654566b.0; 
- Sun, 19 Nov 2023 03:28:31 -0800 (PST)
+ a640c23a62f3a-9d216597f64so465832266b.3; 
+ Sun, 19 Nov 2023 03:28:44 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1700393309; x=1700998109; darn=lists.freedesktop.org;
- h=content-transfer-encoding:mime-version:message-id:date:subject:cc
- :to:from:from:to:cc:subject:date:message-id:reply-to;
- bh=4zsSf4ZkDNs2IGAtcWQSvygdvnaeiSuxsGnh/E5aZTQ=;
- b=MVj/k3/d+EhxyoltlIyNBeH4BdTjMJJxWGpBUBQ0EGx4Isom+R+BS9fDnA/GJChdQo
- LvNXeFohnKWR7Q+qfZFGAw3Q7/YB5dNfPjCRE2gd3UlbuOk3yqzv2YExNPnTlMOiKeCE
- MgbLKFLFMd3PpgjWRN4Uw7+7/Za4Otq4/hSG73qe61gfP6NFKwQhmaJXf4shX8thGs7M
- 5PAx6jfVmbNBTTAoT78VBLAs1jrWbINVsHSzwdB9kuAcIEN9LK+URgW+zwnSCE8UbrJN
- mSJM/bOtnnAI9VEDm6DW7gNmcf3E6IwHvuTUfSn53vMFCXwjsN3rpzMgB0FO1w2Eanqu
- cV/Q==
+ d=gmail.com; s=20230601; t=1700393323; x=1700998123; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:mime-version:references:in-reply-to
+ :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=iwY3dw5n8Qn4ucno1MuBuADAhIYe/cj92x0CcIZXqhc=;
+ b=DU3Poux8VJSwHrI0VFEtnfCwmZlZau01PNZ2Q1F2TZ4OzNQz8sYCsfTFCMQJ0rROCT
+ StzQ6OuThx7oAEVqYfuFfCT43pDruW/5XNw+gzgbsqqU3JO19EmmcsSTgvlEDwWhmmss
+ lU5i/IUJyYoEIxIIOKlY0Hok/L9s7XroP69WDIzozYZ+YHQEM0NF0tsX2TwOCJmXYMIX
+ ZEYtGrdLvlEr49xN/8s/RY+k+PMY1WTYzZH3JMz+IuuGGYsjgm6boxuUkjxw4LSVurZH
+ H+84lUmn1Hg2P/e7FnZHyKjMOKBByppAcWOgSPBfDGJgqg1eZTpqgMoV1Y3li1AW3O72
+ g6ig==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1700393309; x=1700998109;
- h=content-transfer-encoding:mime-version:message-id:date:subject:cc
- :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
- :reply-to;
- bh=4zsSf4ZkDNs2IGAtcWQSvygdvnaeiSuxsGnh/E5aZTQ=;
- b=Zw69pBbLghZUha6CoEFt/QYiM88jtOxMiz3S98wKg1t9clpHl5Obf9LDvaAqmxqUZ9
- ID64Er65cE7/0eemtpf6LtlZGfGZR8EWfmqXxYQFzyGuz3/7V0xt4ydhNngEWICtKU6z
- ybWk8gybSuyvQktOouv2KaP0NnZP3Lv5Ix+3qhw082pdhP2mUGjj7elhPbPxzYPJ9JkS
- sLN1+nJyTZVHRZ60qtOhUIJAfEkVudcMZXafiihEY6/TXvNbo5P1gVSTtfNg540sml90
- SLBN9PBy7xE+UUCHRAqnhvydlsSKUuD62T/HUTfCjNAHrDVsDNmXapPBKIqA3oRK3cbg
- VhAQ==
-X-Gm-Message-State: AOJu0YxRhH5+zDAQyNf5N1kzPWLPpTPcB6Eg2TLPaaaG+OoSHWXXW9FY
- uwnpeYtuMe2Xn4RlCvNFUKA=
-X-Google-Smtp-Source: AGHT+IE5uGBUmol5ov0XxZ5Dqkm6UF3fXf9Nab5r2AlC03wH+Qnp4IS3AGLhaN/CFXgIHkYcW7HMmw==
-X-Received: by 2002:a17:906:2b56:b0:9d3:8d1e:cf0 with SMTP id
- b22-20020a1709062b5600b009d38d1e0cf0mr2841220ejg.54.1700393309393; 
- Sun, 19 Nov 2023 03:28:29 -0800 (PST)
+ d=1e100.net; s=20230601; t=1700393323; x=1700998123;
+ h=content-transfer-encoding:mime-version:references:in-reply-to
+ :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+ :subject:date:message-id:reply-to;
+ bh=iwY3dw5n8Qn4ucno1MuBuADAhIYe/cj92x0CcIZXqhc=;
+ b=BeRxGYPBFTZejiyS/r1GXf2c6yGczAMM22634DuDni8Y/vqKwCdgf6k2rXZO+n9pYI
+ inygkkuvm6+NvrzH5mWh0zVoO+BV43osYy7USELfQH+/Bnf6PaspjeZKPKSe3r8t34as
+ WxQ15qqczzu8ibvRv3qvwQTLTI7oaM3gsPJm49ba/xmPe3l1P6ScO/YhI5KxBYaTu2XE
+ qxrI3V3elrGYcCNC4UDRlqW9oqK8lfXmcTlrYksD6Ex8l2MKO+1HN/CF4o5Bz0GV9tnr
+ Ke6VgnGyNPP4IwV6H7O2bKN5lXxsVvJpGtO4r6gY/z+TGrb41cuwbBIxxE117t3vXG7b
+ SgdA==
+X-Gm-Message-State: AOJu0YxUO9H2nMEPW9r5xPyB45/rhe9IiO2HMXA4nDTEcHj4yJlBH1Ur
+ m9CTdkOhuaMv52jHESNCoRw=
+X-Google-Smtp-Source: AGHT+IF98s8aEn0w1sgMJYs8s2hcKMxZPSkooSx15XAU5tgESM/m3QK98+ws4NtnHf+xbrajq9DL3g==
+X-Received: by 2002:a17:906:1859:b0:9e8:2c4d:40d4 with SMTP id
+ w25-20020a170906185900b009e82c4d40d4mr4394226eje.30.1700393322803; 
+ Sun, 19 Nov 2023 03:28:42 -0800 (PST)
 Received: from zotac.lan.
  (dynamic-2a01-0c23-bde4-3e00-2223-08ff-fe18-0310.c23.pool.telefonica.de.
  [2a01:c23:bde4:3e00:2223:8ff:fe18:310])
  by smtp.gmail.com with ESMTPSA id
- k22-20020a1709063fd600b009f8af454d0dsm2420378ejj.112.2023.11.19.03.28.28
+ k22-20020a1709063fd600b009f8af454d0dsm2420378ejj.112.2023.11.19.03.28.42
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Sun, 19 Nov 2023 03:28:29 -0800 (PST)
+ Sun, 19 Nov 2023 03:28:42 -0800 (PST)
 From: Heiner Kallweit <hkallweit1@gmail.com>
 To: Wolfram Sang <wsa@kernel.org>,
-	intel-gfx@lists.freedesktop.org
-Date: Sun, 19 Nov 2023 12:28:05 +0100
-Message-ID: <20231119112826.5115-1-hkallweit1@gmail.com>
+	Jani Nikula <jani.nikula@linux.intel.com>
+Date: Sun, 19 Nov 2023 12:28:20 +0100
+Message-ID: <20231119112826.5115-16-hkallweit1@gmail.com>
 X-Mailer: git-send-email 2.42.1
+In-Reply-To: <20231119112826.5115-1-hkallweit1@gmail.com>
+References: <20231119112826.5115-1-hkallweit1@gmail.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH v3 RESEND 00/20] remove I2C_CLASS_DDC support
+Subject: [Intel-gfx] [PATCH v3 15/20] drivers/gpu/drm/i915/display: remove
+ I2C_CLASS_DDC support
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -73,20 +77,11 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: linux-fbdev@vger.kernel.org, dri-devel@lists.freedesktop.org,
- Yongqin Liu <yongqin.liu@linaro.org>,
- Jernej Skrabec <jernej.skrabec@gmail.com>,
- Marijn Suijten <marijn.suijten@somainline.org>,
- Sumit Semwal <sumit.semwal@linaro.org>, amd-gfx@lists.freedesktop.org,
- linux-rockchip@lists.infradead.org,
- Xinwei Kong <kong.kongxinwei@hisilicon.com>, linux-sunxi@lists.linux.dev,
- Jonas Karlman <jonas@kwiboo.se>, linux-arm-msm@vger.kernel.org,
- linux-mediatek@lists.infradead.org, linux-arm-kernel@lists.infradead.org,
- Jocelyn Falempe <jfalempe@redhat.com>, linux-kernel@vger.kernel.org,
- linux-i2c@vger.kernel.org, Thomas Zimmermann <tzimmermann@suse.de>,
- John Stultz <jstultz@google.com>, Heiner Kallweit <hkallweit1@gmail.com>,
- freedreno@lists.freedesktop.org,
- Laurent Pinchart <Laurent.pinchart@ideasonboard.com>
+Cc: Jani Nikula <jani.nikula@intel.com>, intel-gfx@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
+ linux-i2c@vger.kernel.org, Daniel Vetter <daniel@ffwll.ch>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, David Airlie <airlied@gmail.com>,
+ Heiner Kallweit <hkallweit1@gmail.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
@@ -97,45 +92,36 @@ be used in new code. So we can remove this class completely now.
 
 Preferably this series should be applied via the i2c tree.
 
-v2:
-- change tag in commit subject of patch 03
-- add ack tags
-v3:
-- fix a compile error in patch 5
-
+Acked-by: Jani Nikula <jani.nikula@intel.com>
 Signed-off-by: Heiner Kallweit <hkallweit1@gmail.com>
 
 ---
+ drivers/gpu/drm/i915/display/intel_gmbus.c |    1 -
+ drivers/gpu/drm/i915/display/intel_sdvo.c  |    1 -
+ 2 files changed, 2 deletions(-)
 
- drivers/gpu/drm/amd/amdgpu/amdgpu_i2c.c           |    1 -
- drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c |    1 -
- drivers/gpu/drm/ast/ast_i2c.c                     |    1 -
- drivers/gpu/drm/bridge/synopsys/dw-hdmi.c         |    1 -
- drivers/gpu/drm/display/drm_dp_helper.c           |    1 -
- drivers/gpu/drm/display/drm_dp_mst_topology.c     |    1 -
- drivers/gpu/drm/gma500/cdv_intel_dp.c             |    1 -
- drivers/gpu/drm/gma500/intel_gmbus.c              |    1 -
- drivers/gpu/drm/gma500/oaktrail_hdmi_i2c.c        |    1 -
- drivers/gpu/drm/gma500/psb_intel_sdvo.c           |    1 -
- drivers/gpu/drm/hisilicon/hibmc/hibmc_drm_i2c.c   |    1 -
- drivers/gpu/drm/i915/display/intel_gmbus.c        |    1 -
- drivers/gpu/drm/i915/display/intel_sdvo.c         |    1 -
- drivers/gpu/drm/loongson/lsdc_i2c.c               |    1 -
- drivers/gpu/drm/mediatek/mtk_hdmi_ddc.c           |    1 -
- drivers/gpu/drm/mgag200/mgag200_i2c.c             |    1 -
- drivers/gpu/drm/msm/hdmi/hdmi_i2c.c               |    1 -
- drivers/gpu/drm/radeon/radeon_i2c.c               |    1 -
- drivers/gpu/drm/rockchip/inno_hdmi.c              |    1 -
- drivers/gpu/drm/rockchip/rk3066_hdmi.c            |    1 -
- drivers/gpu/drm/sun4i/sun4i_hdmi_i2c.c            |    1 -
- drivers/video/fbdev/core/fb_ddc.c                 |    1 -
- drivers/video/fbdev/cyber2000fb.c                 |    1 -
- drivers/video/fbdev/i740fb.c                      |    1 -
- drivers/video/fbdev/intelfb/intelfb_i2c.c         |   15 +++++----------
- drivers/video/fbdev/matrox/i2c-matroxfb.c         |   12 ++++--------
- drivers/video/fbdev/s3fb.c                        |    1 -
- drivers/video/fbdev/tdfxfb.c                      |    1 -
- drivers/video/fbdev/tridentfb.c                   |    1 -
- drivers/video/fbdev/via/via_i2c.c                 |    1 -
- include/linux/i2c.h                               |    1 -
- 31 files changed, 9 insertions(+), 47 deletions(-)
+diff --git a/drivers/gpu/drm/i915/display/intel_gmbus.c b/drivers/gpu/drm/i915/display/intel_gmbus.c
+index 40d7b6f3f..e9e4dcf34 100644
+--- a/drivers/gpu/drm/i915/display/intel_gmbus.c
++++ b/drivers/gpu/drm/i915/display/intel_gmbus.c
+@@ -899,7 +899,6 @@ int intel_gmbus_setup(struct drm_i915_private *i915)
+ 		}
+ 
+ 		bus->adapter.owner = THIS_MODULE;
+-		bus->adapter.class = I2C_CLASS_DDC;
+ 		snprintf(bus->adapter.name,
+ 			 sizeof(bus->adapter.name),
+ 			 "i915 gmbus %s", gmbus_pin->name);
+diff --git a/drivers/gpu/drm/i915/display/intel_sdvo.c b/drivers/gpu/drm/i915/display/intel_sdvo.c
+index a636f42ce..5e64d1baf 100644
+--- a/drivers/gpu/drm/i915/display/intel_sdvo.c
++++ b/drivers/gpu/drm/i915/display/intel_sdvo.c
+@@ -3311,7 +3311,6 @@ intel_sdvo_init_ddc_proxy(struct intel_sdvo_ddc *ddc,
+ 	ddc->ddc_bus = ddc_bus;
+ 
+ 	ddc->ddc.owner = THIS_MODULE;
+-	ddc->ddc.class = I2C_CLASS_DDC;
+ 	snprintf(ddc->ddc.name, I2C_NAME_SIZE, "SDVO %c DDC%d",
+ 		 port_name(sdvo->base.port), ddc_bus);
+ 	ddc->ddc.dev.parent = &pdev->dev;
+
