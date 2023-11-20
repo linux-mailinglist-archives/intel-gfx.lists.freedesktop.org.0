@@ -1,45 +1,51 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id E1AA17F0A51
-	for <lists+intel-gfx@lfdr.de>; Mon, 20 Nov 2023 02:28:36 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0A5DB7F0B1B
+	for <lists+intel-gfx@lfdr.de>; Mon, 20 Nov 2023 04:41:03 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3F1DA10E0FA;
-	Mon, 20 Nov 2023 01:28:28 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0483810E1CD;
+	Mon, 20 Nov 2023 03:40:59 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from gandalf.ozlabs.org (gandalf.ozlabs.org [150.107.74.76])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6CF5A10E075;
- Mon, 20 Nov 2023 01:28:25 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canb.auug.org.au;
- s=201702; t=1700443700;
- bh=Csn+rSOlc7hq+c8kVNN3ZRY0a5UgOwfACyTDU+giBM4=;
- h=Date:From:To:Cc:Subject:From;
- b=GQ5eWlmyF0MfSbdDe8/EDFZ9l/yhyRu23K+EbRZwDdGeXGB6sFWkA4WzWNDq01KsE
- 2OBK9ejg8LiiGnbgxHaOP0oE0qC8se1jctVja3ONLZu8Zi9zhAoVwdwuHOl/+hY3jl
- e2cJizyF+sOt6oAdJcis+xfag/TJ2pZj155AuphfD0Of0b2aAuRjQ6Sm9TIKGioFna
- WodTWKADnR54thH/0gpRqk650dUcLz5qcng1ucfMQqy/Tkv0EoZxu2FaiXcV7Ap9h+
- 24AJYfDFw/x2c33gm/pikCUHA9qgwzeJ8uiLGOe/p4J459GYV/lxq61Z/ahHBHreh6
- Pl2zBHZtz4qWw==
-Received: from authenticated.ozlabs.org (localhost [127.0.0.1])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
- (No client certificate requested)
- by mail.ozlabs.org (Postfix) with ESMTPSA id 4SYVJM2FcNz4wnv;
- Mon, 20 Nov 2023 12:28:18 +1100 (AEDT)
-Date: Mon, 20 Nov 2023 12:28:18 +1100
-From: Stephen Rothwell <sfr@canb.auug.org.au>
-To: Daniel Vetter <daniel.vetter@ffwll.ch>, Jani Nikula
- <jani.nikula@linux.intel.com>, Joonas Lahtinen
- <joonas.lahtinen@linux.intel.com>, Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Alex Deucher <alexdeucher@gmail.com>
-Message-ID: <20231120122818.09bb6f35@canb.auug.org.au>
+Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.136])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A16D910E1CD;
+ Mon, 20 Nov 2023 03:40:57 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1700451657; x=1731987657;
+ h=date:from:to:cc:subject:message-id:mime-version;
+ bh=IlPqiDrz3tKuyD7L4wQ6R/Nl5fvYg+pnDt+lTYjtfrU=;
+ b=dvOtLtXouQiV6Nf4FqjF1aCF/GH/r/F9dFrLZr2zy8VLJKskfivrUA2u
+ AJx0lTj5ay0GerK34jBmQ3r1UC9I/Ak3O9L4yehkUWbTlqHQD5O0+bjU7
+ cfiYIR89TCiVjrAGsKW1aZmwcqQn0vbCWF/h/6CP8ILobH/ZJ1lOqeyLE
+ Vpfolu8kH9Y1AH0vBioB1DgSiyu3yU5kq88i8c+SiYR0f42JbN5KrZpve
+ Ew+2DZ4993T8+gdG/DxRj78Y9rOT55iXO3zV7lgABCvt2v3PC928NYVTK
+ 83pIQlYhdTu5UtK2JgLrae6HAn0VoWZTu4Au8EDQ+7snmRaAtDtilLv7D Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10899"; a="370887642"
+X-IronPort-AV: E=Sophos;i="6.04,212,1695711600"; d="scan'208";a="370887642"
+Received: from orviesa002.jf.intel.com ([10.64.159.142])
+ by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 Nov 2023 19:40:57 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.04,212,1695711600"; 
+   d="scan'208";a="7427393"
+Received: from lkp-server02.sh.intel.com (HELO b8de5498638e) ([10.239.97.151])
+ by orviesa002.jf.intel.com with ESMTP; 19 Nov 2023 19:40:56 -0800
+Received: from kbuild by b8de5498638e with local (Exim 4.96)
+ (envelope-from <lkp@intel.com>) id 1r4v9Y-0005uZ-2Z;
+ Mon, 20 Nov 2023 03:40:52 +0000
+Date: Mon, 20 Nov 2023 11:40:17 +0800
+From: kernel test robot <lkp@intel.com>
+To: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+Message-ID: <202311201118.Jmt74ras-lkp@intel.com>
 MIME-Version: 1.0
-Content-Type: multipart/signed; boundary="Sig_/+H5fErey4cTN8tJv.P0+EJV";
- protocol="application/pgp-signature"; micalg=pgp-sha256
-Subject: [Intel-gfx] linux-next: manual merge of the drm-intel tree with the
- amdgpu tree
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Subject: [Intel-gfx] [drm-intel:for-linux-next-gt 1/6]
+ drivers/gpu/drm/i915/i915_drm_client.h:81:1: warning: non-void function
+ does not return a value
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -52,78 +58,48 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
- DRI <dri-devel@lists.freedesktop.org>, Fangzhi Zuo <jerry.zuo@amd.com>,
- Linux Next Mailing List <linux-next@vger.kernel.org>,
- Alex Deucher <alexander.deucher@amd.com>,
- Intel Graphics <intel-gfx@lists.freedesktop.org>
+Cc: intel-gfx@lists.freedesktop.org, llvm@lists.linux.dev,
+ dri-devel@lists.freedesktop.org, oe-kbuild-all@lists.linux.dev
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---Sig_/+H5fErey4cTN8tJv.P0+EJV
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: quoted-printable
+tree:   git://anongit.freedesktop.org/drm-intel for-linux-next-gt
+head:   3c7a5eb700661e8905ab4e50c2d09c6568125280
+commit: e4ae85e364fc652ea15d85b0f3a6da304c9b5ce7 [1/6] drm/i915: Add ability for tracking buffer objects per client
+config: i386-buildonly-randconfig-006-20231120 (https://download.01.org/0day-ci/archive/20231120/202311201118.Jmt74ras-lkp@intel.com/config)
+compiler: clang version 16.0.4 (https://github.com/llvm/llvm-project.git ae42196bc493ffe877a7e3dff8be32035dea4d07)
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20231120/202311201118.Jmt74ras-lkp@intel.com/reproduce)
 
-Hi all,
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202311201118.Jmt74ras-lkp@intel.com/
 
-Today's linux-next merge of the drm-intel tree got a conflict in:
+All warnings (new ones prefixed by >>):
 
-  drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_mst_types.c
+   warning: unknown warning option '-Wrestrict' [-Wunknown-warning-option]
+   warning: unknown warning option '-Wpacked-not-aligned'; did you mean '-Wpacked-non-pod'? [-Wunknown-warning-option]
+   warning: unknown warning option '-Wformat-overflow'; did you mean '-Wshift-overflow'? [-Wunknown-warning-option]
+   warning: unknown warning option '-Wformat-truncation' [-Wunknown-warning-option]
+   warning: unknown warning option '-Wstringop-overflow'; did you mean '-Wshift-overflow'? [-Wunknown-warning-option]
+   warning: unknown warning option '-Wstringop-truncation'; did you mean '-Wstring-concatenation'? [-Wunknown-warning-option]
+   In file included from drivers/gpu/drm/i915/i915_debugfs_params.c:11:
+   In file included from drivers/gpu/drm/i915/i915_drv.h:54:
+>> drivers/gpu/drm/i915/i915_drm_client.h:81:1: warning: non-void function does not return a value [-Wreturn-type]
+   }
+   ^
+   7 warnings generated.
 
-between commits:
 
-  a58555359a9f ("drm/amd/display: Fix DSC not Enabled on Direct MST Sink")
-  c29085d29562 ("drm/amd/display: Enable DSC Flag in MST Mode Validation")
+vim +81 drivers/gpu/drm/i915/i915_drm_client.h
 
-from the amdgpu tree and commit:
+    78	
+    79	static inline bool i915_drm_client_remove_object(struct drm_i915_gem_object *obj)
+    80	{
+  > 81	}
+    82	#endif
+    83	
 
-  7707dd602259 ("drm/dp_mst: Fix fractional DSC bpp handling")
-
-from the drm-intel tree.
-
-I fixed it up (see below) and can carry the fix as necessary. This
-is now fixed as far as linux-next is concerned, but any non trivial
-conflicts should be mentioned to your upstream maintainer when your tree
-is submitted for merging.  You may also want to consider cooperating
-with the maintainer of the conflicting tree to minimise any particularly
-complex conflicts.
-
---=20
-Cheers,
-Stephen Rothwell
-
-diff --cc drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_mst_types.c
-index 8d7d4024f285,2afd1bc74978..000000000000
---- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_mst_types.c
-+++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_mst_types.c
-@@@ -1650,7 -1636,8 +1650,7 @@@ enum dc_status dm_dp_mst_is_port_suppor
-  	} else {
-  		/* check if mode could be supported within full_pbn */
-  		bpp =3D convert_dc_color_depth_into_bpc(stream->timing.display_color_de=
-pth) * 3;
-- 		pbn =3D drm_dp_calc_pbn_mode(stream->timing.pix_clk_100hz / 10, bpp, fa=
-lse);
-+ 		pbn =3D drm_dp_calc_pbn_mode(stream->timing.pix_clk_100hz / 10, bpp << =
-4);
- -
-  		if (pbn > aconnector->mst_output_port->full_pbn)
-  			return DC_FAIL_BANDWIDTH_VALIDATE;
-  	}
-
---Sig_/+H5fErey4cTN8tJv.P0+EJV
-Content-Type: application/pgp-signature
-Content-Description: OpenPGP digital signature
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAEBCAAdFiEENIC96giZ81tWdLgKAVBC80lX0GwFAmVatjIACgkQAVBC80lX
-0GzERQf/dspWZjht/bOS+ur+0tu/EliDMLpiAw0xVsjlhOfvvseEdYHvEo4ZQazz
-lf+0LAj7yIQcd6hK+sv2xVn731w/pQwQF6wv7YEAsY/+EZhpwLekV6pnB30dEYyk
-H0Cu3eB2QhLvsElHqqzKlq1FTVMpzucS1cfMG07aPFKZJhH8IbfUGBt4JdqFeio2
-dpoGTEhVingpmX4KvvrBZc4jH9ef3XO8EAIq9Nm9eIsy4f46bR5+n94cBF1/A3jT
-q8pqNYa3Z8b6zdxGeJJ4dT7xarfXEBzPU0JoOp6JsXJxdocFcT3i7geFZBtmKlyU
-KD5wQSfN/cqr3IkHAyJdivP/Rx7sZg==
-=YqFo
------END PGP SIGNATURE-----
-
---Sig_/+H5fErey4cTN8tJv.P0+EJV--
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
