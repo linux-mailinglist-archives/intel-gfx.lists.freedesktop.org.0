@@ -1,146 +1,52 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id DF3757F13E6
-	for <lists+intel-gfx@lfdr.de>; Mon, 20 Nov 2023 14:05:20 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 63DFD7F13F1
+	for <lists+intel-gfx@lfdr.de>; Mon, 20 Nov 2023 14:10:57 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E49FC10E3C2;
-	Mon, 20 Nov 2023 13:05:14 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B1AB510E070;
+	Mon, 20 Nov 2023 13:10:53 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 547F610E04A;
- Mon, 20 Nov 2023 13:05:12 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.65])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 87D2810E070;
+ Mon, 20 Nov 2023 13:10:52 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1700485512; x=1732021512;
- h=from:to:cc:subject:date:message-id:references:
- in-reply-to:content-transfer-encoding:mime-version;
- bh=JtHJSPsO+WP9a7HLUUz6+wyBdG3p7Utf+JeK+P7u7Uw=;
- b=mLUx8qNqyy1TdJ9erBwJIidhSobwOaWpFlny+3N1cL4uaRSK9SmPpKNa
- WUvekDdTOTkv6UpJMbCOmMq42HJvdwgOb8Ftkrjqw4MmvnEhlIO+xIO1x
- zHQfqyETAxqRuSd9y2jX2CkLVPhYYPrVfCPcauXwpxr7NaU1vECl0vdnL
- od97e23PoDz1f58fdKMUAQzP1tNvlZVjdnzu5CnEs7zDDuxKB88f7s6aO
- tc85NzEfNwVZ383nppMPWz5J+N9otaQi5oenJn6nbcoEt8tZkCpTR8qCX
- RW1RN7Gzw2erikSL+HcasbzRVCDyifGYfbaKW+TNupDrrYw/y9kaq5A55 A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10899"; a="455938912"
-X-IronPort-AV: E=Sophos;i="6.04,213,1695711600"; d="scan'208";a="455938912"
-Received: from orsmga006.jf.intel.com ([10.7.209.51])
- by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Nov 2023 05:03:16 -0800
+ t=1700485852; x=1732021852;
+ h=date:from:to:cc:subject:message-id:reply-to:references:
+ mime-version:in-reply-to;
+ bh=Zy40wqUoBRP6sTePg19jD80thnLUbSvAaxVsDZMP7Ac=;
+ b=DUxGO58wo1RL5z/IgxBKeHiqXMAqgVoBw3K4X5JDqw3KbJ6p+uJ4CNfs
+ mHjY+Pu0K74lMXK9WdIJG+S7BczXbKee8Pw9YWu/JyGwQPwAUn0BRHGiZ
+ /ge7rkDQq7dXWjSC1BpbzJDmMwvw+QWWWNwS5RixgjRXGFbtqtoElk37H
+ 2R0v/aYb8GT0Otw7apLjnapNuj7SeRMVk05oKjMDUpIe3bLSmIf1nBCc9
+ Ms11YZalNIaNX5RFrH5uguvP/XXUC/ixSGeTPYAoc9Qvq93UuJtXYl8GQ
+ J6Wa/KIr8+FjY9Y3o20e/+f6FYIJ+SOQ+D8nnCDpTEL/ohwLlOp19eoaC Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10899"; a="395542474"
+X-IronPort-AV: E=Sophos;i="6.04,213,1695711600"; d="scan'208";a="395542474"
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+ by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 20 Nov 2023 05:10:50 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10899"; a="742727516"
-X-IronPort-AV: E=Sophos;i="6.04,213,1695711600"; d="scan'208";a="742727516"
-Received: from orsmsx602.amr.corp.intel.com ([10.22.229.15])
- by orsmga006.jf.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
- 20 Nov 2023 05:03:15 -0800
-Received: from orsmsx611.amr.corp.intel.com (10.22.229.24) by
- ORSMSX602.amr.corp.intel.com (10.22.229.15) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.34; Mon, 20 Nov 2023 05:03:14 -0800
-Received: from orsmsx611.amr.corp.intel.com (10.22.229.24) by
- ORSMSX611.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.34; Mon, 20 Nov 2023 05:03:14 -0800
-Received: from ORSEDG601.ED.cps.intel.com (10.7.248.6) by
- orsmsx611.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.34 via Frontend Transport; Mon, 20 Nov 2023 05:03:14 -0800
-Received: from NAM10-BN7-obe.outbound.protection.outlook.com (104.47.70.101)
- by edgegateway.intel.com (134.134.137.102) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.34; Mon, 20 Nov 2023 05:03:13 -0800
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=WMkdCPS9gGG0I7/i4jLggfHxyG41kmUrjw9gntFS5FJ1yj9osedrausvcFF8vEkJ+h7N/ZO90+IyBcRR/hQ+CqSWu8mjE8n0Nyh1zsS1jAyyzusVpZEUqT5vp4Op4KmkCj7zM2iySoRRTeDzI7qBCuMaOt8C6Qv+AbKUHv7Q0sK1Hnfo8J04ueJlhvQUWyq6ZXuQkHvMEioTnF69aAlTDr/cF/mpBY1NAA+yU7dxB1xRdmKg8A/60CWBuyvhTVJIvaxuB8b9/j5oPEpeyiSrWYEj3aeSJbVaTtP2GA98XqxDFIk/eGU25HaPuJGVn/jNhqvfWBZd2jJPjwwvAAJTfQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=JtHJSPsO+WP9a7HLUUz6+wyBdG3p7Utf+JeK+P7u7Uw=;
- b=Luprrp+UXRzcty2iN7i6dbq5RJL0OWa/tn66inb7pv8/Bda0dvMO+HyaoCQ3IoTF8R3c0Zu8ZDDuzXlfXwIB+j64ufFj8KO4DlXGm5MD0kpS3orbtwAkwp9Q2kBOJhd4pSXAm+LGtYdviz9FbGuqRV7K9apb8ISD2NaLk0NmM+UyI1ajfQaCU80ESBE9uUrrZIBtET5BJ2ujja1A538hsO1uSro8HBU0u87e3WJrkk3j5BhCyK2f+stAHCeh4V+4n/jN31mYjoGMWPA1QBMa4qniwsgylZtuIacIm1IUfYX1GLs2wPyAiLIRyTUhSnQydTZdgAZRPiMnjb/iVhOzfQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Received: from SJ1PR11MB6129.namprd11.prod.outlook.com (2603:10b6:a03:488::12)
- by DM4PR11MB5424.namprd11.prod.outlook.com (2603:10b6:5:39c::8) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7002.28; Mon, 20 Nov
- 2023 13:03:11 +0000
-Received: from SJ1PR11MB6129.namprd11.prod.outlook.com
- ([fe80::b5bf:a968:5f25:945]) by SJ1PR11MB6129.namprd11.prod.outlook.com
- ([fe80::b5bf:a968:5f25:945%6]) with mapi id 15.20.7002.026; Mon, 20 Nov 2023
- 13:03:11 +0000
-From: "Borah, Chaitanya Kumar" <chaitanya.kumar.borah@intel.com>
-To: =?iso-8859-1?Q?Ville_Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-Thread-Topic: [Intel-gfx] [PATCH 1/4] drm: Fix color LUT rounding
-Thread-Index: AQHZ/ddIZSsnYdkm4UKlnbOX3TZtTbBjue2AgABy1ACAHzjNEA==
-Date: Mon, 20 Nov 2023 13:03:11 +0000
-Message-ID: <SJ1PR11MB61295A8D16AEFE78E0F9EBD3B9B4A@SJ1PR11MB6129.namprd11.prod.outlook.com>
-References: <20231013131402.24072-1-ville.syrjala@linux.intel.com>
- <20231013131402.24072-2-ville.syrjala@linux.intel.com>
- <8734xr5f0o.fsf@intel.com> <ZUElHKaa5rnifyvy@intel.com>
-In-Reply-To: <ZUElHKaa5rnifyvy@intel.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: SJ1PR11MB6129:EE_|DM4PR11MB5424:EE_
-x-ms-office365-filtering-correlation-id: 8162a687-ea8a-4a94-6286-08dbe9c90ccf
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: 9UMe3sSa0EcNFFuKjU9FoowbUTOERA4IKmVZvHjvpBbcZ2FoxRVGC5PeQgRI9ZXMPqY6FGb7xYWUbLu3p2z0q9+XNIIIFVy5VHtqQHkLOs45k3hl0C5oUYDPCPXct8vY89WEyAKxeNnroi8BGnTbQ9Jl68A5aS3twvAWxTT8c20Z6wYYRklJqqbKmI/Pofj4S3jHCaoBN0tRFYuOkwaOnwbl6B3sWQVKjkvfA3O+RzLMKzPz/xGwYRDx3GHGnV3kmSqm6MTFnHOLzGAYIKn2POBEggizAYYy/5d6ZnjHidVJcxJ0ge8AmykN/aM8vDqDWH1QxgwZgh6Fb1rQwTnT+l6UDg4ml/DpKycPz6NBGrLljkLBGnViFgbQNmZn9Vml0duZ3E1HcJpOMypDx19g8dGC0YW8o5c4ldJjtb2zP6AQy3jdhi9J0Ktft4NkcLH9J5htQbs8/3tj9WDxsOe/4TxDuSvqcizxWP6hHOGRHszd1/JSY7FBKB0IA0HicICi6KYKyLN6RnS5OY/9g9A6Q6JHvbU4Uh/O8dkH+p7T8DuYAcq6KRSaPvj4cM5gvMP03U9BWi5c8lYOw41txpXXyZHZWDTf+9k2hZPVHCwC+og=
-x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:SJ1PR11MB6129.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230031)(136003)(39860400002)(376002)(346002)(366004)(396003)(230922051799003)(186009)(64100799003)(1800799012)(451199024)(9686003)(122000001)(66946007)(66446008)(66476007)(66556008)(64756008)(54906003)(4326008)(6916009)(316002)(76116006)(8676002)(8936002)(478600001)(26005)(55016003)(71200400001)(82960400001)(7696005)(6506007)(53546011)(83380400001)(966005)(38100700002)(52536014)(5660300002)(2906002)(33656002)(41300700001)(86362001)(38070700009);
- DIR:OUT; SFP:1102; 
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?iso-8859-1?Q?crdfA6J3KHFPrh+tNtf3HO2ug9xoPgodivnakaztpRVSAC3O+DeX1j3BGI?=
- =?iso-8859-1?Q?z5r0LuOubFdWHZ3mw5EYJjV/9tJaDUv+q1Z2kY6KXYYkL2grrs9wTNTZDf?=
- =?iso-8859-1?Q?BEKbQSQanQ6RNBSBoFvg5Jn5XIVAJYHt5v2OlPJdVDKSRu7BEWUe0NLX+A?=
- =?iso-8859-1?Q?xakOLPj5aJlEwd8xlHIjhcpzaXaCuYebfFCn/EXF4SBhKYU92JqRdTEBpI?=
- =?iso-8859-1?Q?u97Q0rQTqzI5YVSdLenqPKAblhWESyPJlSMYbtHbMGEs2975jC5qoaxQuL?=
- =?iso-8859-1?Q?CKQLFmjamjdCpJM5VEEihVKnYL1FNvbwTQe3VcOhbogY5/CvXr3GbRGxnO?=
- =?iso-8859-1?Q?IBuMOkQ8KLqoGuzqSJlMwzDQNbAQnQLw6GMgVQosn6lu18UYH8gkdXBDJa?=
- =?iso-8859-1?Q?K67kfYZXqVCx86pZLRIefJ2Qmqh464Hn58sDhMyaKEHS2tnT9/lef42cun?=
- =?iso-8859-1?Q?kxEE9VoRbvGYZZRnL3bC+yIFTkhhJF8FR1zrGc/cvHQWvqti4TVxB7rmcA?=
- =?iso-8859-1?Q?sToDZbdy2b1fHmhQLAL6Wd7GCLkwajTUuIsGkIMQgmlISBQ+7YoAD8Akx6?=
- =?iso-8859-1?Q?yzPtXyZThhVMWkIzhsUesz4yZwwrJ/gwWp0mGkbS+yBBEyf4ogETLJImgq?=
- =?iso-8859-1?Q?ZrkpwGxr9CJCqdiRUm+tQyUrgaGmuinwsWyPesfWImxmbgockMhggBwR+C?=
- =?iso-8859-1?Q?r9ORhvz12Iwf9SNwt8HHtw7RWj4Za+estYsga7ncPVy+JlwvfcIyp1UrUd?=
- =?iso-8859-1?Q?ZjRRG46EkxDpLX+GYciGq9+Xj+Vz2NR7F9LLidxxTEwrmaqTF2vN0j9lLg?=
- =?iso-8859-1?Q?9cwpeLc3HMEqT+59Z8uB02Zf/JOy0vh0ao7lwzi80SnHJ4WGVDi74bkCYj?=
- =?iso-8859-1?Q?agVRMEY2gMkQFVVPWUIYTZEDuB3ZmJiRsQVhTxxJunk2f4mbCIQraS+l8e?=
- =?iso-8859-1?Q?FM1L7Lyw0fmbG5ccgtj3IJlckPJca3zUOthri5AO2Gtb8nnMVtanrDWI+8?=
- =?iso-8859-1?Q?dTR2rZtve8PzZvfYsl4zWplQ5AEScIT3HSYxQAfgBcCRMzFVBTOM9oUMNT?=
- =?iso-8859-1?Q?v68B42cEktMn9N/xzT3JhWp+ffFiWMOPNt8IS+KqCZZWoyf739bmabjOwO?=
- =?iso-8859-1?Q?4NbQ5KPtyRIhUfjOaRjot0lcm3ehHNr5sZ/yJFjrTjt3mN1XcRjUd4+bCf?=
- =?iso-8859-1?Q?+stZp/vtHtoXOZje6t2WZS8jAvYX2MWmNQC1pvC+Gtg67mRy9v/F1GmHJT?=
- =?iso-8859-1?Q?YhOEKt8RfxlrtrBheQRP6qusIXh/hnwaup2i8UfVGFBAxingZQQgNNC+Ju?=
- =?iso-8859-1?Q?ZNywAe7loxyz1helhlZnmFvKJy6kdLSdJuCbhEacMi6M6yv0GeoDtocYmn?=
- =?iso-8859-1?Q?6wuZNaOe2/YMYziebY81tEZfcJH/K4Mt/xHS8DhtlIQSgxJoC2MXly751H?=
- =?iso-8859-1?Q?NWvKZxffA5qudMRIsLQnrltazumo1rS6+DfJyOnFZn+43XGnEzQx7ZqmxA?=
- =?iso-8859-1?Q?ZVp52Csp/6+MR+Fhu/PH90zxza70UW6lDP5gdgln9DzgvSDLHlJhhyoPlG?=
- =?iso-8859-1?Q?gykEJNkznK7gzEUQi83nHuDcpWDztXAi1yxDc2fLTq0kkyYHJl7AJDF1hC?=
- =?iso-8859-1?Q?oXA2L3QN2+420d9mhAxZej+9K7hqSvAgB+XKhjfKTzsX2qDcdACQT0kg?=
- =?iso-8859-1?Q?=3D=3D?=
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+X-IronPort-AV: E=McAfee;i="6600,9927,10899"; a="883848848"
+X-IronPort-AV: E=Sophos;i="6.04,213,1695711600"; d="scan'208";a="883848848"
+Received: from ideak-desk.fi.intel.com ([10.237.72.78])
+ by fmsmga002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 20 Nov 2023 05:10:48 -0800
+Date: Mon, 20 Nov 2023 15:10:49 +0200
+From: Imre Deak <imre.deak@intel.com>
+To: Jani Nikula <jani.nikula@linux.intel.com>
+Message-ID: <ZVta2eJBqGMRVX6g@ideak-desk.fi.intel.com>
+References: <20231116131841.1588781-1-imre.deak@intel.com>
+ <87y1esobbt.fsf@intel.com>
 MIME-Version: 1.0
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: SJ1PR11MB6129.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 8162a687-ea8a-4a94-6286-08dbe9c90ccf
-X-MS-Exchange-CrossTenant-originalarrivaltime: 20 Nov 2023 13:03:11.5602 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: 1tf08mZdPedXG8eSY1U2bt8LeiKbMbqWMTLh2+idd/HdLLSvZVn29Zc2pZys21Kl+ChRMi3KHRZPCCv24Doc2vbrxrNF4P5XNrX/sMlYFXU=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM4PR11MB5424
-X-OriginatorOrg: intel.com
-Subject: Re: [Intel-gfx] [PATCH 1/4] drm: Fix color LUT rounding
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <87y1esobbt.fsf@intel.com>
+Subject: Re: [Intel-gfx] [PATCH v2 00/11] drm/i915: Fix UHBR data,
+ link M/N/TU and PBN values
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -153,60 +59,80 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
- "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>
+Reply-To: imre.deak@intel.com
+Cc: intel-gfx@lists.freedesktop.org, Maxime Ripard <mripard@kernel.org>,
+ dri-devel@lists.freedesktop.org, Thomas Zimmermann <tzimmermann@suse.de>,
+ "Lankhorst, Maarten" <maarten.lankhorst@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hello Ville,
-
-> -----Original Message-----
-> From: dri-devel <dri-devel-bounces@lists.freedesktop.org> On Behalf Of Vi=
-lle
-> Syrj=E4l=E4
-> Sent: Tuesday, October 31, 2023 9:37 PM
-> To: Jani Nikula <jani.nikula@linux.intel.com>
-> Cc: intel-gfx@lists.freedesktop.org; dri-devel@lists.freedesktop.org
-> Subject: Re: [Intel-gfx] [PATCH 1/4] drm: Fix color LUT rounding
->=20
-> On Tue, Oct 31, 2023 at 11:15:35AM +0200, Jani Nikula wrote:
-> > On Fri, 13 Oct 2023, Ville Syrjala <ville.syrjala@linux.intel.com> wrot=
-e:
-> > > entrirely. But perhaps a better idea would be to follow the OpenGL
-> > > int<->float conversion rules, in which case we get the following
-> > > results:
+On Mon, Nov 20, 2023 at 02:31:34PM +0200, Jani Nikula wrote:
+> On Thu, 16 Nov 2023, Imre Deak <imre.deak@intel.com> wrote:
+> > This is v2 of [1], with the following changes:
+> > - Store the pbn_div value in fixed point format.
+> > - Fix PBN calculation in patch 8.
+> > - Reuse intel_dp_max_data_rate(), intel_dp_effective_data_rate() in
+> >   intel_link_compute_m_n() (Jani).
 > >
-> > Do you have a pointer to the rules handy, I couldn't find it. :(
->=20
-> Eg. '2.3.5 Fixed-Point Data Conversions' in GL 4.6 spec. The section numb=
-er
-> probably changes depending on which version of the spec you look at.
->=20
-
-This section particularly talks about conversion of normalized fixed point =
- to floating point numbers and vice versa.
-Pardon my limited knowledge on the topic but aren't we just doing a scaling=
- factor conversion(Q0.16 -> Q0.8) in these patches?
-
-I could not draw a direct relation between the formulas in the section[1] a=
-nd what we are doing here.(but it could be just me!)
-
-Regards
-
-Chaitanya
-
-[1] https://registry.khronos.org/OpenGL/specs/gl/glspec46.core.pdf '2.3.5 F=
-ixed-Point Data Conversions'
-
+> > [1] https://lore.kernel.org/all/20231113201110.510724-1-imre.deak@intel.com
 > >
-> > Might also add the reference to the commit message and/or comment.
+> > Cc: Arun R Murthy <arun.r.murthy@intel.com>
+> > Cc: Jani Nikula <jani.nikula@linux.intel.com>
+> > Cc: Lyude Paul <lyude@redhat.com>
 > >
-> > BR,
-> > Jani.
+> > Imre Deak (11):
+> >   drm/dp_mst: Store the MST PBN divider value in fixed point format
+> >   drm/dp_mst: Fix PBN divider calculation for UHBR rates
+> >   drm/dp_mst: Add kunit tests for drm_dp_get_vc_payload_bw()
+> 
+> Maarten, Maxime, Thomas, ack for merging these three via drm-intel-next?
+> 
+> Imre, I note that said patches were Cc: dri-devel, but for future
+> reference please Cc: the entire series to dri-devel when you include
+> dependencies that you plan to merge via drm-intel.
+
+Ok. I assumed the alternative to merge the 3 patches via drm-misc-next,
+wait for that to get merged back to i915 and then merge the rest to i915
+was still a preferred way; wondering now if in general this is better to
+avoid merge conflicts similar to the one reported now wrt. 
+  "drm/dp_mst: Fix fractional DSC bpp handling".
+
+In any case yes, I can CC dri-devel the whole patchset whenever there
+are any drm changes in it. While still wondering about the ideal
+approach above, I'd still prefer if the 3 drm patches in this one could
+also get merged via the i915 tree.
+
+--Imre
+
+> BR,
+> Jani.
+> 
+> 
+> >   drm/i915/dp: Replace intel_dp_is_uhbr_rate() with
+> >     drm_dp_is_uhbr_rate()
+> >   drm/i915/dp: Account for channel coding efficiency on UHBR links
+> >   drm/i915/dp: Fix UHBR link M/N values
+> >   drm/i915/dp_mst: Calculate the BW overhead in
+> >     intel_dp_mst_find_vcpi_slots_for_bpp()
+> >   drm/i915/dp_mst: Fix PBN / MTP_TU size calculation for UHBR rates
+> >   drm/i915/dp: Report a rounded-down value as the maximum data rate
+> >   drm/i915/dp: Simplify intel_dp_max_data_rate()
+> >   drm/i915/dp: Reuse intel_dp_{max,effective}_data_rate in
+> >     intel_link_compute_m_n()
 > >
-> > --
-> > Jani Nikula, Intel
->=20
-> --
-> Ville Syrj=E4l=E4
-> Intel
+> >  .../gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c |   5 +-
+> >  .../amd/display/amdgpu_dm/amdgpu_dm_helpers.c |   3 +-
+> >  .../display/amdgpu_dm/amdgpu_dm_mst_types.c   |   5 +-
+> >  drivers/gpu/drm/display/drm_dp_mst_topology.c |  31 +++-
+> >  drivers/gpu/drm/i915/display/intel_display.c  |  51 ++----
+> >  drivers/gpu/drm/i915/display/intel_dp.c       |  78 +++++++---
+> >  drivers/gpu/drm/i915/display/intel_dp.h       |   5 +-
+> >  drivers/gpu/drm/i915/display/intel_dp_mst.c   |  55 +++++--
+> >  drivers/gpu/drm/nouveau/dispnv50/disp.c       |   6 +-
+> >  .../gpu/drm/tests/drm_dp_mst_helper_test.c    | 145 ++++++++++++++++++
+> >  include/drm/display/drm_dp_helper.h           |  13 ++
+> >  include/drm/display/drm_dp_mst_helper.h       |   7 +-
+> >  12 files changed, 311 insertions(+), 93 deletions(-)
+> 
+> -- 
+> Jani Nikula, Intel
