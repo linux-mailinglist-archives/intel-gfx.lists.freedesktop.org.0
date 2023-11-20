@@ -2,32 +2,33 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id E509B7F2173
-	for <lists+intel-gfx@lfdr.de>; Tue, 21 Nov 2023 00:33:47 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 880457F21B4
+	for <lists+intel-gfx@lfdr.de>; Tue, 21 Nov 2023 00:55:23 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 85A0510E00D;
-	Mon, 20 Nov 2023 23:33:45 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DD19510E00B;
+	Mon, 20 Nov 2023 23:55:18 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
  [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 2FDF010E00D;
- Mon, 20 Nov 2023 23:33:44 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTP id 8778510E00B;
+ Mon, 20 Nov 2023 23:55:17 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 272E1AA915;
- Mon, 20 Nov 2023 23:33:44 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============1539887550811126545=="
+ by emeril.freedesktop.org (Postfix) with ESMTP id 762F0A7E03;
+ Mon, 20 Nov 2023 23:55:17 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: =?utf-8?q?Jouni_H=C3=B6gander?= <jouni.hogander@intel.com>
-Date: Mon, 20 Nov 2023 23:33:44 -0000
-Message-ID: <170052322412.29476.17238117758545247278@emeril.freedesktop.org>
+To: "Andy Shevchenko" <andriy.shevchenko@linux.intel.com>
+Date: Mon, 20 Nov 2023 23:55:17 -0000
+Message-ID: <170052451745.29477.1730715044227738578@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
-References: <20231120100833.3221946-1-jouni.hogander@intel.com>
-In-Reply-To: <20231120100833.3221946-1-jouni.hogander@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgUHJl?=
- =?utf-8?q?pare_intel=5Ffb_for_Xe_=28rev4=29?=
+References: <20231103201831.1037416-1-andriy.shevchenko@linux.intel.com>
+In-Reply-To: <20231103201831.1037416-1-andriy.shevchenko@linux.intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_drm/i915/dsi=3A_4th_attempt_to_get_rid_of_IOSF_GPIO_=28rev5?=
+ =?utf-8?q?=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -45,219 +46,40 @@ Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============1539887550811126545==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
 == Series Details ==
 
-Series: Prepare intel_fb for Xe (rev4)
-URL   : https://patchwork.freedesktop.org/series/126507/
-State : success
+Series: drm/i915/dsi: 4th attempt to get rid of IOSF GPIO (rev5)
+URL   : https://patchwork.freedesktop.org/series/125977/
+State : warning
 
 == Summary ==
 
-CI Bug Log - changes from CI_DRM_13900 -> Patchwork_126507v4
-====================================================
+Error: dim checkpatch failed
+718e25fcdd2a drm/i915/dsi: assume BXT gpio works for non-native GPIO
+a6aab2794a1f drm/i915/dsi: switch mipi_exec_gpio() from dev_priv to i915
+31f24aa54faf drm/i915/dsi: clarify GPIO exec sequence
+a7b02c6ed548 drm/i915/dsi: rename platform specific *_exec_gpio() to *_gpio_set_value()
+a762b420c899 drm/i915/dsi: bxt/icl GPIO set value do not need gpio source
+b6f3e6d7b766 drm/i915/dsi: Replace while(1) with one with clear exit condition
+3d8f0796f518 drm/i915/dsi: Get rid of redundant 'else'
+9d795115952b drm/i915/dsi: Replace check with a (missing) MIPI sequence name
+720efcc63d3c drm/i915/dsi: Remove GPIO lookup table at the end of intel_dsi_vbt_gpio_init()
+63632d47d629 drm/i915/dsi: Fix wrong initial value for GPIOs in bxt_gpio_set_value()
+9b3cf5328aeb drm/i915/dsi: Extract common soc_gpio_set_value() helper
+-:6: WARNING:COMMIT_LOG_LONG_LINE: Prefer a maximum 75 chars per line (possible unwrapped commit description?)
+#6: 
+Extract a common soc_gpio_set_value() helper that may be used by a few SoCs.
 
-Summary
--------
+total: 0 errors, 1 warnings, 0 checks, 58 lines checked
+640636fdac2b drm/i915/dsi: Replace poking of VLV GPIOs behind the driver's back
+6ae716ae2962 drm/i915/dsi: Prepare soc_gpio_set_value() to distinguish GPIO communities
+-:7: WARNING:COMMIT_LOG_LONG_LINE: Prefer a maximum 75 chars per line (possible unwrapped commit description?)
+#7: 
+Currently soc_gpio_set_value() supports only a single indexing for GPIO pin.
 
-  **SUCCESS**
-
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_126507v4/index.html
-
-Participating hosts (33 -> 32)
-------------------------------
-
-  Additional (1): fi-kbl-soraka 
-  Missing    (2): bat-jsl-1 fi-snb-2520m 
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_126507v4 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@gem_huc_copy@huc-copy:
-    - fi-kbl-soraka:      NOTRUN -> [SKIP][1] ([fdo#109271] / [i915#2190])
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_126507v4/fi-kbl-soraka/igt@gem_huc_copy@huc-copy.html
-
-  * igt@gem_lmem_swapping@basic:
-    - fi-kbl-soraka:      NOTRUN -> [SKIP][2] ([fdo#109271] / [i915#4613]) +3 other tests skip
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_126507v4/fi-kbl-soraka/igt@gem_lmem_swapping@basic.html
-
-  * igt@i915_selftest@live@gt_pm:
-    - fi-kbl-soraka:      NOTRUN -> [DMESG-FAIL][3] ([i915#1886])
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_126507v4/fi-kbl-soraka/igt@i915_selftest@live@gt_pm.html
-
-  * igt@kms_dsc@dsc-basic:
-    - fi-kbl-soraka:      NOTRUN -> [SKIP][4] ([fdo#109271]) +9 other tests skip
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_126507v4/fi-kbl-soraka/igt@kms_dsc@dsc-basic.html
-
-  
-#### Possible fixes ####
-
-  * igt@i915_selftest@live@gt_heartbeat:
-    - fi-apl-guc:         [DMESG-FAIL][5] ([i915#5334]) -> [PASS][6]
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13900/fi-apl-guc/igt@i915_selftest@live@gt_heartbeat.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_126507v4/fi-apl-guc/igt@i915_selftest@live@gt_heartbeat.html
-
-  * igt@i915_selftest@live@gt_mocs:
-    - bat-mtlp-6:         [DMESG-WARN][7] -> [PASS][8]
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13900/bat-mtlp-6/igt@i915_selftest@live@gt_mocs.html
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_126507v4/bat-mtlp-6/igt@i915_selftest@live@gt_mocs.html
-
-  * igt@kms_pipe_crc_basic@read-crc-frame-sequence@pipe-d-edp-1:
-    - bat-rplp-1:         [ABORT][9] ([i915#8668]) -> [PASS][10]
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13900/bat-rplp-1/igt@kms_pipe_crc_basic@read-crc-frame-sequence@pipe-d-edp-1.html
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_126507v4/bat-rplp-1/igt@kms_pipe_crc_basic@read-crc-frame-sequence@pipe-d-edp-1.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
-  [i915#1886]: https://gitlab.freedesktop.org/drm/intel/issues/1886
-  [i915#2190]: https://gitlab.freedesktop.org/drm/intel/issues/2190
-  [i915#4613]: https://gitlab.freedesktop.org/drm/intel/issues/4613
-  [i915#5334]: https://gitlab.freedesktop.org/drm/intel/issues/5334
-  [i915#7359]: https://gitlab.freedesktop.org/drm/intel/issues/7359
-  [i915#8668]: https://gitlab.freedesktop.org/drm/intel/issues/8668
-  [i915#8981]: https://gitlab.freedesktop.org/drm/intel/issues/8981
+total: 0 errors, 1 warnings, 0 checks, 59 lines checked
+84b2cbe19cbc drm/i915/dsi: Replace poking of CHV GPIOs behind the driver's back
+a89aed1900d4 drm/i915/dsi: Combine checks in mipi_exec_gpio()
+1182cd3b53bd drm/i915/iosf: Drop unused APIs
 
 
-Build changes
--------------
-
-  * Linux: CI_DRM_13900 -> Patchwork_126507v4
-
-  CI-20190529: 20190529
-  CI_DRM_13900: 7e7a522c80874faff37a7a66bdaff0747f978e11 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_7595: cfa00d99b1dfa0621ea552d1ed54907798da1a1a @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_126507v4: 7e7a522c80874faff37a7a66bdaff0747f978e11 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-### Linux commits
-
-5a5a41145047 drm/i915/display: Split i915 specific code away from intel_fb.c
-72aa449be827 drm/i915/display: Convert intel_fb_modifier_to_tiling as non-static
-e5fa53f1d7b3 drm/i915/display: use intel_bo_to_drm_bo in intel_fb.c
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_126507v4/index.html
-
---===============1539887550811126545==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>Prepare intel_fb for Xe (rev4)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/126507/">https://patchwork.freedesktop.org/series/126507/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_126507v4/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_126507v4/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_13900 -&gt; Patchwork_126507v4</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_126507v4/index.html</p>
-<h2>Participating hosts (33 -&gt; 32)</h2>
-<p>Additional (1): fi-kbl-soraka <br />
-  Missing    (2): bat-jsl-1 fi-snb-2520m </p>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_126507v4 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@gem_huc_copy@huc-copy:</p>
-<ul>
-<li>fi-kbl-soraka:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_126507v4/fi-kbl-soraka/igt@gem_huc_copy@huc-copy.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/2190">i915#2190</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_lmem_swapping@basic:</p>
-<ul>
-<li>fi-kbl-soraka:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_126507v4/fi-kbl-soraka/igt@gem_lmem_swapping@basic.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/4613">i915#4613</a>) +3 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@gt_pm:</p>
-<ul>
-<li>fi-kbl-soraka:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_126507v4/fi-kbl-soraka/igt@i915_selftest@live@gt_pm.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1886">i915#1886</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_dsc@dsc-basic:</p>
-<ul>
-<li>fi-kbl-soraka:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_126507v4/fi-kbl-soraka/igt@kms_dsc@dsc-basic.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +9 other tests skip</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>
-<p>igt@i915_selftest@live@gt_heartbeat:</p>
-<ul>
-<li>fi-apl-guc:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13900/fi-apl-guc/igt@i915_selftest@live@gt_heartbeat.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/5334">i915#5334</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_126507v4/fi-apl-guc/igt@i915_selftest@live@gt_heartbeat.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@gt_mocs:</p>
-<ul>
-<li>bat-mtlp-6:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13900/bat-mtlp-6/igt@i915_selftest@live@gt_mocs.html">DMESG-WARN</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_126507v4/bat-mtlp-6/igt@i915_selftest@live@gt_mocs.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@kms_pipe_crc_basic@read-crc-frame-sequence@pipe-d-edp-1:</p>
-<ul>
-<li>bat-rplp-1:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13900/bat-rplp-1/igt@kms_pipe_crc_basic@read-crc-frame-sequence@pipe-d-edp-1.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/8668">i915#8668</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_126507v4/bat-rplp-1/igt@kms_pipe_crc_basic@read-crc-frame-sequence@pipe-d-edp-1.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<p>{name}: This element is suppressed. This means it is ignored when computing<br />
-          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_13900 -&gt; Patchwork_126507v4</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_13900: 7e7a522c80874faff37a7a66bdaff0747f978e11 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_7595: cfa00d99b1dfa0621ea552d1ed54907798da1a1a @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  Patchwork_126507v4: 7e7a522c80874faff37a7a66bdaff0747f978e11 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<h3>Linux commits</h3>
-<p>5a5a41145047 drm/i915/display: Split i915 specific code away from intel_fb.c<br />
-72aa449be827 drm/i915/display: Convert intel_fb_modifier_to_tiling as non-static<br />
-e5fa53f1d7b3 drm/i915/display: use intel_bo_to_drm_bo in intel_fb.c</p>
-
-</body>
-</html>
-
---===============1539887550811126545==--
