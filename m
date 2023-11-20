@@ -1,52 +1,54 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 44BE97F13CD
-	for <lists+intel-gfx@lfdr.de>; Mon, 20 Nov 2023 13:53:03 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2D4487F13D0
+	for <lists+intel-gfx@lfdr.de>; Mon, 20 Nov 2023 13:53:26 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0681810E3BB;
-	Mon, 20 Nov 2023 12:53:00 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7F14A10E04A;
+	Mon, 20 Nov 2023 12:53:24 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.65])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8FE5B10E04A;
- Mon, 20 Nov 2023 12:52:57 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.151])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 713D410E04A
+ for <intel-gfx@lists.freedesktop.org>; Mon, 20 Nov 2023 12:53:22 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1700484777; x=1732020777;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=8L4/nxDx2bduTPScjd5qxY3nCcDY7afh0bBaOpI0r/8=;
- b=AoUblev/r9GVfB3xRPd0OnGxrYylY+KenPwGta1uBlP3PHzGptsQRtuR
- Pvs270p2pmL7jhq/jn84TPlA9Yq137HoMbeB9dfMPcWXLMHieaEsXE7G4
- 0LmQI18AP00g5/GWGJ8Y9YRFJD6B93sr9saH8Qludo13c31U8zNHklyJ+
- qJzafWkni96wAoju5K3Dwc5GnubDLbsyZhuXVVEXnrLDniwe5k5ovd7Qo
- 9ytjFK/yom6j6+CnvpXLcRhvxuzXyCuaDhIX4AeLG+Qg3RRA4y83+det8
- tXum2lEbKoMplpSYcw5TKeAHhqWdx3HoecgnT+bP/PPlkpv574njY6qys w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10899"; a="395540173"
-X-IronPort-AV: E=Sophos;i="6.04,213,1695711600"; d="scan'208";a="395540173"
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
- by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Nov 2023 04:52:56 -0800
+ t=1700484802; x=1732020802;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version:content-transfer-encoding;
+ bh=KJb8S+ND/xCwsHauLGmPShFjzVHyXNFQ0jySsBZCjlk=;
+ b=ZrBcb1xMIY8dRpVE9waXItyLDB+R55PPfZP8tWn+Ya6lTToFUfgDC8Oj
+ kHp5GG1KJxQM3suOeqkjioJqhKGbjMdan0kPog2NziWshUKxz/VKb0j4f
+ irvceLOMp7wODY3KRaHq9cOTag7ynUqGqUwKa2EIBSwDykF6d6hgsb066
+ S69X+E+wJHdRewZknNBE7fScsWM9iA7/Q7E0VOpQ1VE6cgjjuLoMLTZ42
+ GN/6s/fVigkMnyCfMuxYHv1TbchQ9hd5i9ObSbRzGURAkoZQkBDOrk6fI
+ izJJ2ORcKBrQpYno1AjCOYt0hSwyS0UaXcDVB+0L12/bD6J3o54GOZa9P Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10899"; a="371787461"
+X-IronPort-AV: E=Sophos;i="6.04,213,1695711600"; d="scan'208";a="371787461"
+Received: from orsmga003.jf.intel.com ([10.7.209.27])
+ by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 20 Nov 2023 04:53:21 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10899"; a="883844743"
-X-IronPort-AV: E=Sophos;i="6.04,213,1695711600"; d="scan'208";a="883844743"
-Received: from ideak-desk.fi.intel.com ([10.237.72.78])
- by fmsmga002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Nov 2023 04:52:55 -0800
-From: Imre Deak <imre.deak@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Mon, 20 Nov 2023 14:52:56 +0200
-Message-Id: <20231120125256.2433782-1-imre.deak@intel.com>
-X-Mailer: git-send-email 2.39.2
-In-Reply-To: <20231117152737.1782690-1-imre.deak@intel.com>
-References: <20231117152737.1782690-1-imre.deak@intel.com>
+X-IronPort-AV: E=McAfee;i="6600,9927,10899"; a="716196394"
+X-IronPort-AV: E=Sophos;i="6.04,213,1695711600"; d="scan'208";a="716196394"
+Received: from avmoskal-mobl1.ger.corp.intel.com (HELO localhost)
+ ([10.252.40.194])
+ by orsmga003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 20 Nov 2023 04:53:20 -0800
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Ville Syrjala <ville.syrjala@linux.intel.com>,
+ intel-gfx@lists.freedesktop.org
+In-Reply-To: <20231114142333.15799-1-ville.syrjala@linux.intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20231114142333.15799-1-ville.syrjala@linux.intel.com>
+Date: Mon, 20 Nov 2023 14:53:17 +0200
+Message-ID: <87v89woabm.fsf@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH v5 03/11] drm/dp_mst: Add kunit tests for
- drm_dp_get_vc_payload_bw()
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+Subject: Re: [Intel-gfx] [PATCH] drm/i915: Also check for VGA converter in
+ eDP probe
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,218 +61,92 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: dri-devel@lists.freedesktop.org
+Cc: stable@vger.kernel.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Add kunit test cases for drm_dp_get_vc_payload_bw() with all the DP1.4
-and UHBR link configurations.
+On Tue, 14 Nov 2023, Ville Syrjala <ville.syrjala@linux.intel.com> wrote:
+> From: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
+>
+> Unfortunately even the HPD based detection added in
+> commit cfe5bdfb27fa ("drm/i915: Check HPD live state during eDP probe")
+> fails to detect that the VBT's eDP/DDI-A is a ghost on
+> Asus B360M-A (CFL+CNP). On that board eDP/DDI-A has its HPD
+> asserted despite nothing being actually connected there :(
+> The straps/fuses also indicate that the eDP port is present.
+>
+> So if one boots with a VGA monitor connected the eDP probe will
+> mistake the DP->VGA converter hooked to DDI-E for an eDP panel
+> on DDI-A.
+>
+> As a last resort check what kind of DP device we've detected,
+> and if it looks like a DP->VGA converter then conclude that
+> the eDP port should be ignored.
+>
+> Cc: stable@vger.kernel.org
+> Closes: https://gitlab.freedesktop.org/drm/intel/-/issues/9636
+> Fixes: cfe5bdfb27fa ("drm/i915: Check HPD live state during eDP probe")
+> Signed-off-by: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
 
-v2:
-- List test cases in decreasing rate,lane count order matching the
-  corresponding DP Standard tables. (Ville)
-- Add references to the DP Standard tables.
-v3:
-- Sort the testcases properly.
-v4:
-- Avoid 'stack frame size x exceeds limit y in
-  drm_test_dp_mst_calc_pbn_div()' compiler warn. (LKP)
+Fingers crossed.
 
-Cc: Ville Syrjälä <ville.syrjala@linux.intel.com>
-Cc: Lyude Paul <lyude@redhat.com>
-Cc: dri-devel@lists.freedesktop.org
-Cc: kernel test robot <lkp@intel.com>
-Reviewed-by: Ville Syrjälä <ville.syrjala@linux.intel.com> (v3)
-Signed-off-by: Imre Deak <imre.deak@intel.com>
----
- .../gpu/drm/tests/drm_dp_mst_helper_test.c    | 160 ++++++++++++++++++
- 1 file changed, 160 insertions(+)
+Reviewed-by: Jani Nikula <jani.nikula@intel.com>
 
-diff --git a/drivers/gpu/drm/tests/drm_dp_mst_helper_test.c b/drivers/gpu/drm/tests/drm_dp_mst_helper_test.c
-index e3c818dfc0e6d..d916e548fcb12 100644
---- a/drivers/gpu/drm/tests/drm_dp_mst_helper_test.c
-+++ b/drivers/gpu/drm/tests/drm_dp_mst_helper_test.c
-@@ -68,6 +68,152 @@ static void dp_mst_calc_pbn_mode_desc(const struct drm_dp_mst_calc_pbn_mode_test
- KUNIT_ARRAY_PARAM(drm_dp_mst_calc_pbn_mode, drm_dp_mst_calc_pbn_mode_cases,
- 		  dp_mst_calc_pbn_mode_desc);
- 
-+struct drm_dp_mst_calc_pbn_div_test {
-+	int link_rate;
-+	int lane_count;
-+	fixed20_12 expected;
-+};
-+
-+#define fp_init(__int, __frac) { \
-+	.full = (__int) * (1 << 12) + \
-+		(__frac) * (1 << 12) / 100000 \
-+}
-+
-+static const struct drm_dp_mst_calc_pbn_div_test drm_dp_mst_calc_pbn_div_dp1_4_cases[] = {
-+	/*
-+	 * UHBR rates (DP Standard v2.1 2.7.6.3, specifying the rounded to
-+	 *             closest value to 2 decimal places):
-+	 * .expected = .link_rate * .lane_count * 0.9671 / 8 / 54 / 100
-+	 * DP1.4 rates (DP Standard v2.1 2.6.4.2):
-+	 * .expected = .link_rate * .lane_count * 0.8000 / 8 / 54 / 100
-+	 *
-+	 * truncated to 5 decimal places.
-+	 */
-+	{
-+		.link_rate = 2000000,
-+		.lane_count = 4,
-+		.expected = fp_init(179,  9259),  /* 179.09259 */
-+	},
-+	{
-+		.link_rate = 2000000,
-+		.lane_count = 2,
-+		.expected = fp_init(89, 54629),
-+	},
-+	{
-+		.link_rate = 2000000,
-+		.lane_count = 1,
-+		.expected = fp_init(44, 77314),
-+	},
-+	{
-+		.link_rate = 1350000,
-+		.lane_count = 4,
-+		.expected = fp_init(120, 88750),
-+	},
-+	{
-+		.link_rate = 1350000,
-+		.lane_count = 2,
-+		.expected = fp_init(60, 44375),
-+	},
-+	{
-+		.link_rate = 1350000,
-+		.lane_count = 1,
-+		.expected = fp_init(30, 22187),
-+	},
-+	{
-+		.link_rate = 1000000,
-+		.lane_count = 4,
-+		.expected = fp_init(89, 54629),
-+	},
-+	{
-+		.link_rate = 1000000,
-+		.lane_count = 2,
-+		.expected = fp_init(44, 77314),
-+	},
-+	{
-+		.link_rate = 1000000,
-+		.lane_count = 1,
-+		.expected = fp_init(22, 38657),
-+	},
-+	{
-+		.link_rate = 810000,
-+		.lane_count = 4,
-+		.expected = fp_init(60, 0),
-+	},
-+	{
-+		.link_rate = 810000,
-+		.lane_count = 2,
-+		.expected = fp_init(30, 0),
-+	},
-+	{
-+		.link_rate = 810000,
-+		.lane_count = 1,
-+		.expected = fp_init(15, 0),
-+	},
-+	{
-+		.link_rate = 540000,
-+		.lane_count = 4,
-+		.expected = fp_init(40, 0),
-+	},
-+	{
-+		.link_rate = 540000,
-+		.lane_count = 2,
-+		.expected = fp_init(20, 0),
-+	},
-+	{
-+		.link_rate = 540000,
-+		.lane_count = 1,
-+		.expected = fp_init(10, 0),
-+	},
-+	{
-+		.link_rate = 270000,
-+		.lane_count = 4,
-+		.expected = fp_init(20, 0),
-+	},
-+	{
-+		.link_rate = 270000,
-+		.lane_count = 2,
-+		.expected = fp_init(10, 0),
-+	},
-+	{
-+		.link_rate = 270000,
-+		.lane_count = 1,
-+		.expected = fp_init(5, 0),
-+	},
-+	{
-+		.link_rate = 162000,
-+		.lane_count = 4,
-+		.expected = fp_init(12, 0),
-+	},
-+	{
-+		.link_rate = 162000,
-+		.lane_count = 2,
-+		.expected = fp_init(6, 0),
-+	},
-+	{
-+		.link_rate = 162000,
-+		.lane_count = 1,
-+		.expected = fp_init(3, 0),
-+	},
-+};
-+
-+static void drm_test_dp_mst_calc_pbn_div(struct kunit *test)
-+{
-+	const struct drm_dp_mst_calc_pbn_div_test *params = test->param_value;
-+	/* mgr->dev is only needed by drm_dbg_kms(), but it's not called for the test cases. */
-+	struct drm_dp_mst_topology_mgr *mgr = test->priv;
-+
-+	KUNIT_EXPECT_EQ(test, drm_dp_get_vc_payload_bw(mgr, params->link_rate, params->lane_count).full,
-+			params->expected.full);
-+}
-+
-+static void dp_mst_calc_pbn_div_desc(const struct drm_dp_mst_calc_pbn_div_test *t, char *desc)
-+{
-+	sprintf(desc, "Link rate %d lane count %d", t->link_rate, t->lane_count);
-+}
-+
-+KUNIT_ARRAY_PARAM(drm_dp_mst_calc_pbn_div, drm_dp_mst_calc_pbn_div_dp1_4_cases,
-+		  dp_mst_calc_pbn_div_desc);
-+
- static u8 data[] = { 0xff, 0x00, 0xdd };
- 
- struct drm_dp_mst_sideband_msg_req_test {
-@@ -416,13 +562,27 @@ KUNIT_ARRAY_PARAM(drm_dp_mst_sideband_msg_req, drm_dp_mst_sideband_msg_req_cases
- 
- static struct kunit_case drm_dp_mst_helper_tests[] = {
- 	KUNIT_CASE_PARAM(drm_test_dp_mst_calc_pbn_mode, drm_dp_mst_calc_pbn_mode_gen_params),
-+	KUNIT_CASE_PARAM(drm_test_dp_mst_calc_pbn_div, drm_dp_mst_calc_pbn_div_gen_params),
- 	KUNIT_CASE_PARAM(drm_test_dp_mst_sideband_msg_req_decode,
- 			 drm_dp_mst_sideband_msg_req_gen_params),
- 	{ }
- };
- 
-+static int drm_dp_mst_helper_tests_init(struct kunit *test)
-+{
-+	struct drm_dp_mst_topology_mgr *mgr;
-+
-+	mgr = kunit_kzalloc(test, sizeof(*mgr), GFP_KERNEL);
-+	KUNIT_ASSERT_NOT_ERR_OR_NULL(test, mgr);
-+
-+	test->priv = mgr;
-+
-+	return 0;
-+}
-+
- static struct kunit_suite drm_dp_mst_helper_test_suite = {
- 	.name = "drm_dp_mst_helper",
-+	.init = drm_dp_mst_helper_tests_init,
- 	.test_cases = drm_dp_mst_helper_tests,
- };
- 
--- 
-2.39.2
+> ---
+>  drivers/gpu/drm/i915/display/intel_dp.c | 28 +++++++++++++++++++------
+>  1 file changed, 22 insertions(+), 6 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i9=
+15/display/intel_dp.c
+> index 54bd0bffa9f0..14ee05fabd05 100644
+> --- a/drivers/gpu/drm/i915/display/intel_dp.c
+> +++ b/drivers/gpu/drm/i915/display/intel_dp.c
+> @@ -6277,8 +6277,7 @@ static bool intel_edp_init_connector(struct intel_d=
+p *intel_dp,
+>  	 * (eg. Acer Chromebook C710), so we'll check it only if multiple
+>  	 * ports are attempting to use the same AUX CH, according to VBT.
+>  	 */
+> -	if (intel_bios_dp_has_shared_aux_ch(encoder->devdata) &&
+> -	    !intel_digital_port_connected(encoder)) {
+> +	if (intel_bios_dp_has_shared_aux_ch(encoder->devdata)) {
+>  		/*
+>  		 * If this fails, presume the DPCD answer came
+>  		 * from some other port using the same AUX CH.
+> @@ -6286,10 +6285,27 @@ static bool intel_edp_init_connector(struct intel=
+_dp *intel_dp,
+>  		 * FIXME maybe cleaner to check this before the
+>  		 * DPCD read? Would need sort out the VDD handling...
+>  		 */
+> -		drm_info(&dev_priv->drm,
+> -			 "[ENCODER:%d:%s] HPD is down, disabling eDP\n",
+> -			 encoder->base.base.id, encoder->base.name);
+> -		goto out_vdd_off;
+> +		if (!intel_digital_port_connected(encoder)) {
+> +			drm_info(&dev_priv->drm,
+> +				 "[ENCODER:%d:%s] HPD is down, disabling eDP\n",
+> +				 encoder->base.base.id, encoder->base.name);
+> +			goto out_vdd_off;
+> +		}
+> +
+> +		/*
+> +		 * Unfortunately even the HPD based detection fails on
+> +		 * eg. Asus B360M-A (CFL+CNP), so as a last resort fall
+> +		 * back to checking for a VGA branch device. Only do this
+> +		 * on known affected platforms to minimize false positives.
+> +		 */
+> +		if (DISPLAY_VER(dev_priv) =3D=3D 9 && drm_dp_is_branch(intel_dp->dpcd)=
+ &&
+> +		    (intel_dp->dpcd[DP_DOWNSTREAMPORT_PRESENT] & DP_DWN_STRM_PORT_TYPE=
+_MASK) =3D=3D
+> +		    DP_DWN_STRM_PORT_TYPE_ANALOG) {
+> +			drm_info(&dev_priv->drm,
+> +				 "[ENCODER:%d:%s] VGA converter detected, disabling eDP\n",
+> +				 encoder->base.base.id, encoder->base.name);
+> +			goto out_vdd_off;
+> +		}
+>  	}
+>=20=20
+>  	mutex_lock(&dev_priv->drm.mode_config.mutex);
 
+--=20
+Jani Nikula, Intel
