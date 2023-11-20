@@ -1,54 +1,51 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id EDF607F0FD4
-	for <lists+intel-gfx@lfdr.de>; Mon, 20 Nov 2023 11:07:19 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id C5A917F0FEA
+	for <lists+intel-gfx@lfdr.de>; Mon, 20 Nov 2023 11:09:15 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9140610E38A;
-	Mon, 20 Nov 2023 10:07:17 +0000 (UTC)
-X-Original-To: Intel-gfx@lists.freedesktop.org
-Delivered-To: Intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 25EF810E38A;
- Mon, 20 Nov 2023 10:07:14 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DB48A10E396;
+	Mon, 20 Nov 2023 10:09:13 +0000 (UTC)
+X-Original-To: intel-gfx@lists.freedesktop.org
+Delivered-To: intel-gfx@lists.freedesktop.org
+Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4C7F210E393
+ for <intel-gfx@lists.freedesktop.org>; Mon, 20 Nov 2023 10:09:11 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1700474835; x=1732010835;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=jJIlMZpuwkKpDkHcK/QWHDOVBSdGTpjF0AQ7LQOFB3o=;
- b=S0Z3SZjy72VCeFY1HIhJa2cr4nN3rzpQmmn6UrA7epLHh2cZZ8ROs1jc
- u0EjBpLxEqPQswh15mVdClJwkuHCLzKg1AJIQ35ejOvfC9S+sZ7N3Ud5P
- w63nggsleBtoMQKiAfghsEIxtg2AZcR0JLxqcvRFOX+fLoeuZntK94XR9
- ackHzgZWSIepmso8cbK2tCIwWKl7qulUCThG/DIHPb6eTy2vjaA2GgVsD
- rWicei6My6w+F8egTVUyl0H1EvCnk8igO96BrCjFXHh+9tR+neAPE0WDV
- xO5HXmoBwhGPwJqZJ/bFd5M3xwOm22J42ocgMDRTwJIBv9E2AAv2eBd0o w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10899"; a="10265500"
-X-IronPort-AV: E=Sophos;i="6.04,213,1695711600"; d="scan'208";a="10265500"
-Received: from fmsmga004.fm.intel.com ([10.253.24.48])
- by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Nov 2023 02:04:04 -0800
+ t=1700474951; x=1732010951;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=/dBYHeZnW5r+8uVV1gil7ihjaMjqnoMYSfSfpdVyNxo=;
+ b=d0FuQqqGb6Vg/wt7cTit4hd9sZH+dhb2gfnIr7nYwkPwyyrEOlcXo/W1
+ 1WFHHk5Sd9UDT6yXK1y+XJllKY4QJbyc89+SWiOPQhWSIDUozdnmbyozr
+ RFd0isPaNNZPPPQ78jv5ux75U5eW3GsQ4Bws0LBXAdzgiE0Lz6SKG8Otn
+ cvuMFN6NNvgwlDDmFsRIPdCMnAHeN9WZ2UP7WPMkpNv9rpsS7/16+CoxV
+ DMdJ1BvRRJu+Xk4GBMZgxO8vh/Q0hbzon6QOxBkS2IU84G9vWpRj1rjZE
+ 3M5asq9Zu3INIxlGQAmrXUaDcdoOpvZ35mNz0TgDHMCZokjTPecWXTQiv w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10899"; a="455916660"
+X-IronPort-AV: E=Sophos;i="6.04,213,1695711600"; d="scan'208";a="455916660"
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 20 Nov 2023 02:08:52 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10899"; a="836699534"
-X-IronPort-AV: E=Sophos;i="6.04,213,1695711600"; d="scan'208";a="836699534"
-Received: from avmoskal-mobl1.ger.corp.intel.com (HELO localhost)
- ([10.252.40.194])
- by fmsmga004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Nov 2023 02:04:01 -0800
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
- Intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
-In-Reply-To: <20231113085457.199053-2-tvrtko.ursulin@linux.intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20231113085457.199053-1-tvrtko.ursulin@linux.intel.com>
- <20231113085457.199053-2-tvrtko.ursulin@linux.intel.com>
-Date: Mon, 20 Nov 2023 12:03:58 +0200
-Message-ID: <87cyw4pwq9.fsf@intel.com>
+X-IronPort-AV: E=McAfee;i="6600,9927,10899"; a="795429554"
+X-IronPort-AV: E=Sophos;i="6.04,213,1695711600"; d="scan'208";a="795429554"
+Received: from dbailonh-mobl2.ger.corp.intel.com (HELO
+ jhogande-mobl1.intel.com) ([10.252.57.59])
+ by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 20 Nov 2023 02:08:48 -0800
+From: =?UTF-8?q?Jouni=20H=C3=B6gander?= <jouni.hogander@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Mon, 20 Nov 2023 12:08:30 +0200
+Message-Id: <20231120100833.3221946-1-jouni.hogander@intel.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-Content-Type: text/plain
-Subject: Re: [Intel-gfx] [PATCH 2/2] drm/i915: Add __rcu annotation to
- cursor when iterating client objects
+Content-Type: text/plain; charset=UTF-8
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-gfx] [PATCH v4 0/3] Prepare intel_fb for Xe
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,45 +58,42 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+Cc: Jani Nikula <jani.nikula@intel.com>, Rodrigo Vivi <rodrigo.vivi@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, 13 Nov 2023, Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com> wrote:
-> From: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
->
-> __rcu annotation is needed to avoid the sparse warnings such as:
->
->   .../i915_drm_client.c:92:9: sparse: sparse: incompatible types in comparison expression (different address spaces):
->   .../i915_drm_client.c:92:9: sparse:    struct list_head [noderef] __rcu *
->   .../i915_drm_client.c:92:9: sparse:    struct list_head *
->
-> Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
-> Fixes: 968853033d8a ("drm/i915: Implement fdinfo memory stats printing")
-> Reported-by: kernel test robot <lkp@intel.com>
-> Closes: https://lore.kernel.org/oe-kbuild-all/202311110610.h0m6ydI5-lkp@intel.com/
-> Cc: Andi Shyti <andi.shyti@linux.intel.com>
-> Cc: Aravind Iddamsetty <aravind.iddamsetty@intel.com>
+Intel fb creation is differing between Xe and i915 due to different
+implementations of backing object. This patch set is splitting i915
+specific code into it's own source file. Similar source files will be
+introduced for Xe as well.
 
-Reviewed-by: Jani Nikula <jani.nikula@intel.com>
+Also use intel_bo_to_drm_bo instead of directly referring
+i915_gem_object->base. One i915_gem_object_put is changed to
+drm_gem_object_put.
 
-> ---
->  drivers/gpu/drm/i915/i915_drm_client.c | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
->
-> diff --git a/drivers/gpu/drm/i915/i915_drm_client.c b/drivers/gpu/drm/i915/i915_drm_client.c
-> index be9acfd9410e..fa6852713bee 100644
-> --- a/drivers/gpu/drm/i915/i915_drm_client.c
-> +++ b/drivers/gpu/drm/i915/i915_drm_client.c
-> @@ -78,7 +78,7 @@ static void show_meminfo(struct drm_printer *p, struct drm_file *file)
->  	struct drm_i915_private *i915 = fpriv->i915;
->  	struct drm_i915_gem_object *obj;
->  	struct intel_memory_region *mr;
-> -	struct list_head *pos;
-> +	struct list_head __rcu *pos;
->  	unsigned int id;
->  
->  	/* Public objects. */
+v4: Move drm_any_plane_has_format check into intel_fb_bo.c
+v3: Fix failure handling in intel_framebuffer_init
+v2: Couple of fixes to error value handling
+
+Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
+Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+Cc: Jani Nikula <jani.nikula@intel.com>
+Cc: Uma Shankar <uma.shankar@intel.com>
+
+Jouni Högander (3):
+  drm/i915/display: use intel_bo_to_drm_bo in intel_fb.c
+  drm/i915/display: Convert intel_fb_modifier_to_tiling as non-static
+  drm/i915/display: Split i915 specific code away from intel_fb.c
+
+ drivers/gpu/drm/i915/Makefile              |   1 +
+ drivers/gpu/drm/i915/display/intel_fb.c    | 128 ++++++---------------
+ drivers/gpu/drm/i915/display/intel_fb.h    |   2 +
+ drivers/gpu/drm/i915/display/intel_fb_bo.c | 102 ++++++++++++++++
+ drivers/gpu/drm/i915/display/intel_fb_bo.h |  24 ++++
+ 5 files changed, 162 insertions(+), 95 deletions(-)
+ create mode 100644 drivers/gpu/drm/i915/display/intel_fb_bo.c
+ create mode 100644 drivers/gpu/drm/i915/display/intel_fb_bo.h
 
 -- 
-Jani Nikula, Intel
+2.34.1
+
