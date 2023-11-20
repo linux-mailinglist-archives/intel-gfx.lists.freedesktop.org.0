@@ -1,52 +1,55 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 63DFD7F13F1
-	for <lists+intel-gfx@lfdr.de>; Mon, 20 Nov 2023 14:10:57 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 25B507F13F6
+	for <lists+intel-gfx@lfdr.de>; Mon, 20 Nov 2023 14:11:17 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B1AB510E070;
-	Mon, 20 Nov 2023 13:10:53 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 90F8F10E3C2;
+	Mon, 20 Nov 2023 13:11:15 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.65])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 87D2810E070;
- Mon, 20 Nov 2023 13:10:52 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7BA0E10E3C2
+ for <intel-gfx@lists.freedesktop.org>; Mon, 20 Nov 2023 13:11:12 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1700485852; x=1732021852;
- h=date:from:to:cc:subject:message-id:reply-to:references:
- mime-version:in-reply-to;
- bh=Zy40wqUoBRP6sTePg19jD80thnLUbSvAaxVsDZMP7Ac=;
- b=DUxGO58wo1RL5z/IgxBKeHiqXMAqgVoBw3K4X5JDqw3KbJ6p+uJ4CNfs
- mHjY+Pu0K74lMXK9WdIJG+S7BczXbKee8Pw9YWu/JyGwQPwAUn0BRHGiZ
- /ge7rkDQq7dXWjSC1BpbzJDmMwvw+QWWWNwS5RixgjRXGFbtqtoElk37H
- 2R0v/aYb8GT0Otw7apLjnapNuj7SeRMVk05oKjMDUpIe3bLSmIf1nBCc9
- Ms11YZalNIaNX5RFrH5uguvP/XXUC/ixSGeTPYAoc9Qvq93UuJtXYl8GQ
- J6Wa/KIr8+FjY9Y3o20e/+f6FYIJ+SOQ+D8nnCDpTEL/ohwLlOp19eoaC Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10899"; a="395542474"
-X-IronPort-AV: E=Sophos;i="6.04,213,1695711600"; d="scan'208";a="395542474"
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
- by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Nov 2023 05:10:50 -0800
+ t=1700485874; x=1732021874;
+ h=from:to:subject:in-reply-to:references:date:message-id:
+ mime-version:content-transfer-encoding;
+ bh=fBuLHABpbGqT3jp5HcaSUMABvfM7yFBLqXpCZS3v34c=;
+ b=dfqbRUUPmR4LixOssQ9cEfN1SLZ/bwv7ODyC7sIJhMT6Ju4RK1XWi9Nt
+ 39LoxTaIWHfjZu39Zzyd7Ir/NaZiLZYzGsPtQ91EnB/8D6OzHlRcH0RzS
+ rcGdpo+wkxGFi0C44hgAyEQ5xqu4+3aD0d5Z1F8aapIQcjy97vUKMmhCK
+ acTsvu+vFQ9radwErWhKrR60EzLRC4xR3tVEcGgl5/RQ8C3uz92rcN+a8
+ Glav/AZj9gfOeK39t7dGzlHhAFsbkRNob+Z7b8TQlpyaD1BPaOk9vnNBq
+ sF9f/dzI9MQRxuRg3uPCYu7I32/n4MKFvMtToGDN2iAZ896pgbJHp25tb Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10899"; a="4796742"
+X-IronPort-AV: E=Sophos;i="6.04,213,1695711600"; 
+   d="scan'208";a="4796742"
+Received: from orsmga003.jf.intel.com ([10.7.209.27])
+ by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 20 Nov 2023 05:11:13 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10899"; a="883848848"
-X-IronPort-AV: E=Sophos;i="6.04,213,1695711600"; d="scan'208";a="883848848"
-Received: from ideak-desk.fi.intel.com ([10.237.72.78])
- by fmsmga002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Nov 2023 05:10:48 -0800
-Date: Mon, 20 Nov 2023 15:10:49 +0200
-From: Imre Deak <imre.deak@intel.com>
-To: Jani Nikula <jani.nikula@linux.intel.com>
-Message-ID: <ZVta2eJBqGMRVX6g@ideak-desk.fi.intel.com>
-References: <20231116131841.1588781-1-imre.deak@intel.com>
- <87y1esobbt.fsf@intel.com>
+X-IronPort-AV: E=McAfee;i="6600,9927,10899"; a="716199509"
+X-IronPort-AV: E=Sophos;i="6.04,213,1695711600"; d="scan'208";a="716199509"
+Received: from avmoskal-mobl1.ger.corp.intel.com (HELO localhost)
+ ([10.252.40.194])
+ by orsmga003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 20 Nov 2023 05:11:10 -0800
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Jouni =?utf-8?Q?H=C3=B6gander?= <jouni.hogander@intel.com>,
+ intel-gfx@lists.freedesktop.org
+In-Reply-To: <20231120130214.3332726-1-jouni.hogander@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20231120130214.3332726-1-jouni.hogander@intel.com>
+Date: Mon, 20 Nov 2023 15:11:08 +0200
+Message-ID: <87pm04o9hv.fsf@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <87y1esobbt.fsf@intel.com>
-Subject: Re: [Intel-gfx] [PATCH v2 00/11] drm/i915: Fix UHBR data,
- link M/N/TU and PBN values
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+Subject: Re: [Intel-gfx] [PATCH] drm/i915/display: Do not check psr2 if
+ psr/panel replay is not supported
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,80 +62,48 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: imre.deak@intel.com
-Cc: intel-gfx@lists.freedesktop.org, Maxime Ripard <mripard@kernel.org>,
- dri-devel@lists.freedesktop.org, Thomas Zimmermann <tzimmermann@suse.de>,
- "Lankhorst, Maarten" <maarten.lankhorst@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, Nov 20, 2023 at 02:31:34PM +0200, Jani Nikula wrote:
-> On Thu, 16 Nov 2023, Imre Deak <imre.deak@intel.com> wrote:
-> > This is v2 of [1], with the following changes:
-> > - Store the pbn_div value in fixed point format.
-> > - Fix PBN calculation in patch 8.
-> > - Reuse intel_dp_max_data_rate(), intel_dp_effective_data_rate() in
-> >   intel_link_compute_m_n() (Jani).
-> >
-> > [1] https://lore.kernel.org/all/20231113201110.510724-1-imre.deak@intel.com
-> >
-> > Cc: Arun R Murthy <arun.r.murthy@intel.com>
-> > Cc: Jani Nikula <jani.nikula@linux.intel.com>
-> > Cc: Lyude Paul <lyude@redhat.com>
-> >
-> > Imre Deak (11):
-> >   drm/dp_mst: Store the MST PBN divider value in fixed point format
-> >   drm/dp_mst: Fix PBN divider calculation for UHBR rates
-> >   drm/dp_mst: Add kunit tests for drm_dp_get_vc_payload_bw()
-> 
-> Maarten, Maxime, Thomas, ack for merging these three via drm-intel-next?
-> 
-> Imre, I note that said patches were Cc: dri-devel, but for future
-> reference please Cc: the entire series to dri-devel when you include
-> dependencies that you plan to merge via drm-intel.
+On Mon, 20 Nov 2023, Jouni H=C3=B6gander <jouni.hogander@intel.com> wrote:
+> Do not continue to psr2 checks if psr or panel replay is not supported.
+>
+> Cc: Animesh Manna <animesh.manna@intel.com>
+>
+> Fixes: b8cf5b5d266e ("drm/i915/panelreplay: Initializaton and compute con=
+fig for panel replay")
+> Closes: https://gitlab.freedesktop.org/drm/intel/-/issues/9670
+> Signed-off-by: Jouni H=C3=B6gander <jouni.hogander@intel.com>
+> ---
+>  drivers/gpu/drm/i915/display/intel_psr.c | 3 +++
+>  1 file changed, 3 insertions(+)
+>
+> diff --git a/drivers/gpu/drm/i915/display/intel_psr.c b/drivers/gpu/drm/i=
+915/display/intel_psr.c
+> index 8d180132a74b..9aa1c269cfef 100644
+> --- a/drivers/gpu/drm/i915/display/intel_psr.c
+> +++ b/drivers/gpu/drm/i915/display/intel_psr.c
+> @@ -1373,6 +1373,9 @@ void intel_psr_compute_config(struct intel_dp *inte=
+l_dp,
+>  	else
+>  		crtc_state->has_psr =3D _psr_compute_config(intel_dp, crtc_state);
+>=20=20
+> +	if (!(crtc_state->has_panel_replay || crtc_state->has_psr))
 
-Ok. I assumed the alternative to merge the 3 patches via drm-misc-next,
-wait for that to get merged back to i915 and then merge the rest to i915
-was still a preferred way; wondering now if in general this is better to
-avoid merge conflicts similar to the one reported now wrt. 
-  "drm/dp_mst: Fix fractional DSC bpp handling".
+Pure nitpicking, but I always find it easier to think and read this:
 
-In any case yes, I can CC dri-devel the whole patchset whenever there
-are any drm changes in it. While still wondering about the ideal
-approach above, I'd still prefer if the 3 drm patches in this one could
-also get merged via the i915 tree.
+	if (!has_panel_replay && !has_psr)
 
---Imre
+BR,
+Jani.
 
-> BR,
-> Jani.
-> 
-> 
-> >   drm/i915/dp: Replace intel_dp_is_uhbr_rate() with
-> >     drm_dp_is_uhbr_rate()
-> >   drm/i915/dp: Account for channel coding efficiency on UHBR links
-> >   drm/i915/dp: Fix UHBR link M/N values
-> >   drm/i915/dp_mst: Calculate the BW overhead in
-> >     intel_dp_mst_find_vcpi_slots_for_bpp()
-> >   drm/i915/dp_mst: Fix PBN / MTP_TU size calculation for UHBR rates
-> >   drm/i915/dp: Report a rounded-down value as the maximum data rate
-> >   drm/i915/dp: Simplify intel_dp_max_data_rate()
-> >   drm/i915/dp: Reuse intel_dp_{max,effective}_data_rate in
-> >     intel_link_compute_m_n()
-> >
-> >  .../gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c |   5 +-
-> >  .../amd/display/amdgpu_dm/amdgpu_dm_helpers.c |   3 +-
-> >  .../display/amdgpu_dm/amdgpu_dm_mst_types.c   |   5 +-
-> >  drivers/gpu/drm/display/drm_dp_mst_topology.c |  31 +++-
-> >  drivers/gpu/drm/i915/display/intel_display.c  |  51 ++----
-> >  drivers/gpu/drm/i915/display/intel_dp.c       |  78 +++++++---
-> >  drivers/gpu/drm/i915/display/intel_dp.h       |   5 +-
-> >  drivers/gpu/drm/i915/display/intel_dp_mst.c   |  55 +++++--
-> >  drivers/gpu/drm/nouveau/dispnv50/disp.c       |   6 +-
-> >  .../gpu/drm/tests/drm_dp_mst_helper_test.c    | 145 ++++++++++++++++++
-> >  include/drm/display/drm_dp_helper.h           |  13 ++
-> >  include/drm/display/drm_dp_mst_helper.h       |   7 +-
-> >  12 files changed, 311 insertions(+), 93 deletions(-)
-> 
-> -- 
-> Jani Nikula, Intel
+
+> +		return;
+> +
+>  	crtc_state->has_psr2 =3D intel_psr2_config_valid(intel_dp, crtc_state);
+>=20=20
+>  	crtc_state->infoframes.enable |=3D intel_hdmi_infoframe_enable(DP_SDP_V=
+SC);
+
+--=20
+Jani Nikula, Intel
