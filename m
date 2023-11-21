@@ -1,54 +1,57 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 10D2E7F2BBA
-	for <lists+intel-gfx@lfdr.de>; Tue, 21 Nov 2023 12:28:05 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 910357F2C83
+	for <lists+intel-gfx@lfdr.de>; Tue, 21 Nov 2023 13:06:42 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7286610E487;
-	Tue, 21 Nov 2023 11:28:02 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1604610E26E;
+	Tue, 21 Nov 2023 12:06:36 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.120])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6523010E482
- for <intel-gfx@lists.freedesktop.org>; Tue, 21 Nov 2023 11:27:57 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.65])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4724310E26E;
+ Tue, 21 Nov 2023 12:06:34 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1700566077; x=1732102077;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=NRmJLnQLi1h2HXuX0ohVZ+5iFOuXDQO3hQ9a38rCiA8=;
- b=h3dDlQwbgED17EjWbbidzm4uKHY5SqLW3JxBC1vLRLzRUJbtB3qrLC82
- RRKeE46wqSRCN2gzUYYVP/3VVSwZvebSwmusGjp7mFKL9vberJAh9sYwa
- 85jPdizbadkUNM4RZaYIAJTDAAeGrqaVofvfJA5K2JoYI54z7Y4P/ES5h
- JmssadMFh7dEVxBGJ1R+mpyt+lHyhOzF1JJwV5kjow7lg0/kavunjqnTe
- 4HV/RfBU5d2FRvIpNFLO5ol7fAvJ2Bm3Rc4oTjDEWCenkkEIG9oa60uM8
- k96OUg8e3Bg2fQM7qSgJ92T0AwJWptkmMW2QS9770++tlbzyJb1Dp4cVZ Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10900"; a="390674996"
-X-IronPort-AV: E=Sophos;i="6.04,215,1695711600"; d="scan'208";a="390674996"
-Received: from orsmga004.jf.intel.com ([10.7.209.38])
- by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Nov 2023 03:27:57 -0800
+ t=1700568394; x=1732104394;
+ h=message-id:date:mime-version:subject:to:cc:references:
+ from:in-reply-to:content-transfer-encoding;
+ bh=t/2bEVeJuujRMjbp/hilDSCjmc2RJ6be3UC2T97ooT4=;
+ b=hMAjHDe9PO6axT8Vu68bJQTTT8lY6+IuJXT5LX92Izo9N7YRzfk+7WTL
+ Hl00W79gxSUTs8F7mzLswOKmWa6VWBoj2HsTXdkipAGzq7wIGOUQ43h8z
+ FfswIsGrdHvD6xwVg4GKJl8WE2o2iZRIQ7cgSUm+HTPmppfbXOT8vJSGr
+ hfzM6QOlWD66k4qMLvAlL4AqggKLTfdLMvPvh6L1S43/dZdKua2NkQ0j8
+ pkSlW/K7fUOV+M6fxv3XUH+4Cnfgz9IKDrsmgEjVjtmH+RhImdot1kIeW
+ zV/EifsRm8MY2nijerLOdaubmy+ojI5UxaJPbXT7bI4Y8nk/3IwZE89XL w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10900"; a="395751608"
+X-IronPort-AV: E=Sophos;i="6.04,215,1695711600"; d="scan'208";a="395751608"
+Received: from fmsmga006.fm.intel.com ([10.253.24.20])
+ by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 21 Nov 2023 04:06:23 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10900"; a="890223235"
-X-IronPort-AV: E=Sophos;i="6.04,215,1695711600"; d="scan'208";a="890223235"
-Received: from ttmerile-mobl1.ger.corp.intel.com (HELO
- jhogande-mobl1.intel.com) ([10.252.39.236])
- by orsmga004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Nov 2023 03:27:55 -0800
-From: =?UTF-8?q?Jouni=20H=C3=B6gander?= <jouni.hogander@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Tue, 21 Nov 2023 13:27:29 +0200
-Message-Id: <20231121112729.4191245-5-jouni.hogander@intel.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20231121112729.4191245-1-jouni.hogander@intel.com>
-References: <20231121112729.4191245-1-jouni.hogander@intel.com>
+X-IronPort-AV: E=McAfee;i="6600,9927,10900"; a="1013898917"
+X-IronPort-AV: E=Sophos;i="6.04,215,1695711600"; d="scan'208";a="1013898917"
+Received: from ahajda-mobl.ger.corp.intel.com (HELO [10.213.11.238])
+ ([10.213.11.238])
+ by fmsmga006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 21 Nov 2023 04:06:19 -0800
+Message-ID: <8dd6f4da-dcc9-4ea3-8395-bf048b0dbc93@intel.com>
+Date: Tue, 21 Nov 2023 13:06:17 +0100
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH v5 4/4] drm/i915/display: Split i915 specific
- code away from intel_fb.c
+User-Agent: Mozilla Thunderbird
+Content-Language: en-US
+To: Paz Zcharya <pazz@chromium.org>, Rodrigo Vivi <rodrigo.vivi@intel.com>
+References: <20231105172718.18673-1-pazz@chromium.org>
+ <ZVQ3d8FFqxsy0OX7@intel.com> <ZVfw3ghfBLdHB7uk@google.com>
+From: Andrzej Hajda <andrzej.hajda@intel.com>
+Organization: Intel Technology Poland sp. z o.o. - ul. Slowackiego 173, 80-298
+ Gdansk - KRS 101882 - NIP 957-07-52-316
+In-Reply-To: <ZVfw3ghfBLdHB7uk@google.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+Subject: Re: [Intel-gfx] [PATCH] drm/i915/display: Fix phys_base to be
+ relative not absolute
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,164 +64,155 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: Subrata Banik <subratabanik@google.com>,
+ Tvrtko Ursulin <tvrtko.ursulin@intel.com>, intel-gfx@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
+ Sean Paul <seanpaul@chromium.org>, matthew.auld@intel.com,
+ Daniel Vetter <daniel@ffwll.ch>, Marcin Wojtas <mwojtas@chromium.org>,
+ Drew Davenport <ddavenport@chromium.org>, David Airlie <airlied@gmail.com>,
+ Nirmoy Das <nirmoy.das@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-We are preparing for Xe driver. Backing object implementation is differing
-between i915 and Xe. Split i915 specific code into separate source file
-built only for i915.
+On 18.11.2023 00:01, Paz Zcharya wrote:
+> On Tue, Nov 14, 2023 at 10:13:59PM -0500, Rodrigo Vivi wrote:
+>> On Sun, Nov 05, 2023 at 05:27:03PM +0000, Paz Zcharya wrote:
+>>> Fix the value of variable `phys_base` to be the relative offset in
+>>> stolen memory, and not the absolute offset of the GSM.
+>>
+>> to me it looks like the other way around. phys_base is the physical
+>> base address for the frame_buffer. Setting it to zero doesn't seem
+>> to make that relative. And also doesn't look right.
+>>
+>>>
+>>> Currently, the value of `phys_base` is set to "Surface Base Address,"
+>>> which in the case of Meter Lake is 0xfc00_0000.
+>>
+>> I don't believe this is a fixed value. IIRC this comes from the register
+>> set by video bios, where the idea is to reuse the fb that was used so
+>> far.
+>>
+>> With this in mind I don't understand how that could overflow. Maybe
+>> the size of the stolen is not right? maybe the size? maybe different
+>> memory region?
+>>
+> 
+> Hi Rodrigo, thanks for the great comments.
+> 
+> Apologies for using a wrong/confusing terminology. I think 'phys_base'
+> is supposed to be the offset in the GEM BO, where base (or
+> "Surface Base Address") is supposed to be the GTT offset.
 
-v5:
-  - Keep drm_any_plane_has_format check in intel_fb.c
-  - Use mode_cmd instead of user_mode_cmd for intel_fb_bo_lookup_valid_bo
-v4: Move drm_any_plane_has_format check into intel_fb_bo.c
-v3: Fix failure handling in intel_framebuffer_init
-v2: Couple of fixes to error value handling
+Since base is taken from PLANE_SURF register it should be resolvable via 
+GGTT to physical address pointing to actual framebuffer.
+I couldn't find anything in the specs.
+The simplest approach would be then do the same as in case of DGFX:
+		gen8_pte_t __iomem *gte = to_gt(i915)->ggtt->gsm;
+		gen8_pte_t pte;
 
-Signed-off-by: Jouni Högander <jouni.hogander@intel.com>
----
- drivers/gpu/drm/i915/Makefile           |  1 +
- drivers/gpu/drm/i915/display/intel_fb.c | 69 +++----------------------
- 2 files changed, 9 insertions(+), 61 deletions(-)
+		gte += base / I915_GTT_PAGE_SIZE;
 
-diff --git a/drivers/gpu/drm/i915/Makefile b/drivers/gpu/drm/i915/Makefile
-index 7e5d6a39d450..c14ba1212b84 100644
---- a/drivers/gpu/drm/i915/Makefile
-+++ b/drivers/gpu/drm/i915/Makefile
-@@ -279,6 +279,7 @@ i915-y += \
- 	display/intel_dsb.o \
- 	display/intel_dsb_buffer.o \
- 	display/intel_fb.o \
-+	display/intel_fb_bo.o \
- 	display/intel_fb_pin.o \
- 	display/intel_fbc.o \
- 	display/intel_fdi.o \
-diff --git a/drivers/gpu/drm/i915/display/intel_fb.c b/drivers/gpu/drm/i915/display/intel_fb.c
-index f63f56b24b11..d5de213be2c0 100644
---- a/drivers/gpu/drm/i915/display/intel_fb.c
-+++ b/drivers/gpu/drm/i915/display/intel_fb.c
-@@ -4,7 +4,6 @@
-  */
- 
- #include <drm/drm_blend.h>
--#include <drm/drm_framebuffer.h>
- #include <drm/drm_modeset_helper.h>
- 
- #include <linux/dma-fence.h>
-@@ -15,6 +14,7 @@
- #include "intel_display_types.h"
- #include "intel_dpt.h"
- #include "intel_fb.h"
-+#include "intel_fb_bo.h"
- #include "intel_frontbuffer.h"
- 
- #define check_array_bounds(i915, a, i) drm_WARN_ON(&(i915)->drm, (i) >= ARRAY_SIZE(a))
-@@ -1985,7 +1985,6 @@ int intel_framebuffer_init(struct intel_framebuffer *intel_fb,
- 	struct drm_i915_private *dev_priv = to_i915(intel_bo_to_drm_bo(obj)->dev);
- 	struct drm_framebuffer *fb = &intel_fb->base;
- 	u32 max_stride;
--	unsigned int tiling, stride;
- 	int ret = -EINVAL;
- 	int i;
- 
-@@ -1993,32 +1992,11 @@ int intel_framebuffer_init(struct intel_framebuffer *intel_fb,
- 	if (!intel_fb->frontbuffer)
- 		return -ENOMEM;
- 
--	i915_gem_object_lock(obj, NULL);
--	tiling = i915_gem_object_get_tiling(obj);
--	stride = i915_gem_object_get_stride(obj);
--	i915_gem_object_unlock(obj);
--
--	if (mode_cmd->flags & DRM_MODE_FB_MODIFIERS) {
--		/*
--		 * If there's a fence, enforce that
--		 * the fb modifier and tiling mode match.
--		 */
--		if (tiling != I915_TILING_NONE &&
--		    tiling != intel_fb_modifier_to_tiling(mode_cmd->modifier[0])) {
--			drm_dbg_kms(&dev_priv->drm,
--				    "tiling_mode doesn't match fb modifier\n");
--			goto err;
--		}
--	} else {
--		if (tiling == I915_TILING_X) {
--			mode_cmd->modifier[0] = I915_FORMAT_MOD_X_TILED;
--		} else if (tiling == I915_TILING_Y) {
--			drm_dbg_kms(&dev_priv->drm,
--				    "No Y tiling for legacy addfb\n");
--			goto err;
--		}
--	}
-+	ret = intel_fb_bo_framebuffer_init(intel_fb, obj, mode_cmd);
-+	if (ret)
-+		goto err;
- 
-+	ret = -EINVAL;
- 	if (!drm_any_plane_has_format(&dev_priv->drm,
- 				      mode_cmd->pixel_format,
- 				      mode_cmd->modifier[0])) {
-@@ -2028,17 +2006,6 @@ int intel_framebuffer_init(struct intel_framebuffer *intel_fb,
- 		goto err;
- 	}
- 
--	/*
--	 * gen2/3 display engine uses the fence if present,
--	 * so the tiling mode must match the fb modifier exactly.
--	 */
--	if (DISPLAY_VER(dev_priv) < 4 &&
--	    tiling != intel_fb_modifier_to_tiling(mode_cmd->modifier[0])) {
--		drm_dbg_kms(&dev_priv->drm,
--			    "tiling_mode must match fb modifier exactly on gen2/3\n");
--		goto err;
--	}
--
- 	max_stride = intel_fb_max_stride(dev_priv, mode_cmd->pixel_format,
- 					 mode_cmd->modifier[0]);
- 	if (mode_cmd->pitches[0] > max_stride) {
-@@ -2050,17 +2017,6 @@ int intel_framebuffer_init(struct intel_framebuffer *intel_fb,
- 		goto err;
- 	}
- 
--	/*
--	 * If there's a fence, enforce that
--	 * the fb pitch and fence stride match.
--	 */
--	if (tiling != I915_TILING_NONE && mode_cmd->pitches[0] != stride) {
--		drm_dbg_kms(&dev_priv->drm,
--			    "pitch (%d) must match tiling stride (%d)\n",
--			    mode_cmd->pitches[0], stride);
--		goto err;
--	}
--
- 	/* FIXME need to adjust LINOFF/TILEOFF accordingly. */
- 	if (mode_cmd->offsets[0] != 0) {
- 		drm_dbg_kms(&dev_priv->drm,
-@@ -2144,21 +2100,12 @@ intel_user_framebuffer_create(struct drm_device *dev,
- 	struct drm_framebuffer *fb;
- 	struct drm_i915_gem_object *obj;
- 	struct drm_mode_fb_cmd2 mode_cmd = *user_mode_cmd;
--	struct drm_i915_private *i915;
-+	struct drm_i915_private *i915 = to_i915(dev);
- 
--	obj = i915_gem_object_lookup(filp, mode_cmd.handles[0]);
--	if (!obj)
-+	obj = intel_fb_bo_lookup_valid_bo(i915, filp, &mode_cmd);
-+	if (IS_ERR(obj))
- 		return ERR_PTR(-ENOENT);
- 
--	/* object is backed with LMEM for discrete */
--	i915 = to_i915(obj->base.dev);
--	if (HAS_LMEM(i915) && !i915_gem_object_can_migrate(obj, INTEL_REGION_LMEM_0)) {
--		/* object is "remote", not in local memory */
--		i915_gem_object_put(obj);
--		drm_dbg_kms(&i915->drm, "framebuffer must reside in local memory\n");
--		return ERR_PTR(-EREMOTE);
--	}
--
- 	fb = intel_framebuffer_create(obj, &mode_cmd);
- 	drm_gem_object_put(intel_bo_to_drm_bo(obj));
- 
--- 
-2.34.1
+		pte = ioread64(gte);
+		phys_base = pte & I915_GTT_PAGE_MASK;
+
+Regards
+Andrzej
+
+
+> 
+> Other than what I wrote before, I noticed that the function 'i915_vma_pin'
+> which calls to 'i915_gem_gtt_reserve' is the one that binds the right
+> address space in the GTT for that stolen region.
+> 
+> I see that in the function 'i915_vma_insert' (full call stack below),
+> where if (flags & PIN_OFFSET_FIXED), then when calling 'i915_gem_gtt_reserve'
+> we add an offset.
+> 
+> Specifically in MeteorLake, and specifically when using GOP driver, this
+> offset is equal to 0xfc00_0000. But as you mentioned, this is not strict.
+> 
+> The if statement always renders true because in the function
+> 'initial_plane_vma' we always set
+> pinctl = PIN_GLOBAL | PIN_OFFSET_FIXED | base;
+> where pinctl == flags (see file 'intel_plane_initial.c' line 145).
+> 
+> Call stack:
+> drm_mm_reserve_node
+> i915_gem_gtt_reserve
+> 	i915_vma_insert
+> i915_vma_pin_ww
+> i915_vma_pin
+> initial_plane_vma
+> intel_alloc_initial_plane_obj
+> intel_find_initial_plane_obj
+> 
+> Therefore, I believe the variable 'phys_base' in the
+> function 'initial_plane_vma,' should be the the offset in the GEM BO
+> and not the GTT offset, and because the base is added later on
+> in the function 'i915_gem_gtt_reserve', this value should not be
+> equal to base and be 0.
+> 
+> Hope it makes more sense.
+> 
+>>> This causes the
+>>> function `i915_gem_object_create_region_at` to fail in line 128, when
+>>> it attempts to verify that the range does not overflow:
+>>>
+>>> if (range_overflows(offset, size, resource_size(&mem->region)))
+>>>        return ERR_PTR(-EINVAL);
+>>>
+>>> where:
+>>>    offset = 0xfc000000
+>>>    size = 0x8ca000
+>>>    mem->region.end + 1 = 0x4400000
+>>>    mem->region.start = 0x800000
+>>>    resource_size(&mem->region) = 0x3c00000
+>>>
+>>> call stack:
+>>>    i915_gem_object_create_region_at
+>>>    initial_plane_vma
+>>>    intel_alloc_initial_plane_obj
+>>>    intel_find_initial_plane_obj
+>>>    intel_crtc_initial_plane_config
+>>>
+>>> Looking at the flow coming next, we see that `phys_base` is only used
+>>> once, in function `_i915_gem_object_stolen_init`, in the context of
+>>> the offset *in* the stolen memory. Combining that with an
+>>> examinination of the history of the file seems to indicate the
+>>> current value set is invalid.
+>>>
+>>> call stack (functions using `phys_base`)
+>>>    _i915_gem_object_stolen_init
+>>>    __i915_gem_object_create_region
+>>>    i915_gem_object_create_region_at
+>>>    initial_plane_vma
+>>>    intel_alloc_initial_plane_obj
+>>>    intel_find_initial_plane_obj
+>>>    intel_crtc_initial_plane_config
+>>>
+>>> [drm:_i915_gem_object_stolen_init] creating preallocated stolen
+>>> object: stolen_offset=0x0000000000000000, size=0x00000000008ca000
+>>>
+>>> Signed-off-by: Paz Zcharya <pazz@chromium.org>
+>>> ---
+>>>
+>>>   drivers/gpu/drm/i915/display/intel_plane_initial.c | 2 +-
+>>>   1 file changed, 1 insertion(+), 1 deletion(-)
+>>>
+>>> diff --git a/drivers/gpu/drm/i915/display/intel_plane_initial.c b/drivers/gpu/drm/i915/display/intel_plane_initial.c
+>>> index a55c09cbd0e4..e696cb13756a 100644
+>>> --- a/drivers/gpu/drm/i915/display/intel_plane_initial.c
+>>> +++ b/drivers/gpu/drm/i915/display/intel_plane_initial.c
+>>> @@ -90,7 +90,7 @@ initial_plane_vma(struct drm_i915_private *i915,
+>>>   			"Using phys_base=%pa, based on initial plane programming\n",
+>>>   			&phys_base);
+>>>   	} else {
+>>> -		phys_base = base;
+>>> +		phys_base = 0;
+>>>   		mem = i915->mm.stolen_region;
+>>>   	}
+>>>   
+>>> -- 
+>>> 2.42.0.869.gea05f2083d-goog
+>>>
 
