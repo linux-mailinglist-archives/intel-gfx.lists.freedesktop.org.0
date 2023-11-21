@@ -1,57 +1,54 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id F13187F2E92
-	for <lists+intel-gfx@lfdr.de>; Tue, 21 Nov 2023 14:41:50 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id E53297F2F3E
+	for <lists+intel-gfx@lfdr.de>; Tue, 21 Nov 2023 14:50:45 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6D96510E2A6;
-	Tue, 21 Nov 2023 13:41:48 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 438B210E4B0;
+	Tue, 21 Nov 2023 13:50:44 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.93])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 16CA710E2A6;
- Tue, 21 Nov 2023 13:41:47 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.126])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0D34F10E24F
+ for <intel-gfx@lists.freedesktop.org>; Tue, 21 Nov 2023 13:50:42 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1700574107; x=1732110107;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=5+Ao5hr+/R7aRxljis3caYcPgVhTeptDqdAsy6+8QtE=;
- b=Zh63+rBGLJY1vPTRC4WZEfbk+4jw7+epRoSuVsvl3SqES3bxhRp4oMqe
- c7mgFTIkY+LvrdBWibXKTUQcYSp+qJXMBwecxf3n07FQzdzlH7pRR/yCZ
- LSEMLBBu5uZlYUwzJsG8uDQrzLLw+jKlp6+D7uRwHnwAgS3mJKEp8zNXJ
- aaimEGFC+CYoLtoPPL/hQ91K2johlYKTR2XCuJ1VcfrtV+93ZTyAz0q2F
- vK1A9zfDWXBus8126lPqHIks7W7zbYq2h9FHurhcajcbAaWDO71+P2tWc
- vqimNHnVf4Jb/DXQi2XhL74Pw97DrhtUfi02XhffPtgKB5XROV/FxSYN6 g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10901"; a="388986759"
-X-IronPort-AV: E=Sophos;i="6.04,215,1695711600"; d="scan'208";a="388986759"
-Received: from orviesa001.jf.intel.com ([10.64.159.141])
- by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Nov 2023 05:39:37 -0800
+ t=1700574642; x=1732110642;
+ h=date:from:to:subject:message-id:references:mime-version:
+ content-transfer-encoding:in-reply-to;
+ bh=RMijXSyxaiUtOfrCzqZ6xuDAAEmo9xW0hqEjYb8PAzw=;
+ b=hZMCiM1dmSQ06XXlLZ9qBOkz305d/E1iuUkGX8TBRi+H7mvwHsoMu1OB
+ HZBNjaol09zUpZkSg0hRayaT0NqzDZmHXo1QhtwCay8dTO4lHTKckBIDp
+ ekfk1sJoNMNvp1n1bXU08nnLifKLAMSoUNINTQkOG+rXb0Z9yJxAE9Zrt
+ JINBCuYamGzdmFGkXYWcgg89SG+e5k4YERIBk6B+FBWLxpZ+b8iZVqOYI
+ ei4BTHVxEt3WVNvofC67PRfbYjBCc7BUDg1zgAXy+EHviHr9YBq0AsXJJ
+ 4U6EtFiR4ciEKnOXtrO/jWQvJjBYLI02tRRezOeeijPeA/fj93ESoSXj6 Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10901"; a="376878430"
+X-IronPort-AV: E=Sophos;i="6.04,215,1695711600"; d="scan'208";a="376878430"
+Received: from orsmga007.jf.intel.com ([10.7.209.58])
+ by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 21 Nov 2023 05:50:41 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.04,215,1695711600"; d="scan'208";a="14522277"
-Received: from hlagrand-mobl1.ger.corp.intel.com (HELO [10.251.219.157])
- ([10.251.219.157])
- by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Nov 2023 05:39:36 -0800
-Message-ID: <b0a27f48-45b8-449b-81df-2ed4964087b6@linux.intel.com>
-Date: Tue, 21 Nov 2023 14:39:33 +0100
+X-IronPort-AV: E=McAfee;i="6600,9927,10901"; a="760106015"
+X-IronPort-AV: E=Sophos;i="6.04,215,1695711600"; d="scan'208";a="760106015"
+Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.74])
+ by orsmga007.jf.intel.com with SMTP; 21 Nov 2023 05:50:39 -0800
+Received: by stinkbox (sSMTP sendmail emulation);
+ Tue, 21 Nov 2023 15:50:39 +0200
+Date: Tue, 21 Nov 2023 15:50:39 +0200
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: intel-gfx@lists.freedesktop.org
+Message-ID: <ZVy1r7Z7JwR8JQIq@intel.com>
+References: <20230928152450.30109-1-ville.syrjala@linux.intel.com>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-To: Rodrigo Vivi <rodrigo.vivi@intel.com>,
- =?UTF-8?B?VmlsbGUgU3lyasOkbMOk?= <ville.syrjala@linux.intel.com>,
- Daniel Vetter <daniel.vetter@ffwll.ch>, Dave Airlie <airlied@gmail.com>
-References: <20231116131841.1588781-3-imre.deak@intel.com>
- <20231117150929.1767227-1-imre.deak@intel.com> <ZVeS88sx9U35ITPh@intel.com>
- <ZVfBorwAcQ5UFmwG@intel.com>
-Content-Language: en-US
-From: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-In-Reply-To: <ZVfBorwAcQ5UFmwG@intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-Subject: Re: [Intel-gfx] [PATCH v3 02/11] drm/dp_mst: Fix PBN divider
- calculation for UHBR rates
+In-Reply-To: <20230928152450.30109-1-ville.syrjala@linux.intel.com>
+X-Patchwork-Hint: comment
+Subject: Re: [Intel-gfx] [PATCH 1/2] drm/i915: Stop accessing crtc->state
+ from the flip done irq
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,110 +61,98 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-
-
-On 2023-11-17 20:40, Rodrigo Vivi wrote:
-> On Fri, Nov 17, 2023 at 06:21:07PM +0200, Ville Syrj√§l√§ wrote:
->> On Fri, Nov 17, 2023 at 05:09:27PM +0200, Imre Deak wrote:
->>> The current way of calculating the pbn_div value, the link BW per each
->>> MTP slot, worked only for DP 1.4 link rates. Fix things up for UHBR
->>> rates calculating with the correct channel coding efficiency based on
->>> the link rate.
->>>
->>> v2:
->>> - Return the fractional pbn_div value from drm_dp_get_vc_payload_bw().
->>> v3:
->>> - Fix rounding up quotient while calculating req_slots. (Ville)
->>>
->>> Cc: Ville Syrj√§l√§ <ville.syrjala@linux.intel.com>
->>> Cc: Lyude Paul <lyude@redhat.com>
->>> Cc: dri-devel@lists.freedesktop.org
->>> Signed-off-by: Imre Deak <imre.deak@intel.com>
->>
->> Reviewed-by: Ville Syrj√§l√§ <ville.syrjala@linux.intel.com>
+On Thu, Sep 28, 2023 at 06:24:49PM +0300, Ville Syrjala wrote:
+> From: Ville Syrj‰l‰ <ville.syrjala@linux.intel.com>
 > 
-> Dave, Sima, it looks like this whole series is ready for getting merged:
+> Assuming crtc->state is pointing at the correct thing for the
+> async flip commit is nonsense. If we had already queued up multiple
+> commits this would point at the very lates crtc state even if the
+> older commits hadn't even happened yet.
 > 
-> https://patchwork.freedesktop.org/series/126526/
+> Instead properly stage/arm the event like we do for async flips.
+> Since we don't need to arm multiple of these at the same time we
+> don't need a list like the normal vblank even processing uses.
 > 
-> But it has these 3 drm/dp_mst here.
-> Ack to merge them through drm-intel?
-Well, as drm-misc maintainer:
+> Signed-off-by: Ville Syrj‰l‰ <ville.syrjala@linux.intel.com>
+> ---
+>  drivers/gpu/drm/i915/display/intel_crtc.c          | 9 ++++++++-
+>  drivers/gpu/drm/i915/display/intel_display_irq.c   | 9 ++++-----
+>  drivers/gpu/drm/i915/display/intel_display_types.h | 3 +++
+>  3 files changed, 15 insertions(+), 6 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/i915/display/intel_crtc.c b/drivers/gpu/drm/i915/display/intel_crtc.c
+> index 1fd068e6e26c..8a84a31c7b48 100644
+> --- a/drivers/gpu/drm/i915/display/intel_crtc.c
+> +++ b/drivers/gpu/drm/i915/display/intel_crtc.c
+> @@ -553,8 +553,15 @@ void intel_pipe_update_start(struct intel_atomic_state *state,
+>  
+>  	intel_psr_lock(new_crtc_state);
+>  
+> -	if (new_crtc_state->do_async_flip)
+> +	if (new_crtc_state->do_async_flip) {
+> +		spin_lock_irq(&crtc->base.dev->event_lock);
+> +		/* arm the event for the flip done irq handler */
+> +		crtc->flip_done_event = new_crtc_state->uapi.event;
+> +		spin_unlock_irq(&crtc->base.dev->event_lock);
+> +
+> +		new_crtc_state->uapi.event = NULL;
+>  		return;
+> +	}
+>  
+>  	if (intel_crtc_needs_vblank_work(new_crtc_state))
+>  		intel_crtc_vblank_work_init(new_crtc_state);
+> diff --git a/drivers/gpu/drm/i915/display/intel_display_irq.c b/drivers/gpu/drm/i915/display/intel_display_irq.c
+> index bff4a76310c0..d3df615f0e48 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display_irq.c
+> +++ b/drivers/gpu/drm/i915/display/intel_display_irq.c
+> @@ -340,16 +340,15 @@ static void flip_done_handler(struct drm_i915_private *i915,
+>  			      enum pipe pipe)
+>  {
+>  	struct intel_crtc *crtc = intel_crtc_for_pipe(i915, pipe);
+> -	struct drm_crtc_state *crtc_state = crtc->base.state;
+> -	struct drm_pending_vblank_event *e = crtc_state->event;
+>  	struct drm_device *dev = &i915->drm;
+>  	unsigned long irqflags;
+>  
+>  	spin_lock_irqsave(&dev->event_lock, irqflags);
+>  
+> -	crtc_state->event = NULL;
+> -
+> -	drm_crtc_send_vblank_event(&crtc->base, e);
+> +	if (crtc->flip_done_event) {
+> +		drm_crtc_send_vblank_event(&crtc->base, crtc->flip_done_event);
+> +		crtc->flip_done_event = NULL;
+> +	}
 
-Acked-by: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+I just observed an oops here due to e==NULL with the current code.
+I *think* I've seen it once before as well. Pstore also caught what
+seemed to some kind of spurious DE interrupt, which might explain
+the oops. But not really sure what happened as the machine died before
+I could poke at it more.
 
-> 
->>
->>> ---
->>>   drivers/gpu/drm/display/drm_dp_mst_topology.c | 10 +++++++---
->>>   include/drm/display/drm_dp_helper.h           | 13 +++++++++++++
->>>   2 files changed, 20 insertions(+), 3 deletions(-)
->>>
->>> diff --git a/drivers/gpu/drm/display/drm_dp_mst_topology.c b/drivers/gpu/drm/display/drm_dp_mst_topology.c
->>> index 000d05e80352a..8ca01a6bf645d 100644
->>> --- a/drivers/gpu/drm/display/drm_dp_mst_topology.c
->>> +++ b/drivers/gpu/drm/display/drm_dp_mst_topology.c
->>> @@ -3585,14 +3585,18 @@ static int drm_dp_send_up_ack_reply(struct drm_dp_mst_topology_mgr *mgr,
->>>   fixed20_12 drm_dp_get_vc_payload_bw(const struct drm_dp_mst_topology_mgr *mgr,
->>>   				    int link_rate, int link_lane_count)
->>>   {
->>> +	int ch_coding_efficiency =
->>> +		drm_dp_bw_channel_coding_efficiency(drm_dp_is_uhbr_rate(link_rate));
->>>   	fixed20_12 ret;
->>>   
->>>   	if (link_rate == 0 || link_lane_count == 0)
->>>   		drm_dbg_kms(mgr->dev, "invalid link rate/lane count: (%d / %d)\n",
->>>   			    link_rate, link_lane_count);
->>>   
->>> -	/* See DP v2.0 2.6.4.2, VCPayload_Bandwidth_for_OneTimeSlotPer_MTP_Allocation */
->>> -	ret.full = dfixed_const(link_rate * link_lane_count / 54000);
->>> +	/* See DP v2.0 2.6.4.2, 2.7.6.3 VCPayload_Bandwidth_for_OneTimeSlotPer_MTP_Allocation */
->>> +	ret.full = DIV_ROUND_DOWN_ULL(mul_u32_u32(link_rate * link_lane_count,
->>> +						  ch_coding_efficiency),
->>> +				      (1000000ULL * 8 * 5400) >> 12);
->>>   
->>>   	return ret;
->>>   }
->>> @@ -4342,7 +4346,7 @@ int drm_dp_atomic_find_time_slots(struct drm_atomic_state *state,
->>>   		}
->>>   	}
->>>   
->>> -	req_slots = DIV_ROUND_UP(pbn, dfixed_trunc(topology_state->pbn_div));
->>> +	req_slots = DIV_ROUND_UP(dfixed_const(pbn), topology_state->pbn_div.full);
->>>   
->>>   	drm_dbg_atomic(mgr->dev, "[CONNECTOR:%d:%s] [MST PORT:%p] TU %d -> %d\n",
->>>   		       port->connector->base.id, port->connector->name,
->>> diff --git a/include/drm/display/drm_dp_helper.h b/include/drm/display/drm_dp_helper.h
->>> index c5f1079acb3b1..863b2e7add29e 100644
->>> --- a/include/drm/display/drm_dp_helper.h
->>> +++ b/include/drm/display/drm_dp_helper.h
->>> @@ -252,6 +252,19 @@ drm_edp_backlight_supported(const u8 edp_dpcd[EDP_DISPLAY_CTL_CAP_SIZE])
->>>   	return !!(edp_dpcd[1] & DP_EDP_TCON_BACKLIGHT_ADJUSTMENT_CAP);
->>>   }
->>>   
->>> +/**
->>> + * drm_dp_is_uhbr_rate - Determine if a link rate is UHBR
->>> + * @link_rate: link rate in 10kbits/s units
->>> + *
->>> + * Determine if the provided link rate is an UHBR rate.
->>> + *
->>> + * Returns: %True if @link_rate is an UHBR rate.
->>> + */
->>> +static inline bool drm_dp_is_uhbr_rate(int link_rate)
->>> +{
->>> +	return link_rate >= 1000000;
->>> +}
->>> +
->>>   /*
->>>    * DisplayPort AUX channel
->>>    */
->>> -- 
->>> 2.39.2
->>
->> -- 
->> Ville Syrj√§l√§
->> Intel
+>  
+>  	spin_unlock_irqrestore(&dev->event_lock, irqflags);
+>  }
+> diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/drivers/gpu/drm/i915/display/intel_display_types.h
+> index 8d8b2f8d37a9..a8ae1a25a550 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display_types.h
+> +++ b/drivers/gpu/drm/i915/display/intel_display_types.h
+> @@ -1461,6 +1461,9 @@ struct intel_crtc {
+>  
+>  	struct intel_crtc_state *config;
+>  
+> +	/* armed event for async flip */
+> +	struct drm_pending_vblank_event *flip_done_event;
+> +
+>  	/* Access to these should be protected by dev_priv->irq_lock. */
+>  	bool cpu_fifo_underrun_disabled;
+>  	bool pch_fifo_underrun_disabled;
+> -- 
+> 2.41.0
+
+-- 
+Ville Syrj‰l‰
+Intel
