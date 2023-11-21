@@ -1,78 +1,34 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 75CBF7F3963
-	for <lists+intel-gfx@lfdr.de>; Tue, 21 Nov 2023 23:42:49 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1BD977F3A30
+	for <lists+intel-gfx@lfdr.de>; Wed, 22 Nov 2023 00:17:50 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CC09F10E101;
-	Tue, 21 Nov 2023 22:42:46 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2DCB310E5A1;
+	Tue, 21 Nov 2023 23:17:47 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from us-smtp-delivery-124.mimecast.com
- (us-smtp-delivery-124.mimecast.com [170.10.129.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BA7A010E101
- for <intel-gfx@lists.freedesktop.org>; Tue, 21 Nov 2023 22:42:44 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1700606563;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=0ElQRGY0isfYsMKQ1j3gCo27bQcg0SuJmAfZSX/wY/k=;
- b=NPwrkzvhLDjDZf7oIGWw7BpxJhN8IteGosIU4vtF3yDrOZEjd+djSG3iP7OfU0oN6xGVsn
- gB2vZxeFYBU6FfRG74G8j0ZujXk21cABRyeTfSdFLkcQIr6aehpqI4zoNlQbEUKqSeBRXB
- D9Ms7JyVhZbtqHZR1ysHh2o0sulaLdw=
-Received: from mail-yb1-f200.google.com (mail-yb1-f200.google.com
- [209.85.219.200]) by relay.mimecast.com with ESMTP with STARTTLS
- (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
- us-mta-617-yJ_EEkNNMu65DUME9BWPSQ-1; Tue, 21 Nov 2023 17:42:42 -0500
-X-MC-Unique: yJ_EEkNNMu65DUME9BWPSQ-1
-Received: by mail-yb1-f200.google.com with SMTP id
- 3f1490d57ef6-daed1e15daeso7411173276.1
- for <intel-gfx@lists.freedesktop.org>; Tue, 21 Nov 2023 14:42:42 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1700606562; x=1701211362;
- h=mime-version:user-agent:content-transfer-encoding:organization
- :references:in-reply-to:date:cc:to:from:subject:message-id
- :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
- bh=0ElQRGY0isfYsMKQ1j3gCo27bQcg0SuJmAfZSX/wY/k=;
- b=eV+ysSVIaRbIjPFSILPQy3QqsGFVxNcgIWk5XKN9d0o3taZUwiPzExMrymKkA9cgdL
- GPM6s0fPZaChobuErXiSvlxcSoD8SXyr00gVT3PMvXjFSI3vhjT4klDbOdvGlgwBiWKj
- dSNe+lKQYVRJekoKpn6b1/Q1fKSO381o1LcPdbnIwhhw6tQaZMbxrKBG7z2ta4mriJbu
- Re0dMABcaHj6v6/mjQT7y4ONyvlGt67o3hlcLb2b2A3d1AlHGX81nbD0nfiP51lisCyJ
- PBtcPHRGRK9jRcvZtuKhfoV+dBt4iclB08tt1l3kPuaFihvLH3be5Io31zfhHN7ejnpa
- r1lA==
-X-Gm-Message-State: AOJu0YykFR6INYZ2bOHVYScxXhZkY1FgOtOEi4h9ObPbz340YUTslNQL
- mQx3Bu7heR6CXCIUe07lYq/HKGiWKJhfEpykul1EtI9RCwuULqOxav6lSYRF3kwom7vMW0XZ7go
- OeNvl8r7xXusm4M1jjZ7wY/JPx8Od
-X-Received: by 2002:a25:5c4:0:b0:d9a:f666:b68e with SMTP id
- 187-20020a2505c4000000b00d9af666b68emr367543ybf.30.1700606561990; 
- Tue, 21 Nov 2023 14:42:41 -0800 (PST)
-X-Google-Smtp-Source: AGHT+IHRSjq9twvoSzgF5Q9Q/FUlWz6aqRI90OMayCTy5o0ibsygPbETnRAEkLcwWcr7iGmyw+YSiw==
-X-Received: by 2002:a25:5c4:0:b0:d9a:f666:b68e with SMTP id
- 187-20020a2505c4000000b00d9af666b68emr367535ybf.30.1700606561698; 
- Tue, 21 Nov 2023 14:42:41 -0800 (PST)
-Received: from ?IPv6:2600:4040:5c6c:a300::feb? ([2600:4040:5c6c:a300::feb])
- by smtp.gmail.com with ESMTPSA id
- j16-20020a0cf9d0000000b006564afc5908sm4335918qvo.111.2023.11.21.14.42.40
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Tue, 21 Nov 2023 14:42:41 -0800 (PST)
-Message-ID: <714f94e18518fecb10263d9140550694162fe27c.camel@redhat.com>
-From: Lyude Paul <lyude@redhat.com>
-To: Imre Deak <imre.deak@intel.com>, intel-gfx@lists.freedesktop.org
-Date: Tue, 21 Nov 2023 17:42:40 -0500
-In-Reply-To: <20231116131841.1588781-1-imre.deak@intel.com>
-References: <20231116131841.1588781-1-imre.deak@intel.com>
-Organization: Red Hat Inc.
-User-Agent: Evolution 3.48.4 (3.48.4-1.fc38)
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 685C510E5A1;
+ Tue, 21 Nov 2023 23:17:45 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 600D7A0093;
+ Tue, 21 Nov 2023 23:17:45 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============5962761282192853554=="
 MIME-Version: 1.0
-X-Mimecast-Spam-Score: 0
-X-Mimecast-Originator: redhat.com
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-Subject: Re: [Intel-gfx] [PATCH v2 00/11] drm/i915: Fix UHBR data,
- link M/N/TU and PBN values
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Alan Previn" <alan.previn.teres.alexis@intel.com>
+Date: Tue, 21 Nov 2023 23:17:45 -0000
+Message-ID: <170060866536.30157.9869628514237136590@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20231121185556.45770-1-alan.previn.teres.alexis@intel.com>
+In-Reply-To: <20231121185556.45770-1-alan.previn.teres.alexis@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3Igc2Vy?=
+ =?utf-8?q?ies_starting_with_=5B1/1=5D_drm/i915/pxp=3A_Add_missing_tag_for?=
+ =?utf-8?q?_Wa=5F14019159160?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -85,60 +41,159 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-For patches 1-3:
+--===============5962761282192853554==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Reviewed-by: Lyude Paul <lyude@redhat.com>
+== Series Details ==
 
-On Thu, 2023-11-16 at 15:18 +0200, Imre Deak wrote:
-> This is v2 of [1], with the following changes:
-> - Store the pbn_div value in fixed point format.
-> - Fix PBN calculation in patch 8.
-> - Reuse intel_dp_max_data_rate(), intel_dp_effective_data_rate() in
->   intel_link_compute_m_n() (Jani).
->=20
-> [1] https://lore.kernel.org/all/20231113201110.510724-1-imre.deak@intel.c=
-om
->=20
-> Cc: Arun R Murthy <arun.r.murthy@intel.com>
-> Cc: Jani Nikula <jani.nikula@linux.intel.com>
-> Cc: Lyude Paul <lyude@redhat.com>
->=20
-> Imre Deak (11):
->   drm/dp_mst: Store the MST PBN divider value in fixed point format
->   drm/dp_mst: Fix PBN divider calculation for UHBR rates
->   drm/dp_mst: Add kunit tests for drm_dp_get_vc_payload_bw()
->   drm/i915/dp: Replace intel_dp_is_uhbr_rate() with
->     drm_dp_is_uhbr_rate()
->   drm/i915/dp: Account for channel coding efficiency on UHBR links
->   drm/i915/dp: Fix UHBR link M/N values
->   drm/i915/dp_mst: Calculate the BW overhead in
->     intel_dp_mst_find_vcpi_slots_for_bpp()
->   drm/i915/dp_mst: Fix PBN / MTP_TU size calculation for UHBR rates
->   drm/i915/dp: Report a rounded-down value as the maximum data rate
->   drm/i915/dp: Simplify intel_dp_max_data_rate()
->   drm/i915/dp: Reuse intel_dp_{max,effective}_data_rate in
->     intel_link_compute_m_n()
->=20
->  .../gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c |   5 +-
->  .../amd/display/amdgpu_dm/amdgpu_dm_helpers.c |   3 +-
->  .../display/amdgpu_dm/amdgpu_dm_mst_types.c   |   5 +-
->  drivers/gpu/drm/display/drm_dp_mst_topology.c |  31 +++-
->  drivers/gpu/drm/i915/display/intel_display.c  |  51 ++----
->  drivers/gpu/drm/i915/display/intel_dp.c       |  78 +++++++---
->  drivers/gpu/drm/i915/display/intel_dp.h       |   5 +-
->  drivers/gpu/drm/i915/display/intel_dp_mst.c   |  55 +++++--
->  drivers/gpu/drm/nouveau/dispnv50/disp.c       |   6 +-
->  .../gpu/drm/tests/drm_dp_mst_helper_test.c    | 145 ++++++++++++++++++
->  include/drm/display/drm_dp_helper.h           |  13 ++
->  include/drm/display/drm_dp_mst_helper.h       |   7 +-
->  12 files changed, 311 insertions(+), 93 deletions(-)
->=20
+Series: series starting with [1/1] drm/i915/pxp: Add missing tag for Wa_14019159160
+URL   : https://patchwork.freedesktop.org/series/126724/
+State : success
 
---=20
-Cheers,
- Lyude Paul (she/her)
- Software Engineer at Red Hat
+== Summary ==
 
+CI Bug Log - changes from CI_DRM_13909 -> Patchwork_126724v1
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_126724v1/index.html
+
+Participating hosts (32 -> 30)
+------------------------------
+
+  Missing    (2): fi-snb-2520m fi-pnv-d510 
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_126724v1 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@kms_hdmi_inject@inject-audio:
+    - fi-kbl-guc:         [PASS][1] -> [FAIL][2] ([IGT#3])
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13909/fi-kbl-guc/igt@kms_hdmi_inject@inject-audio.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_126724v1/fi-kbl-guc/igt@kms_hdmi_inject@inject-audio.html
+
+  
+#### Possible fixes ####
+
+  * {igt@kms_psr@psr_cursor_plane_move@edp-1}:
+    - bat-jsl-1:          [SKIP][3] ([i915#9648]) -> [PASS][4] +3 other tests pass
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13909/bat-jsl-1/igt@kms_psr@psr_cursor_plane_move@edp-1.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_126724v1/bat-jsl-1/igt@kms_psr@psr_cursor_plane_move@edp-1.html
+
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+  [IGT#3]: https://gitlab.freedesktop.org/drm/igt-gpu-tools/issues/3
+  [i915#7359]: https://gitlab.freedesktop.org/drm/intel/issues/7359
+  [i915#8981]: https://gitlab.freedesktop.org/drm/intel/issues/8981
+  [i915#9648]: https://gitlab.freedesktop.org/drm/intel/issues/9648
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_13909 -> Patchwork_126724v1
+
+  CI-20190529: 20190529
+  CI_DRM_13909: cd560a69c56be9eb8db94a5f35fa51b21928be86 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_7595: cfa00d99b1dfa0621ea552d1ed54907798da1a1a @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  Patchwork_126724v1: cd560a69c56be9eb8db94a5f35fa51b21928be86 @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+### Linux commits
+
+0d42c204991a drm/i915/pxp: Add missing tag for Wa_14019159160
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_126724v1/index.html
+
+--===============5962761282192853554==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>series starting with [1/1] drm/i915/pxp: Add missing tag for Wa_14019159160</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/126724/">https://patchwork.freedesktop.org/series/126724/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_126724v1/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_126724v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_13909 -&gt; Patchwork_126724v1</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_126724v1/index.html</p>
+<h2>Participating hosts (32 -&gt; 30)</h2>
+<p>Missing    (2): fi-snb-2520m fi-pnv-d510 </p>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_126724v1 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>igt@kms_hdmi_inject@inject-audio:<ul>
+<li>fi-kbl-guc:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13909/fi-kbl-guc/igt@kms_hdmi_inject@inject-audio.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_126724v1/fi-kbl-guc/igt@kms_hdmi_inject@inject-audio.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/igt-gpu-tools/issues/3">IGT#3</a>)</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>{igt@kms_psr@psr_cursor_plane_move@edp-1}:<ul>
+<li>bat-jsl-1:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13909/bat-jsl-1/igt@kms_psr@psr_cursor_plane_move@edp-1.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/9648">i915#9648</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_126724v1/bat-jsl-1/igt@kms_psr@psr_cursor_plane_move@edp-1.html">PASS</a> +3 other tests pass</li>
+</ul>
+</li>
+</ul>
+<p>{name}: This element is suppressed. This means it is ignored when computing<br />
+          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_13909 -&gt; Patchwork_126724v1</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_13909: cd560a69c56be9eb8db94a5f35fa51b21928be86 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_7595: cfa00d99b1dfa0621ea552d1ed54907798da1a1a @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  Patchwork_126724v1: cd560a69c56be9eb8db94a5f35fa51b21928be86 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+<h3>Linux commits</h3>
+<p>0d42c204991a drm/i915/pxp: Add missing tag for Wa_14019159160</p>
+
+</body>
+</html>
+
+--===============5962761282192853554==--
