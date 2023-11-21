@@ -2,52 +2,52 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id DE20A7F2572
-	for <lists+intel-gfx@lfdr.de>; Tue, 21 Nov 2023 06:43:48 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id B8EEA7F2573
+	for <lists+intel-gfx@lfdr.de>; Tue, 21 Nov 2023 06:43:50 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 51D3A10E24D;
-	Tue, 21 Nov 2023 05:43:47 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id F08AC10E0BB;
+	Tue, 21 Nov 2023 05:43:48 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.24])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 519E410E24D
- for <intel-gfx@lists.freedesktop.org>; Tue, 21 Nov 2023 05:43:44 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9796410E25C
+ for <intel-gfx@lists.freedesktop.org>; Tue, 21 Nov 2023 05:43:47 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1700545424; x=1732081424;
+ t=1700545427; x=1732081427;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=8K8V7WsK7BhXlnJHDHiUc/17BsPhliVJG0GMMu8976c=;
- b=eBeeXChEwX0YBV28IDe/mylw6OnsqSsLVNtypPQN5aU9Z+1V2gzDC6zE
- +JbLhnnPOqA/Wy2e89Pk/raupcGxvFulZ75NsS98LIov0uQI5bnBMfGh1
- CrjSdp2is9RqOKdkPmaQxa4WicMVw9RNmQnNRIra2JuLyy9AG/K/J8EU1
- q67wXD4l2c5Dfs+VwMeA7J2SbdUXcKus68CfrtsLXULwhwrD/6kG02Hcl
- KxbbZuKuOXPZdY2VWBCOReMxLo5t/fyZcO/2ZX9ZdKmWlGMmQAEp8N6es
- xJLwpkgSyPoXvz8jPvbWzaheasyJlJxZgIKX6aXLDxQayl078SQczlPwR g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10900"; a="394611828"
-X-IronPort-AV: E=Sophos;i="6.04,215,1695711600"; d="scan'208";a="394611828"
+ bh=6Sq6NjnMl2FnmstBVjDH58qj34IR21k/PtriozUdCCQ=;
+ b=fHc8alRYWsB0NjvsiExYkuCqKIvXPI98vMO3DaigCUA/MDSBnUJZFYuk
+ 9oJchUfzL9BKTqGTHiKdFz8Rm453PRBxsUP7+2lCPkkkECpdBLnZX22Js
+ H4bCGOeAm1R0eyvMjjtzrsLelPR6fjfGyE/90XjuQfEMdS2xmbvDX0qDP
+ I+7SwTNvNqQZtGglIQKmKLdXEVDfff5tePgJSIIYkvyMAp0VqLoOr7P3I
+ 2GF2qLnUDEyFWKENh8/cqAojknvWtA9oJRNeWZO7A06lUEWXMCDMmpMqH
+ 61AW7AyBbu9Dmfzf0xpHoDIcBf4rGRwvy9MpuOynKtNfO/ob8BA6bFFwf A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10900"; a="394611833"
+X-IronPort-AV: E=Sophos;i="6.04,215,1695711600"; d="scan'208";a="394611833"
 Received: from orsmga007.jf.intel.com ([10.7.209.58])
  by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Nov 2023 21:43:44 -0800
+ 20 Nov 2023 21:43:47 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10900"; a="760002145"
-X-IronPort-AV: E=Sophos;i="6.04,215,1695711600"; d="scan'208";a="760002145"
+X-IronPort-AV: E=McAfee;i="6600,9927,10900"; a="760002160"
+X-IronPort-AV: E=Sophos;i="6.04,215,1695711600"; d="scan'208";a="760002160"
 Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.74])
- by orsmga007.jf.intel.com with SMTP; 20 Nov 2023 21:43:41 -0800
+ by orsmga007.jf.intel.com with SMTP; 20 Nov 2023 21:43:45 -0800
 Received: by stinkbox (sSMTP sendmail emulation);
- Tue, 21 Nov 2023 07:43:41 +0200
+ Tue, 21 Nov 2023 07:43:44 +0200
 From: Ville Syrjala <ville.syrjala@linux.intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Tue, 21 Nov 2023 07:43:18 +0200
-Message-ID: <20231121054324.9988-6-ville.syrjala@linux.intel.com>
+Date: Tue, 21 Nov 2023 07:43:19 +0200
+Message-ID: <20231121054324.9988-7-ville.syrjala@linux.intel.com>
 X-Mailer: git-send-email 2.41.0
 In-Reply-To: <20231121054324.9988-1-ville.syrjala@linux.intel.com>
 References: <20231121054324.9988-1-ville.syrjala@linux.intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH v2 05/11] drm/i915: Wrap g4x+ DP/HDMI audio
- enable/disable
+Subject: [Intel-gfx] [PATCH v2 06/11] drm/i915: Split g4x+ DP audio presence
+ detect from port enable
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -66,176 +66,76 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-Put a wrapper around the intel_audio_codec_{enable,disable}()
-calls in the g4x+ DP/HDMI code. We shall move the presence
-detect enable/disable into the wrappers later.
+Follow the hsw+ approach toggle the audio presence detect
+when we set up the ELD, instead of doing it when turning the
+port on/off.
+
+This will facilitate audio enable/disable to happen during
+fastsets instead of requiring a full modeset.
 
 Reviewed-by: Jani Nikula <jani.nikula@intel.com>
 Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 ---
- drivers/gpu/drm/i915/display/g4x_dp.c   | 26 ++++++++++++--
- drivers/gpu/drm/i915/display/g4x_hdmi.c | 48 +++++++++++++++----------
- 2 files changed, 53 insertions(+), 21 deletions(-)
+ drivers/gpu/drm/i915/display/g4x_dp.c | 18 +++++++++++++++---
+ 1 file changed, 15 insertions(+), 3 deletions(-)
 
 diff --git a/drivers/gpu/drm/i915/display/g4x_dp.c b/drivers/gpu/drm/i915/display/g4x_dp.c
-index 79ef2b435beb..ecc2ec866424 100644
+index ecc2ec866424..266cb594d793 100644
 --- a/drivers/gpu/drm/i915/display/g4x_dp.c
 +++ b/drivers/gpu/drm/i915/display/g4x_dp.c
-@@ -475,6 +475,26 @@ intel_dp_link_down(struct intel_encoder *encoder,
- 	}
- }
+@@ -432,7 +432,7 @@ intel_dp_link_down(struct intel_encoder *encoder,
+ 	intel_de_write(dev_priv, intel_dp->output_reg, intel_dp->DP);
+ 	intel_de_posting_read(dev_priv, intel_dp->output_reg);
  
-+static void g4x_dp_audio_enable(struct intel_encoder *encoder,
-+				const struct intel_crtc_state *crtc_state,
-+				const struct drm_connector_state *conn_state)
-+{
-+	if (!crtc_state->has_audio)
-+		return;
-+
-+	intel_audio_codec_enable(encoder, crtc_state, conn_state);
-+}
-+
-+static void g4x_dp_audio_disable(struct intel_encoder *encoder,
-+				 const struct intel_crtc_state *old_crtc_state,
-+				 const struct drm_connector_state *old_conn_state)
-+{
-+	if (!old_crtc_state->has_audio)
-+		return;
-+
-+	intel_audio_codec_disable(encoder, old_crtc_state, old_conn_state);
-+}
-+
- static void intel_disable_dp(struct intel_atomic_state *state,
- 			     struct intel_encoder *encoder,
- 			     const struct intel_crtc_state *old_crtc_state,
-@@ -482,7 +502,7 @@ static void intel_disable_dp(struct intel_atomic_state *state,
+-	intel_dp->DP &= ~(DP_PORT_EN | DP_AUDIO_OUTPUT_ENABLE);
++	intel_dp->DP &= ~DP_PORT_EN;
+ 	intel_de_write(dev_priv, intel_dp->output_reg, intel_dp->DP);
+ 	intel_de_posting_read(dev_priv, intel_dp->output_reg);
+ 
+@@ -479,9 +479,16 @@ static void g4x_dp_audio_enable(struct intel_encoder *encoder,
+ 				const struct intel_crtc_state *crtc_state,
+ 				const struct drm_connector_state *conn_state)
  {
- 	struct intel_dp *intel_dp = enc_to_intel_dp(encoder);
- 
--	intel_audio_codec_disable(encoder, old_crtc_state, old_conn_state);
-+	g4x_dp_audio_disable(encoder, old_crtc_state, old_conn_state);
- 
- 	intel_dp->link_trained = false;
- 
-@@ -687,7 +707,7 @@ static void g4x_enable_dp(struct intel_atomic_state *state,
- {
- 	intel_enable_dp(state, encoder, pipe_config, conn_state);
- 	intel_edp_backlight_on(pipe_config, conn_state);
--	intel_audio_codec_enable(encoder, pipe_config, conn_state);
-+	g4x_dp_audio_enable(encoder, pipe_config, conn_state);
- }
- 
- static void vlv_enable_dp(struct intel_atomic_state *state,
-@@ -696,7 +716,7 @@ static void vlv_enable_dp(struct intel_atomic_state *state,
- 			  const struct drm_connector_state *conn_state)
- {
- 	intel_edp_backlight_on(pipe_config, conn_state);
--	intel_audio_codec_enable(encoder, pipe_config, conn_state);
-+	g4x_dp_audio_enable(encoder, pipe_config, conn_state);
- }
- 
- static void g4x_pre_enable_dp(struct intel_atomic_state *state,
-diff --git a/drivers/gpu/drm/i915/display/g4x_hdmi.c b/drivers/gpu/drm/i915/display/g4x_hdmi.c
-index 45e044b4a88d..9c70245d8b0a 100644
---- a/drivers/gpu/drm/i915/display/g4x_hdmi.c
-+++ b/drivers/gpu/drm/i915/display/g4x_hdmi.c
-@@ -235,18 +235,38 @@ static void g4x_hdmi_enable_port(struct intel_encoder *encoder,
- 	intel_de_posting_read(dev_priv, intel_hdmi->hdmi_reg);
- }
- 
-+static void g4x_hdmi_audio_enable(struct intel_encoder *encoder,
-+				  const struct intel_crtc_state *crtc_state,
-+				  const struct drm_connector_state *conn_state)
-+{
 +	struct drm_i915_private *i915 = to_i915(encoder->base.dev);
++	struct intel_dp *intel_dp = enc_to_intel_dp(encoder);
 +
-+	if (!crtc_state->has_audio)
-+		return;
+ 	if (!crtc_state->has_audio)
+ 		return;
+ 
++	/* Enable audio presence detect */
++	intel_dp->DP |= DP_AUDIO_OUTPUT_ENABLE;
++	intel_de_write(i915, intel_dp->output_reg, intel_dp->DP);
 +
-+	drm_WARN_ON(&i915->drm, !crtc_state->has_hdmi_sink);
-+
-+	intel_audio_codec_enable(encoder, crtc_state, conn_state);
-+}
-+
-+static void g4x_hdmi_audio_disable(struct intel_encoder *encoder,
-+				   const struct intel_crtc_state *old_crtc_state,
-+				   const struct drm_connector_state *old_conn_state)
-+{
-+	if (!old_crtc_state->has_audio)
-+		return;
-+
-+	intel_audio_codec_disable(encoder, old_crtc_state, old_conn_state);
-+}
-+
- static void g4x_enable_hdmi(struct intel_atomic_state *state,
- 			    struct intel_encoder *encoder,
- 			    const struct intel_crtc_state *pipe_config,
- 			    const struct drm_connector_state *conn_state)
+ 	intel_audio_codec_enable(encoder, crtc_state, conn_state);
+ }
+ 
+@@ -489,10 +496,17 @@ static void g4x_dp_audio_disable(struct intel_encoder *encoder,
+ 				 const struct intel_crtc_state *old_crtc_state,
+ 				 const struct drm_connector_state *old_conn_state)
  {
--	struct drm_i915_private *dev_priv = to_i915(encoder->base.dev);
--
- 	g4x_hdmi_enable_port(encoder, pipe_config);
++	struct drm_i915_private *i915 = to_i915(encoder->base.dev);
++	struct intel_dp *intel_dp = enc_to_intel_dp(encoder);
++
+ 	if (!old_crtc_state->has_audio)
+ 		return;
  
--	drm_WARN_ON(&dev_priv->drm, pipe_config->has_audio &&
--		    !pipe_config->has_hdmi_sink);
--	intel_audio_codec_enable(encoder, pipe_config, conn_state);
-+	g4x_hdmi_audio_enable(encoder, pipe_config, conn_state);
+ 	intel_audio_codec_disable(encoder, old_crtc_state, old_conn_state);
++
++	/* Disable audio presence detect */
++	intel_dp->DP &= ~DP_AUDIO_OUTPUT_ENABLE;
++	intel_de_write(i915, intel_dp->output_reg, intel_dp->DP);
  }
  
- static void ibx_enable_hdmi(struct intel_atomic_state *state,
-@@ -297,9 +317,7 @@ static void ibx_enable_hdmi(struct intel_atomic_state *state,
- 		intel_de_posting_read(dev_priv, intel_hdmi->hdmi_reg);
- 	}
+ static void intel_disable_dp(struct intel_atomic_state *state,
+@@ -651,8 +665,6 @@ static void intel_dp_enable_port(struct intel_dp *intel_dp,
+ 	 * fail when the power sequencer is freshly used for this port.
+ 	 */
+ 	intel_dp->DP |= DP_PORT_EN;
+-	if (crtc_state->has_audio)
+-		intel_dp->DP |= DP_AUDIO_OUTPUT_ENABLE;
  
--	drm_WARN_ON(&dev_priv->drm, pipe_config->has_audio &&
--		    !pipe_config->has_hdmi_sink);
--	intel_audio_codec_enable(encoder, pipe_config, conn_state);
-+	g4x_hdmi_audio_enable(encoder, pipe_config, conn_state);
- }
- 
- static void cpt_enable_hdmi(struct intel_atomic_state *state,
-@@ -352,9 +370,7 @@ static void cpt_enable_hdmi(struct intel_atomic_state *state,
- 			     TRANS_CHICKEN1_HDMIUNIT_GC_DISABLE, 0);
- 	}
- 
--	drm_WARN_ON(&dev_priv->drm, pipe_config->has_audio &&
--		    !pipe_config->has_hdmi_sink);
--	intel_audio_codec_enable(encoder, pipe_config, conn_state);
-+	g4x_hdmi_audio_enable(encoder, pipe_config, conn_state);
- }
- 
- static void vlv_enable_hdmi(struct intel_atomic_state *state,
-@@ -362,11 +378,7 @@ static void vlv_enable_hdmi(struct intel_atomic_state *state,
- 			    const struct intel_crtc_state *pipe_config,
- 			    const struct drm_connector_state *conn_state)
- {
--	struct drm_i915_private *dev_priv = to_i915(encoder->base.dev);
--
--	drm_WARN_ON(&dev_priv->drm, pipe_config->has_audio &&
--		    !pipe_config->has_hdmi_sink);
--	intel_audio_codec_enable(encoder, pipe_config, conn_state);
-+	g4x_hdmi_audio_enable(encoder, pipe_config, conn_state);
- }
- 
- static void intel_disable_hdmi(struct intel_atomic_state *state,
-@@ -433,7 +445,7 @@ static void g4x_disable_hdmi(struct intel_atomic_state *state,
- 			     const struct intel_crtc_state *old_crtc_state,
- 			     const struct drm_connector_state *old_conn_state)
- {
--	intel_audio_codec_disable(encoder, old_crtc_state, old_conn_state);
-+	g4x_hdmi_audio_disable(encoder, old_crtc_state, old_conn_state);
- 
- 	intel_disable_hdmi(state, encoder, old_crtc_state, old_conn_state);
- }
-@@ -443,7 +455,7 @@ static void pch_disable_hdmi(struct intel_atomic_state *state,
- 			     const struct intel_crtc_state *old_crtc_state,
- 			     const struct drm_connector_state *old_conn_state)
- {
--	intel_audio_codec_disable(encoder, old_crtc_state, old_conn_state);
-+	g4x_hdmi_audio_disable(encoder, old_crtc_state, old_conn_state);
- }
- 
- static void pch_post_disable_hdmi(struct intel_atomic_state *state,
+ 	intel_de_write(dev_priv, intel_dp->output_reg, intel_dp->DP);
+ 	intel_de_posting_read(dev_priv, intel_dp->output_reg);
 -- 
 2.41.0
 
