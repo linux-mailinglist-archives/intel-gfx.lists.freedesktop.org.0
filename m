@@ -1,49 +1,54 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 023DA7F368F
-	for <lists+intel-gfx@lfdr.de>; Tue, 21 Nov 2023 19:56:03 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 017567F3712
+	for <lists+intel-gfx@lfdr.de>; Tue, 21 Nov 2023 21:05:19 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9E25E10E56E;
-	Tue, 21 Nov 2023 18:56:00 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BC97310E59B;
+	Tue, 21 Nov 2023 20:05:16 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 11F7310E56D;
- Tue, 21 Nov 2023 18:55:58 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.115])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C9FB110E03A
+ for <intel-gfx@lists.freedesktop.org>; Tue, 21 Nov 2023 20:05:14 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1700592958; x=1732128958;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=Tj3vwYuDpFx4lFlKoBdx5Xerip99JWiKOJkbLomiMOA=;
- b=FoexZ34vk6rhnxfLntQiEvcFMQ1oOvRUM3Z9WhwuAOLj4x1u5l/Pseau
- OLDk86jvsPtoKAB2iP4tUJ0sikf/996jgYmrjvl1wBFOP5VdlniZk6oig
- 0oiy3XQ3KXQCaDKEH2YahJFEdZmLRDwbfG1JyY6TJMQx2fnmoWyA/8Uo2
- I+EPxLYwlCzr37mwgN82AI3uFRv2+l03sku77oFwgdU2rxf0V0KU0lVQV
- i1P9e7YyXnvtQRhpl596fA5ZBFM/utpa8LD5/4dt9PBPGsiiK+cYGWCug
- 6ojpQR8GCqUIT7EwnQPkr66yvy5/frBZhOsTwse50WZ1P67iDx48uVjwG A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10901"; a="5033876"
-X-IronPort-AV: E=Sophos;i="6.04,216,1695711600"; 
-   d="scan'208";a="5033876"
-Received: from fmsmga003.fm.intel.com ([10.253.24.29])
- by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Nov 2023 10:55:57 -0800
+ t=1700597114; x=1732133114;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:in-reply-to;
+ bh=5gAvxm4/7KiptJjPowgP3EKHmQ+fF11sSqgWEbTteY8=;
+ b=gMAaFVMoypd9DCGig878dkOHAIVAvLBmditjkJtUjFkewPIr65uAJ+Ms
+ 4h/6Acq17b4pZ7CROiDyUjYnCuceXCLTZEQT0Xj7CdiAx1J+zAYYivlwb
+ EBZf1vrt6WxkzYjAUHltECDj6erPdnDBP6gzt1PeTpHisDnfksCRKdcbm
+ rgWVpON70e2R/+oFv+6cdkWYrz3z3nXuDdNbQOG3frLSoPyXb8+6UN5UR
+ PK0I9RmOjWzViKtiBP9g8rjRKu+amG1KeMR9UlE1yMt6EMiWx1bl4jUp/
+ IuYDQgKPw/AohUlEdCmlkHu2Jps+uobOfWqI3RuXx0sTPmzcGOcL/H020 g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10901"; a="391691348"
+X-IronPort-AV: E=Sophos;i="6.04,216,1695711600"; d="scan'208";a="391691348"
+Received: from orsmga007.jf.intel.com ([10.7.209.58])
+ by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 21 Nov 2023 12:05:14 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10901"; a="857407287"
-X-IronPort-AV: E=Sophos;i="6.04,216,1695711600"; d="scan'208";a="857407287"
-Received: from aalteres-desk.fm.intel.com ([10.80.57.53])
- by FMSMGA003.fm.intel.com with ESMTP; 21 Nov 2023 10:55:57 -0800
-From: Alan Previn <alan.previn.teres.alexis@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Tue, 21 Nov 2023 10:55:56 -0800
-Message-Id: <20231121185556.45770-1-alan.previn.teres.alexis@intel.com>
-X-Mailer: git-send-email 2.39.0
+X-IronPort-AV: E=McAfee;i="6600,9927,10901"; a="760214720"
+X-IronPort-AV: E=Sophos;i="6.04,216,1695711600"; d="scan'208";a="760214720"
+Received: from lkp-server02.sh.intel.com (HELO b8de5498638e) ([10.239.97.151])
+ by orsmga007.jf.intel.com with ESMTP; 21 Nov 2023 12:05:12 -0800
+Received: from kbuild by b8de5498638e with local (Exim 4.96)
+ (envelope-from <lkp@intel.com>) id 1r5Wzd-0008Cs-2k;
+ Tue, 21 Nov 2023 20:05:09 +0000
+Date: Wed, 22 Nov 2023 04:04:54 +0800
+From: kernel test robot <lkp@intel.com>
+To: Jouni =?iso-8859-1?Q?H=F6gander?= <jouni.hogander@intel.com>,
+ intel-gfx@lists.freedesktop.org
+Message-ID: <202311220315.YZAdz5tr-lkp@intel.com>
+References: <20231121112729.4191245-5-jouni.hogander@intel.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH 1/1] drm/i915/pxp: Add missing tag for
- Wa_14019159160
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20231121112729.4191245-5-jouni.hogander@intel.com>
+Subject: Re: [Intel-gfx] [PATCH v5 4/4] drm/i915/display: Split i915
+ specific code away from intel_fb.c
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -56,38 +61,53 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: dri-devel@lists.freedesktop.org,
- Alan Previn <alan.previn.teres.alexis@intel.com>
+Cc: llvm@lists.linux.dev, oe-kbuild-all@lists.linux.dev
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Add missing tag for "Wa_14019159160 - Case 2" (for existing
-PXP code that ensures run alone mode bit is set to allow
-PxP-decryption.
+Hi Jouni,
 
-Signed-off-by: Alan Previn <alan.previn.teres.alexis@intel.com>
----
- drivers/gpu/drm/i915/gt/intel_lrc.c | 4 +++-
- 1 file changed, 3 insertions(+), 1 deletion(-)
+kernel test robot noticed the following build errors:
 
-diff --git a/drivers/gpu/drm/i915/gt/intel_lrc.c b/drivers/gpu/drm/i915/gt/intel_lrc.c
-index 7c367ba8d9dc..c758fe4906a5 100644
---- a/drivers/gpu/drm/i915/gt/intel_lrc.c
-+++ b/drivers/gpu/drm/i915/gt/intel_lrc.c
-@@ -863,8 +863,10 @@ static bool ctx_needs_runalone(const struct intel_context *ce)
- 	bool ctx_is_protected = false;
- 
- 	/*
-+	 * Wa_140191591606 - Case 2: mtl
- 	 * On MTL and newer platforms, protected contexts require setting
--	 * the LRC run-alone bit or else the encryption will not happen.
-+	 * the LRC run-alone bit or else the encryption/decryption will not happen.
-+	 * NOTE: Case 2 only applies to PXP use-case of said workaround.
- 	 */
- 	if (GRAPHICS_VER_FULL(ce->engine->i915) >= IP_VER(12, 70) &&
- 	    (ce->engine->class == COMPUTE_CLASS || ce->engine->class == RENDER_CLASS)) {
+[auto build test ERROR on drm-tip/drm-tip]
 
-base-commit: dbdb47c227dc21b7bf98ada039bf42aac4b58b8b
+url:    https://github.com/intel-lab-lkp/linux/commits/Jouni-H-gander/drm-i915-display-use-intel_bo_to_drm_bo-in-intel_fb-c/20231121-193155
+base:   git://anongit.freedesktop.org/drm/drm-tip drm-tip
+patch link:    https://lore.kernel.org/r/20231121112729.4191245-5-jouni.hogander%40intel.com
+patch subject: [Intel-gfx] [PATCH v5 4/4] drm/i915/display: Split i915 specific code away from intel_fb.c
+config: x86_64-allyesconfig (https://download.01.org/0day-ci/archive/20231122/202311220315.YZAdz5tr-lkp@intel.com/config)
+compiler: clang version 16.0.4 (https://github.com/llvm/llvm-project.git ae42196bc493ffe877a7e3dff8be32035dea4d07)
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20231122/202311220315.YZAdz5tr-lkp@intel.com/reproduce)
+
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202311220315.YZAdz5tr-lkp@intel.com/
+
+All errors (new ones prefixed by >>):
+
+>> make[7]: *** No rule to make target 'drivers/gpu/drm/i915/display/intel_fb_bo.o', needed by 'drivers/gpu/drm/i915/built-in.a'.
+   make[7]: *** [scripts/Makefile.build:243: drivers/gpu/drm/i915/display/intel_fb.o] Error 1
+   make[7]: Target 'drivers/gpu/drm/i915/' not remade because of errors.
+--
+>> drivers/gpu/drm/i915/display/intel_fb.c:17:10: fatal error: 'intel_fb_bo.h' file not found
+   #include "intel_fb_bo.h"
+            ^~~~~~~~~~~~~~~
+   1 error generated.
+
+
+vim +17 drivers/gpu/drm/i915/display/intel_fb.c
+
+    11	
+    12	#include "i915_drv.h"
+    13	#include "intel_display.h"
+    14	#include "intel_display_types.h"
+    15	#include "intel_dpt.h"
+    16	#include "intel_fb.h"
+  > 17	#include "intel_fb_bo.h"
+    18	#include "intel_frontbuffer.h"
+    19	
+
 -- 
-2.39.0
-
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
