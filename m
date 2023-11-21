@@ -2,53 +2,77 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 60EF47F3846
-	for <lists+intel-gfx@lfdr.de>; Tue, 21 Nov 2023 22:26:35 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 75CBF7F3963
+	for <lists+intel-gfx@lfdr.de>; Tue, 21 Nov 2023 23:42:49 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 39E7610E545;
-	Tue, 21 Nov 2023 21:26:32 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CC09F10E101;
+	Tue, 21 Nov 2023 22:42:46 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D77E810E545
- for <intel-gfx@lists.freedesktop.org>; Tue, 21 Nov 2023 21:26:29 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1700601989; x=1732137989;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:in-reply-to;
- bh=K74fmG01u+fJvTPFrdGPpv9XzLAyvnSDGmUJAEvX8ww=;
- b=e1ncNT+x50uzDQj4bbHu0I2gdQBvmcXQ6CDyzgLHS3KJ2yjmzqe9wy/U
- OyWFe/IF4PKrZdHsd3WRFGe3fX7Ux5prR+Jae8Kk75wJ2vSS0jt4CuYMQ
- Bayx5L9LV8pktQ0xIcAy00/KUiJ2sSrp6sHzCuKpxdFJdMlWMSyOgSvpn
- 9ryTNJ/m2rLcZZcmwCASbd9NCsCJO0vFw6XpO9Qq7BHdVhNl/hR+HSDhI
- 4/UUUF3AIflEKo4RQP+aFHY74pQ+pKWy2AEBHDF9spuXqGtodD0uBU/kJ
- t5POZqvTo4DkGMTatsOtIfMXWL75NMMjCWybGfzvtIXZ6Mtbe8JekDgIK Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10901"; a="382327479"
-X-IronPort-AV: E=Sophos;i="6.04,216,1695711600"; d="scan'208";a="382327479"
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
- by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Nov 2023 13:26:29 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10901"; a="884335128"
-X-IronPort-AV: E=Sophos;i="6.04,216,1695711600"; d="scan'208";a="884335128"
-Received: from lkp-server02.sh.intel.com (HELO b8de5498638e) ([10.239.97.151])
- by fmsmga002.fm.intel.com with ESMTP; 21 Nov 2023 13:26:26 -0800
-Received: from kbuild by b8de5498638e with local (Exim 4.96)
- (envelope-from <lkp@intel.com>) id 1r5YGE-0008HB-1v;
- Tue, 21 Nov 2023 21:26:22 +0000
-Date: Wed, 22 Nov 2023 05:25:46 +0800
-From: kernel test robot <lkp@intel.com>
-To: Jouni =?iso-8859-1?Q?H=F6gander?= <jouni.hogander@intel.com>,
- intel-gfx@lists.freedesktop.org
-Message-ID: <202311220447.1Vw2SgEJ-lkp@intel.com>
-References: <20231121112729.4191245-5-jouni.hogander@intel.com>
+Received: from us-smtp-delivery-124.mimecast.com
+ (us-smtp-delivery-124.mimecast.com [170.10.129.124])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BA7A010E101
+ for <intel-gfx@lists.freedesktop.org>; Tue, 21 Nov 2023 22:42:44 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+ s=mimecast20190719; t=1700606563;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references;
+ bh=0ElQRGY0isfYsMKQ1j3gCo27bQcg0SuJmAfZSX/wY/k=;
+ b=NPwrkzvhLDjDZf7oIGWw7BpxJhN8IteGosIU4vtF3yDrOZEjd+djSG3iP7OfU0oN6xGVsn
+ gB2vZxeFYBU6FfRG74G8j0ZujXk21cABRyeTfSdFLkcQIr6aehpqI4zoNlQbEUKqSeBRXB
+ D9Ms7JyVhZbtqHZR1ysHh2o0sulaLdw=
+Received: from mail-yb1-f200.google.com (mail-yb1-f200.google.com
+ [209.85.219.200]) by relay.mimecast.com with ESMTP with STARTTLS
+ (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
+ us-mta-617-yJ_EEkNNMu65DUME9BWPSQ-1; Tue, 21 Nov 2023 17:42:42 -0500
+X-MC-Unique: yJ_EEkNNMu65DUME9BWPSQ-1
+Received: by mail-yb1-f200.google.com with SMTP id
+ 3f1490d57ef6-daed1e15daeso7411173276.1
+ for <intel-gfx@lists.freedesktop.org>; Tue, 21 Nov 2023 14:42:42 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1700606562; x=1701211362;
+ h=mime-version:user-agent:content-transfer-encoding:organization
+ :references:in-reply-to:date:cc:to:from:subject:message-id
+ :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+ bh=0ElQRGY0isfYsMKQ1j3gCo27bQcg0SuJmAfZSX/wY/k=;
+ b=eV+ysSVIaRbIjPFSILPQy3QqsGFVxNcgIWk5XKN9d0o3taZUwiPzExMrymKkA9cgdL
+ GPM6s0fPZaChobuErXiSvlxcSoD8SXyr00gVT3PMvXjFSI3vhjT4klDbOdvGlgwBiWKj
+ dSNe+lKQYVRJekoKpn6b1/Q1fKSO381o1LcPdbnIwhhw6tQaZMbxrKBG7z2ta4mriJbu
+ Re0dMABcaHj6v6/mjQT7y4ONyvlGt67o3hlcLb2b2A3d1AlHGX81nbD0nfiP51lisCyJ
+ PBtcPHRGRK9jRcvZtuKhfoV+dBt4iclB08tt1l3kPuaFihvLH3be5Io31zfhHN7ejnpa
+ r1lA==
+X-Gm-Message-State: AOJu0YykFR6INYZ2bOHVYScxXhZkY1FgOtOEi4h9ObPbz340YUTslNQL
+ mQx3Bu7heR6CXCIUe07lYq/HKGiWKJhfEpykul1EtI9RCwuULqOxav6lSYRF3kwom7vMW0XZ7go
+ OeNvl8r7xXusm4M1jjZ7wY/JPx8Od
+X-Received: by 2002:a25:5c4:0:b0:d9a:f666:b68e with SMTP id
+ 187-20020a2505c4000000b00d9af666b68emr367543ybf.30.1700606561990; 
+ Tue, 21 Nov 2023 14:42:41 -0800 (PST)
+X-Google-Smtp-Source: AGHT+IHRSjq9twvoSzgF5Q9Q/FUlWz6aqRI90OMayCTy5o0ibsygPbETnRAEkLcwWcr7iGmyw+YSiw==
+X-Received: by 2002:a25:5c4:0:b0:d9a:f666:b68e with SMTP id
+ 187-20020a2505c4000000b00d9af666b68emr367535ybf.30.1700606561698; 
+ Tue, 21 Nov 2023 14:42:41 -0800 (PST)
+Received: from ?IPv6:2600:4040:5c6c:a300::feb? ([2600:4040:5c6c:a300::feb])
+ by smtp.gmail.com with ESMTPSA id
+ j16-20020a0cf9d0000000b006564afc5908sm4335918qvo.111.2023.11.21.14.42.40
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Tue, 21 Nov 2023 14:42:41 -0800 (PST)
+Message-ID: <714f94e18518fecb10263d9140550694162fe27c.camel@redhat.com>
+From: Lyude Paul <lyude@redhat.com>
+To: Imre Deak <imre.deak@intel.com>, intel-gfx@lists.freedesktop.org
+Date: Tue, 21 Nov 2023 17:42:40 -0500
+In-Reply-To: <20231116131841.1588781-1-imre.deak@intel.com>
+References: <20231116131841.1588781-1-imre.deak@intel.com>
+Organization: Red Hat Inc.
+User-Agent: Evolution 3.48.4 (3.48.4-1.fc38)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20231121112729.4191245-5-jouni.hogander@intel.com>
-Subject: Re: [Intel-gfx] [PATCH v5 4/4] drm/i915/display: Split i915
- specific code away from intel_fb.c
+X-Mimecast-Spam-Score: 0
+X-Mimecast-Originator: redhat.com
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+Subject: Re: [Intel-gfx] [PATCH v2 00/11] drm/i915: Fix UHBR data,
+ link M/N/TU and PBN values
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,35 +85,60 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: llvm@lists.linux.dev, oe-kbuild-all@lists.linux.dev
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi Jouni,
+For patches 1-3:
 
-kernel test robot noticed the following build errors:
+Reviewed-by: Lyude Paul <lyude@redhat.com>
 
-[auto build test ERROR on drm-tip/drm-tip]
+On Thu, 2023-11-16 at 15:18 +0200, Imre Deak wrote:
+> This is v2 of [1], with the following changes:
+> - Store the pbn_div value in fixed point format.
+> - Fix PBN calculation in patch 8.
+> - Reuse intel_dp_max_data_rate(), intel_dp_effective_data_rate() in
+>   intel_link_compute_m_n() (Jani).
+>=20
+> [1] https://lore.kernel.org/all/20231113201110.510724-1-imre.deak@intel.c=
+om
+>=20
+> Cc: Arun R Murthy <arun.r.murthy@intel.com>
+> Cc: Jani Nikula <jani.nikula@linux.intel.com>
+> Cc: Lyude Paul <lyude@redhat.com>
+>=20
+> Imre Deak (11):
+>   drm/dp_mst: Store the MST PBN divider value in fixed point format
+>   drm/dp_mst: Fix PBN divider calculation for UHBR rates
+>   drm/dp_mst: Add kunit tests for drm_dp_get_vc_payload_bw()
+>   drm/i915/dp: Replace intel_dp_is_uhbr_rate() with
+>     drm_dp_is_uhbr_rate()
+>   drm/i915/dp: Account for channel coding efficiency on UHBR links
+>   drm/i915/dp: Fix UHBR link M/N values
+>   drm/i915/dp_mst: Calculate the BW overhead in
+>     intel_dp_mst_find_vcpi_slots_for_bpp()
+>   drm/i915/dp_mst: Fix PBN / MTP_TU size calculation for UHBR rates
+>   drm/i915/dp: Report a rounded-down value as the maximum data rate
+>   drm/i915/dp: Simplify intel_dp_max_data_rate()
+>   drm/i915/dp: Reuse intel_dp_{max,effective}_data_rate in
+>     intel_link_compute_m_n()
+>=20
+>  .../gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c |   5 +-
+>  .../amd/display/amdgpu_dm/amdgpu_dm_helpers.c |   3 +-
+>  .../display/amdgpu_dm/amdgpu_dm_mst_types.c   |   5 +-
+>  drivers/gpu/drm/display/drm_dp_mst_topology.c |  31 +++-
+>  drivers/gpu/drm/i915/display/intel_display.c  |  51 ++----
+>  drivers/gpu/drm/i915/display/intel_dp.c       |  78 +++++++---
+>  drivers/gpu/drm/i915/display/intel_dp.h       |   5 +-
+>  drivers/gpu/drm/i915/display/intel_dp_mst.c   |  55 +++++--
+>  drivers/gpu/drm/nouveau/dispnv50/disp.c       |   6 +-
+>  .../gpu/drm/tests/drm_dp_mst_helper_test.c    | 145 ++++++++++++++++++
+>  include/drm/display/drm_dp_helper.h           |  13 ++
+>  include/drm/display/drm_dp_mst_helper.h       |   7 +-
+>  12 files changed, 311 insertions(+), 93 deletions(-)
+>=20
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Jouni-H-gander/drm-i915-display-use-intel_bo_to_drm_bo-in-intel_fb-c/20231121-193155
-base:   git://anongit.freedesktop.org/drm/drm-tip drm-tip
-patch link:    https://lore.kernel.org/r/20231121112729.4191245-5-jouni.hogander%40intel.com
-patch subject: [Intel-gfx] [PATCH v5 4/4] drm/i915/display: Split i915 specific code away from intel_fb.c
-config: i386-allmodconfig (https://download.01.org/0day-ci/archive/20231122/202311220447.1Vw2SgEJ-lkp@intel.com/config)
-compiler: clang version 16.0.4 (https://github.com/llvm/llvm-project.git ae42196bc493ffe877a7e3dff8be32035dea4d07)
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20231122/202311220447.1Vw2SgEJ-lkp@intel.com/reproduce)
+--=20
+Cheers,
+ Lyude Paul (she/her)
+ Software Engineer at Red Hat
 
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202311220447.1Vw2SgEJ-lkp@intel.com/
-
-All errors (new ones prefixed by >>):
-
->> make[7]: *** No rule to make target 'drivers/gpu/drm/i915/display/intel_fb_bo.o', needed by 'drivers/gpu/drm/i915/i915.o'.
-   make[7]: *** [scripts/Makefile.build:243: drivers/gpu/drm/i915/display/intel_fb.o] Error 1
-   make[7]: Target 'drivers/gpu/drm/i915/' not remade because of errors.
-
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
