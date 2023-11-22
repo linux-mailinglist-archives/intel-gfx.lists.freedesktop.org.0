@@ -2,50 +2,44 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6B0A97F4B69
-	for <lists+intel-gfx@lfdr.de>; Wed, 22 Nov 2023 16:46:35 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id E59DA7F4C31
+	for <lists+intel-gfx@lfdr.de>; Wed, 22 Nov 2023 17:20:47 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4462A10E1A2;
-	Wed, 22 Nov 2023 15:46:31 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 416DE10E316;
+	Wed, 22 Nov 2023 16:20:37 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6A43A10E1A2;
- Wed, 22 Nov 2023 15:46:29 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1700667990; x=1732203990;
- h=date:from:to:cc:subject:message-id:mime-version;
- bh=xcGraPTZkkvyKVpMUbcsGGlFrsqMDx3ST4/8EWjkAdg=;
- b=NFxnHADTq6F8Wu1sWMqsgTuodTkkTvqvMgytzskwci+7+h+9ze/nO0On
- jr9fz9nuPnGAZ+0EYHnIbp/bjwyJQPfjuqeXhCx9inaSfAZV2o3Nst1p5
- aaL04QdzTvV/YQTc344KRhbcEkyPdaF+4xPZwvwVCyD7jz+l1tTqckRJX
- uK69TYzdRkRfvNNAuRURPuzzd/CbSE3nGHaXVRbwp3L3NAIIvc/uaSgEY
- 2Nu0eKbY/7YqdR5rmpGCGO9TKtUpnxe7G7RVhtdUR2SOrpPKSOYg102p4
- bjEc5U4A5dM/M7xNUGNf+6p3Y5Ya6gUfEt4WisbWM9huoFrcKBuZEYJfT g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10902"; a="13623171"
-X-IronPort-AV: E=Sophos;i="6.04,219,1695711600"; d="scan'208";a="13623171"
-Received: from fmviesa002.fm.intel.com ([10.60.135.142])
- by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Nov 2023 07:46:29 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.04,219,1695711600"; 
-   d="scan'208";a="8510507"
-Received: from lkp-server01.sh.intel.com (HELO d584ee6ebdcc) ([10.239.97.150])
- by fmviesa002.fm.intel.com with ESMTP; 22 Nov 2023 07:46:27 -0800
-Received: from kbuild by d584ee6ebdcc with local (Exim 4.96)
- (envelope-from <lkp@intel.com>) id 1r5pQn-0000dh-0H;
- Wed, 22 Nov 2023 15:46:25 +0000
-Date: Wed, 22 Nov 2023 23:45:53 +0800
-From: kernel test robot <lkp@intel.com>
-To: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
-Message-ID: <202311222102.LhBe6KCX-lkp@intel.com>
+Received: from fanzine2.igalia.com (fanzine.igalia.com [178.60.130.6])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7C84E10E316;
+ Wed, 22 Nov 2023 16:20:34 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
+ s=20170329;
+ h=Content-Transfer-Encoding:Content-Type:MIME-Version:Message-ID:
+ Date:Subject:Cc:To:From:Sender:Reply-To:Content-ID:Content-Description:
+ Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+ In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
+ List-Post:List-Owner:List-Archive;
+ bh=2zYtF9bti8Sl79w5DySf/rz3AAOQ+yakZIXsa6ORKGA=; b=Eho7w5atcmZtocj3rcK1fW6ysd
+ 9Mhl3hUuHiIkoJB58jmK/B8sGI63MAUAiiXBZ23FBenMeAXzgBWQ1lRiaEquopcD9wxL+WFaHbsS9
+ xJT4sAJzuZteHorH1KbaJq/m57c85KyAZat31a8P7HrKbnCrdshetgv+TaC6BT0fp4jDU9vFom6E8
+ rQB8STP0YXzIvFBtBA2+lQXRVtgNF9Uniy1A9fKvhRaE+tsNjPWOtOYDPCt28B8l46k3KrTEQh0BC
+ GdE9IGYZSLjn/I0xl5fex0662KhGqZm4mmU+Ea7qw3GOmigWsVA9tarb3fnuQgmBmcaEsW7RpZMOR
+ owiyDZEA==;
+Received: from 189-69-166-209.dial-up.telesp.net.br ([189.69.166.209]
+ helo=steammachine.lan) by fanzine2.igalia.com with esmtpsa 
+ (Cipher TLS1.3:ECDHE_X25519__RSA_PSS_RSAE_SHA256__AES_256_GCM:256) (Exim)
+ id 1r5pxi-0061lT-Bl; Wed, 22 Nov 2023 17:20:26 +0100
+From: =?UTF-8?q?Andr=C3=A9=20Almeida?= <andrealmeid@igalia.com>
+To: dri-devel@lists.freedesktop.org, amd-gfx@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org
+Date: Wed, 22 Nov 2023 13:19:37 -0300
+Message-ID: <20231122161941.320564-1-andrealmeid@igalia.com>
+X-Mailer: git-send-email 2.42.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Subject: [Intel-gfx] [drm-intel:for-linux-next-gt 1/6]
- drivers/gpu/drm/i915/i915_drm_client.h:81:1: error: non-void function does
- not return a value
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-gfx] [PATCH v9 0/4] drm: Add support for atomic async
+ page-flip
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -58,48 +52,94 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org, llvm@lists.linux.dev,
- dri-devel@lists.freedesktop.org, oe-kbuild-all@lists.linux.dev
+Cc: pierre-eric.pelloux-prayer@amd.com,
+ =?UTF-8?q?Andr=C3=A9=20Almeida?= <andrealmeid@igalia.com>, daniel@ffwll.ch,
+ =?UTF-8?q?=27Marek=20Ol=C5=A1=C3=A1k=27?= <maraeo@gmail.com>,
+ =?UTF-8?q?Michel=20D=C3=A4nzer?= <michel.daenzer@mailbox.org>,
+ Simon Ser <contact@emersion.fr>, intel-gfx@lists.freedesktop.org,
+ Randy Dunlap <rdunlap@infradead.org>, Pekka Paalanen <ppaalanen@gmail.com>,
+ Daniel Stone <daniel@fooishbar.org>, kernel-dev@igalia.com,
+ alexander.deucher@amd.com, Dave Airlie <airlied@gmail.com>,
+ christian.koenig@amd.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-tree:   git://anongit.freedesktop.org/drm-intel for-linux-next-gt
-head:   5032c607e886e0c40749a05d37b835c1757d38ff
-commit: e4ae85e364fc652ea15d85b0f3a6da304c9b5ce7 [1/6] drm/i915: Add ability for tracking buffer objects per client
-config: x86_64-buildonly-randconfig-006-20231122 (https://download.01.org/0day-ci/archive/20231122/202311222102.LhBe6KCX-lkp@intel.com/config)
-compiler: clang version 16.0.4 (https://github.com/llvm/llvm-project.git ae42196bc493ffe877a7e3dff8be32035dea4d07)
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20231122/202311222102.LhBe6KCX-lkp@intel.com/reproduce)
+Hi,
 
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202311222102.LhBe6KCX-lkp@intel.com/
+This work from me and Simon adds support for DRM_MODE_PAGE_FLIP_ASYNC through
+the atomic API. This feature is already available via the legacy API. The use
+case is to be able to present a new frame immediately (or as soon as
+possible), even if after missing a vblank. This might result in tearing, but
+it's useful when a high framerate is desired, such as for gaming.
 
-Note: the drm-intel/for-linux-next-gt HEAD 5032c607e886e0c40749a05d37b835c1757d38ff builds fine.
-      It only hurts bisectability.
+Differently from earlier versions, this one refuses to flip if any prop changes
+for async flips. The idea is that the fast path of immediate page flips doesn't
+play well with modeset changes, so only the fb_id can be changed.
 
-All errors (new ones prefixed by >>):
+Tested with:
+ - Intel TigerLake-LP GT2
+ - AMD VanGogh
 
-   In file included from drivers/gpu/drm/i915/selftests/igt_spinner.c:12:
-   In file included from drivers/gpu/drm/i915/selftests/igt_spinner.h:10:
-   In file included from drivers/gpu/drm/i915/gem/i915_gem_context.h:12:
-   In file included from drivers/gpu/drm/i915/gt/intel_context.h:14:
-   In file included from drivers/gpu/drm/i915/i915_drv.h:54:
->> drivers/gpu/drm/i915/i915_drm_client.h:81:1: error: non-void function does not return a value [-Werror,-Wreturn-type]
-   }
-   ^
-   1 error generated.
+Thanks,
+	André
 
+- User-space patch: https://github.com/Plagman/gamescope/pull/595
+- IGT tests: https://lore.kernel.org/all/20231110163811.24158-1-andrealmeid@igalia.com/
 
-vim +81 drivers/gpu/drm/i915/i915_drm_client.h
+Changes from v8:
+- Dropped atomic_async_page_flip_not_supported, giving that current design works
+with any driver that support atomic and async at the same time.
+- Dropped the patch that disabled atomic_async_page_flip_not_supported for AMD.
+- Reordered commits
+v8: https://lore.kernel.org/all/20231025005318.293690-1-andrealmeid@igalia.com/
 
-    78	
-    79	static inline bool i915_drm_client_remove_object(struct drm_i915_gem_object *obj)
-    80	{
-  > 81	}
-    82	#endif
-    83	
+Changes from v7:
+- Only accept flips to primary planes. If a driver support flips in different
+planes, support will be added  later.
+v7: https://lore.kernel.org/dri-devel/20231017092837.32428-1-andrealmeid@igalia.com/
+
+Changes from v6:
+- Dropped the exception to allow MODE_ID changes (Simon)
+- Clarify what happens when flipping with the same FB_ID (Pekka)
+
+v6: https://lore.kernel.org/dri-devel/20230815185710.159779-1-andrealmeid@igalia.com/
+
+Changes from v5:
+- Add note in the docs that not every redundant attribute will result in no-op,
+  some might cause oversynchronization issues.
+
+v5: https://lore.kernel.org/dri-devel/20230707224059.305474-1-andrealmeid@igalia.com/
+
+Changes from v4:
+ - Documentation rewrote by Pekka Paalanen
+
+v4: https://lore.kernel.org/dri-devel/20230701020917.143394-1-andrealmeid@igalia.com/
+
+Changes from v3:
+ - Add new patch to reject prop changes
+ - Add a documentation clarifying the KMS atomic state set
+
+v3: https://lore.kernel.org/dri-devel/20220929184307.258331-1-contact@emersion.fr/
+
+André Almeida (1):
+  drm: Refuse to async flip with atomic prop changes
+
+Pekka Paalanen (1):
+  drm/doc: Define KMS atomic state set
+
+Simon Ser (2):
+  drm: allow DRM_MODE_PAGE_FLIP_ASYNC for atomic commits
+  drm: introduce DRM_CAP_ATOMIC_ASYNC_PAGE_FLIP
+
+ Documentation/gpu/drm-uapi.rst      | 47 ++++++++++++++++++
+ drivers/gpu/drm/drm_atomic_uapi.c   | 77 ++++++++++++++++++++++++++---
+ drivers/gpu/drm/drm_crtc_internal.h |  2 +-
+ drivers/gpu/drm/drm_ioctl.c         |  4 ++
+ drivers/gpu/drm/drm_mode_object.c   |  2 +-
+ include/uapi/drm/drm.h              | 10 +++-
+ include/uapi/drm/drm_mode.h         |  9 ++++
+ 7 files changed, 142 insertions(+), 9 deletions(-)
 
 -- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+2.42.1
+
