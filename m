@@ -2,48 +2,46 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 251897F3E5B
-	for <lists+intel-gfx@lfdr.de>; Wed, 22 Nov 2023 07:52:24 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id D10AF7F3E8B
+	for <lists+intel-gfx@lfdr.de>; Wed, 22 Nov 2023 08:04:29 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4B51110E5B5;
-	Wed, 22 Nov 2023 06:52:20 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id AE47810E127;
+	Wed, 22 Nov 2023 07:04:27 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.24])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BFD5910E5B5
- for <intel-gfx@lists.freedesktop.org>; Wed, 22 Nov 2023 06:52:18 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E573E10E127
+ for <intel-gfx@lists.freedesktop.org>; Wed, 22 Nov 2023 07:04:25 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1700635938; x=1732171938;
+ t=1700636666; x=1732172666;
  h=from:to:cc:subject:date:message-id:mime-version:
  content-transfer-encoding;
- bh=JreSWUet6pd7aToO4aOua3x1OdLERM8zF2RqtLeFsqs=;
- b=Tw2WMgRK+YQFU0wMZDSPuN6PG47Um192eKaoohUqy6gL9I4ZGi+jIgxW
- F1Lhz5lt8UMNyUllFwoBzlS6nTXECF4oz8gM+nenuEWygv/0f+SNlpywk
- JCceqTvBw47odznT6IVN9YNt/PDtz79XpDk1zqvblDz8QKQWr0NJgxATb
- rdCXEiVYfnuYe1Ryaw5yNNv/n5XcLdMJBzyUXFH5k60E3O3HtMCjN/FQN
- qqLowHHK/A921lU2QWf2LElgt4Q5NXy/LJBla2zrih9R/nJ1XE0oyj8RG
- y74IGpTlkj915Wn/mwjeC1sjMFuoO8SYvBaZxZNsagFVz+LuArWfSTHri Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10901"; a="394831168"
-X-IronPort-AV: E=Sophos;i="6.04,218,1695711600"; d="scan'208";a="394831168"
-Received: from orsmga005.jf.intel.com ([10.7.209.41])
- by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Nov 2023 22:52:18 -0800
+ bh=vuyV5aM3A4BX4YG8UV2eQTaeloAogHjPtpEw5lTgGfk=;
+ b=ifWnYGNFBwZ08kdgdqWeB8AlEApSs/xxOOGT7L7rZdlPNMyowzvNNcxj
+ mYr+1FmYDGIAQAgjuYpzYgeNIhUkYT8ZpPvg9hYY7twUlSyN7onJ/LNja
+ GRs1+uOyFfyeVjA/xyayrN5wkmZrGo6UsU08V62WYHPwdpcwOAUL96i8o
+ 44UAiqX3kMY8RphBGE66/ht9+9Pf/hIBLc9GVKLqrxOaEm0Qys84i3O0Z
+ 2ityvHaFquoO0xSWMQCY9vQbsElmFlO5bdvdvqQFt0W7HiEbVMY17xspd
+ 2QoTFInTNUFvMDCjFbDMK9RFrFKb7BKDBJOeE2wEpG21lffYtDIEY9iIK g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10901"; a="13548252"
+X-IronPort-AV: E=Sophos;i="6.04,218,1695711600"; d="scan'208";a="13548252"
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+ by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 21 Nov 2023 23:04:25 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10901"; a="940336064"
-X-IronPort-AV: E=Sophos;i="6.04,218,1695711600"; d="scan'208";a="940336064"
-Received: from srr4-3-linux-103-aknautiy.iind.intel.com ([10.223.34.160])
- by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Nov 2023 22:52:16 -0800
-From: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+X-IronPort-AV: E=McAfee;i="6600,9927,10901"; a="910704591"
+X-IronPort-AV: E=Sophos;i="6.04,218,1695711600"; d="scan'208";a="910704591"
+Received: from mgolanimitul-x299-ud4-pro.iind.intel.com ([10.190.239.114])
+ by fmsmga001.fm.intel.com with ESMTP; 21 Nov 2023 23:04:24 -0800
+From: Mitul Golani <mitulkumar.ajitkumar.golani@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Wed, 22 Nov 2023 12:16:27 +0530
-Message-Id: <20231122064627.905828-1-ankit.k.nautiyal@intel.com>
-X-Mailer: git-send-email 2.40.1
+Date: Wed, 22 Nov 2023 12:29:23 +0530
+Message-Id: <20231122065926.4076690-1-mitulkumar.ajitkumar.golani@intel.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH] drm/i915/display: Get bigjoiner config before
- dsc config during readout
+Subject: [Intel-gfx] [PATCH 0/3] Implement CMRR Support
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,39 +57,32 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Currently we get bigjoiner config after the dsc get config, during HW
-readout.
-Since dsc_get_config now uses bigjoiner flags/pipes to compute DSC PPS
-parameter pic_width, this results in a state mismatch when Bigjoiner
-and DSC are used together.
+CMRR is a display feature that uses adaptive sync
+framework to vary Vtotal slightly to match the
+content rate exactly without frame drops. This
+feature is a variation of VRR where it varies Vtotal
+slightly (between additional 0 and 1 Vtotal scanlines)
+to match content rate exactly without frame drops
+using the adaptive sync framework.
 
-So call get bigjoiner config before calling dsc get config function.
+enable this feature by programing new registers for
+CMRR enable, CMRR_M, CMRR_N, vmin=vmax=flipline.The
+CMRR_M/CMRR_N ratio represents the fractional part
+in (actual refresh rate/target refresh rate) * origVTotal.
 
-Fixes: 8b70b5691704 ("drm/i915/vdsc: Fill the intel_dsc_get_pps_config function")
-Cc: Suraj Kandpal <suraj.kandpal@intel.com>
-Cc: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
-Cc: Animesh Manna <animesh.manna@intel.com>
-Cc: Jani Nikula <jani.nikula@intel.com>
+Mitul Golani (3):
+  drm/i915: Define and compute Transcoder CMRR registers
+  drm/i915: Add Enable/Disable for CMRR based on VRR state
+  drm/i915: Compute CMRR and calculate vtotal
 
-Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
----
- drivers/gpu/drm/i915/display/intel_display.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ .../drm/i915/display/intel_crtc_state_dump.c  |   4 +-
+ drivers/gpu/drm/i915/display/intel_display.c  |  54 +++++++-
+ .../drm/i915/display/intel_display_device.h   |   1 +
+ .../drm/i915/display/intel_display_types.h    |   6 +
+ drivers/gpu/drm/i915/display/intel_vrr.c      | 129 ++++++++++++++++--
+ drivers/gpu/drm/i915/i915_reg.h               |  10 ++
+ 6 files changed, 184 insertions(+), 20 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
-index 959db3f61e84..e086caf3963d 100644
---- a/drivers/gpu/drm/i915/display/intel_display.c
-+++ b/drivers/gpu/drm/i915/display/intel_display.c
-@@ -3694,8 +3694,8 @@ static bool hsw_get_pipe_config(struct intel_crtc *crtc,
- 	if (!active)
- 		goto out;
- 
--	intel_dsc_get_config(pipe_config);
- 	intel_bigjoiner_get_config(pipe_config);
-+	intel_dsc_get_config(pipe_config);
- 
- 	if (!transcoder_is_dsi(pipe_config->cpu_transcoder) ||
- 	    DISPLAY_VER(dev_priv) >= 11)
 -- 
-2.40.1
+2.25.1
 
