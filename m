@@ -2,45 +2,49 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0F3597F4C41
-	for <lists+intel-gfx@lfdr.de>; Wed, 22 Nov 2023 17:21:05 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 324517F5003
+	for <lists+intel-gfx@lfdr.de>; Wed, 22 Nov 2023 19:57:28 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E2CE410E68F;
-	Wed, 22 Nov 2023 16:20:54 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 80A5B10E0AB;
+	Wed, 22 Nov 2023 18:57:26 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from fanzine2.igalia.com (fanzine.igalia.com [178.60.130.6])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CA6DE10E68E;
- Wed, 22 Nov 2023 16:20:50 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
- s=20170329;
- h=Content-Transfer-Encoding:Content-Type:MIME-Version:References:
- In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:Content-ID:
- Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
- :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
- List-Post:List-Owner:List-Archive;
- bh=LgiP6k4b25j6JdOl1t3vzbWpalkz+TaPG+lRilXJhV0=; b=QUMPjg4YQvQo+GWFK/4494HEuy
- rDbyp+KIU3owVzNlGUlll01Ecxk0G5hSpLUk1kYdO5RVPKm9qYBlnXSrnFJGx695NoaHrAG842lFe
- 5UyEqnz66VZR4ydlO49u3LFEtJcAbsLs7DS26s7fFoQavfPZkt8lEFzzjpiwYM0MnCU2QmzdprWZA
- ImjWX+UpkODk0aIWKOONuZ7SrGKK3p7CT2cNfkl3k4JcUg0BCBSheK67BExi7+rLI0/nZBYbq2pd7
- CobE7liFqYjf7kfeVOPgGSJYWs25ygFn0Li48MqB3lL25Hb8SwWMT5g+nUt16DzaqafSSnKTxh09R
- kybx9Bcg==;
-Received: from 189-69-166-209.dial-up.telesp.net.br ([189.69.166.209]
- helo=steammachine.lan) by fanzine2.igalia.com with esmtpsa 
- (Cipher TLS1.3:ECDHE_X25519__RSA_PSS_RSAE_SHA256__AES_256_GCM:256) (Exim)
- id 1r5py3-0061lT-FC; Wed, 22 Nov 2023 17:20:47 +0100
-From: =?UTF-8?q?Andr=C3=A9=20Almeida?= <andrealmeid@igalia.com>
-To: dri-devel@lists.freedesktop.org, amd-gfx@lists.freedesktop.org,
- linux-kernel@vger.kernel.org
-Date: Wed, 22 Nov 2023 13:19:41 -0300
-Message-ID: <20231122161941.320564-5-andrealmeid@igalia.com>
-X-Mailer: git-send-email 2.42.1
-In-Reply-To: <20231122161941.320564-1-andrealmeid@igalia.com>
-References: <20231122161941.320564-1-andrealmeid@igalia.com>
+Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.88])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 85D8010E0AB
+ for <intel-gfx@lists.freedesktop.org>; Wed, 22 Nov 2023 18:57:24 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1700679444; x=1732215444;
+ h=from:to:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=+R696zyzKHeObsTvQWQzsSBiKz6uQztB9244b0DzoHs=;
+ b=SGeqDELrv/Ufn5dQ1ajegn/lTF3M/iqwn2jRDlsZKylDJJT3GhGAGpeY
+ IxdsxiBHyPAzgufV3vHZR2al5yQ161UExiypl1e82B+Ewvi3BaDkBzCS0
+ K7riO3c8nPoyT/Hq698swTtzb0/0LSriRZhNe/z0WDMPpAkkqY/n6C6+u
+ kY7MmLPAh29N5Ye9GpJmi0qYgIYtPb2scmLk/3O2md3vvYaa1IYF/vrd7
+ tX8NPEX8aQF+p6n+l5iG7+QdK4NfU+HOtmmIFlfRs9M+DMan8VzNaNxSU
+ 77t3QFGMgrpKG5IYHRwpWFbehjtZvipZ0BNr7Z3JN9PbDlTMteWW/lkmt g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10902"; a="423252373"
+X-IronPort-AV: E=Sophos;i="6.04,219,1695711600"; d="scan'208";a="423252373"
+Received: from orsmga007.jf.intel.com ([10.7.209.58])
+ by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 Nov 2023 10:41:14 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10901"; a="760380367"
+X-IronPort-AV: E=Sophos;i="6.04,218,1695711600"; d="scan'208";a="760380367"
+Received: from unknown (HELO stinkbox) ([10.237.72.74])
+ by orsmga007.jf.intel.com with SMTP; 22 Nov 2023 01:34:38 -0800
+Received: by stinkbox (sSMTP sendmail emulation);
+ Wed, 22 Nov 2023 11:31:37 +0200
+From: Ville Syrjala <ville.syrjala@linux.intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Wed, 22 Nov 2023 11:31:34 +0200
+Message-ID: <20231122093137.1509-1-ville.syrjala@linux.intel.com>
+X-Mailer: git-send-email 2.41.0
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH v9 4/4] drm/doc: Define KMS atomic state set
+Subject: [Intel-gfx] [PATCH 1/4] drm/i915/psr: Don't send a NULL VSC SDP
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -53,94 +57,36 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: pierre-eric.pelloux-prayer@amd.com,
- Pekka Paalanen <pekka.paalanen@collabora.com>, daniel@ffwll.ch,
- =?UTF-8?q?=27Marek=20Ol=C5=A1=C3=A1k=27?= <maraeo@gmail.com>,
- =?UTF-8?q?Michel=20D=C3=A4nzer?= <michel.daenzer@mailbox.org>,
- Simon Ser <contact@emersion.fr>, intel-gfx@lists.freedesktop.org,
- Randy Dunlap <rdunlap@infradead.org>, Pekka Paalanen <ppaalanen@gmail.com>,
- Daniel Stone <daniel@fooishbar.org>, kernel-dev@igalia.com,
- alexander.deucher@amd.com,
- =?UTF-8?q?Andr=C3=A9=20Almeida?= <andrealmeid@igalia.com>,
- Dave Airlie <airlied@gmail.com>, christian.koenig@amd.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-From: Pekka Paalanen <pekka.paalanen@collabora.com>
+From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-Specify how the atomic state is maintained between userspace and
-kernel, plus the special case for async flips.
+The PSR code is unconditionally enabling the VSC SDP whether or not PSR
+itself is enabled. This means if the DP code decided not to use a VSC
+SDP we're always transmitting a zeroed SDP. Not sure what the hardware
+will even do in that case. We also see a "Failed to unpack DP VSC SDP"
+message on every readout since the DIP buffer is just full of zeroes.
 
-Signed-off-by: Pekka Paalanen <pekka.paalanen@collabora.com>
-Signed-off-by: André Almeida <andrealmeid@igalia.com>
+Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 ---
-v9:
-- no changes
-v8:
-- no changes
-v7:
-- add a note that drivers can make exceptions for ad-hoc prop changes
-- add a note about flipping the same FB_ID as a no-op
----
----
- Documentation/gpu/drm-uapi.rst | 47 ++++++++++++++++++++++++++++++++++
- 1 file changed, 47 insertions(+)
+ drivers/gpu/drm/i915/display/intel_psr.c | 3 +++
+ 1 file changed, 3 insertions(+)
 
-diff --git a/Documentation/gpu/drm-uapi.rst b/Documentation/gpu/drm-uapi.rst
-index 370d820be248..d0693f902a5c 100644
---- a/Documentation/gpu/drm-uapi.rst
-+++ b/Documentation/gpu/drm-uapi.rst
-@@ -570,3 +570,50 @@ dma-buf interoperability
+diff --git a/drivers/gpu/drm/i915/display/intel_psr.c b/drivers/gpu/drm/i915/display/intel_psr.c
+index 8d180132a74b..931295934659 100644
+--- a/drivers/gpu/drm/i915/display/intel_psr.c
++++ b/drivers/gpu/drm/i915/display/intel_psr.c
+@@ -1373,6 +1373,9 @@ void intel_psr_compute_config(struct intel_dp *intel_dp,
+ 	else
+ 		crtc_state->has_psr = _psr_compute_config(intel_dp, crtc_state);
  
- Please see Documentation/userspace-api/dma-buf-alloc-exchange.rst for
- information on how dma-buf is integrated and exposed within DRM.
++	if (!crtc_state->has_psr)
++		return;
 +
-+KMS atomic state
-+================
-+
-+An atomic commit can change multiple KMS properties in an atomic fashion,
-+without ever applying intermediate or partial state changes.  Either the whole
-+commit succeeds or fails, and it will never be applied partially. This is the
-+fundamental improvement of the atomic API over the older non-atomic API which is
-+referred to as the "legacy API".  Applying intermediate state could unexpectedly
-+fail, cause visible glitches, or delay reaching the final state.
-+
-+An atomic commit can be flagged with DRM_MODE_ATOMIC_TEST_ONLY, which means the
-+complete state change is validated but not applied.  Userspace should use this
-+flag to validate any state change before asking to apply it. If validation fails
-+for any reason, userspace should attempt to fall back to another, perhaps
-+simpler, final state.  This allows userspace to probe for various configurations
-+without causing visible glitches on screen and without the need to undo a
-+probing change.
-+
-+The changes recorded in an atomic commit apply on top the current KMS state in
-+the kernel. Hence, the complete new KMS state is the complete old KMS state with
-+the committed property settings done on top. The kernel will try to avoid
-+no-operation changes, so it is safe for userspace to send redundant property
-+settings.  However, not every situation allows for no-op changes, due to the
-+need to acquire locks for some attributes. Userspace needs to be aware that some
-+redundant information might result in oversynchronization issues.  No-operation
-+changes do not count towards actually needed changes, e.g.  setting MODE_ID to a
-+different blob with identical contents as the current KMS state shall not be a
-+modeset on its own. As a special exception for VRR needs, explicitly setting
-+FB_ID to its current value is not a no-op.
-+
-+A "modeset" is a change in KMS state that might enable, disable, or temporarily
-+disrupt the emitted video signal, possibly causing visible glitches on screen. A
-+modeset may also take considerably more time to complete than other kinds of
-+changes, and the video sink might also need time to adapt to the new signal
-+properties. Therefore a modeset must be explicitly allowed with the flag
-+DRM_MODE_ATOMIC_ALLOW_MODESET.  This in combination with
-+DRM_MODE_ATOMIC_TEST_ONLY allows userspace to determine if a state change is
-+likely to cause visible disruption on screen and avoid such changes when end
-+users do not expect them.
-+
-+An atomic commit with the flag DRM_MODE_PAGE_FLIP_ASYNC is allowed to
-+effectively change only the FB_ID property on any planes. No-operation changes
-+are ignored as always. Changing any other property will cause the commit to be
-+rejected. Each driver may relax this restriction if they have guarantees that
-+such property change doesn't cause modesets. Userspace can use TEST_ONLY commits
-+to query the driver about this.
+ 	crtc_state->has_psr2 = intel_psr2_config_valid(intel_dp, crtc_state);
+ 
+ 	crtc_state->infoframes.enable |= intel_hdmi_infoframe_enable(DP_SDP_VSC);
 -- 
-2.42.1
+2.41.0
 
