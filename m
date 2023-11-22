@@ -2,57 +2,63 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id C83E27F4F80
-	for <lists+intel-gfx@lfdr.de>; Wed, 22 Nov 2023 19:26:39 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id E079D7F4E17
+	for <lists+intel-gfx@lfdr.de>; Wed, 22 Nov 2023 18:18:30 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2EC0C10E0DB;
-	Wed, 22 Nov 2023 18:26:04 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id AE71310E09D;
+	Wed, 22 Nov 2023 17:18:27 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5C34B10E0ED
- for <intel-gfx@lists.freedesktop.org>; Wed, 22 Nov 2023 18:26:01 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 67A2710E09D
+ for <intel-gfx@lists.freedesktop.org>; Wed, 22 Nov 2023 17:18:24 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1700677561; x=1732213561;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=rjeCTHP1LtELDzzdgrZVm3QoOWNbFiQy0nPojkI1cyA=;
- b=IyR3WlPk/76jMZY69rw84ubjigKNNJjEGB7KyHwuiakzYF4dQkSgJGHy
- 0jUEk7n8C9zMFaCISnTU49xUTuPyz317Wt1dkGKG2jhjFwp1Z8VANYIGc
- H5K9iYO/D/rcuaKQGyTEPcHlB62Mby8Q8sfnSXWRXLjXMVH81cF0fbt1F
- +Kssj1QIJ10mZ0xrc2yj4PkBIa6pCbcKiyqCTI5xX0dSGG/Rm4fxiTGKF
- ElTcyX4rqxnx9HogwHWyDFxXUXg9ROll/AQ8u/CCu1dmJ9+cUJAughw3x
- 8oqNsdUilVBKXFjmH5IuhDHswrg+pPM20kG/ZqyW5vXXqWD19Thopud9f A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10902"; a="423217466"
-X-IronPort-AV: E=Sophos;i="6.04,219,1695711600"; d="scan'208";a="423217466"
-Received: from orsmga003.jf.intel.com ([10.7.209.27])
- by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Nov 2023 10:19:21 -0800
+ t=1700673504; x=1732209504;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version:content-transfer-encoding;
+ bh=UQn4gSGSJqJ/iMHm9EcJO7IZEu6Mefjhx5zTEafnOZg=;
+ b=eE4hDpg8zaWgjwzoxJNmKQ+2Hi1R9BvqGCVsFT2S5qIN6ArfJXeHAWVD
+ juEM7pHjrGJD90l9wzBZ3dqR0VnE0EEjIXrRXhvSHq+0uACG3Jhf+QffU
+ mWHBjYyyA3EV/qQ71PgMlkdIbQUfz3pCSVZlVOfnHfvdaOh77xV8jBUb/
+ jk2vIFoFckcuDssSsPcnD4UFCcQO1bhawKIB3PXT0Zp+43LzGM66POAAA
+ DyMqXMKgdq3fVwIi9wN7ceSbpXQIi7I0mUeVNCM/LmrSh/VTQQfFMPc9J
+ eOLozvlc+AVC7tKghDHcc+DX8GQsABMevi8Y0sL8XDCrBtlTEUVtnIJnI w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10902"; a="5246896"
+X-IronPort-AV: E=Sophos;i="6.04,219,1695711600"; 
+   d="scan'208";a="5246896"
+Received: from fmsmga007.fm.intel.com ([10.253.24.52])
+ by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 Nov 2023 09:17:54 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10901"; a="716789933"
-X-IronPort-AV: E=Sophos;i="6.04,218,1695711600"; d="scan'208";a="716789933"
-Received: from unknown (HELO smile.fi.intel.com) ([10.237.72.54])
- by orsmga003.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Nov 2023 03:17:20 -0800
-Received: from andy by smile.fi.intel.com with local (Exim 4.97)
- (envelope-from <andriy.shevchenko@linux.intel.com>)
- id 1r5lBR-0000000G4Xq-3EY4; Wed, 22 Nov 2023 13:14:17 +0200
-Date: Wed, 22 Nov 2023 13:14:17 +0200
-From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-To: Jani Nikula <jani.nikula@linux.intel.com>
-Message-ID: <ZV3iiR6QJ30nTjMn@smile.fi.intel.com>
+X-IronPort-AV: E=McAfee;i="6600,9927,10902"; a="770697746"
+X-IronPort-AV: E=Sophos;i="6.04,219,1695711600"; d="scan'208";a="770697746"
+Received: from tjquresh-mobl.ger.corp.intel.com (HELO localhost)
+ ([10.252.41.76])
+ by fmsmga007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 Nov 2023 09:17:50 -0800
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: "Saarinen, Jani" <jani.saarinen@intel.com>, "Musial, Ewelina"
+ <ewelina.musial@intel.com>, "Illipilli, TejasreeX"
+ <tejasreex.illipilli@intel.com>, LGCI Bug Filing
+ <lgci.bug.filing@intel.com>, Andy Shevchenko
+ <andriy.shevchenko@linux.intel.com>
+In-Reply-To: <DM8PR11MB5655EE430B1F635C70201328E0BAA@DM8PR11MB5655.namprd11.prod.outlook.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 References: <20231103201831.1037416-1-andriy.shevchenko@linux.intel.com>
  <170013946304.3092.1503824312309598619@emeril.freedesktop.org>
  <87ttplprbw.fsf@intel.com>
  <DM6PR11MB38192A2B1E08611ACB696367F2BBA@DM6PR11MB3819.namprd11.prod.outlook.com>
  <87fs0ym512.fsf@intel.com>
+ <PH7PR11MB707320EC146F274263792BF193BAA@PH7PR11MB7073.namprd11.prod.outlook.com>
+ <DM8PR11MB5655E859CB8C7AAE16FAB6DCE0BAA@DM8PR11MB5655.namprd11.prod.outlook.com>
+ <PH7PR11MB7073CA66944A34B28EB3629293BAA@PH7PR11MB7073.namprd11.prod.outlook.com>
+ <DM8PR11MB5655EE430B1F635C70201328E0BAA@DM8PR11MB5655.namprd11.prod.outlook.com>
+Date: Wed, 22 Nov 2023 19:17:48 +0200
+Message-ID: <874jhdn1vn.fsf@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <87fs0ym512.fsf@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+Content-Transfer-Encoding: quoted-printable
 Subject: Re: [Intel-gfx] 
  =?utf-8?b?4pyXIEZpLkNJLkJBVDogZmFpbHVyZSBmb3IgZHJt?=
  =?utf-8?q?/i915/dsi=3A_4th_attempt_to_get_rid_of_IOSF_GPIO_=28rev2=29?=
@@ -68,71 +74,101 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
- LGCI Bug Filing <lgci.bug.filing@intel.com>
+Cc: Hans de Goede <hdegoede@redhat.com>,
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, Nov 22, 2023 at 12:55:05PM +0200, Jani Nikula wrote:
-> On Tue, 21 Nov 2023, "Illipilli, TejasreeX" <tejasreex.illipilli@intel.com> wrote:
-> > Hi ,
-> >
-> > https://patchwork.freedesktop.org/series/125977/
-> 
-> Thanks, I guess, but now what? There are no shards results but the
-> series is not in the shards queue either [1].
-> 
-> I don't know what to do.
+On Wed, 22 Nov 2023, "Saarinen, Jani" <jani.saarinen@intel.com> wrote:
+> Hi,=20
+>> -----Original Message-----
+>> From: Musial, Ewelina <ewelina.musial@intel.com>
+>> Sent: Wednesday, November 22, 2023 4:25 PM
+>> To: Saarinen, Jani <jani.saarinen@intel.com>; Jani Nikula
+>> <jani.nikula@linux.intel.com>; Illipilli, TejasreeX <tejasreex.illipilli=
+@intel.com>;
+>> LGCI Bug Filing <lgci.bug.filing@intel.com>; Andy Shevchenko
+>> <andriy.shevchenko@linux.intel.com>
+>> Cc: intel-gfx@lists.freedesktop.org
+>> Subject: RE: [Intel-gfx] =E2=9C=97 Fi.CI.BAT: failure for drm/i915/dsi: =
+4th attempt to get rid
+>> of IOSF GPIO (rev2)
+>>=20
+>> But this list had only series which were in queue here https://intel-gfx-
+>> ci.01.org/queue/index.html and today I was checking exactly how queue for
+>> shards is created and there are jobs which are not displayed there. Dire=
+ctly in
+>> Jenkins we do have multiple more jobs than in this queue only and I also=
+ killed
+>> them. I was discussing exactly this case today with Micha=C5=82 and he p=
+ointed out that
+>> in explanation below queues we do have highlighted:
+>> Due to technical limitation this is just an approximation of the queue. =
+It is good
+>> for assessing the length of the queue, but should not be considered as
+>> completely accurate.
+> OK. So could have been in the list but not sure.=20
 
-Tell me if anything I can help with.
+Okay, timeout.
 
-To me sounds like CI doesn't like the series because of those checkpatch
-warnings... But I'm not familiar at all with that, I might be very well
-mistaken.
+I just pushed the series. I trust Hans' testing here, considering the
+likely platform impact of the series and CI coverage of said platforms.
 
-> [1] https://intel-gfx-ci.01.org/queue/index.html#fullshards-queue
+Thanks for the patches and review.
 
-> > -----Original Message-----
-> > From: Jani Nikula <jani.nikula@linux.intel.com> 
-> > Sent: Thursday, November 16, 2023 10:29 PM
-> > To: LGCI Bug Filing <lgci.bug.filing@intel.com>; Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-> > Cc: intel-gfx@lists.freedesktop.org
-> > Subject: Re: [Intel-gfx] ✗ Fi.CI.BAT: failure for drm/i915/dsi: 4th attempt to get rid of IOSF GPIO (rev2)
-> >
-> > On Thu, 16 Nov 2023, Patchwork <patchwork@emeril.freedesktop.org> wrote:
-> >> == Series Details ==
-> >>
-> >> Series: drm/i915/dsi: 4th attempt to get rid of IOSF GPIO (rev2)
-> >> URL   : https://patchwork.freedesktop.org/series/125977/
-> >> State : failure
-> >>
-> >> == Summary ==
-> >>
-> >> CI Bug Log - changes from CI_DRM_13883 -> Patchwork_125977v2 
-> >> ====================================================
-> >>
-> >> Summary
-> >> -------
-> >>
-> >>   **FAILURE**
-> >>
-> >>   Serious unknown changes coming with Patchwork_125977v2 absolutely need to be
-> >>   verified manually.
-> >>   
-> >>   If you think the reported changes have nothing to do with the changes
-> >>   introduced in Patchwork_125977v2, please notify your bug team (lgci.bug.filing@intel.com) to allow them
-> >>   to document this new failure mode, which will reduce false positives in CI.
-> >
-> > The reported issue is unrelated to the series.
-> >
-> > Please consider adding
-> >
-> > Reply-To: lgci.bug.filing@intel.com
-> >
-> > message header to these status mails, so the right mail gets added automatically.
-
--- 
-With Best Regards,
-Andy Shevchenko
+BR,
+Jani.
 
 
+
+>>=20
+>> Regards,
+>> Ewelina
+>>=20
+>> -----Original Message-----
+>> From: Saarinen, Jani <jani.saarinen@intel.com>
+>> Sent: Wednesday, November 22, 2023 3:04 PM
+>> To: Musial, Ewelina <ewelina.musial@intel.com>; Jani Nikula
+>> <jani.nikula@linux.intel.com>; Illipilli, TejasreeX <tejasreex.illipilli=
+@intel.com>;
+>> LGCI Bug Filing <lgci.bug.filing@intel.com>; Andy Shevchenko
+>> <andriy.shevchenko@linux.intel.com>
+>> Cc: intel-gfx@lists.freedesktop.org
+>> Subject: RE: [Intel-gfx] =E2=9C=97 Fi.CI.BAT: failure for drm/i915/dsi: =
+4th attempt to get rid
+>> of IOSF GPIO (rev2)
+>>=20
+>> HI,
+>> > -----Original Message-----
+>> > From: Intel-gfx <intel-gfx-bounces@lists.freedesktop.org> On Behalf Of
+>> > Musial, Ewelina
+>> > Sent: Wednesday, November 22, 2023 3:39 PM
+>> > To: Jani Nikula <jani.nikula@linux.intel.com>; Illipilli, TejasreeX
+>> > <tejasreex.illipilli@intel.com>; LGCI Bug Filing
+>> > <lgci.bug.filing@intel.com>; Andy Shevchenko
+>> > <andriy.shevchenko@linux.intel.com>
+>> > Cc: intel-gfx@lists.freedesktop.org
+>> > Subject: Re: [Intel-gfx] =E2=9C=97 Fi.CI.BAT: failure for drm/i915/dsi=
+: 4th
+>> > attempt to get rid of IOSF GPIO (rev2)
+>> >
+>> > Hi, I reviewed what I could, and my conclusion is that CI.FULL for
+>> > this series was killed due to my work around 126526v6 - yesterday I
+>> > was asked to do whatever I can to speed up shards testing for
+>> > mentioned series and I killed multiple sessions which were higher in
+>> > queue. We do not have option to simply bump priority for premerge
+>> > series and the only way (not recommended but sometimes needed) is to
+>> > drop everything what is higher. I've added this series back to queue.
+>> > Sorry for inconvenience
+>> Nope. It was not part of that list. We checked that with Jani too. See t=
+hose
+>> pictures we discussed.
+>> >
+>> > Regards,
+>> > Ewelina
+>>=20
+>> Br,
+>> Jani S
+
+--=20
+Jani Nikula, Intel
