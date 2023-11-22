@@ -2,51 +2,57 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id DF2787F46D1
-	for <lists+intel-gfx@lfdr.de>; Wed, 22 Nov 2023 13:50:12 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 54ED97F47CE
+	for <lists+intel-gfx@lfdr.de>; Wed, 22 Nov 2023 14:27:13 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 11C3F10E625;
-	Wed, 22 Nov 2023 12:50:11 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 52CA110E62E;
+	Wed, 22 Nov 2023 13:27:05 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 92D8710E621;
- Wed, 22 Nov 2023 12:50:09 +0000 (UTC)
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
- by dfw.source.kernel.org (Postfix) with ESMTP id E3FAD61DBA;
- Wed, 22 Nov 2023 12:50:08 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 467BDC433CB;
- Wed, 22 Nov 2023 12:49:52 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1700657408;
- bh=aU2J72Xp3JKGs0IOk/3BX7BmnbVjjSktFzc5W0fL98s=;
- h=From:Date:Subject:References:In-Reply-To:To:Cc:From;
- b=fcF4pxKRziGSAF2FOqxImPOzC2PEVz+iXrlHdDaPyM6/v6o+f16jjdAN+lC2pUX0Z
- c6Vj4pEReJ7qSGBsgd/Etcb/Bx/NFbs8vsXFZDe0htqh1OD5+o81eDXmshIPtuoyBK
- lUfl8SFejNcIDe347vDzewRE22FCt1MWsk2CM4stuQE/3LK9tJj9skrI0zg5sl10Ot
- aC+S7ghlxwZ2rYR03/mACnTcLYZ3VnGDGFga1iJsrVdoW+9CIorT0HYAGwO2anWZen
- uIJ0oJqCh8DfwGg5lQlRhQShmsIUNUkRjdY2uwh1ov0dsfb3jgNLqtI1PY54/gVbLF
- del/29joBTz5A==
-From: Christian Brauner <brauner@kernel.org>
-Date: Wed, 22 Nov 2023 13:48:25 +0100
+Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 09C3610E62E;
+ Wed, 22 Nov 2023 13:27:02 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1700659622; x=1732195622;
+ h=message-id:date:mime-version:subject:from:to:cc:
+ references:in-reply-to:content-transfer-encoding;
+ bh=BRBFXvnsFIgkfZiGBVhXad7vapdGjgQHbcpe2XB3b4I=;
+ b=HMDsaINO9RUEgdP9uDKsdyUdy6AwFUuxR6ZLV5A/5BORygTB0vGcU7CS
+ YiIJGLZjq5dgfgm+kYbc4P8kHvEZaR8y6GfFpmx0azYxOpoBQ8VNSdF/7
+ T1q8EYAejPFKoJrse3xfnezDeCZdVWaKKZF9gVtr3GTVnalN/bb4oKPyi
+ Zh4xuvS6J6EOGjPkSm39PNEbCpsxC9YZnmJmkrRI4y8ypdXrWUCvrUVcw
+ fCR9ab/kWY9fXwtvZ4KE5kdsByjLho8DjSVgwvOuTfXt/G29RmU3NIVMq
+ tmHXp6X7kH0KJl+yd7w5SCyDYjWt1kV57yO/IBwXTT0n1KzLnbPYCM5nT Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10901"; a="382448900"
+X-IronPort-AV: E=Sophos;i="6.04,219,1695711600"; d="scan'208";a="382448900"
+Received: from fmsmga003.fm.intel.com ([10.253.24.29])
+ by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 Nov 2023 05:27:01 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10901"; a="857733083"
+X-IronPort-AV: E=Sophos;i="6.04,219,1695711600"; d="scan'208";a="857733083"
+Received: from joledzki-mobl1.ger.corp.intel.com (HELO [10.213.29.81])
+ ([10.213.29.81])
+ by fmsmga003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 Nov 2023 05:26:57 -0800
+Message-ID: <6f08cfee-a60b-4f6e-b69a-20517c563259@intel.com>
+Date: Wed, 22 Nov 2023 14:26:55 +0100
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20231122-vfs-eventfd-signal-v2-4-bd549b14ce0c@kernel.org>
-References: <20231122-vfs-eventfd-signal-v2-0-bd549b14ce0c@kernel.org>
-In-Reply-To: <20231122-vfs-eventfd-signal-v2-0-bd549b14ce0c@kernel.org>
-To: linux-fsdevel@vger.kernel.org
-X-Mailer: b4 0.13-dev-26615
-X-Developer-Signature: v=1; a=openpgp-sha256; l=3854; i=brauner@kernel.org;
- h=from:subject:message-id; bh=aU2J72Xp3JKGs0IOk/3BX7BmnbVjjSktFzc5W0fL98s=;
- b=owGbwMvMwCU28Zj0gdSKO4sYT6slMaTG/lj73/5dRNiNYIfwQ9VnNb8kSHjtMQlc94/11mwNB
- qlLZUUiHaUsDGJcDLJiiiwO7Sbhcst5KjYbZWrAzGFlAhnCwMUpABP5zcjwh+t1UN76vf945tSW
- T/rxjCHQpq4w94r2Zqm/ATIn/7GqSjMyvH01XYi3/rDPbk7Hf182bChuXbCzsfD2+Wr+47+PXN/
- CxAMA
-X-Developer-Key: i=brauner@kernel.org; a=openpgp;
- fpr=4880B8C9BD0E5106FC070F4F7B3C391EFEA93624
-Subject: [Intel-gfx] [PATCH v2 4/4] eventfd: make eventfd_signal{_mask}()
- void
+User-Agent: Mozilla Thunderbird
+Content-Language: en-US
+From: Andrzej Hajda <andrzej.hajda@intel.com>
+To: Paz Zcharya <pazz@chromium.org>, Rodrigo Vivi <rodrigo.vivi@intel.com>
+References: <20231105172718.18673-1-pazz@chromium.org>
+ <ZVQ3d8FFqxsy0OX7@intel.com> <ZVfw3ghfBLdHB7uk@google.com>
+ <8dd6f4da-dcc9-4ea3-8395-bf048b0dbc93@intel.com>
+Organization: Intel Technology Poland sp. z o.o. - ul. Slowackiego 173, 80-298
+ Gdansk - KRS 101882 - NIP 957-07-52-316
+In-Reply-To: <8dd6f4da-dcc9-4ea3-8395-bf048b0dbc93@intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+Subject: Re: [Intel-gfx] [PATCH] drm/i915/display: Fix phys_base to be
+ relative not absolute
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,166 +65,168 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: linux-aio@kvack.org, linux-usb@vger.kernel.org, Jan Kara <jack@suse.cz>,
- Matthew Rosato <mjrosato@linux.ibm.com>, Paul Durrant <paul@xen.org>,
- Tom Rix <trix@redhat.com>, Jason Wang <jasowang@redhat.com>,
- dri-devel@lists.freedesktop.org, Michal Hocko <mhocko@kernel.org>,
- linux-mm@kvack.org, Kirti Wankhede <kwankhede@nvidia.com>,
- Paolo Bonzini <pbonzini@redhat.com>, Jens Axboe <axboe@kernel.dk>,
- Vineeth Vijayan <vneethv@linux.ibm.com>,
- Diana Craciun <diana.craciun@oss.nxp.com>,
- Alexander Gordeev <agordeev@linux.ibm.com>, David Airlie <airlied@gmail.com>,
- Christoph Hellwig <hch@lst.de>, Xuan Zhuo <xuanzhuo@linux.alibaba.com>,
- Shakeel Butt <shakeelb@google.com>, Vasily Gorbik <gor@linux.ibm.com>,
- Leon Romanovsky <leon@kernel.org>, Harald Freudenberger <freude@linux.ibm.com>,
- Fei Li <fei1.li@intel.com>, x86@kernel.org,
- Roman Gushchin <roman.gushchin@linux.dev>, Halil Pasic <pasic@linux.ibm.com>,
- Jason Gunthorpe <jgg@ziepe.ca>, Ingo Molnar <mingo@redhat.com>,
- intel-gfx@lists.freedesktop.org,
- Christian Borntraeger <borntraeger@linux.ibm.com>, linux-fpga@vger.kernel.org,
- Wu Hao <hao.wu@intel.com>, Jason Herne <jjherne@linux.ibm.com>,
- Eric Farman <farman@linux.ibm.com>, Dave Hansen <dave.hansen@linux.intel.com>,
- Andrew Donnellan <ajd@linux.ibm.com>, Arnd Bergmann <arnd@arndb.de>,
- linux-s390@vger.kernel.org, Heiko Carstens <hca@linux.ibm.com>,
- Johannes Weiner <hannes@cmpxchg.org>, linuxppc-dev@lists.ozlabs.org,
- Eric Auger <eric.auger@redhat.com>, Moritz Fischer <mdf@kernel.org>,
- kvm@vger.kernel.org, Rodrigo Vivi <rodrigo.vivi@intel.com>,
- cgroups@vger.kernel.org, Thomas Gleixner <tglx@linutronix.de>,
- virtualization@lists.linux-foundation.org, intel-gvt-dev@lists.freedesktop.org,
- io-uring@vger.kernel.org, netdev@vger.kernel.org,
- Tony Krowiak <akrowiak@linux.ibm.com>, Christian Brauner <brauner@kernel.org>,
- Pavel Begunkov <asml.silence@gmail.com>,
- Sean Christopherson <seanjc@google.com>, Oded Gabbay <ogabbay@kernel.org>,
- Muchun Song <muchun.song@linux.dev>,
- Peter Oberparleiter <oberpar@linux.ibm.com>, linux-kernel@vger.kernel.org,
- linux-rdma@vger.kernel.org, Benjamin LaHaise <bcrl@kvack.org>,
- "Michael S. Tsirkin" <mst@redhat.com>, Sven Schnelle <svens@linux.ibm.com>,
- Daniel Vetter <daniel@ffwll.ch>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- Frederic Barrat <fbarrat@linux.ibm.com>, Borislav Petkov <bp@alien8.de>,
- Vitaly Kuznetsov <vkuznets@redhat.com>, David Woodhouse <dwmw2@infradead.org>,
- Xu Yilun <yilun.xu@intel.com>
+Cc: Subrata Banik <subratabanik@google.com>,
+ Tvrtko Ursulin <tvrtko.ursulin@intel.com>, intel-gfx@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
+ Sean Paul <seanpaul@chromium.org>, matthew.auld@intel.com,
+ Daniel Vetter <daniel@ffwll.ch>, Marcin Wojtas <mwojtas@chromium.org>,
+ Drew Davenport <ddavenport@chromium.org>, David Airlie <airlied@gmail.com>,
+ Nirmoy Das <nirmoy.das@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-No caller care about the return value.
 
-Signed-off-by: Christian Brauner <brauner@kernel.org>
----
- fs/eventfd.c            | 40 +++++++++++++++-------------------------
- include/linux/eventfd.h | 16 +++++++---------
- 2 files changed, 22 insertions(+), 34 deletions(-)
 
-diff --git a/fs/eventfd.c b/fs/eventfd.c
-index a9a6de920fb4..13be2fb7fc96 100644
---- a/fs/eventfd.c
-+++ b/fs/eventfd.c
-@@ -43,10 +43,19 @@ struct eventfd_ctx {
- 	int id;
- };
- 
--__u64 eventfd_signal_mask(struct eventfd_ctx *ctx, __poll_t mask)
-+/**
-+ * eventfd_signal - Adds @n to the eventfd counter.
-+ * @ctx: [in] Pointer to the eventfd context.
-+ * @mask: [in] poll mask
-+ *
-+ * This function is supposed to be called by the kernel in paths that do not
-+ * allow sleeping. In this function we allow the counter to reach the ULLONG_MAX
-+ * value, and we signal this as overflow condition by returning a EPOLLERR
-+ * to poll(2).
-+ */
-+void eventfd_signal_mask(struct eventfd_ctx *ctx, __poll_t mask)
- {
- 	unsigned long flags;
--	__u64 n = 1;
- 
- 	/*
- 	 * Deadlock or stack overflow issues can happen if we recurse here
-@@ -57,37 +66,18 @@ __u64 eventfd_signal_mask(struct eventfd_ctx *ctx, __poll_t mask)
- 	 * safe context.
- 	 */
- 	if (WARN_ON_ONCE(current->in_eventfd))
--		return 0;
-+		return;
- 
- 	spin_lock_irqsave(&ctx->wqh.lock, flags);
- 	current->in_eventfd = 1;
--	if (ULLONG_MAX - ctx->count < n)
--		n = ULLONG_MAX - ctx->count;
--	ctx->count += n;
-+	if (ctx->count < ULLONG_MAX)
-+		ctx->count++;
- 	if (waitqueue_active(&ctx->wqh))
- 		wake_up_locked_poll(&ctx->wqh, EPOLLIN | mask);
- 	current->in_eventfd = 0;
- 	spin_unlock_irqrestore(&ctx->wqh.lock, flags);
--
--	return n == 1;
--}
--
--/**
-- * eventfd_signal - Adds @n to the eventfd counter.
-- * @ctx: [in] Pointer to the eventfd context.
-- *
-- * This function is supposed to be called by the kernel in paths that do not
-- * allow sleeping. In this function we allow the counter to reach the ULLONG_MAX
-- * value, and we signal this as overflow condition by returning a EPOLLERR
-- * to poll(2).
-- *
-- * Returns the amount by which the counter was incremented.
-- */
--__u64 eventfd_signal(struct eventfd_ctx *ctx)
--{
--	return eventfd_signal_mask(ctx, 0);
- }
--EXPORT_SYMBOL_GPL(eventfd_signal);
-+EXPORT_SYMBOL_GPL(eventfd_signal_mask);
- 
- static void eventfd_free_ctx(struct eventfd_ctx *ctx)
- {
-diff --git a/include/linux/eventfd.h b/include/linux/eventfd.h
-index 4f8aac7eb62a..fea7c4eb01d6 100644
---- a/include/linux/eventfd.h
-+++ b/include/linux/eventfd.h
-@@ -35,8 +35,7 @@ void eventfd_ctx_put(struct eventfd_ctx *ctx);
- struct file *eventfd_fget(int fd);
- struct eventfd_ctx *eventfd_ctx_fdget(int fd);
- struct eventfd_ctx *eventfd_ctx_fileget(struct file *file);
--__u64 eventfd_signal(struct eventfd_ctx *ctx);
--__u64 eventfd_signal_mask(struct eventfd_ctx *ctx, __poll_t mask);
-+void eventfd_signal_mask(struct eventfd_ctx *ctx, __poll_t mask);
- int eventfd_ctx_remove_wait_queue(struct eventfd_ctx *ctx, wait_queue_entry_t *wait,
- 				  __u64 *cnt);
- void eventfd_ctx_do_read(struct eventfd_ctx *ctx, __u64 *cnt);
-@@ -58,14 +57,8 @@ static inline struct eventfd_ctx *eventfd_ctx_fdget(int fd)
- 	return ERR_PTR(-ENOSYS);
- }
- 
--static inline int eventfd_signal(struct eventfd_ctx *ctx)
-+static inline void eventfd_signal_mask(struct eventfd_ctx *ctx, unsigned mask)
- {
--	return -ENOSYS;
--}
--
--static inline int eventfd_signal_mask(struct eventfd_ctx *ctx, unsigned mask)
--{
--	return -ENOSYS;
- }
- 
- static inline void eventfd_ctx_put(struct eventfd_ctx *ctx)
-@@ -91,5 +84,10 @@ static inline void eventfd_ctx_do_read(struct eventfd_ctx *ctx, __u64 *cnt)
- 
- #endif
- 
-+static inline void eventfd_signal(struct eventfd_ctx *ctx)
-+{
-+	eventfd_signal_mask(ctx, 0);
-+}
-+
- #endif /* _LINUX_EVENTFD_H */
- 
+On 21.11.2023 13:06, Andrzej Hajda wrote:
+> On 18.11.2023 00:01, Paz Zcharya wrote:
+>> On Tue, Nov 14, 2023 at 10:13:59PM -0500, Rodrigo Vivi wrote:
+>>> On Sun, Nov 05, 2023 at 05:27:03PM +0000, Paz Zcharya wrote:
+>>>> Fix the value of variable `phys_base` to be the relative offset in
+>>>> stolen memory, and not the absolute offset of the GSM.
+>>>
+>>> to me it looks like the other way around. phys_base is the physical
+>>> base address for the frame_buffer. Setting it to zero doesn't seem
+>>> to make that relative. And also doesn't look right.
+>>>
+>>>>
+>>>> Currently, the value of `phys_base` is set to "Surface Base Address,"
+>>>> which in the case of Meter Lake is 0xfc00_0000.
+>>>
+>>> I don't believe this is a fixed value. IIRC this comes from the register
+>>> set by video bios, where the idea is to reuse the fb that was used so
+>>> far.
+>>>
+>>> With this in mind I don't understand how that could overflow. Maybe
+>>> the size of the stolen is not right? maybe the size? maybe different
+>>> memory region?
+>>>
+>>
+>> Hi Rodrigo, thanks for the great comments.
+>>
+>> Apologies for using a wrong/confusing terminology. I think 'phys_base'
+>> is supposed to be the offset in the GEM BO, where base (or
+>> "Surface Base Address") is supposed to be the GTT offset.
+> 
+> Since base is taken from PLANE_SURF register it should be resolvable via 
+> GGTT to physical address pointing to actual framebuffer.
+> I couldn't find anything in the specs.
 
--- 
-2.42.0
+It was quite cryptic. I meant I have not found anything about assumption 
+from commit history that for iGPU there should be 1:1 mapping, this is 
+why there was an assignment "phys_base = base". Possibly the assumption 
+is not valid anymore for MTL(?).
+Without the assumption we need to check GGTT to determine phys address.
 
+> The simplest approach would be then do the same as in case of DGFX:
+>          gen8_pte_t __iomem *gte = to_gt(i915)->ggtt->gsm;
+>          gen8_pte_t pte;
+> 
+>          gte += base / I915_GTT_PAGE_SIZE;
+> 
+>          pte = ioread64(gte);
+>          phys_base = pte & I915_GTT_PAGE_MASK;
+> 
+> Regards
+> Andrzej
+> 
+> 
+>>
+>> Other than what I wrote before, I noticed that the function 
+>> 'i915_vma_pin'
+>> which calls to 'i915_gem_gtt_reserve' is the one that binds the right
+>> address space in the GTT for that stolen region.
+>>
+>> I see that in the function 'i915_vma_insert' (full call stack below),
+>> where if (flags & PIN_OFFSET_FIXED), then when calling 
+>> 'i915_gem_gtt_reserve'
+>> we add an offset.
+>>
+>> Specifically in MeteorLake, and specifically when using GOP driver, this
+>> offset is equal to 0xfc00_0000. But as you mentioned, this is not strict.
+>>
+>> The if statement always renders true because in the function
+>> 'initial_plane_vma' we always set
+>> pinctl = PIN_GLOBAL | PIN_OFFSET_FIXED | base;
+>> where pinctl == flags (see file 'intel_plane_initial.c' line 145).
+>>
+>> Call stack:
+>> drm_mm_reserve_node
+>> i915_gem_gtt_reserve
+>>     i915_vma_insert
+>> i915_vma_pin_ww
+>> i915_vma_pin
+>> initial_plane_vma
+>> intel_alloc_initial_plane_obj
+>> intel_find_initial_plane_obj
+>>
+>> Therefore, I believe the variable 'phys_base' in the
+>> function 'initial_plane_vma,' should be the the offset in the GEM BO
+>> and not the GTT offset, and because the base is added later on
+>> in the function 'i915_gem_gtt_reserve', this value should not be
+>> equal to base and be 0.
+>>
+>> Hope it makes more sense.
+>>
+>>>> This causes the
+>>>> function `i915_gem_object_create_region_at` to fail in line 128, when
+>>>> it attempts to verify that the range does not overflow:
+>>>>
+>>>> if (range_overflows(offset, size, resource_size(&mem->region)))
+>>>>        return ERR_PTR(-EINVAL);
+>>>>
+>>>> where:
+>>>>    offset = 0xfc000000
+>>>>    size = 0x8ca000
+>>>>    mem->region.end + 1 = 0x4400000
+>>>>    mem->region.start = 0x800000
+>>>>    resource_size(&mem->region) = 0x3c00000
+>>>>
+>>>> call stack:
+>>>>    i915_gem_object_create_region_at
+>>>>    initial_plane_vma
+>>>>    intel_alloc_initial_plane_obj
+>>>>    intel_find_initial_plane_obj
+>>>>    intel_crtc_initial_plane_config
+>>>>
+>>>> Looking at the flow coming next, we see that `phys_base` is only used
+>>>> once, in function `_i915_gem_object_stolen_init`, in the context of
+>>>> the offset *in* the stolen memory. Combining that with an
+>>>> examinination of the history of the file seems to indicate the
+>>>> current value set is invalid.
+>>>>
+>>>> call stack (functions using `phys_base`)
+>>>>    _i915_gem_object_stolen_init
+>>>>    __i915_gem_object_create_region
+>>>>    i915_gem_object_create_region_at
+>>>>    initial_plane_vma
+>>>>    intel_alloc_initial_plane_obj
+>>>>    intel_find_initial_plane_obj
+>>>>    intel_crtc_initial_plane_config
+>>>>
+>>>> [drm:_i915_gem_object_stolen_init] creating preallocated stolen
+>>>> object: stolen_offset=0x0000000000000000, size=0x00000000008ca000
+>>>>
+>>>> Signed-off-by: Paz Zcharya <pazz@chromium.org>
+>>>> ---
+>>>>
+>>>>   drivers/gpu/drm/i915/display/intel_plane_initial.c | 2 +-
+>>>>   1 file changed, 1 insertion(+), 1 deletion(-)
+>>>>
+>>>> diff --git a/drivers/gpu/drm/i915/display/intel_plane_initial.c 
+>>>> b/drivers/gpu/drm/i915/display/intel_plane_initial.c
+>>>> index a55c09cbd0e4..e696cb13756a 100644
+>>>> --- a/drivers/gpu/drm/i915/display/intel_plane_initial.c
+>>>> +++ b/drivers/gpu/drm/i915/display/intel_plane_initial.c
+>>>> @@ -90,7 +90,7 @@ initial_plane_vma(struct drm_i915_private *i915,
+>>>>               "Using phys_base=%pa, based on initial plane 
+>>>> programming\n",
+>>>>               &phys_base);
+>>>>       } else {
+>>>> -        phys_base = base;
+>>>> +        phys_base = 0;
+>>>>           mem = i915->mm.stolen_region;
+>>>>       }
+>>>> -- 
+>>>> 2.42.0.869.gea05f2083d-goog
+>>>>
+> 
