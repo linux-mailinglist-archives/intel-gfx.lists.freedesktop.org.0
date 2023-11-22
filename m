@@ -1,46 +1,47 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8472E7F3B0F
-	for <lists+intel-gfx@lfdr.de>; Wed, 22 Nov 2023 02:11:05 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id BADCF7F3D19
+	for <lists+intel-gfx@lfdr.de>; Wed, 22 Nov 2023 06:05:03 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 75B2E10E5C8;
-	Wed, 22 Nov 2023 01:11:03 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 920D010E06A;
+	Wed, 22 Nov 2023 05:05:00 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from gandalf.ozlabs.org (gandalf.ozlabs.org [150.107.74.76])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D54E510E5C8;
- Wed, 22 Nov 2023 01:11:00 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canb.auug.org.au;
- s=201702; t=1700615457;
- bh=x8jTVZuJ1SIBE9Itnw2oH1Ikt8zUpUVpvR9A2GRFlCc=;
- h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
- b=Lt1SgvBhbg/58EstgSIomf2ZAHMkYLO42aJUCMjYBlOFYjzvIyVLHy7/k1Otp3WnM
- m8RSG8fUeOrhTCyMD7/HuG4/Nz5ZVwNof8il2doN74uWku4OWgucffyVgwHJr9x+JF
- OXA5VBTt1PkqaguTTVC7I4AlBhhikZBSWF6kxq3TwDjb4ZBSukyAeNwBaS/buT9DXm
- 8Tikc8QaURw4BJoxnlfFNwxmtA6DlQiO8MmrwhjmsWPIL6unufy7Jgg7SgTARjhdsc
- YL0CyxWL4gd2BaA6zdTpa+VCLsF+RY1zJm+pqfhts61s5LrwS3jRN5I5+MWUlRwcSI
- caHef7Wjs+B0g==
-Received: from authenticated.ozlabs.org (localhost [127.0.0.1])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
- (No client certificate requested)
- by mail.ozlabs.org (Postfix) with ESMTPSA id 4SZjqN32rVz4x7q;
- Wed, 22 Nov 2023 12:10:56 +1100 (AEDT)
-Date: Wed, 22 Nov 2023 12:10:54 +1100
-From: Stephen Rothwell <sfr@canb.auug.org.au>
-To: Daniel Vetter <daniel.vetter@ffwll.ch>, Jani Nikula
- <jani.nikula@linux.intel.com>, Joonas Lahtinen
- <joonas.lahtinen@linux.intel.com>, Rodrigo Vivi <rodrigo.vivi@intel.com>
-Message-ID: <20231122121054.0d660cd8@canb.auug.org.au>
-In-Reply-To: <20231122115137.04a33a6c@canb.auug.org.au>
-References: <20231122115137.04a33a6c@canb.auug.org.au>
+Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.120])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9851010E06A
+ for <intel-gfx@lists.freedesktop.org>; Wed, 22 Nov 2023 05:04:59 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1700629499; x=1732165499;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=YT4RYcBV85BFIe0rhsPzTi70e4jsF6SGjC048Y0tDHk=;
+ b=ZpnG0LeJ7DfqJxesXVDfUwGKi6A7u8us/qsjOnVPl88ax8Asq8/Gwj4E
+ UcdmRGxBL9stAqg11IsQs5GvL0fA8gWH6pAk+XuaDvzh0TNmj4+TMZgnB
+ oOHFGyi0azvJ7UQIOdDIDDsBQ2DgoCeRqD+iGo1KRm+8HNiqaf4+nc4Vm
+ VC+0fTkMLMVz86V9t0CRU03kDjOZa/uZm95KCR3cgK2E4OVu4ESXJFNIy
+ YiAsLx93UyF44wH9FOBNP9LwtNHkJ399iAExHkU5+ND05ybSOgODcQQJI
+ 4Fnx1d581B47H/+919z68qHXm2aQ/UNPIRDeE/mPOqVwsI8HOvKnt1F83 g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10901"; a="390846787"
+X-IronPort-AV: E=Sophos;i="6.04,217,1695711600"; d="scan'208";a="390846787"
+Received: from fmviesa001.fm.intel.com ([10.60.135.141])
+ by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 21 Nov 2023 21:02:25 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.04,217,1695711600"; d="scan'208";a="15119720"
+Received: from shekharc-desk.iind.intel.com ([10.190.239.54])
+ by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 21 Nov 2023 21:02:24 -0800
+From: Shekhar Chauhan <shekhar.chauhan@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Wed, 22 Nov 2023 10:32:06 +0530
+Message-Id: <20231122050206.3249424-1-shekhar.chauhan@intel.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-Content-Type: multipart/signed; boundary="Sig_/fcudTv.a=RMzgcutdNML3A_";
- protocol="application/pgp-signature"; micalg=pgp-sha256
-Subject: Re: [Intel-gfx] linux-next: manual merge of the drm-intel tree with
- Linus' tree
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-gfx] [PATCH] drm/i915/mtl: Fix Wa_22016670082
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -53,88 +54,44 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Intel Graphics <intel-gfx@lists.freedesktop.org>,
- Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
- DRI <dri-devel@lists.freedesktop.org>,
- Linux Next Mailing List <linux-next@vger.kernel.org>,
- Wayne Lin <Wayne.Lin@amd.com>, Alex Deucher <alexander.deucher@amd.com>
+Cc: matthew.d.roper@intel.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---Sig_/fcudTv.a=RMzgcutdNML3A_
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: quoted-printable
+Wa_22016670082 is applicable on GT and Media.
+For GT, an MCR register is required instead of MMIO.
 
-Hi all,
+Signed-off-by: Shekhar Chauhan <shekhar.chauhan@intel.com>
+---
+ drivers/gpu/drm/i915/gt/intel_gt_regs.h     | 1 +
+ drivers/gpu/drm/i915/gt/intel_workarounds.c | 2 +-
+ 2 files changed, 2 insertions(+), 1 deletion(-)
 
-On Wed, 22 Nov 2023 11:51:37 +1100 Stephen Rothwell <sfr@canb.auug.org.au> =
-wrote:
->
-> Today's linux-next merge of the drm-intel tree got a conflict in:
->=20
->   drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_helpers.c
->=20
-> between commit:
->=20
->   9031e0013f81 ("drm/amd/display: Fix mst hub unplug warning")
->=20
-> from Linus' tree and commit:
->=20
->   191dc43935d1 ("drm/dp_mst: Store the MST PBN divider value in fixed poi=
-nt format")
->=20
-> from the drm-intel tree.
->=20
-> I fixed it up (I just used the former) and can carry the fix as
-> necessary. This is now fixed as far as linux-next is concerned, but any
-> non trivial conflicts should be mentioned to your upstream maintainer
-> when your tree is submitted for merging.  You may also want to consider
-> cooperating with the maintainer of the conflicting tree to minimise any
-> particularly complex conflicts.
+diff --git a/drivers/gpu/drm/i915/gt/intel_gt_regs.h b/drivers/gpu/drm/i915/gt/intel_gt_regs.h
+index 9de41703fae5..02d1d41fcfe1 100644
+--- a/drivers/gpu/drm/i915/gt/intel_gt_regs.h
++++ b/drivers/gpu/drm/i915/gt/intel_gt_regs.h
+@@ -530,6 +530,7 @@
+ #define GEN8_RC6_CTX_INFO			_MMIO(0x8504)
+ 
+ #define GEN12_SQCNT1				_MMIO(0x8718)
++#define SQCNT1					MCR_REG(0x8718)
+ #define   GEN12_SQCNT1_PMON_ENABLE		REG_BIT(30)
+ #define   GEN12_SQCNT1_OABPC			REG_BIT(29)
+ #define   GEN12_STRICT_RAR_ENABLE		REG_BIT(23)
+diff --git a/drivers/gpu/drm/i915/gt/intel_workarounds.c b/drivers/gpu/drm/i915/gt/intel_workarounds.c
+index 9bc0654efdc0..34855e1ea1e6 100644
+--- a/drivers/gpu/drm/i915/gt/intel_workarounds.c
++++ b/drivers/gpu/drm/i915/gt/intel_workarounds.c
+@@ -1644,7 +1644,7 @@ xelpg_gt_workarounds_init(struct intel_gt *gt, struct i915_wa_list *wal)
+ 	wa_mcr_write_or(wal, COMP_MOD_CTRL, FORCE_MISS_FTLB);
+ 
+ 	/* Wa_22016670082 */
+-	wa_write_or(wal, GEN12_SQCNT1, GEN12_STRICT_RAR_ENABLE);
++	wa_mcr_write_or(wal, SQCNT1, GEN12_STRICT_RAR_ENABLE);
+ 
+ 	if (IS_GFX_GT_IP_STEP(gt, IP_VER(12, 70), STEP_A0, STEP_B0) ||
+ 	    IS_GFX_GT_IP_STEP(gt, IP_VER(12, 71), STEP_A0, STEP_B0)) {
+-- 
+2.34.1
 
-Actually, the resolution I used is below.
-
---=20
-Cheers,
-Stephen Rothwell
-
-diff --cc drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_helpers.c
-index c7a29bb737e2,53e323b71d26..000000000000
---- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_helpers.c
-+++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_helpers.c
-@@@ -209,11 -210,11 +210,11 @@@ static void dm_helpers_construct_old_pa
-  			struct drm_dp_mst_atomic_payload *new_payload,
-  			struct drm_dp_mst_atomic_payload *old_payload)
-  {
- -	struct link_mst_stream_allocation_table current_link_table =3D
- -									link->mst_stream_alloc_table;
- -	struct link_mst_stream_allocation *dc_alloc;
- -	int pbn_per_slot =3D dfixed_trunc(pbn_per_slot_fp);
- -	int i;
- +	struct drm_dp_mst_atomic_payload *pos;
-- 	int pbn_per_slot =3D mst_state->pbn_div;
-++	int pbn_per_slot =3D dfixed_trunc(mst_state->pbn_div);
- +	u8 next_payload_vc_start =3D mgr->next_start_slot;
- +	u8 payload_vc_start =3D new_payload->vc_start_slot;
- +	u8 allocated_time_slots;
- =20
-  	*old_payload =3D *new_payload;
- =20
-
---Sig_/fcudTv.a=RMzgcutdNML3A_
-Content-Type: application/pgp-signature
-Content-Description: OpenPGP digital signature
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAEBCAAdFiEENIC96giZ81tWdLgKAVBC80lX0GwFAmVdVR4ACgkQAVBC80lX
-0GzuPQf/VOh8+IwdxziZyUsjKcm3yIhPPVmxgtSCWsgGOC00PCVaC4L3J6ktverQ
-MSCFmxOpp0rOcTTH9EYl1J3K31SHvs2q605cIFb98W16+kaSy7lHAgBKWk/rVG93
-DgOJDlzDjQWVB94eMSkt6aVY+ydyv5K3+klmzldYfNPcP1ouZ40qrB52Ji/vyQZ3
-QwbGQ945WfedLtnbjR3uppBmNAljSYfvSvFmPpAaKSRIbLhRXOFo/354E31jSkOH
-q3sp43BhpMhKeTZ5W7zZCzxtvrVv3/wF1uGMV2fxF4eapIfvL4mlS5Z+rTNAq/3c
-gUPVx6g1mJI0WiQBVbDLgqQkeKBsfA==
-=SMFA
------END PGP SIGNATURE-----
-
---Sig_/fcudTv.a=RMzgcutdNML3A_--
