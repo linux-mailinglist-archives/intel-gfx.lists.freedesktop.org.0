@@ -1,53 +1,82 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id BBEA97F44AF
-	for <lists+intel-gfx@lfdr.de>; Wed, 22 Nov 2023 12:05:47 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2DC997F4541
+	for <lists+intel-gfx@lfdr.de>; Wed, 22 Nov 2023 13:00:57 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4E49D10E5FD;
-	Wed, 22 Nov 2023 11:05:46 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 84C5510E607;
+	Wed, 22 Nov 2023 12:00:55 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1A98810E5FD
- for <intel-gfx@lists.freedesktop.org>; Wed, 22 Nov 2023 11:05:44 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1700651144; x=1732187144;
- h=from:to:subject:in-reply-to:references:date:message-id:
- mime-version; bh=YhaKzd/QzkqtDRW/+Pp4ZGpuCyWqAp3xHKwFLBFw0uw=;
- b=JCPsppcfmz+0EuMVcXZYqvMqDku9OmRec35Oa4WNlKZ/+8APfLztICwo
- Ol5IgvY8Z0M1/HjpF48V9dn95TDkxWQ1xKPk6qeMKFVfQmkIWj/KQjSOd
- zO6Eyiitv+qlaMG18g/AMeQz7UtwcOP2iNqDWvFnpfWtcNnuA8rRdMFVT
- rMEHpc+Y006lFcdv34IL3gIEg3QRswDjErJaO59Gyu2ql9to6jTaoQZAm
- Wz/tFiL1XYY7Dn3O7XBE7gesgSwrsO4/jLJ7/h74/F4T5UPLVIUN9paXo
- G+4LUEXD4Hy5+VkNffchK4ZEsMdf3XIVdtpeiE8P8VPaSgkoBMhxkFQ7l A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10901"; a="5174021"
-X-IronPort-AV: E=Sophos;i="6.04,218,1695711600"; 
-   d="scan'208";a="5174021"
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
- by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Nov 2023 03:05:44 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10901"; a="884568504"
-X-IronPort-AV: E=Sophos;i="6.04,218,1695711600"; d="scan'208";a="884568504"
-Received: from tjquresh-mobl.ger.corp.intel.com (HELO localhost)
- ([10.252.41.76])
- by fmsmga002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Nov 2023 03:05:42 -0800
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Mitul Golani <mitulkumar.ajitkumar.golani@intel.com>,
- intel-gfx@lists.freedesktop.org
-In-Reply-To: <87cyw2m4le.fsf@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20231122065926.4076690-1-mitulkumar.ajitkumar.golani@intel.com>
- <87cyw2m4le.fsf@intel.com>
-Date: Wed, 22 Nov 2023 13:05:39 +0200
-Message-ID: <87a5r6m4jg.fsf@intel.com>
+Received: from us-smtp-delivery-124.mimecast.com
+ (us-smtp-delivery-124.mimecast.com [170.10.129.124])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3115810E607
+ for <intel-gfx@lists.freedesktop.org>; Wed, 22 Nov 2023 12:00:53 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+ s=mimecast20190719; t=1700654452;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ in-reply-to:in-reply-to:references:references;
+ bh=Jmfy3kCd2YUjxLnPRJpQFmmKZOJhEA2YCr/PvLEba18=;
+ b=HtNaBKsDCL+SxeOc8QDMLW9iFlb/Du/Q9fHukw6lddBRjtXqM9kDfEBH7FbfU6aTTZ7Q7L
+ sNEdyQXVk4sO5KuTAYtGt0LliBHF0JVhFZQiN7MIsr4cYsIKbAyH/iBafLhs/p2BzmWZQC
+ OrjbshTSu8VOOV0l+vPs+lu2XuEOL0M=
+Received: from mail-wr1-f71.google.com (mail-wr1-f71.google.com
+ [209.85.221.71]) by relay.mimecast.com with ESMTP with STARTTLS
+ (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
+ us-mta-627-lD4AFIjZP9upLp2uS-fi8A-1; Wed, 22 Nov 2023 07:00:50 -0500
+X-MC-Unique: lD4AFIjZP9upLp2uS-fi8A-1
+Received: by mail-wr1-f71.google.com with SMTP id
+ ffacd0b85a97d-332c50f4d98so1819754f8f.1
+ for <intel-gfx@lists.freedesktop.org>; Wed, 22 Nov 2023 04:00:50 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1700654449; x=1701259249;
+ h=in-reply-to:content-disposition:mime-version:references:message-id
+ :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=Jmfy3kCd2YUjxLnPRJpQFmmKZOJhEA2YCr/PvLEba18=;
+ b=nhzXDPpF8ujjSNYhVnxTxkCRH46EV4gAv/lOrjJpLtvJymE+G2u4gRXBEg2PK6xYUr
+ mxECYR0Ce0frHt9bJfGVQiEGmPtMGWDgTjjns+8og6R+215TU2M+2+mLvIInjAetHBys
+ Upks8w1Izdu9r6nR+IIWLbjE+VfqL8QFKmYci1Relvnx0RaOwNrwLL2k7YKAPVgqtOVn
+ DcBc66dCDDIjPv589qqczejLElOeJOvKJNuQUuxkTQgX0aUXJ23hmC13nXPQgihl4btU
+ kfXbqkE4zn8TED8mfsS8hstky0vq2juNqp8oUcQKaI0Z+YJDwLB07xM/PR1Uk2yshADv
+ 7a4Q==
+X-Gm-Message-State: AOJu0YwrGj7lTPPhaeoXUOYWgktbeW9T6NMn2XyjI/ZT5qmhFNc5lho/
+ L+9joWZ4m5BiXFzAB5qyoLv34YQwibnNGxWY7mcKoZE1wtuzhWoNtfIWESEEbmpMj1Ll556rEdv
+ LitbtXvkPQ1igh6GzUQUgUqPiVnOv
+X-Received: by 2002:a05:6000:2c4:b0:332:cea5:66a4 with SMTP id
+ o4-20020a05600002c400b00332cea566a4mr1565033wry.14.1700654449074; 
+ Wed, 22 Nov 2023 04:00:49 -0800 (PST)
+X-Google-Smtp-Source: AGHT+IFcFf9DArrMf2qdlqNINZRMkLt+TpvsA5AzhchHcWi/XwSyj1G1RQEK9q6d97uQg4unQtT1cg==
+X-Received: by 2002:a05:6000:2c4:b0:332:cea5:66a4 with SMTP id
+ o4-20020a05600002c400b00332cea566a4mr1565013wry.14.1700654448710; 
+ Wed, 22 Nov 2023 04:00:48 -0800 (PST)
+Received: from localhost ([2a01:e0a:b25:f902::ff])
+ by smtp.gmail.com with ESMTPSA id
+ e8-20020adfe7c8000000b00332cc24a59bsm5895913wrn.109.2023.11.22.04.00.48
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Wed, 22 Nov 2023 04:00:48 -0800 (PST)
+Date: Wed, 22 Nov 2023 13:00:47 +0100
+From: Maxime Ripard <mripard@redhat.com>
+To: Luben Tuikov <ltuikov89@gmail.com>
+Message-ID: <zuz7zpcjfqzeymfrn53tbhcsem5abqh2l4vcaqkxo5wbgoc742@bnxnkek3wv6t>
+References: <20231114075501.61321c29@canb.auug.org.au>
+ <19740d41-dd5a-47e4-b3e8-539b45bbd3e5@gmail.com>
+ <3c306310-04b3-4658-a197-4b2d22a88274@gmail.com>
+ <20231114134506.2ba0de1f@canb.auug.org.au>
+ <530b6100-4f4e-4b3d-8fea-5b316e989633@gmail.com>
+ <20231114140855.0b259b2d@canb.auug.org.au>
+ <f1b21cbd-5bb6-4030-ae7d-a0ca2fbc76a9@gmail.com>
+ <73cg637ax5cahqocscx5cjvtqkwlt4ves6cxgprbwqllasxq6v@gk6vzsqfc46j>
+ <ZVXSjt_1uWHuYXsq@phenom.ffwll.local>
 MIME-Version: 1.0
-Content-Type: text/plain
-Subject: Re: [Intel-gfx] [PATCH 0/3] Implement CMRR Support
+Content-Type: multipart/signed; micalg=pgp-sha512;
+ protocol="application/pgp-signature"; boundary="nrm7sdlmqzqflhqa"
+Content-Disposition: inline
+In-Reply-To: <ZVXSjt_1uWHuYXsq@phenom.ffwll.local>
+Subject: Re: [Intel-gfx] linux-next: Signed-off-by missing for commit in the
+ drm-misc tree
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -60,47 +89,81 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: Stephen Rothwell <sfr@canb.auug.org.au>,
+ Intel Graphics <intel-gfx@lists.freedesktop.org>,
+ Linux Next Mailing List <linux-next@vger.kernel.org>,
+ Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+ DRI <dri-devel@lists.freedesktop.org>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, 22 Nov 2023, Jani Nikula <jani.nikula@linux.intel.com> wrote:
-> On Wed, 22 Nov 2023, Mitul Golani <mitulkumar.ajitkumar.golani@intel.com> wrote:
->> CMRR is a display feature that uses adaptive sync
->> framework to vary Vtotal slightly to match the
->> content rate exactly without frame drops. This
->> feature is a variation of VRR where it varies Vtotal
->> slightly (between additional 0 and 1 Vtotal scanlines)
->> to match content rate exactly without frame drops
->> using the adaptive sync framework.
->
-> Please check and use the -v<N> option of git-send-email.
 
-More precisely it's a git format-patch option, but send-email passes it
-along.
+--nrm7sdlmqzqflhqa
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
->
-> BR,
-> Jani.
->
->
->>
->> enable this feature by programing new registers for
->> CMRR enable, CMRR_M, CMRR_N, vmin=vmax=flipline.The
->> CMRR_M/CMRR_N ratio represents the fractional part
->> in (actual refresh rate/target refresh rate) * origVTotal.
->>
->> Mitul Golani (3):
->>   drm/i915: Define and compute Transcoder CMRR registers
->>   drm/i915: Add Enable/Disable for CMRR based on VRR state
->>   drm/i915: Compute CMRR and calculate vtotal
->>
->>  .../drm/i915/display/intel_crtc_state_dump.c  |   4 +-
->>  drivers/gpu/drm/i915/display/intel_display.c  |  54 +++++++-
->>  .../drm/i915/display/intel_display_device.h   |   1 +
->>  .../drm/i915/display/intel_display_types.h    |   6 +
->>  drivers/gpu/drm/i915/display/intel_vrr.c      | 129 ++++++++++++++++--
->>  drivers/gpu/drm/i915/i915_reg.h               |  10 ++
->>  6 files changed, 184 insertions(+), 20 deletions(-)
+Hi Luben,
 
--- 
-Jani Nikula, Intel
+On Thu, Nov 16, 2023 at 09:27:58AM +0100, Daniel Vetter wrote:
+> On Thu, Nov 16, 2023 at 09:11:43AM +0100, Maxime Ripard wrote:
+> > On Tue, Nov 14, 2023 at 06:46:21PM -0500, Luben Tuikov wrote:
+> > > On 2023-11-13 22:08, Stephen Rothwell wrote:
+> > > > BTW, cherry picking commits does not avoid conflicts - in fact it c=
+an
+> > > > cause conflicts if there are further changes to the files affected =
+by
+> > > > the cherry picked commit in either the tree/branch the commit was
+> > > > cheery picked from or the destination tree/branch (I have to deal w=
+ith
+> > > > these all the time when merging the drm trees in linux-next).  Much
+> > > > better is to cross merge the branches so that the patch only appears
+> > > > once or have a shared branches that are merged by any other branch =
+that
+> > > > needs the changes.
+> > > >=20
+> > > > I understand that things are not done like this in the drm trees :-(
+> > >=20
+> > > Hi Stephen,
+> > >=20
+> > > Thank you for the clarification--understood. I'll be more careful in =
+the future.
+> > > Thanks again! :-)
+> >=20
+> > In this case, the best thing to do would indeed have been to ask the
+> > drm-misc maintainers to merge drm-misc-fixes into drm-misc-next.
+> >=20
+> > We're doing that all the time, but we're not ubiquitous so you need to
+> > ask us :)
+> >=20
+> > Also, dim should have caught that when you pushed the branch. Did you
+> > use it?
+>=20
+> Yeah dim must be used, exactly to avoid these issues. Both for applying
+> patches (so not git am directly, or cherry-picking from your own
+> development branch), and for pushing. The latter is even checked for by
+> the server (dim sets a special push flag which is very long and contains a
+> very clear warning if you bypass it).
+>=20
+> If dim was used, this would be a bug in the dim script that we need to
+> fix.
+
+It would be very useful for you to explain what happened here so we
+improve the tooling or doc and can try to make sure it doesn't happen
+again
+
+Maxime
+
+--nrm7sdlmqzqflhqa
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYKAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCZV3tbwAKCRDj7w1vZxhR
+xZmuAQDIFQZAPbTq+2X7+yuDLwFD1dPxqrGxTfYDLsC4QYSg1QD/XcyAWTymltT1
+jbncyhmu0xFrScTXeF7DeKzN3uuQ+wg=
+=VQ9e
+-----END PGP SIGNATURE-----
+
+--nrm7sdlmqzqflhqa--
+
