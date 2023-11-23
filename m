@@ -2,43 +2,47 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 028AD7F6006
-	for <lists+intel-gfx@lfdr.de>; Thu, 23 Nov 2023 14:19:02 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id DA8BD7F6109
+	for <lists+intel-gfx@lfdr.de>; Thu, 23 Nov 2023 15:08:03 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1DE1710E744;
-	Thu, 23 Nov 2023 13:18:59 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6413910E75C;
+	Thu, 23 Nov 2023 14:08:02 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from sin.source.kernel.org (sin.source.kernel.org [145.40.73.55])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A99FB10E743;
- Thu, 23 Nov 2023 13:18:56 +0000 (UTC)
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
- by sin.source.kernel.org (Postfix) with ESMTP id 11DDCCE2912;
- Thu, 23 Nov 2023 13:18:53 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6FFAAC433C9;
- Thu, 23 Nov 2023 13:18:36 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1700745532;
- bh=BJOuctG/jOXVT0hO6qxyVXBeYyH4TG/ylT0dyLa92yI=;
- h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
- b=r42g7gVEtjBJ5WfLPAfCypJTdeIZa9tza+98XErRLkZuJq42IHSNqt9TjDoS1u/dO
- mqRTO6hyOgRcqG5Vqi98sspSbfx6Ne64w0KZSaAUUdSmCRm0SeW9B8r2AffO7bhDq0
- voQrIzDl2Rys7kYNdpWCPkldE19sNixdWiKMUoa9j34EYG62L/DgZtbbaspmEPmu14
- PuPzBMdYXfPSBprGxxIV2rleVHq+xRFaQ7/X8REU4C8BYG2H4sP4+OADV7Tg2Ri8NY
- w8CXZUWWNJUaMlJH5PPc15vZ4ox/kvWZIeet2zBszz9qi15zBW/WlVu+mFthIg8ovM
- qoF7yc2VytIMg==
-Date: Thu, 23 Nov 2023 14:18:33 +0100
-From: Christian Brauner <brauner@kernel.org>
-To: Jani Nikula <jani.nikula@linux.intel.com>
-Message-ID: <20231123-portwein-geeignet-787b940c7d2d@brauner>
-References: <20231122-vfs-eventfd-signal-v2-0-bd549b14ce0c@kernel.org>
- <20231122-vfs-eventfd-signal-v2-2-bd549b14ce0c@kernel.org>
- <877cm9n7dh.fsf@intel.com>
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5C29110E75B
+ for <intel-gfx@lists.freedesktop.org>; Thu, 23 Nov 2023 14:08:00 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1700748480; x=1732284480;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=aYPNSXQxM+CWecwl9jqLW7h7Gsg6BLE/dsxD0jXq/iE=;
+ b=djr+XdkKMtXISVpgUR5Th6/724zPJb/TpbV/cipGHZyr+OmqYEY3ODIB
+ wAC1UN5BDHZNsaps1yBqi4QJh7DvQYG7Tj4lIoULnC5/DtGPwuFxm5jW+
+ 2qLztQLJvig7cLrX2vri31P+HFDmF368bOxXphCJBwHlGuhncvVAkpn2a
+ DRinUu2jw2GUrUsLqn+6TzhKf+GISi08OqA7q0EVhCk0HS5h2boxLIWDQ
+ xrKuJB5Qc2xum9tZS0jOWlGQYqZQv+KSbDE122mEtFy1dO9YtFIONPGHc
+ hFkbjvJ5RDB9c+VcXr6ioiLGeLXh8hNSi0Q+3yQBC4nmWFR2Xc4oQlsEd g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10902"; a="5418501"
+X-IronPort-AV: E=Sophos;i="6.04,221,1695711600"; 
+   d="scan'208";a="5418501"
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+ by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 23 Nov 2023 06:07:49 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10902"; a="767213012"
+X-IronPort-AV: E=Sophos;i="6.04,221,1695711600"; d="scan'208";a="767213012"
+Received: from mgolanimitul-x299-ud4-pro.iind.intel.com ([10.190.239.114])
+ by orsmga002.jf.intel.com with ESMTP; 23 Nov 2023 06:07:47 -0800
+From: Mitul Golani <mitulkumar.ajitkumar.golani@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Thu, 23 Nov 2023 19:32:41 +0530
+Message-Id: <20231123140244.4183869-1-mitulkumar.ajitkumar.golani@intel.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <877cm9n7dh.fsf@intel.com>
-Subject: Re: [Intel-gfx] [PATCH v2 2/4] eventfd: simplify eventfd_signal()
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-gfx] [PATCH 0/3] Enable Adaptive Sync SDP Support for DP
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -51,48 +55,33 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: linux-aio@kvack.org, linux-usb@vger.kernel.org, Jan Kara <jack@suse.cz>,
- Matthew Rosato <mjrosato@linux.ibm.com>, Paul Durrant <paul@xen.org>,
- Tom Rix <trix@redhat.com>, Jason Wang <jasowang@redhat.com>,
- Dave Hansen <dave.hansen@linux.intel.com>, dri-devel@lists.freedesktop.org,
- Michal Hocko <mhocko@kernel.org>, linux-mm@kvack.org,
- Kirti Wankhede <kwankhede@nvidia.com>, Paolo Bonzini <pbonzini@redhat.com>,
- Jens Axboe <axboe@kernel.dk>, Vineeth Vijayan <vneethv@linux.ibm.com>,
- Diana Craciun <diana.craciun@oss.nxp.com>,
- Alexander Gordeev <agordeev@linux.ibm.com>, David Airlie <airlied@gmail.com>,
- Christoph Hellwig <hch@lst.de>, Xuan Zhuo <xuanzhuo@linux.alibaba.com>,
- Shakeel Butt <shakeelb@google.com>, Vasily Gorbik <gor@linux.ibm.com>,
- Leon Romanovsky <leon@kernel.org>, Harald Freudenberger <freude@linux.ibm.com>,
- Fei Li <fei1.li@intel.com>, x86@kernel.org,
- Roman Gushchin <roman.gushchin@linux.dev>, Halil Pasic <pasic@linux.ibm.com>,
- Jason Gunthorpe <jgg@ziepe.ca>, Ingo Molnar <mingo@redhat.com>,
- intel-gfx@lists.freedesktop.org,
- Christian Borntraeger <borntraeger@linux.ibm.com>, linux-fpga@vger.kernel.org,
- Wu Hao <hao.wu@intel.com>, Jason Herne <jjherne@linux.ibm.com>,
- Eric Farman <farman@linux.ibm.com>, Andrew Donnellan <ajd@linux.ibm.com>,
- Arnd Bergmann <arnd@arndb.de>, linux-s390@vger.kernel.org,
- Heiko Carstens <hca@linux.ibm.com>, Johannes Weiner <hannes@cmpxchg.org>,
- linuxppc-dev@lists.ozlabs.org, Frederic Barrat <fbarrat@linux.ibm.com>,
- Borislav Petkov <bp@alien8.de>, kvm@vger.kernel.org,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, cgroups@vger.kernel.org,
- Thomas Gleixner <tglx@linutronix.de>,
- virtualization@lists.linux-foundation.org, intel-gvt-dev@lists.freedesktop.org,
- io-uring@vger.kernel.org, netdev@vger.kernel.org,
- Tony Krowiak <akrowiak@linux.ibm.com>, Pavel Begunkov <asml.silence@gmail.com>,
- Eric Auger <eric.auger@redhat.com>, Sean Christopherson <seanjc@google.com>,
- Oded Gabbay <ogabbay@kernel.org>, Muchun Song <muchun.song@linux.dev>,
- Peter Oberparleiter <oberpar@linux.ibm.com>, linux-kernel@vger.kernel.org,
- linux-rdma@vger.kernel.org, Benjamin LaHaise <bcrl@kvack.org>,
- "Michael S. Tsirkin" <mst@redhat.com>, Sven Schnelle <svens@linux.ibm.com>,
- Daniel Vetter <daniel@ffwll.ch>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>, linux-fsdevel@vger.kernel.org,
- Moritz Fischer <mdf@kernel.org>, Vitaly Kuznetsov <vkuznets@redhat.com>,
- David Woodhouse <dwmw2@infradead.org>, Xu Yilun <yilun.xu@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-> >   * eventfd_signal - Adds @n to the eventfd counter.
-> 
-> This still refers to @n here, and in patch 4.
+An Adaptive Sync SDP allows a DP protocol converter to
+forward Adaptive Sync video with minimal buffering overhead
+within the converter. An Adaptive-Sync-capable DP protocol
+converter indicates its support by setting the related bit
+in the DPCD register.
 
-Fixed and folded. Thanks!
+Computes AS SDP values based on the display configuration,
+ensuring proper handling of Variable Refresh Rate (VRR)
+in the context of Adaptive Sync.
+
+Mitul Golani (3):
+  drm: Add Adaptive Sync SDP logging
+  drm/i915/display/: Add Read/Write support for Adaptive Sync SDP
+  drm/i915/display/:Compute and enable daptive Sync SDP
+
+ drivers/gpu/drm/display/drm_dp_helper.c       |  15 ++
+ .../drm/i915/display/intel_display_types.h    |   1 +
+ drivers/gpu/drm/i915/display/intel_dp.c       | 139 +++++++++++++++++-
+ drivers/gpu/drm/i915/display/intel_hdmi.c     |  11 +-
+ drivers/gpu/drm/i915/i915_reg.h               |   6 +
+ include/drm/display/drm_dp.h                  |   1 +
+ include/drm/display/drm_dp_helper.h           |  30 ++++
+ 7 files changed, 196 insertions(+), 7 deletions(-)
+
+-- 
+2.25.1
+
