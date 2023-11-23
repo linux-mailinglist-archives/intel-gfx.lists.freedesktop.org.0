@@ -2,54 +2,47 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4A8EE7F6584
-	for <lists+intel-gfx@lfdr.de>; Thu, 23 Nov 2023 18:35:14 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id B6D667F66E8
+	for <lists+intel-gfx@lfdr.de>; Thu, 23 Nov 2023 20:05:28 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BBFAD10E329;
-	Thu, 23 Nov 2023 17:35:10 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 35EFA10E335;
+	Thu, 23 Nov 2023 19:05:27 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E768710E32A;
- Thu, 23 Nov 2023 17:35:07 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.136])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3A24A10E335
+ for <intel-gfx@lists.freedesktop.org>; Thu, 23 Nov 2023 19:05:25 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1700760908; x=1732296908;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=bZiC9hG+uUPXjnWXM4F9oabwUgq9tzES6IaqRI3F+SQ=;
- b=BIYXpS0Y0nxVC5eOH6BIeJRNWokqM508jOFEPl3FcqqidRJDVB4xHJzn
- 5Y+b9zZfzBNPdDMs91Uz4VM6jSuCLjHPU/hVp00Pwe3Tr8nkQtzoff4IN
- E4uCpnXgYcdxkl5xwLwgIm5kw1voIRZdoJvn1Twuya9e1g/9OyxHxhUtl
- /ZY5io6MtQvO6N22dS6tnWEU28li4M7f4dYTz+jwPgPAn30n69751wvrS
- 4tp+h1OllkUnPGTUo5UOqFRbA8gHGaWlgrpSclefeCmDIB3ZKI9Mice12
- JuWP1W3y8HUVbeN6xGpwgecUevZspZG0p+tP0pbvtx/AsmWrkEE8t73P5 g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10902"; a="423441693"
-X-IronPort-AV: E=Sophos;i="6.04,222,1695711600"; d="scan'208";a="423441693"
-Received: from orsmga007.jf.intel.com ([10.7.209.58])
- by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Nov 2023 09:35:07 -0800
+ t=1700766325; x=1732302325;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=WjJh9o4GxWJviq84Wvfjzmyaq4AIqfEECPhypkzPC8Q=;
+ b=cpT3uhGRqDDKu6OH0tcqhFbIwGsUVHFuS4NuW8XeOqKZvmcz0Y5RjP6H
+ hcYzDcX2X7Zm+Tvz3zMs4+e1SZg458+tmr8rmH2lzhDG1ttBuNP28SyRx
+ RKhH9PvpOqV0HOOS11Fq9gir1K9ueXUYXKHyfL62J1ZWXcCZ5y+vTIyfl
+ X/G6eYgdS9Pb+7ZZ03q79mREi88wUbDxugqPA5fZa5CfEuOcmha/QR/z4
+ spqdCiboz3/pnhdS+n74QkxUaV5IC9JvIYWe3Nk1TKHnuIHqCDNOx1yrZ
+ CiT0bEXEzTkzxjndjMgT17mebnoBzyONo532Fgj/wNsae1Jejxz0Bs/jN w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10902"; a="371668635"
+X-IronPort-AV: E=Sophos;i="6.04,222,1695711600"; d="scan'208";a="371668635"
+Received: from fmsmga007.fm.intel.com ([10.253.24.52])
+ by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 23 Nov 2023 11:05:24 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10902"; a="760721243"
-X-IronPort-AV: E=Sophos;i="6.04,222,1695711600"; d="scan'208";a="760721243"
-Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.74])
- by orsmga007.jf.intel.com with SMTP; 23 Nov 2023 09:35:04 -0800
-Received: by stinkbox (sSMTP sendmail emulation);
- Thu, 23 Nov 2023 19:35:03 +0200
-Date: Thu, 23 Nov 2023 19:35:03 +0200
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Maxime Ripard <mripard@kernel.org>
-Message-ID: <ZV-NR4TrIg_AUfun@intel.com>
-References: <20231013131402.24072-1-ville.syrjala@linux.intel.com>
- <ZVttnXE_P9xzXlZT@intel.com>
- <sdfpsfvpvllzzmgndrl7ln4x23mzv34ajy34g2spqhlo6i6dub@qvrdixxylmko>
+X-IronPort-AV: E=McAfee;i="6600,9927,10902"; a="771059324"
+X-IronPort-AV: E=Sophos;i="6.04,222,1695711600"; d="scan'208";a="771059324"
+Received: from mgolanimitul-x299-ud4-pro.iind.intel.com ([10.190.239.114])
+ by fmsmga007.fm.intel.com with ESMTP; 23 Nov 2023 11:05:21 -0800
+From: Mitul Golani <mitulkumar.ajitkumar.golani@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Fri, 24 Nov 2023 00:30:23 +0530
+Message-Id: <20231123190024.34455-1-mitulkumar.ajitkumar.golani@intel.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <sdfpsfvpvllzzmgndrl7ln4x23mzv34ajy34g2spqhlo6i6dub@qvrdixxylmko>
-X-Patchwork-Hint: comment
-Subject: Re: [Intel-gfx] [PATCH 0/4] drm/i915: Fix LUT rounding
+Subject: [Intel-gfx] [RFC 0/1] Update vtotal based on closest possible panel
+ timings
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -62,31 +55,24 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org, Thomas Zimmermann <tzimmermann@suse.de>,
- dri-devel@lists.freedesktop.org
+Cc: ville.syrjala@intel.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, Nov 21, 2023 at 11:51:10AM +0100, Maxime Ripard wrote:
-> On Mon, Nov 20, 2023 at 04:30:53PM +0200, Ville Syrjälä wrote:
-> > On Fri, Oct 13, 2023 at 04:13:58PM +0300, Ville Syrjala wrote:
-> > > From: Ville Syrjälä <ville.syrjala@linux.intel.com>
-> > > 
-> > > The current LUT rounding is generating weird results. Adjust
-> > > it to follow the OpenGL int<->float conversion rules.
-> > > 
-> > > Ville Syrjälä (4):
-> > >   drm: Fix color LUT rounding
-> >     ^
-> > I'd like to merge this via drm-intel-next as needs to match
-> > the rounding done in the readout path in i915.
-> > 
-> > Maarten,Maxime,Thomas can I get an ack for that?
-> 
-> Acked-by: Maxime Ripard <mripard@kernel.org>
+For edp VRR supported panel, vtotal should be updated
+based on closest available panel timings and adjusted_mode
+panel configuration, instead of rounding up to nearest possible
+integer.  This is to facilitate user about the refreh rate
+they're going to get when it is slightly off from list of available modes.
 
-Thanks. Series pushed to drm-intel-next.
+Mitul Golani (1):
+  drm/i915/display: Update vtotal based on closest possible panel
+    timings
+
+ drivers/gpu/drm/i915/display/intel_panel.c | 53 ++++++++++++++++++----
+ drivers/gpu/drm/i915/display/intel_vrr.h   |  2 +
+ 2 files changed, 45 insertions(+), 10 deletions(-)
 
 -- 
-Ville Syrjälä
-Intel
+2.25.1
+
