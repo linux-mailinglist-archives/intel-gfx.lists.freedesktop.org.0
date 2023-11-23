@@ -2,53 +2,49 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 049927F5D89
-	for <lists+intel-gfx@lfdr.de>; Thu, 23 Nov 2023 12:14:35 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id AA3137F5EF4
+	for <lists+intel-gfx@lfdr.de>; Thu, 23 Nov 2023 13:22:42 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6746310E71B;
-	Thu, 23 Nov 2023 11:14:32 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id EAF1B10E722;
+	Thu, 23 Nov 2023 12:22:34 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7365E10E71A;
- Thu, 23 Nov 2023 11:14:30 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 901DF10E071;
+ Thu, 23 Nov 2023 12:22:32 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1700738071; x=1732274071;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:in-reply-to;
- bh=f96XyUr097Mm9GcRMiQP6oB3PyFc743sh+fNU1O5iBY=;
- b=MvnfpedNTTajIIUOba1HXjI9Mc+LO8+s+icRNO6cIUdqVQ9vhGn7tPwu
- PsAytDm0P3NWaGr60mc7nWkbzJHjcMiqfjq6fF6qgsYm0D6wAjeOB4OR7
- doRHeJEt/xv8nywStWhpHyzkkpDP3UwVUpQ+QdKfqZYeGBsxuOR+0SImp
- /9TvLqfbWkIMxwHRFQqtl1BV6mm3rQXrA5/e5j+VT/qHXMEH4ZF/T2U0A
- tfFF8a/z7QLb+T68KWLtr5xguIDHkAvjYs6YJ1/fL7dGKC1lZbFZKx69S
- gGYrNdC8eZr/EZJxitLKRRwPxjFSajk3aRUq5Yh9EoBFCoevMN/4CE/rM Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10902"; a="5439205"
-X-IronPort-AV: E=Sophos;i="6.04,221,1695711600"; 
-   d="scan'208";a="5439205"
-Received: from orsmga004.jf.intel.com ([10.7.209.38])
- by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Nov 2023 03:14:30 -0800
+ t=1700742152; x=1732278152;
+ h=message-id:date:mime-version:from:to:cc:subject:
+ content-transfer-encoding;
+ bh=fnIvowgESj/1IKFwSce/blavN94I9Hoi7hYWboZGMdU=;
+ b=EkZDpNT6m5vdHGRFu6ZRtHc8WwAsBovdYEpxZtpTsImQPFkY/2FskTOx
+ 3w39jTs4byjp5+XRQbvnlOB0RBkX0LXhHlGapcI5XTSXrwp1doKwqqWrd
+ mia+z6u9F9T4eGrtP17qqSnFB/1Ewi4glYiIQMEC1bjMzHFdgz5G7xUWf
+ SaM/lacSj0bEycat3jBiGppLd1gGmRDhfPpbYPvh2gPFOLZCbFFhc8JA7
+ V8rqvgd6fxOdI3qP4JXcOy5eqaqYx0MsWpLM7hdGvvi0IfF+ZBJL6jLlc
+ J9G1PN1aNrX2h2K5FAxhwAZYngq2hdeiRzz7HZcuv4Yjf0cT8Ql+UqDmY Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10902"; a="478456784"
+X-IronPort-AV: E=Sophos;i="6.04,221,1695711600"; d="scan'208";a="478456784"
+Received: from fmviesa001.fm.intel.com ([10.60.135.141])
+ by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 23 Nov 2023 04:22:31 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10902"; a="890762366"
-X-IronPort-AV: E=Sophos;i="6.04,221,1695711600"; d="scan'208";a="890762366"
-Received: from amongesa-mobl.ger.corp.intel.com (HELO intel.com)
- ([10.252.57.132])
- by orsmga004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Nov 2023 03:14:24 -0800
-Date: Thu, 23 Nov 2023 12:14:21 +0100
-From: Andi Shyti <andi.shyti@linux.intel.com>
-To: Heiner Kallweit <hkallweit1@gmail.com>
-Message-ID: <ZV80DQqQthCLMX2P@ashyti-mobl2.lan>
-References: <20231123094040.592-1-hkallweit1@gmail.com>
- <20231123094040.592-16-hkallweit1@gmail.com>
+X-IronPort-AV: E=Sophos;i="6.04,221,1695711600"; d="scan'208";a="15646159"
+Received: from dtanasex-mobl.ger.corp.intel.com (HELO [10.252.40.72])
+ ([10.252.40.72])
+ by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 23 Nov 2023 04:22:28 -0800
+Message-ID: <12322257-2e0c-43d3-8241-876aafc10e4a@linux.intel.com>
+Date: Thu, 23 Nov 2023 13:22:24 +0100
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20231123094040.592-16-hkallweit1@gmail.com>
-Subject: Re: [Intel-gfx] [PATCH v5 15/20] drivers/gpu/drm/i915/display:
- remove I2C_CLASS_DDC support
+User-Agent: Mozilla Thunderbird
+From: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+To: Daniel Vetter <daniel.vetter@ffwll.ch>, Dave Airlie <airlied@gmail.com>
+Content-Language: en-US
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+Subject: [Intel-gfx] [PULL] drm-misc-fixes
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,29 +57,80 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Daniel Vetter <daniel@ffwll.ch>, Jani Nikula <jani.nikula@intel.com>,
- intel-gfx@lists.freedesktop.org, linux-kernel@vger.kernel.org,
- Wolfram Sang <wsa@kernel.org>, dri-devel@lists.freedesktop.org,
- Thomas Zimmermann <tzimmermann@suse.de>, Rodrigo Vivi <rodrigo.vivi@intel.com>,
- David Airlie <airlied@gmail.com>, linux-i2c@vger.kernel.org
+Cc: dim-tools@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
+ Maxime Ripard <mripard@kernel.org>, dri-devel@lists.freedesktop.org,
+ Thomas Zimmermann <tzimmermann@suse.de>, Rodrigo Vivi <rodrigo.vivi@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi Heiner,
+Hi Dave, Daniel,
 
-On Thu, Nov 23, 2023 at 10:40:35AM +0100, Heiner Kallweit wrote:
-> After removal of the legacy EEPROM driver and I2C_CLASS_DDC support in
-> olpc_dcon there's no i2c client driver left supporting I2C_CLASS_DDC.
-> Class-based device auto-detection is a legacy mechanism and shouldn't
-> be used in new code. So we can remove this class completely now.
-> 
-> Preferably this series should be applied via the i2c tree.
-> 
-> Acked-by: Jani Nikula <jani.nikula@intel.com>
-> Acked-by: Thomas Zimmermann <tzimmermann@suse.de>
-> Signed-off-by: Heiner Kallweit <hkallweit1@gmail.com>
+Lots of small fixes for various drivers.
 
-Reviewed-by: Andi Shyti <andi.shyti@linux.intel.com>
+Cheers,
+~Maarten
 
-Thanks,
-Andi
+drm-misc-fixes-2023-11-23:
+Fixes for v6.7-rc3:
+- Panel fixes for innolux and auo,b101uan08.3 panel.
+- Fix ivpu MMIO reset.
+- AST fix on connetor disconnection.
+- nouveau gsp fix.
+- rockchip color fix.
+- Fix Himax83102-j02 timings.
+The following changes since commit ae1aadb1eb8d3cbc52e42bee71d67bd4a71f9f07:
+
+   nouveau: don't fail driver load if no display hw present. (2023-11-15 
+18:23:31 +0100)
+
+are available in the Git repository at:
+
+   git://anongit.freedesktop.org/drm/drm-misc tags/drm-misc-fixes-2023-11-23
+
+for you to fetch changes up to ab93edb2f94c3c0d5965be3815782472adbe3f52:
+
+   nouveau/gsp: allocate enough space for all channel ids. (2023-11-21 
+22:28:01 +0100)
+
+----------------------------------------------------------------
+Fixes for v6.7-rc3:
+- Panel fixes for innolux and auo,b101uan08.3 panel.
+- Fix ivpu MMIO reset.
+- AST fix on connetor disconnection.
+- nouveau gsp fix.
+- rockchip color fix.
+- Fix Himax83102-j02 timings.
+
+----------------------------------------------------------------
+Cong Yang (1):
+       drm/panel: boe-tv101wum-nl6: Fine tune Himax83102-j02 panel HFP 
+and HBP
+
+Dave Airlie (1):
+       nouveau/gsp: allocate enough space for all channel ids.
+
+Jacek Lawrynowicz (1):
+       accel/ivpu/37xx: Fix hangs related to MMIO reset
+
+Jonas Karlman (1):
+       drm/rockchip: vop: Fix color for RGB888/BGR888 format on VOP full
+
+Marek Vasut (2):
+       drm/panel: simple: Fix Innolux G101ICE-L01 bus flags
+       drm/panel: simple: Fix Innolux G101ICE-L01 timings
+
+Thomas Zimmermann (1):
+       drm/ast: Disconnect BMC if physical connector is connected
+
+Xuxin Xiong (1):
+       drm/panel: auo,b101uan08.3: Fine tune the panel power sequence
+
+  drivers/accel/ivpu/ivpu_hw_37xx.c               | 46 +++++++++---------
+  drivers/gpu/drm/ast/ast_drv.h                   | 13 +++++-
+  drivers/gpu/drm/ast/ast_mode.c                  | 62 
+++++++++++++++++++++++---
+  drivers/gpu/drm/nouveau/nvkm/engine/fifo/r535.c |  2 +-
+  drivers/gpu/drm/panel/panel-boe-tv101wum-nl6.c  |  9 ++--
+  drivers/gpu/drm/panel/panel-simple.c            | 13 +++---
+  drivers/gpu/drm/rockchip/rockchip_drm_vop.c     | 14 ++++--
+  7 files changed, 113 insertions(+), 46 deletions(-)
