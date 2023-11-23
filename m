@@ -2,68 +2,54 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id A4C017FA2F2
-	for <lists+intel-gfx@lfdr.de>; Mon, 27 Nov 2023 15:35:37 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6C2087FA2F9
+	for <lists+intel-gfx@lfdr.de>; Mon, 27 Nov 2023 15:35:47 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A315C10E2DA;
-	Mon, 27 Nov 2023 14:35:31 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CE4B010E2BF;
+	Mon, 27 Nov 2023 14:35:45 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-wr1-x42e.google.com (mail-wr1-x42e.google.com
- [IPv6:2a00:1450:4864:20::42e])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 957E410E140
- for <intel-gfx@lists.freedesktop.org>; Mon, 20 Nov 2023 07:41:47 +0000 (UTC)
-Received: by mail-wr1-x42e.google.com with SMTP id
- ffacd0b85a97d-332c46d5988so555612f8f.1
- for <intel-gfx@lists.freedesktop.org>; Sun, 19 Nov 2023 23:41:47 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1700466106; x=1701070906; darn=lists.freedesktop.org;
- h=in-reply-to:content-transfer-encoding:content-disposition
- :mime-version:references:message-id:subject:cc:to:from:date:from:to
- :cc:subject:date:message-id:reply-to;
- bh=UcnRCn9RBtyZwzYZjL7Mal3df0TOYaoALw3ajoI8ruo=;
- b=LFXow9VCsmp2GoWni2XeKg/V5nwkTeYkPZk1qJYuqMnSKDsDlVfG/5KzTo7bU/PvJh
- pSLvHgSjVqWff6sSnq6pUZLtX0rFZUDfUI1EeCxN7gt5OpBW/umNQogwM8zyv+8gSn9S
- nU3IHcPK0ONPLavYO1Q6uxebxjZctE5M2eN5TGH92bwu6hNjr2v7jLsoxdz93TASc36I
- fQ10l2s1wLSojvnbidRn6tb4x8byJ40dP9yMv6OF922ZbO89T1gU1MnckXIDF79u69ds
- EkIzKcY8rMWWRrXQhbRqgZxj+7GnXYQpVDPbB2ZOOli45ybKh8uzylZPSSVdn0q26Z71
- /xIQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1700466106; x=1701070906;
- h=in-reply-to:content-transfer-encoding:content-disposition
- :mime-version:references:message-id:subject:cc:to:from:date
- :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
- bh=UcnRCn9RBtyZwzYZjL7Mal3df0TOYaoALw3ajoI8ruo=;
- b=Pn85fBLwTcmJPk/4TPWKvMl2bDFv+kK79IIXatMCg17/+qYu0KcQhd9ppv05UoIx+Z
- Gf9xcjWcfYCVo+W0c5TQ0mRD2Yr/fFhuopn6IQp6bFAJwzKoaU2Yhf9e/fGqa61HkzWF
- vSFgnZVGPHmGNcxIovbHCYlJ4WFQ/Z6Vm36Ea0ocWVFnFHk/6tfSkKvh4aS1OHxfyXPQ
- ROuJEU3u+xKSw7kht1XR5HIDcyVBUtgjadmlo5qzaE9PjaQfXxfpgKNlzy/O8ErKSN6z
- F93U8l2p5/Wf7c8h4LegQhdklb9TRiwEPko2spB6mrJh8KUVoY+iSrj+Aq0sL7xWKwXO
- eAzg==
-X-Gm-Message-State: AOJu0Yx74B4OBbJjFPOG40YsdHJyRvKvDpTGuqisWg/G3IImSp/OrTKw
- mcwmjd+FQtxgSYTi1HWie2Y=
-X-Google-Smtp-Source: AGHT+IGLxhKtp3IKpPAJiweTS4UYRDByB4GjdiKC0IaFf2a6rUb8Hh+cAbWkEb3mZscgg4QSavm/EA==
-X-Received: by 2002:a5d:48c9:0:b0:331:6ad3:853 with SMTP id
- p9-20020a5d48c9000000b003316ad30853mr3683767wrs.41.1700466105720; 
- Sun, 19 Nov 2023 23:41:45 -0800 (PST)
-Received: from f (cst-prg-3-109.cust.vodafone.cz. [46.135.3.109])
- by smtp.gmail.com with ESMTPSA id
- i13-20020a5d55cd000000b003313426f136sm10142299wrw.39.2023.11.19.23.41.43
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Sun, 19 Nov 2023 23:41:45 -0800 (PST)
-Date: Mon, 20 Nov 2023 08:41:06 +0100
-From: Mateusz Guzik <mjguzik@gmail.com>
-To: kernel test robot <oliver.sang@intel.com>
-Message-ID: <ZVsNklEgxi5GkIZ/@f>
-References: <202311201406.2022ca3f-oliver.sang@intel.com>
+Received: from mailgw.kylinos.cn (mailgw.kylinos.cn [124.126.103.232])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1A74410E70F;
+ Thu, 23 Nov 2023 10:04:43 +0000 (UTC)
+X-UUID: 45b75c6c6c9349d5831b991b6399ad29-20231123
+X-CID-O-RULE: Release_Ham
+X-CID-RULE: Release_Ham
+X-CID-O-INFO: VERSION:1.1.32, REQID:be4ee2f1-65f7-4a0c-ab90-1b02997ae812, IP:5,
+ U
+ RL:0,TC:0,Content:0,EDM:0,RT:0,SF:-15,FILE:0,BULK:0,RULE:Release_Ham,ACTIO
+ N:release,TS:-10
+X-CID-INFO: VERSION:1.1.32, REQID:be4ee2f1-65f7-4a0c-ab90-1b02997ae812, IP:5,
+ URL
+ :0,TC:0,Content:0,EDM:0,RT:0,SF:-15,FILE:0,BULK:0,RULE:Release_Ham,ACTION:
+ release,TS:-10
+X-CID-META: VersionHash:5f78ec9, CLOUDID:d0a0ba95-10ce-4e4b-85c2-c9b5229ff92b,
+ B
+ ulkID:231123180438RZ9HIN08,BulkQuantity:0,Recheck:0,SF:17|19|44|66|38|24|1
+ 02,TC:nil,Content:0,EDM:-3,IP:-2,URL:11|1,File:nil,Bulk:nil,QS:nil,BEC:nil
+ ,COL:0,OSI:0,OSA:0,AV:0,LES:1,SPR:NO,DKR:0,DKP:0,BRR:0,BRE:0
+X-CID-BVR: 0
+X-CID-BAS: 0,_,0,_
+X-CID-FACTOR: TF_CID_SPAM_FSI, TF_CID_SPAM_ULN, TF_CID_SPAM_SNR,
+ TF_CID_SPAM_FAS, TF_CID_SPAM_FSD
+X-UUID: 45b75c6c6c9349d5831b991b6399ad29-20231123
+X-User: chentao@kylinos.cn
+Received: from vt.. [(116.128.244.169)] by mailgw
+ (envelope-from <chentao@kylinos.cn>)
+ (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
+ with ESMTP id 1212061847; Thu, 23 Nov 2023 18:04:36 +0800
+From: Kunwu Chan <chentao@kylinos.cn>
+To: jani.nikula@linux.intel.com, joonas.lahtinen@linux.intel.com,
+ rodrigo.vivi@intel.com, tvrtko.ursulin@linux.intel.com, airlied@gmail.com,
+ daniel@ffwll.ch
+Date: Thu, 23 Nov 2023 18:04:31 +0800
+Message-Id: <20231123100431.34453-1-chentao@kylinos.cn>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <202311201406.2022ca3f-oliver.sang@intel.com>
 X-Mailman-Approved-At: Mon, 27 Nov 2023 14:35:29 +0000
-Subject: Re: [Intel-gfx] [linus:master] [file] 0ede61d858:
- will-it-scale.per_thread_ops -2.9% regression
+Subject: [Intel-gfx] [PATCH] drm/i915/display: Fix null pointer dereference
+ in intel_dp_aux_wait_done and intel_dp_aux_xfer
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -76,68 +62,79 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Christian Brauner <brauner@kernel.org>, Jann Horn <jannh@google.com>,
- linuxppc-dev@lists.ozlabs.org, intel-gfx@lists.freedesktop.org,
- linux-doc@vger.kernel.org, linux-kernel@vger.kernel.org, fengwei.yin@intel.com,
- gfs2@lists.linux.dev, linux-fsdevel@vger.kernel.org, feng.tang@intel.com,
- ying.huang@intel.com, oe-lkp@lists.linux.dev, bpf@vger.kernel.org,
- Linus Torvalds <torvalds@linux-foundation.org>
+Cc: Kunwu Chan <chentao@kylinos.cn>, intel-gfx@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
+ kunwu.chan@hotmail.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, Nov 20, 2023 at 03:11:31PM +0800, kernel test robot wrote:
-> 
-> 
-> Hello,
-> 
-> kernel test robot noticed a -2.9% regression of will-it-scale.per_thread_ops on:
-> 
-> 
-> commit: 0ede61d8589cc2d93aa78230d74ac58b5b8d0244 ("file: convert to SLAB_TYPESAFE_BY_RCU")
-> https://git.kernel.org/cgit/linux/kernel/git/torvalds/linux.git master
-> 
-> 93faf426e3cc000c 0ede61d8589cc2d93aa78230d74 
-> ---------------- --------------------------- 
->          %stddev     %change         %stddev
->              \          |                \  
-[snip]
->      30.90 ±  4%     -20.6       10.35 ±  2%  perf-profile.self.cycles-pp.__fget_light
->       0.00           +26.5       26.48        perf-profile.self.cycles-pp.__get_file_rcu
-[snip]
+kasprintf() returns a pointer to dynamically allocated memory
+which can be NULL upon failure. When "intel_dp->aux.name" is NULL,
+ these error messages will trigger the null pointer dereference issue.
 
-So __fget_light now got a func call.
+Signed-off-by: Kunwu Chan <chentao@kylinos.cn>
+---
+ drivers/gpu/drm/i915/display/intel_dp_aux.c | 12 ++++++------
+ 1 file changed, 6 insertions(+), 6 deletions(-)
 
-I don't know if this is worth patching (and benchmarking after), but I
-if sorting this out is of interest, triviality below is probably the
-easiest way out:
-
-diff --git a/fs/file.c b/fs/file.c
-index 5fb0b146e79e..d8d3e18800c4 100644
---- a/fs/file.c
-+++ b/fs/file.c
-@@ -856,14 +856,14 @@ void do_close_on_exec(struct files_struct *files)
- 	spin_unlock(&files->file_lock);
+diff --git a/drivers/gpu/drm/i915/display/intel_dp_aux.c b/drivers/gpu/drm/i915/display/intel_dp_aux.c
+index 2e2af71bcd5a..398c9064eb09 100644
+--- a/drivers/gpu/drm/i915/display/intel_dp_aux.c
++++ b/drivers/gpu/drm/i915/display/intel_dp_aux.c
+@@ -67,7 +67,7 @@ intel_dp_aux_wait_done(struct intel_dp *intel_dp)
+ 	if (ret == -ETIMEDOUT)
+ 		drm_err(&i915->drm,
+ 			"%s: did not complete or timeout within %ums (status 0x%08x)\n",
+-			intel_dp->aux.name, timeout_ms, status);
++			intel_dp->aux.name ? intel_dp->aux.name : "", timeout_ms, status);
+ 
+ 	return status;
  }
+@@ -302,7 +302,7 @@ intel_dp_aux_xfer(struct intel_dp *intel_dp,
+ 		if (status != intel_dp->aux_busy_last_status) {
+ 			drm_WARN(&i915->drm, 1,
+ 				 "%s: not started (status 0x%08x)\n",
+-				 intel_dp->aux.name, status);
++				 intel_dp->aux.name ? intel_dp->aux.name : "", status);
+ 			intel_dp->aux_busy_last_status = status;
+ 		}
  
--static struct file *__get_file_rcu(struct file __rcu **f)
-+static __always_inline struct file *__get_file_rcu(struct file __rcu **f)
- {
- 	struct file __rcu *file;
- 	struct file __rcu *file_reloaded;
- 	struct file __rcu *file_reloaded_cmp;
+@@ -362,7 +362,7 @@ intel_dp_aux_xfer(struct intel_dp *intel_dp,
  
- 	file = rcu_dereference_raw(*f);
--	if (!file)
-+	if (unlikely(!file))
- 		return NULL;
- 
- 	if (unlikely(!atomic_long_inc_not_zero(&file->f_count)))
-@@ -891,7 +891,7 @@ static struct file *__get_file_rcu(struct file __rcu **f)
- 	 * If the pointers don't match the file has been reallocated by
- 	 * SLAB_TYPESAFE_BY_RCU.
+ 	if ((status & DP_AUX_CH_CTL_DONE) == 0) {
+ 		drm_err(&i915->drm, "%s: not done (status 0x%08x)\n",
+-			intel_dp->aux.name, status);
++			intel_dp->aux.name ? intel_dp->aux.name : "", status);
+ 		ret = -EBUSY;
+ 		goto out;
+ 	}
+@@ -374,7 +374,7 @@ intel_dp_aux_xfer(struct intel_dp *intel_dp,
  	 */
--	if (file == file_reloaded_cmp)
-+	if (likely(file == file_reloaded_cmp))
- 		return file_reloaded;
- 
- 	fput(file);
+ 	if (status & DP_AUX_CH_CTL_RECEIVE_ERROR) {
+ 		drm_err(&i915->drm, "%s: receive error (status 0x%08x)\n",
+-			intel_dp->aux.name, status);
++			intel_dp->aux.name ? intel_dp->aux.name : "", status);
+ 		ret = -EIO;
+ 		goto out;
+ 	}
+@@ -385,7 +385,7 @@ intel_dp_aux_xfer(struct intel_dp *intel_dp,
+ 	 */
+ 	if (status & DP_AUX_CH_CTL_TIME_OUT_ERROR) {
+ 		drm_dbg_kms(&i915->drm, "%s: timeout (status 0x%08x)\n",
+-			    intel_dp->aux.name, status);
++			    intel_dp->aux.name ? intel_dp->aux.name : "", status);
+ 		ret = -ETIMEDOUT;
+ 		goto out;
+ 	}
+@@ -401,7 +401,7 @@ intel_dp_aux_xfer(struct intel_dp *intel_dp,
+ 	if (recv_bytes == 0 || recv_bytes > 20) {
+ 		drm_dbg_kms(&i915->drm,
+ 			    "%s: Forbidden recv_bytes = %d on aux transaction\n",
+-			    intel_dp->aux.name, recv_bytes);
++			    intel_dp->aux.name ? intel_dp->aux.name : "", recv_bytes);
+ 		ret = -EBUSY;
+ 		goto out;
+ 	}
+-- 
+2.34.1
+
