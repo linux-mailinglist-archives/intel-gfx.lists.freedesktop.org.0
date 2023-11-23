@@ -1,54 +1,156 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 03B417F597C
-	for <lists+intel-gfx@lfdr.de>; Thu, 23 Nov 2023 08:41:47 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id E3C987F59A1
+	for <lists+intel-gfx@lfdr.de>; Thu, 23 Nov 2023 08:55:29 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E09D810E6DA;
-	Thu, 23 Nov 2023 07:41:42 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A845810E6D8;
+	Thu, 23 Nov 2023 07:55:27 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.120])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8FDDE10E6D8
- for <intel-gfx@lists.freedesktop.org>; Thu, 23 Nov 2023 07:41:40 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9E0E610E6D8
+ for <intel-gfx@lists.freedesktop.org>; Thu, 23 Nov 2023 07:55:22 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1700725300; x=1732261300;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=oWK3kS/pRUnpzGek4oj5qLKT2vASyiIyJudXazDU5YU=;
- b=jouqHf5NB3/d19pgkVeH3vcXJ/nCop6bnrCZHBWkxfZu9r8ckejM6wC4
- 5snHjsS08m+dLlooKjM+qHfA4jW7ZDYeabAzY5M55Z2aRTVQz8irv7/tZ
- IQex6m/eq/uLXYmzFIunvh6mWNmh/hjUKUxMdRgLcHP8OPQ3n8jqc9dxW
- Q2OPNbH3A6f7pKVByJZ2LZZ9ioKlA8NXGK8fKKI54VR7mqMrD+HsZdPBb
- 79mKKENGLRnx7HX+W6UkO4udRpfBO+vLXGHGdDyICVUsgVV7IuFLLniaI
- ea5XgLbKnUjus7r8MwwiLKyJt7h62rk+BZirt1mfUnkeqcCafcU6xdA5I Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10902"; a="391093312"
-X-IronPort-AV: E=Sophos;i="6.04,221,1695711600"; d="scan'208";a="391093312"
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
- by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Nov 2023 23:41:40 -0800
+ t=1700726122; x=1732262122;
+ h=from:to:subject:date:message-id:references:in-reply-to:
+ content-id:content-transfer-encoding:mime-version;
+ bh=1ozb9ymj5TALbl4EUs6/xeGOwp1rw9r/nDJF1BOQHOA=;
+ b=S4w/wgfKP5ge3KbQp9Cr3eslnivSPw4e7iw0RpFGmSBtTdenlQgNQai3
+ XqkDaw09ekDnCAe5osjLmUJ3+FDBqtcMwCDUySTTSpdACT8Fcq4r2DLD7
+ 9sx/xItB+6VrLQKhtMiDrIW2ktjHFUePoMjrFQYfEBPOO00FX+Bl2aMdp
+ azJpOJmdV+/qkRHnqiIzoLeEXWSXlW3PVvRJs91rGZ9J8XuEDVzTbDJPq
+ 3Z27/bwEqUZwo4SWQCSF3JtUjL3LTB3gN6pdECs5fVnbR2mCJY/UVxvrP
+ /I3QCumx0q7c3xj/IJqxSZFqIHevGGzE+EnEcJ04wNb1UscbUQTtw6OBY g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10902"; a="382617779"
+X-IronPort-AV: E=Sophos;i="6.04,221,1695711600"; d="scan'208";a="382617779"
+Received: from fmviesa001.fm.intel.com ([10.60.135.141])
+ by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 Nov 2023 23:55:01 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10902"; a="884903169"
-X-IronPort-AV: E=Sophos;i="6.04,221,1695711600"; d="scan'208";a="884903169"
-Received: from igorhaza-mobl1.ger.corp.intel.com (HELO
- jhogande-mobl1.intel.com) ([10.252.39.214])
- by fmsmga002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Nov 2023 23:41:38 -0800
-From: =?UTF-8?q?Jouni=20H=C3=B6gander?= <jouni.hogander@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Thu, 23 Nov 2023 09:41:20 +0200
-Message-Id: <20231123074120.1641630-5-jouni.hogander@intel.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20231123074120.1641630-1-jouni.hogander@intel.com>
-References: <20231123074120.1641630-1-jouni.hogander@intel.com>
+X-IronPort-AV: E=Sophos;i="6.04,221,1695711600"; d="scan'208";a="15573827"
+Received: from orsmsx603.amr.corp.intel.com ([10.22.229.16])
+ by fmviesa001.fm.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
+ 22 Nov 2023 23:55:01 -0800
+Received: from orsmsx612.amr.corp.intel.com (10.22.229.25) by
+ ORSMSX603.amr.corp.intel.com (10.22.229.16) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.34; Wed, 22 Nov 2023 23:55:00 -0800
+Received: from orsmsx610.amr.corp.intel.com (10.22.229.23) by
+ ORSMSX612.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.34; Wed, 22 Nov 2023 23:55:00 -0800
+Received: from ORSEDG601.ED.cps.intel.com (10.7.248.6) by
+ orsmsx610.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.34 via Frontend Transport; Wed, 22 Nov 2023 23:55:00 -0800
+Received: from NAM10-MW2-obe.outbound.protection.outlook.com (104.47.55.101)
+ by edgegateway.intel.com (134.134.137.102) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.1.2507.34; Wed, 22 Nov 2023 23:54:59 -0800
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=Nvy6HAKAJWbRq1dHvECseXV6lhXuQTtlJdopANWR2EHY5DS6Ys7whBIfBNCcR0jQI3SZnsKuYzn7UosawkRiSDladEMP/ziOdu4j4waZ3CYkoVIMxg0CInMdQ2Zp+OQ73Xa1R1J6h9HWT6t29iwruQ8YWPVCtLAYlsq1zcLaKYnwZczOnZ0WxZe+gYInPbKmJkRtxLh/rpSqcyVCrvvMqciNYL6YssE6qwubuElz0EherbROe/gsEv4j+DxTupL4v/L6fypLCa4LS+FRdF9krTJcLwY94Rjk0eT6E/agHTG+VqAmc0QQ5A63Z3ZbXeZHMzi3XuhMhY3no5Zp9FcOpQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=1ozb9ymj5TALbl4EUs6/xeGOwp1rw9r/nDJF1BOQHOA=;
+ b=ZCGfMH9BAx4jRJr6dAmKI8LY33jrMPA+0LOthwNuIhhgMj7Ke7+Z0jqXREdQ6Iz4r/RWUebcU4KvjqCfyd0CGWtWyYVW2iVcb7cMkEnBmQ80gx5WDhyIbR+My8ViEl8sT3HLV6+J8S3NtSA+vPbHT1KA4c1nTh8dcEj/5W5BKg0r/Cp8icsgklEypl7d2QKYuzGU4Fiz7xOXC6UnMqCCzr7vSpNyWZ/7ow95oFo0bqmrvjdNXxukX2LVzZd8duiq13JzeaNEUuWGveqoHoxiG+qLrx+p/QzazfkFEWTIWxfwE2I3+fiYkZsDXPuVZG1YDIqDV4Kcd2EzhO6g2iOAWA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Received: from DM4PR11MB6019.namprd11.prod.outlook.com (2603:10b6:8:60::5) by
+ PH8PR11MB6612.namprd11.prod.outlook.com (2603:10b6:510:1cf::14) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7002.27; Thu, 23 Nov
+ 2023 07:54:58 +0000
+Received: from DM4PR11MB6019.namprd11.prod.outlook.com
+ ([fe80::ea97:f0a2:fffc:b892]) by DM4PR11MB6019.namprd11.prod.outlook.com
+ ([fe80::ea97:f0a2:fffc:b892%3]) with mapi id 15.20.7025.019; Thu, 23 Nov 2023
+ 07:54:58 +0000
+From: "Hogander, Jouni" <jouni.hogander@intel.com>
+To: "Manna, Animesh" <animesh.manna@intel.com>,
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
+Thread-Topic: [PATCH] drm/i915/display: Do not check psr2 if psr/panel replay
+ is not supported
+Thread-Index: AQHaG7HvogqaG68Zy0Wj3nRkURC/MLCDc1oAgAQZ9oA=
+Date: Thu, 23 Nov 2023 07:54:58 +0000
+Message-ID: <d6d05673155f20922e4dc83fe0e7225cddf6d116.camel@intel.com>
+References: <20231120130214.3332726-1-jouni.hogander@intel.com>
+ <BL1PR11MB59797BE3D342A416C26363B3F9B4A@BL1PR11MB5979.namprd11.prod.outlook.com>
+In-Reply-To: <BL1PR11MB59797BE3D342A416C26363B3F9B4A@BL1PR11MB5979.namprd11.prod.outlook.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: DM4PR11MB6019:EE_|PH8PR11MB6612:EE_
+x-ms-office365-filtering-correlation-id: 527bdc59-7d2f-4f81-d67b-08dbebf97d1e
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: s8k/SBFYlbJYu3od9o7jEua5NWV7h9k2m5FD5e1UBwdi5qcId6NJKSaXoDYoHuAq8iX61aDW8N+cb+0hffdva544dwfum8zfh7UvBGdgXo80/DDZs+H2+K72sy+Gxofz4lAU1TYubrwpQjVRie1+p/sPj8nkFu5c6swtaaQ6ULYnzquKO1jqzWCskM8Qm+fbJ1/fnnNZRpNCrNs8X23Pi/AzqkVanTC5XMXUhUxYovaFtpTSv2wnf/fiQCSeS+YOgSwFIHNIcZyLKMTjuoJqXftAUAyDvIGNGQ7VwBY1cAyNRHdFOlvlUrMA8hkj6H7Z4XqJui4k40jXq7nXh/n1oK+jc/sb/kjcXVdFVdanXpjjF9KF9rVLF6zQKTc+ZQVyMQ2JPBo7RtceU+7YChAUSHsEyR3nyPGmrA/SIzfb2rVTVA5KacR1AFP/Ntor7C7NjSJ3+dqsxmsnA1E3sLQqSwqAjFtpSXjqQegg4aDAkfAY1L6zmqHvsekam8I5YTkKk5yCI3vSDAT2RYrhqR97mvxknWOIAZpRcQvYfyLGFnX9SMCFo0lXihmTvlYAz9Ut38qHEgiGbUjt5c6zi7acc882YRhpGeDy/nq2dxEy/xc=
+x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:DM4PR11MB6019.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230031)(136003)(396003)(39860400002)(376002)(346002)(366004)(230922051799003)(64100799003)(451199024)(186009)(1800799012)(83380400001)(26005)(66574015)(2616005)(53546011)(38100700002)(8936002)(8676002)(478600001)(41300700001)(4001150100001)(5660300002)(2906002)(316002)(71200400001)(66946007)(66446008)(110136005)(64756008)(66476007)(66556008)(91956017)(966005)(6486002)(76116006)(6506007)(122000001)(36756003)(38070700009)(82960400001)(6512007)(86362001);
+ DIR:OUT; SFP:1102; 
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?utf-8?B?Vlltc3V0WGU5ZFhDNXg4RElyVFcyY1dUQnVkY2ZiUldBUU9ETjhsWjJkM3dP?=
+ =?utf-8?B?dW5tZ0JmbEh2L25jdjJPU1BqVmZUQUZFV1Q4UXFFZVlFZ216bkl1eTkzTmlj?=
+ =?utf-8?B?NlViSEl5RFlKUytLMkI2M2NyMi9sVWFZOXU0Y0doTS9EbHhKSnFNT3dLd2Rr?=
+ =?utf-8?B?VldkbXdqYzlNZVRKbEdVeDFJeVJodG9jNDBlUFJyNzJVOHZVYlpMbnpLY1VT?=
+ =?utf-8?B?N0Z5RlRWNkprVTQzYk5PNVJOVmwvSTBFUGZHdXBWTS9udHlya0RBcE5EQVkz?=
+ =?utf-8?B?bXVURGoxWEhqcmsrWkhlNEF3c2JaUVhsU1czMyt5MVZRd085WmNrR3RrRDlv?=
+ =?utf-8?B?M1FLVUszZDF0RVQyck9LOTFhTVM4UDdWalM2TWVJc0pyZ1NOWmxmc24zdFRJ?=
+ =?utf-8?B?UTFERWZOemgyMndGdDlQSFl6OFNERzdJbFJ6U3VSS3ZueXRRQ1diQ2RpQWlX?=
+ =?utf-8?B?SkFUdnlPRElnWWVhcDhWbkNqVVkxRi9BNHB1RXBLZE5sZS95bnhJV2FxcWtp?=
+ =?utf-8?B?MGJWRTBqejZPdU0yaGRCWnY0MEl2b3ZjZU1ncTVVcGNOTjYyL2ROVDZJdkNC?=
+ =?utf-8?B?azhOVHM3NzBwTFhjNlJCNFFmM0lGL2YvdExjRVBlNktZenFTWjNEK29NaFN3?=
+ =?utf-8?B?NXgrSlR2alhoMkpFYUZEZnBMMGIxU05nODV2RTI4Q2YwR21RckZhUVBrQm1W?=
+ =?utf-8?B?L1lLNEpVVVdLd0VNeGc0NlNTR0RRejVOZzdIK1IrOVBTV05HdTIxbDl3ODJV?=
+ =?utf-8?B?UE8rTkg1R3ducjcxLzZaM3l6Tmxta3AxRFh1a2ZleEZDdWl1aU14OXBvakNi?=
+ =?utf-8?B?M3lIbUJRYTdicGwzVU9YQk1lVnpGUU01VlVXc00raDNSMi9kQmd0RStuaTY2?=
+ =?utf-8?B?UHBra3d5UEc2WDdPL0tQZ1lCNjJEcWJGU3JMYWc5dFNqK0ZFb1RqQ2ZIQSs2?=
+ =?utf-8?B?dS9nTTMzQzhMYmpzd0JhMG85RXBIdis5em4rVExjRjREcC9RSWpPRTNwVzVG?=
+ =?utf-8?B?eUdtZGJyVTFoOXR2OFZBb21Eb3FkY3liYUFCdHFEMHdZM2c2N1ZSWlA5emUr?=
+ =?utf-8?B?bWJ1aXowLyt4V1hLcWx5SVpTcFgrUStNUG9kZ1hURGtSUXpVMWp2VGlwbktP?=
+ =?utf-8?B?ZzJOcDNnNnNIaVNaZHBHc2ZheHl0M1NTQ3RoUWk5QVNMcjlFYnJUUUJRSWZp?=
+ =?utf-8?B?RW05MDJySEhaSldxbkFZZWxBdHlqbGo2NCtPbFZmMlVxbUc0WHVSL2ppc0xE?=
+ =?utf-8?B?QjVJODAwcnJXczY4QmZ5Skxjc1J5OS8rYUpyWG1nZjk5Y3AzNUhiQ05hNFpM?=
+ =?utf-8?B?YndMYnQ0UFo4bVdoZFl1a245ZVFJODMxbTBOdXlmajYzSjZwYWp1bnJGUkRD?=
+ =?utf-8?B?S1J3emVKcEVpeVRjWld0dUZQREx0c3VwVkRNdHdvaUVnZWJuN0lDS0JIU1lJ?=
+ =?utf-8?B?SkxmTkhUYWtxcDE2bkxDOUhHL1VPQUNMelEycHZPV0ZYSU0xK1RJYW02cDJD?=
+ =?utf-8?B?QWNNQ2VlWVFTMC9zMnRQL2RhVlVCZTV1akFINGtVMTZZbjlLaGdQOUowN0NF?=
+ =?utf-8?B?YWJIYmxMc1ptd3R2eUZzOU9NN05VOFk3NStVdEpVNHJTayt4Rk9XQjBGb0Nq?=
+ =?utf-8?B?R2FjR2tvMXM1TFRkL0kxejVycjVjcHRjMDBnRnRMQXZrSENVTGlpVUtxWmFY?=
+ =?utf-8?B?RTRBWUNTQzZHYVVGVWwzQmZ4aHJubUZ0MWVXM2JEdG9oKzB2VzZ0SkU5ZDFF?=
+ =?utf-8?B?cFg2NU9WQ2czMGRXZWtETnpubVJrMjAxSWpwd2xGN2VMQ0wvZ0hpVDV5MVpK?=
+ =?utf-8?B?ZjN3dnZ3dlZRUnltNm5iNVBzT1puUFpkMFpKS2V0K2tpQm1qUEI2Y2hrdWw5?=
+ =?utf-8?B?MHEzVklyVjRvQmt2bXhaM3FtQzU0VUJPMjNrNVB6Qm1qa2NaOGNSMmU3WFJx?=
+ =?utf-8?B?WnpZb2tvSjJ2aUN1VVZVWGNwVUNjSloxWm9BZEg0T08rQ1dGWEV0RkN3OTZC?=
+ =?utf-8?B?dUFCNXpZbVFySExESUhkUEkveXhDK2wydXRZdSsrdWdsRC80UjRyaklpUnFJ?=
+ =?utf-8?B?Z1pDcmxuRWkwWUV5clhYMEF6QllITmo1ektVYWJFSUJQNy9CSVVZK1FVci9O?=
+ =?utf-8?B?eEFERElBZkMrZmVrczZpQzZqNzFOY3FyS2RzM21nc2U4ZlpUenVRZUhZQkZv?=
+ =?utf-8?B?Y0E9PQ==?=
+Content-Type: text/plain; charset="utf-8"
+Content-ID: <A085CF37220E944B8D9762C44212F3AB@namprd11.prod.outlook.com>
+Content-Transfer-Encoding: base64
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH v6 4/4] drm/i915/display: Split i915 specific
- code away from intel_fb.c
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: DM4PR11MB6019.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 527bdc59-7d2f-4f81-d67b-08dbebf97d1e
+X-MS-Exchange-CrossTenant-originalarrivaltime: 23 Nov 2023 07:54:58.1551 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: kdzINmngIpmMPz+h0gwhQAU4LQPqHwPALPoP724qqVJqMNCHIGVh9DsA3Kvl9PPge4GWiDwTo1w/HBIAWBSAXzOKprAGuQuge/iFF/Hz1iQ=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH8PR11MB6612
+X-OriginatorOrg: intel.com
+Subject: Re: [Intel-gfx] [PATCH] drm/i915/display: Do not check psr2 if
+ psr/panel replay is not supported
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,295 +166,38 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-We are preparing for Xe driver. Backing object implementation is differing
-between i915 and Xe. Split i915 specific code into separate source file
-built only for i915.
-
-v6: Add missing intel_fb_bo.[ch]
-v5:
-  - Keep drm_any_plane_has_format check in intel_fb.c
-  - Use mode_cmd instead of user_mode_cmd for intel_fb_bo_lookup_valid_bo
-v4: Move drm_any_plane_has_format check into intel_fb_bo.c
-v3: Fix failure handling in intel_framebuffer_init
-v2: Couple of fixes to error value handling
-
-Signed-off-by: Jouni Högander <jouni.hogander@intel.com>
----
- drivers/gpu/drm/i915/Makefile              |  1 +
- drivers/gpu/drm/i915/display/intel_fb.c    | 69 ++--------------
- drivers/gpu/drm/i915/display/intel_fb_bo.c | 93 ++++++++++++++++++++++
- drivers/gpu/drm/i915/display/intel_fb_bo.h | 24 ++++++
- 4 files changed, 126 insertions(+), 61 deletions(-)
- create mode 100644 drivers/gpu/drm/i915/display/intel_fb_bo.c
- create mode 100644 drivers/gpu/drm/i915/display/intel_fb_bo.h
-
-diff --git a/drivers/gpu/drm/i915/Makefile b/drivers/gpu/drm/i915/Makefile
-index 7e5d6a39d450..c14ba1212b84 100644
---- a/drivers/gpu/drm/i915/Makefile
-+++ b/drivers/gpu/drm/i915/Makefile
-@@ -279,6 +279,7 @@ i915-y += \
- 	display/intel_dsb.o \
- 	display/intel_dsb_buffer.o \
- 	display/intel_fb.o \
-+	display/intel_fb_bo.o \
- 	display/intel_fb_pin.o \
- 	display/intel_fbc.o \
- 	display/intel_fdi.o \
-diff --git a/drivers/gpu/drm/i915/display/intel_fb.c b/drivers/gpu/drm/i915/display/intel_fb.c
-index f63f56b24b11..d5de213be2c0 100644
---- a/drivers/gpu/drm/i915/display/intel_fb.c
-+++ b/drivers/gpu/drm/i915/display/intel_fb.c
-@@ -4,7 +4,6 @@
-  */
- 
- #include <drm/drm_blend.h>
--#include <drm/drm_framebuffer.h>
- #include <drm/drm_modeset_helper.h>
- 
- #include <linux/dma-fence.h>
-@@ -15,6 +14,7 @@
- #include "intel_display_types.h"
- #include "intel_dpt.h"
- #include "intel_fb.h"
-+#include "intel_fb_bo.h"
- #include "intel_frontbuffer.h"
- 
- #define check_array_bounds(i915, a, i) drm_WARN_ON(&(i915)->drm, (i) >= ARRAY_SIZE(a))
-@@ -1985,7 +1985,6 @@ int intel_framebuffer_init(struct intel_framebuffer *intel_fb,
- 	struct drm_i915_private *dev_priv = to_i915(intel_bo_to_drm_bo(obj)->dev);
- 	struct drm_framebuffer *fb = &intel_fb->base;
- 	u32 max_stride;
--	unsigned int tiling, stride;
- 	int ret = -EINVAL;
- 	int i;
- 
-@@ -1993,32 +1992,11 @@ int intel_framebuffer_init(struct intel_framebuffer *intel_fb,
- 	if (!intel_fb->frontbuffer)
- 		return -ENOMEM;
- 
--	i915_gem_object_lock(obj, NULL);
--	tiling = i915_gem_object_get_tiling(obj);
--	stride = i915_gem_object_get_stride(obj);
--	i915_gem_object_unlock(obj);
--
--	if (mode_cmd->flags & DRM_MODE_FB_MODIFIERS) {
--		/*
--		 * If there's a fence, enforce that
--		 * the fb modifier and tiling mode match.
--		 */
--		if (tiling != I915_TILING_NONE &&
--		    tiling != intel_fb_modifier_to_tiling(mode_cmd->modifier[0])) {
--			drm_dbg_kms(&dev_priv->drm,
--				    "tiling_mode doesn't match fb modifier\n");
--			goto err;
--		}
--	} else {
--		if (tiling == I915_TILING_X) {
--			mode_cmd->modifier[0] = I915_FORMAT_MOD_X_TILED;
--		} else if (tiling == I915_TILING_Y) {
--			drm_dbg_kms(&dev_priv->drm,
--				    "No Y tiling for legacy addfb\n");
--			goto err;
--		}
--	}
-+	ret = intel_fb_bo_framebuffer_init(intel_fb, obj, mode_cmd);
-+	if (ret)
-+		goto err;
- 
-+	ret = -EINVAL;
- 	if (!drm_any_plane_has_format(&dev_priv->drm,
- 				      mode_cmd->pixel_format,
- 				      mode_cmd->modifier[0])) {
-@@ -2028,17 +2006,6 @@ int intel_framebuffer_init(struct intel_framebuffer *intel_fb,
- 		goto err;
- 	}
- 
--	/*
--	 * gen2/3 display engine uses the fence if present,
--	 * so the tiling mode must match the fb modifier exactly.
--	 */
--	if (DISPLAY_VER(dev_priv) < 4 &&
--	    tiling != intel_fb_modifier_to_tiling(mode_cmd->modifier[0])) {
--		drm_dbg_kms(&dev_priv->drm,
--			    "tiling_mode must match fb modifier exactly on gen2/3\n");
--		goto err;
--	}
--
- 	max_stride = intel_fb_max_stride(dev_priv, mode_cmd->pixel_format,
- 					 mode_cmd->modifier[0]);
- 	if (mode_cmd->pitches[0] > max_stride) {
-@@ -2050,17 +2017,6 @@ int intel_framebuffer_init(struct intel_framebuffer *intel_fb,
- 		goto err;
- 	}
- 
--	/*
--	 * If there's a fence, enforce that
--	 * the fb pitch and fence stride match.
--	 */
--	if (tiling != I915_TILING_NONE && mode_cmd->pitches[0] != stride) {
--		drm_dbg_kms(&dev_priv->drm,
--			    "pitch (%d) must match tiling stride (%d)\n",
--			    mode_cmd->pitches[0], stride);
--		goto err;
--	}
--
- 	/* FIXME need to adjust LINOFF/TILEOFF accordingly. */
- 	if (mode_cmd->offsets[0] != 0) {
- 		drm_dbg_kms(&dev_priv->drm,
-@@ -2144,21 +2100,12 @@ intel_user_framebuffer_create(struct drm_device *dev,
- 	struct drm_framebuffer *fb;
- 	struct drm_i915_gem_object *obj;
- 	struct drm_mode_fb_cmd2 mode_cmd = *user_mode_cmd;
--	struct drm_i915_private *i915;
-+	struct drm_i915_private *i915 = to_i915(dev);
- 
--	obj = i915_gem_object_lookup(filp, mode_cmd.handles[0]);
--	if (!obj)
-+	obj = intel_fb_bo_lookup_valid_bo(i915, filp, &mode_cmd);
-+	if (IS_ERR(obj))
- 		return ERR_PTR(-ENOENT);
- 
--	/* object is backed with LMEM for discrete */
--	i915 = to_i915(obj->base.dev);
--	if (HAS_LMEM(i915) && !i915_gem_object_can_migrate(obj, INTEL_REGION_LMEM_0)) {
--		/* object is "remote", not in local memory */
--		i915_gem_object_put(obj);
--		drm_dbg_kms(&i915->drm, "framebuffer must reside in local memory\n");
--		return ERR_PTR(-EREMOTE);
--	}
--
- 	fb = intel_framebuffer_create(obj, &mode_cmd);
- 	drm_gem_object_put(intel_bo_to_drm_bo(obj));
- 
-diff --git a/drivers/gpu/drm/i915/display/intel_fb_bo.c b/drivers/gpu/drm/i915/display/intel_fb_bo.c
-new file mode 100644
-index 000000000000..9844b100fa0c
---- /dev/null
-+++ b/drivers/gpu/drm/i915/display/intel_fb_bo.c
-@@ -0,0 +1,93 @@
-+/* SPDX-License-Identifier: MIT */
-+/*
-+ * Copyright © 2021 Intel Corporation
-+ */
-+
-+#include <drm/drm_framebuffer.h>
-+#include <drm/drm_plane.h>
-+
-+#include "gem/i915_gem_object.h"
-+
-+#include "i915_drv.h"
-+#include "intel_fb.h"
-+#include "intel_fb_bo.h"
-+
-+int intel_fb_bo_framebuffer_init(struct intel_framebuffer *intel_fb,
-+				 struct drm_i915_gem_object *obj,
-+				 struct drm_mode_fb_cmd2 *mode_cmd)
-+{
-+	struct drm_i915_private *i915 = to_i915(obj->base.dev);
-+	unsigned int tiling, stride;
-+
-+	i915_gem_object_lock(obj, NULL);
-+	tiling = i915_gem_object_get_tiling(obj);
-+	stride = i915_gem_object_get_stride(obj);
-+	i915_gem_object_unlock(obj);
-+
-+	if (mode_cmd->flags & DRM_MODE_FB_MODIFIERS) {
-+		/*
-+		 * If there's a fence, enforce that
-+		 * the fb modifier and tiling mode match.
-+		 */
-+		if (tiling != I915_TILING_NONE &&
-+		    tiling != intel_fb_modifier_to_tiling(mode_cmd->modifier[0])) {
-+			drm_dbg_kms(&i915->drm,
-+				    "tiling_mode doesn't match fb modifier\n");
-+			return -EINVAL;
-+		}
-+	} else {
-+		if (tiling == I915_TILING_X) {
-+			mode_cmd->modifier[0] = I915_FORMAT_MOD_X_TILED;
-+		} else if (tiling == I915_TILING_Y) {
-+			drm_dbg_kms(&i915->drm,
-+				    "No Y tiling for legacy addfb\n");
-+			return -EINVAL;
-+		}
-+	}
-+
-+	/*
-+	 * gen2/3 display engine uses the fence if present,
-+	 * so the tiling mode must match the fb modifier exactly.
-+	 */
-+	if (DISPLAY_VER(i915) < 4 &&
-+	    tiling != intel_fb_modifier_to_tiling(mode_cmd->modifier[0])) {
-+		drm_dbg_kms(&i915->drm,
-+			    "tiling_mode must match fb modifier exactly on gen2/3\n");
-+		return -EINVAL;
-+	}
-+
-+	/*
-+	 * If there's a fence, enforce that
-+	 * the fb pitch and fence stride match.
-+	 */
-+	if (tiling != I915_TILING_NONE && mode_cmd->pitches[0] != stride) {
-+		drm_dbg_kms(&i915->drm,
-+			    "pitch (%d) must match tiling stride (%d)\n",
-+			    mode_cmd->pitches[0], stride);
-+		return -EINVAL;
-+	}
-+
-+	return 0;
-+}
-+
-+struct drm_i915_gem_object *
-+intel_fb_bo_lookup_valid_bo(struct drm_i915_private *i915,
-+			    struct drm_file *filp,
-+			    const struct drm_mode_fb_cmd2 *user_mode_cmd)
-+{
-+	struct drm_i915_gem_object *obj = i915_gem_object_lookup(filp, user_mode_cmd->handles[0]);
-+
-+	if (!obj)
-+		return ERR_PTR(-ENOENT);
-+
-+	/* object is backed with LMEM for discrete */
-+	i915 = to_i915(obj->base.dev);
-+	if (HAS_LMEM(i915) && !i915_gem_object_can_migrate(obj, INTEL_REGION_LMEM_0)) {
-+		/* object is "remote", not in local memory */
-+		i915_gem_object_put(obj);
-+		drm_dbg_kms(&i915->drm, "framebuffer must reside in local memory\n");
-+		return ERR_PTR(-EREMOTE);
-+	}
-+
-+	return obj;
-+}
-diff --git a/drivers/gpu/drm/i915/display/intel_fb_bo.h b/drivers/gpu/drm/i915/display/intel_fb_bo.h
-new file mode 100644
-index 000000000000..dd06ceec8601
---- /dev/null
-+++ b/drivers/gpu/drm/i915/display/intel_fb_bo.h
-@@ -0,0 +1,24 @@
-+/* SPDX-License-Identifier: MIT */
-+/*
-+ * Copyright © 2021 Intel Corporation
-+ */
-+
-+#ifndef __INTEL_FB_BO_H__
-+#define __INTEL_FB_BO_H__
-+
-+struct drm_file;
-+struct drm_mode_fb_cmd2;
-+struct drm_i915_gem_object;
-+struct drm_i915_private;
-+struct intel_framebuffer;
-+
-+int intel_fb_bo_framebuffer_init(struct intel_framebuffer *intel_fb,
-+				 struct drm_i915_gem_object *obj,
-+				 struct drm_mode_fb_cmd2 *mode_cmd);
-+
-+struct drm_i915_gem_object *
-+intel_fb_bo_lookup_valid_bo(struct drm_i915_private *i915,
-+			    struct drm_file *filp,
-+			    const struct drm_mode_fb_cmd2 *user_mode_cmd);
-+
-+#endif
--- 
-2.34.1
-
+T24gTW9uLCAyMDIzLTExLTIwIGF0IDE3OjE3ICswMDAwLCBNYW5uYSwgQW5pbWVzaCB3cm90ZToN
+Cj4gDQo+IA0KPiA+IC0tLS0tT3JpZ2luYWwgTWVzc2FnZS0tLS0tDQo+ID4gRnJvbTogSG9nYW5k
+ZXIsIEpvdW5pIDxqb3VuaS5ob2dhbmRlckBpbnRlbC5jb20+DQo+ID4gU2VudDogTW9uZGF5LCBO
+b3ZlbWJlciAyMCwgMjAyMyA2OjMyIFBNDQo+ID4gVG86IGludGVsLWdmeEBsaXN0cy5mcmVlZGVz
+a3RvcC5vcmcNCj4gPiBDYzogSG9nYW5kZXIsIEpvdW5pIDxqb3VuaS5ob2dhbmRlckBpbnRlbC5j
+b20+OyBNYW5uYSwgQW5pbWVzaA0KPiA+IDxhbmltZXNoLm1hbm5hQGludGVsLmNvbT4NCj4gPiBT
+dWJqZWN0OiBbUEFUQ0hdIGRybS9pOTE1L2Rpc3BsYXk6IERvIG5vdCBjaGVjayBwc3IyIGlmIHBz
+ci9wYW5lbA0KPiA+IHJlcGxheSBpcw0KPiA+IG5vdCBzdXBwb3J0ZWQNCj4gPiANCj4gPiBEbyBu
+b3QgY29udGludWUgdG8gcHNyMiBjaGVja3MgaWYgcHNyIG9yIHBhbmVsIHJlcGxheSBpcyBub3QN
+Cj4gPiBzdXBwb3J0ZWQuDQo+ID4gDQo+ID4gQ2M6IEFuaW1lc2ggTWFubmEgPGFuaW1lc2gubWFu
+bmFAaW50ZWwuY29tPg0KPiA+IA0KPiA+IEZpeGVzOiBiOGNmNWI1ZDI2NmUgKCJkcm0vaTkxNS9w
+YW5lbHJlcGxheTogSW5pdGlhbGl6YXRvbiBhbmQNCj4gPiBjb21wdXRlDQo+ID4gY29uZmlnIGZv
+ciBwYW5lbCByZXBsYXkiKQ0KPiA+IENsb3NlczogaHR0cHM6Ly9naXRsYWIuZnJlZWRlc2t0b3Au
+b3JnL2RybS9pbnRlbC8tL2lzc3Vlcy85NjcwDQo+ID4gU2lnbmVkLW9mZi1ieTogSm91bmkgSMO2
+Z2FuZGVyIDxqb3VuaS5ob2dhbmRlckBpbnRlbC5jb20+DQo+IA0KPiBMR1RNLiANCj4gUmV2aWV3
+ZWQtYnk6IEFuaW1lc2ggTWFubmEgPGFuaW1lc2gubWFubmFAaW50ZWwuY29tPg0KDQpUaGFuayB5
+b3UgQW5pbWVzaCBmb3IgeW91ciByZXZpZXcuIFRoaXMgaXMgbm93IHB1c2hlZCBpbnRvIGRybS1p
+bnRlbC0NCm5leHQuDQoNCkJSLA0KDQpKb3VuaSBIw7ZnYW5kZXINCg0KPiANCj4gPiAtLS0NCj4g
+PiDCoGRyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfcHNyLmMgfCAzICsrKw0KPiA+
+IMKgMSBmaWxlIGNoYW5nZWQsIDMgaW5zZXJ0aW9ucygrKQ0KPiA+IA0KPiA+IGRpZmYgLS1naXQg
+YS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX3Bzci5jDQo+ID4gYi9kcml2ZXJz
+L2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX3Bzci5jDQo+ID4gaW5kZXggOGQxODAxMzJhNzRi
+Li45YWExYzI2OWNmZWYgMTAwNjQ0DQo+ID4gLS0tIGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlz
+cGxheS9pbnRlbF9wc3IuYw0KPiA+ICsrKyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkv
+aW50ZWxfcHNyLmMNCj4gPiBAQCAtMTM3Myw2ICsxMzczLDkgQEAgdm9pZCBpbnRlbF9wc3JfY29t
+cHV0ZV9jb25maWcoc3RydWN0IGludGVsX2RwDQo+ID4gKmludGVsX2RwLA0KPiA+IMKgwqDCoMKg
+wqDCoMKgwqBlbHNlDQo+ID4gwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqBjcnRjX3N0
+YXRlLT5oYXNfcHNyID0gX3Bzcl9jb21wdXRlX2NvbmZpZyhpbnRlbF9kcCwNCj4gPiBjcnRjX3N0
+YXRlKTsNCj4gPiANCj4gPiArwqDCoMKgwqDCoMKgwqBpZiAoIShjcnRjX3N0YXRlLT5oYXNfcGFu
+ZWxfcmVwbGF5IHx8IGNydGNfc3RhdGUtPmhhc19wc3IpKQ0KPiA+ICvCoMKgwqDCoMKgwqDCoMKg
+wqDCoMKgwqDCoMKgwqByZXR1cm47DQo+ID4gKw0KPiA+IMKgwqDCoMKgwqDCoMKgwqBjcnRjX3N0
+YXRlLT5oYXNfcHNyMiA9IGludGVsX3BzcjJfY29uZmlnX3ZhbGlkKGludGVsX2RwLA0KPiA+IGNy
+dGNfc3RhdGUpOw0KPiA+IA0KPiA+IMKgwqDCoMKgwqDCoMKgwqBjcnRjX3N0YXRlLT5pbmZvZnJh
+bWVzLmVuYWJsZSB8PQ0KPiA+IGludGVsX2hkbWlfaW5mb2ZyYW1lX2VuYWJsZShEUF9TRFBfVlND
+KTsNCj4gPiAtLQ0KPiA+IDIuMzQuMQ0KPiANCg0K
