@@ -2,46 +2,54 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 715A17F6401
-	for <lists+intel-gfx@lfdr.de>; Thu, 23 Nov 2023 17:34:22 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4A8EE7F6584
+	for <lists+intel-gfx@lfdr.de>; Thu, 23 Nov 2023 18:35:14 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4730710E737;
-	Thu, 23 Nov 2023 16:34:19 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BBFAD10E329;
+	Thu, 23 Nov 2023 17:35:10 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BD20710E08B;
- Thu, 23 Nov 2023 16:34:16 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.88])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E768710E32A;
+ Thu, 23 Nov 2023 17:35:07 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1700757256; x=1732293256;
- h=from:to:cc:subject:date:message-id:mime-version;
- bh=xill+ncGnJ1sIrcKvawmuAds9qveAxO/RramVec06P0=;
- b=JsyQ5z0mpZG3+2NvMRJNbKeAZ4WuKz3dg72abNp23JdQc+aQfp/r9i78
- XTiuZENtBQjCLabQAUni/5oD71vJeGkTTuCyF8DMDa9AQqbdWMPWt8Kg8
- MwG4eo2mN4yuiiBDOoRD8BMSXbedi8Tzz+Zq0DRo9m+EjBGtmFcjduBfs
- 1afba6HLMxlgwVoVcTs1/11Z2JqMi2NzmPIKRZyYrA6jH0IsfIWcTxCT6
- khyJMBZo+1S1aAgtuGGFxnpi/1asqQ2j2CBBUkYRk+HdYJ/E20EZH+SIv
- u5REBqy6xq/9lG54oN4ztb5n8wAN+a54YY1uikot+UwQNamOaHTH24vbl A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10902"; a="456630054"
-X-IronPort-AV: E=Sophos;i="6.04,222,1695711600"; d="scan'208";a="456630054"
-Received: from fmsmga006.fm.intel.com ([10.253.24.20])
- by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Nov 2023 08:34:15 -0800
+ t=1700760908; x=1732296908;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=bZiC9hG+uUPXjnWXM4F9oabwUgq9tzES6IaqRI3F+SQ=;
+ b=BIYXpS0Y0nxVC5eOH6BIeJRNWokqM508jOFEPl3FcqqidRJDVB4xHJzn
+ 5Y+b9zZfzBNPdDMs91Uz4VM6jSuCLjHPU/hVp00Pwe3Tr8nkQtzoff4IN
+ E4uCpnXgYcdxkl5xwLwgIm5kw1voIRZdoJvn1Twuya9e1g/9OyxHxhUtl
+ /ZY5io6MtQvO6N22dS6tnWEU28li4M7f4dYTz+jwPgPAn30n69751wvrS
+ 4tp+h1OllkUnPGTUo5UOqFRbA8gHGaWlgrpSclefeCmDIB3ZKI9Mice12
+ JuWP1W3y8HUVbeN6xGpwgecUevZspZG0p+tP0pbvtx/AsmWrkEE8t73P5 g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10902"; a="423441693"
+X-IronPort-AV: E=Sophos;i="6.04,222,1695711600"; d="scan'208";a="423441693"
+Received: from orsmga007.jf.intel.com ([10.7.209.58])
+ by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 23 Nov 2023 09:35:07 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10902"; a="1014669079"
-X-IronPort-AV: E=Sophos;i="6.04,222,1695711600"; d="scan'208";a="1014669079"
-Received: from unknown (HELO localhost) ([10.237.66.162])
- by fmsmga006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Nov 2023 08:34:10 -0800
-From: Jani Nikula <jani.nikula@intel.com>
-To: Dave Airlie <airlied@gmail.com>, Daniel Vetter <daniel.vetter@ffwll.ch>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-Date: Thu, 23 Nov 2023 18:34:06 +0200
-Message-ID: <87y1eol98h.fsf@intel.com>
+X-IronPort-AV: E=McAfee;i="6600,9927,10902"; a="760721243"
+X-IronPort-AV: E=Sophos;i="6.04,222,1695711600"; d="scan'208";a="760721243"
+Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.74])
+ by orsmga007.jf.intel.com with SMTP; 23 Nov 2023 09:35:04 -0800
+Received: by stinkbox (sSMTP sendmail emulation);
+ Thu, 23 Nov 2023 19:35:03 +0200
+Date: Thu, 23 Nov 2023 19:35:03 +0200
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: Maxime Ripard <mripard@kernel.org>
+Message-ID: <ZV-NR4TrIg_AUfun@intel.com>
+References: <20231013131402.24072-1-ville.syrjala@linux.intel.com>
+ <ZVttnXE_P9xzXlZT@intel.com>
+ <sdfpsfvpvllzzmgndrl7ln4x23mzv34ajy34g2spqhlo6i6dub@qvrdixxylmko>
 MIME-Version: 1.0
-Content-Type: text/plain
-Subject: [Intel-gfx] [PULL] drm-intel-fixes
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <sdfpsfvpvllzzmgndrl7ln4x23mzv34ajy34g2spqhlo6i6dub@qvrdixxylmko>
+X-Patchwork-Hint: comment
+Subject: Re: [Intel-gfx] [PATCH 0/4] drm/i915: Fix LUT rounding
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -54,51 +62,31 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: dim-tools@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org, Thomas Zimmermann <tzimmermann@suse.de>,
+ dri-devel@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+On Tue, Nov 21, 2023 at 11:51:10AM +0100, Maxime Ripard wrote:
+> On Mon, Nov 20, 2023 at 04:30:53PM +0200, Ville Syrjälä wrote:
+> > On Fri, Oct 13, 2023 at 04:13:58PM +0300, Ville Syrjala wrote:
+> > > From: Ville Syrjälä <ville.syrjala@linux.intel.com>
+> > > 
+> > > The current LUT rounding is generating weird results. Adjust
+> > > it to follow the OpenGL int<->float conversion rules.
+> > > 
+> > > Ville Syrjälä (4):
+> > >   drm: Fix color LUT rounding
+> >     ^
+> > I'd like to merge this via drm-intel-next as needs to match
+> > the rounding done in the readout path in i915.
+> > 
+> > Maarten,Maxime,Thomas can I get an ack for that?
+> 
+> Acked-by: Maxime Ripard <mripard@kernel.org>
 
-Hi Dave & Sima -
-
-drm-intel-fixes-2023-11-23:
-drm/i915 fixes for v6.7-rc3:
-- Fix race between DP MST connectore registration and setup
-- Fix GT memory leak on probe error path
-
-BR,
-Jani.
-
-The following changes since commit 98b1cc82c4affc16f5598d4fa14b1858671b2263:
-
-  Linux 6.7-rc2 (2023-11-19 15:02:14 -0800)
-
-are available in the Git repository at:
-
-  git://anongit.freedesktop.org/drm/drm-intel tags/drm-intel-fixes-2023-11-23
-
-for you to fetch changes up to 0561794b6b642b84b879bf97061c4b4fa692839e:
-
-  drm/i915: do not clean GT table on error path (2023-11-20 11:06:53 +0200)
-
-----------------------------------------------------------------
-drm/i915 fixes for v6.7-rc3:
-- Fix race between DP MST connectore registration and setup
-- Fix GT memory leak on probe error path
-
-----------------------------------------------------------------
-Andrzej Hajda (1):
-      drm/i915: do not clean GT table on error path
-
-Imre Deak (1):
-      drm/i915/dp_mst: Fix race between connector registration and setup
-
- drivers/gpu/drm/i915/display/intel_dp_mst.c | 16 ++++++++--------
- drivers/gpu/drm/i915/gt/intel_gt.c          | 11 -----------
- drivers/gpu/drm/i915/i915_driver.c          |  4 +---
- 3 files changed, 9 insertions(+), 22 deletions(-)
+Thanks. Series pushed to drm-intel-next.
 
 -- 
-Jani Nikula, Intel
+Ville Syrjälä
+Intel
