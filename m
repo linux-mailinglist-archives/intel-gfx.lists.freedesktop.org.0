@@ -2,52 +2,50 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0E8E67F6D42
-	for <lists+intel-gfx@lfdr.de>; Fri, 24 Nov 2023 08:57:48 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id A4E817F6E11
+	for <lists+intel-gfx@lfdr.de>; Fri, 24 Nov 2023 09:27:47 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 187BA10E79D;
-	Fri, 24 Nov 2023 07:57:34 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 06F1910E1AD;
+	Fri, 24 Nov 2023 08:27:44 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.24])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6A5C710E79D
- for <intel-gfx@lists.freedesktop.org>; Fri, 24 Nov 2023 07:57:31 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.88])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 12F1D10E1AD
+ for <intel-gfx@lists.freedesktop.org>; Fri, 24 Nov 2023 08:27:42 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1700812651; x=1732348651;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:in-reply-to;
- bh=bT1l19d9A25e9utkJpiO6JpTEoi4Lcnrc2WDoFxG99g=;
- b=MjhdTd/mArxtMg7E2nsMogkOyd2lH8Bxa1JoYHYkNJLOp49/ejfOVUVS
- j+r97xB48YFG3y0RA4XVLnEKvmJXVXavTJDQdWicOvhxe0oIYV2Z2ZL7m
- fYppp9wLVsKg6tRHqiptwGGEn4Kz7wPSj0P0XpiVCYsb/suqnbue8OxV5
- ZFWNhkXAgVotoSi9mL780f/e0/iW68pTeHCTxgS6yJhuOLodYg4Yttua5
- CQuAVZScCAdgLiNavEla/ejJozrAuaKFBKfe1WQ0pBzuBUTu2/WlUXcP8
- jKkCw9BOvFCZNOXRcptrRWY+cY6iM0vITmJkxn/473uRxbu2hBZph+I6c Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10902"; a="395199282"
-X-IronPort-AV: E=Sophos;i="6.04,223,1695711600"; d="scan'208";a="395199282"
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
- by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Nov 2023 23:57:31 -0800
+ t=1700814462; x=1732350462;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=H6wPTVmHxsgtKV6dXojU0o1PqcRg9pYC0Sgd+AzEQVU=;
+ b=aHUumpDHL2FoYjM8hu3DY/bhcCOfl6PoHAPmTu5G0hkLZl+wm1T6F8do
+ fdQem9XPK/IDn5rek/zx4Fdxr3yI5cn86BbbdZGs4h4EKUq6DN5Ik7rqv
+ mcrseOclCYeVHth3siYPnXOpRmLD8nQ8XmxZ8PQL1vGlD8r9ttWUozeDO
+ w4P5WE70+KpdfqOyaQk24FGLAYYITLzMSyPsmvubMmomNOC+vLEqW96x6
+ p83YndIHiVLpkE28vlMbEQg9b3jZr7P2TwqpxtdSKB7q/Jcl5SBst9xjm
+ W8JhzD7xC2qtfpGlhlESx8lLwRHoxEAX4uNLeyEGUOun3g/8c5EKPJQRN A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10902"; a="423523552"
+X-IronPort-AV: E=Sophos;i="6.04,223,1695711600"; d="scan'208";a="423523552"
+Received: from orsmga007.jf.intel.com ([10.7.209.58])
+ by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 24 Nov 2023 00:27:38 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10902"; a="767393114"
-X-IronPort-AV: E=Sophos;i="6.04,223,1695711600"; d="scan'208";a="767393114"
-Received: from lkp-server01.sh.intel.com (HELO d584ee6ebdcc) ([10.239.97.150])
- by orsmga002.jf.intel.com with ESMTP; 23 Nov 2023 23:57:29 -0800
-Received: from kbuild by d584ee6ebdcc with local (Exim 4.96)
- (envelope-from <lkp@intel.com>) id 1r6R43-0002Ep-1P;
- Fri, 24 Nov 2023 07:57:27 +0000
-Date: Fri, 24 Nov 2023 15:56:44 +0800
-From: kernel test robot <lkp@intel.com>
-To: Mitul Golani <mitulkumar.ajitkumar.golani@intel.com>,
- intel-gfx@lists.freedesktop.org
-Message-ID: <202311241251.ZXIZrJRp-lkp@intel.com>
-References: <20231123140244.4183869-2-mitulkumar.ajitkumar.golani@intel.com>
+X-IronPort-AV: E=McAfee;i="6600,9927,10902"; a="760896277"
+X-IronPort-AV: E=Sophos;i="6.04,223,1695711600"; d="scan'208";a="760896277"
+Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.74])
+ by orsmga007.jf.intel.com with SMTP; 24 Nov 2023 00:27:36 -0800
+Received: by stinkbox (sSMTP sendmail emulation);
+ Fri, 24 Nov 2023 10:27:35 +0200
+From: Ville Syrjala <ville.syrjala@linux.intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Fri, 24 Nov 2023 10:27:31 +0200
+Message-ID: <20231124082735.25470-1-ville.syrjala@linux.intel.com>
+X-Mailer: git-send-email 2.41.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20231123140244.4183869-2-mitulkumar.ajitkumar.golani@intel.com>
-Subject: Re: [Intel-gfx] [PATCH 1/3] drm: Add Adaptive Sync SDP logging
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-gfx] [PATCH 1/5] drm/i915/psr: Include some basic PSR
+ information in the state dump
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -60,63 +58,40 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: llvm@lists.linux.dev, oe-kbuild-all@lists.linux.dev
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi Mitul,
+From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-kernel test robot noticed the following build warnings:
+Currently no one can figure out what the PSR code is doing since
+we're including any of it in the basic state dump. Add at least the
+bare minimum there.
 
-[auto build test WARNING on drm-tip/drm-tip]
+v2: Also dump has_panel_replay (Jouni)
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Mitul-Golani/drm-Add-Adaptive-Sync-SDP-logging/20231123-220931
-base:   git://anongit.freedesktop.org/drm/drm-tip drm-tip
-patch link:    https://lore.kernel.org/r/20231123140244.4183869-2-mitulkumar.ajitkumar.golani%40intel.com
-patch subject: [Intel-gfx] [PATCH 1/3] drm: Add Adaptive Sync SDP logging
-config: x86_64-allyesconfig (https://download.01.org/0day-ci/archive/20231124/202311241251.ZXIZrJRp-lkp@intel.com/config)
-compiler: clang version 16.0.4 (https://github.com/llvm/llvm-project.git ae42196bc493ffe877a7e3dff8be32035dea4d07)
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20231124/202311241251.ZXIZrJRp-lkp@intel.com/reproduce)
+Cc: Jouni Högander <jouni.hogander@intel.com>
+Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
+---
+ drivers/gpu/drm/i915/display/intel_crtc_state_dump.c | 6 ++++++
+ 1 file changed, 6 insertions(+)
 
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202311241251.ZXIZrJRp-lkp@intel.com/
-
-All warnings (new ones prefixed by >>):
-
->> drivers/gpu/drm/display/drm_dp_helper.c:2927:36: warning: format specifies type 'char *' but the argument has type 'u16' (aka 'unsigned short') [-Wformat]
-           DP_SDP_LOG("    target_rr: %s\n", async->target_rr);
-                                      ~~     ^~~~~~~~~~~~~~~~
-                                      %hu
-   drivers/gpu/drm/display/drm_dp_helper.c:2923:60: note: expanded from macro 'DP_SDP_LOG'
-   #define DP_SDP_LOG(fmt, ...) dev_printk(level, dev, fmt, ##__VA_ARGS__)
-                                                       ~~~    ^~~~~~~~~~~
-   include/linux/dev_printk.h:129:34: note: expanded from macro 'dev_printk'
-                   _dev_printk(level, dev, fmt, ##__VA_ARGS__);            \
-                                           ~~~    ^~~~~~~~~~~
-   1 warning generated.
-
-
-vim +2927 drivers/gpu/drm/display/drm_dp_helper.c
-
-  2919	
-  2920	void drm_dp_as_sdp_log(const char *level, struct device *dev,
-  2921			       const struct drm_dp_as_sdp *async)
-  2922	{
-  2923	#define DP_SDP_LOG(fmt, ...) dev_printk(level, dev, fmt, ##__VA_ARGS__)
-  2924		DP_SDP_LOG("DP SDP: %s, revision %u, length %u\n", "VSC",
-  2925			   async->revision, async->length);
-  2926		DP_SDP_LOG("	vmin: %d vmax: %d\n", async->vmin, async->vmax);
-> 2927		DP_SDP_LOG("    target_rr: %s\n", async->target_rr);
-  2928		DP_SDP_LOG("    duration_incr_ms: %u\n", async->duration_incr_ms);
-  2929		DP_SDP_LOG("    duration_decr_ms: %u\n", async->duration_decr_ms);
-  2930		DP_SDP_LOG("    operation_mode: %u\n", async->operation_mode);
-  2931	#undef DP_SDP_LOG
-  2932	}
-  2933	EXPORT_SYMBOL(drm_dp_as_sdp_log);
-  2934	
-
+diff --git a/drivers/gpu/drm/i915/display/intel_crtc_state_dump.c b/drivers/gpu/drm/i915/display/intel_crtc_state_dump.c
+index fbe89b6f038a..49fd100ec98a 100644
+--- a/drivers/gpu/drm/i915/display/intel_crtc_state_dump.c
++++ b/drivers/gpu/drm/i915/display/intel_crtc_state_dump.c
+@@ -265,6 +265,12 @@ void intel_crtc_state_dump(const struct intel_crtc_state *pipe_config,
+ 
+ 		drm_dbg_kms(&i915->drm, "sdp split: %s\n",
+ 			    str_enabled_disabled(pipe_config->sdp_split_enable));
++
++		drm_dbg_kms(&i915->drm, "psr: %s, psr2: %s, panel replay: %s, selective fetch: %s\n",
++			    str_enabled_disabled(pipe_config->has_psr),
++			    str_enabled_disabled(pipe_config->has_psr2),
++			    str_enabled_disabled(pipe_config->has_panel_replay),
++			    str_enabled_disabled(pipe_config->enable_psr2_sel_fetch));
+ 	}
+ 
+ 	drm_dbg_kms(&i915->drm, "framestart delay: %d, MSA timing delay: %d\n",
 -- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+2.41.0
+
