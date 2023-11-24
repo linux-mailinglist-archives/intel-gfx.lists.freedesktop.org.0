@@ -1,40 +1,40 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 35D117F7476
-	for <lists+intel-gfx@lfdr.de>; Fri, 24 Nov 2023 14:01:18 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id BDE0F7F7477
+	for <lists+intel-gfx@lfdr.de>; Fri, 24 Nov 2023 14:01:58 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C5DF210E1F6;
-	Fri, 24 Nov 2023 13:01:14 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4995C10E5F9;
+	Fri, 24 Nov 2023 13:01:57 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8270810E1F6
- for <intel-gfx@lists.freedesktop.org>; Fri, 24 Nov 2023 13:01:12 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6C7D610E5F9
+ for <intel-gfx@lists.freedesktop.org>; Fri, 24 Nov 2023 13:01:54 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1700830872; x=1732366872;
+ t=1700830914; x=1732366914;
  h=from:to:subject:in-reply-to:references:date:message-id:
- mime-version; bh=lxsJGviTJB9W/O/bSDPyh0aK6NNY0bClPP1aIq9fOS4=;
- b=NJEi+S3SsHzgxj119erZe1qDiYdjP5B4/dMeK0YIIiCQYNpD1AHWD8Sw
- OiyeZVpDEVdcdoU74OEpoA48okhkb4GRK+V9/13DF+U8zEVb5Y388NMal
- mwu5RWiL58djwZbx8w1Gf8/wlpAvXpuyJNBeegd7mfFRZpX5MErAu0H1J
- BLOZGVA47WhbyiK0EMmuqoIEWh1qpH74Yb0EtBpdlsm8KA7sn42cbwpah
- OCEVYdrgX3c4mY5g7bW0GI/A8yQ7lp893r8cJPVlGsjjIM6Ixiiu0wTTP
- BR7wrCiXK8NsWSsWzkjrNU77u5Rnkj/E11AOw0XC7ucMrTCkNArw8TTVP Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10902"; a="456762338"
-X-IronPort-AV: E=Sophos;i="6.04,224,1695711600"; d="scan'208";a="456762338"
-Received: from orsmga006.jf.intel.com ([10.7.209.51])
- by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Nov 2023 05:01:11 -0800
+ mime-version; bh=D971nRKUoejTl7++llH2RQZNfZd/RSA629s5cWRFAlQ=;
+ b=F9xuGxjTWFDaPVFsuo61hTrADr43qX3NYNr7JbJI5NSXEnOr3ei3Q04K
+ JSYdFHf//O5aq5zmZen7hzwrl48ZGCGjzx3a2Bp4SOqVR1QM8TM0pWbUP
+ 8Ldx82QmpJ3fRymcNC4QZb0/gj3oXf0E5dInTF2hdO0bI6V1dCamXygmK
+ 1hzYHmrdiTgcLymp8cS6OUktB/Bk2G8zkJSSfXKJg8XBCrdJmh3c2Gc6p
+ H2Y1MkgPgyFKN7HAS7U4TCkcCuGLU72rhHbw47nWR/CD7V/vEvJnXXsVQ
+ wZY1ZXxLYDwevviVqvv0lqmJ91hu/kjeSsATpBZJCfdGFeGY4vTdL59Py Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10902"; a="382820730"
+X-IronPort-AV: E=Sophos;i="6.04,224,1695711600"; d="scan'208";a="382820730"
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+ by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 24 Nov 2023 05:01:54 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10902"; a="743877686"
-X-IronPort-AV: E=Sophos;i="6.04,224,1695711600"; d="scan'208";a="743877686"
+X-IronPort-AV: E=McAfee;i="6600,9927,10902"; a="767472646"
+X-IronPort-AV: E=Sophos;i="6.04,224,1695711600"; d="scan'208";a="767472646"
 Received: from dashah-mobl2.ger.corp.intel.com (HELO localhost)
  ([10.252.41.230])
- by orsmga006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Nov 2023 05:01:08 -0800
+ by orsmga002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 24 Nov 2023 05:01:52 -0800
 From: Jani Nikula <jani.nikula@linux.intel.com>
 To: Mitul Golani <mitulkumar.ajitkumar.golani@intel.com>,
  intel-gfx@lists.freedesktop.org
@@ -42,8 +42,8 @@ In-Reply-To: <20231123140244.4183869-3-mitulkumar.ajitkumar.golani@intel.com>
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 References: <20231123140244.4183869-1-mitulkumar.ajitkumar.golani@intel.com>
  <20231123140244.4183869-3-mitulkumar.ajitkumar.golani@intel.com>
-Date: Fri, 24 Nov 2023 15:01:04 +0200
-Message-ID: <87h6lb9ugf.fsf@intel.com>
+Date: Fri, 24 Nov 2023 15:01:49 +0200
+Message-ID: <87edgf9uf6.fsf@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain
 Subject: Re: [Intel-gfx] [PATCH 2/3] drm/i915/display/: Add Read/Write
@@ -67,6 +67,9 @@ On Thu, 23 Nov 2023, Mitul Golani <mitulkumar.ajitkumar.golani@intel.com> wrote:
 > Add the necessary structures and functions to handle reading and
 > unpacking Adaptive Sync Secondary Data Packets. Also add support
 > to write and pack AS SDP.
+
+Also, subject prefix maybe "drm/i915/dp: ".
+
 >
 > Signed-off-by: Mitul Golani <mitulkumar.ajitkumar.golani@intel.com>
 > ---
@@ -96,13 +99,6 @@ On Thu, 23 Nov 2023, Mitul Golani <mitulkumar.ajitkumar.golani@intel.com> wrote:
 >  
 > +#define AS_SDP_ENABLE					REG_BIT(2)
 > +#define AS_SDP_OP_MODE					REG_GENMASK(1, 0)
-
-REG_BIT and REG_GENMASK are for i915_reg_t.
-
-Moreover, these are stuff inside the SDP, so these should be somewhere
-near struct drm_dp_as_sdp definition, otherwise people are just going to
-duplicate them.
-
 >  
 >  /* Constants for DP DSC configurations */
 >  static const u8 valid_dsc_bpp[] = {6, 8, 10, 12, 15};
@@ -111,9 +107,6 @@ duplicate them.
 >  }
 >  
 > +static ssize_t intel_dp_as_sdp_pack(const struct drm_dp_as_sdp *async,
-
-Again, please don't use async for adaptive sync.
-
 > +				    struct dp_sdp *sdp, size_t size)
 > +{
 > +	size_t length = sizeof(struct dp_sdp);
@@ -170,10 +163,6 @@ Again, please don't use async for adaptive sync.
 > +/*
 > + * This function is to unpack AS SDP Packet
 > + */
-
-What value does this comment add? It says exactly the same thing as the
-function name.
-
 > +static
 > +int intel_dp_as_sdp_unpack(struct drm_dp_as_sdp *async,
 > +			   const void *buffer, size_t size)
@@ -219,9 +208,6 @@ function name.
 > +/*
 > + * This function to read registers to fetch packets
 > + */
-
-Unnecessary comment.
-
 > +static int
 > +intel_read_dp_as_metadata_infoframe_sdp(struct intel_encoder *encoder,
 > +					struct intel_crtc_state *crtc_state,
@@ -249,9 +235,6 @@ Unnecessary comment.
 >  {
 >  	int ret;
 > -
-
-Unrelated change.
-
 >  	const struct dp_sdp *sdp = buffer;
 >  
 >  	if (size < sizeof(struct dp_sdp))
@@ -266,9 +249,6 @@ Unrelated change.
 > +intel_read_dp_hdr_metadata_infoframe_sdp(struct intel_encoder *encoder,
 > +					 struct intel_crtc_state *crtc_state,
 > +					 struct hdmi_drm_infoframe *drm_infoframe)
-
-Unrelated change.
-
 >  {
 >  	struct intel_digital_port *dig_port = enc_to_dig_port(encoder);
 >  	struct drm_i915_private *dev_priv = to_i915(encoder->base.dev);
@@ -278,9 +258,6 @@ Unrelated change.
 >  	if ((crtc_state->infoframes.enable &
 > -	    intel_hdmi_infoframe_enable(type)) == 0)
 > +	     intel_hdmi_infoframe_enable(type)) == 0)
-
-Unrelated change.
-
 >  		return;
 >  
 >  	dig_port->read_infoframe(encoder, crtc_state, type, &sdp,
@@ -292,9 +269,6 @@ Unrelated change.
 > +		intel_read_dp_as_metadata_infoframe_sdp(encoder, crtc_state,
 > +							&crtc_state->infoframes.async);
 > +	break;
-
-Wrong indent, please run checkpatch before posting.
-
 >  	default:
 >  		MISSING_CASE(type);
 >  		break;
