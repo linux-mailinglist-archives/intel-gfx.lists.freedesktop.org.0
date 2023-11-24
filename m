@@ -2,52 +2,51 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id D5A207F6BDB
-	for <lists+intel-gfx@lfdr.de>; Fri, 24 Nov 2023 06:58:28 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6E58B7F6D21
+	for <lists+intel-gfx@lfdr.de>; Fri, 24 Nov 2023 08:48:45 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A1B6710E33A;
-	Fri, 24 Nov 2023 05:58:25 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CCA8210E773;
+	Fri, 24 Nov 2023 07:48:43 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.100])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4D22610E335
- for <intel-gfx@lists.freedesktop.org>; Fri, 24 Nov 2023 05:58:22 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1700805502; x=1732341502;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:in-reply-to;
- bh=642D0/TUXn9Jf/dxehxWt9jFsLsmk8Qt9a6/nPWrcug=;
- b=IZnyQ8XqL632hL8rmMZNoKbRQWt9reUtXPMK5OVlRzvmPKhB32kv2U1Q
- sjn0OVIhoWRna4jalRImiwvRdEgnB5yDUSyHP/e3JFTlQjlS/c9jXrWD9
- EqTeQDOUFeinrHxihHWA71DMWSAraDrEGnjygBSw0UQBljftxv/LbHmPr
- c+hORsmnaiErtjp+eVJcNQ4nbSHZLFI8R5ahswm/kl84vay7erVRF8+bR
- spw3XcoOKqZqHa6UHJPKxWVNyIyLEUh4pQgGC/zyUGS1/4sXBtHS8w8Yd
- 656ADK8DDPKYbs4/bxeRzoy09mbycR3yhDY3ZEahvilUPmfL9i3uFqsEi A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10902"; a="458860290"
-X-IronPort-AV: E=Sophos;i="6.04,223,1695711600"; d="scan'208";a="458860290"
-Received: from fmsmga004.fm.intel.com ([10.253.24.48])
- by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Nov 2023 21:58:21 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10902"; a="837983127"
-X-IronPort-AV: E=Sophos;i="6.04,223,1695711600"; d="scan'208";a="837983127"
-Received: from lkp-server01.sh.intel.com (HELO d584ee6ebdcc) ([10.239.97.150])
- by fmsmga004.fm.intel.com with ESMTP; 23 Nov 2023 21:58:20 -0800
-Received: from kbuild by d584ee6ebdcc with local (Exim 4.96)
- (envelope-from <lkp@intel.com>) id 1r6PCk-00026q-14;
- Fri, 24 Nov 2023 05:58:18 +0000
-Date: Fri, 24 Nov 2023 13:58:08 +0800
-From: kernel test robot <lkp@intel.com>
-To: Mitul Golani <mitulkumar.ajitkumar.golani@intel.com>,
- intel-gfx@lists.freedesktop.org
-Message-ID: <202311241136.tl5STYqx-lkp@intel.com>
-References: <20231123140244.4183869-2-mitulkumar.ajitkumar.golani@intel.com>
+Received: from sin.source.kernel.org (sin.source.kernel.org [145.40.73.55])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B288110E769;
+ Fri, 24 Nov 2023 07:48:41 +0000 (UTC)
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+ by sin.source.kernel.org (Postfix) with ESMTP id EFEBDCE11EA;
+ Fri, 24 Nov 2023 07:48:37 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 96C4BC433C7;
+ Fri, 24 Nov 2023 07:48:14 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=k20201202; t=1700812116;
+ bh=wuXwn6H3IYOQTJYurH/LAKoS23w/GwU7ryzU1+Vs8b4=;
+ h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+ b=cgJMC0Yj3JRcUDF8O8XpdEdYA/5STjclZLwUWXfVMJwJnFCmcyrJDVup7Rscs2p84
+ 1lIevByzmjhiYL9n/DPGwW0r1qVsQ45xdWW1cCKjcoubJ/Np/IRSX/dXnPPAZi1lyB
+ ETOprEE5xY+akdxk7DWnyVkIziLf3Nu7PWCfTmFB985JDwr0PPgc9yJ4BLOQhlh8Nx
+ 7J3VH6h2rRYlPJhbqQ9tIol8mM/LtKts+YBDNQd03tji9lqn5ZFKRzSp7zz5eJxPSA
+ m4YJmobEWMvUVEr6S2NJRsz4v9jSzMIYOHwn/4yZmgFOE0FpvuIzzDTt4O8YISu59u
+ jwN2CAG1O1gvw==
+From: Christian Brauner <brauner@kernel.org>
+To: linux-fsdevel@vger.kernel.org,
+	Christian Brauner <brauner@kernel.org>
+Date: Fri, 24 Nov 2023 08:47:57 +0100
+Message-ID: <20231124-traurig-halunken-6defdd66e8f2@brauner>
+X-Mailer: git-send-email 2.42.0
+In-Reply-To: <20231122-vfs-eventfd-signal-v2-0-bd549b14ce0c@kernel.org>
+References: <20231122-vfs-eventfd-signal-v2-0-bd549b14ce0c@kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20231123140244.4183869-2-mitulkumar.ajitkumar.golani@intel.com>
-Subject: Re: [Intel-gfx] [PATCH 1/3] drm: Add Adaptive Sync SDP logging
+Content-Type: text/plain; charset="utf-8"
+X-Developer-Signature: v=1; a=openpgp-sha256; l=1378; i=brauner@kernel.org;
+ h=from:subject:message-id; bh=wuXwn6H3IYOQTJYurH/LAKoS23w/GwU7ryzU1+Vs8b4=;
+ b=owGbwMvMwCU28Zj0gdSKO4sYT6slMaQmhOr8Nb88ObVn73mvUyobyi/8m/y5yi2fL80o6/sb9
+ 3cTN/yd21HKwiDGxSArpsji0G4SLrecp2KzUaYGzBxWJpAhDFycAjCR7iBGhq1L7YSDDTVSee+x
+ X1xccNDei/91c9MuqdqsiYtj7lg17WdkWCP3faH/qkmK79OnL3ut4/Vo+e0nB564XJ5mY6ruNdX
+ 4JgMA
+X-Developer-Key: i=brauner@kernel.org; a=openpgp;
+ fpr=4880B8C9BD0E5106FC070F4F7B3C391EFEA93624
+Content-Transfer-Encoding: 8bit
+Subject: Re: [Intel-gfx] [PATCH v2 0/4] eventfd: simplify signal helpers
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -60,73 +59,78 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: oe-kbuild-all@lists.linux.dev
+Cc: linux-aio@kvack.org, linux-usb@vger.kernel.org, Jan Kara <jack@suse.cz>,
+ Matthew Rosato <mjrosato@linux.ibm.com>, Paul Durrant <paul@xen.org>,
+ Tom Rix <trix@redhat.com>, Jason Wang <jasowang@redhat.com>,
+ dri-devel@lists.freedesktop.org, Michal Hocko <mhocko@kernel.org>,
+ linux-mm@kvack.org, Kirti Wankhede <kwankhede@nvidia.com>,
+ Paolo Bonzini <pbonzini@redhat.com>, Jens Axboe <axboe@kernel.dk>,
+ Vineeth Vijayan <vneethv@linux.ibm.com>,
+ Diana Craciun <diana.craciun@oss.nxp.com>,
+ Alexander Gordeev <agordeev@linux.ibm.com>, David Airlie <airlied@gmail.com>,
+ Christoph Hellwig <hch@lst.de>, Xuan Zhuo <xuanzhuo@linux.alibaba.com>,
+ Shakeel Butt <shakeelb@google.com>, Vasily Gorbik <gor@linux.ibm.com>,
+ Leon Romanovsky <leon@kernel.org>, Harald Freudenberger <freude@linux.ibm.com>,
+ Fei Li <fei1.li@intel.com>, x86@kernel.org,
+ Roman Gushchin <roman.gushchin@linux.dev>, Halil Pasic <pasic@linux.ibm.com>,
+ Jason Gunthorpe <jgg@ziepe.ca>, Ingo Molnar <mingo@redhat.com>,
+ intel-gfx@lists.freedesktop.org,
+ Christian Borntraeger <borntraeger@linux.ibm.com>, linux-fpga@vger.kernel.org,
+ Wu Hao <hao.wu@intel.com>, Jason Herne <jjherne@linux.ibm.com>,
+ Eric Farman <farman@linux.ibm.com>, Dave Hansen <dave.hansen@linux.intel.com>,
+ Andrew Donnellan <ajd@linux.ibm.com>, Arnd Bergmann <arnd@arndb.de>,
+ linux-s390@vger.kernel.org, Heiko Carstens <hca@linux.ibm.com>,
+ Johannes Weiner <hannes@cmpxchg.org>, linuxppc-dev@lists.ozlabs.org,
+ Eric Auger <eric.auger@redhat.com>, Moritz Fischer <mdf@kernel.org>,
+ kvm@vger.kernel.org, Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ cgroups@vger.kernel.org, Thomas Gleixner <tglx@linutronix.de>,
+ virtualization@lists.linux-foundation.org, intel-gvt-dev@lists.freedesktop.org,
+ io-uring@vger.kernel.org, netdev@vger.kernel.org,
+ Tony Krowiak <akrowiak@linux.ibm.com>, Pavel Begunkov <asml.silence@gmail.com>,
+ Sean Christopherson <seanjc@google.com>, Oded Gabbay <ogabbay@kernel.org>,
+ Muchun Song <muchun.song@linux.dev>,
+ Peter Oberparleiter <oberpar@linux.ibm.com>, linux-kernel@vger.kernel.org,
+ linux-rdma@vger.kernel.org, Benjamin LaHaise <bcrl@kvack.org>,
+ "Michael S. Tsirkin" <mst@redhat.com>, Sven Schnelle <svens@linux.ibm.com>,
+ Daniel Vetter <daniel@ffwll.ch>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ Frederic Barrat <fbarrat@linux.ibm.com>, Borislav Petkov <bp@alien8.de>,
+ Vitaly Kuznetsov <vkuznets@redhat.com>, David Woodhouse <dwmw2@infradead.org>,
+ Xu Yilun <yilun.xu@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi Mitul,
+On Wed, 22 Nov 2023 13:48:21 +0100, Christian Brauner wrote:
+> Hey everyone,
+> 
+> This simplifies the eventfd_signal() and eventfd_signal_mask() helpers
+> significantly. They can be made void and not take any unnecessary
+> arguments.
+> 
+> I've added a few more simplifications based on Sean's suggestion.
+> 
+> [...]
 
-kernel test robot noticed the following build warnings:
+Applied to the vfs.misc branch of the vfs/vfs.git tree.
+Patches in the vfs.misc branch should appear in linux-next soon.
 
-[auto build test WARNING on drm-tip/drm-tip]
+Please report any outstanding bugs that were missed during review in a
+new review to the original patch series allowing us to drop it.
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Mitul-Golani/drm-Add-Adaptive-Sync-SDP-logging/20231123-220931
-base:   git://anongit.freedesktop.org/drm/drm-tip drm-tip
-patch link:    https://lore.kernel.org/r/20231123140244.4183869-2-mitulkumar.ajitkumar.golani%40intel.com
-patch subject: [Intel-gfx] [PATCH 1/3] drm: Add Adaptive Sync SDP logging
-config: x86_64-defconfig (https://download.01.org/0day-ci/archive/20231124/202311241136.tl5STYqx-lkp@intel.com/config)
-compiler: gcc-11 (Debian 11.3.0-12) 11.3.0
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20231124/202311241136.tl5STYqx-lkp@intel.com/reproduce)
+It's encouraged to provide Acked-bys and Reviewed-bys even though the
+patch has now been applied. If possible patch trailers will be updated.
 
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202311241136.tl5STYqx-lkp@intel.com/
+Note that commit hashes shown below are subject to change due to rebase,
+trailer updates or similar. If in doubt, please check the listed branch.
 
-All warnings (new ones prefixed by >>):
+tree:   https://git.kernel.org/pub/scm/linux/kernel/git/vfs/vfs.git
+branch: vfs.misc
 
-   In file included from include/linux/device.h:15,
-                    from include/linux/backlight.h:12,
-                    from drivers/gpu/drm/display/drm_dp_helper.c:23:
-   drivers/gpu/drm/display/drm_dp_helper.c: In function 'drm_dp_as_sdp_log':
->> drivers/gpu/drm/display/drm_dp_helper.c:2927:20: warning: format '%s' expects argument of type 'char *', but argument 4 has type 'int' [-Wformat=]
-    2927 |         DP_SDP_LOG("    target_rr: %s\n", async->target_rr);
-         |                    ^~~~~~~~~~~~~~~~~~~~~  ~~~~~~~~~~~~~~~~
-         |                                                |
-         |                                                int
-   include/linux/dev_printk.h:129:41: note: in definition of macro 'dev_printk'
-     129 |                 _dev_printk(level, dev, fmt, ##__VA_ARGS__);            \
-         |                                         ^~~
-   drivers/gpu/drm/display/drm_dp_helper.c:2927:9: note: in expansion of macro 'DP_SDP_LOG'
-    2927 |         DP_SDP_LOG("    target_rr: %s\n", async->target_rr);
-         |         ^~~~~~~~~~
-   drivers/gpu/drm/display/drm_dp_helper.c:2927:37: note: format string is defined here
-    2927 |         DP_SDP_LOG("    target_rr: %s\n", async->target_rr);
-         |                                    ~^
-         |                                     |
-         |                                     char *
-         |                                    %d
-
-
-vim +2927 drivers/gpu/drm/display/drm_dp_helper.c
-
-  2919	
-  2920	void drm_dp_as_sdp_log(const char *level, struct device *dev,
-  2921			       const struct drm_dp_as_sdp *async)
-  2922	{
-  2923	#define DP_SDP_LOG(fmt, ...) dev_printk(level, dev, fmt, ##__VA_ARGS__)
-  2924		DP_SDP_LOG("DP SDP: %s, revision %u, length %u\n", "VSC",
-  2925			   async->revision, async->length);
-  2926		DP_SDP_LOG("	vmin: %d vmax: %d\n", async->vmin, async->vmax);
-> 2927		DP_SDP_LOG("    target_rr: %s\n", async->target_rr);
-  2928		DP_SDP_LOG("    duration_incr_ms: %u\n", async->duration_incr_ms);
-  2929		DP_SDP_LOG("    duration_decr_ms: %u\n", async->duration_decr_ms);
-  2930		DP_SDP_LOG("    operation_mode: %u\n", async->operation_mode);
-  2931	#undef DP_SDP_LOG
-  2932	}
-  2933	EXPORT_SYMBOL(drm_dp_as_sdp_log);
-  2934	
-
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+[1/4] i915: make inject_virtual_interrupt() void
+      https://git.kernel.org/vfs/vfs/c/858848719210
+[2/4] eventfd: simplify eventfd_signal()
+      https://git.kernel.org/vfs/vfs/c/ded0f31f825f
+[3/4] eventfd: simplify eventfd_signal_mask()
+      https://git.kernel.org/vfs/vfs/c/45ee1c990e88
+[4/4] eventfd: make eventfd_signal{_mask}() void
+      https://git.kernel.org/vfs/vfs/c/37d5d473e749
