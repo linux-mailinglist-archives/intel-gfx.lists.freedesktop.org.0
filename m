@@ -1,152 +1,53 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6A4E97F6D3B
-	for <lists+intel-gfx@lfdr.de>; Fri, 24 Nov 2023 08:54:18 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0E8E67F6D42
+	for <lists+intel-gfx@lfdr.de>; Fri, 24 Nov 2023 08:57:48 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2224210E79D;
-	Fri, 24 Nov 2023 07:54:13 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 187BA10E79D;
+	Fri, 24 Nov 2023 07:57:34 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 99E0C10E79B;
- Fri, 24 Nov 2023 07:54:11 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.24])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6A5C710E79D
+ for <intel-gfx@lists.freedesktop.org>; Fri, 24 Nov 2023 07:57:31 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1700812452; x=1732348452;
- h=from:to:cc:subject:date:message-id:references:
- in-reply-to:content-transfer-encoding:mime-version;
- bh=7mrbbVhGhwuvi1O8Ybr2KRV6b7y0RQxPxSJRCfHqv0k=;
- b=gizs2KnuzkUJnpn3lFU+ZleIDejIFUIh0/uWGyR5nWvHqz+YDCvE8Tli
- Ti9uRCCKIsqZT5XNn8GlcXDRek/MwGvuJxV5/RJX3NoHZ7sOemakPkWCw
- +isJF/AQNsdF/SiJGbXmgZT0A/801maWzrwjOzklSuCuE1X/6q22ItNNF
- 31+LJN9SyaQsVln9ktLjZZY03WhqolhX/od8PS6YcEKhoyyhUznQ3hL7x
- gqT7lmJTW4+47QB+F47D0hse2XU7ax3Jnmq6TaxEfhtA8IX8op+La7Lwo
- JNJIeddeswW3hnMGypwVQ1Khc2JfS8BH9pRH7JrdzKLIC6vACmsJO3+SU w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10902"; a="5599844"
-X-IronPort-AV: E=Sophos;i="6.04,223,1695711600"; 
-   d="scan'208";a="5599844"
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
- by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Nov 2023 23:54:11 -0800
+ t=1700812651; x=1732348651;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:in-reply-to;
+ bh=bT1l19d9A25e9utkJpiO6JpTEoi4Lcnrc2WDoFxG99g=;
+ b=MjhdTd/mArxtMg7E2nsMogkOyd2lH8Bxa1JoYHYkNJLOp49/ejfOVUVS
+ j+r97xB48YFG3y0RA4XVLnEKvmJXVXavTJDQdWicOvhxe0oIYV2Z2ZL7m
+ fYppp9wLVsKg6tRHqiptwGGEn4Kz7wPSj0P0XpiVCYsb/suqnbue8OxV5
+ ZFWNhkXAgVotoSi9mL780f/e0/iW68pTeHCTxgS6yJhuOLodYg4Yttua5
+ CQuAVZScCAdgLiNavEla/ejJozrAuaKFBKfe1WQ0pBzuBUTu2/WlUXcP8
+ jKkCw9BOvFCZNOXRcptrRWY+cY6iM0vITmJkxn/473uRxbu2hBZph+I6c Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10902"; a="395199282"
+X-IronPort-AV: E=Sophos;i="6.04,223,1695711600"; d="scan'208";a="395199282"
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+ by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 23 Nov 2023 23:57:31 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10902"; a="911369645"
-X-IronPort-AV: E=Sophos;i="6.04,223,1695711600"; d="scan'208";a="911369645"
-Received: from orsmsx601.amr.corp.intel.com ([10.22.229.14])
- by fmsmga001.fm.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
- 23 Nov 2023 23:54:10 -0800
-Received: from orsmsx603.amr.corp.intel.com (10.22.229.16) by
- ORSMSX601.amr.corp.intel.com (10.22.229.14) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.34; Thu, 23 Nov 2023 23:54:10 -0800
-Received: from ORSEDG601.ED.cps.intel.com (10.7.248.6) by
- orsmsx603.amr.corp.intel.com (10.22.229.16) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.34 via Frontend Transport; Thu, 23 Nov 2023 23:54:10 -0800
-Received: from NAM11-CO1-obe.outbound.protection.outlook.com (104.47.56.169)
- by edgegateway.intel.com (134.134.137.102) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.34; Thu, 23 Nov 2023 23:54:09 -0800
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=PSOIE8fQruKAZsDz31/llvoT7wiO416Mv93c43wFSB8xlm5Z1GctpLU32XkLyV3qK5wOtafeb+fmB+HTvPuAsRZiIsp9KrSeXEFWQYPWDozezlA1R0+Bqp2EpD6ZhrKSYXsWsRNIGXBghRh6NO6+tAlYDk4YYd1yz5Nlb8rjzz4yC0ZEgipba5tqWFykaxJ13VDZa90IH7hRKIuXgc2zwl/tax/mJn66V5DLpwdwv0xVn74Y6MTl4qmOiF2eKaDMtyrqdeaAzmzPjMozfG1+N6ozNsSV06O/WqarM1xJ7sLF1P21gdB4OJ0S1YvVjjqCOe+fqBcwzu8CLQJheNsRXg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=7mrbbVhGhwuvi1O8Ybr2KRV6b7y0RQxPxSJRCfHqv0k=;
- b=ixpfAZoA4ATs5CBZfJYm0WyDTsusbAmBV8v4vgdQUe2mvZ4e8jsNFPc8240DJ+Q8fmzOTTMGIYsWcCPSBF8V1okZuX7L/N5o9QxT7+hRWEiVBfuKttwZx8X+nTJwGIyBgTow/zxH7vBynYbot1Ym6QFH/tRAbG4XE4eggQZyATiqKpLrSgajAKPI5I+f3M9NYSI8xlIlAOOx1c1L+8R7e3BGqeMAdrlXUMC4T5q3P1YkWhXHyDZKvysuF0XwiFHKGDZ1rc2cFZtWjPJ0mEEj9fveT3BuwgOkBRMeuema0wEH1VRac6qRSWg1xh0XRJGQIM332ps2469I0CXKrXJU+w==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Received: from SJ1PR11MB6129.namprd11.prod.outlook.com (2603:10b6:a03:488::12)
- by CH3PR11MB8238.namprd11.prod.outlook.com (2603:10b6:610:155::11)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7025.20; Fri, 24 Nov
- 2023 07:54:08 +0000
-Received: from SJ1PR11MB6129.namprd11.prod.outlook.com
- ([fe80::b5bf:a968:5f25:945]) by SJ1PR11MB6129.namprd11.prod.outlook.com
- ([fe80::b5bf:a968:5f25:945%6]) with mapi id 15.20.7025.021; Fri, 24 Nov 2023
- 07:54:07 +0000
-From: "Borah, Chaitanya Kumar" <chaitanya.kumar.borah@intel.com>
-To: Rahul Rameshbabu <sergeantsagara@protonmail.com>
-Thread-Topic: [Intel-gfx] [PATCH] drm/i915/irq: Improve error logging for
- unexpected DE Misc interrupts
-Thread-Index: AQHaHlWx2ge4guZm/kK/ODQH6nKZMbCI94sA
-Date: Fri, 24 Nov 2023 07:54:07 +0000
-Message-ID: <SJ1PR11MB612918F5E101E35224C918FEB9B8A@SJ1PR11MB6129.namprd11.prod.outlook.com>
-References: <20231123175638.27650-1-sergeantsagara@protonmail.com>
-In-Reply-To: <20231123175638.27650-1-sergeantsagara@protonmail.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: SJ1PR11MB6129:EE_|CH3PR11MB8238:EE_
-x-ms-office365-filtering-correlation-id: 8548aa5b-c425-495e-94de-08dbecc2894d
-x-ld-processed: 46c98d88-e344-4ed4-8496-4ed7712e255d,ExtAddr
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: aKb86mTcEP/dYGlDCZDlVvbLnNfIMCxhtISzwORlaIz8YTjwqzatBVaN6r/WS3uI82ux2Km6Oi2vKHmcxqet9rkhPXkePfDqfdal3Tjx4dwdObwRi2kBJL5fzv/2PxeSOEvewnSglNTMR/alt/ITlqKEpww8/vyZU2RvWivArwpdwFlckaqOEC7TeUUSSBdcX+OcnR004CEl84hg66JfiecKwiFlVJdlpqaZe2nCIg2h/LSEv9Nbzybcj51duf4bkQz3pGntsJ7ks27O/Osld4XlHWIhd0W8Py2i7l1EyANzMn4XoSZ3/iKsMKfn091FHAZjECkdO984392M56pHYD4gwuSnY2vxengBfhluYH91JlikcuOzjCJjPtvcH4HjbgF/4nIfZXLKl/N3k4q1fehnq59izzk9BR1I3HMMndmBIErLRo4O8zUoH6VjueQNxs5aCVXMYaccyyQVhTGt8tmelif7E1OewDKp2JCOyCPtYm4LB0uzlXq1Vu9TuNL5R+qtj3V6B93bvHyEyBdoXYUIfeO5ddAcbheYVQGKOi+zR4EQ3sF8AGHqxHSB5MgsuvrOB0iaSzoqW2fxXIaEayfnfyL0KsTB/XpNYvtDebs=
-x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:SJ1PR11MB6129.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230031)(39860400002)(136003)(366004)(376002)(396003)(346002)(230922051799003)(1800799012)(451199024)(186009)(64100799003)(55016003)(9686003)(26005)(82960400001)(122000001)(86362001)(33656002)(38070700009)(38100700002)(64756008)(83380400001)(5660300002)(2906002)(478600001)(6506007)(7696005)(71200400001)(53546011)(54906003)(316002)(66946007)(66446008)(66556008)(66476007)(4326008)(8936002)(6916009)(8676002)(966005)(52536014)(41300700001)(76116006);
- DIR:OUT; SFP:1102; 
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?utf-8?B?R0dFdmFVTWQ3cGRnWTAvZkt6SHVoOW0ydVp1RDVEL2dmZUZnZlRoZUpsVUxL?=
- =?utf-8?B?ZlFySzg0T3IxaEp2c1FjYkVMb2JKUFB6djlHT2UzakIvSUpocDQyNHJ0ajR0?=
- =?utf-8?B?a1RENXRWUUVPZS9nZG50ZXA5di9VQVQ3SmpRVzJjWVF2TmVzSWhhdXpYMlFR?=
- =?utf-8?B?LzFvK0ltdEZwdGhGbi9PL21IYWV4YUpBV0JDSEtzcklGS1FlTEw0c2ExMWRF?=
- =?utf-8?B?dlJKdmh0V0QvM3dBWFFVYUg4Z01Ra2VmaWdNSGFtUGZKeVNJL2J0WFZoVXh4?=
- =?utf-8?B?Ti9GekdNcThVY3R3YWwxRDArMGl5NGhkekFIZ0lJSkpYV20yK1lic1kxWUx5?=
- =?utf-8?B?U3BCNE44UEFCWXRySGM0bTh4K3A2dXRwNENRdG85VVRkaDUrcW05bEVjV0tq?=
- =?utf-8?B?UUgySFgyU1ZaNGZONTFVUGZBR2d2TGdYM0dNVkFoNzlYeXR1ZGdnR1hxdUIv?=
- =?utf-8?B?U1YyV0FZRWlFa0tGUU0vU0srUjhWaERBa2ZUaFh5MGt0RnNSbjNCRFVsUWdZ?=
- =?utf-8?B?OFVjSHNNaUl6Wm81QlFlNHh4eW5aYng1K29UY245OEYxRFArNTdCNHFRbm1t?=
- =?utf-8?B?ZzZpYm1HcjNEVnFOdEdFc2J1c2tmbVBxa1QrSzRhaWhEeUl5ZTRsNmc5WXZ1?=
- =?utf-8?B?elVmVkFyZHFSRmRCZVlpZStjYzlZajF6RmM5dVJkZGZDcURyYjZTdWFQSFVa?=
- =?utf-8?B?VWpsUUVQL3JqVzlJMVNSa1J6VjhHTi9yQTMwSHkyWmJMZTFHc2xnUjRnVnVr?=
- =?utf-8?B?YUUzcExCY2h3Y0lDUXBMTGN2cW5zMzJQMjlkMWVXaERHNXdkVXd0RGFIT0d2?=
- =?utf-8?B?Ry81TlVkVGsreG9vZ1ZUaTBsNlBVR1VWWkNnN3RWSjNFTi9ZWjI3WDBtcmtS?=
- =?utf-8?B?ZUNuTGpvZHIzVEpRRjFwUmZqM3ZzMVg0K1pqTjAwSUZZNzFrM0M0NmxRZmxs?=
- =?utf-8?B?NWlGbEpxaWJFS05qUEs2NlBVUnJ6cXZNdktEZjNLOVVtbWZWbjkvcEhKZFdr?=
- =?utf-8?B?NWtTZytNMFFNUEJHWjBTSkorSlBhcDZzYnhmaGQ1N21MNWt4dWd3bEx4VHd3?=
- =?utf-8?B?N093bFVGbVhEZXN6Nk40eDRkYzFhUCtxYUlwYjBOcndJWVhyTytkVXFDcHNU?=
- =?utf-8?B?blNmZzhpdWtJdlpsYXRwMGhYZHNvUzlsekg0a3Z2cUZyQ0Y2Yjg3M0lVV3Js?=
- =?utf-8?B?aE5lcWdraXQ1Qld3dExYSFpyTGFtbSs1a1dsMlc0dW8zT3VmbzRRNEgzeDhp?=
- =?utf-8?B?dC9haElMU1BZc1dNbnUyQW9UU1NRb3p1RzVPdjhDOFYrK0NyQmYvLzZYaGM4?=
- =?utf-8?B?UDYzdSt0K3ZMMGZIeWhrcURJRVU2NHJSb1VkdTgrRkJNQ05TMzRDUVRkTU54?=
- =?utf-8?B?OEN0Y0hGdGNMeU5BUDNmT2w5TmNxenFrOWd3VW1yZENFdjd1S3JRUFRSeDdu?=
- =?utf-8?B?T0EzQ0dIMGlLTVhsMjBvdXhmc0k2bm5Gc0JqcVBZSWtPQ01ubmlsUWhBS290?=
- =?utf-8?B?YjNkTytyYk1RTlVLdnNVOElaVDhqQU5wVnA4SHJtdWkxbzY4S3FNOHVjbXdG?=
- =?utf-8?B?Zmg4OWZiZzY5dSt1L0pTS0VHOTBPUGc3dG9IVXNBK2tsVUhLMHd4bTdMcTQy?=
- =?utf-8?B?UlYvT3dmT0dQNFBRbDZMMVhxRk5wMXM3VTJtNXIwcEtEMXVxK1A1UGxGNi9E?=
- =?utf-8?B?U2JXdW1WclNvTlBDekVOTUNwWGg3MTNDVWEvZVNVSmowUFV1QlQ0U2lIdjJJ?=
- =?utf-8?B?NWpQU1N6U2tEM05za2pudWN3aTM0ZnZMVVVOa2dzaXNnMVRBbUxCaHQvcDRk?=
- =?utf-8?B?blhqTG41bExkd3JsbVJPUGZsVXBESTNXU0dKVktKcmcyRG9BTTlEamlEc0RF?=
- =?utf-8?B?NVE3TlpSb2Q0OGN5Z1lLcVBUOVlDbDdWTUM2WDN2N1g0Nk5TYmJFL3NZMjEv?=
- =?utf-8?B?U0V4Vzg4SmpvbnQrOStIQUNHN1NDQWNzbDQ4RjlmUmNlVmJMTzBNT2FKSFNB?=
- =?utf-8?B?UWkybXhrYjdqWk9SZHFsUTNBS2VWMCtUZW9wUHNrNFBDellnSDJHUzQ0cEh2?=
- =?utf-8?B?cklUQSsxallnYVJFOXJHNlJxYXFrQ3NXUk4xM3EyS2NqR2pnejNUdGdnd2RL?=
- =?utf-8?B?QjBPeCt3UkZ6K3RCd3UvYStXL3IxLzc3YVhqb3dXQ2FGQVBNaHpZWm9mOXZZ?=
- =?utf-8?B?b0E9PQ==?=
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+X-IronPort-AV: E=McAfee;i="6600,9927,10902"; a="767393114"
+X-IronPort-AV: E=Sophos;i="6.04,223,1695711600"; d="scan'208";a="767393114"
+Received: from lkp-server01.sh.intel.com (HELO d584ee6ebdcc) ([10.239.97.150])
+ by orsmga002.jf.intel.com with ESMTP; 23 Nov 2023 23:57:29 -0800
+Received: from kbuild by d584ee6ebdcc with local (Exim 4.96)
+ (envelope-from <lkp@intel.com>) id 1r6R43-0002Ep-1P;
+ Fri, 24 Nov 2023 07:57:27 +0000
+Date: Fri, 24 Nov 2023 15:56:44 +0800
+From: kernel test robot <lkp@intel.com>
+To: Mitul Golani <mitulkumar.ajitkumar.golani@intel.com>,
+ intel-gfx@lists.freedesktop.org
+Message-ID: <202311241251.ZXIZrJRp-lkp@intel.com>
+References: <20231123140244.4183869-2-mitulkumar.ajitkumar.golani@intel.com>
 MIME-Version: 1.0
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: SJ1PR11MB6129.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 8548aa5b-c425-495e-94de-08dbecc2894d
-X-MS-Exchange-CrossTenant-originalarrivaltime: 24 Nov 2023 07:54:07.4100 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: Hj2vmLs2ckw3kYiVlIeqST16wjhNHVDR/G9lCTDsvL6Y+cveiYDt24E1KGFwJooAymSVymWSxP61eYG0i2zAAlEJm4vYQvXGNsv+S0Vo770=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH3PR11MB8238
-X-OriginatorOrg: intel.com
-Subject: Re: [Intel-gfx] [PATCH] drm/i915/irq: Improve error logging for
- unexpected DE Misc interrupts
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20231123140244.4183869-2-mitulkumar.ajitkumar.golani@intel.com>
+Subject: Re: [Intel-gfx] [PATCH 1/3] drm: Add Adaptive Sync SDP logging
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -159,39 +60,63 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "Nikula, Jani" <jani.nikula@intel.com>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
- "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>
+Cc: llvm@lists.linux.dev, oe-kbuild-all@lists.linux.dev
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-PiAtLS0tLU9yaWdpbmFsIE1lc3NhZ2UtLS0tLQ0KPiBGcm9tOiBJbnRlbC1nZnggPGludGVsLWdm
-eC1ib3VuY2VzQGxpc3RzLmZyZWVkZXNrdG9wLm9yZz4gT24gQmVoYWxmIE9mIFJhaHVsDQo+IFJh
-bWVzaGJhYnUNCj4gU2VudDogVGh1cnNkYXksIE5vdmVtYmVyIDIzLCAyMDIzIDExOjI3IFBNDQo+
-IFRvOiBpbnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnDQo+IENjOiBOaWt1bGEsIEphbmkg
-PGphbmkubmlrdWxhQGludGVsLmNvbT47IGRyaS1kZXZlbEBsaXN0cy5mcmVlZGVza3RvcC5vcmc7
-DQo+IFJhaHVsIFJhbWVzaGJhYnUgPHNlcmdlYW50c2FnYXJhQHByb3Rvbm1haWwuY29tPg0KPiBT
-dWJqZWN0OiBbSW50ZWwtZ2Z4XSBbUEFUQ0hdIGRybS9pOTE1L2lycTogSW1wcm92ZSBlcnJvciBs
-b2dnaW5nIGZvcg0KPiB1bmV4cGVjdGVkIERFIE1pc2MgaW50ZXJydXB0cw0KPiANCj4gRHVtcCB0
-aGUgaWlyIHZhbHVlIGluIGhleCB3aGVuIHRoZSBpbnRlcnJ1cHQgaXMgdW5leHBlY3RlZC4NCj4g
-DQo+IExpbms6IGh0dHBzOi8vZ2l0bGFiLmZyZWVkZXNrdG9wLm9yZy9kcm0vaW50ZWwvLS9pc3N1
-ZXMvOTY1MiNub3RlXzIxNzg1MDENCj4gQ2M6IEphbmkgTmlrdWxhIDxqYW5pLm5pa3VsYUBpbnRl
-bC5jb20+DQo+IFNpZ25lZC1vZmYtYnk6IFJhaHVsIFJhbWVzaGJhYnUgPHNlcmdlYW50c2FnYXJh
-QHByb3Rvbm1haWwuY29tPg0KPiAtLS0NCj4gIGRyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkv
-aW50ZWxfZGlzcGxheV9pcnEuYyB8IDIgKy0NCj4gIDEgZmlsZSBjaGFuZ2VkLCAxIGluc2VydGlv
-bigrKSwgMSBkZWxldGlvbigtKQ0KPiANCj4gZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9p
-OTE1L2Rpc3BsYXkvaW50ZWxfZGlzcGxheV9pcnEuYw0KPiBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1
-L2Rpc3BsYXkvaW50ZWxfZGlzcGxheV9pcnEuYw0KPiBpbmRleCBiZmY0YTc2MzEwYzAuLjFhNWE5
-ZTBmYzAxZSAxMDA2NDQNCj4gLS0tIGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRl
-bF9kaXNwbGF5X2lycS5jDQo+ICsrKyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50
-ZWxfZGlzcGxheV9pcnEuYw0KPiBAQCAtODk2LDcgKzg5Niw3IEBAIGdlbjhfZGVfbWlzY19pcnFf
-aGFuZGxlcihzdHJ1Y3QgZHJtX2k5MTVfcHJpdmF0ZQ0KPiAqZGV2X3ByaXYsIHUzMiBpaXIpDQo+
-ICAJfQ0KPiANCj4gIAlpZiAoIWZvdW5kKQ0KPiAtCQlkcm1fZXJyKCZkZXZfcHJpdi0+ZHJtLCAi
-VW5leHBlY3RlZCBERSBNaXNjDQo+IGludGVycnVwdFxuIik7DQo+ICsJCWRybV9lcnIoJmRldl9w
-cml2LT5kcm0sICJVbmV4cGVjdGVkIERFIE1pc2MgaW50ZXJydXB0Og0KPiAlI3hcbiIsIGlpcik7
-DQoNCk5pdDogSXQgY291bGQgdXNlIGEgZm9ybWF0IHNwZWNpZmllciBsaWtlICIweCUwOHgiIChs
-aWtlIG90aGVyIGluc3RhbmNlcyBpbiB0aGUgZmlsZSkgdG8gbWFpbnRhaW4gdW5pZm9ybSB3aWR0
-aC4NCg0KT3RoZXIgdGhhbiB0aGF0LiBMR1RNLg0KDQpSZXZpZXdlZC1ieTogQ2hhaXRhbnlhIEt1
-bWFyIEJvcmFoIDxjaGFpdGFueWEua3VtYXIuYm9yYWhAaW50ZWwuY29tPg0KDQoNCj4gIH0NCj4g
-DQo+ICBzdGF0aWMgdm9pZCBnZW4xMV9kc2lfdGVfaW50ZXJydXB0X2hhbmRsZXIoc3RydWN0IGRy
-bV9pOTE1X3ByaXZhdGUNCj4gKmRldl9wcml2LA0KPiAtLQ0KPiAyLjQwLjENCj4gDQoNCg==
+Hi Mitul,
+
+kernel test robot noticed the following build warnings:
+
+[auto build test WARNING on drm-tip/drm-tip]
+
+url:    https://github.com/intel-lab-lkp/linux/commits/Mitul-Golani/drm-Add-Adaptive-Sync-SDP-logging/20231123-220931
+base:   git://anongit.freedesktop.org/drm/drm-tip drm-tip
+patch link:    https://lore.kernel.org/r/20231123140244.4183869-2-mitulkumar.ajitkumar.golani%40intel.com
+patch subject: [Intel-gfx] [PATCH 1/3] drm: Add Adaptive Sync SDP logging
+config: x86_64-allyesconfig (https://download.01.org/0day-ci/archive/20231124/202311241251.ZXIZrJRp-lkp@intel.com/config)
+compiler: clang version 16.0.4 (https://github.com/llvm/llvm-project.git ae42196bc493ffe877a7e3dff8be32035dea4d07)
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20231124/202311241251.ZXIZrJRp-lkp@intel.com/reproduce)
+
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202311241251.ZXIZrJRp-lkp@intel.com/
+
+All warnings (new ones prefixed by >>):
+
+>> drivers/gpu/drm/display/drm_dp_helper.c:2927:36: warning: format specifies type 'char *' but the argument has type 'u16' (aka 'unsigned short') [-Wformat]
+           DP_SDP_LOG("    target_rr: %s\n", async->target_rr);
+                                      ~~     ^~~~~~~~~~~~~~~~
+                                      %hu
+   drivers/gpu/drm/display/drm_dp_helper.c:2923:60: note: expanded from macro 'DP_SDP_LOG'
+   #define DP_SDP_LOG(fmt, ...) dev_printk(level, dev, fmt, ##__VA_ARGS__)
+                                                       ~~~    ^~~~~~~~~~~
+   include/linux/dev_printk.h:129:34: note: expanded from macro 'dev_printk'
+                   _dev_printk(level, dev, fmt, ##__VA_ARGS__);            \
+                                           ~~~    ^~~~~~~~~~~
+   1 warning generated.
+
+
+vim +2927 drivers/gpu/drm/display/drm_dp_helper.c
+
+  2919	
+  2920	void drm_dp_as_sdp_log(const char *level, struct device *dev,
+  2921			       const struct drm_dp_as_sdp *async)
+  2922	{
+  2923	#define DP_SDP_LOG(fmt, ...) dev_printk(level, dev, fmt, ##__VA_ARGS__)
+  2924		DP_SDP_LOG("DP SDP: %s, revision %u, length %u\n", "VSC",
+  2925			   async->revision, async->length);
+  2926		DP_SDP_LOG("	vmin: %d vmax: %d\n", async->vmin, async->vmax);
+> 2927		DP_SDP_LOG("    target_rr: %s\n", async->target_rr);
+  2928		DP_SDP_LOG("    duration_incr_ms: %u\n", async->duration_incr_ms);
+  2929		DP_SDP_LOG("    duration_decr_ms: %u\n", async->duration_decr_ms);
+  2930		DP_SDP_LOG("    operation_mode: %u\n", async->operation_mode);
+  2931	#undef DP_SDP_LOG
+  2932	}
+  2933	EXPORT_SYMBOL(drm_dp_as_sdp_log);
+  2934	
+
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
