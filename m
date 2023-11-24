@@ -1,33 +1,49 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id E405A7F7A35
-	for <lists+intel-gfx@lfdr.de>; Fri, 24 Nov 2023 18:17:17 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 672917F854E
+	for <lists+intel-gfx@lfdr.de>; Fri, 24 Nov 2023 21:56:14 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id ED8DB10E206;
-	Fri, 24 Nov 2023 17:17:13 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 73A0610E0E2;
+	Fri, 24 Nov 2023 20:56:11 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 0D4EF10E20C;
- Fri, 24 Nov 2023 17:17:13 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 0536DAADE1;
- Fri, 24 Nov 2023 17:17:13 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============4086506107657437822=="
+Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 02EE710E0E2
+ for <intel-gfx@lists.freedesktop.org>; Fri, 24 Nov 2023 20:56:08 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1700859369; x=1732395369;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=PJQRCBKHOTbIGPWgtfco9MhfNT44V/PENCBOQ5i29JM=;
+ b=IBdC/X6JZvv8nWSR1zLnG9mkAIZsJlIV7CZsRdtH46/SyHzPgB6rryDa
+ jKJMUkKipRTsRn17cViHKMw7Fjc4E8UI/BOTAR5c1rOs0FnPjXpEP2wZi
+ hYC4vaM6tHRHeo+k83ME6Eil3Ew7O50G6Fo88KmWZ5T6IwOgsKvjt27ZW
+ yL2TYNrY5ZT50wsEVfZARTF1/Hrt6nng5Swx+qZtLRr+5q3yylMVwikE4
+ rM0LXxbHJoIFXUqy9MIV7zLkK7r3miYl9fK1buL2r/flrDwGchKDBlj81
+ QmM/L/NpP6d5NQCH7U0KKV5jWKar1LqyBK6gr1ad8CKjGdncuBfnPVA85 g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10904"; a="456809359"
+X-IronPort-AV: E=Sophos;i="6.04,224,1695711600"; d="scan'208";a="456809359"
+Received: from fmviesa001.fm.intel.com ([10.60.135.141])
+ by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 24 Nov 2023 12:56:08 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.04,224,1695711600"; d="scan'208";a="16055334"
+Received: from rchaubey-mobl1.amr.corp.intel.com (HELO
+ gjsousa-mobl2.intel.com) ([10.255.36.179])
+ by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 24 Nov 2023 12:56:06 -0800
+From: Gustavo Sousa <gustavo.sousa@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Fri, 24 Nov 2023 17:55:23 -0300
+Message-ID: <20231124205522.57696-2-gustavo.sousa@intel.com>
+X-Mailer: git-send-email 2.42.1
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Jani Nikula" <jani.nikula@intel.com>
-Date: Fri, 24 Nov 2023 17:17:12 -0000
-Message-ID: <170084623299.13022.2902867271163234621@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <cover.1700829750.git.jani.nikula@intel.com>
-In-Reply-To: <cover.1700829750.git.jani.nikula@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
- =?utf-8?q?=3A_drm_debug_and_error_logging_improvements?=
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-gfx] [PATCH] drm/i915/cdclk: Remove divider field from tables
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,392 +56,343 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
+Cc: Matt Roper <matthew.d.roper@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============4086506107657437822==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+The cdclk tables were introduced with commit 736da8112fee ("drm/i915:
+Use literal representation of cdclk tables"). It has been almost 4 years
+and the divider field was not really used yet. Let's remove it.
 
-== Series Details ==
+Cc: Matt Roper <matthew.d.roper@intel.com>
+Cc: Ville Syrjälä <ville.syrjala@linux.intel.com>
+Signed-off-by: Gustavo Sousa <gustavo.sousa@intel.com>
+---
+ drivers/gpu/drm/i915/display/intel_cdclk.c | 269 ++++++++++-----------
+ 1 file changed, 134 insertions(+), 135 deletions(-)
 
-Series: drm: drm debug and error logging improvements
-URL   : https://patchwork.freedesktop.org/series/126873/
-State : success
+diff --git a/drivers/gpu/drm/i915/display/intel_cdclk.c b/drivers/gpu/drm/i915/display/intel_cdclk.c
+index b93d1ad7936d..7f85a216ff5c 100644
+--- a/drivers/gpu/drm/i915/display/intel_cdclk.c
++++ b/drivers/gpu/drm/i915/display/intel_cdclk.c
+@@ -1227,183 +1227,182 @@ struct intel_cdclk_vals {
+ 	u32 cdclk;
+ 	u16 refclk;
+ 	u16 waveform;
+-	u8 divider;	/* CD2X divider * 2 */
+ 	u8 ratio;
+ };
+ 
+ static const struct intel_cdclk_vals bxt_cdclk_table[] = {
+-	{ .refclk = 19200, .cdclk = 144000, .divider = 8, .ratio = 60 },
+-	{ .refclk = 19200, .cdclk = 288000, .divider = 4, .ratio = 60 },
+-	{ .refclk = 19200, .cdclk = 384000, .divider = 3, .ratio = 60 },
+-	{ .refclk = 19200, .cdclk = 576000, .divider = 2, .ratio = 60 },
+-	{ .refclk = 19200, .cdclk = 624000, .divider = 2, .ratio = 65 },
++	{ .refclk = 19200, .cdclk = 144000, .ratio = 60 },
++	{ .refclk = 19200, .cdclk = 288000, .ratio = 60 },
++	{ .refclk = 19200, .cdclk = 384000, .ratio = 60 },
++	{ .refclk = 19200, .cdclk = 576000, .ratio = 60 },
++	{ .refclk = 19200, .cdclk = 624000, .ratio = 65 },
+ 	{}
+ };
+ 
+ static const struct intel_cdclk_vals glk_cdclk_table[] = {
+-	{ .refclk = 19200, .cdclk =  79200, .divider = 8, .ratio = 33 },
+-	{ .refclk = 19200, .cdclk = 158400, .divider = 4, .ratio = 33 },
+-	{ .refclk = 19200, .cdclk = 316800, .divider = 2, .ratio = 33 },
++	{ .refclk = 19200, .cdclk =  79200, .ratio = 33 },
++	{ .refclk = 19200, .cdclk = 158400, .ratio = 33 },
++	{ .refclk = 19200, .cdclk = 316800, .ratio = 33 },
+ 	{}
+ };
+ 
+ static const struct intel_cdclk_vals icl_cdclk_table[] = {
+-	{ .refclk = 19200, .cdclk = 172800, .divider = 2, .ratio = 18 },
+-	{ .refclk = 19200, .cdclk = 192000, .divider = 2, .ratio = 20 },
+-	{ .refclk = 19200, .cdclk = 307200, .divider = 2, .ratio = 32 },
+-	{ .refclk = 19200, .cdclk = 326400, .divider = 4, .ratio = 68 },
+-	{ .refclk = 19200, .cdclk = 556800, .divider = 2, .ratio = 58 },
+-	{ .refclk = 19200, .cdclk = 652800, .divider = 2, .ratio = 68 },
+-
+-	{ .refclk = 24000, .cdclk = 180000, .divider = 2, .ratio = 15 },
+-	{ .refclk = 24000, .cdclk = 192000, .divider = 2, .ratio = 16 },
+-	{ .refclk = 24000, .cdclk = 312000, .divider = 2, .ratio = 26 },
+-	{ .refclk = 24000, .cdclk = 324000, .divider = 4, .ratio = 54 },
+-	{ .refclk = 24000, .cdclk = 552000, .divider = 2, .ratio = 46 },
+-	{ .refclk = 24000, .cdclk = 648000, .divider = 2, .ratio = 54 },
+-
+-	{ .refclk = 38400, .cdclk = 172800, .divider = 2, .ratio =  9 },
+-	{ .refclk = 38400, .cdclk = 192000, .divider = 2, .ratio = 10 },
+-	{ .refclk = 38400, .cdclk = 307200, .divider = 2, .ratio = 16 },
+-	{ .refclk = 38400, .cdclk = 326400, .divider = 4, .ratio = 34 },
+-	{ .refclk = 38400, .cdclk = 556800, .divider = 2, .ratio = 29 },
+-	{ .refclk = 38400, .cdclk = 652800, .divider = 2, .ratio = 34 },
++	{ .refclk = 19200, .cdclk = 172800, .ratio = 18 },
++	{ .refclk = 19200, .cdclk = 192000, .ratio = 20 },
++	{ .refclk = 19200, .cdclk = 307200, .ratio = 32 },
++	{ .refclk = 19200, .cdclk = 326400, .ratio = 68 },
++	{ .refclk = 19200, .cdclk = 556800, .ratio = 58 },
++	{ .refclk = 19200, .cdclk = 652800, .ratio = 68 },
++
++	{ .refclk = 24000, .cdclk = 180000, .ratio = 15 },
++	{ .refclk = 24000, .cdclk = 192000, .ratio = 16 },
++	{ .refclk = 24000, .cdclk = 312000, .ratio = 26 },
++	{ .refclk = 24000, .cdclk = 324000, .ratio = 54 },
++	{ .refclk = 24000, .cdclk = 552000, .ratio = 46 },
++	{ .refclk = 24000, .cdclk = 648000, .ratio = 54 },
++
++	{ .refclk = 38400, .cdclk = 172800, .ratio =  9 },
++	{ .refclk = 38400, .cdclk = 192000, .ratio = 10 },
++	{ .refclk = 38400, .cdclk = 307200, .ratio = 16 },
++	{ .refclk = 38400, .cdclk = 326400, .ratio = 34 },
++	{ .refclk = 38400, .cdclk = 556800, .ratio = 29 },
++	{ .refclk = 38400, .cdclk = 652800, .ratio = 34 },
+ 	{}
+ };
+ 
+ static const struct intel_cdclk_vals rkl_cdclk_table[] = {
+-	{ .refclk = 19200, .cdclk = 172800, .divider = 4, .ratio =  36 },
+-	{ .refclk = 19200, .cdclk = 192000, .divider = 4, .ratio =  40 },
+-	{ .refclk = 19200, .cdclk = 307200, .divider = 4, .ratio =  64 },
+-	{ .refclk = 19200, .cdclk = 326400, .divider = 8, .ratio = 136 },
+-	{ .refclk = 19200, .cdclk = 556800, .divider = 4, .ratio = 116 },
+-	{ .refclk = 19200, .cdclk = 652800, .divider = 4, .ratio = 136 },
+-
+-	{ .refclk = 24000, .cdclk = 180000, .divider = 4, .ratio =  30 },
+-	{ .refclk = 24000, .cdclk = 192000, .divider = 4, .ratio =  32 },
+-	{ .refclk = 24000, .cdclk = 312000, .divider = 4, .ratio =  52 },
+-	{ .refclk = 24000, .cdclk = 324000, .divider = 8, .ratio = 108 },
+-	{ .refclk = 24000, .cdclk = 552000, .divider = 4, .ratio =  92 },
+-	{ .refclk = 24000, .cdclk = 648000, .divider = 4, .ratio = 108 },
+-
+-	{ .refclk = 38400, .cdclk = 172800, .divider = 4, .ratio = 18 },
+-	{ .refclk = 38400, .cdclk = 192000, .divider = 4, .ratio = 20 },
+-	{ .refclk = 38400, .cdclk = 307200, .divider = 4, .ratio = 32 },
+-	{ .refclk = 38400, .cdclk = 326400, .divider = 8, .ratio = 68 },
+-	{ .refclk = 38400, .cdclk = 556800, .divider = 4, .ratio = 58 },
+-	{ .refclk = 38400, .cdclk = 652800, .divider = 4, .ratio = 68 },
++	{ .refclk = 19200, .cdclk = 172800, .ratio =  36 },
++	{ .refclk = 19200, .cdclk = 192000, .ratio =  40 },
++	{ .refclk = 19200, .cdclk = 307200, .ratio =  64 },
++	{ .refclk = 19200, .cdclk = 326400, .ratio = 136 },
++	{ .refclk = 19200, .cdclk = 556800, .ratio = 116 },
++	{ .refclk = 19200, .cdclk = 652800, .ratio = 136 },
++
++	{ .refclk = 24000, .cdclk = 180000, .ratio =  30 },
++	{ .refclk = 24000, .cdclk = 192000, .ratio =  32 },
++	{ .refclk = 24000, .cdclk = 312000, .ratio =  52 },
++	{ .refclk = 24000, .cdclk = 324000, .ratio = 108 },
++	{ .refclk = 24000, .cdclk = 552000, .ratio =  92 },
++	{ .refclk = 24000, .cdclk = 648000, .ratio = 108 },
++
++	{ .refclk = 38400, .cdclk = 172800, .ratio = 18 },
++	{ .refclk = 38400, .cdclk = 192000, .ratio = 20 },
++	{ .refclk = 38400, .cdclk = 307200, .ratio = 32 },
++	{ .refclk = 38400, .cdclk = 326400, .ratio = 68 },
++	{ .refclk = 38400, .cdclk = 556800, .ratio = 58 },
++	{ .refclk = 38400, .cdclk = 652800, .ratio = 68 },
+ 	{}
+ };
+ 
+ static const struct intel_cdclk_vals adlp_a_step_cdclk_table[] = {
+-	{ .refclk = 19200, .cdclk = 307200, .divider = 2, .ratio = 32 },
+-	{ .refclk = 19200, .cdclk = 556800, .divider = 2, .ratio = 58 },
+-	{ .refclk = 19200, .cdclk = 652800, .divider = 2, .ratio = 68 },
++	{ .refclk = 19200, .cdclk = 307200, .ratio = 32 },
++	{ .refclk = 19200, .cdclk = 556800, .ratio = 58 },
++	{ .refclk = 19200, .cdclk = 652800, .ratio = 68 },
+ 
+-	{ .refclk = 24000, .cdclk = 312000, .divider = 2, .ratio = 26 },
+-	{ .refclk = 24000, .cdclk = 552000, .divider = 2, .ratio = 46 },
+-	{ .refclk = 24400, .cdclk = 648000, .divider = 2, .ratio = 54 },
++	{ .refclk = 24000, .cdclk = 312000, .ratio = 26 },
++	{ .refclk = 24000, .cdclk = 552000, .ratio = 46 },
++	{ .refclk = 24400, .cdclk = 648000, .ratio = 54 },
+ 
+-	{ .refclk = 38400, .cdclk = 307200, .divider = 2, .ratio = 16 },
+-	{ .refclk = 38400, .cdclk = 556800, .divider = 2, .ratio = 29 },
+-	{ .refclk = 38400, .cdclk = 652800, .divider = 2, .ratio = 34 },
++	{ .refclk = 38400, .cdclk = 307200, .ratio = 16 },
++	{ .refclk = 38400, .cdclk = 556800, .ratio = 29 },
++	{ .refclk = 38400, .cdclk = 652800, .ratio = 34 },
+ 	{}
+ };
+ 
+ static const struct intel_cdclk_vals adlp_cdclk_table[] = {
+-	{ .refclk = 19200, .cdclk = 172800, .divider = 3, .ratio = 27 },
+-	{ .refclk = 19200, .cdclk = 192000, .divider = 2, .ratio = 20 },
+-	{ .refclk = 19200, .cdclk = 307200, .divider = 2, .ratio = 32 },
+-	{ .refclk = 19200, .cdclk = 556800, .divider = 2, .ratio = 58 },
+-	{ .refclk = 19200, .cdclk = 652800, .divider = 2, .ratio = 68 },
+-
+-	{ .refclk = 24000, .cdclk = 176000, .divider = 3, .ratio = 22 },
+-	{ .refclk = 24000, .cdclk = 192000, .divider = 2, .ratio = 16 },
+-	{ .refclk = 24000, .cdclk = 312000, .divider = 2, .ratio = 26 },
+-	{ .refclk = 24000, .cdclk = 552000, .divider = 2, .ratio = 46 },
+-	{ .refclk = 24000, .cdclk = 648000, .divider = 2, .ratio = 54 },
+-
+-	{ .refclk = 38400, .cdclk = 179200, .divider = 3, .ratio = 14 },
+-	{ .refclk = 38400, .cdclk = 192000, .divider = 2, .ratio = 10 },
+-	{ .refclk = 38400, .cdclk = 307200, .divider = 2, .ratio = 16 },
+-	{ .refclk = 38400, .cdclk = 556800, .divider = 2, .ratio = 29 },
+-	{ .refclk = 38400, .cdclk = 652800, .divider = 2, .ratio = 34 },
++	{ .refclk = 19200, .cdclk = 172800, .ratio = 27 },
++	{ .refclk = 19200, .cdclk = 192000, .ratio = 20 },
++	{ .refclk = 19200, .cdclk = 307200, .ratio = 32 },
++	{ .refclk = 19200, .cdclk = 556800, .ratio = 58 },
++	{ .refclk = 19200, .cdclk = 652800, .ratio = 68 },
++
++	{ .refclk = 24000, .cdclk = 176000, .ratio = 22 },
++	{ .refclk = 24000, .cdclk = 192000, .ratio = 16 },
++	{ .refclk = 24000, .cdclk = 312000, .ratio = 26 },
++	{ .refclk = 24000, .cdclk = 552000, .ratio = 46 },
++	{ .refclk = 24000, .cdclk = 648000, .ratio = 54 },
++
++	{ .refclk = 38400, .cdclk = 179200, .ratio = 14 },
++	{ .refclk = 38400, .cdclk = 192000, .ratio = 10 },
++	{ .refclk = 38400, .cdclk = 307200, .ratio = 16 },
++	{ .refclk = 38400, .cdclk = 556800, .ratio = 29 },
++	{ .refclk = 38400, .cdclk = 652800, .ratio = 34 },
+ 	{}
+ };
+ 
+ static const struct intel_cdclk_vals rplu_cdclk_table[] = {
+-	{ .refclk = 19200, .cdclk = 172800, .divider = 3, .ratio = 27 },
+-	{ .refclk = 19200, .cdclk = 192000, .divider = 2, .ratio = 20 },
+-	{ .refclk = 19200, .cdclk = 307200, .divider = 2, .ratio = 32 },
+-	{ .refclk = 19200, .cdclk = 480000, .divider = 2, .ratio = 50 },
+-	{ .refclk = 19200, .cdclk = 556800, .divider = 2, .ratio = 58 },
+-	{ .refclk = 19200, .cdclk = 652800, .divider = 2, .ratio = 68 },
+-
+-	{ .refclk = 24000, .cdclk = 176000, .divider = 3, .ratio = 22 },
+-	{ .refclk = 24000, .cdclk = 192000, .divider = 2, .ratio = 16 },
+-	{ .refclk = 24000, .cdclk = 312000, .divider = 2, .ratio = 26 },
+-	{ .refclk = 24000, .cdclk = 480000, .divider = 2, .ratio = 40 },
+-	{ .refclk = 24000, .cdclk = 552000, .divider = 2, .ratio = 46 },
+-	{ .refclk = 24000, .cdclk = 648000, .divider = 2, .ratio = 54 },
+-
+-	{ .refclk = 38400, .cdclk = 179200, .divider = 3, .ratio = 14 },
+-	{ .refclk = 38400, .cdclk = 192000, .divider = 2, .ratio = 10 },
+-	{ .refclk = 38400, .cdclk = 307200, .divider = 2, .ratio = 16 },
+-	{ .refclk = 38400, .cdclk = 480000, .divider = 2, .ratio = 25 },
+-	{ .refclk = 38400, .cdclk = 556800, .divider = 2, .ratio = 29 },
+-	{ .refclk = 38400, .cdclk = 652800, .divider = 2, .ratio = 34 },
++	{ .refclk = 19200, .cdclk = 172800, .ratio = 27 },
++	{ .refclk = 19200, .cdclk = 192000, .ratio = 20 },
++	{ .refclk = 19200, .cdclk = 307200, .ratio = 32 },
++	{ .refclk = 19200, .cdclk = 480000, .ratio = 50 },
++	{ .refclk = 19200, .cdclk = 556800, .ratio = 58 },
++	{ .refclk = 19200, .cdclk = 652800, .ratio = 68 },
++
++	{ .refclk = 24000, .cdclk = 176000, .ratio = 22 },
++	{ .refclk = 24000, .cdclk = 192000, .ratio = 16 },
++	{ .refclk = 24000, .cdclk = 312000, .ratio = 26 },
++	{ .refclk = 24000, .cdclk = 480000, .ratio = 40 },
++	{ .refclk = 24000, .cdclk = 552000, .ratio = 46 },
++	{ .refclk = 24000, .cdclk = 648000, .ratio = 54 },
++
++	{ .refclk = 38400, .cdclk = 179200, .ratio = 14 },
++	{ .refclk = 38400, .cdclk = 192000, .ratio = 10 },
++	{ .refclk = 38400, .cdclk = 307200, .ratio = 16 },
++	{ .refclk = 38400, .cdclk = 480000, .ratio = 25 },
++	{ .refclk = 38400, .cdclk = 556800, .ratio = 29 },
++	{ .refclk = 38400, .cdclk = 652800, .ratio = 34 },
+ 	{}
+ };
+ 
+ static const struct intel_cdclk_vals dg2_cdclk_table[] = {
+-	{ .refclk = 38400, .cdclk = 163200, .divider = 2, .ratio = 34, .waveform = 0x8888 },
+-	{ .refclk = 38400, .cdclk = 204000, .divider = 2, .ratio = 34, .waveform = 0x9248 },
+-	{ .refclk = 38400, .cdclk = 244800, .divider = 2, .ratio = 34, .waveform = 0xa4a4 },
+-	{ .refclk = 38400, .cdclk = 285600, .divider = 2, .ratio = 34, .waveform = 0xa54a },
+-	{ .refclk = 38400, .cdclk = 326400, .divider = 2, .ratio = 34, .waveform = 0xaaaa },
+-	{ .refclk = 38400, .cdclk = 367200, .divider = 2, .ratio = 34, .waveform = 0xad5a },
+-	{ .refclk = 38400, .cdclk = 408000, .divider = 2, .ratio = 34, .waveform = 0xb6b6 },
+-	{ .refclk = 38400, .cdclk = 448800, .divider = 2, .ratio = 34, .waveform = 0xdbb6 },
+-	{ .refclk = 38400, .cdclk = 489600, .divider = 2, .ratio = 34, .waveform = 0xeeee },
+-	{ .refclk = 38400, .cdclk = 530400, .divider = 2, .ratio = 34, .waveform = 0xf7de },
+-	{ .refclk = 38400, .cdclk = 571200, .divider = 2, .ratio = 34, .waveform = 0xfefe },
+-	{ .refclk = 38400, .cdclk = 612000, .divider = 2, .ratio = 34, .waveform = 0xfffe },
+-	{ .refclk = 38400, .cdclk = 652800, .divider = 2, .ratio = 34, .waveform = 0xffff },
++	{ .refclk = 38400, .cdclk = 163200, .ratio = 34, .waveform = 0x8888 },
++	{ .refclk = 38400, .cdclk = 204000, .ratio = 34, .waveform = 0x9248 },
++	{ .refclk = 38400, .cdclk = 244800, .ratio = 34, .waveform = 0xa4a4 },
++	{ .refclk = 38400, .cdclk = 285600, .ratio = 34, .waveform = 0xa54a },
++	{ .refclk = 38400, .cdclk = 326400, .ratio = 34, .waveform = 0xaaaa },
++	{ .refclk = 38400, .cdclk = 367200, .ratio = 34, .waveform = 0xad5a },
++	{ .refclk = 38400, .cdclk = 408000, .ratio = 34, .waveform = 0xb6b6 },
++	{ .refclk = 38400, .cdclk = 448800, .ratio = 34, .waveform = 0xdbb6 },
++	{ .refclk = 38400, .cdclk = 489600, .ratio = 34, .waveform = 0xeeee },
++	{ .refclk = 38400, .cdclk = 530400, .ratio = 34, .waveform = 0xf7de },
++	{ .refclk = 38400, .cdclk = 571200, .ratio = 34, .waveform = 0xfefe },
++	{ .refclk = 38400, .cdclk = 612000, .ratio = 34, .waveform = 0xfffe },
++	{ .refclk = 38400, .cdclk = 652800, .ratio = 34, .waveform = 0xffff },
+ 	{}
+ };
+ 
+ static const struct intel_cdclk_vals mtl_cdclk_table[] = {
+-	{ .refclk = 38400, .cdclk = 172800, .divider = 2, .ratio = 16, .waveform = 0xad5a },
+-	{ .refclk = 38400, .cdclk = 192000, .divider = 2, .ratio = 16, .waveform = 0xb6b6 },
+-	{ .refclk = 38400, .cdclk = 307200, .divider = 2, .ratio = 16, .waveform = 0x0000 },
+-	{ .refclk = 38400, .cdclk = 480000, .divider = 2, .ratio = 25, .waveform = 0x0000 },
+-	{ .refclk = 38400, .cdclk = 556800, .divider = 2, .ratio = 29, .waveform = 0x0000 },
+-	{ .refclk = 38400, .cdclk = 652800, .divider = 2, .ratio = 34, .waveform = 0x0000 },
++	{ .refclk = 38400, .cdclk = 172800, .ratio = 16, .waveform = 0xad5a },
++	{ .refclk = 38400, .cdclk = 192000, .ratio = 16, .waveform = 0xb6b6 },
++	{ .refclk = 38400, .cdclk = 307200, .ratio = 16, .waveform = 0x0000 },
++	{ .refclk = 38400, .cdclk = 480000, .ratio = 25, .waveform = 0x0000 },
++	{ .refclk = 38400, .cdclk = 556800, .ratio = 29, .waveform = 0x0000 },
++	{ .refclk = 38400, .cdclk = 652800, .ratio = 34, .waveform = 0x0000 },
+ 	{}
+ };
+ 
+ static const struct intel_cdclk_vals lnl_cdclk_table[] = {
+-	{ .refclk = 38400, .cdclk = 153600, .divider = 2, .ratio = 16, .waveform = 0xaaaa },
+-	{ .refclk = 38400, .cdclk = 172800, .divider = 2, .ratio = 16, .waveform = 0xad5a },
+-	{ .refclk = 38400, .cdclk = 192000, .divider = 2, .ratio = 16, .waveform = 0xb6b6 },
+-	{ .refclk = 38400, .cdclk = 211200, .divider = 2, .ratio = 16, .waveform = 0xdbb6 },
+-	{ .refclk = 38400, .cdclk = 230400, .divider = 2, .ratio = 16, .waveform = 0xeeee },
+-	{ .refclk = 38400, .cdclk = 249600, .divider = 2, .ratio = 16, .waveform = 0xf7de },
+-	{ .refclk = 38400, .cdclk = 268800, .divider = 2, .ratio = 16, .waveform = 0xfefe },
+-	{ .refclk = 38400, .cdclk = 288000, .divider = 2, .ratio = 16, .waveform = 0xfffe },
+-	{ .refclk = 38400, .cdclk = 307200, .divider = 2, .ratio = 16, .waveform = 0xffff },
+-	{ .refclk = 38400, .cdclk = 330000, .divider = 2, .ratio = 25, .waveform = 0xdbb6 },
+-	{ .refclk = 38400, .cdclk = 360000, .divider = 2, .ratio = 25, .waveform = 0xeeee },
+-	{ .refclk = 38400, .cdclk = 390000, .divider = 2, .ratio = 25, .waveform = 0xf7de },
+-	{ .refclk = 38400, .cdclk = 420000, .divider = 2, .ratio = 25, .waveform = 0xfefe },
+-	{ .refclk = 38400, .cdclk = 450000, .divider = 2, .ratio = 25, .waveform = 0xfffe },
+-	{ .refclk = 38400, .cdclk = 480000, .divider = 2, .ratio = 25, .waveform = 0xffff },
+-	{ .refclk = 38400, .cdclk = 487200, .divider = 2, .ratio = 29, .waveform = 0xfefe },
+-	{ .refclk = 38400, .cdclk = 522000, .divider = 2, .ratio = 29, .waveform = 0xfffe },
+-	{ .refclk = 38400, .cdclk = 556800, .divider = 2, .ratio = 29, .waveform = 0xffff },
+-	{ .refclk = 38400, .cdclk = 571200, .divider = 2, .ratio = 34, .waveform = 0xfefe },
+-	{ .refclk = 38400, .cdclk = 612000, .divider = 2, .ratio = 34, .waveform = 0xfffe },
+-	{ .refclk = 38400, .cdclk = 652800, .divider = 2, .ratio = 34, .waveform = 0xffff },
++	{ .refclk = 38400, .cdclk = 153600, .ratio = 16, .waveform = 0xaaaa },
++	{ .refclk = 38400, .cdclk = 172800, .ratio = 16, .waveform = 0xad5a },
++	{ .refclk = 38400, .cdclk = 192000, .ratio = 16, .waveform = 0xb6b6 },
++	{ .refclk = 38400, .cdclk = 211200, .ratio = 16, .waveform = 0xdbb6 },
++	{ .refclk = 38400, .cdclk = 230400, .ratio = 16, .waveform = 0xeeee },
++	{ .refclk = 38400, .cdclk = 249600, .ratio = 16, .waveform = 0xf7de },
++	{ .refclk = 38400, .cdclk = 268800, .ratio = 16, .waveform = 0xfefe },
++	{ .refclk = 38400, .cdclk = 288000, .ratio = 16, .waveform = 0xfffe },
++	{ .refclk = 38400, .cdclk = 307200, .ratio = 16, .waveform = 0xffff },
++	{ .refclk = 38400, .cdclk = 330000, .ratio = 25, .waveform = 0xdbb6 },
++	{ .refclk = 38400, .cdclk = 360000, .ratio = 25, .waveform = 0xeeee },
++	{ .refclk = 38400, .cdclk = 390000, .ratio = 25, .waveform = 0xf7de },
++	{ .refclk = 38400, .cdclk = 420000, .ratio = 25, .waveform = 0xfefe },
++	{ .refclk = 38400, .cdclk = 450000, .ratio = 25, .waveform = 0xfffe },
++	{ .refclk = 38400, .cdclk = 480000, .ratio = 25, .waveform = 0xffff },
++	{ .refclk = 38400, .cdclk = 487200, .ratio = 29, .waveform = 0xfefe },
++	{ .refclk = 38400, .cdclk = 522000, .ratio = 29, .waveform = 0xfffe },
++	{ .refclk = 38400, .cdclk = 556800, .ratio = 29, .waveform = 0xffff },
++	{ .refclk = 38400, .cdclk = 571200, .ratio = 34, .waveform = 0xfefe },
++	{ .refclk = 38400, .cdclk = 612000, .ratio = 34, .waveform = 0xfffe },
++	{ .refclk = 38400, .cdclk = 652800, .ratio = 34, .waveform = 0xffff },
+ 	{}
+ };
+ 
+-- 
+2.42.1
 
-== Summary ==
-
-CI Bug Log - changes from CI_DRM_13921 -> Patchwork_126873v1
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_126873v1/index.html
-
-Participating hosts (37 -> 36)
-------------------------------
-
-  Additional (1): bat-dg1-5 
-  Missing    (2): fi-snb-2520m fi-pnv-d510 
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_126873v1 that come from known issues:
-
-### CI changes ###
-
-#### Issues hit ####
-
-  * boot:
-    - bat-adlp-11:        [PASS][1] -> [FAIL][2] ([i915#8293])
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13921/bat-adlp-11/boot.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_126873v1/bat-adlp-11/boot.html
-    - bat-jsl-1:          [PASS][3] -> [FAIL][4] ([i915#8293])
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13921/bat-jsl-1/boot.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_126873v1/bat-jsl-1/boot.html
-
-  
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@gem_mmap@basic:
-    - bat-dg1-5:          NOTRUN -> [SKIP][5] ([i915#4083])
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_126873v1/bat-dg1-5/igt@gem_mmap@basic.html
-
-  * igt@gem_tiled_fence_blits@basic:
-    - bat-dg1-5:          NOTRUN -> [SKIP][6] ([i915#4077]) +2 other tests skip
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_126873v1/bat-dg1-5/igt@gem_tiled_fence_blits@basic.html
-
-  * igt@gem_tiled_pread_basic:
-    - bat-dg1-5:          NOTRUN -> [SKIP][7] ([i915#4079]) +1 other test skip
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_126873v1/bat-dg1-5/igt@gem_tiled_pread_basic.html
-
-  * igt@i915_pm_rps@basic-api:
-    - bat-dg1-5:          NOTRUN -> [SKIP][8] ([i915#6621])
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_126873v1/bat-dg1-5/igt@i915_pm_rps@basic-api.html
-
-  * igt@kms_addfb_basic@basic-x-tiled-legacy:
-    - bat-dg1-5:          NOTRUN -> [SKIP][9] ([i915#4212]) +7 other tests skip
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_126873v1/bat-dg1-5/igt@kms_addfb_basic@basic-x-tiled-legacy.html
-
-  * igt@kms_addfb_basic@basic-y-tiled-legacy:
-    - bat-dg1-5:          NOTRUN -> [SKIP][10] ([i915#4215])
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_126873v1/bat-dg1-5/igt@kms_addfb_basic@basic-y-tiled-legacy.html
-
-  * igt@kms_cursor_legacy@basic-busy-flip-before-cursor-legacy:
-    - bat-dg1-5:          NOTRUN -> [SKIP][11] ([i915#4103] / [i915#4213]) +1 other test skip
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_126873v1/bat-dg1-5/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-legacy.html
-
-  * igt@kms_dsc@dsc-basic:
-    - bat-dg1-5:          NOTRUN -> [SKIP][12] ([i915#3555] / [i915#3840])
-   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_126873v1/bat-dg1-5/igt@kms_dsc@dsc-basic.html
-
-  * igt@kms_force_connector_basic@force-load-detect:
-    - bat-dg1-5:          NOTRUN -> [SKIP][13] ([fdo#109285])
-   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_126873v1/bat-dg1-5/igt@kms_force_connector_basic@force-load-detect.html
-
-  * igt@kms_hdmi_inject@inject-audio:
-    - bat-dg1-5:          NOTRUN -> [SKIP][14] ([i915#433])
-   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_126873v1/bat-dg1-5/igt@kms_hdmi_inject@inject-audio.html
-    - fi-kbl-guc:         [PASS][15] -> [FAIL][16] ([IGT#3])
-   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13921/fi-kbl-guc/igt@kms_hdmi_inject@inject-audio.html
-   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_126873v1/fi-kbl-guc/igt@kms_hdmi_inject@inject-audio.html
-
-  * igt@kms_pipe_crc_basic@suspend-read-crc:
-    - bat-rpls-1:         NOTRUN -> [SKIP][17] ([i915#1845])
-   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_126873v1/bat-rpls-1/igt@kms_pipe_crc_basic@suspend-read-crc.html
-
-  * igt@kms_setmode@basic-clone-single-crtc:
-    - bat-dg1-5:          NOTRUN -> [SKIP][18] ([i915#3555])
-   [18]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_126873v1/bat-dg1-5/igt@kms_setmode@basic-clone-single-crtc.html
-
-  * igt@prime_vgem@basic-fence-read:
-    - bat-dg1-5:          NOTRUN -> [SKIP][19] ([i915#3708]) +3 other tests skip
-   [19]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_126873v1/bat-dg1-5/igt@prime_vgem@basic-fence-read.html
-
-  * igt@prime_vgem@basic-gtt:
-    - bat-dg1-5:          NOTRUN -> [SKIP][20] ([i915#3708] / [i915#4077]) +1 other test skip
-   [20]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_126873v1/bat-dg1-5/igt@prime_vgem@basic-gtt.html
-
-  
-#### Possible fixes ####
-
-  * igt@gem_exec_fence@basic-await@bcs0:
-    - bat-rpls-1:         [FAIL][21] -> [PASS][22]
-   [21]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13921/bat-rpls-1/igt@gem_exec_fence@basic-await@bcs0.html
-   [22]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_126873v1/bat-rpls-1/igt@gem_exec_fence@basic-await@bcs0.html
-
-  * igt@gem_exec_suspend@basic-s3@smem:
-    - bat-rpls-1:         [ABORT][23] ([i915#7978]) -> [PASS][24]
-   [23]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13921/bat-rpls-1/igt@gem_exec_suspend@basic-s3@smem.html
-   [24]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_126873v1/bat-rpls-1/igt@gem_exec_suspend@basic-s3@smem.html
-
-  * igt@i915_selftest@live@gt_heartbeat:
-    - fi-kbl-7567u:       [DMESG-FAIL][25] ([i915#5334] / [i915#7872]) -> [PASS][26]
-   [25]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13921/fi-kbl-7567u/igt@i915_selftest@live@gt_heartbeat.html
-   [26]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_126873v1/fi-kbl-7567u/igt@i915_selftest@live@gt_heartbeat.html
-    - fi-apl-guc:         [DMESG-FAIL][27] ([i915#5334]) -> [PASS][28]
-   [27]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13921/fi-apl-guc/igt@i915_selftest@live@gt_heartbeat.html
-   [28]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_126873v1/fi-apl-guc/igt@i915_selftest@live@gt_heartbeat.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [IGT#3]: https://gitlab.freedesktop.org/drm/igt-gpu-tools/issues/3
-  [fdo#109285]: https://bugs.freedesktop.org/show_bug.cgi?id=109285
-  [i915#1845]: https://gitlab.freedesktop.org/drm/intel/issues/1845
-  [i915#3555]: https://gitlab.freedesktop.org/drm/intel/issues/3555
-  [i915#3708]: https://gitlab.freedesktop.org/drm/intel/issues/3708
-  [i915#3840]: https://gitlab.freedesktop.org/drm/intel/issues/3840
-  [i915#4077]: https://gitlab.freedesktop.org/drm/intel/issues/4077
-  [i915#4079]: https://gitlab.freedesktop.org/drm/intel/issues/4079
-  [i915#4083]: https://gitlab.freedesktop.org/drm/intel/issues/4083
-  [i915#4103]: https://gitlab.freedesktop.org/drm/intel/issues/4103
-  [i915#4212]: https://gitlab.freedesktop.org/drm/intel/issues/4212
-  [i915#4213]: https://gitlab.freedesktop.org/drm/intel/issues/4213
-  [i915#4215]: https://gitlab.freedesktop.org/drm/intel/issues/4215
-  [i915#433]: https://gitlab.freedesktop.org/drm/intel/issues/433
-  [i915#5334]: https://gitlab.freedesktop.org/drm/intel/issues/5334
-  [i915#5354]: https://gitlab.freedesktop.org/drm/intel/issues/5354
-  [i915#6621]: https://gitlab.freedesktop.org/drm/intel/issues/6621
-  [i915#7872]: https://gitlab.freedesktop.org/drm/intel/issues/7872
-  [i915#7978]: https://gitlab.freedesktop.org/drm/intel/issues/7978
-  [i915#8293]: https://gitlab.freedesktop.org/drm/intel/issues/8293
-  [i915#9673]: https://gitlab.freedesktop.org/drm/intel/issues/9673
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_13921 -> Patchwork_126873v1
-
-  CI-20190529: 20190529
-  CI_DRM_13921: 002e96d8067fa253ee53af2fa191717f4f5b782b @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_7603: 2ddd8cac90d4333943cd017319514949b047821b @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_126873v1: 002e96d8067fa253ee53af2fa191717f4f5b782b @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-### Linux commits
-
-dce7d69c9a3b drm/i915: use drm_printf() with the drm_err_printer intead of pr_err()
-60e1fa44c909 drm/i915: switch from drm_debug_printer() to device specific drm_dbg_printer()
-6e3347f19819 drm/dp: switch drm_dp_vsc_sdp_log() to struct drm_printer
-8f89ff934551 drm/mode: switch from drm_debug_printer() to device specific drm_dbg_printer()
-c51c3c777850 drm/dp_mst: switch from drm_debug_printer() to device specific drm_dbg_printer()
-93f362df2950 drm/print: add drm_dbg_printer() for drm device specific printer
-69fb5ed1fb68 drm/print: move enum drm_debug_category etc. earlier in drm_print.h
-79b7339aec03 drm/print: make drm_err_printer() device specific by using drm_err()
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_126873v1/index.html
-
---===============4086506107657437822==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm: drm debug and error logging improvements</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/126873/">https://patchwork.freedesktop.org/series/126873/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_126873v1/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_126873v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_13921 -&gt; Patchwork_126873v1</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_126873v1/index.html</p>
-<h2>Participating hosts (37 -&gt; 36)</h2>
-<p>Additional (1): bat-dg1-5 <br />
-  Missing    (2): fi-snb-2520m fi-pnv-d510 </p>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_126873v1 that come from known issues:</p>
-<h3>CI changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>boot:</p>
-<ul>
-<li>
-<p>bat-adlp-11:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13921/bat-adlp-11/boot.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_126873v1/bat-adlp-11/boot.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/8293">i915#8293</a>)</p>
-</li>
-<li>
-<p>bat-jsl-1:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13921/bat-jsl-1/boot.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_126873v1/bat-jsl-1/boot.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/8293">i915#8293</a>)</p>
-</li>
-</ul>
-</li>
-</ul>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@gem_mmap@basic:</p>
-<ul>
-<li>bat-dg1-5:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_126873v1/bat-dg1-5/igt@gem_mmap@basic.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4083">i915#4083</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_tiled_fence_blits@basic:</p>
-<ul>
-<li>bat-dg1-5:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_126873v1/bat-dg1-5/igt@gem_tiled_fence_blits@basic.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4077">i915#4077</a>) +2 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_tiled_pread_basic:</p>
-<ul>
-<li>bat-dg1-5:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_126873v1/bat-dg1-5/igt@gem_tiled_pread_basic.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4079">i915#4079</a>) +1 other test skip</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_pm_rps@basic-api:</p>
-<ul>
-<li>bat-dg1-5:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_126873v1/bat-dg1-5/igt@i915_pm_rps@basic-api.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/6621">i915#6621</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_addfb_basic@basic-x-tiled-legacy:</p>
-<ul>
-<li>bat-dg1-5:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_126873v1/bat-dg1-5/igt@kms_addfb_basic@basic-x-tiled-legacy.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4212">i915#4212</a>) +7 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_addfb_basic@basic-y-tiled-legacy:</p>
-<ul>
-<li>bat-dg1-5:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_126873v1/bat-dg1-5/igt@kms_addfb_basic@basic-y-tiled-legacy.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4215">i915#4215</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_cursor_legacy@basic-busy-flip-before-cursor-legacy:</p>
-<ul>
-<li>bat-dg1-5:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_126873v1/bat-dg1-5/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-legacy.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4103">i915#4103</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/4213">i915#4213</a>) +1 other test skip</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_dsc@dsc-basic:</p>
-<ul>
-<li>bat-dg1-5:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_126873v1/bat-dg1-5/igt@kms_dsc@dsc-basic.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3555">i915#3555</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/3840">i915#3840</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_force_connector_basic@force-load-detect:</p>
-<ul>
-<li>bat-dg1-5:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_126873v1/bat-dg1-5/igt@kms_force_connector_basic@force-load-detect.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109285">fdo#109285</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_hdmi_inject@inject-audio:</p>
-<ul>
-<li>
-<p>bat-dg1-5:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_126873v1/bat-dg1-5/igt@kms_hdmi_inject@inject-audio.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/433">i915#433</a>)</p>
-</li>
-<li>
-<p>fi-kbl-guc:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13921/fi-kbl-guc/igt@kms_hdmi_inject@inject-audio.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_126873v1/fi-kbl-guc/igt@kms_hdmi_inject@inject-audio.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/igt-gpu-tools/issues/3">IGT#3</a>)</p>
-</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_pipe_crc_basic@suspend-read-crc:</p>
-<ul>
-<li>bat-rpls-1:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_126873v1/bat-rpls-1/igt@kms_pipe_crc_basic@suspend-read-crc.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1845">i915#1845</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_setmode@basic-clone-single-crtc:</p>
-<ul>
-<li>bat-dg1-5:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_126873v1/bat-dg1-5/igt@kms_setmode@basic-clone-single-crtc.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3555">i915#3555</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@prime_vgem@basic-fence-read:</p>
-<ul>
-<li>bat-dg1-5:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_126873v1/bat-dg1-5/igt@prime_vgem@basic-fence-read.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3708">i915#3708</a>) +3 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@prime_vgem@basic-gtt:</p>
-<ul>
-<li>bat-dg1-5:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_126873v1/bat-dg1-5/igt@prime_vgem@basic-gtt.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3708">i915#3708</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/4077">i915#4077</a>) +1 other test skip</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>
-<p>igt@gem_exec_fence@basic-await@bcs0:</p>
-<ul>
-<li>bat-rpls-1:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13921/bat-rpls-1/igt@gem_exec_fence@basic-await@bcs0.html">FAIL</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_126873v1/bat-rpls-1/igt@gem_exec_fence@basic-await@bcs0.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@gem_exec_suspend@basic-s3@smem:</p>
-<ul>
-<li>bat-rpls-1:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13921/bat-rpls-1/igt@gem_exec_suspend@basic-s3@smem.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/7978">i915#7978</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_126873v1/bat-rpls-1/igt@gem_exec_suspend@basic-s3@smem.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@gt_heartbeat:</p>
-<ul>
-<li>
-<p>fi-kbl-7567u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13921/fi-kbl-7567u/igt@i915_selftest@live@gt_heartbeat.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/5334">i915#5334</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/7872">i915#7872</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_126873v1/fi-kbl-7567u/igt@i915_selftest@live@gt_heartbeat.html">PASS</a></p>
-</li>
-<li>
-<p>fi-apl-guc:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13921/fi-apl-guc/igt@i915_selftest@live@gt_heartbeat.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/5334">i915#5334</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_126873v1/fi-apl-guc/igt@i915_selftest@live@gt_heartbeat.html">PASS</a></p>
-</li>
-</ul>
-</li>
-</ul>
-<p>{name}: This element is suppressed. This means it is ignored when computing<br />
-          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_13921 -&gt; Patchwork_126873v1</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_13921: 002e96d8067fa253ee53af2fa191717f4f5b782b @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_7603: 2ddd8cac90d4333943cd017319514949b047821b @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  Patchwork_126873v1: 002e96d8067fa253ee53af2fa191717f4f5b782b @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<h3>Linux commits</h3>
-<p>dce7d69c9a3b drm/i915: use drm_printf() with the drm_err_printer intead of pr_err()<br />
-60e1fa44c909 drm/i915: switch from drm_debug_printer() to device specific drm_dbg_printer()<br />
-6e3347f19819 drm/dp: switch drm_dp_vsc_sdp_log() to struct drm_printer<br />
-8f89ff934551 drm/mode: switch from drm_debug_printer() to device specific drm_dbg_printer()<br />
-c51c3c777850 drm/dp_mst: switch from drm_debug_printer() to device specific drm_dbg_printer()<br />
-93f362df2950 drm/print: add drm_dbg_printer() for drm device specific printer<br />
-69fb5ed1fb68 drm/print: move enum drm_debug_category etc. earlier in drm_print.h<br />
-79b7339aec03 drm/print: make drm_err_printer() device specific by using drm_err()</p>
-
-</body>
-</html>
-
---===============4086506107657437822==--
