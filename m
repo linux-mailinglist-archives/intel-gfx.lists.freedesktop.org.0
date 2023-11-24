@@ -1,52 +1,52 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8A0F37F7423
-	for <lists+intel-gfx@lfdr.de>; Fri, 24 Nov 2023 13:44:58 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 546F07F7451
+	for <lists+intel-gfx@lfdr.de>; Fri, 24 Nov 2023 13:53:28 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B5EAF10E1DD;
-	Fri, 24 Nov 2023 12:44:56 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A136110E1E9;
+	Fri, 24 Nov 2023 12:53:20 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.93])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E3DD110E7DC;
- Fri, 24 Nov 2023 12:44:45 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.24])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 94E7F10E1E9
+ for <intel-gfx@lists.freedesktop.org>; Fri, 24 Nov 2023 12:53:19 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1700829885; x=1732365885;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=sdQLJb/HtVjk+S1k83K5iLZTEe3WUoWYSOUvRGpkcYg=;
- b=B+QqIExspYLfwLfLz6uO6x0wf7O1kp80TSoURPNpjUVm3nM4D2ddaKWO
- jcE7hhCmEUmDw+j8lkii4Dc1OiioLr4m7jTlseWdh90/Bm+bvRjgXL8ra
- EUoD6qp60zewn8CgDdSBgmf2EyHslKUavMgoxEIfmbZ590GEAlQi6nEeW
- eq+6WsCnt78b5AXLtsE1GGYJS84576BuHhwYIF9TGE2PS+ILjYzpR/3d/
- IdpHP4phCEqeAPd85MozYsgS+lRP/mQ1HfMiqpm8dav2D5aB4owUfFmZh
- JD43KGprUeH9Y5k97l6b+u0DDcGAK8i8YfLuvX7NOI6je4Qqww6XMeoxG Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10902"; a="389571282"
-X-IronPort-AV: E=Sophos;i="6.04,224,1695711600"; d="scan'208";a="389571282"
-Received: from orviesa001.jf.intel.com ([10.64.159.141])
- by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Nov 2023 04:44:45 -0800
+ t=1700830399; x=1732366399;
+ h=from:to:subject:in-reply-to:references:date:message-id:
+ mime-version; bh=hNJBnXr2JFVNDgGGeUwyn9PeBSbBE2Xqah5x1xPFIvI=;
+ b=he0/11ASpDbAm6dcfRGibEAE8J7RR8fE4nROKTORpM3eCrZRR2HGXC9n
+ qbNAtBrHaOkQxxvS+cFyjZslql86OCh2iWcQSrTlzbjZSFUdPTZ4kEK8o
+ q9st4HY5neG12T+f0RwCPLXgqSkNyvHW1bDCc8VD+R/5pwI/CJF+uHbHA
+ Rkb57Li4S+eqh6hyEznHi4lzNTn33LXQVdOd6dkljmZfrPqhWnxguFBtm
+ /sah47N5kFlOScUmlHF9MXRSkH08Uu0K1j0Aeql2jFj8kJ9h2lumk8duh
+ nDcnc8xImc/G5l3k8qK3nEYCI8HZEx+d+0dLsoNKdgXxS7SzL46yd6Kd2 g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10902"; a="395234408"
+X-IronPort-AV: E=Sophos;i="6.04,224,1695711600"; d="scan'208";a="395234408"
+Received: from orsmga005.jf.intel.com ([10.7.209.41])
+ by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 24 Nov 2023 04:53:19 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.04,224,1695711600"; d="scan'208";a="15621883"
+X-IronPort-AV: E=McAfee;i="6600,9927,10902"; a="940915424"
+X-IronPort-AV: E=Sophos;i="6.04,224,1695711600"; d="scan'208";a="940915424"
 Received: from dashah-mobl2.ger.corp.intel.com (HELO localhost)
  ([10.252.41.230])
- by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Nov 2023 04:44:44 -0800
-From: Jani Nikula <jani.nikula@intel.com>
-To: dri-devel@lists.freedesktop.org
-Date: Fri, 24 Nov 2023 14:44:02 +0200
-Message-Id: <8166948db4535654c1f6cb2ff15cc506f7b6f966.1700829750.git.jani.nikula@intel.com>
-X-Mailer: git-send-email 2.39.2
-In-Reply-To: <cover.1700829750.git.jani.nikula@intel.com>
-References: <cover.1700829750.git.jani.nikula@intel.com>
-MIME-Version: 1.0
+ by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 24 Nov 2023 04:53:17 -0800
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Mitul Golani <mitulkumar.ajitkumar.golani@intel.com>,
+ intel-gfx@lists.freedesktop.org
+In-Reply-To: <20231123140244.4183869-2-mitulkumar.ajitkumar.golani@intel.com>
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH 8/8] drm/i915: use drm_printf() with the
- drm_err_printer intead of pr_err()
+References: <20231123140244.4183869-1-mitulkumar.ajitkumar.golani@intel.com>
+ <20231123140244.4183869-2-mitulkumar.ajitkumar.golani@intel.com>
+Date: Fri, 24 Nov 2023 14:53:14 +0200
+Message-ID: <87jzq79uth.fsf@intel.com>
+MIME-Version: 1.0
+Content-Type: text/plain
+Subject: Re: [Intel-gfx] [PATCH 1/3] drm: Add Adaptive Sync SDP logging
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,65 +59,118 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: jani.nikula@intel.com, intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-There's already a related drm_printer. Use it to preserve the context
-instead of a separate pr_err().
+On Thu, 23 Nov 2023, Mitul Golani <mitulkumar.ajitkumar.golani@intel.com> wrote:
+> Add structure representing Adaptive Sync Secondary Data
+> Packet (AS SDP). Also, add Adaptive Sync SDP logging in
+> drm_dp_helper.c to facilitate debugging.
+>
+> Signed-off-by: Mitul Golani <mitulkumar.ajitkumar.golani@intel.com>
+> ---
+>  drivers/gpu/drm/display/drm_dp_helper.c | 15 +++++++++++++
+>  include/drm/display/drm_dp.h            |  1 +
+>  include/drm/display/drm_dp_helper.h     | 30 +++++++++++++++++++++++++
+>  3 files changed, 46 insertions(+)
+>
+> diff --git a/drivers/gpu/drm/display/drm_dp_helper.c b/drivers/gpu/drm/display/drm_dp_helper.c
+> index d72b6f9a352c..a205e14a6681 100644
+> --- a/drivers/gpu/drm/display/drm_dp_helper.c
+> +++ b/drivers/gpu/drm/display/drm_dp_helper.c
+> @@ -2917,6 +2917,21 @@ void drm_dp_vsc_sdp_log(const char *level, struct device *dev,
+>  }
+>  EXPORT_SYMBOL(drm_dp_vsc_sdp_log);
+>  
+> +void drm_dp_as_sdp_log(const char *level, struct device *dev,
+> +		       const struct drm_dp_as_sdp *async)
+> +{
+> +#define DP_SDP_LOG(fmt, ...) dev_printk(level, dev, fmt, ##__VA_ARGS__)
+> +	DP_SDP_LOG("DP SDP: %s, revision %u, length %u\n", "VSC",
+> +		   async->revision, async->length);
+> +	DP_SDP_LOG("	vmin: %d vmax: %d\n", async->vmin, async->vmax);
+> +	DP_SDP_LOG("    target_rr: %s\n", async->target_rr);
+> +	DP_SDP_LOG("    duration_incr_ms: %u\n", async->duration_incr_ms);
+> +	DP_SDP_LOG("    duration_decr_ms: %u\n", async->duration_decr_ms);
+> +	DP_SDP_LOG("    operation_mode: %u\n", async->operation_mode);
+> +#undef DP_SDP_LOG
+> +}
+> +EXPORT_SYMBOL(drm_dp_as_sdp_log);
 
-Signed-off-by: Jani Nikula <jani.nikula@intel.com>
----
- drivers/gpu/drm/i915/gt/selftest_engine_heartbeat.c | 6 +++---
- drivers/gpu/drm/i915/selftests/i915_active.c        | 4 ++--
- 2 files changed, 5 insertions(+), 5 deletions(-)
+This inspired me to resurrect a drm logging series I've had [1], in
+particular patch [2]. Please let's do this properly.
 
-diff --git a/drivers/gpu/drm/i915/gt/selftest_engine_heartbeat.c b/drivers/gpu/drm/i915/gt/selftest_engine_heartbeat.c
-index b4970c1ed572..88fd2ab65f3b 100644
---- a/drivers/gpu/drm/i915/gt/selftest_engine_heartbeat.c
-+++ b/drivers/gpu/drm/i915/gt/selftest_engine_heartbeat.c
-@@ -124,7 +124,7 @@ static int __live_idle_pulse(struct intel_engine_cs *engine,
- 	if (engine_sync_barrier(engine)) {
- 		struct drm_printer m = drm_err_printer(&engine->i915->drm, "pulse");
- 
--		pr_err("%s: no heartbeat pulse?\n", engine->name);
-+		drm_printf(&m, "%s: no heartbeat pulse?\n", engine->name);
- 		intel_engine_dump(engine, &m, "%s", engine->name);
- 
- 		err = -ETIME;
-@@ -138,8 +138,8 @@ static int __live_idle_pulse(struct intel_engine_cs *engine,
- 	if (!i915_active_is_idle(&p->active)) {
- 		struct drm_printer m = drm_err_printer(&engine->i915->drm, "pulse");
- 
--		pr_err("%s: heartbeat pulse did not flush idle tasks\n",
--		       engine->name);
-+		drm_printf(&m, "%s: heartbeat pulse did not flush idle tasks\n",
-+			   engine->name);
- 		i915_active_print(&p->active, &m);
- 
- 		err = -EINVAL;
-diff --git a/drivers/gpu/drm/i915/selftests/i915_active.c b/drivers/gpu/drm/i915/selftests/i915_active.c
-index 8886752ade63..0d89d70b9c36 100644
---- a/drivers/gpu/drm/i915/selftests/i915_active.c
-+++ b/drivers/gpu/drm/i915/selftests/i915_active.c
-@@ -158,7 +158,7 @@ static int live_active_wait(void *arg)
- 	if (!READ_ONCE(active->retired)) {
- 		struct drm_printer p = drm_err_printer(&i915->drm, __func__);
- 
--		pr_err("i915_active not retired after waiting!\n");
-+		drm_printf(&p, "i915_active not retired after waiting!\n");
- 		i915_active_print(&active->base, &p);
- 
- 		err = -EINVAL;
-@@ -191,7 +191,7 @@ static int live_active_retire(void *arg)
- 	if (!READ_ONCE(active->retired)) {
- 		struct drm_printer p = drm_err_printer(&i915->drm, __func__);
- 
--		pr_err("i915_active not retired after flushing!\n");
-+		drm_printf(&p, "i915_active not retired after flushing!\n");
- 		i915_active_print(&active->base, &p);
- 
- 		err = -EINVAL;
+Also, throughout the series, please don't use "async" for "adaptive
+sync". It's bound to confuse people. Async means asynchronous, period.
+
+[1] https://patchwork.freedesktop.org/series/126873/
+[2] https://patchwork.freedesktop.org/patch/msgid/95f1e3981fa3c5304f3c74e82330f12983d35735.1700829750.git.jani.nikula@intel.com
+
+> +
+>  /**
+>   * drm_dp_get_pcon_max_frl_bw() - maximum frl supported by PCON
+>   * @dpcd: DisplayPort configuration data
+> diff --git a/include/drm/display/drm_dp.h b/include/drm/display/drm_dp.h
+> index 83d2039c018b..0575ab8ea088 100644
+> --- a/include/drm/display/drm_dp.h
+> +++ b/include/drm/display/drm_dp.h
+> @@ -1578,6 +1578,7 @@ enum drm_dp_phy {
+>  #define DP_SDP_PPS			0x10 /* DP 1.4 */
+>  #define DP_SDP_VSC_EXT_VESA		0x20 /* DP 1.4 */
+>  #define DP_SDP_VSC_EXT_CEA		0x21 /* DP 1.4 */
+> +#define DP_SDP_ADAPTIVE_SYNC	0x22 /* DP 1.4 */
+
+This is completely unrelated to everything else in the patch.
+
+>  /* 0x80+ CEA-861 infoframe types */
+>  
+>  #define DP_SDP_AUDIO_INFOFRAME_HB2	0x1b
+> diff --git a/include/drm/display/drm_dp_helper.h b/include/drm/display/drm_dp_helper.h
+> index 863b2e7add29..63b6bef3f21d 100644
+> --- a/include/drm/display/drm_dp_helper.h
+> +++ b/include/drm/display/drm_dp_helper.h
+> @@ -98,6 +98,36 @@ struct drm_dp_vsc_sdp {
+>  	enum dp_content_type content_type;
+>  };
+>  
+> +/**
+> + * struct drm_dp_as_sdp - drm DP Adaptive Sync SDP
+> + *
+> + * This structure represents a DP AS SDP of drm
+> + * It is based on DP 2.1 spec [Table 2-126:  Adaptive-Sync SDP Header Bytes] and
+> + * [Table 2-127: Adaptive-Sync SDP Payload for DB0 through DB8]
+> + *
+> + * @sdp_type: secondary-data packet type
+> + * @length: number of valid data bytes
+> + * @vmin: minimum vtotal
+> + * @vmax: maximum vtotal
+> + * @duration_incr_ms: Successive frame duration increase
+> + * @duration_decr_ms: Successive frame duration decrease
+> + * @operation_mode: Adaptive Sync Operation Mode
+> + */
+> +
+> +struct drm_dp_as_sdp {
+> +	unsigned char sdp_type;
+> +	unsigned char revision;
+> +	unsigned char length;
+
+Why unsigned char here...
+
+> +	u16 vmin, vmax;
+> +	u16 target_rr;
+> +	u8 duration_incr_ms;
+> +	u8 duration_decr_ms;
+> +	u8 operation_mode;
+
+...but u8 here?
+
+> +};
+> +
+> +void drm_dp_as_sdp_log(const char *level, struct device *dev,
+> +		       const struct drm_dp_as_sdp *async);
+> +
+>  void drm_dp_vsc_sdp_log(const char *level, struct device *dev,
+>  			const struct drm_dp_vsc_sdp *vsc);
+
 -- 
-2.39.2
-
+Jani Nikula, Intel
