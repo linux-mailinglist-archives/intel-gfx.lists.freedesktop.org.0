@@ -2,73 +2,47 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id D4A377FA3B3
-	for <lists+intel-gfx@lfdr.de>; Mon, 27 Nov 2023 15:55:05 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0DF357FA546
+	for <lists+intel-gfx@lfdr.de>; Mon, 27 Nov 2023 16:53:22 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 057B410E2CE;
-	Mon, 27 Nov 2023 14:54:54 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 280F410E143;
+	Mon, 27 Nov 2023 15:53:19 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-lj1-x232.google.com (mail-lj1-x232.google.com
- [IPv6:2a00:1450:4864:20::232])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0B26C10E2C7;
- Mon, 27 Nov 2023 14:54:43 +0000 (UTC)
-Received: by mail-lj1-x232.google.com with SMTP id
- 38308e7fff4ca-2c59a4dd14cso48276261fa.2; 
- Mon, 27 Nov 2023 06:54:42 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1701096881; x=1701701681; darn=lists.freedesktop.org;
- h=content-transfer-encoding:mime-version:references:in-reply-to
- :message-id:date:subject:to:from:from:to:cc:subject:date:message-id
- :reply-to; bh=VSEG4sTiIvOaqG5bPt1ilhvbIlmU0KB6Os6E4jKcDYY=;
- b=UghI6OablC1xZBRNlh9GHci4VTRAebfCJ2cmUbaryt7h/rz1d+ubSo0zOZvoQeai2h
- FQ30++PkVn9JAWnvCP4V8xnwKfA4jEzNroyT8EdjVBiz/5yVHYBByHlpw1lTRtp1pHR0
- i0FBylsiYGcVnz1lQy19ICB4JDlZB0hhOjS9dBTcM+1+ZIhLbbop6XVem8dGZSXBO8si
- khCfwzjOYOjjl/wNMPND9VPOT35qk4qFZ6TM0mA9Dc7lhYYb/PyiJkfBqPFLaRE3V7Ni
- YLHAbKWS2CdxXIgAAB5DkDhhnyL7vKlEo6kC33PZmruiX4oRrH0KfU3QhvOBLh66qnT7
- lmfA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1701096881; x=1701701681;
- h=content-transfer-encoding:mime-version:references:in-reply-to
- :message-id:date:subject:to:from:x-gm-message-state:from:to:cc
- :subject:date:message-id:reply-to;
- bh=VSEG4sTiIvOaqG5bPt1ilhvbIlmU0KB6Os6E4jKcDYY=;
- b=pPr1eXT/o5UcurfuptaSiTc8dc9ZYnA9ds8+mC5GPlI3b3cz1HTF51XI/re0HbYQpy
- VVr1dEybnMWUreXd4r+AAeKdhUFYRFTWUliYwpTk/2y5maA8iWBd8+pTmASfwcjkVd7w
- UHm9TzKLgDnKXClo/M1SyN0AYFfvhFFuLaK+Q8m9LE3bHM/n94zpdER6zy00YqOuTyL8
- E3k902gddWQx4ftXO/Yz6rbz3Skunb9KTgAxFdVBxZwO+lL3/5Sbv7t+hqxOZcba2qap
- P5zoCGRabCk9V0iktuo9cLjILklUMSlvzXUIBcvD4JaAu8Fh5qxlC2oxSxuftfz9tcUh
- 8qKw==
-X-Gm-Message-State: AOJu0YxT8qD3PnV9LyIkIYRNaaT2mppxBoEX9D45FLNot+7NCd1G7AE/
- B0y++T9TDbf0/oIMdeJqYcw=
-X-Google-Smtp-Source: AGHT+IHs0EIiKLSWsOIceGS/WBtO2H21E+asFh5ZpwSqtA9J2gylk2jPiKWwEEY67g6K+/9G1z/0YQ==
-X-Received: by 2002:a05:651c:21b:b0:2c5:1490:1687 with SMTP id
- y27-20020a05651c021b00b002c514901687mr4916598ljn.33.1701096880939; 
- Mon, 27 Nov 2023 06:54:40 -0800 (PST)
-Received: from able.fritz.box ([2a00:e180:158f:ed00:5d13:a893:4139:6a08])
- by smtp.gmail.com with ESMTPSA id
- z13-20020a170906074d00b00a0c3b122a1esm2888763ejb.63.2023.11.27.06.54.40
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Mon, 27 Nov 2023 06:54:40 -0800 (PST)
-From: "=?UTF-8?q?Christian=20K=C3=B6nig?=" <ckoenig.leichtzumerken@gmail.com>
-X-Google-Original-From: =?UTF-8?q?Christian=20K=C3=B6nig?=
- <christian.koenig@amd.com>
-To: jani.nikula@linux.intel.com, kherbst@redhat.com, dakr@redhat.com,
- zackr@vmware.com, marek.olsak@amd.com,
- linux-graphics-maintainer@vmware.com, amd-gfx@lists.freedesktop.org,
- nouveau@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
- virtualization@lists.linux.dev, spice-devel@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org
-Date: Mon, 27 Nov 2023 15:54:37 +0100
-Message-Id: <20231127145437.15060-3-christian.koenig@amd.com>
+Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.120])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E92B910E2EC
+ for <intel-gfx@lists.freedesktop.org>; Mon, 27 Nov 2023 15:53:17 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1701100397; x=1732636397;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=THl1d0Oz9NgyYAVWxBubVaM0epbHZfQVfJXntxC+Di8=;
+ b=AJt4nR5He30M9klFKoTUMXiHIPRsowmH1bZ63SWZ5Glwtn2mKlA6fYzk
+ z8ZgJhFbWnmAsPUmhGjFM6Tf2E8JU4YgSsS1hVYBvWP/JvRMGzVaekDGD
+ jaPbjbjB31IdCOPLckN6xcdkIg/fZrzH+bn0TFHyr+YRJBtAz663Ltp5D
+ TcKxz3BPONa15wn+Bm66ld3FGd8TS8Q+oqK7V2N0AyhwBVf6axyyyO6Rc
+ u6Fbkla0sf/lMtrsKA5Lf1n9UGZ5CFgJfVI6uHTaaRtfqem3Ead51z/gi
+ Jq899pG1skXIrhGOrZjcPDZjgWBemb3lnC3qTDZsoMot3MFcoGL0Y5Qmg A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10907"; a="391608424"
+X-IronPort-AV: E=Sophos;i="6.04,231,1695711600"; d="scan'208";a="391608424"
+Received: from orsmga005.jf.intel.com ([10.7.209.41])
+ by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 27 Nov 2023 07:53:15 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10907"; a="941602581"
+X-IronPort-AV: E=Sophos;i="6.04,231,1695711600"; d="scan'208";a="941602581"
+Received: from sorvi2.fi.intel.com ([10.237.72.194])
+ by orsmga005.jf.intel.com with ESMTP; 27 Nov 2023 07:53:13 -0800
+From: Mika Kahola <mika.kahola@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Mon, 27 Nov 2023 17:47:02 +0200
+Message-Id: <20231127154702.979401-1-mika.kahola@intel.com>
 X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20231127145437.15060-1-christian.koenig@amd.com>
-References: <20231127145437.15060-1-christian.koenig@amd.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH 2/2] drm/amdgpu: use GTT only as fallback for
- VRAM|GTT
+Subject: [Intel-gfx] [PATCH] drm/i915/display: Skip state verification with
+ TBT-ALT mode
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -84,33 +58,45 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Try to fill up VRAM as well by setting the busy flag on GTT allocations.
+With TBT-ALT mode we are not programming C20 chip PLL's and
+hence we don't need to check state verification. We don't
+need to program DP link signal levels i.e.pre-emphasis and
+voltage swing either.
 
-This fixes the issue that when VRAM was evacuated for suspend it's never
-filled up again unless the application is restarted.
+This patch fixes dmesg errors like this one
 
-Signed-off-by: Christian König <christian.koenig@amd.com>
+"[drm] ERROR PHY F Write 0c06 failed after 3 retries."
+
+Signed-off-by: Mika Kahola <mika.kahola@intel.com>
 ---
- drivers/gpu/drm/amd/amdgpu/amdgpu_object.c | 6 ++++++
- 1 file changed, 6 insertions(+)
+ drivers/gpu/drm/i915/display/intel_cx0_phy.c | 7 +++++++
+ 1 file changed, 7 insertions(+)
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_object.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_object.c
-index aa0dd6dad068..ddc8fb4db678 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_object.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_object.c
-@@ -173,6 +173,12 @@ void amdgpu_bo_placement_from_domain(struct amdgpu_bo *abo, u32 domain)
- 			abo->flags & AMDGPU_GEM_CREATE_PREEMPTIBLE ?
- 			AMDGPU_PL_PREEMPT : TTM_PL_TT;
- 		places[c].flags = 0;
-+		/*
-+		 * When GTT is just an alternative to VRAM make sure that we
-+		 * only use it as fallback and still try to fill up VRAM first.
-+		 */
-+		if (domain & AMDGPU_GEM_DOMAIN_VRAM)
-+			places[c].flags |= TTM_PL_FLAG_BUSY;
- 		c++;
- 	}
+diff --git a/drivers/gpu/drm/i915/display/intel_cx0_phy.c b/drivers/gpu/drm/i915/display/intel_cx0_phy.c
+index a8fa76580802..3a30cffd450c 100644
+--- a/drivers/gpu/drm/i915/display/intel_cx0_phy.c
++++ b/drivers/gpu/drm/i915/display/intel_cx0_phy.c
+@@ -418,6 +418,10 @@ void intel_cx0_phy_set_signal_levels(struct intel_encoder *encoder,
+ 	u8 owned_lane_mask = intel_cx0_get_owned_lane_mask(i915, encoder);
+ 	intel_wakeref_t wakeref;
+ 	int n_entries, ln;
++	struct intel_digital_port *dig_port = enc_to_dig_port(encoder);
++
++	if (intel_tc_port_in_tbt_alt_mode(dig_port))
++		return;
  
+ 	wakeref = intel_cx0_phy_transaction_begin(encoder);
+ 
+@@ -3136,6 +3140,9 @@ void intel_cx0pll_state_verify(struct intel_atomic_state *state,
+ 	encoder = intel_get_crtc_new_encoder(state, new_crtc_state);
+ 	phy = intel_port_to_phy(i915, encoder->port);
+ 
++	if (intel_tc_port_in_tbt_alt_mode(enc_to_dig_port(encoder)))
++		return;
++
+ 	intel_cx0pll_readout_hw_state(encoder, &mpll_hw_state);
+ 
+ 	if (intel_is_c10phy(i915, phy))
 -- 
 2.34.1
 
