@@ -1,53 +1,55 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id B5E9C7FBA29
-	for <lists+intel-gfx@lfdr.de>; Tue, 28 Nov 2023 13:31:17 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6A3F37FBA50
+	for <lists+intel-gfx@lfdr.de>; Tue, 28 Nov 2023 13:40:57 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 58DAF10E4FB;
-	Tue, 28 Nov 2023 12:31:14 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2B22710E041;
+	Tue, 28 Nov 2023 12:40:54 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 77F4810E4FB;
- Tue, 28 Nov 2023 12:31:12 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.115])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C972A10E041
+ for <intel-gfx@lists.freedesktop.org>; Tue, 28 Nov 2023 12:40:51 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1701174672; x=1732710672;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=6CIxXw+TBKO5N7bYTOjAkWPVTtUEkCrK3bawC7K+ryM=;
- b=QfnQc/9at/iEA9H9gaPxwQdQIYJUWeaa8aYmq0GxMsLMxY+TQibfzhyf
- OIXbKOCpmpeZA2KrzE/KH20pa445SZCjUddpkxkfDl8SH/WODSsbeP5Xo
- ZYCq1aDPw06GCzgBRCxIA3Zl6S/cYT376JSkyqsMWEDQiwRtfcVplp2jb
- 3N1sYXHUYXoiIY9MqqmC7yHfJHsGdon+pTQ+068gP1Yxr0uzubMSlT+un
- dPieRX+z9XglNMncfEcVZf3EdzFOc0IkEsFYnmfk6Yh543ckK90PXBaDG
- 8b3rHfE+z+ONXmh7tvrdPnh20jJ+PPyJKL1A4jjtg4o46LpGGhz6uz4H4 g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10907"; a="11611175"
-X-IronPort-AV: E=Sophos;i="6.04,233,1695711600"; d="scan'208";a="11611175"
-Received: from fmsmga003.fm.intel.com ([10.253.24.29])
- by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Nov 2023 04:31:12 -0800
+ t=1701175251; x=1732711251;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=bZ6fZLC8ReNri0gt28I2b9IPnQMETprBSuUigahjTMg=;
+ b=bczmvgzNdn9e/+xX2WH1URNJ/WfJDcVLnp4KPUJXxWuyMaKv6gNVt88u
+ XWBCpqaLZJ17z42CJQF2LZ+IdIC265p/FvAaxwAgU02bbs/FaIlx50eL+
+ CLiag2G3E7erFr1pbDm3oXsjuVgl5703jopHrwrOxPX/Pjsrx7PJP31rr
+ G3J/cB5cklCV/t9tXxkPV/LOwjwbblp8ZpUpaJoEt585aa4+wXB2x9a+a
+ NcOupOs4qBanZM4Q6TiyahpkpmLRCcMuMMFeM7TgIRKKUYTpwitA3bGXI
+ R0zC873ML4kruCQxkbYhEtjSxHZfDk53Eca/IG0yxnPfOTCfrDG9ApDLJ Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10907"; a="392665291"
+X-IronPort-AV: E=Sophos;i="6.04,233,1695711600"; d="scan'208";a="392665291"
+Received: from orsmga007.jf.intel.com ([10.7.209.58])
+ by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 28 Nov 2023 04:40:44 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10907"; a="859413396"
-X-IronPort-AV: E=Sophos;i="6.04,233,1695711600"; d="scan'208";a="859413396"
-Received: from mravivx-mobl.ger.corp.intel.com (HELO localhost)
- ([10.252.42.57])
- by fmsmga003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Nov 2023 04:31:10 -0800
-From: Jani Nikula <jani.nikula@intel.com>
-To: Rahul Rameshbabu <sergeantsagara@protonmail.com>,
- intel-gfx@lists.freedesktop.org
-In-Reply-To: <20231126214142.102106-1-sergeantsagara@protonmail.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20231126214142.102106-1-sergeantsagara@protonmail.com>
-Date: Tue, 28 Nov 2023 14:31:07 +0200
-Message-ID: <87plzu6ovo.fsf@intel.com>
+X-IronPort-AV: E=McAfee;i="6600,9927,10907"; a="761918157"
+X-IronPort-AV: E=Sophos;i="6.04,233,1695711600"; d="scan'208";a="761918157"
+Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.74])
+ by orsmga007.jf.intel.com with SMTP; 28 Nov 2023 04:40:42 -0800
+Received: by stinkbox (sSMTP sendmail emulation);
+ Tue, 28 Nov 2023 14:40:41 +0200
+Date: Tue, 28 Nov 2023 14:40:41 +0200
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: Jani Nikula <jani.nikula@linux.intel.com>
+Message-ID: <ZWXfyQi89jG0ynC_@intel.com>
+References: <20231127145028.4899-1-ville.syrjala@linux.intel.com>
+ <8734wq83uo.fsf@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain
-Subject: Re: [Intel-gfx] [PATCH v2] drm/i915/irq: Improve error logging for
- unexpected DE Misc interrupts
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <8734wq83uo.fsf@intel.com>
+X-Patchwork-Hint: comment
+Subject: Re: [Intel-gfx] [PATCH 1/4] drm/i915: Skip some timing checks on
+ BXT/GLK DSI transcoders
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -60,50 +62,111 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: dri-devel@lists.freedesktop.org,
- Rahul Rameshbabu <sergeantsagara@protonmail.com>
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Sun, 26 Nov 2023, Rahul Rameshbabu <sergeantsagara@protonmail.com> wrote:
-> Dump the iir value in hex when the interrupt is unexpected.
->
-> Link: https://gitlab.freedesktop.org/drm/intel/-/issues/9652#note_2178501
-> Cc: Jani Nikula <jani.nikula@intel.com>
-> Signed-off-by: Rahul Rameshbabu <sergeantsagara@protonmail.com>
-> Reviewed-by: Chaitanya Kumar Borah <chaitanya.kumar.borah@intel.com>
+On Tue, Nov 28, 2023 at 02:22:23PM +0200, Jani Nikula wrote:
+> On Mon, 27 Nov 2023, Ville Syrjala <ville.syrjala@linux.intel.com> wrote:
+> > From: Ville Syrjälä <ville.syrjala@linux.intel.com>
+> >
+> > Apparently some BXT/GLK systems have DSI panels whose timings
+> > don't agree with the normal cpu transcoder hblank>=32 limitation.
+> > This is perhaps fine as there are no specific hblank/etc. limits
+> > listed for the BXT/GLK DSI transcoders.
+> >
+> > Move those checks out from the global intel_mode_valid() into
+> > into connector specific .mode_valid() hooks, skipping BXT/GLK
+> > DSI connectors. We'll leave the basic [hv]display/[hv]total
+> > checks in intel_mode_valid() as those seem like sensible upper
+> > limits regardless of the transcoder used.
+> >
+> > Closes: https://gitlab.freedesktop.org/drm/intel/-/issues/9720
+> > Fixes: 8f4b1068e7fc ("drm/i915: Check some transcoder timing minimum limits")
+> > Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
+> > ---
+> >  drivers/gpu/drm/i915/display/icl_dsi.c       |  7 +++++++
+> >  drivers/gpu/drm/i915/display/intel_crt.c     |  5 +++++
+> >  drivers/gpu/drm/i915/display/intel_display.c | 10 ++++++++++
+> >  drivers/gpu/drm/i915/display/intel_display.h |  3 +++
+> >  drivers/gpu/drm/i915/display/intel_dp.c      |  4 ++++
+> >  drivers/gpu/drm/i915/display/intel_dp_mst.c  |  4 ++++
+> >  drivers/gpu/drm/i915/display/intel_dvo.c     |  6 ++++++
+> >  drivers/gpu/drm/i915/display/intel_hdmi.c    |  4 ++++
+> >  drivers/gpu/drm/i915/display/intel_lvds.c    |  5 +++++
+> >  drivers/gpu/drm/i915/display/intel_sdvo.c    |  8 +++++++-
+> >  drivers/gpu/drm/i915/display/intel_tv.c      |  8 +++++++-
+> >  drivers/gpu/drm/i915/display/vlv_dsi.c       | 18 +++++++++++++++++-
+> >  12 files changed, 79 insertions(+), 3 deletions(-)
+> >
+> > diff --git a/drivers/gpu/drm/i915/display/icl_dsi.c b/drivers/gpu/drm/i915/display/icl_dsi.c
+> > index 481fcb650850..ac456a2275db 100644
+> > --- a/drivers/gpu/drm/i915/display/icl_dsi.c
+> > +++ b/drivers/gpu/drm/i915/display/icl_dsi.c
+> > @@ -1440,6 +1440,13 @@ static void gen11_dsi_post_disable(struct intel_atomic_state *state,
+> >  static enum drm_mode_status gen11_dsi_mode_valid(struct drm_connector *connector,
+> >  						 struct drm_display_mode *mode)
+> >  {
+> > +	struct drm_i915_private *i915 = to_i915(connector->dev);
+> > +	enum drm_mode_status status;
+> > +
+> > +	status = intel_cpu_transcoder_mode_valid(i915, mode);
+> > +	if (status != MODE_OK)
+> > +		return status;
+> > +
+> >  	/* FIXME: DSC? */
+> >  	return intel_dsi_mode_valid(connector, mode);
+> >  }
+> > diff --git a/drivers/gpu/drm/i915/display/intel_crt.c b/drivers/gpu/drm/i915/display/intel_crt.c
+> > index 0e33a0523a75..abaacea5c2cc 100644
+> > --- a/drivers/gpu/drm/i915/display/intel_crt.c
+> > +++ b/drivers/gpu/drm/i915/display/intel_crt.c
+> > @@ -348,8 +348,13 @@ intel_crt_mode_valid(struct drm_connector *connector,
+> >  	struct drm_device *dev = connector->dev;
+> >  	struct drm_i915_private *dev_priv = to_i915(dev);
+> >  	int max_dotclk = dev_priv->max_dotclk_freq;
+> > +	enum drm_mode_status status;
+> >  	int max_clock;
+> >  
+> > +	status = intel_cpu_transcoder_mode_valid(dev_priv, mode);
+> > +	if (status != MODE_OK)
+> > +		return status;
+> > +
+> >  	if (mode->flags & DRM_MODE_FLAG_DBLSCAN)
+> >  		return MODE_NO_DBLESCAN;
+> >  
+> > diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
+> > index 5cf162628b95..23b077f43614 100644
+> > --- a/drivers/gpu/drm/i915/display/intel_display.c
+> > +++ b/drivers/gpu/drm/i915/display/intel_display.c
+> > @@ -7734,6 +7734,16 @@ enum drm_mode_status intel_mode_valid(struct drm_device *dev,
+> >  	    mode->vtotal > vtotal_max)
+> >  		return MODE_V_ILLEGAL;
+> >  
+> > +	return MODE_OK;
+> > +}
+> > +
+> > +enum drm_mode_status intel_cpu_transcoder_mode_valid(struct drm_i915_private *dev_priv,
+> > +						     const struct drm_display_mode *mode)
+> > +{
+> 
+> Overall the patch looks fine, even if it's a bit meh we have to
+> duplicate the calls so much. No way around that I guess.
+> 
+> Reviewed-by: Jani Nikula <jani.nikula@intel.com>
+> 
+> But please explain the intel_cpu_transcoder_mode_valid() naming. I'm not
+> sure I follow.
 
-Pushed to drm-intel-next. Thanks for the patch and review.
+These limits (suposedly) only apply to the normal
+transcoders but not to the BXT/GLK DSI transcoders.
 
-BR,
-Jani.
-
-
-> ---
->
-> Notes:
->     Changes:
->     
->       v1->v2:
->         - Change format specifier to pad minimum width
->         - https://lore.kernel.org/intel-gfx/20231123175638.27650-1-sergeantsagara@protonmail.com/
->
->  drivers/gpu/drm/i915/display/intel_display_irq.c | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
->
-> diff --git a/drivers/gpu/drm/i915/display/intel_display_irq.c b/drivers/gpu/drm/i915/display/intel_display_irq.c
-> index bff4a76310c0..7c6f20cd951e 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display_irq.c
-> +++ b/drivers/gpu/drm/i915/display/intel_display_irq.c
-> @@ -896,7 +896,7 @@ gen8_de_misc_irq_handler(struct drm_i915_private *dev_priv, u32 iir)
->  	}
->  
->  	if (!found)
-> -		drm_err(&dev_priv->drm, "Unexpected DE Misc interrupt\n");
-> +		drm_err(&dev_priv->drm, "Unexpected DE Misc interrupt: 0x%08x\n", iir);
->  }
->  
->  static void gen11_dsi_te_interrupt_handler(struct drm_i915_private *dev_priv,
+> 
+> 
+> 
+> -- 
+> Jani Nikula, Intel
 
 -- 
-Jani Nikula, Intel
+Ville Syrjälä
+Intel
