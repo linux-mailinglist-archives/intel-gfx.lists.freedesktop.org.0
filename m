@@ -1,56 +1,62 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id B5D4A7FB64F
-	for <lists+intel-gfx@lfdr.de>; Tue, 28 Nov 2023 10:51:50 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id E25387FB6A7
+	for <lists+intel-gfx@lfdr.de>; Tue, 28 Nov 2023 11:04:48 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 22DA710E473;
-	Tue, 28 Nov 2023 09:51:48 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0C30410E479;
+	Tue, 28 Nov 2023 10:04:45 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4BCE510E473
- for <intel-gfx@lists.freedesktop.org>; Tue, 28 Nov 2023 09:51:47 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1701165107; x=1732701107;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=t9mnQ9/IUsZp2W58duVkiZnP92HRkv+ykw7Cd2Qs6Dc=;
- b=G0Jy1zVcku3bRLXLmO0Bc/oAUTQfC+hAvthRp9ORF8mA5l1yyfM0/tBM
- T+/j6k2rK0IMJ/CdoH8G3pR8i4x6z0/RW+nmrNTSlzX8oimI98IwbUon/
- 7X+CjcrO2rZ5cVw40La3BeWuSDHSRvyPdX2xDdkriqLOGSaoEqioWP0hI
- vS0CURwiM3t3IFsLKPFIA5AysoOMsZo06o5IWb67xidKPykIvPuaeldla
- Xt468VTw3E3cv1SQpThulH2/ADVUcw2cl2p74gX/6+r4g6KICp3RfjI5T
- vCJ5BHLKJrWVk0y/BheqTnqoGSVGo98bwdnrgbf/23woBwevBgAJfGeVs A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10907"; a="457221798"
-X-IronPort-AV: E=Sophos;i="6.04,233,1695711600"; d="scan'208";a="457221798"
-Received: from orsmga007.jf.intel.com ([10.7.209.58])
- by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Nov 2023 01:51:47 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10907"; a="761878688"
-X-IronPort-AV: E=Sophos;i="6.04,233,1695711600"; d="scan'208";a="761878688"
-Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.74])
- by orsmga007.jf.intel.com with SMTP; 28 Nov 2023 01:51:44 -0800
-Received: by stinkbox (sSMTP sendmail emulation);
- Tue, 28 Nov 2023 11:51:43 +0200
-Date: Tue, 28 Nov 2023 11:51:43 +0200
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Matt Roper <matthew.d.roper@intel.com>
-Message-ID: <ZWW4L7POCQLJi6aJ@intel.com>
-References: <20231124205522.57696-2-gustavo.sousa@intel.com>
- <20231127162146.GG5757@mdroper-desk1.amr.corp.intel.com>
- <ZWWoOL3WS5wTGiM2@intel.com>
+Received: from mail-yw1-f177.google.com (mail-yw1-f177.google.com
+ [209.85.128.177])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 68B4310E476;
+ Tue, 28 Nov 2023 10:04:43 +0000 (UTC)
+Received: by mail-yw1-f177.google.com with SMTP id
+ 00721157ae682-5cc66213a34so53236567b3.1; 
+ Tue, 28 Nov 2023 02:04:43 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1701165882; x=1701770682;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+ :subject:date:message-id:reply-to;
+ bh=sVYbGk8nOx+pxSV84i/1qbnW/GNJF1Gu7ctCWCcQoto=;
+ b=pXkmJQ2l75C2mk5IlU3UzqAtbq+tO/LjY1yPkKE5OLuBkk7N0QUHibbigU9p12A8Yp
+ e31D7UfBilS/GAud1jbnqdRS2NN9QELB+IlQnjoVBb2OLjlBvkugqOfqqcjYQ83/snSb
+ 8066+gMwJN49Y/Vlb1J63JlPkMhLlyDTNR5P4nKvGx6fv0kHY0SE8A/RwWqASoawyCtn
+ UDswf7jp1T0KnSVdJuW5/qqJgIELlt9o2YJfoU78FwERbibGoIq5fuMS/1N99Rvh0ma5
+ 2WJOiyPQbd+YrHY1AgG3KWE7x0Y0+kJRdemy8uurklpHrO12GvXibe/JUpcy8aKLfDmS
+ xL1A==
+X-Gm-Message-State: AOJu0YyXK2alkdz3Pr0J4yCIUagt54jdTPrq60XXkcg/pppP2InEwpVO
+ S25GBDFzBUOsPoDX26lLQMi8wPZyrzqc7A==
+X-Google-Smtp-Source: AGHT+IGJJPYQjZoJsbrUif/mHqN0ICLSyAPZX/tlMDhLOPa/luG1ulkjHEPMe/sWXVewMmKLKALFPw==
+X-Received: by 2002:a81:8686:0:b0:5ce:f683:cd3 with SMTP id
+ w128-20020a818686000000b005cef6830cd3mr10244183ywf.13.1701165882246; 
+ Tue, 28 Nov 2023 02:04:42 -0800 (PST)
+Received: from mail-yw1-f177.google.com (mail-yw1-f177.google.com.
+ [209.85.128.177]) by smtp.gmail.com with ESMTPSA id
+ x126-20020a814a84000000b005ca7a00a9b0sm3797009ywa.64.2023.11.28.02.04.41
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Tue, 28 Nov 2023 02:04:41 -0800 (PST)
+Received: by mail-yw1-f177.google.com with SMTP id
+ 00721157ae682-5cece20f006so31746427b3.3; 
+ Tue, 28 Nov 2023 02:04:41 -0800 (PST)
+X-Received: by 2002:a81:9282:0:b0:5a7:afcc:80fe with SMTP id
+ j124-20020a819282000000b005a7afcc80femr9012513ywg.3.1701165881168; Tue, 28
+ Nov 2023 02:04:41 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <ZWWoOL3WS5wTGiM2@intel.com>
-X-Patchwork-Hint: comment
-Subject: Re: [Intel-gfx] [PATCH] drm/i915/cdclk: Remove divider field from
- tables
+References: <20231122112930.5e7c7bcd@canb.auug.org.au>
+In-Reply-To: <20231122112930.5e7c7bcd@canb.auug.org.au>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Tue, 28 Nov 2023 11:04:30 +0100
+X-Gmail-Original-Message-ID: <CAMuHMdW_6rU3uVuBBKh2nMWPC0tPOpxhf9xhD2L6T5frsF=q3w@mail.gmail.com>
+Message-ID: <CAMuHMdW_6rU3uVuBBKh2nMWPC0tPOpxhf9xhD2L6T5frsF=q3w@mail.gmail.com>
+To: Stephen Rothwell <sfr@canb.auug.org.au>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+Subject: Re: [Intel-gfx] linux-next: manual merge of the drm tree with the
+ drm-misc-fixes tree
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -63,400 +69,114 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org
+Cc: Daniel Vetter <daniel.vetter@ffwll.ch>,
+ Intel Graphics <intel-gfx@lists.freedesktop.org>,
+ Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+ DRI <dri-devel@lists.freedesktop.org>,
+ Stanislaw Gruszka <stanislaw.gruszka@linux.intel.com>,
+ Linux Next Mailing List <linux-next@vger.kernel.org>,
+ Jacek Lawrynowicz <jacek.lawrynowicz@linux.intel.com>,
+ Andrzej Kacprowski <andrzej.kacprowski@linux.intel.com>,
+ Dave Airlie <airlied@redhat.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, Nov 28, 2023 at 10:43:36AM +0200, Ville Syrjälä wrote:
-> On Mon, Nov 27, 2023 at 08:21:46AM -0800, Matt Roper wrote:
-> > On Fri, Nov 24, 2023 at 05:55:23PM -0300, Gustavo Sousa wrote:
-> > > The cdclk tables were introduced with commit 736da8112fee ("drm/i915:
-> > > Use literal representation of cdclk tables"). It has been almost 4 years
-> > > and the divider field was not really used yet. Let's remove it.
-> > 
-> > I think we need to go the other way and actually start using it instead
-> > of (incorrectly) trying to re-derive it from cdclk->vco.  The logic the
-> > driver is using today doesn't account for the potential use of
-> > squashing, which means we program the wrong divider value into CDCLK_CTL
-> > in some cases.  I pointed that out during the LNL code reviews a couple
-> > months ago, and I believe Stan is working on fixing that.
-> 
-> The code should be correct as is, but it does assume that the cd2x
-> divider is 2 when squashing is used. If that no longer holds then we
-> have to change something.
+Hi Stephen,
 
-Something like this should be sufficient to eliminate that
-assumption.
+On Wed, Nov 22, 2023 at 1:29=E2=80=AFAM Stephen Rothwell <sfr@canb.auug.org=
+.au> wrote:
+> Today's linux-next merge of the drm tree got a conflict in:
+>
+>   drivers/accel/ivpu/ivpu_hw_37xx.c
+>
+> between commit:
+>
+>   3f7c0634926d ("accel/ivpu/37xx: Fix hangs related to MMIO reset")
+>
+> from the drm-misc-fixes tree and commits:
+>
+>   3de6d9597892 ("accel/ivpu: Pass D0i3 residency time to the VPU firmware=
+")
+>   cc19fedab8bd ("accel/ivpu/37xx: Print warning when VPUIP is not idle du=
+ring power down")
+>
+> from the drm tree.
+>
+> I fixed it up (see below) and can carry the fix as necessary. This
+> is now fixed as far as linux-next is concerned, but any non trivial
+> conflicts should be mentioned to your upstream maintainer when your tree
+> is submitted for merging.  You may also want to consider cooperating
+> with the maintainer of the conflicting tree to minimise any particularly
+> complex conflicts.
 
-diff --git a/drivers/gpu/drm/i915/display/intel_cdclk.c b/drivers/gpu/drm/i915/display/intel_cdclk.c
-index 8bb6bab7c8cd..58567d42e725 100644
---- a/drivers/gpu/drm/i915/display/intel_cdclk.c
-+++ b/drivers/gpu/drm/i915/display/intel_cdclk.c
-@@ -1897,10 +1897,7 @@ static void _bxt_set_cdclk(struct drm_i915_private *dev_priv,
- 
- 	waveform = cdclk_squash_waveform(dev_priv, cdclk);
- 
--	if (waveform)
--		clock = vco / 2;
--	else
--		clock = cdclk;
-+	clock = DIV_ROUND_CLOSEST(cdclk * 16, cdclk_squash_divider(waveform));
- 
- 	if (HAS_CDCLK_SQUASH(dev_priv))
- 		dg2_cdclk_squash_program(dev_priv, waveform);
- 
-> 
-> > 
-> > I wonder if the misprogramming we're doing today is what requires the
-> > "HACK" at the bottom of intel_crtc_compute_min_cdclk for DG2?
-> > 
-> > 
-> > Matt
-> > 
-> > > 
-> > > Cc: Matt Roper <matthew.d.roper@intel.com>
-> > > Cc: Ville Syrjälä <ville.syrjala@linux.intel.com>
-> > > Signed-off-by: Gustavo Sousa <gustavo.sousa@intel.com>
-> > > ---
-> > >  drivers/gpu/drm/i915/display/intel_cdclk.c | 269 ++++++++++-----------
-> > >  1 file changed, 134 insertions(+), 135 deletions(-)
-> > > 
-> > > diff --git a/drivers/gpu/drm/i915/display/intel_cdclk.c b/drivers/gpu/drm/i915/display/intel_cdclk.c
-> > > index b93d1ad7936d..7f85a216ff5c 100644
-> > > --- a/drivers/gpu/drm/i915/display/intel_cdclk.c
-> > > +++ b/drivers/gpu/drm/i915/display/intel_cdclk.c
-> > > @@ -1227,183 +1227,182 @@ struct intel_cdclk_vals {
-> > >  	u32 cdclk;
-> > >  	u16 refclk;
-> > >  	u16 waveform;
-> > > -	u8 divider;	/* CD2X divider * 2 */
-> > >  	u8 ratio;
-> > >  };
-> > >  
-> > >  static const struct intel_cdclk_vals bxt_cdclk_table[] = {
-> > > -	{ .refclk = 19200, .cdclk = 144000, .divider = 8, .ratio = 60 },
-> > > -	{ .refclk = 19200, .cdclk = 288000, .divider = 4, .ratio = 60 },
-> > > -	{ .refclk = 19200, .cdclk = 384000, .divider = 3, .ratio = 60 },
-> > > -	{ .refclk = 19200, .cdclk = 576000, .divider = 2, .ratio = 60 },
-> > > -	{ .refclk = 19200, .cdclk = 624000, .divider = 2, .ratio = 65 },
-> > > +	{ .refclk = 19200, .cdclk = 144000, .ratio = 60 },
-> > > +	{ .refclk = 19200, .cdclk = 288000, .ratio = 60 },
-> > > +	{ .refclk = 19200, .cdclk = 384000, .ratio = 60 },
-> > > +	{ .refclk = 19200, .cdclk = 576000, .ratio = 60 },
-> > > +	{ .refclk = 19200, .cdclk = 624000, .ratio = 65 },
-> > >  	{}
-> > >  };
-> > >  
-> > >  static const struct intel_cdclk_vals glk_cdclk_table[] = {
-> > > -	{ .refclk = 19200, .cdclk =  79200, .divider = 8, .ratio = 33 },
-> > > -	{ .refclk = 19200, .cdclk = 158400, .divider = 4, .ratio = 33 },
-> > > -	{ .refclk = 19200, .cdclk = 316800, .divider = 2, .ratio = 33 },
-> > > +	{ .refclk = 19200, .cdclk =  79200, .ratio = 33 },
-> > > +	{ .refclk = 19200, .cdclk = 158400, .ratio = 33 },
-> > > +	{ .refclk = 19200, .cdclk = 316800, .ratio = 33 },
-> > >  	{}
-> > >  };
-> > >  
-> > >  static const struct intel_cdclk_vals icl_cdclk_table[] = {
-> > > -	{ .refclk = 19200, .cdclk = 172800, .divider = 2, .ratio = 18 },
-> > > -	{ .refclk = 19200, .cdclk = 192000, .divider = 2, .ratio = 20 },
-> > > -	{ .refclk = 19200, .cdclk = 307200, .divider = 2, .ratio = 32 },
-> > > -	{ .refclk = 19200, .cdclk = 326400, .divider = 4, .ratio = 68 },
-> > > -	{ .refclk = 19200, .cdclk = 556800, .divider = 2, .ratio = 58 },
-> > > -	{ .refclk = 19200, .cdclk = 652800, .divider = 2, .ratio = 68 },
-> > > -
-> > > -	{ .refclk = 24000, .cdclk = 180000, .divider = 2, .ratio = 15 },
-> > > -	{ .refclk = 24000, .cdclk = 192000, .divider = 2, .ratio = 16 },
-> > > -	{ .refclk = 24000, .cdclk = 312000, .divider = 2, .ratio = 26 },
-> > > -	{ .refclk = 24000, .cdclk = 324000, .divider = 4, .ratio = 54 },
-> > > -	{ .refclk = 24000, .cdclk = 552000, .divider = 2, .ratio = 46 },
-> > > -	{ .refclk = 24000, .cdclk = 648000, .divider = 2, .ratio = 54 },
-> > > -
-> > > -	{ .refclk = 38400, .cdclk = 172800, .divider = 2, .ratio =  9 },
-> > > -	{ .refclk = 38400, .cdclk = 192000, .divider = 2, .ratio = 10 },
-> > > -	{ .refclk = 38400, .cdclk = 307200, .divider = 2, .ratio = 16 },
-> > > -	{ .refclk = 38400, .cdclk = 326400, .divider = 4, .ratio = 34 },
-> > > -	{ .refclk = 38400, .cdclk = 556800, .divider = 2, .ratio = 29 },
-> > > -	{ .refclk = 38400, .cdclk = 652800, .divider = 2, .ratio = 34 },
-> > > +	{ .refclk = 19200, .cdclk = 172800, .ratio = 18 },
-> > > +	{ .refclk = 19200, .cdclk = 192000, .ratio = 20 },
-> > > +	{ .refclk = 19200, .cdclk = 307200, .ratio = 32 },
-> > > +	{ .refclk = 19200, .cdclk = 326400, .ratio = 68 },
-> > > +	{ .refclk = 19200, .cdclk = 556800, .ratio = 58 },
-> > > +	{ .refclk = 19200, .cdclk = 652800, .ratio = 68 },
-> > > +
-> > > +	{ .refclk = 24000, .cdclk = 180000, .ratio = 15 },
-> > > +	{ .refclk = 24000, .cdclk = 192000, .ratio = 16 },
-> > > +	{ .refclk = 24000, .cdclk = 312000, .ratio = 26 },
-> > > +	{ .refclk = 24000, .cdclk = 324000, .ratio = 54 },
-> > > +	{ .refclk = 24000, .cdclk = 552000, .ratio = 46 },
-> > > +	{ .refclk = 24000, .cdclk = 648000, .ratio = 54 },
-> > > +
-> > > +	{ .refclk = 38400, .cdclk = 172800, .ratio =  9 },
-> > > +	{ .refclk = 38400, .cdclk = 192000, .ratio = 10 },
-> > > +	{ .refclk = 38400, .cdclk = 307200, .ratio = 16 },
-> > > +	{ .refclk = 38400, .cdclk = 326400, .ratio = 34 },
-> > > +	{ .refclk = 38400, .cdclk = 556800, .ratio = 29 },
-> > > +	{ .refclk = 38400, .cdclk = 652800, .ratio = 34 },
-> > >  	{}
-> > >  };
-> > >  
-> > >  static const struct intel_cdclk_vals rkl_cdclk_table[] = {
-> > > -	{ .refclk = 19200, .cdclk = 172800, .divider = 4, .ratio =  36 },
-> > > -	{ .refclk = 19200, .cdclk = 192000, .divider = 4, .ratio =  40 },
-> > > -	{ .refclk = 19200, .cdclk = 307200, .divider = 4, .ratio =  64 },
-> > > -	{ .refclk = 19200, .cdclk = 326400, .divider = 8, .ratio = 136 },
-> > > -	{ .refclk = 19200, .cdclk = 556800, .divider = 4, .ratio = 116 },
-> > > -	{ .refclk = 19200, .cdclk = 652800, .divider = 4, .ratio = 136 },
-> > > -
-> > > -	{ .refclk = 24000, .cdclk = 180000, .divider = 4, .ratio =  30 },
-> > > -	{ .refclk = 24000, .cdclk = 192000, .divider = 4, .ratio =  32 },
-> > > -	{ .refclk = 24000, .cdclk = 312000, .divider = 4, .ratio =  52 },
-> > > -	{ .refclk = 24000, .cdclk = 324000, .divider = 8, .ratio = 108 },
-> > > -	{ .refclk = 24000, .cdclk = 552000, .divider = 4, .ratio =  92 },
-> > > -	{ .refclk = 24000, .cdclk = 648000, .divider = 4, .ratio = 108 },
-> > > -
-> > > -	{ .refclk = 38400, .cdclk = 172800, .divider = 4, .ratio = 18 },
-> > > -	{ .refclk = 38400, .cdclk = 192000, .divider = 4, .ratio = 20 },
-> > > -	{ .refclk = 38400, .cdclk = 307200, .divider = 4, .ratio = 32 },
-> > > -	{ .refclk = 38400, .cdclk = 326400, .divider = 8, .ratio = 68 },
-> > > -	{ .refclk = 38400, .cdclk = 556800, .divider = 4, .ratio = 58 },
-> > > -	{ .refclk = 38400, .cdclk = 652800, .divider = 4, .ratio = 68 },
-> > > +	{ .refclk = 19200, .cdclk = 172800, .ratio =  36 },
-> > > +	{ .refclk = 19200, .cdclk = 192000, .ratio =  40 },
-> > > +	{ .refclk = 19200, .cdclk = 307200, .ratio =  64 },
-> > > +	{ .refclk = 19200, .cdclk = 326400, .ratio = 136 },
-> > > +	{ .refclk = 19200, .cdclk = 556800, .ratio = 116 },
-> > > +	{ .refclk = 19200, .cdclk = 652800, .ratio = 136 },
-> > > +
-> > > +	{ .refclk = 24000, .cdclk = 180000, .ratio =  30 },
-> > > +	{ .refclk = 24000, .cdclk = 192000, .ratio =  32 },
-> > > +	{ .refclk = 24000, .cdclk = 312000, .ratio =  52 },
-> > > +	{ .refclk = 24000, .cdclk = 324000, .ratio = 108 },
-> > > +	{ .refclk = 24000, .cdclk = 552000, .ratio =  92 },
-> > > +	{ .refclk = 24000, .cdclk = 648000, .ratio = 108 },
-> > > +
-> > > +	{ .refclk = 38400, .cdclk = 172800, .ratio = 18 },
-> > > +	{ .refclk = 38400, .cdclk = 192000, .ratio = 20 },
-> > > +	{ .refclk = 38400, .cdclk = 307200, .ratio = 32 },
-> > > +	{ .refclk = 38400, .cdclk = 326400, .ratio = 68 },
-> > > +	{ .refclk = 38400, .cdclk = 556800, .ratio = 58 },
-> > > +	{ .refclk = 38400, .cdclk = 652800, .ratio = 68 },
-> > >  	{}
-> > >  };
-> > >  
-> > >  static const struct intel_cdclk_vals adlp_a_step_cdclk_table[] = {
-> > > -	{ .refclk = 19200, .cdclk = 307200, .divider = 2, .ratio = 32 },
-> > > -	{ .refclk = 19200, .cdclk = 556800, .divider = 2, .ratio = 58 },
-> > > -	{ .refclk = 19200, .cdclk = 652800, .divider = 2, .ratio = 68 },
-> > > +	{ .refclk = 19200, .cdclk = 307200, .ratio = 32 },
-> > > +	{ .refclk = 19200, .cdclk = 556800, .ratio = 58 },
-> > > +	{ .refclk = 19200, .cdclk = 652800, .ratio = 68 },
-> > >  
-> > > -	{ .refclk = 24000, .cdclk = 312000, .divider = 2, .ratio = 26 },
-> > > -	{ .refclk = 24000, .cdclk = 552000, .divider = 2, .ratio = 46 },
-> > > -	{ .refclk = 24400, .cdclk = 648000, .divider = 2, .ratio = 54 },
-> > > +	{ .refclk = 24000, .cdclk = 312000, .ratio = 26 },
-> > > +	{ .refclk = 24000, .cdclk = 552000, .ratio = 46 },
-> > > +	{ .refclk = 24400, .cdclk = 648000, .ratio = 54 },
-> > >  
-> > > -	{ .refclk = 38400, .cdclk = 307200, .divider = 2, .ratio = 16 },
-> > > -	{ .refclk = 38400, .cdclk = 556800, .divider = 2, .ratio = 29 },
-> > > -	{ .refclk = 38400, .cdclk = 652800, .divider = 2, .ratio = 34 },
-> > > +	{ .refclk = 38400, .cdclk = 307200, .ratio = 16 },
-> > > +	{ .refclk = 38400, .cdclk = 556800, .ratio = 29 },
-> > > +	{ .refclk = 38400, .cdclk = 652800, .ratio = 34 },
-> > >  	{}
-> > >  };
-> > >  
-> > >  static const struct intel_cdclk_vals adlp_cdclk_table[] = {
-> > > -	{ .refclk = 19200, .cdclk = 172800, .divider = 3, .ratio = 27 },
-> > > -	{ .refclk = 19200, .cdclk = 192000, .divider = 2, .ratio = 20 },
-> > > -	{ .refclk = 19200, .cdclk = 307200, .divider = 2, .ratio = 32 },
-> > > -	{ .refclk = 19200, .cdclk = 556800, .divider = 2, .ratio = 58 },
-> > > -	{ .refclk = 19200, .cdclk = 652800, .divider = 2, .ratio = 68 },
-> > > -
-> > > -	{ .refclk = 24000, .cdclk = 176000, .divider = 3, .ratio = 22 },
-> > > -	{ .refclk = 24000, .cdclk = 192000, .divider = 2, .ratio = 16 },
-> > > -	{ .refclk = 24000, .cdclk = 312000, .divider = 2, .ratio = 26 },
-> > > -	{ .refclk = 24000, .cdclk = 552000, .divider = 2, .ratio = 46 },
-> > > -	{ .refclk = 24000, .cdclk = 648000, .divider = 2, .ratio = 54 },
-> > > -
-> > > -	{ .refclk = 38400, .cdclk = 179200, .divider = 3, .ratio = 14 },
-> > > -	{ .refclk = 38400, .cdclk = 192000, .divider = 2, .ratio = 10 },
-> > > -	{ .refclk = 38400, .cdclk = 307200, .divider = 2, .ratio = 16 },
-> > > -	{ .refclk = 38400, .cdclk = 556800, .divider = 2, .ratio = 29 },
-> > > -	{ .refclk = 38400, .cdclk = 652800, .divider = 2, .ratio = 34 },
-> > > +	{ .refclk = 19200, .cdclk = 172800, .ratio = 27 },
-> > > +	{ .refclk = 19200, .cdclk = 192000, .ratio = 20 },
-> > > +	{ .refclk = 19200, .cdclk = 307200, .ratio = 32 },
-> > > +	{ .refclk = 19200, .cdclk = 556800, .ratio = 58 },
-> > > +	{ .refclk = 19200, .cdclk = 652800, .ratio = 68 },
-> > > +
-> > > +	{ .refclk = 24000, .cdclk = 176000, .ratio = 22 },
-> > > +	{ .refclk = 24000, .cdclk = 192000, .ratio = 16 },
-> > > +	{ .refclk = 24000, .cdclk = 312000, .ratio = 26 },
-> > > +	{ .refclk = 24000, .cdclk = 552000, .ratio = 46 },
-> > > +	{ .refclk = 24000, .cdclk = 648000, .ratio = 54 },
-> > > +
-> > > +	{ .refclk = 38400, .cdclk = 179200, .ratio = 14 },
-> > > +	{ .refclk = 38400, .cdclk = 192000, .ratio = 10 },
-> > > +	{ .refclk = 38400, .cdclk = 307200, .ratio = 16 },
-> > > +	{ .refclk = 38400, .cdclk = 556800, .ratio = 29 },
-> > > +	{ .refclk = 38400, .cdclk = 652800, .ratio = 34 },
-> > >  	{}
-> > >  };
-> > >  
-> > >  static const struct intel_cdclk_vals rplu_cdclk_table[] = {
-> > > -	{ .refclk = 19200, .cdclk = 172800, .divider = 3, .ratio = 27 },
-> > > -	{ .refclk = 19200, .cdclk = 192000, .divider = 2, .ratio = 20 },
-> > > -	{ .refclk = 19200, .cdclk = 307200, .divider = 2, .ratio = 32 },
-> > > -	{ .refclk = 19200, .cdclk = 480000, .divider = 2, .ratio = 50 },
-> > > -	{ .refclk = 19200, .cdclk = 556800, .divider = 2, .ratio = 58 },
-> > > -	{ .refclk = 19200, .cdclk = 652800, .divider = 2, .ratio = 68 },
-> > > -
-> > > -	{ .refclk = 24000, .cdclk = 176000, .divider = 3, .ratio = 22 },
-> > > -	{ .refclk = 24000, .cdclk = 192000, .divider = 2, .ratio = 16 },
-> > > -	{ .refclk = 24000, .cdclk = 312000, .divider = 2, .ratio = 26 },
-> > > -	{ .refclk = 24000, .cdclk = 480000, .divider = 2, .ratio = 40 },
-> > > -	{ .refclk = 24000, .cdclk = 552000, .divider = 2, .ratio = 46 },
-> > > -	{ .refclk = 24000, .cdclk = 648000, .divider = 2, .ratio = 54 },
-> > > -
-> > > -	{ .refclk = 38400, .cdclk = 179200, .divider = 3, .ratio = 14 },
-> > > -	{ .refclk = 38400, .cdclk = 192000, .divider = 2, .ratio = 10 },
-> > > -	{ .refclk = 38400, .cdclk = 307200, .divider = 2, .ratio = 16 },
-> > > -	{ .refclk = 38400, .cdclk = 480000, .divider = 2, .ratio = 25 },
-> > > -	{ .refclk = 38400, .cdclk = 556800, .divider = 2, .ratio = 29 },
-> > > -	{ .refclk = 38400, .cdclk = 652800, .divider = 2, .ratio = 34 },
-> > > +	{ .refclk = 19200, .cdclk = 172800, .ratio = 27 },
-> > > +	{ .refclk = 19200, .cdclk = 192000, .ratio = 20 },
-> > > +	{ .refclk = 19200, .cdclk = 307200, .ratio = 32 },
-> > > +	{ .refclk = 19200, .cdclk = 480000, .ratio = 50 },
-> > > +	{ .refclk = 19200, .cdclk = 556800, .ratio = 58 },
-> > > +	{ .refclk = 19200, .cdclk = 652800, .ratio = 68 },
-> > > +
-> > > +	{ .refclk = 24000, .cdclk = 176000, .ratio = 22 },
-> > > +	{ .refclk = 24000, .cdclk = 192000, .ratio = 16 },
-> > > +	{ .refclk = 24000, .cdclk = 312000, .ratio = 26 },
-> > > +	{ .refclk = 24000, .cdclk = 480000, .ratio = 40 },
-> > > +	{ .refclk = 24000, .cdclk = 552000, .ratio = 46 },
-> > > +	{ .refclk = 24000, .cdclk = 648000, .ratio = 54 },
-> > > +
-> > > +	{ .refclk = 38400, .cdclk = 179200, .ratio = 14 },
-> > > +	{ .refclk = 38400, .cdclk = 192000, .ratio = 10 },
-> > > +	{ .refclk = 38400, .cdclk = 307200, .ratio = 16 },
-> > > +	{ .refclk = 38400, .cdclk = 480000, .ratio = 25 },
-> > > +	{ .refclk = 38400, .cdclk = 556800, .ratio = 29 },
-> > > +	{ .refclk = 38400, .cdclk = 652800, .ratio = 34 },
-> > >  	{}
-> > >  };
-> > >  
-> > >  static const struct intel_cdclk_vals dg2_cdclk_table[] = {
-> > > -	{ .refclk = 38400, .cdclk = 163200, .divider = 2, .ratio = 34, .waveform = 0x8888 },
-> > > -	{ .refclk = 38400, .cdclk = 204000, .divider = 2, .ratio = 34, .waveform = 0x9248 },
-> > > -	{ .refclk = 38400, .cdclk = 244800, .divider = 2, .ratio = 34, .waveform = 0xa4a4 },
-> > > -	{ .refclk = 38400, .cdclk = 285600, .divider = 2, .ratio = 34, .waveform = 0xa54a },
-> > > -	{ .refclk = 38400, .cdclk = 326400, .divider = 2, .ratio = 34, .waveform = 0xaaaa },
-> > > -	{ .refclk = 38400, .cdclk = 367200, .divider = 2, .ratio = 34, .waveform = 0xad5a },
-> > > -	{ .refclk = 38400, .cdclk = 408000, .divider = 2, .ratio = 34, .waveform = 0xb6b6 },
-> > > -	{ .refclk = 38400, .cdclk = 448800, .divider = 2, .ratio = 34, .waveform = 0xdbb6 },
-> > > -	{ .refclk = 38400, .cdclk = 489600, .divider = 2, .ratio = 34, .waveform = 0xeeee },
-> > > -	{ .refclk = 38400, .cdclk = 530400, .divider = 2, .ratio = 34, .waveform = 0xf7de },
-> > > -	{ .refclk = 38400, .cdclk = 571200, .divider = 2, .ratio = 34, .waveform = 0xfefe },
-> > > -	{ .refclk = 38400, .cdclk = 612000, .divider = 2, .ratio = 34, .waveform = 0xfffe },
-> > > -	{ .refclk = 38400, .cdclk = 652800, .divider = 2, .ratio = 34, .waveform = 0xffff },
-> > > +	{ .refclk = 38400, .cdclk = 163200, .ratio = 34, .waveform = 0x8888 },
-> > > +	{ .refclk = 38400, .cdclk = 204000, .ratio = 34, .waveform = 0x9248 },
-> > > +	{ .refclk = 38400, .cdclk = 244800, .ratio = 34, .waveform = 0xa4a4 },
-> > > +	{ .refclk = 38400, .cdclk = 285600, .ratio = 34, .waveform = 0xa54a },
-> > > +	{ .refclk = 38400, .cdclk = 326400, .ratio = 34, .waveform = 0xaaaa },
-> > > +	{ .refclk = 38400, .cdclk = 367200, .ratio = 34, .waveform = 0xad5a },
-> > > +	{ .refclk = 38400, .cdclk = 408000, .ratio = 34, .waveform = 0xb6b6 },
-> > > +	{ .refclk = 38400, .cdclk = 448800, .ratio = 34, .waveform = 0xdbb6 },
-> > > +	{ .refclk = 38400, .cdclk = 489600, .ratio = 34, .waveform = 0xeeee },
-> > > +	{ .refclk = 38400, .cdclk = 530400, .ratio = 34, .waveform = 0xf7de },
-> > > +	{ .refclk = 38400, .cdclk = 571200, .ratio = 34, .waveform = 0xfefe },
-> > > +	{ .refclk = 38400, .cdclk = 612000, .ratio = 34, .waveform = 0xfffe },
-> > > +	{ .refclk = 38400, .cdclk = 652800, .ratio = 34, .waveform = 0xffff },
-> > >  	{}
-> > >  };
-> > >  
-> > >  static const struct intel_cdclk_vals mtl_cdclk_table[] = {
-> > > -	{ .refclk = 38400, .cdclk = 172800, .divider = 2, .ratio = 16, .waveform = 0xad5a },
-> > > -	{ .refclk = 38400, .cdclk = 192000, .divider = 2, .ratio = 16, .waveform = 0xb6b6 },
-> > > -	{ .refclk = 38400, .cdclk = 307200, .divider = 2, .ratio = 16, .waveform = 0x0000 },
-> > > -	{ .refclk = 38400, .cdclk = 480000, .divider = 2, .ratio = 25, .waveform = 0x0000 },
-> > > -	{ .refclk = 38400, .cdclk = 556800, .divider = 2, .ratio = 29, .waveform = 0x0000 },
-> > > -	{ .refclk = 38400, .cdclk = 652800, .divider = 2, .ratio = 34, .waveform = 0x0000 },
-> > > +	{ .refclk = 38400, .cdclk = 172800, .ratio = 16, .waveform = 0xad5a },
-> > > +	{ .refclk = 38400, .cdclk = 192000, .ratio = 16, .waveform = 0xb6b6 },
-> > > +	{ .refclk = 38400, .cdclk = 307200, .ratio = 16, .waveform = 0x0000 },
-> > > +	{ .refclk = 38400, .cdclk = 480000, .ratio = 25, .waveform = 0x0000 },
-> > > +	{ .refclk = 38400, .cdclk = 556800, .ratio = 29, .waveform = 0x0000 },
-> > > +	{ .refclk = 38400, .cdclk = 652800, .ratio = 34, .waveform = 0x0000 },
-> > >  	{}
-> > >  };
-> > >  
-> > >  static const struct intel_cdclk_vals lnl_cdclk_table[] = {
-> > > -	{ .refclk = 38400, .cdclk = 153600, .divider = 2, .ratio = 16, .waveform = 0xaaaa },
-> > > -	{ .refclk = 38400, .cdclk = 172800, .divider = 2, .ratio = 16, .waveform = 0xad5a },
-> > > -	{ .refclk = 38400, .cdclk = 192000, .divider = 2, .ratio = 16, .waveform = 0xb6b6 },
-> > > -	{ .refclk = 38400, .cdclk = 211200, .divider = 2, .ratio = 16, .waveform = 0xdbb6 },
-> > > -	{ .refclk = 38400, .cdclk = 230400, .divider = 2, .ratio = 16, .waveform = 0xeeee },
-> > > -	{ .refclk = 38400, .cdclk = 249600, .divider = 2, .ratio = 16, .waveform = 0xf7de },
-> > > -	{ .refclk = 38400, .cdclk = 268800, .divider = 2, .ratio = 16, .waveform = 0xfefe },
-> > > -	{ .refclk = 38400, .cdclk = 288000, .divider = 2, .ratio = 16, .waveform = 0xfffe },
-> > > -	{ .refclk = 38400, .cdclk = 307200, .divider = 2, .ratio = 16, .waveform = 0xffff },
-> > > -	{ .refclk = 38400, .cdclk = 330000, .divider = 2, .ratio = 25, .waveform = 0xdbb6 },
-> > > -	{ .refclk = 38400, .cdclk = 360000, .divider = 2, .ratio = 25, .waveform = 0xeeee },
-> > > -	{ .refclk = 38400, .cdclk = 390000, .divider = 2, .ratio = 25, .waveform = 0xf7de },
-> > > -	{ .refclk = 38400, .cdclk = 420000, .divider = 2, .ratio = 25, .waveform = 0xfefe },
-> > > -	{ .refclk = 38400, .cdclk = 450000, .divider = 2, .ratio = 25, .waveform = 0xfffe },
-> > > -	{ .refclk = 38400, .cdclk = 480000, .divider = 2, .ratio = 25, .waveform = 0xffff },
-> > > -	{ .refclk = 38400, .cdclk = 487200, .divider = 2, .ratio = 29, .waveform = 0xfefe },
-> > > -	{ .refclk = 38400, .cdclk = 522000, .divider = 2, .ratio = 29, .waveform = 0xfffe },
-> > > -	{ .refclk = 38400, .cdclk = 556800, .divider = 2, .ratio = 29, .waveform = 0xffff },
-> > > -	{ .refclk = 38400, .cdclk = 571200, .divider = 2, .ratio = 34, .waveform = 0xfefe },
-> > > -	{ .refclk = 38400, .cdclk = 612000, .divider = 2, .ratio = 34, .waveform = 0xfffe },
-> > > -	{ .refclk = 38400, .cdclk = 652800, .divider = 2, .ratio = 34, .waveform = 0xffff },
-> > > +	{ .refclk = 38400, .cdclk = 153600, .ratio = 16, .waveform = 0xaaaa },
-> > > +	{ .refclk = 38400, .cdclk = 172800, .ratio = 16, .waveform = 0xad5a },
-> > > +	{ .refclk = 38400, .cdclk = 192000, .ratio = 16, .waveform = 0xb6b6 },
-> > > +	{ .refclk = 38400, .cdclk = 211200, .ratio = 16, .waveform = 0xdbb6 },
-> > > +	{ .refclk = 38400, .cdclk = 230400, .ratio = 16, .waveform = 0xeeee },
-> > > +	{ .refclk = 38400, .cdclk = 249600, .ratio = 16, .waveform = 0xf7de },
-> > > +	{ .refclk = 38400, .cdclk = 268800, .ratio = 16, .waveform = 0xfefe },
-> > > +	{ .refclk = 38400, .cdclk = 288000, .ratio = 16, .waveform = 0xfffe },
-> > > +	{ .refclk = 38400, .cdclk = 307200, .ratio = 16, .waveform = 0xffff },
-> > > +	{ .refclk = 38400, .cdclk = 330000, .ratio = 25, .waveform = 0xdbb6 },
-> > > +	{ .refclk = 38400, .cdclk = 360000, .ratio = 25, .waveform = 0xeeee },
-> > > +	{ .refclk = 38400, .cdclk = 390000, .ratio = 25, .waveform = 0xf7de },
-> > > +	{ .refclk = 38400, .cdclk = 420000, .ratio = 25, .waveform = 0xfefe },
-> > > +	{ .refclk = 38400, .cdclk = 450000, .ratio = 25, .waveform = 0xfffe },
-> > > +	{ .refclk = 38400, .cdclk = 480000, .ratio = 25, .waveform = 0xffff },
-> > > +	{ .refclk = 38400, .cdclk = 487200, .ratio = 29, .waveform = 0xfefe },
-> > > +	{ .refclk = 38400, .cdclk = 522000, .ratio = 29, .waveform = 0xfffe },
-> > > +	{ .refclk = 38400, .cdclk = 556800, .ratio = 29, .waveform = 0xffff },
-> > > +	{ .refclk = 38400, .cdclk = 571200, .ratio = 34, .waveform = 0xfefe },
-> > > +	{ .refclk = 38400, .cdclk = 612000, .ratio = 34, .waveform = 0xfffe },
-> > > +	{ .refclk = 38400, .cdclk = 652800, .ratio = 34, .waveform = 0xffff },
-> > >  	{}
-> > >  };
-> > >  
-> > > -- 
-> > > 2.42.1
-> > > 
-> > 
-> > -- 
-> > Matt Roper
-> > Graphics Software Engineer
-> > Linux GPU Platform Enablement
-> > Intel Corporation
-> 
-> -- 
-> Ville Syrjälä
-> Intel
+Thanks for your resolution!
 
--- 
-Ville Syrjälä
-Intel
+> --- a/drivers/accel/ivpu/ivpu_hw_37xx.c
+> +++ b/drivers/accel/ivpu/ivpu_hw_37xx.c
+> @@@ -720,14 -731,19 +733,14 @@@ static int ivpu_hw_37xx_power_down(stru
+>   {
+>         int ret =3D 0;
+>
+> -       if (!ivpu_hw_37xx_is_idle(vdev))
+> -               ivpu_warn(vdev, "VPU not idle during power down\n");
+> +       ivpu_hw_37xx_save_d0i3_entry_timestamp(vdev);
+>
+> -       if (ivpu_hw_37xx_reset(vdev)) {
+> -               ivpu_err(vdev, "Failed to reset VPU\n");
+> -               ret =3D -EIO;
+> +       if (!ivpu_hw_37xx_is_idle(vdev)) {
+> +               ivpu_warn(vdev, "VPU not idle during power down\n");
+> +               if (ivpu_hw_37xx_reset(vdev))
+> +                       ivpu_warn(vdev, "Failed to reset the VPU\n");
+>         }
+>
+>  -      if (ivpu_pll_disable(vdev)) {
+>  -              ivpu_err(vdev, "Failed to disable PLL\n");
+>  -              ret =3D -EIO;
+>  -      }
+>  -
+>         if (ivpu_hw_37xx_d0i3_enable(vdev)) {
+>                 ivpu_err(vdev, "Failed to enter D0I3\n");
+>                 ret =3D -EIO;
+
+I've just run into the same conflict, and I think you lost the split
+into two if-statements in the last hunk of commit 3f7c0634926d
+("accel/ivpu/37xx: Fix hangs related to MMIO reset")?
+
+My resolution is:
+
+--- a/drivers/accel/ivpu/ivpu_hw_37xx.c
++++ b/drivers/accel/ivpu/ivpu_hw_37xx.c
+@@@ -720,11 -731,16 +733,13 @@@ static int ivpu_hw_37xx_power_down(stru
+  {
+        int ret =3D 0;
+
++       ivpu_hw_37xx_save_d0i3_entry_timestamp(vdev);
++
+ -      if (!ivpu_hw_37xx_is_idle(vdev)) {
+ +      if (!ivpu_hw_37xx_is_idle(vdev))
+                ivpu_warn(vdev, "VPU not idle during power down\n");
+ -              if (ivpu_hw_37xx_reset(vdev))
+ -                      ivpu_warn(vdev, "Failed to reset the VPU\n");
+ -      }
+
+ -      if (ivpu_pll_disable(vdev)) {
+ -              ivpu_err(vdev, "Failed to disable PLL\n");
+ +      if (ivpu_hw_37xx_reset(vdev)) {
+ +              ivpu_err(vdev, "Failed to reset VPU\n");
+                ret =3D -EIO;
+        }
+
+Gr{oetje,eeting}s,
+
+                        Geert
+
+--=20
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
+.org
+
+In personal conversations with technical people, I call myself a hacker. Bu=
+t
+when I'm talking to journalists I just say "programmer" or something like t=
+hat.
+                                -- Linus Torvalds
