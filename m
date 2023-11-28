@@ -1,44 +1,45 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2228F7FB4E2
-	for <lists+intel-gfx@lfdr.de>; Tue, 28 Nov 2023 09:53:43 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4F33B7FB521
+	for <lists+intel-gfx@lfdr.de>; Tue, 28 Nov 2023 10:01:36 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6F4F710E45F;
-	Tue, 28 Nov 2023 08:53:40 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B941210E464;
+	Tue, 28 Nov 2023 09:01:34 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D196010E462
- for <intel-gfx@lists.freedesktop.org>; Tue, 28 Nov 2023 08:53:37 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2CCA910E464
+ for <intel-gfx@lists.freedesktop.org>; Tue, 28 Nov 2023 09:01:33 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1701161617; x=1732697617;
+ t=1701162093; x=1732698093;
  h=date:from:to:cc:subject:message-id:references:
  mime-version:content-transfer-encoding:in-reply-to;
- bh=ijeCrS4vBpKDXXjpFI7MSzSkMOuMoY4gNlsPORO7kcA=;
- b=ZU8IClusU3E0zIp3+wT5bpKbg7k73owajIA49wrEfQVsiA3tSFKa5/9K
- mK2irggMqYdP2Z/p8IySKBOI4+2LfIsZkf5yu6hh9IegXJik0u+sBzPgV
- lqUs/FN/DJhzHxtJCGIwkyjRTCg7f3KR0hWE0nnPYLSkLtfTUnOviu1Bc
- kIhoTc//YhaOVvP1VV7Fom7Hzl1VC9D8NQdAIk5sAp8yUp6TAmF/xD79T
- JKG7k5Q41ZawvWpuI+9Z+1KVotc8xIA9KKKXRCPyfkyX4+Pi8wZw91+O/
- EhPrlXgAUE4ei1qiKQJfEjWIjQY55vucCl+TPcefimraUiFNIdP/rKyu0 A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10907"; a="424033410"
-X-IronPort-AV: E=Sophos;i="6.04,233,1695711600"; d="scan'208";a="424033410"
+ bh=9+pL4f5JPzGyXJe1wBvQZ5TyC1wP+1vOfSNg/WxRdB0=;
+ b=b6HarnfuuKzw3MpolCif9p+nCODM6c+FZwyYRhRyQ5eyeLXMzWGPyOIE
+ v4c+4/8Ta/VbF+fbENMdKj1LcNc8uHb7Tch9eOxuYltg9c9mlqMyopqoA
+ eFl5ErExIFfsuArq8E6vzthuRYNzZLmCnfhe+Rx1DEwL4jDX5ToU3YJ9d
+ trbEu0oqqaJ3fSYURn89XAsZ4y9gqYBF2DemXh2CSuPLLOUqV1cjKhSBY
+ Syg12EwauRwe3rH6AGcFmSw6LTr1RhiHe3xrdoUtaJOeW5yNMa3mOPq8U
+ o9uXRYEbtjq8yjSNO2SnYX5AgUsd8un9owabGYTjyqGhxfs0JGH6cwaee A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10907"; a="424034315"
+X-IronPort-AV: E=Sophos;i="6.04,233,1695711600"; d="scan'208";a="424034315"
 Received: from orsmga007.jf.intel.com ([10.7.209.58])
  by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Nov 2023 00:53:37 -0800
+ 28 Nov 2023 01:01:32 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10907"; a="761870606"
-X-IronPort-AV: E=Sophos;i="6.04,233,1695711600"; d="scan'208";a="761870606"
-Received: from unknown (HELO intel.com) ([10.237.72.65])
- by orsmga007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Nov 2023 00:53:35 -0800
-Date: Tue, 28 Nov 2023 10:53:24 +0200
-From: "Lisovskiy, Stanislav" <stanislav.lisovskiy@intel.com>
-To: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-Message-ID: <ZWWqhLlnu9b/WshT@intel.com>
+X-IronPort-AV: E=McAfee;i="6600,9927,10907"; a="761871556"
+X-IronPort-AV: E=Sophos;i="6.04,233,1695711600"; d="scan'208";a="761871556"
+Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.74])
+ by orsmga007.jf.intel.com with SMTP; 28 Nov 2023 01:01:30 -0800
+Received: by stinkbox (sSMTP sendmail emulation);
+ Tue, 28 Nov 2023 11:01:29 +0200
+Date: Tue, 28 Nov 2023 11:01:29 +0200
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: Matt Roper <matthew.d.roper@intel.com>
+Message-ID: <ZWWsae58yHUDfuHA@intel.com>
 References: <20231124205522.57696-2-gustavo.sousa@intel.com>
  <20231127162146.GG5757@mdroper-desk1.amr.corp.intel.com>
  <ZWWoOL3WS5wTGiM2@intel.com>
@@ -47,6 +48,7 @@ Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
 In-Reply-To: <ZWWoOL3WS5wTGiM2@intel.com>
+X-Patchwork-Hint: comment
 Subject: Re: [Intel-gfx] [PATCH] drm/i915/cdclk: Remove divider field from
  tables
 X-BeenThere: intel-gfx@lists.freedesktop.org
@@ -61,7 +63,7 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org, Matt Roper <matthew.d.roper@intel.com>
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
@@ -83,13 +85,12 @@ On Tue, Nov 28, 2023 at 10:43:36AM +0200, Ville Syrjälä wrote:
 > divider is 2 when squashing is used. If that no longer holds then we
 > have to change something.
 
-So we need to have some kind of a consensus/agreement here, whether are we modify the
-calculation function and remove divider from the table, or do we just
-use the value from the table.
-
-So which approach is better?
-
-Stan
+BTW long ago I wrote some patches to cross check all the values in the
+table (since there is redundancy in what we store there), but I was
+too annoyed at having to do that cross check at runtime that I didn't
+send the patches out. I was slightly hopeful that C23 constexpr could
+save us, but apparently constexpr for functions didn't end up in in
+the spec, so likely not really useful :(
 
 > 
 > > 
@@ -442,3 +443,7 @@ Stan
 > -- 
 > Ville Syrjälä
 > Intel
+
+-- 
+Ville Syrjälä
+Intel
