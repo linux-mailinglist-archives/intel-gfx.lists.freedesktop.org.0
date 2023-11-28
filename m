@@ -1,71 +1,67 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id D9FAF7FB94A
-	for <lists+intel-gfx@lfdr.de>; Tue, 28 Nov 2023 12:19:44 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6B4FE7FB9A6
+	for <lists+intel-gfx@lfdr.de>; Tue, 28 Nov 2023 12:50:03 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7F9A710E4DE;
-	Tue, 28 Nov 2023 11:19:38 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2685410E4E2;
+	Tue, 28 Nov 2023 11:50:01 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-vs1-xe2e.google.com (mail-vs1-xe2e.google.com
- [IPv6:2607:f8b0:4864:20::e2e])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DBA1A10E4DE
- for <intel-gfx@lists.freedesktop.org>; Tue, 28 Nov 2023 11:19:34 +0000 (UTC)
-Received: by mail-vs1-xe2e.google.com with SMTP id
- ada2fe7eead31-462abe45730so1830283137.1
- for <intel-gfx@lists.freedesktop.org>; Tue, 28 Nov 2023 03:19:34 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=chromium.org; s=google; t=1701170374; x=1701775174;
- darn=lists.freedesktop.org; 
- h=in-reply-to:content-transfer-encoding:content-disposition
- :mime-version:references:message-id:subject:cc:to:from:date:from:to
- :cc:subject:date:message-id:reply-to;
- bh=bCnoZKgpcEhOGCM5lZjXBdwz27cftHLpr/W77wEAkbk=;
- b=BR4lab2n/4GEsXR2CNzxLKS6nH26h/mFjTL6+vaHRmREDMsWo7P/f6EigQpNB0QXWz
- N7nESwf1y9PqTxSRo5AUPDNckUjCzAEQKOrKodg7asvaWdIVOOOTyCKXhcr1MgrNz9V8
- nefzRvCXVw7z3LpwGsqfmrSSplOL7z1d+Eya8=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1701170374; x=1701775174;
- h=in-reply-to:content-transfer-encoding:content-disposition
- :mime-version:references:message-id:subject:cc:to:from:date
- :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
- bh=bCnoZKgpcEhOGCM5lZjXBdwz27cftHLpr/W77wEAkbk=;
- b=lLs7TPuV9Hhmfq3b7Q6JQjVLzHmdOU5Ue/k3B8tok0W6Pka5S8R+HTQgpvG/+mzjoP
- 9P1S2E5Q6qi+kU9HyaJswCBKNhAGxHWr+Zxwt5ESDXPBXfOiKFPgDrcjZ2kObvpwRJAc
- LV5DwTelNmXv/G5ZDe3m6Cb7sHJicIcyJ10PxXAxG5Do2YgYU/Zk7/LvfgtDX25rrJPZ
- y00AD3IcGgCN7FI35ee9puFDf5oksJ6SsEDXdfZBIBqPFhpcaTi1EHsTUwJpRFDJ38Ni
- t0UJmbF+/WkcMqdQgB0Ye6kds8yPlkHawx7600u/72VK2dqE/WV1ytE7KUHGPqvlXkDd
- rElA==
-X-Gm-Message-State: AOJu0YzgT5yAbPFEa9z4zrly8lxVztkC/Oj5Gmvv3f0Vmxiuh7Nyfhu5
- LGqRxq1hfjBISbxY1kJsGLg/UQ==
-X-Google-Smtp-Source: AGHT+IH87Ag0JlT90Hx66H+qK+YLeNQoRQwoQQDAx90SCLVYeMakySpUwE7/cgjUOuOsUEPWnqz5xw==
-X-Received: by 2002:a05:6102:34f5:b0:45f:bab9:4414 with SMTP id
- bi21-20020a05610234f500b0045fbab94414mr16425679vsb.24.1701170373973; 
- Tue, 28 Nov 2023 03:19:33 -0800 (PST)
-Received: from google.com (193.132.150.34.bc.googleusercontent.com.
- [34.150.132.193]) by smtp.gmail.com with ESMTPSA id
- dw12-20020a0562140a0c00b0067a1c7d8e98sm3852798qvb.41.2023.11.28.03.19.33
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Tue, 28 Nov 2023 03:19:33 -0800 (PST)
-Date: Tue, 28 Nov 2023 11:19:32 +0000
-From: Paz Zcharya <pazz@chromium.org>
-To: Andrzej Hajda <andrzej.hajda@intel.com>
-Message-ID: <ZWXMxLPIwXgwbEkz@google.com>
-References: <20231105172718.18673-1-pazz@chromium.org>
- <ZVQ3d8FFqxsy0OX7@intel.com> <ZVfw3ghfBLdHB7uk@google.com>
- <8dd6f4da-dcc9-4ea3-8395-bf048b0dbc93@intel.com>
- <6f08cfee-a60b-4f6e-b69a-20517c563259@intel.com>
- <ZWVizpRkf5iJ2LnQ@google.com>
- <51baffb9-2249-4080-a245-eb1e03c02b9b@intel.com>
+Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.100])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 65FF310E4E2
+ for <intel-gfx@lists.freedesktop.org>; Tue, 28 Nov 2023 11:49:58 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1701172198; x=1732708198;
+ h=from:date:subject:mime-version:content-transfer-encoding:
+ message-id:to:cc;
+ bh=NJFF1OTfvKSyhpaN/7RONdYOjNn1Xk1QVGdLaxLyWa4=;
+ b=nZGVUArcP9kD9uOOGh31VAozdrvoMxSdhyizyjFpXDprauAjEEFRVLWj
+ iDRfFyaRRuhWN10xTP43mDa56AX9D2m6aD2zFSXCleBIIWGP3gR+iUVBr
+ kvGeysHYcINlXaLeAfnUo1hZBWn5bwcO2t4MBPl0e3/ms82MJjXDaVaKk
+ yTbpPw2tFhgulzk0AhZ/dy7VZqLNQ/JLRVZs3cRKy+MUlG2MYY3Jz/taX
+ WAJXha6HczJaUpYnZsArqKBq5bnN5KXqJnEZR+Uh5/bGnXDdL/F8Gv1QR
+ WpVBZ9FWOqsHvhaY7J/i73LHiUd7Csmp9w1W0rUu4GexMTy81nL8/w9iC Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10907"; a="459411338"
+X-IronPort-AV: E=Sophos;i="6.04,233,1695711600"; d="scan'208";a="459411338"
+Received: from orsmga007.jf.intel.com ([10.7.209.58])
+ by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 28 Nov 2023 03:49:58 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10907"; a="761907139"
+X-IronPort-AV: E=Sophos;i="6.04,233,1695711600"; d="scan'208";a="761907139"
+Received: from lab-ah.igk.intel.com ([10.102.138.202])
+ by orsmga007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 28 Nov 2023 03:49:56 -0800
+From: Andrzej Hajda <andrzej.hajda@intel.com>
+Date: Tue, 28 Nov 2023 12:49:27 +0100
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <51baffb9-2249-4080-a245-eb1e03c02b9b@intel.com>
-Subject: Re: [Intel-gfx] [PATCH] drm/i915/display: Fix phys_base to be
- relative not absolute
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+Message-Id: <20231128-selftest_wait_for_active_idle_event-v1-1-e365cb8b2d87@intel.com>
+X-B4-Tracking: v=1; b=H4sIAMbTZWUC/x3NQQqDMBBA0avIrBswKVjpVUoJMZnUARtlZogF8
+ e5Nu3yb/w8QZEKBe3cAYyWhtTTYSwdxDuWFhlIzuN5drXWjEVyyoqjfA6nPK/sQlSp6Sgt6rFj
+ UDFO8uTEmO4QeWmljzPT5Xx7P5ikImolDifOvnfhtlDY4zy+6HKedjwAAAA==
+To: intel-gfx@lists.freedesktop.org
+X-Mailer: b4 0.12.3
+X-Developer-Signature: v=1; a=openpgp-sha256; l=1285;
+ i=andrzej.hajda@intel.com; h=from:subject:message-id;
+ bh=NJFF1OTfvKSyhpaN/7RONdYOjNn1Xk1QVGdLaxLyWa4=;
+ b=owEB7QES/pANAwAKASNispPeEP3XAcsmYgBlZdPjFpzy1XwWxaNu/zIM/9psvXh63dHK+82IrBUw
+ kK9GOQqJAbMEAAEKAB0WIQT8qEQxNN2/XeF/A00jYrKT3hD91wUCZWXT4wAKCRAjYrKT3hD916RrC/
+ kBRH18crI8nvp+fk7nPxTEUMCiRL5cIt99afHV5MiBDlaIS7DD4ib48XMnFyE7a+QEAkT+bxs7Z0ll
+ LgMRr2rN42eMFfgeCXxT/0znwEPBG25NpaqVpqNOoFeVUp4RVuA6ezMtA0swOEZbmkFfI5XGIDQn0Q
+ kRKPJqVfBfvkVYoXnXi1VkRkK8p6GBueZQjS1MrHcfgipAwuPjLG74Obq4YwH9U4fYd8jgbRINgq6M
+ 9KdA26Ky6b0BV+soBOtk2GWXjXbwsjWgwIFLDbSt2P33hjWRV4OHWadAjk4lWq0OouGrkniCmgrR5T
+ LCDMtNsSr63th5oEZ+m/KG/QL8/Flfj6j3Rh4JxOWP2566IFHSjQg2GrFnt/d2/w50bs2kTKpxCVrA
+ lJRMrxdkOkg5NFVF1BvmQ8GtxDyjoCC+T8pr1rBuNJMjaDudyYrk4YF8OBrCxvIdGqQwG7IkWFvAuE
+ d70KAWLovcneZKAiVTJ/7dfWY8BM2l1+mhFbn3G+1F+zs=
+X-Developer-Key: i=andrzej.hajda@intel.com; a=openpgp;
+ fpr=FCA8443134DDBF5DE17F034D2362B293DE10FDD7
+Subject: [Intel-gfx] [PATCH] drm/i915/selftests: wait for active idle event
+ in i915_active_unlock_wait
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -78,54 +74,45 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Subrata Banik <subratabanik@google.com>,
- Tvrtko Ursulin <tvrtko.ursulin@intel.com>, intel-gfx@lists.freedesktop.org,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, linux-kernel@vger.kernel.org,
- dri-devel@lists.freedesktop.org, Sean Paul <seanpaul@chromium.org>,
- matthew.auld@intel.com, Daniel Vetter <daniel@ffwll.ch>,
- Marcin Wojtas <mwojtas@chromium.org>, Drew Davenport <ddavenport@chromium.org>,
- David Airlie <airlied@gmail.com>, Nirmoy Das <nirmoy.das@intel.com>
+Cc: Andrzej Hajda <andrzej.hajda@intel.com>, Nirmoy Das <nirmoy.das@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, Nov 28, 2023 at 12:12:08PM +0100, Andrzej Hajda wrote:
-> On 28.11.2023 04:47, Paz Zcharya wrote:
-> > 
-> > On Mon, Nov 27, 2023 at 8:20 PM Paz Zcharya <pazz@chromium.org> wrote:
-> > 
-> > Hey Andrzej,
-> > 
-> > On a second thought, what do you think about something like
-> > 
-> > +               gen8_pte_t __iomem *gte = to_gt(i915)->ggtt->gsm;
-> > +               gen8_pte_t pte;
-> > +               gte += base / I915_GTT_PAGE_SIZE;
-> > +               pte = ioread64(gte);
-> > +               pte = pte & I915_GTT_PAGE_MASK;
-> > +               phys_base = pte - i915->mm.stolen_region->region.start;
-> > 
-> > The only difference is the last line.
-> 
-> Bingo :) It seems to be generic algorithm to get phys_base for all
-> platforms:
-> - on older platforms stolen_region points to system memory which starts at
-> 0,
-> - on DG2 it uses lmem region which starts at 0 as well,
-> - on MTL stolen_region points to stolen-local which starts at 0x800000.
-> 
-> So this whole "if (IS_DGFX(i915)) {...} else {...}" could be replaced
-> with sth generic.
-> 1. Find pte.
-> 2. if(IS_DGFX(i915) && pte & GEN12_GGTT_PTE_LM) mem =
-> i915->mm.regions[INTEL_REGION_LMEM_0] else mem = i915->mm.stolen_region
-> 3. phys_base = (pte & I915_GTT_PAGE_MASK) - mem->region.start;
-> 
-> Regards
-> Andrzej
-> 
-> 
+After i915_active_unlock_wait i915_active can be still non-idle due
+to barrier async handling in signal_irq_work. As a result one can observe
+following errors:
+bcs0: heartbeat pulse did not flush idle tasks
+*ERROR* pulse active pulse_active [i915]:pulse_retire [i915]
+*ERROR* pulse    count: 0
+*ERROR* pulse    preallocated barriers? no
 
-Good stuff!! I'll work on this revision and resubmit.
+To prevent it let's wait explicitly for idleness.
 
-Thank you so much Andrzej!
+Signed-off-by: Andrzej Hajda <andrzej.hajda@intel.com>
+---
+ drivers/gpu/drm/i915/selftests/i915_active.c | 3 +++
+ 1 file changed, 3 insertions(+)
+
+diff --git a/drivers/gpu/drm/i915/selftests/i915_active.c b/drivers/gpu/drm/i915/selftests/i915_active.c
+index b61fe850e92493..c7dd12624f3485 100644
+--- a/drivers/gpu/drm/i915/selftests/i915_active.c
++++ b/drivers/gpu/drm/i915/selftests/i915_active.c
+@@ -342,6 +342,9 @@ void i915_active_unlock_wait(struct i915_active *ref)
+ 		rcu_read_unlock();
+ 
+ 		i915_active_release(ref);
++
++		___wait_var_event(ref, i915_active_is_idle(ref),
++				  TASK_INTERRUPTIBLE, 0, 0, schedule());
+ 	}
+ 
+ 	/* And wait for the retire callback */
+
+---
+base-commit: f5e7a8caf6f5520ceb37c0e2e0d359a110c7cf98
+change-id: 20231128-selftest_wait_for_active_idle_event-6bc728cd16a0
+
+Best regards,
+-- 
+Andrzej Hajda <andrzej.hajda@intel.com>
 
