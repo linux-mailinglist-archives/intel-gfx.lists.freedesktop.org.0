@@ -1,53 +1,33 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1321F7FD8C3
-	for <lists+intel-gfx@lfdr.de>; Wed, 29 Nov 2023 14:57:43 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 61E3D7FD8CF
+	for <lists+intel-gfx@lfdr.de>; Wed, 29 Nov 2023 15:00:07 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 40C7610E1E7;
-	Wed, 29 Nov 2023 13:57:41 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9C9EC10E1E7;
+	Wed, 29 Nov 2023 14:00:03 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from madras.collabora.co.uk (madras.collabora.co.uk
- [IPv6:2a00:1098:0:82:1000:25:2eeb:e5ab])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 258D510E1E3;
- Wed, 29 Nov 2023 13:57:39 +0000 (UTC)
-Received: from [100.124.219.30] (cola.collaboradmins.com [195.201.22.229])
- (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
- key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
- (No client certificate requested) (Authenticated sender: vignesh)
- by madras.collabora.co.uk (Postfix) with ESMTPSA id 167A26602F24;
- Wed, 29 Nov 2023 13:57:35 +0000 (GMT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
- s=mail; t=1701266257;
- bh=31iGTrcxd7WIvyKBpqEFtG/SQMlg+NegVAGrYlA9GJw=;
- h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
- b=InTTJNZjtOGuyuL2ci90HGO0Q5dFAFSOUwARGNA7023Be+nXJp6cX5wkGKFAVKzNi
- UbkrB8SwTLw1Um0DJgUW5h3Tv4noTXufnUHP+6YrfXQ8+RYtzRhzIO5eOTbl/fTfs0
- ZVffsJejPxILRGOzqG0fdaGTI97uh1dAgsa+EUUyx9tcs+DKVIm9bPirF8wIeXPIb5
- aJQ/HrOCIaa/1cY288puPXpoTrLrL1jFULGp77LaV79QeHfTEmIwOIWHKk6mj29yY1
- Ax+YEwgyvNfoP8mAfr9vCl6ClvoUtnznURHcoISFO+pTjAg/sf+bIwiEXR9e/IzmGl
- FKSJf8qAjrBJA==
-Message-ID: <be0b4051-c36d-43cc-c952-f9b264392832@collabora.com>
-Date: Wed, 29 Nov 2023 19:27:31 +0530
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 7D25810E1E7;
+ Wed, 29 Nov 2023 14:00:00 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 7663DA02F0;
+ Wed, 29 Nov 2023 14:00:00 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.13.0
-Content-Language: en-US
-To: Jani Nikula <jani.nikula@linux.intel.com>,
- Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-References: <20231128042026.130442-1-vignesh.raman@collabora.com>
- <20231128051456.GA3088@thinkpad>
- <50a9f061-e1d3-6aca-b528-56dbb6c729d9@collabora.com>
- <20231128065104.GK3088@thinkpad>
- <06719894-7acd-9bfb-bdf7-4aa9eba21f2f@collabora.com>
- <87edga6neg.fsf@intel.com>
-From: Vignesh Raman <vignesh.raman@collabora.com>
-In-Reply-To: <87edga6neg.fsf@intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-Subject: Re: [Intel-gfx] [PATCH] PCI: qcom: Fix compile error
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Stanislav Lisovskiy" <stanislav.lisovskiy@intel.com>
+Date: Wed, 29 Nov 2023 14:00:00 -0000
+Message-ID: <170126640045.12091.1033070573984279214@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20231128083754.20096-1-stanislav.lisovskiy@intel.com>
+In-Reply-To: <20231128083754.20096-1-stanislav.lisovskiy@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_QGV/SAGV_related_fixes_=28rev2=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -60,47 +40,32 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: daniels@collabora.com, intel-gfx@lists.freedesktop.org,
- helen.koike@collabora.com, dri-devel@lists.freedesktop.org,
- david.e.box@linux.intel.com
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi Jani,
+== Series Details ==
 
-On 28/11/23 18:33, Jani Nikula wrote:
-> On Tue, 28 Nov 2023, Vignesh Raman <vignesh.raman@collabora.com> wrote:
->> On 28/11/23 12:21, Manivannan Sadhasivam wrote:
->>> On Tue, Nov 28, 2023 at 11:44:26AM +0530, Vignesh Raman wrote:
->>>> Hi Mani,
->>>>
->>>> On 28/11/23 10:44, Manivannan Sadhasivam wrote:
->>>>> On Tue, Nov 28, 2023 at 09:50:26AM +0530, Vignesh Raman wrote:
->>>>>> Commit a2458d8f618a ("PCI/ASPM: pci_enable_link_state: Add argument
->>>>>> to acquire bus lock") has added an argument to acquire bus lock
->>>>>> in pci_enable_link_state, but qcom_pcie_enable_aspm calls it
->>>>>> without this argument, resulting in below build error.
->>>>>>
->>>>>
->>>>> Where do you see this error? That patch is not even merged. Looks like you are
->>>>> sending the patch against some downstream tree.
->>>>
->>>> I got this error with drm-tip - git://anongit.freedesktop.org/drm-tip
->>>>
->>>> This commit is merged in drm-intel/topic/core-for-CI -
->>>> https://cgit.freedesktop.org/drm-intel/log/?h=topic/core-for-CI
->>>>
->>>
->>> Okay. Since this patch is just for CI, please do not CC linux-pci as it causes
->>> confusion.
->>
->> Sure, thank you.
->>
->> Jani, is this fix required for topic/core-for-CI ?
-> 
-> Done. Please double check drm-tip works for you now.
+Series: QGV/SAGV related fixes (rev2)
+URL   : https://patchwork.freedesktop.org/series/126962/
+State : warning
 
-It works in drm-tip. Thank you.
+== Summary ==
 
-Regards,
-Vignesh
+Error: dim checkpatch failed
+6deb00a50791 drm/i915: Add meaningful traces for QGV point info error handling
+9d4a009f4cbe drm/i915: Extract code required to calculate max qgv/psf gv point
+8bada644db44 drm/i915: Disable SAGV on bw init, to force QGV point recalculation
+-:9: WARNING:COMMIT_LOG_LONG_LINE: Prefer a maximum 75 chars per line (possible unwrapped commit description?)
+#9: 
+(i.e all points allowed), however in reality we might get them all restricted,
+
+-:58: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#58: FILE: drivers/gpu/drm/i915/display/intel_bw.c:880:
++	drm_dbg_kms(&i915->drm, "Forcing SAGV disable: leaving QGV point %d, PSF GV %d\n",
++				max_bw_qgv_point, max_bw_psf_gv_point);
+
+total: 0 errors, 1 warnings, 1 checks, 47 lines checked
+
+
