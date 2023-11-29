@@ -1,55 +1,53 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 104827FDE44
-	for <lists+intel-gfx@lfdr.de>; Wed, 29 Nov 2023 18:23:34 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id E620E7FDE5C
+	for <lists+intel-gfx@lfdr.de>; Wed, 29 Nov 2023 18:27:09 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 17ED210E209;
-	Wed, 29 Nov 2023 17:23:31 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 15E7110E63F;
+	Wed, 29 Nov 2023 17:27:08 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DC34A10E218
- for <intel-gfx@lists.freedesktop.org>; Wed, 29 Nov 2023 17:23:28 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.115])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CEF0E10E63F;
+ Wed, 29 Nov 2023 17:27:05 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1701278609; x=1732814609;
+ t=1701278825; x=1732814825;
  h=from:to:cc:subject:in-reply-to:references:date:
  message-id:mime-version:content-transfer-encoding;
- bh=4lSFQ3iRjJe1QgXwktO3m/mevj43q2OpIyrp+a/5XCQ=;
- b=J2/8RNllVbLXx8XI110HhvbqHkQmLWugEhG+6/sHnEcK0NhEIBHOTy0a
- gdKX93HjgBKD/mEPGBUIyqlYcZsiZVefvTZ1SluhZEl+JoQPDMVQWYd9M
- ULvc7UAFfjF3axMt1Xc1NipopZ1vEj1E53cW1sac6lC6/MpCcHTMGcUH1
- NyhFq6RL2tVhSlj5K+KU4C1FzU/FkNjSGk/HOOhhi8r17O5B7Nbq80yoB
- LKB/iQKrIR9aGSbgk1e+RE5tjbfZCoJJes9qff4xxlW9HKBVmyOxAj2xg
- mtjZkB5TKZa8Ws+kDlikUZNAjgG8qLz6NuYKoK8HelPp2N3vrCgpYkwSu Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10909"; a="69592"
-X-IronPort-AV: E=Sophos;i="6.04,235,1695711600"; 
-   d="scan'208";a="69592"
+ bh=k2mWoObv1gssBSVnmPKejJUs1lly2wTPzdjAYt7xRog=;
+ b=dZ10D57QLrO2D5WvU0IAcMyoSW+NktEROQ3v7noBF20Wb0NUL4cXxBp5
+ DXuuieYuFWnv2hruOP2qEv/9PzvYjOFKf+igV0+gP28R9fj3LNZt4wxvU
+ sNmDt6ADoH6VKk+b21TfPyezO0mlVA+ozdClJQo0I4+MW4nU1AZCTrb36
+ 1SlSuT/kaKVAHyv1aPd7uEA//XjT0HOY4Yp1bOEZxgncePig6F666Wr4o
+ 1KY4su+9c/+IjPyahkyFPOuGa1lI/YeBKtBJDfvlS4gSdvk9XoHJFP1Sd
+ 77h2u996OBdRMPsH1xlW0uN+C0jXq+K0WEjX5CNTec/y+Lw13ErxP49wB w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10909"; a="392942183"
+X-IronPort-AV: E=Sophos;i="6.04,235,1695711600"; d="scan'208";a="392942183"
 Received: from orviesa002.jf.intel.com ([10.64.159.142])
- by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Nov 2023 09:23:28 -0800
+ by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 29 Nov 2023 09:27:05 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.04,235,1695711600"; d="scan'208";a="10411943"
+X-IronPort-AV: E=Sophos;i="6.04,235,1695711600"; d="scan'208";a="10413712"
 Received: from dstavrak-mobl.ger.corp.intel.com (HELO localhost)
  ([10.252.60.61])
  by orviesa002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Nov 2023 09:23:24 -0800
-From: Jani Nikula <jani.nikula@intel.com>
-To: Andy Shevchenko <andriy.shevchenko@linux.intel.com>, Ankit Nautiyal
- <ankit.k.nautiyal@intel.com>, intel-gfx@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org
-In-Reply-To: <20231129140129.699767-1-andriy.shevchenko@linux.intel.com>
+ 29 Nov 2023 09:27:00 -0800
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: heminhong <heminhong@kylinos.cn>, heminhong@kylinos.cn
+In-Reply-To: <20231114024341.14524-1-heminhong@kylinos.cn>
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20231129140129.699767-1-andriy.shevchenko@linux.intel.com>
-Date: Wed, 29 Nov 2023 19:23:21 +0200
-Message-ID: <87msuw5v92.fsf@intel.com>
+References: <20231113033613.30339-1-heminhong@kylinos.cn>
+ <20231114024341.14524-1-heminhong@kylinos.cn>
+Date: Wed, 29 Nov 2023 19:26:57 +0200
+Message-ID: <87fs0o5v32.fsf@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
-Subject: Re: [Intel-gfx] [PATCH v1 1/1] drm/i915/display: Don't use "proxy"
- headers
+Subject: Re: [Intel-gfx] [PATCH v2] drm/i915: correct the input parameter on
+ _intel_dsb_commit()
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -62,38 +60,53 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Daniel Vetter <daniel@ffwll.ch>, Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
- David Airlie <airlied@gmail.com>
+Cc: linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
+ daniel@ffwll.ch, rodrigo.vivi@intel.com, airlied@gmail.com,
+ intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, 29 Nov 2023, Andy Shevchenko <andriy.shevchenko@linux.intel.com> wr=
-ote:
-> The driver uses math.h and not util_macros.h.
+On Tue, 14 Nov 2023, heminhong <heminhong@kylinos.cn> wrote:
+> Current, the dewake_scanline variable is defined as unsigned int,
+> an unsigned int variable that is always greater than or equal to 0.
+> when _intel_dsb_commit function is called by intel_dsb_commit function,
+> the dewake_scanline variable may have an int value.
+> So the dewake_scanline variable is necessary to defined as an int.
 >
-> Signed-off-by: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+> Fixes: f83b94d23770 ("drm/i915/dsb: Use DEwake to combat PkgC latency")
+> Reported-by: kernel test robot <lkp@intel.com>
+> Closes: https://lore.kernel.org/oe-kbuild-all/202310052201.AnVbpgPr-lkp@i=
+ntel.com/
+> Cc: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
+> Cc: Uma Shankar <uma.shankar@intel.com>
+>
+> Signed-off-by: heminhong <heminhong@kylinos.cn>
 
-Reviewed-by: Jani Nikula <jani.nikula@intel.com>
+Pushed to drm-intel-next, thanks for the patch.
+
+BR,
+Jani.
+
 
 > ---
->  drivers/gpu/drm/i915/display/intel_snps_phy.c | 2 +-
+>  drivers/gpu/drm/i915/display/intel_dsb.c | 2 +-
 >  1 file changed, 1 insertion(+), 1 deletion(-)
 >
-> diff --git a/drivers/gpu/drm/i915/display/intel_snps_phy.c b/drivers/gpu/=
-drm/i915/display/intel_snps_phy.c
-> index ce5a73a4cc89..bc61e736f9b3 100644
-> --- a/drivers/gpu/drm/i915/display/intel_snps_phy.c
-> +++ b/drivers/gpu/drm/i915/display/intel_snps_phy.c
-> @@ -3,7 +3,7 @@
->   * Copyright =C2=A9 2019 Intel Corporation
->   */
+> diff --git a/drivers/gpu/drm/i915/display/intel_dsb.c b/drivers/gpu/drm/i=
+915/display/intel_dsb.c
+> index 78b6fe24dcd8..7fd6280c54a7 100644
+> --- a/drivers/gpu/drm/i915/display/intel_dsb.c
+> +++ b/drivers/gpu/drm/i915/display/intel_dsb.c
+> @@ -340,7 +340,7 @@ static int intel_dsb_dewake_scanline(const struct int=
+el_crtc_state *crtc_state)
+>  }
 >=20=20
-> -#include <linux/util_macros.h>
-> +#include <linux/math.h>
->=20=20
->  #include "i915_reg.h"
->  #include "intel_ddi.h"
+>  static void _intel_dsb_commit(struct intel_dsb *dsb, u32 ctrl,
+> -			      unsigned int dewake_scanline)
+> +			      int dewake_scanline)
+>  {
+>  	struct intel_crtc *crtc =3D dsb->crtc;
+>  	struct drm_i915_private *dev_priv =3D to_i915(crtc->base.dev);
 
 --=20
 Jani Nikula, Intel
