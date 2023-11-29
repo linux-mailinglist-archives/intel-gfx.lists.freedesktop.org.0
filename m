@@ -1,51 +1,53 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 73A1D7FD250
-	for <lists+intel-gfx@lfdr.de>; Wed, 29 Nov 2023 10:21:24 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7C7BB7FD40A
+	for <lists+intel-gfx@lfdr.de>; Wed, 29 Nov 2023 11:24:05 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B583E10E196;
-	Wed, 29 Nov 2023 09:21:22 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6DDE910E468;
+	Wed, 29 Nov 2023 10:24:02 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.24])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1AA1110E196
- for <intel-gfx@lists.freedesktop.org>; Wed, 29 Nov 2023 09:21:20 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B844B10E468
+ for <intel-gfx@lists.freedesktop.org>; Wed, 29 Nov 2023 10:23:59 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1701249680; x=1732785680;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=81eH49+IEfTfCFbBPpqwxNUqse45rY7+nQqM4fNr5Qs=;
- b=V3RiogxYyROB0qYeM0fzswah3XpHiOBM5i+AYcSoYWOJWd/zvzXxTqY8
- p4b3sGRhK7o2qVVK0Qhrc7+fH+fCMFLQYoZgOwoo57Eu0+qemrnaaGkGc
- kT0tNuchNlrnlgTvWD9UF0GN+yPe48EGNnXy5ZI4yeueoo4J8P3MlIRVr
- UZNtIc7yrVDu90xQjppu9a63ZmC01DYlW5eoWMjwJB/Wx83SPFLIhRUYl
- y/hrcTsBXg5PniOpRODRoeg6OmKCH3klUro5XdVVki6z3pyEB3lJaVgB4
- ewd58z5XEiqE+Rt/gwtxCBi21U+gLQ/CYkYmCTCANBEx35QZ0ZD8PqLic A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10908"; a="395949793"
-X-IronPort-AV: E=Sophos;i="6.04,235,1695711600"; d="scan'208";a="395949793"
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Nov 2023 01:21:06 -0800
+ t=1701253440; x=1732789440;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version;
+ bh=nB+O3gec9Nojv2sHTRqpY+gL7PtDLrQdo9hDj8pAcxo=;
+ b=b1MmgV3oau+0cYH6xg9FT0SKIukhnLTCIXNK0wDs5rh3E+UT+VjsP/mK
+ TS8DaPJddPbPX8wN3i2BYHtFiwICPoOCrvZ75mtwhAkl6gQYYPl3mOmVw
+ 2iYf7ywr1eK192XxJDdThPLp48ss4jXEzEtnCLEZTQJ+btbnBVJOsBaeC
+ xi+62C7wQZ3mWaqMVLYAh8V0mzTlA9qiHSOCdo5z338XLJlFod9R53Q1w
+ eCMgge1p9hrUdiXs3VqmX1MrelgjIR/4f7rxB1iAP9LX6tLihjnwFBRYX
+ m5FMj8FLFaaAQcQEqBeFMkIADVz8LZMn2tOWm+Wmba9C1M4yzSDzHbNC0 w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10908"; a="35472"
+X-IronPort-AV: E=Sophos;i="6.04,235,1695711600"; 
+   d="scan'208";a="35472"
+Received: from fmsmga004.fm.intel.com ([10.253.24.48])
+ by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 29 Nov 2023 02:24:00 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10908"; a="797855438"
-X-IronPort-AV: E=Sophos;i="6.04,235,1695711600"; d="scan'208";a="797855438"
-Received: from unknown (HELO slisovsk-Lenovo-ideapad-720S-13IKB.fi.intel.com)
- ([10.237.72.65])
- by orsmga008.jf.intel.com with ESMTP; 29 Nov 2023 01:21:04 -0800
-From: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Wed, 29 Nov 2023 11:21:03 +0200
-Message-Id: <20231129092103.26435-1-stanislav.lisovskiy@intel.com>
-X-Mailer: git-send-email 2.37.3
-In-Reply-To: <20231128083754.20096-4-stanislav.lisovskiy@intel.com>
-References: <20231128083754.20096-4-stanislav.lisovskiy@intel.com>
+X-IronPort-AV: E=McAfee;i="6600,9927,10908"; a="839363378"
+X-IronPort-AV: E=Sophos;i="6.04,235,1695711600"; d="scan'208";a="839363378"
+Received: from dstavrak-mobl.ger.corp.intel.com (HELO localhost)
+ ([10.252.60.61])
+ by fmsmga004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 29 Nov 2023 02:23:57 -0800
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Karthik Poosa <karthik.poosa@intel.com>, intel-gfx@lists.freedesktop.org
+In-Reply-To: <20231129102555.978644-1-karthik.poosa@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20231129102555.978644-1-karthik.poosa@intel.com>
+Date: Wed, 29 Nov 2023 12:23:55 +0200
+Message-ID: <87y1eg6eo4.fsf@intel.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH 3/3] drm/i915: Disable SAGV on bw init,
- to force QGV point recalculation
+Content-Type: text/plain
+Subject: Re: [Intel-gfx] [PATCH] drm/i915/hwmon: Fix static analysis tool
+ errors in i915 hwmon
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -58,85 +60,48 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: Karthik Poosa <karthik.poosa@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Problem is that on some platforms, we do get QGV point mask in wrong
-state on boot. However driver assumes it is set to 0
-(i.e all points allowed), however in reality we might get them all restricted,
-causing issues.
-Lets disable SAGV initially to force proper QGV point state.
-If more QGV points are available, driver will recalculate and update
-those then after next commit.
+On Wed, 29 Nov 2023, Karthik Poosa <karthik.poosa@intel.com> wrote:
+> Updated i915 hwmon with fixes for issues reported by static analysis tool.
 
-v2: - Added trace to see which QGV/PSF GV point is used when SAGV is
-      disabled.
+What's the problem? It's not enough to say this fixes a static analyzer
+report. Tell us what the problem is, and why this is the fix.
 
-Signed-off-by: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
----
- drivers/gpu/drm/i915/display/intel_bw.c | 23 ++++++++++++++++++++++-
- drivers/gpu/drm/i915/display/intel_bw.h |  1 +
- 2 files changed, 23 insertions(+), 1 deletion(-)
+BR,
+Jani.
 
-diff --git a/drivers/gpu/drm/i915/display/intel_bw.c b/drivers/gpu/drm/i915/display/intel_bw.c
-index efd408e96e8a..abb72207894d 100644
---- a/drivers/gpu/drm/i915/display/intel_bw.c
-+++ b/drivers/gpu/drm/i915/display/intel_bw.c
-@@ -679,6 +679,9 @@ void intel_bw_init_hw(struct drm_i915_private *dev_priv)
- 		tgl_get_bw_info(dev_priv, &tgl_sa_info);
- 	else if (DISPLAY_VER(dev_priv) == 11)
- 		icl_get_bw_info(dev_priv, &icl_sa_info);
-+
-+	if (DISPLAY_VER(dev_priv) < 14)
-+		icl_force_disable_sagv(dev_priv);
- }
- 
- static unsigned int intel_bw_crtc_num_active_planes(const struct intel_crtc_state *crtc_state)
-@@ -844,7 +847,7 @@ static unsigned int icl_max_bw_qgv_point(struct drm_i915_private *i915,
- 	return max_bw_point;
- }
- 
--unsigned int icl_max_bw_psf_gv_point(struct drm_i915_private *i915)
-+static unsigned int icl_max_bw_psf_gv_point(struct drm_i915_private *i915)
- {
- 	unsigned int num_psf_gv_points = i915->display.bw.max[0].num_psf_gv_points;
- 	unsigned int max_bw = 0;
-@@ -863,6 +866,24 @@ unsigned int icl_max_bw_psf_gv_point(struct drm_i915_private *i915)
- 	return max_bw_point;
- }
- 
-+int icl_force_disable_sagv(struct drm_i915_private *i915)
-+{
-+	unsigned int max_bw_qgv_point = icl_max_bw_qgv_point(i915, 0);
-+	unsigned int max_bw_psf_gv_point = icl_max_bw_psf_gv_point(i915);
-+	unsigned int qgv_points;
-+	unsigned int psf_points;
-+
-+	qgv_points = BIT(max_bw_qgv_point);
-+	psf_points = BIT(max_bw_psf_gv_point);
-+
-+	drm_dbg_kms(&i915->drm, "Forcing SAGV disable: leaving QGV point %d, PSF GV %d\n",
-+				max_bw_qgv_point, max_bw_psf_gv_point);
-+
-+	return icl_pcode_restrict_qgv_points(i915, ~(ICL_PCODE_REQ_QGV_PT(qgv_points) |
-+					     ADLS_PCODE_REQ_PSF_PT(psf_points)) &
-+					     icl_qgv_points_mask(i915));
-+}
-+
- static int mtl_find_qgv_points(struct drm_i915_private *i915,
- 			       unsigned int data_rate,
- 			       unsigned int num_active_planes,
-diff --git a/drivers/gpu/drm/i915/display/intel_bw.h b/drivers/gpu/drm/i915/display/intel_bw.h
-index 59cb4fc5db76..74acce1ef107 100644
---- a/drivers/gpu/drm/i915/display/intel_bw.h
-+++ b/drivers/gpu/drm/i915/display/intel_bw.h
-@@ -74,5 +74,6 @@ int intel_bw_calc_min_cdclk(struct intel_atomic_state *state,
- 			    bool *need_cdclk_calc);
- int intel_bw_min_cdclk(struct drm_i915_private *i915,
- 		       const struct intel_bw_state *bw_state);
-+int icl_force_disable_sagv(struct drm_i915_private *dev_priv);
- 
- #endif /* __INTEL_BW_H__ */
+
+>
+> Signed-off-by: Karthik Poosa <karthik.poosa@intel.com>
+> ---
+>  drivers/gpu/drm/i915/i915_hwmon.c | 4 ++--
+>  1 file changed, 2 insertions(+), 2 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/i915/i915_hwmon.c b/drivers/gpu/drm/i915/i915_hwmon.c
+> index 975da8e7f2a9..69bb49a684b6 100644
+> --- a/drivers/gpu/drm/i915/i915_hwmon.c
+> +++ b/drivers/gpu/drm/i915/i915_hwmon.c
+> @@ -175,7 +175,7 @@ hwm_power1_max_interval_show(struct device *dev, struct device_attribute *attr,
+>  	 *     tau4 = (4 | x) << y
+>  	 * but add 2 when doing the final right shift to account for units
+>  	 */
+> -	tau4 = ((1 << x_w) | x) << y;
+> +	tau4 = ((u64)(1 << x_w) | x) << y;
+>  	/* val in hwmon interface units (millisec) */
+>  	out = mul_u64_u32_shr(tau4, SF_TIME, hwmon->scl_shift_time + x_w);
+>  
+> @@ -211,7 +211,7 @@ hwm_power1_max_interval_store(struct device *dev,
+>  	r = FIELD_PREP(PKG_MAX_WIN, PKG_MAX_WIN_DEFAULT);
+>  	x = REG_FIELD_GET(PKG_MAX_WIN_X, r);
+>  	y = REG_FIELD_GET(PKG_MAX_WIN_Y, r);
+> -	tau4 = ((1 << x_w) | x) << y;
+> +	tau4 = ((u64)(1 << x_w) | x) << y;
+>  	max_win = mul_u64_u32_shr(tau4, SF_TIME, hwmon->scl_shift_time + x_w);
+>  
+>  	if (val > max_win)
+
 -- 
-2.37.3
-
+Jani Nikula, Intel
