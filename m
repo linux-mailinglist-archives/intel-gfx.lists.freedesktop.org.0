@@ -1,33 +1,63 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9F4AE7FCE1B
-	for <lists+intel-gfx@lfdr.de>; Wed, 29 Nov 2023 05:54:56 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4E02A7FCE2B
+	for <lists+intel-gfx@lfdr.de>; Wed, 29 Nov 2023 06:15:33 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 23AC110E05D;
-	Wed, 29 Nov 2023 04:54:54 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DD2A010E17C;
+	Wed, 29 Nov 2023 05:15:16 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 4B95210E5F7;
- Wed, 29 Nov 2023 04:54:51 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 445D2A0169;
- Wed, 29 Nov 2023 04:54:51 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============1902414904516541307=="
+Received: from mail-ej1-x633.google.com (mail-ej1-x633.google.com
+ [IPv6:2a00:1450:4864:20::633])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 65E7410E17C;
+ Wed, 29 Nov 2023 05:15:12 +0000 (UTC)
+Received: by mail-ej1-x633.google.com with SMTP id
+ a640c23a62f3a-9fa45e75ed9so856448766b.1; 
+ Tue, 28 Nov 2023 21:15:12 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20230601; t=1701234911; x=1701839711; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=7Q9CRtsR/lkt7Cw/fHi7bDvZN/itsXqjiup0ZTmySxA=;
+ b=Du02PcJLivS87nM16v2WxQfdJB63pi7B0nNrCnpgBFn0OYI/9YG6yeABNlD94+fxUK
+ PRGBEghXReSKgKSFSnN/DLHfKZrIIsJtCcw3I4XDYzUbJCKwa5otjnyQK1O4owClE0Il
+ oyymHEbs/I0KICo0NkowwEUE+vD8m9SFXem8mLzTdtgq2DgPbWtY/pJYkQlqLctnJ5QC
+ 1pGuYOG0yuNONzQZtwfKrV07HaZ/h5USHA4dWSpFbSCjEz0BeDEXIWwCosvRxgUEri8b
+ rBmnJyw4oS+yYKXt4AZgK3lYioQgKxGtoMsPrqQMgOC15Ty2tuXQropwgn5+UXQoJYmJ
+ J4Yw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1701234911; x=1701839711;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+ :subject:date:message-id:reply-to;
+ bh=7Q9CRtsR/lkt7Cw/fHi7bDvZN/itsXqjiup0ZTmySxA=;
+ b=u/vqGmJSEozfzxeBixenW/sZ/DXEWQJ2Bh6fXTxw1J6TcsXEqp+dhW/FgSUUDmFlEp
+ oYbRVT9Vq2mck2HcqhkrxIftE6PanTI+T3uWAiwzn4dROlKmOinODvYQlQEXibN3M1fJ
+ xVL0aZJJgSC/voteI33xOlEB4NBnVrgf7W0lR+M++0RWYbrmWAaPvpa7JNf4rgDjE6Io
+ RYHPP3jPqtE/+NeSNvM4hmyeRbj8oy3uRGJbI8Ngr1tN3KAGcGjvboPqTt9QWV7/G7rv
+ 5i5790BdiZVlhvGBJKGTt7m/Ep3LmKRXMUg/Wps1Ng/SWvQzZeOiX8npKm8yce/UWvm4
+ bbKw==
+X-Gm-Message-State: AOJu0YyFK+/VAtnZL4OSKY2jvgJtBLoh0YsTzme3+dw+uGuX61/uJX+Q
+ 1nXI+MS0cM1xK+REDARaA94yOZxRhTHrJ43X4eU=
+X-Google-Smtp-Source: AGHT+IF8BQbzvC8JUMcPZoTIvdOo/gY/kUL91mdf8zioqThU2TU+yw6ExoLa9toWLp2NMd4yrs5b7C6bb/cyNxAjx+o=
+X-Received: by 2002:a17:906:5299:b0:a00:8706:c82e with SMTP id
+ c25-20020a170906529900b00a008706c82emr13477614ejm.18.1701234910430; Tue, 28
+ Nov 2023 21:15:10 -0800 (PST)
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Hogander, Jouni" <jouni.hogander@intel.com>
-Date: Wed, 29 Nov 2023 04:54:51 -0000
-Message-ID: <170123369127.12093.12564500227242749672@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20231128153920.1553148-1-jouni.hogander@intel.com>
-In-Reply-To: <20231128153920.1553148-1-jouni.hogander@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgUHJl?=
- =?utf-8?q?pare_intel=5Ffb_for_Xe_=28rev8=29?=
+References: <20231128125025.4449-1-weixi.zhu@huawei.com>
+ <9308a79d-e312-4e6d-98fe-75dc6d0fbeda@amd.com>
+In-Reply-To: <9308a79d-e312-4e6d-98fe-75dc6d0fbeda@amd.com>
+From: Dave Airlie <airlied@gmail.com>
+Date: Wed, 29 Nov 2023 15:14:58 +1000
+Message-ID: <CAPM=9tx-d-Au_bjX0vYxv6OwqiSjmbbMC7ebWpTsQgFNddWDuw@mail.gmail.com>
+To: =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+Subject: Re: [Intel-gfx] [RFC PATCH 0/6] Supporting GMEM (generalized memory
+ management) for external memory devices
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,168 +70,135 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
+Cc: dri-devel@lists.freedesktop.org, linux-mm@kvack.org, leonro@nvidia.com,
+ apopple@nvidia.com, amd-gfx@lists.freedesktop.org, mgorman@suse.de,
+ ziy@nvidia.com, rcampbell@nvidia.com, jgg@nvidia.com, weixi.zhu@openeuler.sh,
+ jhubbard@nvidia.com, intel-gfx@lists.freedesktop.org, mhairgrove@nvidia.com,
+ jglisse@redhat.com, Weixi Zhu <weixi.zhu@huawei.com>, rodrigo.vivi@intel.com,
+ intel-gvt-dev@lists.freedesktop.org, Felix.Kuehling@amd.com,
+ Xinhui.Pan@amd.com, linux-kernel@vger.kernel.org, alexander.deucher@amd.com,
+ akpm@linux-foundation.org, ogabbay@kernel.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============1902414904516541307==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+On Tue, 28 Nov 2023 at 23:07, Christian K=C3=B6nig <christian.koenig@amd.co=
+m> wrote:
+>
+> Am 28.11.23 um 13:50 schrieb Weixi Zhu:
+> > The problem:
+> >
+> > Accelerator driver developers are forced to reinvent external MM subsys=
+tems
+> > case by case, because Linux core MM only considers host memory resource=
+s.
+> > These reinvented MM subsystems have similar orders of magnitude of LoC =
+as
+> > Linux MM (80K), e.g. Nvidia-UVM has 70K, AMD GPU has 14K and Huawei NPU=
+ has
+> > 30K. Meanwhile, more and more vendors are implementing their own
+> > accelerators, e.g. Microsoft's Maia 100. At the same time,
+> > application-level developers suffer from poor programmability -- they m=
+ust
+> > consider parallel address spaces and be careful about the limited devic=
+e
+> > DRAM capacity. This can be alleviated if a malloc()-ed virtual address =
+can
+> > be shared by the accelerator, or the abundant host DRAM can further
+> > transparently backup the device local memory.
+> >
+> > These external MM systems share similar mechanisms except for the
+> > hardware-dependent part, so reinventing them is effectively introducing
+> > redundant code (14K~70K for each case). Such developing/maintaining is =
+not
+> > cheap. Furthermore, to share a malloc()-ed virtual address, device driv=
+ers
+> > need to deeply interact with Linux MM via low-level MM APIs, e.g. MMU
+> > notifiers/HMM. This raises the bar for driver development, since develo=
+pers
+> > must understand how Linux MM works. Further, it creates code maintenanc=
+e
+> > problems -- any changes to Linux MM potentially require coordinated cha=
+nges
+> > to accelerator drivers using low-level MM APIs.
+> >
+> > Putting a cache-coherent bus between host and device will not make thes=
+e
+> > external MM subsystems disappear. For example, a throughput-oriented
+> > accelerator will not tolerate executing heavy memory access workload wi=
+th
+> > a host MMU/IOMMU via a remote bus. Therefore, devices will still have
+> > their own MMU and pick a simpler page table format for lower address
+> > translation overhead, requiring external MM subsystems.
+> >
+> > --------------------
+> >
+> > What GMEM (Generalized Memory Management [1]) does:
+> >
+> > GMEM extends Linux MM to share its machine-independent MM code. Only
+> > high-level interface is provided for device drivers. This prevents
+> > accelerator drivers from reinventing the wheel, but relies on drivers t=
+o
+> > implement their hardware-dependent functions declared by GMEM. GMEM's k=
+ey
+> > interface include gm_dev_create(), gm_as_create(), gm_as_attach() and
+> > gm_dev_register_physmem(). Here briefly describe how a device driver
+> > utilizes them:
+> > 1. At boot time, call gm_dev_create() and registers the implementation =
+of
+> >     hardware-dependent functions as declared in struct gm_mmu.
+> >       - If the device has local DRAM, call gm_dev_register_physmem() to
+> >         register available physical addresses.
+> > 2. When a device context is initialized (e.g. triggered by ioctl), chec=
+k if
+> >     the current CPU process has been attached to a gmem address space
+> >     (struct gm_as). If not, call gm_as_create() and point current->mm->=
+gm_as
+> >     to it.
+> > 3. Call gm_as_attach() to attach the device context to a gmem address s=
+pace.
+> > 4. Invoke gm_dev_fault() to resolve a page fault or prepare data before
+> >     device computation happens.
+> >
+> > GMEM has changed the following assumptions in Linux MM:
+> >    1. An mm_struct not only handle a single CPU context, but may also h=
+andle
+> >       external memory contexts encapsulated as gm_context listed in
+> >       mm->gm_as. An external memory context can include a few or all of=
+ the
+> >       following parts: an external MMU (that requires TLB invalidation)=
+, an
+> >       external page table (that requires PTE manipulation) and external=
+ DRAM
+> >       (that requires physical memory management).
+>
+> Well that is pretty much exactly what AMD has already proposed with KFD
+> and was rejected for rather good reasons.
 
-== Series Details ==
-
-Series: Prepare intel_fb for Xe (rev8)
-URL   : https://patchwork.freedesktop.org/series/126507/
-State : success
-
-== Summary ==
-
-CI Bug Log - changes from CI_DRM_13943 -> Patchwork_126507v8
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_126507v8/index.html
-
-Participating hosts (39 -> 37)
-------------------------------
-
-  Missing    (2): bat-mtlp-8 fi-snb-2520m 
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_126507v8 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@gem_exec_suspend@basic-s0@smem:
-    - bat-jsl-1:          [PASS][1] -> [INCOMPLETE][2] ([i915#9275])
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13943/bat-jsl-1/igt@gem_exec_suspend@basic-s0@smem.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_126507v8/bat-jsl-1/igt@gem_exec_suspend@basic-s0@smem.html
-
-  * igt@i915_suspend@basic-s3-without-i915:
-    - bat-jsl-1:          [PASS][3] -> [FAIL][4] ([fdo#103375])
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13943/bat-jsl-1/igt@i915_suspend@basic-s3-without-i915.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_126507v8/bat-jsl-1/igt@i915_suspend@basic-s3-without-i915.html
-
-  * igt@kms_hdmi_inject@inject-audio:
-    - fi-kbl-guc:         [PASS][5] -> [FAIL][6] ([IGT#3])
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13943/fi-kbl-guc/igt@kms_hdmi_inject@inject-audio.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_126507v8/fi-kbl-guc/igt@kms_hdmi_inject@inject-audio.html
-
-  
-  [IGT#3]: https://gitlab.freedesktop.org/drm/igt-gpu-tools/issues/3
-  [fdo#103375]: https://bugs.freedesktop.org/show_bug.cgi?id=103375
-  [i915#9275]: https://gitlab.freedesktop.org/drm/intel/issues/9275
+> >
+> > MMU functions
+> > The MMU functions peer_map() and peer_unmap() overlap other functions,
+> > leaving a question if the MMU functions should be decoupled as more bas=
+ic
+> > operations. Decoupling them could potentially prevent device drivers
+> > coalescing these basic steps within a single host-device communication
+> > operation, while coupling them makes it more difficult for device drive=
+rs
+> > to utilize GMEM interface.
+>
+> Well to be honest all of this sounds like history to me. We have already
+> seen the same basic approach in KFD, HMM and to some extend in TTM as wel=
+l.
+>
+> And all of them more or less failed. Why should this here be different?
 
 
-Build changes
--------------
+Any info we have on why this has failed to work in the past would be
+useful to provide. This is one of those cases where we may not have
+documented the bad ideas to stop future developers from thinking they
+are bad.
 
-  * Linux: CI_DRM_13943 -> Patchwork_126507v8
+I do think we would want more common code in this area, but I would
+think we'd have it more on the driver infrastructure side, than in the
+core mm.
 
-  CI-20190529: 20190529
-  CI_DRM_13943: 0417ec152200d74916f157bfe76677b3b4af8224 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_7609: 72a759595100b8d167ca78cd2d62e9acd97e36bf @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_126507v8: 0417ec152200d74916f157bfe76677b3b4af8224 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-### Linux commits
-
-2759e5eb7646 drm/i915/display: Split i915 specific code away from intel_fb.c
-ca5f820b2251 drm/i915/display: Handle invalid fb_modifier in intel_fb_modifier_to_tiling
-8f3475b71cd3 drm/i915/display: Convert intel_fb_modifier_to_tiling as non-static
-3738fe277b2f drm/i915/display: use intel_bo_to_drm_bo in intel_fb.c
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_126507v8/index.html
-
---===============1902414904516541307==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>Prepare intel_fb for Xe (rev8)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/126507/">https://patchwork.freedesktop.org/series/126507/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_126507v8/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_126507v8/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_13943 -&gt; Patchwork_126507v8</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_126507v8/index.html</p>
-<h2>Participating hosts (39 -&gt; 37)</h2>
-<p>Missing    (2): bat-mtlp-8 fi-snb-2520m </p>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_126507v8 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@gem_exec_suspend@basic-s0@smem:</p>
-<ul>
-<li>bat-jsl-1:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13943/bat-jsl-1/igt@gem_exec_suspend@basic-s0@smem.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_126507v8/bat-jsl-1/igt@gem_exec_suspend@basic-s0@smem.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/9275">i915#9275</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_suspend@basic-s3-without-i915:</p>
-<ul>
-<li>bat-jsl-1:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13943/bat-jsl-1/igt@i915_suspend@basic-s3-without-i915.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_126507v8/bat-jsl-1/igt@i915_suspend@basic-s3-without-i915.html">FAIL</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=103375">fdo#103375</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_hdmi_inject@inject-audio:</p>
-<ul>
-<li>fi-kbl-guc:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13943/fi-kbl-guc/igt@kms_hdmi_inject@inject-audio.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_126507v8/fi-kbl-guc/igt@kms_hdmi_inject@inject-audio.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/igt-gpu-tools/issues/3">IGT#3</a>)</li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_13943 -&gt; Patchwork_126507v8</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_13943: 0417ec152200d74916f157bfe76677b3b4af8224 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_7609: 72a759595100b8d167ca78cd2d62e9acd97e36bf @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  Patchwork_126507v8: 0417ec152200d74916f157bfe76677b3b4af8224 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<h3>Linux commits</h3>
-<p>2759e5eb7646 drm/i915/display: Split i915 specific code away from intel_fb.c<br />
-ca5f820b2251 drm/i915/display: Handle invalid fb_modifier in intel_fb_modifier_to_tiling<br />
-8f3475b71cd3 drm/i915/display: Convert intel_fb_modifier_to_tiling as non-static<br />
-3738fe277b2f drm/i915/display: use intel_bo_to_drm_bo in intel_fb.c</p>
-
-</body>
-</html>
-
---===============1902414904516541307==--
+Dave.
