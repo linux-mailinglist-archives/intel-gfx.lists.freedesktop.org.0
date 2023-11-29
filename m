@@ -2,50 +2,52 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 47A1B7FD6D8
-	for <lists+intel-gfx@lfdr.de>; Wed, 29 Nov 2023 13:35:46 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1321F7FD8C3
+	for <lists+intel-gfx@lfdr.de>; Wed, 29 Nov 2023 14:57:43 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3660B10E1C7;
-	Wed, 29 Nov 2023 12:35:43 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 40C7610E1E7;
+	Wed, 29 Nov 2023 13:57:41 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-X-Greylist: delayed 427 seconds by postgrey-1.36 at gabe;
- Wed, 29 Nov 2023 12:35:41 UTC
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 64D1210E1C7
- for <intel-gfx@lists.freedesktop.org>; Wed, 29 Nov 2023 12:35:41 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1701261341; x=1732797341;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=n5Ynec3V2zxZbGVNa45QxDbhK/W35fZEF0MxYMw7Hu4=;
- b=bmUs9g5CP1dI+pOe8rdE0xy7ctOEl8bvSubON6j0bR7zFRgxk3B54Mzp
- fBqrWas3ZMztARfLVWbUQFXzyl02eWHQAe2++3W8msgUbd8ROkYuFyH3V
- OMrxYZkjsm2hVsJJKFTKl/B2rxFNWa2oGJ4NeZBSwIvFFcGRiBuKELafq
- CYdo1znzYAT8TyEVecbJfKi4y3jRWnS0PR7m2yQBoDgFQClobIwouwohn
- SsFwK15XMT/zJBFgyuonTksC66A8YRgYreT/acAXV8izE98Jq17yRqgEO
- 6qNfTJIzP9nfZ54N3+8CQ57I88vpJsMLPaoaV8AMIfbum3ZHWaR045ODL g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10908"; a="42457"
-X-IronPort-AV: E=Sophos;i="6.04,235,1695711600"; 
-   d="scan'208";a="42457"
-Received: from orsmga007.jf.intel.com ([10.7.209.58])
- by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Nov 2023 04:28:34 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10908"; a="762302795"
-X-IronPort-AV: E=Sophos;i="6.04,235,1695711600"; d="scan'208";a="762302795"
-Received: from sorvi2.fi.intel.com ([10.237.72.194])
- by orsmga007.jf.intel.com with ESMTP; 29 Nov 2023 04:28:32 -0800
-From: Mika Kahola <mika.kahola@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Wed, 29 Nov 2023 14:22:21 +0200
-Message-Id: <20231129122221.1109084-1-mika.kahola@intel.com>
-X-Mailer: git-send-email 2.34.1
+Received: from madras.collabora.co.uk (madras.collabora.co.uk
+ [IPv6:2a00:1098:0:82:1000:25:2eeb:e5ab])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 258D510E1E3;
+ Wed, 29 Nov 2023 13:57:39 +0000 (UTC)
+Received: from [100.124.219.30] (cola.collaboradmins.com [195.201.22.229])
+ (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+ key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+ (No client certificate requested) (Authenticated sender: vignesh)
+ by madras.collabora.co.uk (Postfix) with ESMTPSA id 167A26602F24;
+ Wed, 29 Nov 2023 13:57:35 +0000 (GMT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+ s=mail; t=1701266257;
+ bh=31iGTrcxd7WIvyKBpqEFtG/SQMlg+NegVAGrYlA9GJw=;
+ h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+ b=InTTJNZjtOGuyuL2ci90HGO0Q5dFAFSOUwARGNA7023Be+nXJp6cX5wkGKFAVKzNi
+ UbkrB8SwTLw1Um0DJgUW5h3Tv4noTXufnUHP+6YrfXQ8+RYtzRhzIO5eOTbl/fTfs0
+ ZVffsJejPxILRGOzqG0fdaGTI97uh1dAgsa+EUUyx9tcs+DKVIm9bPirF8wIeXPIb5
+ aJQ/HrOCIaa/1cY288puPXpoTrLrL1jFULGp77LaV79QeHfTEmIwOIWHKk6mj29yY1
+ Ax+YEwgyvNfoP8mAfr9vCl6ClvoUtnznURHcoISFO+pTjAg/sf+bIwiEXR9e/IzmGl
+ FKSJf8qAjrBJA==
+Message-ID: <be0b4051-c36d-43cc-c952-f9b264392832@collabora.com>
+Date: Wed, 29 Nov 2023 19:27:31 +0530
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH] drm/i915/display: Skip state verification with
- TBT-ALT mode
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.13.0
+Content-Language: en-US
+To: Jani Nikula <jani.nikula@linux.intel.com>,
+ Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+References: <20231128042026.130442-1-vignesh.raman@collabora.com>
+ <20231128051456.GA3088@thinkpad>
+ <50a9f061-e1d3-6aca-b528-56dbb6c729d9@collabora.com>
+ <20231128065104.GK3088@thinkpad>
+ <06719894-7acd-9bfb-bdf7-4aa9eba21f2f@collabora.com>
+ <87edga6neg.fsf@intel.com>
+From: Vignesh Raman <vignesh.raman@collabora.com>
+In-Reply-To: <87edga6neg.fsf@intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+Subject: Re: [Intel-gfx] [PATCH] PCI: qcom: Fix compile error
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -58,55 +60,47 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: daniels@collabora.com, intel-gfx@lists.freedesktop.org,
+ helen.koike@collabora.com, dri-devel@lists.freedesktop.org,
+ david.e.box@linux.intel.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-With TBT-ALT mode we are not programming C20 chip PLL's and
-hence we don't need to check state verification. We don't
-need to program DP link signal levels i.e.pre-emphasis and
-voltage swing either.
+Hi Jani,
 
-This patch fixes dmesg errors like this one
+On 28/11/23 18:33, Jani Nikula wrote:
+> On Tue, 28 Nov 2023, Vignesh Raman <vignesh.raman@collabora.com> wrote:
+>> On 28/11/23 12:21, Manivannan Sadhasivam wrote:
+>>> On Tue, Nov 28, 2023 at 11:44:26AM +0530, Vignesh Raman wrote:
+>>>> Hi Mani,
+>>>>
+>>>> On 28/11/23 10:44, Manivannan Sadhasivam wrote:
+>>>>> On Tue, Nov 28, 2023 at 09:50:26AM +0530, Vignesh Raman wrote:
+>>>>>> Commit a2458d8f618a ("PCI/ASPM: pci_enable_link_state: Add argument
+>>>>>> to acquire bus lock") has added an argument to acquire bus lock
+>>>>>> in pci_enable_link_state, but qcom_pcie_enable_aspm calls it
+>>>>>> without this argument, resulting in below build error.
+>>>>>>
+>>>>>
+>>>>> Where do you see this error? That patch is not even merged. Looks like you are
+>>>>> sending the patch against some downstream tree.
+>>>>
+>>>> I got this error with drm-tip - git://anongit.freedesktop.org/drm-tip
+>>>>
+>>>> This commit is merged in drm-intel/topic/core-for-CI -
+>>>> https://cgit.freedesktop.org/drm-intel/log/?h=topic/core-for-CI
+>>>>
+>>>
+>>> Okay. Since this patch is just for CI, please do not CC linux-pci as it causes
+>>> confusion.
+>>
+>> Sure, thank you.
+>>
+>> Jani, is this fix required for topic/core-for-CI ?
+> 
+> Done. Please double check drm-tip works for you now.
 
-"[drm] ERROR PHY F Write 0c06 failed after 3 retries."
+It works in drm-tip. Thank you.
 
-Signed-off-by: Mika Kahola <mika.kahola@intel.com>
-Reviewed-by: Gustavo Sousa <gustavo.sousa@intel.com>
----
- drivers/gpu/drm/i915/display/intel_cx0_phy.c | 11 ++++++++++-
- 1 file changed, 10 insertions(+), 1 deletion(-)
-
-diff --git a/drivers/gpu/drm/i915/display/intel_cx0_phy.c b/drivers/gpu/drm/i915/display/intel_cx0_phy.c
-index a8fa76580802..5fbec5784b83 100644
---- a/drivers/gpu/drm/i915/display/intel_cx0_phy.c
-+++ b/drivers/gpu/drm/i915/display/intel_cx0_phy.c
-@@ -415,9 +415,15 @@ void intel_cx0_phy_set_signal_levels(struct intel_encoder *encoder,
- 	struct drm_i915_private *i915 = to_i915(encoder->base.dev);
- 	const struct intel_ddi_buf_trans *trans;
- 	enum phy phy = intel_port_to_phy(i915, encoder->port);
--	u8 owned_lane_mask = intel_cx0_get_owned_lane_mask(i915, encoder);
-+	u8 owned_lane_mask;
- 	intel_wakeref_t wakeref;
- 	int n_entries, ln;
-+	struct intel_digital_port *dig_port = enc_to_dig_port(encoder);
-+
-+	if (intel_tc_port_in_tbt_alt_mode(dig_port))
-+		return;
-+
-+	owned_lane_mask = intel_cx0_get_owned_lane_mask(i915, encoder);
- 
- 	wakeref = intel_cx0_phy_transaction_begin(encoder);
- 
-@@ -3136,6 +3142,9 @@ void intel_cx0pll_state_verify(struct intel_atomic_state *state,
- 	encoder = intel_get_crtc_new_encoder(state, new_crtc_state);
- 	phy = intel_port_to_phy(i915, encoder->port);
- 
-+	if (intel_tc_port_in_tbt_alt_mode(enc_to_dig_port(encoder)))
-+		return;
-+
- 	intel_cx0pll_readout_hw_state(encoder, &mpll_hw_state);
- 
- 	if (intel_is_c10phy(i915, phy))
--- 
-2.34.1
-
+Regards,
+Vignesh
