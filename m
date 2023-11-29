@@ -2,52 +2,49 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4F6BE7FDE6C
-	for <lists+intel-gfx@lfdr.de>; Wed, 29 Nov 2023 18:33:29 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 29B317FDE7A
+	for <lists+intel-gfx@lfdr.de>; Wed, 29 Nov 2023 18:35:15 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B396A10E644;
-	Wed, 29 Nov 2023 17:33:27 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A16E810E644;
+	Wed, 29 Nov 2023 17:35:13 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 99ECA10E644
- for <intel-gfx@lists.freedesktop.org>; Wed, 29 Nov 2023 17:33:26 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.88])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8530910E644
+ for <intel-gfx@lists.freedesktop.org>; Wed, 29 Nov 2023 17:35:11 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1701279206; x=1732815206;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=E1e6Jv7CRhGUPPS7ftIR4dhYsec2f1hTVoG1w6LMaY4=;
- b=UbSBrMMXpMRIq05WRtw749dZOzAhzaiWIDwrGy5U0nh0DeKQoY/ConGo
- QkNJAqtuYpYah1bLPxVKUKy/Hzbid44/SNC4Eer5JTfHbgLZix6hdV2wu
- 8c0w/8Y+pnRGJE2pkWDi1MfdJlYXqzkgBRUUvvRx7Zs46oqF5YjdtMSpx
- qz9qO/rSABc/SKkUCIxdxoTsCY3Uht6rg9kkwuym7KttcQLJSRQxRh/+o
- rByiNPJtA6PQ2Q6J4yMATnfDfV1OPqKcZ8UmY8frqQxfrc6dDX69ygVYg
- QFSUxplzi/Zs3OSLw4u0nKSHk1PxpktLN9Sck4ikfQYJEl9Xd4tQZ4Qew g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10909"; a="479401427"
-X-IronPort-AV: E=Sophos;i="6.04,235,1695711600"; d="scan'208";a="479401427"
-Received: from fmsmga005.fm.intel.com ([10.253.24.32])
- by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Nov 2023 09:33:26 -0800
+ t=1701279311; x=1732815311;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=U5vYM9SgMN4xqjSiv45gVt+zzsJbG1gA3bBa3gS0WNI=;
+ b=NJjrSwUX1agLQVGbc17Hzbibfcz7d45iuJ43uRdJMtWN6gOqORvBxTyj
+ RaQcj9UB9GUQHKfNyECpoZ4CPibt6M0ToKfniwXu4zovnUPFm3rN0D2SQ
+ bkoQeNTxFFtS2QIbouMxVirJZCfJZXm3A2hIujYq0vl+Pd3/8M1ywCu0R
+ cPS/ZtPTeGS7er3Ztl42L0/l0mTJ+cl5G0xQqOjamhnyHR0YDyFVrz+u+
+ rYuMBaB8I/Rcd2fcz3ZAq164StDdo1HAVuBaguE3POZWmXFsMsyJpZTBJ
+ qcRrJKw5XgSG3NDNbGNiyYETd1ZAYUqMlM8gd5WRPy5d7eDOqd6Do5lDO g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10909"; a="424350604"
+X-IronPort-AV: E=Sophos;i="6.04,235,1695711600"; d="scan'208";a="424350604"
+Received: from fmsmga004.fm.intel.com ([10.253.24.48])
+ by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 29 Nov 2023 09:35:11 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10909"; a="1100598938"
-X-IronPort-AV: E=Sophos;i="6.04,235,1695711600"; d="scan'208";a="1100598938"
+X-IronPort-AV: E=McAfee;i="6600,9927,10909"; a="839505778"
+X-IronPort-AV: E=Sophos;i="6.04,235,1695711600"; d="scan'208";a="839505778"
 Received: from dstavrak-mobl.ger.corp.intel.com (HELO localhost)
  ([10.252.60.61])
- by fmsmga005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Nov 2023 09:33:24 -0800
+ by fmsmga004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 29 Nov 2023 09:35:09 -0800
 From: Jani Nikula <jani.nikula@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Wed, 29 Nov 2023 19:33:17 +0200
-Message-Id: <20231129173317.1192269-2-jani.nikula@intel.com>
+Date: Wed, 29 Nov 2023 19:35:06 +0200
+Message-Id: <20231129173506.1194437-1-jani.nikula@intel.com>
 X-Mailer: git-send-email 2.39.2
-In-Reply-To: <20231129173317.1192269-1-jani.nikula@intel.com>
-References: <20231129173317.1192269-1-jani.nikula@intel.com>
 MIME-Version: 1.0
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH v2 2/2] drm/i915: add bool type checks in
- PIPE_CONF_CHECK_*
+Subject: [Intel-gfx] [RESEND] drm/i915/syncmap: squelch a sparse warning
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,53 +61,28 @@ Cc: jani.nikula@intel.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Avoid bool/int mismatches in state checker macros.
+The code is fine, really, but tweak it to get rid of the sparse warning:
+
+drivers/gpu/drm/i915/selftests/i915_syncmap.c:80:54: warning: dubious: x | !y
 
 Signed-off-by: Jani Nikula <jani.nikula@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_display.c | 8 ++++++++
- 1 file changed, 8 insertions(+)
+ drivers/gpu/drm/i915/selftests/i915_syncmap.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
-index d62cdae7ab6b..7d48bcdd5797 100644
---- a/drivers/gpu/drm/i915/display/intel_display.c
-+++ b/drivers/gpu/drm/i915/display/intel_display.c
-@@ -4923,6 +4923,8 @@ intel_pipe_config_compare(const struct intel_crtc_state *current_config,
- 
- #define PIPE_CONF_CHECK_X(name) do { \
- 	if (current_config->name != pipe_config->name) { \
-+		BUILD_BUG_ON_MSG(__same_type(current_config->name, bool), \
-+				 __stringify(name) " is bool");	\
- 		pipe_config_mismatch(fastset, crtc, __stringify(name), \
- 				     "(expected 0x%08x, found 0x%08x)", \
- 				     current_config->name, \
-@@ -4933,6 +4935,8 @@ intel_pipe_config_compare(const struct intel_crtc_state *current_config,
- 
- #define PIPE_CONF_CHECK_X_WITH_MASK(name, mask) do { \
- 	if ((current_config->name & (mask)) != (pipe_config->name & (mask))) { \
-+		BUILD_BUG_ON_MSG(__same_type(current_config->name, bool), \
-+				 __stringify(name) " is bool");	\
- 		pipe_config_mismatch(fastset, crtc, __stringify(name), \
- 				     "(expected 0x%08x, found 0x%08x)", \
- 				     current_config->name & (mask), \
-@@ -4943,6 +4947,8 @@ intel_pipe_config_compare(const struct intel_crtc_state *current_config,
- 
- #define PIPE_CONF_CHECK_I(name) do { \
- 	if (current_config->name != pipe_config->name) { \
-+		BUILD_BUG_ON_MSG(__same_type(current_config->name, bool), \
-+				 __stringify(name) " is bool");	\
- 		pipe_config_mismatch(fastset, crtc, __stringify(name), \
- 				     "(expected %i, found %i)", \
- 				     current_config->name, \
-@@ -4953,6 +4959,8 @@ intel_pipe_config_compare(const struct intel_crtc_state *current_config,
- 
- #define PIPE_CONF_CHECK_BOOL(name) do { \
- 	if (current_config->name != pipe_config->name) { \
-+		BUILD_BUG_ON_MSG(!__same_type(current_config->name, bool), \
-+				 __stringify(name) " is not bool");	\
- 		pipe_config_mismatch(fastset, crtc,  __stringify(name), \
- 				     "(expected %s, found %s)", \
- 				     str_yes_no(current_config->name), \
+diff --git a/drivers/gpu/drm/i915/selftests/i915_syncmap.c b/drivers/gpu/drm/i915/selftests/i915_syncmap.c
+index 47f4ae18a1ef..88fa845e9f4a 100644
+--- a/drivers/gpu/drm/i915/selftests/i915_syncmap.c
++++ b/drivers/gpu/drm/i915/selftests/i915_syncmap.c
+@@ -77,7 +77,7 @@ __sync_print(struct i915_syncmap *p,
+ 		for_each_set_bit(i, (unsigned long *)&p->bitmap, KSYNCMAP) {
+ 			buf = __sync_print(__sync_child(p)[i], buf, sz,
+ 					   depth + 1,
+-					   last << 1 | !!(p->bitmap >> (i + 1)),
++					   last << 1 | ((p->bitmap >> (i + 1)) ? 1 : 0),
+ 					   i);
+ 		}
+ 	}
 -- 
 2.39.2
 
