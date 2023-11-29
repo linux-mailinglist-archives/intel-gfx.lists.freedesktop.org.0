@@ -1,53 +1,62 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id BC679800ACA
-	for <lists+intel-gfx@lfdr.de>; Fri,  1 Dec 2023 13:22:20 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5A26F800CEF
+	for <lists+intel-gfx@lfdr.de>; Fri,  1 Dec 2023 15:11:40 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 393BF10E7E3;
-	Fri,  1 Dec 2023 12:22:15 +0000 (UTC)
-X-Original-To: Intel-gfx@lists.freedesktop.org
-Delivered-To: Intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7944710E0FC;
- Fri,  1 Dec 2023 12:21:27 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1701433288; x=1732969288;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=Db5vSAJrewyk8jBJs8Zpy/bM3+tRAVOm1tNoljdv+uA=;
- b=iSszTurUPHe8+ztHbMIdIUY3Vlj7MchWZceAkCi/kVvDORXDJycShziw
- SFnLXSImbp0Dt9qhAZxrN1rPER6fbPDECFDj8jyzVqXDdi2zSJsi94pgY
- 8DaAf3Dsje4YKGtlgmbUw+p7hzmYWDIZi3tcBdwt0/ShkYZEo8Cqs+xfb
- 7GP4mV26N60Hso9Xi7odDAszxegLZ2Vpsu/bRJbCk0hDZ6FP9cdjAR9+8
- lPubjDeHm7y7O17DJSFLMm56CjsRlvui2ouZAMduQkKUOm2Ylqg38MHwJ
- m5C8GEBrinedmbHhn8iIiMSBfNmFH8kzRt2R1NfOZUfXqLAem6jEafntT Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10910"; a="15033475"
-X-IronPort-AV: E=Sophos;i="6.04,241,1695711600"; d="scan'208";a="15033475"
-Received: from fmsmga008.fm.intel.com ([10.253.24.58])
- by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Dec 2023 04:21:27 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10910"; a="835761561"
-X-IronPort-AV: E=Sophos;i="6.04,241,1695711600"; d="scan'208";a="835761561"
-Received: from istokes-mobl2.ger.corp.intel.com (HELO localhost.localdomain)
- ([10.213.227.178])
- by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Dec 2023 04:21:18 -0800
-From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-To: Intel-gfx@lists.freedesktop.org,
-	dri-devel@lists.freedesktop.org
-Date: Fri,  1 Dec 2023 12:21:09 +0000
-Message-Id: <20231201122109.729006-2-tvrtko.ursulin@linux.intel.com>
-X-Mailer: git-send-email 2.40.1
-In-Reply-To: <20231201122109.729006-1-tvrtko.ursulin@linux.intel.com>
-References: <20231201122109.729006-1-tvrtko.ursulin@linux.intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id BDBAD10E8B6;
+	Fri,  1 Dec 2023 14:11:36 +0000 (UTC)
+X-Original-To: intel-gfx@lists.freedesktop.org
+Delivered-To: intel-gfx@lists.freedesktop.org
+Received: from mailgw.kylinos.cn (mailgw.kylinos.cn [124.126.103.232])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D4A2210E5E5;
+ Wed, 29 Nov 2023 02:29:46 +0000 (UTC)
+X-UUID: 12cb57e063ed4c0686c2415175da53a6-20231129
+X-CID-P-RULE: Release_Ham
+X-CID-O-INFO: VERSION:1.1.33, REQID:4b639241-3002-484c-aebb-012adb240e4e, IP:15,
+ URL:0,TC:0,Content:-5,EDM:0,RT:0,SF:-15,FILE:0,BULK:0,RULE:Release_Ham,ACT
+ ION:release,TS:-5
+X-CID-INFO: VERSION:1.1.33, REQID:4b639241-3002-484c-aebb-012adb240e4e, IP:15,
+ UR
+ L:0,TC:0,Content:-5,EDM:0,RT:0,SF:-15,FILE:0,BULK:0,RULE:Release_Ham,ACTIO
+ N:release,TS:-5
+X-CID-META: VersionHash:364b77b, CLOUDID:0cabed95-10ce-4e4b-85c2-c9b5229ff92b,
+ B
+ ulkID:2311291029361HML246R,BulkQuantity:0,Recheck:0,SF:66|24|17|19|44|102,
+ TC:0,Content:0,EDM:-3,IP:-2,URL:11|1,File:nil,Bulk:nil,QS:nil,BEC:nil,COL:
+ 0,OSI:0,OSA:0,AV:0,LES:1,SPR:NO,DKR:0,DKP:0,BRR:0,BRE:0
+X-CID-BVR: 0
+X-CID-BAS: 0,_,0,_
+X-CID-FACTOR: TF_CID_SPAM_FSI, TF_CID_SPAM_ULN, TF_CID_SPAM_SNR,
+ TF_CID_SPAM_FAS, TF_CID_SPAM_FSD
+X-UUID: 12cb57e063ed4c0686c2415175da53a6-20231129
+Received: from node4.com.cn [(39.156.73.12)] by mailgw
+ (envelope-from <heminhong@kylinos.cn>) (Generic MTA)
+ with ESMTP id 1297425312; Wed, 29 Nov 2023 10:29:34 +0800
+Received: from node4.com.cn (localhost [127.0.0.1])
+ by node4.com.cn (NSMail) with SMTP id 07F2216001CC8;
+ Wed, 29 Nov 2023 10:29:34 +0800 (CST)
+Received: by node4.com.cn (NSMail, from userid 0)
+ id EDB7C16001CC8; Wed, 29 Nov 2023 10:29:33 +0800 (CST)
+From: =?UTF-8?B?5L2V5pWP57qi?= <heminhong@kylinos.cn>
+To: =?UTF-8?B?dmlsbGUuc3lyamFsYQ==?= <ville.syrjala@linux.intel.com>,
+ =?UTF-8?B?dW1hLnNoYW5rYXI=?= <uma.shankar@intel.com>,
+Date: Wed, 29 Nov 2023 10:29:33 +0800
+X-Mailer: NSMAIL 7.0.0
+Message-ID: <1lagfvi0ner-1laizr4ur2c@nsmail7.0.0--kylin--1>
+References: 20231114024341.14524-1-heminhong@kylinos.cn
+X-Israising: 0
+X-Seclevel-1: 0
+X-Seclevel: 0
+X-Delaysendtime: Wed, 29 Nov 2023 10:29:33 +0800
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH 2/2] drm/i915: Use internal class when counting
- engine resets
+Content-Type: multipart/mixed; boundary=nsmail-1p2080cqqh2-1p21hy65sav
+X-ns-mid: webmail-6566a20d-1oux04x4
+X-ope-from: <heminhong@kylinos.cn>
+X-Mailman-Approved-At: Fri, 01 Dec 2023 14:11:23 +0000
+Subject: [Intel-gfx] =?utf-8?b?5Zue5aSNOiBbUEFUQ0ggdjJdIGRybS9pOTE1OiBj?=
+ =?utf-8?q?orrect_the_input_parameter_on_=5Fintel=5Fdsb=5Fcommit=28=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -60,114 +69,71 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Alan Previn Teres Alexis <alan.previn.teres.alexis@intel.com>,
- Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+Cc: =?UTF-8?B?bGludXgta2VybmVs?= <linux-kernel@vger.kernel.org>,
+ =?UTF-8?B?ZHJpLWRldmVs?= <dri-devel@lists.freedesktop.org>,
+ =?UTF-8?B?ZGFuaWVs?= <daniel@ffwll.ch>,
+ =?UTF-8?B?cm9kcmlnby52aXZp?= <rodrigo.vivi@intel.com>,
+ =?UTF-8?B?YWlybGllZA==?= <airlied@gmail.com>,
+ =?UTF-8?B?aW50ZWwtZ2Z4?= <intel-gfx@lists.freedesktop.org>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-From: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+This message is in MIME format.
 
-Commit 503579448db9 ("drm/i915/gsc: Mark internal GSC engine with reserved uabi class")
-made the GSC0 engine not have a valid uabi class and so broke the engine
-reset counting, which in turn was made class based in cb823ed9915b ("drm/i915/gt: Use intel_gt as the primary object for handling resets").
+--nsmail-1p2080cqqh2-1p21hy65sav
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: base64
 
-Despite the title and commit text of the latter is not mentioning it (and
-has left the storage array incorrectly sized), tracking by class, despite
-it adding aliasing in hypthotetical multi-tile systems, is handy for
-virtual engines which for instance do not have a valid engine->id.
+PHByZSBjbGFzcz0ianNfbWVzc2FnZV9wbGFpbiBuZy1iaW5kaW5nIiBzdHls
+ZT0ibWFyZ2luLXRvcDogMHB4OyBtYXJnaW4tYm90dG9tOiAwcHg7IGZvbnQt
+ZmFtaWx5OiBpbmhlcml0OyBmb250LXNpemU6IDE0cHg7IHdoaXRlLXNwYWNl
+OiBwcmUtd3JhcDsgd29yZC1icmVhazogbm9ybWFsOyBiYWNrZ3JvdW5kLWNv
+bG9yOiAjZmZmZmZmOyI+RnJpZW5kbHkgcGluZy4gSSB0aGluayB0aGlzIHBh
+dGNoIHdhcyBmb3Jnb3R0ZW4uPC9wcmU+CjxwPjxicj48YnI+LS0tLTwvcD4K
+PGRpdiBpZD0iY3MyY19tYWlsX3NpZ2F0dXJlIj48L2Rpdj4KPHA+Jm5ic3A7
+PC9wPgo8ZGl2IGlkPSJyZSIgc3R5bGU9Im1hcmdpbi1sZWZ0OiAwLjVlbTsg
+cGFkZGluZy1sZWZ0OiAwLjVlbTsgYm9yZGVyLWxlZnQ6IDFweCBzb2xpZCBn
+cmVlbjsiPjxicj48YnI+PGJyPgo8ZGl2IHN0eWxlPSJiYWNrZ3JvdW5kLWNv
+bG9yOiAjZjVmN2ZhOyI+PHN0cm9uZz7kuLvjgIDpopjvvJo8L3N0cm9uZz48
+c3BhbiBpZD0ic3ViamVjdCI+W1BBVENIIHYyXSBkcm0vaTkxNTogY29ycmVj
+dCB0aGUgaW5wdXQgcGFyYW1ldGVyIG9uIF9pbnRlbF9kc2JfY29tbWl0KCk8
+L3NwYW4+IDxicj48c3Ryb25nPuaXpeOAgOacn++8mjwvc3Ryb25nPjxzcGFu
+IGlkPSJkYXRlIj4yMDIzLTExLTE0IDEwOjQzPC9zcGFuPiA8YnI+PHN0cm9u
+Zz7lj5Hku7bkurrvvJo8L3N0cm9uZz48c3BhbiBpZD0iZnJvbSI+5L2V5pWP
+57qiPC9zcGFuPiA8YnI+PHN0cm9uZz7mlLbku7bkurrvvJo8L3N0cm9uZz48
+c3BhbiBpZD0idG8iIHN0eWxlPSJ3b3JkLWJyZWFrOiBicmVhay1hbGw7Ij7k
+vZXmlY/nuqI7PC9zcGFuPjwvZGl2Pgo8YnI+CjxkaXYgaWQ9ImNvbnRlbnQi
+Pgo8ZGl2IGNsYXNzPSJ2aWV3ZXJfcGFydCIgc3R5bGU9InBvc2l0aW9uOiBy
+ZWxhdGl2ZTsiPgo8ZGl2PkN1cnJlbnQsIHRoZSBkZXdha2Vfc2NhbmxpbmUg
+dmFyaWFibGUgaXMgZGVmaW5lZCBhcyB1bnNpZ25lZCBpbnQsPGJyPmFuIHVu
+c2lnbmVkIGludCB2YXJpYWJsZSB0aGF0IGlzIGFsd2F5cyBncmVhdGVyIHRo
+YW4gb3IgZXF1YWwgdG8gMC48YnI+d2hlbiBfaW50ZWxfZHNiX2NvbW1pdCBm
+dW5jdGlvbiBpcyBjYWxsZWQgYnkgaW50ZWxfZHNiX2NvbW1pdCBmdW5jdGlv
+biw8YnI+dGhlIGRld2FrZV9zY2FubGluZSB2YXJpYWJsZSBtYXkgaGF2ZSBh
+biBpbnQgdmFsdWUuPGJyPlNvIHRoZSBkZXdha2Vfc2NhbmxpbmUgdmFyaWFi
+bGUgaXMgbmVjZXNzYXJ5IHRvIGRlZmluZWQgYXMgYW4gaW50Ljxicj48YnI+
+Rml4ZXM6IGY4M2I5NGQyMzc3MCAoImRybS9pOTE1L2RzYjogVXNlIERFd2Fr
+ZSB0byBjb21iYXQgUGtnQyBsYXRlbmN5Iik8YnI+UmVwb3J0ZWQtYnk6IGtl
+cm5lbCB0ZXN0IHJvYm90IDxicj5DbG9zZXM6IGh0dHBzOi8vbG9yZS5rZXJu
+ZWwub3JnL29lLWtidWlsZC1hbGwvMjAyMzEwMDUyMjAxLkFuVmJwZ1ByLWxr
+cEBpbnRlbC5jb20vPGJyPkNjOiBWaWxsZSBTeXJqw6Rsw6QgPGJyPkNjOiBV
+bWEgU2hhbmthciA8YnI+PGJyPlNpZ25lZC1vZmYtYnk6IGhlbWluaG9uZyA8
+YnI+LS0tPGJyPmRyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxf
+ZHNiLmMgfCAyICstPGJyPjEgZmlsZSBjaGFuZ2VkLCAxIGluc2VydGlvbigr
+KSwgMSBkZWxldGlvbigtKTxicj48YnI+ZGlmZiAtLWdpdCBhL2RyaXZlcnMv
+Z3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZHNiLmMgYi9kcml2ZXJzL2dw
+dS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2RzYi5jPGJyPmluZGV4IDc4YjZm
+ZTI0ZGNkOC4uN2ZkNjI4MGM1NGE3IDEwMDY0NDxicj4tLS0gYS9kcml2ZXJz
+L2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2RzYi5jPGJyPisrKyBiL2Ry
+aXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZHNiLmM8YnI+QEAg
+LTM0MCw3ICszNDAsNyBAQCBzdGF0aWMgaW50IGludGVsX2RzYl9kZXdha2Vf
+c2NhbmxpbmUoY29uc3Qgc3RydWN0IGludGVsX2NydGNfc3RhdGUgKmNydGNf
+c3RhdGUpPGJyPn08YnI+PGJyPnN0YXRpYyB2b2lkIF9pbnRlbF9kc2JfY29t
+bWl0KHN0cnVjdCBpbnRlbF9kc2IgKmRzYiwgdTMyIGN0cmwsPGJyPi0gdW5z
+aWduZWQgaW50IGRld2FrZV9zY2FubGluZSk8YnI+KyBpbnQgZGV3YWtlX3Nj
+YW5saW5lKTxicj57PGJyPnN0cnVjdCBpbnRlbF9jcnRjICpjcnRjID0gZHNi
+LSZndDtjcnRjOzxicj5zdHJ1Y3QgZHJtX2k5MTVfcHJpdmF0ZSAqZGV2X3By
+aXYgPSB0b19pOTE1KGNydGMtJmd0O2Jhc2UuZGV2KTs8YnI+LS0gPGJyPjIu
+MjUuMTxicj48YnI+PC9kaXY+CjwvZGl2Pgo8L2Rpdj4KPC9kaXY+
 
-Therefore we keep that but just change it to use the internal class which
-is always valid. We also add a helper to increment the count, which
-aligns with the existing getter.
-
-What was broken without this fix were out of bounds reads every time a
-reset would happen on the GSC0 engine, or during selftests when storing
-and cross-checking the counts in igt_live_test_begin and
-igt_live_test_end.
-
-Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
-Fixes: 503579448db9 ("drm/i915/gsc: Mark internal GSC engine with reserved uabi class")
-Reported-by: Alan Previn Teres Alexis <alan.previn.teres.alexis@intel.com>
-Cc: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
----
- drivers/gpu/drm/i915/gt/intel_reset.c             |  2 +-
- drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c |  5 +++--
- drivers/gpu/drm/i915/i915_gpu_error.h             | 12 ++++++++++--
- 3 files changed, 14 insertions(+), 5 deletions(-)
-
-diff --git a/drivers/gpu/drm/i915/gt/intel_reset.c b/drivers/gpu/drm/i915/gt/intel_reset.c
-index d5ed904f355d..6801f8b95c53 100644
---- a/drivers/gpu/drm/i915/gt/intel_reset.c
-+++ b/drivers/gpu/drm/i915/gt/intel_reset.c
-@@ -1293,7 +1293,7 @@ int __intel_engine_reset_bh(struct intel_engine_cs *engine, const char *msg)
- 	if (msg)
- 		drm_notice(&engine->i915->drm,
- 			   "Resetting %s for %s\n", engine->name, msg);
--	atomic_inc(&engine->i915->gpu_error.reset_engine_count[engine->uabi_class]);
-+	i915_increase_reset_engine_count(&engine->i915->gpu_error, engine);
- 
- 	ret = intel_gt_reset_engine(engine);
- 	if (ret) {
-diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c b/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
-index 04f8377fd7a3..58ea285c51d4 100644
---- a/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
-+++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
-@@ -5003,7 +5003,8 @@ static void capture_error_state(struct intel_guc *guc,
- 			if (match) {
- 				intel_engine_set_hung_context(e, ce);
- 				engine_mask |= e->mask;
--				atomic_inc(&i915->gpu_error.reset_engine_count[e->uabi_class]);
-+				i915_increase_reset_engine_count(&i915->gpu_error,
-+								 e);
- 			}
- 		}
- 
-@@ -5015,7 +5016,7 @@ static void capture_error_state(struct intel_guc *guc,
- 	} else {
- 		intel_engine_set_hung_context(ce->engine, ce);
- 		engine_mask = ce->engine->mask;
--		atomic_inc(&i915->gpu_error.reset_engine_count[ce->engine->uabi_class]);
-+		i915_increase_reset_engine_count(&i915->gpu_error, ce->engine);
- 	}
- 
- 	with_intel_runtime_pm(&i915->runtime_pm, wakeref)
-diff --git a/drivers/gpu/drm/i915/i915_gpu_error.h b/drivers/gpu/drm/i915/i915_gpu_error.h
-index fa886620d3f8..7c255bb1c319 100644
---- a/drivers/gpu/drm/i915/i915_gpu_error.h
-+++ b/drivers/gpu/drm/i915/i915_gpu_error.h
-@@ -17,6 +17,7 @@
- #include "display/intel_display_device.h"
- #include "display/intel_display_params.h"
- #include "gt/intel_engine.h"
-+#include "gt/intel_engine_types.h"
- #include "gt/intel_gt_types.h"
- #include "gt/uc/intel_uc_fw.h"
- 
-@@ -234,7 +235,7 @@ struct i915_gpu_error {
- 	atomic_t reset_count;
- 
- 	/** Number of times an engine has been reset */
--	atomic_t reset_engine_count[I915_NUM_ENGINES];
-+	atomic_t reset_engine_count[MAX_ENGINE_CLASS];
- };
- 
- struct drm_i915_error_state_buf {
-@@ -257,7 +258,14 @@ static inline u32 i915_reset_count(struct i915_gpu_error *error)
- static inline u32 i915_reset_engine_count(struct i915_gpu_error *error,
- 					  const struct intel_engine_cs *engine)
- {
--	return atomic_read(&error->reset_engine_count[engine->uabi_class]);
-+	return atomic_read(&error->reset_engine_count[engine->class]);
-+}
-+
-+static inline void
-+i915_increase_reset_engine_count(struct i915_gpu_error *error,
-+				 const struct intel_engine_cs *engine)
-+{
-+	atomic_inc(&error->reset_engine_count[engine->class]);
- }
- 
- #define CORE_DUMP_FLAG_NONE           0x0
--- 
-2.40.1
-
+--nsmail-1p2080cqqh2-1p21hy65sav--
