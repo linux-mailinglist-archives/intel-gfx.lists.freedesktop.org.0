@@ -2,48 +2,51 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8BBF87FF313
-	for <lists+intel-gfx@lfdr.de>; Thu, 30 Nov 2023 15:59:06 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id AF47C7FF350
+	for <lists+intel-gfx@lfdr.de>; Thu, 30 Nov 2023 16:18:50 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7CDC210E106;
-	Thu, 30 Nov 2023 14:59:00 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1C43E10E106;
+	Thu, 30 Nov 2023 15:18:49 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A217510E04A;
- Thu, 30 Nov 2023 14:58:58 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.115])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C3BDE10E377
+ for <intel-gfx@lists.freedesktop.org>; Thu, 30 Nov 2023 15:18:46 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1701356338; x=1732892338;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=7Tp1vCY6tGtjTfNIfU1mULtE6nTb/YJScfKMCbFKAzA=;
- b=FauuAt+VFugrCTKliMJhFeUD8jme3BGM0qvJ//CEdu4LVyia9QFUjKjJ
- 6hLCNhP2bMLe1x+m7OJhzl+PsR2D5JLMfGfn67qeHVs7HvFbKQM4ECnx4
- u2GTH5ViOCB6d/3LJma4EvVVDHigNe1A4WyP4VzusfC0PAu7hrG++LY6q
- f86i4dtBO+1ztGAKjESerS4sR74jyZnEUAdmxWWPnXfycgUgV52Aw61uG
- oVV88Ru41q/g+Q2YJk43+gw5M255nKbRLqkSozlsYCJ6ML4OazatA2Gzj
- qef+k/8ze1ljx+hHhucuUClbwpj1Iq+Flu8Ps7Ml69CI/f9Lc2fh7m3Ng Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10910"; a="383729118"
-X-IronPort-AV: E=Sophos;i="6.04,239,1695711600"; d="scan'208";a="383729118"
-Received: from orsmga003.jf.intel.com ([10.7.209.27])
- by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Nov 2023 06:58:57 -0800
+ t=1701357526; x=1732893526;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:in-reply-to;
+ bh=sRQoruEt7NpqmUJJiBvYyRJ1e3QZt/A/czGi1MWI3L4=;
+ b=h5MKrMWwWL6Lc1DiAWC38Muo76E0dmBdIz/fG/tADQ+WNjqPXlTGJGIv
+ nPzgUptVDRhSTFj+F/3GfFAgHNzYK7AtQnxvJYbpJ3mB3MnztgjZ6xYvp
+ C1q4iHBAd6c8Ze9lCrBb0KtpgoWdY0IsI2//i0Uzk8XFnUui82rtZ1sYR
+ vmILlgipm20XiIQ9dNXGBhMLzz0T5FpI6ygoQaqYC0P/d2zVEQzNp2vmG
+ ooKGKGz1QviaYjBw3uiH03Hmx8s3OOmxUE487JDW9hOGoCZ3O7+kBCp2A
+ Iu0Pz4NQwXJ/ap4/ksZH2vmpibksnhWOjl3naj53BQPsUnPc2E8bmQ1Nr A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10910"; a="393080230"
+X-IronPort-AV: E=Sophos;i="6.04,239,1695711600"; d="scan'208";a="393080230"
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+ by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 30 Nov 2023 07:18:45 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10910"; a="719141727"
-X-IronPort-AV: E=Sophos;i="6.04,239,1695711600"; d="scan'208";a="719141727"
-Received: from unknown (HELO localhost) ([10.237.66.162])
- by orsmga003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Nov 2023 06:58:52 -0800
-From: Jani Nikula <jani.nikula@intel.com>
-To: Dave Airlie <airlied@gmail.com>, Daniel Vetter <daniel.vetter@ffwll.ch>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-Date: Thu, 30 Nov 2023 16:58:48 +0200
-Message-ID: <87msuv479z.fsf@intel.com>
+X-IronPort-AV: E=McAfee;i="6600,9927,10910"; a="913231447"
+X-IronPort-AV: E=Sophos;i="6.04,239,1695711600"; d="scan'208";a="913231447"
+Received: from jwozniak-mobl.ger.corp.intel.com (HELO intel.com)
+ ([10.252.45.65])
+ by fmsmga001-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 30 Nov 2023 07:18:42 -0800
+Date: Thu, 30 Nov 2023 16:18:39 +0100
+From: Andi Shyti <andi.shyti@linux.intel.com>
+To: Andrzej Hajda <andrzej.hajda@intel.com>
+Message-ID: <ZWinz-4V5cOzY00J@ashyti-mobl2.lan>
+References: <20231124-cur_size_reduction-v1-1-30495dba475f@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-Subject: [Intel-gfx] [PULL] drm-intel-fixes
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20231124-cur_size_reduction-v1-1-30495dba475f@intel.com>
+Subject: Re: [Intel-gfx] [PATCH] drm/i915/display: do not use cursor size
+ reduction on MTL
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -56,60 +59,18 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: dim-tools@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org, Nirmoy Das <nirmoy.das@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+Hi Andrzej,
 
-Hi Dave & Sima -
+On Fri, Nov 24, 2023 at 08:53:04AM +0100, Andrzej Hajda wrote:
+> Cursor size reduction is not supported since MTL.
+> 
+> Signed-off-by: Andrzej Hajda <andrzej.hajda@intel.com>
 
-i915 fixes for v6.7-rc4.
+Reviewed-by: Andi Shyti <andi.shyti@linux.intel.com>
 
-drm-intel-fixes-2023-11-30:
-drm/i915 fixes for v6.7-rc4:
-- Mark internal GSC engine with reserved uabi class
-- Take VGA converters into account in eDP probe
-- Fix intel_pre_plane_updates() call to ensure workarounds get applied
-
-BR,
-Jani.
-
-The following changes since commit 2cc14f52aeb78ce3f29677c2de1f06c0e91471ab:
-
-  Linux 6.7-rc3 (2023-11-26 19:59:33 -0800)
-
-are available in the Git repository at:
-
-  git://anongit.freedesktop.org/drm/drm-intel tags/drm-intel-fixes-2023-11-=
-30
-
-for you to fetch changes up to d21a3962d3042e6f56ad324cf18bdd64a1e6ecfa:
-
-  drm/i915: Call intel_pre_plane_updates() also for pipes getting enabled (=
-2023-11-29 10:23:25 +0200)
-
-----------------------------------------------------------------
-drm/i915 fixes for v6.7-rc4:
-- Mark internal GSC engine with reserved uabi class
-- Take VGA converters into account in eDP probe
-- Fix intel_pre_plane_updates() call to ensure workarounds get applied
-
-----------------------------------------------------------------
-Tvrtko Ursulin (1):
-      drm/i915/gsc: Mark internal GSC engine with reserved uabi class
-
-Ville Syrj=C3=A4l=C3=A4 (2):
-      drm/i915: Also check for VGA converter in eDP probe
-      drm/i915: Call intel_pre_plane_updates() also for pipes getting enabl=
-ed
-
- drivers/gpu/drm/i915/display/intel_display.c |  3 ++-
- drivers/gpu/drm/i915/display/intel_dp.c      | 28 +++++++++++++++-----
- drivers/gpu/drm/i915/gt/intel_engine_user.c  | 39 ++++++++++++++++--------=
-----
- 3 files changed, 46 insertions(+), 24 deletions(-)
-
---=20
-Jani Nikula, Intel
+Thanks,
+Andi
