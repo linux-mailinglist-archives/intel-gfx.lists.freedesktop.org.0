@@ -2,43 +2,72 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4C1427FEBB2
-	for <lists+intel-gfx@lfdr.de>; Thu, 30 Nov 2023 10:18:41 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id CEBEC7FEBDE
+	for <lists+intel-gfx@lfdr.de>; Thu, 30 Nov 2023 10:31:01 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 47BC310E6C9;
-	Thu, 30 Nov 2023 09:18:35 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 819AF10E6D2;
+	Thu, 30 Nov 2023 09:30:55 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from sin.source.kernel.org (sin.source.kernel.org [145.40.73.55])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 11BCC10E140;
- Thu, 30 Nov 2023 09:18:33 +0000 (UTC)
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
- by sin.source.kernel.org (Postfix) with ESMTP id 7F191CE1FE7;
- Thu, 30 Nov 2023 09:18:30 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 30406C433C8;
- Thu, 30 Nov 2023 09:18:29 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1701335909;
- bh=p8D1GXpx9l8qPpfGSEiXAyr1IiaXic8z4jKqVceRF7I=;
- h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
- b=r8y9Hm7N8rpgSxmjSHuCKgU8wHhkpVriV7kMUoiVSFSdRiTQ9x95QrSn3ttDM6ajR
- gwK0prCsKzQunaaOnehpBOz9QHpImxaJkvpjotMXTyBTi/tzNUg/BxwxcoPcAcMBpM
- VRVl57BqjrR7/gR3H4EWsHc75CA9iQknO0En+ikFiKHxxYkX3yHJQqk7IQTdXIfoEF
- lefNUHS5dFF8Y+/5+ts0G34SLlWH1a5EZjKGufo73W5nDnnXQNTCqJFezDBBnVnY2e
- j9hT8j1H6plQ5POFcXM/JSZ3EYUMVs/X8bF8bTN9T49W5TOPdLhrl0hDqSGS8Or0a2
- MTtFNYWBzKRYQ==
-Date: Thu, 30 Nov 2023 10:18:26 +0100
-From: Maxime Ripard <mripard@kernel.org>
-To: Jani Nikula <jani.nikula@intel.com>
-Message-ID: <eba23oyf4i3j6sdyqljjtgaz27brz4dxfrbtoddestjxwp5lr5@qxfj2b6szigc>
+Received: from us-smtp-delivery-124.mimecast.com
+ (us-smtp-delivery-124.mimecast.com [170.10.133.124])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C792E10E6CF
+ for <intel-gfx@lists.freedesktop.org>; Thu, 30 Nov 2023 09:30:52 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+ s=mimecast20190719; t=1701336651;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ in-reply-to:in-reply-to:references:references;
+ bh=6jLhtIvyYX/AEg4gXklABoN9Rr3N6HqEZb8o1BjsQGA=;
+ b=gCjow0/Ny6d23sjHHLxCPH+4qCq1G5i7yxqt8O+YhZgaGR3GlDv7fG3FfnHOvpp5lQSQ8E
+ o0MbouiCjsdqhslNn9ZfdBiEi3KxgmtnkL3MGLZuSUKpITEUnlNsvNGsfFSqiwtjz/PQti
+ XZELrhwT/oirpANfnA5Ko5YrAVcX1b0=
+Received: from mail-wm1-f69.google.com (mail-wm1-f69.google.com
+ [209.85.128.69]) by relay.mimecast.com with ESMTP with STARTTLS
+ (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
+ us-mta-198-2t0jGcS2Mlys7uGNHqkRIA-1; Thu, 30 Nov 2023 04:30:50 -0500
+X-MC-Unique: 2t0jGcS2Mlys7uGNHqkRIA-1
+Received: by mail-wm1-f69.google.com with SMTP id
+ 5b1f17b1804b1-40b346a11d9so4831455e9.3
+ for <intel-gfx@lists.freedesktop.org>; Thu, 30 Nov 2023 01:30:50 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1701336649; x=1701941449;
+ h=mime-version:message-id:date:references:in-reply-to:subject:cc:to
+ :from:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+ bh=6jLhtIvyYX/AEg4gXklABoN9Rr3N6HqEZb8o1BjsQGA=;
+ b=RZGNXUteFpMzzX4mekfGgYwZH7poh3Iumo82Rex3OwwIkUpleazsWuYuO+vFEQzgQt
+ L16jtL6VEl6SGTLkdpSdd1YWRGR/yBcsFV15vf8beapX+xW7Pdl0BuKgKEB7fOkyXbDv
+ x4gI5AS539YA1cXD+/HnEzMOKSb5aFnB8eX9p/mlQO0glevsrHPZOcyYiOqhlTzDVHFR
+ a6YaGcUD14EUwSggfuWCcIlrJtFc6Sunk8qeDX3Ix4Q5cEK00txg+svOh4iUfwRTnRH2
+ InbGAamEXi8SXS3op0wnmBIIaePtWrhGjpehm53SlmDJOMWHkibg3VSW7PoZwpfclYhu
+ TZvw==
+X-Gm-Message-State: AOJu0YyYHshl6NOzhmmmDe2K3dnHUxMzGnKUmcxlCWX+UTTRXl0wLQSb
+ usK3ccyBcVaslm1iqjWSHzI26aOyY+65GMe3z01gaI0b/slnLh0hH+Mjx17rU8JVzgGEvEDhpp/
+ 0PhUgA6TrtLWMakZ4MFfMVeC9SvJx
+X-Received: by 2002:a05:600c:a06:b0:40b:4492:4b78 with SMTP id
+ z6-20020a05600c0a0600b0040b44924b78mr9443415wmp.19.1701336649176; 
+ Thu, 30 Nov 2023 01:30:49 -0800 (PST)
+X-Google-Smtp-Source: AGHT+IHL1r0AGFRYEmiDiZoPadvAzry4K2HNJMV27+VhzOz2OA1r3NL3rl7jkuP6eBPpA1IkPvPU2Q==
+X-Received: by 2002:a05:600c:a06:b0:40b:4492:4b78 with SMTP id
+ z6-20020a05600c0a0600b0040b44924b78mr9443397wmp.19.1701336648825; 
+ Thu, 30 Nov 2023 01:30:48 -0800 (PST)
+Received: from localhost (205.pool92-176-231.dynamic.orange.es.
+ [92.176.231.205]) by smtp.gmail.com with ESMTPSA id
+ iv7-20020a05600c548700b00405959469afsm1322164wmb.3.2023.11.30.01.30.48
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Thu, 30 Nov 2023 01:30:48 -0800 (PST)
+From: Javier Martinez Canillas <javierm@redhat.com>
+To: Maxime Ripard <mripard@kernel.org>, Jani Nikula <jani.nikula@intel.com>
+In-Reply-To: <eba23oyf4i3j6sdyqljjtgaz27brz4dxfrbtoddestjxwp5lr5@qxfj2b6szigc>
 References: <20231129181219.1237887-1-jani.nikula@intel.com>
- <72248f22-6337-487a-9979-a0d79e37a9ed@amd.com>
- <874jh362ta.fsf@intel.com>
+ <72248f22-6337-487a-9979-a0d79e37a9ed@amd.com> <874jh362ta.fsf@intel.com>
+ <eba23oyf4i3j6sdyqljjtgaz27brz4dxfrbtoddestjxwp5lr5@qxfj2b6szigc>
+Date: Thu, 30 Nov 2023 10:30:47 +0100
+Message-ID: <87zfyva8qg.fsf@minerva.mail-host-address-is-not-set>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
- protocol="application/pgp-signature"; boundary="kkimro66j5g4luvh"
-Content-Disposition: inline
-In-Reply-To: <874jh362ta.fsf@intel.com>
+X-Mimecast-Spam-Score: 0
+X-Mimecast-Originator: redhat.com
+Content-Type: text/plain
 Subject: Re: [Intel-gfx] [RFC] drm: enable W=1 warnings by default across
  the subsystem
 X-BeenThere: intel-gfx@lists.freedesktop.org
@@ -57,67 +86,67 @@ Cc: Pan@freedesktop.org, Karol Herbst <kherbst@redhat.com>,
  intel-gfx@lists.freedesktop.org, Xinhui <Xinhui.Pan@amd.com>,
  Abhinav Kumar <quic_abhinavk@quicinc.com>, dri-devel@lists.freedesktop.org,
  Nathan Chancellor <nathan@kernel.org>,
- Alex Deucher <alexander.deucher@amd.com>, Danilo Krummrich <dakr@redhat.com>,
- Hamza Mahfooz <hamza.mahfooz@amd.com>, Thomas Zimmermann <tzimmermann@suse.de>,
  Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+ Danilo Krummrich <dakr@redhat.com>, Hamza Mahfooz <hamza.mahfooz@amd.com>,
+ Thomas Zimmermann <tzimmermann@suse.de>,
+ Alex Deucher <alexander.deucher@amd.com>,
  Marijn Suijten <marijn.suijten@somainline.org>,
- Christian =?utf-8?B?S8O2bmln?= <christian.koenig@amd.com>
+ Christian =?utf-8?Q?K=C3=B6nig?= <christian.koenig@amd.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+Maxime Ripard <mripard@kernel.org> writes:
 
---kkimro66j5g4luvh
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+> Hi,
+>
+> On Thu, Nov 30, 2023 at 10:52:17AM +0200, Jani Nikula wrote:
+>> On Wed, 29 Nov 2023, Hamza Mahfooz <hamza.mahfooz@amd.com> wrote:
+>> > Cc: Nathan Chancellor <nathan@kernel.org>
+>> >
+>> > On 11/29/23 13:12, Jani Nikula wrote:
+>> >> At least the i915 and amd drivers enable a bunch more compiler warnings
+>> >> than the kernel defaults.
+>> >> 
+>> >> Extend the W=1 warnings to the entire drm subsystem by default. Use the
+>> >> copy-pasted warnings from scripts/Makefile.extrawarn with
+>> >> s/KBUILD_CFLAGS/subdir-ccflags-y/ to make it easier to compare and keep
+>> >> up with them in the future.
+>> >> 
+>> >> This is similar to the approach currently used in i915.
+>> >> 
+>> >> Some of the -Wextra warnings do need to be disabled, just like in
+>> >> Makefile.extrawarn, but take care to not disable them for W=2 or W=3
+>> >> builds, depending on the warning.
+>> >
+>> > I think this should go in after drm-misc-next has a clean build (for
+>> > COMPILE_TEST builds) with this patch applied. Otherwise, it will break a
+>> > lot of build configs.
+>> 
+>> Oh, I'm absolutely not suggesting this should be merged before known
+>> warnings have been addressed one way or another. Either by fixing them
+>> or by disabling said warning in driver local Makefiles, depending on the
+>> case.
+>
+> I'm all for it, but yeah, we need some easy way to opt-in/opt-out. Some
+> drivers are pretty much unmaintained now and are likely to never fix
+> those warnings.
+>
 
-Hi,
+Maybe add a Kconfig symbol for it instead of making unconditional?
 
-On Thu, Nov 30, 2023 at 10:52:17AM +0200, Jani Nikula wrote:
-> On Wed, 29 Nov 2023, Hamza Mahfooz <hamza.mahfooz@amd.com> wrote:
-> > Cc: Nathan Chancellor <nathan@kernel.org>
-> >
-> > On 11/29/23 13:12, Jani Nikula wrote:
-> >> At least the i915 and amd drivers enable a bunch more compiler warnings
-> >> than the kernel defaults.
-> >>=20
-> >> Extend the W=3D1 warnings to the entire drm subsystem by default. Use =
-the
-> >> copy-pasted warnings from scripts/Makefile.extrawarn with
-> >> s/KBUILD_CFLAGS/subdir-ccflags-y/ to make it easier to compare and keep
-> >> up with them in the future.
-> >>=20
-> >> This is similar to the approach currently used in i915.
-> >>=20
-> >> Some of the -Wextra warnings do need to be disabled, just like in
-> >> Makefile.extrawarn, but take care to not disable them for W=3D2 or W=
-=3D3
-> >> builds, depending on the warning.
-> >
-> > I think this should go in after drm-misc-next has a clean build (for
-> > COMPILE_TEST builds) with this patch applied. Otherwise, it will break a
-> > lot of build configs.
->=20
-> Oh, I'm absolutely not suggesting this should be merged before known
-> warnings have been addressed one way or another. Either by fixing them
-> or by disabling said warning in driver local Makefiles, depending on the
-> case.
+Something like:
 
-I'm all for it, but yeah, we need some easy way to opt-in/opt-out. Some
-drivers are pretty much unmaintained now and are likely to never fix
-those warnings.
++# Unconditionally enable W=1 warnings locally
++# --- begin copy-paste W=1 warnings from scripts/Makefile.extrawarn
++subdir-ccflags-$(CONFIG_DRM_EXTRA_CHECKS)  += -Wextra -Wunused -Wno-unused-parameter
+...
 
-Maxime
+> Maxime
 
---kkimro66j5g4luvh
-Content-Type: application/pgp-signature; name="signature.asc"
+-- 
+Best regards,
 
------BEGIN PGP SIGNATURE-----
+Javier Martinez Canillas
+Core Platforms
+Red Hat
 
-iHUEABYKAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCZWhTYgAKCRDj7w1vZxhR
-xR1lAP4r5qbIZphWlaJXg8MBeam0E94KuZ0xhLcr5Rfbvkp6PAEAsDIToV9WXxM4
-CUgbJNN3SLGTt1qnWAMytlRRWpzghQ8=
-=hJW+
------END PGP SIGNATURE-----
-
---kkimro66j5g4luvh--
