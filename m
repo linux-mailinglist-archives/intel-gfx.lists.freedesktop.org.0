@@ -1,54 +1,55 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id DA1907FEB33
-	for <lists+intel-gfx@lfdr.de>; Thu, 30 Nov 2023 09:52:32 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id AD5197FEB3F
+	for <lists+intel-gfx@lfdr.de>; Thu, 30 Nov 2023 09:57:19 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8153210E123;
-	Thu, 30 Nov 2023 08:52:28 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5D9D510E123;
+	Thu, 30 Nov 2023 08:57:16 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D5E2710E122;
- Thu, 30 Nov 2023 08:52:26 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.93])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1859E10E123;
+ Thu, 30 Nov 2023 08:57:14 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1701334347; x=1732870347;
+ t=1701334634; x=1732870634;
  h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version:content-transfer-encoding;
- bh=kOfX2UKfvYS4N6aEBG35lNvDQ8QT/RJ9RXUqbEoZd1M=;
- b=buUInluh5/fn2nK3PQ1AXIzKlgjTR/ZEs32VI1TzoXft+9LXHDhRT0ir
- +ILoe4lMkFq3IMQfoAxKl9RBSq12XeiSxBF4V+pJ66/mLyRAUAp3Hnvo4
- rw4rLCuWxNYKuNBsxXuYz6D1T5Vk5zeULCmHra3PByR4P2XHoqgL2HKEg
- 1hUtvjLfm5LtpVqU/d8dFqsPQpu/OtWmaSJ9YoYjsFLES7lOCU6z953A3
- YecDP9vptvy2Sp6M5Fj2NQ0Ru9iyi5/KlyaWGcYTDX1fIVqoDSGDLfPPt
- zF+zTuqM/rJHiUMBwcoOL0AU8t6yPcNb36aEFKSrIW1NtOn1kBTOYiDiN w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10909"; a="11997843"
-X-IronPort-AV: E=Sophos;i="6.04,237,1695711600"; d="scan'208";a="11997843"
-Received: from orsmga004.jf.intel.com ([10.7.209.38])
- by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Nov 2023 00:52:26 -0800
+ message-id:mime-version;
+ bh=akxX0WzkzpZfNYNpwkUkGudJ6IaZE6eqEkh3p5UqZnE=;
+ b=O2vzjGYdCrz8AoOya9tKyBWDHoYyFwJ89z0IHmrOPyo0+FWqP1mvK1f9
+ r7j8wEx1jARWwK+1eTEtHvKVt2aN7vROBiWf0At4d3nsRoRghpYcRjLrw
+ 6JFQOyy0a79qtoFRdbzYN5qctL33EwM2XRcagv0Yzk6wVrjunvoHzdTmJ
+ UC8Zr2wdLYe07+95xshYlRr7A1qoWGkWtoRSOIQZ0ug4eMH+CNEEVoJ54
+ iM5mWHQVTQggrwqv2bXkSZvZDrlQVi0bjwQ6DOqmtjhP6uM+SDfWFlybP
+ AJQuUmgc9pdUD/ersf7jKKqGrCbEqCQ4nCJbKlFoM+PyJQC8DEax3khTq g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10909"; a="390454331"
+X-IronPort-AV: E=Sophos;i="6.04,237,1695711600"; d="scan'208";a="390454331"
+Received: from orviesa001.jf.intel.com ([10.64.159.141])
+ by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 30 Nov 2023 00:57:13 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10909"; a="892747520"
-X-IronPort-AV: E=Sophos;i="6.04,237,1695711600"; d="scan'208";a="892747520"
+X-IronPort-AV: E=Sophos;i="6.04,237,1695711600"; d="scan'208";a="17321552"
 Received: from nemelina-mobl1.ccr.corp.intel.com (HELO localhost)
  ([10.252.60.150])
- by orsmga004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Nov 2023 00:52:20 -0800
-From: Jani Nikula <jani.nikula@intel.com>
-To: Hamza Mahfooz <hamza.mahfooz@amd.com>, dri-devel@lists.freedesktop.org
-In-Reply-To: <72248f22-6337-487a-9979-a0d79e37a9ed@amd.com>
+ by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 30 Nov 2023 00:57:10 -0800
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Patchwork <patchwork@emeril.freedesktop.org>,
+ I915-ci-infra@lists.freedesktop.org
+In-Reply-To: <170131406001.15646.11523146712788253607@emeril.freedesktop.org>
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20231129181219.1237887-1-jani.nikula@intel.com>
- <72248f22-6337-487a-9979-a0d79e37a9ed@amd.com>
-Date: Thu, 30 Nov 2023 10:52:17 +0200
-Message-ID: <874jh362ta.fsf@intel.com>
+References: <20231129140129.699767-1-andriy.shevchenko@linux.intel.com>
+ <170131406001.15646.11523146712788253607@emeril.freedesktop.org>
+Date: Thu, 30 Nov 2023 10:57:07 +0200
+Message-ID: <871qc762l8.fsf@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-Subject: Re: [Intel-gfx] [RFC] drm: enable W=1 warnings by default across
- the subsystem
+Content-Type: text/plain
+Subject: Re: [Intel-gfx] 
+ =?utf-8?b?4pyXIEZpLkNJLkJBVDogZmFpbHVyZSBmb3Igc2Vy?=
+ =?utf-8?q?ies_starting_with_=5Bv1=2C1/1=5D_drm/i915/display=3A_Don=27t_us?=
+ =?utf-8?q?e_=22proxy=22_headers_=28rev2=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,134 +62,224 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Pan@freedesktop.org, Karol Herbst <kherbst@redhat.com>,
- intel-gfx@lists.freedesktop.org, Xinhui <Xinhui.Pan@amd.com>,
- Abhinav Kumar <quic_abhinavk@quicinc.com>, Maxime Ripard <mripard@kernel.org>,
- Nathan Chancellor <nathan@kernel.org>,
- Alex Deucher <alexander.deucher@amd.com>, Danilo Krummrich <dakr@redhat.com>,
- Thomas Zimmermann <tzimmermann@suse.de>,
- Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
- Marijn Suijten <marijn.suijten@somainline.org>,
- Christian =?utf-8?Q?K=C3=B6nig?= <christian.koenig@amd.com>
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, 29 Nov 2023, Hamza Mahfooz <hamza.mahfooz@amd.com> wrote:
-> Cc: Nathan Chancellor <nathan@kernel.org>
+On Thu, 30 Nov 2023, Patchwork <patchwork@emeril.freedesktop.org> wrote:
+> == Series Details ==
 >
-> On 11/29/23 13:12, Jani Nikula wrote:
->> At least the i915 and amd drivers enable a bunch more compiler warnings
->> than the kernel defaults.
->>=20
->> Extend the W=3D1 warnings to the entire drm subsystem by default. Use the
->> copy-pasted warnings from scripts/Makefile.extrawarn with
->> s/KBUILD_CFLAGS/subdir-ccflags-y/ to make it easier to compare and keep
->> up with them in the future.
->>=20
->> This is similar to the approach currently used in i915.
->>=20
->> Some of the -Wextra warnings do need to be disabled, just like in
->> Makefile.extrawarn, but take care to not disable them for W=3D2 or W=3D3
->> builds, depending on the warning.
+> Series: series starting with [v1,1/1] drm/i915/display: Don't use "proxy" headers (rev2)
+> URL   : https://patchwork.freedesktop.org/series/127051/
+> State : failure
 >
-> I think this should go in after drm-misc-next has a clean build (for
-> COMPILE_TEST builds) with this patch applied. Otherwise, it will break a
-> lot of build configs.
+> == Summary ==
+>
+> CI Bug Log - changes from CI_DRM_13951 -> Patchwork_127051v2
+> ====================================================
+>
+> Summary
+> -------
+>
+>   **FAILURE**
+>
+>   Serious unknown changes coming with Patchwork_127051v2 absolutely need to be
+>   verified manually.
+>   
+>   If you think the reported changes have nothing to do with the changes
+>   introduced in Patchwork_127051v2, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them
+>   to document this new failure mode, which will reduce false positives in CI.
+>
+>   External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_127051v2/index.html
+>
+> Participating hosts (36 -> 35)
+> ------------------------------
+>
+>   Additional (2): bat-kbl-2 bat-dg2-9 
+>   Missing    (3): fi-pnv-d510 fi-snb-2520m bat-dg1-5 
+>
+> Possible new issues
+> -------------------
+>
+>   Here are the unknown changes that may have been introduced in Patchwork_127051v2:
+>
+> ### IGT changes ###
+>
+> #### Possible regressions ####
+>
+>   * igt@i915_selftest@live@memory_region:
+>     - bat-jsl-3:          [PASS][1] -> [INCOMPLETE][2]
+>    [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13951/bat-jsl-3/igt@i915_selftest@live@memory_region.html
+>    [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_127051v2/bat-jsl-3/igt@i915_selftest@live@memory_region.html
 
-Oh, I'm absolutely not suggesting this should be merged before known
-warnings have been addressed one way or another. Either by fixing them
-or by disabling said warning in driver local Makefiles, depending on the
-case.
-
-While I'm suggesting this, I obviously (I hope) can't take on fixing all
-the warnings this exposes. One way to scale would be for folks to apply
-this locally, see what it uncovers in their drivers, and fix some.
-
-As an intermediate step we might also apply this to a topic branch in
-drm-tip, so you'd see the warnings when building drm-tip, but not in
-indidual branches or in anything that's merged upstream.
+An #include change can't cause this. Please re-report.
 
 BR,
 Jani.
 
 
->
->>=20
->> Cc: David Airlie <airlied@gmail.com>
->> Cc: Daniel Vetter <daniel@ffwll.ch>
->> Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
->> Cc: Maxime Ripard <mripard@kernel.org>
->> Cc: Thomas Zimmermann <tzimmermann@suse.de>
->> Cc: Alex Deucher <alexander.deucher@amd.com>
->> Cc: Christian K=C3=B6nig <christian.koenig@amd.com>
->> Cc: Pan, Xinhui <Xinhui.Pan@amd.com>
->> Cc: Karol Herbst <kherbst@redhat.com>
->> Cc: Lyude Paul <lyude@redhat.com>
->> Cc: Danilo Krummrich <dakr@redhat.com>
->> Cc: Rob Clark <robdclark@gmail.com>
->> Cc: Abhinav Kumar <quic_abhinavk@quicinc.com>
->> Cc: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
->> Cc: Sean Paul <sean@poorly.run>
->> Cc: Marijn Suijten <marijn.suijten@somainline.org>
->> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
->>=20
->> ---
->>=20
->> With my admittedly limited and very much x86 focused kernel config, I
->> get some -Wunused-but-set-variable and -Wformat-truncation=3D warnings,
->> but nothing we can't handle.
->>=20
->> We could fix them up front, or disable the extra warnings on a per
->> driver basis with a FIXME comment in their respective Makefiles.
->>=20
->> With the experience from i915, I think this would significantly reduce
->> the constant loop of warnings added by people not using W=3D1 and
->> subsequently fixed by people using W=3D1.
->>=20
->> Note: I've Cc'd the maintainers of drm, drm misc and some of the biggest
->> drivers.
->> ---
->>   drivers/gpu/drm/Makefile | 27 +++++++++++++++++++++++++++
->>   1 file changed, 27 insertions(+)
->>=20
->> diff --git a/drivers/gpu/drm/Makefile b/drivers/gpu/drm/Makefile
->> index b4cb0835620a..6939e4ea13d5 100644
->> --- a/drivers/gpu/drm/Makefile
->> +++ b/drivers/gpu/drm/Makefile
->> @@ -5,6 +5,33 @@
->>=20=20=20
->>   CFLAGS-$(CONFIG_DRM_USE_DYNAMIC_DEBUG)	+=3D -DDYNAMIC_DEBUG_MODULE
->>=20=20=20
->> +# Unconditionally enable W=3D1 warnings locally
->> +# --- begin copy-paste W=3D1 warnings from scripts/Makefile.extrawarn
->> +subdir-ccflags-y +=3D -Wextra -Wunused -Wno-unused-parameter
->> +subdir-ccflags-y +=3D -Wmissing-declarations
->> +subdir-ccflags-y +=3D $(call cc-option, -Wrestrict)
->> +subdir-ccflags-y +=3D -Wmissing-format-attribute
->> +subdir-ccflags-y +=3D -Wmissing-prototypes
->> +subdir-ccflags-y +=3D -Wold-style-definition
->> +subdir-ccflags-y +=3D -Wmissing-include-dirs
->> +subdir-ccflags-y +=3D $(call cc-option, -Wunused-but-set-variable)
->> +subdir-ccflags-y +=3D $(call cc-option, -Wunused-const-variable)
->> +subdir-ccflags-y +=3D $(call cc-option, -Wpacked-not-aligned)
->> +subdir-ccflags-y +=3D $(call cc-option, -Wformat-overflow)
->> +subdir-ccflags-y +=3D $(call cc-option, -Wformat-truncation)
->> +subdir-ccflags-y +=3D $(call cc-option, -Wstringop-overflow)
->> +subdir-ccflags-y +=3D $(call cc-option, -Wstringop-truncation)
->> +# The following turn off the warnings enabled by -Wextra
->> +ifeq ($(findstring 2, $(KBUILD_EXTRA_WARN)),)
->> +subdir-ccflags-y +=3D -Wno-missing-field-initializers
->> +subdir-ccflags-y +=3D -Wno-type-limits
->> +subdir-ccflags-y +=3D -Wno-shift-negative-value
->> +endif
->> +ifeq ($(findstring 3, $(KBUILD_EXTRA_WARN)),)
->> +subdir-ccflags-y +=3D -Wno-sign-compare
->> +endif
->> +# --- end copy-paste
->> +
->>   drm-y :=3D \
->>   	drm_aperture.o \
->>   	drm_atomic.o \
 
---=20
+>
+>   
+> Known issues
+> ------------
+>
+>   Here are the changes found in Patchwork_127051v2 that come from known issues:
+>
+> ### IGT changes ###
+>
+> #### Issues hit ####
+>
+>   * igt@fbdev@info:
+>     - bat-kbl-2:          NOTRUN -> [SKIP][3] ([fdo#109271] / [i915#1849])
+>    [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_127051v2/bat-kbl-2/igt@fbdev@info.html
+>
+>   * igt@gem_lmem_swapping@parallel-random-engines:
+>     - bat-kbl-2:          NOTRUN -> [SKIP][4] ([fdo#109271]) +20 other tests skip
+>    [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_127051v2/bat-kbl-2/igt@gem_lmem_swapping@parallel-random-engines.html
+>
+>   * igt@gem_mmap@basic:
+>     - bat-dg2-9:          NOTRUN -> [SKIP][5] ([i915#4083])
+>    [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_127051v2/bat-dg2-9/igt@gem_mmap@basic.html
+>
+>   * igt@gem_mmap_gtt@basic:
+>     - bat-dg2-9:          NOTRUN -> [SKIP][6] ([i915#4077]) +2 other tests skip
+>    [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_127051v2/bat-dg2-9/igt@gem_mmap_gtt@basic.html
+>
+>   * igt@gem_render_tiled_blits@basic:
+>     - bat-dg2-9:          NOTRUN -> [SKIP][7] ([i915#4079]) +1 other test skip
+>    [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_127051v2/bat-dg2-9/igt@gem_render_tiled_blits@basic.html
+>
+>   * igt@i915_hangman@error-state-basic:
+>     - bat-mtlp-6:         [PASS][8] -> [ABORT][9] ([i915#9414])
+>    [8]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13951/bat-mtlp-6/igt@i915_hangman@error-state-basic.html
+>    [9]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_127051v2/bat-mtlp-6/igt@i915_hangman@error-state-basic.html
+>
+>   * igt@i915_pm_rps@basic-api:
+>     - bat-dg2-9:          NOTRUN -> [SKIP][10] ([i915#6621])
+>    [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_127051v2/bat-dg2-9/igt@i915_pm_rps@basic-api.html
+>
+>   * igt@kms_addfb_basic@addfb25-y-tiled-small-legacy:
+>     - bat-dg2-9:          NOTRUN -> [SKIP][11] ([i915#5190])
+>    [11]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_127051v2/bat-dg2-9/igt@kms_addfb_basic@addfb25-y-tiled-small-legacy.html
+>
+>   * igt@kms_addfb_basic@basic-y-tiled-legacy:
+>     - bat-dg2-9:          NOTRUN -> [SKIP][12] ([i915#4215] / [i915#5190])
+>    [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_127051v2/bat-dg2-9/igt@kms_addfb_basic@basic-y-tiled-legacy.html
+>
+>   * igt@kms_addfb_basic@framebuffer-vs-set-tiling:
+>     - bat-dg2-9:          NOTRUN -> [SKIP][13] ([i915#4212]) +6 other tests skip
+>    [13]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_127051v2/bat-dg2-9/igt@kms_addfb_basic@framebuffer-vs-set-tiling.html
+>
+>   * igt@kms_addfb_basic@tile-pitch-mismatch:
+>     - bat-dg2-9:          NOTRUN -> [SKIP][14] ([i915#4212] / [i915#5608])
+>    [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_127051v2/bat-dg2-9/igt@kms_addfb_basic@tile-pitch-mismatch.html
+>
+>   * igt@kms_cursor_legacy@basic-busy-flip-before-cursor-legacy:
+>     - bat-dg2-9:          NOTRUN -> [SKIP][15] ([i915#4103] / [i915#4213] / [i915#5608]) +1 other test skip
+>    [15]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_127051v2/bat-dg2-9/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-legacy.html
+>
+>   * igt@kms_force_connector_basic@force-load-detect:
+>     - bat-dg2-9:          NOTRUN -> [SKIP][16] ([fdo#109285])
+>    [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_127051v2/bat-dg2-9/igt@kms_force_connector_basic@force-load-detect.html
+>
+>   * igt@kms_force_connector_basic@prune-stale-modes:
+>     - bat-dg2-9:          NOTRUN -> [SKIP][17] ([i915#5274])
+>    [17]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_127051v2/bat-dg2-9/igt@kms_force_connector_basic@prune-stale-modes.html
+>
+>   * igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence:
+>     - bat-dg2-11:         NOTRUN -> [SKIP][18] ([i915#1845] / [i915#9197]) +3 other tests skip
+>    [18]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_127051v2/bat-dg2-11/igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence.html
+>
+>   * igt@kms_pipe_crc_basic@read-crc-frame-sequence:
+>     - bat-kbl-2:          NOTRUN -> [SKIP][19] ([fdo#109271] / [i915#1845]) +14 other tests skip
+>    [19]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_127051v2/bat-kbl-2/igt@kms_pipe_crc_basic@read-crc-frame-sequence.html
+>
+>   * igt@kms_setmode@basic-clone-single-crtc:
+>     - bat-dg2-9:          NOTRUN -> [SKIP][20] ([i915#3555] / [i915#4098])
+>    [20]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_127051v2/bat-dg2-9/igt@kms_setmode@basic-clone-single-crtc.html
+>
+>   * igt@prime_vgem@basic-fence-flip:
+>     - bat-dg2-9:          NOTRUN -> [SKIP][21] ([i915#3708])
+>    [21]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_127051v2/bat-dg2-9/igt@prime_vgem@basic-fence-flip.html
+>
+>   * igt@prime_vgem@basic-fence-mmap:
+>     - bat-dg2-9:          NOTRUN -> [SKIP][22] ([i915#3708] / [i915#4077]) +1 other test skip
+>    [22]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_127051v2/bat-dg2-9/igt@prime_vgem@basic-fence-mmap.html
+>
+>   * igt@prime_vgem@basic-write:
+>     - bat-dg2-9:          NOTRUN -> [SKIP][23] ([i915#3291] / [i915#3708]) +2 other tests skip
+>    [23]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_127051v2/bat-dg2-9/igt@prime_vgem@basic-write.html
+>
+>   
+> #### Possible fixes ####
+>
+>   * igt@i915_selftest@live@gt_heartbeat:
+>     - fi-apl-guc:         [DMESG-FAIL][24] ([i915#5334]) -> [PASS][25]
+>    [24]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13951/fi-apl-guc/igt@i915_selftest@live@gt_heartbeat.html
+>    [25]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_127051v2/fi-apl-guc/igt@i915_selftest@live@gt_heartbeat.html
+>
+>   * igt@kms_hdmi_inject@inject-audio:
+>     - fi-kbl-guc:         [FAIL][26] ([IGT#3]) -> [PASS][27]
+>    [26]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13951/fi-kbl-guc/igt@kms_hdmi_inject@inject-audio.html
+>    [27]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_127051v2/fi-kbl-guc/igt@kms_hdmi_inject@inject-audio.html
+>
+>   * igt@kms_pipe_crc_basic@read-crc-frame-sequence@pipe-d-edp-1:
+>     - bat-rplp-1:         [ABORT][28] ([i915#8668]) -> [PASS][29]
+>    [28]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13951/bat-rplp-1/igt@kms_pipe_crc_basic@read-crc-frame-sequence@pipe-d-edp-1.html
+>    [29]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_127051v2/bat-rplp-1/igt@kms_pipe_crc_basic@read-crc-frame-sequence@pipe-d-edp-1.html
+>
+>   
+>   {name}: This element is suppressed. This means it is ignored when computing
+>           the status of the difference (SUCCESS, WARNING, or FAILURE).
+>
+>   [IGT#3]: https://gitlab.freedesktop.org/drm/igt-gpu-tools/issues/3
+>   [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
+>   [fdo#109285]: https://bugs.freedesktop.org/show_bug.cgi?id=109285
+>   [i915#1845]: https://gitlab.freedesktop.org/drm/intel/issues/1845
+>   [i915#1849]: https://gitlab.freedesktop.org/drm/intel/issues/1849
+>   [i915#3291]: https://gitlab.freedesktop.org/drm/intel/issues/3291
+>   [i915#3555]: https://gitlab.freedesktop.org/drm/intel/issues/3555
+>   [i915#3708]: https://gitlab.freedesktop.org/drm/intel/issues/3708
+>   [i915#4077]: https://gitlab.freedesktop.org/drm/intel/issues/4077
+>   [i915#4079]: https://gitlab.freedesktop.org/drm/intel/issues/4079
+>   [i915#4083]: https://gitlab.freedesktop.org/drm/intel/issues/4083
+>   [i915#4098]: https://gitlab.freedesktop.org/drm/intel/issues/4098
+>   [i915#4103]: https://gitlab.freedesktop.org/drm/intel/issues/4103
+>   [i915#4212]: https://gitlab.freedesktop.org/drm/intel/issues/4212
+>   [i915#4213]: https://gitlab.freedesktop.org/drm/intel/issues/4213
+>   [i915#4215]: https://gitlab.freedesktop.org/drm/intel/issues/4215
+>   [i915#5190]: https://gitlab.freedesktop.org/drm/intel/issues/5190
+>   [i915#5274]: https://gitlab.freedesktop.org/drm/intel/issues/5274
+>   [i915#5334]: https://gitlab.freedesktop.org/drm/intel/issues/5334
+>   [i915#5354]: https://gitlab.freedesktop.org/drm/intel/issues/5354
+>   [i915#5608]: https://gitlab.freedesktop.org/drm/intel/issues/5608
+>   [i915#6621]: https://gitlab.freedesktop.org/drm/intel/issues/6621
+>   [i915#8668]: https://gitlab.freedesktop.org/drm/intel/issues/8668
+>   [i915#9197]: https://gitlab.freedesktop.org/drm/intel/issues/9197
+>   [i915#9414]: https://gitlab.freedesktop.org/drm/intel/issues/9414
+>   [i915#9673]: https://gitlab.freedesktop.org/drm/intel/issues/9673
+>   [i915#9736]: https://gitlab.freedesktop.org/drm/intel/issues/9736
+>
+>
+> Build changes
+> -------------
+>
+>   * Linux: CI_DRM_13951 -> Patchwork_127051v2
+>
+>   CI-20190529: 20190529
+>   CI_DRM_13951: 7bd342323d5bd405b02fd21cd78f157f363278ac @ git://anongit.freedesktop.org/gfx-ci/linux
+>   IGT_7610: 7610
+>   Patchwork_127051v2: 7bd342323d5bd405b02fd21cd78f157f363278ac @ git://anongit.freedesktop.org/gfx-ci/linux
+>
+>
+> ### Linux commits
+>
+> ed6314692893 drm/i915/display: Don't use "proxy" headers
+>
+> == Logs ==
+>
+> For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_127051v2/index.html
+
+-- 
 Jani Nikula, Intel
