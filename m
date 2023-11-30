@@ -2,153 +2,122 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id C74217FEF13
-	for <lists+intel-gfx@lfdr.de>; Thu, 30 Nov 2023 13:26:42 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 992F37FEFBD
+	for <lists+intel-gfx@lfdr.de>; Thu, 30 Nov 2023 14:05:48 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3B4EA10E6F8;
-	Thu, 30 Nov 2023 12:26:41 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D907910E6FF;
+	Thu, 30 Nov 2023 13:05:38 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 817B510E6F7;
- Thu, 30 Nov 2023 12:26:38 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1701347198; x=1732883198;
- h=from:to:cc:subject:date:message-id:references:
- in-reply-to:content-id:content-transfer-encoding: mime-version;
- bh=aHteMRqDle7H+9qLsuwPsgZYI99rXqjcTo3WPu16USE=;
- b=dJyXkSnqQ1aAT2lCx7DTBDRj7JnBITsV9/dYXZgAJhshWobuu2xRPDBp
- BeGHTKWY5NeBgiZUCUgNRRgUzIeEaW5jcjjiYnzrIRzn/8RuL5zR+BV+8
- M0kYVJ5YedYcua2SY+z9TCn3AA890OwAETxEChV3len9gFi/MM7dBxUY6
- CcjrJspOfb55SvoQCq5Xsr4QXzcaibySyRhmoGsi2dnhVZxExGmYIMDSx
- H5kI7kbJ2mXd1fbjyUsY80HRP3PmO7mivqlVvwCEezM3/48B2HLibYdNw
- 7Y0XD6U8kR9+IwZ0j/R+qTU0YQ0aF/Q7terg3z9wLyGwOXOdQrP4LruAd A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10909"; a="14866332"
-X-IronPort-AV: E=Sophos;i="6.04,239,1695711600"; d="scan'208";a="14866332"
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Nov 2023 04:26:37 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10909"; a="798269273"
-X-IronPort-AV: E=Sophos;i="6.04,239,1695711600"; d="scan'208";a="798269273"
-Received: from fmsmsx603.amr.corp.intel.com ([10.18.126.83])
- by orsmga008.jf.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
- 30 Nov 2023 04:26:37 -0800
-Received: from fmsmsx610.amr.corp.intel.com (10.18.126.90) by
- fmsmsx603.amr.corp.intel.com (10.18.126.83) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.34; Thu, 30 Nov 2023 04:26:36 -0800
-Received: from fmsedg601.ED.cps.intel.com (10.1.192.135) by
- fmsmsx610.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.34 via Frontend Transport; Thu, 30 Nov 2023 04:26:36 -0800
-Received: from NAM11-BN8-obe.outbound.protection.outlook.com (104.47.58.168)
- by edgegateway.intel.com (192.55.55.70) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.34; Thu, 30 Nov 2023 04:26:36 -0800
+Received: from NAM10-MW2-obe.outbound.protection.outlook.com
+ (mail-mw2nam10on20602.outbound.protection.outlook.com
+ [IPv6:2a01:111:f400:7e89::602])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E78CD10E14D;
+ Thu, 30 Nov 2023 13:05:35 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=PMmGM2y6VVRW6BDS4dXj9GZcbGtQWvuTSHd9aezp8v/fnMpesDGcuEvsmR3hdKFLWKb1wPvdFddeLzlnK67ua9RY5rgBicxpUyHpH9VDGtvRsvwOH8avXiLS/CdkE4gggYAh937L0zZlziTdr4ViPO2EY08SHDd35E0WCEwMZmEWRfnMJV0YigOcI0uX19rR6pjMktbXUT9fTNjQkE3Ny+Dq5WZuxfVrebrMO9VVhs2Qq1yES9cq0hEhZFLp+rAaL//aC/ehAkZ78xU/igRz/XQCxgD2tgvz+eLJwqxiHE3JVTYJj3LLYDiEFjBdKNjZIy2nJaJ6DoPlzl+wi/wtVw==
+ b=elLFgo4ddWiNuoUaFf/1vAJ8QL+tTC3jf5hwtK2tCbQYy7MAJ+fQ7iMZCRTvTpTKOBMWgRTsczc9kRBL3AL2JC3BUjZG+Z8vtryRtekcQuCOTLAAULiY1HolzjA8gy9q6XEtQAYI9GEY7tF3+PNwGhdJNLkhcNtrrSBwjvtpf6gNI6BJprju0zgaspNGznwO9jnNt9nqOSaths+QGeS1uPxKzSiXMv87sOZfpI/t1sv0YaQ+kH1u0wZWXvIM2nGgeKA/XizFnFN/G1jJLGOMoFk1YLjLsncTAWJ3cayLSo4hgVY7FPk86uUTbQSA9H0Ui56ZiEHy2aMRVW06ngTwGQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=aHteMRqDle7H+9qLsuwPsgZYI99rXqjcTo3WPu16USE=;
- b=SLzh3Apjis/uIlnP059rVIFjFr/zBfn8Jx9piL+WCzXV0IHBBxzPczBuMr+dgwRe3n/ruTcyxWYFOXGlubsZXe++Pm89XRmv9lpaipBVeraMXhNjDkZ+6sUc6GfFkdYM4qdJdkc23GWSKgYlMQcx18mKSleSgLvyyM5pQu9929gSzs4nCWsvBqhH2GSurdrv+LIZfKjdKA8eyfpzhuHUeH/VJ7uMc6xMkHQDO8k/iaoDxFV9xVPH4Vml3bXIFI//dSqpYXCATVuiedNwKbOomvbIdwTsOQSGXJQcah0zc0l78UYoz7iz4MpcAo72rXokDsA3kN59ETQlWefA5Gj1Pg==
+ bh=m5ljo+I4GHSfI0eBrQN+X5dS9ikxE8htnu2s35i6yNc=;
+ b=Wm9rOTLyanD8BvqGNxB1KLHeyY5v5h+1Xaf7x/cMmrw/fXiUrs/rLd5ZGjsIUKgAapaK6CoF/LnOW4tSvEsySHjPvbsoJpTz0XzV31KoSovmhQmXfqcGAabE9NSEWLu1RdRzvIeIrCpT0LLj1g2we4uRr4WPahAN+/2YdWojAbcvGXxZV0+EmB9aLl1J6/kUj0L7c4ZKHybKkS3Yr1FO9iL1svbX484FjCHYGnH5+e0P/BYD8u50I56IySRWFICZd/S+rsuo9rfF5EGVqdshQvaGLqKS6wFCov9TONIkOsf+0fidgVPTrCdktZPh8EOYbrcE9mR4Dbjp5dgYxJyWVA==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Received: from DS0PR11MB7382.namprd11.prod.outlook.com (2603:10b6:8:131::13)
- by SJ0PR11MB4798.namprd11.prod.outlook.com (2603:10b6:a03:2d5::12) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7046.22; Thu, 30 Nov
- 2023 12:26:34 +0000
-Received: from DS0PR11MB7382.namprd11.prod.outlook.com
- ([fe80::b043:8f67:3566:67ee]) by DS0PR11MB7382.namprd11.prod.outlook.com
- ([fe80::b043:8f67:3566:67ee%5]) with mapi id 15.20.7046.024; Thu, 30 Nov 2023
- 12:26:34 +0000
-From: "Coelho, Luciano" <luciano.coelho@intel.com>
-To: "tvrtko.ursulin@linux.intel.com" <tvrtko.ursulin@linux.intel.com>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
-Thread-Topic: [Intel-gfx] [PATCH v6] drm/i915: handle uncore spinlock when not
- available
-Thread-Index: AQHaI4fXkUmKET9ogkCwzo2MkOxT3LCSydWA
-Date: Thu, 30 Nov 2023 12:26:33 +0000
-Message-ID: <c579c861463fba1e24285c034d60f14aeff6d3df.camel@intel.com>
-References: <20231130113505.1321348-1-luciano.coelho@intel.com>
- <812728f3-15d2-4327-aebb-79a032d3a2ce@linux.intel.com>
-In-Reply-To: <812728f3-15d2-4327-aebb-79a032d3a2ce@linux.intel.com>
-Accept-Language: en-US
+ smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
+ header.d=amd.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=m5ljo+I4GHSfI0eBrQN+X5dS9ikxE8htnu2s35i6yNc=;
+ b=28d5QJ74xqceDD9Oqe/WBA0st9aJb2a8pNS4LHi6FUNpiNWXkM8JZv/oHIk1c+E4RQaYvUxguzfqAfXkH7SGhHCoo66NmR6KvQSj0gbXfvzhxm9h43DgPOhjrS1K6UOXw3A33mTopCp8eZR0herDZUw2eInyvjKp7toCvYekq7A=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=amd.com;
+Received: from BN8PR12MB3587.namprd12.prod.outlook.com (2603:10b6:408:43::13)
+ by BN9PR12MB5337.namprd12.prod.outlook.com (2603:10b6:408:102::9)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7046.26; Thu, 30 Nov
+ 2023 13:05:31 +0000
+Received: from BN8PR12MB3587.namprd12.prod.outlook.com
+ ([fe80::ca80:8f1c:c11:ded3]) by BN8PR12MB3587.namprd12.prod.outlook.com
+ ([fe80::ca80:8f1c:c11:ded3%7]) with mapi id 15.20.7046.023; Thu, 30 Nov 2023
+ 13:05:31 +0000
+Message-ID: <0973526a-ea8e-4a1d-8684-2d49a772c04a@amd.com>
+Date: Thu, 30 Nov 2023 14:05:23 +0100
+User-Agent: Mozilla Thunderbird
 Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-user-agent: Evolution 3.46.4-2 
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: DS0PR11MB7382:EE_|SJ0PR11MB4798:EE_
-x-ms-office365-filtering-correlation-id: 5732fcd5-42aa-47b1-72fc-08dbf19f96d2
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: Pj3b4g54Hyi56/Z7oJrY/dYrQuqsfcdFzg4ZKe5D4fy55gZTVoyJml3n9GsyPW7HFbiA71y/M/EXrbO9g0YQnhEBWg7dd4pIuvCUaquaen0gXUB2yfCH18a+E2Uv9e8Owqboq3dbbs9zlPDLTLERNfESEVKzCGvol0K8uXxIwuLF2iryv7EAb4Jcbq+dzyCTWC4T/qxcYMMtBMntMKrcJtcopNangAzgIZ7A38Es+7Gt2SMNcg02cwvsk9mxyQxOIEpodVrYINw8lwKG/NTylR6zhft4AMBlOnop0XFY7nqBusjthHWF+GQMW92W+ijN7QmjuPD98nDnzUroqLuv+tOpcPdohH/1agUG6MGyncoC/Zzz+A7frKjXGe3+UMiqftxbtQSSOMCqXr6XOeRVYZPF6/dY0UX9b4ImeQmckn18ve3IcPTLt0da7pFiT+dmUpnwh9lvhBDYhScuhApt06eMPN+rHMj0impigwp8JEEYSHRK3jvG0+U2mHK21euxqsmfyDdZcZJkBATxpDSusrS12gzdl8R6RnuDLCwadnTy6MfX6b1pInUVYtnsi2cnnTwUS1UnCOXGOAPSjjgYcZLQqAHiLnz6MvstI77437bag7lLRn6XkLKxNwWvswgz
-x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:DS0PR11MB7382.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230031)(136003)(39860400002)(366004)(346002)(376002)(396003)(230922051799003)(1800799012)(64100799003)(186009)(451199024)(38070700009)(122000001)(41300700001)(5660300002)(4001150100001)(82960400001)(2906002)(86362001)(83380400001)(53546011)(6512007)(71200400001)(38100700002)(26005)(2616005)(6506007)(66556008)(36756003)(76116006)(91956017)(110136005)(6486002)(66446008)(478600001)(64756008)(316002)(54906003)(66946007)(8676002)(66476007)(4326008)(8936002);
- DIR:OUT; SFP:1102; 
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?utf-8?B?NURHS3RkRFdpNEtrZ2RjY1YwU1huY01XOXJIeHFlOEJaTTBNOXV2OVBLaDhi?=
- =?utf-8?B?OWgzQ09maG5PMGdHVVlUcm5xMWU3V3BYODJRdkRjbklsV0F1VXBDVXBXK3Ro?=
- =?utf-8?B?RnhLUWY5R1dHTld6cmhiekNGQjl5bmRWM0Nib3lPT3JISUd6K3BaUktxV1lX?=
- =?utf-8?B?VjJRY0E0cnRERmZpRGNNMzd5dElRSHJCdWNwSkxBcjh1WGZqaVNjU1grOXE2?=
- =?utf-8?B?WDFxT3IzakhBN1FDNTJ4eDlTTFgxNWcycjQxU21QUUhpQ2tva2swUGhDYnNB?=
- =?utf-8?B?SHZKOTg3YktMS1lUWGVZYjRERm9lR2JwUXBUa1dOZTVXOWNwR1hMTHhDc1VJ?=
- =?utf-8?B?VTBGb2xNQ2RZMko1Z1ZDWlhRaW5reEtySXI4Z1hTU0JBZDhqMjA4WVZ5V3lz?=
- =?utf-8?B?SUdNenpjd29Jd043WG5VNUFpYzd4WEFmOE9za1lJU0RMTHNpNnVOUm1DVXFL?=
- =?utf-8?B?SjNHTWljMGs0YnlUUUNZREl5cEFlbGJOU0h5YUxxTmFYVGRWam5mazNRMHU2?=
- =?utf-8?B?V3VoMHVJazJFSGhQdS9Dd3RtTzdnV3Y0ZWVrdWhIS2RvQTR6a0phVGg0S2Zj?=
- =?utf-8?B?Z0VUc3UwakdocUxVeGh3YWxUcHEzYXNNdjJSSXg0bjN0T1NBbDhVUTluNEJs?=
- =?utf-8?B?R21ZTTNWUTVVQXU1SWRHMmo0Mk95SURrbHhpVUxmQkNNOHpQUlU5Y1p3MkZ5?=
- =?utf-8?B?eFhTZ0lmVmtMMC9icmRpM0dGU1VDUmhPRVN2ZC83TWhYVUcvVzdDUWcyaWFE?=
- =?utf-8?B?ZjV1WnpHbkhCOFdHTXltcmdxNnFUdEhFOVQvQVdRZ2Y5TzBtOThkQ2lyQnND?=
- =?utf-8?B?elZXWE8vUEdSTXZhMnZNbk1UU3UvYTJVMnBYelEyczFhUXZoOXNRbXBXOEhP?=
- =?utf-8?B?S2o1dW9PeUlHUjh3RnlEQUJNVEtqOU4wbGZUNVVXUEhjYlZnTERBajlBN25n?=
- =?utf-8?B?a3JtU2wwZStlWWJMS1A4WTdrdktyajF6dGk3VXY2R2dHUFVHdkQwQnRFN0tU?=
- =?utf-8?B?QUZwQzEwa3ROV2tBckxpVkhaci9LLzg0Z0loVzU5dVAzZGkzbHVHN2ptOEpp?=
- =?utf-8?B?Vkt1MmRBSGdITnNGZHBPYUw0dVBVRFRpRVV1d09MOHNDVUljejZ2YzYrdFYy?=
- =?utf-8?B?QWpDZG1CYm5tVjJkVXNPRDRIdVdJSmhYcG1HUDFxbHFKd0NuNFRudk45RXMx?=
- =?utf-8?B?dFVIMDhEQ2hneUltSVMvU09aakpMQU8yZ2pVc1VucFNFMXdZYkJweC9QY0hB?=
- =?utf-8?B?YzI0KzNEMExuOUJab0JMOVRNU0YybGxKU0ZBOUpFemNEdklONGNzVk9FMm1v?=
- =?utf-8?B?Z1JkUU1STjRRNkdobkgxY3ZvWmE1V2JnajExdDZWS2Z2QWhOaDhqZ2N3Vm91?=
- =?utf-8?B?RExkUHJhQWMyRktDZno5OWN5WFQyK1FQZ3ZDbWNCanlYcWp4bVo5a21hWjhR?=
- =?utf-8?B?UHlVR2JPVUJOQXZjZGVULzVseUNMNXZLaHY4N01TUlgzYWxKdTl3aW5kOUFZ?=
- =?utf-8?B?V3UzSllCelQxSjJKQVlGdDZxWk5hbHpKaVFGa3NSdmR4R0p2UzFGTU1FejM4?=
- =?utf-8?B?TlRVV0hWTVRJZnQzNW1vZUtHditad1FDL3RKT0RtVW9ZMU1oMVhxLytFdXFR?=
- =?utf-8?B?VVFEejdhM0JXVUN5Z1FmR0dMdkdUaDhYMm02dTVTSDhYUU84Q0l3QW0vR2li?=
- =?utf-8?B?bWlHSThEREZZM1J4ZXEzdVA5WDdkbHFrejBJMDNCNW5UcW1rN3RSTTBTdjZK?=
- =?utf-8?B?bjVzdkdXcVRNN0xGbkM4d2JxUHVQTEhzejZFRGxUeEtaZ2F2d3pCWEJuTWVr?=
- =?utf-8?B?YTA2cW41Qi9SL3ZhVHRZZnhvSXAxaFl2V3c0NStwbFlSUWE5Yk12VTViTlN2?=
- =?utf-8?B?NURnc0VIV2h4bExvZkE0dGEwb0J4cnhqVlVTZEdXWE5NQ1BpZWJ1UE5yTTdU?=
- =?utf-8?B?dkN3NWFzb1lDV2Y1aWkvWEdFNk8rMHhEa3RUL0ViN0QzcG5nd2cwaEtRT0o0?=
- =?utf-8?B?ajlVOEFGbkJNNXlBMy8vRFJHbUUrNUpUVStzVmp0RCtMWFFvUnJGYlJLLytK?=
- =?utf-8?B?YXVSWUJqT3NTSXJQeGZYa05ET0JxOU5UNlZTMkFxcHd0Y204Q1RoeEsvZ24v?=
- =?utf-8?B?b2xGZ21UN3RaZVZTT1g1cVFLR2plczc0SE5yTG1hQ2xlejJJWUoyWDdiZnpW?=
- =?utf-8?B?RHc9PQ==?=
-Content-Type: text/plain; charset="utf-8"
-Content-ID: <11045AD6F7FD4446A670498794AE2D22@namprd11.prod.outlook.com>
-Content-Transfer-Encoding: base64
+To: zhuweixi <weixi.zhu@huawei.com>, Dave Airlie <airlied@gmail.com>
+References: <20231128125025.4449-1-weixi.zhu@huawei.com>
+ <9308a79d-e312-4e6d-98fe-75dc6d0fbeda@amd.com>
+ <CAPM=9tx-d-Au_bjX0vYxv6OwqiSjmbbMC7ebWpTsQgFNddWDuw@mail.gmail.com>
+ <a07fd33c6f9e44418c528de06f89707e@huawei.com>
+ <8b3673c7-d0b9-4509-938f-eb8d4f158367@amd.com>
+ <6f5d849a16084f68a2e24a7810eac433@huawei.com>
+From: =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>
+In-Reply-To: <6f5d849a16084f68a2e24a7810eac433@huawei.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: FR3P281CA0155.DEUP281.PROD.OUTLOOK.COM
+ (2603:10a6:d10:a2::16) To BN8PR12MB3587.namprd12.prod.outlook.com
+ (2603:10b6:408:43::13)
 MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: BN8PR12MB3587:EE_|BN9PR12MB5337:EE_
+X-MS-Office365-Filtering-Correlation-Id: f9f93a74-d7b1-477f-4e66-08dbf1a50830
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: tpWo7ozQ2bLWVz2eBuVedNolfIBExpagbNoPlOc/mb8t8Dqvtkz+YqyoBYeet76QWT2VfQxbcXde2ztWzCU5vFgUVxcvmDhMBWZZX8ZM3O50yfWdKHUkXuyIswZvm7yADKXS45VGWS0TvjQJvltwOaHWH7gdOShSIKY97l5P/I0As8vc/fww5SQecbBIrqXqwcHpSz7nNG3OeLT6hhkZwLP4cGctF7m48QCHTNSd6o3zLCbeBG6Z+sUj7AYaMoLo/SlfNHiOUyLVwLqkMyEC1VHBuyUVO4JuiIQAHLWRYCPd+cZ2496eGnKntb/3s8gN1Ytn3n+l3Fjs8UhbQ7TtlUv43l0CuvoW5MY2xPp02mZ1OPctY8mm3UMNj8sVd5rG0YwfZCvUziJlGU5zHlmbqmrti6G29Yp7Z9kKFses8+3GKDo0zuqp6lmzHimiI1AKOMXuze2SWBYXRyr+T+r8wmufMPd2LfrJlAGe+SeeghZVokeiFsdLk8cHDWIXnbpxqG35Ud7LDdRtdgwmvgTKSFVsuX3ik/8/iUaXhI/b1dpwl0H+mh8hnngryyEZ6ZwMwzmWdCaD3PtW+E71jjuGtcRmu3sE3HaukMTvTpiVqs4taJ9mFdNa4wT0kvKt2q4x6cCpRew6qzdQCn3P6eev31Uv0cUCxFdq2zqFVswd+UJc2aZe6Uww5BCgba9/XZJqDs6j96ShFqP/nhrcuyFOAA==
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:BN8PR12MB3587.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230031)(396003)(346002)(136003)(376002)(39860400002)(366004)(230173577357003)(230922051799003)(230273577357003)(64100799003)(451199024)(1800799012)(186009)(31686004)(7416002)(36756003)(2906002)(41300700001)(5660300002)(30864003)(86362001)(83380400001)(6666004)(6512007)(53546011)(66574015)(38100700002)(26005)(6506007)(2616005)(45080400002)(478600001)(6486002)(966005)(110136005)(66946007)(4326008)(8676002)(8936002)(54906003)(66476007)(66556008)(316002)(31696002)(45980500001)(43740500002);
+ DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?c3EwemF5ajBHYmg4SWMvK0IwZk5sZlJpajdJaWJINTg3K1VpUzlwZW5yd1Zk?=
+ =?utf-8?B?R1hmVUYrSFlTcElScUFBelhUUGxpcVZWMFBuMUF0bnpIOEVFWnFabGEzUVJl?=
+ =?utf-8?B?QjVPT0RXUUVXWGV2N2pXN29BYjZrSFlzOSt3K3ZLenBpVHBUdE9pbWplcUJk?=
+ =?utf-8?B?UUlCVDdFejlIWlR6aTRIdGs4Q1QyZ2ZBdnVSSngySEtEcVRRSmlBelM0YVAz?=
+ =?utf-8?B?cmtDd015eXJtWE1yOUllVGNwTVUrd1B4RTRiZDhvZWhoQ2dVQ0tmd0hzTGpU?=
+ =?utf-8?B?cUpmcVRDSmJSK3dZTVBhS1g5eVZvT3F3dGZnN3lUdkRrNnkrR1VEcWlEUWx0?=
+ =?utf-8?B?b0F2eENITE9Ta2dmT2pQWmxTbWJlOGU1aDhyZ0JiOGp0L3ZsZlpWS3R4V1lD?=
+ =?utf-8?B?Vzh6bFZvZ3hRbkRKa1FvSEtHaXlUSENMV3dMb3dwb3VqdVRwVzZqeWJPaEpF?=
+ =?utf-8?B?N1pjbGxZRTVJaCtRRXJScHcrQ3JYbnVVVi93ZHV4NFp5cjNiUWpRMStyOURG?=
+ =?utf-8?B?c2V5NFZjaC9vdjlNR0dHNmJxYjhVbkVVb1gwcTNEMFJUSjRVS3lucVVETnZy?=
+ =?utf-8?B?QWdhM2pnb25ibWNiWkV0TTFKTzhqbkpUQ1lOQlJRMTNmWHUvdXgvaHlJK0lZ?=
+ =?utf-8?B?VVhlQWY0UVlpWHgrU2Z6UUQyaTd2NG5JQ2dscngwd0ZSTFV2ZGRoeURKRUdv?=
+ =?utf-8?B?cExuQzMyZGZ6OGJkK3pkc0pZenBaT1ltNHBiSmJaUTJKaGtLQjAwclFEYlpn?=
+ =?utf-8?B?ZTFCVUVEdTZkNFJqKzd4Umh4a3NMdkxkRGo1azNJWHVrSFpFajVOZUFWTUtD?=
+ =?utf-8?B?aTkzODVxcjZjeHpCNmt5bHdxWXZDZFVFMTc4WVVlOGs5M2NtaCs2V2VGaTNm?=
+ =?utf-8?B?d2FobFJGemd0eUlXeGlOVE9jZEFhWE81Rm9jeUdMQ1NBaVRyMkFYZXRFa2g5?=
+ =?utf-8?B?cGNCdG9zY3VzcVJqRVAwU085ZE0yb0I3MW1DUkF1OVVKR1hMSmVST0FFNnN4?=
+ =?utf-8?B?MGxSbEV6Rm9ndFJGaXFJSW90czl4c2c2U0pZSUluWSs3UmpIajRvOWNtOHNG?=
+ =?utf-8?B?a2pta1Z4ZFZvR1ZobzdycXdGeHoveFp1NVBvOXQ3QlJ2OGdkZHN1MEpOMmJy?=
+ =?utf-8?B?UFZiRUdLVHBoMnhIMUpuUDlTd01ZVWlVWHlQNW1Kdm5NWjd0K2Q5OG14Y2Jo?=
+ =?utf-8?B?UWZNMk11WWtuUGlNZytTQ3MyZTJ5c1QwZFlhaDFVcXFwUm4wbTErNnRYUk9z?=
+ =?utf-8?B?WVRmRXljNlJaWXE5Z05PWkl2UmY1b0tCbEszMGhsSHJKL05RaDZKbU5lbjlV?=
+ =?utf-8?B?OTlRd2YrWE5hTlF4ZDBRalFBd3hUV3pWUnBCRXAwbVhPWC9aYk1iTHl2T2hY?=
+ =?utf-8?B?KzBqT0xlMHZnaTJNMnE2QzliMUYydjYwWDNhZ3Z0Vm5YNXhGK1BUb0V3cFI5?=
+ =?utf-8?B?TjZNNGV3RUtyak9QZnRGTVlVR1JlK04rdHNMd29Xd3FtcnBtenJ2Tmo0QWdR?=
+ =?utf-8?B?b0l5R2trZXl6MEszaHlBbjRUZXlYZ0VocTAxR2pSQnZQNCtaaUZ0MzNsMVh2?=
+ =?utf-8?B?TFhIQm4rdXV5Tk40MmtoTzk3RWFIZmxkVHp6NjZ3eHkyMVJXYmdDVm9BYUVj?=
+ =?utf-8?B?d3pvdXFWd3VvSTZwQ1N5UDlJN3lyZE84dVBzeS9DbVkyV3JZTHJLWjd5Ymx3?=
+ =?utf-8?B?bnJUWmNMTkhmNHM3blhVQ3ROajhxZmptaVNKVHRCOUs0Mko3dVF1M1RBM2lt?=
+ =?utf-8?B?aGVJbHpPcmxSc0s1eW1jMlVpVDhLdytmWDRtT3c0RjVmTUFSb0Fqd3k0WW1B?=
+ =?utf-8?B?cXh5cnRzdGorMmZmL2lCR2FJM2p1S1hyaDRMVDJrbmNVYlhFVVpEQUhtSC9O?=
+ =?utf-8?B?dFhZWXhCZDVoN0p4R3l4azErR0tML2ppUWxpdEozMVhFdXZUcmFxb0h2VGl3?=
+ =?utf-8?B?YW11QUloN3lyaTNJV0VyclZiUUg3SUlNOXZTRDJvd0ZSRWxLOThQTGNIeVlP?=
+ =?utf-8?B?bjRBbDZ0azZsVHlIMC9zemVMZ3owc0J6U3U4K081TWJPcW1yZ0UwNG1NekRm?=
+ =?utf-8?B?RjJCc0JRN3lOeDRwMTRCRndkNEZubmpHMkFQTXJkdURaNVl3cDlTZVY3c0ZQ?=
+ =?utf-8?Q?HREQ=3D?=
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: f9f93a74-d7b1-477f-4e66-08dbf1a50830
+X-MS-Exchange-CrossTenant-AuthSource: BN8PR12MB3587.namprd12.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: DS0PR11MB7382.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 5732fcd5-42aa-47b1-72fc-08dbf19f96d2
-X-MS-Exchange-CrossTenant-originalarrivaltime: 30 Nov 2023 12:26:33.5383 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: z5CnovJf1buItOQsVtvhhdv35f7NBwAdTI8jzjr8bfz1F0uNANtVMFwZwz0a6x4adRl2L7uhODBnudjUzVTkXP1On/Obxas+bBKTRjeVf+0=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ0PR11MB4798
-X-OriginatorOrg: intel.com
-Subject: Re: [Intel-gfx] [PATCH v6] drm/i915: handle uncore spinlock when
- not available
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 30 Nov 2023 13:05:31.4151 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: pyn2QcY1+N8KrDH7SNJld9noYcoGgl3Drjh+jSgqhDyBKl8ubgiDwwaErbeBL5S0
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BN9PR12MB5337
+Subject: Re: [Intel-gfx] [RFC PATCH 0/6] Supporting GMEM (generalized memory
+ management) for external memory devices
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -161,116 +130,342 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>, "Vivi, 
- Rodrigo" <rodrigo.vivi@intel.com>
+Cc: "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
+ "linux-mm@kvack.org" <linux-mm@kvack.org>,
+ "leonro@nvidia.com" <leonro@nvidia.com>,
+ "apopple@nvidia.com" <apopple@nvidia.com>,
+ "amd-gfx@lists.freedesktop.org" <amd-gfx@lists.freedesktop.org>,
+ Danilo Krummrich <dakr@redhat.com>, "mgorman@suse.de" <mgorman@suse.de>,
+ "ziy@nvidia.com" <ziy@nvidia.com>,
+ "rcampbell@nvidia.com" <rcampbell@nvidia.com>,
+ "jgg@nvidia.com" <jgg@nvidia.com>,
+ "weixi.zhu@openeuler.sh" <weixi.zhu@openeuler.sh>,
+ "jhubbard@nvidia.com" <jhubbard@nvidia.com>,
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
+ "mhairgrove@nvidia.com" <mhairgrove@nvidia.com>,
+ "jglisse@redhat.com" <jglisse@redhat.com>,
+ "rodrigo.vivi@intel.com" <rodrigo.vivi@intel.com>,
+ "intel-gvt-dev@lists.freedesktop.org" <intel-gvt-dev@lists.freedesktop.org>,
+ "Felix.Kuehling@amd.com" <Felix.Kuehling@amd.com>,
+ "Xinhui.Pan@amd.com" <Xinhui.Pan@amd.com>,
+ "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+ Daniel Vetter <daniel@ffwll.ch>,
+ "alexander.deucher@amd.com" <alexander.deucher@amd.com>,
+ "akpm@linux-foundation.org" <akpm@linux-foundation.org>,
+ "ogabbay@kernel.org" <ogabbay@kernel.org>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-T24gVGh1LCAyMDIzLTExLTMwIGF0IDEyOjIxICswMDAwLCBUdnJ0a28gVXJzdWxpbiB3cm90ZToN
-Cj4gT24gMzAvMTEvMjAyMyAxMTozNSwgTHVjYSBDb2VsaG8gd3JvdGU6DQo+ID4gVGhlIHVuY29y
-ZSBjb2RlIG1heSBub3QgYWx3YXlzIGJlIGF2YWlsYWJsZSAoZS5nLiB3aGVuIHdlIGJ1aWxkIHRo
-ZQ0KPiA+IGRpc3BsYXkgY29kZSB3aXRoIFhlKSwgc28gd2UgY2FuJ3QgYWx3YXlzIHJlbHkgb24g
-aGF2aW5nIHRoZSB1bmNvcmUncw0KPiA+IHNwaW5sb2NrLg0KPiA+IA0KPiA+IFRvIGhhbmRsZSB0
-aGlzLCBzcGxpdCB0aGUgc3Bpbl9sb2NrL3VubG9ja19pcnFzYXZlL3Jlc3RvcmUoKSBpbnRvDQo+
-ID4gc3Bpbl9sb2NrL3VubG9jaygpIGZvbGxvd2VkIGJ5IGEgY2FsbCB0byBsb2NhbF9pcnFfc2F2
-ZS9yZXN0b3JlKCkgYW5kDQo+ID4gY3JlYXRlIHdyYXBwZXIgZnVuY3Rpb25zIGZvciBsb2NraW5n
-IGFuZCB1bmxvY2tpbmcgdGhlIHVuY29yZSdzDQo+ID4gc3BpbmxvY2suICBJbiB0aGVzZSBmdW5j
-dGlvbnMsIHdlIGhhdmUgYSBjb25kaXRpb24gY2hlY2sgYW5kIG9ubHkNCj4gPiBhY3R1YWxseSB0
-cnkgdG8gbG9jay91bmxvY2sgdGhlIHNwaW5sb2NrIHdoZW4gSTkxNSBpcyBkZWZpbmVkLCBhbmQN
-Cj4gPiB0aHVzIHVuY29yZSBpcyBhdmFpbGFibGUuDQo+ID4gDQo+ID4gVGhpcyBrZWVwcyB0aGUg
-aWZkZWZzIGNvbnRhaW5lZCBpbiB0aGVzZSBuZXcgZnVuY3Rpb25zIGFuZCBhbGwgc3VjaA0KPiA+
-IGxvZ2ljIGluc2lkZSB0aGUgZGlzcGxheSBjb2RlLg0KPiA+IA0KPiA+IENjOiBUdnJ0a28gVXJz
-dWxpbiA8dHZydG8udXJzdWxpbkBpbnRlbC5jb20+DQo+ID4gQ2M6IEphbmkgTmlrdWxhIDxqYW5p
-Lm5pa3VsYUBpbnRlbC5jb20+DQo+ID4gQ2M6IFZpbGxlIFN5cmphbGEgPHZpbGxlLnN5cmphbGFA
-bGludXguaW50ZWwuY29tPg0KPiA+IFJldmlld2VkLWJ5OiBSb2RyaWdvIFZpdmkgPHJvZHJpZ28u
-dml2aUBpbnRlbC5jb20+DQo+ID4gU2lnbmVkLW9mZi1ieTogTHVjYSBDb2VsaG8gPGx1Y2lhbm8u
-Y29lbGhvQGludGVsLmNvbT4NCj4gPiAtLS0NCj4gPiANCj4gPiANCj4gPiBJbiB2MjoNCj4gPiAN
-Cj4gPiAgICAgKiBSZW5hbWVkIHVuY29yZV9zcGluXyooKSB0byBpbnRlbF9zcGluXyooKQ0KPiA+
-ICAgICAqIENvcnJlY3RlZCB0aGUgb3JkZXI6IHNhdmUsIGxvY2ssIHVubG9jaywgcmVzdG9yZQ0K
-PiA+IA0KPiA+IEluIHYzOg0KPiA+IA0KPiA+ICAgICAqIFVuZGlkIHRoZSBjaGFuZ2UgdG8gcGFz
-cyBkcm1faTkxNV9wcml2YXRlIGluc3RlYWQgb2YgdGhlIGxvY2sNCj4gPiAgICAgICBpdHNlbGYs
-IHNpbmNlIHdlIHdvdWxkIGhhdmUgdG8gaW5jbHVkZSBpOTE1X2Rydi5oIGFuZCB0aGF0IHB1bGxz
-DQo+ID4gICAgICAgaW4gYSB0cnVja2xvYWQgb2Ygb3RoZXIgaW5jbHVkZXMuDQo+ID4gDQo+ID4g
-SW4gdjQ6DQo+ID4gDQo+ID4gICAgICogQWZ0ZXIgYSBicmllZiBhdHRlbXB0IHRvIHJlcGxhY2Ug
-dGhpcyB3aXRoIGEgZGlmZmVyZW50IHBhdGNoLA0KPiA+ICAgICAgIHdlJ3JlIGJhY2sgdG8gdGhp
-cyBvbmU7DQo+ID4gICAgICogUGFzcyBkcm1faTE5NV9wcml2YXRlIGFnYWluLCBhbmQgbW92ZSB0
-aGUgZnVuY3Rpb25zIHRvDQo+ID4gICAgICAgaW50ZWxfdmJsYW5rLmMsIHNvIHdlIGRvbid0IG5l
-ZWQgdG8gaW5jbHVkZSBpOTE1X2Rydi5oIGluIGENCj4gPiAgICAgICBoZWFkZXIgZmlsZSBhbmQg
-aXQncyBhbHJlYWR5IGluY2x1ZGVkIGluIGludGVsX3ZibGFuay5jOw0KPiA+IA0KPiA+IEluIHY1
-Og0KPiA+IA0KPiA+ICAgICAqIFJlbW92ZSBzdHJheSBpbmNsdWRlIGluIGludGVsX2Rpc3BsYXku
-aDsNCj4gPiAgICAgKiBSZW1vdmUgdW5uZWNlc3NhcnkgaW5saW5lIG1vZGlmaWVycyBpbiB0aGUg
-bmV3IGZ1bmN0aW9ucy4NCj4gPiANCj4gPiBJbiB2NjoNCj4gPiANCj4gPiAgICAgKiBKdXN0IHJl
-bW92ZWQgdGhlIHVtbGF1dHMgZnJvbSBWaWxsZSdzIG5hbWUsIGJlY2F1c2UgcGF0Y2h3b3JrDQo+
-ID4gICAgICAgZGlkbid0IGNhdGNoIG15IHBhdGNoIGFuZCBJIHN1c3BlY3QgaXQgd2FzIHNvbWUg
-VVRGLTggY29uZnVzaW9uLg0KPiA+IA0KPiA+ICAgZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxh
-eS9pbnRlbF92YmxhbmsuYyB8IDQ5ICsrKysrKysrKysrKysrKystLS0tLQ0KPiA+ICAgMSBmaWxl
-IGNoYW5nZWQsIDM5IGluc2VydGlvbnMoKyksIDEwIGRlbGV0aW9ucygtKQ0KPiA+IA0KPiA+IGRp
-ZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX3ZibGFuay5jIGIv
-ZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF92YmxhbmsuYw0KPiA+IGluZGV4IDJj
-ZWMyYWJmOTc0Ni4uMjIxZmNkNmJmNzdiIDEwMDY0NA0KPiA+IC0tLSBhL2RyaXZlcnMvZ3B1L2Ry
-bS9pOTE1L2Rpc3BsYXkvaW50ZWxfdmJsYW5rLmMNCj4gPiArKysgYi9kcml2ZXJzL2dwdS9kcm0v
-aTkxNS9kaXNwbGF5L2ludGVsX3ZibGFuay5jDQo+ID4gQEAgLTI2NSw2ICsyNjUsMzAgQEAgaW50
-IGludGVsX2NydGNfc2NhbmxpbmVfdG9faHcoc3RydWN0IGludGVsX2NydGMgKmNydGMsIGludCBz
-Y2FubGluZSkNCj4gPiAgIAlyZXR1cm4gKHNjYW5saW5lICsgdnRvdGFsIC0gY3J0Yy0+c2Nhbmxp
-bmVfb2Zmc2V0KSAlIHZ0b3RhbDsNCj4gPiAgIH0NCj4gPiAgIA0KPiA+ICsvKg0KPiA+ICsgKiBU
-aGUgdW5jb3JlIHZlcnNpb24gb2YgdGhlIHNwaW4gbG9jayBmdW5jdGlvbnMgaXMgdXNlZCB0byBk
-ZWNpZGUNCj4gPiArICogd2hldGhlciB3ZSBuZWVkIHRvIGxvY2sgdGhlIHVuY29yZSBsb2NrIG9y
-IG5vdC4gIFRoaXMgaXMgb25seQ0KPiA+ICsgKiBuZWVkZWQgaW4gaTkxNSwgbm90IGluIFhlLg0K
-PiA+ICsgKg0KPiA+ICsgKiBUaGlzIGxvY2sgaW4gaTkxNSBpcyBuZWVkZWQgYmVjYXVzZSBzb21l
-IG9sZCBwbGF0Zm9ybXMgKGF0IGxlYXN0DQo+ID4gKyAqIElWQiBhbmQgcG9zc2libHkgSFNXIGFz
-IHdlbGwpLCB3aGljaCBhcmUgbm90IHN1cHBvcnRlZCBpbiBYZSwgbmVlZA0KPiA+ICsgKiBhbGwg
-cmVnaXN0ZXIgYWNjZXNzZXMgdG8gdGhlIHNhbWUgY2FjaGVsaW5lIHRvIGJlIHNlcmlhbGl6ZWQs
-DQo+ID4gKyAqIG90aGVyd2lzZSB0aGV5IG1heSBoYW5nLg0KPiA+ICsgKi8NCj4gPiArc3RhdGlj
-IHZvaWQgaW50ZWxfdmJsYW5rX3NlY3Rpb25fZW50ZXIoc3RydWN0IGRybV9pOTE1X3ByaXZhdGUg
-Kmk5MTUpDQo+ID4gK3sNCj4gPiArI2lmZGVmIEk5MTUNCj4gPiArCXNwaW5fbG9jaygmaTkxNS0+
-dW5jb3JlLmxvY2spOw0KPiA+ICsjZW5kaWYNCj4gPiArfQ0KPiA+ICsNCj4gPiArc3RhdGljIHZv
-aWQgaW50ZWxfdmJsYW5rX3NlY3Rpb25fZXhpdChzdHJ1Y3QgZHJtX2k5MTVfcHJpdmF0ZSAqaTkx
-NSkNCj4gPiArew0KPiA+ICsjaWZkZWYgSTkxNQ0KPiA+ICsJc3Bpbl91bmxvY2soJmk5MTUtPnVu
-Y29yZS5sb2NrKTsNCj4gPiArI2VuZGlmDQo+ID4gK30NCj4gPiArDQo+ID4gICBzdGF0aWMgYm9v
-bCBpOTE1X2dldF9jcnRjX3NjYW5vdXRwb3Moc3RydWN0IGRybV9jcnRjICpfY3J0YywNCj4gPiAg
-IAkJCQkgICAgIGJvb2wgaW5fdmJsYW5rX2lycSwNCj4gPiAgIAkJCQkgICAgIGludCAqdnBvcywg
-aW50ICpocG9zLA0KPiA+IEBAIC0zMDIsMTEgKzMyNiwxMiBAQCBzdGF0aWMgYm9vbCBpOTE1X2dl
-dF9jcnRjX3NjYW5vdXRwb3Moc3RydWN0IGRybV9jcnRjICpfY3J0YywNCj4gPiAgIAl9DQo+ID4g
-ICANCj4gPiAgIAkvKg0KPiA+IC0JICogTG9jayB1bmNvcmUubG9jaywgYXMgd2Ugd2lsbCBkbyBt
-dWx0aXBsZSB0aW1pbmcgY3JpdGljYWwgcmF3DQo+ID4gLQkgKiByZWdpc3RlciByZWFkcywgcG90
-ZW50aWFsbHkgd2l0aCBwcmVlbXB0aW9uIGRpc2FibGVkLCBzbyB0aGUNCj4gPiAtCSAqIGZvbGxv
-d2luZyBjb2RlIG11c3Qgbm90IGJsb2NrIG9uIHVuY29yZS5sb2NrLg0KPiA+ICsJICogRW50ZXIg
-dmJsYW5rIGNyaXRpY2FsIHNlY3Rpb24sIGFzIHdlIHdpbGwgZG8gbXVsdGlwbGUNCj4gPiArCSAq
-IHRpbWluZyBjcml0aWNhbCByYXcgcmVnaXN0ZXIgcmVhZHMsIHBvdGVudGlhbGx5IHdpdGgNCj4g
-PiArCSAqIHByZWVtcHRpb24gZGlzYWJsZWQsIHNvIHRoZSBmb2xsb3dpbmcgY29kZSBtdXN0IG5v
-dCBibG9jay4NCj4gPiAgIAkgKi8NCj4gPiAtCXNwaW5fbG9ja19pcnFzYXZlKCZkZXZfcHJpdi0+
-dW5jb3JlLmxvY2ssIGlycWZsYWdzKTsNCj4gPiArCWxvY2FsX2lycV9zYXZlKGlycWZsYWdzKTsN
-Cj4gPiArCWludGVsX3ZibGFua19zZWN0aW9uX2VudGVyKGRldl9wcml2KTsNCj4gDQo+IFNob3Vs
-ZG4ndCBsb2NhbF9pcnFfc2F2ZSBnbyBpbnRvIGludGVsX3ZibGFua19zZWN0aW9uX2VudGVyKCk/
-IEl0IHNlZW1zIA0KPiBhbGwgY2FsbGVycyBmcm9tIGJvdGggaTkxNSBhbmQgeGUgZW5kIHVwIGRv
-aW5nIHRoYXQgYW55d2F5IGFuZCBuYW1pbmcgDQo+ICJ2Ymxhbmtfc3RhcnQiIHdhcyBwcmVzdW1l
-ZCB0aGVyZSB3b3VsZCBiZSBtb3JlIHRvIHRoZSBzZWN0aW9uIHRoYW4gDQo+IGNhY2hlbGluZSBt
-bWlvIGJ1Zy4gSSBtZWFuIHRoYXQgdGhlcmUgaXMgc29tZSBiZW5lZml0IGZyb20ga2VlcGluZyB0
-aGUgDQo+IHJlYWRvdXQgdGltaW5ncyB0aWdodC4NCj4gDQoNClRoZSByZWFzb24gaXMgdGhhdCB0
-aGVyZSBpcyBvbmUgY2FsbGVyIHRoYXQgaGFzIGFscmVhZHkgZGlzYWJsZWQNCmludGVycnVwdHMg
-d2hlbiB0aGlzIGZ1bmN0aW9uIGlzIGNhbGxlZCAoc2VlIGJlbG93KSwgc28gd2Ugc2hvdWxkbid0
-IGRvDQppdCBhZ2Fpbi4gDQoNCg0KPiA+ICAgDQo+ID4gICAJLyogcHJlZW1wdF9kaXNhYmxlX3J0
-KCkgc2hvdWxkIGdvIHJpZ2h0IGhlcmUgaW4gUFJFRU1QVF9SVCBwYXRjaHNldC4gKi8NCj4gPiAg
-IA0KPiA+IEBAIC0zNzQsNyArMzk5LDggQEAgc3RhdGljIGJvb2wgaTkxNV9nZXRfY3J0Y19zY2Fu
-b3V0cG9zKHN0cnVjdCBkcm1fY3J0YyAqX2NydGMsDQo+ID4gICANCj4gPiAgIAkvKiBwcmVlbXB0
-X2VuYWJsZV9ydCgpIHNob3VsZCBnbyByaWdodCBoZXJlIGluIFBSRUVNUFRfUlQgcGF0Y2hzZXQu
-ICovDQo+ID4gICANCj4gPiAtCXNwaW5fdW5sb2NrX2lycXJlc3RvcmUoJmRldl9wcml2LT51bmNv
-cmUubG9jaywgaXJxZmxhZ3MpOw0KPiA+ICsJaW50ZWxfdmJsYW5rX3NlY3Rpb25fZXhpdChkZXZf
-cHJpdik7DQo+ID4gKwlsb2NhbF9pcnFfcmVzdG9yZShpcnFmbGFncyk7DQo+ID4gICANCj4gPiAg
-IAkvKg0KPiA+ICAgCSAqIFdoaWxlIGluIHZibGFuaywgcG9zaXRpb24gd2lsbCBiZSBuZWdhdGl2
-ZQ0KPiA+IEBAIC00MTIsOSArNDM4LDEzIEBAIGludCBpbnRlbF9nZXRfY3J0Y19zY2FubGluZShz
-dHJ1Y3QgaW50ZWxfY3J0YyAqY3J0YykNCj4gPiAgIAl1bnNpZ25lZCBsb25nIGlycWZsYWdzOw0K
-PiA+ICAgCWludCBwb3NpdGlvbjsNCj4gPiAgIA0KPiA+IC0Jc3Bpbl9sb2NrX2lycXNhdmUoJmRl
-dl9wcml2LT51bmNvcmUubG9jaywgaXJxZmxhZ3MpOw0KPiA+ICsJbG9jYWxfaXJxX3NhdmUoaXJx
-ZmxhZ3MpOw0KPiA+ICsJaW50ZWxfdmJsYW5rX3NlY3Rpb25fZW50ZXIoZGV2X3ByaXYpOw0KPiA+
-ICsNCj4gPiAgIAlwb3NpdGlvbiA9IF9faW50ZWxfZ2V0X2NydGNfc2NhbmxpbmUoY3J0Yyk7DQo+
-ID4gLQlzcGluX3VubG9ja19pcnFyZXN0b3JlKCZkZXZfcHJpdi0+dW5jb3JlLmxvY2ssIGlycWZs
-YWdzKTsNCj4gPiArDQo+ID4gKwlpbnRlbF92Ymxhbmtfc2VjdGlvbl9leGl0KGRldl9wcml2KTsN
-Cj4gPiArCWxvY2FsX2lycV9yZXN0b3JlKGlycWZsYWdzKTsNCj4gPiAgIA0KPiA+ICAgCXJldHVy
-biBwb3NpdGlvbjsNCj4gPiAgIH0NCj4gPiBAQCAtNTM3LDcgKzU2Nyw3IEBAIHZvaWQgaW50ZWxf
-Y3J0Y191cGRhdGVfYWN0aXZlX3RpbWluZ3MoY29uc3Qgc3RydWN0IGludGVsX2NydGNfc3RhdGUg
-KmNydGNfc3RhdGUsDQo+ID4gICAJICogTmVlZCB0byBhdWRpdCBldmVyeXRoaW5nIHRvIG1ha2Ug
-c3VyZSBpdCdzIHNhZmUuDQo+ID4gICAJICovDQo+ID4gICAJc3Bpbl9sb2NrX2lycXNhdmUoJmk5
-MTUtPmRybS52YmxhbmtfdGltZV9sb2NrLCBpcnFmbGFncyk7DQo+ID4gLQlzcGluX2xvY2soJmk5
-MTUtPnVuY29yZS5sb2NrKTsNCj4gPiArCWludGVsX3ZibGFua19zZWN0aW9uX2VudGVyKGk5MTUp
-Ow0KDQpIZXJlLg0KDQotLQ0KQ2hlZXJzLA0KTHVjYS4NCg==
+Am 30.11.23 um 08:22 schrieb zhuweixi:
+> Add @Oak to the KFD discussion. I will reply separately elaborating your questions on GMEM's difference from HMM/MMU notifiers.
+>
+> Christian, thanks for pointing me to that AMDKFD discussion. I have read the discussion around the AMDKFD skeleton patch and found the previous discussion in the following URLs:
+> https://lore.kernel.org/dri-devel/1405028848-5660-1-git-send-email-oded.gabbay@amd.com/#r
+> https://lore.kernel.org/dri-devel/20140711154231.GB1870@gmail.com/
+>
+> I believe AMDKFD's original patch was rejected mostly because of inserting vendor-specific stuff to the generic core MM.  Jérôme has clearly stated this issue in the second URL. If the code is vendor-specific then it has no place in core MM, period.
+>
+> But why does that vendor-specific solution relate to a generalized solution like GMEM? The initial AMDKFD patch doesn't work for Nvidia or Intel.
+
+KFD was meant to be a vendor agnostic framework, very similar to what 
+you propose here.
+
+It's just that it was seen as vendor specific because nobody else 
+actually wanted to design the their drivers this way.
+
+>
+> In fact I think the rejection of the initial AMDKFD patch supports GMEM's idea -- there could have been a simpler AMDKFD implementation if the core MM was extended by GMEM. Also, after 9 years, there are so many other companies building their accelerators over the past few years, especially now the GPT-family has made a much bigger success. Don't we want to advance Linux's core MM for more friendly and generalized support for the upcoming new vendors?
+
+Well exactly that's the big point: Absolutely not!
+
+We really should never ever encourage people to bind their device 
+address space to the CPU address space. This is a very special use case 
+and limits the driver design to only this use case.
+
+We have exercised this approach to a rather extreme degree with KFD and 
+I can clearly say that doing this was a really big mistake.
+
+As far as I can see you are about to repeat that mistake and even 
+encourage others to do so as well.
+
+> Now answering Christian's design concerns:
+>
+> 1. "There are cases that do not want to share CPU address space"
+> Maybe, but I am not fully convinced. The current case we can find is when a NIC utilizes IOMMU for security. For this case, GMEM implemented a generalized VMA support and tested it with NICs using both Intel-IOMMU/Arm-SMMU. This cut 600 LoC of IOVA management code from the IOMMU driver, but it is still not included in this RFC patch -- I cannot find other cases demanding this isolation. The isolation is also unnecessary -- the NIC can enable the IOMMU SVM feature to share the CPU address space. As of KVM, it is essentially a host process that utilizes two different MMUs within the same address space, so it fits GMEM's design...
+
+Maybe I don't completely follow here how you want to save LoC for the 
+IOMMU implementation of NICs, but at least for the PASID/PRI support AMD 
+just recently gone exactly the opposite direction:
+
+commit 5a0b11a180a9b82b4437a4be1cf73530053f139b
+Author: Vasant Hegde <vasant.hegde@amd.com>
+Date:   Fri Oct 6 09:57:02 2023 +0000
+
+     iommu/amd: Remove iommu_v2 module
+
+     AMD GPU driver which was the only in-kernel user of iommu_v2 module
+     removed dependency on iommu_v2 module.
+
+     Also we are working on adding SVA support in AMD IOMMU driver. Device
+     drivers are expected to use common SVA framework to enable device
+     PASID/PRI features.
+
+     Removing iommu_v2 module and then adding SVA simplifies the 
+development.
+     Hence remove iommu_v2 module.
+
+As I wrote before this IOMMU V2 driver was basically binding the CPU 
+address space to IOMMU devices using the PASID. For an example see 
+function amd_iommu_bind_pasid().
+
+This turned out to be not as useful as we hoped it would be. Essentially 
+the use case where you want to give a device access to the whole address 
+space of a process are extremely limited. That's why we are removing it 
+and switching over to a separate SVA implementation which doesn't depend 
+on the CPU address space.
+
+
+But the virtualization use case I mentioned is completely independent of 
+IOMMU. In KVM/XEN/etc.. there is a functionality called native context, 
+basically what this means is that instead of passing through complete 
+device isolated by IOMMU only specific kernel functionalities are 
+exposed to the guest operating system through QEMU.
+
+See here for an example how OpenGL is implemented on top of this: 
+https://docs.mesa3d.org/drivers/virgl.html
+
+This is actually using the separation between device memory management 
+and CPU memory management and is basically a killer argument why those 
+two topics should be separated. Otherwise it's impossible for QEMU to 
+actually handle multiple independent device memory address spaces inside 
+a single CPU memory address space.
+
+> 2. "This does not integrate well with the filesystem layer in Linux..."
+> To be honest, not using a logical page table for anonymous memory is why Linux THP fails compared with FreeBSD's superpage, but I am not going to elaborate it here. But yes, and I am looking for merging struct vm_object->logical_page_table with struct address_space->i_pages. This will make a natural support for devices oversubscribing both host DRAM and disks. As explained in my cover letter, struct vm_object borrows FreeBSD's VM design -- it provides a unified abstraction layer for anonymous, file-backed memory and etc.
+
+I'm not that deep into this stuff, so leaving this to the experts on 
+FreeBSD.
+
+> 3. "Requirements to CPU address space management and device address space management are just massively different. For example huge and giant pages are a must have for modern devices..."
+> I think you are asking two questions. First, is VA space a problem?
+
+No, this is about something completely different.
+
+> GMEM assumes that device VA space should be covered by CPU VA space (sorry i386), ...
+[SNIP]
+
+I'm removing this because you were talking about something different 
+than what I meant.
+
+I will try to explain the background on an example outside of machine 
+learning and compute since this framework should be applicable to every 
+use case and not be limited to those. Otherwise Linux would sooner or 
+later just be applicable to only those use cases.
+
+So let's take a look at how modern games use a GPU for example. On 
+startup a rather large part of the GPU address space is allocated, for 
+example 64GiB. Then the necessary resources (images, texture, vertices, 
+shaders etc..) are loaded into separate buffer objects.
+
+Those resources are then mapped into the allocated address on a page by 
+page basis. So you basically don't have large VMAs which cover one 
+resource, but rather the page tables are used as a remapping table
+  into the available resources. This increases the number of virtual 
+mappings drastically, it's kind of comparable how an anon_vma works 
+inside a VMA on Linux.
+
+Those mappings also are not setup at start and then used throughout the 
+whole lifetime of the process, but rather done very dynamically 
+sometimes resulting in thousands of mapping operations per second.
+
+Additional to that devices have page table feature which CPUs don't 
+have. This ranges from support for partial resident texture over flags 
+how caching and dynamic color space compression is made.
+
+So the mappings contain tons of device specific information and it's 
+most likely not even possible to handle all of this with a device 
+independent mmap() call.
+
+> 4. "The argument that a shared memory management leads to less bugs has also absolutely not be proven true. Instead we literally spend month if not years hunting down bugs which resulted from interaction between CPU and devices."
+> This is another case supporting GMEM. Don't developers want to let GMEM handle the CPU-device interaction so that they can waive months of debugging cost?
+
+No, we already have HMM for that.
+
+Regards,
+Christian.
+
+>
+> PS, hmadvise() is based on the idea of Nvidia's cudaMemAdvise() which provides abundant and useful memory policies. HMM extended mbind() instead.
+>
+> -Weixi
+>
+> -----Original Message-----
+> From: Christian König <christian.koenig@amd.com>
+> Sent: Wednesday, November 29, 2023 11:22 PM
+> To: zhuweixi <weixi.zhu@huawei.com>; Dave Airlie <airlied@gmail.com>
+> Cc: linux-mm@kvack.org; linux-kernel@vger.kernel.org; akpm@linux-foundation.org; weixi.zhu@openeuler.sh; mgorman@suse.de; jglisse@redhat.com; rcampbell@nvidia.com; jhubbard@nvidia.com; apopple@nvidia.com; mhairgrove@nvidia.com; ziy@nvidia.com; alexander.deucher@amd.com; Xinhui.Pan@amd.com; amd-gfx@lists.freedesktop.org; Felix.Kuehling@amd.com; ogabbay@kernel.org; dri-devel@lists.freedesktop.org; jgg@nvidia.com; leonro@nvidia.com; zhenyuw@linux.intel.com; zhi.a.wang@intel.com; intel-gvt-dev@lists.freedesktop.org; intel-gfx@lists.freedesktop.org; jani.nikula@linux.intel.com; joonas.lahtinen@linux.intel.com; rodrigo.vivi@intel.com; tvrtko.ursulin@linux.intel.com
+> Subject: Re: [RFC PATCH 0/6] Supporting GMEM (generalized memory management) for external memory devices
+>
+> Am 29.11.23 um 09:27 schrieb zhuweixi:
+>> Glad to hear that more sharable code is desirable.
+>> IMHO, for a common MM subsystem, it is more beneficial for GMEM to
+>> extend core MM instead of building a separate one.
+>>
+>> As stated in the beginning of my RFC letter, MM systems are large and
+>> similar. Even a sophisticated one like Linux MM that has evolved over
+>> decades still suffers from an increasing number of bugs[1]. So,
+>> directly extending core MM to support devices not only avoids opening
+>> a new box of bugs, but also allows the community to concentrate on
+>> maintaining one single MM system. On the other side, GMEM does no hurt
+>> to core MM If a CPU process is not attached with device contexts.
+>>
+>> @Christian, could you provide more information on what AMD proposed
+>> with KFD and why it was rejected?
+> Well, this is going to be a longer explanation.
+>
+> The combination of KFD and HMM is based on essentially on the same idea as this code here. Even the initial KFD implementation was very similar in the sense that it added device contexts to mm_struct and tried to manage GPU/acceleration MM the same way as CPU MM. On other words it was basically identical to your gm_dev_create() and gm_mmu approach.
+>
+> As mentioned before this initial proposal was rejected, for more background see the discussion around "amdkfd: Add amdkfd skeleton driver" on the dri-devel mailing list between 2013 and 2014. You need to dig up the whole discussion from the mailing list, but summarizing it the general feeling was that it would be a mistake to tie device drivers to close to CPU memory management (and stable UAPI) without validating that this is really the right thing to do.
+>
+> So instead of the original implementation KFD has gone upstream with a much less invasive approach where a device contexts are just on demand looked up for each mm_struct. Felix can probably provide some pointers to the implementation.
+>
+> On the initially supported hardware the KFD used the PCIe ATC feature to allow routing of memory accesses directly into the associated CPU process address space, later on we switched to an MMU notifier/HMM based approach to give similar functionality to the userspace stack on top of it for devices which doesn't support the ATC path was just recently completely removed and we are now only using MMU notifiers/HMM.
+>
+> HMM tried to add similar functionality like you propose with the mmap() flag and hmadvise() call. The hmadvise() extension actually looks so familiar to the HMM proposal that I would expect that this is actually based on that code.
+>
+> All this turned out to have some major design issues.
+>
+> First of all you have a rather large group of use cases where you don't want your device to mirror the address space of your process. Just think of thinks like QEMU, KVM, XEN, in general virtualization and container handling. Linux has the mantra that everything is a file and if it's not a file it should be a file and when you tie device memory management into CPU memory management you are pretty much violating exactly that.
+>
+> Second this doesn't integrate well with the filesystem layer in Linux.
+> For example we do have struct pages for HMM exposed device memory, but for I/O we still migrate this back to system memory because of (for
+> example) the page lock requirements around writeback.
+>
+> Then third it turned out that the requirements to CPU address space management and device address space management are just massively different. For example huge and giant pages are a must have for modern devices, on the CPU side we are barely switching over to folios now to add similar functionality.
+>
+> The argument that a shared memory management leads to less bugs has also absolutely not be proven true. Instead we literally spend month if not years hunting down bugs which resulted from interaction between CPU and devices.
+> ...
+>
+> There are a couple of more things on this contra side to that approach, but I think that would just make this mail unnecessary long.
+>
+> To sum it up from over a decade of experience working in this area I can just say that CPU and device memory management should absolutely *NOT* be mixed. We had those ideas multiple times before, but they either failed because they didn't integrated well with the core OS or the hardware support is just lagging behind the actual requirements.
+>
+> What can be done and where I completely agree with Dave is that having common components which provides device drivers with the necessary functionality to manage their device address space is really good idea.
+> Danilo is for example working on a GPUVM component to have common virtual address space management and I'm at least sometimes working on MMU notifier/HMM improvements.
+>
+> Providing SVM functionality to your userspace stack is still a really good idea, but it should be done with MMU notifiers and components which are separate to your CPU memory management instead of tying it directly to the CPU address space.
+>
+> Regards,
+> Christian.
+>
+>> [1] Huang, Jian, Moinuddin K. Qureshi, and Karsten Schwan. "An evolutionary study of linux memory management for fun and profit." 2016 USENIX Annual Technical Conference (USENIX ATC 16). 2016.
+>>
+>> Thanks,
+>> Weixi
+>>
+>> -----Original Message-----
+>> From: Dave Airlie <airlied@gmail.com>
+>> Sent: Wednesday, November 29, 2023 1:15 PM
+>> To: Christian König <christian.koenig@amd.com>
+>> Cc: zhuweixi <weixi.zhu@huawei.com>; linux-mm@kvack.org;
+>> linux-kernel@vger.kernel.org; akpm@linux-foundation.org;
+>> weixi.zhu@openeuler.sh; mgorman@suse.de; jglisse@redhat.com;
+>> rcampbell@nvidia.com; jhubbard@nvidia.com; apopple@nvidia.com;
+>> mhairgrove@nvidia.com; ziy@nvidia.com; alexander.deucher@amd.com;
+>> Xinhui.Pan@amd.com; amd-gfx@lists.freedesktop.org;
+>> Felix.Kuehling@amd.com; ogabbay@kernel.org;
+>> dri-devel@lists.freedesktop.org; jgg@nvidia.com; leonro@nvidia.com;
+>> zhenyuw@linux.intel.com; zhi.a.wang@intel.com;
+>> intel-gvt-dev@lists.freedesktop.org; intel-gfx@lists.freedesktop.org;
+>> jani.nikula@linux.intel.com; joonas.lahtinen@linux.intel.com;
+>> rodrigo.vivi@intel.com; tvrtko.ursulin@linux.intel.com
+>> Subject: Re: [RFC PATCH 0/6] Supporting GMEM (generalized memory
+>> management) for external memory devices
+>>
+>> On Tue, 28 Nov 2023 at 23:07, Christian König <christian.koenig@amd.com> wrote:
+>>> Am 28.11.23 um 13:50 schrieb Weixi Zhu:
+>>>> The problem:
+>>>>
+>>>> Accelerator driver developers are forced to reinvent external MM
+>>>> subsystems case by case, because Linux core MM only considers host memory resources.
+>>>> These reinvented MM subsystems have similar orders of magnitude of
+>>>> LoC as Linux MM (80K), e.g. Nvidia-UVM has 70K, AMD GPU has 14K and
+>>>> Huawei NPU has 30K. Meanwhile, more and more vendors are
+>>>> implementing their own accelerators, e.g. Microsoft's Maia 100. At
+>>>> the same time, application-level developers suffer from poor
+>>>> programmability -- they must consider parallel address spaces and be
+>>>> careful about the limited device DRAM capacity. This can be
+>>>> alleviated if a malloc()-ed virtual address can be shared by the
+>>>> accelerator, or the abundant host DRAM can further transparently backup the device local memory.
+>>>>
+>>>> These external MM systems share similar mechanisms except for the
+>>>> hardware-dependent part, so reinventing them is effectively
+>>>> introducing redundant code (14K~70K for each case). Such
+>>>> developing/maintaining is not cheap. Furthermore, to share a
+>>>> malloc()-ed virtual address, device drivers need to deeply interact
+>>>> with Linux MM via low-level MM APIs, e.g. MMU notifiers/HMM. This
+>>>> raises the bar for driver development, since developers must
+>>>> understand how Linux MM works. Further, it creates code maintenance
+>>>> problems -- any changes to Linux MM potentially require coordinated changes to accelerator drivers using low-level MM APIs.
+>>>>
+>>>> Putting a cache-coherent bus between host and device will not make
+>>>> these external MM subsystems disappear. For example, a
+>>>> throughput-oriented accelerator will not tolerate executing heavy
+>>>> memory access workload with a host MMU/IOMMU via a remote bus.
+>>>> Therefore, devices will still have their own MMU and pick a simpler
+>>>> page table format for lower address translation overhead, requiring external MM subsystems.
+>>>>
+>>>> --------------------
+>>>>
+>>>> What GMEM (Generalized Memory Management [1]) does:
+>>>>
+>>>> GMEM extends Linux MM to share its machine-independent MM code. Only
+>>>> high-level interface is provided for device drivers. This prevents
+>>>> accelerator drivers from reinventing the wheel, but relies on
+>>>> drivers to implement their hardware-dependent functions declared by
+>>>> GMEM. GMEM's key interface include gm_dev_create(), gm_as_create(),
+>>>> gm_as_attach() and gm_dev_register_physmem(). Here briefly describe
+>>>> how a device driver utilizes them:
+>>>> 1. At boot time, call gm_dev_create() and registers the implementation of
+>>>>       hardware-dependent functions as declared in struct gm_mmu.
+>>>>         - If the device has local DRAM, call gm_dev_register_physmem() to
+>>>>           register available physical addresses.
+>>>> 2. When a device context is initialized (e.g. triggered by ioctl), check if
+>>>>       the current CPU process has been attached to a gmem address space
+>>>>       (struct gm_as). If not, call gm_as_create() and point current->mm->gm_as
+>>>>       to it.
+>>>> 3. Call gm_as_attach() to attach the device context to a gmem address space.
+>>>> 4. Invoke gm_dev_fault() to resolve a page fault or prepare data before
+>>>>       device computation happens.
+>>>>
+>>>> GMEM has changed the following assumptions in Linux MM:
+>>>>      1. An mm_struct not only handle a single CPU context, but may also handle
+>>>>         external memory contexts encapsulated as gm_context listed in
+>>>>         mm->gm_as. An external memory context can include a few or all of the
+>>>>         following parts: an external MMU (that requires TLB invalidation), an
+>>>>         external page table (that requires PTE manipulation) and external DRAM
+>>>>         (that requires physical memory management).
+>>> Well that is pretty much exactly what AMD has already proposed with
+>>> KFD and was rejected for rather good reasons.
+>>>> MMU functions
+>>>> The MMU functions peer_map() and peer_unmap() overlap other
+>>>> functions, leaving a question if the MMU functions should be
+>>>> decoupled as more basic operations. Decoupling them could
+>>>> potentially prevent device drivers coalescing these basic steps
+>>>> within a single host-device communication operation, while coupling
+>>>> them makes it more difficult for device drivers to utilize GMEM interface.
+>>> Well to be honest all of this sounds like history to me. We have
+>>> already seen the same basic approach in KFD, HMM and to some extend in TTM as well.
+>>>
+>>> And all of them more or less failed. Why should this here be different?
+>> Any info we have on why this has failed to work in the past would be
+>> useful to provide. This is one of those cases where we may not have
+>> documented the bad ideas to stop future developers from thinking they
+>> are bad.
+>>
+>> I do think we would want more common code in this area, but I would
+>> think we'd have it more on the driver infrastructure side, than in the
+>> core mm.
+>>
+>> Dave.
+
