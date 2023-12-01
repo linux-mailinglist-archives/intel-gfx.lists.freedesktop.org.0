@@ -1,53 +1,47 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 020E980062F
-	for <lists+intel-gfx@lfdr.de>; Fri,  1 Dec 2023 09:49:55 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 045D8800652
+	for <lists+intel-gfx@lfdr.de>; Fri,  1 Dec 2023 09:54:51 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D315B10E81E;
-	Fri,  1 Dec 2023 08:49:51 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4F46D10E82A;
+	Fri,  1 Dec 2023 08:54:49 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.120])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 889AF10E821
- for <intel-gfx@lists.freedesktop.org>; Fri,  1 Dec 2023 08:49:48 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.93])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 44BA810E82A
+ for <intel-gfx@lists.freedesktop.org>; Fri,  1 Dec 2023 08:54:46 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1701420588; x=1732956588;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=pEiJEQKufj50keYzJK3/TKLKQdSby2XEUtYlkUVbFbk=;
- b=gf2NpmelB84LRBSsWIhDIwseiFN9W3KqlHWqL5ESAiVb2RMDcIDc5OH9
- aA84023f2mTSpVkhNgZwPOUDuxtFrrYjA1Aw9JvtHWgH5HAX4Z3wCmVdl
- CQxC6+sfOt7URB++vhq9Ddr8Ycniy4KW44PoDS4slb/PP5H8SPt56V9cq
- rlPh/jx/cc0L+QxGD5GbMJZ0Xt2gW3iir4Fpma/RVyIEgvqeYzUcT3/Il
- SJOM4eS5Oi5WzxCwlsqyNDZO5ZnWwFDo2MQZBISsJJKf7/wn7OEB2CNwq
- Vbhkj+qNK37Kb3prtqsQhwJk+uGC9mCUG9wdJY3vj6w8tALKIhVigsx4d w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10910"; a="392330132"
-X-IronPort-AV: E=Sophos;i="6.04,241,1695711600"; d="scan'208";a="392330132"
-Received: from orsmga003.jf.intel.com ([10.7.209.27])
- by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Dec 2023 00:49:47 -0800
+ t=1701420887; x=1732956887;
+ h=from:to:cc:subject:date:message-id:in-reply-to: references;
+ bh=p8wwQ4Pn65yJvCj5QOMiJLkZGijniQ9RRaxmjp1VerM=;
+ b=nzDIMOCOhj+wnS6I3TIfInPnAW9o1paA75Skmm4Tm09/6K+kuS48wn1D
+ PgTW+PktXTcgjhhzJ2rbAQM/JlLtsU6Wt0fzzFyhQ3Xz6eg+vjElasmwg
+ C+kcUS2O29hREJrMD/5+KS9HIBzwMQrvKdU3doMnPdzQK97OvhVF4lmPv
+ UGEAwU3tqb27dfPxAiSe1ar3cU8R2Q+7kxvzrz9eSTQ3lz5ej9qDG01EG
+ XbtCPagN8eJVvhVxLWn7bkHw+sSnrgDT6Lj8b4gNAifXLNZ7YsiTj6vVX
+ uFhq/orD6yiODppsZ+X4jPiE5f6QJBaaWmigcq51+sbcLgPv0PIGTK8jQ g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10910"; a="390628935"
+X-IronPort-AV: E=Sophos;i="6.04,241,1695711600"; d="scan'208";a="390628935"
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+ by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 01 Dec 2023 00:54:44 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10910"; a="719429051"
-X-IronPort-AV: E=Sophos;i="6.04,241,1695711600"; d="scan'208";a="719429051"
-Received: from vlubart-mobl1.ger.corp.intel.com (HELO localhost)
- ([10.252.44.207])
- by orsmga003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Dec 2023 00:49:46 -0800
-From: Jani Nikula <jani.nikula@intel.com>
-To: Rodrigo Vivi <rodrigo.vivi@intel.com>
-In-Reply-To: <ZWePsA5BLZDsIGDT@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20231129173317.1192269-1-jani.nikula@intel.com>
- <ZWePsA5BLZDsIGDT@intel.com>
-Date: Fri, 01 Dec 2023 10:49:42 +0200
-Message-ID: <87cyvq489l.fsf@intel.com>
-MIME-Version: 1.0
-Content-Type: text/plain
-Subject: Re: [Intel-gfx] [PATCH v2 1/2] drm/i915: use PIPE_CONF_CHECK_BOOL()
- for bool members
+X-IronPort-AV: E=McAfee;i="6600,9927,10910"; a="769613856"
+X-IronPort-AV: E=Sophos;i="6.04,241,1695711600"; d="scan'208";a="769613856"
+Received: from basicluh01.gar.corp.intel.com (HELO localhost.localdomain)
+ ([10.223.131.46])
+ by orsmga002.jf.intel.com with ESMTP; 01 Dec 2023 00:54:41 -0800
+From: Melanie Lobo <melanie.lobo@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Fri,  1 Dec 2023 14:41:33 +0530
+Message-Id: <20231201091133.23508-1-melanie.lobo@intel.com>
+X-Mailer: git-send-email 2.17.1
+In-Reply-To: <20231011102356.22014-1-melanie.lobo@intel.com>
+References: <20231011102356.22014-1-melanie.lobo@intel.com>
+Subject: [Intel-gfx] [PATCH] drm/i915: Support FP16 compressed formats on MTL
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -60,59 +54,87 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org
+Cc: juha-pekka.heikkila@intel.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, 29 Nov 2023, Rodrigo Vivi <rodrigo.vivi@intel.com> wrote:
-> On Wed, Nov 29, 2023 at 07:33:16PM +0200, Jani Nikula wrote:
->> Don't treat bools as integers.
->> 
->> v2: Rebase
->> 
->> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
->
-> Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
+Supports FP16 format which is a binary floating-point computer
+number format that occupies 16 bits in computer memory.Platform shall
+render compression in display engine to receive FP16 compressed formats.
 
-Thanks for the reviews, pushed to din.
+This kernel change was tested with IGT patch,
+https://patchwork.freedesktop.org/patch/562014/
 
-BR,
-Jani.
+Test-with: 20231011095520.10768-1-melanie.lobo@intel.com
 
->
->> ---
->>  drivers/gpu/drm/i915/display/intel_display.c | 8 ++++----
->>  1 file changed, 4 insertions(+), 4 deletions(-)
->> 
->> diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
->> index 9dc22fc8b3d3..d62cdae7ab6b 100644
->> --- a/drivers/gpu/drm/i915/display/intel_display.c
->> +++ b/drivers/gpu/drm/i915/display/intel_display.c
->> @@ -5091,8 +5091,8 @@ intel_pipe_config_compare(const struct intel_crtc_state *current_config,
->>  #define PIPE_CONF_QUIRK(quirk) \
->>  	((current_config->quirks | pipe_config->quirks) & (quirk))
->>  
->> -	PIPE_CONF_CHECK_I(hw.enable);
->> -	PIPE_CONF_CHECK_I(hw.active);
->> +	PIPE_CONF_CHECK_BOOL(hw.enable);
->> +	PIPE_CONF_CHECK_BOOL(hw.active);
->>  
->>  	PIPE_CONF_CHECK_I(cpu_transcoder);
->>  	PIPE_CONF_CHECK_I(mst_master_transcoder);
->> @@ -5301,8 +5301,8 @@ intel_pipe_config_compare(const struct intel_crtc_state *current_config,
->>  	PIPE_CONF_CHECK_I(dsc.config.second_line_bpg_offset);
->>  	PIPE_CONF_CHECK_I(dsc.config.nsl_bpg_offset);
->>  
->> -	PIPE_CONF_CHECK_I(dsc.compression_enable);
->> -	PIPE_CONF_CHECK_I(dsc.dsc_split);
->> +	PIPE_CONF_CHECK_BOOL(dsc.compression_enable);
->> +	PIPE_CONF_CHECK_BOOL(dsc.dsc_split);
->>  	PIPE_CONF_CHECK_I(dsc.compressed_bpp_x16);
->>  
->>  	PIPE_CONF_CHECK_BOOL(splitter.enable);
->> -- 
->> 2.39.2
->> 
+Credits: Juha-Pekka <juha-pekka.heikkila@intel.com>
+Cc: Juha-Pekka Heikkila <juhapekka.heikkila@gmail.com>
+Cc: Bhanuprakash Modem <bhanuprakash.modem@intel.com>
+Cc: Swati Sharma <swati2.sharma@intel.com>
+Reported-by: kernel test robot <lkp@intel.com>
+Reported-by: Dan Carpenter <dan.carpenter@linaro.org>
+Closes: https://lore.kernel.org/r/202310150454.S9QF86bl-lkp@intel.com/HEAD detached at 29b1181aa95a
+Signed-off-by: Melanie Lobo <melanie.lobo@intel.com>
+---
+ drivers/gpu/drm/i915/display/intel_fb.c            | 10 ++++++++++
+ drivers/gpu/drm/i915/display/skl_universal_plane.c |  2 +-
+ 2 files changed, 11 insertions(+), 1 deletion(-)
 
+diff --git a/drivers/gpu/drm/i915/display/intel_fb.c b/drivers/gpu/drm/i915/display/intel_fb.c
+index e7678571b0d7..494baf20f76b 100644
+--- a/drivers/gpu/drm/i915/display/intel_fb.c
++++ b/drivers/gpu/drm/i915/display/intel_fb.c
+@@ -91,6 +91,8 @@ static const struct drm_format_info gen12_ccs_formats[] = {
+ 	{ .format = DRM_FORMAT_P016, .num_planes = 4,
+ 	  .char_per_block = { 2, 4, 1, 1 }, .block_w = { 1, 1, 2, 2 }, .block_h = { 1, 1, 1, 1 },
+ 	  .hsub = 2, .vsub = 2, .is_yuv = true },
++	{ .format = DRM_FORMAT_XRGB16161616F, .depth = 64, .num_planes = 2,
++	  .char_per_block = { 8, 1}, .block_w = { 1, 4}, .block_h = { 1, 2}, .hsub = 1, .vsub = 1 },
+ };
+ 
+ /*
+@@ -394,6 +396,9 @@ static bool plane_has_modifier(struct drm_i915_private *i915,
+ 			       u8 plane_caps,
+ 			       const struct intel_modifier_desc *md)
+ {
++	const struct drm_format_info *info =
++		lookup_format_info(md->formats, md->format_count, DRM_FORMAT_XRGB16161616F);
++
+ 	if (!IS_DISPLAY_VER(i915, md->display_ver.from, md->display_ver.until))
+ 		return false;
+ 
+@@ -408,6 +413,11 @@ static bool plane_has_modifier(struct drm_i915_private *i915,
+ 	    HAS_FLAT_CCS(i915) != !md->ccs.packed_aux_planes)
+ 		return false;
+ 
++	/* Check if CSS modifier and FP16 format is supported on different platforms */
++	if (intel_fb_is_ccs_modifier(md->modifier) && info &&
++	    info->format == DRM_FORMAT_XRGB16161616F && DISPLAY_VER(i915) < 14)
++	       return false;
++
+ 	return true;
+ }
+ 
+diff --git a/drivers/gpu/drm/i915/display/skl_universal_plane.c b/drivers/gpu/drm/i915/display/skl_universal_plane.c
+index 245a64332cc7..f5e9be57a74b 100644
+--- a/drivers/gpu/drm/i915/display/skl_universal_plane.c
++++ b/drivers/gpu/drm/i915/display/skl_universal_plane.c
+@@ -2091,6 +2091,7 @@ static bool gen12_plane_format_mod_supported(struct drm_plane *_plane,
+ 	case DRM_FORMAT_XBGR8888:
+ 	case DRM_FORMAT_ARGB8888:
+ 	case DRM_FORMAT_ABGR8888:
++	case DRM_FORMAT_XRGB16161616F:
+ 		if (intel_fb_is_ccs_modifier(modifier))
+ 			return true;
+ 		fallthrough;
+@@ -2115,7 +2116,6 @@ static bool gen12_plane_format_mod_supported(struct drm_plane *_plane,
+ 	case DRM_FORMAT_C8:
+ 	case DRM_FORMAT_XBGR16161616F:
+ 	case DRM_FORMAT_ABGR16161616F:
+-	case DRM_FORMAT_XRGB16161616F:
+ 	case DRM_FORMAT_ARGB16161616F:
+ 	case DRM_FORMAT_Y210:
+ 	case DRM_FORMAT_Y212:
 -- 
-Jani Nikula, Intel
+2.17.1
+
