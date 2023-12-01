@@ -2,56 +2,44 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 47D06800F55
-	for <lists+intel-gfx@lfdr.de>; Fri,  1 Dec 2023 17:11:47 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id E144E80121F
+	for <lists+intel-gfx@lfdr.de>; Fri,  1 Dec 2023 18:59:50 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2CC6110E0C6;
-	Fri,  1 Dec 2023 16:11:44 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3955010E901;
+	Fri,  1 Dec 2023 17:59:49 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from us-smtp-delivery-124.mimecast.com
- (us-smtp-delivery-124.mimecast.com [170.10.129.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 66E0710E0C6
- for <intel-gfx@lists.freedesktop.org>; Fri,  1 Dec 2023 16:11:41 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1701447101;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding;
- bh=ElA6Fj5DJkJvfXTjhyinKJ7iR3dZv3cvuKNwFak2q8c=;
- b=fZWBfIB07WajG9IK1Z+7mP5MXbuvN/ZAwUxX7l7UmjmDih19LjQPL9a9t/vB2/m80EbIaq
- uWkiwCgfAhvryh0Eu0AVPX1LSYlNE6AXTPyaw+E5Osu4bYx9999kUnqG+ZVTUNhgt/3AWC
- MDN5iSA09qr3fzM9qd3A7Og5+qYi7Ec=
-Received: from mimecast-mx02.redhat.com (mx-ext.redhat.com [66.187.233.73])
- by relay.mimecast.com with ESMTP with STARTTLS (version=TLSv1.3,
- cipher=TLS_AES_256_GCM_SHA384) id us-mta-29-fadl10qWMv--3DyaCaz95A-1; Fri,
- 01 Dec 2023 11:11:38 -0500
-X-MC-Unique: fadl10qWMv--3DyaCaz95A-1
-Received: from smtp.corp.redhat.com (int-mx03.intmail.prod.int.rdu2.redhat.com
- [10.11.54.3])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
- (No client certificate requested)
- by mimecast-mx02.redhat.com (Postfix) with ESMTPS id 25FF63C025CC;
- Fri,  1 Dec 2023 16:11:37 +0000 (UTC)
-Received: from localhost.localdomain (unknown [10.39.192.44])
- by smtp.corp.redhat.com (Postfix) with ESMTP id EA6581121307;
- Fri,  1 Dec 2023 16:11:35 +0000 (UTC)
-From: Hans de Goede <hdegoede@redhat.com>
-To: Jani Nikula <jani.nikula@linux.intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
- =?UTF-8?q?Ville=20Syrj=C3=A4l=C3=A4?= <ville.syrjala@linux.intel.com>
-Date: Fri,  1 Dec 2023 17:11:30 +0100
-Message-ID: <20231201161130.23976-1-hdegoede@redhat.com>
+Received: from sin.source.kernel.org (sin.source.kernel.org [145.40.73.55])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 48EB810E901;
+ Fri,  1 Dec 2023 17:59:45 +0000 (UTC)
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+ by sin.source.kernel.org (Postfix) with ESMTP id E0936CE27AF;
+ Fri,  1 Dec 2023 17:59:42 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3A494C433C8;
+ Fri,  1 Dec 2023 17:59:41 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=k20201202; t=1701453582;
+ bh=3dXR8wL3fR9bSemkvvqodZiJJVT4and4PNMjIPPenY0=;
+ h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+ b=uR+T4GoC4D7Q0aufVDe9ekcSR3mFWG/5dO5W3BtOWkNPTeAUDLaE8aoLIcymGC2u1
+ camLgMKe/f/SHi2fgFcJLfAVwnlTsZjYIXc5CCJ13g+F9XMMecZ5E3g16WFVYDrre9
+ dYodgDuiOin7OayOTsmLVe68y4nVGlzzbu9/QYuEWSjRCQiiEstDTnaiAss3+7EneN
+ JIBoO0SBRWFQ3/RF127oMlsIMwfV4f3elNamgORdVaSkvNahbBPa+Ue0Oq//Ew9N3w
+ 1H02Za7MOsX9nHP/oYVJpysvpE3t0QP+Ec/Q6RorH4404nyTacACU9FHHYxb9Q2SDm
+ HuCgR/7r9Dbiw==
+Date: Fri, 1 Dec 2023 10:59:39 -0700
+From: Nathan Chancellor <nathan@kernel.org>
+To: Jani Nikula <jani.nikula@intel.com>
+Message-ID: <20231201175939.GA231094@dev-arch.thelio-3990X>
+References: <20231129181219.1237887-1-jani.nikula@intel.com>
+ <72248f22-6337-487a-9979-a0d79e37a9ed@amd.com>
+ <874jh362ta.fsf@intel.com>
 MIME-Version: 1.0
-X-Scanned-By: MIMEDefang 3.4.1 on 10.11.54.3
-X-Mimecast-Spam-Score: 0
-X-Mimecast-Originator: redhat.com
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain; charset="US-ASCII"; x-default=true
-Subject: [Intel-gfx] [PATCH] drm/i915/dsi: Use devm_gpiod_get() for all GPIOs
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <874jh362ta.fsf@intel.com>
+Subject: Re: [Intel-gfx] [RFC] drm: enable W=1 warnings by default across
+ the subsystem
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,100 +52,71 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Andy Shevchenko <andy@kernel.org>, Hans de Goede <hdegoede@redhat.com>,
- intel-gfx <intel-gfx@lists.freedesktop.org>, dri-devel@lists.freedesktop.org
+Cc: Pan@freedesktop.org, Karol Herbst <kherbst@redhat.com>,
+ intel-gfx@lists.freedesktop.org, Xinhui <Xinhui.Pan@amd.com>,
+ Abhinav Kumar <quic_abhinavk@quicinc.com>, dri-devel@lists.freedesktop.org,
+ Maxime Ripard <mripard@kernel.org>,
+ Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+ Danilo Krummrich <dakr@redhat.com>, Hamza Mahfooz <hamza.mahfooz@amd.com>,
+ Thomas Zimmermann <tzimmermann@suse.de>,
+ Alex Deucher <alexander.deucher@amd.com>,
+ Marijn Suijten <marijn.suijten@somainline.org>,
+ Christian =?iso-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-soc_gpio_set_value() already uses devm_gpiod_get(), lets be consistent
-and use devm_gpiod_get() for all GPIOs.
+On Thu, Nov 30, 2023 at 10:52:17AM +0200, Jani Nikula wrote:
+> On Wed, 29 Nov 2023, Hamza Mahfooz <hamza.mahfooz@amd.com> wrote:
+> > Cc: Nathan Chancellor <nathan@kernel.org>
+> >
+> > On 11/29/23 13:12, Jani Nikula wrote:
+> >> At least the i915 and amd drivers enable a bunch more compiler warnings
+> >> than the kernel defaults.
+> >> 
+> >> Extend the W=1 warnings to the entire drm subsystem by default. Use the
+> >> copy-pasted warnings from scripts/Makefile.extrawarn with
+> >> s/KBUILD_CFLAGS/subdir-ccflags-y/ to make it easier to compare and keep
+> >> up with them in the future.
+> >> 
+> >> This is similar to the approach currently used in i915.
+> >> 
+> >> Some of the -Wextra warnings do need to be disabled, just like in
+> >> Makefile.extrawarn, but take care to not disable them for W=2 or W=3
+> >> builds, depending on the warning.
+> >
+> > I think this should go in after drm-misc-next has a clean build (for
+> > COMPILE_TEST builds) with this patch applied. Otherwise, it will break a
+> > lot of build configs.
+> 
+> Oh, I'm absolutely not suggesting this should be merged before known
+> warnings have been addressed one way or another. Either by fixing them
+> or by disabling said warning in driver local Makefiles, depending on the
+> case.
+> 
+> While I'm suggesting this, I obviously (I hope) can't take on fixing all
+> the warnings this exposes. One way to scale would be for folks to apply
+> this locally, see what it uncovers in their drivers, and fix some.
+> 
+> As an intermediate step we might also apply this to a topic branch in
+> drm-tip, so you'd see the warnings when building drm-tip, but not in
+> indidual branches or in anything that's merged upstream.
 
-This allows removing the intel_dsi_vbt_gpio_cleanup() function,
-which only function was to put the GPIO-descriptors.
+For what it's worth, I ran this through my personal build matrix with
+LLVM/clang and it only found a few instances of
+-Wunused-but-set-variable:
 
-Signed-off-by: Hans de Goede <hdegoede@redhat.com>
----
-Note this applies on top of Andy's recent GPIO rework series which
-has just landed in drm-intel-next
----
- drivers/gpu/drm/i915/display/intel_dsi_vbt.c | 17 ++---------------
- drivers/gpu/drm/i915/display/intel_dsi_vbt.h |  1 -
- drivers/gpu/drm/i915/display/vlv_dsi.c       | 10 +---------
- 3 files changed, 3 insertions(+), 25 deletions(-)
+drivers/gpu/drm/mediatek/mtk_disp_gamma.c:121:6: warning: variable 'cfg_val' set but not used [-Wunused-but-set-variable]
+drivers/gpu/drm/nouveau/nouveau_svm.c:115:24: warning: variable 'priority' set but not used [-Wunused-but-set-variable]
+drivers/gpu/drm/nouveau/nouveau_svm.c:929:6: warning: variable 'ret' set but not used [-Wunused-but-set-variable]
+drivers/gpu/drm/nouveau/nvkm/subdev/acr/lsfw.c:221:7: warning: variable 'loc' set but not used [-Wunused-but-set-variable]
+drivers/gpu/drm/qxl/qxl_cmd.c:424:6: warning: variable 'count' set but not used [-Wunused-but-set-variable]
+drivers/gpu/drm/qxl/qxl_ioctl.c:148:14: warning: variable 'num_relocs' set but not used [-Wunused-but-set-variable]
 
-diff --git a/drivers/gpu/drm/i915/display/intel_dsi_vbt.c b/drivers/gpu/drm/i915/display/intel_dsi_vbt.c
-index 275d0218394c..a5d7fc8418c9 100644
---- a/drivers/gpu/drm/i915/display/intel_dsi_vbt.c
-+++ b/drivers/gpu/drm/i915/display/intel_dsi_vbt.c
-@@ -922,7 +922,7 @@ void intel_dsi_vbt_gpio_init(struct intel_dsi *intel_dsi, bool panel_is_on)
- 		gpiod_add_lookup_table(gpiod_lookup_table);
- 
- 	if (want_panel_gpio) {
--		intel_dsi->gpio_panel = gpiod_get(dev->dev, "panel", flags);
-+		intel_dsi->gpio_panel = devm_gpiod_get(dev->dev, "panel", flags);
- 		if (IS_ERR(intel_dsi->gpio_panel)) {
- 			drm_err(&dev_priv->drm,
- 				"Failed to own gpio for panel control\n");
-@@ -932,7 +932,7 @@ void intel_dsi_vbt_gpio_init(struct intel_dsi *intel_dsi, bool panel_is_on)
- 
- 	if (want_backlight_gpio) {
- 		intel_dsi->gpio_backlight =
--			gpiod_get(dev->dev, "backlight", flags);
-+			devm_gpiod_get(dev->dev, "backlight", flags);
- 		if (IS_ERR(intel_dsi->gpio_backlight)) {
- 			drm_err(&dev_priv->drm,
- 				"Failed to own gpio for backlight control\n");
-@@ -943,16 +943,3 @@ void intel_dsi_vbt_gpio_init(struct intel_dsi *intel_dsi, bool panel_is_on)
- 	if (gpiod_lookup_table)
- 		gpiod_remove_lookup_table(gpiod_lookup_table);
- }
--
--void intel_dsi_vbt_gpio_cleanup(struct intel_dsi *intel_dsi)
--{
--	if (intel_dsi->gpio_panel) {
--		gpiod_put(intel_dsi->gpio_panel);
--		intel_dsi->gpio_panel = NULL;
--	}
--
--	if (intel_dsi->gpio_backlight) {
--		gpiod_put(intel_dsi->gpio_backlight);
--		intel_dsi->gpio_backlight = NULL;
--	}
--}
-diff --git a/drivers/gpu/drm/i915/display/intel_dsi_vbt.h b/drivers/gpu/drm/i915/display/intel_dsi_vbt.h
-index 468d873fab1a..3462fcc760e6 100644
---- a/drivers/gpu/drm/i915/display/intel_dsi_vbt.h
-+++ b/drivers/gpu/drm/i915/display/intel_dsi_vbt.h
-@@ -13,7 +13,6 @@ struct intel_dsi;
- 
- bool intel_dsi_vbt_init(struct intel_dsi *intel_dsi, u16 panel_id);
- void intel_dsi_vbt_gpio_init(struct intel_dsi *intel_dsi, bool panel_is_on);
--void intel_dsi_vbt_gpio_cleanup(struct intel_dsi *intel_dsi);
- void intel_dsi_vbt_exec_sequence(struct intel_dsi *intel_dsi,
- 				 enum mipi_seq seq_id);
- void intel_dsi_log_params(struct intel_dsi *intel_dsi);
-diff --git a/drivers/gpu/drm/i915/display/vlv_dsi.c b/drivers/gpu/drm/i915/display/vlv_dsi.c
-index 5bda97c96810..9b33b8a74d64 100644
---- a/drivers/gpu/drm/i915/display/vlv_dsi.c
-+++ b/drivers/gpu/drm/i915/display/vlv_dsi.c
-@@ -1532,16 +1532,8 @@ static void intel_dsi_unprepare(struct intel_encoder *encoder)
- 	}
- }
- 
--static void intel_dsi_encoder_destroy(struct drm_encoder *encoder)
--{
--	struct intel_dsi *intel_dsi = enc_to_intel_dsi(to_intel_encoder(encoder));
--
--	intel_dsi_vbt_gpio_cleanup(intel_dsi);
--	intel_encoder_destroy(encoder);
--}
--
- static const struct drm_encoder_funcs intel_dsi_funcs = {
--	.destroy = intel_dsi_encoder_destroy,
-+	.destroy = intel_encoder_destroy,
- };
- 
- static enum drm_mode_status vlv_dsi_mode_valid(struct drm_connector *connector,
--- 
-2.41.0
+I know that clang does not support all the warnings that are being
+enabled here but I suspect there won't be too many instances of the
+other warnings. -Wformat-overflow and -Wformat-truncation might be the
+big ones. I know -Wstringop-overflow is being turned on globally
+in -next so that is one that you shouldn't have to worry much about.
 
+Cheers,
+Nathan
