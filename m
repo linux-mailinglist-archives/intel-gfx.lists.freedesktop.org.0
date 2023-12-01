@@ -2,51 +2,53 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3F994800D43
-	for <lists+intel-gfx@lfdr.de>; Fri,  1 Dec 2023 15:35:56 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5F089800D84
+	for <lists+intel-gfx@lfdr.de>; Fri,  1 Dec 2023 15:41:51 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 375B310E108;
-	Fri,  1 Dec 2023 14:35:50 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B1E2C10E121;
+	Fri,  1 Dec 2023 14:41:47 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 58FD610E108
- for <intel-gfx@lists.freedesktop.org>; Fri,  1 Dec 2023 14:35:14 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2791510E121
+ for <intel-gfx@lists.freedesktop.org>; Fri,  1 Dec 2023 14:41:41 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1701441314; x=1732977314;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=MFtTgFlgk8tau/shiLawBdqKEVhHErWl9Ar8nUCevbA=;
- b=l/OJ8q9/OcBVSKqyDimk6w2TalrMVllxTfkXQMSj7qd7/AEdom2Z30sA
- 7UWAC4GRX5C0FYuRLiPTc95X+Tr5a/lCHCRcsHAJb64pXu1rPas/QFml5
- Pstm444sl+J5Mi0MK/Ua7KqLRGGJYZQBPvpj2CEvoPWGz7ipTx2B6ZBEs
- ExHtUHWCvl61zD3CurBWhojTz9M/4s1UJUJXi+uaWprsp0+3EZ36fL0en
- EL7qzczvPWkmEIVtpywF2sQIBJuW0ctHvtHBTfHL6Pb19jHeJMuVdPun0
- oqoeA3B3rzDl3OZDjlWWBJ4jT9I4wRZIbABRNRaTYpzSGChWypiUHwp6a w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10911"; a="358492"
-X-IronPort-AV: E=Sophos;i="6.04,241,1695711600"; 
-   d="scan'208";a="358492"
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
- by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Dec 2023 06:35:14 -0800
+ t=1701441701; x=1732977701;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=QarlHGNRQSNCBN+82OIhir7L5YdMyKoQK1tSpl0fQps=;
+ b=T4gOtYNV/t1EFIJuf3iNOvaG8nbk0B4m2CM8GNFLHu5YGezzzdX/FMpY
+ onFcHKttv5Rn5mQtGoLmXwUZgOCwzmX+gXdsCNFE4+6taSPCkQQIgZhIL
+ preVgT5WMU9iTxDkRfv6AQK4dXCoOtRWWA2JbuZTu3uvWIBCRdrRl+mrb
+ 019OhSa4t7P1NR0TKlNaj57w9tQF5KKunVOZyEKKVqUNpRpDPwMADbEGt
+ MbpQyghp8WlLZvDpcb8BEKk//+NQDtpGx4weB/ks1MHuJn38/jFFTJFkj
+ zl+XAHP05ydOhHQFzf6FZb8wHkG2b8n//nP8UNhdNQ9RKrFmx8zXaw9cU A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10911"; a="383900856"
+X-IronPort-AV: E=Sophos;i="6.04,241,1695711600"; d="scan'208";a="383900856"
+Received: from orsmga007.jf.intel.com ([10.7.209.58])
+ by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 01 Dec 2023 06:41:40 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10911"; a="913597283"
-X-IronPort-AV: E=Sophos;i="6.04,241,1695711600"; d="scan'208";a="913597283"
-Received: from unknown (HELO slisovsk-Lenovo-ideapad-720S-13IKB.fi.intel.com)
- ([10.237.72.65])
- by fmsmga001.fm.intel.com with ESMTP; 01 Dec 2023 06:35:12 -0800
-From: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Fri,  1 Dec 2023 16:35:11 +0200
-Message-Id: <20231201143511.7219-1-stanislav.lisovskiy@intel.com>
-X-Mailer: git-send-email 2.37.3
-In-Reply-To: <20231129092103.26435-1-stanislav.lisovskiy@intel.com>
-References: <20231129092103.26435-1-stanislav.lisovskiy@intel.com>
+X-IronPort-AV: E=McAfee;i="6600,9927,10911"; a="763161717"
+X-IronPort-AV: E=Sophos;i="6.04,241,1695711600"; d="scan'208";a="763161717"
+Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.74])
+ by orsmga007.jf.intel.com with SMTP; 01 Dec 2023 06:41:38 -0800
+Received: by stinkbox (sSMTP sendmail emulation);
+ Fri, 01 Dec 2023 16:41:37 +0200
+Date: Fri, 1 Dec 2023 16:41:37 +0200
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: Jani Nikula <jani.nikula@intel.com>
+Message-ID: <ZWnwofolLechg_Dg@intel.com>
+References: <20231201134141.1569265-1-jani.nikula@intel.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH 3/3] drm/i915: Disable SAGV on bw init,
- to force QGV point recalculation
+In-Reply-To: <20231201134141.1569265-1-jani.nikula@intel.com>
+X-Patchwork-Hint: comment
+Subject: Re: [Intel-gfx] [PATCH] drm/i915/edp: don't write to DP_LINK_BW_SET
+ when using rate select
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,89 +61,77 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Problem is that on some platforms, we do get QGV point mask in wrong
-state on boot. However driver assumes it is set to 0
-(i.e all points allowed), however in reality we might get them all restricted,
-causing issues.
-Lets disable SAGV initially to force proper QGV point state.
-If more QGV points are available, driver will recalculate and update
-those then after next commit.
+On Fri, Dec 01, 2023 at 03:41:41PM +0200, Jani Nikula wrote:
+> The eDP 1.5 spec adds a clarification for eDP 1.4x:
+> 
+> > For eDP v1.4x, if the Source device chooses the Main-Link rate by way
+> > of DPCD 00100h, the Sink device shall ignore DPCD 00115h[2:0].
+> 
+> We write 0 to DP_LINK_BW_SET (DPCD 100h) even when using
+> DP_LINK_RATE_SET (DPCD 114h). Stop doing that, as it can cause the panel
+> to ignore the rate set method.
 
-v2: - Added trace to see which QGV/PSF GV point is used when SAGV is
-      disabled.
-v3: - Move force disable function to intel_bw_init in order to initialize
-      bw state as well, so that hw/sw are immediately in sync after init.
+What a terrible way to specify this :( This means the device must 
+hav some internal state to keep track of whethe BW_SET was ever
+written.
 
-Signed-off-by: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
----
- drivers/gpu/drm/i915/display/intel_bw.c | 25 ++++++++++++++++++++++++-
- drivers/gpu/drm/i915/display/intel_bw.h |  2 ++
- 2 files changed, 26 insertions(+), 1 deletion(-)
+> 
+> Closes: https://gitlab.freedesktop.org/drm/intel/-/issues/9081
+> Tested-by: Animesh Manna <animesh.manna@intel.com>
+> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+> ---
+>  .../drm/i915/display/intel_dp_link_training.c | 23 +++++++++++--------
+>  1 file changed, 13 insertions(+), 10 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/i915/display/intel_dp_link_training.c b/drivers/gpu/drm/i915/display/intel_dp_link_training.c
+> index dbc1b66c8ee4..6336a39030a4 100644
+> --- a/drivers/gpu/drm/i915/display/intel_dp_link_training.c
+> +++ b/drivers/gpu/drm/i915/display/intel_dp_link_training.c
+> @@ -650,19 +650,22 @@ intel_dp_update_link_bw_set(struct intel_dp *intel_dp,
+>  			    const struct intel_crtc_state *crtc_state,
+>  			    u8 link_bw, u8 rate_select)
+>  {
+> -	u8 link_config[2];
+> +	u8 lane_count = crtc_state->lane_count;
+>  
+> -	/* Write the link configuration data */
+> -	link_config[0] = link_bw;
+> -	link_config[1] = crtc_state->lane_count;
+>  	if (crtc_state->enhanced_framing)
+> -		link_config[1] |= DP_LANE_COUNT_ENHANCED_FRAME_EN;
+> -	drm_dp_dpcd_write(&intel_dp->aux, DP_LINK_BW_SET, link_config, 2);
+> +		lane_count |= DP_LANE_COUNT_ENHANCED_FRAME_EN;
+> +
+> +	if (link_bw) {
+> +		/* eDP 1.3 and earlier link bw set method. */
+> +		u8 link_config[] = { link_bw, lane_count };
+>  
+> -	/* eDP 1.4 rate select method. */
+> -	if (!link_bw)
+> -		drm_dp_dpcd_write(&intel_dp->aux, DP_LINK_RATE_SET,
+> -				  &rate_select, 1);
+> +		drm_dp_dpcd_write(&intel_dp->aux, DP_LINK_BW_SET, link_config,
+> +				  ARRAY_SIZE(link_config));
+> +	} else {
+> +		/* eDP 1.4 rate select method. */
+> +		drm_dp_dpcd_writeb(&intel_dp->aux, DP_LANE_COUNT_SET, lane_count);
+> +		drm_dp_dpcd_writeb(&intel_dp->aux, DP_LINK_RATE_SET, rate_select);
 
-diff --git a/drivers/gpu/drm/i915/display/intel_bw.c b/drivers/gpu/drm/i915/display/intel_bw.c
-index efd408e96e8a..7db28c6631fc 100644
---- a/drivers/gpu/drm/i915/display/intel_bw.c
-+++ b/drivers/gpu/drm/i915/display/intel_bw.c
-@@ -844,7 +844,7 @@ static unsigned int icl_max_bw_qgv_point(struct drm_i915_private *i915,
- 	return max_bw_point;
- }
- 
--unsigned int icl_max_bw_psf_gv_point(struct drm_i915_private *i915)
-+static unsigned int icl_max_bw_psf_gv_point(struct drm_i915_private *i915)
- {
- 	unsigned int num_psf_gv_points = i915->display.bw.max[0].num_psf_gv_points;
- 	unsigned int max_bw = 0;
-@@ -863,6 +863,26 @@ unsigned int icl_max_bw_psf_gv_point(struct drm_i915_private *i915)
- 	return max_bw_point;
- }
- 
-+int icl_force_disable_sagv(struct drm_i915_private *i915, struct intel_bw_state *bw_state)
-+{
-+	unsigned int max_bw_qgv_point = icl_max_bw_qgv_point(i915, 0);
-+	unsigned int max_bw_psf_gv_point = icl_max_bw_psf_gv_point(i915);
-+	unsigned int qgv_points;
-+	unsigned int psf_points;
-+
-+	qgv_points = BIT(max_bw_qgv_point);
-+	psf_points = BIT(max_bw_psf_gv_point);
-+
-+	bw_state->qgv_points_mask = ~(ICL_PCODE_REQ_QGV_PT(qgv_points) |
-+				      ADLS_PCODE_REQ_PSF_PT(psf_points)) &
-+				      icl_qgv_points_mask(i915);
-+
-+	drm_dbg_kms(&i915->drm, "Forcing SAGV disable: leaving QGV point %d, PSF GV %d\n",
-+				max_bw_qgv_point, max_bw_psf_gv_point);
-+
-+	return icl_pcode_restrict_qgv_points(i915, bw_state->qgv_points_mask);
-+}
-+
- static int mtl_find_qgv_points(struct drm_i915_private *i915,
- 			       unsigned int data_rate,
- 			       unsigned int num_active_planes,
-@@ -1373,5 +1393,8 @@ int intel_bw_init(struct drm_i915_private *dev_priv)
- 	intel_atomic_global_obj_init(dev_priv, &dev_priv->display.bw.obj,
- 				     &state->base, &intel_bw_funcs);
- 
-+	if (DISPLAY_VER(dev_priv) < 14)
-+		icl_force_disable_sagv(dev_priv, state);
-+
- 	return 0;
- }
-diff --git a/drivers/gpu/drm/i915/display/intel_bw.h b/drivers/gpu/drm/i915/display/intel_bw.h
-index 59cb4fc5db76..d6eb771baea1 100644
---- a/drivers/gpu/drm/i915/display/intel_bw.h
-+++ b/drivers/gpu/drm/i915/display/intel_bw.h
-@@ -74,5 +74,7 @@ int intel_bw_calc_min_cdclk(struct intel_atomic_state *state,
- 			    bool *need_cdclk_calc);
- int intel_bw_min_cdclk(struct drm_i915_private *i915,
- 		       const struct intel_bw_state *bw_state);
-+int icl_force_disable_sagv(struct drm_i915_private *dev_priv,
-+			   struct intel_bw_state *bw_state);
- 
- #endif /* __INTEL_BW_H__ */
+Doesn't look there's anything in the spec that specifies when the device
+is supposed to reset its internal state to stop ignoring DP_LINK_RATE_SET.
+Do we know when this panel does it? When VDD is removed?
+
+> +	}
+>  }
+>  
+>  /*
+> -- 
+> 2.39.2
+
 -- 
-2.37.3
-
+Ville Syrjälä
+Intel
