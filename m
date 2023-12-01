@@ -2,131 +2,49 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4EB3E8006F8
-	for <lists+intel-gfx@lfdr.de>; Fri,  1 Dec 2023 10:29:48 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6B7168007D7
+	for <lists+intel-gfx@lfdr.de>; Fri,  1 Dec 2023 11:01:24 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 936EF10E81E;
-	Fri,  1 Dec 2023 09:29:45 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5F44810E0AC;
+	Fri,  1 Dec 2023 10:01:20 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from us-smtp-delivery-124.mimecast.com
- (us-smtp-delivery-124.mimecast.com [170.10.133.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BDE0010E0F6
- for <intel-gfx@lists.freedesktop.org>; Fri,  1 Dec 2023 09:29:40 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1701422979;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
- bh=aHQs+9zlQ8PVnO/IT7ptVfgOYh9mlV/hOr1XHdCyFZs=;
- b=Lpc1Jc5f7WSUV+B0vMtEImyO+DPX+l5mNETGpXzCrBMJQBfuv62dIPWvZyLcVPJVO13ikg
- hlIz7VpkuEWrUlKT4leT5MxLow+bgFniQPC0Dwi7kNb2IDQcKznvsvcHHMIyAJFwCDwAk8
- aH/hsINh+6vx+GXSNn1qkS3eEmwiuLk=
-Received: from mail-wr1-f69.google.com (mail-wr1-f69.google.com
- [209.85.221.69]) by relay.mimecast.com with ESMTP with STARTTLS
- (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
- us-mta-344-NUw6NLZfPayXaR76F5Xqiw-1; Fri, 01 Dec 2023 04:29:38 -0500
-X-MC-Unique: NUw6NLZfPayXaR76F5Xqiw-1
-Received: by mail-wr1-f69.google.com with SMTP id
- ffacd0b85a97d-332ee20a40fso1527841f8f.3
- for <intel-gfx@lists.freedesktop.org>; Fri, 01 Dec 2023 01:29:38 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1701422977; x=1702027777;
- h=content-transfer-encoding:in-reply-to:organization:autocrypt:from
- :references:cc:to:content-language:subject:user-agent:mime-version
- :date:message-id:x-gm-message-state:from:to:cc:subject:date
- :message-id:reply-to;
- bh=aHQs+9zlQ8PVnO/IT7ptVfgOYh9mlV/hOr1XHdCyFZs=;
- b=eQ1o0iK6dUYGm6MGthq+nlUfR6M+XOGtF6YV8olXEXngyc2u7A++a97DmrXpv9a9D2
- dWt3t0f54Vf9LEOQ76m3ztSB1Fy3KhJy9AI7i5A01HIVbBkRPkX6qs0VsemLXbKBYA1z
- YuCbK8oMNd2lIjmvbe9kgWDYwGFCRvzAniOQ3LzuPVrDtxE7L4FEA3eCGqAQhC5hOZ9k
- BoiEIL3dgDhOkpBWYjAGjgVneItt0Ck+yZ0meOsGWKreMhC64cOBY/+Gz+FYHiflNzGM
- XO6wmT4A7/atttTGM/AE1S9rJqJioYSWhSawiOov2362X3hWgBqGlUEye58tHjl+uCAe
- Y9eQ==
-X-Gm-Message-State: AOJu0Yyl9V5FUK/2aszZBBckZtfHseM7t3vAWoO3LcvypyJsfLuI/8+J
- mgMfYUD/1PwZ/hr+6mrhjsqT4DlE+qn8F4VyZQDsVx3udAlIc26trzxACgvhbpOgn2pnZ4rUlt/
- kIhR9huZfLcgdWW50ote9bkJNtABN
-X-Received: by 2002:a05:6000:1a45:b0:333:2fd2:6f4e with SMTP id
- t5-20020a0560001a4500b003332fd26f4emr645114wry.88.1701422977200; 
- Fri, 01 Dec 2023 01:29:37 -0800 (PST)
-X-Google-Smtp-Source: AGHT+IH6bydnphRGhaq+ilbhxPmQBEgxvJKTbvX6HdXyxqISzaG1u0FQwN4zQjzt0whtGPIn363OgA==
-X-Received: by 2002:a05:6000:1a45:b0:333:2fd2:6f4e with SMTP id
- t5-20020a0560001a4500b003332fd26f4emr645087wry.88.1701422976743; 
- Fri, 01 Dec 2023 01:29:36 -0800 (PST)
-Received: from ?IPV6:2003:cb:c726:4100:c308:78e3:8f80:52ac?
- (p200300cbc7264100c30878e38f8052ac.dip0.t-ipconnect.de.
- [2003:cb:c726:4100:c308:78e3:8f80:52ac])
- by smtp.gmail.com with ESMTPSA id
- y17-20020adfee11000000b003330a1d35b6sm3708872wrn.115.2023.12.01.01.29.35
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Fri, 01 Dec 2023 01:29:36 -0800 (PST)
-Message-ID: <135306b4-2f94-4266-8f72-90315bb846b4@redhat.com>
-Date: Fri, 1 Dec 2023 10:29:34 +0100
+Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.120])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 71FDB10E890;
+ Fri,  1 Dec 2023 10:00:46 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1701424868; x=1732960868;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=MJFTxdrGiHqIIpgu5IIt+sy0iE0dXydBWRcJWBzm8bw=;
+ b=X3UmfWLbfxV0oKpfr6DXSyj97HV/BsGIDOJmKBA+7+DB1+uSX6vEhRMT
+ XRkOXPC0rzfqX28T6iOyZkda+YUPyz546cSmXBdFiJYNcbzUkY1PDdFHP
+ /3BdWi+uTNJjmj+Im1KQnKhDxqNy25OJXNRfCpfJ467eZviOdnzob1jsH
+ eawrwTGvv6hJSgjZKwwR8GolEkmeMBiiJvkEhOfSHW3oDQKiAJY0IjzLX
+ +AUB8KP5eH6ICxXEeSCLT0ob966jBCAjWvRhM5HEDelDB7D+RopKIcV+j
+ nlVO+cy7DqhQ3yBy7018tnyzlccyY7MElkJt7kK/HzCmKoO3lAmdVqAXy g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10910"; a="392337201"
+X-IronPort-AV: E=Sophos;i="6.04,241,1695711600"; d="scan'208";a="392337201"
+Received: from fmsmga007.fm.intel.com ([10.253.24.52])
+ by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 01 Dec 2023 02:00:45 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10910"; a="773391801"
+X-IronPort-AV: E=Sophos;i="6.04,241,1695711600"; d="scan'208";a="773391801"
+Received: from ezorina-mobl2.ger.corp.intel.com (HELO hazy.ger.corp.intel.com)
+ ([10.252.58.232])
+ by fmsmga007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 01 Dec 2023 02:00:44 -0800
+From: Luca Coelho <luciano.coelho@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Fri,  1 Dec 2023 12:00:32 +0200
+Message-Id: <20231201100032.1367589-1-luciano.coelho@intel.com>
+X-Mailer: git-send-email 2.39.2
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-To: zhuweixi <weixi.zhu@huawei.com>, Dave Airlie <airlied@gmail.com>,
- =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>
-References: <20231128125025.4449-1-weixi.zhu@huawei.com>
- <9308a79d-e312-4e6d-98fe-75dc6d0fbeda@amd.com>
- <CAPM=9tx-d-Au_bjX0vYxv6OwqiSjmbbMC7ebWpTsQgFNddWDuw@mail.gmail.com>
- <a07fd33c6f9e44418c528de06f89707e@huawei.com>
- <188814aa-4f55-40c6-961c-6105c89d76f3@redhat.com>
- <f4ec70345800432caa94d662f49370f6@huawei.com>
-From: David Hildenbrand <david@redhat.com>
-Autocrypt: addr=david@redhat.com; keydata=
- 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
- WNyWQQ==
-Organization: Red Hat
-In-Reply-To: <f4ec70345800432caa94d662f49370f6@huawei.com>
-X-Mimecast-Spam-Score: 0
-X-Mimecast-Originator: redhat.com
-Content-Language: en-US
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-Subject: Re: [Intel-gfx] [RFC PATCH 0/6] Supporting GMEM (generalized memory
- management) for external memory devices
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-gfx] [PATCH v7] drm/i915: handle uncore spinlock when not
+ available
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -139,56 +57,167 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
- "linux-mm@kvack.org" <linux-mm@kvack.org>,
- "leonro@nvidia.com" <leonro@nvidia.com>,
- "apopple@nvidia.com" <apopple@nvidia.com>,
- "amd-gfx@lists.freedesktop.org" <amd-gfx@lists.freedesktop.org>,
- "mgorman@suse.de" <mgorman@suse.de>, "ziy@nvidia.com" <ziy@nvidia.com>,
- "rcampbell@nvidia.com" <rcampbell@nvidia.com>,
- "jgg@nvidia.com" <jgg@nvidia.com>,
- "weixi.zhu@openeuler.sh" <weixi.zhu@openeuler.sh>,
- "jhubbard@nvidia.com" <jhubbard@nvidia.com>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
- "mhairgrove@nvidia.com" <mhairgrove@nvidia.com>,
- "jglisse@redhat.com" <jglisse@redhat.com>,
- "rodrigo.vivi@intel.com" <rodrigo.vivi@intel.com>,
- "intel-gvt-dev@lists.freedesktop.org" <intel-gvt-dev@lists.freedesktop.org>,
- "Felix.Kuehling@amd.com" <Felix.Kuehling@amd.com>,
- "Xinhui.Pan@amd.com" <Xinhui.Pan@amd.com>,
- "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
- "alexander.deucher@amd.com" <alexander.deucher@amd.com>,
- "akpm@linux-foundation.org" <akpm@linux-foundation.org>,
- "ogabbay@kernel.org" <ogabbay@kernel.org>
+Cc: intel-xe@lists.freedesktop.org, rodrigo.vivi@intel.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On 01.12.23 03:44, zhuweixi wrote:
-> Thanks!
+The uncore code may not always be available (e.g. when we build the
+display code with Xe), so we can't always rely on having the uncore's
+spinlock.
 
-I hope you understood that that was a joke :)
+To handle this, split the spin_lock/unlock_irqsave/restore() into
+spin_lock/unlock() followed by a call to local_irq_save/restore() and
+create wrapper functions for locking and unlocking the uncore's
+spinlock.  In these functions, we have a condition check and only
+actually try to lock/unlock the spinlock when I915 is defined, and
+thus uncore is available.
 
-> I am planning to present GMEM in Linux MM Alignment Sessions so I can collect more input from the mm developers.
+This keeps the ifdefs contained in these new functions and all such
+logic inside the display code.
 
-Sounds good. But please try inviting key HMM/driver developer as well.
+Cc: Tvrtko Ursulin <tvrto.ursulin@intel.com>
+Cc: Jani Nikula <jani.nikula@intel.com>
+Cc: Ville Syrjala <ville.syrjala@linux.intel.com>
+Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
+Signed-off-by: Luca Coelho <luciano.coelho@intel.com>
+---
 
-Most of the core-mm folks attending that meeting are not that familiar 
-with these concepts and they are usually not happy about:
 
-(1) More core-MM complexity for things that can be neatly handled in
-     separate subsystems with the existing infrastructure already.
+In v2:
 
-(2) One new way of doing things why the other things remain in place.
+   * Renamed uncore_spin_*() to intel_spin_*()
+   * Corrected the order: save, lock, unlock, restore
 
-(3) New MMAP flags. Usually you have a hard time getting this in.
-     Sometimes, there are other ways (e.g., special-purpose file-
-     systems).
+In v3:
 
-(4) Changing controversial core-mm design decisions to handle corner
-     cases.
+   * Undid the change to pass drm_i915_private instead of the lock
+     itself, since we would have to include i915_drv.h and that pulls
+     in a truckload of other includes.
 
+In v4:
+
+   * After a brief attempt to replace this with a different patch,
+     we're back to this one;
+   * Pass drm_i195_private again, and move the functions to
+     intel_vblank.c, so we don't need to include i915_drv.h in a
+     header file and it's already included in intel_vblank.c;
+
+In v5:
+
+   * Remove stray include in intel_display.h;
+   * Remove unnecessary inline modifiers in the new functions.
+
+In v6:
+
+   * Just removed the umlauts from Ville's name, because patchwork
+     didn't catch my patch and I suspect it was some UTF-8 confusion.
+
+In v7:
+
+   * Add __acquires()/__releases() annotation to resolve sparse
+     warnings.
+
+ drivers/gpu/drm/i915/display/intel_vblank.c | 51 +++++++++++++++++----
+ 1 file changed, 41 insertions(+), 10 deletions(-)
+
+diff --git a/drivers/gpu/drm/i915/display/intel_vblank.c b/drivers/gpu/drm/i915/display/intel_vblank.c
+index 2cec2abf9746..fe256bf7b485 100644
+--- a/drivers/gpu/drm/i915/display/intel_vblank.c
++++ b/drivers/gpu/drm/i915/display/intel_vblank.c
+@@ -265,6 +265,32 @@ int intel_crtc_scanline_to_hw(struct intel_crtc *crtc, int scanline)
+ 	return (scanline + vtotal - crtc->scanline_offset) % vtotal;
+ }
+ 
++/*
++ * The uncore version of the spin lock functions is used to decide
++ * whether we need to lock the uncore lock or not.  This is only
++ * needed in i915, not in Xe.
++ *
++ * This lock in i915 is needed because some old platforms (at least
++ * IVB and possibly HSW as well), which are not supported in Xe, need
++ * all register accesses to the same cacheline to be serialized,
++ * otherwise they may hang.
++ */
++static void intel_vblank_section_enter(struct drm_i915_private *i915)
++	__acquires(i915->uncore.lock)
++{
++#ifdef I915
++	spin_lock(&i915->uncore.lock);
++#endif
++}
++
++static void intel_vblank_section_exit(struct drm_i915_private *i915)
++	__releases(i915->uncore.lock)
++{
++#ifdef I915
++	spin_unlock(&i915->uncore.lock);
++#endif
++}
++
+ static bool i915_get_crtc_scanoutpos(struct drm_crtc *_crtc,
+ 				     bool in_vblank_irq,
+ 				     int *vpos, int *hpos,
+@@ -302,11 +328,12 @@ static bool i915_get_crtc_scanoutpos(struct drm_crtc *_crtc,
+ 	}
+ 
+ 	/*
+-	 * Lock uncore.lock, as we will do multiple timing critical raw
+-	 * register reads, potentially with preemption disabled, so the
+-	 * following code must not block on uncore.lock.
++	 * Enter vblank critical section, as we will do multiple
++	 * timing critical raw register reads, potentially with
++	 * preemption disabled, so the following code must not block.
+ 	 */
+-	spin_lock_irqsave(&dev_priv->uncore.lock, irqflags);
++	local_irq_save(irqflags);
++	intel_vblank_section_enter(dev_priv);
+ 
+ 	/* preempt_disable_rt() should go right here in PREEMPT_RT patchset. */
+ 
+@@ -374,7 +401,8 @@ static bool i915_get_crtc_scanoutpos(struct drm_crtc *_crtc,
+ 
+ 	/* preempt_enable_rt() should go right here in PREEMPT_RT patchset. */
+ 
+-	spin_unlock_irqrestore(&dev_priv->uncore.lock, irqflags);
++	intel_vblank_section_exit(dev_priv);
++	local_irq_restore(irqflags);
+ 
+ 	/*
+ 	 * While in vblank, position will be negative
+@@ -412,9 +440,13 @@ int intel_get_crtc_scanline(struct intel_crtc *crtc)
+ 	unsigned long irqflags;
+ 	int position;
+ 
+-	spin_lock_irqsave(&dev_priv->uncore.lock, irqflags);
++	local_irq_save(irqflags);
++	intel_vblank_section_enter(dev_priv);
++
+ 	position = __intel_get_crtc_scanline(crtc);
+-	spin_unlock_irqrestore(&dev_priv->uncore.lock, irqflags);
++
++	intel_vblank_section_exit(dev_priv);
++	local_irq_restore(irqflags);
+ 
+ 	return position;
+ }
+@@ -537,7 +569,7 @@ void intel_crtc_update_active_timings(const struct intel_crtc_state *crtc_state,
+ 	 * Need to audit everything to make sure it's safe.
+ 	 */
+ 	spin_lock_irqsave(&i915->drm.vblank_time_lock, irqflags);
+-	spin_lock(&i915->uncore.lock);
++	intel_vblank_section_enter(i915);
+ 
+ 	drm_calc_timestamping_constants(&crtc->base, &adjusted_mode);
+ 
+@@ -546,7 +578,6 @@ void intel_crtc_update_active_timings(const struct intel_crtc_state *crtc_state,
+ 	crtc->mode_flags = mode_flags;
+ 
+ 	crtc->scanline_offset = intel_crtc_scanline_offset(crtc_state);
+-
+-	spin_unlock(&i915->uncore.lock);
++	intel_vblank_section_exit(i915);
+ 	spin_unlock_irqrestore(&i915->drm.vblank_time_lock, irqflags);
+ }
 -- 
-Cheers,
-
-David / dhildenb
+2.39.2
 
