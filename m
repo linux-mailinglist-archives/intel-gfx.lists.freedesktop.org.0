@@ -2,58 +2,33 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id D6DA280241B
-	for <lists+intel-gfx@lfdr.de>; Sun,  3 Dec 2023 14:18:44 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id F34FF80245F
+	for <lists+intel-gfx@lfdr.de>; Sun,  3 Dec 2023 14:59:31 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6F9E010E2DD;
-	Sun,  3 Dec 2023 13:18:37 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9CA9D10E10A;
+	Sun,  3 Dec 2023 13:59:27 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2970410E2C7;
- Sun,  3 Dec 2023 13:18:20 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1701609501; x=1733145501;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=B+nJe1q6TxRa2V23foliRrj6Cka4wr6NofSF5rxQ4eQ=;
- b=FFz0Ikiy+KFB23gCmF0/Mzt5MHfYyqst7tqnChQk74r4UsEbxFMiIjo0
- 3d50oHbWxS9bLbl09vxd9U4pMLtMggU7W0ce4/JmUlkEy0pQ0ziAGRwIt
- mBmxCOaxF9giA6cupaaYpjbH2E60fl+PjZBfc/mW8hUbmhKx3m5GAxwt0
- lT3ZBuwR5/EUbYb+cO2lgqHC4uKAycL7U3sFJZx8bSh5q+VjZdtoMMZXd
- 79zH9AxNIRVNft6jRwwRVag8L3OT7qHErfcNhylfnbj8SI9pO234vKSLb
- +xPhvTMPkYYlewsQoc44zlz0fxQBEkZ/QBreh6nKHzcLzCU+B2/jIW149 Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10912"; a="498266"
-X-IronPort-AV: E=Sophos;i="6.04,247,1695711600"; 
-   d="scan'208";a="498266"
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
- by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Dec 2023 05:18:20 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10912"; a="770262492"
-X-IronPort-AV: E=Sophos;i="6.04,247,1695711600"; d="scan'208";a="770262492"
-Received: from liuzhao-optiplex-7080.sh.intel.com ([10.239.160.36])
- by orsmga002.jf.intel.com with ESMTP; 03 Dec 2023 05:18:16 -0800
-From: Zhao Liu <zhao1.liu@linux.intel.com>
-To: Jani Nikula <jani.nikula@linux.intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
- David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
- Ira Weiny <ira.weiny@intel.com>,
- "Fabio M . De Francesco" <fmdefrancesco@gmail.com>,
- intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- linux-kernel@vger.kernel.org
-Date: Sun,  3 Dec 2023 21:29:47 +0800
-Message-Id: <20231203132947.2328805-10-zhao1.liu@linux.intel.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20231203132947.2328805-1-zhao1.liu@linux.intel.com>
-References: <20231203132947.2328805-1-zhao1.liu@linux.intel.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id C0E9610E072;
+ Sun,  3 Dec 2023 13:59:24 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 9BEC4A0003;
+ Sun,  3 Dec 2023 13:59:24 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH v3 9/9] drm/i915: Use kmap_local_page() in
- gem/i915_gem_execbuffer.c
+Content-Transfer-Encoding: 7bit
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Zhao Liu" <zhao1.liu@linux.intel.com>
+Date: Sun, 03 Dec 2023 13:59:24 -0000
+Message-ID: <170161196460.25281.4254708223547420740@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20231203132947.2328805-1-zhao1.liu@linux.intel.com>
+In-Reply-To: <20231203132947.2328805-1-zhao1.liu@linux.intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_drm/i915=3A_Replace_kmap=5Fatomic=28=29_with_kmap=5Flocal?=
+ =?utf-8?b?X3BhZ2UoKSAocmV2Mik=?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -66,106 +41,77 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Dave Hansen <dave.hansen@intel.com>, Zhao Liu <zhao1.liu@intel.com>,
- Zhenyu Wang <zhenyu.z.wang@intel.com>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-From: Zhao Liu <zhao1.liu@intel.com>
+== Series Details ==
 
-The use of kmap_atomic() is being deprecated in favor of
-kmap_local_page()[1], and this patch converts the calls from
-kmap_atomic() to kmap_local_page().
+Series: drm/i915: Replace kmap_atomic() with kmap_local_page() (rev2)
+URL   : https://patchwork.freedesktop.org/series/115769/
+State : warning
 
-The main difference between atomic and local mappings is that local
-mappings doesn't disable page faults or preemption (the preemption is
-disabled for !PREEMPT_RT case, otherwise it only disables migration).
+== Summary ==
 
-With kmap_local_page(), we can avoid the often unwanted side effect of
-unnecessary page faults and preemption disables.
-
-In i915_gem_execbuffer.c, eb->reloc_cache.vaddr is mapped by
-kmap_atomic() in eb_relocate_entry(), and is unmapped by
-kunmap_atomic() in reloc_cache_reset().
-
-And this mapping/unmapping occurs in two places: one is in
-eb_relocate_vma(), and another is in eb_relocate_vma_slow().
-
-The function eb_relocate_vma() or eb_relocate_vma_slow() doesn't
-need to disable pagefaults and preemption during the above mapping/
-unmapping.
-
-So it can simply use kmap_local_page() / kunmap_local() that can
-instead do the mapping / unmapping regardless of the context.
-
-Convert the calls of kmap_atomic() / kunmap_atomic() to
-kmap_local_page() / kunmap_local().
-
+Error: dim checkpatch failed
+3dbe1fea8502 drm/i915: Use kmap_local_page() in gem/i915_gem_object.c
+-:39: WARNING:COMMIT_LOG_LONG_LINE: Prefer a maximum 75 chars per line (possible unwrapped commit description?)
+#39: 
 [1]: https://lore.kernel.org/all/20220813220034.806698-1-ira.weiny@intel.com
 
-Suggested-by: Ira Weiny <ira.weiny@intel.com>
-Suggested-by: Fabio M. De Francesco <fmdefrancesco@gmail.com>
-Signed-off-by: Zhao Liu <zhao1.liu@intel.com>
-Reviewed-by: Ira Weiny <ira.weiny@intel.com>
-Reviewed-by: Fabio M. De Francesco <fmdefrancesco@gmail.com>
----
-Suggested by credits:
-  Ira: Referred to his task document, review comments.
-  Fabio: Referred to his boiler plate commit message and his description
-         about why kmap_local_page() should be preferred.
----
- drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c | 10 +++++-----
- 1 file changed, 5 insertions(+), 5 deletions(-)
+-:63: ERROR:CODE_INDENT: code indent should use tabs where possible
+#63: FILE: drivers/gpu/drm/i915/gem/i915_gem_object.c:506:
++^I          + offset_in_page(offset);$
 
-diff --git a/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c b/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
-index 683fd8d3151c..18b0f3117074 100644
---- a/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
-+++ b/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
-@@ -1156,7 +1156,7 @@ static void reloc_cache_unmap(struct reloc_cache *cache)
- 
- 	vaddr = unmask_page(cache->vaddr);
- 	if (cache->vaddr & KMAP)
--		kunmap_atomic(vaddr);
-+		kunmap_local(vaddr);
- 	else
- 		io_mapping_unmap_atomic((void __iomem *)vaddr);
- }
-@@ -1172,7 +1172,7 @@ static void reloc_cache_remap(struct reloc_cache *cache,
- 	if (cache->vaddr & KMAP) {
- 		struct page *page = i915_gem_object_get_page(obj, cache->page);
- 
--		vaddr = kmap_atomic(page);
-+		vaddr = kmap_local_page(page);
- 		cache->vaddr = unmask_flags(cache->vaddr) |
- 			(unsigned long)vaddr;
- 	} else {
-@@ -1202,7 +1202,7 @@ static void reloc_cache_reset(struct reloc_cache *cache, struct i915_execbuffer
- 		if (cache->vaddr & CLFLUSH_AFTER)
- 			mb();
- 
--		kunmap_atomic(vaddr);
-+		kunmap_local(vaddr);
- 		i915_gem_object_finish_access(obj);
- 	} else {
- 		struct i915_ggtt *ggtt = cache_to_ggtt(cache);
-@@ -1234,7 +1234,7 @@ static void *reloc_kmap(struct drm_i915_gem_object *obj,
- 	struct page *page;
- 
- 	if (cache->vaddr) {
--		kunmap_atomic(unmask_page(cache->vaddr));
-+		kunmap_local(unmask_page(cache->vaddr));
- 	} else {
- 		unsigned int flushes;
- 		int err;
-@@ -1256,7 +1256,7 @@ static void *reloc_kmap(struct drm_i915_gem_object *obj,
- 	if (!obj->mm.dirty)
- 		set_page_dirty(page);
- 
--	vaddr = kmap_atomic(page);
-+	vaddr = kmap_local_page(page);
- 	cache->vaddr = unmask_flags(cache->vaddr) | (unsigned long)vaddr;
- 	cache->page = pageno;
- 
--- 
-2.34.1
+total: 1 errors, 1 warnings, 0 checks, 20 lines checked
+b9f8592803f4 drm/i915: Use memcpy_[from/to]_page() in gem/i915_gem_pyhs.c
+-:39: WARNING:COMMIT_LOG_LONG_LINE: Prefer a maximum 75 chars per line (possible unwrapped commit description?)
+#39: 
+[1]: https://lore.kernel.org/all/20220813220034.806698-1-ira.weiny@intel.com
+
+total: 0 errors, 1 warnings, 0 checks, 34 lines checked
+de0a94d29e8b drm/i915: Use kmap_local_page() in gem/i915_gem_shmem.c
+-:24: WARNING:COMMIT_LOG_LONG_LINE: Prefer a maximum 75 chars per line (possible unwrapped commit description?)
+#24: 
+[1]: https://lore.kernel.org/all/20220813220034.806698-1-ira.weiny@intel.com
+
+total: 0 errors, 1 warnings, 0 checks, 15 lines checked
+95976ec3834b drm/i915: Use kmap_local_page() in gem/selftests/huge_pages.c
+-:36: WARNING:COMMIT_LOG_LONG_LINE: Prefer a maximum 75 chars per line (possible unwrapped commit description?)
+#36: 
+[1]: https://lore.kernel.org/all/20220813220034.806698-1-ira.weiny@intel.com
+
+total: 0 errors, 1 warnings, 0 checks, 22 lines checked
+c956111d73bd drm/i915: Use kmap_local_page() in gem/selftests/i915_gem_coherency.c
+-:37: WARNING:COMMIT_LOG_LONG_LINE: Prefer a maximum 75 chars per line (possible unwrapped commit description?)
+#37: 
+[1]: https://lore.kernel.org/all/20220813220034.806698-1-ira.weiny@intel.com
+
+total: 0 errors, 1 warnings, 0 checks, 48 lines checked
+46aae55d8cc4 drm/i915: Use kmap_local_page() in gem/selftests/i915_gem_context.c
+-:38: WARNING:COMMIT_LOG_LONG_LINE: Prefer a maximum 75 chars per line (possible unwrapped commit description?)
+#38: 
+[1]: https://lore.kernel.org/all/20220813220034.806698-1-ira.weiny@intel.com
+
+total: 0 errors, 1 warnings, 0 checks, 30 lines checked
+d00c94b04735 drm/i915: Use memcpy_from_page() in gt/uc/intel_uc_fw.c
+-:29: WARNING:COMMIT_LOG_LONG_LINE: Prefer a maximum 75 chars per line (possible unwrapped commit description?)
+#29: 
+[1]: https://lore.kernel.org/all/20220813220034.806698-1-ira.weiny@intel.com/T/#u
+
+total: 0 errors, 1 warnings, 0 checks, 17 lines checked
+1b79798a46f6 drm/i915: Use kmap_local_page() in i915_cmd_parser.c
+-:34: WARNING:COMMIT_LOG_LONG_LINE: Prefer a maximum 75 chars per line (possible unwrapped commit description?)
+#34: 
+[1]: https://lore.kernel.org/all/20220813220034.806698-1-ira.weiny@intel.com
+
+total: 0 errors, 1 warnings, 0 checks, 13 lines checked
+2383cd11b380 drm/i915: Use kmap_local_page() in gem/i915_gem_execbuffer.c
+-:34: WARNING:COMMIT_LOG_LONG_LINE: Prefer a maximum 75 chars per line (possible unwrapped commit description?)
+#34: 
+[1]: https://lore.kernel.org/all/20220813220034.806698-1-ira.weiny@intel.com
+
+total: 0 errors, 1 warnings, 0 checks, 40 lines checked
+
 
