@@ -1,34 +1,124 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id EA23280246D
-	for <lists+intel-gfx@lfdr.de>; Sun,  3 Dec 2023 15:17:59 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 206F5802909
+	for <lists+intel-gfx@lfdr.de>; Mon,  4 Dec 2023 00:36:15 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 699D810E072;
-	Sun,  3 Dec 2023 14:17:56 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6323B10E16F;
+	Sun,  3 Dec 2023 23:36:05 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 58F0610E072;
- Sun,  3 Dec 2023 14:17:52 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 3DAAEAA916;
- Sun,  3 Dec 2023 14:17:52 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============1260058971317979448=="
+Received: from NAM12-MW2-obe.outbound.protection.outlook.com
+ (mail-mw2nam12on2060e.outbound.protection.outlook.com
+ [IPv6:2a01:111:f400:fe5a::60e])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C4B5710E0D9;
+ Sun,  3 Dec 2023 23:35:48 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=ivlmmcpuZMISMs6jcYuVpI5rn/GJE15pJLF/gmFKgofi7ndBAlv4CwXvFnUFOs1wuXkXjIGSPJORZwfmtavJQtt1iZT/ZqLVdortsxdjQ2PtY1IWOXQLbnaMlTPnaYM8IIC5wPoAP3QftLOm5x4cWqSmVXbOGCtb9eFWhHD6VutjVRxl9dzJ7F91XCowr3d7u3rdK0nflmU4bFuhz7jbGB+5aGrLqEHPtPglH/fCSVNnhOCyPf7Mr3ZrF3oI2xgp6efpLGX49SO7lU1JtmdkiPElMkTmBVS1er5QQH1b4ONdJkf5Zjcf9KRjyVT91JNsqotq1xapz+ufKHRETgjpSw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=12ZM0oZ6x9Z+o0eoOLeuSEvaipHnjLXGk/gPO0cbBBc=;
+ b=QQ013kPe5wIvM6F8z3FX1O3xe/cvnDANAOHcdLe6YSo5MtKZklJFE0Scaz2Hc70PeE4piLgZotL8UFZswtCbhvu9ZwbxNfsmpgBF+w9W+nwjw4OaVPJgtLI7WSkNXmfaCkPFFn8mWLXJBIP1HOnMs3ok3d4tTbZdgn2A9ABySPHwvnM1yQDFRh4BqEhwvFSMfhkC8QPpIUAdZXa0MPMqEEHIZFvQZCqinpxqlLv/vMc0ujAN76PJcahaEhRqz6wxYcCKeM6FDuihAnuwSlM3AXHxLEKClWJZb3WYAzu0BZs/mCSjxLkvqze0R18isWai2xRO6Xuht3GkSP9dGHI6Gw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nvidia.com; dmarc=pass action=none header.from=nvidia.com;
+ dkim=pass header.d=nvidia.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=12ZM0oZ6x9Z+o0eoOLeuSEvaipHnjLXGk/gPO0cbBBc=;
+ b=IaWgTd5+T6/O5RTYTb1eByPdADZkDEyuFmAlx6TCIAl+4sHJ7CwZ0HCnxDoZ4+jAagYGolNObMwYVU4Ny1d5E/Sk4X9D7YlzYBx0h+ZZANdnh0/yH9/E8CWlwf7DSGPjo08oO2yEg88fCDpDRcAct5E3pZ8N/QIf2siBSBdXiVw105fOYyml2vwg5YYWDUPon4DWcS/Zo+mQ8Jkrq5F259gNLprZAtsDXAMFqliWjHQ6IQJRovNR+qEW5+VVEhYkwRNYiWjZhCmjNtu/6+JTEHWpcJkEAsum63BMBgn3pvTA/ISMANr/tHSBeaOSUJ8RbSaAhL0TnUjB/H1pWKalfA==
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nvidia.com;
+Received: from BYAPR12MB3176.namprd12.prod.outlook.com (2603:10b6:a03:134::26)
+ by CH2PR12MB4150.namprd12.prod.outlook.com (2603:10b6:610:a6::24)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7046.33; Sun, 3 Dec
+ 2023 23:35:41 +0000
+Received: from BYAPR12MB3176.namprd12.prod.outlook.com
+ ([fe80::b8a:1b58:1edf:90e6]) by BYAPR12MB3176.namprd12.prod.outlook.com
+ ([fe80::b8a:1b58:1edf:90e6%7]) with mapi id 15.20.7046.033; Sun, 3 Dec 2023
+ 23:35:41 +0000
+References: <20231128125025.4449-1-weixi.zhu@huawei.com>
+ <56ec69e0-fee1-4edf-8839-62ba6a2f0183@amd.com>
+ <SA1PR11MB69918A97B03BC578CFD15EBA9283A@SA1PR11MB6991.namprd11.prod.outlook.com>
+ <65c01257-b96d-4365-a86a-4d0758a8ec65@gmail.com>
+ <cee6e5ba46f84557b0cd9122eaa8ae17@huawei.com>
+ <SA1PR11MB6991E67DA37DAC8EDA9929CB9281A@SA1PR11MB6991.namprd11.prod.outlook.com>
+ <6d6a9084-c385-4df0-848b-2425c306b32e@amd.com>
+User-agent: mu4e 1.8.13; emacs 29.1
+From: Alistair Popple <apopple@nvidia.com>
+To: Christian =?utf-8?Q?K=C3=B6nig?= <christian.koenig@amd.com>
+Date: Mon, 04 Dec 2023 10:32:32 +1100
+In-reply-to: <6d6a9084-c385-4df0-848b-2425c306b32e@amd.com>
+Message-ID: <8734wic113.fsf@nvdebian.thelocal>
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+X-ClientProxiedBy: SY6PR01CA0139.ausprd01.prod.outlook.com
+ (2603:10c6:10:1b9::6) To BYAPR12MB3176.namprd12.prod.outlook.com
+ (2603:10b6:a03:134::26)
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Zhao Liu" <zhao1.liu@linux.intel.com>
-Date: Sun, 03 Dec 2023 14:17:52 -0000
-Message-ID: <170161307222.25281.3004250690536516056@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20231203132947.2328805-1-zhao1.liu@linux.intel.com>
-In-Reply-To: <20231203132947.2328805-1-zhao1.liu@linux.intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJBVDogZmFpbHVyZSBmb3IgZHJt?=
- =?utf-8?q?/i915=3A_Replace_kmap=5Fatomic=28=29_with_kmap=5Flocal=5Fpage?=
- =?utf-8?b?KCkgKHJldjIp?=
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: BYAPR12MB3176:EE_|CH2PR12MB4150:EE_
+X-MS-Office365-Filtering-Correlation-Id: 496b7b66-d71e-429f-046b-08dbf4588f7d
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: ouENPXVLwEO0ZvuIeVLtHQypnkYsNGYgDk8Uj+Ca20T3KiiQj+RYdnYBwRj2Xi6A9yODowTCCZF1d1Aon+GOTF4KvEPL3SGDK1ndg7WAWc8nGHxgXp3+UKWLJwwQpI2gMddOgEFqc48ghXiS8izcYB04zmc70ffZVRys3QsepAiLuL28+RdG08oQEwBnNlj+4boUrfiHiNGUdBvPcwJy0PWN/R3bZy7K7dLtdoyOmvS3/XeV46IYukGjpiFQ03chmurP/QFTJABYnedZR8xloPwcJkmnRZjroeHJ89wenwx1EloruXT4ShCOCl7YqsRDrAAgD7rRzm6bZF6tog9RKT4Qmz8zsZsqXA4wboK5hirAg7sOSTdKbiLhFdbjPlE8IUnRqegK6IHHC08u575GWVeOxFRf3TzP+ICz+QtIqz2nWbDmZkbJZ6oBtrLFPQ/UnKwi1LSg5hG47B+6c4H+sVSUIQJWStWyWLUd1fAkJh5x3jDSX1d2L2P4T6V46VTTMgh5HR7iBHdwwKiW/PbcGZntZNDBGmWV78vlESnHFCJZa70IkIx0upQRoukPl3vYiOwgFl7wisggHOafaVW0elhhGyD+cvKDpc2NAgxbyoZZOLN149CO3OWkXt0faO3KqoKiuz5x6G2OlyUyUhWBcdSQs2Il5KZn0C98rynUVo8=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:BYAPR12MB3176.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230031)(366004)(376002)(346002)(39860400002)(396003)(136003)(230273577357003)(230173577357003)(230922051799003)(64100799003)(186009)(451199024)(1800799012)(66946007)(54906003)(66476007)(66556008)(66899024)(316002)(6916009)(478600001)(45080400002)(6486002)(6666004)(7416002)(30864003)(5660300002)(41300700001)(38100700002)(2906002)(86362001)(4326008)(8676002)(8936002)(83380400001)(26005)(66574015)(6512007)(9686003)(53546011)(6506007);
+ DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?aWpUbU56WE9VTHlMdWl3TzJ4Qk5XekF2RFA4Nk1wV293a1c2czNKNDVZbmh1?=
+ =?utf-8?B?bCs2NDNZSHFPRGQrL1hWRG44a3pJRGxCY3cxRzBUMzNiUEFIRmdac3VQM0t2?=
+ =?utf-8?B?Zm4zQWZwcWdCNVQ4cVg3QlMycUowbHMwY0hXTWVuT0cvNk1Hc2EzMTBPMER3?=
+ =?utf-8?B?ZmN4OGo5UVg5ak0zb1ZvSFMxY2xGMWRBZzBNeXRWdldJSEFjakIwQlh6dnl6?=
+ =?utf-8?B?VWRQdFlZRFAvTm9SNTNRbGVhM1RUdE9mRmFmbFBxVFVpVkhVMUdGWk9zZlgw?=
+ =?utf-8?B?MFNBMS9aZHdnVVRJUW1jdXVwT2lOMmhvWmdTWjZmaHFjaG9GQVNtTlEybVRG?=
+ =?utf-8?B?SW1rQVF6S21SMGpoNnBXZEw5T0NtNU1IWjdLcGUxYTl1c0VhRnB6L2tVbkI5?=
+ =?utf-8?B?VGZKTXRveFlHaFdKL1dKbjBFR0JNT3hWVzdIUmIrUkRLVkVsUkFZTWtlS1Zj?=
+ =?utf-8?B?SThZUUZyZ1J0dHhDWDJaVXVtVVBDUE85L1l2MEtpY3Z0RUkrT0tDelF4UWNJ?=
+ =?utf-8?B?bmkwNmh3ZWg5ajB6ZjlZQWI1NDBHRW5QUnUxOS8zYzd1QjNjdEFwY3htSm0x?=
+ =?utf-8?B?WVpINTdwb1JidHdVMklneVZNa3Y5bXBlKzkySGxjeWhMRWl4T3RhcVl1VVlT?=
+ =?utf-8?B?bEZTZlp6VWRPRmRZN09DcERRdDV4Uy9BdGJxZDl5bmVDeWVubHBWQ1p6bzl5?=
+ =?utf-8?B?ckdEd3U3RjhJK29ObGwza1pVTWN6OGI1RkNjcFZkTlFJKzVVSUZXVGd6OENU?=
+ =?utf-8?B?SkYvRzEyajNCbXB2NXpkRHVRellSOFM1anhtU2RIMUM0eUN6cmtsckJDVGda?=
+ =?utf-8?B?UXBTYTFuQXJhZis4dy84SitxYXdyMU5BUlpDZGNSbDV5TjRxVEZiMDNRTGR1?=
+ =?utf-8?B?N0hGR0ZvWVpkMUlVdnhKWkpLVnhPRSs2Qllhb0x2aU5VanM3Rm9mQUxsbUJ5?=
+ =?utf-8?B?dy9Bc25Fd3RzSE1BelIzOWVXbjl6MTRHRUF1djJCVDUyRXNTU3VPaXNFQktG?=
+ =?utf-8?B?M1ZKbWhIN002L3YvYjNnd3NjZStpZlNQdEUwMkRoVTJwRFdFYytjNFlVTloz?=
+ =?utf-8?B?ZmFrcW9mbVhCM2RYdDBsOWVORXVGUEZQZHJ6MXdad1ZwTGZEbC9pK2FqeE91?=
+ =?utf-8?B?Wmd1QmJDWlJNMjQzcTNsNys4VmlITjhDc3pvVlZ2am5sR0ptWmR4OHQzZS9D?=
+ =?utf-8?B?cWpzQUh2K29uUTdIY1JuZTdWOFdmQkVxOWtrTDNlMXZvQnRxL0o1MFoyN3Jr?=
+ =?utf-8?B?QUgyU0NuNDNERUEzd0Q2b2laV2tLUmVxV0FMcDhQM3N1SExTNEZBSjJJbHJo?=
+ =?utf-8?B?dVRCQU1wZFluZStYaVNNZnRHa2NOTkVDZ2lPRnpadVlQMHh6a2RxTklnV0hB?=
+ =?utf-8?B?SVRIaDJFeVJUbXJ1c0taZHdyOTcvYzBQNUNuQWNUTERoRVhDSVQvUlJreXIy?=
+ =?utf-8?B?cVBKeUlMNlAySkNUbCsvNnF0MUZac0dMQm5NVVpYbmp1ekduZnZqL3o1UG80?=
+ =?utf-8?B?ZTVHd2xXcS9zQjc5YlFCS0R1M1VTdmxUMFpldVMwTFI0RmpiK3MzMzlKNW95?=
+ =?utf-8?B?cXp4WGYxVUNiZGhUL3NrMzdXWk80ZVVzenhsYTh1OHNuK2NHNEt1Q3Nkak5k?=
+ =?utf-8?B?bVMvdDNza1dDc2N3Z0t6bDF5SkwyelE1elAxMU1mSEU1bGJmMTNHcWZjOGhT?=
+ =?utf-8?B?bVo3TFk5QzNBb1JneFU4WFp3UkpBWHBmR09FQWxGK0xURjRCTjRnQTlaWERW?=
+ =?utf-8?B?eTY4OU1Hak9YMzBIbEtFTGt6ZFJnVnpDSjZmK3hhV0xSMWdsaWpZL25lWS9X?=
+ =?utf-8?B?Q0gwOEdiOE93aGhDOEJoYW9qM1pONUlqbXpLelhUT1FkTEZKRHhNRlE4VkpS?=
+ =?utf-8?B?enZ0ckVkdTRJRStmNFhXeWU3OWtiMHBCb0YxQmpxRnZUVWVZMnFOQlJNcHYv?=
+ =?utf-8?B?WlBTU0tZaXNvdHBUT0crSEhFRHhBNmxNVkh3SG0rNUJadHkrZDkrU3hiczdk?=
+ =?utf-8?B?R3Q3Mm5VcDhITzZQdVpsTng4Tk1rVkszd1ZtYTZFUTlTaWlOYTZkdVJ5Y1dO?=
+ =?utf-8?B?OUpNQ1NFdUxYcE4yVkVBejdzVkNzcnU5bUR4SDJ4QUJPSDZzVklFc3MzSUNH?=
+ =?utf-8?Q?WUWPAc0aP4HGlXJQhU+64Dla4?=
+X-OriginatorOrg: Nvidia.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 496b7b66-d71e-429f-046b-08dbf4588f7d
+X-MS-Exchange-CrossTenant-AuthSource: BYAPR12MB3176.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 03 Dec 2023 23:35:41.1325 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: ProhGdGQXAj8DBlRxKax03fzetCKJlq3mAsY61vJ8+aKmcYsTZzu3rJ7yCBBUvVstzZEvlgqGzzm2wz6AC/seQ==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH2PR12MB4150
+Subject: Re: [Intel-gfx] [RFC PATCH 0/6] Supporting GMEM (generalized memory
+ management) for external memory devices
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -41,678 +131,531 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
+Cc: "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
+ "linux-mm@kvack.org" <linux-mm@kvack.org>,
+ "leonro@nvidia.com" <leonro@nvidia.com>,
+ "amd-gfx@lists.freedesktop.org" <amd-gfx@lists.freedesktop.org>,
+ Danilo Krummrich <dakr@redhat.com>, "mgorman@suse.de" <mgorman@suse.de>,
+ "ziy@nvidia.com" <ziy@nvidia.com>, "jhubbard@nvidia.com" <jhubbard@nvidia.com>,
+ Dave Airlie <airlied@redhat.com>,
+ "rcampbell@nvidia.com" <rcampbell@nvidia.com>,
+ "jgg@nvidia.com" <jgg@nvidia.com>,
+ "weixi.zhu@openeuler.sh" <weixi.zhu@openeuler.sh>,
+ Christian =?utf-8?Q?K=C3=B6nig?= <ckoenig.leichtzumerken@gmail.com>,
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
+ "mhairgrove@nvidia.com" <mhairgrove@nvidia.com>,
+ "jglisse@redhat.com" <jglisse@redhat.com>, zhuweixi <weixi.zhu@huawei.com>,
+ "Vivi, Rodrigo" <rodrigo.vivi@intel.com>,
+ "intel-gvt-dev@lists.freedesktop.org" <intel-gvt-dev@lists.freedesktop.org>,
+ "Felix.Kuehling@amd.com" <Felix.Kuehling@amd.com>,
+ "Xinhui.Pan@amd.com" <Xinhui.Pan@amd.com>,
+ "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+ Daniel Vetter <daniel@ffwll.ch>,
+ "alexander.deucher@amd.com" <alexander.deucher@amd.com>,
+ "akpm@linux-foundation.org" <akpm@linux-foundation.org>,
+ "ogabbay@kernel.org" <ogabbay@kernel.org>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============1260058971317979448==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
 
-== Series Details ==
+Christian K=C3=B6nig <christian.koenig@amd.com> writes:
+
+> Am 01.12.23 um 06:48 schrieb Zeng, Oak:
+>> [SNIP]
+
+>> Besides memory eviction/oversubscription, there are a few other pain poi=
+nts when I use hmm:
+>>
+>> 1) hmm doesn't support file-back memory, so it is hard to share
+> memory b/t process in a gpu environment. You mentioned you have a
+> plan... How hard is it to support file-backed in your approach?
+>
+> As hard as it is to support it through HMM. That's what I meant that
+> this approach doesn't integrate well, as far as I know the problem
+> isn't inside HMM or any other solution but rather in the file system
+> layer.
+
+In what way does HMM not support file-backed memory? I was under the
+impression that at least hmm_range_fault() does.
+
+ - Alistair
+
+> Regards,
+> Christian.
+>
+>> 2)virtual address range based memory attribute/hint: with hmadvise,
+> where do you save the memory attribute of a virtual address range? Do
+> you need to extend vm_area_struct to save it? With hmm, we have to
+> maintain such information at driver. This ends up with pretty
+> complicated logic to split/merge those address range. I know core mm
+> has similar logic to split/merge vma...
+>>
+>> Oak
+>>
+>>
+>>> -Weixi
+>>>
+>>> -----Original Message-----
+>>> From: Christian K=C3=B6nig<ckoenig.leichtzumerken@gmail.com>
+>>> Sent: Thursday, November 30, 2023 4:28 PM
+>>> To: Zeng, Oak<oak.zeng@intel.com>; Christian K=C3=B6nig
+>>> <christian.koenig@amd.com>; zhuweixi<weixi.zhu@huawei.com>; linux-
+>>> mm@kvack.org;linux-kernel@vger.kernel.org;akpm@linux-foundation.org;
+>>> Danilo Krummrich<dakr@redhat.com>; Dave Airlie<airlied@redhat.com>; Dan=
+iel
+>>> Vetter<daniel@ffwll.ch>
+>>> Cc:intel-gvt-dev@lists.freedesktop.org;rcampbell@nvidia.com;
+>>> mhairgrove@nvidia.com;jgg@nvidia.com;weixi.zhu@openeuler.sh;
+>>> jhubbard@nvidia.com;intel-gfx@lists.freedesktop.org;apopple@nvidia.com;
+>>> Xinhui.Pan@amd.com;amd-gfx@lists.freedesktop.org;
+>>> tvrtko.ursulin@linux.intel.com;ogabbay@kernel.org;jglisse@redhat.com; d=
+ri-
+>>> devel@lists.freedesktop.org;ziy@nvidia.com; Vivi, Rodrigo
+>>> <rodrigo.vivi@intel.com>;alexander.deucher@amd.com;leonro@nvidia.com;
+>>> Felix.Kuehling@amd.com; Wang, Zhi A<zhi.a.wang@intel.com>;
+>>> mgorman@suse.de
+>>> Subject: Re: [RFC PATCH 0/6] Supporting GMEM (generalized memory
+>>> management) for external memory devices
+>>>
+>>> Hi Oak,
+>>>
+>>> yeah, #4 is indeed a really good point and I think Felix will agree to =
+that as well.
+>>>
+>>> HMM is basically still missing a way to advise device attributes for th=
+e CPU
+>>> address space. Both migration strategy as well as device specific infor=
+mation (like
+>>> cache preferences) fall into this category.
+>>>
+>>> Since there is a device specific component in those attributes as well =
+I think
+>>> device specific IOCTLs still make sense to update them, but HMM should =
+offer
+>>> the functionality to manage and store those information.
+>>>
+>>> Split and merge of VMAs only become a problem if you attach those infor=
+mation
+>>> to VMAs, if you keep them completely separate than that doesn't become =
+an
+>>> issue either. The down side of this approach is that you don't get auto=
+matically
+>>> extending attribute ranges for growing VMAs for example.
+>>>
+>>> Regards,
+>>> Christian.
+>>>
+>>> Am 29.11.23 um 23:23 schrieb Zeng, Oak:
+>>>> Hi Weixi,
+>>>>
+>>>> Even though Christian has listed reasons rejecting this proposal (yes =
+they are
+>>> very reasonable to me), I would open my mind and further explore the po=
+ssibility
+>>> here. Since the current GPU driver uses a hmm based implementation (AMD=
+ and
+>>> NV has done this; At Intel we are catching up), I want to explore how m=
+uch we
+>>> can benefit from the proposed approach and how your approach can solve =
+some
+>>> pain points of our development. So basically what I am questioning here=
+ is: what
+>>> is the advantage of your approach against hmm.
+>>>> To implement a UVM (unified virtual address space b/t cpu and gpu devi=
+ce),
+>>> with hmm, driver essentially need to implement below functions:
+>>>> 1. device page table update. Your approach requires the same because
+>>>> this is device specific codes
+>>>>
+>>>> 2. Some migration functions to migrate memory b/t system memory and GP=
+U
+>>> local memory. My understanding is, even though you generalized this a b=
+it, such
+>>> as modified cpu page fault path, provided "general" gm_dev_fault handle=
+r... but
+>>> device driver still need to provide migration functions because migrati=
+on
+>>> functions have to be device specific (i.e., using device dma/copy engin=
+e for
+>>> performance purpose). Right?
+>>>> 3. GPU physical memory management, this part is now in drm/buddy, shar=
+ed
+>>> by all drivers. I think with your approach, driver still need to provid=
+e callback
+>>> functions to allocate/free physical pages. Right? Or do you let linux c=
+ore mm
+>>> buddy manage device memory directly?
+>>>> 4. madvise/hints/virtual address range management. This has been pain =
+point
+>>> for us. Right now device driver has to maintain certain virtual address=
+ range data
+>>> structure to maintain hints and other virtual address range based memor=
+y
+>>> attributes. Driver need to sync with linux vma. Driver need to explicit=
+ly deal with
+>>> range split/merging... HMM doesn't provide support in this area. Your a=
+pproach
+>>> seems cleaner/simpler to me...
+>>>>
+>>>> So in above, I have examined the some key factors of a gpu UVM memory
+>>> manager. I think for #1 and #2, hmm has provide pretty good abstraction=
+/tools
+>>> for address space mirroring and migration helpers. For #3, since we hav=
+e a
+>>> common drm/buddy layer, I don't think it is a big problem for driver wr=
+iter now.
+>>>> I do see #4 is something you solved more beautifully, requires new sys=
+tem call
+>>> though.
+>>>> Oak
+>>>>
+>>>>
+>>>>> -----Original Message-----
+>>>>> From: dri-devel<dri-devel-bounces@lists.freedesktop.org>  On Behalf
+>>>>> Of Christian K=C3=B6nig
+>>>>> Sent: Tuesday, November 28, 2023 8:09 AM
+>>>>> To: Weixi Zhu<weixi.zhu@huawei.com>;linux-mm@kvack.org; linux-
+>>>>> kernel@vger.kernel.org;akpm@linux-foundation.org; Danilo Krummrich
+>>>>> <dakr@redhat.com>; Dave Airlie<airlied@redhat.com>; Daniel Vetter
+>>>>> <daniel@ffwll.ch>
+>>>>> Cc:dri-devel@lists.freedesktop.org;leonro@nvidia.com;
+>>>>> apopple@nvidia.com;amd-gfx@lists.freedesktop.org;mgorman@suse.de;
+>>>>> ziy@nvidia.com; Wang, Zhi A<zhi.a.wang@intel.com>;
+>>>>> rcampbell@nvidia.com;jgg@nvidia.com;weixi.zhu@openeuler.sh;
+>>>>> jhubbard@nvidia.com;intel-gfx@lists.freedesktop.org;
+>>>>> mhairgrove@nvidia.com;jglisse@redhat.com; Vivi, Rodrigo
+>>>>> <rodrigo.vivi@intel.com>;intel-gvt-dev@lists.freedesktop.org;
+>>>>> tvrtko.ursulin@linux.intel.com;Felix.Kuehling@amd.com;
+>>>>> Xinhui.Pan@amd.com;alexander.deucher@amd.com;ogabbay@kernel.org
+>>>>> Subject: Re: [RFC PATCH 0/6] Supporting GMEM (generalized memory
+>>>>> management) for external memory devices
+>>>>>
+>>>>> Adding a few missing important people to the explicit to list.
+>>>>>
+>>>>> Am 28.11.23 um 13:50 schrieb Weixi Zhu:
+>>>>>> The problem:
+>>>>>>
+>>>>>> Accelerator driver developers are forced to reinvent external MM
+>>>>>> subsystems case by case, because Linux core MM only considers host
+>>> memory resources.
+>>>>>> These reinvented MM subsystems have similar orders of magnitude of
+>>>>>> LoC as Linux MM (80K), e.g. Nvidia-UVM has 70K, AMD GPU has 14K and
+>>>>>> Huawei NPU
+>>>>> has
+>>>>>> 30K. Meanwhile, more and more vendors are implementing their own
+>>>>>> accelerators, e.g. Microsoft's Maia 100. At the same time,
+>>>>>> application-level developers suffer from poor programmability --
+>>>>>> they must consider parallel address spaces and be careful about the
+>>>>>> limited device DRAM capacity. This can be alleviated if a
+>>>>>> malloc()-ed virtual address can be shared by the accelerator, or the
+>>>>>> abundant host DRAM can further transparently backup the device local
+>>> memory.
+>>>>>> These external MM systems share similar mechanisms except for the
+>>>>>> hardware-dependent part, so reinventing them is effectively
+>>>>>> introducing redundant code (14K~70K for each case). Such
+>>>>>> developing/maintaining is not cheap. Furthermore, to share a
+>>>>>> malloc()-ed virtual address, device drivers need to deeply interact
+>>>>>> with Linux MM via low-level MM APIs, e.g. MMU notifiers/HMM. This
+>>>>>> raises the bar for driver development, since developers must
+>>>>>> understand how Linux MM works. Further, it creates code maintenance
+>>>>>> problems -- any changes to Linux MM potentially require coordinated
+>>> changes to accelerator drivers using low-level MM APIs.
+>>>>>> Putting a cache-coherent bus between host and device will not make
+>>>>>> these external MM subsystems disappear. For example, a
+>>>>>> throughput-oriented accelerator will not tolerate executing heavy
+>>>>>> memory access workload with a host MMU/IOMMU via a remote bus.
+>>>>>> Therefore, devices will still have their own MMU and pick a simpler
+>>>>>> page table format for lower address translation overhead, requiring =
+external
+>>> MM subsystems.
+>>>>>> --------------------
+>>>>>>
+>>>>>> What GMEM (Generalized Memory Management [1]) does:
+>>>>>>
+>>>>>> GMEM extends Linux MM to share its machine-independent MM code. Only
+>>>>>> high-level interface is provided for device drivers. This prevents
+>>>>>> accelerator drivers from reinventing the wheel, but relies on
+>>>>>> drivers to implement their hardware-dependent functions declared by
+>>>>>> GMEM. GMEM's
+>>>>> key
+>>>>>> interface include gm_dev_create(), gm_as_create(), gm_as_attach()
+>>>>>> and gm_dev_register_physmem(). Here briefly describe how a device
+>>>>>> driver utilizes them:
+>>>>>> 1. At boot time, call gm_dev_create() and registers the implementati=
+on of
+>>>>>>       hardware-dependent functions as declared in struct gm_mmu.
+>>>>>>         - If the device has local DRAM, call gm_dev_register_physmem=
+() to
+>>>>>>           register available physical addresses.
+>>>>>> 2. When a device context is initialized (e.g. triggered by ioctl), c=
+heck if
+>>>>>>       the current CPU process has been attached to a gmem address sp=
+ace
+>>>>>>       (struct gm_as). If not, call gm_as_create() and point current-=
+>mm->gm_as
+>>>>>>       to it.
+>>>>>> 3. Call gm_as_attach() to attach the device context to a gmem addres=
+s space.
+>>>>>> 4. Invoke gm_dev_fault() to resolve a page fault or prepare data bef=
+ore
+>>>>>>       device computation happens.
+>>>>>>
+>>>>>> GMEM has changed the following assumptions in Linux MM:
+>>>>>>      1. An mm_struct not only handle a single CPU context, but may a=
+lso handle
+>>>>>>         external memory contexts encapsulated as gm_context listed i=
+n
+>>>>>>         mm->gm_as. An external memory context can include a few or a=
+ll of the
+>>>>>>         following parts: an external MMU (that requires TLB invalida=
+tion), an
+>>>>>>         external page table (that requires PTE manipulation) and ext=
+ernal DRAM
+>>>>>>         (that requires physical memory management).
+>>>>>>      2. Faulting a MAP_PRIVATE VMA with no CPU PTE found does not
+>>> necessarily
+>>>>>>         mean that a zero-filled physical page should be mapped. The =
+virtual
+>>>>>>         page may have been mapped to an external memory device.
+>>>>>>      3. Unmapping a page may include sending device TLB invalidation=
+ (even if
+>>>>>>         its MMU shares CPU page table) and manipulating device PTEs.
+>>>>>>
+>>>>>> --------------------
+>>>>>>
+>>>>>> Semantics of new syscalls:
+>>>>>>
+>>>>>> 1. mmap(..., MAP_PRIVATE | MAP_PEER_SHARED)
+>>>>>>        Allocate virtual address that is shared between the CPU and a=
+ll
+>>>>>>        attached devices. Data is guaranteed to be coherent whenever =
+the
+>>>>>>        address is accessed by either CPU or any attached device. If =
+the device
+>>>>>>        does not support page fault, then device driver is responsibl=
+e for
+>>>>>>        faulting memory before data gets accessed. By default, the CP=
+U DRAM is
+>>>>>>        can be used as a swap backup for the device local memory.
+>>>>>> 2. hmadvise(NUMA_id, va_start, size, memory_hint)
+>>>>>>        Issuing memory hint for a given VMA. This extends traditional=
+ madvise()
+>>>>>>        syscall with an extra argument so that programmers have bette=
+r control
+>>>>>>        with heterogeneous devices registered as NUMA nodes. One
+>>>>>> useful
+>>>>> memory
+>>>>>>        hint could be MADV_PREFETCH, which guarantees that the physic=
+al data
+>>> of
+>>>>>>        the given VMA [VA, VA+size) is migrated to NUMA node #id. Ano=
+ther
+>>>>>>        useful memory hint is MADV_DONTNEED. This is helpful to incre=
+ase
+>>> device
+>>>>>>        memory utilization. It is worth considering extending the exi=
+sting
+>>>>>>        madvise() syscall with one additional argument.
+>>>>>>
+>>>>>> --------------------
+>>>>>>
+>>>>>> Implementation details
+>>>>>>
+>>>>>> 1. New VMA flag: MAP_PEER_SHARED
+>>>>>>
+>>>>>> This new flag helps isolate GMEM feature, so that common processes
+>>>>>> with no device attached does not need to maintain any logical page
+>>>>>> table. It can be deleted if the extra overhead from GMEM is acceptab=
+le.
+>>>>>>
+>>>>>> 2. MMU functions
+>>>>>> The device driver must implement the MMU functions declared in
+>>>>>> struct gm_mmu.
+>>>>>>
+>>>>>> VA functions: peer_va_alloc_fixed(), peer_va_free()
+>>>>>>
+>>>>>> They are used to negotiate a common available VMA between a host
+>>>>>> process and a device process at the mmap() time. This is because
+>>>>>> some accelerators like Intel Xeon Phi or Huawei's Ascend NPU have
+>>>>>> their acceleration tasks executed within a device CPU process
+>>>>>> context. Some accelerators may also choose a different format of
+>>>>>> virtual address space.
+>>>>>>
+>>>>>> PA functions: alloc_page(), free_page(), prepare_page()
+>>>>>>
+>>>>>> Alloc_page() and free_page() are used to allocate and free device
+>>>>>> physical pages. Prepare_page() is used to zero-fill or DMA the data
+>>>>>> of a physical page. These functions were removed from the submitted
+>>>>>> patch, since GMEM does not need to invoke them when testing Huawei's
+>>>>>> NPU accelerator. The
+>>>>> NPU
+>>>>>> accelerator has an OS running in the device that manages the device
+>>>>>> physical memory. However, even for such a device it is better for
+>>>>>> the host to directly manage device physical memory, which saves
+>>>>>> device HBM and avoids synchronizing management status between the ho=
+st
+>>> and device.
+>>>>>> Page-table functions:
+>>>>>> pmap_create()/destroy()/enter()/release()/protect()
+>>>>>>
+>>>>>> They are used to create and destroy device page tables, install and
+>>>>>> uninstall page table entries and to change the protection of page
+>>>>>> table entries.
+>>>>>>
+>>>>>> TLB-invalidation functions: tlb_invl(), tlb_invl_coalesced()
+>>>>>>
+>>>>>> They are used to invalidate the TLB entries of a given range of VA
+>>>>>> or invalidate a given list of VMAs.
+>>>>>>
+>>>>>> Wrapper functions: peer_map() and peer_unmap()
+>>>>>>
+>>>>>> These two functions are used to create or destroy a device mapping
+>>>>>> which could include allocating physical memory and copying data.
+>>>>>> They effectively wraps the PA functions, Page-table functions and
+>>>>>> TLB-invalidation functions. Implementing these steps together allows
+>>>>>> devices to optimize the communication cost between host and device.
+>>>>>> However, it requires the device driver to correctly order these step=
+s.
+>>>>>>
+>>>>>> 3. Tracking logical mappings:
+>>>>>>
+>>>>>> Each process starts maintaining an xarray in
+>>>>>> mm->vm_obj->logical_page_table at the first time a host process
+>>>>>> calls mmap(MAP_PRIVATE |
+>>>>> MAP_PEER_SHARED).
+>>>>>> When a virtual page gets touched, its mapping status is created and
+>>>>>> stored in struct gm_mapping. The logical page table is utilized to
+>>>>>> query the struct gm_mapping given a virtual address. GMEM extends
+>>>>>> Linux MM to
+>>>>> update
+>>>>>> and lookup these logical mappings. For example, in the patch set we
+>>>>>> modify the page fault path of to additionally check the logical
+>>>>>> mapping of MAP_PEER_SHARED VMAs and identify if a device page should
+>>> be migrated.
+>>>>>> Similarly, if the device driver wants to resolve a device page fault
+>>>>>> or prefetch data, the driver should call gm_dev_fault(). This
+>>>>>> function examines the mapping status and determines whether the
+>>>>>> device driver should migrate a CPU page to device or install a zero-=
+filled
+>>> device page.
+>>>>>> The logical mapping abstraction enhances the extensibility of Linux
+>>>>>> core MM (a virtual page may be mapped to a device physical page
+>>>>>> without any CPU PTE installed). The current implementation is not
+>>>>>> complete, since it only focused on anonymous VMAs with
+>>>>>> MAP_PEER_SHARED flag. The future plan of logical page table is to
+>>>>>> provide a generic abstraction layer that support common anonymous
+>>>>>> memory (I am looking at you, transparent huge pages)
+>>>>> and
+>>>>>> file-backed memory.
+>>>>>>
+>>>>>> --------------------
+>>>>>>
+>>>>>> Use cases
+>>>>>>
+>>>>>> GMEM has been tested over Huawei's NPU (neural process unit) device
+>>> driver.
+>>>>>> The original NPU device driver has approximately 30,000 lines of
+>>>>>> code for memory management. On the contrary, the GMEM-based one has
+>>>>>> less than 30 lines of code calling GMEM API, with approximately
+>>>>>> 3,700 lines of code implementing the MMU functions. This effectively
+>>>>>> saves over 26,200 lines of MM code for one driver. Therefore,
+>>>>>> developers from accelerator vendors, including Nvidia, AMD, Intel
+>>>>>> and other companies are welcome to discuss if GMEM could be helpful.
+>>>>>>
+>>>>>> Using GMEM-based driver, it is possible to write a C-style
+>>>>>> accelerator code with malloc(), whose underlying mmap() syscall
+>>>>>> should include MAP_PEER_SHARED according to current GMEM
+>>>>>> implementation. Importantly,
+>>>>> GMEM
+>>>>>> guarantees a coherent view of memory between the host and all
+>>>>>> attached devices. This means that any data written by the CPU or any
+>>>>>> attached accelerator can be seen by the next memory load instruction
+>>>>>> issued by any attached accelerator or the CPU. Furthermore, the NPU
+>>>>>> device was able to oversubscribe memory by swapping memory to host
+>>>>>> DDR. Note that this
+>>>>> memory
+>>>>>> oversubscription mechanism can be universal if the physical memory
+>>>>>> management is provided by GMEM. Other potential use cases of GMEM
+>>>>>> could include the IOMMU driver, KVM and RDMA drivers, as long as the
+>>>>>> device needs to manage external memory resources like VMAs, MMUs or
+>>> local DRAMs.
+>>>>>> --------------------
+>>>>>>
+>>>>>> Discussion
+>>>>>>
+>>>>>> Physical memory management
+>>>>>> Most accelerators require the host OS to manage device DRAM. Even
+>>>>>> accelerators capable of running an OS inside the driver can benefit
+>>>>>> from it, since it helps avoid synchronizing management status
+>>>>>> between the host and device. In Linux OSS EU summit 2023, Hannes
+>>>>>> Reinecke from SUSE Labs suggested that people are concerned with the
+>>>>>> memory consumption of struct page (which considers all generic
+>>>>>> scenarios for the kernel). This leads to a possible solution that,
+>>>>>> instead of reusing Linux struct page and ZONE_DEVICE mechanism, GMEM
+>>>>>> can implement an isolated buddy allocator
+>>>>> for
+>>>>>> the device to instantiate and register. The isolation is useful
+>>>>>> because device DRAM physical address space is independent.
+>>>>>> Furthermore, the isolated buddy allocator can utilize a customized
+>>>>>> struct page that consumes less memory. It is worth discussing if
+>>>>>> accelerator vendors desire this solution.
+>>>>>>
+>>>>>> MMU functions
+>>>>>> The MMU functions peer_map() and peer_unmap() overlap other
+>>>>>> functions, leaving a question if the MMU functions should be
+>>>>>> decoupled as more basic operations. Decoupling them could
+>>>>>> potentially prevent device drivers coalescing these basic steps
+>>>>>> within a single host-device communication operation, while coupling
+>>>>>> them makes it more difficult for device drivers to utilize GMEM inte=
+rface.
+>>>>>>
+>>>>>> The idea of GMEM was originated from Weixi's PhD study with Prof.
+>>>>>> Scott Rixner and Prof. Alan L. Cox at Rice University.
+>>>>>>
+>>>>>> [1]https://arxiv.org/abs/2310.12554.
+>>>>>>
+>>>>>> Weixi Zhu (6):
+>>>>>>      mm/gmem: add heterogeneous NUMA node
+>>>>>>      mm/gmem: add arch-independent abstraction to track address mapp=
+ing
+>>>>>>        status
+>>>>>>      mm/gmem: add GMEM (Generalized Memory Management) interface for
+>>>>>>        external accelerators
+>>>>>>      mm/gmem: add new syscall hmadvise() to issue memory hints for
+>>>>>>        heterogeneous NUMA nodes
+>>>>>>      mm/gmem: resolve VMA conflicts for attached peer devices
+>>>>>>      mm/gmem: extending Linux core MM to support unified virtual add=
+ress
+>>>>>>        space
+>>>>>>
+>>>>>>     arch/arm64/include/asm/unistd.h         |   2 +-
+>>>>>>     arch/arm64/include/asm/unistd32.h       |   2 +
+>>>>>>     drivers/base/node.c                     |   6 +
+>>>>>>     fs/proc/task_mmu.c                      |   3 +
+>>>>>>     include/linux/gmem.h                    | 368 ++++++++++++
+>>>>>>     include/linux/mm.h                      |   8 +
+>>>>>>     include/linux/mm_types.h                |   5 +
+>>>>>>     include/linux/nodemask.h                |  10 +
+>>>>>>     include/uapi/asm-generic/mman-common.h  |   4 +
+>>>>>>     include/uapi/asm-generic/unistd.h       |   5 +-
+>>>>>>     init/main.c                             |   2 +
+>>>>>>     kernel/fork.c                           |   5 +
+>>>>>>     kernel/sys_ni.c                         |   2 +
+>>>>>>     mm/Kconfig                              |  14 +
+>>>>>>     mm/Makefile                             |   1 +
+>>>>>>     mm/gmem.c                               | 746 ++++++++++++++++++=
+++++++
+>>>>>>     mm/huge_memory.c                        |  85 ++-
+>>>>>>     mm/memory.c                             |  42 +-
+>>>>>>     mm/mempolicy.c                          |   4 +
+>>>>>>     mm/mmap.c                               |  40 +-
+>>>>>>     mm/oom_kill.c                           |   2 +
+>>>>>>     mm/page_alloc.c                         |   3 +
+>>>>>>     mm/vm_object.c                          | 309 ++++++++++
+>>>>>>     tools/include/uapi/asm-generic/unistd.h |   5 +-
+>>>>>>     24 files changed, 1654 insertions(+), 19 deletions(-)
+>>>>>>     create mode 100644 include/linux/gmem.h
+>>>>>>     create mode 100644 mm/gmem.c
+>>>>>>     create mode 100644 mm/vm_object.c
+>>>>>>
 
-Series: drm/i915: Replace kmap_atomic() with kmap_local_page() (rev2)
-URL   : https://patchwork.freedesktop.org/series/115769/
-State : failure
-
-== Summary ==
-
-CI Bug Log - changes from CI_DRM_13965 -> Patchwork_115769v2
-====================================================
-
-Summary
--------
-
-  **FAILURE**
-
-  Serious unknown changes coming with Patchwork_115769v2 absolutely need to be
-  verified manually.
-  
-  If you think the reported changes have nothing to do with the changes
-  introduced in Patchwork_115769v2, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them
-  to document this new failure mode, which will reduce false positives in CI.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115769v2/index.html
-
-Participating hosts (36 -> 33)
-------------------------------
-
-  Additional (2): bat-dg2-8 bat-dg2-9 
-  Missing    (5): bat-kbl-2 bat-dg1-5 bat-adlm-1 fi-snb-2520m bat-mtlp-8 
-
-Possible new issues
--------------------
-
-  Here are the unknown changes that may have been introduced in Patchwork_115769v2:
-
-### IGT changes ###
-
-#### Possible regressions ####
-
-  * igt@kms_flip@basic-plain-flip@c-dp5:
-    - bat-adlp-11:        [PASS][1] -> [DMESG-WARN][2]
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13965/bat-adlp-11/igt@kms_flip@basic-plain-flip@c-dp5.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115769v2/bat-adlp-11/igt@kms_flip@basic-plain-flip@c-dp5.html
-
-  
-New tests
----------
-
-  New tests have been introduced between CI_DRM_13965 and Patchwork_115769v2:
-
-### New IGT tests (12) ###
-
-  * igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence@pipe-a-dp-7:
-    - Statuses : 1 pass(s)
-    - Exec time: [0.0] s
-
-  * igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence@pipe-c-dp-7:
-    - Statuses : 1 pass(s)
-    - Exec time: [0.0] s
-
-  * igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence@pipe-d-dp-7:
-    - Statuses : 1 pass(s)
-    - Exec time: [0.0] s
-
-  * igt@kms_pipe_crc_basic@nonblocking-crc@pipe-a-dp-7:
-    - Statuses : 1 pass(s)
-    - Exec time: [0.0] s
-
-  * igt@kms_pipe_crc_basic@nonblocking-crc@pipe-c-dp-7:
-    - Statuses : 1 pass(s)
-    - Exec time: [0.0] s
-
-  * igt@kms_pipe_crc_basic@nonblocking-crc@pipe-d-dp-7:
-    - Statuses : 1 pass(s)
-    - Exec time: [0.0] s
-
-  * igt@kms_pipe_crc_basic@read-crc-frame-sequence@pipe-a-dp-7:
-    - Statuses : 1 abort(s)
-    - Exec time: [0.0] s
-
-  * igt@kms_pipe_crc_basic@read-crc-frame-sequence@pipe-c-dp-7:
-    - Statuses : 1 pass(s)
-    - Exec time: [0.0] s
-
-  * igt@kms_pipe_crc_basic@read-crc-frame-sequence@pipe-d-dp-7:
-    - Statuses : 1 pass(s)
-    - Exec time: [0.0] s
-
-  * igt@kms_pipe_crc_basic@read-crc@pipe-a-dp-7:
-    - Statuses : 1 pass(s)
-    - Exec time: [0.0] s
-
-  * igt@kms_pipe_crc_basic@read-crc@pipe-c-dp-7:
-    - Statuses : 1 pass(s)
-    - Exec time: [0.0] s
-
-  * igt@kms_pipe_crc_basic@read-crc@pipe-d-dp-7:
-    - Statuses : 1 pass(s)
-    - Exec time: [0.0] s
-
-  
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_115769v2 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@gem_exec_suspend@basic-s0@lmem0:
-    - bat-dg2-8:          NOTRUN -> [INCOMPLETE][3] ([i915#9275])
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115769v2/bat-dg2-8/igt@gem_exec_suspend@basic-s0@lmem0.html
-
-  * igt@gem_mmap@basic:
-    - bat-dg2-9:          NOTRUN -> [SKIP][4] ([i915#4083])
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115769v2/bat-dg2-9/igt@gem_mmap@basic.html
-    - bat-dg2-8:          NOTRUN -> [SKIP][5] ([i915#4083])
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115769v2/bat-dg2-8/igt@gem_mmap@basic.html
-
-  * igt@gem_mmap_gtt@basic:
-    - bat-dg2-9:          NOTRUN -> [SKIP][6] ([i915#4077]) +2 other tests skip
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115769v2/bat-dg2-9/igt@gem_mmap_gtt@basic.html
-    - bat-dg2-8:          NOTRUN -> [SKIP][7] ([i915#4077]) +2 other tests skip
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115769v2/bat-dg2-8/igt@gem_mmap_gtt@basic.html
-
-  * igt@gem_render_tiled_blits@basic:
-    - bat-dg2-9:          NOTRUN -> [SKIP][8] ([i915#4079]) +1 other test skip
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115769v2/bat-dg2-9/igt@gem_render_tiled_blits@basic.html
-
-  * igt@gem_tiled_pread_basic:
-    - bat-dg2-8:          NOTRUN -> [SKIP][9] ([i915#4079]) +1 other test skip
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115769v2/bat-dg2-8/igt@gem_tiled_pread_basic.html
-
-  * igt@i915_pm_rps@basic-api:
-    - bat-dg2-9:          NOTRUN -> [SKIP][10] ([i915#6621])
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115769v2/bat-dg2-9/igt@i915_pm_rps@basic-api.html
-    - bat-dg2-8:          NOTRUN -> [SKIP][11] ([i915#6621])
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115769v2/bat-dg2-8/igt@i915_pm_rps@basic-api.html
-
-  * igt@i915_suspend@basic-s3-without-i915:
-    - bat-dg2-8:          NOTRUN -> [SKIP][12] ([i915#6645])
-   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115769v2/bat-dg2-8/igt@i915_suspend@basic-s3-without-i915.html
-
-  * igt@kms_addfb_basic@addfb25-y-tiled-small-legacy:
-    - bat-dg2-9:          NOTRUN -> [SKIP][13] ([i915#5190])
-   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115769v2/bat-dg2-9/igt@kms_addfb_basic@addfb25-y-tiled-small-legacy.html
-    - bat-dg2-8:          NOTRUN -> [SKIP][14] ([i915#5190])
-   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115769v2/bat-dg2-8/igt@kms_addfb_basic@addfb25-y-tiled-small-legacy.html
-
-  * igt@kms_addfb_basic@basic-y-tiled-legacy:
-    - bat-dg2-9:          NOTRUN -> [SKIP][15] ([i915#4215] / [i915#5190])
-   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115769v2/bat-dg2-9/igt@kms_addfb_basic@basic-y-tiled-legacy.html
-    - bat-dg2-8:          NOTRUN -> [SKIP][16] ([i915#4215] / [i915#5190])
-   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115769v2/bat-dg2-8/igt@kms_addfb_basic@basic-y-tiled-legacy.html
-
-  * igt@kms_addfb_basic@framebuffer-vs-set-tiling:
-    - bat-dg2-9:          NOTRUN -> [SKIP][17] ([i915#4212]) +6 other tests skip
-   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115769v2/bat-dg2-9/igt@kms_addfb_basic@framebuffer-vs-set-tiling.html
-    - bat-dg2-8:          NOTRUN -> [SKIP][18] ([i915#4212]) +6 other tests skip
-   [18]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115769v2/bat-dg2-8/igt@kms_addfb_basic@framebuffer-vs-set-tiling.html
-
-  * igt@kms_addfb_basic@tile-pitch-mismatch:
-    - bat-dg2-9:          NOTRUN -> [SKIP][19] ([i915#4212] / [i915#5608])
-   [19]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115769v2/bat-dg2-9/igt@kms_addfb_basic@tile-pitch-mismatch.html
-    - bat-dg2-8:          NOTRUN -> [SKIP][20] ([i915#4212] / [i915#5608])
-   [20]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115769v2/bat-dg2-8/igt@kms_addfb_basic@tile-pitch-mismatch.html
-
-  * igt@kms_cursor_legacy@basic-busy-flip-before-cursor-legacy:
-    - bat-dg2-9:          NOTRUN -> [SKIP][21] ([i915#4103] / [i915#4213] / [i915#5608]) +1 other test skip
-   [21]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115769v2/bat-dg2-9/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-legacy.html
-    - bat-dg2-8:          NOTRUN -> [SKIP][22] ([i915#4103] / [i915#4213] / [i915#5608]) +1 other test skip
-   [22]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115769v2/bat-dg2-8/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-legacy.html
-
-  * igt@kms_flip@basic-flip-vs-wf_vblank@a-dp6:
-    - bat-adlp-11:        [PASS][23] -> [FAIL][24] ([i915#6121]) +3 other tests fail
-   [23]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13965/bat-adlp-11/igt@kms_flip@basic-flip-vs-wf_vblank@a-dp6.html
-   [24]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115769v2/bat-adlp-11/igt@kms_flip@basic-flip-vs-wf_vblank@a-dp6.html
-
-  * igt@kms_flip@basic-flip-vs-wf_vblank@d-dp5:
-    - bat-adlp-11:        [PASS][25] -> [DMESG-WARN][26] ([i915#6868])
-   [25]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13965/bat-adlp-11/igt@kms_flip@basic-flip-vs-wf_vblank@d-dp5.html
-   [26]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115769v2/bat-adlp-11/igt@kms_flip@basic-flip-vs-wf_vblank@d-dp5.html
-
-  * igt@kms_force_connector_basic@force-load-detect:
-    - bat-dg2-9:          NOTRUN -> [SKIP][27] ([fdo#109285])
-   [27]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115769v2/bat-dg2-9/igt@kms_force_connector_basic@force-load-detect.html
-    - bat-dg2-8:          NOTRUN -> [SKIP][28] ([fdo#109285])
-   [28]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115769v2/bat-dg2-8/igt@kms_force_connector_basic@force-load-detect.html
-
-  * igt@kms_force_connector_basic@prune-stale-modes:
-    - bat-dg2-9:          NOTRUN -> [SKIP][29] ([i915#5274])
-   [29]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115769v2/bat-dg2-9/igt@kms_force_connector_basic@prune-stale-modes.html
-    - bat-dg2-8:          NOTRUN -> [SKIP][30] ([i915#5274])
-   [30]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115769v2/bat-dg2-8/igt@kms_force_connector_basic@prune-stale-modes.html
-
-  * igt@kms_pipe_crc_basic@read-crc-frame-sequence@pipe-a-dp-7 (NEW):
-    - bat-adlp-11:        NOTRUN -> [ABORT][31] ([i915#8668])
-   [31]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115769v2/bat-adlp-11/igt@kms_pipe_crc_basic@read-crc-frame-sequence@pipe-a-dp-7.html
-
-  * igt@kms_setmode@basic-clone-single-crtc:
-    - bat-dg2-9:          NOTRUN -> [SKIP][32] ([i915#3555] / [i915#4098])
-   [32]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115769v2/bat-dg2-9/igt@kms_setmode@basic-clone-single-crtc.html
-    - bat-dg2-8:          NOTRUN -> [SKIP][33] ([i915#3555] / [i915#4098])
-   [33]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115769v2/bat-dg2-8/igt@kms_setmode@basic-clone-single-crtc.html
-
-  * igt@prime_vgem@basic-fence-flip:
-    - bat-dg2-9:          NOTRUN -> [SKIP][34] ([i915#3708])
-   [34]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115769v2/bat-dg2-9/igt@prime_vgem@basic-fence-flip.html
-    - bat-dg2-8:          NOTRUN -> [SKIP][35] ([i915#3708])
-   [35]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115769v2/bat-dg2-8/igt@prime_vgem@basic-fence-flip.html
-
-  * igt@prime_vgem@basic-fence-mmap:
-    - bat-dg2-8:          NOTRUN -> [SKIP][36] ([i915#3708] / [i915#4077]) +1 other test skip
-   [36]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115769v2/bat-dg2-8/igt@prime_vgem@basic-fence-mmap.html
-    - bat-dg2-9:          NOTRUN -> [SKIP][37] ([i915#3708] / [i915#4077]) +1 other test skip
-   [37]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115769v2/bat-dg2-9/igt@prime_vgem@basic-fence-mmap.html
-
-  * igt@prime_vgem@basic-write:
-    - bat-dg2-9:          NOTRUN -> [SKIP][38] ([i915#3291] / [i915#3708]) +2 other tests skip
-   [38]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115769v2/bat-dg2-9/igt@prime_vgem@basic-write.html
-    - bat-dg2-8:          NOTRUN -> [SKIP][39] ([i915#3291] / [i915#3708]) +2 other tests skip
-   [39]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115769v2/bat-dg2-8/igt@prime_vgem@basic-write.html
-
-  
-#### Possible fixes ####
-
-  * igt@i915_selftest@live@gem_contexts:
-    - bat-mtlp-6:         [DMESG-FAIL][40] -> [PASS][41]
-   [40]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13965/bat-mtlp-6/igt@i915_selftest@live@gem_contexts.html
-   [41]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115769v2/bat-mtlp-6/igt@i915_selftest@live@gem_contexts.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [fdo#109285]: https://bugs.freedesktop.org/show_bug.cgi?id=109285
-  [i915#3291]: https://gitlab.freedesktop.org/drm/intel/issues/3291
-  [i915#3555]: https://gitlab.freedesktop.org/drm/intel/issues/3555
-  [i915#3708]: https://gitlab.freedesktop.org/drm/intel/issues/3708
-  [i915#4077]: https://gitlab.freedesktop.org/drm/intel/issues/4077
-  [i915#4079]: https://gitlab.freedesktop.org/drm/intel/issues/4079
-  [i915#4083]: https://gitlab.freedesktop.org/drm/intel/issues/4083
-  [i915#4098]: https://gitlab.freedesktop.org/drm/intel/issues/4098
-  [i915#4103]: https://gitlab.freedesktop.org/drm/intel/issues/4103
-  [i915#4212]: https://gitlab.freedesktop.org/drm/intel/issues/4212
-  [i915#4213]: https://gitlab.freedesktop.org/drm/intel/issues/4213
-  [i915#4215]: https://gitlab.freedesktop.org/drm/intel/issues/4215
-  [i915#5190]: https://gitlab.freedesktop.org/drm/intel/issues/5190
-  [i915#5274]: https://gitlab.freedesktop.org/drm/intel/issues/5274
-  [i915#5354]: https://gitlab.freedesktop.org/drm/intel/issues/5354
-  [i915#5608]: https://gitlab.freedesktop.org/drm/intel/issues/5608
-  [i915#6121]: https://gitlab.freedesktop.org/drm/intel/issues/6121
-  [i915#6621]: https://gitlab.freedesktop.org/drm/intel/issues/6621
-  [i915#6645]: https://gitlab.freedesktop.org/drm/intel/issues/6645
-  [i915#6868]: https://gitlab.freedesktop.org/drm/intel/issues/6868
-  [i915#8668]: https://gitlab.freedesktop.org/drm/intel/issues/8668
-  [i915#9275]: https://gitlab.freedesktop.org/drm/intel/issues/9275
-  [i915#9673]: https://gitlab.freedesktop.org/drm/intel/issues/9673
-  [i915#9736]: https://gitlab.freedesktop.org/drm/intel/issues/9736
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_13965 -> Patchwork_115769v2
-
-  CI-20190529: 20190529
-  CI_DRM_13965: 7e0f4ea15ba144560df44985a89943ff9a36de9f @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_7614: c7298ec108dc1c861c9a2593e973648ad9b420b4 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_115769v2: 7e0f4ea15ba144560df44985a89943ff9a36de9f @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-### Linux commits
-
-2fde9ceafb2f drm/i915: Use kmap_local_page() in gem/i915_gem_execbuffer.c
-0de2844eef82 drm/i915: Use kmap_local_page() in i915_cmd_parser.c
-f8e0fcd919e4 drm/i915: Use memcpy_from_page() in gt/uc/intel_uc_fw.c
-6f02e524b9ef drm/i915: Use kmap_local_page() in gem/selftests/i915_gem_context.c
-5d0b66318378 drm/i915: Use kmap_local_page() in gem/selftests/i915_gem_coherency.c
-aa79f3dd2777 drm/i915: Use kmap_local_page() in gem/selftests/huge_pages.c
-3db16b5206a1 drm/i915: Use kmap_local_page() in gem/i915_gem_shmem.c
-2b37a8b169ab drm/i915: Use memcpy_[from/to]_page() in gem/i915_gem_pyhs.c
-102d3891a69b drm/i915: Use kmap_local_page() in gem/i915_gem_object.c
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115769v2/index.html
-
---===============1260058971317979448==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915: Replace kmap_atomic() with kmap_local_page() (rev2)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/115769/">https://patchwork.freedesktop.org/series/115769/</a></td></tr>
-<tr><td><b>State:</b></td><td>failure</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115769v2/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115769v2/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_13965 -&gt; Patchwork_115769v2</h1>
-<h2>Summary</h2>
-<p><strong>FAILURE</strong></p>
-<p>Serious unknown changes coming with Patchwork_115769v2 absolutely need to be<br />
-  verified manually.</p>
-<p>If you think the reported changes have nothing to do with the changes<br />
-  introduced in Patchwork_115769v2, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them<br />
-  to document this new failure mode, which will reduce false positives in CI.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115769v2/index.html</p>
-<h2>Participating hosts (36 -&gt; 33)</h2>
-<p>Additional (2): bat-dg2-8 bat-dg2-9 <br />
-  Missing    (5): bat-kbl-2 bat-dg1-5 bat-adlm-1 fi-snb-2520m bat-mtlp-8 </p>
-<h2>Possible new issues</h2>
-<p>Here are the unknown changes that may have been introduced in Patchwork_115769v2:</p>
-<h3>IGT changes</h3>
-<h4>Possible regressions</h4>
-<ul>
-<li>igt@kms_flip@basic-plain-flip@c-dp5:<ul>
-<li>bat-adlp-11:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13965/bat-adlp-11/igt@kms_flip@basic-plain-flip@c-dp5.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115769v2/bat-adlp-11/igt@kms_flip@basic-plain-flip@c-dp5.html">DMESG-WARN</a></li>
-</ul>
-</li>
-</ul>
-<h2>New tests</h2>
-<p>New tests have been introduced between CI_DRM_13965 and Patchwork_115769v2:</p>
-<h3>New IGT tests (12)</h3>
-<ul>
-<li>
-<p>igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence@pipe-a-dp-7:</p>
-<ul>
-<li>Statuses : 1 pass(s)</li>
-<li>Exec time: [0.0] s</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence@pipe-c-dp-7:</p>
-<ul>
-<li>Statuses : 1 pass(s)</li>
-<li>Exec time: [0.0] s</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence@pipe-d-dp-7:</p>
-<ul>
-<li>Statuses : 1 pass(s)</li>
-<li>Exec time: [0.0] s</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_pipe_crc_basic@nonblocking-crc@pipe-a-dp-7:</p>
-<ul>
-<li>Statuses : 1 pass(s)</li>
-<li>Exec time: [0.0] s</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_pipe_crc_basic@nonblocking-crc@pipe-c-dp-7:</p>
-<ul>
-<li>Statuses : 1 pass(s)</li>
-<li>Exec time: [0.0] s</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_pipe_crc_basic@nonblocking-crc@pipe-d-dp-7:</p>
-<ul>
-<li>Statuses : 1 pass(s)</li>
-<li>Exec time: [0.0] s</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_pipe_crc_basic@read-crc-frame-sequence@pipe-a-dp-7:</p>
-<ul>
-<li>Statuses : 1 abort(s)</li>
-<li>Exec time: [0.0] s</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_pipe_crc_basic@read-crc-frame-sequence@pipe-c-dp-7:</p>
-<ul>
-<li>Statuses : 1 pass(s)</li>
-<li>Exec time: [0.0] s</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_pipe_crc_basic@read-crc-frame-sequence@pipe-d-dp-7:</p>
-<ul>
-<li>Statuses : 1 pass(s)</li>
-<li>Exec time: [0.0] s</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_pipe_crc_basic@read-crc@pipe-a-dp-7:</p>
-<ul>
-<li>Statuses : 1 pass(s)</li>
-<li>Exec time: [0.0] s</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_pipe_crc_basic@read-crc@pipe-c-dp-7:</p>
-<ul>
-<li>Statuses : 1 pass(s)</li>
-<li>Exec time: [0.0] s</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_pipe_crc_basic@read-crc@pipe-d-dp-7:</p>
-<ul>
-<li>Statuses : 1 pass(s)</li>
-<li>Exec time: [0.0] s</li>
-</ul>
-</li>
-</ul>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_115769v2 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@gem_exec_suspend@basic-s0@lmem0:</p>
-<ul>
-<li>bat-dg2-8:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115769v2/bat-dg2-8/igt@gem_exec_suspend@basic-s0@lmem0.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/9275">i915#9275</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_mmap@basic:</p>
-<ul>
-<li>
-<p>bat-dg2-9:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115769v2/bat-dg2-9/igt@gem_mmap@basic.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4083">i915#4083</a>)</p>
-</li>
-<li>
-<p>bat-dg2-8:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115769v2/bat-dg2-8/igt@gem_mmap@basic.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4083">i915#4083</a>)</p>
-</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_mmap_gtt@basic:</p>
-<ul>
-<li>
-<p>bat-dg2-9:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115769v2/bat-dg2-9/igt@gem_mmap_gtt@basic.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4077">i915#4077</a>) +2 other tests skip</p>
-</li>
-<li>
-<p>bat-dg2-8:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115769v2/bat-dg2-8/igt@gem_mmap_gtt@basic.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4077">i915#4077</a>) +2 other tests skip</p>
-</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_render_tiled_blits@basic:</p>
-<ul>
-<li>bat-dg2-9:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115769v2/bat-dg2-9/igt@gem_render_tiled_blits@basic.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4079">i915#4079</a>) +1 other test skip</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_tiled_pread_basic:</p>
-<ul>
-<li>bat-dg2-8:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115769v2/bat-dg2-8/igt@gem_tiled_pread_basic.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4079">i915#4079</a>) +1 other test skip</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_pm_rps@basic-api:</p>
-<ul>
-<li>
-<p>bat-dg2-9:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115769v2/bat-dg2-9/igt@i915_pm_rps@basic-api.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/6621">i915#6621</a>)</p>
-</li>
-<li>
-<p>bat-dg2-8:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115769v2/bat-dg2-8/igt@i915_pm_rps@basic-api.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/6621">i915#6621</a>)</p>
-</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_suspend@basic-s3-without-i915:</p>
-<ul>
-<li>bat-dg2-8:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115769v2/bat-dg2-8/igt@i915_suspend@basic-s3-without-i915.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/6645">i915#6645</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_addfb_basic@addfb25-y-tiled-small-legacy:</p>
-<ul>
-<li>
-<p>bat-dg2-9:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115769v2/bat-dg2-9/igt@kms_addfb_basic@addfb25-y-tiled-small-legacy.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/5190">i915#5190</a>)</p>
-</li>
-<li>
-<p>bat-dg2-8:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115769v2/bat-dg2-8/igt@kms_addfb_basic@addfb25-y-tiled-small-legacy.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/5190">i915#5190</a>)</p>
-</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_addfb_basic@basic-y-tiled-legacy:</p>
-<ul>
-<li>
-<p>bat-dg2-9:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115769v2/bat-dg2-9/igt@kms_addfb_basic@basic-y-tiled-legacy.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4215">i915#4215</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/5190">i915#5190</a>)</p>
-</li>
-<li>
-<p>bat-dg2-8:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115769v2/bat-dg2-8/igt@kms_addfb_basic@basic-y-tiled-legacy.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4215">i915#4215</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/5190">i915#5190</a>)</p>
-</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_addfb_basic@framebuffer-vs-set-tiling:</p>
-<ul>
-<li>
-<p>bat-dg2-9:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115769v2/bat-dg2-9/igt@kms_addfb_basic@framebuffer-vs-set-tiling.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4212">i915#4212</a>) +6 other tests skip</p>
-</li>
-<li>
-<p>bat-dg2-8:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115769v2/bat-dg2-8/igt@kms_addfb_basic@framebuffer-vs-set-tiling.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4212">i915#4212</a>) +6 other tests skip</p>
-</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_addfb_basic@tile-pitch-mismatch:</p>
-<ul>
-<li>
-<p>bat-dg2-9:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115769v2/bat-dg2-9/igt@kms_addfb_basic@tile-pitch-mismatch.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4212">i915#4212</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/5608">i915#5608</a>)</p>
-</li>
-<li>
-<p>bat-dg2-8:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115769v2/bat-dg2-8/igt@kms_addfb_basic@tile-pitch-mismatch.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4212">i915#4212</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/5608">i915#5608</a>)</p>
-</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_cursor_legacy@basic-busy-flip-before-cursor-legacy:</p>
-<ul>
-<li>
-<p>bat-dg2-9:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115769v2/bat-dg2-9/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-legacy.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4103">i915#4103</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/4213">i915#4213</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/5608">i915#5608</a>) +1 other test skip</p>
-</li>
-<li>
-<p>bat-dg2-8:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115769v2/bat-dg2-8/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-legacy.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4103">i915#4103</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/4213">i915#4213</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/5608">i915#5608</a>) +1 other test skip</p>
-</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_flip@basic-flip-vs-wf_vblank@a-dp6:</p>
-<ul>
-<li>bat-adlp-11:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13965/bat-adlp-11/igt@kms_flip@basic-flip-vs-wf_vblank@a-dp6.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115769v2/bat-adlp-11/igt@kms_flip@basic-flip-vs-wf_vblank@a-dp6.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/6121">i915#6121</a>) +3 other tests fail</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_flip@basic-flip-vs-wf_vblank@d-dp5:</p>
-<ul>
-<li>bat-adlp-11:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13965/bat-adlp-11/igt@kms_flip@basic-flip-vs-wf_vblank@d-dp5.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115769v2/bat-adlp-11/igt@kms_flip@basic-flip-vs-wf_vblank@d-dp5.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/6868">i915#6868</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_force_connector_basic@force-load-detect:</p>
-<ul>
-<li>
-<p>bat-dg2-9:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115769v2/bat-dg2-9/igt@kms_force_connector_basic@force-load-detect.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109285">fdo#109285</a>)</p>
-</li>
-<li>
-<p>bat-dg2-8:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115769v2/bat-dg2-8/igt@kms_force_connector_basic@force-load-detect.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109285">fdo#109285</a>)</p>
-</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_force_connector_basic@prune-stale-modes:</p>
-<ul>
-<li>
-<p>bat-dg2-9:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115769v2/bat-dg2-9/igt@kms_force_connector_basic@prune-stale-modes.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/5274">i915#5274</a>)</p>
-</li>
-<li>
-<p>bat-dg2-8:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115769v2/bat-dg2-8/igt@kms_force_connector_basic@prune-stale-modes.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/5274">i915#5274</a>)</p>
-</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_pipe_crc_basic@read-crc-frame-sequence@pipe-a-dp-7 (NEW):</p>
-<ul>
-<li>bat-adlp-11:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115769v2/bat-adlp-11/igt@kms_pipe_crc_basic@read-crc-frame-sequence@pipe-a-dp-7.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/8668">i915#8668</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_setmode@basic-clone-single-crtc:</p>
-<ul>
-<li>
-<p>bat-dg2-9:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115769v2/bat-dg2-9/igt@kms_setmode@basic-clone-single-crtc.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3555">i915#3555</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/4098">i915#4098</a>)</p>
-</li>
-<li>
-<p>bat-dg2-8:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115769v2/bat-dg2-8/igt@kms_setmode@basic-clone-single-crtc.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3555">i915#3555</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/4098">i915#4098</a>)</p>
-</li>
-</ul>
-</li>
-<li>
-<p>igt@prime_vgem@basic-fence-flip:</p>
-<ul>
-<li>
-<p>bat-dg2-9:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115769v2/bat-dg2-9/igt@prime_vgem@basic-fence-flip.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3708">i915#3708</a>)</p>
-</li>
-<li>
-<p>bat-dg2-8:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115769v2/bat-dg2-8/igt@prime_vgem@basic-fence-flip.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3708">i915#3708</a>)</p>
-</li>
-</ul>
-</li>
-<li>
-<p>igt@prime_vgem@basic-fence-mmap:</p>
-<ul>
-<li>
-<p>bat-dg2-8:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115769v2/bat-dg2-8/igt@prime_vgem@basic-fence-mmap.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3708">i915#3708</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/4077">i915#4077</a>) +1 other test skip</p>
-</li>
-<li>
-<p>bat-dg2-9:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115769v2/bat-dg2-9/igt@prime_vgem@basic-fence-mmap.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3708">i915#3708</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/4077">i915#4077</a>) +1 other test skip</p>
-</li>
-</ul>
-</li>
-<li>
-<p>igt@prime_vgem@basic-write:</p>
-<ul>
-<li>
-<p>bat-dg2-9:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115769v2/bat-dg2-9/igt@prime_vgem@basic-write.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3291">i915#3291</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/3708">i915#3708</a>) +2 other tests skip</p>
-</li>
-<li>
-<p>bat-dg2-8:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115769v2/bat-dg2-8/igt@prime_vgem@basic-write.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3291">i915#3291</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/3708">i915#3708</a>) +2 other tests skip</p>
-</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>igt@i915_selftest@live@gem_contexts:<ul>
-<li>bat-mtlp-6:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13965/bat-mtlp-6/igt@i915_selftest@live@gem_contexts.html">DMESG-FAIL</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115769v2/bat-mtlp-6/igt@i915_selftest@live@gem_contexts.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<p>{name}: This element is suppressed. This means it is ignored when computing<br />
-          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_13965 -&gt; Patchwork_115769v2</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_13965: 7e0f4ea15ba144560df44985a89943ff9a36de9f @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_7614: c7298ec108dc1c861c9a2593e973648ad9b420b4 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  Patchwork_115769v2: 7e0f4ea15ba144560df44985a89943ff9a36de9f @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<h3>Linux commits</h3>
-<p>2fde9ceafb2f drm/i915: Use kmap_local_page() in gem/i915_gem_execbuffer.c<br />
-0de2844eef82 drm/i915: Use kmap_local_page() in i915_cmd_parser.c<br />
-f8e0fcd919e4 drm/i915: Use memcpy_from_page() in gt/uc/intel_uc_fw.c<br />
-6f02e524b9ef drm/i915: Use kmap_local_page() in gem/selftests/i915_gem_context.c<br />
-5d0b66318378 drm/i915: Use kmap_local_page() in gem/selftests/i915_gem_coherency.c<br />
-aa79f3dd2777 drm/i915: Use kmap_local_page() in gem/selftests/huge_pages.c<br />
-3db16b5206a1 drm/i915: Use kmap_local_page() in gem/i915_gem_shmem.c<br />
-2b37a8b169ab drm/i915: Use memcpy_[from/to]_page() in gem/i915_gem_pyhs.c<br />
-102d3891a69b drm/i915: Use kmap_local_page() in gem/i915_gem_object.c</p>
-
-</body>
-</html>
-
---===============1260058971317979448==--
