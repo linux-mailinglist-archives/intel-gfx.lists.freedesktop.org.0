@@ -2,52 +2,47 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 82BD0803156
-	for <lists+intel-gfx@lfdr.de>; Mon,  4 Dec 2023 12:14:43 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 89B81803221
+	for <lists+intel-gfx@lfdr.de>; Mon,  4 Dec 2023 13:05:59 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3343D10E348;
-	Mon,  4 Dec 2023 11:14:40 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7543510E354;
+	Mon,  4 Dec 2023 12:05:55 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.100])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B460210E348;
- Mon,  4 Dec 2023 11:14:38 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B425E10E39C
+ for <intel-gfx@lists.freedesktop.org>; Mon,  4 Dec 2023 12:05:21 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1701688478; x=1733224478;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=oC4Fb+ly6kc/8HmjgdZ9sE3GdThxJH/O2tx5CoIldOg=;
- b=WfNmp+QDADJ8mOn+C4hWHGe/rXBvbIqzRUB+oQTyAZbKAJYF15g/om3n
- JabPwF+3BfSLvS4zXCqawbkDB/NS9FD0BKIIAwL4sRBbeyfdyEB3g3POG
- IkOhc5YBPxGIwrw/8igcDn8vW0nj07lf56ucgjAnRk72z1wK/0TxB+0vw
- N5ra+J6Fv42WoCrhqcjBjTdN2XehhVJ/mm4SrxnTJcgL5ONU0XufMBUDT
- YU0Le1d1YanlWK1WNuzRY46uucfogxXr103clDtz79z9qCREss7wLs+gm
- fpKkEhBoZTGBv6Lm4YVxFWhCF8q7u+kvRWRddtQFriFqXBW7EKMmj+Jyp A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10913"; a="460211882"
-X-IronPort-AV: E=Sophos;i="6.04,249,1695711600"; d="scan'208";a="460211882"
-Received: from fmsmga005.fm.intel.com ([10.253.24.32])
+ t=1701691533; x=1733227533;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=l9HgdDQeAEFhQogo2z9VldmKXXAiuKm6U9qwtNxB+ps=;
+ b=TqCFcIYyia+zjF17ICtBb++6l201Bb/odh+6xhPfM2PCyOiqVJPNcW+w
+ TBTioUe16/mR7x7lxx8VgIqXLMO7wNtghIFEMci6n+zQVCZ4Euj5oQn4o
+ XTUXxbWxwwdpArzvAQxll7kDAFFn5tfZlqirn/HHVG8OFqyzdlyNj9Frp
+ XgCnj9J0lFA3DafTzEjfypAGDH/OhkYl7xIojMpjWtMeCpZgSooF8xI05
+ j5AJtrN1CigC442Qpnw1+TKcwEW/YA30OpXw+iuu1lZjdKhG8p88VH859
+ czCL4E8OOq63gJBl6KR1Mzaxg+QsYyVfB/nbakHl2pyMrxpPkpSBRFfQb w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10913"; a="460216914"
+X-IronPort-AV: E=Sophos;i="6.04,249,1695711600"; d="scan'208";a="460216914"
+Received: from fmsmga008.fm.intel.com ([10.253.24.58])
  by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Dec 2023 03:14:38 -0800
+ 04 Dec 2023 04:05:20 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10913"; a="1102058284"
-X-IronPort-AV: E=Sophos;i="6.04,249,1695711600"; d="scan'208";a="1102058284"
-Received: from shahmoha-mobl1.ger.corp.intel.com (HELO localhost)
- ([10.252.45.180])
- by fmsmga005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Dec 2023 03:14:36 -0800
-From: Jani Nikula <jani.nikula@intel.com>
-To: Khaled Almahallawy <khaled.almahallawy@intel.com>,
- dri-devel@lists.freedesktop.org
-In-Reply-To: <20231130231510.221143-1-khaled.almahallawy@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20231130231510.221143-1-khaled.almahallawy@intel.com>
-Date: Mon, 04 Dec 2023 13:14:33 +0200
-Message-ID: <87leaa2p9i.fsf@intel.com>
+X-IronPort-AV: E=McAfee;i="6600,9927,10913"; a="836565365"
+X-IronPort-AV: E=Sophos;i="6.04,249,1695711600"; d="scan'208";a="836565365"
+Received: from sorvi2.fi.intel.com ([10.237.72.194])
+ by fmsmga008.fm.intel.com with ESMTP; 04 Dec 2023 04:05:19 -0800
+From: Mika Kahola <mika.kahola@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Mon,  4 Dec 2023 13:58:53 +0200
+Message-Id: <20231204115856.176240-1-mika.kahola@intel.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-Content-Type: text/plain
-Subject: Re: [Intel-gfx] [PATCH v2] drm/display/dp: Add the remaining Square
- PHY patterns DPCD register definitions
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-gfx] [PATCH 0/3] drm/i915/display: Convert link bitrate to
+ clock
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -60,49 +55,26 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, 30 Nov 2023, Khaled Almahallawy <khaled.almahallawy@intel.com> wrote:
-> DP2.1 Specs added new DPCDs definitions for square pattern configs[1]
-> These new definitions are used for UHBR Source Transmitter
-> Equalizations tests[2]. Add the 3 new values for square pattern.
->
-> v2: rebase
->
-> [1]: DP2.1 Specs - 2.12.3.6.5 Square Pattern
-> [2]: DP2.1 PHY CTS specs - 4.3 UHBR Source Transmitter Equalization
->
-> Cc: Jani Nikula <jani.nikula@intel.com>
-> Cc: Imre Deak <imre.deak@intel.com>
-> Cc: Lee Shawn C <shawn.c.lee@intel.com>
-> Signed-off-by: Khaled Almahallawy <khaled.almahallawy@intel.com>
+While reading HW state for C10 and C20 chips, let's update the PLL
+clock rates. For C20 the clock rate differs from link bit rate on
+DP2.0 cases and hence a conversion from link bitrate to clock is
+needed.
 
-Thanks for the patch, pushed to drm-misc-next.
+Signed-off-by: Mika Kahola <mika.kahola@intel.com>
 
-BR,
-Jani.
+Mika Kahola (3):
+  drm/i915/display: Move C20 HW readout
+  drm/i915/display: Convert link bitrate to corresponding PLL clock
+  drm/i915/display: Print out debug messages for clock rates
 
-
-> ---
->  include/drm/display/drm_dp.h | 3 +++
->  1 file changed, 3 insertions(+)
->
-> diff --git a/include/drm/display/drm_dp.h b/include/drm/display/drm_dp.h
-> index 83d2039c018b..3731828825bd 100644
-> --- a/include/drm/display/drm_dp.h
-> +++ b/include/drm/display/drm_dp.h
-> @@ -651,6 +651,9 @@
->  # define DP_LINK_QUAL_PATTERN_PRSBS31       0x38
->  # define DP_LINK_QUAL_PATTERN_CUSTOM        0x40
->  # define DP_LINK_QUAL_PATTERN_SQUARE        0x48
-> +# define DP_LINK_QUAL_PATTERN_SQUARE_PRESHOOT_DISABLED                   0x49
-> +# define DP_LINK_QUAL_PATTERN_SQUARE_DEEMPHASIS_DISABLED                 0x4a
-> +# define DP_LINK_QUAL_PATTERN_SQUARE_PRESHOOT_DEEMPHASIS_DISABLED        0x4b
->  
->  #define DP_TRAINING_LANE0_1_SET2	    0x10f
->  #define DP_TRAINING_LANE2_3_SET2	    0x110
+ drivers/gpu/drm/i915/display/intel_cx0_phy.c | 161 +++++++++++--------
+ drivers/gpu/drm/i915/display/intel_cx0_phy.h |   1 +
+ drivers/gpu/drm/i915/display/intel_ddi.c     |   2 +-
+ 3 files changed, 100 insertions(+), 64 deletions(-)
 
 -- 
-Jani Nikula, Intel
+2.34.1
+
