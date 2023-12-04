@@ -1,156 +1,148 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6710B803629
-	for <lists+intel-gfx@lfdr.de>; Mon,  4 Dec 2023 15:14:17 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 11B26803689
+	for <lists+intel-gfx@lfdr.de>; Mon,  4 Dec 2023 15:26:39 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B714610E1DF;
-	Mon,  4 Dec 2023 14:14:15 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4150310E027;
+	Mon,  4 Dec 2023 14:26:37 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.93])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4615910E2F9
- for <intel-gfx@lists.freedesktop.org>; Mon,  4 Dec 2023 14:14:01 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8615D10E027
+ for <intel-gfx@lists.freedesktop.org>; Mon,  4 Dec 2023 14:26:34 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1701699248; x=1733235248;
- h=content-transfer-encoding:in-reply-to:references:subject:
- from:cc:to:date:message-id:mime-version;
- bh=yc9rbgJrKGKAua33QbSLtwMf5SNJoTT7RGB5ptmLYUM=;
- b=WlDhQwMB2P08V16DsxFF8tuqzaDBTgrpXU9Hzign0VBiA6Y0ZJ3YoqXq
- CJ5w9K9/8lSrRBDdsA5oX5H+SZfd+IjcGlg60QSz2Ys4aGfbbplIumDXd
- tdct2PIgm/KdZPjamCfz8berXnYmGqbNfuBpgN3ckSrMUdN2RMcbZv83y
- ozWXdFwln8pM7/92FQNfn1evROvH/m23q/OKTFPIA99yB4h8FvMMFHLhy
- NuiosqelmW/MuLAS5ZELhWz6YFaN1dVd1Uf7H2pRCLpSyYILmkHd7uzgT
- 62pAkGgwhQctm4fZfO+UvVr8ezd6m0e1lktmJ1QIYzJDLtFMgKGZ7YUSL g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10914"; a="390896521"
-X-IronPort-AV: E=Sophos;i="6.04,249,1695711600"; d="scan'208";a="390896521"
-Received: from fmsmga006.fm.intel.com ([10.253.24.20])
- by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Dec 2023 06:14:00 -0800
+ t=1701699994; x=1733235994;
+ h=from:to:subject:date:message-id:references:in-reply-to:
+ content-transfer-encoding:mime-version;
+ bh=gl7GTROQer/OQMnJGCIoxuusHDrje82MAbfXhWZYq74=;
+ b=N+AT2NcADPLHjWEFBEklqF0CvRmdfqaglWNAbLZm32WaItURVKb+xITz
+ hk1s99HxVdN0LPb0nYmJKFedpu81lCToK4TilHhaoSPwDUcp52OJYCDqA
+ bQXJO1oXBjtO8/O0xXyIQiopv/vzXQi1TMXrhQ0eEqvNAZrAxCHU5yffF
+ JxIPSukFFd6jJjThh42hRYVJZcVcWyn2S495BAfMbEo1USJmTIM6reKME
+ J66OprP+8yE8lKObhbAZsxNN6DOhNM1WLivirozb35pTFllOFCXHvdn/A
+ ynIVOuG9+bJBBh04vvpGiOWgXxGB+T//mekobW1SU8qgZNDywjCwfEc80 Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10914"; a="587974"
+X-IronPort-AV: E=Sophos;i="6.04,249,1695711600"; 
+   d="scan'208";a="587974"
+Received: from orviesa002.jf.intel.com ([10.64.159.142])
+ by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 04 Dec 2023 06:26:33 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10914"; a="1017865855"
-X-IronPort-AV: E=Sophos;i="6.04,249,1695711600"; d="scan'208";a="1017865855"
+X-IronPort-AV: E=Sophos;i="6.04,249,1695711600"; d="scan'208";a="11985791"
 Received: from fmsmsx602.amr.corp.intel.com ([10.18.126.82])
- by fmsmga006.fm.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
- 04 Dec 2023 06:14:00 -0800
+ by orviesa002.jf.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
+ 04 Dec 2023 06:26:34 -0800
 Received: from fmsmsx611.amr.corp.intel.com (10.18.126.91) by
  fmsmsx602.amr.corp.intel.com (10.18.126.82) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35; Mon, 4 Dec 2023 06:14:00 -0800
-Received: from fmsmsx612.amr.corp.intel.com (10.18.126.92) by
+ 15.1.2507.35; Mon, 4 Dec 2023 06:26:32 -0800
+Received: from fmsmsx602.amr.corp.intel.com (10.18.126.82) by
  fmsmsx611.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.34; Mon, 4 Dec 2023 06:13:59 -0800
+ 15.1.2507.34; Mon, 4 Dec 2023 06:26:32 -0800
 Received: from fmsedg601.ED.cps.intel.com (10.1.192.135) by
- fmsmsx612.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
+ fmsmsx602.amr.corp.intel.com (10.18.126.82) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.34 via Frontend Transport; Mon, 4 Dec 2023 06:13:59 -0800
-Received: from NAM10-DM6-obe.outbound.protection.outlook.com (104.47.58.101)
+ 15.1.2507.35 via Frontend Transport; Mon, 4 Dec 2023 06:26:32 -0800
+Received: from NAM11-BN8-obe.outbound.protection.outlook.com (104.47.58.168)
  by edgegateway.intel.com (192.55.55.70) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.34; Mon, 4 Dec 2023 06:13:59 -0800
+ 15.1.2507.34; Mon, 4 Dec 2023 06:26:31 -0800
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=kGoOZOUu7DJuOAywmt36k0+qB7TmiCXLPkh1N3JfDO2KGumsgDADn2ntr63wgz2mmQtI9WiZpgnA6Ac4hMAw9mDgAbkrgT8eU337t4CVhYrn6qEn+TmiTSo5ADy5V8Z81/6wCAUFHt06Sc/US2W8xMXspLj2Z3+Fj/1pvs2np3p2KcKoURaFDb/3TAjVqQmVggEAUyVB8hO3dQnt7xvkyCaqEyA6kHxhbNH0zu3ZcIOFzZ5QO0geMUUv+uHpLPcesz1OoBX2k2NxeNtV7PYxv2zwIpb/D+HBtHuZQlxUyosgfsPnkM0aD3pYa8h8SrtXtHGTu/VdMHi+p33Qg+1+Bg==
+ b=lD1M88VT4sC38+JvnCbQKdadglURuLRF5Bd8rNDjNLgmb7pDw7p1FYOtTqAEfnX+toWAaKwwYPQxpgJg3DRP4BHpbGrZ0FYsEn8uz/OPRv5QGAh7mQUnYilUO3xhoJqQ4nHYS4rk7fXAbuA6dkfP3t2dsqUWQmLRUVcwnJSv30WJdYddpJEAZf7mP2EwZR7i6fQon/MYq93wwc3Dyu1zAMrZDjZqOwjWNymFIsJo4mQhGrDJi0Sv5FyQImusI2laevra3YRNPcSxiePtKhrjnPSvOzB0n+wzuZuaXG88irTGSXHRbMCQE89ArNUZHJVuQDazIb2zKkSwHLX2+LSY8A==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=tPttNj4KClPLXbK18Qz+6AAVsgesVDeQnrMdPfbLKAs=;
- b=kZotTvGW2BfheBEabG/hsFiUec3OGIUMTnyyBdj9nu0HSlFpGqQNfJAgEu6vH0jG8Q9b42ld1fK16ugJglLcyOGFhfqsOH3AABKZo7pmqSBb5hBdEhtdt7aKP95SmAIZYtG0gmhgYh58OTARq/JWJSIHPEYCDYSml5uBHOp6/MKXWOrAvfd4VU0uW/LHpTXRvCh+Dy5DYRP+TviQcjwqDvTV270nszDwuedP+BfzcIHRB6lFoyvacojgm4amIvn0O4eYDoSuzAnIJwYkvcLwzFrvSks3feScRSkUBd4yRUa5zXjTk0HexQ/G7tcGuEY+DYK/cp9wJc5V1FlIapf2XA==
+ bh=Fq7KpIHJ1a1jDXOlsUFoo/baWF9+CueUaGb4kaTIzQo=;
+ b=m7FPyXprY+7WSZA3KNf4oTT0ACmHxG4whprqsC4ftT/8YmdHpUV37bQQwPls4+K1aB902IlCFkhoS9i8mks3Tm/sKP3Ld6yhzxerD7hUVtDA3b1EPIlSLtYRNqmvSI5bNnSMheFnqW8EM1DbTJA5pUkFjD9k2k/eNoOv+wCTo9a/om2xf8yf7IK1EM9EzjKWlPiErU9hNcOopN9SoKDzyawsW7krfgFT9XuMog9a2Q/yBMXQ+jmc7xm9eXSP/1vrxXI0S0lvj9pTASYxuoLYVjQ0ZvnDctklfufpc3fugP7bWlH7Qgi8B0Pyr8xqDkljKH84u2INtPny9YsihK3KHw==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
-Authentication-Results: dkim=none (message not signed)
+Received: from DM8PR11MB5655.namprd11.prod.outlook.com (2603:10b6:8:28::10) by
+ CYYPR11MB8358.namprd11.prod.outlook.com (2603:10b6:930:c9::21) with
+ Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.7046.33; Mon, 4 Dec 2023 14:26:30 +0000
+Received: from DM8PR11MB5655.namprd11.prod.outlook.com
+ ([fe80::7213:e03b:116:4d21]) by DM8PR11MB5655.namprd11.prod.outlook.com
+ ([fe80::7213:e03b:116:4d21%4]) with mapi id 15.20.7046.033; Mon, 4 Dec 2023
+ 14:26:29 +0000
+From: "Saarinen, Jani" <jani.saarinen@intel.com>
+To: Kai Vehmanen <kai.vehmanen@linux.intel.com>,
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>, "Nikula, 
+ Jani" <jani.nikula@intel.com>
+Thread-Topic: [Intel-gfx] [PATCH 0/3] ALSA: hda/hdmi: add SKL/KBL connect-all
+ quirks
+Thread-Index: AQHaJr1fuPF1elrfc06ubKJB+z68gbCZLgYw
+Date: Mon, 4 Dec 2023 14:26:29 +0000
+Message-ID: <DM8PR11MB5655E1449D614B116D246720E086A@DM8PR11MB5655.namprd11.prod.outlook.com>
+References: <20231204140955.2020491-1-kai.vehmanen@linux.intel.com>
+In-Reply-To: <20231204140955.2020491-1-kai.vehmanen@linux.intel.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-Mentions: jani.nikula@intel.com
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from BN8PR11MB3556.namprd11.prod.outlook.com (2603:10b6:408:8d::31)
- by DS0PR11MB7288.namprd11.prod.outlook.com (2603:10b6:8:13b::14) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7046.33; Mon, 4 Dec
- 2023 14:13:56 +0000
-Received: from BN8PR11MB3556.namprd11.prod.outlook.com
- ([fe80::3964:7725:b677:28c6]) by BN8PR11MB3556.namprd11.prod.outlook.com
- ([fe80::3964:7725:b677:28c6%7]) with mapi id 15.20.7046.033; Mon, 4 Dec 2023
- 14:13:56 +0000
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <170169866064.4486.2471074166550309330@gjsousa-mobl2>
-References: <20231124205522.57696-2-gustavo.sousa@intel.com>
- <20231127162146.GG5757@mdroper-desk1.amr.corp.intel.com>
- <ZWWoOL3WS5wTGiM2@intel.com> <ZWW4L7POCQLJi6aJ@intel.com>
- <20231201230748.GU5757@mdroper-desk1.amr.corp.intel.com>
- <170169866064.4486.2471074166550309330@gjsousa-mobl2>
-From: Gustavo Sousa <gustavo.sousa@intel.com>
-To: Matt Roper <matthew.d.roper@intel.com>, Ville =?utf-8?b?U3lyasOkbMOk?=
- <ville.syrjala@linux.intel.com>
-Date: Mon, 4 Dec 2023 11:13:52 -0300
-Message-ID: <170169923258.4486.10623068274437801256@gjsousa-mobl2>
-User-Agent: alot/0.10
-X-ClientProxiedBy: SJ0PR13CA0033.namprd13.prod.outlook.com
- (2603:10b6:a03:2c2::8) To BN8PR11MB3556.namprd11.prod.outlook.com
- (2603:10b6:408:8d::31)
-MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: BN8PR11MB3556:EE_|DS0PR11MB7288:EE_
-X-MS-Office365-Filtering-Correlation-Id: 12219782-e6b0-4f59-8f12-08dbf4d340c1
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: zUz2i9/TznjNj0cw0rWfZZo50tqknOyetgZf1jUVGBWuQV1ruHWWVDreDSYHUc7ydtKCVmNt/6TNk9FQnrypzSwv/UY3gyiIhB6LrphsZzXwWqUrporZiJ5G4BW6usR6ihXkbdYPvLb6pCDhqppphpYJd1+xUbGS1fXB+vg3kvZymVYny+ZWUoxgA23Qmio0Zt9rxLmf8ufeIEPyi0C/KG5SfcX05zbixqeZyEpwejUihkKorNVirf2vriygFpaZ8QkJbdhZ8iw1lwKCzWFsDpiRFniMLBylSC5mIftycLNJ0J9QLOXs8uhqNKBBqAKEKwtSwIzcfXFi1Q01G4UPxl9Bog30iUe8kWDtUWbomuFhMv0EFNy9DVTO9gfNsuGqWO6xWa1EmZzrgm5u37NctJkrcyUE2BLlR+TtOmaoL1DhxbEw0dKXpNuMqxMBXLkos35R2A44bEqZ+BPm2BGdhYGliWD97suCKodCQIk0/rj0/Kx9rl3p03Z+rvxpxwLD596OzS8SRbljLA0v+PeELTDLeNWNOqzma+j2CBNShvquU/D2iRxyKljiZbsrayFE
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:BN8PR11MB3556.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230031)(7916004)(346002)(376002)(39860400002)(396003)(136003)(366004)(230922051799003)(1800799012)(64100799003)(451199024)(186009)(26005)(478600001)(6486002)(83380400001)(6666004)(6512007)(9686003)(6506007)(66574015)(82960400001)(316002)(110136005)(66476007)(66946007)(66556008)(38100700002)(5660300002)(4326008)(86362001)(2906002)(8936002)(8676002)(44832011)(41300700001)(33716001)(30864003);
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: DM8PR11MB5655:EE_|CYYPR11MB8358:EE_
+x-ms-office365-filtering-correlation-id: f53a9046-e2bd-4ff3-7ecc-08dbf4d501d1
+x-ld-processed: 46c98d88-e344-4ed4-8496-4ed7712e255d,ExtAddr
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: 6O95wiZQNDjOHLExiSOwwnwJBlb0TVwqpbHH20nJCOv0U/ABA9Cfy8RE/vEm/wyjujTn9tcJs6J39U0NyjeEikqjn5xj038nzDhK62x+k0kIUV2KkkYb7RggzmYTJ2TPcBWYSQdsSiXIIyRGRFo8ZsxNuTxq27fA+SnJfKYmB3m7OZtGHi02gtTVv+t5HO4KVUdVe8boQddzlOh0xaqnTCDSdEiacp9BoiautLV53xjA9m0U5KuAb/dKjv2p+Z/PlXsQ9FbHDBD76YZkScdoOouV5FHCYn9JLyHEBu7fQSNEn5mGmkqOdOZoG8ndE/R12IJ4jBsdq1hxCWQB2VrmQRtlZTWCji6Q8oc5VlUc4P1UEqLLeJ7tz3IU5oyP98/TJmd/mg+i1HjM3zt+o+593sIO3e1Wmy91raUbqqaUoIiSwOD6usvuF7lXo2SlOMzsS4H3DjOxrm9+RZS+6aZpGpef94ZaXXtRwJ6CuEv/b/OGRWUUYApxLIqMTHo7Q5rnMV/P4m9QTLya4Z7jBMUn0vDe1qSzw73POxZ5kGQsprGAzAkanPGrSofNsgCPpW/PVqDGoi1V/4AL4S6SR+fFqPDYOvj/1rIn7DSa6GM28aVa2yN3zPGq7YoSHStyb/WTs9PHlqnH/5BB/YYgJhnkWrF7OspR7iZ7RVWrAedvqWY=
+x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:DM8PR11MB5655.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230031)(346002)(376002)(39860400002)(396003)(136003)(366004)(230922051799003)(1800799012)(64100799003)(451199024)(186009)(26005)(478600001)(966005)(83380400001)(7696005)(71200400001)(9686003)(6506007)(53546011)(82960400001)(316002)(110136005)(6636002)(66476007)(66446008)(64756008)(76116006)(66946007)(66556008)(122000001)(38100700002)(55016003)(5660300002)(52536014)(86362001)(2906002)(8936002)(8676002)(4744005)(41300700001)(33656002)(38070700009)(69594002);
  DIR:OUT; SFP:1102; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?TlVZTDdQUVNqYkxQblpmQ1VnaWtmendwTlJMTituU1M0Um1vcG15SVlOY0RL?=
- =?utf-8?B?YmZRRzZWaUpTYWJQaXhMcWVSRFIwb21tZ2lZVURKcCtrQ0F1SWxtMVgzSzZC?=
- =?utf-8?B?VGRCd0dsS3hxVHl2cVBIL3BIL2FwQUY5SVNOQjh4UG9DR0owcVNQdC93MFNq?=
- =?utf-8?B?MElXRDd5cTJKUk9MenRycmhJSThzMkttMVRwNlFYS3pqb1ZhNWMycXdGNFZN?=
- =?utf-8?B?RGRiWWxuVnAybTh0cVdialBlQWg2Yk50eGNDRFhRZFBPQ01YNDBrRnZFKzEr?=
- =?utf-8?B?Y3NoR2pkV3dUZXF3dFYwdnNUakVBdDRDU0lXMUh1R0VNQzc0T0JvTWpXY1VI?=
- =?utf-8?B?UE9HV3drMm01TlJxek8rNDhpZC9yK3lFbGQ0M0kwNWtoZmh5bDVZNE16TXN2?=
- =?utf-8?B?NlFtSXJMck5YcytKMXBpcE1FeUU3UzBUcXA0TjNnVFd3V25sUU1McklOeE5V?=
- =?utf-8?B?bFAwbnAzekd5Z2lIYXpoYjBMdmtJRUdCNS9pTmZZNHpmMmd5TUtMMmVBdTFt?=
- =?utf-8?B?akRyeFJNMElXeFJLMmJzYkRic2oyUFkvM0FkTGtCckRTL244UjFHSFArazVh?=
- =?utf-8?B?UWxxSVN6cGp3RDN4d29GZDNyaDdZRTk4QkFrTzF3ODdxOTY3NjRpRC94WnFq?=
- =?utf-8?B?ZEN0RzBkRllXOEsya2Y4WUd1aTVTbUhkSTFqbWU1djR4Y3NxbmZmK3h0OWtT?=
- =?utf-8?B?MTZiNXBmdm4xV3hPNVlDR1JkN2ZzVXBOVXhQUXY2R0xWTEc5M1ZyUVBHREZD?=
- =?utf-8?B?UEhoL05WOHN3Y1BxSTZRczVrQWp1TjZCQUEzTUc4MzJUUHhmdHNMdjlwTEVv?=
- =?utf-8?B?ZzFaaE1KMTJMZS9NUkJQdUhTRnIxYWN1ZGJHL0dreGtIbSt4Qm5KMHJCZ0VD?=
- =?utf-8?B?dXlNM01hSWYzOEZvYU12bHdBQ2Z0blFhVncxOFY4eit2cmZ6alZ0UmZVZlRH?=
- =?utf-8?B?NGxGWFdNUGFjVldYMjV2bUw3L3EwVEFNbGxVM0NXa2xURnpiZkRRUEJwbG1w?=
- =?utf-8?B?WTc3bk5OL2ZEcGVEOXFYcUJLZW1ZbGpDVzUySXpTa0MwRXJVUHY2emJZOEN1?=
- =?utf-8?B?cWJQdGRMZjRzaGRFd25WZ2xVMHBjaXMzcER0Tkc1Ny9uRW9NWDVKYXVnekFI?=
- =?utf-8?B?NCtPNlJ1OUwzOGNpR2ZRdW1HOUU4YnQ3NEFJZ1RvMVVjaGVTUzhmQ1lJZzI0?=
- =?utf-8?B?MFNOcHQ4Wm9sbWZaMjB1Sk9xeGpzbFdEU3ovaTAxYzdSd2diTWFiZE5KanMw?=
- =?utf-8?B?TDl4N1k4d3lwalpLUHpHbXMrN3RCTmRnTFcwTVdnc1hyb1ZyKzRYdmVneGR2?=
- =?utf-8?B?NDdkVU5WSmFMbzZjd2VsRzBwL2VZSXpxZEtJcTRjcGoxQS9GczBwUWpKN2VX?=
- =?utf-8?B?OHFmbFFYa2ZyVnZoWEY1OWJ4c1ZNWm5DRGsyaVd0eXU5cnhFOXYrVWpNZHRD?=
- =?utf-8?B?Q09rd29BS0x5NlExSmx6Y3dlT1RwNUYvYnFiRkE5R3JiRjdhb2R3ZnhaZ2I3?=
- =?utf-8?B?bEdQRXFJK2F4YUxoSERvMzNCRG9EdVdNQWg5elEvOHQ1OElkQlFHcjhyY1c2?=
- =?utf-8?B?cnhKMHFLWDVXZncyaDlWVWUxOEFVTU5PY2IwdldSdk45WGZDMmVLZjlTNUhw?=
- =?utf-8?B?VXhvcjgrZGNYVmhwaTA0ME9iYktOdUdxdjhNaXk0M1QxYzl4emdKN1diZytN?=
- =?utf-8?B?Z0JGOG15SVN5ZDlweUMvRXFremJvS1hkeC8yMjJyZHJsckQ4VmJ5RGJUZGlz?=
- =?utf-8?B?a05ZbUM5c0lOQVcreVJzTGI0dUg2UkVudnhqdkd4Ym1EYmpCS25LUFovZjkx?=
- =?utf-8?B?WXAycHVjYlNPY1p6elc5SnArc3VzaTgzRGc5UXBteHdJdTRHcCtUNnM1ZUlO?=
- =?utf-8?B?bWdaNlU2MkJwbWRuSFNOS2IrSndKWkhBZ2VZWi9GN2dyYTczTE80SW1yV202?=
- =?utf-8?B?NlRLSzhIcDZGWXlMRk5ITTNyZnRqVG5LTGNBQ0J5RFlXTXR2NWthVkZPZmNT?=
- =?utf-8?B?bkpMOUlsMVJRb1ZOL0hCMytpdjRwWVFpZDU0c3BMYlExQnI2a3BIcUx6MTNt?=
- =?utf-8?B?WTA3K0tPZDlVMjBGdmRZbm93R1BubmFYRVNrWVUrbkZidWkrRFNlQ2szQ2Za?=
- =?utf-8?B?N2hHQUxhWXlwV1hxdC93em82dlU0YUhHY2lkUHpGMSs1ME1Jc0Q3NkxGbUFI?=
- =?utf-8?B?ZlE9PQ==?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 12219782-e6b0-4f59-8f12-08dbf4d340c1
-X-MS-Exchange-CrossTenant-AuthSource: BN8PR11MB3556.namprd11.prod.outlook.com
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?jrJCT8Ve5wd9KeRfS29TCAk75Oi//4/oJ1CxVy2K9kcfUaiHXvtgArXFIYwi?=
+ =?us-ascii?Q?L5VnURP7g29HcdRvQrB+kx2GFm+dmbqea4WpDx5QgZO24uEng6SH2kmkYCI9?=
+ =?us-ascii?Q?EISvK/Qg23ocJVOQ0gbZLa4xy3WfQCdHhnqHQLgQJYNjJmdYHtfmvzsAWVZA?=
+ =?us-ascii?Q?BuI8Op6VO5WmIAvYVJu4PrLMf3VpU6rfDqvScqmOG3I7goEM5n5R6h250Gds?=
+ =?us-ascii?Q?lNqJMB8LrKMHJZoM1+Kkx6r+sxzczicaP28VoFxrVX2abfpklaB6yIcW2DYy?=
+ =?us-ascii?Q?HvE5UISQZdBq6gFtmf+lLo++u2OIlFAU5jI50knt2cyBESmQQUTQfXHaQ6nL?=
+ =?us-ascii?Q?gmmtB9lI8RXT2gvvSJfELINViRxVSKvmGdRYV6ExDRkLq3EmbAnUaxwKWmTr?=
+ =?us-ascii?Q?6yxRZv4oNjvAtaq8oRbYTDc4hfJ+RGj9frPWkCm6q+SVym9IvX5PEAjUfQ2M?=
+ =?us-ascii?Q?FCfPnc/7W18GAwPwQPHtR6Z8HpVAtc/Bb1VG/GqaVtXRqS5ypp4seR9CARBh?=
+ =?us-ascii?Q?ngt0EH7l/K8AO+fYio9cOKIiW99gC3qBY76EE4BvtSmWVxFSRSLu4xV1SNh+?=
+ =?us-ascii?Q?rgpE2EDjLVkpUeZ1GsaqjHqQMHgfW9Cud51H+nhABvF9QVXXEcMdv3fox/IF?=
+ =?us-ascii?Q?NLqnF97dRa1VgkxsvgNMmlr7XJO6W5AQ/H3MVAJ5o4ZutEVQ1ww6480CSoX0?=
+ =?us-ascii?Q?kZ3iEwBUN1JY3u+yCvJYNuiIlSkatHdenz+/HpnwcOffPZpcSkeR6xRYKZZT?=
+ =?us-ascii?Q?IzboZpHfHlhUqR/m+qzijf9LrLyVO7OQT8w653uxONH/avr+7C/B9Nwnq80A?=
+ =?us-ascii?Q?4ULgY88MKHJ+03wXZn9qD7PN/mYARmxWbj/ZBaBjnXsaOAvJW9crjOWIQjcW?=
+ =?us-ascii?Q?WcpI3q3dUY3vwOwsqpZ55X8rpjaEwMXH9sz7bqvXHf0Fj8/qo4BSHRAfMzg3?=
+ =?us-ascii?Q?OQvr4p1/ZjelByQuGG4gharNs4f/edGcmc93WFzMJvubow5LAKB1MdZjXfpn?=
+ =?us-ascii?Q?CzYNCXdKvYJ9/04NhSsoJP+FTVKI3S9j6EXfhifXPNib99//VZUkBaWUgMDF?=
+ =?us-ascii?Q?aVPuMGp803Sig041dXrgaF+iRYzXecK/zg+l06KQLegbKjTNinwECdSgnBW0?=
+ =?us-ascii?Q?E1BfICS3667aBolltef4SOZ+QchFWs8Rv2ns0tOCehvfl5G8PgsOSM1hgOwE?=
+ =?us-ascii?Q?EWhwpDdAulyGgPmpPrl9rA/GoJwMK/ToT0AgrvDE8pIF+TL9ZSvja/DQoxTP?=
+ =?us-ascii?Q?afAaUL/i6E07BkA/UIMZ3WM62Nwk/tdcWxOl9xeqv7wLtFMvEbBDZs2jWR5T?=
+ =?us-ascii?Q?dBF017kD6eF0E/7+ffQ9vQYgXyZtl+wmPMQBmRD1JSmYyXMroiNdh0HaIgd5?=
+ =?us-ascii?Q?4CV+zmUsW5h4D57ktGIrxNFN/opWvob5OZM2eaDJ6OaxL5txqqBRQ/+aBYP0?=
+ =?us-ascii?Q?UQjOOd7wZRlCPzu1y4rM8oVLc44tWiXQCprApSrMR13e1fdRWxDj7Ipvdiva?=
+ =?us-ascii?Q?GK1qYT2frbj02OQWlIRZ3zJLzKgmnR5E3QGCUHYnDvc5KZIgrv2t3NboFro2?=
+ =?us-ascii?Q?x2yRUeg231MjOf4PnX+wj0wrrI0Ss3QTzIH5zUcU?=
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+MIME-Version: 1.0
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 04 Dec 2023 14:13:56.6519 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: IvU3/60ZYr7BfhZ+sMyY2tnCxij6k3mMgv+bGVsFfeBHYzaZ26pPdYXE/p//31tWxWs90+LS01Bfs6OIMJoV5w==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS0PR11MB7288
+X-MS-Exchange-CrossTenant-AuthSource: DM8PR11MB5655.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: f53a9046-e2bd-4ff3-7ecc-08dbf4d501d1
+X-MS-Exchange-CrossTenant-originalarrivaltime: 04 Dec 2023 14:26:29.8456 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: PlhZf+WnaL13BpDzr+kSaRrCVgJ0/PyauYrxvIj3fXVEmjA2r2KnzOSVPWH2N4P9r6BervaqYjuEIw1e0RbdBw==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CYYPR11MB8358
 X-OriginatorOrg: intel.com
-Subject: Re: [Intel-gfx] [PATCH] drm/i915/cdclk: Remove divider field from
- tables
+Subject: Re: [Intel-gfx] [PATCH 0/3] ALSA: hda/hdmi: add SKL/KBL connect-all
+ quirks
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -163,660 +155,47 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Quoting Gustavo Sousa (2023-12-04 11:04:20-03:00)
->Quoting Matt Roper (2023-12-01 20:07:48-03:00)
->>On Tue, Nov 28, 2023 at 11:51:43AM +0200, Ville Syrj=C3=A4l=C3=A4 wrote:
->>> On Tue, Nov 28, 2023 at 10:43:36AM +0200, Ville Syrj=C3=A4l=C3=A4 wrote=
-:
->>> > On Mon, Nov 27, 2023 at 08:21:46AM -0800, Matt Roper wrote:
->>> > > On Fri, Nov 24, 2023 at 05:55:23PM -0300, Gustavo Sousa wrote:
->>> > > > The cdclk tables were introduced with commit 736da8112fee ("drm/i=
-915:
->>> > > > Use literal representation of cdclk tables"). It has been almost =
-4 years
->>> > > > and the divider field was not really used yet. Let's remove it.
->>> > >=20
->>> > > I think we need to go the other way and actually start using it ins=
-tead
->>> > > of (incorrectly) trying to re-derive it from cdclk->vco.  The logic=
- the
->>> > > driver is using today doesn't account for the potential use of
->>> > > squashing, which means we program the wrong divider value into CDCL=
-K_CTL
->>> > > in some cases.  I pointed that out during the LNL code reviews a co=
-uple
->>> > > months ago, and I believe Stan is working on fixing that.
->>> >=20
->>> > The code should be correct as is, but it does assume that the cd2x
->>> > divider is 2 when squashing is used. If that no longer holds then we
->>> > have to change something.
->>>=20
->>> Something like this should be sufficient to eliminate that
->>> assumption.
->>>=20
->>> diff --git a/drivers/gpu/drm/i915/display/intel_cdclk.c b/drivers/gpu/d=
-rm/i915/display/intel_cdclk.c
->>> index 8bb6bab7c8cd..58567d42e725 100644
->>> --- a/drivers/gpu/drm/i915/display/intel_cdclk.c
->>> +++ b/drivers/gpu/drm/i915/display/intel_cdclk.c
->>> @@ -1897,10 +1897,7 @@ static void _bxt_set_cdclk(struct drm_i915_priva=
-te *dev_priv,
->>> =20
->>>          waveform =3D cdclk_squash_waveform(dev_priv, cdclk);
->>> =20
->>> -        if (waveform)
->>> -                clock =3D vco / 2;
+Hi,
 
-Ah, one thing I did not mention in my previous message is that, this
-assignment here means that we were always assuming that the divisor was
-always 1:
+> -----Original Message-----
+> From: Intel-gfx <intel-gfx-bounces@lists.freedesktop.org> On Behalf Of Ka=
+i
+> Vehmanen
+> Sent: Monday, December 4, 2023 4:10 PM
+> To: intel-gfx@lists.freedesktop.org
+> Subject: [Intel-gfx] [PATCH 0/3] ALSA: hda/hdmi: add SKL/KBL connect-all =
+quirks
+>=20
+> Hi,
+>=20
+> I'll send this first to intel-gfx to verify the i915 CI results. If all o=
+k, I'll send this
+> series to ALSA/sound upstream.
+>=20
+> This seriers is to address kms_hdmi_inject@inject-audio failures reported=
+ in:
+> https://gitlab.freedesktop.org/drm/igt-gpu-tools/-/issues/3
+>=20
+> Kai Vehmanen (3):
+>   ALSA: hda/hdmi: add connect-all quirk for NUC5CPYB
+>   ALSA: hda/hdmi: add connect-all quirk for ASUSTeK Prime B560M-A
 
-    x' =3D vco / 2
+For the series,=20
 
-, meaning that bxt_cdclk_cd2x_div_sel() would do:
+Acked-By: Jani Saarinen <jani.saarinen@intel.com>
+BSW already proven to work with https://patchwork.freedesktop.org/series/12=
+7208/
 
-    y' =3D vco / x' / 2  =3D 1
+@Nikula, Jani can we add this to core-for-ci?=20
 
---
-Gustavo Sousa
+>   ALSA: hda/hdmi: add connect-all quirk for ASUSTeK Z170 Pro
+>=20
+>  sound/pci/hda/patch_hdmi.c | 3 +++
+>  1 file changed, 3 insertions(+)
+>=20
+> --
+> 2.43.0
 
->>> -        else
->>> -                clock =3D cdclk;
->>> +        clock =3D DIV_ROUND_CLOSEST(cdclk * 16, cdclk_squash_divider(w=
-aveform));
->>> =20
->>
->>I haven't had time to come back and revisit this (or check your new
->>series yet), but when I was reviewing the cdclk stuff a couple months
->>ago, my concern was around bxt_cdclk_cd2x_div_sel() which is deriving
->>the CD2X divider from the vco and cdclk value.  On a platform like DG2,
->>we use squashing instead of changes to PLL ratio to hit different cdclk
->>values, so the calculation there doesn't seem valid anymore.  Am I
->>overlooking something?
->
->I looked at Ville's patches and they seem correct to me - althought I'm
->not that experienced and might be missing something as well... Here goes
->my rationale:
->
->Looking at how cdclk works with our hardware, I would say that the
->cdclock is defined by:
->
->    cdclk =3D vco / div / sq_div / 2
->
->, with: vco being the output of the CD2X PLL; "div", the CD2X divider;
->"sq_div", the divider that is derived from the squash wave (16 / "sqash
->wave 1's count"); and 2, the final division that is done at the end.
->
->The DIV_ROUND_CLOSEST() operation suggested above is equivalent to
->doing:
->
->    x =3D cdclk * sq_div =3D vco / div / 2
->
->Meaning that x is the "unsquashed cdclk". From this point, what
->bxt_cdclk_cd2x_div_sel() is doing is:
->
->    y =3D vco / x / 2
->
->(the last "2" divisor comes from the switch-case statement).
->
->That resolves to:
->
->    y =3D vco / (vco / div / 2) / 2 =3D div
->
->--
->Gustavo Sousa
->
->>
->>
->>Matt
->>
->>>          if (HAS_CDCLK_SQUASH(dev_priv))
->>>                  dg2_cdclk_squash_program(dev_priv, waveform);
->>> =20
->>> >=20
->>> > >=20
->>> > > I wonder if the misprogramming we're doing today is what requires t=
-he
->>> > > "HACK" at the bottom of intel_crtc_compute_min_cdclk for DG2?
->>> > >=20
->>> > >=20
->>> > > Matt
->>> > >=20
->>> > > >=20
->>> > > > Cc: Matt Roper <matthew.d.roper@intel.com>
->>> > > > Cc: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
->>> > > > Signed-off-by: Gustavo Sousa <gustavo.sousa@intel.com>
->>> > > > ---
->>> > > >  drivers/gpu/drm/i915/display/intel_cdclk.c | 269 ++++++++++-----=
-------
->>> > > >  1 file changed, 134 insertions(+), 135 deletions(-)
->>> > > >=20
->>> > > > diff --git a/drivers/gpu/drm/i915/display/intel_cdclk.c b/drivers=
-/gpu/drm/i915/display/intel_cdclk.c
->>> > > > index b93d1ad7936d..7f85a216ff5c 100644
->>> > > > --- a/drivers/gpu/drm/i915/display/intel_cdclk.c
->>> > > > +++ b/drivers/gpu/drm/i915/display/intel_cdclk.c
->>> > > > @@ -1227,183 +1227,182 @@ struct intel_cdclk_vals {
->>> > > >          u32 cdclk;
->>> > > >          u16 refclk;
->>> > > >          u16 waveform;
->>> > > > -        u8 divider;        /* CD2X divider * 2 */
->>> > > >          u8 ratio;
->>> > > >  };
->>> > > > =20
->>> > > >  static const struct intel_cdclk_vals bxt_cdclk_table[] =3D {
->>> > > > -        { .refclk =3D 19200, .cdclk =3D 144000, .divider =3D 8, =
-.ratio =3D 60 },
->>> > > > -        { .refclk =3D 19200, .cdclk =3D 288000, .divider =3D 4, =
-.ratio =3D 60 },
->>> > > > -        { .refclk =3D 19200, .cdclk =3D 384000, .divider =3D 3, =
-.ratio =3D 60 },
->>> > > > -        { .refclk =3D 19200, .cdclk =3D 576000, .divider =3D 2, =
-.ratio =3D 60 },
->>> > > > -        { .refclk =3D 19200, .cdclk =3D 624000, .divider =3D 2, =
-.ratio =3D 65 },
->>> > > > +        { .refclk =3D 19200, .cdclk =3D 144000, .ratio =3D 60 },
->>> > > > +        { .refclk =3D 19200, .cdclk =3D 288000, .ratio =3D 60 },
->>> > > > +        { .refclk =3D 19200, .cdclk =3D 384000, .ratio =3D 60 },
->>> > > > +        { .refclk =3D 19200, .cdclk =3D 576000, .ratio =3D 60 },
->>> > > > +        { .refclk =3D 19200, .cdclk =3D 624000, .ratio =3D 65 },
->>> > > >          {}
->>> > > >  };
->>> > > > =20
->>> > > >  static const struct intel_cdclk_vals glk_cdclk_table[] =3D {
->>> > > > -        { .refclk =3D 19200, .cdclk =3D  79200, .divider =3D 8, =
-.ratio =3D 33 },
->>> > > > -        { .refclk =3D 19200, .cdclk =3D 158400, .divider =3D 4, =
-.ratio =3D 33 },
->>> > > > -        { .refclk =3D 19200, .cdclk =3D 316800, .divider =3D 2, =
-.ratio =3D 33 },
->>> > > > +        { .refclk =3D 19200, .cdclk =3D  79200, .ratio =3D 33 },
->>> > > > +        { .refclk =3D 19200, .cdclk =3D 158400, .ratio =3D 33 },
->>> > > > +        { .refclk =3D 19200, .cdclk =3D 316800, .ratio =3D 33 },
->>> > > >          {}
->>> > > >  };
->>> > > > =20
->>> > > >  static const struct intel_cdclk_vals icl_cdclk_table[] =3D {
->>> > > > -        { .refclk =3D 19200, .cdclk =3D 172800, .divider =3D 2, =
-.ratio =3D 18 },
->>> > > > -        { .refclk =3D 19200, .cdclk =3D 192000, .divider =3D 2, =
-.ratio =3D 20 },
->>> > > > -        { .refclk =3D 19200, .cdclk =3D 307200, .divider =3D 2, =
-.ratio =3D 32 },
->>> > > > -        { .refclk =3D 19200, .cdclk =3D 326400, .divider =3D 4, =
-.ratio =3D 68 },
->>> > > > -        { .refclk =3D 19200, .cdclk =3D 556800, .divider =3D 2, =
-.ratio =3D 58 },
->>> > > > -        { .refclk =3D 19200, .cdclk =3D 652800, .divider =3D 2, =
-.ratio =3D 68 },
->>> > > > -
->>> > > > -        { .refclk =3D 24000, .cdclk =3D 180000, .divider =3D 2, =
-.ratio =3D 15 },
->>> > > > -        { .refclk =3D 24000, .cdclk =3D 192000, .divider =3D 2, =
-.ratio =3D 16 },
->>> > > > -        { .refclk =3D 24000, .cdclk =3D 312000, .divider =3D 2, =
-.ratio =3D 26 },
->>> > > > -        { .refclk =3D 24000, .cdclk =3D 324000, .divider =3D 4, =
-.ratio =3D 54 },
->>> > > > -        { .refclk =3D 24000, .cdclk =3D 552000, .divider =3D 2, =
-.ratio =3D 46 },
->>> > > > -        { .refclk =3D 24000, .cdclk =3D 648000, .divider =3D 2, =
-.ratio =3D 54 },
->>> > > > -
->>> > > > -        { .refclk =3D 38400, .cdclk =3D 172800, .divider =3D 2, =
-.ratio =3D  9 },
->>> > > > -        { .refclk =3D 38400, .cdclk =3D 192000, .divider =3D 2, =
-.ratio =3D 10 },
->>> > > > -        { .refclk =3D 38400, .cdclk =3D 307200, .divider =3D 2, =
-.ratio =3D 16 },
->>> > > > -        { .refclk =3D 38400, .cdclk =3D 326400, .divider =3D 4, =
-.ratio =3D 34 },
->>> > > > -        { .refclk =3D 38400, .cdclk =3D 556800, .divider =3D 2, =
-.ratio =3D 29 },
->>> > > > -        { .refclk =3D 38400, .cdclk =3D 652800, .divider =3D 2, =
-.ratio =3D 34 },
->>> > > > +        { .refclk =3D 19200, .cdclk =3D 172800, .ratio =3D 18 },
->>> > > > +        { .refclk =3D 19200, .cdclk =3D 192000, .ratio =3D 20 },
->>> > > > +        { .refclk =3D 19200, .cdclk =3D 307200, .ratio =3D 32 },
->>> > > > +        { .refclk =3D 19200, .cdclk =3D 326400, .ratio =3D 68 },
->>> > > > +        { .refclk =3D 19200, .cdclk =3D 556800, .ratio =3D 58 },
->>> > > > +        { .refclk =3D 19200, .cdclk =3D 652800, .ratio =3D 68 },
->>> > > > +
->>> > > > +        { .refclk =3D 24000, .cdclk =3D 180000, .ratio =3D 15 },
->>> > > > +        { .refclk =3D 24000, .cdclk =3D 192000, .ratio =3D 16 },
->>> > > > +        { .refclk =3D 24000, .cdclk =3D 312000, .ratio =3D 26 },
->>> > > > +        { .refclk =3D 24000, .cdclk =3D 324000, .ratio =3D 54 },
->>> > > > +        { .refclk =3D 24000, .cdclk =3D 552000, .ratio =3D 46 },
->>> > > > +        { .refclk =3D 24000, .cdclk =3D 648000, .ratio =3D 54 },
->>> > > > +
->>> > > > +        { .refclk =3D 38400, .cdclk =3D 172800, .ratio =3D  9 },
->>> > > > +        { .refclk =3D 38400, .cdclk =3D 192000, .ratio =3D 10 },
->>> > > > +        { .refclk =3D 38400, .cdclk =3D 307200, .ratio =3D 16 },
->>> > > > +        { .refclk =3D 38400, .cdclk =3D 326400, .ratio =3D 34 },
->>> > > > +        { .refclk =3D 38400, .cdclk =3D 556800, .ratio =3D 29 },
->>> > > > +        { .refclk =3D 38400, .cdclk =3D 652800, .ratio =3D 34 },
->>> > > >          {}
->>> > > >  };
->>> > > > =20
->>> > > >  static const struct intel_cdclk_vals rkl_cdclk_table[] =3D {
->>> > > > -        { .refclk =3D 19200, .cdclk =3D 172800, .divider =3D 4, =
-.ratio =3D  36 },
->>> > > > -        { .refclk =3D 19200, .cdclk =3D 192000, .divider =3D 4, =
-.ratio =3D  40 },
->>> > > > -        { .refclk =3D 19200, .cdclk =3D 307200, .divider =3D 4, =
-.ratio =3D  64 },
->>> > > > -        { .refclk =3D 19200, .cdclk =3D 326400, .divider =3D 8, =
-.ratio =3D 136 },
->>> > > > -        { .refclk =3D 19200, .cdclk =3D 556800, .divider =3D 4, =
-.ratio =3D 116 },
->>> > > > -        { .refclk =3D 19200, .cdclk =3D 652800, .divider =3D 4, =
-.ratio =3D 136 },
->>> > > > -
->>> > > > -        { .refclk =3D 24000, .cdclk =3D 180000, .divider =3D 4, =
-.ratio =3D  30 },
->>> > > > -        { .refclk =3D 24000, .cdclk =3D 192000, .divider =3D 4, =
-.ratio =3D  32 },
->>> > > > -        { .refclk =3D 24000, .cdclk =3D 312000, .divider =3D 4, =
-.ratio =3D  52 },
->>> > > > -        { .refclk =3D 24000, .cdclk =3D 324000, .divider =3D 8, =
-.ratio =3D 108 },
->>> > > > -        { .refclk =3D 24000, .cdclk =3D 552000, .divider =3D 4, =
-.ratio =3D  92 },
->>> > > > -        { .refclk =3D 24000, .cdclk =3D 648000, .divider =3D 4, =
-.ratio =3D 108 },
->>> > > > -
->>> > > > -        { .refclk =3D 38400, .cdclk =3D 172800, .divider =3D 4, =
-.ratio =3D 18 },
->>> > > > -        { .refclk =3D 38400, .cdclk =3D 192000, .divider =3D 4, =
-.ratio =3D 20 },
->>> > > > -        { .refclk =3D 38400, .cdclk =3D 307200, .divider =3D 4, =
-.ratio =3D 32 },
->>> > > > -        { .refclk =3D 38400, .cdclk =3D 326400, .divider =3D 8, =
-.ratio =3D 68 },
->>> > > > -        { .refclk =3D 38400, .cdclk =3D 556800, .divider =3D 4, =
-.ratio =3D 58 },
->>> > > > -        { .refclk =3D 38400, .cdclk =3D 652800, .divider =3D 4, =
-.ratio =3D 68 },
->>> > > > +        { .refclk =3D 19200, .cdclk =3D 172800, .ratio =3D  36 }=
-,
->>> > > > +        { .refclk =3D 19200, .cdclk =3D 192000, .ratio =3D  40 }=
-,
->>> > > > +        { .refclk =3D 19200, .cdclk =3D 307200, .ratio =3D  64 }=
-,
->>> > > > +        { .refclk =3D 19200, .cdclk =3D 326400, .ratio =3D 136 }=
-,
->>> > > > +        { .refclk =3D 19200, .cdclk =3D 556800, .ratio =3D 116 }=
-,
->>> > > > +        { .refclk =3D 19200, .cdclk =3D 652800, .ratio =3D 136 }=
-,
->>> > > > +
->>> > > > +        { .refclk =3D 24000, .cdclk =3D 180000, .ratio =3D  30 }=
-,
->>> > > > +        { .refclk =3D 24000, .cdclk =3D 192000, .ratio =3D  32 }=
-,
->>> > > > +        { .refclk =3D 24000, .cdclk =3D 312000, .ratio =3D  52 }=
-,
->>> > > > +        { .refclk =3D 24000, .cdclk =3D 324000, .ratio =3D 108 }=
-,
->>> > > > +        { .refclk =3D 24000, .cdclk =3D 552000, .ratio =3D  92 }=
-,
->>> > > > +        { .refclk =3D 24000, .cdclk =3D 648000, .ratio =3D 108 }=
-,
->>> > > > +
->>> > > > +        { .refclk =3D 38400, .cdclk =3D 172800, .ratio =3D 18 },
->>> > > > +        { .refclk =3D 38400, .cdclk =3D 192000, .ratio =3D 20 },
->>> > > > +        { .refclk =3D 38400, .cdclk =3D 307200, .ratio =3D 32 },
->>> > > > +        { .refclk =3D 38400, .cdclk =3D 326400, .ratio =3D 68 },
->>> > > > +        { .refclk =3D 38400, .cdclk =3D 556800, .ratio =3D 58 },
->>> > > > +        { .refclk =3D 38400, .cdclk =3D 652800, .ratio =3D 68 },
->>> > > >          {}
->>> > > >  };
->>> > > > =20
->>> > > >  static const struct intel_cdclk_vals adlp_a_step_cdclk_table[] =
-=3D {
->>> > > > -        { .refclk =3D 19200, .cdclk =3D 307200, .divider =3D 2, =
-.ratio =3D 32 },
->>> > > > -        { .refclk =3D 19200, .cdclk =3D 556800, .divider =3D 2, =
-.ratio =3D 58 },
->>> > > > -        { .refclk =3D 19200, .cdclk =3D 652800, .divider =3D 2, =
-.ratio =3D 68 },
->>> > > > +        { .refclk =3D 19200, .cdclk =3D 307200, .ratio =3D 32 },
->>> > > > +        { .refclk =3D 19200, .cdclk =3D 556800, .ratio =3D 58 },
->>> > > > +        { .refclk =3D 19200, .cdclk =3D 652800, .ratio =3D 68 },
->>> > > > =20
->>> > > > -        { .refclk =3D 24000, .cdclk =3D 312000, .divider =3D 2, =
-.ratio =3D 26 },
->>> > > > -        { .refclk =3D 24000, .cdclk =3D 552000, .divider =3D 2, =
-.ratio =3D 46 },
->>> > > > -        { .refclk =3D 24400, .cdclk =3D 648000, .divider =3D 2, =
-.ratio =3D 54 },
->>> > > > +        { .refclk =3D 24000, .cdclk =3D 312000, .ratio =3D 26 },
->>> > > > +        { .refclk =3D 24000, .cdclk =3D 552000, .ratio =3D 46 },
->>> > > > +        { .refclk =3D 24400, .cdclk =3D 648000, .ratio =3D 54 },
->>> > > > =20
->>> > > > -        { .refclk =3D 38400, .cdclk =3D 307200, .divider =3D 2, =
-.ratio =3D 16 },
->>> > > > -        { .refclk =3D 38400, .cdclk =3D 556800, .divider =3D 2, =
-.ratio =3D 29 },
->>> > > > -        { .refclk =3D 38400, .cdclk =3D 652800, .divider =3D 2, =
-.ratio =3D 34 },
->>> > > > +        { .refclk =3D 38400, .cdclk =3D 307200, .ratio =3D 16 },
->>> > > > +        { .refclk =3D 38400, .cdclk =3D 556800, .ratio =3D 29 },
->>> > > > +        { .refclk =3D 38400, .cdclk =3D 652800, .ratio =3D 34 },
->>> > > >          {}
->>> > > >  };
->>> > > > =20
->>> > > >  static const struct intel_cdclk_vals adlp_cdclk_table[] =3D {
->>> > > > -        { .refclk =3D 19200, .cdclk =3D 172800, .divider =3D 3, =
-.ratio =3D 27 },
->>> > > > -        { .refclk =3D 19200, .cdclk =3D 192000, .divider =3D 2, =
-.ratio =3D 20 },
->>> > > > -        { .refclk =3D 19200, .cdclk =3D 307200, .divider =3D 2, =
-.ratio =3D 32 },
->>> > > > -        { .refclk =3D 19200, .cdclk =3D 556800, .divider =3D 2, =
-.ratio =3D 58 },
->>> > > > -        { .refclk =3D 19200, .cdclk =3D 652800, .divider =3D 2, =
-.ratio =3D 68 },
->>> > > > -
->>> > > > -        { .refclk =3D 24000, .cdclk =3D 176000, .divider =3D 3, =
-.ratio =3D 22 },
->>> > > > -        { .refclk =3D 24000, .cdclk =3D 192000, .divider =3D 2, =
-.ratio =3D 16 },
->>> > > > -        { .refclk =3D 24000, .cdclk =3D 312000, .divider =3D 2, =
-.ratio =3D 26 },
->>> > > > -        { .refclk =3D 24000, .cdclk =3D 552000, .divider =3D 2, =
-.ratio =3D 46 },
->>> > > > -        { .refclk =3D 24000, .cdclk =3D 648000, .divider =3D 2, =
-.ratio =3D 54 },
->>> > > > -
->>> > > > -        { .refclk =3D 38400, .cdclk =3D 179200, .divider =3D 3, =
-.ratio =3D 14 },
->>> > > > -        { .refclk =3D 38400, .cdclk =3D 192000, .divider =3D 2, =
-.ratio =3D 10 },
->>> > > > -        { .refclk =3D 38400, .cdclk =3D 307200, .divider =3D 2, =
-.ratio =3D 16 },
->>> > > > -        { .refclk =3D 38400, .cdclk =3D 556800, .divider =3D 2, =
-.ratio =3D 29 },
->>> > > > -        { .refclk =3D 38400, .cdclk =3D 652800, .divider =3D 2, =
-.ratio =3D 34 },
->>> > > > +        { .refclk =3D 19200, .cdclk =3D 172800, .ratio =3D 27 },
->>> > > > +        { .refclk =3D 19200, .cdclk =3D 192000, .ratio =3D 20 },
->>> > > > +        { .refclk =3D 19200, .cdclk =3D 307200, .ratio =3D 32 },
->>> > > > +        { .refclk =3D 19200, .cdclk =3D 556800, .ratio =3D 58 },
->>> > > > +        { .refclk =3D 19200, .cdclk =3D 652800, .ratio =3D 68 },
->>> > > > +
->>> > > > +        { .refclk =3D 24000, .cdclk =3D 176000, .ratio =3D 22 },
->>> > > > +        { .refclk =3D 24000, .cdclk =3D 192000, .ratio =3D 16 },
->>> > > > +        { .refclk =3D 24000, .cdclk =3D 312000, .ratio =3D 26 },
->>> > > > +        { .refclk =3D 24000, .cdclk =3D 552000, .ratio =3D 46 },
->>> > > > +        { .refclk =3D 24000, .cdclk =3D 648000, .ratio =3D 54 },
->>> > > > +
->>> > > > +        { .refclk =3D 38400, .cdclk =3D 179200, .ratio =3D 14 },
->>> > > > +        { .refclk =3D 38400, .cdclk =3D 192000, .ratio =3D 10 },
->>> > > > +        { .refclk =3D 38400, .cdclk =3D 307200, .ratio =3D 16 },
->>> > > > +        { .refclk =3D 38400, .cdclk =3D 556800, .ratio =3D 29 },
->>> > > > +        { .refclk =3D 38400, .cdclk =3D 652800, .ratio =3D 34 },
->>> > > >          {}
->>> > > >  };
->>> > > > =20
->>> > > >  static const struct intel_cdclk_vals rplu_cdclk_table[] =3D {
->>> > > > -        { .refclk =3D 19200, .cdclk =3D 172800, .divider =3D 3, =
-.ratio =3D 27 },
->>> > > > -        { .refclk =3D 19200, .cdclk =3D 192000, .divider =3D 2, =
-.ratio =3D 20 },
->>> > > > -        { .refclk =3D 19200, .cdclk =3D 307200, .divider =3D 2, =
-.ratio =3D 32 },
->>> > > > -        { .refclk =3D 19200, .cdclk =3D 480000, .divider =3D 2, =
-.ratio =3D 50 },
->>> > > > -        { .refclk =3D 19200, .cdclk =3D 556800, .divider =3D 2, =
-.ratio =3D 58 },
->>> > > > -        { .refclk =3D 19200, .cdclk =3D 652800, .divider =3D 2, =
-.ratio =3D 68 },
->>> > > > -
->>> > > > -        { .refclk =3D 24000, .cdclk =3D 176000, .divider =3D 3, =
-.ratio =3D 22 },
->>> > > > -        { .refclk =3D 24000, .cdclk =3D 192000, .divider =3D 2, =
-.ratio =3D 16 },
->>> > > > -        { .refclk =3D 24000, .cdclk =3D 312000, .divider =3D 2, =
-.ratio =3D 26 },
->>> > > > -        { .refclk =3D 24000, .cdclk =3D 480000, .divider =3D 2, =
-.ratio =3D 40 },
->>> > > > -        { .refclk =3D 24000, .cdclk =3D 552000, .divider =3D 2, =
-.ratio =3D 46 },
->>> > > > -        { .refclk =3D 24000, .cdclk =3D 648000, .divider =3D 2, =
-.ratio =3D 54 },
->>> > > > -
->>> > > > -        { .refclk =3D 38400, .cdclk =3D 179200, .divider =3D 3, =
-.ratio =3D 14 },
->>> > > > -        { .refclk =3D 38400, .cdclk =3D 192000, .divider =3D 2, =
-.ratio =3D 10 },
->>> > > > -        { .refclk =3D 38400, .cdclk =3D 307200, .divider =3D 2, =
-.ratio =3D 16 },
->>> > > > -        { .refclk =3D 38400, .cdclk =3D 480000, .divider =3D 2, =
-.ratio =3D 25 },
->>> > > > -        { .refclk =3D 38400, .cdclk =3D 556800, .divider =3D 2, =
-.ratio =3D 29 },
->>> > > > -        { .refclk =3D 38400, .cdclk =3D 652800, .divider =3D 2, =
-.ratio =3D 34 },
->>> > > > +        { .refclk =3D 19200, .cdclk =3D 172800, .ratio =3D 27 },
->>> > > > +        { .refclk =3D 19200, .cdclk =3D 192000, .ratio =3D 20 },
->>> > > > +        { .refclk =3D 19200, .cdclk =3D 307200, .ratio =3D 32 },
->>> > > > +        { .refclk =3D 19200, .cdclk =3D 480000, .ratio =3D 50 },
->>> > > > +        { .refclk =3D 19200, .cdclk =3D 556800, .ratio =3D 58 },
->>> > > > +        { .refclk =3D 19200, .cdclk =3D 652800, .ratio =3D 68 },
->>> > > > +
->>> > > > +        { .refclk =3D 24000, .cdclk =3D 176000, .ratio =3D 22 },
->>> > > > +        { .refclk =3D 24000, .cdclk =3D 192000, .ratio =3D 16 },
->>> > > > +        { .refclk =3D 24000, .cdclk =3D 312000, .ratio =3D 26 },
->>> > > > +        { .refclk =3D 24000, .cdclk =3D 480000, .ratio =3D 40 },
->>> > > > +        { .refclk =3D 24000, .cdclk =3D 552000, .ratio =3D 46 },
->>> > > > +        { .refclk =3D 24000, .cdclk =3D 648000, .ratio =3D 54 },
->>> > > > +
->>> > > > +        { .refclk =3D 38400, .cdclk =3D 179200, .ratio =3D 14 },
->>> > > > +        { .refclk =3D 38400, .cdclk =3D 192000, .ratio =3D 10 },
->>> > > > +        { .refclk =3D 38400, .cdclk =3D 307200, .ratio =3D 16 },
->>> > > > +        { .refclk =3D 38400, .cdclk =3D 480000, .ratio =3D 25 },
->>> > > > +        { .refclk =3D 38400, .cdclk =3D 556800, .ratio =3D 29 },
->>> > > > +        { .refclk =3D 38400, .cdclk =3D 652800, .ratio =3D 34 },
->>> > > >          {}
->>> > > >  };
->>> > > > =20
->>> > > >  static const struct intel_cdclk_vals dg2_cdclk_table[] =3D {
->>> > > > -        { .refclk =3D 38400, .cdclk =3D 163200, .divider =3D 2, =
-.ratio =3D 34, .waveform =3D 0x8888 },
->>> > > > -        { .refclk =3D 38400, .cdclk =3D 204000, .divider =3D 2, =
-.ratio =3D 34, .waveform =3D 0x9248 },
->>> > > > -        { .refclk =3D 38400, .cdclk =3D 244800, .divider =3D 2, =
-.ratio =3D 34, .waveform =3D 0xa4a4 },
->>> > > > -        { .refclk =3D 38400, .cdclk =3D 285600, .divider =3D 2, =
-.ratio =3D 34, .waveform =3D 0xa54a },
->>> > > > -        { .refclk =3D 38400, .cdclk =3D 326400, .divider =3D 2, =
-.ratio =3D 34, .waveform =3D 0xaaaa },
->>> > > > -        { .refclk =3D 38400, .cdclk =3D 367200, .divider =3D 2, =
-.ratio =3D 34, .waveform =3D 0xad5a },
->>> > > > -        { .refclk =3D 38400, .cdclk =3D 408000, .divider =3D 2, =
-.ratio =3D 34, .waveform =3D 0xb6b6 },
->>> > > > -        { .refclk =3D 38400, .cdclk =3D 448800, .divider =3D 2, =
-.ratio =3D 34, .waveform =3D 0xdbb6 },
->>> > > > -        { .refclk =3D 38400, .cdclk =3D 489600, .divider =3D 2, =
-.ratio =3D 34, .waveform =3D 0xeeee },
->>> > > > -        { .refclk =3D 38400, .cdclk =3D 530400, .divider =3D 2, =
-.ratio =3D 34, .waveform =3D 0xf7de },
->>> > > > -        { .refclk =3D 38400, .cdclk =3D 571200, .divider =3D 2, =
-.ratio =3D 34, .waveform =3D 0xfefe },
->>> > > > -        { .refclk =3D 38400, .cdclk =3D 612000, .divider =3D 2, =
-.ratio =3D 34, .waveform =3D 0xfffe },
->>> > > > -        { .refclk =3D 38400, .cdclk =3D 652800, .divider =3D 2, =
-.ratio =3D 34, .waveform =3D 0xffff },
->>> > > > +        { .refclk =3D 38400, .cdclk =3D 163200, .ratio =3D 34, .=
-waveform =3D 0x8888 },
->>> > > > +        { .refclk =3D 38400, .cdclk =3D 204000, .ratio =3D 34, .=
-waveform =3D 0x9248 },
->>> > > > +        { .refclk =3D 38400, .cdclk =3D 244800, .ratio =3D 34, .=
-waveform =3D 0xa4a4 },
->>> > > > +        { .refclk =3D 38400, .cdclk =3D 285600, .ratio =3D 34, .=
-waveform =3D 0xa54a },
->>> > > > +        { .refclk =3D 38400, .cdclk =3D 326400, .ratio =3D 34, .=
-waveform =3D 0xaaaa },
->>> > > > +        { .refclk =3D 38400, .cdclk =3D 367200, .ratio =3D 34, .=
-waveform =3D 0xad5a },
->>> > > > +        { .refclk =3D 38400, .cdclk =3D 408000, .ratio =3D 34, .=
-waveform =3D 0xb6b6 },
->>> > > > +        { .refclk =3D 38400, .cdclk =3D 448800, .ratio =3D 34, .=
-waveform =3D 0xdbb6 },
->>> > > > +        { .refclk =3D 38400, .cdclk =3D 489600, .ratio =3D 34, .=
-waveform =3D 0xeeee },
->>> > > > +        { .refclk =3D 38400, .cdclk =3D 530400, .ratio =3D 34, .=
-waveform =3D 0xf7de },
->>> > > > +        { .refclk =3D 38400, .cdclk =3D 571200, .ratio =3D 34, .=
-waveform =3D 0xfefe },
->>> > > > +        { .refclk =3D 38400, .cdclk =3D 612000, .ratio =3D 34, .=
-waveform =3D 0xfffe },
->>> > > > +        { .refclk =3D 38400, .cdclk =3D 652800, .ratio =3D 34, .=
-waveform =3D 0xffff },
->>> > > >          {}
->>> > > >  };
->>> > > > =20
->>> > > >  static const struct intel_cdclk_vals mtl_cdclk_table[] =3D {
->>> > > > -        { .refclk =3D 38400, .cdclk =3D 172800, .divider =3D 2, =
-.ratio =3D 16, .waveform =3D 0xad5a },
->>> > > > -        { .refclk =3D 38400, .cdclk =3D 192000, .divider =3D 2, =
-.ratio =3D 16, .waveform =3D 0xb6b6 },
->>> > > > -        { .refclk =3D 38400, .cdclk =3D 307200, .divider =3D 2, =
-.ratio =3D 16, .waveform =3D 0x0000 },
->>> > > > -        { .refclk =3D 38400, .cdclk =3D 480000, .divider =3D 2, =
-.ratio =3D 25, .waveform =3D 0x0000 },
->>> > > > -        { .refclk =3D 38400, .cdclk =3D 556800, .divider =3D 2, =
-.ratio =3D 29, .waveform =3D 0x0000 },
->>> > > > -        { .refclk =3D 38400, .cdclk =3D 652800, .divider =3D 2, =
-.ratio =3D 34, .waveform =3D 0x0000 },
->>> > > > +        { .refclk =3D 38400, .cdclk =3D 172800, .ratio =3D 16, .=
-waveform =3D 0xad5a },
->>> > > > +        { .refclk =3D 38400, .cdclk =3D 192000, .ratio =3D 16, .=
-waveform =3D 0xb6b6 },
->>> > > > +        { .refclk =3D 38400, .cdclk =3D 307200, .ratio =3D 16, .=
-waveform =3D 0x0000 },
->>> > > > +        { .refclk =3D 38400, .cdclk =3D 480000, .ratio =3D 25, .=
-waveform =3D 0x0000 },
->>> > > > +        { .refclk =3D 38400, .cdclk =3D 556800, .ratio =3D 29, .=
-waveform =3D 0x0000 },
->>> > > > +        { .refclk =3D 38400, .cdclk =3D 652800, .ratio =3D 34, .=
-waveform =3D 0x0000 },
->>> > > >          {}
->>> > > >  };
->>> > > > =20
->>> > > >  static const struct intel_cdclk_vals lnl_cdclk_table[] =3D {
->>> > > > -        { .refclk =3D 38400, .cdclk =3D 153600, .divider =3D 2, =
-.ratio =3D 16, .waveform =3D 0xaaaa },
->>> > > > -        { .refclk =3D 38400, .cdclk =3D 172800, .divider =3D 2, =
-.ratio =3D 16, .waveform =3D 0xad5a },
->>> > > > -        { .refclk =3D 38400, .cdclk =3D 192000, .divider =3D 2, =
-.ratio =3D 16, .waveform =3D 0xb6b6 },
->>> > > > -        { .refclk =3D 38400, .cdclk =3D 211200, .divider =3D 2, =
-.ratio =3D 16, .waveform =3D 0xdbb6 },
->>> > > > -        { .refclk =3D 38400, .cdclk =3D 230400, .divider =3D 2, =
-.ratio =3D 16, .waveform =3D 0xeeee },
->>> > > > -        { .refclk =3D 38400, .cdclk =3D 249600, .divider =3D 2, =
-.ratio =3D 16, .waveform =3D 0xf7de },
->>> > > > -        { .refclk =3D 38400, .cdclk =3D 268800, .divider =3D 2, =
-.ratio =3D 16, .waveform =3D 0xfefe },
->>> > > > -        { .refclk =3D 38400, .cdclk =3D 288000, .divider =3D 2, =
-.ratio =3D 16, .waveform =3D 0xfffe },
->>> > > > -        { .refclk =3D 38400, .cdclk =3D 307200, .divider =3D 2, =
-.ratio =3D 16, .waveform =3D 0xffff },
->>> > > > -        { .refclk =3D 38400, .cdclk =3D 330000, .divider =3D 2, =
-.ratio =3D 25, .waveform =3D 0xdbb6 },
->>> > > > -        { .refclk =3D 38400, .cdclk =3D 360000, .divider =3D 2, =
-.ratio =3D 25, .waveform =3D 0xeeee },
->>> > > > -        { .refclk =3D 38400, .cdclk =3D 390000, .divider =3D 2, =
-.ratio =3D 25, .waveform =3D 0xf7de },
->>> > > > -        { .refclk =3D 38400, .cdclk =3D 420000, .divider =3D 2, =
-.ratio =3D 25, .waveform =3D 0xfefe },
->>> > > > -        { .refclk =3D 38400, .cdclk =3D 450000, .divider =3D 2, =
-.ratio =3D 25, .waveform =3D 0xfffe },
->>> > > > -        { .refclk =3D 38400, .cdclk =3D 480000, .divider =3D 2, =
-.ratio =3D 25, .waveform =3D 0xffff },
->>> > > > -        { .refclk =3D 38400, .cdclk =3D 487200, .divider =3D 2, =
-.ratio =3D 29, .waveform =3D 0xfefe },
->>> > > > -        { .refclk =3D 38400, .cdclk =3D 522000, .divider =3D 2, =
-.ratio =3D 29, .waveform =3D 0xfffe },
->>> > > > -        { .refclk =3D 38400, .cdclk =3D 556800, .divider =3D 2, =
-.ratio =3D 29, .waveform =3D 0xffff },
->>> > > > -        { .refclk =3D 38400, .cdclk =3D 571200, .divider =3D 2, =
-.ratio =3D 34, .waveform =3D 0xfefe },
->>> > > > -        { .refclk =3D 38400, .cdclk =3D 612000, .divider =3D 2, =
-.ratio =3D 34, .waveform =3D 0xfffe },
->>> > > > -        { .refclk =3D 38400, .cdclk =3D 652800, .divider =3D 2, =
-.ratio =3D 34, .waveform =3D 0xffff },
->>> > > > +        { .refclk =3D 38400, .cdclk =3D 153600, .ratio =3D 16, .=
-waveform =3D 0xaaaa },
->>> > > > +        { .refclk =3D 38400, .cdclk =3D 172800, .ratio =3D 16, .=
-waveform =3D 0xad5a },
->>> > > > +        { .refclk =3D 38400, .cdclk =3D 192000, .ratio =3D 16, .=
-waveform =3D 0xb6b6 },
->>> > > > +        { .refclk =3D 38400, .cdclk =3D 211200, .ratio =3D 16, .=
-waveform =3D 0xdbb6 },
->>> > > > +        { .refclk =3D 38400, .cdclk =3D 230400, .ratio =3D 16, .=
-waveform =3D 0xeeee },
->>> > > > +        { .refclk =3D 38400, .cdclk =3D 249600, .ratio =3D 16, .=
-waveform =3D 0xf7de },
->>> > > > +        { .refclk =3D 38400, .cdclk =3D 268800, .ratio =3D 16, .=
-waveform =3D 0xfefe },
->>> > > > +        { .refclk =3D 38400, .cdclk =3D 288000, .ratio =3D 16, .=
-waveform =3D 0xfffe },
->>> > > > +        { .refclk =3D 38400, .cdclk =3D 307200, .ratio =3D 16, .=
-waveform =3D 0xffff },
->>> > > > +        { .refclk =3D 38400, .cdclk =3D 330000, .ratio =3D 25, .=
-waveform =3D 0xdbb6 },
->>> > > > +        { .refclk =3D 38400, .cdclk =3D 360000, .ratio =3D 25, .=
-waveform =3D 0xeeee },
->>> > > > +        { .refclk =3D 38400, .cdclk =3D 390000, .ratio =3D 25, .=
-waveform =3D 0xf7de },
->>> > > > +        { .refclk =3D 38400, .cdclk =3D 420000, .ratio =3D 25, .=
-waveform =3D 0xfefe },
->>> > > > +        { .refclk =3D 38400, .cdclk =3D 450000, .ratio =3D 25, .=
-waveform =3D 0xfffe },
->>> > > > +        { .refclk =3D 38400, .cdclk =3D 480000, .ratio =3D 25, .=
-waveform =3D 0xffff },
->>> > > > +        { .refclk =3D 38400, .cdclk =3D 487200, .ratio =3D 29, .=
-waveform =3D 0xfefe },
->>> > > > +        { .refclk =3D 38400, .cdclk =3D 522000, .ratio =3D 29, .=
-waveform =3D 0xfffe },
->>> > > > +        { .refclk =3D 38400, .cdclk =3D 556800, .ratio =3D 29, .=
-waveform =3D 0xffff },
->>> > > > +        { .refclk =3D 38400, .cdclk =3D 571200, .ratio =3D 34, .=
-waveform =3D 0xfefe },
->>> > > > +        { .refclk =3D 38400, .cdclk =3D 612000, .ratio =3D 34, .=
-waveform =3D 0xfffe },
->>> > > > +        { .refclk =3D 38400, .cdclk =3D 652800, .ratio =3D 34, .=
-waveform =3D 0xffff },
->>> > > >          {}
->>> > > >  };
->>> > > > =20
->>> > > > --=20
->>> > > > 2.42.1
->>> > > >=20
->>> > >=20
->>> > > --=20
->>> > > Matt Roper
->>> > > Graphics Software Engineer
->>> > > Linux GPU Platform Enablement
->>> > > Intel Corporation
->>> >=20
->>> > --=20
->>> > Ville Syrj=C3=A4l=C3=A4
->>> > Intel
->>>=20
->>> --=20
->>> Ville Syrj=C3=A4l=C3=A4
->>> Intel
->>
->>--=20
->>Matt Roper
->>Graphics Software Engineer
->>Linux GPU Platform Enablement
->>Intel Corporation
