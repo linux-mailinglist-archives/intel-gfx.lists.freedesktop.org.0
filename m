@@ -1,57 +1,53 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 077EE804FC6
-	for <lists+intel-gfx@lfdr.de>; Tue,  5 Dec 2023 11:05:35 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 37A3E805017
+	for <lists+intel-gfx@lfdr.de>; Tue,  5 Dec 2023 11:22:03 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1C85210E4CC;
-	Tue,  5 Dec 2023 10:05:27 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1A10610E4E2;
+	Tue,  5 Dec 2023 10:22:00 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.151])
- by gabe.freedesktop.org (Postfix) with ESMTPS id F152710E4C6;
- Tue,  5 Dec 2023 10:05:24 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E634110E4CE
+ for <intel-gfx@lists.freedesktop.org>; Tue,  5 Dec 2023 10:21:57 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1701770725; x=1733306725;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=bd8s5lBFO1g3uZrQdXrfJvJyjA3WX4Gp4e1cYLPgeWM=;
- b=BWcM3252bXlVRAtsAdPE0qJ1HSEhxiy00DcA0B5kEzJASBBGYMiHe2Ir
- EtR9kiKU47F/PWQDHzZ95IdXPIl1wJhNSXnrzhO3+LvLcAV6G1yG26d/h
- E3B4Sw8yiRqw5UGoozCvT2dGfJuvC2qbp4AinqYaD+JZVng6OEjMVeI+Y
- DJkcsSTIHPB5ew7qQ7IBeHqWOovX5KSAQYT2tdsj/PrnE2RIzPRRz03pX
- lLXi0q2mIJ0gwMrD7FuFct/Jas/oDUyKcp59IHXnpPj8xmvGW97D7h+Mu
- J7uuUdLAuvt+GEy+1a3QVlgQ/aIVO50Xzg/yiG+IG+aYKkUpyL9Xyj9gs g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10914"; a="374059110"
-X-IronPort-AV: E=Sophos;i="6.04,251,1695711600"; d="scan'208";a="374059110"
-Received: from orsmga007.jf.intel.com ([10.7.209.58])
- by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Dec 2023 02:05:24 -0800
+ t=1701771718; x=1733307718;
+ h=date:from:to:cc:subject:message-id:reply-to:references:
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=DcHozEsYehj8HA/Bfy2vaL7VVNOQCGgKtedRvF502fg=;
+ b=U1uAeRPOPYevJH1MtUUEJf1eXSK9l2a0KaAQoMXC80rN13TF8Lv48wPO
+ /o7LV/YEsAqxFZ11OKF5zB/a+uk2zyVrXmqnCuJ5WNX28slqNF/9vBTDS
+ XmKNp8PmDdwCt0O3nEbuytcV3FW+BgpR1ClL2sAhVs/rEQoNzmogE8RhU
+ 1WAwSgECgN2UEuvTLdq+lYTs/zErp4wZrHZ/c1G5t29x0V1eTpIep+SHQ
+ uIrSI+SEOqgp2QA8FySGT6Dn0rLcBxEtEsCjHtCvCviH48hIotgZGjNLb
+ 8Wpp6PHYbnSIrimRwIw3zOSI6hiQ+3SZUJYSFCGiL2OOCG2OMJI0Uj/2B g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10914"; a="935740"
+X-IronPort-AV: E=Sophos;i="6.04,251,1695711600"; 
+   d="scan'208";a="935740"
+Received: from orsmga003.jf.intel.com ([10.7.209.27])
+ by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 05 Dec 2023 02:21:58 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10914"; a="764273562"
-X-IronPort-AV: E=Sophos;i="6.04,251,1695711600"; d="scan'208";a="764273562"
-Received: from ctgorman-mobl.ger.corp.intel.com (HELO [10.213.202.242])
- ([10.213.202.242])
- by orsmga007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Dec 2023 02:05:22 -0800
-Message-ID: <ddde1612-bfd1-4892-b915-87034a0a7cb3@linux.intel.com>
-Date: Tue, 5 Dec 2023 10:05:20 +0000
+X-IronPort-AV: E=McAfee;i="6600,9927,10914"; a="720647428"
+X-IronPort-AV: E=Sophos;i="6.04,251,1695711600"; d="scan'208";a="720647428"
+Received: from ideak-desk.fi.intel.com ([10.237.72.78])
+ by orsmga003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 05 Dec 2023 02:21:55 -0800
+Date: Tue, 5 Dec 2023 12:21:59 +0200
+From: Imre Deak <imre.deak@intel.com>
+To: Ville Syrjala <ville.syrjala@linux.intel.com>
+Message-ID: <ZW75x2ZXgIccA9us@ideak-desk.fi.intel.com>
+References: <20231204202443.31247-1-ville.syrjala@linux.intel.com>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Content-Language: en-US
-To: Nirmoy Das <nirmoy.das@intel.com>, intel-gfx@lists.freedesktop.org
-References: <20231201154443.16660-1-nirmoy.das@intel.com>
- <cff13a24-2f7f-4d44-8fd4-a45cbfa1c76e@linux.intel.com>
- <d50cc22d-670a-49e3-92c7-361fdac66fc6@intel.com>
-From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-Organization: Intel Corporation UK Plc
-In-Reply-To: <d50cc22d-670a-49e3-92c7-361fdac66fc6@intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-Subject: Re: [Intel-gfx] [PATCH] drm/i915/gt: Reduce log severity on reset
- prepare.
+In-Reply-To: <20231204202443.31247-1-ville.syrjala@linux.intel.com>
+Subject: Re: [Intel-gfx] [PATCH] drm/i915: Fix ADL+ tiled plane stride when
+ the POT stride is smaller than the original
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,82 +60,60 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: dri-devel@lists.freedesktop.org, Andrzej Hajda <andrzej.hajda@intel.com>,
- Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+Reply-To: imre.deak@intel.com
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-
-On 05/12/2023 08:50, Nirmoy Das wrote:
-> Hi Tvrtko,
+On Mon, Dec 04, 2023 at 10:24:43PM +0200, Ville Syrjala wrote:
+> From: Ville Syrj�l� <ville.syrjala@linux.intel.com>
 > 
-> On 12/5/2023 9:34 AM, Tvrtko Ursulin wrote:
->>
->> On 01/12/2023 15:44, Nirmoy Das wrote:
->>> gen8_engine_reset_prepare() can fail when HW fails to set
->>> RESET_CTL_READY_TO_RESET bit. In some cases this is not fatal
->>> error as driver will retry.
->>>
->>> Let the caller of gen8_engine_reset_prepare() decide if a
->>> failure in gen8_engine_reset_prepare is an error or not.
->>
->> No complaints per se but I don't see the caller deciding and it is not 
->> really reducing log level but converting to trace. So commit message 
->> and patch do not align for me which I think should be improved.
+> plane_view_scanout_stride() currently assumes that we had to pad the
+> mapping stride with dummy pages in order to align it. But that is not
+> the case if the original fb stride exceeds the aligned stride used
+> to populate the remapped view, which is calculated from the user
+> specified framebuffer width rather than the user specified framebuffer
+> stride.
 > 
+> Ignore the original fb stride in this case and just stick to the POT
+> aligned stride. Getting this wrong will cause the plane to fetch the
+> wrong data, and can lead to fault errors if the page tables at the
+> bogus location aren't even populated.
 > 
-> I meant the return value is checked by the caller, gen8_reset_engines(). 
-> I will resend with a improved commit message.
+> TODO: figure out if this is OK for CCS, or if we should instead increase
+> the width of the view to cover the entire user specified fb stride
+> instead...
 
-Ah okay, maybe my bad for not figuring out that possibility. I guess it 
-might be passable as is, but yes, clearer commit text would be better.
+Yes, this is also needed since the CCS AUX surface can't be remapped in
+general (unless its stride is page size aligned -> main surface stride
+256 tiles aligned).
 
-Trace is good enough - we are not usually interested in seeing those as 
-dbg/info/notice?
+> Cc: Imre Deak <imre.deak@intel.com>
+> Cc: Juha-Pekka Heikkila <juhapekka.heikkila@gmail.com>
+> Signed-off-by: Ville Syrj�l� <ville.syrjala@linux.intel.com>
 
-Regards,
+Thanks for the fix, with the above CCS case also fixed as a follow-up or
+in this patch:
+Reviewed-by: Imre Deak <imre.deak@intel.com>
 
-Tvrtko
-
+> ---
+>  drivers/gpu/drm/i915/display/intel_fb.c | 3 ++-
+>  1 file changed, 2 insertions(+), 1 deletion(-)
 > 
-> Thanks,
+> diff --git a/drivers/gpu/drm/i915/display/intel_fb.c b/drivers/gpu/drm/i915/display/intel_fb.c
+> index 33a693460420..ab634a4c86d1 100644
+> --- a/drivers/gpu/drm/i915/display/intel_fb.c
+> +++ b/drivers/gpu/drm/i915/display/intel_fb.c
+> @@ -1381,7 +1381,8 @@ plane_view_scanout_stride(const struct intel_framebuffer *fb, int color_plane,
+>  	struct drm_i915_private *i915 = to_i915(fb->base.dev);
+>  	unsigned int stride_tiles;
+>  
+> -	if (IS_ALDERLAKE_P(i915) || DISPLAY_VER(i915) >= 14)
+> +	if ((IS_ALDERLAKE_P(i915) || DISPLAY_VER(i915) >= 14) &&
+> +	    src_stride_tiles < dst_stride_tiles)
+>  		stride_tiles = src_stride_tiles;
+>  	else
+>  		stride_tiles = dst_stride_tiles;
+> -- 
+> 2.41.0
 > 
-> Nirmoy
-> 
->>
->> Regards,
->>
->> Tvrtko
->>
->>> Cc: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
->>> Cc: John Harrison <John.C.Harrison@Intel.com>
->>> Cc: Andi Shyti <andi.shyti@linux.intel.com>
->>> Cc: Andrzej Hajda <andrzej.hajda@intel.com>
->>> Closes: https://gitlab.freedesktop.org/drm/intel/-/issues/5591
->>> Signed-off-by: Nirmoy Das <nirmoy.das@intel.com>
->>> ---
->>>   drivers/gpu/drm/i915/gt/intel_reset.c | 8 ++++----
->>>   1 file changed, 4 insertions(+), 4 deletions(-)
->>>
->>> diff --git a/drivers/gpu/drm/i915/gt/intel_reset.c 
->>> b/drivers/gpu/drm/i915/gt/intel_reset.c
->>> index d5ed904f355d..e6fbc6202c80 100644
->>> --- a/drivers/gpu/drm/i915/gt/intel_reset.c
->>> +++ b/drivers/gpu/drm/i915/gt/intel_reset.c
->>> @@ -593,10 +593,10 @@ static int gen8_engine_reset_prepare(struct 
->>> intel_engine_cs *engine)
->>>       ret = __intel_wait_for_register_fw(uncore, reg, mask, ack,
->>>                          700, 0, NULL);
->>>       if (ret)
->>> -        gt_err(engine->gt,
->>> -               "%s reset request timed out: {request: %08x, 
->>> RESET_CTL: %08x}\n",
->>> -               engine->name, request,
->>> -               intel_uncore_read_fw(uncore, reg));
->>> +        GT_TRACE(engine->gt,
->>> +             "%s reset request timed out: {request: %08x, RESET_CTL: 
->>> %08x}\n",
->>> +             engine->name, request,
->>> +             intel_uncore_read_fw(uncore, reg));
->>>         return ret;
->>>   }
