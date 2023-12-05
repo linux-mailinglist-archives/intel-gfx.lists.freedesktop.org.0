@@ -1,50 +1,57 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id D23418053F0
-	for <lists+intel-gfx@lfdr.de>; Tue,  5 Dec 2023 13:15:55 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 77F14805531
+	for <lists+intel-gfx@lfdr.de>; Tue,  5 Dec 2023 13:51:05 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5822B10E508;
-	Tue,  5 Dec 2023 12:15:54 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id F12FE10E51C;
+	Tue,  5 Dec 2023 12:51:03 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.93])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 89BA910E508
- for <intel-gfx@lists.freedesktop.org>; Tue,  5 Dec 2023 12:15:51 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 59CA810E51C
+ for <intel-gfx@lists.freedesktop.org>; Tue,  5 Dec 2023 12:51:02 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1701778551; x=1733314551;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=hzg8E6U8LC+d491y6cw6hVwuEDaHLJybN05cuV7x9uo=;
- b=W7mQWKookrITW6cWDQpbTw9uqHxTEEUISVZNbB0vEAEdiMrBfgINaWmO
- kQWVE58pAiteA/mUTo20Xv2WmpM+S2pfjSsYbicmapLX8nTSBKGaiPusK
- KNfnDoGp1FqTrG3+yFv5iQ080jSzbFvmoOKsYdd8IIKEmUnowx02yqWDi
- cIwUOWyh9o+HhD1nb+pdipPeBiL1mR93ysm3zFVv0bsrBp1KfYNvxc35d
- wrN+XjuL2XKbmZQSTUIBguK3GrlAjT4Va0XtX4CcSJZA0VM31aRLiPc69
- pwNNuF23m8L1SSldSmpr2ySrvGZnuISimvqIPFyZirly3qHb8IENRfiE6 Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10914"; a="391047076"
-X-IronPort-AV: E=Sophos;i="6.04,252,1695711600"; d="scan'208";a="391047076"
-Received: from orsmga005.jf.intel.com ([10.7.209.41])
- by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Dec 2023 04:15:51 -0800
+ t=1701780662; x=1733316662;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version:content-transfer-encoding;
+ bh=r3YHsIMffIUb366nVcSWpoGB/SRr8aK/f7x2rfxg6k8=;
+ b=KXXAq4RHsbUYz671efqmgZSjXj5jRFJKmQTh6LByQgWtKZCYGiBmw6gJ
+ W/ymFlfZINf//+Wmd5vPCudrd1fAtvqPeAUhvYWA7Ed4QLPw/9/o/5I3g
+ bhOXAPAR6aoOtdeUY3Nob92k5hTzV0nXttc92lp/609w5RNzAMMynhdIY
+ dxf2dQy6r6ewLg6e5gabzcBdNVejpeDhJLPnxZapgQ2/tpfHf9GDFmhlA
+ IxkhkhE65TNclg7HYhH4lscuQmMvQFcBPFLbsYjc50uAhMXIYdKs2Khp6
+ krglTPcgw6A9RojLCIjvUjYDEPzA/wYhfKxfUIeOjqBGSL1QpDmXa9md2 w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10914"; a="458210415"
+X-IronPort-AV: E=Sophos;i="6.04,252,1695711600"; d="scan'208";a="458210415"
+Received: from orviesa001.jf.intel.com ([10.64.159.141])
+ by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 05 Dec 2023 04:51:01 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10914"; a="944244804"
-X-IronPort-AV: E=Sophos;i="6.04,252,1695711600"; d="scan'208";a="944244804"
+X-IronPort-AV: E=Sophos;i="6.04,252,1695711600"; d="scan'208";a="18955879"
 Received: from pesir-mobl.ger.corp.intel.com (HELO localhost) ([10.252.61.103])
- by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Dec 2023 04:15:49 -0800
+ by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 05 Dec 2023 04:51:01 -0800
 From: Jani Nikula <jani.nikula@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Tue,  5 Dec 2023 14:15:45 +0200
-Message-Id: <20231205121545.2338665-1-jani.nikula@intel.com>
-X-Mailer: git-send-email 2.39.2
-MIME-Version: 1.0
+To: "Shankar, Uma" <uma.shankar@intel.com>, Ville =?utf-8?B?U3lyasOkbMOk?=
+ <ville.syrjala@linux.intel.com>
+In-Reply-To: <CY5PR11MB63449F65F906172F1785515FF485A@CY5PR11MB6344.namprd11.prod.outlook.com>
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH] drm/i915/rpm: add rpm_to_i915() helper around
- container_of()
+References: <20231201134141.1569265-1-jani.nikula@intel.com>
+ <ZWnwofolLechg_Dg@intel.com> <87wmtu2str.fsf@intel.com>
+ <CY5PR11MB634479123D55A69917190B40F486A@CY5PR11MB6344.namprd11.prod.outlook.com>
+ <87a5qp3oe1.fsf@intel.com>
+ <CY5PR11MB6344014FD6FC06C85356DE48F486A@CY5PR11MB6344.namprd11.prod.outlook.com>
+ <CY5PR11MB63449F65F906172F1785515FF485A@CY5PR11MB6344.namprd11.prod.outlook.com>
+Date: Tue, 05 Dec 2023 14:50:57 +0200
+Message-ID: <874jgw3j9q.fsf@intel.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+Subject: Re: [Intel-gfx] [PATCH] drm/i915/edp: don't write to DP_LINK_BW_SET
+ when using rate select
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -57,87 +64,25 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: jani.nikula@intel.com
+Cc: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Reduce the duplication.
+On Tue, 05 Dec 2023, "Shankar, Uma" <uma.shankar@intel.com> wrote:
+>> Yeah, writing 0 is done with an intention to disable it but that=E2=80=
+=99s not the way to
+>> have this option disabled. Infact there is no reason to write to it for =
+DP1.4+ if sink
+>> is compliant.
+>
+> The change looks ok and aligns with spec, its
+> Reviewed-by: Uma Shankar <uma.shankar@intel.com>
 
-Signed-off-by: Jani Nikula <jani.nikula@intel.com>
----
- drivers/gpu/drm/i915/intel_runtime_pm.c | 24 ++++++++++--------------
- 1 file changed, 10 insertions(+), 14 deletions(-)
+Ville, any further objections or concerns? Okay to merge?
 
-diff --git a/drivers/gpu/drm/i915/intel_runtime_pm.c b/drivers/gpu/drm/i915/intel_runtime_pm.c
-index 91491111dbd5..860b51b56a92 100644
---- a/drivers/gpu/drm/i915/intel_runtime_pm.c
-+++ b/drivers/gpu/drm/i915/intel_runtime_pm.c
-@@ -50,6 +50,11 @@
-  * present for a given platform.
-  */
- 
-+static struct drm_i915_private *rpm_to_i915(struct intel_runtime_pm *rpm)
-+{
-+	return container_of(rpm, struct drm_i915_private, runtime_pm);
-+}
-+
- #if IS_ENABLED(CONFIG_DRM_I915_DEBUG_RUNTIME_PM)
- 
- static void init_intel_runtime_pm_wakeref(struct intel_runtime_pm *rpm)
-@@ -158,9 +163,7 @@ intel_runtime_pm_release(struct intel_runtime_pm *rpm, int wakelock)
- static intel_wakeref_t __intel_runtime_pm_get(struct intel_runtime_pm *rpm,
- 					      bool wakelock)
- {
--	struct drm_i915_private *i915 = container_of(rpm,
--						     struct drm_i915_private,
--						     runtime_pm);
-+	struct drm_i915_private *i915 = rpm_to_i915(rpm);
- 	int ret;
- 
- 	ret = pm_runtime_get_sync(rpm->kdev);
-@@ -365,9 +368,7 @@ void intel_runtime_pm_put(struct intel_runtime_pm *rpm, intel_wakeref_t wref)
-  */
- void intel_runtime_pm_enable(struct intel_runtime_pm *rpm)
- {
--	struct drm_i915_private *i915 = container_of(rpm,
--						     struct drm_i915_private,
--						     runtime_pm);
-+	struct drm_i915_private *i915 = rpm_to_i915(rpm);
- 	struct device *kdev = rpm->kdev;
- 
- 	/*
-@@ -420,9 +421,7 @@ void intel_runtime_pm_enable(struct intel_runtime_pm *rpm)
- 
- void intel_runtime_pm_disable(struct intel_runtime_pm *rpm)
- {
--	struct drm_i915_private *i915 = container_of(rpm,
--						     struct drm_i915_private,
--						     runtime_pm);
-+	struct drm_i915_private *i915 = rpm_to_i915(rpm);
- 	struct device *kdev = rpm->kdev;
- 
- 	/* Transfer rpm ownership back to core */
-@@ -437,9 +436,7 @@ void intel_runtime_pm_disable(struct intel_runtime_pm *rpm)
- 
- void intel_runtime_pm_driver_release(struct intel_runtime_pm *rpm)
- {
--	struct drm_i915_private *i915 = container_of(rpm,
--						     struct drm_i915_private,
--						     runtime_pm);
-+	struct drm_i915_private *i915 = rpm_to_i915(rpm);
- 	int count = atomic_read(&rpm->wakeref_count);
- 
- 	intel_wakeref_auto_fini(&rpm->userfault_wakeref);
-@@ -458,8 +455,7 @@ void intel_runtime_pm_driver_last_release(struct intel_runtime_pm *rpm)
- 
- void intel_runtime_pm_init_early(struct intel_runtime_pm *rpm)
- {
--	struct drm_i915_private *i915 =
--			container_of(rpm, struct drm_i915_private, runtime_pm);
-+	struct drm_i915_private *i915 = rpm_to_i915(rpm);
- 	struct pci_dev *pdev = to_pci_dev(i915->drm.dev);
- 	struct device *kdev = &pdev->dev;
- 
--- 
-2.39.2
+BR,
+Jani.
 
+
+--=20
+Jani Nikula, Intel
