@@ -1,56 +1,59 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2D7FC8050B4
-	for <lists+intel-gfx@lfdr.de>; Tue,  5 Dec 2023 11:39:49 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 145248050EE
+	for <lists+intel-gfx@lfdr.de>; Tue,  5 Dec 2023 11:44:11 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 062EE10E4DF;
-	Tue,  5 Dec 2023 10:39:46 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7348D10E4DE;
+	Tue,  5 Dec 2023 10:44:07 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.93])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3D3DF10E4DF;
- Tue,  5 Dec 2023 10:39:44 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BCF6E10E4DD;
+ Tue,  5 Dec 2023 10:44:04 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1701772784; x=1733308784;
+ t=1701773045; x=1733309045;
  h=message-id:date:mime-version:subject:to:cc:references:
  from:in-reply-to:content-transfer-encoding;
- bh=R4ahHPkP3rfNSBS6mc+iwcw+6Bw8iNvxBiWNTPXlFYE=;
- b=Zp3GpqTVyw9y4549Mzc3qzMxkzrYm9GuxrcR1s/nS8KhPwEVWYaykltt
- 3mUd4+bJy2mVL+ezeVjrqPnfKkm4gJR7TnWXxqGvPM05idZC5Wx+WqvXF
- vAHXwYeqxlEcj5hzKCDM1DeoTwBKvd6yLxz1Q/6FU6vf6SiIgbb4G3P+/
- B/hzAO7MxezjICt/dTrFFL5DuwX3uZTgtHyr5K5ZHv8u8FeIuRxDIhHfY
- m0ChW2rXI1xpqitT9q6uRJ4V6oKTBD3yYCVVNXpzLWeNvdmHlV+TY6RKW
- UejY915ujlFVWA/2u4vo1PMSR78f01qNOgJGywfdw7cmOrSiglkg80H4C Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10914"; a="391037314"
-X-IronPort-AV: E=Sophos;i="6.04,251,1695711600"; d="scan'208";a="391037314"
-Received: from orsmga007.jf.intel.com ([10.7.209.58])
- by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Dec 2023 02:39:43 -0800
+ bh=oOgt9U8T5K1tNzvhktW6mpVEPmDQPn4jf5OPiALxJqQ=;
+ b=WFqXxvJq8jRdsZpmhodO+vlhIFZCNzkrgy+/tIWgMbxUMwV5QzNGz3/C
+ xrYCReSlwqiAxPksZmBqYyeRDqa3LA6S2c4y2SkRrVZSqseVgjPvr5F53
+ i0PcGkzptuFKhNa0QwdPSoEoyBfP0/G4K7piIgbbG/TJowqAsRqRNS+3L
+ ON3mQMi3VMnXdYoXbhmg/x6TRubpFTlFHAGdgZayN0YJwAs39VMXA8JMP
+ qDWppWnflmVvoguaYjQnYCDnt5YILzbCzrwK3R6fNxSTpvjY+JyN97kzS
+ 5SliT7NiUC3BYDGSCQ2xvJqyji3guTOzoMC5pc9L4ueC2qRtdMoTUaLMb w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10914"; a="718899"
+X-IronPort-AV: E=Sophos;i="6.04,251,1695711600"; 
+   d="scan'208";a="718899"
+Received: from fmsmga006.fm.intel.com ([10.253.24.20])
+ by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 05 Dec 2023 02:44:04 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10914"; a="764283551"
-X-IronPort-AV: E=Sophos;i="6.04,251,1695711600"; d="scan'208";a="764283551"
+X-IronPort-AV: E=McAfee;i="6600,9927,10914"; a="1018177269"
+X-IronPort-AV: E=Sophos;i="6.04,251,1695711600"; d="scan'208";a="1018177269"
 Received: from nirmoyda-mobl.ger.corp.intel.com (HELO [10.249.33.155])
  ([10.249.33.155])
- by orsmga007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Dec 2023 02:39:41 -0800
-Message-ID: <69036ebc-561f-4c9b-b68b-04f7e1c77e27@linux.intel.com>
-Date: Tue, 5 Dec 2023 11:39:39 +0100
+ by fmsmga006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 05 Dec 2023 02:44:02 -0800
+Message-ID: <00a50f66-0268-4f1d-a4d4-baf4dda2b1f6@linux.intel.com>
+Date: Tue, 5 Dec 2023 11:44:00 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
 Content-Language: en-US
-To: John Harrison <john.c.harrison@intel.com>,
+To: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
  Nirmoy Das <nirmoy.das@intel.com>, intel-gfx@lists.freedesktop.org
-References: <20231205085248.2577-1-nirmoy.das@intel.com>
- <40875e9a-3729-4153-8de2-69d0ce586442@intel.com>
+References: <20231201154443.16660-1-nirmoy.das@intel.com>
+ <cff13a24-2f7f-4d44-8fd4-a45cbfa1c76e@linux.intel.com>
+ <d50cc22d-670a-49e3-92c7-361fdac66fc6@intel.com>
+ <ddde1612-bfd1-4892-b915-87034a0a7cb3@linux.intel.com>
 From: Nirmoy Das <nirmoy.das@linux.intel.com>
-In-Reply-To: <40875e9a-3729-4153-8de2-69d0ce586442@intel.com>
+In-Reply-To: <ddde1612-bfd1-4892-b915-87034a0a7cb3@linux.intel.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-Subject: Re: [Intel-gfx] [PATCH v2] drm/i915/gt: Convert reset prepare
- failure log to trace
+Subject: Re: [Intel-gfx] [PATCH] drm/i915/gt: Reduce log severity on reset
+ prepare.
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -63,52 +66,49 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: dri-devel@lists.freedesktop.org, Andrzej Hajda <andrzej.hajda@intel.com>,
+Cc: Andrzej Hajda <andrzej.hajda@intel.com>, dri-devel@lists.freedesktop.org,
  Tvrtko Ursulin <tvrtko.ursulin@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi John,
+Hi Tvrtko,
 
-On 12/5/2023 10:10 AM, John Harrison wrote:
-> On 12/5/2023 00:52, Nirmoy Das wrote:
->> gen8_engine_reset_prepare() can fail when HW fails to set
->> RESET_CTL_READY_TO_RESET bit. In some cases this is not fatal
->> error as driver will retry.
->>
->> Convert the log to a trace log for debugging without triggering
->> unnecessary concerns in CI or for end-users during non-fatal scenarios.
-> I strongly disagree with this change. The hardware spec for the 
-> RESET_CTL and GDRST registers are that they will self clear within a 
-> matter of microseconds. If something is so badly wrong with the 
-> hardware that it can't even manage to reset
-
-
-This message is for reset readiness  poll timeout not that the reset is 
-failed which doesn't sound so serious if the subsequent attempt managed 
-reset the engine.
-
-I couldn't get enough details when this can happen that HW takes very 
-long time to set the readiness bit.
-
-
-> then that is something that very much warrants more than a completely 
-> silent trace event. It most certainly should be flagged as a failure 
-> in CI.
+On 12/5/2023 11:05 AM, Tvrtko Ursulin wrote:
 >
-> Just because the driver will retry does not mean that this is not a 
-> serious error. And if the first attempt failed, why would a subsequent 
-> attempt succeed?
+> On 05/12/2023 08:50, Nirmoy Das wrote:
+>> Hi Tvrtko,
+>>
+>> On 12/5/2023 9:34 AM, Tvrtko Ursulin wrote:
+>>>
+>>> On 01/12/2023 15:44, Nirmoy Das wrote:
+>>>> gen8_engine_reset_prepare() can fail when HW fails to set
+>>>> RESET_CTL_READY_TO_RESET bit. In some cases this is not fatal
+>>>> error as driver will retry.
+>>>>
+>>>> Let the caller of gen8_engine_reset_prepare() decide if a
+>>>> failure in gen8_engine_reset_prepare is an error or not.
+>>>
+>>> No complaints per se but I don't see the caller deciding and it is 
+>>> not really reducing log level but converting to trace. So commit 
+>>> message and patch do not align for me which I think should be improved.
+>>
+>>
+>> I meant the return value is checked by the caller, 
+>> gen8_reset_engines(). I will resend with a improved commit message.
+>
+> Ah okay, maybe my bad for not figuring out that possibility. I guess 
+> it might be passable as is, but yes, clearer commit text would be better.
 
-The patch is not ignoring the failure. If the subsequent attempt fails 
-then driver load will fail or it will be wedged if that happens after 
-driver load.
+I sent a v2 already :)
 
 
-> Escalating to FLR may have more success, but that is not something 
-> that i915 currently does.
+>
+> Trace is good enough - we are not usually interested in seeing those 
+> as dbg/info/notice?
 
-Do we still need to do FLR if a subsequent engine reset failure ?
+
+Idea is that all the GT related events are recorded in trace and dmesg 
+could be noisy some times.
 
 
 Regards,
@@ -116,44 +116,49 @@ Regards,
 Nirmoy
 
 >
-> John.
+> Regards,
 >
+> Tvrtko
 >
 >>
->> v2: Improve commit message(Tvrtko)
+>> Thanks,
 >>
->> Cc: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
->> Cc: John Harrison <John.C.Harrison@Intel.com>
->> Cc: Andi Shyti <andi.shyti@linux.intel.com>
->> Cc: Andrzej Hajda <andrzej.hajda@intel.com>
->> Closes: https://gitlab.freedesktop.org/drm/intel/-/issues/5591
->> Signed-off-by: Nirmoy Das <nirmoy.das@intel.com>
->> Reviewed-by: Andi Shyti <andi.shyti@linux.intel.com>
->> Reviewed-by: Andrzej Hajda <andrzej.hajda@intel.com>
->> ---
->>   drivers/gpu/drm/i915/gt/intel_reset.c | 8 ++++----
->>   1 file changed, 4 insertions(+), 4 deletions(-)
+>> Nirmoy
 >>
->> diff --git a/drivers/gpu/drm/i915/gt/intel_reset.c 
->> b/drivers/gpu/drm/i915/gt/intel_reset.c
->> index d5ed904f355d..e6fbc6202c80 100644
->> --- a/drivers/gpu/drm/i915/gt/intel_reset.c
->> +++ b/drivers/gpu/drm/i915/gt/intel_reset.c
->> @@ -593,10 +593,10 @@ static int gen8_engine_reset_prepare(struct 
->> intel_engine_cs *engine)
->>       ret = __intel_wait_for_register_fw(uncore, reg, mask, ack,
->>                          700, 0, NULL);
->>       if (ret)
->> -        gt_err(engine->gt,
->> -               "%s reset request timed out: {request: %08x, 
->> RESET_CTL: %08x}\n",
->> -               engine->name, request,
->> -               intel_uncore_read_fw(uncore, reg));
->> +        GT_TRACE(engine->gt,
->> +             "%s reset request timed out: {request: %08x, RESET_CTL: 
->> %08x}\n",
->> +             engine->name, request,
->> +             intel_uncore_read_fw(uncore, reg));
->>         return ret;
->>   }
->
+>>>
+>>> Regards,
+>>>
+>>> Tvrtko
+>>>
+>>>> Cc: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+>>>> Cc: John Harrison <John.C.Harrison@Intel.com>
+>>>> Cc: Andi Shyti <andi.shyti@linux.intel.com>
+>>>> Cc: Andrzej Hajda <andrzej.hajda@intel.com>
+>>>> Closes: https://gitlab.freedesktop.org/drm/intel/-/issues/5591
+>>>> Signed-off-by: Nirmoy Das <nirmoy.das@intel.com>
+>>>> ---
+>>>>   drivers/gpu/drm/i915/gt/intel_reset.c | 8 ++++----
+>>>>   1 file changed, 4 insertions(+), 4 deletions(-)
+>>>>
+>>>> diff --git a/drivers/gpu/drm/i915/gt/intel_reset.c 
+>>>> b/drivers/gpu/drm/i915/gt/intel_reset.c
+>>>> index d5ed904f355d..e6fbc6202c80 100644
+>>>> --- a/drivers/gpu/drm/i915/gt/intel_reset.c
+>>>> +++ b/drivers/gpu/drm/i915/gt/intel_reset.c
+>>>> @@ -593,10 +593,10 @@ static int gen8_engine_reset_prepare(struct 
+>>>> intel_engine_cs *engine)
+>>>>       ret = __intel_wait_for_register_fw(uncore, reg, mask, ack,
+>>>>                          700, 0, NULL);
+>>>>       if (ret)
+>>>> -        gt_err(engine->gt,
+>>>> -               "%s reset request timed out: {request: %08x, 
+>>>> RESET_CTL: %08x}\n",
+>>>> -               engine->name, request,
+>>>> -               intel_uncore_read_fw(uncore, reg));
+>>>> +        GT_TRACE(engine->gt,
+>>>> +             "%s reset request timed out: {request: %08x, 
+>>>> RESET_CTL: %08x}\n",
+>>>> +             engine->name, request,
+>>>> +             intel_uncore_read_fw(uncore, reg));
+>>>>         return ret;
+>>>>   }
