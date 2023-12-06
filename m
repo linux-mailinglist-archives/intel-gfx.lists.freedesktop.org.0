@@ -2,51 +2,50 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id A0C2E8075F8
-	for <lists+intel-gfx@lfdr.de>; Wed,  6 Dec 2023 18:02:11 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id CB5BB8077CB
+	for <lists+intel-gfx@lfdr.de>; Wed,  6 Dec 2023 19:44:03 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B9AB310E79E;
-	Wed,  6 Dec 2023 17:02:09 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9017D10E113;
+	Wed,  6 Dec 2023 18:43:58 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1896310E79A
- for <intel-gfx@lists.freedesktop.org>; Wed,  6 Dec 2023 17:02:08 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 62B7F10E0D6;
+ Wed,  6 Dec 2023 18:43:55 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1701882128; x=1733418128;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:in-reply-to;
- bh=sp1gdW3OIwTfsOtIji+jFqGdr8ieBPBr0C0dyiMgE7Y=;
- b=VZ71VEuU8t8eP7w11T8Zp0HsHAIvx0FIxMgIVyeddQYH99fHmPg3ef0O
- 5j6xJZ9B6ggotkLDfQkbL1GxGq/bU0hYTz5JN9tG7d8fVDiuOGfH5k3WM
- 50pKPQdMOIim+M/j+owrY5EtwN5kgoHV7wI9qmGBStKJhRZzTasQqmDsr
- i78bW33zLgZ0zMjF7Ct74skXnkyb6KJa3hlnRwNMiix3X5H96gAeFnBtI
- CRJ8mhOAFJhU02jbKJkef+Ln88fcn+9ngV2r1R+pt1VV1YYC5vc1K4VwD
- O7n9isyA1WAmczss0ITD+OVxgY/is/CgV68SLyFa6W5tnpc9/TdQSJgJq w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10916"; a="480289474"
-X-IronPort-AV: E=Sophos;i="6.04,255,1695711600"; d="scan'208";a="480289474"
-Received: from orsmga006.jf.intel.com ([10.7.209.51])
- by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Dec 2023 09:02:05 -0800
+ t=1701888235; x=1733424235;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=Vf3JtoYX8fGDiV5iMgkOSKocMZXwrm/1TcSqf5gsSFA=;
+ b=PG1fS7GksYMlpY4/MV3MiioLE2mpAdH4gI5lic8IaxfU1FR2DsKXtrLf
+ 73MstD9ubukhiMfBzeztQFvXfHXAra/Wjv6mW3IA/s7t03P1a/i07SyZc
+ lifQQcdsFL5xc36nS5W/YKj6/i1eRzUTO4WroaycvPiCZiAPBzLVV+1iK
+ giJuqMl6HskV3J7jH3q0sLCgAxXS+0QOAa8pmBh0Dw7MHptVtrOpUhxZU
+ fyUKGQdYg6T9HqXXWjGxVVFuv7oGfd6cdHLW8b3f9dV1n5srhPaGVhFVW
+ qJG02j5P781/kmHUX0o8GYZg+z0l6bCTzeasbwU5H009mnxPlNEMfX9Cl g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10916"; a="458433339"
+X-IronPort-AV: E=Sophos;i="6.04,256,1695711600"; d="scan'208";a="458433339"
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 06 Dec 2023 10:43:55 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10916"; a="747661365"
-X-IronPort-AV: E=Sophos;i="6.04,255,1695711600"; d="scan'208";a="747661365"
+X-IronPort-AV: E=McAfee;i="6600,9927,10916"; a="800436777"
+X-IronPort-AV: E=Sophos;i="6.04,256,1695711600"; d="scan'208";a="800436777"
 Received: from karthik-mobl.ger.corp.intel.com (HELO intel.com)
  ([10.252.46.178])
- by orsmga006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Dec 2023 09:02:03 -0800
-Date: Wed, 6 Dec 2023 18:02:00 +0100
+ by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 06 Dec 2023 10:43:53 -0800
 From: Andi Shyti <andi.shyti@linux.intel.com>
-To: Karthik Poosa <karthik.poosa@intel.com>
-Message-ID: <ZXCpCKcJXJl0l4OP@ashyti-mobl2.lan>
-References: <20231201143430.1320510-1-karthik.poosa@intel.com>
+To: Nirmoy Das <nirmoy.das@intel.com>,
+ John Harrison <John.C.Harrison@Intel.com>
+Date: Wed,  6 Dec 2023 19:43:22 +0100
+Message-ID: <20231206184322.57111-1-andi.shyti@linux.intel.com>
+X-Mailer: git-send-email 2.43.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20231201143430.1320510-1-karthik.poosa@intel.com>
-Subject: Re: [Intel-gfx] [PATCH] drm/i915/hwmon: Fix issues found by static
- analysis tool in i915 hwmon
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-gfx] [PATCH v3] drm/i915/guc: Create the guc_to_i915()
+ wrapper
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,49 +58,195 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx <intel-gfx@lists.freedesktop.org>,
+ dri-devel <dri-devel@lists.freedesktop.org>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi Karthik,
+Given a reference to "guc", the guc_to_i915() returns the
+pointer to "i915" private data.
 
-On Fri, Dec 01, 2023 at 08:04:30PM +0530, Karthik Poosa wrote:
-> Updated i915 hwmon with fixes for issues reported by static analysis tool.
-> Fixed unintentional buffer overflow (OVERFLOW_BEFORE_WIDEN) with upcasting.
+Signed-off-by: Andi Shyti <andi.shyti@linux.intel.com>
+Reviewed-by: Nirmoy Das <nirmoy.das@intel.com>
+---
+Hi,
 
-what kind of error was this? Was it caught by a static analyzer
-or did you actually hit the overflow?
+This is almost a resend of the previous patch (check changelog).
+I have taken this one out from the series as this has been
+reviewed already.
 
 Thanks,
 Andi
 
-> Fixes: 4c2572fe0ae7 ("drm/i915/hwmon: Expose power1_max_interval")
-> Signed-off-by: Karthik Poosa <karthik.poosa@intel.com>
-> ---
->  drivers/gpu/drm/i915/i915_hwmon.c | 4 ++--
->  1 file changed, 2 insertions(+), 2 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/i915/i915_hwmon.c b/drivers/gpu/drm/i915/i915_hwmon.c
-> index 975da8e7f2a9..8c3f443c8347 100644
-> --- a/drivers/gpu/drm/i915/i915_hwmon.c
-> +++ b/drivers/gpu/drm/i915/i915_hwmon.c
-> @@ -175,7 +175,7 @@ hwm_power1_max_interval_show(struct device *dev, struct device_attribute *attr,
->  	 *     tau4 = (4 | x) << y
->  	 * but add 2 when doing the final right shift to account for units
->  	 */
-> -	tau4 = ((1 << x_w) | x) << y;
-> +	tau4 = (u64)((1 << x_w) | x) << y;
->  	/* val in hwmon interface units (millisec) */
->  	out = mul_u64_u32_shr(tau4, SF_TIME, hwmon->scl_shift_time + x_w);
->  
-> @@ -211,7 +211,7 @@ hwm_power1_max_interval_store(struct device *dev,
->  	r = FIELD_PREP(PKG_MAX_WIN, PKG_MAX_WIN_DEFAULT);
->  	x = REG_FIELD_GET(PKG_MAX_WIN_X, r);
->  	y = REG_FIELD_GET(PKG_MAX_WIN_Y, r);
-> -	tau4 = ((1 << x_w) | x) << y;
-> +	tau4 = (u64)((1 << x_w) | x) << y;
->  	max_win = mul_u64_u32_shr(tau4, SF_TIME, hwmon->scl_shift_time + x_w);
->  
->  	if (val > max_win)
-> -- 
-> 2.25.1
+Changelog:
+----------
+v2 -> v3:
+https://patchwork.freedesktop.org/series/125583/
+ - Taken out from its original series
+ - Added Nirmoy's r-b.
+
+v1 -> v2:
+ - this patch was included in a bigger series, no change.
+
+ drivers/gpu/drm/i915/gt/intel_gt.h                |  5 +++++
+ drivers/gpu/drm/i915/gt/uc/intel_guc.c            |  2 +-
+ drivers/gpu/drm/i915/gt/uc/intel_guc_capture.c    |  2 +-
+ drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c         |  2 +-
+ drivers/gpu/drm/i915/gt/uc/intel_guc_log.c        | 10 +++++-----
+ drivers/gpu/drm/i915/gt/uc/intel_guc_rc.c         |  2 +-
+ drivers/gpu/drm/i915/gt/uc/intel_guc_slpc.c       |  2 +-
+ drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c |  4 ++--
+ 8 files changed, 17 insertions(+), 12 deletions(-)
+
+diff --git a/drivers/gpu/drm/i915/gt/intel_gt.h b/drivers/gpu/drm/i915/gt/intel_gt.h
+index b0e453e27ea8..608f5c872928 100644
+--- a/drivers/gpu/drm/i915/gt/intel_gt.h
++++ b/drivers/gpu/drm/i915/gt/intel_gt.h
+@@ -118,6 +118,11 @@ static inline struct intel_gt *gsc_to_gt(struct intel_gsc *gsc)
+ 	return container_of(gsc, struct intel_gt, gsc);
+ }
+ 
++static inline struct drm_i915_private *guc_to_i915(struct intel_guc *guc)
++{
++	return guc_to_gt(guc)->i915;
++}
++
+ void intel_gt_common_init_early(struct intel_gt *gt);
+ int intel_root_gt_init_early(struct drm_i915_private *i915);
+ int intel_gt_assign_ggtt(struct intel_gt *gt);
+diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc.c b/drivers/gpu/drm/i915/gt/uc/intel_guc.c
+index 3f3df1166b86..2b450c43bbd7 100644
+--- a/drivers/gpu/drm/i915/gt/uc/intel_guc.c
++++ b/drivers/gpu/drm/i915/gt/uc/intel_guc.c
+@@ -330,7 +330,7 @@ static u32 guc_ctl_wa_flags(struct intel_guc *guc)
+ 
+ static u32 guc_ctl_devid(struct intel_guc *guc)
+ {
+-	struct drm_i915_private *i915 = guc_to_gt(guc)->i915;
++	struct drm_i915_private *i915 = guc_to_i915(guc);
+ 
+ 	return (INTEL_DEVID(i915) << 16) | INTEL_REVID(i915);
+ }
+diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_capture.c b/drivers/gpu/drm/i915/gt/uc/intel_guc_capture.c
+index a4da0208c883..a1cd40d80517 100644
+--- a/drivers/gpu/drm/i915/gt/uc/intel_guc_capture.c
++++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_capture.c
+@@ -355,7 +355,7 @@ guc_capture_alloc_steered_lists(struct intel_guc *guc,
+ static const struct __guc_mmio_reg_descr_group *
+ guc_capture_get_device_reglist(struct intel_guc *guc)
+ {
+-	struct drm_i915_private *i915 = guc_to_gt(guc)->i915;
++	struct drm_i915_private *i915 = guc_to_i915(guc);
+ 	const struct __guc_mmio_reg_descr_group *lists;
+ 
+ 	if (GRAPHICS_VER(i915) >= 12)
+diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c b/drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c
+index ed6ce73ef3b0..0d5197c0824a 100644
+--- a/drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c
++++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c
+@@ -265,7 +265,7 @@ int intel_guc_ct_init(struct intel_guc_ct *ct)
+ 	u32 *cmds;
+ 	int err;
+ 
+-	err = i915_inject_probe_error(guc_to_gt(guc)->i915, -ENXIO);
++	err = i915_inject_probe_error(guc_to_i915(guc), -ENXIO);
+ 	if (err)
+ 		return err;
+ 
+diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_log.c b/drivers/gpu/drm/i915/gt/uc/intel_guc_log.c
+index 55bc8b55fbc0..bf16351c9349 100644
+--- a/drivers/gpu/drm/i915/gt/uc/intel_guc_log.c
++++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_log.c
+@@ -520,7 +520,7 @@ void intel_guc_log_init_early(struct intel_guc_log *log)
+ static int guc_log_relay_create(struct intel_guc_log *log)
+ {
+ 	struct intel_guc *guc = log_to_guc(log);
+-	struct drm_i915_private *i915 = guc_to_gt(guc)->i915;
++	struct drm_i915_private *i915 = guc_to_i915(guc);
+ 	struct rchan *guc_log_relay_chan;
+ 	size_t n_subbufs, subbuf_size;
+ 	int ret;
+@@ -573,7 +573,7 @@ static void guc_log_relay_destroy(struct intel_guc_log *log)
+ static void guc_log_copy_debuglogs_for_relay(struct intel_guc_log *log)
+ {
+ 	struct intel_guc *guc = log_to_guc(log);
+-	struct drm_i915_private *i915 = guc_to_gt(guc)->i915;
++	struct drm_i915_private *i915 = guc_to_i915(guc);
+ 	intel_wakeref_t wakeref;
+ 
+ 	_guc_log_copy_debuglogs_for_relay(log);
+@@ -589,7 +589,7 @@ static void guc_log_copy_debuglogs_for_relay(struct intel_guc_log *log)
+ static u32 __get_default_log_level(struct intel_guc_log *log)
+ {
+ 	struct intel_guc *guc = log_to_guc(log);
+-	struct drm_i915_private *i915 = guc_to_gt(guc)->i915;
++	struct drm_i915_private *i915 = guc_to_i915(guc);
+ 
+ 	/* A negative value means "use platform/config default" */
+ 	if (i915->params.guc_log_level < 0) {
+@@ -664,7 +664,7 @@ void intel_guc_log_destroy(struct intel_guc_log *log)
+ int intel_guc_log_set_level(struct intel_guc_log *log, u32 level)
+ {
+ 	struct intel_guc *guc = log_to_guc(log);
+-	struct drm_i915_private *i915 = guc_to_gt(guc)->i915;
++	struct drm_i915_private *i915 = guc_to_i915(guc);
+ 	intel_wakeref_t wakeref;
+ 	int ret = 0;
+ 
+@@ -796,7 +796,7 @@ void intel_guc_log_relay_flush(struct intel_guc_log *log)
+ static void guc_log_relay_stop(struct intel_guc_log *log)
+ {
+ 	struct intel_guc *guc = log_to_guc(log);
+-	struct drm_i915_private *i915 = guc_to_gt(guc)->i915;
++	struct drm_i915_private *i915 = guc_to_i915(guc);
+ 
+ 	if (!log->relay.started)
+ 		return;
+diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_rc.c b/drivers/gpu/drm/i915/gt/uc/intel_guc_rc.c
+index 1adec6de223c..9df7927304ae 100644
+--- a/drivers/gpu/drm/i915/gt/uc/intel_guc_rc.c
++++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_rc.c
+@@ -14,7 +14,7 @@ static bool __guc_rc_supported(struct intel_guc *guc)
+ {
+ 	/* GuC RC is unavailable for pre-Gen12 */
+ 	return guc->submission_supported &&
+-		GRAPHICS_VER(guc_to_gt(guc)->i915) >= 12;
++		GRAPHICS_VER(guc_to_i915(guc)) >= 12;
+ }
+ 
+ static bool __guc_rc_selected(struct intel_guc *guc)
+diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_slpc.c b/drivers/gpu/drm/i915/gt/uc/intel_guc_slpc.c
+index 2dfb07cc4b33..3e681ab6fbf9 100644
+--- a/drivers/gpu/drm/i915/gt/uc/intel_guc_slpc.c
++++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_slpc.c
+@@ -34,7 +34,7 @@ static bool __detect_slpc_supported(struct intel_guc *guc)
+ {
+ 	/* GuC SLPC is unavailable for pre-Gen12 */
+ 	return guc->submission_supported &&
+-		GRAPHICS_VER(guc_to_gt(guc)->i915) >= 12;
++		GRAPHICS_VER(guc_to_i915(guc)) >= 12;
+ }
+ 
+ static bool __guc_slpc_selected(struct intel_guc *guc)
+diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c b/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
+index 04f8377fd7a3..92fcd4f1c02a 100644
+--- a/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
++++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
+@@ -4626,12 +4626,12 @@ static bool __guc_submission_supported(struct intel_guc *guc)
+ {
+ 	/* GuC submission is unavailable for pre-Gen11 */
+ 	return intel_guc_is_supported(guc) &&
+-	       GRAPHICS_VER(guc_to_gt(guc)->i915) >= 11;
++	       GRAPHICS_VER(guc_to_i915(guc)) >= 11;
+ }
+ 
+ static bool __guc_submission_selected(struct intel_guc *guc)
+ {
+-	struct drm_i915_private *i915 = guc_to_gt(guc)->i915;
++	struct drm_i915_private *i915 = guc_to_i915(guc);
+ 
+ 	if (!intel_guc_submission_is_supported(guc))
+ 		return false;
+-- 
+2.43.0
+
