@@ -1,153 +1,55 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6A6D180707C
-	for <lists+intel-gfx@lfdr.de>; Wed,  6 Dec 2023 14:03:25 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id BD9C9807294
+	for <lists+intel-gfx@lfdr.de>; Wed,  6 Dec 2023 15:36:28 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D129810E73A;
-	Wed,  6 Dec 2023 13:03:23 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B14CD10E749;
+	Wed,  6 Dec 2023 14:36:23 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E0A6910E729
- for <intel-gfx@lists.freedesktop.org>; Wed,  6 Dec 2023 13:03:21 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 467B410E74A
+ for <intel-gfx@lists.freedesktop.org>; Wed,  6 Dec 2023 14:36:22 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1701867802; x=1733403802;
- h=content-transfer-encoding:in-reply-to:references:subject:
- from:cc:to:date:message-id:mime-version;
- bh=VRzuf7v9wbSgtZSR0xTXvs4oFuzbKTlfoUsPADUocJc=;
- b=OVSzHX6TDAcPwY5sSLpihVHChQVQalDmVdENodjgoJg2zy0E4ZpqqxgP
- 79PBSVpwSpO3/Euy1KSIGO4DIX2u6DbSm4A8xj8jgJW05sHrnBvYk35Rz
- AUJrVyNhf7DKjZZS/6pYXZiZK4sRr/QOsD0+wHcdSSznBNuFllF5PtKmN
- IVbhvwW4jWS8irJKOJRAwabs9DiTSMMEsqBNvyg/+ppLOJ89y4R/DFr4i
- H5LA7Dv+PvwbyZENsvE9DM2TxgAsKZKvEjGX92pNNHiuC+WfqPaetAeQx
- r0h1aB1ID6QHpvqNbBgkwcAeJeu/fDAM5lv8q9WiPrXMdnapXNzUOn/2Z g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10915"; a="1124741"
+ t=1701873382; x=1733409382;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:in-reply-to;
+ bh=cCp7Zwx3gOFbLK12jSK4OxDXMWjTb1ykvlx4ScyM/+s=;
+ b=Xm3ikuOf/PjWFlxdzwbJUDPPU0Xzmna4gEw5V00MkNPkB7jKy1XyYjQh
+ lxk1vxMFa443uSQ5O0S2iLxuheJkQYJVhv8DJJAWExaBtJrQy23hvCOzN
+ crChqBwtDMYRSeFJwnzooNH5Wfnpf2U2uHoeMq2C3U3BLivOcb3FNEGqf
+ PsCtmEmHy7wdhfAbkJaOALG+6juSe++TVC29lsWGmuBOXtwvGUopS2Qk9
+ KMEw1i4gVmzrwT29gM3uOgeaEeDIxsWJqlbI7y5sp7erYNYaY9lEnE6Jz
+ bCWhMy6kbpdoXfxa08nCVy5CoinLEkDjaxqCtxjoySYk7g3KyQZkEjHdA Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10916"; a="955780"
 X-IronPort-AV: E=Sophos;i="6.04,255,1695711600"; 
-   d="scan'208";a="1124741"
-Received: from fmsmga006.fm.intel.com ([10.253.24.20])
- by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Dec 2023 05:03:22 -0800
+   d="scan'208";a="955780"
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 06 Dec 2023 06:36:22 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10915"; a="1018565763"
-X-IronPort-AV: E=Sophos;i="6.04,255,1695711600"; d="scan'208";a="1018565763"
-Received: from orsmsx603.amr.corp.intel.com ([10.22.229.16])
- by fmsmga006.fm.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
- 06 Dec 2023 05:03:21 -0800
-Received: from orsmsx611.amr.corp.intel.com (10.22.229.24) by
- ORSMSX603.amr.corp.intel.com (10.22.229.16) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35; Wed, 6 Dec 2023 05:03:20 -0800
-Received: from orsmsx610.amr.corp.intel.com (10.22.229.23) by
- ORSMSX611.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35; Wed, 6 Dec 2023 05:03:20 -0800
-Received: from ORSEDG601.ED.cps.intel.com (10.7.248.6) by
- orsmsx610.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35 via Frontend Transport; Wed, 6 Dec 2023 05:03:20 -0800
-Received: from NAM11-BN8-obe.outbound.protection.outlook.com (104.47.58.168)
- by edgegateway.intel.com (134.134.137.102) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.35; Wed, 6 Dec 2023 05:03:19 -0800
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=Va0TkUzmg7Pb97m8v6db3GkExokdyLdAxp5I7+KnpfMGnXm5YHQDjScgJ2tlLPs4KSlmF8LeK5arwrnJvgsOiw3lLemTMtJy3wnQRDu0UqiGfb88+L8CoFSbu9YO9VkZwW9hq8hnW138WxT2r0/OzEulRYFvPNykqj/YCKl+mCJxwiZszEZhSUD3uIxqYFAqw8W/mDPOxcBqhXwDRDgKcKljrGhfldTu73b7sLsLfZdNA9zB8n3ZAV8WkLgPC6c+BkiXdJZB6aM96lxJDLMTgp2mlhjqG4IzqjAu8jfEJnhLFMAm/hlBPwoMstbt6oamytQzZ3QwpqGEncJYMB0fQg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=OwObXcCI6jRK78Xv1O05EL58K9Um0WZrs+qzhTwNlJo=;
- b=QRCa1b++f7YgnmGnPsg1VD7pUS7PKRV5NdSqaN8qIHJGSXL5MmnF+/CLRQXyVORXhVKUXWfX8VGuxgTX1s5DsYmMZRMfg7EQEUXiKftSbL3IfqPon9TrXf0H4TTqCazqpl0m+3AxznACakjXbm4hTrKOQbYEEK13+EJkW3no2qXov7zYEKB+LnR9kp826uFwYN5AWKfoOVYoKa7NKrhLsWKGE8GYOvqqlX3ucxq0Xkm7DHuyWOpy6rfRkGAv3CiuFvKQxaHWX2TucjpKk9y+XXzs9HlJX5n42wEII/K04NpgVghc8B0cLcBHvyXRSypzt5Hc9ANDIkWHdc1VCYVRbQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from BN8PR11MB3556.namprd11.prod.outlook.com (2603:10b6:408:8d::31)
- by MN0PR11MB6278.namprd11.prod.outlook.com (2603:10b6:208:3c2::8)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7046.34; Wed, 6 Dec
- 2023 13:03:12 +0000
-Received: from BN8PR11MB3556.namprd11.prod.outlook.com
- ([fe80::3964:7725:b677:28c6]) by BN8PR11MB3556.namprd11.prod.outlook.com
- ([fe80::3964:7725:b677:28c6%7]) with mapi id 15.20.7046.034; Wed, 6 Dec 2023
- 13:03:12 +0000
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <20231205121545.2338665-1-jani.nikula@intel.com>
-References: <20231205121545.2338665-1-jani.nikula@intel.com>
-From: Gustavo Sousa <gustavo.sousa@intel.com>
-To: Jani Nikula <jani.nikula@intel.com>, <intel-gfx@lists.freedesktop.org>
-Date: Wed, 6 Dec 2023 10:03:07 -0300
-Message-ID: <170186778710.27709.8587555962086417246@gjsousa-mobl2>
-User-Agent: alot/0.10
-X-ClientProxiedBy: SJ0PR03CA0248.namprd03.prod.outlook.com
- (2603:10b6:a03:3a0::13) To BN8PR11MB3556.namprd11.prod.outlook.com
- (2603:10b6:408:8d::31)
+X-IronPort-AV: E=McAfee;i="6600,9927,10916"; a="800365726"
+X-IronPort-AV: E=Sophos;i="6.04,255,1695711600"; d="scan'208";a="800365726"
+Received: from lkp-server02.sh.intel.com (HELO b07ab15da5fe) ([10.239.97.151])
+ by orsmga008.jf.intel.com with ESMTP; 06 Dec 2023 06:36:20 -0800
+Received: from kbuild by b07ab15da5fe with local (Exim 4.96)
+ (envelope-from <lkp@intel.com>) id 1rAt0b-000Avz-2L;
+ Wed, 06 Dec 2023 14:36:18 +0000
+Date: Wed, 6 Dec 2023 22:34:34 +0800
+From: kernel test robot <lkp@intel.com>
+To: Suraj Kandpal <suraj.kandpal@intel.com>,
+	intel-gfx@lists.freedesktop.org
+Message-ID: <202312062206.3KtqfAc1-lkp@intel.com>
+References: <20231206093916.1733863-1-suraj.kandpal@intel.com>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: BN8PR11MB3556:EE_|MN0PR11MB6278:EE_
-X-MS-Office365-Filtering-Correlation-Id: 873d53e0-df59-4633-44eb-08dbf65bb3c6
-X-LD-Processed: 46c98d88-e344-4ed4-8496-4ed7712e255d,ExtAddr
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: 5HHMrnADEQfaMHeaZ2V50MBnDI6/36Ze3tLelSf5caVQZdSuvIb4TBpeSppUHjYELOEpG4K53VMC9VRZhOV/C0Am4sNa1luM8SDGu35E3NgAKYdwnyDORfvpt0QwRz547GeMUhZ5NQ6B+FJVVhSfu4xkk837JHqv+so3/NQJEHr1SB9EnRkeH3EQPR+R+uKeSoIMOFbN44k/mcp4emBu7MRQKmUpqDumm05LH/mw7u8hSnh6jE+2Y8vW3L8vqQugatD+FeVzxn0/+7UHZ0eFEVFo0RVLVy9ccDzoFxvIkLdLV9NtIpCM32+Hflq41FoMIEItoB0b0GgLmPcDRwC7dw56nZut3ShYb1xzkg6GWR2LhWF2M2ZZYIicvsrkZ4kmMXQxqBa70/F0zqerv2AH8aYAYI9InirXgDZAZ6UhS/58++LyNIWWtoNjtqm0FS2KcoU9jzmlNMea1bg+O16HqMDhgKBIW+ptlH80XFgwo8n6/ZT5bA993PceD97yIz8Lihch1714M9evXAKsdWQYUd3yYvswNkufgt2z2HJtMtovNuVctjuymzsh9Btzm1wC
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:BN8PR11MB3556.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230031)(7916004)(376002)(366004)(136003)(396003)(39860400002)(346002)(230922051799003)(64100799003)(1800799012)(451199024)(186009)(86362001)(6486002)(44832011)(478600001)(6506007)(9686003)(6512007)(6666004)(66556008)(66476007)(316002)(66946007)(8676002)(8936002)(4326008)(83380400001)(2906002)(82960400001)(107886003)(5660300002)(33716001)(38100700002)(41300700001)(26005);
- DIR:OUT; SFP:1102; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?eG9NTHdNVWptMWUwTE42bzJVVzdsNU9GcXlGcUFPQUpVTExBNlpoc3VET0po?=
- =?utf-8?B?YzZmVnN0YjM4N1ljY1dER3VMZnZSTWNCNEFVZ1FiWGR3WXlYa09odzZKMUdG?=
- =?utf-8?B?d2g0SlJPUmdBbDMxS1ZNZ1MwZHpMN3RqUXAyU01DVjhLSGxpbzhYSTkxSlFM?=
- =?utf-8?B?bGtvVzJJZkJON2xXWUc0VjR5TS9kZjFOSFNLVEtubVNwVXFKL3lTSzNJamhj?=
- =?utf-8?B?RVZCb2t4a0UxSkV6NHdadFN5RHJyU1NuSnlteHdiOU5qb3lLdEdDMEE5Z3ho?=
- =?utf-8?B?WDVLS2RtcEZDL1dXTk9hY2RlQ2EzNWVSYVU3M1dJeVRkMlhOOFJ4TkNvUDhu?=
- =?utf-8?B?RVdBenFSbnNYMzZKL1UxZk1QSWNDN0U4MERDTGhrUFBMcU9RVVRaaUxmZmVl?=
- =?utf-8?B?Z2R6U3FwSFpiZGpIdHdKVTBKbXk1R3FsaFdrdjZiYVRVekdVMFBVMTNSODZl?=
- =?utf-8?B?MnRxOW1EU251NGc1WEliTk43eXUzVjMyY0Q4N08rRngwQy9UY3E4eG9IU3ZG?=
- =?utf-8?B?N2g2MEw0NEdvVFAxMnZOWE1BR0VRa3Zzb2k3eUV5MEhnaFNRSUpFdllWcGZR?=
- =?utf-8?B?N2F1Qkt2eGJsUzNYRk5IMkhKemh2Umx6TW1McGRDR2djK2EwNFFtcXNSdVlI?=
- =?utf-8?B?YWF6V21uM2ZTK3Z5Y3NoWHgrS0JsY01PSGptWU1SREZEUTF1K2dvRTZKLzFu?=
- =?utf-8?B?c2hJR0Y4TVlmSnlmNlhnODRRNXlMeXhJeVNvSUxCc3dqU01vaGpyK2Y3WEcw?=
- =?utf-8?B?TVJ4Q2hnb0x1R0VBZTBLWnFGTDk2MkRDUjliZk5JYTJVQzNMNnJBVm1WWnZE?=
- =?utf-8?B?b2ZtR2tVMzc1WTBUS29pT1ZSRnFvc0t2Wmh4RWhNUkRNeTVDVldOd3RnMDFJ?=
- =?utf-8?B?N2ZEYi9MM212RlF6UmZhYWR5NHloTkppeEx3RXMwRmRDQTQ1UERyVDdkYTA2?=
- =?utf-8?B?WXVMUkQzbFBwY1VGdEJFZTdWMHcyVHhZL1pjUTM4WFhEdGxkKzg2Rlp1c1p2?=
- =?utf-8?B?TkxyUWZFV1JwajNVbkVpN21wT1JFVmhDbXp6WWNSd1RoT2tmck5XTmwyM3J2?=
- =?utf-8?B?ZFlDQStOa0JuSWFCaVNkaWk5dWNXeWxxQ05DS21ndTR3UnY2clJZZk9NK3VB?=
- =?utf-8?B?dHRaNkxmTytmenRpVFNnR1dwOS9WYk1QUmhhRVBZTUpOekt2TTcyQVdKcHk2?=
- =?utf-8?B?d2V6M2pvYmVCRHZzcDZwRjZlZ0tjUkFyblE2aVNvbUJZWHJKUGt2bXBCOVZx?=
- =?utf-8?B?aVJnTFh1cnJQS2twaExrNG9PU0VZN010YTJUWmRvMndFUzdwMGFpYUZRd1hV?=
- =?utf-8?B?S0ZWdzFCZ042NFlJVGFzeTEzRHJjalJMdmhod1h1WEZXbEtpNm5BcWtnVitU?=
- =?utf-8?B?T0w3ZTQ2SFVWYWdHZStiSzlSRUJ1MVg3TXB3anlQSXhrVW0rak1UcGpwdFhw?=
- =?utf-8?B?M1lpQmxxQS9uWjlQVklQM3k5Ky9MQmU5ZHBNUEMvSmxWbWxHYlp6OG1lRmds?=
- =?utf-8?B?c1MvTDJORXpmbDUxaU80VTd1Rm1oOElob3Q3RlZGWkdNRHVmSnM5QUdlSzk2?=
- =?utf-8?B?S0tMZEowVURZK0RVMy8vNTVmSEZZb3pnWE5Ha1gwUlo1ZmQ1aG1DSWxXMjAw?=
- =?utf-8?B?SWZuVHBtOHZ0T1REdW52d054WWdycTg4TUhIeHFlcXE0b2lxRWUzWlc3VjdX?=
- =?utf-8?B?QW5YTm1ONVdLOUNhTjdlVDFXSDZRQ1RlUW40MzBuN0RTQmRzdEF0K3Y2M3pp?=
- =?utf-8?B?bTc0aUR3aGY2MmptcTlIc3NPZ01BUlNRbSswcTgwQTRxajk3RXpnMmFqNm9l?=
- =?utf-8?B?aFVldXE3VkpFcDhtMU41T001bGw1NmVBVzQ2K1lzQXJ0OElGcVhCZWp3VHFs?=
- =?utf-8?B?Y2JSRlBUaGlOZGkvSzJwL2pHMVcrakVaQmN2UlUwdFZxTmtMbGtaVGtGdEc5?=
- =?utf-8?B?N1YrNXpaeUowWmU3eExFaUtZTTl6QWRiOThFUzFSLzN5dWU3ZXYraFFmVk9K?=
- =?utf-8?B?ci81TmhYSmZ5QTZXNjhuTkcxMEdpZDk1SGJaUmhFL3dLc2EwUW9kK0pjSDdF?=
- =?utf-8?B?MDVUYm8vejNLQlBxL2F4NCtzNld5OGZJYndqZ0lWQ2I0cnVBb2VXUHhxakM0?=
- =?utf-8?B?OFFrbTNNNlB4ak9JcEtXMUU5V2lkWUQ4dkRDRG9KYngram5KZWdLd1Z5TDdN?=
- =?utf-8?B?WGc9PQ==?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 873d53e0-df59-4633-44eb-08dbf65bb3c6
-X-MS-Exchange-CrossTenant-AuthSource: BN8PR11MB3556.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 06 Dec 2023 13:03:12.3548 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: CAvUNnH1AgORJk8xlMgHUMp/H4lHC1uql0o8/pJRdXODt5DHikXqQ+FN+l9d8QlZTsWncLBXE9vVUhfSWgD+8g==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN0PR11MB6278
-X-OriginatorOrg: intel.com
-Subject: Re: [Intel-gfx] [PATCH] drm/i915/rpm: add rpm_to_i915() helper
- around container_of()
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20231206093916.1733863-1-suraj.kandpal@intel.com>
+Subject: Re: [Intel-gfx] [PATCH] drm/i915/hdcp: Fail Repeater authentication
+ if Type1 device not present
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -160,106 +62,143 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: jani.nikula@intel.com
+Cc: oe-kbuild-all@lists.linux.dev
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Quoting Jani Nikula (2023-12-05 09:15:45-03:00)
->Reduce the duplication.
+Hi Suraj,
 
-By the way, is it too ambitious to dream of a to_i915() using generics?
+kernel test robot noticed the following build errors:
 
---
-Gustavo Sousa
+[auto build test ERROR on drm-tip/drm-tip]
 
->
->Signed-off-by: Jani Nikula <jani.nikula@intel.com>
->---
-> drivers/gpu/drm/i915/intel_runtime_pm.c | 24 ++++++++++--------------
-> 1 file changed, 10 insertions(+), 14 deletions(-)
->
->diff --git a/drivers/gpu/drm/i915/intel_runtime_pm.c b/drivers/gpu/drm/i91=
-5/intel_runtime_pm.c
->index 91491111dbd5..860b51b56a92 100644
->--- a/drivers/gpu/drm/i915/intel_runtime_pm.c
->+++ b/drivers/gpu/drm/i915/intel_runtime_pm.c
->@@ -50,6 +50,11 @@
->  * present for a given platform.
->  */
->=20
->+static struct drm_i915_private *rpm_to_i915(struct intel_runtime_pm *rpm)
->+{
->+        return container_of(rpm, struct drm_i915_private, runtime_pm);
->+}
->+
-> #if IS_ENABLED(CONFIG_DRM_I915_DEBUG_RUNTIME_PM)
->=20
-> static void init_intel_runtime_pm_wakeref(struct intel_runtime_pm *rpm)
->@@ -158,9 +163,7 @@ intel_runtime_pm_release(struct intel_runtime_pm *rpm,=
- int wakelock)
-> static intel_wakeref_t __intel_runtime_pm_get(struct intel_runtime_pm *rp=
-m,
->                                               bool wakelock)
-> {
->-        struct drm_i915_private *i915 =3D container_of(rpm,
->-                                                     struct drm_i915_priv=
-ate,
->-                                                     runtime_pm);
->+        struct drm_i915_private *i915 =3D rpm_to_i915(rpm);
->         int ret;
->=20
->         ret =3D pm_runtime_get_sync(rpm->kdev);
->@@ -365,9 +368,7 @@ void intel_runtime_pm_put(struct intel_runtime_pm *rpm=
-, intel_wakeref_t wref)
->  */
-> void intel_runtime_pm_enable(struct intel_runtime_pm *rpm)
-> {
->-        struct drm_i915_private *i915 =3D container_of(rpm,
->-                                                     struct drm_i915_priv=
-ate,
->-                                                     runtime_pm);
->+        struct drm_i915_private *i915 =3D rpm_to_i915(rpm);
->         struct device *kdev =3D rpm->kdev;
->=20
->         /*
->@@ -420,9 +421,7 @@ void intel_runtime_pm_enable(struct intel_runtime_pm *=
-rpm)
->=20
-> void intel_runtime_pm_disable(struct intel_runtime_pm *rpm)
-> {
->-        struct drm_i915_private *i915 =3D container_of(rpm,
->-                                                     struct drm_i915_priv=
-ate,
->-                                                     runtime_pm);
->+        struct drm_i915_private *i915 =3D rpm_to_i915(rpm);
->         struct device *kdev =3D rpm->kdev;
->=20
->         /* Transfer rpm ownership back to core */
->@@ -437,9 +436,7 @@ void intel_runtime_pm_disable(struct intel_runtime_pm =
-*rpm)
->=20
-> void intel_runtime_pm_driver_release(struct intel_runtime_pm *rpm)
-> {
->-        struct drm_i915_private *i915 =3D container_of(rpm,
->-                                                     struct drm_i915_priv=
-ate,
->-                                                     runtime_pm);
->+        struct drm_i915_private *i915 =3D rpm_to_i915(rpm);
->         int count =3D atomic_read(&rpm->wakeref_count);
->=20
->         intel_wakeref_auto_fini(&rpm->userfault_wakeref);
->@@ -458,8 +455,7 @@ void intel_runtime_pm_driver_last_release(struct intel=
-_runtime_pm *rpm)
->=20
-> void intel_runtime_pm_init_early(struct intel_runtime_pm *rpm)
-> {
->-        struct drm_i915_private *i915 =3D
->-                        container_of(rpm, struct drm_i915_private, runtim=
-e_pm);
->+        struct drm_i915_private *i915 =3D rpm_to_i915(rpm);
->         struct pci_dev *pdev =3D to_pci_dev(i915->drm.dev);
->         struct device *kdev =3D &pdev->dev;
->=20
->--=20
->2.39.2
->
+url:    https://github.com/intel-lab-lkp/linux/commits/Suraj-Kandpal/drm-i915-hdcp-Fail-Repeater-authentication-if-Type1-device-not-present/20231206-174124
+base:   git://anongit.freedesktop.org/drm/drm-tip drm-tip
+patch link:    https://lore.kernel.org/r/20231206093916.1733863-1-suraj.kandpal%40intel.com
+patch subject: [Intel-gfx] [PATCH] drm/i915/hdcp: Fail Repeater authentication if Type1 device not present
+config: x86_64-defconfig (https://download.01.org/0day-ci/archive/20231206/202312062206.3KtqfAc1-lkp@intel.com/config)
+compiler: gcc-11 (Debian 11.3.0-12) 11.3.0
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20231206/202312062206.3KtqfAc1-lkp@intel.com/reproduce)
+
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202312062206.3KtqfAc1-lkp@intel.com/
+
+All errors (new ones prefixed by >>):
+
+   In file included from include/drm/ttm/ttm_resource.h:34,
+                    from include/drm/ttm/ttm_device.h:30,
+                    from drivers/gpu/drm/i915/i915_drv.h:37,
+                    from drivers/gpu/drm/i915/display/intel_hdcp.c:18:
+   drivers/gpu/drm/i915/display/intel_hdcp.c: In function 'hdcp2_authenticate_repeater_topology':
+>> drivers/gpu/drm/i915/display/intel_hdcp.c:1638:30: error: 'dev_priv' undeclared (first use in this function); did you mean 'dev_crit'?
+    1638 |                 drm_dbg_kms(&dev_priv->drm,
+         |                              ^~~~~~~~
+   include/drm/drm_print.h:410:29: note: in definition of macro 'drm_dev_dbg'
+     410 |         __drm_dev_dbg(NULL, dev, cat, fmt, ##__VA_ARGS__)
+         |                             ^~~
+   drivers/gpu/drm/i915/display/intel_hdcp.c:1638:17: note: in expansion of macro 'drm_dbg_kms'
+    1638 |                 drm_dbg_kms(&dev_priv->drm,
+         |                 ^~~~~~~~~~~
+   drivers/gpu/drm/i915/display/intel_hdcp.c:1638:30: note: each undeclared identifier is reported only once for each function it appears in
+    1638 |                 drm_dbg_kms(&dev_priv->drm,
+         |                              ^~~~~~~~
+   include/drm/drm_print.h:410:29: note: in definition of macro 'drm_dev_dbg'
+     410 |         __drm_dev_dbg(NULL, dev, cat, fmt, ##__VA_ARGS__)
+         |                             ^~~
+   drivers/gpu/drm/i915/display/intel_hdcp.c:1638:17: note: in expansion of macro 'drm_dbg_kms'
+    1638 |                 drm_dbg_kms(&dev_priv->drm,
+         |                 ^~~~~~~~~~~
+
+
+vim +1638 drivers/gpu/drm/i915/display/intel_hdcp.c
+
+  1599	
+  1600	static
+  1601	int hdcp2_authenticate_repeater_topology(struct intel_connector *connector)
+  1602	{
+  1603		struct intel_digital_port *dig_port = intel_attached_dig_port(connector);
+  1604		struct drm_i915_private *i915 = to_i915(connector->base.dev);
+  1605		struct intel_hdcp *hdcp = &connector->hdcp;
+  1606		union {
+  1607			struct hdcp2_rep_send_receiverid_list recvid_list;
+  1608			struct hdcp2_rep_send_ack rep_ack;
+  1609		} msgs;
+  1610		const struct intel_hdcp_shim *shim = hdcp->shim;
+  1611		u32 seq_num_v, device_cnt;
+  1612		u8 *rx_info;
+  1613		int ret;
+  1614	
+  1615		ret = shim->read_2_2_msg(connector, HDCP_2_2_REP_SEND_RECVID_LIST,
+  1616					 &msgs.recvid_list, sizeof(msgs.recvid_list));
+  1617		if (ret < 0)
+  1618			return ret;
+  1619	
+  1620		rx_info = msgs.recvid_list.rx_info;
+  1621	
+  1622		if (HDCP_2_2_MAX_CASCADE_EXCEEDED(rx_info[1]) ||
+  1623		    HDCP_2_2_MAX_DEVS_EXCEEDED(rx_info[1])) {
+  1624			drm_dbg_kms(&i915->drm, "Topology Max Size Exceeded\n");
+  1625			return -EINVAL;
+  1626		}
+  1627	
+  1628		/*
+  1629		 * MST topology is not Type 1 capable if it contains a downstream
+  1630		 * device that is only HDCP 1.x or Legacy HDCP 2.0/2.1 compliant.
+  1631		 */
+  1632		dig_port->hdcp_mst_type1_capable =
+  1633			!HDCP_2_2_HDCP1_DEVICE_CONNECTED(rx_info[1]) &&
+  1634			!HDCP_2_2_HDCP_2_0_REP_CONNECTED(rx_info[1]);
+  1635	
+  1636		if (!dig_port->hdcp_mst_type1_capable && hdcp->content_type &&
+  1637		    !intel_encoder_is_mst(connector->encoder)) {
+> 1638			drm_dbg_kms(&dev_priv->drm,
+  1639				    "HDCP1.x or 2.0 Legacy Device Downstream\n");
+  1640			return -EINVAL;
+  1641		}
+  1642	
+  1643		/* Converting and Storing the seq_num_v to local variable as DWORD */
+  1644		seq_num_v =
+  1645			drm_hdcp_be24_to_cpu((const u8 *)msgs.recvid_list.seq_num_v);
+  1646	
+  1647		if (!hdcp->hdcp2_encrypted && seq_num_v) {
+  1648			drm_dbg_kms(&i915->drm,
+  1649				    "Non zero Seq_num_v at first RecvId_List msg\n");
+  1650			return -EINVAL;
+  1651		}
+  1652	
+  1653		if (seq_num_v < hdcp->seq_num_v) {
+  1654			/* Roll over of the seq_num_v from repeater. Reauthenticate. */
+  1655			drm_dbg_kms(&i915->drm, "Seq_num_v roll over.\n");
+  1656			return -EINVAL;
+  1657		}
+  1658	
+  1659		device_cnt = (HDCP_2_2_DEV_COUNT_HI(rx_info[0]) << 4 |
+  1660			      HDCP_2_2_DEV_COUNT_LO(rx_info[1]));
+  1661		if (drm_hdcp_check_ksvs_revoked(&i915->drm,
+  1662						msgs.recvid_list.receiver_ids,
+  1663						device_cnt) > 0) {
+  1664			drm_err(&i915->drm, "Revoked receiver ID(s) is in list\n");
+  1665			return -EPERM;
+  1666		}
+  1667	
+  1668		ret = hdcp2_verify_rep_topology_prepare_ack(connector,
+  1669							    &msgs.recvid_list,
+  1670							    &msgs.rep_ack);
+  1671		if (ret < 0)
+  1672			return ret;
+  1673	
+  1674		hdcp->seq_num_v = seq_num_v;
+  1675		ret = shim->write_2_2_msg(connector, &msgs.rep_ack,
+  1676					  sizeof(msgs.rep_ack));
+  1677		if (ret < 0)
+  1678			return ret;
+  1679	
+  1680		return 0;
+  1681	}
+  1682	
+
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
