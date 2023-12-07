@@ -2,52 +2,55 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 304ED8086AE
-	for <lists+intel-gfx@lfdr.de>; Thu,  7 Dec 2023 12:26:48 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9428A8086E3
+	for <lists+intel-gfx@lfdr.de>; Thu,  7 Dec 2023 12:43:36 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B717D10E881;
-	Thu,  7 Dec 2023 11:26:46 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id F30AE10E876;
+	Thu,  7 Dec 2023 11:43:34 +0000 (UTC)
 X-Original-To: Intel-gfx@lists.freedesktop.org
 Delivered-To: Intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2A38710E87B;
- Thu,  7 Dec 2023 11:26:45 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CD49610E876;
+ Thu,  7 Dec 2023 11:43:33 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1701948405; x=1733484405;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:in-reply-to;
- bh=bWcopTLPhOTAbphW/B+Lz4NoZrg10SRH1Cpjn1whZv8=;
- b=JUk6xhyh7gJ7Vb6nEwnpfOOwu3Yu7CQU9DvL2UxfoA0kScYqVaTPxd3m
- Q+63WU7zIENRq4lYEfbq7iiEeVE3LTJTmLhsJa3Of2j+kY7lpEAlKatEz
- lUTc1YgQwcuQwcPlgE/qZLlNIhblUZ4GcNQmck6ZpaxJkCSBFflx7Hjtm
- 1ISEdXhdnld5Mul4BdbZ1slmerAUq6lOhjgdfTkydJjhavw/8wNjTDKFO
- aLYypHd5hfejxNzem5gwsWvdQJlqrhuvcn23QqcnfXdBYySAxDY/ztxZP
- zEpOMeh+xWPLWiDVIJne9kUJlJB49ThP77ZbiEAMarYZGB//LIJu1jDlm Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10916"; a="1042179"
-X-IronPort-AV: E=Sophos;i="6.04,256,1695711600"; 
-   d="scan'208";a="1042179"
-Received: from orsmga005.jf.intel.com ([10.7.209.41])
- by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Dec 2023 03:26:44 -0800
+ t=1701949413; x=1733485413;
+ h=message-id:date:mime-version:subject:to:cc:references:
+ from:in-reply-to:content-transfer-encoding;
+ bh=4Oo9oE5b4D5IFiGjzaPy3YHlDbkF5OxHE0CWtGJ82hc=;
+ b=LB5T6hydQqbC0jmGZsee2DpeuJWzH4n894vyEogwh1heWY8ozfJiUyv1
+ sgzTkPCw1BuJIbnUY0VHi0hJoK/RCH/m4i7QaFhnLn25QOaAXO6Qbp/mm
+ puSXqRUvD/YRpCBZMLZhPvXk7JeUFqVi6cubLWXILdg+LjWo0BoyZwi67
+ RjJKRxdiGuGoNlGQax7m48vvrPI2TfK7uuUDkuJ4htLoIH5fbdD/aTX0E
+ 6a/qe6ACJz5HW2uSTPpxRgGynLxlm/3594Y4nbEjuRBNZOo9SGfaunL66
+ yY7h9NUl7xn2B6JQrlxMHPOFQ4gnbEW9r14OF01jZoMCOCyOo0Hs+Ix/X A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10916"; a="384622792"
+X-IronPort-AV: E=Sophos;i="6.04,256,1695711600"; d="scan'208";a="384622792"
+Received: from fmsmga004.fm.intel.com ([10.253.24.48])
+ by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 Dec 2023 03:43:33 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10916"; a="944997958"
-X-IronPort-AV: E=Sophos;i="6.04,256,1695711600"; d="scan'208";a="944997958"
-Received: from mtiebout-mobl.ger.corp.intel.com (HELO intel.com)
- ([10.252.62.163])
- by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Dec 2023 03:26:41 -0800
-Date: Thu, 7 Dec 2023 12:26:38 +0100
-From: Andi Shyti <andi.shyti@linux.intel.com>
-To: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+X-IronPort-AV: E=McAfee;i="6600,9927,10916"; a="842182742"
+X-IronPort-AV: E=Sophos;i="6.04,256,1695711600"; d="scan'208";a="842182742"
+Received: from jbuller-mobl.ger.corp.intel.com (HELO [10.213.214.207])
+ ([10.213.214.207])
+ by fmsmga004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 Dec 2023 03:43:30 -0800
+Message-ID: <3b38e862-7a45-48b9-9310-b751d797a9ef@linux.intel.com>
+Date: Thu, 7 Dec 2023 11:43:28 +0000
+MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
 Subject: Re: [PATCH 1/2] drm/i915/selftests: Fix engine reset count storage
  for multi-tile
-Message-ID: <ZXGr7s7wkYZexDuc@ashyti-mobl2.lan>
+Content-Language: en-US
+To: Andi Shyti <andi.shyti@linux.intel.com>
 References: <20231201122109.729006-1-tvrtko.ursulin@linux.intel.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20231201122109.729006-1-tvrtko.ursulin@linux.intel.com>
+ <ZXGr7s7wkYZexDuc@ashyti-mobl2.lan>
+From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+Organization: Intel Corporation UK Plc
+In-Reply-To: <ZXGr7s7wkYZexDuc@ashyti-mobl2.lan>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -66,25 +69,34 @@ Cc: Alan Previn Teres Alexis <alan.previn.teres.alexis@intel.com>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi Tvrtko,
 
-> Engine->id namespace is per-tile so struct igt_live_test->reset_engine[]
-> needs to be two-dimensional so engine reset counts from all tiles can be
-> stored with no aliasing. With aliasing, if we had a real multi-tile
-> platform, the reset counts would be incorrect for same engine instance on
-> different tiles.
+On 07/12/2023 11:26, Andi Shyti wrote:
+> Hi Tvrtko,
 > 
-> Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
-> Fixes: 0c29efa23f5c ("drm/i915/selftests: Consider multi-gt instead of to_gt()")
-> Reported-by: Alan Previn Teres Alexis <alan.previn.teres.alexis@intel.com>
-> Cc: Tejas Upadhyay <tejas.upadhyay@intel.com>
-> Cc: Andi Shyti <andi.shyti@linux.intel.com>
-> Cc: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
+>> Engine->id namespace is per-tile so struct igt_live_test->reset_engine[]
+>> needs to be two-dimensional so engine reset counts from all tiles can be
+>> stored with no aliasing. With aliasing, if we had a real multi-tile
+>> platform, the reset counts would be incorrect for same engine instance on
+>> different tiles.
+>>
+>> Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+>> Fixes: 0c29efa23f5c ("drm/i915/selftests: Consider multi-gt instead of to_gt()")
+>> Reported-by: Alan Previn Teres Alexis <alan.previn.teres.alexis@intel.com>
+>> Cc: Tejas Upadhyay <tejas.upadhyay@intel.com>
+>> Cc: Andi Shyti <andi.shyti@linux.intel.com>
+>> Cc: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
+> 
+> sorry for being late here... the patch makes sense to me and the
+> CI failures don't look related.
+> 
+> Reviewed-by: Andi Shyti <andi.shyti@linux.intel.com>
 
-sorry for being late here... the patch makes sense to me and the
-CI failures don't look related.
+Thanks pushed!
 
-Reviewed-by: Andi Shyti <andi.shyti@linux.intel.com>
+There is more work to be done with the fact i915_reset_engine_count has 
+it's own aliasing when used like this, but I opted to leave that for 
+some other time.
 
-Thanks,
-Andi
+Regards,
+
+Tvrtko
