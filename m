@@ -1,54 +1,55 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 593208089CE
-	for <lists+intel-gfx@lfdr.de>; Thu,  7 Dec 2023 15:05:58 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id C1BFD808A3B
+	for <lists+intel-gfx@lfdr.de>; Thu,  7 Dec 2023 15:19:56 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AFACB10E1E1;
-	Thu,  7 Dec 2023 14:05:55 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9BC2D8985A;
+	Thu,  7 Dec 2023 14:19:54 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.24])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 29D4A10E1E1
- for <intel-gfx@lists.freedesktop.org>; Thu,  7 Dec 2023 14:05:54 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0047B8985A
+ for <intel-gfx@lists.freedesktop.org>; Thu,  7 Dec 2023 14:19:51 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1701957954; x=1733493954;
- h=date:from:to:subject:message-id:references:mime-version:
- content-transfer-encoding:in-reply-to;
- bh=4cNjVvwUcY41GeE4X2H63cUuDw4U4ol8tQ3+mr4xqBI=;
- b=mbSMKwUtShFvMSxVEx297Za//OaHckknHxUj5ackqofcOmob5boaCnA6
- 2QHYCa/cI9FrORGqgv68mKRmeMbJvZTrz4F3IW/x3uTZu/KkB3URWx8/z
- da1dIoq5HrvBpOUlz+PhWWNeMcXSBuAE//VqkDGVKNuKF8EKIdt40cal9
- lbxtquOZHPj4YSQcT/2XiHpCRjW/wqgRq1VH3rzkY9VCGg9l8y3fsJS/V
- i6nzyvUDBPovzgRPfXw9+rBqR4kzZf7Pxz09MqArhGUpWS9Lcd3mcjyfj
- DawSqYEdlDDvGKHU8BZnVI5NRlF4P4H9T00/5c551/hHq0nnqHZ6xRmP9 Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10917"; a="397024882"
-X-IronPort-AV: E=Sophos;i="6.04,256,1695711600"; d="scan'208";a="397024882"
+ t=1701958791; x=1733494791;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=ENJMZ5sQSczfdXPwrjheAdHMELFjMy7VIM6fZGKDSuc=;
+ b=WZFzK6jnfu1DjzIfmLDDUuCFoQaWvNlOYYS3dpNvmW3LvR+Tf2kLzTCb
+ LbDYicnJwkx2JJvnJdJTroyD6PoefcICJklm/hJ2EKUzpK8lmDW+0LS+a
+ YaglUedFAVUo+B4A0uaow11ZOqnQ6opxnSrCVt8rWQs3DMSYLro7Qu/JK
+ Co49smZZhsOxROv6Jp257v/7/JKsk17n9d7bSnOHybE1yapy2Oxt1LmK6
+ UAozlNS+OpTMwPBugJNOI2dgHbyo5YGky92rS7NbC6NxmOd+1+FOG/+gs
+ PX1f0ldu0A7ExG7Z0yMYB7eRYptX3KmEVB5FBEnaNz94T61932gagzJI7 w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10917"; a="397027358"
+X-IronPort-AV: E=Sophos;i="6.04,256,1695711600"; d="scan'208";a="397027358"
 Received: from orsmga007.jf.intel.com ([10.7.209.58])
  by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Dec 2023 06:05:53 -0800
+ 07 Dec 2023 06:19:51 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10917"; a="765120440"
-X-IronPort-AV: E=Sophos;i="6.04,256,1695711600"; d="scan'208";a="765120440"
+X-IronPort-AV: E=McAfee;i="6600,9927,10917"; a="765126699"
+X-IronPort-AV: E=Sophos;i="6.04,256,1695711600"; d="scan'208";a="765126699"
 Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.74])
- by orsmga007.jf.intel.com with SMTP; 07 Dec 2023 06:05:51 -0800
+ by orsmga007.jf.intel.com with SMTP; 07 Dec 2023 06:19:49 -0800
 Received: by stinkbox (sSMTP sendmail emulation);
- Thu, 07 Dec 2023 16:05:50 +0200
-Date: Thu, 7 Dec 2023 16:05:50 +0200
+ Thu, 07 Dec 2023 16:19:48 +0200
+Date: Thu, 7 Dec 2023 16:19:48 +0200
 From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: intel-gfx@lists.freedesktop.org
-Subject: Re: [PATCH 4/5] drm/i915: Suppress old PLL pipe_mask checks for
- MG/TC/TBT PLLs
-Message-ID: <ZXHRPttVsU_E1Xpy@intel.com>
-References: <20231124082735.25470-1-ville.syrjala@linux.intel.com>
- <20231124082735.25470-4-ville.syrjala@linux.intel.com>
+To: "Murthy, Arun R" <arun.r.murthy@intel.com>
+Subject: Re: [Intel-gfx] [PATCH 1/2] drm/i915: Stop accessing crtc->state
+ from the flip done irq
+Message-ID: <ZXHUhAQS9mFPgVmh@intel.com>
+References: <20230928152450.30109-1-ville.syrjala@linux.intel.com>
+ <ZVy1r7Z7JwR8JQIq@intel.com>
+ <DS0PR11MB8740B1CB1D1ECA45E4276D89BA85A@DS0PR11MB8740.namprd11.prod.outlook.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20231124082735.25470-4-ville.syrjala@linux.intel.com>
+In-Reply-To: <DS0PR11MB8740B1CB1D1ECA45E4276D89BA85A@DS0PR11MB8740.namprd11.prod.outlook.com>
 X-Patchwork-Hint: comment
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -62,140 +63,143 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, Nov 24, 2023 at 10:27:34AM +0200, Ville Syrjala wrote:
-> From: Ville Syrjälä <ville.syrjala@linux.intel.com>
+On Tue, Dec 05, 2023 at 11:16:58PM +0000, Murthy, Arun R wrote:
 > 
-> TC ports have both the MG/TC and TBT PLLs selected simultanously (so
-> that we can switch from MG/TC to TBT as a fallback). This doesn't play
-> well with the state checker that assumes that the old PLL shouldn't
-> have the pipe in its pipe_mask anymore. Suppress that check for these
-> PLLs to avoid spurious WARNs when you disconnect a TC port and a
-> non-disabling modeset happens before actually disabling the port.
+> > -----Original Message-----
+> > From: Intel-gfx <intel-gfx-bounces@lists.freedesktop.org> On Behalf Of Ville
+> > Syrjälä
+> > Sent: Tuesday, November 21, 2023 7:21 PM
+> > To: intel-gfx@lists.freedesktop.org
+> > Subject: Re: [Intel-gfx] [PATCH 1/2] drm/i915: Stop accessing crtc->state from
+> > the flip done irq
+> > 
+> > On Thu, Sep 28, 2023 at 06:24:49PM +0300, Ville Syrjala wrote:
+> > > From: Ville Syrjälä <ville.syrjala@linux.intel.com>
+> > >
+> > > Assuming crtc->state is pointing at the correct thing for the async
+> > > flip commit is nonsense. If we had already queued up multiple commits
+> > > this would point at the very lates crtc state even if the older
+> > > commits hadn't even happened yet.
+> > >
+> > > Instead properly stage/arm the event like we do for async flips.
+> > > Since we don't need to arm multiple of these at the same time we don't
+> > > need a list like the normal vblank even processing uses.
+> > >
+> > > Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
+> > > ---
+> > >  drivers/gpu/drm/i915/display/intel_crtc.c          | 9 ++++++++-
+> > >  drivers/gpu/drm/i915/display/intel_display_irq.c   | 9 ++++-----
+> > >  drivers/gpu/drm/i915/display/intel_display_types.h | 3 +++
+> > >  3 files changed, 15 insertions(+), 6 deletions(-)
+> > >
+> > > diff --git a/drivers/gpu/drm/i915/display/intel_crtc.c
+> > > b/drivers/gpu/drm/i915/display/intel_crtc.c
+> > > index 1fd068e6e26c..8a84a31c7b48 100644
+> > > --- a/drivers/gpu/drm/i915/display/intel_crtc.c
+> > > +++ b/drivers/gpu/drm/i915/display/intel_crtc.c
+> > > @@ -553,8 +553,15 @@ void intel_pipe_update_start(struct
+> > > intel_atomic_state *state,
+> > >
+> > >  	intel_psr_lock(new_crtc_state);
+> > >
+> > > -	if (new_crtc_state->do_async_flip)
+> > > +	if (new_crtc_state->do_async_flip) {
+> > > +		spin_lock_irq(&crtc->base.dev->event_lock);
 > 
-> Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
+> 
+> Would it be better to use irqsave since we are dealing with events.
 
-Presumably
-Closes: https://gitlab.freedesktop.org/drm/intel/-/issues/9816
+One uses irqsave/restore when the we must protect against irq handlers,
+and the code can be called both with irqs enabled and irqs disabled.
+Here we are always called with irqs enabled, so the save/restore would
+be pointless.
 
-> ---
->  drivers/gpu/drm/i915/display/intel_dpll_mgr.c | 56 +++++++++++++------
->  drivers/gpu/drm/i915/display/intel_dpll_mgr.h |  4 ++
->  2 files changed, 42 insertions(+), 18 deletions(-)
 > 
-> diff --git a/drivers/gpu/drm/i915/display/intel_dpll_mgr.c b/drivers/gpu/drm/i915/display/intel_dpll_mgr.c
-> index d86b02de2923..5c6c4fc50b1d 100644
-> --- a/drivers/gpu/drm/i915/display/intel_dpll_mgr.c
-> +++ b/drivers/gpu/drm/i915/display/intel_dpll_mgr.c
-> @@ -4023,11 +4023,16 @@ static const struct intel_shared_dpll_funcs mg_pll_funcs = {
->  static const struct dpll_info icl_plls[] = {
->  	{ .name = "DPLL 0", .funcs = &combo_pll_funcs, .id = DPLL_ID_ICL_DPLL0, },
->  	{ .name = "DPLL 1", .funcs = &combo_pll_funcs, .id = DPLL_ID_ICL_DPLL1, },
-> -	{ .name = "TBT PLL", .funcs = &tbt_pll_funcs, .id = DPLL_ID_ICL_TBTPLL, },
-> -	{ .name = "MG PLL 1", .funcs = &mg_pll_funcs, .id = DPLL_ID_ICL_MGPLL1, },
-> -	{ .name = "MG PLL 2", .funcs = &mg_pll_funcs, .id = DPLL_ID_ICL_MGPLL2, },
-> -	{ .name = "MG PLL 3", .funcs = &mg_pll_funcs, .id = DPLL_ID_ICL_MGPLL3, },
-> -	{ .name = "MG PLL 4", .funcs = &mg_pll_funcs, .id = DPLL_ID_ICL_MGPLL4, },
-> +	{ .name = "TBT PLL", .funcs = &tbt_pll_funcs, .id = DPLL_ID_ICL_TBTPLL,
-> +	  .flags = INTEL_DPLL_HAS_ALT_PORT_DPLL, },
-> +	{ .name = "MG PLL 1", .funcs = &mg_pll_funcs, .id = DPLL_ID_ICL_MGPLL1,
-> +	  .flags = INTEL_DPLL_HAS_ALT_PORT_DPLL, },
-> +	{ .name = "MG PLL 2", .funcs = &mg_pll_funcs, .id = DPLL_ID_ICL_MGPLL2,
-> +	  .flags = INTEL_DPLL_HAS_ALT_PORT_DPLL, },
-> +	{ .name = "MG PLL 3", .funcs = &mg_pll_funcs, .id = DPLL_ID_ICL_MGPLL3,
-> +	  .flags = INTEL_DPLL_HAS_ALT_PORT_DPLL, },
-> +	{ .name = "MG PLL 4", .funcs = &mg_pll_funcs, .id = DPLL_ID_ICL_MGPLL4,
-> +	  .flags = INTEL_DPLL_HAS_ALT_PORT_DPLL, },
->  	{}
->  };
->  
-> @@ -4068,13 +4073,20 @@ static const struct intel_shared_dpll_funcs dkl_pll_funcs = {
->  static const struct dpll_info tgl_plls[] = {
->  	{ .name = "DPLL 0", .funcs = &combo_pll_funcs, .id = DPLL_ID_ICL_DPLL0, },
->  	{ .name = "DPLL 1", .funcs = &combo_pll_funcs, .id = DPLL_ID_ICL_DPLL1, },
-> -	{ .name = "TBT PLL", .funcs = &tbt_pll_funcs, .id = DPLL_ID_ICL_TBTPLL, },
-> -	{ .name = "TC PLL 1", .funcs = &dkl_pll_funcs, .id = DPLL_ID_ICL_MGPLL1, },
-> -	{ .name = "TC PLL 2", .funcs = &dkl_pll_funcs, .id = DPLL_ID_ICL_MGPLL2, },
-> -	{ .name = "TC PLL 3", .funcs = &dkl_pll_funcs, .id = DPLL_ID_ICL_MGPLL3, },
-> -	{ .name = "TC PLL 4", .funcs = &dkl_pll_funcs, .id = DPLL_ID_ICL_MGPLL4, },
-> -	{ .name = "TC PLL 5", .funcs = &dkl_pll_funcs, .id = DPLL_ID_TGL_MGPLL5, },
-> -	{ .name = "TC PLL 6", .funcs = &dkl_pll_funcs, .id = DPLL_ID_TGL_MGPLL6, },
-> +	{ .name = "TBT PLL", .funcs = &tbt_pll_funcs, .id = DPLL_ID_ICL_TBTPLL,
-> +	  .flags = INTEL_DPLL_HAS_ALT_PORT_DPLL, },
-> +	{ .name = "TC PLL 1", .funcs = &dkl_pll_funcs, .id = DPLL_ID_ICL_MGPLL1,
-> +	  .flags = INTEL_DPLL_HAS_ALT_PORT_DPLL, },
-> +	{ .name = "TC PLL 2", .funcs = &dkl_pll_funcs, .id = DPLL_ID_ICL_MGPLL2,
-> +	  .flags = INTEL_DPLL_HAS_ALT_PORT_DPLL, },
-> +	{ .name = "TC PLL 3", .funcs = &dkl_pll_funcs, .id = DPLL_ID_ICL_MGPLL3,
-> +	  .flags = INTEL_DPLL_HAS_ALT_PORT_DPLL, },
-> +	{ .name = "TC PLL 4", .funcs = &dkl_pll_funcs, .id = DPLL_ID_ICL_MGPLL4,
-> +	  .flags = INTEL_DPLL_HAS_ALT_PORT_DPLL, },
-> +	{ .name = "TC PLL 5", .funcs = &dkl_pll_funcs, .id = DPLL_ID_TGL_MGPLL5,
-> +	  .flags = INTEL_DPLL_HAS_ALT_PORT_DPLL, },
-> +	{ .name = "TC PLL 6", .funcs = &dkl_pll_funcs, .id = DPLL_ID_TGL_MGPLL6,
-> +	  .flags = INTEL_DPLL_HAS_ALT_PORT_DPLL, },
->  	{}
->  };
->  
-> @@ -4141,11 +4153,16 @@ static const struct intel_dpll_mgr adls_pll_mgr = {
->  static const struct dpll_info adlp_plls[] = {
->  	{ .name = "DPLL 0", .funcs = &combo_pll_funcs, .id = DPLL_ID_ICL_DPLL0, },
->  	{ .name = "DPLL 1", .funcs = &combo_pll_funcs, .id = DPLL_ID_ICL_DPLL1, },
-> -	{ .name = "TBT PLL", .funcs = &tbt_pll_funcs, .id = DPLL_ID_ICL_TBTPLL, },
-> -	{ .name = "TC PLL 1", .funcs = &dkl_pll_funcs, .id = DPLL_ID_ICL_MGPLL1, },
-> -	{ .name = "TC PLL 2", .funcs = &dkl_pll_funcs, .id = DPLL_ID_ICL_MGPLL2, },
-> -	{ .name = "TC PLL 3", .funcs = &dkl_pll_funcs, .id = DPLL_ID_ICL_MGPLL3, },
-> -	{ .name = "TC PLL 4", .funcs = &dkl_pll_funcs, .id = DPLL_ID_ICL_MGPLL4, },
-> +	{ .name = "TBT PLL", .funcs = &tbt_pll_funcs, .id = DPLL_ID_ICL_TBTPLL,
-> +	  .flags = INTEL_DPLL_HAS_ALT_PORT_DPLL, },
-> +	{ .name = "TC PLL 1", .funcs = &dkl_pll_funcs, .id = DPLL_ID_ICL_MGPLL1,
-> +	  .flags = INTEL_DPLL_HAS_ALT_PORT_DPLL, },
-> +	{ .name = "TC PLL 2", .funcs = &dkl_pll_funcs, .id = DPLL_ID_ICL_MGPLL2,
-> +	  .flags = INTEL_DPLL_HAS_ALT_PORT_DPLL, },
-> +	{ .name = "TC PLL 3", .funcs = &dkl_pll_funcs, .id = DPLL_ID_ICL_MGPLL3,
-> +	  .flags = INTEL_DPLL_HAS_ALT_PORT_DPLL, },
-> +	{ .name = "TC PLL 4", .funcs = &dkl_pll_funcs, .id = DPLL_ID_ICL_MGPLL4,
-> +	  .flags = INTEL_DPLL_HAS_ALT_PORT_DPLL, },
->  	{}
->  };
->  
-> @@ -4535,7 +4552,10 @@ void intel_shared_dpll_state_verify(struct intel_atomic_state *state,
->  		I915_STATE_WARN(i915, pll->active_mask & pipe_mask,
->  				"%s: pll active mismatch (didn't expect pipe %c in active mask (0x%x))\n",
->  				pll->info->name, pipe_name(crtc->pipe), pll->active_mask);
-> -		I915_STATE_WARN(i915, pll->state.pipe_mask & pipe_mask,
-> +
-> +		/* TC ports have both MG/TC and TBT PLL referenced simultaneously */
-> +		I915_STATE_WARN(i915, !(pll->info->flags & INTEL_DPLL_HAS_ALT_PORT_DPLL) &&
-> +				pll->state.pipe_mask & pipe_mask,
->  				"%s: pll enabled crtcs mismatch (found pipe %c in enabled mask (0x%x))\n",
->  				pll->info->name, pipe_name(crtc->pipe), pll->state.pipe_mask);
->  	}
-> diff --git a/drivers/gpu/drm/i915/display/intel_dpll_mgr.h b/drivers/gpu/drm/i915/display/intel_dpll_mgr.h
-> index 2e7ea0d8d3ff..594658087b4a 100644
-> --- a/drivers/gpu/drm/i915/display/intel_dpll_mgr.h
-> +++ b/drivers/gpu/drm/i915/display/intel_dpll_mgr.h
-> @@ -277,12 +277,16 @@ struct dpll_info {
->  	enum intel_display_power_domain power_domain;
->  
->  #define INTEL_DPLL_ALWAYS_ON	(1 << 0)
-> +#define INTEL_DPLL_HAS_ALT_PORT_DPLL	(1 << 1)
->  	/**
->  	 * @flags:
->  	 *
->  	 * INTEL_DPLL_ALWAYS_ON
->  	 *     Inform the state checker that the DPLL is kept enabled even if
->  	 *     not in use by any CRTC.
-> +	 * INTEL_DPLL_HAS_ALT_PORT_DPLL
-> +	 *     Inform the state checker that the CRTC will have two port DPLLs
-> +	 *     referenced simultanously (for TC->TBT fallback).
->  	 */
->  	u32 flags;
->  };
-> -- 
-> 2.41.0
+> > > +		/* arm the event for the flip done irq handler */
+> > > +		crtc->flip_done_event = new_crtc_state->uapi.event;
+> > > +		spin_unlock_irq(&crtc->base.dev->event_lock);
+> > > +
+> > > +		new_crtc_state->uapi.event = NULL;
+> > >  		return;
+> > > +	}
+> > >
+> > >  	if (intel_crtc_needs_vblank_work(new_crtc_state))
+> > >  		intel_crtc_vblank_work_init(new_crtc_state);
+> > > diff --git a/drivers/gpu/drm/i915/display/intel_display_irq.c
+> > > b/drivers/gpu/drm/i915/display/intel_display_irq.c
+> > > index bff4a76310c0..d3df615f0e48 100644
+> > > --- a/drivers/gpu/drm/i915/display/intel_display_irq.c
+> > > +++ b/drivers/gpu/drm/i915/display/intel_display_irq.c
+> > > @@ -340,16 +340,15 @@ static void flip_done_handler(struct
+> > drm_i915_private *i915,
+> > >  			      enum pipe pipe)
+> > >  {
+> > >  	struct intel_crtc *crtc = intel_crtc_for_pipe(i915, pipe);
+> > > -	struct drm_crtc_state *crtc_state = crtc->base.state;
+> > > -	struct drm_pending_vblank_event *e = crtc_state->event;
+> > >  	struct drm_device *dev = &i915->drm;
+> > >  	unsigned long irqflags;
+> > >
+> > >  	spin_lock_irqsave(&dev->event_lock, irqflags);
+> > >
+> > > -	crtc_state->event = NULL;
+> > > -
+> > > -	drm_crtc_send_vblank_event(&crtc->base, e);
+> > > +	if (crtc->flip_done_event) {
+> > > +		drm_crtc_send_vblank_event(&crtc->base, crtc-
+> > >flip_done_event);
+> > > +		crtc->flip_done_event = NULL;
+> > > +	}
+> > 
+> > I just observed an oops here due to e==NULL with the current code.
+> > I *think* I've seen it once before as well. Pstore also caught what seemed to
+> > some kind of spurious DE interrupt, which might explain the oops. But not
+> > really sure what happened as the machine died before I could poke at it more.
+> > 
+> 
+> Earlier the event was set to NULL and then drm_crtc_send_vblank_event() was called.
+
+The question is "how was this called when the event was NULL?".
+
+The possible answers are:
+- spurious flip done irq
+- some kind of race with multiple commits, but can't immediately
+  think how that would happen as we still signal hw_done after
+  flip_done, and drm_atomic_helper_swap_state() will block on
+  hw_done, and the flip_done irq will not be enabled otherwise
+
+> 
+> > >
+> > >  	spin_unlock_irqrestore(&dev->event_lock, irqflags);  } diff --git
+> > > a/drivers/gpu/drm/i915/display/intel_display_types.h
+> > > b/drivers/gpu/drm/i915/display/intel_display_types.h
+> > > index 8d8b2f8d37a9..a8ae1a25a550 100644
+> > > --- a/drivers/gpu/drm/i915/display/intel_display_types.h
+> > > +++ b/drivers/gpu/drm/i915/display/intel_display_types.h
+> > > @@ -1461,6 +1461,9 @@ struct intel_crtc {
+> > >
+> > >  	struct intel_crtc_state *config;
+> > >
+> > > +	/* armed event for async flip */
+> > > +	struct drm_pending_vblank_event *flip_done_event;
+> > > +
+> > >  	/* Access to these should be protected by dev_priv->irq_lock. */
+> > >  	bool cpu_fifo_underrun_disabled;
+> > >  	bool pch_fifo_underrun_disabled;
+> > > --
+> > > 2.41.0
+> > 
+> > --
+> > Ville Syrjälä
+> > Intel
+> 
+> Thanks and Regards,
+> Arun R Murthy
+> --------------------
 
 -- 
 Ville Syrjälä
