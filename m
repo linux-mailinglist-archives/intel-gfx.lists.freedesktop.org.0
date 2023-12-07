@@ -1,51 +1,47 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 05889809172
-	for <lists+intel-gfx@lfdr.de>; Thu,  7 Dec 2023 20:35:14 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6781D809519
+	for <lists+intel-gfx@lfdr.de>; Thu,  7 Dec 2023 23:12:04 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 64F4010E970;
-	Thu,  7 Dec 2023 19:35:12 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 064CD10E217;
+	Thu,  7 Dec 2023 22:12:00 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DD98510E977
- for <intel-gfx@lists.freedesktop.org>; Thu,  7 Dec 2023 19:35:09 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A689110E217
+ for <intel-gfx@lists.freedesktop.org>; Thu,  7 Dec 2023 22:11:58 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1701977709; x=1733513709;
- h=from:to:subject:date:message-id:in-reply-to:references:
- mime-version:content-transfer-encoding;
- bh=jirQKXvMYIDM/qXfUX3ZLObKxjofFI9gJebTI0eAdzE=;
- b=NmuviqG6s2ZBF4gXNxQQewcfW8cJDwwXjxzZqLVLTtX6ERntCgOVGpv+
- /oNsk5pnq8pop2crzdA4BRC26QANgtMwtGC1W34xunGIefndCJzj4u7JL
- AG3tjUet7dDBmGeZlFxI7JLGHzUMzFGiepdZuvnlE5IZ5dOYGwbYvm1Hv
- n19OtU7sduNA2Z6YgUrGBVnUMMRrsiON+oT1YMomL1uIjCTnLkZrGFvBy
- mq9cgyk4dHkJArY4aHW/yb3Wgm6kbyVE9+xsxqIWye9DJU8/9Ad7PHW+J
- uMK7Z+rZWitc9vpbI6NJsZSccq66I3nFvTJKSmAZ+XUW924VMA/nKbm4d w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10917"; a="384694399"
-X-IronPort-AV: E=Sophos;i="6.04,258,1695711600"; d="scan'208";a="384694399"
-Received: from orsmga007.jf.intel.com ([10.7.209.58])
- by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Dec 2023 11:35:09 -0800
+ t=1701987119; x=1733523119;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=WGHckhPRF8qyfSVt4xx3eFcZqj0uuTFR01P8uWwwq78=;
+ b=RayVza4MNTncbKK9Pptbbmuydetlwk1J2uBnIutpenal66QmtXtVcP3v
+ 1EwXm1QLnhjKcsyGNROT8WWzpbvfIVtiSiM+qYqD+bU8qwO6yD+pcIjk0
+ JRFRMBHavuf7ZBOtwAzu5DYvK0Vqy4fSmYmQDaL0SfWdJ3BjH6g8ZN1Rw
+ rMwGGfQ5Hk8paTBFJECSxqMSOzgAredOM6Rgq8HwBGXlVslgTRT8weRzQ
+ 8lUOgAmbEzkX0t8Y6+sFjSmeKwgHG6z+Jt5QrgPMQh8RV5VMC6VP6kxBK
+ meVe7d9V8X5/Ff8uSVbWSVJdI+rOOHiFOJd+jeM875niTsvdZIypvKbRT w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10917"; a="1179282"
+X-IronPort-AV: E=Sophos;i="6.04,258,1695711600"; 
+   d="scan'208";a="1179282"
+Received: from orviesa002.jf.intel.com ([10.64.159.142])
+ by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 Dec 2023 14:11:59 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10917"; a="765213221"
-X-IronPort-AV: E=Sophos;i="6.04,258,1695711600"; d="scan'208";a="765213221"
-Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.74])
- by orsmga007.jf.intel.com with SMTP; 07 Dec 2023 11:35:07 -0800
-Received: by stinkbox (sSMTP sendmail emulation);
- Thu, 07 Dec 2023 21:35:07 +0200
-From: Ville Syrjala <ville.syrjala@linux.intel.com>
+X-IronPort-AV: E=Sophos;i="6.04,258,1695711600"; d="scan'208";a="13257008"
+Received: from invictus.jf.intel.com ([10.165.21.201])
+ by orviesa002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 Dec 2023 14:11:58 -0800
+From: Radhakrishna Sripada <radhakrishna.sripada@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Subject: [PATCH 8/8] drm/i915/tv: Drop redundant null checks
-Date: Thu,  7 Dec 2023 21:34:41 +0200
-Message-ID: <20231207193441.20206-9-ville.syrjala@linux.intel.com>
-X-Mailer: git-send-email 2.41.0
-In-Reply-To: <20231207193441.20206-1-ville.syrjala@linux.intel.com>
-References: <20231207193441.20206-1-ville.syrjala@linux.intel.com>
+Subject: [PATCH 0/3] Cleanup C20 pll state
+Date: Thu,  7 Dec 2023 14:10:22 -0800
+Message-Id: <20231207221025.2032207-1-radhakrishna.sripada@intel.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -62,40 +58,20 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-From: Ville Syrjälä <ville.syrjala@linux.intel.com>
+C20 pll state has both link_bit_rate and clock fields to represent
+the clocks. Both have the same values for DP 1.4 they difer for
+DP2.0. Stick to the numbers that are compatible with other clock
+numbers like the port_clock in crtc_state
 
-Neither 'tv_mode' or 'color_conversion' can be NULL,
-so drop the pointless checks.
+Radhakrishna Sripada (3):
+  drm/i915/mtl: Use port clock compatible numbers for C20 phy
+  drm/i915/mtl: Remove misleading "clock" field from C20 pll_state
+  drm/i915/mtl: Rename the link_bit_rate to clock in C20 pll_state
 
-Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
----
- drivers/gpu/drm/i915/display/intel_tv.c | 6 ------
- 1 file changed, 6 deletions(-)
+ drivers/gpu/drm/i915/display/intel_cx0_phy.c  | 79 ++++++++-----------
+ .../drm/i915/display/intel_display_types.h    |  1 -
+ 2 files changed, 31 insertions(+), 49 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_tv.c b/drivers/gpu/drm/i915/display/intel_tv.c
-index 2ee4f0d95851..d4386cb3569e 100644
---- a/drivers/gpu/drm/i915/display/intel_tv.c
-+++ b/drivers/gpu/drm/i915/display/intel_tv.c
-@@ -1417,9 +1417,6 @@ set_tv_mode_timings(struct drm_i915_private *dev_priv,
- static void set_color_conversion(struct drm_i915_private *dev_priv,
- 				 const struct color_conversion *color_conversion)
- {
--	if (!color_conversion)
--		return;
--
- 	intel_de_write(dev_priv, TV_CSC_Y,
- 		       (color_conversion->ry << 16) | color_conversion->gy);
- 	intel_de_write(dev_priv, TV_CSC_Y2,
-@@ -1454,9 +1451,6 @@ static void intel_tv_pre_enable(struct intel_atomic_state *state,
- 	int xpos, ypos;
- 	unsigned int xsize, ysize;
- 
--	if (!tv_mode)
--		return;	/* can't happen (mode_prepare prevents this) */
--
- 	tv_ctl = intel_de_read(dev_priv, TV_CTL);
- 	tv_ctl &= TV_CTL_SAVE;
- 
 -- 
-2.41.0
+2.34.1
 
