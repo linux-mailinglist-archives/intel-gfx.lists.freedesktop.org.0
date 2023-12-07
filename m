@@ -1,70 +1,155 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id EAFE580850F
-	for <lists+intel-gfx@lfdr.de>; Thu,  7 Dec 2023 10:59:19 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8956C808515
+	for <lists+intel-gfx@lfdr.de>; Thu,  7 Dec 2023 11:03:12 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 43E2910E84A;
-	Thu,  7 Dec 2023 09:59:13 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3B9D510E847;
+	Thu,  7 Dec 2023 10:03:09 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from us-smtp-delivery-124.mimecast.com
- (us-smtp-delivery-124.mimecast.com [170.10.133.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7F89B10E847
- for <intel-gfx@lists.freedesktop.org>; Thu,  7 Dec 2023 09:59:10 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1701943149;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type;
- bh=ms8UncPlgcNfW0YFQ+vXf5RNFabBq2wTZbql29AYOu4=;
- b=DUU4G1cU8aTkBXydgz1hOfP730TBFNVgwXJJfxve+UsQ///nNmQo5QWZQXF59Q8U3rx2MC
- wmtTdte22O1mG3EpS/Tg3RdkSkG1/GanBVX7N2A52oV5uLC2qMnc7ujrNkwVW9GunOzNi+
- qxL8yvA1k/YP5cKyJMygrLoEj+rjxHU=
-Received: from mail-wr1-f71.google.com (mail-wr1-f71.google.com
- [209.85.221.71]) by relay.mimecast.com with ESMTP with STARTTLS
- (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
- us-mta-218-V1_4TGv_Oc2eHVxW5LwXcg-1; Thu, 07 Dec 2023 04:59:06 -0500
-X-MC-Unique: V1_4TGv_Oc2eHVxW5LwXcg-1
-Received: by mail-wr1-f71.google.com with SMTP id
- ffacd0b85a97d-33334e370d3so660801f8f.2
- for <intel-gfx@lists.freedesktop.org>; Thu, 07 Dec 2023 01:59:06 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1701943145; x=1702547945;
- h=content-disposition:mime-version:message-id:subject:cc:to:from:date
- :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
- bh=ms8UncPlgcNfW0YFQ+vXf5RNFabBq2wTZbql29AYOu4=;
- b=w9r+wviwGeILiqzuNLpBLMN1N4ch7b0HRQSGlVVTpVfT9D0OuzWLaGWbjKG9yp5nLm
- SpJZf+CQfe9yHmrHnYQO4dBJWLm1YbxBnqH4yyAkkOjmkrVFXBWAYDhjVZ4djRuE13Ku
- pk8YH9Qrk2wJmQUWOjCgLpkSMQAztKTsBZ2gUNJE1xPFrwBWiQ6A9krRQEarIPnyp+zC
- Iq0uFAxpgBoEEhLECkIXY3lOWbdxpMYdESMSgd36S3gA4041+ZyFtZ2XWMe4bcVTx6sW
- U2+OQAFsuOfW7/XOAfR9sS6Pd9x5GXDO2jAe635vmzF/QBCIQSi2wJiB394SB0m161YW
- doTw==
-X-Gm-Message-State: AOJu0YytcDMsWuf+rRhX3fU3s4Xu6Q7i46ewdmRePR+3l0km7+nSJHD4
- cqevfohoMs+ZPGiMbGDLQQBimap1dMycv2cjkjCC6UTe8YB1+rrNUywHJ8C/lY9i3PPm7U1RJ+A
- HzFN4q00htSUJSgdVVBhEPJYzoHPY
-X-Received: by 2002:adf:e952:0:b0:333:2fd2:5d3d with SMTP id
- m18-20020adfe952000000b003332fd25d3dmr1259226wrn.111.1701943144460; 
- Thu, 07 Dec 2023 01:59:04 -0800 (PST)
-X-Google-Smtp-Source: AGHT+IHFoWNjH3goB8O/YVmCMnBpWe51RijMNHv733WkEsM1BwO0fF9qR8Rioa5D6Kizd2/mg8ZX4Q==
-X-Received: by 2002:adf:e952:0:b0:333:2fd2:5d3d with SMTP id
- m18-20020adfe952000000b003332fd25d3dmr1259210wrn.111.1701943143974; 
- Thu, 07 Dec 2023 01:59:03 -0800 (PST)
-Received: from localhost ([2a01:e0a:b25:f902::ff])
- by smtp.gmail.com with ESMTPSA id
- s13-20020adff80d000000b003334a0513dbsm996300wrp.67.2023.12.07.01.59.03
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Thu, 07 Dec 2023 01:59:03 -0800 (PST)
-Date: Thu, 7 Dec 2023 10:59:03 +0100
-From: Maxime Ripard <mripard@redhat.com>
-To: Dave Airlie <airlied@gmail.com>, 
-	Daniel Vetter <daniel.vetter@ffwll.ch>
-Message-ID: <yu5heqaufyeo4nlowzieu4s5unwqrqyx4jixbfjmzdon677rpk@t53vceua2dao>
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7217D10E197;
+ Thu,  7 Dec 2023 10:03:07 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1701943388; x=1733479388;
+ h=from:to:cc:subject:date:message-id:references:
+ in-reply-to:content-id:content-transfer-encoding: mime-version;
+ bh=tEi3VQWG5x0qFV9E8TIhCcxKya5FXa5PVTFwt5aRWKU=;
+ b=VmFPWO6e+ZdHkDaihvIDHq5OemsmyRu6aldSMS1eFjDQ+NJQL5HsDoTE
+ MqqGkfqNaCGQ3CD3Vc7gguHJ5B1Pny/NS4+EnV+FhyYZNGdMwqNK7ezZr
+ 9JYwWs9SHOqaVDNX65wy9Nx8I32EFYsztWS+BIUA/LA8Pm2iNYil7wmXM
+ VYeAY8+h9NIADtJ93HN2yvxgN2RxXMyV3ynehcyQz34F8X4/4NYejvC4q
+ HEqca5BtypHkJrmkWqb115it5yd2UaSdOkGAZrBTsm120bmTJf0j9mEB+
+ a0eJtowZ4J8Rz8zWLtns3OGnl9cDHoRm3Pkheb7dSaXOurZ6mGjHvjA6g A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10916"; a="1035722"
+X-IronPort-AV: E=Sophos;i="6.04,256,1695711600"; 
+   d="scan'208";a="1035722"
+Received: from fmsmga007.fm.intel.com ([10.253.24.52])
+ by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 Dec 2023 02:03:07 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10916"; a="775351759"
+X-IronPort-AV: E=Sophos;i="6.04,256,1695711600"; d="scan'208";a="775351759"
+Received: from fmsmsx602.amr.corp.intel.com ([10.18.126.82])
+ by fmsmga007.fm.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
+ 07 Dec 2023 02:03:06 -0800
+Received: from fmsmsx610.amr.corp.intel.com (10.18.126.90) by
+ fmsmsx602.amr.corp.intel.com (10.18.126.82) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.35; Thu, 7 Dec 2023 02:03:06 -0800
+Received: from fmsedg601.ED.cps.intel.com (10.1.192.135) by
+ fmsmsx610.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.35 via Frontend Transport; Thu, 7 Dec 2023 02:03:06 -0800
+Received: from NAM11-DM6-obe.outbound.protection.outlook.com (104.47.57.168)
+ by edgegateway.intel.com (192.55.55.70) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.1.2507.35; Thu, 7 Dec 2023 02:03:06 -0800
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=LYI4Huj/sfLE3qHlE2NinT/dYGMsAhwqmfniaHXie9EvvyYYK/wST7MW5EO7Bl0uOTHTuNjB6mFOGnXR240mgm5JP+ES+aC36XYvDmjFB6hbEdetoqwwPVjtfJD1NretM7mVQYRBo9PSTQd9pmtJFSEZuh6DHFwc1DkH+JXhICnvTDdj471MDUBZ40ELb6I/vo6wQVSZXyV6qbfskxgurKHAQqT7meFaofd5oWwMEcfc6A4Wx355IGMBSA2igYM2MjGvbT5Q5OlKl14k8KkkBsw+pbPhmlMluvayWlDCBWPgf1paESV/iifUebkhWiFD3sBz9LavnXr356j24ZYWZg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=tEi3VQWG5x0qFV9E8TIhCcxKya5FXa5PVTFwt5aRWKU=;
+ b=S2SvcLmV71yDoCH/wNK6YT54OzImlfAY6nJQKEANRsYGdW0qGZEo0FpkFRs9hFuxp1+YKFQsjtzkHl0I0Uvfw+7Vkimy+sRxmsFRu3frUiZvhjNh2uSLFboVUBEB49uJrxkl7s4LSu6l9Acbl6679jlvAtgduZR52sEHNJRwXfhBkG9eYuyViED11+kaj6/g4aGDySnE4fb+ucuWCqvLAOuaSvjPuvPUdjQ1/405UTlvJdW0Bw08QHZsINpxUIAb/yMScsqyJKoJXLo/HVeq/2tTXIbNKBLpG3BSbhiQZ1O23sbN72Qq4d8f99HbKAwmIPdFc+8Hjt0k2OkuaV7Y6g==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Received: from DM4PR11MB6019.namprd11.prod.outlook.com (2603:10b6:8:60::5) by
+ IA1PR11MB7943.namprd11.prod.outlook.com (2603:10b6:208:3fc::19) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7046.34; Thu, 7 Dec
+ 2023 10:02:59 +0000
+Received: from DM4PR11MB6019.namprd11.prod.outlook.com
+ ([fe80::ea97:f0a2:fffc:b892]) by DM4PR11MB6019.namprd11.prod.outlook.com
+ ([fe80::ea97:f0a2:fffc:b892%3]) with mapi id 15.20.7068.025; Thu, 7 Dec 2023
+ 10:02:58 +0000
+From: "Hogander, Jouni" <jouni.hogander@intel.com>
+To: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
+ "Coelho, Luciano" <luciano.coelho@intel.com>
+Thread-Topic: [Intel-xe] [Intel-gfx] [PATCH v7] drm/i915: handle uncore
+ spinlock when not available
+Thread-Index: AQHaJD1nrlEkbEHWek2sMOYpaI+a+LCdhTCAgAASd4CAAAj3AA==
+Date: Thu, 7 Dec 2023 10:02:57 +0000
+Message-ID: <404db85aeac36655603c8f5c47d355b2d09fdb7f.camel@intel.com>
+References: <20231201100032.1367589-1-luciano.coelho@intel.com>
+ <804a8a8ea0f69fc6dc7bad571ee30fc774cdbdd4.camel@intel.com>
+ <1f378d699c11cbc577d7843fc4277681b3aa8c49.camel@intel.com>
+In-Reply-To: <1f378d699c11cbc577d7843fc4277681b3aa8c49.camel@intel.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: DM4PR11MB6019:EE_|IA1PR11MB7943:EE_
+x-ms-office365-filtering-correlation-id: 7dfebf67-9089-406f-857a-08dbf70bb06f
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: 085r3Ld1L46RrMiwY+A6b7GHb8OTtqnhpJ2OpzeZd8dLYGjk0LdtY6WQvG5M0pJ0yXIfjevQcoN6NrODUIWaQ7DA9tvlMIfxLmXKkmGvltSqMI1mR8uUYkRyS/2dHe9Xvk9ZnTV0wxKpfp9t5sVSgUqmo6fKhNaikiWEcGcOy5XDZVd+BCE2dt5OVpjWlVzFbqSFco+sgoNgMfH+OSPs9isw68XJzSDFNg12EBWdsDxjEVOr+b5DXzFuFqq8kpysq2Tqepr3V5q4gEXXd3AMpH7sAfYUoCmmBgfNmGw08jaSzCjDbu8ruwg7d4y6J2Oxa4aKrNAloC3cDz6LIkXskUOzOpD69XDVvTDcqmO4ULzBcs7lVIIPkEQRStXoTtQevGDd+0lH4ktOTdxmQh2H7kHb1RD/bnwJE7Mq+F1+0nTXYC0doB9XyWiloP+Q+2MYKmGelr+0jJERQ/20qLcBHFYjmjMdDorAibCNVNPQL2+uA7Ztp7rwjZvQwLXvzeXsTw/nc4J8kd77KnYauQ1CXVj2KeUYplvePlpbSZhBBc8uRh94mB+04dffciK7mpjADs8JLc5Ijq8Ew09VSAZOCD9rhA5BOARhSBgeCerETKPtyQOszkcgM1gIuIllZsWfvS9TWzw+jG8EV88aIqNvDYaHJt2gNjE+55QboUVxTE4=
+x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:DM4PR11MB6019.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230031)(366004)(39860400002)(376002)(396003)(136003)(346002)(230273577357003)(230922051799003)(230173577357003)(64100799003)(451199024)(186009)(1800799012)(66946007)(316002)(66446008)(91956017)(110136005)(66556008)(6636002)(76116006)(64756008)(66476007)(54906003)(6486002)(71200400001)(478600001)(5660300002)(36756003)(41300700001)(2906002)(38070700009)(86362001)(450100002)(8676002)(4326008)(8936002)(2616005)(38100700002)(107886003)(83380400001)(66574015)(26005)(122000001)(6506007)(6512007)(82960400001);
+ DIR:OUT; SFP:1102; 
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?utf-8?B?K2hVcUFYOTFuS0RyNWptbVlyOEhHR0VMcUY1cWF2TkI5bk1sVHh0K2NEbmQv?=
+ =?utf-8?B?d3BNTVUzOGNmZGFoM29uOVJMemxNSExnUkM1WUZIUWNpZTZHVWJkUU8xR29X?=
+ =?utf-8?B?ZURxMDE4ZEFNMFVRRjl6N2FvSmtKVXJaWU40Ymx6VStnQXQ4alF5WnJoc2ZH?=
+ =?utf-8?B?NjBXUk9oU1lvYUlkQ3JabU1RaUJtR2crYXNoY2FJcnJVV2ozdUg1NzBvaVpx?=
+ =?utf-8?B?eU1QL0pIRkRFNlJUK3RIQTYvWlR2Ym0xNXV4KzFvU0RoUzBDSFZ6YlRNMGZY?=
+ =?utf-8?B?M29iQ3JQa204Y0N3L1pEeDlZRm5WQ0tHZEppNG15Wjh0VDRNMlZFZmJiV0xQ?=
+ =?utf-8?B?amx6cGRFQU1URkxkMG5oSC9JTjRYazM2MDhlMkJLbWx5dTZlRDEzV0tZM2pQ?=
+ =?utf-8?B?VE9ob2wvcnB5cWE2WTViM1VPUmFMQURpeWMyRkJ1S2JEM1lPUGduaEw5RTRt?=
+ =?utf-8?B?ZzJZOFh0QkFkYldFckxIdXBSY2UyeU15QVg2ZjNxdzdDR0I5ZVhObk9VVExz?=
+ =?utf-8?B?aEJLUnlTVXNxc0ZOSy9XVGhXMEVvbExrOGtBVHFCNitMOEp5b0lxRElKTndx?=
+ =?utf-8?B?NzFvVlQ3Zyt1UUhKYXNDUkQ0ZHRyZmtjK05Gc3J5bm9KeG1ZcldMTWFvMU5W?=
+ =?utf-8?B?cFRkNkdTVGh3RlhNMUhRcG5IZEV1eUF0VHozVU5zckhOanYvMnNObzFVcFZG?=
+ =?utf-8?B?QXlmWkdzRTVrTzRNVEpIR1FGeHJRcVJ6dVBoYkJNQUswOFRnWnVRZjlWMi92?=
+ =?utf-8?B?U1JBSWNOaUgvK3NsbEptSnFiZDUwU2ZkaDloQk9rUzVvaEFOZ3ZMUkdrelZp?=
+ =?utf-8?B?WnFsdnh4UUZsWVpNamNBaWxXR1M3aVdYc3MrSWlFZ2Z4OXNZRlVySklGdHcx?=
+ =?utf-8?B?ZWRaY2pMT1JOOEpEcnlXci94cGt0NkhwM2x4VkFOS3RCbWVYMWZ5dXVZWTdW?=
+ =?utf-8?B?a2lLazk2eG1oUlQ0RE5zajhEMVM2ekhNWEdzWndUVFV4Ri9GTGZFOFlYckxt?=
+ =?utf-8?B?djJTeDNXbjVZWWMrSVRlamxsRG0xMm1EWUVMdnJRUVFmQXpaZGlReWFxNmtO?=
+ =?utf-8?B?bUpxMnlHQmRJa1dhOVB0V2RNcHF5L0tVNEV3aWFZNUdsTVYwaUFIdGVlRTdU?=
+ =?utf-8?B?cWpTTFk2WWU5cUpGcTYxSVpDcm42emNzQzJPSys0REs3UUllclliUjZxcGhP?=
+ =?utf-8?B?TWVxTnlUVWFpdHhLcjAyMkdXcGo0TjEvTHVHZlZobysxNm5RNGJSNmdUY1RM?=
+ =?utf-8?B?MkNsaFN5a25IZS8weEJGRGRlelNnNHFUY1NIaVJ0dTdQcm95TzJHeS9RU3J6?=
+ =?utf-8?B?ZG9lcGFrWUZ4N0xBZTFtR05PSVUrcWw5WVlkdkxvNjN1R1BMQ0dNeGJ5SjZS?=
+ =?utf-8?B?OEVVdmI4N1JlenM4bThsM0lmWUpLMlQyTlVjb0tESm9IMDRpSmdZbVBiSGlO?=
+ =?utf-8?B?UlFYRFBWTjh4Z1dMdDR5NDIrNVk2K2JBa3ZzMlRwa3RXSDloQnpld0NlVTQ2?=
+ =?utf-8?B?S0pHY2dTZTFNYkJaZUZjaUdGTWdXNjQ2endCVkl2ZHVXTlRwOFJvQjQ5d2kz?=
+ =?utf-8?B?V3hPWUNXM3EvV055OUp2ek5yTVZpTXVZMnZVcGlxTjQvL2xPSE04UUFnaU9z?=
+ =?utf-8?B?UVFsZWRDVFc0S3dnbUFwVVVlVzJhYjZzMVRQbGdLKzBYUmRFcFVkendMOGxH?=
+ =?utf-8?B?aDh5Zm83eCtibUdiaVZWT1pDYUFtMFhzR0Z4Y3VZdGtkTWlvSU01ei9RQ3pF?=
+ =?utf-8?B?VHVVamxpVm1tUjF5c2ZESXhWZTRmUWNPRVd3ZVprbUxPUUlSanhGS080QmNv?=
+ =?utf-8?B?a0dmWlZmaXhCOGhLUDVFSDZyM2prd2RPZnJJZTM3K2plOE5oUGU1QTVjallO?=
+ =?utf-8?B?MzdmbkVQRDR4d3g3S3oySVNuUGF3TFN3WjFIa1kzMmN5SERiOVlHNkk3dXpr?=
+ =?utf-8?B?czBUNWNGUGRHaFQ2OGJYci9qUzRWanptZXlZWnRpVE5DNWU0NW9ENHlzQWZC?=
+ =?utf-8?B?S1JTSmNNMGdJRk5XSUJKdkpaYnlyMkRqOTJJazVKd2crWURLU2ZwRDMvZUF4?=
+ =?utf-8?B?L1NCRGhuK213aFFjR3QzS3FZK2tueDUzSkwyZXFzRTI3NzJYR1hmdk42MHE5?=
+ =?utf-8?B?ZFNMLzNtNWpHdmthYktRNU96Ymt0aEF4bUZ4ZkpnTHRIOGFqL2ViWGJKQkM5?=
+ =?utf-8?B?TWc9PQ==?=
+Content-Type: text/plain; charset="utf-8"
+Content-ID: <9ED96FED0B793B488EA5D208E4E8CCDB@namprd11.prod.outlook.com>
+Content-Transfer-Encoding: base64
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
- protocol="application/pgp-signature"; boundary="wgwzsblzmz3j3rey"
-Content-Disposition: inline
-Subject: [Intel-gfx] [PULL] drm-misc-next
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: DM4PR11MB6019.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 7dfebf67-9089-406f-857a-08dbf70bb06f
+X-MS-Exchange-CrossTenant-originalarrivaltime: 07 Dec 2023 10:02:57.9560 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: L6fMog2Y5XBSG12QY6lqrbmNuhZ3HBssBhZ6PbGnrRh7ULiPHtjStxcoL0hJPR35om0wwjhKWzio4KaW6qqbg1HLY1mxN7DtUZIgTZ7/sqM=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA1PR11MB7943
+X-OriginatorOrg: intel.com
+Subject: Re: [Intel-gfx] [Intel-xe] [PATCH v7] drm/i915: handle uncore
+ spinlock when not available
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -77,732 +162,96 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: dim-tools@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, intel-gfx@lists.freedesktop.org
+Cc: "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>, "Vivi, 
+ Rodrigo" <rodrigo.vivi@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-
---wgwzsblzmz3j3rey
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-
-Hi Dave, Sima,
-
-Here's this week drm-misc-next PR
-
-Maxime
-
-drm-misc-next-2023-12-07:
-drm-misc-next for 6.8:
-
-UAPI Changes:
-  - Remove Userspace Mode-Setting ioctls
-  - v3d: New uapi to handle jobs involving the CPU
-
-Cross-subsystem Changes:
-
-Core Changes:
-  - atomic: Add support for FB-less planes which got reverted a bit
-    later for lack of IGT tests and userspace code, Dump private objects
-    state in drm_state_dump.
-  - dma-buf: Add fence deadline support
-  - encoder: Create per-encoder debugfs directory, move the bridge chain
-    file to that directory
-
-Driver Changes:
-  - Include drm_auth.h in driver that use it but don't include it, Drop
-    drm_plane_helper.h from drivers that include it but don't use it
-  - imagination: Plenty of small fixes
-  - panfrost: Improve interrupt handling at poweroff
-  - qaic: Convert to persistent DRM devices
-  - tidss: Support for the AM62A7, a few probe improvements, some cleanups
-  - v3d: Support for jobs involving the CPU
-
-  - bridge:
-    - Create transparent aux-bridge for DP/USB-C
-    - lt8912b: Add suspend/resume support and power regulator support
-
-  - panel:
-    - himax-hx8394: Drop prepare, unprepare and shutdown logic, Support
-      panel rotation
-    - New panels: BOE BP101WX1-100, Powkiddy X55, Ampire AM8001280G,
-      Evervision VGG644804, SDC ATNA45AF01
-The following changes since commit a13fee31f56449fc600d9e064c7b32302f92dcef:
-
-  Merge v6.7-rc3 into drm-next (2023-11-28 11:55:56 +0100)
-
-are available in the Git repository at:
-
-  git://anongit.freedesktop.org/drm/drm-misc tags/drm-misc-next-2023-12-07
-
-for you to fetch changes up to 90d50b8d85834e73536fdccd5aa913b30494fef0:
-
-  drm/mipi-dsi: Fix detach call without attach (2023-12-07 09:22:47 +0200)
-
-----------------------------------------------------------------
-drm-misc-next for 6.8:
-
-UAPI Changes:
-  - Remove Userspace Mode-Setting ioctls
-  - v3d: New uapi to handle jobs involving the CPU
-
-Cross-subsystem Changes:
-
-Core Changes:
-  - atomic: Add support for FB-less planes which got reverted a bit
-    later for lack of IGT tests and userspace code, Dump private objects
-    state in drm_state_dump.
-  - dma-buf: Add fence deadline support
-  - encoder: Create per-encoder debugfs directory, move the bridge chain
-    file to that directory
-
-Driver Changes:
-  - Include drm_auth.h in driver that use it but don't include it, Drop
-    drm_plane_helper.h from drivers that include it but don't use it
-  - imagination: Plenty of small fixes
-  - panfrost: Improve interrupt handling at poweroff
-  - qaic: Convert to persistent DRM devices
-  - tidss: Support for the AM62A7, a few probe improvements, some cleanups
-  - v3d: Support for jobs involving the CPU
-
-  - bridge:
-    - Create transparent aux-bridge for DP/USB-C
-    - lt8912b: Add suspend/resume support and power regulator support
-
-  - panel:
-    - himax-hx8394: Drop prepare, unprepare and shutdown logic, Support
-      panel rotation
-    - New panels: BOE BP101WX1-100, Powkiddy X55, Ampire AM8001280G,
-      Evervision VGG644804, SDC ATNA45AF01
-
-----------------------------------------------------------------
-Abel Vesa (1):
-      drm/panel-edp: Add SDC ATNA45AF01
-
-Abhinav Kumar (2):
-      drm: improve the documentation of connector hpd ops
-      drm: remove drm_bridge_hpd_disable() from drm_bridge_connector_destro=
-y()
-
-Alex Bee (1):
-      dt-bindings: gpu: mali-utgard: Add Rockchip RK3128 compatible
-
-Andrew Davis (1):
-      drm/omapdrm: Improve check for contiguous buffers
-
-Andr=E9 Almeida (1):
-      drm: Refuse to async flip with atomic prop changes
-
-AngeloGioacchino Del Regno (3):
-      drm/panfrost: Ignore core_mask for poweroff and disable PWRTRANS irq
-      drm/panfrost: Add gpu_irq, mmu_irq to struct panfrost_device
-      drm/panfrost: Synchronize and disable interrupts before powering off
-
-Aradhya Bhatia (2):
-      dt-bindings: display: ti: Add support for am62a7 dss
-      drm/tidss: Add support for AM62A7 DSS
-
-Arnd Bergmann (1):
-      drm/imagination: move update_logtype() into ifdef section
-
-Bert Karwatzki (1):
-      drm/sched: Partial revert of "Qualify drm_sched_wakeup() by drm_sched=
-_entity_is_ready()"
-
-Boris Brezillon (1):
-      drm/gpuvm: Let drm_gpuvm_bo_put() report when the vm_bo object is des=
-troyed
-
-Carl Vanderlip (2):
-      accel/qaic: Increase number of in_reset states
-      accel/qaic: Expand DRM device lifecycle
-
-Chris Morgan (6):
-      drm/panel: himax-hx8394: Drop prepare/unprepare tracking
-      drm/panel: himax-hx8394: Drop shutdown logic
-      dt-bindings: display: Document Himax HX8394 panel rotation
-      drm/panel: himax-hx8394: Add Panel Rotation Support
-      dt-bindings: display: himax-hx8394: Add Powkiddy X55 panel
-      drm/panel: himax-hx8394: Add Support for Powkiddy X55 panel
-
-Colin Ian King (1):
-      drm/imagination: Fix a couple of spelling mistakes in literal strings
-
-Dan Carpenter (5):
-      drm/imagination: Fix error codes in pvr_device_clk_init()
-      drm/imagination: Fix IS_ERR() vs NULL bug in pvr_request_firmware()
-      drm/imagination: fix off by one in pvr_vm_mips_init() error handling
-      drm/bridge: nxp-ptn3460: fix i2c_master_send() error checking
-      drm/bridge: nxp-ptn3460: simplify some error checking
-
-Danilo Krummrich (8):
-      drm/nouveau: use GPUVM common infrastructure
-      drm/nouveau: implement 1:1 scheduler - entity relationship
-      drm/nouveau: enable dynamic job-flow control
-      drm/imagination: vm: prevent duplicate drm_gpuvm_bo instances
-      drm/imagination: vm: check for drm_gpuvm_range_valid()
-      drm/imagination: vm: fix drm_gpuvm reference count
-      drm/gpuvm: fall back to drm_exec_lock_obj()
-      drm/imagination: vm: make use of GPUVM's drm_exec helper
-
-Dario Binacchi (1):
-      drm/bridge: Fix typo in post_disable() description
-
-Dmitry Baryshkov (17):
-      drm/drv: propagate errors from drm_modeset_register_all()
-      drm/bridge: add transparent bridge helper
-      phy: qcom: qmp-combo: switch to DRM_AUX_BRIDGE
-      usb: typec: nb7vpq904m: switch to DRM_AUX_BRIDGE
-      drm/bridge: implement generic DP HPD bridge
-      soc: qcom: pmic-glink: switch to DRM_AUX_HPD_BRIDGE
-      usb: typec: qcom-pmic-typec: switch to DRM_AUX_HPD_BRIDGE
-      drm/encoder: register per-encoder debugfs dir
-      drm/bridge: migrate bridge_chains to per-encoder file
-      Revert "drm/atomic: Loosen FB atomic checks"
-      Revert "drm/atomic: Move framebuffer checks to helper"
-      Revert "drm/atomic: Add solid fill data to plane state dump"
-      Revert "drm/atomic: Add pixel source to plane state dump"
-      Revert "drm: Add solid fill pixel source"
-      Revert "drm: Introduce solid fill DRM plane property"
-      Revert "drm: Introduce pixel_source DRM plane property"
-      drm/atomic: add private obj state to state dump
-
-Donald Robson (7):
-      drm/imagination: Numerous documentation fixes.
-      drm/imagination: Fixed warning due to implicit cast to bool
-      drm/imagination: Fixed missing header in pvr_fw_meta
-      drm/imagination: pvr_device_process_active_queues now static
-      drm/imagination: pvr_gpuvm_free() now static
-      drm/imagination: Removed unused function to_pvr_vm_gpuva()
-      drm/imagination: Removed unused functions in pvr_fw_trace
-
-Frank Binns (1):
-      MAINTAINERS: Document Imagination PowerVR driver patches go via drm-m=
-isc
-
-Harshit Mogalapalli (1):
-      drm/v3d: Fix missing error code in v3d_submit_cpu_ioctl()
-
-Hsin-Yi Wang (3):
-      drm/panel-edp: Add override_edid_mode quirk for generic edp
-      drm/panel-edp: Add auo_b116xa3_mode
-      drm/panel-edp: Avoid adding multiple preferred modes
-
-Javier Martinez Canillas (5):
-      drm: Allow drivers to indicate the damage helpers to ignore damage cl=
-ips
-      drm/virtio: Disable damage clipping if FB changed since last page-flip
-      drm/vmwgfx: Disable damage clipping if FB changed since last page-flip
-      drm/plane: Extend damage tracking kernel-doc
-      drm/todo: Add entry about implementing buffer age for damage tracking
-
-Jean Delvare (1):
-      drm/loongson: Add platform dependency
-
-Jessica Zhang (7):
-      drm: Introduce pixel_source DRM plane property
-      drm: Introduce solid fill DRM plane property
-      drm: Add solid fill pixel source
-      drm/atomic: Add pixel source to plane state dump
-      drm/atomic: Add solid fill data to plane state dump
-      drm/atomic: Move framebuffer checks to helper
-      drm/atomic: Loosen FB atomic checks
-
-Khaled Almahallawy (1):
-      drm/display/dp: Add the remaining Square PHY patterns DPCD register d=
-efinitions
-
-Liu Ying (1):
-      drm/bridge: imx93-mipi-dsi: Fix a couple of building warnings
-
-Luben Tuikov (4):
-      drm/sched: Fix bounds limiting when given a malformed entity
-      drm/sched: Rename priority MIN to LOW
-      drm/sched: Reverse run-queue priority enumeration
-      drm/sched: Fix compilation issues with DRM priority rename
-
-Marco Felsch (1):
-      drm/panel: ilitek-ili9881c: make use of prepare_prev_first
-
-Marco Pagani (1):
-      drm/test: add a test suite for GEM objects backed by shmem
-
-Ma=EDra Canal (11):
-      drm/v3d: Don't allow two multisync extensions in the same job
-      drm/v3d: Decouple job allocation from job initiation
-      drm/v3d: Use v3d_get_extensions() to parse CPU job data
-      drm/v3d: Create tracepoints to track the CPU job
-      drm/v3d: Enable BO mapping
-      drm/v3d: Create a CPU job extension for a indirect CSD job
-      drm/v3d: Create a CPU job extension for the timestamp query job
-      drm/v3d: Create a CPU job extension for the reset timestamp job
-      drm/v3d: Create a CPU job extension to copy timestamp query to a buff=
-er
-      drm/v3d: Create a CPU job extension for the reset performance query j=
-ob
-      drm/v3d: Create a CPU job extension for the copy performance query job
-
-Melissa Wen (6):
-      drm/v3d: Remove unused function header
-      drm/v3d: Move wait BO ioctl to the v3d_bo file
-      drm/v3d: Detach job submissions IOCTLs to a new specific file
-      drm/v3d: Simplify job refcount handling
-      drm/v3d: Add a CPU job submission
-      drm/v3d: Detach the CSD job BO setup
-
-Michael Banack (1):
-      drm: Introduce documentation for hotspot properties
-
-Michael Walle (2):
-      dt-bindings: display: simple: add Evervision VGG644804 panel
-      drm/panel-simple: add Evervision VGG644804 panel entry
-
-Philipp Zabel (2):
-      dt-bindings: ili9881c: Add Ampire AM8001280G LCD panel
-      drm/panel: ilitek-ili9881c: Add Ampire AM8001280G LCD panel
-
-Pin-yen Lin (1):
-      drm/edp-panel: Sort the panel entries
-
-Rajneesh Bhardwaj (1):
-      drm/ttm: Schedule delayed_delete worker closer
-
-Ramesh Errabolu (1):
-      dma-buf: Correct the documentation of name and exp_name symbols
-
-Rob Clark (3):
-      drm/syncobj: Add deadline support for syncobj waits
-      dma-buf/sync_file: Add SET_DEADLINE ioctl
-      dma-buf/sw_sync: Add fence deadline support
-
-Rob Herring (1):
-      drm: Use device_get_match_data()
-
-Simon Ser (2):
-      drm: allow DRM_MODE_PAGE_FLIP_ASYNC for atomic commits
-      drm: introduce DRM_CAP_ATOMIC_ASYNC_PAGE_FLIP
-
-Stefan Eichenberger (3):
-      drm/bridge: lt8912b: Add suspend/resume support
-      dt-bindings: display: bridge: lt8912b: Add power supplies
-      drm/bridge: lt8912b: Add power supplies
-
-Thomas Hellstr=F6m (1):
-      Documentation/gpu: VM_BIND locking document
-
-Thomas Zimmermann (64):
-      Merge drm/drm-next into drm-misc-next
-      drm/ast: Turn ioregs_lock to modeset_lock
-      drm/ast: Rework I/O register setup
-      drm/ast: Retrieve I/O-memory ranges without ast device
-      drm/ast: Add I/O helpers without ast device
-      drm/ast: Enable VGA without ast device instance
-      drm/ast: Enable MMIO without ast device instance
-      drm/ast: Partially implement POST without ast device instance
-      drm/ast: Add enum ast_config_mode
-      drm/ast: Detect ast device type and config mode without ast device
-      drm/ast: Move detection code into PCI probe helper
-      fbdev/acornfb: Fix name of fb_ops initializer macro
-      fbdev/sm712fb: Use correct initializer macros for struct fb_ops
-      fbdev/vfb: Set FBINFO_VIRTFB flag
-      fbdev/vfb: Initialize fb_ops with fbdev macros
-      fbdev/arcfb: Set FBINFO_VIRTFB flag
-      fbdev/arcfb: Use generator macros for deferred I/O
-      auxdisplay/cfag12864bfb: Set FBINFO_VIRTFB flag
-      auxdisplay/cfag12864bfb: Initialize fb_ops with fbdev macros
-      auxdisplay/ht16k33: Set FBINFO_VIRTFB flag
-      auxdisplay/ht16k33: Initialize fb_ops with fbdev macros
-      hid/picolcd_fb: Set FBINFO_VIRTFB flag
-      fbdev/sh_mobile_lcdcfb: Set FBINFO_VIRTFB flag
-      fbdev/sh_mobile_lcdcfb: Initialize fb_ops with fbdev macros
-      fbdev/smscufx: Select correct helpers
-      fbdev/udlfb: Select correct helpers
-      fbdev/au1200fb: Set FBINFO_VIRTFB flag
-      fbdev/au1200fb: Initialize fb_ops with fbdev macros
-      fbdev/ps3fb: Set FBINFO_VIRTFB flag
-      fbdev/ps3fb: Initialize fb_ops with fbdev macros
-      media/ivtvfb: Initialize fb_ops to fbdev I/O-memory helpers
-      fbdev/clps711x-fb: Initialize fb_ops with fbdev macros
-      fbdev/vt8500lcdfb: Initialize fb_ops with fbdev macros
-      fbdev/wm8505fb: Initialize fb_ops to fbdev I/O-memory helpers
-      fbdev/cyber2000fb: Initialize fb_ops with fbdev macros
-      staging/sm750fb: Declare fb_ops as constant
-      staging/sm750fb: Initialize fb_ops with fbdev macros
-      fbdev: Rename FB_SYS_FOPS token to FB_SYSMEM_FOPS
-      fbdev: Remove trailing whitespaces
-      fbdev: Push pgprot_decrypted() into mmap implementations
-      fbdev: Move default fb_mmap code into helper function
-      fbdev: Warn on incorrect framebuffer access
-      fbdev: Remove default file-I/O implementations
-      drm: Fix TODO list mentioning non-KMS drivers
-      drm: Include <drm/drm_auth.h>
-      drm/i915: Include <drm/drm_auth.h>
-      accel: Include <drm/drm_auth.h>
-      drm: Include <drm/drm_device.h>
-      drm/radeon: Do not include <drm/drm_legacy.h>
-      drm: Remove entry points for legacy ioctls
-      drm: Remove the legacy DRM_IOCTL_MODESET_CTL ioctl
-      drm: Remove support for legacy drivers
-      drm: Remove locking for legacy ioctls and DRM_UNLOCKED
-      drm: Remove source code for non-KMS drivers
-      char/agp: Remove frontend code
-      drm: Remove Kconfig option for legacy support (CONFIG_DRM_LEGACY)
-      drm/plane-helper: Move drm_plane_helper_atomic_check() into udl
-      drm/amdgpu: Do not include <drm/drm_plane_helper.h>
-      drm/loongson: Do not include <drm/drm_plane_helper.h>
-      drm/shmobile: Do not include <drm/drm_plane_helper.h>
-      drm/solomon: Do not include <drm/drm_plane_helper.h>
-      drm/ofdrm: Do not include <drm/drm_plane_helper.h>
-      drm/simpledrm: Do not include <drm/drm_plane_helper.h>
-      drm/xlnx: Do not include <drm/drm_plane_helper.h>
-
-Tomi Valkeinen (16):
-      drm/tidss: Use pm_runtime_resume_and_get()
-      drm/tidss: Use PM autosuspend
-      drm/tidss: Drop useless variable init
-      drm/tidss: Move reset to the end of dispc_init()
-      drm/tidss: Return error value from from softreset
-      drm/tidss: Check for K2G in in dispc_softreset()
-      drm/tidss: Add simple K2G manual reset
-      drm/tidss: Fix dss reset
-      drm/tidss: IRQ code cleanup
-      drm/tidss: Fix atomic_flush check
-      drm/tidss: Use DRM_PLANE_COMMIT_ACTIVE_ONLY
-      drm/drm_file: fix use of uninitialized variable
-      drm/framebuffer: Fix use of uninitialized variable
-      drm/bridge: cdns-mhdp8546: Fix use of uninitialized variable
-      drm/bridge: tc358767: Fix return value on error case
-      drm/mipi-dsi: Fix detach call without attach
-
-Tony Lindgren (2):
-      dt-bindings: display: simple: Add boe,bp101wx1-100 panel
-      drm/panel: simple: Add BOE BP101WX1-100 panel
-
-Uwe Kleine-K=F6nig (3):
-      drm/tilcdc: Convert to platform remove callback returning void
-      drm/bridge: ti-sn65dsi86: Simplify using pm_runtime_resume_and_get()
-      drm/imx/lcdc: Fix double-free of driver data
-
-Xin Ji (2):
-      Revert "drm/bridge: Add 200ms delay to wait FW HPD status stable"
-      drm/bridge: anx7625: Fix Set HPD irq detect window to 2ms
-
-Yang Li (1):
-      drm/imagination: Remove unneeded semicolon
-
-Yuran Pereira (1):
-      drm/nouveau: Removes unnecessary args check in nouveau_uvmm_sm_prepare
-
-Zack Rusin (8):
-      drm: Disable the cursor plane on atomic contexts with virtualized dri=
-vers
-      drm/atomic: Add support for mouse hotspots
-      drm/vmwgfx: Use the hotspot properties from cursor planes
-      drm/qxl: Use the hotspot properties from cursor planes
-      drm/vboxvideo: Use the hotspot properties from cursor planes
-      drm/virtio: Use the hotspot properties from cursor planes
-      drm: Remove legacy cursor hotspot code
-      drm: Introduce DRM_CLIENT_CAP_CURSOR_PLANE_HOTSPOT
-
-heminhong (1):
-      drm/qxl: remove unused declaration
-
- Documentation/accel/qaic/qaic.rst                  |    9 +-
- Documentation/core-api/pin_user_pages.rst          |    2 +
- .../bindings/display/bridge/lontium,lt8912b.yaml   |   21 +
- .../bindings/display/panel/himax,hx8394.yaml       |    3 +
- .../bindings/display/panel/ilitek,ili9881c.yaml    |    1 +
- .../bindings/display/panel/panel-simple.yaml       |    4 +
- .../bindings/display/ti/ti,am65x-dss.yaml          |   14 +
- .../devicetree/bindings/gpu/arm,mali-utgard.yaml   |    1 +
- Documentation/gpu/drm-kms.rst                      |    8 +
- Documentation/gpu/drm-mm.rst                       |    4 +
- Documentation/gpu/drm-vm-bind-locking.rst          |  582 +++++++
- Documentation/gpu/imagination/index.rst            |    2 +-
- Documentation/gpu/imagination/uapi.rst             |    5 +-
- Documentation/gpu/implementation_guidelines.rst    |    1 +
- Documentation/gpu/rfc/xe.rst                       |    5 +
- Documentation/gpu/todo.rst                         |   30 +-
- MAINTAINERS                                        |    1 +
- drivers/accel/drm_accel.c                          |    1 +
- drivers/accel/qaic/mhi_controller.c                |    2 +-
- drivers/accel/qaic/qaic.h                          |   15 +-
- drivers/accel/qaic/qaic_control.c                  |    5 +-
- drivers/accel/qaic/qaic_data.c                     |   16 +-
- drivers/accel/qaic/qaic_drv.c                      |   50 +-
- drivers/auxdisplay/Kconfig                         |   10 +-
- drivers/auxdisplay/cfag12864bfb.c                  |   10 +-
- drivers/auxdisplay/ht16k33.c                       |   10 +-
- drivers/char/agp/Makefile                          |    6 -
- drivers/char/agp/agp.h                             |    9 -
- drivers/char/agp/backend.c                         |   11 -
- drivers/char/agp/compat_ioctl.c                    |  291 ----
- drivers/char/agp/compat_ioctl.h                    |  106 --
- drivers/char/agp/frontend.c                        | 1068 -------------
- drivers/dma-buf/dma-fence.c                        |    3 +-
- drivers/dma-buf/sw_sync.c                          |   82 +
- drivers/dma-buf/sync_debug.h                       |    2 +
- drivers/dma-buf/sync_file.c                        |   19 +
- drivers/gpu/drm/Kconfig                            |   24 +-
- drivers/gpu/drm/Makefile                           |   12 -
- drivers/gpu/drm/amd/amdgpu/amdgpu_ctx.c            |    4 +-
- drivers/gpu/drm/amd/amdgpu/amdgpu_job.c            |    2 +-
- drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c  |    1 -
- drivers/gpu/drm/armada/armada_crtc.c               |   24 +-
- drivers/gpu/drm/aspeed/aspeed_gfx_drv.c            |   10 +-
- drivers/gpu/drm/ast/ast_drv.c                      |  263 +++-
- drivers/gpu/drm/ast/ast_drv.h                      |  101 +-
- drivers/gpu/drm/ast/ast_main.c                     |  244 +--
- drivers/gpu/drm/ast/ast_mode.c                     |   26 +-
- drivers/gpu/drm/ast/ast_post.c                     |   81 +-
- drivers/gpu/drm/ast/ast_reg.h                      |   12 +-
- drivers/gpu/drm/bridge/Kconfig                     |   17 +
- drivers/gpu/drm/bridge/Makefile                    |    2 +
- drivers/gpu/drm/bridge/analogix/anx7625.c          |   54 +-
- drivers/gpu/drm/bridge/analogix/anx7625.h          |    4 +
- drivers/gpu/drm/bridge/aux-bridge.c                |  140 ++
- drivers/gpu/drm/bridge/aux-hpd-bridge.c            |  163 ++
- .../gpu/drm/bridge/cadence/cdns-mhdp8546-hdcp.c    |    3 +-
- drivers/gpu/drm/bridge/imx/imx93-mipi-dsi.c        |    4 +-
- drivers/gpu/drm/bridge/lontium-lt8912b.c           |   58 +
- drivers/gpu/drm/bridge/nxp-ptn3460.c               |    6 +-
- drivers/gpu/drm/bridge/tc358767.c                  |    2 +-
- drivers/gpu/drm/bridge/ti-sn65dsi86.c              |    6 +-
- drivers/gpu/drm/drm_agpsupport.c                   |  451 ------
- drivers/gpu/drm/drm_atomic.c                       |    9 +
- drivers/gpu/drm/drm_atomic_state_helper.c          |   14 +
- drivers/gpu/drm/drm_atomic_uapi.c                  |   97 +-
- drivers/gpu/drm/drm_auth.c                         |    8 +-
- drivers/gpu/drm/drm_bridge.c                       |   44 -
- drivers/gpu/drm/drm_bridge_connector.c             |    6 -
- drivers/gpu/drm/drm_bufs.c                         | 1627 ----------------=
-----
- drivers/gpu/drm/drm_context.c                      |  513 ------
- drivers/gpu/drm/drm_crtc_helper.c                  |    7 +-
- drivers/gpu/drm/drm_crtc_internal.h                |    2 +-
- drivers/gpu/drm/drm_damage_helper.c                |    3 +-
- drivers/gpu/drm/drm_debugfs.c                      |   65 +-
- drivers/gpu/drm/drm_dma.c                          |  178 ---
- drivers/gpu/drm/drm_drv.c                          |   27 +-
- drivers/gpu/drm/drm_encoder.c                      |    4 +
- drivers/gpu/drm/drm_file.c                         |   66 +-
- drivers/gpu/drm/drm_framebuffer.c                  |    2 +-
- drivers/gpu/drm/drm_gpuvm.c                        |   51 +-
- drivers/gpu/drm/drm_hashtab.c                      |  203 ---
- drivers/gpu/drm/drm_internal.h                     |   17 +-
- drivers/gpu/drm/drm_ioc32.c                        |  613 +-------
- drivers/gpu/drm/drm_ioctl.c                        |   93 +-
- drivers/gpu/drm/drm_irq.c                          |  204 ---
- drivers/gpu/drm/drm_legacy.h                       |  290 ----
- drivers/gpu/drm/drm_legacy_misc.c                  |  105 --
- drivers/gpu/drm/drm_lock.c                         |  373 -----
- drivers/gpu/drm/drm_memory.c                       |  138 --
- drivers/gpu/drm/drm_mipi_dsi.c                     |   17 +-
- drivers/gpu/drm/drm_mode_object.c                  |    2 +-
- drivers/gpu/drm/drm_pci.c                          |  204 +--
- drivers/gpu/drm/drm_plane.c                        |  150 +-
- drivers/gpu/drm/drm_plane_helper.c                 |   32 -
- drivers/gpu/drm/drm_scatter.c                      |  220 ---
- drivers/gpu/drm/drm_syncobj.c                      |   64 +-
- drivers/gpu/drm/drm_vblank.c                       |  101 --
- drivers/gpu/drm/drm_vm.c                           |  665 --------
- drivers/gpu/drm/exynos/exynos_drm_gsc.c            |    9 +-
- drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c     |    1 +
- drivers/gpu/drm/imagination/pvr_cccb.h             |    1 +
- drivers/gpu/drm/imagination/pvr_device.c           |   10 +-
- drivers/gpu/drm/imagination/pvr_device.h           |   25 +-
- drivers/gpu/drm/imagination/pvr_device_info.c      |    3 +-
- drivers/gpu/drm/imagination/pvr_free_list.c        |    2 +-
- drivers/gpu/drm/imagination/pvr_fw.h               |    3 +-
- drivers/gpu/drm/imagination/pvr_fw_info.h          |    8 +-
- drivers/gpu/drm/imagination/pvr_fw_meta.c          |    1 +
- drivers/gpu/drm/imagination/pvr_fw_trace.c         |   48 +-
- drivers/gpu/drm/imagination/pvr_hwrt.h             |    1 +
- drivers/gpu/drm/imagination/pvr_job.c              |    4 +-
- drivers/gpu/drm/imagination/pvr_mmu.c              |    3 +-
- drivers/gpu/drm/imagination/pvr_queue.c            |    2 +-
- drivers/gpu/drm/imagination/pvr_queue.h            |    4 +-
- drivers/gpu/drm/imagination/pvr_rogue_fwif_sf.h    |    4 +-
- drivers/gpu/drm/imagination/pvr_vm.c               |  131 +-
- drivers/gpu/drm/imagination/pvr_vm.h               |    3 +-
- drivers/gpu/drm/imagination/pvr_vm_mips.c          |   11 +-
- drivers/gpu/drm/imx/ipuv3/imx-ldb.c                |    9 +-
- drivers/gpu/drm/imx/lcdc/imx-lcdc.c                |    9 -
- drivers/gpu/drm/loongson/Kconfig                   |    1 +
- drivers/gpu/drm/loongson/lsdc_plane.c              |    1 -
- drivers/gpu/drm/msm/msm_gpu.h                      |    2 +-
- drivers/gpu/drm/mxsfb/mxsfb_drv.c                  |   10 +-
- drivers/gpu/drm/nouveau/nouveau_abi16.c            |   19 +-
- drivers/gpu/drm/nouveau/nouveau_abi16.h            |    2 +-
- drivers/gpu/drm/nouveau/nouveau_bo.c               |    4 +-
- drivers/gpu/drm/nouveau/nouveau_drm.c              |   31 +-
- drivers/gpu/drm/nouveau/nouveau_drv.h              |    9 +-
- drivers/gpu/drm/nouveau/nouveau_exec.c             |   70 +-
- drivers/gpu/drm/nouveau/nouveau_exec.h             |    6 +-
- drivers/gpu/drm/nouveau/nouveau_sched.c            |  211 +--
- drivers/gpu/drm/nouveau/nouveau_sched.h            |   43 +-
- drivers/gpu/drm/nouveau/nouveau_uvmm.c             |  210 ++-
- drivers/gpu/drm/nouveau/nouveau_uvmm.h             |    4 +-
- drivers/gpu/drm/omapdrm/dss/dispc.c                |    4 +-
- drivers/gpu/drm/omapdrm/dss/dss.c                  |    5 +-
- drivers/gpu/drm/omapdrm/omap_gem.c                 |   14 +-
- drivers/gpu/drm/panel/panel-edp.c                  |   83 +-
- drivers/gpu/drm/panel/panel-himax-hx8394.c         |  180 ++-
- drivers/gpu/drm/panel/panel-ilitek-ili9881c.c      |  225 +++
- drivers/gpu/drm/panel/panel-simple.c               |   62 +
- drivers/gpu/drm/panfrost/panfrost_device.c         |    3 +
- drivers/gpu/drm/panfrost/panfrost_device.h         |   10 +
- drivers/gpu/drm/panfrost/panfrost_gpu.c            |   40 +-
- drivers/gpu/drm/panfrost/panfrost_gpu.h            |    1 +
- drivers/gpu/drm/panfrost/panfrost_job.c            |   26 +-
- drivers/gpu/drm/panfrost/panfrost_job.h            |    1 +
- drivers/gpu/drm/panfrost/panfrost_mmu.c            |   32 +-
- drivers/gpu/drm/panfrost/panfrost_mmu.h            |    1 +
- drivers/gpu/drm/qxl/qxl_display.c                  |   14 +-
- drivers/gpu/drm/qxl/qxl_drv.c                      |    2 +-
- drivers/gpu/drm/qxl/qxl_drv.h                      |    7 -
- drivers/gpu/drm/radeon/radeon_drv.h                |    1 -
- drivers/gpu/drm/renesas/shmobile/shmob_drm_plane.c |    1 -
- drivers/gpu/drm/scheduler/sched_entity.c           |   14 +-
- drivers/gpu/drm/scheduler/sched_main.c             |   20 +-
- drivers/gpu/drm/solomon/ssd130x.h                  |    1 -
- drivers/gpu/drm/tests/Makefile                     |    1 +
- drivers/gpu/drm/tests/drm_gem_shmem_test.c         |  383 +++++
- drivers/gpu/drm/tidss/tidss_crtc.c                 |   12 +-
- drivers/gpu/drm/tidss/tidss_dispc.c                |  138 +-
- drivers/gpu/drm/tidss/tidss_dispc.h                |    3 +
- drivers/gpu/drm/tidss/tidss_drv.c                  |   16 +-
- drivers/gpu/drm/tidss/tidss_irq.c                  |   58 +-
- drivers/gpu/drm/tidss/tidss_kms.c                  |    2 +-
- drivers/gpu/drm/tilcdc/tilcdc_drv.c                |    9 +-
- drivers/gpu/drm/tiny/ofdrm.c                       |    1 -
- drivers/gpu/drm/tiny/simpledrm.c                   |    1 -
- drivers/gpu/drm/ttm/ttm_bo.c                       |    8 +-
- drivers/gpu/drm/ttm/ttm_device.c                   |    6 +-
- drivers/gpu/drm/udl/udl_modeset.c                  |   19 +-
- drivers/gpu/drm/v3d/Makefile                       |    3 +-
- drivers/gpu/drm/v3d/v3d_bo.c                       |   51 +
- drivers/gpu/drm/v3d/v3d_drv.c                      |    4 +
- drivers/gpu/drm/v3d/v3d_drv.h                      |  140 +-
- drivers/gpu/drm/v3d/v3d_gem.c                      |  768 ---------
- drivers/gpu/drm/v3d/v3d_sched.c                    |  316 ++++
- drivers/gpu/drm/v3d/v3d_submit.c                   | 1320 ++++++++++++++++
- drivers/gpu/drm/v3d/v3d_trace.h                    |   57 +
- drivers/gpu/drm/vboxvideo/vbox_drv.c               |    2 +-
- drivers/gpu/drm/vboxvideo/vbox_mode.c              |    4 +-
- drivers/gpu/drm/virtio/virtgpu_drv.c               |    2 +-
- drivers/gpu/drm/virtio/virtgpu_plane.c             |   18 +-
- drivers/gpu/drm/vmwgfx/vmwgfx_drv.c                |    2 +-
- drivers/gpu/drm/vmwgfx/vmwgfx_kms.c                |   20 +-
- drivers/gpu/drm/xlnx/zynqmp_kms.c                  |    1 -
- drivers/hid/hid-picolcd_fb.c                       |    1 +
- drivers/media/pci/ivtv/Kconfig                     |    4 +-
- drivers/media/pci/ivtv/ivtvfb.c                    |    6 +-
- drivers/phy/qualcomm/Kconfig                       |    2 +-
- drivers/phy/qualcomm/phy-qcom-qmp-combo.c          |   44 +-
- drivers/soc/qcom/Kconfig                           |    1 +
- drivers/soc/qcom/pmic_glink_altmode.c              |   33 +-
- drivers/staging/sm750fb/sm750.c                    |   65 +-
- drivers/usb/typec/mux/Kconfig                      |    2 +-
- drivers/usb/typec/mux/nb7vpq904m.c                 |   44 +-
- drivers/usb/typec/tcpm/Kconfig                     |    1 +
- drivers/usb/typec/tcpm/qcom/qcom_pmic_typec.c      |   41 +-
- drivers/video/fbdev/Kconfig                        |   50 +-
- drivers/video/fbdev/acornfb.c                      |    2 +-
- drivers/video/fbdev/amba-clcd.c                    |    2 +
- drivers/video/fbdev/arcfb.c                        |  114 +-
- drivers/video/fbdev/au1100fb.c                     |    2 +
- drivers/video/fbdev/au1200fb.c                     |   11 +-
- drivers/video/fbdev/clps711x-fb.c                  |    4 +-
- drivers/video/fbdev/core/Kconfig                   |    7 +-
- drivers/video/fbdev/core/Makefile                  |    2 +-
- drivers/video/fbdev/core/cfbcopyarea.c             |    3 +
- drivers/video/fbdev/core/cfbfillrect.c             |    3 +
- drivers/video/fbdev/core/cfbimgblt.c               |    3 +
- drivers/video/fbdev/core/fb_chrdev.c               |   72 +-
- drivers/video/fbdev/core/fb_defio.c                |    2 +
- drivers/video/fbdev/core/fb_io_fops.c              |   36 +
- drivers/video/fbdev/core/fb_sys_fops.c             |    6 +
- drivers/video/fbdev/core/syscopyarea.c             |    3 +
- drivers/video/fbdev/core/sysfillrect.c             |    3 +
- drivers/video/fbdev/core/sysimgblt.c               |    3 +
- drivers/video/fbdev/cyber2000fb.c                  |    9 +-
- drivers/video/fbdev/ep93xx-fb.c                    |    2 +
- drivers/video/fbdev/gbefb.c                        |    2 +
- drivers/video/fbdev/omap/omapfb_main.c             |    2 +
- drivers/video/fbdev/omap2/omapfb/omapfb-main.c     |    2 +
- drivers/video/fbdev/ps3fb.c                        |   11 +-
- drivers/video/fbdev/sa1100fb.c                     |    2 +
- drivers/video/fbdev/sbuslib.c                      |    5 +-
- drivers/video/fbdev/sh_mobile_lcdcfb.c             |   16 +-
- drivers/video/fbdev/sm712fb.c                      |    6 +-
- drivers/video/fbdev/smscufx.c                      |    2 +
- drivers/video/fbdev/udlfb.c                        |    2 +
- drivers/video/fbdev/vermilion/vermilion.c          |    2 +
- drivers/video/fbdev/vfb.c                          |   10 +-
- drivers/video/fbdev/vt8500lcdfb.c                  |    4 +-
- drivers/video/fbdev/wm8505fb.c                     |    2 +
- include/drm/bridge/aux-bridge.h                    |   37 +
- include/drm/display/drm_dp.h                       |    3 +
- include/drm/drm_auth.h                             |   22 -
- include/drm/drm_bridge.h                           |    4 +-
- include/drm/drm_device.h                           |   71 +-
- include/drm/drm_drv.h                              |   28 +-
- include/drm/drm_encoder.h                          |   16 +-
- include/drm/drm_file.h                             |   17 +-
- include/drm/drm_framebuffer.h                      |   12 -
- include/drm/drm_gpuvm.h                            |   25 +-
- include/drm/drm_ioctl.h                            |   11 -
- include/drm/drm_legacy.h                           |  331 ----
- include/drm/drm_mipi_dsi.h                         |    2 +
- include/drm/drm_modeset_helper_vtables.h           |   10 +
- include/drm/drm_plane.h                            |   24 +
- include/drm/drm_plane_helper.h                     |    2 -
- include/drm/gpu_scheduler.h                        |    6 +-
- include/linux/dma-buf.h                            |   11 +-
- include/linux/fb.h                                 |   16 +-
- include/uapi/drm/drm.h                             |   52 +-
- include/uapi/drm/drm_mode.h                        |    9 +
- include/uapi/drm/pvr_drm.h                         |   10 +-
- include/uapi/drm/v3d_drm.h                         |  240 ++-
- include/uapi/linux/sync_file.h                     |   22 +
- 258 files changed, 6469 insertions(+), 10527 deletions(-)
- create mode 100644 Documentation/gpu/drm-vm-bind-locking.rst
- delete mode 100644 drivers/char/agp/compat_ioctl.c
- delete mode 100644 drivers/char/agp/compat_ioctl.h
- delete mode 100644 drivers/char/agp/frontend.c
- create mode 100644 drivers/gpu/drm/bridge/aux-bridge.c
- create mode 100644 drivers/gpu/drm/bridge/aux-hpd-bridge.c
- delete mode 100644 drivers/gpu/drm/drm_agpsupport.c
- delete mode 100644 drivers/gpu/drm/drm_bufs.c
- delete mode 100644 drivers/gpu/drm/drm_context.c
- delete mode 100644 drivers/gpu/drm/drm_dma.c
- delete mode 100644 drivers/gpu/drm/drm_hashtab.c
- delete mode 100644 drivers/gpu/drm/drm_irq.c
- delete mode 100644 drivers/gpu/drm/drm_legacy.h
- delete mode 100644 drivers/gpu/drm/drm_legacy_misc.c
- delete mode 100644 drivers/gpu/drm/drm_lock.c
- delete mode 100644 drivers/gpu/drm/drm_memory.c
- delete mode 100644 drivers/gpu/drm/drm_scatter.c
- delete mode 100644 drivers/gpu/drm/drm_vm.c
- create mode 100644 drivers/gpu/drm/tests/drm_gem_shmem_test.c
- create mode 100644 drivers/gpu/drm/v3d/v3d_submit.c
- create mode 100644 include/drm/bridge/aux-bridge.h
- delete mode 100644 include/drm/drm_legacy.h
-
---wgwzsblzmz3j3rey
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYKAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCZXGXZwAKCRDj7w1vZxhR
-xRfPAQCeBfAid67zM/SoNvje4csr6lOM71lkc0Tu/h6W8ONXEAD/dXc0eO42/8vm
-I6y/LDtMVrpfZ4SGnIyJaHAWJFQaKAw=
-=Nk9E
------END PGP SIGNATURE-----
-
---wgwzsblzmz3j3rey--
-
+T24gVGh1LCAyMDIzLTEyLTA3IGF0IDA5OjMwICswMDAwLCBDb2VsaG8sIEx1Y2lhbm8gd3JvdGU6
+DQo+IE9uIFRodSwgMjAyMy0xMi0wNyBhdCAwODoyNCArMDAwMCwgSG9nYW5kZXIsIEpvdW5pIHdy
+b3RlOg0KPiA+IE9uIEZyaSwgMjAyMy0xMi0wMSBhdCAxMjowMCArMDIwMCwgTHVjYSBDb2VsaG8g
+d3JvdGU6DQo+ID4gPiBUaGUgdW5jb3JlIGNvZGUgbWF5IG5vdCBhbHdheXMgYmUgYXZhaWxhYmxl
+IChlLmcuIHdoZW4gd2UgYnVpbGQNCj4gPiA+IHRoZQ0KPiA+ID4gZGlzcGxheSBjb2RlIHdpdGgg
+WGUpLCBzbyB3ZSBjYW4ndCBhbHdheXMgcmVseSBvbiBoYXZpbmcgdGhlDQo+ID4gPiB1bmNvcmUn
+cw0KPiA+ID4gc3BpbmxvY2suDQo+ID4gPiANCj4gPiA+IFRvIGhhbmRsZSB0aGlzLCBzcGxpdCB0
+aGUgc3Bpbl9sb2NrL3VubG9ja19pcnFzYXZlL3Jlc3RvcmUoKSBpbnRvDQo+ID4gPiBzcGluX2xv
+Y2svdW5sb2NrKCkgZm9sbG93ZWQgYnkgYSBjYWxsIHRvIGxvY2FsX2lycV9zYXZlL3Jlc3RvcmUo
+KQ0KPiA+ID4gYW5kDQo+ID4gPiBjcmVhdGUgd3JhcHBlciBmdW5jdGlvbnMgZm9yIGxvY2tpbmcg
+YW5kIHVubG9ja2luZyB0aGUgdW5jb3JlJ3MNCj4gPiA+IHNwaW5sb2NrLsKgIEluIHRoZXNlIGZ1
+bmN0aW9ucywgd2UgaGF2ZSBhIGNvbmRpdGlvbiBjaGVjayBhbmQgb25seQ0KPiA+ID4gYWN0dWFs
+bHkgdHJ5IHRvIGxvY2svdW5sb2NrIHRoZSBzcGlubG9jayB3aGVuIEk5MTUgaXMgZGVmaW5lZCwN
+Cj4gPiA+IGFuZA0KPiA+ID4gdGh1cyB1bmNvcmUgaXMgYXZhaWxhYmxlLg0KPiA+ID4gDQo+ID4g
+PiBUaGlzIGtlZXBzIHRoZSBpZmRlZnMgY29udGFpbmVkIGluIHRoZXNlIG5ldyBmdW5jdGlvbnMg
+YW5kIGFsbA0KPiA+ID4gc3VjaA0KPiA+ID4gbG9naWMgaW5zaWRlIHRoZSBkaXNwbGF5IGNvZGUu
+DQo+ID4gPiANCj4gPiA+IENjOiBUdnJ0a28gVXJzdWxpbiA8dHZydG8udXJzdWxpbkBpbnRlbC5j
+b20+DQo+ID4gPiBDYzogSmFuaSBOaWt1bGEgPGphbmkubmlrdWxhQGludGVsLmNvbT4NCj4gPiA+
+IENjOiBWaWxsZSBTeXJqYWxhIDx2aWxsZS5zeXJqYWxhQGxpbnV4LmludGVsLmNvbT4NCj4gPiA+
+IENjOiBSb2RyaWdvIFZpdmkgPHJvZHJpZ28udml2aUBpbnRlbC5jb20+DQo+ID4gPiBTaWduZWQt
+b2ZmLWJ5OiBMdWNhIENvZWxobyA8bHVjaWFuby5jb2VsaG9AaW50ZWwuY29tPg0KPiA+ID4gLS0t
+DQo+ID4gPiANCj4gPiA+IA0KPiA+ID4gSW4gdjI6DQo+ID4gPiANCj4gPiA+IMKgwqAgKiBSZW5h
+bWVkIHVuY29yZV9zcGluXyooKSB0byBpbnRlbF9zcGluXyooKQ0KPiA+ID4gwqDCoCAqIENvcnJl
+Y3RlZCB0aGUgb3JkZXI6IHNhdmUsIGxvY2ssIHVubG9jaywgcmVzdG9yZQ0KPiA+ID4gDQo+ID4g
+PiBJbiB2MzoNCj4gPiA+IA0KPiA+ID4gwqDCoCAqIFVuZGlkIHRoZSBjaGFuZ2UgdG8gcGFzcyBk
+cm1faTkxNV9wcml2YXRlIGluc3RlYWQgb2YgdGhlDQo+ID4gPiBsb2NrDQo+ID4gPiDCoMKgwqDC
+oCBpdHNlbGYsIHNpbmNlIHdlIHdvdWxkIGhhdmUgdG8gaW5jbHVkZSBpOTE1X2Rydi5oIGFuZCB0
+aGF0DQo+ID4gPiBwdWxscw0KPiA+ID4gwqDCoMKgwqAgaW4gYSB0cnVja2xvYWQgb2Ygb3RoZXIg
+aW5jbHVkZXMuDQo+ID4gPiANCj4gPiA+IEluIHY0Og0KPiA+ID4gDQo+ID4gPiDCoMKgICogQWZ0
+ZXIgYSBicmllZiBhdHRlbXB0IHRvIHJlcGxhY2UgdGhpcyB3aXRoIGEgZGlmZmVyZW50DQo+ID4g
+PiBwYXRjaCwNCj4gPiA+IMKgwqDCoMKgIHdlJ3JlIGJhY2sgdG8gdGhpcyBvbmU7DQo+ID4gPiDC
+oMKgICogUGFzcyBkcm1faTE5NV9wcml2YXRlIGFnYWluLCBhbmQgbW92ZSB0aGUgZnVuY3Rpb25z
+IHRvDQo+ID4gPiDCoMKgwqDCoCBpbnRlbF92YmxhbmsuYywgc28gd2UgZG9uJ3QgbmVlZCB0byBp
+bmNsdWRlIGk5MTVfZHJ2LmggaW4gYQ0KPiA+ID4gwqDCoMKgwqAgaGVhZGVyIGZpbGUgYW5kIGl0
+J3MgYWxyZWFkeSBpbmNsdWRlZCBpbiBpbnRlbF92YmxhbmsuYzsNCj4gPiA+IA0KPiA+ID4gSW4g
+djU6DQo+ID4gPiANCj4gPiA+IMKgwqAgKiBSZW1vdmUgc3RyYXkgaW5jbHVkZSBpbiBpbnRlbF9k
+aXNwbGF5Lmg7DQo+ID4gPiDCoMKgICogUmVtb3ZlIHVubmVjZXNzYXJ5IGlubGluZSBtb2RpZmll
+cnMgaW4gdGhlIG5ldyBmdW5jdGlvbnMuDQo+ID4gPiANCj4gPiA+IEluIHY2Og0KPiA+ID4gDQo+
+ID4gPiDCoMKgICogSnVzdCByZW1vdmVkIHRoZSB1bWxhdXRzIGZyb20gVmlsbGUncyBuYW1lLCBi
+ZWNhdXNlDQo+ID4gPiBwYXRjaHdvcmsNCj4gPiA+IMKgwqDCoMKgIGRpZG4ndCBjYXRjaCBteSBw
+YXRjaCBhbmQgSSBzdXNwZWN0IGl0IHdhcyBzb21lIFVURi04DQo+ID4gPiBjb25mdXNpb24uDQo+
+ID4gPiANCj4gPiA+IEluIHY3Og0KPiA+ID4gDQo+ID4gPiDCoMKgICogQWRkIF9fYWNxdWlyZXMo
+KS9fX3JlbGVhc2VzKCkgYW5ub3RhdGlvbiB0byByZXNvbHZlIHNwYXJzZQ0KPiA+ID4gwqDCoMKg
+wqAgd2FybmluZ3MuDQo+ID4gPiANCj4gPiA+IMKgZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxh
+eS9pbnRlbF92YmxhbmsuYyB8IDUxDQo+ID4gPiArKysrKysrKysrKysrKysrKy0tDQo+ID4gPiAt
+LQ0KPiA+ID4gwqAxIGZpbGUgY2hhbmdlZCwgNDEgaW5zZXJ0aW9ucygrKSwgMTAgZGVsZXRpb25z
+KC0pDQo+ID4gPiANCj4gPiA+IGRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNw
+bGF5L2ludGVsX3ZibGFuay5jDQo+ID4gPiBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkv
+aW50ZWxfdmJsYW5rLmMNCj4gPiA+IGluZGV4IDJjZWMyYWJmOTc0Ni4uZmUyNTZiZjdiNDg1IDEw
+MDY0NA0KPiA+ID4gLS0tIGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF92Ymxh
+bmsuYw0KPiA+ID4gKysrIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF92Ymxh
+bmsuYw0KPiA+ID4gQEAgLTI2NSw2ICsyNjUsMzIgQEAgaW50IGludGVsX2NydGNfc2NhbmxpbmVf
+dG9faHcoc3RydWN0DQo+ID4gPiBpbnRlbF9jcnRjDQo+ID4gPiAqY3J0YywgaW50IHNjYW5saW5l
+KQ0KPiA+ID4gwqDCoMKgwqDCoMKgwqDCoHJldHVybiAoc2NhbmxpbmUgKyB2dG90YWwgLSBjcnRj
+LT5zY2FubGluZV9vZmZzZXQpICUNCj4gPiA+IHZ0b3RhbDsNCj4gPiA+IMKgfQ0KPiA+ID4gwqAN
+Cj4gPiA+ICsvKg0KPiA+ID4gKyAqIFRoZSB1bmNvcmUgdmVyc2lvbiBvZiB0aGUgc3BpbiBsb2Nr
+IGZ1bmN0aW9ucyBpcyB1c2VkIHRvDQo+ID4gPiBkZWNpZGUNCj4gPiA+ICsgKiB3aGV0aGVyIHdl
+IG5lZWQgdG8gbG9jayB0aGUgdW5jb3JlIGxvY2sgb3Igbm90LsKgIFRoaXMgaXMgb25seQ0KPiA+
+ID4gKyAqIG5lZWRlZCBpbiBpOTE1LCBub3QgaW4gWGUuDQo+ID4gPiArICoNCj4gPiA+ICsgKiBU
+aGlzIGxvY2sgaW4gaTkxNSBpcyBuZWVkZWQgYmVjYXVzZSBzb21lIG9sZCBwbGF0Zm9ybXMgKGF0
+DQo+ID4gPiBsZWFzdA0KPiA+ID4gKyAqIElWQiBhbmQgcG9zc2libHkgSFNXIGFzIHdlbGwpLCB3
+aGljaCBhcmUgbm90IHN1cHBvcnRlZCBpbiBYZSwNCj4gPiA+IG5lZWQNCj4gPiA+ICsgKiBhbGwg
+cmVnaXN0ZXIgYWNjZXNzZXMgdG8gdGhlIHNhbWUgY2FjaGVsaW5lIHRvIGJlIHNlcmlhbGl6ZWQs
+DQo+ID4gPiArICogb3RoZXJ3aXNlIHRoZXkgbWF5IGhhbmcuDQo+ID4gPiArICovDQo+ID4gPiAr
+c3RhdGljIHZvaWQgaW50ZWxfdmJsYW5rX3NlY3Rpb25fZW50ZXIoc3RydWN0IGRybV9pOTE1X3By
+aXZhdGUNCj4gPiA+ICppOTE1KQ0KPiA+ID4gK8KgwqDCoMKgwqDCoMKgX19hY3F1aXJlcyhpOTE1
+LT51bmNvcmUubG9jaykNCj4gPiA+ICt7DQo+ID4gPiArI2lmZGVmIEk5MTUNCj4gPiA+ICvCoMKg
+wqDCoMKgwqDCoHNwaW5fbG9jaygmaTkxNS0+dW5jb3JlLmxvY2spOw0KPiA+ID4gKyNlbmRpZg0K
+PiA+ID4gK30NCj4gPiA+ICsNCj4gPiA+ICtzdGF0aWMgdm9pZCBpbnRlbF92Ymxhbmtfc2VjdGlv
+bl9leGl0KHN0cnVjdCBkcm1faTkxNV9wcml2YXRlDQo+ID4gPiAqaTkxNSkNCj4gPiA+ICvCoMKg
+wqDCoMKgwqDCoF9fcmVsZWFzZXMoaTkxNS0+dW5jb3JlLmxvY2spDQo+ID4gPiArew0KPiA+ID4g
+KyNpZmRlZiBJOTE1DQo+ID4gPiArwqDCoMKgwqDCoMKgwqBzcGluX3VubG9jaygmaTkxNS0+dW5j
+b3JlLmxvY2spOw0KPiA+ID4gKyNlbmRpZg0KPiA+ID4gK30NCj4gPiA+ICsNCj4gPiANCj4gPiBX
+aHkgZG9uJ3QgeW91IG1vdmUgdGhlc2UgaW50byBncHUvZHJtL2k5MTUvaW50ZWxfdW5jb3JlLmMv
+aD8gVGhlbg0KPiA+IHlvdQ0KPiA+IGNvdWxkIGhhdmUgZW1wdHkgZGVmaW5lcy9mdW5jdGlvbnMg
+Zm9yIHRoZXNlIGluIGdwdS9kcm0veGUvY29tcGF0LQ0KPiA+IGk5MTUtDQo+ID4gaGVhZGVycy9p
+bnRlbF91bmNvcmUuaC4gVGhhdCB3YXkgeW91IGRvbid0IG5lZWQgdGhlc2UgaWZkZWZzLiBJZg0K
+PiA+IHlvdQ0KPiA+IG1vdmUgdGhlbSBhcyBJIHByb3Bvc2VkIHlvdSBzaG91bGQgcmVuYW1lIHRo
+ZW0gYXMgd2VsbC4NCj4gDQo+IFdlIGFscmVhZHkgd2VudCBmb3J0aCBhbmQgYmFjayB3aXRoIHRo
+aXMgZm9yIHNvbWUgdGltZS7CoCBJbiB0aGUgZW5kDQo+IHdlDQo+IGFncmVlZCB0aGF0IHRoaXMg
+aXMgbm90IHJlbGF0ZWQgdG8gdW5jb3JlIGRpcmVjdGx5LCBzbyB3ZSBkZWNpZGVkIHRvDQo+IGtl
+ZXAgaXQgaGVyZS4NCj4gDQo+IFdlIGFsc28gYWdyZWVkIHRoYXQgSSdsbCBtYWtlIGEgZm9sbG93
+LXVwIHBhdGNoIHdoZXJlIGl0IHdvbid0IGJlDQo+IG9ubHkNCj4gdGhlIGxvY2sgdGhhdCB3aWxs
+IGJlIGhhbmRsZWQgYnkgdGhpcywgYnV0IGFsc28gZW5hYmxpbmcvZGlzYWJsaW5nDQo+IGludGVy
+cnVwdHMsIHdoaWNoIGRvZXNuJ3QgaGF2ZSBhbnl0aGluZyB0byBkbyB3aXRoIHVuY29yZSwgdGh1
+cyB0aGUNCj4gbmFtZSBvZiB0aGUgZnVuY3Rpb24uDQoNCk9rLCB0aGFuayB5b3UgZm9yIHRoZSBj
+bGFyaWZpY2F0aW9uOg0KDQpSZXZpZXdlZC1ieTogSm91bmkgSMO2Z2FuZGVyIDxqb3VuaS5ob2dh
+bmRlckBpbnRlbC5jb20+DQoNCj4gDQo+IA0KPiAtLQ0KPiBDaGVlcnMsDQo+IEx1Y2EuDQoNCg==
