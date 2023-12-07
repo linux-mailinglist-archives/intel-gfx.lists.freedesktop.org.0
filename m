@@ -1,58 +1,53 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7ABD580866E
-	for <lists+intel-gfx@lfdr.de>; Thu,  7 Dec 2023 12:12:16 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7A990808683
+	for <lists+intel-gfx@lfdr.de>; Thu,  7 Dec 2023 12:16:30 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 01A3610E86C;
-	Thu,  7 Dec 2023 11:12:15 +0000 (UTC)
-X-Original-To: Intel-gfx@lists.freedesktop.org
-Delivered-To: Intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.151])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AA5E110E86C;
- Thu,  7 Dec 2023 11:12:13 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E81E210E877;
+	Thu,  7 Dec 2023 11:16:28 +0000 (UTC)
+X-Original-To: intel-gfx@lists.freedesktop.org
+Delivered-To: intel-gfx@lists.freedesktop.org
+Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4A61510E877
+ for <intel-gfx@lists.freedesktop.org>; Thu,  7 Dec 2023 11:16:27 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1701947533; x=1733483533;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=lIT4oMEOkl7XTgBW9gIfBCKxz6NZ0zwHN20qrxQ/eO0=;
- b=ixMrzpyYEwwMaz3FdrKVahVXDLhZ4NlenE/JZJi6pnX5HOhb+ew1EMDH
- OoO0EBxKLQT2p4qfG80e3abZklRTyYbGbPnIn2uf8LlTr4ipKz4PZz3xt
- HVjOK2rVD/RJ34bbli9l5G/pIlSyG6VQA3e7pVn1vRFaMaOfqDe/ycLTV
- +Xo6VDEiwyU1NIIih8IfyOHEFWVTL3kYEG3cBx1t8KLB+/G0QGwVytOMy
- /2P4ejTn9JwDmr9unu2WzxNfNaoBkiXihZx62dP0k58PXjtpT43dQzo/X
- n7NHNq6LQAta3bw12IcJqQ8PtQouy07klbxQbL9ruAf7Yid6tjiYKBF5G A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10916"; a="374380685"
-X-IronPort-AV: E=Sophos;i="6.04,256,1695711600"; d="scan'208";a="374380685"
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
- by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Dec 2023 03:12:13 -0800
+ t=1701947787; x=1733483787;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version;
+ bh=PobdVpxEbJK0YTxp1NXDhxIWz0OgagrJ4vzva4Jogxg=;
+ b=CxaeGCoBxFhDo142uO2RGng5jR8fOQuqe0IFOm4uizO3jAskORtQvyi6
+ 4G9eZggssXVRxOxVOE/M8YgzTLNwXRrKGTZ2CoQILexZxZwkgMLr/EeWC
+ zo37aV2n1EGS0Ov48+Vi2zS67dharsdEIEvUdvu8POqsCCOmCRecklzTb
+ Ua8vO8mTmK43HofADmmQMmyIelM97zq5tn5UjJKZU8nR/2071r9FyQMpo
+ 4o5D6U+N/ErUWi0lifxNlswoXWz03tqiCb3iBGT1QirpbhmCTG3jrhUHZ
+ 9sQUv0L5IiWL1eRhKQ5gWJNE7M2Wn+b0nIaVc8zIex2GjG59a7bMBjIcj g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10916"; a="384619603"
+X-IronPort-AV: E=Sophos;i="6.04,256,1695711600"; d="scan'208";a="384619603"
+Received: from orsmga005.jf.intel.com ([10.7.209.41])
+ by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 Dec 2023 03:16:26 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10916"; a="805982089"
-X-IronPort-AV: E=Sophos;i="6.04,256,1695711600"; d="scan'208";a="805982089"
-Received: from jbuller-mobl.ger.corp.intel.com (HELO [10.213.214.207])
- ([10.213.214.207])
- by orsmga001-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Dec 2023 03:12:11 -0800
-Message-ID: <d07d1b28-a04c-4728-8600-b5cbd706169b@linux.intel.com>
-Date: Thu, 7 Dec 2023 11:12:11 +0000
+X-IronPort-AV: E=McAfee;i="6600,9927,10916"; a="944996207"
+X-IronPort-AV: E=Sophos;i="6.04,256,1695711600"; d="scan'208";a="944996207"
+Received: from mrehana-mobl1.ger.corp.intel.com (HELO localhost)
+ ([10.252.62.169])
+ by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 Dec 2023 03:16:24 -0800
+From: Jani Nikula <jani.nikula@intel.com>
+To: Gustavo Sousa <gustavo.sousa@intel.com>, intel-gfx@lists.freedesktop.org
+Subject: Re: [Intel-gfx] [PATCH] drm/i915/rpm: add rpm_to_i915() helper
+ around container_of()
+In-Reply-To: <170186778710.27709.8587555962086417246@gjsousa-mobl2>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20231205121545.2338665-1-jani.nikula@intel.com>
+ <170186778710.27709.8587555962086417246@gjsousa-mobl2>
+Date: Thu, 07 Dec 2023 13:16:21 +0200
+Message-ID: <87zfymz2ii.fsf@intel.com>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/2] drm/i915: Use internal class when counting engine
- resets
-Content-Language: en-US
-To: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>,
- Intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
-References: <20231201122109.729006-1-tvrtko.ursulin@linux.intel.com>
- <20231201122109.729006-2-tvrtko.ursulin@linux.intel.com>
- <f97b550a-b61b-4964-960c-2671fc6e44cf@intel.com>
-From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-Organization: Intel Corporation UK Plc
-In-Reply-To: <f97b550a-b61b-4964-960c-2671fc6e44cf@intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -65,137 +60,37 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Alan Previn Teres Alexis <alan.previn.teres.alexis@intel.com>,
- Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+Cc: Daniel Vetter <daniel.vetter@ffwll.ch>, Dave Airlie <airlied@redhat.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+On Wed, 06 Dec 2023, Gustavo Sousa <gustavo.sousa@intel.com> wrote:
+> Quoting Jani Nikula (2023-12-05 09:15:45-03:00)
+>>Reduce the duplication.
+>
+> By the way, is it too ambitious to dream of a to_i915() using generics?
 
-On 06/12/2023 00:52, Daniele Ceraolo Spurio wrote:
-> 
-> 
-> On 12/1/2023 4:21 AM, Tvrtko Ursulin wrote:
->> From: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
->>
->> Commit 503579448db9 ("drm/i915/gsc: Mark internal GSC engine with 
->> reserved uabi class")
->> made the GSC0 engine not have a valid uabi class and so broke the engine
->> reset counting, which in turn was made class based in cb823ed9915b 
->> ("drm/i915/gt: Use intel_gt as the primary object for handling resets").
->>
->> Despite the title and commit text of the latter is not mentioning it (and
->> has left the storage array incorrectly sized), tracking by class, despite
->> it adding aliasing in hypthotetical multi-tile systems, is handy for
->> virtual engines which for instance do not have a valid engine->id.
->>
->> Therefore we keep that but just change it to use the internal class which
->> is always valid. We also add a helper to increment the count, which
->> aligns with the existing getter.
->>
->> What was broken without this fix were out of bounds reads every time a
->> reset would happen on the GSC0 engine, or during selftests when storing
->> and cross-checking the counts in igt_live_test_begin and
->> igt_live_test_end.
->>
->> Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
->> Fixes: 503579448db9 ("drm/i915/gsc: Mark internal GSC engine with 
->> reserved uabi class")
->> Reported-by: Alan Previn Teres Alexis 
->> <alan.previn.teres.alexis@intel.com>
->> Cc: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
-> 
-> Reviewed-by: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
+I'm not fundamentally opposed, but there are a few open questions here.
 
-Thanks! Lets see if 1/2 gets some attention so I don't have to split out 
-2/2 just for CI.
+_Generic() has been slowly cropping up since commit e8c07082a810
+("Kbuild: move to -std=gnu11"). Well, maybe even before that in some
+cases. But there are only 30 or so users. I'm kind of uneasy about going
+"all in" with it in this fashion before there's more general approval
+that it's fine. Dave, Sima, thoughts?
 
-Regards,
+The other thing is that with i915 and xe display integration, we're not
+sure yet where it'll go. It's possible the display code will cease to
+use i915 and switch to some other device struct. See [1] for some draft
+ideas. At least for display code, I'd prefer not embarking on this kind
+of changes yet so we don't have to churn many times in a row.
 
-Tvrtko
 
-> 
-> Daniele
-> 
->> ---
->>   drivers/gpu/drm/i915/gt/intel_reset.c             |  2 +-
->>   drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c |  5 +++--
->>   drivers/gpu/drm/i915/i915_gpu_error.h             | 12 ++++++++++--
->>   3 files changed, 14 insertions(+), 5 deletions(-)
->>
->> diff --git a/drivers/gpu/drm/i915/gt/intel_reset.c 
->> b/drivers/gpu/drm/i915/gt/intel_reset.c
->> index d5ed904f355d..6801f8b95c53 100644
->> --- a/drivers/gpu/drm/i915/gt/intel_reset.c
->> +++ b/drivers/gpu/drm/i915/gt/intel_reset.c
->> @@ -1293,7 +1293,7 @@ int __intel_engine_reset_bh(struct 
->> intel_engine_cs *engine, const char *msg)
->>       if (msg)
->>           drm_notice(&engine->i915->drm,
->>                  "Resetting %s for %s\n", engine->name, msg);
->> -    
->> atomic_inc(&engine->i915->gpu_error.reset_engine_count[engine->uabi_class]);
->> +    i915_increase_reset_engine_count(&engine->i915->gpu_error, engine);
->>       ret = intel_gt_reset_engine(engine);
->>       if (ret) {
->> diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c 
->> b/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
->> index 04f8377fd7a3..58ea285c51d4 100644
->> --- a/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
->> +++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
->> @@ -5003,7 +5003,8 @@ static void capture_error_state(struct intel_guc 
->> *guc,
->>               if (match) {
->>                   intel_engine_set_hung_context(e, ce);
->>                   engine_mask |= e->mask;
->> -                
->> atomic_inc(&i915->gpu_error.reset_engine_count[e->uabi_class]);
->> +                i915_increase_reset_engine_count(&i915->gpu_error,
->> +                                 e);
->>               }
->>           }
->> @@ -5015,7 +5016,7 @@ static void capture_error_state(struct intel_guc 
->> *guc,
->>       } else {
->>           intel_engine_set_hung_context(ce->engine, ce);
->>           engine_mask = ce->engine->mask;
->> -        
->> atomic_inc(&i915->gpu_error.reset_engine_count[ce->engine->uabi_class]);
->> +        i915_increase_reset_engine_count(&i915->gpu_error, ce->engine);
->>       }
->>       with_intel_runtime_pm(&i915->runtime_pm, wakeref)
->> diff --git a/drivers/gpu/drm/i915/i915_gpu_error.h 
->> b/drivers/gpu/drm/i915/i915_gpu_error.h
->> index fa886620d3f8..7c255bb1c319 100644
->> --- a/drivers/gpu/drm/i915/i915_gpu_error.h
->> +++ b/drivers/gpu/drm/i915/i915_gpu_error.h
->> @@ -17,6 +17,7 @@
->>   #include "display/intel_display_device.h"
->>   #include "display/intel_display_params.h"
->>   #include "gt/intel_engine.h"
->> +#include "gt/intel_engine_types.h"
->>   #include "gt/intel_gt_types.h"
->>   #include "gt/uc/intel_uc_fw.h"
->> @@ -234,7 +235,7 @@ struct i915_gpu_error {
->>       atomic_t reset_count;
->>       /** Number of times an engine has been reset */
->> -    atomic_t reset_engine_count[I915_NUM_ENGINES];
->> +    atomic_t reset_engine_count[MAX_ENGINE_CLASS];
->>   };
->>   struct drm_i915_error_state_buf {
->> @@ -257,7 +258,14 @@ static inline u32 i915_reset_count(struct 
->> i915_gpu_error *error)
->>   static inline u32 i915_reset_engine_count(struct i915_gpu_error *error,
->>                         const struct intel_engine_cs *engine)
->>   {
->> -    return atomic_read(&error->reset_engine_count[engine->uabi_class]);
->> +    return atomic_read(&error->reset_engine_count[engine->class]);
->> +}
->> +
->> +static inline void
->> +i915_increase_reset_engine_count(struct i915_gpu_error *error,
->> +                 const struct intel_engine_cs *engine)
->> +{
->> +    atomic_inc(&error->reset_engine_count[engine->class]);
->>   }
->>   #define CORE_DUMP_FLAG_NONE           0x0
-> 
+BR,
+Jani.
+
+
+[1] https://patchwork.freedesktop.org/series/124286/
+
+
+-- 
+Jani Nikula, Intel
