@@ -1,30 +1,30 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id CEAC480AEB8
-	for <lists+intel-gfx@lfdr.de>; Fri,  8 Dec 2023 22:18:06 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 645C180AEB9
+	for <lists+intel-gfx@lfdr.de>; Fri,  8 Dec 2023 22:18:09 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7CA0610EB32;
-	Fri,  8 Dec 2023 21:18:03 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4E1F010EB36;
+	Fri,  8 Dec 2023 21:18:05 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
  [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id A27B810EB2D;
- Fri,  8 Dec 2023 21:18:01 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTP id 2369510EB34;
+ Fri,  8 Dec 2023 21:18:04 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 9B8FBAADDA;
- Fri,  8 Dec 2023 21:18:01 +0000 (UTC)
+ by emeril.freedesktop.org (Postfix) with ESMTP id 204B9ACC2A;
+ Fri,  8 Dec 2023 21:18:04 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=97_Fi=2ECI=2ECHECKPATCH=3A_warning_for_drm/i915/gem=3A_Atom?=
- =?utf-8?q?ically_invalidate_userptr_on_mmu-notifier_=28rev8=29?=
+Subject: =?utf-8?q?=E2=9C=97_Fi=2ECI=2ESPARSE=3A_warning_for_drm/i915/gem=3A_Atomical?=
+ =?utf-8?q?ly_invalidate_userptr_on_mmu-notifier_=28rev8=29?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Jonathan Cavitt" <jonathan.cavitt@intel.com>
-Date: Fri, 08 Dec 2023 21:18:01 -0000
-Message-ID: <170207028160.7325.12803017450779613545@emeril.freedesktop.org>
+Date: Fri, 08 Dec 2023 21:18:04 -0000
+Message-ID: <170207028413.7324.3763292072948073760@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
 References: <20231128162505.3493942-1-jonathan.cavitt@intel.com>
 In-Reply-To: <20231128162505.3493942-1-jonathan.cavitt@intel.com>
@@ -53,12 +53,8 @@ State : warning
 
 == Summary ==
 
-Error: dim checkpatch failed
-c3296c836ffd drm/i915/gem: Atomically invalidate userptr on mmu-notifier
--:117: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
-#117: 
-deleted file mode 100644
-
-total: 0 errors, 1 warnings, 0 checks, 97 lines checked
+Error: dim sparse failed
+Sparse version: v0.6.2
+Fast mode used, each commit won't be checked separately.
 
 
