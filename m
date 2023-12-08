@@ -2,32 +2,53 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7239D80AB92
-	for <lists+intel-gfx@lfdr.de>; Fri,  8 Dec 2023 19:04:23 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 548D280AC03
+	for <lists+intel-gfx@lfdr.de>; Fri,  8 Dec 2023 19:26:14 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DEB6310EAEC;
-	Fri,  8 Dec 2023 18:04:21 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0424E10EAF3;
+	Fri,  8 Dec 2023 18:26:10 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id EB5CD10EAE7;
- Fri,  8 Dec 2023 18:04:19 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id E45A4AA3D8;
- Fri,  8 Dec 2023 18:04:19 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============5450289478344209545=="
+Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.115])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 329B910EAF3;
+ Fri,  8 Dec 2023 18:26:08 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1702059968; x=1733595968;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=jqFHB0k8ZhUAwFWbMY6IvDe2wVUzWSwqt2KAC2vmses=;
+ b=f36xyaQZoJ7oupQYwwXo5jUAG/Xq9XzWHpBdb7TNPlKww3gIcophEjQJ
+ 8T6bXep06Wl3dO8W0IhMHAm51MROa2iVSdo9t/rRZGJxsOgmw7QT/1IqK
+ SE+JVEgGhNvJ4lhRbLQKep/1Zu907pdJzDabDuEIB1ZmpaSWJM5mqr5o2
+ nJU2NFQL5TMJ5xZKMLhRvhshuby3b+gb/Y698HAhd72Tp6IiAe4hfSw2V
+ kWORTf9xj6wZuWU9bOq8+X87XZRz8RB2X9Xjz788oiJ2SUVNdSLVl2y+K
+ GHapl7ikyf6064gjYz5aqjTpk3OCNZayrSf1uvozhc/fKkNz0bz8/0O4r Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10918"; a="394186087"
+X-IronPort-AV: E=Sophos;i="6.04,261,1695711600"; d="scan'208";a="394186087"
+Received: from orsmga007.jf.intel.com ([10.7.209.58])
+ by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 Dec 2023 10:26:07 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10918"; a="765564374"
+X-IronPort-AV: E=Sophos;i="6.04,261,1695711600"; d="scan'208";a="765564374"
+Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.74])
+ by orsmga007.jf.intel.com with SMTP; 08 Dec 2023 10:26:04 -0800
+Received: by stinkbox (sSMTP sendmail emulation);
+ Fri, 08 Dec 2023 20:26:03 +0200
+Date: Fri, 8 Dec 2023 20:26:03 +0200
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: Jani Nikula <jani.nikula@intel.com>
+Subject: Re: [Intel-gfx] [PATCH] drm/edid: also call add modes in EDID
+ connector update fallback
+Message-ID: <ZXNfu6zcBy3JvbGd@intel.com>
+References: <20231207093821.2654267-1-jani.nikula@intel.com>
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=97_Fi=2ECI=2EBAT=3A_failure_for_drm/i915/gem=3A_Atomically_?=
- =?utf-8?q?invalidate_userptr_on_mmu-notifier_=28rev7=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Jonathan Cavitt" <jonathan.cavitt@intel.com>
-Date: Fri, 08 Dec 2023 18:04:19 -0000
-Message-ID: <170205865993.7327.2693484259064951920@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20231128162505.3493942-1-jonathan.cavitt@intel.com>
-In-Reply-To: <20231128162505.3493942-1-jonathan.cavitt@intel.com>
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20231207093821.2654267-1-jani.nikula@intel.com>
+X-Patchwork-Hint: comment
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,206 +61,45 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
+Cc: bbaa <bbaa@bbaa.fun>, intel-gfx@lists.freedesktop.org,
+ stable@vger.kernel.org, dri-devel@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============5450289478344209545==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+On Thu, Dec 07, 2023 at 11:38:21AM +0200, Jani Nikula wrote:
+> When the separate add modes call was added back in commit c533b5167c7e
+> ("drm/edid: add separate drm_edid_connector_add_modes()"), it failed to
+> address drm_edid_override_connector_update(). Also call add modes there.
+> 
+> Reported-by: bbaa <bbaa@bbaa.fun>
+> Closes: https://lore.kernel.org/r/930E9B4C7D91FDFF+29b34d89-8658-4910-966a-c772f320ea03@bbaa.fun
+> Fixes: c533b5167c7e ("drm/edid: add separate drm_edid_connector_add_modes()")
+> Cc: <stable@vger.kernel.org> # v6.3+
+> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
 
-== Series Details ==
+Reviewed-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-Series: drm/i915/gem: Atomically invalidate userptr on mmu-notifier (rev7)
-URL   : https://patchwork.freedesktop.org/series/126998/
-State : failure
+> ---
+>  drivers/gpu/drm/drm_edid.c | 3 ++-
+>  1 file changed, 2 insertions(+), 1 deletion(-)
+> 
+> diff --git a/drivers/gpu/drm/drm_edid.c b/drivers/gpu/drm/drm_edid.c
+> index cb4031d5dcbb..69c68804023f 100644
+> --- a/drivers/gpu/drm/drm_edid.c
+> +++ b/drivers/gpu/drm/drm_edid.c
+> @@ -2311,7 +2311,8 @@ int drm_edid_override_connector_update(struct drm_connector *connector)
+>  
+>  	override = drm_edid_override_get(connector);
+>  	if (override) {
+> -		num_modes = drm_edid_connector_update(connector, override);
+> +		if (drm_edid_connector_update(connector, override) == 0)
+> +			num_modes = drm_edid_connector_add_modes(connector);
+>  
+>  		drm_edid_free(override);
+>  
+> -- 
+> 2.39.2
 
-== Summary ==
-
-CI Bug Log - changes from CI_DRM_14000 -> Patchwork_126998v7
-====================================================
-
-Summary
--------
-
-  **FAILURE**
-
-  Serious unknown changes coming with Patchwork_126998v7 absolutely need to be
-  verified manually.
-  
-  If you think the reported changes have nothing to do with the changes
-  introduced in Patchwork_126998v7, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them
-  to document this new failure mode, which will reduce false positives in CI.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_126998v7/index.html
-
-Participating hosts (35 -> 33)
-------------------------------
-
-  Missing    (2): bat-dg2-9 fi-snb-2520m 
-
-Possible new issues
--------------------
-
-  Here are the unknown changes that may have been introduced in Patchwork_126998v7:
-
-### IGT changes ###
-
-#### Possible regressions ####
-
-  * igt@kms_flip@basic-flip-vs-wf_vblank@b-dp6:
-    - bat-adlp-11:        [PASS][1] -> [DMESG-WARN][2]
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14000/bat-adlp-11/igt@kms_flip@basic-flip-vs-wf_vblank@b-dp6.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_126998v7/bat-adlp-11/igt@kms_flip@basic-flip-vs-wf_vblank@b-dp6.html
-
-  * igt@kms_pipe_crc_basic@compare-crc-sanitycheck-nv12@pipe-c-dp-7:
-    - bat-adlp-11:        NOTRUN -> [DMESG-FAIL][3]
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_126998v7/bat-adlp-11/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-nv12@pipe-c-dp-7.html
-
-  * igt@kms_pipe_crc_basic@compare-crc-sanitycheck-nv12@pipe-d-dp-7:
-    - bat-adlp-11:        NOTRUN -> [FAIL][4]
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_126998v7/bat-adlp-11/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-nv12@pipe-d-dp-7.html
-
-  
-Known issues
-------------
-
-  Here are the changes found in Patchwork_126998v7 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@kms_flip@basic-flip-vs-wf_vblank@c-dp6:
-    - bat-adlp-11:        [PASS][5] -> [FAIL][6] ([i915#6121]) +1 other test fail
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14000/bat-adlp-11/igt@kms_flip@basic-flip-vs-wf_vblank@c-dp6.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_126998v7/bat-adlp-11/igt@kms_flip@basic-flip-vs-wf_vblank@c-dp6.html
-
-  * igt@kms_pipe_crc_basic@read-crc@pipe-d-dp-5:
-    - bat-adlp-11:        [PASS][7] -> [ABORT][8] ([i915#8668])
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14000/bat-adlp-11/igt@kms_pipe_crc_basic@read-crc@pipe-d-dp-5.html
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_126998v7/bat-adlp-11/igt@kms_pipe_crc_basic@read-crc@pipe-d-dp-5.html
-
-  
-  [i915#6121]: https://gitlab.freedesktop.org/drm/intel/issues/6121
-  [i915#8668]: https://gitlab.freedesktop.org/drm/intel/issues/8668
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_14000 -> Patchwork_126998v7
-
-  CI-20190529: 20190529
-  CI_DRM_14000: 49f3163775ad99ba15de59607435e367328329fa @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_7629: 1dd73105a01e092da7954f9552ec0c67ed8a9f4e @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_126998v7: 49f3163775ad99ba15de59607435e367328329fa @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-### Linux commits
-
-ca02a6b3ed11 drm/i915/gem: Atomically invalidate userptr on mmu-notifier
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_126998v7/index.html
-
---===============5450289478344209545==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915/gem: Atomically invalidate userptr on mmu-notifier (rev7)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/126998/">https://patchwork.freedesktop.org/series/126998/</a></td></tr>
-<tr><td><b>State:</b></td><td>failure</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_126998v7/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_126998v7/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_14000 -&gt; Patchwork_126998v7</h1>
-<h2>Summary</h2>
-<p><strong>FAILURE</strong></p>
-<p>Serious unknown changes coming with Patchwork_126998v7 absolutely need to be<br />
-  verified manually.</p>
-<p>If you think the reported changes have nothing to do with the changes<br />
-  introduced in Patchwork_126998v7, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them<br />
-  to document this new failure mode, which will reduce false positives in CI.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_126998v7/index.html</p>
-<h2>Participating hosts (35 -&gt; 33)</h2>
-<p>Missing    (2): bat-dg2-9 fi-snb-2520m </p>
-<h2>Possible new issues</h2>
-<p>Here are the unknown changes that may have been introduced in Patchwork_126998v7:</p>
-<h3>IGT changes</h3>
-<h4>Possible regressions</h4>
-<ul>
-<li>
-<p>igt@kms_flip@basic-flip-vs-wf_vblank@b-dp6:</p>
-<ul>
-<li>bat-adlp-11:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14000/bat-adlp-11/igt@kms_flip@basic-flip-vs-wf_vblank@b-dp6.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_126998v7/bat-adlp-11/igt@kms_flip@basic-flip-vs-wf_vblank@b-dp6.html">DMESG-WARN</a></li>
-</ul>
-</li>
-<li>
-<p>igt@kms_pipe_crc_basic@compare-crc-sanitycheck-nv12@pipe-c-dp-7:</p>
-<ul>
-<li>bat-adlp-11:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_126998v7/bat-adlp-11/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-nv12@pipe-c-dp-7.html">DMESG-FAIL</a></li>
-</ul>
-</li>
-<li>
-<p>igt@kms_pipe_crc_basic@compare-crc-sanitycheck-nv12@pipe-d-dp-7:</p>
-<ul>
-<li>bat-adlp-11:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_126998v7/bat-adlp-11/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-nv12@pipe-d-dp-7.html">FAIL</a></li>
-</ul>
-</li>
-</ul>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_126998v7 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@kms_flip@basic-flip-vs-wf_vblank@c-dp6:</p>
-<ul>
-<li>bat-adlp-11:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14000/bat-adlp-11/igt@kms_flip@basic-flip-vs-wf_vblank@c-dp6.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_126998v7/bat-adlp-11/igt@kms_flip@basic-flip-vs-wf_vblank@c-dp6.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/6121">i915#6121</a>) +1 other test fail</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_pipe_crc_basic@read-crc@pipe-d-dp-5:</p>
-<ul>
-<li>bat-adlp-11:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14000/bat-adlp-11/igt@kms_pipe_crc_basic@read-crc@pipe-d-dp-5.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_126998v7/bat-adlp-11/igt@kms_pipe_crc_basic@read-crc@pipe-d-dp-5.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/8668">i915#8668</a>)</li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_14000 -&gt; Patchwork_126998v7</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_14000: 49f3163775ad99ba15de59607435e367328329fa @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_7629: 1dd73105a01e092da7954f9552ec0c67ed8a9f4e @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  Patchwork_126998v7: 49f3163775ad99ba15de59607435e367328329fa @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<h3>Linux commits</h3>
-<p>ca02a6b3ed11 drm/i915/gem: Atomically invalidate userptr on mmu-notifier</p>
-
-</body>
-</html>
-
---===============5450289478344209545==--
+-- 
+Ville Syrjälä
+Intel
