@@ -2,56 +2,51 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 32FA380A1D3
-	for <lists+intel-gfx@lfdr.de>; Fri,  8 Dec 2023 12:08:25 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id E278D80A206
+	for <lists+intel-gfx@lfdr.de>; Fri,  8 Dec 2023 12:20:23 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6188E10E982;
-	Fri,  8 Dec 2023 11:08:06 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5A6AC10EA5F;
+	Fri,  8 Dec 2023 11:20:22 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CB03110EA6F
- for <intel-gfx@lists.freedesktop.org>; Fri,  8 Dec 2023 11:07:57 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 66FE310EA5F
+ for <intel-gfx@lists.freedesktop.org>; Fri,  8 Dec 2023 11:20:20 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1702033683; x=1733569683;
- h=date:from:to:cc:subject:in-reply-to:message-id:
- references:mime-version;
- bh=xZP7WI47lzY3iCn5G85A0Zw8RucLSGR6LF0ZVfz29d0=;
- b=N7TC+9OJGfTNk5pCp/oXMwDoXkTng0WlI9gJQn0IXGe6OGrGfaJpiGz2
- RstyDALEV3opfKsm+hZKN/EZRE+A7rMxqrcFSYvtPfeR/Mso0Kf0jGXIY
- 3jjBPXIse9j0IPaT9gIZTLmukF8QopluPUp7hgMAm3hc2IZE8Oq9HOcZ2
- jGhqXuHzIbrlSXOLpW1BbaSiQ3nLCo8UT30RG2atvUiQy+Y1RZx8RHsBp
- S7WSsrbI/1LoxGdUBUYc5q7y2lAATS+CUC9McoaXHLki2BM9sqRnE74gw
- DXtQtGqIkNnvC5fEfFQ8Jku+IsPvEaVWuRR5ddddpI0RWntl1+cG8NcDB Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10917"; a="384794732"
-X-IronPort-AV: E=Sophos;i="6.04,260,1695711600"; d="scan'208";a="384794732"
-Received: from orsmga005.jf.intel.com ([10.7.209.41])
- by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Dec 2023 03:07:57 -0800
+ t=1702034421; x=1733570421;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=heLHhGdJb5ogsEZx38ya6Iu2SDWm1MIvcjqACQwmS0s=;
+ b=Ahkiwjnd08Um7Q17uXO6K7tc1YfjpLGx9zEF8KQzo/GSOpoxQ6fbbo0Z
+ jRPIZEJz7J7fL3eWWSIhNtOf8AlOSdvGRCA/7N3n7UQOjRhVTAr8YE76P
+ 7JNMW45p6rOIuYD5YGotj5pPYhEHkluCTmPQ7sUZroijaVosmpkQqGo8t
+ tVPSSgrG+LTpeQ8uVHyJn8zvxfBDbpM9leNA4erJM9BFNgcdHSpRC9Zre
+ FPrcpzXn3caHQpMk3avN/EkscTEcm2qBDrl9VfYam1P/0/INBvtymdWxU
+ ki5jQVVip2fDl5Yi4qVZGGl2IWnKrS7Ml+Jo7auO/sBtns1Yy7UcksX/f Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10917"; a="1472952"
+X-IronPort-AV: E=Sophos;i="6.04,260,1695711600"; 
+   d="scan'208";a="1472952"
+Received: from orsmga003.jf.intel.com ([10.7.209.27])
+ by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 Dec 2023 03:20:21 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10917"; a="945385103"
-X-IronPort-AV: E=Sophos;i="6.04,260,1695711600"; d="scan'208";a="945385103"
-Received: from eliteleevi.tm.intel.com ([10.237.54.20])
- by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Dec 2023 03:07:55 -0800
-Date: Fri, 8 Dec 2023 13:07:50 +0200 (EET)
-From: Kai Vehmanen <kai.vehmanen@linux.intel.com>
-X-X-Sender: kvehmane@eliteleevi.tm.intel.com
-To: "Saarinen, Jani" <jani.saarinen@intel.com>
-Subject: =?UTF-8?Q?RE=3A_=E2=9C=97_Fi=2ECI=2EIGT=3A_failure_for_ALSA=3A?=
- =?UTF-8?Q?_hda=2Fhdmi=3A_add_force-connect_quirk_for_ASUSTeK?=
- =?UTF-8?Q?_Z170M_Pro?=
-In-Reply-To: <DM8PR11MB565513B5B3ECDE7B15A4BD2BE08AA@DM8PR11MB5655.namprd11.prod.outlook.com>
-Message-ID: <alpine.DEB.2.22.394.2312081303160.14041@eliteleevi.tm.intel.com>
-References: <20231207170723.2371881-1-kai.vehmanen@linux.intel.com>
- <170202225515.7326.2958624725794863816@emeril.freedesktop.org>
- <DM8PR11MB565513B5B3ECDE7B15A4BD2BE08AA@DM8PR11MB5655.namprd11.prod.outlook.com>
-User-Agent: Alpine 2.22 (DEB 394 2020-01-19)
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7 02160 Espoo
+X-IronPort-AV: E=McAfee;i="6600,9927,10917"; a="721841396"
+X-IronPort-AV: E=Sophos;i="6.04,260,1695711600"; d="scan'208";a="721841396"
+Received: from mvafin-mobl2.ger.corp.intel.com (HELO localhost)
+ ([10.252.63.236])
+ by orsmga003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 Dec 2023 03:20:17 -0800
+From: Jani Nikula <jani.nikula@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Subject: [PATCH] drm/i915: fix display ver 12-13 fault error handling
+Date: Fri,  8 Dec 2023 13:20:08 +0200
+Message-Id: <20231208112008.2904497-1-jani.nikula@intel.com>
+X-Mailer: git-send-email 2.39.2
 MIME-Version: 1.0
-Content-Type: multipart/mixed;
- boundary="-318106570-1940254566-1702033675=:14041"
+Content-Type: text/plain; charset=UTF-8
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,61 +59,58 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
- "Syrjala, Ville" <ville.syrjala@intel.com>
+Cc: jani.nikula@intel.com, Lucas De Marchi <lucas.demarchi@intel.com>,
+ Matt Roper <matthew.d.roper@intel.com>, stable@vger.kernel.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-  This message is in MIME format.  The first part should be readable text,
-  while the remaining parts are likely unreadable without MIME-aware tools.
+Unless I'm completely misreading the bspec, there are no defined bits
+for plane gtt fault errors in DE PIPE IIR for a display versions
+12-14. This would explain why DG2 in the linked bug is getting thousands
+of fault errors.
 
----318106570-1940254566-1702033675=:14041
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8BIT
+Bspec: 50335
+Closes: https://gitlab.freedesktop.org/drm/intel/-/issues/9769
+Fixes: 99e2d8bcb887 ("drm/i915/rkl: Limit number of universal planes to 5")
+Cc: Ville Syrjälä <ville.syrjala@linux.intel.com>
+Cc: Matt Roper <matthew.d.roper@intel.com>
+Cc: Lucas De Marchi <lucas.demarchi@intel.com>
+Cc: <stable@vger.kernel.org> # v5.9+
+Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+---
+ drivers/gpu/drm/i915/display/intel_display_irq.c | 4 +++-
+ drivers/gpu/drm/i915/i915_reg.h                  | 3 ++-
+ 2 files changed, 5 insertions(+), 2 deletions(-)
 
-Hi,
+diff --git a/drivers/gpu/drm/i915/display/intel_display_irq.c b/drivers/gpu/drm/i915/display/intel_display_irq.c
+index f8ed53f30b2e..7bede5b56286 100644
+--- a/drivers/gpu/drm/i915/display/intel_display_irq.c
++++ b/drivers/gpu/drm/i915/display/intel_display_irq.c
+@@ -834,7 +834,9 @@ static u32 gen8_de_port_aux_mask(struct drm_i915_private *dev_priv)
+ 
+ static u32 gen8_de_pipe_fault_mask(struct drm_i915_private *dev_priv)
+ {
+-	if (DISPLAY_VER(dev_priv) >= 13 || HAS_D12_PLANE_MINIMIZATION(dev_priv))
++	if (DISPLAY_VER(dev_priv) >= 14)
++		return MTL_DE_PIPE_IRQ_FAULT_ERRORS;
++	else if (DISPLAY_VER(dev_priv) >= 12)
+ 		return RKL_DE_PIPE_IRQ_FAULT_ERRORS;
+ 	else if (DISPLAY_VER(dev_priv) >= 11)
+ 		return GEN11_DE_PIPE_IRQ_FAULT_ERRORS;
+diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_reg.h
+index 27dc903f0553..fcf980694cb4 100644
+--- a/drivers/gpu/drm/i915/i915_reg.h
++++ b/drivers/gpu/drm/i915/i915_reg.h
+@@ -4354,7 +4354,8 @@
+ 	 GEN11_PIPE_PLANE7_FAULT | \
+ 	 GEN11_PIPE_PLANE6_FAULT | \
+ 	 GEN11_PIPE_PLANE5_FAULT)
+-#define RKL_DE_PIPE_IRQ_FAULT_ERRORS \
++#define RKL_DE_PIPE_IRQ_FAULT_ERRORS	0
++#define MTL_DE_PIPE_IRQ_FAULT_ERRORS \
+ 	(GEN9_DE_PIPE_IRQ_FAULT_ERRORS | \
+ 	 GEN11_PIPE_PLANE5_FAULT)
+ 
+-- 
+2.39.2
 
-
-On Fri, 8 Dec 2023, Saarinen, Jani wrote:
-
-> > -----Original Message-----
-> > From: Intel-gfx <intel-gfx-bounces@lists.freedesktop.org> On Behalf Of
-> > Patchwork
-> > Sent: Friday, December 8, 2023 9:58 AM
-> > To: Kai Vehmanen <kai.vehmanen@linux.intel.com>
-> > Cc: intel-gfx@lists.freedesktop.org
-> > Subject: ✗ Fi.CI.IGT: failure for ALSA: hda/hdmi: add force-connect quirk for
-> > ASUSTeK Z170M Pro
-> > 
-> > Patch Details
-> > Series:	ALSA: hda/hdmi: add force-connect quirk for ASUSTeK Z170M Pro
-> > URL:	https://patchwork.freedesktop.org/series/127515/
-> > State:	failure
-> > Details:	https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_127515v1/index.html
-[...]
-> > Possible regressions
-> > 
-> > 
-> > *	igt@kms_flip@2x-flip-vs-panning@ab-hdmi-a1-hdmi-a2:
-> > 
-> > 	*	shard-glk: PASS <https://intel-gfx-ci.01.org/tree/drm-
-> > tip/CI_DRM_13995/shard-glk9/igt@kms_flip@2x-flip-vs-panning@ab-hdmi-a1-
-> > hdmi-a2.html>  -> INCOMPLETE <https://intel-gfx-ci.01.org/tree/drm-
-> > tip/Patchwork_127515v1/shard-glk1/igt@kms_flip@2x-flip-vs-panning@ab-
-> > hdmi-a1-hdmi-a2.html>
-> > 
-> Kai, Ville, could this change cause this? 
->
-
-It would seem highly unlikely for the audio side quirk to cause a fail in 
-display specific test case. I tried to look for logs but above links and
-all shard data seems to be missing in:
-
-https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_127515v1/shards-all.html?
-
-The two fails in 
-https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13995/shard-glk9/igt@kms_flip@2x-flip-vs-panning@ab-hdmi-a1-hdmi-a2.html
-did not pass in reference CI_DRM run.
-
-Br, Kai
----318106570-1940254566-1702033675=:14041--
