@@ -2,52 +2,53 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 548D280AC03
-	for <lists+intel-gfx@lfdr.de>; Fri,  8 Dec 2023 19:26:14 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3962980AC51
+	for <lists+intel-gfx@lfdr.de>; Fri,  8 Dec 2023 19:41:56 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0424E10EAF3;
-	Fri,  8 Dec 2023 18:26:10 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6C74710E153;
+	Fri,  8 Dec 2023 18:41:51 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.115])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 329B910EAF3;
- Fri,  8 Dec 2023 18:26:08 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 77F9D10E0B7
+ for <intel-gfx@lists.freedesktop.org>; Fri,  8 Dec 2023 18:41:48 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1702059968; x=1733595968;
+ t=1702060908; x=1733596908;
  h=date:from:to:cc:subject:message-id:references:
  mime-version:content-transfer-encoding:in-reply-to;
- bh=jqFHB0k8ZhUAwFWbMY6IvDe2wVUzWSwqt2KAC2vmses=;
- b=f36xyaQZoJ7oupQYwwXo5jUAG/Xq9XzWHpBdb7TNPlKww3gIcophEjQJ
- 8T6bXep06Wl3dO8W0IhMHAm51MROa2iVSdo9t/rRZGJxsOgmw7QT/1IqK
- SE+JVEgGhNvJ4lhRbLQKep/1Zu907pdJzDabDuEIB1ZmpaSWJM5mqr5o2
- nJU2NFQL5TMJ5xZKMLhRvhshuby3b+gb/Y698HAhd72Tp6IiAe4hfSw2V
- kWORTf9xj6wZuWU9bOq8+X87XZRz8RB2X9Xjz788oiJ2SUVNdSLVl2y+K
- GHapl7ikyf6064gjYz5aqjTpk3OCNZayrSf1uvozhc/fKkNz0bz8/0O4r Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10918"; a="394186087"
-X-IronPort-AV: E=Sophos;i="6.04,261,1695711600"; d="scan'208";a="394186087"
+ bh=yUg+9Ra+1cdcxl106X8DNuo5GATmxOQw4+pi4CYUFAU=;
+ b=C0ULxVRecQq6ZgVJpq+PzTEg46KTDRakU5naWX4yUXbtzq8DGJQezv1l
+ 3u39UobYgvjo4wcOrio4kZsaoPpgCFBurM4ROxb6UqZmBggR0k4PddxD1
+ BSExI5vAB//bb5SaOUi2JEQ+RA5Jg7V7UjIQqO8pgkA7BQEzvLK7eE9QT
+ Bx3zOvXCdOtEizVy6B/dx4ChPVIuxhHFJaJTxI1ZRFWo/dNhDVdetHqhn
+ cz5m6TppGnpK0B5qj+Y6DN/ZzMJq8wXdFo/Y2nYWV093BN+dZBYzXbJC6
+ aW1b3v05OSQFCWSFMgW1q37qVjTTxogUaJv58CfAgry75hojTsLn6oZQV A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10918"; a="7773972"
+X-IronPort-AV: E=Sophos;i="6.04,261,1695711600"; 
+   d="scan'208";a="7773972"
 Received: from orsmga007.jf.intel.com ([10.7.209.58])
- by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Dec 2023 10:26:07 -0800
+ by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 Dec 2023 10:41:48 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10918"; a="765564374"
-X-IronPort-AV: E=Sophos;i="6.04,261,1695711600"; d="scan'208";a="765564374"
+X-IronPort-AV: E=McAfee;i="6600,9927,10918"; a="765567369"
+X-IronPort-AV: E=Sophos;i="6.04,261,1695711600"; d="scan'208";a="765567369"
 Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.74])
- by orsmga007.jf.intel.com with SMTP; 08 Dec 2023 10:26:04 -0800
+ by orsmga007.jf.intel.com with SMTP; 08 Dec 2023 10:41:44 -0800
 Received: by stinkbox (sSMTP sendmail emulation);
- Fri, 08 Dec 2023 20:26:03 +0200
-Date: Fri, 8 Dec 2023 20:26:03 +0200
+ Fri, 08 Dec 2023 20:41:43 +0200
+Date: Fri, 8 Dec 2023 20:41:43 +0200
 From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Jani Nikula <jani.nikula@intel.com>
-Subject: Re: [Intel-gfx] [PATCH] drm/edid: also call add modes in EDID
- connector update fallback
-Message-ID: <ZXNfu6zcBy3JvbGd@intel.com>
-References: <20231207093821.2654267-1-jani.nikula@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Subject: Re: [PATCH] drm/i915: Fix ADL+ tiled plane stride when the POT
+ stride is smaller than the original
+Message-ID: <ZXNjZ6i0lMbSc5nx@intel.com>
+References: <20231204202443.31247-1-ville.syrjala@linux.intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20231207093821.2654267-1-jani.nikula@intel.com>
+In-Reply-To: <20231204202443.31247-1-ville.syrjala@linux.intel.com>
 X-Patchwork-Hint: comment
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -61,44 +62,59 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: bbaa <bbaa@bbaa.fun>, intel-gfx@lists.freedesktop.org,
- stable@vger.kernel.org, dri-devel@lists.freedesktop.org
+Cc: Juha-Pekka Heikkila <juhapekka.heikkila@gmail.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, Dec 07, 2023 at 11:38:21AM +0200, Jani Nikula wrote:
-> When the separate add modes call was added back in commit c533b5167c7e
-> ("drm/edid: add separate drm_edid_connector_add_modes()"), it failed to
-> address drm_edid_override_connector_update(). Also call add modes there.
+On Mon, Dec 04, 2023 at 10:24:43PM +0200, Ville Syrjala wrote:
+> From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 > 
-> Reported-by: bbaa <bbaa@bbaa.fun>
-> Closes: https://lore.kernel.org/r/930E9B4C7D91FDFF+29b34d89-8658-4910-966a-c772f320ea03@bbaa.fun
-> Fixes: c533b5167c7e ("drm/edid: add separate drm_edid_connector_add_modes()")
-> Cc: <stable@vger.kernel.org> # v6.3+
-> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+> plane_view_scanout_stride() currently assumes that we had to pad the
+> mapping stride with dummy pages in order to align it. But that is not
+> the case if the original fb stride exceeds the aligned stride used
+> to populate the remapped view, which is calculated from the user
+> specified framebuffer width rather than the user specified framebuffer
+> stride.
+> 
+> Ignore the original fb stride in this case and just stick to the POT
+> aligned stride. Getting this wrong will cause the plane to fetch the
+> wrong data, and can lead to fault errors if the page tables at the
+> bogus location aren't even populated.
+> 
+> TODO: figure out if this is OK for CCS, or if we should instead increase
+> the width of the view to cover the entire user specified fb stride
+> instead...
+> 
+> Cc: Imre Deak <imre.deak@intel.com>
+> Cc: Juha-Pekka Heikkila <juhapekka.heikkila@gmail.com>
+> Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-Reviewed-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
+Doh. Apparently I forgot to tag this for stable...
+
+Jani, can you include this w/ cc:stable in the next -fixes pull please?
+
+commit 01a39f1c4f12 ("drm/i915: Fix ADL+ tiled plane stride when the POT stride is smaller than the original")
 
 > ---
->  drivers/gpu/drm/drm_edid.c | 3 ++-
+>  drivers/gpu/drm/i915/display/intel_fb.c | 3 ++-
 >  1 file changed, 2 insertions(+), 1 deletion(-)
 > 
-> diff --git a/drivers/gpu/drm/drm_edid.c b/drivers/gpu/drm/drm_edid.c
-> index cb4031d5dcbb..69c68804023f 100644
-> --- a/drivers/gpu/drm/drm_edid.c
-> +++ b/drivers/gpu/drm/drm_edid.c
-> @@ -2311,7 +2311,8 @@ int drm_edid_override_connector_update(struct drm_connector *connector)
+> diff --git a/drivers/gpu/drm/i915/display/intel_fb.c b/drivers/gpu/drm/i915/display/intel_fb.c
+> index 33a693460420..ab634a4c86d1 100644
+> --- a/drivers/gpu/drm/i915/display/intel_fb.c
+> +++ b/drivers/gpu/drm/i915/display/intel_fb.c
+> @@ -1381,7 +1381,8 @@ plane_view_scanout_stride(const struct intel_framebuffer *fb, int color_plane,
+>  	struct drm_i915_private *i915 = to_i915(fb->base.dev);
+>  	unsigned int stride_tiles;
 >  
->  	override = drm_edid_override_get(connector);
->  	if (override) {
-> -		num_modes = drm_edid_connector_update(connector, override);
-> +		if (drm_edid_connector_update(connector, override) == 0)
-> +			num_modes = drm_edid_connector_add_modes(connector);
->  
->  		drm_edid_free(override);
->  
+> -	if (IS_ALDERLAKE_P(i915) || DISPLAY_VER(i915) >= 14)
+> +	if ((IS_ALDERLAKE_P(i915) || DISPLAY_VER(i915) >= 14) &&
+> +	    src_stride_tiles < dst_stride_tiles)
+>  		stride_tiles = src_stride_tiles;
+>  	else
+>  		stride_tiles = dst_stride_tiles;
 > -- 
-> 2.39.2
+> 2.41.0
 
 -- 
 Ville Syrjälä
