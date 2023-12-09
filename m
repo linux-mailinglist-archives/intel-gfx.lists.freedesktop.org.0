@@ -1,49 +1,70 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id ED3EE80B4A4
-	for <lists+intel-gfx@lfdr.de>; Sat,  9 Dec 2023 14:58:36 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id F1B6280B75D
+	for <lists+intel-gfx@lfdr.de>; Sun, 10 Dec 2023 00:05:53 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E5FA010E09F;
-	Sat,  9 Dec 2023 13:58:29 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 824F210E2F1;
+	Sat,  9 Dec 2023 23:05:46 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from metis.whiteo.stw.pengutronix.de
- (metis.whiteo.stw.pengutronix.de [IPv6:2a0a:edc0:2:b01:1d::104])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9464C10E082
- for <intel-gfx@lists.freedesktop.org>; Sat,  9 Dec 2023 13:58:27 +0000 (UTC)
-Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
- by metis.whiteo.stw.pengutronix.de with esmtps
- (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256) (Exim 4.92)
- (envelope-from <ukl@pengutronix.de>)
- id 1rBxpy-0001ft-6E; Sat, 09 Dec 2023 14:57:46 +0100
-Received: from [2a0a:edc0:0:900:1d::77] (helo=ptz.office.stw.pengutronix.de)
- by drehscheibe.grey.stw.pengutronix.de with esmtps (TLS1.3) tls
- TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (Exim 4.94.2)
- (envelope-from <ukl@pengutronix.de>)
- id 1rBxpu-00Eecd-U0; Sat, 09 Dec 2023 14:57:42 +0100
-Received: from ukl by ptz.office.stw.pengutronix.de with local (Exim 4.94.2)
- (envelope-from <ukl@pengutronix.de>)
- id 1rBxpu-00H5EP-JG; Sat, 09 Dec 2023 14:57:42 +0100
-Date: Sat, 9 Dec 2023 14:57:42 +0100
-From: Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>
-To: Sean Young <sean@mess.org>
-Subject: Re: [PATCH v6 1/4] pwm: rename pwm_apply_state() to
- pwm_apply_might_sleep()
-Message-ID: <20231209135742.3ieusuq3h3xlvjfn@pengutronix.de>
-References: <cover.1701248996.git.sean@mess.org>
- <37090c1d8d8f42f1e12fa84942027d995189a99e.1701248996.git.sean@mess.org>
+Received: from mail-wr1-x430.google.com (mail-wr1-x430.google.com
+ [IPv6:2a00:1450:4864:20::430])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7A4CB10E0E4;
+ Sat,  9 Dec 2023 23:05:44 +0000 (UTC)
+Received: by mail-wr1-x430.google.com with SMTP id
+ ffacd0b85a97d-33338c47134so3082954f8f.1; 
+ Sat, 09 Dec 2023 15:05:44 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20230601; t=1702163143; x=1702767943; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+ :to:from:from:to:cc:subject:date:message-id:reply-to;
+ bh=duSDdrXx/MdhBGHNkwvfOFuexJ4Lp5LgT0yaxlsN+gg=;
+ b=M8m0GDhGzcc1fZ90LdqEMGJUeoub/feMvyLqctXsWgoA6yaHcHaU+vy3KLPzMwF3ua
+ vntjTxaNmRZ7g2YaWw6FrhQEsoWzO7lQ7SQrhDbUtEb3F7lnQeZLHslNUeDezaksEQXm
+ C4hOQAyGl9NTErRmLjhzic/M7XXDqhEa1eBnCY+XSFD41Sl5b+l+OXFMtju0ikfXtLYl
+ EPTLedCMZi+KTKFknL5m32ZN+A9v3gA01cMKc/C09/+9YSF4kUyiYNKQaJgiXFdMcCWO
+ kgJBic+MSe4eb+znTufuoSe1GBh24NcBEZon56gd9F/cuCfOyT/12viEcDrQibcWSEDh
+ WADA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1702163143; x=1702767943;
+ h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+ :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+ :reply-to;
+ bh=duSDdrXx/MdhBGHNkwvfOFuexJ4Lp5LgT0yaxlsN+gg=;
+ b=MQ/KdF6yfS1pjz+rX6QcWFmywu7m++Xc1cFT76mPyCO7gEi+xGVgaG8z/xyLR5YLKA
+ ToH8/oATxHapUNKIcvSRh4VxY7tnozGbe4wPU2FHgNW9G1gJUHT4OoyL4aCvtjIvXhd6
+ wmAqMqrRmlDAIK+h7dFZnK8q+e2PvYZDCqDmSfUWvCXiFx9qJWNbTd8MJxVYiDkLoEj5
+ eAHv8YwzsFVgkOXCWCitP+eD5ORqBWPsPya9+cJY+KytaV1TfIJocm0/se16LA7VTkco
+ 4lnFCknu7Uio8wUvvPKQ0RbRAg/17lmyBsv5RhsMDeagQ3Gv5zUp6Gm9rk+L6piUmsey
+ uYsQ==
+X-Gm-Message-State: AOJu0Yx52wmYtBB9IyJ7aXZdfxnjbiYBOMazKWOq4sxBzQ9XprCAtht8
+ KGXswCpik5VII8H+1CqPsVs=
+X-Google-Smtp-Source: AGHT+IH8a4E5LwfBo47ptLRB1AvoIqmDkcI8a0+kqSSKA8Oi9xC6xo+U9mqjIOpVPgmdOvHFGVKh7A==
+X-Received: by 2002:a5d:5301:0:b0:333:2fd2:6f5b with SMTP id
+ e1-20020a5d5301000000b003332fd26f5bmr969350wrv.101.1702163142765; 
+ Sat, 09 Dec 2023 15:05:42 -0800 (PST)
+Received: from localhost (cpc154979-craw9-2-0-cust193.16-3.cable.virginm.net.
+ [80.193.200.194]) by smtp.gmail.com with ESMTPSA id
+ w14-20020a5d608e000000b003333c2c313bsm5171210wrt.100.2023.12.09.15.05.42
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Sat, 09 Dec 2023 15:05:42 -0800 (PST)
+From: Colin Ian King <colin.i.king@gmail.com>
+To: Jani Nikula <jani.nikula@linux.intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
+ David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
+ intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
+Subject: [PATCH][next] drm/i915/selftests: Fix spelling mistake "initialiased"
+ -> "initialised"
+Date: Sat,  9 Dec 2023 23:05:41 +0000
+Message-Id: <20231209230541.4055786-1-colin.i.king@gmail.com>
+X-Mailer: git-send-email 2.39.2
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
- protocol="application/pgp-signature"; boundary="6j77aatd2k4sm7sp"
-Content-Disposition: inline
-In-Reply-To: <37090c1d8d8f42f1e12fa84942027d995189a99e.1701248996.git.sean@mess.org>
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
-X-SA-Exim-Mail-From: ukl@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de);
- SAEximRunCond expanded to false
-X-PTX-Original-Recipient: intel-gfx@lists.freedesktop.org
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -56,77 +77,30 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: linux-fbdev@vger.kernel.org, linux-doc@vger.kernel.org,
- dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
- Pavel Machek <pavel@ucw.cz>, David Airlie <airlied@gmail.com>,
- linux-leds@vger.kernel.org, Daniel Thompson <daniel.thompson@linaro.org>,
- Ivaylo Dimitrov <ivo.g.dimitrov.75@gmail.com>,
- Jonathan Corbet <corbet@lwn.net>, Helge Deller <deller@gmx.de>,
- Lee Jones <lee@kernel.org>, Javier Martinez Canillas <javierm@redhat.com>,
- linux-input@vger.kernel.org,
- Ilpo =?utf-8?B?SsOkcnZpbmVu?= <ilpo.jarvinen@linux.intel.com>,
- Guenter Roeck <linux@roeck-us.net>, linux-media@vger.kernel.org,
- platform-driver-x86@vger.kernel.org, linux-pwm@vger.kernel.org,
- Jean Delvare <jdelvare@suse.com>, Daniel Vetter <daniel@ffwll.ch>,
- Jani Nikula <jani.nikula@intel.com>, intel-gfx@lists.freedesktop.org,
- Mark Gross <markgross@kernel.org>, Hans de Goede <hdegoede@redhat.com>,
- Mark Brown <broonie@kernel.org>, Maxime Ripard <mripard@kernel.org>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Mauro Carvalho Chehab <mchehab@kernel.org>,
- linux-arm-kernel@lists.infradead.org, linux-hwmon@vger.kernel.org,
- Support Opensource <support.opensource@diasemi.com>,
- Jingoo Han <jingoohan1@gmail.com>, Dmitry Torokhov <dmitry.torokhov@gmail.com>,
- Liam Girdwood <lgirdwood@gmail.com>, Thomas Zimmermann <tzimmermann@suse.de>
+Cc: kernel-janitors@vger.kernel.org, linux-kernel@vger.kernel.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+There is a spelling mistake in a pr_err error message. Fix it.
 
---6j77aatd2k4sm7sp
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Signed-off-by: Colin Ian King <colin.i.king@gmail.com>
+---
+ drivers/gpu/drm/i915/gem/selftests/i915_gem_dmabuf.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-On Wed, Nov 29, 2023 at 09:13:34AM +0000, Sean Young wrote:
-> In order to introduce a pwm api which can be used from atomic context,
-> we will need two functions for applying pwm changes:
->=20
-> 	int pwm_apply_might_sleep(struct pwm *, struct pwm_state *);
-> 	int pwm_apply_atomic(struct pwm *, struct pwm_state *);
->=20
-> This commit just deals with renaming pwm_apply_state(), a following
-> commit will introduce the pwm_apply_atomic() function.
->=20
-> Acked-by: Hans de Goede <hdegoede@redhat.com>
-> Acked-by: Jani Nikula <jani.nikula@intel.com>
-> Acked-by: Lee Jones <lee@kernel.org>
-> Signed-off-by: Sean Young <sean@mess.org>
+diff --git a/drivers/gpu/drm/i915/gem/selftests/i915_gem_dmabuf.c b/drivers/gpu/drm/i915/gem/selftests/i915_gem_dmabuf.c
+index e57f9390076c..d684a70f2c04 100644
+--- a/drivers/gpu/drm/i915/gem/selftests/i915_gem_dmabuf.c
++++ b/drivers/gpu/drm/i915/gem/selftests/i915_gem_dmabuf.c
+@@ -504,7 +504,7 @@ static int igt_dmabuf_export_vmap(void *arg)
+ 	}
+ 
+ 	if (memchr_inv(ptr, 0, dmabuf->size)) {
+-		pr_err("Exported object not initialiased to zero!\n");
++		pr_err("Exported object not initialised to zero!\n");
+ 		err = -EINVAL;
+ 		goto out;
+ 	}
+-- 
+2.39.2
 
-Not a in-detail-review, but I just noticed again, that we have
-
-	K:      pwm_(config|apply_state|ops)
-
-in MAINTAINERS. That one needs adaption, too.
-
-Best regards
-Uwe
-
---=20
-Pengutronix e.K.                           | Uwe Kleine-K=F6nig            |
-Industrial Linux Solutions                 | https://www.pengutronix.de/ |
-
---6j77aatd2k4sm7sp
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEP4GsaTp6HlmJrf7Tj4D7WH0S/k4FAmV0clUACgkQj4D7WH0S
-/k4sEAgArnTQxpu4ZXIskkdh9oxeabDQRo0TziQM0oZ+wnyobvwrkERaAWwUdg1V
-BTu5gKnbpp4QbALgpLCjFiCxxODMDE0zFXfZYpvHhZINc9zUPmHu3VvJmAh36php
-d+svsxVry/mTbk8WqHHdXLWRsgfuMTup2IcSecthS4EheqiiIB1/3J6zlV0hBEvt
-6MR1GepDyknFpPqf5O01Ya8gFZ2lcjJhXLINaH6vtZe+SF9f2ENGsiwPScjzPhY7
-Nkojtd82SQdG1VgWLyGe/JHV9MoZQh60GN3/DIsdSRdcDdAVKOvl9ATY87+CM4Le
-/qSreDunw+R0VYm9mVeyI7sETi446w==
-=Wzva
------END PGP SIGNATURE-----
-
---6j77aatd2k4sm7sp--
