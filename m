@@ -1,53 +1,33 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id ADE9480DE15
-	for <lists+intel-gfx@lfdr.de>; Mon, 11 Dec 2023 23:18:06 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id EAD1080DE49
+	for <lists+intel-gfx@lfdr.de>; Mon, 11 Dec 2023 23:33:37 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3C08410E50C;
-	Mon, 11 Dec 2023 22:18:05 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id F031410E51C;
+	Mon, 11 Dec 2023 22:33:34 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.24])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4588510E50A
- for <intel-gfx@lists.freedesktop.org>; Mon, 11 Dec 2023 22:18:03 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1702333083; x=1733869083;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=AmqyuhUZoBTpmo+paVpGGzeh611D2blm/ahaE3PC1MM=;
- b=MBLAjILtcbAgwTQdvZyKK3UXiHaUZA4XxKzPwep3UeEzmDXCLEDYm/3L
- T+4MYrtG6LR6N8szECSb386Zg5z7tQ0ya5NtMwbhGb71+LmnCJbwwpCTE
- vh1hedEw7WZyq3LlTHJNTnk/qfQdEjnlIINQy/8N06bv1VU8OAkQNeZdK
- 36vYGV0hAqaHmxaXsk7RSfEAcskSNlSsvOHuBxBUOnzoAM/6+/Py7kUKc
- TuQeT70MlwuMMLYa12IExAjyNr2xOhoac2SwR4uuW8eew6h3NsOxqlS3l
- y5HYn+E+TOOHF9uoGlhO3mKlF/xzG3SRIVFwPuoHe+T3cugXgulfpMiLA g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10921"; a="397504237"
-X-IronPort-AV: E=Sophos;i="6.04,268,1695711600"; d="scan'208";a="397504237"
-Received: from orsmga007.jf.intel.com ([10.7.209.58])
- by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Dec 2023 14:18:02 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10921"; a="766555240"
-X-IronPort-AV: E=Sophos;i="6.04,268,1695711600"; d="scan'208";a="766555240"
-Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.74])
- by orsmga007.jf.intel.com with SMTP; 11 Dec 2023 14:18:00 -0800
-Received: by stinkbox (sSMTP sendmail emulation);
- Tue, 12 Dec 2023 00:17:59 +0200
-From: Ville Syrjala <ville.syrjala@linux.intel.com>
-To: intel-gfx@lists.freedesktop.org
-Subject: [PATCH v2 4/8] drm/i915/cdclk: Rewrite cdclk->voltage_level selection
- to use tables
-Date: Tue, 12 Dec 2023 00:17:59 +0200
-Message-ID: <20231211221759.29725-1-ville.syrjala@linux.intel.com>
-X-Mailer: git-send-email 2.41.0
-In-Reply-To: <20231128115138.13238-5-ville.syrjala@linux.intel.com>
-References: <20231128115138.13238-5-ville.syrjala@linux.intel.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id EBCA510E51B;
+ Mon, 11 Dec 2023 22:33:32 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id D1DB1AA3D8;
+ Mon, 11 Dec 2023 22:33:32 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============8282793750608772041=="
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=93_Fi=2ECI=2EBAT=3A_success_for_drm/i915=3A_Add_Wa=5F140198?=
+ =?utf-8?q?77138_=28rev2=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Kalvala, Haridhar" <haridhar.kalvala@intel.com>
+Date: Mon, 11 Dec 2023 22:33:32 -0000
+Message-ID: <170233401283.19579.6795245768451396687@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20231205091105.3604223-1-haridhar.kalvala@intel.com>
+In-Reply-To: <20231205091105.3604223-1-haridhar.kalvala@intel.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -60,137 +40,259 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-From: Ville Syrjälä <ville.syrjala@linux.intel.com>
+--===============8282793750608772041==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-The cdclk->voltage_level if ladders are hard to read, especially as
-they're written the other way around compared to how bspec lists
-the limits. Let's rewrite them to use simple arrays that gives us
-the max cdclk for each voltage level.
+== Series Details ==
 
-v2: Bump the jsl/ehl max cdclk in the table to 652.8 MHz to
-    accomodate JSL machines in CI that boot with high cdclk
+Series: drm/i915: Add Wa_14019877138 (rev2)
+URL   : https://patchwork.freedesktop.org/series/127346/
+State : success
 
-Reviewed-by: Gustavo Sousa <gustavo.sousa@intel.com>
-Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
----
- drivers/gpu/drm/i915/display/intel_cdclk.c | 87 ++++++++++++++--------
- 1 file changed, 57 insertions(+), 30 deletions(-)
+== Summary ==
 
-diff --git a/drivers/gpu/drm/i915/display/intel_cdclk.c b/drivers/gpu/drm/i915/display/intel_cdclk.c
-index 5161c30af558..c34172adcb3a 100644
---- a/drivers/gpu/drm/i915/display/intel_cdclk.c
-+++ b/drivers/gpu/drm/i915/display/intel_cdclk.c
-@@ -1446,50 +1446,77 @@ static u8 bxt_calc_voltage_level(int cdclk)
- 	return DIV_ROUND_UP(cdclk, 25000);
- }
- 
-+static u8 calc_voltage_level(int cdclk, int num_voltage_levels,
-+			     const int voltage_level_max_cdclk[])
-+{
-+	int voltage_level;
-+
-+	for (voltage_level = 0; voltage_level < num_voltage_levels; voltage_level++) {
-+		if (cdclk <= voltage_level_max_cdclk[voltage_level])
-+			return voltage_level;
-+	}
-+
-+	MISSING_CASE(cdclk);
-+	return num_voltage_levels - 1;
-+}
-+
- static u8 icl_calc_voltage_level(int cdclk)
- {
--	if (cdclk > 556800)
--		return 2;
--	else if (cdclk > 312000)
--		return 1;
--	else
--		return 0;
-+	static const int icl_voltage_level_max_cdclk[] = {
-+		[0] = 312000,
-+		[1] = 556800,
-+		[2] = 652800,
-+	};
-+
-+	return calc_voltage_level(cdclk,
-+				  ARRAY_SIZE(icl_voltage_level_max_cdclk),
-+				  icl_voltage_level_max_cdclk);
- }
- 
- static u8 ehl_calc_voltage_level(int cdclk)
- {
--	if (cdclk > 326400)
--		return 3;
--	else if (cdclk > 312000)
--		return 2;
--	else if (cdclk > 180000)
--		return 1;
--	else
--		return 0;
-+	static const int ehl_voltage_level_max_cdclk[] = {
-+		[0] = 180000,
-+		[1] = 312000,
-+		[2] = 326400,
-+		/*
-+		 * Bspec lists the limit as 556.8 MHz, but some JSL
-+		 * development boards (at least) boot with 652.8 MHz
-+		 */
-+		[3] = 652800,
-+	};
-+
-+	return calc_voltage_level(cdclk,
-+				  ARRAY_SIZE(ehl_voltage_level_max_cdclk),
-+				  ehl_voltage_level_max_cdclk);
- }
- 
- static u8 tgl_calc_voltage_level(int cdclk)
- {
--	if (cdclk > 556800)
--		return 3;
--	else if (cdclk > 326400)
--		return 2;
--	else if (cdclk > 312000)
--		return 1;
--	else
--		return 0;
-+	static const int tgl_voltage_level_max_cdclk[] = {
-+		[0] = 312000,
-+		[1] = 326400,
-+		[2] = 556800,
-+		[3] = 652800,
-+	};
-+
-+	return calc_voltage_level(cdclk,
-+				  ARRAY_SIZE(tgl_voltage_level_max_cdclk),
-+				  tgl_voltage_level_max_cdclk);
- }
- 
- static u8 rplu_calc_voltage_level(int cdclk)
- {
--	if (cdclk > 556800)
--		return 3;
--	else if (cdclk > 480000)
--		return 2;
--	else if (cdclk > 312000)
--		return 1;
--	else
--		return 0;
-+	static const int rplu_voltage_level_max_cdclk[] = {
-+		[0] = 312000,
-+		[1] = 480000,
-+		[2] = 556800,
-+		[3] = 652800,
-+	};
-+
-+	return calc_voltage_level(cdclk,
-+				  ARRAY_SIZE(rplu_voltage_level_max_cdclk),
-+				  rplu_voltage_level_max_cdclk);
- }
- 
- static void icl_readout_refclk(struct drm_i915_private *dev_priv,
--- 
-2.41.0
+CI Bug Log - changes from CI_DRM_14008 -> Patchwork_127346v2
+====================================================
 
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_127346v2/index.html
+
+Participating hosts (32 -> 31)
+------------------------------
+
+  Missing    (1): fi-snb-2520m 
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_127346v2 that come from known issues:
+
+### CI changes ###
+
+#### Possible fixes ####
+
+  * boot:
+    - bat-jsl-1:          [FAIL][1] ([i915#8293]) -> [PASS][2]
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14008/bat-jsl-1/boot.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_127346v2/bat-jsl-1/boot.html
+
+  
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@debugfs_test@basic-hwmon:
+    - bat-jsl-1:          NOTRUN -> [SKIP][3] ([i915#9318])
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_127346v2/bat-jsl-1/igt@debugfs_test@basic-hwmon.html
+
+  * igt@gem_huc_copy@huc-copy:
+    - bat-jsl-1:          NOTRUN -> [SKIP][4] ([i915#2190])
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_127346v2/bat-jsl-1/igt@gem_huc_copy@huc-copy.html
+
+  * igt@gem_lmem_swapping@verify-random:
+    - bat-jsl-1:          NOTRUN -> [SKIP][5] ([i915#4613]) +3 other tests skip
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_127346v2/bat-jsl-1/igt@gem_lmem_swapping@verify-random.html
+
+  * igt@kms_addfb_basic:
+    - fi-apl-guc:         NOTRUN -> [INCOMPLETE][6] ([i915#2295])
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_127346v2/fi-apl-guc/igt@kms_addfb_basic.html
+
+  * igt@kms_cursor_legacy@basic-busy-flip-before-cursor-legacy:
+    - bat-jsl-1:          NOTRUN -> [SKIP][7] ([i915#4103]) +1 other test skip
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_127346v2/bat-jsl-1/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-legacy.html
+
+  * igt@kms_dsc@dsc-basic:
+    - bat-jsl-1:          NOTRUN -> [SKIP][8] ([i915#3555]) +1 other test skip
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_127346v2/bat-jsl-1/igt@kms_dsc@dsc-basic.html
+
+  * igt@kms_force_connector_basic@force-load-detect:
+    - bat-jsl-1:          NOTRUN -> [SKIP][9] ([fdo#109285])
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_127346v2/bat-jsl-1/igt@kms_force_connector_basic@force-load-detect.html
+
+  
+#### Possible fixes ####
+
+  * igt@kms_flip@basic-flip-vs-dpms@a-dp5:
+    - bat-adlp-11:        [DMESG-WARN][10] -> [PASS][11]
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14008/bat-adlp-11/igt@kms_flip@basic-flip-vs-dpms@a-dp5.html
+   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_127346v2/bat-adlp-11/igt@kms_flip@basic-flip-vs-dpms@a-dp5.html
+
+  * igt@kms_flip@basic-flip-vs-dpms@d-dp5:
+    - bat-adlp-11:        [FAIL][12] ([i915#6121]) -> [PASS][13] +2 other tests pass
+   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14008/bat-adlp-11/igt@kms_flip@basic-flip-vs-dpms@d-dp5.html
+   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_127346v2/bat-adlp-11/igt@kms_flip@basic-flip-vs-dpms@d-dp5.html
+
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+  [fdo#109285]: https://bugs.freedesktop.org/show_bug.cgi?id=109285
+  [i915#2190]: https://gitlab.freedesktop.org/drm/intel/issues/2190
+  [i915#2295]: https://gitlab.freedesktop.org/drm/intel/issues/2295
+  [i915#3555]: https://gitlab.freedesktop.org/drm/intel/issues/3555
+  [i915#4103]: https://gitlab.freedesktop.org/drm/intel/issues/4103
+  [i915#4613]: https://gitlab.freedesktop.org/drm/intel/issues/4613
+  [i915#6121]: https://gitlab.freedesktop.org/drm/intel/issues/6121
+  [i915#7359]: https://gitlab.freedesktop.org/drm/intel/issues/7359
+  [i915#8293]: https://gitlab.freedesktop.org/drm/intel/issues/8293
+  [i915#8981]: https://gitlab.freedesktop.org/drm/intel/issues/8981
+  [i915#9318]: https://gitlab.freedesktop.org/drm/intel/issues/9318
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_14008 -> Patchwork_127346v2
+
+  CI-20190529: 20190529
+  CI_DRM_14008: d630426f84b0724b04e5c41e59594a41460b3c3c @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_7635: 0b796be8ce05cb2070ce5136d248f438c962d11e @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  Patchwork_127346v2: d630426f84b0724b04e5c41e59594a41460b3c3c @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+### Linux commits
+
+d9ec9e19f4c0 drm/i915: Add Wa_14019877138
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_127346v2/index.html
+
+--===============8282793750608772041==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/i915: Add Wa_14019877138 (rev2)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/127346/">https://patchwork.freedesktop.org/series/127346/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_127346v2/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_127346v2/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_14008 -&gt; Patchwork_127346v2</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_127346v2/index.html</p>
+<h2>Participating hosts (32 -&gt; 31)</h2>
+<p>Missing    (1): fi-snb-2520m </p>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_127346v2 that come from known issues:</p>
+<h3>CI changes</h3>
+<h4>Possible fixes</h4>
+<ul>
+<li>boot:<ul>
+<li>bat-jsl-1:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14008/bat-jsl-1/boot.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/8293">i915#8293</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_127346v2/bat-jsl-1/boot.html">PASS</a></li>
+</ul>
+</li>
+</ul>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@debugfs_test@basic-hwmon:</p>
+<ul>
+<li>bat-jsl-1:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_127346v2/bat-jsl-1/igt@debugfs_test@basic-hwmon.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/9318">i915#9318</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@gem_huc_copy@huc-copy:</p>
+<ul>
+<li>bat-jsl-1:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_127346v2/bat-jsl-1/igt@gem_huc_copy@huc-copy.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2190">i915#2190</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@gem_lmem_swapping@verify-random:</p>
+<ul>
+<li>bat-jsl-1:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_127346v2/bat-jsl-1/igt@gem_lmem_swapping@verify-random.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4613">i915#4613</a>) +3 other tests skip</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_addfb_basic:</p>
+<ul>
+<li>fi-apl-guc:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_127346v2/fi-apl-guc/igt@kms_addfb_basic.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2295">i915#2295</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_cursor_legacy@basic-busy-flip-before-cursor-legacy:</p>
+<ul>
+<li>bat-jsl-1:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_127346v2/bat-jsl-1/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-legacy.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4103">i915#4103</a>) +1 other test skip</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_dsc@dsc-basic:</p>
+<ul>
+<li>bat-jsl-1:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_127346v2/bat-jsl-1/igt@kms_dsc@dsc-basic.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3555">i915#3555</a>) +1 other test skip</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_force_connector_basic@force-load-detect:</p>
+<ul>
+<li>bat-jsl-1:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_127346v2/bat-jsl-1/igt@kms_force_connector_basic@force-load-detect.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109285">fdo#109285</a>)</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>
+<p>igt@kms_flip@basic-flip-vs-dpms@a-dp5:</p>
+<ul>
+<li>bat-adlp-11:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14008/bat-adlp-11/igt@kms_flip@basic-flip-vs-dpms@a-dp5.html">DMESG-WARN</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_127346v2/bat-adlp-11/igt@kms_flip@basic-flip-vs-dpms@a-dp5.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@kms_flip@basic-flip-vs-dpms@d-dp5:</p>
+<ul>
+<li>bat-adlp-11:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14008/bat-adlp-11/igt@kms_flip@basic-flip-vs-dpms@d-dp5.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/6121">i915#6121</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_127346v2/bat-adlp-11/igt@kms_flip@basic-flip-vs-dpms@d-dp5.html">PASS</a> +2 other tests pass</li>
+</ul>
+</li>
+</ul>
+<p>{name}: This element is suppressed. This means it is ignored when computing<br />
+          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_14008 -&gt; Patchwork_127346v2</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_14008: d630426f84b0724b04e5c41e59594a41460b3c3c @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_7635: 0b796be8ce05cb2070ce5136d248f438c962d11e @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  Patchwork_127346v2: d630426f84b0724b04e5c41e59594a41460b3c3c @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+<h3>Linux commits</h3>
+<p>d9ec9e19f4c0 drm/i915: Add Wa_14019877138</p>
+
+</body>
+</html>
+
+--===============8282793750608772041==--
