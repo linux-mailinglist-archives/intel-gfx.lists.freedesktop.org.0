@@ -2,52 +2,47 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id EB50280EA97
-	for <lists+intel-gfx@lfdr.de>; Tue, 12 Dec 2023 12:42:11 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id C257880EB0E
+	for <lists+intel-gfx@lfdr.de>; Tue, 12 Dec 2023 12:58:03 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7F17F10E0D3;
-	Tue, 12 Dec 2023 11:42:10 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 48C5710E1D8;
+	Tue, 12 Dec 2023 11:58:01 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from metis.whiteo.stw.pengutronix.de
- (metis.whiteo.stw.pengutronix.de [IPv6:2a0a:edc0:2:b01:1d::104])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 90F9110E0D3
- for <intel-gfx@lists.freedesktop.org>; Tue, 12 Dec 2023 11:42:08 +0000 (UTC)
-Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
- by metis.whiteo.stw.pengutronix.de with esmtps
- (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256) (Exim 4.92)
- (envelope-from <ukl@pengutronix.de>)
- id 1rD18I-0005bB-Vy; Tue, 12 Dec 2023 12:41:03 +0100
-Received: from [2a0a:edc0:0:900:1d::77] (helo=ptz.office.stw.pengutronix.de)
- by drehscheibe.grey.stw.pengutronix.de with esmtps (TLS1.3) tls
- TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (Exim 4.94.2)
- (envelope-from <ukl@pengutronix.de>)
- id 1rD18G-00FKJT-S1; Tue, 12 Dec 2023 12:41:00 +0100
-Received: from ukl by ptz.office.stw.pengutronix.de with local (Exim 4.94.2)
- (envelope-from <ukl@pengutronix.de>)
- id 1rD18G-001bBp-HP; Tue, 12 Dec 2023 12:41:00 +0100
-Date: Tue, 12 Dec 2023 12:41:00 +0100
-From: Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>
-To: Sean Young <sean@mess.org>, Jean Delvare <jdelvare@suse.com>,
- Guenter Roeck <linux@roeck-us.net>,
- Javier Martinez Canillas <javierm@redhat.com>,
- Liam Girdwood <lgirdwood@gmail.com>,
- Mark Brown <broonie@kernel.org>, Helge Deller <deller@gmx.de>
-Subject: Re: [PATCH v8 1/6] pwm: Rename pwm_apply_state() to
- pwm_apply_might_sleep()
-Message-ID: <20231212114100.sn7nzntousql2ays@pengutronix.de>
-References: <cover.1702369869.git.sean@mess.org>
- <9af7ba748fd2eb7e04208b6b183185f1daf78016.1702369869.git.sean@mess.org>
+Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DA20310E1D8
+ for <intel-gfx@lists.freedesktop.org>; Tue, 12 Dec 2023 11:57:58 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1702382278; x=1733918278;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=qDZaMMkxVQNlm4BM0ASV6DvKk7NP6gqJQ9RurfmXpu8=;
+ b=M9EOIKGOatQ/RK/p/ATqrk1OvISOl72txn7ZK+ixzS11jHtMO3L6apHK
+ ftBuNAms92d6sO1c4XD6ikBgfcx4hsLSMW1oqgfiVv5Ayw8vQUFv+3xCq
+ Dt9ZU/gOtb54JcooV8Ef+YPcA2TJ2OXpZHqINwZi/2l01ENmCI80ubGk8
+ 2jHH3vIrx7HMRbrTX1uMdEQTlQHFdalnz6NQfUz1LCIvu4JzjA1pKe1cU
+ UWBqX58dIXXDQ1pcOsIO04QMINM+A/D5zdUT0al+tA2dnsiGSddEi/PhA
+ DSwiDzyGW44viyiiM8rU9gKyg5rEQNfvL8giFSWfkhpvHvNyxR+G2kL3H g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10921"; a="385205240"
+X-IronPort-AV: E=Sophos;i="6.04,270,1695711600"; d="scan'208";a="385205240"
+Received: from fmsmga005.fm.intel.com ([10.253.24.32])
+ by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 12 Dec 2023 03:57:58 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10921"; a="1104880487"
+X-IronPort-AV: E=Sophos;i="6.04,270,1695711600"; d="scan'208";a="1104880487"
+Received: from sorvi2.fi.intel.com ([10.237.72.194])
+ by fmsmga005.fm.intel.com with ESMTP; 12 Dec 2023 03:57:56 -0800
+From: Mika Kahola <mika.kahola@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Subject: [PATCH v2] drm/i915/display: Wait for PHY readiness not needed for
+ disabling sequence
+Date: Tue, 12 Dec 2023 13:51:30 +0200
+Message-Id: <20231212115130.485911-1-mika.kahola@intel.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
- protocol="application/pgp-signature"; boundary="kqcylsquh2dgmtcq"
-Content-Disposition: inline
-In-Reply-To: <9af7ba748fd2eb7e04208b6b183185f1daf78016.1702369869.git.sean@mess.org>
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
-X-SA-Exim-Mail-From: ukl@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de);
- SAEximRunCond expanded to false
-X-PTX-Original-Recipient: intel-gfx@lists.freedesktop.org
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -60,82 +55,64 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: linux-fbdev@vger.kernel.org, linux-doc@vger.kernel.org,
- dri-devel@lists.freedesktop.org, platform-driver-x86@vger.kernel.org,
- Pavel Machek <pavel@ucw.cz>, David Airlie <airlied@gmail.com>,
- linux-leds@vger.kernel.org, Daniel Thompson <daniel.thompson@linaro.org>,
- Ivaylo Dimitrov <ivo.g.dimitrov.75@gmail.com>,
- Jonathan Corbet <corbet@lwn.net>, Lee Jones <lee@kernel.org>,
- linux-input@vger.kernel.org,
- Ilpo =?utf-8?B?SsOkcnZpbmVu?= <ilpo.jarvinen@linux.intel.com>,
- linux-media@vger.kernel.org, linux-pwm@vger.kernel.org,
- Daniel Vetter <daniel@ffwll.ch>, Jani Nikula <jani.nikula@intel.com>,
- intel-gfx@lists.freedesktop.org, Mark Gross <markgross@kernel.org>,
- Hans de Goede <hdegoede@redhat.com>, Maxime Ripard <mripard@kernel.org>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Mauro Carvalho Chehab <mchehab@kernel.org>,
- linux-arm-kernel@lists.infradead.org, linux-hwmon@vger.kernel.org,
- Support Opensource <support.opensource@diasemi.com>,
- Jingoo Han <jingoohan1@gmail.com>, Dmitry Torokhov <dmitry.torokhov@gmail.com>,
- linux-kernel@vger.kernel.org, Thomas Zimmermann <tzimmermann@suse.de>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+When going through the disconnection flow we don't need to wait for PHY
+readiness and hence we can skip the wait part. For disabling the function
+returns false as an indicator that the power is not enabled. After all,
+we are not even using the return value when Type-C is disconnecting.
 
---kqcylsquh2dgmtcq
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+v2: Cleanup for increased readibility (Imre)
 
-On Tue, Dec 12, 2023 at 08:34:00AM +0000, Sean Young wrote:
-> In order to introduce a pwm api which can be used from atomic context,
-> we will need two functions for applying pwm changes:
->=20
-> 	int pwm_apply_might_sleep(struct pwm *, struct pwm_state *);
-> 	int pwm_apply_atomic(struct pwm *, struct pwm_state *);
->=20
-> This commit just deals with renaming pwm_apply_state(), a following
-> commit will introduce the pwm_apply_atomic() function.
->=20
-> Acked-by: Dmitry Torokhov <dmitry.torokhov@gmail.com> # for input
-> Acked-by: Hans de Goede <hdegoede@redhat.com>
-> Acked-by: Jani Nikula <jani.nikula@intel.com>
-> Acked-by: Lee Jones <lee@kernel.org>
-> Signed-off-by: Sean Young <sean@mess.org>
+BSpec: 65380
 
-Acked-by: Uwe Kleine-K=F6nig <u.kleine-koenig@pengutronix.de>
+For VLK-53734
 
-Several affected maintainers already acked, so I guess it's fine to take
-this via the pwm tree. An Ack from the remaining maintainers would be
-very welcome, an alternative would be to split the patch.
+Signed-off-by: Mika Kahola <mika.kahola@intel.com>
+---
+ drivers/gpu/drm/i915/display/intel_tc.c | 25 ++++++++++++++++---------
+ 1 file changed, 16 insertions(+), 9 deletions(-)
 
-Missing Acks so far:
+diff --git a/drivers/gpu/drm/i915/display/intel_tc.c b/drivers/gpu/drm/i915/display/intel_tc.c
+index f64d348a969e..dcf05e00e505 100644
+--- a/drivers/gpu/drm/i915/display/intel_tc.c
++++ b/drivers/gpu/drm/i915/display/intel_tc.c
+@@ -1030,18 +1030,25 @@ static bool xelpdp_tc_phy_enable_tcss_power(struct intel_tc_port *tc, bool enabl
+ 
+ 	__xelpdp_tc_phy_enable_tcss_power(tc, enable);
+ 
+-	if ((!tc_phy_wait_for_ready(tc) ||
+-	     !xelpdp_tc_phy_wait_for_tcss_power(tc, enable)) &&
+-	    !drm_WARN_ON(&i915->drm, tc->mode == TC_PORT_LEGACY)) {
+-		if (enable) {
+-			__xelpdp_tc_phy_enable_tcss_power(tc, false);
+-			xelpdp_tc_phy_wait_for_tcss_power(tc, false);
+-		}
++	if (enable && !tc_phy_wait_for_ready(tc))
++		goto out_disable;
+ 
+-		return false;
+-	}
++	if (!xelpdp_tc_phy_wait_for_tcss_power(tc, enable))
++		goto out_disable;
+ 
+ 	return true;
++
++out_disable:
++	if (drm_WARN_ON(&i915->drm, tc->mode == TC_PORT_LEGACY))
++		return false;
++
++	if (!enable)
++		return false;
++
++	__xelpdp_tc_phy_enable_tcss_power(tc, false);
++	xelpdp_tc_phy_wait_for_tcss_power(tc, false);
++
++	return false;
+ }
+ 
+ static void xelpdp_tc_phy_take_ownership(struct intel_tc_port *tc, bool take)
+-- 
+2.34.1
 
- - Jean Delvare / Guenter Roeck for drivers/hwmon/pwm-fan.c
- - Javier Martinez Canillas for drivers/gpu/drm/solomon/ssd130x.c
- - Liam Girdwood / Mark Brown for drivers/regulator/pwm-regulator.c
- - Helge Deller for drivers/video/fbdev/ssd1307fb.c
-
-Best regards
-Uwe
-
---=20
-Pengutronix e.K.                           | Uwe Kleine-K=F6nig            |
-Industrial Linux Solutions                 | https://www.pengutronix.de/ |
-
---kqcylsquh2dgmtcq
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEP4GsaTp6HlmJrf7Tj4D7WH0S/k4FAmV4RssACgkQj4D7WH0S
-/k4FvQgAhhnJ0gGDS9vNrkWmDYMBz0OOooFMMGBMTBk2URyQxiqdxXWCSQKX4pDP
-4H/Hu+EbrEgXfRn0ANEzPIBDBGHQTo7W6N1NGpgxr8Bn1FoRwTzJMCbp62IGORar
-Xr+m5fAJrOjprAETsdyrt8zzjkkJR8Rxg3Gs1bCjjaJGv9VND2ArWlOqwC+I1PWM
-AYDVj/+/0wv8/rqAgNJbjPxdvlcfw/bnqy4/4Gs75Zn9qCRtODT3mCVtAKaWFSsh
-/FMmxKBYIm9ZFhT4skjci6JscC3iWTtp/LeJnoTY2cOyMJePYeRFLT0Ys7+wlsWe
-LCFShS20T2QYBWCYGmIIOHXHa7YwRQ==
-=jAgf
------END PGP SIGNATURE-----
-
---kqcylsquh2dgmtcq--
