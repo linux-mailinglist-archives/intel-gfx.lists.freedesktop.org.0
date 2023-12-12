@@ -2,50 +2,32 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8EEAD80EF52
-	for <lists+intel-gfx@lfdr.de>; Tue, 12 Dec 2023 15:51:24 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 85A4C80EFF7
+	for <lists+intel-gfx@lfdr.de>; Tue, 12 Dec 2023 16:20:07 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 32CE410E5D2;
-	Tue, 12 Dec 2023 14:51:21 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C4DB810E61B;
+	Tue, 12 Dec 2023 15:20:02 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.126])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B5BC010E1E1;
- Tue, 12 Dec 2023 14:51:19 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1702392679; x=1733928679;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=14uzE/WQpu/5VFsjOENh/drinb+dswmrOkGho48GCHI=;
- b=fnG3k5XRvJ3ZtFxYgViyOLZCZr9dSeejUWXSPfWEOSHRfpKBnNIL6QLa
- p9as9koNJOa/XOavPGipOQLXzQzTjAEL+DSbv0HlzuPCut+PjO3dfhUpi
- N5QxiZw2uKWJ8fNsUMd5fmurhRfT8QY+wJI5qxCeRCQjIMndfGdt/IrVk
- TIZIYh9bG8yUSxrs2ukZ6985gzRSg9xCPsPHLQSvIoEkCN08Yvuy1scFX
- k9fB/dHiT0fceMrgcYP5sPVMG1eJEJ75HzCqb67+g2F1nHXtxXHxxurVE
- qIdmQkDistwzGRyAbEYH/gD3MLV9OTOPb8LxUzy0/0B6FWLD2Tbcc1DGu g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10922"; a="379810495"
-X-IronPort-AV: E=Sophos;i="6.04,270,1695711600"; d="scan'208";a="379810495"
-Received: from fmsmga003.fm.intel.com ([10.253.24.29])
- by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Dec 2023 06:51:18 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10922"; a="864232078"
-X-IronPort-AV: E=Sophos;i="6.04,270,1695711600"; d="scan'208";a="864232078"
-Received: from ggilardi-mobl1.amr.corp.intel.com (HELO localhost)
- ([10.252.49.147])
- by fmsmga003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Dec 2023 06:51:16 -0800
-From: Jani Nikula <jani.nikula@intel.com>
-To: dri-devel@lists.freedesktop.org
-Subject: [PATCH] drm/edid: prefer forward declarations over includes in
- drm_edid.h
-Date: Tue, 12 Dec 2023 16:51:13 +0200
-Message-Id: <20231212145113.3849191-1-jani.nikula@intel.com>
-X-Mailer: git-send-email 2.39.2
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id C87D010E632;
+ Tue, 12 Dec 2023 15:20:00 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id C0DADA47DF;
+ Tue, 12 Dec 2023 15:20:00 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=97_Fi=2ECI=2ESPARSE=3A_warning_for_drm/edid=3A_prefer_forwa?=
+ =?utf-8?q?rd_declarations_over_includes_in_drm=5Fedid=2Eh?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Jani Nikula" <jani.nikula@intel.com>
+Date: Tue, 12 Dec 2023 15:20:00 -0000
+Message-ID: <170239440076.31291.12794963421297113736@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20231212145113.3849191-1-jani.nikula@intel.com>
+In-Reply-To: <20231212145113.3849191-1-jani.nikula@intel.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -58,54 +40,21 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: jani.nikula@intel.com, intel-gfx@lists.freedesktop.org
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-There's no need to include either linux/hdmi.h or drm/drm_mode.h. They
-can be removed by using forward declarations.
+== Series Details ==
 
-While at it, group the forward declarations together, and remove the
-unnecessary ones.
+Series: drm/edid: prefer forward declarations over includes in drm_edid.h
+URL   : https://patchwork.freedesktop.org/series/127695/
+State : warning
 
-Signed-off-by: Jani Nikula <jani.nikula@intel.com>
----
- include/drm/drm_edid.h | 12 +++++-------
- 1 file changed, 5 insertions(+), 7 deletions(-)
+== Summary ==
 
-diff --git a/include/drm/drm_edid.h b/include/drm/drm_edid.h
-index 518d1b8106c7..37c2702ee9ef 100644
---- a/include/drm/drm_edid.h
-+++ b/include/drm/drm_edid.h
-@@ -24,11 +24,14 @@
- #define __DRM_EDID_H__
- 
- #include <linux/types.h>
--#include <linux/hdmi.h>
--#include <drm/drm_mode.h>
- 
-+enum hdmi_quantization_range;
-+struct drm_connector;
- struct drm_device;
-+struct drm_display_mode;
- struct drm_edid;
-+struct hdmi_avi_infoframe;
-+struct hdmi_vendor_infoframe;
- struct i2c_adapter;
- 
- #define EDID_LENGTH 128
-@@ -319,11 +322,6 @@ struct cea_sad {
- 	u8 byte2; /* meaning depends on format */
- };
- 
--struct drm_encoder;
--struct drm_connector;
--struct drm_connector_state;
--struct drm_display_mode;
--
- int drm_edid_to_sad(const struct edid *edid, struct cea_sad **sads);
- int drm_edid_to_speaker_allocation(const struct edid *edid, u8 **sadb);
- int drm_av_sync_delay(struct drm_connector *connector,
--- 
-2.39.2
+Error: dim sparse failed
+Sparse version: v0.6.2
+Fast mode used, each commit won't be checked separately.
+
 
