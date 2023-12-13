@@ -1,49 +1,33 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3F1F381212A
-	for <lists+intel-gfx@lfdr.de>; Wed, 13 Dec 2023 23:05:29 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 160C581214E
+	for <lists+intel-gfx@lfdr.de>; Wed, 13 Dec 2023 23:17:10 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4C0A610E824;
-	Wed, 13 Dec 2023 22:05:25 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id AB1B310E845;
+	Wed, 13 Dec 2023 22:17:08 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 39AEE10E824
- for <intel-gfx@lists.freedesktop.org>; Wed, 13 Dec 2023 22:05:22 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1702505122; x=1734041122;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=3FjPuBvQcnlUhswtI0zCg3/8Y3XiZ6fIml+SlajsoNo=;
- b=RejtJsfa954X9cjCY8pmwzJPGQIW+A/H2zWQFq3ea8a2mIYfh/IWpdMY
- PPd3L0F6L2a6ew0bveSK+EB19043Ln8olI1QcYsWoGwNIkbvb6lfdlWXj
- ftK9RVIhL6UO4fnXbp/LNxwevvkxC1uTnWqPcEC0SoW99JByzYtVT4T+k
- cEtpI5E1kotPqRHqU4KcO49Hix0BUVj3We3fLSZFVy2aCKUW+1L0ZLTXX
- PQ+kJvzQjVZVT+if/VMlPyPJekuXkf+xRjj7T7e2TV/gFWcPWsoijpbUe
- P5p+cWHtYvin4/jTkYx/y/1zIwy0sFrIPL+s1VWNA/yCwRxi/KQk4F0K9 A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10923"; a="2177979"
-X-IronPort-AV: E=Sophos;i="6.04,274,1695711600"; 
-   d="scan'208";a="2177979"
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
- by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Dec 2023 14:05:22 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10923"; a="808325104"
-X-IronPort-AV: E=Sophos;i="6.04,274,1695711600"; d="scan'208";a="808325104"
-Received: from ideak-desk.fi.intel.com ([10.237.72.78])
- by orsmga001-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Dec 2023 14:05:20 -0800
-From: Imre Deak <imre.deak@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Subject: [PATCH] drm/i915/mtl: Fix HDMI/DP PLL clock selection
-Date: Thu, 14 Dec 2023 00:05:26 +0200
-Message-Id: <20231213220526.1828827-1-imre.deak@intel.com>
-X-Mailer: git-send-email 2.39.2
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 7F9B510E845;
+ Wed, 13 Dec 2023 22:17:06 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 758CAAADD5;
+ Wed, 13 Dec 2023 22:17:06 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============6320982737180895269=="
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=93_Fi=2ECI=2EBAT=3A_success_for_drm/i915/dmc=3A_DMC_event_s?=
+ =?utf-8?q?tuff_=28rev2=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: =?utf-8?b?VmlsbGUgU3lyasOkbMOk?= <ville.syrjala@linux.intel.com>
+Date: Wed, 13 Dec 2023 22:17:06 -0000
+Message-ID: <170250582644.10260.14355910895949877327@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20231211213750.27109-1-ville.syrjala@linux.intel.com>
+In-Reply-To: <20231211213750.27109-1-ville.syrjala@linux.intel.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -56,33 +40,195 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Select the HDMI specific PLL clock only for HDMI outputs.
+--===============6320982737180895269==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Fixes: 62618c7f117e ("drm/i915/mtl: C20 PLL programming")
-Cc: Mika Kahola <mika.kahola@intel.com>
-Cc: Radhakrishna Sripada <radhakrishna.sripada@intel.com>
-Signed-off-by: Imre Deak <imre.deak@intel.com>
----
- drivers/gpu/drm/i915/display/intel_cx0_phy.c | 3 ++-
- 1 file changed, 2 insertions(+), 1 deletion(-)
+== Series Details ==
 
-diff --git a/drivers/gpu/drm/i915/display/intel_cx0_phy.c b/drivers/gpu/drm/i915/display/intel_cx0_phy.c
-index 4e6ea71ff6294..884a1da360893 100644
---- a/drivers/gpu/drm/i915/display/intel_cx0_phy.c
-+++ b/drivers/gpu/drm/i915/display/intel_cx0_phy.c
-@@ -2468,7 +2468,8 @@ static void intel_program_port_clock_ctl(struct intel_encoder *encoder,
- 
- 	val |= XELPDP_FORWARD_CLOCK_UNGATE;
- 
--	if (is_hdmi_frl(crtc_state->port_clock))
-+	if (intel_crtc_has_type(crtc_state, INTEL_OUTPUT_HDMI) &&
-+	    is_hdmi_frl(crtc_state->port_clock))
- 		val |= XELPDP_DDI_CLOCK_SELECT(XELPDP_DDI_CLOCK_SELECT_DIV18CLK);
- 	else
- 		val |= XELPDP_DDI_CLOCK_SELECT(XELPDP_DDI_CLOCK_SELECT_MAXPCLK);
--- 
-2.39.2
+Series: drm/i915/dmc: DMC event stuff (rev2)
+URL   : https://patchwork.freedesktop.org/series/127648/
+State : success
 
+== Summary ==
+
+CI Bug Log - changes from CI_DRM_14017 -> Patchwork_127648v2
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_127648v2/index.html
+
+Participating hosts (37 -> 35)
+------------------------------
+
+  Missing    (2): bat-mtlp-8 fi-snb-2520m 
+
+Possible new issues
+-------------------
+
+  Here are the unknown changes that may have been introduced in Patchwork_127648v2:
+
+### IGT changes ###
+
+#### Suppressed ####
+
+  The following results come from untrusted machines, tests, or statuses.
+  They do not affect the overall result.
+
+  * igt@kms_flip@basic-plain-flip:
+    - {bat-rpls-3}:       NOTRUN -> [SKIP][1]
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_127648v2/bat-rpls-3/igt@kms_flip@basic-plain-flip.html
+
+  * igt@kms_frontbuffer_tracking@basic:
+    - {bat-rpls-3}:       [PASS][2] -> [SKIP][3]
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14017/bat-rpls-3/igt@kms_frontbuffer_tracking@basic.html
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_127648v2/bat-rpls-3/igt@kms_frontbuffer_tracking@basic.html
+
+  
+Known issues
+------------
+
+  Here are the changes found in Patchwork_127648v2 that come from known issues:
+
+### CI changes ###
+
+#### Issues hit ####
+
+  * boot:
+    - bat-jsl-1:          [PASS][4] -> [FAIL][5] ([i915#8293])
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14017/bat-jsl-1/boot.html
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_127648v2/bat-jsl-1/boot.html
+
+  
+
+### IGT changes ###
+
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+  [i915#7359]: https://gitlab.freedesktop.org/drm/intel/issues/7359
+  [i915#8293]: https://gitlab.freedesktop.org/drm/intel/issues/8293
+  [i915#8981]: https://gitlab.freedesktop.org/drm/intel/issues/8981
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_14017 -> Patchwork_127648v2
+
+  CI-20190529: 20190529
+  CI_DRM_14017: 58ac4ffc75b62e6007e85ae6777820e77c113b01 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_7639: 18afc09e362b605a3c88c000331708f105d2c23a @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  Patchwork_127648v2: 58ac4ffc75b62e6007e85ae6777820e77c113b01 @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+### Linux commits
+
+40d0e8066c15 drm/i915/dmc: Print out the DMC mmio register list at fw load time
+20c0d42a7578 drm/i915/dmc: Also disable HRR event on TGL/ADLS main DMC
+24ce14610bca drm/i915/dmc: Also disable the flip queue event on TGL main DMC
+b2f5f1fb6b54 drm/i915/dmc: Don't enable any pipe DMC events
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_127648v2/index.html
+
+--===============6320982737180895269==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/i915/dmc: DMC event stuff (rev2)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/127648/">https://patchwork.freedesktop.org/series/127648/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_127648v2/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_127648v2/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_14017 -&gt; Patchwork_127648v2</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_127648v2/index.html</p>
+<h2>Participating hosts (37 -&gt; 35)</h2>
+<p>Missing    (2): bat-mtlp-8 fi-snb-2520m </p>
+<h2>Possible new issues</h2>
+<p>Here are the unknown changes that may have been introduced in Patchwork_127648v2:</p>
+<h3>IGT changes</h3>
+<h4>Suppressed</h4>
+<p>The following results come from untrusted machines, tests, or statuses.<br />
+  They do not affect the overall result.</p>
+<ul>
+<li>
+<p>igt@kms_flip@basic-plain-flip:</p>
+<ul>
+<li>{bat-rpls-3}:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_127648v2/bat-rpls-3/igt@kms_flip@basic-plain-flip.html">SKIP</a></li>
+</ul>
+</li>
+<li>
+<p>igt@kms_frontbuffer_tracking@basic:</p>
+<ul>
+<li>{bat-rpls-3}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14017/bat-rpls-3/igt@kms_frontbuffer_tracking@basic.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_127648v2/bat-rpls-3/igt@kms_frontbuffer_tracking@basic.html">SKIP</a></li>
+</ul>
+</li>
+</ul>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_127648v2 that come from known issues:</p>
+<h3>CI changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>boot:<ul>
+<li>bat-jsl-1:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14017/bat-jsl-1/boot.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_127648v2/bat-jsl-1/boot.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/8293">i915#8293</a>)</li>
+</ul>
+</li>
+</ul>
+<h3>IGT changes</h3>
+<p>{name}: This element is suppressed. This means it is ignored when computing<br />
+          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_14017 -&gt; Patchwork_127648v2</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_14017: 58ac4ffc75b62e6007e85ae6777820e77c113b01 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_7639: 18afc09e362b605a3c88c000331708f105d2c23a @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  Patchwork_127648v2: 58ac4ffc75b62e6007e85ae6777820e77c113b01 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+<h3>Linux commits</h3>
+<p>40d0e8066c15 drm/i915/dmc: Print out the DMC mmio register list at fw load time<br />
+20c0d42a7578 drm/i915/dmc: Also disable HRR event on TGL/ADLS main DMC<br />
+24ce14610bca drm/i915/dmc: Also disable the flip queue event on TGL main DMC<br />
+b2f5f1fb6b54 drm/i915/dmc: Don't enable any pipe DMC events</p>
+
+</body>
+</html>
+
+--===============6320982737180895269==--
