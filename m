@@ -1,53 +1,57 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id BDFA4810FE3
-	for <lists+intel-gfx@lfdr.de>; Wed, 13 Dec 2023 12:28:31 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id A6869811076
+	for <lists+intel-gfx@lfdr.de>; Wed, 13 Dec 2023 12:47:08 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2A13710E728;
-	Wed, 13 Dec 2023 11:28:29 +0000 (UTC)
-X-Original-To: intel-gfx@lists.freedesktop.org
-Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.65])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2E37A10E728
- for <intel-gfx@lists.freedesktop.org>; Wed, 13 Dec 2023 11:28:28 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 28B6810E78A;
+	Wed, 13 Dec 2023 11:47:07 +0000 (UTC)
+X-Original-To: Intel-gfx@lists.freedesktop.org
+Delivered-To: Intel-gfx@lists.freedesktop.org
+Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.115])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C121210E784;
+ Wed, 13 Dec 2023 11:47:04 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1702466908; x=1734002908;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=gQUGdrM04iGbqdRlstpKI6mks6R7WnsJ0jKA5WdCKEM=;
- b=DZXr8ykVtAtbn40Z9psVgSEHXLHC9bKZPOvGoRf2hFyN2z4/g1893+Ge
- nET7USUkuNzfZyxt5cAtZkSJet72eJ8zTiDb8VyeEEER2T/PVbQdsspE7
- tyaWEtbsYbQ8rvm0JFxFUh+xhJeBvlyuRvpUGRB7kCiYrXXh8207Zt9rh
- UWPHE5uvvC+yV9ENVTKS/e5A4FIMYeO+jPetCF7Jbo9UX8z7MOt8YWnKN
- ZuzXyEhSAnfBPnsSFjPUVlTfhm9n2OYHn2FGzwx/GDNUdpgLMh0dptJW1
- Wdr9bntDdzZNhkftSAo2S/EBiij+O20MNNuojBVDAtjBKRSDHlxgbGK5/ g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10922"; a="398793793"
-X-IronPort-AV: E=Sophos;i="6.04,272,1695711600"; d="scan'208";a="398793793"
-Received: from orsmga006.jf.intel.com ([10.7.209.51])
- by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Dec 2023 03:28:27 -0800
+ t=1702468024; x=1734004024;
+ h=message-id:date:mime-version:subject:to:cc:references:
+ from:in-reply-to:content-transfer-encoding;
+ bh=iuJ8mSwb6XJ8/RMS0rPZIJhSf3LMo1XikeKriOIFaMQ=;
+ b=VB65XRqmJAvP9vGwm2fuzcaBDTj9nqVLnaf9jYO86ciZFdyr6rbuk3ih
+ ClrPQhG+7jLpC4oS6T6dFEjLQMGoaMraBkA5mHrwsAh8b9ATRT+5b5yZL
+ N9H3NPsS4XawI4eWNMvLKYuOM/XC2ZZy/747VpNRoRAsm5cZTp966VqzN
+ ZupG0lobpnXK1mXlAKklKGeU7JJJe7b+eFbC2+yLDc1jcvGUlUISiqJDy
+ sTjKR8vPt41t7yXlbdy3lOiYVzqih9EkMSwbGI4C8CcsmgHEVqbfTBh3Z
+ HQLNu7Lmufs3KnMrdlKiql70yu/9MRp5m/nX6HEHBB1co3OdD045HK4lB A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10922"; a="394703668"
+X-IronPort-AV: E=Sophos;i="6.04,272,1695711600"; d="scan'208";a="394703668"
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 Dec 2023 03:46:15 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10922"; a="750079783"
-X-IronPort-AV: E=Sophos;i="6.04,272,1695711600"; d="scan'208";a="750079783"
-Received: from unknown (HELO intel.com) ([10.237.72.65])
- by orsmga006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Dec 2023 03:28:26 -0800
-Date: Wed, 13 Dec 2023 13:28:15 +0200
-From: "Lisovskiy, Stanislav" <stanislav.lisovskiy@intel.com>
-To: Ville Syrjala <ville.syrjala@linux.intel.com>
-Subject: Re: [PATCH 9/9] Revert "drm/i915/xe2lpd: Treat cursor plane as
- regular plane for DDB allocation"
-Message-ID: <ZXmVT5b18dJ7emvp@intel.com>
-References: <20231213102519.13500-1-ville.syrjala@linux.intel.com>
- <20231213102519.13500-10-ville.syrjala@linux.intel.com>
+X-IronPort-AV: E=McAfee;i="6600,9927,10922"; a="802855685"
+X-IronPort-AV: E=Sophos;i="6.04,272,1695711600"; d="scan'208";a="802855685"
+Received: from kryanx-mobl.ger.corp.intel.com (HELO [10.213.231.240])
+ ([10.213.231.240])
+ by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 Dec 2023 03:46:12 -0800
+Message-ID: <7387ea98-5854-45cc-a6c5-70cfe0febb3a@linux.intel.com>
+Date: Wed, 13 Dec 2023 11:46:10 +0000
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
+User-Agent: Mozilla Thunderbird
+Subject: Re: [RFC] drm/i915: Allow dmabuf mmap forwarding
+Content-Language: en-US
+To: =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>,
+ Intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
+References: <20230925131638.32808-1-tvrtko.ursulin@linux.intel.com>
+ <4da147e7-44bf-4d19-952d-fa3bab141f71@linux.intel.com>
+ <26b9d5bf-f895-4237-85fe-04f53040c26c@amd.com>
+From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+Organization: Intel Corporation UK Plc
+In-Reply-To: <26b9d5bf-f895-4237-85fe-04f53040c26c@amd.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20231213102519.13500-10-ville.syrjala@linux.intel.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -60,128 +64,294 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Lucas De Marchi <lucas.demarchi@intel.com>, intel-gfx@lists.freedesktop.org,
- Matt Roper <matthew.d.roper@intel.com>
+Cc: Daniel Vetter <daniel.vetter@ffwll.ch>,
+ Tvrtko Ursulin <tvrtko.ursulin@intel.com>,
+ Matthew Auld <matthew.auld@intel.com>, Thomas Zimmermann <tzimmermann@suse.de>,
+ Nirmoy Das <nirmoy.das@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, Dec 13, 2023 at 12:25:19PM +0200, Ville Syrjala wrote:
-> From: Ville Syrj�l� <ville.syrjala@linux.intel.com>
-> 
-> This reverts commit cfeff354f70bb1d0deb0279506e3f7989bc16e28.
-> 
-> A core design consideration with legacy cursor updates is that the
-> cursor must not touch any other plane, even if we were to force it
-> to take the slow path. That is the real reason why the cursor uses
-> a fixed ddb allocation, not because bspec says so.
-> 
-> Treating cursors as any other plane during ddb allocation
-> violates that, which means we can now pull other planes into
-> fully unsynced legacy cursor mailbox commits. That is
-> definitely not something we've ever considered when designing
-> the rest of the code. The noarm+arm register write split in
-> particular makes that dangerous as previous updates can get
-> disarmed pretty much at any random time, and not necessarily
-> in an order that is actually safe (eg. against ddb overlaps).
-> 
-> So if we were to do this then:
-> - someone needs to expend the appropriate amount of brain
->   cells thinking through all the tricky details
 
-So question is how can we avoid pulling other planes to the commit?..
+Hi,
 
+On 12/12/2023 14:10, Christian König wrote:
+> Hi Tvrtko,
+> 
+> Thanks for pointing this mail out once more, I've totally missed it.
 
-Stan
+That's okay, if it was really urgent I would have re-raised the thread 
+earlier. :) As it stands so far it is only about acceptance test suites 
+failing and no known real use cases affected.
 
-> - we should do it for all skl+ platforms since all
->   of those have double buffered wm/ddb registers. The current
->   arbitrary mtl+ cutoff doesn't really make sense
+> Am 12.12.23 um 11:37 schrieb Tvrtko Ursulin:
+>>
+>> On 25/09/2023 14:16, Tvrtko Ursulin wrote:
+>>> From: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+>>>
+>>> Allow mmap forwarding for imported buffers in order to allow minigbm 
+>>> mmap
+>>> to work on aperture-less platforms such as Meteorlake.
+>>>
+>>> So far i915 did not allow mmap on imported buffers but from minigbm
+>>> perspective that worked because of the DRM_IOCTL_I915_GEM_MMAP_GTT fall-
+>>> back would then be attempted, and would be successful.
+>>>
+>>> This stops working on Meteorlake since there is no aperture.
+>>>
+>>> Allow i915 to mmap imported buffers using forwarding via dma_buf_mmap(),
+>>> which allows the primary minigbm path of 
+>>> DRM_IOCTL_I915_GEM_MMAP_OFFSET /
+>>> I915_MMAP_OFFSET_WB to work.
+>>>
+>>> Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+>>> Cc: Daniel Vetter <daniel.vetter@ffwll.ch>
+>>> Cc: Christian König <christian.koenig@amd.com>
+>>> Cc: Matthew Auld <matthew.auld@intel.com>
+>>> Cc: Nirmoy Das <nirmoy.das@intel.com>
+>>> ---
+>>> 1)
+>>> It is unclear to me if any real userspace depends on this, but there are
+>>> certainly compliance suites which fail.
 > 
-> For the moment just go back to the original behaviour where
-> the cursor's ddb alloation does not change outside of
-> modeset/fastset. As of now anything else isn't safe.
+> Well that is actually intentional, but see below.
 > 
-> Cc: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
-> Cc: Matt Roper <matthew.d.roper@intel.com>
-> Cc: Lucas De Marchi <lucas.demarchi@intel.com>
-> Signed-off-by: Ville Syrj�l� <ville.syrjala@linux.intel.com>
-> ---
->  .../gpu/drm/i915/display/intel_atomic_plane.c    |  6 +++---
->  drivers/gpu/drm/i915/display/skl_watermark.c     | 16 +++++++---------
->  2 files changed, 10 insertions(+), 12 deletions(-)
+>>>
+>>> 2)
+>>> It is also a bit unclear to me if dma_buf_mmap() is exactly intended for
+>>> this kind of use. It seems that it is, but I also found some old mailing
+>>> list discussions suggesting there might be some unresolved questions
+>>> around VMA revocation.
 > 
-> diff --git a/drivers/gpu/drm/i915/display/intel_atomic_plane.c b/drivers/gpu/drm/i915/display/intel_atomic_plane.c
-> index 06c2455bdd78..76d77d5a0409 100644
-> --- a/drivers/gpu/drm/i915/display/intel_atomic_plane.c
-> +++ b/drivers/gpu/drm/i915/display/intel_atomic_plane.c
-> @@ -217,6 +217,9 @@ intel_plane_relative_data_rate(const struct intel_crtc_state *crtc_state,
->  	int width, height;
->  	unsigned int rel_data_rate;
->  
-> +	if (plane->id == PLANE_CURSOR)
-> +		return 0;
-> +
->  	if (!plane_state->uapi.visible)
->  		return 0;
->  
-> @@ -244,9 +247,6 @@ intel_plane_relative_data_rate(const struct intel_crtc_state *crtc_state,
->  
->  	rel_data_rate = width * height * fb->format->cpp[color_plane];
->  
-> -	if (plane->id == PLANE_CURSOR)
-> -		return rel_data_rate;
-> -
->  	return intel_adjusted_rate(&plane_state->uapi.src,
->  				   &plane_state->uapi.dst,
->  				   rel_data_rate);
-> diff --git a/drivers/gpu/drm/i915/display/skl_watermark.c b/drivers/gpu/drm/i915/display/skl_watermark.c
-> index 56588d6e24ae..051a02ac01a4 100644
-> --- a/drivers/gpu/drm/i915/display/skl_watermark.c
-> +++ b/drivers/gpu/drm/i915/display/skl_watermark.c
-> @@ -1367,7 +1367,7 @@ skl_total_relative_data_rate(const struct intel_crtc_state *crtc_state)
->  	u64 data_rate = 0;
->  
->  	for_each_plane_id_on_crtc(crtc, plane_id) {
-> -		if (plane_id == PLANE_CURSOR && DISPLAY_VER(i915) < 20)
-> +		if (plane_id == PLANE_CURSOR)
->  			continue;
->  
->  		data_rate += crtc_state->rel_data_rate[plane_id];
-> @@ -1514,12 +1514,10 @@ skl_crtc_allocate_plane_ddb(struct intel_atomic_state *state,
->  		return 0;
->  
->  	/* Allocate fixed number of blocks for cursor. */
-> -	if (DISPLAY_VER(i915) < 20) {
-> -		cursor_size = skl_cursor_allocation(crtc_state, num_active);
-> -		iter.size -= cursor_size;
-> -		skl_ddb_entry_init(&crtc_state->wm.skl.plane_ddb[PLANE_CURSOR],
-> -				   alloc->end - cursor_size, alloc->end);
-> -	}
-> +	cursor_size = skl_cursor_allocation(crtc_state, num_active);
-> +	iter.size -= cursor_size;
-> +	skl_ddb_entry_init(&crtc_state->wm.skl.plane_ddb[PLANE_CURSOR],
-> +			   alloc->end - cursor_size, alloc->end);
->  
->  	iter.data_rate = skl_total_relative_data_rate(crtc_state);
->  
-> @@ -1533,7 +1531,7 @@ skl_crtc_allocate_plane_ddb(struct intel_atomic_state *state,
->  			const struct skl_plane_wm *wm =
->  				&crtc_state->wm.skl.optimal.planes[plane_id];
->  
-> -			if (plane_id == PLANE_CURSOR && DISPLAY_VER(i915) < 20) {
-> +			if (plane_id == PLANE_CURSOR) {
->  				const struct skl_ddb_entry *ddb =
->  					&crtc_state->wm.skl.plane_ddb[plane_id];
->  
-> @@ -1581,7 +1579,7 @@ skl_crtc_allocate_plane_ddb(struct intel_atomic_state *state,
->  		const struct skl_plane_wm *wm =
->  			&crtc_state->wm.skl.optimal.planes[plane_id];
->  
-> -		if (plane_id == PLANE_CURSOR && DISPLAY_VER(i915) < 20)
-> +		if (plane_id == PLANE_CURSOR)
->  			continue;
->  
->  		if (DISPLAY_VER(i915) < 11 &&
-> -- 
-> 2.41.0
+> I actually solved those a few years back by introducing the 
+> vma_set_file() function which standardized the dance necessary for the 
+> dma_buf_mmap() function.
+> 
+>>>
+>>> 1 + 2 = RFC for now.
+>>>
+>>> Daniel and Christian were involved in 2) in the past so comments would
+>>> be appreciated.
+>>
+>> Any comments on this one? I don't have all the historical knowledge of 
+>> when this was maybe attempted before and what problems were hit, or 
+>> something. So would there be downsides or it is fine to forward it.
+> 
+> It works technically inside the kernel and Thomas Zimmerman suggested a 
+> patch set which made it possible to use for all DRM drivers.
+> 
+> But IIRC this patch set was rejected with the rational that while doing 
+> an mmap() on an imported DMA-buf works when userspace actually does this 
+> then there is a bug in userspace. The UMD doesn't seems to be aware of 
+> the fact that the buffer is imported and so for example needs to call 
+> dma_buf_begin_cpu_access() and dma_buf_end_cpu_access().
+> 
+> UMDs can trivially work around this by doing the mmap() on the DMA-buf 
+> file descriptor instead (potentially after re-exporting it), but the 
+> kernel really shouldn't help hide userspace bugs.
+
+Hm right, however why does drm_gem_shmem_mmap:
+
+	if (obj->import_attach) {
+		ret = dma_buf_mmap(obj->dma_buf, vma, 0);
+
+Isn't that allowing drivers which use the helper to to forward to 
+dma_buf_mmap? Maybe I am getting lost in the forest of callbacks in this 
+area.. Because it is supposed to be about shmem objects, but drivers 
+which use the helper and rely on common prime import look and also use 
+drm_gem_shmem_prime_import_sg_table can get there.
+
+Regards,
+
+Tvrtko
+
+>>>
+>>> Test-with: 20230925131539.32743-1-tvrtko.ursulin@linux.intel.com
+>>>
+>>> ---
+>>>   drivers/gpu/drm/i915/gem/i915_gem_mman.c      | 78 +++++++++++++++----
+>>>   .../gpu/drm/i915/gem/i915_gem_object_types.h  |  1 +
+>>>   2 files changed, 65 insertions(+), 14 deletions(-)
+>>>
+>>> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_mman.c 
+>>> b/drivers/gpu/drm/i915/gem/i915_gem_mman.c
+>>> index aa4d842d4c5a..78c84c0a8b08 100644
+>>> --- a/drivers/gpu/drm/i915/gem/i915_gem_mman.c
+>>> +++ b/drivers/gpu/drm/i915/gem/i915_gem_mman.c
+>>> @@ -5,6 +5,7 @@
+>>>    */
+>>>     #include <linux/anon_inodes.h>
+>>> +#include <linux/dma-buf.h>
+>>>   #include <linux/mman.h>
+>>>   #include <linux/pfn_t.h>
+>>>   #include <linux/sizes.h>
+>>> @@ -664,6 +665,7 @@ insert_mmo(struct drm_i915_gem_object *obj, 
+>>> struct i915_mmap_offset *mmo)
+>>>   static struct i915_mmap_offset *
+>>>   mmap_offset_attach(struct drm_i915_gem_object *obj,
+>>>              enum i915_mmap_type mmap_type,
+>>> +           bool forward_mmap,
+>>>              struct drm_file *file)
+>>>   {
+>>>       struct drm_i915_private *i915 = to_i915(obj->base.dev);
+>>> @@ -682,6 +684,7 @@ mmap_offset_attach(struct drm_i915_gem_object *obj,
+>>>         mmo->obj = obj;
+>>>       mmo->mmap_type = mmap_type;
+>>> +    mmo->forward_mmap = forward_mmap;
+>>>       drm_vma_node_reset(&mmo->vma_node);
+>>>         err = drm_vma_offset_add(obj->base.dev->vma_offset_manager,
+>>> @@ -714,12 +717,25 @@ mmap_offset_attach(struct drm_i915_gem_object 
+>>> *obj,
+>>>       return ERR_PTR(err);
+>>>   }
+>>>   +static bool
+>>> +should_forward_mmap(struct drm_i915_gem_object *obj,
+>>> +            enum i915_mmap_type mmap_type)
+>>> +{
+>>> +    if (!obj->base.import_attach)
+>>> +        return false;
+>>> +
+>>> +    return mmap_type == I915_MMAP_TYPE_WB ||
+>>> +           mmap_type == I915_MMAP_TYPE_WC ||
+>>> +           mmap_type == I915_MMAP_TYPE_UC;
+>>> +}
+>>> +
+>>>   static int
+>>>   __assign_mmap_offset(struct drm_i915_gem_object *obj,
+>>>                enum i915_mmap_type mmap_type,
+>>>                u64 *offset, struct drm_file *file)
+>>>   {
+>>>       struct i915_mmap_offset *mmo;
+>>> +    bool should_forward;
+>>>         if (i915_gem_object_never_mmap(obj))
+>>>           return -ENODEV;
+>>> @@ -735,12 +751,15 @@ __assign_mmap_offset(struct drm_i915_gem_object 
+>>> *obj,
+>>>       if (mmap_type == I915_MMAP_TYPE_FIXED)
+>>>           return -ENODEV;
+>>>   +    should_forward = should_forward_mmap(obj, mmap_type);
+>>> +
+>>>       if (mmap_type != I915_MMAP_TYPE_GTT &&
+>>>           !i915_gem_object_has_struct_page(obj) &&
+>>> -        !i915_gem_object_has_iomem(obj))
+>>> +        !i915_gem_object_has_iomem(obj) &&
+>>> +        !should_forward)
+>>>           return -ENODEV;
+>>>   -    mmo = mmap_offset_attach(obj, mmap_type, file);
+>>> +    mmo = mmap_offset_attach(obj, mmap_type, should_forward, file);
+>>>       if (IS_ERR(mmo))
+>>>           return PTR_ERR(mmo);
+>>>   @@ -936,6 +955,32 @@ static struct file *mmap_singleton(struct 
+>>> drm_i915_private *i915)
+>>>       return file;
+>>>   }
+>>>   +static void
+>>> +__vma_mmap_pgprot(struct vm_area_struct *vma, enum i915_mmap_type 
+>>> mmap_type)
+>>> +{
+>>> +    const pgprot_t pgprot =vm_get_page_prot(vma->vm_flags);
+>>> +
+>>> +    switch (mmap_type) {
+>>> +    case I915_MMAP_TYPE_WC:
+>>> +        vma->vm_page_prot = pgprot_writecombine(pgprot);
+>>> +        break;
+>>> +    case I915_MMAP_TYPE_FIXED:
+>>> +        GEM_WARN_ON(1);
+>>> +        fallthrough;
+>>> +    case I915_MMAP_TYPE_WB:
+>>> +        vma->vm_page_prot = pgprot;
+>>> +        break;
+>>> +    case I915_MMAP_TYPE_UC:
+>>> +        vma->vm_page_prot = pgprot_noncached(pgprot);
+>>> +        break;
+>>> +    case I915_MMAP_TYPE_GTT:
+>>> +        vma->vm_page_prot = pgprot_writecombine(pgprot);
+>>> +        break;
+>>> +    }
+>>> +
+>>> +    vma->vm_page_prot = pgprot_decrypted(vma->vm_page_prot);
+>>> +}
+>>> +
+>>>   static int
+>>>   i915_gem_object_mmap(struct drm_i915_gem_object *obj,
+>>>                struct i915_mmap_offset *mmo,
+>>> @@ -953,6 +998,20 @@ i915_gem_object_mmap(struct drm_i915_gem_object 
+>>> *obj,
+>>>           vm_flags_clear(vma, VM_MAYWRITE);
+>>>       }
+>>>   +    /* dma-buf import */
+>>> +    if (mmo && mmo->forward_mmap) {
+>>> +        __vma_mmap_pgprot(vma, mmo->mmap_type);
+>>> +        vm_flags_set(vma, VM_PFNMAP | VM_DONTEXPAND | VM_DONTDUMP | 
+>>> VM_IO);
+>>> +
+>>> +        /*
+>>> +         * Don't have our vm_ops to drop the reference in this case so
+>>> +         * drop it now and if object goes away userspace will fault.
+>>> +         */
+>>> +        i915_gem_object_put(mmo->obj);
+>>> +
+>>> +        return dma_buf_mmap(obj->base.dma_buf, vma, 0);
+>>> +    }
+>>> +
+>>>       anon = mmap_singleton(to_i915(dev));
+>>>       if (IS_ERR(anon)) {
+>>>           i915_gem_object_put(obj);
+>>> @@ -982,34 +1041,25 @@ i915_gem_object_mmap(struct 
+>>> drm_i915_gem_object *obj,
+>>>         vma->vm_private_data = mmo;
+>>>   +    __vma_mmap_pgprot(vma, mmo->mmap_type);
+>>> +
+>>>       switch (mmo->mmap_type) {
+>>>       case I915_MMAP_TYPE_WC:
+>>> -        vma->vm_page_prot =
+>>> - pgprot_writecombine(vm_get_page_prot(vma->vm_flags));
+>>>           vma->vm_ops = &vm_ops_cpu;
+>>>           break;
+>>> -
+>>>       case I915_MMAP_TYPE_FIXED:
+>>>           GEM_WARN_ON(1);
+>>>           fallthrough;
+>>>       case I915_MMAP_TYPE_WB:
+>>> -        vma->vm_page_prot = vm_get_page_prot(vma->vm_flags);
+>>>           vma->vm_ops = &vm_ops_cpu;
+>>>           break;
+>>> -
+>>>       case I915_MMAP_TYPE_UC:
+>>> -        vma->vm_page_prot =
+>>> - pgprot_noncached(vm_get_page_prot(vma->vm_flags));
+>>>           vma->vm_ops = &vm_ops_cpu;
+>>>           break;
+>>> -
+>>>       case I915_MMAP_TYPE_GTT:
+>>> -        vma->vm_page_prot =
+>>> - pgprot_writecombine(vm_get_page_prot(vma->vm_flags));
+>>>           vma->vm_ops = &vm_ops_gtt;
+>>>           break;
+>>>       }
+>>> -    vma->vm_page_prot = pgprot_decrypted(vma->vm_page_prot);
+>>>         return 0;
+>>>   }
+>>> @@ -1084,7 +1134,7 @@ int i915_gem_fb_mmap(struct drm_i915_gem_object 
+>>> *obj, struct vm_area_struct *vma
+>>>       } else {
+>>>           /* handle stolen and smem objects */
+>>>           mmap_type = i915_ggtt_has_aperture(ggtt) ? 
+>>> I915_MMAP_TYPE_GTT : I915_MMAP_TYPE_WC;
+>>> -        mmo = mmap_offset_attach(obj, mmap_type, NULL);
+>>> +        mmo = mmap_offset_attach(obj, mmap_type, false, NULL);
+>>>           if (IS_ERR(mmo))
+>>>               return PTR_ERR(mmo);
+>>>       }
+>>> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_object_types.h 
+>>> b/drivers/gpu/drm/i915/gem/i915_gem_object_types.h
+>>> index 0c5cdab278b6..b4f86fa020aa 100644
+>>> --- a/drivers/gpu/drm/i915/gem/i915_gem_object_types.h
+>>> +++ b/drivers/gpu/drm/i915/gem/i915_gem_object_types.h
+>>> @@ -225,6 +225,7 @@ struct i915_mmap_offset {
+>>>       struct drm_vma_offset_node vma_node;
+>>>       struct drm_i915_gem_object *obj;
+>>>       enum i915_mmap_type mmap_type;
+>>> +    bool forward_mmap;
+>>>         struct rb_node offset;
+>>>   };
 > 
