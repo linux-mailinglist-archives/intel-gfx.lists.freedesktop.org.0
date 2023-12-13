@@ -1,50 +1,56 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5F798810D00
-	for <lists+intel-gfx@lfdr.de>; Wed, 13 Dec 2023 10:08:47 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2D0DD810D0E
+	for <lists+intel-gfx@lfdr.de>; Wed, 13 Dec 2023 10:09:49 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C6CA110E75F;
-	Wed, 13 Dec 2023 09:08:45 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A077910E758;
+	Wed, 13 Dec 2023 09:09:47 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.126])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D6DC710E74E
- for <intel-gfx@lists.freedesktop.org>; Wed, 13 Dec 2023 09:08:42 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.115])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 41B3410E758
+ for <intel-gfx@lists.freedesktop.org>; Wed, 13 Dec 2023 09:09:45 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1702458522; x=1733994522;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=Ps5yutj6+RFEYvJ+nfDMAn3K+Ni6dSajQIIW6756pxc=;
- b=VR6rS2f5t1DUMMn1E6/O/wxBrkrA8K41m0iAx59MjkwxYddGsY3CRjNF
- SX5n5B3KRclypA/jTPMdEIUue+tJj/lh7xuHVRQg6AW6LgHPuO56hbd5z
- kaQGdHs4vbIGkz9yEueH1/GokudZp8AkpdS1RKr+q+3QxRLu1GvqRAwiS
- qBXQ/0gwjaPJ3f6W/04mFe1+MaFlzCZFimLZLi++vozLc56gZ8Y+Ar2to
- yKhZv2LQSorNzdnAbdlF/U2wqZk3bKf3roveq9oJiC1mvGhnSUkrODBUi
- /od/gJbAM2dltCvd4Ng/MG6c2jaUi4HCHfVmak+vo2BtlyIA1Mt7nVHVl w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10922"; a="379930514"
-X-IronPort-AV: E=Sophos;i="6.04,272,1695711600"; d="scan'208";a="379930514"
-Received: from fmsmga003.fm.intel.com ([10.253.24.29])
- by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Dec 2023 01:08:36 -0800
+ t=1702458585; x=1733994585;
+ h=mime-version:content-transfer-encoding:in-reply-to:
+ references:from:to:subject:message-id:date;
+ bh=ejcRpnR4gPjnCsNhz6aplPrVUKHZJbcYBP3tvLD3yrA=;
+ b=cmHTTvsRCuwd2SO7FU9S8VNvAw/YBVlIM9cLNlM3GAzdUkI62zdze9Lm
+ HAKrSNxrtxLnFcGhgBouR/awm0IrJjV5cBEkYZHczt7C8LCt09kNveYja
+ cKl/15mlsrXFoZbw5EEi6ezoe3oUmFtf1gaIeaLwlIIL2H3A+g+6cNs/I
+ 0kIcfZGlH2QqG263YHPOyPyMxBRJvK1P/OUZ7ricA44i6LCJrgcOhjT+y
+ udk8WY+PGzM+g5xqsDEn7gQO7MRlG1kvqQ4pz/eQmt/g2GJbaMnSPhME6
+ xTSEs9M2IEnDOqUyQVQURTFFW483Dm1cwCpHavUHRQH8DZcAene+7WnQv w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10922"; a="394688312"
+X-IronPort-AV: E=Sophos;i="6.04,272,1695711600"; d="scan'208";a="394688312"
+Received: from orsmga007.jf.intel.com ([10.7.209.58])
+ by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 Dec 2023 01:09:44 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10922"; a="864553920"
-X-IronPort-AV: E=Sophos;i="6.04,272,1695711600"; d="scan'208";a="864553920"
-Received: from nemesa.iind.intel.com ([10.190.239.22])
- by FMSMGA003.fm.intel.com with ESMTP; 13 Dec 2023 01:08:32 -0800
-From: Nemesa Garg <nemesa.garg@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Subject: [PATCH v2 2/2] drm/i915/display: Add darkscreen debugfs entry under
- crtc
-Date: Wed, 13 Dec 2023 14:36:41 +0530
-Message-Id: <20231213090641.1153030-3-nemesa.garg@intel.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20231213090641.1153030-1-nemesa.garg@intel.com>
-References: <20231213090641.1153030-1-nemesa.garg@intel.com>
+X-IronPort-AV: E=McAfee;i="6600,9927,10922"; a="767146160"
+X-IronPort-AV: E=Sophos;i="6.04,272,1695711600"; d="scan'208";a="767146160"
+Received: from nwhinnet-mobl1.ger.corp.intel.com (HELO localhost)
+ ([10.252.28.58])
+ by orsmga007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 Dec 2023 01:09:41 -0800
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <20231213004237.20375-5-ville.syrjala@linux.intel.com>
+References: <20231213004237.20375-1-ville.syrjala@linux.intel.com>
+ <20231213004237.20375-5-ville.syrjala@linux.intel.com>
+From: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
+To: Ville Syrjala <ville.syrjala@linux.intel.com>,
+ intel-gfx@lists.freedesktop.org
+Subject: Re: [PATCH 04/12] drm/i915: Bypass LMEMBAR/GTTMMADR for MTL stolen
+ memory access
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+Message-ID: <170245857881.24445.6579832987498048224@jlahtine-mobl.ger.corp.intel.com>
+User-Agent: alot/0.8.1
+Date: Wed, 13 Dec 2023 11:09:38 +0200
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -60,81 +66,100 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-This is to set the enable/disable status.
+Quoting Ville Syrjala (2023-12-13 02:42:29)
+> From: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
+>=20
+> On MTL accessing stolen memory via the BARs is somehow borked,
+> and it can hang the machine. As a workaround let's bypass the
+> BARs and just go straight to DSMBASE/GSMBASE instead.
+>=20
+> Note that on every other platform this itself would hang the
+> machine, but on MTL the system firmware is expected to relax
+> the access permission guarding stolen memory to enable this
+> workaround, and thus direct CPU accesses should be fine.
 
-v2: Addressed review comments [Jani]
+Shouldn't this have a proper workaround number assigned?
 
-Reviewed-by: Arun R Murthy <arun.r.murthy@intel.com>
-Signed-off-by: Nemesa Garg <nemesa.garg@intel.com>
----
- .../gpu/drm/i915/display/intel_darkscreen.c   | 36 +++++++++++++++++++
- .../drm/i915/display/intel_display_debugfs.c  |  2 ++
- 2 files changed, 38 insertions(+)
+Regards, Joonas
 
-diff --git a/drivers/gpu/drm/i915/display/intel_darkscreen.c b/drivers/gpu/drm/i915/display/intel_darkscreen.c
-index 7c42988af354..6342f5ed9360 100644
---- a/drivers/gpu/drm/i915/display/intel_darkscreen.c
-+++ b/drivers/gpu/drm/i915/display/intel_darkscreen.c
-@@ -93,3 +93,39 @@ void intel_dark_screen_disable(struct intel_crtc_state *crtc_state)
- 
- 	intel_de_write(dev_priv, DARK_SCREEN(cpu_transcoder), 0);
- }
-+
-+static int intel_darkscreen_debugfs_status_get(void *data, u64 *val)
-+{
-+	struct intel_crtc *crtc = data;
-+
-+	*val = crtc->dark_screen.enable;
-+
-+	return 0;
-+}
-+
-+static int intel_darkscreen_debugfs_status_set(void *data, u64 val)
-+{
-+	struct intel_crtc *crtc = data;
-+	struct intel_crtc_state *crtc_state;
-+
-+	crtc->dark_screen.enable = val;
-+
-+	crtc_state = to_intel_crtc_state(crtc->base.state);
-+
-+	if (val)
-+		intel_dark_screen_enable(crtc_state);
-+	else
-+		intel_dark_screen_disable(crtc_state);
-+
-+	return 0;
-+}
-+
-+DEFINE_DEBUGFS_ATTRIBUTE(intel_darkscreen_debugfs_status_fops,
-+			 intel_darkscreen_debugfs_status_get,
-+			 intel_darkscreen_debugfs_status_set, "%llu\n");
-+
-+void intel_darkscreen_crtc_debugfs_add(struct intel_crtc *crtc)
-+{
-+	debugfs_create_file("i915_darkscreen_status", 0644, crtc->base.debugfs_entry,
-+			    crtc, &intel_darkscreen_debugfs_status_fops);
-+}
-diff --git a/drivers/gpu/drm/i915/display/intel_display_debugfs.c b/drivers/gpu/drm/i915/display/intel_display_debugfs.c
-index f05b52381a83..036b331cdad2 100644
---- a/drivers/gpu/drm/i915/display/intel_display_debugfs.c
-+++ b/drivers/gpu/drm/i915/display/intel_display_debugfs.c
-@@ -16,6 +16,7 @@
- #include "intel_crtc.h"
- #include "intel_de.h"
- #include "intel_crtc_state_dump.h"
-+#include "intel_darkscreen.h"
- #include "intel_display_debugfs.h"
- #include "intel_display_power.h"
- #include "intel_display_power_well.h"
-@@ -1541,6 +1542,7 @@ void intel_crtc_debugfs_add(struct intel_crtc *crtc)
- 	intel_drrs_crtc_debugfs_add(crtc);
- 	intel_fbc_crtc_debugfs_add(crtc);
- 	hsw_ips_crtc_debugfs_add(crtc);
-+	intel_darkscreen_crtc_debugfs_add(crtc);
- 
- 	debugfs_create_file("i915_current_bpc", 0444, root, crtc,
- 			    &i915_current_bpc_fops);
--- 
-2.25.1
-
+>=20
+> Signed-off-by: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
+> ---
+>  drivers/gpu/drm/i915/gem/i915_gem_stolen.c | 11 ++++++++++-
+>  drivers/gpu/drm/i915/gt/intel_ggtt.c       | 13 ++++++++++++-
+>  2 files changed, 22 insertions(+), 2 deletions(-)
+>=20
+> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_stolen.c b/drivers/gpu/drm=
+/i915/gem/i915_gem_stolen.c
+> index ee237043c302..252fe5cd6ede 100644
+> --- a/drivers/gpu/drm/i915/gem/i915_gem_stolen.c
+> +++ b/drivers/gpu/drm/i915/gem/i915_gem_stolen.c
+> @@ -941,7 +941,16 @@ i915_gem_stolen_lmem_setup(struct drm_i915_private *=
+i915, u16 type,
+>                 dsm_size =3D ALIGN_DOWN(lmem_size - dsm_base, SZ_1M);
+>         }
+> =20
+> -       if (pci_resource_len(pdev, GEN12_LMEM_BAR) < lmem_size) {
+> +       if (IS_METEORLAKE(i915)) {
+> +               /*
+> +                * Workaround: access via BAR can hang MTL, go directly t=
+o DSM.
+> +                *
+> +                * Normally this would not work but on MTL the system fir=
+mware
+> +                * should have relaxed the access permissions sufficientl=
+y.
+> +                */
+> +               io_start =3D intel_uncore_read64(uncore, GEN12_DSMBASE) &=
+ GEN12_BDSM_MASK;
+> +               io_size =3D dsm_size;
+> +       } else if (pci_resource_len(pdev, GEN12_LMEM_BAR) < lmem_size) {
+>                 io_start =3D 0;
+>                 io_size =3D 0;
+>         } else {
+> diff --git a/drivers/gpu/drm/i915/gt/intel_ggtt.c b/drivers/gpu/drm/i915/=
+gt/intel_ggtt.c
+> index 21a7e3191c18..ab71d74ec426 100644
+> --- a/drivers/gpu/drm/i915/gt/intel_ggtt.c
+> +++ b/drivers/gpu/drm/i915/gt/intel_ggtt.c
+> @@ -24,6 +24,7 @@
+>  #include "intel_ring.h"
+>  #include "i915_drv.h"
+>  #include "i915_pci.h"
+> +#include "i915_reg.h"
+>  #include "i915_request.h"
+>  #include "i915_scatterlist.h"
+>  #include "i915_utils.h"
+> @@ -1152,13 +1153,23 @@ static unsigned int gen6_gttadr_offset(struct drm=
+_i915_private *i915)
+>  static int ggtt_probe_common(struct i915_ggtt *ggtt, u64 size)
+>  {
+>         struct drm_i915_private *i915 =3D ggtt->vm.i915;
+> +       struct intel_uncore *uncore =3D ggtt->vm.gt->uncore;
+>         struct pci_dev *pdev =3D to_pci_dev(i915->drm.dev);
+>         phys_addr_t phys_addr;
+>         u32 pte_flags;
+>         int ret;
+> =20
+>         GEM_WARN_ON(pci_resource_len(pdev, GEN4_GTTMMADR_BAR) !=3D gen6_g=
+ttmmadr_size(i915));
+> -       phys_addr =3D pci_resource_start(pdev, GEN4_GTTMMADR_BAR) + gen6_=
+gttadr_offset(i915);
+> +       /*
+> +        * Workaround: access via BAR can hang MTL, go directly to GSM.
+> +        *
+> +        * Normally this would not work but on MTL the system firmware
+> +        * should have relaxed the access permissions sufficiently.
+> +        */
+> +       if (IS_METEORLAKE(i915))
+> +               phys_addr =3D intel_uncore_read64(uncore, GEN12_GSMBASE) =
+& GEN12_BDSM_MASK;
+> +       else
+> +               phys_addr =3D pci_resource_start(pdev, GEN4_GTTMMADR_BAR)=
+ + gen6_gttadr_offset(i915);
+> =20
+>         if (needs_wc_ggtt_mapping(i915))
+>                 ggtt->gsm =3D ioremap_wc(phys_addr, size);
+> --=20
+> 2.41.0
+>=20
