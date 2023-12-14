@@ -2,32 +2,57 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id DD33D8124B8
-	for <lists+intel-gfx@lfdr.de>; Thu, 14 Dec 2023 02:51:34 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id D6CB48124E5
+	for <lists+intel-gfx@lfdr.de>; Thu, 14 Dec 2023 03:03:30 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6011F10E069;
-	Thu, 14 Dec 2023 01:51:32 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0DB8110E166;
+	Thu, 14 Dec 2023 02:03:28 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 06F6110E069;
- Thu, 14 Dec 2023 01:51:30 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id F0A4AAA915;
- Thu, 14 Dec 2023 01:51:29 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============8546191048529666942=="
+Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.88])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 69F7B10E166
+ for <intel-gfx@lists.freedesktop.org>; Thu, 14 Dec 2023 02:03:26 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1702519406; x=1734055406;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=EoaaOwbN5sz+pSsXA81TD/ug2L/7mhF+e4lGBShD9z8=;
+ b=a6gDGdGVqKVySlqRRgIdz3QiDzbF/SoKRYl2i4uJCWK63KSskV9ZVAR1
+ 1knHq38Y/gdG7Mr56RKSXb+Ke2aCtndbVJzo2gYy8Ydld2X8IRQb9YUQg
+ u1ly18O0mpYI0WfS6i/GN5Y7Cp6aOZJ0nBVGYWcPnwwWKQFXn0G8POGfQ
+ PAKQuDAfIM2AgkwEH26wNeh7vT3vzlmMzarRwhKjq+BQ1VkU3gfuZwTJj
+ aS17yTx3xwxTkXxiRgcjjLnw6pf2jul6WU0l6HSOYWJFnwRFjdHhLcf+f
+ 5X1nUWIpG+HiX1YBNAGcsut+qCD7AjbqEukXvBh5o1Uu+easyNnPUt7+9 A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10923"; a="426188792"
+X-IronPort-AV: E=Sophos;i="6.04,274,1695711600"; d="scan'208";a="426188792"
+Received: from orsmga007.jf.intel.com ([10.7.209.58])
+ by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 Dec 2023 18:03:25 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10923"; a="767447519"
+X-IronPort-AV: E=Sophos;i="6.04,274,1695711600"; d="scan'208";a="767447519"
+Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.74])
+ by orsmga007.jf.intel.com with SMTP; 13 Dec 2023 18:03:22 -0800
+Received: by stinkbox (sSMTP sendmail emulation);
+ Thu, 14 Dec 2023 04:03:21 +0200
+Date: Thu, 14 Dec 2023 04:03:21 +0200
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: "Sripada, Radhakrishna" <radhakrishna.sripada@intel.com>
+Subject: Re: [PATCH 04/12] drm/i915: Bypass LMEMBAR/GTTMMADR for MTL stolen
+ memory access
+Message-ID: <ZXpiaUnPkpYkySd-@intel.com>
+References: <20231213004237.20375-1-ville.syrjala@linux.intel.com>
+ <20231213004237.20375-5-ville.syrjala@linux.intel.com>
+ <170245857881.24445.6579832987498048224@jlahtine-mobl.ger.corp.intel.com>
+ <ZXl5pclbJJRWL68T@intel.com>
+ <DM4PR11MB5971E509F696DC0883F3D904878DA@DM4PR11MB5971.namprd11.prod.outlook.com>
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Fi=2ECI=2EBAT=3A_success_for_drm/i915/mtl=3A_Fix_HDMI/DP?=
- =?utf-8?q?_PLL_clock_selection?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Imre Deak" <imre.deak@intel.com>
-Date: Thu, 14 Dec 2023 01:51:29 -0000
-Message-ID: <170251868994.19959.2846783147878229963@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20231213220526.1828827-1-imre.deak@intel.com>
-In-Reply-To: <20231213220526.1828827-1-imre.deak@intel.com>
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <DM4PR11MB5971E509F696DC0883F3D904878DA@DM4PR11MB5971.namprd11.prod.outlook.com>
+X-Patchwork-Hint: comment
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,168 +65,164 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
+Cc: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>, "Das,
+ Nirmoy" <nirmoy.das@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============8546191048529666942==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+On Wed, Dec 13, 2023 at 08:18:15PM +0000, Sripada, Radhakrishna wrote:
+> Hi Ville,
+> 
+> +Nirmoy
+> 
+> > -----Original Message-----
+> > From: Ville Syrjälä <ville.syrjala@linux.intel.com>
+> > Sent: Wednesday, December 13, 2023 1:30 AM
+> > To: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
+> > Cc: intel-gfx@lists.freedesktop.org; Sripada, Radhakrishna
+> > <radhakrishna.sripada@intel.com>
+> > Subject: Re: [PATCH 04/12] drm/i915: Bypass LMEMBAR/GTTMMADR for MTL
+> > stolen memory access
+> > 
+> > On Wed, Dec 13, 2023 at 11:09:38AM +0200, Joonas Lahtinen wrote:
+> > > Quoting Ville Syrjala (2023-12-13 02:42:29)
+> > > > From: Ville Syrjälä <ville.syrjala@linux.intel.com>
+> > > >
+> > > > On MTL accessing stolen memory via the BARs is somehow borked,
+> > > > and it can hang the machine. As a workaround let's bypass the
+> > > > BARs and just go straight to DSMBASE/GSMBASE instead.
+> > > >
+> > > > Note that on every other platform this itself would hang the
+> > > > machine, but on MTL the system firmware is expected to relax
+> > > > the access permission guarding stolen memory to enable this
+> > > > workaround, and thus direct CPU accesses should be fine.
+> > >
+> > > Shouldn't this have a proper workaround number assigned?
+> > 
+> > I think there are various numbers, half of which I couldn't even
+> > find in any database, and the other half I couldn't access for
+> > whatever reason. So dunno what situation really is apart from
+> > the firmware clearly implemening its part (since I can poke
+> > DSM/GSM directly without killing the machine).
+> > 
+> > RK do you know what we should call this?
+> Nirmoy previously used Wa_22018444074 in [1].
+> 
+> There were some associated issues Wa_13010847436 and Wa_14019519902
+> which Nirmoy quoted in [2].
+> 
+> Wa_22018529850 is derived from Wa_22018444074, is targeting the latest Gop
+> driver change which is installed in bat-mtlp-8 hopefully it should help debug the issue further.
+> 
+> 
+> Regarding the patch itself,
+> Do we need to carve out the range from e820 the area around DSM if we can directly access the range from CPU
+> without the bar?
 
-== Series Details ==
+IIRC we dropped the early quirks on new platforms under the
+assumption that the BIOS no longer forgets to mark the DSM
+as not-RAM/whatever. I don't think anything should change
+there even when we are allowed direct CPU access.
 
-Series: drm/i915/mtl: Fix HDMI/DP PLL clock selection
-URL   : https://patchwork.freedesktop.org/series/127777/
-State : success
+But I don't recall if I double checked the e820 listing on
+the MTL I was using. I was able to direct access to both DSM
+and GSM for sure, and the address the GOP handed over to efifb
+also pointed directly to DSM.
 
-== Summary ==
+> 
+> 
+> Thanks,
+> Radhakrishna(RK) Sripada
+> 1. https://patchwork.freedesktop.org/series/120683/
+> 2. https://patchwork.freedesktop.org/series/123329/
+> 
+> > 
+> > >
+> > > Regards, Joonas
+> > >
+> > > >
+> > > > Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
+> > > > ---
+> > > >  drivers/gpu/drm/i915/gem/i915_gem_stolen.c | 11 ++++++++++-
+> > > >  drivers/gpu/drm/i915/gt/intel_ggtt.c       | 13 ++++++++++++-
+> > > >  2 files changed, 22 insertions(+), 2 deletions(-)
+> > > >
+> > > > diff --git a/drivers/gpu/drm/i915/gem/i915_gem_stolen.c
+> > b/drivers/gpu/drm/i915/gem/i915_gem_stolen.c
+> > > > index ee237043c302..252fe5cd6ede 100644
+> > > > --- a/drivers/gpu/drm/i915/gem/i915_gem_stolen.c
+> > > > +++ b/drivers/gpu/drm/i915/gem/i915_gem_stolen.c
+> > > > @@ -941,7 +941,16 @@ i915_gem_stolen_lmem_setup(struct
+> > drm_i915_private *i915, u16 type,
+> > > >                 dsm_size = ALIGN_DOWN(lmem_size - dsm_base, SZ_1M);
+> > > >         }
+> > > >
+> > > > -       if (pci_resource_len(pdev, GEN12_LMEM_BAR) < lmem_size) {
+> > > > +       if (IS_METEORLAKE(i915)) {
+> > > > +               /*
+> > > > +                * Workaround: access via BAR can hang MTL, go directly to DSM.
+> > > > +                *
+> > > > +                * Normally this would not work but on MTL the system firmware
+> > > > +                * should have relaxed the access permissions sufficiently.
+> > > > +                */
+> > > > +               io_start = intel_uncore_read64(uncore, GEN12_DSMBASE) &
+> > GEN12_BDSM_MASK;
+> > > > +               io_size = dsm_size;
+> > > > +       } else if (pci_resource_len(pdev, GEN12_LMEM_BAR) < lmem_size) {
+> > > >                 io_start = 0;
+> > > >                 io_size = 0;
+> > > >         } else {
+> > > > diff --git a/drivers/gpu/drm/i915/gt/intel_ggtt.c
+> > b/drivers/gpu/drm/i915/gt/intel_ggtt.c
+> > > > index 21a7e3191c18..ab71d74ec426 100644
+> > > > --- a/drivers/gpu/drm/i915/gt/intel_ggtt.c
+> > > > +++ b/drivers/gpu/drm/i915/gt/intel_ggtt.c
+> > > > @@ -24,6 +24,7 @@
+> > > >  #include "intel_ring.h"
+> > > >  #include "i915_drv.h"
+> > > >  #include "i915_pci.h"
+> > > > +#include "i915_reg.h"
+> > > >  #include "i915_request.h"
+> > > >  #include "i915_scatterlist.h"
+> > > >  #include "i915_utils.h"
+> > > > @@ -1152,13 +1153,23 @@ static unsigned int gen6_gttadr_offset(struct
+> > drm_i915_private *i915)
+> > > >  static int ggtt_probe_common(struct i915_ggtt *ggtt, u64 size)
+> > > >  {
+> > > >         struct drm_i915_private *i915 = ggtt->vm.i915;
+> > > > +       struct intel_uncore *uncore = ggtt->vm.gt->uncore;
+> > > >         struct pci_dev *pdev = to_pci_dev(i915->drm.dev);
+> > > >         phys_addr_t phys_addr;
+> > > >         u32 pte_flags;
+> > > >         int ret;
+> > > >
+> > > >         GEM_WARN_ON(pci_resource_len(pdev, GEN4_GTTMMADR_BAR) !=
+> > gen6_gttmmadr_size(i915));
+> > > > -       phys_addr = pci_resource_start(pdev, GEN4_GTTMMADR_BAR) +
+> > gen6_gttadr_offset(i915);
+> > > > +       /*
+> > > > +        * Workaround: access via BAR can hang MTL, go directly to GSM.
+> > > > +        *
+> > > > +        * Normally this would not work but on MTL the system firmware
+> > > > +        * should have relaxed the access permissions sufficiently.
+> > > > +        */
+> > > > +       if (IS_METEORLAKE(i915))
+> > > > +               phys_addr = intel_uncore_read64(uncore, GEN12_GSMBASE) &
+> > GEN12_BDSM_MASK;
+> > > > +       else
+> > > > +               phys_addr = pci_resource_start(pdev, GEN4_GTTMMADR_BAR) +
+> > gen6_gttadr_offset(i915);
+> > > >
+> > > >         if (needs_wc_ggtt_mapping(i915))
+> > > >                 ggtt->gsm = ioremap_wc(phys_addr, size);
+> > > > --
+> > > > 2.41.0
+> > > >
+> > 
+> > --
+> > Ville Syrjälä
+> > Intel
 
-CI Bug Log - changes from CI_DRM_14017 -> Patchwork_127777v1
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_127777v1/index.html
-
-Participating hosts (37 -> 37)
-------------------------------
-
-  Additional (1): bat-kbl-2 
-  Missing    (1): fi-snb-2520m 
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_127777v1 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@fbdev@info:
-    - bat-kbl-2:          NOTRUN -> [SKIP][1] ([fdo#109271] / [i915#1849])
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_127777v1/bat-kbl-2/igt@fbdev@info.html
-
-  * igt@gem_lmem_swapping@parallel-random-engines:
-    - bat-kbl-2:          NOTRUN -> [SKIP][2] ([fdo#109271]) +36 other tests skip
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_127777v1/bat-kbl-2/igt@gem_lmem_swapping@parallel-random-engines.html
-
-  * igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence:
-    - bat-dg2-11:         NOTRUN -> [SKIP][3] ([i915#9197]) +3 other tests skip
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_127777v1/bat-dg2-11/igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
-  [i915#1849]: https://gitlab.freedesktop.org/drm/intel/issues/1849
-  [i915#7359]: https://gitlab.freedesktop.org/drm/intel/issues/7359
-  [i915#8981]: https://gitlab.freedesktop.org/drm/intel/issues/8981
-  [i915#9197]: https://gitlab.freedesktop.org/drm/intel/issues/9197
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_14017 -> Patchwork_127777v1
-
-  CI-20190529: 20190529
-  CI_DRM_14017: 58ac4ffc75b62e6007e85ae6777820e77c113b01 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_7639: 18afc09e362b605a3c88c000331708f105d2c23a @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_127777v1: 58ac4ffc75b62e6007e85ae6777820e77c113b01 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-### Linux commits
-
-ea2f99d6e569 drm/i915/mtl: Fix HDMI/DP PLL clock selection
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_127777v1/index.html
-
---===============8546191048529666942==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915/mtl: Fix HDMI/DP PLL clock selection</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/127777/">https://patchwork.freedesktop.org/series/127777/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_127777v1/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_127777v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_14017 -&gt; Patchwork_127777v1</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_127777v1/index.html</p>
-<h2>Participating hosts (37 -&gt; 37)</h2>
-<p>Additional (1): bat-kbl-2 <br />
-  Missing    (1): fi-snb-2520m </p>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_127777v1 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@fbdev@info:</p>
-<ul>
-<li>bat-kbl-2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_127777v1/bat-kbl-2/igt@fbdev@info.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/1849">i915#1849</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_lmem_swapping@parallel-random-engines:</p>
-<ul>
-<li>bat-kbl-2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_127777v1/bat-kbl-2/igt@gem_lmem_swapping@parallel-random-engines.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +36 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence:</p>
-<ul>
-<li>bat-dg2-11:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_127777v1/bat-dg2-11/igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/9197">i915#9197</a>) +3 other tests skip</li>
-</ul>
-</li>
-</ul>
-<p>{name}: This element is suppressed. This means it is ignored when computing<br />
-          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_14017 -&gt; Patchwork_127777v1</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_14017: 58ac4ffc75b62e6007e85ae6777820e77c113b01 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_7639: 18afc09e362b605a3c88c000331708f105d2c23a @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  Patchwork_127777v1: 58ac4ffc75b62e6007e85ae6777820e77c113b01 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<h3>Linux commits</h3>
-<p>ea2f99d6e569 drm/i915/mtl: Fix HDMI/DP PLL clock selection</p>
-
-</body>
-</html>
-
---===============8546191048529666942==--
+-- 
+Ville Syrjälä
+Intel
