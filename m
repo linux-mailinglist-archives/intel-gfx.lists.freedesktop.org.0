@@ -1,47 +1,46 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 911BB814662
-	for <lists+intel-gfx@lfdr.de>; Fri, 15 Dec 2023 12:09:45 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0F254814664
+	for <lists+intel-gfx@lfdr.de>; Fri, 15 Dec 2023 12:09:48 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C1C8D10E9A1;
-	Fri, 15 Dec 2023 11:09:41 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9289910E9F3;
+	Fri, 15 Dec 2023 11:09:46 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.120])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BE95B10E9A1
- for <intel-gfx@lists.freedesktop.org>; Fri, 15 Dec 2023 11:09:40 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7489D10E9EB
+ for <intel-gfx@lists.freedesktop.org>; Fri, 15 Dec 2023 11:09:44 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1702638580; x=1734174580;
+ t=1702638584; x=1734174584;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=Mm6Y7p/sg2sJyagGO3IXWmNoZ75cgHwEPOhk/8rCDN4=;
- b=DgrzP1Yj1DmhNaYNbg4uvGsscBBizzIEfK451/ucGchGiT+X81r3zUaj
- NbhhQF1/WFog8MTaZODVXS9tDcpoFQf7vJLuhW+P2z5l+dZvNfmlmUE6U
- WJN6BdrChkg0LvrXi9yNhVeTspzgdzRO1sOUGEI1ABT7mjh1zl4sFVEwR
- sygiLwMiiIaRhsVhqaDsnJOA2sxEFg9OuZhfYcCyM8RuSgrHAwbD7yy9p
- Eew2eS3+bM5HcfFGfRBx8/1CTNheBE7o4t1QapWZaHJdAz9Sot0a4WQl3
- VJXFzSNzYaCV98hVn0o/43mNsVKPD17bXMQ9ngBzCki/c24Dq6cIX5mCz Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10924"; a="394138126"
-X-IronPort-AV: E=Sophos;i="6.04,278,1695711600"; d="scan'208";a="394138126"
+ bh=BCt/sD16EBOOCYnAWQCdKmVjHP8oXgwllwjKJ3/ZNKY=;
+ b=B6trsLAG0iENTYlBHtbnN7Kd7sW2W7k2P3n3b6kvm9bh6yxOjs/NRoMt
+ yTs2CHZoG8ZuZdrAYDnUX2JV1f3XaaHOoX+Cim3rPwLoxXv7hu4hDfddI
+ SpjELMe+5coPSSkukX4QPVcpydOV5bjuCT5uJ2YKt3Lr+mj2mifZc+zdm
+ LSkImILs9g5+DLOTsxxYew1ZJ73pqBNvmqaORPx+e3lzoRjt5ngBf1rHm
+ xOZ+YgV3BdoDRrJcI3FFRrsygUyoIemKaxJbaxhBPVjDsnPGfT8/JnVHY
+ 2Rd2I+qjbmF98KeLhRSeskemxIvLOMWGJMYurGI97DB22cRNCLnBhQSQL g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10924"; a="394138136"
+X-IronPort-AV: E=Sophos;i="6.04,278,1695711600"; d="scan'208";a="394138136"
 Received: from orsmga007.jf.intel.com ([10.7.209.58])
  by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Dec 2023 03:09:40 -0800
+ 15 Dec 2023 03:09:44 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10924"; a="767946021"
-X-IronPort-AV: E=Sophos;i="6.04,278,1695711600"; d="scan'208";a="767946021"
+X-IronPort-AV: E=McAfee;i="6600,9927,10924"; a="767946037"
+X-IronPort-AV: E=Sophos;i="6.04,278,1695711600"; d="scan'208";a="767946037"
 Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.74])
- by orsmga007.jf.intel.com with SMTP; 15 Dec 2023 03:09:37 -0800
+ by orsmga007.jf.intel.com with SMTP; 15 Dec 2023 03:09:41 -0800
 Received: by stinkbox (sSMTP sendmail emulation);
- Fri, 15 Dec 2023 13:09:36 +0200
+ Fri, 15 Dec 2023 13:09:40 +0200
 From: Ville Syrjala <ville.syrjala@linux.intel.com>
 To: intel-gfx@lists.freedesktop.org
-Subject: [PATCH 1/3] drm/i915/hdcp: Do intel_hdcp_component_init() much later
- during init
-Date: Fri, 15 Dec 2023 13:09:31 +0200
-Message-ID: <20231215110933.9188-2-ville.syrjala@linux.intel.com>
+Subject: [PATCH 2/3] drm/i915/hdcp: Pin the hdcp gsc message high in ggtt
+Date: Fri, 15 Dec 2023 13:09:32 +0200
+Message-ID: <20231215110933.9188-3-ville.syrjala@linux.intel.com>
 X-Mailer: git-send-email 2.41.0
 In-Reply-To: <20231215110933.9188-1-ville.syrjala@linux.intel.com>
 References: <20231215110933.9188-1-ville.syrjala@linux.intel.com>
@@ -66,53 +65,33 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-intel_hdcp_component_init()->...->intel_hdcp_gsc_initialize_message()
-will allocate ggtt address space for some hdcp gsc message thing.
-That is currently being done way too early as we haven't even
-taken over the BIOS fb yet. So this has the potential of corrupting
-ggtt PTEs that need to be preserved until the the BIOS fb takover
-is done.
-
-Only call intel_hdcp_component_init() once all the BIOS fb takeover,
-and full ggtt init (which currently also needs to reserve very
-specific ranges of ggtt, thus assuming that no one else has stolen
-them yet) is done.
+AFAICS there is no hardware restriction on where in ggtt
+the hdcp gsc message object needs to be bound. And as it's
+a regular shmem object we don't need it be in the mappabe
+range either. So pin it high to make avoid needlessly
+wasting the precious mappable range for it.
 
 Cc: Suraj Kandpal <suraj.kandpal@intel.com>
 Cc: Alan Previn <alan.previn.teres.alexis@intel.com>
 Cc: Uma Shankar <uma.shankar@intel.com>
 Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_display_driver.c | 9 +++++++--
- 1 file changed, 7 insertions(+), 2 deletions(-)
+ drivers/gpu/drm/i915/display/intel_hdcp_gsc.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_display_driver.c b/drivers/gpu/drm/i915/display/intel_display_driver.c
-index 62f7b10484be..b71338b4d793 100644
---- a/drivers/gpu/drm/i915/display/intel_display_driver.c
-+++ b/drivers/gpu/drm/i915/display/intel_display_driver.c
-@@ -319,8 +319,6 @@ int intel_display_driver_probe_nogem(struct drm_i915_private *i915)
- 	intel_display_driver_init_hw(i915);
- 	intel_dpll_update_ref_clks(i915);
+diff --git a/drivers/gpu/drm/i915/display/intel_hdcp_gsc.c b/drivers/gpu/drm/i915/display/intel_hdcp_gsc.c
+index 18117b789b16..302bff75b06c 100644
+--- a/drivers/gpu/drm/i915/display/intel_hdcp_gsc.c
++++ b/drivers/gpu/drm/i915/display/intel_hdcp_gsc.c
+@@ -65,7 +65,7 @@ static int intel_hdcp_gsc_initialize_message(struct drm_i915_private *i915,
+ 		goto out_unmap;
+ 	}
  
--	intel_hdcp_component_init(i915);
--
- 	if (i915->display.cdclk.max_cdclk_freq == 0)
- 		intel_update_max_cdclk(i915);
+-	err = i915_vma_pin(vma, 0, 0, PIN_GLOBAL);
++	err = i915_vma_pin(vma, 0, 0, PIN_GLOBAL | PIN_HIGH);
+ 	if (err)
+ 		goto out_unmap;
  
-@@ -360,6 +358,13 @@ int intel_display_driver_probe(struct drm_i915_private *i915)
- 	if (!HAS_DISPLAY(i915))
- 		return 0;
- 
-+	/*
-+	 * This will bind stuff into ggtt, so it needs to be done after
-+	 * the BIOS fb takeover and whatever else magic ggtt reservations
-+	 * happen during gem/ggtt init.
-+	 */
-+	intel_hdcp_component_init(i915);
-+
- 	/*
- 	 * Force all active planes to recompute their states. So that on
- 	 * mode_setcrtc after probe, all the intel_plane_state variables
 -- 
 2.41.0
 
