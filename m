@@ -1,46 +1,46 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0F254814664
-	for <lists+intel-gfx@lfdr.de>; Fri, 15 Dec 2023 12:09:48 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 94F1F814665
+	for <lists+intel-gfx@lfdr.de>; Fri, 15 Dec 2023 12:09:51 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9289910E9F3;
-	Fri, 15 Dec 2023 11:09:46 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 32F3510E9EB;
+	Fri, 15 Dec 2023 11:09:50 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.120])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7489D10E9EB
- for <intel-gfx@lists.freedesktop.org>; Fri, 15 Dec 2023 11:09:44 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 826C910E9FE
+ for <intel-gfx@lists.freedesktop.org>; Fri, 15 Dec 2023 11:09:47 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1702638584; x=1734174584;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=BCt/sD16EBOOCYnAWQCdKmVjHP8oXgwllwjKJ3/ZNKY=;
- b=B6trsLAG0iENTYlBHtbnN7Kd7sW2W7k2P3n3b6kvm9bh6yxOjs/NRoMt
- yTs2CHZoG8ZuZdrAYDnUX2JV1f3XaaHOoX+Cim3rPwLoxXv7hu4hDfddI
- SpjELMe+5coPSSkukX4QPVcpydOV5bjuCT5uJ2YKt3Lr+mj2mifZc+zdm
- LSkImILs9g5+DLOTsxxYew1ZJ73pqBNvmqaORPx+e3lzoRjt5ngBf1rHm
- xOZ+YgV3BdoDRrJcI3FFRrsygUyoIemKaxJbaxhBPVjDsnPGfT8/JnVHY
- 2Rd2I+qjbmF98KeLhRSeskemxIvLOMWGJMYurGI97DB22cRNCLnBhQSQL g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10924"; a="394138136"
-X-IronPort-AV: E=Sophos;i="6.04,278,1695711600"; d="scan'208";a="394138136"
+ t=1702638587; x=1734174587;
+ h=from:to:subject:date:message-id:in-reply-to:references:
+ mime-version:content-transfer-encoding;
+ bh=4FdgGXxrKYlxrDn5aO+3d3a4j4yWEY9Su9mAl9oPVu8=;
+ b=BAVgKbJnFrTOcXq+P+XwZ/Lz9oZ0ANQZ+2x0l+s3MjgrwmZEcB530peo
+ DEo4rCX7qSGlz0QYs5Zv9xP8tJAzc+IqX1Xpisc4i0Pvo+j+2ud48xZJA
+ L8EXO9gEVE/Ri4kaJpAskoXkCUNrrbWnK3Hj57v/I89GV95uVktzPyqIq
+ apdZizfvaL/elw2Xbq/z34UBNb5tkyAQI9AsnOy1hcmpPoslQpGK9HfbA
+ TEAUBlZTu2HYKFdNzZfTgymvxmV8X6Dmcy9k+RCdTM8lFvje2ED3qGtoj
+ kqerJ6Jxe0jt/k9ZNGJO2XKxYLROL9WQTrc5wOpPZf9IrLzHikHBPgn1W Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10924"; a="394138155"
+X-IronPort-AV: E=Sophos;i="6.04,278,1695711600"; d="scan'208";a="394138155"
 Received: from orsmga007.jf.intel.com ([10.7.209.58])
  by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Dec 2023 03:09:44 -0800
+ 15 Dec 2023 03:09:47 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10924"; a="767946037"
-X-IronPort-AV: E=Sophos;i="6.04,278,1695711600"; d="scan'208";a="767946037"
+X-IronPort-AV: E=McAfee;i="6600,9927,10924"; a="767946046"
+X-IronPort-AV: E=Sophos;i="6.04,278,1695711600"; d="scan'208";a="767946046"
 Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.74])
- by orsmga007.jf.intel.com with SMTP; 15 Dec 2023 03:09:41 -0800
+ by orsmga007.jf.intel.com with SMTP; 15 Dec 2023 03:09:45 -0800
 Received: by stinkbox (sSMTP sendmail emulation);
- Fri, 15 Dec 2023 13:09:40 +0200
+ Fri, 15 Dec 2023 13:09:44 +0200
 From: Ville Syrjala <ville.syrjala@linux.intel.com>
 To: intel-gfx@lists.freedesktop.org
-Subject: [PATCH 2/3] drm/i915/hdcp: Pin the hdcp gsc message high in ggtt
-Date: Fri, 15 Dec 2023 13:09:32 +0200
-Message-ID: <20231215110933.9188-3-ville.syrjala@linux.intel.com>
+Subject: [PATCH 3/3] drm/i915: Pin error_capture to high end of mappable
+Date: Fri, 15 Dec 2023 13:09:33 +0200
+Message-ID: <20231215110933.9188-4-ville.syrjala@linux.intel.com>
 X-Mailer: git-send-email 2.41.0
 In-Reply-To: <20231215110933.9188-1-ville.syrjala@linux.intel.com>
 References: <20231215110933.9188-1-ville.syrjala@linux.intel.com>
@@ -59,39 +59,48 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Alan Previn <alan.previn.teres.alexis@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-AFAICS there is no hardware restriction on where in ggtt
-the hdcp gsc message object needs to be bound. And as it's
-a regular shmem object we don't need it be in the mappabe
-range either. So pin it high to make avoid needlessly
-wasting the precious mappable range for it.
+If we fail to pin error_capture to the start of ggtt (which
+is likely given the BIOS fb is usually there), we currently
+fall back to pinning it at the next available low address.
+This seems somewhat sub-optimal to me in case we later discard
+the BIOS fb (fairly likely if there are multiple different sized
+displays connected at boot). We are then then left with a
+permanenly pinned object somewhere in the middle of the mappable
+range of ggtt. It seems more sensible to pin the error capture
+object to the end of mappable as a fallback, so even if we discard
+the BIOS fb we are left with the mappable region mostly in one
+piece (potentially allowing for more/larger objects to be pinned
+there later).
 
-Cc: Suraj Kandpal <suraj.kandpal@intel.com>
-Cc: Alan Previn <alan.previn.teres.alexis@intel.com>
-Cc: Uma Shankar <uma.shankar@intel.com>
+Though I suppose we are chopping the ggtt address space as a
+whole into two chunks in a slightly different way. Essentially
+reducing the size of the second (larger) chunk a bit. So perhaps
+pinning truly massive objects (which don't strictly need to
+be mappable) could become a bit more difficult.
+
 Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_hdcp_gsc.c | 2 +-
+ drivers/gpu/drm/i915/gt/intel_ggtt.c | 2 +-
  1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_hdcp_gsc.c b/drivers/gpu/drm/i915/display/intel_hdcp_gsc.c
-index 18117b789b16..302bff75b06c 100644
---- a/drivers/gpu/drm/i915/display/intel_hdcp_gsc.c
-+++ b/drivers/gpu/drm/i915/display/intel_hdcp_gsc.c
-@@ -65,7 +65,7 @@ static int intel_hdcp_gsc_initialize_message(struct drm_i915_private *i915,
- 		goto out_unmap;
+diff --git a/drivers/gpu/drm/i915/gt/intel_ggtt.c b/drivers/gpu/drm/i915/gt/intel_ggtt.c
+index 21a7e3191c18..f62008962eb5 100644
+--- a/drivers/gpu/drm/i915/gt/intel_ggtt.c
++++ b/drivers/gpu/drm/i915/gt/intel_ggtt.c
+@@ -876,7 +876,7 @@ static int init_ggtt(struct i915_ggtt *ggtt)
+ 						    ggtt->error_capture.size, 0,
+ 						    ggtt->error_capture.color,
+ 						    0, ggtt->mappable_end,
+-						    DRM_MM_INSERT_LOW);
++						    DRM_MM_INSERT_HIGH);
  	}
- 
--	err = i915_vma_pin(vma, 0, 0, PIN_GLOBAL);
-+	err = i915_vma_pin(vma, 0, 0, PIN_GLOBAL | PIN_HIGH);
- 	if (err)
- 		goto out_unmap;
- 
+ 	if (drm_mm_node_allocated(&ggtt->error_capture)) {
+ 		u64 start = ggtt->error_capture.start;
 -- 
 2.41.0
 
