@@ -1,46 +1,46 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3CB87814612
-	for <lists+intel-gfx@lfdr.de>; Fri, 15 Dec 2023 11:59:54 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 84DEE814613
+	for <lists+intel-gfx@lfdr.de>; Fri, 15 Dec 2023 11:59:59 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B899910E9DA;
-	Fri, 15 Dec 2023 10:59:52 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0AF3E10E9DD;
+	Fri, 15 Dec 2023 10:59:58 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.120])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 40D1110E9DA
- for <intel-gfx@lists.freedesktop.org>; Fri, 15 Dec 2023 10:59:51 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A4FE410E9DF
+ for <intel-gfx@lists.freedesktop.org>; Fri, 15 Dec 2023 10:59:55 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1702637991; x=1734173991;
+ t=1702637995; x=1734173995;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=6Ko1yoOpmoaV+EcEGpvsOmNvB1u0m02lEWOGbGAFGtc=;
- b=mFvZa8WSJdhkaLVLxk1La/86KCXpVqYeKnowc9Mstq9QT0J6bjhodr82
- 7g3Akk6AQgbOe2V5ATF2HTtRpgrFLzA2Jb7qzPf3ZrZ2XBRMIWC/KBb6H
- 9oXg47HkZGxEI6W9Pgso8m+VKfRTR3od2aNvzYWe22Zdotjnm28U10Tc0
- drQdsGbpr9KseO4fGcMwPe/ONf2auq/D0i+C+rK8z9XXwIVwh1R9YCiER
- NEDbwr6xsPHY1u5NLPFJKQ3LY/pb2MddH0RxSNvpL9NWtJSNbOv+dGPUw
- QqQkH5Ylv7rlZdng6K3bwygmTKTCZu5bmlRU25iy9wMan+w/4Fh4oIwa2 Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10924"; a="394136777"
-X-IronPort-AV: E=Sophos;i="6.04,278,1695711600"; d="scan'208";a="394136777"
+ bh=xdERnEjXz7PJrUB8TQmkeAaPVIYzuPmrUsGgvuVVHRI=;
+ b=eFWRXhSgKJiAWVraPv8GIeVk+5PG21kC6OHABhxY+mAFWe3e58wI2Z5G
+ pKaIWkGkNs3rw1GehfSOwjyZBIt88DjMog7/QgJQ4G9OtZxeq7uLtqkrp
+ KztStrAy0c9G5Byha+bAev+SRwx7zD+ihaBFLkjx9GUKAnZu/J/eC4wIY
+ KM/BWxFlxwRfCeLFPnl5ztncVlUh2//vbZd6IvLKEqO6n3EzmWz6tg1b3
+ jhmog7pmejwrWcQH1k/erOzlP/QsReWiJ45G2R428REIVyqZCnL/fDI3I
+ ktEp+U1hQTu/RrL0QBRs+44DfggdGsMPW+Mc0IGYTgd4wXGZvWiEd6Kzn w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10924"; a="394136781"
+X-IronPort-AV: E=Sophos;i="6.04,278,1695711600"; d="scan'208";a="394136781"
 Received: from orsmga007.jf.intel.com ([10.7.209.58])
  by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Dec 2023 02:59:51 -0800
+ 15 Dec 2023 02:59:55 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10924"; a="767935165"
-X-IronPort-AV: E=Sophos;i="6.04,278,1695711600"; d="scan'208";a="767935165"
+X-IronPort-AV: E=McAfee;i="6600,9927,10924"; a="767935168"
+X-IronPort-AV: E=Sophos;i="6.04,278,1695711600"; d="scan'208";a="767935168"
 Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.74])
- by orsmga007.jf.intel.com with SMTP; 15 Dec 2023 02:59:48 -0800
+ by orsmga007.jf.intel.com with SMTP; 15 Dec 2023 02:59:52 -0800
 Received: by stinkbox (sSMTP sendmail emulation);
- Fri, 15 Dec 2023 12:59:47 +0200
+ Fri, 15 Dec 2023 12:59:51 +0200
 From: Ville Syrjala <ville.syrjala@linux.intel.com>
 To: intel-gfx@lists.freedesktop.org
-Subject: [PATCH v2 05/15] drm/i915: Disable the "binder"
-Date: Fri, 15 Dec 2023 12:59:19 +0200
-Message-ID: <20231215105929.29568-6-ville.syrjala@linux.intel.com>
+Subject: [PATCH v2 06/15] drm/i915: Rename the DSM/GSM registers
+Date: Fri, 15 Dec 2023 12:59:20 +0200
+Message-ID: <20231215105929.29568-7-ville.syrjala@linux.intel.com>
 X-Mailer: git-send-email 2.41.0
 In-Reply-To: <20231215105929.29568-1-ville.syrjala@linux.intel.com>
 References: <20231215105929.29568-1-ville.syrjala@linux.intel.com>
@@ -64,34 +64,84 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-Now that the GGTT PTE updates go straight to GSMBASE (bypassing
-GTTMMADR) there should be no more risk of system hangs? So the
-"binder" (ie. update the PTEs via MI_UPDATE_GTT) is no longer
-necessary, disable it.
-
-TODO: MI_UPDATE_GTT might be interesting as an optimization
-though, so perhaps someone should look into always using it
-(assuming the GPU is alive and well)?
+0x108100 and 0x1080c0 have been around since snb. Rename the
+defines appropriately.
 
 Cc: Paz Zcharya <pazz@chromium.org>
 Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 ---
- drivers/gpu/drm/i915/gt/intel_gtt.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ drivers/gpu/drm/i915/gem/i915_gem_stolen.c  | 4 ++--
+ drivers/gpu/drm/i915/gt/intel_ggtt.c        | 2 +-
+ drivers/gpu/drm/i915/gt/intel_region_lmem.c | 2 +-
+ drivers/gpu/drm/i915/i915_reg.h             | 7 ++++---
+ 4 files changed, 8 insertions(+), 7 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/gt/intel_gtt.c b/drivers/gpu/drm/i915/gt/intel_gtt.c
-index 86f73fe558ca..5bc7a4fb7485 100644
---- a/drivers/gpu/drm/i915/gt/intel_gtt.c
-+++ b/drivers/gpu/drm/i915/gt/intel_gtt.c
-@@ -24,7 +24,7 @@
- bool i915_ggtt_require_binder(struct drm_i915_private *i915)
- {
- 	/* Wa_13010847436 & Wa_14019519902 */
--	return MEDIA_VER_FULL(i915) == IP_VER(13, 0);
-+	return false && MEDIA_VER_FULL(i915) == IP_VER(13, 0);
- }
+diff --git a/drivers/gpu/drm/i915/gem/i915_gem_stolen.c b/drivers/gpu/drm/i915/gem/i915_gem_stolen.c
+index 252fe5cd6ede..6185a5f73a48 100644
+--- a/drivers/gpu/drm/i915/gem/i915_gem_stolen.c
++++ b/drivers/gpu/drm/i915/gem/i915_gem_stolen.c
+@@ -935,7 +935,7 @@ i915_gem_stolen_lmem_setup(struct drm_i915_private *i915, u16 type,
+ 		GEM_BUG_ON((dsm_base + dsm_size) > lmem_size);
+ 	} else {
+ 		/* Use DSM base address instead for stolen memory */
+-		dsm_base = intel_uncore_read64(uncore, GEN12_DSMBASE) & GEN12_BDSM_MASK;
++		dsm_base = intel_uncore_read64(uncore, GEN6_DSMBASE) & GEN11_BDSM_MASK;
+ 		if (WARN_ON(lmem_size < dsm_base))
+ 			return ERR_PTR(-ENODEV);
+ 		dsm_size = ALIGN_DOWN(lmem_size - dsm_base, SZ_1M);
+@@ -948,7 +948,7 @@ i915_gem_stolen_lmem_setup(struct drm_i915_private *i915, u16 type,
+ 		 * Normally this would not work but on MTL the system firmware
+ 		 * should have relaxed the access permissions sufficiently.
+ 		 */
+-		io_start = intel_uncore_read64(uncore, GEN12_DSMBASE) & GEN12_BDSM_MASK;
++		io_start = intel_uncore_read64(uncore, GEN6_DSMBASE) & GEN11_BDSM_MASK;
+ 		io_size = dsm_size;
+ 	} else if (pci_resource_len(pdev, GEN12_LMEM_BAR) < lmem_size) {
+ 		io_start = 0;
+diff --git a/drivers/gpu/drm/i915/gt/intel_ggtt.c b/drivers/gpu/drm/i915/gt/intel_ggtt.c
+index ab71d74ec426..05c5525e7e2d 100644
+--- a/drivers/gpu/drm/i915/gt/intel_ggtt.c
++++ b/drivers/gpu/drm/i915/gt/intel_ggtt.c
+@@ -1167,7 +1167,7 @@ static int ggtt_probe_common(struct i915_ggtt *ggtt, u64 size)
+ 	 * should have relaxed the access permissions sufficiently.
+ 	 */
+ 	if (IS_METEORLAKE(i915))
+-		phys_addr = intel_uncore_read64(uncore, GEN12_GSMBASE) & GEN12_BDSM_MASK;
++		phys_addr = intel_uncore_read64(uncore, GEN6_GSMBASE) & GEN11_BDSM_MASK;
+ 	else
+ 		phys_addr = pci_resource_start(pdev, GEN4_GTTMMADR_BAR) + gen6_gttadr_offset(i915);
  
- static bool intel_ggtt_update_needs_vtd_wa(struct drm_i915_private *i915)
+diff --git a/drivers/gpu/drm/i915/gt/intel_region_lmem.c b/drivers/gpu/drm/i915/gt/intel_region_lmem.c
+index af357089da6e..51bb27e10a4f 100644
+--- a/drivers/gpu/drm/i915/gt/intel_region_lmem.c
++++ b/drivers/gpu/drm/i915/gt/intel_region_lmem.c
+@@ -240,7 +240,7 @@ static struct intel_memory_region *setup_lmem(struct intel_gt *gt)
+ 		lmem_size -= tile_stolen;
+ 	} else {
+ 		/* Stolen starts from GSMBASE without CCS */
+-		lmem_size = intel_uncore_read64(&i915->uncore, GEN12_GSMBASE);
++		lmem_size = intel_uncore_read64(&i915->uncore, GEN6_GSMBASE);
+ 	}
+ 
+ 	i915_resize_lmem_bar(i915, lmem_size);
+diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_reg.h
+index 27dc903f0553..b54d62952a53 100644
+--- a/drivers/gpu/drm/i915/i915_reg.h
++++ b/drivers/gpu/drm/i915/i915_reg.h
+@@ -6314,9 +6314,10 @@ enum skl_power_gate {
+ #define   GMS_MASK			REG_GENMASK(15, 8)
+ #define   GGMS_MASK			REG_GENMASK(7, 6)
+ 
+-#define GEN12_GSMBASE			_MMIO(0x108100)
+-#define GEN12_DSMBASE			_MMIO(0x1080C0)
+-#define   GEN12_BDSM_MASK		REG_GENMASK64(63, 20)
++#define GEN6_GSMBASE			_MMIO(0x108100)
++#define GEN6_DSMBASE			_MMIO(0x1080C0)
++#define   GEN6_BDSM_MASK		REG_GENMASK64(31, 20)
++#define   GEN11_BDSM_MASK		REG_GENMASK64(63, 20)
+ 
+ #define XEHP_CLOCK_GATE_DIS		_MMIO(0x101014)
+ #define   SGSI_SIDECLK_DIS		REG_BIT(17)
 -- 
 2.41.0
 
