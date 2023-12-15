@@ -2,32 +2,32 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id B894A81504A
-	for <lists+intel-gfx@lfdr.de>; Fri, 15 Dec 2023 20:40:48 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8473281516B
+	for <lists+intel-gfx@lfdr.de>; Fri, 15 Dec 2023 21:55:48 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2D76210EAAE;
-	Fri, 15 Dec 2023 19:40:47 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A711910EAB3;
+	Fri, 15 Dec 2023 20:55:44 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 9C33D10EA8B;
- Fri, 15 Dec 2023 19:40:45 +0000 (UTC)
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id F360610EA97;
+ Fri, 15 Dec 2023 20:55:41 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 2CAC0AADDD;
- Fri, 15 Dec 2023 19:40:45 +0000 (UTC)
+ by emeril.freedesktop.org (Postfix) with ESMTP id EA346AADF6;
+ Fri, 15 Dec 2023 20:55:41 +0000 (UTC)
 Content-Type: multipart/alternative;
- boundary="===============0216574807281724239=="
+ boundary="===============5939290657021087345=="
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=97_Fi=2ECI=2EBAT=3A_failure_for_drm/mm=3A_Allow_CONFIG=5FDR?=
- =?utf-8?q?M=5FMM=5FDEBUG_with_DRM=3Dm?=
+Subject: =?utf-8?q?=E2=9C=97_Fi=2ECI=2EBAT=3A_failure_for_Revert_=22drm/i915/gt=3A_Te?=
+ =?utf-8?q?mporarily_disable_CPU_caching_into_DMA_for_MTL=22_=28rev2=29?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: =?utf-8?b?VmlsbGUgU3lyasOkbMOk?= <ville.syrjala@linux.intel.com>
-Date: Fri, 15 Dec 2023 19:40:45 -0000
-Message-ID: <170266924517.27832.1776524525647671805@emeril.freedesktop.org>
+To: "Jonathan Cavitt" <jonathan.cavitt@intel.com>
+Date: Fri, 15 Dec 2023 20:55:41 -0000
+Message-ID: <170267374192.27833.10384620920715478664@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
-References: <20231215111129.9559-1-ville.syrjala@linux.intel.com>
-In-Reply-To: <20231215111129.9559-1-ville.syrjala@linux.intel.com>
+References: <20231213185716.1596496-1-jonathan.cavitt@intel.com>
+In-Reply-To: <20231213185716.1596496-1-jonathan.cavitt@intel.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -45,20 +45,20 @@ Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============0216574807281724239==
+--===============5939290657021087345==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
 
 == Series Details ==
 
-Series: drm/mm: Allow CONFIG_DRM_MM_DEBUG with DRM=m
-URL   : https://patchwork.freedesktop.org/series/127871/
+Series: Revert "drm/i915/gt: Temporarily disable CPU caching into DMA for MTL" (rev2)
+URL   : https://patchwork.freedesktop.org/series/127763/
 State : failure
 
 == Summary ==
 
-CI Bug Log - changes from CI_DRM_14033 -> Patchwork_127871v1
+CI Bug Log - changes from CI_DRM_14033 -> Patchwork_127763v2
 ====================================================
 
 Summary
@@ -66,49 +66,85 @@ Summary
 
   **FAILURE**
 
-  Serious unknown changes coming with Patchwork_127871v1 absolutely need to be
+  Serious unknown changes coming with Patchwork_127763v2 absolutely need to be
   verified manually.
   
   If you think the reported changes have nothing to do with the changes
-  introduced in Patchwork_127871v1, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them
+  introduced in Patchwork_127763v2, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them
   to document this new failure mode, which will reduce false positives in CI.
 
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_127871v1/index.html
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_127763v2/index.html
 
-Participating hosts (38 -> 16)
+Participating hosts (38 -> 36)
 ------------------------------
 
-  ERROR: It appears as if the changes made in Patchwork_127871v1 prevented too many machines from booting.
+  Missing    (2): bat-rpls-2 fi-snb-2520m 
 
-  Missing    (22): fi-rkl-11600 fi-apl-guc fi-snb-2520m bat-rpls-3 fi-pnv-d510 fi-bsw-n3050 bat-adlm-1 bat-dg2-9 fi-ilk-650 bat-adln-1 fi-ivb-3770 bat-rplp-1 bat-dg2-11 fi-bsw-nick bat-dg1-7 bat-kbl-2 bat-adlp-9 bat-jsl-1 fi-tgl-1115g4 fi-cfl-guc fi-kbl-x1275 bat-dg2-14 
+Possible new issues
+-------------------
 
+  Here are the unknown changes that may have been introduced in Patchwork_127763v2:
 
-Changes
--------
+### IGT changes ###
 
-  No changes found
+#### Possible regressions ####
+
+  * igt@i915_suspend@basic-s2idle-without-i915:
+    - bat-atsm-1:         [PASS][1] -> [WARN][2]
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14033/bat-atsm-1/igt@i915_suspend@basic-s2idle-without-i915.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_127763v2/bat-atsm-1/igt@i915_suspend@basic-s2idle-without-i915.html
+
+  
+Known issues
+------------
+
+  Here are the changes found in Patchwork_127763v2 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@i915_selftest@live@execlists:
+    - fi-bsw-n3050:       [PASS][3] -> [ABORT][4] ([i915#7911])
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14033/fi-bsw-n3050/igt@i915_selftest@live@execlists.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_127763v2/fi-bsw-n3050/igt@i915_selftest@live@execlists.html
+
+  * igt@i915_selftest@live@hangcheck:
+    - fi-skl-guc:         [PASS][5] -> [DMESG-FAIL][6] ([i915#9549])
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14033/fi-skl-guc/igt@i915_selftest@live@hangcheck.html
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_127763v2/fi-skl-guc/igt@i915_selftest@live@hangcheck.html
+
+  * igt@kms_pipe_crc_basic@read-crc-frame-sequence@pipe-d-edp-1:
+    - bat-rplp-1:         [PASS][7] -> [ABORT][8] ([i915#8668])
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14033/bat-rplp-1/igt@kms_pipe_crc_basic@read-crc-frame-sequence@pipe-d-edp-1.html
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_127763v2/bat-rplp-1/igt@kms_pipe_crc_basic@read-crc-frame-sequence@pipe-d-edp-1.html
+
+  
+  [i915#7911]: https://gitlab.freedesktop.org/drm/intel/issues/7911
+  [i915#8668]: https://gitlab.freedesktop.org/drm/intel/issues/8668
+  [i915#9549]: https://gitlab.freedesktop.org/drm/intel/issues/9549
 
 
 Build changes
 -------------
 
-  * Linux: CI_DRM_14033 -> Patchwork_127871v1
+  * Linux: CI_DRM_14033 -> Patchwork_127763v2
 
   CI-20190529: 20190529
   CI_DRM_14033: e6580f88bbde08a04d0cb7bb591c38e7b9f0076d @ git://anongit.freedesktop.org/gfx-ci/linux
   IGT_7643: ced22f8bf4263ff395dc852c86b682e62a7a1c1b @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_127871v1: e6580f88bbde08a04d0cb7bb591c38e7b9f0076d @ git://anongit.freedesktop.org/gfx-ci/linux
+  Patchwork_127763v2: e6580f88bbde08a04d0cb7bb591c38e7b9f0076d @ git://anongit.freedesktop.org/gfx-ci/linux
 
 
 ### Linux commits
 
-cfa4968c1902 drm/mm: Allow CONFIG_DRM_MM_DEBUG with DRM=m
+3c057e21e8ca Revert "drm/i915/gt: Temporarily disable CPU caching into DMA for MTL"
 
 == Logs ==
 
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_127871v1/index.html
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_127763v2/index.html
 
---===============0216574807281724239==
+--===============5939290657021087345==
 Content-Type: text/html; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -128,41 +164,72 @@ Content-Transfer-Encoding: 7bit
 
 <b>Patch Details</b>
 <table>
-<tr><td><b>Series:</b></td><td>drm/mm: Allow CONFIG_DRM_MM_DEBUG with DRM=m</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/127871/">https://patchwork.freedesktop.org/series/127871/</a></td></tr>
+<tr><td><b>Series:</b></td><td>Revert &quot;drm/i915/gt: Temporarily disable CPU caching into DMA for MTL&quot; (rev2)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/127763/">https://patchwork.freedesktop.org/series/127763/</a></td></tr>
 <tr><td><b>State:</b></td><td>failure</td></tr>
 
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_127871v1/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_127871v1/index.html</a></td></tr>
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_127763v2/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_127763v2/index.html</a></td></tr>
 
 </table>
 
 
-    <h1>CI Bug Log - changes from CI_DRM_14033 -&gt; Patchwork_127871v1</h1>
+    <h1>CI Bug Log - changes from CI_DRM_14033 -&gt; Patchwork_127763v2</h1>
 <h2>Summary</h2>
 <p><strong>FAILURE</strong></p>
-<p>Serious unknown changes coming with Patchwork_127871v1 absolutely need to be<br />
+<p>Serious unknown changes coming with Patchwork_127763v2 absolutely need to be<br />
   verified manually.</p>
 <p>If you think the reported changes have nothing to do with the changes<br />
-  introduced in Patchwork_127871v1, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them<br />
+  introduced in Patchwork_127763v2, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them<br />
   to document this new failure mode, which will reduce false positives in CI.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_127871v1/index.html</p>
-<h2>Participating hosts (38 -&gt; 16)</h2>
-<p>ERROR: It appears as if the changes made in Patchwork_127871v1 prevented too many machines from booting.</p>
-<p>Missing    (22): fi-rkl-11600 fi-apl-guc fi-snb-2520m bat-rpls-3 fi-pnv-d510 fi-bsw-n3050 bat-adlm-1 bat-dg2-9 fi-ilk-650 bat-adln-1 fi-ivb-3770 bat-rplp-1 bat-dg2-11 fi-bsw-nick bat-dg1-7 bat-kbl-2 bat-adlp-9 bat-jsl-1 fi-tgl-1115g4 fi-cfl-guc fi-kbl-x1275 bat-dg2-14 </p>
-<h2>Changes</h2>
-<p>No changes found</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_127763v2/index.html</p>
+<h2>Participating hosts (38 -&gt; 36)</h2>
+<p>Missing    (2): bat-rpls-2 fi-snb-2520m </p>
+<h2>Possible new issues</h2>
+<p>Here are the unknown changes that may have been introduced in Patchwork_127763v2:</p>
+<h3>IGT changes</h3>
+<h4>Possible regressions</h4>
+<ul>
+<li>igt@i915_suspend@basic-s2idle-without-i915:<ul>
+<li>bat-atsm-1:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14033/bat-atsm-1/igt@i915_suspend@basic-s2idle-without-i915.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_127763v2/bat-atsm-1/igt@i915_suspend@basic-s2idle-without-i915.html">WARN</a></li>
+</ul>
+</li>
+</ul>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_127763v2 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@i915_selftest@live@execlists:</p>
+<ul>
+<li>fi-bsw-n3050:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14033/fi-bsw-n3050/igt@i915_selftest@live@execlists.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_127763v2/fi-bsw-n3050/igt@i915_selftest@live@execlists.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/7911">i915#7911</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@hangcheck:</p>
+<ul>
+<li>fi-skl-guc:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14033/fi-skl-guc/igt@i915_selftest@live@hangcheck.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_127763v2/fi-skl-guc/igt@i915_selftest@live@hangcheck.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/9549">i915#9549</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_pipe_crc_basic@read-crc-frame-sequence@pipe-d-edp-1:</p>
+<ul>
+<li>bat-rplp-1:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14033/bat-rplp-1/igt@kms_pipe_crc_basic@read-crc-frame-sequence@pipe-d-edp-1.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_127763v2/bat-rplp-1/igt@kms_pipe_crc_basic@read-crc-frame-sequence@pipe-d-edp-1.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/8668">i915#8668</a>)</li>
+</ul>
+</li>
+</ul>
 <h2>Build changes</h2>
 <ul>
-<li>Linux: CI_DRM_14033 -&gt; Patchwork_127871v1</li>
+<li>Linux: CI_DRM_14033 -&gt; Patchwork_127763v2</li>
 </ul>
 <p>CI-20190529: 20190529<br />
   CI_DRM_14033: e6580f88bbde08a04d0cb7bb591c38e7b9f0076d @ git://anongit.freedesktop.org/gfx-ci/linux<br />
   IGT_7643: ced22f8bf4263ff395dc852c86b682e62a7a1c1b @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  Patchwork_127871v1: e6580f88bbde08a04d0cb7bb591c38e7b9f0076d @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+  Patchwork_127763v2: e6580f88bbde08a04d0cb7bb591c38e7b9f0076d @ git://anongit.freedesktop.org/gfx-ci/linux</p>
 <h3>Linux commits</h3>
-<p>cfa4968c1902 drm/mm: Allow CONFIG_DRM_MM_DEBUG with DRM=m</p>
+<p>3c057e21e8ca Revert "drm/i915/gt: Temporarily disable CPU caching into DMA for MTL"</p>
 
 </body>
 </html>
 
---===============0216574807281724239==--
+--===============5939290657021087345==--
