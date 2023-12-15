@@ -1,50 +1,57 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 70046814676
-	for <lists+intel-gfx@lfdr.de>; Fri, 15 Dec 2023 12:11:38 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6F3CC814688
+	for <lists+intel-gfx@lfdr.de>; Fri, 15 Dec 2023 12:15:26 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 04AD910E123;
-	Fri, 15 Dec 2023 11:11:37 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 97D7F10E9C5;
+	Fri, 15 Dec 2023 11:15:22 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.120])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9CA6410E123;
- Fri, 15 Dec 2023 11:11:35 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.126])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DAD2110E9C5
+ for <intel-gfx@lists.freedesktop.org>; Fri, 15 Dec 2023 11:15:20 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1702638695; x=1734174695;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=ksGyiksFXhY7uPwUtKPOIfHEzPNiAa0REUC5CSYkGis=;
- b=VakwxRa6ql2cpcLcgM00G409yoSaZzguuy9HhChQ/a6ZnuiX/o/X+UcR
- tD9jsThf1a+J7VIr+k5pWELx2uoMcGYRab66+jh37vbfzK73KeFAA6fsq
- GslxmIrGmZoCGi0t84bjmnZbx/agj8td5Wh0OCkAxZUIRbkW+gs0/7ZgJ
- MHaw4AN6gwvQTI7kUQxEELni4+y3YOvSp/cezgSxNnALOg7Xneijc3wMp
- Ziz/n2mGlVxFgYB0N4gyq6N8uqTctHcPmeXxGxR+7SjYNHK5CsykCSYGz
- 3w3uEj/Rey5kdFNqrpnzGvAmdbmd2YdwwiJGQZjOSkXcWrL5F5QxpM4th A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10924"; a="394138390"
-X-IronPort-AV: E=Sophos;i="6.04,278,1695711600"; d="scan'208";a="394138390"
+ t=1702638920; x=1734174920;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=vhbWscbQ/P6fOu/uyuXO/RbdRBewLwFJ+2R1H2pbROg=;
+ b=LilnxzW5OTaOghSIm+A6NikknFRXeEJ0WIgwPckliNaM2DlsYQqCRPsm
+ JYfCwyH1RiiXvqFWG9qGdj1BjtGd2aFdpE+82C0Fveb/VIVVhn1iUs0q5
+ O/slC9omfTuprsLDhcQ5Ag4NurqyY8ZLjExzTtQ+u2qzuzNH+Ez74ZZ4F
+ eBFQ9ConWcaSOq8qP6uiRuHMJCrsrcT622iNfH2GJ08NWheCYIHYlMnLn
+ vSRksO+oh2wMx8k3Y7N59L0QzSb3wBgJKY2RIfU4borSals+TqkhdVI5j
+ 2WqoS9lp83sjigfO04GObGeYTGke1zI2lxtR3QBbe0T4IEb2TJ7lhMwaF w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10924"; a="380257945"
+X-IronPort-AV: E=Sophos;i="6.04,278,1695711600"; d="scan'208";a="380257945"
 Received: from orsmga007.jf.intel.com ([10.7.209.58])
- by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Dec 2023 03:11:34 -0800
+ by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 Dec 2023 03:15:19 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10924"; a="767946560"
-X-IronPort-AV: E=Sophos;i="6.04,278,1695711600"; d="scan'208";a="767946560"
+X-IronPort-AV: E=McAfee;i="6600,9927,10924"; a="767947396"
+X-IronPort-AV: E=Sophos;i="6.04,278,1695711600"; d="scan'208";a="767947396"
 Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.74])
- by orsmga007.jf.intel.com with SMTP; 15 Dec 2023 03:11:30 -0800
+ by orsmga007.jf.intel.com with SMTP; 15 Dec 2023 03:15:16 -0800
 Received: by stinkbox (sSMTP sendmail emulation);
- Fri, 15 Dec 2023 13:11:29 +0200
-From: Ville Syrjala <ville.syrjala@linux.intel.com>
-To: dri-devel@lists.freedesktop.org
-Subject: [PATCH] drm/mm: Allow CONFIG_DRM_MM_DEBUG with DRM=m
-Date: Fri, 15 Dec 2023 13:11:29 +0200
-Message-ID: <20231215111129.9559-1-ville.syrjala@linux.intel.com>
-X-Mailer: git-send-email 2.41.0
+ Fri, 15 Dec 2023 13:15:16 +0200
+Date: Fri, 15 Dec 2023 13:15:16 +0200
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: "Lisovskiy, Stanislav" <stanislav.lisovskiy@intel.com>
+Subject: Re: [PATCH 9/9] Revert "drm/i915/xe2lpd: Treat cursor plane as
+ regular plane for DDB allocation"
+Message-ID: <ZXw1RM2V-gifTLHK@intel.com>
+References: <20231213102519.13500-1-ville.syrjala@linux.intel.com>
+ <20231213102519.13500-10-ville.syrjala@linux.intel.com>
+ <ZXmVT5b18dJ7emvp@intel.com> <ZXnKejc3qC3QtrY2@intel.com>
+ <ZXnNyF6F-v3C72hz@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
+In-Reply-To: <ZXnNyF6F-v3C72hz@intel.com>
+X-Patchwork-Hint: comment
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -57,37 +64,64 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org
+Cc: Matt Roper <matthew.d.roper@intel.com>, intel-gfx@lists.freedesktop.org,
+ Lucas De Marchi <lucas.demarchi@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-From: Ville Syrj√§l√§ <ville.syrjala@linux.intel.com>
+On Wed, Dec 13, 2023 at 05:29:12PM +0200, Ville Syrj‰l‰ wrote:
+> On Wed, Dec 13, 2023 at 05:15:06PM +0200, Ville Syrj‰l‰ wrote:
+> > On Wed, Dec 13, 2023 at 01:28:15PM +0200, Lisovskiy, Stanislav wrote:
+> > > On Wed, Dec 13, 2023 at 12:25:19PM +0200, Ville Syrjala wrote:
+> > > > From: Ville Syrj‰l‰ <ville.syrjala@linux.intel.com>
+> > > > 
+> > > > This reverts commit cfeff354f70bb1d0deb0279506e3f7989bc16e28.
+> > > > 
+> > > > A core design consideration with legacy cursor updates is that the
+> > > > cursor must not touch any other plane, even if we were to force it
+> > > > to take the slow path. That is the real reason why the cursor uses
+> > > > a fixed ddb allocation, not because bspec says so.
+> > > > 
+> > > > Treating cursors as any other plane during ddb allocation
+> > > > violates that, which means we can now pull other planes into
+> > > > fully unsynced legacy cursor mailbox commits. That is
+> > > > definitely not something we've ever considered when designing
+> > > > the rest of the code. The noarm+arm register write split in
+> > > > particular makes that dangerous as previous updates can get
+> > > > disarmed pretty much at any random time, and not necessarily
+> > > > in an order that is actually safe (eg. against ddb overlaps).
+> > > > 
+> > > > So if we were to do this then:
+> > > > - someone needs to expend the appropriate amount of brain
+> > > >   cells thinking through all the tricky details
+> > > 
+> > > So question is how can we avoid pulling other planes to the commit?..
+> > 
+> > By preallocating the ddb, as we do already.
+> 
+> I guess one thing we could consider is allcating the cursor ddb
+> based on the cursors real size (as opposed to always allocating for
+> 256x256 cursor), and not doing a mailbox update when changing size.
+> But as we learn in https://gitlab.freedesktop.org/drm/intel/-/issues/7687:
+> - current userspace always uses 256x256 until the PLANE_SIZE_HINTS
+>   stuff (or something similar) lands, so there is no point
+> - it would lead to worse power consumption with smaller cursors
+>   as there isn't enough extra ddb. The fact that we currently 
+>   allocate the minimum for 256x256 means smallers cursor sizes
+>   are more efficient. Some tests I did also indicated that the
+>   current code does not give optimal values even if we let it
+>   fully calculate the extra ddb like in the reverted commit here.
+>   We really need someone to take a proper look at how to tune
+>   the ddb allocation for optimal power consumption...
 
-The original rationale for
-commit cd456f8d06d2 ("drm: Restrict stackdepot usage to builtin drm.ko")
-was that depot_save_stack() (which is what we used back then)
-wasn't exported. stack_depot_save() (which is what we use now) is
-exported however, so relax the dependency allow CONFIG_DRM_MM_DEBUG
-with DRM=m.
+Oh, and another random idea I keep having occasionally would
+be to by default assume that legacy cursor uapi wouldn't be
+used, and then massage stuff sufficiently when the first use
+appears to make it work well from that point onwards. That 
+way we could try to be a bit more optimal with ddb/other
+stuff for userspace that never uses the legacy cursor uapi.
+But haven't really thought through the details on this one.
 
-Signed-off-by: Ville Syrj√§l√§ <ville.syrjala@linux.intel.com>
----
- drivers/gpu/drm/Kconfig | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
-
-diff --git a/drivers/gpu/drm/Kconfig b/drivers/gpu/drm/Kconfig
-index 31cfe2c2a2af..4b8b8f8a0e72 100644
---- a/drivers/gpu/drm/Kconfig
-+++ b/drivers/gpu/drm/Kconfig
-@@ -42,7 +42,7 @@ config DRM_MIPI_DSI
- config DRM_DEBUG_MM
- 	bool "Insert extra checks and debug info into the DRM range managers"
- 	default n
--	depends on DRM=y
-+	depends on DRM
- 	depends on STACKTRACE_SUPPORT
- 	select STACKDEPOT
- 	help
 -- 
-2.41.0
-
+Ville Syrj‰l‰
+Intel
