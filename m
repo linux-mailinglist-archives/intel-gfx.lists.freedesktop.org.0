@@ -2,47 +2,32 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id B48E28147BB
-	for <lists+intel-gfx@lfdr.de>; Fri, 15 Dec 2023 13:12:06 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id E83DF814867
+	for <lists+intel-gfx@lfdr.de>; Fri, 15 Dec 2023 13:49:22 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5C5B110E9D5;
-	Fri, 15 Dec 2023 12:12:03 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4DDAE10E173;
+	Fri, 15 Dec 2023 12:49:18 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.126])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 821DB10E8ED;
- Fri, 15 Dec 2023 12:12:01 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1702642321; x=1734178321;
- h=date:from:to:cc:subject:message-id:mime-version;
- bh=31U4jgfUJKwGBcafefxJidlE7XwYDZ7JBAtlg5q2cRE=;
- b=E1152HbJGt3KB076+7jfgUjK7+vOX/d5X/w9XFLM7aQ2YfcZweS8Cmn1
- ldfJZFefRLpFm3lL5ZhbUofy3nzfDVcxo8+hJptX0Mih5Yy5PZYUZsKm4
- aoun6IXL7XoJ9oanZqAVZyVJGSF5RpwHb9BhpYRk59QmkHtF3mDzypRue
- GI72gqhylamERyV9VsQV4XtjwbRlH5hKPd8Eh+JfNNLenafZmMf2Ov4Yr
- DtWQxz5IY6MU5Ung7xXlkJivyuIySOoczv+UUoJw7fM48BsJwmV/+B9MU
- c5GtZSNrHJaSXWmG3Yaw5CfBKydrpwHm8zXKm9U+0xkPSzlrDKesFjBOI w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10924"; a="380263793"
-X-IronPort-AV: E=Sophos;i="6.04,278,1695711600"; d="scan'208";a="380263793"
-Received: from orsmga004.jf.intel.com ([10.7.209.38])
- by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Dec 2023 04:12:01 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10924"; a="898119580"
-X-IronPort-AV: E=Sophos;i="6.04,278,1695711600"; d="scan'208";a="898119580"
-Received: from emnevill-mobl1.ger.corp.intel.com (HELO localhost)
- ([10.252.10.148])
- by orsmga004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Dec 2023 04:11:56 -0800
-Date: Fri, 15 Dec 2023 14:11:53 +0200
-From: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
-To: Dave Airlie <airlied@gmail.com>, Daniel Vetter <daniel.vetter@ffwll.ch>
-Subject: [PULL] drm-intel-gt-next
-Message-ID: <ZXxCibZZQqlqhDN3@jlahtine-mobl.ger.corp.intel.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id F18A810E045;
+ Fri, 15 Dec 2023 12:49:16 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id E9C40AADE0;
+ Fri, 15 Dec 2023 12:49:16 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============4199321388535973033=="
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+Subject: =?utf-8?q?=E2=9C=93_Fi=2ECI=2EBAT=3A_success_for_drm/i915/display=3A_C20_clo?=
+ =?utf-8?q?ck_state_verification?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Mika Kahola" <mika.kahola@intel.com>
+Date: Fri, 15 Dec 2023 12:49:16 -0000
+Message-ID: <170264455692.27834.6985034500943419061@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20231215080057.663792-1-mika.kahola@intel.com>
+In-Reply-To: <20231215080057.663792-1-mika.kahola@intel.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -55,91 +40,183 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: dim-tools@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, intel-gfx@lists.freedesktop.org
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi Dave & Sima,
+--===============4199321388535973033==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Final drm-intel-gt-next PR for v6.8.
+== Series Details ==
 
-Elimination of kmap_atomic() from the driver to allow kernel wide
-cleanup. One new DG2 W/A and static checker/spelling fixes.
+Series: drm/i915/display: C20 clock state verification
+URL   : https://patchwork.freedesktop.org/series/127858/
+State : success
 
-Best Regards,
-Joonas
+== Summary ==
 
-***
+CI Bug Log - changes from CI_DRM_14027 -> Patchwork_127858v1
+====================================================
 
-drm-intel-gt-next-2023-12-15:
+Summary
+-------
 
-Driver Changes:
+  **SUCCESS**
 
-- Eliminate use of kmap_atomic() in i915 (Zhao)
-- Add Wa_14019877138 for DG2 (Haridhar)
+  No regressions found.
 
-- Static checker and spelling fixes (Colin, Karthik, Randy)
--
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_127858v1/index.html
 
-The following changes since commit be5bcc4be9d9d3ae294072441a66fe39b74e5bba:
+Participating hosts (37 -> 36)
+------------------------------
 
-  drm/i915/guc: Create the guc_to_i915() wrapper (2023-12-08 12:31:01 +0100)
+  Additional (1): bat-adlp-11 
+  Missing    (2): fi-snb-2520m fi-pnv-d510 
 
-are available in the Git repository at:
+Known issues
+------------
 
-  git://anongit.freedesktop.org/drm/drm-intel tags/drm-intel-gt-next-2023-12-15
+  Here are the changes found in Patchwork_127858v1 that come from known issues:
 
-for you to fetch changes up to 31accc37eaee98a90b25809ed58c6ee4956ab642:
+### CI changes ###
 
-  drm/i915: Use kmap_local_page() in gem/i915_gem_execbuffer.c (2023-12-15 09:34:31 +0000)
+#### Issues hit ####
 
-----------------------------------------------------------------
-Driver Changes:
+  * boot:
+    - bat-adlp-11:        NOTRUN -> [FAIL][1] ([i915#8293])
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_127858v1/bat-adlp-11/boot.html
 
-- Eliminate use of kmap_atomic() in i915 (Zhao)
-- Add Wa_14019877138 for DG2 (Haridhar)
+  
 
-- Static checker and spelling fixes (Colin, Karthik, Randy)
--
+### IGT changes ###
 
-----------------------------------------------------------------
-Colin Ian King (1):
-      drm/i915/selftests: Fix spelling mistake "initialiased" -> "initialised"
+#### Issues hit ####
 
-Haridhar Kalvala (1):
-      drm/i915: Add Wa_14019877138
+  * igt@i915_selftest@live@execlists:
+    - fi-bsw-nick:        [PASS][2] -> [ABORT][3] ([i915#7911])
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14027/fi-bsw-nick/igt@i915_selftest@live@execlists.html
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_127858v1/fi-bsw-nick/igt@i915_selftest@live@execlists.html
 
-Karthik Poosa (1):
-      drm/i915/hwmon: Fix static analysis tool reported issues
+  * igt@i915_selftest@live@workarounds:
+    - bat-adlm-1:         [PASS][4] -> [INCOMPLETE][5] ([i915#9413])
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14027/bat-adlm-1/igt@i915_selftest@live@workarounds.html
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_127858v1/bat-adlm-1/igt@i915_selftest@live@workarounds.html
 
-Randy Dunlap (1):
-      drm/i915/uapi: fix typos/spellos and punctuation
+  * igt@kms_pm_rpm@basic-rte:
+    - bat-rpls-2:         [PASS][6] -> [ABORT][7] ([i915#8668])
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14027/bat-rpls-2/igt@kms_pm_rpm@basic-rte.html
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_127858v1/bat-rpls-2/igt@kms_pm_rpm@basic-rte.html
 
-Zhao Liu (9):
-      drm/i915: Use kmap_local_page() in gem/i915_gem_object.c
-      drm/i915: Use memcpy_[from/to]_page() in gem/i915_gem_pyhs.c
-      drm/i915: Use kmap_local_page() in gem/i915_gem_shmem.c
-      drm/i915: Use kmap_local_page() in gem/selftests/huge_pages.c
-      drm/i915: Use kmap_local_page() in gem/selftests/i915_gem_coherency.c
-      drm/i915: Use kmap_local_page() in gem/selftests/i915_gem_context.c
-      drm/i915: Use memcpy_from_page() in gt/uc/intel_uc_fw.c
-      drm/i915: Use kmap_local_page() in i915_cmd_parser.c
-      drm/i915: Use kmap_local_page() in gem/i915_gem_execbuffer.c
+  
+  [i915#7911]: https://gitlab.freedesktop.org/drm/intel/issues/7911
+  [i915#8293]: https://gitlab.freedesktop.org/drm/intel/issues/8293
+  [i915#8668]: https://gitlab.freedesktop.org/drm/intel/issues/8668
+  [i915#9413]: https://gitlab.freedesktop.org/drm/intel/issues/9413
 
- drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c          | 10 +++++-----
- drivers/gpu/drm/i915/gem/i915_gem_object.c              |  8 +++-----
- drivers/gpu/drm/i915/gem/i915_gem_phys.c                | 10 ++--------
- drivers/gpu/drm/i915/gem/i915_gem_shmem.c               |  6 ++++--
- drivers/gpu/drm/i915/gem/selftests/huge_pages.c         |  6 +++---
- drivers/gpu/drm/i915/gem/selftests/i915_gem_coherency.c | 12 ++++--------
- drivers/gpu/drm/i915/gem/selftests/i915_gem_context.c   |  8 ++++----
- drivers/gpu/drm/i915/gem/selftests/i915_gem_dmabuf.c    |  2 +-
- drivers/gpu/drm/i915/gt/intel_gt_regs.h                 |  3 +++
- drivers/gpu/drm/i915/gt/intel_workarounds.c             |  3 +++
- drivers/gpu/drm/i915/gt/uc/intel_uc_fw.c                |  5 +----
- drivers/gpu/drm/i915/i915_cmd_parser.c                  |  4 ++--
- drivers/gpu/drm/i915/i915_hwmon.c                       |  4 ++--
- include/uapi/drm/i915_drm.h                             | 12 ++++++------
- 14 files changed, 43 insertions(+), 50 deletions(-)
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_14027 -> Patchwork_127858v1
+
+  CI-20190529: 20190529
+  CI_DRM_14027: 961ef418705ac5808345e883acd91f8ce167e00b @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_7643: ced22f8bf4263ff395dc852c86b682e62a7a1c1b @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  Patchwork_127858v1: 961ef418705ac5808345e883acd91f8ce167e00b @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+### Linux commits
+
+80be4c9afed8 drm/i915/display: C20 clock state verification
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_127858v1/index.html
+
+--===============4199321388535973033==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/i915/display: C20 clock state verification</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/127858/">https://patchwork.freedesktop.org/series/127858/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_127858v1/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_127858v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_14027 -&gt; Patchwork_127858v1</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_127858v1/index.html</p>
+<h2>Participating hosts (37 -&gt; 36)</h2>
+<p>Additional (1): bat-adlp-11 <br />
+  Missing    (2): fi-snb-2520m fi-pnv-d510 </p>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_127858v1 that come from known issues:</p>
+<h3>CI changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>boot:<ul>
+<li>bat-adlp-11:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_127858v1/bat-adlp-11/boot.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/8293">i915#8293</a>)</li>
+</ul>
+</li>
+</ul>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@i915_selftest@live@execlists:</p>
+<ul>
+<li>fi-bsw-nick:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14027/fi-bsw-nick/igt@i915_selftest@live@execlists.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_127858v1/fi-bsw-nick/igt@i915_selftest@live@execlists.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/7911">i915#7911</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@workarounds:</p>
+<ul>
+<li>bat-adlm-1:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14027/bat-adlm-1/igt@i915_selftest@live@workarounds.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_127858v1/bat-adlm-1/igt@i915_selftest@live@workarounds.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/9413">i915#9413</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_pm_rpm@basic-rte:</p>
+<ul>
+<li>bat-rpls-2:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14027/bat-rpls-2/igt@kms_pm_rpm@basic-rte.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_127858v1/bat-rpls-2/igt@kms_pm_rpm@basic-rte.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/8668">i915#8668</a>)</li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_14027 -&gt; Patchwork_127858v1</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_14027: 961ef418705ac5808345e883acd91f8ce167e00b @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_7643: ced22f8bf4263ff395dc852c86b682e62a7a1c1b @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  Patchwork_127858v1: 961ef418705ac5808345e883acd91f8ce167e00b @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+<h3>Linux commits</h3>
+<p>80be4c9afed8 drm/i915/display: C20 clock state verification</p>
+
+</body>
+</html>
+
+--===============4199321388535973033==--
