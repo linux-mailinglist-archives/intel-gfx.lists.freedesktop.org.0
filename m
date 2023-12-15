@@ -1,46 +1,47 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 869F181460E
-	for <lists+intel-gfx@lfdr.de>; Fri, 15 Dec 2023 11:59:47 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4EA54814611
+	for <lists+intel-gfx@lfdr.de>; Fri, 15 Dec 2023 11:59:51 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 093E410E9D2;
-	Fri, 15 Dec 2023 10:59:46 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id ABDAD10E9D8;
+	Fri, 15 Dec 2023 10:59:49 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.120])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EE9C010E9D2
- for <intel-gfx@lists.freedesktop.org>; Fri, 15 Dec 2023 10:59:43 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E808910E9D7
+ for <intel-gfx@lists.freedesktop.org>; Fri, 15 Dec 2023 10:59:47 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1702637984; x=1734173984;
+ t=1702637987; x=1734173987;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=8dxWh6TNizUdB+//aWC3efgWTyrpjjfsf6Mu2Gib5us=;
- b=mRyr8e3vHeF5s58MJq/X7B/O2sNnY9H8H/Db1IqBZaY9TfNZt/bQI1CG
- 3loq7sKUh4a58Rh4rBtoJ6peoC5Jsfxg+KRAhKuxx9d8Pwwvm6a7Jj9g3
- B58jbZfoMSMAL8fCLSCektzJAH8axLQ2CTSnU4pAopzsJuw4HSmoclI5q
- +zcDiKdruj8AtoRqToXx3/Gpey8G5IUPpSyWw6CPydquKkvnf5gjpwGUw
- J2qGHmFzRteA7q0/H0tW/of5aelxh1EWy4uKcq3fERc7OB0zBqtmOyzK4
- wBSNO5M73p7yyAwRLYaBfsNsrRGcR+f7slN5j8Doy0PkBc1HavAR8lrQ3 w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10924"; a="394136753"
-X-IronPort-AV: E=Sophos;i="6.04,278,1695711600"; d="scan'208";a="394136753"
+ bh=awLUoomGnhor78c0SnWhvAvCHC2xFIL+IrF0m1Fcvz0=;
+ b=dyaCVYXUA9J/GsJGIMdVIU7f0CXYJHaoqt1g404eXjj3ly07ynnBPJDp
+ yRW2skfSqzhNR+mEzgGiMDK2l3Pn5dpNvxbItWWtdkSxR1ilM+UiSispy
+ 9v/xU7XcmboeDprFkty6vYPrXASGH1dcT1Kj4eJIFxtqoYO+y5LZ3Cqge
+ n8uLZaf5VZLiLa2e7e+u2dOaEo71gmOoQ8hNncNrOwnj/gxnrOfUJbDsr
+ bJRDcT9BHZEjEK269XlVqA/wguzqKpI/mCOrRECQkXQ2XUhDGvl88Yu8s
+ HusRbqdGK5bqSfXlp+2kUfAYUDXvCGXp6qnWOiow2wWifpZ7Xt7HQVzKm A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10924"; a="394136772"
+X-IronPort-AV: E=Sophos;i="6.04,278,1695711600"; d="scan'208";a="394136772"
 Received: from orsmga007.jf.intel.com ([10.7.209.58])
  by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Dec 2023 02:59:43 -0800
+ 15 Dec 2023 02:59:47 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10924"; a="767935158"
-X-IronPort-AV: E=Sophos;i="6.04,278,1695711600"; d="scan'208";a="767935158"
+X-IronPort-AV: E=McAfee;i="6600,9927,10924"; a="767935164"
+X-IronPort-AV: E=Sophos;i="6.04,278,1695711600"; d="scan'208";a="767935164"
 Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.74])
- by orsmga007.jf.intel.com with SMTP; 15 Dec 2023 02:59:41 -0800
+ by orsmga007.jf.intel.com with SMTP; 15 Dec 2023 02:59:44 -0800
 Received: by stinkbox (sSMTP sendmail emulation);
- Fri, 15 Dec 2023 12:59:40 +0200
+ Fri, 15 Dec 2023 12:59:43 +0200
 From: Ville Syrjala <ville.syrjala@linux.intel.com>
 To: intel-gfx@lists.freedesktop.org
-Subject: [PATCH v2 03/15] drm/i915: Remove ad-hoc lmem/stolen debugs
-Date: Fri, 15 Dec 2023 12:59:17 +0200
-Message-ID: <20231215105929.29568-4-ville.syrjala@linux.intel.com>
+Subject: [PATCH v2 04/15] drm/i915: Bypass LMEMBAR/GTTMMADR for MTL stolen
+ memory access
+Date: Fri, 15 Dec 2023 12:59:18 +0200
+Message-ID: <20231215105929.29568-5-ville.syrjala@linux.intel.com>
 X-Mailer: git-send-email 2.41.0
 In-Reply-To: <20231215105929.29568-1-ville.syrjala@linux.intel.com>
 References: <20231215105929.29568-1-ville.syrjala@linux.intel.com>
@@ -59,60 +60,92 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Andrzej Hajda <andrzej.hajda@intel.com>
+Cc: Nirmoy Das <nirmoy.das@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-Now that intel_memory_regions_hw_probe() prints out each and every
-memory region there's no reason to have ad-hoc debugs to do similar
-things elsewhere.
+On MTL accessing stolen memory via the BARs is somehow borked,
+and it can hang the machine. As a workaround let's bypass the
+BARs and just go straight to DSMBASE/GSMBASE instead.
+
+Note that on every other platform this itself would hang the
+machine, but on MTL the system firmware is expected to relax
+the access permission guarding stolen memory to enable this
+workaround, and thus direct CPU accesses should be fine.
+
+TODO: add w/a numbers and whatnot
 
 Cc: Paz Zcharya <pazz@chromium.org>
-Reviewed-by: Andrzej Hajda <andrzej.hajda@intel.com>
+Cc: Nirmoy Das <nirmoy.das@intel.com>
+Cc: Radhakrishna Sripada <radhakrishna.sripada@intel.com>
+Cc: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
 Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 ---
- drivers/gpu/drm/i915/gem/i915_gem_stolen.c  | 4 ----
- drivers/gpu/drm/i915/gt/intel_region_lmem.c | 3 ---
- 2 files changed, 7 deletions(-)
+ drivers/gpu/drm/i915/gem/i915_gem_stolen.c | 11 ++++++++++-
+ drivers/gpu/drm/i915/gt/intel_ggtt.c       | 13 ++++++++++++-
+ 2 files changed, 22 insertions(+), 2 deletions(-)
 
 diff --git a/drivers/gpu/drm/i915/gem/i915_gem_stolen.c b/drivers/gpu/drm/i915/gem/i915_gem_stolen.c
-index d2440c793f84..ee237043c302 100644
+index ee237043c302..252fe5cd6ede 100644
 --- a/drivers/gpu/drm/i915/gem/i915_gem_stolen.c
 +++ b/drivers/gpu/drm/i915/gem/i915_gem_stolen.c
-@@ -828,7 +828,6 @@ static const struct intel_memory_region_ops i915_region_stolen_smem_ops = {
+@@ -941,7 +941,16 @@ i915_gem_stolen_lmem_setup(struct drm_i915_private *i915, u16 type,
+ 		dsm_size = ALIGN_DOWN(lmem_size - dsm_base, SZ_1M);
+ 	}
  
- static int init_stolen_lmem(struct intel_memory_region *mem)
+-	if (pci_resource_len(pdev, GEN12_LMEM_BAR) < lmem_size) {
++	if (IS_METEORLAKE(i915)) {
++		/*
++		 * Workaround: access via BAR can hang MTL, go directly to DSM.
++		 *
++		 * Normally this would not work but on MTL the system firmware
++		 * should have relaxed the access permissions sufficiently.
++		 */
++		io_start = intel_uncore_read64(uncore, GEN12_DSMBASE) & GEN12_BDSM_MASK;
++		io_size = dsm_size;
++	} else if (pci_resource_len(pdev, GEN12_LMEM_BAR) < lmem_size) {
+ 		io_start = 0;
+ 		io_size = 0;
+ 	} else {
+diff --git a/drivers/gpu/drm/i915/gt/intel_ggtt.c b/drivers/gpu/drm/i915/gt/intel_ggtt.c
+index 21a7e3191c18..ab71d74ec426 100644
+--- a/drivers/gpu/drm/i915/gt/intel_ggtt.c
++++ b/drivers/gpu/drm/i915/gt/intel_ggtt.c
+@@ -24,6 +24,7 @@
+ #include "intel_ring.h"
+ #include "i915_drv.h"
+ #include "i915_pci.h"
++#include "i915_reg.h"
+ #include "i915_request.h"
+ #include "i915_scatterlist.h"
+ #include "i915_utils.h"
+@@ -1152,13 +1153,23 @@ static unsigned int gen6_gttadr_offset(struct drm_i915_private *i915)
+ static int ggtt_probe_common(struct i915_ggtt *ggtt, u64 size)
  {
--	struct drm_i915_private *i915 = mem->i915;
- 	int err;
+ 	struct drm_i915_private *i915 = ggtt->vm.i915;
++	struct intel_uncore *uncore = ggtt->vm.gt->uncore;
+ 	struct pci_dev *pdev = to_pci_dev(i915->drm.dev);
+ 	phys_addr_t phys_addr;
+ 	u32 pte_flags;
+ 	int ret;
  
- 	if (GEM_WARN_ON(resource_size(&mem->region) == 0))
-@@ -844,9 +843,6 @@ static int init_stolen_lmem(struct intel_memory_region *mem)
- 	    !io_mapping_init_wc(&mem->iomap, mem->io.start, resource_size(&mem->io)))
- 		goto err_cleanup;
+ 	GEM_WARN_ON(pci_resource_len(pdev, GEN4_GTTMMADR_BAR) != gen6_gttmmadr_size(i915));
+-	phys_addr = pci_resource_start(pdev, GEN4_GTTMMADR_BAR) + gen6_gttadr_offset(i915);
++	/*
++	 * Workaround: access via BAR can hang MTL, go directly to GSM.
++	 *
++	 * Normally this would not work but on MTL the system firmware
++	 * should have relaxed the access permissions sufficiently.
++	 */
++	if (IS_METEORLAKE(i915))
++		phys_addr = intel_uncore_read64(uncore, GEN12_GSMBASE) & GEN12_BDSM_MASK;
++	else
++		phys_addr = pci_resource_start(pdev, GEN4_GTTMMADR_BAR) + gen6_gttadr_offset(i915);
  
--	drm_dbg(&i915->drm, "Stolen Local DSM: %pR\n", &mem->region);
--	drm_dbg(&i915->drm, "Stolen Local memory IO: %pR\n", &mem->io);
--
- 	return 0;
- 
- err_cleanup:
-diff --git a/drivers/gpu/drm/i915/gt/intel_region_lmem.c b/drivers/gpu/drm/i915/gt/intel_region_lmem.c
-index 6f96a6b70601..af357089da6e 100644
---- a/drivers/gpu/drm/i915/gt/intel_region_lmem.c
-+++ b/drivers/gpu/drm/i915/gt/intel_region_lmem.c
-@@ -273,9 +273,6 @@ static struct intel_memory_region *setup_lmem(struct intel_gt *gt)
- 	if (err)
- 		goto err_region_put;
- 
--	drm_dbg(&i915->drm, "Local memory: %pR\n", &mem->region);
--	drm_dbg(&i915->drm, "Local memory IO: %pR\n", &mem->io);
--
- 	if (io_size < lmem_size)
- 		drm_info(&i915->drm, "Using a reduced BAR size of %lluMiB. Consider enabling 'Resizable BAR' or similar, if available in the BIOS.\n",
- 			 (u64)io_size >> 20);
+ 	if (needs_wc_ggtt_mapping(i915))
+ 		ggtt->gsm = ioremap_wc(phys_addr, size);
 -- 
 2.41.0
 
