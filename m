@@ -2,45 +2,45 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id A7DCC8179B0
-	for <lists+intel-gfx@lfdr.de>; Mon, 18 Dec 2023 19:30:30 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7A28E8179B4
+	for <lists+intel-gfx@lfdr.de>; Mon, 18 Dec 2023 19:30:58 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E655D10E2D0;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 90A1610E2CC;
 	Mon, 18 Dec 2023 18:30:25 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.93])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6C36710E2A6
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 770C310E259
  for <intel-gfx@lists.freedesktop.org>; Mon, 18 Dec 2023 18:30:24 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1702924224; x=1734460224;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=I+A5fe0C/5nDCD21Ny8968vZjpG9OOb0EAulmacXAYY=;
- b=fdGVSpb/tOvdKHsRCgsB3xuXLY53Qo5HiWBv/+vqLcY8nk3ZN2qPqt5D
- Ii6QyqD/b8u5lUXI9XD6IzrXir6nVNziVB92BZoFCpa2Md+qQt+G3nLe4
- kFE1qWD0OgAa4jWikyG+2Erh8u2rpeH+Mcbt6ypuWy682uel0WeURnyYq
- I6eDvr/LTLTqFToex8CE4BMZxjFDRtN1dC88VuL6Oekkyg0FdaiUv7qYu
- 3WlVJdN/bW++vdMxTR/PfOT2SQEv4FEZz9181mFcWX2fVrb9JnPwoYM5o
- FsbYS/V9PCX63TU4n012BHcBZIN/9x2/oBv+MLhZJ/dfiLb3JiPzxS+6z A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10928"; a="392714120"
-X-IronPort-AV: E=Sophos;i="6.04,286,1695711600"; d="scan'208";a="392714120"
+ bh=6FH/tqGd6BorXNvO+HiubTxs+UK2EOnh1OcS/oj5GJ8=;
+ b=bpCXtjcVEScCspGIuHhgHVM5nEL0nMB8ZHcL1GEOwSstmOdURKOP/AcX
+ mdygIBS0wQS5FAUBjQ8jDsGEKPHPWQQSiqWzxFKFfReF83Dmozo8CgDB0
+ zex7rUXHQQomDYDKKz4Yqd0VM8fhH3o67gUB6iRMregRTpel5Ek3cZbJ5
+ r4I4HF9mgbK1hblc/AaxIaxL54mW/4TA3OxvZ7Hk+JLPiVMHcaIi3x1Zz
+ CNVU4NiPj+ptCTOtvWKWGdxqAhD1uI8zqcTISyjM11qovqVwUOOhDjILr
+ RKWhsEbhziaIGfqU1RMM0+NrPwjQ6gAYWMwRpWDSBVsVs2ISJj1JUj2YJ g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10928"; a="392714131"
+X-IronPort-AV: E=Sophos;i="6.04,286,1695711600"; d="scan'208";a="392714131"
 Received: from fmsmga007.fm.intel.com ([10.253.24.52])
  by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Dec 2023 09:50:24 -0800
+ 18 Dec 2023 09:50:25 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10928"; a="779176582"
-X-IronPort-AV: E=Sophos;i="6.04,286,1695711600"; d="scan'208";a="779176582"
+X-IronPort-AV: E=McAfee;i="6600,9927,10928"; a="779176589"
+X-IronPort-AV: E=Sophos;i="6.04,286,1695711600"; d="scan'208";a="779176589"
 Received: from etrunovx-mobl.ger.corp.intel.com (HELO
  jhogande-mobl1.intel.com) ([10.249.35.24])
  by fmsmga007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Dec 2023 09:50:22 -0800
+ 18 Dec 2023 09:50:24 -0800
 From: =?UTF-8?q?Jouni=20H=C3=B6gander?= <jouni.hogander@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Subject: [PATCH 3/7] drm/i915/psr: Carry su area in crtc_state
-Date: Mon, 18 Dec 2023 19:50:00 +0200
-Message-Id: <20231218175004.52875-4-jouni.hogander@intel.com>
+Subject: [PATCH 4/7] drm/i915/psr: Calculate and configure CUR_POS_ERLY_TPT
+Date: Mon, 18 Dec 2023 19:50:01 +0200
+Message-Id: <20231218175004.52875-5-jouni.hogander@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20231218175004.52875-1-jouni.hogander@intel.com>
 References: <20231218175004.52875-1-jouni.hogander@intel.com>
@@ -63,221 +63,116 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Su_area is needed when configuring CUR_POS_ERLY_TPT and
-PIPE_SRC_SZ_ERLY_TPT. Store it into intel_crtc_state->psr2_su_area.
+New register CUR_POS_ERLY_TPT related to early transport is
+supposed to be configured when early transport is in use.
+
+This register is used to configure cursor vertical postion
+from beginning of selective update area.
+
+Bspec: 68927
 
 Signed-off-by: Jouni Högander <jouni.hogander@intel.com>
 ---
- .../drm/i915/display/intel_display_types.h    |  2 +
- drivers/gpu/drm/i915/display/intel_psr.c      | 62 ++++++++++---------
- 2 files changed, 36 insertions(+), 28 deletions(-)
+ drivers/gpu/drm/i915/display/intel_cursor.c | 32 ++++++++++++++++-----
+ drivers/gpu/drm/i915/i915_reg.h             |  2 ++
+ 2 files changed, 27 insertions(+), 7 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/drivers/gpu/drm/i915/display/intel_display_types.h
-index 341d80c2b9de..05dd8decd610 100644
---- a/drivers/gpu/drm/i915/display/intel_display_types.h
-+++ b/drivers/gpu/drm/i915/display/intel_display_types.h
-@@ -1404,6 +1404,8 @@ struct intel_crtc_state {
+diff --git a/drivers/gpu/drm/i915/display/intel_cursor.c b/drivers/gpu/drm/i915/display/intel_cursor.c
+index 926e2de00eb5..ecff90e233f0 100644
+--- a/drivers/gpu/drm/i915/display/intel_cursor.c
++++ b/drivers/gpu/drm/i915/display/intel_cursor.c
+@@ -47,12 +47,23 @@ static u32 intel_cursor_base(const struct intel_plane_state *plane_state)
+ 	return base + plane_state->view.color_plane[0].offset;
+ }
  
- 	u32 psr2_man_track_ctl;
+-static u32 intel_cursor_position(const struct intel_plane_state *plane_state)
++static u32 intel_cursor_position(const struct intel_crtc_state *crtc_state,
++				 const struct intel_plane_state *plane_state,
++				 bool early_tpt)
+ {
+ 	int x = plane_state->uapi.dst.x1;
+ 	int y = plane_state->uapi.dst.y1;
+ 	u32 pos = 0;
  
-+	struct drm_rect psr2_su_area;
++	/*
++	 * Formula from Bspec:
++	 * MAX(-1 * <Cursor vertical size from CUR_CTL base on cursor mode
++	 * select setting> + 1, CUR_POS Y Position - Update region Y position
++	 */
++	if (early_tpt)
++		y = max(-1 * drm_rect_height(&plane_state->uapi.dst) + 1,
++			y - crtc_state->psr2_su_area.y1);
 +
- 	/* Variable Refresh Rate state */
- 	struct {
- 		bool enable, in_range;
-diff --git a/drivers/gpu/drm/i915/display/intel_psr.c b/drivers/gpu/drm/i915/display/intel_psr.c
-index 8a350b9e33cd..67f68c26a312 100644
---- a/drivers/gpu/drm/i915/display/intel_psr.c
-+++ b/drivers/gpu/drm/i915/display/intel_psr.c
-@@ -1941,7 +1941,7 @@ void intel_psr2_program_trans_man_trk_ctl(const struct intel_crtc_state *crtc_st
- }
+ 	if (x < 0) {
+ 		pos |= CURSOR_POS_X_SIGN;
+ 		x = -x;
+@@ -274,7 +285,7 @@ static void i845_cursor_update_arm(struct intel_plane *plane,
+ 		size = CURSOR_HEIGHT(height) | CURSOR_WIDTH(width);
  
- static void psr2_man_trk_ctl_calc(struct intel_crtc_state *crtc_state,
--				  struct drm_rect *clip, bool full_update)
-+				  bool full_update)
- {
- 	struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
- 	struct drm_i915_private *dev_priv = to_i915(crtc->base.dev);
-@@ -1956,17 +1956,21 @@ static void psr2_man_trk_ctl_calc(struct intel_crtc_state *crtc_state,
- 		goto exit;
+ 		base = intel_cursor_base(plane_state);
+-		pos = intel_cursor_position(plane_state);
++		pos = intel_cursor_position(crtc_state, plane_state, false);
  	}
  
--	if (clip->y1 == -1)
-+	if (crtc_state->psr2_su_area.y1 == -1)
- 		goto exit;
- 
- 	if (IS_ALDERLAKE_P(dev_priv) || DISPLAY_VER(dev_priv) >= 14) {
--		val |= ADLP_PSR2_MAN_TRK_CTL_SU_REGION_START_ADDR(clip->y1);
--		val |= ADLP_PSR2_MAN_TRK_CTL_SU_REGION_END_ADDR(clip->y2 - 1);
-+		val |= ADLP_PSR2_MAN_TRK_CTL_SU_REGION_START_ADDR(crtc_state->psr2_su_area.y1);
-+		val |= ADLP_PSR2_MAN_TRK_CTL_SU_REGION_END_ADDR(crtc_state->psr2_su_area.y2 - 1);
- 	} else {
--		drm_WARN_ON(crtc_state->uapi.crtc->dev, clip->y1 % 4 || clip->y2 % 4);
-+		drm_WARN_ON(crtc_state->uapi.crtc->dev,
-+			    crtc_state->psr2_su_area.y1 % 4 ||
-+			    crtc_state->psr2_su_area.y2 % 4);
- 
--		val |= PSR2_MAN_TRK_CTL_SU_REGION_START_ADDR(clip->y1 / 4 + 1);
--		val |= PSR2_MAN_TRK_CTL_SU_REGION_END_ADDR(clip->y2 / 4 + 1);
-+		val |= PSR2_MAN_TRK_CTL_SU_REGION_START_ADDR(
-+			crtc_state->psr2_su_area.y1 / 4 + 1);
-+		val |= PSR2_MAN_TRK_CTL_SU_REGION_END_ADDR(
-+			crtc_state->psr2_su_area.y2 / 4 + 1);
- 	}
- exit:
- 	crtc_state->psr2_man_track_ctl = val;
-@@ -1992,8 +1996,7 @@ static void clip_area_update(struct drm_rect *overlap_damage_area,
- 		overlap_damage_area->y2 = damage_area->y2;
- }
- 
--static void intel_psr2_sel_fetch_pipe_alignment(const struct intel_crtc_state *crtc_state,
--						struct drm_rect *pipe_clip)
-+static void intel_psr2_sel_fetch_pipe_alignment(struct intel_crtc_state *crtc_state)
+ 	/* On these chipsets we can only modify the base/size/stride
+@@ -503,17 +514,24 @@ static void i9xx_cursor_update_sel_fetch_arm(struct intel_plane *plane,
+ 					     const struct intel_crtc_state *crtc_state,
+ 					     const struct intel_plane_state *plane_state)
  {
- 	struct drm_i915_private *dev_priv = to_i915(crtc_state->uapi.crtc->dev);
- 	const struct drm_dsc_config *vdsc_cfg = &crtc_state->dsc.config;
-@@ -2006,9 +2009,10 @@ static void intel_psr2_sel_fetch_pipe_alignment(const struct intel_crtc_state *c
- 	else
- 		y_alignment = crtc_state->su_y_granularity;
+-	struct drm_i915_private *i915 = to_i915(plane->base.dev);
++	struct drm_i915_private *dev_priv = to_i915(plane->base.dev);
+ 	enum pipe pipe = plane->pipe;
  
--	pipe_clip->y1 -= pipe_clip->y1 % y_alignment;
--	if (pipe_clip->y2 % y_alignment)
--		pipe_clip->y2 = ((pipe_clip->y2 / y_alignment) + 1) * y_alignment;
-+	crtc_state->psr2_su_area.y1 -= crtc_state->psr2_su_area.y1 % y_alignment;
-+	if (crtc_state->psr2_su_area.y2 % y_alignment)
-+		crtc_state->psr2_su_area.y2 = ((crtc_state->psr2_su_area.y2 /
-+						y_alignment) + 1) * y_alignment;
- }
- 
- /*
-@@ -2017,8 +2021,7 @@ static void intel_psr2_sel_fetch_pipe_alignment(const struct intel_crtc_state *c
-  */
- static void
- intel_psr2_sel_fetch_et_alignment(struct intel_crtc_state *crtc_state,
--				  struct intel_plane_state *cursor_state,
--				  struct drm_rect *pipe_clip)
-+				  struct intel_plane_state *cursor_state)
- {
- 	struct drm_rect inter;
- 
-@@ -2026,11 +2029,11 @@ intel_psr2_sel_fetch_et_alignment(struct intel_crtc_state *crtc_state,
- 	    !cursor_state->uapi.visible)
+ 	if (!crtc_state->enable_psr2_sel_fetch)
  		return;
  
--	inter = *pipe_clip;
-+	inter = crtc_state->psr2_su_area;
- 	if (!drm_rect_intersect(&inter, &cursor_state->uapi.dst))
- 		return;
- 
--	clip_area_update(pipe_clip, &cursor_state->uapi.dst,
-+	clip_area_update(&crtc_state->psr2_su_area, &cursor_state->uapi.dst,
- 			 &crtc_state->pipe_src);
- }
- 
-@@ -2074,7 +2077,6 @@ int intel_psr2_sel_fetch_update(struct intel_atomic_state *state,
- {
- 	struct drm_i915_private *dev_priv = to_i915(state->base.dev);
- 	struct intel_crtc_state *crtc_state = intel_atomic_get_new_crtc_state(state, crtc);
--	struct drm_rect pipe_clip = { .x1 = 0, .y1 = -1, .x2 = INT_MAX, .y2 = -1 };
- 	struct intel_plane_state *new_plane_state, *old_plane_state,
- 		*cursor_plane_state = NULL;
- 	struct intel_plane *plane;
-@@ -2089,6 +2091,11 @@ int intel_psr2_sel_fetch_update(struct intel_atomic_state *state,
- 		goto skip_sel_fetch_set_loop;
- 	}
- 
-+	crtc_state->psr2_su_area.x1 = 0;
-+	crtc_state->psr2_su_area.y1 = -1;
-+	crtc_state->psr2_su_area.x2 = INT_MAX;
-+	crtc_state->psr2_su_area.y2 = -1;
+-	if (drm_rect_height(&plane_state->psr2_sel_fetch_area) > 0)
+-		intel_de_write_fw(i915, PLANE_SEL_FETCH_CTL(pipe, plane->id),
++	if (drm_rect_height(&plane_state->psr2_sel_fetch_area) > 0) {
++		if (crtc_state->enable_psr2_su_region_et) {
++			u32 val = intel_cursor_position(crtc_state, plane_state,
++				true);
++			intel_de_write_fw(dev_priv, CURPOS_ERLY_TPT(pipe), val);
++		}
 +
- 	/*
- 	 * Calculate minimal selective fetch area of each plane and calculate
- 	 * the pipe damaged area.
-@@ -2123,14 +2130,14 @@ int intel_psr2_sel_fetch_update(struct intel_atomic_state *state,
- 			if (old_plane_state->uapi.visible) {
- 				damaged_area.y1 = old_plane_state->uapi.dst.y1;
- 				damaged_area.y2 = old_plane_state->uapi.dst.y2;
--				clip_area_update(&pipe_clip, &damaged_area,
-+				clip_area_update(&crtc_state->psr2_su_area, &damaged_area,
- 						 &crtc_state->pipe_src);
- 			}
- 
- 			if (new_plane_state->uapi.visible) {
- 				damaged_area.y1 = new_plane_state->uapi.dst.y1;
- 				damaged_area.y2 = new_plane_state->uapi.dst.y2;
--				clip_area_update(&pipe_clip, &damaged_area,
-+				clip_area_update(&crtc_state->psr2_su_area, &damaged_area,
- 						 &crtc_state->pipe_src);
- 			}
- 			continue;
-@@ -2138,7 +2145,7 @@ int intel_psr2_sel_fetch_update(struct intel_atomic_state *state,
- 			/* If alpha changed mark the whole plane area as damaged */
- 			damaged_area.y1 = new_plane_state->uapi.dst.y1;
- 			damaged_area.y2 = new_plane_state->uapi.dst.y2;
--			clip_area_update(&pipe_clip, &damaged_area,
-+			clip_area_update(&crtc_state->psr2_su_area, &damaged_area,
- 					 &crtc_state->pipe_src);
- 			continue;
- 		}
-@@ -2155,7 +2162,7 @@ int intel_psr2_sel_fetch_update(struct intel_atomic_state *state,
- 		damaged_area.x1 += new_plane_state->uapi.dst.x1 - src.x1;
- 		damaged_area.x2 += new_plane_state->uapi.dst.x1 - src.x1;
- 
--		clip_area_update(&pipe_clip, &damaged_area, &crtc_state->pipe_src);
-+		clip_area_update(&crtc_state->psr2_su_area, &damaged_area, &crtc_state->pipe_src);
- 
- 		/*
- 		 * Cursor plane new state is stored to adjust su area to cover
-@@ -2171,7 +2178,7 @@ int intel_psr2_sel_fetch_update(struct intel_atomic_state *state,
- 	 * should identify cases where this happens and fix the area
- 	 * calculation for those.
- 	 */
--	if (pipe_clip.y1 == -1) {
-+	if (crtc_state->psr2_su_area.y1 == -1) {
- 		drm_info_once(&dev_priv->drm,
- 			      "Selective fetch area calculation failed in pipe %c\n",
- 			      pipe_name(crtc->pipe));
-@@ -2185,7 +2192,7 @@ int intel_psr2_sel_fetch_update(struct intel_atomic_state *state,
- 	if ((IS_DISPLAY_IP_STEP(dev_priv, IP_VER(14, 0), STEP_A0, STEP_B0) ||
- 	     IS_ALDERLAKE_P(dev_priv) || IS_TIGERLAKE(dev_priv)) &&
- 	    crtc_state->splitter.enable)
--		pipe_clip.y1 = 0;
-+		crtc_state->psr2_su_area.y1 = 0;
- 
- 	ret = drm_atomic_add_affected_planes(&state->base, &crtc->base);
- 	if (ret)
-@@ -2193,10 +2200,9 @@ int intel_psr2_sel_fetch_update(struct intel_atomic_state *state,
- 
- 	/* Adjust su area to cover cursor fully as necessary */
- 	if (cursor_plane_state)
--		intel_psr2_sel_fetch_et_alignment(crtc_state, cursor_plane_state,
--						  &pipe_clip);
-+		intel_psr2_sel_fetch_et_alignment(crtc_state, cursor_plane_state);
- 
--	intel_psr2_sel_fetch_pipe_alignment(crtc_state, &pipe_clip);
-+	intel_psr2_sel_fetch_pipe_alignment(crtc_state);
- 
- 	/*
- 	 * Now that we have the pipe damaged area check if it intersect with
-@@ -2211,7 +2217,7 @@ int intel_psr2_sel_fetch_update(struct intel_atomic_state *state,
- 		    !new_plane_state->uapi.visible)
- 			continue;
- 
--		inter = pipe_clip;
-+		inter = crtc_state->psr2_su_area;
- 		sel_fetch_area = &new_plane_state->psr2_sel_fetch_area;
- 		if (!drm_rect_intersect(&inter, &new_plane_state->uapi.dst)) {
- 			sel_fetch_area->y1 = -1;
-@@ -2256,7 +2262,7 @@ int intel_psr2_sel_fetch_update(struct intel_atomic_state *state,
- 	}
- 
- skip_sel_fetch_set_loop:
--	psr2_man_trk_ctl_calc(crtc_state, &pipe_clip, full_update);
-+	psr2_man_trk_ctl_calc(crtc_state, full_update);
- 	return 0;
++		intel_de_write_fw(dev_priv, PLANE_SEL_FETCH_CTL(pipe, plane->id),
+ 				  plane_state->ctl);
+-	else
++	} else {
+ 		i9xx_cursor_disable_sel_fetch_arm(plane, crtc_state);
++	}
  }
  
+ /* TODO: split into noarm+arm pair */
+@@ -536,7 +554,7 @@ static void i9xx_cursor_update_arm(struct intel_plane *plane,
+ 			fbc_ctl = CUR_FBC_EN | CUR_FBC_HEIGHT(height - 1);
+ 
+ 		base = intel_cursor_base(plane_state);
+-		pos = intel_cursor_position(plane_state);
++		pos = intel_cursor_position(crtc_state, plane_state, false);
+ 	}
+ 
+ 	/*
+diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_reg.h
+index 27dc903f0553..d6f7e68ba308 100644
+--- a/drivers/gpu/drm/i915/i915_reg.h
++++ b/drivers/gpu/drm/i915/i915_reg.h
+@@ -3059,6 +3059,7 @@
+ #define   MCURSOR_MODE_64_ARGB_AX	(0x20 | MCURSOR_MODE_64_32B_AX)
+ #define _CURABASE		0x70084
+ #define _CURAPOS		0x70088
++#define _CURAPOS_ERLY_TPT	0x7008c
+ #define   CURSOR_POS_Y_SIGN		REG_BIT(31)
+ #define   CURSOR_POS_Y_MASK		REG_GENMASK(30, 16)
+ #define   CURSOR_POS_Y(y)		REG_FIELD_PREP(CURSOR_POS_Y_MASK, (y))
+@@ -3087,6 +3088,7 @@
+ #define CURCNTR(pipe) _MMIO_CURSOR2(pipe, _CURACNTR)
+ #define CURBASE(pipe) _MMIO_CURSOR2(pipe, _CURABASE)
+ #define CURPOS(pipe) _MMIO_CURSOR2(pipe, _CURAPOS)
++#define CURPOS_ERLY_TPT(pipe) _MMIO_CURSOR2(pipe, _CURAPOS_ERLY_TPT)
+ #define CURSIZE(pipe) _MMIO_CURSOR2(pipe, _CURASIZE)
+ #define CUR_FBC_CTL(pipe) _MMIO_CURSOR2(pipe, _CUR_FBC_CTL_A)
+ #define CUR_CHICKEN(pipe) _MMIO_CURSOR2(pipe, _CUR_CHICKEN_A)
 -- 
 2.34.1
 
