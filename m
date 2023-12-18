@@ -2,46 +2,48 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id A88CB8179AF
-	for <lists+intel-gfx@lfdr.de>; Mon, 18 Dec 2023 19:30:26 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1D9AB8179B3
+	for <lists+intel-gfx@lfdr.de>; Mon, 18 Dec 2023 19:30:57 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DF47E10E28C;
-	Mon, 18 Dec 2023 18:30:24 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 439E710E36C;
+	Mon, 18 Dec 2023 18:30:25 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.93])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 30DD510E259
- for <intel-gfx@lists.freedesktop.org>; Mon, 18 Dec 2023 18:30:24 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5011710E37D;
+ Mon, 18 Dec 2023 18:30:24 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1702924224; x=1734460224;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=2izMpW5m+roUc8UEku96tfP3OTHPWHcX/ihBwV2U1qE=;
- b=fEs9XUjC14k/n+6lkteKYxPoWdSH4zfvw0OLHEiOXthor4vcU+JtlvqF
- xNnJonWoiTFd8hJLVTG3i15LvZCu1f3nry9XwtCGI5uZk9/aCiDGSx2AX
- zM0dCPrf0KYk2wlyLsv29UlPcvcYIT46n3uYLk5Nj3EXCs0YJ9gxv00UY
- rjk7yldYtGC08bG1T2ouUnxNcCEBqUqnGgODphdDhkIzDaldg+4DmKp20
- Ed7xF5YuWjD7IFehgpnVtamvQUeHjIuuyGYbrDbTsqtWy0ZpjCLO0QxjO
- l47gQ7P+T9X5G80QuTVU4q8WA6TIUSBi0e3qwQHs12in6X/In+Sig83Xn g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10928"; a="392714103"
-X-IronPort-AV: E=Sophos;i="6.04,286,1695711600"; d="scan'208";a="392714103"
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=tn96S0eZ3dcb7iDVE5QpZLLWb2DTkhiEreY4SwFirIc=;
+ b=k6l3Wz4F0IzULgopH9WEoXcG3w7q5NuZrcsJXciy2P5jy12dt6yWJ6fL
+ OxqoOG+2sExJJbohAK4EOAJAHYsczQ9gU6xN0VnEcFTE2FaC4nIrnGzeb
+ UOhRQOlhTDyFJ2yYJCGJ9AMWqkju223AFv4mqBWrhC4Q2LF4uFxSl9MiC
+ FdXB2/FR30n/bb12yj0uMrg4EDAIwjHNb87K1HChZb0g9CYB9yyFqUfTI
+ 6dYIPEKkTzgyoqDcFBAYTIWXR7fGOGkVQ61LlmzjIDp/SUsAwnKtV6A3f
+ 8zYUl6TvnLMeVAEgMqdqDjnpIpUFMs2Kkz+D/AsoaZpvzL4f0XNl3WM9V g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10928"; a="392714111"
+X-IronPort-AV: E=Sophos;i="6.04,286,1695711600"; d="scan'208";a="392714111"
 Received: from fmsmga007.fm.intel.com ([10.253.24.52])
  by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Dec 2023 09:50:18 -0800
+ 18 Dec 2023 09:50:20 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10928"; a="779176562"
-X-IronPort-AV: E=Sophos;i="6.04,286,1695711600"; d="scan'208";a="779176562"
+X-IronPort-AV: E=McAfee;i="6600,9927,10928"; a="779176569"
+X-IronPort-AV: E=Sophos;i="6.04,286,1695711600"; d="scan'208";a="779176569"
 Received: from etrunovx-mobl.ger.corp.intel.com (HELO
  jhogande-mobl1.intel.com) ([10.249.35.24])
  by fmsmga007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Dec 2023 09:50:16 -0800
+ 18 Dec 2023 09:50:18 -0800
 From: =?UTF-8?q?Jouni=20H=C3=B6gander?= <jouni.hogander@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Subject: [PATCH 0/7] Early Transport for Panel Replay and PSR
-Date: Mon, 18 Dec 2023 19:49:57 +0200
-Message-Id: <20231218175004.52875-1-jouni.hogander@intel.com>
+Subject: [PATCH 1/7] drm: Add eDP 1.5 early transport definition
+Date: Mon, 18 Dec 2023 19:49:58 +0200
+Message-Id: <20231218175004.52875-2-jouni.hogander@intel.com>
 X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20231218175004.52875-1-jouni.hogander@intel.com>
+References: <20231218175004.52875-1-jouni.hogander@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
@@ -58,38 +60,31 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: dri-devel@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-This patch set is implementing driver support for selective update
-region early transport for Panel Replay and PSR on Intel hardware.
+Add DP_PSR_ENABLE_SU_REGION_ET to enable panel early transport.
 
-On Intel hardware selective update area has to cover cursor fully if
-selective update region early transport is enabled. This is taken care
-in these patches by aligning selective update area after calulation to
-cover the cursor fully if needed.
+Cc: dri-devel@lists.freedesktop.org
 
-Last patch in the set is disabling the feature by default as
-validating the feature is currently incomplete. 
+Signed-off-by: Jouni Högander <jouni.hogander@intel.com>
+---
+ include/drm/display/drm_dp.h | 1 +
+ 1 file changed, 1 insertion(+)
 
-Jouni Högander (7):
-  drm: Add eDP 1.5 early transport definition
-  drm/i915/psr: Extend SU area to cover cursor fully if needed
-  drm/i915/psr: Carry su area in crtc_state
-  drm/i915/psr: Calculate and configure CUR_POS_ERLY_TPT
-  drm/i915/psr: Configure PIPE_SRCSZ_ERLY_TPT for psr2 early transport
-  drm/i915/psr: Enable psr2 early transport as possible
-  drm/i915/psr: Disable early transport by default
-
- drivers/gpu/drm/i915/display/intel_cursor.c   |  32 +++--
- drivers/gpu/drm/i915/display/intel_display.c  |  10 ++
- .../drm/i915/display/intel_display_types.h    |  18 +--
- drivers/gpu/drm/i915/display/intel_psr.c      | 113 ++++++++++++++----
- drivers/gpu/drm/i915/display/intel_psr_regs.h |   6 +
- drivers/gpu/drm/i915/i915_reg.h               |   2 +
- include/drm/display/drm_dp.h                  |   1 +
- 7 files changed, 144 insertions(+), 38 deletions(-)
-
+diff --git a/include/drm/display/drm_dp.h b/include/drm/display/drm_dp.h
+index 3731828825bd..281afff6ee4e 100644
+--- a/include/drm/display/drm_dp.h
++++ b/include/drm/display/drm_dp.h
+@@ -718,6 +718,7 @@
+ # define DP_PSR_SU_REGION_SCANLINE_CAPTURE	BIT(4) /* eDP 1.4a */
+ # define DP_PSR_IRQ_HPD_WITH_CRC_ERRORS		BIT(5) /* eDP 1.4a */
+ # define DP_PSR_ENABLE_PSR2			BIT(6) /* eDP 1.4a */
++# define DP_PSR_ENABLE_SU_REGION_ET             BIT(7) /* eDP 1.5 */
+ 
+ #define DP_ADAPTER_CTRL			    0x1a0
+ # define DP_ADAPTER_CTRL_FORCE_LOAD_SENSE   (1 << 0)
 -- 
 2.34.1
 
