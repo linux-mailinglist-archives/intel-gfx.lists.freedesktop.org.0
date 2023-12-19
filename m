@@ -1,48 +1,49 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (unknown [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id CD789818100
-	for <lists+intel-gfx@lfdr.de>; Tue, 19 Dec 2023 06:29:12 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 33B5B81811F
+	for <lists+intel-gfx@lfdr.de>; Tue, 19 Dec 2023 06:48:57 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5038D10E0BA;
-	Tue, 19 Dec 2023 05:29:10 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id EE99210E182;
+	Tue, 19 Dec 2023 05:48:53 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.115])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 647C410E0BA
- for <intel-gfx@lists.freedesktop.org>; Tue, 19 Dec 2023 05:29:09 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D5D2010E182
+ for <intel-gfx@lists.freedesktop.org>; Tue, 19 Dec 2023 05:48:52 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1702963749; x=1734499749;
+ t=1702964933; x=1734500933;
  h=date:message-id:from:to:cc:subject:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=Fdm6SaLbIOCIsI8+cHBperMulcmLsHKcZ7aDayILU2E=;
- b=Nh5qdKEcxKIQpicMMS3r4ueCmGrxu59KvOpLuCIlMDrQVkjlFPT0eyXw
- noRQwraV1dT5ueNiAy8owDtAsnkwk82mNgmHjJdIxwmz656HOcSReE7yE
- Ua0FNvBIDVGv3KgzfG+ERmlsrxl8ulVlSXvLmkel3Sfo1HFif9APytrsA
- dyrChxgI1sLD294M3ZURWvj4TXKwJaVQXwTX+A4AhXkyDaXdX0P+MyoiI
- 4sOZdfTAreUEPqz5lxUZsFQR+/oU5BNsyNOniXzmI/OoTOy9/Feys2WqY
- LHbuwRRBRlgAiVkdjTFWmiBgf5ecbABD2aeZYV1edQ7r4S6/p8aRdaGlA w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10928"; a="395340222"
-X-IronPort-AV: E=Sophos;i="6.04,287,1695711600"; d="scan'208";a="395340222"
-Received: from orsmga003.jf.intel.com ([10.7.209.27])
- by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Dec 2023 21:29:08 -0800
+ bh=12UnJWreft8PfBBh4hWUTks2MsU1/Lcpla2xKnMAnSg=;
+ b=ksJxkcABp8jnKaDmk5UDZJecw+Is+yvmhHz0tHxRCLqb0rgOqOO+IcZk
+ LJQJ5Eo+08gy14GMivsPEk3sFaaUOgmuZcPW0h6sS1B8XDsjasORcsp8h
+ WNbg2P3cnse6kX5IQvbMKnzkn7h4Z4NzfKBeD2jVDAR9J1N3M5oPbn6+V
+ pwFV5cZxaDs36IiPKavhHHRWhcCk5miy73EQnbJoElo7VD6pd12s1sClA
+ qC0R6IrY9xk+iQfhwOOgbzaiUrViPpLm60xc+Te7Zr/X0xuL/e2Hcm0CM
+ hfGAwMljLJez1S1qSMpLp7gg6n64BLooqGnLhIZ2UIp6HsY2eVonB6V44 w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10928"; a="17169188"
+X-IronPort-AV: E=Sophos;i="6.04,287,1695711600"; d="scan'208";a="17169188"
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 18 Dec 2023 21:48:52 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10928"; a="725600285"
-X-IronPort-AV: E=Sophos;i="6.04,287,1695711600"; d="scan'208";a="725600285"
+X-IronPort-AV: E=McAfee;i="6600,9927,10928"; a="804779154"
+X-IronPort-AV: E=Sophos;i="6.04,287,1695711600"; d="scan'208";a="804779154"
 Received: from adixit-mobl.amr.corp.intel.com (HELO adixit-arch.intel.com)
  ([10.209.85.106])
- by orsmga003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Dec 2023 21:29:08 -0800
-Date: Mon, 18 Dec 2023 21:28:33 -0800
-Message-ID: <874jgevjzy.wl-ashutosh.dixit@intel.com>
+ by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 18 Dec 2023 21:48:51 -0800
+Date: Mon, 18 Dec 2023 21:48:39 -0800
+Message-ID: <871qbivj2g.wl-ashutosh.dixit@intel.com>
 From: "Dixit, Ashutosh" <ashutosh.dixit@intel.com>
 To: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
 Subject: Re: [PATCH] drm/i915/perf: Update handling of MMIO triggered reports
-In-Reply-To: <20231219000543.1087706-1-umesh.nerlige.ramappa@intel.com>
+In-Reply-To: <874jgevjzy.wl-ashutosh.dixit@intel.com>
 References: <20231219000543.1087706-1-umesh.nerlige.ramappa@intel.com>
+ <874jgevjzy.wl-ashutosh.dixit@intel.com>
 User-Agent: Wanderlust/2.15.9 (Almost Unreal) SEMI-EPG/1.14.7 (Harue)
  FLIM-LB/1.14.9 (=?ISO-8859-4?Q?Goj=F2?=) APEL-LB/10.8 EasyPG/1.0.0
  Emacs/29.1 (x86_64-pc-linux-gnu) MULE/6.0 (HANACHIRUSATO)
@@ -65,113 +66,129 @@ Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, 18 Dec 2023 16:05:43 -0800, Umesh Nerlige Ramappa wrote:
+On Mon, 18 Dec 2023 21:28:33 -0800, Dixit, Ashutosh wrote:
 >
-
-Hi Umesh,
-
-> On XEHP platforms user is not able to find MMIO triggered reports in the
-> OA buffer since i915 squashes the context ID fields. These context ID
-> fields hold the MMIO trigger markers.
+> On Mon, 18 Dec 2023 16:05:43 -0800, Umesh Nerlige Ramappa wrote:
+> >
 >
-> Update logic to not squash the context ID fields of MMIO triggered
-> reports.
+> Hi Umesh,
 >
-> Fixes: cba94bbcff08 ("drm/i915/perf: Determine context valid in OA report=
-s")
-> Signed-off-by: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
-> ---
->  drivers/gpu/drm/i915/i915_perf.c | 39 ++++++++++++++++++++++++++++----
->  1 file changed, 34 insertions(+), 5 deletions(-)
+> > On XEHP platforms user is not able to find MMIO triggered reports in the
+> > OA buffer since i915 squashes the context ID fields. These context ID
+> > fields hold the MMIO trigger markers.
+> >
+> > Update logic to not squash the context ID fields of MMIO triggered
+> > reports.
+> >
+> > Fixes: cba94bbcff08 ("drm/i915/perf: Determine context valid in OA repo=
+rts")
+> > Signed-off-by: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
+> > ---
+> >  drivers/gpu/drm/i915/i915_perf.c | 39 ++++++++++++++++++++++++++++----
+> >  1 file changed, 34 insertions(+), 5 deletions(-)
+> >
+> > diff --git a/drivers/gpu/drm/i915/i915_perf.c b/drivers/gpu/drm/i915/i9=
+15_perf.c
+> > index 7b1c8de2f9cb..2d695818f006 100644
+> > --- a/drivers/gpu/drm/i915/i915_perf.c
+> > +++ b/drivers/gpu/drm/i915/i915_perf.c
+> > @@ -772,10 +772,6 @@ static int gen8_append_oa_reports(struct i915_perf=
+_stream *stream,
+> >		 * The reason field includes flags identifying what
+> >		 * triggered this specific report (mostly timer
+> >		 * triggered or e.g. due to a context switch).
+> > -		 *
+> > -		 * In MMIO triggered reports, some platforms do not set the
+> > -		 * reason bit in this field and it is valid to have a reason
+> > -		 * field of zero.
+> >		 */
+> >		reason =3D oa_report_reason(stream, report);
+> >		ctx_id =3D oa_context_id(stream, report32);
+> > @@ -787,8 +783,41 @@ static int gen8_append_oa_reports(struct i915_perf=
+_stream *stream,
+> >		 *
+> >		 * Note: that we don't clear the valid_ctx_bit so userspace can
+> >		 * understand that the ID has been squashed by the kernel.
+> > +		 *
+> > +		 * Update:
+> > +		 *
+> > +		 * On XEHP platforms the behavior of context id valid bit has
+> > +		 * changed compared to prior platforms. To describe this, we
+> > +		 * define a few terms:
+> > +		 *
+> > +		 * context-switch-report: This is a report with the reason type
+> > +		 * being context-switch. It is generated when a context switches
+> > +		 * out.
+> > +		 *
+> > +		 * context-valid-bit: A bit that is set in the report ID field
+> > +		 * to indicate that a valid context has been loaded.
+> > +		 *
+> > +		 * gpu-idle: A condition characterized by a
+> > +		 * context-switch-report with context-valid-bit set to 0.
+> > +		 *
+> > +		 * On prior platforms, context-id-valid bit is set to 0 only
+> > +		 * when GPU goes idle. In all other reports, it is set to 1.
+> > +		 *
+> > +		 * On XEHP platforms, context-valid-bit is set to 1 in a context
+> > +		 * switch report if a new context switched in. For all other
+> > +		 * reports it is set to 0.
+> > +		 *
+> > +		 * This change in behavior causes an issue with MMIO triggered
+> > +		 * reports. MMIO triggered reports have the markers in the
+> > +		 * context ID field and the context-valid-bit is 0. The logic
+> > +		 * below to squash the context ID would render the report
+> > +		 * useless since the user will not be able to find it in the OA
+> > +		 * buffer. Since MMIO triggered reports exist only on XEHP,
+> > +		 * we should avoid squashing these for XEHP platforms.
 >
-> diff --git a/drivers/gpu/drm/i915/i915_perf.c b/drivers/gpu/drm/i915/i915=
-_perf.c
-> index 7b1c8de2f9cb..2d695818f006 100644
-> --- a/drivers/gpu/drm/i915/i915_perf.c
-> +++ b/drivers/gpu/drm/i915/i915_perf.c
-> @@ -772,10 +772,6 @@ static int gen8_append_oa_reports(struct i915_perf_s=
-tream *stream,
->		 * The reason field includes flags identifying what
->		 * triggered this specific report (mostly timer
->		 * triggered or e.g. due to a context switch).
-> -		 *
-> -		 * In MMIO triggered reports, some platforms do not set the
-> -		 * reason bit in this field and it is valid to have a reason
-> -		 * field of zero.
->		 */
->		reason =3D oa_report_reason(stream, report);
->		ctx_id =3D oa_context_id(stream, report32);
-> @@ -787,8 +783,41 @@ static int gen8_append_oa_reports(struct i915_perf_s=
-tream *stream,
->		 *
->		 * Note: that we don't clear the valid_ctx_bit so userspace can
->		 * understand that the ID has been squashed by the kernel.
-> +		 *
-> +		 * Update:
-> +		 *
-> +		 * On XEHP platforms the behavior of context id valid bit has
-> +		 * changed compared to prior platforms. To describe this, we
-> +		 * define a few terms:
-> +		 *
-> +		 * context-switch-report: This is a report with the reason type
-> +		 * being context-switch. It is generated when a context switches
-> +		 * out.
-> +		 *
-> +		 * context-valid-bit: A bit that is set in the report ID field
-> +		 * to indicate that a valid context has been loaded.
-> +		 *
-> +		 * gpu-idle: A condition characterized by a
-> +		 * context-switch-report with context-valid-bit set to 0.
-> +		 *
-> +		 * On prior platforms, context-id-valid bit is set to 0 only
-> +		 * when GPU goes idle. In all other reports, it is set to 1.
-> +		 *
-> +		 * On XEHP platforms, context-valid-bit is set to 1 in a context
-> +		 * switch report if a new context switched in. For all other
-> +		 * reports it is set to 0.
-> +		 *
-> +		 * This change in behavior causes an issue with MMIO triggered
-> +		 * reports. MMIO triggered reports have the markers in the
-> +		 * context ID field and the context-valid-bit is 0. The logic
-> +		 * below to squash the context ID would render the report
-> +		 * useless since the user will not be able to find it in the OA
-> +		 * buffer. Since MMIO triggered reports exist only on XEHP,
-> +		 * we should avoid squashing these for XEHP platforms.
+> Hmm I am wondering if this is over-information and this comment should be
+> made brief.
 
-Hmm I am wondering if this is over-information and this comment should be
-made brief. For the record, here's the explanation of what is happening
-from Robert Krzemien's email (which at least makes it simpler for me to
-understand what is happening):
+Let me try: "For Gen's >=3D 12.50, the context id valid bit is reset when a
+context switches out, but the context id is still valid. Because of this we
+cannot squash the context id in this case".
 
-	For Gen12HP+ (ATS/DG2/PVC/MTL+) platforms, context id valid bit is
-	set only for context switch reports and when a context is being
-	loaded. When exiting a context, a context switch report is
-	generated, ctx id is not zero, but the bit is not set. It allows us
-	to distinguish whether context switch reports are generated due to
-	entering or exiting GPU contexts. Ctx id field is non-zero for
-	context switches and mmio triggers. Other types always have ctx id
-	set to 0.
+So this should affect both the regular as well as MMIO triggered cases
+afaiu.
 
-	For previous platforms (like Gen12LP, Gen9/11), the bit is set for
-	all types of reports if a context is loaded. But those older
-	platforms don=A2t have mmio triggers. Ctx id field is non-zero for
-	all types of reports if a context is loaded.
+Anyway, please do what you think is right with the comment. I just thought
+I'll chime in.
 
-	I don=A2t understand why i915 needs to set ctx id to 0xffffffff if
-	the flag is not set. It has been removed from XE KMD as I remember
-	correctly.
-
->		 */
-> -		if (oa_report_ctx_invalid(stream, report)) {
-> +
-> +		if (oa_report_ctx_invalid(stream, report) &&
-> +		    GRAPHICS_VER_FULL(stream->engine->i915) < IP_VER(12, 50)) {
->			ctx_id =3D INVALID_CTX_ID;
->			oa_context_id_squash(stream, report32);
->		}
-
-So I am assuming there's some unknown reason (maybe not hearing from Mesa?)
-why we can't get rid of the squashing even for legacy platforms. But that's
-ok I guess. So this is:
-
-Reviewed-by: Ashutosh Dixit <ashutosh.dixit@intel.com>
+> For the record, here's the explanation of what is happening from Robert
+> Krzemien's email (which at least makes it simpler for me to understand
+> what is happening):
+>
+>	For Gen12HP+ (ATS/DG2/PVC/MTL+) platforms, context id valid bit is
+>	set only for context switch reports and when a context is being
+>	loaded. When exiting a context, a context switch report is
+>	generated, ctx id is not zero, but the bit is not set. It allows us
+>	to distinguish whether context switch reports are generated due to
+>	entering or exiting GPU contexts. Ctx id field is non-zero for
+>	context switches and mmio triggers. Other types always have ctx id
+>	set to 0.
+>
+>	For previous platforms (like Gen12LP, Gen9/11), the bit is set for
+>	all types of reports if a context is loaded. But those older
+>	platforms don=A2t have mmio triggers. Ctx id field is non-zero for
+>	all types of reports if a context is loaded.
+>
+>	I don=A2t understand why i915 needs to set ctx id to 0xffffffff if
+>	the flag is not set. It has been removed from XE KMD as I remember
+>	correctly.
+>
+> >		 */
+> > -		if (oa_report_ctx_invalid(stream, report)) {
+> > +
+> > +		if (oa_report_ctx_invalid(stream, report) &&
+> > +		    GRAPHICS_VER_FULL(stream->engine->i915) < IP_VER(12, 50)) {
+> >			ctx_id =3D INVALID_CTX_ID;
+> >			oa_context_id_squash(stream, report32);
+> >		}
+>
+> So I am assuming there's some unknown reason (maybe not hearing from Mesa=
+?)
+> why we can't get rid of the squashing even for legacy platforms. But that=
+'s
+> ok I guess. So this is:
+>
+> Reviewed-by: Ashutosh Dixit <ashutosh.dixit@intel.com>
