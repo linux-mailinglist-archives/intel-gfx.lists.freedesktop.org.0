@@ -2,45 +2,45 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1C63181818B
-	for <lists+intel-gfx@lfdr.de>; Tue, 19 Dec 2023 07:32:42 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8603881818C
+	for <lists+intel-gfx@lfdr.de>; Tue, 19 Dec 2023 07:32:44 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B54C110E18B;
-	Tue, 19 Dec 2023 06:32:39 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CFDE110E400;
+	Tue, 19 Dec 2023 06:32:42 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E079610E18B
- for <intel-gfx@lists.freedesktop.org>; Tue, 19 Dec 2023 06:32:37 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D418910E18E
+ for <intel-gfx@lists.freedesktop.org>; Tue, 19 Dec 2023 06:32:39 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1702967558; x=1734503558;
+ t=1702967560; x=1734503560;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=hg+RdXOjKT2W/telX9BAeAcJ5bMM2LMF51avFITJQdE=;
- b=KP8Kko+Vz37WIrJjX4W0PxXdDJYbI+krvpyYWAY6aGC4TFKTnHAfIC5V
- +Sz11w7idFQ3dl8H8oCqcRGc1/F7HVyaViT+ipDs7UUuL3Ud5ReOeNCp0
- OMTKRvPj2/I8UvEtp4KC+uzSt+JrCrIXXwHToT70BiU3i1sCbpXacDx+p
- Jc7SRpF0Ppw3jOYPZCbjBcdbOMY9t7jRozlvjcCWkOdTNEe7QjAZML8QF
- TrZgeBKF9nAeBGdckfHHT3hPuKm64eV2tsbLDKbqFlYwefh7pOZ2iMW50
- wizQWj8f2k1YmxjO/Q6itnXdqOVzXKX4A5xc3uxvR7DKmGcdNiw8oixIi g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10928"; a="2466440"
+ bh=nG/+ACQGWaNQ0Rnp2UjPAU3hR+rPMcMd7529uiSpn6Q=;
+ b=XHLRMG5WbHyOZoTkTf6L35TdefkNEdudCCb7Oy2xSPjAmzUKgDlddOo1
+ g5giIlz9eVytSyk3okPuo/M/hcnb/n3zcOyYXSojD5t7wlbFwBZG4Bb7m
+ YGLvS+4LhNNRxir7Sc8rPmWq1m3fs/KuDU77y3aVXsQscAK8VTzM/AdB1
+ eUV+0eExQ23LzRfThgd/m1KTCMaW6ojCWqxOiM4LOj7E04BWctt3e5t7q
+ ldWwJ6cO/veUA1ExqPChKZSfq6UT+OTaisSLy2dWL2PQeJhX4WHGd0KOc
+ 0hgKJ3vRdbcx1Gx1a5nvGEYLmRXD6yfx6TvTdiU4YdS4wcawhJw6TD7bq Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10928"; a="2466444"
 X-IronPort-AV: E=Sophos;i="6.04,287,1695711600"; 
-   d="scan'208";a="2466440"
+   d="scan'208";a="2466444"
 Received: from fmviesa001.fm.intel.com ([10.60.135.141])
  by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Dec 2023 22:32:38 -0800
+ 18 Dec 2023 22:32:40 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.04,287,1695711600"; d="scan'208";a="17836832"
+X-IronPort-AV: E=Sophos;i="6.04,287,1695711600"; d="scan'208";a="17836835"
 Received: from amoested-mobl1.ger.corp.intel.com (HELO
  jhogande-mobl1.intel.com) ([10.252.33.246])
  by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Dec 2023 22:32:36 -0800
+ 18 Dec 2023 22:32:38 -0800
 From: =?UTF-8?q?Jouni=20H=C3=B6gander?= <jouni.hogander@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Subject: [PATCH 1/4] drm/i915/alpm: Add ALPM register definitions
-Date: Tue, 19 Dec 2023 08:32:18 +0200
-Message-Id: <20231219063221.505982-2-jouni.hogander@intel.com>
+Subject: [PATCH 2/4] drm/i915/psr: Add alpm_parameters struct
+Date: Tue, 19 Dec 2023 08:32:19 +0200
+Message-Id: <20231219063221.505982-3-jouni.hogander@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20231219063221.505982-1-jouni.hogander@intel.com>
 References: <20231219063221.505982-1-jouni.hogander@intel.com>
@@ -63,123 +63,129 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+Add new alpm_parameters struct into intel_psr for all calculated
+alpm parameters.
+
 Signed-off-by: Jouni Högander <jouni.hogander@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_psr_regs.h | 103 ++++++++++++++++++
- 1 file changed, 103 insertions(+)
+ .../drm/i915/display/intel_display_types.h    |  8 ++++--
+ drivers/gpu/drm/i915/display/intel_psr.c      | 28 ++++++++++---------
+ 2 files changed, 21 insertions(+), 15 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_psr_regs.h b/drivers/gpu/drm/i915/display/intel_psr_regs.h
-index efe4306b37e0..9410a43e901b 100644
---- a/drivers/gpu/drm/i915/display/intel_psr_regs.h
-+++ b/drivers/gpu/drm/i915/display/intel_psr_regs.h
-@@ -290,4 +290,107 @@
- 						  _SEL_FETCH_PLANE_OFFSET_1_A - \
- 						  _SEL_FETCH_PLANE_BASE_1_A)
+diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/drivers/gpu/drm/i915/display/intel_display_types.h
+index 3fdd8a517983..78473c99b869 100644
+--- a/drivers/gpu/drm/i915/display/intel_display_types.h
++++ b/drivers/gpu/drm/i915/display/intel_display_types.h
+@@ -1678,6 +1678,11 @@ struct intel_pps {
+ 	struct edp_power_seq bios_pps_delays;
+ };
  
-+#define _ALPM_CTL_A	0x60950
-+#define ALPM_CTL(tran)	_MMIO_TRANS2(tran, _ALPM_CTL_A)
-+#define  ALPM_CTL_ALPM_ENABLE				BIT(31)
-+#define  ALPM_CTL_ALPM_AUX_LESS_ENABLE			BIT(30)
-+#define  ALPM_CTL_LOBF_ENABLE				BIT(29)
-+#define  ALPM_CTL_EXTENDED_FAST_WAKE_ENABLE		BIT(28)
-+#define  ALPM_CTL_KEEP_FEC_ENABLE_FOR_AUX_WAKE_SLEEP	BIT(27)
-+#define  ALPM_CTL_RESTORE_OCCURED			BIT(26)
-+#define  ALPM_CTL_RESTORE_TO_SLEEP			BIT(25)
-+#define  ALPM_CTL_RESTORE_TO_DEEP_SLEEP			BIT(24)
-+#define  ALPM_CTL_AUX_LESS_SLEEP_HOLD_TIME_MASK		REG_GENMASK(23, 21)
-+#define  ALPM_CTL_AUX_LESS_SLEEP_HOLD_TIME_50_SYMBOLS	REG_FIELD_PREP(ALPM_CTL_AUX_LESS_SLEEP_HOLD_TIME_MASK, 0)
-+#define  ALPM_CTL_AUX_LESS_SLEEP_HOLD_TIME_128_SYMBOLS	REG_FIELD_PREP(ALPM_CTL_AUX_LESS_SLEEP_HOLD_TIME_MASK, 1)
-+#define  ALPM_CTL_AUX_LESS_SLEEP_HOLD_TIME_256_SYMBOLS	REG_FIELD_PREP(ALPM_CTL_AUX_LESS_SLEEP_HOLD_TIME_MASK, 2)
-+#define  ALPM_CTL_AUX_LESS_SLEEP_HOLD_TIME_512_SYMBOLS	REG_FIELD_PREP(ALPM_CTL_AUX_LESS_SLEEP_HOLD_TIME_MASK, 3)
-+#define  ALPM_CTL_AUX_WAKE_SLEEP_HOLD_ENABLE		BIT(20)
-+#define  ALPM_CTL_ALPM_ENTRY_CHECK_MASK			REG_GENMASK(19, 16)
-+#define  ALPM_CTL_ALPM_ENTRY_CHECK(val)			REG_FIELD_PREP(ALPM_CTL_ALPM_ENTRY_CHECK_MASK, val)
-+#define  ALPM_CTL_EXTENDED_FAST_WAKE_TIME_MASK		REG_GENMASK(13, 8)
-+#define  ALPM_CTL_EXTENDED_FAST_WAKE_MIN_LINES		5
-+#define  ALPM_CTL_EXTENDED_FAST_WAKE_TIME(lines)	REG_FIELD_PREP(ALPM_CTL_EXTENDED_FAST_WAKE_TIME_MASK, (lines) - ALPM_CTL_EXTENDED_FAST_WAKE_MIN_LINES)
-+#define  ALPM_CTL_AUX_LESS_WAKE_TIME_MASK		REG_GENMASK(5, 0)
-+#define  ALPM_CTL_AUX_LESS_WAKE_TIME(val)		REG_FIELD_PREP(ALPM_CTL_AUX_LESS_WAKE_TIME_MASK, val)
++struct alpm_parameters {
++	u8 io_wake_lines;
++	u8 fast_wake_lines;
++};
 +
-+#define _ALPM_CTL2_A	0x60950
-+#define ALPM_CTL2(tran)	_MMIO_TRANS2(tran, _ALPM_CTL2_A)
-+#define  ALPM_CTL2_SWITCH_TO_ACTIVE_LATENCY_MASK		REG_GENMASK(28, 24)
-+#define  ALPM_CTL2_SWITCH_TO_ACTIVE_LATENCY(val)		REG_FIELD_PREP(ALPM_CTL2_SWITCH_TO_ACTIVE_LATENCY_MASK, val)
-+#define  ALPM_CTL2_AUX_LESS_WAKE_TIME_EXTENSION_MASK		REG_GENMASK(19, 16)
-+#define  ALPM_CTL2_AUX_LESS_WAKE_TIME_EXTENSION(val)		REG_FIELD_PREP(ALPM_CTL2_AUX_LESS_WAKE_TIME_EXTENSION_MASK, val)
-+#define  ALPM_CTL2_NUMBER_OF_LTTPR_MASK				REG_GENMASK(15, 12)
-+#define  ALPM_CTL2_NUMBER_OF_LTTPR(val)				REG_FIELD_PREP(ALPM_CTL2_NUMBER_OF_LTTPR_MASK, val)
-+#define  ALPM_CTL2_LTTPR_AUX_LESS_SLEEP_HOLD_TIME_MASK		REG_GENMASK(10, 8)
-+#define  ALPM_CTL2_LTTPR_AUX_LESS_SLEEP_HOLD_TIME(val)		REG_FIELD_PREP(ALPM_CTL2_LTTPR_AUX_LESS_SLEEP_HOLD_TIME_MASK, val)
-+#define  ALPM_CTL2_FEC_DECODE_EN_POSITION_AFTER_WAKE_SR		BIT(4)
-+#define  ALPM_CTL2_NUMBER_AUX_LESS_ML_PHY_SLEEP_SEQUENCES_MASK	REG_GENMASK(2, 0)
-+#define  ALPM_CTL2_NUMBER_AUX_LESS_ML_PHY_SLEEP_SEQUENCES(val)	REG_FIELD_PREP(ALPM_CTL2_NUMBER_AUX_LESS_ML_PHY_SLEEP_SEQUENCES_MASK, val)
-+
-+#define _PORT_ALPM_CTL_A			0x16fa2c
-+#define PORT_ALPM_CTL(tran)			_MMIO_TRANS2(tran, _PORT_ALPM_CTL_A)
-+#define  PORT_ALPM_CTL_ALPM_AUX_LESS_ENABLE	BIT(31)
-+#define  PORT_ALPM_CTL_MAX_PHY_SWING_SETUP_MASK	REG_GENMASK(23, 20)
-+#define  PORT_ALPM_CTL_MAX_PHY_SWING_SETUP(val)	REG_FIELD_PREP(PORT_ALPM_CTL_MAX_PHY_SWING_SETUP_MASK, val)
-+#define  PORT_ALPM_CTL_MAX_PHY_SWING_HOLD_MASK	REG_GENMASK(19, 16)
-+#define  PORT_ALPM_CTL_MAX_PHY_SWING_HOLD(val)	REG_FIELD_PREP(PORT_ALPM_CTL_MAX_PHY_SWING_HOLD_MASK, val)
-+#define  PORT_ALPM_CTL_SILENCE_PERIOD_MASK	REG_GENMASK(7, 0)
-+#define  PORT_ALPM_CTL_SILENCE_PERIOD(val)	REG_FIELD_PREP(PORT_ALPM_CTL_SILENCE_PERIOD_MASK, val)
-+
-+#define _PORT_ALPM_LFPS_CTL_A					0x16fa30
-+#define PORT_ALPM_LFPS_CTL(tran)				_MMIO_TRANS2(tran, _PORT_ALPM_LFPS_CTL_A)
-+#define  PORT_ALPM_LFPS_CTL_LFPS_START_POLARITY			BIT(31)
-+#define  PORT_ALPM_LFPS_CTL_LFPS_CYCLE_COUNT_MASK		REG_GENMASK(27, 24)
-+#define  ALPM_CTL_EXTENDED_FAST_WAKE_MIN_LINES		5
-+#define  ALPM_CTL_EXTENDED_FAST_WAKE_TIME(lines)	REG_FIELD_PREP(ALPM_CTL_EXTENDED_FAST_WAKE_TIME_MASK, (lines) - ALPM_CTL_EXTENDED_FAST_WAKE_MIN_LINES)
-+#define  ALPM_CTL_AUX_LESS_WAKE_TIME_MASK		REG_GENMASK(5, 0)
-+#define  ALPM_CTL_AUX_LESS_WAKE_TIME(val)		REG_FIELD_PREP(ALPM_CTL_AUX_LESS_WAKE_TIME_MASK, val)
-+
-+#define _ALPM_CTL2_A	0x60950
-+#define ALPM_CTL2(tran)	_MMIO_TRANS2(tran, _ALPM_CTL2_A)
-+#define  ALPM_CTL2_SWITCH_TO_ACTIVE_LATENCY_MASK		REG_GENMASK(28, 24)
-+#define  ALPM_CTL2_SWITCH_TO_ACTIVE_LATENCY(val)		REG_FIELD_PREP(ALPM_CTL2_SWITCH_TO_ACTIVE_LATENCY_MASK, val)
-+#define  ALPM_CTL2_AUX_LESS_WAKE_TIME_EXTENSION_MASK		REG_GENMASK(19, 16)
-+#define  ALPM_CTL2_AUX_LESS_WAKE_TIME_EXTENSION(val)		REG_FIELD_PREP(ALPM_CTL2_AUX_LESS_WAKE_TIME_EXTENSION_MASK, val)
-+#define  ALPM_CTL2_NUMBER_OF_LTTPR_MASK				REG_GENMASK(15, 12)
-+#define  ALPM_CTL2_NUMBER_OF_LTTPR(val)				REG_FIELD_PREP(ALPM_CTL2_NUMBER_OF_LTTPR_MASK, val)
-+#define  ALPM_CTL2_LTTPR_AUX_LESS_SLEEP_HOLD_TIME_MASK		REG_GENMASK(10, 8)
-+#define  ALPM_CTL2_LTTPR_AUX_LESS_SLEEP_HOLD_TIME(val)		REG_FIELD_PREP(ALPM_CTL2_LTTPR_AUX_LESS_SLEEP_HOLD_TIME_MASK, val)
-+#define  ALPM_CTL2_FEC_DECODE_EN_POSITION_AFTER_WAKE_SR		BIT(4)
-+#define  ALPM_CTL2_NUMBER_AUX_LESS_ML_PHY_SLEEP_SEQUENCES_MASK	REG_GENMASK(2, 0)
-+#define  ALPM_CTL2_NUMBER_AUX_LESS_ML_PHY_SLEEP_SEQUENCES(val)	REG_FIELD_PREP(ALPM_CTL2_NUMBER_AUX_LESS_ML_PHY_SLEEP_SEQUENCES_MASK, val)
-+
-+#define _PORT_ALPM_CTL_A			0x16fa2c
-+#define PORT_ALPM_CTL(tran)			_MMIO_TRANS2(tran, _PORT_ALPM_CTL_A)
-+#define  ALPM_CTL_EXTENDED_FAST_WAKE_MIN_LINES		5
-+#define  ALPM_CTL_EXTENDED_FAST_WAKE_TIME(lines)	REG_FIELD_PREP(ALPM_CTL_EXTENDED_FAST_WAKE_TIME_MASK, (lines) - ALPM_CTL_EXTENDED_FAST_WAKE_MIN_LINES)
-+#define  ALPM_CTL_AUX_LESS_WAKE_TIME_MASK		REG_GENMASK(5, 0)
-+#define  ALPM_CTL_AUX_LESS_WAKE_TIME(val)		REG_FIELD_PREP(ALPM_CTL_AUX_LESS_WAKE_TIME_MASK, val)
-+
-+#define _ALPM_CTL2_A	0x60950
-+#define ALPM_CTL2(tran)	_MMIO_TRANS2(tran, _ALPM_CTL2_A)
-+#define  ALPM_CTL2_SWITCH_TO_ACTIVE_LATENCY_MASK		REG_GENMASK(28, 24)
-+#define  ALPM_CTL2_SWITCH_TO_ACTIVE_LATENCY(val)		REG_FIELD_PREP(ALPM_CTL2_SWITCH_TO_ACTIVE_LATENCY_MASK, val)
-+#define  ALPM_CTL2_AUX_LESS_WAKE_TIME_EXTENSION_MASK		REG_GENMASK(19, 16)
-+#define  ALPM_CTL2_AUX_LESS_WAKE_TIME_EXTENSION(val)		REG_FIELD_PREP(ALPM_CTL2_AUX_LESS_WAKE_TIME_EXTENSION_MASK, val)
-+#define  ALPM_CTL2_NUMBER_OF_LTTPR_MASK				REG_GENMASK(15, 12)
-+#define  ALPM_CTL2_NUMBER_OF_LTTPR(val)				REG_FIELD_PREP(ALPM_CTL2_NUMBER_OF_LTTPR_MASK, val)
-+#define  ALPM_CTL2_LTTPR_AUX_LESS_SLEEP_HOLD_TIME_MASK		REG_GENMASK(10, 8)
-+#define  ALPM_CTL2_LTTPR_AUX_LESS_SLEEP_HOLD_TIME(val)		REG_FIELD_PREP(ALPM_CTL2_LTTPR_AUX_LESS_SLEEP_HOLD_TIME_MASK, val)
-+#define  ALPM_CTL2_FEC_DECODE_EN_POSITION_AFTER_WAKE_SR		BIT(4)
-+#define  ALPM_CTL2_NUMBER_AUX_LESS_ML_PHY_SLEEP_SEQUENCES_MASK	REG_GENMASK(2, 0)
-+#define  ALPM_CTL2_NUMBER_AUX_LESS_ML_PHY_SLEEP_SEQUENCES(val)	REG_FIELD_PREP(ALPM_CTL2_NUMBER_AUX_LESS_ML_PHY_SLEEP_SEQUENCES_MASK, val)
-+
-+#define _PORT_ALPM_CTL_A			0x16fa2c
-+#define PORT_ALPM_CTL(tran)			_MMIO_TRANS2(tran, _PORT_ALPM_CTL_A)
-+#define  PORT_ALPM_LFPS_CTL_LFPS_CYCLE_COUNT_MIN		7
-+#define  PORT_ALPM_LFPS_CTL_LFPS_CYCLE_COUNT(val)		REG_FIELD_PREP(PORT_ALPM_LFPS_CTL_LFPS_CYCLE_COUNT_MASK, (val) - PORT_ALPM_LFPS_CTL_LFPS_CYCLE_COUNT_MIN)
-+#define  PORT_ALPM_LFPS_CTL_LFPS_HALF_CYCLE_DURATION_MASK	REG_GENMASK(20, 16)
-+#define  PORT_ALPM_LFPS_CTL_LFPS_HALF_CYCLE_DURATION(val)	REG_FIELD_PREP(PORT_ALPM_LFPS_CTL_LFPS_HALF_CYCLE_DURATION_MASK, val)
-+#define  PORT_ALPM_LFPS_CTL_FIRST_LFPS_HALF_CYCLE_DURATION_MASK	REG_GENMASK(12, 8)
-+#define  PORT_ALPM_LFPS_CTL_FIRST_LFPS_HALF_CYCLE_DURATION(val)	REG_FIELD_PREP(PORT_ALPM_LFPS_CTL_LFPS_HALF_CYCLE_DURATION_MASK, val)
-+#define  PORT_ALPM_LFPS_CTL_LAST_LFPS_HALF_CYCLE_DURATION_MASK	REG_GENMASK(4, 0)
-+#define  PORT_ALPM_LFPS_CTL_LAST_LFPS_HALF_CYCLE_DURATION(val)	REG_FIELD_PREP(PORT_ALPM_LFPS_CTL_LFPS_HALF_CYCLE_DURATION_MASK, val)
-+
- #endif /* __INTEL_PSR_REGS_H__ */
+ struct intel_psr {
+ 	/* Mutex for PSR state of the transcoder */
+ 	struct mutex lock;
+@@ -1708,8 +1713,6 @@ struct intel_psr {
+ 	bool psr2_sel_fetch_cff_enabled;
+ 	bool req_psr2_sdp_prior_scanline;
+ 	u8 sink_sync_latency;
+-	u8 io_wake_lines;
+-	u8 fast_wake_lines;
+ 	ktime_t last_entry_attempt;
+ 	ktime_t last_exit;
+ 	bool sink_not_reliable;
+@@ -1723,6 +1726,7 @@ struct intel_psr {
+ 	u32 dc3co_exit_delay;
+ 	struct delayed_work dc3co_work;
+ 	u8 entry_setup_frames;
++	struct alpm_parameters alpm_params;
+ };
+ 
+ struct intel_dp {
+diff --git a/drivers/gpu/drm/i915/display/intel_psr.c b/drivers/gpu/drm/i915/display/intel_psr.c
+index b6e2e70e1290..8b1c2a1c7e94 100644
+--- a/drivers/gpu/drm/i915/display/intel_psr.c
++++ b/drivers/gpu/drm/i915/display/intel_psr.c
+@@ -762,8 +762,8 @@ static u32 intel_psr2_get_tp_time(struct intel_dp *intel_dp)
+ 
+ static int psr2_block_count_lines(struct intel_dp *intel_dp)
+ {
+-	return intel_dp->psr.io_wake_lines < 9 &&
+-		intel_dp->psr.fast_wake_lines < 9 ? 8 : 12;
++	return intel_dp->psr.alpm_params.io_wake_lines < 9 &&
++		intel_dp->psr.alpm_params.fast_wake_lines < 9 ? 8 : 12;
+ }
+ 
+ static int psr2_block_count(struct intel_dp *intel_dp)
+@@ -800,6 +800,7 @@ static void dg2_activate_panel_replay(struct intel_dp *intel_dp)
+ static void hsw_activate_psr2(struct intel_dp *intel_dp)
+ {
+ 	struct drm_i915_private *dev_priv = dp_to_i915(intel_dp);
++	struct alpm_parameters *alpm_params = &intel_dp->psr.alpm_params;
+ 	enum transcoder cpu_transcoder = intel_dp->psr.transcoder;
+ 	u32 val = EDP_PSR2_ENABLE;
+ 	u32 psr_val = 0;
+@@ -841,17 +842,17 @@ static void hsw_activate_psr2(struct intel_dp *intel_dp)
+ 		 */
+ 		int tmp;
+ 
+-		tmp = map[intel_dp->psr.io_wake_lines - TGL_EDP_PSR2_IO_BUFFER_WAKE_MIN_LINES];
++		tmp = map[alpm_params->io_wake_lines - TGL_EDP_PSR2_IO_BUFFER_WAKE_MIN_LINES];
+ 		val |= TGL_EDP_PSR2_IO_BUFFER_WAKE(tmp + TGL_EDP_PSR2_IO_BUFFER_WAKE_MIN_LINES);
+ 
+-		tmp = map[intel_dp->psr.fast_wake_lines - TGL_EDP_PSR2_FAST_WAKE_MIN_LINES];
++		tmp = map[alpm_params->fast_wake_lines - TGL_EDP_PSR2_FAST_WAKE_MIN_LINES];
+ 		val |= TGL_EDP_PSR2_FAST_WAKE(tmp + TGL_EDP_PSR2_FAST_WAKE_MIN_LINES);
+ 	} else if (DISPLAY_VER(dev_priv) >= 12) {
+-		val |= TGL_EDP_PSR2_IO_BUFFER_WAKE(intel_dp->psr.io_wake_lines);
+-		val |= TGL_EDP_PSR2_FAST_WAKE(intel_dp->psr.fast_wake_lines);
++		val |= TGL_EDP_PSR2_IO_BUFFER_WAKE(alpm_params->io_wake_lines);
++		val |= TGL_EDP_PSR2_FAST_WAKE(alpm_params->fast_wake_lines);
+ 	} else if (DISPLAY_VER(dev_priv) >= 9) {
+-		val |= EDP_PSR2_IO_BUFFER_WAKE(intel_dp->psr.io_wake_lines);
+-		val |= EDP_PSR2_FAST_WAKE(intel_dp->psr.fast_wake_lines);
++		val |= EDP_PSR2_IO_BUFFER_WAKE(alpm_params->io_wake_lines);
++		val |= EDP_PSR2_FAST_WAKE(alpm_params->fast_wake_lines);
+ 	}
+ 
+ 	if (intel_dp->psr.req_psr2_sdp_prior_scanline)
+@@ -1101,10 +1102,11 @@ static bool _compute_psr2_sdp_prior_scanline_indication(struct intel_dp *intel_d
+ 	return true;
+ }
+ 
+-static bool _compute_psr2_wake_times(struct intel_dp *intel_dp,
+-				     struct intel_crtc_state *crtc_state)
++static bool _compute_alpm_params(struct intel_dp *intel_dp,
++				 struct intel_crtc_state *crtc_state)
+ {
+ 	struct drm_i915_private *i915 = dp_to_i915(intel_dp);
++	struct alpm_parameters *alpm_params = &intel_dp->psr.alpm_params;
+ 	int io_wake_lines, io_wake_time, fast_wake_lines, fast_wake_time;
+ 	u8 max_wake_lines;
+ 
+@@ -1135,8 +1137,8 @@ static bool _compute_psr2_wake_times(struct intel_dp *intel_dp,
+ 		io_wake_lines = fast_wake_lines = max_wake_lines;
+ 
+ 	/* According to Bspec lower limit should be set as 7 lines. */
+-	intel_dp->psr.io_wake_lines = max(io_wake_lines, 7);
+-	intel_dp->psr.fast_wake_lines = max(fast_wake_lines, 7);
++	alpm_params->io_wake_lines = max(io_wake_lines, 7);
++	alpm_params->fast_wake_lines = max(fast_wake_lines, 7);
+ 
+ 	return true;
+ }
+@@ -1268,7 +1270,7 @@ static bool intel_psr2_config_valid(struct intel_dp *intel_dp,
+ 		return false;
+ 	}
+ 
+-	if (!_compute_psr2_wake_times(intel_dp, crtc_state)) {
++	if (!_compute_alpm_params(intel_dp, crtc_state)) {
+ 		drm_dbg_kms(&dev_priv->drm,
+ 			    "PSR2 not enabled, Unable to use long enough wake times\n");
+ 		return false;
 -- 
 2.34.1
 
