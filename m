@@ -2,52 +2,32 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id BB6DD8185AF
-	for <lists+intel-gfx@lfdr.de>; Tue, 19 Dec 2023 11:52:16 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 739FB818597
+	for <lists+intel-gfx@lfdr.de>; Tue, 19 Dec 2023 11:49:38 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1F76A10E43B;
-	Tue, 19 Dec 2023 10:52:15 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DA83A10E46C;
+	Tue, 19 Dec 2023 10:49:36 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.93])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 43AFC10E11D
- for <intel-gfx@lists.freedesktop.org>; Tue, 19 Dec 2023 10:52:13 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1702983133; x=1734519133;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=6SkIHaFTJwIHynXIB360IW1eibciS4+Rl693dDXBizY=;
- b=XgihQzz8NinJGS/iQ/8mpc7UwXnRZ7bnTAvfCKm97RfYOHBDK6VoMtIX
- 27OrwGNWp5PNhybP9k2dUeTcd7HduzRQPQ3M76bwaL59oFa9e1WzQi6MW
- bATcP8WW6e/6vyvwVnipaGvPF0rWQ4cTPUBxaCpuEn60GjmrrCzQcjRft
- v5XgiyLYfMhDgYiAJpXdK5bv0c9rASECd5f61kSqhJKuv6qy7tJSPtoDS
- enASj2vxQImjrTAd9L56rWTew7ASoIZz8cH337TsUGImWtoZ32b2ISk+V
- l4zBnjM/SjoaWpfOcOyCQIQFXJiip+odkET+IiZEz0RLfq9OHb+Ab+8cl w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10928"; a="392813452"
-X-IronPort-AV: E=Sophos;i="6.04,288,1695711600"; d="scan'208";a="392813452"
-Received: from fmsmga005.fm.intel.com ([10.253.24.32])
- by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Dec 2023 02:52:12 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10928"; a="1107315435"
-X-IronPort-AV: E=Sophos;i="6.04,288,1695711600"; d="scan'208";a="1107315435"
-Received: from alexeyze-mobl.ger.corp.intel.com (HELO localhost)
- ([10.252.34.118])
- by fmsmga005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Dec 2023 02:52:11 -0800
-From: Jani Nikula <jani.nikula@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Subject: [PATCH 2/2] drm/i915/hdcp: fix intel_hdcp_get_repeater_ctl() error
- return value
-Date: Tue, 19 Dec 2023 12:47:46 +0200
-Message-Id: <20231219104746.1065431-2-jani.nikula@intel.com>
-X-Mailer: git-send-email 2.39.2
-In-Reply-To: <20231219104746.1065431-1-jani.nikula@intel.com>
-References: <20231219104746.1065431-1-jani.nikula@intel.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id E176A10E46C;
+ Tue, 19 Dec 2023 10:49:35 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id D978DAADDA;
+ Tue, 19 Dec 2023 10:49:35 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=97_Fi=2ECI=2ESPARSE=3A_warning_for_Enable_Adaptive_Sync_SDP?=
+ =?utf-8?q?_Support_for_DP_=28rev5=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Mitul Golani" <mitulkumar.ajitkumar.golani@intel.com>
+Date: Tue, 19 Dec 2023 10:49:35 -0000
+Message-ID: <170298297587.17580.14279194351603674586@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20231219085343.1211864-1-mitulkumar.ajitkumar.golani@intel.com>
+In-Reply-To: <20231219085343.1211864-1-mitulkumar.ajitkumar.golani@intel.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -60,45 +40,21 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: jani.nikula@intel.com
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-intel_hdcp_get_repeater_ctl() is supposed to return unsigned register
-contents. Returning negative error values is unexpected, and none of the
-callers check for that.
+== Series Details ==
 
-Sort of fix the error cases by returning 0. I don't think we should hit
-these cases anyway, and using 0 for the registers is safer than
-0xffffffea (-EINVAL).
+Series: Enable Adaptive Sync SDP Support for DP (rev5)
+URL   : https://patchwork.freedesktop.org/series/126829/
+State : warning
 
-Signed-off-by: Jani Nikula <jani.nikula@intel.com>
----
- drivers/gpu/drm/i915/display/intel_hdcp.c | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+== Summary ==
 
-diff --git a/drivers/gpu/drm/i915/display/intel_hdcp.c b/drivers/gpu/drm/i915/display/intel_hdcp.c
-index f9010094ff29..ee29fcb860e4 100644
---- a/drivers/gpu/drm/i915/display/intel_hdcp.c
-+++ b/drivers/gpu/drm/i915/display/intel_hdcp.c
-@@ -347,7 +347,7 @@ u32 intel_hdcp_get_repeater_ctl(struct drm_i915_private *i915,
- 		default:
- 			drm_err(&i915->drm, "Unknown transcoder %d\n",
- 				cpu_transcoder);
--			return -EINVAL;
-+			return 0;
- 		}
- 	}
- 
-@@ -364,7 +364,7 @@ u32 intel_hdcp_get_repeater_ctl(struct drm_i915_private *i915,
- 		return HDCP_DDIE_REP_PRESENT | HDCP_DDIE_SHA1_M0;
- 	default:
- 		drm_err(&i915->drm, "Unknown port %d\n", port);
--		return -EINVAL;
-+		return 0;
- 	}
- }
- 
--- 
-2.39.2
+Error: dim sparse failed
+Sparse version: v0.6.2
+Fast mode used, each commit won't be checked separately.
+
 
