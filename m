@@ -2,46 +2,47 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id C8057819CE6
-	for <lists+intel-gfx@lfdr.de>; Wed, 20 Dec 2023 11:36:44 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id E4C40819CE7
+	for <lists+intel-gfx@lfdr.de>; Wed, 20 Dec 2023 11:36:47 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 17CC910E55A;
-	Wed, 20 Dec 2023 10:36:43 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3C1BD10E55F;
+	Wed, 20 Dec 2023 10:36:46 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D35A910E558
- for <intel-gfx@lists.freedesktop.org>; Wed, 20 Dec 2023 10:36:40 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BAF4010E55A
+ for <intel-gfx@lists.freedesktop.org>; Wed, 20 Dec 2023 10:36:42 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1703068601; x=1734604601;
+ t=1703068603; x=1734604603;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=9d6zWKkYlw9rzXE1bG+PP3i2WHKe8cYZ0dg7W1kRzY0=;
- b=h1709Xar4CKQk9CVE7B2AT4Pm/MmVbWVwHCpl8bAOpP3jO/8DdeWz48R
- fi6FnNHn+Vf+GFQs7jUq+CDpmCzDZ3xEAF2A90XqlrcpZvF5EMQ5u2CWq
- ZwkJflkxSGjCHy3LmLhzCljvMcb4jFycxHJ8CM15+/82iVugP77PrwZrG
- 6RWjjYiu61htt992sd2nGMWWJu8fiOOcAEZHhKTbK7qcRn4F7YoHyldej
- HpiTDgy7hT2q/wLN2GW9LA333Wjpmp8P7U5mRgpBC2eBQgut+QBejq3zS
- bP3t60DqG32GgpqT6qnIeOTDpc+AfUZSRRw2x9IlEEEioVtndc+1r9PPV w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10929"; a="2631994"
+ bh=OSN2pQBPnxss1tPbPf81U73hlePGFYoWRPSoEF8oLa0=;
+ b=XFXO70gqUJAwoFYRhD7xDEQIVLh+7Xe5z0uxiIYgc7zi3t67M/zO5cRg
+ hqyxV7steya/grNt/HYryrsRd2J74bJe3aTF+ezqxdU+vGn270MnjmobI
+ evOhHaE71stcRWgbhZnIbB5SBep5g6vQxjWWl6f0HBw6J2L1vBAK5ZGyh
+ use9J/Ku40X5NSXXg0LUn/Df76JFYPNAk4pjHp/1kLwYn/YRD0P7D1Sb/
+ J8VNK1A2tFvICBMqpEY3S6gce8PqLNqHkCPF03OqoX9ZjZ0G5pJ6ckJTp
+ s4WW/fgczCMQI5cGPgyzgL1xdtfBCimXfCEYab9vj/SxlSecOP6MXD39a A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10929"; a="2631998"
 X-IronPort-AV: E=Sophos;i="6.04,291,1695711600"; 
-   d="scan'208";a="2631994"
+   d="scan'208";a="2631998"
 Received: from fmsmga005.fm.intel.com ([10.253.24.32])
  by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Dec 2023 02:36:41 -0800
+ 20 Dec 2023 02:36:42 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10929"; a="1107686326"
-X-IronPort-AV: E=Sophos;i="6.04,291,1695711600"; d="scan'208";a="1107686326"
+X-IronPort-AV: E=McAfee;i="6600,9927,10929"; a="1107686339"
+X-IronPort-AV: E=Sophos;i="6.04,291,1695711600"; d="scan'208";a="1107686339"
 Received: from sparrish-mobl1.amr.corp.intel.com (HELO
  jhogande-mobl1.intel.com) ([10.252.34.221])
  by fmsmga005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Dec 2023 02:36:39 -0800
+ 20 Dec 2023 02:36:41 -0800
 From: =?UTF-8?q?Jouni=20H=C3=B6gander?= <jouni.hogander@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Subject: [PATCH v2 6/7] drm/i915/display: Read PSR configuration before VSC SDP
-Date: Wed, 20 Dec 2023 12:36:08 +0200
-Message-Id: <20231220103609.1384523-7-jouni.hogander@intel.com>
+Subject: [PATCH v2 7/7] drm/i915/display: Take care of VSC select field in
+ video dip ctl register
+Date: Wed, 20 Dec 2023 12:36:09 +0200
+Message-Id: <20231220103609.1384523-8-jouni.hogander@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20231220103609.1384523-1-jouni.hogander@intel.com>
 References: <20231220103609.1384523-1-jouni.hogander@intel.com>
@@ -65,37 +66,38 @@ Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-VSC SDP sending is taken care by PSR HW and it's not enabled in
-VIDEO_DIP_CTL when PSR is enabled. Readback of VSC SDP is depending on
-VSC_SDP being set in intel_crtc_state->infoframes.enabled. In case of PSR
-setting this flag is taken care by PSR code -> read back PSR configuration
-before reading VSC SDP otherwise we get pipeconfig mismatch error.
+We need to configure VSC Select field in video dip ctl if we want to have
+e.g. colorimetry date in our VSC SDP.
 
+Reported-by: Shawn Lee <shawn.c.lee@intel.com>
 Signed-off-by: Jouni Högander <jouni.hogander@intel.com>
-Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
+Acked-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
 Tested-by: Shawn Lee <shawn.c.lee@intel.com>
+Reviewed-by: Mika Kahola <mika.kahola@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_ddi.c | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+ drivers/gpu/drm/i915/display/intel_hdmi.c | 8 +++++---
+ 1 file changed, 5 insertions(+), 3 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_ddi.c b/drivers/gpu/drm/i915/display/intel_ddi.c
-index 12a29363e5df..2746655bcb26 100644
---- a/drivers/gpu/drm/i915/display/intel_ddi.c
-+++ b/drivers/gpu/drm/i915/display/intel_ddi.c
-@@ -3941,11 +3941,11 @@ static void intel_ddi_get_config(struct intel_encoder *encoder,
- 	if (DISPLAY_VER(dev_priv) >= 8)
- 		bdw_get_trans_port_sync_config(pipe_config);
+diff --git a/drivers/gpu/drm/i915/display/intel_hdmi.c b/drivers/gpu/drm/i915/display/intel_hdmi.c
+index 39e4f5f7c817..eedef8121ff7 100644
+--- a/drivers/gpu/drm/i915/display/intel_hdmi.c
++++ b/drivers/gpu/drm/i915/display/intel_hdmi.c
+@@ -523,10 +523,12 @@ void hsw_write_infoframe(struct intel_encoder *encoder,
+ 			       0);
  
-+	intel_psr_get_config(encoder, pipe_config);
+ 	/* Wa_14013475917 */
+-	if (IS_DISPLAY_VER(dev_priv, 13, 14) && crtc_state->has_psr && type == DP_SDP_VSC)
+-		return;
++	if (!(IS_DISPLAY_VER(dev_priv, 13, 14) && crtc_state->has_psr && type == DP_SDP_VSC))
++		val |= hsw_infoframe_enable(type);
 +
- 	intel_read_dp_sdp(encoder, pipe_config, HDMI_PACKET_TYPE_GAMUT_METADATA);
- 	intel_read_dp_sdp(encoder, pipe_config, DP_SDP_VSC);
++	if (type == DP_SDP_VSC)
++		val |= VSC_DIP_HW_DATA_SW_HEA;
  
--	intel_psr_get_config(encoder, pipe_config);
--
- 	intel_audio_codec_get_config(encoder, pipe_config);
+-	val |= hsw_infoframe_enable(type);
+ 	intel_de_write(dev_priv, ctl_reg, val);
+ 	intel_de_posting_read(dev_priv, ctl_reg);
  }
- 
 -- 
 2.34.1
 
