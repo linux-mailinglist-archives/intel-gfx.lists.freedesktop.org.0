@@ -2,76 +2,45 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 03F2B819EA4
-	for <lists+intel-gfx@lfdr.de>; Wed, 20 Dec 2023 13:07:06 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1B03B819F36
+	for <lists+intel-gfx@lfdr.de>; Wed, 20 Dec 2023 13:41:30 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3954210E330;
-	Wed, 20 Dec 2023 12:07:04 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 62D7910E03E;
+	Wed, 20 Dec 2023 12:41:28 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from us-smtp-delivery-124.mimecast.com
- (us-smtp-delivery-124.mimecast.com [170.10.129.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 12F2310E330
- for <intel-gfx@lists.freedesktop.org>; Wed, 20 Dec 2023 12:07:02 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1703074022;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=EbOwhVS1ctQSdH2sSKDftBcrjpmqhXvm37wmsRPE+1U=;
- b=SRWipTZV9e0rbFN4CnON0T0U5DoBzW+ZVHr4BJqGd+bMmMbAd2SrGyJ6YzJsymgAGiihJW
- ztsQjUcFVPl/bMfevpndyA3l1ynHAmYQRaPs2vns+IARUCC8KKBXEjDmWjQaojY8Mkuwqa
- 1BRQQ2g38iGJgiQdIN9DVS6FAuSP3Gk=
-Received: from mail-wm1-f70.google.com (mail-wm1-f70.google.com
- [209.85.128.70]) by relay.mimecast.com with ESMTP with STARTTLS
- (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
- us-mta-215-H7iOIIAHPTKC-z6Wdz0JVQ-1; Wed, 20 Dec 2023 07:06:59 -0500
-X-MC-Unique: H7iOIIAHPTKC-z6Wdz0JVQ-1
-Received: by mail-wm1-f70.google.com with SMTP id
- 5b1f17b1804b1-40d2fa6b23eso10354365e9.2
- for <intel-gfx@lists.freedesktop.org>; Wed, 20 Dec 2023 04:06:59 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1703074018; x=1703678818;
- h=content-transfer-encoding:mime-version:message-id:date:references
- :in-reply-to:subject:cc:to:from:x-gm-message-state:from:to:cc
- :subject:date:message-id:reply-to;
- bh=EbOwhVS1ctQSdH2sSKDftBcrjpmqhXvm37wmsRPE+1U=;
- b=XLm9cFbsDgj6ybbB0GlPcUX3ZNZubhaFahWKWhlQiXtyuE15suJFo9dCN1s2fuCkcG
- dxFQlXs47JnqW2Tds7P7HgzE9tm1RfkbRBsSYxqBxnNgUHNTrzD3ngtoxZ2i2Pjz9idf
- /mZKfRIEZL+LknIQFJGe02kkZ/UGUaLK5/g2vNtN1J35zAxo7SLRL56FWCMT8hLWE3t1
- xoEUhCQpU9AiG6afXPNWw0cwcfjWrtllyPsvNF2y7/Go0lII76Mp+ETah1VVypZ/2bFg
- 4ER3NF8ht8qMSCKJATcbD+p8LuDNWvyOOQNo3Pk5P0o2puU/DvlJEyR6X83akF7Rz0YF
- u9tw==
-X-Gm-Message-State: AOJu0YybrDgw9uithq9O1LhFw2zlmdhrn7jZXbvvtZMAbDl2i8UK27tF
- t+mMjdaLlgvKTFxg5dDW6J5sdR4Bh+WJ0Y3MTh8gzz0ob8E7wB2YVxu8ZqL6nkMilBdXFLiGu5n
- GIEcsYzbUDUXuCnGmdbhtWWZxkEdE
-X-Received: by 2002:a05:600c:4f11:b0:40c:f3d:f31 with SMTP id
- l17-20020a05600c4f1100b0040c0f3d0f31mr7136022wmq.163.1703074018686; 
- Wed, 20 Dec 2023 04:06:58 -0800 (PST)
-X-Google-Smtp-Source: AGHT+IFBIxugpHBrjRSIo01FYd4FiSMMdtxTl59PiGMbbg8SDogliNn6YN6Znvfza6bQal3C4SeIPw==
-X-Received: by 2002:a05:600c:4f11:b0:40c:f3d:f31 with SMTP id
- l17-20020a05600c4f1100b0040c0f3d0f31mr7136017wmq.163.1703074018350; 
- Wed, 20 Dec 2023 04:06:58 -0800 (PST)
-Received: from localhost ([195.166.127.210]) by smtp.gmail.com with ESMTPSA id
- i15-20020a05600c354f00b0040d378510adsm1883028wmq.1.2023.12.20.04.06.57
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Wed, 20 Dec 2023 04:06:58 -0800 (PST)
-From: Javier Martinez Canillas <javierm@redhat.com>
-To: Ville Syrjala <ville.syrjala@linux.intel.com>,
- dri-devel@lists.freedesktop.org
-Subject: Re: [PATCH 2/2] drm: Warn when freeing a framebuffer that's still
- on a list
-In-Reply-To: <20231211081625.25704-2-ville.syrjala@linux.intel.com>
-References: <20231211081625.25704-1-ville.syrjala@linux.intel.com>
- <20231211081625.25704-2-ville.syrjala@linux.intel.com>
-Date: Wed, 20 Dec 2023 13:06:57 +0100
-Message-ID: <87a5q55b8e.fsf@minerva.mail-host-address-is-not-set>
+Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id F05A110E03E
+ for <intel-gfx@lists.freedesktop.org>; Wed, 20 Dec 2023 12:41:26 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1703076086; x=1734612086;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=+6bF1brguVvwg/uX6j3R1yxWixJSxIx2DQ2Zi0QHT/A=;
+ b=Gw5DJknbAtaX9C4NObzEgX2PgJ0BsiYxQRVfO4xzyg5fL/dDVR5u1MvN
+ +/UIga8ZKn8/VXz9tYbgcPJ1DseBkhl5Z5Ub2sWi1SVyjXFTS/6b2DgH/
+ +uKB3H3MDoBl1ljnvqiSVYBGNVNUr5vEGkRa5FnEd8kx5oqiTPdikNsLY
+ aeJcRj4SI71iwzoiUTt0z4TVbVM3f8eXREhaoL9IryXnEK5jHV0H2rhra
+ Bvd3+HxgpWJheSisnZZoNS+VA/qAMsE/4fTUaoIqcFAyn0fAj0ddB3VPY
+ Xzsx442/7KMTBKwm9VJDyy/LKIKBc0pEoUg9IO6n/IBFWILdMRDI+I/Dk Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10929"; a="481995403"
+X-IronPort-AV: E=Sophos;i="6.04,291,1695711600"; d="scan'208";a="481995403"
+Received: from orviesa002.jf.intel.com ([10.64.159.142])
+ by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 20 Dec 2023 04:41:26 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.04,291,1695711600"; d="scan'208";a="17940519"
+Received: from osgc-linux-buildserver.sh.intel.com ([10.112.232.61])
+ by orviesa002.jf.intel.com with ESMTP; 20 Dec 2023 04:41:24 -0800
+From: Shuicheng Lin <shuicheng.lin@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Subject: [PATCH] drm/i915/guc: Change wa and EU_PERF_CNTL registers to MCR type
+Date: Wed, 20 Dec 2023 12:39:51 +0000
+Message-Id: <20231220123951.4076088-1-shuicheng.lin@intel.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-X-Mimecast-Spam-Score: 0
-X-Mimecast-Originator: redhat.com
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -84,26 +53,57 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org
+Cc: Matt Roper <matthew.d.roper@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Ville Syrjala <ville.syrjala@linux.intel.com> writes:
+Some of the wa registers are MCR register, and EU_PERF_CNTL registers
+are MCR register.
+MCR register needs extra process for read/write.
+As normal MMIO register also could work with the MCR register process,
+change all wa registers to MCR type for code simplicity.
 
-> From: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
->
-> Sprinkle some extra WARNs around so that we might catch
-> premature framebuffer destruction more readily.
->
-> Signed-off-by: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
-> ---
+Signed-off-by: Shuicheng Lin <shuicheng.lin@intel.com>
+Cc: Matt Roper <matthew.d.roper@intel.com>
+Cc: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
+---
+ drivers/gpu/drm/i915/gt/uc/intel_guc_ads.c | 16 ++++++++--------
+ 1 file changed, 8 insertions(+), 8 deletions(-)
 
-Acked-by: Javier Martinez Canillas <javierm@redhat.com>
-
---=20
-Best regards,
-
-Javier Martinez Canillas
-Core Platforms
-Red Hat
+diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_ads.c b/drivers/gpu/drm/i915/gt/uc/intel_guc_ads.c
+index 63724e17829a..61ff4c7e31a6 100644
+--- a/drivers/gpu/drm/i915/gt/uc/intel_guc_ads.c
++++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_ads.c
+@@ -378,7 +378,7 @@ static int guc_mmio_regset_init(struct temp_regset *regset,
+ 		ret |= GUC_MMIO_REG_ADD(gt, regset, GEN12_RCU_MODE, true);
+ 
+ 	for (i = 0, wa = wal->list; i < wal->count; i++, wa++)
+-		ret |= GUC_MMIO_REG_ADD(gt, regset, wa->reg, wa->masked_reg);
++		ret |= GUC_MCR_REG_ADD(gt, regset, wa->mcr_reg, wa->masked_reg);
+ 
+ 	/* Be extra paranoid and include all whitelist registers. */
+ 	for (i = 0; i < RING_MAX_NONPRIV_SLOTS; i++)
+@@ -394,13 +394,13 @@ static int guc_mmio_regset_init(struct temp_regset *regset,
+ 			ret |= GUC_MMIO_REG_ADD(gt, regset, GEN9_LNCFCMOCS(i), false);
+ 
+ 	if (GRAPHICS_VER(engine->i915) >= 12) {
+-		ret |= GUC_MMIO_REG_ADD(gt, regset, EU_PERF_CNTL0, false);
+-		ret |= GUC_MMIO_REG_ADD(gt, regset, EU_PERF_CNTL1, false);
+-		ret |= GUC_MMIO_REG_ADD(gt, regset, EU_PERF_CNTL2, false);
+-		ret |= GUC_MMIO_REG_ADD(gt, regset, EU_PERF_CNTL3, false);
+-		ret |= GUC_MMIO_REG_ADD(gt, regset, EU_PERF_CNTL4, false);
+-		ret |= GUC_MMIO_REG_ADD(gt, regset, EU_PERF_CNTL5, false);
+-		ret |= GUC_MMIO_REG_ADD(gt, regset, EU_PERF_CNTL6, false);
++		ret |= GUC_MCR_REG_ADD(gt, regset, MCR_REG(i915_mmio_reg_offset(EU_PERF_CNTL0)), false);
++		ret |= GUC_MCR_REG_ADD(gt, regset, MCR_REG(i915_mmio_reg_offset(EU_PERF_CNTL1)), false);
++		ret |= GUC_MCR_REG_ADD(gt, regset, MCR_REG(i915_mmio_reg_offset(EU_PERF_CNTL2)), false);
++		ret |= GUC_MCR_REG_ADD(gt, regset, MCR_REG(i915_mmio_reg_offset(EU_PERF_CNTL3)), false);
++		ret |= GUC_MCR_REG_ADD(gt, regset, MCR_REG(i915_mmio_reg_offset(EU_PERF_CNTL4)), false);
++		ret |= GUC_MCR_REG_ADD(gt, regset, MCR_REG(i915_mmio_reg_offset(EU_PERF_CNTL5)), false);
++		ret |= GUC_MCR_REG_ADD(gt, regset, MCR_REG(i915_mmio_reg_offset(EU_PERF_CNTL6)), false);
+ 	}
+ 
+ 	return ret ? -1 : 0;
+-- 
+2.25.1
 
