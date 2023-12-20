@@ -1,48 +1,50 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 01F38819CE0
-	for <lists+intel-gfx@lfdr.de>; Wed, 20 Dec 2023 11:36:34 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 22FEA819CE1
+	for <lists+intel-gfx@lfdr.de>; Wed, 20 Dec 2023 11:36:36 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DD0BD10E338;
-	Wed, 20 Dec 2023 10:36:31 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C9CF910E33C;
+	Wed, 20 Dec 2023 10:36:33 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2380010E338
- for <intel-gfx@lists.freedesktop.org>; Wed, 20 Dec 2023 10:36:31 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5F34B10E33C
+ for <intel-gfx@lists.freedesktop.org>; Wed, 20 Dec 2023 10:36:32 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1703068591; x=1734604591;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=84QtkhaIJ3ZgcfD/KEC4tc8NSn6X+iLlf2G4vSHz2WU=;
- b=kxSe762X1m7CTN4nM9OJsYWxV37+JtWj8tNG3o4BFWoT7+BmdFxsWB38
- u8r9ed19LbdZ4fW9oGPTF/tR2N7HIm+S3ozTPdV/368cnV3j8KAXKsT6Z
- DoFV7IWUN6GW7l0COPvKuE3Kg8VTeO7Dvf41kLExL3qRkU5AlcK6iWMRh
- Kg7hl/8Kb0vJItYOpoRTZiO5kfF2n5+6gp2YzX9p91Gj+cD3HTB6+KRTt
- 3ogAE052Wbr+CT1qfBh1pM9NAbK9w0sXXgPI55IFU+c2seAY4PyNS3ZCz
- 6NgoDZdjRNBsq0UHxsmO7hzVraLYEMs9VR+1yhG2XbUynRkz2vPeLFcBu w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10929"; a="2631976"
+ t=1703068592; x=1734604592;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=dDpc4dg5ck1vy51SLyKV7l3se2cWmXPxK5iwVqHTKUU=;
+ b=UPXJjFsoQ7+G4aMTOkVoRWp6IVy/WQoVK9G3PnuISbQt5U7uh+CZp0wx
+ YPUo0M2fn+cObGUUObhavK+gFljvc3eW7fRXIXAgE6dkEXTwTejUrS9FL
+ yWGqJBROHJLLFzI3ALkkx+ZFBMcX/4FSu/TKJkLKE1LqhXJdaUiiWWmGE
+ 2eEgeI3c66TkF7ug7PoPByxbeXs49RKE1KNz+otbCSr2RLbJ4iPgFCRt0
+ H/ek1ZG5+kqlQzzPvAfDpt8DxPrAgcYjkv+MngGiH929gaYXTjKG52la5
+ pzIQrAEnM9vXvqJ5p1SLWDWrrAXpk9Ds15cdCnN0GoEeg0wfyjcbZgEGM A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10929"; a="2631977"
 X-IronPort-AV: E=Sophos;i="6.04,291,1695711600"; 
-   d="scan'208";a="2631976"
+   d="scan'208";a="2631977"
 Received: from fmsmga005.fm.intel.com ([10.253.24.32])
  by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Dec 2023 02:36:30 -0800
+ 20 Dec 2023 02:36:32 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10929"; a="1107686229"
-X-IronPort-AV: E=Sophos;i="6.04,291,1695711600"; d="scan'208";a="1107686229"
+X-IronPort-AV: E=McAfee;i="6600,9927,10929"; a="1107686246"
+X-IronPort-AV: E=Sophos;i="6.04,291,1695711600"; d="scan'208";a="1107686246"
 Received: from sparrish-mobl1.amr.corp.intel.com (HELO
  jhogande-mobl1.intel.com) ([10.252.34.221])
  by fmsmga005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Dec 2023 02:36:30 -0800
+ 20 Dec 2023 02:36:31 -0800
 From: =?UTF-8?q?Jouni=20H=C3=B6gander?= <jouni.hogander@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Subject: [PATCH v2 0/7] VSC SDP rework
-Date: Wed, 20 Dec 2023 12:36:02 +0200
-Message-Id: <20231220103609.1384523-1-jouni.hogander@intel.com>
+Subject: [PATCH v2 1/7] drm/i915/display: Remove intel_crtc_state->psr_vsc
+Date: Wed, 20 Dec 2023 12:36:03 +0200
+Message-Id: <20231220103609.1384523-2-jouni.hogander@intel.com>
 X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20231220103609.1384523-1-jouni.hogander@intel.com>
+References: <20231220103609.1384523-1-jouni.hogander@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
@@ -59,38 +61,55 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Current VSC SDP configuration code is broken:
+There is no really need to have separate vsc for psr usage. Use
+intel_crtc_state->infoframes.vsc instead.
 
-1. Driver configured header and data is not used at all
-2. Colorimetry data is not added into VSC SDP if PSR1 is used
+Signed-off-by: Jouni Högander <jouni.hogander@intel.com>
+Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
+Tested-by: Shawn Lee <shawn.c.lee@intel.com>
+---
+ drivers/gpu/drm/i915/display/intel_display_types.h | 1 -
+ drivers/gpu/drm/i915/display/intel_psr.c           | 4 ++--
+ 2 files changed, 2 insertions(+), 3 deletions(-)
 
-This patch set fixes these problems and makes VSC SDP configuration a
-bit more simpler by unifying PSR and non-PSR cases.
-
-v2: s/-colorimetry/without colorimetry/
-
-Jouni Högander (7):
-  drm/i915/display: Remove intel_crtc_state->psr_vsc
-  drm/i915/display: Move colorimetry_support from intel_psr to intel_dp
-  drm/i915/display: Unify VSC SPD preparation
-  drm/i915/display: Fix vsc_sdp computation
-  drm/i915/display: Ignore only psr specific part of vsc sdp
-  drm/i915/display: Read PSR configuration before VSC SDP
-  drm/i915/display: Take care of VSC select field in video dip ctl
-    register
-
- drivers/gpu/drm/i915/display/intel_ddi.c      |  4 +-
- drivers/gpu/drm/i915/display/intel_display.c  |  9 +-
- .../drm/i915/display/intel_display_types.h    |  4 +-
- drivers/gpu/drm/i915/display/intel_dp.c       | 97 ++++++-------------
- drivers/gpu/drm/i915/display/intel_dp.h       |  7 --
- drivers/gpu/drm/i915/display/intel_hdmi.c     |  8 +-
- drivers/gpu/drm/i915/display/intel_psr.c      | 11 +--
- 7 files changed, 44 insertions(+), 96 deletions(-)
-
+diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/drivers/gpu/drm/i915/display/intel_display_types.h
+index 3fdd8a517983..bbdc2041a990 100644
+--- a/drivers/gpu/drm/i915/display/intel_display_types.h
++++ b/drivers/gpu/drm/i915/display/intel_display_types.h
+@@ -1218,7 +1218,6 @@ struct intel_crtc_state {
+ 	bool wm_level_disabled;
+ 	u32 dc3co_exitline;
+ 	u16 su_y_granularity;
+-	struct drm_dp_vsc_sdp psr_vsc;
+ 
+ 	/*
+ 	 * Frequence the dpll for the port should run at. Differs from the
+diff --git a/drivers/gpu/drm/i915/display/intel_psr.c b/drivers/gpu/drm/i915/display/intel_psr.c
+index b6e2e70e1290..9d5dc3fb6f20 100644
+--- a/drivers/gpu/drm/i915/display/intel_psr.c
++++ b/drivers/gpu/drm/i915/display/intel_psr.c
+@@ -1380,7 +1380,7 @@ void intel_psr_compute_config(struct intel_dp *intel_dp,
+ 
+ 	crtc_state->infoframes.enable |= intel_hdmi_infoframe_enable(DP_SDP_VSC);
+ 	intel_dp_compute_psr_vsc_sdp(intel_dp, crtc_state, conn_state,
+-				     &crtc_state->psr_vsc);
++				     &crtc_state->infoframes.vsc);
+ }
+ 
+ void intel_psr_get_config(struct intel_encoder *encoder,
+@@ -1652,7 +1652,7 @@ static void intel_psr_enable_locked(struct intel_dp *intel_dp,
+ 		drm_dbg_kms(&dev_priv->drm, "Enabling PSR%s\n",
+ 			    intel_dp->psr.psr2_enabled ? "2" : "1");
+ 
+-	intel_write_dp_vsc_sdp(encoder, crtc_state, &crtc_state->psr_vsc);
++	intel_write_dp_vsc_sdp(encoder, crtc_state, &crtc_state->infoframes.vsc);
+ 	intel_snps_phy_update_psr_power_state(dev_priv, phy, true);
+ 	intel_psr_enable_sink(intel_dp);
+ 	intel_psr_enable_source(intel_dp, crtc_state);
 -- 
 2.34.1
 
