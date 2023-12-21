@@ -1,49 +1,46 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 46ECC81B473
-	for <lists+intel-gfx@lfdr.de>; Thu, 21 Dec 2023 11:54:24 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 93E9C81B4FC
+	for <lists+intel-gfx@lfdr.de>; Thu, 21 Dec 2023 12:35:19 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id F10C210E67B;
-	Thu, 21 Dec 2023 10:54:21 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2F00610E0E9;
+	Thu, 21 Dec 2023 11:35:16 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.100])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 972F310E666
- for <intel-gfx@lists.freedesktop.org>; Thu, 21 Dec 2023 10:54:20 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.120])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A0A4910E0C4
+ for <intel-gfx@lists.freedesktop.org>; Thu, 21 Dec 2023 11:35:14 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1703156060; x=1734692060;
+ t=1703158514; x=1734694514;
  h=from:to:cc:subject:date:message-id:mime-version:
  content-transfer-encoding;
- bh=lUxFlU7L8Ggi7jw2YiUkQgq/tAddi5ztYYeuaEnlyC8=;
- b=RXYidCC04ZWfSZtNfG2t2V5h9a0aPyfzxQw6spfHlJFTqaKnlTPF0M4n
- 2Ilyg1QI7S42ExyoX94YLmOvjS9RtaYwQF+vBn0KfbCPeq9jmsgbijN3U
- wz7C2sezEclCXPwCkhSlXkiId1JLtQT1rDCdrqh1QihOOtVZRathGgUiv
- 2QeWiSu6BJuAH8dIY0kmvzzH3bBBfgNog8MTD+AUFXdnM+3klWG2jFv/V
- W8h0KIvHczS8VKrnqZLuk55UBk8jFFpf42wRXGXsw3OEuRTVJBSi1yieY
- 05ZJSyvJxrMkdwvHoRrrVgxrRCLfR53hGJBf9ckCAT/sJc7rASQLlvNwv Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10930"; a="462399767"
-X-IronPort-AV: E=Sophos;i="6.04,293,1695711600"; d="scan'208";a="462399767"
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
- by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Dec 2023 02:54:20 -0800
+ bh=KHsVZFIzmAm7P3xOTrLACis3iaNEahLvBCarwb7n9ZU=;
+ b=HZoj/1G7hHkXrSB+SydrNz2zc/jt08OOhzXABRESlq3IgGUZNzeDEn0L
+ 4ZzSHKC4vAIZar9wbmiMzOtDFX+gAIBVY5+kUo9qpKY6qpIgBiyrdBS2Q
+ gFaFi4GMoF/E8bqAAN6PjAijtNArl3A9G7pCd5dnrYiAM6Gmb1ER1NjNQ
+ aUOFacH4vJm7gd0VHtflIwIIKohZTiSuMJWrpQ1CyxGOTqoJYir2jmQmd
+ yvD4EI837qHA1yiXyFxEietSjdrKTC1o8QFaFtRo4Pd3U8pJhcaWC5+++
+ 64IM5ZbhlTzT1/qTYpczxENgw3HEluE5WeRHFRk5G2y7IWYzYE11qhH4Q A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10930"; a="394854250"
+X-IronPort-AV: E=Sophos;i="6.04,293,1695711600"; d="scan'208";a="394854250"
+Received: from fmsmga008.fm.intel.com ([10.253.24.58])
+ by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 21 Dec 2023 03:35:14 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10930"; a="895060514"
-X-IronPort-AV: E=Sophos;i="6.04,293,1695711600"; d="scan'208";a="895060514"
-Received: from sshurhav-mobl.ger.corp.intel.com (HELO localhost)
- ([10.252.34.227])
- by fmsmga002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Dec 2023 02:54:18 -0800
-From: Jani Nikula <jani.nikula@intel.com>
+X-IronPort-AV: E=McAfee;i="6600,9927,10930"; a="842605935"
+X-IronPort-AV: E=Sophos;i="6.04,293,1695711600"; d="scan'208";a="842605935"
+Received: from sorvi2.fi.intel.com ([10.237.72.194])
+ by fmsmga008.fm.intel.com with ESMTP; 21 Dec 2023 03:35:12 -0800
+From: Mika Kahola <mika.kahola@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Subject: [PATCH] drm/i915/bios: remove some unused leftover declarations
-Date: Thu, 21 Dec 2023 12:54:14 +0200
-Message-Id: <20231221105414.1518267-1-jani.nikula@intel.com>
-X-Mailer: git-send-email 2.39.2
+Subject: [PATCH v2 0/3] drm/i915/display: C20 clock state verification
+Date: Thu, 21 Dec 2023 13:28:40 +0200
+Message-Id: <20231221112843.27519-1-mika.kahola@intel.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -57,36 +54,36 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: jani.nikula@intel.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Remove some unused declarations probably left behind after some
-refactoring.
+Add pll selection check for C20 as well as
+clock state verification0. We have been relying
+on sw state to select A or B pll's. This is incorrect
+as the hw might see this selection differently. This
+patch fixes this shortcoming by reading pll selection
+for both sw and hw states and compares if these two
+selections match.
 
-Signed-off-by: Jani Nikula <jani.nikula@intel.com>
----
- drivers/gpu/drm/i915/display/intel_bios.h | 3 ---
- 1 file changed, 3 deletions(-)
+While at it, cleanup mpllb selection by removing intel_c20_use_mplla()
+function as redundant.
 
-diff --git a/drivers/gpu/drm/i915/display/intel_bios.h b/drivers/gpu/drm/i915/display/intel_bios.h
-index 49e24b7cf675..96673dc707e7 100644
---- a/drivers/gpu/drm/i915/display/intel_bios.h
-+++ b/drivers/gpu/drm/i915/display/intel_bios.h
-@@ -246,13 +246,10 @@ bool intel_bios_is_valid_vbt(const void *buf, size_t size);
- bool intel_bios_is_tv_present(struct drm_i915_private *dev_priv);
- bool intel_bios_is_lvds_present(struct drm_i915_private *dev_priv, u8 *i2c_pin);
- bool intel_bios_is_port_present(struct drm_i915_private *dev_priv, enum port port);
--bool intel_bios_is_port_edp(struct drm_i915_private *dev_priv, enum port port);
- bool intel_bios_is_dsi_present(struct drm_i915_private *dev_priv, enum port *port);
- bool intel_bios_get_dsc_params(struct intel_encoder *encoder,
- 			       struct intel_crtc_state *crtc_state,
- 			       int dsc_max_bpc);
--bool intel_bios_port_supports_typec_usb(struct drm_i915_private *i915, enum port port);
--bool intel_bios_port_supports_tbt(struct drm_i915_private *i915, enum port port);
- 
- const struct intel_bios_encoder_data *
- intel_bios_encoder_data_lookup(struct drm_i915_private *i915, enum port port);
+Fixes: 59be90248b42 ("drm/i915/mtl: C20 state verification")
+
+v2: reword commit message and include fix to a
+    original commit (Imre)
+    Compare pll selection (Jani)
+
+Signed-off-by: Mika Kahola <mika.kahola@intel.com>
+
+Mika Kahola (3):
+  drm/i915/display: Fix C20 pll selection for state verification
+  drm/i915/display: Store hw clock for C20
+  drm/i915/display: Cleanup mplla/mpllb selection
+
+ drivers/gpu/drm/i915/display/intel_cx0_phy.c | 153 ++++++++++---------
+ 1 file changed, 78 insertions(+), 75 deletions(-)
+
 -- 
-2.39.2
+2.34.1
 
