@@ -2,48 +2,47 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id E31A681B701
-	for <lists+intel-gfx@lfdr.de>; Thu, 21 Dec 2023 14:08:55 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4018681B9A9
+	for <lists+intel-gfx@lfdr.de>; Thu, 21 Dec 2023 15:37:43 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EE3F610E6B4;
-	Thu, 21 Dec 2023 13:08:51 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 89B1B10E6C9;
+	Thu, 21 Dec 2023 14:37:41 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.115])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9C92D10E358;
- Thu, 21 Dec 2023 13:08:50 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.136])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A31BC10E6C9
+ for <intel-gfx@lists.freedesktop.org>; Thu, 21 Dec 2023 14:37:39 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1703164130; x=1734700130;
+ t=1703169459; x=1734705459;
  h=from:to:cc:subject:date:message-id:mime-version:
  content-transfer-encoding;
- bh=LvCH5Weeh81IDDie0Q2DXhlRjemIowRDzjYnmRDZVtU=;
- b=BsISFcGj+1ehAg0+p/KhdG3voqzSVn1U3JIrdpyBQGfF9UdIfARSiEW4
- l16H8s3wBDhQPgKQOKwmaFBYTgUhFyf9D4VkEsfMQW796znX0PHcw+mk1
- 9SyF6pK9qVcTnn3qXO3jzifnEhcVRFZ3uyl2u8w0loLQ6s+m8UcUm7Hq5
- QHL/cBlEEnMv/+F9HUANb+1l4z5hriOxY9e6klG1lpvl8XOvaKwkqou8X
- QiNMmZ4z623hQNr6qnM/GC+QkgDggdUdI1+YP6eOCCXzsCLPWBNxwvZE9
- mg1IvYl9fzg+3do1yUQKQt+zQBiZYl3WinHLgEJVPapHsSJHOkdBMgtM9 w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10930"; a="395697803"
-X-IronPort-AV: E=Sophos;i="6.04,293,1695711600"; d="scan'208";a="395697803"
-Received: from fmsmga008.fm.intel.com ([10.253.24.58])
- by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Dec 2023 05:08:50 -0800
+ bh=/9ha74Xrf1+sKBvEmRuVUV8HOTVRfwVzsi2K6Z8DBIw=;
+ b=NKDWNf+O2cbUhBix1WPpP5KPtY7nCIgwlauDj/WbtUoPC3U7F8MCFajx
+ 1lwnPMalSPPj5hWxBbUPHmsldP9adF8s7Bc+lQyL+ctJ88I2ZwfwIw1Wm
+ P38FIjhzIoOaqq+H/2w7B1ykg0Jy6wGRfia+bctQC5PxTEMS1tCzCZAWs
+ is9QvB7rZvwgQfCw7B18dYNW+3aF2BvqSTVVp+esXhoNnuMlttaWh+bN2
+ lsDGn2e9snaq4Gx6apaLGk5qMAwT2Y8JqZmGNzn0kcuRIYRn3U9P3dfTa
+ lksP9zVehUn5nXM41L3cPcIB/yjHWtR+2VKyTYf3O2HVS5lnguf9OkEiI w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10930"; a="375470058"
+X-IronPort-AV: E=Sophos;i="6.04,293,1695711600"; d="scan'208";a="375470058"
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+ by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 21 Dec 2023 06:37:39 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10930"; a="842624092"
-X-IronPort-AV: E=Sophos;i="6.04,293,1695711600"; d="scan'208";a="842624092"
-Received: from unknown (HELO localhost) ([10.237.66.162])
- by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Dec 2023 05:08:45 -0800
-From: Jani Nikula <jani.nikula@intel.com>
-To: Dave Airlie <airlied@gmail.com>, Daniel Vetter <daniel.vetter@ffwll.ch>
-Subject: [PULL] drm-intel-fixes
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-Date: Thu, 21 Dec 2023 15:08:41 +0200
-Message-ID: <87plyzsnxi.fsf@intel.com>
+X-IronPort-AV: E=McAfee;i="6600,9927,10930"; a="895120268"
+X-IronPort-AV: E=Sophos;i="6.04,293,1695711600"; d="scan'208";a="895120268"
+Received: from haridhar-ms-7d25.iind.intel.com ([10.190.238.53])
+ by fmsmga002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 21 Dec 2023 06:37:37 -0800
+From: Haridhar Kalvala <haridhar.kalvala@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Subject: [PATCH v1 0/3] Extend ARL support
+Date: Thu, 21 Dec 2023 20:02:19 +0530
+Message-Id: <20231221143222.1729450-1-haridhar.kalvala@intel.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -56,70 +55,32 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: dim-tools@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, intel-gfx@lists.freedesktop.org
+Cc: matthew.d.roper@intel.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+Some SKUs of Arrow Lake use a slightly newer Xe_LPG+ graphics
+IP (version 12.74).  Add some additional PCI IDs and extend the
+code to support this newer IP version.  The general code flow
+should continue to match existing MTL and Xe_LPG code paths.
 
-Hi Dave & Sima -
+Harish Chegondi (1):
+  drm/i915/xelpg: Extend driver code of Xe_LPG to Xe_LPG+
 
-A bit more than I'd like at this stage, but next week will be quiet.
+Matt Roper (2):
+  drm/i915: Add additional ARL PCI IDs
+  drm/i915/xelpg: Extend some workarounds/tuning to gfx version 12.74
 
-drm-intel-fixes-2023-12-21:
-drm/i915 fixes for v6.7-rc7:
-- Fix state readout and check for DSC and bigjoiner combo
-- Fix a potential integer overflow
-- Reject async flips with bigjoiner
-- Fix MTL HDMI/DP PLL clock selection
-- Fix various issues by disabling pipe DMC events
+ drivers/gpu/drm/i915/gt/gen8_engine_cs.c    |  4 ++--
+ drivers/gpu/drm/i915/gt/intel_engine_cs.c   |  3 ++-
+ drivers/gpu/drm/i915/gt/intel_mocs.c        |  2 +-
+ drivers/gpu/drm/i915/gt/intel_rc6.c         |  2 +-
+ drivers/gpu/drm/i915/gt/intel_workarounds.c | 24 +++++++++++++--------
+ drivers/gpu/drm/i915/i915_debugfs.c         |  2 +-
+ drivers/gpu/drm/i915/i915_perf.c            |  2 +-
+ include/drm/i915_pciids.h                   |  3 +++
+ 8 files changed, 26 insertions(+), 16 deletions(-)
 
-BR,
-Jani.
+-- 
+2.25.1
 
-The following changes since commit ceb6a6f023fd3e8b07761ed900352ef574010bcb:
-
-  Linux 6.7-rc6 (2023-12-17 15:19:28 -0800)
-
-are available in the Git repository at:
-
-  git://anongit.freedesktop.org/drm/drm-intel tags/drm-intel-fixes-2023-12-=
-21
-
-for you to fetch changes up to 49e0a85ec3441edc6c77aa40206d6e5ee4597efc:
-
-  drm/i915/dmc: Don't enable any pipe DMC events (2023-12-18 15:29:23 +0200)
-
-----------------------------------------------------------------
-drm/i915 fixes for v6.7-rc7:
-- Fix state readout and check for DSC and bigjoiner combo
-- Fix a potential integer overflow
-- Reject async flips with bigjoiner
-- Fix MTL HDMI/DP PLL clock selection
-- Fix various issues by disabling pipe DMC events
-
-----------------------------------------------------------------
-Ankit Nautiyal (1):
-      drm/i915/display: Get bigjoiner config before dsc config during reado=
-ut
-
-Imre Deak (1):
-      drm/i915/mtl: Fix HDMI/DP PLL clock selection
-
-Karthik Poosa (1):
-      drm/i915/hwmon: Fix static analysis tool reported issues
-
-Ville Syrj=C3=A4l=C3=A4 (2):
-      drm/i915: Reject async flips with bigjoiner
-      drm/i915/dmc: Don't enable any pipe DMC events
-
- drivers/gpu/drm/i915/display/intel_cx0_phy.c |  3 +-
- drivers/gpu/drm/i915/display/intel_display.c | 13 ++++++++-
- drivers/gpu/drm/i915/display/intel_dmc.c     | 43 ++++++++++++++++++++++++=
-++--
- drivers/gpu/drm/i915/i915_hwmon.c            |  4 +--
- 4 files changed, 57 insertions(+), 6 deletions(-)
-
---=20
-Jani Nikula, Intel
