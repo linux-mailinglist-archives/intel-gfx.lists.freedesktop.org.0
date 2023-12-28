@@ -2,53 +2,45 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2F72981F9FE
-	for <lists+intel-gfx@lfdr.de>; Thu, 28 Dec 2023 17:42:13 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id D3E3B81FC01
+	for <lists+intel-gfx@lfdr.de>; Fri, 29 Dec 2023 00:37:17 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 99B6810E0A3;
-	Thu, 28 Dec 2023 16:42:11 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1196210E274;
+	Thu, 28 Dec 2023 23:37:10 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 94CF889EFF;
- Thu, 28 Dec 2023 16:42:10 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1703781732; x=1735317732;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:in-reply-to;
- bh=bGoDjQUeOkn6UgVsqR9D7ly0PoUYf0ufzyTN3TMtWd8=;
- b=SO35jwxJAeID72TKmAAHUWQ2DscJNwXhb3624XmzxlMzuQ2M3fdhV27H
- 4X+IlwgfmxCxK78+1j4cCIdmf61t3uXE7e5upZvuRIF/yjYV2gdJV8jbD
- RaHCT/X+HbHhThrKDIdqsFktdvZN4VCaRUjpHmWXbTs70iI/pwk5lWzDt
- /lzU+GMNL3DJDA+ClncPr7O8foRFi5uQ+LHB8owUdiKhIHXlmgCRM7uC/
- sVzVaoF016MUbCgk3OTixbY/OFpbTdbp7jzznolHN8xTCfRWthQ008zzv
- N0S129WrXI/yF8qX2xzgauo+waALTq1m4CR0/D4EastRZ+gKY3axp6H8+ Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10937"; a="3640312"
-X-IronPort-AV: E=Sophos;i="6.04,312,1695711600"; 
-   d="scan'208";a="3640312"
-Received: from orsmga007.jf.intel.com ([10.7.209.58])
- by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Dec 2023 08:42:04 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10937"; a="771754101"
-X-IronPort-AV: E=Sophos;i="6.04,312,1695711600"; d="scan'208";a="771754101"
-Received: from ceyeghel-mobl.amr.corp.intel.com (HELO intel.com)
- ([10.252.50.226])
- by orsmga007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Dec 2023 08:41:59 -0800
-Date: Thu, 28 Dec 2023 17:41:56 +0100
-From: Andi Shyti <andi.shyti@linux.intel.com>
-To: Randy Dunlap <rdunlap@infradead.org>
-Subject: Re: [PATCH v2 4/4] drm/i915/perf: reconcile Excess struct member
- kernel-doc warnings
-Message-ID: <ZY2lVLEaOI3XVZUs@ashyti-mobl2.lan>
-References: <20231226195432.10891-1-rdunlap@infradead.org>
- <20231226195432.10891-4-rdunlap@infradead.org>
+Received: from bombadil.infradead.org (bombadil.infradead.org
+ [IPv6:2607:7c80:54:3::133])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D516A10E273;
+ Thu, 28 Dec 2023 23:37:08 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+ d=infradead.org; s=bombadil.20210309; h=Content-Transfer-Encoding:
+ Content-Type:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:
+ Message-ID:Sender:Reply-To:Content-ID:Content-Description;
+ bh=NiIPkFQqmlg8hHDXK0BoSCEzG13ttdB9oJvpLZV4XXY=; b=CaN1ztGHFmMWAdI2GUCOEzjnqd
+ zJ2bpWsSL7n+0TG2J5WB0N3+Pwru274Kz+GFN4us0JC6R17IRIr3QkhS+8dwbTJVAIRRwTFo5WKY0
+ y0LdLJm9QnlAaNeg97IQlajFXcPlKV+o6LxfV317aMsnaEUc7fESfVRJnrxPdXqSZjcsj9ieWtPIL
+ hjhkYWua53xF/emoEinS/LQ/AL7G7Ksi+S38m8Kiz7xjPODXAfYT8PiWAJO+LwFIvv49QpFfmoeyt
+ eviwSeAyQsetdQHGJguegsDNI6EwANdGPoFbKkuFCk2GvEsHnCA2pvIJdS10I4uyWzcVqb1IOf2z9
+ etvPUYCQ==;
+Received: from [50.53.46.231] (helo=[192.168.254.15])
+ by bombadil.infradead.org with esmtpsa (Exim 4.96 #2 (Red Hat Linux))
+ id 1rIzw1-00HXc3-1h; Thu, 28 Dec 2023 23:37:05 +0000
+Message-ID: <799b2484-9103-466b-ab86-483beadaad87@infradead.org>
+Date: Thu, 28 Dec 2023 15:37:05 -0800
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20231226195432.10891-4-rdunlap@infradead.org>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 3/4] drm/i915/guc: reconcile Excess struct member
+ kernel-doc warnings
+Content-Language: en-US
+To: Andi Shyti <andi.shyti@linux.intel.com>
+References: <20231226195432.10891-1-rdunlap@infradead.org>
+ <20231226195432.10891-3-rdunlap@infradead.org>
+ <ZY2lDJ4BkwO1AZGj@ashyti-mobl2.lan>
+From: Randy Dunlap <rdunlap@infradead.org>
+In-Reply-To: <ZY2lDJ4BkwO1AZGj@ashyti-mobl2.lan>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -67,28 +59,54 @@ Cc: intel-gfx@lists.freedesktop.org, Rodrigo Vivi <rodrigo.vivi@intel.com>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi Randy,
+Hi Andi,
 
-On Tue, Dec 26, 2023 at 11:54:32AM -0800, Randy Dunlap wrote:
-> Document nested struct members with full names as described in
-> Documentation/doc-guide/kernel-doc.rst.
+
+On 12/28/23 08:40, Andi Shyti wrote:
+> Hi Randy,
 > 
-> i915_perf_types.h:341: warning: Excess struct member 'ptr_lock' description in 'i915_perf_stream'
-> i915_perf_types.h:341: warning: Excess struct member 'head' description in 'i915_perf_stream'
-> i915_perf_types.h:341: warning: Excess struct member 'tail' description in 'i915_perf_stream'
-> 3 warnings as Errors
+> [...]
 > 
-> Signed-off-by: Randy Dunlap <rdunlap@infradead.org>
-> Cc: Jani Nikula <jani.nikula@linux.intel.com>
-> Cc: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
-> Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
-> Cc: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-> Cc: intel-gfx@lists.freedesktop.org
-> Cc: Jonathan Corbet <corbet@lwn.net>
-> Cc: dri-devel@lists.freedesktop.org
-> Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
+>> --- a/drivers/gpu/drm/i915/gt/uc/intel_guc.h
+>> +++ b/drivers/gpu/drm/i915/gt/uc/intel_guc.h
+>> @@ -105,61 +105,67 @@ struct intel_guc {
+>>  	 */
+> 
+> 
+> struct { } interrupts is missing here.
+> 
+>>  	struct {
+>>  		/**
+>> -		 * @lock: protects everything in submission_state,
+>> -		 * ce->guc_id.id, and ce->guc_id.ref when transitioning in and
+> 
+> [...]
+> 
+>> +		 * we start bypassing the schedule disable delay
+>>  		 */
+>>  		unsigned int sched_disable_gucid_threshold;
+>>  	} submission_state;
+> 
+> Here struct { } send_regs is missing
 
-Reviewed-by: Andi Shyti <andi.shyti@linux.intel.com>
+scripts/kernel-doc didn't report any problems with those, but it does
+appear (to me) to be a kernel-doc bug.  :(
 
-Thanks,
-Andi
+Thanks.
+
+> But as for this patch:
+> 
+> Reviewed-by: Andi Shyti <andi.shyti@linux.intel.com>
+> 
+> Thanks,
+> Andi
+> 
+>>  	struct {
+>>  		/**
+>> -		 * @lock: Lock protecting the below fields and the engine stats.
+>> +		 * @timestamp.lock: Lock protecting the below fields and
+> 
+> [...]
+
+-- 
+#Randy
