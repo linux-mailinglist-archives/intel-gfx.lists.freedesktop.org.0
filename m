@@ -1,49 +1,52 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8A4E981F79D
-	for <lists+intel-gfx@lfdr.de>; Thu, 28 Dec 2023 12:16:14 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id D050E81F9E6
+	for <lists+intel-gfx@lfdr.de>; Thu, 28 Dec 2023 17:21:20 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EF4F010E083;
-	Thu, 28 Dec 2023 11:16:11 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C2E7D10E0DE;
+	Thu, 28 Dec 2023 16:21:16 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0584710E083;
- Thu, 28 Dec 2023 11:16:10 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3E2E210E0DE;
+ Thu, 28 Dec 2023 16:21:15 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1703762171; x=1735298171;
- h=from:to:cc:subject:date:message-id:mime-version;
- bh=19Ojl5bDPVEokFYVcT38PKNoHAV7wiNJywhB4niWWiw=;
- b=Ja2FdiZR1kXLYn9ym2IDhY5RZSk+fJT5AUIAlSexp8Sv7fsBFTOmIUSz
- hYlbJ/kLG8AIXKoAKlOBtboeYKe43HjoyRaFJKsitQlxmroBuxK9N8imD
- lIghJQ2iHx2Yd6UXLNA6bevdc+Td6M2Vw5nEKObMtRp77IWaTJe7mYu7G
- mtepB91A9UW3nGhUOp3E1XlTtAjQPADAriH6qDFtRWGP8g6zTKAWn8evJ
- jLGnQ2LrU6nUapYtPgiFIzXZgdFG6+DovYOZbsGEEgmZrxxKdG0N4HhGM
- jGIQA/wL9ZR6FuhhQQAlWvn9lXAM5uSXwpXGlytOJ62wdhCQxMh1L8x+6 Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10936"; a="3833715"
-X-IronPort-AV: E=Sophos;i="6.04,311,1695711600"; 
-   d="scan'208";a="3833715"
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
- by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Dec 2023 03:16:10 -0800
+ t=1703780475; x=1735316475;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:in-reply-to;
+ bh=vPPwiSf/usejUsjALBFvqgyVM1AHjnr7aw+GHuW/3LA=;
+ b=ncXu2KjcoNLqSPIamF7ZEcT6RlZQKwd6WAwu8YPtk7eCGOOC27YLSVvd
+ 1OH0+3aHwuxvnlzIr/RUgow1fniIaisoP4u+aJlkiWJI8odH7J5BO6kOw
+ Xb72Fc6H27ab3m1pDiQ7hGg2MzBcTXSmK4qiNB+A/n9bJQ1ybadcX4MST
+ HSvYUp6j/kv9+CMfoJUl2pwRYafvlh5pdKMellJmNNplEq3nlCYWuF8zr
+ imB2WdCzK1plJZzxPVq7ZKYrPJXyfTaP+Tz9LluEJTLcG0k3qAf2b/I/b
+ PwKp8IYN5SbAPN0MjPAFVX6qPxDR7QKcxi6fYPahpSLOnpdW9LXwYTR1D w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10937"; a="10118872"
+X-IronPort-AV: E=Sophos;i="6.04,312,1695711600"; d="scan'208";a="10118872"
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+ by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 28 Dec 2023 08:21:14 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10936"; a="897175972"
-X-IronPort-AV: E=Sophos;i="6.04,311,1695711600"; d="scan'208";a="897175972"
-Received: from piotrfor-mobl.ger.corp.intel.com (HELO localhost)
- ([10.252.35.87])
- by fmsmga002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Dec 2023 03:16:06 -0800
-From: Jani Nikula <jani.nikula@intel.com>
-To: Dave Airlie <airlied@gmail.com>, Daniel Vetter <daniel.vetter@ffwll.ch>
-Subject: [PULL] drm-intel-fixes
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-Date: Thu, 28 Dec 2023 13:16:03 +0200
-Message-ID: <87cyuqk26k.fsf@intel.com>
+X-IronPort-AV: E=McAfee;i="6600,9927,10937"; a="812827906"
+X-IronPort-AV: E=Sophos;i="6.04,312,1695711600"; d="scan'208";a="812827906"
+Received: from ceyeghel-mobl.amr.corp.intel.com (HELO intel.com)
+ ([10.252.50.226])
+ by orsmga001-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 28 Dec 2023 08:21:11 -0800
+Date: Thu, 28 Dec 2023 17:21:07 +0100
+From: Andi Shyti <andi.shyti@linux.intel.com>
+To: Randy Dunlap <rdunlap@infradead.org>
+Subject: Re: [PATCH v2 1/4] drm/i915/gem: reconcile Excess struct member
+ kernel-doc warnings
+Message-ID: <ZY2gc0gaR5i1Yct9@ashyti-mobl2.lan>
+References: <20231226195432.10891-1-rdunlap@infradead.org>
 MIME-Version: 1.0
-Content-Type: text/plain
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20231226195432.10891-1-rdunlap@infradead.org>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -56,52 +59,31 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: dim-tools@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org, Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
+ Jonathan Corbet <corbet@lwn.net>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+Hi Randy,
 
-Hi Dave & Sima -
+On Tue, Dec 26, 2023 at 11:54:29AM -0800, Randy Dunlap wrote:
+> Document nested struct members with full names as described in
+> Documentation/doc-guide/kernel-doc.rst.
+> 
+> i915_gem_context_types.h:420: warning: Excess struct member 'lock' description in 'i915_gem_context'
+> 
+> Signed-off-by: Randy Dunlap <rdunlap@infradead.org>
+> Cc: Jani Nikula <jani.nikula@linux.intel.com>
+> Cc: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
+> Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
+> Cc: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+> Cc: intel-gfx@lists.freedesktop.org
+> Cc: Jonathan Corbet <corbet@lwn.net>
+> Cc: dri-devel@lists.freedesktop.org
+> Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
 
-A couple of more fixes towards v6.7.
+Reviewed-by: Andi Shyti <andi.shyti@linux.intel.com>
 
-drm-intel-fixes-2023-12-28:
-drm/i915 fixes for v6.7-rc8:
-- Fix bogus DPCD rev usage for DP phy test pattern setup
-- Fix handling of MMIO triggered reports in the OA buffer
-
-BR,
-Jani.
-
-The following changes since commit 861deac3b092f37b2c5e6871732f3e11486f7082:
-
-  Linux 6.7-rc7 (2023-12-23 16:25:56 -0800)
-
-are available in the Git repository at:
-
-  git://anongit.freedesktop.org/drm/drm-intel tags/drm-intel-fixes-2023-12-28
-
-for you to fetch changes up to ee11d2d37f5c05bd7bf5ccc820a58f48423d032b:
-
-  drm/i915/perf: Update handling of MMIO triggered reports (2023-12-27 12:50:15 +0200)
-
-----------------------------------------------------------------
-drm/i915 fixes for v6.7-rc8:
-- Fix bogus DPCD rev usage for DP phy test pattern setup
-- Fix handling of MMIO triggered reports in the OA buffer
-
-----------------------------------------------------------------
-Khaled Almahallawy (1):
-      drm/i915/dp: Fix passing the correct DPCD_REV for drm_dp_set_phy_test_pattern
-
-Umesh Nerlige Ramappa (1):
-      drm/i915/perf: Update handling of MMIO triggered reports
-
- drivers/gpu/drm/i915/display/intel_dp.c |  2 +-
- drivers/gpu/drm/i915/i915_perf.c        | 39 ++++++++++++++++++++++++++++-----
- 2 files changed, 35 insertions(+), 6 deletions(-)
-
--- 
-Jani Nikula, Intel
+Thanks,
+Andi
