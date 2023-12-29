@@ -2,51 +2,51 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 49D3A81FEE6
-	for <lists+intel-gfx@lfdr.de>; Fri, 29 Dec 2023 11:30:39 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7E15281FEF6
+	for <lists+intel-gfx@lfdr.de>; Fri, 29 Dec 2023 11:55:12 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CCB7110E29B;
-	Fri, 29 Dec 2023 10:30:37 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6F70E10E2C4;
+	Fri, 29 Dec 2023 10:55:09 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.115])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C281410E298;
- Fri, 29 Dec 2023 10:30:36 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2EFB910E29C
+ for <intel-gfx@lists.freedesktop.org>; Fri, 29 Dec 2023 10:55:08 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1703845836; x=1735381836;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=D2EEXpt9cJNWwEb8ul6Ytk09eSzHRilJiMj4pz9x06Q=;
- b=ECEMeM5VcoL8FjCr3mEuYh5prhjFx0Zvu/MInajDkuHRjyhptx81BHAn
- 0o8A6q9jEx8IVJy7TNgkbc5RdJFlBsn6LIVSlemCP95e70ljqpURZ6USv
- ND3bv6w5uBAdeDCWlm3HuWr2+auviJUPNqqlfQAcqSpHwob5TxmVLCMhG
- w+Z89+8y80RHwJQy5vU4ca97TzLV7SP0pVENQMWpTv3bVzp0gLE0/MHEM
- D8Am5MWNV9NV0AluaObhdP0zmBI95t7fEj5QVrs9oJD0+KXiIMsPknwea
- /mvhL/+JauR9iUqsNQoiNvp9Bf5Q+cJkAzAN/MdaeH70V0nQVvItOGpjK g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10937"; a="396364620"
-X-IronPort-AV: E=Sophos;i="6.04,314,1695711600"; d="scan'208";a="396364620"
-Received: from orsmga007.jf.intel.com ([10.7.209.58])
- by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Dec 2023 02:30:36 -0800
+ t=1703847308; x=1735383308;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version;
+ bh=qCqu6QPR5+aOA9mxVoKfhv7e7nthsC1z9mTxbyc3oU4=;
+ b=YFzqsUoU5uadc+vq+Csjgqb01WGZa0revVJLWwfZkXmbiMYfaDFaABVM
+ 5TVZxcPBD2LUtS6l/UXkcHkZeqBKmA4wevUAZm+eSnqFvXZS4IXvCLlO2
+ eMORA1ys/29bYb2FTmCcztEfhIHi7CWtDc40DLupPp5d80n+yqZG8L6CQ
+ NTiCGcmWwF5hYiawTP8GFKdlAm+aZcqUihVzJa3wcuL19h5iVEL/+qQE3
+ cS6PWmA31Fs9886v0kymEpNj+Gj3KvrpWuUPb3kSMLOxYwJlspdzfiQXl
+ Es86NK36YVtDWLkEIsGqdaz8l3s93k9WR7MClVydWGYpyq0LlNDBW/M5J Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10937"; a="18190648"
+X-IronPort-AV: E=Sophos;i="6.04,314,1695711600"; d="scan'208";a="18190648"
+Received: from fmsmga003.fm.intel.com ([10.253.24.29])
+ by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 29 Dec 2023 02:55:07 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10937"; a="771939379"
-X-IronPort-AV: E=Sophos;i="6.04,314,1695711600"; d="scan'208";a="771939379"
-Received: from jquigley-mobl.ger.corp.intel.com (HELO intel.com)
- ([10.252.51.13])
- by orsmga007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Dec 2023 02:30:01 -0800
-From: Andi Shyti <andi.shyti@linux.intel.com>
-To: intel-gfx <intel-gfx@lists.freedesktop.org>,
- dri-devel <dri-devel@lists.freedesktop.org>
-Subject: [PATCH v4 3/4] drm/i915: Use the new gt_to_guc() wrapper
-Date: Fri, 29 Dec 2023 11:27:33 +0100
-Message-ID: <20231229102734.674362-4-andi.shyti@linux.intel.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20231229102734.674362-1-andi.shyti@linux.intel.com>
-References: <20231229102734.674362-1-andi.shyti@linux.intel.com>
+X-IronPort-AV: E=McAfee;i="6600,9927,10937"; a="869373088"
+X-IronPort-AV: E=Sophos;i="6.04,314,1695711600"; d="scan'208";a="869373088"
+Received: from opipikin-mobl2.ger.corp.intel.com (HELO localhost)
+ ([10.252.35.124])
+ by fmsmga003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 29 Dec 2023 02:55:06 -0800
+From: Jani Nikula <jani.nikula@intel.com>
+To: Rodrigo Vivi <rodrigo.vivi@intel.com>
+Subject: Re: [PATCH] drm/i915/bios: remove some unused leftover declarations
+In-Reply-To: <ZYrspCNWTbXAFrk7@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20231221105414.1518267-1-jani.nikula@intel.com>
+ <ZYrspCNWTbXAFrk7@intel.com>
+Date: Fri, 29 Dec 2023 12:55:02 +0200
+Message-ID: <87bka9e0s9.fsf@intel.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,54 +59,53 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Nirmoy Das <nirmoy.das@intel.com>
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Get the guc reference from the gt using the gt_to_guc() helper.
+On Tue, 26 Dec 2023, Rodrigo Vivi <rodrigo.vivi@intel.com> wrote:
+> On Thu, Dec 21, 2023 at 12:54:14PM +0200, Jani Nikula wrote:
+>> Remove some unused declarations probably left behind after some
+>> refactoring.
+>
+> when you mention 'unused' I was wondering if we should move the
+> local functions to 'static', but then I notice they are 'inexistent'.
+>
+> Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
 
-Signed-off-by: Andi Shyti <andi.shyti@linux.intel.com>
-Reviewed-by: Nirmoy Das <nirmoy.das@intel.com>
----
- drivers/gpu/drm/i915/i915_debugfs_params.c               | 2 +-
- drivers/gpu/drm/i915/selftests/intel_scheduler_helpers.c | 4 ++--
- 2 files changed, 3 insertions(+), 3 deletions(-)
+Thanks, pushed to din.
 
-diff --git a/drivers/gpu/drm/i915/i915_debugfs_params.c b/drivers/gpu/drm/i915/i915_debugfs_params.c
-index 8bca02025e09..74b7f2fd8b57 100644
---- a/drivers/gpu/drm/i915/i915_debugfs_params.c
-+++ b/drivers/gpu/drm/i915/i915_debugfs_params.c
-@@ -43,7 +43,7 @@ static int notify_guc(struct drm_i915_private *i915)
- 
- 	for_each_gt(gt, i915, i) {
- 		if (intel_uc_uses_guc_submission(&gt->uc))
--			ret = intel_guc_global_policies_update(&gt->uc.guc);
-+			ret = intel_guc_global_policies_update(gt_to_guc(gt));
- 	}
- 
- 	return ret;
-diff --git a/drivers/gpu/drm/i915/selftests/intel_scheduler_helpers.c b/drivers/gpu/drm/i915/selftests/intel_scheduler_helpers.c
-index 2990dd4d4a0d..d9d8f0336702 100644
---- a/drivers/gpu/drm/i915/selftests/intel_scheduler_helpers.c
-+++ b/drivers/gpu/drm/i915/selftests/intel_scheduler_helpers.c
-@@ -65,7 +65,7 @@ int intel_selftest_modify_policy(struct intel_engine_cs *engine,
- 	if (!intel_engine_uses_guc(engine))
- 		return 0;
- 
--	err = intel_guc_global_policies_update(&engine->gt->uc.guc);
-+	err = intel_guc_global_policies_update(gt_to_guc(engine->gt));
- 	if (err)
- 		intel_selftest_restore_policy(engine, saved);
- 
-@@ -84,7 +84,7 @@ int intel_selftest_restore_policy(struct intel_engine_cs *engine,
- 	if (!intel_engine_uses_guc(engine))
- 		return 0;
- 
--	return intel_guc_global_policies_update(&engine->gt->uc.guc);
-+	return intel_guc_global_policies_update(gt_to_guc(engine->gt));
- }
- 
- int intel_selftest_wait_for_rq(struct i915_request *rq)
+BR,
+Jani.
+
+>
+>> 
+>> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+>> ---
+>>  drivers/gpu/drm/i915/display/intel_bios.h | 3 ---
+>>  1 file changed, 3 deletions(-)
+>> 
+>> diff --git a/drivers/gpu/drm/i915/display/intel_bios.h b/drivers/gpu/drm/i915/display/intel_bios.h
+>> index 49e24b7cf675..96673dc707e7 100644
+>> --- a/drivers/gpu/drm/i915/display/intel_bios.h
+>> +++ b/drivers/gpu/drm/i915/display/intel_bios.h
+>> @@ -246,13 +246,10 @@ bool intel_bios_is_valid_vbt(const void *buf, size_t size);
+>>  bool intel_bios_is_tv_present(struct drm_i915_private *dev_priv);
+>>  bool intel_bios_is_lvds_present(struct drm_i915_private *dev_priv, u8 *i2c_pin);
+>>  bool intel_bios_is_port_present(struct drm_i915_private *dev_priv, enum port port);
+>> -bool intel_bios_is_port_edp(struct drm_i915_private *dev_priv, enum port port);
+>>  bool intel_bios_is_dsi_present(struct drm_i915_private *dev_priv, enum port *port);
+>>  bool intel_bios_get_dsc_params(struct intel_encoder *encoder,
+>>  			       struct intel_crtc_state *crtc_state,
+>>  			       int dsc_max_bpc);
+>> -bool intel_bios_port_supports_typec_usb(struct drm_i915_private *i915, enum port port);
+>> -bool intel_bios_port_supports_tbt(struct drm_i915_private *i915, enum port port);
+>>  
+>>  const struct intel_bios_encoder_data *
+>>  intel_bios_encoder_data_lookup(struct drm_i915_private *i915, enum port port);
+>> -- 
+>> 2.39.2
+>> 
+
 -- 
-2.43.0
-
+Jani Nikula, Intel
