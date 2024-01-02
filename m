@@ -2,50 +2,48 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id E471782223C
-	for <lists+intel-gfx@lfdr.de>; Tue,  2 Jan 2024 20:45:20 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2AA6C8224A5
+	for <lists+intel-gfx@lfdr.de>; Tue,  2 Jan 2024 23:20:22 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6919010E148;
-	Tue,  2 Jan 2024 19:45:19 +0000 (UTC)
-X-Original-To: intel-gfx@lists.freedesktop.org
-Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.65])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E9A2110E148
- for <intel-gfx@lists.freedesktop.org>; Tue,  2 Jan 2024 19:45:17 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B6E0410E22D;
+	Tue,  2 Jan 2024 22:20:15 +0000 (UTC)
+X-Original-To: Intel-GFX@lists.freedesktop.org
+Delivered-To: Intel-GFX@lists.freedesktop.org
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9B35310E221;
+ Tue,  2 Jan 2024 22:20:13 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1704224717; x=1735760717;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version:content-transfer-encoding;
- bh=xFqegp7HeERxYrrwal82llRkmOE3XWvO9xvOJh5Yfc0=;
- b=a+dBs6nP8hMki/OpVydbyAZZ7WUVqVs5mxWZCG4phR1TSDuGZ3solS7/
- dATJqmGSGiHGn7O6aMFmDNF+Zg77TKP2nPcZRm7bFz6K+Mi7sf9Nev6ws
- OHjzR0f1LmRpGmqCOf1GdeinCFn75LuHmRdAMOmUS9D7W7VWEcr8RfKpT
- P4XT0GiHrbaRfFWEhSu6bjZGwVpAY+aiROdwy6DOFFCwdFWkx8To03Z0E
- foTZIwJWv5JiPhkcDFV3awRFHxK4SbE0WrI5iRNB2Y+2wYCHVjk7zABgf
- wvwBGg8VeAPy3TLGmZmlYtSe5LVShjF7o6CYVyUs99f6J1gbrkt4r6/Kq g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10941"; a="400719023"
-X-IronPort-AV: E=Sophos;i="6.04,325,1695711600"; d="scan'208";a="400719023"
+ t=1704234014; x=1735770014;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=xP8O99wKmbh+kQZU3ZD1ZyXh7v0LzQG+T1sU+ydo66I=;
+ b=WpizH9vXj3txg1Y8SUubsJ+gL48yfXyZncU6+o5OtWLvUnGyNxiJvqRz
+ 4I5JDNQlwnrzBK4XNTCoWoQlb1NnBM/TY2+ahrKZk0x94z0oedY31OG3W
+ msYaPZW35OBIRxOh/hJNMXaQM7jsNMhucQLU5PSbGaLbccQjwEGpjvLwN
+ 4UQACT66lc0RJ4Cud9vwf+jBE5KklW3cjxBeRukD269uTDpOyjuCq5KPg
+ xB38tT2Q10CeQfsnDlO8+UMXzXpnENEZvQXEZSJ2cMzirYKbS6CI6/mdA
+ NwXdu7zXiKN6XhWttTIj72wS/o1/ATToABNCLTaxmnAVCGUYkIzVaNwhV A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10941"; a="3700085"
+X-IronPort-AV: E=Sophos;i="6.04,326,1695711600"; 
+   d="scan'208";a="3700085"
 Received: from fmviesa002.fm.intel.com ([10.60.135.142])
- by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Jan 2024 11:45:02 -0800
+ by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 Jan 2024 14:20:14 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.04,325,1695711600"; d="scan'208";a="14268088"
-Received: from adent-mobl3.amr.corp.intel.com (HELO localhost) ([10.252.35.38])
- by fmviesa002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Jan 2024 11:45:00 -0800
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Juha-Pekka Heikkila <juhapekka.heikkila@gmail.com>,
- intel-gfx@lists.freedesktop.org
-Subject: Re: [PATCH] drm/xe/display: Disable aux ccs framebuffers
-In-Reply-To: <20240102182422.3823394-1-juhapekka.heikkila@gmail.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20240102182422.3823394-1-juhapekka.heikkila@gmail.com>
-Date: Tue, 02 Jan 2024 21:44:48 +0200
-Message-ID: <87il4b1pvz.fsf@intel.com>
+X-IronPort-AV: E=Sophos;i="6.04,326,1695711600"; d="scan'208";a="14297447"
+Received: from relo-linux-5.jf.intel.com ([10.165.21.152])
+ by fmviesa002.fm.intel.com with ESMTP; 02 Jan 2024 14:20:12 -0800
+From: John.C.Harrison@Intel.com
+To: Intel-GFX@Lists.FreeDesktop.Org
+Subject: [PATCH] drm/i915/huc: Allow for very slow HuC loading
+Date: Tue,  2 Jan 2024 14:22:02 -0800
+Message-ID: <20240102222202.310495-1-John.C.Harrison@Intel.com>
+X-Mailer: git-send-email 2.41.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
+Organization: Intel Corporation (UK) Ltd. - Co. Reg. #1134945 - Pipers Way,
+ Swindon SN3 1RJ
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -58,281 +56,161 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Oded Gabbay <ogabbay@kernel.org>, "Hellstrom,
- Thomas" <thomas.hellstrom@intel.com>,
- Lucas De Marchi <lucas.demarchi@intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>
+Cc: DRI-Devel@Lists.FreeDesktop.Org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, 02 Jan 2024, Juha-Pekka Heikkila <juhapekka.heikkila@gmail.com> wro=
-te:
-> Aux ccs framebuffers don't work on Xe driver hence disable them
-> from plane capabilities until they are fixed. Flat ccs framebuffers
-> work and they are left enabled. Here is separated plane capabilities
-> check on i915 so it can behave differencly depending on the driver.
+From: John Harrison <John.C.Harrison@Intel.com>
 
-Cc: Rodrigo and xe maintainers
+A failure to load the HuC is occasionally observed where the cause is
+believed to be a low GT frequency leading to very long load times.
 
-We need to figure out the proper workflow, the mailing lists to use, the
-subject prefix to use, the acks to require, etc, for changes touching
-both xe and i915.
+So a) increase the timeout so that the user still gets a working
+system even in the case of slow load. And b) report the frequency
+during the load to see if that is the cause of the slow down.
 
-I'd very much prefer changes to i915 display to be merged via
-drm-intel-next as always. For one thing, it'll take a while to sync
-stuff back from drm-xe-next to drm-intel-next, and most display
-development still happens on drm-intel-next.
+Also update the similar code on the GuC load to not use uncore->gt
+when there is a local gt available. The two should match, but no need
+for unnecessary de-referencing.
 
-But this patch can't be applied to drm-intel-next, because xe doesn't
-even exist on drm-intel-next yet...
+Signed-off-by: John Harrison <John.C.Harrison@Intel.com>
+---
+ drivers/gpu/drm/i915/gt/uc/intel_guc_fw.c | 10 ++--
+ drivers/gpu/drm/i915/gt/uc/intel_huc.c    | 64 ++++++++++++++++++++---
+ 2 files changed, 63 insertions(+), 11 deletions(-)
 
+diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_fw.c b/drivers/gpu/drm/i915/gt/uc/intel_guc_fw.c
+index 0f79cb6585182..52332bb143395 100644
+--- a/drivers/gpu/drm/i915/gt/uc/intel_guc_fw.c
++++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_fw.c
+@@ -184,7 +184,7 @@ static int guc_wait_ucode(struct intel_guc *guc)
+ 	 * in the seconds range. However, there is a limit on how long an
+ 	 * individual wait_for() can wait. So wrap it in a loop.
+ 	 */
+-	before_freq = intel_rps_read_actual_frequency(&uncore->gt->rps);
++	before_freq = intel_rps_read_actual_frequency(&gt->rps);
+ 	before = ktime_get();
+ 	for (count = 0; count < GUC_LOAD_RETRY_LIMIT; count++) {
+ 		ret = wait_for(guc_load_done(uncore, &status, &success), 1000);
+@@ -192,7 +192,7 @@ static int guc_wait_ucode(struct intel_guc *guc)
+ 			break;
+ 
+ 		guc_dbg(guc, "load still in progress, count = %d, freq = %dMHz, status = 0x%08X [0x%02X/%02X]\n",
+-			count, intel_rps_read_actual_frequency(&uncore->gt->rps), status,
++			count, intel_rps_read_actual_frequency(&gt->rps), status,
+ 			REG_FIELD_GET(GS_BOOTROM_MASK, status),
+ 			REG_FIELD_GET(GS_UKERNEL_MASK, status));
+ 	}
+@@ -204,7 +204,7 @@ static int guc_wait_ucode(struct intel_guc *guc)
+ 		u32 bootrom = REG_FIELD_GET(GS_BOOTROM_MASK, status);
+ 
+ 		guc_info(guc, "load failed: status = 0x%08X, time = %lldms, freq = %dMHz, ret = %d\n",
+-			 status, delta_ms, intel_rps_read_actual_frequency(&uncore->gt->rps), ret);
++			 status, delta_ms, intel_rps_read_actual_frequency(&gt->rps), ret);
+ 		guc_info(guc, "load failed: status: Reset = %d, BootROM = 0x%02X, UKernel = 0x%02X, MIA = 0x%02X, Auth = 0x%02X\n",
+ 			 REG_FIELD_GET(GS_MIA_IN_RESET, status),
+ 			 bootrom, ukernel,
+@@ -254,11 +254,11 @@ static int guc_wait_ucode(struct intel_guc *guc)
+ 		guc_warn(guc, "excessive init time: %lldms! [status = 0x%08X, count = %d, ret = %d]\n",
+ 			 delta_ms, status, count, ret);
+ 		guc_warn(guc, "excessive init time: [freq = %dMHz, before = %dMHz, perf_limit_reasons = 0x%08X]\n",
+-			 intel_rps_read_actual_frequency(&uncore->gt->rps), before_freq,
++			 intel_rps_read_actual_frequency(&gt->rps), before_freq,
+ 			 intel_uncore_read(uncore, intel_gt_perf_limit_reasons_reg(gt)));
+ 	} else {
+ 		guc_dbg(guc, "init took %lldms, freq = %dMHz, before = %dMHz, status = 0x%08X, count = %d, ret = %d\n",
+-			delta_ms, intel_rps_read_actual_frequency(&uncore->gt->rps),
++			delta_ms, intel_rps_read_actual_frequency(&gt->rps),
+ 			before_freq, status, count, ret);
+ 	}
+ 
+diff --git a/drivers/gpu/drm/i915/gt/uc/intel_huc.c b/drivers/gpu/drm/i915/gt/uc/intel_huc.c
+index ba9e07fc2b577..9ccec7de9628a 100644
+--- a/drivers/gpu/drm/i915/gt/uc/intel_huc.c
++++ b/drivers/gpu/drm/i915/gt/uc/intel_huc.c
+@@ -6,6 +6,7 @@
+ #include <linux/types.h>
+ 
+ #include "gt/intel_gt.h"
++#include "gt/intel_rps.h"
+ #include "intel_guc_reg.h"
+ #include "intel_huc.h"
+ #include "intel_huc_print.h"
+@@ -447,17 +448,68 @@ static const char *auth_mode_string(struct intel_huc *huc,
+ 	return partial ? "clear media" : "all workloads";
+ }
+ 
++/*
++ * Use a longer timeout for debug builds so that problems can be detected
++ * and analysed. But a shorter timeout for releases so that user's don't
++ * wait forever to find out there is a problem. Note that the only reason
++ * an end user should hit the timeout is in case of extreme thermal throttling.
++ * And a system that is that hot during boot is probably dead anyway!
++ */
++#if defined(CONFIG_DRM_I915_DEBUG_GEM)
++#define HUC_LOAD_RETRY_LIMIT   20
++#else
++#define HUC_LOAD_RETRY_LIMIT   3
++#endif
++
+ int intel_huc_wait_for_auth_complete(struct intel_huc *huc,
+ 				     enum intel_huc_authentication_type type)
+ {
+ 	struct intel_gt *gt = huc_to_gt(huc);
+-	int ret;
++	struct intel_uncore *uncore = gt->uncore;
++	ktime_t before, after, delta;
++	int ret, count;
++	u64 delta_ms;
++	u32 before_freq;
+ 
+-	ret = __intel_wait_for_register(gt->uncore,
+-					huc->status[type].reg,
+-					huc->status[type].mask,
+-					huc->status[type].value,
+-					2, 50, NULL);
++	/*
++	 * The KMD requests maximum frequency during driver load, however thermal
++	 * throttling can force the frequency down to minimum (although the board
++	 * really should never get that hot in real life!). IFWI  issues have been
++	 * seen to cause sporadic failures to grant the higher frequency. And at
++	 * minimum frequency, the load time can be in the seconds range. Note that
++	 * there is a limit on how long an individual wait_for() can wait. So wrap
++	 * it in a loop.
++	 */
++	before_freq = intel_rps_read_actual_frequency(&gt->rps);
++	before = ktime_get();
++	for (count = 0; count < HUC_LOAD_RETRY_LIMIT; count++) {
++		ret = __intel_wait_for_register(gt->uncore,
++						huc->status[type].reg,
++						huc->status[type].mask,
++						huc->status[type].value,
++						2, 1000, NULL);
++		if (!ret)
++			break;
++
++		huc_dbg(huc, "auth still in progress, count = %d, freq = %dMHz, status = 0x%08X\n",
++			count, intel_rps_read_actual_frequency(&gt->rps),
++			huc->status[type].reg.reg);
++	}
++	after = ktime_get();
++	delta = ktime_sub(after, before);
++	delta_ms = ktime_to_ms(delta);
++
++	if (delta_ms > 50) {
++		huc_warn(huc, "excessive auth time: %lldms! [status = 0x%08X, count = %d, ret = %d]\n",
++			 delta_ms, huc->status[type].reg.reg, count, ret);
++		huc_warn(huc, "excessive auth time: [freq = %dMHz, before = %dMHz, perf_limit_reasons = 0x%08X]\n",
++			 intel_rps_read_actual_frequency(&gt->rps), before_freq,
++			 intel_uncore_read(uncore, intel_gt_perf_limit_reasons_reg(gt)));
++	} else {
++		huc_dbg(huc, "auth took %lldms, freq = %dMHz, before = %dMHz, status = 0x%08X, count = %d, ret = %d\n",
++			delta_ms, intel_rps_read_actual_frequency(&gt->rps),
++			before_freq, huc->status[type].reg.reg, count, ret);
++	}
+ 
+ 	/* mark the load process as complete even if the wait failed */
+ 	delayed_huc_load_complete(huc);
+-- 
+2.41.0
 
-BR,
-Jani.
-
-
->
-> Closes: https://gitlab.freedesktop.org/drm/xe/kernel/-/issues/933
-> Signed-off-by: Juha-Pekka Heikkila <juhapekka.heikkila@gmail.com>
-> ---
->  drivers/gpu/drm/i915/Makefile                 |  1 +
->  .../gpu/drm/i915/display/intel_plane_caps.c   | 68 +++++++++++++++++++
->  .../gpu/drm/i915/display/intel_plane_caps.h   | 14 ++++
->  .../drm/i915/display/skl_universal_plane.c    | 61 +----------------
->  drivers/gpu/drm/xe/display/xe_plane_initial.c | 23 +++++++
->  5 files changed, 107 insertions(+), 60 deletions(-)
->  create mode 100644 drivers/gpu/drm/i915/display/intel_plane_caps.c
->  create mode 100644 drivers/gpu/drm/i915/display/intel_plane_caps.h
->
-> diff --git a/drivers/gpu/drm/i915/Makefile b/drivers/gpu/drm/i915/Makefile
-> index e777686190ca..c5e3c2dd0a01 100644
-> --- a/drivers/gpu/drm/i915/Makefile
-> +++ b/drivers/gpu/drm/i915/Makefile
-> @@ -302,6 +302,7 @@ i915-y +=3D \
->  	display/intel_overlay.o \
->  	display/intel_pch_display.o \
->  	display/intel_pch_refclk.o \
-> +	display/intel_plane_caps.o \
->  	display/intel_plane_initial.o \
->  	display/intel_pmdemand.o \
->  	display/intel_psr.o \
-> diff --git a/drivers/gpu/drm/i915/display/intel_plane_caps.c b/drivers/gp=
-u/drm/i915/display/intel_plane_caps.c
-> new file mode 100644
-> index 000000000000..6206ae11f296
-> --- /dev/null
-> +++ b/drivers/gpu/drm/i915/display/intel_plane_caps.c
-> @@ -0,0 +1,68 @@
-> +// SPDX-License-Identifier: MIT
-> +/*
-> + * Copyright =C2=A9 2024 Intel Corporation
-> + */
-> +
-> +#include "i915_drv.h"
-> +#include "intel_fb.h"
-> +#include "intel_plane_caps.h"
-> +
-> +static bool skl_plane_has_rc_ccs(struct drm_i915_private *i915,
-> +				 enum pipe pipe, enum plane_id plane_id)
-> +{
-> +	/* Wa_22011186057 */
-> +	if (IS_ALDERLAKE_P(i915) && IS_DISPLAY_STEP(i915, STEP_A0, STEP_B0))
-> +		return false;
-> +
-> +	if (DISPLAY_VER(i915) >=3D 11)
-> +		return true;
-> +
-> +	if (IS_GEMINILAKE(i915))
-> +		return pipe !=3D PIPE_C;
-> +
-> +	return pipe !=3D PIPE_C &&
-> +		(plane_id =3D=3D PLANE_PRIMARY ||
-> +		 plane_id =3D=3D PLANE_SPRITE0);
-> +}
-> +
-> +static bool gen12_plane_has_mc_ccs(struct drm_i915_private *i915,
-> +				   enum plane_id plane_id)
-> +{
-> +	if (DISPLAY_VER(i915) < 12)
-> +		return false;
-> +
-> +	/* Wa_14010477008 */
-> +	if (IS_DG1(i915) || IS_ROCKETLAKE(i915) ||
-> +	    (IS_TIGERLAKE(i915) && IS_DISPLAY_STEP(i915, STEP_A0, STEP_D0)))
-> +		return false;
-> +
-> +	/* Wa_22011186057 */
-> +	if (IS_ALDERLAKE_P(i915) && IS_DISPLAY_STEP(i915, STEP_A0, STEP_B0))
-> +		return false;
-> +
-> +	return plane_id < PLANE_SPRITE4;
-> +}
-> +
-> +u8 skl_get_plane_caps(struct drm_i915_private *i915,
-> +		      enum pipe pipe, enum plane_id plane_id)
-> +{
-> +	u8 caps =3D INTEL_PLANE_CAP_TILING_X;
-> +
-> +	if (DISPLAY_VER(i915) < 13 || IS_ALDERLAKE_P(i915))
-> +		caps |=3D INTEL_PLANE_CAP_TILING_Y;
-> +	if (DISPLAY_VER(i915) < 12)
-> +		caps |=3D INTEL_PLANE_CAP_TILING_Yf;
-> +	if (HAS_4TILE(i915))
-> +		caps |=3D INTEL_PLANE_CAP_TILING_4;
-> +
-> +	if (skl_plane_has_rc_ccs(i915, pipe, plane_id)) {
-> +		caps |=3D INTEL_PLANE_CAP_CCS_RC;
-> +		if (DISPLAY_VER(i915) >=3D 12)
-> +			caps |=3D INTEL_PLANE_CAP_CCS_RC_CC;
-> +	}
-> +
-> +	if (gen12_plane_has_mc_ccs(i915, plane_id))
-> +		caps |=3D INTEL_PLANE_CAP_CCS_MC;
-> +
-> +	return caps;
-> +}
-> diff --git a/drivers/gpu/drm/i915/display/intel_plane_caps.h b/drivers/gp=
-u/drm/i915/display/intel_plane_caps.h
-> new file mode 100644
-> index 000000000000..60a941c76f23
-> --- /dev/null
-> +++ b/drivers/gpu/drm/i915/display/intel_plane_caps.h
-> @@ -0,0 +1,14 @@
-> +/* SPDX-License-Identifier: MIT */
-> +/*
-> + * Copyright =C2=A9 2024 Intel Corporation
-> + */
-> +
-> +#ifndef __INTEL_PLANE_CAPS_H__
-> +#define __INTEL_PLANE_CAPS_H__
-> +
-> +#include "intel_display_types.h"
-> +
-> +u8 skl_get_plane_caps(struct drm_i915_private *i915,
-> +		      enum pipe pipe, enum plane_id plane_id);
-> +
-> +#endif /* __INTEL_PLANE_CAPS_H__ */
-> diff --git a/drivers/gpu/drm/i915/display/skl_universal_plane.c b/drivers=
-/gpu/drm/i915/display/skl_universal_plane.c
-> index 511dc1544854..f2fd3833c61d 100644
-> --- a/drivers/gpu/drm/i915/display/skl_universal_plane.c
-> +++ b/drivers/gpu/drm/i915/display/skl_universal_plane.c
-> @@ -17,6 +17,7 @@
->  #include "intel_fb.h"
->  #include "intel_fbc.h"
->  #include "intel_frontbuffer.h"
-> +#include "intel_plane_caps.h"
->  #include "intel_psr.h"
->  #include "intel_psr_regs.h"
->  #include "skl_scaler.h"
-> @@ -2242,66 +2243,6 @@ skl_plane_disable_flip_done(struct intel_plane *pl=
-ane)
->  	spin_unlock_irq(&i915->irq_lock);
->  }
->=20=20
-> -static bool skl_plane_has_rc_ccs(struct drm_i915_private *i915,
-> -				 enum pipe pipe, enum plane_id plane_id)
-> -{
-> -	/* Wa_22011186057 */
-> -	if (IS_ALDERLAKE_P(i915) && IS_DISPLAY_STEP(i915, STEP_A0, STEP_B0))
-> -		return false;
-> -
-> -	if (DISPLAY_VER(i915) >=3D 11)
-> -		return true;
-> -
-> -	if (IS_GEMINILAKE(i915))
-> -		return pipe !=3D PIPE_C;
-> -
-> -	return pipe !=3D PIPE_C &&
-> -		(plane_id =3D=3D PLANE_PRIMARY ||
-> -		 plane_id =3D=3D PLANE_SPRITE0);
-> -}
-> -
-> -static bool gen12_plane_has_mc_ccs(struct drm_i915_private *i915,
-> -				   enum plane_id plane_id)
-> -{
-> -	if (DISPLAY_VER(i915) < 12)
-> -		return false;
-> -
-> -	/* Wa_14010477008 */
-> -	if (IS_DG1(i915) || IS_ROCKETLAKE(i915) ||
-> -		(IS_TIGERLAKE(i915) && IS_DISPLAY_STEP(i915, STEP_A0, STEP_D0)))
-> -		return false;
-> -
-> -	/* Wa_22011186057 */
-> -	if (IS_ALDERLAKE_P(i915) && IS_DISPLAY_STEP(i915, STEP_A0, STEP_B0))
-> -		return false;
-> -
-> -	return plane_id < PLANE_SPRITE4;
-> -}
-> -
-> -static u8 skl_get_plane_caps(struct drm_i915_private *i915,
-> -			     enum pipe pipe, enum plane_id plane_id)
-> -{
-> -	u8 caps =3D INTEL_PLANE_CAP_TILING_X;
-> -
-> -	if (DISPLAY_VER(i915) < 13 || IS_ALDERLAKE_P(i915))
-> -		caps |=3D INTEL_PLANE_CAP_TILING_Y;
-> -	if (DISPLAY_VER(i915) < 12)
-> -		caps |=3D INTEL_PLANE_CAP_TILING_Yf;
-> -	if (HAS_4TILE(i915))
-> -		caps |=3D INTEL_PLANE_CAP_TILING_4;
-> -
-> -	if (skl_plane_has_rc_ccs(i915, pipe, plane_id)) {
-> -		caps |=3D INTEL_PLANE_CAP_CCS_RC;
-> -		if (DISPLAY_VER(i915) >=3D 12)
-> -			caps |=3D INTEL_PLANE_CAP_CCS_RC_CC;
-> -	}
-> -
-> -	if (gen12_plane_has_mc_ccs(i915, plane_id))
-> -		caps |=3D INTEL_PLANE_CAP_CCS_MC;
-> -
-> -	return caps;
-> -}
-> -
->  struct intel_plane *
->  skl_universal_plane_create(struct drm_i915_private *dev_priv,
->  			   enum pipe pipe, enum plane_id plane_id)
-> diff --git a/drivers/gpu/drm/xe/display/xe_plane_initial.c b/drivers/gpu/=
-drm/xe/display/xe_plane_initial.c
-> index ccf83c12b545..425c6e6744a6 100644
-> --- a/drivers/gpu/drm/xe/display/xe_plane_initial.c
-> +++ b/drivers/gpu/drm/xe/display/xe_plane_initial.c
-> @@ -15,6 +15,7 @@
->  #include "intel_fb.h"
->  #include "intel_fb_pin.h"
->  #include "intel_frontbuffer.h"
-> +#include "intel_plane_caps.h"
->  #include "intel_plane_initial.h"
->=20=20
->  static bool
-> @@ -289,3 +290,25 @@ void intel_crtc_initial_plane_config(struct intel_cr=
-tc *crtc)
->=20=20
->  	plane_config_fini(&plane_config);
->  }
-> +
-> +u8 skl_get_plane_caps(struct drm_i915_private *i915,
-> +		      enum pipe pipe, enum plane_id plane_id)
-> +{
-> +	u8 caps =3D INTEL_PLANE_CAP_TILING_X;
-> +
-> +	if (DISPLAY_VER(i915) < 13 || IS_ALDERLAKE_P(i915))
-> +		caps |=3D INTEL_PLANE_CAP_TILING_Y;
-> +	if (DISPLAY_VER(i915) < 12)
-> +		caps |=3D INTEL_PLANE_CAP_TILING_Yf;
-> +	if (HAS_4TILE(i915))
-> +		caps |=3D INTEL_PLANE_CAP_TILING_4;
-> +
-> +	if (HAS_FLAT_CCS(i915)) {
-> +		caps |=3D INTEL_PLANE_CAP_CCS_RC | INTEL_PLANE_CAP_CCS_RC_CC;
-> +
-> +		if (plane_id < PLANE_SPRITE4)
-> +			caps |=3D INTEL_PLANE_CAP_CCS_MC;
-> +	}
-> +
-> +	return caps;
-> +}
-
---=20
-Jani Nikula, Intel
