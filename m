@@ -1,49 +1,47 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 36CA2820206
-	for <lists+intel-gfx@lfdr.de>; Fri, 29 Dec 2023 22:51:50 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id B443F821613
+	for <lists+intel-gfx@lfdr.de>; Tue,  2 Jan 2024 02:02:52 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8442110E09F;
-	Fri, 29 Dec 2023 21:51:47 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1C00C10E06A;
+	Tue,  2 Jan 2024 01:02:49 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5510D10E09F;
- Fri, 29 Dec 2023 21:51:46 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2F96210E06A
+ for <intel-gfx@lists.freedesktop.org>; Tue,  2 Jan 2024 01:02:47 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1703886706; x=1735422706;
+ t=1704157367; x=1735693367;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=vP9bUocpPR7fR1WqH7QOWk2d/Rz/iok2oyHvUIpW/EQ=;
- b=lkgtODdikpxYnMKlKnXUzFgAQxiYOBWSToLZCLJlzw81uObj6/naFkXX
- gWt0ZaHktoYje4T2wLUm70VaTcKLxlDrc9OreEQsIBV5RI2J6lQaQGhaE
- qbn6oINtFrCWP4Gf4ayKqK5zltjyD2xECgcSfxiLlTo/GJJIDVJxd0jSU
- 4cN5wgSCiAPjnz+y0k5R9BtBaXJt7i/GxG3yQwPL18mFHocl3OftRWuyD
- TXLe+eqMh7PeD2Owm/L/KyXw+1XA8m3by/f1RLD2LibbOTA80ppM3vmny
- A7WUxkQ0Du8ORdNlNsTdCNHXSNMeWneG8AnimcLXWt94+g71gGJ8WzcQU g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10938"; a="3760634"
-X-IronPort-AV: E=Sophos;i="6.04,316,1695711600"; 
-   d="scan'208";a="3760634"
-Received: from orsmga005.jf.intel.com ([10.7.209.41])
- by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Dec 2023 13:51:45 -0800
+ bh=DUsbsbx3oQtcXS/qZ9Ula1v+bCJKq5G5sk8v35Spl8I=;
+ b=mr1nbA6wu53Z3cMInJ5pHHh5SBY/r3wOHfz57hZks+B1paCYrlNz1Xte
+ /fC5wTDLVfMyTlWFABDGFbIBD3daNP9SR498sByp7+6ojJCMB3vkCsw9H
+ 54qT0Ykbk+/oHRvOEpmP1om9CC2N3esx0ezeXpkEYMlDQiFvIfYMcQGBK
+ byF8K1zVNkJs5o5yvw4rvarkNZIVQiiB9G2mZcNVFNia6Z8LkaFW8fSyE
+ Rvae41uQ+Ni2wrKnCaCoan6Vo0+ypOxGidCtA+Dah5DoYZzn8wQjpcsbc
+ VrrlswmSKzMf9YTUHHMcgtRgAWd3of1WnRRvU+BbZiz57hnWZ9SbzkF2Z Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10940"; a="483009470"
+X-IronPort-AV: E=Sophos;i="6.04,323,1695711600"; d="scan'208";a="483009470"
+Received: from fmsmga008.fm.intel.com ([10.253.24.58])
+ by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 01 Jan 2024 17:02:46 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10938"; a="952172604"
-X-IronPort-AV: E=Sophos;i="6.04,316,1695711600"; d="scan'208";a="952172604"
-Received: from aalteres-desk.fm.intel.com ([10.80.57.53])
- by orsmga005.jf.intel.com with ESMTP; 29 Dec 2023 13:51:43 -0800
-From: Alan Previn <alan.previn.teres.alexis@intel.com>
+X-IronPort-AV: E=McAfee;i="6600,9927,10940"; a="845420331"
+X-IronPort-AV: E=Sophos;i="6.04,323,1695711600"; d="scan'208";a="845420331"
+Received: from osgc-linux-buildserver.sh.intel.com ([10.112.232.61])
+ by fmsmga008.fm.intel.com with ESMTP; 01 Jan 2024 17:02:44 -0800
+From: Shuicheng Lin <shuicheng.lin@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Subject: [PATCH v9 2/2] drm/i915/guc: Close deregister-context race against
- CT-loss
-Date: Fri, 29 Dec 2023 13:51:43 -0800
-Message-Id: <20231229215143.581619-1-alan.previn.teres.alexis@intel.com>
-X-Mailer: git-send-email 2.39.0
-In-Reply-To: <20231228045558.536585-3-alan.previn.teres.alexis@intel.com>
-References: <20231228045558.536585-3-alan.previn.teres.alexis@intel.com>
+Subject: [PATCH] drm/i915/guc: Change wa and EU_PERF_CNTL registers to MCR type
+Date: Tue,  2 Jan 2024 01:02:31 +0000
+Message-Id: <20240102010231.843778-1-shuicheng.lin@intel.com>
+X-Mailer: git-send-email 2.25.1
+In-Reply-To: <20231220234559.GD2808452@mdroper-desk1.amr.corp.intel.com>
+References: <20231220234559.GD2808452@mdroper-desk1.amr.corp.intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
@@ -58,234 +56,62 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Alan Previn <alan.previn.teres.alexis@intel.com>,
- Tvrtko Ursulin <tvrtko.ursulin@intel.com>, dri-devel@lists.freedesktop.org,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, Mousumi Jana <mousumi.jana@intel.com>
+Cc: Matt Roper <matthew.d.roper@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-If we are at the end of suspend or very early in resume
-its possible an async fence signal (via rcu_call) is triggered
-to free_engines which could lead us to the execution of
-the context destruction worker (after a prior worker flush).
+Some of the wa registers are MCR register, and EU_PERF_CNTL registers
+are MCR register.
+MCR register needs extra process for read/write.
+As normal MMIO register also could work with the MCR register process,
+change all wa registers to MCR type for code simplicity.
 
-Thus, when suspending, insert rcu_barriers at the start
-of i915_gem_suspend (part of driver's suspend prepare) and
-again in i915_gem_suspend_late so that all such cases have
-completed and context destruction list isn't missing anything.
-
-In destroyed_worker_func, close the race against CT-loss
-by checking that CT is enabled before calling into
-deregister_destroyed_contexts.
-
-Based on testing, guc_lrc_desc_unpin may still race and fail
-as we traverse the GuC's context-destroy list because the
-CT could be disabled right before calling GuC's CT send function.
-
-We've witnessed this race condition once every ~6000-8000
-suspend-resume cycles while ensuring workloads that render
-something onscreen is continuously started just before
-we suspend (and the workload is small enough to complete
-and trigger the queued engine/context free-up either very
-late in suspend or very early in resume).
-
-In such a case, we need to unroll the entire process because
-guc-lrc-unpin takes a gt wakeref which only gets released in
-the G2H IRQ reply that never comes through in this corner
-case. Without the unroll, the taken wakeref is leaked and will
-cascade into a kernel hang later at the tail end of suspend in
-this function:
-
-   intel_wakeref_wait_for_idle(&gt->wakeref)
-   (called by) - intel_gt_pm_wait_for_idle
-   (called by) - wait_for_suspend
-
-Thus, do an unroll in guc_lrc_desc_unpin and deregister_destroyed_-
-contexts if guc_lrc_desc_unpin fails due to CT send falure.
-When unrolling, keep the context in the GuC's destroy-list so
-it can get picked up on the next destroy worker invocation
-(if suspend aborted) or get fully purged as part of a GuC
-sanitization (end of suspend) or a reset flow.
-
-Signed-off-by: Alan Previn <alan.previn.teres.alexis@intel.com>
-Signed-off-by: Anshuman Gupta <anshuman.gupta@intel.com>
-Tested-by: Mousumi Jana <mousumi.jana@intel.com>
-Acked-by: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
-Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
+Signed-off-by: Shuicheng Lin <shuicheng.lin@intel.com>
+Cc: Matt Roper <matthew.d.roper@intel.com>
+Cc: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
 ---
- drivers/gpu/drm/i915/gem/i915_gem_pm.c        | 10 +++
- .../gpu/drm/i915/gt/uc/intel_guc_submission.c | 73 +++++++++++++++++--
- 2 files changed, 78 insertions(+), 5 deletions(-)
+ drivers/gpu/drm/i915/gt/uc/intel_guc_ads.c | 20 ++++++++++++--------
+ 1 file changed, 12 insertions(+), 8 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/gem/i915_gem_pm.c b/drivers/gpu/drm/i915/gem/i915_gem_pm.c
-index 0d812f4d787d..3b27218aabe2 100644
---- a/drivers/gpu/drm/i915/gem/i915_gem_pm.c
-+++ b/drivers/gpu/drm/i915/gem/i915_gem_pm.c
-@@ -28,6 +28,13 @@ void i915_gem_suspend(struct drm_i915_private *i915)
- 	GEM_TRACE("%s\n", dev_name(i915->drm.dev));
+diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_ads.c b/drivers/gpu/drm/i915/gt/uc/intel_guc_ads.c
+index 63724e17829a..5cbcbe9a4e93 100644
+--- a/drivers/gpu/drm/i915/gt/uc/intel_guc_ads.c
++++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_ads.c
+@@ -377,8 +377,12 @@ static int guc_mmio_regset_init(struct temp_regset *regset,
+ 	    CCS_MASK(engine->gt))
+ 		ret |= GUC_MMIO_REG_ADD(gt, regset, GEN12_RCU_MODE, true);
  
- 	intel_wakeref_auto(&i915->runtime_pm.userfault_wakeref, 0);
-+	/*
-+	 * On rare occasions, we've observed the fence completion triggers
-+	 * free_engines asynchronously via rcu_call. Ensure those are done.
-+	 * This path is only called on suspend, so it's an acceptable cost.
++	/* some of the WA registers are MCR registers. As it is safe to
++	 * use MCR form for non-MCR registers, for code simplicity, all
++	 * WA registers are added with MCR form.
 +	 */
-+	rcu_barrier();
-+
- 	flush_workqueue(i915->wq);
+ 	for (i = 0, wa = wal->list; i < wal->count; i++, wa++)
+-		ret |= GUC_MMIO_REG_ADD(gt, regset, wa->reg, wa->masked_reg);
++		ret |= GUC_MCR_REG_ADD(gt, regset, wa->mcr_reg, wa->masked_reg);
  
- 	/*
-@@ -160,6 +167,9 @@ void i915_gem_suspend_late(struct drm_i915_private *i915)
- 	 * machine in an unusable condition.
- 	 */
+ 	/* Be extra paranoid and include all whitelist registers. */
+ 	for (i = 0; i < RING_MAX_NONPRIV_SLOTS; i++)
+@@ -394,13 +398,13 @@ static int guc_mmio_regset_init(struct temp_regset *regset,
+ 			ret |= GUC_MMIO_REG_ADD(gt, regset, GEN9_LNCFCMOCS(i), false);
  
-+	/* Like i915_gem_suspend, flush tasks staged from fence triggers */
-+	rcu_barrier();
-+
- 	for_each_gt(gt, i915, i)
- 		intel_gt_suspend_late(gt);
- 
-diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c b/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
-index 9c64ae0766cc..cae637fc3ead 100644
---- a/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
-+++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
-@@ -236,6 +236,13 @@ set_context_destroyed(struct intel_context *ce)
- 	ce->guc_state.sched_state |= SCHED_STATE_DESTROYED;
- }
- 
-+static inline void
-+clr_context_destroyed(struct intel_context *ce)
-+{
-+	lockdep_assert_held(&ce->guc_state.lock);
-+	ce->guc_state.sched_state &= ~SCHED_STATE_DESTROYED;
-+}
-+
- static inline bool context_pending_disable(struct intel_context *ce)
- {
- 	return ce->guc_state.sched_state & SCHED_STATE_PENDING_DISABLE;
-@@ -613,6 +620,8 @@ static int guc_submission_send_busy_loop(struct intel_guc *guc,
- 					 u32 g2h_len_dw,
- 					 bool loop)
- {
-+	int ret;
-+
- 	/*
- 	 * We always loop when a send requires a reply (i.e. g2h_len_dw > 0),
- 	 * so we don't handle the case where we don't get a reply because we
-@@ -623,7 +632,11 @@ static int guc_submission_send_busy_loop(struct intel_guc *guc,
- 	if (g2h_len_dw)
- 		atomic_inc(&guc->outstanding_submission_g2h);
- 
--	return intel_guc_send_busy_loop(guc, action, len, g2h_len_dw, loop);
-+	ret = intel_guc_send_busy_loop(guc, action, len, g2h_len_dw, loop);
-+	if (ret)
-+		atomic_dec(&guc->outstanding_submission_g2h);
-+
-+	return ret;
- }
- 
- int intel_guc_wait_for_pending_msg(struct intel_guc *guc,
-@@ -3288,12 +3301,13 @@ static void guc_context_close(struct intel_context *ce)
- 	spin_unlock_irqrestore(&ce->guc_state.lock, flags);
- }
- 
--static inline void guc_lrc_desc_unpin(struct intel_context *ce)
-+static inline int guc_lrc_desc_unpin(struct intel_context *ce)
- {
- 	struct intel_guc *guc = ce_to_guc(ce);
- 	struct intel_gt *gt = guc_to_gt(guc);
- 	unsigned long flags;
- 	bool disabled;
-+	int ret;
- 
- 	GEM_BUG_ON(!intel_gt_pm_is_awake(gt));
- 	GEM_BUG_ON(!ctx_id_mapped(guc, ce->guc_id.id));
-@@ -3304,18 +3318,41 @@ static inline void guc_lrc_desc_unpin(struct intel_context *ce)
- 	spin_lock_irqsave(&ce->guc_state.lock, flags);
- 	disabled = submission_disabled(guc);
- 	if (likely(!disabled)) {
-+		/*
-+		 * Take a gt-pm ref and change context state to be destroyed.
-+		 * NOTE: a G2H IRQ that comes after will put this gt-pm ref back
-+		 */
- 		__intel_gt_pm_get(gt);
- 		set_context_destroyed(ce);
- 		clr_context_registered(ce);
- 	}
- 	spin_unlock_irqrestore(&ce->guc_state.lock, flags);
-+
- 	if (unlikely(disabled)) {
- 		release_guc_id(guc, ce);
- 		__guc_context_destroy(ce);
--		return;
-+		return 0;
+ 	if (GRAPHICS_VER(engine->i915) >= 12) {
+-		ret |= GUC_MMIO_REG_ADD(gt, regset, EU_PERF_CNTL0, false);
+-		ret |= GUC_MMIO_REG_ADD(gt, regset, EU_PERF_CNTL1, false);
+-		ret |= GUC_MMIO_REG_ADD(gt, regset, EU_PERF_CNTL2, false);
+-		ret |= GUC_MMIO_REG_ADD(gt, regset, EU_PERF_CNTL3, false);
+-		ret |= GUC_MMIO_REG_ADD(gt, regset, EU_PERF_CNTL4, false);
+-		ret |= GUC_MMIO_REG_ADD(gt, regset, EU_PERF_CNTL5, false);
+-		ret |= GUC_MMIO_REG_ADD(gt, regset, EU_PERF_CNTL6, false);
++		ret |= GUC_MCR_REG_ADD(gt, regset, MCR_REG(i915_mmio_reg_offset(EU_PERF_CNTL0)), false);
++		ret |= GUC_MCR_REG_ADD(gt, regset, MCR_REG(i915_mmio_reg_offset(EU_PERF_CNTL1)), false);
++		ret |= GUC_MCR_REG_ADD(gt, regset, MCR_REG(i915_mmio_reg_offset(EU_PERF_CNTL2)), false);
++		ret |= GUC_MCR_REG_ADD(gt, regset, MCR_REG(i915_mmio_reg_offset(EU_PERF_CNTL3)), false);
++		ret |= GUC_MCR_REG_ADD(gt, regset, MCR_REG(i915_mmio_reg_offset(EU_PERF_CNTL4)), false);
++		ret |= GUC_MCR_REG_ADD(gt, regset, MCR_REG(i915_mmio_reg_offset(EU_PERF_CNTL5)), false);
++		ret |= GUC_MCR_REG_ADD(gt, regset, MCR_REG(i915_mmio_reg_offset(EU_PERF_CNTL6)), false);
  	}
  
--	deregister_context(ce, ce->guc_id.id);
-+	/*
-+	 * GuC is active, lets destroy this context, but at this point we can still be racing
-+	 * with suspend, so we undo everything if the H2G fails in deregister_context so
-+	 * that GuC reset will find this context during clean up.
-+	 */
-+	ret = deregister_context(ce, ce->guc_id.id);
-+	if (ret) {
-+		spin_lock(&ce->guc_state.lock);
-+		set_context_registered(ce);
-+		clr_context_destroyed(ce);
-+		spin_unlock(&ce->guc_state.lock);
-+		/*
-+		 * As gt-pm is awake at function entry, intel_wakeref_put_async merely decrements
-+		 * the wakeref immediately but per function spec usage call this after unlock.
-+		 */
-+		intel_wakeref_put_async(&gt->wakeref);
-+	}
-+
-+	return ret;
- }
- 
- static void __guc_context_destroy(struct intel_context *ce)
-@@ -3383,7 +3420,22 @@ static void deregister_destroyed_contexts(struct intel_guc *guc)
- 		if (!ce)
- 			break;
- 
--		guc_lrc_desc_unpin(ce);
-+		if (guc_lrc_desc_unpin(ce)) {
-+			/*
-+			 * This means GuC's CT link severed mid-way which could happen
-+			 * in suspend-resume corner cases. In this case, put the
-+			 * context back into the destroyed_contexts list which will
-+			 * get picked up on the next context deregistration event or
-+			 * purged in a GuC sanitization event (reset/unload/wedged/...).
-+			 */
-+			spin_lock_irqsave(&guc->submission_state.lock, flags);
-+			list_add_tail(&ce->destroyed_link,
-+				      &guc->submission_state.destroyed_contexts);
-+			spin_unlock_irqrestore(&guc->submission_state.lock, flags);
-+			/* Bail now since the list might never be emptied if h2gs fail */
-+			break;
-+		}
-+
- 	}
- }
- 
-@@ -3394,6 +3446,17 @@ static void destroyed_worker_func(struct work_struct *w)
- 	struct intel_gt *gt = guc_to_gt(guc);
- 	intel_wakeref_t wakeref;
- 
-+	/*
-+	 * In rare cases we can get here via async context-free fence-signals that
-+	 * come very late in suspend flow or very early in resume flows. In these
-+	 * cases, GuC won't be ready but just skipping it here is fine as these
-+	 * pending-destroy-contexts get destroyed totally at GuC reset time at the
-+	 * end of suspend.. OR.. this worker can be picked up later on the next
-+	 * context destruction trigger after resume-completes
-+	 */
-+	if (!intel_guc_is_ready(guc))
-+		return;
-+
- 	with_intel_gt_pm(gt, wakeref)
- 		deregister_destroyed_contexts(guc);
- }
+ 	return ret ? -1 : 0;
 -- 
-2.39.0
+2.25.1
 
