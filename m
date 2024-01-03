@@ -1,49 +1,46 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id E5F6582307F
-	for <lists+intel-gfx@lfdr.de>; Wed,  3 Jan 2024 16:26:03 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 61203823081
+	for <lists+intel-gfx@lfdr.de>; Wed,  3 Jan 2024 16:26:30 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EC35C10E2CA;
-	Wed,  3 Jan 2024 15:26:00 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BDB0210E329;
+	Wed,  3 Jan 2024 15:26:28 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.65])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5847610E2CA
- for <intel-gfx@lists.freedesktop.org>; Wed,  3 Jan 2024 15:26:00 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BE4AC10E329
+ for <intel-gfx@lists.freedesktop.org>; Wed,  3 Jan 2024 15:26:27 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1704295560; x=1735831560;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=LHQIFrxGfqx/3l6iBSBykIzib40A2KS/i7LNQto6h1Y=;
- b=eEX6TL8Jry2ZwoMhmairlYyHvtjSGjBb3gn/+hoBX/HB7eQOdcedF+JT
- vu9KBQMKMfwsiF4y2RF0bHvpTCkll7dVggc9dfdh4sXe9lasee9kCM0n+
- pnf80hbdG8/PI2ggLahjOuJpktEZ1t/69FJAXe2A7Vbl/IBq9HuGtn43+
- 4l1pqy8bwhEYf7dk/+Fqet6Ps2cg6iCgLTyp67WPcegGjveSe+1G4bgAB
- vqD93/3F14USL2gASaBzgFKum/9Dr3eft1GR8rsd8se0zk3QJnFtnxgCf
- qvR68CuBT2TRu5iF8vYoL+pkU2lgn+qcD1ZmewWZsyOSoRCImnMnIB4Vw g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10942"; a="400834327"
-X-IronPort-AV: E=Sophos;i="6.04,327,1695711600"; d="scan'208";a="400834327"
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
- by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Jan 2024 07:26:00 -0800
+ t=1704295588; x=1735831588;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=rsp30gJ/SutkecwfZ8KadXfnKusiBrUZbINGz50Ptng=;
+ b=T/LfQMeUenD1bDJcOCVAvWqozQjAHI9tCD13dFidoD8J06YDs7umPqaT
+ Meb9lf7Dwl6O8WXx9ey7DWVH7k9UrOg5J1BxIHM4z2xOF9UJhosHxx9gE
+ EWNJOS0za/2hQDkbKCcNMoI8tBhXRXGWbd49/ZwUiswLHFF8A1tNd+wdj
+ f0evNSXkOZ4XY7jszb6YbLiwoIQZwmJYbUo5tecQTPyLYNW6+THqbNQpv
+ LGIz7b4oQTGnbKFJDuG9OHGbW3Ev6qhczzUDPBCqFrOL1B6WLBN2YqFtS
+ 913E4pg24pPhegl8BxqLx2I/burj7YhH6ztypnV7Omw0TSeoWf98904Ly A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10942"; a="3826070"
+X-IronPort-AV: E=Sophos;i="6.04,327,1695711600"; 
+   d="scan'208";a="3826070"
+Received: from fmviesa001.fm.intel.com ([10.60.135.141])
+ by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 03 Jan 2024 07:26:27 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10942"; a="814287314"
-X-IronPort-AV: E=Sophos;i="6.04,327,1695711600"; d="scan'208";a="814287314"
-Received: from ideak-desk.fi.intel.com ([10.237.72.78])
- by orsmga001-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Jan 2024 07:25:58 -0800
-From: Imre Deak <imre.deak@intel.com>
+X-IronPort-AV: E=Sophos;i="6.04,327,1695711600"; d="scan'208";a="22145631"
+Received: from josouza-mobl2.bz.intel.com ([10.87.243.88])
+ by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 03 Jan 2024 07:26:26 -0800
+From: =?UTF-8?q?Jos=C3=A9=20Roberto=20de=20Souza?= <jose.souza@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Subject: [PATCH v2] drm/i915/dp: Fix the PSR debugfs entries wrt. MST
- connectors
-Date: Wed,  3 Jan 2024 17:26:09 +0200
-Message-Id: <20240103152609.2434100-1-imre.deak@intel.com>
-X-Mailer: git-send-email 2.39.2
-In-Reply-To: <20240103110029.2408342-1-imre.deak@intel.com>
-References: <20240103110029.2408342-1-imre.deak@intel.com>
+Subject: [PATCH] drm/i915: Disable DSB in Xe KMD
+Date: Wed,  3 Jan 2024 07:26:18 -0800
+Message-ID: <20240103152618.93488-1-jose.souza@intel.com>
+X-Mailer: git-send-email 2.43.0
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
@@ -59,56 +56,62 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-MST connectors don't have a static attached encoder, as their encoder
-can change depending on the pipe they use; so the encoder for an MST
-connector can't be retrieved using intel_dp_attached_encoder() (which
-may return NULL for MST). Most of the PSR debugfs entries depend on a
-static connector -> encoder mapping which is only true for eDP and SST
-DP connectors and not for MST. These debugfs entries were enabled for
-MST connectors as well recently to provide PR information for them, but
-handling MST connectors needs more changes.
+Often getting DBS overflows when starting Xorg or Wayland compositor
+when running Xe KMD.
+Issue was reported but nothing was done, so disabling DSB as whole
+until properly fixed.
 
-Fix this by not adding for now the PSR entries on MST connectors. To
-make things more uniform add the entries for SST connectors on all
-platforms, not just on platforms supporting DP2.0.
-
-v2:
-- Keep adding the entries for SST connectors. (Jouni)
-- Add a TODO: comment for MST support.
-
-Fixes: ef75c25e8fed ("drm/i915/panelreplay: Debugfs support for panel replay")
-Closes: https://gitlab.freedesktop.org/drm/intel/-/issues/9850
+Link: https://gitlab.freedesktop.org/drm/xe/kernel/-/issues/989
+Link: https://gitlab.freedesktop.org/drm/xe/kernel/-/issues/1031
+Link: https://gitlab.freedesktop.org/drm/xe/kernel/-/issues/1072
 Cc: Animesh Manna <animesh.manna@intel.com>
-Cc: Jouni Högander <jouni.hogander@intel.com>
-Signed-off-by: Imre Deak <imre.deak@intel.com>
+Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
+Signed-off-by: José Roberto de Souza <jose.souza@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_psr.c | 10 +++++-----
- 1 file changed, 5 insertions(+), 5 deletions(-)
+ drivers/gpu/drm/i915/display/intel_dsb.c | 5 +++++
+ 1 file changed, 5 insertions(+)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_psr.c b/drivers/gpu/drm/i915/display/intel_psr.c
-index 494d08817d71e..54120b45958b0 100644
---- a/drivers/gpu/drm/i915/display/intel_psr.c
-+++ b/drivers/gpu/drm/i915/display/intel_psr.c
-@@ -3310,11 +3310,11 @@ void intel_psr_connector_debugfs_add(struct intel_connector *connector)
- 	struct drm_i915_private *i915 = to_i915(connector->base.dev);
- 	struct dentry *root = connector->base.debugfs_entry;
+diff --git a/drivers/gpu/drm/i915/display/intel_dsb.c b/drivers/gpu/drm/i915/display/intel_dsb.c
+index 482c28b5c2de5..bc11c447afe03 100644
+--- a/drivers/gpu/drm/i915/display/intel_dsb.c
++++ b/drivers/gpu/drm/i915/display/intel_dsb.c
+@@ -321,6 +321,7 @@ void intel_dsb_finish(struct intel_dsb *dsb)
+ 	intel_dsb_buffer_flush_map(&dsb->dsb_buf);
+ }
  
--	if (connector->base.connector_type != DRM_MODE_CONNECTOR_eDP) {
--		if (!(HAS_DP20(i915) &&
--		      connector->base.connector_type == DRM_MODE_CONNECTOR_DisplayPort))
--			return;
--	}
-+	/* TODO: Add support for MST connectors as well. */
-+	if ((connector->base.connector_type != DRM_MODE_CONNECTOR_eDP &&
-+	     connector->base.connector_type != DRM_MODE_CONNECTOR_DisplayPort) ||
-+	    connector->mst_port)
-+		return;
++#ifdef I915
+ static int intel_dsb_dewake_scanline(const struct intel_crtc_state *crtc_state)
+ {
+ 	struct drm_i915_private *i915 = to_i915(crtc_state->uapi.crtc->dev);
+@@ -339,6 +340,7 @@ static int intel_dsb_dewake_scanline(const struct intel_crtc_state *crtc_state)
  
- 	debugfs_create_file("i915_psr_sink_status", 0444, root,
- 			    connector, &i915_psr_sink_status_fops);
+ 	return max(0, vblank_start - intel_usecs_to_scanlines(adjusted_mode, latency));
+ }
++#endif
+ 
+ static void _intel_dsb_commit(struct intel_dsb *dsb, u32 ctrl,
+ 			      int dewake_scanline)
+@@ -444,6 +446,8 @@ void intel_dsb_wait(struct intel_dsb *dsb)
+ struct intel_dsb *intel_dsb_prepare(const struct intel_crtc_state *crtc_state,
+ 				    unsigned int max_cmds)
+ {
++	/* TODO: DSB is broken in Xe KMD, so disabling it until fixed */
++#ifdef I915
+ 	struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
+ 	struct drm_i915_private *i915 = to_i915(crtc->base.dev);
+ 	intel_wakeref_t wakeref;
+@@ -484,6 +488,7 @@ struct intel_dsb *intel_dsb_prepare(const struct intel_crtc_state *crtc_state,
+ 		      "[CRTC:%d:%s] DSB %d queue setup failed, will fallback to MMIO for display HW programming\n",
+ 		      crtc->base.base.id, crtc->base.name, DSB1);
+ 
++#endif
+ 	return NULL;
+ }
+ 
 -- 
-2.39.2
+2.43.0
 
