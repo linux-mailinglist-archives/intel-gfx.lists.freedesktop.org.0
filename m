@@ -1,54 +1,67 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id B6598823186
-	for <lists+intel-gfx@lfdr.de>; Wed,  3 Jan 2024 17:50:31 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 47F6982330C
+	for <lists+intel-gfx@lfdr.de>; Wed,  3 Jan 2024 18:15:14 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A59BF10E32E;
-	Wed,  3 Jan 2024 16:50:29 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6203410E32C;
+	Wed,  3 Jan 2024 17:15:06 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.24])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 871BC10E32E
- for <intel-gfx@lists.freedesktop.org>; Wed,  3 Jan 2024 16:50:28 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1704300628; x=1735836628;
- h=date:from:to:cc:subject:message-id:reply-to:references:
- mime-version:in-reply-to;
- bh=NNZDJP3uc3YFD2zjFKJaxQUdQhovYL0lTBi5bOt+OY4=;
- b=Er/TBLMMHumuoQ8np2dqbYj9v/qXDWrTGVrbNWZB/Z4Xvs0bezCfnHOB
- 1ClejfQufZuIKCZMB9yArk9QiQarzAngCqe6aNcMtEvp61FKKUfR3H+6W
- i8dwHtuRIeGM8+7+G3YZIT3HXkfz5IDiG/qgMsSIkXzT2jS7ePBesAzBK
- oOatyUhKQtnvYCozh71e16dxp0kk4X+mpzFWeBuLxmzBShk+6Zm/d7kZL
- xDA9HDNfPq35n6en4ep1pgG2FW+CbkBsQdUc0e1uCiWxPhNlqBc2SSdYr
- iqLdHxjBBlNT5Z55sAtFN3NFltZk3zrQ0SeKEkz3LJeaICkqNpgJYnwV8 Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10942"; a="399807663"
-X-IronPort-AV: E=Sophos;i="6.04,328,1695711600"; d="scan'208";a="399807663"
-Received: from fmsmga003.fm.intel.com ([10.253.24.29])
- by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Jan 2024 08:50:28 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10942"; a="870612420"
-X-IronPort-AV: E=Sophos;i="6.04,328,1695711600"; d="scan'208";a="870612420"
-Received: from ideak-desk.fi.intel.com ([10.237.72.78])
- by fmsmga003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Jan 2024 08:50:26 -0800
-Date: Wed, 3 Jan 2024 18:50:37 +0200
-From: Imre Deak <imre.deak@intel.com>
-To: "Sripada, Radhakrishna" <radhakrishna.sripada@intel.com>
-Subject: Re: [PATCH v2 4/4] drm/i915: Separate tc check for legacy and non
- legacy tc phys
-Message-ID: <ZZWQXc9NAXyinPjO@ideak-desk.fi.intel.com>
-References: <20231220221341.3248508-1-radhakrishna.sripada@intel.com>
- <20231220221341.3248508-5-radhakrishna.sripada@intel.com>
- <ZYV2Zri+2ZlAFiIK@ideak-desk.fi.intel.com>
- <DM4PR11MB59716E93415BD6D650CC85DE8794A@DM4PR11MB5971.namprd11.prod.outlook.com>
+Received: from mail-yb1-xb31.google.com (mail-yb1-xb31.google.com
+ [IPv6:2607:f8b0:4864:20::b31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3149910E0CC
+ for <intel-gfx@lists.freedesktop.org>; Wed,  3 Jan 2024 17:15:04 +0000 (UTC)
+Received: by mail-yb1-xb31.google.com with SMTP id
+ 3f1490d57ef6-dbdabb23e91so5238021276.3
+ for <intel-gfx@lists.freedesktop.org>; Wed, 03 Jan 2024 09:15:04 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=raspberrypi.com; s=google; t=1704302103; x=1704906903;
+ darn=lists.freedesktop.org; 
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=v6UmRXAQluppzFow4ZjI3gs+x7tGXMy7iMXQ0B/VSQw=;
+ b=MVBAlewuX863wkF0CD7sqox3IfaTpO4nmiJ09aVwLBZXRX9/3RbGfjBLS4fPRyUjqI
+ 2Mt3Vz2kyD9S4htVO/VrR4N9og+vAjxR85xhCgo5lmikZMxC7mjC5+VJgS3dEuT2Upf/
+ Q04CfRMpQNosXk94SAq2shqnPHBYk5PJbn0/HKlYiUZQ7BqoJLNXHoAQzT7PgQNAyvNc
+ VjkclnAttV+nez79oSWTKLyEl/LKCt/WLjjlNfCep0116sQeV7nMuirdPkY3v1bGsEPc
+ G6XZuM7bFgrCHgbbzZ60MFLi50Rq7QRWSxeXI1kEEW6oqKC4UGYgrkq2xUg3qE7XD1FP
+ TpNQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1704302103; x=1704906903;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+ :subject:date:message-id:reply-to;
+ bh=v6UmRXAQluppzFow4ZjI3gs+x7tGXMy7iMXQ0B/VSQw=;
+ b=CBEU1DkzgKkVvg1qPrs6+pVpNOdcZ/XNGgST+arNBMmNuBnUnAI67huW2W/5u/HNza
+ Ess+FumJ51Npp9MaQEVbSThbQHSZx5Y1+QTRew9s1WOLa6zoxDeExUSjwWj1/7kvj04B
+ CJ34LPks1E25QnYobGrFfoTccpMI2RezhUZSvNJdcDPwPTnr76UOP6RqkLdWGjzk+nm9
+ i92rmDHfuhjWjgBb9oJfTQT49u5XTVobBu+YkLlbQiQFHCbeIonUp5pEqukadTlb/yaj
+ Vu+A9Lz+XBUtcmSFGUAVlLdtIpXt/0I08b5EiEP7nos/dhOnfs36Kckz5/sBLtHawE8D
+ g/eA==
+X-Gm-Message-State: AOJu0Yw1bNBm4iR1S/VNa2m4QZakmAWN2pkOoJ0s0MZMEiRVRR4leTYP
+ MccGNE+malfuJMFgvsnKtRizj/ValtVEIkTDBMZ841l6XR8w3A==
+X-Google-Smtp-Source: AGHT+IGOT3uG+incdyB4GWwhyo7kHMRMx4wOGrZilibZrh47m9ihFDTgfUHGv4t2TgNqGVjLEj5P9KEnggAalTz/Hzo=
+X-Received: by 2002:a5b:bc2:0:b0:dbe:9d10:a9af with SMTP id
+ c2-20020a5b0bc2000000b00dbe9d10a9afmr994225ybr.33.1704302103097; Wed, 03 Jan
+ 2024 09:15:03 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <DM4PR11MB59716E93415BD6D650CC85DE8794A@DM4PR11MB5971.namprd11.prod.outlook.com>
+References: <20220728-rpi-analog-tv-properties-v9-0-24b168e5bcd5@cerno.tech>
+ <20220728-rpi-analog-tv-properties-v9-9-24b168e5bcd5@cerno.tech>
+ <CAPY8ntD4oz9A1H7Ek1YSLRicLprz1ev5YeAqP2Ah=DMPk84KRQ@mail.gmail.com>
+ <z5mywwtyboycdoqhayfuqjobr53jajgaft5ikfdkt77tnm7bhg@d4gjmlqpnnrt>
+ <CAPY8ntB0V2yRWVnr6HYby0g2seDL5P03iO+7E_TLa3niPGSfPw@mail.gmail.com>
+In-Reply-To: <CAPY8ntB0V2yRWVnr6HYby0g2seDL5P03iO+7E_TLa3niPGSfPw@mail.gmail.com>
+From: Dave Stevenson <dave.stevenson@raspberrypi.com>
+Date: Wed, 3 Jan 2024 17:14:46 +0000
+Message-ID: <CAPY8ntCdsvLvFm1fezQamKibbcsQoOCNc2nBsvj6vhLH3s0udw@mail.gmail.com>
+Subject: Re: [PATCH v9 09/25] drm/modes: Move named modes parsing to a
+ separate function
+To: Maxime Ripard <maxime@cerno.tech>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,168 +74,244 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: imre.deak@intel.com
-Cc: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
+Cc: Karol Herbst <kherbst@redhat.com>, David Airlie <airlied@linux.ie>,
+ nouveau@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ Phil Elwell <phil@raspberrypi.com>, Samuel Holland <samuel@sholland.org>,
+ Jernej Skrabec <jernej.skrabec@gmail.com>, Chen-Yu Tsai <wens@csie.org>,
+ Geert Uytterhoeven <geert@linux-m68k.org>, linux-sunxi@lists.linux.dev,
+ Daniel Vetter <daniel@ffwll.ch>, intel-gfx@lists.freedesktop.org,
+ Hans de Goede <hdegoede@redhat.com>, Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ linux-arm-kernel@lists.infradead.org, Dom Cobley <dom@raspberrypi.com>,
+ linux-kernel@vger.kernel.org,
+ Mateusz Kwiatkowski <kfyatek+publicgit@gmail.com>,
+ =?UTF-8?Q?Noralf_Tr=C3=B8nnes?= <noralf@tronnes.org>,
+ Thomas Zimmermann <tzimmermann@suse.de>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, Dec 22, 2023 at 09:47:49PM +0200, Sripada, Radhakrishna wrote:
-> Hi Imre,
-> 
-> I have question related to tc legacy handling. I am looking in the context of discrete cards.
-> 
-> > -----Original Message-----
-> > From: Deak, Imre <imre.deak@intel.com>
-> > Sent: Friday, December 22, 2023 3:44 AM
-> > To: Sripada, Radhakrishna <radhakrishna.sripada@intel.com>
-> > Cc: intel-gfx@lists.freedesktop.org
-> > Subject: Re: [PATCH v2 4/4] drm/i915: Separate tc check for legacy and non
-> > legacy tc phys
-> >
-> > On Wed, Dec 20, 2023 at 02:13:41PM -0800, Radhakrishna Sripada wrote:
-> > > Starting MTL and DG2 if a phy is not marked as USB-typeC or TBT capable
-> > > by vbt  we should not consider it as a Legacy type-c phy.
-> > >
-> > > The concept of Legacy-tc existed in platforms from Icelake to Alder lake
-> > > where an external FIA can be routed to one of the phy's thus making the phy
-> > > tc capable without being marked in the vbt.
-> > >
-> > > Discrete cards have native ports and client products post MTL have a 1:1
-> > > mapping with type-C subsystem which is advertised by the bios. So rely on
-> > > the vbt info regarding type-c capability.
-> > >
-> > > Signed-off-by: Radhakrishna Sripada <radhakrishna.sripada@intel.com>
-> > > ---
-> > >  drivers/gpu/drm/i915/display/intel_ddi.c      |  2 +-
-> > >  drivers/gpu/drm/i915/display/intel_display.c  | 29 ++++++++++++-------
-> > >  .../drm/i915/display/intel_display_device.h   |  1 +
-> > >  3 files changed, 21 insertions(+), 11 deletions(-)
-> > >
-> > > diff --git a/drivers/gpu/drm/i915/display/intel_ddi.c
-> > b/drivers/gpu/drm/i915/display/intel_ddi.c
-> > > index 12a29363e5df..7d5b95f97d5f 100644
-> > > --- a/drivers/gpu/drm/i915/display/intel_ddi.c
-> > > +++ b/drivers/gpu/drm/i915/display/intel_ddi.c
-> > > @@ -5100,7 +5100,7 @@ void intel_ddi_init(struct drm_i915_private
-> > *dev_priv,
-> > >     }
-> > >
-> > >     if (intel_phy_is_tc(dev_priv, phy)) {
-> > > -           bool is_legacy =
-> > > +           bool is_legacy = HAS_LEGACY_TC(dev_priv) &&
-> >
-> > This doesn't make sense to me. PHYs are either TC or non-TC (aka combo
-> > PHY) and TC PHYs can be configured to work either in legacy (a TC PHY
-> > wired to a native DP connector) or non-legacy mode (a TC PHY wired to a
-> > TC connector). So this would break the functionality on MTL native DP
-> > connectors and all future platforms I looked at which also support this.
-> 
+On Wed, 3 Jan 2024 at 14:02, Dave Stevenson
+<dave.stevenson@raspberrypi.com> wrote:
 >
-> I understand. I want to figure out a way to determine if a phy is
-> connected to FIA. Like in DG2, the phy's are not connected to FIA. I
-> am assuming that will be the case for all future discrete cards as
-> well. So instead of looking/building an if-else ladder for the phy
-> check, is there something that we can rely on viz. vbt, register etc.
-> to determine if FIA is connected to a phy?
+> Hi Maxime
+>
+> On Wed, 3 Jan 2024 at 13:33, Maxime Ripard <maxime@cerno.tech> wrote:
+> >
+> > Hi Dave,
+> >
+> > Happy new year :)
+>
+> And to you.
+>
+> > On Tue, Jan 02, 2024 at 03:12:26PM +0000, Dave Stevenson wrote:
+> > > Hi Maxime
+> > >
+> > > On Mon, 14 Nov 2022 at 13:00, Maxime Ripard <maxime@cerno.tech> wrote=
+:
+> > > >
+> > > > The current construction of the named mode parsing doesn't allow to=
+ extend
+> > > > it easily. Let's move it to a separate function so we can add more
+> > > > parameters and modes.
+> > > >
+> > > > In order for the tests to still pass, some extra checks are needed,=
+ so
+> > > > it's not a 1:1 move.
+> > > >
+> > > > Reviewed-by: Noralf Tr=C3=B8nnes <noralf@tronnes.org>
+> > > > Tested-by: Mateusz Kwiatkowski <kfyatek+publicgit@gmail.com>
+> > > > Signed-off-by: Maxime Ripard <maxime@cerno.tech>
+> > > >
+> > > > ---
+> > > > Changes in v7:
+> > > > - Add Noralf Reviewed-by
+> > > >
+> > > > Changes in v6:
+> > > > - Simplify the test for connection status extras
+> > > > - Simplify the code path to call drm_mode_parse_cmdline_named_mode
+> > > >
+> > > > Changes in v4:
+> > > > - Fold down all the named mode patches that were split into a singl=
+e
+> > > >   patch again to maintain bisectability
+> > > > ---
+> > > >  drivers/gpu/drm/drm_modes.c | 70 +++++++++++++++++++++++++++++++++=
+++++--------
+> > > >  1 file changed, 58 insertions(+), 12 deletions(-)
+> > > >
+> > > > diff --git a/drivers/gpu/drm/drm_modes.c b/drivers/gpu/drm/drm_mode=
+s.c
+> > > > index 71c050c3ee6b..37542612912b 100644
+> > > > --- a/drivers/gpu/drm/drm_modes.c
+> > > > +++ b/drivers/gpu/drm/drm_modes.c
+> > > > @@ -2229,6 +2229,51 @@ static const char * const drm_named_modes_wh=
+itelist[] =3D {
+> > > >         "PAL",
+> > > >  };
+> > > >
+> > > > +static int drm_mode_parse_cmdline_named_mode(const char *name,
+> > > > +                                            unsigned int name_end,
+> > > > +                                            struct drm_cmdline_mod=
+e *cmdline_mode)
+> > > > +{
+> > > > +       unsigned int i;
+> > > > +
+> > > > +       if (!name_end)
+> > > > +               return 0;
+> > > > +
+> > > > +       /* If the name starts with a digit, it's not a named mode *=
+/
+> > > > +       if (isdigit(name[0]))
+> > > > +               return 0;
+> > > > +
+> > > > +       /*
+> > > > +        * If there's an equal sign in the name, the command-line
+> > > > +        * contains only an option and no mode.
+> > > > +        */
+> > > > +       if (strnchr(name, name_end, '=3D'))
+> > > > +               return 0;
+> > > > +
+> > > > +       /* The connection status extras can be set without a mode. =
+*/
+> > > > +       if (name_end =3D=3D 1 &&
+> > > > +           (name[0] =3D=3D 'd' || name[0] =3D=3D 'D' || name[0] =
+=3D=3D 'e'))
+> > > > +               return 0;
+> > > > +
+> > > > +       /*
+> > > > +        * We're sure we're a named mode at this point, iterate ove=
+r the
+> > > > +        * list of modes we're aware of.
+> > > > +        */
+> > > > +       for (i =3D 0; i < ARRAY_SIZE(drm_named_modes_whitelist); i+=
++) {
+> > > > +               int ret;
+> > > > +
+> > > > +               ret =3D str_has_prefix(name, drm_named_modes_whitel=
+ist[i]);
+> > > > +               if (ret !=3D name_end)
+> > > > +                       continue;
+> > > > +
+> > > > +               strcpy(cmdline_mode->name, drm_named_modes_whitelis=
+t[i]);
+> > > > +               cmdline_mode->specified =3D true;
+> > > > +
+> > > > +               return 1;
+> > > > +       }
+> > > > +
+> > > > +       return -EINVAL;
+> > > > +}
+> > > > +
+> > > >  /**
+> > > >   * drm_mode_parse_command_line_for_connector - parse command line =
+modeline for connector
+> > > >   * @mode_option: optional per connector mode option
+> > > > @@ -2265,7 +2310,7 @@ bool drm_mode_parse_command_line_for_connecto=
+r(const char *mode_option,
+> > > >         const char *bpp_ptr =3D NULL, *refresh_ptr =3D NULL, *extra=
+_ptr =3D NULL;
+> > > >         const char *options_ptr =3D NULL;
+> > > >         char *bpp_end_ptr =3D NULL, *refresh_end_ptr =3D NULL;
+> > > > -       int i, len, ret;
+> > > > +       int len, ret;
+> > > >
+> > > >         memset(mode, 0, sizeof(*mode));
+> > > >         mode->panel_orientation =3D DRM_MODE_PANEL_ORIENTATION_UNKN=
+OWN;
+> > > > @@ -2306,18 +2351,19 @@ bool drm_mode_parse_command_line_for_connec=
+tor(const char *mode_option,
+> > > >                 parse_extras =3D true;
+> > > >         }
+> > > >
+> > > > -       /* First check for a named mode */
+> > > > -       for (i =3D 0; i < ARRAY_SIZE(drm_named_modes_whitelist); i+=
++) {
+> > > > -               ret =3D str_has_prefix(name, drm_named_modes_whitel=
+ist[i]);
+> > > > -               if (ret =3D=3D mode_end) {
+> > > > -                       if (refresh_ptr)
+> > > > -                               return false; /* named + refresh is=
+ invalid */
+> > > > +       if (!mode_end)
+> > > > +               return false;
+> > >
+> > > I'm chasing down a change in behaviour between 6.1 and 6.6, and this
+> > > patch seems to be at least part of the cause.
+> > >
+> > > Since [1] we've had the emulated framebuffer on Pi being 16bpp to sav=
+e
+> > > memory. All good.
+> > >
+> > > It used to be possible to use "video=3DHDMI-A-1:-32" on the kernel
+> > > command line to set it back to 32bpp.
+> > >
+> > > After this patch that is no longer possible. "mode_end =3D bpp_off", =
+and
+> > > "bpp_off =3D bpp_ptr - name", so with bpp_ptr =3D name we get mode_en=
+d
+> > > being 0. That fails this conditional.
+> > > drm_mode_parse_cmdline_named_mode already aborts early but with no
+> > > error if name_end / mode_end is 0, so this "if" clause seems
+> > > redundant, and is a change in behaviour.
+> > >
+> > > We do then get a second parsing failure due to the check if (bpp_ptr
+> > > || refresh_ptr) at [2].
+> > > Prior to this patch my video=3D line would get mode->specified set vi=
+a
+> > > "if (ret =3D=3D mode_end)" removed above, as ret =3D mode_end =3D 0. =
+We
+> > > therefore didn't evaluate the conditional that now fails.
+> > >
+> > > So I guess my question is whether my command line is valid or not, an=
+d
+> > > therefore is this a regression?
+> >
+> > It's a mess :)
+> >
+> > Documentation/fb/modedb.rst defines the video parameter syntax as:
+> >
+> > <xres>x<yres>[M][R][-<bpp>][@<refresh>][i][m][eDd]
+> >
+> > And thus mandates the x and y resolution. I guess that's what I use as =
+a
+> > base, and thus -bpp alone would be invalid.
+> >
+> > But then it contradicts itself some time later by documenting that
+> > video=3DHDMI-1:D is ok.
+> >
+> > I guess what you experienced was just an oversight: it was not
+> > documented anywhere that it was valid, so we didn't really tested it
+> > either. We should add a unit test for it and fix it.
+>
+> Does dropping this "if (!mode_end)" check, and at least the check for
+> bpp_ptr in the "No mode?" block below it, seem reasonable to you?
+>
+> I guess there is also the question of whether a refresh rate without a
+> mode is valid. That one seems less useful, and all uses of
+> refresh_specified appear to be after some form of checking xres and
+> yres.
+>
+> I can put a couple of patches together to deal with this if you're
+> happy with the principle.
 
-I suppose this question is if a PHY is TypeC or not, TypeC requiring
-some kind of mux (which can be FIA or something else). One other way
-instead of the if-ladder in intel_phy_is_tc() would be adding a
-tc_phy_mask to intel_display_runtime_info, similarly to the port_mask
-there. Not sure how much that would improve things over the current way.
+In looking at this in more detail and writing the unit test, it does
+become a bit of a mess.
 
-> > >                     !intel_bios_encoder_supports_typec_usb(devdata) &&
-> > >                     !intel_bios_encoder_supports_tbt(devdata);
-> > >
-> > > diff --git a/drivers/gpu/drm/i915/display/intel_display.c
-> > b/drivers/gpu/drm/i915/display/intel_display.c
-> > > index b10aad15a63d..03006c9af824 100644
-> > > --- a/drivers/gpu/drm/i915/display/intel_display.c
-> > > +++ b/drivers/gpu/drm/i915/display/intel_display.c
-> > > @@ -1854,17 +1854,9 @@ bool intel_phy_is_combo(struct drm_i915_private
-> > *dev_priv, enum phy phy)
-> > >             return false;
-> > >  }
-> > >
-> > > -bool intel_phy_is_tc(struct drm_i915_private *dev_priv, enum phy phy)
-> > > +static bool intel_phy_is_legacy_tc(struct drm_i915_private *dev_priv, enum
-> > phy phy)
-> > >  {
-> > > -   /*
-> > > -    * DG2's "TC1", although TC-capable output, doesn't share the same flow
-> > > -    * as other platforms on the display engine side and rather rely on the
-> > > -    * SNPS PHY, that is programmed separately
-> > > -    */
-> > > -   if (IS_DG2(dev_priv))
-> > > -           return false;
-> > > -
-> > > -   if (DISPLAY_VER(dev_priv) >= 13)
-> > > +   if (DISPLAY_VER(dev_priv) == 13)
-> > >             return phy >= PHY_F && phy <= PHY_I;
-> > >     else if (IS_TIGERLAKE(dev_priv))
-> > >             return phy >= PHY_D && phy <= PHY_I;
-> > > @@ -1874,6 +1866,23 @@ bool intel_phy_is_tc(struct drm_i915_private
-> > *dev_priv, enum phy phy)
-> > >     return false;
-> > >  }
-> > >
-> > > +static bool intel_phy_is_vbt_tc(struct drm_i915_private *dev_priv, enum phy
-> > phy)
-> > > +{
-> > > +   const struct intel_bios_encoder_data *data =
-> > > +           intel_bios_encoder_phy_data_lookup(dev_priv, phy);
-> > > +
-> > > +   return intel_bios_encoder_supports_typec_usb(data) &&
-> > > +          intel_bios_encoder_supports_tbt(data);
-> >
-> > Based on the above, this doesn't look correct: a TC PHY can be
-> > configured by the vendor (reflected by the above typec_usb and tbt flags
-> > in VBT) in any of the following ways:
-> >
-> > - legacy mode (wired to a native DP connector):         typec_usb:false, tbt:false
-> > - tbt-alt + dp-alt support (wired to a TC connector):   typec_usb:true, tbt:true
-> > - tbt-alt only support (wired to a TC connector):       typec_usb:false, tbt:true
-> > - dp-alt only support (wired to a TC connector):        typec_usb:true, tbt:false
-> >
-> > For all the above cases intel_phy_is_tc() should return true. So I don't
-> > think this (is a PHY TC or non-TC) can be determined based on the above
-> > VBT flags.
-> 
-> Thanks for this clarification Imre. I am looking to see from the driver if we can make a determination if
-> a phy is connected to a FIA to make this decision. Is there a way that you could suggest?
-> 
-> Thanks,
-> Radhakrishna Sripada
-> >
-> > > +}
-> > > +
-> > > +bool intel_phy_is_tc(struct drm_i915_private *dev_priv, enum phy phy)
-> > > +{
-> > > +   if (!HAS_LEGACY_TC(dev_priv))
-> > > +           return intel_phy_is_vbt_tc(dev_priv, phy);
-> > > +   else
-> > > +           return intel_phy_is_legacy_tc(dev_priv, phy);
-> > > +}
-> > > +
-> > >  bool intel_phy_is_snps(struct drm_i915_private *dev_priv, enum phy phy)
-> > >  {
-> > >     /*
-> > > diff --git a/drivers/gpu/drm/i915/display/intel_display_device.h
-> > b/drivers/gpu/drm/i915/display/intel_display_device.h
-> > > index fe4268813786..9450e263c873 100644
-> > > --- a/drivers/gpu/drm/i915/display/intel_display_device.h
-> > > +++ b/drivers/gpu/drm/i915/display/intel_display_device.h
-> > > @@ -58,6 +58,7 @@ struct drm_printer;
-> > >  #define HAS_IPS(i915)                      (IS_HASWELL_ULT(i915) ||
-> > IS_BROADWELL(i915))
-> > >  #define HAS_LRR(i915)                      (DISPLAY_VER(i915) >= 12)
-> > >  #define HAS_LSPCON(i915)           (IS_DISPLAY_VER(i915, 9, 10))
-> > > +#define HAS_LEGACY_TC(i915)                (IS_DISPLAY_VER(i915, 11, 13)
-> > && !IS_DGFX(i915))
-> > >  #define HAS_MBUS_JOINING(i915)             (IS_ALDERLAKE_P(i915) ||
-> > DISPLAY_VER(i915) >= 14)
-> > >  #define HAS_MSO(i915)                      (DISPLAY_VER(i915) >= 12)
-> > >  #define HAS_OVERLAY(i915)          (DISPLAY_INFO(i915)->has_overlay)
-> > > --
-> > > 2.34.1
-> > >
+drm_connector_get_cmdline_mode calls
+drm_mode_parse_command_line_for_connector, passing in
+connector->cmdline_mode as the mode to fill.
+drm_mode_parse_command_line_for_connector fills in bits of the mode as
+it goes along, so a failure late in the function leaves bits from the
+parsing in connector->cmdline_mode.
+
+My video=3DHDMI-A-1:-32 does fail later on due to
+drm_mode_parse_cmdline_options, but as it had set bpp and
+bpp_specified directly in connector->cmdline_mode I got the behaviour
+I was desiring.
+
+It feels like this should be an all or nothing thing. Allocate a
+struct drm_cmdline_mode on the stack, and only copy it into
+connector->cmdline_mode if parsing succeeds. The downside is that you
+take out some command line entries that used to work (like mine).
+Thoughts?
+
+  Dave
