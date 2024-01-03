@@ -2,50 +2,47 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id CE67B822B8D
-	for <lists+intel-gfx@lfdr.de>; Wed,  3 Jan 2024 11:47:14 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id DB91F822BBE
+	for <lists+intel-gfx@lfdr.de>; Wed,  3 Jan 2024 12:00:31 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2D8A510E261;
-	Wed,  3 Jan 2024 10:47:13 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3D98610E286;
+	Wed,  3 Jan 2024 11:00:29 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.24])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BE72610E261;
- Wed,  3 Jan 2024 10:47:11 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.126])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DFD1110E286
+ for <intel-gfx@lists.freedesktop.org>; Wed,  3 Jan 2024 11:00:27 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1704278831; x=1735814831;
- h=message-id:date:mime-version:from:to:cc:subject:
+ t=1704279627; x=1735815627;
+ h=from:to:cc:subject:date:message-id:mime-version:
  content-transfer-encoding;
- bh=HJmziMp+fsfe558FHZbjsXt3Qp2AuBHeXRFZiVluDq0=;
- b=nUJQMiFoe72yME69TF9/YwsE8QFM5TRdtpWRGB9upx2FbJygkphPZo8D
- QM6iGbdHMksgQj2lGqglYuJhjCVLiiLz+ruuAvlTNX/Io8pGx6N8vQ2NU
- vaquwqylMoZLxDu0AmblWoNx+48k5iwfCJdQMZRz4P0BkKfdnSDNzPPnd
- NMBHEGgdK7hk6AqPXXFNfPQiPB8MsU+3GIHl7sRT0hu7ypXBEl8OseUfN
- qUuao+A7I0vIQgPt5MjF8F9V8FCaIHdLIUckhl5oEZSjjXI4Tgo/IL5qS
- KI0gqcCh76qJKuDXHhSNcznuwgzMNFsqIZMcS4jEoy4OfaNyfHNrdLNpI A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10941"; a="399766015"
-X-IronPort-AV: E=Sophos;i="6.04,327,1695711600"; d="scan'208";a="399766015"
-Received: from fmsmga008.fm.intel.com ([10.253.24.58])
- by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Jan 2024 02:47:11 -0800
+ bh=K9T4O7Gkk85bKxOCHL5qLntvCWmilOKDpYe8XPUEuSw=;
+ b=ZnLHmAZ6oGzFpDwxTDN3hG9NtPfNQzIFnx0fHYmLP7nnG1bYJZoOdmXK
+ Kx5m2GZ2VQQtB9kflNJCoVW49njAFHVvBIowFll808keHI/rNcMXgg592
+ ghbRZkjD5QiQxRSMAf+nTUCN5emOWk9k55HP66JRXR4qfpNCOxdP4UzvA
+ BykXsNW5JtFy8k1Ar8lLWeXUcWV2rsqYNTgmynVnkpCOpidMsz0SZbIGX
+ r5Tggkoo9hqRp+TllAwIQf7pUZyyOEOnAzaF/W3asd8dYku6/rfcxEo8u
+ kYukGx8jTG6YyrXvpvMJAVJGJO6i0FYGVQbnrc6nIMHxACw/zmXgV9W/8 w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10941"; a="381958532"
+X-IronPort-AV: E=Sophos;i="6.04,327,1695711600"; d="scan'208";a="381958532"
+Received: from fmviesa001.fm.intel.com ([10.60.135.141])
+ by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 03 Jan 2024 03:00:19 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10941"; a="845847786"
-X-IronPort-AV: E=Sophos;i="6.04,327,1695711600"; d="scan'208";a="845847786"
-Received: from jcrametz-mobl1.ger.corp.intel.com (HELO [10.251.211.58])
- ([10.251.211.58])
- by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Jan 2024 02:47:08 -0800
-Message-ID: <9ba866b4-3144-47a9-a2c0-7313c67249d7@linux.intel.com>
-Date: Wed, 3 Jan 2024 11:47:06 +0100
+X-IronPort-AV: E=Sophos;i="6.04,327,1695711600"; d="scan'208";a="22063535"
+Received: from ideak-desk.fi.intel.com ([10.237.72.78])
+ by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 03 Jan 2024 03:00:17 -0800
+From: Imre Deak <imre.deak@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Subject: [PATCH] drm/i915/dp: Fix the PSR debugfs entries wrt. MST connectors
+Date: Wed,  3 Jan 2024 13:00:29 +0200
+Message-Id: <20240103110029.2408342-1-imre.deak@intel.com>
+X-Mailer: git-send-email 2.39.2
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-From: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-To: Daniel Vetter <daniel.vetter@ffwll.ch>, Dave Airlie <airlied@gmail.com>
-Subject: [PULL] drm-misc-fixes
-Content-Language: en-US
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -58,69 +55,46 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: dim-tools@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
- Maxime Ripard <mripard@kernel.org>, dri-devel@lists.freedesktop.org,
- Thomas Zimmermann <tzimmermann@suse.de>, Rodrigo Vivi <rodrigo.vivi@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi Dave, Daniel,
+MST connectors don't have a static attached encoder, as their encoder
+can change depending on the pipe they use; so the encoder for an MST
+connector can't be retrieved using intel_dp_attached_encoder() (which
+may return NULL for MST). Most of the PSR debugfs entries depend on a
+static connector -> encoder mapping which is only true for eDP and SST
+DP connectors and not for MST. These debugfs entries were enabled for
+MST connectors as well recently to provide PR information for them, but
+handling MST connectors needs more changes. Fix this by re-disabling for
+now the PSR entries on MST connectors.
 
-Happy new year!
+Fixes: ef75c25e8fed ("drm/i915/panelreplay: Debugfs support for panel replay")
+Closes: https://gitlab.freedesktop.org/drm/intel/-/issues/9850
+Cc: Animesh Manna <animesh.manna@intel.com>
+Cc: Jouni Högander <jouni.hogander@intel.com>
+Signed-off-by: Imre Deak <imre.deak@intel.com>
+---
+ drivers/gpu/drm/i915/display/intel_psr.c | 7 ++-----
+ 1 file changed, 2 insertions(+), 5 deletions(-)
 
-~Maarten
+diff --git a/drivers/gpu/drm/i915/display/intel_psr.c b/drivers/gpu/drm/i915/display/intel_psr.c
+index 494d08817d71e..b5b9340e505e3 100644
+--- a/drivers/gpu/drm/i915/display/intel_psr.c
++++ b/drivers/gpu/drm/i915/display/intel_psr.c
+@@ -3310,11 +3310,8 @@ void intel_psr_connector_debugfs_add(struct intel_connector *connector)
+ 	struct drm_i915_private *i915 = to_i915(connector->base.dev);
+ 	struct dentry *root = connector->base.debugfs_entry;
+ 
+-	if (connector->base.connector_type != DRM_MODE_CONNECTOR_eDP) {
+-		if (!(HAS_DP20(i915) &&
+-		      connector->base.connector_type == DRM_MODE_CONNECTOR_DisplayPort))
+-			return;
+-	}
++	if (connector->base.connector_type != DRM_MODE_CONNECTOR_eDP)
++		return;
+ 
+ 	debugfs_create_file("i915_psr_sink_status", 0444, root,
+ 			    connector, &i915_psr_sink_status_fops);
+-- 
+2.39.2
 
-drm-misc-fixes-2024-01-03:
-drm-misc-fixes for v6.7 final:
-- 2 small qaic fixes.
-- Fixes for overflow in aux xfer.
-- Fix uninitialised gamma lut in gmag200.
-- Small compiler warning fix for backports of a ps8640 fix.
-The following changes since commit 6c9dbee84cd005bed5f9d07b3a2797ae6414b435:
-
-   drm/panel: ltk050h3146w: Set burst mode for ltk050h3148w (2023-12-13 
-18:33:43 +0100)
-
-are available in the Git repository at:
-
-   git://anongit.freedesktop.org/drm/drm-misc tags/drm-misc-fixes-2024-01-03
-
-for you to fetch changes up to 11f9eb899ecc8c02b769cf8d2532ba12786a7af7:
-
-   drm/mgag200: Fix gamma lut not initialized for G200ER, G200EV, G200SE 
-(2023-12-20 13:26:57 +0100)
-
-----------------------------------------------------------------
-drm-misc-fixes for v6.7 final:
-- 2 small qaic fixes.
-- Fixes for overflow in aux xfer.
-- Fix uninitialised gamma lut in gmag200.
-- Small compiler warning fix for backports of a ps8640 fix.
-
-----------------------------------------------------------------
-Douglas Anderson (3):
-       drm/bridge: parade-ps8640: Never store more than msg->size bytes 
-in AUX xfer
-       drm/bridge: ti-sn65dsi86: Never store more than msg->size bytes 
-in AUX xfer
-       drm/bridge: ps8640: Fix size mismatch warning w/ len
-
-Jeffrey Hugo (1):
-       accel/qaic: Implement quirk for SOC_HW_VERSION
-
-Jocelyn Falempe (1):
-       drm/mgag200: Fix gamma lut not initialized for G200ER, G200EV, G200SE
-
-Pranjal Ramajor Asha Kanojiya (1):
-       accel/qaic: Fix GEM import path code
-
-  drivers/accel/qaic/mhi_controller.c      | 15 ++++++++++++++-
-  drivers/accel/qaic/qaic_data.c           |  6 ++----
-  drivers/gpu/drm/bridge/parade-ps8640.c   |  7 ++++---
-  drivers/gpu/drm/bridge/ti-sn65dsi86.c    |  4 +++-
-  drivers/gpu/drm/mgag200/mgag200_drv.h    |  5 +++++
-  drivers/gpu/drm/mgag200/mgag200_g200er.c |  5 +++++
-  drivers/gpu/drm/mgag200/mgag200_g200ev.c |  5 +++++
-  drivers/gpu/drm/mgag200/mgag200_g200se.c |  5 +++++
-  drivers/gpu/drm/mgag200/mgag200_mode.c   | 10 +++++-----
-  9 files changed, 48 insertions(+), 14 deletions(-)
