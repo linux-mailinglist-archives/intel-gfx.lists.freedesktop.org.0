@@ -2,65 +2,159 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id B2F65822F19
-	for <lists+intel-gfx@lfdr.de>; Wed,  3 Jan 2024 15:02:28 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7A0EF822F35
+	for <lists+intel-gfx@lfdr.de>; Wed,  3 Jan 2024 15:10:20 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 903C310E30F;
-	Wed,  3 Jan 2024 14:02:21 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5F79A10E166;
+	Wed,  3 Jan 2024 14:10:16 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-yw1-x1133.google.com (mail-yw1-x1133.google.com
- [IPv6:2607:f8b0:4864:20::1133])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D21C210E29C
- for <intel-gfx@lists.freedesktop.org>; Wed,  3 Jan 2024 14:02:19 +0000 (UTC)
-Received: by mail-yw1-x1133.google.com with SMTP id
- 00721157ae682-5e6c8b70766so88335947b3.3
- for <intel-gfx@lists.freedesktop.org>; Wed, 03 Jan 2024 06:02:19 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=raspberrypi.com; s=google; t=1704290539; x=1704895339;
- darn=lists.freedesktop.org; 
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:from:to:cc:subject:date
- :message-id:reply-to;
- bh=luUKiYhdMa+DSjWQpnDAurUJm/xFMM0nUDBelYSIQ7E=;
- b=Xyr7f2IG66xRRdiAIeA7t2g+6gevJ50ucD1EJhvgA94Z/0A3vFD4VPzOj4eNHO5Od6
- k19sciQobVavyFx0Q5c1SOzP2bIQa63AKZdtmezydiJD2lcnjv5bv4L473uAcwfmmN0T
- 3EEG+RjkiPFTQALRcY/aAGUrv/rbb86Uf0iyEUdKNoPD+T/uHy/EzHwnN7/OdQpsI3RG
- MdPyn6Arxe2XEPPRKhgOoV8EtrG+eLhjcHsvm4E4pnTRpRmwgEhRYLSSDYsL7ZtALbQb
- Tr3dj4W8IoJTeGFvwSzGovRxA6GzYoh7+atENci0/fh5W9Dp+UTd14ScC2cfXQe/Bmhh
- N5xA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1704290539; x=1704895339;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
- :subject:date:message-id:reply-to;
- bh=luUKiYhdMa+DSjWQpnDAurUJm/xFMM0nUDBelYSIQ7E=;
- b=Uenu3z4pIlfaf8IYcmwfz/0A5hjb54kCYKkuuUy9V/2HMFBqoC9FOypNHC4z/LNvNV
- otSOAnMEeP0vs1k17smxTc4f7BDYSqDUmqZVxuw97761SEnvRORAY3YzHq2Dz6z0DXMh
- poTWGcqAiVAa9MJy1BGEJyzcrprpHxPrZThB+7kuHGwX/OsViFZhuX1Xz7YhSwUXgjvv
- EZtzoO+Z3ICcFdhxqJU+oSuzd+SdHbCcai3BMzaKq0VQCah7D3r7yrgaf7gXtzBQCc0y
- a6vtVtRC2DHRG47RL3Je/xJKYbjRD/7idxGA+cDzRuOjCG1q96r/6JLZxlMGtgRP6sL6
- uoQA==
-X-Gm-Message-State: AOJu0Yy4dDELAU6e3x7nI5WO2Uk4dflhlQFgokJfsZWh2370tExBOSzB
- fOiqXvHDRt+HlzogBcs6a/IOHzFZJTUCxJFxS9UPzOoemXCeFQ==
-X-Google-Smtp-Source: AGHT+IGQN8KrE+4xYkNUPGMZl2eRSEZ8ppFRb4MyA++6EMf+cQaNmC0TRsIWZJGgprSfIHpyRwTLIJDoYQmNgG1zX48=
-X-Received: by 2002:a05:690c:2e84:b0:5ee:6164:5722 with SMTP id
- eu4-20020a05690c2e8400b005ee61645722mr6447462ywb.60.1704290538857; Wed, 03
- Jan 2024 06:02:18 -0800 (PST)
+Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.100])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6E25B10E166
+ for <intel-gfx@lists.freedesktop.org>; Wed,  3 Jan 2024 14:10:14 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1704291015; x=1735827015;
+ h=from:to:cc:subject:date:message-id:references:
+ in-reply-to:content-id:content-transfer-encoding: mime-version;
+ bh=JLc/IwZoCoXtF9gRuVycT4yS1CkL6KtV93bQZYzBHAI=;
+ b=Htl+hgRQlK0r0k+cqz7J3ZuJlsNVbfgvp/XoSekdfKxZCKM7bPwyNFjn
+ 0DJiRVNrJepDP19WqzzVZFcQKPoHh+d3705YmS1SWVak44e1MWjvQBwF1
+ 187dWPY+gyibJjvXGGWk1S/ernFd53lMnIKaZtMgE1olCDaKFJ5G6esv/
+ Yl+XeiBaIZC6Os1pEZsC/kIljGFeF/zlbNrS0Ok76S8hJbE6CJctu6hIH
+ w9rBX1bloJw2hYHsQzIPhzUrr9h5kuEpaEhJJK1/0KlI7XH4LHU7a+D82
+ /Nb83GswBOIjyzWbGpYyxEDpLxdpNwrUv7ynYNab7AMAqZwkdqc4MfmPs Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10942"; a="463415124"
+X-IronPort-AV: E=Sophos;i="6.04,327,1695711600"; d="scan'208";a="463415124"
+Received: from orsmga003.jf.intel.com ([10.7.209.27])
+ by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 03 Jan 2024 06:10:11 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10942"; a="729794151"
+X-IronPort-AV: E=Sophos;i="6.04,327,1695711600"; d="scan'208";a="729794151"
+Received: from fmsmsx602.amr.corp.intel.com ([10.18.126.82])
+ by orsmga003.jf.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
+ 03 Jan 2024 06:10:10 -0800
+Received: from fmsmsx610.amr.corp.intel.com (10.18.126.90) by
+ fmsmsx602.amr.corp.intel.com (10.18.126.82) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.35; Wed, 3 Jan 2024 06:10:09 -0800
+Received: from fmsmsx611.amr.corp.intel.com (10.18.126.91) by
+ fmsmsx610.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.35; Wed, 3 Jan 2024 06:10:09 -0800
+Received: from fmsedg602.ED.cps.intel.com (10.1.192.136) by
+ fmsmsx611.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.35 via Frontend Transport; Wed, 3 Jan 2024 06:10:09 -0800
+Received: from NAM12-MW2-obe.outbound.protection.outlook.com (104.47.66.41) by
+ edgegateway.intel.com (192.55.55.71) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.1.2507.35; Wed, 3 Jan 2024 06:10:08 -0800
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=Dw/almXgFH5A7uo4tcMmN3UTpXMYQqDkRtXWoRSmnkWbZioSLjqTwud3YANy/aBNVOWCHGybuukmq/tlsnwb0UqYgpkcZ64L6Cgq2Mk/+Sj4nGbe3nvtH8un+idw29F2woy/+EWftVmcom7VFcuWewcuw+I9V9BwSshpO58hqAbZXqo52KuQ7B0ciGYdqpq9h2E/tQjZgaTsZ21U4cIt6ey8Jj7+M/frBqEZH2kwdRX96LOgdbi2I4gmpRZ+/b8p930LVv562dHfCS1kljVprSPdBv/fKUWUReBBrHetFrabx212b7rf0g+oZaxM+cy2jaXoN2C51t5+qwYwIRSR/w==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=JLc/IwZoCoXtF9gRuVycT4yS1CkL6KtV93bQZYzBHAI=;
+ b=lMO95FQF3QWuJf9hVT44TWcfVP8Qkv9VkIrFdn2T0gXP5iCMzsWaka0CjqMNlEw/5ouUv4LyYyBw6/PDtFJ/mPiGLQoSQ4H4lAx2HmKBtzDnTqbYZsgyvP5BAyu/7XVg9YgLgGPj49sNsJ6qqwQcc65Bf+9duhTkVQxbQzZbO/R3Ix6COVKoeNPH2gvBm4WdEtiD/qvc0S2M/dN9Is2Ka6VyGbsKhMHfDH+NmKEzypoZlzsxiaSXhL8v5jXZkCyQG+94AGWMModEltByt10UKTa/zFG1lGY1/dZfdQ7vbhaItrZelpciCafKfUssgPIezgcrlKZLppXDaBhY+ix4vQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Received: from DM4PR11MB6019.namprd11.prod.outlook.com (2603:10b6:8:60::5) by
+ SJ0PR11MB8271.namprd11.prod.outlook.com (2603:10b6:a03:47a::15) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7135.25; Wed, 3 Jan
+ 2024 14:10:06 +0000
+Received: from DM4PR11MB6019.namprd11.prod.outlook.com
+ ([fe80::dde1:91ce:98c6:d737]) by DM4PR11MB6019.namprd11.prod.outlook.com
+ ([fe80::dde1:91ce:98c6:d737%7]) with mapi id 15.20.7135.023; Wed, 3 Jan 2024
+ 14:10:06 +0000
+From: "Hogander, Jouni" <jouni.hogander@intel.com>
+To: "Deak, Imre" <imre.deak@intel.com>
+Subject: Re: [PATCH] drm/i915/dp: Fix the PSR debugfs entries wrt. MST
+ connectors
+Thread-Topic: [PATCH] drm/i915/dp: Fix the PSR debugfs entries wrt. MST
+ connectors
+Thread-Index: AQHaPjQi0w812XLjtkCHy0lr/oonxbDH7dYAgAADV4CAAATFAIAAKAwAgAACsQA=
+Date: Wed, 3 Jan 2024 14:10:05 +0000
+Message-ID: <050237d78f8863264e1478d00ee2d599ae0e0964.camel@intel.com>
+References: <20240103110029.2408342-1-imre.deak@intel.com>
+ <8c206b5963fa88890a62db33a5d4a34513025a1f.camel@intel.com>
+ <ZZVC4XwaAbSGnpqF@ideak-desk.fi.intel.com>
+ <769a9b24f6c938abb5131f4036e59c6fdce6739c.camel@intel.com>
+ <ZZVoekU4A/YJZXDw@ideak-desk.fi.intel.com>
+In-Reply-To: <ZZVoekU4A/YJZXDw@ideak-desk.fi.intel.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: DM4PR11MB6019:EE_|SJ0PR11MB8271:EE_
+x-ms-office365-filtering-correlation-id: be4fc3ed-04d9-4c28-3bf7-08dc0c65afc6
+x-ld-processed: 46c98d88-e344-4ed4-8496-4ed7712e255d,ExtAddr
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: +epqhlykvTlOM8er7qdAktzowOdq6k2TkfWA2crE17IbWaAaIb8eBMT/GvIFdgCJ4rQg34s0ueb6j3jQeXQTZBIeixRsYLZ9d4vvbh/uagu9+YlVBjI9m4gy3hrHdwLC9A09fiTlrBzdv7dC1c0B9Lvdu7VAd9xxrmFleBE56vUHiqyNhpSMFDDth7fUJYjTof5Haqv9JFZgRu0OzQfvkBwE5ffLV04oHcF3J2dgtOgseE44w+6q4sozo+y1ox0cPccVtdgmhhukIXARy/NXCG/L3hKP0C2YqERQbcInYH1y8CwOK1N9QW494qiBauEH3jDNkXdmVCvFvN4Ht3QIwdUreNowz0lG0ECwX/rOZQE7BGzwpLSkszSFLjVc6S1kWORF73dJxNE7vS2CHi8RSgqHTEE3G28cdCD/IZ7wm5PWOYi/nkih8nRcn42Gb2iqxOI/ilnbsY2ovoAB5YxqRZfiYIzhMPOy1yrn1lSlFNIsYrnCK7ZT8KYel5cPjC9kK10Wyw0RcIWlr35oLIjbegzlZYLCTHamSdWUP+3IkPtPyX69FeaZZzvhsqgCoU+4BJaRe2E3OPNo2HpeE398ydGkIv21nLx2nGBYbt6UoN/LnfLwDfI9nqFVoAdgvECz
+x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:DM4PR11MB6019.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230031)(396003)(346002)(376002)(39860400002)(136003)(366004)(230922051799003)(451199024)(64100799003)(186009)(1800799012)(6512007)(26005)(66574015)(2616005)(6506007)(54906003)(8936002)(8676002)(6862004)(5660300002)(122000001)(4326008)(66946007)(41300700001)(6486002)(478600001)(64756008)(6636002)(2906002)(91956017)(37006003)(316002)(76116006)(66476007)(66556008)(66446008)(86362001)(38100700002)(36756003)(82960400001)(71200400001)(38070700009);
+ DIR:OUT; SFP:1102; 
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?utf-8?B?azlmYkFxVmM0YS9ybDJrcmhQY0ZmNWZsNzF4ZE5wTks3YXU2K3B2bUtvVUhH?=
+ =?utf-8?B?TlZyUTVMTUhHSmpNRzVVUWVEa3dyMjdlS0k2QVYrdDd1Y2JTWTlGcGZPN0ta?=
+ =?utf-8?B?Zngvd0lwV2RCcFNiYTdEUS9BQW0rMno4RlJYc3dPcFpZOWx6YlJVdlg0eUVw?=
+ =?utf-8?B?SjFsa3NicTc1RmwzdXFHWDBWVUt6OFR1MHZsNUVGME5sNUF4bEJzc3NaN2ow?=
+ =?utf-8?B?c05WT1dFOWhEc25hS3FCUFlsSlZDWkdFRG4rdEt3Z0tKeEFHaCsxTmZDY1Zj?=
+ =?utf-8?B?VVJqTFUzZXNDSzJEZnpYaUsvaWcrSHpBRy9FK3FGUTRyZ1JDY2V0dHprZk8v?=
+ =?utf-8?B?aWdDUGMzQ1Y3RmxKOW5aRTBodGQ2TVpCMHR3L01kZEU0OGZvUS9kTlUwL05K?=
+ =?utf-8?B?T3gzZE9ZcnR3TzNkSm5XVFF6M2trT244UkFocnZlRlNUTS9BK1l2ZUZjODVu?=
+ =?utf-8?B?UC9pMlZ4ZEpQc2hDc0t2dnRNVHAyUWRUM0JzZzhRSnlPWStVb2VCOFd3d1oz?=
+ =?utf-8?B?QWdLcmVkaWE4K1VuM1NxR0hRODlFUVVNTTRzcXpKU0dOVXJFS1k0Z3JURXB2?=
+ =?utf-8?B?cFZnL2VRbkc4TFBzUWdkaUQ4dlRHdHFUakZqdzQwQUt4bEkxMmo3T3lzTUFU?=
+ =?utf-8?B?dEE2alljaTlzSVA5bWE3OG4zdy92bmNFV0VkRHc2MGMwdkdpMWt1OGQrc2pG?=
+ =?utf-8?B?MytpQUZvV3c5cjI0L29RT2txWHh4WmFTY2dNTXRtakN1N3h1TlVYeGFxWGlC?=
+ =?utf-8?B?U3hscE9NSW9ZQUQ3NEFqRzY1RndsN1l1Q3F1L0VRT2l3Rk82cWZsTk1GYlNk?=
+ =?utf-8?B?YVJzblNmUnNBVVpDRVFwUk5ydXE5QksyZHNOV09vR3NzQ0xhNElkNUFaNE1T?=
+ =?utf-8?B?TE82TTZiKzhjY0ZHK0w0cGpqUTQ2M1JHLzdCYVhZcnFXNVdGTEFyVDAwSUM2?=
+ =?utf-8?B?SlJYb0ZnT0Y1azNKRUVYNGZLRTM0Mms1V2JHTUVaVGVKYjlNUWgvVkNpbFlB?=
+ =?utf-8?B?N0d3ZzQ2SE9lVEZYS2ladjRnQldHNDFJbkhjTE5jUVgrRDZId3ZwbGEydzN1?=
+ =?utf-8?B?eFZnVExlWEhQMXN2Um8wc2h1eTlJSzFNWGlkVGZKK1Zmb2Q5MHBYZHNlQmtm?=
+ =?utf-8?B?WXlPU2lDbjVVZ3lweGFhdVVNODE5SE9LVnM2Q0RqenRhL2l5bWN3Tlc0R3Fr?=
+ =?utf-8?B?MC9WYXhpcW9MQWhWT0dzVi9lN3EzSWFIUnJHd3F5VUNoZHFMeWZTRXhqZDVH?=
+ =?utf-8?B?STd0MkxNa1FLYWhldDkrT0RVSDlUT0Y5UEl4TGpGLzNjamZRTDRTUEQ3V3Nz?=
+ =?utf-8?B?QVRjL25ydjJGMXZIS1FGeThCeFd6eUhHQStwL05nZUtXblQzTHNOWXE2UGVH?=
+ =?utf-8?B?QTUwNkZ3ZHpKWXJoWlNNU3FtNXlKbStsL2ExS0dpaEU5MzJNRnhiNkdub1kz?=
+ =?utf-8?B?WC9aYlgyZmVGSEUxNU50OW8zTUVqRzYxVWxUZzBsQXdqM3prZURseTNYNUl0?=
+ =?utf-8?B?ZXZLdEpZK0lZZVFnSDUyME4zK3RZbHJOMFhscnFYbXE4bGh6LzBkeE8weWVi?=
+ =?utf-8?B?cE9ZSWNhUXk5Nmg4T0hyUmRqcjJOU1FZakNLemVNUE9ZaFVXbWIyVkNTQlp0?=
+ =?utf-8?B?SlBiWXZHK1ZSYkZ0YjAwbVRpRGRFM1BJVG5vQzZYTnovd25ieDE5bGwzbEIy?=
+ =?utf-8?B?d0V6dWZ0YlRBWGpwVkt5N0JPcDJuOHVRUlpHUGJjMHdIUXE4bjJBQjFOUFpF?=
+ =?utf-8?B?aFpCcTVKbmgzcFM1RlBDN09Kc1V1bHkxMU43MTJtTUZ2OVNoV1FsUHRMbXJi?=
+ =?utf-8?B?YUNHWmdnQXo1NmtGTzFmUWltaFZpWCtGQ1U0RHEvN0x0ZTlxS1hJTGJQcEZs?=
+ =?utf-8?B?b3pTazBIMkFueFZHdExYaXF0Sks2Y1MrQzNuMFZqYzJiRVIvaXRRSGJEY0kw?=
+ =?utf-8?B?ckkwY05ONVdNcXBWWEF6YnE4TDU0T1gzdW5yN2kyNmxTRGM4a0x4SG4vRm15?=
+ =?utf-8?B?bTVXcllUanhFWUVWSXdDS1JxYVhDeUNaWDlYSlpET1pHQVQvSmlEQ3JmZ2ZY?=
+ =?utf-8?B?UTlzK25wMlpQVkxGeldVbSt4ZU5pbTRRNVhHNzdTNmxkYTFTSzV5eC96K2Yv?=
+ =?utf-8?B?ZVNtVWFJNGxxbm9RNE9RemxyOWErZDVmL3d4N1hjWUJCbE00U056TFpKR2Jm?=
+ =?utf-8?B?TEE9PQ==?=
+Content-Type: text/plain; charset="utf-8"
+Content-ID: <18F6C4E7E8D0304BB47A09EE271294F2@namprd11.prod.outlook.com>
+Content-Transfer-Encoding: base64
 MIME-Version: 1.0
-References: <20220728-rpi-analog-tv-properties-v9-0-24b168e5bcd5@cerno.tech>
- <20220728-rpi-analog-tv-properties-v9-9-24b168e5bcd5@cerno.tech>
- <CAPY8ntD4oz9A1H7Ek1YSLRicLprz1ev5YeAqP2Ah=DMPk84KRQ@mail.gmail.com>
- <z5mywwtyboycdoqhayfuqjobr53jajgaft5ikfdkt77tnm7bhg@d4gjmlqpnnrt>
-In-Reply-To: <z5mywwtyboycdoqhayfuqjobr53jajgaft5ikfdkt77tnm7bhg@d4gjmlqpnnrt>
-From: Dave Stevenson <dave.stevenson@raspberrypi.com>
-Date: Wed, 3 Jan 2024 14:02:01 +0000
-Message-ID: <CAPY8ntB0V2yRWVnr6HYby0g2seDL5P03iO+7E_TLa3niPGSfPw@mail.gmail.com>
-Subject: Re: [PATCH v9 09/25] drm/modes: Move named modes parsing to a
- separate function
-To: Maxime Ripard <maxime@cerno.tech>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: DM4PR11MB6019.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: be4fc3ed-04d9-4c28-3bf7-08dc0c65afc6
+X-MS-Exchange-CrossTenant-originalarrivaltime: 03 Jan 2024 14:10:05.9766 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: lsy4ljI3QLtLxpdUUPw9X/bAW1iV+XY4Q7r/jiNo53ubKNymDZT899y5Gc0rommzebIag9dGYjFav0zeEVYR1Rjeb/MHu0abDX01X2DwuTA=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ0PR11MB8271
+X-OriginatorOrg: intel.com
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -73,211 +167,55 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Karol Herbst <kherbst@redhat.com>, David Airlie <airlied@linux.ie>,
- nouveau@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- Phil Elwell <phil@raspberrypi.com>, Samuel Holland <samuel@sholland.org>,
- Jernej Skrabec <jernej.skrabec@gmail.com>, Chen-Yu Tsai <wens@csie.org>,
- Geert Uytterhoeven <geert@linux-m68k.org>, Ben Skeggs <bskeggs@redhat.com>,
- linux-sunxi@lists.linux.dev, Daniel Vetter <daniel@ffwll.ch>,
- intel-gfx@lists.freedesktop.org, Hans de Goede <hdegoede@redhat.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, linux-arm-kernel@lists.infradead.org,
- Dom Cobley <dom@raspberrypi.com>, linux-kernel@vger.kernel.org,
- Mateusz Kwiatkowski <kfyatek+publicgit@gmail.com>,
- =?UTF-8?Q?Noralf_Tr=C3=B8nnes?= <noralf@tronnes.org>,
- Thomas Zimmermann <tzimmermann@suse.de>
+Cc: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi Maxime
-
-On Wed, 3 Jan 2024 at 13:33, Maxime Ripard <maxime@cerno.tech> wrote:
->
-> Hi Dave,
->
-> Happy new year :)
-
-And to you.
-
-> On Tue, Jan 02, 2024 at 03:12:26PM +0000, Dave Stevenson wrote:
-> > Hi Maxime
-> >
-> > On Mon, 14 Nov 2022 at 13:00, Maxime Ripard <maxime@cerno.tech> wrote:
-> > >
-> > > The current construction of the named mode parsing doesn't allow to e=
-xtend
-> > > it easily. Let's move it to a separate function so we can add more
-> > > parameters and modes.
-> > >
-> > > In order for the tests to still pass, some extra checks are needed, s=
-o
-> > > it's not a 1:1 move.
-> > >
-> > > Reviewed-by: Noralf Tr=C3=B8nnes <noralf@tronnes.org>
-> > > Tested-by: Mateusz Kwiatkowski <kfyatek+publicgit@gmail.com>
-> > > Signed-off-by: Maxime Ripard <maxime@cerno.tech>
-> > >
-> > > ---
-> > > Changes in v7:
-> > > - Add Noralf Reviewed-by
-> > >
-> > > Changes in v6:
-> > > - Simplify the test for connection status extras
-> > > - Simplify the code path to call drm_mode_parse_cmdline_named_mode
-> > >
-> > > Changes in v4:
-> > > - Fold down all the named mode patches that were split into a single
-> > >   patch again to maintain bisectability
-> > > ---
-> > >  drivers/gpu/drm/drm_modes.c | 70 +++++++++++++++++++++++++++++++++++=
-++--------
-> > >  1 file changed, 58 insertions(+), 12 deletions(-)
-> > >
-> > > diff --git a/drivers/gpu/drm/drm_modes.c b/drivers/gpu/drm/drm_modes.=
-c
-> > > index 71c050c3ee6b..37542612912b 100644
-> > > --- a/drivers/gpu/drm/drm_modes.c
-> > > +++ b/drivers/gpu/drm/drm_modes.c
-> > > @@ -2229,6 +2229,51 @@ static const char * const drm_named_modes_whit=
-elist[] =3D {
-> > >         "PAL",
-> > >  };
-> > >
-> > > +static int drm_mode_parse_cmdline_named_mode(const char *name,
-> > > +                                            unsigned int name_end,
-> > > +                                            struct drm_cmdline_mode =
-*cmdline_mode)
-> > > +{
-> > > +       unsigned int i;
-> > > +
-> > > +       if (!name_end)
-> > > +               return 0;
-> > > +
-> > > +       /* If the name starts with a digit, it's not a named mode */
-> > > +       if (isdigit(name[0]))
-> > > +               return 0;
-> > > +
-> > > +       /*
-> > > +        * If there's an equal sign in the name, the command-line
-> > > +        * contains only an option and no mode.
-> > > +        */
-> > > +       if (strnchr(name, name_end, '=3D'))
-> > > +               return 0;
-> > > +
-> > > +       /* The connection status extras can be set without a mode. */
-> > > +       if (name_end =3D=3D 1 &&
-> > > +           (name[0] =3D=3D 'd' || name[0] =3D=3D 'D' || name[0] =3D=
-=3D 'e'))
-> > > +               return 0;
-> > > +
-> > > +       /*
-> > > +        * We're sure we're a named mode at this point, iterate over =
-the
-> > > +        * list of modes we're aware of.
-> > > +        */
-> > > +       for (i =3D 0; i < ARRAY_SIZE(drm_named_modes_whitelist); i++)=
- {
-> > > +               int ret;
-> > > +
-> > > +               ret =3D str_has_prefix(name, drm_named_modes_whitelis=
-t[i]);
-> > > +               if (ret !=3D name_end)
-> > > +                       continue;
-> > > +
-> > > +               strcpy(cmdline_mode->name, drm_named_modes_whitelist[=
-i]);
-> > > +               cmdline_mode->specified =3D true;
-> > > +
-> > > +               return 1;
-> > > +       }
-> > > +
-> > > +       return -EINVAL;
-> > > +}
-> > > +
-> > >  /**
-> > >   * drm_mode_parse_command_line_for_connector - parse command line mo=
-deline for connector
-> > >   * @mode_option: optional per connector mode option
-> > > @@ -2265,7 +2310,7 @@ bool drm_mode_parse_command_line_for_connector(=
-const char *mode_option,
-> > >         const char *bpp_ptr =3D NULL, *refresh_ptr =3D NULL, *extra_p=
-tr =3D NULL;
-> > >         const char *options_ptr =3D NULL;
-> > >         char *bpp_end_ptr =3D NULL, *refresh_end_ptr =3D NULL;
-> > > -       int i, len, ret;
-> > > +       int len, ret;
-> > >
-> > >         memset(mode, 0, sizeof(*mode));
-> > >         mode->panel_orientation =3D DRM_MODE_PANEL_ORIENTATION_UNKNOW=
-N;
-> > > @@ -2306,18 +2351,19 @@ bool drm_mode_parse_command_line_for_connecto=
-r(const char *mode_option,
-> > >                 parse_extras =3D true;
-> > >         }
-> > >
-> > > -       /* First check for a named mode */
-> > > -       for (i =3D 0; i < ARRAY_SIZE(drm_named_modes_whitelist); i++)=
- {
-> > > -               ret =3D str_has_prefix(name, drm_named_modes_whitelis=
-t[i]);
-> > > -               if (ret =3D=3D mode_end) {
-> > > -                       if (refresh_ptr)
-> > > -                               return false; /* named + refresh is i=
-nvalid */
-> > > +       if (!mode_end)
-> > > +               return false;
-> >
-> > I'm chasing down a change in behaviour between 6.1 and 6.6, and this
-> > patch seems to be at least part of the cause.
-> >
-> > Since [1] we've had the emulated framebuffer on Pi being 16bpp to save
-> > memory. All good.
-> >
-> > It used to be possible to use "video=3DHDMI-A-1:-32" on the kernel
-> > command line to set it back to 32bpp.
-> >
-> > After this patch that is no longer possible. "mode_end =3D bpp_off", an=
-d
-> > "bpp_off =3D bpp_ptr - name", so with bpp_ptr =3D name we get mode_end
-> > being 0. That fails this conditional.
-> > drm_mode_parse_cmdline_named_mode already aborts early but with no
-> > error if name_end / mode_end is 0, so this "if" clause seems
-> > redundant, and is a change in behaviour.
-> >
-> > We do then get a second parsing failure due to the check if (bpp_ptr
-> > || refresh_ptr) at [2].
-> > Prior to this patch my video=3D line would get mode->specified set via
-> > "if (ret =3D=3D mode_end)" removed above, as ret =3D mode_end =3D 0. We
-> > therefore didn't evaluate the conditional that now fails.
-> >
-> > So I guess my question is whether my command line is valid or not, and
-> > therefore is this a regression?
->
-> It's a mess :)
->
-> Documentation/fb/modedb.rst defines the video parameter syntax as:
->
-> <xres>x<yres>[M][R][-<bpp>][@<refresh>][i][m][eDd]
->
-> And thus mandates the x and y resolution. I guess that's what I use as a
-> base, and thus -bpp alone would be invalid.
->
-> But then it contradicts itself some time later by documenting that
-> video=3DHDMI-1:D is ok.
->
-> I guess what you experienced was just an oversight: it was not
-> documented anywhere that it was valid, so we didn't really tested it
-> either. We should add a unit test for it and fix it.
-
-Does dropping this "if (!mode_end)" check, and at least the check for
-bpp_ptr in the "No mode?" block below it, seem reasonable to you?
-
-I guess there is also the question of whether a refresh rate without a
-mode is valid. That one seems less useful, and all uses of
-refresh_specified appear to be after some form of checking xres and
-yres.
-
-I can put a couple of patches together to deal with this if you're
-happy with the principle.
-
-Thanks
-  Dave
+T24gV2VkLCAyMDI0LTAxLTAzIGF0IDE2OjAwICswMjAwLCBJbXJlIERlYWsgd3JvdGU6DQo+IE9u
+IFdlZCwgSmFuIDAzLCAyMDI0IGF0IDAxOjM3OjA4UE0gKzAyMDAsIEhvZ2FuZGVyLCBKb3VuaSB3
+cm90ZToNCj4gPiA+ID4gPiBbLi4uXQ0KPiA+ID4gPiA+IGRpZmYgLS1naXQgYS9kcml2ZXJzL2dw
+dS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX3Bzci5jDQo+ID4gPiA+ID4gYi9kcml2ZXJzL2dwdS9k
+cm0vaTkxNS9kaXNwbGF5L2ludGVsX3Bzci5jDQo+ID4gPiA+ID4gaW5kZXggNDk0ZDA4ODE3ZDcx
+ZS4uYjViOTM0MGU1MDVlMyAxMDA2NDQNCj4gPiA+ID4gPiAtLS0gYS9kcml2ZXJzL2dwdS9kcm0v
+aTkxNS9kaXNwbGF5L2ludGVsX3Bzci5jDQo+ID4gPiA+ID4gKysrIGIvZHJpdmVycy9ncHUvZHJt
+L2k5MTUvZGlzcGxheS9pbnRlbF9wc3IuYw0KPiA+ID4gPiA+IEBAIC0zMzEwLDExICszMzEwLDgg
+QEAgdm9pZA0KPiA+ID4gPiA+IGludGVsX3Bzcl9jb25uZWN0b3JfZGVidWdmc19hZGQoc3RydWN0
+DQo+ID4gPiA+ID4gaW50ZWxfY29ubmVjdG9yICpjb25uZWN0b3IpDQo+ID4gPiA+ID4gwqDCoMKg
+wqDCoMKgwqAgc3RydWN0IGRybV9pOTE1X3ByaXZhdGUgKmk5MTUgPSB0b19pOTE1KGNvbm5lY3Rv
+ci0NCj4gPiA+ID4gPiA+YmFzZS5kZXYpOw0KPiA+ID4gPiA+IMKgwqDCoMKgwqDCoMKgIHN0cnVj
+dCBkZW50cnkgKnJvb3QgPSBjb25uZWN0b3ItPmJhc2UuZGVidWdmc19lbnRyeTsNCj4gPiA+ID4g
+PiANCj4gPiA+ID4gPiAtwqDCoMKgwqDCoMKgIGlmIChjb25uZWN0b3ItPmJhc2UuY29ubmVjdG9y
+X3R5cGUgIT0NCj4gPiA+ID4gPiBEUk1fTU9ERV9DT05ORUNUT1JfZURQKQ0KPiA+ID4gPiA+IHsN
+Cj4gPiA+ID4gPiAtwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCBpZiAoIShIQVNfRFAyMChp
+OTE1KSAmJg0KPiA+ID4gPiA+IC3CoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
+oMKgIGNvbm5lY3Rvci0+YmFzZS5jb25uZWN0b3JfdHlwZSA9PQ0KPiA+ID4gPiA+IERSTV9NT0RF
+X0NPTk5FQ1RPUl9EaXNwbGF5UG9ydCkpDQo+ID4gPiA+ID4gLcKgwqDCoMKgwqDCoMKgwqDCoMKg
+wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIHJldHVybjsNCj4gPiA+ID4gPiAtwqDCoMKgwqDCoMKg
+IH0NCj4gPiA+ID4gPiArwqDCoMKgwqDCoMKgIGlmIChjb25uZWN0b3ItPmJhc2UuY29ubmVjdG9y
+X3R5cGUgIT0NCj4gPiA+ID4gPiBEUk1fTU9ERV9DT05ORUNUT1JfZURQKQ0KPiA+ID4gPiA+ICvC
+oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIHJldHVybjsNCj4gPiA+ID4gDQo+ID4gPiA+IFdv
+dWxkIGl0IGJlIHBvc3NpYmxlIHRvIGRpc2FibGUgaXQgb25seSBmb3IgTVNUIGNvbm5lY3Rvcj8g
+SQ0KPiA+ID4gPiB0aGluaw0KPiA+ID4gPiB0aGlzIGlzIGRpc2FibGluZyBpdCBhbHNvIGZvciBE
+UCBTU1QsIG5vPw0KPiA+ID4gDQo+ID4gPiBZZXMsIGl0IGtlZXBzIGl0IGVuYWJsZWQgb25seSBm
+b3IgZURQLiBJdCBjb3VsZCBiZSBlbmFibGVkIGZvcg0KPiA+ID4gU1NUIGFzDQo+ID4gPiB3ZWxs
+IHllcywgYnV0IEkgdGhvdWdodCBhcyBhIGZpeCB0aGUgYWJvdmUgaXMgYmV0dGVyLCBhZGRpbmcN
+Cj4gPiA+IHN1cHBvcnQNCj4gPiA+IGZvciBvdGhlciBjb25uZWN0b3IgdHlwZXMgYXMgYSBmb2xs
+b3cgdXAuDQo+ID4gDQo+ID4gaWYgKGNvbm5lY3Rvci0+bXN0X3BvcnQgfHwgIShIQVNfRFAyMChp
+OTE1KSAmJg0KPiA+IGNvbm5lY3RvcmJhc2UuY29ubmVjdG9yX3R5cGUgPT0gRFJNX01PREVfQ09O
+TkVDVE9SX0Rpc3BsYXlQb3J0KSkNCj4gPiDCoMKgwqAgcmV0dXJuOw0KPiA+IA0KPiA+IElzIGl0
+IHBvc3NpYmxlIHRvIHVzZSB0aGlzIGluc3RlYWQ/DQo+IA0KPiBMb29raW5nIHRocm91Z2ggaXQg
+SSBkb24ndCBzZWUgYSBwcm9ibGVtIG9uIFNTVCBjb25uZWN0b3JzIGVpdGhlciwgc28NCj4gSSdk
+IHJhdGhlciBsZWF2ZSB0aGUgZW50cmllcyBlbmFibGVkIGZvciB0aGVtIG9uIGFsbCBwbGF0Zm9y
+bXMsIHRoYXQNCj4gaXMNCj4gDQo+IMKgwqDCoMKgwqDCoMKgwqBpZiAoKGNvbm5lY3Rvcl90eXBl
+ICE9IERSTV9NT0RFX0NPTk5FQ1RPUl9lRFAgJiYNCj4gwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
+IGNvbm5lY3Rvcl90eXBlICE9IERSTV9NT0RFX0NPTk5FQ1RPUl9EaXNwbGF5UG9ydCkgfHwNCj4g
+wqDCoMKgwqDCoMKgwqDCoMKgwqDCoCBjb25uZWN0b3ItPm1zdF9wb3J0KQ0KPiDCoMKgwqDCoMKg
+wqDCoMKgwqDCoMKgwqDCoMKgwqDCoHJldHVybjsNCg0KU291bmRzIGdvb2QuIFRoYXQgaXMgYW55
+d2F5cyBzYW1lIHdoYXQgaXMgZG9uZSBmb3IgUFNSIGFzIHdlbGwuIA0KDQpCUiwNCg0KSm91bmkg
+SMO2Z2FuZGVyDQoNCj4gDQo+ID4gQlIsDQo+ID4gDQo+ID4gSm91bmkgSMO2Z2FuZGVyDQo+ID4g
+DQo+ID4gPiANCj4gPiA+ID4gQlIsDQo+ID4gPiA+IA0KPiA+ID4gPiBKb3VuaSBIw7ZnYW5kZXIN
+Cj4gPiA+ID4gPiANCj4gPiA+ID4gPiDCoMKgwqDCoMKgwqDCoCBkZWJ1Z2ZzX2NyZWF0ZV9maWxl
+KCJpOTE1X3Bzcl9zaW5rX3N0YXR1cyIsIDA0NDQsDQo+ID4gPiA+ID4gcm9vdCwNCj4gPiA+ID4g
+PiDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAg
+Y29ubmVjdG9yLA0KPiA+ID4gPiA+ICZpOTE1X3Bzcl9zaW5rX3N0YXR1c19mb3BzKTsNCj4gPiA+
+ID4gDQo+ID4gDQoNCg==
