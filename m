@@ -1,46 +1,48 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4C970823D6C
-	for <lists+intel-gfx@lfdr.de>; Thu,  4 Jan 2024 09:30:02 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7AFCF823D6E
+	for <lists+intel-gfx@lfdr.de>; Thu,  4 Jan 2024 09:30:04 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6459C10E310;
-	Thu,  4 Jan 2024 08:29:58 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6F47F10E3BB;
+	Thu,  4 Jan 2024 08:30:00 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EAD4A10E310
- for <intel-gfx@lists.freedesktop.org>; Thu,  4 Jan 2024 08:29:57 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C9D3610E3BB
+ for <intel-gfx@lists.freedesktop.org>; Thu,  4 Jan 2024 08:29:58 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1704356997; x=1735892997;
- h=from:to:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=MxFSJHPfnrFwTF4qYjKs/t7x/tdDXstqmA5j+obPJIk=;
- b=POOrBZnA5N9FV/4iXNXAwPFJDukG6QRkyN2An85D3GHN1tf+E2tZqeWi
- ueoz7AGfMaKTQ6amBlwwtemu1tFviPMM21s3nvDalcAP2kah92gIewB0z
- 6z88lT/K1OhhNJXtveLg7h6NLjE6tErUqD3k2Q2bnX++d0G9VGjUrPlgy
- NRWu7p0U6OZXRr1wQKAE8EPWqasXQkQswjE0oxHQfRVq5nSK9Ys3S12h9
- b/tSnfSlFQKzfXUTQXgwaMMzIUcJNGHO+bO0k/h/BNyuvl6hHefA8K5vW
- f04zDkgGVFNhxt8TYc34ytO2tVEK1tv4jO4YMlDI8zqueqmDATLwbdUN/ g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10942"; a="387624502"
-X-IronPort-AV: E=Sophos;i="6.04,330,1695711600"; d="scan'208";a="387624502"
+ t=1704356998; x=1735892998;
+ h=from:to:subject:date:message-id:in-reply-to:references:
+ mime-version:content-transfer-encoding;
+ bh=nZBzQm1CLa0Ors6LragxXjoSZ8DC+x/DNbts+5oFlAE=;
+ b=dd64ILcJshshMMXNEtt/TOiZ0ZOm1qG0qYZRcHjeWLO0WQlXtYDToSXu
+ YWV+OU/aDBWIuGhtqMpSygdksNu4Z4RFB0l9sDsXDwJxgQcEzvn/b+A+s
+ f1N655/DBfpKO6dU8QEO+5UuRlmPjjpYdKkbLd8/zb+G64MEghBsEJD6u
+ NWlOoJtRyJzATmTaV1j5JCNcR+DJTdgMHOS9LtojhmAlN62xytj5I0DIk
+ zMV0Zaic3stddQRHntu4+Crh+J0y02In4vFf5guBJ79ooRfRuUYjSVQ6H
+ TDqrYhDMFFie6HDHlvQbPX5DKFeDK5CkHZ2HQO4uO+SkH5/gt4nhPsWne A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10942"; a="387624503"
+X-IronPort-AV: E=Sophos;i="6.04,330,1695711600"; d="scan'208";a="387624503"
 Received: from orsmga007.jf.intel.com ([10.7.209.58])
  by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Jan 2024 00:29:57 -0800
+ 04 Jan 2024 00:29:58 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10942"; a="773422617"
-X-IronPort-AV: E=Sophos;i="6.04,330,1695711600"; d="scan'208";a="773422617"
+X-IronPort-AV: E=McAfee;i="6600,9927,10942"; a="773422619"
+X-IronPort-AV: E=Sophos;i="6.04,330,1695711600"; d="scan'208";a="773422619"
 Received: from ideak-desk.fi.intel.com ([10.237.72.78])
  by orsmga007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Jan 2024 00:29:56 -0800
+ 04 Jan 2024 00:29:57 -0800
 From: Imre Deak <imre.deak@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Subject: [PATCH 00/12] drm/i915: Fix HPD handling during driver init/shutdown
-Date: Thu,  4 Jan 2024 10:29:56 +0200
-Message-Id: <20240104083008.2715733-1-imre.deak@intel.com>
+Subject: [PATCH 01/12] drm/i915: Init DRM connector polled field early
+Date: Thu,  4 Jan 2024 10:29:57 +0200
+Message-Id: <20240104083008.2715733-2-imre.deak@intel.com>
 X-Mailer: git-send-email 2.39.2
+In-Reply-To: <20240104083008.2715733-1-imre.deak@intel.com>
+References: <20240104083008.2715733-1-imre.deak@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
@@ -58,54 +60,117 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Fix the handling of display connector hotplug handling during the driver
-init/shutdown sequences. A hotplug event can result in a connector
-detection/modeset running in parallel with the HW programming of the
-init/shutdown sequence, or when the display IRQs are disabled already.
+After an HPD IRQ storm on a connector intel_hpd_irq_storm_detect() will
+set the connector's HPD pin state to HPD_MARK_DISABLED and the IRQ gets
+disabled. Subsequently intel_hpd_irq_storm_switch_to_polling() will
+enable polling for these connectors, setting the pin state to
+HPD_DISABLED, but only if the connector's base.polled field is set to
+DRM_CONNECTOR_POLL_HPD. intel_hpd_irq_storm_reenable_work() will
+reenable the IRQ - after 2 minutes -  if the pin state is HPD_DISABLED.
 
-Also fix incorrectly detecting a disconnected state due to glitches on
-the HPD line and prevent long timeout/retry delays during DP AUX
-transfers on all DP connectors.
+The connectors will be created with their base.polled field set to 0,
+which gets initialized only later in i915_hpd_poll_init_work() (using
+intel_connector::polled). If a storm is detected on a connector after
+it's created and IRQs are enabled on it - by intel_hpd_init() - and
+before its bease.polled field is initialized in the above work, the
+connector's HPD pin will stay in the HPD_MARK_DISABLED state - leaving
+the IRQ disabled indefinitely - and polling will not get enabled on it as
+intended.
 
-Imre Deak (12):
-  drm/i915: Init DRM connector polled field early
-  drm/i915: Keep the connector polled state disabled after storm
-  drm/i915: Move audio deinit after disabling polling
-  drm/i915: Disable intel HPD poll after DRM poll init/enable
-  drm/i915: Suspend the framebuffer console during driver shutdown
-  drm/i915: Suspend the framebuffer console earlier during system
-    suspend
-  drm/i915: Prevent modesets during driver init/shutdown
-  drm/i915: Disable hotplug detection works during driver init/shutdown
-  drm/i915: Disable hotplug detection handlers during driver
-    init/shutdown
-  drm/i915: Add intel_digital_port lock/unlock hooks
-  drm/i915: Filter out glitches on HPD lines during hotplug detection
-  drm/i915/dp: Abort AUX on disconnected native DP ports
+I can't see a reason for initializing base.polled in a delayed manner,
+so do this already when creating the connector, to prevent the above
+race condition.
 
- drivers/gpu/drm/i915/display/intel_crt.c      |   5 +
- drivers/gpu/drm/i915/display/intel_ddi.c      |   3 +
- drivers/gpu/drm/i915/display/intel_display.c  |   3 +
- .../gpu/drm/i915/display/intel_display_core.h |  13 ++
- .../drm/i915/display/intel_display_driver.c   |  85 ++++++++-
- .../drm/i915/display/intel_display_driver.h   |   6 +
- .../drm/i915/display/intel_display_types.h    |   3 +
- drivers/gpu/drm/i915/display/intel_dp.c       |  58 +++++-
- drivers/gpu/drm/i915/display/intel_dp.h       |   3 +
- drivers/gpu/drm/i915/display/intel_dp_aux.c   |  29 ++-
- drivers/gpu/drm/i915/display/intel_dp_mst.c   |   4 +
- drivers/gpu/drm/i915/display/intel_dvo.c      |   5 +
- drivers/gpu/drm/i915/display/intel_hdmi.c     |   8 +
- drivers/gpu/drm/i915/display/intel_hotplug.c  | 165 ++++++++++++++++--
- drivers/gpu/drm/i915/display/intel_hotplug.h  |   4 +
- drivers/gpu/drm/i915/display/intel_panel.c    |   4 +
- drivers/gpu/drm/i915/display/intel_sdvo.c     |   6 +
- drivers/gpu/drm/i915/display/intel_tc.c       |  24 ++-
- drivers/gpu/drm/i915/display/intel_tc.h       |   2 +-
- drivers/gpu/drm/i915/display/intel_tv.c       |   5 +
- drivers/gpu/drm/i915/i915_driver.c            |  22 ++-
- 21 files changed, 394 insertions(+), 63 deletions(-)
+Signed-off-by: Imre Deak <imre.deak@intel.com>
+---
+ drivers/gpu/drm/i915/display/intel_crt.c  | 1 +
+ drivers/gpu/drm/i915/display/intel_dp.c   | 1 +
+ drivers/gpu/drm/i915/display/intel_dvo.c  | 1 +
+ drivers/gpu/drm/i915/display/intel_hdmi.c | 1 +
+ drivers/gpu/drm/i915/display/intel_sdvo.c | 2 ++
+ drivers/gpu/drm/i915/display/intel_tv.c   | 1 +
+ 6 files changed, 7 insertions(+)
 
+diff --git a/drivers/gpu/drm/i915/display/intel_crt.c b/drivers/gpu/drm/i915/display/intel_crt.c
+index abaacea5c2cc4..b330337b842a4 100644
+--- a/drivers/gpu/drm/i915/display/intel_crt.c
++++ b/drivers/gpu/drm/i915/display/intel_crt.c
+@@ -1069,6 +1069,7 @@ void intel_crt_init(struct drm_i915_private *dev_priv)
+ 	} else {
+ 		intel_connector->polled = DRM_CONNECTOR_POLL_CONNECT;
+ 	}
++	intel_connector->base.polled = intel_connector->polled;
+ 
+ 	if (HAS_DDI(dev_priv)) {
+ 		assert_port_valid(dev_priv, PORT_E);
+diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
+index 9ff0cbd9c0df5..fed649af8fc85 100644
+--- a/drivers/gpu/drm/i915/display/intel_dp.c
++++ b/drivers/gpu/drm/i915/display/intel_dp.c
+@@ -6469,6 +6469,7 @@ intel_dp_init_connector(struct intel_digital_port *dig_port,
+ 		connector->interlace_allowed = true;
+ 
+ 	intel_connector->polled = DRM_CONNECTOR_POLL_HPD;
++	intel_connector->base.polled = intel_connector->polled;
+ 
+ 	intel_connector_attach_encoder(intel_connector, intel_encoder);
+ 
+diff --git a/drivers/gpu/drm/i915/display/intel_dvo.c b/drivers/gpu/drm/i915/display/intel_dvo.c
+index 9111e9d46486d..83898ba493d16 100644
+--- a/drivers/gpu/drm/i915/display/intel_dvo.c
++++ b/drivers/gpu/drm/i915/display/intel_dvo.c
+@@ -536,6 +536,7 @@ void intel_dvo_init(struct drm_i915_private *i915)
+ 	if (intel_dvo->dev.type == INTEL_DVO_CHIP_TMDS)
+ 		connector->polled = DRM_CONNECTOR_POLL_CONNECT |
+ 			DRM_CONNECTOR_POLL_DISCONNECT;
++	connector->base.polled = connector->polled;
+ 
+ 	drm_connector_init_with_ddc(&i915->drm, &connector->base,
+ 				    &intel_dvo_connector_funcs,
+diff --git a/drivers/gpu/drm/i915/display/intel_hdmi.c b/drivers/gpu/drm/i915/display/intel_hdmi.c
+index eedef8121ff7c..55048c56bc527 100644
+--- a/drivers/gpu/drm/i915/display/intel_hdmi.c
++++ b/drivers/gpu/drm/i915/display/intel_hdmi.c
+@@ -3017,6 +3017,7 @@ void intel_hdmi_init_connector(struct intel_digital_port *dig_port,
+ 		connector->ycbcr_420_allowed = true;
+ 
+ 	intel_connector->polled = DRM_CONNECTOR_POLL_HPD;
++	intel_connector->base.polled = intel_connector->polled;
+ 
+ 	if (HAS_DDI(dev_priv))
+ 		intel_connector->get_hw_state = intel_ddi_connector_get_hw_state;
+diff --git a/drivers/gpu/drm/i915/display/intel_sdvo.c b/drivers/gpu/drm/i915/display/intel_sdvo.c
+index 9218047495fb4..4e4a87f841787 100644
+--- a/drivers/gpu/drm/i915/display/intel_sdvo.c
++++ b/drivers/gpu/drm/i915/display/intel_sdvo.c
+@@ -2805,6 +2805,7 @@ intel_sdvo_dvi_init(struct intel_sdvo *intel_sdvo, u16 type)
+ 	} else {
+ 		intel_connector->polled = DRM_CONNECTOR_POLL_CONNECT | DRM_CONNECTOR_POLL_DISCONNECT;
+ 	}
++	intel_connector->base.polled = intel_connector->polled;
+ 	encoder->encoder_type = DRM_MODE_ENCODER_TMDS;
+ 	connector->connector_type = DRM_MODE_CONNECTOR_DVID;
+ 
+@@ -2880,6 +2881,7 @@ intel_sdvo_analog_init(struct intel_sdvo *intel_sdvo, u16 type)
+ 	intel_connector = &intel_sdvo_connector->base;
+ 	connector = &intel_connector->base;
+ 	intel_connector->polled = DRM_CONNECTOR_POLL_CONNECT;
++	intel_connector->base.polled = intel_connector->polled;
+ 	encoder->encoder_type = DRM_MODE_ENCODER_DAC;
+ 	connector->connector_type = DRM_MODE_CONNECTOR_VGA;
+ 
+diff --git a/drivers/gpu/drm/i915/display/intel_tv.c b/drivers/gpu/drm/i915/display/intel_tv.c
+index d4386cb3569e0..f3598fe39fda5 100644
+--- a/drivers/gpu/drm/i915/display/intel_tv.c
++++ b/drivers/gpu/drm/i915/display/intel_tv.c
+@@ -1990,6 +1990,7 @@ intel_tv_init(struct drm_i915_private *dev_priv)
+ 	 * More recent chipsets favour HDMI rather than integrated S-Video.
+ 	 */
+ 	intel_connector->polled = DRM_CONNECTOR_POLL_CONNECT;
++	intel_connector->base.polled = intel_connector->polled;
+ 
+ 	drm_connector_init(&dev_priv->drm, connector, &intel_tv_connector_funcs,
+ 			   DRM_MODE_CONNECTOR_SVIDEO);
 -- 
 2.39.2
 
