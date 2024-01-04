@@ -1,45 +1,46 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5BB3F823D35
-	for <lists+intel-gfx@lfdr.de>; Thu,  4 Jan 2024 09:13:47 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 797E4823D51
+	for <lists+intel-gfx@lfdr.de>; Thu,  4 Jan 2024 09:21:59 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DF7B110E3DA;
-	Thu,  4 Jan 2024 08:13:45 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3652C10E311;
+	Thu,  4 Jan 2024 08:21:57 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C7D6D10E3DA
- for <intel-gfx@lists.freedesktop.org>; Thu,  4 Jan 2024 08:13:44 +0000 (UTC)
+Received: from mgamail.intel.com (unknown [198.175.65.13])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7F73010E311
+ for <intel-gfx@lists.freedesktop.org>; Thu,  4 Jan 2024 08:21:56 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1704356024; x=1735892024;
+ t=1704356517; x=1735892517;
  h=date:from:to:cc:subject:message-id:references:
  mime-version:in-reply-to;
- bh=ZP86eFgLKi5qgq0ZuiXKijc6uuH9RoHf9gpjti3olhc=;
- b=Jp20I6KpDyi/sANXF6HEeu17mLdnVY0cWhBpL5ndfQlIlZt8CCoTJ+q/
- Drq9Bj3H7yywB8JlqbX1S152IYUj4nFyEOiZgfC2vQ0dJ+2kaxO9ndrJ2
- 5yurzSZ/hRskpZMs9IIaPZh4gB9gC6TJk+ta4JXMoAgZa5JTAUBXLzYyo
- X1jszh0jjvKd4IaVjEXJ4OxikdCmyzbDgiicR+2rxiIwD4e7W7JD73ai0
- 67NyLV/d2TcCGEXxYQR2+qIW1uisCXntdMfbyNkbeI+v0X8s3q/5RSdD/
- 9BSbWv9axhTPnv7tTFIj6ZZ0lr5m34/G/+G8v9m7dpgeeaN1MZ2LC8kL5 g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10942"; a="461472000"
-X-IronPort-AV: E=Sophos;i="6.04,330,1695711600"; d="scan'208";a="461472000"
-Received: from orsmga003.jf.intel.com ([10.7.209.27])
- by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Jan 2024 00:13:44 -0800
+ bh=dCQ30JkWA4Y6E4jlMydmQvW8eABZmikzsFnalqGriyw=;
+ b=l3fmpjkwx/FwWQlzf+xhaol0PbPcuwk7bAOcX4/hUOS2+uxsFHr8WGe9
+ oNTebbxHV4pgUX4jgYrXieMvDrQY9Exj0UXhhIEp5zzBqZN7BZs4YFvJD
+ x9zTEQP3vfoInqQhmGDpqxCTBsqzABV7T5H5ML+slvQloZtKjPXRJIEhH
+ JynhXbgknUNe9wpLzYwfdqvrfcDl5u/bhIFlHKlGUErp/gSArUaYDMttK
+ +6KDcz4wF7ZdGOQ4JT+tsJuydSKJMJi3TL72mad3WMcmIzBsKdh8cuwXG
+ FNMn1E9M0inSqt6oiLmZiM0HLfq81SJqgPDsxOsOe/BIzzXz6LLFRFDwW g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10942"; a="4259618"
+X-IronPort-AV: E=Sophos;i="6.04,330,1695711600"; 
+   d="scan'208";a="4259618"
+Received: from orsmga004.jf.intel.com ([10.7.209.38])
+ by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 04 Jan 2024 00:21:55 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10942"; a="730066041"
-X-IronPort-AV: E=Sophos;i="6.04,330,1695711600"; d="scan'208";a="730066041"
+X-IronPort-AV: E=McAfee;i="6600,9927,10942"; a="903729983"
+X-IronPort-AV: E=Sophos;i="6.04,330,1695711600"; d="scan'208";a="903729983"
 Received: from unknown (HELO intel.com) ([10.237.72.65])
- by orsmga003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Jan 2024 00:13:43 -0800
-Date: Thu, 4 Jan 2024 10:13:35 +0200
+ by orsmga004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 04 Jan 2024 00:21:52 -0800
+Date: Thu, 4 Jan 2024 10:21:42 +0200
 From: "Lisovskiy, Stanislav" <stanislav.lisovskiy@intel.com>
-To: George D Sworo <gdsworo@intel.com>
+To: George D Sworo <george.d.sworo@intel.com>
 Subject: Re: [PATCH] drm/i915: clear the QGV mask set by GOP while booting
-Message-ID: <ZZZor1Jxmvh/XgxC@intel.com>
+Message-ID: <ZZZqlmh4AyDGnKFs@intel.com>
 References: <20240104025745.429056-1-george.d.sworo@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
@@ -81,6 +82,7 @@ On Wed, Jan 03, 2024 at 06:57:45PM -0800, George D Sworo wrote:
 > 
 > Signed-off-by: George D Sworo <george.d.sworo@intel.com>
 
+
 Hi,
 
 We already have a case similar to this, you might want to check this out:
@@ -88,6 +90,7 @@ We already have a case similar to this, you might want to check this out:
 https://patchwork.freedesktop.org/series/126962/
 
 Stan
+
 
 > ---
 >  drivers/gpu/drm/i915/display/intel_bw.c | 6 ++++++
