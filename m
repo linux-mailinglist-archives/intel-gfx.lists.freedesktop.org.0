@@ -1,29 +1,50 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4E38B823D26
-	for <lists+intel-gfx@lfdr.de>; Thu,  4 Jan 2024 09:06:28 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5BB3F823D35
+	for <lists+intel-gfx@lfdr.de>; Thu,  4 Jan 2024 09:13:47 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AA2B510E3B8;
-	Thu,  4 Jan 2024 08:06:26 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DF7B110E3DA;
+	Thu,  4 Jan 2024 08:13:45 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from 5338d5abeb45 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CE82810E3B5;
- Thu,  4 Jan 2024 08:06:24 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============5225530729410643495=="
+Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C7D6D10E3DA
+ for <intel-gfx@lists.freedesktop.org>; Thu,  4 Jan 2024 08:13:44 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1704356024; x=1735892024;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:in-reply-to;
+ bh=ZP86eFgLKi5qgq0ZuiXKijc6uuH9RoHf9gpjti3olhc=;
+ b=Jp20I6KpDyi/sANXF6HEeu17mLdnVY0cWhBpL5ndfQlIlZt8CCoTJ+q/
+ Drq9Bj3H7yywB8JlqbX1S152IYUj4nFyEOiZgfC2vQ0dJ+2kaxO9ndrJ2
+ 5yurzSZ/hRskpZMs9IIaPZh4gB9gC6TJk+ta4JXMoAgZa5JTAUBXLzYyo
+ X1jszh0jjvKd4IaVjEXJ4OxikdCmyzbDgiicR+2rxiIwD4e7W7JD73ai0
+ 67NyLV/d2TcCGEXxYQR2+qIW1uisCXntdMfbyNkbeI+v0X8s3q/5RSdD/
+ 9BSbWv9axhTPnv7tTFIj6ZZ0lr5m34/G/+G8v9m7dpgeeaN1MZ2LC8kL5 g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10942"; a="461472000"
+X-IronPort-AV: E=Sophos;i="6.04,330,1695711600"; d="scan'208";a="461472000"
+Received: from orsmga003.jf.intel.com ([10.7.209.27])
+ by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 04 Jan 2024 00:13:44 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10942"; a="730066041"
+X-IronPort-AV: E=Sophos;i="6.04,330,1695711600"; d="scan'208";a="730066041"
+Received: from unknown (HELO intel.com) ([10.237.72.65])
+ by orsmga003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 04 Jan 2024 00:13:43 -0800
+Date: Thu, 4 Jan 2024 10:13:35 +0200
+From: "Lisovskiy, Stanislav" <stanislav.lisovskiy@intel.com>
+To: George D Sworo <gdsworo@intel.com>
+Subject: Re: [PATCH] drm/i915: clear the QGV mask set by GOP while booting
+Message-ID: <ZZZor1Jxmvh/XgxC@intel.com>
+References: <20240104025745.429056-1-george.d.sworo@intel.com>
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Fi=2ECI=2EBAT=3A_success_for_drm/xe/display=3A_Disable_a?=
- =?utf-8?q?ux_ccs_framebuffers_=28rev2=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Juha-Pekka Heikkila" <juhapekka.heikkila@gmail.com>
-Date: Thu, 04 Jan 2024 08:06:24 -0000
-Message-ID: <170435558484.1840.15781749808654794406@5338d5abeb45>
-X-Patchwork-Hint: ignore
-References: <20240102182422.3823394-1-juhapekka.heikkila@gmail.com>
-In-Reply-To: <20240102182422.3823394-1-juhapekka.heikkila@gmail.com>
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240104025745.429056-1-george.d.sworo@intel.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,156 +57,66 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
 Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============5225530729410643495==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+On Wed, Jan 03, 2024 at 06:57:45PM -0800, George D Sworo wrote:
+> From: George D Sworo <george.d.sworo@intel.com>
+> 
+> GOP driver in the firmware is masking the QGV points except the one
+> which can
+> provide high Bandwidth required for panel.
+> 
+> On boot to the OS the mask is already set, and is not cleared anywhere
+> in the i915 driver
+> even though sagv is enabled. This means Pcode is unable to switch to
+> other QGV work points
+> except the one enabled by default in the GOP driver at boot time.
+> 
+> This change resets the mask, when i915 driver is finding the QGV
+> points at the boot time. So that Pcode can switch to QGV work points
+> based
+> on the Workloads.
+> 
+> Signed-off-by: George D Sworo <george.d.sworo@intel.com>
 
-== Series Details ==
+Hi,
 
-Series: drm/xe/display: Disable aux ccs framebuffers (rev2)
-URL   : https://patchwork.freedesktop.org/series/128122/
-State : success
+We already have a case similar to this, you might want to check this out:
 
-== Summary ==
+https://patchwork.freedesktop.org/series/126962/
 
-CI Bug Log - changes from CI_DRM_14076 -> Patchwork_128122v2
-====================================================
+Stan
 
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_128122v2/index.html
-
-Participating hosts (38 -> 37)
-------------------------------
-
-  Missing    (1): fi-snb-2520m 
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_128122v2 that come from known issues:
-
-### CI changes ###
-
-#### Issues hit ####
-
-  * boot:
-    - bat-jsl-1:          [PASS][1] -> [FAIL][2] ([i915#8293])
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14076/bat-jsl-1/boot.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_128122v2/bat-jsl-1/boot.html
-
-  
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@kms_pipe_crc_basic@read-crc-frame-sequence@pipe-d-edp-1:
-    - bat-rplp-1:         [PASS][3] -> [ABORT][4] ([i915#8668])
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14076/bat-rplp-1/igt@kms_pipe_crc_basic@read-crc-frame-sequence@pipe-d-edp-1.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_128122v2/bat-rplp-1/igt@kms_pipe_crc_basic@read-crc-frame-sequence@pipe-d-edp-1.html
-
-  
-  [i915#8293]: https://gitlab.freedesktop.org/drm/intel/issues/8293
-  [i915#8668]: https://gitlab.freedesktop.org/drm/intel/issues/8668
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_14076 -> Patchwork_128122v2
-
-  CI-20190529: 20190529
-  CI_DRM_14076: 6fb23c8c47c3c76c9ea4e62d3e4244eb42a6d081 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_7655: ddf7cf40a00caa7d02f3729e1e50f78f102463d9 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_128122v2: 6fb23c8c47c3c76c9ea4e62d3e4244eb42a6d081 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-### Linux commits
-
-0cbb05272712 drm/xe/display: Disable aux ccs framebuffers
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_128122v2/index.html
-
---===============5225530729410643495==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/xe/display: Disable aux ccs framebuffers (rev2)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/128122/">https://patchwork.freedesktop.org/series/128122/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_128122v2/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_128122v2/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_14076 -&gt; Patchwork_128122v2</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_128122v2/index.html</p>
-<h2>Participating hosts (38 -&gt; 37)</h2>
-<p>Missing    (1): fi-snb-2520m </p>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_128122v2 that come from known issues:</p>
-<h3>CI changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>boot:<ul>
-<li>bat-jsl-1:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14076/bat-jsl-1/boot.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_128122v2/bat-jsl-1/boot.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/8293">i915#8293</a>)</li>
-</ul>
-</li>
-</ul>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>igt@kms_pipe_crc_basic@read-crc-frame-sequence@pipe-d-edp-1:<ul>
-<li>bat-rplp-1:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14076/bat-rplp-1/igt@kms_pipe_crc_basic@read-crc-frame-sequence@pipe-d-edp-1.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_128122v2/bat-rplp-1/igt@kms_pipe_crc_basic@read-crc-frame-sequence@pipe-d-edp-1.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/8668">i915#8668</a>)</li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_14076 -&gt; Patchwork_128122v2</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_14076: 6fb23c8c47c3c76c9ea4e62d3e4244eb42a6d081 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_7655: ddf7cf40a00caa7d02f3729e1e50f78f102463d9 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  Patchwork_128122v2: 6fb23c8c47c3c76c9ea4e62d3e4244eb42a6d081 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<h3>Linux commits</h3>
-<p>0cbb05272712 drm/xe/display: Disable aux ccs framebuffers</p>
-
-</body>
-</html>
-
---===============5225530729410643495==--
+> ---
+>  drivers/gpu/drm/i915/display/intel_bw.c | 6 ++++++
+>  1 file changed, 6 insertions(+)
+> 
+> diff --git a/drivers/gpu/drm/i915/display/intel_bw.c b/drivers/gpu/drm/i915/display/intel_bw.c
+> index bef96db62c80..e2576c0fb729 100644
+> --- a/drivers/gpu/drm/i915/display/intel_bw.c
+> +++ b/drivers/gpu/drm/i915/display/intel_bw.c
+> @@ -212,6 +212,7 @@ static int icl_get_qgv_points(struct drm_i915_private *dev_priv,
+>  			      bool is_y_tile)
+>  {
+>  	const struct dram_info *dram_info = &dev_priv->dram_info;
+> +	u32 val = 0x00, val2 = 0;
+>  	int i, ret;
+>  
+>  	qi->num_points = dram_info->num_qgv_points;
+> @@ -311,6 +312,11 @@ static int icl_get_qgv_points(struct drm_i915_private *dev_priv,
+>  				    i, qi->psf_points[i].clk);
+>  	}
+>  
+> +	/* clear the QGV points mask set by the GOP driver while booting */
+> +	ret = snb_pcode_read(&dev_priv->uncore, ICL_PCODE_SAGV_DE_MEM_SS_CONFIG, &val, &val2);
+> +	if (ret)
+> +		return ret;
+> +
+>  	return 0;
+>  }
+>  
+> -- 
+> 2.34.1
+> 
