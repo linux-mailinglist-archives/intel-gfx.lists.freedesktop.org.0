@@ -1,48 +1,29 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id D2FED824890
-	for <lists+intel-gfx@lfdr.de>; Thu,  4 Jan 2024 20:05:00 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 78A3B824945
+	for <lists+intel-gfx@lfdr.de>; Thu,  4 Jan 2024 20:53:08 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DB1C410E4F8;
-	Thu,  4 Jan 2024 19:04:57 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2A2AD10E50A;
+	Thu,  4 Jan 2024 19:53:06 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 27DE610E4F8
- for <intel-gfx@lists.freedesktop.org>; Thu,  4 Jan 2024 19:04:57 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1704395097; x=1735931097;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=Pm2Kct/vbxCiit9uWsJIXW7A3JrWzNkts1UrdhbL6s4=;
- b=lBmCm1CLQ2aPjMxwbAVNSaGPUq4DmbmCTWZYG99/gU2wmbEELwiR5bPM
- o5cfK2IJXF0T4B0VHvNPvJCnlrr8wMCyTJDOnCTSY84QRCOEH0IOfFtA3
- sx14gG2kjFLY+uAGzW7UWK/n08pwJlfCia764ZNSlGbtIBPThBw+l8AIw
- akpJwG1EXjTXZE3ujCHArtp84fca+ViSlThxwq84KbFBvzm3LdVYD3koU
- e07y3O+7xq6b5D4w3PTOhkyxt9HAtHvoMs7ojMFPXRavi1+ixunYcx2aB
- x92OxbgaU6g0QjURVkS8f2CXdtpfPcRc2Mo9rA6fgkEjDrYkoEWu32CXl A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10943"; a="4153071"
-X-IronPort-AV: E=Sophos;i="6.04,331,1695711600"; 
-   d="scan'208";a="4153071"
-Received: from fmviesa002.fm.intel.com ([10.60.135.142])
- by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Jan 2024 11:04:57 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.04,331,1695711600"; d="scan'208";a="15008625"
-Received: from otc-chromeosbuild-7.ostc.intel.com (HELO
- otc-chromeosbuild-7.intel.com) ([10.54.29.152])
- by fmviesa002.fm.intel.com with ESMTP; 04 Jan 2024 11:04:56 -0800
-From: george.d.sworo@intel.com
-To: intel-gfx@lists.freedesktop.org
-Subject: [PATCH] drm/i915: clear the QGV mask set by GOP while booting
-Date: Thu,  4 Jan 2024 11:04:36 -0800
-Message-Id: <20240104190436.456114-1-george.d.sworo@intel.com>
-X-Mailer: git-send-email 2.34.1
+Received: from 5338d5abeb45 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 325B010E50A;
+ Thu,  4 Jan 2024 19:53:04 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=97_Fi=2ECI=2ECHECKPATCH=3A_warning_for_series_starting_with?=
+ =?utf-8?q?_=5Bv3=2C1/2=5D_drm/i915=3A_Disable_DSB_in_Xe_KMD?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: =?utf-8?q?Jos=C3=A9_Roberto_de_Souza?= <jose.souza@intel.com>
+Date: Thu, 04 Jan 2024 19:53:04 -0000
+Message-ID: <170439798420.20654.10711306786158145655@5338d5abeb45>
+X-Patchwork-Hint: ignore
+References: <20240104160557.48496-1-jose.souza@intel.com>
+In-Reply-To: <20240104160557.48496-1-jose.souza@intel.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -55,55 +36,35 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-From: George D Sworo <george.d.sworo@intel.com>
+== Series Details ==
 
-GOP driver in the firmware is masking the QGV points except the one
-which can
-provide high Bandwidth required for panel.
+Series: series starting with [v3,1/2] drm/i915: Disable DSB in Xe KMD
+URL   : https://patchwork.freedesktop.org/series/128212/
+State : warning
 
-On boot to the OS the mask is already set, and is not cleared anywhere
-in the i915 driver
-even though sagv is enabled. This means Pcode is unable to switch to
-other QGV work points
-except the one enabled by default in the GOP driver at boot time.
+== Summary ==
 
-This change resets the mask, when i915 driver is finding the QGV
-points at the boot time. So that Pcode can switch to QGV work points
-based
-on the Workloads.
+Error: dim checkpatch failed
+37112d90d4cb drm/i915: Disable DSB in Xe KMD
+-:38: WARNING:IS_ENABLED_CONFIG: IS_ENABLED(I915) is normally used as IS_ENABLED(CONFIG_I915)
+#38: FILE: drivers/gpu/drm/i915/display/intel_dsb.c:457:
++	if (!IS_ENABLED(I915))
 
-Signed-off-by: George D Sworo <george.d.sworo@intel.com>
----
- drivers/gpu/drm/i915/display/intel_bw.c | 6 ++++++
- 1 file changed, 6 insertions(+)
+total: 0 errors, 1 warnings, 0 checks, 10 lines checked
+dd0c3552f423 drm/xe: Fix definition of intel_wakeref_t
+-:19: WARNING:COMMIT_LOG_LONG_LINE: Prefer a maximum 75 chars per line (possible unwrapped commit description?)
+#19: 
+                 from ./drivers/gpu/drm/xe/compat-i915-headers/gem/i915_gem_object.h:11,
 
-diff --git a/drivers/gpu/drm/i915/display/intel_bw.c b/drivers/gpu/drm/i915/display/intel_bw.c
-index bef96db62c80..e2576c0fb729 100644
---- a/drivers/gpu/drm/i915/display/intel_bw.c
-+++ b/drivers/gpu/drm/i915/display/intel_bw.c
-@@ -212,6 +212,7 @@ static int icl_get_qgv_points(struct drm_i915_private *dev_priv,
- 			      bool is_y_tile)
- {
- 	const struct dram_info *dram_info = &dev_priv->dram_info;
-+	u32 val = 0x00, val2 = 0;
- 	int i, ret;
- 
- 	qi->num_points = dram_info->num_qgv_points;
-@@ -311,6 +312,11 @@ static int icl_get_qgv_points(struct drm_i915_private *dev_priv,
- 				    i, qi->psf_points[i].clk);
- 	}
- 
-+	/* clear the QGV points mask set by the GOP driver while booting */
-+	ret = snb_pcode_read(&dev_priv->uncore, ICL_PCODE_SAGV_DE_MEM_SS_CONFIG, &val, &val2);
-+	if (ret)
-+		return ret;
-+
- 	return 0;
- }
- 
--- 
-2.34.1
+-:64: WARNING:NEW_TYPEDEFS: do not add new typedefs
+#64: FILE: drivers/gpu/drm/xe/compat-i915-headers/intel_wakeref.h:8:
++typedef unsigned long intel_wakeref_t;
+
+total: 0 errors, 2 warnings, 0 checks, 5 lines checked
+
 
