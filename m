@@ -1,51 +1,52 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 787248246C1
-	for <lists+intel-gfx@lfdr.de>; Thu,  4 Jan 2024 17:56:40 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 109188246C4
+	for <lists+intel-gfx@lfdr.de>; Thu,  4 Jan 2024 17:58:23 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 56F8D10E499;
-	Thu,  4 Jan 2024 16:56:38 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8C53B10E4EB;
+	Thu,  4 Jan 2024 16:58:21 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.24])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AA6A710E499;
- Thu,  4 Jan 2024 16:56:36 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BCCE010E4E5;
+ Thu,  4 Jan 2024 16:58:19 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1704387396; x=1735923396;
+ t=1704387500; x=1735923500;
  h=from:to:subject:in-reply-to:references:date:message-id:
  mime-version:content-transfer-encoding;
- bh=QPgU4DszC1TXxoDFhhUy9/8f2wmoqpuuVRyK16ykLcU=;
- b=KmrHLdxjv/Umk680RZRj9fme97wMOrAtXCfrntdG2ac5mTtLF/VgX5Z/
- yQKUdHwPWTbeLkna8bJDhZ7cmdhobvglzgOHGe9OAJgpmyXOQKs7Jcbfa
- QYbO87pSlW4PcIIEtxjNc3AtFdw9T7C393pnNjzAbLRsZq1L+O/OqHn/g
- MzSteXRoC0/0g9TI1hjy9IS9hRnwG41xKSMhbMR7h5EBs2zmzTkkIR2sp
- kWy0j7D0gH82SVBymZPRGmLxQyxuRJIf6LUlQXlA8ku+h27JiZ+2ccq5Y
- awVZmqkID71Q3U4M+2FOMlvwTh1s6+M6xCiD4GdeCBWmgMW8LXPsHkTyO w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10943"; a="400070705"
-X-IronPort-AV: E=Sophos;i="6.04,331,1695711600"; d="scan'208";a="400070705"
-Received: from fmsmga004.fm.intel.com ([10.253.24.48])
- by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Jan 2024 08:56:36 -0800
+ bh=PW6dVuHna9fFsdBgYbxX3gEA1l21yRWnHtKOyWICTT8=;
+ b=O1n+Un8b5TeB2udjdttwYH11SHPWISRn6uCyUo1CnZGy5sUC8f0QvcAd
+ +s4Hc+FZYj4vA9n+EE1K59QzDN/o9M2DGGSiNcG0YJiOvw8ZS6EZCxGQn
+ UvGgipgea1U7kkpkV1l8TBs6LEEdsseIITGINFpc3l/9bU5VgLgAhqFkY
+ KoeAXhcu4lsKJ4LrTqUHwBGi8Rj2YGwCkukWnw4syRUrNc0C4bPSsHYfE
+ sfLibKqXGoy8MsRnmcvjW2+mYuKtUYpCQzAKDEM45j11pNidkYak5oRK5
+ SYtrPoa7JaA5EE1e9bHRTNoVA04ZSwgcBYAfrOyvO5UJlWIz5TgikwcCR g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10943"; a="4076322"
+X-IronPort-AV: E=Sophos;i="6.04,331,1695711600"; 
+   d="scan'208";a="4076322"
+Received: from orviesa002.jf.intel.com ([10.64.159.142])
+ by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 04 Jan 2024 08:58:20 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10943"; a="850870586"
-X-IronPort-AV: E=Sophos;i="6.04,331,1695711600"; d="scan'208";a="850870586"
+X-IronPort-AV: E=Sophos;i="6.04,331,1695711600"; d="scan'208";a="22229424"
 Received: from pdelarag-mobl.ger.corp.intel.com (HELO localhost)
  ([10.252.36.32])
- by fmsmga004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Jan 2024 08:56:34 -0800
+ by orviesa002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 04 Jan 2024 08:58:17 -0800
 From: Jani Nikula <jani.nikula@linux.intel.com>
 To: =?utf-8?Q?Jos=C3=A9?= Roberto de Souza <jose.souza@intel.com>,
  intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
-Subject: Re: [PATCH v4 2/3] drm/xe: Fix definition of intel_wakeref_t
-In-Reply-To: <20240104162411.56085-2-jose.souza@intel.com>
+Subject: Re: [PATCH v4 3/3] drm/xe: Use intel_wakeref_t in intel_runtime_pm
+ functions
+In-Reply-To: <20240104162411.56085-3-jose.souza@intel.com>
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 References: <20240104162411.56085-1-jose.souza@intel.com>
- <20240104162411.56085-2-jose.souza@intel.com>
-Date: Thu, 04 Jan 2024 18:56:31 +0200
-Message-ID: <87a5plyr40.fsf@intel.com>
+ <20240104162411.56085-3-jose.souza@intel.com>
+Date: Thu, 04 Jan 2024 18:58:14 +0200
+Message-ID: <877ckpyr15.fsf@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
@@ -66,89 +67,68 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 On Thu, 04 Jan 2024, Jos=C3=A9 Roberto de Souza <jose.souza@intel.com> wrot=
 e:
-> i915 defines it as unsigned long so Xe should do the same to avoid
-> compilation warnings:
+> Now intel_wakeref_t is a unsigned long and Xe KMD version of those
+> functions should use the same type, so changing from bool to
+> intel_wakeref_t.
 >
->   CC [M]  drivers/gpu/drm/i915/i915_gem.o
->   CC [M]  drivers/gpu/drm/xe/i915-display/intel_display_power_well.o
-> In file included from ./include/drm/drm_mm.h:51,
->                  from drivers/gpu/drm/xe/xe_bo_types.h:11,
->                  from drivers/gpu/drm/xe/xe_bo.h:11,
->                  from ./drivers/gpu/drm/xe/compat-i915-headers/gem/i915_g=
-em_object.h:11,
->                  from ./drivers/gpu/drm/xe/compat-i915-headers/i915_drv.h=
-:15,
->                  from drivers/gpu/drm/i915/display/intel_display_power.c:=
-8:
-> drivers/gpu/drm/i915/display/intel_display_power.c: In function =E2=80=98=
-print_async_put_domains_state=E2=80=99:
-> drivers/gpu/drm/i915/display/intel_display_power.c:408:29: warning: forma=
-t =E2=80=98%lu=E2=80=99 expects argument of type =E2=80=98long unsigned int=
-=E2=80=99, but argument 5 has type =E2=80=98int=E2=80=99 [-Wformat=3D]
->   408 |         drm_dbg(&i915->drm, "async_put_wakeref %lu\n",
->       |                             ^~~~~~~~~~~~~~~~~~~~~~~~~
->   409 |                 power_domains->async_put_wakeref);
->       |                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
->       |                              |
->       |                              int
-> ./include/drm/drm_print.h:410:39: note: in definition of macro =E2=80=98d=
-rm_dev_dbg=E2=80=99
->   410 |         __drm_dev_dbg(NULL, dev, cat, fmt, ##__VA_ARGS__)
->       |                                       ^~~
-> ./include/drm/drm_print.h:510:33: note: in expansion of macro =E2=80=98dr=
-m_dbg_driver=E2=80=99
->   510 | #define drm_dbg(drm, fmt, ...)  drm_dbg_driver(drm, fmt, ##__VA_A=
-RGS__)
->       |                                 ^~~~~~~~~~~~~~
-> drivers/gpu/drm/i915/display/intel_display_power.c:408:9: note: in expans=
-ion of macro =E2=80=98drm_dbg=E2=80=99
->   408 |         drm_dbg(&i915->drm, "async_put_wakeref %lu\n",
->       |         ^~~~~~~
-> drivers/gpu/drm/i915/display/intel_display_power.c:408:50: note: format s=
-tring is defined here
->   408 |         drm_dbg(&i915->drm, "async_put_wakeref %lu\n",
->       |                                                ~~^
->       |                                                  |
->       |                                                  long unsigned int
->       |                                                %u
->   CC [M]  drivers/gpu/drm/i915/i915_gem_evict.o
->   CC [M]  drivers/gpu/drm/i915/i915_gem_gtt.o
->   CC [M]  drivers/gpu/drm/xe/i915-display/intel_display_trace.o
->   CC [M]  drivers/gpu/drm/xe/i915-display/intel_display_wa.o
->   CC [M]  drivers/gpu/drm/i915/i915_query.o
->
-> Fixes: 44e694958b95 ("drm/xe/display: Implement display support")
 > Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
 > Signed-off-by: Jos=C3=A9 Roberto de Souza <jose.souza@intel.com>
 
-I think the real issue is that we're trying to print the value of
-something that's supposed to be an opaque cookie, and the fix for that
-is [1].
+I don't think it was ever a bool in i915.
 
-However, no harm in syncing the types.
+Wish we'd get the ref tracker in xe too.
 
 Reviewed-by: Jani Nikula <jani.nikula@intel.com>
 
 
-[1] https://patchwork.freedesktop.org/patch/msgid/20240104164600.783371-1-j=
-ani.nikula@intel.com
-
-
 > ---
->  drivers/gpu/drm/xe/compat-i915-headers/intel_wakeref.h | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
+>  drivers/gpu/drm/xe/compat-i915-headers/i915_drv.h | 10 +++++-----
+>  1 file changed, 5 insertions(+), 5 deletions(-)
 >
-> diff --git a/drivers/gpu/drm/xe/compat-i915-headers/intel_wakeref.h b/dri=
-vers/gpu/drm/xe/compat-i915-headers/intel_wakeref.h
-> index 1c5e30cf10caa..ecb1c07077069 100644
-> --- a/drivers/gpu/drm/xe/compat-i915-headers/intel_wakeref.h
-> +++ b/drivers/gpu/drm/xe/compat-i915-headers/intel_wakeref.h
-> @@ -5,4 +5,4 @@
+> diff --git a/drivers/gpu/drm/xe/compat-i915-headers/i915_drv.h b/drivers/=
+gpu/drm/xe/compat-i915-headers/i915_drv.h
+> index 5d2a77b52db41..420eba0e4be00 100644
+> --- a/drivers/gpu/drm/xe/compat-i915-headers/i915_drv.h
+> +++ b/drivers/gpu/drm/xe/compat-i915-headers/i915_drv.h
+> @@ -162,18 +162,18 @@ static inline struct drm_i915_private *kdev_to_i915=
+(struct device *kdev)
 >=20=20
->  #include <linux/types.h>
+>  #include "intel_wakeref.h"
 >=20=20
-> -typedef bool intel_wakeref_t;
-> +typedef unsigned long intel_wakeref_t;
+> -static inline bool intel_runtime_pm_get(struct xe_runtime_pm *pm)
+> +static inline intel_wakeref_t intel_runtime_pm_get(struct xe_runtime_pm =
+*pm)
+>  {
+>  	struct xe_device *xe =3D container_of(pm, struct xe_device, runtime_pm);
+>=20=20
+>  	if (xe_pm_runtime_get(xe) < 0) {
+>  		xe_pm_runtime_put(xe);
+> -		return false;
+> +		return 0;
+>  	}
+> -	return true;
+> +	return 1;
+>  }
+>=20=20
+> -static inline bool intel_runtime_pm_get_if_in_use(struct xe_runtime_pm *=
+pm)
+> +static inline intel_wakeref_t intel_runtime_pm_get_if_in_use(struct xe_r=
+untime_pm *pm)
+>  {
+>  	struct xe_device *xe =3D container_of(pm, struct xe_device, runtime_pm);
+>=20=20
+> @@ -187,7 +187,7 @@ static inline void intel_runtime_pm_put_unchecked(str=
+uct xe_runtime_pm *pm)
+>  	xe_pm_runtime_put(xe);
+>  }
+>=20=20
+> -static inline void intel_runtime_pm_put(struct xe_runtime_pm *pm, bool w=
+akeref)
+> +static inline void intel_runtime_pm_put(struct xe_runtime_pm *pm, intel_=
+wakeref_t wakeref)
+>  {
+>  	if (wakeref)
+>  		intel_runtime_pm_put_unchecked(pm);
 
 --=20
 Jani Nikula, Intel
