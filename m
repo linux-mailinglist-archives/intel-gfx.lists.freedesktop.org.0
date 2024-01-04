@@ -1,46 +1,45 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 06011823D77
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id B23F8823D78
 	for <lists+intel-gfx@lfdr.de>; Thu,  4 Jan 2024 09:30:13 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2C1C210E3DC;
-	Thu,  4 Jan 2024 08:30:10 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8FE8010E3E1;
+	Thu,  4 Jan 2024 08:30:11 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8B0C410E3DC
- for <intel-gfx@lists.freedesktop.org>; Thu,  4 Jan 2024 08:30:08 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2D0B310E3DC
+ for <intel-gfx@lists.freedesktop.org>; Thu,  4 Jan 2024 08:30:09 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1704357008; x=1735893008;
+ t=1704357009; x=1735893009;
  h=from:to:subject:date:message-id:in-reply-to:references:
  mime-version:content-transfer-encoding;
- bh=t6wC9687mrGOGVVsuy1lM1RYkZB7gi0QgA0+E1UGU4k=;
- b=AwiFRuFKe7xSxulpL48gtMWI9mlhE06SHPjLO/xh7PbF6dm/x0F23sOW
- 1LTuLo7jeTa9ENfmoN+nwOFPXNVQIYgX16lytDRKq1owrH8QqkPIKnFpD
- DmckwFY+0w3sx5DAzhbnquaWGCzwGBcYjwcVcHP9CNONhcwR5BS4OBErA
- xt+OfBE7o4DiVnyGilpfijwQMwHEfXKhSBll2k9DaYdJVIJlAcQc92/Tq
- aQ4joazSLdQda2QvgTiKI429k0OAKO9DYrCzGzR7TFxAKgkKzlEJT+ruq
- GiMCkp+B6eX+F120J7/qlFXi2ZOLidmntMspJMVgEuRsE2QRh7flVDSdA w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10942"; a="387624547"
-X-IronPort-AV: E=Sophos;i="6.04,330,1695711600"; d="scan'208";a="387624547"
+ bh=G4WHEuERZfFsLNBgD4EEyesOR/A/Hg4TdI7j3bcbQGI=;
+ b=dKEp4O2CT2OAebX4xtWzrE9bsZQkLoVNlhXiAgrdSodVsovHirIejd0G
+ Tzwh+JDyg55W1xAOrPZMvpk4t7H1Cp30IlAaf2S2+FeaWPrCSLmHodppf
+ JFG+OESh8CvtcndARP7GJvSkHA+UquWMOfOaGt138T0jUr83cKAMhlctd
+ GtPmizn4kvyCw5uw6k74YWE6v3l2rLQKnbbcZ3B5oKyXz7dLFMB7ElnmM
+ TZjUJvpjkeAgmbaGGZJKFjq8PQIPhnNnoiXwppJn6lwc8hJLsezv1ZOyI
+ MVkJylGJztX80VS7RsnWfryvjW7ZNVXpTdgTz/gTMRFn1DvzV+9GrCZMg g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10942"; a="387624563"
+X-IronPort-AV: E=Sophos;i="6.04,330,1695711600"; d="scan'208";a="387624563"
 Received: from orsmga007.jf.intel.com ([10.7.209.58])
  by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Jan 2024 00:30:07 -0800
+ 04 Jan 2024 00:30:09 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10942"; a="773422692"
-X-IronPort-AV: E=Sophos;i="6.04,330,1695711600"; d="scan'208";a="773422692"
+X-IronPort-AV: E=McAfee;i="6600,9927,10942"; a="773422699"
+X-IronPort-AV: E=Sophos;i="6.04,330,1695711600"; d="scan'208";a="773422699"
 Received: from ideak-desk.fi.intel.com ([10.237.72.78])
  by orsmga007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Jan 2024 00:30:07 -0800
+ 04 Jan 2024 00:30:08 -0800
 From: Imre Deak <imre.deak@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Subject: [PATCH 09/12] drm/i915: Disable hotplug detection handlers during
- driver init/shutdown
-Date: Thu,  4 Jan 2024 10:30:05 +0200
-Message-Id: <20240104083008.2715733-10-imre.deak@intel.com>
+Subject: [PATCH 10/12] drm/i915: Add intel_digital_port lock/unlock hooks
+Date: Thu,  4 Jan 2024 10:30:06 +0200
+Message-Id: <20240104083008.2715733-11-imre.deak@intel.com>
 X-Mailer: git-send-email 2.39.2
 In-Reply-To: <20240104083008.2715733-1-imre.deak@intel.com>
 References: <20240104083008.2715733-1-imre.deak@intel.com>
@@ -61,219 +60,234 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-As described in the previous two patches an unexpected connector
-detection can happen during the init/shutdown sequences. Prevent these
-by returning the connector's current status from the detection handlers.
+Add hooks to intel_digital_port to lock and unlock the port and add a
+helper to check the connector's detect status while the port is locked
+already. This simplifies checking the connector detect status in
+intel_dp_aux_xfer() and intel_digital_port_connected() in the next two
+patches aborting AUX transfers on all DP connectors (except eDP) and
+filtering HPD glitches.
 
 Signed-off-by: Imre Deak <imre.deak@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_crt.c    | 4 ++++
- drivers/gpu/drm/i915/display/intel_dp.c     | 8 ++++++++
- drivers/gpu/drm/i915/display/intel_dp_mst.c | 4 ++++
- drivers/gpu/drm/i915/display/intel_dvo.c    | 4 ++++
- drivers/gpu/drm/i915/display/intel_hdmi.c   | 7 +++++++
- drivers/gpu/drm/i915/display/intel_panel.c  | 4 ++++
- drivers/gpu/drm/i915/display/intel_sdvo.c   | 4 ++++
- drivers/gpu/drm/i915/display/intel_tv.c     | 4 ++++
- 8 files changed, 39 insertions(+)
+ drivers/gpu/drm/i915/display/intel_ddi.c      |  3 ++
+ .../drm/i915/display/intel_display_types.h    |  3 ++
+ drivers/gpu/drm/i915/display/intel_dp.c       | 34 +++++++++++++++++--
+ drivers/gpu/drm/i915/display/intel_dp.h       |  3 ++
+ drivers/gpu/drm/i915/display/intel_dp_aux.c   | 28 +++++++--------
+ drivers/gpu/drm/i915/display/intel_tc.c       | 15 +-------
+ drivers/gpu/drm/i915/display/intel_tc.h       |  1 -
+ 7 files changed, 56 insertions(+), 31 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_crt.c b/drivers/gpu/drm/i915/display/intel_crt.c
-index b330337b842a4..b9733a73e21d4 100644
---- a/drivers/gpu/drm/i915/display/intel_crt.c
-+++ b/drivers/gpu/drm/i915/display/intel_crt.c
-@@ -42,6 +42,7 @@
- #include "intel_ddi.h"
- #include "intel_ddi_buf_trans.h"
- #include "intel_de.h"
-+#include "intel_display_driver.h"
- #include "intel_display_types.h"
- #include "intel_fdi.h"
- #include "intel_fdi_regs.h"
-@@ -846,6 +847,9 @@ intel_crt_detect(struct drm_connector *connector,
- 	if (!intel_display_device_enabled(dev_priv))
- 		return connector_status_disconnected;
+diff --git a/drivers/gpu/drm/i915/display/intel_ddi.c b/drivers/gpu/drm/i915/display/intel_ddi.c
+index 2746655bcb264..922194b957be2 100644
+--- a/drivers/gpu/drm/i915/display/intel_ddi.c
++++ b/drivers/gpu/drm/i915/display/intel_ddi.c
+@@ -5117,6 +5117,9 @@ void intel_ddi_init(struct drm_i915_private *dev_priv,
+ 		encoder->suspend_complete = intel_ddi_tc_encoder_suspend_complete;
+ 		encoder->shutdown_complete = intel_ddi_tc_encoder_shutdown_complete;
  
-+	if (!intel_display_driver_check_access(dev_priv))
-+		return connector->status;
++		dig_port->lock = intel_tc_port_lock;
++		dig_port->unlock = intel_tc_port_unlock;
 +
- 	if (dev_priv->display.params.load_detect_test) {
- 		wakeref = intel_display_power_get(dev_priv,
- 						  intel_encoder->power_domain);
+ 		if (intel_tc_port_init(dig_port, is_legacy) < 0)
+ 			goto err;
+ 	}
+diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/drivers/gpu/drm/i915/display/intel_display_types.h
+index b9b9d9f2bc0ba..3556ccedbe4c1 100644
+--- a/drivers/gpu/drm/i915/display/intel_display_types.h
++++ b/drivers/gpu/drm/i915/display/intel_display_types.h
+@@ -1890,6 +1890,9 @@ struct intel_digital_port {
+ 	u32 (*infoframes_enabled)(struct intel_encoder *encoder,
+ 				  const struct intel_crtc_state *pipe_config);
+ 	bool (*connected)(struct intel_encoder *encoder);
++
++	void (*lock)(struct intel_digital_port *dig_port);
++	void (*unlock)(struct intel_digital_port *dig_port);
+ };
+ 
+ struct intel_dp_mst_encoder {
 diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
-index 96ec6f1554c60..61c11f475f54a 100644
+index 61c11f475f54a..f04926d4aa80d 100644
 --- a/drivers/gpu/drm/i915/display/intel_dp.c
 +++ b/drivers/gpu/drm/i915/display/intel_dp.c
-@@ -56,6 +56,7 @@
- #include "intel_cx0_phy.h"
- #include "intel_ddi.h"
- #include "intel_de.h"
-+#include "intel_display_driver.h"
- #include "intel_display_types.h"
- #include "intel_dp.h"
- #include "intel_dp_aux.h"
-@@ -5642,6 +5643,9 @@ intel_dp_detect(struct drm_connector *connector,
- 	if (!intel_display_device_enabled(dev_priv))
- 		return connector_status_disconnected;
- 
-+	if (!intel_display_driver_check_access(dev_priv))
-+		return connector->status;
-+
- 	/* Can't disconnect eDP */
- 	if (intel_dp_is_edp(intel_dp))
- 		status = edp_detect(intel_dp);
-@@ -5742,6 +5746,10 @@ intel_dp_force(struct drm_connector *connector)
- 
- 	drm_dbg_kms(&dev_priv->drm, "[CONNECTOR:%d:%s]\n",
- 		    connector->base.id, connector->name);
-+
-+	if (!intel_display_driver_check_access(dev_priv))
-+		return;
-+
- 	intel_dp_unset_edid(intel_dp);
- 
- 	if (connector->status != connector_status_connected)
-diff --git a/drivers/gpu/drm/i915/display/intel_dp_mst.c b/drivers/gpu/drm/i915/display/intel_dp_mst.c
-index 8a94323350303..5fa25a5a36b55 100644
---- a/drivers/gpu/drm/i915/display/intel_dp_mst.c
-+++ b/drivers/gpu/drm/i915/display/intel_dp_mst.c
-@@ -37,6 +37,7 @@
- #include "intel_crtc.h"
- #include "intel_ddi.h"
- #include "intel_de.h"
-+#include "intel_display_driver.h"
- #include "intel_display_types.h"
- #include "intel_dp.h"
- #include "intel_dp_hdcp.h"
-@@ -1410,6 +1411,9 @@ intel_dp_mst_detect(struct drm_connector *connector,
- 	if (drm_connector_is_unregistered(connector))
- 		return connector_status_disconnected;
- 
-+	if (!intel_display_driver_check_access(i915))
-+		return connector->status;
-+
- 	return drm_dp_mst_detect_port(connector, ctx, &intel_dp->mst_mgr,
- 				      intel_connector->port);
- }
-diff --git a/drivers/gpu/drm/i915/display/intel_dvo.c b/drivers/gpu/drm/i915/display/intel_dvo.c
-index 83898ba493d16..8ca9ae4798a89 100644
---- a/drivers/gpu/drm/i915/display/intel_dvo.c
-+++ b/drivers/gpu/drm/i915/display/intel_dvo.c
-@@ -35,6 +35,7 @@
- #include "i915_reg.h"
- #include "intel_connector.h"
- #include "intel_de.h"
-+#include "intel_display_driver.h"
- #include "intel_display_types.h"
- #include "intel_dvo.h"
- #include "intel_dvo_dev.h"
-@@ -328,6 +329,9 @@ intel_dvo_detect(struct drm_connector *_connector, bool force)
- 	if (!intel_display_device_enabled(i915))
- 		return connector_status_disconnected;
- 
-+	if (!intel_display_driver_check_access(i915))
-+		return connector->base.status;
-+
- 	return intel_dvo->dev.dev_ops->detect(&intel_dvo->dev);
- }
- 
-diff --git a/drivers/gpu/drm/i915/display/intel_hdmi.c b/drivers/gpu/drm/i915/display/intel_hdmi.c
-index 55048c56bc527..7020e58061092 100644
---- a/drivers/gpu/drm/i915/display/intel_hdmi.c
-+++ b/drivers/gpu/drm/i915/display/intel_hdmi.c
-@@ -49,6 +49,7 @@
- #include "intel_cx0_phy.h"
- #include "intel_ddi.h"
- #include "intel_de.h"
-+#include "intel_display_driver.h"
- #include "intel_display_types.h"
- #include "intel_dp.h"
- #include "intel_gmbus.h"
-@@ -2505,6 +2506,9 @@ intel_hdmi_detect(struct drm_connector *connector, bool force)
- 	if (!intel_display_device_enabled(dev_priv))
- 		return connector_status_disconnected;
- 
-+	if (!intel_display_driver_check_access(dev_priv))
-+		return connector->status;
-+
- 	wakeref = intel_display_power_get(dev_priv, POWER_DOMAIN_GMBUS);
- 
- 	if (DISPLAY_VER(dev_priv) >= 11 &&
-@@ -2533,6 +2537,9 @@ intel_hdmi_force(struct drm_connector *connector)
- 	drm_dbg_kms(&i915->drm, "[CONNECTOR:%d:%s]\n",
- 		    connector->base.id, connector->name);
- 
-+	if (!intel_display_driver_check_access(i915))
-+		return;
-+
- 	intel_hdmi_unset_edid(connector);
- 
- 	if (connector->status != connector_status_connected)
-diff --git a/drivers/gpu/drm/i915/display/intel_panel.c b/drivers/gpu/drm/i915/display/intel_panel.c
-index 0d8e5320a4f88..073ea3166c360 100644
---- a/drivers/gpu/drm/i915/display/intel_panel.c
-+++ b/drivers/gpu/drm/i915/display/intel_panel.c
-@@ -37,6 +37,7 @@
- #include "intel_backlight.h"
- #include "intel_connector.h"
- #include "intel_de.h"
-+#include "intel_display_driver.h"
- #include "intel_display_types.h"
- #include "intel_drrs.h"
- #include "intel_lvds_regs.h"
-@@ -683,6 +684,9 @@ intel_panel_detect(struct drm_connector *connector, bool force)
- 	if (!intel_display_device_enabled(i915))
- 		return connector_status_disconnected;
- 
-+	if (!intel_display_driver_check_access(i915))
-+		return connector->status;
-+
+@@ -5426,8 +5426,24 @@ edp_detect(struct intel_dp *intel_dp)
  	return connector_status_connected;
  }
  
-diff --git a/drivers/gpu/drm/i915/display/intel_sdvo.c b/drivers/gpu/drm/i915/display/intel_sdvo.c
-index 4e4a87f841787..a086d5f51e612 100644
---- a/drivers/gpu/drm/i915/display/intel_sdvo.c
-+++ b/drivers/gpu/drm/i915/display/intel_sdvo.c
-@@ -44,6 +44,7 @@
- #include "intel_connector.h"
- #include "intel_crtc.h"
- #include "intel_de.h"
-+#include "intel_display_driver.h"
- #include "intel_display_types.h"
- #include "intel_fdi.h"
- #include "intel_fifo_underrun.h"
-@@ -2140,6 +2141,9 @@ intel_sdvo_detect(struct drm_connector *connector, bool force)
- 	if (!intel_display_device_enabled(i915))
- 		return connector_status_disconnected;
- 
-+	if (!intel_display_driver_check_access(i915))
-+		return connector->status;
++void intel_digital_port_lock(struct intel_encoder *encoder)
++{
++	struct intel_digital_port *dig_port = enc_to_dig_port(encoder);
 +
- 	if (!intel_sdvo_set_target_output(intel_sdvo,
- 					  intel_sdvo_connector->output_flag))
- 		return connector_status_unknown;
-diff --git a/drivers/gpu/drm/i915/display/intel_tv.c b/drivers/gpu/drm/i915/display/intel_tv.c
-index f3598fe39fda5..af99b22332adf 100644
---- a/drivers/gpu/drm/i915/display/intel_tv.c
-+++ b/drivers/gpu/drm/i915/display/intel_tv.c
-@@ -40,6 +40,7 @@
- #include "intel_crtc.h"
- #include "intel_de.h"
- #include "intel_display_irq.h"
-+#include "intel_display_driver.h"
- #include "intel_display_types.h"
- #include "intel_dpll.h"
- #include "intel_hotplug.h"
-@@ -1723,6 +1724,9 @@ intel_tv_detect(struct drm_connector *connector,
- 	if (!intel_display_device_enabled(i915))
- 		return connector_status_disconnected;
- 
-+	if (!intel_display_driver_check_access(i915))
-+		return connector->status;
++	if (dig_port->lock)
++		dig_port->lock(dig_port);
++}
 +
- 	if (force) {
- 		struct drm_atomic_state *state;
++void intel_digital_port_unlock(struct intel_encoder *encoder)
++{
++	struct intel_digital_port *dig_port = enc_to_dig_port(encoder);
++
++	if (dig_port->unlock)
++		dig_port->unlock(dig_port);
++}
++
+ /*
+- * intel_digital_port_connected - is the specified port connected?
++ * intel_digital_port_connected_locked - is the specified port connected?
+  * @encoder: intel_encoder
+  *
+  * In cases where there's a connector physically connected but it can't be used
+@@ -5435,9 +5451,12 @@ edp_detect(struct intel_dp *intel_dp)
+  * pretty much treat the port as disconnected. This is relevant for type-C
+  * (starting on ICL) where there's ownership involved.
+  *
++ * The caller must hold the lock acquired by calling intel_digital_port_lock()
++ * when calling this function.
++ *
+  * Return %true if port is connected, %false otherwise.
+  */
+-bool intel_digital_port_connected(struct intel_encoder *encoder)
++bool intel_digital_port_connected_locked(struct intel_encoder *encoder)
+ {
+ 	struct drm_i915_private *dev_priv = to_i915(encoder->base.dev);
+ 	struct intel_digital_port *dig_port = enc_to_dig_port(encoder);
+@@ -5450,6 +5469,17 @@ bool intel_digital_port_connected(struct intel_encoder *encoder)
+ 	return is_connected;
+ }
  
++bool intel_digital_port_connected(struct intel_encoder *encoder)
++{
++	bool ret;
++
++	intel_digital_port_lock(encoder);
++	ret = intel_digital_port_connected_locked(encoder);
++	intel_digital_port_unlock(encoder);
++
++	return ret;
++}
++
+ static const struct drm_edid *
+ intel_dp_get_edid(struct intel_dp *intel_dp)
+ {
+diff --git a/drivers/gpu/drm/i915/display/intel_dp.h b/drivers/gpu/drm/i915/display/intel_dp.h
+index b911706d2e95e..530cc97bc42f4 100644
+--- a/drivers/gpu/drm/i915/display/intel_dp.h
++++ b/drivers/gpu/drm/i915/display/intel_dp.h
+@@ -115,7 +115,10 @@ void intel_dp_set_infoframes(struct intel_encoder *encoder, bool enable,
+ void intel_read_dp_sdp(struct intel_encoder *encoder,
+ 		       struct intel_crtc_state *crtc_state,
+ 		       unsigned int type);
++void intel_digital_port_lock(struct intel_encoder *encoder);
++void intel_digital_port_unlock(struct intel_encoder *encoder);
+ bool intel_digital_port_connected(struct intel_encoder *encoder);
++bool intel_digital_port_connected_locked(struct intel_encoder *encoder);
+ int intel_dp_dsc_compute_max_bpp(const struct intel_connector *connector,
+ 				 u8 dsc_max_bpc);
+ u16 intel_dp_dsc_get_max_compressed_bpp(struct drm_i915_private *i915,
+diff --git a/drivers/gpu/drm/i915/display/intel_dp_aux.c b/drivers/gpu/drm/i915/display/intel_dp_aux.c
+index 2e2af71bcd5a8..b36ef321e835e 100644
+--- a/drivers/gpu/drm/i915/display/intel_dp_aux.c
++++ b/drivers/gpu/drm/i915/display/intel_dp_aux.c
+@@ -9,6 +9,7 @@
+ #include "intel_bios.h"
+ #include "intel_de.h"
+ #include "intel_display_types.h"
++#include "intel_dp.h"
+ #include "intel_dp_aux.h"
+ #include "intel_dp_aux_regs.h"
+ #include "intel_pps.h"
+@@ -228,6 +229,7 @@ intel_dp_aux_xfer(struct intel_dp *intel_dp,
+ 		  u32 aux_send_ctl_flags)
+ {
+ 	struct intel_digital_port *dig_port = dp_to_dig_port(intel_dp);
++	struct intel_encoder *encoder = &dig_port->base;
+ 	struct drm_i915_private *i915 = to_i915(dig_port->base.base.dev);
+ 	enum phy phy = intel_port_to_phy(i915, dig_port->base.port);
+ 	bool is_tc_port = intel_phy_is_tc(i915, phy);
+@@ -245,18 +247,17 @@ intel_dp_aux_xfer(struct intel_dp *intel_dp,
+ 	for (i = 0; i < ARRAY_SIZE(ch_data); i++)
+ 		ch_data[i] = intel_dp->aux_ch_data_reg(intel_dp, i);
+ 
+-	if (is_tc_port) {
+-		intel_tc_port_lock(dig_port);
+-		/*
+-		 * Abort transfers on a disconnected port as required by
+-		 * DP 1.4a link CTS 4.2.1.5, also avoiding the long AUX
+-		 * timeouts that would otherwise happen.
+-		 * TODO: abort the transfer on non-TC ports as well.
+-		 */
+-		if (!intel_tc_port_connected_locked(&dig_port->base)) {
+-			ret = -ENXIO;
+-			goto out_unlock;
+-		}
++	intel_digital_port_lock(encoder);
++	/*
++	 * Abort transfers on a disconnected port as required by
++	 * DP 1.4a link CTS 4.2.1.5, also avoiding the long AUX
++	 * timeouts that would otherwise happen.
++	 * TODO: abort the transfer on non-TC ports as well.
++	 */
++	if (is_tc_port &&
++	    !intel_digital_port_connected_locked(&dig_port->base)) {
++		ret = -ENXIO;
++		goto out_unlock;
+ 	}
+ 
+ 	aux_domain = intel_aux_power_domain(dig_port);
+@@ -423,8 +424,7 @@ intel_dp_aux_xfer(struct intel_dp *intel_dp,
+ 	intel_pps_unlock(intel_dp, pps_wakeref);
+ 	intel_display_power_put_async(i915, aux_domain, aux_wakeref);
+ out_unlock:
+-	if (is_tc_port)
+-		intel_tc_port_unlock(dig_port);
++	intel_digital_port_unlock(encoder);
+ 
+ 	return ret;
+ }
+diff --git a/drivers/gpu/drm/i915/display/intel_tc.c b/drivers/gpu/drm/i915/display/intel_tc.c
+index dcf05e00e5052..80aed9e87927a 100644
+--- a/drivers/gpu/drm/i915/display/intel_tc.c
++++ b/drivers/gpu/drm/i915/display/intel_tc.c
+@@ -1590,7 +1590,7 @@ void intel_tc_port_sanitize_mode(struct intel_digital_port *dig_port,
+  * connected ports are usable, and avoids exposing to the users objects they
+  * can't really use.
+  */
+-bool intel_tc_port_connected_locked(struct intel_encoder *encoder)
++bool intel_tc_port_connected(struct intel_encoder *encoder)
+ {
+ 	struct intel_digital_port *dig_port = enc_to_dig_port(encoder);
+ 	struct drm_i915_private *i915 = to_i915(dig_port->base.base.dev);
+@@ -1605,19 +1605,6 @@ bool intel_tc_port_connected_locked(struct intel_encoder *encoder)
+ 	return tc_phy_hpd_live_status(tc) & mask;
+ }
+ 
+-bool intel_tc_port_connected(struct intel_encoder *encoder)
+-{
+-	struct intel_digital_port *dig_port = enc_to_dig_port(encoder);
+-	struct intel_tc_port *tc = to_tc_port(dig_port);
+-	bool is_connected;
+-
+-	mutex_lock(&tc->lock);
+-	is_connected = intel_tc_port_connected_locked(encoder);
+-	mutex_unlock(&tc->lock);
+-
+-	return is_connected;
+-}
+-
+ static bool __intel_tc_port_link_needs_reset(struct intel_tc_port *tc)
+ {
+ 	bool ret;
+diff --git a/drivers/gpu/drm/i915/display/intel_tc.h b/drivers/gpu/drm/i915/display/intel_tc.h
+index 80a61e52850ee..936fa2daaa74a 100644
+--- a/drivers/gpu/drm/i915/display/intel_tc.h
++++ b/drivers/gpu/drm/i915/display/intel_tc.h
+@@ -17,7 +17,6 @@ bool intel_tc_port_in_dp_alt_mode(struct intel_digital_port *dig_port);
+ bool intel_tc_port_in_legacy_mode(struct intel_digital_port *dig_port);
+ 
+ bool intel_tc_port_connected(struct intel_encoder *encoder);
+-bool intel_tc_port_connected_locked(struct intel_encoder *encoder);
+ 
+ u32 intel_tc_port_get_pin_assignment_mask(struct intel_digital_port *dig_port);
+ int intel_tc_port_max_lane_count(struct intel_digital_port *dig_port);
 -- 
 2.39.2
 
