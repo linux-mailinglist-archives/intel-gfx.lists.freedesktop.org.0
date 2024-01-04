@@ -1,51 +1,48 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 797E4823D51
-	for <lists+intel-gfx@lfdr.de>; Thu,  4 Jan 2024 09:21:59 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4C970823D6C
+	for <lists+intel-gfx@lfdr.de>; Thu,  4 Jan 2024 09:30:02 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3652C10E311;
-	Thu,  4 Jan 2024 08:21:57 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6459C10E310;
+	Thu,  4 Jan 2024 08:29:58 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (unknown [198.175.65.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7F73010E311
- for <intel-gfx@lists.freedesktop.org>; Thu,  4 Jan 2024 08:21:56 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EAD4A10E310
+ for <intel-gfx@lists.freedesktop.org>; Thu,  4 Jan 2024 08:29:57 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1704356517; x=1735892517;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:in-reply-to;
- bh=dCQ30JkWA4Y6E4jlMydmQvW8eABZmikzsFnalqGriyw=;
- b=l3fmpjkwx/FwWQlzf+xhaol0PbPcuwk7bAOcX4/hUOS2+uxsFHr8WGe9
- oNTebbxHV4pgUX4jgYrXieMvDrQY9Exj0UXhhIEp5zzBqZN7BZs4YFvJD
- x9zTEQP3vfoInqQhmGDpqxCTBsqzABV7T5H5ML+slvQloZtKjPXRJIEhH
- JynhXbgknUNe9wpLzYwfdqvrfcDl5u/bhIFlHKlGUErp/gSArUaYDMttK
- +6KDcz4wF7ZdGOQ4JT+tsJuydSKJMJi3TL72mad3WMcmIzBsKdh8cuwXG
- FNMn1E9M0inSqt6oiLmZiM0HLfq81SJqgPDsxOsOe/BIzzXz6LLFRFDwW g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10942"; a="4259618"
-X-IronPort-AV: E=Sophos;i="6.04,330,1695711600"; 
-   d="scan'208";a="4259618"
-Received: from orsmga004.jf.intel.com ([10.7.209.38])
- by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Jan 2024 00:21:55 -0800
+ t=1704356997; x=1735892997;
+ h=from:to:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=MxFSJHPfnrFwTF4qYjKs/t7x/tdDXstqmA5j+obPJIk=;
+ b=POOrBZnA5N9FV/4iXNXAwPFJDukG6QRkyN2An85D3GHN1tf+E2tZqeWi
+ ueoz7AGfMaKTQ6amBlwwtemu1tFviPMM21s3nvDalcAP2kah92gIewB0z
+ 6z88lT/K1OhhNJXtveLg7h6NLjE6tErUqD3k2Q2bnX++d0G9VGjUrPlgy
+ NRWu7p0U6OZXRr1wQKAE8EPWqasXQkQswjE0oxHQfRVq5nSK9Ys3S12h9
+ b/tSnfSlFQKzfXUTQXgwaMMzIUcJNGHO+bO0k/h/BNyuvl6hHefA8K5vW
+ f04zDkgGVFNhxt8TYc34ytO2tVEK1tv4jO4YMlDI8zqueqmDATLwbdUN/ g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10942"; a="387624502"
+X-IronPort-AV: E=Sophos;i="6.04,330,1695711600"; d="scan'208";a="387624502"
+Received: from orsmga007.jf.intel.com ([10.7.209.58])
+ by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 04 Jan 2024 00:29:57 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10942"; a="903729983"
-X-IronPort-AV: E=Sophos;i="6.04,330,1695711600"; d="scan'208";a="903729983"
-Received: from unknown (HELO intel.com) ([10.237.72.65])
- by orsmga004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Jan 2024 00:21:52 -0800
-Date: Thu, 4 Jan 2024 10:21:42 +0200
-From: "Lisovskiy, Stanislav" <stanislav.lisovskiy@intel.com>
-To: George D Sworo <george.d.sworo@intel.com>
-Subject: Re: [PATCH] drm/i915: clear the QGV mask set by GOP while booting
-Message-ID: <ZZZqlmh4AyDGnKFs@intel.com>
-References: <20240104025745.429056-1-george.d.sworo@intel.com>
+X-IronPort-AV: E=McAfee;i="6600,9927,10942"; a="773422617"
+X-IronPort-AV: E=Sophos;i="6.04,330,1695711600"; d="scan'208";a="773422617"
+Received: from ideak-desk.fi.intel.com ([10.237.72.78])
+ by orsmga007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 04 Jan 2024 00:29:56 -0800
+From: Imre Deak <imre.deak@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Subject: [PATCH 00/12] drm/i915: Fix HPD handling during driver init/shutdown
+Date: Thu,  4 Jan 2024 10:29:56 +0200
+Message-Id: <20240104083008.2715733-1-imre.deak@intel.com>
+X-Mailer: git-send-email 2.39.2
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240104025745.429056-1-george.d.sworo@intel.com>
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -58,68 +55,57 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, Jan 03, 2024 at 06:57:45PM -0800, George D Sworo wrote:
-> From: George D Sworo <george.d.sworo@intel.com>
-> 
-> GOP driver in the firmware is masking the QGV points except the one
-> which can
-> provide high Bandwidth required for panel.
-> 
-> On boot to the OS the mask is already set, and is not cleared anywhere
-> in the i915 driver
-> even though sagv is enabled. This means Pcode is unable to switch to
-> other QGV work points
-> except the one enabled by default in the GOP driver at boot time.
-> 
-> This change resets the mask, when i915 driver is finding the QGV
-> points at the boot time. So that Pcode can switch to QGV work points
-> based
-> on the Workloads.
-> 
-> Signed-off-by: George D Sworo <george.d.sworo@intel.com>
+Fix the handling of display connector hotplug handling during the driver
+init/shutdown sequences. A hotplug event can result in a connector
+detection/modeset running in parallel with the HW programming of the
+init/shutdown sequence, or when the display IRQs are disabled already.
 
+Also fix incorrectly detecting a disconnected state due to glitches on
+the HPD line and prevent long timeout/retry delays during DP AUX
+transfers on all DP connectors.
 
-Hi,
+Imre Deak (12):
+  drm/i915: Init DRM connector polled field early
+  drm/i915: Keep the connector polled state disabled after storm
+  drm/i915: Move audio deinit after disabling polling
+  drm/i915: Disable intel HPD poll after DRM poll init/enable
+  drm/i915: Suspend the framebuffer console during driver shutdown
+  drm/i915: Suspend the framebuffer console earlier during system
+    suspend
+  drm/i915: Prevent modesets during driver init/shutdown
+  drm/i915: Disable hotplug detection works during driver init/shutdown
+  drm/i915: Disable hotplug detection handlers during driver
+    init/shutdown
+  drm/i915: Add intel_digital_port lock/unlock hooks
+  drm/i915: Filter out glitches on HPD lines during hotplug detection
+  drm/i915/dp: Abort AUX on disconnected native DP ports
 
-We already have a case similar to this, you might want to check this out:
+ drivers/gpu/drm/i915/display/intel_crt.c      |   5 +
+ drivers/gpu/drm/i915/display/intel_ddi.c      |   3 +
+ drivers/gpu/drm/i915/display/intel_display.c  |   3 +
+ .../gpu/drm/i915/display/intel_display_core.h |  13 ++
+ .../drm/i915/display/intel_display_driver.c   |  85 ++++++++-
+ .../drm/i915/display/intel_display_driver.h   |   6 +
+ .../drm/i915/display/intel_display_types.h    |   3 +
+ drivers/gpu/drm/i915/display/intel_dp.c       |  58 +++++-
+ drivers/gpu/drm/i915/display/intel_dp.h       |   3 +
+ drivers/gpu/drm/i915/display/intel_dp_aux.c   |  29 ++-
+ drivers/gpu/drm/i915/display/intel_dp_mst.c   |   4 +
+ drivers/gpu/drm/i915/display/intel_dvo.c      |   5 +
+ drivers/gpu/drm/i915/display/intel_hdmi.c     |   8 +
+ drivers/gpu/drm/i915/display/intel_hotplug.c  | 165 ++++++++++++++++--
+ drivers/gpu/drm/i915/display/intel_hotplug.h  |   4 +
+ drivers/gpu/drm/i915/display/intel_panel.c    |   4 +
+ drivers/gpu/drm/i915/display/intel_sdvo.c     |   6 +
+ drivers/gpu/drm/i915/display/intel_tc.c       |  24 ++-
+ drivers/gpu/drm/i915/display/intel_tc.h       |   2 +-
+ drivers/gpu/drm/i915/display/intel_tv.c       |   5 +
+ drivers/gpu/drm/i915/i915_driver.c            |  22 ++-
+ 21 files changed, 394 insertions(+), 63 deletions(-)
 
-https://patchwork.freedesktop.org/series/126962/
+-- 
+2.39.2
 
-Stan
-
-
-> ---
->  drivers/gpu/drm/i915/display/intel_bw.c | 6 ++++++
->  1 file changed, 6 insertions(+)
-> 
-> diff --git a/drivers/gpu/drm/i915/display/intel_bw.c b/drivers/gpu/drm/i915/display/intel_bw.c
-> index bef96db62c80..e2576c0fb729 100644
-> --- a/drivers/gpu/drm/i915/display/intel_bw.c
-> +++ b/drivers/gpu/drm/i915/display/intel_bw.c
-> @@ -212,6 +212,7 @@ static int icl_get_qgv_points(struct drm_i915_private *dev_priv,
->  			      bool is_y_tile)
->  {
->  	const struct dram_info *dram_info = &dev_priv->dram_info;
-> +	u32 val = 0x00, val2 = 0;
->  	int i, ret;
->  
->  	qi->num_points = dram_info->num_qgv_points;
-> @@ -311,6 +312,11 @@ static int icl_get_qgv_points(struct drm_i915_private *dev_priv,
->  				    i, qi->psf_points[i].clk);
->  	}
->  
-> +	/* clear the QGV points mask set by the GOP driver while booting */
-> +	ret = snb_pcode_read(&dev_priv->uncore, ICL_PCODE_SAGV_DE_MEM_SS_CONFIG, &val, &val2);
-> +	if (ret)
-> +		return ret;
-> +
->  	return 0;
->  }
->  
-> -- 
-> 2.34.1
-> 
