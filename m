@@ -1,63 +1,51 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id D630A824001
-	for <lists+intel-gfx@lfdr.de>; Thu,  4 Jan 2024 11:59:31 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 11DB382403D
+	for <lists+intel-gfx@lfdr.de>; Thu,  4 Jan 2024 12:06:21 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 60EA110E41B;
-	Thu,  4 Jan 2024 10:59:30 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8200C10E3F2;
+	Thu,  4 Jan 2024 11:06:19 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-yw1-x1136.google.com (mail-yw1-x1136.google.com
- [IPv6:2607:f8b0:4864:20::1136])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 696DE10E41E
- for <intel-gfx@lists.freedesktop.org>; Thu,  4 Jan 2024 10:59:29 +0000 (UTC)
-Received: by mail-yw1-x1136.google.com with SMTP id
- 00721157ae682-5e784ce9bb8so2434267b3.0
- for <intel-gfx@lists.freedesktop.org>; Thu, 04 Jan 2024 02:59:29 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=linaro.org; s=google; t=1704365968; x=1704970768; darn=lists.freedesktop.org;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:from:to:cc:subject:date
- :message-id:reply-to;
- bh=OVJGNP4Jp69q00tCo9Lc2/psPuK12fZJNB4cs5fg6nw=;
- b=eu2GsaO2p7fOHjlsUBm3vBBlcVTL/es+tZ4JDp2qdqVeUCLrm5t/R6Ar6WU7BbSZBe
- DBdpRn2XmNtSuT1CdjPDvE9UYtpVZGqhHk3QcJ8816OuzBPHOx+5zutquv8D071zXt53
- FCcpKr0qyKrA4UhH+SUOdchkm2t8Nzj6j2qXFNDmPIj/IubbM0E5WUhvVIiuk4jqNJ9W
- zLBHY6S1AZ8jujmAb7maqMMVLYXgrlj/XVbrDpQjTE9fg1lwlxLaOTVLKoKkcJSQC4k4
- /qrNZQSkHN8B5wlaT6SaI1vfuqpwwpxeYJSs6u8WI6OgXdP6coVrglizu/15uPvKV8t0
- u55Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1704365968; x=1704970768;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
- :subject:date:message-id:reply-to;
- bh=OVJGNP4Jp69q00tCo9Lc2/psPuK12fZJNB4cs5fg6nw=;
- b=xLijfqitYVTcGgBc6L0xkn32ukXwLVgSUgk1Ut6x+SvRMdjioQJ8HMO2bKkYliKI0P
- mylwrpCCbLHEMTRNwlhBDPQjz96PLl34UmUvDArVUGHKV+vyebrK7wd1v9C67rcq35t8
- ds16ANoMS5DalJMzdo2uXvuR0RxQZsmxRptHF1Zw753fHLfMRURFvZ3Z64yvYwNvNsfM
- ChDsU9ja724iIydgUBHi6JOt8Ots5jlmA3Jn6UU7x/YwBKcXtwQSyOESlbZX4Ee8WW8I
- znOjXD7ix1+4PRCUDkfpCPgDdvrwyfb+FHWqSJj+BxguqECan384EhNFxMg6Hg6kt+5T
- 2IwQ==
-X-Gm-Message-State: AOJu0Yzefp3+7OaiNS5E/KOeE+bVl5fOiIkjZLJtgdRx6wq6ersIF1yG
- ODzvD5xssaKTTE8dOATxxzRbFemrS0PHFMKyu7KDg0MCvV6Uaw==
-X-Google-Smtp-Source: AGHT+IEexUhmDUV/7+/MCOvNoBMDbzFBOiFUouvsUK4veJeHj7idj8gnOEtbiw2fDQ6y3zkK25+ssxdi6bcY5DbV4vk=
-X-Received: by 2002:a0d:cfc2:0:b0:5e7:9df1:218b with SMTP id
- r185-20020a0dcfc2000000b005e79df1218bmr138403ywd.16.1704365968497; Thu, 04
- Jan 2024 02:59:28 -0800 (PST)
+Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.115])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3564B10E3F2
+ for <intel-gfx@lists.freedesktop.org>; Thu,  4 Jan 2024 11:06:18 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1704366378; x=1735902378;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:in-reply-to;
+ bh=1/krv14iBfS6mw2iNl7MNEbwNCP1uhipK2LWMaUhYJQ=;
+ b=k6Kx8aHTCxCuXpie+kOfNkSpczW6JsKmgtZQLg8Qd9XUlGjBzBXd7bYu
+ NGUJFdAKWv7LK90dyRl9WRkC7423B5/Tk73GOkmeGzlV4U1JTsEGvJJLI
+ 8VwHuNfjumyTTxCbHZM9zqf0wm0LGIk3xkASLWgd9MFvxJ1vCx70v9F4P
+ IrSkHJEjOzt96DmYHTv7LqPyAucH6xpSzEpeLWHH56OrNJtNLvthEpNPf
+ Jv7Of+aUVa3y1TjYe9dmlRZ+Rxm0RZ2Dk49miZbj51nNbg3NMXbDHbEiQ
+ yyivX+Kg1+jIwrjRg+sZqe21xF1ByfOlqKhCm7DyE3ty00qmhw1F7BY9y g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10942"; a="396933423"
+X-IronPort-AV: E=Sophos;i="6.04,330,1695711600"; d="scan'208";a="396933423"
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+ by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 04 Jan 2024 03:06:17 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10942"; a="923869652"
+X-IronPort-AV: E=Sophos;i="6.04,330,1695711600"; d="scan'208";a="923869652"
+Received: from vdesserx-mobl1.ger.corp.intel.com (HELO intel.com)
+ ([10.249.36.210])
+ by fmsmga001-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 04 Jan 2024 03:06:16 -0800
+Date: Thu, 4 Jan 2024 12:06:13 +0100
+From: Andi Shyti <andi.shyti@linux.intel.com>
+To: Tejas Upadhyay <tejas.upadhyay@intel.com>
+Subject: Re: [V2] drm/i915: Add workaround 14019877138
+Message-ID: <ZZaRDLrqdFFEnSQ9@ashyti-mobl2.lan>
+References: <20240103053111.763172-1-tejas.upadhyay@intel.com>
 MIME-Version: 1.0
-References: <20240104104821.1822988-1-jouni.hogander@intel.com>
- <20240104104821.1822988-11-jouni.hogander@intel.com>
-In-Reply-To: <20240104104821.1822988-11-jouni.hogander@intel.com>
-From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Date: Thu, 4 Jan 2024 12:59:17 +0200
-Message-ID: <CAA8EJppmcgAwk-TnBdf3EyPZsubJgnJOw2HVMopAfJrXdJKkFA@mail.gmail.com>
-Subject: Re: [PATCH 10/12] drm/panelreplay: dpcd register definition for
- panelreplay SU
-To: =?UTF-8?Q?Jouni_H=C3=B6gander?= <jouni.hogander@intel.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240103053111.763172-1-tejas.upadhyay@intel.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -70,59 +58,23 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org, Matt Roper <matthew.d.roper@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, 4 Jan 2024 at 12:49, Jouni H=C3=B6gander <jouni.hogander@intel.com>=
- wrote:
->
-> Add definitions for panel replay selective update
->
-> Cc: dri-devel@lists.freedesktop.org
->
+Hi Tejas,
 
-1) This CC should not be necessary. It is already a part of
-maintainers entry for this file
+On Wed, Jan 03, 2024 at 11:01:11AM +0530, Tejas Upadhyay wrote:
+> WA 14019877138 needed for Graphics 12.70/71 both
+> 
+> V2(Jani):
+>   - Use drm/i915
+> 
+> Signed-off-by: Tejas Upadhyay <tejas.upadhyay@intel.com>
 
-2) It probably doesn't work as expected. It is separated with the
-blank link from the rest of the trailers, so most of the tools will
-skip it.
+looks OK to me, if no other comments, I will go ahead and merge
+it.
 
-3) You have skipped the rest of the maintainers for this file. Please
-use ./scripts/get_maintainers.pl and pass corresponding options to git
-send-email.
+Reviewed-by: Andi Shyti <andi.shyti@linux.intel.com>
 
-> Signed-off-by: Jouni H=C3=B6gander <jouni.hogander@intel.com>
-> ---
->  include/drm/display/drm_dp.h | 6 ++++++
->  1 file changed, 6 insertions(+)
-
-The patch itself looks good to me.
-
->
-> diff --git a/include/drm/display/drm_dp.h b/include/drm/display/drm_dp.h
-> index 3731828825bd..6a59d30b7b25 100644
-> --- a/include/drm/display/drm_dp.h
-> +++ b/include/drm/display/drm_dp.h
-> @@ -548,6 +548,12 @@
->  # define DP_PANEL_REPLAY_SUPPORT            (1 << 0)
->  # define DP_PANEL_REPLAY_SU_SUPPORT         (1 << 1)
->
-> +#define DP_PANEL_PANEL_REPLAY_CAPABILITY               0xb1
-> +# define DP_PANEL_PANEL_REPLAY_SU_GRANULARITY_REQUIRED (1 << 5)
-> +
-> +#define DP_PANEL_PANEL_REPLAY_X_GRANULARITY            0xb2
-> +#define DP_PANEL_PANEL_REPLAY_Y_GRANULARITY            0xb4
-> +
->  /* Link Configuration */
->  #define        DP_LINK_BW_SET                      0x100
->  # define DP_LINK_RATE_TABLE                0x00    /* eDP 1.4 */
-> --
-> 2.34.1
->
-
-
---=20
-With best wishes
-Dmitry
+Andi
