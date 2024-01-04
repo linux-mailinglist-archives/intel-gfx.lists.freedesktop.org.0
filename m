@@ -2,44 +2,45 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 50AFA823D71
-	for <lists+intel-gfx@lfdr.de>; Thu,  4 Jan 2024 09:30:07 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7E2DB823D72
+	for <lists+intel-gfx@lfdr.de>; Thu,  4 Jan 2024 09:30:08 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 70F7410E3BE;
-	Thu,  4 Jan 2024 08:30:01 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1FB9010E3C6;
+	Thu,  4 Jan 2024 08:30:04 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 08FDC10E3BE
- for <intel-gfx@lists.freedesktop.org>; Thu,  4 Jan 2024 08:30:01 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5B80010E3C6
+ for <intel-gfx@lists.freedesktop.org>; Thu,  4 Jan 2024 08:30:02 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1704357001; x=1735893001;
+ t=1704357002; x=1735893002;
  h=from:to:subject:date:message-id:in-reply-to:references:
  mime-version:content-transfer-encoding;
- bh=fMzroJfoLAOv2mX8XEj/nD413L/lJZHQiio4dVXkERc=;
- b=Fvm/BmHTz2L4QyoJEW46owgEFM8QdQ0N7Zg/SEyf5Pfqu97295nnY321
- znQZLLjqhF2qjamGkmQMmeaSFE13wkYLc7CbwMUny54SiZ7uYOWbvcwu8
- j9U7wUe3fOBEkGVXALC8RrpzgaMRLOoV93gX6EW/8NpDQfv0YlSE/gjVJ
- GSf2ZPB60t21nDA5Dhi4goDCWjCyUw0eRW21rADesI6Hoko/2xxVtg5nX
- CF+lIFwSEdLP86BGzmvu3YuE+1qj7CPf2lI9yk/aQkkfPtn04c9yCbWz+
- 7ZZ5he+oZ80kaZP72zKktYl1zkeOtShXxPOsoBKFG6iZkw9NWxjAY6KiJ g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10942"; a="387624507"
-X-IronPort-AV: E=Sophos;i="6.04,330,1695711600"; d="scan'208";a="387624507"
+ bh=nX4sZFc19e1Q75lCHBLWqrz6T74idhJKPQV90pPv7cM=;
+ b=nn+v9yWp23yNU7wB2pjhq9rFafmDQaUR8YptqpvV/wO5nd0rA4K2zqRY
+ kEHQLY6+bHy9NgsbGun5SaZGf1FYAa3yNq5jQ4LKZCVG43Nxda/Su79Pt
+ 22mDq6tE9OqzWXSsSzy5yAxVxfvhXhqw1Chnk3xdbccJiStnqPl39TSCn
+ zdJNbkTpROUhfdt+53xSvk2tE5xqt/PhEDUoG8ZgVX4cY9lPmI0m23cjI
+ I+FDnhik7Pz8jjdqSmZ1n9i//nQpTSSkiWFIOu113pbxqowHn3HLjeo4F
+ T/t5SREUQBPZI/srFNl/ffyvbbHvS9rGTnBGOp2wAN4iJPiXtxCT0yjwl Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10942"; a="387624512"
+X-IronPort-AV: E=Sophos;i="6.04,330,1695711600"; d="scan'208";a="387624512"
 Received: from orsmga007.jf.intel.com ([10.7.209.58])
  by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Jan 2024 00:30:00 -0800
+ 04 Jan 2024 00:30:02 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10942"; a="773422626"
-X-IronPort-AV: E=Sophos;i="6.04,330,1695711600"; d="scan'208";a="773422626"
+X-IronPort-AV: E=McAfee;i="6600,9927,10942"; a="773422628"
+X-IronPort-AV: E=Sophos;i="6.04,330,1695711600"; d="scan'208";a="773422628"
 Received: from ideak-desk.fi.intel.com ([10.237.72.78])
  by orsmga007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Jan 2024 00:30:00 -0800
+ 04 Jan 2024 00:30:01 -0800
 From: Imre Deak <imre.deak@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Subject: [PATCH 03/12] drm/i915: Move audio deinit after disabling polling
-Date: Thu,  4 Jan 2024 10:29:59 +0200
-Message-Id: <20240104083008.2715733-4-imre.deak@intel.com>
+Subject: [PATCH 04/12] drm/i915: Disable intel HPD poll after DRM poll
+ init/enable
+Date: Thu,  4 Jan 2024 10:30:00 +0200
+Message-Id: <20240104083008.2715733-5-imre.deak@intel.com>
 X-Mailer: git-send-email 2.39.2
 In-Reply-To: <20240104083008.2715733-1-imre.deak@intel.com>
 References: <20240104083008.2715733-1-imre.deak@intel.com>
@@ -60,40 +61,64 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Deinitialize audio during driver unload after disabling polling. This is
-in preparation to do all the display HW init/deinit steps at a point
-where no HPD IRQ or polling initiated connector detection or modeset can
-change the HW state. This may still happen here via an HPD IRQ ->
-hotplug detection work or a connector sysfs (state/detect) access, but
-these will be prevented by later changes in this patchset.
+The only purpose of intel_hpd_poll_disable() during driver loading and
+system resume - at which point polling should be disabled anyway, except
+for connectors in an IRQ storm, for which the polling will stay enabled -
+is to force-detect all the connectors. However this detection in
+i915_hpd_poll_init_work() depends on drm.mode_config.poll_enabled, which
+will get set in drm_kms_helper_poll_init(), possibly after
+i915_hpd_poll_init_work() is scheduled. Hence the initial detection of
+connectors during driver loading may not happen.
+
+Fix the above by moving intel_hpd_poll_disable() after
+i915_hpd_poll_init_work(), the proper place anyway for doing the above
+detection after all the HW initialization steps are complete. Change the
+order the same way during system resume as well. The above race
+condition shouldn't matter here - as drm.mode_config.poll_enabled will
+be set - but the detection should happen here as well after the HW init
+steps are done.
 
 Signed-off-by: Imre Deak <imre.deak@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_display_driver.c | 5 +++--
- 1 file changed, 3 insertions(+), 2 deletions(-)
+ drivers/gpu/drm/i915/display/intel_display_driver.c | 2 +-
+ drivers/gpu/drm/i915/i915_driver.c                  | 2 +-
+ 2 files changed, 2 insertions(+), 2 deletions(-)
 
 diff --git a/drivers/gpu/drm/i915/display/intel_display_driver.c b/drivers/gpu/drm/i915/display/intel_display_driver.c
-index 9df9097a0255a..da549962feccd 100644
+index da549962feccd..1974f2394a518 100644
 --- a/drivers/gpu/drm/i915/display/intel_display_driver.c
 +++ b/drivers/gpu/drm/i915/display/intel_display_driver.c
-@@ -486,14 +486,15 @@ void intel_display_driver_unregister(struct drm_i915_private *i915)
- 		return;
+@@ -374,7 +374,6 @@ int intel_display_driver_probe(struct drm_i915_private *i915)
  
- 	intel_fbdev_unregister(i915);
--	intel_audio_deinit(i915);
--
- 	/*
- 	 * After flushing the fbdev (incl. a late async config which
- 	 * will have delayed queuing of a hotplug event), then flush
- 	 * the hotplug events.
+ 	/* Only enable hotplug handling once the fbdev is fully set up. */
+ 	intel_hpd_init(i915);
+-	intel_hpd_poll_disable(i915);
+ 
+ 	skl_watermark_ipc_init(i915);
+ 
+@@ -412,6 +411,7 @@ void intel_display_driver_register(struct drm_i915_private *i915)
+ 	 * fbdev->async_cookie.
  	 */
- 	drm_kms_helper_poll_fini(&i915->drm);
-+
-+	intel_audio_deinit(i915);
-+
- 	drm_atomic_helper_shutdown(&i915->drm);
+ 	drm_kms_helper_poll_init(&i915->drm);
++	intel_hpd_poll_disable(i915);
  
- 	acpi_video_unregister();
+ 	intel_display_device_info_print(DISPLAY_INFO(i915),
+ 					DISPLAY_RUNTIME_INFO(i915), &p);
+diff --git a/drivers/gpu/drm/i915/i915_driver.c b/drivers/gpu/drm/i915/i915_driver.c
+index c7d7c3b7ecc63..be86596a8904d 100644
+--- a/drivers/gpu/drm/i915/i915_driver.c
++++ b/drivers/gpu/drm/i915/i915_driver.c
+@@ -1249,9 +1249,9 @@ static int i915_drm_resume(struct drm_device *dev)
+ 	intel_dp_mst_resume(dev_priv);
+ 	intel_display_driver_resume(dev_priv);
+ 
+-	intel_hpd_poll_disable(dev_priv);
+ 	if (HAS_DISPLAY(dev_priv))
+ 		drm_kms_helper_poll_enable(dev);
++	intel_hpd_poll_disable(dev_priv);
+ 
+ 	intel_opregion_resume(dev_priv);
+ 
 -- 
 2.39.2
 
