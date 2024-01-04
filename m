@@ -2,51 +2,48 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4EFD38247A4
-	for <lists+intel-gfx@lfdr.de>; Thu,  4 Jan 2024 18:44:18 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0BC808247EB
+	for <lists+intel-gfx@lfdr.de>; Thu,  4 Jan 2024 19:04:02 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 225CA10E4E0;
-	Thu,  4 Jan 2024 17:44:15 +0000 (UTC)
-X-Original-To: intel-gfx@lists.freedesktop.org
-Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id ABE6E10E4E0
- for <intel-gfx@lists.freedesktop.org>; Thu,  4 Jan 2024 17:44:13 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 630EE10E4DE;
+	Thu,  4 Jan 2024 18:03:52 +0000 (UTC)
+X-Original-To: Intel-GFX@lists.freedesktop.org
+Delivered-To: Intel-GFX@lists.freedesktop.org
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8804D10E4C6;
+ Thu,  4 Jan 2024 18:03:50 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1704390253; x=1735926253;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=m/Y0SUHia4rHRme9+bPUN8c3OMOIz4yruhpu4JBYKnQ=;
- b=btxSAuZE5CqD9El2rnKRfTfOMk9f5lrqNiA/Pwl+cn/oSeZO/PZYylwu
- 7fJszTjCpLCg4E0F0cCEhalViW1pwDRtc+7sferOfDvCmjEfLn21RcfBP
- BJOOkU1jkXJzRCjH3zLZtuHK9JKu8k1hmEm80tHI2F0nrcUjVDq1RXq32
- Utu6RVEa0E3NxQeslNcR6RMV6XYYGWcvvNmnZGAcGVuj74CPSlXJ7xFuy
- eaHMNE6yhfWE9oZB/vmom9LqwC+8SP9hn6WuXtKkOf09xeLyVoF9zQCjJ
- h8qmxrcSi8CU9rPGmKrUFmw9llwzRXCZoqLaILFBP+3Fahoocsl8qOmBk A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10943"; a="4131132"
+ t=1704391431; x=1735927431;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=Almu+5HVhzrc9strF3ex5NeGVgFPibqHVWEr+UqtA2U=;
+ b=nAlQ2QvIJLKNKSck6dJpINc1NYUiB7L0XV+g+sccK/vlkSzDEWcqSbqI
+ CuZ1R7AiDEswuK36mo+DfIJH87+F/G8WL8I2R+Zrdrlgvyr19HythpEvT
+ 4PvyI1DEVFm98EOGMOIRLRUn69Z9J44hld2gzt9i05GvqhZKhSeHm74e0
+ DFuMYLNNGKaM6xdjD5/TZXZbH+dlVpLsVAtaL5+wG3rPdmfyrUAjISNTe
+ hcaOpnfBKCN6zg7638oXxwgxI4l+HXks4ZvSADJm4IDivhjY1dEGq12Op
+ bYtO/Q5pd6Iiv1wmXdHfZjLbKP/II234SVUOGJRy6F023D681/Ef8SRH5 A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10943"; a="4430214"
 X-IronPort-AV: E=Sophos;i="6.04,331,1695711600"; 
-   d="scan'208";a="4131132"
-Received: from fmsmga003.fm.intel.com ([10.253.24.29])
- by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Jan 2024 09:44:13 -0800
+   d="scan'208";a="4430214"
+Received: from fmsmga004.fm.intel.com ([10.253.24.48])
+ by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 04 Jan 2024 10:03:50 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10943"; a="870998285"
-X-IronPort-AV: E=Sophos;i="6.04,331,1695711600"; d="scan'208";a="870998285"
-Received: from pdelarag-mobl.ger.corp.intel.com (HELO localhost)
- ([10.252.36.32])
- by fmsmga003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Jan 2024 09:44:11 -0800
-From: Jani Nikula <jani.nikula@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Subject: [PATCH 5/5] drm/i915/tv: use DISPLAY_VER instead of GRAPHICS_VER
-Date: Thu,  4 Jan 2024 19:43:50 +0200
-Message-Id: <20240104174350.823605-5-jani.nikula@intel.com>
-X-Mailer: git-send-email 2.39.2
-In-Reply-To: <20240104174350.823605-1-jani.nikula@intel.com>
-References: <20240104174350.823605-1-jani.nikula@intel.com>
+X-IronPort-AV: E=McAfee;i="6600,9927,10943"; a="850894350"
+X-IronPort-AV: E=Sophos;i="6.04,331,1695711600"; d="scan'208";a="850894350"
+Received: from relo-linux-5.jf.intel.com ([10.165.21.152])
+ by fmsmga004.fm.intel.com with ESMTP; 04 Jan 2024 10:03:49 -0800
+From: John.C.Harrison@Intel.com
+To: Intel-GFX@Lists.FreeDesktop.Org
+Subject: [PATCH v3 0/3] Enable Wa_14019159160 and  Wa_16019325821 for MTL
+Date: Thu,  4 Jan 2024 10:05:38 -0800
+Message-ID: <20240104180541.2966374-1-John.C.Harrison@Intel.com>
+X-Mailer: git-send-email 2.41.0
 MIME-Version: 1.0
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+Organization: Intel Corporation (UK) Ltd. - Co. Reg. #1134945 - Pipers Way,
+ Swindon SN3 1RJ
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -60,31 +57,45 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: jani.nikula@intel.com
+Cc: DRI-Devel@Lists.FreeDesktop.Org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Display code should not care about graphics version. It's only comments
-here, but update anyway.
+From: John Harrison <John.C.Harrison@Intel.com>
 
-Signed-off-by: Jani Nikula <jani.nikula@intel.com>
----
- drivers/gpu/drm/i915/display/intel_tv.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+Enable Wa_14019159160 and  Wa_16019325821 for MTL
 
-diff --git a/drivers/gpu/drm/i915/display/intel_tv.c b/drivers/gpu/drm/i915/display/intel_tv.c
-index d4386cb3569e..9a217805d2f6 100644
---- a/drivers/gpu/drm/i915/display/intel_tv.c
-+++ b/drivers/gpu/drm/i915/display/intel_tv.c
-@@ -1327,7 +1327,7 @@ intel_tv_compute_config(struct intel_encoder *encoder,
- 	 * the active portion. Hence following this formula seems
- 	 * more trouble that it's worth.
- 	 *
--	 * if (GRAPHICS_VER(dev_priv) == 4) {
-+	 * if (DISPLAY_VER(dev_priv) == 4) {
- 	 *	num = cdclk * (tv_mode->oversample >> !tv_mode->progressive);
- 	 *	den = tv_mode->clock;
- 	 * } else {
+RCS/CCS workarounds for MTL.
+
+v2: Fix bug in WA KLV implementation (offset not being reset to start
+of list). Add better comment to prep patch about how KLVs can be added.
+Add a module parameter override and disable the w/a by default as it
+causes performance regressions and is only required by very specific
+workloads.
+v3: Rebase to latest tree. Drop module parameter as performance
+regression is apparently not detectable after all and a bunch of more
+common workloads have been seen to hit the issue.
+
+Signed-off-by: John Harrison <John.C.Harrison@Intel.com>
+
+
+John Harrison (3):
+  drm/i915: Enable Wa_16019325821
+  drm/i915/guc: Add support for w/a KLVs
+  drm/i915/guc: Enable Wa_14019159160
+
+ drivers/gpu/drm/i915/gt/gen8_engine_cs.c      | 22 +++--
+ drivers/gpu/drm/i915/gt/intel_engine_types.h  |  8 +-
+ .../gpu/drm/i915/gt/uc/abi/guc_errors_abi.h   |  1 +
+ drivers/gpu/drm/i915/gt/uc/abi/guc_klvs_abi.h |  7 ++
+ drivers/gpu/drm/i915/gt/uc/intel_guc.c        |  5 ++
+ drivers/gpu/drm/i915/gt/uc/intel_guc.h        |  2 +
+ drivers/gpu/drm/i915/gt/uc/intel_guc_ads.c    | 89 ++++++++++++++++++-
+ drivers/gpu/drm/i915/gt/uc/intel_guc_fw.c     |  6 ++
+ drivers/gpu/drm/i915/gt/uc/intel_guc_fwif.h   |  8 +-
+ .../gpu/drm/i915/gt/uc/intel_guc_submission.c |  8 +-
+ 10 files changed, 141 insertions(+), 15 deletions(-)
+
 -- 
-2.39.2
+2.41.0
 
