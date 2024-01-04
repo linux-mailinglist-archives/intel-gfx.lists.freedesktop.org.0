@@ -1,140 +1,141 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3067F824BED
-	for <lists+intel-gfx@lfdr.de>; Fri,  5 Jan 2024 00:48:47 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id D8366824BF2
+	for <lists+intel-gfx@lfdr.de>; Fri,  5 Jan 2024 00:52:41 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 628DA10E553;
-	Thu,  4 Jan 2024 23:48:44 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0F5CB10E563;
+	Thu,  4 Jan 2024 23:52:39 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5BC9A10E553
- for <intel-gfx@lists.freedesktop.org>; Thu,  4 Jan 2024 23:48:43 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.24])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CC35510E563
+ for <intel-gfx@lists.freedesktop.org>; Thu,  4 Jan 2024 23:52:37 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1704412123; x=1735948123;
+ t=1704412357; x=1735948357;
  h=date:from:to:cc:subject:message-id:references:
  in-reply-to:mime-version;
- bh=8AQaSO+xRXpC0BXNC7qC5QP2FUOfJgOFzTa8GZ9j19I=;
- b=QLi7mVjzUEBkbFV+025X/gitQCxycCQKYrWr6ioSfWXG/RChwBUgJTCu
- LbAZTKrd9NjFq7JbWSd7acbrwFz0+W5xiR5ptyo/omgCEBjCRTiy3w58n
- 0r5IXWoSkCv5MsFGwljduFza7G6jtbinnkbyZktpZPmeIwM8RQleI9CqS
- OyYl2CUcx6hyq/8ljVOX0ntXqyoERIY6hM1kqfYalPfvvtDkF4EI4do0h
- 2FAy6cOPNOnZ69SJL04B/UWGJyFrV4Ql1dEKI4+LX+CceHISKZ9pHFVPl
- OFMypM0hK7HW6VssAk5Dw957tX9GGGy2ZDuJtdnpUqhGKsXU2I7GscPkd w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10943"; a="387842676"
-X-IronPort-AV: E=Sophos;i="6.04,332,1695711600"; d="scan'208";a="387842676"
-Received: from fmsmga007.fm.intel.com ([10.253.24.52])
- by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Jan 2024 15:48:42 -0800
+ bh=6Z3T6uBN3jrbPtKzK1fac8PxlhSnLD904+2mcKXokMM=;
+ b=VX2wYJxftXFOMv+HLtuWp2Y3x7HnLeYG5t0Gvosd9pal/2rMnHev8YCH
+ hZx12oZkVnWSaytRqCPlu/KOBRoYBucgSE4eP8RoBBmvdEAPJO8zZCJlU
+ fWslgbYweuq67OUk2n8Xc6UWkgaNGntXz92l/PqGcLy6S+rGWmt+ZpH2t
+ C7NnUh7BiUt0OHMIz7KjR5CMhISDheoHPMOEuYDYYa85oWNxT08fv7it4
+ ERcCra7lxEQ3XkJVuLMI8TrzRCX21iAiuHKAFXeJ3mkrL33dkeLarOO5d
+ S6ftLTeOs/U5eYF4kBs6F1uVPcbuZVTScEyY3CSikB20uERkPghmQKDhP w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10943"; a="400151123"
+X-IronPort-AV: E=Sophos;i="6.04,332,1695711600"; d="scan'208";a="400151123"
+Received: from orsmga003.jf.intel.com ([10.7.209.27])
+ by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 04 Jan 2024 15:52:37 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10943"; a="784044620"
-X-IronPort-AV: E=Sophos;i="6.04,332,1695711600"; d="scan'208";a="784044620"
-Received: from fmsmsx603.amr.corp.intel.com ([10.18.126.83])
- by fmsmga007.fm.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
- 04 Jan 2024 15:48:40 -0800
-Received: from fmsmsx612.amr.corp.intel.com (10.18.126.92) by
- fmsmsx603.amr.corp.intel.com (10.18.126.83) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35; Thu, 4 Jan 2024 15:48:37 -0800
-Received: from fmsmsx601.amr.corp.intel.com (10.18.126.81) by
- fmsmsx612.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35; Thu, 4 Jan 2024 15:48:36 -0800
-Received: from fmsedg601.ED.cps.intel.com (10.1.192.135) by
+X-IronPort-AV: E=McAfee;i="6600,9927,10943"; a="730313387"
+X-IronPort-AV: E=Sophos;i="6.04,332,1695711600"; d="scan'208";a="730313387"
+Received: from fmsmsx601.amr.corp.intel.com ([10.18.126.81])
+ by orsmga003.jf.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
+ 04 Jan 2024 15:52:37 -0800
+Received: from fmsmsx610.amr.corp.intel.com (10.18.126.90) by
  fmsmsx601.amr.corp.intel.com (10.18.126.81) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35 via Frontend Transport; Thu, 4 Jan 2024 15:48:36 -0800
-Received: from NAM10-BN7-obe.outbound.protection.outlook.com (104.47.70.100)
- by edgegateway.intel.com (192.55.55.70) with Microsoft SMTP Server
+ 15.1.2507.35; Thu, 4 Jan 2024 15:52:37 -0800
+Received: from fmsmsx610.amr.corp.intel.com (10.18.126.90) by
+ fmsmsx610.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.35; Thu, 4 Jan 2024 15:52:36 -0800
+Received: from fmsedg601.ED.cps.intel.com (10.1.192.135) by
+ fmsmsx610.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.35 via Frontend Transport; Thu, 4 Jan 2024 15:52:36 -0800
+Received: from NAM12-MW2-obe.outbound.protection.outlook.com (104.47.66.40) by
+ edgegateway.intel.com (192.55.55.70) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.35; Thu, 4 Jan 2024 15:48:36 -0800
+ 15.1.2507.35; Thu, 4 Jan 2024 15:52:36 -0800
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=OSMAcBQIARAB9Azn3IVf03OnwOwGZu0fNce97DjQovcuw0LqlT8OEEiUGHpx68Y+AyvpRllzYgumbuXGE1WWYw/cnyCR+2ilxocc2D7E1mUb2UUiuZZNwV+r+qQoharV7aRFtMOwKndBpvkCf95nn9Gyy9D+8hW8vXvSje/hRs7xLtjzFkauKBNu3jhkMzUQGFAYDj5k/6BvLFJt8Za+XE4ZlPRNHl4xCvqjG9DFfzR4TAcP66OnPTrK1vDaLZqpDW+IKMHihw+vhC9usegsE0nBf/wm/tXWTyi4CYg0U+UJmx+wwZSscQM0o+9zUSiEZqIIsL2NkLXBxzcpfqryEQ==
+ b=VJhbeuz609sWFOFgJE4NFHk0EKx5OUc9ZQ/4p4TJFXezaJy7xZ1XHeybbcRVrf1Tkp/O/B0KUjXyvuW+VG5fP7bARzjg6OLuiSLHz6kLZqzsbC6LeoiycBo7kRU16gVV7B9nytVM2ezlM65x3vHbfMhXpgccFM4MMtIfZwmlKO2FSdc44BW5MfSB+aMLZtqF2eKXBja95Rx/Jpto/eqKJTlm1NCJxVYIMPhsgTe50MxC/tDQ8mZbuOr92SSci2iDFdIXdNWqR6Xpc2oqg+hzjnAgmvwforRMyKYwyyU/UBLgQIkqJdwjRjf4Ct51eG2TnSp3hnHxysgCeq4+mWzZ6A==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=f1UK43SEFgB/OR2dCw/g+j3BJ1ENLnBv1oa6FcgO4Jc=;
- b=FeJLGN/ZTdEYH8wT+mjxCav4rSEL7iaON4hdiUPGJnG+U0laqGJw+q2sjkex49dGNXdcl7w4EQz31w2TfqxZPvpQRT9a9OzZbP5HReT6mUmwqUKvf+7WaWShGGu/MFJJ5Jbeh6gR6R0Ss4qPPPTwnsK/Ovw6e2dO/k5DUrLMowvuc684GEotSN6i2xKRwMyzFBHqbFyre5n8rIBqXeYDQ98IRO/jTx1D9g82lgXlnr+al2Z6wRrsNe/UTRMQcPCzwEQLApdVPsEq2MnLg1JN9Oy+yUztZ/BLJWzwyB2+akLHLI+iN55cMUwjTPtQehOHmbeoZMp3Ys8BNnEX405kYw==
+ bh=xIVfP68fga+EtFvHK5NohF3R/U3AU3/Qm5shJobNCOc=;
+ b=P8ck2Q7ieyCWTwMRj0terUqfuIZMul0N/+6XC8v7cCk2GcULZCHRgmpgygZJTcJvdKEWVT3vf7nltldTEXVWf1guawv263vv+YXBxPHWALyq9N/rzrtHiMw6D3JL4MKJxw6Flt1t66nn5Pa0cRdjGZiyKlzvZTWkled7UFtMO4N/DnfVoS/hOUPqImFxNbdRIZWR/44HeW15bPwCJm6AcJ52/YIXvWL/7DuE9F/zO7X+Si1MA1oXdFCbvYCGHU9pYG1GvoNiYXJ1FkNAphxgZ3TaKRiBFk/FvhkxUMl7wvspfRakFHQZdotXBbTOKfERwwDFCpFr3DfAQESNMclQcA==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
 Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
 Received: from DS0PR11MB8182.namprd11.prod.outlook.com (2603:10b6:8:163::17)
- by BL1PR11MB5979.namprd11.prod.outlook.com (2603:10b6:208:386::9) with
+ by SA1PR11MB8325.namprd11.prod.outlook.com (2603:10b6:806:38c::22) with
  Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7159.16; Thu, 4 Jan
- 2024 23:48:34 +0000
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7159.15; Thu, 4 Jan
+ 2024 23:52:34 +0000
 Received: from DS0PR11MB8182.namprd11.prod.outlook.com
  ([fe80::2157:7433:d32c:a8e3]) by DS0PR11MB8182.namprd11.prod.outlook.com
  ([fe80::2157:7433:d32c:a8e3%4]) with mapi id 15.20.7135.023; Thu, 4 Jan 2024
- 23:48:34 +0000
-Date: Thu, 4 Jan 2024 15:48:31 -0800
+ 23:52:34 +0000
+Date: Thu, 4 Jan 2024 15:52:32 -0800
 From: Matt Roper <matthew.d.roper@intel.com>
 To: Gustavo Sousa <gustavo.sousa@intel.com>
 Subject: Re: [PATCH 4/4] drm/i915/cdclk: Re-use bxt_cdclk_ctl() when sanitizing
-Message-ID: <20240104234831.GZ1327160@mdroper-desk1.amr.corp.intel.com>
+Message-ID: <20240104235232.GA1327160@mdroper-desk1.amr.corp.intel.com>
 References: <20240104032150.118954-1-gustavo.sousa@intel.com>
  <20240104032150.118954-5-gustavo.sousa@intel.com>
+ <20240104234831.GZ1327160@mdroper-desk1.amr.corp.intel.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Disposition: inline
-In-Reply-To: <20240104032150.118954-5-gustavo.sousa@intel.com>
-X-ClientProxiedBy: SJ0P220CA0018.NAMP220.PROD.OUTLOOK.COM
- (2603:10b6:a03:41b::28) To DS0PR11MB8182.namprd11.prod.outlook.com
+In-Reply-To: <20240104234831.GZ1327160@mdroper-desk1.amr.corp.intel.com>
+X-ClientProxiedBy: SJ0PR05CA0113.namprd05.prod.outlook.com
+ (2603:10b6:a03:334::28) To DS0PR11MB8182.namprd11.prod.outlook.com
  (2603:10b6:8:163::17)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DS0PR11MB8182:EE_|BL1PR11MB5979:EE_
-X-MS-Office365-Filtering-Correlation-Id: f53e16b4-7631-4b3b-82f2-08dc0d7fa9b4
+X-MS-TrafficTypeDiagnostic: DS0PR11MB8182:EE_|SA1PR11MB8325:EE_
+X-MS-Office365-Filtering-Correlation-Id: c16fd62b-58ba-4db9-388d-08dc0d803949
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: vNIBCha4ngoTI3kJ4gyQhEamyydlDJRd0nOD2yH444GBneGE6p8YrXt/kwYMGfPCtL1TovVAnl0Rj0UQZdZb0TWf+cCNU40GrtSa6Fcr7+TuXYqg4hdrB8zpA9jrMYgUAcuPrSjzSAXzqICJ/a04UTDPOWlllMmLvQdXU7fqg4HMWdzxIVPZTV/1fn3hskJexdu7kRoWxg9SKu3IkRwbUIYDrRufns/VdJmwAe1ox1iZTR++zt8H/01dAFQvXyduEyUG9QqH6rvhGTGsrMkb44LwlI2avQt9mTzUpitJPXJBcF4ZOc+JG+oyF1ZKjU9TYSonmR29ephbw37fN2iz3Y1lHEScKf49eb9rgDtbZ7E9zoO3endFM8X9VaFXO+BVvJKZRtBB8CsKsm3QvIzEs9edpq9LId+kdzI4us2GxlqNYaGOVswE3xQ8it4i029VocCVfdCOzuQ0a4kCrtWKfOI2fNm57yFhHEkSR7ctMWjpBlVasLclSAztBA2bP6t0phWP0sZ64kycXI/mzJ6LK2Xmn7veLUHfGPwEXmcf1yrKwYxZ/BkiCL9TEX2txyYG
+X-Microsoft-Antispam-Message-Info: NvEryBEWcp2WurHw3dyGhUeB910bgh0CB7MwRoDeAOrqieTKnf8VZOtPt7U1f1YEp1ew7zcST4W1n4q2Fd/jiTB0JbudaUdDCOIhwKALb7HDDUqEUF2El5pIOcWTmvbU4aJ/vq3PL46MeP59HgEUL27A8G3JdwQtOBVm8btqt+5sgkADneYxLSTLs8L481hdQsqfDT9SLPVvb8dc1I7dKKvcv9S1Iz+Noyrgekk6FPr3MWkJNAyxfjA0M5x7AVFfh4lBVokap+3hKl+tXuNyg5y2Jut2AREt2xzGlThrrBNY3phWVK5yJ55SX24EDkFTtj2q8Ox+bP723F7qsjN4DxgNM76OfQ+tC2MaciBX79RsnTwc41UKAcuy7LfAqQQz1KHywD2otBaXYSx49LCtn5lUjG7xoTbgo5JwOp2Xx1keY6rSkwzhADmcysevPMt9LhRGOGBiyOar5rvMR77YYUXYtvDN/phQL10DjqmnFC2tX2Yx0pw4/KA1Zev56A6RReOhoNqp8HqH+sCQy9+GHH1TGxP96i0WpTbMY4CvtHRWO7GAWlmpOprCkRywpXM8
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:DS0PR11MB8182.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230031)(376002)(346002)(136003)(396003)(39860400002)(366004)(230922051799003)(1800799012)(64100799003)(451199024)(186009)(33656002)(86362001)(83380400001)(82960400001)(26005)(1076003)(66476007)(6486002)(38100700002)(6666004)(6512007)(478600001)(6506007)(66556008)(6636002)(316002)(6862004)(4326008)(66946007)(2906002)(5660300002)(41300700001)(8936002)(8676002);
+ SFS:(13230031)(376002)(136003)(396003)(366004)(346002)(39860400002)(230922051799003)(1800799012)(64100799003)(451199024)(186009)(26005)(478600001)(6486002)(6506007)(6512007)(1076003)(66476007)(83380400001)(2906002)(41300700001)(66946007)(316002)(6636002)(66556008)(4326008)(8936002)(8676002)(5660300002)(6862004)(33656002)(38100700002)(86362001)(82960400001);
  DIR:OUT; SFP:1102; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?3vI4/XhsX+KEHIyki9PaPo7tih7L2ahyBuFk47PXp8Mr8oIZlC+HGE0TitL2?=
- =?us-ascii?Q?tUhUZwvtn4K9rNhjG3hxlPRcME1kX4wK5hJwmHB51KSDy6MljKz8fjd0zSzc?=
- =?us-ascii?Q?eNM8mCUEZeRpQSyHqaUW8gIXnMjUqrl8hEHG7t0N4YY3E5U+8G+qJxV5VK59?=
- =?us-ascii?Q?5KUFHfcp0Gv3FKzTsMrZejOki/kSdUvK9XA4JFHD+pgUN2oS+xfr5LFRQwYB?=
- =?us-ascii?Q?0um93P+4+rFuvfdhq1+35Uqn2HDfPsfYhzF003VAFLdI2rYASOKaQT88ZEYL?=
- =?us-ascii?Q?nWIKHI66F0cG6xrY/NMc+ehZUYMnZwMhT854MpdoxYrzKjVRqyeNEwsRaYdb?=
- =?us-ascii?Q?IWauIDy1NrN9Wa9udG1uTcuM0BlGm2QTgtFvAAjMq4zV9EuyBOqFXtGmP6IF?=
- =?us-ascii?Q?uGekdhb4DTo0a+NqoSQTJqJJchynmCP4TSOJsosLG9fzttRHZEPz3Q2k78Lp?=
- =?us-ascii?Q?N1tkwttMNHMA7s29T31anmeY+DVoGHDYsiGA/0cxJcx+9F9YeVDPKVxBULYR?=
- =?us-ascii?Q?XJQKmdtWcQ2d+E5k3uAOwiM6YsOVkMFX9FPH7K6cSHrvMaU1FNPCx/11B4ZB?=
- =?us-ascii?Q?gJI1q3NRrAaFUQeUEOwOIsUk8+CnVoo3QWwi9h6bN+beTO0FCD5v3vQVu9N3?=
- =?us-ascii?Q?twlQsKU49qKX8MBfaG/kvt1Kz1g1J9UYAa8D0HjMArGD3a2TE4Htf4fZWpfL?=
- =?us-ascii?Q?Ylcz/Gip4nyvovCpzcguGrrdj6o7xcsFpFF9wIdZq7lw38AW9a/amOcHL/AY?=
- =?us-ascii?Q?4fHfA+B/A/PffcNCcqfqvq/UHhfCOKHXGWHp2AjPn6Asppvq97Fh4XKh9vw7?=
- =?us-ascii?Q?glNHjjunEpkjpjrqRnltf8+n++/LlLFyMgWCTcDJ7shOTd3mv0w8Az/u2NX6?=
- =?us-ascii?Q?NMxQgymhUw4SYLJ3gkNQljodi3yzsF8GZCz7XHmy3KJtugNsuAqJPleE4ds/?=
- =?us-ascii?Q?ndhBMBqyucodQszLbBgAscFvAief4PeVWGWl34YDD2jZaZ8WrZx0cEEWqco4?=
- =?us-ascii?Q?E23WveGi5hBvg6cBA/o916D1b9AiNYoit+F0EKV1Flb4CYHnGfWlT1YWznX2?=
- =?us-ascii?Q?e7qyUaXwt0x8J3sDxwR9tQ/8zDWBQ93o7pfb7yvM1i8zGbo6ek7M3Q4+MR5a?=
- =?us-ascii?Q?VE6yWJd1ej02MVY47LR8P3J485mOIzyyYRi8fSkObWhsJnJB4GDZYkfNqy3Q?=
- =?us-ascii?Q?oOL43Nr+vqxT1MNXn8m52nIj55qB71MAQzB+hzHGu6YvgMnQr/bJ0wkKZTuh?=
- =?us-ascii?Q?68q8RiMNPdKJewGU0uU8aaFlOXeybEu1/PDhwG3JvxDiSlq66svwllqGCpzk?=
- =?us-ascii?Q?0sCtNM4cPozyqdVRoiqnuIRPY9CKHU6o4K3Q3R1umvgjIPbJQ2tBuLErJ9Zf?=
- =?us-ascii?Q?1qHLcfPak/l0jOW6NUGMn1FhPvXopDKqPws8tXeVzBliW4wIOP48kBj/imB8?=
- =?us-ascii?Q?SejLQq2qrjNKKZSZkPlzTiGd/vc9/dZqAG9ysM4xbkXWcReoG3Zs9GMCsiyq?=
- =?us-ascii?Q?Az4oeryAfZ3R/ha90IuSDhCHG+r/d6rCiaUNDEd1IXhuGC6MUdsor7/09FIw?=
- =?us-ascii?Q?jIPQP9RV8CNntHXTZ75Hbc5MlevfoHt4GAZVVKIDXkCtVkIcjK2jQVvKr0Lq?=
- =?us-ascii?Q?ag=3D=3D?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: f53e16b4-7631-4b3b-82f2-08dc0d7fa9b4
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?wplUVDINWLc31OWcdp9Grf7ybbQRiXcO/Qcbc8hGeIEzcRzV3guQE41wZYEO?=
+ =?us-ascii?Q?UXDv5B/OyMP8LgVRkSH+0/G4751jIA93PDrgRDHcBMBzuxbtDXzTR9FPQ9hF?=
+ =?us-ascii?Q?gmcm4tQxmXfjdTme2JpzO155qPfe9XWs2et5j8ZwN1kCazOxqolkz8Sgl8nk?=
+ =?us-ascii?Q?SwuzrACqEi5O7/rLW9tK+QTjXdOinSIh49y6/hBeSp57U156aODzyH80XMhX?=
+ =?us-ascii?Q?zhuGOh/aJIdh33PQ1Vj+74L2oMan+oRN7AV1MXu54lgIxiBM9xJpg0P/6w2p?=
+ =?us-ascii?Q?aKu2kigHf9d8SKVHHXE6rtYJ7Kbtz16s60iayMFMlMiyd1Xb1rftOIN2+l68?=
+ =?us-ascii?Q?SzLgURX53jaDSw7vEoh6n1gao63S5jzHmwR60lQpARTT3j3/amxDpThn6d6Q?=
+ =?us-ascii?Q?u92417o/+zxU62RQagfYJ2m5s6JAMd+sPVDw14m+3fr6ucJTecpIrstLSECx?=
+ =?us-ascii?Q?Qw08dcfXuJYzuF0LEy+Eh1A04cLdU7SP7qIvT/LW2BCVUJvux6LwmMVgwm5C?=
+ =?us-ascii?Q?R9stfGHpUXPebK5YMM2n7Q0VSFwxbZotpJJnWEyoC5z7bM/jd12DVIoNyR3y?=
+ =?us-ascii?Q?W2HXXN9iM6lMVPVXMh8FTWFNOQsAzn1mS4U3ebslih7XT75pZF5x0I1A3W5Y?=
+ =?us-ascii?Q?wL1yinxyuij9meGpRnSBwyZYgrZ3YrP7BBZZZPMbDMWBAaZb4zY1JRQfoTWe?=
+ =?us-ascii?Q?BLxlwn7s/r7OpZI2Vq+PJWBWHz55ymKLySiVUJ0rptBaFMumpw5bchEL/VCd?=
+ =?us-ascii?Q?ycUFzhLgcs8PbEaW4Q7U/Qk0lJyMweBxQmUw3WNumrPfroFV/2/L1fnDh5Km?=
+ =?us-ascii?Q?RC5seEVRfF4ZM/3qpENwoquVsoQvXdlRTfSxZoJpyFJyaoyhtX2rdf77APx+?=
+ =?us-ascii?Q?+BizayHt2ZUwWjIVj92X98y+1qOQundgXGyxGeDARFyFv4Vl7ccqrcBqUotl?=
+ =?us-ascii?Q?f9yOFEENFwzAgT7Ivnnd5Qg/HxXUlkRgkfSXSjQhggpwwh2g3aph4boAKjfd?=
+ =?us-ascii?Q?e9OKXXyJ7NiMfJng8/G3mCvUlw04+fWmfISMkoJ+9NWL5hvr6eq+kMB+rvoE?=
+ =?us-ascii?Q?mlpwu3BxvahPi4Lx2eezjcCNg0bByRMtxuarlkPishEOtjxHccegtVU9lngP?=
+ =?us-ascii?Q?QZSL3EXo+1rcWBdXk8D3gVmF4z1RDDNvPMG78LgyogTf6URKhyhcCEnnrrj4?=
+ =?us-ascii?Q?tzg0/sSd1266XIYwk3WsvjVsmgQ70znk/NuORXO75v8+GZ0ct8t8BZNinPhd?=
+ =?us-ascii?Q?+Csq+3g7ekG6mIX+F3v1sAt5kmrmom0OeAjHcwyFXEM1cCjFlSA8x0He4JB6?=
+ =?us-ascii?Q?3Kpyt0iB9sUXz//AXpPTIETeWcfmN63MPLhgj4a87MM5ES0r6ldSFloIj/EH?=
+ =?us-ascii?Q?ykcs0mngB8A1fZSXgCuGW75iLeztoKuJkeRBj/ZVWVZlHN3XRgb6D3nKEKdA?=
+ =?us-ascii?Q?5VmiFjUEbOjFacoz53PwA5e/IgNYDHvZNcwh2uED7IyQ/+9U/GWC2zamcSau?=
+ =?us-ascii?Q?3/dKoZ050eXnK3HeHXGsfHpW0wJXNz4SzLfq3eBur3+8YGgZQiEW2ahzK02g?=
+ =?us-ascii?Q?7gBIqP6ov8reghsyj6FPQGELI6cQUZvF4MVCWkxYc73p8Ko7Yd+hz3jcFb4K?=
+ =?us-ascii?Q?sA=3D=3D?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: c16fd62b-58ba-4db9-388d-08dc0d803949
 X-MS-Exchange-CrossTenant-AuthSource: DS0PR11MB8182.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 04 Jan 2024 23:48:34.0417 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 04 Jan 2024 23:52:34.8920 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: U6o2QJTYWCynXuCl2OUUB7WHOoF8dQHcSEkrRvSGjRo1Z0+OY2TuuEZ7sUYnTMbdjN241iFaaMjPnixPqwOXSUjDcc936NCmqUwMpXy2v84=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BL1PR11MB5979
+X-MS-Exchange-CrossTenant-UserPrincipalName: ikTJiCbecNwMA6PfXQYNzzEdLlC+bCW8KrJhO1WOAnZMmmD0tVLtp3uv3uODq8FkWxLRzP9pyZGcW6q+eb86L5MroMIcCOkcoBoWhOoNeRc=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA1PR11MB8325
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -152,72 +153,89 @@ Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, Jan 04, 2024 at 12:21:50AM -0300, Gustavo Sousa wrote:
-> That's the function responsible for deriving that register's value; use
-> it.
+On Thu, Jan 04, 2024 at 03:48:34PM -0800, Matt Roper wrote:
+> On Thu, Jan 04, 2024 at 12:21:50AM -0300, Gustavo Sousa wrote:
+> > That's the function responsible for deriving that register's value; use
+> > it.
+> > 
+> > Signed-off-by: Gustavo Sousa <gustavo.sousa@intel.com>
 > 
-> Signed-off-by: Gustavo Sousa <gustavo.sousa@intel.com>
+> Reviewed-by: Matt Roper <matthew.d.roper@intel.com>
 
-Reviewed-by: Matt Roper <matthew.d.roper@intel.com>
+Forgot to mention...I think it's a bit jarring when the commit message
+starts out referring to something in the headline ("That's the
+function...").  It's probably a bit better to just re-state the function
+name in the commit message again rather than assuming both get read
+together.
 
-> ---
->  drivers/gpu/drm/i915/display/intel_cdclk.c | 26 +++-------------------
->  1 file changed, 3 insertions(+), 23 deletions(-)
+
+Matt
+
 > 
-> diff --git a/drivers/gpu/drm/i915/display/intel_cdclk.c b/drivers/gpu/drm/i915/display/intel_cdclk.c
-> index fbe9aba41c35..26200ee3e23f 100644
-> --- a/drivers/gpu/drm/i915/display/intel_cdclk.c
-> +++ b/drivers/gpu/drm/i915/display/intel_cdclk.c
-> @@ -2051,7 +2051,7 @@ static void bxt_set_cdclk(struct drm_i915_private *dev_priv,
->  static void bxt_sanitize_cdclk(struct drm_i915_private *dev_priv)
->  {
->  	u32 cdctl, expected;
-> -	int cdclk, clock, vco;
-> +	int cdclk, vco;
->  
->  	intel_update_cdclk(dev_priv);
->  	intel_cdclk_dump_config(dev_priv, &dev_priv->display.cdclk.hw, "Current CDCLK");
-> @@ -2076,6 +2076,7 @@ static void bxt_sanitize_cdclk(struct drm_i915_private *dev_priv)
->  	 * so sanitize this register.
->  	 */
->  	cdctl = intel_de_read(dev_priv, CDCLK_CTL);
-> +	expected = bxt_cdclk_ctl(dev_priv, &dev_priv->display.cdclk.hw, INVALID_PIPE);
->  
->  	/*
->  	 * Let's ignore the pipe field, since BIOS could have configured the
-> @@ -2083,28 +2084,7 @@ static void bxt_sanitize_cdclk(struct drm_i915_private *dev_priv)
->  	 * (PIPE_NONE).
->  	 */
->  	cdctl &= ~bxt_cdclk_cd2x_pipe(dev_priv, INVALID_PIPE);
-> -
-> -	if (DISPLAY_VER(dev_priv) >= 20)
-> -		expected = MDCLK_SOURCE_SEL_CDCLK_PLL;
-> -	else
-> -		expected = skl_cdclk_decimal(cdclk);
-> -
-> -	/* Figure out what CD2X divider we should be using for this cdclk */
-> -	if (HAS_CDCLK_SQUASH(dev_priv))
-> -		clock = dev_priv->display.cdclk.hw.vco / 2;
-> -	else
-> -		clock = dev_priv->display.cdclk.hw.cdclk;
-> -
-> -	expected |= bxt_cdclk_cd2x_div_sel(dev_priv, clock,
-> -					   dev_priv->display.cdclk.hw.vco);
-> -
-> -	/*
-> -	 * Disable SSA Precharge when CD clock frequency < 500 MHz,
-> -	 * enable otherwise.
-> -	 */
-> -	if ((IS_GEMINILAKE(dev_priv) || IS_BROXTON(dev_priv)) &&
-> -	    dev_priv->display.cdclk.hw.cdclk >= 500000)
-> -		expected |= BXT_CDCLK_SSA_PRECHARGE_ENABLE;
-> +	expected &= ~bxt_cdclk_cd2x_pipe(dev_priv, INVALID_PIPE);
->  
->  	if (cdctl == expected)
->  		/* All well; nothing to sanitize */
+> > ---
+> >  drivers/gpu/drm/i915/display/intel_cdclk.c | 26 +++-------------------
+> >  1 file changed, 3 insertions(+), 23 deletions(-)
+> > 
+> > diff --git a/drivers/gpu/drm/i915/display/intel_cdclk.c b/drivers/gpu/drm/i915/display/intel_cdclk.c
+> > index fbe9aba41c35..26200ee3e23f 100644
+> > --- a/drivers/gpu/drm/i915/display/intel_cdclk.c
+> > +++ b/drivers/gpu/drm/i915/display/intel_cdclk.c
+> > @@ -2051,7 +2051,7 @@ static void bxt_set_cdclk(struct drm_i915_private *dev_priv,
+> >  static void bxt_sanitize_cdclk(struct drm_i915_private *dev_priv)
+> >  {
+> >  	u32 cdctl, expected;
+> > -	int cdclk, clock, vco;
+> > +	int cdclk, vco;
+> >  
+> >  	intel_update_cdclk(dev_priv);
+> >  	intel_cdclk_dump_config(dev_priv, &dev_priv->display.cdclk.hw, "Current CDCLK");
+> > @@ -2076,6 +2076,7 @@ static void bxt_sanitize_cdclk(struct drm_i915_private *dev_priv)
+> >  	 * so sanitize this register.
+> >  	 */
+> >  	cdctl = intel_de_read(dev_priv, CDCLK_CTL);
+> > +	expected = bxt_cdclk_ctl(dev_priv, &dev_priv->display.cdclk.hw, INVALID_PIPE);
+> >  
+> >  	/*
+> >  	 * Let's ignore the pipe field, since BIOS could have configured the
+> > @@ -2083,28 +2084,7 @@ static void bxt_sanitize_cdclk(struct drm_i915_private *dev_priv)
+> >  	 * (PIPE_NONE).
+> >  	 */
+> >  	cdctl &= ~bxt_cdclk_cd2x_pipe(dev_priv, INVALID_PIPE);
+> > -
+> > -	if (DISPLAY_VER(dev_priv) >= 20)
+> > -		expected = MDCLK_SOURCE_SEL_CDCLK_PLL;
+> > -	else
+> > -		expected = skl_cdclk_decimal(cdclk);
+> > -
+> > -	/* Figure out what CD2X divider we should be using for this cdclk */
+> > -	if (HAS_CDCLK_SQUASH(dev_priv))
+> > -		clock = dev_priv->display.cdclk.hw.vco / 2;
+> > -	else
+> > -		clock = dev_priv->display.cdclk.hw.cdclk;
+> > -
+> > -	expected |= bxt_cdclk_cd2x_div_sel(dev_priv, clock,
+> > -					   dev_priv->display.cdclk.hw.vco);
+> > -
+> > -	/*
+> > -	 * Disable SSA Precharge when CD clock frequency < 500 MHz,
+> > -	 * enable otherwise.
+> > -	 */
+> > -	if ((IS_GEMINILAKE(dev_priv) || IS_BROXTON(dev_priv)) &&
+> > -	    dev_priv->display.cdclk.hw.cdclk >= 500000)
+> > -		expected |= BXT_CDCLK_SSA_PRECHARGE_ENABLE;
+> > +	expected &= ~bxt_cdclk_cd2x_pipe(dev_priv, INVALID_PIPE);
+> >  
+> >  	if (cdctl == expected)
+> >  		/* All well; nothing to sanitize */
+> > -- 
+> > 2.43.0
+> > 
+> 
 > -- 
-> 2.43.0
-> 
+> Matt Roper
+> Graphics Software Engineer
+> Linux GPU Platform Enablement
+> Intel Corporation
 
 -- 
 Matt Roper
