@@ -2,56 +2,28 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id C20A2825519
-	for <lists+intel-gfx@lfdr.de>; Fri,  5 Jan 2024 15:22:41 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id E1895825710
+	for <lists+intel-gfx@lfdr.de>; Fri,  5 Jan 2024 16:49:20 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3546F10E60B;
-	Fri,  5 Jan 2024 14:22:40 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BE13710E626;
+	Fri,  5 Jan 2024 15:49:17 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C2F4810E60B
- for <intel-gfx@lists.freedesktop.org>; Fri,  5 Jan 2024 14:22:38 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1704464559; x=1736000559;
- h=date:from:to:cc:subject:message-id:reply-to:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=JFFPSeHClxB4O7e0lKnDlV9q8nUzc5MsGBuvG2Cq/uY=;
- b=LVm1ZJOMicY2JxzUf5FmQXl5LFVvjzfU7gnL79balynp/BR+qyzSKn2J
- myLNEWC9Gb6mVnZKeeWXSo3TnGFXn5GC6M0u/2R02FpNSbAb3TnMKrXq3
- teGym91bafK/ou0CYoW1BDBFHObblm4DdFp2EzK0jRt7s3y9YSyWpTg79
- O/snw+rO3kLE58+aYYrEKp5R4QDhBuCeSg+9oe9RkJxcHewnrFhJCEHr7
- iw5xdT1M1dNYKBcW8WvD7eIaJ/EGezgyHVipwm0iWwwVzdx/A7skErFqH
- zI3vQA/dUN2BUjqBZlj9amwXEFqe1NreiKHcItg0Mzl1VX563tHKxFUzR Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10944"; a="4615543"
-X-IronPort-AV: E=Sophos;i="6.04,334,1695711600"; 
-   d="scan'208";a="4615543"
-Received: from fmsmga006.fm.intel.com ([10.253.24.20])
- by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Jan 2024 06:22:39 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10944"; a="1027777603"
-X-IronPort-AV: E=Sophos;i="6.04,334,1695711600"; d="scan'208";a="1027777603"
-Received: from ideak-desk.fi.intel.com ([10.237.72.78])
- by fmsmga006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Jan 2024 06:22:37 -0800
-Date: Fri, 5 Jan 2024 16:22:48 +0200
-From: Imre Deak <imre.deak@intel.com>
-To: "Hogander, Jouni" <jouni.hogander@intel.com>
-Subject: Re: [PATCH 02/12] drm/i915: Keep the connector polled state disabled
- after storm
-Message-ID: <ZZgQuEmBeYeGVTX3@ideak-desk.fi.intel.com>
-References: <20240104083008.2715733-1-imre.deak@intel.com>
- <20240104083008.2715733-3-imre.deak@intel.com>
- <b335ea398c5c70c412515484b414032ab64fd91d.camel@intel.com>
- <ZZgGYg2N+ZdsuvSq@ideak-desk.fi.intel.com>
- <3d516f5edc4fad183b42e40c4a61d4e2b129e3c5.camel@intel.com>
+Received: from 5338d5abeb45 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3122210E613;
+ Fri,  5 Jan 2024 15:49:16 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============4679090938840957569=="
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <3d516f5edc4fad183b42e40c4a61d4e2b129e3c5.camel@intel.com>
+Subject: =?utf-8?q?=E2=9C=93_Fi=2ECI=2EBAT=3A_success_for_Update_bxt=5Fsanitize=5Fcdc?=
+ =?utf-8?q?lk=28=29_for_Xe2=5FLPD_=28rev3=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Gustavo Sousa" <gustavo.sousa@intel.com>
+Date: Fri, 05 Jan 2024 15:49:16 -0000
+Message-ID: <170446975619.40815.4386207229734761921@5338d5abeb45>
+X-Patchwork-Hint: ignore
+References: <20240105140538.183553-1-gustavo.sousa@intel.com>
+In-Reply-To: <20240105140538.183553-1-gustavo.sousa@intel.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,135 +36,226 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: imre.deak@intel.com
-Cc: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, Jan 05, 2024 at 04:08:31PM +0200, Hogander, Jouni wrote:
-> On Fri, 2024-01-05 at 15:38 +0200, Imre Deak wrote:
-> > On Fri, Jan 05, 2024 at 03:23:49PM +0200, Hogander, Jouni wrote:
-> > > On Thu, 2024-01-04 at 10:29 +0200, Imre Deak wrote:
-> > > > If an HPD IRQ storm is detected on a connector during driver
-> > > > loading or
-> > > > system suspend/resume - disabling the IRQ and switching to
-> > > > polling - the
-> > > > polling may get disabled too early - before the intended 2 minute
-> > > > HPD_STORM_REENABLE_DELAY - with the HPD IRQ staying disabled for
-> > > > this
-> > > > duration. One such sequence is:
-> > > >
-> > > > Thread#1                                   Thread#2
-> > > > intel_display_driver_probe()->
-> > > >   intel_hpd_init()->
-> > > >     (HPD IRQ gets enabled)
-> > > >   .                                        intel_hpd_irq_handler()->
-> > > >   .                                          intel_hpd_irq_storm_detect()
-> > > >   .                                            intel_hpd_irq_setup()->
-> > > >   .                                              (HPD IRQ gets disabled)
-> > > >   .                                         queue_delayed_work(hotplug.hotplug_work)
-> > > >   .                                         ...
-> > > >   .                                         i915_hotplug_work_func()->
-> > > >   .                                           intel_hpd_irq_storm_switch_to_polling()->
-> > > >   .                                             (polling enabled)
-> > > >   .
-> > > >   intel_hpd_poll_disable()->
-> > > >     queue_work(hotplug.poll_init_work)
-> > > >   ...
-> > > >   i915_hpd_poll_init_work()->
-> > > >     (polling gets disabled,
-> > > >      HPD IRQ is still disabled)
-> > > >   ...
-> > > >
-> > > >   (Connector is neither polled or
-> > > >    detected via HPD IRQs for 2 minutes)
-> > > >
-> > > >   intel_hpd_irq_storm_reenable_work()->
-> > > >     (HPD IRQ gets enabled)
-> > > >
-> > > > To avoid the above 2 minute state without either polling or
-> > > > enabled HPD IRQ, leave the connector's polling mode unchanged in
-> > > > i915_hpd_poll_init_work() if its HPD IRQ got disabled after an
-> > > > IRQ storm indicated by the connector's HPD_DISABLED pin state.
-> > >
-> > > Is it actually order which needs to be ensured here? I.e. ensure
-> > > that polling is disabled before hpd interrupt gets enabled?
-> >
-> > Disabling the polling also means that there is an explicit detection
-> > of the connectors. This explicit detection at boot-up and resume must
-> > happen _after_ the HPD interrupts are enabled, otherwise you could
-> > miss an HPD connect/disconnect interrupt and leave the connector in a
-> > stale connected state.
-> 
-> For that purpose i915_hpd_poll_detect_connectors could be used.
+--===============4679090938840957569==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Yes, that's the only purpose of intel_hpd_poll_disable() during boot-up
-and resume (as I mention in a later patch in the patchset). Maybe the
-function name is not the best (since at those points polling is anyway
-disabled), but the point is to have an explicit asynchronous detect (to
-avoid the overhead), which is the same thing happening during runtime
-whenever polling needs to be disabled (due to power well/rpm toggling).
+== Series Details ==
 
-> Anyways I'm not sure if that would be any better.
-> To me it looks like simplest/cleanest way to tackle the issue described
-> in the commit message is in the patch:
-> 
-> Reviewed-by: Jouni Högander <jouni.hogander@intel.com>
-> 
-> > > Why disabling polling is queued work and not just done during
-> > > init/resume?
-> >
-> > To reduce the latency of boot-up and resume.
-> >
-> > > BR,
-> > >
-> > > Jouni Högander
-> > >
-> > > >
-> > > > Signed-off-by: Imre Deak <imre.deak@intel.com>
-> > > > ---
-> > > >  drivers/gpu/drm/i915/display/intel_hotplug.c | 7 +++++++
-> > > >  1 file changed, 7 insertions(+)
-> > > >
-> > > > diff --git a/drivers/gpu/drm/i915/display/intel_hotplug.c
-> > > > b/drivers/gpu/drm/i915/display/intel_hotplug.c
-> > > > index 0c0700c6ec66d..74513c3d3690b 100644
-> > > > --- a/drivers/gpu/drm/i915/display/intel_hotplug.c
-> > > > +++ b/drivers/gpu/drm/i915/display/intel_hotplug.c
-> > > > @@ -710,6 +710,8 @@ static void i915_hpd_poll_init_work(struct
-> > > > work_struct *work)
-> > > >                 cancel_work(&dev_priv-
-> > > > > display.hotplug.poll_init_work);
-> > > >         }
-> > > >
-> > > > +       spin_lock_irq(&dev_priv->irq_lock);
-> > > > +
-> > > >         drm_connector_list_iter_begin(&dev_priv->drm,
-> > > > &conn_iter);
-> > > >         for_each_intel_connector_iter(connector, &conn_iter) {
-> > > >                 enum hpd_pin pin;
-> > > > @@ -718,6 +720,9 @@ static void i915_hpd_poll_init_work(struct
-> > > > work_struct *work)
-> > > >                 if (pin == HPD_NONE)
-> > > >                         continue;
-> > > >
-> > > > +               if (dev_priv->display.hotplug.stats[pin].state ==
-> > > > HPD_DISABLED)
-> > > > +                       continue;
-> > > > +
-> > > >                 connector->base.polled = connector->polled;
-> > > >
-> > > >                 if (enabled && connector->base.polled ==
-> > > > DRM_CONNECTOR_POLL_HPD)
-> > > > @@ -726,6 +731,8 @@ static void i915_hpd_poll_init_work(struct
-> > > > work_struct *work)
-> > > >         }
-> > > >         drm_connector_list_iter_end(&conn_iter);
-> > > >
-> > > > +       spin_unlock_irq(&dev_priv->irq_lock);
-> > > > +
-> > > >         if (enabled)
-> > > >                 drm_kms_helper_poll_reschedule(&dev_priv->drm);
-> > > >
-> > >
-> 
+Series: Update bxt_sanitize_cdclk() for Xe2_LPD (rev3)
+URL   : https://patchwork.freedesktop.org/series/128175/
+State : success
+
+== Summary ==
+
+CI Bug Log - changes from CI_DRM_14080 -> Patchwork_128175v3
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_128175v3/index.html
+
+Participating hosts (39 -> 36)
+------------------------------
+
+  Additional (1): fi-bsw-n3050 
+  Missing    (4): bat-rpls-2 bat-adlm-1 bat-dg2-9 fi-snb-2520m 
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_128175v3 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@gem_lmem_swapping@random-engines:
+    - fi-bsw-n3050:       NOTRUN -> [SKIP][1] ([fdo#109271]) +15 other tests skip
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_128175v3/fi-bsw-n3050/igt@gem_lmem_swapping@random-engines.html
+
+  * igt@kms_pm_backlight@basic-brightness@edp-1:
+    - bat-rplp-1:         NOTRUN -> [ABORT][2] ([i915#8668])
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_128175v3/bat-rplp-1/igt@kms_pm_backlight@basic-brightness@edp-1.html
+
+  
+#### Possible fixes ####
+
+  * igt@i915_selftest@live@gt_engines:
+    - {bat-adls-6}:       [TIMEOUT][3] ([i915#10022]) -> [PASS][4]
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14080/bat-adls-6/igt@i915_selftest@live@gt_engines.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_128175v3/bat-adls-6/igt@i915_selftest@live@gt_engines.html
+
+  * igt@i915_selftest@live@hangcheck:
+    - {bat-rpls-3}:       [DMESG-WARN][5] ([i915#5591]) -> [PASS][6]
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14080/bat-rpls-3/igt@i915_selftest@live@hangcheck.html
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_128175v3/bat-rpls-3/igt@i915_selftest@live@hangcheck.html
+
+  * igt@i915_selftest@live@workarounds:
+    - bat-dg2-11:         [DMESG-FAIL][7] ([i915#9500]) -> [PASS][8]
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14080/bat-dg2-11/igt@i915_selftest@live@workarounds.html
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_128175v3/bat-dg2-11/igt@i915_selftest@live@workarounds.html
+
+  * igt@i915_suspend@basic-s2idle-without-i915:
+    - {bat-adls-6}:       [WARN][9] ([i915#9943]) -> [PASS][10]
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14080/bat-adls-6/igt@i915_suspend@basic-s2idle-without-i915.html
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_128175v3/bat-adls-6/igt@i915_suspend@basic-s2idle-without-i915.html
+
+  * igt@kms_pipe_crc_basic@read-crc-frame-sequence@pipe-d-edp-1:
+    - bat-rplp-1:         [ABORT][11] ([i915#8668]) -> [PASS][12]
+   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14080/bat-rplp-1/igt@kms_pipe_crc_basic@read-crc-frame-sequence@pipe-d-edp-1.html
+   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_128175v3/bat-rplp-1/igt@kms_pipe_crc_basic@read-crc-frame-sequence@pipe-d-edp-1.html
+
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
+  [i915#10022]: https://gitlab.freedesktop.org/drm/intel/issues/10022
+  [i915#5591]: https://gitlab.freedesktop.org/drm/intel/issues/5591
+  [i915#8668]: https://gitlab.freedesktop.org/drm/intel/issues/8668
+  [i915#9500]: https://gitlab.freedesktop.org/drm/intel/issues/9500
+  [i915#9943]: https://gitlab.freedesktop.org/drm/intel/issues/9943
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_14080 -> Patchwork_128175v3
+
+  CI-20190529: 20190529
+  CI_DRM_14080: d7426b5fc261046501ca418fe0e69ad1d6ba59be @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_7656: 149297384db8cab03928c12b37ae1bb61089bdad @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  Patchwork_128175v3: d7426b5fc261046501ca418fe0e69ad1d6ba59be @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+### Linux commits
+
+554e942522c6 drm/i915/cdclk: Re-use bxt_cdclk_ctl() when sanitizing
+1cb963f95dbb drm/i915/cdclk: Reorder bxt_sanitize_cdclk()
+03e2c00db41f drm/i915/cdclk: Extract bxt_cdclk_ctl()
+750b7987a2cb drm/i915/xe2lpd: Update bxt_sanitize_cdclk()
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_128175v3/index.html
+
+--===============4679090938840957569==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>Update bxt_sanitize_cdclk() for Xe2_LPD (rev3)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/128175/">https://patchwork.freedesktop.org/series/128175/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_128175v3/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_128175v3/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_14080 -&gt; Patchwork_128175v3</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_128175v3/index.html</p>
+<h2>Participating hosts (39 -&gt; 36)</h2>
+<p>Additional (1): fi-bsw-n3050 <br />
+  Missing    (4): bat-rpls-2 bat-adlm-1 bat-dg2-9 fi-snb-2520m </p>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_128175v3 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@gem_lmem_swapping@random-engines:</p>
+<ul>
+<li>fi-bsw-n3050:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_128175v3/fi-bsw-n3050/igt@gem_lmem_swapping@random-engines.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +15 other tests skip</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_pm_backlight@basic-brightness@edp-1:</p>
+<ul>
+<li>bat-rplp-1:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_128175v3/bat-rplp-1/igt@kms_pm_backlight@basic-brightness@edp-1.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/8668">i915#8668</a>)</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>
+<p>igt@i915_selftest@live@gt_engines:</p>
+<ul>
+<li>{bat-adls-6}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14080/bat-adls-6/igt@i915_selftest@live@gt_engines.html">TIMEOUT</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/10022">i915#10022</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_128175v3/bat-adls-6/igt@i915_selftest@live@gt_engines.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@hangcheck:</p>
+<ul>
+<li>{bat-rpls-3}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14080/bat-rpls-3/igt@i915_selftest@live@hangcheck.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/5591">i915#5591</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_128175v3/bat-rpls-3/igt@i915_selftest@live@hangcheck.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@workarounds:</p>
+<ul>
+<li>bat-dg2-11:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14080/bat-dg2-11/igt@i915_selftest@live@workarounds.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/9500">i915#9500</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_128175v3/bat-dg2-11/igt@i915_selftest@live@workarounds.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@i915_suspend@basic-s2idle-without-i915:</p>
+<ul>
+<li>{bat-adls-6}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14080/bat-adls-6/igt@i915_suspend@basic-s2idle-without-i915.html">WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/9943">i915#9943</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_128175v3/bat-adls-6/igt@i915_suspend@basic-s2idle-without-i915.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@kms_pipe_crc_basic@read-crc-frame-sequence@pipe-d-edp-1:</p>
+<ul>
+<li>bat-rplp-1:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14080/bat-rplp-1/igt@kms_pipe_crc_basic@read-crc-frame-sequence@pipe-d-edp-1.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/8668">i915#8668</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_128175v3/bat-rplp-1/igt@kms_pipe_crc_basic@read-crc-frame-sequence@pipe-d-edp-1.html">PASS</a></li>
+</ul>
+</li>
+</ul>
+<p>{name}: This element is suppressed. This means it is ignored when computing<br />
+          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_14080 -&gt; Patchwork_128175v3</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_14080: d7426b5fc261046501ca418fe0e69ad1d6ba59be @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_7656: 149297384db8cab03928c12b37ae1bb61089bdad @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  Patchwork_128175v3: d7426b5fc261046501ca418fe0e69ad1d6ba59be @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+<h3>Linux commits</h3>
+<p>554e942522c6 drm/i915/cdclk: Re-use bxt_cdclk_ctl() when sanitizing<br />
+1cb963f95dbb drm/i915/cdclk: Reorder bxt_sanitize_cdclk()<br />
+03e2c00db41f drm/i915/cdclk: Extract bxt_cdclk_ctl()<br />
+750b7987a2cb drm/i915/xe2lpd: Update bxt_sanitize_cdclk()</p>
+
+</body>
+</html>
+
+--===============4679090938840957569==--
