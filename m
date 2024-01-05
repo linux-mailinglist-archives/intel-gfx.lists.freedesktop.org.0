@@ -1,29 +1,62 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id E1895825710
-	for <lists+intel-gfx@lfdr.de>; Fri,  5 Jan 2024 16:49:20 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 025BD825795
+	for <lists+intel-gfx@lfdr.de>; Fri,  5 Jan 2024 17:04:32 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BE13710E626;
-	Fri,  5 Jan 2024 15:49:17 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1C37F10E638;
+	Fri,  5 Jan 2024 16:04:29 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from 5338d5abeb45 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3122210E613;
- Fri,  5 Jan 2024 15:49:16 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============4679090938840957569=="
+Received: from mail-oa1-x34.google.com (mail-oa1-x34.google.com
+ [IPv6:2001:4860:4864:20::34])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A617A10E634;
+ Fri,  5 Jan 2024 16:04:27 +0000 (UTC)
+Received: by mail-oa1-x34.google.com with SMTP id
+ 586e51a60fabf-20400d5b54eso928683fac.1; 
+ Fri, 05 Jan 2024 08:04:27 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20230601; t=1704470667; x=1705075467; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=whv4GannslDB5rLdYo9kigOWmeo7QZDRfIfNrJXqKEw=;
+ b=fpzkmB6uCP3FqUw8dsOFTj46wIu+teFmGCtbMxWIp8yg0DKUoRGyQrke+CulbvEUXf
+ jLeD+G3BUUY8MHbSL3ejEz7t0AUmwXZUVBn/ExifwmiyaxVBNFTC57u6B+C3X7wWPq7h
+ OLXNVN/ABd8vbQV1oKZnpzazX1CcTgVZ28hQFK3YQPwkev9fLP8hrOdrg60hFlgSPH6g
+ b/fWXKOk2OJz4JT06fzLmw3NjQQ3uKVsdbS62d6y4GALoCBjsBvB3EP8Yyl7Y9p1HJd+
+ SI8ryy3ZB7oSN+UnnKOfI1mLdQEDT2niM+SFfIe/EBQPpfENXUf2E4LEMdFB6mqnsZ1L
+ xpPA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1704470667; x=1705075467;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+ :subject:date:message-id:reply-to;
+ bh=whv4GannslDB5rLdYo9kigOWmeo7QZDRfIfNrJXqKEw=;
+ b=mjKyIbHRikwIK+Hi+Q6gICnjKACD9zlScQk8EJSP/1GTrBdnxirrBmf9dyEvdr6zkD
+ yA8pLyzDE/FFN/wfstd/5Na6YeiSsS5FBEdQgLVw1uwjVo3HhAXHcdJcCf3Kp3OtqPwz
+ iWd4PNAkhGmzx/nP/CuZk/Y7WNs85mC0eZ93UI8FPpwu+u/SE2mfIA64yFSX5rIZ0miG
+ WdfE3aOvJT+cdAshIO8wvyItXKCKUYfv23EQhg+zr7R863ASVjcjxXm1sFY2uPCkU/Az
+ oj4dwuW0Y/HnpvjRM6y/gEUdyOfVQRCLPlIihboUaomxKZLVDQjSvZrFQJM+n/z5hV0a
+ vPRA==
+X-Gm-Message-State: AOJu0YyG4m/0wvibm4BChV/Eyb9F+YZ/FKoqkgeCqIc3OK1Kn9VL+oTR
+ 5ipcwNF8H0xIdG6m2dzbHn7aC4tRPGQx12CIQxk=
+X-Google-Smtp-Source: AGHT+IEyWFcej5XGL9+gHh+h2IKOiy8VOKFo3RMc9yjKxFm8wxHp0Hv+8oSB86SBuzomapKqFUADrLdZsYPC/g2EVRs=
+X-Received: by 2002:a05:6870:a118:b0:205:c4d3:ef8d with SMTP id
+ m24-20020a056870a11800b00205c4d3ef8dmr2376611oae.104.1704470666931; Fri, 05
+ Jan 2024 08:04:26 -0800 (PST)
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Fi=2ECI=2EBAT=3A_success_for_Update_bxt=5Fsanitize=5Fcdc?=
- =?utf-8?q?lk=28=29_for_Xe2=5FLPD_=28rev3=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Gustavo Sousa" <gustavo.sousa@intel.com>
-Date: Fri, 05 Jan 2024 15:49:16 -0000
-Message-ID: <170446975619.40815.4386207229734761921@5338d5abeb45>
-X-Patchwork-Hint: ignore
-References: <20240105140538.183553-1-gustavo.sousa@intel.com>
-In-Reply-To: <20240105140538.183553-1-gustavo.sousa@intel.com>
+References: <20240104201632.1100753-1-jani.nikula@intel.com>
+ <20240104201632.1100753-3-jani.nikula@intel.com>
+In-Reply-To: <20240104201632.1100753-3-jani.nikula@intel.com>
+From: Alex Deucher <alexdeucher@gmail.com>
+Date: Fri, 5 Jan 2024 11:04:15 -0500
+Message-ID: <CADnq5_OBNc8TOErS+sXMB2OuaqT0PdOU7O0+MHGU2pEKF10GTA@mail.gmail.com>
+Subject: Re: [PATCH 3/3] ASoC: hdmi-codec: drop drm/drm_edid.h include
+To: Jani Nikula <jani.nikula@intel.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,226 +69,152 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
+Cc: Neil Armstrong <neil.armstrong@linaro.org>,
+ Jernej Skrabec <jernej.skrabec@gmail.com>, Robert Foss <rfoss@kernel.org>,
+ Jonas Karlman <jonas@kwiboo.se>, linux-arm-msm@vger.kernel.org,
+ intel-gfx@lists.freedesktop.org, Takashi Iwai <tiwai@suse.com>,
+ linux-sound@vger.kernel.org, Abhinav Kumar <quic_abhinavk@quicinc.com>,
+ Maxime Ripard <mripard@kernel.org>, Jaroslav Kysela <perex@perex.cz>,
+ dri-devel@lists.freedesktop.org, Andrzej Hajda <andrzej.hajda@intel.com>,
+ Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+ Marijn Suijten <marijn.suijten@somainline.org>,
+ freedreno@lists.freedesktop.org,
+ Laurent Pinchart <Laurent.pinchart@ideasonboard.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============4679090938840957569==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+On Thu, Jan 4, 2024 at 3:17=E2=80=AFPM Jani Nikula <jani.nikula@intel.com> =
+wrote:
+>
+> hdmi-codec.h does not appear to directly need drm/drm_edid.h for
+> anything. Remove it.
+>
+> There are some files that get drm/drm_edid.h by proxy; include it where
+> needed.
+>
+> v2-v4: Fix build (kernel test robot <lkp@intel.com>)
+>
+> Cc: Rob Clark <robdclark@gmail.com>
+> Cc: Abhinav Kumar <quic_abhinavk@quicinc.com>
+> Cc: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+> Cc: Sean Paul <sean@poorly.run>
+> Cc: Marijn Suijten <marijn.suijten@somainline.org>
+> Cc: linux-arm-msm@vger.kernel.org
+> Cc: freedreno@lists.freedesktop.org
+> Cc: Andrzej Hajda <andrzej.hajda@intel.com>
+> Cc: Neil Armstrong <neil.armstrong@linaro.org>
+> Cc: Robert Foss <rfoss@kernel.org>
+> Cc: Laurent Pinchart <Laurent.pinchart@ideasonboard.com>
+> Cc: Jonas Karlman <jonas@kwiboo.se>
+> Cc: Jernej Skrabec <jernej.skrabec@gmail.com>
+> Cc: Jaroslav Kysela <perex@perex.cz>
+> Cc: Takashi Iwai <tiwai@suse.com>
+> Cc: linux-sound@vger.kernel.org
+> Acked-by: Maxime Ripard <mripard@kernel.org>
+> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
 
-== Series Details ==
+Series is:
+Acked-by: Alex Deucher <alexander.deucher@amd.com>
 
-Series: Update bxt_sanitize_cdclk() for Xe2_LPD (rev3)
-URL   : https://patchwork.freedesktop.org/series/128175/
-State : success
-
-== Summary ==
-
-CI Bug Log - changes from CI_DRM_14080 -> Patchwork_128175v3
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_128175v3/index.html
-
-Participating hosts (39 -> 36)
-------------------------------
-
-  Additional (1): fi-bsw-n3050 
-  Missing    (4): bat-rpls-2 bat-adlm-1 bat-dg2-9 fi-snb-2520m 
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_128175v3 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@gem_lmem_swapping@random-engines:
-    - fi-bsw-n3050:       NOTRUN -> [SKIP][1] ([fdo#109271]) +15 other tests skip
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_128175v3/fi-bsw-n3050/igt@gem_lmem_swapping@random-engines.html
-
-  * igt@kms_pm_backlight@basic-brightness@edp-1:
-    - bat-rplp-1:         NOTRUN -> [ABORT][2] ([i915#8668])
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_128175v3/bat-rplp-1/igt@kms_pm_backlight@basic-brightness@edp-1.html
-
-  
-#### Possible fixes ####
-
-  * igt@i915_selftest@live@gt_engines:
-    - {bat-adls-6}:       [TIMEOUT][3] ([i915#10022]) -> [PASS][4]
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14080/bat-adls-6/igt@i915_selftest@live@gt_engines.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_128175v3/bat-adls-6/igt@i915_selftest@live@gt_engines.html
-
-  * igt@i915_selftest@live@hangcheck:
-    - {bat-rpls-3}:       [DMESG-WARN][5] ([i915#5591]) -> [PASS][6]
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14080/bat-rpls-3/igt@i915_selftest@live@hangcheck.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_128175v3/bat-rpls-3/igt@i915_selftest@live@hangcheck.html
-
-  * igt@i915_selftest@live@workarounds:
-    - bat-dg2-11:         [DMESG-FAIL][7] ([i915#9500]) -> [PASS][8]
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14080/bat-dg2-11/igt@i915_selftest@live@workarounds.html
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_128175v3/bat-dg2-11/igt@i915_selftest@live@workarounds.html
-
-  * igt@i915_suspend@basic-s2idle-without-i915:
-    - {bat-adls-6}:       [WARN][9] ([i915#9943]) -> [PASS][10]
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14080/bat-adls-6/igt@i915_suspend@basic-s2idle-without-i915.html
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_128175v3/bat-adls-6/igt@i915_suspend@basic-s2idle-without-i915.html
-
-  * igt@kms_pipe_crc_basic@read-crc-frame-sequence@pipe-d-edp-1:
-    - bat-rplp-1:         [ABORT][11] ([i915#8668]) -> [PASS][12]
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14080/bat-rplp-1/igt@kms_pipe_crc_basic@read-crc-frame-sequence@pipe-d-edp-1.html
-   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_128175v3/bat-rplp-1/igt@kms_pipe_crc_basic@read-crc-frame-sequence@pipe-d-edp-1.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
-  [i915#10022]: https://gitlab.freedesktop.org/drm/intel/issues/10022
-  [i915#5591]: https://gitlab.freedesktop.org/drm/intel/issues/5591
-  [i915#8668]: https://gitlab.freedesktop.org/drm/intel/issues/8668
-  [i915#9500]: https://gitlab.freedesktop.org/drm/intel/issues/9500
-  [i915#9943]: https://gitlab.freedesktop.org/drm/intel/issues/9943
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_14080 -> Patchwork_128175v3
-
-  CI-20190529: 20190529
-  CI_DRM_14080: d7426b5fc261046501ca418fe0e69ad1d6ba59be @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_7656: 149297384db8cab03928c12b37ae1bb61089bdad @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_128175v3: d7426b5fc261046501ca418fe0e69ad1d6ba59be @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-### Linux commits
-
-554e942522c6 drm/i915/cdclk: Re-use bxt_cdclk_ctl() when sanitizing
-1cb963f95dbb drm/i915/cdclk: Reorder bxt_sanitize_cdclk()
-03e2c00db41f drm/i915/cdclk: Extract bxt_cdclk_ctl()
-750b7987a2cb drm/i915/xe2lpd: Update bxt_sanitize_cdclk()
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_128175v3/index.html
-
---===============4679090938840957569==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>Update bxt_sanitize_cdclk() for Xe2_LPD (rev3)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/128175/">https://patchwork.freedesktop.org/series/128175/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_128175v3/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_128175v3/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_14080 -&gt; Patchwork_128175v3</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_128175v3/index.html</p>
-<h2>Participating hosts (39 -&gt; 36)</h2>
-<p>Additional (1): fi-bsw-n3050 <br />
-  Missing    (4): bat-rpls-2 bat-adlm-1 bat-dg2-9 fi-snb-2520m </p>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_128175v3 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@gem_lmem_swapping@random-engines:</p>
-<ul>
-<li>fi-bsw-n3050:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_128175v3/fi-bsw-n3050/igt@gem_lmem_swapping@random-engines.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +15 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_pm_backlight@basic-brightness@edp-1:</p>
-<ul>
-<li>bat-rplp-1:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_128175v3/bat-rplp-1/igt@kms_pm_backlight@basic-brightness@edp-1.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/8668">i915#8668</a>)</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>
-<p>igt@i915_selftest@live@gt_engines:</p>
-<ul>
-<li>{bat-adls-6}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14080/bat-adls-6/igt@i915_selftest@live@gt_engines.html">TIMEOUT</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/10022">i915#10022</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_128175v3/bat-adls-6/igt@i915_selftest@live@gt_engines.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@hangcheck:</p>
-<ul>
-<li>{bat-rpls-3}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14080/bat-rpls-3/igt@i915_selftest@live@hangcheck.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/5591">i915#5591</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_128175v3/bat-rpls-3/igt@i915_selftest@live@hangcheck.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@workarounds:</p>
-<ul>
-<li>bat-dg2-11:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14080/bat-dg2-11/igt@i915_selftest@live@workarounds.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/9500">i915#9500</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_128175v3/bat-dg2-11/igt@i915_selftest@live@workarounds.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@i915_suspend@basic-s2idle-without-i915:</p>
-<ul>
-<li>{bat-adls-6}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14080/bat-adls-6/igt@i915_suspend@basic-s2idle-without-i915.html">WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/9943">i915#9943</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_128175v3/bat-adls-6/igt@i915_suspend@basic-s2idle-without-i915.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@kms_pipe_crc_basic@read-crc-frame-sequence@pipe-d-edp-1:</p>
-<ul>
-<li>bat-rplp-1:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14080/bat-rplp-1/igt@kms_pipe_crc_basic@read-crc-frame-sequence@pipe-d-edp-1.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/8668">i915#8668</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_128175v3/bat-rplp-1/igt@kms_pipe_crc_basic@read-crc-frame-sequence@pipe-d-edp-1.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<p>{name}: This element is suppressed. This means it is ignored when computing<br />
-          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_14080 -&gt; Patchwork_128175v3</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_14080: d7426b5fc261046501ca418fe0e69ad1d6ba59be @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_7656: 149297384db8cab03928c12b37ae1bb61089bdad @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  Patchwork_128175v3: d7426b5fc261046501ca418fe0e69ad1d6ba59be @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<h3>Linux commits</h3>
-<p>554e942522c6 drm/i915/cdclk: Re-use bxt_cdclk_ctl() when sanitizing<br />
-1cb963f95dbb drm/i915/cdclk: Reorder bxt_sanitize_cdclk()<br />
-03e2c00db41f drm/i915/cdclk: Extract bxt_cdclk_ctl()<br />
-750b7987a2cb drm/i915/xe2lpd: Update bxt_sanitize_cdclk()</p>
-
-</body>
-</html>
-
---===============4679090938840957569==--
+> ---
+>  drivers/gpu/drm/bridge/lontium-lt9611.c    | 1 +
+>  drivers/gpu/drm/bridge/lontium-lt9611uxc.c | 1 +
+>  drivers/gpu/drm/bridge/synopsys/dw-hdmi.c  | 1 +
+>  drivers/gpu/drm/msm/dp/dp_display.c        | 1 +
+>  drivers/gpu/drm/tegra/hdmi.c               | 1 +
+>  drivers/gpu/drm/vc4/vc4_hdmi.c             | 1 +
+>  include/sound/hdmi-codec.h                 | 1 -
+>  7 files changed, 6 insertions(+), 1 deletion(-)
+>
+> diff --git a/drivers/gpu/drm/bridge/lontium-lt9611.c b/drivers/gpu/drm/br=
+idge/lontium-lt9611.c
+> index 9663601ce098..b9205d14d943 100644
+> --- a/drivers/gpu/drm/bridge/lontium-lt9611.c
+> +++ b/drivers/gpu/drm/bridge/lontium-lt9611.c
+> @@ -18,6 +18,7 @@
+>
+>  #include <drm/drm_atomic_helper.h>
+>  #include <drm/drm_bridge.h>
+> +#include <drm/drm_edid.h>
+>  #include <drm/drm_mipi_dsi.h>
+>  #include <drm/drm_of.h>
+>  #include <drm/drm_print.h>
+> diff --git a/drivers/gpu/drm/bridge/lontium-lt9611uxc.c b/drivers/gpu/drm=
+/bridge/lontium-lt9611uxc.c
+> index e971b75e90ad..f3f130c1ef0a 100644
+> --- a/drivers/gpu/drm/bridge/lontium-lt9611uxc.c
+> +++ b/drivers/gpu/drm/bridge/lontium-lt9611uxc.c
+> @@ -21,6 +21,7 @@
+>
+>  #include <drm/drm_atomic_helper.h>
+>  #include <drm/drm_bridge.h>
+> +#include <drm/drm_edid.h>
+>  #include <drm/drm_mipi_dsi.h>
+>  #include <drm/drm_print.h>
+>  #include <drm/drm_probe_helper.h>
+> diff --git a/drivers/gpu/drm/bridge/synopsys/dw-hdmi.c b/drivers/gpu/drm/=
+bridge/synopsys/dw-hdmi.c
+> index 52d91a0df85e..fa63a21bdd1c 100644
+> --- a/drivers/gpu/drm/bridge/synopsys/dw-hdmi.c
+> +++ b/drivers/gpu/drm/bridge/synopsys/dw-hdmi.c
+> @@ -31,6 +31,7 @@
+>  #include <drm/drm_atomic.h>
+>  #include <drm/drm_atomic_helper.h>
+>  #include <drm/drm_bridge.h>
+> +#include <drm/drm_edid.h>
+>  #include <drm/drm_of.h>
+>  #include <drm/drm_print.h>
+>  #include <drm/drm_probe_helper.h>
+> diff --git a/drivers/gpu/drm/msm/dp/dp_display.c b/drivers/gpu/drm/msm/dp=
+/dp_display.c
+> index d37d599aec27..c8e1bbebdffe 100644
+> --- a/drivers/gpu/drm/msm/dp/dp_display.c
+> +++ b/drivers/gpu/drm/msm/dp/dp_display.c
+> @@ -11,6 +11,7 @@
+>  #include <linux/of_irq.h>
+>  #include <linux/delay.h>
+>  #include <drm/display/drm_dp_aux_bus.h>
+> +#include <drm/drm_edid.h>
+>
+>  #include "msm_drv.h"
+>  #include "msm_kms.h"
+> diff --git a/drivers/gpu/drm/tegra/hdmi.c b/drivers/gpu/drm/tegra/hdmi.c
+> index 417fb884240a..09987e372e3e 100644
+> --- a/drivers/gpu/drm/tegra/hdmi.c
+> +++ b/drivers/gpu/drm/tegra/hdmi.c
+> @@ -24,6 +24,7 @@
+>  #include <drm/drm_atomic_helper.h>
+>  #include <drm/drm_crtc.h>
+>  #include <drm/drm_debugfs.h>
+> +#include <drm/drm_edid.h>
+>  #include <drm/drm_eld.h>
+>  #include <drm/drm_file.h>
+>  #include <drm/drm_fourcc.h>
+> diff --git a/drivers/gpu/drm/vc4/vc4_hdmi.c b/drivers/gpu/drm/vc4/vc4_hdm=
+i.c
+> index f05e2c95a60d..34f807ed1c31 100644
+> --- a/drivers/gpu/drm/vc4/vc4_hdmi.c
+> +++ b/drivers/gpu/drm/vc4/vc4_hdmi.c
+> @@ -35,6 +35,7 @@
+>  #include <drm/display/drm_scdc_helper.h>
+>  #include <drm/drm_atomic_helper.h>
+>  #include <drm/drm_drv.h>
+> +#include <drm/drm_edid.h>
+>  #include <drm/drm_probe_helper.h>
+>  #include <drm/drm_simple_kms_helper.h>
+>  #include <linux/clk.h>
+> diff --git a/include/sound/hdmi-codec.h b/include/sound/hdmi-codec.h
+> index 9b162ac1e08e..5e1a9eafd10f 100644
+> --- a/include/sound/hdmi-codec.h
+> +++ b/include/sound/hdmi-codec.h
+> @@ -12,7 +12,6 @@
+>
+>  #include <linux/of_graph.h>
+>  #include <linux/hdmi.h>
+> -#include <drm/drm_edid.h>
+>  #include <sound/asoundef.h>
+>  #include <sound/soc.h>
+>  #include <uapi/sound/asound.h>
+> --
+> 2.39.2
+>
