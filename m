@@ -1,58 +1,47 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0105682523F
-	for <lists+intel-gfx@lfdr.de>; Fri,  5 Jan 2024 11:39:46 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 376658252E1
+	for <lists+intel-gfx@lfdr.de>; Fri,  5 Jan 2024 12:29:16 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EAA2C10E5AC;
-	Fri,  5 Jan 2024 10:39:38 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9A36610E5DA;
+	Fri,  5 Jan 2024 11:29:14 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2AC1F10E5AA;
- Fri,  5 Jan 2024 10:39:37 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.93])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5DB8310E5DA
+ for <intel-gfx@lists.freedesktop.org>; Fri,  5 Jan 2024 11:29:13 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1704451176; x=1735987176;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=zuVaMetkOUHbMOEscEOXu6xsKFLodA5fpJtyTmGtHKw=;
- b=FeIiR1CCFZ9P/VLutrqiKwQmmvoMuJiQlV37TDeV9zOBEIPxOKUBq+63
- BsVHPIVFzMe3WFlQYbpMAZ3riZvX1MG+cvhtjig2SFMkBC98sd3Yg0xfk
- +RvvDiarE2EKgqMULOkoD9BZVHTDxPCs5m6bDDJo/kka3JFGBmOLb6+va
- G9mxAlFTufcAPWt2jpU0Zo/3wjAZ1ZxnLIeztk5Svcs5UykDkt3m5NTLa
- tJOtkfP0uc0m8rJn5zGT8rMGWzkuKYUv1OMTqTGXUsjty/WhySxBg5udA
- OfMzSD6uX9MTuYXHUKKEJIs5lqBYa95oCopMIXly7fhKXrlJjNTXFn+0f w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10943"; a="461785419"
-X-IronPort-AV: E=Sophos;i="6.04,333,1695711600"; d="scan'208";a="461785419"
-Received: from fmsmga006.fm.intel.com ([10.253.24.20])
- by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Jan 2024 02:39:35 -0800
+ t=1704454153; x=1735990153;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=lKATAlZ7kn9CxRczj7iacj4ajq5gMziSgx67AGAuEa4=;
+ b=eymZCxACyQG+2h9kDNNACW2Yygygvc7IbN5KXijFwMxGm7KP5y7f7LRN
+ sxSt/HkCffNtz6uKFp3DMsWpec60TarOlOhMjsVx8rjWWHOosIQoLGFvN
+ nI47iTdhEsHBSbbmoQgqR2iIsFQ6+8Uh8nFiuC/L/RqZMq1fNm36ahiGx
+ naH4gHQBPGyNYFXSoRY5juIAV42I27IOgC9c/eU61//bQ4X84wZ+srecI
+ EGquIakkCOsuzNX1745eFCHUwELXGWle9YUqJQRlbOt3g0N4EtBCA5KUC
+ PnkUgSIfUcLfkXKOZNQDbQ6fK1oSlQYcc+T11tnxHZV+ZNrqHpfaaXy5B w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10943"; a="394661601"
+X-IronPort-AV: E=Sophos;i="6.04,333,1695711600"; d="scan'208";a="394661601"
+Received: from fmsmga003.fm.intel.com ([10.253.24.29])
+ by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 05 Jan 2024 03:29:13 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10943"; a="1027728033"
-X-IronPort-AV: E=Sophos;i="6.04,333,1695711600"; d="scan'208";a="1027728033"
-Received: from cmacnam1-mobl3.ger.corp.intel.com (HELO [10.213.193.225])
- ([10.213.193.225])
- by fmsmga006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Jan 2024 02:39:35 -0800
-Message-ID: <73f0a8e9-3fd6-45a9-a084-b5308900ca8f@linux.intel.com>
-Date: Fri, 5 Jan 2024 10:39:31 +0000
+X-IronPort-AV: E=McAfee;i="6600,9927,10943"; a="871216128"
+X-IronPort-AV: E=Sophos;i="6.04,333,1695711600"; d="scan'208";a="871216128"
+Received: from sorvi2.fi.intel.com ([10.237.72.194])
+ by FMSMGA003.fm.intel.com with ESMTP; 05 Jan 2024 03:29:11 -0800
+From: Mika Kahola <mika.kahola@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Subject: [PATCH] drm/i915/display: Use helper to select C20 MPLLA/B
+Date: Fri,  5 Jan 2024 13:22:43 +0200
+Message-Id: <20240105112243.224199-1-mika.kahola@intel.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 1/3] drm/i915/gt: Support fixed CCS mode
-Content-Language: en-US
-To: Andi Shyti <andi.shyti@linux.intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
-References: <20240104143558.193694-1-andi.shyti@linux.intel.com>
- <20240104143558.193694-2-andi.shyti@linux.intel.com>
- <98e56d3e-ebf0-42b9-928b-0dcc4303658c@linux.intel.com>
- <ZZchsRQ5Kc-x9dlk@ashyti-mobl2.lan>
-From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-Organization: Intel Corporation UK Plc
-In-Reply-To: <ZZchsRQ5Kc-x9dlk@ashyti-mobl2.lan>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -65,139 +54,85 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx <intel-gfx@lists.freedesktop.org>,
- Chris Wilson <chris.p.wilson@linux.intel.com>,
- dri-devel <dri-devel@lists.freedesktop.org>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+We used to select between MPLLA/B with the following
 
-On 04/01/2024 21:23, Andi Shyti wrote:
-> Hi Tvrtko,
-> 
-> [1]
-> 
->>> +	/*
->>> +	 * Loop over all available slices and assign each a user engine.
->>> +	 *
->>> +	 * With 1 engine (ccs0):
->>> +	 *   slice 0, 1, 2, 3: ccs0
->>> +	 *
->>> +	 * With 2 engines (ccs0, ccs1):
->>> +	 *   slice 0, 2: ccs0
->>> +	 *   slice 1, 3: ccs1
->>> +	 *
->>> +	 * With 4 engines (ccs0, ccs1, ccs2, ccs3):
->>> +	 *   slice 0: ccs0
->>> +	 *   slice 1: ccs1
->>> +	 *   slice 2: ccs2
->>> +	 *   slice 3: ccs3
->>> +	 *
->>> +	 * Since the number of slices and the number of engines is
->>> +	 * known, and we ensure that there is an exact multiple of
->>> +	 * engines for slices, the double loop becomes a loop over each
->>> +	 * slice.
->>> +	 */
->>> +	for (i = num_slices / num_engines; i < num_slices; i++) {
->>> +		struct intel_engine_cs *engine;
->>> +		intel_engine_mask_t tmp;
->>> +
->>> +		for_each_engine_masked(engine, gt, ALL_CCS(gt), tmp) {
->>> +			/* If a slice is fused off, leave disabled */
->>> +			while (!(CCS_MASK(gt) & BIT(slice)))
->>> +				slice++;
->>> +
->>> +			mode &= ~XEHP_CCS_MODE_CSLICE(slice, XEHP_CCS_MODE_CSLICE_MASK);
->>> +			mode |= XEHP_CCS_MODE_CSLICE(slice, engine->instance);
->>> +
->>> +			/* assign the next slice */
->>> +			slice++;
->>> +		}
->>> +	}
->>> +
->>> +	intel_uncore_write(gt->uncore, XEHP_CCS_MODE, mode);
->>> +}
->>> +
->>> +void intel_gt_apply_ccs_mode(struct intel_gt *gt)
->>> +{
->>> +	mutex_lock(&gt->ccs.mutex);
->>> +	__intel_gt_apply_ccs_mode(gt);
->>> +	mutex_unlock(&gt->ccs.mutex);
->>> +}
->>> +
->>> +void intel_gt_init_ccs_mode(struct intel_gt *gt)
->>> +{
->>> +	mutex_init(&gt->ccs.mutex);
->>> +	gt->ccs.mode = 1;
->>
->> What is '1'? And this question carries over to the sysfs interface in the
->> following patch - who will use it and where it is documented how to use it?
-> 
-> The value '1' is explained in the comment above[1] and in the
+state->tx[0] & C20_PHY_USE_MPLLB
 
-Do you mean this is mode '1':
+Since this is used a few places within C20 PLL setting,
+let's introduce a helper function to clean up the code
+a bit.
 
-  * With 1 engine (ccs0):
-  *   slice 0, 1, 2, 3: ccs0
+Signed-off-by: Mika Kahola <mika.kahola@intel.com>
+---
+ drivers/gpu/drm/i915/display/intel_cx0_phy.c | 17 +++++++++++------
+ 1 file changed, 11 insertions(+), 6 deletions(-)
 
-?
+diff --git a/drivers/gpu/drm/i915/display/intel_cx0_phy.c b/drivers/gpu/drm/i915/display/intel_cx0_phy.c
+index ce1bddf74a82..e67c25975947 100644
+--- a/drivers/gpu/drm/i915/display/intel_cx0_phy.c
++++ b/drivers/gpu/drm/i915/display/intel_cx0_phy.c
+@@ -2096,6 +2096,11 @@ int intel_cx0pll_calc_state(struct intel_crtc_state *crtc_state,
+ 	return intel_c20pll_calc_state(crtc_state, encoder);
+ }
+ 
++static bool intel_c20phy_use_mpllb(const struct intel_c20pll_state *state)
++{
++	return state->tx[0] & C20_PHY_USE_MPLLB;
++}
++
+ static int intel_c20pll_calc_port_clock(struct intel_encoder *encoder,
+ 					const struct intel_c20pll_state *pll_state)
+ {
+@@ -2108,7 +2113,7 @@ static int intel_c20pll_calc_port_clock(struct intel_encoder *encoder,
+ 	unsigned int tx_rate_mult;
+ 	unsigned int tx_rate = REG_FIELD_GET(C20_PHY_TX_RATE, pll_state->tx[0]);
+ 
+-	if (pll_state->tx[0] & C20_PHY_USE_MPLLB) {
++	if (intel_c20phy_use_mpllb(pll_state)) {
+ 		tx_rate_mult = 1;
+ 		frac_en = REG_FIELD_GET(C20_MPLLB_FRACEN, pll_state->mpllb[6]);
+ 		frac_quot = pll_state->mpllb[8];
+@@ -2174,7 +2179,7 @@ static void intel_c20pll_readout_hw_state(struct intel_encoder *encoder,
+ 								PHY_C20_A_CMN_CNTX_CFG(i));
+ 	}
+ 
+-	if (pll_state->tx[0] & C20_PHY_USE_MPLLB) {
++	if (intel_c20phy_use_mpllb(pll_state)) {
+ 		/* MPLLB configuration */
+ 		for (i = 0; i < ARRAY_SIZE(pll_state->mpllb); i++) {
+ 			if (cntx)
+@@ -2212,7 +2217,7 @@ void intel_c20pll_dump_hw_state(struct drm_i915_private *i915,
+ 	drm_dbg_kms(&i915->drm, "cmn[0] = 0x%.4x, cmn[1] = 0x%.4x, cmn[2] = 0x%.4x, cmn[3] = 0x%.4x\n",
+ 		    hw_state->cmn[0], hw_state->cmn[1], hw_state->cmn[2], hw_state->cmn[3]);
+ 
+-	if (hw_state->tx[0] & C20_PHY_USE_MPLLB) {
++	if (intel_c20phy_use_mpllb(hw_state)) {
+ 		for (i = 0; i < ARRAY_SIZE(hw_state->mpllb); i++)
+ 			drm_dbg_kms(&i915->drm, "mpllb[%d] = 0x%.4x\n", i, hw_state->mpllb[i]);
+ 	} else {
+@@ -2364,7 +2369,7 @@ static void intel_c20_pll_program(struct drm_i915_private *i915,
+ 	}
+ 
+ 	/* 3.3 mpllb or mplla configuration */
+-	if (pll_state->tx[0] & C20_PHY_USE_MPLLB) {
++	if (intel_c20phy_use_mpllb(pll_state)) {
+ 		for (i = 0; i < ARRAY_SIZE(pll_state->mpllb); i++) {
+ 			if (cntx)
+ 				intel_c20_sram_write(i915, encoder->port, INTEL_CX0_LANE0,
+@@ -3063,8 +3068,8 @@ static void intel_c20pll_state_verify(const struct intel_crtc_state *state,
+ {
+ 	struct drm_i915_private *i915 = to_i915(crtc->base.dev);
+ 	const struct intel_c20pll_state *mpll_sw_state = &state->cx0pll_state.c20;
+-	bool sw_use_mpllb = mpll_sw_state->tx[0] & C20_PHY_USE_MPLLB;
+-	bool hw_use_mpllb = mpll_hw_state->tx[0] & C20_PHY_USE_MPLLB;
++	bool sw_use_mpllb = intel_c20phy_use_mpllb(mpll_sw_state);
++	bool hw_use_mpllb = intel_c20phy_use_mpllb(mpll_hw_state);
+ 	int i;
+ 
+ 	I915_STATE_WARN(i915, mpll_hw_state->clock != mpll_sw_state->clock,
+-- 
+2.34.1
 
-But I don't see where it says what do different modes mean on different 
-SKU configurations.
-
-It also does not say what should the num_slices sysfs file be used for.
-
-Does "mode N" mean "assign each command streamer N compute slices"? Or 
-"assign each compute slice N command streamers"?
-
-I wonder if we should add something user friendly into 
-Documentation/ABI/*/sysfs-... Joonas your thoughts?
-
-> comment below[2]. Maybe we should give it an enum meaning? But
-> that would be something like CCS_MODE_1/2/4, I thinks
-> ccs.mode = 1/2/4 is more understandable.
-> 
->> Also, should this setting somehow be gated by an applicable platform? Or if
->> not on setting then when acting on it in __intel_gt_apply_ccs_mode?
->>
->> Creation of sysfs files as well should be gated by platform too in the
->> following patch?
-> 
-> The idea of this series is to disable the CCS load balancing
-> (which automatically chooses between mode 1/2/4) and used the
-> a fixed scheme chosen by the user.
-> 
-> (I'm preparing v3 as Chris was so kind to recommend some changes
-> offline)
-
-Okay lets wait for v2 and I will then see if I will this that will make 
-it clearer to casual observers.
-
-Regards,
-
-Tvrtko
-
-
-> Thanks,
-> Andi
-> 
-> [2]
-> 
->>> +	/*
->>> +	 * Track fixed mapping between CCS engines and compute slices.
->>> +	 *
->>> +	 * In order to w/a HW that has the inability to dynamically load
->>> +	 * balance between CCS engines and EU in the compute slices, we have to
->>> +	 * reconfigure a static mapping on the fly. We track the current CCS
->>> +	 * configuration (set by thr user through a sysfs interface) and compare
->>> +	 * it against the current CCS_MODE (which maps CCS engines to compute
->>> +	 * slices). If there is only a single engine selected, we can map it to
->>> +	 * all available compute slices for maximal single task performance
->>> +	 * (fast/narrow). If there are more then one engine selected, we have to
->>> +	 * reduce the number of slices allocated to each engine (wide/slow),
->>> +	 * fairly distributing the EU between the equivalent engines.
->>> +	 */
->>> +	struct {
->>> +		struct mutex mutex;
->>> +		u32 mode;
->>> +	} ccs;
