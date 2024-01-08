@@ -2,56 +2,28 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 847DF827274
-	for <lists+intel-gfx@lfdr.de>; Mon,  8 Jan 2024 16:13:12 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0A1778272E3
+	for <lists+intel-gfx@lfdr.de>; Mon,  8 Jan 2024 16:22:12 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 27F3810E22F;
-	Mon,  8 Jan 2024 15:13:07 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4332D10E245;
+	Mon,  8 Jan 2024 15:22:10 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.93])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0EC0810E11D;
- Mon,  8 Jan 2024 15:13:06 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1704726786; x=1736262786;
- h=mime-version:content-transfer-encoding:in-reply-to:
- references:from:to:subject:cc:message-id:date;
- bh=GIBzYyQbp8IoOguC+xTcrIimi48jpCm5JMA61zYFVCk=;
- b=lSP5/l8jwJT9Uh+VC7ibR5kwoAWmlfpsI6XuoVAx7jocp9yL+PXajJYL
- UYolpXR04lWS+RDRrYiSwpURK9/Q7zSGLR+JDcj7wdYzPY3fG03FyU/PG
- 0NQbue9OA+VrjSRPjDh+sjgdpslnYuFxvzumWDzPV+19lJkXIKjqlkqZM
- RnlPFLNFQ5e9p+mTY04vn/Lo8Igr2gS9B10ruY01Qib0bOHl9mZ17on5Y
- D6JvjWkx6+q2fH27uBPY1DKrinJaIRVROui7JRR8K4vnZBPbwVln3Frcw
- B2/AOukUW7gxSNFM8fKf2Ts0HfGtsWLKzoVwQq4SjE000jzg/gvDMpfdw A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10947"; a="395076097"
-X-IronPort-AV: E=Sophos;i="6.04,180,1695711600"; d="scan'208";a="395076097"
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
- by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Jan 2024 07:13:05 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10947"; a="781439953"
-X-IronPort-AV: E=Sophos;i="6.04,180,1695711600"; d="scan'208";a="781439953"
-Received: from leim-mobl1.ccr.corp.intel.com (HELO localhost) ([10.246.33.45])
- by orsmga002-auth.jf.intel.com with
- ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 08 Jan 2024 07:13:03 -0800
+Received: from 5338d5abeb45 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 586CC10E243;
+ Mon,  8 Jan 2024 15:22:08 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <73f0a8e9-3fd6-45a9-a084-b5308900ca8f@linux.intel.com>
-References: <20240104143558.193694-1-andi.shyti@linux.intel.com>
- <20240104143558.193694-2-andi.shyti@linux.intel.com>
- <98e56d3e-ebf0-42b9-928b-0dcc4303658c@linux.intel.com>
- <ZZchsRQ5Kc-x9dlk@ashyti-mobl2.lan>
- <73f0a8e9-3fd6-45a9-a084-b5308900ca8f@linux.intel.com>
-From: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
-To: Andi Shyti <andi.shyti@linux.intel.com>,
- Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-Subject: Re: [PATCH v2 1/3] drm/i915/gt: Support fixed CCS mode
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-Message-ID: <170472678023.31232.8020112065054338164@jlahtine-mobl.ger.corp.intel.com>
-User-Agent: alot/0.8.1
-Date: Mon, 08 Jan 2024 17:13:00 +0200
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=97_Fi=2ECI=2ECHECKPATCH=3A_warning_for_drm/xe/display=3A_Di?=
+ =?utf-8?q?sable_aux_ccs_framebuffers_=28rev3=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Juha-Pekka Heikkila" <juhapekka.heikkila@gmail.com>
+Date: Mon, 08 Jan 2024 15:22:08 -0000
+Message-ID: <170472732835.196237.7268629586875085678@5338d5abeb45>
+X-Patchwork-Hint: ignore
+References: <20240102181449.3822365-1-juhapekka.heikkila@gmail.com>
+In-Reply-To: <20240102181449.3822365-1-juhapekka.heikkila@gmail.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,64 +36,33 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx <intel-gfx@lists.freedesktop.org>,
- Chris Wilson <chris.p.wilson@linux.intel.com>,
- dri-devel <dri-devel@lists.freedesktop.org>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Quoting Tvrtko Ursulin (2024-01-05 12:39:31)
->=20
-> On 04/01/2024 21:23, Andi Shyti wrote:
+== Series Details ==
 
-<SNIP>
+Series: drm/xe/display: Disable aux ccs framebuffers (rev3)
+URL   : https://patchwork.freedesktop.org/series/128122/
+State : warning
 
-> >>> +void intel_gt_apply_ccs_mode(struct intel_gt *gt)
-> >>> +{
-> >>> +   mutex_lock(&gt->ccs.mutex);
-> >>> +   __intel_gt_apply_ccs_mode(gt);
-> >>> +   mutex_unlock(&gt->ccs.mutex);
-> >>> +}
-> >>> +
-> >>> +void intel_gt_init_ccs_mode(struct intel_gt *gt)
-> >>> +{
-> >>> +   mutex_init(&gt->ccs.mutex);
-> >>> +   gt->ccs.mode =3D 1;
-> >>
-> >> What is '1'? And this question carries over to the sysfs interface in =
-the
-> >> following patch - who will use it and where it is documented how to us=
-e it?
-> >=20
-> > The value '1' is explained in the comment above[1] and in the
->=20
-> Do you mean this is mode '1':
->=20
->   * With 1 engine (ccs0):
->   *   slice 0, 1, 2, 3: ccs0
->=20
-> ?
->=20
-> But I don't see where it says what do different modes mean on different=20
-> SKU configurations.
->=20
-> It also does not say what should the num_slices sysfs file be used for.
->=20
-> Does "mode N" mean "assign each command streamer N compute slices"? Or=20
-> "assign each compute slice N command streamers"?
->=20
-> I wonder if we should add something user friendly into=20
-> Documentation/ABI/*/sysfs-... Joonas your thoughts?
+== Summary ==
 
-We definitely should always properly document all sysfs additions, just
-seems like we less frequently remember to do so. So yeah, this should be
-documented just like other uAPI.
+Error: dim checkpatch failed
+ce28f70c318a drm/xe/display: Disable aux ccs framebuffers
+Traceback (most recent call last):
+  File "scripts/spdxcheck.py", line 6, in <module>
+    from ply import lex, yacc
+ModuleNotFoundError: No module named 'ply'
+Traceback (most recent call last):
+  File "scripts/spdxcheck.py", line 6, in <module>
+    from ply import lex, yacc
+ModuleNotFoundError: No module named 'ply'
+-:27: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#27: 
+new file mode 100644
 
-I also like the idea of not exposing the the file at all if the value
-can't be modified.
+total: 0 errors, 1 warnings, 0 checks, 194 lines checked
 
-The ccs_mode is just supposed to allow user to select how many CCS
-engines they want to expose, and always make an even split of slices
-between them, nothing more nothing less.
 
-Regards, Joonas
