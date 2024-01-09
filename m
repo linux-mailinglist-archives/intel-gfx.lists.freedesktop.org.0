@@ -1,50 +1,45 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id A9353827B43
-	for <lists+intel-gfx@lfdr.de>; Tue,  9 Jan 2024 00:07:16 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 19108827BEE
+	for <lists+intel-gfx@lfdr.de>; Tue,  9 Jan 2024 01:23:03 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6D14A10E33A;
-	Mon,  8 Jan 2024 23:07:03 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id AAA9910E349;
+	Tue,  9 Jan 2024 00:23:01 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4887E10E33A
- for <intel-gfx@lists.freedesktop.org>; Mon,  8 Jan 2024 23:07:02 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1704755222; x=1736291222;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=B7v0TjVcPwi5JuREYhIZD9/Hvi+6b30DBMIBHaWGh2g=;
- b=gc9Q40czZIcm7fxvdelln3Zn3dzI5dbqMaDAPullg0dd0cULcVbUbyW9
- 6Gv9SxH2boL8pN00DeZryB/0/Ycp/RX70CeC4dDzp0U9XmHw45QpfPDd7
- nkh/FosH6EY8bZPurYsd1NeZ32NY/PMx3PgDlU3S9htCItWK4JeQlbJe3
- 8D3VNi7AXsdlwA3+ICgTpktaHQ+uMyTLijfSlx6DgYe84leqF6IB89jEL
- UuedvAkUI6pchiZ59C6ny7r/e3R4HyGJBx8/KNnxqRM4GNIGEqZ27Uh/o
- ELizBfyUYc2jiRwg3g3mEm6wSaHXb5FxOdnM7CIJ2P7y//+4Xar2KhoHz Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10947"; a="11514133"
-X-IronPort-AV: E=Sophos;i="6.04,181,1695711600"; d="scan'208";a="11514133"
-Received: from orsmga007.jf.intel.com ([10.7.209.58])
- by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Jan 2024 15:07:02 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10947"; a="774647118"
-X-IronPort-AV: E=Sophos;i="6.04,181,1695711600"; d="scan'208";a="774647118"
-Received: from invictus.jf.intel.com ([10.165.21.201])
- by orsmga007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Jan 2024 15:07:00 -0800
-From: Radhakrishna Sripada <radhakrishna.sripada@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Subject: [RFC 15/15] drm/i915: Use vbt type to determine its validity
-Date: Mon,  8 Jan 2024 15:05:17 -0800
-Message-Id: <20240108230517.1497504-16-radhakrishna.sripada@intel.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20240108230517.1497504-1-radhakrishna.sripada@intel.com>
-References: <20240108230517.1497504-1-radhakrishna.sripada@intel.com>
+Received: from gandalf.ozlabs.org (gandalf.ozlabs.org [150.107.74.76])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C16E510E345;
+ Tue,  9 Jan 2024 00:22:59 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canb.auug.org.au;
+ s=201702; t=1704759778;
+ bh=UtD5+zFpbHH54Dk7I6pNkcSPwd78+kcXsfGz/v1610Y=;
+ h=Date:From:To:Cc:Subject:From;
+ b=c/m8U+QrcYOeM7GEMXjqCemYRferAtFYm52YUD8hLa56m7nwVs/t0LUQrx8+SLO/I
+ 4/P16UIjmKDPZuJiuKc0SPQ26MD0gVEluTcAmKRWbt/EghK5CPLAIbTp0/nKO9mSjl
+ 3tqPCpv0vM48FRLDXM7jKWjRROfQKieiKO62YHmWPFNHg3K7NM8eY0GM7Fn/MIJpE4
+ OX/5s9KvkpQKxtGm7qCu37vzxkW5/CNXI8cP46ed6aWEbBKkgXbrdmuByB0BE9QQA+
+ rRWisSyMz+jmPNBg+EVvPftMrLJyWcw239dBUpK75oHg+HY7ToD4zq23jxGH9anAP3
+ sv2WdgrSesdiQ==
+Received: from authenticated.ozlabs.org (localhost [127.0.0.1])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+ (No client certificate requested)
+ by mail.ozlabs.org (Postfix) with ESMTPSA id 4T8BTr1tG5z4wnx;
+ Tue,  9 Jan 2024 11:22:55 +1100 (AEDT)
+Date: Tue, 9 Jan 2024 11:22:54 +1100
+From: Stephen Rothwell <sfr@canb.auug.org.au>
+To: Daniel Vetter <daniel.vetter@ffwll.ch>, Jani Nikula
+ <jani.nikula@linux.intel.com>, Joonas Lahtinen
+ <joonas.lahtinen@linux.intel.com>, Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Intel Graphics <intel-gfx@lists.freedesktop.org>, DRI
+ <dri-devel@lists.freedesktop.org>
+Subject: linux-next: manual merge of the drm-intel tree with Linus' tree
+Message-ID: <20240109112254.405d3a1a@canb.auug.org.au>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: multipart/signed; boundary="Sig_/F6i/J4=GGUHLZ+nz4EgeNZT";
+ protocol="application/pgp-signature"; micalg=pgp-sha256
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -57,59 +52,94 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: Bjorn Andersson <andersson@kernel.org>,
+ Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+ Bjorn Andersson <bjorn.andersson@linaro.org>,
+ Linux Next Mailing List <linux-next@vger.kernel.org>,
+ Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-We depend on a non null vbt field in intel_vbt to determine
-if a vbt is read from its source. This may not be foolproof
-hence rely on vbt->type to determine if vbt is read from a source.
-Note that this does not determine the validity of read vbt.
+--Sig_/F6i/J4=GGUHLZ+nz4EgeNZT
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: quoted-printable
 
-Signed-off-by: Radhakrishna Sripada <radhakrishna.sripada@intel.com>
----
- drivers/gpu/drm/i915/display/intel_bios.c | 13 +++++++++----
- 1 file changed, 9 insertions(+), 4 deletions(-)
+Hi all,
 
-diff --git a/drivers/gpu/drm/i915/display/intel_bios.c b/drivers/gpu/drm/i915/display/intel_bios.c
-index 135a2d5d50b8..0938c9ec8fbe 100644
---- a/drivers/gpu/drm/i915/display/intel_bios.c
-+++ b/drivers/gpu/drm/i915/display/intel_bios.c
-@@ -3119,6 +3119,11 @@ static void oprom_get_vbt(struct drm_i915_private *i915,
- 	return;
- }
- 
-+static inline bool is_empty_vbt(struct intel_vbt *vbt)
-+{
-+	return vbt && vbt->type == I915_VBT_NONE;
-+}
-+
- /**
-  * intel_bios_init - find VBT and initialize settings from the BIOS
-  * @i915: i915 device instance
-@@ -3154,19 +3159,19 @@ void intel_bios_init(struct drm_i915_private *i915)
- 
- 	intel_load_vbt_firmware(i915, vbt);
- 
--	if (!vbt->vbt && opregion->asls)
-+	if (is_empty_vbt(vbt) && opregion->asls)
- 		intel_load_opregion_vbt(i915, opregion, vbt);
- 	/*
- 	 * If the OpRegion does not have VBT, look in SPI flash through MMIO or
- 	 * PCI mapping
- 	 */
--	if (!vbt->vbt && IS_DGFX(i915))
-+	if (is_empty_vbt(vbt) && IS_DGFX(i915))
- 		spi_oprom_get_vbt(i915, vbt);
- 
--	if (!vbt->vbt)
-+	if (is_empty_vbt(vbt))
- 		oprom_get_vbt(i915, vbt);
- 
--	if (!vbt->vbt)
-+	if (is_empty_vbt(vbt))
- 		goto out;
- 
- 	header = (struct vbt_header *)vbt->vbt;
--- 
-2.34.1
+Today's linux-next merge of the drm-intel tree got a conflict in:
 
+  drivers/gpu/drm/i915/display/intel_dp.c
+
+between commit:
+
+  fc93835bb0d7 ("drm: Add HPD state to drm_connector_oob_hotplug_event()")
+
+from Linus' tree and commit:
+
+  cd572b3bb27e ("drm/i915: Disable hotplug detection works during driver in=
+it/shutdown")
+
+from the drm-intel tree.
+
+I fixed it up (maybe, see below) and can carry the fix as necessary. This
+is now fixed as far as linux-next is concerned, but any non trivial
+conflicts should be mentioned to your upstream maintainer when your tree
+is submitted for merging.  You may also want to consider cooperating
+with the maintainer of the conflicting tree to minimise any particularly
+complex conflicts.
+
+--=20
+Cheers,
+Stephen Rothwell
+
+diff --cc drivers/gpu/drm/i915/display/intel_dp.c
+index 7d2b8ce48fda,93f9985ef75c..000000000000
+--- a/drivers/gpu/drm/i915/display/intel_dp.c
++++ b/drivers/gpu/drm/i915/display/intel_dp.c
+@@@ -6040,21 -6062,11 +6059,21 @@@ static void intel_dp_oob_hotplug_event(
+  {
+  	struct intel_encoder *encoder =3D intel_attached_encoder(to_intel_connec=
+tor(connector));
+  	struct drm_i915_private *i915 =3D to_i915(connector->dev);
+ +	bool hpd_high =3D hpd_state =3D=3D connector_status_connected;
+ +	unsigned int hpd_pin =3D encoder->hpd_pin;
+ +	bool need_work =3D false;
+ =20
+  	spin_lock_irq(&i915->irq_lock);
+ -	i915->display.hotplug.event_bits |=3D BIT(encoder->hpd_pin);
+ +	if (hpd_high !=3D test_bit(hpd_pin, &i915->display.hotplug.oob_hotplug_l=
+ast_state)) {
+ +		i915->display.hotplug.event_bits |=3D BIT(hpd_pin);
+ +
+ +		__assign_bit(hpd_pin, &i915->display.hotplug.oob_hotplug_last_state, hp=
+d_high);
+ +		need_work =3D true;
+ +	}
+  	spin_unlock_irq(&i915->irq_lock);
+ -	intel_hpd_schedule_detection(i915);
+ +
+ +	if (need_work)
+- 		queue_delayed_work(i915->unordered_wq, &i915->display.hotplug.hotplug_w=
+ork, 0);
+++		intel_hpd_schedule_detection(i915);
+  }
+ =20
+  static const struct drm_connector_funcs intel_dp_connector_funcs =3D {
+
+--Sig_/F6i/J4=GGUHLZ+nz4EgeNZT
+Content-Type: application/pgp-signature
+Content-Description: OpenPGP digital signature
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAEBCAAdFiEENIC96giZ81tWdLgKAVBC80lX0GwFAmWckd4ACgkQAVBC80lX
+0GzYLwf+Isd77XQw1RHb/jBROdv03anaJyjS77VZaazYNSZGn6V1/e79k5G8W35/
+0LurPYJsdakjsCBzyRECIXsoO+o6hjWKPcDgeqjYPWHUfD39AHJyTNSja10o1Aio
+Q1p2RafGPIqBpFZ3KYzJFVTCXdqFGgecMTFyoXSmGzgPgIOJDgnp9FLNXYwpUDFD
+qRxmUe4XmV5/Ja56EoHDsxFk1dcgzLTO9FXPhjl4+mNlgd+W58ertRmrwOzD+jyy
+bFMaWPS8sa9seWATnWhRzrW3FrSiy/ffhh+qbpl3rmf4mOifEoe3UhQyBqiFV2mu
+V8nW3SCX9uhlE+mqYrVJ5B9M5LmO6w==
+=kBR4
+-----END PGP SIGNATURE-----
+
+--Sig_/F6i/J4=GGUHLZ+nz4EgeNZT--
