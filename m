@@ -2,60 +2,57 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 76A97828265
-	for <lists+intel-gfx@lfdr.de>; Tue,  9 Jan 2024 09:47:04 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7A4638282D4
+	for <lists+intel-gfx@lfdr.de>; Tue,  9 Jan 2024 10:17:20 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id F3EDC10E310;
-	Tue,  9 Jan 2024 08:47:02 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 29EFD10E37B;
+	Tue,  9 Jan 2024 09:17:16 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C3E5F10E310;
- Tue,  9 Jan 2024 08:47:01 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DA1D310E0AD;
+ Tue,  9 Jan 2024 09:17:14 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1704790022; x=1736326022;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=9y2C60KzGbz+mAi2nbmXunLacn6B86C5OdVSTPAPihE=;
- b=J5CBuMZEv9SAdDjLRuQSPY0S0cKF6ax/pIi+fz8QMRGHeV7/kTzj/aNQ
- hQs7b8wPJaicR58l4EQqlyKPMYB09A8t8iTdEPFSLyjEzgYlwCzG+qpwW
- SWr3roaNa5UKiQsNdSuBGdHxuOo+JgqwDD9OLt+rWqHZ9spmFrcgPqKNx
- ZDpxtiCLRJlF9vy3zIu7od93iEhAZtzTxIw+tMgKqZoXXrYiRdwlPBPTo
- 5NYkJktEfC6C1psn90S1f8RRvQ7a5Gd0XWLPs6jex6My3hQEvvsRWg5zE
- Nn+g5HFitJNPM5p6lgKHQsI7jGYmyE0jr+rbciA0oiWHKxoTSGAvkmFdh Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10947"; a="4909032"
+ t=1704791835; x=1736327835;
+ h=message-id:subject:from:to:date:in-reply-to:references:
+ content-transfer-encoding:mime-version;
+ bh=UuORAX7I9MxlSVr5DSq/uhcxoKFIHBwxLkIKZamftmI=;
+ b=RkrwIH8NVFqpxRLD4J/HWlpgeQI9ijr11D95CKYgPrT0ZTnSeHpTvUtH
+ OyseTlJaiWcCNj3gk/1L3/VMWqXRKCYP9UDW8ATCCjoXRyaFtT6hbtmrb
+ wCMfNkK/aJo8/s0MV1sRPZDYAlj1L7dbZtUKvGZt1xQPmIFFGMrEWCmPO
+ oHUiTB6L8XU96ojrW+CQwX8Wl9MhyS3OSkHRM4Xu+oeyK2XEpcY3FPCkt
+ o77hDgcnAgHC46pzPutQGfz7ghVYu/yrVMFNgelgubzHoANDI1WJfMcqj
+ NRCUx4vw9WYZu0eRrk+Ngv0aI1YEqSNVQF5clxwIIzUl85g30VNrQ5jBO g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10947"; a="4896538"
 X-IronPort-AV: E=Sophos;i="6.04,182,1695711600"; 
-   d="scan'208";a="4909032"
+   d="scan'208";a="4896538"
 Received: from fmsmga005.fm.intel.com ([10.253.24.32])
- by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Jan 2024 00:47:01 -0800
+ by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 Jan 2024 01:17:14 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10947"; a="1113014742"
-X-IronPort-AV: E=Sophos;i="6.04,182,1695711600"; d="scan'208";a="1113014742"
-Received: from larnott-mobl1.ger.corp.intel.com (HELO [10.213.222.67])
- ([10.213.222.67])
+X-IronPort-AV: E=McAfee;i="6600,9927,10947"; a="1113021567"
+X-IronPort-AV: E=Sophos;i="6.04,182,1695711600"; d="scan'208";a="1113021567"
+Received: from djustese-mobl.ger.corp.intel.com (HELO [10.249.254.147])
+ ([10.249.254.147])
  by fmsmga005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Jan 2024 00:46:59 -0800
-Message-ID: <7c6fe714-d412-4e5d-8fa9-da84d614201b@linux.intel.com>
-Date: Tue, 9 Jan 2024 08:46:57 +0000
+ 09 Jan 2024 01:17:12 -0800
+Message-ID: <1edac68920a5927281c6757d9f78b6045f10602c.camel@linux.intel.com>
+Subject: Re: [PATCH 2/5] drm/ttm: return ENOSPC from ttm_bo_mem_space
+From: Thomas =?ISO-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>
+To: Christian =?ISO-8859-1?Q?K=F6nig?= <ckoenig.leichtzumerken@gmail.com>, 
+ zack.rusin@broadcom.com, lyude@redhat.com, kherbst@redhat.com, 
+ jani.nikula@linux.intel.com, nouveau@lists.freedesktop.org, 
+ intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
+Date: Tue, 09 Jan 2024 10:17:09 +0100
+In-Reply-To: <20240109074729.3646-3-christian.koenig@amd.com>
+References: <20240109074729.3646-1-christian.koenig@amd.com>
+ <20240109074729.3646-3-christian.koenig@amd.com>
+Organization: Intel Sweden AB, Registration Number: 556189-6027
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.50.2 (3.50.2-1.fc39) 
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 1/3] drm/i915/gt: Support fixed CCS mode
-Content-Language: en-US
-To: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Andi Shyti <andi.shyti@linux.intel.com>
-References: <20240104143558.193694-1-andi.shyti@linux.intel.com>
- <20240104143558.193694-2-andi.shyti@linux.intel.com>
- <98e56d3e-ebf0-42b9-928b-0dcc4303658c@linux.intel.com>
- <ZZchsRQ5Kc-x9dlk@ashyti-mobl2.lan>
- <73f0a8e9-3fd6-45a9-a084-b5308900ca8f@linux.intel.com>
- <170472678023.31232.8020112065054338164@jlahtine-mobl.ger.corp.intel.com>
-From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-Organization: Intel Corporation UK Plc
-In-Reply-To: <170472678023.31232.8020112065054338164@jlahtine-mobl.ger.corp.intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -68,71 +65,44 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx <intel-gfx@lists.freedesktop.org>,
- Chris Wilson <chris.p.wilson@linux.intel.com>,
- dri-devel <dri-devel@lists.freedesktop.org>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+On Tue, 2024-01-09 at 08:47 +0100, Christian K=C3=B6nig wrote:
+> Only convert it to ENOMEM in ttm_bo_validate.
+>=20
 
-On 08/01/2024 15:13, Joonas Lahtinen wrote:
-> Quoting Tvrtko Ursulin (2024-01-05 12:39:31)
->>
->> On 04/01/2024 21:23, Andi Shyti wrote:
-> 
-> <SNIP>
-> 
->>>>> +void intel_gt_apply_ccs_mode(struct intel_gt *gt)
->>>>> +{
->>>>> +   mutex_lock(&gt->ccs.mutex);
->>>>> +   __intel_gt_apply_ccs_mode(gt);
->>>>> +   mutex_unlock(&gt->ccs.mutex);
->>>>> +}
->>>>> +
->>>>> +void intel_gt_init_ccs_mode(struct intel_gt *gt)
->>>>> +{
->>>>> +   mutex_init(&gt->ccs.mutex);
->>>>> +   gt->ccs.mode = 1;
->>>>
->>>> What is '1'? And this question carries over to the sysfs interface in the
->>>> following patch - who will use it and where it is documented how to use it?
->>>
->>> The value '1' is explained in the comment above[1] and in the
->>
->> Do you mean this is mode '1':
->>
->>    * With 1 engine (ccs0):
->>    *   slice 0, 1, 2, 3: ccs0
->>
->> ?
->>
->> But I don't see where it says what do different modes mean on different
->> SKU configurations.
->>
->> It also does not say what should the num_slices sysfs file be used for.
->>
->> Does "mode N" mean "assign each command streamer N compute slices"? Or
->> "assign each compute slice N command streamers"?
->>
->> I wonder if we should add something user friendly into
->> Documentation/ABI/*/sysfs-... Joonas your thoughts?
-> 
-> We definitely should always properly document all sysfs additions, just
-> seems like we less frequently remember to do so. So yeah, this should be
-> documented just like other uAPI.
-> 
-> I also like the idea of not exposing the the file at all if the value
-> can't be modified.
-> 
-> The ccs_mode is just supposed to allow user to select how many CCS
-> engines they want to expose, and always make an even split of slices
-> between them, nothing more nothing less.
+Could we have a more elaborate commit description here, (why is this
+change needed)?
 
-Hmm I can't see that the series changes anywhere what command streamers 
-will get reported as available.
-
-Regards,
-
-Tvrtko
-
+> Signed-off-by: Christian K=C3=B6nig <christian.koenig@amd.com>
+> ---
+> =C2=A0drivers/gpu/drm/ttm/ttm_bo.c | 5 ++++-
+> =C2=A01 file changed, 4 insertions(+), 1 deletion(-)
+>=20
+> diff --git a/drivers/gpu/drm/ttm/ttm_bo.c
+> b/drivers/gpu/drm/ttm/ttm_bo.c
+> index edf10618fe2b..8c1eaa74fa21 100644
+> --- a/drivers/gpu/drm/ttm/ttm_bo.c
+> +++ b/drivers/gpu/drm/ttm/ttm_bo.c
+> @@ -830,7 +830,7 @@ int ttm_bo_mem_space(struct ttm_buffer_object
+> *bo,
+> =C2=A0			goto error;
+> =C2=A0	}
+> =C2=A0
+> -	ret =3D -ENOMEM;
+> +	ret =3D -ENOSPC;
+> =C2=A0	if (!type_found) {
+> =C2=A0		pr_err(TTM_PFX "No compatible memory type found\n");
+> =C2=A0		ret =3D -EINVAL;
+> @@ -916,6 +916,9 @@ int ttm_bo_validate(struct ttm_buffer_object *bo,
+> =C2=A0		return -EINVAL;
+> =C2=A0
+> =C2=A0	ret =3D ttm_bo_move_buffer(bo, placement, ctx);
+> +	/* For backward compatibility with userspace */
+> +	if (ret =3D=3D -ENOSPC)
+> +		return -ENOMEM;
+> =C2=A0	if (ret)
+> =C2=A0		return ret;
+> =C2=A0
 
