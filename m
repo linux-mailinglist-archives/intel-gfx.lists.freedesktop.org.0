@@ -1,72 +1,61 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 42C138281A4
-	for <lists+intel-gfx@lfdr.de>; Tue,  9 Jan 2024 09:34:25 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 76A97828265
+	for <lists+intel-gfx@lfdr.de>; Tue,  9 Jan 2024 09:47:04 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8F20D10E398;
-	Tue,  9 Jan 2024 08:34:22 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id F3EDC10E310;
+	Tue,  9 Jan 2024 08:47:02 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-wm1-x332.google.com (mail-wm1-x332.google.com
- [IPv6:2a00:1450:4864:20::332])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A45B810E398;
- Tue,  9 Jan 2024 08:34:21 +0000 (UTC)
-Received: by mail-wm1-x332.google.com with SMTP id
- 5b1f17b1804b1-40e4f7119eeso3099775e9.1; 
- Tue, 09 Jan 2024 00:34:21 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1704789260; x=1705394060; darn=lists.freedesktop.org;
- h=content-transfer-encoding:in-reply-to:from:references:to
- :content-language:subject:user-agent:mime-version:date:message-id
- :from:to:cc:subject:date:message-id:reply-to;
- bh=3YGwl375Lp2NNLBp7zhtQjo0BnEm9qfsqG+R+PAs65Y=;
- b=RvWcYOjpYcIn4p4hOrFzldi0IP/cqKBl8ArhATl2SXagWP19GJ3bD88XvUVrOUTHN0
- 686rEpAeyjuxD34S9+eXU6hxwxHmi5GofwK7mDOQ6iXt/hit7BlpyTtR7OIN20Avowv3
- n+EKx/qLShecgc3XOOTg+lKbaqzxFGys6ERBtQ81KqDXu1rSK/r8Wol/fWhfLIzi4eIb
- R/vfO2cf9axkH40cDT4AN1FsfjA6AzJ/EqJvfZPhr1O3fEjpMabBs4mT2RHAoL0M26g1
- JBa3m1tKItMfAGXELy+9xznJhKO9ZG18ygmTx4/HStgH86yxgW7gfJf1CBQ/kY4eWzEy
- pKwg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1704789260; x=1705394060;
- h=content-transfer-encoding:in-reply-to:from:references:to
- :content-language:subject:user-agent:mime-version:date:message-id
- :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
- bh=3YGwl375Lp2NNLBp7zhtQjo0BnEm9qfsqG+R+PAs65Y=;
- b=nj4UNSLcIMbMcWc/5PL4Elo6oF29qOWZA5cxzOOSuAHumntHcqm9ywI6ydYr/pNw0c
- z2yleUp6uYaZr9LGBZa+xl0ebT22wFDstd+8Vk4r2lZfV69ha8uubEAuRlnMcwMSVgjH
- 4yLmjgfMqyJQR3FR+Ciw6RFS2ahMNMlp2Ls46cEgtGvenNoXxhhw6+7Gz+Qnx1gPkNhx
- QczzjJzP9/TA9JCHa5aB9ZbEZDHkBNBaRzR/H0UGteK8MUXw8IJOfsRhroi2f/Dd7kTT
- usgLy5f83lmoky30BcQWeRIlNCUD7ISreootAWgc1YN3khtuyZoXWz7HdxsbRlC9WAmL
- 74NQ==
-X-Gm-Message-State: AOJu0YyxSsu71NcjxWzUUWmV036F/SsgkpQFREsnSdjzYpjeTsDntyL8
- dgR4NeVhU6vmDSzRhnJJFXaMx2D7ld4=
-X-Google-Smtp-Source: AGHT+IH9uU5FYn/hx5pejffF/o/AB6v9PgXWJhqOoc4vJ1uvrzcd7P6Lfh9aQNlgULSSSxGJLIPHtQ==
-X-Received: by 2002:a05:600c:4587:b0:40e:50ac:d24e with SMTP id
- r7-20020a05600c458700b0040e50acd24emr213842wmo.13.1704789259806; 
- Tue, 09 Jan 2024 00:34:19 -0800 (PST)
-Received: from [10.254.108.81] (munvpn.amd.com. [165.204.72.6])
- by smtp.gmail.com with ESMTPSA id
- hn25-20020a05600ca39900b0040d91fa270fsm2559527wmb.36.2024.01.09.00.34.18
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Tue, 09 Jan 2024 00:34:19 -0800 (PST)
-Message-ID: <6eff58f4-7956-47cf-9a66-92456d5577d3@gmail.com>
-Date: Tue, 9 Jan 2024 09:34:17 +0100
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C3E5F10E310;
+ Tue,  9 Jan 2024 08:47:01 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1704790022; x=1736326022;
+ h=message-id:date:mime-version:subject:to:cc:references:
+ from:in-reply-to:content-transfer-encoding;
+ bh=9y2C60KzGbz+mAi2nbmXunLacn6B86C5OdVSTPAPihE=;
+ b=J5CBuMZEv9SAdDjLRuQSPY0S0cKF6ax/pIi+fz8QMRGHeV7/kTzj/aNQ
+ hQs7b8wPJaicR58l4EQqlyKPMYB09A8t8iTdEPFSLyjEzgYlwCzG+qpwW
+ SWr3roaNa5UKiQsNdSuBGdHxuOo+JgqwDD9OLt+rWqHZ9spmFrcgPqKNx
+ ZDpxtiCLRJlF9vy3zIu7od93iEhAZtzTxIw+tMgKqZoXXrYiRdwlPBPTo
+ 5NYkJktEfC6C1psn90S1f8RRvQ7a5Gd0XWLPs6jex6My3hQEvvsRWg5zE
+ Nn+g5HFitJNPM5p6lgKHQsI7jGYmyE0jr+rbciA0oiWHKxoTSGAvkmFdh Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10947"; a="4909032"
+X-IronPort-AV: E=Sophos;i="6.04,182,1695711600"; 
+   d="scan'208";a="4909032"
+Received: from fmsmga005.fm.intel.com ([10.253.24.32])
+ by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 Jan 2024 00:47:01 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10947"; a="1113014742"
+X-IronPort-AV: E=Sophos;i="6.04,182,1695711600"; d="scan'208";a="1113014742"
+Received: from larnott-mobl1.ger.corp.intel.com (HELO [10.213.222.67])
+ ([10.213.222.67])
+ by fmsmga005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 Jan 2024 00:46:59 -0800
+Message-ID: <7c6fe714-d412-4e5d-8fa9-da84d614201b@linux.intel.com>
+Date: Tue, 9 Jan 2024 08:46:57 +0000
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: Rework TTMs busy handling
+Subject: Re: [PATCH v2 1/3] drm/i915/gt: Support fixed CCS mode
 Content-Language: en-US
-To: =?UTF-8?Q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
- zack.rusin@broadcom.com, lyude@redhat.com, kherbst@redhat.com,
- jani.nikula@linux.intel.com, nouveau@lists.freedesktop.org,
- intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
-References: <20240109074729.3646-1-christian.koenig@amd.com>
- <70484d976d3af4286652a6b26ed8783a9362f403.camel@linux.intel.com>
-From: =?UTF-8?Q?Christian_K=C3=B6nig?= <ckoenig.leichtzumerken@gmail.com>
-In-Reply-To: <70484d976d3af4286652a6b26ed8783a9362f403.camel@linux.intel.com>
+To: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Andi Shyti <andi.shyti@linux.intel.com>
+References: <20240104143558.193694-1-andi.shyti@linux.intel.com>
+ <20240104143558.193694-2-andi.shyti@linux.intel.com>
+ <98e56d3e-ebf0-42b9-928b-0dcc4303658c@linux.intel.com>
+ <ZZchsRQ5Kc-x9dlk@ashyti-mobl2.lan>
+ <73f0a8e9-3fd6-45a9-a084-b5308900ca8f@linux.intel.com>
+ <170472678023.31232.8020112065054338164@jlahtine-mobl.ger.corp.intel.com>
+From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+Organization: Intel Corporation UK Plc
+In-Reply-To: <170472678023.31232.8020112065054338164@jlahtine-mobl.ger.corp.intel.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -79,58 +68,71 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: intel-gfx <intel-gfx@lists.freedesktop.org>,
+ Chris Wilson <chris.p.wilson@linux.intel.com>,
+ dri-devel <dri-devel@lists.freedesktop.org>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Am 09.01.24 um 09:14 schrieb Thomas Hellström:
-> Hi, Christian
->
-> On Tue, 2024-01-09 at 08:47 +0100, Christian König wrote:
->> Hi guys,
->>
->> I'm trying to make this functionality a bit more useful for years now
->> since we multiple reports that behavior of drivers can be suboptimal
->> when multiple placements be given.
->>
->> So basically instead of hacking around the TTM behavior in the driver
->> once more I've gone ahead and changed the idle/busy placement list
->> into idle/busy placement flags. This not only saves a bunch of code,
->> but also allows setting some placements as fallback which are used if
->> allocating from the preferred ones didn't worked.
->>
->> Zack pointed out that some removed VMWGFX code was brought back
->> because
->> of rebasing, fixed in this version.
->>
->> Intel CI seems to be happy with those patches, so any more comments?
-> Looks like Xe changes are missing? (xe is now in drm-tip).
->
-> I also have some doubts about the naming "idle" vs "busy", since an
-> elaborate eviction mechanism would probably at some point want to check
-> for gpu idle vs gpu busy, and this might create some confusion moving
-> forward for people confusing busy as in memory overcommit with busy as
-> in gpu activity.
->
-> I can't immediately think of something better, though.
 
-Yeah, I was wondering about that as well. Especially since I wanted to 
-add some more flags in the future when for example a bandwidth quota how 
-much memory can be moved in/out is exceeded.
+On 08/01/2024 15:13, Joonas Lahtinen wrote:
+> Quoting Tvrtko Ursulin (2024-01-05 12:39:31)
+>>
+>> On 04/01/2024 21:23, Andi Shyti wrote:
+> 
+> <SNIP>
+> 
+>>>>> +void intel_gt_apply_ccs_mode(struct intel_gt *gt)
+>>>>> +{
+>>>>> +   mutex_lock(&gt->ccs.mutex);
+>>>>> +   __intel_gt_apply_ccs_mode(gt);
+>>>>> +   mutex_unlock(&gt->ccs.mutex);
+>>>>> +}
+>>>>> +
+>>>>> +void intel_gt_init_ccs_mode(struct intel_gt *gt)
+>>>>> +{
+>>>>> +   mutex_init(&gt->ccs.mutex);
+>>>>> +   gt->ccs.mode = 1;
+>>>>
+>>>> What is '1'? And this question carries over to the sysfs interface in the
+>>>> following patch - who will use it and where it is documented how to use it?
+>>>
+>>> The value '1' is explained in the comment above[1] and in the
+>>
+>> Do you mean this is mode '1':
+>>
+>>    * With 1 engine (ccs0):
+>>    *   slice 0, 1, 2, 3: ccs0
+>>
+>> ?
+>>
+>> But I don't see where it says what do different modes mean on different
+>> SKU configurations.
+>>
+>> It also does not say what should the num_slices sysfs file be used for.
+>>
+>> Does "mode N" mean "assign each command streamer N compute slices"? Or
+>> "assign each compute slice N command streamers"?
+>>
+>> I wonder if we should add something user friendly into
+>> Documentation/ABI/*/sysfs-... Joonas your thoughts?
+> 
+> We definitely should always properly document all sysfs additions, just
+> seems like we less frequently remember to do so. So yeah, this should be
+> documented just like other uAPI.
+> 
+> I also like the idea of not exposing the the file at all if the value
+> can't be modified.
+> 
+> The ccs_mode is just supposed to allow user to select how many CCS
+> engines they want to expose, and always make an even split of slices
+> between them, nothing more nothing less.
 
-Something like phase1, phase2, phase3 etc..., but that's also not very 
-descriptive either.
-
-Going to take a look at XE as well, thanks for the notice.
+Hmm I can't see that the series changes anywhere what command streamers 
+will get reported as available.
 
 Regards,
-Christian.
 
->
-> /Thomas
->
->
->> Regards,
->> Christian.
->>
->>
+Tvrtko
+
 
