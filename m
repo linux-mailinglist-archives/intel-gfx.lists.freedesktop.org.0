@@ -2,43 +2,51 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 18B6C82962D
-	for <lists+intel-gfx@lfdr.de>; Wed, 10 Jan 2024 10:21:39 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id BD41882963E
+	for <lists+intel-gfx@lfdr.de>; Wed, 10 Jan 2024 10:24:14 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 869D810E198;
-	Wed, 10 Jan 2024 09:21:37 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id F1A4610E580;
+	Wed, 10 Jan 2024 09:24:11 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from bombadil.infradead.org (bombadil.infradead.org
- [IPv6:2607:7c80:54:3::133])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8D5F110E57A;
- Wed, 10 Jan 2024 09:21:35 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=infradead.org; s=bombadil.20210309; h=Content-Transfer-Encoding:
- MIME-Version:References:In-Reply-To:Message-Id:Date:Subject:Cc:To:From:Sender
- :Reply-To:Content-Type:Content-ID:Content-Description;
- bh=SRlTQ4JibYJcOmgh50kWG725LphAqsA74nKJKgMAVp4=; b=Dg3kbq00hAKG9Jac9pBCT8H0hY
- gQ8Pe7mzKNIEig0gdVS8L1YQm0lhILIpgErWpRQQhhUxLv9H0RVqQ3mwJIZgCK71qmej5Pzo80Gdc
- esoiR5D75fIZEZkE2YGIQ0nRjdBJgj5NgoZ0u6hyM5l308ERxwn5zQS37wJOuDp3WVhw9DmbPux0P
- jbkJFK7k3ROEFnFSjfok+rePV67Oo3t8DURPYH89imUH1WfUTjQEQmy1GSAcXWYC8OlDc8YzNDXUE
- PvxJ1Yxm5WtS8mPmLMaHV4I181FWwxPbMxc4CbckfiLDECitlWA61LzaC24kAJ/8WbYHany1t520v
- wVR5xXoQ==;
-Received: from [2001:4bb8:191:2f6b:27f:45ef:e74a:3466] (helo=localhost)
- by bombadil.infradead.org with esmtpsa (Exim 4.96 #2 (Red Hat Linux))
- id 1rNUly-00AsAw-0n; Wed, 10 Jan 2024 09:21:18 +0000
-From: Christoph Hellwig <hch@lst.de>
-To: Matthew Wilcox <willy@infradead.org>, Hugh Dickins <hughd@google.com>,
- Chandan Babu R <chandan.babu@oracle.com>
-Subject: [PATCH 2/2] xfs: disable large folio support in xfile_create
-Date: Wed, 10 Jan 2024 10:21:09 +0100
-Message-Id: <20240110092109.1950011-3-hch@lst.de>
-X-Mailer: git-send-email 2.39.2
-In-Reply-To: <20240110092109.1950011-1-hch@lst.de>
-References: <20240110092109.1950011-1-hch@lst.de>
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BF5D810E57A;
+ Wed, 10 Jan 2024 09:24:10 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1704878651; x=1736414651;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version;
+ bh=VF4GGDezjMD7BNAmxD35y69aoAxh53pgorC7gnT0ZLQ=;
+ b=mvPUQsBbc4/tB5lbsPuFkx/+fY0pmGbinBS86cLPhUYC4MgmrhUud5Pq
+ d6ajvmDUWhI0+sz2lJA9tnrd9UGkIQbdshZmjy5MDaZY7+HV1DVqyauqx
+ AWinBiFkFxtvekp17s6ApxVHmmC3c1ozJLQeLAEsKzuzgbWCS+PqbrPOL
+ UoStKmDMAxg0TZAJhK+YQll5lYRcNT8zogUiO8/FozzoFfr6A1BTVRtPp
+ 5Oy/upDaHjSkP/mthByEegGDHe/6dsrtabLlu5zR88q53xogqrIqE0S0Q
+ qHZjktGJlXyUHUNRjf5BPEIOI+A+q4qg2UQoLiUvEPR16El0Z4uWPV7xl w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10947"; a="5545835"
+X-IronPort-AV: E=Sophos;i="6.04,184,1695711600"; 
+   d="scan'208";a="5545835"
+Received: from fmviesa002.fm.intel.com ([10.60.135.142])
+ by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Jan 2024 01:24:11 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.04,184,1695711600"; d="scan'208";a="16576374"
+Received: from fpallare-mobl3.ger.corp.intel.com (HELO localhost)
+ ([10.252.36.240])
+ by fmviesa002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Jan 2024 01:24:04 -0800
+From: Jani Nikula <jani.nikula@intel.com>
+To: dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org
+Subject: Re: [PATCH 3/3] ASoC: hdmi-codec: drop drm/drm_edid.h include
+In-Reply-To: <20240104201632.1100753-3-jani.nikula@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20240104201632.1100753-1-jani.nikula@intel.com>
+ <20240104201632.1100753-3-jani.nikula@intel.com>
+Date: Wed, 10 Jan 2024 11:24:01 +0200
+Message-ID: <87cyu9wngu.fsf@intel.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-SRS-Rewrite: SMTP reverse-path rewritten from <hch@infradead.org> by
- bombadil.infradead.org. See http://www.infradead.org/rpr.html
+Content-Type: text/plain
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -51,49 +59,146 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "Darrick J . Wong" <djwong@kernel.org>, dri-devel@lists.freedesktop.org,
- David Howells <dhowells@redhat.com>, linux-mm@kvack.org,
- Huang Rui <ray.huang@amd.com>, David Airlie <airlied@gmail.com>,
- x86@kernel.org, Dave Hansen <dave.hansen@linux.intel.com>,
- Thomas Zimmermann <tzimmermann@suse.de>, intel-gfx@lists.freedesktop.org,
- Maxime Ripard <mripard@kernel.org>, Rodrigo Vivi <rodrigo.vivi@intel.com>,
- linux-sgx@vger.kernel.org, Jarkko Sakkinen <jarkko@kernel.org>,
- keyrings@vger.kernel.org, Daniel Vetter <daniel@ffwll.ch>,
- linux-fsdevel@vger.kernel.org, Andrew Morton <akpm@linux-foundation.org>,
- Christian Koenig <christian.koenig@amd.com>
+Cc: Maxime Ripard <mripard@kernel.org>, freedreno@lists.freedesktop.org,
+ Robert Foss <rfoss@kernel.org>, Neil Armstrong <neil.armstrong@linaro.org>,
+ linux-arm-msm@vger.kernel.org, Jonas Karlman <jonas@kwiboo.se>,
+ linux-sound@vger.kernel.org, Abhinav Kumar <quic_abhinavk@quicinc.com>,
+ Jernej Skrabec <jernej.skrabec@gmail.com>, Jaroslav Kysela <perex@perex.cz>,
+ Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+ Andrzej Hajda <andrzej.hajda@intel.com>,
+ Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+ Marijn Suijten <marijn.suijten@somainline.org>, Takashi Iwai <tiwai@suse.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-The xfarray code will crash if large folios are force enabled using:
+On Thu, 04 Jan 2024, Jani Nikula <jani.nikula@intel.com> wrote:
+> hdmi-codec.h does not appear to directly need drm/drm_edid.h for
+> anything. Remove it.
 
-   echo force > /sys/kernel/mm/transparent_hugepage/shmem_enabled
+Jaroslav, Takashi, ack for merging this via the drm trees, please?
 
-Fixing this will require a bit of an API change, and prefeably sorting out
-the hwpoison story for pages vs folio and where it is placed in the shmem
-API.  For now use this one liner to disable large folios.
+BR,
+Jani.
 
-Reported-by: Darrick J. Wong <djwong@kernel.org>
-Signed-off-by: Christoph Hellwig <hch@lst.de>
----
- fs/xfs/scrub/xfile.c | 5 +++++
- 1 file changed, 5 insertions(+)
 
-diff --git a/fs/xfs/scrub/xfile.c b/fs/xfs/scrub/xfile.c
-index 090c3ead43fdf1..1a8d1bedd0b0dc 100644
---- a/fs/xfs/scrub/xfile.c
-+++ b/fs/xfs/scrub/xfile.c
-@@ -94,6 +94,11 @@ xfile_create(
- 
- 	lockdep_set_class(&inode->i_rwsem, &xfile_i_mutex_key);
- 
-+	/*
-+	 * We're not quite ready for large folios yet.
-+	 */
-+	mapping_clear_large_folios(inode->i_mapping);
-+
- 	trace_xfile_create(xf);
- 
- 	*xfilep = xf;
+>
+> There are some files that get drm/drm_edid.h by proxy; include it where
+> needed.
+>
+> v2-v4: Fix build (kernel test robot <lkp@intel.com>)
+>
+> Cc: Rob Clark <robdclark@gmail.com>
+> Cc: Abhinav Kumar <quic_abhinavk@quicinc.com>
+> Cc: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+> Cc: Sean Paul <sean@poorly.run>
+> Cc: Marijn Suijten <marijn.suijten@somainline.org>
+> Cc: linux-arm-msm@vger.kernel.org
+> Cc: freedreno@lists.freedesktop.org
+> Cc: Andrzej Hajda <andrzej.hajda@intel.com>
+> Cc: Neil Armstrong <neil.armstrong@linaro.org>
+> Cc: Robert Foss <rfoss@kernel.org>
+> Cc: Laurent Pinchart <Laurent.pinchart@ideasonboard.com>
+> Cc: Jonas Karlman <jonas@kwiboo.se>
+> Cc: Jernej Skrabec <jernej.skrabec@gmail.com>
+> Cc: Jaroslav Kysela <perex@perex.cz>
+> Cc: Takashi Iwai <tiwai@suse.com>
+> Cc: linux-sound@vger.kernel.org
+> Acked-by: Maxime Ripard <mripard@kernel.org>
+> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+> ---
+>  drivers/gpu/drm/bridge/lontium-lt9611.c    | 1 +
+>  drivers/gpu/drm/bridge/lontium-lt9611uxc.c | 1 +
+>  drivers/gpu/drm/bridge/synopsys/dw-hdmi.c  | 1 +
+>  drivers/gpu/drm/msm/dp/dp_display.c        | 1 +
+>  drivers/gpu/drm/tegra/hdmi.c               | 1 +
+>  drivers/gpu/drm/vc4/vc4_hdmi.c             | 1 +
+>  include/sound/hdmi-codec.h                 | 1 -
+>  7 files changed, 6 insertions(+), 1 deletion(-)
+>
+> diff --git a/drivers/gpu/drm/bridge/lontium-lt9611.c b/drivers/gpu/drm/bridge/lontium-lt9611.c
+> index 9663601ce098..b9205d14d943 100644
+> --- a/drivers/gpu/drm/bridge/lontium-lt9611.c
+> +++ b/drivers/gpu/drm/bridge/lontium-lt9611.c
+> @@ -18,6 +18,7 @@
+>  
+>  #include <drm/drm_atomic_helper.h>
+>  #include <drm/drm_bridge.h>
+> +#include <drm/drm_edid.h>
+>  #include <drm/drm_mipi_dsi.h>
+>  #include <drm/drm_of.h>
+>  #include <drm/drm_print.h>
+> diff --git a/drivers/gpu/drm/bridge/lontium-lt9611uxc.c b/drivers/gpu/drm/bridge/lontium-lt9611uxc.c
+> index e971b75e90ad..f3f130c1ef0a 100644
+> --- a/drivers/gpu/drm/bridge/lontium-lt9611uxc.c
+> +++ b/drivers/gpu/drm/bridge/lontium-lt9611uxc.c
+> @@ -21,6 +21,7 @@
+>  
+>  #include <drm/drm_atomic_helper.h>
+>  #include <drm/drm_bridge.h>
+> +#include <drm/drm_edid.h>
+>  #include <drm/drm_mipi_dsi.h>
+>  #include <drm/drm_print.h>
+>  #include <drm/drm_probe_helper.h>
+> diff --git a/drivers/gpu/drm/bridge/synopsys/dw-hdmi.c b/drivers/gpu/drm/bridge/synopsys/dw-hdmi.c
+> index 52d91a0df85e..fa63a21bdd1c 100644
+> --- a/drivers/gpu/drm/bridge/synopsys/dw-hdmi.c
+> +++ b/drivers/gpu/drm/bridge/synopsys/dw-hdmi.c
+> @@ -31,6 +31,7 @@
+>  #include <drm/drm_atomic.h>
+>  #include <drm/drm_atomic_helper.h>
+>  #include <drm/drm_bridge.h>
+> +#include <drm/drm_edid.h>
+>  #include <drm/drm_of.h>
+>  #include <drm/drm_print.h>
+>  #include <drm/drm_probe_helper.h>
+> diff --git a/drivers/gpu/drm/msm/dp/dp_display.c b/drivers/gpu/drm/msm/dp/dp_display.c
+> index d37d599aec27..c8e1bbebdffe 100644
+> --- a/drivers/gpu/drm/msm/dp/dp_display.c
+> +++ b/drivers/gpu/drm/msm/dp/dp_display.c
+> @@ -11,6 +11,7 @@
+>  #include <linux/of_irq.h>
+>  #include <linux/delay.h>
+>  #include <drm/display/drm_dp_aux_bus.h>
+> +#include <drm/drm_edid.h>
+>  
+>  #include "msm_drv.h"
+>  #include "msm_kms.h"
+> diff --git a/drivers/gpu/drm/tegra/hdmi.c b/drivers/gpu/drm/tegra/hdmi.c
+> index 417fb884240a..09987e372e3e 100644
+> --- a/drivers/gpu/drm/tegra/hdmi.c
+> +++ b/drivers/gpu/drm/tegra/hdmi.c
+> @@ -24,6 +24,7 @@
+>  #include <drm/drm_atomic_helper.h>
+>  #include <drm/drm_crtc.h>
+>  #include <drm/drm_debugfs.h>
+> +#include <drm/drm_edid.h>
+>  #include <drm/drm_eld.h>
+>  #include <drm/drm_file.h>
+>  #include <drm/drm_fourcc.h>
+> diff --git a/drivers/gpu/drm/vc4/vc4_hdmi.c b/drivers/gpu/drm/vc4/vc4_hdmi.c
+> index f05e2c95a60d..34f807ed1c31 100644
+> --- a/drivers/gpu/drm/vc4/vc4_hdmi.c
+> +++ b/drivers/gpu/drm/vc4/vc4_hdmi.c
+> @@ -35,6 +35,7 @@
+>  #include <drm/display/drm_scdc_helper.h>
+>  #include <drm/drm_atomic_helper.h>
+>  #include <drm/drm_drv.h>
+> +#include <drm/drm_edid.h>
+>  #include <drm/drm_probe_helper.h>
+>  #include <drm/drm_simple_kms_helper.h>
+>  #include <linux/clk.h>
+> diff --git a/include/sound/hdmi-codec.h b/include/sound/hdmi-codec.h
+> index 9b162ac1e08e..5e1a9eafd10f 100644
+> --- a/include/sound/hdmi-codec.h
+> +++ b/include/sound/hdmi-codec.h
+> @@ -12,7 +12,6 @@
+>  
+>  #include <linux/of_graph.h>
+>  #include <linux/hdmi.h>
+> -#include <drm/drm_edid.h>
+>  #include <sound/asoundef.h>
+>  #include <sound/soc.h>
+>  #include <uapi/sound/asound.h>
+
 -- 
-2.39.2
-
+Jani Nikula, Intel
