@@ -2,43 +2,44 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id EF54482EF01
-	for <lists+intel-gfx@lfdr.de>; Tue, 16 Jan 2024 13:29:10 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 54C1982EEF0
+	for <lists+intel-gfx@lfdr.de>; Tue, 16 Jan 2024 13:28:27 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8EAE410E566;
-	Tue, 16 Jan 2024 12:28:14 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 27E3B10E53A;
+	Tue, 16 Jan 2024 12:28:12 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from ams.source.kernel.org (ams.source.kernel.org
- [IPv6:2604:1380:4601:e00::1])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 28ADE10E7B7;
- Wed, 10 Jan 2024 17:55:18 +0000 (UTC)
+Received: from sin.source.kernel.org (sin.source.kernel.org
+ [IPv6:2604:1380:40e1:4800::1])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9274D10E66B;
+ Wed, 10 Jan 2024 20:04:56 +0000 (UTC)
 Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
- by ams.source.kernel.org (Postfix) with ESMTP id 912EFB81DC3;
- Wed, 10 Jan 2024 17:55:16 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id DCE8BC433F1;
- Wed, 10 Jan 2024 17:55:15 +0000 (UTC)
+ by sin.source.kernel.org (Postfix) with ESMTP id EF19BCE1DA2;
+ Wed, 10 Jan 2024 20:04:52 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2C5DEC433F1;
+ Wed, 10 Jan 2024 20:04:52 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1704909315;
- bh=fu4Rj/eN06CEkV5JbSMpnHawgZaPLeLIgtEFRQv1w5o=;
+ s=k20201202; t=1704917092;
+ bh=74bvc1MrtZiDKmQ/bu3C4RVeT5D3DZCGTl3NffxKvZ0=;
  h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
- b=JAygTEqZWVfylCFiDRG7P1l/VNgkre3NkIa+TSKWtjTWzTjqWxGd+6jLl9JLq9Ff0
- HkUiC0YShB3RTedTUqQpvGmjzfg4QuMwsAoJ/Jdw+Tb8AoAVZ2vkZw9wgCj3kSgF+j
- yzwcPO01+qwLDH/Y73uLhuwWnuWnal0emVdoFNiftr94w2BLYKTYdnr0oMLshOaGDd
- NBbRCi0am1LWayVzGsz33cPYmCO/+nX7iUneIlV6CMd6eTt5zF+47RDDPWe+BOqgei
- Z9rVGGi0mIBlfrbcxwOpuT5Te9ccn5QkF6yosVtLxF4wzyuFarxC28PHW4SJAiMXg/
- agoDkyYabdckg==
-Date: Wed, 10 Jan 2024 09:55:15 -0800
+ b=BVS4MaRMctsxFwGuMyM23YFJV6gby6teko8iKECcrhunk0OEiqeoTkDr1l/TiVGJo
+ D3PqK71jNSb9LbpdngAb4xBI+6SuDkZvu8aVnJYNxh/OMisBhHqJ1KhotiNpAmbU80
+ wgGpQlW/jizt5hj1i4Su4y/pEDtNZeoWx582CriSM2ffbCyVxzXepeD/lZhUpUFhEL
+ 3pZ64QIq99+20Ie61mUYNRaPAw8gMJJKci/GPwmdlok9izzYq7VX5rwp35NC0GRRW9
+ PaQ/HQP+gcVFQn1ip2QVte75pNWIrnqTRTsBfuM9W4XhUOM/TRqAV2Ms7tnOQHiw6E
+ Dr+uuHbo0VtIA==
+Date: Wed, 10 Jan 2024 12:04:51 -0800
 From: "Darrick J. Wong" <djwong@kernel.org>
 To: Christoph Hellwig <hch@lst.de>
 Subject: Re: [PATCH 2/2] xfs: disable large folio support in xfile_create
-Message-ID: <20240110175515.GA722950@frogsfrogsfrogs>
+Message-ID: <20240110200451.GB722950@frogsfrogsfrogs>
 References: <20240110092109.1950011-1-hch@lst.de>
  <20240110092109.1950011-3-hch@lst.de>
+ <20240110175515.GA722950@frogsfrogsfrogs>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20240110092109.1950011-3-hch@lst.de>
+In-Reply-To: <20240110175515.GA722950@frogsfrogsfrogs>
 X-Mailman-Approved-At: Tue, 16 Jan 2024 12:28:11 +0000
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -67,49 +68,57 @@ Cc: dri-devel@lists.freedesktop.org, David Howells <dhowells@redhat.com>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, Jan 10, 2024 at 10:21:09AM +0100, Christoph Hellwig wrote:
-> The xfarray code will crash if large folios are force enabled using:
+On Wed, Jan 10, 2024 at 09:55:15AM -0800, Darrick J. Wong wrote:
+> On Wed, Jan 10, 2024 at 10:21:09AM +0100, Christoph Hellwig wrote:
+> > The xfarray code will crash if large folios are force enabled using:
+> > 
+> >    echo force > /sys/kernel/mm/transparent_hugepage/shmem_enabled
+> > 
+> > Fixing this will require a bit of an API change, and prefeably sorting out
+> > the hwpoison story for pages vs folio and where it is placed in the shmem
+> > API.  For now use this one liner to disable large folios.
+> > 
+> > Reported-by: Darrick J. Wong <djwong@kernel.org>
+> > Signed-off-by: Christoph Hellwig <hch@lst.de>
 > 
->    echo force > /sys/kernel/mm/transparent_hugepage/shmem_enabled
+> Can someone who knows more about shmem.c than I do please review
+> https://lore.kernel.org/linux-xfs/20240103084126.513354-4-hch@lst.de/
+> so that I can feel slightly more confident as hch and I sort through the
+> xfile.c issues?
 > 
-> Fixing this will require a bit of an API change, and prefeably sorting out
-> the hwpoison story for pages vs folio and where it is placed in the shmem
-> API.  For now use this one liner to disable large folios.
-> 
-> Reported-by: Darrick J. Wong <djwong@kernel.org>
-> Signed-off-by: Christoph Hellwig <hch@lst.de>
+> For this patch,
+> Reviewed-by: Darrick J. Wong <djwong@kernel.org>
 
-Can someone who knows more about shmem.c than I do please review
-https://lore.kernel.org/linux-xfs/20240103084126.513354-4-hch@lst.de/
-so that I can feel slightly more confident as hch and I sort through the
-xfile.c issues?
-
-For this patch,
-Reviewed-by: Darrick J. Wong <djwong@kernel.org>
+...except that I'm still getting 2M THPs even with this enabled, so I
+guess either we get to fix it now, or create our own private tmpfs mount
+so that we can pass in huge=never, similar to what i915 does. :(
 
 --D
 
-> ---
->  fs/xfs/scrub/xfile.c | 5 +++++
->  1 file changed, 5 insertions(+)
+> --D
 > 
-> diff --git a/fs/xfs/scrub/xfile.c b/fs/xfs/scrub/xfile.c
-> index 090c3ead43fdf1..1a8d1bedd0b0dc 100644
-> --- a/fs/xfs/scrub/xfile.c
-> +++ b/fs/xfs/scrub/xfile.c
-> @@ -94,6 +94,11 @@ xfile_create(
->  
->  	lockdep_set_class(&inode->i_rwsem, &xfile_i_mutex_key);
->  
-> +	/*
-> +	 * We're not quite ready for large folios yet.
-> +	 */
-> +	mapping_clear_large_folios(inode->i_mapping);
-> +
->  	trace_xfile_create(xf);
->  
->  	*xfilep = xf;
-> -- 
-> 2.39.2
-> 
+> > ---
+> >  fs/xfs/scrub/xfile.c | 5 +++++
+> >  1 file changed, 5 insertions(+)
+> > 
+> > diff --git a/fs/xfs/scrub/xfile.c b/fs/xfs/scrub/xfile.c
+> > index 090c3ead43fdf1..1a8d1bedd0b0dc 100644
+> > --- a/fs/xfs/scrub/xfile.c
+> > +++ b/fs/xfs/scrub/xfile.c
+> > @@ -94,6 +94,11 @@ xfile_create(
+> >  
+> >  	lockdep_set_class(&inode->i_rwsem, &xfile_i_mutex_key);
+> >  
+> > +	/*
+> > +	 * We're not quite ready for large folios yet.
+> > +	 */
+> > +	mapping_clear_large_folios(inode->i_mapping);
+> > +
+> >  	trace_xfile_create(xf);
+> >  
+> >  	*xfilep = xf;
+> > -- 
+> > 2.39.2
+> > 
+> > 
 > 
