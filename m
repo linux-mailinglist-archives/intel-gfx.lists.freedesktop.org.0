@@ -2,51 +2,52 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id BD41882963E
-	for <lists+intel-gfx@lfdr.de>; Wed, 10 Jan 2024 10:24:14 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7358D829647
+	for <lists+intel-gfx@lfdr.de>; Wed, 10 Jan 2024 10:25:16 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id F1A4610E580;
-	Wed, 10 Jan 2024 09:24:11 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1547610E587;
+	Wed, 10 Jan 2024 09:25:15 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BF5D810E57A;
- Wed, 10 Jan 2024 09:24:10 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5198310E587
+ for <intel-gfx@lists.freedesktop.org>; Wed, 10 Jan 2024 09:25:14 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1704878651; x=1736414651;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=VF4GGDezjMD7BNAmxD35y69aoAxh53pgorC7gnT0ZLQ=;
- b=mvPUQsBbc4/tB5lbsPuFkx/+fY0pmGbinBS86cLPhUYC4MgmrhUud5Pq
- d6ajvmDUWhI0+sz2lJA9tnrd9UGkIQbdshZmjy5MDaZY7+HV1DVqyauqx
- AWinBiFkFxtvekp17s6ApxVHmmC3c1ozJLQeLAEsKzuzgbWCS+PqbrPOL
- UoStKmDMAxg0TZAJhK+YQll5lYRcNT8zogUiO8/FozzoFfr6A1BTVRtPp
- 5Oy/upDaHjSkP/mthByEegGDHe/6dsrtabLlu5zR88q53xogqrIqE0S0Q
- qHZjktGJlXyUHUNRjf5BPEIOI+A+q4qg2UQoLiUvEPR16El0Z4uWPV7xl w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10947"; a="5545835"
+ t=1704878714; x=1736414714;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=RxJoRMWcXEhuoD+y3jMWm8eWAH0XxdnwAC0BJyv3o4Y=;
+ b=CRuXWZrUpObomOGtOrEnm3xzns9VuLXZ7SlVtjg3En4BI6f3FNqei3W/
+ gzcTZvMH59t5qhrgFVNnu6mvqVNAn4DGQAgAXbpk/BkTn0ae96dulAWeb
+ nzpcjyUhQ49YmydAcdtW1zl0H6xU0jCRx5Gk8D6xh5ObHy4toyJpVOeV1
+ jQo1brI7l/P06ptWmaNe0fq5KGoQdBA70bznF0+VSoXAyRDLAOMLTNUb9
+ rK2/UFkL+5KVNyuk5hfxPMY6U8WmYIyYY4AYzc2D5arb1uOk3Qtle0gDs
+ JK6eGDJ0nexINwsxgLGtob4VrXiQN3gy6PSIkUqMGv4WKhOdFiyD7mjGx A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10947"; a="5207069"
 X-IronPort-AV: E=Sophos;i="6.04,184,1695711600"; 
-   d="scan'208";a="5545835"
-Received: from fmviesa002.fm.intel.com ([10.60.135.142])
- by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Jan 2024 01:24:11 -0800
+   d="scan'208";a="5207069"
+Received: from orsmga006.jf.intel.com ([10.7.209.51])
+ by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Jan 2024 01:25:14 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.04,184,1695711600"; d="scan'208";a="16576374"
-Received: from fpallare-mobl3.ger.corp.intel.com (HELO localhost)
- ([10.252.36.240])
- by fmviesa002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Jan 2024 01:24:04 -0800
-From: Jani Nikula <jani.nikula@intel.com>
-To: dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org
-Subject: Re: [PATCH 3/3] ASoC: hdmi-codec: drop drm/drm_edid.h include
-In-Reply-To: <20240104201632.1100753-3-jani.nikula@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20240104201632.1100753-1-jani.nikula@intel.com>
- <20240104201632.1100753-3-jani.nikula@intel.com>
-Date: Wed, 10 Jan 2024 11:24:01 +0200
-Message-ID: <87cyu9wngu.fsf@intel.com>
+X-IronPort-AV: E=McAfee;i="6600,9927,10947"; a="758306311"
+X-IronPort-AV: E=Sophos;i="6.04,184,1695711600"; d="scan'208";a="758306311"
+Received: from unknown (HELO intel.com) ([10.237.72.65])
+ by orsmga006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Jan 2024 01:25:12 -0800
+Date: Wed, 10 Jan 2024 11:25:04 +0200
+From: "Lisovskiy, Stanislav" <stanislav.lisovskiy@intel.com>
+To: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+Subject: Re: [Intel-gfx] [PATCH] drm/i915: Fix bigjoiner case for DP2.0
+Message-ID: <ZZ5h7Fqe3OOh4TiV@intel.com>
+References: <20231012193000.11917-1-vidya.srinivas@intel.com>
+ <ZSkfYh9hhca-o0DL@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <ZSkfYh9hhca-o0DL@intel.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,146 +60,93 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Maxime Ripard <mripard@kernel.org>, freedreno@lists.freedesktop.org,
- Robert Foss <rfoss@kernel.org>, Neil Armstrong <neil.armstrong@linaro.org>,
- linux-arm-msm@vger.kernel.org, Jonas Karlman <jonas@kwiboo.se>,
- linux-sound@vger.kernel.org, Abhinav Kumar <quic_abhinavk@quicinc.com>,
- Jernej Skrabec <jernej.skrabec@gmail.com>, Jaroslav Kysela <perex@perex.cz>,
- Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
- Andrzej Hajda <andrzej.hajda@intel.com>,
- Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
- Marijn Suijten <marijn.suijten@somainline.org>, Takashi Iwai <tiwai@suse.com>
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, 04 Jan 2024, Jani Nikula <jani.nikula@intel.com> wrote:
-> hdmi-codec.h does not appear to directly need drm/drm_edid.h for
-> anything. Remove it.
+On Fri, Oct 13, 2023 at 01:43:46PM +0300, Ville Syrjälä wrote:
+> On Fri, Oct 13, 2023 at 01:00:00AM +0530, vsrini4 wrote:
+> > Patch calculates bigjoiner pipes in mst compute.
+> > Patch also passes bigjoiner bool to validate plane
+> > max size.
+> 
+> I doubt this is sufficient. The modeset sequence is still all
+> wrong for bigjoiner+mst.
 
-Jaroslav, Takashi, ack for merging this via the drm trees, please?
+Should that be now enough with my series also?
 
-BR,
-Jani.
+https://patchwork.freedesktop.org/series/128311/
 
+Stan
 
->
-> There are some files that get drm/drm_edid.h by proxy; include it where
-> needed.
->
-> v2-v4: Fix build (kernel test robot <lkp@intel.com>)
->
-> Cc: Rob Clark <robdclark@gmail.com>
-> Cc: Abhinav Kumar <quic_abhinavk@quicinc.com>
-> Cc: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-> Cc: Sean Paul <sean@poorly.run>
-> Cc: Marijn Suijten <marijn.suijten@somainline.org>
-> Cc: linux-arm-msm@vger.kernel.org
-> Cc: freedreno@lists.freedesktop.org
-> Cc: Andrzej Hajda <andrzej.hajda@intel.com>
-> Cc: Neil Armstrong <neil.armstrong@linaro.org>
-> Cc: Robert Foss <rfoss@kernel.org>
-> Cc: Laurent Pinchart <Laurent.pinchart@ideasonboard.com>
-> Cc: Jonas Karlman <jonas@kwiboo.se>
-> Cc: Jernej Skrabec <jernej.skrabec@gmail.com>
-> Cc: Jaroslav Kysela <perex@perex.cz>
-> Cc: Takashi Iwai <tiwai@suse.com>
-> Cc: linux-sound@vger.kernel.org
-> Acked-by: Maxime Ripard <mripard@kernel.org>
-> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
-> ---
->  drivers/gpu/drm/bridge/lontium-lt9611.c    | 1 +
->  drivers/gpu/drm/bridge/lontium-lt9611uxc.c | 1 +
->  drivers/gpu/drm/bridge/synopsys/dw-hdmi.c  | 1 +
->  drivers/gpu/drm/msm/dp/dp_display.c        | 1 +
->  drivers/gpu/drm/tegra/hdmi.c               | 1 +
->  drivers/gpu/drm/vc4/vc4_hdmi.c             | 1 +
->  include/sound/hdmi-codec.h                 | 1 -
->  7 files changed, 6 insertions(+), 1 deletion(-)
->
-> diff --git a/drivers/gpu/drm/bridge/lontium-lt9611.c b/drivers/gpu/drm/bridge/lontium-lt9611.c
-> index 9663601ce098..b9205d14d943 100644
-> --- a/drivers/gpu/drm/bridge/lontium-lt9611.c
-> +++ b/drivers/gpu/drm/bridge/lontium-lt9611.c
-> @@ -18,6 +18,7 @@
->  
->  #include <drm/drm_atomic_helper.h>
->  #include <drm/drm_bridge.h>
-> +#include <drm/drm_edid.h>
->  #include <drm/drm_mipi_dsi.h>
->  #include <drm/drm_of.h>
->  #include <drm/drm_print.h>
-> diff --git a/drivers/gpu/drm/bridge/lontium-lt9611uxc.c b/drivers/gpu/drm/bridge/lontium-lt9611uxc.c
-> index e971b75e90ad..f3f130c1ef0a 100644
-> --- a/drivers/gpu/drm/bridge/lontium-lt9611uxc.c
-> +++ b/drivers/gpu/drm/bridge/lontium-lt9611uxc.c
-> @@ -21,6 +21,7 @@
->  
->  #include <drm/drm_atomic_helper.h>
->  #include <drm/drm_bridge.h>
-> +#include <drm/drm_edid.h>
->  #include <drm/drm_mipi_dsi.h>
->  #include <drm/drm_print.h>
->  #include <drm/drm_probe_helper.h>
-> diff --git a/drivers/gpu/drm/bridge/synopsys/dw-hdmi.c b/drivers/gpu/drm/bridge/synopsys/dw-hdmi.c
-> index 52d91a0df85e..fa63a21bdd1c 100644
-> --- a/drivers/gpu/drm/bridge/synopsys/dw-hdmi.c
-> +++ b/drivers/gpu/drm/bridge/synopsys/dw-hdmi.c
-> @@ -31,6 +31,7 @@
->  #include <drm/drm_atomic.h>
->  #include <drm/drm_atomic_helper.h>
->  #include <drm/drm_bridge.h>
-> +#include <drm/drm_edid.h>
->  #include <drm/drm_of.h>
->  #include <drm/drm_print.h>
->  #include <drm/drm_probe_helper.h>
-> diff --git a/drivers/gpu/drm/msm/dp/dp_display.c b/drivers/gpu/drm/msm/dp/dp_display.c
-> index d37d599aec27..c8e1bbebdffe 100644
-> --- a/drivers/gpu/drm/msm/dp/dp_display.c
-> +++ b/drivers/gpu/drm/msm/dp/dp_display.c
-> @@ -11,6 +11,7 @@
->  #include <linux/of_irq.h>
->  #include <linux/delay.h>
->  #include <drm/display/drm_dp_aux_bus.h>
-> +#include <drm/drm_edid.h>
->  
->  #include "msm_drv.h"
->  #include "msm_kms.h"
-> diff --git a/drivers/gpu/drm/tegra/hdmi.c b/drivers/gpu/drm/tegra/hdmi.c
-> index 417fb884240a..09987e372e3e 100644
-> --- a/drivers/gpu/drm/tegra/hdmi.c
-> +++ b/drivers/gpu/drm/tegra/hdmi.c
-> @@ -24,6 +24,7 @@
->  #include <drm/drm_atomic_helper.h>
->  #include <drm/drm_crtc.h>
->  #include <drm/drm_debugfs.h>
-> +#include <drm/drm_edid.h>
->  #include <drm/drm_eld.h>
->  #include <drm/drm_file.h>
->  #include <drm/drm_fourcc.h>
-> diff --git a/drivers/gpu/drm/vc4/vc4_hdmi.c b/drivers/gpu/drm/vc4/vc4_hdmi.c
-> index f05e2c95a60d..34f807ed1c31 100644
-> --- a/drivers/gpu/drm/vc4/vc4_hdmi.c
-> +++ b/drivers/gpu/drm/vc4/vc4_hdmi.c
-> @@ -35,6 +35,7 @@
->  #include <drm/display/drm_scdc_helper.h>
->  #include <drm/drm_atomic_helper.h>
->  #include <drm/drm_drv.h>
-> +#include <drm/drm_edid.h>
->  #include <drm/drm_probe_helper.h>
->  #include <drm/drm_simple_kms_helper.h>
->  #include <linux/clk.h>
-> diff --git a/include/sound/hdmi-codec.h b/include/sound/hdmi-codec.h
-> index 9b162ac1e08e..5e1a9eafd10f 100644
-> --- a/include/sound/hdmi-codec.h
-> +++ b/include/sound/hdmi-codec.h
-> @@ -12,7 +12,6 @@
->  
->  #include <linux/of_graph.h>
->  #include <linux/hdmi.h>
-> -#include <drm/drm_edid.h>
->  #include <sound/asoundef.h>
->  #include <sound/soc.h>
->  #include <uapi/sound/asound.h>
-
--- 
-Jani Nikula, Intel
+> 
+> > 
+> > Signed-off-by: vsrini4 <vidya.srinivas@intel.com>
+> > ---
+> >  drivers/gpu/drm/i915/display/intel_dp_mst.c | 19 ++++++++++++-------
+> >  1 file changed, 12 insertions(+), 7 deletions(-)
+> > 
+> > diff --git a/drivers/gpu/drm/i915/display/intel_dp_mst.c b/drivers/gpu/drm/i915/display/intel_dp_mst.c
+> > index e3f176a093d2..f499ce39b2a8 100644
+> > --- a/drivers/gpu/drm/i915/display/intel_dp_mst.c
+> > +++ b/drivers/gpu/drm/i915/display/intel_dp_mst.c
+> > @@ -308,6 +308,7 @@ static int intel_dp_mst_compute_config(struct intel_encoder *encoder,
+> >  				       struct drm_connector_state *conn_state)
+> >  {
+> >  	struct drm_i915_private *dev_priv = to_i915(encoder->base.dev);
+> > +	struct intel_crtc *crtc = to_intel_crtc(pipe_config->uapi.crtc);
+> >  	struct intel_dp_mst_encoder *intel_mst = enc_to_mst(encoder);
+> >  	struct intel_dp *intel_dp = &intel_mst->primary->dp;
+> >  	const struct drm_display_mode *adjusted_mode =
+> > @@ -318,6 +319,10 @@ static int intel_dp_mst_compute_config(struct intel_encoder *encoder,
+> >  	if (adjusted_mode->flags & DRM_MODE_FLAG_DBLSCAN)
+> >  		return -EINVAL;
+> >  
+> > +	if (intel_dp_need_bigjoiner(intel_dp, adjusted_mode->crtc_hdisplay,
+> > +				    adjusted_mode->crtc_clock))
+> > +		pipe_config->bigjoiner_pipes = GENMASK(crtc->pipe + 1, crtc->pipe);
+> > +
+> >  	pipe_config->sink_format = INTEL_OUTPUT_FORMAT_RGB;
+> >  	pipe_config->output_format = INTEL_OUTPUT_FORMAT_RGB;
+> >  	pipe_config->has_pch_encoder = false;
+> > @@ -936,12 +941,6 @@ intel_dp_mst_mode_valid_ctx(struct drm_connector *connector,
+> >  	if (ret)
+> >  		return ret;
+> >  
+> > -	if (mode_rate > max_rate || mode->clock > max_dotclk ||
+> > -	    drm_dp_calc_pbn_mode(mode->clock, min_bpp, false) > port->full_pbn) {
+> > -		*status = MODE_CLOCK_HIGH;
+> > -		return 0;
+> > -	}
+> > -
+> >  	if (mode->clock < 10000) {
+> >  		*status = MODE_CLOCK_LOW;
+> >  		return 0;
+> > @@ -957,6 +956,12 @@ intel_dp_mst_mode_valid_ctx(struct drm_connector *connector,
+> >  		max_dotclk *= 2;
+> >  	}
+> >  
+> > +	if (mode_rate > max_rate || mode->clock > max_dotclk ||
+> > +	    drm_dp_calc_pbn_mode(mode->clock, min_bpp, false) > port->full_pbn) {
+> > +		*status = MODE_CLOCK_HIGH;
+> > +		return 0;
+> > +	}
+> > +
+> >  	if (DISPLAY_VER(dev_priv) >= 10 &&
+> >  	    drm_dp_sink_supports_dsc(intel_dp->dsc_dpcd)) {
+> >  		/*
+> > @@ -994,7 +999,7 @@ intel_dp_mst_mode_valid_ctx(struct drm_connector *connector,
+> >  	if (mode_rate > max_rate && !dsc)
+> >  		return MODE_CLOCK_HIGH;
+> >  
+> > -	*status = intel_mode_valid_max_plane_size(dev_priv, mode, false);
+> > +	*status = intel_mode_valid_max_plane_size(dev_priv, mode, bigjoiner);
+> >  	return 0;
+> >  }
+> >  
+> > -- 
+> > 2.33.0
+> 
+> -- 
+> Ville Syrjälä
+> Intel
