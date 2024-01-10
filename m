@@ -2,42 +2,40 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 542DA829D9A
-	for <lists+intel-gfx@lfdr.de>; Wed, 10 Jan 2024 16:34:56 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 81364829DAC
+	for <lists+intel-gfx@lfdr.de>; Wed, 10 Jan 2024 16:38:52 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D2E3D10E621;
-	Wed, 10 Jan 2024 15:34:50 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1D72110E617;
+	Wed, 10 Jan 2024 15:38:49 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from casper.infradead.org (casper.infradead.org
- [IPv6:2001:8b0:10b:1236::1])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 29BC810E607;
- Wed, 10 Jan 2024 15:34:49 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=infradead.org; s=casper.20170209; h=In-Reply-To:Content-Type:MIME-Version:
- References:Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:
- Content-Transfer-Encoding:Content-ID:Content-Description;
- bh=39NamAoxPWMrCZaJEOF8WH1zyLewDTeBBeunTxnTycY=; b=Fe04VqEjetu6tDXLZhxHNA4HKy
- VJycpIBjiVmVELkZ97TvGjWx3WlWJkM9LjthNGeXZu1eQB00JzR+Mr8DPWSLutF2Ja7yvCikoXpwP
- znm58+XJoLj7R0uD7Hx45tuQ7OTT9LAfkSJZ5K7Io5Y70+/NrgDwKIb7T/qHWATzIF61w7jVsdCHD
- wbc1oFr9DT07rRTNm6qmIaLNIbc0eCkZbU0NTxz4X2Di+W6u9RQ9iHT3ftKO6E0Ny3QEy4eFnbtni
- x/rjcAclsaEEZ796tcOTmiG3Izzzqvou+CMphB5MlYfmbrJPLBISQVnCl/A9NSim5B8e/iwIuDV2F
- aXTMD4bg==;
-Received: from willy by casper.infradead.org with local (Exim 4.94.2 #2 (Red
- Hat Linux)) id 1rNaay-00BfcE-JQ; Wed, 10 Jan 2024 15:34:20 +0000
-Date: Wed, 10 Jan 2024 15:34:20 +0000
-From: Matthew Wilcox <willy@infradead.org>
-To: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
+Received: from ams.source.kernel.org (ams.source.kernel.org
+ [IPv6:2604:1380:4601:e00::1])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A56A110E5F8;
+ Wed, 10 Jan 2024 15:38:47 +0000 (UTC)
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+ by ams.source.kernel.org (Postfix) with ESMTP id C7291B81DBC;
+ Wed, 10 Jan 2024 15:38:45 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5B660C433C7;
+ Wed, 10 Jan 2024 15:38:44 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linux-foundation.org;
+ s=korg; t=1704901125;
+ bh=64lqTH5iAcNgqPcOUhTjX1MTBLqxaK2xsqzvXQVWa98=;
+ h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+ b=12YLOq2msOrGh5ihkM0KYcAfSzQGt2JWuTC0DDJBK8ZQmLPKjhtXQ0oDaGj2TuisX
+ oTdQV7wRT0kWu+/eQ/4aYSPU+na3UorE7axwiTiigCT/2G/sdmtTYry8mEY7bNk1BP
+ ZvIMG1YRpOTjNG5aKANS7xGXt7wNQmbk9Ojb9B54=
+Date: Wed, 10 Jan 2024 07:38:43 -0800
+From: Andrew Morton <akpm@linux-foundation.org>
+To: Christoph Hellwig <hch@lst.de>
 Subject: Re: disable large folios for shmem file used by xfs xfile
-Message-ID: <ZZ64/F/yeSymOCcI@casper.infradead.org>
+Message-Id: <20240110073843.d663fa6610785a8611b2cebe@linux-foundation.org>
+In-Reply-To: <20240110092109.1950011-1-hch@lst.de>
 References: <20240110092109.1950011-1-hch@lst.de>
- <ZZ6Pfk8tLXbvs4dE@casper.infradead.org>
- <170490002493.164187.5401160425746227111@jlahtine-mobl.ger.corp.intel.com>
- <170490050245.164862.16261803493864298341@jlahtine-mobl.ger.corp.intel.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <170490050245.164862.16261803493864298341@jlahtine-mobl.ger.corp.intel.com>
+X-Mailer: Sylpheed 3.8.0beta1 (GTK+ 2.24.33; x86_64-pc-linux-gnu)
+Mime-Version: 1.0
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -50,50 +48,34 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "Darrick J . Wong" <djwong@kernel.org>,
- Dave Hansen <dave.hansen@linux.intel.com>, dri-devel@lists.freedesktop.org,
+Cc: "Darrick J . Wong" <djwong@kernel.org>, dri-devel@lists.freedesktop.org,
  David Howells <dhowells@redhat.com>, linux-mm@kvack.org,
  Huang Rui <ray.huang@amd.com>, David Airlie <airlied@gmail.com>,
- Christoph Hellwig <hch@lst.de>, x86@kernel.org,
- Hugh Dickins <hughd@google.com>, Thomas Zimmermann <tzimmermann@suse.de>,
- intel-gfx@lists.freedesktop.org, Maxime Ripard <mripard@kernel.org>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, linux-sgx@vger.kernel.org,
- Jarkko Sakkinen <jarkko@kernel.org>, keyrings@vger.kernel.org,
- Daniel Vetter <daniel@ffwll.ch>, linux-fsdevel@vger.kernel.org,
- Andrew Morton <akpm@linux-foundation.org>,
- Christian Koenig <christian.koenig@amd.com>,
+ x86@kernel.org, Hugh Dickins <hughd@google.com>,
+ Matthew Wilcox <willy@infradead.org>,
+ Dave Hansen <dave.hansen@linux.intel.com>,
+ Thomas Zimmermann <tzimmermann@suse.de>, intel-gfx@lists.freedesktop.org,
+ Maxime Ripard <mripard@kernel.org>, Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ linux-sgx@vger.kernel.org, Jarkko Sakkinen <jarkko@kernel.org>,
+ keyrings@vger.kernel.org, Daniel Vetter <daniel@ffwll.ch>,
+ linux-fsdevel@vger.kernel.org, Christian Koenig <christian.koenig@amd.com>,
  Chandan Babu R <chandan.babu@oracle.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, Jan 10, 2024 at 05:28:22PM +0200, Joonas Lahtinen wrote:
-> Quoting Joonas Lahtinen (2024-01-10 17:20:24)
-> > However we specifically pass "huge=within_size" to vfs_kern_mount when
-> > creating a private mount of tmpfs for the purpose of i915 created
-> > allocations.
-> > 
-> > Older hardware also had some address hashing bugs where 2M aligned
-> > memory caused a lot of collisions in TLB so we don't enable it always.
-> > 
-> > You can see drivers/gpu/drm/i915/gem/i915_gemfs.c function
-> > i915_gemfs_init for details and references.
-> > 
-> > So in short, functionality wise we should be fine either default
-> > for using 2M pages or not. If they become the default, we'd probably
-> > want an option that would still be able to prevent them for performance
-> > regression reasons on older hardware.
-> 
-> To maybe write out my concern better:
-> 
-> Is there plan to enable huge pages by default in shmem?
+On Wed, 10 Jan 2024 10:21:07 +0100 Christoph Hellwig <hch@lst.de> wrote:
 
-Not in the next kernel release, but eventually the plan is to allow
-arbitrary order folios to be used in shmem.  So you could ask it to create
-a 256kB folio for you, if that's the right size to manage memory in.
+> Hi all,
+> 
+> Darrick reported that the fairly new XFS xfile code blows up when force
+> enabling large folio for shmem.  This series fixes this quickly by disabling
+> large folios for this particular shmem file for now until it can be fixed
+> properly, which will be a lot more invasive.
+> 
 
-How shmem and its various users go about choosing the right size is not
-quite clear to me yet.  Perhaps somebody else will do it before I get
-to it; I have a lot of different sub-projects to work on at the moment,
-and shmem isn't blocking any of them.  And I have a sneaking suspicion
-that more work is needed in the swap code to deal with arbitrary order
-folios, so that's another reason for me to delay looking at this ;-)
+Patches seems reasonable as a short-term only-affects-xfs thing.
+
+I assume that kernels which contain 137db333b29186 ("xfs: teach xfile
+to pass back direct-map pages to caller") want this, so a Fixes: that
+and a cc:stable are appropriate?
+
