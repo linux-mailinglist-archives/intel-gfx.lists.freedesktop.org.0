@@ -2,57 +2,57 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9A5208295CB
-	for <lists+intel-gfx@lfdr.de>; Wed, 10 Jan 2024 10:08:46 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id E5BD48295F9
+	for <lists+intel-gfx@lfdr.de>; Wed, 10 Jan 2024 10:13:01 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5B81810E143;
-	Wed, 10 Jan 2024 09:08:41 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3E63E10E577;
+	Wed, 10 Jan 2024 09:13:00 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-X-Greylist: delayed 307 seconds by postgrey-1.36 at gabe;
- Wed, 10 Jan 2024 09:08:39 UTC
-Received: from mout-p-202.mailbox.org (mout-p-202.mailbox.org
- [IPv6:2001:67c:2050:0:465::202])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DA02010E02B;
- Wed, 10 Jan 2024 09:08:39 +0000 (UTC)
-Received: from smtp102.mailbox.org (smtp102.mailbox.org
- [IPv6:2001:67c:2050:b231:465::102])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
- (No client certificate requested)
- by mout-p-202.mailbox.org (Postfix) with ESMTPS id 4T91zz0H8Kz9t3m;
- Wed, 10 Jan 2024 10:03:27 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org;
- s=mail20150812; t=1704877407;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=fjHN93azKnEuOUWGM0r3bWfEPzofsXR8IbsK4VGRkuk=;
- b=M6vMA8NA10OVcP/26JqoLQfPnXm0sN6SA9OnVNozCrkMD5u4DayFyJ1xKSRy0QmPncXHTi
- V3NEY0wlHeURLHUMxT8i3zz+J9ClDXyYfyF+q8TAekACRMqYvHkUpVRKs9INpwoPlJn8HM
- SVZbXogMzQ4ya6edbddHmgG3R0YYo/VJPbaOk1Wvz2hYqxm7Pk0IS9T9vWaSGD7Pw2YqBK
- gY1j/8qDD5JHQhHP6db0o23v5Uf77LTcfqbPVG507Bucl3ZMj4dn4Y6yNBhKnHop14pZeg
- r9MD8RUxPQj8wwXad/EZpMlfhECZzrrzlUbexRugrD3wi1R8ZzmageD9wCnB3w==
-Message-ID: <9833fda7-c80a-4132-904e-3cf7131e72d4@mailbox.org>
-Date: Wed, 10 Jan 2024 10:03:24 +0100
+Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.65])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 932BF10E577
+ for <intel-gfx@lists.freedesktop.org>; Wed, 10 Jan 2024 09:12:58 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1704877978; x=1736413978;
+ h=message-id:date:mime-version:subject:to:references:from:
+ in-reply-to:content-transfer-encoding;
+ bh=NEC0ELe845lnYACpQkRYxi6zlVpMY0dE6Y1H4hAkCCk=;
+ b=Ta5hJCrL4G9ZX+IWtymOjePTApy4O2FbztCQDhpai8Va+86hevEixFMV
+ bye8JuQP6J6LxC9JCU+lix9FqFkZFBYosnXO+YYTN1nmufq+LRANuamhw
+ +pm33lNU76PY3mEu3ic/9DEg9Nz6oprzZAXPCQF0d2Q54Xk7Mhb91qj9u
+ UqdFYkarnpOR6u+fymJTjH9pxWh9sqG+kpgimXyrZaSIBrIh9OTnquoum
+ oxBNZzNyjECZ7CiQ/cVopeMz69FQEJlgVu8f/+nc68znJx7ZAwfK5nQIw
+ aFa50qjGCwRUM6Kwg0OcHt3nf5RmJVnYBB0zklFMV1HVahwkdE6azAx9H Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10947"; a="402239282"
+X-IronPort-AV: E=Sophos;i="6.04,184,1695711600"; d="scan'208";a="402239282"
+Received: from orsmga003.jf.intel.com ([10.7.209.27])
+ by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Jan 2024 01:12:56 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10947"; a="731797666"
+X-IronPort-AV: E=Sophos;i="6.04,184,1695711600"; d="scan'208";a="731797666"
+Received: from ahajda-mobl.ger.corp.intel.com (HELO [10.246.0.51])
+ ([10.246.0.51])
+ by orsmga003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Jan 2024 01:12:55 -0800
+Message-ID: <1521fc76-7186-4214-aec6-5adc37371c7e@intel.com>
+Date: Wed, 10 Jan 2024 10:12:53 +0100
 MIME-Version: 1.0
-Subject: Re: Rework TTMs busy handling
-Content-Language: de-CH-frami, en-CA
-To: =?UTF-8?Q?Christian_K=C3=B6nig?= <ckoenig.leichtzumerken@gmail.com>,
- =?UTF-8?Q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
- zack.rusin@broadcom.com, lyude@redhat.com, kherbst@redhat.com,
- jani.nikula@linux.intel.com, nouveau@lists.freedesktop.org,
- intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
-References: <20240109074729.3646-1-christian.koenig@amd.com>
- <70484d976d3af4286652a6b26ed8783a9362f403.camel@linux.intel.com>
- <6eff58f4-7956-47cf-9a66-92456d5577d3@gmail.com>
-From: =?UTF-8?Q?Michel_D=C3=A4nzer?= <michel.daenzer@mailbox.org>
-In-Reply-To: <6eff58f4-7956-47cf-9a66-92456d5577d3@gmail.com>
-Content-Type: text/plain; charset=UTF-8
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 13/15] drm/i915/fbdev: Fix smem_start for LMEMBAR
+ stolen objects
+Content-Language: en-US
+To: Ville Syrjala <ville.syrjala@linux.intel.com>,
+ intel-gfx@lists.freedesktop.org
+References: <20231215105929.29568-1-ville.syrjala@linux.intel.com>
+ <20231215105929.29568-14-ville.syrjala@linux.intel.com>
+From: Andrzej Hajda <andrzej.hajda@intel.com>
+Organization: Intel Technology Poland sp. z o.o. - ul. Slowackiego 173, 80-298
+ Gdansk - KRS 101882 - NIP 957-07-52-316
+In-Reply-To: <20231215105929.29568-14-ville.syrjala@linux.intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-X-MBO-RS-ID: f2a3c17d68677d37a5c
-X-MBO-RS-META: 8m3zywe4fcp3r8bgq4s5cieadyt5uyis
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -68,36 +68,43 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On 2024-01-09 09:34, Christian König wrote:
-> Am 09.01.24 um 09:14 schrieb Thomas Hellström:
->> On Tue, 2024-01-09 at 08:47 +0100, Christian König wrote:
->>>
->>> I'm trying to make this functionality a bit more useful for years now
->>> since we multiple reports that behavior of drivers can be suboptimal
->>> when multiple placements be given.
->>>
->>> So basically instead of hacking around the TTM behavior in the driver
->>> once more I've gone ahead and changed the idle/busy placement list
->>> into idle/busy placement flags. This not only saves a bunch of code,
->>> but also allows setting some placements as fallback which are used if
->>> allocating from the preferred ones didn't worked.
->>
->> I also have some doubts about the naming "idle" vs "busy", since an
->> elaborate eviction mechanism would probably at some point want to check
->> for gpu idle vs gpu busy, and this might create some confusion moving
->> forward for people confusing busy as in memory overcommit with busy as
->> in gpu activity.
->>
->> I can't immediately think of something better, though.
+On 15.12.2023 11:59, Ville Syrjala wrote:
+> From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 > 
-> Yeah, I was wondering about that as well. Especially since I wanted to add some more flags in the future when for example a bandwidth quota how much memory can be moved in/out is exceeded.
+> The "io" address of an object is its dma address minus the
+> region.start. Subtract the latter to make smem_start correct.
+> The current code happens to work for genuine LMEM objects
+> as LMEM region.start==0, but for LMEMBAR stolen objects
+> region.start!=0.
 > 
-> Something like phase1, phase2, phase3 etc..., but that's also not very descriptive either.
+> TODO: perhaps just set smem_start=0 always as our .fb_mmap()
+> implementation no longer depends on it? Need to double check
+> it's not needed for anything else...
+> 
+> Cc: Paz Zcharya <pazz@chromium.org>
+> Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-Maybe something like "desired" vs "fallback"?
+Reviewed-by: Andrzej Hajda <andrzej.hajda@intel.com>
 
+Regards
+Andrzej
 
--- 
-Earthling Michel Dänzer            |                  https://redhat.com
-Libre software enthusiast          |         Mesa and Xwayland developer
+> ---
+>   drivers/gpu/drm/i915/display/intel_fbdev_fb.c | 3 ++-
+>   1 file changed, 2 insertions(+), 1 deletion(-)
+> 
+> diff --git a/drivers/gpu/drm/i915/display/intel_fbdev_fb.c b/drivers/gpu/drm/i915/display/intel_fbdev_fb.c
+> index 1ac05d90b2e8..0665f943f65f 100644
+> --- a/drivers/gpu/drm/i915/display/intel_fbdev_fb.c
+> +++ b/drivers/gpu/drm/i915/display/intel_fbdev_fb.c
+> @@ -79,7 +79,8 @@ int intel_fbdev_fb_fill_info(struct drm_i915_private *i915, struct fb_info *info
+>   		/* Use fbdev's framebuffer from lmem for discrete */
+>   		info->fix.smem_start =
+>   			(unsigned long)(mem->io.start +
+> -					i915_gem_object_get_dma_address(obj, 0));
+> +					i915_gem_object_get_dma_address(obj, 0) -
+> +					mem->region.start);
+>   		info->fix.smem_len = obj->base.size;
+>   	} else {
+>   		struct i915_ggtt *ggtt = to_gt(i915)->ggtt;
 
