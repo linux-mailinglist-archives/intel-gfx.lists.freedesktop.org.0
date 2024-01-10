@@ -2,40 +2,57 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 81364829DAC
-	for <lists+intel-gfx@lfdr.de>; Wed, 10 Jan 2024 16:38:52 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id BDA46829DCC
+	for <lists+intel-gfx@lfdr.de>; Wed, 10 Jan 2024 16:42:31 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1D72110E617;
-	Wed, 10 Jan 2024 15:38:49 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3DA2310E05C;
+	Wed, 10 Jan 2024 15:42:30 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from ams.source.kernel.org (ams.source.kernel.org
- [IPv6:2604:1380:4601:e00::1])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A56A110E5F8;
- Wed, 10 Jan 2024 15:38:47 +0000 (UTC)
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
- by ams.source.kernel.org (Postfix) with ESMTP id C7291B81DBC;
- Wed, 10 Jan 2024 15:38:45 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5B660C433C7;
- Wed, 10 Jan 2024 15:38:44 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linux-foundation.org;
- s=korg; t=1704901125;
- bh=64lqTH5iAcNgqPcOUhTjX1MTBLqxaK2xsqzvXQVWa98=;
- h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
- b=12YLOq2msOrGh5ihkM0KYcAfSzQGt2JWuTC0DDJBK8ZQmLPKjhtXQ0oDaGj2TuisX
- oTdQV7wRT0kWu+/eQ/4aYSPU+na3UorE7axwiTiigCT/2G/sdmtTYry8mEY7bNk1BP
- ZvIMG1YRpOTjNG5aKANS7xGXt7wNQmbk9Ojb9B54=
-Date: Wed, 10 Jan 2024 07:38:43 -0800
-From: Andrew Morton <akpm@linux-foundation.org>
-To: Christoph Hellwig <hch@lst.de>
-Subject: Re: disable large folios for shmem file used by xfs xfile
-Message-Id: <20240110073843.d663fa6610785a8611b2cebe@linux-foundation.org>
-In-Reply-To: <20240110092109.1950011-1-hch@lst.de>
-References: <20240110092109.1950011-1-hch@lst.de>
-X-Mailer: Sylpheed 3.8.0beta1 (GTK+ 2.24.33; x86_64-pc-linux-gnu)
-Mime-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 97F0410E05C
+ for <intel-gfx@lists.freedesktop.org>; Wed, 10 Jan 2024 15:42:28 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1704901349; x=1736437349;
+ h=message-id:date:mime-version:subject:to:cc:references:
+ from:in-reply-to:content-transfer-encoding;
+ bh=J99w0kknGrytCmFKtyK2ihCRyjnKL7WQNyziNJOSJDI=;
+ b=MkcMa6dnkyufh19qRqpdY7JRzh0PWm7tk7g9T65Erg622s7ZfGt2JRBD
+ GsvQWkxrQiWe5HnWv2w2KkSqIgPti4xTuBmnEH1KZ+LeAefLObs0UscZN
+ AJ9dk1IrKJuTmvbhTkHs7k8kIRW0n75oVEKkJ6faEhNbJ6RH2XTw8dEkf
+ 8w/qxMypILy3o+lt7UbGt1L2qVs0CcrqtZifhpKwHmUzj54fGHPu5dy1o
+ 3WHKCBePPZ/kfb8GQh4v60V8Vadt/X0nc3m8usu39YMaRfhnch/LMByGE
+ QbPDuKGIJP3WjPlGxbn1XPzZlo0TVL67p45kjtYkAOgx6yRrKB4ych9Ba w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10948"; a="5304930"
+X-IronPort-AV: E=Sophos;i="6.04,184,1695711600"; 
+   d="scan'208";a="5304930"
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+ by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Jan 2024 07:42:28 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10948"; a="925676627"
+X-IronPort-AV: E=Sophos;i="6.04,184,1695711600"; d="scan'208";a="925676627"
+Received: from ahajda-mobl.ger.corp.intel.com (HELO [10.246.0.51])
+ ([10.246.0.51])
+ by fmsmga001-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Jan 2024 07:42:26 -0800
+Message-ID: <b55e1a73-9a1d-4e11-9711-ac0171ddee9d@intel.com>
+Date: Wed, 10 Jan 2024 16:42:24 +0100
+MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 2/3] drm/i915/hdcp: Pin the hdcp gsc message high in ggtt
+Content-Language: en-US
+To: Ville Syrjala <ville.syrjala@linux.intel.com>,
+ intel-gfx@lists.freedesktop.org
+References: <20231215110933.9188-1-ville.syrjala@linux.intel.com>
+ <20231215110933.9188-3-ville.syrjala@linux.intel.com>
+From: Andrzej Hajda <andrzej.hajda@intel.com>
+Organization: Intel Technology Poland sp. z o.o. - ul. Slowackiego 173, 80-298
+ Gdansk - KRS 101882 - NIP 957-07-52-316
+In-Reply-To: <20231215110933.9188-3-ville.syrjala@linux.intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -48,34 +65,44 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "Darrick J . Wong" <djwong@kernel.org>, dri-devel@lists.freedesktop.org,
- David Howells <dhowells@redhat.com>, linux-mm@kvack.org,
- Huang Rui <ray.huang@amd.com>, David Airlie <airlied@gmail.com>,
- x86@kernel.org, Hugh Dickins <hughd@google.com>,
- Matthew Wilcox <willy@infradead.org>,
- Dave Hansen <dave.hansen@linux.intel.com>,
- Thomas Zimmermann <tzimmermann@suse.de>, intel-gfx@lists.freedesktop.org,
- Maxime Ripard <mripard@kernel.org>, Rodrigo Vivi <rodrigo.vivi@intel.com>,
- linux-sgx@vger.kernel.org, Jarkko Sakkinen <jarkko@kernel.org>,
- keyrings@vger.kernel.org, Daniel Vetter <daniel@ffwll.ch>,
- linux-fsdevel@vger.kernel.org, Christian Koenig <christian.koenig@amd.com>,
- Chandan Babu R <chandan.babu@oracle.com>
+Cc: Alan Previn <alan.previn.teres.alexis@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, 10 Jan 2024 10:21:07 +0100 Christoph Hellwig <hch@lst.de> wrote:
-
-> Hi all,
+On 15.12.2023 12:09, Ville Syrjala wrote:
+> From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 > 
-> Darrick reported that the fairly new XFS xfile code blows up when force
-> enabling large folio for shmem.  This series fixes this quickly by disabling
-> large folios for this particular shmem file for now until it can be fixed
-> properly, which will be a lot more invasive.
+> AFAICS there is no hardware restriction on where in ggtt
+> the hdcp gsc message object needs to be bound. And as it's
+> a regular shmem object we don't need it be in the mappabe
+> range either. So pin it high to make avoid needlessly
+> wasting the precious mappable range for it.
 > 
+> Cc: Suraj Kandpal <suraj.kandpal@intel.com>
+> Cc: Alan Previn <alan.previn.teres.alexis@intel.com>
+> Cc: Uma Shankar <uma.shankar@intel.com>
+> Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-Patches seems reasonable as a short-term only-affects-xfs thing.
+Reviewed-by: Andrzej Hajda <andrzej.hajda@intel.com>
 
-I assume that kernels which contain 137db333b29186 ("xfs: teach xfile
-to pass back direct-map pages to caller") want this, so a Fixes: that
-and a cc:stable are appropriate?
+Regards
+Andrzej
+
+> ---
+>   drivers/gpu/drm/i915/display/intel_hdcp_gsc.c | 2 +-
+>   1 file changed, 1 insertion(+), 1 deletion(-)
+> 
+> diff --git a/drivers/gpu/drm/i915/display/intel_hdcp_gsc.c b/drivers/gpu/drm/i915/display/intel_hdcp_gsc.c
+> index 18117b789b16..302bff75b06c 100644
+> --- a/drivers/gpu/drm/i915/display/intel_hdcp_gsc.c
+> +++ b/drivers/gpu/drm/i915/display/intel_hdcp_gsc.c
+> @@ -65,7 +65,7 @@ static int intel_hdcp_gsc_initialize_message(struct drm_i915_private *i915,
+>   		goto out_unmap;
+>   	}
+>   
+> -	err = i915_vma_pin(vma, 0, 0, PIN_GLOBAL);
+> +	err = i915_vma_pin(vma, 0, 0, PIN_GLOBAL | PIN_HIGH);
+>   	if (err)
+>   		goto out_unmap;
+>   
 
