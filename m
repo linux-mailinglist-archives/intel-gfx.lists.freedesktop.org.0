@@ -1,90 +1,56 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8910A8297CB
-	for <lists+intel-gfx@lfdr.de>; Wed, 10 Jan 2024 11:44:11 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6F5E58297F8
+	for <lists+intel-gfx@lfdr.de>; Wed, 10 Jan 2024 11:49:59 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3282310E596;
-	Wed, 10 Jan 2024 10:44:10 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 71EF810E744;
+	Wed, 10 Jan 2024 10:49:57 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-ed1-x52a.google.com (mail-ed1-x52a.google.com
- [IPv6:2a00:1450:4864:20::52a])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 19DB510E596
- for <intel-gfx@lists.freedesktop.org>; Wed, 10 Jan 2024 10:44:09 +0000 (UTC)
-Received: by mail-ed1-x52a.google.com with SMTP id
- 4fb4d7f45d1cf-55760f84177so690547a12.0
- for <intel-gfx@lists.freedesktop.org>; Wed, 10 Jan 2024 02:44:08 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=ffwll.ch; s=google; t=1704883447; x=1705488247; darn=lists.freedesktop.org; 
- h=in-reply-to:content-transfer-encoding:content-disposition
- :mime-version:references:mail-followup-to:message-id:subject:cc:to
- :from:date:from:to:cc:subject:date:message-id:reply-to;
- bh=UMDg8vYs5fytU0eXd7i9MvEuOqrlrSDfuGIjAzp5aO8=;
- b=HO6yBTXoYJ1aYySLjxuEV0M1zQ15IwQEHWIno4iy3e2LEaM9Lb3odb9k7nME7uYHSZ
- ajuK3l8Mpsp/dr7/JYi28JOzJ/KUbBMNNUrUepblAUPD/9P6tPt7RGVBMBnHBkqqFff/
- v9vLBe01r5Ac+890uU2UXJR3RPy3UOq43Y5ZU=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1704883447; x=1705488247;
- h=in-reply-to:content-transfer-encoding:content-disposition
- :mime-version:references:mail-followup-to:message-id:subject:cc:to
- :from:date:x-gm-message-state:from:to:cc:subject:date:message-id
- :reply-to;
- bh=UMDg8vYs5fytU0eXd7i9MvEuOqrlrSDfuGIjAzp5aO8=;
- b=v0tna+q9F/teJa5tvq0snYN4U+P9838NgDAkXUZIWeWDfaqqmPpaFUsU25odYiQfa7
- oC8cMIzumX18liWRzEtIbpE8fZLIpq+b74Jzp7ljL6Oxorlfm/e6RserVLTjzFXyVOdn
- IaMt0CfJDcoG/a13wwuOgofGFbN358GJzHUJMImqGBqqeS1B4aM6chrdLf6kegx2rM0o
- F6LGItjA8NLPGmcTtDo+qlp/0OqYASv4MAHuoXPpLv/dgXjwpXJSE0QdXToF51KwenWW
- YsQyhLPa6YbDxM5OxmUGJbVLEdNBssDHEd2pGUmdReClIsgrBJVUXCYqBVG/AnaPgPJ4
- bw9Q==
-X-Gm-Message-State: AOJu0YwvYY+iAddHrmEVUdGpV5J4po6cJAswss/rMAvDz0ombDG9yA6t
- 8NG5aHPll0iTPw/X9DxKBFwv8Te5DqU8hg==
-X-Google-Smtp-Source: AGHT+IGq5gfRJlxZlKGWvfar8Z1t60a4l9NJUielIcSGPeGv8HnSSId42vEbByEzK0cy5OcGqHFXHg==
-X-Received: by 2002:a50:aacb:0:b0:557:1b89:4f01 with SMTP id
- r11-20020a50aacb000000b005571b894f01mr910339edc.2.1704883447330; 
- Wed, 10 Jan 2024 02:44:07 -0800 (PST)
-Received: from phenom.ffwll.local ([2a02:168:57f4:0:efd0:b9e5:5ae6:c2fa])
- by smtp.gmail.com with ESMTPSA id
- p31-20020a056402501f00b005585049ddc9sm569130eda.45.2024.01.10.02.44.06
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Wed, 10 Jan 2024 02:44:06 -0800 (PST)
-Date: Wed, 10 Jan 2024 11:44:04 +0100
-From: Daniel Vetter <daniel@ffwll.ch>
-To: Andri Yngvason <andri@yngvason.is>
-Subject: Re: [PATCH 2/7] drm/uAPI: Add "active color format" drm property as
- feedback for userspace
-Message-ID: <ZZ509L_kmVC4IUBW@phenom.ffwll.local>
-Mail-Followup-To: Andri Yngvason <andri@yngvason.is>,
- Daniel Stone <daniel@fooishbar.org>,
- Harry Wentland <harry.wentland@amd.com>,
- Leo Li <sunpeng.li@amd.com>,
- Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>,
- Alex Deucher <alexander.deucher@amd.com>,
- Christian =?iso-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>,
- "Pan, Xinhui" <Xinhui.Pan@amd.com>,
- David Airlie <airlied@gmail.com>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>,
- Thomas Zimmermann <tzimmermann@suse.de>,
- Jani Nikula <jani.nikula@linux.intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
- amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- linux-kernel@vger.kernel.org, intel-gfx@lists.freedesktop.org,
- Simon Ser <contact@emersion.fr>,
- Werner Sembach <wse@tuxedocomputers.com>
-References: <20240109181104.1670304-1-andri@yngvason.is>
- <20240109181104.1670304-3-andri@yngvason.is>
- <CAPj87rNan8B5urDFkmD_Vti4to6p3NmvXYsTFQTNg-Ue2ieDug@mail.gmail.com>
- <CAFNQBQwiqqSRqzXAnC035UWCGF3=GGFR5SpDd=biPTOEA+cWbQ@mail.gmail.com>
+Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.120])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EE0A610E744
+ for <intel-gfx@lists.freedesktop.org>; Wed, 10 Jan 2024 10:49:55 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1704883795; x=1736419795;
+ h=message-id:date:mime-version:subject:to:cc:references:
+ from:in-reply-to:content-transfer-encoding;
+ bh=Tsua7SEn14VZCIeAhWJgyij7giPMU+RSG+FFm+2Lb+I=;
+ b=Alm1s4JJDL+7U1uSzDnADUTW4qgDOPrLFP9ltOTIqHs12nh5v4igepV9
+ uFthJT1fHqpqjfu/MxrYGB72lm2zCu8tBDOVeFHo7jDKLP1/CAmJNTpvL
+ sxZWtYkiG6TAS3SEIJO0muv8xu4mYukJnW+15V/swq88kpc1yhbzenPPw
+ l9BE6wnrgdXdu8osn8gpoL2ErgF5MrzMkEyijHGXwGn+u3u+sl2IKsFhM
+ GBbcv383E5FQxeUitg7j5CzX8U85dq8RolYSwkVN2yzbqZc1mlsJXttnD
+ T70/5yBsJB5/HcpchS5Goq8QKDE3+HxhDgawVjGsFsGWnOMyv43w2KD55 g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10947"; a="397333523"
+X-IronPort-AV: E=Sophos;i="6.04,184,1695711600"; d="scan'208";a="397333523"
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+ by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Jan 2024 02:49:50 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10947"; a="901106119"
+X-IronPort-AV: E=Sophos;i="6.04,184,1695711600"; d="scan'208";a="901106119"
+Received: from nirmoyda-mobl.ger.corp.intel.com (HELO [10.94.248.101])
+ ([10.94.248.101])
+ by fmsmga002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Jan 2024 02:49:49 -0800
+Message-ID: <b266f56d-ddad-4836-b888-800c213e842f@linux.intel.com>
+Date: Wed, 10 Jan 2024 11:49:47 +0100
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 04/15] drm/i915: Bypass LMEMBAR/GTTMMADR for MTL stolen
+ memory access
+Content-Language: en-US
+To: Ville Syrjala <ville.syrjala@linux.intel.com>,
+ intel-gfx@lists.freedesktop.org
+References: <20231215105929.29568-1-ville.syrjala@linux.intel.com>
+ <20231215105929.29568-5-ville.syrjala@linux.intel.com>
+From: Nirmoy Das <nirmoy.das@linux.intel.com>
+In-Reply-To: <20231215105929.29568-5-ville.syrjala@linux.intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <CAFNQBQwiqqSRqzXAnC035UWCGF3=GGFR5SpDd=biPTOEA+cWbQ@mail.gmail.com>
-X-Operating-System: Linux phenom 6.5.0-4-amd64 
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -97,95 +63,109 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Maxime Ripard <mripard@kernel.org>, amd-gfx@lists.freedesktop.org,
- David Airlie <airlied@gmail.com>, Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>,
- Daniel Stone <daniel@fooishbar.org>, Harry Wentland <harry.wentland@amd.com>,
- Daniel Vetter <daniel@ffwll.ch>, Leo Li <sunpeng.li@amd.com>,
- intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, Simon Ser <contact@emersion.fr>, "Pan,
- Xinhui" <Xinhui.Pan@amd.com>, linux-kernel@vger.kernel.org,
- Thomas Zimmermann <tzimmermann@suse.de>,
- Alex Deucher <alexander.deucher@amd.com>,
- Christian =?iso-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>
+Cc: Nirmoy Das <nirmoy.das@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, Jan 09, 2024 at 11:12:11PM +0000, Andri Yngvason wrote:
-> Hi Daniel,
-> 
-> �ri., 9. jan. 2024 kl. 22:32 skrifa�i Daniel Stone <daniel@fooishbar.org>:
-> 
-> > On Tue, 9 Jan 2024 at 18:12, Andri Yngvason <andri@yngvason.is> wrote:
-> > > + * active color format:
-> > > + *     This read-only property tells userspace the color format
-> > actually used
-> > > + *     by the hardware display engine "on the cable" on a connector.
-> > The chosen
-> > > + *     value depends on hardware capabilities, both display engine and
-> > > + *     connected monitor. Drivers shall use
-> > > + *     drm_connector_attach_active_color_format_property() to install
-> > this
-> > > + *     property. Possible values are "not applicable", "rgb",
-> > "ycbcr444",
-> > > + *     "ycbcr422", and "ycbcr420".
-> >
-> > How does userspace determine what's happened without polling? Will it
-> > only change after an `ALLOW_MODESET` commit, and be guaranteed to be
-> > updated after the commit has completed and the event being sent?
-> > Should it send a HOTPLUG event? Other?
-> >
-> 
-> Userspace does not determine what's happened without polling. The purpose
-> of this property is not for programmatic verification that the preferred
-> property was applied. It is my understanding that it's mostly intended for
-> debugging purposes. It should only change as a consequence of modesetting,
-> although I didn't actually look into what happens if you set the "preferred
-> color format" outside of a modeset.
+Hi Ville,
 
-This feels a bit irky to me, since we don't have any synchronization and
-it kinda breaks how userspace gets to know about stuff.
+Apologies, but I lost track of this series after I returned from sick leave.
 
-For context the current immutable properties are all stuff that's derived
-from the sink (like edid, or things like that). Userspace is guaranteed to
-get a hotplug event (minus driver bugs as usual) if any of these change,
-and we've added infrastructure so that the hotplug event even contains the
-specific property so that userspace can avoid re-read (which can cause
-some costly re-probing) them all.
 
-As an example you can look at drm_connector_set_link_status_property,
-which drivers follow by a call to drm_kms_helper_connector_hotplug_event
-to make sure userspace knows about what's up. Could be optimized I think.
+On 12/15/2023 11:59 AM, Ville Syrjala wrote:
+> From: Ville Syrjälä <ville.syrjala@linux.intel.com>
+>
+> On MTL accessing stolen memory via the BARs is somehow borked,
+> and it can hang the machine. As a workaround let's bypass the
+> BARs and just go straight to DSMBASE/GSMBASE instead.
+>
+> Note that on every other platform this itself would hang the
+> machine, but on MTL the system firmware is expected to relax
+> the access permission guarding stolen memory to enable this
+> workaround, and thus direct CPU accesses should be fine.
+>
+> TODO: add w/a numbers and whatnot
+>
+> Cc: Paz Zcharya <pazz@chromium.org>
+> Cc: Nirmoy Das <nirmoy.das@intel.com>
+> Cc: Radhakrishna Sripada <radhakrishna.sripada@intel.com>
+> Cc: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
+> Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
+> ---
+>   drivers/gpu/drm/i915/gem/i915_gem_stolen.c | 11 ++++++++++-
+>   drivers/gpu/drm/i915/gt/intel_ggtt.c       | 13 ++++++++++++-
+>   2 files changed, 22 insertions(+), 2 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_stolen.c b/drivers/gpu/drm/i915/gem/i915_gem_stolen.c
+> index ee237043c302..252fe5cd6ede 100644
+> --- a/drivers/gpu/drm/i915/gem/i915_gem_stolen.c
+> +++ b/drivers/gpu/drm/i915/gem/i915_gem_stolen.c
+> @@ -941,7 +941,16 @@ i915_gem_stolen_lmem_setup(struct drm_i915_private *i915, u16 type,
+>   		dsm_size = ALIGN_DOWN(lmem_size - dsm_base, SZ_1M);
+>   	}
+>   
+> -	if (pci_resource_len(pdev, GEN12_LMEM_BAR) < lmem_size) {
+> +	if (IS_METEORLAKE(i915)) {
+> +		/*
+> +		 * Workaround: access via BAR can hang MTL, go directly to DSM.
+> +		 *
+> +		 * Normally this would not work but on MTL the system firmware
+> +		 * should have relaxed the access permissions sufficiently.
+> +		 */
+> +		io_start = intel_uncore_read64(uncore, GEN12_DSMBASE) & GEN12_BDSM_MASK;
+> +		io_size = dsm_size;
 
-This thing here works entirely differently, and I think we need somewhat
-new semantics for this:
+This will work well on host driver but I am afraid this will not work on 
+VM when someone tries to do direct device assignment of the igfx.
 
-- I agree it should be read-only for userspace, so immutable sounds right.
+GSMBASE/DSMBASE is reserved region so won't show up in VM, last I checked.
 
-- But I also agree with Daniel Stone that this should be tied more
-  directly to the modeset state.
+This is an obscure usages but are we suppose to support that? If so then 
+we need to detect that and fall back to binder approach.
 
-So I think the better approach would be to put the output type into
-drm_connector_state, require that drivers compute it in their
-->atomic_check code (which in the future would allow us to report it out
-for TEST_ONLY commits too), and so guarantee that the value is updated
-right after the kms ioctl returns (and not somewhen later for non-blocking
-commits).
 
-You probably need a bit of work to be able to handle immutable properties
-with the atomic state infrastructure, but I think otherwise this should
-fit all rather neatly.
+Regards,
 
-Cheers, Sima
-> 
-> The way I've implemented things in sway, calling the
-> "preferred_signal_format" command triggers a modeset with the "preferred
-> color format" set and calling "get_outputs", immediately queries the
-> "actual color format" and displays it.
-> 
-> Regards,
-> Andri
+Nirmoy
 
--- 
-Daniel Vetter
-Software Engineer, Intel Corporation
-http://blog.ffwll.ch
+> +	} else if (pci_resource_len(pdev, GEN12_LMEM_BAR) < lmem_size) {
+>   		io_start = 0;
+>   		io_size = 0;
+>   	} else {
+> diff --git a/drivers/gpu/drm/i915/gt/intel_ggtt.c b/drivers/gpu/drm/i915/gt/intel_ggtt.c
+> index 21a7e3191c18..ab71d74ec426 100644
+> --- a/drivers/gpu/drm/i915/gt/intel_ggtt.c
+> +++ b/drivers/gpu/drm/i915/gt/intel_ggtt.c
+> @@ -24,6 +24,7 @@
+>   #include "intel_ring.h"
+>   #include "i915_drv.h"
+>   #include "i915_pci.h"
+> +#include "i915_reg.h"
+>   #include "i915_request.h"
+>   #include "i915_scatterlist.h"
+>   #include "i915_utils.h"
+> @@ -1152,13 +1153,23 @@ static unsigned int gen6_gttadr_offset(struct drm_i915_private *i915)
+>   static int ggtt_probe_common(struct i915_ggtt *ggtt, u64 size)
+>   {
+>   	struct drm_i915_private *i915 = ggtt->vm.i915;
+> +	struct intel_uncore *uncore = ggtt->vm.gt->uncore;
+>   	struct pci_dev *pdev = to_pci_dev(i915->drm.dev);
+>   	phys_addr_t phys_addr;
+>   	u32 pte_flags;
+>   	int ret;
+>   
+>   	GEM_WARN_ON(pci_resource_len(pdev, GEN4_GTTMMADR_BAR) != gen6_gttmmadr_size(i915));
+> -	phys_addr = pci_resource_start(pdev, GEN4_GTTMMADR_BAR) + gen6_gttadr_offset(i915);
+> +	/*
+> +	 * Workaround: access via BAR can hang MTL, go directly to GSM.
+> +	 *
+> +	 * Normally this would not work but on MTL the system firmware
+> +	 * should have relaxed the access permissions sufficiently.
+> +	 */
+> +	if (IS_METEORLAKE(i915))
+> +		phys_addr = intel_uncore_read64(uncore, GEN12_GSMBASE) & GEN12_BDSM_MASK;
+> +	else
+> +		phys_addr = pci_resource_start(pdev, GEN4_GTTMMADR_BAR) + gen6_gttadr_offset(i915);
+>   
+>   	if (needs_wc_ggtt_mapping(i915))
+>   		ggtt->gsm = ioremap_wc(phys_addr, size);
