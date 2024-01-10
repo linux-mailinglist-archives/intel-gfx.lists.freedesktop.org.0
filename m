@@ -1,29 +1,54 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id D9113829D21
-	for <lists+intel-gfx@lfdr.de>; Wed, 10 Jan 2024 16:11:12 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 425DB829D64
+	for <lists+intel-gfx@lfdr.de>; Wed, 10 Jan 2024 16:20:42 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id F08F410E60A;
-	Wed, 10 Jan 2024 15:11:04 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0319A10E608;
+	Wed, 10 Jan 2024 15:20:39 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from 5338d5abeb45 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A496410E5FD;
- Wed, 10 Jan 2024 15:11:03 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.88])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id AFC9210E608;
+ Wed, 10 Jan 2024 15:20:37 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1704900037; x=1736436037;
+ h=mime-version:content-transfer-encoding:in-reply-to:
+ references:subject:to:cc:from:message-id:date;
+ bh=E0Bmp/5XWFLDuolIr/rqLJ0YwdpFYqvUjJulwkaWkOU=;
+ b=QjSEzug+9KjtPQjwBL60X1mZyrkHmc0QIQa+7Wa3YedTK2f1RL6dWh/m
+ gTnsXcHBG8ghgPJc8mubGT6tsWd1wS0S1wRAmqzY3R/zuf0pFeHzRjngd
+ +LpRGawRX9v4irtQrzBIHDffoVa97aWYj/v25Cup9VepoPa65TEFJcig8
+ PpUvlSodvqV+3UjV9X0aMnSURiCq30TZyFIeLUVWgGrqH/OQg7IIuoEUz
+ xpZsYGtkUXX6yigNmoST/gL6bEpIO+riAyFykTWqEAn0YGko8c1oYCs3l
+ UvEu97qpJweA6sGJjbd+7otWXRy8QMvXQdSpGUIC66eFh3S+a2X4c4hng A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10948"; a="429731675"
+X-IronPort-AV: E=Sophos;i="6.04,184,1695711600"; d="scan'208";a="429731675"
+Received: from orsmga004.jf.intel.com ([10.7.209.38])
+ by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Jan 2024 07:20:35 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10948"; a="905573417"
+X-IronPort-AV: E=Sophos;i="6.04,184,1695711600"; d="scan'208";a="905573417"
+Received: from nselinsk-mobl.ger.corp.intel.com (HELO localhost)
+ ([10.246.34.242])
+ by orsmga004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Jan 2024 07:20:28 -0800
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=97_Fi=2ECI=2ESPARSE=3A_warning_for_drm/xe=3A_ensure_fbc_cfb?=
- =?utf-8?q?_size_to_be_page_size_aligned?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Vinod Govindapillai" <vinod.govindapillai@intel.com>
-Date: Wed, 10 Jan 2024 15:11:03 -0000
-Message-ID: <170489946367.240792.14459938377172374044@5338d5abeb45>
-X-Patchwork-Hint: ignore
-References: <20240110110009.28799-1-vinod.govindapillai@intel.com>
-In-Reply-To: <20240110110009.28799-1-vinod.govindapillai@intel.com>
+Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <ZZ6Pfk8tLXbvs4dE@casper.infradead.org>
+References: <20240110092109.1950011-1-hch@lst.de>
+ <ZZ6Pfk8tLXbvs4dE@casper.infradead.org>
+Subject: Re: disable large folios for shmem file used by xfs xfile
+To: Christoph Hellwig <hch@lst.de>, Matthew Wilcox <willy@infradead.org>
+From: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+Message-ID: <170490002493.164187.5401160425746227111@jlahtine-mobl.ger.corp.intel.com>
+User-Agent: alot/0.8.1
+Date: Wed, 10 Jan 2024 17:20:24 +0200
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,109 +61,57 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
+Cc: "Darrick J . Wong" <djwong@kernel.org>,
+ Dave Hansen <dave.hansen@linux.intel.com>, dri-devel@lists.freedesktop.org,
+ David Howells <dhowells@redhat.com>, linux-mm@kvack.org,
+ Huang Rui <ray.huang@amd.com>, David Airlie <airlied@gmail.com>,
+ x86@kernel.org, Hugh Dickins <hughd@google.com>,
+ Thomas Zimmermann <tzimmermann@suse.de>, intel-gfx@lists.freedesktop.org,
+ Maxime Ripard <mripard@kernel.org>, Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ linux-sgx@vger.kernel.org, Jarkko Sakkinen <jarkko@kernel.org>,
+ keyrings@vger.kernel.org, Daniel Vetter <daniel@ffwll.ch>,
+ linux-fsdevel@vger.kernel.org, Andrew Morton <akpm@linux-foundation.org>,
+ Christian Koenig <christian.koenig@amd.com>,
+ Chandan Babu R <chandan.babu@oracle.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+Quoting Matthew Wilcox (2024-01-10 14:37:18)
+> On Wed, Jan 10, 2024 at 10:21:07AM +0100, Christoph Hellwig wrote:
+> > Hi all,
+> >=20
+> > Darrick reported that the fairly new XFS xfile code blows up when force
+> > enabling large folio for shmem.  This series fixes this quickly by disa=
+bling
+> > large folios for this particular shmem file for now until it can be fix=
+ed
+> > properly, which will be a lot more invasive.
+> >=20
+> > I've added most of you to the CC list as I suspect most other users of
+> > shmem_file_setup and friends will have similar issues.
+>=20
+> The graphics users _want_ to use large folios.  I'm pretty sure they've
+> been tested with this.
 
-Series: drm/xe: ensure fbc cfb size to be page size aligned
-URL   : https://patchwork.freedesktop.org/series/128425/
-State : warning
+Correct. We've done quite a bit of optimization in userspace and
+enabling in kernel to take advantage of page sizes of 2M and beyond.
 
-== Summary ==
+However we specifically pass "huge=3Dwithin_size" to vfs_kern_mount when
+creating a private mount of tmpfs for the purpose of i915 created
+allocations.
 
-Error: dim sparse failed
-Sparse version: v0.6.2
-Fast mode used, each commit won't be checked separately.
--
-+./arch/x86/include/asm/bitops.h:116:1: warning: unreplaced symbol 'return'
-+./arch/x86/include/asm/bitops.h:147:1: warning: unreplaced symbol 'return'
-+./arch/x86/include/asm/bitops.h:149:9: warning: unreplaced symbol 'oldbit'
-+./arch/x86/include/asm/bitops.h:153:26: warning: unreplaced symbol 'oldbit'
-+./arch/x86/include/asm/bitops.h:155:16: warning: unreplaced symbol 'oldbit'
-+./arch/x86/include/asm/bitops.h:155:9: warning: unreplaced symbol 'return'
-+./arch/x86/include/asm/bitops.h:173:1: warning: unreplaced symbol 'return'
-+./arch/x86/include/asm/bitops.h:175:9: warning: unreplaced symbol 'oldbit'
-+./arch/x86/include/asm/bitops.h:179:35: warning: unreplaced symbol 'oldbit'
-+./arch/x86/include/asm/bitops.h:181:16: warning: unreplaced symbol 'oldbit'
-+./arch/x86/include/asm/bitops.h:181:9: warning: unreplaced symbol 'return'
-+./arch/x86/include/asm/bitops.h:185:1: warning: unreplaced symbol 'return'
-+./arch/x86/include/asm/bitops.h:187:9: warning: unreplaced symbol 'oldbit'
-+./arch/x86/include/asm/bitops.h:191:35: warning: unreplaced symbol 'oldbit'
-+./arch/x86/include/asm/bitops.h:194:16: warning: unreplaced symbol 'oldbit'
-+./arch/x86/include/asm/bitops.h:194:9: warning: unreplaced symbol 'return'
-+./arch/x86/include/asm/bitops.h:236:1: warning: unreplaced symbol 'return'
-+./arch/x86/include/asm/bitops.h:238:9: warning: unreplaced symbol 'return'
-+./arch/x86/include/asm/bitops.h:66:1: warning: unreplaced symbol 'return'
-+./arch/x86/include/asm/bitops.h:92:1: warning: unreplaced symbol 'return'
-+./drivers/gpu/drm/i915/intel_uncore.h:346:1: warning: trying to copy expression type 31
-+./drivers/gpu/drm/i915/intel_uncore.h:351:1: warning: trying to copy expression type 31
-+./include/asm-generic/bitops/generic-non-atomic.h:100:17: warning: unreplaced symbol 'old'
-+./include/asm-generic/bitops/generic-non-atomic.h:100:23: warning: unreplaced symbol 'mask'
-+./include/asm-generic/bitops/generic-non-atomic.h:100:9: warning: unreplaced symbol 'return'
-+./include/asm-generic/bitops/generic-non-atomic.h:105:1: warning: unreplaced symbol 'return'
-+./include/asm-generic/bitops/generic-non-atomic.h:107:9: warning: unreplaced symbol 'mask'
-+./include/asm-generic/bitops/generic-non-atomic.h:108:9: warning: unreplaced symbol 'p'
-+./include/asm-generic/bitops/generic-non-atomic.h:109:9: warning: unreplaced symbol 'old'
-+./include/asm-generic/bitops/generic-non-atomic.h:111:10: warning: unreplaced symbol 'p'
-+./include/asm-generic/bitops/generic-non-atomic.h:111:14: warning: unreplaced symbol 'old'
-+./include/asm-generic/bitops/generic-non-atomic.h:111:20: warning: unreplaced symbol 'mask'
-+./include/asm-generic/bitops/generic-non-atomic.h:112:17: warning: unreplaced symbol 'old'
-+./include/asm-generic/bitops/generic-non-atomic.h:112:23: warning: unreplaced symbol 'mask'
-+./include/asm-generic/bitops/generic-non-atomic.h:112:9: warning: unreplaced symbol 'return'
-+./include/asm-generic/bitops/generic-non-atomic.h:121:1: warning: unreplaced symbol 'return'
-+./include/asm-generic/bitops/generic-non-atomic.h:128:9: warning: unreplaced symbol 'return'
-+./include/asm-generic/bitops/generic-non-atomic.h:166:1: warning: unreplaced symbol 'return'
-+./include/asm-generic/bitops/generic-non-atomic.h:168:9: warning: unreplaced symbol 'p'
-+./include/asm-generic/bitops/generic-non-atomic.h:169:9: warning: unreplaced symbol 'mask'
-+./include/asm-generic/bitops/generic-non-atomic.h:170:9: warning: unreplaced symbol 'val'
-+./include/asm-generic/bitops/generic-non-atomic.h:172:19: warning: unreplaced symbol 'val'
-+./include/asm-generic/bitops/generic-non-atomic.h:172:25: warning: unreplaced symbol 'mask'
-+./include/asm-generic/bitops/generic-non-atomic.h:172:9: warning: unreplaced symbol 'return'
-+./include/asm-generic/bitops/generic-non-atomic.h:28:1: warning: unreplaced symbol 'return'
-+./include/asm-generic/bitops/generic-non-atomic.h:30:9: warning: unreplaced symbol 'mask'
-+./include/asm-generic/bitops/generic-non-atomic.h:31:9: warning: unreplaced symbol 'p'
-+./include/asm-generic/bitops/generic-non-atomic.h:33:10: warning: unreplaced symbol 'p'
-+./include/asm-generic/bitops/generic-non-atomic.h:33:16: warning: unreplaced symbol 'mask'
-+./include/asm-generic/bitops/generic-non-atomic.h:37:1: warning: unreplaced symbol 'return'
-+./include/asm-generic/bitops/generic-non-atomic.h:39:9: warning: unreplaced symbol 'mask'
-+./include/asm-generic/bitops/generic-non-atomic.h:40:9: warning: unreplaced symbol 'p'
-+./include/asm-generic/bitops/generic-non-atomic.h:42:10: warning: unreplaced symbol 'p'
-+./include/asm-generic/bitops/generic-non-atomic.h:42:16: warning: unreplaced symbol 'mask'
-+./include/asm-generic/bitops/generic-non-atomic.h:55:1: warning: unreplaced symbol 'return'
-+./include/asm-generic/bitops/generic-non-atomic.h:57:9: warning: unreplaced symbol 'mask'
-+./include/asm-generic/bitops/generic-non-atomic.h:58:9: warning: unreplaced symbol 'p'
-+./include/asm-generic/bitops/generic-non-atomic.h:60:10: warning: unreplaced symbol 'p'
-+./include/asm-generic/bitops/generic-non-atomic.h:60:15: warning: unreplaced symbol 'mask'
-+./include/asm-generic/bitops/generic-non-atomic.h:73:1: warning: unreplaced symbol 'return'
-+./include/asm-generic/bitops/generic-non-atomic.h:75:9: warning: unreplaced symbol 'mask'
-+./include/asm-generic/bitops/generic-non-atomic.h:76:9: warning: unreplaced symbol 'p'
-+./include/asm-generic/bitops/generic-non-atomic.h:77:9: warning: unreplaced symbol 'old'
-+./include/asm-generic/bitops/generic-non-atomic.h:79:10: warning: unreplaced symbol 'p'
-+./include/asm-generic/bitops/generic-non-atomic.h:79:14: warning: unreplaced symbol 'old'
-+./include/asm-generic/bitops/generic-non-atomic.h:79:20: warning: unreplaced symbol 'mask'
-+./include/asm-generic/bitops/generic-non-atomic.h:80:17: warning: unreplaced symbol 'old'
-+./include/asm-generic/bitops/generic-non-atomic.h:80:23: warning: unreplaced symbol 'mask'
-+./include/asm-generic/bitops/generic-non-atomic.h:80:9: warning: unreplaced symbol 'return'
-+./include/asm-generic/bitops/generic-non-atomic.h:93:1: warning: unreplaced symbol 'return'
-+./include/asm-generic/bitops/generic-non-atomic.h:95:9: warning: unreplaced symbol 'mask'
-+./include/asm-generic/bitops/generic-non-atomic.h:96:9: warning: unreplaced symbol 'p'
-+./include/asm-generic/bitops/generic-non-atomic.h:97:9: warning: unreplaced symbol 'old'
-+./include/asm-generic/bitops/generic-non-atomic.h:99:10: warning: unreplaced symbol 'p'
-+./include/asm-generic/bitops/generic-non-atomic.h:99:14: warning: unreplaced symbol 'old'
-+./include/asm-generic/bitops/generic-non-atomic.h:99:21: warning: unreplaced symbol 'mask'
-+./include/asm-generic/bitops/instrumented-non-atomic.h:100:9: warning: unreplaced symbol 'return'
-+./include/asm-generic/bitops/instrumented-non-atomic.h:112:1: warning: unreplaced symbol 'return'
-+./include/asm-generic/bitops/instrumented-non-atomic.h:115:9: warning: unreplaced symbol 'return'
-+./include/asm-generic/bitops/instrumented-non-atomic.h:127:1: warning: unreplaced symbol 'return'
-+./include/asm-generic/bitops/instrumented-non-atomic.h:130:9: warning: unreplaced symbol 'return'
-+./include/asm-generic/bitops/instrumented-non-atomic.h:139:1: warning: unreplaced symbol 'return'
-+./include/asm-generic/bitops/instrumented-non-atomic.h:142:9: warning: unreplaced symbol 'return'
-+./include/asm-generic/bitops/instrumented-non-atomic.h:26:1: warning: unreplaced symbol 'return'
-+./include/asm-generic/bitops/instrumented-non-atomic.h:42:1: warning: unreplaced symbol 'return'
-+./include/asm-generic/bitops/instrumented-non-atomic.h:58:1: warning: unreplaced symbol 'return'
-+./include/asm-generic/bitops/instrumented-non-atomic.h:97:1: warning: unreplaced symbol 'return'
+Older hardware also had some address hashing bugs where 2M aligned
+memory caused a lot of collisions in TLB so we don't enable it always.
 
+You can see drivers/gpu/drm/i915/gem/i915_gemfs.c function
+i915_gemfs_init for details and references.
 
+So in short, functionality wise we should be fine either default
+for using 2M pages or not. If they become the default, we'd probably
+want an option that would still be able to prevent them for performance
+regression reasons on older hardware.
+
+Regards, Joonas
+
+> It's just XFS that didn't know about this
+> feature of shmem.
