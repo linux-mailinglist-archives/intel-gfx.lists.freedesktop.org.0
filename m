@@ -2,52 +2,50 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 11B42829AB9
-	for <lists+intel-gfx@lfdr.de>; Wed, 10 Jan 2024 13:55:40 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 487F3829B13
+	for <lists+intel-gfx@lfdr.de>; Wed, 10 Jan 2024 14:18:05 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7799010E5D1;
-	Wed, 10 Jan 2024 12:55:38 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9F13E10E5B3;
+	Wed, 10 Jan 2024 13:18:03 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6016A10E5D5
- for <intel-gfx@lists.freedesktop.org>; Wed, 10 Jan 2024 12:55:36 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1704891336; x=1736427336;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=H/0dSJfTzZdKepRPEkDVf8w20D+vGgGFpGBa5DfGah8=;
- b=fLph9Xq69X710tFPF4fPCa/vHfiROaItjbxITKr2x68RcPVpxPWHi2EQ
- 7i+0rgkJWFzCV4LsanhIHq6vGgHSCv87qHAHohCa8bVIFnodqa91iZ0Gg
- Lonq6JYzwL7DMaDUYXMlYLvxdzzR5W0QVZ0Dmo6i85yxqVjuR/hEzslIm
- EjoZeuA6KTgPxLCqUTZWxxY8hqPBZ6hpQ1u1StXnRAxeHsRfW01sDANIM
- JlWWG0l/6lwXGOJjZLtfx6ObZjsMSc6Na6Sy0voYEKsu7kYApuCsZ66pc
- YkXaVzK4iPrm+kj+BjvPjmuKU+XQ4F45WYb0O5Wcerljmsa4/v2z/jWiA A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10948"; a="429690863"
-X-IronPort-AV: E=Sophos;i="6.04,184,1695711600"; d="scan'208";a="429690863"
-Received: from fmsmga003.fm.intel.com ([10.253.24.29])
- by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Jan 2024 04:55:34 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10948"; a="872637723"
-X-IronPort-AV: E=Sophos;i="6.04,184,1695711600"; d="scan'208";a="872637723"
-Received: from unknown (HELO intel.com) ([10.237.72.65])
- by fmsmga003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Jan 2024 04:55:33 -0800
-Date: Wed, 10 Jan 2024 14:55:29 +0200
-From: "Lisovskiy, Stanislav" <stanislav.lisovskiy@intel.com>
-To: Jouni =?iso-8859-1?Q?H=F6gander?= <jouni.hogander@intel.com>
-Subject: Re: [PATCH 2/2] drm/i915/psr: CAN_PSR and CAN_PANEL_REPLAY can be
- now local defines
-Message-ID: <ZZ6TweaFcd7emgMZ@intel.com>
-References: <20240109100517.1947414-1-jouni.hogander@intel.com>
- <20240109100517.1947414-3-jouni.hogander@intel.com>
+Received: from mail.tuxedocomputers.com (mail.tuxedocomputers.com
+ [157.90.84.7])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B3F5C10E0E1;
+ Wed, 10 Jan 2024 13:18:01 +0000 (UTC)
+Received: from [192.168.42.20] (p5de453e7.dip0.t-ipconnect.de [93.228.83.231])
+ (Authenticated sender: wse@tuxedocomputers.com)
+ by mail.tuxedocomputers.com (Postfix) with ESMTPSA id 1C8582FC0057;
+ Wed, 10 Jan 2024 14:09:12 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=tuxedocomputers.com;
+ s=default; t=1704892153;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references;
+ bh=RjmCj0ca8jaa062CnfpuGDxA7/7+921oq64gB2rF+Ig=;
+ b=bmxA38PGD1K6FPTSKTedfnYmsEGQy/MDis1bHTG7qt2F6Bkt7VAsjrUQ3P0tRW4d7z3+mA
+ 701MaIPi4w3uhfMbYOG4k1yqcC5vx9SY+iyX3XK+da1Qt7CN7eAM64ikLSjKcTpwXi2SUM
+ 5t0Zf0znq0run9e7S5M4qnzgEUgapis=
+Authentication-Results: mail.tuxedocomputers.com;
+ auth=pass smtp.auth=wse@tuxedocomputers.com
+ smtp.mailfrom=wse@tuxedocomputers.com
+Message-ID: <92e20f9b-2cbf-4efe-b61b-989da0cc1668@tuxedocomputers.com>
+Date: Wed, 10 Jan 2024 14:09:11 +0100
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 5/7] drm/uAPI: Add "preferred color format" drm property
+ as setting for userspace
+Content-Language: en-US
+To: Andri Yngvason <andri@yngvason.is>, Maxime Ripard <mripard@kernel.org>
+References: <20240109181104.1670304-1-andri@yngvason.is>
+ <20240109181104.1670304-6-andri@yngvason.is>
+ <qdwv7sagqs5nmmsy5lko5hypldanfodafyzamrs3loj3n7jzlr@n5bacxkknkj4>
+ <CAFNQBQzijyE4wR34AOLM45m+ryx128igVKO9zPJ5-M3afFQMxQ@mail.gmail.com>
+From: Werner Sembach <wse@tuxedocomputers.com>
+In-Reply-To: <CAFNQBQzijyE4wR34AOLM45m+ryx128igVKO9zPJ5-M3afFQMxQ@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20240109100517.1947414-3-jouni.hogander@intel.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -60,57 +58,69 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org
+Cc: Thomas Zimmermann <tzimmermann@suse.de>, intel-gfx@lists.freedesktop.org,
+ Leo Li <sunpeng.li@amd.com>, David Airlie <airlied@gmail.com>,
+ dri-devel@lists.freedesktop.org, "Pan, Xinhui" <Xinhui.Pan@amd.com>,
+ Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>, linux-kernel@vger.kernel.org,
+ amd-gfx@lists.freedesktop.org, Daniel Vetter <daniel@ffwll.ch>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Alex Deucher <alexander.deucher@amd.com>, Simon Ser <contact@emersion.fr>,
+ Harry Wentland <harry.wentland@amd.com>,
+ =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>,
+ Dan Carpenter <dan.carpenter@oracle.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, Jan 09, 2024 at 12:05:17PM +0200, Jouni Högander wrote:
-> CAN_PSR and CAN_PANEL_REPLAY are not used outside intel_psr.c anymore. Make
-> them as intel_psr.c local defines.
-> 
-> Signed-off-by: Jouni Högander <jouni.hogander@intel.com>
+Hi,
 
-Reviewed-by: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
+Am 10.01.24 um 11:11 schrieb Andri Yngvason:
+> Hi,
+>
+> miÃ°., 10. jan. 2024 kl. 09:27 skrifaÃ°i Maxime Ripard <mripard@kernel.org>:
+>> On Tue, Jan 09, 2024 at 06:11:02PM +0000, Andri Yngvason wrote:
+>>> From: Werner Sembach <wse@tuxedocomputers.com>
+>>>
+>>> Add a new general drm property "preferred color format" which can be used
+>>> by userspace to tell the graphic drivers to which color format to use.
+>>>
+>>> Possible options are:
+>>>      - auto (default/current behaviour)
+>>>      - rgb
+>>>      - ycbcr444
+>>>      - ycbcr422 (not supported by both amdgpu and i915)
+>>>      - ycbcr420
+>>>
+>>> In theory the auto option should choose the best available option for the
+>>> current setup, but because of bad internal conversion some monitors look
+>>> better with rgb and some with ycbcr444.
+>> I looked at the patch and I couldn't find what is supposed to happen if
+>> you set it to something else than auto, and the driver can't match that.
+>> Are we supposed to fallback to the "auto" behaviour, or are we suppose
+>> to reject the mode entirely?
+>>
+>> The combination with the active output format property suggests the
+>> former, but we should document it explicitly.
+> It is also my understanding that it should fall back to the "auto"
+> behaviour. I will add this to the documentation.
 
-> ---
->  drivers/gpu/drm/i915/display/intel_psr.c | 6 ++++++
->  drivers/gpu/drm/i915/display/intel_psr.h | 6 ------
->  2 files changed, 6 insertions(+), 6 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/i915/display/intel_psr.c b/drivers/gpu/drm/i915/display/intel_psr.c
-> index 54120b45958b..34c0a5a14455 100644
-> --- a/drivers/gpu/drm/i915/display/intel_psr.c
-> +++ b/drivers/gpu/drm/i915/display/intel_psr.c
-> @@ -173,6 +173,12 @@
->   * irrelevant for normal operation.
->   */
->  
-> +#define CAN_PSR(intel_dp) ((intel_dp)->psr.sink_support && \
-> +			   (intel_dp)->psr.source_support)
-> +
-> +#define CAN_PANEL_REPLAY(intel_dp) ((intel_dp)->psr.sink_panel_replay_support && \
-> +				    (intel_dp)->psr.source_panel_replay_support)
-> +
->  bool intel_encoder_can_psr(struct intel_encoder *encoder)
->  {
->  	if (intel_encoder_is_dp(encoder) || encoder->type == INTEL_OUTPUT_DP_MST)
-> diff --git a/drivers/gpu/drm/i915/display/intel_psr.h b/drivers/gpu/drm/i915/display/intel_psr.h
-> index 143e0595c097..cde781df84d5 100644
-> --- a/drivers/gpu/drm/i915/display/intel_psr.h
-> +++ b/drivers/gpu/drm/i915/display/intel_psr.h
-> @@ -21,12 +21,6 @@ struct intel_encoder;
->  struct intel_plane;
->  struct intel_plane_state;
->  
-> -#define CAN_PSR(intel_dp) ((intel_dp)->psr.sink_support && \
-> -			   (intel_dp)->psr.source_support)
-> -
-> -#define CAN_PANEL_REPLAY(intel_dp) ((intel_dp)->psr.sink_panel_replay_support && \
-> -				    (intel_dp)->psr.source_panel_replay_support)
-> -
->  bool intel_encoder_can_psr(struct intel_encoder *encoder);
->  void intel_psr_init_dpcd(struct intel_dp *intel_dp);
->  void intel_psr_pre_plane_update(struct intel_atomic_state *state,
-> -- 
-> 2.34.1
-> 
+Yes, that was the intention, and then userspace can check, but it wasn't well 
+received: https://gitlab.freedesktop.org/drm/amd/-/issues/476#note_964530
+
+Actually a lot of the thoughts that went into the original patch set can be 
+found in that topic.
+
+There was another iteration of the patch set that I never finished and sent to 
+the LKML because I got discouraged by this: 
+https://lore.kernel.org/dri-devel/20210623102923.70877c1a@eldfell/
+
+I can try to dig it up, but it is completely untested and I don't think I still 
+have the respective TODO list anymore, so I don't know if it is a better or 
+worst starting point than the last iteration I sent to the LKML.
+
+Greetings
+
+Werner
+
+>
+> Thanks,
+> Andri
