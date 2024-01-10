@@ -1,46 +1,57 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6EBD882964F
-	for <lists+intel-gfx@lfdr.de>; Wed, 10 Jan 2024 10:27:25 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8C03082965B
+	for <lists+intel-gfx@lfdr.de>; Wed, 10 Jan 2024 10:36:51 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 84D4710E588;
-	Wed, 10 Jan 2024 09:27:20 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6E1CE10E595;
+	Wed, 10 Jan 2024 09:36:49 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from dfw.source.kernel.org (dfw.source.kernel.org
- [IPv6:2604:1380:4641:c500::1])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6775110E17B;
- Wed, 10 Jan 2024 09:27:18 +0000 (UTC)
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
- by dfw.source.kernel.org (Postfix) with ESMTP id B00BF615BA;
- Wed, 10 Jan 2024 09:27:17 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 09FA2C433F1;
- Wed, 10 Jan 2024 09:27:16 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1704878837;
- bh=nzNAaOqvaUL57D/V9epEYzVxZ7pYbWWXoeDDRRHs+/k=;
- h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
- b=juD6hpZRALBSBgsoKCWJmV0pVswWCkfgSB5gygZYm22wB6tFLF/GCnNhGjsnwkKdp
- pNVg/8oaNf172cQ4jZnmULRpAwB7yY7SpHQdeDgLRyfukjUp4YImdJiVITXeSb5RBj
- lv6R8hPinxo9nMfphpcDsx9UccrLhocX9H1bpJzIuJFkMlz6oFuIwq1yEtfkZR0kMa
- ksEy5xxZwq+mQg2B81zeC1VjRfTbPR0EMe2jyTC+HK4+ajT4zdWXPfZlkeH1+8y5Os
- lgYbczWKk3EemUbeDmQxeMvWKGlmxqP7evxQ16nsZ3xVSDEfzuzwu0sIVAtE6d5fTf
- T8fnq7PmuqINw==
-Date: Wed, 10 Jan 2024 10:27:14 +0100
-From: Maxime Ripard <mripard@kernel.org>
-To: Andri Yngvason <andri@yngvason.is>
-Subject: Re: [PATCH 5/7] drm/uAPI: Add "preferred color format" drm property
- as setting for userspace
-Message-ID: <qdwv7sagqs5nmmsy5lko5hypldanfodafyzamrs3loj3n7jzlr@n5bacxkknkj4>
-References: <20240109181104.1670304-1-andri@yngvason.is>
- <20240109181104.1670304-6-andri@yngvason.is>
+Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6A08510E5A4
+ for <intel-gfx@lists.freedesktop.org>; Wed, 10 Jan 2024 09:36:48 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1704879408; x=1736415408;
+ h=message-id:date:mime-version:subject:to:references:from:
+ in-reply-to:content-transfer-encoding;
+ bh=U25Tqo0PQ/omcu32TLnHcOEUoIvpx8PXtyXVhg4Ao1Q=;
+ b=HQMqhBv/1Vq9UKuL3fS0j6ODq/Iu1aJuOAYsgBenC0dUwf9CnUfFYrTF
+ HpStEkBQEfwQkYkOWVCFygqhHUxXjFHYOitnJFItm/TiMI/IRg4uhn+1/
+ yg7hibVIEFFOTDvBTEN883QPuGrJvLGxRuiz4LVO2qqanphpOrDnm9695
+ CDyT77PLNBLNwvOKw+rkig4SD31dObKbmVbIJ2U6pbKrGSf6zklYQWf6J
+ WNEdLJWARtudJckvxIGnt7gyg5VnVZ/CYREOUh4VObPXoJOfa6F7sUBp1
+ ZWrGWaC5CV9XIZN43uuyRBMXvfJQxE27Pr1gHw5Jf9s8fh8l6Np0nIh3K A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10947"; a="462751811"
+X-IronPort-AV: E=Sophos;i="6.04,184,1695711600"; d="scan'208";a="462751811"
+Received: from fmsmga005.fm.intel.com ([10.253.24.32])
+ by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Jan 2024 01:36:47 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10947"; a="1113388984"
+X-IronPort-AV: E=Sophos;i="6.04,184,1695711600"; d="scan'208";a="1113388984"
+Received: from ahajda-mobl.ger.corp.intel.com (HELO [10.246.0.51])
+ ([10.246.0.51])
+ by fmsmga005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Jan 2024 01:36:46 -0800
+Message-ID: <be85cdff-dacc-4b1c-b50a-ef3e7b3df6cd@intel.com>
+Date: Wed, 10 Jan 2024 10:36:44 +0100
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
- protocol="application/pgp-signature"; boundary="f6j2j4rphibvcs2b"
-Content-Disposition: inline
-In-Reply-To: <20240109181104.1670304-6-andri@yngvason.is>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 14/15] drm/i915: Tweak BIOS fb reuse check
+Content-Language: en-US
+To: Ville Syrjala <ville.syrjala@linux.intel.com>,
+ intel-gfx@lists.freedesktop.org
+References: <20231215105929.29568-1-ville.syrjala@linux.intel.com>
+ <20231215105929.29568-15-ville.syrjala@linux.intel.com>
+From: Andrzej Hajda <andrzej.hajda@intel.com>
+Organization: Intel Technology Poland sp. z o.o. - ul. Slowackiego 173, 80-298
+ Gdansk - KRS 101882 - NIP 957-07-52-316
+In-Reply-To: <20231215105929.29568-15-ville.syrjala@linux.intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -53,231 +64,137 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Thomas Zimmermann <tzimmermann@suse.de>, intel-gfx@lists.freedesktop.org,
- Leo Li <sunpeng.li@amd.com>, David Airlie <airlied@gmail.com>,
- dri-devel@lists.freedesktop.org, "Pan, Xinhui" <Xinhui.Pan@amd.com>,
- Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>, linux-kernel@vger.kernel.org,
- amd-gfx@lists.freedesktop.org, Daniel Vetter <daniel@ffwll.ch>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Alex Deucher <alexander.deucher@amd.com>, Simon Ser <contact@emersion.fr>,
- Harry Wentland <harry.wentland@amd.com>,
- Christian =?utf-8?B?S8O2bmln?= <christian.koenig@amd.com>,
- Dan Carpenter <dan.carpenter@oracle.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+On 15.12.2023 11:59, Ville Syrjala wrote:
+> From: Ville Syrjälä <ville.syrjala@linux.intel.com>
+> 
+> Currently we assume that we bind the BIOS fb exactly into the same
+> ggtt address where the BIOS left it. That is about to change, and
+> in order to keep intel_reuse_initial_plane_obj() working as intended
+> we need to compare the original ggtt offset (called 'base' here)
+> as opposed ot the actual vma ggtt offset we selected. Otherwise
 
---f6j2j4rphibvcs2b
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+s/ot/to/
 
-Hi,
+> the first plane could change the ggtt offset, and then subsequent
+> planes would no longer notice that they are in fact using the same
+> ggtt offset that the first plane was already using. Thus the reuse
+> check will fail and we proceed to turn off these subsequent planes.
+> 
+> TODO: would probably make more sense to do the pure readout first
+> for all the planes, then check for fb reuse, and only then proceed
+> to pin the object into the final location in the ggtt...
+> 
+> Cc: Paz Zcharya <pazz@chromium.org>
+> Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-On Tue, Jan 09, 2024 at 06:11:02PM +0000, Andri Yngvason wrote:
-> From: Werner Sembach <wse@tuxedocomputers.com>
->=20
-> Add a new general drm property "preferred color format" which can be used
-> by userspace to tell the graphic drivers to which color format to use.
->=20
-> Possible options are:
->     - auto (default/current behaviour)
->     - rgb
->     - ycbcr444
->     - ycbcr422 (not supported by both amdgpu and i915)
->     - ycbcr420
->=20
-> In theory the auto option should choose the best available option for the
-> current setup, but because of bad internal conversion some monitors look
-> better with rgb and some with ycbcr444.
 
-I looked at the patch and I couldn't find what is supposed to happen if
-you set it to something else than auto, and the driver can't match that.
-Are we supposed to fallback to the "auto" behaviour, or are we suppose
-to reject the mode entirely?
+Reviewed-by: Andrzej Hajda <andrzej.hajda@intel.com>
 
-The combination with the active output format property suggests the
-former, but we should document it explicitly.
+Regards
+Andrzej
 
-> Also, because of bad shielded connectors and/or cables, it might be
-> preferable to use the less bandwidth heavy ycbcr422 and ycbcr420 formats
-> for a signal that is less deceptible to interference.
->=20
-> In the future, automatic color calibration for screens might also depend =
-on
-> this option being available.
->=20
-> Signed-off-by: Werner Sembach <wse@tuxedocomputers.com>
-> Reported-by: Dan Carpenter <dan.carpenter@oracle.com>
-> Signed-off-by: Andri Yngvason <andri@yngvason.is>
-> Tested-by: Andri Yngvason <andri@yngvason.is>
 > ---
->  drivers/gpu/drm/drm_atomic_helper.c |  4 +++
->  drivers/gpu/drm/drm_atomic_uapi.c   |  4 +++
->  drivers/gpu/drm/drm_connector.c     | 50 ++++++++++++++++++++++++++++-
->  include/drm/drm_connector.h         | 17 ++++++++++
->  4 files changed, 74 insertions(+), 1 deletion(-)
->=20
-> diff --git a/drivers/gpu/drm/drm_atomic_helper.c b/drivers/gpu/drm/drm_at=
-omic_helper.c
-> index 68ffcc0b00dca..745a43d9c5da3 100644
-> --- a/drivers/gpu/drm/drm_atomic_helper.c
-> +++ b/drivers/gpu/drm/drm_atomic_helper.c
-> @@ -707,6 +707,10 @@ drm_atomic_helper_check_modeset(struct drm_device *d=
-ev,
->  			if (old_connector_state->max_requested_bpc !=3D
->  			    new_connector_state->max_requested_bpc)
->  				new_crtc_state->connectors_changed =3D true;
-> +
-> +			if (old_connector_state->preferred_color_format !=3D
-> +			    new_connector_state->preferred_color_format)
-> +				new_crtc_state->connectors_changed =3D true;
->  		}
-> =20
->  		if (funcs->atomic_check)
-> diff --git a/drivers/gpu/drm/drm_atomic_uapi.c b/drivers/gpu/drm/drm_atom=
-ic_uapi.c
-> index 98d3b10c08ae1..eba5dea1249e5 100644
-> --- a/drivers/gpu/drm/drm_atomic_uapi.c
-> +++ b/drivers/gpu/drm/drm_atomic_uapi.c
-> @@ -798,6 +798,8 @@ static int drm_atomic_connector_set_property(struct d=
-rm_connector *connector,
->  		state->max_requested_bpc =3D val;
->  	} else if (property =3D=3D connector->privacy_screen_sw_state_property)=
- {
->  		state->privacy_screen_sw_state =3D val;
-> +	} else if (property =3D=3D connector->preferred_color_format_property) {
-> +		state->preferred_color_format =3D val;
->  	} else if (connector->funcs->atomic_set_property) {
->  		return connector->funcs->atomic_set_property(connector,
->  				state, property, val);
-> @@ -881,6 +883,8 @@ drm_atomic_connector_get_property(struct drm_connecto=
-r *connector,
->  		*val =3D state->max_requested_bpc;
->  	} else if (property =3D=3D connector->privacy_screen_sw_state_property)=
- {
->  		*val =3D state->privacy_screen_sw_state;
-> +	} else if (property =3D=3D connector->preferred_color_format_property) {
-> +		*val =3D state->preferred_color_format;
->  	} else if (connector->funcs->atomic_get_property) {
->  		return connector->funcs->atomic_get_property(connector,
->  				state, property, val);
-> diff --git a/drivers/gpu/drm/drm_connector.c b/drivers/gpu/drm/drm_connec=
-tor.c
-> index 30d62e505d188..4de48a38792cf 100644
-> --- a/drivers/gpu/drm/drm_connector.c
-> +++ b/drivers/gpu/drm/drm_connector.c
-> @@ -1061,6 +1061,14 @@ static const struct drm_prop_enum_list drm_dp_subc=
-onnector_enum_list[] =3D {
->  	{ DRM_MODE_SUBCONNECTOR_Native,	     "Native"    }, /* DP */
->  };
-> =20
-> +static const struct drm_prop_enum_list drm_preferred_color_format_enum_l=
-ist[] =3D {
-> +	{ 0, "auto" },
-> +	{ DRM_COLOR_FORMAT_RGB444, "rgb" },
-> +	{ DRM_COLOR_FORMAT_YCBCR444, "ycbcr444" },
-> +	{ DRM_COLOR_FORMAT_YCBCR422, "ycbcr422" },
-> +	{ DRM_COLOR_FORMAT_YCBCR420, "ycbcr420" },
-> +};
-> +
->  static const struct drm_prop_enum_list drm_active_color_format_enum_list=
-[] =3D {
->  	{ 0, "not applicable" },
->  	{ DRM_COLOR_FORMAT_RGB444, "rgb" },
-> @@ -1398,11 +1406,20 @@ static const u32 dp_colorspaces =3D
->   *	drm_connector_attach_max_bpc_property() to create and attach the
->   *	property to the connector during initialization.
->   *
-> + * preferred color format:
-> + *	This property is used by userspace to change the used color format. W=
-hen
-> + *	used the driver will use the selected format if valid for the hardwar=
-e,
-> + *	sink, and current resolution and refresh rate combination. Drivers to
-> + *	use the function drm_connector_attach_preferred_color_format_property=
-()
-> + *	to create and attach the property to the connector during
-> + *	initialization. Possible values are "auto", "rgb", "ycbcr444",
-> + *	"ycbcr422", and "ycbcr420".
-> + *
->   * active color format:
->   *	This read-only property tells userspace the color format actually used
->   *	by the hardware display engine "on the cable" on a connector. The cho=
-sen
->   *	value depends on hardware capabilities, both display engine and
-> - *	connected monitor. Drivers shall use
-> + *	connected monitor, and the "preferred color format". Drivers shall use
->   *	drm_connector_attach_active_color_format_property() to install this
->   *	property. Possible values are "not applicable", "rgb", "ycbcr444",
->   *	"ycbcr422", and "ycbcr420".
-> @@ -2468,6 +2485,37 @@ int drm_connector_attach_max_bpc_property(struct d=
-rm_connector *connector,
->  }
->  EXPORT_SYMBOL(drm_connector_attach_max_bpc_property);
-> =20
-> +/**
-> + * drm_connector_attach_preferred_color_format_property - attach "prefer=
-red color format" property
-> + * @connector: connector to attach preferred color format property on.
-> + *
-> + * This is used to add support for selecting a color format on a connect=
-or.
-> + *
-> + * Returns:
-> + * Zero on success, negative errno on failure.
-> + */
-> +int drm_connector_attach_preferred_color_format_property(struct drm_conn=
-ector *connector)
-> +{
-> +	struct drm_device *dev =3D connector->dev;
-> +	struct drm_property *prop;
-> +
-> +	if (!connector->preferred_color_format_property) {
-> +		prop =3D drm_property_create_enum(dev, 0, "preferred color format",
-> +						drm_preferred_color_format_enum_list,
-> +						ARRAY_SIZE(drm_preferred_color_format_enum_list));
-> +		if (!prop)
-> +			return -ENOMEM;
-> +
-> +		connector->preferred_color_format_property =3D prop;
-> +	}
-> +
-> +	drm_object_attach_property(&connector->base, prop, 0);
-> +	connector->state->preferred_color_format =3D 0;
-> +
-> +	return 0;
-> +}
-> +EXPORT_SYMBOL(drm_connector_attach_preferred_color_format_property);
-> +
->  /**
->   * drm_connector_attach_active_color_format_property - attach "active co=
-lor format" property
->   * @connector: connector to attach active color format property on.
-> diff --git a/include/drm/drm_connector.h b/include/drm/drm_connector.h
-> index 9ae73cfdceeb1..d7bc54c8b42cb 100644
-> --- a/include/drm/drm_connector.h
-> +++ b/include/drm/drm_connector.h
-> @@ -1026,6 +1026,16 @@ struct drm_connector_state {
->  	 */
->  	enum drm_privacy_screen_status privacy_screen_sw_state;
-> =20
-> +	/**
-> +	 * preferred_color_format: Property set by userspace to tell the GPU
+>   .../drm/i915/display/intel_plane_initial.c    | 34 +++++++++++--------
+>   1 file changed, 19 insertions(+), 15 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/i915/display/intel_plane_initial.c b/drivers/gpu/drm/i915/display/intel_plane_initial.c
+> index b7e12b60d68b..82ab98985a09 100644
+> --- a/drivers/gpu/drm/i915/display/intel_plane_initial.c
+> +++ b/drivers/gpu/drm/i915/display/intel_plane_initial.c
+> @@ -13,20 +13,21 @@
+>   #include "intel_plane_initial.h"
+>   
+>   static bool
+> -intel_reuse_initial_plane_obj(struct drm_i915_private *i915,
+> -			      const struct intel_initial_plane_config *plane_config,
+> +intel_reuse_initial_plane_obj(struct intel_crtc *this,
+> +			      const struct intel_initial_plane_config plane_configs[],
+>   			      struct drm_framebuffer **fb,
+>   			      struct i915_vma **vma)
+>   {
+> +	struct drm_i915_private *i915 = to_i915(this->base.dev);
+>   	struct intel_crtc *crtc;
+>   
+>   	for_each_intel_crtc(&i915->drm, crtc) {
+> -		struct intel_crtc_state *crtc_state =
+> -			to_intel_crtc_state(crtc->base.state);
+> -		struct intel_plane *plane =
+> +		const struct intel_plane *plane =
+>   			to_intel_plane(crtc->base.primary);
+> -		struct intel_plane_state *plane_state =
+> +		const struct intel_plane_state *plane_state =
+>   			to_intel_plane_state(plane->base.state);
+> +		const struct intel_crtc_state *crtc_state =
+> +			to_intel_crtc_state(crtc->base.state);
+>   
+>   		if (!crtc_state->uapi.active)
+>   			continue;
+> @@ -34,7 +35,7 @@ intel_reuse_initial_plane_obj(struct drm_i915_private *i915,
+>   		if (!plane_state->ggtt_vma)
+>   			continue;
+>   
+> -		if (intel_plane_ggtt_offset(plane_state) == plane_config->base) {
+> +		if (plane_configs[this->pipe].base == plane_configs[crtc->pipe].base) {
+>   			*fb = plane_state->hw.fb;
+>   			*vma = plane_state->ggtt_vma;
+>   			return true;
+> @@ -265,10 +266,11 @@ intel_alloc_initial_plane_obj(struct intel_crtc *crtc,
+>   
+>   static void
+>   intel_find_initial_plane_obj(struct intel_crtc *crtc,
+> -			     struct intel_initial_plane_config *plane_config)
+> +			     struct intel_initial_plane_config plane_configs[])
+>   {
+> -	struct drm_device *dev = crtc->base.dev;
+> -	struct drm_i915_private *dev_priv = to_i915(dev);
+> +	struct drm_i915_private *dev_priv = to_i915(crtc->base.dev);
+> +	struct intel_initial_plane_config *plane_config =
+> +		&plane_configs[crtc->pipe];
+>   	struct intel_plane *plane =
+>   		to_intel_plane(crtc->base.primary);
+>   	struct intel_plane_state *plane_state =
+> @@ -294,7 +296,7 @@ intel_find_initial_plane_obj(struct intel_crtc *crtc,
+>   	 * Failed to alloc the obj, check to see if we should share
+>   	 * an fb with another CRTC instead
+>   	 */
+> -	if (intel_reuse_initial_plane_obj(dev_priv, plane_config, &fb, &vma))
+> +	if (intel_reuse_initial_plane_obj(crtc, plane_configs, &fb, &vma))
+>   		goto valid_fb;
+>   
+>   	/*
+> @@ -359,10 +361,12 @@ static void plane_config_fini(struct intel_initial_plane_config *plane_config)
+>   
+>   void intel_initial_plane_config(struct drm_i915_private *i915)
+>   {
+> +	struct intel_initial_plane_config plane_configs[I915_MAX_PIPES] = {};
+>   	struct intel_crtc *crtc;
+>   
+>   	for_each_intel_crtc(&i915->drm, crtc) {
+> -		struct intel_initial_plane_config plane_config = {};
+> +		struct intel_initial_plane_config *plane_config =
+> +			&plane_configs[crtc->pipe];
+>   
+>   		if (!to_intel_crtc_state(crtc->base.state)->uapi.active)
+>   			continue;
+> @@ -374,14 +378,14 @@ void intel_initial_plane_config(struct drm_i915_private *i915)
+>   		 * can even allow for smooth boot transitions if the BIOS
+>   		 * fb is large enough for the active pipe configuration.
+>   		 */
+> -		i915->display.funcs.display->get_initial_plane_config(crtc, &plane_config);
+> +		i915->display.funcs.display->get_initial_plane_config(crtc, plane_config);
+>   
+>   		/*
+>   		 * If the fb is shared between multiple heads, we'll
+>   		 * just get the first one.
+>   		 */
+> -		intel_find_initial_plane_obj(crtc, &plane_config);
+> +		intel_find_initial_plane_obj(crtc, plane_configs);
+>   
+> -		plane_config_fini(&plane_config);
+> +		plane_config_fini(plane_config);
+>   	}
+>   }
 
-That's not the proper doc format, you're missing a @
-
-Maxime
-
---f6j2j4rphibvcs2b
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYKAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCZZ5i8QAKCRDj7w1vZxhR
-xUKrAQC6+1rVAO7umPgfBq9P7nimTGhAG69n4i9MYMS1adFqoAD/T5SQ1Tsm9Ybw
-vTELQXqv0M32Kqp1PKhW+w+WiQTzAQw=
-=CrvP
------END PGP SIGNATURE-----
-
---f6j2j4rphibvcs2b--
