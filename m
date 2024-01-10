@@ -2,53 +2,57 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7A88F829D8A
-	for <lists+intel-gfx@lfdr.de>; Wed, 10 Jan 2024 16:28:38 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6EA27829D93
+	for <lists+intel-gfx@lfdr.de>; Wed, 10 Jan 2024 16:31:09 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3518810E571;
-	Wed, 10 Jan 2024 15:28:35 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D8A4310E5FA;
+	Wed, 10 Jan 2024 15:31:07 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.93])
- by gabe.freedesktop.org (Postfix) with ESMTPS id F3D3810E035;
- Wed, 10 Jan 2024 15:28:32 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.115])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3D6A310E5FA
+ for <intel-gfx@lists.freedesktop.org>; Wed, 10 Jan 2024 15:31:07 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1704900513; x=1736436513;
- h=mime-version:content-transfer-encoding:in-reply-to:
- references:from:to:cc:subject:message-id:date;
- bh=fV7NAoQ0qHc6gn38m7vJBQuKu07R0duL29KMcubUULk=;
- b=TbOsPyz/geJaiIACnT+Ojt4t6DliSdw3s0rxiRqwMf9A2SjFC9VKF1ic
- tq40mmc57hA5p4oW/a2i+2OR3G8XV5r2RsR9KA8tDW8AqW1UkGh783byK
- Y3mW6JF63Vs2N6ZrGgwr2Xba1Otlsvm8ybgRBEbaEOmt7fpbHDf4lreaF
- gUupeJFcpEP+l8GW4k2rwFHpw1o7GbWcude0ZQn/Z3A+n16mOlXs0V54L
- ei0LE78KNd5krslYM6IpTePNAf1jzu1WAq1HSr7VM+/x8KQvvi9FgIllG
- TQFj3tvFubBakH7xKV0EN03vDAY4kV/oL3zk4dyeqeJhbYzvpDCOOd8Dy w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10948"; a="395704783"
-X-IronPort-AV: E=Sophos;i="6.04,184,1695711600"; d="scan'208";a="395704783"
-Received: from orviesa001.jf.intel.com ([10.64.159.141])
- by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Jan 2024 07:28:32 -0800
+ t=1704900667; x=1736436667;
+ h=message-id:date:mime-version:subject:to:cc:references:
+ from:in-reply-to:content-transfer-encoding;
+ bh=tBb7HAp0LY5MYDXolbHyfFAIgcxKnczQz5Jbdq62Rmk=;
+ b=hV2C89hTJSGRkxbfD5iMkhYExc0QEkGVB5ka3FPrf59ubki3+m6/QQok
+ P8kW8TGz2p8dGMZ8FPeREZWa8E36VGxDRNR2mHEufiCB48CgzNwZay33L
+ As9guHezHmsyYncLhpo+tXREmNx7RsSuiDsvZQVR3proZK4hsO8O3PuDV
+ YkY0LFPofGF+MIMWNPt0iOKD/Q4MGDtkoR1IJgVKpv6JoZzzWOQ4SX4m2
+ vdBDyKoFazxm0mM9cSrIKLCCTKYZyf58YjAT+COR7VRoZP+f9GBK9D34F
+ 93Uh9q+h0GHWZW5PCGM5b/+h4DwpT90BFvYfxuVeJwyesDYs36V5S7ijK w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10948"; a="398242781"
+X-IronPort-AV: E=Sophos;i="6.04,184,1695711600"; d="scan'208";a="398242781"
+Received: from fmsmga004.fm.intel.com ([10.253.24.48])
+ by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Jan 2024 07:31:06 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.04,184,1695711600"; d="scan'208";a="30639512"
-Received: from nselinsk-mobl.ger.corp.intel.com (HELO localhost)
- ([10.246.34.242])
- by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Jan 2024 07:28:26 -0800
-Content-Type: text/plain; charset="utf-8"
+X-IronPort-AV: E=McAfee;i="6600,9927,10948"; a="852600136"
+X-IronPort-AV: E=Sophos;i="6.04,184,1695711600"; d="scan'208";a="852600136"
+Received: from ahajda-mobl.ger.corp.intel.com (HELO [10.246.0.51])
+ ([10.246.0.51])
+ by fmsmga004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Jan 2024 07:31:05 -0800
+Message-ID: <4e10ba50-3f14-4b94-becb-96ff2571d55f@intel.com>
+Date: Wed, 10 Jan 2024 16:31:01 +0100
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <170490002493.164187.5401160425746227111@jlahtine-mobl.ger.corp.intel.com>
-References: <20240110092109.1950011-1-hch@lst.de>
- <ZZ6Pfk8tLXbvs4dE@casper.infradead.org>
- <170490002493.164187.5401160425746227111@jlahtine-mobl.ger.corp.intel.com>
-From: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
-To: Christoph Hellwig <hch@lst.de>, Matthew Wilcox <willy@infradead.org>
-Subject: Re: disable large folios for shmem file used by xfs xfile
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-Message-ID: <170490050245.164862.16261803493864298341@jlahtine-mobl.ger.corp.intel.com>
-User-Agent: alot/0.8.1
-Date: Wed, 10 Jan 2024 17:28:22 +0200
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 1/3] drm/i915/hdcp: Do intel_hdcp_component_init() much
+ later during init
+Content-Language: en-US
+To: Ville Syrjala <ville.syrjala@linux.intel.com>,
+ intel-gfx@lists.freedesktop.org
+References: <20231215110933.9188-1-ville.syrjala@linux.intel.com>
+ <20231215110933.9188-2-ville.syrjala@linux.intel.com>
+From: Andrzej Hajda <andrzej.hajda@intel.com>
+Organization: Intel Technology Poland sp. z o.o. - ul. Slowackiego 173, 80-298
+ Gdansk - KRS 101882 - NIP 957-07-52-316
+In-Reply-To: <20231215110933.9188-2-ville.syrjala@linux.intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,73 +65,64 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "Darrick J . Wong" <djwong@kernel.org>,
- Dave Hansen <dave.hansen@linux.intel.com>, dri-devel@lists.freedesktop.org,
- David Howells <dhowells@redhat.com>, linux-mm@kvack.org,
- Huang Rui <ray.huang@amd.com>, David Airlie <airlied@gmail.com>,
- x86@kernel.org, Hugh Dickins <hughd@google.com>,
- Thomas Zimmermann <tzimmermann@suse.de>, intel-gfx@lists.freedesktop.org,
- Maxime Ripard <mripard@kernel.org>, Rodrigo Vivi <rodrigo.vivi@intel.com>,
- linux-sgx@vger.kernel.org, Jarkko Sakkinen <jarkko@kernel.org>,
- keyrings@vger.kernel.org, Daniel Vetter <daniel@ffwll.ch>,
- linux-fsdevel@vger.kernel.org, Andrew Morton <akpm@linux-foundation.org>,
- Christian Koenig <christian.koenig@amd.com>,
- Chandan Babu R <chandan.babu@oracle.com>
+Cc: Alan Previn <alan.previn.teres.alexis@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Quoting Joonas Lahtinen (2024-01-10 17:20:24)
-> Quoting Matthew Wilcox (2024-01-10 14:37:18)
-> > On Wed, Jan 10, 2024 at 10:21:07AM +0100, Christoph Hellwig wrote:
-> > > Hi all,
-> > >=20
-> > > Darrick reported that the fairly new XFS xfile code blows up when for=
-ce
-> > > enabling large folio for shmem.  This series fixes this quickly by di=
-sabling
-> > > large folios for this particular shmem file for now until it can be f=
-ixed
-> > > properly, which will be a lot more invasive.
-> > >=20
-> > > I've added most of you to the CC list as I suspect most other users of
-> > > shmem_file_setup and friends will have similar issues.
-> >=20
-> > The graphics users _want_ to use large folios.  I'm pretty sure they've
-> > been tested with this.
->=20
-> Correct. We've done quite a bit of optimization in userspace and
-> enabling in kernel to take advantage of page sizes of 2M and beyond.
->=20
-> However we specifically pass "huge=3Dwithin_size" to vfs_kern_mount when
-> creating a private mount of tmpfs for the purpose of i915 created
-> allocations.
->=20
-> Older hardware also had some address hashing bugs where 2M aligned
-> memory caused a lot of collisions in TLB so we don't enable it always.
->=20
-> You can see drivers/gpu/drm/i915/gem/i915_gemfs.c function
-> i915_gemfs_init for details and references.
->=20
-> So in short, functionality wise we should be fine either default
-> for using 2M pages or not. If they become the default, we'd probably
-> want an option that would still be able to prevent them for performance
-> regression reasons on older hardware.
+On 15.12.2023 12:09, Ville Syrjala wrote:
+> From: Ville Syrjälä <ville.syrjala@linux.intel.com>
+> 
+> intel_hdcp_component_init()->...->intel_hdcp_gsc_initialize_message()
+> will allocate ggtt address space for some hdcp gsc message thing.
+> That is currently being done way too early as we haven't even
+> taken over the BIOS fb yet. So this has the potential of corrupting
+> ggtt PTEs that need to be preserved until the the BIOS fb takover
+> is done.
+> 
+> Only call intel_hdcp_component_init() once all the BIOS fb takeover,
+> and full ggtt init (which currently also needs to reserve very
+> specific ranges of ggtt, thus assuming that no one else has stolen
+> them yet) is done.
+> 
+> Cc: Suraj Kandpal <suraj.kandpal@intel.com>
+> Cc: Alan Previn <alan.previn.teres.alexis@intel.com>
+> Cc: Uma Shankar <uma.shankar@intel.com>
+> Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-To maybe write out my concern better:
+Reviewed-by: Andrzej Hajda <andrzej.hajda@intel.com>
 
-Is there plan to enable huge pages by default in shmem?
+Regards
+Andrzej
 
-If not I guess we should be pretty good with the way current code is, force
-enabling them just might bring out some performance, so we might want to add
-a warning for that.
+> ---
+>   drivers/gpu/drm/i915/display/intel_display_driver.c | 9 +++++++--
+>   1 file changed, 7 insertions(+), 2 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/i915/display/intel_display_driver.c b/drivers/gpu/drm/i915/display/intel_display_driver.c
+> index 62f7b10484be..b71338b4d793 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display_driver.c
+> +++ b/drivers/gpu/drm/i915/display/intel_display_driver.c
+> @@ -319,8 +319,6 @@ int intel_display_driver_probe_nogem(struct drm_i915_private *i915)
+>   	intel_display_driver_init_hw(i915);
+>   	intel_dpll_update_ref_clks(i915);
+>   
+> -	intel_hdcp_component_init(i915);
+> -
+>   	if (i915->display.cdclk.max_cdclk_freq == 0)
+>   		intel_update_max_cdclk(i915);
+>   
+> @@ -360,6 +358,13 @@ int intel_display_driver_probe(struct drm_i915_private *i915)
+>   	if (!HAS_DISPLAY(i915))
+>   		return 0;
+>   
+> +	/*
+> +	 * This will bind stuff into ggtt, so it needs to be done after
+> +	 * the BIOS fb takeover and whatever else magic ggtt reservations
+> +	 * happen during gem/ggtt init.
+> +	 */
+> +	intel_hdcp_component_init(i915);
+> +
+>   	/*
+>   	 * Force all active planes to recompute their states. So that on
+>   	 * mode_setcrtc after probe, all the intel_plane_state variables
 
-If there is, then we'll probably want to in sync with those default changes
-apply a similar call to block them on older HW.
-
-Regards, Joonas
-
->=20
-> Regards, Joonas
->=20
-> > It's just XFS that didn't know about this
-> > feature of shmem.
