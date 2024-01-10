@@ -1,55 +1,42 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8F09F82961B
-	for <lists+intel-gfx@lfdr.de>; Wed, 10 Jan 2024 10:18:36 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 414C6829628
+	for <lists+intel-gfx@lfdr.de>; Wed, 10 Jan 2024 10:21:31 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CDF9D10E71B;
-	Wed, 10 Jan 2024 09:18:28 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7366B10E582;
+	Wed, 10 Jan 2024 09:21:29 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4DEA010E565;
- Wed, 10 Jan 2024 09:18:27 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1704878307; x=1736414307;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=qtuO5lm+xc5XhKS1PbceP6Sf8OnGR6J64lv2VwUoaBU=;
- b=Dr+ffrVUAV9gP/+PiGFRGrJBHxeyZTm7hI5lGezXPTo0LP+U5/yYILB/
- nm6WzbIRtpHuXd/Gtx72d4rBWUOrmjbINRWhG/1IoSP79ZxKqE23c8fKA
- MfeqKR3DqrTkb3EWZtM8jyEahv3SJvo2x0UtRGHPZURi26OGnd1sFqBWu
- FcMfP6smZazN7IxpVgWQgfReJz9OCLEFIJpBO+VovpdHVMv9r2JKKUbNV
- thC1wW2oFIOHS3wIj3VIwsofLyAvGR6F0mlra1ea0uwZthyFN7ksmEB9I
- iH4kee+FhPpTo0TsJ7zdvmTjCbXOwQjvzbj1j4wX24DeD2mwek2mZsQtL w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10947"; a="5232102"
-X-IronPort-AV: E=Sophos;i="6.04,184,1695711600"; 
-   d="scan'208";a="5232102"
-Received: from orsmga007.jf.intel.com ([10.7.209.58])
- by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Jan 2024 01:18:27 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10947"; a="775165326"
-X-IronPort-AV: E=Sophos;i="6.04,184,1695711600"; d="scan'208";a="775165326"
-Received: from fpallare-mobl3.ger.corp.intel.com (HELO localhost)
- ([10.252.36.240])
- by orsmga007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Jan 2024 01:18:21 -0800
-From: Jani Nikula <jani.nikula@intel.com>
-To: Danilo Krummrich <dakr@redhat.com>
-Subject: Re: [PATCH 1/3] drm/nouveau: include drm/drm_edid.h only where needed
-In-Reply-To: <6f343c87-fbb4-4779-aced-2e0df7b18e63@redhat.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20240104201632.1100753-1-jani.nikula@intel.com>
- <95f6815c-1ff5-4c89-b8c6-0445834a0083@redhat.com>
- <87ttnmx1wn.fsf@intel.com>
- <6f343c87-fbb4-4779-aced-2e0df7b18e63@redhat.com>
-Date: Wed, 10 Jan 2024 11:18:19 +0200
-Message-ID: <87frz5wnqc.fsf@intel.com>
+Received: from bombadil.infradead.org (bombadil.infradead.org
+ [IPv6:2607:7c80:54:3::133])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5ED4310E582;
+ Wed, 10 Jan 2024 09:21:27 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+ d=infradead.org; s=bombadil.20210309; h=Content-Transfer-Encoding:
+ MIME-Version:Message-Id:Date:Subject:Cc:To:From:Sender:Reply-To:Content-Type:
+ Content-ID:Content-Description:In-Reply-To:References;
+ bh=Fed6Wh38yLZ4VW44UQIVxDeEah6yaESJroVirbnMcCQ=; b=BzqKa9NUJWdXYv/6rgJZ4RYlWu
+ NoYKk1B6vvpRdx9T5jBwEbUpXKbB8ClufPgK2+QxrMZA4mYpvYPlrZBfhNN3Eq3c8NvdELaZfWQBA
+ qfmN5Oux/8hGs/+KFHxmTyEKgilboZcGvJOxMoPkRpYoolaZ1yYG44FbLUe8cXpQ9CY8mS090847h
+ 8HR55gJQTas2JOmu7+yt1dCZ3PU9LzfzRPVSS2UoIJ3XSSYdwsP/jr3oxtjv80gPLeoMHrEtLbaUc
+ e8MTRADeIe8t1pag7oAFYXTjJvi3NNL5SVv5oRpf857r0P1F947fMRc+a1lIOdOLRinVn/+IgWgWD
+ ujp50hSg==;
+Received: from [2001:4bb8:191:2f6b:27f:45ef:e74a:3466] (helo=localhost)
+ by bombadil.infradead.org with esmtpsa (Exim 4.96 #2 (Red Hat Linux))
+ id 1rNUls-00AsAW-1I; Wed, 10 Jan 2024 09:21:12 +0000
+From: Christoph Hellwig <hch@lst.de>
+To: Matthew Wilcox <willy@infradead.org>, Hugh Dickins <hughd@google.com>,
+ Chandan Babu R <chandan.babu@oracle.com>
+Subject: disable large folios for shmem file used by xfs xfile
+Date: Wed, 10 Jan 2024 10:21:07 +0100
+Message-Id: <20240110092109.1950011-1-hch@lst.de>
+X-Mailer: git-send-email 2.39.2
 MIME-Version: 1.0
-Content-Type: text/plain
+Content-Transfer-Encoding: 8bit
+X-SRS-Rewrite: SMTP reverse-path rewritten from <hch@infradead.org> by
+ bombadil.infradead.org. See http://www.infradead.org/rpr.html
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -62,43 +49,25 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: nouveau@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org, Karol Herbst <kherbst@redhat.com>
+Cc: "Darrick J . Wong" <djwong@kernel.org>, dri-devel@lists.freedesktop.org,
+ David Howells <dhowells@redhat.com>, linux-mm@kvack.org,
+ Huang Rui <ray.huang@amd.com>, David Airlie <airlied@gmail.com>,
+ x86@kernel.org, Dave Hansen <dave.hansen@linux.intel.com>,
+ Thomas Zimmermann <tzimmermann@suse.de>, intel-gfx@lists.freedesktop.org,
+ Maxime Ripard <mripard@kernel.org>, Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ linux-sgx@vger.kernel.org, Jarkko Sakkinen <jarkko@kernel.org>,
+ keyrings@vger.kernel.org, Daniel Vetter <daniel@ffwll.ch>,
+ linux-fsdevel@vger.kernel.org, Andrew Morton <akpm@linux-foundation.org>,
+ Christian Koenig <christian.koenig@amd.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, 09 Jan 2024, Danilo Krummrich <dakr@redhat.com> wrote:
-> On 1/9/24 10:59, Jani Nikula wrote:
->> On Mon, 08 Jan 2024, Danilo Krummrich <dakr@redhat.com> wrote:
->>> On 1/4/24 21:16, Jani Nikula wrote:
->>>> Including drm_edid.h from nouveau_connector.h causes the rebuild of 15
->>>> files when drm_edid.h is modified, while there are only a few files that
->>>> actually need to include drm_edid.h.
->>>>
->>>> Cc: Karol Herbst <kherbst@redhat.com>
->>>> Cc: Lyude Paul <lyude@redhat.com>
->>>> Cc: Danilo Krummrich <dakr@redhat.com>
->>>> Cc: nouveau@lists.freedesktop.org
->>>> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
->>>
->>> Reviewed-by: Danilo Krummrich <dakr@redhat.com>
->> 
->> Are you going to pick this up via the nouveau tree, or shall I apply it
->> to drm-misc-next?
->
-> We don't maintain a separate tree, hence feel free to apply it to drm-misc-next.
+Hi all,
 
-Thanks for the review, pushed to drm-misc-next.
+Darrick reported that the fairly new XFS xfile code blows up when force
+enabling large folio for shmem.  This series fixes this quickly by disabling
+large folios for this particular shmem file for now until it can be fixed
+properly, which will be a lot more invasive.
 
-You do still have
-
-T:	git https://gitlab.freedesktop.org/drm/nouveau.git
-
-MAINTAINERS entry, so I thought that's where you apply patches.
-
-BR,
-Jani.
-
-
--- 
-Jani Nikula, Intel
+I've added most of you to the CC list as I suspect most other users of
+shmem_file_setup and friends will have similar issues.
