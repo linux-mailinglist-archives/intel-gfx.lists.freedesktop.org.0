@@ -1,58 +1,55 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id D93738295FB
-	for <lists+intel-gfx@lfdr.de>; Wed, 10 Jan 2024 10:13:44 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8F09F82961B
+	for <lists+intel-gfx@lfdr.de>; Wed, 10 Jan 2024 10:18:36 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 603CE10E57F;
-	Wed, 10 Jan 2024 09:13:43 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CDF9D10E71B;
+	Wed, 10 Jan 2024 09:18:28 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.65])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 54B5C10E57F
- for <intel-gfx@lists.freedesktop.org>; Wed, 10 Jan 2024 09:13:42 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4DEA010E565;
+ Wed, 10 Jan 2024 09:18:27 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1704878022; x=1736414022;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=a6br8cbnWx3UuLGt2fO9v5qt58hsXgqYsGIEyuf7FEE=;
- b=GbtQ1PRg4S+rssuVT1M4dgWJuEjH70KEQYHI763eVg7CRIi6N1mPRwBX
- h0mGPBMo5LW9LSneESW4STa+ZEAd8cbC6WrPYGlZekyGRWNT4jwj7E+ky
- arVygAZQHjHqgi0P3l+D+X+mphroUNSAnFoeLYcZdg/wdquvC6MaxQd8Y
- IURoyGqXwJqY/BXR7aW++m9SIU0V7DVChV5KQ7YEdMY3N+tNhdRsJIidk
- kKiW1R4cOAiM0WIUohaxznyQsH/3uy8JT5ZQHzgazEJ6CWs2nikirlO19
- osIo04mE5wwrq+93vNkpzNNPx69z0pE4VFs92k+4t3QSOewSebgOHWyjX g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10947"; a="402239743"
-X-IronPort-AV: E=Sophos;i="6.04,184,1695711600"; d="scan'208";a="402239743"
-Received: from orsmga003.jf.intel.com ([10.7.209.27])
- by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Jan 2024 01:13:42 -0800
+ t=1704878307; x=1736414307;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version;
+ bh=qtuO5lm+xc5XhKS1PbceP6Sf8OnGR6J64lv2VwUoaBU=;
+ b=Dr+ffrVUAV9gP/+PiGFRGrJBHxeyZTm7hI5lGezXPTo0LP+U5/yYILB/
+ nm6WzbIRtpHuXd/Gtx72d4rBWUOrmjbINRWhG/1IoSP79ZxKqE23c8fKA
+ MfeqKR3DqrTkb3EWZtM8jyEahv3SJvo2x0UtRGHPZURi26OGnd1sFqBWu
+ FcMfP6smZazN7IxpVgWQgfReJz9OCLEFIJpBO+VovpdHVMv9r2JKKUbNV
+ thC1wW2oFIOHS3wIj3VIwsofLyAvGR6F0mlra1ea0uwZthyFN7ksmEB9I
+ iH4kee+FhPpTo0TsJ7zdvmTjCbXOwQjvzbj1j4wX24DeD2mwek2mZsQtL w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10947"; a="5232102"
+X-IronPort-AV: E=Sophos;i="6.04,184,1695711600"; 
+   d="scan'208";a="5232102"
+Received: from orsmga007.jf.intel.com ([10.7.209.58])
+ by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Jan 2024 01:18:27 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10947"; a="731797853"
-X-IronPort-AV: E=Sophos;i="6.04,184,1695711600"; d="scan'208";a="731797853"
-Received: from ahajda-mobl.ger.corp.intel.com (HELO [10.246.0.51])
- ([10.246.0.51])
- by orsmga003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Jan 2024 01:13:40 -0800
-Message-ID: <c09e80d2-9cbb-41fc-861c-8e55a066fa7e@intel.com>
-Date: Wed, 10 Jan 2024 10:13:40 +0100
+X-IronPort-AV: E=McAfee;i="6600,9927,10947"; a="775165326"
+X-IronPort-AV: E=Sophos;i="6.04,184,1695711600"; d="scan'208";a="775165326"
+Received: from fpallare-mobl3.ger.corp.intel.com (HELO localhost)
+ ([10.252.36.240])
+ by orsmga007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Jan 2024 01:18:21 -0800
+From: Jani Nikula <jani.nikula@intel.com>
+To: Danilo Krummrich <dakr@redhat.com>
+Subject: Re: [PATCH 1/3] drm/nouveau: include drm/drm_edid.h only where needed
+In-Reply-To: <6f343c87-fbb4-4779-aced-2e0df7b18e63@redhat.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20240104201632.1100753-1-jani.nikula@intel.com>
+ <95f6815c-1ff5-4c89-b8c6-0445834a0083@redhat.com>
+ <87ttnmx1wn.fsf@intel.com>
+ <6f343c87-fbb4-4779-aced-2e0df7b18e63@redhat.com>
+Date: Wed, 10 Jan 2024 11:18:19 +0200
+Message-ID: <87frz5wnqc.fsf@intel.com>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 04/15] drm/i915: Bypass LMEMBAR/GTTMMADR for MTL stolen
- memory access
-Content-Language: en-US
-To: Ville Syrjala <ville.syrjala@linux.intel.com>,
- intel-gfx@lists.freedesktop.org
-References: <20231215105929.29568-1-ville.syrjala@linux.intel.com>
- <20231215105929.29568-5-ville.syrjala@linux.intel.com>
-From: Andrzej Hajda <andrzej.hajda@intel.com>
-Organization: Intel Technology Poland sp. z o.o. - ul. Slowackiego 173, 80-298
- Gdansk - KRS 101882 - NIP 957-07-52-316
-In-Reply-To: <20231215105929.29568-5-ville.syrjala@linux.intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -65,99 +62,43 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Nirmoy Das <nirmoy.das@intel.com>
+Cc: nouveau@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org, Karol Herbst <kherbst@redhat.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On 15.12.2023 11:59, Ville Syrjala wrote:
-> From: Ville Syrjälä <ville.syrjala@linux.intel.com>
-> 
-> On MTL accessing stolen memory via the BARs is somehow borked,
-> and it can hang the machine. As a workaround let's bypass the
-> BARs and just go straight to DSMBASE/GSMBASE instead.
-> 
-> Note that on every other platform this itself would hang the
-> machine, but on MTL the system firmware is expected to relax
-> the access permission guarding stolen memory to enable this
-> workaround, and thus direct CPU accesses should be fine.
-> 
-> TODO: add w/a numbers and whatnot
-> 
-> Cc: Paz Zcharya <pazz@chromium.org>
-> Cc: Nirmoy Das <nirmoy.das@intel.com>
-> Cc: Radhakrishna Sripada <radhakrishna.sripada@intel.com>
-> Cc: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
-> Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
+On Tue, 09 Jan 2024, Danilo Krummrich <dakr@redhat.com> wrote:
+> On 1/9/24 10:59, Jani Nikula wrote:
+>> On Mon, 08 Jan 2024, Danilo Krummrich <dakr@redhat.com> wrote:
+>>> On 1/4/24 21:16, Jani Nikula wrote:
+>>>> Including drm_edid.h from nouveau_connector.h causes the rebuild of 15
+>>>> files when drm_edid.h is modified, while there are only a few files that
+>>>> actually need to include drm_edid.h.
+>>>>
+>>>> Cc: Karol Herbst <kherbst@redhat.com>
+>>>> Cc: Lyude Paul <lyude@redhat.com>
+>>>> Cc: Danilo Krummrich <dakr@redhat.com>
+>>>> Cc: nouveau@lists.freedesktop.org
+>>>> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+>>>
+>>> Reviewed-by: Danilo Krummrich <dakr@redhat.com>
+>> 
+>> Are you going to pick this up via the nouveau tree, or shall I apply it
+>> to drm-misc-next?
+>
+> We don't maintain a separate tree, hence feel free to apply it to drm-misc-next.
 
-With w/a id added:
+Thanks for the review, pushed to drm-misc-next.
 
-Reviewed-by: Andrzej Hajda <andrzej.hajda@intel.com>
+You do still have
 
-Regards
-Andrzej
+T:	git https://gitlab.freedesktop.org/drm/nouveau.git
 
-> ---
->   drivers/gpu/drm/i915/gem/i915_gem_stolen.c | 11 ++++++++++-
->   drivers/gpu/drm/i915/gt/intel_ggtt.c       | 13 ++++++++++++-
->   2 files changed, 22 insertions(+), 2 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_stolen.c b/drivers/gpu/drm/i915/gem/i915_gem_stolen.c
-> index ee237043c302..252fe5cd6ede 100644
-> --- a/drivers/gpu/drm/i915/gem/i915_gem_stolen.c
-> +++ b/drivers/gpu/drm/i915/gem/i915_gem_stolen.c
-> @@ -941,7 +941,16 @@ i915_gem_stolen_lmem_setup(struct drm_i915_private *i915, u16 type,
->   		dsm_size = ALIGN_DOWN(lmem_size - dsm_base, SZ_1M);
->   	}
->   
-> -	if (pci_resource_len(pdev, GEN12_LMEM_BAR) < lmem_size) {
-> +	if (IS_METEORLAKE(i915)) {
-> +		/*
-> +		 * Workaround: access via BAR can hang MTL, go directly to DSM.
-> +		 *
-> +		 * Normally this would not work but on MTL the system firmware
-> +		 * should have relaxed the access permissions sufficiently.
-> +		 */
-> +		io_start = intel_uncore_read64(uncore, GEN12_DSMBASE) & GEN12_BDSM_MASK;
-> +		io_size = dsm_size;
-> +	} else if (pci_resource_len(pdev, GEN12_LMEM_BAR) < lmem_size) {
->   		io_start = 0;
->   		io_size = 0;
->   	} else {
-> diff --git a/drivers/gpu/drm/i915/gt/intel_ggtt.c b/drivers/gpu/drm/i915/gt/intel_ggtt.c
-> index 21a7e3191c18..ab71d74ec426 100644
-> --- a/drivers/gpu/drm/i915/gt/intel_ggtt.c
-> +++ b/drivers/gpu/drm/i915/gt/intel_ggtt.c
-> @@ -24,6 +24,7 @@
->   #include "intel_ring.h"
->   #include "i915_drv.h"
->   #include "i915_pci.h"
-> +#include "i915_reg.h"
->   #include "i915_request.h"
->   #include "i915_scatterlist.h"
->   #include "i915_utils.h"
-> @@ -1152,13 +1153,23 @@ static unsigned int gen6_gttadr_offset(struct drm_i915_private *i915)
->   static int ggtt_probe_common(struct i915_ggtt *ggtt, u64 size)
->   {
->   	struct drm_i915_private *i915 = ggtt->vm.i915;
-> +	struct intel_uncore *uncore = ggtt->vm.gt->uncore;
->   	struct pci_dev *pdev = to_pci_dev(i915->drm.dev);
->   	phys_addr_t phys_addr;
->   	u32 pte_flags;
->   	int ret;
->   
->   	GEM_WARN_ON(pci_resource_len(pdev, GEN4_GTTMMADR_BAR) != gen6_gttmmadr_size(i915));
-> -	phys_addr = pci_resource_start(pdev, GEN4_GTTMMADR_BAR) + gen6_gttadr_offset(i915);
-> +	/*
-> +	 * Workaround: access via BAR can hang MTL, go directly to GSM.
-> +	 *
-> +	 * Normally this would not work but on MTL the system firmware
-> +	 * should have relaxed the access permissions sufficiently.
-> +	 */
-> +	if (IS_METEORLAKE(i915))
-> +		phys_addr = intel_uncore_read64(uncore, GEN12_GSMBASE) & GEN12_BDSM_MASK;
-> +	else
-> +		phys_addr = pci_resource_start(pdev, GEN4_GTTMMADR_BAR) + gen6_gttadr_offset(i915);
->   
->   	if (needs_wc_ggtt_mapping(i915))
->   		ggtt->gsm = ioremap_wc(phys_addr, size);
+MAINTAINERS entry, so I thought that's where you apply patches.
 
+BR,
+Jani.
+
+
+-- 
+Jani Nikula, Intel
