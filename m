@@ -1,40 +1,52 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id BF7BF829A7A
-	for <lists+intel-gfx@lfdr.de>; Wed, 10 Jan 2024 13:37:42 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id A53C2829AB0
+	for <lists+intel-gfx@lfdr.de>; Wed, 10 Jan 2024 13:54:27 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2B86610E5D6;
-	Wed, 10 Jan 2024 12:37:41 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0D6C310E138;
+	Wed, 10 Jan 2024 12:54:26 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from casper.infradead.org (casper.infradead.org
- [IPv6:2001:8b0:10b:1236::1])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C582D10E5D6;
- Wed, 10 Jan 2024 12:37:39 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=infradead.org; s=casper.20170209; h=In-Reply-To:Content-Type:MIME-Version:
- References:Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:
- Content-Transfer-Encoding:Content-ID:Content-Description;
- bh=mD6sHMBYmecsugPR+rqNjdttLVO7dQDyLXBJHfA3g1Q=; b=OjdQmEOL6PU8ZoQsQV89vQU3uy
- xumb/fUI9PdT0ruLFWenL+EFY/R95394WPxc2QNSa6b9+lhiCqIZBbDzz//DCiBhiXjxszhvGAjZK
- lubqlfezkUxprHvhWFewYjO8MlMwV/8XU0qiMYiHWdWD93q+pm7cSJGaTmC7UhcepH6pQkziFJBwT
- 9zlq4Vm18d/8ENBIIzB64LPPMc7hWRT75a4nD8cKTMDPldLhwu7kCijfcbGe6gCKSr4DmF4rMUVR+
- Z9wPq2/O0uuD9eCs7CXUPNcsIOiJH5ON+eRuVhc1opSoEH66EZS2OkOq4FbVIvqfaCEG4y3+dTzRO
- HZY7dWJg==;
-Received: from willy by casper.infradead.org with local (Exim 4.94.2 #2 (Red
- Hat Linux)) id 1rNXpe-00BQ5T-V6; Wed, 10 Jan 2024 12:37:18 +0000
-Date: Wed, 10 Jan 2024 12:37:18 +0000
-From: Matthew Wilcox <willy@infradead.org>
-To: Christoph Hellwig <hch@lst.de>
-Subject: Re: disable large folios for shmem file used by xfs xfile
-Message-ID: <ZZ6Pfk8tLXbvs4dE@casper.infradead.org>
-References: <20240110092109.1950011-1-hch@lst.de>
+Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.88])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B8B9810E138
+ for <intel-gfx@lists.freedesktop.org>; Wed, 10 Jan 2024 12:54:24 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1704891264; x=1736427264;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=NHDXtnN5b1SfDBFnm9k9514/al/NJwc7v47u8yTZh9k=;
+ b=X9kRBTvB0KyZaRA69S9Grbpl8zxzyi4kW8Kk5XuO386x4OCHtrY7AhFD
+ ToS4NmTkVHNBwFkmCe4kuMfyhHS2ASexoWuGvWqoGMqTXzcTBjkDyaJ4j
+ 4NNFJfOoOxPhEfw/u7upPBM/MRG3yOE4VQC7OSQ/MoHGfLZVjYcJ06Qcp
+ jxx4zTM/6p+mDr61uLr7MrM/oL9bzP1IjTHFGDooW8IZEm0GcQrrTSYtw
+ ltFm5ncJ3mr6IuSP/ogoj6OLoWj1fQV93wuHssJsjhXVeAB/drq77QKT7
+ kw032/NMsLEd4HhHnqMOI7As4gbN8dwk3OHl6ROz2ZXWGyUsorR6xT0UN w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10948"; a="429690456"
+X-IronPort-AV: E=Sophos;i="6.04,184,1695711600"; d="scan'208";a="429690456"
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+ by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Jan 2024 04:54:24 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10948"; a="925629565"
+X-IronPort-AV: E=Sophos;i="6.04,184,1695711600"; d="scan'208";a="925629565"
+Received: from unknown (HELO intel.com) ([10.237.72.65])
+ by fmsmga001-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Jan 2024 04:54:23 -0800
+Date: Wed, 10 Jan 2024 14:54:11 +0200
+From: "Lisovskiy, Stanislav" <stanislav.lisovskiy@intel.com>
+To: Jouni =?iso-8859-1?Q?H=F6gander?= <jouni.hogander@intel.com>
+Subject: Re: [PATCH 1/2] drm/i915/display: No need for full modeset due to psr
+Message-ID: <ZZ6Tc94c9dV2g+vA@intel.com>
+References: <20240109100517.1947414-1-jouni.hogander@intel.com>
+ <20240109100517.1947414-2-jouni.hogander@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
-In-Reply-To: <20240110092109.1950011-1-hch@lst.de>
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20240109100517.1947414-2-jouni.hogander@intel.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -47,32 +59,60 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "Darrick J . Wong" <djwong@kernel.org>, dri-devel@lists.freedesktop.org,
- David Howells <dhowells@redhat.com>, linux-mm@kvack.org,
- Huang Rui <ray.huang@amd.com>, David Airlie <airlied@gmail.com>,
- x86@kernel.org, Hugh Dickins <hughd@google.com>,
- Dave Hansen <dave.hansen@linux.intel.com>,
- Thomas Zimmermann <tzimmermann@suse.de>, intel-gfx@lists.freedesktop.org,
- Maxime Ripard <mripard@kernel.org>, Rodrigo Vivi <rodrigo.vivi@intel.com>,
- linux-sgx@vger.kernel.org, Jarkko Sakkinen <jarkko@kernel.org>,
- keyrings@vger.kernel.org, Daniel Vetter <daniel@ffwll.ch>,
- linux-fsdevel@vger.kernel.org, Andrew Morton <akpm@linux-foundation.org>,
- Christian Koenig <christian.koenig@amd.com>,
- Chandan Babu R <chandan.babu@oracle.com>
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, Jan 10, 2024 at 10:21:07AM +0100, Christoph Hellwig wrote:
-> Hi all,
+On Tue, Jan 09, 2024 at 12:05:16PM +0200, Jouni Högander wrote:
+> There is no specific reason to force full modeset if psr is enabled.
 > 
-> Darrick reported that the fairly new XFS xfile code blows up when force
-> enabling large folio for shmem.  This series fixes this quickly by disabling
-> large folios for this particular shmem file for now until it can be fixed
-> properly, which will be a lot more invasive.
-> 
-> I've added most of you to the CC list as I suspect most other users of
-> shmem_file_setup and friends will have similar issues.
+> Signed-off-by: Jouni Högander <jouni.hogander@intel.com>
+> Tested-by: Paz Zcharya <pazz@chromium.org>
 
-The graphics users _want_ to use large folios.  I'm pretty sure they've
-been tested with this.  It's just XFS that didn't know about this
-feature of shmem.
+
+Reviewed-by: Stanislav Lisovskiy <staniskav.lisovskiy@intel.com>
+
+> ---
+>  drivers/gpu/drm/i915/display/intel_display.c | 7 -------
+>  drivers/gpu/drm/i915/display/intel_dp.c      | 7 -------
+>  2 files changed, 14 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
+> index 31a6a82c1261..0cccf6df6718 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display.c
+> +++ b/drivers/gpu/drm/i915/display/intel_display.c
+> @@ -5202,13 +5202,6 @@ intel_pipe_config_compare(const struct intel_crtc_state *current_config,
+>  
+>  		PIPE_CONF_CHECK_CSC(csc);
+>  		PIPE_CONF_CHECK_CSC(output_csc);
+> -
+> -		if (current_config->active_planes) {
+> -			PIPE_CONF_CHECK_BOOL(has_psr);
+> -			PIPE_CONF_CHECK_BOOL(has_psr2);
+> -			PIPE_CONF_CHECK_BOOL(enable_psr2_sel_fetch);
+> -			PIPE_CONF_CHECK_I(dc3co_exitline);
+> -		}
+>  	}
+>  
+>  	PIPE_CONF_CHECK_BOOL(double_wide);
+> diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
+> index 7e4b7d5606d4..ab415f41924d 100644
+> --- a/drivers/gpu/drm/i915/display/intel_dp.c
+> +++ b/drivers/gpu/drm/i915/display/intel_dp.c
+> @@ -3326,13 +3326,6 @@ bool intel_dp_initial_fastset_check(struct intel_encoder *encoder,
+>  		fastset = false;
+>  	}
+>  
+> -	if (CAN_PSR(intel_dp)) {
+> -		drm_dbg_kms(&i915->drm, "[ENCODER:%d:%s] Forcing full modeset to compute PSR state\n",
+> -			    encoder->base.base.id, encoder->base.name);
+> -		crtc_state->uapi.mode_changed = true;
+> -		fastset = false;
+> -	}
+> -
+>  	return fastset;
+>  }
+>  
+> -- 
+> 2.34.1
+> 
