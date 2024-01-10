@@ -2,52 +2,52 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 88FA2829B03
-	for <lists+intel-gfx@lfdr.de>; Wed, 10 Jan 2024 14:13:52 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7128F829B04
+	for <lists+intel-gfx@lfdr.de>; Wed, 10 Jan 2024 14:14:25 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0431710E796;
-	Wed, 10 Jan 2024 13:13:51 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C893310E79B;
+	Wed, 10 Jan 2024 13:14:23 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.100])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 445AA10E796
- for <intel-gfx@lists.freedesktop.org>; Wed, 10 Jan 2024 13:13:49 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1704892429; x=1736428429;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=xHNy0Nhas+honDGaqLPejK+SrwSfCmPpyjSUrgSnE8w=;
- b=PrApe7cccrzCxlvWrv8y3S/CYQONFlb+jzRJDaV7SWw6kqlTtcCjBNzP
- j3NEXBWNmihrsMRInkTiiVOd5dzGDZKcIy3NO0g/XH1s3SW5smpXHluwK
- JvAT9yCC6NO+KMltiG3zoYAhd8MySap3oIl03LwdbHNPsKg8Jv86YLw5Z
- aSCqWzatIlTmItv19lONUHm8TRFFshSr8g33qSauiq2y1VWm6YryVHDtg
- L70ghM3OTXV4K7h8SoIfN1v78OaHB1aYYmYwokBDbabo67xaRDTR6LAtA
- N4qIbCCZ3vx4W2ohXh/rK+5il0ijL5G/69FGPIOYR41NLcaGES9iV28Yk g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10948"; a="464914059"
-X-IronPort-AV: E=Sophos;i="6.04,184,1695711600"; d="scan'208";a="464914059"
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
- by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Jan 2024 05:13:49 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10948"; a="816347187"
-X-IronPort-AV: E=Sophos;i="6.04,184,1695711600"; d="scan'208";a="816347187"
-Received: from vsovraso-mobl.ccr.corp.intel.com (HELO
- jhogande-mobl1.intel.com) ([10.251.211.202])
- by orsmga001-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Jan 2024 05:13:47 -0800
-From: =?UTF-8?q?Jouni=20H=C3=B6gander?= <jouni.hogander@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Subject: [PATCH v2 13/13] drm/i915/psr: Add panel replay sel update support to
- debugfs interface
-Date: Wed, 10 Jan 2024 15:13:04 +0200
-Message-Id: <20240110131304.2470006-14-jouni.hogander@intel.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20240110131304.2470006-1-jouni.hogander@intel.com>
-References: <20240110131304.2470006-1-jouni.hogander@intel.com>
+X-Greylist: delayed 307 seconds by postgrey-1.36 at gabe;
+ Wed, 10 Jan 2024 13:14:22 UTC
+Received: from mail.tuxedocomputers.com (mail.tuxedocomputers.com
+ [157.90.84.7])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 85C2F10E7FF;
+ Wed, 10 Jan 2024 13:14:22 +0000 (UTC)
+Received: from [192.168.42.20] (p5de453e7.dip0.t-ipconnect.de [93.228.83.231])
+ (Authenticated sender: wse@tuxedocomputers.com)
+ by mail.tuxedocomputers.com (Postfix) with ESMTPSA id C562B2FC005B;
+ Wed, 10 Jan 2024 14:14:20 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=tuxedocomputers.com;
+ s=default; t=1704892461;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references;
+ bh=D3XXWzf6RfsompBPEpJXXqoA3QY72hJE9BCknBlltgU=;
+ b=tFOiG5JGP63gUPxytuSaXh/9yy7SdS7kKoiE7F9gkO9wjO53+5d/H/jqPdNpMuqTjvGHft
+ 5DQe+5DPNJez8uLzSscCUnvJ3yoCroj6fr/rGUf0B+1bO27Wyr7h0rL9JcST9M0Q94BjTG
+ ZJXjiUdQlmZjvUbgXnM+Tij+l93L6nA=
+Authentication-Results: mail.tuxedocomputers.com;
+ auth=pass smtp.auth=wse@tuxedocomputers.com
+ smtp.mailfrom=wse@tuxedocomputers.com
+Message-ID: <67808818-ee34-4d04-ad90-cd5c6eb9bb26@tuxedocomputers.com>
+Date: Wed, 10 Jan 2024 14:14:20 +0100
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 3/7] drm/amd/display: Add handling for new "active color
+ format" property
+Content-Language: en-US
+To: Daniel Vetter <daniel@ffwll.ch>, Andri Yngvason <andri@yngvason.is>
+References: <20240109181104.1670304-1-andri@yngvason.is>
+ <20240109181104.1670304-4-andri@yngvason.is>
+ <ZZ57Nl3CnRMPcfbj@phenom.ffwll.local>
+ <CAFNQBQzo17cK4M-S=Mje8Lxub9Y74xFGj7iEq57vKJr47oiz5Q@mail.gmail.com>
+ <CAKMK7uGhMCwbztGdEmG4gFgpyhw6j-JFow-AaprFxcX710=qXA@mail.gmail.com>
+From: Werner Sembach <wse@tuxedocomputers.com>
+In-Reply-To: <CAKMK7uGhMCwbztGdEmG4gFgpyhw6j-JFow-AaprFxcX710=qXA@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -61,56 +61,66 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: Simon Ser <contact@emersion.fr>, intel-gfx@lists.freedesktop.org,
+ Leo Li <sunpeng.li@amd.com>, David Airlie <airlied@gmail.com>,
+ dri-devel@lists.freedesktop.org, "Pan, Xinhui" <Xinhui.Pan@amd.com>,
+ Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>, linux-kernel@vger.kernel.org,
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Alex Deucher <alexander.deucher@amd.com>, amd-gfx@lists.freedesktop.org,
+ Harry Wentland <harry.wentland@amd.com>,
+ =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Add panel replay selective update support to debugfs status interface. In
-case of sink supporting panel replay we will print out:
+Hi,
 
-Sink support: PSR = no, Panel Replay = yes, Panel Replay Selective Update = yes
+Am 10.01.24 um 14:09 schrieb Daniel Vetter:
+> On Wed, 10 Jan 2024 at 13:53, Andri Yngvason <andri@yngvason.is> wrote:
+>> mið., 10. jan. 2024 kl. 11:10 skrifaði Daniel Vetter <daniel@ffwll.ch>:
+>>> On Tue, Jan 09, 2024 at 06:11:00PM +0000, Andri Yngvason wrote:
+>>>> +     /* Extract information from crtc to communicate it to userspace as connector properties */
+>>>> +     for_each_new_connector_in_state(state, connector, new_con_state, i) {
+>>>> +             struct drm_crtc *crtc = new_con_state->crtc;
+>>>> +             struct dc_stream_state *stream;
+>>>> +
+>>>> +             if (crtc) {
+>>>> +                     new_crtc_state = drm_atomic_get_new_crtc_state(state, crtc);
+>>>> +                     dm_new_crtc_state = to_dm_crtc_state(new_crtc_state);
+>>>> +                     stream = dm_new_crtc_state->stream;
+>>>> +
+>>>> +                     if (stream) {
+>>>> +                             drm_connector_set_active_color_format_property(connector,
+>>>> +                                     convert_dc_pixel_encoding_into_drm_color_format(
+>>>> +                                             dm_new_crtc_state->stream->timing.pixel_encoding));
+>>>> +                     }
+>>>> +             } else {
+>>>> +                     drm_connector_set_active_color_format_property(connector, 0);
+>>> Just realized an even bigger reason why your current design doesn't work:
+>>> You don't have locking here.
+>>>
+>>> And you cannot grab the required lock, which is
+>>> drm_dev->mode_config.mutex, because that would result in deadlocks. So
+>>> this really needs to use the atomic state based design I've described.
+>>>
+>> Maybe we should just drop "actual color format" and instead fail the
+>> modeset if the "preferred color format" property cannot be satisfied?
+>> It seems like the simplest thing to do here, though it is perhaps less
+>> convenient for userspace. In that case, the "preferred color format"
+>> property should just be called "color format".
+> Yeah that's more in line with how other atomic properties work. This
+> way userspace can figure out what works with a TEST_ONLY commit too.
+> And for this to work you probably want to have an "automatic" setting
+> too.
+> -Sima
 
-and PSR mode will look like this if printing out enabled panel replay
-selective update:
+The problem with TEST_ONLY probing is that color format settings are 
+interdependent: https://gitlab.freedesktop.org/drm/amd/-/issues/476#note_966634
 
-PSR mode: Panel Replay Selective Update Enabled
+So changing any other setting may require every color format to be TEST_ONLY 
+probed again.
 
-Current PSR and panel replay printouts remain same.
+Greetings
 
-Cc: Kunal Joshi <kunal1.joshi@intel.com>
-
-Signed-off-by: Jouni Högander <jouni.hogander@intel.com>
----
- drivers/gpu/drm/i915/display/intel_psr.c | 9 ++++++---
- 1 file changed, 6 insertions(+), 3 deletions(-)
-
-diff --git a/drivers/gpu/drm/i915/display/intel_psr.c b/drivers/gpu/drm/i915/display/intel_psr.c
-index 9f5d04261df0..b7a29bdcf668 100644
---- a/drivers/gpu/drm/i915/display/intel_psr.c
-+++ b/drivers/gpu/drm/i915/display/intel_psr.c
-@@ -3222,7 +3222,9 @@ static int intel_psr_status(struct seq_file *m, struct intel_dp *intel_dp)
- 
- 	if (psr->sink_support)
- 		seq_printf(m, " [0x%02x]", intel_dp->psr_dpcd[0]);
--	seq_printf(m, ", Panel Replay = %s\n", str_yes_no(psr->sink_panel_replay_support));
-+	seq_printf(m, ", Panel Replay = %s", str_yes_no(psr->sink_panel_replay_support));
-+	seq_printf(m, ", Panel Replay Selective Update = %s\n",
-+		   str_yes_no(psr->sink_panel_replay_su_support));
- 
- 	if (!(psr->sink_support || psr->sink_panel_replay_support))
- 		return 0;
-@@ -3231,9 +3233,10 @@ static int intel_psr_status(struct seq_file *m, struct intel_dp *intel_dp)
- 	mutex_lock(&psr->lock);
- 
- 	if (psr->panel_replay_enabled)
--		status = "Panel Replay Enabled";
-+		status = psr->sel_update_enabled ? "Panel Replay Selective Update Enabled" :
-+			"Panel Replay Enabled";
- 	else if (psr->enabled)
--		status = psr->sel_update_enabled ? "PSR2 enabled" : "PSR1 enabled";
-+		status = psr->sel_update_enabled ? "PSR2" : "PSR1";
- 	else
- 		status = "disabled";
- 	seq_printf(m, "PSR mode: %s\n", status);
--- 
-2.34.1
+Werner
 
