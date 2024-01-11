@@ -2,68 +2,46 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 73B9A82ABA6
-	for <lists+intel-gfx@lfdr.de>; Thu, 11 Jan 2024 11:11:50 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id CDE7582AC77
+	for <lists+intel-gfx@lfdr.de>; Thu, 11 Jan 2024 11:51:48 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A2C8710E818;
-	Thu, 11 Jan 2024 10:11:45 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DBD9310E8BC;
+	Thu, 11 Jan 2024 10:51:46 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from us-smtp-delivery-124.mimecast.com
- (us-smtp-delivery-124.mimecast.com [170.10.133.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B20AB10E818
- for <intel-gfx@lists.freedesktop.org>; Thu, 11 Jan 2024 10:11:43 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1704967902;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type;
- bh=q1U051qfVVvOpDYruWIoTalq2OARTCsiq7Vq2e152Zs=;
- b=IQ1HmPS1EOsHEDoSfW1FzHnZTYxa8NMyFde42NtubMwocc67a52LT/x8V06hwI9BfzwQuL
- ZaCan9xFJc1ZXM387AZhYO1fsUV4w5dGrP+Ndhy6qsJYhK3qfGrpnAbnYg0HHkdFLmnz1D
- AAB9AXpCruTMOjTeq5qdGoCIxb1nF5Q=
-Received: from mail-wm1-f69.google.com (mail-wm1-f69.google.com
- [209.85.128.69]) by relay.mimecast.com with ESMTP with STARTTLS
- (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
- us-mta-498-mDBwEAwjPzehs0_4wDGR0A-1; Thu, 11 Jan 2024 05:11:39 -0500
-X-MC-Unique: mDBwEAwjPzehs0_4wDGR0A-1
-Received: by mail-wm1-f69.google.com with SMTP id
- 5b1f17b1804b1-40e541ddf57so16126095e9.1
- for <intel-gfx@lists.freedesktop.org>; Thu, 11 Jan 2024 02:11:39 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1704967898; x=1705572698;
- h=content-disposition:mime-version:message-id:subject:cc:to:from:date
- :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
- bh=q1U051qfVVvOpDYruWIoTalq2OARTCsiq7Vq2e152Zs=;
- b=uY0g323Gy9QsU4Z1koA/kJxhY6FZU3oD2+IlFEwXzQIVnwNB07XLnAP+tSpddfKHyZ
- J52bPpCydmO4xZZaYwcUDyxSjo3wAFZNeC4uSk7ZWwBYIxKbGw+FlANU9u8+E1caW7CB
- cpaLk7RJjjdHPDTT9wRpYNYJzFghGLn3/EnWaefrYeI8BRVP9vtU39HYmPklWT9nAhq/
- KISrmLdxxpb9pQj8HcP+bFSAx4AWWPP8sxwAmIwGueGwmfZjb+fXOap/92tgvRFAih95
- xIB77r9JmFLWWjBFTOUrnK/7lBo9CUgONAzVi+uX9cKN+WmF1fxg5eZQnJnbk7L/EYEM
- 9AiQ==
-X-Gm-Message-State: AOJu0YyKKLk3ZoqbALB1I646hCn7JgiWXRqz+1MG1VZzCkI0uqDlj12A
- i/BKuATxRwH0hJSznWzb06PT85CSJy/Pj/4HRD62U6JZ0elDyH6Dm9odBEpSrOu/Z8clRxoWSRz
- jJyEsesR2dg5Ap0BVE1ynGvg+U1DOEBHuJJH3
-X-Received: by 2002:a05:600c:1384:b0:40e:4990:89a9 with SMTP id
- u4-20020a05600c138400b0040e499089a9mr283544wmf.125.1704967898649; 
- Thu, 11 Jan 2024 02:11:38 -0800 (PST)
-X-Google-Smtp-Source: AGHT+IGQOrl0/x7BMHK1cASBEoKt7rxJsF5rZd6e6W5v1lrVZmLftXObkqlbWQkUWk95pBTtKZquOQ==
-X-Received: by 2002:a05:600c:1384:b0:40e:4990:89a9 with SMTP id
- u4-20020a05600c138400b0040e499089a9mr283535wmf.125.1704967898342; 
- Thu, 11 Jan 2024 02:11:38 -0800 (PST)
-Received: from localhost ([2a01:e0a:b25:f902::ff])
- by smtp.gmail.com with ESMTPSA id
- je6-20020a05600c1f8600b0040d8d11bf63sm1311154wmb.41.2024.01.11.02.11.38
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Thu, 11 Jan 2024 02:11:38 -0800 (PST)
-Date: Thu, 11 Jan 2024 11:11:37 +0100
-From: Maxime Ripard <mripard@redhat.com>
-To: Dave Airlie <airlied@gmail.com>, 
-	Daniel Vetter <daniel.vetter@ffwll.ch>
-Subject: [PULL] drm-misc-next-fixes
-Message-ID: <warlsyhbwarbezejzokxvrpnmvoaajonj6khjobvnfrhttrsks@fqoeqrjrct6l>
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E0C0710E898;
+ Thu, 11 Jan 2024 10:51:45 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1704970306; x=1736506306;
+ h=date:from:to:cc:subject:message-id:mime-version;
+ bh=nSPJeiZs/WYO+pU53D2d3Ta4qiOROG40hDgys0nUJCU=;
+ b=O8ED1pwHJrIbBZ2H2gqTpVyKwrZW8lmXhjAqPP3HTelefN6YKJ7k/fzB
+ +GfvHNR1Lu1wSLpNWEmmJDkuYgIQArkG/sz+1dZKjC8cSpEmtLYrtEHAQ
+ IQgopVJ+lqiGUji6hWmmddfP5s0PKs3dCs5Ec3gZ4OavzfI17ukjaI53I
+ 01j88EtaWTRf6rqfuJ2cSh/5Q9LnCchkmZ7oQR+GQqVirI290VrpOAoMw
+ 0Wj0XxOoRdEcYYSfW+R+3Rr9jGiLQs1UCo3HIq/3lrf794+swckz1p9Lm
+ GYtz4BPQj92JDY+r52COvYTV/h6NYhZETVOSEcMZ3NmMqqFNiU3WatRei g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10949"; a="12297203"
+X-IronPort-AV: E=Sophos;i="6.04,185,1695711600"; d="scan'208";a="12297203"
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+ by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 Jan 2024 02:51:45 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10949"; a="816680326"
+X-IronPort-AV: E=Sophos;i="6.04,185,1695711600"; d="scan'208";a="816680326"
+Received: from akochman-mobl.ger.corp.intel.com (HELO localhost)
+ ([10.246.32.38])
+ by orsmga001-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 Jan 2024 02:51:40 -0800
+Date: Thu, 11 Jan 2024 12:51:37 +0200
+From: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
+To: Dave Airlie <airlied@gmail.com>, Daniel Vetter <daniel.vetter@ffwll.ch>
+Subject: [PULL] drm-intel-next-fixes
+Message-ID: <ZZ_IOcLiDG9LJafO@jlahtine-mobl.ger.corp.intel.com>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
- protocol="application/pgp-signature"; boundary="u7ubydzr4xswh6nr"
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -78,67 +56,77 @@ List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
 Cc: dim-tools@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>,
+ Lucas De Marchi <lucas.demarchi@intel.com>, Oded Gabbay <ogabbay@kernel.org>,
  Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
  Rodrigo Vivi <rodrigo.vivi@intel.com>, intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+Hi Dave & Sima,
 
---u7ubydzr4xswh6nr
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Here goes drm-intel-next-fixes towards 6.8 merge window now that
+drm-intel-gt-next is also merged.
 
-Hi,
+Most importantly fixes for linux-next added build warnings and then a
+couple display fixes.
 
-Here's this week drm-misc-next-fixes PR.
+CI results for drm-next seem to have regressed with regards to the shard
+runs somewhere in the past, so bit limited to assess for regressions but
+BAT looks reasonable.
 
-Maxime
+Best Regards, Joonas
 
-drm-misc-next-fixes-2024-01-11:
-A fix for the v3d register readout, and two compilation fixes for
-rockchip.
-The following changes since commit eee706839333ec0643f1b4898a37588025bf4cb5:
+***
 
-  drm/imagination: pvr_device.h: fix all kernel-doc warnings (2024-01-02 11=
-:50:05 +0100)
+drm-intel-next-fixes-2024-01-11:
+
+- Fixes for kernel-doc warnings enforced in linux-next
+- Another build warning fix for string formatting of intel_wakeref_t
+- Display fixes for DP DSC BPC and C20 PLL state verification
+
+The following changes since commit b76c01f1d950425924ee1c1377760de3c024ef78:
+
+  Merge tag 'drm-intel-gt-next-2023-12-15' of git://anongit.freedesktop.org/drm/drm-intel into drm-next (2024-01-10 11:36:47 +1000)
 
 are available in the Git repository at:
 
-  git://anongit.freedesktop.org/drm/drm-misc tags/drm-misc-next-fixes-2024-=
-01-11
+  git://anongit.freedesktop.org/drm/drm-intel tags/drm-intel-next-fixes-2024-01-11
 
-for you to fetch changes up to 89fe46019a62bc1d0cb49c9615cb3520096c4bc1:
+for you to fetch changes up to d505a16e00c35919fd9fe5735894645e0f70a415:
 
-  drm/v3d: Fix support for register debugging on the RPi 4 (2024-01-09 14:2=
-1:47 -0300)
+  drm/i915/perf: reconcile Excess struct member kernel-doc warnings (2024-01-10 11:56:58 +0200)
 
 ----------------------------------------------------------------
-A fix for the v3d register readout, and two compilation fixes for
-rockchip.
+- Fixes for kernel-doc warnings enforced in linux-next
+- Another build warning fix for string formatting of intel_wakeref_t
+- Display fixes for DP DSC BPC and C20 PLL state verification
 
 ----------------------------------------------------------------
-Cristian Ciocaltea (2):
-      drm/rockchip: vop2: Drop superfluous include
-      drm/rockchip: vop2: Drop unused if_dclk_rate variable
+Ankit Nautiyal (1):
+      drm/i915/dp: Fix the max DSC bpc supported by source
 
-Ma=EDra Canal (1):
-      drm/v3d: Fix support for register debugging on the RPi 4
+Imre Deak (1):
+      drm/i915/dp: Fix the PSR debugfs entries wrt. MST connectors
 
- drivers/gpu/drm/rockchip/rockchip_drm_vop2.c |  4 +---
- drivers/gpu/drm/v3d/v3d_debugfs.c            | 20 ++++++++++----------
- 2 files changed, 11 insertions(+), 13 deletions(-)
+Jani Nikula (1):
+      drm/i915: don't make assumptions about intel_wakeref_t type
 
---u7ubydzr4xswh6nr
-Content-Type: application/pgp-signature; name="signature.asc"
+Mika Kahola (1):
+      drm/i915/display: Fix C20 pll selection for state verification
 
------BEGIN PGP SIGNATURE-----
+Randy Dunlap (4):
+      drm/i915/gem: reconcile Excess struct member kernel-doc warnings
+      drm/i915/gt: reconcile Excess struct member kernel-doc warnings
+      drm/i915/guc: reconcile Excess struct member kernel-doc warnings
+      drm/i915/perf: reconcile Excess struct member kernel-doc warnings
 
-iHUEABYKAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCZZ++2QAKCRDj7w1vZxhR
-xZVkAP41KaQ7V6SVZJqPsQS+XTrTVPwAN+M6oZV4+QTqki2+XAD/WWjvF4iyIqPy
-c8ztIkCYVnDypPqV/fCqt/iTxVYYMw4=
-=5wmL
------END PGP SIGNATURE-----
-
---u7ubydzr4xswh6nr--
-
+ drivers/gpu/drm/i915/display/intel_cx0_phy.c       | 25 +++++---
+ drivers/gpu/drm/i915/display/intel_display_power.c |  4 +-
+ drivers/gpu/drm/i915/display/intel_dp.c            |  2 +-
+ drivers/gpu/drm/i915/display/intel_psr.c           | 10 +--
+ drivers/gpu/drm/i915/gem/i915_gem_context_types.h  |  4 +-
+ drivers/gpu/drm/i915/gt/intel_gsc.h                |  7 +-
+ drivers/gpu/drm/i915/gt/uc/intel_guc.h             | 75 ++++++++++++----------
+ drivers/gpu/drm/i915/i915_perf_types.h             |  9 ++-
+ 8 files changed, 78 insertions(+), 58 deletions(-)
