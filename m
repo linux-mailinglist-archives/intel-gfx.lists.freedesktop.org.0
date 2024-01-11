@@ -1,56 +1,70 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 65C8C82AB22
-	for <lists+intel-gfx@lfdr.de>; Thu, 11 Jan 2024 10:44:00 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 73B9A82ABA6
+	for <lists+intel-gfx@lfdr.de>; Thu, 11 Jan 2024 11:11:50 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 663A210E87D;
-	Thu, 11 Jan 2024 09:43:54 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A2C8710E818;
+	Thu, 11 Jan 2024 10:11:45 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0E98310E878;
- Thu, 11 Jan 2024 09:43:52 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1704966233; x=1736502233;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version:content-transfer-encoding;
- bh=hYpwhw2ORAnQPU+cW+nYE2dd6gHgxE/HcMepJMGkY9w=;
- b=Pbp5s7Ay1k0DbgTgh9FxdC/hGhndTwFiVFqw/Po4XtqO1GgdvU6U78kf
- bx4N16DFmjyez4ED7GRVu4cGGKDJ56hqdGykH8+Ejpv0S+Ssm1mUmOgtJ
- o+ceZLrsbi0RdQzn6txQxmIKdwT6lQULstBO4voohJUkZ4IVUFf/DcjdI
- Q5UurX5BwK4FzsK0/nWC+Nz3xXHcAg7w/IRx0EyZNfyTBxyBSoqM3qn0U
- SZWSz9xzxKDI5WMrJ68YeZD0FynIt68BP8m4Wnh/SCmZBBd/y3B8v41V2
- VcjsK/w5kL6ObU/MiNzkRV/dts6giyxkK+fDAyQIDfUJPPnPDkfPEN9SR w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10949"; a="5880068"
-X-IronPort-AV: E=Sophos;i="6.04,185,1695711600"; 
-   d="scan'208";a="5880068"
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
- by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Jan 2024 01:43:52 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10949"; a="901495120"
-X-IronPort-AV: E=Sophos;i="6.04,185,1695711600"; d="scan'208";a="901495120"
-Received: from gaertgee-mobl.ger.corp.intel.com (HELO localhost)
- ([10.252.54.206])
- by fmsmga002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Jan 2024 01:43:44 -0800
-From: Jani Nikula <jani.nikula@intel.com>
-To: Hamza Mahfooz <hamza.mahfooz@amd.com>, dri-devel@lists.freedesktop.org
-Subject: Re: [PATCH 5/6] drm: enable (most) W=1 warnings by default across
- the subsystem
-In-Reply-To: <5c4d7bfa-a1d2-42bb-a304-5a796a5d26fe@amd.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <cover.1704908087.git.jani.nikula@intel.com>
- <1291306bedfd6297d4bf0fca5daa5bac46dde1ad.1704908087.git.jani.nikula@intel.com>
- <5c4d7bfa-a1d2-42bb-a304-5a796a5d26fe@amd.com>
-Date: Thu, 11 Jan 2024 11:43:42 +0200
-Message-ID: <87h6jkurw1.fsf@intel.com>
+Received: from us-smtp-delivery-124.mimecast.com
+ (us-smtp-delivery-124.mimecast.com [170.10.133.124])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B20AB10E818
+ for <intel-gfx@lists.freedesktop.org>; Thu, 11 Jan 2024 10:11:43 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+ s=mimecast20190719; t=1704967902;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type;
+ bh=q1U051qfVVvOpDYruWIoTalq2OARTCsiq7Vq2e152Zs=;
+ b=IQ1HmPS1EOsHEDoSfW1FzHnZTYxa8NMyFde42NtubMwocc67a52LT/x8V06hwI9BfzwQuL
+ ZaCan9xFJc1ZXM387AZhYO1fsUV4w5dGrP+Ndhy6qsJYhK3qfGrpnAbnYg0HHkdFLmnz1D
+ AAB9AXpCruTMOjTeq5qdGoCIxb1nF5Q=
+Received: from mail-wm1-f69.google.com (mail-wm1-f69.google.com
+ [209.85.128.69]) by relay.mimecast.com with ESMTP with STARTTLS
+ (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
+ us-mta-498-mDBwEAwjPzehs0_4wDGR0A-1; Thu, 11 Jan 2024 05:11:39 -0500
+X-MC-Unique: mDBwEAwjPzehs0_4wDGR0A-1
+Received: by mail-wm1-f69.google.com with SMTP id
+ 5b1f17b1804b1-40e541ddf57so16126095e9.1
+ for <intel-gfx@lists.freedesktop.org>; Thu, 11 Jan 2024 02:11:39 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1704967898; x=1705572698;
+ h=content-disposition:mime-version:message-id:subject:cc:to:from:date
+ :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+ bh=q1U051qfVVvOpDYruWIoTalq2OARTCsiq7Vq2e152Zs=;
+ b=uY0g323Gy9QsU4Z1koA/kJxhY6FZU3oD2+IlFEwXzQIVnwNB07XLnAP+tSpddfKHyZ
+ J52bPpCydmO4xZZaYwcUDyxSjo3wAFZNeC4uSk7ZWwBYIxKbGw+FlANU9u8+E1caW7CB
+ cpaLk7RJjjdHPDTT9wRpYNYJzFghGLn3/EnWaefrYeI8BRVP9vtU39HYmPklWT9nAhq/
+ KISrmLdxxpb9pQj8HcP+bFSAx4AWWPP8sxwAmIwGueGwmfZjb+fXOap/92tgvRFAih95
+ xIB77r9JmFLWWjBFTOUrnK/7lBo9CUgONAzVi+uX9cKN+WmF1fxg5eZQnJnbk7L/EYEM
+ 9AiQ==
+X-Gm-Message-State: AOJu0YyKKLk3ZoqbALB1I646hCn7JgiWXRqz+1MG1VZzCkI0uqDlj12A
+ i/BKuATxRwH0hJSznWzb06PT85CSJy/Pj/4HRD62U6JZ0elDyH6Dm9odBEpSrOu/Z8clRxoWSRz
+ jJyEsesR2dg5Ap0BVE1ynGvg+U1DOEBHuJJH3
+X-Received: by 2002:a05:600c:1384:b0:40e:4990:89a9 with SMTP id
+ u4-20020a05600c138400b0040e499089a9mr283544wmf.125.1704967898649; 
+ Thu, 11 Jan 2024 02:11:38 -0800 (PST)
+X-Google-Smtp-Source: AGHT+IGQOrl0/x7BMHK1cASBEoKt7rxJsF5rZd6e6W5v1lrVZmLftXObkqlbWQkUWk95pBTtKZquOQ==
+X-Received: by 2002:a05:600c:1384:b0:40e:4990:89a9 with SMTP id
+ u4-20020a05600c138400b0040e499089a9mr283535wmf.125.1704967898342; 
+ Thu, 11 Jan 2024 02:11:38 -0800 (PST)
+Received: from localhost ([2a01:e0a:b25:f902::ff])
+ by smtp.gmail.com with ESMTPSA id
+ je6-20020a05600c1f8600b0040d8d11bf63sm1311154wmb.41.2024.01.11.02.11.38
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Thu, 11 Jan 2024 02:11:38 -0800 (PST)
+Date: Thu, 11 Jan 2024 11:11:37 +0100
+From: Maxime Ripard <mripard@redhat.com>
+To: Dave Airlie <airlied@gmail.com>, 
+	Daniel Vetter <daniel.vetter@ffwll.ch>
+Subject: [PULL] drm-misc-next-fixes
+Message-ID: <warlsyhbwarbezejzokxvrpnmvoaajonj6khjobvnfrhttrsks@fqoeqrjrct6l>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
+Content-Type: multipart/signed; micalg=pgp-sha512;
+ protocol="application/pgp-signature"; boundary="u7ubydzr4xswh6nr"
+Content-Disposition: inline
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -63,172 +77,68 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Sui Jingfeng <sui.jingfeng@linux.dev>,
- Thomas Zimmermann <tzimmermann@suse.de>, Karol Herbst <kherbst@redhat.com>,
- intel-gfx@lists.freedesktop.org, Xinhui <Xinhui.Pan@amd.com>,
- Abhinav Kumar <quic_abhinavk@quicinc.com>, Maxime Ripard <mripard@kernel.org>,
- Javier Martinez Canillas <javierm@redhat.com>,
- Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
- Danilo Krummrich <dakr@redhat.com>, Daniel Vetter <daniel@ffwll.ch>,
- Alex Deucher <alexander.deucher@amd.com>,
- Marijn Suijten <marijn.suijten@somainline.org>,
- Masahiro Yamada <masahiroy@kernel.org>, David Airlie <airlied@gmail.com>,
- Christian =?utf-8?Q?K=C3=B6nig?= <christian.koenig@amd.com>
+Cc: dim-tools@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, 10 Jan 2024, Hamza Mahfooz <hamza.mahfooz@amd.com> wrote:
-> On 1/10/24 12:39, Jani Nikula wrote:
->> At least the i915 and amd drivers enable a bunch more compiler warnings
->> than the kernel defaults.
->>=20
->> Extend most of the W=3D1 warnings to the entire drm subsystem by
->> default. Use the copy-pasted warnings from scripts/Makefile.extrawarn
->> with s/KBUILD_CFLAGS/subdir-ccflags-y/ to make it easier to compare and
->> keep up with them in the future.
->>=20
->> This is similar to the approach currently used in i915.
->>=20
->> Some of the -Wextra warnings do need to be disabled, just like in
->> Makefile.extrawarn, but take care to not disable them for W=3D2 or W=3D3
->> builds, depending on the warning.
->>=20
->> There are too many -Wformat-truncation warnings to cleanly fix up front;
->> leave that warning disabled for now.
->>=20
->> v2:
->> - Drop -Wformat-truncation (too many warnings)
->> - Drop -Wstringop-overflow (enabled by default upstream)
->>=20
->> Cc: David Airlie <airlied@gmail.com>
->> Cc: Daniel Vetter <daniel@ffwll.ch>
->> Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
->> Cc: Maxime Ripard <mripard@kernel.org>
->> Cc: Thomas Zimmermann <tzimmermann@suse.de>
->> Cc: Alex Deucher <alexander.deucher@amd.com>
->> Cc: Christian K=C3=B6nig <christian.koenig@amd.com>
->> Cc: Pan, Xinhui <Xinhui.Pan@amd.com>
->> Cc: Karol Herbst <kherbst@redhat.com>
->> Cc: Lyude Paul <lyude@redhat.com>
->> Cc: Danilo Krummrich <dakr@redhat.com>
->> Cc: Rob Clark <robdclark@gmail.com>
->> Cc: Abhinav Kumar <quic_abhinavk@quicinc.com>
->> Cc: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
->> Cc: Sean Paul <sean@poorly.run>
->> Cc: Marijn Suijten <marijn.suijten@somainline.org>
->> Cc: Hamza Mahfooz <hamza.mahfooz@amd.com>
->> Acked-by: Javier Martinez Canillas <javierm@redhat.com>
->> Acked-by: Thomas Zimmermann <tzimmermann@suse.de>
->> Acked-by: Sui Jingfeng <sui.jingfeng@linux.dev>
->> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
->> ---
->>   drivers/gpu/drm/Makefile | 27 +++++++++++++++++++++++++++
->>   1 file changed, 27 insertions(+)
->>=20
->> diff --git a/drivers/gpu/drm/Makefile b/drivers/gpu/drm/Makefile
->> index 104b42df2e95..8b6be830f7c3 100644
->> --- a/drivers/gpu/drm/Makefile
->> +++ b/drivers/gpu/drm/Makefile
->> @@ -5,6 +5,33 @@
->>=20=20=20
->>   CFLAGS-$(CONFIG_DRM_USE_DYNAMIC_DEBUG)	+=3D -DDYNAMIC_DEBUG_MODULE
->>=20=20=20
->> +# Unconditionally enable W=3D1 warnings locally
->> +# --- begin copy-paste W=3D1 warnings from scripts/Makefile.extrawarn
->> +subdir-ccflags-y +=3D -Wextra -Wunused -Wno-unused-parameter
->> +subdir-ccflags-y +=3D -Wmissing-declarations
->> +subdir-ccflags-y +=3D $(call cc-option, -Wrestrict)
->
-> It would be safer to do something along the lines of:
->
-> cond-flags :=3D $(call cc-option, -Wrestrict) \
-> 	$(call cc-option, -Wunused-but-set-variable) \
-> 	$(call cc-option, -Wunused-const-variable) \
-> 	$(call cc-option, -Wunused-const-variable) \
-> 	$(call cc-option, -Wformat-overflow) \
-> 	$(call cc-option, -Wstringop-truncation)
-> subdir-ccflags-y +=3D $(cond-flags)
->
-> Otherwise, you will end up breaking `$ make M=3Ddrivers/gpu/drm`
-> for a bunch of people.
 
-I discussed this with Alex on IRC yesterday. The above seems obviously
-correct in that it just changes the evaluation time of $(call cc-option,
-...). Apparently not having it may lead to:
+--u7ubydzr4xswh6nr
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-scripts/Makefile.lib:10: *** Recursive variable 'KBUILD_CFLAGS' references =
-itself (eventually).  Stop.
+Hi,
 
-Of course, I could just throw that in and be happy, but me being me, I'd
-really like to know what is going on here first. :)
+Here's this week drm-misc-next-fixes PR.
 
-For one thing, I always thought M=3Ddir was only for out-of-tree modules,
-though the IRC discussion seems to indicate a lot of people also use it
-for in-tree modules. But I can't even make it to work for a lot of cases
-on top of current drm-tip, without the changes here.
+Maxime
 
-M=3Ddrivers/gpu/drm/i915 fails immediately. So does
-M=3Ddrivers/gpu/drm/amd. And M=3Ddrivers/gpu/drm/nouveau. And
-M=3Ddrivers/gpu/drm/radeon.
+drm-misc-next-fixes-2024-01-11:
+A fix for the v3d register readout, and two compilation fixes for
+rockchip.
+The following changes since commit eee706839333ec0643f1b4898a37588025bf4cb5:
 
-M=3Ddrivers/gpu/drm fails with the same cases as above. I always use
-KBUILD_OUTPUT=3Ddir but I don't know if it makes a difference, I didn't
-try.
+  drm/imagination: pvr_device.h: fix all kernel-doc warnings (2024-01-02 11=
+:50:05 +0100)
 
-However M=3Ddrivers/gpu/drm/amd/amdgpu works.
+are available in the Git repository at:
 
-The only way I could reproduce the "recursive variable" issue in that
-was using:
+  git://anongit.freedesktop.org/drm/drm-misc tags/drm-misc-next-fixes-2024-=
+01-11
 
-subdir-ccflags-y =3D -Wextra
+for you to fetch changes up to 89fe46019a62bc1d0cb49c9615cb3520096c4bc1:
 
-instead of:
+  drm/v3d: Fix support for register debugging on the RPi 4 (2024-01-09 14:2=
+1:47 -0300)
 
-subdir-ccflags-y :=3D -Wextra
+----------------------------------------------------------------
+A fix for the v3d register readout, and two compilation fixes for
+rockchip.
 
-or:
+----------------------------------------------------------------
+Cristian Ciocaltea (2):
+      drm/rockchip: vop2: Drop superfluous include
+      drm/rockchip: vop2: Drop unused if_dclk_rate variable
 
-subdir-ccflags-y +=3D -Wextra
+Ma=EDra Canal (1):
+      drm/v3d: Fix support for register debugging on the RPi 4
 
-in amdgpu/Makefile
+ drivers/gpu/drm/rockchip/rockchip_drm_vop2.c |  4 +---
+ drivers/gpu/drm/v3d/v3d_debugfs.c            | 20 ++++++++++----------
+ 2 files changed, 11 insertions(+), 13 deletions(-)
 
-Since I use the latter form in this pach, I think it should be fine for
-M=3Ddir users even if M=3Ddir doesn't really seem to generally work for
-in-tree modules (at least not for me).
+--u7ubydzr4xswh6nr
+Content-Type: application/pgp-signature; name="signature.asc"
 
-Cc: Masahiro
+-----BEGIN PGP SIGNATURE-----
 
+iHUEABYKAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCZZ++2QAKCRDj7w1vZxhR
+xZVkAP41KaQ7V6SVZJqPsQS+XTrTVPwAN+M6oZV4+QTqki2+XAD/WWjvF4iyIqPy
+c8ztIkCYVnDypPqV/fCqt/iTxVYYMw4=
+=5wmL
+-----END PGP SIGNATURE-----
 
-BR,
-Jani.
+--u7ubydzr4xswh6nr--
 
-
->
->> +subdir-ccflags-y +=3D -Wmissing-format-attribute
->> +subdir-ccflags-y +=3D -Wmissing-prototypes
->> +subdir-ccflags-y +=3D -Wold-style-definition
->> +subdir-ccflags-y +=3D -Wmissing-include-dirs
->> +subdir-ccflags-y +=3D $(call cc-option, -Wunused-but-set-variable)
->> +subdir-ccflags-y +=3D $(call cc-option, -Wunused-const-variable)
->> +subdir-ccflags-y +=3D $(call cc-option, -Wpacked-not-aligned)
->> +subdir-ccflags-y +=3D $(call cc-option, -Wformat-overflow)
->> +# FIXME: fix -Wformat-truncation warnings and uncomment
->> +#subdir-ccflags-y +=3D $(call cc-option, -Wformat-truncation)
->> +subdir-ccflags-y +=3D $(call cc-option, -Wstringop-truncation)
->> +# The following turn off the warnings enabled by -Wextra
->> +ifeq ($(findstring 2, $(KBUILD_EXTRA_WARN)),)
->> +subdir-ccflags-y +=3D -Wno-missing-field-initializers
->> +subdir-ccflags-y +=3D -Wno-type-limits
->> +subdir-ccflags-y +=3D -Wno-shift-negative-value
->> +endif
->> +ifeq ($(findstring 3, $(KBUILD_EXTRA_WARN)),)
->> +subdir-ccflags-y +=3D -Wno-sign-compare
->> +endif
->> +# --- end copy-paste
->> +
->>   drm-y :=3D \
->>   	drm_aperture.o \
->>   	drm_atomic.o \
-
---=20
-Jani Nikula, Intel
