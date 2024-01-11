@@ -1,48 +1,44 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id F2B7E82B70B
-	for <lists+intel-gfx@lfdr.de>; Thu, 11 Jan 2024 23:21:30 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id EFD3C82B739
+	for <lists+intel-gfx@lfdr.de>; Thu, 11 Jan 2024 23:46:25 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 23FAF10E0E9;
-	Thu, 11 Jan 2024 22:21:28 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BA91C10E31F;
+	Thu, 11 Jan 2024 22:46:19 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8970110E0B5;
- Thu, 11 Jan 2024 22:21:26 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1705011686; x=1736547686;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=ltEsOIBj6Lln81qxMHMVlom9u6U8HQEo064v0MKQoaU=;
- b=LFYTtDRwKVZShbK8YbMAAn5oWLCl9ON773XAZot05b0e6IbrvR2c8Yzp
- zASHrmdDjv0fbLvvnpnujehR16zY6DhdO5FZ2XuADRJvGUGaDoAFp1W6m
- OTKny6ozrne8lYQUNVgwha9sdgawVeZwPJnZpOVm9xFbes5ggOZRQDF1Z
- dFpIxnNoIzhUul5zm9csMrJ42fOAh48JP+lDZsfCaBG0h0TFhGapEenfe
- UAp8dKT2cyaGsHLMnSXtLR77lr+92w/u5J1XmX9V6Toe+GDOz7/CQxN0o
- /J0pSr5q87kIZpTwly1Fp6wQkyZPjlEmsblvMnsWssqmqehl9DwN08PCf g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10950"; a="17619862"
-X-IronPort-AV: E=Sophos;i="6.04,187,1695711600"; d="scan'208";a="17619862"
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
- by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Jan 2024 14:21:26 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10950"; a="782799983"
-X-IronPort-AV: E=Sophos;i="6.04,187,1695711600"; d="scan'208";a="782799983"
-Received: from vbelgaum-ubuntu.fm.intel.com ([10.1.27.27])
- by orsmga002.jf.intel.com with ESMTP; 11 Jan 2024 14:21:25 -0800
-From: Vinay Belgaumkar <vinay.belgaumkar@intel.com>
-To: intel-gfx@lists.freedesktop.org,
-	igt-dev@lists.freedesktop.org
-Subject: [PATCH i-g-t] tests/perf_pmu: Set defaults before frequency test
-Date: Thu, 11 Jan 2024 14:20:54 -0800
-Message-Id: <20240111222054.2403101-1-vinay.belgaumkar@intel.com>
-X-Mailer: git-send-email 2.38.1
+Received: from casper.infradead.org (casper.infradead.org
+ [IPv6:2001:8b0:10b:1236::1])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6942910E0F9;
+ Thu, 11 Jan 2024 22:46:18 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+ d=infradead.org; s=casper.20170209; h=In-Reply-To:Content-Type:MIME-Version:
+ References:Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:
+ Content-Transfer-Encoding:Content-ID:Content-Description;
+ bh=0rn15vikwOjPu92WIZ1pOLLnXWU6x//npevyjHw8yaU=; b=EomzbTzJzQx9U5EbbMaV2qfdKn
+ m+8Aks0QGEeOKbhHlYUfGI0ESzbPCwu4+T1iJwpAMaa+P+8S7WdUdv0uh9VymFzvAlHqWZdS+1v42
+ VYO+5aZ+YLqzQ9VrPT3bL2J2+Jh26pmRT3GsCtQ+FuTAp5ogzJOhfRTDdZd5nGFmbyHf4Nic43+/j
+ wDbX0twq5Rj7iSd2OySjSEWRPCXpPbuXe/3Q1RVKFIc6G732IcUWMPMXjEy7Po9B7TOpSfuH09+Si
+ ksPBNd2g30LsyFYsilKTNDIkvoFAxmh97MurNp5o/ueUNwULbN3H1vFGwAFhHlhdxkhCRy3J2stsU
+ Y5bchWlg==;
+Received: from willy by casper.infradead.org with local (Exim 4.94.2 #2 (Red
+ Hat Linux)) id 1rO3o9-00FAPE-3J; Thu, 11 Jan 2024 22:45:53 +0000
+Date: Thu, 11 Jan 2024 22:45:53 +0000
+From: Matthew Wilcox <willy@infradead.org>
+To: Andrew Morton <akpm@linux-foundation.org>
+Subject: Re: [PATCH 2/2] xfs: disable large folio support in xfile_create
+Message-ID: <ZaBvoWCCChU5wHDp@casper.infradead.org>
+References: <20240110092109.1950011-1-hch@lst.de>
+ <20240110092109.1950011-3-hch@lst.de>
+ <20240110175515.GA722950@frogsfrogsfrogs>
+ <20240110200451.GB722950@frogsfrogsfrogs>
+ <20240111140053.51948fb3ed10e06d8e389d2e@linux-foundation.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240111140053.51948fb3ed10e06d8e389d2e@linux-foundation.org>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -55,115 +51,45 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: "Darrick J. Wong" <djwong@kernel.org>, dri-devel@lists.freedesktop.org,
+ David Howells <dhowells@redhat.com>, linux-mm@kvack.org,
+ Huang Rui <ray.huang@amd.com>, David Airlie <airlied@gmail.com>,
+ Christoph Hellwig <hch@lst.de>, x86@kernel.org,
+ Hugh Dickins <hughd@google.com>, Dave Hansen <dave.hansen@linux.intel.com>,
+ Thomas Zimmermann <tzimmermann@suse.de>, intel-gfx@lists.freedesktop.org,
+ Maxime Ripard <mripard@kernel.org>, Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ linux-sgx@vger.kernel.org, Jarkko Sakkinen <jarkko@kernel.org>,
+ keyrings@vger.kernel.org, Daniel Vetter <daniel@ffwll.ch>,
+ linux-fsdevel@vger.kernel.org, Christian Koenig <christian.koenig@amd.com>,
+ Chandan Babu R <chandan.babu@oracle.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Seeing random issues where this test skips due to invalid
-boost freq at the start. Also ensure that we restore the frequencies at the end.
+On Thu, Jan 11, 2024 at 02:00:53PM -0800, Andrew Morton wrote:
+> On Wed, 10 Jan 2024 12:04:51 -0800 "Darrick J. Wong" <djwong@kernel.org> wrote:
+> 
+> > > > Fixing this will require a bit of an API change, and prefeably sorting out
+> > > > the hwpoison story for pages vs folio and where it is placed in the shmem
+> > > > API.  For now use this one liner to disable large folios.
+> > > > 
+> > > > Reported-by: Darrick J. Wong <djwong@kernel.org>
+> > > > Signed-off-by: Christoph Hellwig <hch@lst.de>
+> > > 
+> > > Can someone who knows more about shmem.c than I do please review
+> > > https://lore.kernel.org/linux-xfs/20240103084126.513354-4-hch@lst.de/
+> > > so that I can feel slightly more confident as hch and I sort through the
+> > > xfile.c issues?
+> > > 
+> > > For this patch,
+> > > Reviewed-by: Darrick J. Wong <djwong@kernel.org>
+> > 
+> > ...except that I'm still getting 2M THPs even with this enabled, so I
+> > guess either we get to fix it now, or create our own private tmpfs mount
+> > so that we can pass in huge=never, similar to what i915 does. :(
+> 
+> What is "this"?  Are you saying that $Subject doesn't work, or that the
+> above-linked please-review patch doesn't work?
 
-v2: Use save/restore functions instead of exit_handler. Adding an
-exit_handler necessitated moving drm_close() into the handler. However,
-the module-reload subtest at the end expects drm-fd to be closed.
-Also setup expected frequencies (Kamil) and address other nits (Kamil)
-
-Link: https://gitlab.freedesktop.org/drm/intel/-/issues/9432
-Cc: Kamil Konieczny <kamil.konieczny@linux.intel.com>
-Signed-off-by: Vinay Belgaumkar <vinay.belgaumkar@intel.com>
----
- tests/intel/perf_pmu.c | 62 +++++++++++++++++++++++++++++++++++++++++-
- 1 file changed, 61 insertions(+), 1 deletion(-)
-
-diff --git a/tests/intel/perf_pmu.c b/tests/intel/perf_pmu.c
-index c6e6a8b77..4ae2b60ae 100644
---- a/tests/intel/perf_pmu.c
-+++ b/tests/intel/perf_pmu.c
-@@ -2454,12 +2454,69 @@ static void pmu_read(int i915)
- 		for_each_if((e)->class == I915_ENGINE_CLASS_RENDER) \
- 			igt_dynamic_f("%s", e->name)
- 
-+int fd = -1;
-+uint32_t *stash_min, *stash_max, *stash_boost;
-+
-+static void save_sysfs_freq(int i915)
-+{
-+	int gt, num_gts, sysfs, tmp;
-+	uint32_t rpn_freq, rp0_freq;
-+
-+	num_gts = igt_sysfs_get_num_gt(i915);
-+
-+	stash_min = (uint32_t *)malloc(sizeof(uint32_t) * num_gts);
-+	stash_max = (uint32_t *)malloc(sizeof(uint32_t) * num_gts);
-+	stash_boost = (uint32_t *)malloc(sizeof(uint32_t) * num_gts);
-+
-+	/* Save boost, min and max across GTs */
-+	i915_for_each_gt(i915, tmp, gt) {
-+		sysfs = igt_sysfs_gt_open(i915, gt);
-+		igt_require(sysfs >= 0);
-+
-+		stash_min[gt] = igt_sysfs_get_u32(sysfs, "rps_min_freq_mhz");
-+		stash_max[gt] = igt_sysfs_get_u32(sysfs, "rps_max_freq_mhz");
-+		stash_boost[gt] = igt_sysfs_get_u32(sysfs, "rps_boost_freq_mhz");
-+		igt_debug("GT: %d, min: %d, max: %d, boost:%d\n",
-+			  gt, stash_min[gt], stash_max[gt], stash_boost[gt]);
-+
-+		rpn_freq = igt_sysfs_get_u32(sysfs, "rps_RPn_freq_mhz");
-+		rp0_freq = igt_sysfs_get_u32(sysfs, "rps_RP0_freq_mhz");
-+
-+		/* Set pre-conditions, in case frequencies are in non-default state */
-+		igt_require(__igt_sysfs_set_u32(sysfs, "rps_max_freq_mhz", rp0_freq));
-+		igt_require(__igt_sysfs_set_u32(sysfs, "rps_boost_freq_mhz", rp0_freq));
-+		igt_require(__igt_sysfs_set_u32(sysfs, "rps_min_freq_mhz", rpn_freq));
-+
-+		close(sysfs);
-+	}
-+}
-+
-+static void restore_sysfs_freq(int i915)
-+{
-+	int sysfs, gt, tmp;
-+
-+	/* Restore frequencies */
-+	i915_for_each_gt(fd, tmp, gt) {
-+		sysfs = igt_sysfs_gt_open(fd, gt);
-+		igt_require(sysfs >= 0);
-+
-+		igt_require(__igt_sysfs_set_u32(sysfs, "rps_max_freq_mhz", stash_max[gt]));
-+		igt_require(__igt_sysfs_set_u32(sysfs, "rps_min_freq_mhz", stash_min[gt]));
-+		igt_require(__igt_sysfs_set_u32(sysfs, "rps_boost_freq_mhz", stash_boost[gt]));
-+
-+		close(sysfs);
-+	}
-+	free(stash_min);
-+	free(stash_max);
-+	free(stash_boost);
-+}
-+
- igt_main
- {
- 	const struct intel_execution_engine2 *e;
- 	unsigned int num_engines = 0;
- 	const intel_ctx_t *ctx = NULL;
--	int gt, tmp, fd = -1;
-+	int gt, tmp;
- 	int num_gt = 0;
- 
- 	/**
-@@ -2664,12 +2721,15 @@ igt_main
- 	 * Test GPU frequency.
- 	 */
- 	igt_subtest_with_dynamic("frequency") {
-+		save_sysfs_freq(fd);
-+
- 		i915_for_each_gt(fd, tmp, gt) {
- 			igt_dynamic_f("gt%u", gt)
- 				test_frequency(fd, gt);
- 			igt_dynamic_f("idle-gt%u", gt)
- 				test_frequency_idle(fd, gt);
- 		}
-+		restore_sysfs_freq(fd);
- 	}
- 
- 	/**
--- 
-2.38.1
-
+shmem pays no attention to the mapping_large_folio_support() flag,
+so the proposed fix doesn't work.  It ought to, but it has its own way
+of doing it that predates mapping_large_folio_support existing.
