@@ -1,51 +1,29 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id BEBF982B3F4
-	for <lists+intel-gfx@lfdr.de>; Thu, 11 Jan 2024 18:22:00 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id A08BF82B3F9
+	for <lists+intel-gfx@lfdr.de>; Thu, 11 Jan 2024 18:22:32 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5FC5910E973;
-	Thu, 11 Jan 2024 17:21:59 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2D11C10E952;
+	Thu, 11 Jan 2024 17:22:31 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5B39210E973
- for <intel-gfx@lists.freedesktop.org>; Thu, 11 Jan 2024 17:21:58 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1704993718; x=1736529718;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=NJQBMFQ5HM2bAVSdsndZMjV8EondfV+6EB8U+EBLTRU=;
- b=BNOySAPj9tgeIhl6xrP7PVBlA1c6Inyyr9ZVs6BV4CY5iaiZGDWDqMto
- 2jEGcMCf+3CEJxtDoohQqJtuLHKkoOZ9QATzkCoJLeViBlwotZK8jyEui
- zXfo3ypJphjoNmGzvCzc0M21PNHZoKxJdunf9VGs5dczCYtIJedY57TD8
- qAhpgqXz8G9hRUa3ZSRsrIZ54g8Ak8pq6+1aL22GyR7UyAcoaHL9hzr+3
- WZt+WA9JMGGA/LpA2nFSYn4OK167yyXkrNJhYpps96KL/zl8saMRrNiFA
- Wqe5/ZGaUur+iVND6CI1FS846xn5ZOCWeVS+RFkgX54Zaj12icVFfp12j Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10950"; a="17531492"
-X-IronPort-AV: E=Sophos;i="6.04,186,1695711600"; d="scan'208";a="17531492"
-Received: from orsmga006.jf.intel.com ([10.7.209.51])
- by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Jan 2024 09:21:58 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10950"; a="758840880"
-X-IronPort-AV: E=Sophos;i="6.04,186,1695711600"; d="scan'208";a="758840880"
-Received: from unknown (HELO localhost) ([10.237.66.162])
- by orsmga006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Jan 2024 09:21:56 -0800
-From: Jani Nikula <jani.nikula@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Subject: [PATCH 6/6] drm/i915/opregion: make struct intel_opregion opaque
-Date: Thu, 11 Jan 2024 19:21:19 +0200
-Message-Id: <3b68d7ff4b2930eaf15d9657618a738b9065f64b.1704992868.git.jani.nikula@intel.com>
-X-Mailer: git-send-email 2.39.2
-In-Reply-To: <cover.1704992868.git.jani.nikula@intel.com>
-References: <cover.1704992868.git.jani.nikula@intel.com>
+Received: from 5338d5abeb45 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 83A5910E952;
+ Thu, 11 Jan 2024 17:22:30 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============3568823113637376964=="
 MIME-Version: 1.0
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=93_Fi=2ECI=2EBAT=3A_success_for_drm/i915=3A_=28stolen=29_me?=
+ =?utf-8?q?mory_region_related_fixes_=28rev5=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Ville Syrjala" <ville.syrjala@linux.intel.com>
+Date: Thu, 11 Jan 2024 17:22:30 -0000
+Message-ID: <170499375053.290001.8111053082368848925@5338d5abeb45>
+X-Patchwork-Hint: ignore
+References: <20231215105929.29568-1-ville.syrjala@linux.intel.com>
+In-Reply-To: <20231215105929.29568-1-ville.syrjala@linux.intel.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -58,445 +36,228 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: jani.nikula@intel.com
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-With the recent cleanups, only intel_opregion.c needs to know the
-definition of struct intel_opregion. Allocate it dynamically and make it
-opaque.
+--===============3568823113637376964==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Cc: Radhakrishna Sripada <radhakrishna.sripada@intel.com>
-Signed-off-by: Jani Nikula <jani.nikula@intel.com>
----
- .../gpu/drm/i915/display/intel_display_core.h |   3 +-
- drivers/gpu/drm/i915/display/intel_opregion.c | 147 +++++++++++-------
- drivers/gpu/drm/i915/display/intel_opregion.h |  27 +---
- 3 files changed, 94 insertions(+), 83 deletions(-)
+== Series Details ==
 
-diff --git a/drivers/gpu/drm/i915/display/intel_display_core.h b/drivers/gpu/drm/i915/display/intel_display_core.h
-index 8853a05dc331..a90f1aa201be 100644
---- a/drivers/gpu/drm/i915/display/intel_display_core.h
-+++ b/drivers/gpu/drm/i915/display/intel_display_core.h
-@@ -49,6 +49,7 @@ struct intel_fbdev;
- struct intel_fdi_funcs;
- struct intel_hotplug_funcs;
- struct intel_initial_plane_config;
-+struct intel_opregion;
- struct intel_overlay;
- 
- /* Amount of SAGV/QGV points, BSpec precisely defines this */
-@@ -526,7 +527,7 @@ struct intel_display {
- 	struct intel_fbc *fbc[I915_MAX_FBCS];
- 	struct intel_frontbuffer_tracking fb_tracking;
- 	struct intel_hotplug hotplug;
--	struct intel_opregion opregion;
-+	struct intel_opregion *opregion;
- 	struct intel_overlay *overlay;
- 	struct intel_display_params params;
- 	struct intel_vbt_data vbt;
-diff --git a/drivers/gpu/drm/i915/display/intel_opregion.c b/drivers/gpu/drm/i915/display/intel_opregion.c
-index 26aacb01f9ec..3f5a20f9153e 100644
---- a/drivers/gpu/drm/i915/display/intel_opregion.c
-+++ b/drivers/gpu/drm/i915/display/intel_opregion.c
-@@ -250,11 +250,37 @@ struct opregion_asle_ext {
- 
- #define MAX_DSLP	1500
- 
-+#define OPREGION_SIZE	(8 * 1024)
-+
-+struct intel_opregion {
-+	struct drm_i915_private *i915;
-+
-+	struct opregion_header *header;
-+	struct opregion_acpi *acpi;
-+	struct opregion_swsci *swsci;
-+	u32 swsci_gbda_sub_functions;
-+	u32 swsci_sbcb_sub_functions;
-+	struct opregion_asle *asle;
-+	struct opregion_asle_ext *asle_ext;
-+	void *rvda;
-+	void *vbt_firmware;
-+	const void *vbt;
-+	u32 vbt_size;
-+	u32 *lid_state;
-+	struct work_struct asle_work;
-+	struct notifier_block acpi_notifier;
-+};
-+
- static int check_swsci_function(struct drm_i915_private *i915, u32 function)
- {
--	struct opregion_swsci *swsci = i915->display.opregion.swsci;
-+	struct intel_opregion *opregion = i915->display.opregion;
-+	struct opregion_swsci *swsci;
- 	u32 main_function, sub_function;
- 
-+	if (!opregion)
-+		return -ENODEV;
-+
-+	swsci = opregion->swsci;
- 	if (!swsci)
- 		return -ENODEV;
- 
-@@ -265,11 +291,11 @@ static int check_swsci_function(struct drm_i915_private *i915, u32 function)
- 
- 	/* Check if we can call the function. See swsci_setup for details. */
- 	if (main_function == SWSCI_SBCB) {
--		if ((i915->display.opregion.swsci_sbcb_sub_functions &
-+		if ((opregion->swsci_sbcb_sub_functions &
- 		     (1 << sub_function)) == 0)
- 			return -EINVAL;
- 	} else if (main_function == SWSCI_GBDA) {
--		if ((i915->display.opregion.swsci_gbda_sub_functions &
-+		if ((opregion->swsci_gbda_sub_functions &
- 		     (1 << sub_function)) == 0)
- 			return -EINVAL;
- 	}
-@@ -280,7 +306,7 @@ static int check_swsci_function(struct drm_i915_private *i915, u32 function)
- static int swsci(struct drm_i915_private *dev_priv,
- 		 u32 function, u32 parm, u32 *parm_out)
- {
--	struct opregion_swsci *swsci = dev_priv->display.opregion.swsci;
-+	struct opregion_swsci *swsci;
- 	struct pci_dev *pdev = to_pci_dev(dev_priv->drm.dev);
- 	u32 scic, dslp;
- 	u16 swsci_val;
-@@ -290,6 +316,8 @@ static int swsci(struct drm_i915_private *dev_priv,
- 	if (ret)
- 		return ret;
- 
-+	swsci = dev_priv->display.opregion->swsci;
-+
- 	/* Driver sleep timeout in ms. */
- 	dslp = swsci->dslp;
- 	if (!dslp) {
-@@ -462,7 +490,7 @@ static u32 asle_set_backlight(struct drm_i915_private *dev_priv, u32 bclp)
- {
- 	struct intel_connector *connector;
- 	struct drm_connector_list_iter conn_iter;
--	struct opregion_asle *asle = dev_priv->display.opregion.asle;
-+	struct opregion_asle *asle = dev_priv->display.opregion->asle;
- 
- 	drm_dbg(&dev_priv->drm, "bclp = 0x%08x\n", bclp);
- 
-@@ -584,9 +612,8 @@ static void asle_work(struct work_struct *work)
- {
- 	struct intel_opregion *opregion =
- 		container_of(work, struct intel_opregion, asle_work);
--	struct drm_i915_private *dev_priv =
--		container_of(opregion, struct drm_i915_private, display.opregion);
--	struct opregion_asle *asle = dev_priv->display.opregion.asle;
-+	struct drm_i915_private *dev_priv = opregion->i915;
-+	struct opregion_asle *asle = opregion->asle;
- 	u32 aslc_stat = 0;
- 	u32 aslc_req;
- 
-@@ -634,14 +661,15 @@ static void asle_work(struct work_struct *work)
- 
- bool intel_opregion_asle_present(struct drm_i915_private *i915)
- {
--	return i915->display.opregion.asle;
-+	return i915->display.opregion && i915->display.opregion->asle;
- }
- 
--void intel_opregion_asle_intr(struct drm_i915_private *dev_priv)
-+void intel_opregion_asle_intr(struct drm_i915_private *i915)
- {
--	if (dev_priv->display.opregion.asle)
--		queue_work(dev_priv->unordered_wq,
--			   &dev_priv->display.opregion.asle_work);
-+	struct intel_opregion *opregion = i915->display.opregion;
-+
-+	if (opregion && opregion->asle)
-+		queue_work(i915->unordered_wq, &opregion->asle_work);
- }
- 
- #define ACPI_EV_DISPLAY_SWITCH (1<<0)
-@@ -697,7 +725,7 @@ static void set_did(struct intel_opregion *opregion, int i, u32 val)
- 
- static void intel_didl_outputs(struct drm_i915_private *dev_priv)
- {
--	struct intel_opregion *opregion = &dev_priv->display.opregion;
-+	struct intel_opregion *opregion = dev_priv->display.opregion;
- 	struct intel_connector *connector;
- 	struct drm_connector_list_iter conn_iter;
- 	int i = 0, max_outputs;
-@@ -736,7 +764,7 @@ static void intel_didl_outputs(struct drm_i915_private *dev_priv)
- 
- static void intel_setup_cadls(struct drm_i915_private *dev_priv)
- {
--	struct intel_opregion *opregion = &dev_priv->display.opregion;
-+	struct intel_opregion *opregion = dev_priv->display.opregion;
- 	struct intel_connector *connector;
- 	struct drm_connector_list_iter conn_iter;
- 	int i = 0;
-@@ -766,7 +794,7 @@ static void intel_setup_cadls(struct drm_i915_private *dev_priv)
- 
- static void swsci_setup(struct drm_i915_private *dev_priv)
- {
--	struct intel_opregion *opregion = &dev_priv->display.opregion;
-+	struct intel_opregion *opregion = dev_priv->display.opregion;
- 	bool requested_callbacks = false;
- 	u32 tmp;
- 
-@@ -844,7 +872,7 @@ static const struct dmi_system_id intel_no_opregion_vbt[] = {
- 
- static int intel_load_vbt_firmware(struct drm_i915_private *dev_priv)
- {
--	struct intel_opregion *opregion = &dev_priv->display.opregion;
-+	struct intel_opregion *opregion = dev_priv->display.opregion;
- 	const struct firmware *fw = NULL;
- 	const char *name = dev_priv->display.params.vbt_firmware;
- 	int ret;
-@@ -884,7 +912,7 @@ static int intel_load_vbt_firmware(struct drm_i915_private *dev_priv)
- 
- int intel_opregion_setup(struct drm_i915_private *dev_priv)
- {
--	struct intel_opregion *opregion = &dev_priv->display.opregion;
-+	struct intel_opregion *opregion;
- 	struct pci_dev *pdev = to_pci_dev(dev_priv->drm.dev);
- 	u32 asls, mboxes;
- 	char buf[sizeof(OPREGION_SIGNATURE)];
-@@ -907,11 +935,20 @@ int intel_opregion_setup(struct drm_i915_private *dev_priv)
- 		return -ENOTSUPP;
- 	}
- 
-+	opregion = kzalloc(sizeof(*opregion), GFP_KERNEL);
-+	if (!opregion)
-+		return -ENOMEM;
-+
-+	opregion->i915 = dev_priv;
-+	dev_priv->display.opregion = opregion;
-+
- 	INIT_WORK(&opregion->asle_work, asle_work);
- 
- 	base = memremap(asls, OPREGION_SIZE, MEMREMAP_WB);
--	if (!base)
--		return -ENOMEM;
-+	if (!base) {
-+		err = -ENOMEM;
-+		goto err_memremap;
-+	}
- 
- 	memcpy(buf, base, sizeof(buf));
- 
-@@ -1039,6 +1076,10 @@ int intel_opregion_setup(struct drm_i915_private *dev_priv)
- 
- err_out:
- 	memunmap(base);
-+err_memremap:
-+	kfree(opregion);
-+	dev_priv->display.opregion = NULL;
-+
- 	return err;
- }
- 
-@@ -1111,12 +1152,12 @@ const struct drm_edid *intel_opregion_get_edid(struct intel_connector *intel_con
- {
- 	struct drm_connector *connector = &intel_connector->base;
- 	struct drm_i915_private *i915 = to_i915(connector->dev);
--	struct intel_opregion *opregion = &i915->display.opregion;
-+	struct intel_opregion *opregion = i915->display.opregion;
- 	const struct drm_edid *drm_edid;
- 	const void *edid;
- 	int len;
- 
--	if (!opregion->asle_ext)
-+	if (!opregion || !opregion->asle_ext)
- 		return NULL;
- 
- 	edid = opregion->asle_ext->bddc;
-@@ -1139,9 +1180,9 @@ const struct drm_edid *intel_opregion_get_edid(struct intel_connector *intel_con
- 
- const void *intel_opregion_get_vbt(struct drm_i915_private *i915, size_t *size)
- {
--	struct intel_opregion *opregion = &i915->display.opregion;
-+	struct intel_opregion *opregion = i915->display.opregion;
- 
--	if (!opregion->vbt)
-+	if (!opregion || !opregion->vbt)
- 		return NULL;
- 
- 	if (size)
-@@ -1152,8 +1193,13 @@ const void *intel_opregion_get_vbt(struct drm_i915_private *i915, size_t *size)
- 
- bool intel_opregion_headless_sku(struct drm_i915_private *i915)
- {
--	struct intel_opregion *opregion = &i915->display.opregion;
--	struct opregion_header *header = opregion->header;
-+	struct intel_opregion *opregion = i915->display.opregion;
-+	struct opregion_header *header;
-+
-+	if (!opregion)
-+		return false;
-+
-+	header = opregion->header;
- 
- 	if (!header || header->over.major < 2 ||
- 	    (header->over.major == 2 && header->over.minor < 3))
-@@ -1164,9 +1210,9 @@ bool intel_opregion_headless_sku(struct drm_i915_private *i915)
- 
- void intel_opregion_register(struct drm_i915_private *i915)
- {
--	struct intel_opregion *opregion = &i915->display.opregion;
-+	struct intel_opregion *opregion = i915->display.opregion;
- 
--	if (!opregion->header)
-+	if (!opregion)
- 		return;
- 
- 	if (opregion->acpi) {
-@@ -1180,7 +1226,7 @@ void intel_opregion_register(struct drm_i915_private *i915)
- 
- static void intel_opregion_resume_display(struct drm_i915_private *i915)
- {
--	struct intel_opregion *opregion = &i915->display.opregion;
-+	struct intel_opregion *opregion = i915->display.opregion;
- 
- 	if (opregion->acpi) {
- 		intel_didl_outputs(i915);
-@@ -1206,9 +1252,9 @@ static void intel_opregion_resume_display(struct drm_i915_private *i915)
- 
- void intel_opregion_resume(struct drm_i915_private *i915)
- {
--	struct intel_opregion *opregion = &i915->display.opregion;
-+	struct intel_opregion *opregion = i915->display.opregion;
- 
--	if (!opregion->header)
-+	if (!opregion)
- 		return;
- 
- 	if (HAS_DISPLAY(i915))
-@@ -1219,12 +1265,12 @@ void intel_opregion_resume(struct drm_i915_private *i915)
- 
- static void intel_opregion_suspend_display(struct drm_i915_private *i915)
- {
--	struct intel_opregion *opregion = &i915->display.opregion;
-+	struct intel_opregion *opregion = i915->display.opregion;
- 
- 	if (opregion->asle)
- 		opregion->asle->ardy = ASLE_ARDY_NOT_READY;
- 
--	cancel_work_sync(&i915->display.opregion.asle_work);
-+	cancel_work_sync(&opregion->asle_work);
- 
- 	if (opregion->acpi)
- 		opregion->acpi->drdy = 0;
-@@ -1232,9 +1278,9 @@ static void intel_opregion_suspend_display(struct drm_i915_private *i915)
- 
- void intel_opregion_suspend(struct drm_i915_private *i915, pci_power_t state)
- {
--	struct intel_opregion *opregion = &i915->display.opregion;
-+	struct intel_opregion *opregion = i915->display.opregion;
- 
--	if (!opregion->header)
-+	if (!opregion)
- 		return;
- 
- 	intel_opregion_notify_adapter(i915, state);
-@@ -1245,11 +1291,11 @@ void intel_opregion_suspend(struct drm_i915_private *i915, pci_power_t state)
- 
- void intel_opregion_unregister(struct drm_i915_private *i915)
- {
--	struct intel_opregion *opregion = &i915->display.opregion;
-+	struct intel_opregion *opregion = i915->display.opregion;
- 
- 	intel_opregion_suspend(i915, PCI_D1);
- 
--	if (!opregion->header)
-+	if (!opregion)
- 		return;
- 
- 	if (opregion->acpi_notifier.notifier_call) {
-@@ -1260,36 +1306,25 @@ void intel_opregion_unregister(struct drm_i915_private *i915)
- 
- void intel_opregion_cleanup(struct drm_i915_private *i915)
- {
--	struct intel_opregion *opregion = &i915->display.opregion;
-+	struct intel_opregion *opregion = i915->display.opregion;
- 
--	if (!opregion->header)
-+	if (!opregion)
- 		return;
- 
--	/* just clear all opregion memory pointers now */
- 	memunmap(opregion->header);
--	if (opregion->rvda) {
-+	if (opregion->rvda)
- 		memunmap(opregion->rvda);
--		opregion->rvda = NULL;
--	}
--	if (opregion->vbt_firmware) {
--		kfree(opregion->vbt_firmware);
--		opregion->vbt_firmware = NULL;
--	}
--	opregion->header = NULL;
--	opregion->acpi = NULL;
--	opregion->swsci = NULL;
--	opregion->asle = NULL;
--	opregion->asle_ext = NULL;
--	opregion->vbt = NULL;
--	opregion->lid_state = NULL;
-+	kfree(opregion->vbt_firmware);
-+	kfree(opregion);
-+	i915->display.opregion = NULL;
- }
- 
- static int intel_opregion_show(struct seq_file *m, void *unused)
- {
- 	struct drm_i915_private *i915 = m->private;
--	struct intel_opregion *opregion = &i915->display.opregion;
-+	struct intel_opregion *opregion = i915->display.opregion;
- 
--	if (opregion->header)
-+	if (opregion)
- 		seq_write(m, opregion->header, OPREGION_SIZE);
- 
- 	return 0;
-diff --git a/drivers/gpu/drm/i915/display/intel_opregion.h b/drivers/gpu/drm/i915/display/intel_opregion.h
-index d084b30e8703..0bec224f711f 100644
---- a/drivers/gpu/drm/i915/display/intel_opregion.h
-+++ b/drivers/gpu/drm/i915/display/intel_opregion.h
-@@ -25,38 +25,13 @@
- #ifndef _INTEL_OPREGION_H_
- #define _INTEL_OPREGION_H_
- 
--#include <linux/workqueue.h>
- #include <linux/pci.h>
-+#include <linux/types.h>
- 
- struct drm_i915_private;
- struct intel_connector;
- struct intel_encoder;
- 
--struct opregion_header;
--struct opregion_acpi;
--struct opregion_swsci;
--struct opregion_asle;
--struct opregion_asle_ext;
--
--struct intel_opregion {
--	struct opregion_header *header;
--	struct opregion_acpi *acpi;
--	struct opregion_swsci *swsci;
--	u32 swsci_gbda_sub_functions;
--	u32 swsci_sbcb_sub_functions;
--	struct opregion_asle *asle;
--	struct opregion_asle_ext *asle_ext;
--	void *rvda;
--	void *vbt_firmware;
--	const void *vbt;
--	u32 vbt_size;
--	u32 *lid_state;
--	struct work_struct asle_work;
--	struct notifier_block acpi_notifier;
--};
--
--#define OPREGION_SIZE            (8 * 1024)
--
- #ifdef CONFIG_ACPI
- 
- int intel_opregion_setup(struct drm_i915_private *dev_priv);
--- 
-2.39.2
+Series: drm/i915: (stolen) memory region related fixes (rev5)
+URL   : https://patchwork.freedesktop.org/series/127721/
+State : success
 
+== Summary ==
+
+CI Bug Log - changes from CI_DRM_14116 -> Patchwork_127721v5
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_127721v5/index.html
+
+Participating hosts (37 -> 36)
+------------------------------
+
+  Additional (1): bat-adls-6 
+  Missing    (2): bat-dg2-9 fi-snb-2520m 
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_127721v5 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@kms_pipe_crc_basic@suspend-read-crc@pipe-a-hdmi-a-1:
+    - bat-rpls-2:         [PASS][1] -> [ABORT][2] ([i915#8668])
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14116/bat-rpls-2/igt@kms_pipe_crc_basic@suspend-read-crc@pipe-a-hdmi-a-1.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_127721v5/bat-rpls-2/igt@kms_pipe_crc_basic@suspend-read-crc@pipe-a-hdmi-a-1.html
+
+  
+#### Possible fixes ####
+
+  * igt@dmabuf@all-tests@sanitycheck:
+    - fi-skl-6600u:       [INCOMPLETE][3] -> [PASS][4]
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14116/fi-skl-6600u/igt@dmabuf@all-tests@sanitycheck.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_127721v5/fi-skl-6600u/igt@dmabuf@all-tests@sanitycheck.html
+
+  * igt@gem_tiled_blits@basic:
+    - fi-pnv-d510:        [SKIP][5] ([fdo#109271]) -> [PASS][6]
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14116/fi-pnv-d510/igt@gem_tiled_blits@basic.html
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_127721v5/fi-pnv-d510/igt@gem_tiled_blits@basic.html
+
+  * igt@i915_selftest@live@hangcheck:
+    - {bat-rpls-3}:       [DMESG-WARN][7] ([i915#5591]) -> [PASS][8]
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14116/bat-rpls-3/igt@i915_selftest@live@hangcheck.html
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_127721v5/bat-rpls-3/igt@i915_selftest@live@hangcheck.html
+    - {bat-dg2-14}:       [ABORT][9] ([i915#9840]) -> [PASS][10]
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14116/bat-dg2-14/igt@i915_selftest@live@hangcheck.html
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_127721v5/bat-dg2-14/igt@i915_selftest@live@hangcheck.html
+
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
+  [fdo#109285]: https://bugs.freedesktop.org/show_bug.cgi?id=109285
+  [fdo#109295]: https://bugs.freedesktop.org/show_bug.cgi?id=109295
+  [i915#3282]: https://gitlab.freedesktop.org/drm/intel/issues/3282
+  [i915#3291]: https://gitlab.freedesktop.org/drm/intel/issues/3291
+  [i915#3555]: https://gitlab.freedesktop.org/drm/intel/issues/3555
+  [i915#3840]: https://gitlab.freedesktop.org/drm/intel/issues/3840
+  [i915#4103]: https://gitlab.freedesktop.org/drm/intel/issues/4103
+  [i915#4613]: https://gitlab.freedesktop.org/drm/intel/issues/4613
+  [i915#5354]: https://gitlab.freedesktop.org/drm/intel/issues/5354
+  [i915#5591]: https://gitlab.freedesktop.org/drm/intel/issues/5591
+  [i915#8668]: https://gitlab.freedesktop.org/drm/intel/issues/8668
+  [i915#9318]: https://gitlab.freedesktop.org/drm/intel/issues/9318
+  [i915#9732]: https://gitlab.freedesktop.org/drm/intel/issues/9732
+  [i915#9840]: https://gitlab.freedesktop.org/drm/intel/issues/9840
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_14116 -> Patchwork_127721v5
+
+  CI-20190529: 20190529
+  CI_DRM_14116: 3b92a66f4bc89f4fa6e9e9369ac8243e23670030 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_7670: 1b32bcdb2d9965090234739aba891a90743e01c4 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  Patchwork_127721v5: 3b92a66f4bc89f4fa6e9e9369ac8243e23670030 @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+### Linux commits
+
+b44e3bd253b7 drm/i915: Try to relocate the BIOS fb to the start of ggtt
+63e83ce02b17 drm/i915: Tweak BIOS fb reuse check
+5486c763e82a drm/i915/fbdev: Fix smem_start for LMEMBAR stolen objects
+8fa90e75e9e9 drm/i915: Simplify intel_initial_plane_config() calling convention
+f134e8fe51bc drm/i915: Split the smem and lmem plane readout apart
+6a873b3b0e44 drm/i915: s/phys_base/dma_addr/
+e49d77f51bba drm/i915: Fix MTL initial plane readout
+a629e227ead7 drm/i915: Fix region start during initial plane readout
+fd8d35c7c33b drm/i915: Fix PTE decode during initial plane readout
+14526faaec91 drm/i915: Rename the DSM/GSM registers
+ee6e84bd5f90 drm/i915: Disable the "binder"
+0a0fc6d273ec drm/i915: Bypass LMEMBAR/GTTMMADR for MTL stolen memory access
+300e51e5f4c5 drm/i915: Remove ad-hoc lmem/stolen debugs
+823dcb4b409e drm/i915: Print memory region info during probe
+192e895f5c33 drm/i915: Use struct resource for memory region IO as well
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_127721v5/index.html
+
+--===============3568823113637376964==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/i915: (stolen) memory region related fixes (rev5)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/127721/">https://patchwork.freedesktop.org/series/127721/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_127721v5/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_127721v5/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_14116 -&gt; Patchwork_127721v5</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_127721v5/index.html</p>
+<h2>Participating hosts (37 -&gt; 36)</h2>
+<p>Additional (1): bat-adls-6 <br />
+  Missing    (2): bat-dg2-9 fi-snb-2520m </p>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_127721v5 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>igt@kms_pipe_crc_basic@suspend-read-crc@pipe-a-hdmi-a-1:<ul>
+<li>bat-rpls-2:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14116/bat-rpls-2/igt@kms_pipe_crc_basic@suspend-read-crc@pipe-a-hdmi-a-1.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_127721v5/bat-rpls-2/igt@kms_pipe_crc_basic@suspend-read-crc@pipe-a-hdmi-a-1.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/8668">i915#8668</a>)</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>
+<p>igt@dmabuf@all-tests@sanitycheck:</p>
+<ul>
+<li>fi-skl-6600u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14116/fi-skl-6600u/igt@dmabuf@all-tests@sanitycheck.html">INCOMPLETE</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_127721v5/fi-skl-6600u/igt@dmabuf@all-tests@sanitycheck.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@gem_tiled_blits@basic:</p>
+<ul>
+<li>fi-pnv-d510:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14116/fi-pnv-d510/igt@gem_tiled_blits@basic.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_127721v5/fi-pnv-d510/igt@gem_tiled_blits@basic.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@hangcheck:</p>
+<ul>
+<li>{bat-rpls-3}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14116/bat-rpls-3/igt@i915_selftest@live@hangcheck.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/5591">i915#5591</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_127721v5/bat-rpls-3/igt@i915_selftest@live@hangcheck.html">PASS</a></li>
+<li>{bat-dg2-14}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14116/bat-dg2-14/igt@i915_selftest@live@hangcheck.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/9840">i915#9840</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_127721v5/bat-dg2-14/igt@i915_selftest@live@hangcheck.html">PASS</a></li>
+</ul>
+</li>
+</ul>
+<p>{name}: This element is suppressed. This means it is ignored when computing<br />
+          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_14116 -&gt; Patchwork_127721v5</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_14116: 3b92a66f4bc89f4fa6e9e9369ac8243e23670030 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_7670: 1b32bcdb2d9965090234739aba891a90743e01c4 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  Patchwork_127721v5: 3b92a66f4bc89f4fa6e9e9369ac8243e23670030 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+<h3>Linux commits</h3>
+<p>b44e3bd253b7 drm/i915: Try to relocate the BIOS fb to the start of ggtt<br />
+63e83ce02b17 drm/i915: Tweak BIOS fb reuse check<br />
+5486c763e82a drm/i915/fbdev: Fix smem_start for LMEMBAR stolen objects<br />
+8fa90e75e9e9 drm/i915: Simplify intel_initial_plane_config() calling convention<br />
+f134e8fe51bc drm/i915: Split the smem and lmem plane readout apart<br />
+6a873b3b0e44 drm/i915: s/phys_base/dma_addr/<br />
+e49d77f51bba drm/i915: Fix MTL initial plane readout<br />
+a629e227ead7 drm/i915: Fix region start during initial plane readout<br />
+fd8d35c7c33b drm/i915: Fix PTE decode during initial plane readout<br />
+14526faaec91 drm/i915: Rename the DSM/GSM registers<br />
+ee6e84bd5f90 drm/i915: Disable the "binder"<br />
+0a0fc6d273ec drm/i915: Bypass LMEMBAR/GTTMMADR for MTL stolen memory access<br />
+300e51e5f4c5 drm/i915: Remove ad-hoc lmem/stolen debugs<br />
+823dcb4b409e drm/i915: Print memory region info during probe<br />
+192e895f5c33 drm/i915: Use struct resource for memory region IO as well</p>
+
+</body>
+</html>
+
+--===============3568823113637376964==--
