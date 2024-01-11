@@ -1,53 +1,158 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 60C0882B04A
-	for <lists+intel-gfx@lfdr.de>; Thu, 11 Jan 2024 15:06:27 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 37E0682B0B5
+	for <lists+intel-gfx@lfdr.de>; Thu, 11 Jan 2024 15:38:00 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DB55710E20A;
-	Thu, 11 Jan 2024 14:06:25 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D2C1A10E317;
+	Thu, 11 Jan 2024 14:37:57 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3048A10E20A
- for <intel-gfx@lists.freedesktop.org>; Thu, 11 Jan 2024 14:06:24 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 057E610E92A
+ for <intel-gfx@lists.freedesktop.org>; Thu, 11 Jan 2024 14:37:55 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1704981984; x=1736517984;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=Wvcn4u4b5rnL3uTrPsIh9FypWfKwCg8QLvAZjrz/vNk=;
- b=EJgso1YYzZ1acPkFx5zCzCQ6dWGpPaX2gW5DCZjqWS7QPPdG3QtAH1TG
- T7GQspKfzDI4LWcaJX7JI33Vm0u2rfVplPovRtOZ4czzwxZ7yWrl54JSi
- 1RfFyV52ncg4HWFOGStTOzE4Cvn0HoFSzeP2fQO9KNMds+GZddB6w26bA
- nAZ56y7aeMd0ah4LY4Z5PkdwzqK1NZILCALvWSwgVMmjTRsq7yuPntQQg
- c4Xc4hZvZ8F3eh4v+NCZecThgLINLXm5benhWShx34y46d5/6tV+udMer
- 9bGKFP9EEfHs1yMAY+SXZMISCwJ5zn+1jOvftSEcmntKJKYe7HmO9XuLe Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10950"; a="463140126"
-X-IronPort-AV: E=Sophos;i="6.04,186,1695711600"; d="scan'208";a="463140126"
-Received: from orsmga007.jf.intel.com ([10.7.209.58])
- by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Jan 2024 06:06:22 -0800
+ t=1704983876; x=1736519876;
+ h=from:to:cc:subject:date:message-id:references:
+ in-reply-to:content-id:content-transfer-encoding: mime-version;
+ bh=3pa/2hP+D6Xbx2gJvcuecjnJ8HeKzu92qZZgUiLzI0Q=;
+ b=Q7mLODsO7Dqa3iv5dj4s9DmcgGhso2z6rFdYRau1YLL7jpJjiefhUvVx
+ XnRlCOQi4H7NyUpqce2sULK9nmi+r7yMzbX/wgW6DNV9XSvM8DVXUnShp
+ YiwC4hvYXb4MkO3HuoGL6JZS8xqEmHNibNEPS9umPYofW9U74ViEbCsF+
+ c48XLl3kLGra72/2WhKTcnR3ZAuzqxGieA/7WyqsqhaUN7IL9OPQdven0
+ e4S4fPO05+0Yfi3wsaqbAwX5juXJVWib7Nh8bIm651FMvW3Pq/tEnMPY/
+ v008NsqnDDDOjfupgYAt4pLbj5/N42+0YUeX+hDxFv9z6/0C1IWoZKzDn Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10950"; a="5591523"
+X-IronPort-AV: E=Sophos;i="6.04,186,1695711600"; 
+   d="scan'208";a="5591523"
+Received: from orsmga003.jf.intel.com ([10.7.209.27])
+ by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 Jan 2024 06:37:55 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10950"; a="775618337"
-X-IronPort-AV: E=Sophos;i="6.04,186,1695711600"; d="scan'208";a="775618337"
-Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.74])
- by orsmga007.jf.intel.com with SMTP; 11 Jan 2024 06:06:17 -0800
-Received: by stinkbox (sSMTP sendmail emulation);
- Thu, 11 Jan 2024 16:06:17 +0200
-From: Ville Syrjala <ville.syrjala@linux.intel.com>
-To: intel-gfx@lists.freedesktop.org
-Subject: [PATCH v3 15/15] drm/i915: Try to relocate the BIOS fb to the start
- of ggtt
-Date: Thu, 11 Jan 2024 16:06:17 +0200
-Message-ID: <20240111140617.16931-1-ville.syrjala@linux.intel.com>
-X-Mailer: git-send-email 2.41.0
-In-Reply-To: <20231215105929.29568-16-ville.syrjala@linux.intel.com>
-References: <20231215105929.29568-16-ville.syrjala@linux.intel.com>
+X-IronPort-AV: E=McAfee;i="6600,9927,10950"; a="732251695"
+X-IronPort-AV: E=Sophos;i="6.04,186,1695711600"; d="scan'208";a="732251695"
+Received: from orsmsx603.amr.corp.intel.com ([10.22.229.16])
+ by orsmga003.jf.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
+ 11 Jan 2024 06:37:54 -0800
+Received: from orsmsx610.amr.corp.intel.com (10.22.229.23) by
+ ORSMSX603.amr.corp.intel.com (10.22.229.16) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.35; Thu, 11 Jan 2024 06:37:53 -0800
+Received: from orsedg603.ED.cps.intel.com (10.7.248.4) by
+ orsmsx610.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.35 via Frontend Transport; Thu, 11 Jan 2024 06:37:53 -0800
+Received: from NAM04-DM6-obe.outbound.protection.outlook.com (104.47.73.41) by
+ edgegateway.intel.com (134.134.137.100) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.1.2507.35; Thu, 11 Jan 2024 06:37:53 -0800
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=Xe5yRZMh6DOxpF3fzYwobx+RINw7t7uJHPdrCpgjiJIpi7I7KjyBJ6SoVnm01RI3l/U1+qlNitKGIxTjU6lf8Nyb3d/3Pg5LKqF47e5Z6g/CAjckrtaNNwdfAvTqCF6z/NRTzg/1cijZH+kOc3K1vMJOlCSrQMbbX6jz2Hi57UNlYGyA+vKXgTNo8LfyMO+uihIHB6H2VBR8Cr2/BRqlWnfgn9jvFJ0oJP0V/JNcfIuFhGrIYUSOEHCi+OTGsR308qYCJ5jF+LfzON7PMeCwLjPz7AJ16lNs/dxmKHVp08yjyHXCdXklL/WtWFwde+wMqipKa9XcTjCrzyz1cNnspA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=3pa/2hP+D6Xbx2gJvcuecjnJ8HeKzu92qZZgUiLzI0Q=;
+ b=Fve7bN9nhDX+VoLC0RkDhbRd17mWhTPPnWfaiLYDVB4z4z+kdO34eOxL9RxEgHNqsY/l693b+zAdFWWFp2zw8XEV/5soJ8pqyExTqx0ZLqSMk9twzYGoEO3HFxtQ2G0xHi9RX/Aakd1S8w2T1MX8Ri4OsJITo2/LdIoXw/aDLaY+6b5+LNh+2WZZ0o04q/1vUvdYbspso5kf4THQ+C0govU8+s3C4eWmg/04QHK0GZKx+BWBIQiY/+JI8eW40qu1vp85PEgXZJvtIB+SyNg7oyA79u5qTptsBPOEL3d/f531x7wAAyChMWwvTPHvyQoZu44Tvn6bbfTxrnyRex2WYA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Received: from CY8PR11MB7777.namprd11.prod.outlook.com (2603:10b6:930:71::14)
+ by CH3PR11MB8562.namprd11.prod.outlook.com (2603:10b6:610:1b8::13)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7159.23; Thu, 11 Jan
+ 2024 14:37:51 +0000
+Received: from CY8PR11MB7777.namprd11.prod.outlook.com
+ ([fe80::81e3:1bc5:e10c:404f]) by CY8PR11MB7777.namprd11.prod.outlook.com
+ ([fe80::81e3:1bc5:e10c:404f%7]) with mapi id 15.20.7159.020; Thu, 11 Jan 2024
+ 14:37:51 +0000
+From: "Govindapillai, Vinod" <vinod.govindapillai@intel.com>
+To: "ville.syrjala@linux.intel.com" <ville.syrjala@linux.intel.com>
+Subject: Re: [PATCH v1 1/2] drm/i915/display: use PAGE_SIZE macro for FBC cfb
+ alloc
+Thread-Topic: [PATCH v1 1/2] drm/i915/display: use PAGE_SIZE macro for FBC cfb
+ alloc
+Thread-Index: AQHaQ7Rh9hd0WuMiOE+nnnYnMDDKnrDUoRkAgAAAgLaAAAPSAIAACqmA
+Date: Thu, 11 Jan 2024 14:37:51 +0000
+Message-ID: <e548a7d67ee71e0f3f75cf04efe078c1d679b881.camel@intel.com>
+References: <20240110110009.28799-1-vinod.govindapillai@intel.com>
+ <20240110110009.28799-2-vinod.govindapillai@intel.com>
+ <ZZ_wqnWx5I5h7hKZ@intel.com>
+ <CY8PR11MB7777554397E901BBB52CA6B3F6682@CY8PR11MB7777.namprd11.prod.outlook.com>
+ <ZZ_0Sq3DMjuEeGuq@intel.com>
+In-Reply-To: <ZZ_0Sq3DMjuEeGuq@intel.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+user-agent: Evolution 3.44.4-0ubuntu2 
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: CY8PR11MB7777:EE_|CH3PR11MB8562:EE_
+x-ms-office365-filtering-correlation-id: 049a9c55-dab5-4e5d-79b4-08dc12b2e3c8
+x-ld-processed: 46c98d88-e344-4ed4-8496-4ed7712e255d,ExtAddr
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: 0OeFa6Uo+qK/892jPpU8e1Ti//mNo5+mmWL2DasvrFNKV5iGLtXEC+XQOUPseViEQ8F8BNInrvili5ac+WPk31zoi5+xntQzlItBzhjOv5muCcczITlVNmEYFuiCjASt/mP1+pQX8ivlVQYhrd5wD1Pb188VGwMXY4C9WHA+TWQUVeRHQExHrYeJJPaS5tDgSM5if9Ib1+7ckJdgdCS2rgGUpN14WE+E1yjpVso3I2JXk3+u2DUI+CUKiR5llUT79cQYURnAEqNjb0KxT6SK1fSJe6fdAUkQDbas7ndvJdZAJX7oVe8De6JBU3G1rSkpJDjdk2mYHotFmLMuCa0diOkxZg9ah1yFtwTto9e6khMRmykSR42RGUn3VYpbhJcDb2x6ldoqeIhLKeKw4hWw8088iDf4uPAsLQBm+Yz1FSiUcjqHUw5nRj6I4NGAHyjIMmzFfxiEICiowHnKrT8Y1KEVXKE785sWd01ofrVbxUX90AMytoERVKyYHM448dCFoAdMCbq6rO5O18B3ff4dZUPmKO5lo9eT8PFp0lZSpFDq2gp8XuwYVFKqdGi3PWfPiIibaxxTtTmjpC1VhHIqZ11v4yxr+Uzt9skj8Fpie6s=
+x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:CY8PR11MB7777.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230031)(376002)(136003)(39860400002)(366004)(396003)(346002)(230922051799003)(64100799003)(451199024)(186009)(1800799012)(54906003)(8676002)(66574015)(8936002)(316002)(66946007)(36756003)(2616005)(6486002)(83380400001)(4326008)(71200400001)(53546011)(66556008)(91956017)(76116006)(66446008)(26005)(478600001)(6506007)(64756008)(66476007)(6512007)(966005)(6916009)(2906002)(38100700002)(122000001)(5660300002)(38070700009)(41300700001)(86362001)(82960400001);
+ DIR:OUT; SFP:1102; 
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?utf-8?B?dHJreWgrNzRybklpVGkyNTJJUWRxMGtDSFdYa3hFV3hBMzFOYkNRRHZscUFx?=
+ =?utf-8?B?cUxPQStXV2ZaWHlxZjJHZmdwMDNVazZTWWN3RWZ4eW1zcTczaEE3dXJzaVpY?=
+ =?utf-8?B?RytyaVFEdUFOeGFBVWRDZGdlNUgySmxNdXZZU0c2YU9WMUpZMytzcFZMUHNa?=
+ =?utf-8?B?L1oycE9DQkZObkg0S3hvSDFuL3c3djZVcWp1QklGdktwVHdLQTc3bHhaTkM0?=
+ =?utf-8?B?Wm54ODZ6UDk5OWNRR1NRUDB2VGRsWUI5WXlIcnlKTmFIRzZ0UlNCYlJrZFJs?=
+ =?utf-8?B?aHVDek1yMFFXZG9ZQWlybEs5amRkR1pkWkIyYldUSGIxcitMZnZ5ZS9nemdJ?=
+ =?utf-8?B?LzR3Z1VUMklxeEYzN3FXaVNtaUd1ZWp6cy9Ec0Z2bDdrS3NVLzM4Q0w2TUZE?=
+ =?utf-8?B?aUVwZXBBTTYxZjBpTXdLN3FvVUdEa0dCb0VSeW5aQ0VrZU1KN2h2YzlDeEI2?=
+ =?utf-8?B?STZ1bzZzcVdZV1dESEtGWFR1dGJWRVVkNVNLQXVja2dOeE5xMG5LWWlGQm1i?=
+ =?utf-8?B?NjBIc2ZDVUVLSTZHZ0tMeXRhVEpBWEJQWnd6dXBpMnF0TDBwZTVMaitlenQ1?=
+ =?utf-8?B?N210WktGUllPUXI3dThyNjR2TXZKZHhYK3pHVXA4YXJpMXpXR2txU3lZNVVW?=
+ =?utf-8?B?MzR4Q3BVVTVMVmN2NEFQQXpNelFIOFRraXF2UU5hbUVQdVVsVnNzb1VQc2l5?=
+ =?utf-8?B?MUxLaGErMFhObjhubFluK3pabkhwZmp4NEFFV2hiRlUySVFvaythZkxxQldZ?=
+ =?utf-8?B?RW0xRFFMd1VwcW5VbDJ1c0Ezb0g5OEhUY0hWUjY3VVBod2hwRnF5SWZnZ2pq?=
+ =?utf-8?B?TmpUYkd2R24yOGZ2eU55bU42ZUZaVDJlL2JHMFRyOHJzNWFIUHlnVzVQQWho?=
+ =?utf-8?B?OHFDSy9wZzdFbEtoTFQ4L01wcUFFSzVLL3VGOVlnU1BkdmlxRENKS2hWWTZI?=
+ =?utf-8?B?d3k0R29DdjBQZXdsZTVwNllhM0pnR010VmpyTEVPc0NCbUgzWE8zcjFpcUhC?=
+ =?utf-8?B?SmdnejMyZ2RnVzB6ZE5MYy9vamJZdjNPVkhJOXB2RFQ0R2dIYjRxMjF3Snh5?=
+ =?utf-8?B?dG5tSjRQblFWRmxHbkdVNFFSNGprMXVGMWRwQUJodmlHWVJkTDY2ZWxPTFM5?=
+ =?utf-8?B?UFVTenJhN0RyM1RCR2xkcGJjT3pIbjJURlB4ZFhHTldJbkpScFQ0aDBTTDBn?=
+ =?utf-8?B?djYvQ2FINUl3TUlnaTlNbDVMZDhrWG1KdWFabEREMDNCL0IyK0JxSysvQW1i?=
+ =?utf-8?B?Z09URUgydEE1MEZZMWtQcThucDRhRllYaDcvTVZPTVg1bGRYSTA3UlJLM3hL?=
+ =?utf-8?B?YU9aajhhVTFRZThBQXkvTHpyVnZsVnhSc2xpT2dIQzNxTXFyMG8vSmcyM1F4?=
+ =?utf-8?B?K0tpNzA4a0JJVFZ0aHFUby9KL3EzZ1NVNzhUM0dtQ0lmWldHUC82ZnYreFFN?=
+ =?utf-8?B?K09Sc0o5c0lsaDlFZFFoQUk0QTczK09DWGNOU0RmdGhCUDZ2Rk43aVdaSCt5?=
+ =?utf-8?B?WFJYY1dHL0R6WnV1R3ljTE16L2o3SEM1cVFWbDhXMTMrSHR1alNTTnZ3bytD?=
+ =?utf-8?B?SGNPMFd6V0tlbndhTVhlLzVzdmhxdzRsLzNlWWFUWE1PSHJIM29samNZSU54?=
+ =?utf-8?B?YVRNeXpmOEN5aEFySUdlNkxHckk2aDVlb2crQUtCeVNTUGRrbldlcklvazlx?=
+ =?utf-8?B?dHFKdmtNelp3ZzdXa2dSS2xva0I0c2hBQjFWTXY4b3lFbkxaaUVubDhNRjZ1?=
+ =?utf-8?B?VjZjaVRNYjBSOGxTQ3h0NEJvTkxwYXVERDBWY2ZxUlNUcEcyVC9OOWVpOXdN?=
+ =?utf-8?B?UnhiR1FqRzcxNUtnNDBVVnVsWklER2NNNmpIYWhaem9HZHVNSC9JNy81L001?=
+ =?utf-8?B?UjdyOCtsZXRYOFlRUmhjYzVITmt2bzcycGxVVXRqOHdjT2dKKzVoU3dlb3RT?=
+ =?utf-8?B?UnJ4SjR4a0RDcVdkQVAyRnBrWXc1enJpa3pmT2hFdmtXbEdKMGUvSGpRaFJR?=
+ =?utf-8?B?N2ViSzl4QWg4T3oxVklqMkVTTXk1OHBybDhxVS9BTWcxTWJoZXhmdk9sV3V6?=
+ =?utf-8?B?ZzV4L24xeGJVeEwrWDFZODI0UElaQm01a2VRSExWSUxwNG1CKzJjMFN5WGJm?=
+ =?utf-8?B?dUdLM09pQmdxVDBpUDZuMnhSdjVoMDJ2aG5XWk1STVFrS0pOME9IMnFBQzVB?=
+ =?utf-8?Q?HBw3CY/AujJzTsCYeLL+A5E=3D?=
+Content-Type: text/plain; charset="utf-8"
+Content-ID: <031365C8B89FAC4ABB80684E93E1E399@namprd11.prod.outlook.com>
+Content-Transfer-Encoding: base64
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: CY8PR11MB7777.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 049a9c55-dab5-4e5d-79b4-08dc12b2e3c8
+X-MS-Exchange-CrossTenant-originalarrivaltime: 11 Jan 2024 14:37:51.4432 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: 2uj/NU1IZLOg7SwSS11iLQD4sCeNc1GePq7uwTvKxOm+DThvJId2h4xe0JFdqqbkpestkrM1kxp30M39s2I91BFnKVCsHXrJyay57/elag0=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH3PR11MB8562
+X-OriginatorOrg: intel.com
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -60,333 +165,84 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Andrzej Hajda <andrzej.hajda@intel.com>
+Cc: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
+ "Syrjala, Ville" <ville.syrjala@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-From: Ville Syrjälä <ville.syrjala@linux.intel.com>
-
-On MTL the GOP (for whatever reason) likes to bind its framebuffer
-high up in the ggtt address space. This can conflict with whatever
-ggtt_reserve_guc_top() is trying to do, and the result is that
-ggtt_reserve_guc_top() fails and then we proceed to explode when
-trying to tear down the driver. Thus far I haven't analyzed what
-causes the actual fireworks, but it's not super important as even
-if it didn't explode we'd still fail the driver load and the user
-would be left with an unusable GPU.
-
-To remedy this (without having to figure out exactly what
-ggtt_reserve_guc_top() is trying to achieve) we can attempt to
-relocate the BIOS framebuffer to a lower ggtt address. We can do
-this at this early point in driver init because nothing else is
-supposed to be clobbering the ggtt yet. So we simply change where
-in the ggtt we pin the vma, the original PTEs will be left as is,
-and the new PTEs will get written with the same dma addresses.
-The plane will keep on scanning out from the original PTEs until
-we are done with the whole process, and at that point we rewrite
-the plane's surface address register to point at the new ggtt
-address.
-
-Since we don't need a specific ggtt address for the plane
-(apart from needing it to land in the mappable region for
-normal stolen objects) we'll just try to pin it without a fixed
-offset first. It should end up at the lowest available address
-(which really should be 0 at this point in the driver init).
-If that fails we'll fall back to just pinning it exactly to the
-origianal address.
-
-To make sure we don't accidentlally pin it partially over the
-original ggtt range (as that would corrupt the original PTEs)
-we reserve the original range temporarily during this process.
-
-v2: Try to pin explicitly to ggtt offset 0 as otherwise DG2 puts it
-    even higher (atm we have no PIN_LOW flag to force it low)
-
-Cc: Paz Zcharya <pazz@chromium.org>
-Reviewed-by: Andrzej Hajda <andrzej.hajda@intel.com>
-Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
----
- drivers/gpu/drm/i915/display/i9xx_plane.c     | 30 +++++++++++
- drivers/gpu/drm/i915/display/i9xx_plane.h     |  7 +++
- drivers/gpu/drm/i915/display/intel_display.c  |  5 ++
- .../gpu/drm/i915/display/intel_display_core.h |  2 +
- .../drm/i915/display/intel_plane_initial.c    | 53 ++++++++++++++++++-
- .../drm/i915/display/skl_universal_plane.c    | 28 ++++++++++
- .../drm/i915/display/skl_universal_plane.h    |  2 +
- 7 files changed, 125 insertions(+), 2 deletions(-)
-
-diff --git a/drivers/gpu/drm/i915/display/i9xx_plane.c b/drivers/gpu/drm/i915/display/i9xx_plane.c
-index 91f2bc405cba..0279c8aabdd1 100644
---- a/drivers/gpu/drm/i915/display/i9xx_plane.c
-+++ b/drivers/gpu/drm/i915/display/i9xx_plane.c
-@@ -1060,3 +1060,33 @@ i9xx_get_initial_plane_config(struct intel_crtc *crtc,
- 
- 	plane_config->fb = intel_fb;
- }
-+
-+bool i9xx_fixup_initial_plane_config(struct intel_crtc *crtc,
-+				     const struct intel_initial_plane_config *plane_config)
-+{
-+	struct drm_i915_private *dev_priv = to_i915(crtc->base.dev);
-+	struct intel_plane *plane = to_intel_plane(crtc->base.primary);
-+	const struct intel_plane_state *plane_state =
-+		to_intel_plane_state(plane->base.state);
-+	enum i9xx_plane_id i9xx_plane = plane->i9xx_plane;
-+	u32 base;
-+
-+	if (!plane_state->uapi.visible)
-+		return false;
-+
-+	base = intel_plane_ggtt_offset(plane_state);
-+
-+	/*
-+	 * We may have moved the surface to a different
-+	 * part of ggtt, make the plane aware of that.
-+	 */
-+	if (plane_config->base == base)
-+		return false;
-+
-+	if (DISPLAY_VER(dev_priv) >= 4)
-+		intel_de_write(dev_priv, DSPSURF(i9xx_plane), base);
-+	else
-+		intel_de_write(dev_priv, DSPADDR(i9xx_plane), base);
-+
-+	return true;
-+}
-diff --git a/drivers/gpu/drm/i915/display/i9xx_plane.h b/drivers/gpu/drm/i915/display/i9xx_plane.h
-index b3d724a144cb..0ca12d1e6839 100644
---- a/drivers/gpu/drm/i915/display/i9xx_plane.h
-+++ b/drivers/gpu/drm/i915/display/i9xx_plane.h
-@@ -26,6 +26,8 @@ intel_primary_plane_create(struct drm_i915_private *dev_priv, enum pipe pipe);
- 
- void i9xx_get_initial_plane_config(struct intel_crtc *crtc,
- 				   struct intel_initial_plane_config *plane_config);
-+bool i9xx_fixup_initial_plane_config(struct intel_crtc *crtc,
-+				     const struct intel_initial_plane_config *plane_config);
- #else
- static inline unsigned int i965_plane_max_stride(struct intel_plane *plane,
- 						 u32 pixel_format, u64 modifier,
-@@ -46,6 +48,11 @@ static inline void i9xx_get_initial_plane_config(struct intel_crtc *crtc,
- 						 struct intel_initial_plane_config *plane_config)
- {
- }
-+static inline bool i9xx_fixup_initial_plane_config(struct intel_crtc *crtc,
-+						   const struct intel_initial_plane_config *plane_config)
-+{
-+	return false;
-+}
- #endif
- 
- #endif
-diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
-index d955957b7d18..92b4a894c9b9 100644
---- a/drivers/gpu/drm/i915/display/intel_display.c
-+++ b/drivers/gpu/drm/i915/display/intel_display.c
-@@ -7820,6 +7820,7 @@ static const struct intel_display_funcs skl_display_funcs = {
- 	.crtc_disable = hsw_crtc_disable,
- 	.commit_modeset_enables = skl_commit_modeset_enables,
- 	.get_initial_plane_config = skl_get_initial_plane_config,
-+	.fixup_initial_plane_config = skl_fixup_initial_plane_config,
- };
- 
- static const struct intel_display_funcs ddi_display_funcs = {
-@@ -7828,6 +7829,7 @@ static const struct intel_display_funcs ddi_display_funcs = {
- 	.crtc_disable = hsw_crtc_disable,
- 	.commit_modeset_enables = intel_commit_modeset_enables,
- 	.get_initial_plane_config = i9xx_get_initial_plane_config,
-+	.fixup_initial_plane_config = i9xx_fixup_initial_plane_config,
- };
- 
- static const struct intel_display_funcs pch_split_display_funcs = {
-@@ -7836,6 +7838,7 @@ static const struct intel_display_funcs pch_split_display_funcs = {
- 	.crtc_disable = ilk_crtc_disable,
- 	.commit_modeset_enables = intel_commit_modeset_enables,
- 	.get_initial_plane_config = i9xx_get_initial_plane_config,
-+	.fixup_initial_plane_config = i9xx_fixup_initial_plane_config,
- };
- 
- static const struct intel_display_funcs vlv_display_funcs = {
-@@ -7844,6 +7847,7 @@ static const struct intel_display_funcs vlv_display_funcs = {
- 	.crtc_disable = i9xx_crtc_disable,
- 	.commit_modeset_enables = intel_commit_modeset_enables,
- 	.get_initial_plane_config = i9xx_get_initial_plane_config,
-+	.fixup_initial_plane_config = i9xx_fixup_initial_plane_config,
- };
- 
- static const struct intel_display_funcs i9xx_display_funcs = {
-@@ -7852,6 +7856,7 @@ static const struct intel_display_funcs i9xx_display_funcs = {
- 	.crtc_disable = i9xx_crtc_disable,
- 	.commit_modeset_enables = intel_commit_modeset_enables,
- 	.get_initial_plane_config = i9xx_get_initial_plane_config,
-+	.fixup_initial_plane_config = i9xx_fixup_initial_plane_config,
- };
- 
- /**
-diff --git a/drivers/gpu/drm/i915/display/intel_display_core.h b/drivers/gpu/drm/i915/display/intel_display_core.h
-index 7e82b87e9cde..3f17328ff690 100644
---- a/drivers/gpu/drm/i915/display/intel_display_core.h
-+++ b/drivers/gpu/drm/i915/display/intel_display_core.h
-@@ -64,6 +64,8 @@ struct intel_display_funcs {
- 				struct intel_crtc_state *);
- 	void (*get_initial_plane_config)(struct intel_crtc *,
- 					 struct intel_initial_plane_config *);
-+	bool (*fixup_initial_plane_config)(struct intel_crtc *crtc,
-+					   const struct intel_initial_plane_config *plane_config);
- 	void (*crtc_enable)(struct intel_atomic_state *state,
- 			    struct intel_crtc *crtc);
- 	void (*crtc_disable)(struct intel_atomic_state *state,
-diff --git a/drivers/gpu/drm/i915/display/intel_plane_initial.c b/drivers/gpu/drm/i915/display/intel_plane_initial.c
-index 82ab98985a09..00e194ee129a 100644
---- a/drivers/gpu/drm/i915/display/intel_plane_initial.c
-+++ b/drivers/gpu/drm/i915/display/intel_plane_initial.c
-@@ -3,9 +3,11 @@
-  * Copyright © 2021 Intel Corporation
-  */
- 
-+#include "gem/i915_gem_lmem.h"
- #include "gem/i915_gem_region.h"
- #include "i915_drv.h"
- #include "intel_atomic_plane.h"
-+#include "intel_crtc.h"
- #include "intel_display.h"
- #include "intel_display_types.h"
- #include "intel_fb.h"
-@@ -138,6 +140,7 @@ initial_plane_vma(struct drm_i915_private *i915,
- {
- 	struct intel_memory_region *mem;
- 	struct drm_i915_gem_object *obj;
-+	struct drm_mm_node orig_mm = {};
- 	struct i915_vma *vma;
- 	resource_size_t phys_base;
- 	u32 base, size;
-@@ -195,23 +198,66 @@ initial_plane_vma(struct drm_i915_private *i915,
- 		goto err_obj;
- 	}
- 
-+	/*
-+	 * MTL GOP likes to place the framebuffer high up in ggtt,
-+	 * which can cause problems for ggtt_reserve_guc_top().
-+	 * Try to pin it to a low ggtt address instead to avoid that.
-+	 */
-+	base = 0;
-+
-+	if (base != plane_config->base) {
-+		struct i915_ggtt *ggtt = to_gt(i915)->ggtt;
-+		int ret;
-+
-+		/*
-+		 * Make sure the original and new locations
-+		 * can't overlap. That would corrupt the original
-+		 * PTEs which are still being used for scanout.
-+		 */
-+		ret = i915_gem_gtt_reserve(&ggtt->vm, NULL, &orig_mm,
-+					   size, plane_config->base,
-+					   I915_COLOR_UNEVICTABLE, PIN_NOEVICT);
-+		if (ret)
-+			goto err_obj;
-+	}
-+
- 	vma = i915_vma_instance(obj, &to_gt(i915)->ggtt->vm, NULL);
- 	if (IS_ERR(vma))
- 		goto err_obj;
- 
-+retry:
- 	pinctl = PIN_GLOBAL | PIN_OFFSET_FIXED | base;
--	if (HAS_GMCH(i915))
-+	if (!i915_gem_object_is_lmem(obj))
- 		pinctl |= PIN_MAPPABLE;
--	if (i915_vma_pin(vma, 0, 0, pinctl))
-+	if (i915_vma_pin(vma, 0, 0, pinctl)) {
-+		if (drm_mm_node_allocated(&orig_mm)) {
-+			drm_mm_remove_node(&orig_mm);
-+			/*
-+			 * Try again, but this time pin
-+			 * it to its original location.
-+			 */
-+			base = plane_config->base;
-+			goto retry;
-+		}
- 		goto err_obj;
-+	}
- 
- 	if (i915_gem_object_is_tiled(obj) &&
- 	    !i915_vma_is_map_and_fenceable(vma))
- 		goto err_obj;
- 
-+	if (drm_mm_node_allocated(&orig_mm))
-+		drm_mm_remove_node(&orig_mm);
-+
-+	drm_dbg_kms(&i915->drm,
-+		    "Initial plane fb bound to 0x%x in the ggtt (original 0x%x)\n",
-+		    i915_ggtt_offset(vma), plane_config->base);
-+
- 	return vma;
- 
- err_obj:
-+	if (drm_mm_node_allocated(&orig_mm))
-+		drm_mm_remove_node(&orig_mm);
- 	i915_gem_object_put(obj);
- 	return NULL;
- }
-@@ -386,6 +432,9 @@ void intel_initial_plane_config(struct drm_i915_private *i915)
- 		 */
- 		intel_find_initial_plane_obj(crtc, plane_configs);
- 
-+		if (i915->display.funcs.display->fixup_initial_plane_config(crtc, plane_config))
-+			intel_crtc_wait_for_next_vblank(crtc);
-+
- 		plane_config_fini(plane_config);
- 	}
- }
-diff --git a/drivers/gpu/drm/i915/display/skl_universal_plane.c b/drivers/gpu/drm/i915/display/skl_universal_plane.c
-index 511dc1544854..392d93e97bf8 100644
---- a/drivers/gpu/drm/i915/display/skl_universal_plane.c
-+++ b/drivers/gpu/drm/i915/display/skl_universal_plane.c
-@@ -2624,3 +2624,31 @@ skl_get_initial_plane_config(struct intel_crtc *crtc,
- error:
- 	kfree(intel_fb);
- }
-+
-+bool skl_fixup_initial_plane_config(struct intel_crtc *crtc,
-+				    const struct intel_initial_plane_config *plane_config)
-+{
-+	struct drm_i915_private *i915 = to_i915(crtc->base.dev);
-+	struct intel_plane *plane = to_intel_plane(crtc->base.primary);
-+	const struct intel_plane_state *plane_state =
-+		to_intel_plane_state(plane->base.state);
-+	enum plane_id plane_id = plane->id;
-+	enum pipe pipe = crtc->pipe;
-+	u32 base;
-+
-+	if (!plane_state->uapi.visible)
-+		return false;
-+
-+	base = intel_plane_ggtt_offset(plane_state);
-+
-+	/*
-+	 * We may have moved the surface to a different
-+	 * part of ggtt, make the plane aware of that.
-+	 */
-+	if (plane_config->base == base)
-+		return false;
-+
-+	intel_de_write(i915, PLANE_SURF(pipe, plane_id), base);
-+
-+	return true;
-+}
-diff --git a/drivers/gpu/drm/i915/display/skl_universal_plane.h b/drivers/gpu/drm/i915/display/skl_universal_plane.h
-index be64c201f9b3..e92e00c01b29 100644
---- a/drivers/gpu/drm/i915/display/skl_universal_plane.h
-+++ b/drivers/gpu/drm/i915/display/skl_universal_plane.h
-@@ -22,6 +22,8 @@ skl_universal_plane_create(struct drm_i915_private *dev_priv,
- 
- void skl_get_initial_plane_config(struct intel_crtc *crtc,
- 				  struct intel_initial_plane_config *plane_config);
-+bool skl_fixup_initial_plane_config(struct intel_crtc *crtc,
-+				    const struct intel_initial_plane_config *plane_config);
- 
- int skl_format_to_fourcc(int format, bool rgb_order, bool alpha);
- 
--- 
-2.41.0
-
+T24gVGh1LCAyMDI0LTAxLTExIGF0IDE1OjU5ICswMjAwLCBWaWxsZSBTeXJqw6Rsw6Qgd3JvdGU6
+Cj4gT24gVGh1LCBKYW4gMTEsIDIwMjQgYXQgMDE6NDc6MDJQTSArMDAwMCwgR292aW5kYXBpbGxh
+aSwgVmlub2Qgd3JvdGU6Cj4gPiBIaSBWaWxsZQo+ID4gCj4gPiBUaGUgZml4IGlzIGluIHRoZSBu
+ZXh0IHBhdGNoLgo+ID4gCj4gPiBUaGlzIHBhY2ggY2hhbmdlcyB0aGUgNDA5NiB0byBwYWdlIHNp
+emUgbWFjcm8gYXMgdGhlIEJVRyBvbiBpcyBiYXNlZCBvbiB0aGF0IG1hY3JvIGV4cGxpY2l0bHku
+Cj4gCj4gSSB0aGluayB0aGUgd2hvbGUgUEFHRV9TSVpFIGhhbmRsaW5nIHNob3VsZCBiZSBpbiB0
+aGUgeGUgY29kZQo+IHNpbmNlIGl0J3MgYW4gaW1wbGVtZW50YXRpb24gZGV0YWlsIG9mIHRoZSB4
+ZSBjb2RlLgoKU29ycnkuLiBJIGFtIG5vdCBzdXJlIGlmIEkgZ2V0IHlvdXIgcG9pbnQgY29ycmVj
+dGx5ISBJIGp1c3QgY2hhbmdlZCB0aGUgbWFnaWMgbnVtYmVyIHdpdGggUEFHRV9TSVpFCmJlY2F1
+c2UgaW4gdGhlIHN1YnNlcXVlbnQgImRybV9nZW1fcHJpdmF0ZV9vYmplY3RfaW5pdCgpIiwgdGhl
+IEJVR19PTiBpcyBiYXNlZCBvbiAiUEFHRV9TSVpFIgpleHBsaWNpdGx5IGFuZCBub3QgNDA5NsKg
+CkJVR19PTigoc2l6ZSAmIChQQUdFX1NJWkUgLSAxKSkgIT0gMCk7CgpUaGUgbmV4dCBwYXRjaCBp
+biB0aGUgc2VyaWVzwqBodHRwczovL3BhdGNod29yay5mcmVlZGVza3RvcC5vcmcvcGF0Y2gvNTcz
+OTA5Lz9zZXJpZXM9MTI4NDI1JnJldj0xIC4KaGFuZGxlcyBhbGlnbm1lbnQgaW4geGUgY29kZQoK
+c3RhdGljIGlubGluZSBpbnQgaTkxNV9nZW1fc3RvbGVuX2luc2VydF9ub2RlX2luX3JhbmdlKHN0
+cnVjdCB4ZV9kZXZpY2UgKnhlLAogCWludCBlcnI7CiAJdTMyIGZsYWdzID0gWEVfQk9fQ1JFQVRF
+X1BJTk5FRF9CSVQgfCBYRV9CT19DUkVBVEVfU1RPTEVOX0JJVDsKIAorCWlmIChhbGlnbikKKwkJ
+c2l6ZSA9IEFMSUdOKHNpemUsIGFsaWduKTsKKwoKCkFzIHBlciBzb21lIGNvbW1lbnRzIGluIHRo
+ZSB4ZV9ibyBoYW5kbGluZywgaXQgZXhwZWN0cyB0aGUgdXNlcnNwYWNlIHRvIGJlIGF3YXJlIG9m
+IHRoZSBhbGlnbm1lbnQKcmVzdHJpY3Rpb25zIGFuZCBoYW5kbGUgdGhlIGFsaWdubWVudHMgcmV0
+dXJuIGVycm9yIGluIHN1Y2ggY2FzZWQuIEZvciBrZXJuZWwsIGl0IGRvZXNudCBleHBsaWNpdGx5
+CmhhbmRsZSBhbnl0aGluZyBhbmQgZmFpbHMgYXQgdGhlIEJVR19PTigpIGV2ZW50dWFsbHkgb2Yg
+dGhlIHNpemUgaXMgbm8gcGFnZSBhbGlnbmVkLgoKPiAKPiA+IAo+ID4gQnIKPiA+IFZpbm9kCj4g
+PiAKPiA+IF9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCj4gPiBGcm9tOiBWaWxsZSBT
+eXJqw6Rsw6QgPHZpbGxlLnN5cmphbGFAbGludXguaW50ZWwuY29tPgo+ID4gU2VudDogVGh1cnNk
+YXksIEphbnVhcnkgMTEsIDIwMjQgMzo0NDoyMiBwbQo+ID4gVG86IEdvdmluZGFwaWxsYWksIFZp
+bm9kIDx2aW5vZC5nb3ZpbmRhcGlsbGFpQGludGVsLmNvbT4KPiA+IENjOiBpbnRlbC1nZnhAbGlz
+dHMuZnJlZWRlc2t0b3Aub3JnwqA8aW50ZWwtZ2Z4QGxpc3RzLmZyZWVkZXNrdG9wLm9yZz47IFN5
+cmphbGEsIFZpbGxlCj4gPiA8dmlsbGUuc3lyamFsYUBpbnRlbC5jb20+Cj4gPiBTdWJqZWN0OiBS
+ZTogW1BBVENIIHYxIDEvMl0gZHJtL2k5MTUvZGlzcGxheTogdXNlIFBBR0VfU0laRSBtYWNybyBm
+b3IgRkJDIGNmYiBhbGxvYwo+ID4gCj4gPiBPbiBXZWQsIEphbiAxMCwgMjAyNCBhdCAwMTowMDow
+OFBNICswMjAwLCBWaW5vZCBHb3ZpbmRhcGlsbGFpIHdyb3RlOgo+ID4gPiBGQkMgY29tcHJlc3Nl
+ZCBmcmFtZSBidWZmZXIgc2l6ZSBuZWVkIHRvIGJlIFBBR0VfU0laRSBhbGlnbmVkCj4gPiA+IGFu
+ZCB0aGUgY29ycmVzcG9uZGluZyB0aGUgZHJtX2dlbSBmdW5jdGlvbnMgY2hlY2sgdGhlIG9iamVj
+dAo+ID4gPiBzaXplIGFsaWdubWVudCB1c2luZyBQQUdFX1NJWkUgbWFjcm8uIFVzZSB0aGUgUEFH
+RV9TSVpFIG1hY3JvCj4gPiA+IGluIHRoZSBjZmIgYWxsb2MgYXMgd2VsbCBpbnN0ZWFkIG9mIHRo
+ZSBtYWdpYyBudW1iZXIuCj4gPiA+IAo+ID4gPiBTaWduZWQtb2ZmLWJ5OiBWaW5vZCBHb3ZpbmRh
+cGlsbGFpIDx2aW5vZC5nb3ZpbmRhcGlsbGFpQGludGVsLmNvbT4KPiA+ID4gLS0tCj4gPiA+IMKg
+ZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9mYmMuYyB8IDYgKysrKy0tCj4gPiA+
+IMKgMSBmaWxlIGNoYW5nZWQsIDQgaW5zZXJ0aW9ucygrKSwgMiBkZWxldGlvbnMoLSkKPiA+ID4g
+Cj4gPiA+IGRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2Zi
+Yy5jCj4gPiA+IGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9mYmMuYwo+ID4g
+PiBpbmRleCBmMTdhMWFmYjQ5MjkuLjliOWM4NzE1ZDY2NCAxMDA2NDQKPiA+ID4gLS0tIGEvZHJp
+dmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9mYmMuYwo+ID4gPiArKysgYi9kcml2ZXJz
+L2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2ZiYy5jCj4gPiA+IEBAIC03NjQsMTMgKzc2NCwx
+NSBAQCBzdGF0aWMgaW50IGZpbmRfY29tcHJlc3Npb25fbGltaXQoc3RydWN0IGludGVsX2ZiYyAq
+ZmJjLAo+ID4gPiAKPiA+ID4gwqDCoMKgwqDCoMKgIC8qIFRyeSB0byBvdmVyLWFsbG9jYXRlIHRv
+IHJlZHVjZSByZWFsbG9jYXRpb25zIGFuZCBmcmFnbWVudGF0aW9uLiAqLwo+ID4gPiDCoMKgwqDC
+oMKgwqAgcmV0ID0gaTkxNV9nZW1fc3RvbGVuX2luc2VydF9ub2RlX2luX3JhbmdlKGk5MTUsICZm
+YmMtPmNvbXByZXNzZWRfZmIsCj4gPiA+IC3CoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
+oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
+wqDCoMKgIHNpemUgPDw9IDEsIDQwOTYsIDAsIGVuZCk7Cj4gPiA+ICvCoMKgwqDCoMKgwqDCoMKg
+wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
+oMKgwqDCoMKgwqDCoMKgwqDCoMKgIHNpemUgPDw9IDEsIFBBR0VfU0laRSwgMCwKPiA+ID4gK8Kg
+wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
+oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgZW5kKTsKPiA+ID4gwqDCoMKgwqDC
+oMKgIGlmIChyZXQgPT0gMCkKPiA+ID4gwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCByZXR1
+cm4gbGltaXQ7Cj4gPiA+IAo+ID4gPiDCoMKgwqDCoMKgwqAgZm9yICg7IGxpbWl0IDw9IGludGVs
+X2ZiY19tYXhfbGltaXQoaTkxNSk7IGxpbWl0IDw8PSAxKSB7Cj4gPiA+IMKgwqDCoMKgwqDCoMKg
+wqDCoMKgwqDCoMKgwqAgcmV0ID0gaTkxNV9nZW1fc3RvbGVuX2luc2VydF9ub2RlX2luX3Jhbmdl
+KGk5MTUsICZmYmMtPmNvbXByZXNzZWRfZmIsCj4gPiA+IC3CoMKgwqDCoMKgwqDCoMKgwqDCoMKg
+wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
+oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCBzaXplID4+PSAxLCA0MDk2LCAwLCBlbmQp
+Owo+ID4gPiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
+wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
+oMKgwqAgc2l6ZSA+Pj0gMSwgUEFHRV9TSVpFLCAwLAo+ID4gPiArwqDCoMKgwqDCoMKgwqDCoMKg
+wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
+oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgZW5kKTsKPiA+IAo+ID4gUEFHRV9T
+SVpFIGlzIDRrIHNvIEkgY2FuJ3Qgc2VlIHRoaXMgZG9pbmcgYW55dGhpbmcgYXQgYWxsLgo+ID4g
+Cj4gPiBUaGUgY29ycmVjdCBmaXggaXMgcHJvYmFibHkgZWl0aGVyOgo+ID4gLSBmaXggdGhlIHhl
+IGdlbSBjb2RlIHRvIGFsd2F5cyBwYWdlIGFsaWduIHRoZSBzaXplCj4gPiAtIHBhZ2UgYWxpZ24g
+aXQgaW4geGUncyBpOTE1X2dlbV9zdG9sZW5faW5zZXJ0X25vZGVfaW5fcmFuZ2UoKQo+ID4gCj4g
+PiA+IMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgaWYgKHJldCA9PSAwKQo+ID4gPiDCoMKg
+wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCByZXR1cm4gbGltaXQ7Cj4g
+PiA+IMKgwqDCoMKgwqDCoCB9Cj4gPiA+IC0tCj4gPiA+IDIuMzQuMQo+ID4gCj4gPiAtLQo+ID4g
+VmlsbGUgU3lyasOkbMOkCj4gPiBJbnRlbAo+ID4gCj4gCgo=
