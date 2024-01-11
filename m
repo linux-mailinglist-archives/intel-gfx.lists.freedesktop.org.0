@@ -2,61 +2,62 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id B173382EEFD
-	for <lists+intel-gfx@lfdr.de>; Tue, 16 Jan 2024 13:28:59 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3A4D782EEFA
+	for <lists+intel-gfx@lfdr.de>; Tue, 16 Jan 2024 13:28:50 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 09B4E10E55F;
-	Tue, 16 Jan 2024 12:28:14 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B51DC10E56F;
+	Tue, 16 Jan 2024 12:28:47 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-yw1-x112e.google.com (mail-yw1-x112e.google.com
- [IPv6:2607:f8b0:4864:20::112e])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B54D810E94F
- for <intel-gfx@lists.freedesktop.org>; Thu, 11 Jan 2024 17:18:23 +0000 (UTC)
-Received: by mail-yw1-x112e.google.com with SMTP id
- 00721157ae682-5e82f502a4cso46624927b3.0
- for <intel-gfx@lists.freedesktop.org>; Thu, 11 Jan 2024 09:18:23 -0800 (PST)
+Received: from mail-yb1-xb32.google.com (mail-yb1-xb32.google.com
+ [IPv6:2607:f8b0:4864:20::b32])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0E40610E0B5;
+ Thu, 11 Jan 2024 21:30:43 +0000 (UTC)
+Received: by mail-yb1-xb32.google.com with SMTP id
+ 3f1490d57ef6-dbeff3fefc7so4815823276.2; 
+ Thu, 11 Jan 2024 13:30:43 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=yngvason.is; s=google; t=1704993502; x=1705598302; darn=lists.freedesktop.org;
+ d=gmail.com; s=20230601; t=1705008642; x=1705613442; darn=lists.freedesktop.org;
  h=content-transfer-encoding:cc:to:subject:message-id:date:from
  :in-reply-to:references:mime-version:from:to:cc:subject:date
  :message-id:reply-to;
- bh=reRg+juZFTzYLAuymnc77j283thAAyu9GtKD+8yi8oo=;
- b=LJwx82+PpQe12y2AkOAOnvM51TnhrkQql+XQIcSnVyR565gyuKNi3ATJMrcsBres59
- w+auoa90jx47KoVRXU6GBO6XiaL630fYIfdkiBic99G4xdSW5ArbYE0+o7lhJlbBQWLB
- Spztc1T0BPj43CLXAJMthJAZOPYLzqqzG1x+I=
+ bh=8LgYFTnwAu8/MG526Kevc0lB/NXqtyQR3bdvsNZmg0k=;
+ b=LbjVsy62gT6ZIQkvAQO33OZvlk3i4nCkkL3H725HM7csHuV6i3cRmNThHELWgV9FG+
+ bQ1VKhrDRsVOmkFemdkoHz2RpovqLDV5jBlmMuAOTJsNPbS5B5imNvyUAoFj26AAkk4Z
+ Hb5KHOhvqhPhTHRqjfRPIyYSssFxbrEvpeNdrEtVqTZf8In5VWnhFLo8MsUCzoYMd5jw
+ 7Y+tah32usBl5us1fkRKTb6X/5SzuRwD0KJFnL/l+K/MqJD/pOt3sXwoSjf2E/E5EOxD
+ qn0xe5GY47Afj0DcRR8U2FktKLDSyjNEvhGKx8CdaCNnkLNaqqIqd8BQQDGDT1MpBOas
+ qtMA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1704993502; x=1705598302;
+ d=1e100.net; s=20230601; t=1705008642; x=1705613442;
  h=content-transfer-encoding:cc:to:subject:message-id:date:from
  :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
  :subject:date:message-id:reply-to;
- bh=reRg+juZFTzYLAuymnc77j283thAAyu9GtKD+8yi8oo=;
- b=joNPn5BC1hWWSbfnxLJbE1WCyqgFUJJuOIEe7RlMWdsj13UvYMIJi/HTFdfjUl5Y1x
- 7QnRypyx4FjwmC8FWzkoAScqJkHQG8awxRC+zCK+NrNYZirUdk0wJeV22Fsr53i+YQQg
- n6VLHXFgoM3+59UBWWJhyDvBcXZbSyv3TwYSMKaF3ZbFqgM3f3Sq33fXfe8tiwGp9VFl
- 5YOkcfvdvElLae2CTXnpSYgLLc1sVeIl6Y5ZQL3NSDHBRmjkr6ta2+dDgXgBzFLLD6cJ
- 70UH52wKzEGoBDyhwmm6kLJAMoeal7iG4LFbfjSeqESVwXroFNp2V+xVDReCAcu5wYD1
- KbtA==
-X-Gm-Message-State: AOJu0YxKqkebOheCUJm+b1MznrXhuCx4DNDxipY+2zCXiXt9XYiFC0VB
- 0m5LCwQ8QSR2qVpWCs441mBAeUA1xVt0x2ZjS5LZrY1ZG1xiEQ==
-X-Google-Smtp-Source: AGHT+IE39wedx9qoJqNO6MjAU4E5XVco4roigw4JCooGGaUKrzldoRbPFpkW15iiHXNNuutcoyizp+NdmoWt5CbB2Gc=
-X-Received: by 2002:a81:84d1:0:b0:5e9:94dc:b77f with SMTP id
- u200-20020a8184d1000000b005e994dcb77fmr123269ywf.9.1704993502233; Thu, 11 Jan
- 2024 09:18:22 -0800 (PST)
+ bh=8LgYFTnwAu8/MG526Kevc0lB/NXqtyQR3bdvsNZmg0k=;
+ b=iEplFe1ckPpRwPwiqbvbWBqNXzz2snaJa/x7cgljCz2HyOf6p5d1j2wJpJ0FPxx8Gh
+ LSkIJgDO1GBm+rY8iGheAXwPW/wgfBIZm71I4GwILuG6VxExYxeElb92x3q3n+6tA7Lv
+ 1USAkmGgtsoM1BnDT7RxHTCgThRPTXrpGvRwRIjNgxCg39tGHHIJVlJKlr5ATQLLPMzW
+ VZNtbIj24CO7rmxeJrk/etH/rZwyPGz3Z9K3M09ZRvpk1064U2VjiF4HJAEyR3zayfBl
+ lEmWeVxpJD88w3Q4cb3eaEr4UlZNufoS/COa4SPr/+yKg0U+1O16y2nyeFiScvTmzkwI
+ uD1A==
+X-Gm-Message-State: AOJu0YzhoCZ9auWJikPIeFbKHDqqbIVfIN4whpx13yXhOpUf1Uitk7RG
+ myIT+B4jVYv8ZCeM68I3Gz3+fvR+xZH/eH3BO/c=
+X-Google-Smtp-Source: AGHT+IHwmH+A2IQ0AogjWxAMvzBiF3cSFHiqvOmPkUcvH7iqX/OVfLICPOYHsW9aFA0OozZ2CFnaG7nwOMzm3wCWY1Y=
+X-Received: by 2002:a05:6902:1364:b0:dbf:11e:d09d with SMTP id
+ bt4-20020a056902136400b00dbf011ed09dmr294814ybb.84.1705008642089; Thu, 11 Jan
+ 2024 13:30:42 -0800 (PST)
 MIME-Version: 1.0
-References: <20240109181104.1670304-1-andri@yngvason.is>
- <20240109181104.1670304-3-andri@yngvason.is>
- <CAPj87rNan8B5urDFkmD_Vti4to6p3NmvXYsTFQTNg-Ue2ieDug@mail.gmail.com>
- <CAFNQBQwiqqSRqzXAnC035UWCGF3=GGFR5SpDd=biPTOEA+cWbQ@mail.gmail.com>
- <ZZ509L_kmVC4IUBW@phenom.ffwll.local>
- <CAPj87rOiS8F=oDW3iE=bgFyfeJnYhy8kPF2v-uYOq3xgYtVPAg@mail.gmail.com>
-In-Reply-To: <CAPj87rOiS8F=oDW3iE=bgFyfeJnYhy8kPF2v-uYOq3xgYtVPAg@mail.gmail.com>
-From: Andri Yngvason <andri@yngvason.is>
-Date: Thu, 11 Jan 2024 17:17:46 +0000
-Message-ID: <CAFNQBQwjeJaX6B4oewpgASMUd5_nxZYMxUfdOG294CTVGBTd1w@mail.gmail.com>
-Subject: Re: [PATCH 2/7] drm/uAPI: Add "active color format" drm property as
- feedback for userspace
-To: Daniel Stone <daniel@fooishbar.org>
+References: <20240110092109.1950011-1-hch@lst.de>
+ <ZZ6Pfk8tLXbvs4dE@casper.infradead.org>
+ <170490002493.164187.5401160425746227111@jlahtine-mobl.ger.corp.intel.com>
+ <170490050245.164862.16261803493864298341@jlahtine-mobl.ger.corp.intel.com>
+ <ZZ64/F/yeSymOCcI@casper.infradead.org>
+In-Reply-To: <ZZ64/F/yeSymOCcI@casper.infradead.org>
+From: Daniel Gomez <dagmcr@gmail.com>
+Date: Thu, 11 Jan 2024 22:30:31 +0100
+Message-ID: <CAPsT6hkQixVvvE94Rjop-7jOXi3FOMfv8BOFhxYLWUs906x2CQ@mail.gmail.com>
+Subject: Re: disable large folios for shmem file used by xfs xfile
+To: Matthew Wilcox <willy@infradead.org>
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 X-Mailman-Approved-At: Tue, 16 Jan 2024 12:28:11 +0000
@@ -72,105 +73,69 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Simon Ser <contact@emersion.fr>, intel-gfx@lists.freedesktop.org,
- Leo Li <sunpeng.li@amd.com>, David Airlie <airlied@gmail.com>,
- dri-devel@lists.freedesktop.org, "Pan, Xinhui" <Xinhui.Pan@amd.com>,
- Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>, linux-kernel@vger.kernel.org,
- Maxime Ripard <mripard@kernel.org>, Daniel Vetter <daniel@ffwll.ch>,
- Thomas Zimmermann <tzimmermann@suse.de>, Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Alex Deucher <alexander.deucher@amd.com>, amd-gfx@lists.freedesktop.org,
- Harry Wentland <harry.wentland@amd.com>,
- =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>
+Cc: "Darrick J . Wong" <djwong@kernel.org>,
+ Dave Hansen <dave.hansen@linux.intel.com>, dri-devel@lists.freedesktop.org,
+ David Howells <dhowells@redhat.com>, linux-mm@kvack.org,
+ Huang Rui <ray.huang@amd.com>, David Airlie <airlied@gmail.com>,
+ Christoph Hellwig <hch@lst.de>, x86@kernel.org,
+ Hugh Dickins <hughd@google.com>, Thomas Zimmermann <tzimmermann@suse.de>,
+ intel-gfx@lists.freedesktop.org, Maxime Ripard <mripard@kernel.org>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, linux-sgx@vger.kernel.org,
+ Jarkko Sakkinen <jarkko@kernel.org>, keyrings@vger.kernel.org,
+ Daniel Vetter <daniel@ffwll.ch>, linux-fsdevel@vger.kernel.org,
+ Andrew Morton <akpm@linux-foundation.org>,
+ Christian Koenig <christian.koenig@amd.com>,
+ Chandan Babu R <chandan.babu@oracle.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-mi=C3=B0., 10. jan. 2024 kl. 13:26 skrifa=C3=B0i Daniel Stone <daniel@foois=
-hbar.org>:
-> >
-> > This thing here works entirely differently, and I think we need somewha=
-t
-> > new semantics for this:
-> >
-> > - I agree it should be read-only for userspace, so immutable sounds rig=
-ht.
-> >
-> > - But I also agree with Daniel Stone that this should be tied more
-> >   directly to the modeset state.
-> >
-> > So I think the better approach would be to put the output type into
-> > drm_connector_state, require that drivers compute it in their
-> > ->atomic_check code (which in the future would allow us to report it ou=
-t
-> > for TEST_ONLY commits too), and so guarantee that the value is updated
-> > right after the kms ioctl returns (and not somewhen later for non-block=
-ing
-> > commits).
+On Wed, Jan 10, 2024 at 4:35=E2=80=AFPM Matthew Wilcox <willy@infradead.org=
+> wrote:
 >
-> That's exactly the point. Whether userspace gets an explicit
-> notification or it has to 'know' when to read isn't much of an issue -
-> just as long as it's well defined. I think the suggestion of 'do it in
-> atomic_check and then it's guaranteed to be readable when the commit
-> completes' is a good one.
+> On Wed, Jan 10, 2024 at 05:28:22PM +0200, Joonas Lahtinen wrote:
+> > Quoting Joonas Lahtinen (2024-01-10 17:20:24)
+> > > However we specifically pass "huge=3Dwithin_size" to vfs_kern_mount w=
+hen
+> > > creating a private mount of tmpfs for the purpose of i915 created
+> > > allocations.
+> > >
+> > > Older hardware also had some address hashing bugs where 2M aligned
+> > > memory caused a lot of collisions in TLB so we don't enable it always=
+.
+> > >
+> > > You can see drivers/gpu/drm/i915/gem/i915_gemfs.c function
+> > > i915_gemfs_init for details and references.
+> > >
+> > > So in short, functionality wise we should be fine either default
+> > > for using 2M pages or not. If they become the default, we'd probably
+> > > want an option that would still be able to prevent them for performan=
+ce
+> > > regression reasons on older hardware.
+> >
+> > To maybe write out my concern better:
+> >
+> > Is there plan to enable huge pages by default in shmem?
 >
-> I do still have some reservations - for instance, why do we have the
-> fallback to auto when userspace has explicitly requested a certain
-> type? - but they may have been covered previously.
->
-
-We discussed this further on IRC and this is summary of that discussion:
-
-Sima proposed a new type of property that can be used to git feedback to
-userspace after atomic ioctl. The user supplies a list of output properties
-that they want to query and the kernel fills it in before returning from th=
+> Not in the next kernel release, but eventually the plan is to allow
+> arbitrary order folios to be used in shmem.  So you could ask it to creat=
 e
-ioctl. This would help to get some information about why things failed
-during TEST_ONLY.
+> a 256kB folio for you, if that's the right size to manage memory in.
+>
+> How shmem and its various users go about choosing the right size is not
+> quite clear to me yet.  Perhaps somebody else will do it before I get
+> to it; I have a lot of different sub-projects to work on at the moment,
+> and shmem isn't blocking any of them.  And I have a sneaking suspicion
+> that more work is needed in the swap code to deal with arbitrary order
+> folios, so that's another reason for me to delay looking at this ;-)
 
-Emersion raised the point that you might not know how much memory is needed
-beforehand for the returned properties, to which sima replied: blob
-property. There was some discussion about how that makes it possible to lea=
-k
-kernel memory, especially if userspace does not know about a new property
-blob. Emersion pointed out that userspace should only request properties
-that it understands and pq agreed.
+I have sent large folios support for shmem for the write and fallocate
+path some releases ago. The main problem I was facing was a current
+upstream problem with huge pages when seeking holes/data (fstests
+generic/285 and generic/436). The strategy suggested was to use large
+folios in an opportunistic way based on the file size. This hit the
+same problem we currently have with huge pages and I considered that a
+regression. We have made some progress to fix seeking in huge pages
+upstream but is not yet finished. I can send the patches tomorrow for
+further discussion.
 
-Emersion asked how the user should inform the kernel that it's done with th=
-e
-blob, to which sima replied: DRM_IOCTL_MODE_DESTROYPROPBLOB. Sima also
-mentioned using some sort of weak reference garbage collection scheme for
-properties and there was some further discussion, but I'm not sure there wa=
-s
-any conclusion.
-
-I asked if it made sense to add color format capabilities to the mode info
-struct, but the conclusion was that it wouldn't really be useful because we
-need TEST_ONLY anyway to see if the color format setting is compatible with
-other settings.
-
-I asked again if we should drop the "active color format" property as it
-seems to be more trouble than it's worth for now. pq mentioned that there
-are 2 separate use cases (in his words):
-- People playing with setting UI would like to know what "auto" would resul=
-t
-  in, but that's just nice to have
-- The other use case is the flicker-free boot into known configuration He
-  went on to point out that the main problem with "auto" is that any modese=
-t
-  could make the driver decide differently. This means that we cannot fully
-  rely on the previously set property.
-
-However, leaving out "active color property" did not put us in a worse
-situation than before, so the conclusion was that we should leave it out fo=
-r
-now. For GUI selectors, the current TEST_ONLY should be good enough, and al=
-l
-the fancy stuff discussed previously isn't needed for now.
-
-To summarise the summary: this means that we will drop the "active
-color format" property and rename the "preferred color format"
-property to "force color format" or just "color format" and failing to
-satisfy that constraint will fail the modeset rather than falling back
-to the "auto" behaviour.
-
-Cheers,
-Andri
+>
