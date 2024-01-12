@@ -1,49 +1,29 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 59C6782C33C
-	for <lists+intel-gfx@lfdr.de>; Fri, 12 Jan 2024 17:02:21 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9D0BA82C371
+	for <lists+intel-gfx@lfdr.de>; Fri, 12 Jan 2024 17:19:14 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AE22C10E029;
-	Fri, 12 Jan 2024 16:02:19 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 425D410E0D3;
+	Fri, 12 Jan 2024 16:19:12 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.115])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7E6DD10E029
- for <intel-gfx@lists.freedesktop.org>; Fri, 12 Jan 2024 16:02:18 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1705075338; x=1736611338;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=5cVyymXcaE0mFWMzsWoLcjk4LX5bYL5uqnq6PBFHv0A=;
- b=bBiCuFUajT67JmO+dChouskOVUzkjC/BqE6P4MzGYATTeGdI1Iw+oSJD
- SISEbseLgD1woYlI7sEO4CFNI4pBr1FvNuIg/xtvrFKYRiLkqeIqnCfZL
- hcvpwRohuP7Gfa3Yf+iLX7p0xDlzXkM5ozPsxFsQKNv3fAvFTgI4kpiYF
- WMrXa63GsYZ5LwmLUe2pB7QRcLgvtf8bjjC9eyIv7MgCGF0VWy41F5Hps
- wBWPCDX67oZedKZPUpbVFjYxp/eceYdveeI5AfYSQTtIwcbJZCorpvQkr
- alrrqL7aFG+UT0xnbRmjUBI7c8Ibr2Avv+Xueov99NPOvTUFwmyehBJjY Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10951"; a="398887237"
-X-IronPort-AV: E=Sophos;i="6.04,190,1695711600"; d="scan'208";a="398887237"
-Received: from orviesa002.jf.intel.com ([10.64.159.142])
- by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Jan 2024 08:02:17 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.04,190,1695711600"; d="scan'208";a="24741287"
-Received: from tsenx-mobl.ger.corp.intel.com (HELO localhost) ([10.252.38.158])
- by orviesa002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Jan 2024 08:02:12 -0800
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Lucas De Marchi <lucas.demarchi@intel.com>, intel-gfx@lists.freedesktop.org
-Subject: Re: [PATCH] drm/i915: Drop -Wstringop-overflow
-In-Reply-To: <20240112154912.1775199-1-lucas.demarchi@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20240112154912.1775199-1-lucas.demarchi@intel.com>
-Date: Fri, 12 Jan 2024 18:02:07 +0200
-Message-ID: <87zfxasfpc.fsf@intel.com>
+Received: from 5338d5abeb45 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E245510E0D3;
+ Fri, 12 Jan 2024 16:19:10 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: text/plain
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=97_Fi=2ECI=2ECHECKPATCH=3A_warning_for_drm/i915=3A_Drop_-Ws?=
+ =?utf-8?q?tringop-overflow?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Lucas De Marchi" <lucas.demarchi@intel.com>
+Date: Fri, 12 Jan 2024 16:19:10 -0000
+Message-ID: <170507635092.332901.11379936971700054880@5338d5abeb45>
+X-Patchwork-Hint: ignore
+References: <20240112154912.1775199-1-lucas.demarchi@intel.com>
+In-Reply-To: <20240112154912.1775199-1-lucas.demarchi@intel.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -56,40 +36,29 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Lucas De Marchi <lucas.demarchi@intel.com>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, 12 Jan 2024, Lucas De Marchi <lucas.demarchi@intel.com> wrote:
-> -Wstringop-overflow is broken on GCC11. In future changes it will
-> be moved to the normal C flags in the top level Makefile (out of
-> Makefile.extrawarn), but accounting for the compiler support.
->
-> Just remove it out of i915's forced extra warnings, preparing for the
-> upcoming change and avoiding build warnings to show up.
->
-> Fixes: 2250c7ead8ad ("drm/i915: enable W=1 warnings by default")
-> References: https://lore.kernel.org/all/45ad1d0f-a10f-483e-848a-76a30252edbe@paulmck-laptop/
-> Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
+== Series Details ==
 
-Reviewed-by: Jani Nikula <jani.nikula@intel.com>
+Series: drm/i915: Drop -Wstringop-overflow
+URL   : https://patchwork.freedesktop.org/series/128728/
+State : warning
 
-> ---
->  drivers/gpu/drm/i915/Makefile | 1 -
->  1 file changed, 1 deletion(-)
->
-> diff --git a/drivers/gpu/drm/i915/Makefile b/drivers/gpu/drm/i915/Makefile
-> index e777686190ca..c13f14edb508 100644
-> --- a/drivers/gpu/drm/i915/Makefile
-> +++ b/drivers/gpu/drm/i915/Makefile
-> @@ -17,7 +17,6 @@ subdir-ccflags-y += $(call cc-option, -Wunused-const-variable)
->  subdir-ccflags-y += $(call cc-option, -Wpacked-not-aligned)
->  subdir-ccflags-y += $(call cc-option, -Wformat-overflow)
->  subdir-ccflags-y += $(call cc-option, -Wformat-truncation)
-> -subdir-ccflags-y += $(call cc-option, -Wstringop-overflow)
->  subdir-ccflags-y += $(call cc-option, -Wstringop-truncation)
->  # The following turn off the warnings enabled by -Wextra
->  ifeq ($(findstring 2, $(KBUILD_EXTRA_WARN)),)
+== Summary ==
 
--- 
-Jani Nikula, Intel
+Error: dim checkpatch failed
+9427e0589ae0 drm/i915: Drop -Wstringop-overflow
+-:14: WARNING:COMMIT_LOG_LONG_LINE: Prefer a maximum 75 chars per line (possible unwrapped commit description?)
+#14: 
+References: https://lore.kernel.org/all/45ad1d0f-a10f-483e-848a-76a30252edbe@paulmck-laptop/
+
+-:14: WARNING:COMMIT_LOG_USE_LINK: Unknown link reference 'References:', use 'Link:' or 'Closes:' instead
+#14: 
+References: https://lore.kernel.org/all/45ad1d0f-a10f-483e-848a-76a30252edbe@paulmck-laptop/
+
+total: 0 errors, 2 warnings, 0 checks, 7 lines checked
+
+
