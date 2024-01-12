@@ -1,28 +1,52 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 66E0A82BC92
-	for <lists+intel-gfx@lfdr.de>; Fri, 12 Jan 2024 09:59:27 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 68D1882BCAB
+	for <lists+intel-gfx@lfdr.de>; Fri, 12 Jan 2024 10:07:50 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EF5C310EA99;
-	Fri, 12 Jan 2024 08:59:25 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B358D10EAB4;
+	Fri, 12 Jan 2024 09:07:43 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from 5338d5abeb45 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 66CEB10EA99;
- Fri, 12 Jan 2024 08:59:25 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============1510911853675015190=="
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 26D8C10EAB2;
+ Fri, 12 Jan 2024 09:07:42 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1705050462; x=1736586462;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version;
+ bh=nKUQ3YVcdL48V6oYTbglzQHnBPG03i5cSW8m97SIAj0=;
+ b=NYOY6btzVKIY0fD+d1kZb4N3ZZ+pjAus0xsJNsYORVeXzfOR6WxPoTVI
+ r22OEoVVZIx4Wn4TBf0rmWU7nTTTP6oNLk9DJorO7p5Yln1KxW3QLO76x
+ IRuY5laaGvJxzsNDI0bfggyILx/gfytacroqCxE5XiSdEbqeDuFIKga4A
+ mKrDMxxbgeqZ0i5pSTUj6+hPSy/yh8INQXba79RGGmg3xEYDH8xgHVS5i
+ KG4hNdK8hPcngAJJ7uOvCuJlnshelSL2BzCEFAwJzZPaxrSR+HP42zDJE
+ gZccdn9W4uesp91AMt3Aip3wEyXzntp+emdMWI1yC17Ih8RFvLjTqqO5V g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10950"; a="6491194"
+X-IronPort-AV: E=Sophos;i="6.04,189,1695711600"; 
+   d="scan'208";a="6491194"
+Received: from fmviesa001.fm.intel.com ([10.60.135.141])
+ by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 12 Jan 2024 01:07:41 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.04,189,1695711600"; d="scan'208";a="24944433"
+Received: from kklimes-mobl1.amr.corp.intel.com (HELO localhost)
+ ([10.252.38.5])
+ by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 12 Jan 2024 01:07:37 -0800
+From: Jani Nikula <jani.nikula@intel.com>
+To: kernel test robot <lkp@intel.com>, dri-devel@lists.freedesktop.org
+Subject: Re: [PATCH 3/6] drm/amdgpu: prefer snprintf over sprintf
+In-Reply-To: <202401121126.i9VGrvMb-lkp@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <fea7a52924f98b1ac24f4a7e6ba21d7754422430.1704908087.git.jani.nikula@intel.com>
+ <202401121126.i9VGrvMb-lkp@intel.com>
+Date: Fri, 12 Jan 2024 11:07:33 +0200
+Message-ID: <878r4uudgq.fsf@intel.com>
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Fi=2ECI=2EBAT=3A_success_for_HDCP_Type1_MST_fixes?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Suraj Kandpal" <suraj.kandpal@intel.com>
-Date: Fri, 12 Jan 2024 08:59:25 -0000
-Message-ID: <170504996541.332228.7850941352309117303@5338d5abeb45>
-X-Patchwork-Hint: ignore
-References: <20240112074120.159797-1-suraj.kandpal@intel.com>
-In-Reply-To: <20240112074120.159797-1-suraj.kandpal@intel.com>
+Content-Type: text/plain
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -35,229 +59,102 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
+Cc: Pan@freedesktop.org, intel-gfx@lists.freedesktop.org,
+ Xinhui <Xinhui.Pan@amd.com>, amd-gfx@lists.freedesktop.org,
+ oe-kbuild-all@lists.linux.dev, Alex Deucher <alexander.deucher@amd.com>,
+ Christian =?utf-8?Q?K=C3=B6nig?= <christian.koenig@amd.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============1510911853675015190==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+On Fri, 12 Jan 2024, kernel test robot <lkp@intel.com> wrote:
+> Hi Jani,
+>
+> kernel test robot noticed the following build warnings:
+>
+> [auto build test WARNING on drm-misc/drm-misc-next]
+> [also build test WARNING on drm-intel/for-linux-next drm-intel/for-linux-next-fixes drm-tip/drm-tip linus/master v6.7 next-20240111]
+> [If your patch is applied to the wrong git tree, kindly drop us a note.
+> And when submitting patch, we suggest to use '--base' as documented in
+> https://git-scm.com/docs/git-format-patch#_base_tree_information]
+>
+> url:    https://github.com/intel-lab-lkp/linux/commits/Jani-Nikula/drm-nouveau-acr-ga102-remove-unused-but-set-variable/20240111-014206
+> base:   git://anongit.freedesktop.org/drm/drm-misc drm-misc-next
+> patch link:    https://lore.kernel.org/r/fea7a52924f98b1ac24f4a7e6ba21d7754422430.1704908087.git.jani.nikula%40intel.com
+> patch subject: [PATCH 3/6] drm/amdgpu: prefer snprintf over sprintf
+> config: sparc64-allmodconfig (https://download.01.org/0day-ci/archive/20240112/202401121126.i9VGrvMb-lkp@intel.com/config)
+> compiler: sparc64-linux-gcc (GCC) 13.2.0
+> reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20240112/202401121126.i9VGrvMb-lkp@intel.com/reproduce)
+>
+> If you fix the issue in a separate patch/commit (i.e. not just a new version of
+> the same patch/commit), kindly add following tags
+> | Reported-by: kernel test robot <lkp@intel.com>
+> | Closes: https://lore.kernel.org/oe-kbuild-all/202401121126.i9VGrvMb-lkp@intel.com/
+>
+> All warnings (new ones prefixed by >>):
+>
+>    drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.c: In function 'amdgpu_gfx_kiq_init_ring':
+>>> drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.c:332:61: warning: '%d' directive output may be truncated writing between 1 and 10 bytes into a region of size between 0 and 8 [-Wformat-truncation=]
+>      332 |         snprintf(ring->name, sizeof(ring->name), "kiq_%d.%d.%d.%d",
+>          |                                                             ^~
+>    drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.c:332:50: note: directive argument in the range [0, 2147483647]
+>      332 |         snprintf(ring->name, sizeof(ring->name), "kiq_%d.%d.%d.%d",
+>          |                                                  ^~~~~~~~~~~~~~~~~
+>    drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.c:332:9: note: 'snprintf' output between 12 and 41 bytes into a destination of size 16
+>      332 |         snprintf(ring->name, sizeof(ring->name), "kiq_%d.%d.%d.%d",
+>          |         ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+>      333 |                  xcc_id, ring->me, ring->pipe, ring->queue);
+>          |                  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-== Series Details ==
+As the commit message says,
 
-Series: HDCP Type1 MST fixes
-URL   : https://patchwork.freedesktop.org/series/128703/
-State : success
-
-== Summary ==
-
-CI Bug Log - changes from CI_DRM_14116 -> Patchwork_128703v1
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_128703v1/index.html
-
-Participating hosts (37 -> 36)
-------------------------------
-
-  Additional (1): bat-adls-6 
-  Missing    (2): bat-rpls-2 fi-snb-2520m 
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_128703v1 that come from known issues:
-
-### CI changes ###
-
-#### Possible fixes ####
-
-  * boot:
-    - fi-bsw-n3050:       [FAIL][1] ([i915#8293]) -> [PASS][2]
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14116/fi-bsw-n3050/boot.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_128703v1/fi-bsw-n3050/boot.html
-
-  
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@gem_exec_suspend@basic-s0@lmem0:
-    - bat-dg2-9:          [PASS][3] -> [INCOMPLETE][4] ([i915#9275])
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14116/bat-dg2-9/igt@gem_exec_suspend@basic-s0@lmem0.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_128703v1/bat-dg2-9/igt@gem_exec_suspend@basic-s0@lmem0.html
-
-  * igt@gem_lmem_swapping@random-engines:
-    - fi-bsw-n3050:       NOTRUN -> [SKIP][5] ([fdo#109271]) +15 other tests skip
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_128703v1/fi-bsw-n3050/igt@gem_lmem_swapping@random-engines.html
-
-  
-#### Possible fixes ####
-
-  * igt@dmabuf@all-tests@sanitycheck:
-    - fi-skl-6600u:       [INCOMPLETE][6] -> [PASS][7]
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14116/fi-skl-6600u/igt@dmabuf@all-tests@sanitycheck.html
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_128703v1/fi-skl-6600u/igt@dmabuf@all-tests@sanitycheck.html
-
-  * igt@i915_selftest@live@hangcheck:
-    - {bat-dg2-14}:       [ABORT][8] ([i915#9840]) -> [PASS][9]
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14116/bat-dg2-14/igt@i915_selftest@live@hangcheck.html
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_128703v1/bat-dg2-14/igt@i915_selftest@live@hangcheck.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
-  [fdo#109285]: https://bugs.freedesktop.org/show_bug.cgi?id=109285
-  [fdo#109295]: https://bugs.freedesktop.org/show_bug.cgi?id=109295
-  [i915#3282]: https://gitlab.freedesktop.org/drm/intel/issues/3282
-  [i915#3291]: https://gitlab.freedesktop.org/drm/intel/issues/3291
-  [i915#3555]: https://gitlab.freedesktop.org/drm/intel/issues/3555
-  [i915#3840]: https://gitlab.freedesktop.org/drm/intel/issues/3840
-  [i915#4103]: https://gitlab.freedesktop.org/drm/intel/issues/4103
-  [i915#4613]: https://gitlab.freedesktop.org/drm/intel/issues/4613
-  [i915#5354]: https://gitlab.freedesktop.org/drm/intel/issues/5354
-  [i915#5591]: https://gitlab.freedesktop.org/drm/intel/issues/5591
-  [i915#8293]: https://gitlab.freedesktop.org/drm/intel/issues/8293
-  [i915#9275]: https://gitlab.freedesktop.org/drm/intel/issues/9275
-  [i915#9318]: https://gitlab.freedesktop.org/drm/intel/issues/9318
-  [i915#9732]: https://gitlab.freedesktop.org/drm/intel/issues/9732
-  [i915#9840]: https://gitlab.freedesktop.org/drm/intel/issues/9840
+This will trade the W=1 warning -Wformat-overflow to
+-Wformat-truncation. This lets us enable -Wformat-overflow subsystem
+wide.
 
 
-Build changes
--------------
+BR,
+Jani.
 
-  * Linux: CI_DRM_14116 -> Patchwork_128703v1
+>
+>
+> vim +332 drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.c
+>
+>    306	
+>    307	int amdgpu_gfx_kiq_init_ring(struct amdgpu_device *adev,
+>    308				     struct amdgpu_ring *ring,
+>    309				     struct amdgpu_irq_src *irq, int xcc_id)
+>    310	{
+>    311		struct amdgpu_kiq *kiq = &adev->gfx.kiq[xcc_id];
+>    312		int r = 0;
+>    313	
+>    314		spin_lock_init(&kiq->ring_lock);
+>    315	
+>    316		ring->adev = NULL;
+>    317		ring->ring_obj = NULL;
+>    318		ring->use_doorbell = true;
+>    319		ring->xcc_id = xcc_id;
+>    320		ring->vm_hub = AMDGPU_GFXHUB(xcc_id);
+>    321		ring->doorbell_index =
+>    322			(adev->doorbell_index.kiq +
+>    323			 xcc_id * adev->doorbell_index.xcc_doorbell_range)
+>    324			<< 1;
+>    325	
+>    326		r = amdgpu_gfx_kiq_acquire(adev, ring, xcc_id);
+>    327		if (r)
+>    328			return r;
+>    329	
+>    330		ring->eop_gpu_addr = kiq->eop_gpu_addr;
+>    331		ring->no_scheduler = true;
+>  > 332		snprintf(ring->name, sizeof(ring->name), "kiq_%d.%d.%d.%d",
+>    333			 xcc_id, ring->me, ring->pipe, ring->queue);
+>    334		r = amdgpu_ring_init(adev, ring, 1024, irq, AMDGPU_CP_KIQ_IRQ_DRIVER0,
+>    335				     AMDGPU_RING_PRIO_DEFAULT, NULL);
+>    336		if (r)
+>    337			dev_warn(adev->dev, "(%d) failed to init kiq ring\n", r);
+>    338	
+>    339		return r;
+>    340	}
+>    341	
 
-  CI-20190529: 20190529
-  CI_DRM_14116: 3b92a66f4bc89f4fa6e9e9369ac8243e23670030 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_7670: 1b32bcdb2d9965090234739aba891a90743e01c4 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_128703v1: 3b92a66f4bc89f4fa6e9e9369ac8243e23670030 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-### Linux commits
-
-5a4020030399 drm/i915/display: fastset tbt pll thing
-caa8c9248cb0 drm/i915/hdcp: Read Rxcaps for robustibility
-2bb7b46ceba1 drm/i915/hdcp: Allocate stream id after HDCP AKE stage
-8e5e45e8f364 drm/i915/hdcp: Extract hdcp structure from correct connector
-0c12218b222b drm/i915/hdcp: Remove additional timing for reading mst hdcp message
-8a9889ba3bc6 drm/i915/hdcp: HDCP Capability for the downstream device
-b66b8a276695 drm/i915/hdcp: Move to direct reads for HDCP
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_128703v1/index.html
-
---===============1510911853675015190==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>HDCP Type1 MST fixes</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/128703/">https://patchwork.freedesktop.org/series/128703/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_128703v1/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_128703v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_14116 -&gt; Patchwork_128703v1</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_128703v1/index.html</p>
-<h2>Participating hosts (37 -&gt; 36)</h2>
-<p>Additional (1): bat-adls-6 <br />
-  Missing    (2): bat-rpls-2 fi-snb-2520m </p>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_128703v1 that come from known issues:</p>
-<h3>CI changes</h3>
-<h4>Possible fixes</h4>
-<ul>
-<li>boot:<ul>
-<li>fi-bsw-n3050:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14116/fi-bsw-n3050/boot.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/8293">i915#8293</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_128703v1/fi-bsw-n3050/boot.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@gem_exec_suspend@basic-s0@lmem0:</p>
-<ul>
-<li>bat-dg2-9:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14116/bat-dg2-9/igt@gem_exec_suspend@basic-s0@lmem0.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_128703v1/bat-dg2-9/igt@gem_exec_suspend@basic-s0@lmem0.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/9275">i915#9275</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_lmem_swapping@random-engines:</p>
-<ul>
-<li>fi-bsw-n3050:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_128703v1/fi-bsw-n3050/igt@gem_lmem_swapping@random-engines.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +15 other tests skip</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>
-<p>igt@dmabuf@all-tests@sanitycheck:</p>
-<ul>
-<li>fi-skl-6600u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14116/fi-skl-6600u/igt@dmabuf@all-tests@sanitycheck.html">INCOMPLETE</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_128703v1/fi-skl-6600u/igt@dmabuf@all-tests@sanitycheck.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@hangcheck:</p>
-<ul>
-<li>{bat-dg2-14}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14116/bat-dg2-14/igt@i915_selftest@live@hangcheck.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/9840">i915#9840</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_128703v1/bat-dg2-14/igt@i915_selftest@live@hangcheck.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<p>{name}: This element is suppressed. This means it is ignored when computing<br />
-          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_14116 -&gt; Patchwork_128703v1</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_14116: 3b92a66f4bc89f4fa6e9e9369ac8243e23670030 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_7670: 1b32bcdb2d9965090234739aba891a90743e01c4 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  Patchwork_128703v1: 3b92a66f4bc89f4fa6e9e9369ac8243e23670030 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<h3>Linux commits</h3>
-<p>5a4020030399 drm/i915/display: fastset tbt pll thing<br />
-caa8c9248cb0 drm/i915/hdcp: Read Rxcaps for robustibility<br />
-2bb7b46ceba1 drm/i915/hdcp: Allocate stream id after HDCP AKE stage<br />
-8e5e45e8f364 drm/i915/hdcp: Extract hdcp structure from correct connector<br />
-0c12218b222b drm/i915/hdcp: Remove additional timing for reading mst hdcp message<br />
-8a9889ba3bc6 drm/i915/hdcp: HDCP Capability for the downstream device<br />
-b66b8a276695 drm/i915/hdcp: Move to direct reads for HDCP</p>
-
-</body>
-</html>
-
---===============1510911853675015190==--
+-- 
+Jani Nikula, Intel
