@@ -1,57 +1,62 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 99D8C82C23B
-	for <lists+intel-gfx@lfdr.de>; Fri, 12 Jan 2024 15:53:57 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 351E782C252
+	for <lists+intel-gfx@lfdr.de>; Fri, 12 Jan 2024 15:57:44 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E716210EB1D;
-	Fri, 12 Jan 2024 14:53:55 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 78B0A10EB22;
+	Fri, 12 Jan 2024 14:57:38 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.120])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5112B10EB1D
- for <intel-gfx@lists.freedesktop.org>; Fri, 12 Jan 2024 14:53:54 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1705071234; x=1736607234;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=2V0gXLIEaSGCGj+fTFBeWJMHb6Pu3p6BSVhQUJRv+7U=;
- b=EIcD7tBzwogjF44LkAecP0rC9vUqPEXFyeP5TUWW6qAybGlyz+Rn1czx
- 14jx/yRVoEMEG9Bd6G5UnllHyaMv0lnef7qfRqMqMCBSGsSO2ml7J7qfi
- cdawqcKoNZI5VfEabzbPaL3mODyH/oWoIakM57bkJR0uIPbv7ArxjYHOS
- 8vtk7Vef8NMKLzahdy6CcTcBKq92p6aDa4OToLKduwUvR+Tpcz6aJRp8j
- Y3F+qzcOfZbgM/uOhJfctcNte6YJgVSnoBOdOHZ6fHd9reat10q+Lwxgw
- vutSjQJB20rNOd2pSYKXJGd0WAW3k2a3kDGjRIqFxuXmukYCszWL8U2RR g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10951"; a="398068068"
-X-IronPort-AV: E=Sophos;i="6.04,189,1695711600"; d="scan'208";a="398068068"
-Received: from orsmga007.jf.intel.com ([10.7.209.58])
- by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Jan 2024 06:53:53 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10951"; a="776022924"
-X-IronPort-AV: E=Sophos;i="6.04,189,1695711600"; d="scan'208";a="776022924"
-Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.74])
- by orsmga007.jf.intel.com with SMTP; 12 Jan 2024 06:53:51 -0800
-Received: by stinkbox (sSMTP sendmail emulation);
- Fri, 12 Jan 2024 16:53:50 +0200
-Date: Fri, 12 Jan 2024 16:53:50 +0200
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Andrzej Hajda <andrzej.hajda@intel.com>
-Subject: Re: [PATCH v2 08/15] drm/i915: Fix region start during initial plane
- readout
-Message-ID: <ZaFSfqYHyHOVnZ3o@intel.com>
-References: <20231215105929.29568-1-ville.syrjala@linux.intel.com>
- <20231215105929.29568-9-ville.syrjala@linux.intel.com>
- <da14d87c-499f-43ba-b7cf-d2a8b46190c6@intel.com>
- <ZYDdS0xqHT2_tS61@intel.com>
+Received: from mail-oa1-x36.google.com (mail-oa1-x36.google.com
+ [IPv6:2001:4860:4864:20::36])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5AAE910E004;
+ Fri, 12 Jan 2024 14:57:36 +0000 (UTC)
+Received: by mail-oa1-x36.google.com with SMTP id
+ 586e51a60fabf-20451ecbb80so3268289fac.2; 
+ Fri, 12 Jan 2024 06:57:36 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20230601; t=1705071455; x=1705676255; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=J6MnHkt2VpMVg0RRcKjlt4ioS8fsU4mRnxPnlPqwX30=;
+ b=SCwvnwrEAACRKjG3HTZi05XZh1Mz/TmJspnKP5eLLTbWZwWgk0Am21u8Hx0rP8WeX5
+ gK4Nf4FLJi+wrC+FmbmGEOP4JxzKBYyUv/R4e6xqSfztC11YntOlVvzTwuwJ50apkpdM
+ KNDqqzWp/YuuNS+Sgywxracr2QEhHSmojrNrEApFUo+GCksuwiPnYfToJJZfEBVRQB6x
+ W7vmlfKcK+4KYQQMW9W5C2UeDOZugLYjxH6z0qOFqo4hL1idNfFx50QAlxrxQ/jBN/V7
+ CHCjkGoGRCQe6perQvKtvX/RYbsGlUa9bjkAg9T3LgpPA+2U3ZV9wy4MEriO/ZMXD9gl
+ nF6g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1705071455; x=1705676255;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+ :subject:date:message-id:reply-to;
+ bh=J6MnHkt2VpMVg0RRcKjlt4ioS8fsU4mRnxPnlPqwX30=;
+ b=fsUMkkMWyK8owklpj6ok394R3M42v2GVRSAp61tg/xtYkgwrKMprXuYUsrDem16n3R
+ noySpTR2O3npE1AQJnK61q1hHnJrAWr/qxJ4QNO/DBr+2c5kl0Ir5FLN+AlmA0GTKlVV
+ 37w5fmBFh3Y3AupobwPpFLp+1lANWM5zJKVpYN4Lg0yCmDDTAU30GcAHTTS8gxVqDPRz
+ Loqo1sHsUvJcI6xT7g6yr1eExGNX30VT6Np0uvXI77E+c1F4cCMkZQ3REgDvsI76MyIK
+ CckoICx8PMzDpijvadhaXA/cZKD5w1pqRA72nN6BV5icrniiehSl11K2kS1j12Y3OPZc
+ pQZw==
+X-Gm-Message-State: AOJu0YxRBAkVbpf8RUsVT7JirecnZg7ny1R3kO2UKuZumlk0BLRnuOQb
+ 7H5DRh1IPovqDklHTHm2R1MMCG2q2YUxsocAXRw=
+X-Google-Smtp-Source: AGHT+IEALwDD34qY/RqGn4hysu6/p03sgxBJifwumI10KtPXGPHMbVEg4mGSthNFTNntWhQHYX1j1PpBMAHVrG3zolI=
+X-Received: by 2002:a05:6870:d0c1:b0:205:f212:aa0a with SMTP id
+ k1-20020a056870d0c100b00205f212aa0amr1676126oaa.19.1705071455567; Fri, 12 Jan
+ 2024 06:57:35 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <ZYDdS0xqHT2_tS61@intel.com>
-X-Patchwork-Hint: comment
+References: <cover.1704908087.git.jani.nikula@intel.com>
+ <fea7a52924f98b1ac24f4a7e6ba21d7754422430.1704908087.git.jani.nikula@intel.com>
+In-Reply-To: <fea7a52924f98b1ac24f4a7e6ba21d7754422430.1704908087.git.jani.nikula@intel.com>
+From: Alex Deucher <alexdeucher@gmail.com>
+Date: Fri, 12 Jan 2024 09:57:23 -0500
+Message-ID: <CADnq5_MZuVDx2VeErcOXSqkgRrnFsrn1=N8Y-K47Woar-aeAyw@mail.gmail.com>
+Subject: Re: [PATCH 3/6] drm/amdgpu: prefer snprintf over sprintf
+To: Jani Nikula <jani.nikula@intel.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,93 +69,54 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org
+Cc: Pan@freedesktop.org, intel-gfx@lists.freedesktop.org,
+ Xinhui <Xinhui.Pan@amd.com>, amd-gfx@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org, Alex Deucher <alexander.deucher@amd.com>,
+ =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, Dec 19, 2023 at 02:01:15AM +0200, Ville Syrjälä wrote:
-> On Mon, Dec 18, 2023 at 02:00:10PM +0100, Andrzej Hajda wrote:
-> > On 15.12.2023 11:59, Ville Syrjala wrote:
-> > > From: Ville Syrjälä <ville.syrjala@linux.intel.com>
-> > > 
-> > > On MTL the stolen region starts at offset 8MiB from the start of
-> > > LMEMBAR. The dma addresses are thus also offset by 8MiB. However the
-> > > mm_node/etc. is zero based, and i915_pages_create_for_stolen() will
-> > > add the appropriate region.start into the sg dma address. So when
-> > > we do the readout we need to convert the dma address read from
-> > > the PTE to be zero based as well.
-> > > 
-> > > Note that currently we don't take this path on MTL, but we should
-> > > and thus this needs to be fixed. For lmem this works correctly
-> > > already as the lmem region.start==0.
-> > > 
-> > > While at it let's also make sure the address points to somewhere within
-> > > the memory region. We don't need to check the size as
-> > > i915_gem_object_create_region_at() should later fail if the object size
-> > > exceeds the region size.
-> > > 
-> > > Cc: Paz Zcharya <pazz@chromium.org>
-> > > Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
-> > > ---
-> > >   drivers/gpu/drm/i915/display/intel_plane_initial.c | 8 +++++---
-> > >   1 file changed, 5 insertions(+), 3 deletions(-)
-> > > 
-> > > diff --git a/drivers/gpu/drm/i915/display/intel_plane_initial.c b/drivers/gpu/drm/i915/display/intel_plane_initial.c
-> > > index ffc92b18fcf5..db594ccf0323 100644
-> > > --- a/drivers/gpu/drm/i915/display/intel_plane_initial.c
-> > > +++ b/drivers/gpu/drm/i915/display/intel_plane_initial.c
-> > > @@ -79,16 +79,18 @@ initial_plane_vma(struct drm_i915_private *i915,
-> > >   		 * We don't currently expect this to ever be placed in the
-> > >   		 * stolen portion.
-> > >   		 */
-> > > -		if (phys_base >= resource_size(&mem->region)) {
-> > > +		if (phys_base < mem->region.start || phys_base > mem->region.end) {
-> > 
-> > Maybe better:
-> > phys_base + fb_size > mem->region.end" ?
-> > Btw it seems redundant with later checks in 
-> > i915_gem_object_create_region_at.
-> > IMO at this moment we need only check if "phys_base -= 
-> > mem->region.start" makes sense.
-> 
-> Yeah, I guess that alone would be sufficient. I left out the size
-> check exactly because I knew it would fail later, and making an
-> accurate check here (with page size rounding and whatnot) would
-> be tedious. But this should also be true when the start offset
-> is past the end of the region as well, so yeah I suppose I can
-> just drop the second check.
+On Wed, Jan 10, 2024 at 12:39=E2=80=AFPM Jani Nikula <jani.nikula@intel.com=
+> wrote:
+>
+> This will trade the W=3D1 warning -Wformat-overflow to
+> -Wformat-truncation. This lets us enable -Wformat-overflow subsystem
+> wide.
+>
+> Cc: Alex Deucher <alexander.deucher@amd.com>
+> Cc: Christian K=C3=B6nig <christian.koenig@amd.com>
+> Cc: Pan, Xinhui <Xinhui.Pan@amd.com>
+> Cc: amd-gfx@lists.freedesktop.org
+> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
 
-After further pondering I think I'm leaning towards keeping this
-as is, just to give a slightly more obvious debug message.
+Acked-by: Alex Deucher <alexander.deucher@amd.com>
 
-> 
-> 
-> > 
-> > Regards
-> > Andrzej
-> > 
-> > 
-> > >   			drm_err(&i915->drm,
-> > > -				"Initial plane programming using invalid range, phys_base=%pa\n",
-> > > -				&phys_base);
-> > > +				"Initial plane programming using invalid range, phys_base=%pa (%s [%pa-%pa])\n",
-> > > +				&phys_base, mem->region.name, &mem->region.start, &mem->region.end);
-> > >   			return NULL;
-> > >   		}
-> > >   
-> > >   		drm_dbg(&i915->drm,
-> > >   			"Using phys_base=%pa, based on initial plane programming\n",
-> > >   			&phys_base);
-> > > +
-> > > +		phys_base -= mem->region.start;
-> > >   	} else {
-> > >   		phys_base = base;
-> > >   		mem = i915->mm.stolen_region;
-> 
-> -- 
-> Ville Syrjälä
-> Intel
+Feel free to take this via whichever tree makes sense.
 
--- 
-Ville Syrjälä
-Intel
+Alex
+
+> ---
+>  drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.c | 3 ++-
+>  1 file changed, 2 insertions(+), 1 deletion(-)
+>
+> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.c b/drivers/gpu/drm/am=
+d/amdgpu/amdgpu_gfx.c
+> index b9674c57c436..82b4b2019fca 100644
+> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.c
+> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.c
+> @@ -329,7 +329,8 @@ int amdgpu_gfx_kiq_init_ring(struct amdgpu_device *ad=
+ev,
+>
+>         ring->eop_gpu_addr =3D kiq->eop_gpu_addr;
+>         ring->no_scheduler =3D true;
+> -       sprintf(ring->name, "kiq_%d.%d.%d.%d", xcc_id, ring->me, ring->pi=
+pe, ring->queue);
+> +       snprintf(ring->name, sizeof(ring->name), "kiq_%d.%d.%d.%d",
+> +                xcc_id, ring->me, ring->pipe, ring->queue);
+>         r =3D amdgpu_ring_init(adev, ring, 1024, irq, AMDGPU_CP_KIQ_IRQ_D=
+RIVER0,
+>                              AMDGPU_RING_PRIO_DEFAULT, NULL);
+>         if (r)
+> --
+> 2.39.2
+>
