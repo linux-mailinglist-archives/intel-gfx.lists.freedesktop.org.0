@@ -2,53 +2,56 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7DB4882C3E2
-	for <lists+intel-gfx@lfdr.de>; Fri, 12 Jan 2024 17:47:17 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 065E282C40A
+	for <lists+intel-gfx@lfdr.de>; Fri, 12 Jan 2024 17:55:09 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id F361F10E042;
-	Fri, 12 Jan 2024 16:47:15 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 74D0C10E144;
+	Fri, 12 Jan 2024 16:55:06 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 70FFA10E042
- for <intel-gfx@lists.freedesktop.org>; Fri, 12 Jan 2024 16:47:14 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3411C10E144
+ for <intel-gfx@lists.freedesktop.org>; Fri, 12 Jan 2024 16:55:05 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1705078034; x=1736614034;
+ t=1705078505; x=1736614505;
  h=date:from:to:cc:subject:message-id:references:
  mime-version:content-transfer-encoding:in-reply-to;
- bh=YpEwBHTbW8htEwJ1n7+MzmamcJILSZwtKz29LHO2XJs=;
- b=W+4N+X4jT73fjvRTlg9zC70R96BoFkZAZ1j/wsekfiqKcMtovQWfY1VD
- mdgBVn2h4qtqm+oq4TUzmElj6NKiNZm0yUmJ8y2woZCNi9HwR9wEI2Qpa
- O80NB79dE+lxDC5NTT08TXMfL9ecaxdIhF5H69X+5+8C7Bz3eHXFRjmEz
- CWhq0TeA42vF/XelDqA5bYUR+Lz6MAdThzj9OTyqcrqpHqemdcLZJOP75
- f4kdG3spDkzrTc7MrWAcAHpAYTWkWgOIplJuu0eer/UyBgYl00Xs/Mn+O
- aViUyONnE7cWNOhrMEr+pxYuWlk6QMk33LIxKbjIyOaieTfwEvp99Th99 w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10951"; a="12582654"
-X-IronPort-AV: E=Sophos;i="6.04,190,1695711600"; d="scan'208";a="12582654"
+ bh=gaJcvlHb17yhXVkBZDZQIH5JUMYryP8UE3u7Fa5N5Sg=;
+ b=AiWzByeeUv9HLmGTK0o1WPKOPJmlL7/u1PSBInqK9gUd9rXJmK7x8Kj7
+ I1EY6kAOzFmB+a/8U/O6bzLll6pMc53oVMhuyXZYRMlfaV24K96UGvgJj
+ R0mb352axjpvgqITbL0MDxPRothFoSFe5UdetC0g4EUsWEfn8xFO0InyF
+ 7JwOtrVTWu4qoy+k05LwyVYd0a+ZP3LAXv2ZE39dD5N8WwtQrCos9FGMD
+ LBNVChjzMQdBplm5cZgMwTzhYydOQVoktFBLfpjwx7C4/ugim6eYwLibf
+ M9yarruZLPm1UrAQBDG4vg+7Vp28yzbrJD4Gw8Hs2xe4eDwREtmKQkgIf w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10951"; a="12584466"
+X-IronPort-AV: E=Sophos;i="6.04,190,1695711600"; d="scan'208";a="12584466"
 Received: from orsmga007.jf.intel.com ([10.7.209.58])
  by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Jan 2024 08:47:14 -0800
+ 12 Jan 2024 08:55:05 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10951"; a="776044025"
-X-IronPort-AV: E=Sophos;i="6.04,190,1695711600"; d="scan'208";a="776044025"
+X-IronPort-AV: E=McAfee;i="6600,9927,10951"; a="776044721"
+X-IronPort-AV: E=Sophos;i="6.04,190,1695711600"; d="scan'208";a="776044721"
 Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.74])
- by orsmga007.jf.intel.com with SMTP; 12 Jan 2024 08:47:11 -0800
+ by orsmga007.jf.intel.com with SMTP; 12 Jan 2024 08:55:01 -0800
 Received: by stinkbox (sSMTP sendmail emulation);
- Fri, 12 Jan 2024 18:47:10 +0200
-Date: Fri, 12 Jan 2024 18:47:10 +0200
+ Fri, 12 Jan 2024 18:55:01 +0200
+Date: Fri, 12 Jan 2024 18:55:01 +0200
 From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
-Subject: Re: [PATCH 3/3] Start separating pipe vs transcoder set logic for
- bigjoiner during modeset
-Message-ID: <ZaFtDg1fYWKAAsYx@intel.com>
-References: <20240108120725.20057-1-stanislav.lisovskiy@intel.com>
- <20240108120725.20057-4-stanislav.lisovskiy@intel.com>
+To: Nirmoy Das <nirmoy.das@linux.intel.com>
+Subject: Re: [PATCH v2 04/15] drm/i915: Bypass LMEMBAR/GTTMMADR for MTL
+ stolen memory access
+Message-ID: <ZaFu5b5LId3bYw1e@intel.com>
+References: <20231215105929.29568-1-ville.syrjala@linux.intel.com>
+ <20231215105929.29568-5-ville.syrjala@linux.intel.com>
+ <b266f56d-ddad-4836-b888-800c213e842f@linux.intel.com>
+ <ZaFW2arHcLdDLTK-@intel.com>
+ <d512219a-5c89-46ad-8335-91c43d54c24f@linux.intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20240108120725.20057-4-stanislav.lisovskiy@intel.com>
+In-Reply-To: <d512219a-5c89-46ad-8335-91c43d54c24f@linux.intel.com>
 X-Patchwork-Hint: comment
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -62,167 +65,125 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org, Nirmoy Das <nirmoy.das@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, Jan 08, 2024 at 02:07:25PM +0200, Stanislav Lisovskiy wrote:
-> Handle only bigjoiner masters in skl_commit_modeset_enables/disables,
-> slave crtcs should be handled by master hooks. Same for encoders.
-> That way we can also remove a bunch of checks like intel_crtc_is_bigjoiner_slave.
+On Fri, Jan 12, 2024 at 05:31:10PM +0100, Nirmoy Das wrote:
 > 
-> Signed-off-by: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
-> ---
->  drivers/gpu/drm/i915/display/intel_ddi.c     |   3 +-
->  drivers/gpu/drm/i915/display/intel_display.c | 148 ++++++++++++++++---
->  2 files changed, 128 insertions(+), 23 deletions(-)
+> On 1/12/2024 4:12 PM, Ville Syrjälä wrote:
+> > On Wed, Jan 10, 2024 at 11:49:47AM +0100, Nirmoy Das wrote:
+> >> Hi Ville,
+> >>
+> >> Apologies, but I lost track of this series after I returned from sick leave.
+> >>
+> >>
+> >> On 12/15/2023 11:59 AM, Ville Syrjala wrote:
+> >>> From: Ville Syrjälä<ville.syrjala@linux.intel.com>
+> >>>
+> >>> On MTL accessing stolen memory via the BARs is somehow borked,
+> >>> and it can hang the machine. As a workaround let's bypass the
+> >>> BARs and just go straight to DSMBASE/GSMBASE instead.
+> >>>
+> >>> Note that on every other platform this itself would hang the
+> >>> machine, but on MTL the system firmware is expected to relax
+> >>> the access permission guarding stolen memory to enable this
+> >>> workaround, and thus direct CPU accesses should be fine.
+> >>>
+> >>> TODO: add w/a numbers and whatnot
+> >>>
+> >>> Cc: Paz Zcharya<pazz@chromium.org>
+> >>> Cc: Nirmoy Das<nirmoy.das@intel.com>
+> >>> Cc: Radhakrishna Sripada<radhakrishna.sripada@intel.com>
+> >>> Cc: Joonas Lahtinen<joonas.lahtinen@linux.intel.com>
+> >>> Signed-off-by: Ville Syrjälä<ville.syrjala@linux.intel.com>
+> >>> ---
+> >>>    drivers/gpu/drm/i915/gem/i915_gem_stolen.c | 11 ++++++++++-
+> >>>    drivers/gpu/drm/i915/gt/intel_ggtt.c       | 13 ++++++++++++-
+> >>>    2 files changed, 22 insertions(+), 2 deletions(-)
+> >>>
+> >>> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_stolen.c b/drivers/gpu/drm/i915/gem/i915_gem_stolen.c
+> >>> index ee237043c302..252fe5cd6ede 100644
+> >>> --- a/drivers/gpu/drm/i915/gem/i915_gem_stolen.c
+> >>> +++ b/drivers/gpu/drm/i915/gem/i915_gem_stolen.c
+> >>> @@ -941,7 +941,16 @@ i915_gem_stolen_lmem_setup(struct drm_i915_private *i915, u16 type,
+> >>>    		dsm_size = ALIGN_DOWN(lmem_size - dsm_base, SZ_1M);
+> >>>    	}
+> >>>    
+> >>> -	if (pci_resource_len(pdev, GEN12_LMEM_BAR) < lmem_size) {
+> >>> +	if (IS_METEORLAKE(i915)) {
+> >>> +		/*
+> >>> +		 * Workaround: access via BAR can hang MTL, go directly to DSM.
+> >>> +		 *
+> >>> +		 * Normally this would not work but on MTL the system firmware
+> >>> +		 * should have relaxed the access permissions sufficiently.
+> >>> +		 */
+> >>> +		io_start = intel_uncore_read64(uncore, GEN12_DSMBASE) & GEN12_BDSM_MASK;
+> >>> +		io_size = dsm_size;
+> >> This will work well on host driver but I am afraid this will not work on
+> >> VM when someone tries to do direct device assignment of the igfx.
+> >>
+> >> GSMBASE/DSMBASE is reserved region so won't show up in VM, last I checked.
+> > Hmm. So BARs get passed over but other regions won't be? I wonder if
+> > there's a way to pass them explicitly...
 > 
-> diff --git a/drivers/gpu/drm/i915/display/intel_ddi.c b/drivers/gpu/drm/i915/display/intel_ddi.c
-> index 2746655bcb264..9723f1b49cf95 100644
-> --- a/drivers/gpu/drm/i915/display/intel_ddi.c
-> +++ b/drivers/gpu/drm/i915/display/intel_ddi.c
-> @@ -3340,8 +3340,7 @@ static void intel_enable_ddi(struct intel_atomic_state *state,
->  {
->  	drm_WARN_ON(state->base.dev, crtc_state->has_pch_encoder);
->  
-> -	if (!intel_crtc_is_bigjoiner_slave(crtc_state))
-> -		intel_ddi_enable_transcoder_func(encoder, crtc_state);
-> +	intel_ddi_enable_transcoder_func(encoder, crtc_state);
->  
->  	/* Enable/Disable DP2.0 SDP split config before transcoder */
->  	intel_audio_sdp_split_update(crtc_state);
-> diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
-> index eec76ec167069..24388226db465 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display.c
-> +++ b/drivers/gpu/drm/i915/display/intel_display.c
-> @@ -1630,6 +1630,93 @@ static void hsw_configure_cpu_transcoder(const struct intel_crtc_state *crtc_sta
->  	hsw_set_transconf(crtc_state);
->  }
->  
-> +static void hsw_crtc_enable_slave(struct intel_atomic_state *state,
-> +				  struct intel_crtc *crtc)
-> +{
-> +	const struct intel_crtc_state *new_crtc_state =
-> +		intel_atomic_get_new_crtc_state(state, crtc);
-> +	struct drm_i915_private *dev_priv = to_i915(crtc->base.dev);
-> +	enum pipe pipe = crtc->pipe, hsw_workaround_pipe;
-> +	bool psl_clkgate_wa;
-> +
-> +	if (drm_WARN_ON(&dev_priv->drm, crtc->active))
-> +		return;
-> +
-> +	intel_dmc_enable_pipe(dev_priv, crtc->pipe);
-> +
-> +	if (!new_crtc_state->bigjoiner_pipes) {
-> +		intel_encoders_pre_pll_enable(state, crtc);
-> +
-> +		if (new_crtc_state->shared_dpll)
-> +			intel_enable_shared_dpll(new_crtc_state);
-> +
-> +		intel_encoders_pre_enable(state, crtc);
-> +	} else {
-> +		icl_ddi_bigjoiner_pre_enable(state, new_crtc_state);
-> +	}
-> +
-> +	intel_dsc_enable(new_crtc_state);
-> +
-> +	if (DISPLAY_VER(dev_priv) >= 13)
-> +		intel_uncompressed_joiner_enable(new_crtc_state);
-> +
-> +	intel_set_pipe_src_size(new_crtc_state);
-> +	if (DISPLAY_VER(dev_priv) >= 9 || IS_BROADWELL(dev_priv))
-> +		bdw_set_pipe_misc(new_crtc_state);
-> +
-> +	crtc->active = true;
-> +
-> +	/* Display WA #1180: WaDisableScalarClockGating: glk */
-> +	psl_clkgate_wa = DISPLAY_VER(dev_priv) == 10 &&
-> +		new_crtc_state->pch_pfit.enabled;
-> +	if (psl_clkgate_wa)
-> +		glk_pipe_scaler_clock_gating_wa(dev_priv, pipe, true);
-> +
-> +	if (DISPLAY_VER(dev_priv) >= 9)
-> +		skl_pfit_enable(new_crtc_state);
-> +	else
-> +		ilk_pfit_enable(new_crtc_state);
-> +
-> +	/*
-> +	 * On ILK+ LUT must be loaded before the pipe is running but with
-> +	 * clocks enabled
-> +	 */
-> +	intel_color_load_luts(new_crtc_state);
-> +	intel_color_commit_noarm(new_crtc_state);
-> +	intel_color_commit_arm(new_crtc_state);
-> +	/* update DSPCNTR to configure gamma/csc for pipe bottom color */
-> +	if (DISPLAY_VER(dev_priv) < 9)
-> +		intel_disable_primary_plane(new_crtc_state);
-> +
-> +	hsw_set_linetime_wm(new_crtc_state);
-> +
-> +	if (DISPLAY_VER(dev_priv) >= 11)
-> +		icl_set_pipe_chicken(new_crtc_state);
-> +
-> +	intel_initial_watermarks(state, crtc);
-> +
-> +	intel_crtc_vblank_on(new_crtc_state);
-> +
-> +	intel_encoders_enable(state, crtc);
-> +
-> +	if (psl_clkgate_wa) {
-> +		intel_crtc_wait_for_next_vblank(crtc);
-> +		glk_pipe_scaler_clock_gating_wa(dev_priv, pipe, false);
-> +	}
-> +
-> +	/* If we change the relative order between pipe/planes enabling, we need
-> +	 * to change the workaround. */
-> +	hsw_workaround_pipe = new_crtc_state->hsw_workaround_pipe;
-> +	if (IS_HASWELL(dev_priv) && hsw_workaround_pipe != INVALID_PIPE) {
-> +		struct intel_crtc *wa_crtc;
-> +
-> +		wa_crtc = intel_crtc_for_pipe(dev_priv, hsw_workaround_pipe);
-> +
-> +		intel_crtc_wait_for_next_vblank(wa_crtc);
-> +		intel_crtc_wait_for_next_vblank(wa_crtc);
-> +	}
-> +}
-> +
->  static void hsw_crtc_enable(struct intel_atomic_state *state,
->  			    struct intel_crtc *crtc)
->  {
-> @@ -1639,10 +1726,16 @@ static void hsw_crtc_enable(struct intel_atomic_state *state,
->  	enum pipe pipe = crtc->pipe, hsw_workaround_pipe;
->  	enum transcoder cpu_transcoder = new_crtc_state->cpu_transcoder;
->  	bool psl_clkgate_wa;
-> +	struct intel_crtc *slave_crtc;
->  
->  	if (drm_WARN_ON(&dev_priv->drm, crtc->active))
->  		return;
->  
-> +	for_each_intel_crtc_in_pipe_mask(&dev_priv->drm, slave_crtc,
-> +					 intel_crtc_bigjoiner_slave_pipes(new_crtc_state)) {
-> +		hsw_crtc_enable_slave(state, slave_crtc);
-> +	}
+> Yes, when a user ask qemu to pass though a pci device then qemu will 
+> ensure to map those
+> 
+> BARs.
+> 
+> >
+> >> This is an obscure usages but are we suppose to support that? If so then
+> >> we need to detect that and fall back to binder approach.
+> > I suppose some people may attempt it. But I'm not sure how well that
+> > will work in practice even on other platforms. I don't think we've
+> > ever really considered that use case any kind of priority so bug
+> > reports tend to go unanswered.
+> >
+> > My main worry with the MI_UPDATE_GTT stuff is:
+> > - only used on this one platform so very limited testing coverage
+> > - async so more opprtunities to screw things up
+> > - what happens if the engine hangs while we're waiting for MI_UPDATE_GTT
+> >    to finish?
+> > - requires working command submission, so even getting a working
+> >    display now depends on a lot more extra components working correctly
+> >
+> > hence the patch to disable it. During testing my MTL was very unstable
+> > so I wanted to eliminate all potential sources of new bugs.
+> 
+> Valid concerns but unfortunately MI_UPDATE_GTT is the only generic 
+> solution came up in the discussions
+> 
+> which supports host, vm, also SRIOV case.
+> 
+> >
+> > Hmm. But we can't even use MI_UPDATE_GTT until command submission is
+> > up and running, so we still need the direct CPU path for early ggtt
+> > setup no?
+> 
+> It is very unlikely for the bug to appear when there is only single user 
+> of the GPU. So the HW team is fine with
+> 
+> having a small window where we do modify GTT using stolen.
+> 
+> 
+> How about a modparam which defaults to your approach and have a doc 
+> saying to use binder on VM ?
+> 
+> It would be nice if i915 could detect if it is running in virtualized 
+> environment but I don't have any ideas for that.
 
-Thats not really what I'm after. Ideally we shouldn't end up with
-any master vs. slave split here, just a pipe vs. transcoder split.
-And then the high level flow should look something along the
-lines of:
+We have i915_run_as_guest() but dunno if that covers everything
+we need.
 
-crtc_enable()
-{
-	transcoder_thing1();
+So in order to accomodate both approachs we'd need:
+1. select DSM/GSMBASE vs. BAR based on host vs. guest
+2. perhaps disable binder on host for now to keep things
+   more uniform between the platforms by default
+3. maybe extend binder to more platforms and enable it
+   across the board (in case we decide it has other real
+   benefits besides not hanging mtl).
 
-	for_each_joined_pipe()
-		pipe_thing1();
-
-	transcoder_thing2();
-
-	for_each_joined_pipe()
-		pipe_thing2();
-
-	...
-}
-	
 -- 
 Ville Syrjälä
 Intel
