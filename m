@@ -2,52 +2,53 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id E0C0482C3DA
-	for <lists+intel-gfx@lfdr.de>; Fri, 12 Jan 2024 17:42:21 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7DB4882C3E2
+	for <lists+intel-gfx@lfdr.de>; Fri, 12 Jan 2024 17:47:17 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6F09710E0AB;
-	Fri, 12 Jan 2024 16:42:20 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id F361F10E042;
+	Fri, 12 Jan 2024 16:47:15 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1DE6310E0AB
- for <intel-gfx@lists.freedesktop.org>; Fri, 12 Jan 2024 16:42:19 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 70FFA10E042
+ for <intel-gfx@lists.freedesktop.org>; Fri, 12 Jan 2024 16:47:14 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1705077739; x=1736613739;
+ t=1705078034; x=1736614034;
  h=date:from:to:cc:subject:message-id:references:
  mime-version:content-transfer-encoding:in-reply-to;
- bh=JgfMJnNumyajS4P3YPHaKHrOwuLQZK93TqMK/U91UUE=;
- b=J/8iTpCpNzbNnKwLhM7OugvS8Fq7RmWQxWsoMy7bL0tPFfCVu4g1M310
- 91kN3uqj8LYs4RnkXilE89XVPraH4s0MN39xT87j1SqQ0GSvGr0kvk/S/
- LbPJCqS2XdVmXNqz7bn1ufaOscsV5y3xeumcXD5JkXMtsZa4K6Lk++vYX
- f7blKRh5FQR9OE62LDTTrS44nI+FwRAWl5SPa/1AyzOV0wfLcvxxtt3Rd
- C8EbZji54uCyk6XubOmYWFQ3ox49o5M8ElApqB+NCKLmXe6DQc4UrBUhR
- ZZsdQYLXI+a+y+1T8IHTunoau/7I8LuietnTuzctOaxtxBa+8x5dI8PQf Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10951"; a="463500158"
-X-IronPort-AV: E=Sophos;i="6.04,190,1695711600"; d="scan'208";a="463500158"
+ bh=YpEwBHTbW8htEwJ1n7+MzmamcJILSZwtKz29LHO2XJs=;
+ b=W+4N+X4jT73fjvRTlg9zC70R96BoFkZAZ1j/wsekfiqKcMtovQWfY1VD
+ mdgBVn2h4qtqm+oq4TUzmElj6NKiNZm0yUmJ8y2woZCNi9HwR9wEI2Qpa
+ O80NB79dE+lxDC5NTT08TXMfL9ecaxdIhF5H69X+5+8C7Bz3eHXFRjmEz
+ CWhq0TeA42vF/XelDqA5bYUR+Lz6MAdThzj9OTyqcrqpHqemdcLZJOP75
+ f4kdG3spDkzrTc7MrWAcAHpAYTWkWgOIplJuu0eer/UyBgYl00Xs/Mn+O
+ aViUyONnE7cWNOhrMEr+pxYuWlk6QMk33LIxKbjIyOaieTfwEvp99Th99 w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10951"; a="12582654"
+X-IronPort-AV: E=Sophos;i="6.04,190,1695711600"; d="scan'208";a="12582654"
 Received: from orsmga007.jf.intel.com ([10.7.209.58])
- by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Jan 2024 08:42:18 -0800
+ by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 12 Jan 2024 08:47:14 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10951"; a="776043322"
-X-IronPort-AV: E=Sophos;i="6.04,190,1695711600"; d="scan'208";a="776043322"
+X-IronPort-AV: E=McAfee;i="6600,9927,10951"; a="776044025"
+X-IronPort-AV: E=Sophos;i="6.04,190,1695711600"; d="scan'208";a="776044025"
 Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.74])
- by orsmga007.jf.intel.com with SMTP; 12 Jan 2024 08:42:16 -0800
+ by orsmga007.jf.intel.com with SMTP; 12 Jan 2024 08:47:11 -0800
 Received: by stinkbox (sSMTP sendmail emulation);
- Fri, 12 Jan 2024 18:42:15 +0200
-Date: Fri, 12 Jan 2024 18:42:15 +0200
+ Fri, 12 Jan 2024 18:47:10 +0200
+Date: Fri, 12 Jan 2024 18:47:10 +0200
 From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
 To: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
-Subject: Re: [PATCH 2/3] drm/i915/bigjoiner: Refactor bigjoiner state readout
-Message-ID: <ZaFr58MjVk261ADO@intel.com>
+Subject: Re: [PATCH 3/3] Start separating pipe vs transcoder set logic for
+ bigjoiner during modeset
+Message-ID: <ZaFtDg1fYWKAAsYx@intel.com>
 References: <20240108120725.20057-1-stanislav.lisovskiy@intel.com>
- <20240108120725.20057-3-stanislav.lisovskiy@intel.com>
+ <20240108120725.20057-4-stanislav.lisovskiy@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20240108120725.20057-3-stanislav.lisovskiy@intel.com>
+In-Reply-To: <20240108120725.20057-4-stanislav.lisovskiy@intel.com>
 X-Patchwork-Hint: comment
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -65,96 +66,163 @@ Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, Jan 08, 2024 at 02:07:24PM +0200, Stanislav Lisovskiy wrote:
-> Don't call enabled_bigjoiner_pipes twice, lets just move
-> intel_get_bigjoiner_config earlier, because it is anyway
-> calling same function.
-> Also cleanup hsw_enabled_transcoders from irrelevant bigjoiner code.
-
-It's not irrelevant. The function is supposed to return the set of
-enabled transcoders associated with the pipe. With this change the
-function no longer does what it says on the tin.
-
+On Mon, Jan 08, 2024 at 02:07:25PM +0200, Stanislav Lisovskiy wrote:
+> Handle only bigjoiner masters in skl_commit_modeset_enables/disables,
+> slave crtcs should be handled by master hooks. Same for encoders.
+> That way we can also remove a bunch of checks like intel_crtc_is_bigjoiner_slave.
 > 
 > Signed-off-by: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
 > ---
->  drivers/gpu/drm/i915/display/intel_display.c | 22 ++++++++++----------
->  1 file changed, 11 insertions(+), 11 deletions(-)
+>  drivers/gpu/drm/i915/display/intel_ddi.c     |   3 +-
+>  drivers/gpu/drm/i915/display/intel_display.c | 148 ++++++++++++++++---
+>  2 files changed, 128 insertions(+), 23 deletions(-)
 > 
+> diff --git a/drivers/gpu/drm/i915/display/intel_ddi.c b/drivers/gpu/drm/i915/display/intel_ddi.c
+> index 2746655bcb264..9723f1b49cf95 100644
+> --- a/drivers/gpu/drm/i915/display/intel_ddi.c
+> +++ b/drivers/gpu/drm/i915/display/intel_ddi.c
+> @@ -3340,8 +3340,7 @@ static void intel_enable_ddi(struct intel_atomic_state *state,
+>  {
+>  	drm_WARN_ON(state->base.dev, crtc_state->has_pch_encoder);
+>  
+> -	if (!intel_crtc_is_bigjoiner_slave(crtc_state))
+> -		intel_ddi_enable_transcoder_func(encoder, crtc_state);
+> +	intel_ddi_enable_transcoder_func(encoder, crtc_state);
+>  
+>  	/* Enable/Disable DP2.0 SDP split config before transcoder */
+>  	intel_audio_sdp_split_update(crtc_state);
 > diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
-> index 927d124457b61..eec76ec167069 100644
+> index eec76ec167069..24388226db465 100644
 > --- a/drivers/gpu/drm/i915/display/intel_display.c
 > +++ b/drivers/gpu/drm/i915/display/intel_display.c
-> @@ -3525,7 +3525,6 @@ static u8 hsw_enabled_transcoders(struct intel_crtc *crtc)
->  	struct drm_i915_private *dev_priv = to_i915(dev);
->  	u8 panel_transcoder_mask = hsw_panel_transcoders(dev_priv);
->  	enum transcoder cpu_transcoder;
-> -	u8 master_pipes, slave_pipes;
->  	u8 enabled_transcoders = 0;
->  
->  	/*
-> @@ -3576,15 +3575,6 @@ static u8 hsw_enabled_transcoders(struct intel_crtc *crtc)
->  	if (transcoder_ddi_func_is_enabled(dev_priv, cpu_transcoder))
->  		enabled_transcoders |= BIT(cpu_transcoder);
->  
-> -	/* bigjoiner slave -> consider the master pipe's transcoder as well */
-> -	enabled_bigjoiner_pipes(dev_priv, &master_pipes, &slave_pipes);
-> -	if (slave_pipes & BIT(crtc->pipe)) {
-> -		cpu_transcoder = (enum transcoder)
-> -			get_bigjoiner_master_pipe(crtc->pipe, master_pipes, slave_pipes);
-> -		if (transcoder_ddi_func_is_enabled(dev_priv, cpu_transcoder))
-> -			enabled_transcoders |= BIT(cpu_transcoder);
-> -	}
-> -
->  	return enabled_transcoders;
+> @@ -1630,6 +1630,93 @@ static void hsw_configure_cpu_transcoder(const struct intel_crtc_state *crtc_sta
+>  	hsw_set_transconf(crtc_state);
 >  }
 >  
-> @@ -3631,6 +3621,15 @@ static bool hsw_get_transcoder_state(struct intel_crtc *crtc,
->  	u32 tmp;
->  
->  	enabled_transcoders = hsw_enabled_transcoders(crtc);
+> +static void hsw_crtc_enable_slave(struct intel_atomic_state *state,
+> +				  struct intel_crtc *crtc)
+> +{
+> +	const struct intel_crtc_state *new_crtc_state =
+> +		intel_atomic_get_new_crtc_state(state, crtc);
+> +	struct drm_i915_private *dev_priv = to_i915(crtc->base.dev);
+> +	enum pipe pipe = crtc->pipe, hsw_workaround_pipe;
+> +	bool psl_clkgate_wa;
 > +
-> +	/* bigjoiner slave -> consider the master pipe's transcoder as well */
-> +	if (intel_crtc_is_bigjoiner_slave(pipe_config)) {
-> +		unsigned long cpu_transcoder = (enum transcoder)
-> +			bigjoiner_master_pipe(pipe_config);
-> +		if (transcoder_ddi_func_is_enabled(dev_priv, cpu_transcoder))
-> +			enabled_transcoders |= BIT(cpu_transcoder);
+> +	if (drm_WARN_ON(&dev_priv->drm, crtc->active))
+> +		return;
+> +
+> +	intel_dmc_enable_pipe(dev_priv, crtc->pipe);
+> +
+> +	if (!new_crtc_state->bigjoiner_pipes) {
+> +		intel_encoders_pre_pll_enable(state, crtc);
+> +
+> +		if (new_crtc_state->shared_dpll)
+> +			intel_enable_shared_dpll(new_crtc_state);
+> +
+> +		intel_encoders_pre_enable(state, crtc);
+> +	} else {
+> +		icl_ddi_bigjoiner_pre_enable(state, new_crtc_state);
 > +	}
 > +
->  	if (!enabled_transcoders)
->  		return false;
->  
-> @@ -3735,6 +3734,8 @@ static bool hsw_get_pipe_config(struct intel_crtc *crtc,
->  
->  	pipe_config->shared_dpll = NULL;
->  
-> +	intel_bigjoiner_get_config(pipe_config);
-
-So this is what avoids the "call it twice" part, but it also makes the
-state potentially inconsistent as in all other cases we leave everything
-zeroed if the transcoder is not enabled. So I'm not sure this is
-entirely safe or whether we could end up with some weird state
-mismatches due to the inconsistency.
-
-Why do you think calling it twice is problematic? It's supposed to be 
-idempotent (ignoring the actual register reads/etc.).
-
+> +	intel_dsc_enable(new_crtc_state);
 > +
->  	active = hsw_get_transcoder_state(crtc, pipe_config, &crtc->hw_readout_power_domains);
+> +	if (DISPLAY_VER(dev_priv) >= 13)
+> +		intel_uncompressed_joiner_enable(new_crtc_state);
+> +
+> +	intel_set_pipe_src_size(new_crtc_state);
+> +	if (DISPLAY_VER(dev_priv) >= 9 || IS_BROADWELL(dev_priv))
+> +		bdw_set_pipe_misc(new_crtc_state);
+> +
+> +	crtc->active = true;
+> +
+> +	/* Display WA #1180: WaDisableScalarClockGating: glk */
+> +	psl_clkgate_wa = DISPLAY_VER(dev_priv) == 10 &&
+> +		new_crtc_state->pch_pfit.enabled;
+> +	if (psl_clkgate_wa)
+> +		glk_pipe_scaler_clock_gating_wa(dev_priv, pipe, true);
+> +
+> +	if (DISPLAY_VER(dev_priv) >= 9)
+> +		skl_pfit_enable(new_crtc_state);
+> +	else
+> +		ilk_pfit_enable(new_crtc_state);
+> +
+> +	/*
+> +	 * On ILK+ LUT must be loaded before the pipe is running but with
+> +	 * clocks enabled
+> +	 */
+> +	intel_color_load_luts(new_crtc_state);
+> +	intel_color_commit_noarm(new_crtc_state);
+> +	intel_color_commit_arm(new_crtc_state);
+> +	/* update DSPCNTR to configure gamma/csc for pipe bottom color */
+> +	if (DISPLAY_VER(dev_priv) < 9)
+> +		intel_disable_primary_plane(new_crtc_state);
+> +
+> +	hsw_set_linetime_wm(new_crtc_state);
+> +
+> +	if (DISPLAY_VER(dev_priv) >= 11)
+> +		icl_set_pipe_chicken(new_crtc_state);
+> +
+> +	intel_initial_watermarks(state, crtc);
+> +
+> +	intel_crtc_vblank_on(new_crtc_state);
+> +
+> +	intel_encoders_enable(state, crtc);
+> +
+> +	if (psl_clkgate_wa) {
+> +		intel_crtc_wait_for_next_vblank(crtc);
+> +		glk_pipe_scaler_clock_gating_wa(dev_priv, pipe, false);
+> +	}
+> +
+> +	/* If we change the relative order between pipe/planes enabling, we need
+> +	 * to change the workaround. */
+> +	hsw_workaround_pipe = new_crtc_state->hsw_workaround_pipe;
+> +	if (IS_HASWELL(dev_priv) && hsw_workaround_pipe != INVALID_PIPE) {
+> +		struct intel_crtc *wa_crtc;
+> +
+> +		wa_crtc = intel_crtc_for_pipe(dev_priv, hsw_workaround_pipe);
+> +
+> +		intel_crtc_wait_for_next_vblank(wa_crtc);
+> +		intel_crtc_wait_for_next_vblank(wa_crtc);
+> +	}
+> +}
+> +
+>  static void hsw_crtc_enable(struct intel_atomic_state *state,
+>  			    struct intel_crtc *crtc)
+>  {
+> @@ -1639,10 +1726,16 @@ static void hsw_crtc_enable(struct intel_atomic_state *state,
+>  	enum pipe pipe = crtc->pipe, hsw_workaround_pipe;
+>  	enum transcoder cpu_transcoder = new_crtc_state->cpu_transcoder;
+>  	bool psl_clkgate_wa;
+> +	struct intel_crtc *slave_crtc;
 >  
->  	if ((IS_GEMINILAKE(dev_priv) || IS_BROXTON(dev_priv)) &&
-> @@ -3746,7 +3747,6 @@ static bool hsw_get_pipe_config(struct intel_crtc *crtc,
->  	if (!active)
->  		goto out;
+>  	if (drm_WARN_ON(&dev_priv->drm, crtc->active))
+>  		return;
 >  
-> -	intel_bigjoiner_get_config(pipe_config);
->  	intel_dsc_get_config(pipe_config);
->  
->  	if (!transcoder_is_dsi(pipe_config->cpu_transcoder) ||
-> -- 
-> 2.37.3
+> +	for_each_intel_crtc_in_pipe_mask(&dev_priv->drm, slave_crtc,
+> +					 intel_crtc_bigjoiner_slave_pipes(new_crtc_state)) {
+> +		hsw_crtc_enable_slave(state, slave_crtc);
+> +	}
 
+Thats not really what I'm after. Ideally we shouldn't end up with
+any master vs. slave split here, just a pipe vs. transcoder split.
+And then the high level flow should look something along the
+lines of:
+
+crtc_enable()
+{
+	transcoder_thing1();
+
+	for_each_joined_pipe()
+		pipe_thing1();
+
+	transcoder_thing2();
+
+	for_each_joined_pipe()
+		pipe_thing2();
+
+	...
+}
+	
 -- 
 Ville Syrjälä
 Intel
