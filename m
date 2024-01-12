@@ -2,61 +2,56 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 351E782C252
-	for <lists+intel-gfx@lfdr.de>; Fri, 12 Jan 2024 15:57:44 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2DB4C82C296
+	for <lists+intel-gfx@lfdr.de>; Fri, 12 Jan 2024 16:12:38 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 78B0A10EB22;
-	Fri, 12 Jan 2024 14:57:38 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B4F7110E037;
+	Fri, 12 Jan 2024 15:12:31 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-oa1-x36.google.com (mail-oa1-x36.google.com
- [IPv6:2001:4860:4864:20::36])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5AAE910E004;
- Fri, 12 Jan 2024 14:57:36 +0000 (UTC)
-Received: by mail-oa1-x36.google.com with SMTP id
- 586e51a60fabf-20451ecbb80so3268289fac.2; 
- Fri, 12 Jan 2024 06:57:36 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1705071455; x=1705676255; darn=lists.freedesktop.org;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:from:to:cc:subject:date
- :message-id:reply-to;
- bh=J6MnHkt2VpMVg0RRcKjlt4ioS8fsU4mRnxPnlPqwX30=;
- b=SCwvnwrEAACRKjG3HTZi05XZh1Mz/TmJspnKP5eLLTbWZwWgk0Am21u8Hx0rP8WeX5
- gK4Nf4FLJi+wrC+FmbmGEOP4JxzKBYyUv/R4e6xqSfztC11YntOlVvzTwuwJ50apkpdM
- KNDqqzWp/YuuNS+Sgywxracr2QEhHSmojrNrEApFUo+GCksuwiPnYfToJJZfEBVRQB6x
- W7vmlfKcK+4KYQQMW9W5C2UeDOZugLYjxH6z0qOFqo4hL1idNfFx50QAlxrxQ/jBN/V7
- CHCjkGoGRCQe6perQvKtvX/RYbsGlUa9bjkAg9T3LgpPA+2U3ZV9wy4MEriO/ZMXD9gl
- nF6g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1705071455; x=1705676255;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
- :subject:date:message-id:reply-to;
- bh=J6MnHkt2VpMVg0RRcKjlt4ioS8fsU4mRnxPnlPqwX30=;
- b=fsUMkkMWyK8owklpj6ok394R3M42v2GVRSAp61tg/xtYkgwrKMprXuYUsrDem16n3R
- noySpTR2O3npE1AQJnK61q1hHnJrAWr/qxJ4QNO/DBr+2c5kl0Ir5FLN+AlmA0GTKlVV
- 37w5fmBFh3Y3AupobwPpFLp+1lANWM5zJKVpYN4Lg0yCmDDTAU30GcAHTTS8gxVqDPRz
- Loqo1sHsUvJcI6xT7g6yr1eExGNX30VT6Np0uvXI77E+c1F4cCMkZQ3REgDvsI76MyIK
- CckoICx8PMzDpijvadhaXA/cZKD5w1pqRA72nN6BV5icrniiehSl11K2kS1j12Y3OPZc
- pQZw==
-X-Gm-Message-State: AOJu0YxRBAkVbpf8RUsVT7JirecnZg7ny1R3kO2UKuZumlk0BLRnuOQb
- 7H5DRh1IPovqDklHTHm2R1MMCG2q2YUxsocAXRw=
-X-Google-Smtp-Source: AGHT+IEALwDD34qY/RqGn4hysu6/p03sgxBJifwumI10KtPXGPHMbVEg4mGSthNFTNntWhQHYX1j1PpBMAHVrG3zolI=
-X-Received: by 2002:a05:6870:d0c1:b0:205:f212:aa0a with SMTP id
- k1-20020a056870d0c100b00205f212aa0amr1676126oaa.19.1705071455567; Fri, 12 Jan
- 2024 06:57:35 -0800 (PST)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A6CF410E037
+ for <intel-gfx@lists.freedesktop.org>; Fri, 12 Jan 2024 15:12:29 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1705072350; x=1736608350;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=ej020eyCCReh/IubVw6U+7IrpQLHxqwqiFm8KagH1x4=;
+ b=EGZL9frcdJGEwTwJadA1yUZEJAPnCBsXkesIzxAMJugxKbCpPhLkH4h0
+ s5A+pb5U6SvoIeELWXBxW0Ls3PuY0GbTIF01TgBEmcN1LF/glJhpp2/GA
+ xrqwuz+gn1Q88peHnjVrHxxS0DWbZBaclLwXEpAmIaNCJYWm2jpgoJNIe
+ 7Hv5E58DFJwo7Fmy7QwOc3l/cgY8yaJbz7NROe6U1Zs6NHgzpD7kPTAHA
+ r2v0QPRrM/8i+geewmOwld3nrj7wH9EruFe2KBUaYqOmJjCxXMJ0WaK/4
+ T2AtKUWBY40RTXem0j4aV7i0MFKjupasPcaOeQKu5zDtRcvAf8calerbH Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10951"; a="5960173"
+X-IronPort-AV: E=Sophos;i="6.04,189,1695711600"; 
+   d="scan'208";a="5960173"
+Received: from orsmga007.jf.intel.com ([10.7.209.58])
+ by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 12 Jan 2024 07:12:29 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10951"; a="776026071"
+X-IronPort-AV: E=Sophos;i="6.04,189,1695711600"; d="scan'208";a="776026071"
+Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.74])
+ by orsmga007.jf.intel.com with SMTP; 12 Jan 2024 07:12:26 -0800
+Received: by stinkbox (sSMTP sendmail emulation);
+ Fri, 12 Jan 2024 17:12:25 +0200
+Date: Fri, 12 Jan 2024 17:12:25 +0200
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: Nirmoy Das <nirmoy.das@linux.intel.com>
+Subject: Re: [PATCH v2 04/15] drm/i915: Bypass LMEMBAR/GTTMMADR for MTL
+ stolen memory access
+Message-ID: <ZaFW2arHcLdDLTK-@intel.com>
+References: <20231215105929.29568-1-ville.syrjala@linux.intel.com>
+ <20231215105929.29568-5-ville.syrjala@linux.intel.com>
+ <b266f56d-ddad-4836-b888-800c213e842f@linux.intel.com>
 MIME-Version: 1.0
-References: <cover.1704908087.git.jani.nikula@intel.com>
- <fea7a52924f98b1ac24f4a7e6ba21d7754422430.1704908087.git.jani.nikula@intel.com>
-In-Reply-To: <fea7a52924f98b1ac24f4a7e6ba21d7754422430.1704908087.git.jani.nikula@intel.com>
-From: Alex Deucher <alexdeucher@gmail.com>
-Date: Fri, 12 Jan 2024 09:57:23 -0500
-Message-ID: <CADnq5_MZuVDx2VeErcOXSqkgRrnFsrn1=N8Y-K47Woar-aeAyw@mail.gmail.com>
-Subject: Re: [PATCH 3/6] drm/amdgpu: prefer snprintf over sprintf
-To: Jani Nikula <jani.nikula@intel.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <b266f56d-ddad-4836-b888-800c213e842f@linux.intel.com>
+X-Patchwork-Hint: comment
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -69,54 +64,92 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Pan@freedesktop.org, intel-gfx@lists.freedesktop.org,
- Xinhui <Xinhui.Pan@amd.com>, amd-gfx@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org, Alex Deucher <alexander.deucher@amd.com>,
- =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>
+Cc: intel-gfx@lists.freedesktop.org, Nirmoy Das <nirmoy.das@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, Jan 10, 2024 at 12:39=E2=80=AFPM Jani Nikula <jani.nikula@intel.com=
-> wrote:
->
-> This will trade the W=3D1 warning -Wformat-overflow to
-> -Wformat-truncation. This lets us enable -Wformat-overflow subsystem
-> wide.
->
-> Cc: Alex Deucher <alexander.deucher@amd.com>
-> Cc: Christian K=C3=B6nig <christian.koenig@amd.com>
-> Cc: Pan, Xinhui <Xinhui.Pan@amd.com>
-> Cc: amd-gfx@lists.freedesktop.org
-> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+On Wed, Jan 10, 2024 at 11:49:47AM +0100, Nirmoy Das wrote:
+> Hi Ville,
+> 
+> Apologies, but I lost track of this series after I returned from sick leave.
+> 
+> 
+> On 12/15/2023 11:59 AM, Ville Syrjala wrote:
+> > From: Ville Syrjälä <ville.syrjala@linux.intel.com>
+> >
+> > On MTL accessing stolen memory via the BARs is somehow borked,
+> > and it can hang the machine. As a workaround let's bypass the
+> > BARs and just go straight to DSMBASE/GSMBASE instead.
+> >
+> > Note that on every other platform this itself would hang the
+> > machine, but on MTL the system firmware is expected to relax
+> > the access permission guarding stolen memory to enable this
+> > workaround, and thus direct CPU accesses should be fine.
+> >
+> > TODO: add w/a numbers and whatnot
+> >
+> > Cc: Paz Zcharya <pazz@chromium.org>
+> > Cc: Nirmoy Das <nirmoy.das@intel.com>
+> > Cc: Radhakrishna Sripada <radhakrishna.sripada@intel.com>
+> > Cc: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
+> > Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
+> > ---
+> >   drivers/gpu/drm/i915/gem/i915_gem_stolen.c | 11 ++++++++++-
+> >   drivers/gpu/drm/i915/gt/intel_ggtt.c       | 13 ++++++++++++-
+> >   2 files changed, 22 insertions(+), 2 deletions(-)
+> >
+> > diff --git a/drivers/gpu/drm/i915/gem/i915_gem_stolen.c b/drivers/gpu/drm/i915/gem/i915_gem_stolen.c
+> > index ee237043c302..252fe5cd6ede 100644
+> > --- a/drivers/gpu/drm/i915/gem/i915_gem_stolen.c
+> > +++ b/drivers/gpu/drm/i915/gem/i915_gem_stolen.c
+> > @@ -941,7 +941,16 @@ i915_gem_stolen_lmem_setup(struct drm_i915_private *i915, u16 type,
+> >   		dsm_size = ALIGN_DOWN(lmem_size - dsm_base, SZ_1M);
+> >   	}
+> >   
+> > -	if (pci_resource_len(pdev, GEN12_LMEM_BAR) < lmem_size) {
+> > +	if (IS_METEORLAKE(i915)) {
+> > +		/*
+> > +		 * Workaround: access via BAR can hang MTL, go directly to DSM.
+> > +		 *
+> > +		 * Normally this would not work but on MTL the system firmware
+> > +		 * should have relaxed the access permissions sufficiently.
+> > +		 */
+> > +		io_start = intel_uncore_read64(uncore, GEN12_DSMBASE) & GEN12_BDSM_MASK;
+> > +		io_size = dsm_size;
+> 
+> This will work well on host driver but I am afraid this will not work on 
+> VM when someone tries to do direct device assignment of the igfx.
+> 
+> GSMBASE/DSMBASE is reserved region so won't show up in VM, last I checked.
 
-Acked-by: Alex Deucher <alexander.deucher@amd.com>
+Hmm. So BARs get passed over but other regions won't be? I wonder if
+there's a way to pass them explicitly...
 
-Feel free to take this via whichever tree makes sense.
+> 
+> This is an obscure usages but are we suppose to support that? If so then 
+> we need to detect that and fall back to binder approach.
 
-Alex
+I suppose some people may attempt it. But I'm not sure how well that
+will work in practice even on other platforms. I don't think we've
+ever really considered that use case any kind of priority so bug
+reports tend to go unanswered.
 
-> ---
->  drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.c | 3 ++-
->  1 file changed, 2 insertions(+), 1 deletion(-)
->
-> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.c b/drivers/gpu/drm/am=
-d/amdgpu/amdgpu_gfx.c
-> index b9674c57c436..82b4b2019fca 100644
-> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.c
-> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.c
-> @@ -329,7 +329,8 @@ int amdgpu_gfx_kiq_init_ring(struct amdgpu_device *ad=
-ev,
->
->         ring->eop_gpu_addr =3D kiq->eop_gpu_addr;
->         ring->no_scheduler =3D true;
-> -       sprintf(ring->name, "kiq_%d.%d.%d.%d", xcc_id, ring->me, ring->pi=
-pe, ring->queue);
-> +       snprintf(ring->name, sizeof(ring->name), "kiq_%d.%d.%d.%d",
-> +                xcc_id, ring->me, ring->pipe, ring->queue);
->         r =3D amdgpu_ring_init(adev, ring, 1024, irq, AMDGPU_CP_KIQ_IRQ_D=
-RIVER0,
->                              AMDGPU_RING_PRIO_DEFAULT, NULL);
->         if (r)
-> --
-> 2.39.2
->
+My main worry with the MI_UPDATE_GTT stuff is:
+- only used on this one platform so very limited testing coverage
+- async so more opprtunities to screw things up
+- what happens if the engine hangs while we're waiting for MI_UPDATE_GTT
+  to finish?
+- requires working command submission, so even getting a working
+  display now depends on a lot more extra components working correctly
+
+hence the patch to disable it. During testing my MTL was very unstable
+so I wanted to eliminate all potential sources of new bugs.
+
+Hmm. But we can't even use MI_UPDATE_GTT until command submission is
+up and running, so we still need the direct CPU path for early ggtt
+setup no? So if we can't pass the stolen directly to the VM the only
+option would be to use the BARs for that and risk hanging the machine.
+
+-- 
+Ville Syrjälä
+Intel
