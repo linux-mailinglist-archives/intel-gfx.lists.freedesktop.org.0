@@ -1,58 +1,54 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id E24DA82D95C
-	for <lists+intel-gfx@lfdr.de>; Mon, 15 Jan 2024 14:00:17 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8BA4682DA82
+	for <lists+intel-gfx@lfdr.de>; Mon, 15 Jan 2024 14:48:49 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3EBF210E28B;
-	Mon, 15 Jan 2024 13:00:16 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B69AA10E2EA;
+	Mon, 15 Jan 2024 13:48:47 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6B32C10E28B
- for <intel-gfx@lists.freedesktop.org>; Mon, 15 Jan 2024 13:00:14 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0F00A10E2EA
+ for <intel-gfx@lists.freedesktop.org>; Mon, 15 Jan 2024 13:48:47 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1705323614; x=1736859614;
+ t=1705326527; x=1736862527;
  h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version:content-transfer-encoding;
- bh=ZeO/XAVjHJKCJdiUNFKQMzVRsV+1UYTyo7rdevBKgTg=;
- b=fr8YtdUxDQE+5xZpsuZuXbqONGTkGTb/GW1bTj6+m8SQzIU5rSapwOFP
- yRCkjPPRFVQqEm4+MNCSJvEW/AZqLDbfr4Si+NnaTEQPBwfY63mbzCR68
- Nnn5XmOrNdFPFPe+vj50HULqNVdiL3SWi0aPnSSo9vzDjuo6NAb8mY2Iz
- dFl7fkuDNMiRrlg1UCGtd+VP9IoxHREk9qJBD+dlFpacx1RAzpOaODKzI
- HGStnMiDMwYjG20ZLW2GxB4qVvk/NovJ8VJx0NRkDkVwdgEBsToRPo32Y
- +fZ4jqZXbOSY1oT48VNndp932Gkrtzh/I5R6dKKUs6/vx0nrwLbfmfW5x A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10953"; a="390059995"
-X-IronPort-AV: E=Sophos;i="6.04,196,1695711600"; d="scan'208";a="390059995"
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
+ message-id:mime-version;
+ bh=rddOujxXLmcVFvps03ZThKOEskJb9F8nRSTceHMaMJU=;
+ b=J9uQk9M6bEY3WYNY0XDFXoz5JAWWE2DRJnVZH2V0u8KYSE92HPHjMa++
+ GtMHUVPf5KaAIVxGSxiWVxZBTAIjhaNs5xUIA8EpwoxDmk14v3HEz4T6P
+ VmbF+LuUfnXvnmsLsOwBz1ValVajfpAF2TUUShMgIsFll07RGusi9ZgTq
+ QkP42zBCdCBKRdEJF6XeD3jlPN0A79meYjBmclnHhyVEgpdN4Dl0JcjkQ
+ EhucrD8iQm3eWwPLyAQPf1IqVoQZbJIwN29e54NKvxJVtpYpIvqMCTnkI
+ sC8OtzcWGZEZ8JSbW0MpN6K91rb9yznBOeYCKXGo9411OEup9uDnyMTRO Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10953"; a="390070728"
+X-IronPort-AV: E=Sophos;i="6.04,196,1695711600"; d="scan'208";a="390070728"
+Received: from orsmga005.jf.intel.com ([10.7.209.41])
  by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Jan 2024 05:00:13 -0800
+ 15 Jan 2024 05:48:46 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10953"; a="817831333"
-X-IronPort-AV: E=Sophos;i="6.04,196,1695711600"; d="scan'208";a="817831333"
+X-IronPort-AV: E=McAfee;i="6600,9927,10953"; a="956825725"
+X-IronPort-AV: E=Sophos;i="6.04,196,1695711600"; d="scan'208";a="956825725"
 Received: from srigaut-mobl1.ger.corp.intel.com (HELO localhost)
  ([10.252.55.155])
- by orsmga001-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Jan 2024 05:00:10 -0800
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Rodrigo Vivi <rodrigo.vivi@intel.com>, "Hogander, Jouni"
- <jouni.hogander@intel.com>
-Subject: Re: [PATCH] drm/xe/display: Disable aux ccs framebuffers
-In-Reply-To: <ZaGsIGTHVh_MCqKW@intel.com>
+ by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 Jan 2024 05:48:45 -0800
+From: Jani Nikula <jani.nikula@intel.com>
+To: Radhakrishna Sripada <radhakrishna.sripada@intel.com>
+Subject: Re: [PATCH 4/6] drm/i915/opregion: abstract ASLE presence check
+In-Reply-To: <ZaGUv07GTyb24D+A@invictus>
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20240102182422.3823394-1-juhapekka.heikkila@gmail.com>
- <87il4b1pvz.fsf@intel.com> <ZZx0qT4s3dmhIGAn@intel.com>
- <93230e22ede6467ef8930342afd439f7ce677790.camel@intel.com>
- <ZZ75ghR172WxYZiJ@intel.com>
- <2c82e0774c23cc640e565b1b5302e0e234eba036.camel@intel.com>
- <ZaGsIGTHVh_MCqKW@intel.com>
-Date: Mon, 15 Jan 2024 15:00:07 +0200
-Message-ID: <87h6jesqeg.fsf@intel.com>
+References: <cover.1704992868.git.jani.nikula@intel.com>
+ <1829415d3e7b29e78c46b20bca8175ef373bcd92.1704992868.git.jani.nikula@intel.com>
+ <ZaCB4Ne7sXnZvwCw@invictus> <8734v2ua8a.fsf@intel.com>
+ <ZaGUv07GTyb24D+A@invictus>
+Date: Mon, 15 Jan 2024 15:48:42 +0200
+Message-ID: <87edeiso5h.fsf@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -65,479 +61,129 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "ogabbay@kernel.org" <ogabbay@kernel.org>, "Hellstrom,
- Thomas" <thomas.hellstrom@intel.com>, "De
- Marchi, Lucas" <lucas.demarchi@intel.com>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, 12 Jan 2024, Rodrigo Vivi <rodrigo.vivi@intel.com> wrote:
-> On Fri, Jan 12, 2024 at 07:31:51AM -0500, Hogander, Jouni wrote:
->> On Wed, 2024-01-10 at 15:09 -0500, Rodrigo Vivi wrote:
->> > On Tue, Jan 09, 2024 at 08:40:24PM +0000, Souza, Jose wrote:
->> > > On Mon, 2024-01-08 at 17:18 -0500, Rodrigo Vivi wrote:
->> > > > On Tue, Jan 02, 2024 at 09:44:48PM +0200, Jani Nikula wrote:
->> > > > > On Tue, 02 Jan 2024, Juha-Pekka Heikkila
->> > > > > <juhapekka.heikkila@gmail.com> wrote:
->> > > > > > Aux ccs framebuffers don't work on Xe driver hence disable
->> > > > > > them
->> > > > > > from plane capabilities until they are fixed. Flat ccs
->> > > > > > framebuffers
->> > > > > > work and they are left enabled. Here is separated plane
->> > > > > > capabilities
->> > > > > > check on i915 so it can behave differencly depending on the
->> > > > > > driver.
->> > > > >=20
->> > > > > Cc: Rodrigo and xe maintainers
->> > > > >=20
->> > > > > We need to figure out the proper workflow, the mailing lists to
->> > > > > use, the
->> > > > > subject prefix to use, the acks to require, etc, for changes
->> > > > > touching
->> > > > > both xe and i915.
->> > > > >=20
->> > > > > I'd very much prefer changes to i915 display to be merged via
->> > > > > drm-intel-next as always. For one thing, it'll take a while to
->> > > > > sync
->> > > > > stuff back from drm-xe-next to drm-intel-next, and most display
->> > > > > development still happens on drm-intel-next.
->> > > >=20
->> > > > I fully agree with you.
->> > > >=20
->> > > > >=20
->> > > > > But this patch can't be applied to drm-intel-next, because xe
->> > > > > doesn't
->> > > > > even exist on drm-intel-next yet...
->> > > >=20
->> > > > should we do a backmerge of drm-next already, or too early for
->> > > > that?
->> > >=20
->> > > Can we split it into 2 patches and merge it?
->> > > This is necessary to fix Wayland compositors on ADL and newer.
->> >=20
->> > we can do either:
->> > 1. backmerge drm-next into drm-intel-next and merge this as is. (This
->> > would be with
->> > Jani)
->> > 2. split in 2 patches, one for drm-intel-next and the other for drm-
->> > xe-next. (This would
->> > be with Jouni)
->> > 3. merge this as is in drm-xe-next and deal with the conflicts in a
->> > future backmerge.
->> > Since this is mostly adding a new file I don't believe that it would
->> > be a big deal.
->> > (This would impact myself)
->> >=20
->> > Since next round of drm-intel-next is mine, I'd be okay on handling
->> > that and acking
->> > this approach number 3. But before moving forward with this I'd like
->> > to wait for
->> > Jani's and Jouni's opinions.
->>=20
->> I'm fine with approach number 3.
+On Fri, 12 Jan 2024, Radhakrishna Sripada <radhakrishna.sripada@intel.com> wrote:
+> On Fri, Jan 12, 2024 at 12:17:25PM +0200, Jani Nikula wrote:
+>> On Thu, 11 Jan 2024, Radhakrishna Sripada <radhakrishna.sripada@intel.com> wrote:
+>> > On Thu, Jan 11, 2024 at 07:21:17PM +0200, Jani Nikula wrote:
+>> >> Add a function to check the opregion ASLE presence instead of accessing
+>> >> the opregion structures directly.
+>> >> 
+>> >> Reorder the checks in i915_has_asle() to avoid the function call if
+>> >> possible.
+>> >> 
+>> >> Cc: Radhakrishna Sripada <radhakrishna.sripada@intel.com>
+>> >> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+>> >> ---
+>> >>  drivers/gpu/drm/i915/display/intel_display_irq.c | 6 +++---
+>> >>  drivers/gpu/drm/i915/display/intel_opregion.c    | 5 +++++
+>> >>  drivers/gpu/drm/i915/display/intel_opregion.h    | 6 ++++++
+>> >>  3 files changed, 14 insertions(+), 3 deletions(-)
+>> >> 
+>> >> diff --git a/drivers/gpu/drm/i915/display/intel_display_irq.c b/drivers/gpu/drm/i915/display/intel_display_irq.c
+>> >> index 99843883cef7..f846c5b108b5 100644
+>> >> --- a/drivers/gpu/drm/i915/display/intel_display_irq.c
+>> >> +++ b/drivers/gpu/drm/i915/display/intel_display_irq.c
+>> >> @@ -266,12 +266,12 @@ void i915_disable_pipestat(struct drm_i915_private *dev_priv,
+>> >>  	intel_uncore_posting_read(&dev_priv->uncore, reg);
+>> >>  }
+>> >>  
+>> >> -static bool i915_has_asle(struct drm_i915_private *dev_priv)
+>> >> +static bool i915_has_asle(struct drm_i915_private *i915)
+>> > Why not move this to intel_opregion.c and export it instead of
+>> > intel_opregion_asle_present ?
+>> 
+>> I'm trying to be conscious of the possible performance impact of making
+>> calls from the irq code just to find there's nothing to do.
+> Makes sense.
 >
-> Jani, ack? or any plan to do a backmerge soon?
+>> 
+>> >>  {
+>> >> -	if (!dev_priv->display.opregion.asle)
+>> >> +	if (!IS_PINEVIEW(i915) && !IS_MOBILE(i915))
+>> > Can we extend this check to dgfx as well?
+>> 
+>> Extend how? This will return early for everything after IVB.
+> The name of the function is bit misleading as looking at Opregion code
+> and the spec beyond IVB, asle aka Mailbox 3 is present, just that it is
+> not used for reading pipestat. It is used to store rvda from where VBT is read.
+> Extension is not required for this purpose. Might want to clear that unless
+> I misunderstood the purpose, either way 
 
-I've done the backmerge, but considering this touches i915 code much
-more than xe, I'd prefer this get applied via i915. Or split.
+The new function intel_opregion_asle_present() added in this patch is
+exactly about whether asle mbox is present.
+
+i915_has_asle() may be ill-named, but frankly I'm not sure what it
+should be called, and it probably should not be renamed in this patch?
 
 BR,
 Jani.
 
 >
->>=20
+> Reviewed-by: Radhakrishna Sripada <radhakrishna.sripada@intel.com>
+>> 
 >> BR,
->>=20
->> Jouni H=C3=B6gander
->>=20
->> >=20
->> > >=20
->> > > >=20
->> > > > >=20
->> > > > >=20
->> > > > > BR,
->> > > > > Jani.
->> > > > >=20
->> > > > >=20
->> > > > > >=20
->> > > > > > Closes:
->> > > > > > https://gitlab.freedesktop.org/drm/xe/kernel/-/issues/933
->> > > > > > Signed-off-by: Juha-Pekka Heikkila
->> > > > > > <juhapekka.heikkila@gmail.com>
->> > > > > > ---
->> > > > > > =C2=A0drivers/gpu/drm/i915/Makefile=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=
-=A0 1 +
->> > > > > > =C2=A0.../gpu/drm/i915/display/intel_plane_caps.c=C2=A0=C2=A0 =
-| 68
->> > > > > > +++++++++++++++++++
->> > > > > > =C2=A0.../gpu/drm/i915/display/intel_plane_caps.h=C2=A0=C2=A0 =
-| 14 ++++
->> > > > > > =C2=A0.../drm/i915/display/skl_universal_plane.c=C2=A0=C2=A0=
-=C2=A0 | 61 +--------
->> > > > > > --------
->> > > > > > =C2=A0drivers/gpu/drm/xe/display/xe_plane_initial.c | 23 +++++=
-++
->> > > > > > =C2=A05 files changed, 107 insertions(+), 60 deletions(-)
->> > > > > > =C2=A0create mode 100644
->> > > > > > drivers/gpu/drm/i915/display/intel_plane_caps.c
->> > > > > > =C2=A0create mode 100644
->> > > > > > drivers/gpu/drm/i915/display/intel_plane_caps.h
->> > > > > >=20
->> > > > > > diff --git a/drivers/gpu/drm/i915/Makefile
->> > > > > > b/drivers/gpu/drm/i915/Makefile
->> > > > > > index e777686190ca..c5e3c2dd0a01 100644
->> > > > > > --- a/drivers/gpu/drm/i915/Makefile
->> > > > > > +++ b/drivers/gpu/drm/i915/Makefile
->> > > > > > @@ -302,6 +302,7 @@ i915-y +=3D \
->> > > > > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0display/intel_=
-overlay.o \
->> > > > > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0display/intel_=
-pch_display.o \
->> > > > > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0display/intel_=
-pch_refclk.o \
->> > > > > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0display/intel_plane=
-_caps.o \
->> > > > > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0display/intel_=
-plane_initial.o \
->> > > > > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0display/intel_=
-pmdemand.o \
->> > > > > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0display/intel_=
-psr.o \
->> > > > > > diff --git a/drivers/gpu/drm/i915/display/intel_plane_caps.c
->> > > > > > b/drivers/gpu/drm/i915/display/intel_plane_caps.c
->> > > > > > new file mode 100644
->> > > > > > index 000000000000..6206ae11f296
->> > > > > > --- /dev/null
->> > > > > > +++ b/drivers/gpu/drm/i915/display/intel_plane_caps.c
->> > > > > > @@ -0,0 +1,68 @@
->> > > > > > +// SPDX-License-Identifier: MIT
->> > > > > > +/*
->> > > > > > + * Copyright =C2=A9 2024 Intel Corporation
->> > > > > > + */
->> > > > > > +
->> > > > > > +#include "i915_drv.h"
->> > > > > > +#include "intel_fb.h"
->> > > > > > +#include "intel_plane_caps.h"
->> > > > > > +
->> > > > > > +static bool skl_plane_has_rc_ccs(struct drm_i915_private
->> > > > > > *i915,
->> > > > > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 enum pipe pipe, enum
->> > > > > > plane_id plane_id)
->> > > > > > +{
->> > > > > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0/* Wa_22011186057 */
->> > > > > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0if (IS_ALDERLAKE_P(=
-i915) && IS_DISPLAY_STEP(i915,
->> > > > > > STEP_A0, STEP_B0))
->> > > > > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0return false;
->> > > > > > +
->> > > > > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0if (DISPLAY_VER(i91=
-5) >=3D 11)
->> > > > > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0return true;
->> > > > > > +
->> > > > > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0if (IS_GEMINILAKE(i=
-915))
->> > > > > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0return pipe !=3D PIPE_C;
->> > > > > > +
->> > > > > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0return pipe !=3D PI=
-PE_C &&
->> > > > > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0(plane_id =3D=3D PLANE_PRIMARY ||
->> > > > > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 plane_id =3D=3D PLANE_SPRITE0);
->> > > > > > +}
->> > > > > > +
->> > > > > > +static bool gen12_plane_has_mc_ccs(struct drm_i915_private
->> > > > > > *i915,
->> > > > > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 enum plane_=
-id plane_id)
->> > > > > > +{
->> > > > > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0if (DISPLAY_VER(i91=
-5) < 12)
->> > > > > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0return false;
->> > > > > > +
->> > > > > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0/* Wa_14010477008 */
->> > > > > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0if (IS_DG1(i915) ||=
- IS_ROCKETLAKE(i915) ||
->> > > > > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 =
-(IS_TIGERLAKE(i915) && IS_DISPLAY_STEP(i915,
->> > > > > > STEP_A0, STEP_D0)))
->> > > > > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0return false;
->> > > > > > +
->> > > > > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0/* Wa_22011186057 */
->> > > > > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0if (IS_ALDERLAKE_P(=
-i915) && IS_DISPLAY_STEP(i915,
->> > > > > > STEP_A0, STEP_B0))
->> > > > > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0return false;
->> > > > > > +
->> > > > > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0return plane_id < P=
-LANE_SPRITE4;
->> > > > > > +}
->> > > > > > +
->> > > > > > +u8 skl_get_plane_caps(struct drm_i915_private *i915,
->> > > > > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 enum pipe pipe=
-, enum plane_id plane_id)
->> > > > > > +{
->> > > > > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0u8 caps =3D INTEL_P=
-LANE_CAP_TILING_X;
->> > > > > > +
->> > > > > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0if (DISPLAY_VER(i91=
-5) < 13 || IS_ALDERLAKE_P(i915))
->> > > > > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0caps |=3D INTEL_PLANE_CAP_TILING_Y;
->> > > > > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0if (DISPLAY_VER(i91=
-5) < 12)
->> > > > > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0caps |=3D INTEL_PLANE_CAP_TILING_Yf;
->> > > > > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0if (HAS_4TILE(i915))
->> > > > > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0caps |=3D INTEL_PLANE_CAP_TILING_4;
->> > > > > > +
->> > > > > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0if (skl_plane_has_r=
-c_ccs(i915, pipe, plane_id)) {
->> > > > > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0caps |=3D INTEL_PLANE_CAP_CCS_RC;
->> > > > > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0if (DISPLAY_VER(i915) >=3D 12)
->> > > > > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0caps |=3D INTEL_PLANE_CAP_CCS_RC_CC;
->> > > > > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0}
->> > > > > > +
->> > > > > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0if (gen12_plane_has=
-_mc_ccs(i915, plane_id))
->> > > > > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0caps |=3D INTEL_PLANE_CAP_CCS_MC;
->> > > > > > +
->> > > > > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0return caps;
->> > > > > > +}
->> > > > > > diff --git a/drivers/gpu/drm/i915/display/intel_plane_caps.h
->> > > > > > b/drivers/gpu/drm/i915/display/intel_plane_caps.h
->> > > > > > new file mode 100644
->> > > > > > index 000000000000..60a941c76f23
->> > > > > > --- /dev/null
->> > > > > > +++ b/drivers/gpu/drm/i915/display/intel_plane_caps.h
->> > > > > > @@ -0,0 +1,14 @@
->> > > > > > +/* SPDX-License-Identifier: MIT */
->> > > > > > +/*
->> > > > > > + * Copyright =C2=A9 2024 Intel Corporation
->> > > > > > + */
->> > > > > > +
->> > > > > > +#ifndef __INTEL_PLANE_CAPS_H__
->> > > > > > +#define __INTEL_PLANE_CAPS_H__
->> > > > > > +
->> > > > > > +#include "intel_display_types.h"
->> > > > > > +
->> > > > > > +u8 skl_get_plane_caps(struct drm_i915_private *i915,
->> > > > > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 enum pipe pipe=
-, enum plane_id
->> > > > > > plane_id);
->> > > > > > +
->> > > > > > +#endif /* __INTEL_PLANE_CAPS_H__ */
->> > > > > > diff --git
->> > > > > > a/drivers/gpu/drm/i915/display/skl_universal_plane.c
->> > > > > > b/drivers/gpu/drm/i915/display/skl_universal_plane.c
->> > > > > > index 511dc1544854..f2fd3833c61d 100644
->> > > > > > --- a/drivers/gpu/drm/i915/display/skl_universal_plane.c
->> > > > > > +++ b/drivers/gpu/drm/i915/display/skl_universal_plane.c
->> > > > > > @@ -17,6 +17,7 @@
->> > > > > > =C2=A0#include "intel_fb.h"
->> > > > > > =C2=A0#include "intel_fbc.h"
->> > > > > > =C2=A0#include "intel_frontbuffer.h"
->> > > > > > +#include "intel_plane_caps.h"
->> > > > > > =C2=A0#include "intel_psr.h"
->> > > > > > =C2=A0#include "intel_psr_regs.h"
->> > > > > > =C2=A0#include "skl_scaler.h"
->> > > > > > @@ -2242,66 +2243,6 @@ skl_plane_disable_flip_done(struct
->> > > > > > intel_plane *plane)
->> > > > > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0spin_unlock_ir=
-q(&i915->irq_lock);
->> > > > > > =C2=A0}
->> > > > > > =C2=A0
->> > > > > > -static bool skl_plane_has_rc_ccs(struct drm_i915_private
->> > > > > > *i915,
->> > > > > > -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 enum pipe pipe, enum
->> > > > > > plane_id plane_id)
->> > > > > > -{
->> > > > > > -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0/* Wa_22011186057 */
->> > > > > > -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0if (IS_ALDERLAKE_P(=
-i915) && IS_DISPLAY_STEP(i915,
->> > > > > > STEP_A0, STEP_B0))
->> > > > > > -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0return false;
->> > > > > > -
->> > > > > > -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0if (DISPLAY_VER(i91=
-5) >=3D 11)
->> > > > > > -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0return true;
->> > > > > > -
->> > > > > > -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0if (IS_GEMINILAKE(i=
-915))
->> > > > > > -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0return pipe !=3D PIPE_C;
->> > > > > > -
->> > > > > > -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0return pipe !=3D PI=
-PE_C &&
->> > > > > > -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0(plane_id =3D=3D PLANE_PRIMARY ||
->> > > > > > -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 plane_id =3D=3D PLANE_SPRITE0);
->> > > > > > -}
->> > > > > > -
->> > > > > > -static bool gen12_plane_has_mc_ccs(struct drm_i915_private
->> > > > > > *i915,
->> > > > > > -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 enum plane_=
-id plane_id)
->> > > > > > -{
->> > > > > > -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0if (DISPLAY_VER(i91=
-5) < 12)
->> > > > > > -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0return false;
->> > > > > > -
->> > > > > > -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0/* Wa_14010477008 */
->> > > > > > -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0if (IS_DG1(i915) ||=
- IS_ROCKETLAKE(i915) ||
->> > > > > > -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0(IS_TIGERLAKE(i915) && IS_DISPLAY_STEP(i915,
->> > > > > > STEP_A0, STEP_D0)))
->> > > > > > -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0return false;
->> > > > > > -
->> > > > > > -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0/* Wa_22011186057 */
->> > > > > > -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0if (IS_ALDERLAKE_P(=
-i915) && IS_DISPLAY_STEP(i915,
->> > > > > > STEP_A0, STEP_B0))
->> > > > > > -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0return false;
->> > > > > > -
->> > > > > > -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0return plane_id < P=
-LANE_SPRITE4;
->> > > > > > -}
->> > > > > > -
->> > > > > > -static u8 skl_get_plane_caps(struct drm_i915_private *i915,
->> > > > > > -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0 enum pipe pipe, enum plane_id
->> > > > > > plane_id)
->> > > > > > -{
->> > > > > > -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0u8 caps =3D INTEL_P=
-LANE_CAP_TILING_X;
->> > > > > > -
->> > > > > > -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0if (DISPLAY_VER(i91=
-5) < 13 || IS_ALDERLAKE_P(i915))
->> > > > > > -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0caps |=3D INTEL_PLANE_CAP_TILING_Y;
->> > > > > > -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0if (DISPLAY_VER(i91=
-5) < 12)
->> > > > > > -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0caps |=3D INTEL_PLANE_CAP_TILING_Yf;
->> > > > > > -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0if (HAS_4TILE(i915))
->> > > > > > -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0caps |=3D INTEL_PLANE_CAP_TILING_4;
->> > > > > > -
->> > > > > > -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0if (skl_plane_has_r=
-c_ccs(i915, pipe, plane_id)) {
->> > > > > > -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0caps |=3D INTEL_PLANE_CAP_CCS_RC;
->> > > > > > -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0if (DISPLAY_VER(i915) >=3D 12)
->> > > > > > -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0caps |=3D INTEL_PLANE_CAP_CCS_RC_CC;
->> > > > > > -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0}
->> > > > > > -
->> > > > > > -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0if (gen12_plane_has=
-_mc_ccs(i915, plane_id))
->> > > > > > -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0caps |=3D INTEL_PLANE_CAP_CCS_MC;
->> > > > > > -
->> > > > > > -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0return caps;
->> > > > > > -}
->> > > > > > -
->> > > > > > =C2=A0struct intel_plane *
->> > > > > > =C2=A0skl_universal_plane_create(struct drm_i915_private
->> > > > > > *dev_priv,
->> > > > > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0 enum pipe pipe, enum plane_id
->> > > > > > plane_id)
->> > > > > > diff --git a/drivers/gpu/drm/xe/display/xe_plane_initial.c
->> > > > > > b/drivers/gpu/drm/xe/display/xe_plane_initial.c
->> > > > > > index ccf83c12b545..425c6e6744a6 100644
->> > > > > > --- a/drivers/gpu/drm/xe/display/xe_plane_initial.c
->> > > > > > +++ b/drivers/gpu/drm/xe/display/xe_plane_initial.c
->> > > > > > @@ -15,6 +15,7 @@
->> > > > > > =C2=A0#include "intel_fb.h"
->> > > > > > =C2=A0#include "intel_fb_pin.h"
->> > > > > > =C2=A0#include "intel_frontbuffer.h"
->> > > > > > +#include "intel_plane_caps.h"
->> > > > > > =C2=A0#include "intel_plane_initial.h"
->> > > > > > =C2=A0
->> > > > > > =C2=A0static bool
->> > > > > > @@ -289,3 +290,25 @@ void
->> > > > > > intel_crtc_initial_plane_config(struct intel_crtc *crtc)
->> > > > > > =C2=A0
->> > > > > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0plane_config_f=
-ini(&plane_config);
->> > > > > > =C2=A0}
->> > > > > > +
->> > > > > > +u8 skl_get_plane_caps(struct drm_i915_private *i915,
->> > > > > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 enum pipe pipe=
-, enum plane_id plane_id)
->> > > > > > +{
->> > > > > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0u8 caps =3D INTEL_P=
-LANE_CAP_TILING_X;
->> > > > > > +
->> > > > > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0if (DISPLAY_VER(i91=
-5) < 13 || IS_ALDERLAKE_P(i915))
->> > > > > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0caps |=3D INTEL_PLANE_CAP_TILING_Y;
->> > > > > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0if (DISPLAY_VER(i91=
-5) < 12)
->> > > > > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0caps |=3D INTEL_PLANE_CAP_TILING_Yf;
->> > > > > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0if (HAS_4TILE(i915))
->> > > > > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0caps |=3D INTEL_PLANE_CAP_TILING_4;
->> > > > > > +
->> > > > > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0if (HAS_FLAT_CCS(i9=
-15)) {
->> > > > > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0caps |=3D INTEL_PLANE_CAP_CCS_RC |
->> > > > > > INTEL_PLANE_CAP_CCS_RC_CC;
->> > > > > > +
->> > > > > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0if (plane_id < PLANE_SPRITE4)
->> > > > > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0caps |=3D INTEL_PLANE_CAP_CCS_MC;
->> > > > > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0}
->> > > > > > +
->> > > > > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0return caps;
->> > > > > > +}
->> > > > >=20
->> > > > > --=20
->> > > > > Jani Nikula, Intel
->> > >=20
->>=20
+>> Jani.
+>> 
+>> >
+>> > -Radhakrishna(RK) Sripada
+>> >
+>> >>  		return false;
+>> >>  
+>> >> -	return IS_PINEVIEW(dev_priv) || IS_MOBILE(dev_priv);
+>> >> +	return intel_opregion_asle_present(i915);
+>> >>  }
+>> >>  
+>> >>  /**
+>> >> diff --git a/drivers/gpu/drm/i915/display/intel_opregion.c b/drivers/gpu/drm/i915/display/intel_opregion.c
+>> >> index 8b9e820971cb..26aacb01f9ec 100644
+>> >> --- a/drivers/gpu/drm/i915/display/intel_opregion.c
+>> >> +++ b/drivers/gpu/drm/i915/display/intel_opregion.c
+>> >> @@ -632,6 +632,11 @@ static void asle_work(struct work_struct *work)
+>> >>  	asle->aslc = aslc_stat;
+>> >>  }
+>> >>  
+>> >> +bool intel_opregion_asle_present(struct drm_i915_private *i915)
+>> >> +{
+>> >> +	return i915->display.opregion.asle;
+>> >> +}
+>> >> +
+>> >>  void intel_opregion_asle_intr(struct drm_i915_private *dev_priv)
+>> >>  {
+>> >>  	if (dev_priv->display.opregion.asle)
+>> >> diff --git a/drivers/gpu/drm/i915/display/intel_opregion.h b/drivers/gpu/drm/i915/display/intel_opregion.h
+>> >> index 9efadfb72584..d084b30e8703 100644
+>> >> --- a/drivers/gpu/drm/i915/display/intel_opregion.h
+>> >> +++ b/drivers/gpu/drm/i915/display/intel_opregion.h
+>> >> @@ -69,6 +69,7 @@ void intel_opregion_resume(struct drm_i915_private *dev_priv);
+>> >>  void intel_opregion_suspend(struct drm_i915_private *dev_priv,
+>> >>  			    pci_power_t state);
+>> >>  
+>> >> +bool intel_opregion_asle_present(struct drm_i915_private *i915);
+>> >>  void intel_opregion_asle_intr(struct drm_i915_private *dev_priv);
+>> >>  int intel_opregion_notify_encoder(struct intel_encoder *intel_encoder,
+>> >>  				  bool enable);
+>> >> @@ -111,6 +112,11 @@ static inline void intel_opregion_suspend(struct drm_i915_private *dev_priv,
+>> >>  {
+>> >>  }
+>> >>  
+>> >> +static inline bool intel_opregion_asle_present(struct drm_i915_private *i915)
+>> >> +{
+>> >> +	return false;
+>> >> +}
+>> >> +
+>> >>  static inline void intel_opregion_asle_intr(struct drm_i915_private *dev_priv)
+>> >>  {
+>> >>  }
+>> >> -- 
+>> >> 2.39.2
+>> >> 
+>> 
+>> -- 
+>> Jani Nikula, Intel
 
---=20
+-- 
 Jani Nikula, Intel
