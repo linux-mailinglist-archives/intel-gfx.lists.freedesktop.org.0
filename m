@@ -2,53 +2,53 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 605BC82EEFF
-	for <lists+intel-gfx@lfdr.de>; Tue, 16 Jan 2024 13:29:04 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6FB5382EEEE
+	for <lists+intel-gfx@lfdr.de>; Tue, 16 Jan 2024 13:28:24 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1666210E560;
-	Tue, 16 Jan 2024 12:28:14 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2C49C10E53B;
+	Tue, 16 Jan 2024 12:28:13 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-wm1-x334.google.com (mail-wm1-x334.google.com
- [IPv6:2a00:1450:4864:20::334])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9A71D10E315
- for <intel-gfx@lists.freedesktop.org>; Mon, 15 Jan 2024 16:06:45 +0000 (UTC)
-Received: by mail-wm1-x334.google.com with SMTP id
- 5b1f17b1804b1-40e80046275so3505925e9.2
- for <intel-gfx@lists.freedesktop.org>; Mon, 15 Jan 2024 08:06:45 -0800 (PST)
+Received: from mail-wr1-x430.google.com (mail-wr1-x430.google.com
+ [IPv6:2a00:1450:4864:20::430])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2B2DA10E32A
+ for <intel-gfx@lists.freedesktop.org>; Mon, 15 Jan 2024 16:06:48 +0000 (UTC)
+Received: by mail-wr1-x430.google.com with SMTP id
+ ffacd0b85a97d-33678156e27so7688660f8f.1
+ for <intel-gfx@lists.freedesktop.org>; Mon, 15 Jan 2024 08:06:48 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=yngvason.is; s=google; t=1705334804; x=1705939604; darn=lists.freedesktop.org;
+ d=yngvason.is; s=google; t=1705334806; x=1705939606; darn=lists.freedesktop.org;
  h=content-transfer-encoding:mime-version:references:in-reply-to
  :message-id:date:subject:cc:to:from:from:to:cc:subject:date
  :message-id:reply-to;
- bh=y7h5TOlHeh29R5MO3vqvyCpfRR+2j5wkj4KSWlgVsY0=;
- b=BKUAFholSqDddIm1DT1RorH7fGoZlz9KEi2AdDNgVJcIyU8uTafvVJ3LOgQ2/+MfqA
- +gy7H7bne9CCY5U2PYmv0aQhBffSY5Mw+7ASgfBzH9EQP8e1qeNgCN69bVCjO6/YFPZ+
- r5uVA4JVxamoSvOPdhBpjxBrcuPNXLiMWQm0s=
+ bh=GdtBBD/PsT+CMOt03gpuRaURCK/Kf9ifF8Qmw3C9ypA=;
+ b=GpzyIQwh32nwU8GUoIzwo85PVjpyqm7Lj6bpFZUsvjbJek9Krh3WeuBBFWxIlLlCYX
+ h7akGaoo9ogpobZyOqKDczl8/67C1HfuJrAEddYmdK6v7axGc7qY5vBXS5A8xF/ybaKe
+ R4Wa/claL21UUXh1DBmMn/cAe8O0AfJKBW/GA=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1705334804; x=1705939604;
+ d=1e100.net; s=20230601; t=1705334806; x=1705939606;
  h=content-transfer-encoding:mime-version:references:in-reply-to
  :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
  :subject:date:message-id:reply-to;
- bh=y7h5TOlHeh29R5MO3vqvyCpfRR+2j5wkj4KSWlgVsY0=;
- b=FKSmufXZK/8/Kr2IxBxXNPJhv3hlGSYByI5cZGY5rzPwtCFEHhbj72IFzmBXVT2Tvq
- +CQSC95RSWS/OK7gosDeRLrKy95cdBFJfJzc+bBgze9hzxBpYCjT17+7eloJ80o/DEcx
- TWgWJx6SdkF2gqdJVB1KZOIb3aWjBag9V6D6R8AN2n3k8R+qDZvScXsWbHzWSJwgcc82
- Tdv0GEo5INZVTHt+s1y7agHmxfHHKzXTIyUv0TQxa2Hb+3FQtm3xO+gBt0vsRctU9Q+0
- Vl9CKyBBX//7+cmJm3Yg1u1G5ydtyxISn0wefPh4ak5MUjVxkV/QxLUQsZnbykTiO6uu
- 7yUA==
-X-Gm-Message-State: AOJu0YzlRWn7okU9p6IsscpcFXVif6v/j3Oi4kX5BZFqIMDTu6ldcUIn
- bPdXdCTEPp9YtG1GKYC+XPdE0aMRCxNJwA==
-X-Google-Smtp-Source: AGHT+IHMlicTU5ZpLWspXuG4eSFL0osighJE+s/ckHvaTE3eH7QH7NJLEqO4581S2L63mZc6rAr+vw==
-X-Received: by 2002:a05:600c:524c:b0:40e:397e:16e7 with SMTP id
- fc12-20020a05600c524c00b0040e397e16e7mr3140605wmb.3.1705334804112; 
- Mon, 15 Jan 2024 08:06:44 -0800 (PST)
+ bh=GdtBBD/PsT+CMOt03gpuRaURCK/Kf9ifF8Qmw3C9ypA=;
+ b=TxFp/DU/tSwDVmXvNBuusX1L8dtIi82mt2LpdheVzc6Cub7EQeUcQkM3IaxCvtRGdF
+ pyUGI2nrkkTJzfFvR6XbmzOLWJX31yqs6kLNccOYkCH0pB92/KUVvXByvwYJma4DyNxf
+ na61juaUBpK0FQE4lUyDxJPRSTqCLF5tzFcz+xLq6aTRjF2WkjD6k9ipQ3G0l8yx/Axj
+ wI90Xhz2/oSkj2+qgYPlEqGicI4h+y5N1B8dBMWxkAht8mO+OPEEGwaxqSDdK7R6sa+i
+ FOx0b8gGdNv69+xS1ULMHW41XMsOMApYGIVd13aY7nQ7CsuG73utBAKf3K7f67N79/Vl
+ ZZZA==
+X-Gm-Message-State: AOJu0YwDHJWAX3b/HdyqGkV9xdF3rUq7+QRTPsBB+HMVPniqPCmWsXOs
+ 3k+USHts63xGkyUsSLENj6Kh8F66zCMVWg==
+X-Google-Smtp-Source: AGHT+IHpqJt7PYL/T1kUb/MG4+ntZ8TRnDliR4DSwYmn+/sZY/n2Xxy8iGjJp3XSHJ9WOx+vBUYUwg==
+X-Received: by 2002:a05:600c:4f90:b0:40d:5f45:5094 with SMTP id
+ n16-20020a05600c4f9000b0040d5f455094mr2778999wmq.104.1705334806635; 
+ Mon, 15 Jan 2024 08:06:46 -0800 (PST)
 Received: from andri-workstation.turninn.appdynamic.com
  ([2a01:8280:aa07:ad:7285:c2ff:fef0:4baf])
  by smtp.gmail.com with ESMTPSA id
- l22-20020a05600c4f1600b0040d6b91efd9sm20174140wmq.44.2024.01.15.08.06.42
+ l22-20020a05600c4f1600b0040d6b91efd9sm20174140wmq.44.2024.01.15.08.06.44
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Mon, 15 Jan 2024 08:06:43 -0800 (PST)
+ Mon, 15 Jan 2024 08:06:46 -0800 (PST)
 From: Andri Yngvason <andri@yngvason.is>
 To: Harry Wentland <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>,
  Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>,
@@ -63,10 +63,10 @@ To: Harry Wentland <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>,
  Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
  Rodrigo Vivi <rodrigo.vivi@intel.com>,
  Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-Subject: [PATCH v2 3/4] drm/amd/display: Add handling for new "force color
+Subject: [PATCH v2 4/4] drm/i915/display: Add handling for new "force color
  format" property
-Date: Mon, 15 Jan 2024 16:05:53 +0000
-Message-ID: <20240115160554.720247-4-andri@yngvason.is>
+Date: Mon, 15 Jan 2024 16:05:54 +0000
+Message-ID: <20240115160554.720247-5-andri@yngvason.is>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20240115160554.720247-1-andri@yngvason.is>
 References: <20240115160554.720247-1-andri@yngvason.is>
@@ -94,7 +94,7 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 From: Werner Sembach <wse@tuxedocomputers.com>
 
 This commit implements the "force color format" drm property for the
-AMD GPU driver.
+Intel GPU driver.
 
 Signed-off-by: Werner Sembach <wse@tuxedocomputers.com>
 Co-Developed-by: Andri Yngvason <andri@yngvason.is>
@@ -107,124 +107,168 @@ Changes in v2:
  - Modeset will fail if color format cannot be satisfied
 
 ---
- .../gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c | 63 ++++++++++++++++---
- .../display/amdgpu_dm/amdgpu_dm_mst_types.c   |  4 ++
- 2 files changed, 60 insertions(+), 7 deletions(-)
+ drivers/gpu/drm/i915/display/intel_dp.c     | 35 ++++++++++++++++-----
+ drivers/gpu/drm/i915/display/intel_dp_mst.c |  5 +++
+ drivers/gpu/drm/i915/display/intel_hdmi.c   | 29 ++++++++++++++---
+ 3 files changed, 58 insertions(+), 11 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-index cc4d1f7f97b98..26c4260c78d7b 100644
---- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-+++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-@@ -5573,15 +5573,32 @@ static void fill_stream_properties_from_drm_display_mode(
- 	timing_out->h_border_right = 0;
- 	timing_out->v_border_top = 0;
- 	timing_out->v_border_bottom = 0;
--	/* TODO: un-hardcode */
--	if (drm_mode_is_420_only(info, mode_in)
--			|| (drm_mode_is_420_also(info, mode_in) && aconnector->force_yuv420_output))
-+
-+	if (connector_state
-+			&& (connector_state->force_color_format == DRM_COLOR_FORMAT_YCBCR420
-+			|| aconnector->force_yuv420_output) && drm_mode_is_420(info, mode_in))
- 		timing_out->pixel_encoding = PIXEL_ENCODING_YCBCR420;
--	else if ((connector->display_info.color_formats & DRM_COLOR_FORMAT_YCBCR444)
--			&& stream->signal == SIGNAL_TYPE_HDMI_TYPE_A)
-+	else if (connector_state
-+			&& connector_state->force_color_format == DRM_COLOR_FORMAT_YCBCR444
-+			&& connector->display_info.color_formats & DRM_COLOR_FORMAT_YCBCR444)
- 		timing_out->pixel_encoding = PIXEL_ENCODING_YCBCR444;
--	else
-+	else if (connector_state
-+			&& connector_state->force_color_format == DRM_COLOR_FORMAT_RGB444
-+			&& !drm_mode_is_420_only(info, mode_in))
- 		timing_out->pixel_encoding = PIXEL_ENCODING_RGB;
-+	else
-+		/*
-+		 * connector_state->force_color_format not possible
-+		 * || connector_state->force_color_format == 0 (auto)
-+		 * || connector_state->force_color_format == DRM_COLOR_FORMAT_YCBCR422
-+		 */
-+		if (drm_mode_is_420_only(info, mode_in))
-+			timing_out->pixel_encoding = PIXEL_ENCODING_YCBCR420;
-+		else if ((connector->display_info.color_formats & DRM_COLOR_FORMAT_YCBCR444)
-+				&& stream->signal == SIGNAL_TYPE_HDMI_TYPE_A)
-+			timing_out->pixel_encoding = PIXEL_ENCODING_YCBCR444;
-+		else
-+			timing_out->pixel_encoding = PIXEL_ENCODING_RGB;
- 
- 	timing_out->timing_3d_format = TIMING_3D_FORMAT_NONE;
- 	timing_out->display_color_depth = convert_color_depth_from_display_info(
-@@ -6685,6 +6702,33 @@ static enum dc_status dm_validate_stream_and_context(struct dc *dc,
- 	return dc_result;
+diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
+index 7d2b8ce48fda1..71e822483572e 100644
+--- a/drivers/gpu/drm/i915/display/intel_dp.c
++++ b/drivers/gpu/drm/i915/display/intel_dp.c
+@@ -2799,6 +2799,16 @@ static bool intel_dp_has_audio(struct intel_encoder *encoder,
+ 		return intel_conn_state->force_audio == HDMI_AUDIO_ON;
  }
  
-+static enum dc_status
-+dm_validate_stream_color_format(const struct drm_connector_state *drm_state,
-+				const struct dc_stream_state *stream)
++static u32 intel_output_format_to_drm_color_format(enum intel_output_format input)
 +{
-+	if (!drm_state->force_color_format)
-+		return DC_OK;
-+
-+	enum dc_pixel_encoding encoding = PIXEL_ENCODING_UNDEFINED;
-+	switch (drm_state->force_color_format) {
-+	case DRM_COLOR_FORMAT_RGB444:
-+		encoding = PIXEL_ENCODING_RGB;
-+		break;
-+	case DRM_COLOR_FORMAT_YCBCR444:
-+		encoding = PIXEL_ENCODING_YCBCR444;
-+		break;
-+	case DRM_COLOR_FORMAT_YCBCR422:
-+		encoding = PIXEL_ENCODING_YCBCR422;
-+		break;
-+	case DRM_COLOR_FORMAT_YCBCR420:
-+		encoding = PIXEL_ENCODING_YCBCR420;
-+		break;
++	switch (input) {
++	case INTEL_OUTPUT_FORMAT_RGB: return DRM_COLOR_FORMAT_RGB444;
++	case INTEL_OUTPUT_FORMAT_YCBCR444: return DRM_COLOR_FORMAT_YCBCR444;
++	case INTEL_OUTPUT_FORMAT_YCBCR420: return DRM_COLOR_FORMAT_YCBCR420;
 +	}
-+
-+	return encoding == stream->timing.pixel_encoding ?
-+	       DC_OK : DC_UNSUPPORTED_VALUE;
++	return 0;
 +}
 +
- struct dc_stream_state *
- create_validate_stream_for_sink(struct amdgpu_dm_connector *aconnector,
- 				const struct drm_display_mode *drm_mode,
-@@ -6717,6 +6761,9 @@ create_validate_stream_for_sink(struct amdgpu_dm_connector *aconnector,
- 		if (dc_result == DC_OK)
- 			dc_result = dm_validate_stream_and_context(adev->dm.dc, stream);
+ static int
+ intel_dp_compute_output_format(struct intel_encoder *encoder,
+ 			       struct intel_crtc_state *crtc_state,
+@@ -2810,17 +2820,20 @@ intel_dp_compute_output_format(struct intel_encoder *encoder,
+ 	struct intel_connector *connector = intel_dp->attached_connector;
+ 	const struct drm_display_info *info = &connector->base.display_info;
+ 	const struct drm_display_mode *adjusted_mode = &crtc_state->hw.adjusted_mode;
+-	bool ycbcr_420_only;
++	bool ycbcr_420_output;
+ 	int ret;
  
-+		if (dc_result == DC_OK)
-+			dc_result = dm_validate_stream_color_format(drm_state, stream);
+-	ycbcr_420_only = drm_mode_is_420_only(info, adjusted_mode);
++	ycbcr_420_output = drm_mode_is_420_only(info, adjusted_mode) ||
++			   (conn_state->force_color_format == DRM_COLOR_FORMAT_YCBCR420 &&
++			    drm_mode_is_420_also(&connector->base.display_info, adjusted_mode));
+ 
+-	if (ycbcr_420_only && !connector->base.ycbcr_420_allowed) {
++	crtc_state->sink_format = ycbcr_420_output ? INTEL_OUTPUT_FORMAT_YCBCR420 :
++						     INTEL_OUTPUT_FORMAT_RGB;
 +
- 		if (dc_result != DC_OK) {
- 			DRM_DEBUG_KMS("Mode %dx%d (clk %d) failed DC validation with error %d (%s)\n",
- 				      drm_mode->hdisplay,
-@@ -7512,8 +7559,10 @@ void amdgpu_dm_connector_init_helper(struct amdgpu_display_manager *dm,
- 				adev->mode_info.underscan_vborder_property,
- 				0);
++	if (ycbcr_420_output && !connector->base.ycbcr_420_allowed) {
+ 		drm_dbg_kms(&i915->drm,
+ 			    "YCbCr 4:2:0 mode but YCbCr 4:2:0 output not possible. Falling back to RGB.\n");
+ 		crtc_state->sink_format = INTEL_OUTPUT_FORMAT_RGB;
+-	} else {
+-		crtc_state->sink_format = intel_dp_sink_format(connector, adjusted_mode);
+ 	}
  
--	if (!aconnector->mst_root)
-+	if (!aconnector->mst_root) {
- 		drm_connector_attach_max_bpc_property(&aconnector->base, 8, 16);
-+		drm_connector_attach_force_color_format_property(&aconnector->base);
+ 	crtc_state->output_format = intel_dp_output_format(connector, crtc_state->sink_format);
+@@ -2840,6 +2853,11 @@ intel_dp_compute_output_format(struct intel_encoder *encoder,
+ 						   respect_downstream_limits);
+ 	}
+ 
++	if (conn_state->force_color_format && conn_state->force_color_format !=
++	    intel_output_format_to_drm_color_format(crtc_state->sink_format)) {
++		ret = -EINVAL;
++	}
++
+ 	return ret;
+ }
+ 
+@@ -6179,10 +6197,13 @@ intel_dp_add_properties(struct intel_dp *intel_dp, struct drm_connector *connect
+ 		intel_attach_force_audio_property(connector);
+ 
+ 	intel_attach_broadcast_rgb_property(connector);
+-	if (HAS_GMCH(dev_priv))
++	if (HAS_GMCH(dev_priv)) {
+ 		drm_connector_attach_max_bpc_property(connector, 6, 10);
+-	else if (DISPLAY_VER(dev_priv) >= 5)
++		drm_connector_attach_force_color_format_property(connector);
++	} else if (DISPLAY_VER(dev_priv) >= 5) {
+ 		drm_connector_attach_max_bpc_property(connector, 6, 12);
++		drm_connector_attach_force_color_format_property(connector);
 +	}
  
- 	aconnector->base.state->max_bpc = 16;
- 	aconnector->base.state->max_requested_bpc = aconnector->base.state->max_bpc;
-diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_mst_types.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_mst_types.c
-index 941e96f100f4e..437d50f53eb97 100644
---- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_mst_types.c
-+++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_mst_types.c
-@@ -601,6 +601,10 @@ dm_dp_add_mst_connector(struct drm_dp_mst_topology_mgr *mgr,
- 	if (connector->max_bpc_property)
- 		drm_connector_attach_max_bpc_property(connector, 8, 16);
+ 	/* Register HDMI colorspace for case of lspcon */
+ 	if (intel_bios_encoder_is_lspcon(dp_to_dig_port(intel_dp)->base.devdata)) {
+diff --git a/drivers/gpu/drm/i915/display/intel_dp_mst.c b/drivers/gpu/drm/i915/display/intel_dp_mst.c
+index 8a94323350303..dcb3abcc6d83e 100644
+--- a/drivers/gpu/drm/i915/display/intel_dp_mst.c
++++ b/drivers/gpu/drm/i915/display/intel_dp_mst.c
+@@ -1572,6 +1572,11 @@ static struct drm_connector *intel_dp_add_mst_connector(struct drm_dp_mst_topolo
+ 		drm_dbg_kms(&dev_priv->drm, "[%s:%d] HDCP MST init failed, skipping.\n",
+ 			    connector->name, connector->base.id);
  
-+	connector->force_color_format_property = master->base.force_color_format_property;
++	connector->force_color_format_property =
++		intel_dp->attached_connector->base.force_color_format_property;
 +	if (connector->force_color_format_property)
-+		drm_connector_attach_force_color_format_property(&aconnector->base);
++		drm_connector_attach_force_color_format_property(connector);
 +
- 	connector->vrr_capable_property = master->base.vrr_capable_property;
- 	if (connector->vrr_capable_property)
- 		drm_connector_attach_vrr_capable_property(connector);
+ 	return connector;
+ 
+ err:
+diff --git a/drivers/gpu/drm/i915/display/intel_hdmi.c b/drivers/gpu/drm/i915/display/intel_hdmi.c
+index 39e4f5f7c8171..a612173411b26 100644
+--- a/drivers/gpu/drm/i915/display/intel_hdmi.c
++++ b/drivers/gpu/drm/i915/display/intel_hdmi.c
+@@ -2205,6 +2205,16 @@ intel_hdmi_output_format(const struct intel_crtc_state *crtc_state)
+ 	return crtc_state->sink_format;
+ }
+ 
++static u32 intel_output_format_to_drm_color_format(enum intel_output_format input)
++{
++	switch (input) {
++	case INTEL_OUTPUT_FORMAT_RGB: return DRM_COLOR_FORMAT_RGB444;
++	case INTEL_OUTPUT_FORMAT_YCBCR444: return DRM_COLOR_FORMAT_YCBCR444;
++	case INTEL_OUTPUT_FORMAT_YCBCR420: return DRM_COLOR_FORMAT_YCBCR420;
++	}
++	return 0;
++}
++
+ static int intel_hdmi_compute_output_format(struct intel_encoder *encoder,
+ 					    struct intel_crtc_state *crtc_state,
+ 					    const struct drm_connector_state *conn_state,
+@@ -2214,13 +2224,17 @@ static int intel_hdmi_compute_output_format(struct intel_encoder *encoder,
+ 	const struct drm_display_mode *adjusted_mode = &crtc_state->hw.adjusted_mode;
+ 	const struct drm_display_info *info = &connector->base.display_info;
+ 	struct drm_i915_private *i915 = to_i915(connector->base.dev);
+-	bool ycbcr_420_only = drm_mode_is_420_only(info, adjusted_mode);
++	bool ycbcr_420_output;
+ 	int ret;
+ 
++	ycbcr_420_output = drm_mode_is_420_only(info, adjusted_mode) ||
++			   (conn_state->force_color_format == DRM_COLOR_FORMAT_YCBCR420 &&
++			    drm_mode_is_420_also(&connector->base.display_info, adjusted_mode));
++
+ 	crtc_state->sink_format =
+-		intel_hdmi_sink_format(crtc_state, connector, ycbcr_420_only);
++		intel_hdmi_sink_format(crtc_state, connector, ycbcr_420_output);
+ 
+-	if (ycbcr_420_only && crtc_state->sink_format != INTEL_OUTPUT_FORMAT_YCBCR420) {
++	if (ycbcr_420_output && crtc_state->sink_format != INTEL_OUTPUT_FORMAT_YCBCR420) {
+ 		drm_dbg_kms(&i915->drm,
+ 			    "YCbCr 4:2:0 mode but YCbCr 4:2:0 output not possible. Falling back to RGB.\n");
+ 		crtc_state->sink_format = INTEL_OUTPUT_FORMAT_RGB;
+@@ -2240,6 +2254,11 @@ static int intel_hdmi_compute_output_format(struct intel_encoder *encoder,
+ 		ret = intel_hdmi_compute_clock(encoder, crtc_state, respect_downstream_limits);
+ 	}
+ 
++	if (conn_state->force_color_format && conn_state->force_color_format !=
++	    intel_output_format_to_drm_color_format(crtc_state->output_format)) {
++		ret = -EINVAL;
++	}
++
+ 	return ret;
+ }
+ 
+@@ -2611,8 +2630,10 @@ intel_hdmi_add_properties(struct intel_hdmi *intel_hdmi, struct drm_connector *c
+ 	if (DISPLAY_VER(dev_priv) >= 10)
+ 		drm_connector_attach_hdr_output_metadata_property(connector);
+ 
+-	if (!HAS_GMCH(dev_priv))
++	if (!HAS_GMCH(dev_priv)) {
+ 		drm_connector_attach_max_bpc_property(connector, 8, 12);
++		drm_connector_attach_force_color_format_property(connector);
++	}
+ }
+ 
+ /*
 -- 
 2.43.0
 
