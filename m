@@ -1,53 +1,53 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5F17082D567
-	for <lists+intel-gfx@lfdr.de>; Mon, 15 Jan 2024 09:57:33 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 13F9E82D5C9
+	for <lists+intel-gfx@lfdr.de>; Mon, 15 Jan 2024 10:24:20 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CB0F810E216;
-	Mon, 15 Jan 2024 08:57:31 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 88B0D10E116;
+	Mon, 15 Jan 2024 09:24:16 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.65])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0DB9510E215
- for <intel-gfx@lists.freedesktop.org>; Mon, 15 Jan 2024 08:57:30 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8996910E116
+ for <intel-gfx@lists.freedesktop.org>; Mon, 15 Jan 2024 09:24:15 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1705309050; x=1736845050;
+ t=1705310655; x=1736846655;
  h=date:from:to:cc:subject:message-id:references:
  mime-version:content-transfer-encoding:in-reply-to;
- bh=MCE8orpLO2w84EJGt6N6xNPY2CnHindzuLhyePBdgOQ=;
- b=BpNTCM86aKvvMJ2DCPZ3yi+LWUYIJC8dgOu1rn4hK+V4xjMBcbUtOdjp
- TH3exo/gm/990VHmuw7Mdd2S6gxBFlAZP+ZAU7WVkYctmMT+GmzgwRawx
- IhM1E1jQ+d9TK3yBSWdTGLc9SyWt+0o+VXJ2QQo59XiqyqcnrkcvmLl3L
- tWn5RzuNiNnoVaq2e+nrDYnBIZvNeWs7MVzsYsrCfUdrPvMJDFAtfSAue
- vsPqIDI1729EE0Z+KRjQJz5nczihIpGxjc5FPsaXoeFpF48oSX5FB4lcs
- oQwtBNI9610oD6hJqbdmboRBZWqYgr9c/9MPb8Y6sh+ulJFI8XomFtVp5 g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10953"; a="403327305"
-X-IronPort-AV: E=Sophos;i="6.04,196,1695711600"; d="scan'208";a="403327305"
-Received: from orsmga003.jf.intel.com ([10.7.209.27])
- by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Jan 2024 00:57:29 -0800
+ bh=tHCW2zz8wo+xl4Ovrw2Lc2Rn+4RBC8IhNgBUY/Zr54o=;
+ b=UDDULbf+7+Cnj8fESAvcX0xtnC4NUVCQeKrQFHyUQN99QI/bwsxVIENS
+ XKMEYwbRelpxHGnWLGb123mOyoMnFjZzalP0jS1r7eLfse5oMPddYn4YM
+ ydpRDuiki/vSyR9molj20JBN99B7PvqWrj54LwZ90ioesF9df5HHvn97i
+ MkcDvTpleqQ8YYo0wuU+ER1EG+IMA8wvTgZ9egRJXEQ3XKH6x3yPIHtzu
+ 8Zzs4Tu6iOQSFViyusdeNGIrVqmRrfuglGJxwG5ZSMNq1ElI32OUaoBvL
+ CCsxDTMj9mHyX0nvZYShFvuRBktc3AemcgaYfwvsVpLVlf3ezrbAecnzI w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10953"; a="485734069"
+X-IronPort-AV: E=Sophos;i="6.04,196,1695711600"; d="scan'208";a="485734069"
+Received: from orsmga007.jf.intel.com ([10.7.209.58])
+ by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 Jan 2024 01:24:14 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10953"; a="733246477"
-X-IronPort-AV: E=Sophos;i="6.04,196,1695711600"; d="scan'208";a="733246477"
+X-IronPort-AV: E=McAfee;i="6600,9927,10953"; a="776685388"
+X-IronPort-AV: E=Sophos;i="6.04,196,1695711600"; d="scan'208";a="776685388"
 Received: from unknown (HELO intel.com) ([10.237.72.65])
- by orsmga003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Jan 2024 00:57:27 -0800
-Date: Mon, 15 Jan 2024 10:57:20 +0200
+ by orsmga007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 Jan 2024 01:24:09 -0800
+Date: Mon, 15 Jan 2024 11:24:06 +0200
 From: "Lisovskiy, Stanislav" <stanislav.lisovskiy@intel.com>
 To: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-Subject: Re: [PATCH 1/3] drm/i915: Add bigjoiner force enable option to debugfs
-Message-ID: <ZaTzcLXAZEOaa0T/@intel.com>
+Subject: Re: [PATCH 2/3] drm/i915/bigjoiner: Refactor bigjoiner state readout
+Message-ID: <ZaT5tuo4FA/pZnjN@intel.com>
 References: <20240108120725.20057-1-stanislav.lisovskiy@intel.com>
- <20240108120725.20057-2-stanislav.lisovskiy@intel.com>
- <ZaFn4TSiXPf6Ku-i@intel.com>
+ <20240108120725.20057-3-stanislav.lisovskiy@intel.com>
+ <ZaFr58MjVk261ADO@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <ZaFn4TSiXPf6Ku-i@intel.com>
+In-Reply-To: <ZaFr58MjVk261ADO@intel.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,177 +64,131 @@ Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, Jan 12, 2024 at 06:25:05PM +0200, Ville Syrjälä wrote:
-> On Mon, Jan 08, 2024 at 02:07:23PM +0200, Stanislav Lisovskiy wrote:
-> > For validation purposes, it might be useful to be able to
-> > force Bigjoiner mode, even if current dotclock/resolution
-> > do not require that.
-> > Lets add such to option to debugfs.
-> > 
-> > v2: - Apparently intel_dp_need_bigjoiner can't be used, when
-> >       debugfs entry is created so lets just check manually
-> >       the DISPLAY_VER.
-> > 
-> > v3: - Switch to intel_connector from drm_connector(Jani Nikula)
-> >     - Remove redundant modeset lock(Jani Nikula)
-> >     - Use kstrtobool_from_user for boolean value(Jani Nikula)
-> > 
-> > v4: - Apply the changes to proper function(Jani Nikula)
-> > 
-> > v5: - Removed unnecessary check from i915_bigjoiner_enable_show
-> >       (Ville Syrjälä)
-> >     - Added eDP connector check to intel_connector_debugfs_add
-> >       (Ville Syrjälä)
-> >     - Removed debug message in order to prevent dmesg flooding
-> >       (Ville Syrjälä)
-> > 
-> > v6: - Assume now always that m->private is intel_connector
-> >     - Fixed other similar conflicts
+On Fri, Jan 12, 2024 at 06:42:15PM +0200, Ville Syrjälä wrote:
+> On Mon, Jan 08, 2024 at 02:07:24PM +0200, Stanislav Lisovskiy wrote:
+> > Don't call enabled_bigjoiner_pipes twice, lets just move
+> > intel_get_bigjoiner_config earlier, because it is anyway
+> > calling same function.
+> > Also cleanup hsw_enabled_transcoders from irrelevant bigjoiner code.
+> 
+> It's not irrelevant. The function is supposed to return the set of
+> enabled transcoders associated with the pipe. With this change the
+> function no longer does what it says on the tin.
+
+Yes, but I guess it is just a matter what we define to be higher in a
+logical hierarchy: a pipe or a bigjoiner?
+I thought it won't harm hsw_enabled_transcoders won't have any excess
+logic and will return only transcoders naturally associated with a
+physical pipe, while for higher complexity level constructs like bigjoiner
+we would have some logic on top. 
+In fact my main motivation was to avoid calling enabled_bigjoiner_pipe as 
+it is quite heavy and call intel_crtc_is_bigjoiner_slave here instead. 
+
+enabled_bigjoiner_pipes reads too much information, which 
+we don't need in that function(here we just need to know if we are slave or master)
+
+The absolute need for calling enabled_bigjoiner_pipes happens in 
+intel_bigjoiner_get_config, which we moved earlier, which seems to be
+logical since hsw_get_transcoder_state needs to have bigjoiner info and
+now we can use its results to call more lightweight intel_crtc_is_bigjoiner_slave there
+because pipe_config->bigjoiner_pipes is now initialized, so we avoid calling enabled_bigjoiner_pipes
+second time..
+
+> 
 > > 
 > > Signed-off-by: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
 > > ---
-> >  .../drm/i915/display/intel_display_debugfs.c  | 59 +++++++++++++++++++
-> >  .../drm/i915/display/intel_display_types.h    |  2 +
-> >  drivers/gpu/drm/i915/display/intel_dp.c       |  3 +-
-> >  3 files changed, 63 insertions(+), 1 deletion(-)
+> >  drivers/gpu/drm/i915/display/intel_display.c | 22 ++++++++++----------
+> >  1 file changed, 11 insertions(+), 11 deletions(-)
 > > 
-> > diff --git a/drivers/gpu/drm/i915/display/intel_display_debugfs.c b/drivers/gpu/drm/i915/display/intel_display_debugfs.c
-> > index d951edb366871..353e71b4e1db2 100644
-> > --- a/drivers/gpu/drm/i915/display/intel_display_debugfs.c
-> > +++ b/drivers/gpu/drm/i915/display/intel_display_debugfs.c
-> > @@ -1413,6 +1413,22 @@ out:	drm_modeset_unlock(&i915->drm.mode_config.connection_mutex);
-> >  	return ret;
+> > diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
+> > index 927d124457b61..eec76ec167069 100644
+> > --- a/drivers/gpu/drm/i915/display/intel_display.c
+> > +++ b/drivers/gpu/drm/i915/display/intel_display.c
+> > @@ -3525,7 +3525,6 @@ static u8 hsw_enabled_transcoders(struct intel_crtc *crtc)
+> >  	struct drm_i915_private *dev_priv = to_i915(dev);
+> >  	u8 panel_transcoder_mask = hsw_panel_transcoders(dev_priv);
+> >  	enum transcoder cpu_transcoder;
+> > -	u8 master_pipes, slave_pipes;
+> >  	u8 enabled_transcoders = 0;
+> >  
+> >  	/*
+> > @@ -3576,15 +3575,6 @@ static u8 hsw_enabled_transcoders(struct intel_crtc *crtc)
+> >  	if (transcoder_ddi_func_is_enabled(dev_priv, cpu_transcoder))
+> >  		enabled_transcoders |= BIT(cpu_transcoder);
+> >  
+> > -	/* bigjoiner slave -> consider the master pipe's transcoder as well */
+> > -	enabled_bigjoiner_pipes(dev_priv, &master_pipes, &slave_pipes);
+> > -	if (slave_pipes & BIT(crtc->pipe)) {
+> > -		cpu_transcoder = (enum transcoder)
+> > -			get_bigjoiner_master_pipe(crtc->pipe, master_pipes, slave_pipes);
+> > -		if (transcoder_ddi_func_is_enabled(dev_priv, cpu_transcoder))
+> > -			enabled_transcoders |= BIT(cpu_transcoder);
+> > -	}
+> > -
+> >  	return enabled_transcoders;
 > >  }
 > >  
-> > +static int i915_bigjoiner_enable_show(struct seq_file *m, void *data)
-> > +{
-> > +	struct intel_connector *connector = m->private;
-> > +	struct intel_encoder *encoder = intel_attached_encoder(connector);
-> > +	struct intel_dp *intel_dp;
-> > +
-> > +	if (!encoder)
-> > +		return -ENODEV;
-> > +
-> > +	intel_dp = enc_to_intel_dp(encoder);
-> > +
-> > +	seq_printf(m, "Bigjoiner enable: %d\n", intel_dp->force_bigjoiner_enable);
-> 
-> So it's a per-connector debugfs knob but we track it in the
-> SST DP encoder? That's rather odd, and not going to work for MST.
-
-I guess you mean, I should move it to the connector instead, makes sense.
-
-> 
-> > +
-> > +	return 0;
-> > +}
-> > +
-> >  static ssize_t i915_dsc_output_format_write(struct file *file,
-> >  					    const char __user *ubuf,
-> >  					    size_t len, loff_t *offp)
-> > @@ -1434,12 +1450,39 @@ static ssize_t i915_dsc_output_format_write(struct file *file,
-> >  	return len;
-> >  }
+> > @@ -3631,6 +3621,15 @@ static bool hsw_get_transcoder_state(struct intel_crtc *crtc,
+> >  	u32 tmp;
 > >  
-> > +static ssize_t i915_bigjoiner_enable_fops_write(struct file *file,
-> > +						const char __user *ubuf,
-> > +						size_t len, loff_t *offp)
-> > +{
-> > +	struct seq_file *m = file->private_data;
-> > +	struct intel_connector *connector = m->private;
-> > +	struct intel_encoder *encoder = intel_attached_encoder(connector);
-> > +	struct intel_dp *intel_dp = enc_to_intel_dp(encoder);
-> > +	bool bigjoiner_en = 0;
-> > +	int ret;
+> >  	enabled_transcoders = hsw_enabled_transcoders(crtc);
 > > +
-> > +	ret = kstrtobool_from_user(ubuf, len, &bigjoiner_en);
-> > +	if (ret < 0)
-> > +		return ret;
-> > +
-> > +	intel_dp->force_bigjoiner_enable = bigjoiner_en;
-> > +	*offp += len;
-> > +
-> > +	return len;
-> > +}
-> > +
-> >  static int i915_dsc_output_format_open(struct inode *inode,
-> >  				       struct file *file)
-> >  {
-> >  	return single_open(file, i915_dsc_output_format_show, inode->i_private);
-> >  }
-> >  
-> > +static int i915_bigjoiner_enable_open(struct inode *inode,
-> > +				      struct file *file)
-> > +{
-> > +	return single_open(file, i915_bigjoiner_enable_show, inode->i_private);
-> > +}
-> > +
-> >  static const struct file_operations i915_dsc_output_format_fops = {
-> >  	.owner = THIS_MODULE,
-> >  	.open = i915_dsc_output_format_open,
-> > @@ -1527,6 +1570,15 @@ static const struct file_operations i915_dsc_fractional_bpp_fops = {
-> >  	.write = i915_dsc_fractional_bpp_write
-> >  };
-> >  
-> > +static const struct file_operations i915_bigjoiner_enable_fops = {
-> > +	.owner = THIS_MODULE,
-> > +	.open = i915_bigjoiner_enable_open,
-> > +	.read = seq_read,
-> > +	.llseek = seq_lseek,
-> > +	.release = single_release,
-> > +	.write = i915_bigjoiner_enable_fops_write
-> > +};
-> 
-> Why are we implementing this long-hand for a simple boolean flag?
-
-Will check, thought thats the only way..
-
-> 
-> > +
-> >  /*
-> >   * Returns the Current CRTC's bpc.
-> >   * Example usage: cat /sys/kernel/debug/dri/0/crtc-0/i915_current_bpc
-> > @@ -1608,6 +1660,13 @@ void intel_connector_debugfs_add(struct intel_connector *connector)
-> >  				    connector, &i915_dsc_fractional_bpp_fops);
-> >  	}
-> >  
-> > +	if (DISPLAY_VER(i915) >= 11 &&
-> > +	    (connector_type == DRM_MODE_CONNECTOR_DisplayPort ||
-> > +	     connector_type == DRM_MODE_CONNECTOR_eDP)) {
-> > +		debugfs_create_file("i915_bigjoiner_force_enable", 0644, root,
-> > +				    &connector->base, &i915_bigjoiner_enable_fops);
+> > +	/* bigjoiner slave -> consider the master pipe's transcoder as well */
+> > +	if (intel_crtc_is_bigjoiner_slave(pipe_config)) {
+> > +		unsigned long cpu_transcoder = (enum transcoder)
+> > +			bigjoiner_master_pipe(pipe_config);
+> > +		if (transcoder_ddi_func_is_enabled(dev_priv, cpu_transcoder))
+> > +			enabled_transcoders |= BIT(cpu_transcoder);
 > > +	}
 > > +
-> >  	if (connector_type == DRM_MODE_CONNECTOR_DSI ||
-> >  	    connector_type == DRM_MODE_CONNECTOR_eDP ||
-> >  	    connector_type == DRM_MODE_CONNECTOR_DisplayPort ||
-> > diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/drivers/gpu/drm/i915/display/intel_display_types.h
-> > index b9b9d9f2bc0ba..e4c5a44dd02f5 100644
-> > --- a/drivers/gpu/drm/i915/display/intel_display_types.h
-> > +++ b/drivers/gpu/drm/i915/display/intel_display_types.h
-> > @@ -1768,6 +1768,8 @@ struct intel_dp {
-> >  	bool is_mst;
-> >  	int active_mst_links;
-> >  
-> > +	bool force_bigjoiner_enable;
-> > +
-> >  	/* connector directly attached - won't be use for modeset in mst world */
-> >  	struct intel_connector *attached_connector;
-> >  
-> > diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
-> > index 9ff0cbd9c0df5..525ab926582d5 100644
-> > --- a/drivers/gpu/drm/i915/display/intel_dp.c
-> > +++ b/drivers/gpu/drm/i915/display/intel_dp.c
-> > @@ -1208,7 +1208,8 @@ bool intel_dp_need_bigjoiner(struct intel_dp *intel_dp,
-> >  	if (!intel_dp_can_bigjoiner(intel_dp))
+> >  	if (!enabled_transcoders)
 > >  		return false;
 > >  
-> > -	return clock > i915->max_dotclk_freq || hdisplay > 5120;
-> > +	return clock > i915->max_dotclk_freq || hdisplay > 5120 ||
-> > +	       intel_dp->force_bigjoiner_enable;
-> >  }
+> > @@ -3735,6 +3734,8 @@ static bool hsw_get_pipe_config(struct intel_crtc *crtc,
 > >  
-> >  static enum drm_mode_status
+> >  	pipe_config->shared_dpll = NULL;
+> >  
+> > +	intel_bigjoiner_get_config(pipe_config);
+> 
+> So this is what avoids the "call it twice" part, but it also makes the
+> state potentially inconsistent as in all other cases we leave everything
+> zeroed if the transcoder is not enabled. So I'm not sure this is
+> entirely safe or whether we could end up with some weird state
+> mismatches due to the inconsistency.
+
+Isn't it vice versa? intel_bigjoiner_get_config is now called way earlier,
+before hsw_get_transcoder_state is called(previously it was called later),
+the only difference is just that we now have pipe_config->bigjoiner_pipes
+filled and enabled_bigjoiner_pipes was called there, so we can now
+use that info to call intel_crtc_is_bigjoiner_slave in hsw_get_transcoder_state,
+as I mentioned above.
+
+Also if none of the transcoders are enabled, we now in fact have more information
+filled than before this change(before we had only enabled_bigjoiner_pipes called
+in hsw_get_transcoder_state, but now we have also pipe_config->bigjoiner_pipes
+initialized), otherwise if none of the transcoders are active everything should
+be pretty much the same.
+
+Stan
+
+
+> 
+> Why do you think calling it twice is problematic? It's supposed to be 
+> idempotent (ignoring the actual register reads/etc.).
+> 
+> > +
+> >  	active = hsw_get_transcoder_state(crtc, pipe_config, &crtc->hw_readout_power_domains);
+> >  
+> >  	if ((IS_GEMINILAKE(dev_priv) || IS_BROXTON(dev_priv)) &&
+> > @@ -3746,7 +3747,6 @@ static bool hsw_get_pipe_config(struct intel_crtc *crtc,
+> >  	if (!active)
+> >  		goto out;
+> >  
+> > -	intel_bigjoiner_get_config(pipe_config);
+> >  	intel_dsc_get_config(pipe_config);
+> >  
+> >  	if (!transcoder_is_dsi(pipe_config->cpu_transcoder) ||
 > > -- 
 > > 2.37.3
 > 
