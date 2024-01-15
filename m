@@ -2,47 +2,72 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 904AD82EEEA
-	for <lists+intel-gfx@lfdr.de>; Tue, 16 Jan 2024 13:28:18 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id B855482EEF5
+	for <lists+intel-gfx@lfdr.de>; Tue, 16 Jan 2024 13:28:45 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BE05710E52B;
-	Tue, 16 Jan 2024 12:28:12 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0856D10E568;
+	Tue, 16 Jan 2024 12:28:15 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from sin.source.kernel.org (sin.source.kernel.org
- [IPv6:2604:1380:40e1:4800::1])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 29E7010E9D7;
- Fri, 12 Jan 2024 02:22:55 +0000 (UTC)
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
- by sin.source.kernel.org (Postfix) with ESMTP id 116E2CE20CC;
- Fri, 12 Jan 2024 02:22:52 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3CE15C433C7;
- Fri, 12 Jan 2024 02:22:51 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1705026171;
- bh=tyTBV9IdekZEBA9xRLni4pD40DGjP3N58wftXn8ECG4=;
- h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
- b=YKNsFv9kgq5yYP/cIwrMz0dnUCYFA0JwvReXfKnhB6RchpvGmsAMX2ImUNInYSbgy
- 0MlIM5a6ChjbnWvGg/mMwr0MziKA+O4JdGkHyAFKZ6wqINFKUcPz/BfJ3s2YVBCCsl
- uDY11gr6C0B9G2Pw3NkDcWFKHJJmOnl8QaplWAE4dD+btdy8IedQvLy+g81SjRzopZ
- tP9ybX81j0pP7w+ZLI8qhv7/NhA9rS/yGXioHOISF+2caZdUoPDJ+RFG3KbrXsGD5z
- UDXQeHGHZd8y+6eHOCw2cgsZcDpl2uqRxVBJFnqHlNqe6+44bi3i9FKpv2pIo0+eMs
- xiRW06EpYwf1A==
-Date: Thu, 11 Jan 2024 18:22:50 -0800
-From: "Darrick J. Wong" <djwong@kernel.org>
-To: Matthew Wilcox <willy@infradead.org>
-Subject: Re: [PATCH 2/2] xfs: disable large folio support in xfile_create
-Message-ID: <20240112022250.GU723010@frogsfrogsfrogs>
-References: <20240110092109.1950011-1-hch@lst.de>
- <20240110092109.1950011-3-hch@lst.de>
- <20240110175515.GA722950@frogsfrogsfrogs>
- <20240110200451.GB722950@frogsfrogsfrogs>
- <20240111140053.51948fb3ed10e06d8e389d2e@linux-foundation.org>
- <ZaBvoWCCChU5wHDp@casper.infradead.org>
+Received: from mail-wr1-x431.google.com (mail-wr1-x431.google.com
+ [IPv6:2a00:1450:4864:20::431])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 82E4C10E2BA
+ for <intel-gfx@lists.freedesktop.org>; Mon, 15 Jan 2024 16:06:38 +0000 (UTC)
+Received: by mail-wr1-x431.google.com with SMTP id
+ ffacd0b85a97d-336c9acec03so7434546f8f.2
+ for <intel-gfx@lists.freedesktop.org>; Mon, 15 Jan 2024 08:06:38 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=yngvason.is; s=google; t=1705334797; x=1705939597; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+ :to:from:from:to:cc:subject:date:message-id:reply-to;
+ bh=2nfzXYtohis0OwCD+AmIl/qoZqPN5SyFIj+AeVDGrUY=;
+ b=Vib1ZBP/CfjnsPKUneq3MhVGzPIEI7vK/Ip1teCt5rtjTfkszJoqZ2Dx6ykC+ReZB+
+ yCPqJeUbID0JHxCM2GTzdUapMBh2q6MSiZyV+4B+u2ESmElJPIBZZljH/pMfN5/WYvlC
+ QDAO2EnCGOlF6b2CBE6lmfWQQKHnCzeQN5NEg=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1705334797; x=1705939597;
+ h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+ :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+ :reply-to;
+ bh=2nfzXYtohis0OwCD+AmIl/qoZqPN5SyFIj+AeVDGrUY=;
+ b=luhv/mvc59z9quDSS2+Xhxn1OAqigbTy11gEJ/jNdX7ywHSbIWIy28xIzwTsCsJd1h
+ BrqKEPlF5R9VBNCjfbnjAdWhKRPZtG7bYl5Appcwz7gNCxuWVcwSFKN735lJqNuTCc2D
+ SdhOCnNbUGhQWsz9Mwr+/pFP0Q4/y+z71L7cvPoJoXrC0TgwUbmdYhBu0oUY38G01u/X
+ rJrUI5cLaU/jCkWfmCwz6lM2U9t5Q/HB2IN8RFfW3BPLtyvzMKpMdwFi4ZHZIivd5cqO
+ qwMkVDKS4+WpTFMGb/dM7hvsYUxfrAFWO6Mf+0vnlkL8NR0ERbRfB7FVJfWcvg0RyCUD
+ KJxA==
+X-Gm-Message-State: AOJu0YzA3207ug8TQFf5Av03WM1gN7375KIXchstfEhX/q8k+ysJMUzU
+ rz2lljm+7RqoyM7dEAE3ueOkj21sNGg+cg==
+X-Google-Smtp-Source: AGHT+IEUUc5iRjuXbMJ2dngkv+RJCZlkEQjqC7ossePXJRfMhg+lS/5kV7bU5iCCs/lMM5nEnzQUkw==
+X-Received: by 2002:a7b:cbc7:0:b0:40e:6707:b758 with SMTP id
+ n7-20020a7bcbc7000000b0040e6707b758mr2317948wmi.178.1705334796754; 
+ Mon, 15 Jan 2024 08:06:36 -0800 (PST)
+Received: from andri-workstation.turninn.appdynamic.com
+ ([2a01:8280:aa07:ad:7285:c2ff:fef0:4baf])
+ by smtp.gmail.com with ESMTPSA id
+ l22-20020a05600c4f1600b0040d6b91efd9sm20174140wmq.44.2024.01.15.08.06.34
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Mon, 15 Jan 2024 08:06:36 -0800 (PST)
+From: Andri Yngvason <andri@yngvason.is>
+To: Harry Wentland <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>,
+ Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>,
+ Alex Deucher <alexander.deucher@amd.com>,
+ =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
+ "Pan, Xinhui" <Xinhui.Pan@amd.com>, David Airlie <airlied@gmail.com>,
+ Daniel Vetter <daniel@ffwll.ch>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>,
+ Thomas Zimmermann <tzimmermann@suse.de>,
+ Jani Nikula <jani.nikula@linux.intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+Subject: [PATCH v2 0/4] New DRM properties for output color format
+Date: Mon, 15 Jan 2024 16:05:50 +0000
+Message-ID: <20240115160554.720247-1-andri@yngvason.is>
+X-Mailer: git-send-email 2.43.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <ZaBvoWCCChU5wHDp@casper.infradead.org>
+Content-Transfer-Encoding: 8bit
 X-Mailman-Approved-At: Tue, 16 Jan 2024 12:28:11 +0000
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -56,53 +81,46 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: dri-devel@lists.freedesktop.org, David Howells <dhowells@redhat.com>,
- linux-mm@kvack.org, Huang Rui <ray.huang@amd.com>,
- David Airlie <airlied@gmail.com>, Christoph Hellwig <hch@lst.de>,
- x86@kernel.org, Hugh Dickins <hughd@google.com>,
- Dave Hansen <dave.hansen@linux.intel.com>,
- Thomas Zimmermann <tzimmermann@suse.de>, intel-gfx@lists.freedesktop.org,
- Maxime Ripard <mripard@kernel.org>, Rodrigo Vivi <rodrigo.vivi@intel.com>,
- linux-sgx@vger.kernel.org, Jarkko Sakkinen <jarkko@kernel.org>,
- keyrings@vger.kernel.org, Daniel Vetter <daniel@ffwll.ch>,
- linux-fsdevel@vger.kernel.org, Andrew Morton <akpm@linux-foundation.org>,
- Christian Koenig <christian.koenig@amd.com>,
- Chandan Babu R <chandan.babu@oracle.com>
+Cc: amd-gfx@lists.freedesktop.org, Simon Ser <contact@emersion.fr>,
+ intel-gfx@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+ Andri Yngvason <andri@yngvason.is>, dri-devel@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, Jan 11, 2024 at 10:45:53PM +0000, Matthew Wilcox wrote:
-> On Thu, Jan 11, 2024 at 02:00:53PM -0800, Andrew Morton wrote:
-> > On Wed, 10 Jan 2024 12:04:51 -0800 "Darrick J. Wong" <djwong@kernel.org> wrote:
-> > 
-> > > > > Fixing this will require a bit of an API change, and prefeably sorting out
-> > > > > the hwpoison story for pages vs folio and where it is placed in the shmem
-> > > > > API.  For now use this one liner to disable large folios.
-> > > > > 
-> > > > > Reported-by: Darrick J. Wong <djwong@kernel.org>
-> > > > > Signed-off-by: Christoph Hellwig <hch@lst.de>
-> > > > 
-> > > > Can someone who knows more about shmem.c than I do please review
-> > > > https://lore.kernel.org/linux-xfs/20240103084126.513354-4-hch@lst.de/
-> > > > so that I can feel slightly more confident as hch and I sort through the
-> > > > xfile.c issues?
-> > > > 
-> > > > For this patch,
-> > > > Reviewed-by: Darrick J. Wong <djwong@kernel.org>
-> > > 
-> > > ...except that I'm still getting 2M THPs even with this enabled, so I
-> > > guess either we get to fix it now, or create our own private tmpfs mount
-> > > so that we can pass in huge=never, similar to what i915 does. :(
-> > 
-> > What is "this"?  Are you saying that $Subject doesn't work, or that the
-> > above-linked please-review patch doesn't work?
-> 
-> shmem pays no attention to the mapping_large_folio_support() flag,
-> so the proposed fix doesn't work.  It ought to, but it has its own way
-> of doing it that predates mapping_large_folio_support existing.
+After some discussion, we decided to drop the "active color format"
+property and rename the "preferred color format" property to "force
+color format". 
 
-Yep.  It turned out to be easier to fix xfile.c to deal with large
-folios than I thought it would be.  Or so I think.  We'll see what
-happens on fstestscloud overnight.
+The user can probe available color formats in combination with other
+properties using TEST_ONLY commits.
 
---D
+v1: https://lore.kernel.org/dri-devel/20240109181104.1670304-1-andri@yngvason.is/
+
+v2
+ - Dropped "active color format"
+ - Replaced "preferred color format" with "force color format"
+
+
+Werner Sembach (4):
+  drm/amd/display: Remove unnecessary SIGNAL_TYPE_HDMI_TYPE_A check
+  drm/uAPI: Add "force color format" drm property as setting for
+    userspace
+  drm/amd/display: Add handling for new "force color format" property
+  drm/i915/display: Add handling for new "force color format" property
+
+ .../gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c | 67 ++++++++++++++++---
+ .../display/amdgpu_dm/amdgpu_dm_mst_types.c   |  4 ++
+ drivers/gpu/drm/drm_atomic_helper.c           |  4 ++
+ drivers/gpu/drm/drm_atomic_uapi.c             |  4 ++
+ drivers/gpu/drm/drm_connector.c               | 48 +++++++++++++
+ drivers/gpu/drm/i915/display/intel_dp.c       | 35 ++++++++--
+ drivers/gpu/drm/i915/display/intel_dp_mst.c   |  5 ++
+ drivers/gpu/drm/i915/display/intel_hdmi.c     | 29 ++++++--
+ include/drm/drm_connector.h                   | 16 +++++
+ 9 files changed, 190 insertions(+), 22 deletions(-)
+
+
+base-commit: 052d534373b7ed33712a63d5e17b2b6cdbce84fd
+-- 
+2.43.0
+
