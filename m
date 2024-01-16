@@ -2,49 +2,46 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id BEEA682F8A8
-	for <lists+intel-gfx@lfdr.de>; Tue, 16 Jan 2024 21:50:06 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id CA30C82F97A
+	for <lists+intel-gfx@lfdr.de>; Tue, 16 Jan 2024 22:08:58 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8EECC10E584;
-	Tue, 16 Jan 2024 20:49:34 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 08B4D10E5D4;
+	Tue, 16 Jan 2024 21:08:27 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 064F410E584
- for <intel-gfx@lists.freedesktop.org>; Tue, 16 Jan 2024 20:49:32 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9053610E5D4
+ for <intel-gfx@lists.freedesktop.org>; Tue, 16 Jan 2024 21:08:25 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1705438173; x=1736974173;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=Zkwi9uMLKgfG59LbPtpMEnZHRfR5rq4CY98U8dm3IgU=;
- b=BnPTzL6SOB5R4cI4sfOw2FHSR/3BkiV5fAo9ZqRZLE/Ldgp3A+iShO37
- eg5Lp2pbPUND6QBO5I6+2KlHLcqxbnNaejs79Jz3n3DRvOCVCXRaudbDZ
- 9VlqqpahUweUhGjOd18NqqOqx8C0h2fhWrnQ7z/C+ZYcSdF8T49+oCE3b
- b9qz9m5VcHyychtps6XQTyytT9Gi8pHeze8+cVS3hHXNvRAQ45Djcvpcv
- cC0aMSCDkCsLGXFgcRT3msUpo9BX964Hv/86WkhF9aCnlBVM2T0f+5PYW
- dk9X2YO4h0o/IIwtPNDT/9OQV+oaBPjnguaWXJDcThknOwullfEo/mWbL A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10955"; a="21463224"
-X-IronPort-AV: E=Sophos;i="6.05,200,1701158400"; d="scan'208";a="21463224"
+ t=1705439305; x=1736975305;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=77CdDDc6o3iAbM+CJcfqyFxbx9fFdEFF0iLtNPrYUY4=;
+ b=MTiZGG/mFh+L9PpOmTAerNylif52ci/na2L0p0dRdhsgTgmgNfMEBPG5
+ W/tin3mIaHlkBZHTN0azxJUc0eEZnSChPfICNS2NBUaGsRfMDlFFvABXT
+ 5Rwpr6CnyahHVLp7Fg6kkUUqo16ZHSlHRhZpQeGEHENKllh4mPezyn9bL
+ PV1gtdpxEA/pq+Ke79MYq0RJAfQTgM+14kz72Sah+vr4IcuRANJ2MNllH
+ jgyB3oUfIiCbsVgLQ2XTuyD31ootseKpLajoBnXmKF+iML+VnloDoTWIT
+ ZBzQkSZ807I+zMPF2oWMqvDVnTlscfzvpcuGG+ABI6sHJIPEK6CsSvFI8 Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10955"; a="21468072"
+X-IronPort-AV: E=Sophos;i="6.05,200,1701158400"; d="scan'208";a="21468072"
 Received: from orsmga007.jf.intel.com ([10.7.209.58])
  by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Jan 2024 12:49:31 -0800
+ 16 Jan 2024 13:08:24 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10955"; a="777193222"
-X-IronPort-AV: E=Sophos;i="6.05,200,1701158400"; d="scan'208";a="777193222"
+X-IronPort-AV: E=McAfee;i="6600,9927,10955"; a="777201876"
+X-IronPort-AV: E=Sophos;i="6.05,200,1701158400"; d="scan'208";a="777201876"
 Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.74])
- by orsmga007.jf.intel.com with SMTP; 16 Jan 2024 12:49:28 -0800
+ by orsmga007.jf.intel.com with SMTP; 16 Jan 2024 13:08:21 -0800
 Received: by stinkbox (sSMTP sendmail emulation);
- Tue, 16 Jan 2024 22:49:27 +0200
+ Tue, 16 Jan 2024 23:08:21 +0200
 From: Ville Syrjala <ville.syrjala@linux.intel.com>
 To: intel-gfx@lists.freedesktop.org
-Subject: [PATCH v2 8/9] drm/i915: Perform vblank evasion around legacy cursor
- updates
-Date: Tue, 16 Jan 2024 22:49:27 +0200
-Message-ID: <20240116204927.23499-1-ville.syrjala@linux.intel.com>
+Subject: [PATCH] Revert "drm/i915/dsi: Do display on sequence later on icl+"
+Date: Tue, 16 Jan 2024 23:08:21 +0200
+Message-ID: <20240116210821.30194-1-ville.syrjala@linux.intel.com>
 X-Mailer: git-send-email 2.41.0
-In-Reply-To: <20231213102519.13500-9-ville.syrjala@linux.intel.com>
-References: <20231213102519.13500-9-ville.syrjala@linux.intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
@@ -60,133 +57,60 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: stable@vger.kernel.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-Our legacy cursor updates are actually mailbox updates.
-Ie. the hardware latches things once per frame on start of
-vblank, but we issue an number of updates per frame,
-withough any attempt to synchronize against the vblank
-in software. So in theory only the last update issued
-during the frame will latch, and the previous ones are
-discarded.
+This reverts commit 88b065943cb583e890324d618e8d4b23460d51a3.
 
-However this can lead to problems with maintaining the
-ggtt/iommu mappings as we have no idea which updates
-will actually latch.
+Lenovo 82TQ is unhappy if we do the display on sequence this
+late. The display output shows severe corruption.
 
-The problem is exacerbated by the hardware's annoying disarming
-behaviour; any non-arming register write will disarm an already
-armed update, only to be rearmed later by the arming register
-(CURBASE in case of cursors). If a disarming write happens
-just before the start of vblank, and the arming write happens
-after start of vblank we have effectively prevented the hardware
-from latching anything. And if we manage to straddle multiple
-sequential vblank starts in this manner we effectively prevent
-the hardware from latching any new registers for an arbitrary
-amount of time. This provides more time for the (potentially
-still in use by the hardware) gtt/iommu mappings to be torn
-down.
+It's unclear if this is a failure on our part (perhaps
+something to do with sending commands in LP mode after HS
+/video mode transmission has been started? Though the backlight
+on command at least seems to work) or simply that there are
+some commands in the sequence that are needed to be done
+earlier (eg. could be some DSC init stuff?). If the latter
+then I don't think the current Windows code would work
+either, but maybe this was originally tested with an older
+driver, who knows.
 
-A partial solution, of course, is to use vblank evasion to
-avoid the register writes from spreading on both sides of
-the start of vblank.
+Root causing this fully would likely require a lot of
+experimentation which isn't really feasible without direct
+access to the machine, so let's just accept failure and
+go back to the original sequence.
 
-I've previously highlighted this problem as a general issue
-affecting mailbox updates. I even added some notes to the
-{i9xx,skl}_crtc_planes_update_arm() to remind us that the noarm
-and arm phases both need to pulled into the vblank evasion
-critical section if we actually decided to implement mailbox
-updates in general. But as I never impelemented the noarm+arm
-split for cursors we don't have to worry about that for the
-moment.
-
-We've been lucky enough so far that this hasn't really caused
-problems. One thing that does help is that Xorg generally
-sticks to the same cursor BO. But igt seems pretty good at
-hitting this on MTL now, so apparently we have to start
-thinking about this.
-
-v2: Wait for PSR exit to avoid the vblank evasion timeout (1ms)
-    tripping due to PSR exit latency (~5ms typically)
-
-Reviewed-by: Uma Shankar <uma.shankar@intel.com>
+Cc: stable@vger.kernel.org
+Closes: https://gitlab.freedesktop.org/drm/intel/-/issues/10071
 Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_cursor.c | 31 ++++++++++++++++-----
- 1 file changed, 24 insertions(+), 7 deletions(-)
+ drivers/gpu/drm/i915/display/icl_dsi.c | 3 +--
+ 1 file changed, 1 insertion(+), 2 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_cursor.c b/drivers/gpu/drm/i915/display/intel_cursor.c
-index ecff90e233f0..f8b33999d43f 100644
---- a/drivers/gpu/drm/i915/display/intel_cursor.c
-+++ b/drivers/gpu/drm/i915/display/intel_cursor.c
-@@ -22,6 +22,7 @@
- #include "intel_frontbuffer.h"
- #include "intel_psr.h"
- #include "intel_psr_regs.h"
-+#include "intel_vblank.h"
- #include "skl_watermark.h"
+diff --git a/drivers/gpu/drm/i915/display/icl_dsi.c b/drivers/gpu/drm/i915/display/icl_dsi.c
+index ac456a2275db..eda4a8b88590 100644
+--- a/drivers/gpu/drm/i915/display/icl_dsi.c
++++ b/drivers/gpu/drm/i915/display/icl_dsi.c
+@@ -1155,6 +1155,7 @@ static void gen11_dsi_powerup_panel(struct intel_encoder *encoder)
+ 	}
  
- #include "gem/i915_gem_object.h"
-@@ -665,12 +666,14 @@ intel_legacy_cursor_update(struct drm_plane *_plane,
- {
- 	struct intel_plane *plane = to_intel_plane(_plane);
- 	struct intel_crtc *crtc = to_intel_crtc(_crtc);
-+	struct drm_i915_private *i915 = to_i915(plane->base.dev);
- 	struct intel_plane_state *old_plane_state =
- 		to_intel_plane_state(plane->base.state);
- 	struct intel_plane_state *new_plane_state;
- 	struct intel_crtc_state *crtc_state =
- 		to_intel_crtc_state(crtc->base.state);
- 	struct intel_crtc_state *new_crtc_state;
-+	struct intel_vblank_evade_ctx evade;
- 	int ret;
+ 	intel_dsi_vbt_exec_sequence(intel_dsi, MIPI_SEQ_INIT_OTP);
++	intel_dsi_vbt_exec_sequence(intel_dsi, MIPI_SEQ_DISPLAY_ON);
  
- 	/*
-@@ -763,13 +766,25 @@ intel_legacy_cursor_update(struct drm_plane *_plane,
- 	 */
- 	crtc_state->active_planes = new_crtc_state->active_planes;
+ 	/* ensure all panel commands dispatched before enabling transcoder */
+ 	wait_for_cmds_dispatched_to_panel(encoder);
+@@ -1255,8 +1256,6 @@ static void gen11_dsi_enable(struct intel_atomic_state *state,
+ 	/* step6d: enable dsi transcoder */
+ 	gen11_dsi_enable_transcoder(encoder);
  
--	/*
--	 * Technically we should do a vblank evasion here to make
--	 * sure all the cursor registers update on the same frame.
--	 * For now just make sure the register writes happen as
--	 * quickly as possible to minimize the race window.
--	 */
--	local_irq_disable();
-+	intel_vblank_evade_init(crtc_state, crtc_state, &evade);
-+
-+	intel_psr_lock(crtc_state);
-+
-+	if (!drm_WARN_ON(&i915->drm, drm_crtc_vblank_get(&crtc->base))) {
-+		/*
-+		 * TODO: maybe check if we're still in PSR
-+		 * and skip the vblank evasion entirely?
-+		 */
-+		intel_psr_wait_for_idle_locked(crtc_state);
-+
-+		local_irq_disable();
-+
-+		intel_vblank_evade(&evade);
-+
-+		drm_crtc_vblank_put(&crtc->base);
-+	} else {
-+		local_irq_disable();
-+	}
- 
- 	if (new_plane_state->uapi.visible) {
- 		intel_plane_update_noarm(plane, crtc_state, new_plane_state);
-@@ -780,6 +795,8 @@ intel_legacy_cursor_update(struct drm_plane *_plane,
- 
- 	local_irq_enable();
- 
-+	intel_psr_unlock(crtc_state);
-+
- 	intel_plane_unpin_fb(old_plane_state);
- 
- out_free:
+-	intel_dsi_vbt_exec_sequence(intel_dsi, MIPI_SEQ_DISPLAY_ON);
+-
+ 	/* step7: enable backlight */
+ 	intel_backlight_enable(crtc_state, conn_state);
+ 	intel_dsi_vbt_exec_sequence(intel_dsi, MIPI_SEQ_BACKLIGHT_ON);
 -- 
 2.41.0
 
