@@ -2,46 +2,45 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 24C8282EA71
-	for <lists+intel-gfx@lfdr.de>; Tue, 16 Jan 2024 08:57:29 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 410F382EA79
+	for <lists+intel-gfx@lfdr.de>; Tue, 16 Jan 2024 08:58:03 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9153710E435;
-	Tue, 16 Jan 2024 07:57:27 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BF4F810E43B;
+	Tue, 16 Jan 2024 07:57:31 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (unknown [192.55.52.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CD0C510E435
- for <intel-gfx@lists.freedesktop.org>; Tue, 16 Jan 2024 07:57:25 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4010310E437
+ for <intel-gfx@lists.freedesktop.org>; Tue, 16 Jan 2024 07:57:30 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1705391845; x=1736927845;
+ t=1705391850; x=1736927850;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=K+6qgVUBNtRTkiebyrnLpQa9mzmDZ/Ji7dFTmUOAOo0=;
- b=dPRI+bH8Qn25IBKEtM2F3580C5tKfsk0YIDBhbBrO0uy1MGyULl4w5f7
- WFiffguEdf+BnUl1yLQsqeLIUxNS0mjwrSRslJLwAVjILPMs50uQgw5hB
- 8Ftt51ereBDP51ZhBvDqVEDTIcPvE4FMVIWc0jCMiRJHv0oVQFjJBbkFJ
- aRBzhHlQAvhlymWOgTwI+qJ306TVnHFtJcjfLGfcAK2yNdaT/sL+ePqpp
- RLVUbNoe4MKLEULKY9DopIFgcaHbLtDbIM5HQNJaikVnb6UyurLjWd9gG
- 99YZkt+eh6O4+8xbI4hpeQPGeCSc6fVwld1dQ/dXFU6/OZr2POkh3Dp5n Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10954"; a="430948726"
-X-IronPort-AV: E=Sophos;i="6.04,198,1695711600"; d="scan'208";a="430948726"
+ bh=ZwThCSMkZJ1Jv7t6bOWgoMQjRNkwTNF9v15p3OdiQbg=;
+ b=JDqZPR5fl5MqGvkb+H8hYuFKOVqW5yTEk2+bfx67UReva9QxoEIlHaMW
+ FzBnXFlFQE7bkVvSU7aY6TkrE4EuZR6Q2fx/y+wy6RvzB4pD4cpteUiw8
+ fhjE9m9xy6fxdfh9vCpjivm3tXozcsFWzSLjhrgIfv52Ee/sv4/qlfzWU
+ +4r3Lk2K4zVprzxZQF1bOy6TyqybbRsbitNozytAPbI29fYf/8Nugji//
+ wSG2B5U4Nn37SK1STPIWAJmK7tqfGU9ZGci9IrXPeOXHZyDY7q450a7bd
+ Ds7/8YXWUtbhzMWq/aNN89oefaNvDZTltvHFlPDr2nGm9XqNSyme+uqck A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10954"; a="430948755"
+X-IronPort-AV: E=Sophos;i="6.04,198,1695711600"; d="scan'208";a="430948755"
 Received: from orsmga007.jf.intel.com ([10.7.209.58])
  by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Jan 2024 23:57:25 -0800
+ 15 Jan 2024 23:57:29 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10954"; a="776947045"
-X-IronPort-AV: E=Sophos;i="6.04,198,1695711600"; d="scan'208";a="776947045"
+X-IronPort-AV: E=McAfee;i="6600,9927,10954"; a="776947051"
+X-IronPort-AV: E=Sophos;i="6.04,198,1695711600"; d="scan'208";a="776947051"
 Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.74])
- by orsmga007.jf.intel.com with SMTP; 15 Jan 2024 23:57:23 -0800
+ by orsmga007.jf.intel.com with SMTP; 15 Jan 2024 23:57:26 -0800
 Received: by stinkbox (sSMTP sendmail emulation);
- Tue, 16 Jan 2024 09:57:22 +0200
+ Tue, 16 Jan 2024 09:57:25 +0200
 From: Ville Syrjala <ville.syrjala@linux.intel.com>
 To: intel-gfx@lists.freedesktop.org
-Subject: [PATCH v3 13/16] drm/i915/fbdev: Fix smem_start for LMEMBAR stolen
- objects
-Date: Tue, 16 Jan 2024 09:56:33 +0200
-Message-ID: <20240116075636.6121-14-ville.syrjala@linux.intel.com>
+Subject: [PATCH v3 14/16] drm/i915: Tweak BIOS fb reuse check
+Date: Tue, 16 Jan 2024 09:56:34 +0200
+Message-ID: <20240116075636.6121-15-ville.syrjala@linux.intel.com>
 X-Mailer: git-send-email 2.41.0
 In-Reply-To: <20240116075636.6121-1-ville.syrjala@linux.intel.com>
 References: <20240116075636.6121-1-ville.syrjala@linux.intel.com>
@@ -66,37 +65,124 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-The "io" address of an object is its dma address minus the
-region.start. Subtract the latter to make smem_start correct.
-The current code happens to work for genuine LMEM objects
-as LMEM region.start==0, but for LMEMBAR stolen objects
-region.start!=0.
+Currently we assume that we bind the BIOS fb exactly into the same
+ggtt address where the BIOS left it. That is about to change, and
+in order to keep intel_reuse_initial_plane_obj() working as intended
+we need to compare the original ggtt offset (called 'base' here)
+as opposed to the actual vma ggtt offset we selected. Otherwise
+the first plane could change the ggtt offset, and then subsequent
+planes would no longer notice that they are in fact using the same
+ggtt offset that the first plane was already using. Thus the reuse
+check will fail and we proceed to turn off these subsequent planes.
 
-TODO: perhaps just set smem_start=0 always as our .fb_mmap()
-implementation no longer depends on it? Need to double check
-it's not needed for anything else...
+TODO: would probably make more sense to do the pure readout first
+for all the planes, then check for fb reuse, and only then proceed
+to pin the object into the final location in the ggtt...
 
 Cc: Paz Zcharya <pazz@chromium.org>
 Reviewed-by: Andrzej Hajda <andrzej.hajda@intel.com>
 Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_fbdev_fb.c | 3 ++-
- 1 file changed, 2 insertions(+), 1 deletion(-)
+ .../drm/i915/display/intel_plane_initial.c    | 34 +++++++++++--------
+ 1 file changed, 19 insertions(+), 15 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_fbdev_fb.c b/drivers/gpu/drm/i915/display/intel_fbdev_fb.c
-index 1ac05d90b2e8..0665f943f65f 100644
---- a/drivers/gpu/drm/i915/display/intel_fbdev_fb.c
-+++ b/drivers/gpu/drm/i915/display/intel_fbdev_fb.c
-@@ -79,7 +79,8 @@ int intel_fbdev_fb_fill_info(struct drm_i915_private *i915, struct fb_info *info
- 		/* Use fbdev's framebuffer from lmem for discrete */
- 		info->fix.smem_start =
- 			(unsigned long)(mem->io.start +
--					i915_gem_object_get_dma_address(obj, 0));
-+					i915_gem_object_get_dma_address(obj, 0) -
-+					mem->region.start);
- 		info->fix.smem_len = obj->base.size;
- 	} else {
- 		struct i915_ggtt *ggtt = to_gt(i915)->ggtt;
+diff --git a/drivers/gpu/drm/i915/display/intel_plane_initial.c b/drivers/gpu/drm/i915/display/intel_plane_initial.c
+index b7e12b60d68b..82ab98985a09 100644
+--- a/drivers/gpu/drm/i915/display/intel_plane_initial.c
++++ b/drivers/gpu/drm/i915/display/intel_plane_initial.c
+@@ -13,20 +13,21 @@
+ #include "intel_plane_initial.h"
+ 
+ static bool
+-intel_reuse_initial_plane_obj(struct drm_i915_private *i915,
+-			      const struct intel_initial_plane_config *plane_config,
++intel_reuse_initial_plane_obj(struct intel_crtc *this,
++			      const struct intel_initial_plane_config plane_configs[],
+ 			      struct drm_framebuffer **fb,
+ 			      struct i915_vma **vma)
+ {
++	struct drm_i915_private *i915 = to_i915(this->base.dev);
+ 	struct intel_crtc *crtc;
+ 
+ 	for_each_intel_crtc(&i915->drm, crtc) {
+-		struct intel_crtc_state *crtc_state =
+-			to_intel_crtc_state(crtc->base.state);
+-		struct intel_plane *plane =
++		const struct intel_plane *plane =
+ 			to_intel_plane(crtc->base.primary);
+-		struct intel_plane_state *plane_state =
++		const struct intel_plane_state *plane_state =
+ 			to_intel_plane_state(plane->base.state);
++		const struct intel_crtc_state *crtc_state =
++			to_intel_crtc_state(crtc->base.state);
+ 
+ 		if (!crtc_state->uapi.active)
+ 			continue;
+@@ -34,7 +35,7 @@ intel_reuse_initial_plane_obj(struct drm_i915_private *i915,
+ 		if (!plane_state->ggtt_vma)
+ 			continue;
+ 
+-		if (intel_plane_ggtt_offset(plane_state) == plane_config->base) {
++		if (plane_configs[this->pipe].base == plane_configs[crtc->pipe].base) {
+ 			*fb = plane_state->hw.fb;
+ 			*vma = plane_state->ggtt_vma;
+ 			return true;
+@@ -265,10 +266,11 @@ intel_alloc_initial_plane_obj(struct intel_crtc *crtc,
+ 
+ static void
+ intel_find_initial_plane_obj(struct intel_crtc *crtc,
+-			     struct intel_initial_plane_config *plane_config)
++			     struct intel_initial_plane_config plane_configs[])
+ {
+-	struct drm_device *dev = crtc->base.dev;
+-	struct drm_i915_private *dev_priv = to_i915(dev);
++	struct drm_i915_private *dev_priv = to_i915(crtc->base.dev);
++	struct intel_initial_plane_config *plane_config =
++		&plane_configs[crtc->pipe];
+ 	struct intel_plane *plane =
+ 		to_intel_plane(crtc->base.primary);
+ 	struct intel_plane_state *plane_state =
+@@ -294,7 +296,7 @@ intel_find_initial_plane_obj(struct intel_crtc *crtc,
+ 	 * Failed to alloc the obj, check to see if we should share
+ 	 * an fb with another CRTC instead
+ 	 */
+-	if (intel_reuse_initial_plane_obj(dev_priv, plane_config, &fb, &vma))
++	if (intel_reuse_initial_plane_obj(crtc, plane_configs, &fb, &vma))
+ 		goto valid_fb;
+ 
+ 	/*
+@@ -359,10 +361,12 @@ static void plane_config_fini(struct intel_initial_plane_config *plane_config)
+ 
+ void intel_initial_plane_config(struct drm_i915_private *i915)
+ {
++	struct intel_initial_plane_config plane_configs[I915_MAX_PIPES] = {};
+ 	struct intel_crtc *crtc;
+ 
+ 	for_each_intel_crtc(&i915->drm, crtc) {
+-		struct intel_initial_plane_config plane_config = {};
++		struct intel_initial_plane_config *plane_config =
++			&plane_configs[crtc->pipe];
+ 
+ 		if (!to_intel_crtc_state(crtc->base.state)->uapi.active)
+ 			continue;
+@@ -374,14 +378,14 @@ void intel_initial_plane_config(struct drm_i915_private *i915)
+ 		 * can even allow for smooth boot transitions if the BIOS
+ 		 * fb is large enough for the active pipe configuration.
+ 		 */
+-		i915->display.funcs.display->get_initial_plane_config(crtc, &plane_config);
++		i915->display.funcs.display->get_initial_plane_config(crtc, plane_config);
+ 
+ 		/*
+ 		 * If the fb is shared between multiple heads, we'll
+ 		 * just get the first one.
+ 		 */
+-		intel_find_initial_plane_obj(crtc, &plane_config);
++		intel_find_initial_plane_obj(crtc, plane_configs);
+ 
+-		plane_config_fini(&plane_config);
++		plane_config_fini(plane_config);
+ 	}
+ }
 -- 
 2.41.0
 
