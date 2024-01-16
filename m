@@ -2,54 +2,70 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7817F82EC56
-	for <lists+intel-gfx@lfdr.de>; Tue, 16 Jan 2024 10:57:16 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 579F182EC64
+	for <lists+intel-gfx@lfdr.de>; Tue, 16 Jan 2024 10:59:16 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 01FA210E03A;
-	Tue, 16 Jan 2024 09:57:15 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D4E0310E478;
+	Tue, 16 Jan 2024 09:58:44 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A97C210E03A
- for <intel-gfx@lists.freedesktop.org>; Tue, 16 Jan 2024 09:57:13 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1705399034; x=1736935034;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=KpY2SR9tePenbkMcQ7pbFs7T3fuEHJaz1t7ej6AtDPs=;
- b=KAciXI5Cosck51kLb3XshnsrRWq0MUMCrCNSvUKXJBtZsw9eaeL+09Zl
- RDf7XlF4Gl8drhnLMa7U3MQB03NhMleYTi/C1fcvppa+lBv50YodV+vgE
- lNjGMoajB3PCcL1vQ9kK2VF2pi2MAlLpYcHHOOKI2EMdrC3MrK9wZo+CA
- c+sMlDoCC4Zqn+PIz5kVH608C+S+WKcU3qVCvaIK6RHGpkxPe2Pz06CAk
- 84ohycUhKSUeu2+AIAeKhZhYsAfRwWMkNIqa9QAxHtPL5e4ZfpB8kXr6v
- bc3/Apcf+VYpUM8HC/AzXfdsYpO3tqshPc/2zNehNhgu0ACR9JDNqcsMM w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10954"; a="7191336"
-X-IronPort-AV: E=Sophos;i="6.04,198,1695711600"; 
-   d="scan'208";a="7191336"
-Received: from fmsmga007.fm.intel.com ([10.253.24.52])
- by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Jan 2024 01:57:13 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10954"; a="787391003"
-X-IronPort-AV: E=Sophos;i="6.04,198,1695711600"; d="scan'208";a="787391003"
-Received: from jfunnell-mobl.ger.corp.intel.com (HELO localhost)
- ([10.252.39.52])
- by fmsmga007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Jan 2024 01:57:12 -0800
-From: Jani Nikula <jani.nikula@intel.com>
-To: Radhakrishna Sripada <radhakrishna.sripada@intel.com>
-Subject: Re: [PATCH 4/6] drm/i915/opregion: abstract ASLE presence check
-In-Reply-To: <87edeiso5h.fsf@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <cover.1704992868.git.jani.nikula@intel.com>
- <1829415d3e7b29e78c46b20bca8175ef373bcd92.1704992868.git.jani.nikula@intel.com>
- <ZaCB4Ne7sXnZvwCw@invictus> <8734v2ua8a.fsf@intel.com>
- <ZaGUv07GTyb24D+A@invictus> <87edeiso5h.fsf@intel.com>
-Date: Tue, 16 Jan 2024 11:57:09 +0200
-Message-ID: <878r4psiru.fsf@intel.com>
+Received: from mail-wr1-f51.google.com (mail-wr1-f51.google.com
+ [209.85.221.51])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 14B0510E466;
+ Tue, 16 Jan 2024 09:58:39 +0000 (UTC)
+Received: by mail-wr1-f51.google.com with SMTP id
+ ffacd0b85a97d-336788cb261so7954662f8f.3; 
+ Tue, 16 Jan 2024 01:58:38 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20230601; t=1705399057; x=1706003857; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:in-reply-to:references:to:from
+ :content-language:subject:user-agent:mime-version:date:message-id
+ :from:to:cc:subject:date:message-id:reply-to;
+ bh=2uhSmZfzoghRK17rw0hKmTfGn83P0SdA/F+Pbhd5eJg=;
+ b=i3X3jdIsZJQuHEppdCCGwk1cMB4sA/tewsZ/MsJItEr82GVF+v0eJ4YKzvkckWKJz9
+ dwS/phAJpLe7RrhHHKFGCOu/3LsnfNap3jlahFPAEGI6ywp6Kkxoq2acrkSoz6BxquiX
+ Gg8hU4Cd+jGbZ8q1iAlgB+M/S8PjsjcbyrY89ku5SsVk1bHWAu5A5PnRmJ9bf4+5aj9W
+ aeEAbGfSTM19G0g7r1+PFWdbEpksA3ss5TgP9jnn/KKSluMgE5MOS34tQi7Q2EsE3N2C
+ jlEn0C5edeJAB4JbMFqza1itgavAGG0hMigXptmnhqO9OGucT2YopVDEStHT1cy3qjYo
+ SmcA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1705399057; x=1706003857;
+ h=content-transfer-encoding:in-reply-to:references:to:from
+ :content-language:subject:user-agent:mime-version:date:message-id
+ :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+ bh=2uhSmZfzoghRK17rw0hKmTfGn83P0SdA/F+Pbhd5eJg=;
+ b=IaEL7wqRxXrF3igdj035/6uBDjzQ5inDDzCssHnezYyVm1e65iHBi0QSUwByS6/fHG
+ ERnZPuRFyi40lvJLaLWbL9RX6Mf645rAEA1t8sAEyU5/vnlLdtGKik/nnjomiqaFQ7CZ
+ +0OdgEy0Y2PrqLY96Q1+7Mmyaw8JGe7PRVdjIbNK2dezri3Crf6J0oDM7BHZA4aG1pPu
+ wBneCsWNrxiJXkgquiQ6gNLenkWFiV61Dgkyb7feYRc4VQF1AJDYjCMsl5HX73EGNbXC
+ 7zRmX8aMQDVgWHWZyzuHn1ATiiBejYdhoiOqi2DkNNrgLb2Rh7kOyQLUhCW+dxrzJV+B
+ c9Hg==
+X-Gm-Message-State: AOJu0Yz0I6XA4sl1gGQimtie5PYxTmcafaunNJj5Y1CnBKKiR5PHjQAz
+ SVrpFtotcGzAMptDInty3PZ1iJECnmLbhA==
+X-Google-Smtp-Source: AGHT+IEVFT0/1a9jbf1C6BJql5mBWfujuok+Gab1fp8jHloRHQYD+bvxhtShawLVKCV4fke/i/+2ew==
+X-Received: by 2002:adf:ce12:0:b0:337:7b14:d9fc with SMTP id
+ p18-20020adfce12000000b003377b14d9fcmr4320500wrn.12.1705399057320; 
+ Tue, 16 Jan 2024 01:57:37 -0800 (PST)
+Received: from [10.254.108.81] (munvpn.amd.com. [165.204.72.6])
+ by smtp.gmail.com with ESMTPSA id
+ f3-20020adff983000000b00337bc2176f6sm974007wrr.81.2024.01.16.01.57.36
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Tue, 16 Jan 2024 01:57:36 -0800 (PST)
+Message-ID: <1df3cfff-50af-4873-b228-57b6900b9ba8@gmail.com>
+Date: Tue, 16 Jan 2024 10:57:32 +0100
 MIME-Version: 1.0
-Content-Type: text/plain
+User-Agent: Mozilla Thunderbird
+Subject: Re: Rework TTMs busy handling
+Content-Language: en-US
+From: =?UTF-8?Q?Christian_K=C3=B6nig?= <ckoenig.leichtzumerken@gmail.com>
+To: dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
+ thomas.hellstrom@linux.intel.com, nouveau@lists.freedesktop.org,
+ jani.nikula@linux.intel.com, kherbst@redhat.com, lyude@redhat.com,
+ zackr@vmware.com, michel.daenzer@mailbox.org
+References: <20240112125158.2748-1-christian.koenig@amd.com>
+In-Reply-To: <20240112125158.2748-1-christian.koenig@amd.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -62,139 +78,32 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, 15 Jan 2024, Jani Nikula <jani.nikula@intel.com> wrote:
-> On Fri, 12 Jan 2024, Radhakrishna Sripada <radhakrishna.sripada@intel.com> wrote:
->> On Fri, Jan 12, 2024 at 12:17:25PM +0200, Jani Nikula wrote:
->>> On Thu, 11 Jan 2024, Radhakrishna Sripada <radhakrishna.sripada@intel.com> wrote:
->>> > On Thu, Jan 11, 2024 at 07:21:17PM +0200, Jani Nikula wrote:
->>> >> Add a function to check the opregion ASLE presence instead of accessing
->>> >> the opregion structures directly.
->>> >> 
->>> >> Reorder the checks in i915_has_asle() to avoid the function call if
->>> >> possible.
->>> >> 
->>> >> Cc: Radhakrishna Sripada <radhakrishna.sripada@intel.com>
->>> >> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
->>> >> ---
->>> >>  drivers/gpu/drm/i915/display/intel_display_irq.c | 6 +++---
->>> >>  drivers/gpu/drm/i915/display/intel_opregion.c    | 5 +++++
->>> >>  drivers/gpu/drm/i915/display/intel_opregion.h    | 6 ++++++
->>> >>  3 files changed, 14 insertions(+), 3 deletions(-)
->>> >> 
->>> >> diff --git a/drivers/gpu/drm/i915/display/intel_display_irq.c b/drivers/gpu/drm/i915/display/intel_display_irq.c
->>> >> index 99843883cef7..f846c5b108b5 100644
->>> >> --- a/drivers/gpu/drm/i915/display/intel_display_irq.c
->>> >> +++ b/drivers/gpu/drm/i915/display/intel_display_irq.c
->>> >> @@ -266,12 +266,12 @@ void i915_disable_pipestat(struct drm_i915_private *dev_priv,
->>> >>  	intel_uncore_posting_read(&dev_priv->uncore, reg);
->>> >>  }
->>> >>  
->>> >> -static bool i915_has_asle(struct drm_i915_private *dev_priv)
->>> >> +static bool i915_has_asle(struct drm_i915_private *i915)
->>> > Why not move this to intel_opregion.c and export it instead of
->>> > intel_opregion_asle_present ?
->>> 
->>> I'm trying to be conscious of the possible performance impact of making
->>> calls from the irq code just to find there's nothing to do.
->> Makes sense.
->>
->>> 
->>> >>  {
->>> >> -	if (!dev_priv->display.opregion.asle)
->>> >> +	if (!IS_PINEVIEW(i915) && !IS_MOBILE(i915))
->>> > Can we extend this check to dgfx as well?
->>> 
->>> Extend how? This will return early for everything after IVB.
->> The name of the function is bit misleading as looking at Opregion code
->> and the spec beyond IVB, asle aka Mailbox 3 is present, just that it is
->> not used for reading pipestat. It is used to store rvda from where VBT is read.
->> Extension is not required for this purpose. Might want to clear that unless
->> I misunderstood the purpose, either way 
->
-> The new function intel_opregion_asle_present() added in this patch is
-> exactly about whether asle mbox is present.
->
-> i915_has_asle() may be ill-named, but frankly I'm not sure what it
-> should be called, and it probably should not be renamed in this patch?
+Am 12.01.24 um 13:51 schrieb Christian König:
+> Hi guys,
 
-Anyway, pushed the series to din, thanks for the review!
+just a gentle ping on this.
 
-We can tweak the name details in follow-up patches.
+Zack any more comments for the VMWGFX parts?
 
-BR,
-Jani.
-
+Thanks,
+Christian.
 
 >
-> BR,
-> Jani.
+> same as the last time. Things I've changed:
 >
->>
->> Reviewed-by: Radhakrishna Sripada <radhakrishna.sripada@intel.com>
->>> 
->>> BR,
->>> Jani.
->>> 
->>> >
->>> > -Radhakrishna(RK) Sripada
->>> >
->>> >>  		return false;
->>> >>  
->>> >> -	return IS_PINEVIEW(dev_priv) || IS_MOBILE(dev_priv);
->>> >> +	return intel_opregion_asle_present(i915);
->>> >>  }
->>> >>  
->>> >>  /**
->>> >> diff --git a/drivers/gpu/drm/i915/display/intel_opregion.c b/drivers/gpu/drm/i915/display/intel_opregion.c
->>> >> index 8b9e820971cb..26aacb01f9ec 100644
->>> >> --- a/drivers/gpu/drm/i915/display/intel_opregion.c
->>> >> +++ b/drivers/gpu/drm/i915/display/intel_opregion.c
->>> >> @@ -632,6 +632,11 @@ static void asle_work(struct work_struct *work)
->>> >>  	asle->aslc = aslc_stat;
->>> >>  }
->>> >>  
->>> >> +bool intel_opregion_asle_present(struct drm_i915_private *i915)
->>> >> +{
->>> >> +	return i915->display.opregion.asle;
->>> >> +}
->>> >> +
->>> >>  void intel_opregion_asle_intr(struct drm_i915_private *dev_priv)
->>> >>  {
->>> >>  	if (dev_priv->display.opregion.asle)
->>> >> diff --git a/drivers/gpu/drm/i915/display/intel_opregion.h b/drivers/gpu/drm/i915/display/intel_opregion.h
->>> >> index 9efadfb72584..d084b30e8703 100644
->>> >> --- a/drivers/gpu/drm/i915/display/intel_opregion.h
->>> >> +++ b/drivers/gpu/drm/i915/display/intel_opregion.h
->>> >> @@ -69,6 +69,7 @@ void intel_opregion_resume(struct drm_i915_private *dev_priv);
->>> >>  void intel_opregion_suspend(struct drm_i915_private *dev_priv,
->>> >>  			    pci_power_t state);
->>> >>  
->>> >> +bool intel_opregion_asle_present(struct drm_i915_private *i915);
->>> >>  void intel_opregion_asle_intr(struct drm_i915_private *dev_priv);
->>> >>  int intel_opregion_notify_encoder(struct intel_encoder *intel_encoder,
->>> >>  				  bool enable);
->>> >> @@ -111,6 +112,11 @@ static inline void intel_opregion_suspend(struct drm_i915_private *dev_priv,
->>> >>  {
->>> >>  }
->>> >>  
->>> >> +static inline bool intel_opregion_asle_present(struct drm_i915_private *i915)
->>> >> +{
->>> >> +	return false;
->>> >> +}
->>> >> +
->>> >>  static inline void intel_opregion_asle_intr(struct drm_i915_private *dev_priv)
->>> >>  {
->>> >>  }
->>> >> -- 
->>> >> 2.39.2
->>> >> 
->>> 
->>> -- 
->>> Jani Nikula, Intel
+> Implemented the requirements from Zack to correctly fill in the busy
+> placements for VMWGFX.
+>
+> Renamed the placement flags to desired and fallback as suggested by
+> Michel.
+>
+> Rebased on drm-tip instead of drm-misc-next and fixed XE as well.
+>
+> Please review and comment,
+> Christian.
+>
+>
 
--- 
-Jani Nikula, Intel
