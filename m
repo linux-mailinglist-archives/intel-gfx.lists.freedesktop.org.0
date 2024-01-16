@@ -2,57 +2,28 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8E62A82EB3A
-	for <lists+intel-gfx@lfdr.de>; Tue, 16 Jan 2024 10:02:22 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4600E82EB3B
+	for <lists+intel-gfx@lfdr.de>; Tue, 16 Jan 2024 10:02:47 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1661910E43C;
-	Tue, 16 Jan 2024 09:02:21 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D710A10E18A;
+	Tue, 16 Jan 2024 09:02:45 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B8CC210E43C
- for <intel-gfx@lists.freedesktop.org>; Tue, 16 Jan 2024 09:02:19 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1705395739; x=1736931739;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=gXSWEDqPQPyT6P9IjZduyrnL+d/p2RR58/u56sUeKR8=;
- b=imLM2D26+UZsMMlJT1BA0N6B1Hv9dBnNgaXyt5OqOnwNDBik9iLO9JpA
- BJqvtX35jPHw3SwnZZcvdT9BKXKCpuMfSZgjRlUd3IrczBKHQhmoqBnhx
- zLsx7DQnnVHYQid/v7Cvc0aDYBss9QOY5gB4uHippHSyvMujzRmH+7+KC
- vCWfjp8LQM/hykyJ2nsXgcpwwnmwS3YTXBpX0zUWMHpd9+tw678kZ9s76
- BdyxZ+8TUoTI9WbJhudfpzgH9ze2IjvjEvNsdFugVJDOLjHkFSQso+N0V
- akFLDPpgU6bvbbEVd5Q4CWa3/s9tSrly3RixTQ23jKgX5PN3GgeWrlIqW g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10954"; a="21270940"
-X-IronPort-AV: E=Sophos;i="6.04,198,1695711600"; d="scan'208";a="21270940"
-Received: from orsmga004.jf.intel.com ([10.7.209.38])
- by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Jan 2024 01:01:50 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10954"; a="907311632"
-X-IronPort-AV: E=Sophos;i="6.04,198,1695711600"; d="scan'208";a="907311632"
-Received: from jfunnell-mobl.ger.corp.intel.com (HELO localhost)
- ([10.252.39.52])
- by orsmga004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Jan 2024 01:01:47 -0800
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: "Hellstrom, Thomas" <thomas.hellstrom@intel.com>, "Vivi, Rodrigo"
- <rodrigo.vivi@intel.com>, "Hogander, Jouni" <jouni.hogander@intel.com>
-Subject: Re: [PATCH] drm/xe/display: Disable aux ccs framebuffers
-In-Reply-To: <363d705ce20d85a749447d63809a7260a5ca7e34.camel@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20240102182422.3823394-1-juhapekka.heikkila@gmail.com>
- <87il4b1pvz.fsf@intel.com> <ZZx0qT4s3dmhIGAn@intel.com>
- <93230e22ede6467ef8930342afd439f7ce677790.camel@intel.com>
- <ZZ75ghR172WxYZiJ@intel.com>
- <2c82e0774c23cc640e565b1b5302e0e234eba036.camel@intel.com>
- <ZaGsIGTHVh_MCqKW@intel.com> <87h6jesqeg.fsf@intel.com>
- <363d705ce20d85a749447d63809a7260a5ca7e34.camel@intel.com>
-Date: Tue, 16 Jan 2024 11:01:45 +0200
-Message-ID: <87bk9lslc6.fsf@intel.com>
+Received: from 5338d5abeb45 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6635610E18A;
+ Tue, 16 Jan 2024 09:02:44 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: text/plain
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=97_Fi=2ECI=2ECHECKPATCH=3A_warning_for_drm/i915=3A_=28stole?=
+ =?utf-8?q?n=29_memory_region_related_fixes_=28rev6=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Ville Syrjala" <ville.syrjala@linux.intel.com>
+Date: Tue, 16 Jan 2024 09:02:44 -0000
+Message-ID: <170539576441.500854.2762013483487057586@5338d5abeb45>
+X-Patchwork-Hint: ignore
+References: <20240116075636.6121-1-ville.syrjala@linux.intel.com>
+In-Reply-To: <20240116075636.6121-1-ville.syrjala@linux.intel.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -65,30 +36,50 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Dave Airlie <airlied@redhat.com>, "ogabbay@kernel.org" <ogabbay@kernel.org>,
- "De Marchi, Lucas" <lucas.demarchi@intel.com>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
- Daniel Vetter <daniel.vetter@ffwll.ch>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, 15 Jan 2024, "Hellstrom, Thomas" <thomas.hellstrom@intel.com> wrote:
-> I wonder if, moving forward, we should use a topic/display-for-xe
-> branch (no force-push) that can be used for display commits that need
-> to be in Xe during -next cycles. It could then be merged into xe and
-> i915 as needed?
+== Series Details ==
 
-Topic branches have been discouraged lately, but it's really up to the
-drm maintainers. Cc: Dave and Sima, thoughts?
+Series: drm/i915: (stolen) memory region related fixes (rev6)
+URL   : https://patchwork.freedesktop.org/series/127721/
+State : warning
 
-It's also an additional point of confusion for committers to apply to a
-topic branch. Deciding between drm-xe-next and drm-intel-next can
-already go wrong...
+== Summary ==
+
+Error: dim checkpatch failed
+72a9e5460135 drm/i915: Use struct resource for memory region IO as well
+-:387: WARNING:LONG_LINE: line length of 105 exceeds 100 columns
+#387: FILE: drivers/gpu/drm/i915/intel_region_ttm.c:227:
++			if (WARN_ON(overflows_type(resource_size(&mem->io) >> PAGE_SHIFT, place.lpfn))) {
+
+total: 0 errors, 1 warnings, 0 checks, 281 lines checked
+04c5e770efde drm/i915: Print memory region info during probe
+a7d0ba6c8a13 drm/i915: Remove ad-hoc lmem/stolen debugs
+29a8a9da9fa3 drm/i915: Bypass LMEMBAR/GTTMMADR for MTL stolen memory access
+516154c02d82 drm/i915: Disable the "binder"
+dcd84ee46528 drm/i915: Rename the DSM/GSM registers
+5d36651d103b drm/i915: Fix PTE decode during initial plane readout
+c4b43d6e7c3b drm/i915: Fix region start during initial plane readout
+0a52c22fa07c drm/i915: Fix MTL initial plane readout
+2152a95323ef drm/i915: s/phys_base/dma_addr/
+cc095e647e13 drm/i915: Split the smem and lmem plane readout apart
+a36eb1e75a76 drm/i915: Simplify intel_initial_plane_config() calling convention
+e66cb88c8697 drm/i915/fbdev: Fix smem_start for LMEMBAR stolen objects
+90b4fdfecf0b drm/i915: Tweak BIOS fb reuse check
+66f0e8965f66 drm/i915: Try to relocate the BIOS fb to the start of ggtt
+-:104: CHECK:LINE_SPACING: Please use a blank line after function/struct/union/enum declarations
+#104: FILE: drivers/gpu/drm/i915/display/i9xx_plane.h:51:
+ }
++static inline bool i9xx_fixup_initial_plane_config(struct intel_crtc *crtc,
+
+-:105: WARNING:LONG_LINE: line length of 105 exceeds 100 columns
+#105: FILE: drivers/gpu/drm/i915/display/i9xx_plane.h:52:
++						   const struct intel_initial_plane_config *plane_config)
+
+total: 0 errors, 1 warnings, 1 checks, 229 lines checked
+9dc34e4ff2f9 drm/i915: Annotate more of the BIOS fb takeover failure paths
 
 
-BR,
-Jani.
-
-
--- 
-Jani Nikula, Intel
