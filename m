@@ -2,46 +2,45 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id C619882EA6C
-	for <lists+intel-gfx@lfdr.de>; Tue, 16 Jan 2024 08:57:11 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5585782EA76
+	for <lists+intel-gfx@lfdr.de>; Tue, 16 Jan 2024 08:57:44 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 43F0810E428;
-	Tue, 16 Jan 2024 07:57:10 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id AF07A10E42F;
+	Tue, 16 Jan 2024 07:57:12 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (unknown [192.55.52.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1782410E428
- for <intel-gfx@lists.freedesktop.org>; Tue, 16 Jan 2024 07:57:09 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D089810E42E
+ for <intel-gfx@lists.freedesktop.org>; Tue, 16 Jan 2024 07:57:11 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1705391828; x=1736927828;
+ t=1705391831; x=1736927831;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=eV+azrv4h0RQzIjzaWocqjVMhLVfpc+2acLmph0X+Hg=;
- b=SVUHRyJ55FQAMKIdAtIkpJRVqVNXuRUUD8628ra1aTJt5gq0cwzmcL2f
- wT7/BJuiUrzi/Gbtx6rOEJnhfM+5AuPL9MvpuB9aPn/TkRqtJJQ3xSWSu
- YltMiedi/mSN4Dd1/+oMtk3HzVNDSOpep5a45omnotE7bZbIHjRKRP8gs
- nP0h9JKGio7axts75NnHK0lU2+aEWF2KZM6DAUF7229TadMEX5lj8UJIb
- XBZwB/Czosg/XEzBFuQ+jKVeoL73mlSpAs14XgO2ZxlmHFjQ/8zW4IjFw
- a+KwzPVP9dn44b4KJOPJ+vOvlgQoLUyTNaYe/mgN2wPXZWZedyRf7xxEL Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10954"; a="430948616"
-X-IronPort-AV: E=Sophos;i="6.04,198,1695711600"; d="scan'208";a="430948616"
+ bh=Kd/y1h3SGs6TqvLR9VNEunw8o4Tj5GDnAjowYphJPhM=;
+ b=hPE2mKnjxoKvLZhbjeU7ymWYF3w6UTuXuO6mB0W1C2ZxhodiwjWmFtv4
+ w1DFTnGj36I60YFTxoyaKiPjAu8buOm065GuJrptOPOU6Dpk7An/U3lX2
+ DNAT1SKr3w/4xE993xn+0BOayrAf5GpVBbWF7oD/GCwrNwYhKJx1ZKknv
+ 6Ko1pNlZDhdARviShqpDFpqEs5+tX9eMTxPiPW6gHTVGReVj1pgeUyyA0
+ Lc1uuzNrTiL+MCPOTPSdonHQoDV7xKIE6tW1IQH8n8JkL+z+e/5w8Gtd2
+ h1gdFpoZfp+u+/P7H7Hkz7XAzF9le05G8PvhK7wJtEVrNfbjl/6NOFlJM w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10954"; a="430948627"
+X-IronPort-AV: E=Sophos;i="6.04,198,1695711600"; d="scan'208";a="430948627"
 Received: from orsmga007.jf.intel.com ([10.7.209.58])
  by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Jan 2024 23:57:08 -0800
+ 15 Jan 2024 23:57:11 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10954"; a="776946999"
-X-IronPort-AV: E=Sophos;i="6.04,198,1695711600"; d="scan'208";a="776946999"
+X-IronPort-AV: E=McAfee;i="6600,9927,10954"; a="776947004"
+X-IronPort-AV: E=Sophos;i="6.04,198,1695711600"; d="scan'208";a="776947004"
 Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.74])
- by orsmga007.jf.intel.com with SMTP; 15 Jan 2024 23:57:06 -0800
+ by orsmga007.jf.intel.com with SMTP; 15 Jan 2024 23:57:09 -0800
 Received: by stinkbox (sSMTP sendmail emulation);
- Tue, 16 Jan 2024 09:57:05 +0200
+ Tue, 16 Jan 2024 09:57:08 +0200
 From: Ville Syrjala <ville.syrjala@linux.intel.com>
 To: intel-gfx@lists.freedesktop.org
-Subject: [PATCH v3 08/16] drm/i915: Fix region start during initial plane
- readout
-Date: Tue, 16 Jan 2024 09:56:28 +0200
-Message-ID: <20240116075636.6121-9-ville.syrjala@linux.intel.com>
+Subject: [PATCH v3 09/16] drm/i915: Fix MTL initial plane readout
+Date: Tue, 16 Jan 2024 09:56:29 +0200
+Message-ID: <20240116075636.6121-10-ville.syrjala@linux.intel.com>
 X-Mailer: git-send-email 2.41.0
 In-Reply-To: <20240116075636.6121-1-ville.syrjala@linux.intel.com>
 References: <20240116075636.6121-1-ville.syrjala@linux.intel.com>
@@ -65,54 +64,69 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-On MTL the stolen region starts at offset 8MiB from the start of
-LMEMBAR. The dma addresses are thus also offset by 8MiB. However the
-mm_node/etc. is zero based, and i915_pages_create_for_stolen() will
-add the appropriate region.start into the sg dma address. So when
-we do the readout we need to convert the dma address read from
-the PTE to be zero based as well.
-
-Note that currently we don't take this path on MTL, but we should
-and thus this needs to be fixed. For lmem this works correctly
-already as the lmem region.start==0.
-
-While at it let's also make sure the address points to somewhere within
-the memory region. We don't need to check the size as
-i915_gem_object_create_region_at() should later fail if the object size
-exceeds the region size.
+MTL stolen memory looks more like local memory, so use the
+(now fixed) lmem path when doing the initial plane readout.
 
 Cc: Paz Zcharya <pazz@chromium.org>
 Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_plane_initial.c | 8 +++++---
- 1 file changed, 5 insertions(+), 3 deletions(-)
+ .../drm/i915/display/intel_plane_initial.c    | 25 +++++++++++++------
+ 1 file changed, 18 insertions(+), 7 deletions(-)
 
 diff --git a/drivers/gpu/drm/i915/display/intel_plane_initial.c b/drivers/gpu/drm/i915/display/intel_plane_initial.c
-index ffc92b18fcf5..db594ccf0323 100644
+index db594ccf0323..c72d4cacf631 100644
 --- a/drivers/gpu/drm/i915/display/intel_plane_initial.c
 +++ b/drivers/gpu/drm/i915/display/intel_plane_initial.c
-@@ -79,16 +79,18 @@ initial_plane_vma(struct drm_i915_private *i915,
- 		 * We don't currently expect this to ever be placed in the
- 		 * stolen portion.
- 		 */
--		if (phys_base >= resource_size(&mem->region)) {
-+		if (phys_base < mem->region.start || phys_base > mem->region.end) {
- 			drm_err(&i915->drm,
--				"Initial plane programming using invalid range, phys_base=%pa\n",
--				&phys_base);
-+				"Initial plane programming using invalid range, phys_base=%pa (%s [%pa-%pa])\n",
-+				&phys_base, mem->region.name, &mem->region.start, &mem->region.end);
- 			return NULL;
+@@ -59,7 +59,7 @@ initial_plane_vma(struct drm_i915_private *i915,
+ 		return NULL;
+ 
+ 	base = round_down(plane_config->base, I915_GTT_MIN_ALIGNMENT);
+-	if (IS_DGFX(i915)) {
++	if (IS_DGFX(i915) || HAS_LMEMBAR_SMEM_STOLEN(i915)) {
+ 		gen8_pte_t __iomem *gte = to_gt(i915)->ggtt->gsm;
+ 		gen8_pte_t pte;
+ 
+@@ -73,11 +73,20 @@ initial_plane_vma(struct drm_i915_private *i915,
  		}
  
- 		drm_dbg(&i915->drm,
- 			"Using phys_base=%pa, based on initial plane programming\n",
- 			&phys_base);
+ 		phys_base = pte & GEN12_GGTT_PTE_ADDR_MASK;
+-		mem = i915->mm.regions[INTEL_REGION_LMEM_0];
 +
-+		phys_base -= mem->region.start;
++		if (IS_DGFX(i915))
++			mem = i915->mm.regions[INTEL_REGION_LMEM_0];
++		else
++			mem = i915->mm.stolen_region;
++		if (!mem) {
++			drm_dbg_kms(&i915->drm,
++				    "Initial plane memory region not initialized\n");
++			return NULL;
++		}
+ 
+ 		/*
+-		 * We don't currently expect this to ever be placed in the
+-		 * stolen portion.
++		 * On lmem we don't currently expect this to
++		 * ever be placed in the stolen portion.
+ 		 */
+ 		if (phys_base < mem->region.start || phys_base > mem->region.end) {
+ 			drm_err(&i915->drm,
+@@ -94,11 +103,13 @@ initial_plane_vma(struct drm_i915_private *i915,
  	} else {
  		phys_base = base;
  		mem = i915->mm.stolen_region;
++		if (!mem) {
++			drm_dbg_kms(&i915->drm,
++				    "Initial plane memory region not initialized\n");
++			return NULL;
++		}
+ 	}
+ 
+-	if (!mem)
+-		return NULL;
+-
+ 	size = round_up(plane_config->base + plane_config->size,
+ 			mem->min_page_size);
+ 	size -= base;
 -- 
 2.41.0
 
