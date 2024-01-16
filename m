@@ -2,45 +2,45 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id BC50482EA70
-	for <lists+intel-gfx@lfdr.de>; Tue, 16 Jan 2024 08:57:25 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4A7CB82EA69
+	for <lists+intel-gfx@lfdr.de>; Tue, 16 Jan 2024 08:56:59 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 97AFA10E401;
-	Tue, 16 Jan 2024 07:56:48 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D61B210E414;
+	Tue, 16 Jan 2024 07:56:52 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (unknown [192.55.52.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0F6DB10E401
- for <intel-gfx@lists.freedesktop.org>; Tue, 16 Jan 2024 07:56:47 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 07A7010E426
+ for <intel-gfx@lists.freedesktop.org>; Tue, 16 Jan 2024 07:56:51 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1705391806; x=1736927806;
+ t=1705391810; x=1736927810;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=GKXXIRT2TOC9JvGYpQjcp3OILVUT/sUub+bZucSLE2c=;
- b=FYo6KzdTTzjoX4+D55KZJFaQDLTHtkIv35hne61lwdxjSBWDcxyMwQRJ
- 5EllJxOFZuBCLjm/AUNzwGcyyjlml+bRw71E+WnnSWdcbZLKMeDVwH3T0
- eSqb5l0OoE0SamS8RedQ7alrRuwIpAad9c+JOoYVkQl1IVMkJCDWxqx9D
- Q0q+xL6VzlnPu8WQBN73k04oL9CmoU3gyd5LhK4hAldLRKIesYEuysnz2
- vfjnBRCT6d9gvkVHIfdXi+rXzWnnojmcdEFjEB6dwGVmBGcXhuNX1/Cxw
- bvMCvTH3lz/cTe1HBSOjUm9KuHPqk0xsnJ4ug7yxMUfnPLfcQp3ZPc5jn Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10954"; a="430948471"
-X-IronPort-AV: E=Sophos;i="6.04,198,1695711600"; d="scan'208";a="430948471"
+ bh=8dxWh6TNizUdB+//aWC3efgWTyrpjjfsf6Mu2Gib5us=;
+ b=BobcUO4ivT08IClWpo3BLjE+viK+NrHVN6JMoHC/FMS6PWpYY1279JyV
+ QkfrmispDPFKtj/DGZ9noIf7QCKNZvTlvZyd7ioAySMKmwccA1BhgePDV
+ XI2/tX3YoGIgfrjvUQyDlKA5YJWmF0O0zov/VFJM5NxNjb5bpCzubcgmB
+ 7ODUv5+KjTyTLB0OS7t3aP22chgeC3sL2m/XF3zb1t67mlMyTX9ovDJeQ
+ SnZ6Xqw4+IvlX1h1ev6aqxp5pKueaC3+rkgRNdZGyQLqg/nD7nyLLeNvL
+ lGAgp/EqE9I1zivx4tQslHUl31df0IdZXXboEPXDzTj/qTF9cZLv3NZaa A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10954"; a="430948496"
+X-IronPort-AV: E=Sophos;i="6.04,198,1695711600"; d="scan'208";a="430948496"
 Received: from orsmga007.jf.intel.com ([10.7.209.58])
  by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Jan 2024 23:56:46 -0800
+ 15 Jan 2024 23:56:50 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10954"; a="776946963"
-X-IronPort-AV: E=Sophos;i="6.04,198,1695711600"; d="scan'208";a="776946963"
+X-IronPort-AV: E=McAfee;i="6600,9927,10954"; a="776946967"
+X-IronPort-AV: E=Sophos;i="6.04,198,1695711600"; d="scan'208";a="776946967"
 Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.74])
- by orsmga007.jf.intel.com with SMTP; 15 Jan 2024 23:56:44 -0800
+ by orsmga007.jf.intel.com with SMTP; 15 Jan 2024 23:56:47 -0800
 Received: by stinkbox (sSMTP sendmail emulation);
- Tue, 16 Jan 2024 09:56:43 +0200
+ Tue, 16 Jan 2024 09:56:46 +0200
 From: Ville Syrjala <ville.syrjala@linux.intel.com>
 To: intel-gfx@lists.freedesktop.org
-Subject: [PATCH v3 02/16] drm/i915: Print memory region info during probe
-Date: Tue, 16 Jan 2024 09:56:22 +0200
-Message-ID: <20240116075636.6121-3-ville.syrjala@linux.intel.com>
+Subject: [PATCH v3 03/16] drm/i915: Remove ad-hoc lmem/stolen debugs
+Date: Tue, 16 Jan 2024 09:56:23 +0200
+Message-ID: <20240116075636.6121-4-ville.syrjala@linux.intel.com>
 X-Mailer: git-send-email 2.41.0
 In-Reply-To: <20240116075636.6121-1-ville.syrjala@linux.intel.com>
 References: <20240116075636.6121-1-ville.syrjala@linux.intel.com>
@@ -65,45 +65,54 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-Dump the details about every memory region into dmesg at probe time.
-Avoids having to dig those out from random places when debugging stuff.
+Now that intel_memory_regions_hw_probe() prints out each and every
+memory region there's no reason to have ad-hoc debugs to do similar
+things elsewhere.
 
 Cc: Paz Zcharya <pazz@chromium.org>
 Reviewed-by: Andrzej Hajda <andrzej.hajda@intel.com>
 Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 ---
- drivers/gpu/drm/i915/intel_memory_region.c | 18 ++++++++++++++++++
- 1 file changed, 18 insertions(+)
+ drivers/gpu/drm/i915/gem/i915_gem_stolen.c  | 4 ----
+ drivers/gpu/drm/i915/gt/intel_region_lmem.c | 3 ---
+ 2 files changed, 7 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/intel_memory_region.c b/drivers/gpu/drm/i915/intel_memory_region.c
-index b2708f8cac2a..52d998e5c21a 100644
---- a/drivers/gpu/drm/i915/intel_memory_region.c
-+++ b/drivers/gpu/drm/i915/intel_memory_region.c
-@@ -372,6 +372,24 @@ int intel_memory_regions_hw_probe(struct drm_i915_private *i915)
- 		i915->mm.regions[i] = mem;
- 	}
+diff --git a/drivers/gpu/drm/i915/gem/i915_gem_stolen.c b/drivers/gpu/drm/i915/gem/i915_gem_stolen.c
+index d2440c793f84..ee237043c302 100644
+--- a/drivers/gpu/drm/i915/gem/i915_gem_stolen.c
++++ b/drivers/gpu/drm/i915/gem/i915_gem_stolen.c
+@@ -828,7 +828,6 @@ static const struct intel_memory_region_ops i915_region_stolen_smem_ops = {
  
-+	for (i = 0; i < ARRAY_SIZE(i915->mm.regions); i++) {
-+		struct intel_memory_region *mem = i915->mm.regions[i];
-+		u64 region_size, io_size;
-+
-+		if (!mem)
-+			continue;
-+
-+		region_size = resource_size(&mem->region) >> 20;
-+		io_size = resource_size(&mem->io) >> 20;
-+
-+		if (resource_size(&mem->io))
-+			drm_dbg(&i915->drm, "Memory region(%d): %s: %llu MiB %pR, io: %llu MiB %pR\n",
-+				mem->id, mem->name, region_size, &mem->region, io_size, &mem->io);
-+		else
-+			drm_dbg(&i915->drm, "Memory region(%d): %s: %llu MiB %pR, io: n/a\n",
-+				mem->id, mem->name, region_size, &mem->region);
-+	}
-+
+ static int init_stolen_lmem(struct intel_memory_region *mem)
+ {
+-	struct drm_i915_private *i915 = mem->i915;
+ 	int err;
+ 
+ 	if (GEM_WARN_ON(resource_size(&mem->region) == 0))
+@@ -844,9 +843,6 @@ static int init_stolen_lmem(struct intel_memory_region *mem)
+ 	    !io_mapping_init_wc(&mem->iomap, mem->io.start, resource_size(&mem->io)))
+ 		goto err_cleanup;
+ 
+-	drm_dbg(&i915->drm, "Stolen Local DSM: %pR\n", &mem->region);
+-	drm_dbg(&i915->drm, "Stolen Local memory IO: %pR\n", &mem->io);
+-
  	return 0;
  
- out_cleanup:
+ err_cleanup:
+diff --git a/drivers/gpu/drm/i915/gt/intel_region_lmem.c b/drivers/gpu/drm/i915/gt/intel_region_lmem.c
+index 6f96a6b70601..af357089da6e 100644
+--- a/drivers/gpu/drm/i915/gt/intel_region_lmem.c
++++ b/drivers/gpu/drm/i915/gt/intel_region_lmem.c
+@@ -273,9 +273,6 @@ static struct intel_memory_region *setup_lmem(struct intel_gt *gt)
+ 	if (err)
+ 		goto err_region_put;
+ 
+-	drm_dbg(&i915->drm, "Local memory: %pR\n", &mem->region);
+-	drm_dbg(&i915->drm, "Local memory IO: %pR\n", &mem->io);
+-
+ 	if (io_size < lmem_size)
+ 		drm_info(&i915->drm, "Using a reduced BAR size of %lluMiB. Consider enabling 'Resizable BAR' or similar, if available in the BIOS.\n",
+ 			 (u64)io_size >> 20);
 -- 
 2.41.0
 
