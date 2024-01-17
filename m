@@ -2,64 +2,147 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3688E83067A
-	for <lists+intel-gfx@lfdr.de>; Wed, 17 Jan 2024 14:00:36 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 80D238306D1
+	for <lists+intel-gfx@lfdr.de>; Wed, 17 Jan 2024 14:17:18 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C8AB910E685;
-	Wed, 17 Jan 2024 13:00:03 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 04C2A10E067;
+	Wed, 17 Jan 2024 13:16:47 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-yb1-f180.google.com (mail-yb1-f180.google.com
- [209.85.219.180])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BEE5010E691
- for <intel-gfx@lists.freedesktop.org>; Wed, 17 Jan 2024 12:59:52 +0000 (UTC)
-Received: by mail-yb1-f180.google.com with SMTP id
- 3f1490d57ef6-dc223463ee4so1792611276.2
- for <intel-gfx@lists.freedesktop.org>; Wed, 17 Jan 2024 04:59:52 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=yngvason.is; s=google; t=1705496332; x=1706101132; darn=lists.freedesktop.org;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:from:to:cc:subject:date
- :message-id:reply-to;
- bh=XriBTYniGk9gYChkPK4rAFLbx+9FKjxjuGOHKZN5d5Q=;
- b=fiBbfYk4wwmjtLZ40390nITMMsIv9Ck2vBZMNG3C0YQ+HPGyvIMEkSvlP4WmdsVYeS
- RVRL9lye2Zvi5mslxwZ5HAQaVSC0xSthCuCuAXPKJsqxE3XROTII6DWnmP9VhofTrQfw
- Dcb6vv8XNsG84elv6dQCX74lV5G+VERjrrHxg=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1705496332; x=1706101132;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
- :subject:date:message-id:reply-to;
- bh=XriBTYniGk9gYChkPK4rAFLbx+9FKjxjuGOHKZN5d5Q=;
- b=VQ6omEgS1L18pyNsz2Kei8+xmrAZFXtyyje+pMrh76oY3o5YAiakFbKsXVZrCOSmdn
- YhnHoxe5jZWVzbN+UryloyRVfBeaSf6m/JosEGeUAXbKgJ67HsEycOv5a/RWndl7pBwR
- fKI+M5o6bk1/ptaAyHWbQESP0lT2EhM/8coh3jOcPXoTnVSx4zh2U1BFvNUNR/TE3tIo
- 6FahdzqgoMk1NDJykeoUmZS9TQhHyylGIlfA96B6izZiSv1kc5vxDYNPBCkWXU1vW35P
- e2Dn/L4Oejtl9TrPw+gUaG/7Q+tHiT/JHwCznIOmjBtyRZExfsvymUQogutOU2krYmFR
- Ifmw==
-X-Gm-Message-State: AOJu0Ywtz7hoD7GtO3STTk2mtypwOIqHyogyvCzIVUArlLixSkuXvHXy
- h7VGZmYAWCHnSE4DGcyuLHToj0hEGH+b0BGWrb91xM8Sn/kEpA==
-X-Google-Smtp-Source: AGHT+IGJIW7uSGphtKFOvMwfljCQ/8rZhpwJOWe7mVWX8TVan9ezOmBt2LWw5SFFQ9yDj8Zksn+cwqmk3E0OCdyRY5E=
-X-Received: by 2002:a25:ae42:0:b0:dbd:7f9e:8190 with SMTP id
- g2-20020a25ae42000000b00dbd7f9e8190mr4998501ybe.67.1705496331697; Wed, 17 Jan
- 2024 04:58:51 -0800 (PST)
-MIME-Version: 1.0
-References: <20240115160554.720247-1-andri@yngvason.is>
- <20240115160554.720247-3-andri@yngvason.is>
- <20240116114235.GA311990@toolbox>
- <CAFNQBQz3TNj_7BSmFw4CFMNuR4B+1d+y3f058s+rzTuzdYogqA@mail.gmail.com>
- <20240116132918.GB311990@toolbox>
- <CAFNQBQyfWmfu5T7bgZDZFGfyhsxQi7YXmY_wPc9Y+mm5iSspXQ@mail.gmail.com>
- <20240117112150.4399d0bb@eldfell>
-In-Reply-To: <20240117112150.4399d0bb@eldfell>
-From: Andri Yngvason <andri@yngvason.is>
-Date: Wed, 17 Jan 2024 12:58:15 +0000
-Message-ID: <CAFNQBQwoGvSF1ryOPUUnedYUG64HqFQNXjMf6R7piufN64Vc=g@mail.gmail.com>
-Subject: Re: [PATCH v2 2/4] drm/uAPI: Add "force color format" drm property as
- setting for userspace
-To: Pekka Paalanen <ppaalanen@gmail.com>
-Content-Type: text/plain; charset="UTF-8"
+Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6E84810E067
+ for <intel-gfx@lists.freedesktop.org>; Wed, 17 Jan 2024 13:16:46 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1705497406; x=1737033406;
+ h=from:to:subject:date:message-id:references:in-reply-to:
+ content-transfer-encoding:mime-version;
+ bh=frcCV1k9oG9oKj3dpUqdJg1PxRT2RSN/XKdLCPjaYaY=;
+ b=csojktztf936HfnJbhcnSh4kISoM0lF3E0FaJk8gdTMa7AggH9wdGJ04
+ J2GOXouc8Hpg9vDItNkpZqEYsWoAHwif5bicLFd+F+vKkhUfXySXf68O6
+ nMJDiiPgV9sjxd1ltwx3Y7um36zFrm51hYXM0UgIMzhQzKAIXTWYwXANV
+ WTWQcMb+YV1mFAReTS/5nFNkl7zQfkirKfONvCCZYfCdf4ECLvUncZCaM
+ skhwY4A6ineZwEsYKoAfVyRfMQ+DJyS1ifNv6QLrLU8pcTxnuSU6LVKNw
+ /r+6aAQXcqgxBlY3tT9njQ+whYpYC6ADxKfenMQITmOpq9UAXtPCiJoIc Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10955"; a="486316212"
+X-IronPort-AV: E=Sophos;i="6.05,200,1701158400"; d="scan'208";a="486316212"
+Received: from fmsmga006.fm.intel.com ([10.253.24.20])
+ by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 17 Jan 2024 05:16:45 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10955"; a="1031347510"
+X-IronPort-AV: E=Sophos;i="6.05,200,1701158400"; d="scan'208";a="1031347510"
+Received: from fmsmsx603.amr.corp.intel.com ([10.18.126.83])
+ by fmsmga006.fm.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
+ 17 Jan 2024 05:16:44 -0800
+Received: from fmsmsx610.amr.corp.intel.com (10.18.126.90) by
+ fmsmsx603.amr.corp.intel.com (10.18.126.83) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.35; Wed, 17 Jan 2024 05:16:44 -0800
+Received: from fmsmsx610.amr.corp.intel.com (10.18.126.90) by
+ fmsmsx610.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.35; Wed, 17 Jan 2024 05:16:43 -0800
+Received: from fmsedg602.ED.cps.intel.com (10.1.192.136) by
+ fmsmsx610.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.35 via Frontend Transport; Wed, 17 Jan 2024 05:16:43 -0800
+Received: from NAM11-CO1-obe.outbound.protection.outlook.com (104.47.56.169)
+ by edgegateway.intel.com (192.55.55.71) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.1.2507.35; Wed, 17 Jan 2024 05:16:43 -0800
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=KBGEoAFQb70FJhM7eHFxjIsAUnqO74HAwkdwc7WjmWtaLjFNG1IFNwbjOvv7M/u9xP+I3ixdbbmUD37+mUUScuTRPJv0lFKLaXv2NZFnz81Rli9ADqev72BrLNKHNkAs7oGiFCGhE3H0ZNux/92V7mwJK5XSewZB/BD7JMVOuGurhWD/ryIl/HaX5uNyJfyTFQTmE/dDCtyXkFxFMM2E3WqMf/cXBYUsWQuB9np+mELEgla49OSMxhbN4sz/AK2VzuLBdSXyKMtIquoR1PiPF+kfsOmaZp/T5FmZy2mQ1SKno5nPOcUkdH09DLPMLFDMGVTGqSjyW0NGZMZSZzlLUA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=47DEQpj8HBSa+/TImW+5JCeuQeRkm5NMpJWZG3hSuFU=;
+ b=Cpu+6S4tB5ZGYcjF9V0eRinlqYYqU7WOwvBEF2uGiIT9YLPEY3j6Sfu+O2K38YA5foQGdZ/cBZBMnhSJLCymR7Ia5eqgvw6rWgjkhegBZon4TeXYUe32qsKnjvUsNBKPVC2Rev3Df+bjrsDWohaA7z4VFPqb4oPypMMb8N2wQ2Z3BKY22vDpK0LZjc6BSkljN5/oKpSCkvyHun69Hotzq/f9Uth3sI3so6/+KZC9PhHTsKAVODStpE9ONdCh9wD3TwTtZP6uvVn3dk14GwpWe9rY0LtGua+9T4HeiEN7dYAjT9U8mglFuE1SsOwSVDtWP7uGyIkuF5JLjwCWDqwbsg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Received: from DM4PR11MB6019.namprd11.prod.outlook.com (2603:10b6:8:60::5) by
+ SA2PR11MB4940.namprd11.prod.outlook.com (2603:10b6:806:fa::13) with
+ Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.7202.23; Wed, 17 Jan 2024 13:16:41 +0000
+Received: from DM4PR11MB6019.namprd11.prod.outlook.com
+ ([fe80::dde1:91ce:98c6:d737]) by DM4PR11MB6019.namprd11.prod.outlook.com
+ ([fe80::dde1:91ce:98c6:d737%7]) with mapi id 15.20.7181.026; Wed, 17 Jan 2024
+ 13:16:41 +0000
+From: "Hogander, Jouni" <jouni.hogander@intel.com>
+To: "ville.syrjala@linux.intel.com" <ville.syrjala@linux.intel.com>,
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
+Subject: Re: [PATCH v2 8/9] drm/i915: Perform vblank evasion around legacy
+ cursor updates
+Thread-Topic: [PATCH v2 8/9] drm/i915: Perform vblank evasion around legacy
+ cursor updates
+Thread-Index: AQHaSL2Pc3RIISX5AUqgjPI1Loy2/LDd/VUA
+Date: Wed, 17 Jan 2024 13:16:41 +0000
+Message-ID: <a41dec6c7989d3437d88ff45dc7dd9550dba2510.camel@intel.com>
+References: <20231213102519.13500-9-ville.syrjala@linux.intel.com>
+ <20240116204927.23499-1-ville.syrjala@linux.intel.com>
+In-Reply-To: <20240116204927.23499-1-ville.syrjala@linux.intel.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: DM4PR11MB6019:EE_|SA2PR11MB4940:EE_
+x-ms-office365-filtering-correlation-id: 0cc61af1-191a-44b0-b80d-08dc175e8b6f
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: 2OHMlNm6eBdflBAZ/H3PILble+URtgkBBmbD8urR/2PgskobjkZJXwYTelBmf7bMTIwA2kiqCuwGaw6hnxT6bwo6O4Pm4X/0R3+8OlOMl9e/mPB5X2Q+XD3vsvMjk+19DsjBHUue2t50C6+7xj+xnbFeTJqzSGEKCD1VTkYq026XLhBN7xkUMWdBfJCzSvgoXpCEfD7KkJlgaTNoxcEYYTXCMllS0vV0ZumQcWFjrJqeossdN3Fo2u3VF8Kan9Xdn85p+wIygx8NIQBO48v+4e93X/VDvyrZgJI24boOogAEFzIxgSyCMVvEnMl74ASvh7vABdHO7nxsC8Tk05Y04baqeIsvu2FNgk/iZn5zWJ4=
+x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:DM4PR11MB6019.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230031)(136003)(346002)(39860400002)(396003)(366004)(376002)(230922051799003)(64100799003)(1800799012)(451199024)(186009)(82960400001)(38100700002)(41300700001)(73894004)(621065003)(38070700009)(36756003)(86362001)(122000001)(8676002)(316002)(66556008)(8936002)(66946007)(76116006)(66476007)(64756008)(66446008)(26005)(91956017)(110136005)(6486002)(478600001)(2616005)(4270600006)(6506007)(6512007)(2906002)(71200400001);
+ DIR:OUT; SFP:1102; 
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?iso-8859-1?Q?phHwIOdz+qDcD2Rx4CZj2/D4treeD9O5KO6NLbcokxQRwleoLmU2t28HPt?=
+ =?iso-8859-1?Q?ayURm6jrBtrmOcSd8O/5xXQaqfztoXpP9TpqWuIm+sV8xsm8Vr+fkrFQuk?=
+ =?iso-8859-1?Q?1/6hNdVJ7J6e6GaBbxoLVkQ6obDVaxKPPeyusfy8PNelJ8V9gfIw9etIFZ?=
+ =?iso-8859-1?Q?SR5DQriLOrsSqQBmXD6uaulBWbOibZWPXWJ0OM6097ECZFfeXlngIaojtp?=
+ =?iso-8859-1?Q?JklS35ISpCVu7cunCro3EQMgB0mHU6yPwk5z+g2+nDk2ee4+NoMayy+Qod?=
+ =?iso-8859-1?Q?Leb3crPcLfJHN/BYp2Vz6CxCenUfzmgE6SKWZ7afx3Ji9QzDpAoJDeLRjs?=
+ =?iso-8859-1?Q?MTMnQ4pDPXJKRYv/kDzlUHNbqK9y2oGunMVAm5SyzkZD3x41S1X9Qkctud?=
+ =?iso-8859-1?Q?0iYtlkx9liCNs1IMnQMqnefgJEz7QbhF4+zvcZrindZhQSHXpgB0PyQb2X?=
+ =?iso-8859-1?Q?s1NlpkMqoaADwOwdbXj3Zzdo4HTpdN5ymcTyny+mpH12vdQTScfmqHVCfz?=
+ =?iso-8859-1?Q?lEnKRfmV5gixkwjsG2DJKLa5JCH8tkAkw9bXvMUT4mBd0NeQc+tV74AIgs?=
+ =?iso-8859-1?Q?IFulBa55Qhk062ZGKD/h1qWQ2xmZ92p7ur3ZHtdZ9dhPoXZmWCadKdee40?=
+ =?iso-8859-1?Q?e9fGLYc5la8VCCa8iA0v2GQgJftvS3oBh4k0nKIu9VJBqoeSm7H//jyBRL?=
+ =?iso-8859-1?Q?N8NlVLALSIrGeHcQ08L+b+ASw21kmazGO6g8vGAbdboqgU0cV+qs167Qjx?=
+ =?iso-8859-1?Q?htHi7BnQ9v1ZC2w+h+tWgev5P4hcLjoknE0VkXF7wyWwXCtS+0iuw2JChF?=
+ =?iso-8859-1?Q?x+04W6VpilG/rE4j1ISRDntg1ZLMEl/q7vL+Bh4bpIPVak3JjrE6ZXODW5?=
+ =?iso-8859-1?Q?NemwwTooNRFZv6OgQjM1TU4/dT4DX6NuHjcsU5wjlvtqT6opOHy4niZtOF?=
+ =?iso-8859-1?Q?a/Zjs7dxxVoetP77iHuXx1DiDERL68EfXtxLOuUzpZEjpsktwBB88EHoPR?=
+ =?iso-8859-1?Q?JAbul4dbQHKjfkC0ldwvTF6pi7zu2UldMg/PPjyPVSycWTgvxLIg1PXONA?=
+ =?iso-8859-1?Q?8QdFXfuiApJ9/Wz1JHgivfHTLZyFBj2PyOBbX0FR/E7DvAuzP+2woBXn4v?=
+ =?iso-8859-1?Q?odqu+EM3S98Wm1hNkcOMxfMTbW4NiruHt8NxIKyb4SEWwCrFvrw9u7V0k2?=
+ =?iso-8859-1?Q?obc1CowfnUPhcQquWgUaGNOHVDkUnhc4Dhi8FetDc/o5epILLs+w125xi7?=
+ =?iso-8859-1?Q?aOcDsBhgsDDtlFiG2bz+pjdNgTgAF7ql/4hna6w9mLCH4XgCdacgKiqNo/?=
+ =?iso-8859-1?Q?egVXYypgjfExBBmZnY73ypP9aH0JSvOR5/LG3ZzixNfhChjOseDkcR7m5S?=
+ =?iso-8859-1?Q?Efk3I9Bp3gIY9clYDXfyRK2fEvStHC2bJfBpxlTB0kQRcYp4OxJRS8xcAU?=
+ =?iso-8859-1?Q?2QN+XuyRuNjIuHDf0GP2YTxvL7oKQUR0z1RKhpDSB7sLIq38ulpISnUA1m?=
+ =?iso-8859-1?Q?NVJT76PmsPhLEoAJsJD6SYShQrNQeqTMlZBvI64KrrVHpNfwT2N5PJHWbV?=
+ =?iso-8859-1?Q?DISBNk+5Z5xXqP7vkV7va21EO+rXaYx2XBwh41emKwfoHQ0m0ltynXMCMP?=
+ =?iso-8859-1?Q?S00HvaJUsQ3lTOHzPvqfIfhqbhCAfslMgYEZACYU4pjI4/hn2Pz10Zhg?=
+ =?iso-8859-1?Q?=3D=3D?=
+Content-Type: text/plain; charset="iso-8859-1"
 Content-Transfer-Encoding: quoted-printable
+MIME-Version: 1.0
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: DM4PR11MB6019.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 0cc61af1-191a-44b0-b80d-08dc175e8b6f
+X-MS-Exchange-CrossTenant-originalarrivaltime: 17 Jan 2024 13:16:41.3322 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: ZmqqdIOfSkYxoWhowT9epLrK4/erBto0j1p3BIrz5An2GyJrqFS0CxLX+YXk4XpWleVIpI4LRahLdSHe0aVl6fYUcpkkQtgbrmRYD72QHck=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA2PR11MB4940
+X-OriginatorOrg: intel.com
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -72,256 +155,7 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Maxime Ripard <mripard@kernel.org>,
- Sebastian Wick <sebastian.wick@redhat.com>, amd-gfx@lists.freedesktop.org,
- Daniel Vetter <daniel@ffwll.ch>, Leo Li <sunpeng.li@amd.com>,
- intel-gfx@lists.freedesktop.org, "Pan, Xinhui" <Xinhui.Pan@amd.com>,
- Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>, linux-kernel@vger.kernel.org,
- dri-devel@lists.freedesktop.org, Thomas Zimmermann <tzimmermann@suse.de>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Alex Deucher <alexander.deucher@amd.com>, David Airlie <airlied@gmail.com>,
- =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-mi=C3=B0., 17. jan. 2024 kl. 09:21 skrifa=C3=B0i Pekka Paalanen <ppaalanen@=
-gmail.com>:
->
-> On Tue, 16 Jan 2024 14:11:43 +0000
-> Andri Yngvason <andri@yngvason.is> wrote:
->
-> > =C3=BEri., 16. jan. 2024 kl. 13:29 skrifa=C3=B0i Sebastian Wick
-> > <sebastian.wick@redhat.com>:
-> > >
-> > > On Tue, Jan 16, 2024 at 01:13:13PM +0000, Andri Yngvason wrote:
-> > [...]
-> > > > =C5=9Fri., 16. jan. 2024 kl. 11:42 skrifa=C4=9Fi Sebastian Wick
-> > > > <sebastian.wick@redhat.com>:
-> > > > >
-> > > > > On Mon, Jan 15, 2024 at 04:05:52PM +0000, Andri Yngvason wrote:
-> > > > > > From: Werner Sembach <wse@tuxedocomputers.com>
-> > > > > >
-> > > > > > Add a new general drm property "force color format" which can b=
-e used
-> > > > > > by userspace to tell the graphics driver which color format to =
-use.
-> > > > >
-> > > > > I don't like the "force" in the name. This just selects the color
-> > > > > format, let's just call it "color format" then.
-> > > > >
-> > > >
-> > > > In previous revisions, this was "preferred color format" and "actua=
-l
-> > > > color format", of which the latter has been dropped. I recommend
-> > > > reading the discussion for previous revisions.
-> > >
-> > > Please don't imply that I didn't read the thread I'm answering to.
->
-> FYI, I have not read this thread.
->
 
-pq, You did not read this summary?
-https://lore.kernel.org/dri-devel/CAFNQBQwjeJaX6B4oewpgASMUd5_nxZYMxUfdOG29=
-4CTVGBTd1w@mail.gmail.com/
-
-You partook in the discussion on IRC. Please read it and tell me if I
-misunderstood anything.
-
-Sebastian, I apologise. You clearly read it as you even replied to it!
-
-> > >
-> > > > There are arguments for adding "actual color format" later and if i=
-t
-> > > > is added later, we'd end up with "color format" and "actual color
-> > > > format", which might be confusing, and it is why I chose to call it
-> > > > "force color format" because it clearly communicates intent and
-> > > > disambiguates it from "actual color format".
-> > >
-> > > There is no such thing as "actual color format" in upstream though.
-> > > Basing your naming on discarded ideas is not useful. The thing that s=
-ets
-> > > the color space for example is called "Colorspace", not "force
-> > > colorspace".
-> > >
-> >
-> > Sure, I'm happy with calling it whatever people want. Maybe we can
-> > have a vote on it?
->
-> It would sound strange to say "force color format" =3D "auto". Just drop
-> the "force" of it.
->
-> If and when we need the feedback counterpart, it could be an immutable
-> prop called "active color format" where "auto" is not a valid value, or
-> something in the new "output properties" design Sima has been thinking
-> of.
-
-There seems to be consensus for calling it "color format"
-
->
-> > > > [...]
-> > > > > > @@ -1396,6 +1404,15 @@ static const u32 dp_colorspaces =3D
-> > > > > >   *   drm_connector_attach_max_bpc_property() to create and att=
-ach the
-> > > > > >   *   property to the connector during initialization.
-> > > > > >   *
-> > > > > > + * force color format:
-> > > > > > + *   This property is used by userspace to change the used col=
-or format. When
-> > > > > > + *   used the driver will use the selected format if valid for=
- the hardware,
-> > > > >
-> > > > > All properties are always "used", they just can have different va=
-lues.
-> > > > > You probably want to talk about the auto mode here.
-> > > >
-> > > > Maybe we can say something like: If userspace does not set the
-> > > > property or if it is explicitly set to zero, the driver will select
-> > > > the appropriate color format based on other constraints.
-> > >
-> > > The property can be in any state without involvement from user space.
-> > > Don't talk about setting it, talk about the state it is in:
-> > >
-> > >   When the color format is auto, the driver will select a format.
-> > >
-> >
-> > Ok.
-> >
-> > > > >
-> > > > > > + *   sink, and current resolution and refresh rate combination=
-. Drivers to
-> > > > >
-> > > > > If valid? So when a value is not actually supported user space ca=
-n still
-> > > > > set it? What happens then? How should user space figure out if th=
-e
-> > > > > driver and the sink support the format?
-> > > >
-> > > > The kernel does not expose this property unless it's implemented in=
- the driver.
-> > >
-> > > If the driver simply doesn't support *one format*, the enum value for
-> > > that format should not be exposed, period. This isn't about the prope=
-rty
-> > > on its own.
-> >
-> > Right, understood. You mean that enum should only contain values that
-> > are supported by the driver.
->
-> Yes. When a driver installs a property, it can choose which of the enum
-> entries are exposed. That cannot be changed later though, so the list
-> cannot live by the currently connected sink, only by what the driver
-> and display controlled could ever do.
-
-Yes, and I think that basing it also on the connected sink's
-capabilities would just add complexity for very little gain. In fact,
-I think that limiting it based on the driver's capabilities is also
-over-engineering, but I don't mind adding it if that's what people
-really want.
-
->
-> > > > This was originally "preferred color format". Perhaps the
-> > > > documentation should better reflect that it is now a mandatory
-> > > > constraint which fails the modeset if not satisfied.
-> > >
-> > > That would definitely help.
-> > >
-> > > > >
-> > > > > For the Colorspace prop, the kernel just exposes all formats it s=
-upports
-> > > > > (independent of the sink) and then makes it the job of user space=
- to
-> > > > > figure out if the sink supports it.
-> > > > >
-> > > > > The same could be done here. Property value is exposed if the dri=
-ver
-> > > > > supports it in general, commits can fail if the driver can't supp=
-ort it
-> > > > > for a specific commit because e.g. the resolution or refresh rate=
-. User
-> > > > > space must look at the EDID/DisplayID/mode to figure out the supp=
-orted
-> > > > > format for the sink.
-> > > >
-> > > > Yes, we can make it possible for userspace to discover which modes =
-are
-> > > > supported by the monitor, but there are other constraints that need=
- to
-> > > > be satisfied. This was discussed in the previous revision.
-> > >
-> > > I mean, yes, that's what I said. User space would then only be
-> > > responsible for checking the sink capabilities and the atomic check
-> > > would take into account other (non-sink) constraints.
-> >
-> > Since we need to probe using TEST_ONLY anyway, we'll end up with two
-> > mechanisms to do the same thing where one of them depends on the other
-> > for completeness.
->
-> What do you mean by "same thing"?
-
-I thought that it would be clear that I did not mean that they were
-literally equal. This was discussed on IRC and summarised in the email
-message that I linked to above. Excerpt:
-"I asked if it made sense to add color format capabilities to the mode info
-struct, but the conclusion was that it wouldn't really be useful because we
-need TEST_ONLY anyway to see if the color format setting is compatible with
-other settings."
-
->
-> Neither HDMI nor DisplayPort have a feedback message saying your
-> infoframe contents are unacceptable, that I know of. Even if there was,
-> it would come too late for failing the atomic commit ioctl in
-> non-blocking mode.
->
-> In general, display signalling is that you send whatever to the sink,
-> and hope for the best.
->
-> EDID is used to describe what the sink can accept, so in theory the
-> kernel could parse EDID for all of these details and reject atomic
-> commits that attempt unsupported configurations. However, EDID are also
-> notoriously buggy. They are good for a best guess, but I believe it is
-> useful to be able to try "unsupported" things. IIRC, PS VR2
-> intentionally lies for instance.
->
-> Even if the kernel did reject everything based on EDID, the only way
-> today for userspace to know what should work is to parse the EDID
-> itself. TEST_ONLY trials lead to a combinatorial explosion too easily.
-> So userspace is already expected to parse EDID, with the major
-> exception being video mode lists that are explicitly provided by the
-> kernel in UAPI.
-
-I thought that everyone agreed that display settings GUIs don't suffer
-from combinatorial explosion because settings are selected in a
-predefined order so they don't need to test all permutations.
-
->
-> EDID and DisplayID standards also evolve. The kernel could be behind
-> userspace in chasing them, which was the reason why the kernel does not
-> validate HDR_OUTPUT_METADATA against EDID.
->
-> The design of today with HDR_OUTPUT_METADATA and whatnot is
-> that userspace is responsible for checking sink capabilities, and
-> atomic check is responsible for driver and display controller
-> capabilities.
-
-I'm not really sure where you're going with this. Are you for or
-against userspace parsing EDID instead of getting the information from
-the kernel?
-
->
-> > > > In any case, these things can be added later and need not be a part=
- of
-> > > > this change set.
-> > >
-> > > No, this is the contract between the kernel and user space and has to=
- be
-> > > figured out before we can merge new uAPI.
->
-> Indeed.
-
-I don't see how adding something later to cut down on the
-combinatorial explosion can possibly break any kind of contract in the
-way things are currently implemented. Can anyone provide examples of
-how things can go wrong in this particular instance?
-
-Thanks,
-Andri
