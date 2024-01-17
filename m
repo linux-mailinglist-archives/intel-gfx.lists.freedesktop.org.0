@@ -2,54 +2,52 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 94FF3830503
-	for <lists+intel-gfx@lfdr.de>; Wed, 17 Jan 2024 13:14:21 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 987B3830557
+	for <lists+intel-gfx@lfdr.de>; Wed, 17 Jan 2024 13:33:08 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 139D710E117;
-	Wed, 17 Jan 2024 12:13:50 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 44AD210E660;
+	Wed, 17 Jan 2024 12:33:07 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DFF1F10E117
- for <intel-gfx@lists.freedesktop.org>; Wed, 17 Jan 2024 12:13:48 +0000 (UTC)
+X-Greylist: delayed 427 seconds by postgrey-1.36 at gabe;
+ Wed, 17 Jan 2024 12:33:05 UTC
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C49E010E640
+ for <intel-gfx@lists.freedesktop.org>; Wed, 17 Jan 2024 12:33:05 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1705493629; x=1737029629;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=DHVrKi9yYtNb2LWBKrd6P4Fx+Slc/BZcImPsN1lfOn8=;
- b=GQLKqUslu3SXZxYnF3R9e+NwP3Pb2ZVlQ507YSfjB/gZRp+7golfB956
- UVRcxLaESPR3QvU8SeHLiGtheCrCh/ipqt3DKe1p3A1/gBgp9vQ0D1Pzy
- Vn2IXFVzBvzXJKp70KAgkmK2VjO4KX73MQxnJ6OG2rgvWSEtf0lAOxkKw
- BXTVMSOsCS+CwMFKAEM1qWENZmvzvVucSbf10PHRUb64hTs898kd/238j
- UyBKP7jlalrOscfKvVlGMdeUPKJm659FPboLIVYHI/tgmGo5hhxMm9gve
- vZ/kugUm1OC+FJ/o+d0oRkBHphcdGatYpSW0XHxmDW4eXIn5wMKlMUI32 g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10955"; a="6857513"
+ t=1705494786; x=1737030786;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=Fp2n5mxxHpouk3/AlL/ybfPKnryTg5kaYn7YlFRL2h8=;
+ b=b5s67gGgV34KXAYipeuI6hhKssd2qKAKr65gaL0A+JlXZWOtTAEUbKlM
+ letZ166uLtfQQNUunquCsSwKexX/7uNAtOrv6aWuR3+zHeSddNS3a23Yz
+ mt07QxKRw2J/NjMxhhJdS5T+PV/YTqORtJtQIoYBKpWpTYNsFXo4onX2T
+ 5SQG8LaRjtFswitaTdQoRqJeEh3JacZpC4TaJt00vuzFp3CL6AAG3hn+M
+ lmyv7hyCKjpgCc17hhbn9lwAPuRMikV+AwhI8j4+FiNOBDRXAUpXb0Sab
+ SLe3G6QlHfBHqjUm08MLzviYuU5jXskbXojT2AXeWOUd9ebDpkIjiburD A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10955"; a="40665"
 X-IronPort-AV: E=Sophos;i="6.05,200,1701158400"; 
-   d="scan'208";a="6857513"
-Received: from orsmga007.jf.intel.com ([10.7.209.58])
- by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Jan 2024 04:13:48 -0800
+   d="scan'208";a="40665"
+Received: from fmviesa002.fm.intel.com ([10.60.135.142])
+ by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 17 Jan 2024 04:25:58 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10955"; a="777434260"
-X-IronPort-AV: E=Sophos;i="6.05,200,1701158400"; d="scan'208";a="777434260"
-Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.74])
- by orsmga007.jf.intel.com with SMTP; 17 Jan 2024 04:13:45 -0800
-Received: by stinkbox (sSMTP sendmail emulation);
- Wed, 17 Jan 2024 14:13:44 +0200
-Date: Wed, 17 Jan 2024 14:13:44 +0200
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: "Shankar, Uma" <uma.shankar@intel.com>
-Subject: Re: [PATCH 0/9] drm/i915: Cursor vblank evasion
-Message-ID: <ZafEePMCGQk39Npd@intel.com>
-References: <20231213102519.13500-1-ville.syrjala@linux.intel.com>
- <CY5PR11MB6344AB8C492AEEA3E2700F53F4722@CY5PR11MB6344.namprd11.prod.outlook.com>
+X-IronPort-AV: E=Sophos;i="6.05,200,1701158400"; d="scan'208";a="18826426"
+Received: from msznigir-mobl.ger.corp.intel.com (HELO localhost)
+ ([10.252.38.230])
+ by fmviesa002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 17 Jan 2024 04:25:51 -0800
+From: Jani Nikula <jani.nikula@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Subject: [PATCH] drm/i915/opregion: remove unused lid_state
+Date: Wed, 17 Jan 2024 14:25:46 +0200
+Message-Id: <20240117122546.1551400-1-jani.nikula@intel.com>
+X-Mailer: git-send-email 2.39.2
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
+Content-Type: text/plain; charset=UTF-8
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <CY5PR11MB6344AB8C492AEEA3E2700F53F4722@CY5PR11MB6344.namprd11.prod.outlook.com>
-X-Patchwork-Hint: comment
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -62,44 +60,39 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
+Cc: jani.nikula@intel.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, Jan 17, 2024 at 11:30:10AM +0000, Shankar, Uma wrote:
-> 
-> 
-> > -----Original Message-----
-> > From: Intel-gfx <intel-gfx-bounces@lists.freedesktop.org> On Behalf Of Ville
-> > Syrjala
-> > Sent: Wednesday, December 13, 2023 3:55 PM
-> > To: intel-gfx@lists.freedesktop.org
-> > Subject: [PATCH 0/9] drm/i915: Cursor vblank evasion
-> > 
-> > From: Ville Syrj‰l‰ <ville.syrjala@linux.intel.com>
-> > 
-> > MTL seems very good at racing the cursor mailbox updates against the vblank,
-> > causing things to not latch for long enough to cause GTT faults. Attempt to hook
-> > up vblank evasions into the legacy cursor path to avoid this.
-> > 
-> > Also revert a dangerous wm/ddb change related to cursors.
-> 
-> I have already RB'ed the changes in the series but somehow patchwork had issues and
-> not reflecting the same.
-> 
-> FWIW, this series is
-> Reviewed-by: Uma Shankar <uma.shankar@intel.com>
-> 
-> Please merge once the CI results show green, seems one test
-> igt@kms_cursor_legacy@torture-move@pipe-a throwing some warnings.
+Not sure if lid_state has ever been used, but at least not for a long
+time. Remove it.
 
-Seems we're still seeing some timeouts from the vblank evasion,
-indicating the schedule_timeout(1ms) took approximately some
-integer multiple of the frame time :(
+Suggested-by: Ville Syrj√§l√§ <ville.syrjala@linux.intel.com>
+Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+---
+ drivers/gpu/drm/i915/display/intel_opregion.c | 2 --
+ 1 file changed, 2 deletions(-)
 
-To confirm what's happening I might need to pull the full
-vblank evasion debugs to into the cursor path as well...
-
+diff --git a/drivers/gpu/drm/i915/display/intel_opregion.c b/drivers/gpu/drm/i915/display/intel_opregion.c
+index 3f5a20f9153e..f242bb320610 100644
+--- a/drivers/gpu/drm/i915/display/intel_opregion.c
++++ b/drivers/gpu/drm/i915/display/intel_opregion.c
+@@ -266,7 +266,6 @@ struct intel_opregion {
+ 	void *vbt_firmware;
+ 	const void *vbt;
+ 	u32 vbt_size;
+-	u32 *lid_state;
+ 	struct work_struct asle_work;
+ 	struct notifier_block acpi_notifier;
+ };
+@@ -958,7 +957,6 @@ int intel_opregion_setup(struct drm_i915_private *dev_priv)
+ 		goto err_out;
+ 	}
+ 	opregion->header = base;
+-	opregion->lid_state = base + ACPI_CLID;
+ 
+ 	drm_dbg(&dev_priv->drm, "ACPI OpRegion version %u.%u.%u\n",
+ 		opregion->header->over.major,
 -- 
-Ville Syrj‰l‰
-Intel
+2.39.2
+
