@@ -2,51 +2,50 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 48937830A25
-	for <lists+intel-gfx@lfdr.de>; Wed, 17 Jan 2024 16:57:32 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7E08A830A2A
+	for <lists+intel-gfx@lfdr.de>; Wed, 17 Jan 2024 16:58:00 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0CBC710E6C4;
-	Wed, 17 Jan 2024 15:57:30 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7232B10E0C7;
+	Wed, 17 Jan 2024 15:57:28 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 992FF10E0C7
- for <intel-gfx@lists.freedesktop.org>; Wed, 17 Jan 2024 15:57:25 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5C6CC10E0C7
+ for <intel-gfx@lists.freedesktop.org>; Wed, 17 Jan 2024 15:57:27 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1705507046; x=1737043046;
+ t=1705507048; x=1737043048;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=0/gfMDbY36MCoIW8ZrR0Ma4cZbYLVLbXe+Aoj/A/fsA=;
- b=TKa73A/3/DezpvIweYNTW0gOmxq0y6mkl/bvZfKW5URSfDU9bGzOHL9y
- cDrFmWs4Qg3lwm9WPeKTskRCrJngOmmdolPHALsXK+Upv2qMUgAOJP4ZC
- jZ3dPnJBVT4LEdRyRiqE6fi3VHEqrdBX1uWNUAY8oaM1Oo8mjfdy9gyqi
- 1koGL16Dn8z4ypTL/9JFGPwBJIG4FsRIZisWJK1Y05/KLwJlYAZ/vZzdQ
- 7kgZhoedbQlf2n04tEPgXAdonb9C9g4buT4ojluNh65WxAfAQIADnEsA+
- G5fEelGYV895eN5Khu6cAAe4vuRRB/7lN6XolADYAg8Z9rUuTLYCQ+noH g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10956"; a="6904373"
+ bh=p1FcO1QiHD+EBeYZwXKoUwusYFz2N5mu1H5hel7ffYk=;
+ b=ZgSBFtZ2EXRAL2idqjNB+b7rFO5zm1DybKQeXz62RweTo+nh0wLh0HoV
+ IrYGBdUAnajz/1URRgypHIDjdzBQRCGeyBuGdzxsVOZKmJ+Lmtk3R/VT4
+ fEf0xepmCpkCyaBCRQ6oXXZZihRDD19vZgdi80aNRg4OJZS84TA1q99Vu
+ acJ8ZjAt1jS/iyUir7y781QZ5oMhNCPzZK0k9g3iB4cLKWk0eN9DTZ1DE
+ WRj9JYgxZo7cpSoo2mtIXkAhYirMthrK13LijsbVc0+6+uMM3bySjOOPH
+ QzJj571SkGfeMEoQ98yWWYDL8zLVRgJqZ/dQWPnsRcI23/Hn2n53W3ooZ A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10956"; a="6904376"
 X-IronPort-AV: E=Sophos;i="6.05,200,1701158400"; 
-   d="scan'208";a="6904373"
+   d="scan'208";a="6904376"
 Received: from orsmga004.jf.intel.com ([10.7.209.38])
  by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Jan 2024 07:57:26 -0800
+ 17 Jan 2024 07:57:27 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10956"; a="907789539"
-X-IronPort-AV: E=Sophos;i="6.05,200,1701158400"; d="scan'208";a="907789539"
+X-IronPort-AV: E=McAfee;i="6600,9927,10956"; a="907789545"
+X-IronPort-AV: E=Sophos;i="6.05,200,1701158400"; d="scan'208";a="907789545"
 Received: from unknown (HELO slisovsk-Lenovo-ideapad-720S-13IKB.fi.intel.com)
  ([10.237.72.65])
- by orsmga004.jf.intel.com with ESMTP; 17 Jan 2024 07:57:23 -0800
+ by orsmga004.jf.intel.com with ESMTP; 17 Jan 2024 07:57:25 -0800
 From: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Subject: [PATCH 2/3] drm/i915: Extract code required to calculate max qgv/psf
- gv point
-Date: Wed, 17 Jan 2024 17:57:17 +0200
-Message-Id: <20240117155718.3439-3-stanislav.lisovskiy@intel.com>
+Subject: [PATCH 3/3] drm/i915: Disable SAGV on bw init,
+ to force QGV point recalculation
+Date: Wed, 17 Jan 2024 17:57:18 +0200
+Message-Id: <20240117155718.3439-4-stanislav.lisovskiy@intel.com>
 X-Mailer: git-send-email 2.37.3
 In-Reply-To: <20240117155718.3439-1-stanislav.lisovskiy@intel.com>
 References: <20240117155718.3439-1-stanislav.lisovskiy@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -63,154 +62,84 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-We need that in order to force disable SAGV in next patch.
-Also it is beneficial to separate that code, as in majority cases,
-when SAGV is enabled, we don't even need those calculations.
-Also we probably need to determine max PSF GV point as well, however
-currently we don't do that when we disable SAGV, which might be
-actually causing some issues in that case.
+Problem is that on some platforms, we do get QGV point mask in wrong
+state on boot. However driver assumes it is set to 0
+(i.e all points allowed), however in reality we might get them all restricted,
+causing issues.
+Lets disable SAGV initially to force proper QGV point state.
+If more QGV points are available, driver will recalculate and update
+those then after next commit.
 
-v2: - Introduce helper adl_qgv_bw(counterpart to adl_psf_bw)
-      (Ville Syrjälä)
-    - Don't restrict psf gv points for SAGV disable case
-      (Ville Syrjälä)
+v2: - Added trace to see which QGV/PSF GV point is used when SAGV is
+      disabled.
+v3: - Move force disable function to intel_bw_init in order to initialize
+      bw state as well, so that hw/sw are immediately in sync after init.
+v4: - Don't try sending PCode request, seems like it is not possible at
+      intel_bw_init, however assigning bw->state to be restricted as if
+      SAGV is off, still forces driveer to send PCode request anyway on
+      next modeset, so the solution still works.
+      However we still need to address the case, when no display is connected,
+      which anyway requires much more changes.
 
 Signed-off-by: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_bw.c | 81 ++++++++++++++++---------
- 1 file changed, 53 insertions(+), 28 deletions(-)
+ drivers/gpu/drm/i915/display/intel_bw.c | 24 ++++++++++++++++++++++++
+ drivers/gpu/drm/i915/display/intel_bw.h |  2 ++
+ 2 files changed, 26 insertions(+)
 
 diff --git a/drivers/gpu/drm/i915/display/intel_bw.c b/drivers/gpu/drm/i915/display/intel_bw.c
-index 77886cc21211..7baa1c13eccd 100644
+index 7baa1c13eccd..36a6304207ba 100644
 --- a/drivers/gpu/drm/i915/display/intel_bw.c
 +++ b/drivers/gpu/drm/i915/display/intel_bw.c
-@@ -652,15 +652,31 @@ static unsigned int tgl_max_bw_index(struct drm_i915_private *dev_priv,
- 	return 0;
+@@ -852,6 +852,27 @@ static unsigned int icl_max_bw_qgv_point(struct drm_i915_private *i915,
+ 	return max_bw_point;
  }
  
--static unsigned int adl_psf_bw(struct drm_i915_private *dev_priv,
-+static unsigned int adl_psf_bw(struct drm_i915_private *i915,
- 			       int psf_gv_point)
- {
- 	const struct intel_bw_info *bi =
--			&dev_priv->display.bw.max[0];
-+			&i915->display.bw.max[0];
- 
- 	return bi->psf_bw[psf_gv_point];
- }
- 
-+static unsigned int adl_qgv_bw(struct drm_i915_private *i915,
-+			       int qgv_point, int num_active_planes)
++void icl_force_disable_sagv(struct drm_i915_private *i915, struct intel_bw_state *bw_state)
 +{
-+	unsigned int idx;
++	unsigned int max_bw_qgv_point = icl_max_bw_qgv_point(i915, 0);
++	unsigned int qgv_points;
++	unsigned int psf_points;
 +
-+	if (DISPLAY_VER(i915) > 11)
-+		idx = tgl_max_bw_index(i915, num_active_planes, qgv_point);
-+	else
-+		idx = icl_max_bw_index(i915, num_active_planes, qgv_point);
++	qgv_points = BIT(max_bw_qgv_point);
 +
-+	if (idx >= ARRAY_SIZE(i915->display.bw.max))
-+		return 0;
++	/*
++	 * We don't restrict PSF GV points, when disabling SAGV
++	 */
++	psf_points = 0;
 +
-+	return i915->display.bw.max[idx].deratedbw[qgv_point];
-+}
++	bw_state->qgv_points_mask = ~(ICL_PCODE_REQ_QGV_PT(qgv_points) |
++				      ADLS_PCODE_REQ_PSF_PT(psf_points)) &
++				      icl_qgv_points_mask(i915);
 +
- void intel_bw_init_hw(struct drm_i915_private *dev_priv)
- {
- 	if (!HAS_DISPLAY(dev_priv))
-@@ -806,6 +822,36 @@ intel_atomic_get_bw_state(struct intel_atomic_state *state)
- 	return to_intel_bw_state(bw_state);
- }
- 
-+static unsigned int icl_max_bw_qgv_point(struct drm_i915_private *i915,
-+					 int num_active_planes)
-+{
-+	unsigned int max_bw_point = 0;
-+	unsigned int max_bw = 0;
-+	unsigned int num_qgv_points = i915->display.bw.max[0].num_qgv_points;
-+	int i;
-+
-+	for (i = 0; i < num_qgv_points; i++) {
-+		unsigned int max_data_rate;
-+
-+		max_data_rate = adl_qgv_bw(i915, i, num_active_planes);
-+
-+		/*
-+		 * We need to know which qgv point gives us
-+		 * maximum bandwidth in order to disable SAGV
-+		 * if we find that we exceed SAGV block time
-+		 * with watermarks. By that moment we already
-+		 * have those, as it is calculated earlier in
-+		 * intel_atomic_check,
-+		 */
-+		if (max_data_rate > max_bw) {
-+			max_bw_point = i;
-+			max_bw = max_data_rate;
-+		}
-+	}
-+
-+	return max_bw_point;
++	drm_dbg_kms(&i915->drm, "Forcing SAGV disable: leaving QGV point %d\n",
++				max_bw_qgv_point);
 +}
 +
  static int mtl_find_qgv_points(struct drm_i915_private *i915,
  			       unsigned int data_rate,
  			       unsigned int num_active_planes,
-@@ -883,8 +929,6 @@ static int icl_find_qgv_points(struct drm_i915_private *i915,
- 			       const struct intel_bw_state *old_bw_state,
- 			       struct intel_bw_state *new_bw_state)
- {
--	unsigned int max_bw_point = 0;
--	unsigned int max_bw = 0;
- 	unsigned int num_psf_gv_points = i915->display.bw.max[0].num_psf_gv_points;
- 	unsigned int num_qgv_points = i915->display.bw.max[0].num_qgv_points;
- 	u16 psf_points = 0;
-@@ -897,31 +941,10 @@ static int icl_find_qgv_points(struct drm_i915_private *i915,
- 		return ret;
+@@ -1351,5 +1372,8 @@ int intel_bw_init(struct drm_i915_private *dev_priv)
+ 	intel_atomic_global_obj_init(dev_priv, &dev_priv->display.bw.obj,
+ 				     &state->base, &intel_bw_funcs);
  
- 	for (i = 0; i < num_qgv_points; i++) {
--		unsigned int idx;
- 		unsigned int max_data_rate;
- 
--		if (DISPLAY_VER(i915) >= 12)
--			idx = tgl_max_bw_index(i915, num_active_planes, i);
--		else
--			idx = icl_max_bw_index(i915, num_active_planes, i);
--
--		if (idx >= ARRAY_SIZE(i915->display.bw.max))
--			continue;
--
--		max_data_rate = i915->display.bw.max[idx].deratedbw[i];
-+		max_data_rate = adl_qgv_bw(i915, i, num_active_planes);
- 
--		/*
--		 * We need to know which qgv point gives us
--		 * maximum bandwidth in order to disable SAGV
--		 * if we find that we exceed SAGV block time
--		 * with watermarks. By that moment we already
--		 * have those, as it is calculated earlier in
--		 * intel_atomic_check,
--		 */
--		if (max_data_rate > max_bw) {
--			max_bw_point = i;
--			max_bw = max_data_rate;
--		}
- 		if (max_data_rate >= data_rate)
- 			qgv_points |= BIT(i);
- 
-@@ -965,9 +988,11 @@ static int icl_find_qgv_points(struct drm_i915_private *i915,
- 	 * cause.
- 	 */
- 	if (!intel_can_enable_sagv(i915, new_bw_state)) {
--		qgv_points = BIT(max_bw_point);
-+		unsigned int max_bw_qgv_point = icl_max_bw_qgv_point(i915, num_active_planes);
++	if (DISPLAY_VER(dev_priv) < 14)
++		icl_force_disable_sagv(dev_priv, state);
 +
-+		qgv_points = BIT(max_bw_qgv_point);
- 		drm_dbg_kms(&i915->drm, "No SAGV, using single QGV point %d\n",
--			    max_bw_point);
-+			    max_bw_qgv_point);
- 	}
+ 	return 0;
+ }
+diff --git a/drivers/gpu/drm/i915/display/intel_bw.h b/drivers/gpu/drm/i915/display/intel_bw.h
+index 59cb4fc5db76..243192fd4cae 100644
+--- a/drivers/gpu/drm/i915/display/intel_bw.h
++++ b/drivers/gpu/drm/i915/display/intel_bw.h
+@@ -74,5 +74,7 @@ int intel_bw_calc_min_cdclk(struct intel_atomic_state *state,
+ 			    bool *need_cdclk_calc);
+ int intel_bw_min_cdclk(struct drm_i915_private *i915,
+ 		       const struct intel_bw_state *bw_state);
++void icl_force_disable_sagv(struct drm_i915_private *dev_priv,
++			    struct intel_bw_state *bw_state);
  
- 	/*
+ #endif /* __INTEL_BW_H__ */
 -- 
 2.37.3
 
