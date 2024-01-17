@@ -2,154 +2,53 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id C93F3830C3E
-	for <lists+intel-gfx@lfdr.de>; Wed, 17 Jan 2024 18:53:44 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id C260D830C3F
+	for <lists+intel-gfx@lfdr.de>; Wed, 17 Jan 2024 18:53:45 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 52BB410E764;
-	Wed, 17 Jan 2024 17:53:43 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 050EC10E0BF;
+	Wed, 17 Jan 2024 17:53:14 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-X-Greylist: delayed 428 seconds by postgrey-1.36 at gabe;
- Wed, 17 Jan 2024 17:53:41 UTC
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7164010E764
- for <intel-gfx@lists.freedesktop.org>; Wed, 17 Jan 2024 17:53:41 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B1D4610E0BF
+ for <intel-gfx@lists.freedesktop.org>; Wed, 17 Jan 2024 17:53:12 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1705514021; x=1737050021;
- h=message-id:date:subject:to:cc:references:from:
- in-reply-to:content-transfer-encoding:mime-version;
- bh=Bqoq70ZWectadOGFHdPAS1adYkQ3ASi+qDCltId+GqQ=;
- b=jpvvSeT5DjBxfAJHHbQX54e9Xjxs4ZCgZVX3IHY4+7w0UYtfRP8UJ94d
- uS6rjv4eKt+6QtLBGMO+VG/nk+rTOypymkFWNR7ZOwMoVyQIYiYrwDYNW
- Yo2XqgrIanVpcrgi+8nBqvZhbZg3wgqq9AgLIANOixJbDbFV3MKNlMz1Q
- O7oREYQf4/oMzgzMknI9K7OdpErV4VrVyJ1V2vsc2bPlYA3LnTHvnzhqG
- rC8S3ucjQPNwnM8pGjTs8xNr/8OZRxh7rHfTNT7qsyk/ACV8Cw7PGu36R
- KIiJmxMCs0r0rEjUwv6Qo2zE1eXnGg4FbmqJtiJ0tvLXD+aB+Vqb0TfHL A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10956"; a="119283"
+ t=1705513992; x=1737049992;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:in-reply-to;
+ bh=c5X3LPtq0bGW5W0TcWNNKF7Ck6QvbA6gHJAn8ACGa2U=;
+ b=FoHwp3R8WhKuxP7NguTFzQM8hR9S3gEBklidN823tllPxSvJq3pV8mQe
+ QyHFLwiztAOiNtJaOc7bzkEcX7qe590E7flD/kgvySX1sX8/e+2Oe+YiF
+ nyqkDkDAXRr5aOBjjzKAgXYUaamvk6tGigtDHk0Iezmx0X9vb2S03lO67
+ qOhn+lCUa/oGfaH/aG2efNcDUz3YUkBP9B/+sFiEHdNhWRCwIzN4yzJAP
+ LKOTOX+JyC6AVONrmEHxR41Boa4pK10xig9BkGD0BCF1U3fjpvI1gSkIk
+ xEYvw7fGH/X5dg1lTQLef57ykXv+AvX0q0gNQnftlKoRko7VoFhmCyxSq w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10956"; a="6993941"
 X-IronPort-AV: E=Sophos;i="6.05,200,1701158400"; 
-   d="scan'208";a="119283"
-Received: from orviesa002.jf.intel.com ([10.64.159.142])
- by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Jan 2024 09:46:33 -0800
+   d="scan'208";a="6993941"
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+ by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 17 Jan 2024 09:53:12 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.05,200,1701158400"; d="scan'208";a="26239981"
-Received: from orsmsx601.amr.corp.intel.com ([10.22.229.14])
- by orviesa002.jf.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
- 17 Jan 2024 09:46:33 -0800
-Received: from orsmsx612.amr.corp.intel.com (10.22.229.25) by
- ORSMSX601.amr.corp.intel.com (10.22.229.14) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35; Wed, 17 Jan 2024 09:46:32 -0800
-Received: from orsmsx601.amr.corp.intel.com (10.22.229.14) by
- ORSMSX612.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35; Wed, 17 Jan 2024 09:46:31 -0800
-Received: from ORSEDG601.ED.cps.intel.com (10.7.248.6) by
- orsmsx601.amr.corp.intel.com (10.22.229.14) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35 via Frontend Transport; Wed, 17 Jan 2024 09:46:31 -0800
-Received: from NAM12-BN8-obe.outbound.protection.outlook.com (104.47.55.169)
- by edgegateway.intel.com (134.134.137.102) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.35; Wed, 17 Jan 2024 09:46:31 -0800
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=X8d+17xrrs1K2evIt6VRPC0qZZjuMzs20KYbSL11ZMXBCmpyN29eDS9UYppTwxeIFpjSGEP+88byPxq2VeBGcEHXfUObpxt1J9VB/gP3xlBj2Vwl1PkTGkmlnwdVfkH6YgEykbDWXGEKuDYOUOm+6XuOcZ3cKYn55pcZp3cBEgGadeGe4H/Cj96/f+P7K75bamEFza/OK/4/362VLgf36Wdyq6QHLfRtOnB1dcdsEpIFaAmDwAoSo8bqyptXdrJToF7O3LwTbbdXGmQFOwmP0UUZi9CCPT/PmejQ4HTVecSgb0tKbwIBk6nD5YHyn/IYCltQnaGfnU7XWLUdRxuh1A==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=PaEzIPZxgvKQa855Z/kJghLKqGqLUVc/oQtOmPhNQWM=;
- b=dMu8EfOTNTBdMCUnqQ1s4Oip4G75H8WQWCH2tpKpf0AB0UjVdO1QMaejOV4fKaPu4i9GROd6fUrbD9O9XLKsNtpulWX3KaWqsRydvo5W9c5EHkyDrQvWQVCdqkVZxgiA3gaegvLQq29KYDzYFhrKzeZOYNO5I0YAa2P2aC8cwzIMskSahQWFL3+5yKIl88KcMIPlEgF64vD2C8+Z4fqgikFzDz9zJsozpaXKwXslWQ590NUZJQSl8YdsB0JXr5zkOHF3vLIjE8ONILYBso0/TSfuOtqE/am1CEOBMmrJiIonXU0eoq5GNb+yDDJnXpX/Y32Kqu+IHOS4rGspt/LuiQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from DS0PR11MB6541.namprd11.prod.outlook.com (2603:10b6:8:d3::14) by
- SJ0PR11MB5087.namprd11.prod.outlook.com (2603:10b6:a03:2ad::22) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7181.26; Wed, 17 Jan
- 2024 17:46:29 +0000
-Received: from DS0PR11MB6541.namprd11.prod.outlook.com
- ([fe80::b651:485:1973:7554]) by DS0PR11MB6541.namprd11.prod.outlook.com
- ([fe80::b651:485:1973:7554%3]) with mapi id 15.20.7181.022; Wed, 17 Jan 2024
- 17:46:29 +0000
-Message-ID: <32646e92-e06b-45a4-8d25-185be9c1e4d4@intel.com>
-Date: Wed, 17 Jan 2024 18:46:24 +0100
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 05/16] drm/i915: Disable the "binder"
-Content-Language: en-US
-To: =?UTF-8?Q?Micha=C5=82_Winiarski?= <michal.winiarski@intel.com>, "Ville
- Syrjala" <ville.syrjala@linux.intel.com>
-References: <20240116075636.6121-1-ville.syrjala@linux.intel.com>
- <20240116075636.6121-6-ville.syrjala@linux.intel.com>
- <ux7q2bmbk47rnke6n2qo3dabdx7lxkuwcy5rrauwsyz7v2bthc@p7jgbcz6vs7d>
-From: Nirmoy Das <nirmoy.das@intel.com>
-In-Reply-To: <ux7q2bmbk47rnke6n2qo3dabdx7lxkuwcy5rrauwsyz7v2bthc@p7jgbcz6vs7d>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: FR3P281CA0195.DEUP281.PROD.OUTLOOK.COM
- (2603:10a6:d10:a4::7) To DS0PR11MB6541.namprd11.prod.outlook.com
- (2603:10b6:8:d3::14)
+X-IronPort-AV: E=McAfee;i="6600,9927,10956"; a="927879938"
+X-IronPort-AV: E=Sophos;i="6.05,200,1701158400"; d="scan'208";a="927879938"
+Received: from lkp-server01.sh.intel.com (HELO 961aaaa5b03c) ([10.239.97.150])
+ by fmsmga001.fm.intel.com with ESMTP; 17 Jan 2024 09:53:10 -0800
+Received: from kbuild by 961aaaa5b03c with local (Exim 4.96)
+ (envelope-from <lkp@intel.com>) id 1rQA68-0002DG-24;
+ Wed, 17 Jan 2024 17:53:08 +0000
+Date: Thu, 18 Jan 2024 01:53:05 +0800
+From: kernel test robot <lkp@intel.com>
+To: Luca Coelho <luciano.coelho@intel.com>, intel-gfx@lists.freedesktop.org
+Subject: Re: [PATCH] drm/i915: move interrupt save/restore into vblank
+ section helpers
+Message-ID: <202401180149.BsppQD72-lkp@intel.com>
+References: <20240117094613.1401573-1-luciano.coelho@intel.com>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DS0PR11MB6541:EE_|SJ0PR11MB5087:EE_
-X-MS-Office365-Filtering-Correlation-Id: b1f79359-1c14-4c46-ade9-08dc17843bed
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: 56+qHvKgmFZhIJM7C1gKSNnqnrrwtkLEg0/yEmJj1W83HoFy6qXrN1gZ/grSPP/AfiZH7My1Y6ErvZ1CuAe+XqyIoAHJlcKfsEoacA9CpU4Em/TUsjbdwjhgacF2q4R2DrerRCNubVJuLHNpyETIgRTYz4dFrBDb6P/iid58ss4Rzo2qxuMyd/IK0LWYHrl/L0zdJ6wcqLrHnNoLxARS8y2ZE6PF9ByAZNN6jGMTEU6Yvsx0Oxy7izg2kbJrKpJr4hJN65E53TK5ehJoau9vdTU9IRaoy3lSiwRmffPSQ0kjZuIQacG/aZxS8pa6FspsoGv6Z3ULJB5+dTW4fR66B8W4n+6K7wCvL/P6lzgNT8eqUpYz5UfES3KKUaxYHfwErePVCx6GpyXG7zINP7NcHEcYHjbjFVvL5V7X7+RXZ2aC00QzTYTc0ZUnCgq6rCMnXXBmHeQsbE7QFBF/6NEVEf1S1gYAPJQ9mGjUrDj5EnGEP+5vqjK++RXmxuJ1fUbSiieMSb7d8mNN+tiSWyKsVvIY4TVF3oG74y1v5Tu1OyjtxkkviImKu8mQ29EbB35BJ1zF3jQHAVn2WTAfzOLBywPJFtmjZslFbbg1oB2xDrNqz276e4/qQhh42zVhDMFMu3FYzeEp0gkO3P8G4V0nrg==
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:DS0PR11MB6541.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230031)(39860400002)(136003)(346002)(396003)(376002)(366004)(230922051799003)(186009)(1800799012)(64100799003)(451199024)(110136005)(6486002)(31696002)(86362001)(82960400001)(66556008)(478600001)(66476007)(66946007)(6666004)(31686004)(38100700002)(2616005)(26005)(6506007)(6512007)(4326008)(44832011)(316002)(8936002)(53546011)(83380400001)(66574015)(36756003)(5660300002)(2906002)(41300700001)(8676002)(45980500001)(43740500002);
- DIR:OUT; SFP:1102; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?Vmw2SzRpeGU4QjlzQ2QvZXJmUlhNK2QwT3ZMNXZreDRQd2czc3praHZkZEhO?=
- =?utf-8?B?Qk0xWmY3T3pCcWVVNFJqUE1neHNLM0dRVzNRYy9kL1kxUmdEYXY0UEZFaFZl?=
- =?utf-8?B?cnF4cDhCTDZMV1hpTzZQckxpSVF4emR2bWE2ei90RGk0cG5JNkhsNjVsekdL?=
- =?utf-8?B?LzJpMDczSmcwc3JpSm5EL1pPRVZFbkltUnVpNmxZa0pzN0k2SjdTbkdUajll?=
- =?utf-8?B?WUVSMEZHdE5nVEdLcnV1V0NLTm42bzNta1RKSnViOHNDNFVRYjMwL2srcnZO?=
- =?utf-8?B?UGZERStidWMxSlc4SDVHbUdvZnRFVWJRVGlSekZFblBOdWZUbnV5bnZHRm9z?=
- =?utf-8?B?MmVYQkNMRXIvamtWaS9OUW1yMFgxTWQwUTl5eHVUMjdVR1QxdlBJSy9MbmZ0?=
- =?utf-8?B?UU10Y2JZQmZ5UHpFeVBuOXpRZzVyalE5M2RGc2RMazduZk83M0ZxWG5hOFhC?=
- =?utf-8?B?L08zMFgrTnJXUGZLNDJZdWZwNnhGSHg3MGtKNGtxY3JSRWtpZmtCYWxUNnhs?=
- =?utf-8?B?UTNUTWp0SERHZjFTVEk1TlBaQ0h5L05rMkRLUVp2V0JvcDFxKzNGUVZWYlBU?=
- =?utf-8?B?TWNtRlI0NVQvNUtHeFc3dEFVdTNsdUxveWsvNGlFZzhKd0EzRHVqL1pmL2E3?=
- =?utf-8?B?VmpQUkFQQ3hzdGsvam5rZnhiL0xGWEFEMjdUbTFQM01KSEhEamtUWlJ6c0ww?=
- =?utf-8?B?ZlNORUJPaGI0dHFlb3MrZTBmdnBkMmpxaDZyVXpJeWRWYmpEU0xveUtjS245?=
- =?utf-8?B?YjRuV0N1OE5YOGlFaHJnMUNpS2c2TnFwS0ZhbGF4TExrQTdXNS90U2loaHhl?=
- =?utf-8?B?eWdySjlvWGpPbi9tVkpkRjBPeVRrZERSNkFpK3JXYlkyK0I5RjFETW1ZT1k4?=
- =?utf-8?B?UlZkL00wSFYxQ3VERmhMTjlhV0xpTEk0dU1MeGhxSTRwUGdpd1JCTzFkenlL?=
- =?utf-8?B?eFIwWCtpbXRMdmtYSjNzRnd6ZHdrYTVndVBwaDEzUHBVQ0FOQ21BOW5TTVBh?=
- =?utf-8?B?OWd1emhTTzFsbVRaUkxTT254bnUrSS9pSGhvcE44TUpFbUkveWRvSDdMVHJi?=
- =?utf-8?B?amJBYWVKWjNDQVZWZ3lyY2M3NzBGYzJLSmlwQWpNSzJkZWpIVVhNRXppT0N6?=
- =?utf-8?B?RkI4Ti9GM3RRT29kZkVCUDFJcFJBSDRRWWxocFVobVdjckJHN0labkJTNkVD?=
- =?utf-8?B?TnJNNEhMK0dKV2xpUDMyazBUMjNWcEIzK1hMOHE5S3laMWpMdzQreXNEVlJu?=
- =?utf-8?B?eUVIek03TG5SMGc1TWF5VTJ6L0VsSlU3K3NzeWtsQ2ViVUtEdU5PemxzaWI1?=
- =?utf-8?B?WExWanF0Rk5DRGYweFltaTRaTFRPT3hMYklLd0I4L3JXdExNYlBIMmd4bWF5?=
- =?utf-8?B?cHBvZUNhZWF4MHhobHJTZUx0SFlOQnhxaVhGSk8xVmRQMlZBanV3MDkwMlR1?=
- =?utf-8?B?bFIrNHQ4OTJTeVB0dEFYa0JvS0cwQTZxcEE2MWJPSzZhWW1oU045K2dzRzhj?=
- =?utf-8?B?WTI4Q1BZKytHekltT0lWNDRqRHRxMTlDSGRwWllzczhoaTFLcm1jeXo3djhz?=
- =?utf-8?B?V2FweThiSnBqZEIwdzZvemx5K3lSQ1BoUzFxaXNweXhDbjIvQ0oxdzZGUGJT?=
- =?utf-8?B?dDY3eFJzSTFERlZqcVJJMG9BYmZoSVJwOVp6MXBCN3ZpbGpsbWZtNVRQelpC?=
- =?utf-8?B?bENGM0pYVXlIQVdiYUlFR1dzVk96WnpTMzlNZmU2NElVWUtiNVFKbzdSUDhm?=
- =?utf-8?B?L3p4ZnNSVDMrTDRPWEZUUHByR2k2WEM1QTdkQXN3eGxvZXNEa0U1MUJ0YUZG?=
- =?utf-8?B?bFk2eUVvWmUrR1hmbmp6bTJXWksxb3dkd0l5cmZkNXVGTnpvbFdpQ0FNa0NN?=
- =?utf-8?B?L05KR2lZYzRmblAzTEZBS1lEOXB5dERnQVByZEFrcnBncm1wSEtuYUtRdy9M?=
- =?utf-8?B?aC9BMFZCb2VBbXF5N2k0WlpobzNhMmVHMDNiS1lUb21qS0prcWk4MlNwUjV6?=
- =?utf-8?B?Z0puaDY0bUZPVnUyV09ROEJ1Z05hN0ZudG9NakZRQTRmc2IreE9pMUZHZVFI?=
- =?utf-8?B?bXZURWhYV3JKbmdEQUhJN2xBc3RTeFdaVTBXd2o0aTRlRWRkMmphRWllWndO?=
- =?utf-8?Q?O6lLtZfBzJT0cqar4FyLek7xQ?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: b1f79359-1c14-4c46-ade9-08dc17843bed
-X-MS-Exchange-CrossTenant-AuthSource: DS0PR11MB6541.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 17 Jan 2024 17:46:29.0523 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: i3G2Ktrj+GCvWsgQ8/pA5pAHdCbDAUT1CFyXKJEWCrp9gsItaFjUaotxZGhJfP7JO3Qi+lV9f4pp2v/wh/pIDA==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ0PR11MB5087
-X-OriginatorOrg: intel.com
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240117094613.1401573-1-luciano.coelho@intel.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -162,76 +61,283 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org
+Cc: oe-kbuild-all@lists.linux.dev
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+Hi Luca,
 
-On 1/17/2024 3:13 PM, Michał Winiarski wrote:
-> On Tue, Jan 16, 2024 at 09:56:25AM +0200, Ville Syrjala wrote:
->> From: Ville Syrjälä <ville.syrjala@linux.intel.com>
->>
->> Now that the GGTT PTE updates go straight to GSMBASE (bypassing
->> GTTMMADR) there should be no more risk of system hangs? So the
->> "binder" (ie. update the PTEs via MI_UPDATE_GTT) is no longer
->> necessary, disable it.
->>
->> My main worry with the MI_UPDATE_GTT are:
->> - only used on this one platform so very limited testing coverage
->> - async so more opprtunities to screw things up
->> - what happens if the engine hangs while we're waiting for MI_UPDATE_GTT
->>    to finish?
->> - requires working command submission, so even getting a working
->>    display now depends on a lot more extra components working correctly
->>
->> TODO: MI_UPDATE_GTT might be interesting as an optimization
->> though, so perhaps someone should look into always using it
->> (assuming the GPU is alive and well)?
->>
->> v2: Keep using MI_UPDATE_GTT on VM guests
->>
->> Cc: Paz Zcharya <pazz@chromium.org>
->> Cc: Nirmoy Das <nirmoy.das@intel.com>
->> Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
->> ---
->>   drivers/gpu/drm/i915/gt/intel_gtt.c | 3 ++-
->>   1 file changed, 2 insertions(+), 1 deletion(-)
->>
->> diff --git a/drivers/gpu/drm/i915/gt/intel_gtt.c b/drivers/gpu/drm/i915/gt/intel_gtt.c
->> index 86f73fe558ca..e83dabc56a14 100644
->> --- a/drivers/gpu/drm/i915/gt/intel_gtt.c
->> +++ b/drivers/gpu/drm/i915/gt/intel_gtt.c
->> @@ -24,7 +24,8 @@
->>   bool i915_ggtt_require_binder(struct drm_i915_private *i915)
->>   {
->>   	/* Wa_13010847436 & Wa_14019519902 */
->> -	return MEDIA_VER_FULL(i915) == IP_VER(13, 0);
->> +	return i915_run_as_guest() &&
->> +		MEDIA_VER_FULL(i915) == IP_VER(13, 0);
-> Note that i915_run_as_guest() is not the most reliable way to decide
-> whether to use MI_UPDATE_GTT or straight to GSMBASE, as it requires the
-> hypervisor to "opt-in" and set the X86_FEATURE_HYPERVISOR.
-> If it's not set - the driver will go into GSMBASE, which is not mapped
-> inside the guest.
-> Does the system firmware advertise whether GSMBASE is "open" or "closed"
-> to CPU access in any way?
+kernel test robot noticed the following build errors:
 
-Had a chat with David from IVE team, David suggested to read 0x138914 to 
-determine that.  "GOP needs to qualify the WA by reading GFX MMIO offset 
-0x138914 and verify the value there is 0x1." -> as per the HSD-22018444074
+[auto build test ERROR on drm-intel/for-linux-next]
+[also build test ERROR on drm-tip/drm-tip linus/master next-20240117]
+[cannot apply to drm-intel/for-linux-next-fixes v6.7]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
+
+url:    https://github.com/intel-lab-lkp/linux/commits/Luca-Coelho/drm-i915-move-interrupt-save-restore-into-vblank-section-helpers/20240117-174910
+base:   git://anongit.freedesktop.org/drm-intel for-linux-next
+patch link:    https://lore.kernel.org/r/20240117094613.1401573-1-luciano.coelho%40intel.com
+patch subject: [PATCH] drm/i915: move interrupt save/restore into vblank section helpers
+config: i386-buildonly-randconfig-004-20240117 (https://download.01.org/0day-ci/archive/20240118/202401180149.BsppQD72-lkp@intel.com/config)
+compiler: gcc-7 (Ubuntu 7.5.0-6ubuntu2) 7.5.0
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20240118/202401180149.BsppQD72-lkp@intel.com/reproduce)
+
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202401180149.BsppQD72-lkp@intel.com/
+
+All error/warnings (new ones prefixed by >>):
+
+   In file included from include/linux/bitops.h:7:0,
+                    from include/linux/kernel.h:23,
+                    from arch/x86/include/asm/percpu.h:27,
+                    from arch/x86/include/asm/current.h:10,
+                    from include/linux/mutex.h:14,
+                    from include/linux/notifier.h:14,
+                    from include/linux/pm_qos.h:16,
+                    from drivers/gpu/drm/i915/i915_drv.h:35,
+                    from drivers/gpu/drm/i915/display/intel_vblank.c:6:
+   drivers/gpu/drm/i915/display/intel_vblank.c: In function 'intel_vblank_section_enter':
+>> drivers/gpu/drm/i915/display/intel_vblank.c:282:17: error: 'irqflags' undeclared (first use in this function); did you mean 'mf_flags'?
+     local_irq_save(irqflags);
+                    ^
+   include/linux/typecheck.h:11:9: note: in definition of macro 'typecheck'
+     typeof(x) __dummy2; \
+            ^
+   include/linux/irqflags.h:245:36: note: in expansion of macro 'raw_local_irq_save'
+    #define local_irq_save(flags) do { raw_local_irq_save(flags); } while (0)
+                                       ^~~~~~~~~~~~~~~~~~
+   drivers/gpu/drm/i915/display/intel_vblank.c:282:2: note: in expansion of macro 'local_irq_save'
+     local_irq_save(irqflags);
+     ^~~~~~~~~~~~~~
+   drivers/gpu/drm/i915/display/intel_vblank.c:282:17: note: each undeclared identifier is reported only once for each function it appears in
+     local_irq_save(irqflags);
+                    ^
+   include/linux/typecheck.h:11:9: note: in definition of macro 'typecheck'
+     typeof(x) __dummy2; \
+            ^
+   include/linux/irqflags.h:245:36: note: in expansion of macro 'raw_local_irq_save'
+    #define local_irq_save(flags) do { raw_local_irq_save(flags); } while (0)
+                                       ^~~~~~~~~~~~~~~~~~
+   drivers/gpu/drm/i915/display/intel_vblank.c:282:2: note: in expansion of macro 'local_irq_save'
+     local_irq_save(irqflags);
+     ^~~~~~~~~~~~~~
+   include/linux/typecheck.h:12:18: warning: comparison of distinct pointer types lacks a cast
+     (void)(&__dummy == &__dummy2); \
+                     ^
+   include/linux/irqflags.h:178:3: note: in expansion of macro 'typecheck'
+      typecheck(unsigned long, flags); \
+      ^~~~~~~~~
+   include/linux/irqflags.h:245:36: note: in expansion of macro 'raw_local_irq_save'
+    #define local_irq_save(flags) do { raw_local_irq_save(flags); } while (0)
+                                       ^~~~~~~~~~~~~~~~~~
+   drivers/gpu/drm/i915/display/intel_vblank.c:282:2: note: in expansion of macro 'local_irq_save'
+     local_irq_save(irqflags);
+     ^~~~~~~~~~~~~~
+   drivers/gpu/drm/i915/display/intel_vblank.c: In function 'intel_vblank_section_exit':
+   drivers/gpu/drm/i915/display/intel_vblank.c:294:20: error: 'irqflags' undeclared (first use in this function); did you mean 'mf_flags'?
+     local_irq_restore(irqflags);
+                       ^
+   include/linux/typecheck.h:11:9: note: in definition of macro 'typecheck'
+     typeof(x) __dummy2; \
+            ^
+   include/linux/irqflags.h:246:39: note: in expansion of macro 'raw_local_irq_restore'
+    #define local_irq_restore(flags) do { raw_local_irq_restore(flags); } while (0)
+                                          ^~~~~~~~~~~~~~~~~~~~~
+   drivers/gpu/drm/i915/display/intel_vblank.c:294:2: note: in expansion of macro 'local_irq_restore'
+     local_irq_restore(irqflags);
+     ^~~~~~~~~~~~~~~~~
+   include/linux/typecheck.h:12:18: warning: comparison of distinct pointer types lacks a cast
+     (void)(&__dummy == &__dummy2); \
+                     ^
+   include/linux/irqflags.h:183:3: note: in expansion of macro 'typecheck'
+      typecheck(unsigned long, flags); \
+      ^~~~~~~~~
+   include/linux/irqflags.h:246:39: note: in expansion of macro 'raw_local_irq_restore'
+    #define local_irq_restore(flags) do { raw_local_irq_restore(flags); } while (0)
+                                          ^~~~~~~~~~~~~~~~~~~~~
+   drivers/gpu/drm/i915/display/intel_vblank.c:294:2: note: in expansion of macro 'local_irq_restore'
+     local_irq_restore(irqflags);
+     ^~~~~~~~~~~~~~~~~
+   drivers/gpu/drm/i915/display/intel_vblank.c: In function 'i915_get_crtc_scanoutpos':
+>> drivers/gpu/drm/i915/display/intel_vblank.c:309:16: warning: unused variable 'irqflags' [-Wunused-variable]
+     unsigned long irqflags;
+                   ^~~~~~~~
+   drivers/gpu/drm/i915/display/intel_vblank.c: In function 'intel_get_crtc_scanline':
+   drivers/gpu/drm/i915/display/intel_vblank.c:441:16: warning: unused variable 'irqflags' [-Wunused-variable]
+     unsigned long irqflags;
+                   ^~~~~~~~
 
 
+vim +282 drivers/gpu/drm/i915/display/intel_vblank.c
 
-Regards,
+   267	
+   268	/*
+   269	 * These functions help enter and exit vblank critical sections.  When
+   270	 * entering, they disable interrupts and, for i915, acquire the
+   271	 * uncore's spinlock.  Conversely, when exiting, they release the
+   272	 * spinlock and restore the interrupts state.
+   273	 *
+   274	 * This lock in i915 is needed because some old platforms (at least
+   275	 * IVB and possibly HSW as well), which are not supported in Xe, need
+   276	 * all register accesses to the same cacheline to be serialized,
+   277	 * otherwise they may hang.
+   278	 */
+   279	static void intel_vblank_section_enter(struct drm_i915_private *i915)
+   280		__acquires(i915->uncore.lock)
+   281	{
+ > 282		local_irq_save(irqflags);
+   283	#ifdef I915
+   284		spin_lock(&i915->uncore.lock);
+   285	#endif
+   286	}
+   287	
+   288	static void intel_vblank_section_exit(struct drm_i915_private *i915)
+   289		__releases(i915->uncore.lock)
+   290	{
+   291	#ifdef I915
+   292		spin_unlock(&i915->uncore.lock);
+   293	#endif
+   294		local_irq_restore(irqflags);
+   295	}
+   296	
+   297	static bool i915_get_crtc_scanoutpos(struct drm_crtc *_crtc,
+   298					     bool in_vblank_irq,
+   299					     int *vpos, int *hpos,
+   300					     ktime_t *stime, ktime_t *etime,
+   301					     const struct drm_display_mode *mode)
+   302	{
+   303		struct drm_device *dev = _crtc->dev;
+   304		struct drm_i915_private *dev_priv = to_i915(dev);
+   305		struct intel_crtc *crtc = to_intel_crtc(_crtc);
+   306		enum pipe pipe = crtc->pipe;
+   307		int position;
+   308		int vbl_start, vbl_end, hsync_start, htotal, vtotal;
+ > 309		unsigned long irqflags;
+   310		bool use_scanline_counter = DISPLAY_VER(dev_priv) >= 5 ||
+   311			IS_G4X(dev_priv) || DISPLAY_VER(dev_priv) == 2 ||
+   312			crtc->mode_flags & I915_MODE_FLAG_USE_SCANLINE_COUNTER;
+   313	
+   314		if (drm_WARN_ON(&dev_priv->drm, !mode->crtc_clock)) {
+   315			drm_dbg(&dev_priv->drm,
+   316				"trying to get scanoutpos for disabled pipe %c\n",
+   317				pipe_name(pipe));
+   318			return false;
+   319		}
+   320	
+   321		htotal = mode->crtc_htotal;
+   322		hsync_start = mode->crtc_hsync_start;
+   323		vtotal = mode->crtc_vtotal;
+   324		vbl_start = mode->crtc_vblank_start;
+   325		vbl_end = mode->crtc_vblank_end;
+   326	
+   327		if (mode->flags & DRM_MODE_FLAG_INTERLACE) {
+   328			vbl_start = DIV_ROUND_UP(vbl_start, 2);
+   329			vbl_end /= 2;
+   330			vtotal /= 2;
+   331		}
+   332	
+   333		/*
+   334		 * Enter vblank critical section, as we will do multiple
+   335		 * timing critical raw register reads, potentially with
+   336		 * preemption disabled, so the following code must not block.
+   337		 */
+   338		intel_vblank_section_enter(dev_priv);
+   339	
+   340		/* preempt_disable_rt() should go right here in PREEMPT_RT patchset. */
+   341	
+   342		/* Get optional system timestamp before query. */
+   343		if (stime)
+   344			*stime = ktime_get();
+   345	
+   346		if (crtc->mode_flags & I915_MODE_FLAG_VRR) {
+   347			int scanlines = intel_crtc_scanlines_since_frame_timestamp(crtc);
+   348	
+   349			position = __intel_get_crtc_scanline(crtc);
+   350	
+   351			/*
+   352			 * Already exiting vblank? If so, shift our position
+   353			 * so it looks like we're already apporaching the full
+   354			 * vblank end. This should make the generated timestamp
+   355			 * more or less match when the active portion will start.
+   356			 */
+   357			if (position >= vbl_start && scanlines < position)
+   358				position = min(crtc->vmax_vblank_start + scanlines, vtotal - 1);
+   359		} else if (use_scanline_counter) {
+   360			/* No obvious pixelcount register. Only query vertical
+   361			 * scanout position from Display scan line register.
+   362			 */
+   363			position = __intel_get_crtc_scanline(crtc);
+   364		} else {
+   365			/*
+   366			 * Have access to pixelcount since start of frame.
+   367			 * We can split this into vertical and horizontal
+   368			 * scanout position.
+   369			 */
+   370			position = (intel_de_read_fw(dev_priv, PIPEFRAMEPIXEL(pipe)) & PIPE_PIXEL_MASK) >> PIPE_PIXEL_SHIFT;
+   371	
+   372			/* convert to pixel counts */
+   373			vbl_start *= htotal;
+   374			vbl_end *= htotal;
+   375			vtotal *= htotal;
+   376	
+   377			/*
+   378			 * In interlaced modes, the pixel counter counts all pixels,
+   379			 * so one field will have htotal more pixels. In order to avoid
+   380			 * the reported position from jumping backwards when the pixel
+   381			 * counter is beyond the length of the shorter field, just
+   382			 * clamp the position the length of the shorter field. This
+   383			 * matches how the scanline counter based position works since
+   384			 * the scanline counter doesn't count the two half lines.
+   385			 */
+   386			position = min(position, vtotal - 1);
+   387	
+   388			/*
+   389			 * Start of vblank interrupt is triggered at start of hsync,
+   390			 * just prior to the first active line of vblank. However we
+   391			 * consider lines to start at the leading edge of horizontal
+   392			 * active. So, should we get here before we've crossed into
+   393			 * the horizontal active of the first line in vblank, we would
+   394			 * not set the DRM_SCANOUTPOS_INVBL flag. In order to fix that,
+   395			 * always add htotal-hsync_start to the current pixel position.
+   396			 */
+   397			position = (position + htotal - hsync_start) % vtotal;
+   398		}
+   399	
+   400		/* Get optional system timestamp after query. */
+   401		if (etime)
+   402			*etime = ktime_get();
+   403	
+   404		/* preempt_enable_rt() should go right here in PREEMPT_RT patchset. */
+   405	
+   406		intel_vblank_section_exit(dev_priv);
+   407	
+   408		/*
+   409		 * While in vblank, position will be negative
+   410		 * counting up towards 0 at vbl_end. And outside
+   411		 * vblank, position will be positive counting
+   412		 * up since vbl_end.
+   413		 */
+   414		if (position >= vbl_start)
+   415			position -= vbl_end;
+   416		else
+   417			position += vtotal - vbl_end;
+   418	
+   419		if (use_scanline_counter) {
+   420			*vpos = position;
+   421			*hpos = 0;
+   422		} else {
+   423			*vpos = position / htotal;
+   424			*hpos = position - (*vpos * htotal);
+   425		}
+   426	
+   427		return true;
+   428	}
+   429	
 
-Nirmoy
-
->
-> -Michał
->
->>   }
->>   
->>   static bool intel_ggtt_update_needs_vtd_wa(struct drm_i915_private *i915)
->> -- 
->> 2.41.0
->>
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
