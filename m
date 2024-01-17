@@ -2,54 +2,57 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8BC45830350
-	for <lists+intel-gfx@lfdr.de>; Wed, 17 Jan 2024 11:12:30 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id E8028830366
+	for <lists+intel-gfx@lfdr.de>; Wed, 17 Jan 2024 11:19:11 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0A1AE10E108;
-	Wed, 17 Jan 2024 10:12:29 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 77EF410E680;
+	Wed, 17 Jan 2024 10:19:10 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4F64210E108
- for <intel-gfx@lists.freedesktop.org>; Wed, 17 Jan 2024 10:12:28 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id AB93610E67F;
+ Wed, 17 Jan 2024 10:19:09 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1705486349; x=1737022349;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=3ibm4X+Ld5riMIph78zdBmUuIS9qpcfWFIaXn6X6i4U=;
- b=ZGlBgE6XtTtg/WEjMQ2iICc/yLE74s9C+zjF/D6jBeovV8iK8HepaT8L
- z7sqo3cuXmZWbdFMoGJDovwzuA+14FBJgpyufKtG34O+A2IFZ3c+8k7xs
- vUrSHZ4k87PyyH2jkIqqXW46akI0euTx7j+pru5djVud9Ry0EA4J6ouTC
- m+toDPO6Qp/9kobkgpXb7FM905CAoXXJL4S7Qzvcccn28mlzI3R8lNZnI
- ug5+6k11s0cLytlJCTIq3msO0j7QmdUg1iP+WcZ52H8s/cJ4E4da2GIjx
- Gu/REtbDSw60XdFynhXxHEgXy8GgyU+vT4fqcaoZQQP28lp2aZ+T6qNGc w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10955"; a="6835603"
-X-IronPort-AV: E=Sophos;i="6.05,200,1701158400"; 
-   d="scan'208";a="6835603"
-Received: from orsmga003.jf.intel.com ([10.7.209.27])
- by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Jan 2024 02:12:29 -0800
+ t=1705486749; x=1737022749;
+ h=message-id:date:mime-version:subject:to:references:from:
+ in-reply-to:content-transfer-encoding;
+ bh=J9e0vLSPrHRF568dbLk8a5ROSRYupcGI6XoVeFLTwlY=;
+ b=bLvcZi9M5wlF7QItKnJpZAWyqfNGH7GN6vtOXl2FywY1uO3ZQswKtDbZ
+ 7o83pYvhDXW3M7jYnjwEHhlUvO/E1h0Z84cowtkKbcPUa1kA/Ou+HwEtN
+ eONekWKvYKXIgnAKkvpqJ/vODeJn63y6U3haVZLLWAP+LlWjZfwBphNHi
+ DvIjO4Ujhx8VCI/FDUnzgkshRsosDBIDQpHZn6peOPI+ojfU6QQ7v8xtg
+ n3Uu7MTg4gGQiyN3n4TNU3lqDOfKFuxQXccv3rdCdUwe6CeGC+HxuXFAx
+ bQ+4m/fyoltB9lnosYPZ3QjvKidQNDABzopp/P5gRSqve8uFA4f/VxjF5 Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10955"; a="390581281"
+X-IronPort-AV: E=Sophos;i="6.05,200,1701158400"; d="scan'208";a="390581281"
+Received: from fmsmga006.fm.intel.com ([10.253.24.20])
+ by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 17 Jan 2024 02:19:09 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10955"; a="733939482"
-X-IronPort-AV: E=Sophos;i="6.05,200,1701158400"; d="scan'208";a="733939482"
-Received: from unknown (HELO intel.com) ([10.237.72.65])
- by orsmga003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Jan 2024 02:12:26 -0800
-Date: Wed, 17 Jan 2024 12:12:18 +0200
-From: "Lisovskiy, Stanislav" <stanislav.lisovskiy@intel.com>
-To: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-Subject: Re: [PATCH 2/3] drm/i915: Extract code required to calculate max
- qgv/psf gv point
-Message-ID: <ZaeoAsQXzZi9HqgP@intel.com>
-References: <20231128083754.20096-1-stanislav.lisovskiy@intel.com>
- <20231128083754.20096-3-stanislav.lisovskiy@intel.com>
- <ZaF4XLoYDDmcJcbE@intel.com>
+X-IronPort-AV: E=McAfee;i="6600,9927,10955"; a="1031310006"
+X-IronPort-AV: E=Sophos;i="6.05,200,1701158400"; d="scan'208";a="1031310006"
+Received: from clanggaa-mobl.ger.corp.intel.com (HELO [10.249.254.57])
+ ([10.249.254.57])
+ by fmsmga006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 17 Jan 2024 02:19:06 -0800
+Message-ID: <07a6552a-19e7-404d-8711-aff0cea8a36c@linux.intel.com>
+Date: Wed, 17 Jan 2024 11:18:28 +0100
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 2/5] drm/ttm: return ENOSPC from ttm_bo_mem_space
+Content-Language: en-US
+To: =?UTF-8?Q?Christian_K=C3=B6nig?= <ckoenig.leichtzumerken@gmail.com>,
+ dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
+ nouveau@lists.freedesktop.org, jani.nikula@linux.intel.com,
+ kherbst@redhat.com, lyude@redhat.com, zackr@vmware.com,
+ michel.daenzer@mailbox.org
+References: <20240112125158.2748-1-christian.koenig@amd.com>
+ <20240112125158.2748-3-christian.koenig@amd.com>
+From: =?UTF-8?Q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
+In-Reply-To: <20240112125158.2748-3-christian.koenig@amd.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <ZaF4XLoYDDmcJcbE@intel.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -62,156 +65,52 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, Jan 12, 2024 at 07:35:24PM +0200, Ville Syrj‰l‰ wrote:
-> On Tue, Nov 28, 2023 at 10:37:53AM +0200, Stanislav Lisovskiy wrote:
-> > We need that in order to force disable SAGV in next patch.
-> > Also it is beneficial to separate that code, as in majority cases,
-> > when SAGV is enabled, we don't even need those calculations.
-> > Also we probably need to determine max PSF GV point as well, however
-> > currently we don't do that when we disable SAGV, which might be
-> > actually causing some issues in that case.
-> > 
-> > Signed-off-by: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
-> > ---
-> >  drivers/gpu/drm/i915/display/intel_bw.c | 82 ++++++++++++++++++++-----
-> >  1 file changed, 65 insertions(+), 17 deletions(-)
-> > 
-> > diff --git a/drivers/gpu/drm/i915/display/intel_bw.c b/drivers/gpu/drm/i915/display/intel_bw.c
-> > index 583cd2ebdf89..efd408e96e8a 100644
-> > --- a/drivers/gpu/drm/i915/display/intel_bw.c
-> > +++ b/drivers/gpu/drm/i915/display/intel_bw.c
-> > @@ -805,6 +805,64 @@ intel_atomic_get_bw_state(struct intel_atomic_state *state)
-> >  	return to_intel_bw_state(bw_state);
-> >  }
-> >  
-> > +static unsigned int icl_max_bw_qgv_point(struct drm_i915_private *i915,
-> > +					 int num_active_planes)
-> > +{
-> > +	unsigned int max_bw_point = 0;
-> > +	unsigned int max_bw = 0;
-> > +	unsigned int num_qgv_points = i915->display.bw.max[0].num_qgv_points;
-> > +	int i;
-> > +
-> > +	for (i = 0; i < num_qgv_points; i++) {
-> > +		unsigned int idx;
-> > +		unsigned int max_data_rate;
-> > +
-> > +		if (DISPLAY_VER(i915) > 11)
-> > +			idx = tgl_max_bw_index(i915, num_active_planes, i);
-> > +		else
-> > +			idx = icl_max_bw_index(i915, num_active_planes, i);
-> > +
-> > +		if (idx >= ARRAY_SIZE(i915->display.bw.max))
-> > +			continue;
-> > +
-> > +		max_data_rate = i915->display.bw.max[idx].deratedbw[i];
-> 
-> Looks like that that part could be extracted to a helper
-> to be used by both codepaths (would be a natural counterpart
-> to adl_psf_bw()).
-> 
-> > +
-> > +		/*
-> > +		 * We need to know which qgv point gives us
-> > +		 * maximum bandwidth in order to disable SAGV
-> > +		 * if we find that we exceed SAGV block time
-> > +		 * with watermarks. By that moment we already
-> > +		 * have those, as it is calculated earlier in
-> > +		 * intel_atomic_check,
-> > +		 */
-> > +		if (max_data_rate > max_bw) {
-> > +			max_bw_point = i;
-> > +			max_bw = max_data_rate;
-> > +		}
-> > +	}
-> > +
-> > +	return max_bw_point;
-> > +}
-> > +
-> > +unsigned int icl_max_bw_psf_gv_point(struct drm_i915_private *i915)
-> > +{
-> > +	unsigned int num_psf_gv_points = i915->display.bw.max[0].num_psf_gv_points;
-> > +	unsigned int max_bw = 0;
-> > +	unsigned int max_bw_point = 0;
-> > +	int i;
-> > +
-> > +	for (i = 0; i < num_psf_gv_points; i++) {
-> > +		unsigned int max_data_rate = adl_psf_bw(i915, i);
-> > +
-> > +		if (max_data_rate > max_bw) {
-> > +			max_bw_point = i;
-> > +			max_bw = max_data_rate;
-> > +		}
-> > +	}
-> > +
-> > +	return max_bw_point;
-> > +}
-> > +
-> >  static int mtl_find_qgv_points(struct drm_i915_private *i915,
-> >  			       unsigned int data_rate,
-> >  			       unsigned int num_active_planes,
-> > @@ -882,8 +940,6 @@ static int icl_find_qgv_points(struct drm_i915_private *i915,
-> >  			       const struct intel_bw_state *old_bw_state,
-> >  			       struct intel_bw_state *new_bw_state)
-> >  {
-> > -	unsigned int max_bw_point = 0;
-> > -	unsigned int max_bw = 0;
-> >  	unsigned int num_psf_gv_points = i915->display.bw.max[0].num_psf_gv_points;
-> >  	unsigned int num_qgv_points = i915->display.bw.max[0].num_qgv_points;
-> >  	u16 psf_points = 0;
-> > @@ -909,18 +965,6 @@ static int icl_find_qgv_points(struct drm_i915_private *i915,
-> >  
-> >  		max_data_rate = i915->display.bw.max[idx].deratedbw[i];
-> >  
-> > -		/*
-> > -		 * We need to know which qgv point gives us
-> > -		 * maximum bandwidth in order to disable SAGV
-> > -		 * if we find that we exceed SAGV block time
-> > -		 * with watermarks. By that moment we already
-> > -		 * have those, as it is calculated earlier in
-> > -		 * intel_atomic_check,
-> > -		 */
-> > -		if (max_data_rate > max_bw) {
-> > -			max_bw_point = i;
-> > -			max_bw = max_data_rate;
-> > -		}
-> >  		if (max_data_rate >= data_rate)
-> >  			qgv_points |= BIT(i);
-> >  
-> > @@ -964,9 +1008,13 @@ static int icl_find_qgv_points(struct drm_i915_private *i915,
-> >  	 * cause.
-> >  	 */
-> >  	if (!intel_can_enable_sagv(i915, new_bw_state)) {
-> > -		qgv_points = BIT(max_bw_point);
-> > -		drm_dbg_kms(&i915->drm, "No SAGV, using single QGV point %d\n",
-> > -			    max_bw_point);
-> > +		unsigned int max_bw_qgv_point = icl_max_bw_qgv_point(i915, num_active_planes);
-> > +		unsigned int max_bw_psf_gv_point = icl_max_bw_psf_gv_point(i915);
-> > +
-> > +		qgv_points = BIT(max_bw_qgv_point);
-> > +		psf_points = BIT(max_bw_psf_gv_point);
-> 
-> We didn't restrict the PSF here previously.
+Hi,
 
-Yep, but I really suspect we should. BSpec states that we should restrict all the GV points
-except highest one, also that some PSF GV points aren't same or usable, depending on BW reqs.
-So I would restrict that as well, in case if SAGV is off, just to be on safe side.
+On 1/12/24 13:51, Christian K√∂nig wrote:
+> Only convert it to ENOMEM in ttm_bo_validate.
+>
+> This allows ttm_bo_validate to distinct between an out of memory
+NIT: s/distinct/distinguish/
+> situation and just out of space in a placement domain.
 
-Stan
+In fact it would be nice if this could be propagated back to drivers as 
+well at some point, but then perhaps guarded with a flag in the 
+operation context.
 
-> 
-> > +		drm_dbg_kms(&i915->drm, "No SAGV, using single QGV point %d PSF GV point %d\n",
-> > +			    max_bw_qgv_point, max_bw_psf_gv_point);
-> >  	}
-> >  
-> >  	/*
-> > -- 
-> > 2.37.3
-> 
-> -- 
-> Ville Syrj‰l‰
-> Intel
+In any case
+
+Reviewed-by: Thomas Hellstr√∂m <thomas.hellstrom@linux.intel.com>
+
+>
+> Signed-off-by: Christian K√∂nig <christian.koenig@amd.com>
+> ---
+>   drivers/gpu/drm/ttm/ttm_bo.c | 5 ++++-
+>   1 file changed, 4 insertions(+), 1 deletion(-)
+>
+> diff --git a/drivers/gpu/drm/ttm/ttm_bo.c b/drivers/gpu/drm/ttm/ttm_bo.c
+> index edf10618fe2b..8c1eaa74fa21 100644
+> --- a/drivers/gpu/drm/ttm/ttm_bo.c
+> +++ b/drivers/gpu/drm/ttm/ttm_bo.c
+> @@ -830,7 +830,7 @@ int ttm_bo_mem_space(struct ttm_buffer_object *bo,
+>   			goto error;
+>   	}
+>   
+> -	ret = -ENOMEM;
+> +	ret = -ENOSPC;
+>   	if (!type_found) {
+>   		pr_err(TTM_PFX "No compatible memory type found\n");
+>   		ret = -EINVAL;
+> @@ -916,6 +916,9 @@ int ttm_bo_validate(struct ttm_buffer_object *bo,
+>   		return -EINVAL;
+>   
+>   	ret = ttm_bo_move_buffer(bo, placement, ctx);
+> +	/* For backward compatibility with userspace */
+> +	if (ret == -ENOSPC)
+> +		return -ENOMEM;
+>   	if (ret)
+>   		return ret;
+>   
