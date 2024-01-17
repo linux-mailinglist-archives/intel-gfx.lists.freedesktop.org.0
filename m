@@ -2,52 +2,64 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9EDF58305DD
-	for <lists+intel-gfx@lfdr.de>; Wed, 17 Jan 2024 13:46:48 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3688E83067A
+	for <lists+intel-gfx@lfdr.de>; Wed, 17 Jan 2024 14:00:36 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5100610E097;
-	Wed, 17 Jan 2024 12:46:46 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C8AB910E685;
+	Wed, 17 Jan 2024 13:00:03 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9EC5C10E097
- for <intel-gfx@lists.freedesktop.org>; Wed, 17 Jan 2024 12:46:45 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1705495605; x=1737031605;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=FCtQmyTV4/lGKDQH73LHFuNn1aXVS7aGT+lDK8YLvZ8=;
- b=XSnnOiwNVwZ/F0etr1OErTCQVq0rGqbk8waAZcByGxl06h1KAX18mYRX
- e6md1DAP/bsOsXkVcwdrQl7efK/dZu8Kbt60jHFYOegYmLroRESa3k4tc
- aR3mec1us6PKkzcJKwkzdaNhfChbSTqMLX4eNCSR4KDmZEOiG9h1w6XlB
- NmyG6ATOUX5JpdAGM/t4eP1inrmSELKyc8iWQeGjXqVSNu4/IavM4U/LL
- Et0fKpu+qcn+gQYxilqXw91p58BjSJn6kCnQExMq+IkMt8uQh0naMrO0H
- QG0vjyJi/2e5cVqBUTvaC9MYrGzraCMiIOWorlHU75j3dBOM4n/TpHNJU Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10955"; a="464438580"
-X-IronPort-AV: E=Sophos;i="6.05,200,1701158400"; d="scan'208";a="464438580"
-Received: from orsmga007.jf.intel.com ([10.7.209.58])
- by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Jan 2024 04:46:44 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10955"; a="777445843"
-X-IronPort-AV: E=Sophos;i="6.05,200,1701158400"; d="scan'208";a="777445843"
-Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.74])
- by orsmga007.jf.intel.com with SMTP; 17 Jan 2024 04:46:41 -0800
-Received: by stinkbox (sSMTP sendmail emulation);
- Wed, 17 Jan 2024 14:46:41 +0200
-Date: Wed, 17 Jan 2024 14:46:41 +0200
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Jani Nikula <jani.nikula@intel.com>
-Subject: Re: [PATCH] drm/i915/opregion: remove unused lid_state
-Message-ID: <ZafMMXiOlr3H30o4@intel.com>
-References: <20240117122546.1551400-1-jani.nikula@intel.com>
+Received: from mail-yb1-f180.google.com (mail-yb1-f180.google.com
+ [209.85.219.180])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BEE5010E691
+ for <intel-gfx@lists.freedesktop.org>; Wed, 17 Jan 2024 12:59:52 +0000 (UTC)
+Received: by mail-yb1-f180.google.com with SMTP id
+ 3f1490d57ef6-dc223463ee4so1792611276.2
+ for <intel-gfx@lists.freedesktop.org>; Wed, 17 Jan 2024 04:59:52 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=yngvason.is; s=google; t=1705496332; x=1706101132; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=XriBTYniGk9gYChkPK4rAFLbx+9FKjxjuGOHKZN5d5Q=;
+ b=fiBbfYk4wwmjtLZ40390nITMMsIv9Ck2vBZMNG3C0YQ+HPGyvIMEkSvlP4WmdsVYeS
+ RVRL9lye2Zvi5mslxwZ5HAQaVSC0xSthCuCuAXPKJsqxE3XROTII6DWnmP9VhofTrQfw
+ Dcb6vv8XNsG84elv6dQCX74lV5G+VERjrrHxg=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1705496332; x=1706101132;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+ :subject:date:message-id:reply-to;
+ bh=XriBTYniGk9gYChkPK4rAFLbx+9FKjxjuGOHKZN5d5Q=;
+ b=VQ6omEgS1L18pyNsz2Kei8+xmrAZFXtyyje+pMrh76oY3o5YAiakFbKsXVZrCOSmdn
+ YhnHoxe5jZWVzbN+UryloyRVfBeaSf6m/JosEGeUAXbKgJ67HsEycOv5a/RWndl7pBwR
+ fKI+M5o6bk1/ptaAyHWbQESP0lT2EhM/8coh3jOcPXoTnVSx4zh2U1BFvNUNR/TE3tIo
+ 6FahdzqgoMk1NDJykeoUmZS9TQhHyylGIlfA96B6izZiSv1kc5vxDYNPBCkWXU1vW35P
+ e2Dn/L4Oejtl9TrPw+gUaG/7Q+tHiT/JHwCznIOmjBtyRZExfsvymUQogutOU2krYmFR
+ Ifmw==
+X-Gm-Message-State: AOJu0Ywtz7hoD7GtO3STTk2mtypwOIqHyogyvCzIVUArlLixSkuXvHXy
+ h7VGZmYAWCHnSE4DGcyuLHToj0hEGH+b0BGWrb91xM8Sn/kEpA==
+X-Google-Smtp-Source: AGHT+IGJIW7uSGphtKFOvMwfljCQ/8rZhpwJOWe7mVWX8TVan9ezOmBt2LWw5SFFQ9yDj8Zksn+cwqmk3E0OCdyRY5E=
+X-Received: by 2002:a25:ae42:0:b0:dbd:7f9e:8190 with SMTP id
+ g2-20020a25ae42000000b00dbd7f9e8190mr4998501ybe.67.1705496331697; Wed, 17 Jan
+ 2024 04:58:51 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20240117122546.1551400-1-jani.nikula@intel.com>
-X-Patchwork-Hint: comment
+References: <20240115160554.720247-1-andri@yngvason.is>
+ <20240115160554.720247-3-andri@yngvason.is>
+ <20240116114235.GA311990@toolbox>
+ <CAFNQBQz3TNj_7BSmFw4CFMNuR4B+1d+y3f058s+rzTuzdYogqA@mail.gmail.com>
+ <20240116132918.GB311990@toolbox>
+ <CAFNQBQyfWmfu5T7bgZDZFGfyhsxQi7YXmY_wPc9Y+mm5iSspXQ@mail.gmail.com>
+ <20240117112150.4399d0bb@eldfell>
+In-Reply-To: <20240117112150.4399d0bb@eldfell>
+From: Andri Yngvason <andri@yngvason.is>
+Date: Wed, 17 Jan 2024 12:58:15 +0000
+Message-ID: <CAFNQBQwoGvSF1ryOPUUnedYUG64HqFQNXjMf6R7piufN64Vc=g@mail.gmail.com>
+Subject: Re: [PATCH v2 2/4] drm/uAPI: Add "force color format" drm property as
+ setting for userspace
+To: Pekka Paalanen <ppaalanen@gmail.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -60,50 +72,256 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org
+Cc: Maxime Ripard <mripard@kernel.org>,
+ Sebastian Wick <sebastian.wick@redhat.com>, amd-gfx@lists.freedesktop.org,
+ Daniel Vetter <daniel@ffwll.ch>, Leo Li <sunpeng.li@amd.com>,
+ intel-gfx@lists.freedesktop.org, "Pan, Xinhui" <Xinhui.Pan@amd.com>,
+ Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>, linux-kernel@vger.kernel.org,
+ dri-devel@lists.freedesktop.org, Thomas Zimmermann <tzimmermann@suse.de>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Alex Deucher <alexander.deucher@amd.com>, David Airlie <airlied@gmail.com>,
+ =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, Jan 17, 2024 at 02:25:46PM +0200, Jani Nikula wrote:
-> Not sure if lid_state has ever been used, but at least not for a long
-> time. Remove it.
+mi=C3=B0., 17. jan. 2024 kl. 09:21 skrifa=C3=B0i Pekka Paalanen <ppaalanen@=
+gmail.com>:
+>
+> On Tue, 16 Jan 2024 14:11:43 +0000
+> Andri Yngvason <andri@yngvason.is> wrote:
+>
+> > =C3=BEri., 16. jan. 2024 kl. 13:29 skrifa=C3=B0i Sebastian Wick
+> > <sebastian.wick@redhat.com>:
+> > >
+> > > On Tue, Jan 16, 2024 at 01:13:13PM +0000, Andri Yngvason wrote:
+> > [...]
+> > > > =C5=9Fri., 16. jan. 2024 kl. 11:42 skrifa=C4=9Fi Sebastian Wick
+> > > > <sebastian.wick@redhat.com>:
+> > > > >
+> > > > > On Mon, Jan 15, 2024 at 04:05:52PM +0000, Andri Yngvason wrote:
+> > > > > > From: Werner Sembach <wse@tuxedocomputers.com>
+> > > > > >
+> > > > > > Add a new general drm property "force color format" which can b=
+e used
+> > > > > > by userspace to tell the graphics driver which color format to =
+use.
+> > > > >
+> > > > > I don't like the "force" in the name. This just selects the color
+> > > > > format, let's just call it "color format" then.
+> > > > >
+> > > >
+> > > > In previous revisions, this was "preferred color format" and "actua=
+l
+> > > > color format", of which the latter has been dropped. I recommend
+> > > > reading the discussion for previous revisions.
+> > >
+> > > Please don't imply that I didn't read the thread I'm answering to.
+>
+> FYI, I have not read this thread.
+>
 
-It was probably used when we had that disgusting lid notifier
-thing, but that got killed some years ago.
+pq, You did not read this summary?
+https://lore.kernel.org/dri-devel/CAFNQBQwjeJaX6B4oewpgASMUd5_nxZYMxUfdOG29=
+4CTVGBTd1w@mail.gmail.com/
 
-> 
-> Suggested-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
-> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+You partook in the discussion on IRC. Please read it and tell me if I
+misunderstood anything.
 
-Reviewed-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
+Sebastian, I apologise. You clearly read it as you even replied to it!
 
-> ---
->  drivers/gpu/drm/i915/display/intel_opregion.c | 2 --
->  1 file changed, 2 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/i915/display/intel_opregion.c b/drivers/gpu/drm/i915/display/intel_opregion.c
-> index 3f5a20f9153e..f242bb320610 100644
-> --- a/drivers/gpu/drm/i915/display/intel_opregion.c
-> +++ b/drivers/gpu/drm/i915/display/intel_opregion.c
-> @@ -266,7 +266,6 @@ struct intel_opregion {
->  	void *vbt_firmware;
->  	const void *vbt;
->  	u32 vbt_size;
-> -	u32 *lid_state;
->  	struct work_struct asle_work;
->  	struct notifier_block acpi_notifier;
->  };
-> @@ -958,7 +957,6 @@ int intel_opregion_setup(struct drm_i915_private *dev_priv)
->  		goto err_out;
->  	}
->  	opregion->header = base;
-> -	opregion->lid_state = base + ACPI_CLID;
->  
->  	drm_dbg(&dev_priv->drm, "ACPI OpRegion version %u.%u.%u\n",
->  		opregion->header->over.major,
-> -- 
-> 2.39.2
+> > >
+> > > > There are arguments for adding "actual color format" later and if i=
+t
+> > > > is added later, we'd end up with "color format" and "actual color
+> > > > format", which might be confusing, and it is why I chose to call it
+> > > > "force color format" because it clearly communicates intent and
+> > > > disambiguates it from "actual color format".
+> > >
+> > > There is no such thing as "actual color format" in upstream though.
+> > > Basing your naming on discarded ideas is not useful. The thing that s=
+ets
+> > > the color space for example is called "Colorspace", not "force
+> > > colorspace".
+> > >
+> >
+> > Sure, I'm happy with calling it whatever people want. Maybe we can
+> > have a vote on it?
+>
+> It would sound strange to say "force color format" =3D "auto". Just drop
+> the "force" of it.
+>
+> If and when we need the feedback counterpart, it could be an immutable
+> prop called "active color format" where "auto" is not a valid value, or
+> something in the new "output properties" design Sima has been thinking
+> of.
 
--- 
-Ville Syrjälä
-Intel
+There seems to be consensus for calling it "color format"
+
+>
+> > > > [...]
+> > > > > > @@ -1396,6 +1404,15 @@ static const u32 dp_colorspaces =3D
+> > > > > >   *   drm_connector_attach_max_bpc_property() to create and att=
+ach the
+> > > > > >   *   property to the connector during initialization.
+> > > > > >   *
+> > > > > > + * force color format:
+> > > > > > + *   This property is used by userspace to change the used col=
+or format. When
+> > > > > > + *   used the driver will use the selected format if valid for=
+ the hardware,
+> > > > >
+> > > > > All properties are always "used", they just can have different va=
+lues.
+> > > > > You probably want to talk about the auto mode here.
+> > > >
+> > > > Maybe we can say something like: If userspace does not set the
+> > > > property or if it is explicitly set to zero, the driver will select
+> > > > the appropriate color format based on other constraints.
+> > >
+> > > The property can be in any state without involvement from user space.
+> > > Don't talk about setting it, talk about the state it is in:
+> > >
+> > >   When the color format is auto, the driver will select a format.
+> > >
+> >
+> > Ok.
+> >
+> > > > >
+> > > > > > + *   sink, and current resolution and refresh rate combination=
+. Drivers to
+> > > > >
+> > > > > If valid? So when a value is not actually supported user space ca=
+n still
+> > > > > set it? What happens then? How should user space figure out if th=
+e
+> > > > > driver and the sink support the format?
+> > > >
+> > > > The kernel does not expose this property unless it's implemented in=
+ the driver.
+> > >
+> > > If the driver simply doesn't support *one format*, the enum value for
+> > > that format should not be exposed, period. This isn't about the prope=
+rty
+> > > on its own.
+> >
+> > Right, understood. You mean that enum should only contain values that
+> > are supported by the driver.
+>
+> Yes. When a driver installs a property, it can choose which of the enum
+> entries are exposed. That cannot be changed later though, so the list
+> cannot live by the currently connected sink, only by what the driver
+> and display controlled could ever do.
+
+Yes, and I think that basing it also on the connected sink's
+capabilities would just add complexity for very little gain. In fact,
+I think that limiting it based on the driver's capabilities is also
+over-engineering, but I don't mind adding it if that's what people
+really want.
+
+>
+> > > > This was originally "preferred color format". Perhaps the
+> > > > documentation should better reflect that it is now a mandatory
+> > > > constraint which fails the modeset if not satisfied.
+> > >
+> > > That would definitely help.
+> > >
+> > > > >
+> > > > > For the Colorspace prop, the kernel just exposes all formats it s=
+upports
+> > > > > (independent of the sink) and then makes it the job of user space=
+ to
+> > > > > figure out if the sink supports it.
+> > > > >
+> > > > > The same could be done here. Property value is exposed if the dri=
+ver
+> > > > > supports it in general, commits can fail if the driver can't supp=
+ort it
+> > > > > for a specific commit because e.g. the resolution or refresh rate=
+. User
+> > > > > space must look at the EDID/DisplayID/mode to figure out the supp=
+orted
+> > > > > format for the sink.
+> > > >
+> > > > Yes, we can make it possible for userspace to discover which modes =
+are
+> > > > supported by the monitor, but there are other constraints that need=
+ to
+> > > > be satisfied. This was discussed in the previous revision.
+> > >
+> > > I mean, yes, that's what I said. User space would then only be
+> > > responsible for checking the sink capabilities and the atomic check
+> > > would take into account other (non-sink) constraints.
+> >
+> > Since we need to probe using TEST_ONLY anyway, we'll end up with two
+> > mechanisms to do the same thing where one of them depends on the other
+> > for completeness.
+>
+> What do you mean by "same thing"?
+
+I thought that it would be clear that I did not mean that they were
+literally equal. This was discussed on IRC and summarised in the email
+message that I linked to above. Excerpt:
+"I asked if it made sense to add color format capabilities to the mode info
+struct, but the conclusion was that it wouldn't really be useful because we
+need TEST_ONLY anyway to see if the color format setting is compatible with
+other settings."
+
+>
+> Neither HDMI nor DisplayPort have a feedback message saying your
+> infoframe contents are unacceptable, that I know of. Even if there was,
+> it would come too late for failing the atomic commit ioctl in
+> non-blocking mode.
+>
+> In general, display signalling is that you send whatever to the sink,
+> and hope for the best.
+>
+> EDID is used to describe what the sink can accept, so in theory the
+> kernel could parse EDID for all of these details and reject atomic
+> commits that attempt unsupported configurations. However, EDID are also
+> notoriously buggy. They are good for a best guess, but I believe it is
+> useful to be able to try "unsupported" things. IIRC, PS VR2
+> intentionally lies for instance.
+>
+> Even if the kernel did reject everything based on EDID, the only way
+> today for userspace to know what should work is to parse the EDID
+> itself. TEST_ONLY trials lead to a combinatorial explosion too easily.
+> So userspace is already expected to parse EDID, with the major
+> exception being video mode lists that are explicitly provided by the
+> kernel in UAPI.
+
+I thought that everyone agreed that display settings GUIs don't suffer
+from combinatorial explosion because settings are selected in a
+predefined order so they don't need to test all permutations.
+
+>
+> EDID and DisplayID standards also evolve. The kernel could be behind
+> userspace in chasing them, which was the reason why the kernel does not
+> validate HDR_OUTPUT_METADATA against EDID.
+>
+> The design of today with HDR_OUTPUT_METADATA and whatnot is
+> that userspace is responsible for checking sink capabilities, and
+> atomic check is responsible for driver and display controller
+> capabilities.
+
+I'm not really sure where you're going with this. Are you for or
+against userspace parsing EDID instead of getting the information from
+the kernel?
+
+>
+> > > > In any case, these things can be added later and need not be a part=
+ of
+> > > > this change set.
+> > >
+> > > No, this is the contract between the kernel and user space and has to=
+ be
+> > > figured out before we can merge new uAPI.
+>
+> Indeed.
+
+I don't see how adding something later to cut down on the
+combinatorial explosion can possibly break any kind of contract in the
+way things are currently implemented. Can anyone provide examples of
+how things can go wrong in this particular instance?
+
+Thanks,
+Andri
