@@ -2,45 +2,28 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id A009183002A
-	for <lists+intel-gfx@lfdr.de>; Wed, 17 Jan 2024 07:31:56 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 85131830046
+	for <lists+intel-gfx@lfdr.de>; Wed, 17 Jan 2024 07:50:58 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EC44B10E638;
-	Wed, 17 Jan 2024 06:31:52 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id F223810E091;
+	Wed, 17 Jan 2024 06:50:24 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 182CA10E604
- for <intel-gfx@lists.freedesktop.org>; Wed, 17 Jan 2024 06:31:52 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1705473112; x=1737009112;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=suugYnFvtZhSHUBfElgVD4bgVLtaUIBz2ZGBoeA5AbQ=;
- b=S0XlFejvt3ZSRNTRF2teuivq87D4lMEatncW5BlQSA+YwEkl4MWKn9q4
- z8dz5VOm4CWCxJpCtzL0Pv1KGary9Xj1YiLGj3KeCrdQSDRLjRB7T5pHb
- H6FMnVGLhlR4LO4XvL7c0MkMM0hBwnDMfacjY/cmd6ql6gAJtgQYbKp3B
- p2jP+yovyHTLdVjFJ5Mtl9cswkP/QTJufABNUSVPyEKiXEoWjZYSW6uLU
- qbnNKUPVxAWIbunAWhVsrJaFcKcA5+vi0ptu2+P3Jwm9BHT0NxnvBQA+j
- Bsf0uJEotgubdSZjpT26nbc6pfgrRDr8Iz8XiNnwhQnYE1H6763QplbDA w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10955"; a="13439761"
-X-IronPort-AV: E=Sophos;i="6.05,200,1701158400"; d="scan'208";a="13439761"
-Received: from orviesa001.jf.intel.com ([10.64.159.141])
- by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Jan 2024 22:31:49 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.05,200,1701158400"; d="scan'208";a="32726128"
-Received: from srr4-3-linux-101-amanna.iind.intel.com ([10.223.74.76])
- by orviesa001.jf.intel.com with ESMTP; 16 Jan 2024 22:31:47 -0800
-From: Animesh Manna <animesh.manna@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Subject: [PATCH] drm/i915/lnl: Block pkgC entry for performance improvemnt
-Date: Wed, 17 Jan 2024 11:48:03 +0530
-Message-Id: <20240117061803.1329144-1-animesh.manna@intel.com>
-X-Mailer: git-send-email 2.29.0
+Received: from 5338d5abeb45 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 36F6510E039;
+ Wed, 17 Jan 2024 06:50:24 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============4620146841827385842=="
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=93_Fi=2ECI=2EBAT=3A_success_for_Revert_=22drm/i915/mtl=3A_U?=
+ =?utf-8?q?pdate_workaround_14018778641=22?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Tejas Upadhyay" <tejas.upadhyay@intel.com>
+Date: Wed, 17 Jan 2024 06:50:24 -0000
+Message-ID: <170547422422.519235.14127763596046752946@5338d5abeb45>
+X-Patchwork-Hint: ignore
+References: <20240117052042.1419544-1-tejas.upadhyay@intel.com>
+In-Reply-To: <20240117052042.1419544-1-tejas.upadhyay@intel.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -53,88 +36,162 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-For High refresh rates usages, Vblank is required to be really small.
-It cannot accommodate PKGC exit delay after framestart. Block PKGC till
-next framestart which will be set by software and later will be
-cleared by HW at framestart.
+--===============4620146841827385842==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Cc: Mitul Golani <mitulkumar.ajitkumar.golani@intel.com>
-Signed-off-by: Animesh Manna <animesh.manna@intel.com>
----
- drivers/gpu/drm/i915/display/intel_display.c  |  3 +++
- drivers/gpu/drm/i915/display/intel_dmc.c      | 15 +++++++++++++++
- drivers/gpu/drm/i915/display/intel_dmc.h      |  1 +
- drivers/gpu/drm/i915/display/intel_dmc_regs.h |  5 +++++
- 4 files changed, 24 insertions(+)
+== Series Details ==
 
-diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
-index c6680ee2127c..928db551c685 100644
---- a/drivers/gpu/drm/i915/display/intel_display.c
-+++ b/drivers/gpu/drm/i915/display/intel_display.c
-@@ -7421,6 +7421,9 @@ static void intel_atomic_commit_tail(struct intel_atomic_state *state)
- 
- 	drm_atomic_helper_commit_hw_done(&state->base);
- 
-+	if (DISPLAY_VER(dev_priv) >= 20)
-+		intel_dmc_block_pkgc(dev_priv);
-+
- 	if (state->modeset) {
- 		/* As one of the primary mmio accessors, KMS has a high
- 		 * likelihood of triggering bugs in unclaimed access. After we
-diff --git a/drivers/gpu/drm/i915/display/intel_dmc.c b/drivers/gpu/drm/i915/display/intel_dmc.c
-index 51e0463518fb..2f86fc5f5f32 100644
---- a/drivers/gpu/drm/i915/display/intel_dmc.c
-+++ b/drivers/gpu/drm/i915/display/intel_dmc.c
-@@ -1247,3 +1247,18 @@ void intel_dmc_debugfs_register(struct drm_i915_private *i915)
- 	debugfs_create_file("i915_dmc_info", 0444, minor->debugfs_root,
- 			    i915, &intel_dmc_debugfs_status_fops);
- }
-+
-+void intel_dmc_block_pkgc(struct drm_i915_private *i915)
-+{
-+	u32 pkgc_ctrl;
-+
-+	if (HAS_DMC(i915)) {
-+		pkgc_ctrl = intel_de_read(i915, DMC_BLOCK_PKGC);
-+		pkgc_ctrl |= DMC_BLOCK_PKGC_ENABLE;
-+		intel_de_write(i915, DMC_BLOCK_PKGC, pkgc_ctrl);
-+	} else {
-+		pkgc_ctrl = intel_de_read(i915, DMC_BLOCK_PKGC_SW);
-+		pkgc_ctrl |= DMC_BLOCK_PKGC_ENABLE;
-+		intel_de_write(i915, DMC_BLOCK_PKGC_SW, pkgc_ctrl);
-+	}
-+}
-diff --git a/drivers/gpu/drm/i915/display/intel_dmc.h b/drivers/gpu/drm/i915/display/intel_dmc.h
-index fd607afff2ef..6c2fcaea4c0d 100644
---- a/drivers/gpu/drm/i915/display/intel_dmc.h
-+++ b/drivers/gpu/drm/i915/display/intel_dmc.h
-@@ -24,6 +24,7 @@ bool intel_dmc_has_payload(struct drm_i915_private *i915);
- void intel_dmc_debugfs_register(struct drm_i915_private *i915);
- void intel_dmc_print_error_state(struct drm_i915_error_state_buf *m,
- 				 struct drm_i915_private *i915);
-+void intel_dmc_block_pkgc(struct drm_i915_private *i915);
- 
- void assert_dmc_loaded(struct drm_i915_private *i915);
- 
-diff --git a/drivers/gpu/drm/i915/display/intel_dmc_regs.h b/drivers/gpu/drm/i915/display/intel_dmc_regs.h
-index cf10094acae3..2d52fe7f3450 100644
---- a/drivers/gpu/drm/i915/display/intel_dmc_regs.h
-+++ b/drivers/gpu/drm/i915/display/intel_dmc_regs.h
-@@ -80,6 +80,11 @@
- #define ADLP_PIPE_MMIO_START		0x5F000
- #define ADLP_PIPE_MMIO_END		0x5FFFF
- 
-+#define DMC_BLOCK_PKGC		_MMIO(0x8F1C0)
-+#define DMC_BLOCK_PKGC_SW	_MMIO(0x8F1C4)
-+
-+#define DMC_BLOCK_PKGC_ENABLE	REG_BIT(31)
-+
- #define TGL_PIPE_MMIO_START(dmc_id)	_PICK_EVEN(((dmc_id) - 1), _TGL_PIPEA_MMIO_START,\
- 					      _TGL_PIPEB_MMIO_START)
- 
--- 
-2.29.0
+Series: Revert "drm/i915/mtl: Update workaround 14018778641"
+URL   : https://patchwork.freedesktop.org/series/128860/
+State : success
 
+== Summary ==
+
+CI Bug Log - changes from CI_DRM_14129 -> Patchwork_128860v1
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_128860v1/index.html
+
+Participating hosts (39 -> 34)
+------------------------------
+
+  Additional (1): fi-pnv-d510 
+  Missing    (6): bat-dg2-8 bat-adlm-1 bat-dg2-9 fi-snb-2520m bat-rpls-2 bat-mtlp-8 
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_128860v1 that come from known issues:
+
+### CI changes ###
+
+#### Issues hit ####
+
+  * boot:
+    - bat-jsl-1:          [PASS][1] -> [FAIL][2] ([i915#8293])
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14129/bat-jsl-1/boot.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_128860v1/bat-jsl-1/boot.html
+
+  
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@gem_lmem_swapping@basic:
+    - fi-pnv-d510:        NOTRUN -> [SKIP][3] ([fdo#109271]) +31 other tests skip
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_128860v1/fi-pnv-d510/igt@gem_lmem_swapping@basic.html
+
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
+  [i915#8293]: https://gitlab.freedesktop.org/drm/intel/issues/8293
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_14129 -> Patchwork_128860v1
+
+  CI-20190529: 20190529
+  CI_DRM_14129: b6b50ad4c8d61b14de0ffcf0d52ae2adc0ef39cf @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_7675: ffde49e0583ee5053f25a065356bce6bce91047a @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  Patchwork_128860v1: b6b50ad4c8d61b14de0ffcf0d52ae2adc0ef39cf @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+### Linux commits
+
+9e2ed0a7ea14 Revert "drm/i915/mtl: Update workaround 14018778641"
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_128860v1/index.html
+
+--===============4620146841827385842==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>Revert &quot;drm/i915/mtl: Update workaround 14018778641&quot;</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/128860/">https://patchwork.freedesktop.org/series/128860/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_128860v1/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_128860v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_14129 -&gt; Patchwork_128860v1</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_128860v1/index.html</p>
+<h2>Participating hosts (39 -&gt; 34)</h2>
+<p>Additional (1): fi-pnv-d510 <br />
+  Missing    (6): bat-dg2-8 bat-adlm-1 bat-dg2-9 fi-snb-2520m bat-rpls-2 bat-mtlp-8 </p>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_128860v1 that come from known issues:</p>
+<h3>CI changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>boot:<ul>
+<li>bat-jsl-1:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14129/bat-jsl-1/boot.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_128860v1/bat-jsl-1/boot.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/8293">i915#8293</a>)</li>
+</ul>
+</li>
+</ul>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>igt@gem_lmem_swapping@basic:<ul>
+<li>fi-pnv-d510:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_128860v1/fi-pnv-d510/igt@gem_lmem_swapping@basic.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +31 other tests skip</li>
+</ul>
+</li>
+</ul>
+<p>{name}: This element is suppressed. This means it is ignored when computing<br />
+          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_14129 -&gt; Patchwork_128860v1</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_14129: b6b50ad4c8d61b14de0ffcf0d52ae2adc0ef39cf @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_7675: ffde49e0583ee5053f25a065356bce6bce91047a @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  Patchwork_128860v1: b6b50ad4c8d61b14de0ffcf0d52ae2adc0ef39cf @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+<h3>Linux commits</h3>
+<p>9e2ed0a7ea14 Revert "drm/i915/mtl: Update workaround 14018778641"</p>
+
+</body>
+</html>
+
+--===============4620146841827385842==--
