@@ -2,28 +2,28 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2F355830102
-	for <lists+intel-gfx@lfdr.de>; Wed, 17 Jan 2024 09:06:03 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 188DA83010D
+	for <lists+intel-gfx@lfdr.de>; Wed, 17 Jan 2024 09:07:48 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 91C0110E63B;
-	Wed, 17 Jan 2024 08:05:26 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 990DB10E604;
+	Wed, 17 Jan 2024 08:07:16 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from 5338d5abeb45 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 54CFC10E60A;
- Wed, 17 Jan 2024 08:05:25 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D466C10E604;
+ Wed, 17 Jan 2024 08:07:15 +0000 (UTC)
 Content-Type: multipart/alternative;
- boundary="===============5502691095138216436=="
+ boundary="===============4862852685478156311=="
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=97_Fi=2ECI=2EBAT=3A_failure_for_drm/i915/lnl=3A_Block_pkgC_?=
- =?utf-8?q?entry_for_performance_improvemnt?=
+Subject: =?utf-8?q?=E2=9C=93_Fi=2ECI=2EBAT=3A_success_for_drm/i915=3A_Cursor_vblank_e?=
+ =?utf-8?q?vasion_=28rev3=29?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Animesh Manna" <animesh.manna@intel.com>
-Date: Wed, 17 Jan 2024 08:05:25 -0000
-Message-ID: <170547872534.519920.9436012625833726449@5338d5abeb45>
+To: "Ville Syrjala" <ville.syrjala@linux.intel.com>
+Date: Wed, 17 Jan 2024 08:07:15 -0000
+Message-ID: <170547883586.519920.7552483098159931997@5338d5abeb45>
 X-Patchwork-Hint: ignore
-References: <20240117061803.1329144-1-animesh.manna@intel.com>
-In-Reply-To: <20240117061803.1329144-1-animesh.manna@intel.com>
+References: <20231213102519.13500-1-ville.syrjala@linux.intel.com>
+In-Reply-To: <20231213102519.13500-1-ville.syrjala@linux.intel.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -41,106 +41,116 @@ Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============5502691095138216436==
+--===============4862852685478156311==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
 
 == Series Details ==
 
-Series: drm/i915/lnl: Block pkgC entry for performance improvemnt
-URL   : https://patchwork.freedesktop.org/series/128863/
-State : failure
+Series: drm/i915: Cursor vblank evasion (rev3)
+URL   : https://patchwork.freedesktop.org/series/127744/
+State : success
 
 == Summary ==
 
-CI Bug Log - changes from CI_DRM_14129 -> Patchwork_128863v1
+CI Bug Log - changes from CI_DRM_14129 -> Patchwork_127744v3
 ====================================================
 
 Summary
 -------
 
-  **FAILURE**
+  **SUCCESS**
 
-  Serious unknown changes coming with Patchwork_128863v1 absolutely need to be
-  verified manually.
-  
-  If you think the reported changes have nothing to do with the changes
-  introduced in Patchwork_128863v1, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them
-  to document this new failure mode, which will reduce false positives in CI.
+  No regressions found.
 
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_128863v1/index.html
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_127744v3/index.html
 
-Participating hosts (39 -> 36)
+Participating hosts (39 -> 37)
 ------------------------------
 
-  Missing    (3): bat-dg2-8 fi-snb-2520m bat-mtlp-8 
+  Missing    (2): bat-rpls-2 fi-snb-2520m 
 
 Possible new issues
 -------------------
 
-  Here are the unknown changes that may have been introduced in Patchwork_128863v1:
+  Here are the unknown changes that may have been introduced in Patchwork_127744v3:
 
 ### IGT changes ###
 
-#### Possible regressions ####
+#### Suppressed ####
 
-  * igt@i915_selftest@live@gt_lrc:
-    - bat-adln-1:         [PASS][1] -> [INCOMPLETE][2]
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14129/bat-adln-1/igt@i915_selftest@live@gt_lrc.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_128863v1/bat-adln-1/igt@i915_selftest@live@gt_lrc.html
+  The following results come from untrusted machines, tests, or statuses.
+  They do not affect the overall result.
+
+  * igt@i915_selftest@live@execlists:
+    - {bat-adls-6}:       [PASS][1] -> [TIMEOUT][2]
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14129/bat-adls-6/igt@i915_selftest@live@execlists.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_127744v3/bat-adls-6/igt@i915_selftest@live@execlists.html
 
   
 Known issues
 ------------
 
-  Here are the changes found in Patchwork_128863v1 that come from known issues:
-
-### CI changes ###
-
-#### Issues hit ####
-
-  * boot:
-    - bat-jsl-1:          [PASS][3] -> [FAIL][4] ([i915#8293])
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14129/bat-jsl-1/boot.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_128863v1/bat-jsl-1/boot.html
-
-  
+  Here are the changes found in Patchwork_127744v3 that come from known issues:
 
 ### IGT changes ###
 
 #### Issues hit ####
 
-  * igt@i915_module_load@reload:
-    - bat-adlp-6:         [PASS][5] -> [DMESG-WARN][6] ([i915#1982])
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14129/bat-adlp-6/igt@i915_module_load@reload.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_128863v1/bat-adlp-6/igt@i915_module_load@reload.html
+  * igt@core_hotunplug@unbind-rebind:
+    - bat-adlp-6:         [PASS][3] -> [DMESG-WARN][4] ([i915#1982])
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14129/bat-adlp-6/igt@core_hotunplug@unbind-rebind.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_127744v3/bat-adlp-6/igt@core_hotunplug@unbind-rebind.html
+
+  * igt@i915_selftest@live@hangcheck:
+    - fi-skl-guc:         [PASS][5] -> [DMESG-FAIL][6] ([i915#10112])
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14129/fi-skl-guc/igt@i915_selftest@live@hangcheck.html
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_127744v3/fi-skl-guc/igt@i915_selftest@live@hangcheck.html
+
+  * igt@kms_pipe_crc_basic@suspend-read-crc@pipe-b-dp-1:
+    - bat-dg2-8:          [PASS][7] -> [INCOMPLETE][8] ([i915#9280])
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14129/bat-dg2-8/igt@kms_pipe_crc_basic@suspend-read-crc@pipe-b-dp-1.html
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_127744v3/bat-dg2-8/igt@kms_pipe_crc_basic@suspend-read-crc@pipe-b-dp-1.html
 
   
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+  [i915#10112]: https://gitlab.freedesktop.org/drm/intel/issues/10112
   [i915#1982]: https://gitlab.freedesktop.org/drm/intel/issues/1982
-  [i915#8293]: https://gitlab.freedesktop.org/drm/intel/issues/8293
+  [i915#9280]: https://gitlab.freedesktop.org/drm/intel/issues/9280
+  [i915#9943]: https://gitlab.freedesktop.org/drm/intel/issues/9943
 
 
 Build changes
 -------------
 
-  * Linux: CI_DRM_14129 -> Patchwork_128863v1
+  * Linux: CI_DRM_14129 -> Patchwork_127744v3
 
   CI-20190529: 20190529
   CI_DRM_14129: b6b50ad4c8d61b14de0ffcf0d52ae2adc0ef39cf @ git://anongit.freedesktop.org/gfx-ci/linux
   IGT_7675: ffde49e0583ee5053f25a065356bce6bce91047a @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_128863v1: b6b50ad4c8d61b14de0ffcf0d52ae2adc0ef39cf @ git://anongit.freedesktop.org/gfx-ci/linux
+  Patchwork_127744v3: b6b50ad4c8d61b14de0ffcf0d52ae2adc0ef39cf @ git://anongit.freedesktop.org/gfx-ci/linux
 
 
 ### Linux commits
 
-8787b230b13c drm/i915/lnl: Block pkgC entry for performance improvemnt
+5540e8a678ff Revert "drm/i915/xe2lpd: Treat cursor plane as regular plane for DDB allocation"
+629c34748213 drm/i915: Perform vblank evasion around legacy cursor updates
+18df1fe0b300 drm/i915: Move intel_vblank_evade() & co. into intel_vblank.c
+1a40377765af drm/i915: Move the min/max scanline sanity check into intel_vblank_evade()
+03003b9bdff4 drm/i915: Extract intel_vblank_evade()
+fb121f57f07d drm/i915: Include need_vlv_dsi_wa in intel_vblank_evade_ctx
+6a323300dd09 drm/i915: Introduce struct intel_vblank_evade_ctx
+d8be1b741b18 drm/i915: Reorder drm_vblank_put() vs. need_vlv_dsi_wa
+49c2682be890 drm/i915: Decouple intel_crtc_vblank_evade_scanlines() from atomic commits
 
 == Logs ==
 
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_128863v1/index.html
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_127744v3/index.html
 
---===============5502691095138216436==
+--===============4862852685478156311==
 Content-Type: text/html; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -160,66 +170,80 @@ Content-Transfer-Encoding: 7bit
 
 <b>Patch Details</b>
 <table>
-<tr><td><b>Series:</b></td><td>drm/i915/lnl: Block pkgC entry for performance improvemnt</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/128863/">https://patchwork.freedesktop.org/series/128863/</a></td></tr>
-<tr><td><b>State:</b></td><td>failure</td></tr>
+<tr><td><b>Series:</b></td><td>drm/i915: Cursor vblank evasion (rev3)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/127744/">https://patchwork.freedesktop.org/series/127744/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
 
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_128863v1/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_128863v1/index.html</a></td></tr>
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_127744v3/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_127744v3/index.html</a></td></tr>
 
 </table>
 
 
-    <h1>CI Bug Log - changes from CI_DRM_14129 -&gt; Patchwork_128863v1</h1>
+    <h1>CI Bug Log - changes from CI_DRM_14129 -&gt; Patchwork_127744v3</h1>
 <h2>Summary</h2>
-<p><strong>FAILURE</strong></p>
-<p>Serious unknown changes coming with Patchwork_128863v1 absolutely need to be<br />
-  verified manually.</p>
-<p>If you think the reported changes have nothing to do with the changes<br />
-  introduced in Patchwork_128863v1, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them<br />
-  to document this new failure mode, which will reduce false positives in CI.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_128863v1/index.html</p>
-<h2>Participating hosts (39 -&gt; 36)</h2>
-<p>Missing    (3): bat-dg2-8 fi-snb-2520m bat-mtlp-8 </p>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_127744v3/index.html</p>
+<h2>Participating hosts (39 -&gt; 37)</h2>
+<p>Missing    (2): bat-rpls-2 fi-snb-2520m </p>
 <h2>Possible new issues</h2>
-<p>Here are the unknown changes that may have been introduced in Patchwork_128863v1:</p>
+<p>Here are the unknown changes that may have been introduced in Patchwork_127744v3:</p>
 <h3>IGT changes</h3>
-<h4>Possible regressions</h4>
+<h4>Suppressed</h4>
+<p>The following results come from untrusted machines, tests, or statuses.<br />
+  They do not affect the overall result.</p>
 <ul>
-<li>igt@i915_selftest@live@gt_lrc:<ul>
-<li>bat-adln-1:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14129/bat-adln-1/igt@i915_selftest@live@gt_lrc.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_128863v1/bat-adln-1/igt@i915_selftest@live@gt_lrc.html">INCOMPLETE</a></li>
+<li>igt@i915_selftest@live@execlists:<ul>
+<li>{bat-adls-6}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14129/bat-adls-6/igt@i915_selftest@live@execlists.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_127744v3/bat-adls-6/igt@i915_selftest@live@execlists.html">TIMEOUT</a></li>
 </ul>
 </li>
 </ul>
 <h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_128863v1 that come from known issues:</p>
-<h3>CI changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>boot:<ul>
-<li>bat-jsl-1:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14129/bat-jsl-1/boot.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_128863v1/bat-jsl-1/boot.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/8293">i915#8293</a>)</li>
-</ul>
-</li>
-</ul>
+<p>Here are the changes found in Patchwork_127744v3 that come from known issues:</p>
 <h3>IGT changes</h3>
 <h4>Issues hit</h4>
 <ul>
-<li>igt@i915_module_load@reload:<ul>
-<li>bat-adlp-6:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14129/bat-adlp-6/igt@i915_module_load@reload.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_128863v1/bat-adlp-6/igt@i915_module_load@reload.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1982">i915#1982</a>)</li>
+<li>
+<p>igt@core_hotunplug@unbind-rebind:</p>
+<ul>
+<li>bat-adlp-6:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14129/bat-adlp-6/igt@core_hotunplug@unbind-rebind.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_127744v3/bat-adlp-6/igt@core_hotunplug@unbind-rebind.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1982">i915#1982</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@hangcheck:</p>
+<ul>
+<li>fi-skl-guc:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14129/fi-skl-guc/igt@i915_selftest@live@hangcheck.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_127744v3/fi-skl-guc/igt@i915_selftest@live@hangcheck.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/10112">i915#10112</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_pipe_crc_basic@suspend-read-crc@pipe-b-dp-1:</p>
+<ul>
+<li>bat-dg2-8:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14129/bat-dg2-8/igt@kms_pipe_crc_basic@suspend-read-crc@pipe-b-dp-1.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_127744v3/bat-dg2-8/igt@kms_pipe_crc_basic@suspend-read-crc@pipe-b-dp-1.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/9280">i915#9280</a>)</li>
 </ul>
 </li>
 </ul>
+<p>{name}: This element is suppressed. This means it is ignored when computing<br />
+          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
 <h2>Build changes</h2>
 <ul>
-<li>Linux: CI_DRM_14129 -&gt; Patchwork_128863v1</li>
+<li>Linux: CI_DRM_14129 -&gt; Patchwork_127744v3</li>
 </ul>
 <p>CI-20190529: 20190529<br />
   CI_DRM_14129: b6b50ad4c8d61b14de0ffcf0d52ae2adc0ef39cf @ git://anongit.freedesktop.org/gfx-ci/linux<br />
   IGT_7675: ffde49e0583ee5053f25a065356bce6bce91047a @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  Patchwork_128863v1: b6b50ad4c8d61b14de0ffcf0d52ae2adc0ef39cf @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+  Patchwork_127744v3: b6b50ad4c8d61b14de0ffcf0d52ae2adc0ef39cf @ git://anongit.freedesktop.org/gfx-ci/linux</p>
 <h3>Linux commits</h3>
-<p>8787b230b13c drm/i915/lnl: Block pkgC entry for performance improvemnt</p>
+<p>5540e8a678ff Revert "drm/i915/xe2lpd: Treat cursor plane as regular plane for DDB allocation"<br />
+629c34748213 drm/i915: Perform vblank evasion around legacy cursor updates<br />
+18df1fe0b300 drm/i915: Move intel_vblank_evade() &amp; co. into intel_vblank.c<br />
+1a40377765af drm/i915: Move the min/max scanline sanity check into intel_vblank_evade()<br />
+03003b9bdff4 drm/i915: Extract intel_vblank_evade()<br />
+fb121f57f07d drm/i915: Include need_vlv_dsi_wa in intel_vblank_evade_ctx<br />
+6a323300dd09 drm/i915: Introduce struct intel_vblank_evade_ctx<br />
+d8be1b741b18 drm/i915: Reorder drm_vblank_put() vs. need_vlv_dsi_wa<br />
+49c2682be890 drm/i915: Decouple intel_crtc_vblank_evade_scanlines() from atomic commits</p>
 
 </body>
 </html>
 
---===============5502691095138216436==--
+--===============4862852685478156311==--
