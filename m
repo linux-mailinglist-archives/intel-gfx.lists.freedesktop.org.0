@@ -2,51 +2,28 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7E08A830A2A
-	for <lists+intel-gfx@lfdr.de>; Wed, 17 Jan 2024 16:58:00 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1E095830AF8
+	for <lists+intel-gfx@lfdr.de>; Wed, 17 Jan 2024 17:24:25 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7232B10E0C7;
-	Wed, 17 Jan 2024 15:57:28 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A4A9810E029;
+	Wed, 17 Jan 2024 16:23:53 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5C6CC10E0C7
- for <intel-gfx@lists.freedesktop.org>; Wed, 17 Jan 2024 15:57:27 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1705507048; x=1737043048;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=p1FcO1QiHD+EBeYZwXKoUwusYFz2N5mu1H5hel7ffYk=;
- b=ZgSBFtZ2EXRAL2idqjNB+b7rFO5zm1DybKQeXz62RweTo+nh0wLh0HoV
- IrYGBdUAnajz/1URRgypHIDjdzBQRCGeyBuGdzxsVOZKmJ+Lmtk3R/VT4
- fEf0xepmCpkCyaBCRQ6oXXZZihRDD19vZgdi80aNRg4OJZS84TA1q99Vu
- acJ8ZjAt1jS/iyUir7y781QZ5oMhNCPzZK0k9g3iB4cLKWk0eN9DTZ1DE
- WRj9JYgxZo7cpSoo2mtIXkAhYirMthrK13LijsbVc0+6+uMM3bySjOOPH
- QzJj571SkGfeMEoQ98yWWYDL8zLVRgJqZ/dQWPnsRcI23/Hn2n53W3ooZ A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10956"; a="6904376"
-X-IronPort-AV: E=Sophos;i="6.05,200,1701158400"; 
-   d="scan'208";a="6904376"
-Received: from orsmga004.jf.intel.com ([10.7.209.38])
- by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Jan 2024 07:57:27 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10956"; a="907789545"
-X-IronPort-AV: E=Sophos;i="6.05,200,1701158400"; d="scan'208";a="907789545"
-Received: from unknown (HELO slisovsk-Lenovo-ideapad-720S-13IKB.fi.intel.com)
- ([10.237.72.65])
- by orsmga004.jf.intel.com with ESMTP; 17 Jan 2024 07:57:25 -0800
-From: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Subject: [PATCH 3/3] drm/i915: Disable SAGV on bw init,
- to force QGV point recalculation
-Date: Wed, 17 Jan 2024 17:57:18 +0200
-Message-Id: <20240117155718.3439-4-stanislav.lisovskiy@intel.com>
-X-Mailer: git-send-email 2.37.3
-In-Reply-To: <20240117155718.3439-1-stanislav.lisovskiy@intel.com>
-References: <20240117155718.3439-1-stanislav.lisovskiy@intel.com>
+Received: from 5338d5abeb45 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DC5EE10E029;
+ Wed, 17 Jan 2024 16:23:52 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=97_Fi=2ECI=2ECHECKPATCH=3A_warning_for_drm/i915=3A_=28stole?=
+ =?utf-8?q?n=29_memory_region_related_fixes_=28rev7=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: =?utf-8?b?VmlsbGUgU3lyasOkbMOk?= <ville.syrjala@linux.intel.com>
+Date: Wed, 17 Jan 2024 16:23:52 -0000
+Message-ID: <170550863290.537693.16505610258454205972@5338d5abeb45>
+X-Patchwork-Hint: ignore
+References: <20240116075636.6121-1-ville.syrjala@linux.intel.com>
+In-Reply-To: <20240116075636.6121-1-ville.syrjala@linux.intel.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,87 +36,50 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Problem is that on some platforms, we do get QGV point mask in wrong
-state on boot. However driver assumes it is set to 0
-(i.e all points allowed), however in reality we might get them all restricted,
-causing issues.
-Lets disable SAGV initially to force proper QGV point state.
-If more QGV points are available, driver will recalculate and update
-those then after next commit.
+== Series Details ==
 
-v2: - Added trace to see which QGV/PSF GV point is used when SAGV is
-      disabled.
-v3: - Move force disable function to intel_bw_init in order to initialize
-      bw state as well, so that hw/sw are immediately in sync after init.
-v4: - Don't try sending PCode request, seems like it is not possible at
-      intel_bw_init, however assigning bw->state to be restricted as if
-      SAGV is off, still forces driveer to send PCode request anyway on
-      next modeset, so the solution still works.
-      However we still need to address the case, when no display is connected,
-      which anyway requires much more changes.
+Series: drm/i915: (stolen) memory region related fixes (rev7)
+URL   : https://patchwork.freedesktop.org/series/127721/
+State : warning
 
-Signed-off-by: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
----
- drivers/gpu/drm/i915/display/intel_bw.c | 24 ++++++++++++++++++++++++
- drivers/gpu/drm/i915/display/intel_bw.h |  2 ++
- 2 files changed, 26 insertions(+)
+== Summary ==
 
-diff --git a/drivers/gpu/drm/i915/display/intel_bw.c b/drivers/gpu/drm/i915/display/intel_bw.c
-index 7baa1c13eccd..36a6304207ba 100644
---- a/drivers/gpu/drm/i915/display/intel_bw.c
-+++ b/drivers/gpu/drm/i915/display/intel_bw.c
-@@ -852,6 +852,27 @@ static unsigned int icl_max_bw_qgv_point(struct drm_i915_private *i915,
- 	return max_bw_point;
+Error: dim checkpatch failed
+420bd052296b drm/i915: Use struct resource for memory region IO as well
+-:388: WARNING:LONG_LINE: line length of 105 exceeds 100 columns
+#388: FILE: drivers/gpu/drm/i915/intel_region_ttm.c:227:
++			if (WARN_ON(overflows_type(resource_size(&mem->io) >> PAGE_SHIFT, place.lpfn))) {
+
+total: 0 errors, 1 warnings, 0 checks, 281 lines checked
+36939988182b drm/i915: Print memory region info during probe
+b068f5dd348b drm/i915: Remove ad-hoc lmem/stolen debugs
+5c3f5c028395 drm/i915: Bypass LMEMBAR/GTTMMADR for MTL stolen memory access
+9d4356c8b4f9 drm/i915: Disable the "binder"
+eeeddbd1c219 drm/i915: Rename the DSM/GSM registers
+0f97740ee08d drm/i915: Fix PTE decode during initial plane readout
+3e1f008c0575 drm/i915: Fix region start during initial plane readout
+376b52c85c46 drm/i915: Fix MTL initial plane readout
+9d7013c0a8a2 drm/i915: s/phys_base/dma_addr/
+ad263486e9a0 drm/i915: Split the smem and lmem plane readout apart
+3ae104619d2c drm/i915: Simplify intel_initial_plane_config() calling convention
+4fe3e6f3e4ec drm/i915/fbdev: Fix smem_start for LMEMBAR stolen objects
+e1f6060ee679 drm/i915: Tweak BIOS fb reuse check
+0e59c24c2a0a drm/i915: Try to relocate the BIOS fb to the start of ggtt
+-:104: CHECK:LINE_SPACING: Please use a blank line after function/struct/union/enum declarations
+#104: FILE: drivers/gpu/drm/i915/display/i9xx_plane.h:51:
  }
- 
-+void icl_force_disable_sagv(struct drm_i915_private *i915, struct intel_bw_state *bw_state)
-+{
-+	unsigned int max_bw_qgv_point = icl_max_bw_qgv_point(i915, 0);
-+	unsigned int qgv_points;
-+	unsigned int psf_points;
-+
-+	qgv_points = BIT(max_bw_qgv_point);
-+
-+	/*
-+	 * We don't restrict PSF GV points, when disabling SAGV
-+	 */
-+	psf_points = 0;
-+
-+	bw_state->qgv_points_mask = ~(ICL_PCODE_REQ_QGV_PT(qgv_points) |
-+				      ADLS_PCODE_REQ_PSF_PT(psf_points)) &
-+				      icl_qgv_points_mask(i915);
-+
-+	drm_dbg_kms(&i915->drm, "Forcing SAGV disable: leaving QGV point %d\n",
-+				max_bw_qgv_point);
-+}
-+
- static int mtl_find_qgv_points(struct drm_i915_private *i915,
- 			       unsigned int data_rate,
- 			       unsigned int num_active_planes,
-@@ -1351,5 +1372,8 @@ int intel_bw_init(struct drm_i915_private *dev_priv)
- 	intel_atomic_global_obj_init(dev_priv, &dev_priv->display.bw.obj,
- 				     &state->base, &intel_bw_funcs);
- 
-+	if (DISPLAY_VER(dev_priv) < 14)
-+		icl_force_disable_sagv(dev_priv, state);
-+
- 	return 0;
- }
-diff --git a/drivers/gpu/drm/i915/display/intel_bw.h b/drivers/gpu/drm/i915/display/intel_bw.h
-index 59cb4fc5db76..243192fd4cae 100644
---- a/drivers/gpu/drm/i915/display/intel_bw.h
-+++ b/drivers/gpu/drm/i915/display/intel_bw.h
-@@ -74,5 +74,7 @@ int intel_bw_calc_min_cdclk(struct intel_atomic_state *state,
- 			    bool *need_cdclk_calc);
- int intel_bw_min_cdclk(struct drm_i915_private *i915,
- 		       const struct intel_bw_state *bw_state);
-+void icl_force_disable_sagv(struct drm_i915_private *dev_priv,
-+			    struct intel_bw_state *bw_state);
- 
- #endif /* __INTEL_BW_H__ */
--- 
-2.37.3
++static inline bool i9xx_fixup_initial_plane_config(struct intel_crtc *crtc,
+
+-:105: WARNING:LONG_LINE: line length of 105 exceeds 100 columns
+#105: FILE: drivers/gpu/drm/i915/display/i9xx_plane.h:52:
++						   const struct intel_initial_plane_config *plane_config)
+
+total: 0 errors, 1 warnings, 1 checks, 229 lines checked
+d5cdc16e4e91 drm/i915: Annotate more of the BIOS fb takeover failure paths
+
 
