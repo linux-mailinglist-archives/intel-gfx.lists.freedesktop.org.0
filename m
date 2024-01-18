@@ -2,50 +2,53 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0D00A831513
-	for <lists+intel-gfx@lfdr.de>; Thu, 18 Jan 2024 09:48:57 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 11634831517
+	for <lists+intel-gfx@lfdr.de>; Thu, 18 Jan 2024 09:50:44 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8AAB410E17F;
-	Thu, 18 Jan 2024 08:48:55 +0000 (UTC)
-X-Original-To: Intel-gfx@lists.freedesktop.org
-Delivered-To: Intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.93])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2B1D710E17F;
- Thu, 18 Jan 2024 08:48:49 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C0DAE10E767;
+	Thu, 18 Jan 2024 08:50:41 +0000 (UTC)
+X-Original-To: intel-gfx@lists.freedesktop.org
+Delivered-To: intel-gfx@lists.freedesktop.org
+Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9D19210E765
+ for <intel-gfx@lists.freedesktop.org>; Thu, 18 Jan 2024 08:50:40 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1705567734; x=1737103734;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=Crlwhp3kdZuxANX4Y6SMgg0yGG7qEeZCRmbOLEVfODI=;
- b=anNyRpUI4Y7UdmJ8lnOvRW6K34INNGU9QOPaNP+pLoncYgcU9kgQd3Tm
- U8ud11rxh+PemgrwFA0gnycmQe0isM9E2MqOSHRl/tI1zDqzn2reT0GWV
- xjHA/rmkWN6NhqY9HJ450p2krRUH6kVDgFH311ecRIGzAM0qpDfrkF3vn
- Fpmvd17dVGknIejQSqq+NCnX9bD1KjQSq+pQCXFcX/zC7JKK++jRL8SG1
- G5Mm2X3BAqCu7p4mMI2nIsTIIQY/S/OfSmMe8r17QTNb6qv4lkWXh1zNU
- /gox+NaUStctTw8/CRrawAHkCbcxD5CJF/5cHQMzuWacT18MpKC5ijlRj Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10956"; a="397552139"
-X-IronPort-AV: E=Sophos;i="6.05,201,1701158400"; d="scan'208";a="397552139"
-Received: from orsmga004.jf.intel.com ([10.7.209.38])
- by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Jan 2024 00:48:48 -0800
+ t=1705567840; x=1737103840;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=usuV2w2vb7pZJtI4hmL+6wGzgucYMfAfWNrxY4NOps4=;
+ b=mLaz6Io3ONlxb+aoKKJbgrefiBS3BRXvMse57td7KbJTWXA0aTRL172b
+ gnD8slZSE9llzx06uoqwFo8OwLbtnYWmPfyl3Us5dVvWFXyqc2nndQt4q
+ niaQBKV5/1CenX+sS6dwqLvuvvx4SjC47dnuiOC+d6PbulxtUBh9gb+Sv
+ AKA18GAICBMjY/wNn6upGU4TyVdYtixbBpKODc8+oTblhsWW655Q1A005
+ omBn0bOKjYJxdF64kzltMwzrEBVNxTK9Rje/kTI3cfTYSgybixKQ3bEKP
+ zaaTsNKSKWtg+yr4d/3/1JkaIFGWqveqrfTgB6D44EkQA0Ye2Y2lUuX/1 A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10956"; a="464671241"
+X-IronPort-AV: E=Sophos;i="6.05,201,1701158400"; d="scan'208";a="464671241"
+Received: from orsmga006.jf.intel.com ([10.7.209.51])
+ by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 18 Jan 2024 00:50:40 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10956"; a="907981377"
-X-IronPort-AV: E=Sophos;i="6.05,201,1701158400"; d="scan'208";a="907981377"
-Received: from amyers-mobl2.ger.corp.intel.com (HELO localhost.localdomain)
- ([10.213.224.223])
- by orsmga004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Jan 2024 00:48:46 -0800
-From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-To: igt-dev@lists.freedesktop.org,
-	Intel-gfx@lists.freedesktop.org
-Subject: [PATCH i-g-t] tools/intel_gpu_top: Fix near full percentage bar
- formatting
-Date: Thu, 18 Jan 2024 08:48:38 +0000
-Message-Id: <20240118084838.734165-1-tvrtko.ursulin@linux.intel.com>
-X-Mailer: git-send-email 2.40.1
+X-IronPort-AV: E=McAfee;i="6600,9927,10956"; a="760810656"
+X-IronPort-AV: E=Sophos;i="6.05,201,1701158400"; d="scan'208";a="760810656"
+Received: from unknown (HELO intel.com) ([10.237.72.65])
+ by orsmga006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 18 Jan 2024 00:50:38 -0800
+Date: Thu, 18 Jan 2024 10:50:30 +0200
+From: "Lisovskiy, Stanislav" <stanislav.lisovskiy@intel.com>
+To: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+Subject: Re: [PATCH 3/3] drm/i915: Disable SAGV on bw init, to force QGV
+ point recalculation
+Message-ID: <ZajlDneP8IMmkwrf@intel.com>
+References: <20240117155718.3439-1-stanislav.lisovskiy@intel.com>
+ <20240117155718.3439-4-stanislav.lisovskiy@intel.com>
+ <Zaji7CC77kmy1jW4@intel.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
+In-Reply-To: <Zaji7CC77kmy1jW4@intel.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -58,41 +61,136 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: anonymoustranquillity@proton.me, Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-From: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+On Thu, Jan 18, 2024 at 10:35:56AM +0200, Ville Syrjälä wrote:
+> On Wed, Jan 17, 2024 at 05:57:18PM +0200, Stanislav Lisovskiy wrote:
+> > Problem is that on some platforms, we do get QGV point mask in wrong
+> > state on boot. However driver assumes it is set to 0
+> > (i.e all points allowed), however in reality we might get them all restricted,
+> > causing issues.
+> > Lets disable SAGV initially to force proper QGV point state.
+> > If more QGV points are available, driver will recalculate and update
+> > those then after next commit.
+> > 
+> > v2: - Added trace to see which QGV/PSF GV point is used when SAGV is
+> >       disabled.
+> > v3: - Move force disable function to intel_bw_init in order to initialize
+> >       bw state as well, so that hw/sw are immediately in sync after init.
+> > v4: - Don't try sending PCode request, seems like it is not possible at
+> >       intel_bw_init, however assigning bw->state to be restricted as if
+> >       SAGV is off, still forces driveer to send PCode request anyway on
+> >       next modeset, so the solution still works.
+> >       However we still need to address the case, when no display is connected,
+> >       which anyway requires much more changes.
+> > 
+> > Signed-off-by: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
+> > ---
+> >  drivers/gpu/drm/i915/display/intel_bw.c | 24 ++++++++++++++++++++++++
+> >  drivers/gpu/drm/i915/display/intel_bw.h |  2 ++
+> >  2 files changed, 26 insertions(+)
+> > 
+> > diff --git a/drivers/gpu/drm/i915/display/intel_bw.c b/drivers/gpu/drm/i915/display/intel_bw.c
+> > index 7baa1c13eccd..36a6304207ba 100644
+> > --- a/drivers/gpu/drm/i915/display/intel_bw.c
+> > +++ b/drivers/gpu/drm/i915/display/intel_bw.c
+> > @@ -852,6 +852,27 @@ static unsigned int icl_max_bw_qgv_point(struct drm_i915_private *i915,
+> >  	return max_bw_point;
+> >  }
+> >  
+> > +void icl_force_disable_sagv(struct drm_i915_private *i915, struct intel_bw_state *bw_state)
+> > +{
+> > +	unsigned int max_bw_qgv_point = icl_max_bw_qgv_point(i915, 0);
+> > +	unsigned int qgv_points;
+> > +	unsigned int psf_points;
+> > +
+> > +	qgv_points = BIT(max_bw_qgv_point);
+> > +
+> > +	/*
+> > +	 * We don't restrict PSF GV points, when disabling SAGV
+> > +	 */
+> > +	psf_points = 0;
+> 
+> Using 0 looks very wrong here. Since we have no idea how much
+> bandwidth the display is consuming at this time we should
+> restrict this to the max psf gv point as well.
 
-Fix a bug where 1) the end vertical separator element would not be printed
-if the progress bar portion was all filled by the progress bar characters
-(no trailing spaces), and 2) the numerical overlay would be skipped to.
+Didn't we just agree that we are not restricting to max PSF GV
+point, in the last revision?..
 
-The bug would also shift the layout of following UI elements since the
-progress bar would not be consuming all the allocated horizontal space.
+"
+> Yep, but I really suspect we should. BSpec states that we should restrict all the GV points
+> except highest one, also that some PSF GV points aren't same or usable, depending on BW reqs.
+> So I would restrict that as well, in case if SAGV is off, just to be on safe side.
 
-Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
-Reported-by: anonymoustranquillity@proton.me
----
- tools/intel_gpu_top.c | 5 ++---
- 1 file changed, 2 insertions(+), 3 deletions(-)
+Pretty sure it's explicitly noted that PSF doesn't cause issues with
+latency and hence doesn't need this.
 
-diff --git a/tools/intel_gpu_top.c b/tools/intel_gpu_top.c
-index 046ead15a122..5b4f94d7de7a 100644
---- a/tools/intel_gpu_top.c
-+++ b/tools/intel_gpu_top.c
-@@ -1015,9 +1015,8 @@ print_percentage_bar(double percent, double max, int max_len, bool numeric)
- 		printf("%s", bars[i]);
- 
- 	len -= (bar_len + (w - 1)) / w;
--	if (len < 1)
--		return;
--	n_spaces(len);
-+	if (len >= 1)
-+		n_spaces(len);
- 
- 	putchar('|');
- 
--- 
-2.40.1
+In any case, a change like this has no business being in a patch
+that's just supposed to refactor code.
+"
 
+
+
+> 
+> > +
+> > +	bw_state->qgv_points_mask = ~(ICL_PCODE_REQ_QGV_PT(qgv_points) |
+> > +				      ADLS_PCODE_REQ_PSF_PT(psf_points)) &
+> > +				      icl_qgv_points_mask(i915);
+> > +
+> > +	drm_dbg_kms(&i915->drm, "Forcing SAGV disable: leaving QGV point %d\n",
+> > +				max_bw_qgv_point);
+> 
+> You didn't actually poke the hardware to disable anything.
+
+I know, problem is that PCode request doesn't work at this stage.
+Need to figure out why, but apparently it seems a bit too early.
+PCode just rejects that request.
+
+However that still works, because if more QGV points are available, driver
+will send a new request anyway on next modeset.
+
+Stan
+
+> 
+> > +}
+> > +
+> >  static int mtl_find_qgv_points(struct drm_i915_private *i915,
+> >  			       unsigned int data_rate,
+> >  			       unsigned int num_active_planes,
+> > @@ -1351,5 +1372,8 @@ int intel_bw_init(struct drm_i915_private *dev_priv)
+> >  	intel_atomic_global_obj_init(dev_priv, &dev_priv->display.bw.obj,
+> >  				     &state->base, &intel_bw_funcs);
+> >  
+> > +	if (DISPLAY_VER(dev_priv) < 14)
+> 
+> Should be some kind of range check to avoid putting garbage in there on
+> old platforms that don't support QGV.
+> 
+> > +		icl_force_disable_sagv(dev_priv, state);
+> > +
+> >  	return 0;
+> >  }
+> > diff --git a/drivers/gpu/drm/i915/display/intel_bw.h b/drivers/gpu/drm/i915/display/intel_bw.h
+> > index 59cb4fc5db76..243192fd4cae 100644
+> > --- a/drivers/gpu/drm/i915/display/intel_bw.h
+> > +++ b/drivers/gpu/drm/i915/display/intel_bw.h
+> > @@ -74,5 +74,7 @@ int intel_bw_calc_min_cdclk(struct intel_atomic_state *state,
+> >  			    bool *need_cdclk_calc);
+> >  int intel_bw_min_cdclk(struct drm_i915_private *i915,
+> >  		       const struct intel_bw_state *bw_state);
+> > +void icl_force_disable_sagv(struct drm_i915_private *dev_priv,
+> > +			    struct intel_bw_state *bw_state);
+> 
+> Why?
+> 
+> >  
+> >  #endif /* __INTEL_BW_H__ */
+> > -- 
+> > 2.37.3
+> 
+> -- 
+> Ville Syrjälä
+> Intel
