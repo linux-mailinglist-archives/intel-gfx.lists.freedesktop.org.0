@@ -2,61 +2,61 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4F956831C81
-	for <lists+intel-gfx@lfdr.de>; Thu, 18 Jan 2024 16:29:14 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 296F7831C83
+	for <lists+intel-gfx@lfdr.de>; Thu, 18 Jan 2024 16:29:40 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C101210E86F;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6993710E853;
 	Thu, 18 Jan 2024 15:29:07 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-lf1-f46.google.com (mail-lf1-f46.google.com
- [209.85.167.46])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DA17E10E0A8;
- Thu, 18 Jan 2024 15:29:03 +0000 (UTC)
-Received: by mail-lf1-f46.google.com with SMTP id
- 2adb3069b0e04-50ed808db11so10214295e87.2; 
- Thu, 18 Jan 2024 07:29:03 -0800 (PST)
+Received: from mail-lf1-f51.google.com (mail-lf1-f51.google.com
+ [209.85.167.51])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 712D710E840;
+ Thu, 18 Jan 2024 15:29:04 +0000 (UTC)
+Received: by mail-lf1-f51.google.com with SMTP id
+ 2adb3069b0e04-50eaaf2c7deso14118288e87.2; 
+ Thu, 18 Jan 2024 07:29:04 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=gmail.com; s=20230601; t=1705591682; x=1706196482; darn=lists.freedesktop.org;
  h=content-transfer-encoding:mime-version:references:in-reply-to
  :message-id:date:subject:cc:to:from:from:to:cc:subject:date
  :message-id:reply-to;
- bh=kbg/2s6dARrDFqeQP36XPl3vbixhpkjdsLGIY3RBk+E=;
- b=R7d2puDYn+hNaVLdPaghE73E598zi/0cCPD4NoLC9qaj9ZPp1fedCX+q7gouhypiFr
- W73TReElmwIOdoeDXFfaWWq20kx1JWro8VGvQ0KzMeq0YTEJQPqJs9DmpmVRRI3f3HDs
- 5thejNwIhBN5XPevcsLYpR+fXs2rMwZ0tmjqwjGN9v5PRzmbJnfUG9+vKSc21GYXVJD1
- zMBoB1KCUa+jP3Tpsgl0ViVuYIeppuCzxBiyP+Ka+ZZ9efCP/kv7bEgb9TYqyEuciBfQ
- sUSv59MVb+HVpCUwhHzONfbOwfLaKmjCXDiavh6g55dnRrgRNdRe1pbghlrFw58syzyS
- zBWg==
+ bh=XOXCccFK6Foc7T9kkt60G0bLfY4vNetL7k9rrpto9WU=;
+ b=bl58joW72bKn6vEtAyoMOAB8H/W+sT25LbRqR4Aja7yxvuj7Mq8MNs8dp9ty4Cb1rw
+ 6nIQJd2G2ByXsZhkSeLaqsffYFaybwzsXCvtvxYaAjIE4mIOGFWS5HqYQR6sUSqDauFr
+ YOn2fZV+qj2cOqHGtr4252YrQ1LFcFMrCKVVC+pHWof34GZ707RTTs1QR57Q+SgvY0sY
+ TVjjQRe5EwRwaQ7YKS7w3ZIaMAiVV3fKlipImdky2BZf0w6FFAnMcE98yvd2NwtH6pjn
+ 3tuG+dmlijPmSzyre95T+K4EtSh+IhHkeXHy3qJFfsxdnY007MXYuOM7g3btsTj95WSA
+ ES9w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20230601; t=1705591682; x=1706196482;
  h=content-transfer-encoding:mime-version:references:in-reply-to
  :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
  :subject:date:message-id:reply-to;
- bh=kbg/2s6dARrDFqeQP36XPl3vbixhpkjdsLGIY3RBk+E=;
- b=nks8q5Cn4LLrLdWmHR26Cm2o1bg2NvSDvr8wriF/q+ujK+SUptHpSoS1mhUj6QBViP
- Mn3MFI9l+vvjA7RQ+1UW4Q4yzU2FAo029pLSnMnSx8PoAhTv9DDwicRyG33khd3qBvy+
- 4HRVQPtI6wJlPHAwjEJqsUjzjOhtz5ohXlE+nYbXxaHy+7iCpsAdd8UtW1WcryNS6CI8
- QK98tvKRTHdsWU3onX4F78tUiIQQ92K+AgZ7FOfL07c1xXP0G/WwbrScNq2A72EUKQ2l
- pawBnyF+cIvTUDomHtEXHkV5VCnSRfRBBSrOdU/91VaHuTdwUkAldZH2PKS0wKWKGisA
- C2XQ==
-X-Gm-Message-State: AOJu0YxcbL6A2990L+Di8k2RdeUge+wlxYPZqiZ0Nva7FtQ19rTr14Iq
- /rh8ARof8/nqnCUasxoMTxO0+xDIQ4tjAkwfvHZf9uX+t/N5m3ipU9I4zKh0uuIVow==
-X-Google-Smtp-Source: AGHT+IHXqVmztgiK36b18k/0MwemHZyc1nWb5V6xAfovJkgXYeAjZsJ3tnHa7Vi0cGeH+XwL+O42og==
-X-Received: by 2002:a19:5f45:0:b0:50e:b1b1:430c with SMTP id
- a5-20020a195f45000000b0050eb1b1430cmr614436lfj.116.1705591681419; 
- Thu, 18 Jan 2024 07:28:01 -0800 (PST)
+ bh=XOXCccFK6Foc7T9kkt60G0bLfY4vNetL7k9rrpto9WU=;
+ b=Yy+kRI5OxNghJaYpSXI3Er+dx5hBcm6mVFsPXSV1CYKP8kwdvJsZQir0ZoNyuPpMar
+ r6NPlsj/e9ycpNFGtOB2MKiGlMjnLIaGiCQrl/gpRPLbkru6zhMmGWoABcCnBDW3qKB1
+ ScWRPSkf9QO390yzj7XFNggVx42FtJChLm28P9vxl72yyZEDXwAkSy4pjNXSK1PwGnQA
+ 4Zfq8/fgaJlytfajm0IrT7/HJb48z/CQoJwYzXNmYClBHAhYP/uIjolxwCbgdJ6TXMDM
+ VvLziuzyfTgFCq+oPHqDvw6z3gy294SFs236z2Hf7Mb53GbL0G+o3ekd8phNvX3TaVRW
+ mM0A==
+X-Gm-Message-State: AOJu0YxQOxcZR1z57SrXWLI4p3P5dDvw8DwTvf91UhVNwQ//ycmb8Vxj
+ zozBYuoa4ohbR8V7gWDniNru/B5ixNJZHI8V1iMIY2ETE9SzmIQCoAxdnhBCN8YxTg==
+X-Google-Smtp-Source: AGHT+IHKOU2G3U9BQY35jIIvnONNFn+Qa2KZbzI1EFpqtPIoe9lPs6dEDsyN3dzPPFB2EH4NggoEPg==
+X-Received: by 2002:ac2:4e06:0:b0:50e:70b4:79d2 with SMTP id
+ e6-20020ac24e06000000b0050e70b479d2mr716367lfr.41.1705591682276; 
+ Thu, 18 Jan 2024 07:28:02 -0800 (PST)
 Received: from jheikkil-mobl1.. ([2001:998:22:0:96ab:4869:ae6:2c8a])
  by smtp.gmail.com with ESMTPSA id
- z1-20020ac25de1000000b0050eea9541casm672737lfq.44.2024.01.18.07.28.00
+ z1-20020ac25de1000000b0050eea9541casm672737lfq.44.2024.01.18.07.28.01
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
  Thu, 18 Jan 2024 07:28:01 -0800 (PST)
 From: Juha-Pekka Heikkila <juhapekka.heikkila@gmail.com>
 To: intel-xe@lists.freedesktop.org,
 	intel-gfx@lists.freedesktop.org
-Subject: [PATCH 1/4] drm/xe: add bind time pat index to xe_bo structure
-Date: Thu, 18 Jan 2024 17:27:42 +0200
-Message-Id: <20240118152745.162960-2-juhapekka.heikkila@gmail.com>
+Subject: [PATCH 2/4] drm/xe: store bind time pat index to xe_bo
+Date: Thu, 18 Jan 2024 17:27:43 +0200
+Message-Id: <20240118152745.162960-3-juhapekka.heikkila@gmail.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20240118152745.162960-1-juhapekka.heikkila@gmail.com>
 References: <20240118152745.162960-1-juhapekka.heikkila@gmail.com>
@@ -77,30 +77,28 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Add BO bind time pat index member to xe_bo structure
+Store pat index from xe_vma to xe_bo
 
 Signed-off-by: Juha-Pekka Heikkila <juhapekka.heikkila@gmail.com>
 ---
- drivers/gpu/drm/xe/xe_bo_types.h | 6 ++++++
- 1 file changed, 6 insertions(+)
+ drivers/gpu/drm/xe/xe_pt.c | 4 ++++
+ 1 file changed, 4 insertions(+)
 
-diff --git a/drivers/gpu/drm/xe/xe_bo_types.h b/drivers/gpu/drm/xe/xe_bo_types.h
-index 14ef13b7b421..1825bf013dd0 100644
---- a/drivers/gpu/drm/xe/xe_bo_types.h
-+++ b/drivers/gpu/drm/xe/xe_bo_types.h
-@@ -91,6 +91,12 @@ struct xe_bo {
+diff --git a/drivers/gpu/drm/xe/xe_pt.c b/drivers/gpu/drm/xe/xe_pt.c
+index de1030a47588..4b76db698878 100644
+--- a/drivers/gpu/drm/xe/xe_pt.c
++++ b/drivers/gpu/drm/xe/xe_pt.c
+@@ -1252,6 +1252,10 @@ __xe_pt_bind_vma(struct xe_tile *tile, struct xe_vma *vma, struct xe_exec_queue
+ 		return ERR_PTR(-ENOMEM);
+ 	}
  
- 	/** @vram_userfault_link: Link into @mem_access.vram_userfault.list */
- 		struct list_head vram_userfault_link;
++	if (xe_vma_bo(vma)) {
++		xe_vma_bo(vma)->pat_index = vma->pat_index;
++	}
 +
-+	/**
-+	 * @pat_index: The pat index requested when bind this BO
-+	 */
-+	u16 pat_index;
-+
- };
- 
- #define intel_bo_to_drm_bo(bo) (&(bo)->ttm.base)
+ 	fence = xe_migrate_update_pgtables(tile->migrate,
+ 					   vm, xe_vma_bo(vma), q,
+ 					   entries, num_entries,
 -- 
 2.25.1
 
