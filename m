@@ -2,46 +2,45 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 34D5F832771
-	for <lists+intel-gfx@lfdr.de>; Fri, 19 Jan 2024 11:11:33 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id A3145832763
+	for <lists+intel-gfx@lfdr.de>; Fri, 19 Jan 2024 11:11:04 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7D28E10E9D3;
-	Fri, 19 Jan 2024 10:11:01 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0765810E9DA;
+	Fri, 19 Jan 2024 10:11:02 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1465C10E9D9
- for <intel-gfx@lists.freedesktop.org>; Fri, 19 Jan 2024 10:10:59 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CB5C510E9AE
+ for <intel-gfx@lists.freedesktop.org>; Fri, 19 Jan 2024 10:11:00 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1705659059; x=1737195059;
+ t=1705659060; x=1737195060;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=7KBSiOQb3w25VFnrcK3dhEsT3MizWHFu7JfurGawHxw=;
- b=Qx0pHn+BEEji6UZVpcAZgEaFpHCg0s9GPhy/2jlJ/xCb6VfZ0PjciVho
- g/hDU4tVidNu9Lq8FR/RcYQPO0IkPT8Cm/o7+3Fi3C3aHYTl/P0pTyKbb
- L8zNVMYkzJzoGRif/gnMKt3342bMWP5+Qw5/CZUwRTdBa0qqWVKN6+Jhi
- 4h2PAphTbIjN6zPd9hFj+tgQdT2X0yaEJ/iGRVTFgu8wPLlQGXmNfnsCO
- gxgtR90A0z4LzpEij2VMsWqgZ2zp5DiWAUmMm7k0kkrKY+T+UpX4s8Xa8
- Rs4i2BYPLNUoQl6JM88IlGhe98mvx/YSQyp5fiFlUdvB/ggcrUZhm0QAh A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10956"; a="14070738"
-X-IronPort-AV: E=Sophos;i="6.05,204,1701158400"; d="scan'208";a="14070738"
+ bh=cApGBe3wySnKHSkpmSvTkn88IXQcHWyP9TsBp1IvkfE=;
+ b=TpbISbZAfombhAdTfP+QPeIenpCjr7ZjvXZIxSK3NToU0t5toXBgye0o
+ o5WMT48ZM/3uKfAJk0whpB3F1MW34ZH46QTUgNEGfnPNoZq9um0FB43tp
+ dWLpyLTmgJeinv6S43OMVG11TIWI8aNQ5LNkkQLbxm9UcAra2rAearGvx
+ XK999fF4WL8fEyr3u7bSncqUv6TPClDlo9K9X1FMag1oTTJ/TSk/ShGwG
+ E8ieTmTEqWVJZmN4WRx1XdDLItqJX/9p7y4P5kH4wqGOdMKdy/vaKOwvD
+ JjmPL8/QX2JVFG8dxjg/c52vc/cpi4GNW6xN72zPX9X9LAXa/U+CyodUk A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10956"; a="14070743"
+X-IronPort-AV: E=Sophos;i="6.05,204,1701158400"; d="scan'208,223";a="14070743"
 Received: from orviesa005.jf.intel.com ([10.64.159.145])
  by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Jan 2024 02:10:59 -0800
+ 19 Jan 2024 02:11:00 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.05,204,1701158400"; 
-   d="scan'208";a="563217"
+X-IronPort-AV: E=Sophos;i="6.05,204,1701158400"; d="scan'208,223";a="563222"
 Received: from randiapp-mobl.ger.corp.intel.com (HELO
  jhogande-mobl1.intel.com) ([10.249.39.12])
  by orviesa005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Jan 2024 02:10:57 -0800
+ 19 Jan 2024 02:10:59 -0800
 From: =?UTF-8?q?Jouni=20H=C3=B6gander?= <jouni.hogander@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Subject: [PATCH v3 06/21] drm/i915/psr: Check possible errors for panel replay
- as well
-Date: Fri, 19 Jan 2024 12:10:09 +0200
-Message-Id: <20240119101024.1060812-7-jouni.hogander@intel.com>
+Subject: [PATCH v3 07/21] drm/i915/psr: Do not write registers/bits not
+ applicable for panel replay
+Date: Fri, 19 Jan 2024 12:10:10 +0200
+Message-Id: <20240119101024.1060812-8-jouni.hogander@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20240119101024.1060812-1-jouni.hogander@intel.com>
 References: <20240119101024.1060812-1-jouni.hogander@intel.com>
@@ -64,73 +63,83 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On HPD interrupt we want to check if the reason for HPD was some panel
-replay error detected by monitor/panel. This is already done for PSR. We
-want to do this for panel replay as well. Modify intel_psr_short_pulse to
-support panel replay as well.
+From bspec:
+
+Additional programming considerations (repurposed eDP registers)
+
+mask register: Only PSR_MASK[Mask FBC modify] and PSR_MASK[Mask Hotplug]
+are used in panel replay mode.
+
+Status register: Only SRD_STATUS[SRD state] field is used in panel replay
+mode.
+
+Due to this stop writing and reading registers and bits not used by panel
+replay if panel replay is used.
+
+Bspec: 53370
 
 Signed-off-by: Jouni Högander <jouni.hogander@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_psr.c | 21 ++++++++++++++++-----
- 1 file changed, 16 insertions(+), 5 deletions(-)
+ drivers/gpu/drm/i915/display/intel_psr.c | 23 ++++++++++++++++++-----
+ 1 file changed, 18 insertions(+), 5 deletions(-)
 
 diff --git a/drivers/gpu/drm/i915/display/intel_psr.c b/drivers/gpu/drm/i915/display/intel_psr.c
-index 893c72ea8cf1..6d7ef74201d2 100644
+index 6d7ef74201d2..2d5d1c2ce246 100644
 --- a/drivers/gpu/drm/i915/display/intel_psr.c
 +++ b/drivers/gpu/drm/i915/display/intel_psr.c
-@@ -2959,6 +2959,13 @@ static void psr_capability_changed_check(struct intel_dp *intel_dp)
- 	}
- }
+@@ -346,6 +346,9 @@ static void psr_irq_control(struct intel_dp *intel_dp)
+ 	enum transcoder cpu_transcoder = intel_dp->psr.transcoder;
+ 	u32 mask;
  
-+/*
-+ * On common bits:
-+ * DP_PSR_RFB_STORAGE_ERROR == DP_PANEL_REPLAY_RFB_STORAGE_ERROR
-+ * DP_PSR_VSC_SDP_UNCORRECTABLE_ERROR == DP_PANEL_REPLAY_VSC_SDP_UNCORRECTABLE_ERROR
-+ * DP_PSR_LINK_CRC_ERROR == DP_PANEL_REPLAY_LINK_CRC_ERROR
-+ * this function is relying on PSR definitions
-+ */
- void intel_psr_short_pulse(struct intel_dp *intel_dp)
- {
- 	struct drm_i915_private *dev_priv = dp_to_i915(intel_dp);
-@@ -2968,7 +2975,7 @@ void intel_psr_short_pulse(struct intel_dp *intel_dp)
- 			  DP_PSR_VSC_SDP_UNCORRECTABLE_ERROR |
- 			  DP_PSR_LINK_CRC_ERROR;
++	if (intel_dp->psr.panel_replay_enabled)
++		return;
++
+ 	mask = psr_irq_psr_error_bit_get(intel_dp);
+ 	if (intel_dp->psr.debug & I915_PSR_DEBUG_IRQ)
+ 		mask |= psr_irq_post_exit_bit_get(intel_dp) |
+@@ -1559,13 +1562,19 @@ static void intel_psr_enable_source(struct intel_dp *intel_dp,
+ 	 * mask LPSP to avoid dependency on other drivers that might block
+ 	 * runtime_pm besides preventing  other hw tracking issues now we
+ 	 * can rely on frontbuffer tracking.
++	 *
++	 * From bspec: Only PSR_MASK[Mask FBC modify] and PSR_MASK[Mask Hotplug]
++	 * are used in panel replay mode.
+ 	 */
+-	mask = EDP_PSR_DEBUG_MASK_MEMUP |
+-	       EDP_PSR_DEBUG_MASK_HPD |
+-	       EDP_PSR_DEBUG_MASK_LPSP;
++	mask = EDP_PSR_DEBUG_MASK_HPD;
  
--	if (!CAN_PSR(intel_dp))
-+	if (!CAN_PSR(intel_dp) && !CAN_PANEL_REPLAY(intel_dp))
- 		return;
- 
- 	mutex_lock(&psr->lock);
-@@ -2982,12 +2989,14 @@ void intel_psr_short_pulse(struct intel_dp *intel_dp)
- 		goto exit;
- 	}
- 
--	if (status == DP_PSR_SINK_INTERNAL_ERROR || (error_status & errors)) {
-+	if ((!psr->panel_replay_enabled && status == DP_PSR_SINK_INTERNAL_ERROR) ||
-+	    (error_status & errors)) {
- 		intel_psr_disable_locked(intel_dp);
- 		psr->sink_not_reliable = true;
- 	}
- 
--	if (status == DP_PSR_SINK_INTERNAL_ERROR && !error_status)
-+	if (!psr->panel_replay_enabled && status == DP_PSR_SINK_INTERNAL_ERROR &&
-+	    !error_status)
- 		drm_dbg_kms(&dev_priv->drm,
- 			    "PSR sink internal error, disabling PSR\n");
- 	if (error_status & DP_PSR_RFB_STORAGE_ERROR)
-@@ -3007,8 +3016,10 @@ void intel_psr_short_pulse(struct intel_dp *intel_dp)
- 	/* clear status register */
- 	drm_dp_dpcd_writeb(&intel_dp->aux, DP_PSR_ERROR_STATUS, error_status);
- 
--	psr_alpm_check(intel_dp);
--	psr_capability_changed_check(intel_dp);
-+	if (!psr->panel_replay_enabled) {
-+		psr_alpm_check(intel_dp);
-+		psr_capability_changed_check(intel_dp);
+-	if (DISPLAY_VER(dev_priv) < 20)
+-		mask |= EDP_PSR_DEBUG_MASK_MAX_SLEEP;
++	if (!intel_dp->psr.panel_replay_enabled) {
++		mask |= EDP_PSR_DEBUG_MASK_MEMUP |
++			EDP_PSR_DEBUG_MASK_LPSP;
++
++		if (DISPLAY_VER(dev_priv) < 20)
++			mask |= EDP_PSR_DEBUG_MASK_MAX_SLEEP;
 +	}
  
- exit:
- 	mutex_unlock(&psr->lock);
+ 	/*
+ 	 * No separate pipe reg write mask on hsw/bdw, so have to unmask all
+@@ -1634,6 +1643,9 @@ static bool psr_interrupt_error_check(struct intel_dp *intel_dp)
+ 	enum transcoder cpu_transcoder = intel_dp->psr.transcoder;
+ 	u32 val;
+ 
++	if (intel_dp->psr.panel_replay_enabled)
++		goto no_err;
++
+ 	/*
+ 	 * If a PSR error happened and the driver is reloaded, the EDP_PSR_IIR
+ 	 * will still keep the error set even after the reset done in the
+@@ -1651,6 +1663,7 @@ static bool psr_interrupt_error_check(struct intel_dp *intel_dp)
+ 		return false;
+ 	}
+ 
++no_err:
+ 	return true;
+ }
+ 
 -- 
 2.34.1
 
