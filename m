@@ -2,41 +2,51 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3F009836F50
-	for <lists+intel-gfx@lfdr.de>; Mon, 22 Jan 2024 19:13:16 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 35B48836F85
+	for <lists+intel-gfx@lfdr.de>; Mon, 22 Jan 2024 19:17:39 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C769C10EF6E;
-	Mon, 22 Jan 2024 18:12:44 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 936EC10E7BB;
+	Mon, 22 Jan 2024 18:17:07 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from sin.source.kernel.org (sin.source.kernel.org [145.40.73.55])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4545310EF6E;
- Mon, 22 Jan 2024 18:12:43 +0000 (UTC)
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
- by sin.source.kernel.org (Postfix) with ESMTP id 336B7CE2C0C;
- Mon, 22 Jan 2024 18:12:08 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 24E09C433C7;
- Mon, 22 Jan 2024 18:12:07 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1705947127;
- bh=X7GfhZVrnsTjbrFniNSElkwaarUNiRIasEFIuqkBbsc=;
- h=Date:From:To:Cc:Subject:In-Reply-To:From;
- b=RD8iuvLT4Sv4aBKpW/AH0z/cICipgVW1lAjoC1YM1SyiKLBhrgz3HpvzH1fu0nXxq
- vQj2C7z9nKhUhA7/137/0FAZ1UBUIJEqX2EfctHJRDcwwbF0B3eM2QUwSTO0EFM+S8
- Yg16Li20dF9C76zTt/31v+fnBYVns0Nfn05p0rt7gygIitxU3Bb83OBnj1axDQ0+VJ
- EZwq7+GP7yVeDXZO1XkZwJDVdbVocBqnaLtJc502siNpXTksX+/aFBCBazIDD38kBZ
- t4xqOKiSwtjFP4ljsbSdg9zoGDHylXjw2ljwv+rHUHDX1WLpXQ1t5goVu8GYMzXfC7
- VPLhQabcjhzIA==
-Date: Mon, 22 Jan 2024 12:12:05 -0600
-From: Bjorn Helgaas <helgaas@kernel.org>
-To: Sakari Ailus <sakari.ailus@linux.intel.com>
+Received: from mail-oi1-f172.google.com (mail-oi1-f172.google.com
+ [209.85.167.172])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DDEDD10E7BB;
+ Mon, 22 Jan 2024 18:17:06 +0000 (UTC)
+Received: by mail-oi1-f172.google.com with SMTP id
+ 5614622812f47-3bc21303a35so742251b6e.0; 
+ Mon, 22 Jan 2024 10:17:06 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1705947426; x=1706552226;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+ :subject:date:message-id:reply-to;
+ bh=bq9M9cm+CE6WAD/PzAq+M4FYMF5cDyj5a+NJZ7ioaVI=;
+ b=Xfuq2s5oLZpsL8XKlXYl8kT5q9SNN9HagNrHUl8GvXsS2UqP9wTpMKR3YlsKiq0fXw
+ TGkFNpVS/L3k4erSROpw1v/AA62b/wuwsGPIcYdh7ICXVplQDJ7Jp9AGpnUSsqH0CkOQ
+ S94636IWiP5UT6xOL1tQeYh3AVj4YuPKMfjU1SnkDo9KoT4JaqIq0ERV+04BF1F2VVhO
+ gLD/A4bHjyoJe73mdGOQ2sSsQb1UhF5YxlEVv8TIr0nAwJ16+ildhFOkeivOwGcztTli
+ nHR8Kuf9oQ3KjV5OIfg1y4eq+beWUuKpyC4NH/G1esN/1FEIfzzS7LKrMJYSBxTX6fwg
+ A2QQ==
+X-Gm-Message-State: AOJu0Yy8M7cQw5H58cuVChNWNF/VJzGGnxloikl8yOnVTQ+CkCwwyhCg
+ PHdg7JeymmEGORX8H5eb2mNcLFufEiE/epNv5Ocx4+Wvi82P2Jjumq0VpMA2dBkxkLR+HP5tpKN
+ vtABbvu8CmvtRjiU/GCUtiPiNxkk=
+X-Google-Smtp-Source: AGHT+IG7X57s+1Hb3UmgWa4B2VhnsQsEmm2qhDCXpsDoekvAtRW8AijnCpEwtrAHQizHxz0U/8KF3rieJlIr+BPH7Us=
+X-Received: by 2002:a05:6808:308f:b0:3bd:a741:a048 with SMTP id
+ bl15-20020a056808308f00b003bda741a048mr9775473oib.1.1705947426060; Mon, 22
+ Jan 2024 10:17:06 -0800 (PST)
+MIME-Version: 1.0
+References: <20240122114121.56752-2-sakari.ailus@linux.intel.com>
+ <20240122181205.GA275751@bhelgaas>
+In-Reply-To: <20240122181205.GA275751@bhelgaas>
+From: "Rafael J. Wysocki" <rafael@kernel.org>
+Date: Mon, 22 Jan 2024 19:16:54 +0100
+Message-ID: <CAJZ5v0gUpo6Shz2kQzie4XE23=fiPvD0=2yhjGptw8QbCq2SAg@mail.gmail.com>
 Subject: Re: [PATCH v3 1/2] pm: runtime: Simplify pm_runtime_get_if_active()
  usage
-Message-ID: <20240122181205.GA275751@bhelgaas>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240122114121.56752-2-sakari.ailus@linux.intel.com>
+To: Bjorn Helgaas <helgaas@kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -54,65 +64,63 @@ Cc: "Rafael J. Wysocki" <rafael@kernel.org>, linux-pci@vger.kernel.org,
  Stanislaw Gruszka <stanislaw.gruszka@linux.intel.com>,
  laurent.pinchart@ideasonboard.com, David Airlie <airlied@gmail.com>,
  Paul Elder <paul.elder@ideasonboard.com>, linux-media@vger.kernel.org,
- Thomas =?utf-8?Q?Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
- linux-pm@vger.kernel.org, intel-gfx@lists.freedesktop.org,
- Lucas De Marchi <lucas.demarchi@intel.com>, linux-sound@vger.kernel.org,
- Mark Brown <broonie@kernel.org>,
+ =?UTF-8?Q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
+ Daniel Vetter <daniel@ffwll.ch>, linux-pm@vger.kernel.org,
+ intel-gfx@lists.freedesktop.org, Lucas De Marchi <lucas.demarchi@intel.com>,
+ linux-sound@vger.kernel.org, Mark Brown <broonie@kernel.org>,
  Jacek Lawrynowicz <jacek.lawrynowicz@linux.intel.com>,
  Rodrigo Vivi <rodrigo.vivi@intel.com>,
  Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
  intel-xe@lists.freedesktop.org, Alex Elder <elder@kernel.org>,
  Greg Kroah-Hartman <gregkh@linuxfoundation.org>, Takashi Iwai <tiwai@suse.com>,
- Daniel Vetter <daniel@ffwll.ch>, netdev@vger.kernel.org
+ Sakari Ailus <sakari.ailus@linux.intel.com>, netdev@vger.kernel.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, Jan 22, 2024 at 01:41:21PM +0200, Sakari Ailus wrote:
-> There are two ways to opportunistically increment a device's runtime PM
-> usage count, calling either pm_runtime_get_if_active() or
-> pm_runtime_get_if_in_use(). The former has an argument to tell whether to
-> ignore the usage count or not, and the latter simply calls the former with
-> ign_usage_count set to false. The other users that want to ignore the
-> usage_count will have to explitly set that argument to true which is a bit
-> cumbersome.
+On Mon, Jan 22, 2024 at 7:12=E2=80=AFPM Bjorn Helgaas <helgaas@kernel.org> =
+wrote:
+>
+> On Mon, Jan 22, 2024 at 01:41:21PM +0200, Sakari Ailus wrote:
+> > There are two ways to opportunistically increment a device's runtime PM
+> > usage count, calling either pm_runtime_get_if_active() or
+> > pm_runtime_get_if_in_use(). The former has an argument to tell whether =
+to
+> > ignore the usage count or not, and the latter simply calls the former w=
+ith
+> > ign_usage_count set to false. The other users that want to ignore the
+> > usage_count will have to explitly set that argument to true which is a =
+bit
+> > cumbersome.
+>
+> s/explitly/explicitly/
+>
+> > To make this function more practical to use, remove the ign_usage_count
+> > argument from the function. The main implementation is renamed as
+> > pm_runtime_get_conditional().
+> >
+> > Signed-off-by: Sakari Ailus <sakari.ailus@linux.intel.com>
+> > Reviewed-by: Alex Elder <elder@linaro.org> # drivers/net/ipa/ipa_smp2p.=
+c
+> > Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+> > Acked-by: Takashi Iwai <tiwai@suse.de> # sound/
+> > Reviewed-by: Jacek Lawrynowicz <jacek.lawrynowicz@linux.intel.com> # dr=
+ivers/accel/ivpu/
+> > Acked-by: Rodrigo Vivi <rodrigo.vivi@intel.com> # drivers/gpu/drm/i915/
+> > Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
+>
+> Acked-by: Bjorn Helgaas <bhelgaas@google.com> # drivers/pci/
+>
+> > -EXPORT_SYMBOL_GPL(pm_runtime_get_if_active);
+> > +EXPORT_SYMBOL_GPL(pm_runtime_get_conditional);
+>
+> If pm_runtime_get_conditional() is exported, shouldn't it also be
+> documented in Documentation/power/runtime_pm.rst?
+>
+> But I'm dubious about exporting it because
+> __intel_runtime_pm_get_if_active() is the only caller, and you end up
+> with the same pattern there that we have before this series in the PM
+> core.  Why can't intel_runtime_pm.c be updated to use
+> pm_runtime_get_if_active() or pm_runtime_get_if_in_use() directly, and
+> make pm_runtime_get_conditional() static?
 
-s/explitly/explicitly/
-
-> To make this function more practical to use, remove the ign_usage_count
-> argument from the function. The main implementation is renamed as
-> pm_runtime_get_conditional().
-> 
-> Signed-off-by: Sakari Ailus <sakari.ailus@linux.intel.com>
-> Reviewed-by: Alex Elder <elder@linaro.org> # drivers/net/ipa/ipa_smp2p.c
-> Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-> Acked-by: Takashi Iwai <tiwai@suse.de> # sound/
-> Reviewed-by: Jacek Lawrynowicz <jacek.lawrynowicz@linux.intel.com> # drivers/accel/ivpu/
-> Acked-by: Rodrigo Vivi <rodrigo.vivi@intel.com> # drivers/gpu/drm/i915/
-> Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
-
-Acked-by: Bjorn Helgaas <bhelgaas@google.com> # drivers/pci/
-
-> -EXPORT_SYMBOL_GPL(pm_runtime_get_if_active);
-> +EXPORT_SYMBOL_GPL(pm_runtime_get_conditional);
-
-If pm_runtime_get_conditional() is exported, shouldn't it also be
-documented in Documentation/power/runtime_pm.rst?
-
-But I'm dubious about exporting it because
-__intel_runtime_pm_get_if_active() is the only caller, and you end up
-with the same pattern there that we have before this series in the PM
-core.  Why can't intel_runtime_pm.c be updated to use
-pm_runtime_get_if_active() or pm_runtime_get_if_in_use() directly, and
-make pm_runtime_get_conditional() static?
-
-> +++ b/drivers/gpu/drm/i915/intel_runtime_pm.c
-> @@ -246,7 +246,7 @@ static intel_wakeref_t __intel_runtime_pm_get_if_active(struct intel_runtime_pm
->  		 * function, since the power state is undefined. This applies
->  		 * atm to the late/early system suspend/resume handlers.
->  		 */
-> -		if (pm_runtime_get_if_active(rpm->kdev, ignore_usecount) <= 0)
-> +		if (pm_runtime_get_conditional(rpm->kdev, ignore_usecount) <= 0)
->  			return 0;
->  	}
-
-Bjorn
+Sounds like a good suggestion to me.
