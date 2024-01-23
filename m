@@ -2,41 +2,54 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 26EC283964E
-	for <lists+intel-gfx@lfdr.de>; Tue, 23 Jan 2024 18:24:32 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5D29E839691
+	for <lists+intel-gfx@lfdr.de>; Tue, 23 Jan 2024 18:39:48 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AF4A610E81B;
-	Tue, 23 Jan 2024 17:24:30 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8EF9010E873;
+	Tue, 23 Jan 2024 17:39:45 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1F7AB10E81B;
- Tue, 23 Jan 2024 17:24:30 +0000 (UTC)
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
- by dfw.source.kernel.org (Postfix) with ESMTP id 2814961E82;
- Tue, 23 Jan 2024 17:24:26 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 70157C433C7;
- Tue, 23 Jan 2024 17:24:25 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1706030665;
- bh=Oyao+3/Ux6TZycEPX8L/CtZdSt0adFVr9KdQJvVkrTM=;
- h=Date:From:To:Cc:Subject:In-Reply-To:From;
- b=WeSfU2SmF+MThNV+FwS3jNLbx/lbHqp3O8rGmEOzabcSnXEgrwMlsQB9X+zP4Dj5G
- wd1fgHH0A7R0Tmo1hzTqTwsERG+4Gn3Cx5lBeFm5nnKu5zpyTImNwviF1z+B9Bs+B5
- FDxtofh709s2gjhWj2TwrRefwkgnofaBeH2IOycUb4sAH6b1twJSE7eTOxL5ZpB136
- XW94cTSytbK36zuZLvfHBZJyLBwQtXSssVanGsGSNlbp69amctnSVmvxMuZ0ytbIUw
- x0q8WUofOp/tNMPpmUcwMX0JnwNQI0b6OZ1iN5n7Qvk/bytqBMVrKlnALAAEsYlcQ0
- 7dIeV9ibAJhkg==
-Date: Tue, 23 Jan 2024 11:24:23 -0600
-From: Bjorn Helgaas <helgaas@kernel.org>
-To: Sakari Ailus <sakari.ailus@linux.intel.com>
-Subject: Re: [PATCH v4 1/3] pm: runtime: Simplify pm_runtime_get_if_active()
- usage
-Message-ID: <20240123172423.GA317147@bhelgaas>
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A9B3010E8AF
+ for <intel-gfx@lists.freedesktop.org>; Tue, 23 Jan 2024 17:39:43 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1706031584; x=1737567584;
+ h=from:to:subject:in-reply-to:references:date:message-id:
+ mime-version:content-transfer-encoding;
+ bh=uPndczy7e5jUozbkca/W8RWHU5KZuuNr67rLpVzCJGw=;
+ b=NIz5Ip6cJJ4Cz8X6ueVGaB9I44aw0asxfaM42pLwYspwwf2871utJaa9
+ 0A9CDvf1d9Ss159q0Iw2SJQCFeh0mfC7T2EqKQoqmgX0fvpkJ/uMhKSqC
+ giNEh52sFho2xt2GaYCL2WeDFCmter/oxbnJpiLaYOexmoE6u+gt0P3fm
+ MhXlYYrHo1042M3cMHeLXlAabzh87TM0Tq5c6mslsVZsDe15GYJ1kKn1/
+ /LkBfhko3ztsZJ/RAoYxY4tMijtJrvqnEQdLYfcpw3mdnl8murM5Bzvk6
+ HM8IASBq1nyk0Kg9wsRbrsO1gOuO3XG4z0Ev4gE0uZmxEgbculSQvktnT g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10962"; a="14950091"
+X-IronPort-AV: E=Sophos;i="6.05,214,1701158400"; d="scan'208";a="14950091"
+Received: from orviesa004.jf.intel.com ([10.64.159.144])
+ by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 23 Jan 2024 09:39:36 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.05,214,1701158400"; 
+   d="scan'208";a="1718641"
+Received: from pzsolt-mobl1.ger.corp.intel.com (HELO localhost)
+ ([10.252.40.183])
+ by orviesa004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 23 Jan 2024 09:39:35 -0800
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Jouni =?utf-8?Q?H=C3=B6gander?= <jouni.hogander@intel.com>,
+ intel-gfx@lists.freedesktop.org
+Subject: Re: [PATCH v3 09/21] drm/i915/psr: Panel replay has to be enabled
+ before link training
+In-Reply-To: <20240119101024.1060812-10-jouni.hogander@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20240119101024.1060812-1-jouni.hogander@intel.com>
+ <20240119101024.1060812-10-jouni.hogander@intel.com>
+Date: Tue, 23 Jan 2024 19:39:31 +0200
+Message-ID: <87r0i8lzjg.fsf@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240123095642.97303-2-sakari.ailus@linux.intel.com>
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -49,62 +62,112 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "Rafael J. Wysocki" <rafael@kernel.org>, linux-pci@vger.kernel.org,
- dri-devel@lists.freedesktop.org, Jaroslav Kysela <perex@perex.cz>,
- Stanislaw Gruszka <stanislaw.gruszka@linux.intel.com>,
- laurent.pinchart@ideasonboard.com, David Airlie <airlied@gmail.com>,
- Paul Elder <paul.elder@ideasonboard.com>, linux-media@vger.kernel.org,
- Thomas =?utf-8?Q?Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
- linux-pm@vger.kernel.org, intel-gfx@lists.freedesktop.org,
- Lucas De Marchi <lucas.demarchi@intel.com>, linux-sound@vger.kernel.org,
- Mark Brown <broonie@kernel.org>,
- Jacek Lawrynowicz <jacek.lawrynowicz@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
- intel-xe@lists.freedesktop.org, Alex Elder <elder@kernel.org>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>, Takashi Iwai <tiwai@suse.com>,
- Daniel Vetter <daniel@ffwll.ch>, netdev@vger.kernel.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, Jan 23, 2024 at 11:56:42AM +0200, Sakari Ailus wrote:
-> There are two ways to opportunistically increment a device's runtime PM
-> usage count, calling either pm_runtime_get_if_active() or
-> pm_runtime_get_if_in_use(). The former has an argument to tell whether to
-> ignore the usage count or not, and the latter simply calls the former with
-> ign_usage_count set to false. The other users that want to ignore the
-> usage_count will have to explitly set that argument to true which is a bit
-> cumbersome.
-> 
-> To make this function more practical to use, remove the ign_usage_count
-> argument from the function. The main implementation is renamed as
-> pm_runtime_get_conditional().
-> 
-> Signed-off-by: Sakari Ailus <sakari.ailus@linux.intel.com>
-> Reviewed-by: Alex Elder <elder@linaro.org> # drivers/net/ipa/ipa_smp2p.c
-> Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-> Acked-by: Takashi Iwai <tiwai@suse.de> # sound/
-> Reviewed-by: Jacek Lawrynowicz <jacek.lawrynowicz@linux.intel.com> # drivers/accel/ivpu/
-> Acked-by: Rodrigo Vivi <rodrigo.vivi@intel.com> # drivers/gpu/drm/i915/
-> Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
+On Fri, 19 Jan 2024, Jouni H=C3=B6gander <jouni.hogander@intel.com> wrote:
+> Panel replay has to be enabled on sink side before link training. Take th=
+is
+> into account in fastset check and in initial fastset check.
+>
+> Signed-off-by: Jouni H=C3=B6gander <jouni.hogander@intel.com>
+> ---
+>  drivers/gpu/drm/i915/display/intel_display.c | 12 ++++++++++++
+>  drivers/gpu/drm/i915/display/intel_dp.c      |  8 ++++++++
+>  drivers/gpu/drm/i915/display/intel_psr.c     |  3 ---
+>  drivers/gpu/drm/i915/display/intel_psr.h     |  3 +++
+>  4 files changed, 23 insertions(+), 3 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/d=
+rm/i915/display/intel_display.c
+> index a92e959c8ac7..b7e5b2774f2e 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display.c
+> +++ b/drivers/gpu/drm/i915/display/intel_display.c
+> @@ -5214,6 +5214,18 @@ intel_pipe_config_compare(const struct intel_crtc_=
+state *current_config,
+>  		PIPE_CONF_CHECK_CSC(output_csc);
+>  	}
+>=20=20
+> +	/*
+> +	 * Panel replay has to be enabled before link training. PSR doesn't have
+> +	 * this requirement -> check these only if using panel replay
+> +	 */
+> +	if (current_config->has_panel_replay || pipe_config->has_panel_replay) {
+> +		PIPE_CONF_CHECK_BOOL(has_psr);
+> +		PIPE_CONF_CHECK_BOOL(has_psr2);
+> +		PIPE_CONF_CHECK_BOOL(enable_psr2_sel_fetch);
+> +		PIPE_CONF_CHECK_BOOL(enable_psr2_su_region_et);
+> +		PIPE_CONF_CHECK_BOOL(has_panel_replay);
+> +	}
+> +
+>  	PIPE_CONF_CHECK_BOOL(double_wide);
+>=20=20
+>  	if (dev_priv->display.dpll.mgr) {
+> diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i9=
+15/display/intel_dp.c
+> index e7cda3162ea2..11143fb9b0f0 100644
+> --- a/drivers/gpu/drm/i915/display/intel_dp.c
+> +++ b/drivers/gpu/drm/i915/display/intel_dp.c
+> @@ -3326,6 +3326,14 @@ bool intel_dp_initial_fastset_check(struct intel_e=
+ncoder *encoder,
+>  		fastset =3D false;
+>  	}
+>=20=20
+> +	if (CAN_PANEL_REPLAY(intel_dp)) {
+> +		drm_dbg_kms(&i915->drm,
+> +			    "[ENCODER:%d:%s] Forcing full modeset to compute panel replay sta=
+te\n",
+> +			    encoder->base.base.id, encoder->base.name);
+> +		crtc_state->uapi.mode_changed =3D true;
+> +		fastset =3D false;
+> +	}
+> +
 
-Acked-by: Bjorn Helgaas <bhelgaas@google.com> # drivers/pci/
+I think I'd rather start adding functionality specific functions that
+get called instead of exposing CAN_PANEL_REPLAY() and DP code covering
+everything.
 
-- Previous PM history uses "PM: " in the subject lines (not "pm: ").
+I.e. intel_psr_initial_fastset_check().
 
-- I don't know whether it's feasible, but it would be nice if the
-  intel_pm_runtime_pm.c rework could be done in one shot instead of
-  being split between patches 1/3 and 2/3.
+BR,
+Jani.
 
-  Maybe it could be a preliminary patch that uses the existing
-  if_active/if_in_use interfaces, followed by the trivial if_active
-  updates in this patch.  I think that would make the history easier
-  to read than having the transitory pm_runtime_get_conditional() in
-  the middle.
+>  	return fastset;
+>  }
+>=20=20
+> diff --git a/drivers/gpu/drm/i915/display/intel_psr.c b/drivers/gpu/drm/i=
+915/display/intel_psr.c
+> index b905aee0ec81..24a80f47b84f 100644
+> --- a/drivers/gpu/drm/i915/display/intel_psr.c
+> +++ b/drivers/gpu/drm/i915/display/intel_psr.c
+> @@ -192,9 +192,6 @@
+>  #define CAN_PSR(intel_dp) ((intel_dp)->psr.sink_support && \
+>  			   (intel_dp)->psr.source_support)
+>=20=20
+> -#define CAN_PANEL_REPLAY(intel_dp) ((intel_dp)->psr.sink_panel_replay_su=
+pport && \
+> -				    (intel_dp)->psr.source_panel_replay_support)
+> -
+>  bool intel_encoder_can_psr(struct intel_encoder *encoder)
+>  {
+>  	if (intel_encoder_is_dp(encoder) || encoder->type =3D=3D INTEL_OUTPUT_D=
+P_MST)
+> diff --git a/drivers/gpu/drm/i915/display/intel_psr.h b/drivers/gpu/drm/i=
+915/display/intel_psr.h
+> index b74382b38f4a..e687d7bdbb1f 100644
+> --- a/drivers/gpu/drm/i915/display/intel_psr.h
+> +++ b/drivers/gpu/drm/i915/display/intel_psr.h
+> @@ -21,6 +21,9 @@ struct intel_encoder;
+>  struct intel_plane;
+>  struct intel_plane_state;
+>=20=20
+> +#define CAN_PANEL_REPLAY(intel_dp) ((intel_dp)->psr.sink_panel_replay_su=
+pport && \
+> +				    (intel_dp)->psr.source_panel_replay_support)
+> +
+>  bool intel_encoder_can_psr(struct intel_encoder *encoder);
+>  void intel_psr_init_dpcd(struct intel_dp *intel_dp);
+>  void intel_psr_enable_sink(struct intel_dp *intel_dp,
 
-- Similarly, it would be nice if pm_runtime_get_conditional() never
-  had to be published in pm_runtime.h, instead of being temporarily
-  added there by this patch and then immediately made private by 2/3.
-  Maybe that's not practical, I dunno.
-
-Bjorn
+--=20
+Jani Nikula, Intel
