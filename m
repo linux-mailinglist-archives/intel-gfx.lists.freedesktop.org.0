@@ -2,52 +2,57 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 82C79838ECD
-	for <lists+intel-gfx@lfdr.de>; Tue, 23 Jan 2024 13:50:37 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 13CF5838F07
+	for <lists+intel-gfx@lfdr.de>; Tue, 23 Jan 2024 13:59:30 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0404B10E78C;
-	Tue, 23 Jan 2024 12:50:36 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6889610E770;
+	Tue, 23 Jan 2024 12:59:28 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.93])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 23F3010E78C
- for <intel-gfx@lists.freedesktop.org>; Tue, 23 Jan 2024 12:50:28 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 347A910E770;
+ Tue, 23 Jan 2024 12:59:27 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1706014235; x=1737550235;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=JjknoEXtP+FqPcTREVMtHx9cFoSBwPhKXZxD+Qx+7qo=;
- b=VvQbHLzObsP0gsZ9UlBr/YQQaCpVD/uTULEVuCZKIU1Y2MoTLFBB2GkT
- 7xz/lqQCuwSO9xiWIQ4/cG4ngiJs6LYRVVhwyhgJwKUl8wMZqE2w25/4p
- zQKc+9pER2q820L4iKVgOmtz/3ptHhL7i55XDE7ZO/PtGmNjXwElRSXRU
- Z2FQmKZI+CWcYYVE05i1hGO2ZzTgM7L9HK3H3pppWwpPptxJIJyt4zRER
- cnlcnNm3UMqRU7hljrN+4cgTWb/KByYEau7mT0HpZTDQdzPQoTKoyo/im
- qDQqisfsBwqC6fmXRASjYRENnT+/51iMey9UkcDqKscaif6PWLPzogdz1 w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10961"; a="398661311"
-X-IronPort-AV: E=Sophos;i="6.05,214,1701158400"; d="scan'208";a="398661311"
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
- by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Jan 2024 04:50:27 -0800
+ t=1706014767; x=1737550767;
+ h=message-id:date:mime-version:subject:to:references:from:
+ in-reply-to:content-transfer-encoding;
+ bh=EkS0OBDDZVB0OcNwtfWw4v+m5eH0rLOB20P2de2U/gc=;
+ b=QudYmoJ4avEzNTjsXHY4wlBO6k1BjJ/UR+WuukbmI3Q8nIz9TwAQE2eh
+ NK7OSoYtH62aXgp2rfvZ8L/Hus01cd/BgUpjWaaLmEDx5VKSKywQZOstD
+ 9fwyeVw1fhgOlYOaKHSC/l/0FFYRd/cGorZTSWGlMaJUhH5vfrLEwLEU8
+ YqecaseL/Kbjvlx2lIyZ3jR0m4RiglzOQ+/w+dRjgmuhj4cnu4wPZ3j6U
+ 7TQx0V6VuKD9QGuoPI2J2ZtrtJmV5PvQ+d2WzFuhlk/uG2x3tvOIiWxQ2
+ KHiX/B0aU5AgYuXLh0LEFnt544bASnwcej3jZZ3WQFJhT2KxtfTUFOMga Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10961"; a="14866303"
+X-IronPort-AV: E=Sophos;i="6.05,214,1701158400"; d="scan'208";a="14866303"
+Received: from orsmga005.jf.intel.com ([10.7.209.41])
+ by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 23 Jan 2024 04:59:27 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10961"; a="820083221"
-X-IronPort-AV: E=Sophos;i="6.05,214,1701158400"; d="scan'208";a="820083221"
-Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.74])
- by orsmga001.jf.intel.com with SMTP; 23 Jan 2024 04:50:25 -0800
-Received: by stinkbox (sSMTP sendmail emulation);
- Tue, 23 Jan 2024 14:50:24 +0200
-Date: Tue, 23 Jan 2024 14:50:24 +0200
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Juha-Pekka Heikkila <juhapekka.heikkila@gmail.com>
-Subject: Re: [PATCH] drm/xe/display: Disable aux ccs framebuffers
-Message-ID: <Za-2EFbpUcaLZkbb@intel.com>
-References: <20240102182422.3823394-1-juhapekka.heikkila@gmail.com>
+X-IronPort-AV: E=McAfee;i="6600,9927,10961"; a="959112167"
+X-IronPort-AV: E=Sophos;i="6.05,214,1701158400"; d="scan'208";a="959112167"
+Received: from kogorman-mobl.ger.corp.intel.com (HELO [10.252.18.165])
+ ([10.252.18.165])
+ by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 23 Jan 2024 04:59:25 -0800
+Message-ID: <b38a1766-e265-4aee-a164-67884b330873@intel.com>
+Date: Tue, 23 Jan 2024 12:59:23 +0000
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 2/4] drm/xe: store bind time pat index to xe_bo
+Content-Language: en-GB
+To: juhapekka.heikkila@gmail.com, intel-xe@lists.freedesktop.org,
+ intel-gfx@lists.freedesktop.org,
+ "ville.syrjala@linux.intel.com" <ville.syrjala@linux.intel.com>
+References: <20240118152745.162960-1-juhapekka.heikkila@gmail.com>
+ <20240118152745.162960-3-juhapekka.heikkila@gmail.com>
+ <6333556b-60ec-4233-be50-1dcb745bb89d@intel.com>
+ <a8db92fd-71b4-4ba8-b4a0-901ca68a4b64@gmail.com>
+From: Matthew Auld <matthew.auld@intel.com>
+In-Reply-To: <a8db92fd-71b4-4ba8-b4a0-901ca68a4b64@gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20240102182422.3823394-1-juhapekka.heikkila@gmail.com>
-X-Patchwork-Hint: comment
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -60,259 +65,69 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, Jan 02, 2024 at 08:24:22PM +0200, Juha-Pekka Heikkila wrote:
-> Aux ccs framebuffers don't work on Xe driver hence disable them
-> from plane capabilities until they are fixed. Flat ccs framebuffers
-> work and they are left enabled. Here is separated plane capabilities
-> check on i915 so it can behave differencly depending on the driver.
+On 22/01/2024 18:26, Juha-Pekka Heikkila wrote:
+> Hi Matthew, thanks for looking into these. Below few thoughts.
 > 
-> Closes: https://gitlab.freedesktop.org/drm/xe/kernel/-/issues/933
-> Signed-off-by: Juha-Pekka Heikkila <juhapekka.heikkila@gmail.com>
-> ---
->  drivers/gpu/drm/i915/Makefile                 |  1 +
->  .../gpu/drm/i915/display/intel_plane_caps.c   | 68 +++++++++++++++++++
->  .../gpu/drm/i915/display/intel_plane_caps.h   | 14 ++++
->  .../drm/i915/display/skl_universal_plane.c    | 61 +----------------
->  drivers/gpu/drm/xe/display/xe_plane_initial.c | 23 +++++++
->  5 files changed, 107 insertions(+), 60 deletions(-)
->  create mode 100644 drivers/gpu/drm/i915/display/intel_plane_caps.c
->  create mode 100644 drivers/gpu/drm/i915/display/intel_plane_caps.h
+> On 19.1.2024 17.45, Matthew Auld wrote:
+>> On 18/01/2024 15:27, Juha-Pekka Heikkila wrote:
+>>> Store pat index from xe_vma to xe_bo
+>>>
+>>> Signed-off-by: Juha-Pekka Heikkila <juhapekka.heikkila@gmail.com>
+>>> ---
+>>>   drivers/gpu/drm/xe/xe_pt.c | 4 ++++
+>>>   1 file changed, 4 insertions(+)
+>>>
+>>> diff --git a/drivers/gpu/drm/xe/xe_pt.c b/drivers/gpu/drm/xe/xe_pt.c
+>>> index de1030a47588..4b76db698878 100644
+>>> --- a/drivers/gpu/drm/xe/xe_pt.c
+>>> +++ b/drivers/gpu/drm/xe/xe_pt.c
+>>> @@ -1252,6 +1252,10 @@ __xe_pt_bind_vma(struct xe_tile *tile, struct 
+>>> xe_vma *vma, struct xe_exec_queue
+>>>           return ERR_PTR(-ENOMEM);
+>>>       }
+>>> +    if (xe_vma_bo(vma)) {
+>>> +        xe_vma_bo(vma)->pat_index = vma->pat_index;
+>>
+>> Multiple mappings will trash this I think. Is that OK for your 
+>> usecase? It can be useful to map the same resource as compressed and 
+>> uncompressed to facilitate in-place decompression/compression.
 > 
-> diff --git a/drivers/gpu/drm/i915/Makefile b/drivers/gpu/drm/i915/Makefile
-> index e777686190ca..c5e3c2dd0a01 100644
-> --- a/drivers/gpu/drm/i915/Makefile
-> +++ b/drivers/gpu/drm/i915/Makefile
-> @@ -302,6 +302,7 @@ i915-y += \
->  	display/intel_overlay.o \
->  	display/intel_pch_display.o \
->  	display/intel_pch_refclk.o \
-> +	display/intel_plane_caps.o \
->  	display/intel_plane_initial.o \
->  	display/intel_pmdemand.o \
->  	display/intel_psr.o \
-> diff --git a/drivers/gpu/drm/i915/display/intel_plane_caps.c b/drivers/gpu/drm/i915/display/intel_plane_caps.c
-> new file mode 100644
-> index 000000000000..6206ae11f296
-> --- /dev/null
-> +++ b/drivers/gpu/drm/i915/display/intel_plane_caps.c
-> @@ -0,0 +1,68 @@
-> +// SPDX-License-Identifier: MIT
-> +/*
-> + * Copyright � 2024 Intel Corporation
-> + */
-> +
-> +#include "i915_drv.h"
-> +#include "intel_fb.h"
-> +#include "intel_plane_caps.h"
-> +
-> +static bool skl_plane_has_rc_ccs(struct drm_i915_private *i915,
-> +				 enum pipe pipe, enum plane_id plane_id)
-> +{
-> +	/* Wa_22011186057 */
-> +	if (IS_ALDERLAKE_P(i915) && IS_DISPLAY_STEP(i915, STEP_A0, STEP_B0))
-> +		return false;
-> +
-> +	if (DISPLAY_VER(i915) >= 11)
-> +		return true;
-> +
-> +	if (IS_GEMINILAKE(i915))
-> +		return pipe != PIPE_C;
-> +
-> +	return pipe != PIPE_C &&
-> +		(plane_id == PLANE_PRIMARY ||
-> +		 plane_id == PLANE_SPRITE0);
-> +}
+> On i915 I think we did map framebuffers only once and did stay with it 
+> until fb was destroyed. XE_BO_SCANOUT_BIT is for buffers that are meant 
+> to be framebuffers? I could make it so pat index given first is not 
+> allowed to change for buffers with this bit set?
 
-These are about the *hardware* capabilities of the skl+
-univeral planes. Thus IMO they belong in
-skl_universal_plane.c and nowhere else.
+Yeah, sealing the pat_index for such objects might be the simplest option.
 
-> +
-> +static bool gen12_plane_has_mc_ccs(struct drm_i915_private *i915,
-> +				   enum plane_id plane_id)
-> +{
-> +	if (DISPLAY_VER(i915) < 12)
-> +		return false;
-> +
-> +	/* Wa_14010477008 */
-> +	if (IS_DG1(i915) || IS_ROCKETLAKE(i915) ||
-> +	    (IS_TIGERLAKE(i915) && IS_DISPLAY_STEP(i915, STEP_A0, STEP_D0)))
-> +		return false;
-> +
-> +	/* Wa_22011186057 */
-> +	if (IS_ALDERLAKE_P(i915) && IS_DISPLAY_STEP(i915, STEP_A0, STEP_B0))
-> +		return false;
-> +
-> +	return plane_id < PLANE_SPRITE4;
-> +}
-> +
-> +u8 skl_get_plane_caps(struct drm_i915_private *i915,
-> +		      enum pipe pipe, enum plane_id plane_id)
-> +{
-> +	u8 caps = INTEL_PLANE_CAP_TILING_X;
-> +
-> +	if (DISPLAY_VER(i915) < 13 || IS_ALDERLAKE_P(i915))
-> +		caps |= INTEL_PLANE_CAP_TILING_Y;
-> +	if (DISPLAY_VER(i915) < 12)
-> +		caps |= INTEL_PLANE_CAP_TILING_Yf;
-> +	if (HAS_4TILE(i915))
-> +		caps |= INTEL_PLANE_CAP_TILING_4;
-> +
-> +	if (skl_plane_has_rc_ccs(i915, pipe, plane_id)) {
-> +		caps |= INTEL_PLANE_CAP_CCS_RC;
-> +		if (DISPLAY_VER(i915) >= 12)
-> +			caps |= INTEL_PLANE_CAP_CCS_RC_CC;
-> +	}
-> +
-> +	if (gen12_plane_has_mc_ccs(i915, plane_id))
-> +		caps |= INTEL_PLANE_CAP_CCS_MC;
-> +
-> +	return caps;
-> +}
-> diff --git a/drivers/gpu/drm/i915/display/intel_plane_caps.h b/drivers/gpu/drm/i915/display/intel_plane_caps.h
-> new file mode 100644
-> index 000000000000..60a941c76f23
-> --- /dev/null
-> +++ b/drivers/gpu/drm/i915/display/intel_plane_caps.h
-> @@ -0,0 +1,14 @@
-> +/* SPDX-License-Identifier: MIT */
-> +/*
-> + * Copyright � 2024 Intel Corporation
-> + */
-> +
-> +#ifndef __INTEL_PLANE_CAPS_H__
-> +#define __INTEL_PLANE_CAPS_H__
-> +
-> +#include "intel_display_types.h"
-> +
-> +u8 skl_get_plane_caps(struct drm_i915_private *i915,
-> +		      enum pipe pipe, enum plane_id plane_id);
-> +
-> +#endif /* __INTEL_PLANE_CAPS_H__ */
-> diff --git a/drivers/gpu/drm/i915/display/skl_universal_plane.c b/drivers/gpu/drm/i915/display/skl_universal_plane.c
-> index 511dc1544854..f2fd3833c61d 100644
-> --- a/drivers/gpu/drm/i915/display/skl_universal_plane.c
-> +++ b/drivers/gpu/drm/i915/display/skl_universal_plane.c
-> @@ -17,6 +17,7 @@
->  #include "intel_fb.h"
->  #include "intel_fbc.h"
->  #include "intel_frontbuffer.h"
-> +#include "intel_plane_caps.h"
->  #include "intel_psr.h"
->  #include "intel_psr_regs.h"
->  #include "skl_scaler.h"
-> @@ -2242,66 +2243,6 @@ skl_plane_disable_flip_done(struct intel_plane *plane)
->  	spin_unlock_irq(&i915->irq_lock);
->  }
->  
-> -static bool skl_plane_has_rc_ccs(struct drm_i915_private *i915,
-> -				 enum pipe pipe, enum plane_id plane_id)
-> -{
-> -	/* Wa_22011186057 */
-> -	if (IS_ALDERLAKE_P(i915) && IS_DISPLAY_STEP(i915, STEP_A0, STEP_B0))
-> -		return false;
-> -
-> -	if (DISPLAY_VER(i915) >= 11)
-> -		return true;
-> -
-> -	if (IS_GEMINILAKE(i915))
-> -		return pipe != PIPE_C;
-> -
-> -	return pipe != PIPE_C &&
-> -		(plane_id == PLANE_PRIMARY ||
-> -		 plane_id == PLANE_SPRITE0);
-> -}
-> -
-> -static bool gen12_plane_has_mc_ccs(struct drm_i915_private *i915,
-> -				   enum plane_id plane_id)
-> -{
-> -	if (DISPLAY_VER(i915) < 12)
-> -		return false;
-> -
-> -	/* Wa_14010477008 */
-> -	if (IS_DG1(i915) || IS_ROCKETLAKE(i915) ||
-> -		(IS_TIGERLAKE(i915) && IS_DISPLAY_STEP(i915, STEP_A0, STEP_D0)))
-> -		return false;
-> -
-> -	/* Wa_22011186057 */
-> -	if (IS_ALDERLAKE_P(i915) && IS_DISPLAY_STEP(i915, STEP_A0, STEP_B0))
-> -		return false;
-> -
-> -	return plane_id < PLANE_SPRITE4;
-> -}
-> -
-> -static u8 skl_get_plane_caps(struct drm_i915_private *i915,
-> -			     enum pipe pipe, enum plane_id plane_id)
-> -{
-> -	u8 caps = INTEL_PLANE_CAP_TILING_X;
-> -
-> -	if (DISPLAY_VER(i915) < 13 || IS_ALDERLAKE_P(i915))
-> -		caps |= INTEL_PLANE_CAP_TILING_Y;
-> -	if (DISPLAY_VER(i915) < 12)
-> -		caps |= INTEL_PLANE_CAP_TILING_Yf;
-> -	if (HAS_4TILE(i915))
-> -		caps |= INTEL_PLANE_CAP_TILING_4;
-> -
-> -	if (skl_plane_has_rc_ccs(i915, pipe, plane_id)) {
-> -		caps |= INTEL_PLANE_CAP_CCS_RC;
-> -		if (DISPLAY_VER(i915) >= 12)
-> -			caps |= INTEL_PLANE_CAP_CCS_RC_CC;
-> -	}
-> -
-> -	if (gen12_plane_has_mc_ccs(i915, plane_id))
-> -		caps |= INTEL_PLANE_CAP_CCS_MC;
-> -
-> -	return caps;
-> -}
-> -
->  struct intel_plane *
->  skl_universal_plane_create(struct drm_i915_private *dev_priv,
->  			   enum pipe pipe, enum plane_id plane_id)
-> diff --git a/drivers/gpu/drm/xe/display/xe_plane_initial.c b/drivers/gpu/drm/xe/display/xe_plane_initial.c
-> index ccf83c12b545..425c6e6744a6 100644
-> --- a/drivers/gpu/drm/xe/display/xe_plane_initial.c
-> +++ b/drivers/gpu/drm/xe/display/xe_plane_initial.c
-> @@ -15,6 +15,7 @@
->  #include "intel_fb.h"
->  #include "intel_fb_pin.h"
->  #include "intel_frontbuffer.h"
-> +#include "intel_plane_caps.h"
->  #include "intel_plane_initial.h"
->  
->  static bool
-> @@ -289,3 +290,25 @@ void intel_crtc_initial_plane_config(struct intel_crtc *crtc)
->  
->  	plane_config_fini(&plane_config);
->  }
-> +
-> +u8 skl_get_plane_caps(struct drm_i915_private *i915,
-> +		      enum pipe pipe, enum plane_id plane_id)
-> +{
-> +	u8 caps = INTEL_PLANE_CAP_TILING_X;
-> +
-> +	if (DISPLAY_VER(i915) < 13 || IS_ALDERLAKE_P(i915))
-> +		caps |= INTEL_PLANE_CAP_TILING_Y;
-> +	if (DISPLAY_VER(i915) < 12)
-> +		caps |= INTEL_PLANE_CAP_TILING_Yf;
-> +	if (HAS_4TILE(i915))
-> +		caps |= INTEL_PLANE_CAP_TILING_4;
-> +
-> +	if (HAS_FLAT_CCS(i915)) {
-> +		caps |= INTEL_PLANE_CAP_CCS_RC | INTEL_PLANE_CAP_CCS_RC_CC;
-> +
-> +		if (plane_id < PLANE_SPRITE4)
-> +			caps |= INTEL_PLANE_CAP_CCS_MC;
-> +	}
-> +
-> +	return caps;
-> +}
-> -- 
-> 2.25.1
-
--- 
-Ville Syrj�l�
-Intel
+> 
+>>
+>> Also would be good to be clear about what happens if the KMD doesn't 
+>> do anything to prevent compression with non-tile4? Is it just a bit of 
+>> display corruption or something much worse that we need to prevent? Is 
+>> this just a best effort check to help userspace? Otherwise it is hard 
+>> to evaluate how solid we need to be here in our checking to prevent 
+>> this scenario. For example how is binding vs display races handled? 
+>> What happens if the bind appears after the display check?
+> 
+> For what happen with incorrect buffers going for display I've seen they 
+> are corrupted on screen but my testing is very minimal. On bspec 67158 
+> it just said linear and tile X formats are not supported with 
+> decompression on display, so it is broken config. Couldn't say generally 
+> how robust display hw is for broken configs. I remember Ville had found 
+> with TGL broken configs caused unrecoverable issues which followed ccs 
+> getting blocked on some steppings because it was only way to block 
+> broken config Ville found. I'll add Ville here on cc if he has views on 
+> this what's needed here for Xe2.
+> 
+> /Juha-Pekka
+> 
+>>
+>>> +    }
+>>> +
+>>>       fence = xe_migrate_update_pgtables(tile->migrate,
+>>>                          vm, xe_vma_bo(vma), q,
+>>>                          entries, num_entries,
+> 
