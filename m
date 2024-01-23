@@ -2,67 +2,67 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2F6728396E5
-	for <lists+intel-gfx@lfdr.de>; Tue, 23 Jan 2024 18:51:10 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8802F839708
+	for <lists+intel-gfx@lfdr.de>; Tue, 23 Jan 2024 18:55:04 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8F74210E826;
-	Tue, 23 Jan 2024 17:50:38 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id AF5CB10E40C;
+	Tue, 23 Jan 2024 17:54:31 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-ej1-f53.google.com (mail-ej1-f53.google.com
- [209.85.218.53])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5F0EB10E826
- for <intel-gfx@lists.freedesktop.org>; Tue, 23 Jan 2024 17:50:36 +0000 (UTC)
-Received: by mail-ej1-f53.google.com with SMTP id
- a640c23a62f3a-a26f73732c5so508680866b.3
- for <intel-gfx@lists.freedesktop.org>; Tue, 23 Jan 2024 09:50:36 -0800 (PST)
+Received: from mail-lf1-f47.google.com (mail-lf1-f47.google.com
+ [209.85.167.47])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 53AA810E829
+ for <intel-gfx@lists.freedesktop.org>; Tue, 23 Jan 2024 17:54:30 +0000 (UTC)
+Received: by mail-lf1-f47.google.com with SMTP id
+ 2adb3069b0e04-5100893015fso1068942e87.1
+ for <intel-gfx@lists.freedesktop.org>; Tue, 23 Jan 2024 09:54:30 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1706032175; x=1706636975; darn=lists.freedesktop.org;
+ d=gmail.com; s=20230601; t=1706032408; x=1706637208; darn=lists.freedesktop.org;
  h=content-transfer-encoding:in-reply-to:from:references:cc:to
  :content-language:subject:reply-to:user-agent:mime-version:date
  :message-id:from:to:cc:subject:date:message-id:reply-to;
- bh=iOG5wnY5A5SzZOuiC3IKmAgEWtLVYJlltC5RtqCo7XE=;
- b=e3A807bOE7saEDo+3AvQuAKgOi7J4xYufalI4hTDzXqsyg+q2UtF3ie2DiQxHB3cBt
- zF71ROibGVYqhDdv5z2rSB3ZpQG4ouV4cbQ9xCK53VyjIFEJncPK+v2La6zy2DIu3Scw
- RgoAD53OKPnYG05D4Vf7f+4lhorTL0262pMKVC3IK42uZ1yrq/YQ+wI43sevfrPL4Vry
- mV1BSq87v3h1bkq5ITI3D5VHAlIlWIQW5C86v3T1q9bHr9F3kJRyL22Mbx2mqkJCJGak
- x9LYpDsI+/NZFHI0tkqA0Eod78GSfduhcgkSSToTt75WygeSECn4zGfDE8s06Xb71rFA
- w6HA==
+ bh=7j7h12BBteXI/95CzLPWGuRrKxu8vqeXRHJw0onO5Wk=;
+ b=jVIg9aUa8HWQtzPzDkRx5fxxUWjKV+Lscp0uWRPjrbefifqze2zS3VlyIXxwXrNZ/7
+ zW2fwzoYjJW6jILb0xSM8iHJRoa6bta11t8Qx7q5VQ50Lga1INe18QswOJSKD/SIVwLp
+ o3xF+eroKREF5lmBi+F/T8fsuX3Rms6ihJwWUW2KpBrupF7p2+hsfSR/UNUTGb2HZ/WK
+ LmDquz+w+0/uk4YmEiR0pfGWv+jO24ir90DtyySAeWAzTQjGbEtMrvf5mcgaNiysu38B
+ EN3IWAMP/VDu+duiQZg15Qu2YCEivUSGLygQgLjvaRu9xl1E9RjQy1AmFNoKSXTkyX4T
+ akYw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1706032175; x=1706636975;
+ d=1e100.net; s=20230601; t=1706032408; x=1706637208;
  h=content-transfer-encoding:in-reply-to:from:references:cc:to
  :content-language:subject:reply-to:user-agent:mime-version:date
  :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
  :reply-to;
- bh=iOG5wnY5A5SzZOuiC3IKmAgEWtLVYJlltC5RtqCo7XE=;
- b=cT9t2nW8e6ti5kmpZyEyfYyQx5fog63edQr4ug4pIjFIeKBmGe+TUe7MBCOvSm507g
- I6IcWzVQz0z7ExbwIhBhdIC8YU/kpIvtrv6/tCqii6ln2Ac2Ix6X1IswVEKZmKIFtHSB
- 858ZD3UHhMVgqH4QsBMk9RapvDkx9glCZ23zpvSRXW4xEV3QyFD772chBPH7Tq2Pw7RK
- AckGYN3J/7kQt0Mzaq8kLg1XcGma2REEdeeE9YyrPbs2UbbpxhZYjENX+sD6+bln/sx+
- Ei4ca4Wzowcuum/mUn94ItCuaeHWOJbfErQUJ0C07tpitzt4Lp4qM/ni9VRiMjwUP2vp
- rtNw==
-X-Gm-Message-State: AOJu0YyCEaIcQANuQBK+OyYfbjwwGzmnRqNMVJS2CYi9eWGeBeL6jbvQ
- BiZvtoVEV+k2dHsQDVK9rHH0OYl3HODXzizRFmTDGNNED2g1JSvA
-X-Google-Smtp-Source: AGHT+IF1o1YsQCG+qWhD9dgS0b8qVfIDt769HJZa2tlOoQVJW0/YeWLF6GtvYe/kHNS+6meNX9MW2Q==
-X-Received: by 2002:a17:906:474c:b0:a23:57a1:d85b with SMTP id
- j12-20020a170906474c00b00a2357a1d85bmr118007ejs.74.1706032174322; 
- Tue, 23 Jan 2024 09:49:34 -0800 (PST)
+ bh=7j7h12BBteXI/95CzLPWGuRrKxu8vqeXRHJw0onO5Wk=;
+ b=PIGXM9VrMoVlpr5gw7EZIO8jlSHjO7RCaaXuLugt0wcfLnAQOjIU2WXRwqKa92T/DN
+ LoFV2PE/my8eN24ViF9I8pqB76f0pYZGqYryTKswd8Yg1/wv8T027sWcOrVJEoB53h9E
+ nRDQ3S9FfO8yNyyHadl4trKkbHd7AW4AfxbtXH+A2qJMoXtWZ8aLyPU3MM5BVa02Ac36
+ TeFSgzp0jQvephq8p0Rxvp0tw8z5Fa6Nwzqd1FuX7RrcJjiKpMhdcfA3z9RdFLgEeDhV
+ 2Jqe1/+ds1cifcNNn73wkSAXa5uEHiuI2inQbDrtCqcNDMUeGXeg4cL7WrnBLpzSdiPK
+ stAA==
+X-Gm-Message-State: AOJu0Ywu/LSuYykkBx6v3UDT+6I/VZS5klSIkSxv/BBwPbib2G30qPpo
+ wFLSxf+VB+3Fm7Hbor+9oinylA/1ivVKbxwBlzhCGpP0amGDt2e5TLFnE5qE4AzqbA==
+X-Google-Smtp-Source: AGHT+IGwgrckF3HMj/fsh410lgw4pUXRAZzBbttinkAmjOgZTOEWBsCCSajqYD+QBEzxcUHOJZ4qwQ==
+X-Received: by 2002:ac2:465d:0:b0:50e:b945:fc98 with SMTP id
+ s29-20020ac2465d000000b0050eb945fc98mr1881443lfo.170.1706032408230; 
+ Tue, 23 Jan 2024 09:53:28 -0800 (PST)
 Received: from [0.0.0.0] ([134.134.137.82])
  by smtp.googlemail.com with ESMTPSA id
- w14-20020a17090652ce00b00a19afc16d23sm14574393ejn.104.2024.01.23.09.49.31
+ q21-20020a1709066b1500b00a2990007447sm14498647ejr.122.2024.01.23.09.53.25
  (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Tue, 23 Jan 2024 09:49:33 -0800 (PST)
-Message-ID: <f5a2e86d-9ba8-46bd-b531-2fadedad51f9@gmail.com>
-Date: Tue, 23 Jan 2024 19:49:19 +0200
+ Tue, 23 Jan 2024 09:53:27 -0800 (PST)
+Message-ID: <dff353f8-90c8-449c-80e6-edb272176035@gmail.com>
+Date: Tue, 23 Jan 2024 19:53:13 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
 Subject: Re: [PATCH] drm/xe/display: Disable aux ccs framebuffers
 Content-Language: en-US
-To: =?UTF-8?B?VmlsbGUgU3lyasOkbMOk?= <ville.syrjala@linux.intel.com>
+To: Jani Nikula <jani.nikula@linux.intel.com>, intel-gfx@lists.freedesktop.org
 References: <20240102182422.3823394-1-juhapekka.heikkila@gmail.com>
- <Za-2EFbpUcaLZkbb@intel.com>
+ <87bk9cnx3r.fsf@intel.com>
 From: Juha-Pekka Heikkila <juhapekka.heikkila@gmail.com>
-In-Reply-To: <Za-2EFbpUcaLZkbb@intel.com>
+In-Reply-To: <87bk9cnx3r.fsf@intel.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
@@ -78,16 +78,55 @@ List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
 Reply-To: juhapekka.heikkila@gmail.com
-Cc: intel-gfx@lists.freedesktop.org
+Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On 23.1.2024 14.50, Ville Syrjälä wrote:
-> On Tue, Jan 02, 2024 at 08:24:22PM +0200, Juha-Pekka Heikkila wrote:
+On 23.1.2024 12.49, Jani Nikula wrote:
+> On Tue, 02 Jan 2024, Juha-Pekka Heikkila <juhapekka.heikkila@gmail.com> wrote:
 >> Aux ccs framebuffers don't work on Xe driver hence disable them
 >> from plane capabilities until they are fixed. Flat ccs framebuffers
 >> work and they are left enabled. Here is separated plane capabilities
 >> check on i915 so it can behave differencly depending on the driver.
+> 
+> I still think there's too much going on in this one patch. It refactors
+> i915 and modifies xe behaviour in one go.
+> 
+> It adds intel_plane_caps.[ch] in i915, but extracts them from skl+
+> specific functions and files. xe uses the .h but adds the code in
+> existing xe_plane_initial.c. There's also intel_plane_initial.c i915
+> side, but that's not where the functions get moved in i915 side.
+
+I was never against splitting it, I can do that.
+
+> 
+> I'm trying to look at the actual functional change, and I'm wondering if
+> it isn't just this:
+> 
+> index 511dc1544854..8bba6c2e5098 100644
+> --- a/drivers/gpu/drm/i915/display/skl_universal_plane.c
+> +++ b/drivers/gpu/drm/i915/display/skl_universal_plane.c
+> @@ -2290,6 +2290,9 @@ static u8 skl_get_plane_caps(struct drm_i915_private *i915,
+>   	if (HAS_4TILE(i915))
+>   		caps |= INTEL_PLANE_CAP_TILING_4;
+>   
+> +	if (!IS_ENABLED(I915) && !HAS_FLAT_CCS(i915))
+> +		return caps;
+> +
+>   	if (skl_plane_has_rc_ccs(i915, pipe, plane_id)) {
+>   		caps |= INTEL_PLANE_CAP_CCS_RC;
+>   		if (DISPLAY_VER(i915) >= 12)
+> 
+> I'm not saying that's exactly pretty, either, but IIUC this is supposed
+> to be a temporary measure ("until they are fixed"), I'd rather take this
+> small thing instead.
+> 
+
+Would that work when both i915 and Xe are being built?
+
+> 
+> 
+> 
 >>
 >> Closes: https://gitlab.freedesktop.org/drm/xe/kernel/-/issues/933
 >> Signed-off-by: Juha-Pekka Heikkila <juhapekka.heikkila@gmail.com>
@@ -145,17 +184,6 @@ On 23.1.2024 14.50, Ville Syrjälä wrote:
 >> +		(plane_id == PLANE_PRIMARY ||
 >> +		 plane_id == PLANE_SPRITE0);
 >> +}
-> 
-> These are about the *hardware* capabilities of the skl+
-> univeral planes. Thus IMO they belong in
-> skl_universal_plane.c and nowhere else.
-
-Problem with this is we'd need with same display code allow and deny 
-usage of ccs framebuffers. Since doing it via ifdefs was not allowed 
-there was left limited options. All those other functionality separation 
-is done in similar way, say for example dpt code.
-
-> 
 >> +
 >> +static bool gen12_plane_has_mc_ccs(struct drm_i915_private *i915,
 >> +				   enum plane_id plane_id)
@@ -335,7 +363,5 @@ is done in similar way, say for example dpt code.
 >> +
 >> +	return caps;
 >> +}
->> -- 
->> 2.25.1
 > 
 
