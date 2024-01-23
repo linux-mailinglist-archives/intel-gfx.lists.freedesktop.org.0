@@ -2,55 +2,41 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 56786839A7E
-	for <lists+intel-gfx@lfdr.de>; Tue, 23 Jan 2024 21:44:49 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 71E9E839B66
+	for <lists+intel-gfx@lfdr.de>; Tue, 23 Jan 2024 22:48:11 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A198010E880;
-	Tue, 23 Jan 2024 20:44:15 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E9A6C10E1A1;
+	Tue, 23 Jan 2024 21:48:09 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CF90210E301;
- Tue, 23 Jan 2024 20:44:13 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1706042654; x=1737578654;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:in-reply-to;
- bh=YTYq9NKaF9Qyd5spfDIHdzZzMX2Nn0CsEqHbs7SWNQo=;
- b=TGpz2tg40C94NiwCVWqNOjPTdwth3aWQMrjzdaULIaRUxHYDYYUruKP0
- V7GhmyADNQGgIaQQyXJBXoQNo8V6RIjzW8dpi8Lfrv6OSzwrIlqH5WEAu
- BizfB7dlmkcICHmlSnyisbMco5IRcIQxgNSTPCD45K6fB5/6zQELuDx7Q
- vrfeW54txDYYbtfvUZE2TjF9svAE/cEs6SkQmH4nifTv0RzXRx7OgYvst
- QCyfzgJGz2ehxKtG2VNzuYGQxgCE/DZjmkXKQskrrlAqWzoygd/CWdILB
- iB/oj9fp+XD72Q9nsQ2PLLPozfEQEqWYEzwbLxBHO6XzVuygo4Qc3MwM5 A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10962"; a="23114671"
-X-IronPort-AV: E=Sophos;i="6.05,215,1701158400"; d="scan'208";a="23114671"
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
- by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Jan 2024 12:44:13 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10962"; a="905365871"
-X-IronPort-AV: E=Sophos;i="6.05,215,1701158400"; d="scan'208";a="905365871"
-Received: from turnipsi.fi.intel.com (HELO kekkonen.fi.intel.com)
- ([10.237.72.44])
- by fmsmga002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Jan 2024 12:44:07 -0800
-Received: from kekkonen.localdomain (localhost [127.0.0.1])
- by kekkonen.fi.intel.com (Postfix) with SMTP id 7F17811FAD4;
- Tue, 23 Jan 2024 22:44:04 +0200 (EET)
-Date: Tue, 23 Jan 2024 20:44:04 +0000
-From: Sakari Ailus <sakari.ailus@linux.intel.com>
-To: Bjorn Helgaas <helgaas@kernel.org>
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D3BB110E164;
+ Tue, 23 Jan 2024 21:48:07 +0000 (UTC)
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+ by dfw.source.kernel.org (Postfix) with ESMTP id 91A1261F66;
+ Tue, 23 Jan 2024 21:48:03 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id DADADC433C7;
+ Tue, 23 Jan 2024 21:48:02 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=k20201202; t=1706046483;
+ bh=lCHfHu6EUXojzzHzheXE7xt3G/zJ41N3IKBiY+lqP0k=;
+ h=Date:From:To:Cc:Subject:In-Reply-To:From;
+ b=FB8Yh7m8pOYpYOeAiLCyS+voeY7F7smKIjPd1R48tio2TEDLdM6AiEiEqhtBn2q4A
+ vk68s1BpElRSXfqEsy0ZQVB2bgbFpAOMsuj6L+lfCPKDLHFHnZd0SOwD6SKdBHCy1q
+ Tt4isjg3ca4S7YLKd3INw4nVouhbKP86dTgaeSEVG8NanW6zL8IrvCR+n5ZakDH9xG
+ 5rhQeuoRzar3sj6qaZkQNcGT9+tqVWcKcIoAKjxzH7dy4En63k5CCutR8hmFVuCVnB
+ osZb6XsfznsRDMcPdbrjCwBC1bUZeLf6c+iq09L1FsFUNHBOv4VIrMLZZ8r4Esu8mO
+ vGnoJv/BKxZtw==
+Date: Tue, 23 Jan 2024 15:48:01 -0600
+From: Bjorn Helgaas <helgaas@kernel.org>
+To: Sakari Ailus <sakari.ailus@linux.intel.com>
 Subject: Re: [PATCH v4 1/3] pm: runtime: Simplify pm_runtime_get_if_active()
  usage
-Message-ID: <ZbAlFKE_fZ_riRVu@kekkonen.localdomain>
-References: <20240123095642.97303-2-sakari.ailus@linux.intel.com>
- <20240123172423.GA317147@bhelgaas>
+Message-ID: <20240123214801.GA330312@bhelgaas>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20240123172423.GA317147@bhelgaas>
+In-Reply-To: <ZbAlFKE_fZ_riRVu@kekkonen.localdomain>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -68,7 +54,7 @@ Cc: "Rafael J. Wysocki" <rafael@kernel.org>, linux-pci@vger.kernel.org,
  Stanislaw Gruszka <stanislaw.gruszka@linux.intel.com>,
  laurent.pinchart@ideasonboard.com, David Airlie <airlied@gmail.com>,
  Paul Elder <paul.elder@ideasonboard.com>, linux-media@vger.kernel.org,
- Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>,
+ Thomas =?utf-8?Q?Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
  linux-pm@vger.kernel.org, intel-gfx@lists.freedesktop.org,
  Lucas De Marchi <lucas.demarchi@intel.com>, linux-sound@vger.kernel.org,
  Mark Brown <broonie@kernel.org>,
@@ -81,60 +67,31 @@ Cc: "Rafael J. Wysocki" <rafael@kernel.org>, linux-pci@vger.kernel.org,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi Bjorn,
+On Tue, Jan 23, 2024 at 08:44:04PM +0000, Sakari Ailus wrote:
+> On Tue, Jan 23, 2024 at 11:24:23AM -0600, Bjorn Helgaas wrote:
+> ...
 
-Thanks for the review.
-
-On Tue, Jan 23, 2024 at 11:24:23AM -0600, Bjorn Helgaas wrote:
-> On Tue, Jan 23, 2024 at 11:56:42AM +0200, Sakari Ailus wrote:
-> > There are two ways to opportunistically increment a device's runtime PM
-> > usage count, calling either pm_runtime_get_if_active() or
-> > pm_runtime_get_if_in_use(). The former has an argument to tell whether to
-> > ignore the usage count or not, and the latter simply calls the former with
-> > ign_usage_count set to false. The other users that want to ignore the
-> > usage_count will have to explitly set that argument to true which is a bit
-> > cumbersome.
+> > - I don't know whether it's feasible, but it would be nice if the
+> >   intel_pm_runtime_pm.c rework could be done in one shot instead of
+> >   being split between patches 1/3 and 2/3.
 > > 
-> > To make this function more practical to use, remove the ign_usage_count
-> > argument from the function. The main implementation is renamed as
-> > pm_runtime_get_conditional().
-> > 
-> > Signed-off-by: Sakari Ailus <sakari.ailus@linux.intel.com>
-> > Reviewed-by: Alex Elder <elder@linaro.org> # drivers/net/ipa/ipa_smp2p.c
-> > Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-> > Acked-by: Takashi Iwai <tiwai@suse.de> # sound/
-> > Reviewed-by: Jacek Lawrynowicz <jacek.lawrynowicz@linux.intel.com> # drivers/accel/ivpu/
-> > Acked-by: Rodrigo Vivi <rodrigo.vivi@intel.com> # drivers/gpu/drm/i915/
-> > Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
+> >   Maybe it could be a preliminary patch that uses the existing
+> >   if_active/if_in_use interfaces, followed by the trivial if_active
+> >   updates in this patch.  I think that would make the history easier
+> >   to read than having the transitory pm_runtime_get_conditional() in
+> >   the middle.
 > 
-> Acked-by: Bjorn Helgaas <bhelgaas@google.com> # drivers/pci/
-> 
-> - Previous PM history uses "PM: " in the subject lines (not "pm: ").
+> I think I'd merge the two patches. The second patch is fairly small, after
+> all, and both deal with largely the same code.
 
-Oops. I'm not sure why I used lower case. (Maybe I've written too many
-times "media:" prefix to the subject?) I'll fix this in v5.
+I'm not sure which two patches you mean, but the fact that two patches
+deal with largely the same code is not necessarily an argument for
+merging them.  From a reviewing perspective, it's nice if a patch like
+1/3, where it's largely mechanical and easy to review, is separated
+from patches that make more substantive changes.
 
-> 
-> - I don't know whether it's feasible, but it would be nice if the
->   intel_pm_runtime_pm.c rework could be done in one shot instead of
->   being split between patches 1/3 and 2/3.
-> 
->   Maybe it could be a preliminary patch that uses the existing
->   if_active/if_in_use interfaces, followed by the trivial if_active
->   updates in this patch.  I think that would make the history easier
->   to read than having the transitory pm_runtime_get_conditional() in
->   the middle.
+That's why I think it'd be nice if the "interesting"
+intel_pm_runtime_pm.c changes were all in the same patch, and ideally,
+if that patch *only* touched intel_pm_runtime_pm.c.
 
-I think I'd merge the two patches. The second patch is fairly small, after
-all, and both deal with largely the same code.
-
-> 
-> - Similarly, it would be nice if pm_runtime_get_conditional() never
->   had to be published in pm_runtime.h, instead of being temporarily
->   added there by this patch and then immediately made private by 2/3.
->   Maybe that's not practical, I dunno.
-
--- 
-Regards,
-
-Sakari Ailus
+Bjorn
