@@ -2,53 +2,47 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id E1C28838B7F
-	for <lists+intel-gfx@lfdr.de>; Tue, 23 Jan 2024 11:16:16 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5EB63838BC4
+	for <lists+intel-gfx@lfdr.de>; Tue, 23 Jan 2024 11:28:46 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C170410E762;
-	Tue, 23 Jan 2024 10:15:39 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C2BA210E766;
+	Tue, 23 Jan 2024 10:28:39 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6A14410E74A;
- Tue, 23 Jan 2024 10:15:37 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.115])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C135710E76E;
+ Tue, 23 Jan 2024 10:28:37 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1706004938; x=1737540938;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=VsAKzQTjWrB/fdWeMlJRwIxVXlZHOl6RR8fK5n41VXE=;
- b=dPoIB39aRzOu39mIlIa5Am2Q10srf496okDqwzSI8znPIv9bufon4qMB
- kDazjQkEG7lZWZGLyq+GAyieM74NyT76GN/cmkKn34HEDx4krgpTdZjY1
- t561/gTlXsqdbsxpEC58s/OcP80tuGhfMUoYY9jYQpNaVS8KNz6nJ2GaL
- 19YHn+9LOiKXIhEtk8gQTHltdDyhvA28W0KIxGEKvpEHGBwncytU/rB6p
- RfS/PVYr7qIdDkeIDzRDpd0Set1jh2Ec9FzHh2cfA6fsS/DEvW82VKiiF
- NdZHeE2EcM5aX3gcRix0XhTtnSbqXlOkUBAJbRc0nfvf+RRiCEtISWS9T w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10961"; a="14828947"
-X-IronPort-AV: E=Sophos;i="6.05,214,1701158400"; d="scan'208";a="14828947"
-Received: from fmsmga005.fm.intel.com ([10.253.24.32])
- by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Jan 2024 02:15:37 -0800
+ t=1706005717; x=1737541717;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=dVwP26HpGCZQ4pUupuLU+++/SbfCa474D2l11q8V9l0=;
+ b=Zh100MVOOpGf25+H4ve+Fsyzv+4OJajRgKerjn4j5C2sd24D7xiZZnAf
+ lX7AX9szAr9/pwxhgEG+gGBMsJCA8TALwpbDDnXsG4YD5jQCtHsy9DgM0
+ f+8F+ssbDCqYaOiVRZa7JXYGHxhZ83vbWsqFAxeOqkGnYNPgc6yaz+5lp
+ JYLwHRux+xNN+6S2ahO0kdAi4QQpWOFUeqb33ZJhleA3aERpO4T9oGmUW
+ SfZIBSfbsjSt9bfWvGRSdVFhbEUQoAoK+Lw82Gjur3/L886wbJ12J6m1i
+ ELIgZCqdUBq36Qyp9K/pt6b0tCyBjATwOsQPmSS5SwPArSYYAO3Y6yz1E A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10961"; a="401134079"
+X-IronPort-AV: E=Sophos;i="6.05,214,1701158400"; d="scan'208";a="401134079"
+Received: from fmsmga004.fm.intel.com ([10.253.24.48])
+ by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 23 Jan 2024 02:28:37 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10961"; a="1117206787"
-X-IronPort-AV: E=Sophos;i="6.05,214,1701158400"; d="scan'208";a="1117206787"
-Received: from turnipsi.fi.intel.com (HELO kekkonen.fi.intel.com)
- ([10.237.72.44])
- by fmsmga005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Jan 2024 02:15:31 -0800
-Received: from svinhufvud.ger.corp.intel.com (localhost [IPv6:::1])
- by kekkonen.fi.intel.com (Postfix) with ESMTP id 3795611FC49;
- Tue, 23 Jan 2024 11:58:24 +0200 (EET)
-From: Sakari Ailus <sakari.ailus@linux.intel.com>
-To: linux-pm@vger.kernel.org
-Subject: [PATCH v4 2/3] pm: runtime: Make pm_runtime_get_if_conditional()
- private
-Date: Tue, 23 Jan 2024 11:58:23 +0200
-Message-Id: <20240123095823.97346-1-sakari.ailus@linux.intel.com>
+X-IronPort-AV: E=McAfee;i="6600,9927,10961"; a="856283359"
+X-IronPort-AV: E=Sophos;i="6.05,214,1701158400"; d="scan'208";a="856283359"
+Received: from ideak-desk.fi.intel.com ([10.237.72.78])
+ by fmsmga004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 23 Jan 2024 02:28:34 -0800
+From: Imre Deak <imre.deak@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Subject: [PATCH 00/19] drm/i915: Add Display Port tunnel BW allocation support
+Date: Tue, 23 Jan 2024 12:28:31 +0200
+Message-Id: <20240123102850.390126-1-imre.deak@intel.com>
 X-Mailer: git-send-email 2.39.2
-In-Reply-To: <20240123095642.97303-1-sakari.ailus@linux.intel.com>
-References: <20240123095642.97303-1-sakari.ailus@linux.intel.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -62,156 +56,84 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: dri-devel@lists.freedesktop.org, "Rafael J. Wysocki" <rafael@kernel.org>,
- intel-gfx@lists.freedesktop.org, laurent.pinchart@ideasonboard.com,
- Daniel Vetter <daniel@ffwll.ch>, Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
- David Airlie <airlied@gmail.com>
+Cc: Gil Fine <gil.fine@intel.com>, dri-devel@lists.freedesktop.org,
+ Naama Shachar <naamax.shachar@intel.com>,
+ Saranya Gopal <saranya.gopal@intel.com>, Pengfei Xu <pengfei.xu@intel.com>,
+ Rajaram Regupathy <rajaram.regupathy@intel.com>,
+ Mika Westerberg <notifications@github.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Stop offering pm_runtime_get_if_conditional() API function for drivers,
-instead require them to use pm_runtime_get_if_{active,in_use}. Also
-convert the only user, the i915 driver, to use the said functions.
+Add support for detecting DP tunnels on (Thunderbolt) display links and
+enabling the Bandwidth Allocation mode on the link. This helps in
+enabling the maximum resolution in any scenario on displays sharing the
+BW on such links.
 
-Signed-off-by: Sakari Ailus <sakari.ailus@linux.intel.com>
----
- drivers/base/power/runtime.c            | 34 ++++++++++++++++++++--
- drivers/gpu/drm/i915/intel_runtime_pm.c |  5 +++-
- include/linux/pm_runtime.h              | 38 ++-----------------------
- 3 files changed, 38 insertions(+), 39 deletions(-)
+Kudos to all Cc'd for advices, co-development and testing.
 
-diff --git a/drivers/base/power/runtime.c b/drivers/base/power/runtime.c
-index 83e0cd2a19e7..d2c17e29567d 100644
---- a/drivers/base/power/runtime.c
-+++ b/drivers/base/power/runtime.c
-@@ -1197,7 +1197,7 @@ EXPORT_SYMBOL_GPL(__pm_runtime_resume);
-  * The caller is responsible for decrementing the runtime PM usage counter of
-  * @dev after this function has returned a positive value for it.
-  */
--int pm_runtime_get_conditional(struct device *dev, bool ign_usage_count)
-+static int pm_runtime_get_conditional(struct device *dev, bool ign_usage_count)
- {
- 	unsigned long flags;
- 	int retval;
-@@ -1218,7 +1218,37 @@ int pm_runtime_get_conditional(struct device *dev, bool ign_usage_count)
- 
- 	return retval;
- }
--EXPORT_SYMBOL_GPL(pm_runtime_get_conditional);
-+
-+/**
-+ * pm_runtime_get_if_active - Bump up runtime PM usage counter if the device is
-+ *			      in active state
-+ * @dev: Target device.
-+ *
-+ * Increment the runtime PM usage counter of @dev if its runtime PM status is
-+ * %RPM_ACTIVE, in which case it returns 1. If the device is in a different
-+ * state, 0 is returned. -EINVAL is returned if runtime PM is disabled for the
-+ * device.
-+ */
-+int pm_runtime_get_if_active(struct device *dev)
-+{
-+	return pm_runtime_get_conditional(dev, true);
-+}
-+EXPORT_SYMBOL_GPL(pm_runtime_get_if_active);
-+
-+/**
-+ * pm_runtime_get_if_in_use - Conditionally bump up runtime PM usage counter.
-+ * @dev: Target device.
-+ *
-+ * Increment the runtime PM usage counter of @dev if its runtime PM status is
-+ * %RPM_ACTIVE and its runtime PM usage counter is greater than 0, in which case
-+ * it returns 1. If the device is in a different state or its usage_count is 0,
-+ * 0 is returned. -EINVAL is returned if runtime PM is disabled for the device.
-+ */
-+int pm_runtime_get_if_in_use(struct device *dev)
-+{
-+	return pm_runtime_get_conditional(dev, false);
-+}
-+EXPORT_SYMBOL_GPL(pm_runtime_get_if_in_use);
- 
- /**
-  * __pm_runtime_set_status - Set runtime PM status of a device.
-diff --git a/drivers/gpu/drm/i915/intel_runtime_pm.c b/drivers/gpu/drm/i915/intel_runtime_pm.c
-index b5f8abd2a22b..d4e844128826 100644
---- a/drivers/gpu/drm/i915/intel_runtime_pm.c
-+++ b/drivers/gpu/drm/i915/intel_runtime_pm.c
-@@ -246,7 +246,10 @@ static intel_wakeref_t __intel_runtime_pm_get_if_active(struct intel_runtime_pm
- 		 * function, since the power state is undefined. This applies
- 		 * atm to the late/early system suspend/resume handlers.
- 		 */
--		if (pm_runtime_get_conditional(rpm->kdev, ignore_usecount) <= 0)
-+		if ((ignore_usecount &&
-+		     pm_runtime_get_if_active(rpm->kdev) <= 0) ||
-+		    (!ignore_usecount &&
-+		     pm_runtime_get_if_in_use(rpm->kdev) <= 0))
- 			return 0;
- 	}
- 
-diff --git a/include/linux/pm_runtime.h b/include/linux/pm_runtime.h
-index a212b3008ade..436baa167498 100644
---- a/include/linux/pm_runtime.h
-+++ b/include/linux/pm_runtime.h
-@@ -72,8 +72,8 @@ extern int pm_runtime_force_resume(struct device *dev);
- extern int __pm_runtime_idle(struct device *dev, int rpmflags);
- extern int __pm_runtime_suspend(struct device *dev, int rpmflags);
- extern int __pm_runtime_resume(struct device *dev, int rpmflags);
--extern int pm_runtime_get_conditional(struct device *dev,
--					bool ign_usage_count);
-+extern int pm_runtime_get_if_active(struct device *dev);
-+extern int pm_runtime_get_if_in_use(struct device *dev);
- extern int pm_schedule_suspend(struct device *dev, unsigned int delay);
- extern int __pm_runtime_set_status(struct device *dev, unsigned int status);
- extern int pm_runtime_barrier(struct device *dev);
-@@ -95,35 +95,6 @@ extern void pm_runtime_release_supplier(struct device_link *link);
- 
- extern int devm_pm_runtime_enable(struct device *dev);
- 
--/**
-- * pm_runtime_get_if_active - Bump up runtime PM usage counter if the device is
-- *			      in active state
-- * @dev: Target device.
-- *
-- * Increment the runtime PM usage counter of @dev if its runtime PM status is
-- * %RPM_ACTIVE, in which case it returns 1. If the device is in a different
-- * state, 0 is returned. -EINVAL is returned if runtime PM is disabled for the
-- * device.
-- */
--static inline int pm_runtime_get_if_active(struct device *dev)
--{
--	return pm_runtime_get_conditional(dev, true);
--}
--
--/**
-- * pm_runtime_get_if_in_use - Conditionally bump up runtime PM usage counter.
-- * @dev: Target device.
-- *
-- * Increment the runtime PM usage counter of @dev if its runtime PM status is
-- * %RPM_ACTIVE and its runtime PM usage counter is greater than 0, in which case
-- * it returns 1. If the device is in a different state or its usage_count is 0,
-- * 0 is returned. -EINVAL is returned if runtime PM is disabled for the device.
-- */
--static inline int pm_runtime_get_if_in_use(struct device *dev)
--{
--	return pm_runtime_get_conditional(dev, false);
--}
--
- /**
-  * pm_suspend_ignore_children - Set runtime PM behavior regarding children.
-  * @dev: Target device.
-@@ -297,11 +268,6 @@ static inline int pm_runtime_get_if_active(struct device *dev)
- {
- 	return -EINVAL;
- }
--static inline int pm_runtime_get_conditional(struct device *dev,
--					     bool ign_usage_count)
--{
--	return -EINVAL;
--}
- static inline int __pm_runtime_set_status(struct device *dev,
- 					    unsigned int status) { return 0; }
- static inline int pm_runtime_barrier(struct device *dev) { return 0; }
+Cc: Mika Westerberg <notifications@github.com>
+Cc: Ville Syrjälä <ville.syrjala@linux.intel.com>
+Cc: Saranya Gopal <saranya.gopal@intel.com>
+Cc: Rajaram Regupathy <rajaram.regupathy@intel.com>
+Cc: Gil Fine <gil.fine@intel.com>
+Cc: Naama Shachar <naamax.shachar@intel.com>
+Cc: Pengfei Xu <pengfei.xu@intel.com>
+
+Imre Deak (19):
+  drm/dp: Add drm_dp_max_dprx_data_rate()
+  drm/dp: Add support for DP tunneling
+  drm/i915/dp: Add support to notify MST connectors to retry modesets
+  drm/i915/dp: Use drm_dp_max_dprx_data_rate()
+  drm/i915/dp: Factor out intel_dp_config_required_rate()
+  drm/i915/dp: Export intel_dp_max_common_rate/lane_count()
+  drm/i915/dp: Factor out intel_dp_update_sink_caps()
+  drm/i915/dp: Factor out intel_dp_read_dprx_caps()
+  drm/i915/dp: Add intel_dp_max_link_data_rate()
+  drm/i915/dp: Add way to get active pipes with syncing commits
+  drm/i915/dp: Add support for DP tunnel BW allocation
+  drm/i915/dp: Add DP tunnel atomic state and check BW limit
+  drm/i915/dp: Account for tunnel BW limit in
+    intel_dp_max_link_data_rate()
+  drm/i915/dp: Compute DP tunel BW during encoder state computation
+  drm/i915/dp: Allocate/free DP tunnel BW in the encoder enable/disable
+    hooks
+  drm/i915/dp: Handle DP tunnel IRQs
+  drm/i915/dp: Call intel_dp_sync_state() always for DDI DP encoders
+  drm/i915/dp: Suspend/resume DP tunnels
+  drm/i915/dp: Enable DP tunnel BW allocation mode
+
+ drivers/gpu/drm/display/Kconfig               |   17 +
+ drivers/gpu/drm/display/Makefile              |    2 +
+ drivers/gpu/drm/display/drm_dp_helper.c       |   58 +
+ drivers/gpu/drm/display/drm_dp_tunnel.c       | 1715 +++++++++++++++++
+ drivers/gpu/drm/i915/Kconfig                  |   13 +
+ drivers/gpu/drm/i915/Kconfig.debug            |    1 +
+ drivers/gpu/drm/i915/Makefile                 |    3 +
+ drivers/gpu/drm/i915/display/g4x_dp.c         |   28 +
+ drivers/gpu/drm/i915/display/intel_atomic.c   |   10 +
+ drivers/gpu/drm/i915/display/intel_ddi.c      |    9 +-
+ drivers/gpu/drm/i915/display/intel_display.c  |   26 +-
+ .../gpu/drm/i915/display/intel_display_core.h |    1 +
+ .../drm/i915/display/intel_display_driver.c   |   20 +-
+ .../drm/i915/display/intel_display_types.h    |    9 +
+ drivers/gpu/drm/i915/display/intel_dp.c       |  309 ++-
+ drivers/gpu/drm/i915/display/intel_dp.h       |   21 +-
+ .../drm/i915/display/intel_dp_link_training.c |   33 +-
+ .../drm/i915/display/intel_dp_link_training.h |    1 +
+ drivers/gpu/drm/i915/display/intel_dp_mst.c   |   18 +-
+ .../gpu/drm/i915/display/intel_dp_tunnel.c    |  642 ++++++
+ .../gpu/drm/i915/display/intel_dp_tunnel.h    |  131 ++
+ drivers/gpu/drm/i915/display/intel_link_bw.c  |    5 +
+ drivers/gpu/drm/i915/display/intel_tc.c       |    4 +-
+ include/drm/display/drm_dp.h                  |   61 +
+ include/drm/display/drm_dp_helper.h           |    2 +
+ include/drm/display/drm_dp_tunnel.h           |  270 +++
+ 26 files changed, 3292 insertions(+), 117 deletions(-)
+ create mode 100644 drivers/gpu/drm/display/drm_dp_tunnel.c
+ create mode 100644 drivers/gpu/drm/i915/display/intel_dp_tunnel.c
+ create mode 100644 drivers/gpu/drm/i915/display/intel_dp_tunnel.h
+ create mode 100644 include/drm/display/drm_dp_tunnel.h
+
 -- 
 2.39.2
 
