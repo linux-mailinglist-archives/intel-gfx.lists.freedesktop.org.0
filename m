@@ -2,50 +2,50 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2FCA9838A5B
-	for <lists+intel-gfx@lfdr.de>; Tue, 23 Jan 2024 10:32:20 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 76DD3838B1A
+	for <lists+intel-gfx@lfdr.de>; Tue, 23 Jan 2024 10:57:02 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C510810E6FE;
-	Tue, 23 Jan 2024 09:31:48 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7452310E70D;
+	Tue, 23 Jan 2024 09:56:56 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C491B10E6FE
- for <intel-gfx@lists.freedesktop.org>; Tue, 23 Jan 2024 09:31:46 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.13])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7E5EC10E0F1;
+ Tue, 23 Jan 2024 09:56:54 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1706002307; x=1737538307;
- h=from:to:subject:date:message-id:in-reply-to:references:
- mime-version:content-transfer-encoding;
- bh=dXAFj9C95ckkItqJX7PYEWrC/saa8XJI/lcf0x50dUM=;
- b=M3arv+n30UTmS1ZvI41wH6NdZDsw4v2GpmWlbVIANEzNzXyBrwdDEYG6
- ZMbYR4t3anwUFoiVKGqr3LMlNRHynrdgoDzuZYbts2ql6XOVYXcVH7ben
- PF3EMH75AuMuUJYi6h9MAD7Q4TSgpw3dFxEoam8jfycrgRwwNu+ARqGm4
- 2zih5wWNHf8Au9u7iZs9vmqubTjmchKYqWZ9EJVQIljKkyQt7Qk6koQH9
- v/Qfq5HYDaZwZn7cNa6flneRAopbo1TdREmiigajms+ggmiFW58fLsDXH
- TrMW3FV3dr2XLUl076LBFgdJNYgZYKM39P+qnMXX6rsc0wuCxLh4TGptI A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10961"; a="14817498"
-X-IronPort-AV: E=Sophos;i="6.05,214,1701158400"; d="scan'208";a="14817498"
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
- by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Jan 2024 01:31:46 -0800
+ t=1706003815; x=1737539815;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=giqjHNiHA5lOOXvLyPmmD7zXAE91+Pqyfa9jWZiXxrk=;
+ b=GbaLFC2fWlGW9+IB6Xgf8Bxcq4EaAD4lk3qS36kTvcsDd4X2bPqySXfJ
+ FN8/q3O1seoEDpsnFF8Rg7WiEON+yJ00GR6P+UykLHekxsbKxvFcin08u
+ mf03RParLv83OxPOlkMbZCtiaSK3ZAH1M0M9pX15UZkQKEgDSCtfPfpqG
+ gHBY1tW5akeBrR89MqGFBWod9THaczH0u39CV3GVk4vQWu/YCwLii3s80
+ UlTO4750NlOWHEF+T3XK6sTXi4r//zvWIeIPCfWY7aq6+DdXnUi9sEXur
+ DHUK2abtM2AZEVOwUpIsbFA8K3S0VfUfT886WVhpMHFkp6X5yqthXQTVQ Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10961"; a="365653"
+X-IronPort-AV: E=Sophos;i="6.05,214,1701158400"; 
+   d="scan'208";a="365653"
+Received: from fmviesa001.fm.intel.com ([10.60.135.141])
+ by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 23 Jan 2024 01:56:54 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10961"; a="820028880"
-X-IronPort-AV: E=Sophos;i="6.05,214,1701158400"; d="scan'208";a="820028880"
-Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.74])
- by orsmga001.jf.intel.com with SMTP; 23 Jan 2024 01:31:44 -0800
-Received: by stinkbox (sSMTP sendmail emulation);
- Tue, 23 Jan 2024 11:31:43 +0200
-From: Ville Syrjala <ville.syrjala@linux.intel.com>
-To: intel-gfx@lists.freedesktop.org
-Subject: [PATCH v2 3/3] drm/i915: Convert PLL flags to booleans
-Date: Tue, 23 Jan 2024 11:31:37 +0200
-Message-ID: <20240123093137.9133-3-ville.syrjala@linux.intel.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20240123093137.9133-1-ville.syrjala@linux.intel.com>
-References: <20240123093137.9133-1-ville.syrjala@linux.intel.com>
+X-IronPort-AV: E=Sophos;i="6.05,214,1701158400"; d="scan'208";a="27962082"
+Received: from turnipsi.fi.intel.com (HELO kekkonen.fi.intel.com)
+ ([10.237.72.44])
+ by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 23 Jan 2024 01:56:47 -0800
+Received: from svinhufvud.ger.corp.intel.com (localhost [IPv6:::1])
+ by kekkonen.fi.intel.com (Postfix) with ESMTP id 2554111FC49;
+ Tue, 23 Jan 2024 11:56:43 +0200 (EET)
+From: Sakari Ailus <sakari.ailus@linux.intel.com>
+To: linux-pm@vger.kernel.org
+Subject: [PATCH v4 0/3] Small runtime PM API changes
+Date: Tue, 23 Jan 2024 11:56:41 +0200
+Message-Id: <20240123095642.97303-1-sakari.ailus@linux.intel.com>
+X-Mailer: git-send-email 2.39.2
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -59,130 +59,95 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: "Rafael J. Wysocki" <rafael@kernel.org>, linux-pci@vger.kernel.org,
+ dri-devel@lists.freedesktop.org, Jaroslav Kysela <perex@perex.cz>,
+ Stanislaw Gruszka <stanislaw.gruszka@linux.intel.com>,
+ laurent.pinchart@ideasonboard.com, David Airlie <airlied@gmail.com>,
+ Paul Elder <paul.elder@ideasonboard.com>, linux-media@vger.kernel.org,
+ =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
+ intel-gfx@lists.freedesktop.org, Lucas De Marchi <lucas.demarchi@intel.com>,
+ Mark Brown <broonie@kernel.org>,
+ Jacek Lawrynowicz <jacek.lawrynowicz@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+ intel-xe@lists.freedesktop.org, Alex Elder <elder@kernel.org>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>, linux-sound@vger.kernel.org,
+ Takashi Iwai <tiwai@suse.com>, Daniel Vetter <daniel@ffwll.ch>,
+ netdev@vger.kernel.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-From: Ville Syrjälä <ville.syrjala@linux.intel.com>
+Hi folks,
 
-No real reason why the PLL flags need to be a bitmask. Switch
-to booleans to make the code simpler.
+Here's a small but a different set of patches for making two relatively
+minor changes to runtime PM API. I restarted version numbering as this is
+meaningfully different from the previous set.
 
-Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
----
- drivers/gpu/drm/i915/display/intel_dpll_mgr.c | 19 ++++++++--------
- drivers/gpu/drm/i915/display/intel_dpll_mgr.h | 22 ++++++++++---------
- 2 files changed, 21 insertions(+), 20 deletions(-)
+pm_runtime_get_if_active() loses its second argument as it only made sense
+to have ign_usage_count argument true.
 
-diff --git a/drivers/gpu/drm/i915/display/intel_dpll_mgr.c b/drivers/gpu/drm/i915/display/intel_dpll_mgr.c
-index 085cd6204520..e7e0a4cf9f93 100644
---- a/drivers/gpu/drm/i915/display/intel_dpll_mgr.c
-+++ b/drivers/gpu/drm/i915/display/intel_dpll_mgr.c
-@@ -1263,11 +1263,11 @@ static const struct dpll_info hsw_plls[] = {
- 	{ .name = "WRPLL 2", .funcs = &hsw_ddi_wrpll_funcs, .id = DPLL_ID_WRPLL2, },
- 	{ .name = "SPLL", .funcs = &hsw_ddi_spll_funcs, .id = DPLL_ID_SPLL, },
- 	{ .name = "LCPLL 810", .funcs = &hsw_ddi_lcpll_funcs, .id = DPLL_ID_LCPLL_810,
--	  .flags = INTEL_DPLL_ALWAYS_ON, },
-+	  .always_on = true, },
- 	{ .name = "LCPLL 1350", .funcs = &hsw_ddi_lcpll_funcs, .id = DPLL_ID_LCPLL_1350,
--	  .flags = INTEL_DPLL_ALWAYS_ON, },
-+	  .always_on = true, },
- 	{ .name = "LCPLL 2700", .funcs = &hsw_ddi_lcpll_funcs, .id = DPLL_ID_LCPLL_2700,
--	  .flags = INTEL_DPLL_ALWAYS_ON, },
-+	  .always_on = true, },
- 	{}
- };
- 
-@@ -1945,7 +1945,7 @@ static const struct intel_shared_dpll_funcs skl_ddi_dpll0_funcs = {
- 
- static const struct dpll_info skl_plls[] = {
- 	{ .name = "DPLL 0", .funcs = &skl_ddi_dpll0_funcs, .id = DPLL_ID_SKL_DPLL0,
--	  .flags = INTEL_DPLL_ALWAYS_ON, },
-+	  .always_on = true, },
- 	{ .name = "DPLL 1", .funcs = &skl_ddi_pll_funcs, .id = DPLL_ID_SKL_DPLL1, },
- 	{ .name = "DPLL 2", .funcs = &skl_ddi_pll_funcs, .id = DPLL_ID_SKL_DPLL2, },
- 	{ .name = "DPLL 3", .funcs = &skl_ddi_pll_funcs, .id = DPLL_ID_SKL_DPLL3, },
-@@ -4030,7 +4030,7 @@ static const struct dpll_info icl_plls[] = {
- 	{ .name = "DPLL 0", .funcs = &combo_pll_funcs, .id = DPLL_ID_ICL_DPLL0, },
- 	{ .name = "DPLL 1", .funcs = &combo_pll_funcs, .id = DPLL_ID_ICL_DPLL1, },
- 	{ .name = "TBT PLL", .funcs = &tbt_pll_funcs, .id = DPLL_ID_ICL_TBTPLL,
--	  .flags = INTEL_DPLL_IS_ALT_PORT_DPLL, },
-+	  .is_alt_port_dpll = true, },
- 	{ .name = "MG PLL 1", .funcs = &mg_pll_funcs, .id = DPLL_ID_ICL_MGPLL1, },
- 	{ .name = "MG PLL 2", .funcs = &mg_pll_funcs, .id = DPLL_ID_ICL_MGPLL2, },
- 	{ .name = "MG PLL 3", .funcs = &mg_pll_funcs, .id = DPLL_ID_ICL_MGPLL3, },
-@@ -4076,7 +4076,7 @@ static const struct dpll_info tgl_plls[] = {
- 	{ .name = "DPLL 0", .funcs = &combo_pll_funcs, .id = DPLL_ID_ICL_DPLL0, },
- 	{ .name = "DPLL 1", .funcs = &combo_pll_funcs, .id = DPLL_ID_ICL_DPLL1, },
- 	{ .name = "TBT PLL", .funcs = &tbt_pll_funcs, .id = DPLL_ID_ICL_TBTPLL,
--	  .flags = INTEL_DPLL_IS_ALT_PORT_DPLL, },
-+	  .is_alt_port_dpll = true, },
- 	{ .name = "TC PLL 1", .funcs = &dkl_pll_funcs, .id = DPLL_ID_ICL_MGPLL1, },
- 	{ .name = "TC PLL 2", .funcs = &dkl_pll_funcs, .id = DPLL_ID_ICL_MGPLL2, },
- 	{ .name = "TC PLL 3", .funcs = &dkl_pll_funcs, .id = DPLL_ID_ICL_MGPLL3, },
-@@ -4150,7 +4150,7 @@ static const struct dpll_info adlp_plls[] = {
- 	{ .name = "DPLL 0", .funcs = &combo_pll_funcs, .id = DPLL_ID_ICL_DPLL0, },
- 	{ .name = "DPLL 1", .funcs = &combo_pll_funcs, .id = DPLL_ID_ICL_DPLL1, },
- 	{ .name = "TBT PLL", .funcs = &tbt_pll_funcs, .id = DPLL_ID_ICL_TBTPLL,
--	  .flags = INTEL_DPLL_IS_ALT_PORT_DPLL, },
-+	  .is_alt_port_dpll = true, },
- 	{ .name = "TC PLL 1", .funcs = &dkl_pll_funcs, .id = DPLL_ID_ICL_MGPLL1, },
- 	{ .name = "TC PLL 2", .funcs = &dkl_pll_funcs, .id = DPLL_ID_ICL_MGPLL2, },
- 	{ .name = "TC PLL 3", .funcs = &dkl_pll_funcs, .id = DPLL_ID_ICL_MGPLL3, },
-@@ -4480,7 +4480,7 @@ verify_single_dpll_state(struct drm_i915_private *i915,
- 
- 	active = intel_dpll_get_hw_state(i915, pll, &dpll_hw_state);
- 
--	if (!(pll->info->flags & INTEL_DPLL_ALWAYS_ON)) {
-+	if (!pll->info->always_on) {
- 		I915_STATE_WARN(i915, !pll->on && pll->active_mask,
- 				"%s: pll in active use but not on in sw tracking\n",
- 				pll->info->name);
-@@ -4527,8 +4527,7 @@ static bool has_alt_port_dpll(const struct intel_shared_dpll *old_pll,
- 			      const struct intel_shared_dpll *new_pll)
- {
- 	return old_pll && new_pll && old_pll != new_pll &&
--		(old_pll->info->flags & INTEL_DPLL_IS_ALT_PORT_DPLL ||
--		 new_pll->info->flags & INTEL_DPLL_IS_ALT_PORT_DPLL);
-+		(old_pll->info->is_alt_port_dpll || new_pll->info->is_alt_port_dpll);
- }
- 
- void intel_shared_dpll_state_verify(struct intel_atomic_state *state,
-diff --git a/drivers/gpu/drm/i915/display/intel_dpll_mgr.h b/drivers/gpu/drm/i915/display/intel_dpll_mgr.h
-index 5cdec77cfd9d..616afe861b46 100644
---- a/drivers/gpu/drm/i915/display/intel_dpll_mgr.h
-+++ b/drivers/gpu/drm/i915/display/intel_dpll_mgr.h
-@@ -276,19 +276,21 @@ struct dpll_info {
- 	 */
- 	enum intel_display_power_domain power_domain;
- 
--#define INTEL_DPLL_ALWAYS_ON	(1 << 0)
--#define INTEL_DPLL_IS_ALT_PORT_DPLL	(1 << 1)
- 	/**
--	 * @flags:
-+	 * @always_on:
- 	 *
--	 * INTEL_DPLL_ALWAYS_ON
--	 *     Inform the state checker that the DPLL is kept enabled even if
--	 *     not in use by any CRTC.
--	 * INTEL_DPLL_IS_ALT_PORT_DPLL
--	 *     Inform the state checker that the DPLL can be used as a fallback
--	 *     (for TC->TBT fallback).
-+	 * Inform the state checker that the DPLL is kept enabled even if
-+	 * not in use by any CRTC.
- 	 */
--	u32 flags;
-+	bool always_on;
-+
-+	/**
-+	 * @is_alt_port_dpll:
-+	 *
-+	 * Inform the state checker that the DPLL can be used as a fallback
-+	 * (for TC->TBT fallback).
-+	 */
-+	bool is_alt_port_dpll;
- };
- 
- /**
+The other change is also small but it has an effect on callers:
+pm_runtime_put_autosuspend() will, in the future, be re-purposed to
+include a call to pm_runtime_mark_last_busy() as well. Before this,
+current users of the function are moved to __pm_runtime_put_autosuspend()
+(added by this patchset) which will continue to have the current
+behaviour.
+
+I haven't included the conversion patches in this set as I only want to do
+that once this set has been approved and merged. The tree specific patches
+can be found here, on linux-next master (there are some V4L2 patches
+there, too, please ignore them for now):
+<URL:https://git.kernel.org/pub/scm/linux/kernel/git/sailus/linux-next.git/log/?
+
+Later on, users calling pm_runtime_mark_last_busy() immediately followed
+by __pm_runtime_put_autosuspend() will be switched back to
+pm_runtime_put_autosuspend() once its behaviour change has been done (a
+patch near top of that branch). I'll provide these once the preceding ones
+have been merged.
+
+Comments are welcome.
+
+since v3:
+
+- patch 1: Drop the previously added documentation on driver use of
+  pm_runtime_get_conditional().
+
+- Add a patch to make pm_runtime_get_conditional() static, including
+  switching i915 to pm_runtime_get_if_{active,in_use}.
+
+since v2:
+
+- Rebase on v6.8-rc1 (no changes).
+
+- Add Rodrigo's Reviewed-by: to the 1st patch.
+
+since v1:
+
+- patch 1: Rename __pm_runtime_get_conditional() as
+  pm_runtime_get_conditional().
+
+- patch 1: Reword documentation on driver use of
+  pm_runtime_get_conditional().
+
+Sakari Ailus (3):
+  pm: runtime: Simplify pm_runtime_get_if_active() usage
+  pm: runtime: Make pm_runtime_get_if_conditional() private
+  pm: runtime: Add pm_runtime_put_autosuspend() replacement
+
+ Documentation/power/runtime_pm.rst      | 22 +++++++++-------
+ drivers/accel/ivpu/ivpu_pm.c            |  2 +-
+ drivers/base/power/runtime.c            | 34 +++++++++++++++++++++++--
+ drivers/gpu/drm/i915/intel_runtime_pm.c |  5 +++-
+ drivers/gpu/drm/xe/xe_pm.c              |  2 +-
+ drivers/media/i2c/ccs/ccs-core.c        |  2 +-
+ drivers/media/i2c/ov64a40.c             |  2 +-
+ drivers/media/i2c/thp7312.c             |  2 +-
+ drivers/net/ipa/ipa_smp2p.c             |  2 +-
+ drivers/pci/pci.c                       |  2 +-
+ include/linux/pm_runtime.h              | 30 +++++++++++-----------
+ sound/hda/hdac_device.c                 |  2 +-
+ 12 files changed, 72 insertions(+), 35 deletions(-)
+
 -- 
-2.43.0
+2.39.2
 
