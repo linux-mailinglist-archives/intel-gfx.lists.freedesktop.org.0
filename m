@@ -2,50 +2,50 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 23CB783A3EF
-	for <lists+intel-gfx@lfdr.de>; Wed, 24 Jan 2024 09:19:32 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id E1BE583A464
+	for <lists+intel-gfx@lfdr.de>; Wed, 24 Jan 2024 09:42:51 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 87C6B10F66F;
-	Wed, 24 Jan 2024 08:19:30 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6BE6C10E3AB;
+	Wed, 24 Jan 2024 08:42:20 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9D89910F673
- for <intel-gfx@lists.freedesktop.org>; Wed, 24 Jan 2024 08:19:28 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1706084369; x=1737620369;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=1EDWh3XWS6JUDpSIIgtpk1Z5Q1jO1NGiEDwSbYRy8xY=;
- b=EIBAMwj/roe+wdCj+w5qi2JHDOkgEcMhWbPu5cBNEKJ3fS2CYdp5jvGO
- HvvXKbdIzgg9bVmEZGJqPBVHhO9g/9Q58FCscgXm36gF3TN3FXILoyMWQ
- 0pBSTDj5ouwRuVUcbKvbxnh1RNbv3u3uN8wmL1at/r1ZYGFT8KrUqRKo7
- eLqaWdtZ9F1AfUIPNbTkYWB/5tL61plSGn9EJKgYjAgoqScsGeGNAoEJA
- tdEClRMDKLrbr+o2aSt0nDu+uR7fJ7FBShvpwyF/TGR8LJSq/FSfCNy2y
- pRORz5qbtd5NW2Ci/WUq6dLJiI2YVgAvP0/+8qiC8oLJa6IlKBDPvUAyZ A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10962"; a="8428757"
-X-IronPort-AV: E=Sophos;i="6.05,216,1701158400"; 
-   d="scan'208";a="8428757"
-Received: from orsmga003.jf.intel.com ([10.7.209.27])
- by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Jan 2024 00:19:29 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10962"; a="735842150"
-X-IronPort-AV: E=Sophos;i="6.05,216,1701158400"; d="scan'208";a="735842150"
-Received: from mcohen6-mobl.ger.corp.intel.com (HELO localhost)
- ([10.246.32.145])
- by orsmga003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Jan 2024 00:19:24 -0800
-From: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
-To: Intel graphics driver community testing & development
- <intel-gfx@lists.freedesktop.org>
-Subject: [RFC PATCH] drm/i915: Add GETPARAM for GuC submission version
-Date: Wed, 24 Jan 2024 10:19:15 +0200
-Message-ID: <20240124081915.68953-1-joonas.lahtinen@linux.intel.com>
-X-Mailer: git-send-email 2.43.0
+X-Greylist: delayed 447 seconds by postgrey-1.36 at gabe;
+ Wed, 24 Jan 2024 08:42:18 UTC
+Received: from galois.linutronix.de (Galois.linutronix.de [193.142.43.55])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8375010E3AB;
+ Wed, 24 Jan 2024 08:42:18 +0000 (UTC)
+Date: Wed, 24 Jan 2024 09:34:31 +0100
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linutronix.de;
+ s=2020; t=1706085272;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ in-reply-to:in-reply-to:references:references;
+ bh=CM06qappAFq3fth3J5y9xlG2eXFuwuWe3BUB8NY8aVo=;
+ b=TwVcdFFzExYfWwg7C6apWzxYslafypWJjMmx63TeGaqe7ZzDcAWqhGU/fwY9Afwow4T907
+ GVHkW8diBp00lwnVnC0Qv7TvBYaNQBXuWbFj+CBzbdmwtOSRDEReKSp3w2Qqals/W6EjKw
+ XE9v/GzyMfFLTMmhQdqNCml+mBGzDTKcqQEP3X0XJwctqUmf1NLEDUgvketx4Uz0R8rLSe
+ 6VR11NvBOkt6QtcJ98PZZhUEuGe80i82a1SzCKzxu9Xu4pGlxYLLdol6IRJBqCJ9gS+3Pg
+ OXpwPnKQw84eu8x4gckK7t+klwnLlqF3BKfW/iSQsEEyyuKTJixyoUYYMZIaQg==
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=linutronix.de;
+ s=2020e; t=1706085272;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ in-reply-to:in-reply-to:references:references;
+ bh=CM06qappAFq3fth3J5y9xlG2eXFuwuWe3BUB8NY8aVo=;
+ b=myTeGKG3lP7bg4Y67UrRx+0pfdQT5ef5h+PELXsJkyOJgj2sLnKt72XIeVTAOzC7QaNSmB
+ Dc1zI6HFYm4zeJAA==
+From: Sebastian Andrzej Siewior <bigeasy@linutronix.de>
+To: Luca Coelho <luciano.coelho@intel.com>,
+ Tvrtko Ursulin <tvrto.ursulin@intel.com>,
+ Jani Nikula <jani.nikula@intel.com>
+Subject: Re: [Intel-gfx] [PATCH v7] drm/i915: handle uncore spinlock when not
+ available
+Message-ID: <20240124083431.pY7Mxk0Q@linutronix.de>
+References: <20231201100032.1367589-1-luciano.coelho@intel.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20231201100032.1367589-1-luciano.coelho@intel.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -58,79 +58,130 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Paulo Zanoni <paulo.r.zanoni@intel.com>,
- Tvrtko Ursulin <tvrtko.ursulin@intel.com>, Jani Nikula <jani.nikula@intel.com>,
- Kenneth Graunke <kenneth@whitecape.org>, Sagar Ghuge <sagar.ghuge@intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>
+Cc: intel-gfx@lists.freedesktop.org, Thomas Gleixner <tglx@linutronix.de>,
+ intel-xe@lists.freedesktop.org, rodrigo.vivi@intel.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Add reporting of the GuC submissio/VF interface version via GETPARAM
-properties. Mesa intends to use this information to check for old
-firmware versions with known bugs before enabling features like async
-compute.
+On 2023-12-01 12:00:32 [+0200], Luca Coelho wrote:
+> To handle this, split the spin_lock/unlock_irqsave/restore() into
+> spin_lock/unlock() followed by a call to local_irq_save/restore() and
 
-Signed-off-by: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
-Cc: Kenneth Graunke <kenneth@whitecape.org>
-Cc: Jose Souza <jose.souza@intel.com>
-Cc: Sagar Ghuge <sagar.ghuge@intel.com>
-Cc: Paulo Zanoni <paulo.r.zanoni@intel.com>
-Cc: John Harrison <John.C.Harrison@Intel.com>
-Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
-Cc: Jani Nikula <jani.nikula@intel.com>
-Cc: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+On PREEMPT_RT spinlock_t becomes a sleeping lock so this split is not
+working. See Documentation/locking/locktypes.rst
+
+What I don't understand: do you have to keep the interrupts disabled
+for some reasons or is it just to avoid using _irqsave() twice?
+
+I do have more i915 related patches in the PREEMPT_RT queue and I can
+post them if you folks have time for it. For now, let me show what I did
+here:
+
+----------->8-------------
+
+From: Mike Galbraith <umgwanakikbuti@gmail.com>
+Date: Sat, 27 Feb 2016 08:09:11 +0100
+Subject: [PATCH 03/10] drm/i915: Use preempt_disable/enable_rt() where
+ recommended
+
+Mario Kleiner suggest in commit
+  ad3543ede630f ("drm/intel: Push get_scanout_position() timestamping into kms driver.")
+
+a spots where preemption should be disabled on PREEMPT_RT. The
+difference is that on PREEMPT_RT the intel_uncore::lock disables neither
+preemption nor interrupts and so region remains preemptible.
+
+The area covers only register reads and writes. The part that worries me
+is:
+- __intel_get_crtc_scanline() the worst case is 100us if no match is
+  found.
+
+- intel_crtc_scanlines_since_frame_timestamp() not sure how long this
+  may take in the worst case.
+
+It was in the RT queue for a while and nobody complained.
+Disable preemption on PREEPMPT_RT during timestamping.
+
+[bigeasy: patch description.]
+
+Cc: Mario Kleiner <mario.kleiner.de@gmail.com>
+Signed-off-by: Mike Galbraith <umgwanakikbuti@gmail.com>
+Signed-off-by: Thomas Gleixner <tglx@linutronix.de>
+Signed-off-by: Sebastian Andrzej Siewior <bigeasy@linutronix.de>
 ---
- drivers/gpu/drm/i915/i915_getparam.c | 12 ++++++++++++
- include/uapi/drm/i915_drm.h          | 13 +++++++++++++
- 2 files changed, 25 insertions(+)
+ drivers/gpu/drm/i915/display/intel_vblank.c |   38 ++++++++++++++++++++--------
+ 1 file changed, 28 insertions(+), 10 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/i915_getparam.c b/drivers/gpu/drm/i915/i915_getparam.c
-index 5c3fec63cb4c1..f176372debc54 100644
---- a/drivers/gpu/drm/i915/i915_getparam.c
-+++ b/drivers/gpu/drm/i915/i915_getparam.c
-@@ -113,6 +113,18 @@ int i915_getparam_ioctl(struct drm_device *dev, void *data,
- 		if (value < 0)
- 			return value;
- 		break;
-+	case I915_PARAM_GUC_SUBMISSION_VERSION_MAJOR:
-+	case I915_PARAM_GUC_SUBMISSION_VERSION_MINOR:
-+	case I915_PARAM_GUC_SUBMISSION_VERSION_PATCH:
-+		if (!intel_uc_uses_guc_submission(&to_gt(i915)->uc))
-+			return -ENODEV;
-+		if (param->param == I915_PARAM_GUC_SUBMISSION_VERSION_MAJOR)
-+			value = to_gt(i915)->uc.guc.submission_version.major;
-+		else if (param->param == I915_PARAM_GUC_SUBMISSION_VERSION_MINOR)
-+			value = to_gt(i915)->uc.guc.submission_version.minor;
-+		else
-+			value = to_gt(i915)->uc.guc.submission_version.patch;
-+		break;
- 	case I915_PARAM_MMAP_GTT_VERSION:
- 		/* Though we've started our numbering from 1, and so class all
- 		 * earlier versions as 0, in effect their value is undefined as
-diff --git a/include/uapi/drm/i915_drm.h b/include/uapi/drm/i915_drm.h
-index fd4f9574d177a..7d5a47f182542 100644
---- a/include/uapi/drm/i915_drm.h
-+++ b/include/uapi/drm/i915_drm.h
-@@ -806,6 +806,19 @@ typedef struct drm_i915_irq_wait {
+--- a/drivers/gpu/drm/i915/display/intel_vblank.c
++++ b/drivers/gpu/drm/i915/display/intel_vblank.c
+@@ -275,6 +275,26 @@ int intel_crtc_scanline_to_hw(struct int
+  * all register accesses to the same cacheline to be serialized,
+  * otherwise they may hang.
   */
- #define I915_PARAM_PXP_STATUS		 58
- 
-+/*
-+ * Query for the GuC submission/VF interface version number
-+ *
-+ * -ENODEV is returned if GuC submission is not used
-+ *
-+ * On success, returns the respective GuC submission/VF interface major,
-+ * minor or patch version as per the requested parameter.
-+ *
-+ */
-+#define I915_PARAM_GUC_SUBMISSION_VERSION_MAJOR 59
-+#define I915_PARAM_GUC_SUBMISSION_VERSION_MINOR 60
-+#define I915_PARAM_GUC_SUBMISSION_VERSION_PATCH 61
++static void intel_vblank_section_enter_irqsave(struct drm_i915_private *i915, unsigned long *flags)
++	__acquires(i915->uncore.lock)
++{
++#ifdef I915
++	spin_lock_irqsave(&i915->uncore.lock, *flags);
++#else
++	*flags = NULL;
++#endif
++}
 +
- /* Must be kept compact -- no holes and well documented */
++static void intel_vblank_section_exit_irqrestore(struct drm_i915_private *i915, unsigned long flags)
++	__releases(i915->uncore.lock)
++{
++#ifdef I915
++	spin_unlock_irqrestore(&i915->uncore.lock, flags);
++#else
++	if (flags)
++		;
++#endif
++}
+ static void intel_vblank_section_enter(struct drm_i915_private *i915)
+ 	__acquires(i915->uncore.lock)
+ {
+@@ -332,10 +352,10 @@ static bool i915_get_crtc_scanoutpos(str
+ 	 * timing critical raw register reads, potentially with
+ 	 * preemption disabled, so the following code must not block.
+ 	 */
+-	local_irq_save(irqflags);
+-	intel_vblank_section_enter(dev_priv);
++	intel_vblank_section_enter_irqsave(dev_priv, &irqflags);
  
- /**
--- 
-2.43.0
-
+-	/* preempt_disable_rt() should go right here in PREEMPT_RT patchset. */
++	if (IS_ENABLED(CONFIG_PREEMPT_RT))
++		preempt_disable();
+ 
+ 	/* Get optional system timestamp before query. */
+ 	if (stime)
+@@ -399,10 +419,10 @@ static bool i915_get_crtc_scanoutpos(str
+ 	if (etime)
+ 		*etime = ktime_get();
+ 
+-	/* preempt_enable_rt() should go right here in PREEMPT_RT patchset. */
++	if (IS_ENABLED(CONFIG_PREEMPT_RT))
++		preempt_enable();
+ 
+-	intel_vblank_section_exit(dev_priv);
+-	local_irq_restore(irqflags);
++	intel_vblank_section_exit_irqrestore(dev_priv, irqflags);
+ 
+ 	/*
+ 	 * While in vblank, position will be negative
+@@ -440,13 +460,11 @@ int intel_get_crtc_scanline(struct intel
+ 	unsigned long irqflags;
+ 	int position;
+ 
+-	local_irq_save(irqflags);
+-	intel_vblank_section_enter(dev_priv);
++	intel_vblank_section_enter_irqsave(dev_priv, &irqflags);
+ 
+ 	position = __intel_get_crtc_scanline(crtc);
+ 
+-	intel_vblank_section_exit(dev_priv);
+-	local_irq_restore(irqflags);
++	intel_vblank_section_exit_irqrestore(dev_priv, irqflags);
+ 
+ 	return position;
+ }
