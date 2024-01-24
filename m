@@ -2,150 +2,74 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 031C383A1EF
-	for <lists+intel-gfx@lfdr.de>; Wed, 24 Jan 2024 07:17:08 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7B3EA83A2EE
+	for <lists+intel-gfx@lfdr.de>; Wed, 24 Jan 2024 08:30:39 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 770F410E91C;
-	Wed, 24 Jan 2024 06:17:06 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 50FDB10F5CC;
+	Wed, 24 Jan 2024 07:30:29 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.93])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 52C7810E85C
- for <intel-gfx@lists.freedesktop.org>; Wed, 24 Jan 2024 06:17:05 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1706077025; x=1737613025;
- h=from:to:cc:subject:date:message-id:references:
- in-reply-to:content-transfer-encoding:mime-version;
- bh=0jNxtKlAAbXdHF0LlG3FOZIUSdQGNohVE7AZj5ffyOs=;
- b=VbxVgDtpueHe86P4DVLIIxgCwTSPNLIU4u+Hh+fCNAJC0T8bVArMBjHd
- elV+8xUAoIr1ULETalSc4g7UOnaXt/DK/hlBTyB1dBMZDBnDMzNRprqlv
- bW0fqdApNWFon+ZPGYEC7jCiGi+SwDvFgS5lomEdUH6rZkPbWwdpQq4Na
- kuZAsiltyeO4NNNekBw5PHC7t8wwQEFUK8YgStDupbaKb933UakXvIOMj
- 0jARoqihAUDuhbLen5x+NRzqIalXAIxKdxkaBi/+Bc+56y3ISty/MRSkj
- HsVqlIIUPnOoLg8jy7BRi7UUWNeie7hNcpVUsgiXhswMworJvM4dH1XyP Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10962"; a="398908413"
-X-IronPort-AV: E=Sophos;i="6.05,216,1701158400"; d="scan'208";a="398908413"
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
- by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Jan 2024 22:17:03 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10962"; a="820347602"
-X-IronPort-AV: E=Sophos;i="6.05,216,1701158400"; d="scan'208";a="820347602"
-Received: from orsmsx603.amr.corp.intel.com ([10.22.229.16])
- by orsmga001.jf.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
- 23 Jan 2024 22:17:03 -0800
-Received: from orsmsx602.amr.corp.intel.com (10.22.229.15) by
- ORSMSX603.amr.corp.intel.com (10.22.229.16) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35; Tue, 23 Jan 2024 22:17:02 -0800
-Received: from orsedg603.ED.cps.intel.com (10.7.248.4) by
- orsmsx602.amr.corp.intel.com (10.22.229.15) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35 via Frontend Transport; Tue, 23 Jan 2024 22:17:02 -0800
-Received: from NAM10-DM6-obe.outbound.protection.outlook.com (104.47.58.100)
- by edgegateway.intel.com (134.134.137.100) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.35; Tue, 23 Jan 2024 22:17:02 -0800
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=k1ZMtfSBR6auOMQnr83GC8elloQskx44LleHQY0hybg38WEyE7pv36/fqALFaujhxYowAciDGsuNGcczuALPV8CBXYjfGZLSUA8OLn06WyJWzAA6NQnJhdMPD5O3s5Dq1mUHTkEE5SUlfQuVHjYNt28d4eoPYarrn5djnMkT77rQ6d0z4u179Y9jWQaZ8QMpUvJ1d2Pzgz8oDQVcrYXL+9+r3Fgvuu6wOmq43XERZ13XcKexd2mxcSg2/S/x4hH17vogGP/gzvkxTXVPsiKEBZ/JbaXQOrzOFQ2qO6IceDDOBVT9GgeEctwYsJ4YrORErQ6Bj9qhSvvSve+0KlHtew==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=0jNxtKlAAbXdHF0LlG3FOZIUSdQGNohVE7AZj5ffyOs=;
- b=WkYJQLGWUo+5SslICsAnXaYy9VsyT81NH37tBfClwNTnS6s7vcaGbi62MW+0TNb6WiMnREDEy/VEN0bXm7Hts2F+cosg98+9PGhxiqaAgYZELBWHSZ0NgO00P8xettYQ0pBeYexHIohpD9twl9qZPY9/6hCEeLm/wpnSqB3UEnVYj6weQtX8e2iOfbM6OJEgNhVXOMSx4MjW8q3Qla7Z8XzvXmKC9njGwh0G4Qkv8N4h8Wgrk8ka9RBxExFuLy1kw9lfTGxE6bXP9fCSHizn9acU87yLHhXT5xy8NhG8AB6OYJ9RsiB4KB7eGnuQx4mTWstqksd3cztRw0Nr7jTqEA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Received: from IA0PR11MB7307.namprd11.prod.outlook.com (2603:10b6:208:437::10)
- by PH0PR11MB4855.namprd11.prod.outlook.com (2603:10b6:510:41::12)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7228.22; Wed, 24 Jan
- 2024 06:16:55 +0000
-Received: from IA0PR11MB7307.namprd11.prod.outlook.com
- ([fe80::34a4:c9b4:7991:39b5]) by IA0PR11MB7307.namprd11.prod.outlook.com
- ([fe80::34a4:c9b4:7991:39b5%4]) with mapi id 15.20.7228.022; Wed, 24 Jan 2024
- 06:16:54 +0000
-From: "Murthy, Arun R" <arun.r.murthy@intel.com>
-To: "Hogander, Jouni" <jouni.hogander@intel.com>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
-Subject: RE: [PATCH v2 1/4] drm/i915/alpm: Add ALPM register definitions
-Thread-Topic: [PATCH v2 1/4] drm/i915/alpm: Add ALPM register definitions
-Thread-Index: AQHaP+GlJth2+5bIikSktgWpNUomF7DolbhA
-Date: Wed, 24 Jan 2024 06:16:54 +0000
-Message-ID: <IA0PR11MB7307A2DF429BFDD8380B538EBA7B2@IA0PR11MB7307.namprd11.prod.outlook.com>
-References: <20240105141504.2808991-1-jouni.hogander@intel.com>
- <20240105141504.2808991-2-jouni.hogander@intel.com>
-In-Reply-To: <20240105141504.2808991-2-jouni.hogander@intel.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: IA0PR11MB7307:EE_|PH0PR11MB4855:EE_
-x-ms-office365-filtering-correlation-id: 6a8700f8-c13c-46aa-bef1-08dc1ca40fc8
-x-ld-processed: 46c98d88-e344-4ed4-8496-4ed7712e255d,ExtAddr
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: WWT3DSHgFgNZ4SUvnTte2iiVXhuGpPrL+ScAJlbOZ9TBXOmM84TxS45ZpGZPoAXfkn6xc2JyGvgRihcCf6jeiRWc3tabmbTKFaZJ+AveOFTVHbj3HVd4tNdWtqJ1TfZRm9wAIa5aoD7ClCvFb60DNFKPwqccidcLhMmly3XIwTo0avzVAX0Y93EkWoY5gKcAcjm9+ck6r4BAiTki9oa4kolf41yBlj62V4GaTKPKvYtrZRGeqXvuMz/hSOoAK+ynMFM6lBsX7GAWcYFqFkI5i5+vwzpmUP9e9iZM+GgheH8K+tubb9baBL1PXEEsBbAYiga6qvn20p4gbmIiKBqT3LBqp+xtySoIKaK06jfAaV8qchsGwHzWF1rax4+4xFFTlKor0yZkLvdqho1LgK8jO57R68dUflTxEczOfi7eTVta948i10Rk0Xjdt/ti2d9x6dFjXuq4sRIJU2Dn3arBBOQU0rozPgqh6AIWkn3Oum5Cq2Kf9ZdL+ONdifWvTB0J3R8nCo5f78RusdSxpXZU0eITxZT7PcuGbZ2ob5zoe6t/dU75efOZw4C13IKOQBI8DlIOcg2eOn0XDqk55TQghm1DAF9sVbCA5wU0ZoOK2MP5MgEPD8cZmMqUm6HxSmVE
-x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:IA0PR11MB7307.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230031)(396003)(376002)(39860400002)(136003)(366004)(346002)(230922051799003)(451199024)(186009)(1800799012)(64100799003)(7696005)(6506007)(53546011)(9686003)(38100700002)(107886003)(55016003)(71200400001)(83380400001)(66574015)(478600001)(122000001)(82960400001)(66946007)(76116006)(316002)(110136005)(66556008)(64756008)(66446008)(66476007)(8936002)(8676002)(4326008)(41300700001)(5660300002)(38070700009)(2906002)(33656002)(86362001)(52536014);
- DIR:OUT; SFP:1102; 
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?utf-8?B?aUNYRmtWK0VBZTZQbEt6b2tJYVpDMy96aG9FSitseUR0c1VldkZPYUlkT1oy?=
- =?utf-8?B?Ui9vbzZhSk91cVFtcU9FT0x4d05tVDdBWGliYW9mb0taSndFZnZNNjZrUFdF?=
- =?utf-8?B?NmxYSTRiU2RLMHNpSWlvTll6dG9hd1Q0UmFqNnpSMll0Y3ErZEFRUUVGZkVz?=
- =?utf-8?B?bG5RbDFFRUlSdnJZMWtpMWcxRFVtUmg4ems0VG5XZEpIVnNiUStxY0NtNWVO?=
- =?utf-8?B?NXhnZjMyU0NBckI0Zzd2SENnbXFsVGdjZjhXdEVYcnlEZ2FqVWZGRy81Z1l1?=
- =?utf-8?B?cUZyYTZ0aXlhRWo4ZnQ1c1NYWllBTjd4Yng2MGcyT3FXVGppRCt5Vjd2RFhM?=
- =?utf-8?B?T0k1L2NhSlhMUDBrMVh0MEttdkQ3Wi9ZY0pqVkJrTlhaWkRJNm1ueFlJVy9u?=
- =?utf-8?B?bWNrVVVUUExMbjFRcGdSQWcydFBIb245Z0UxekorME83YmVzSCtlQnhlaHhC?=
- =?utf-8?B?V1BmSnFaNnk3YlRqL3hTOCtWbjFPU2dZbkt2UDBPSm1nbEhkbGpzSUdXcmRa?=
- =?utf-8?B?R1pHVFgwdHF6QlR2OUdkZHUvZEdDdmRySGZRUFBQalYrVG9iemV5cmJxZ0RX?=
- =?utf-8?B?YmJwSjRVSjVpQnNvNUhUd0RJTW1scGR5bWIrY3FNaFNtTUUyZTdGK29LUzRj?=
- =?utf-8?B?aURXYjZIOVZ4NU1yWkh1dXMzQ1liQWJUM2pCdDU1MnNZbWU5K0dWL3RYNjdn?=
- =?utf-8?B?K3NzRURqZ1ZBeDc3Tk1hUG4zSHVVYkx0dDF2YXVrZkNOU1RJN1ZDYnVTL3J2?=
- =?utf-8?B?NmYyOXYyY0JjNmpSOWdUOEk0WkNGdkVqbExhN3ZmejhNOURFOWFvWGxLdi9j?=
- =?utf-8?B?UytDUUVmWmhraGlDc2c1SElLSWhMOGVETmN0VWVDbGc3ZWZ5OFVGNmQ0QnNZ?=
- =?utf-8?B?QysyNTB6NGp6c2FORE91TEtCWTZ4L2Z1Mk1HV01JOHBBS3ZVUVVrV05kVytI?=
- =?utf-8?B?M21ESk5ZR25NcVo1eS9YYy96NGcwckhmVjNPdmEvQnNzc3k4Ui8zMmNweWlO?=
- =?utf-8?B?Wk5RWnBrNnRydlZaWjlUdS9KVzVZaGxVa2Q3SGVabnR3UWhiRzBYMUFpaVpa?=
- =?utf-8?B?OS9ocXhTYXJnUzVFVjlOWFBLdFIzYUFtczVZTHJQM3ZhSklYQzBVQys4L1Jy?=
- =?utf-8?B?elZFMGpZaW1IMkF0WFVuY0QzT29VWHE5NnkwSjlnbE5jMHZXSXBONDRvY2J4?=
- =?utf-8?B?L04xQkxXbnc3MWhLRk5FUWl5VnAxN2tuVDdwL1VIVjFGR0ttdlB4ZHowdUZT?=
- =?utf-8?B?NHAxbUFNOGlYcDRFdVRYRnBndkUzTUJleUlUTkViK3cvaWI5c3Yya3NTYnV0?=
- =?utf-8?B?MnI2ZHZKcTNNOWhiaUZCVkQ4clplRTNyUTRza0Z2VmRKTjFuSjVIRUhtcVdD?=
- =?utf-8?B?OTllSXZqNVFzdHdyZWtpQUVWZWNWSXpWUWlGZExHTlhsOWxESHpsbEw5WTNW?=
- =?utf-8?B?M3hWTThEMzJWTERQeU9DSUJtSVhiOG5peHNNMkhHcXhlOFVwSUluckRyRml1?=
- =?utf-8?B?bHVpNDcycEhWNTJXdUFReVdaT3U3ejFaUkY3aDltMDRMUTN1dnQ3SUpyOERi?=
- =?utf-8?B?WnBGWFdORmxkY1ZITE85ZVhCQUdqNWFSdGxCVXErcm95WC8rT3BCc3hWRm9N?=
- =?utf-8?B?WEw5UzV2cVVIUDU0bUVkWGpwZ2RuczZVR0Q4elJuNXFNWkVPblU4NTZhcVpm?=
- =?utf-8?B?azIvVzlkb0VVckM4V1Z3WGxleEg3OXZHbitsN0VKdnpBK2ZCVW5hS3Nmc3NB?=
- =?utf-8?B?VnlhMnJWcTFaRU5DOGdqMUlFWGhmRGpJRzFFVW8vaERuYzNVaGpDdlpZUFBQ?=
- =?utf-8?B?UklTWkN0VEtRMlpaNkJja0R1QkxEUjFkdDFEZnZJS05FQW92cnVaSDg2NXUw?=
- =?utf-8?B?eW81OFI0bW5xTFFlOVZqUzZMVlNCWW1kYmwzcHM1UFRCVndvL2lxaVhsZ0E3?=
- =?utf-8?B?b21BK1FvbGlaUGF0dDMySVNkdGpmOHhGWTEzaFZFK09PNFZtbm1QajdxelpR?=
- =?utf-8?B?cFRkOEdOd0hjWTFLaFdwNnNzczFBRGpmTzhvdHdZMVRXZDJXem1xeXliV0Mr?=
- =?utf-8?B?YUQ3Z2ZBSkdPeCt5TGZhODFWMU4wZjliZHY1dDJRS2VLTUZLZ0s2SjJRV21X?=
- =?utf-8?B?SGVWSFpVOXdsNXFzYmxONzRCWG5xQ0VKUFVzeEthdm9pUnNVUmZnbFpaUnpn?=
- =?utf-8?Q?a2UxDJf+iN5/VhGsO8BfXjSwzfl7QXPnvUukw37lBu3P?=
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Received: from mail-wm1-f51.google.com (mail-wm1-f51.google.com
+ [209.85.128.51])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EE78310E0B9;
+ Wed, 24 Jan 2024 07:30:22 +0000 (UTC)
+Received: by mail-wm1-f51.google.com with SMTP id
+ 5b1f17b1804b1-40e7065b7bdso61044125e9.3; 
+ Tue, 23 Jan 2024 23:30:22 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20230601; t=1706081358; x=1706686158; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:in-reply-to:from:references:cc:to
+ :content-language:subject:user-agent:mime-version:date:message-id
+ :from:to:cc:subject:date:message-id:reply-to;
+ bh=9DRGXaVxKMFHx2hiT7iy2bNi9Kyy1UbBqRbOG7bk9EA=;
+ b=HMHN+X2R7jQqpIqZARB2XiQlDLeo42Da4Flyec7hzY4+UCLhrxLQDLoGdtv27+npsH
+ qRuCBbtQf4IcJjuqPnhNHGZ+P+4V5Jvd2NWTiVeY5rYUVqCB/5rrttXOYonm9ZrvCw2m
+ N7CxYKk/t+1eSHGe6NzcDVsOwqGVuq2a8+Gdxqii+98HcXkN5EGrVw+OG4FrEM5Pra/m
+ 5Jn6EGFw2EP9KyIn+moBffgYMNFr6WMBz7rmAcfO1RVQoMEdvNQ1EHD1xh5Qx4uv1eRA
+ nbxPIpSf9Cb6C9Vr63Q+Sn8V/h4XYGWfx8TIOWoBsF774NF2gMCJVboErvbXRsktiN7B
+ i5Yg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1706081358; x=1706686158;
+ h=content-transfer-encoding:in-reply-to:from:references:cc:to
+ :content-language:subject:user-agent:mime-version:date:message-id
+ :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+ bh=9DRGXaVxKMFHx2hiT7iy2bNi9Kyy1UbBqRbOG7bk9EA=;
+ b=Aq7gmfkR2HbAhz64eOMaL458zZZy2RDVYDS509aK4+Pc0fPYlL03ydmdtmErt9cCPy
+ T9PRfOQXCrlSxg4PbYVpDbgKfgbmsjBVEP+VRdQmoYu2aBCBWDJgIgTHuSc4GVEa8SIs
+ KZjeXp/YlXXG3TAzY7o4XQ5E2ZY2sEH35UwXRSgEeimwDvH5z84KthpLHKFCA5dZySRr
+ OJBfkBj+bdldxVLYCsMvN6Wg3VyRt/p2p3/A8czuAWfE9d0UBUiCA3lJ/lVbddF3bgeq
+ 6dYiSlYfZrB63SysxlTx9N4HVlQPCB2q6OPfYikfv3NGjlviTjRxRnre44FwPyCQ8rEK
+ 8PhQ==
+X-Gm-Message-State: AOJu0YyAjchOKh3dHYE7ZDlEswTjvbqXcuMtrT6/T21dQm1nH6wNARLp
+ aen4YZx/ifW8VTTaZiZBU0P40/FAnyNjZux/9KKnd7pfFsa63ZfY
+X-Google-Smtp-Source: AGHT+IHyzerc8ODlelT9LcIwOXuNITuEKHKrpG9psQo5pdYryIcUoR+iK8dwa6wgUjXdTp7WS5B1lg==
+X-Received: by 2002:a05:600c:33a5:b0:40e:43e4:d9ca with SMTP id
+ o37-20020a05600c33a500b0040e43e4d9camr560010wmp.179.1706081357705; 
+ Tue, 23 Jan 2024 23:29:17 -0800 (PST)
+Received: from [10.254.108.81] (munvpn.amd.com. [165.204.72.6])
+ by smtp.gmail.com with ESMTPSA id
+ h7-20020a05600c350700b0040e63226f6dsm303045wmq.1.2024.01.23.23.29.15
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Tue, 23 Jan 2024 23:29:17 -0800 (PST)
+Message-ID: <a307539f-8894-4d5f-a32d-3936e6fba65f@gmail.com>
+Date: Wed, 24 Jan 2024 08:29:14 +0100
 MIME-Version: 1.0
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: IA0PR11MB7307.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 6a8700f8-c13c-46aa-bef1-08dc1ca40fc8
-X-MS-Exchange-CrossTenant-originalarrivaltime: 24 Jan 2024 06:16:54.4323 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: XMYnR5R7MH62Ts5F+4lRqu+F4gin+8QYyT9jywPK2W5wkfFVb40SGiIufuQJ3xPmHJpl8B3tmAoZtXxcvSwaXA==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH0PR11MB4855
-X-OriginatorOrg: intel.com
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] mm: Remove double faults once write a device pfn
+Content-Language: en-US
+To: "Zhou, Xianrong" <Xianrong.Zhou@amd.com>,
+ "Koenig, Christian" <Christian.Koenig@amd.com>,
+ "linux-mm@kvack.org" <linux-mm@kvack.org>,
+ "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+References: <20240122033210.713530-1-Xianrong.Zhou@amd.com>
+ <5ed7d46b-ae26-43f2-81e0-91e3cfc0218a@amd.com>
+ <MN2PR12MB4302C529B9F231F85539628EF1742@MN2PR12MB4302.namprd12.prod.outlook.com>
+ <76c3658d-2256-49c6-8e4c-49555c0a350a@amd.com>
+ <MN2PR12MB4302BBF634B2E3872904872BF17B2@MN2PR12MB4302.namprd12.prod.outlook.com>
+From: =?UTF-8?Q?Christian_K=C3=B6nig?= <ckoenig.leichtzumerken@gmail.com>
+In-Reply-To: <MN2PR12MB4302BBF634B2E3872904872BF17B2@MN2PR12MB4302.namprd12.prod.outlook.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -158,177 +82,384 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "Nikula, Jani" <jani.nikula@intel.com>
+Cc: "mripard@kernel.org" <mripard@kernel.org>,
+ "x86@kernel.org" <x86@kernel.org>, "kherbst@redhat.com" <kherbst@redhat.com>,
+ "nouveau@lists.freedesktop.org" <nouveau@lists.freedesktop.org>,
+ "dave.hansen@linux.intel.com" <dave.hansen@linux.intel.com>,
+ "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>, "Huang,
+ Ray" <Ray.Huang@amd.com>, "hpa@zytor.com" <hpa@zytor.com>,
+ "zack.rusin@broadcom.com" <zack.rusin@broadcom.com>,
+ "airlied@gmail.com" <airlied@gmail.com>, "Xu, Colin" <Colin.Xu@amd.com>,
+ "lee@kernel.org" <lee@kernel.org>,
+ "amd-gfx@lists.freedesktop.org" <amd-gfx@lists.freedesktop.org>,
+ "mingo@redhat.com" <mingo@redhat.com>,
+ "bcm-kernel-feedback-list@broadcom.com"
+ <bcm-kernel-feedback-list@broadcom.com>,
+ "matthew.auld@intel.com" <matthew.auld@intel.com>,
+ "dakr@redhat.com" <dakr@redhat.com>, "Yang, Philip" <Philip.Yang@amd.com>,
+ "SHANMUGAM, SRINIVASAN" <SRINIVASAN.SHANMUGAM@amd.com>,
+ "daniel@ffwll.ch" <daniel@ffwll.ch>,
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>, "Li,
+ Huazeng" <Huazeng.Li@amd.com>, "bp@alien8.de" <bp@alien8.de>,
+ "luto@kernel.org" <luto@kernel.org>,
+ "rodrigo.vivi@intel.com" <rodrigo.vivi@intel.com>, "Zhang,
+ GuoQing \(Sam\)" <GuoQing.Zhang@amd.com>, "Zhu, James" <James.Zhu@amd.com>,
+ "surenb@google.com" <surenb@google.com>, "Liu, Monk" <Monk.Liu@amd.com>,
+ "Kuehling, Felix" <Felix.Kuehling@amd.com>, "Pan, Xinhui" <Xinhui.Pan@amd.com>,
+ "tglx@linutronix.de" <tglx@linutronix.de>,
+ "tzimmermann@suse.de" <tzimmermann@suse.de>, "Deucher,
+ Alexander" <Alexander.Deucher@amd.com>,
+ "akpm@linux-foundation.org" <akpm@linux-foundation.org>,
+ "nirmoy.das@intel.com" <nirmoy.das@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-DQo+IC0tLS0tT3JpZ2luYWwgTWVzc2FnZS0tLS0tDQo+IEZyb206IEludGVsLWdmeCA8aW50ZWwt
-Z2Z4LWJvdW5jZXNAbGlzdHMuZnJlZWRlc2t0b3Aub3JnPiBPbiBCZWhhbGYgT2YgSm91bmkNCj4g
-SMO2Z2FuZGVyDQo+IFNlbnQ6IEZyaWRheSwgSmFudWFyeSA1LCAyMDI0IDc6NDUgUE0NCj4gVG86
-IGludGVsLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmcNCj4gQ2M6IE5pa3VsYSwgSmFuaSA8amFu
-aS5uaWt1bGFAaW50ZWwuY29tPg0KPiBTdWJqZWN0OiBbUEFUQ0ggdjIgMS80XSBkcm0vaTkxNS9h
-bHBtOiBBZGQgQUxQTSByZWdpc3RlciBkZWZpbml0aW9ucw0KPiANCj4gQWRkIEFMUE0gcmVnaXN0
-ZXIgZGVmaW5pdGlvbnMgZm9yIEx1bmFyIExha2UuDQo+IA0KPiB2MjoNCj4gICAtIFVzZSBSRUdf
-QklUIGluc3RlYWQgb2YgQklUDQo+ICAgLSBBZGQgY29tbWl0IG1lc3NhZ2UNCj4gDQo+IENjOiBK
-YW5pIE5pa3VsYSA8amFuaS5uaWt1bGFAaW50ZWwuY29tPg0KPiANCj4gU2lnbmVkLW9mZi1ieTog
-Sm91bmkgSMO2Z2FuZGVyIDxqb3VuaS5ob2dhbmRlckBpbnRlbC5jb20+DQo+IC0tLQ0KPiAgZHJp
-dmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9wc3JfcmVncy5oIHwgMTAzICsrKysrKysr
-KysrKysrKysrKw0KPiAgMSBmaWxlIGNoYW5nZWQsIDEwMyBpbnNlcnRpb25zKCspDQo+IA0KPiBk
-aWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9wc3JfcmVncy5o
-DQo+IGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9wc3JfcmVncy5oDQo+IGlu
-ZGV4IGVmZTQzMDZiMzdlMC4uY2ViODljOWFmY2JkIDEwMDY0NA0KPiAtLS0gYS9kcml2ZXJzL2dw
-dS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX3Bzcl9yZWdzLmgNCj4gKysrIGIvZHJpdmVycy9ncHUv
-ZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9wc3JfcmVncy5oDQo+IEBAIC0yOTAsNCArMjkwLDEwNyBA
-QA0KPiANCj4gX1NFTF9GRVRDSF9QTEFORV9PRkZTRVRfMV9BIC0gXA0KPiANCj4gX1NFTF9GRVRD
-SF9QTEFORV9CQVNFXzFfQSkNCj4gDQo+ICsjZGVmaW5lIF9BTFBNX0NUTF9BCTB4NjA5NTANCj4g
-KyNkZWZpbmUgQUxQTV9DVEwodHJhbikJX01NSU9fVFJBTlMyKHRyYW4sIF9BTFBNX0NUTF9BKQ0K
-PiArI2RlZmluZSAgQUxQTV9DVExfQUxQTV9FTkFCTEUJCQkJUkVHX0JJVCgzMSkNCj4gKyNkZWZp
-bmUgIEFMUE1fQ1RMX0FMUE1fQVVYX0xFU1NfRU5BQkxFCQkJUkVHX0JJVCgzMCkNCj4gKyNkZWZp
-bmUgIEFMUE1fQ1RMX0xPQkZfRU5BQkxFCQkJCVJFR19CSVQoMjkpDQo+ICsjZGVmaW5lICBBTFBN
-X0NUTF9FWFRFTkRFRF9GQVNUX1dBS0VfRU5BQkxFCQlSRUdfQklUKDI4KQ0KPiArI2RlZmluZSAg
-QUxQTV9DVExfS0VFUF9GRUNfRU5BQkxFX0ZPUl9BVVhfV0FLRV9TTEVFUAlSRUdfQklUKDI3KQ0K
-PiArI2RlZmluZSAgQUxQTV9DVExfUkVTVE9SRV9PQ0NVUkVECQkJUkVHX0JJVCgyNikNCj4gKyNk
-ZWZpbmUgIEFMUE1fQ1RMX1JFU1RPUkVfVE9fU0xFRVAJCQlSRUdfQklUKDI1KQ0KPiArI2RlZmlu
-ZSAgQUxQTV9DVExfUkVTVE9SRV9UT19ERUVQX1NMRUVQCQkJUkVHX0JJVCgyNCkNCj4gKyNkZWZp
-bmUgIEFMUE1fQ1RMX0FVWF9MRVNTX1NMRUVQX0hPTERfVElNRV9NQVNLDQo+IAlSRUdfR0VOTUFT
-SygyMywgMjEpDQo+ICsjZGVmaW5lICBBTFBNX0NUTF9BVVhfTEVTU19TTEVFUF9IT0xEX1RJTUVf
-NTBfU1lNQk9MUw0KPiAJUkVHX0ZJRUxEX1BSRVAoQUxQTV9DVExfQVVYX0xFU1NfU0xFRVBfSE9M
-RF9USU1FX01BU0ssIDApDQo+ICsjZGVmaW5lICBBTFBNX0NUTF9BVVhfTEVTU19TTEVFUF9IT0xE
-X1RJTUVfMTI4X1NZTUJPTFMNCj4gCVJFR19GSUVMRF9QUkVQKEFMUE1fQ1RMX0FVWF9MRVNTX1NM
-RUVQX0hPTERfVElNRV9NQVNLLCAxKQ0KPiArI2RlZmluZSAgQUxQTV9DVExfQVVYX0xFU1NfU0xF
-RVBfSE9MRF9USU1FXzI1Nl9TWU1CT0xTDQo+IAlSRUdfRklFTERfUFJFUChBTFBNX0NUTF9BVVhf
-TEVTU19TTEVFUF9IT0xEX1RJTUVfTUFTSywgMikNCj4gKyNkZWZpbmUgIEFMUE1fQ1RMX0FVWF9M
-RVNTX1NMRUVQX0hPTERfVElNRV81MTJfU1lNQk9MUw0KPiAJUkVHX0ZJRUxEX1BSRVAoQUxQTV9D
-VExfQVVYX0xFU1NfU0xFRVBfSE9MRF9USU1FX01BU0ssIDMpDQo+ICsjZGVmaW5lICBBTFBNX0NU
-TF9BVVhfV0FLRV9TTEVFUF9IT0xEX0VOQUJMRQkJUkVHX0JJVCgyMCkNCj4gKyNkZWZpbmUgIEFM
-UE1fQ1RMX0FMUE1fRU5UUllfQ0hFQ0tfTUFTSw0KPiAJUkVHX0dFTk1BU0soMTksIDE2KQ0KPiAr
-I2RlZmluZSAgQUxQTV9DVExfQUxQTV9FTlRSWV9DSEVDSyh2YWwpDQo+IAlSRUdfRklFTERfUFJF
-UChBTFBNX0NUTF9BTFBNX0VOVFJZX0NIRUNLX01BU0ssIHZhbCkNCj4gKyNkZWZpbmUgIEFMUE1f
-Q1RMX0VYVEVOREVEX0ZBU1RfV0FLRV9USU1FX01BU0sNCj4gCVJFR19HRU5NQVNLKDEzLCA4KQ0K
-PiArI2RlZmluZSAgQUxQTV9DVExfRVhURU5ERURfRkFTVF9XQUtFX01JTl9MSU5FUwkJNQ0KPiAr
-I2RlZmluZSAgQUxQTV9DVExfRVhURU5ERURfRkFTVF9XQUtFX1RJTUUobGluZXMpDQo+IAlSRUdf
-RklFTERfUFJFUChBTFBNX0NUTF9FWFRFTkRFRF9GQVNUX1dBS0VfVElNRV9NQVNLLA0KPiAobGlu
-ZXMpIC0gQUxQTV9DVExfRVhURU5ERURfRkFTVF9XQUtFX01JTl9MSU5FUykNCj4gKyNkZWZpbmUg
-IEFMUE1fQ1RMX0FVWF9MRVNTX1dBS0VfVElNRV9NQVNLDQo+IAlSRUdfR0VOTUFTSyg1LCAwKQ0K
-PiArI2RlZmluZSAgQUxQTV9DVExfQVVYX0xFU1NfV0FLRV9USU1FKHZhbCkNCj4gCVJFR19GSUVM
-RF9QUkVQKEFMUE1fQ1RMX0FVWF9MRVNTX1dBS0VfVElNRV9NQVNLLCB2YWwpDQo+ICsNCj4gKyNk
-ZWZpbmUgX0FMUE1fQ1RMMl9BCTB4NjA5NTANCj4gKyNkZWZpbmUgQUxQTV9DVEwyKHRyYW4pCV9N
-TUlPX1RSQU5TMih0cmFuLCBfQUxQTV9DVEwyX0EpDQo+ICsjZGVmaW5lICBBTFBNX0NUTDJfU1dJ
-VENIX1RPX0FDVElWRV9MQVRFTkNZX01BU0sNCj4gCVJFR19HRU5NQVNLKDI4LCAyNCkNCj4gKyNk
-ZWZpbmUgIEFMUE1fQ1RMMl9TV0lUQ0hfVE9fQUNUSVZFX0xBVEVOQ1kodmFsKQ0KPiAJUkVHX0ZJ
-RUxEX1BSRVAoQUxQTV9DVEwyX1NXSVRDSF9UT19BQ1RJVkVfTEFURU5DWV9NQVNLLA0KPiB2YWwp
-DQo+ICsjZGVmaW5lICBBTFBNX0NUTDJfQVVYX0xFU1NfV0FLRV9USU1FX0VYVEVOU0lPTl9NQVNL
-DQo+IAlSRUdfR0VOTUFTSygxOSwgMTYpDQo+ICsjZGVmaW5lICBBTFBNX0NUTDJfQVVYX0xFU1Nf
-V0FLRV9USU1FX0VYVEVOU0lPTih2YWwpDQo+IAlSRUdfRklFTERfUFJFUChBTFBNX0NUTDJfQVVY
-X0xFU1NfV0FLRV9USU1FX0VYVEVOU0lPTl9NQQ0KPiBTSywgdmFsKQ0KPiArI2RlZmluZSAgQUxQ
-TV9DVEwyX05VTUJFUl9PRl9MVFRQUl9NQVNLDQo+IAlSRUdfR0VOTUFTSygxNSwgMTIpDQo+ICsj
-ZGVmaW5lICBBTFBNX0NUTDJfTlVNQkVSX09GX0xUVFBSKHZhbCkNCj4gCVJFR19GSUVMRF9QUkVQ
-KEFMUE1fQ1RMMl9OVU1CRVJfT0ZfTFRUUFJfTUFTSywgdmFsKQ0KPiArI2RlZmluZSAgQUxQTV9D
-VEwyX0xUVFBSX0FVWF9MRVNTX1NMRUVQX0hPTERfVElNRV9NQVNLDQo+IAlSRUdfR0VOTUFTSygx
-MCwgOCkNCj4gKyNkZWZpbmUgIEFMUE1fQ1RMMl9MVFRQUl9BVVhfTEVTU19TTEVFUF9IT0xEX1RJ
-TUUodmFsKQ0KPiAJUkVHX0ZJRUxEX1BSRVAoQUxQTV9DVEwyX0xUVFBSX0FVWF9MRVNTX1NMRUVQ
-X0hPTERfVElNRV9NDQo+IEFTSywgdmFsKQ0KPiArI2RlZmluZSAgQUxQTV9DVEwyX0ZFQ19ERUNP
-REVfRU5fUE9TSVRJT05fQUZURVJfV0FLRV9TUg0KPiAJUkVHX0JJVCg0KQ0KPiArI2RlZmluZQ0K
-PiBBTFBNX0NUTDJfTlVNQkVSX0FVWF9MRVNTX01MX1BIWV9TTEVFUF9TRVFVRU5DRVNfTUFTSw0K
-PiAJUkVHX0dFTk1BU0soMiwgMCkNCj4gKyNkZWZpbmUgIEFMUE1fQ1RMMl9OVU1CRVJfQVVYX0xF
-U1NfTUxfUEhZX1NMRUVQX1NFUVVFTkNFUyh2YWwpDQo+IAlSRUdfRklFTERfUFJFUChBTFBNX0NU
-TDJfTlVNQkVSX0FVWF9MRVNTX01MX1BIWV9TTEVFUF9TRQ0KPiBRVUVOQ0VTX01BU0ssIHZhbCkN
-Cj4gKw0KPiArI2RlZmluZSBfUE9SVF9BTFBNX0NUTF9BCQkJMHgxNmZhMmMNCj4gKyNkZWZpbmUg
-UE9SVF9BTFBNX0NUTCh0cmFuKQkJCV9NTUlPX1RSQU5TMih0cmFuLA0KPiBfUE9SVF9BTFBNX0NU
-TF9BKQ0KPiArI2RlZmluZSAgUE9SVF9BTFBNX0NUTF9BTFBNX0FVWF9MRVNTX0VOQUJMRQlSRUdf
-QklUKDMxKQ0KPiArI2RlZmluZSAgUE9SVF9BTFBNX0NUTF9NQVhfUEhZX1NXSU5HX1NFVFVQX01B
-U0sNCj4gCVJFR19HRU5NQVNLKDIzLCAyMCkNCj4gKyNkZWZpbmUgIFBPUlRfQUxQTV9DVExfTUFY
-X1BIWV9TV0lOR19TRVRVUCh2YWwpDQo+IAlSRUdfRklFTERfUFJFUChQT1JUX0FMUE1fQ1RMX01B
-WF9QSFlfU1dJTkdfU0VUVVBfTUFTSywNCj4gdmFsKQ0KPiArI2RlZmluZSAgUE9SVF9BTFBNX0NU
-TF9NQVhfUEhZX1NXSU5HX0hPTERfTUFTSw0KPiAJUkVHX0dFTk1BU0soMTksIDE2KQ0KPiArI2Rl
-ZmluZSAgUE9SVF9BTFBNX0NUTF9NQVhfUEhZX1NXSU5HX0hPTEQodmFsKQ0KPiAJUkVHX0ZJRUxE
-X1BSRVAoUE9SVF9BTFBNX0NUTF9NQVhfUEhZX1NXSU5HX0hPTERfTUFTSywNCj4gdmFsKQ0KPiAr
-I2RlZmluZSAgUE9SVF9BTFBNX0NUTF9TSUxFTkNFX1BFUklPRF9NQVNLCVJFR19HRU5NQVNLKDcs
-IDApDQo+ICsjZGVmaW5lICBQT1JUX0FMUE1fQ1RMX1NJTEVOQ0VfUEVSSU9EKHZhbCkNCj4gCVJF
-R19GSUVMRF9QUkVQKFBPUlRfQUxQTV9DVExfU0lMRU5DRV9QRVJJT0RfTUFTSywgdmFsKQ0KPiAr
-DQo+ICsjZGVmaW5lIF9QT1JUX0FMUE1fTEZQU19DVExfQQ0KPiAJMHgxNmZhMzANCj4gKyNkZWZp
-bmUgUE9SVF9BTFBNX0xGUFNfQ1RMKHRyYW4pDQo+IAlfTU1JT19UUkFOUzIodHJhbiwgX1BPUlRf
-QUxQTV9MRlBTX0NUTF9BKQ0KPiArI2RlZmluZSAgUE9SVF9BTFBNX0xGUFNfQ1RMX0xGUFNfU1RB
-UlRfUE9MQVJJVFkNCj4gCVJFR19CSVQoMzEpDQo+ICsjZGVmaW5lICBQT1JUX0FMUE1fTEZQU19D
-VExfTEZQU19DWUNMRV9DT1VOVF9NQVNLDQo+IAlSRUdfR0VOTUFTSygyNywgMjQpDQo+ICsjZGVm
-aW5lICBBTFBNX0NUTF9FWFRFTkRFRF9GQVNUX1dBS0VfTUlOX0xJTkVTCQk1DQo+ICsjZGVmaW5l
-ICBBTFBNX0NUTF9FWFRFTkRFRF9GQVNUX1dBS0VfVElNRShsaW5lcykNCj4gCVJFR19GSUVMRF9Q
-UkVQKEFMUE1fQ1RMX0VYVEVOREVEX0ZBU1RfV0FLRV9USU1FX01BU0ssDQo+IChsaW5lcykgLSBB
-TFBNX0NUTF9FWFRFTkRFRF9GQVNUX1dBS0VfTUlOX0xJTkVTKQ0KPiArI2RlZmluZSAgQUxQTV9D
-VExfQVVYX0xFU1NfV0FLRV9USU1FX01BU0sNCj4gCVJFR19HRU5NQVNLKDUsIDApDQo+ICsjZGVm
-aW5lICBBTFBNX0NUTF9BVVhfTEVTU19XQUtFX1RJTUUodmFsKQ0KPiAJUkVHX0ZJRUxEX1BSRVAo
-QUxQTV9DVExfQVVYX0xFU1NfV0FLRV9USU1FX01BU0ssIHZhbCkNCj4gKw0KPiArI2RlZmluZSBf
-QUxQTV9DVEwyX0EJMHg2MDk1MA0KDQpMb29rcyBsaWtlIGEgdHlwbyBpbiB0aGUgYWRkci4gU2Ft
-ZSBhZGRyIGRlY2xhcmVkIGFib3ZlDQorI2RlZmluZSBfQUxQTV9DVExfQQkweDYwOTUwDQoNCj4g
-KyNkZWZpbmUgQUxQTV9DVEwyKHRyYW4pCV9NTUlPX1RSQU5TMih0cmFuLCBfQUxQTV9DVEwyX0Ep
-DQo+ICsjZGVmaW5lICBBTFBNX0NUTDJfU1dJVENIX1RPX0FDVElWRV9MQVRFTkNZX01BU0sNCj4g
-CVJFR19HRU5NQVNLKDI4LCAyNCkNCj4gKyNkZWZpbmUgIEFMUE1fQ1RMMl9TV0lUQ0hfVE9fQUNU
-SVZFX0xBVEVOQ1kodmFsKQ0KPiAJUkVHX0ZJRUxEX1BSRVAoQUxQTV9DVEwyX1NXSVRDSF9UT19B
-Q1RJVkVfTEFURU5DWV9NQVNLLA0KPiB2YWwpDQo+ICsjZGVmaW5lICBBTFBNX0NUTDJfQVVYX0xF
-U1NfV0FLRV9USU1FX0VYVEVOU0lPTl9NQVNLDQo+IAlSRUdfR0VOTUFTSygxOSwgMTYpDQo+ICsj
-ZGVmaW5lICBBTFBNX0NUTDJfQVVYX0xFU1NfV0FLRV9USU1FX0VYVEVOU0lPTih2YWwpDQo+IAlS
-RUdfRklFTERfUFJFUChBTFBNX0NUTDJfQVVYX0xFU1NfV0FLRV9USU1FX0VYVEVOU0lPTl9NQQ0K
-PiBTSywgdmFsKQ0KPiArI2RlZmluZSAgQUxQTV9DVEwyX05VTUJFUl9PRl9MVFRQUl9NQVNLDQo+
-IAlSRUdfR0VOTUFTSygxNSwgMTIpDQo+ICsjZGVmaW5lICBBTFBNX0NUTDJfTlVNQkVSX09GX0xU
-VFBSKHZhbCkNCj4gCVJFR19GSUVMRF9QUkVQKEFMUE1fQ1RMMl9OVU1CRVJfT0ZfTFRUUFJfTUFT
-SywgdmFsKQ0KPiArI2RlZmluZSAgQUxQTV9DVEwyX0xUVFBSX0FVWF9MRVNTX1NMRUVQX0hPTERf
-VElNRV9NQVNLDQo+IAlSRUdfR0VOTUFTSygxMCwgOCkNCj4gKyNkZWZpbmUgIEFMUE1fQ1RMMl9M
-VFRQUl9BVVhfTEVTU19TTEVFUF9IT0xEX1RJTUUodmFsKQ0KPiAJUkVHX0ZJRUxEX1BSRVAoQUxQ
-TV9DVEwyX0xUVFBSX0FVWF9MRVNTX1NMRUVQX0hPTERfVElNRV9NDQo+IEFTSywgdmFsKQ0KPiAr
-I2RlZmluZSAgQUxQTV9DVEwyX0ZFQ19ERUNPREVfRU5fUE9TSVRJT05fQUZURVJfV0FLRV9TUg0K
-PiAJUkVHX0JJVCg0KQ0KPiArI2RlZmluZQ0KPiBBTFBNX0NUTDJfTlVNQkVSX0FVWF9MRVNTX01M
-X1BIWV9TTEVFUF9TRVFVRU5DRVNfTUFTSw0KPiAJUkVHX0dFTk1BU0soMiwgMCkNCj4gKyNkZWZp
-bmUgIEFMUE1fQ1RMMl9OVU1CRVJfQVVYX0xFU1NfTUxfUEhZX1NMRUVQX1NFUVVFTkNFUyh2YWwp
-DQo+IAlSRUdfRklFTERfUFJFUChBTFBNX0NUTDJfTlVNQkVSX0FVWF9MRVNTX01MX1BIWV9TTEVF
-UF9TRQ0KPiBRVUVOQ0VTX01BU0ssIHZhbCkNCj4gKw0KPiArI2RlZmluZSBfUE9SVF9BTFBNX0NU
-TF9BCQkJMHgxNmZhMmMNClNhbWUgaGVyZQ0KDQo+ICsjZGVmaW5lIFBPUlRfQUxQTV9DVEwodHJh
-bikJCQlfTU1JT19UUkFOUzIodHJhbiwNCj4gX1BPUlRfQUxQTV9DVExfQSkNCj4gKyNkZWZpbmUg
-IEFMUE1fQ1RMX0VYVEVOREVEX0ZBU1RfV0FLRV9NSU5fTElORVMJCTUNCj4gKyNkZWZpbmUgIEFM
-UE1fQ1RMX0VYVEVOREVEX0ZBU1RfV0FLRV9USU1FKGxpbmVzKQ0KPiAJUkVHX0ZJRUxEX1BSRVAo
-QUxQTV9DVExfRVhURU5ERURfRkFTVF9XQUtFX1RJTUVfTUFTSywNCj4gKGxpbmVzKSAtIEFMUE1f
-Q1RMX0VYVEVOREVEX0ZBU1RfV0FLRV9NSU5fTElORVMpDQo+ICsjZGVmaW5lICBBTFBNX0NUTF9B
-VVhfTEVTU19XQUtFX1RJTUVfTUFTSw0KPiAJUkVHX0dFTk1BU0soNSwgMCkNCj4gKyNkZWZpbmUg
-IEFMUE1fQ1RMX0FVWF9MRVNTX1dBS0VfVElNRSh2YWwpDQo+IAlSRUdfRklFTERfUFJFUChBTFBN
-X0NUTF9BVVhfTEVTU19XQUtFX1RJTUVfTUFTSywgdmFsKQ0KPiArDQo+ICsjZGVmaW5lIF9BTFBN
-X0NUTDJfQQkweDYwOTUwDQpSZS1kZWZpbml0aW9uDQoNCj4gKyNkZWZpbmUgQUxQTV9DVEwyKHRy
-YW4pCV9NTUlPX1RSQU5TMih0cmFuLCBfQUxQTV9DVEwyX0EpDQo+ICsjZGVmaW5lICBBTFBNX0NU
-TDJfU1dJVENIX1RPX0FDVElWRV9MQVRFTkNZX01BU0sNCj4gCVJFR19HRU5NQVNLKDI4LCAyNCkN
-Cj4gKyNkZWZpbmUgIEFMUE1fQ1RMMl9TV0lUQ0hfVE9fQUNUSVZFX0xBVEVOQ1kodmFsKQ0KPiAJ
-UkVHX0ZJRUxEX1BSRVAoQUxQTV9DVEwyX1NXSVRDSF9UT19BQ1RJVkVfTEFURU5DWV9NQVNLLA0K
-PiB2YWwpDQo+ICsjZGVmaW5lICBBTFBNX0NUTDJfQVVYX0xFU1NfV0FLRV9USU1FX0VYVEVOU0lP
-Tl9NQVNLDQo+IAlSRUdfR0VOTUFTSygxOSwgMTYpDQo+ICsjZGVmaW5lICBBTFBNX0NUTDJfQVVY
-X0xFU1NfV0FLRV9USU1FX0VYVEVOU0lPTih2YWwpDQo+IAlSRUdfRklFTERfUFJFUChBTFBNX0NU
-TDJfQVVYX0xFU1NfV0FLRV9USU1FX0VYVEVOU0lPTl9NQQ0KPiBTSywgdmFsKQ0KPiArI2RlZmlu
-ZSAgQUxQTV9DVEwyX05VTUJFUl9PRl9MVFRQUl9NQVNLDQo+IAlSRUdfR0VOTUFTSygxNSwgMTIp
-DQo+ICsjZGVmaW5lICBBTFBNX0NUTDJfTlVNQkVSX09GX0xUVFBSKHZhbCkNCj4gCVJFR19GSUVM
-RF9QUkVQKEFMUE1fQ1RMMl9OVU1CRVJfT0ZfTFRUUFJfTUFTSywgdmFsKQ0KPiArI2RlZmluZSAg
-QUxQTV9DVEwyX0xUVFBSX0FVWF9MRVNTX1NMRUVQX0hPTERfVElNRV9NQVNLDQo+IAlSRUdfR0VO
-TUFTSygxMCwgOCkNCj4gKyNkZWZpbmUgIEFMUE1fQ1RMMl9MVFRQUl9BVVhfTEVTU19TTEVFUF9I
-T0xEX1RJTUUodmFsKQ0KPiAJUkVHX0ZJRUxEX1BSRVAoQUxQTV9DVEwyX0xUVFBSX0FVWF9MRVNT
-X1NMRUVQX0hPTERfVElNRV9NDQo+IEFTSywgdmFsKQ0KPiArI2RlZmluZSAgQUxQTV9DVEwyX0ZF
-Q19ERUNPREVfRU5fUE9TSVRJT05fQUZURVJfV0FLRV9TUg0KPiAJUkVHX0JJVCg0KQ0KPiArI2Rl
-ZmluZQ0KPiBBTFBNX0NUTDJfTlVNQkVSX0FVWF9MRVNTX01MX1BIWV9TTEVFUF9TRVFVRU5DRVNf
-TUFTSw0KPiAJUkVHX0dFTk1BU0soMiwgMCkNCj4gKyNkZWZpbmUgIEFMUE1fQ1RMMl9OVU1CRVJf
-QVVYX0xFU1NfTUxfUEhZX1NMRUVQX1NFUVVFTkNFUyh2YWwpDQo+IAlSRUdfRklFTERfUFJFUChB
-TFBNX0NUTDJfTlVNQkVSX0FVWF9MRVNTX01MX1BIWV9TTEVFUF9TRQ0KPiBRVUVOQ0VTX01BU0ss
-IHZhbCkNCj4gKw0KPiArI2RlZmluZSBfUE9SVF9BTFBNX0NUTF9BCQkJMHgxNmZhMmMNCj4gKyNk
-ZWZpbmUgUE9SVF9BTFBNX0NUTCh0cmFuKQkJCV9NTUlPX1RSQU5TMih0cmFuLA0KPiBfUE9SVF9B
-TFBNX0NUTF9BKQ0KPiArI2RlZmluZSAgUE9SVF9BTFBNX0xGUFNfQ1RMX0xGUFNfQ1lDTEVfQ09V
-TlRfTUlOCQk3DQo+ICsjZGVmaW5lICBQT1JUX0FMUE1fTEZQU19DVExfTEZQU19DWUNMRV9DT1VO
-VCh2YWwpDQo+IAlSRUdfRklFTERfUFJFUChQT1JUX0FMUE1fTEZQU19DVExfTEZQU19DWUNMRV9D
-T1VOVF9NQVNLLA0KPiAodmFsKSAtIFBPUlRfQUxQTV9MRlBTX0NUTF9MRlBTX0NZQ0xFX0NPVU5U
-X01JTikNCj4gKyNkZWZpbmUgIFBPUlRfQUxQTV9MRlBTX0NUTF9MRlBTX0hBTEZfQ1lDTEVfRFVS
-QVRJT05fTUFTSw0KPiAJUkVHX0dFTk1BU0soMjAsIDE2KQ0KPiArI2RlZmluZSAgUE9SVF9BTFBN
-X0xGUFNfQ1RMX0xGUFNfSEFMRl9DWUNMRV9EVVJBVElPTih2YWwpDQo+IAlSRUdfRklFTERfUFJF
-UChQT1JUX0FMUE1fTEZQU19DVExfTEZQU19IQUxGX0NZQ0xFX0RVUkFUSU9ODQo+IF9NQVNLLCB2
-YWwpDQo+ICsjZGVmaW5lICBQT1JUX0FMUE1fTEZQU19DVExfRklSU1RfTEZQU19IQUxGX0NZQ0xF
-X0RVUkFUSU9OX01BU0sNCj4gCVJFR19HRU5NQVNLKDEyLCA4KQ0KPiArI2RlZmluZSAgUE9SVF9B
-TFBNX0xGUFNfQ1RMX0ZJUlNUX0xGUFNfSEFMRl9DWUNMRV9EVVJBVElPTih2YWwpDQo+IAlSRUdf
-RklFTERfUFJFUChQT1JUX0FMUE1fTEZQU19DVExfTEZQU19IQUxGX0NZQ0xFX0RVUkFUSU9ODQo+
-IF9NQVNLLCB2YWwpDQo+ICsjZGVmaW5lICBQT1JUX0FMUE1fTEZQU19DVExfTEFTVF9MRlBTX0hB
-TEZfQ1lDTEVfRFVSQVRJT05fTUFTSw0KPiAJUkVHX0dFTk1BU0soNCwgMCkNCj4gKyNkZWZpbmUg
-IFBPUlRfQUxQTV9MRlBTX0NUTF9MQVNUX0xGUFNfSEFMRl9DWUNMRV9EVVJBVElPTih2YWwpDQo+
-IAlSRUdfRklFTERfUFJFUChQT1JUX0FMUE1fTEZQU19DVExfTEZQU19IQUxGX0NZQ0xFX0RVUkFU
-SU9ODQo+IF9NQVNLLCB2YWwpDQo+ICsNCj4gICNlbmRpZiAvKiBfX0lOVEVMX1BTUl9SRUdTX0hf
-XyAqLw0KPiAtLQ0KPiAyLjM0LjENCg0KVGhhbmtzIGFuZCBSZWdhcmRzLA0KQXJ1biBSIE11cnRo
-eQ0KLS0tLS0tLS0tLS0tLS0tLS0tLQ0KDQo=
+Am 24.01.24 um 03:43 schrieb Zhou, Xianrong:
+> [AMD Official Use Only - General]
+>
+>>>>> The vmf_insert_pfn_prot could cause unnecessary double faults on a
+>>>>> device pfn. Because currently the vmf_insert_pfn_prot does not make
+>>>>> the pfn writable so the pte entry is normally read-only or dirty
+>>>>> catching.
+>>>> What? How do you got to this conclusion?
+>>> Sorry. I did not mention that this problem only exists on arm64 platform.
+>> Ok, that makes at least a little bit more sense.
+>>
+>>> Because on arm64 platform the PTE_RDONLY is automatically attached to
+>>> the userspace pte entries even through VM_WRITE + VM_SHARE.
+>>> The  PTE_RDONLY needs to be cleared in vmf_insert_pfn_prot. However
+>>> vmf_insert_pfn_prot do not make the pte writable passing false
+>>> @mkwrite to insert_pfn.
+>> Question is why is arm64 doing this? As far as I can see they must have some
+>> hardware reason for that.
+>>
+>> The mkwrite parameter to insert_pfn() was added by commit
+>> b2770da642540 to make insert_pfn() look more like insert_pfn_pmd() so that
+>> the DAX code can insert PTEs which are writable and dirty at the same time.
+>>
+> This is one scenario to do so. In fact on arm64 there are many scenarios could
+> be to do so. So we can let vmf_insert_pfn_prot supporting @mkwrite for drivers
+> at core layer and let drivers to decide whether or not to make writable and dirty
+> at one time. The patch did this. Otherwise double faults on arm64 when call
+> vmf_insert_pfn_prot.
+
+Well, that doesn't answer my question why arm64 is double faulting in 
+the first place,.
+
+So as long as this isn't sorted out I'm going to reject this patch.
+
+Regards,
+Christian.
+
+>
+>> This is a completely different use case to what you try to use it here for and
+>> that looks extremely fishy to me.
+>>
+>> Regards,
+>> Christian.
+>>
+>>>>> The first fault only sets up the pte entry which actually is dirty
+>>>>> catching. And the second immediate fault to the pfn due to first
+>>>>> dirty catching when the cpu re-execute the store instruction.
+>>>> It could be that this is done to work around some hw behavior, but
+>>>> not because of dirty catching.
+>>>>
+>>>>> Normally if the drivers call vmf_insert_pfn_prot and also supply
+>>>>> 'pfn_mkwrite' callback within vm_operations_struct which requires
+>>>>> the pte to be dirty catching then the vmf_insert_pfn_prot and the
+>>>>> double fault are reasonable. It is not a problem.
+>>>> Well, as far as I can see that behavior absolutely doesn't make sense.
+>>>>
+>>>> When pfn_mkwrite is requested then the driver should use PAGE_COPY,
+>>>> which is exactly what VMWGFX (the only driver using dirty tracking) is
+>> doing.
+>>>> Everybody else uses PAGE_SHARED which should make the pte writeable
+>>>> immediately.
+>>>>
+>>>> Regards,
+>>>> Christian.
+>>>>
+>>>>> However the most of drivers calling vmf_insert_pfn_prot do not
+>>>>> supply the 'pfn_mkwrite' callback so that the second fault is unnecessary.
+>>>>>
+>>>>> So just like vmf_insert_mixed and vmf_insert_mixed_mkwrite pair, we
+>>>>> should also supply vmf_insert_pfn_mkwrite for drivers as well.
+>>>>>
+>>>>> Signed-off-by: Xianrong Zhou <Xianrong.Zhou@amd.com>
+>>>>> ---
+>>>>>     arch/x86/entry/vdso/vma.c                  |  3 ++-
+>>>>>     drivers/gpu/drm/amd/amdgpu/amdgpu_gem.c    |  2 +-
+>>>>>     drivers/gpu/drm/i915/gem/i915_gem_ttm.c    |  2 +-
+>>>>>     drivers/gpu/drm/nouveau/nouveau_gem.c      |  2 +-
+>>>>>     drivers/gpu/drm/radeon/radeon_gem.c        |  2 +-
+>>>>>     drivers/gpu/drm/ttm/ttm_bo_vm.c            |  8 +++++---
+>>>>>     drivers/gpu/drm/vmwgfx/vmwgfx_page_dirty.c |  8 +++++---
+>>>>>     include/drm/ttm/ttm_bo.h                   |  3 ++-
+>>>>>     include/linux/mm.h                         |  2 +-
+>>>>>     mm/memory.c                                | 14 +++++++++++---
+>>>>>     10 files changed, 30 insertions(+), 16 deletions(-)
+>>>>>
+>>>>> diff --git a/arch/x86/entry/vdso/vma.c b/arch/x86/entry/vdso/vma.c
+>>>>> index 7645730dc228..dd2431c2975f 100644
+>>>>> --- a/arch/x86/entry/vdso/vma.c
+>>>>> +++ b/arch/x86/entry/vdso/vma.c
+>>>>> @@ -185,7 +185,8 @@ static vm_fault_t vvar_fault(const struct
+>>>> vm_special_mapping *sm,
+>>>>>               if (pvti && vclock_was_used(VDSO_CLOCKMODE_PVCLOCK))
+>>>> {
+>>>>>                       return vmf_insert_pfn_prot(vma, vmf->address,
+>>>>>                                       __pa(pvti) >> PAGE_SHIFT,
+>>>>> -                                   pgprot_decrypted(vma-
+>>>>> vm_page_prot));
+>>>>> +                                   pgprot_decrypted(vma-
+>>>>> vm_page_prot),
+>>>>> +                                   true);
+>>>>>               }
+>>>>>       } else if (sym_offset == image->sym_hvclock_page) {
+>>>>>               pfn = hv_get_tsc_pfn(); diff --git
+>>>>> a/drivers/gpu/drm/amd/amdgpu/amdgpu_gem.c
+>>>>> b/drivers/gpu/drm/amd/amdgpu/amdgpu_gem.c
+>>>>> index 49a5f1c73b3e..adcb20d9e624 100644
+>>>>> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_gem.c
+>>>>> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_gem.c
+>>>>> @@ -64,7 +64,7 @@ static vm_fault_t amdgpu_gem_fault(struct
+>> vm_fault
+>>>> *vmf)
+>>>>>               }
+>>>>>
+>>>>>               ret = ttm_bo_vm_fault_reserved(vmf, vmf->vma-
+>>>>> vm_page_prot,
+>>>>> -                                          TTM_BO_VM_NUM_PREFAULT);
+>>>>> +                                          TTM_BO_VM_NUM_PREFAULT,
+>>>> true);
+>>>>>               drm_dev_exit(idx);
+>>>>>       } else {
+>>>>> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_ttm.c
+>>>>> b/drivers/gpu/drm/i915/gem/i915_gem_ttm.c
+>>>>> index 9227f8146a58..c6f13ae6c308 100644
+>>>>> --- a/drivers/gpu/drm/i915/gem/i915_gem_ttm.c
+>>>>> +++ b/drivers/gpu/drm/i915/gem/i915_gem_ttm.c
+>>>>> @@ -1114,7 +1114,7 @@ static vm_fault_t vm_fault_ttm(struct vm_fault
+>>>>> *vmf)
+>>>>>
+>>>>>       if (drm_dev_enter(dev, &idx)) {
+>>>>>               ret = ttm_bo_vm_fault_reserved(vmf, vmf->vma-
+>>>>> vm_page_prot,
+>>>>> -                                          TTM_BO_VM_NUM_PREFAULT);
+>>>>> +                                          TTM_BO_VM_NUM_PREFAULT,
+>>>> true);
+>>>>>               drm_dev_exit(idx);
+>>>>>       } else {
+>>>>>               ret = ttm_bo_vm_dummy_page(vmf, vmf->vma-
+>>>>> vm_page_prot); diff --git a/drivers/gpu/drm/nouveau/nouveau_gem.c
+>>>>> b/drivers/gpu/drm/nouveau/nouveau_gem.c
+>>>>> index 49c2bcbef129..7e1453762ec9 100644
+>>>>> --- a/drivers/gpu/drm/nouveau/nouveau_gem.c
+>>>>> +++ b/drivers/gpu/drm/nouveau/nouveau_gem.c
+>>>>> @@ -56,7 +56,7 @@ static vm_fault_t nouveau_ttm_fault(struct
+>>>>> vm_fault
+>>>>> *vmf)
+>>>>>
+>>>>>       nouveau_bo_del_io_reserve_lru(bo);
+>>>>>       prot = vm_get_page_prot(vma->vm_flags);
+>>>>> -   ret = ttm_bo_vm_fault_reserved(vmf, prot,
+>>>> TTM_BO_VM_NUM_PREFAULT);
+>>>>> +   ret = ttm_bo_vm_fault_reserved(vmf, prot,
+>>>> TTM_BO_VM_NUM_PREFAULT,
+>>>>> +true);
+>>>>>       nouveau_bo_add_io_reserve_lru(bo);
+>>>>>       if (ret == VM_FAULT_RETRY && !(vmf->flags &
+>>>> FAULT_FLAG_RETRY_NOWAIT))
+>>>>>               return ret;
+>>>>> diff --git a/drivers/gpu/drm/radeon/radeon_gem.c
+>>>>> b/drivers/gpu/drm/radeon/radeon_gem.c
+>>>>> index 3fec3acdaf28..b21cf00ae162 100644
+>>>>> --- a/drivers/gpu/drm/radeon/radeon_gem.c
+>>>>> +++ b/drivers/gpu/drm/radeon/radeon_gem.c
+>>>>> @@ -62,7 +62,7 @@ static vm_fault_t radeon_gem_fault(struct vm_fault
+>>>> *vmf)
+>>>>>               goto unlock_resv;
+>>>>>
+>>>>>       ret = ttm_bo_vm_fault_reserved(vmf, vmf->vma->vm_page_prot,
+>>>>> -                                  TTM_BO_VM_NUM_PREFAULT);
+>>>>> +                                  TTM_BO_VM_NUM_PREFAULT, true);
+>>>>>       if (ret == VM_FAULT_RETRY && !(vmf->flags &
+>>>> FAULT_FLAG_RETRY_NOWAIT))
+>>>>>               goto unlock_mclk;
+>>>>>
+>>>>> diff --git a/drivers/gpu/drm/ttm/ttm_bo_vm.c
+>>>>> b/drivers/gpu/drm/ttm/ttm_bo_vm.c index
+>>>> 4212b8c91dd4..7d14a7d267aa
+>>>>> 100644
+>>>>> --- a/drivers/gpu/drm/ttm/ttm_bo_vm.c
+>>>>> +++ b/drivers/gpu/drm/ttm/ttm_bo_vm.c
+>>>>> @@ -167,6 +167,7 @@ EXPORT_SYMBOL(ttm_bo_vm_reserve);
+>>>>>      * @num_prefault: Maximum number of prefault pages. The caller
+>>>>> may
+>>>> want to
+>>>>>      * specify this based on madvice settings and the size of the GPU object
+>>>>>      * backed by the memory.
+>>>>> + * @mkwrite: make the pfn or page writable
+>>>>>      *
+>>>>>      * This function inserts one or more page table entries pointing to the
+>>>>>      * memory backing the buffer object, and then returns a return
+>>>>> code @@ -180,7 +181,8 @@ EXPORT_SYMBOL(ttm_bo_vm_reserve);
+>>>>>      */
+>>>>>     vm_fault_t ttm_bo_vm_fault_reserved(struct vm_fault *vmf,
+>>>>>                                   pgprot_t prot,
+>>>>> -                               pgoff_t num_prefault)
+>>>>> +                               pgoff_t num_prefault,
+>>>>> +                               bool mkwrite)
+>>>>>     {
+>>>>>       struct vm_area_struct *vma = vmf->vma;
+>>>>>       struct ttm_buffer_object *bo = vma->vm_private_data; @@ -263,7
+>>>>> +265,7 @@ vm_fault_t ttm_bo_vm_fault_reserved(struct vm_fault *vmf,
+>>>>>                * at arbitrary times while the data is mmap'ed.
+>>>>>                * See vmf_insert_pfn_prot() for a discussion.
+>>>>>                */
+>>>>> -           ret = vmf_insert_pfn_prot(vma, address, pfn, prot);
+>>>>> +           ret = vmf_insert_pfn_prot(vma, address, pfn, prot,
+>>>>> + mkwrite);
+>>>>>
+>>>>>               /* Never error on prefaulted PTEs */
+>>>>>               if (unlikely((ret & VM_FAULT_ERROR))) { @@ -312,7
+>>>>> +314,7
+>>>> @@
+>>>>> vm_fault_t ttm_bo_vm_dummy_page(struct vm_fault *vmf, pgprot_t
+>> prot)
+>>>>>       /* Prefault the entire VMA range right away to avoid further faults */
+>>>>>       for (address = vma->vm_start; address < vma->vm_end;
+>>>>>            address += PAGE_SIZE)
+>>>>> -           ret = vmf_insert_pfn_prot(vma, address, pfn, prot);
+>>>>> +           ret = vmf_insert_pfn_prot(vma, address, pfn, prot,
+>>>>> + true);
+>>>>>
+>>>>>       return ret;
+>>>>>     }
+>>>>> diff --git a/drivers/gpu/drm/vmwgfx/vmwgfx_page_dirty.c
+>>>>> b/drivers/gpu/drm/vmwgfx/vmwgfx_page_dirty.c
+>>>>> index 74ff2812d66a..bb8e4b641681 100644
+>>>>> --- a/drivers/gpu/drm/vmwgfx/vmwgfx_page_dirty.c
+>>>>> +++ b/drivers/gpu/drm/vmwgfx/vmwgfx_page_dirty.c
+>>>>> @@ -452,12 +452,14 @@ vm_fault_t vmw_bo_vm_fault(struct vm_fault
+>>>> *vmf)
+>>>>>        * sure the page protection is write-enabled so we don't get
+>>>>>        * a lot of unnecessary write faults.
+>>>>>        */
+>>>>> -   if (vbo->dirty && vbo->dirty->method == VMW_BO_DIRTY_MKWRITE)
+>>>>> +   if (vbo->dirty && vbo->dirty->method == VMW_BO_DIRTY_MKWRITE)
+>>>> {
+>>>>>               prot = vm_get_page_prot(vma->vm_flags & ~VM_SHARED);
+>>>>> -   else
+>>>>> +           ret = ttm_bo_vm_fault_reserved(vmf, prot, num_prefault,
+>>>> false);
+>>>>> +   } else {
+>>>>>               prot = vm_get_page_prot(vma->vm_flags);
+>>>>> +           ret = ttm_bo_vm_fault_reserved(vmf, prot, num_prefault,
+>>>> true);
+>>>>> +   }
+>>>>>
+>>>>> -   ret = ttm_bo_vm_fault_reserved(vmf, prot, num_prefault);
+>>>>>       if (ret == VM_FAULT_RETRY && !(vmf->flags &
+>>>> FAULT_FLAG_RETRY_NOWAIT))
+>>>>>               return ret;
+>>>>>
+>>>>> diff --git a/include/drm/ttm/ttm_bo.h b/include/drm/ttm/ttm_bo.h
+>>>>> index 0223a41a64b2..66e293db69ee 100644
+>>>>> --- a/include/drm/ttm/ttm_bo.h
+>>>>> +++ b/include/drm/ttm/ttm_bo.h
+>>>>> @@ -386,7 +386,8 @@ vm_fault_t ttm_bo_vm_reserve(struct
+>>>> ttm_buffer_object *bo,
+>>>>>                            struct vm_fault *vmf);
+>>>>>     vm_fault_t ttm_bo_vm_fault_reserved(struct vm_fault *vmf,
+>>>>>                                   pgprot_t prot,
+>>>>> -                               pgoff_t num_prefault);
+>>>>> +                               pgoff_t num_prefault,
+>>>>> +                               bool mkwrite);
+>>>>>     vm_fault_t ttm_bo_vm_fault(struct vm_fault *vmf);
+>>>>>     void ttm_bo_vm_open(struct vm_area_struct *vma);
+>>>>>     void ttm_bo_vm_close(struct vm_area_struct *vma); diff --git
+>>>>> a/include/linux/mm.h b/include/linux/mm.h index
+>>>>> f5a97dec5169..f8868e28ea04 100644
+>>>>> --- a/include/linux/mm.h
+>>>>> +++ b/include/linux/mm.h
+>>>>> @@ -3553,7 +3553,7 @@ int vm_map_pages_zero(struct
+>> vm_area_struct
+>>>> *vma, struct page **pages,
+>>>>>     vm_fault_t vmf_insert_pfn(struct vm_area_struct *vma, unsigned
+>>>>> long
+>>>> addr,
+>>>>>                       unsigned long pfn);
+>>>>>     vm_fault_t vmf_insert_pfn_prot(struct vm_area_struct *vma,
+>>>>> unsigned
+>>>> long addr,
+>>>>> -                   unsigned long pfn, pgprot_t pgprot);
+>>>>> +                   unsigned long pfn, pgprot_t pgprot, bool
+>>>>> + mkwrite);
+>>>>>     vm_fault_t vmf_insert_mixed(struct vm_area_struct *vma, unsigned
+>>>>> long
+>>>> addr,
+>>>>>                       pfn_t pfn);
+>>>>>     vm_fault_t vmf_insert_mixed_mkwrite(struct vm_area_struct *vma,
+>>>>> diff --git a/mm/memory.c b/mm/memory.c index
+>>>>> 7e1f4849463a..2c28f1a349ff
+>>>>> 100644
+>>>>> --- a/mm/memory.c
+>>>>> +++ b/mm/memory.c
+>>>>> @@ -2195,6 +2195,7 @@ static vm_fault_t insert_pfn(struct
+>>>> vm_area_struct *vma, unsigned long addr,
+>>>>>      * @addr: target user address of this page
+>>>>>      * @pfn: source kernel pfn
+>>>>>      * @pgprot: pgprot flags for the inserted page
+>>>>> + * @mkwrite: make the pfn writable
+>>>>>      *
+>>>>>      * This is exactly like vmf_insert_pfn(), except that it allows drivers
+>>>>>      * to override pgprot on a per-page basis.
+>>>>> @@ -2223,7 +2224,7 @@ static vm_fault_t insert_pfn(struct
+>>>> vm_area_struct *vma, unsigned long addr,
+>>>>>      * Return: vm_fault_t value.
+>>>>>      */
+>>>>>     vm_fault_t vmf_insert_pfn_prot(struct vm_area_struct *vma,
+>>>>> unsigned
+>>>> long addr,
+>>>>> -                   unsigned long pfn, pgprot_t pgprot)
+>>>>> +                   unsigned long pfn, pgprot_t pgprot, bool
+>>>>> + mkwrite)
+>>>>>     {
+>>>>>       /*
+>>>>>        * Technically, architectures with pte_special can avoid all
+>>>>> these @@ -2246,7 +2247,7 @@ vm_fault_t vmf_insert_pfn_prot(struct
+>>>> vm_area_struct *vma, unsigned long addr,
+>>>>>       track_pfn_insert(vma, &pgprot, __pfn_to_pfn_t(pfn, PFN_DEV));
+>>>>>
+>>>>>       return insert_pfn(vma, addr, __pfn_to_pfn_t(pfn, PFN_DEV), pgprot,
+>>>>> -                   false);
+>>>>> +                   mkwrite);
+>>>>>     }
+>>>>>     EXPORT_SYMBOL(vmf_insert_pfn_prot);
+>>>>>
+>>>>> @@ -2273,10 +2274,17 @@ EXPORT_SYMBOL(vmf_insert_pfn_prot);
+>>>>>     vm_fault_t vmf_insert_pfn(struct vm_area_struct *vma, unsigned
+>>>>> long
+>>>> addr,
+>>>>>                       unsigned long pfn)
+>>>>>     {
+>>>>> -   return vmf_insert_pfn_prot(vma, addr, pfn, vma->vm_page_prot);
+>>>>> +   return vmf_insert_pfn_prot(vma, addr, pfn, vma->vm_page_prot,
+>>>>> +false);
+>>>>>     }
+>>>>>     EXPORT_SYMBOL(vmf_insert_pfn);
+>>>>>
+>>>>> +vm_fault_t vmf_insert_pfn_mkwrite(struct vm_area_struct *vma,
+>>>>> +unsigned
+>>>> long addr,
+>>>>> +                   unsigned long pfn) {
+>>>>> +   return vmf_insert_pfn_prot(vma, addr, pfn, vma->vm_page_prot,
+>>>> true);
+>>>>> +} EXPORT_SYMBOL(vmf_insert_pfn_mkwrite);
+>>>>> +
+>>>>>     static bool vm_mixed_ok(struct vm_area_struct *vma, pfn_t pfn)
+>>>>>     {
+>>>>>       /* these checks mirror the abort conditions in vm_normal_page
+>>>>> */
+
