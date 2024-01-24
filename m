@@ -2,53 +2,28 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id EA62983A03B
-	for <lists+intel-gfx@lfdr.de>; Wed, 24 Jan 2024 04:43:48 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5D7C683A0C7
+	for <lists+intel-gfx@lfdr.de>; Wed, 24 Jan 2024 05:54:54 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4868A10E810;
-	Wed, 24 Jan 2024 03:43:17 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 361C410F611;
+	Wed, 24 Jan 2024 04:54:51 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3CE1F10E810
- for <intel-gfx@lists.freedesktop.org>; Wed, 24 Jan 2024 03:43:16 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1706067795; x=1737603795;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=4v3mfmvIdlo6cKHY79Rhr3dNQQQ644giJnLYCWUCOyU=;
- b=m1tkA5NAHAq6FuAD7aiQsPzGR3WJ37R9VSdDAT6YzilnpyLhknfzOO1s
- 7XSZ5ehWdAYAjwFvCF2FoCwGkJ6lPmnRB1oZvnVYrnTmbcF41enW9WvyH
- OFWnAR3zsA3a9k+JE6YMECbF673In2SCTlBrYm+VXc0SKIFMpY3IaecAj
- Ktvbx2H6vhM3mIrjBTqzeTZEgycAYsVZQmFHSC0qnB85p+jNzdRFotC4M
- SZt4qiVsvlAXPfUPwggWUQT8EpyqJnkRvrPfbtYbQhC4QYElsxXBdgCvu
- 4r0U4WLDOAATjeeq7Mf8lAA27R7fU1YvDoEY7c4cxZKuetau/ze9EhUJH Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10962"; a="466004863"
-X-IronPort-AV: E=Sophos;i="6.05,215,1701158400"; d="scan'208";a="466004863"
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
- by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Jan 2024 19:43:13 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10962"; a="820314329"
-X-IronPort-AV: E=Sophos;i="6.05,215,1701158400"; d="scan'208";a="820314329"
-Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.74])
- by orsmga001.jf.intel.com with SMTP; 23 Jan 2024 19:43:11 -0800
-Received: by stinkbox (sSMTP sendmail emulation);
- Wed, 24 Jan 2024 05:43:10 +0200
-Date: Wed, 24 Jan 2024 05:43:10 +0200
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Rodrigo Vivi <rodrigo.vivi@intel.com>
-Subject: Re: [PATCH] drm/i915/fbc: Allow FBC with CCS modifiers on SKL+
-Message-ID: <ZbCHTpBWzoKBKwGS@intel.com>
-References: <20240123090244.30025-1-ville.syrjala@linux.intel.com>
- <ZbBBNsQF_kYGNQTN@intel.com>
+Received: from 5338d5abeb45 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BBBCC10F60E;
+ Wed, 24 Jan 2024 04:54:49 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============5021803736875680348=="
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <ZbBBNsQF_kYGNQTN@intel.com>
-X-Patchwork-Hint: comment
+Subject: =?utf-8?q?=E2=9C=97_Fi=2ECI=2EBAT=3A_failure_for_drm/i915/fbc=3A_Allow_FBC_w?=
+ =?utf-8?q?ith_CCS_modifiers_on_SKL+_=28rev2=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: =?utf-8?b?VmlsbGUgU3lyasOkbMOk?= <ville.syrjala@linux.intel.com>
+Date: Wed, 24 Jan 2024 04:54:49 -0000
+Message-ID: <170607208976.695948.16228484433263161995@5338d5abeb45>
+X-Patchwork-Hint: ignore
+References: <20240123090244.30025-1-ville.syrjala@linux.intel.com>
+In-Reply-To: <20240123090244.30025-1-ville.syrjala@linux.intel.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,84 +36,169 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
 Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, Jan 23, 2024 at 05:44:06PM -0500, Rodrigo Vivi wrote:
-> On Tue, Jan 23, 2024 at 11:02:44AM +0200, Ville Syrjala wrote:
-> > From: Ville Syrjälä <ville.syrjala@linux.intel.com>
-> > 
-> > Only display workarounds 0391 and 0475 call for disabling
-> > FBC with render compression, and those are listed only for
-> > pre-prod SKL steppings. So it should be safe to enable
-> > FB+CCS on production hardware.
-> > 
-> > AFAIK CCS is limited to 50% bandwidth reduction (perhaps
-> > clear color can do better?). FBC can exceed that number
-> > by quite a bit, given the right kind of framebuffer
-> > contents. So piling on both kinds of compressions could
-> > still make sense.
-> 
-> yeap, I think so.
-> The risk is to hit a workaround that is not ducumented in the BSpec
-> cases after gen11...
-> 
-> Uma, do you recall having seen lately any workaround with FBC
-> and render compression?
-> 
-> > 
-> > Closes: https://gitlab.freedesktop.org/drm/intel/-/issues/10125
-> > Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
-> > ---
-> >  drivers/gpu/drm/i915/display/intel_fbc.c | 13 +------------
-> >  1 file changed, 1 insertion(+), 12 deletions(-)
-> > 
-> > diff --git a/drivers/gpu/drm/i915/display/intel_fbc.c b/drivers/gpu/drm/i915/display/intel_fbc.c
-> > index f17a1afb4929..b453fcbd67da 100644
-> > --- a/drivers/gpu/drm/i915/display/intel_fbc.c
-> > +++ b/drivers/gpu/drm/i915/display/intel_fbc.c
-> > @@ -1087,18 +1087,7 @@ static bool i8xx_fbc_tiling_valid(const struct intel_plane_state *plane_state)
-> >  
-> >  static bool skl_fbc_tiling_valid(const struct intel_plane_state *plane_state)
-> >  {
-> > -	const struct drm_framebuffer *fb = plane_state->hw.fb;
-> > -
-> > -	switch (fb->modifier) {
-> > -	case DRM_FORMAT_MOD_LINEAR:
-> > -	case I915_FORMAT_MOD_Y_TILED:
-> > -	case I915_FORMAT_MOD_Yf_TILED:
-> > -	case I915_FORMAT_MOD_4_TILED:
-> > -	case I915_FORMAT_MOD_X_TILED:
-> > -		return true;
-> > -	default:
-> > -		return false;
-> > -	}
-> > +	return true;
-> 
-> we could also simply kill this function... the compiler does the right thing,
-> but users navigating on the code needs to do an extra ctag/cscope inspections
-> to see that it is a simple return.  But well, the code do gets prettier with
-> the function :)
+--===============5021803736875680348==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-I've been thinking of converting a bunch of this stuff to vfuncs,
-so keeping the function around in anticipation of that seemed
-semi-reasonable.
+== Series Details ==
 
-> So, up to you:
-> 
-> Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
+Series: drm/i915/fbc: Allow FBC with CCS modifiers on SKL+ (rev2)
+URL   : https://patchwork.freedesktop.org/series/129075/
+State : failure
 
-Thanks.
+== Summary ==
 
-> 
-> >  }
-> >  
-> >  static bool tiling_is_valid(const struct intel_plane_state *plane_state)
-> > -- 
-> > 2.43.0
-> > 
+CI Bug Log - changes from CI_DRM_14167 -> Patchwork_129075v2
+====================================================
 
--- 
-Ville Syrjälä
-Intel
+Summary
+-------
+
+  **FAILURE**
+
+  Serious unknown changes coming with Patchwork_129075v2 absolutely need to be
+  verified manually.
+  
+  If you think the reported changes have nothing to do with the changes
+  introduced in Patchwork_129075v2, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them
+  to document this new failure mode, which will reduce false positives in CI.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_129075v2/index.html
+
+Participating hosts (39 -> 38)
+------------------------------
+
+  Missing    (1): fi-snb-2520m 
+
+Possible new issues
+-------------------
+
+  Here are the unknown changes that may have been introduced in Patchwork_129075v2:
+
+### IGT changes ###
+
+#### Possible regressions ####
+
+  * igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence@pipe-d-dp-1:
+    - bat-dg2-8:          [PASS][1] -> [FAIL][2]
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14167/bat-dg2-8/igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence@pipe-d-dp-1.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_129075v2/bat-dg2-8/igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence@pipe-d-dp-1.html
+
+  
+#### Suppressed ####
+
+  The following results come from untrusted machines, tests, or statuses.
+  They do not affect the overall result.
+
+  * igt@i915_selftest@live@gt_engines:
+    - {bat-adls-6}:       [PASS][3] -> [TIMEOUT][4]
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14167/bat-adls-6/igt@i915_selftest@live@gt_engines.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_129075v2/bat-adls-6/igt@i915_selftest@live@gt_engines.html
+
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_14167 -> Patchwork_129075v2
+
+  CI-20190529: 20190529
+  CI_DRM_14167: 233dc02b51d147857bb2f70547fd5e79bf598b4b @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_7690: aa45298ff675abbe6bf8f04ae186e2388c35f03a @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  Patchwork_129075v2: 233dc02b51d147857bb2f70547fd5e79bf598b4b @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+### Linux commits
+
+c13aa76aa3ba drm/i915/fbc: Allow FBC with CCS modifiers on SKL+
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_129075v2/index.html
+
+--===============5021803736875680348==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/i915/fbc: Allow FBC with CCS modifiers on SKL+ (rev2)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/129075/">https://patchwork.freedesktop.org/series/129075/</a></td></tr>
+<tr><td><b>State:</b></td><td>failure</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_129075v2/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_129075v2/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_14167 -&gt; Patchwork_129075v2</h1>
+<h2>Summary</h2>
+<p><strong>FAILURE</strong></p>
+<p>Serious unknown changes coming with Patchwork_129075v2 absolutely need to be<br />
+  verified manually.</p>
+<p>If you think the reported changes have nothing to do with the changes<br />
+  introduced in Patchwork_129075v2, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them<br />
+  to document this new failure mode, which will reduce false positives in CI.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_129075v2/index.html</p>
+<h2>Participating hosts (39 -&gt; 38)</h2>
+<p>Missing    (1): fi-snb-2520m </p>
+<h2>Possible new issues</h2>
+<p>Here are the unknown changes that may have been introduced in Patchwork_129075v2:</p>
+<h3>IGT changes</h3>
+<h4>Possible regressions</h4>
+<ul>
+<li>igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence@pipe-d-dp-1:<ul>
+<li>bat-dg2-8:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14167/bat-dg2-8/igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence@pipe-d-dp-1.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_129075v2/bat-dg2-8/igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence@pipe-d-dp-1.html">FAIL</a></li>
+</ul>
+</li>
+</ul>
+<h4>Suppressed</h4>
+<p>The following results come from untrusted machines, tests, or statuses.<br />
+  They do not affect the overall result.</p>
+<ul>
+<li>igt@i915_selftest@live@gt_engines:<ul>
+<li>{bat-adls-6}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14167/bat-adls-6/igt@i915_selftest@live@gt_engines.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_129075v2/bat-adls-6/igt@i915_selftest@live@gt_engines.html">TIMEOUT</a></li>
+</ul>
+</li>
+</ul>
+<p>{name}: This element is suppressed. This means it is ignored when computing<br />
+          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_14167 -&gt; Patchwork_129075v2</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_14167: 233dc02b51d147857bb2f70547fd5e79bf598b4b @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_7690: aa45298ff675abbe6bf8f04ae186e2388c35f03a @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  Patchwork_129075v2: 233dc02b51d147857bb2f70547fd5e79bf598b4b @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+<h3>Linux commits</h3>
+<p>c13aa76aa3ba drm/i915/fbc: Allow FBC with CCS modifiers on SKL+</p>
+
+</body>
+</html>
+
+--===============5021803736875680348==--
