@@ -2,52 +2,28 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id BDBBA83BEB4
-	for <lists+intel-gfx@lfdr.de>; Thu, 25 Jan 2024 11:28:40 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0FEB083C180
+	for <lists+intel-gfx@lfdr.de>; Thu, 25 Jan 2024 13:00:18 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6BB7010F87C;
-	Thu, 25 Jan 2024 10:28:09 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 92A3E10F8DF;
+	Thu, 25 Jan 2024 12:00:05 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BAB5510F87C
- for <intel-gfx@lists.freedesktop.org>; Thu, 25 Jan 2024 10:28:07 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1706178487; x=1737714487;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=KiDYGhoLOIGdoxxGWqZ1mX0FDwzq0lRLwGCPqlAr3u4=;
- b=jvEYw9u78XRwHTSkgbV1InRN4plfWdwrNbjj6U2xGgu6Ps3tFathZ8Lz
- vCN1kwDTGSmvSfcQUGIpotMkbupCdUotdtJSZ7slhFWWXycajDQIVnC0G
- 7cbLZB3Y5MVs96TZ+UitgRn8uhJ6W8oPXA03qbQq5ZayVUGq4s6pRNzzk
- sU8R8qOFT0RfXOGjwwEXSM7gTphBqu+GsofYx0Lg7+JQnhhtVNnNpX5Qk
- XWnxpD9oaxlnPbvpxX7Yg+TyCpx+TDXQQerpyCBps/sSeNMZATtzJpVYi
- +O7wppucFWpmEWay0ATh2nFs1wnvlUUv24Nd1HgDSvh+mVwwTEdwV2ftM A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10962"; a="9236054"
-X-IronPort-AV: E=Sophos;i="6.05,216,1701158400"; 
-   d="scan'208";a="9236054"
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
- by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Jan 2024 02:28:07 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10962"; a="820753787"
-X-IronPort-AV: E=Sophos;i="6.05,216,1701158400"; d="scan'208";a="820753787"
-Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.74])
- by orsmga001.jf.intel.com with SMTP; 25 Jan 2024 02:28:05 -0800
-Received: by stinkbox (sSMTP sendmail emulation);
- Thu, 25 Jan 2024 12:28:04 +0200
-From: Ville Syrjala <ville.syrjala@linux.intel.com>
-To: intel-gfx@lists.freedesktop.org
-Subject: [PATCH v4 06/16] drm/i915: Rename the DSM/GSM registers
-Date: Thu, 25 Jan 2024 12:28:04 +0200
-Message-ID: <20240125102804.22576-1-ville.syrjala@linux.intel.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20240116075636.6121-7-ville.syrjala@linux.intel.com>
-References: <20240116075636.6121-7-ville.syrjala@linux.intel.com>
+Received: from 5338d5abeb45 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D689B10F8DA;
+ Thu, 25 Jan 2024 12:00:04 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=97_Fi=2ECI=2ECHECKPATCH=3A_warning_for_drm/i915=3A_=28stole?=
+ =?utf-8?q?n=29_memory_region_related_fixes_=28rev10=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: =?utf-8?b?VmlsbGUgU3lyasOkbMOk?= <ville.syrjala@linux.intel.com>
+Date: Thu, 25 Jan 2024 12:00:04 -0000
+Message-ID: <170618400487.709515.2817688029741916676@5338d5abeb45>
+X-Patchwork-Hint: ignore
+References: <20240116075636.6121-1-ville.syrjala@linux.intel.com>
+In-Reply-To: <20240116075636.6121-1-ville.syrjala@linux.intel.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -60,93 +36,50 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Andrzej Hajda <andrzej.hajda@intel.com>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-From: Ville Syrjälä <ville.syrjala@linux.intel.com>
+== Series Details ==
 
-0x108100 and 0x1080c0 have been around since snb. Rename the
-defines appropriately.
+Series: drm/i915: (stolen) memory region related fixes (rev10)
+URL   : https://patchwork.freedesktop.org/series/127721/
+State : warning
 
-v2: Rebase
+== Summary ==
 
-Cc: Paz Zcharya <pazz@chromium.org>
-Reviewed-by: Andrzej Hajda <andrzej.hajda@intel.com>
-Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
----
- drivers/gpu/drm/i915/gem/i915_gem_stolen.c  | 4 ++--
- drivers/gpu/drm/i915/gt/intel_ggtt.c        | 2 +-
- drivers/gpu/drm/i915/gt/intel_region_lmem.c | 2 +-
- drivers/gpu/drm/i915/i915_reg.h             | 7 ++++---
- 4 files changed, 8 insertions(+), 7 deletions(-)
+Error: dim checkpatch failed
+72dda2db9044 drm/i915: Use struct resource for memory region IO as well
+-:388: WARNING:LONG_LINE: line length of 105 exceeds 100 columns
+#388: FILE: drivers/gpu/drm/i915/intel_region_ttm.c:227:
++			if (WARN_ON(overflows_type(resource_size(&mem->io) >> PAGE_SHIFT, place.lpfn))) {
 
-diff --git a/drivers/gpu/drm/i915/gem/i915_gem_stolen.c b/drivers/gpu/drm/i915/gem/i915_gem_stolen.c
-index 9ddcae9b3997..ad6dd7f3259b 100644
---- a/drivers/gpu/drm/i915/gem/i915_gem_stolen.c
-+++ b/drivers/gpu/drm/i915/gem/i915_gem_stolen.c
-@@ -935,7 +935,7 @@ i915_gem_stolen_lmem_setup(struct drm_i915_private *i915, u16 type,
- 		GEM_BUG_ON((dsm_base + dsm_size) > lmem_size);
- 	} else {
- 		/* Use DSM base address instead for stolen memory */
--		dsm_base = intel_uncore_read64(uncore, GEN12_DSMBASE) & GEN12_BDSM_MASK;
-+		dsm_base = intel_uncore_read64(uncore, GEN6_DSMBASE) & GEN11_BDSM_MASK;
- 		if (WARN_ON(lmem_size < dsm_base))
- 			return ERR_PTR(-ENODEV);
- 		dsm_size = ALIGN_DOWN(lmem_size - dsm_base, SZ_1M);
-@@ -943,7 +943,7 @@ i915_gem_stolen_lmem_setup(struct drm_i915_private *i915, u16 type,
- 
- 	if (i915_direct_stolen_access(i915)) {
- 		drm_dbg(&i915->drm, "Using direct DSM access\n");
--		io_start = intel_uncore_read64(uncore, GEN12_DSMBASE) & GEN12_BDSM_MASK;
-+		io_start = intel_uncore_read64(uncore, GEN6_DSMBASE) & GEN11_BDSM_MASK;
- 		io_size = dsm_size;
- 	} else if (pci_resource_len(pdev, GEN12_LMEM_BAR) < lmem_size) {
- 		io_start = 0;
-diff --git a/drivers/gpu/drm/i915/gt/intel_ggtt.c b/drivers/gpu/drm/i915/gt/intel_ggtt.c
-index bce5d8025340..ec1cbe229f0e 100644
---- a/drivers/gpu/drm/i915/gt/intel_ggtt.c
-+++ b/drivers/gpu/drm/i915/gt/intel_ggtt.c
-@@ -1163,7 +1163,7 @@ static int ggtt_probe_common(struct i915_ggtt *ggtt, u64 size)
- 
- 	if (i915_direct_stolen_access(i915)) {
- 		drm_dbg(&i915->drm, "Using direct GSM access\n");
--		phys_addr = intel_uncore_read64(uncore, GEN12_GSMBASE) & GEN12_BDSM_MASK;
-+		phys_addr = intel_uncore_read64(uncore, GEN6_GSMBASE) & GEN11_BDSM_MASK;
- 	} else {
- 		phys_addr = pci_resource_start(pdev, GEN4_GTTMMADR_BAR) + gen6_gttadr_offset(i915);
- 	}
-diff --git a/drivers/gpu/drm/i915/gt/intel_region_lmem.c b/drivers/gpu/drm/i915/gt/intel_region_lmem.c
-index af357089da6e..51bb27e10a4f 100644
---- a/drivers/gpu/drm/i915/gt/intel_region_lmem.c
-+++ b/drivers/gpu/drm/i915/gt/intel_region_lmem.c
-@@ -240,7 +240,7 @@ static struct intel_memory_region *setup_lmem(struct intel_gt *gt)
- 		lmem_size -= tile_stolen;
- 	} else {
- 		/* Stolen starts from GSMBASE without CCS */
--		lmem_size = intel_uncore_read64(&i915->uncore, GEN12_GSMBASE);
-+		lmem_size = intel_uncore_read64(&i915->uncore, GEN6_GSMBASE);
- 	}
- 
- 	i915_resize_lmem_bar(i915, lmem_size);
-diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_reg.h
-index b5f5e0bc6608..1ad55aafe679 100644
---- a/drivers/gpu/drm/i915/i915_reg.h
-+++ b/drivers/gpu/drm/i915/i915_reg.h
-@@ -6323,9 +6323,10 @@ enum skl_power_gate {
- #define   GMS_MASK			REG_GENMASK(15, 8)
- #define   GGMS_MASK			REG_GENMASK(7, 6)
- 
--#define GEN12_GSMBASE			_MMIO(0x108100)
--#define GEN12_DSMBASE			_MMIO(0x1080C0)
--#define   GEN12_BDSM_MASK		REG_GENMASK64(63, 20)
-+#define GEN6_GSMBASE			_MMIO(0x108100)
-+#define GEN6_DSMBASE			_MMIO(0x1080C0)
-+#define   GEN6_BDSM_MASK		REG_GENMASK64(31, 20)
-+#define   GEN11_BDSM_MASK		REG_GENMASK64(63, 20)
- 
- #define XEHP_CLOCK_GATE_DIS		_MMIO(0x101014)
- #define   SGSI_SIDECLK_DIS		REG_BIT(17)
--- 
-2.43.0
+total: 0 errors, 1 warnings, 0 checks, 281 lines checked
+647617023b28 drm/i915: Print memory region info during probe
+d4d79a559964 drm/i915: Remove ad-hoc lmem/stolen debugs
+84b6c1bef1e8 drm/i915: Bypass LMEMBAR/GTTMMADR for MTL stolen memory access
+90f743608bc4 drm/i915: Disable the "binder"
+73e317aef584 drm/i915: Rename the DSM/GSM registers
+5da2ebc59918 drm/i915: Fix PTE decode during initial plane readout
+e8e5509729b6 drm/i915: Fix region start during initial plane readout
+6b64e9796923 drm/i915: Fix MTL initial plane readout
+4e682d80a189 drm/i915: s/phys_base/dma_addr/
+e6116924b137 drm/i915: Split the smem and lmem plane readout apart
+9914347031fe drm/i915: Simplify intel_initial_plane_config() calling convention
+fc524e5b6a53 drm/i915/fbdev: Fix smem_start for LMEMBAR stolen objects
+b5288e67b618 drm/i915: Tweak BIOS fb reuse check
+eae214ae90cc drm/i915: Try to relocate the BIOS fb to the start of ggtt
+-:104: CHECK:LINE_SPACING: Please use a blank line after function/struct/union/enum declarations
+#104: FILE: drivers/gpu/drm/i915/display/i9xx_plane.h:51:
+ }
++static inline bool i9xx_fixup_initial_plane_config(struct intel_crtc *crtc,
+
+-:105: WARNING:LONG_LINE: line length of 105 exceeds 100 columns
+#105: FILE: drivers/gpu/drm/i915/display/i9xx_plane.h:52:
++						   const struct intel_initial_plane_config *plane_config)
+
+total: 0 errors, 1 warnings, 1 checks, 229 lines checked
+f07fd3928e76 drm/i915: Annotate more of the BIOS fb takeover failure paths
+
 
