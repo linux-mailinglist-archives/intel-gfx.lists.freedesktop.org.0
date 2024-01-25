@@ -2,48 +2,56 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id EC01A83BC03
-	for <lists+intel-gfx@lfdr.de>; Thu, 25 Jan 2024 09:29:59 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1585683BCC8
+	for <lists+intel-gfx@lfdr.de>; Thu, 25 Jan 2024 10:08:14 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8FF7110F850;
-	Thu, 25 Jan 2024 08:29:58 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 81C5710F098;
+	Thu, 25 Jan 2024 09:08:12 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 023B510F84E;
- Thu, 25 Jan 2024 08:29:56 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D35A110F098
+ for <intel-gfx@lists.freedesktop.org>; Thu, 25 Jan 2024 09:08:11 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1706171397; x=1737707397;
- h=date:from:to:cc:subject:message-id:mime-version:
- content-transfer-encoding;
- bh=GzveJxVuEPjFXwl59pwJZefeLSd5dX2SH7AFes3/VeI=;
- b=PsYILyEPgUF8jWHGY9s6JYyC/uPbpkjeWBwY6aOhwyIPZPHRk2lpt/sw
- Ip8J1K4RqnhPQVbFFEoZRw7F49FVDJg4uU5VlOWQKkCwYmV/8wFLDw3r+
- iMdLzand8qkLmuhSncOdSPe8f53/uaBcTVkgDWQgNVyRg6yHTE3FCLfl5
- KvvNtn416X4PEBw7T6OHxdP9ejVrYCWZCOJEuw4brjjuY8tA/MPEGYVYz
- nAwDCsIjq7qHEGzLzwZThZ/1H20Fr2zyFmZwTdt6fhy0dS4O5KI/xrGtF
- 8q4Z5pNUTwlPGSD0VQkNvHtmZ3qKhHUu1ZrWpzin7I1vzy8Ga1CACGsPE Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10962"; a="15449874"
-X-IronPort-AV: E=Sophos;i="6.05,216,1701158400"; d="scan'208";a="15449874"
+ t=1706173691; x=1737709691;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=ipGTpsLjDOv1G4fKQnt5fvZr/Rzz5FoK7rHYHShjoRU=;
+ b=DEfmToJ3nDU7B+Kg2WhWSaToINakHYNxOk0VKo/LcxTS9Lo0dJFHUzeH
+ lxtI7ThORGqqUKe39VkITc9JNw5Fi2GBAqtQt/9b6BruzpBsR9ldStenU
+ n+aTi229AXl62G5QJ7ZUKHnR9QkXFPMnzv3o2nIbW49ukgONbIQUtt9VV
+ zJUs9LuA+Lvp1JqzxdUiwmbNACn0zddDp34Aakz/E0xjTYUvgIirMLaxx
+ fBJMF5JCU2W/KKl2NA+rlbkxLQGj1h8NNGiFHeyiPGpGYElRjFuqsx23h
+ 5GBFKjbeXUsfkFY3JH/5XQMfuB1VW+0xeVMiQ3GUUMA4ShgIcU9x0j6R/ A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10962"; a="392514265"
+X-IronPort-AV: E=Sophos;i="6.05,216,1701158400"; d="scan'208";a="392514265"
 Received: from orsmga001.jf.intel.com ([10.7.209.18])
- by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Jan 2024 00:29:54 -0800
+ by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 25 Jan 2024 01:08:08 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10962"; a="820719768"
-X-IronPort-AV: E=Sophos;i="6.05,216,1701158400"; d="scan'208";a="820719768"
-Received: from skofoed-mobl.ger.corp.intel.com (HELO fedora) ([10.249.254.114])
- by orsmga001-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Jan 2024 00:29:50 -0800
-Date: Thu, 25 Jan 2024 09:29:34 +0100
-From: Thomas Hellstrom <thomas.hellstrom@linux.intel.com>
-To: Dave Airlie <airlied@gmail.com>, Daniel Vetter <daniel.vetter@ffwll.ch>
-Subject: [PULL] drm-xe-fixes
-Message-ID: <ZbIb7l0EhpVp5cXE@fedora>
+X-IronPort-AV: E=McAfee;i="6600,9927,10962"; a="820730978"
+X-IronPort-AV: E=Sophos;i="6.05,216,1701158400"; d="scan'208";a="820730978"
+Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.74])
+ by orsmga001.jf.intel.com with SMTP; 25 Jan 2024 01:08:05 -0800
+Received: by stinkbox (sSMTP sendmail emulation);
+ Thu, 25 Jan 2024 11:08:04 +0200
+Date: Thu, 25 Jan 2024 11:08:04 +0200
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: Nirmoy Das <nirmoy.das@intel.com>
+Subject: Re: [PATCH v3 05/16] drm/i915: Disable the "binder"
+Message-ID: <ZbIk9Kwx9f552dyl@intel.com>
+References: <20240116075636.6121-1-ville.syrjala@linux.intel.com>
+ <20240116075636.6121-6-ville.syrjala@linux.intel.com>
+ <ux7q2bmbk47rnke6n2qo3dabdx7lxkuwcy5rrauwsyz7v2bthc@p7jgbcz6vs7d>
+ <32646e92-e06b-45a4-8d25-185be9c1e4d4@intel.com>
+ <ZamwS6sLlEdJRv59@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
+In-Reply-To: <ZamwS6sLlEdJRv59@intel.com>
+X-Patchwork-Hint: comment
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -56,64 +64,84 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: dim-tools@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>,
- Lucas De Marchi <lucas.demarchi@intel.com>, Oded Gabbay <ogabbay@kernel.org>,
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org,
+ =?utf-8?Q?Micha=C5=82?= Winiarski <michal.winiarski@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi, Dave, Sima
+On Fri, Jan 19, 2024 at 01:12:11AM +0200, Ville Syrjälä wrote:
+> On Wed, Jan 17, 2024 at 06:46:24PM +0100, Nirmoy Das wrote:
+> > 
+> > On 1/17/2024 3:13 PM, Michał Winiarski wrote:
+> > > On Tue, Jan 16, 2024 at 09:56:25AM +0200, Ville Syrjala wrote:
+> > >> From: Ville Syrjälä <ville.syrjala@linux.intel.com>
+> > >>
+> > >> Now that the GGTT PTE updates go straight to GSMBASE (bypassing
+> > >> GTTMMADR) there should be no more risk of system hangs? So the
+> > >> "binder" (ie. update the PTEs via MI_UPDATE_GTT) is no longer
+> > >> necessary, disable it.
+> > >>
+> > >> My main worry with the MI_UPDATE_GTT are:
+> > >> - only used on this one platform so very limited testing coverage
+> > >> - async so more opprtunities to screw things up
+> > >> - what happens if the engine hangs while we're waiting for MI_UPDATE_GTT
+> > >>    to finish?
+> > >> - requires working command submission, so even getting a working
+> > >>    display now depends on a lot more extra components working correctly
+> > >>
+> > >> TODO: MI_UPDATE_GTT might be interesting as an optimization
+> > >> though, so perhaps someone should look into always using it
+> > >> (assuming the GPU is alive and well)?
+> > >>
+> > >> v2: Keep using MI_UPDATE_GTT on VM guests
+> > >>
+> > >> Cc: Paz Zcharya <pazz@chromium.org>
+> > >> Cc: Nirmoy Das <nirmoy.das@intel.com>
+> > >> Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
+> > >> ---
+> > >>   drivers/gpu/drm/i915/gt/intel_gtt.c | 3 ++-
+> > >>   1 file changed, 2 insertions(+), 1 deletion(-)
+> > >>
+> > >> diff --git a/drivers/gpu/drm/i915/gt/intel_gtt.c b/drivers/gpu/drm/i915/gt/intel_gtt.c
+> > >> index 86f73fe558ca..e83dabc56a14 100644
+> > >> --- a/drivers/gpu/drm/i915/gt/intel_gtt.c
+> > >> +++ b/drivers/gpu/drm/i915/gt/intel_gtt.c
+> > >> @@ -24,7 +24,8 @@
+> > >>   bool i915_ggtt_require_binder(struct drm_i915_private *i915)
+> > >>   {
+> > >>   	/* Wa_13010847436 & Wa_14019519902 */
+> > >> -	return MEDIA_VER_FULL(i915) == IP_VER(13, 0);
+> > >> +	return i915_run_as_guest() &&
+> > >> +		MEDIA_VER_FULL(i915) == IP_VER(13, 0);
+> > > Note that i915_run_as_guest() is not the most reliable way to decide
+> > > whether to use MI_UPDATE_GTT or straight to GSMBASE, as it requires the
+> > > hypervisor to "opt-in" and set the X86_FEATURE_HYPERVISOR.
+> > > If it's not set - the driver will go into GSMBASE, which is not mapped
+> > > inside the guest.
+> > > Does the system firmware advertise whether GSMBASE is "open" or "closed"
+> > > to CPU access in any way?
+> > 
+> > Had a chat with David from IVE team, David suggested to read 0x138914 to 
+> > determine that.  "GOP needs to qualify the WA by reading GFX MMIO offset 
+> > 0x138914 and verify the value there is 0x1." -> as per the HSD-22018444074
+> 
+> OK, so we can confirm the firmware is on board. I suppose no real harm
+> in doing so even though it would clearly be a rather weird if someone
+> would ship some ancient firmware that doesn't handle this.
+> 
+> But that still won't help with the guest side handling because that
+> register will read the same in the guest.
 
-The Xe fixes PR for 6.8-rc2.
+I guess we have two options here:
+1) ignore non-standard vms that don't advertise themselves
+2) try some other heuristics to detect them (eg. host/isa bridge PCI
+   IDs/DMI/etc.)
 
-Thanks, Thomas.
+My preference is to just go with option 1, and if someone comes across
+a real world use case when the vm is hiding then we can think of some
+way to handle it. Trying to come up with heuristics for that without
+anything to test against would be 100% guesswork anyway.
 
-The following changes since commit 6613476e225e090cc9aad49be7fa504e290dd33d:
-
-  Linux 6.8-rc1 (2024-01-21 14:11:32 -0800)
-
-are available in the Git repository at:
-
-  https://gitlab.freedesktop.org/drm/xe/kernel.git tags/drm-xe-fixes-2024-01-25
-
-for you to fetch changes up to 9e3a13f3eef6b14a26cc2660ca2f43f0e46b4318:
-
-  drm/xe: Remove PVC from xe_wa kunit tests (2024-01-24 11:13:55 +0100)
-
-----------------------------------------------------------------
-Driver Changes:
-- Make an ops struct static
-- Fix an implicit 0 to NULL conversion
-- A couple of 32-bit fixes
-- A migration coherency fix for Lunar Lake.
-- An error path vm id leak fix
-- Remove PVC references in kunit tests
-
-----------------------------------------------------------------
-Himal Prasad Ghimiray (1):
-      drm/xe/xe2: Use XE_CACHE_WB pat index
-
-Lucas De Marchi (4):
-      drm/xe: Use _ULL for u64 division
-      drm/xe/mmio: Cast to u64 when printing
-      drm/xe/display: Avoid calling readq()
-      drm/xe: Remove PVC from xe_wa kunit tests
-
-Moti Haimovski (1):
-      drm/xe/vm: bugfix in xe_vm_create_ioctl
-
-Thomas Hellstr�m (2):
-      drm/xe/dmabuf: Make xe_dmabuf_ops static
-      drm/xe: Use a NULL pointer instead of 0.
-
- .../xe/compat-i915-headers/gem/i915_gem_object.h   | 11 +++++------
- drivers/gpu/drm/xe/tests/xe_wa_test.c              |  3 ---
- drivers/gpu/drm/xe/xe_device.c                     |  2 +-
- drivers/gpu/drm/xe/xe_dma_buf.c                    |  2 +-
- drivers/gpu/drm/xe/xe_hwmon.c                      |  2 +-
- drivers/gpu/drm/xe/xe_migrate.c                    | 14 ++++++-------
- drivers/gpu/drm/xe/xe_mmio.c                       |  4 ++--
- drivers/gpu/drm/xe/xe_vm.c                         | 23 +++++++++++++---------
- 8 files changed, 31 insertions(+), 30 deletions(-)
+-- 
+Ville Syrjälä
+Intel
