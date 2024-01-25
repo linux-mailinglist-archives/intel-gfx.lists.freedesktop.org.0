@@ -2,56 +2,57 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1585683BCC8
-	for <lists+intel-gfx@lfdr.de>; Thu, 25 Jan 2024 10:08:14 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id B19FC83BE15
+	for <lists+intel-gfx@lfdr.de>; Thu, 25 Jan 2024 10:56:16 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 81C5710F098;
-	Thu, 25 Jan 2024 09:08:12 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 60E7210F85E;
+	Thu, 25 Jan 2024 09:56:10 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D35A110F098
- for <intel-gfx@lists.freedesktop.org>; Thu, 25 Jan 2024 09:08:11 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E8D0B10F85E;
+ Thu, 25 Jan 2024 09:56:08 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1706173691; x=1737709691;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=ipGTpsLjDOv1G4fKQnt5fvZr/Rzz5FoK7rHYHShjoRU=;
- b=DEfmToJ3nDU7B+Kg2WhWSaToINakHYNxOk0VKo/LcxTS9Lo0dJFHUzeH
- lxtI7ThORGqqUKe39VkITc9JNw5Fi2GBAqtQt/9b6BruzpBsR9ldStenU
- n+aTi229AXl62G5QJ7ZUKHnR9QkXFPMnzv3o2nIbW49ukgONbIQUtt9VV
- zJUs9LuA+Lvp1JqzxdUiwmbNACn0zddDp34Aakz/E0xjTYUvgIirMLaxx
- fBJMF5JCU2W/KKl2NA+rlbkxLQGj1h8NNGiFHeyiPGpGYElRjFuqsx23h
- 5GBFKjbeXUsfkFY3JH/5XQMfuB1VW+0xeVMiQ3GUUMA4ShgIcU9x0j6R/ A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10962"; a="392514265"
-X-IronPort-AV: E=Sophos;i="6.05,216,1701158400"; d="scan'208";a="392514265"
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
- by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Jan 2024 01:08:08 -0800
+ t=1706176569; x=1737712569;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version:content-transfer-encoding;
+ bh=GxwRbE55YIwDHZtfx76YzVpE3RzFJjrHMcE6Kj92Rps=;
+ b=eLLEMHa5l9foFnKJqxnQBAX8Xjvez0u2bQcWX0B4uDL/bYlufuWNjKax
+ gpNojaC7pCd/FPrf/6WXQqqPaXthGP5G175UVQHKbmIV0RfgTUF3LG02H
+ TSKGNpxrlhAaDbJD8i6BovARojJ0pQRXNq9xumT8shnjWG54nAaRWwnNi
+ yC8lPVTFM0ROIhO7pw6STJQnzQYGy2146HBHMNCow9Q/yBI5/keDHmYaw
+ D7G4uWFuDDIXvclNIHeC2SNTaDe4VRtVz22ChpX66JFQyXonZeq2f00k1
+ Cy/Yv1r+VysgzYkMqmz+/w//aQzOMWwyLHMpXSxCtRhZOEK5D/brIpaQG A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10962"; a="23578977"
+X-IronPort-AV: E=Sophos;i="6.05,216,1701158400"; d="scan'208";a="23578977"
+Received: from orviesa005.jf.intel.com ([10.64.159.145])
+ by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 25 Jan 2024 01:56:08 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10962"; a="820730978"
-X-IronPort-AV: E=Sophos;i="6.05,216,1701158400"; d="scan'208";a="820730978"
-Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.74])
- by orsmga001.jf.intel.com with SMTP; 25 Jan 2024 01:08:05 -0800
-Received: by stinkbox (sSMTP sendmail emulation);
- Thu, 25 Jan 2024 11:08:04 +0200
-Date: Thu, 25 Jan 2024 11:08:04 +0200
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Nirmoy Das <nirmoy.das@intel.com>
-Subject: Re: [PATCH v3 05/16] drm/i915: Disable the "binder"
-Message-ID: <ZbIk9Kwx9f552dyl@intel.com>
-References: <20240116075636.6121-1-ville.syrjala@linux.intel.com>
- <20240116075636.6121-6-ville.syrjala@linux.intel.com>
- <ux7q2bmbk47rnke6n2qo3dabdx7lxkuwcy5rrauwsyz7v2bthc@p7jgbcz6vs7d>
- <32646e92-e06b-45a4-8d25-185be9c1e4d4@intel.com>
- <ZamwS6sLlEdJRv59@intel.com>
+X-IronPort-AV: E=Sophos;i="6.05,216,1701158400"; 
+   d="scan'208";a="2188240"
+Received: from cyrillet-mobl.ger.corp.intel.com (HELO localhost)
+ ([10.252.58.252])
+ by orviesa005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 25 Jan 2024 01:56:05 -0800
+From: Jani Nikula <jani.nikula@intel.com>
+To: Gustavo Sousa <gustavo.sousa@intel.com>, Lucas De Marchi
+ <lucas.demarchi@intel.com>, Yury Norov <yury.norov@gmail.com>
+Subject: Re: Re: [PATCH 1/3] bits: introduce fixed-type genmasks
+In-Reply-To: <170611134445.31262.2799581830173501277@gjsousa-mobl2>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20240124050205.3646390-1-lucas.demarchi@intel.com>
+ <20240124050205.3646390-2-lucas.demarchi@intel.com>
+ <87v87jkvrx.fsf@intel.com>
+ <gvkvihpcc45275idrfukjqbvgem767evrux5sx5lnh5hofqemk@ppbkcauitvwb>
+ <ZbEsfl0tGLY+xJl0@yury-ThinkPad>
+ <170611134445.31262.2799581830173501277@gjsousa-mobl2>
+Date: Thu, 25 Jan 2024 11:56:01 +0200
+Message-ID: <878r4dlosu.fsf@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <ZamwS6sLlEdJRv59@intel.com>
-X-Patchwork-Hint: comment
+Content-Transfer-Encoding: quoted-printable
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -65,83 +66,72 @@ List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
 Cc: intel-gfx@lists.freedesktop.org,
- =?utf-8?Q?Micha=C5=82?= Winiarski <michal.winiarski@intel.com>
+ Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+ linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
+ intel-xe@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, Jan 19, 2024 at 01:12:11AM +0200, Ville Syrjälä wrote:
-> On Wed, Jan 17, 2024 at 06:46:24PM +0100, Nirmoy Das wrote:
-> > 
-> > On 1/17/2024 3:13 PM, Michał Winiarski wrote:
-> > > On Tue, Jan 16, 2024 at 09:56:25AM +0200, Ville Syrjala wrote:
-> > >> From: Ville Syrjälä <ville.syrjala@linux.intel.com>
-> > >>
-> > >> Now that the GGTT PTE updates go straight to GSMBASE (bypassing
-> > >> GTTMMADR) there should be no more risk of system hangs? So the
-> > >> "binder" (ie. update the PTEs via MI_UPDATE_GTT) is no longer
-> > >> necessary, disable it.
-> > >>
-> > >> My main worry with the MI_UPDATE_GTT are:
-> > >> - only used on this one platform so very limited testing coverage
-> > >> - async so more opprtunities to screw things up
-> > >> - what happens if the engine hangs while we're waiting for MI_UPDATE_GTT
-> > >>    to finish?
-> > >> - requires working command submission, so even getting a working
-> > >>    display now depends on a lot more extra components working correctly
-> > >>
-> > >> TODO: MI_UPDATE_GTT might be interesting as an optimization
-> > >> though, so perhaps someone should look into always using it
-> > >> (assuming the GPU is alive and well)?
-> > >>
-> > >> v2: Keep using MI_UPDATE_GTT on VM guests
-> > >>
-> > >> Cc: Paz Zcharya <pazz@chromium.org>
-> > >> Cc: Nirmoy Das <nirmoy.das@intel.com>
-> > >> Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
-> > >> ---
-> > >>   drivers/gpu/drm/i915/gt/intel_gtt.c | 3 ++-
-> > >>   1 file changed, 2 insertions(+), 1 deletion(-)
-> > >>
-> > >> diff --git a/drivers/gpu/drm/i915/gt/intel_gtt.c b/drivers/gpu/drm/i915/gt/intel_gtt.c
-> > >> index 86f73fe558ca..e83dabc56a14 100644
-> > >> --- a/drivers/gpu/drm/i915/gt/intel_gtt.c
-> > >> +++ b/drivers/gpu/drm/i915/gt/intel_gtt.c
-> > >> @@ -24,7 +24,8 @@
-> > >>   bool i915_ggtt_require_binder(struct drm_i915_private *i915)
-> > >>   {
-> > >>   	/* Wa_13010847436 & Wa_14019519902 */
-> > >> -	return MEDIA_VER_FULL(i915) == IP_VER(13, 0);
-> > >> +	return i915_run_as_guest() &&
-> > >> +		MEDIA_VER_FULL(i915) == IP_VER(13, 0);
-> > > Note that i915_run_as_guest() is not the most reliable way to decide
-> > > whether to use MI_UPDATE_GTT or straight to GSMBASE, as it requires the
-> > > hypervisor to "opt-in" and set the X86_FEATURE_HYPERVISOR.
-> > > If it's not set - the driver will go into GSMBASE, which is not mapped
-> > > inside the guest.
-> > > Does the system firmware advertise whether GSMBASE is "open" or "closed"
-> > > to CPU access in any way?
-> > 
-> > Had a chat with David from IVE team, David suggested to read 0x138914 to 
-> > determine that.  "GOP needs to qualify the WA by reading GFX MMIO offset 
-> > 0x138914 and verify the value there is 0x1." -> as per the HSD-22018444074
-> 
-> OK, so we can confirm the firmware is on board. I suppose no real harm
-> in doing so even though it would clearly be a rather weird if someone
-> would ship some ancient firmware that doesn't handle this.
-> 
-> But that still won't help with the guest side handling because that
-> register will read the same in the guest.
+On Wed, 24 Jan 2024, Gustavo Sousa <gustavo.sousa@intel.com> wrote:
+> Quoting Yury Norov (2024-01-24 12:27:58-03:00)
+>>On Wed, Jan 24, 2024 at 08:03:53AM -0600, Lucas De Marchi wrote:
+>>> On Wed, Jan 24, 2024 at 09:58:26AM +0200, Jani Nikula wrote:
+>>> > On Tue, 23 Jan 2024, Lucas De Marchi <lucas.demarchi@intel.com> wrote:
+>>> > > From: Yury Norov <yury.norov@gmail.com>
+>>> > >=20
+>>> > > Generalize __GENMASK() to support different types, and implement
+>>> > > fixed-types versions of GENMASK() based on it. The fixed-type versi=
+on
+>>> > > allows more strict checks to the min/max values accepted, which is
+>>> > > useful for defining registers like implemented by i915 and xe drive=
+rs
+>>> > > with their REG_GENMASK*() macros.
+>>> >=20
+>>> > Mmh, the commit message says the fixed-type version allows more strict
+>>> > checks, but none are actually added. GENMASK_INPUT_CHECK() remains the
+>>> > same.
+>>> >=20
+>>> > Compared to the i915 and xe versions, this is more lax now. You could
+>>> > specify GENMASK_U32(63,32) without complaints.
+>>>=20
+>>> Doing this on top of the this series:
+>>>=20
+>>> -#define   XELPDP_PORT_M2P_COMMAND_TYPE_MASK            REG_GENMASK(30,=
+ 27)
+>>> +#define   XELPDP_PORT_M2P_COMMAND_TYPE_MASK            REG_GENMASK(62,=
+ 32)
+>>>=20
+>>> and I do get a build failure:
+>>>=20
+>>> ../drivers/gpu/drm/i915/display/intel_cx0_phy.c: In function =E2=80=98_=
+_intel_cx0_read_once=E2=80=99:
+>>> ../include/linux/bits.h:41:31: error: left shift count >=3D width of ty=
+pe [-Werror=3Dshift-count-overflow]
+>>>    41 |          (((t)~0ULL - ((t)(1) << (l)) + 1) & \
+>>>       |                               ^~
 
-I guess we have two options here:
-1) ignore non-standard vms that don't advertise themselves
-2) try some other heuristics to detect them (eg. host/isa bridge PCI
-   IDs/DMI/etc.)
+I stand corrected.
 
-My preference is to just go with option 1, and if someone comes across
-a real world use case when the vm is hiding then we can think of some
-way to handle it. Trying to come up with heuristics for that without
-anything to test against would be 100% guesswork anyway.
+>>
+>>I would better include this in commit message to avoid people's
+>>confusion. If it comes to v2, can you please do it and mention that
+>>this trick relies on shift-count-overflow compiler check?
+>
+> Wouldn't it be better to have explicit check that l and h are not out of =
+bounds
+> based on BITS_PER_TYPE() than relying on a compiler flag that could be tu=
+rned
+> off (maybe for some questionable reason, but even so)?
 
--- 
-Ville Syrjälä
-Intel
+My preference would be the explicit check, a comment in code, or an
+explanation in the commit message, in this order. Because honestly, none
+of this is obvious, and a future refactoring of GENMASK might just
+inadvertently thwart the whole check.
+
+Regardless, my main concern was moot, on the series,
+
+Acked-by: Jani Nikula <jani.nikula@intel.com>
+
+
+--=20
+Jani Nikula, Intel
