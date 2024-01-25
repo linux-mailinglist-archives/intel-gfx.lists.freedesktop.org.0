@@ -2,138 +2,148 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 25EA183B5D1
-	for <lists+intel-gfx@lfdr.de>; Thu, 25 Jan 2024 01:06:04 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id AE19E83BA71
+	for <lists+intel-gfx@lfdr.de>; Thu, 25 Jan 2024 08:11:25 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 632C110EAC4;
-	Thu, 25 Jan 2024 00:05:55 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E979210F820;
+	Thu, 25 Jan 2024 07:10:52 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 53C0C10EAC4;
- Thu, 25 Jan 2024 00:05:53 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B7C3B10F820
+ for <intel-gfx@lists.freedesktop.org>; Thu, 25 Jan 2024 07:10:50 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1706141153; x=1737677153;
- h=date:from:to:cc:subject:message-id:references:
- in-reply-to:mime-version;
- bh=pEIlIcnAs5/aONGRUanhL1Fw738xGCKOsR/W3OZvIE0=;
- b=ZIKhUlzwZUJs2vPkuGRY1/nbFORdroyG0aJM+FryB9KiEV7vsm9Jvraj
- lMjPD67BbXTRASc86fUZBOwKqyMjrOMWs5k4FTTD5e/YQfy0LKgPJQ9XL
- aQKm1/lv5MgcglZ06VA8Nk2ctoqVJVcPNwtKVWdhylTIUKtUE44WRsFe2
- 3O//JR3icmVtfTOft0epcoSxMP8c1Mrfi2WOKex3RzzNCh6aBRGRbwRUR
- ZWE9wX9sMO9NaTv4/KxsLFZVF5yz4mAyUXRUvBkawEzvbbN1A2w9n6Tbv
- MAmAVgz/hh6ZLTrc9xu3U8zdOaYxmbOvJHlPGFUtqrtHtZg+DBJBLcErY w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10962"; a="23473546"
-X-IronPort-AV: E=Sophos;i="6.05,216,1701158400"; d="scan'208";a="23473546"
-Received: from fmviesa002.fm.intel.com ([10.60.135.142])
- by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Jan 2024 16:05:51 -0800
+ t=1706166651; x=1737702651;
+ h=message-id:date:subject:from:to:references:in-reply-to:
+ content-transfer-encoding:mime-version;
+ bh=jPBZarQldRU0bGjXoS5SJC5MuOsL8WNCScU/7EDZguY=;
+ b=WDJvlYV44Mkfb++DVrnXEIlbFsSRnXQk1M9/ZWnqVVloWwcRDeT54zkb
+ siz3WO2B+Oy+quXpxP4TuslXttuZJRRQHtTCi2dd1vXPaMBZjtfBj4KHV
+ IjeVt2+Y8UIyPpBkha27dldPslunw7sg4vrSfBTpAE2Vs9KYXMufcrhEs
+ eRc6lTWthKoEq7cjovpZv30u6GJqUIIGFm5PHGdrhhdebdSCjU+dtlCbn
+ rqJkvplPbox6S6XxA2sjNsUYDq1Sbxc0V7DB9yXy87nohNFzQVTFfyEk6
+ qvoPlKJbip3Hr2CpVJCPcDylOg8oDUQ3NI2RZNk6O92q4iMtlbhCJpOr4 g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10962"; a="9194443"
+X-IronPort-AV: E=Sophos;i="6.05,216,1701158400"; 
+   d="scan'208";a="9194443"
+Received: from orsmga003.jf.intel.com ([10.7.209.27])
+ by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 24 Jan 2024 23:10:50 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.05,216,1701158400"; d="scan'208";a="20879515"
-Received: from orsmsx603.amr.corp.intel.com ([10.22.229.16])
- by fmviesa002.fm.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
- 24 Jan 2024 16:05:50 -0800
-Received: from orsmsx611.amr.corp.intel.com (10.22.229.24) by
- ORSMSX603.amr.corp.intel.com (10.22.229.16) with Microsoft SMTP Server
+X-IronPort-AV: E=McAfee;i="6600,9927,10962"; a="736229331"
+X-IronPort-AV: E=Sophos;i="6.05,216,1701158400"; d="scan'208";a="736229331"
+Received: from orsmsx601.amr.corp.intel.com ([10.22.229.14])
+ by orsmga003.jf.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
+ 24 Jan 2024 23:10:49 -0800
+Received: from orsmsx612.amr.corp.intel.com (10.22.229.25) by
+ ORSMSX601.amr.corp.intel.com (10.22.229.14) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35; Wed, 24 Jan 2024 16:05:49 -0800
-Received: from orsmsx610.amr.corp.intel.com (10.22.229.23) by
- ORSMSX611.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
+ 15.1.2507.35; Wed, 24 Jan 2024 23:10:48 -0800
+Received: from ORSEDG601.ED.cps.intel.com (10.7.248.6) by
+ orsmsx612.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35; Wed, 24 Jan 2024 16:05:49 -0800
-Received: from orsedg603.ED.cps.intel.com (10.7.248.4) by
- orsmsx610.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35 via Frontend Transport; Wed, 24 Jan 2024 16:05:49 -0800
-Received: from NAM10-DM6-obe.outbound.protection.outlook.com (104.47.58.101)
- by edgegateway.intel.com (134.134.137.100) with Microsoft SMTP Server
+ 15.1.2507.35 via Frontend Transport; Wed, 24 Jan 2024 23:10:48 -0800
+Received: from NAM11-DM6-obe.outbound.protection.outlook.com (104.47.57.168)
+ by edgegateway.intel.com (134.134.137.102) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.35; Wed, 24 Jan 2024 16:05:49 -0800
+ 15.1.2507.35; Wed, 24 Jan 2024 23:10:48 -0800
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=hbI5mdTNNzlz22RM7nTiVb8KxXJwFz0YBwbVkRbWMV01mh/BLdqNRvIWYYExtyqTWSpTwzXbiBqK0j6WVTMBaJdzo3tL0R4E3zH6GPnUVbaRYMDwW7XpkTLixNp4SgG0V2Sp6lA5cAbCVCQ1RlDF0v0zW5yzNWxZWqWkqJwCL7bbzj8Bmz91aqcUZd2EaEJVApM7MHvdV3+yLdURAcjfUaTO30HnPBurJVuce9MhwlZHqcI0pYe6xn+QWVkMd+arZFEOb0BM38GmbwSaPt9w3/F703TMRErzDGNSKwMA0jjHguus4pxc700teZDDvd+lLv1r2ZUykIWUd2rMoDgLUg==
+ b=AQCFbuAbrLqr8oaMOqBrQB6AQ0waiZ7wli7SdZgcRCbfKXN3UqIGR2OmyzDEunpPc76RGWwPe90LfukAT13+LcIQyPPWsHB8sJ+wOn3lwmgnwrrABQJvd4O7ME3KkPqFSxdelxvRpZj/OtUemX+o8aTnp4cRRB7zen4I/HI19f99bXGn5n3UOkoCFk1RTtZIAokfldqPHlqlo3xr6TcfUJBlPgAlGMxv/iLmtikowyoUsmaS3hqVza8fk7+2B2V+d2isGH5+TIJ5UYdvFjRfFo/9b5cM78ArCAvzGumhwe+Uwr8Vkc1kCI9yV3Fvq6hw+DQ0GxCJUzjnwy0C0x3cQg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=bmfTDSZPfwgwK7VfdG0CSjQKsk/IPGEdfmODFGqkSJA=;
- b=XK+4sDcdm2k/tBMYAq0d0UfO2SaZEImWvIru6tkgA8EIdQDALffUhTGGkHotXynzGUpRUCnjBwzB2SB+p7nyuXMjcpJ3Crdq57bBb/WUQuOJqRMYVc5+nSpW0EcPbOzAcnx4dliPNARfhUz0QJ15kYJO5gNHKTo9ZmALApMB0TXOda7WwHBMCq+f9ofO2xrob+2OfvtI+e9OznIp5N1RyyXPXNwy0EJUr8R5CxLxMkXu6M1GdQDES1E2wiLgfT15d/cVPYIXjM5Wcdhf1cE5v6NG0iNtPylKwlxzfRCJNVv6dMfL+NZDuUWAu2FDLMlacDbWnJyvO2Ph+VunKSXzIQ==
+ bh=vTrlcv7r6vvisEE495ytd4c8KLGoZHliX3KirLwtpC0=;
+ b=VKTb8lRaq44o/52U7v0pstnGtoCVoVzonFZvyuEAFM3cdn/fiLmNmBvbGIMa3T6M3WegU5ONaKCKwfwJGP5JMzhCAbEIGlvb4d+c0M0YiHujIiFtazkKKN04futd6Cz3vGvhWjNtdepjoFxPHQCfcY2RCvIJYzb0U6WhyWPsEdVyMofXrUUnXFp5ZzQUd7jlmJYxY2sajZm0nzOvSV9Fxnp3aGHfzqQU62OVduM5YMhMoqOIkmqDlkwlliKkzLpZUGy+c7gXG1eEmzQQSulJ/Na/UWY07GfUJY4JmeUsrOv8B5om9ybq3KzSO0vkZSNTqh8F3rkPjnVpX98DLqdfzQ==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
 Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from PH7PR11MB6522.namprd11.prod.outlook.com (2603:10b6:510:212::12)
- by DS0PR11MB6376.namprd11.prod.outlook.com (2603:10b6:8:c8::16) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7202.37; Thu, 25 Jan
- 2024 00:05:42 +0000
-Received: from PH7PR11MB6522.namprd11.prod.outlook.com
- ([fe80::b9a8:8221:e4a1:4cda]) by PH7PR11MB6522.namprd11.prod.outlook.com
- ([fe80::b9a8:8221:e4a1:4cda%4]) with mapi id 15.20.7202.035; Thu, 25 Jan 2024
- 00:05:42 +0000
-Date: Thu, 25 Jan 2024 00:04:56 +0000
-From: Matthew Brost <matthew.brost@intel.com>
-To: Christophe JAILLET <christophe.jaillet@wanadoo.fr>
-Subject: Re: [PATCH] drm/i915/guc: Remove usage of the deprecated
- ida_simple_xx() API
-Message-ID: <ZbGlqD6zyyp4DsmH@DUT025-TGLU.fm.intel.com>
-References: <7108c1871c6cb08d403c4fa6534bc7e6de4cb23d.1705245316.git.christophe.jaillet@wanadoo.fr>
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <7108c1871c6cb08d403c4fa6534bc7e6de4cb23d.1705245316.git.christophe.jaillet@wanadoo.fr>
-X-ClientProxiedBy: SJ0PR05CA0053.namprd05.prod.outlook.com
- (2603:10b6:a03:33f::28) To PH7PR11MB6522.namprd11.prod.outlook.com
- (2603:10b6:510:212::12)
+Received: from DM4PR11MB5341.namprd11.prod.outlook.com (2603:10b6:5:390::22)
+ by DS7PR11MB6199.namprd11.prod.outlook.com (2603:10b6:8:99::9) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.7228.22; Thu, 25 Jan 2024 07:10:46 +0000
+Received: from DM4PR11MB5341.namprd11.prod.outlook.com
+ ([fe80::9cbe:76c6:c834:b88c]) by DM4PR11MB5341.namprd11.prod.outlook.com
+ ([fe80::9cbe:76c6:c834:b88c%7]) with mapi id 15.20.7228.023; Thu, 25 Jan 2024
+ 07:10:46 +0000
+Message-ID: <5acddd6d-9e22-4ef4-ab97-9b1b4e642dad@intel.com>
+Date: Thu, 25 Jan 2024 12:40:40 +0530
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 2/7] drm/i915/hdcp: HDCP Capability for the downstream
+ device
+Content-Language: en-US
+From: "Nautiyal, Ankit K" <ankit.k.nautiyal@intel.com>
+To: Suraj Kandpal <suraj.kandpal@intel.com>, <intel-gfx@lists.freedesktop.org>
+References: <20240112074120.159797-1-suraj.kandpal@intel.com>
+ <20240112074120.159797-3-suraj.kandpal@intel.com>
+ <c1f454e1-b461-45de-a388-3751db5eade1@intel.com>
+In-Reply-To: <c1f454e1-b461-45de-a388-3751db5eade1@intel.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: PN2PR01CA0233.INDPRD01.PROD.OUTLOOK.COM
+ (2603:1096:c01:eb::12) To DM4PR11MB5341.namprd11.prod.outlook.com
+ (2603:10b6:5:390::22)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PH7PR11MB6522:EE_|DS0PR11MB6376:EE_
-X-MS-Office365-Filtering-Correlation-Id: abfc9c64-f38b-4b20-3e05-08dc1d395ea9
+X-MS-TrafficTypeDiagnostic: DM4PR11MB5341:EE_|DS7PR11MB6199:EE_
+X-MS-Office365-Filtering-Correlation-Id: e499f0c7-59de-497d-4bcb-08dc1d74c04f
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: MuFEAWVdtIuRzaADNEWGBvlHQJrZcQ2aWRqwnG6eLTodANXaOpF+g1nWvdjjMRckGco3yqNSzn8lHGeOud4gwLAg0PoAcHK1t9Wunwc+01YjfqVXpOLKH8CZbNwTNf0JmsclcSP8ydiyzwTboxnaqPN3c7KB9HfiDBpRCNAHGgqu7PS+Ft5isMc7C9tsT5qPYtuPNReTMVO6gJhMK4reBq8Yz38CDsZTWq/ZoNMNpl1J5DRwY8B7392Ym4NPIVD9zuakai7HDvbk1/WfhFCt9kdv6PnquTYHfG54ldCBGzc1XWbm4PpZ9U+kdkLS8j7IF2HQZFhoPaMn9ouqkeoI3EOp80JEiHGOtueXi6okhD7/3ch1OQ/cRFx2tdjlUrVJLtm5y99bTec7ZXdIzMBK4wXgP0dNBh9B0+PIQA0lpfYsI25pL/0kkYdBNgi+2oXjPeytOUwOz3BYuSXiQhAKLHwZSevQ1uxe0v4Nwz/JKte6s3fSj7W2z/8YOYWLPAtDsQRDKPtSwD6G4DzcL7o951b+i3NhuEoJ6bj5DOBBVZz9o0H1RVT4etqbYpiMfcAI
+X-Microsoft-Antispam-Message-Info: ocemntlqBav+6OLWSioXgay0RzjhnYZTtl+hrgHfI19DYFSOaGg/drWDlU15e/Lerq439b25q9UnwxLapvewX7gC5OVJBQx0XrBXsEWbP/BsDJ4UqBQfCxLiyzfvn0U67fQVSVog3DqjtOXsbNYQQErHyDDOBpZbogZnPO+nZzw5nSfFUMu8Rn45u6OoBBMJB1hL1cYVLvlu9puNB8pBuCiQHzASUwClWnQHTb8+70TXqsJPXJqeuMp9O9Y6MiohRDl6lHRqwNCRYTPqim+FWZE1/j90b6l/SvquyJD0t4xg/mzxReLpGRRK69wkXUySH/NeX/J06pAFwPIu8XmBeaERXTkOmA3hmaREPN9zXcu9u1ilGsxVhPmMGLLC3VJ1n/m0knSeIJxKC+S0Dx6yQ51QvdcwKx01WilhRNWd/kRqO7RcvDih6ZqrNa6vzo5mgLxe6EBEIphGUxTobtbInmZ5uGvXRXroNRbLZywVExR5NZQUTTQJBIt9+tVn0NDne8vgAwoTIrZC88OKGqTyl9NxPKstkwF+93iMluPtdIlPeyZBHAU+/OvYqYIxeHOCFGrdupaiA6lH1zOzFwfDjOL7v60zB2orq2IZgPsXv6xbCbEwrWZKQgCqxVcBJeuVbAQsA79tSvd3Le2SZCrh+w==
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:PH7PR11MB6522.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230031)(396003)(136003)(346002)(376002)(366004)(39860400002)(230922051799003)(186009)(64100799003)(451199024)(1800799012)(8936002)(66946007)(5660300002)(86362001)(2906002)(44832011)(7416002)(54906003)(316002)(8676002)(6916009)(66556008)(4326008)(66476007)(478600001)(6486002)(6512007)(82960400001)(38100700002)(26005)(83380400001)(41300700001)(6666004)(6506007);
+ IPV:NLI; SFV:NSPM; H:DM4PR11MB5341.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230031)(346002)(376002)(136003)(396003)(366004)(39860400002)(230922051799003)(451199024)(64100799003)(1800799012)(186009)(31686004)(66556008)(66476007)(66946007)(5660300002)(316002)(6666004)(8676002)(26005)(8936002)(2616005)(83380400001)(6512007)(2906002)(82960400001)(478600001)(6506007)(36756003)(41300700001)(86362001)(31696002)(38100700002)(53546011)(6486002)(43740500002)(45980500001);
  DIR:OUT; SFP:1102; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?xXxPdjGh/TcigKPw/fB8w+2xqnvm3EmbwUFSybdltINdD/pGaVjeZcgKBl1q?=
- =?us-ascii?Q?A1iqHAehBtbhTo3hOj488bvkBUQyib9hhlPURNe2f+sNkup+Yiluz0e76roz?=
- =?us-ascii?Q?R+UJyAWHHuJ8TLRcxJGLU2TekAS57RKUf4c3jLZXnNc1ewkB1lBe22Rmg+N7?=
- =?us-ascii?Q?psaVXZmz0bKLKpltfABBTMrb+LGe0i1b4LwxTbM3ZT2VRtUnqLHvvLFBT0zU?=
- =?us-ascii?Q?TfZm2KCiEeJjjwzM++XhzZoV28pKCnWIpKSgwH4RRJqlNv7ZlNm23WOzRwGt?=
- =?us-ascii?Q?426XbGTFzDloq0DPYnAUp0vCIsT73LaXWA1j93yAfFJCmbBt1ejcJGFG0pRH?=
- =?us-ascii?Q?rsox4agQZOH+FUKZy7IW90li/nvxYEnUSM4URxnMUvplaRrgwYneQBKJlAKt?=
- =?us-ascii?Q?qdD6kyus6JxVmFPQ29lyec+NLccDXeeuLvruoTbC+VeB1sK7yP4STMdYHLg+?=
- =?us-ascii?Q?pttu/5kmpnJ9mpPEDvOc5A6WMnaBFGkNeF0xyMogAX8E+ygQ6GiuqsDUGLVx?=
- =?us-ascii?Q?DYHJRL19FTPZDFDZNlafainvYTWTMIYyDwtBDYR1L5iVKL12p669pO5FXHuC?=
- =?us-ascii?Q?faVcCliskxeEm/Gh+bRTxhwDWvyRXxUMNzZDHjA6ftVSNjHyRxqioz20OMwa?=
- =?us-ascii?Q?HQrQ2Uc1ADUL4zJhVgH/GKKatQ7dLRkhWNB6YdOBVN0ErT2jufNzOokHhN75?=
- =?us-ascii?Q?f+9eabsDwzNrnskKCHjGIZSeCRkExfYxwdCUPYfztxZ0rpJ1zdwGTkLOGrK6?=
- =?us-ascii?Q?zQAS5z6XAdoaTwxa/pP+f4Tjyg3Qt1K8ISmx0flm/zRO2ryFZVZ9HXzmDuWA?=
- =?us-ascii?Q?iFHHQI4EzxbyseNfR1t8V7ap2RKzqDJgVFlEDePc/+LUup8ZOA6EYV0+zRWY?=
- =?us-ascii?Q?jAYOMlr56JNolm9dQnju9/hfx1VePGuvzE/VgCz2+yuJcC6edDpr5zsvGCBW?=
- =?us-ascii?Q?OObgThAvZEtScAAFgiYmjo55qI/EVadpFEJYPbY1IBxFWqkHI+tqZvu6XKww?=
- =?us-ascii?Q?ObDIu2XlI33efh3mto9ROwH2j22I47aBJqikiV0UKnZOF5X8/L3tHMDsLXQh?=
- =?us-ascii?Q?InsVttOIY8PTiJ2zowyaOZOhg2VRMoy5H4kMzhTQ7Z/W8/Ap5Nns5PiI+OBs?=
- =?us-ascii?Q?iNkT5KybRgMKHyEuzITZyLKRF+9iIutIrNwwLJMbcIsYsnunPkvXRI2lNJPc?=
- =?us-ascii?Q?g1AJMCFf+AESZO+uoT1A61Zqcu9JY7SjL3++N+6JUNwiVFwTG+XYsvpa1Ff9?=
- =?us-ascii?Q?VOTRqKUPKDv3RgNR1ebkx/Oi8fvHClbVik5/WPmKk0jbBPy6c2BO3c3X6mcm?=
- =?us-ascii?Q?/pXvCjljd4Kq4rukqfBee4pSgCli35qu5a1jkLtqYuGqyvQmiZfFt3dOON+E?=
- =?us-ascii?Q?a2js/wkOkgOmCuV3nTp8oTuIVq+TJspbX/VKfo5HymDh/hiWsYBzDnMXVhbS?=
- =?us-ascii?Q?imDy+sfTgA+E8wvQZbi8gsleGKNFvB+LA5OlFXPNLCGRKCGelGVxPJjBd8MB?=
- =?us-ascii?Q?AxBpFAbMDA89rJ1P6L8Kkv349cvhVXo5KwrC34ABdJBOwZPaASiRZUGpHXQl?=
- =?us-ascii?Q?wAzctrmayPh/u4k1EoDiZLGkqFDoNVMHX9GCz/3deH5Yy/Yck+mLID7gQzQX?=
- =?us-ascii?Q?HA=3D=3D?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: abfc9c64-f38b-4b20-3e05-08dc1d395ea9
-X-MS-Exchange-CrossTenant-AuthSource: PH7PR11MB6522.namprd11.prod.outlook.com
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?ZUFBL1kyN05MSzFQd3RBYTNiRUdpQnNqZ0sveGg2OFFZNUtnbzV2VUUwNVhk?=
+ =?utf-8?B?VXhGZE1lVUM2UGZUN3pIY2FiUU40VzdaRkVKeSs3WWRVcEt0QVJkTW1VSmNi?=
+ =?utf-8?B?STB6b0NZV1ozSitYREZOclIxeWcrYm5sSGRiOWU4eGFEZGd0a1pXOHVWUnRG?=
+ =?utf-8?B?REs4RUU4TVdBMGxEVFAxRmFMQjZ4OHFXdHREYnZXR3ptcGV4RFRWREs0MGRt?=
+ =?utf-8?B?RkZFSE4zVUNUSGlSdTU2UEl6bHdSR3U2dkRxYjQyZm9uUGVVQWJTU1AxUEVz?=
+ =?utf-8?B?MDI5eWFJSmRPWkxaK2I2UWhYdnJVU1R2SE8vNis4WlZsb1VUUnY1bXhtdmV1?=
+ =?utf-8?B?K2hYZWp4aGlIeTlUUlcwOXlOUzBnWUFmSHVZNzRPNmRBQTF3Vnk4U2pLMkk4?=
+ =?utf-8?B?TEhZcGxnS1piNWs0MzhRWVZ0bWJ3cXZsekV1THNaZGxuMEdDS1dLcVQwdW4v?=
+ =?utf-8?B?QUIrdDd3aGd3WFZVaXcvOFpuZTlZajgvUWs2eWEwZWQrOTI4OUJLZ3AyeTQv?=
+ =?utf-8?B?Ry9BYW85V3o4MWRQTDNrbUdmMmpaUmtzNTR5a3M0OTY0RHBSVFJlaEdrdisy?=
+ =?utf-8?B?ekhxaW8yNWNOQlV2bkxESWNwUzV3STB3L1VYb3BOYzRWMEVIT2tqN1Axdjdq?=
+ =?utf-8?B?QlJsK3hvZ2JCcDJUbWdyK0tCZ25NVE9ZLzU1amwxWklKVVdFazFhMGZnMUtW?=
+ =?utf-8?B?cjE5aUVKeU8zcFJ0TmFCQ01GZzU2UFVhYVh0c2V0QWFRK3NXZ3htc3dCbzU2?=
+ =?utf-8?B?emJmZmIxZ3RlWmJBMmVITGRGRTdKYVVEZEpwdFB0c1A0MVBFYTdNR0ZIdktm?=
+ =?utf-8?B?bmYxQk8xOVowTmVicWxvZjh0cUhKdW1RakZRZE5QTVA1S01tV2NseFRmTmlH?=
+ =?utf-8?B?c3RxSG1oazgvcnVld2pqR0U2dGgra0ZxaDlrdUVZZWJvNGZaQWVyU0VkNUFo?=
+ =?utf-8?B?aFBmSUw5ZnJWODZ5MG5aajBtdU5OWVp4R2xJNXM0eUd0c2dKWnZuZTNubXdU?=
+ =?utf-8?B?V1BFeG8xTFVBcUxBZGdBYXJnRUpic2dyUmF1SkRQZndGWUVGVlp5ejNpa255?=
+ =?utf-8?B?UGVWRER2U3phc0NZVTExbzhYVHFxeEdiM2xjYTdwZGFRdmNkek8yMnpLUmNM?=
+ =?utf-8?B?eDhrYWpHOWFrNFFzdjQ2WDRSWTM2WWdJVTlYK05lQ1FETW9tbTVLaVBmVE80?=
+ =?utf-8?B?bFpSQXVvdDQ2NzRkenpuVkRxMjNnaGV2Z0FkYTlIZTJRRUVjdzJGRDNoK0ZC?=
+ =?utf-8?B?VWFuK1kyeWhGV29sblcrVk5BYlpQelYzWFlMRnJvUThxODRXQUR2ekxKOVRj?=
+ =?utf-8?B?dWE1UGRPc1ZqeVVaUmF4UFFUQWtLOU4rWXpxSkVMc2ZyZHg3elZacE1oRkFh?=
+ =?utf-8?B?NHcxUW52QVl6NlNjZGRQekt1K0Z5dk1hUllUbU1yY0FrZXdFTk81emp5eXV6?=
+ =?utf-8?B?b0ZCN0FkVUpPajhrT2VTOHhuQUlTSEE1NDExMWZiUDF5bGY5cGc3d29KK1k2?=
+ =?utf-8?B?dHBSVXowWGd6Z0p0Tk9RUTRuSSsyRmtQcDloblNHSWhRYUx0cHNUaTlLcm5O?=
+ =?utf-8?B?Z0Qzc2toU2c5ZU5FTVFRdktlS0VOcHlXQk90ZVFIZzRZQW5YMzdybnV6UW1q?=
+ =?utf-8?B?dm9qQXM1S1FOUXFyRHRMcWRjV0gvRmFZOHVaSU1KL00yNHZ5WW84S2tjTkY1?=
+ =?utf-8?B?c2ozTmhETDQ0d3ZaR1JWTzNRRlJGaUpQR3lPeklpdTNDejAzbzZvZjVuRTNq?=
+ =?utf-8?B?blVJNnFnM0lZK0p4RXJnVXB1TmxzMVN2WHFGNTdkY1l4bDBubS9nQWtucEhS?=
+ =?utf-8?B?cDZQcmJhZzIycE5kdi9RZkZZZzFmWFlUUkxZTUhBTXJvMXpzSlB3T0czcE52?=
+ =?utf-8?B?SEhsYTlkeU9Cd2g2dVZyZTlJcHN5R21MTTRZUHNOL3hqeWtqZTdpRGl0a0I3?=
+ =?utf-8?B?MUlrcUxXWGlmcUJhRzZwQ3JuRGxWMDVabWFEcUczVG1Xd3dUUkFQRTRuanhN?=
+ =?utf-8?B?NFVxTXNzeElmUy9HeVhkd1ZWNWJXOFNSa1hMclFEVjlGMFJxbjhEamZlT2VO?=
+ =?utf-8?B?Qno4aHVMc3ZBc3RIUHZjcFF4dXlqcG54Ui9GNzByUUZNMlZHNmpIb3pmYUtJ?=
+ =?utf-8?B?VzRqWGlFVmJZWmg1eEVadWZXNW01bzIwOHEzc0x5bytpeTAwbWx6SE9jcWM5?=
+ =?utf-8?B?VXc9PQ==?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: e499f0c7-59de-497d-4bcb-08dc1d74c04f
+X-MS-Exchange-CrossTenant-AuthSource: DM4PR11MB5341.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 25 Jan 2024 00:05:42.0127 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 25 Jan 2024 07:10:46.3722 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: AYxfe6licZEuBjP+0v3GvXpW60KmDiNtSpSf4dT3J/EFNKb5Gf2IUEhOtS9aV9ybUoM3vHM5spip6v9RhrUV5w==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS0PR11MB6376
+X-MS-Exchange-CrossTenant-UserPrincipalName: 6PbG1cgckUbX3E+hYqWyFZxl685sBdj+uufxduSxaORlFpGgDUeIJAgkg7No54o91z57Qc0+qse8g6qdMnsNiAgSV570/Pl+VvIeFA51T8E=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS7PR11MB6199
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -147,59 +157,211 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org, kernel-janitors@vger.kernel.org,
- linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
- Daniel Vetter <daniel@ffwll.ch>, Rodrigo Vivi <rodrigo.vivi@intel.com>,
- David Airlie <airlied@gmail.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Sun, Jan 14, 2024 at 04:15:34PM +0100, Christophe JAILLET wrote:
-> ida_alloc() and ida_free() should be preferred to the deprecated
-> ida_simple_get() and ida_simple_remove().
-> 
-> Note that the upper limit of ida_simple_get() is exclusive, but the one of
-> ida_alloc_range() is inclusive. So a -1 has been added when needed.
-> 
-> Signed-off-by: Christophe JAILLET <christophe.jaillet@wanadoo.fr>
 
-Reviewed-by: Matthew Brost <matthew.brost@intel.com>
+On 1/24/2024 6:50 PM, Nautiyal, Ankit K wrote:
+>
+> On 1/12/2024 1:11 PM, Suraj Kandpal wrote:
+>> Currently we are only checking capability of remote device and not
+>> immediate downstream device but during capability check we need are
+>> concerned with only the HDCP capability of downstream device.
+>> During i915_display_info reporting we need HDCP Capability for both
+>> the monitors and downstream branch device if any this patch adds that.
+>
+>
+> I agree cases where MST hub/docker and sink are of different 
+> capabilities, this creates a confusion.
+>
+> with this change, perhaps kms_content_protection IGT can also be 
+> changed to check for MST hub's capability.
+>
+> Only thing is that for hdmi the 'remote_req' doesnt make sense.
+>
+Instead of changing the hdcp_2_2_capable can we just have a separate 
+function for intel_dp_remote_hdcp2_capable(), which uses aux = 
+&connector->port->aux.
 
-> ---
->  drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c | 13 ++++++-------
->  1 file changed, 6 insertions(+), 7 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c b/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
-> index a259f1118c5a..73ce21ddf682 100644
-> --- a/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
-> +++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
-> @@ -2156,11 +2156,10 @@ static int new_guc_id(struct intel_guc *guc, struct intel_context *ce)
->  					      order_base_2(ce->parallel.number_children
->  							   + 1));
->  	else
-> -		ret = ida_simple_get(&guc->submission_state.guc_ids,
-> -				     NUMBER_MULTI_LRC_GUC_ID(guc),
-> -				     guc->submission_state.num_guc_ids,
-> -				     GFP_KERNEL | __GFP_RETRY_MAYFAIL |
-> -				     __GFP_NOWARN);
-> +		ret = ida_alloc_range(&guc->submission_state.guc_ids,
-> +				      NUMBER_MULTI_LRC_GUC_ID(guc),
-> +				      guc->submission_state.num_guc_ids - 1,
-> +				      GFP_KERNEL | __GFP_RETRY_MAYFAIL | __GFP_NOWARN);
->  	if (unlikely(ret < 0))
->  		return ret;
->  
-> @@ -2183,8 +2182,8 @@ static void __release_guc_id(struct intel_guc *guc, struct intel_context *ce)
->  							   + 1));
->  		} else {
->  			--guc->submission_state.guc_ids_in_use;
-> -			ida_simple_remove(&guc->submission_state.guc_ids,
-> -					  ce->guc_id.id);
-> +			ida_free(&guc->submission_state.guc_ids,
-> +				 ce->guc_id.id);
->  		}
->  		clr_ctx_id_mapping(guc, ce->guc_id.id);
->  		set_context_guc_id_invalid(ce);
-> -- 
-> 2.43.0
-> 
+The common code for reading HDCP2_2 Rx caps can be pulled out in a 
+separate function, which we can call only in case of MST when we read 
+remote.
+
+Also we might need to have similar thing for HDCP1.4.
+
+
+Regards,
+
+Ankit
+
+
+>>
+>> Signed-off-by: Suraj Kandpal <suraj.kandpal@intel.com>
+>> ---
+>>   .../drm/i915/display/intel_display_debugfs.c  | 19 +++++++++++++++----
+>>   .../drm/i915/display/intel_display_types.h    |  2 +-
+>>   drivers/gpu/drm/i915/display/intel_dp_hdcp.c  |  4 ++--
+>>   drivers/gpu/drm/i915/display/intel_hdcp.c     |  6 +++---
+>>   drivers/gpu/drm/i915/display/intel_hdcp.h     |  2 +-
+>>   drivers/gpu/drm/i915/display/intel_hdmi.c     |  2 +-
+>>   6 files changed, 23 insertions(+), 12 deletions(-)
+>>
+>> diff --git a/drivers/gpu/drm/i915/display/intel_display_debugfs.c 
+>> b/drivers/gpu/drm/i915/display/intel_display_debugfs.c
+>> index d951edb36687..457f13357fad 100644
+>> --- a/drivers/gpu/drm/i915/display/intel_display_debugfs.c
+>> +++ b/drivers/gpu/drm/i915/display/intel_display_debugfs.c
+>> @@ -210,7 +210,8 @@ static void intel_panel_info(struct seq_file *m,
+>>   }
+>>     static void intel_hdcp_info(struct seq_file *m,
+>> -                struct intel_connector *intel_connector)
+>> +                struct intel_connector *intel_connector,
+>> +                bool remote_req)
+>>   {
+>>       bool hdcp_cap, hdcp2_cap;
+>>   @@ -220,7 +221,7 @@ static void intel_hdcp_info(struct seq_file *m,
+>>       }
+>>         hdcp_cap = intel_hdcp_capable(intel_connector);
+>> -    hdcp2_cap = intel_hdcp2_capable(intel_connector);
+>> +    hdcp2_cap = intel_hdcp2_capable(intel_connector, remote_req);
+>>         if (hdcp_cap)
+>>           seq_puts(m, "HDCP1.4 ");
+>> @@ -307,7 +308,12 @@ static void intel_connector_info(struct seq_file 
+>> *m,
+>>       }
+>>         seq_puts(m, "\tHDCP version: ");
+>> -    intel_hdcp_info(m, intel_connector);
+>> +    intel_hdcp_info(m, intel_connector, true);
+>> +
+>> +    if (intel_encoder_is_mst(encoder)) {
+>> +        seq_puts(m, "\tHDCP Branch Device version: ");
+>> +        intel_hdcp_info(m, intel_connector, false);
+>> +    }
+>>         seq_printf(m, "\tmax bpc: %u\n", connector->display_info.bpc);
+>>   @@ -1153,7 +1159,12 @@ static int 
+>> i915_hdcp_sink_capability_show(struct seq_file *m, void *data)
+>>         seq_printf(m, "%s:%d HDCP version: ", connector->base.name,
+>>              connector->base.base.id);
+>> -    intel_hdcp_info(m, connector);
+>> +    intel_hdcp_info(m, connector, true);
+>> +
+>> +    if (intel_encoder_is_mst(connector->encoder)) {
+>> +        seq_puts(m, "\tHDCP Branch Device version: ");
+>
+>
+> Perhaps MST HUB HDCP version?
+>
+>
+>> +        intel_hdcp_info(m, connector, false);
+>> +    }
+>>     out:
+>> drm_modeset_unlock(&i915->drm.mode_config.connection_mutex);
+>> diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h 
+>> b/drivers/gpu/drm/i915/display/intel_display_types.h
+>> index ae2e8cff9d69..aa559598f049 100644
+>> --- a/drivers/gpu/drm/i915/display/intel_display_types.h
+>> +++ b/drivers/gpu/drm/i915/display/intel_display_types.h
+>> @@ -507,7 +507,7 @@ struct intel_hdcp_shim {
+>>         /* Detects whether sink is HDCP2.2 capable */
+>>       int (*hdcp_2_2_capable)(struct intel_connector *connector,
+>> -                bool *capable);
+>> +                bool *capable, bool remote_req);
+>>         /* Write HDCP2.2 messages */
+>>       int (*write_2_2_msg)(struct intel_connector *connector,
+>> diff --git a/drivers/gpu/drm/i915/display/intel_dp_hdcp.c 
+>> b/drivers/gpu/drm/i915/display/intel_dp_hdcp.c
+>> index bec49061b2e1..90b027ba3302 100644
+>> --- a/drivers/gpu/drm/i915/display/intel_dp_hdcp.c
+>> +++ b/drivers/gpu/drm/i915/display/intel_dp_hdcp.c
+>> @@ -649,13 +649,13 @@ int intel_dp_hdcp2_check_link(struct 
+>> intel_digital_port *dig_port,
+>>     static
+>>   int intel_dp_hdcp2_capable(struct intel_connector *connector,
+>> -               bool *capable)
+>> +               bool *capable, bool remote_req)
+>>   {
+>>       struct drm_dp_aux *aux;
+>>       u8 rx_caps[3];
+>>       int ret;
+>>   -    aux = intel_dp_hdcp_get_aux(connector, true);
+>> +    aux = intel_dp_hdcp_get_aux(connector, remote_req);
+>
+> Inline with the comments on the previous patch, this would also be 
+> required to change.
+>
+> Otherwise the patch looks good to me.
+>
+>
+> Regards,
+>
+> Ankit
+>
+>>         *capable = false;
+>>       ret = drm_dp_dpcd_read(aux,
+>> diff --git a/drivers/gpu/drm/i915/display/intel_hdcp.c 
+>> b/drivers/gpu/drm/i915/display/intel_hdcp.c
+>> index c3e692e7f790..b88a4713e6a8 100644
+>> --- a/drivers/gpu/drm/i915/display/intel_hdcp.c
+>> +++ b/drivers/gpu/drm/i915/display/intel_hdcp.c
+>> @@ -161,7 +161,7 @@ bool intel_hdcp_capable(struct intel_connector 
+>> *connector)
+>>   }
+>>     /* Is HDCP2.2 capable on Platform and Sink */
+>> -bool intel_hdcp2_capable(struct intel_connector *connector)
+>> +bool intel_hdcp2_capable(struct intel_connector *connector, bool 
+>> remote_req)
+>>   {
+>>       struct drm_i915_private *i915 = to_i915(connector->base.dev);
+>>       struct intel_hdcp *hdcp = &connector->hdcp;
+>> @@ -186,7 +186,7 @@ bool intel_hdcp2_capable(struct intel_connector 
+>> *connector)
+>>       mutex_unlock(&i915->display.hdcp.hdcp_mutex);
+>>         /* Sink's capability for HDCP2.2 */
+>> -    hdcp->shim->hdcp_2_2_capable(connector, &capable);
+>> +    hdcp->shim->hdcp_2_2_capable(connector, &capable, remote_req);
+>>         return capable;
+>>   }
+>> @@ -2374,7 +2374,7 @@ static int _intel_hdcp_enable(struct 
+>> intel_atomic_state *state,
+>>        * Considering that HDCP2.2 is more secure than HDCP1.4, If the 
+>> setup
+>>        * is capable of HDCP2.2, it is preferred to use HDCP2.2.
+>>        */
+>> -    if (intel_hdcp2_capable(connector)) {
+>> +    if (intel_hdcp2_capable(connector, false)) {
+>>           ret = intel_hdcp_set_streams(dig_port, state);
+>>           if (!ret) {
+>>               ret = _intel_hdcp2_enable(connector);
+>> diff --git a/drivers/gpu/drm/i915/display/intel_hdcp.h 
+>> b/drivers/gpu/drm/i915/display/intel_hdcp.h
+>> index a9c784fd9ba5..72268e593cec 100644
+>> --- a/drivers/gpu/drm/i915/display/intel_hdcp.h
+>> +++ b/drivers/gpu/drm/i915/display/intel_hdcp.h
+>> @@ -39,7 +39,7 @@ void intel_hdcp_update_pipe(struct 
+>> intel_atomic_state *state,
+>>                   const struct drm_connector_state *conn_state);
+>>   bool is_hdcp_supported(struct drm_i915_private *i915, enum port port);
+>>   bool intel_hdcp_capable(struct intel_connector *connector);
+>> -bool intel_hdcp2_capable(struct intel_connector *connector);
+>> +bool intel_hdcp2_capable(struct intel_connector *connector, bool 
+>> remote_req);
+>>   void intel_hdcp_component_init(struct drm_i915_private *i915);
+>>   void intel_hdcp_component_fini(struct drm_i915_private *i915);
+>>   void intel_hdcp_cleanup(struct intel_connector *connector);
+>> diff --git a/drivers/gpu/drm/i915/display/intel_hdmi.c 
+>> b/drivers/gpu/drm/i915/display/intel_hdmi.c
+>> index 7020e5806109..d7feef05bc47 100644
+>> --- a/drivers/gpu/drm/i915/display/intel_hdmi.c
+>> +++ b/drivers/gpu/drm/i915/display/intel_hdmi.c
+>> @@ -1733,7 +1733,7 @@ int intel_hdmi_hdcp2_check_link(struct 
+>> intel_digital_port *dig_port,
+>>     static
+>>   int intel_hdmi_hdcp2_capable(struct intel_connector *connector,
+>> -                 bool *capable)
+>> +                 bool *capable, bool remote_req)
+>
+>
+>>   {
+>>       struct intel_digital_port *dig_port = 
+>> intel_attached_dig_port(connector);
+>>       u8 hdcp2_version;
