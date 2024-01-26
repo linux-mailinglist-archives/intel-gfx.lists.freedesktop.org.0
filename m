@@ -2,62 +2,61 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4A40483E3AB
-	for <lists+intel-gfx@lfdr.de>; Fri, 26 Jan 2024 22:09:39 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5DCF083E3AD
+	for <lists+intel-gfx@lfdr.de>; Fri, 26 Jan 2024 22:09:44 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6956A10FEAE;
-	Fri, 26 Jan 2024 21:09:33 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B09B510FEB3;
+	Fri, 26 Jan 2024 21:09:34 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-lf1-f41.google.com (mail-lf1-f41.google.com
- [209.85.167.41])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0272210FEAA;
- Fri, 26 Jan 2024 21:09:30 +0000 (UTC)
-Received: by mail-lf1-f41.google.com with SMTP id
- 2adb3069b0e04-5102b43035eso385771e87.1; 
- Fri, 26 Jan 2024 13:09:30 -0800 (PST)
+Received: from mail-lf1-f44.google.com (mail-lf1-f44.google.com
+ [209.85.167.44])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B3CED10FEAB;
+ Fri, 26 Jan 2024 21:09:31 +0000 (UTC)
+Received: by mail-lf1-f44.google.com with SMTP id
+ 2adb3069b0e04-5101cd91017so749653e87.2; 
+ Fri, 26 Jan 2024 13:09:31 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=gmail.com; s=20230601; t=1706303309; x=1706908109; darn=lists.freedesktop.org;
  h=content-transfer-encoding:mime-version:references:in-reply-to
  :message-id:date:subject:cc:to:from:from:to:cc:subject:date
  :message-id:reply-to;
- bh=w3Ih5o/h7ufYfjrVAuvSf+WnrZ1VWnhrW87zuJwgU6A=;
- b=DUK2Lu5fchwx4hcI9a+XSxMjzKciRj2/f0m5BEDBCMl6g1wsrCs0L9YvHmqxOHIthr
- 5CtR4amxuYMSJ7mnP+1ToLe5FsfKtLD4WxCTn0YMwLwjn+QGc4KN85YYBP8RRQ4Ph39Y
- Ng49pRexIfTt9K/KrazpKFOiT4iDFZMuRjxZTp4bk3rBsuXyKHAT5C9l1ljRY43nKZH5
- 6Ma1aWP6JdmMjG2aeIrhA5LNZDjf4PAOb+FJyygfOyyLc60jYWTWgRrEgsSpgkM211PH
- GyH328I2CUy50xX4Qz9+pAHTqnRRMk0HbpPlEOBDg3oi/GGQLUxGXW5ZMtF51mQl11IO
- tqJA==
+ bh=997N/5pYMdYJaH4SQ9jdWihdLblZTE/8nf4wQWZMfAY=;
+ b=asCypLEWZ1jsUoqfP8aT+L1dgcsKRn7LNcKmaQy0jIxME0i8cUwth2THI46wp7ut2C
+ 85QzzymTgDpnkAnaMgT/u4m0p/qqYtXD7LW/Ee/ytll7EMqYiPmpz2d7MlBruC3imohl
+ SHQKNkLzv5WQMJP3pZOtIFnrb4wWkcCQa7pJivx0Em131ocRT3JLgawaf5ksX8YQB6ZN
+ QmlmieIs6/Zi3r/n7j11W8O2jDkTcirbnI2hBaQw5E5k1XoywXrLEfzJpYLXIIqu2Lnr
+ t8w2E7Jj6tPdRulHcHk0ieM2ms/e8RVXt1CiI9ZwwbBL0otpKkRfzjg3nGWcj1R28UJw
+ 4now==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20230601; t=1706303309; x=1706908109;
  h=content-transfer-encoding:mime-version:references:in-reply-to
  :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
  :subject:date:message-id:reply-to;
- bh=w3Ih5o/h7ufYfjrVAuvSf+WnrZ1VWnhrW87zuJwgU6A=;
- b=DRIhXWTGkjIzzHmOIhDDQCARHjGbMA8gwfZhCwOG3NSH9848JbI0rpFW4eUuRT/8MZ
- OppgqTS2LztzXcC/C+sle/yTCdVMjll3dleE8wEFRLqebJOvLpKVBb0tQFY+PWZ8PQGC
- bUFvHrpAVAmfwOzhvew/KDh+qv02/oumc339MsRYwZB0MvnDQFjlLFMIiAP6BpQNEEBr
- dtJiIU2GdQg/BG8A44xkr0V2322AxZQ6a41DpWMYc4i+Xg1Gy5eYxLLsl6O7R3WUX9a6
- /f8l7tjoi0bpUy0OzsBBulRXwlKbD7TKsM4XCHWEDjKLU5wviJ2XOUZeuQgqdWm3MrQm
- VSUA==
-X-Gm-Message-State: AOJu0Yyf0MdCKoNKg2CzYJtRGKK76oXviRPavW0ePkJg+LvPEIg3VZhT
- k2KiU7pRuV3S7b12nMv0EbJHvgQV9f1Lh1a1N16Ptz3Rdyw8pPKbnnFWgbzuvVA=
-X-Google-Smtp-Source: AGHT+IFw/WfW1gKWpDcr0TVJm/EpAYyv0DgSBxv+iX5BdTIauRZBE0ymxEwPfw4aHJM8cjrgifvkDg==
-X-Received: by 2002:a05:6512:2209:b0:50e:4098:3798 with SMTP id
- h9-20020a056512220900b0050e40983798mr169512lfu.60.1706303308552; 
- Fri, 26 Jan 2024 13:08:28 -0800 (PST)
+ bh=997N/5pYMdYJaH4SQ9jdWihdLblZTE/8nf4wQWZMfAY=;
+ b=Hs6/v5XmxLNDqy74Q7FSf9EFCSxhlICLvIZjtBbcN49e/m9StG2N+8GRET4hIWTxKH
+ QM4T5VL8Ofwe0+Vbwg05iOrdncCp7Act/QBgNwr/n+Jc/2UEkVA3yu6wdNpgWYCn5Elq
+ 3ufxM54fmp4FYCDkZX+XxbNlur76VUryOxvhnGa4XE+/gOzd6kBCcVsnL8yvHuckxRHc
+ PeFI8jOaG2c/2yE/zNDJimWow7vojZZc76bsNgN+zAdQleFoiAk2Z43QkLjzEN+7k/Aj
+ LQs2ytLkrmUNzfNbN6dpyNySIumBXDX4MyQDDXla0lD4V9wInxXmYFrfFW/DQGppvSKu
+ V5gQ==
+X-Gm-Message-State: AOJu0Yzn7rL1lu5HIcA91xCvAipD4ZXb2fUwGljJVag3S/kXW1PKeUI0
+ 0G+ucbUjYUxjCRHiBlXot1AWavkWMB7lFUiE7Jv1CGny7RQhP2mmdmFwmSS5I/4=
+X-Google-Smtp-Source: AGHT+IGbm3RWdfGsCm9OMJ8/K+Nlgo7c0NiQYlKiJ9ODaA8hrpvA1pbDdj//NTsItCkO3XCrV0Yq0w==
+X-Received: by 2002:a05:6512:3ca1:b0:50e:609c:ab90 with SMTP id
+ h33-20020a0565123ca100b0050e609cab90mr185399lfv.32.1706303309363; 
+ Fri, 26 Jan 2024 13:08:29 -0800 (PST)
 Received: from jheikkil-mobl1.. (91-156-196-125.elisa-laajakaista.fi.
  [91.156.196.125]) by smtp.gmail.com with ESMTPSA id
- t3-20020a192d43000000b00510218debaasm290479lft.35.2024.01.26.13.08.27
+ t3-20020a192d43000000b00510218debaasm290479lft.35.2024.01.26.13.08.28
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
  Fri, 26 Jan 2024 13:08:28 -0800 (PST)
 From: Juha-Pekka Heikkila <juhapekka.heikkila@gmail.com>
 To: intel-xe@lists.freedesktop.org,
 	intel-gfx@lists.freedesktop.org
-Subject: [PATCH 1/5] drm/xe/pat: annotate pat index table with compression
- information
-Date: Fri, 26 Jan 2024 23:08:03 +0200
-Message-Id: <20240126210807.320671-2-juhapekka.heikkila@gmail.com>
+Subject: [PATCH 2/5] drm/xe: add bind time pat index to xe_bo structure
+Date: Fri, 26 Jan 2024 23:08:04 +0200
+Message-Id: <20240126210807.320671-3-juhapekka.heikkila@gmail.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20240126210807.320671-1-juhapekka.heikkila@gmail.com>
 References: <20240126210807.320671-1-juhapekka.heikkila@gmail.com>
@@ -78,66 +77,36 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-add compressed member into xe_pat_table_entry which will contain
-boolean information if given pat_index is compressed or no.
+Add BO bind time pat index member and framebuffer pin time pat index 
+to xe_bo structure.
 
 Signed-off-by: Juha-Pekka Heikkila <juhapekka.heikkila@gmail.com>
 ---
- drivers/gpu/drm/xe/xe_pat.c | 9 ++++++++-
- drivers/gpu/drm/xe/xe_pat.h | 8 ++++++++
- 2 files changed, 16 insertions(+), 1 deletion(-)
+ drivers/gpu/drm/xe/xe_bo_types.h | 11 +++++++++++
+ 1 file changed, 11 insertions(+)
 
-diff --git a/drivers/gpu/drm/xe/xe_pat.c b/drivers/gpu/drm/xe/xe_pat.c
-index 1ff6bc79e7d4..c3cc6e90b068 100644
---- a/drivers/gpu/drm/xe/xe_pat.c
-+++ b/drivers/gpu/drm/xe/xe_pat.c
-@@ -104,7 +104,8 @@ static const struct xe_pat_table_entry xelpg_pat_table[] = {
- 			REG_FIELD_PREP(XE2_L3_POLICY, l3_policy) | \
- 			REG_FIELD_PREP(XE2_L4_POLICY, l4_policy) | \
- 			REG_FIELD_PREP(XE2_COH_MODE, __coh_mode), \
--		.coh_mode = __coh_mode ? XE_COH_AT_LEAST_1WAY : XE_COH_NONE \
-+		.coh_mode = __coh_mode ? XE_COH_AT_LEAST_1WAY : XE_COH_NONE, \
-+		.compressed = comp_en \
- 	}
+diff --git a/drivers/gpu/drm/xe/xe_bo_types.h b/drivers/gpu/drm/xe/xe_bo_types.h
+index 14ef13b7b421..ccf63058be66 100644
+--- a/drivers/gpu/drm/xe/xe_bo_types.h
++++ b/drivers/gpu/drm/xe/xe_bo_types.h
+@@ -91,6 +91,17 @@ struct xe_bo {
  
- static const struct xe_pat_table_entry xe2_pat_table[] = {
-@@ -148,6 +149,12 @@ u16 xe_pat_index_get_coh_mode(struct xe_device *xe, u16 pat_index)
- 	return xe->pat.table[pat_index].coh_mode;
- }
- 
-+bool xe_pat_index_has_compression(struct xe_device *xe, u16 pat_index)
-+{
-+	WARN_ON(pat_index >= xe->pat.n_entries);
-+	return xe->pat.table[pat_index].compressed;
-+}
+ 	/** @vram_userfault_link: Link into @mem_access.vram_userfault.list */
+ 		struct list_head vram_userfault_link;
 +
- static void program_pat(struct xe_gt *gt, const struct xe_pat_table_entry table[],
- 			int n_entries)
- {
-diff --git a/drivers/gpu/drm/xe/xe_pat.h b/drivers/gpu/drm/xe/xe_pat.h
-index fa0dfbe525cd..c8aacd30b184 100644
---- a/drivers/gpu/drm/xe/xe_pat.h
-+++ b/drivers/gpu/drm/xe/xe_pat.h
-@@ -29,6 +29,7 @@ struct xe_pat_table_entry {
- #define XE_COH_NONE          1
- #define XE_COH_AT_LEAST_1WAY 2
- 	u16 coh_mode;
-+	bool compressed;
++	/**
++	 * @pat_index: The pat index requested when bind this BO
++	 */
++	u16 pat_index;
++
++	/**
++	 * @pat_index_scanout: The pat index in use when pinning this BO
++	 * as framebuffer.
++	 */
++	u16 pat_index_scanout;
  };
  
- /**
-@@ -58,4 +59,11 @@ void xe_pat_dump(struct xe_gt *gt, struct drm_printer *p);
-  */
- u16 xe_pat_index_get_coh_mode(struct xe_device *xe, u16 pat_index);
- 
-+/**
-+ * xe_pat_index_has_compression - Is pat_index using ccs compression
-+ * @xe: xe device
-+ * @pat_index: The pat_index to query
-+ */
-+bool xe_pat_index_has_compression(struct xe_device *xe, u16 pat_index);
-+
- #endif
+ #define intel_bo_to_drm_bo(bo) (&(bo)->ttm.base)
 -- 
 2.25.1
 
