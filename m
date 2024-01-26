@@ -2,52 +2,65 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id D96C183DAB5
-	for <lists+intel-gfx@lfdr.de>; Fri, 26 Jan 2024 14:27:54 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 24EBA83DB82
+	for <lists+intel-gfx@lfdr.de>; Fri, 26 Jan 2024 15:11:18 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A49CB10FA7A;
-	Fri, 26 Jan 2024 13:27:49 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4774A10FAA1;
+	Fri, 26 Jan 2024 14:10:46 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7293A10FA78;
- Fri, 26 Jan 2024 13:27:48 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1706275669; x=1737811669;
- h=date:from:to:cc:subject:message-id:reply-to:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=QCT/Nc7sresQQuPElgDUY0oLp0nqtZhYIbC4OXeCJYM=;
- b=fQdOEA2mzO+66YWtZXMV7O7PfLpPujsuR72IuCnxQNL0K7W065YXKmeP
- abcIMEmq7QZXDnE7kqLMpUjfJqxRUb/c7vn3pqNzqeRJItZvlWw7S5otG
- aOfWCAjmaZ/nEWEfuqqZsEz1sRWN4JojXjOz+yIBWpI9AuNZ91IOywOE+
- CATCk5KLSGO/ypsa3uqsCz3SmNkZa1X6Pa4gvI1jo1tui8nYPL+32md3F
- SNMmZ5RdKulEHg5QsB5pVpAMfZKm32hZyKBwaVYhsM8FETG0S1lDKSmNL
- J3BqIMwt1fBEnzJSPEgU8kSwPRv974XrPS+bbtd8KmRnRyz5WrCM/bQJN g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10964"; a="9836720"
-X-IronPort-AV: E=Sophos;i="6.05,216,1701158400"; 
-   d="scan'208";a="9836720"
-Received: from fmviesa001.fm.intel.com ([10.60.135.141])
- by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Jan 2024 05:27:49 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.05,216,1701158400"; d="scan'208";a="29105491"
-Received: from ideak-desk.fi.intel.com ([10.237.72.78])
- by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Jan 2024 05:27:46 -0800
-Date: Fri, 26 Jan 2024 15:28:02 +0200
-From: Imre Deak <imre.deak@intel.com>
-To: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-Subject: Re: [PATCH 01/19] drm/dp: Add drm_dp_max_dprx_data_rate()
-Message-ID: <ZbOzQQ7y4OdKAnYY@ideak-desk.fi.intel.com>
-References: <20240123102850.390126-1-imre.deak@intel.com>
- <20240123102850.390126-2-imre.deak@intel.com>
- <ZbOZIpuIpf18KlM0@intel.com>
+Received: from mail-ed1-f41.google.com (mail-ed1-f41.google.com
+ [209.85.208.41])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 49E5710FAA1;
+ Fri, 26 Jan 2024 14:10:45 +0000 (UTC)
+Received: by mail-ed1-f41.google.com with SMTP id
+ 4fb4d7f45d1cf-55a6833c21eso260111a12.2; 
+ Fri, 26 Jan 2024 06:10:45 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20230601; t=1706278183; x=1706882983; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:mime-version:message-id:date:subject:to
+ :from:from:to:cc:subject:date:message-id:reply-to;
+ bh=SeELkD+ed1YeuurTRcsNoRMC9Atg/OsLtc3Rwqt2hPg=;
+ b=g2sES3suZ+MdN1GtF2Rhntsdq5/BuO6YRqonZvakK6CdLKA+sxVNsqW/srvdvrZY7p
+ g2FvZkwuz2H280HLtnTDNIS0pFtx7DIbFsZv6QYO1anLmsszYT/NftxEv5soi6URSOye
+ Fdn6BxPG9Dwo822tLl/LTFnUL6c0a8h3sLvYc2QHG0gpRXo+RahLVufFi3eIVaPIUDoR
+ sMQzRqzsrhg55h2xO8rwYC3iMgqI9yl+RLZT5Qpd28JaeQKZegtf/wiwA/elWBNXQJTe
+ XK9+F7YwFcW/BsVwI7lAQy0xI8hEAAHtSTL9zA/FKGE3MRMxzZ6JdHMx5ILP/v+1yhhf
+ NP/w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1706278183; x=1706882983;
+ h=content-transfer-encoding:mime-version:message-id:date:subject:to
+ :from:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+ bh=SeELkD+ed1YeuurTRcsNoRMC9Atg/OsLtc3Rwqt2hPg=;
+ b=ppq/pPrC6aw/lCgjyoOYYwcGZ4LNKYvv1ziKdSgZNaoV8VSZsFrGmdhxO6VBpZ6F4D
+ VW91u8C8aKzui0kc7gDe8xlQQXlWH/CXCtglOrH8cfa4THc8GSQjNcw4bm1lisPcspdG
+ ilgGHH7nSByCGl9x2PCTNDTvVPqkOus2r4OScQfPMGwrbhr9Yl3WGJmUvgawBuN0SwYq
+ xv4R2iwnkigY6Dr4Tx87kKwL0RDv5j2zZhkLI5CtcqOQV+xgc33PRV5IdPtlbJmYVdEY
+ Btbam8+Zjk2SXlZkuGmuQbMn/hnd8wS0RBpkVo7qSXvfFBT45Q9K0vn0G/C6yaOOaIbf
+ PN/Q==
+X-Gm-Message-State: AOJu0YwvgnUvwp+LJzRkwNmW7CMf9qC3w0ivbRTDB4cudkUNX7Qyzk3/
+ OaOPKKh0G9/afoHrEuUVvM500gtxWtBSHz2keutYf4UOC8JL8Da3
+X-Google-Smtp-Source: AGHT+IEFsmLEzG9c0fzzMGG2i2TxYbIY4GwnkhQD/VK4QBURfGDJ4PMFSPcxb6sBl0DuL/ytFROJow==
+X-Received: by 2002:aa7:cb8f:0:b0:559:7dd9:a5b2 with SMTP id
+ r15-20020aa7cb8f000000b005597dd9a5b2mr895018edt.16.1706278182504; 
+ Fri, 26 Jan 2024 06:09:42 -0800 (PST)
+Received: from able.fritz.box ([2a00:e180:1528:de00:74a1:34a:f78c:7883])
+ by smtp.gmail.com with ESMTPSA id
+ m23-20020aa7c497000000b0055c76eebbdbsm636427edq.30.2024.01.26.06.09.25
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Fri, 26 Jan 2024 06:09:32 -0800 (PST)
+From: "=?UTF-8?q?Christian=20K=C3=B6nig?=" <ckoenig.leichtzumerken@gmail.com>
+X-Google-Original-From: =?UTF-8?q?Christian=20K=C3=B6nig?=
+ <christian.koenig@amd.com>
+To: thomas.hellstrom@linux.intel.com, dri-devel@lists.freedesktop.org,
+ intel-gfx@lists.freedesktop.org, nouveau@lists.freedesktop.org
+Subject: Rework TTMs busy handling
+Date: Fri, 26 Jan 2024 15:09:14 +0100
+Message-Id: <20240126140916.1577-1-christian.koenig@amd.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <ZbOZIpuIpf18KlM0@intel.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -60,123 +73,25 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: imre.deak@intel.com
-Cc: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, Jan 26, 2024 at 01:36:02PM +0200, Ville Syrjälä wrote:
-> On Tue, Jan 23, 2024 at 12:28:32PM +0200, Imre Deak wrote:
-> > Copy intel_dp_max_data_rate() to DRM core. It will be needed by a
-> > follow-up DP tunnel patch, checking the maximum rate the DPRX (sink)
-> > supports. Accordingly use the drm_dp_max_dprx_data_rate() name for
-> > clarity. This patchset will also switch calling the new DRM function
-> > in i915 instead of intel_dp_max_data_rate().
-> > 
-> > Signed-off-by: Imre Deak <imre.deak@intel.com>
-> > ---
-> >  drivers/gpu/drm/display/drm_dp_helper.c | 58 +++++++++++++++++++++++++
-> >  include/drm/display/drm_dp_helper.h     |  2 +
-> >  2 files changed, 60 insertions(+)
-> > 
-> > diff --git a/drivers/gpu/drm/display/drm_dp_helper.c b/drivers/gpu/drm/display/drm_dp_helper.c
-> > index b1ca3a1100dab..24911243d4d3a 100644
-> > --- a/drivers/gpu/drm/display/drm_dp_helper.c
-> > +++ b/drivers/gpu/drm/display/drm_dp_helper.c
-> > @@ -4058,3 +4058,61 @@ int drm_dp_bw_channel_coding_efficiency(bool is_uhbr)
-> >  		return 800000;
-> >  }
-> >  EXPORT_SYMBOL(drm_dp_bw_channel_coding_efficiency);
-> > +
-> > +/*
-> > + * Given a link rate and lanes, get the data bandwidth.
-> > + *
-> > + * Data bandwidth is the actual payload rate, which depends on the data
-> > + * bandwidth efficiency and the link rate.
-> > + *
-> > + * For 8b/10b channel encoding, SST and non-FEC, the data bandwidth efficiency
-> > + * is 80%. For example, for a 1.62 Gbps link, 1.62*10^9 bps * 0.80 * (1/8) =
-> > + * 162000 kBps. With 8-bit symbols, we have 162000 kHz symbol clock. Just by
-> > + * coincidence, the port clock in kHz matches the data bandwidth in kBps, and
-> > + * they equal the link bit rate in Gbps multiplied by 100000. (Note that this no
-> > + * longer holds for data bandwidth as soon as FEC or MST is taken into account!)
-> > + *
-> > + * For 128b/132b channel encoding, the data bandwidth efficiency is 96.71%. For
-> > + * example, for a 10 Gbps link, 10*10^9 bps * 0.9671 * (1/8) = 1208875
-> > + * kBps. With 32-bit symbols, we have 312500 kHz symbol clock. The value 1000000
-> > + * does not match the symbol clock, the port clock (not even if you think in
-> > + * terms of a byte clock), nor the data bandwidth. It only matches the link bit
-> > + * rate in units of 10000 bps.
-> > + *
-> > + * Note that protocol layers above the DPRX link level considered here can
-> > + * further limit the maximum data rate. Such layers are the MST topology (with
-> > + * limits on the link between the source and first branch device as well as on
-> > + * the whole MST path until the DPRX link) and (Thunderbolt) DP tunnels -
-> > + * which in turn can encapsulate an MST link with its own limit - with each
-> > + * SST or MST encapsulated tunnel sharing the BW of a tunnel group.
-> > + *
-> > + * TODO: Add support for querying the max data rate with the above limits as
-> > + * well.
-> > + *
-> > + * Returns the maximum data rate in kBps units.
-> > + */
-> > +int drm_dp_max_dprx_data_rate(int max_link_rate, int max_lanes)
-> > +{
-> > +	int ch_coding_efficiency =
-> > +		drm_dp_bw_channel_coding_efficiency(drm_dp_is_uhbr_rate(max_link_rate));
-> > +	int max_link_rate_kbps = max_link_rate * 10;
-> 
-> That x10 value seems rather pointless.
+Hi guys,
 
-I suppose the point was to make the units clearer, but it could be
-clarified instead in max_link_rates' documentation, which is missing
-atm.
+so pushed the first few patches from this series. I hope that I
+correctly managed to resolve the silent Xe merge conflict in drm-tip,
+but would be nice if somebody could double check.
 
-> > +
-> > +	/*
-> > +	 * UHBR rates always use 128b/132b channel encoding, and have
-> > +	 * 97.71% data bandwidth efficiency. Consider max_link_rate the
-> > +	 * link bit rate in units of 10000 bps.
-> > +	 */
-> > +	/*
-> > +	 * Lower than UHBR rates always use 8b/10b channel encoding, and have
-> > +	 * 80% data bandwidth efficiency for SST non-FEC. However, this turns
-> > +	 * out to be a nop by coincidence:
-> > +	 *
-> > +	 *	int max_link_rate_kbps = max_link_rate * 10;
-> > +	 *	max_link_rate_kbps = DIV_ROUND_DOWN_ULL(max_link_rate_kbps * 8, 10);
-> > +	 *	max_link_rate = max_link_rate_kbps / 8;
-> > +	 */
-> 
-> Not sure why we are repeating the nuts and bolts detils in the
-> comments so much? Doesn't drm_dp_bw_channel_coding_efficiency()
-> explain all this already?
+Then for the two remaining patches I've implemented most of what
+Thomas suggest, e.g. the existing functionality sticks around for
+eviction and hobs, but ttm_bo_validate will now try to always move
+things into the non-fallback placements on validation first.
 
-I simply copied the function, but yes in this context there is
-duplication, thanks for reading through all that. Will consolidate both
-the above and the bigger comment before the function with the existing
-docs here.
+What I haven't done yet is to split up the preferred placement since
+I couldn't immediately see an use case for this, but it's really
+something we might do in the future as well.
 
-> 
-> > +	return DIV_ROUND_DOWN_ULL(mul_u32_u32(max_link_rate_kbps * max_lanes,
-> > +					      ch_coding_efficiency),
-> > +				  1000000 * 8);
-> > +}
-> > +EXPORT_SYMBOL(drm_dp_max_dprx_data_rate);
-> > diff --git a/include/drm/display/drm_dp_helper.h b/include/drm/display/drm_dp_helper.h
-> > index 863b2e7add29e..454ae7517419a 100644
-> > --- a/include/drm/display/drm_dp_helper.h
-> > +++ b/include/drm/display/drm_dp_helper.h
-> > @@ -813,4 +813,6 @@ int drm_dp_bw_overhead(int lane_count, int hactive,
-> >  		       int bpp_x16, unsigned long flags);
-> >  int drm_dp_bw_channel_coding_efficiency(bool is_uhbr);
-> >  
-> > +int drm_dp_max_dprx_data_rate(int max_link_rate, int max_lanes);
-> > +
-> >  #endif /* _DRM_DP_HELPER_H_ */
-> > -- 
-> > 2.39.2
-> 
-> -- 
-> Ville Syrjälä
-> Intel
+Please review and comment,
+Christian.
+
+
