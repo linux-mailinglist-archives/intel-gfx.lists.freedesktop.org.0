@@ -2,96 +2,61 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 111CC83CAB1
-	for <lists+intel-gfx@lfdr.de>; Thu, 25 Jan 2024 19:19:03 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8F43483D4D1
+	for <lists+intel-gfx@lfdr.de>; Fri, 26 Jan 2024 09:43:36 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C643A10E2D8;
-	Thu, 25 Jan 2024 18:18:26 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 17CCF10E6F8;
+	Fri, 26 Jan 2024 08:43:01 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-ej1-f52.google.com (mail-ej1-f52.google.com
- [209.85.218.52])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6561510E91E
- for <intel-gfx@lists.freedesktop.org>; Thu, 25 Jan 2024 18:18:25 +0000 (UTC)
-Received: by mail-ej1-f52.google.com with SMTP id
- a640c23a62f3a-a2e633c5365so191079866b.1
- for <intel-gfx@lists.freedesktop.org>; Thu, 25 Jan 2024 10:18:25 -0800 (PST)
+Received: from mail-wr1-f51.google.com (mail-wr1-f51.google.com
+ [209.85.221.51])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6AF0410E1BA
+ for <intel-gfx@lists.freedesktop.org>; Fri, 26 Jan 2024 08:42:55 +0000 (UTC)
+Received: by mail-wr1-f51.google.com with SMTP id
+ ffacd0b85a97d-33934567777so143648f8f.1
+ for <intel-gfx@lists.freedesktop.org>; Fri, 26 Jan 2024 00:42:55 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=ffwll.ch; s=google; t=1706206644; x=1706811444; darn=lists.freedesktop.org; 
- h=in-reply-to:content-transfer-encoding:content-disposition
- :mime-version:references:mail-followup-to:message-id:subject:cc:to
- :from:date:from:to:cc:subject:date:message-id:reply-to;
- bh=LX2Biyswi3lcTJguDEv72aHM8YWWcEZE57McfhSqDfM=;
- b=Y1icyBU6jfzFIh9gAqXbIzs8l/etjnt0gK2vo8V4l81BM+8nL0hcBHxhDlFXqt8Se8
- Jeqg/VEN6QpvkUK4GTzU0/0T2MBbQRTyAG1OHNKrtgyPAtkkQf1YxdK6osJMn25wrOU4
- jiYJZW41U9NcHfPQlXKrFDiur1OISvHP/BCus=
+ d=linaro.org; s=google; t=1706258510; x=1706863310; darn=lists.freedesktop.org;
+ h=content-disposition:mime-version:message-id:subject:cc:to:from:date
+ :from:to:cc:subject:date:message-id:reply-to;
+ bh=FHr39JH9ZAVO5s/Q6TxKvwEModPDg6RBhwecUYh/FLY=;
+ b=qt6Ih6Bhp147wXcap46qdr3uBm+zpfbOXwxE+FzVx6rfyjSwyug7jizvnNWMU9B6EJ
+ sWH/mqGA63yzT9Fi5SNm/CegDnCn0UDIyKKB+LqAujEq9wV9ezbo/FeQRca1lp/kuq8U
+ ICB8C8zruKxSi9arZyn2CGOWXtnaNigCcQmuJAEUZiUQiUDNTpNxaCBoiQbNIq9iYVwe
+ d/gpYBaZM+K4fIPeF5RDzzlY8OBMmQzEQrBXAFTqEVkRt1wOdhnWvajjYJEhkLnAt52f
+ iE0Z76bQOgmbssCRwX5fja86MPenXbWKhC92qI7T4lUZxJBwUUtIooyPN/Ic/mv8p2CJ
+ DQcw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1706206644; x=1706811444;
- h=in-reply-to:content-transfer-encoding:content-disposition
- :mime-version:references:mail-followup-to:message-id:subject:cc:to
- :from:date:x-gm-message-state:from:to:cc:subject:date:message-id
- :reply-to;
- bh=LX2Biyswi3lcTJguDEv72aHM8YWWcEZE57McfhSqDfM=;
- b=psdCxV6C2u4tamdJMpuiHH4XZ9nxYkgZoDt6uhd6/lguJVncQ1J8vg0fMNgCkaU+dI
- Rf8dt3c1BMrpjrkTnicN+a8ROSqPMZdTV3rEIqLlvX51mM3oeM//8rRTBU7PHktA42or
- PKEi16rrbic1Tbbkv/gl85NPoaA9Ak5bc4fsVcYXV8zkzBzDAMIxVEGV+rb4KATajEKj
- ZwLlRQGSbEZVP9lMZoDBmFKl2SvzigDnndzdB/z/nGewc0hyyVVKjQF/27HaSyLErCno
- u0mklgZ6gcVm3sTNSXmgagJw7Te5OKizync79jmR+VF30Uqfo/BfmI3N5VV/wE4uMPS3
- k3xQ==
-X-Gm-Message-State: AOJu0Yx4nI+rR4mowWSImeYNu+YV92lUPmM9DhxUTuV+MkWXcE2ZsCRf
- exnz1Zfs2A2OHuDcoD67rO1f0WDFbjRfpax/oJA9IWB3jrDJMs+xtVHWbca4m0s=
-X-Google-Smtp-Source: AGHT+IFFgR3FnuKNaxcbSF/D45iFGEkVO7DwIYkEGMWwJWTauy+SOrnz8WOVHQePtLtXFKX663PQaQ==
-X-Received: by 2002:a17:906:a2d6:b0:a31:7e9c:60bf with SMTP id
- by22-20020a170906a2d600b00a317e9c60bfmr23085ejb.0.1706206643807; 
- Thu, 25 Jan 2024 10:17:23 -0800 (PST)
-Received: from phenom.ffwll.local ([2a02:168:57f4:0:efd0:b9e5:5ae6:c2fa])
- by smtp.gmail.com with ESMTPSA id
- tl15-20020a170907c30f00b00a3186c2c254sm765083ejc.213.2024.01.25.10.17.22
+ d=1e100.net; s=20230601; t=1706258510; x=1706863310;
+ h=content-disposition:mime-version:message-id:subject:cc:to:from:date
+ :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+ bh=FHr39JH9ZAVO5s/Q6TxKvwEModPDg6RBhwecUYh/FLY=;
+ b=RfZUbIIPzS15+6gTZxZzjeLaFa+CAeV6KJDnWk29J4SFxsCAFu1W2kCLf4f56dWK9n
+ vbtbsfIhAuqNR/omGyT6tpAcj63F+ZgRnBAHxMECj33rpP6NqVlbfFEZnuBLweDk5aPD
+ jlO6jGjlo+RBZvAz2H44cVIyUSK32PFylNy+PP8veJxGWBwakDVPTWs3Pmo95iCcvzfu
+ mQBD2DS6jZ+CztFDqUCmFpaFU9ASUozBRgdSyyBSjPD2arG8Qu0IqpHf02lDoWON28W2
+ 2TtXfSEqk22RCeS//F8l6JNs/4aNcFP6PezNQ7iY199z94lBl83Z3DQ43yoc2Yu7O8AC
+ oOEQ==
+X-Gm-Message-State: AOJu0Ywy6hsHjC6a3l7/ZS7GAXubskYTa+xj1AAq95XS/XsdtJxveGMj
+ OO+iiqGs7At9gyRO8XUXvpIdrpfsMm/eF9zJ50tG3+75nAdb8MYbuuhxp4BsmZE=
+X-Google-Smtp-Source: AGHT+IGODQTp1WGBJOYeb5QpU8MHe6FvpWAhmxNfECU8K2SX9RjwK0yxx8LAKL3RZy4pjkFNfgFKVQ==
+X-Received: by 2002:adf:e852:0:b0:33a:ddff:7774 with SMTP id
+ d18-20020adfe852000000b0033addff7774mr24330wrn.36.1706258510562; 
+ Fri, 26 Jan 2024 00:41:50 -0800 (PST)
+Received: from localhost ([102.140.209.237]) by smtp.gmail.com with ESMTPSA id
+ bt7-20020a056000080700b00337d4ce6ab4sm766097wrb.20.2024.01.26.00.41.49
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Thu, 25 Jan 2024 10:17:23 -0800 (PST)
-Date: Thu, 25 Jan 2024 19:17:21 +0100
-From: Daniel Vetter <daniel@ffwll.ch>
-To: Jason-JH Lin =?utf-8?B?KOael+edv+elpSk=?= <Jason-JH.Lin@mediatek.com>
-Subject: Re: [PATCH] drm/atomic-helpers: remove legacy_cursor_update hacks
-Message-ID: <ZbKlsTEvGPiGtzS3@phenom.ffwll.local>
-Mail-Followup-To: Jason-JH Lin =?utf-8?B?KOael+edv+elpSk=?=
- <Jason-JH.Lin@mediatek.com>, 
- "maxime@cerno.tech" <maxime@cerno.tech>,
- "manasi.d.navare@intel.com" <manasi.d.navare@intel.com>,
- "linux-mediatek@lists.infradead.org" <linux-mediatek@lists.infradead.org>,
- "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
- "michel@daenzer.net" <michel@daenzer.net>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
- "chunkuang.hu@kernel.org" <chunkuang.hu@kernel.org>,
- "linux-arm-msm@vger.kernel.org" <linux-arm-msm@vger.kernel.org>,
- "mikita.lipski@amd.com" <mikita.lipski@amd.com>,
- "dmitry.baryshkov@linaro.org" <dmitry.baryshkov@linaro.org>,
- "tzimmermann@suse.de" <tzimmermann@suse.de>,
- "daniel.vetter@intel.com" <daniel.vetter@intel.com>,
- "nicholas.kazlauskas@amd.com" <nicholas.kazlauskas@amd.com>,
- "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
- "quic_abhinavk@quicinc.com" <quic_abhinavk@quicinc.com>,
- Project_Global_Chrome_Upstream_Group
- <Project_Global_Chrome_Upstream_Group@mediatek.com>, 
- "lucas.demarchi@intel.com" <lucas.demarchi@intel.com>,
- "sean@poorly.run" <sean@poorly.run>,
- "matthias.bgg@gmail.com" <matthias.bgg@gmail.com>,
- "dmitry.osipenko@collabora.com" <dmitry.osipenko@collabora.com>,
- "fshao@chromium.org" <fshao@chromium.org>,
- "linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>, 
- "jani.nikula@intel.com" <jani.nikula@intel.com>,
- "angelogioacchino.delregno@collabora.com"
- <angelogioacchino.delregno@collabora.com>, 
- "freedreno@lists.freedesktop.org" <freedreno@lists.freedesktop.org>
-References: <20230216111214.3489223-1-daniel.vetter@ffwll.ch>
- <20230307145613.xvhru3fpcudlpazt@houat>
- <aac416742920953999a9ce230ac68139bf5b9790.camel@mediatek.com>
+ Fri, 26 Jan 2024 00:41:50 -0800 (PST)
+Date: Fri, 26 Jan 2024 11:41:47 +0300
+From: Dan Carpenter <dan.carpenter@linaro.org>
+To: Zhi Wang <zhi.a.wang@intel.com>
+Subject: [PATCH] drm/i915/gvt: Fix uninitialized variable in handle_mmio()
+Message-ID: <11957c20-b178-4027-9b0a-e32e9591dd7c@moroto.mountain>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <aac416742920953999a9ce230ac68139bf5b9790.camel@mediatek.com>
-X-Operating-System: Linux phenom 6.6.11-amd64 
+X-Mailer: git-send-email haha only kidding
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -104,100 +69,38 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "fshao@chromium.org" <fshao@chromium.org>,
- "daniel.vetter@ffwll.ch" <daniel.vetter@ffwll.ch>,
- "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
- "daniel.vetter@intel.com" <daniel.vetter@intel.com>,
- Project_Global_Chrome_Upstream_Group
- <Project_Global_Chrome_Upstream_Group@mediatek.com>,
- "dmitry.osipenko@collabora.com" <dmitry.osipenko@collabora.com>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
- "chunkuang.hu@kernel.org" <chunkuang.hu@kernel.org>,
- "jani.nikula@intel.com" <jani.nikula@intel.com>,
- "linux-arm-msm@vger.kernel.org" <linux-arm-msm@vger.kernel.org>,
- "michel@daenzer.net" <michel@daenzer.net>,
- "lucas.demarchi@intel.com" <lucas.demarchi@intel.com>,
- "quic_abhinavk@quicinc.com" <quic_abhinavk@quicinc.com>,
- "linux-mediatek@lists.infradead.org" <linux-mediatek@lists.infradead.org>,
- "maxime@cerno.tech" <maxime@cerno.tech>,
- "matthias.bgg@gmail.com" <matthias.bgg@gmail.com>,
- "mikita.lipski@amd.com" <mikita.lipski@amd.com>,
- "linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>,
- "angelogioacchino.delregno@collabora.com"
- <angelogioacchino.delregno@collabora.com>,
- "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
- "manasi.d.navare@intel.com" <manasi.d.navare@intel.com>,
- "tzimmermann@suse.de" <tzimmermann@suse.de>,
- "dmitry.baryshkov@linaro.org" <dmitry.baryshkov@linaro.org>,
- "freedreno@lists.freedesktop.org" <freedreno@lists.freedesktop.org>,
- "nicholas.kazlauskas@amd.com" <nicholas.kazlauskas@amd.com>
+Cc: dri-devel@lists.freedesktop.org, intel-gvt-dev@lists.freedesktop.org,
+ intel-gfx@lists.freedesktop.org, kernel-janitors@vger.kernel.org,
+ linux-kernel@vger.kernel.org, Daniel Vetter <daniel@ffwll.ch>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, David Airlie <airlied@gmail.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, Jan 23, 2024 at 06:09:05AM +0000, Jason-JH Lin (林睿祥) wrote:
-> Hi Maxime, Daniel,
-> 
-> We encountered similar issue with mediatek SoCs.
-> 
-> We have found that in drm_atomic_helper_commit_rpm(), when disabling
-> the cursor plane, the old_state->legacy_cursor_update in
-> drm_atomic_wait_for_vblank() is set to true.
-> As the result, we are not actually waiting for a vlbank to wait for our
-> hardware to close the cursor plane. Subsequently, the execution
-> proceeds to drm_atomic_helper_cleanup_planes() to  free the cursor
-> buffer. This can lead to use-after-free issues with our hardware.
-> 
-> Could you please apply this patch to fix our problem?
-> Or are there any considerations for not applying this patch?
+This code prints the wrong variable in the warning message.  It should
+print "i" instead of "info->offset".  On the first iteration "info" is
+uninitialized leading to a crash and on subsequent iterations it prints
+the previous offset instead of the current one.
 
-Mostly it needs someone to collect a pile of acks/tested-by and then land
-it.
+Fixes: e0f74ed4634d ("i915/gvt: Separate the MMIO tracking table from GVT-g")
+Signed-off-by: Dan Carpenter <dan.carpenter@linaro.org>
+---
+ drivers/gpu/drm/i915/gvt/handlers.c | 3 +--
+ 1 file changed, 1 insertion(+), 2 deletions(-)
 
-I'd be _very_ happy if someone else can take care of that ...
-
-There's also the potential issue that it might slow down some of the
-legacy X11 use-cases that really needed a non-blocking cursor, but I think
-all the drivers where this matters have switched over to the async plane
-update stuff meanwhile. So hopefully that's good.
-
-Cheers, Sima
-> 
-> Regards,
-> Jason-JH.Lin
-> 
-> On Tue, 2023-03-07 at 15:56 +0100, Maxime Ripard wrote:
-> > Hi,
-> > 
-> > On Thu, Feb 16, 2023 at 12:12:13PM +0100, Daniel Vetter wrote:
-> > > The stuff never really worked, and leads to lots of fun because it
-> > > out-of-order frees atomic states. Which upsets KASAN, among other
-> > > things.
-> > > 
-> > > For async updates we now have a more solid solution with the
-> > > ->atomic_async_check and ->atomic_async_commit hooks. Support for
-> > > that
-> > > for msm and vc4 landed. nouveau and i915 have their own commit
-> > > routines, doing something similar.
-> > > 
-> > > For everyone else it's probably better to remove the use-after-free
-> > > bug, and encourage folks to use the async support instead. The
-> > > affected drivers which register a legacy cursor plane and don't
-> > > either
-> > > use the new async stuff or their own commit routine are: amdgpu,
-> > > atmel, mediatek, qxl, rockchip, sti, sun4i, tegra, virtio, and
-> > > vmwgfx.
-> > > 
-> > > Inspired by an amdgpu bug report.
-> > 
-> > Thanks for submitting that patch. It's been in the downstream RPi
-> > tree
-> > for a while, so I'd really like it to be merged eventually :)
-> > 
-> > Acked-by: Maxime Ripard <maxime@cerno.tech>
-> > 
-> > Maxime
-
+diff --git a/drivers/gpu/drm/i915/gvt/handlers.c b/drivers/gpu/drm/i915/gvt/handlers.c
+index 90f6c1ece57d..efcb00472be2 100644
+--- a/drivers/gpu/drm/i915/gvt/handlers.c
++++ b/drivers/gpu/drm/i915/gvt/handlers.c
+@@ -2849,8 +2849,7 @@ static int handle_mmio(struct intel_gvt_mmio_table_iter *iter, u32 offset,
+ 	for (i = start; i < end; i += 4) {
+ 		p = intel_gvt_find_mmio_info(gvt, i);
+ 		if (p) {
+-			WARN(1, "dup mmio definition offset %x\n",
+-				info->offset);
++			WARN(1, "dup mmio definition offset %x\n", i);
+ 
+ 			/* We return -EEXIST here to make GVT-g load fail.
+ 			 * So duplicated MMIO can be found as soon as
 -- 
-Daniel Vetter
-Software Engineer, Intel Corporation
-http://blog.ffwll.ch
+2.43.0
+
