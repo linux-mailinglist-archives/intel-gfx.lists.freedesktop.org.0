@@ -2,57 +2,63 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 58EB183DFEC
-	for <lists+intel-gfx@lfdr.de>; Fri, 26 Jan 2024 18:23:51 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4D3B583E3A9
+	for <lists+intel-gfx@lfdr.de>; Fri, 26 Jan 2024 22:09:33 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7511A10FC7C;
-	Fri, 26 Jan 2024 17:23:48 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9BB8C10FEAA;
+	Fri, 26 Jan 2024 21:09:31 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CF81610FC79;
- Fri, 26 Jan 2024 17:23:46 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1706289827; x=1737825827;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:in-reply-to;
- bh=tSMX1Ae/bCy8FGpCcBWLPQYfg2LBDt1gaBUpHaOLi0k=;
- b=J7Vp7YxTCKeBLffr3imPQAsVvvxx6vDUvU8rJxD+KXTk6YQhdN8iYHg1
- RZ+St5SDpGLMMFx6pYGHOAMfTGaotUm/QizGBa8I9yDJt4IQb4e9hZKv0
- fCaOmLyQjIqK5QGZ9sznzs7KgTsRiWNv8BRygPYcI5WjMDd5m2jybIXNS
- mtXsyb9l2y5lUYGt2LdQckTw8D4GDyda5ZQUfFd32+7oliP1nTH1aGMd4
- 1iYCreMmSiPO/kCXLE73O11Y5iiQjPYj8gquyv3tjIQEE53T+Ox9EWWne
- iaAO0xpSbxStYf3rJdyNI2hyU/bgh9vJBeKOZ5aipBW3kNa6+Ys2KWBRx g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10964"; a="9900862"
-X-IronPort-AV: E=Sophos;i="6.05,216,1701158400"; 
-   d="scan'208";a="9900862"
-Received: from orsmga005.jf.intel.com ([10.7.209.41])
- by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Jan 2024 09:23:47 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10964"; a="960260973"
-X-IronPort-AV: E=Sophos;i="6.05,216,1701158400"; d="scan'208";a="960260973"
-Received: from turnipsi.fi.intel.com (HELO kekkonen.fi.intel.com)
- ([10.237.72.44])
- by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Jan 2024 09:23:39 -0800
-Received: from kekkonen.localdomain (localhost [127.0.0.1])
- by kekkonen.fi.intel.com (Postfix) with SMTP id BC8AF11FBD1;
- Fri, 26 Jan 2024 19:23:36 +0200 (EET)
-Date: Fri, 26 Jan 2024 17:23:36 +0000
-From: Sakari Ailus <sakari.ailus@linux.intel.com>
-To: Alex Elder <elder@ieee.org>
-Subject: Re: [PATCH v3 1/2] pm: runtime: Simplify pm_runtime_get_if_active()
- usage
-Message-ID: <ZbPqmA4GkunkJqb0@kekkonen.localdomain>
-References: <20240122114121.56752-1-sakari.ailus@linux.intel.com>
- <20240122114121.56752-2-sakari.ailus@linux.intel.com>
- <912d4439-86cd-4060-a66d-baba5fa2bdec@ieee.org>
+Received: from mail-lf1-f50.google.com (mail-lf1-f50.google.com
+ [209.85.167.50])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4D26F10FEAA;
+ Fri, 26 Jan 2024 21:09:30 +0000 (UTC)
+Received: by mail-lf1-f50.google.com with SMTP id
+ 2adb3069b0e04-5102b00c2cdso404412e87.3; 
+ Fri, 26 Jan 2024 13:09:30 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20230601; t=1706303308; x=1706908108; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+ :to:from:from:to:cc:subject:date:message-id:reply-to;
+ bh=ddM7dM5sERIiSASDCmMAMm6Wqis5zem3ge5Q7aEhjYU=;
+ b=Mu1/ZMjMP8QLdRRqGAMNSltGqa4qSSaPjNl/O1uf52j47rEBNB/p+tUjcorTvn0xx0
+ dI02TH9S5xgAOMaKQx11e3sodJS3HBvYy2xlI0ySZnrt+eXX/g2Hc06/ekgalyDvq9OB
+ 2zV8fy6/Tzcs8Z7/CqfWEJFu5hjEd37omfIk1ljK7xSRsb5xU9yHLgXQwYbqT4OAzdbA
+ Afzl5vkXCE4/KzZqhK0enPE6pBlAdBkJz3p6ZAp+F4cPXXEaS/ydGaLquhA7MElAeWv8
+ 4YlkSsrV2Kh+f6wIkcLMsEH+P/2WjotfkiMX2hmuiiRceKBv1Ynx+r27buZ2UEKX6XdA
+ sI7Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1706303308; x=1706908108;
+ h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+ :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+ :reply-to;
+ bh=ddM7dM5sERIiSASDCmMAMm6Wqis5zem3ge5Q7aEhjYU=;
+ b=ee3MnET+cVybgpOZjyemSr8nKc3dXKJkhsJinlEpQrlfeR0wNF205P64jZmaj0mRLq
+ sSyrGjWekkUpMbR1lVf+Xx/WK8vnVDNjCv1T/TUNk/lc/kIoF2xO0fU0cyPfXJZa6zCP
+ CNdh2y/zxB79CI/gGHrNhU9oIoS6myceTmjcG/7AkVJdNzepJlDGeU98MgKHMwvhDmGh
+ HX92AQgSeak8PrJ6sarqISh+8xRuuvghoaYPEBPvjV9i1KCrzrgzLal6zjVXkVhjmArq
+ 43yLYyXBTigot6qrEHJ8NOawYF0UYkoISFhEmwsXAveOL+BQA2f70y3kDroeAa8mzAAh
+ U9RQ==
+X-Gm-Message-State: AOJu0Ywv5706nvjdRAl79xCkbNFsDfyrP9LyvOxZIPGm+zwr3uWfuVXI
+ ek0tJmd4FJjM4DVl+gsX6KZn+KVV2GoCRGm6ISUliW4xONr/8d8HXH++toZbDmU=
+X-Google-Smtp-Source: AGHT+IG/fxmJAWlnJfE0wlTWdMxotcH/zr6N28G3mdE1aq/xkbj73keLo3OqhVV1Fuzanb/vsFPivA==
+X-Received: by 2002:a05:6512:541:b0:510:358:74e1 with SMTP id
+ h1-20020a056512054100b00510035874e1mr117429lfl.53.1706303307801; 
+ Fri, 26 Jan 2024 13:08:27 -0800 (PST)
+Received: from jheikkil-mobl1.. (91-156-196-125.elisa-laajakaista.fi.
+ [91.156.196.125]) by smtp.gmail.com with ESMTPSA id
+ t3-20020a192d43000000b00510218debaasm290479lft.35.2024.01.26.13.08.27
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Fri, 26 Jan 2024 13:08:27 -0800 (PST)
+From: Juha-Pekka Heikkila <juhapekka.heikkila@gmail.com>
+To: intel-xe@lists.freedesktop.org,
+	intel-gfx@lists.freedesktop.org
+Subject: [PATCH 0/5] Enable ccs compressed framebuffers on Xe2
+Date: Fri, 26 Jan 2024 23:08:02 +0200
+Message-Id: <20240126210807.320671-1-juhapekka.heikkila@gmail.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <912d4439-86cd-4060-a66d-baba5fa2bdec@ieee.org>
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -65,54 +71,35 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "Rafael J. Wysocki" <rafael@kernel.org>, linux-pci@vger.kernel.org,
- dri-devel@lists.freedesktop.org, Jaroslav Kysela <perex@perex.cz>,
- Stanislaw Gruszka <stanislaw.gruszka@linux.intel.com>,
- laurent.pinchart@ideasonboard.com, David Airlie <airlied@gmail.com>,
- Paul Elder <paul.elder@ideasonboard.com>, linux-media@vger.kernel.org,
- Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>,
- linux-pm@vger.kernel.org, intel-gfx@lists.freedesktop.org,
- Lucas De Marchi <lucas.demarchi@intel.com>, Mark Brown <broonie@kernel.org>,
- Jacek Lawrynowicz <jacek.lawrynowicz@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
- intel-xe@lists.freedesktop.org, Alex Elder <elder@kernel.org>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>, linux-sound@vger.kernel.org,
- Takashi Iwai <tiwai@suse.com>, Daniel Vetter <daniel@ffwll.ch>,
- netdev@vger.kernel.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi Alex,
+This patch set touches Xe and i915 drivers. On i915 is checked if
+running on Xe2 hardware and enable framebuffer ccs decompression
+unconditionally for tile4 framebuffers. On Xe driver with Xe2
+hardware check if ccs compression is in use and behave accordingly;
+attempt to use ccs with linear and x-tiled framebuffers will result
+in -EINVAL as display does support decompression only on tile4.
 
-On Fri, Jan 26, 2024 at 09:12:02AM -0600, Alex Elder wrote:
-> On 1/22/24 5:41 AM, Sakari Ailus wrote:
-> > There are two ways to opportunistically increment a device's runtime PM
-> > usage count, calling either pm_runtime_get_if_active() or
-> > pm_runtime_get_if_in_use(). The former has an argument to tell whether to
-> > ignore the usage count or not, and the latter simply calls the former with
-> > ign_usage_count set to false. The other users that want to ignore the
-> > usage_count will have to explitly set that argument to true which is a bit
-> > cumbersome.
-> > 
-> > To make this function more practical to use, remove the ign_usage_count
-> > argument from the function. The main implementation is renamed as
-> > pm_runtime_get_conditional().
-> > 
-> > Signed-off-by: Sakari Ailus <sakari.ailus@linux.intel.com>
-> > Reviewed-by: Alex Elder <elder@linaro.org> # drivers/net/ipa/ipa_smp2p.c
-> 
-> I actually intended my "Reviewed-by" to cover the entire patch.  I
-> checked every caller and they all looked good to me.
+v2: Add compressed flag into pat index table and use that. Try to
+avoid situation where framebuffer can be bound with different
+pat index after it was pinned.
 
-Thanks, I'll drop the file name. AFAIR it was just below that file, so I
-added it, but I could be wrong, too.
+Juha-Pekka Heikkila (5):
+  drm/xe/pat: annotate pat index table with compression information
+  drm/xe: add bind time pat index to xe_bo structure
+  drm/xe: store bind time pat index to xe_bo
+  drm/xe/xe2: Limit ccs framebuffers to tile4 only
+  drm/i915/display: On Xe2 always enable decompression with tile4
 
-v5 will also squash the 2nd patch of v4 into this one
-<URL:https://lore.kernel.org/linux-pm/ZbBAWROxRKE8Y8VU@kekkonen.localdomain/T/#m76d34e679e12d8536a20eb29af6e826e2a85a24b>,
-I hope that's fine.
+ .../drm/i915/display/skl_universal_plane.c    |  5 ++++
+ drivers/gpu/drm/xe/display/xe_fb_pin.c        | 19 +++++++++++++++
+ drivers/gpu/drm/xe/xe_bo_types.h              | 11 +++++++++
+ drivers/gpu/drm/xe/xe_pat.c                   |  9 +++++++-
+ drivers/gpu/drm/xe/xe_pat.h                   |  8 +++++++
+ drivers/gpu/drm/xe/xe_pt.c                    | 23 +++++++++++++++----
+ 6 files changed, 70 insertions(+), 5 deletions(-)
 
 -- 
-Kind regards,
+2.25.1
 
-Sakari Ailus
