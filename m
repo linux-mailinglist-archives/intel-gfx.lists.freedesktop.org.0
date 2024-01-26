@@ -2,69 +2,28 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id EA69883D987
-	for <lists+intel-gfx@lfdr.de>; Fri, 26 Jan 2024 12:44:09 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 762F883D9B5
+	for <lists+intel-gfx@lfdr.de>; Fri, 26 Jan 2024 12:54:38 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D829510F9AC;
-	Fri, 26 Jan 2024 11:44:06 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5090910E2FE;
+	Fri, 26 Jan 2024 11:54:06 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from us-smtp-delivery-124.mimecast.com
- (us-smtp-delivery-124.mimecast.com [170.10.133.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4803910F9B6
- for <intel-gfx@lists.freedesktop.org>; Fri, 26 Jan 2024 11:44:05 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1706269444;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type;
- bh=ojog/GgB6QeEVgouu+JXqSacV8wR1Bfe5vGGDzfdD00=;
- b=f7H3Olp6VhZv1Qfugt+puaBkxGyWYMbFR9fkII6OwV1Au6YEZNunvbZ9xOZG6PbLqCUv+t
- o9cxWLD3yJFyxoKvJrjVXio5YU3oP//xtAJdmFgXudhPmb3G1IevbqLvm83Eg5GP+/W2zS
- zOE2y/YWqG8ysVI5kLwX67OgH+8agLk=
-Received: from mail-wr1-f72.google.com (mail-wr1-f72.google.com
- [209.85.221.72]) by relay.mimecast.com with ESMTP with STARTTLS
- (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
- us-mta-518--NSDeHcFPpSBiAXJ4Fisgw-1; Fri, 26 Jan 2024 06:44:02 -0500
-X-MC-Unique: -NSDeHcFPpSBiAXJ4Fisgw-1
-Received: by mail-wr1-f72.google.com with SMTP id
- ffacd0b85a97d-33927b1fac7so196755f8f.1
- for <intel-gfx@lists.freedesktop.org>; Fri, 26 Jan 2024 03:44:02 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1706269441; x=1706874241;
- h=content-disposition:mime-version:message-id:subject:cc:to:from:date
- :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
- bh=ojog/GgB6QeEVgouu+JXqSacV8wR1Bfe5vGGDzfdD00=;
- b=j/x+1qroOS0m6c7Xqw0aHMX4uf4SUj41tQlJQvthl1533B2t8TlTkHkpvj0A8FZ88f
- PPZw9MG9k68/48T+HHTFnj1v/+VSfDqermLclbxcIU3EmClnSyd+kRFIeHoc3ZtoPDMp
- KjD5ZSH6SNtyQFA+esYKYIS4U+ANRx2CLWb5Zt9qe8CYYPtEIUO2FwPSbDizFSuA5loH
- +VMKvLIivU5TyXlHO4E663gMifmsRfGbtRUYtcuOhXUTbdXUCpSfbrDdOg/SRiaFsulf
- sTexW2qIxuU0h3rrTIzS/B5dj5TLF4kLWkO4ryHjSumFMKdcC4jfaarxJ7ZP20RQ7202
- /pKg==
-X-Gm-Message-State: AOJu0YwFlC1K/rHV57WKuJz2P6d9lxhzcdnFTD6jSlkvhYxj4zWc1p4q
- 4T59Co3jj4ZpvDWTliR9vkNb0+tI+VjDrExFB5mDiSk+PzjcYJjpFuXFzSUaich0osVF1xb8B1/
- 3jJDphwY9LrLKuaCBusttpfZRm0TI+IyETIvt/zCgjCD4zXVtkmPD46YSb82gnFdAMQ==
-X-Received: by 2002:adf:f047:0:b0:339:367c:d996 with SMTP id
- t7-20020adff047000000b00339367cd996mr882311wro.93.1706269441505; 
- Fri, 26 Jan 2024 03:44:01 -0800 (PST)
-X-Google-Smtp-Source: AGHT+IEX5Jv2bItiikoMDio+zyUI6FtwwRV6Ma3TtXvYMcjl98b9mn8zQZcMGcOUDLXCdEYd/jOuWA==
-X-Received: by 2002:adf:f047:0:b0:339:367c:d996 with SMTP id
- t7-20020adff047000000b00339367cd996mr882304wro.93.1706269441051; 
- Fri, 26 Jan 2024 03:44:01 -0800 (PST)
-Received: from localhost ([2a01:e0a:b25:f902::ff])
- by smtp.gmail.com with ESMTPSA id
- z5-20020adff745000000b003395642bc9bsm1079492wrp.117.2024.01.26.03.44.00
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Fri, 26 Jan 2024 03:44:00 -0800 (PST)
-Date: Fri, 26 Jan 2024 12:44:00 +0100
-From: Maxime Ripard <mripard@redhat.com>
-To: Dave Airlie <airlied@gmail.com>, 
-	Daniel Vetter <daniel.vetter@ffwll.ch>
-Subject: [PULL] drm-misc-fixes
-Message-ID: <tp77e5fokigup6cgmpq6mtg46kzdw2dpze6smpnwfoml4kmwpq@bo6mbkezpkle>
+Received: from 5338d5abeb45 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CBEF510E214;
+ Fri, 26 Jan 2024 11:54:05 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============5338665144065967496=="
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
- protocol="application/pgp-signature"; boundary="4bagkb36gkokciv5"
-Content-Disposition: inline
+Subject: =?utf-8?q?=E2=9C=97_Fi=2ECI=2EBAT=3A_failure_for_drm/i915=3A_update_eDP_MSO_?=
+ =?utf-8?q?pipe_mask_for_newer_platforms?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Luca Coelho" <luciano.coelho@intel.com>
+Date: Fri, 26 Jan 2024 11:54:05 -0000
+Message-ID: <170627004583.745726.17825005550572660329@5338d5abeb45>
+X-Patchwork-Hint: ignore
+References: <20240126100309.2024264-1-luciano.coelho@intel.com>
+In-Reply-To: <20240126100309.2024264-1-luciano.coelho@intel.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -77,149 +36,245 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: dim-tools@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- Thomas =?utf-8?Q?Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
- Lucas De Marchi <lucas.demarchi@intel.com>, Oded Gabbay <ogabbay@kernel.org>,
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, intel-gfx@lists.freedesktop.org
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+--===============5338665144065967496==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
---4bagkb36gkokciv5
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+== Series Details ==
 
-Hi Dave, Sima,
+Series: drm/i915: update eDP MSO pipe mask for newer platforms
+URL   : https://patchwork.freedesktop.org/series/129191/
+State : failure
 
-Here's this week drm-misc-fixes PR.
+== Summary ==
 
-Maxime
+CI Bug Log - changes from CI_DRM_14181 -> Patchwork_129191v1
+====================================================
 
-drm-misc-fixes-2024-01-26:
-Plenty of ivpu fixes to improve the general stability and debugging, a
-suspend fix for the anx7625 bridge, a revert to fix an initialization
-order bug between i915 and simpledrm and a documentation warning fix for
-dp_mst.
-The following changes since commit 6613476e225e090cc9aad49be7fa504e290dd33d:
+Summary
+-------
 
-  Linux 6.8-rc1 (2024-01-21 14:11:32 -0800)
+  **FAILURE**
 
-are available in the Git repository at:
+  Serious unknown changes coming with Patchwork_129191v1 absolutely need to be
+  verified manually.
+  
+  If you think the reported changes have nothing to do with the changes
+  introduced in Patchwork_129191v1, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them
+  to document this new failure mode, which will reduce false positives in CI.
 
-  git://anongit.freedesktop.org/drm/drm-misc tags/drm-misc-fixes-2024-01-26
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_129191v1/index.html
 
-for you to fetch changes up to 27d19268cf394f2c78db732be0cb31852eeadb0a:
+Participating hosts (37 -> 18)
+------------------------------
 
-  accel/ivpu: Improve recovery and reset support (2024-01-25 10:17:37 +0100)
+  ERROR: It appears as if the changes made in Patchwork_129191v1 prevented too many machines from booting.
 
-----------------------------------------------------------------
-Plenty of ivpu fixes to improve the general stability and debugging, a
-suspend fix for the anx7625 bridge, a revert to fix an initialization
-order bug between i915 and simpledrm and a documentation warning fix for
-dp_mst.
+  Missing    (19): fi-rkl-11600 fi-apl-guc bat-adlp-6 fi-snb-2520m fi-blb-e6850 bat-rpls-2 fi-skl-6600u fi-elk-e7500 bat-jsl-3 fi-bsw-nick fi-kbl-7567u bat-adlp-9 fi-skl-guc bat-mtlp-6 fi-tgl-1115g4 fi-cfl-guc fi-kbl-x1275 fi-cfl-8109u bat-dg2-14 
 
-----------------------------------------------------------------
-Arnd Bergmann (1):
-      drm/panel/raydium-rm692e5: select CONFIG_DRM_DISPLAY_DP_HELPER
+Known issues
+------------
 
-Artur Weber (1):
-      drm/panel: samsung-s6d7aa0: drop DRM_BUS_FLAG_DE_HIGH for lsl080al02
+  Here are the changes found in Patchwork_129191v1 that come from known issues:
 
-Bagas Sanjaya (1):
-      drm/dp_mst: Separate @failing_port list in drm_dp_mst_atomic_check_mg=
-r() comment
+### IGT changes ###
 
-Douglas Anderson (2):
-      drm/bridge: parade-ps8640: Wait for HPD when doing an AUX transfer
-      drm/bridge: parade-ps8640: Make sure we drop the AUX mutex in the err=
-or case
+#### Issues hit ####
 
-Hsin-Yi Wang (1):
-      drm/bridge: anx7625: Ensure bridge is suspended in disable()
+  * igt@gem_lmem_swapping@parallel-random-engines:
+    - bat-adlm-1:         NOTRUN -> [SKIP][1] ([i915#4613]) +3 other tests skip
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_129191v1/bat-adlm-1/igt@gem_lmem_swapping@parallel-random-engines.html
 
-Jacek Lawrynowicz (8):
-      accel/ivpu: Fix for missing lock around drm_gem_shmem_vmap()
-      accel/ivpu: Free buffer sgt on unbind
-      accel/ivpu: Disable buffer sharing among VPU contexts
-      accel/ivpu: Improve buffer object debug logs
-      accel/ivpu: Disable PLL after VPU IP reset during FLR
-      accel/ivpu: Fix dev open/close races with unbind
-      accel/ivpu: Improve stability of ivpu_submit_ioctl()
-      accel/ivpu: Improve recovery and reset support
+  * igt@i915_pm_rps@basic-api:
+    - bat-adlm-1:         NOTRUN -> [SKIP][2] ([i915#6621])
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_129191v1/bat-adlm-1/igt@i915_pm_rps@basic-api.html
 
-Markus Niebel (1):
-      drm: panel-simple: add missing bus flags for Tianma tm070jvhg[30/33]
+  * igt@kms_force_connector_basic@force-load-detect:
+    - bat-adlm-1:         NOTRUN -> [SKIP][3] ([fdo#109285])
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_129191v1/bat-adlm-1/igt@kms_force_connector_basic@force-load-detect.html
 
-Maxime Ripard (1):
-      Merge v6.8-rc1 into drm-misc-fixes
+  * igt@kms_frontbuffer_tracking@basic:
+    - bat-adlm-1:         NOTRUN -> [SKIP][4] ([i915#1849] / [i915#4342])
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_129191v1/bat-adlm-1/igt@kms_frontbuffer_tracking@basic.html
 
-Micha=C5=82 Winiarski (1):
-      drm/tests: mm: Call drm_mm_print in drm_test_mm_debug
+  * igt@kms_pipe_crc_basic@hang-read-crc:
+    - bat-adlm-1:         NOTRUN -> [SKIP][5] ([i915#9875] / [i915#9900]) +6 other tests skip
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_129191v1/bat-adlm-1/igt@kms_pipe_crc_basic@hang-read-crc.html
 
-Pin-yen Lin (1):
-      drm/bridge: parade-ps8640: Ensure bridge is suspended in .post_disabl=
-e()
+  * igt@kms_pm_backlight@basic-brightness:
+    - bat-adlm-1:         NOTRUN -> [SKIP][6] ([i915#5354])
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_129191v1/bat-adlm-1/igt@kms_pm_backlight@basic-brightness.html
 
-Thomas Zimmermann (1):
-      Revert "drivers/firmware: Move sysfb_init() from device_initcall to s=
-ubsys_initcall_sync"
+  * igt@kms_setmode@basic-clone-single-crtc:
+    - bat-adlm-1:         NOTRUN -> [SKIP][7] ([i915#3555])
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_129191v1/bat-adlm-1/igt@kms_setmode@basic-clone-single-crtc.html
 
-Tomi Valkeinen (2):
-      drm/bridge: sii902x: Fix probing race issue
-      drm/bridge: sii902x: Fix audio codec unregistration
+  * igt@prime_vgem@basic-fence-flip:
+    - bat-adlm-1:         NOTRUN -> [SKIP][8] ([i915#3708] / [i915#9900])
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_129191v1/bat-adlm-1/igt@prime_vgem@basic-fence-flip.html
 
-Wachowski, Karol (5):
-      accel/ivpu: Dump MMU events in case of VPU boot timeout
-      accel/ivpu: Call diagnose failure in ivpu_mmu_cmdq_sync()
-      accel/ivpu: Add debug prints for MMU map/unmap operations
-      accel/ivpu: Add diagnostic messages when VPU fails to boot or suspend
-      accel/ivpu: Deprecate DRM_IVPU_PARAM_CONTEXT_PRIORITY param
+  * igt@prime_vgem@basic-write:
+    - bat-adlm-1:         NOTRUN -> [SKIP][9] ([i915#3708]) +2 other tests skip
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_129191v1/bat-adlm-1/igt@prime_vgem@basic-write.html
 
-Yangyu Chen (1):
-      drm/ttm: allocate dummy_read_page without DMA32 on fail
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
 
- drivers/accel/ivpu/ivpu_debugfs.c             |  20 +++-
- drivers/accel/ivpu/ivpu_drv.c                 | 124 +++++++++++---------
- drivers/accel/ivpu/ivpu_drv.h                 |   5 +-
- drivers/accel/ivpu/ivpu_gem.c                 | 142 +++++++++--------------
- drivers/accel/ivpu/ivpu_gem.h                 |   3 +-
- drivers/accel/ivpu/ivpu_hw_37xx.c             |  14 +--
- drivers/accel/ivpu/ivpu_hw_40xx.c             |  29 ++++-
- drivers/accel/ivpu/ivpu_ipc.c                 |   6 +-
- drivers/accel/ivpu/ivpu_job.c                 | 160 ++++++++++++----------=
-----
- drivers/accel/ivpu/ivpu_job.h                 |   3 +-
- drivers/accel/ivpu/ivpu_mmu.c                 |  22 ++--
- drivers/accel/ivpu/ivpu_mmu.h                 |   1 +
- drivers/accel/ivpu/ivpu_mmu_context.c         |   9 ++
- drivers/accel/ivpu/ivpu_pm.c                  |  52 ++++++---
- drivers/accel/ivpu/ivpu_pm.h                  |   6 +-
- drivers/firmware/sysfb.c                      |   2 +-
- drivers/gpu/drm/bridge/analogix/anx7625.c     |   7 +-
- drivers/gpu/drm/bridge/analogix/anx7625.h     |   2 +
- drivers/gpu/drm/bridge/parade-ps8640.c        |  23 ++++
- drivers/gpu/drm/bridge/sii902x.c              |  48 +++++---
- drivers/gpu/drm/display/drm_dp_mst_topology.c |   2 +
- drivers/gpu/drm/panel/Kconfig                 |   2 +
- drivers/gpu/drm/panel/panel-samsung-s6d7aa0.c |   2 +-
- drivers/gpu/drm/panel/panel-simple.c          |   2 +
- drivers/gpu/drm/tests/drm_mm_test.c           |   5 +-
- drivers/gpu/drm/ttm/ttm_device.c              |  12 +-
- include/uapi/drm/ivpu_accel.h                 |  25 +++-
- 27 files changed, 413 insertions(+), 315 deletions(-)
+  [fdo#109285]: https://bugs.freedesktop.org/show_bug.cgi?id=109285
+  [i915#1849]: https://gitlab.freedesktop.org/drm/intel/issues/1849
+  [i915#3555]: https://gitlab.freedesktop.org/drm/intel/issues/3555
+  [i915#3708]: https://gitlab.freedesktop.org/drm/intel/issues/3708
+  [i915#4342]: https://gitlab.freedesktop.org/drm/intel/issues/4342
+  [i915#4613]: https://gitlab.freedesktop.org/drm/intel/issues/4613
+  [i915#5354]: https://gitlab.freedesktop.org/drm/intel/issues/5354
+  [i915#6621]: https://gitlab.freedesktop.org/drm/intel/issues/6621
+  [i915#9673]: https://gitlab.freedesktop.org/drm/intel/issues/9673
+  [i915#9732]: https://gitlab.freedesktop.org/drm/intel/issues/9732
+  [i915#9875]: https://gitlab.freedesktop.org/drm/intel/issues/9875
+  [i915#9900]: https://gitlab.freedesktop.org/drm/intel/issues/9900
 
---4bagkb36gkokciv5
-Content-Type: application/pgp-signature; name="signature.asc"
 
------BEGIN PGP SIGNATURE-----
+Build changes
+-------------
 
-iHUEABYKAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCZbOa/wAKCRDj7w1vZxhR
-xYiGAQC1TWsKIasMAp4y47KRlvJ/tk5s/cS9vzLKsuoqNs331QEApR8OwBg6xD/U
-Lp9ZArT14fHEY/v4aVHVKH2gO5ZJLws=
-=QsQp
------END PGP SIGNATURE-----
+  * Linux: CI_DRM_14181 -> Patchwork_129191v1
 
---4bagkb36gkokciv5--
+  CI-20190529: 20190529
+  CI_DRM_14181: 6aa961ab469df8db84bee01a55606a91a6ae5d67 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_7693: f5f774ada63296536195fd381d8720f5ac7e2208 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  Patchwork_129191v1: 6aa961ab469df8db84bee01a55606a91a6ae5d67 @ git://anongit.freedesktop.org/gfx-ci/linux
 
+
+### Linux commits
+
+8c8742f3f28c drm/i915: update eDP MSO pipe mask for newer platforms
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_129191v1/index.html
+
+--===============5338665144065967496==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/i915: update eDP MSO pipe mask for newer platforms</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/129191/">https://patchwork.freedesktop.org/series/129191/</a></td></tr>
+<tr><td><b>State:</b></td><td>failure</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_129191v1/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_129191v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_14181 -&gt; Patchwork_129191v1</h1>
+<h2>Summary</h2>
+<p><strong>FAILURE</strong></p>
+<p>Serious unknown changes coming with Patchwork_129191v1 absolutely need to be<br />
+  verified manually.</p>
+<p>If you think the reported changes have nothing to do with the changes<br />
+  introduced in Patchwork_129191v1, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them<br />
+  to document this new failure mode, which will reduce false positives in CI.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_129191v1/index.html</p>
+<h2>Participating hosts (37 -&gt; 18)</h2>
+<p>ERROR: It appears as if the changes made in Patchwork_129191v1 prevented too many machines from booting.</p>
+<p>Missing    (19): fi-rkl-11600 fi-apl-guc bat-adlp-6 fi-snb-2520m fi-blb-e6850 bat-rpls-2 fi-skl-6600u fi-elk-e7500 bat-jsl-3 fi-bsw-nick fi-kbl-7567u bat-adlp-9 fi-skl-guc bat-mtlp-6 fi-tgl-1115g4 fi-cfl-guc fi-kbl-x1275 fi-cfl-8109u bat-dg2-14 </p>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_129191v1 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@gem_lmem_swapping@parallel-random-engines:</p>
+<ul>
+<li>bat-adlm-1:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_129191v1/bat-adlm-1/igt@gem_lmem_swapping@parallel-random-engines.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4613">i915#4613</a>) +3 other tests skip</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_pm_rps@basic-api:</p>
+<ul>
+<li>bat-adlm-1:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_129191v1/bat-adlm-1/igt@i915_pm_rps@basic-api.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/6621">i915#6621</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_force_connector_basic@force-load-detect:</p>
+<ul>
+<li>bat-adlm-1:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_129191v1/bat-adlm-1/igt@kms_force_connector_basic@force-load-detect.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109285">fdo#109285</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_frontbuffer_tracking@basic:</p>
+<ul>
+<li>bat-adlm-1:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_129191v1/bat-adlm-1/igt@kms_frontbuffer_tracking@basic.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1849">i915#1849</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/4342">i915#4342</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_pipe_crc_basic@hang-read-crc:</p>
+<ul>
+<li>bat-adlm-1:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_129191v1/bat-adlm-1/igt@kms_pipe_crc_basic@hang-read-crc.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/9875">i915#9875</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/9900">i915#9900</a>) +6 other tests skip</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_pm_backlight@basic-brightness:</p>
+<ul>
+<li>bat-adlm-1:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_129191v1/bat-adlm-1/igt@kms_pm_backlight@basic-brightness.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/5354">i915#5354</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_setmode@basic-clone-single-crtc:</p>
+<ul>
+<li>bat-adlm-1:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_129191v1/bat-adlm-1/igt@kms_setmode@basic-clone-single-crtc.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3555">i915#3555</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@prime_vgem@basic-fence-flip:</p>
+<ul>
+<li>bat-adlm-1:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_129191v1/bat-adlm-1/igt@prime_vgem@basic-fence-flip.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3708">i915#3708</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/9900">i915#9900</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@prime_vgem@basic-write:</p>
+<ul>
+<li>bat-adlm-1:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_129191v1/bat-adlm-1/igt@prime_vgem@basic-write.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3708">i915#3708</a>) +2 other tests skip</li>
+</ul>
+</li>
+</ul>
+<p>{name}: This element is suppressed. This means it is ignored when computing<br />
+          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_14181 -&gt; Patchwork_129191v1</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_14181: 6aa961ab469df8db84bee01a55606a91a6ae5d67 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_7693: f5f774ada63296536195fd381d8720f5ac7e2208 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  Patchwork_129191v1: 6aa961ab469df8db84bee01a55606a91a6ae5d67 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+<h3>Linux commits</h3>
+<p>8c8742f3f28c drm/i915: update eDP MSO pipe mask for newer platforms</p>
+
+</body>
+</html>
+
+--===============5338665144065967496==--
