@@ -2,28 +2,52 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 762F883D9B5
-	for <lists+intel-gfx@lfdr.de>; Fri, 26 Jan 2024 12:54:38 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id D96C183DAB5
+	for <lists+intel-gfx@lfdr.de>; Fri, 26 Jan 2024 14:27:54 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5090910E2FE;
-	Fri, 26 Jan 2024 11:54:06 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A49CB10FA7A;
+	Fri, 26 Jan 2024 13:27:49 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from 5338d5abeb45 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CBEF510E214;
- Fri, 26 Jan 2024 11:54:05 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============5338665144065967496=="
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7293A10FA78;
+ Fri, 26 Jan 2024 13:27:48 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1706275669; x=1737811669;
+ h=date:from:to:cc:subject:message-id:reply-to:references:
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=QCT/Nc7sresQQuPElgDUY0oLp0nqtZhYIbC4OXeCJYM=;
+ b=fQdOEA2mzO+66YWtZXMV7O7PfLpPujsuR72IuCnxQNL0K7W065YXKmeP
+ abcIMEmq7QZXDnE7kqLMpUjfJqxRUb/c7vn3pqNzqeRJItZvlWw7S5otG
+ aOfWCAjmaZ/nEWEfuqqZsEz1sRWN4JojXjOz+yIBWpI9AuNZ91IOywOE+
+ CATCk5KLSGO/ypsa3uqsCz3SmNkZa1X6Pa4gvI1jo1tui8nYPL+32md3F
+ SNMmZ5RdKulEHg5QsB5pVpAMfZKm32hZyKBwaVYhsM8FETG0S1lDKSmNL
+ J3BqIMwt1fBEnzJSPEgU8kSwPRv974XrPS+bbtd8KmRnRyz5WrCM/bQJN g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10964"; a="9836720"
+X-IronPort-AV: E=Sophos;i="6.05,216,1701158400"; 
+   d="scan'208";a="9836720"
+Received: from fmviesa001.fm.intel.com ([10.60.135.141])
+ by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 Jan 2024 05:27:49 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.05,216,1701158400"; d="scan'208";a="29105491"
+Received: from ideak-desk.fi.intel.com ([10.237.72.78])
+ by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 Jan 2024 05:27:46 -0800
+Date: Fri, 26 Jan 2024 15:28:02 +0200
+From: Imre Deak <imre.deak@intel.com>
+To: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+Subject: Re: [PATCH 01/19] drm/dp: Add drm_dp_max_dprx_data_rate()
+Message-ID: <ZbOzQQ7y4OdKAnYY@ideak-desk.fi.intel.com>
+References: <20240123102850.390126-1-imre.deak@intel.com>
+ <20240123102850.390126-2-imre.deak@intel.com>
+ <ZbOZIpuIpf18KlM0@intel.com>
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=97_Fi=2ECI=2EBAT=3A_failure_for_drm/i915=3A_update_eDP_MSO_?=
- =?utf-8?q?pipe_mask_for_newer_platforms?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Luca Coelho" <luciano.coelho@intel.com>
-Date: Fri, 26 Jan 2024 11:54:05 -0000
-Message-ID: <170627004583.745726.17825005550572660329@5338d5abeb45>
-X-Patchwork-Hint: ignore
-References: <20240126100309.2024264-1-luciano.coelho@intel.com>
-In-Reply-To: <20240126100309.2024264-1-luciano.coelho@intel.com>
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <ZbOZIpuIpf18KlM0@intel.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,245 +60,123 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
+Reply-To: imre.deak@intel.com
+Cc: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============5338665144065967496==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+On Fri, Jan 26, 2024 at 01:36:02PM +0200, Ville Syrjälä wrote:
+> On Tue, Jan 23, 2024 at 12:28:32PM +0200, Imre Deak wrote:
+> > Copy intel_dp_max_data_rate() to DRM core. It will be needed by a
+> > follow-up DP tunnel patch, checking the maximum rate the DPRX (sink)
+> > supports. Accordingly use the drm_dp_max_dprx_data_rate() name for
+> > clarity. This patchset will also switch calling the new DRM function
+> > in i915 instead of intel_dp_max_data_rate().
+> > 
+> > Signed-off-by: Imre Deak <imre.deak@intel.com>
+> > ---
+> >  drivers/gpu/drm/display/drm_dp_helper.c | 58 +++++++++++++++++++++++++
+> >  include/drm/display/drm_dp_helper.h     |  2 +
+> >  2 files changed, 60 insertions(+)
+> > 
+> > diff --git a/drivers/gpu/drm/display/drm_dp_helper.c b/drivers/gpu/drm/display/drm_dp_helper.c
+> > index b1ca3a1100dab..24911243d4d3a 100644
+> > --- a/drivers/gpu/drm/display/drm_dp_helper.c
+> > +++ b/drivers/gpu/drm/display/drm_dp_helper.c
+> > @@ -4058,3 +4058,61 @@ int drm_dp_bw_channel_coding_efficiency(bool is_uhbr)
+> >  		return 800000;
+> >  }
+> >  EXPORT_SYMBOL(drm_dp_bw_channel_coding_efficiency);
+> > +
+> > +/*
+> > + * Given a link rate and lanes, get the data bandwidth.
+> > + *
+> > + * Data bandwidth is the actual payload rate, which depends on the data
+> > + * bandwidth efficiency and the link rate.
+> > + *
+> > + * For 8b/10b channel encoding, SST and non-FEC, the data bandwidth efficiency
+> > + * is 80%. For example, for a 1.62 Gbps link, 1.62*10^9 bps * 0.80 * (1/8) =
+> > + * 162000 kBps. With 8-bit symbols, we have 162000 kHz symbol clock. Just by
+> > + * coincidence, the port clock in kHz matches the data bandwidth in kBps, and
+> > + * they equal the link bit rate in Gbps multiplied by 100000. (Note that this no
+> > + * longer holds for data bandwidth as soon as FEC or MST is taken into account!)
+> > + *
+> > + * For 128b/132b channel encoding, the data bandwidth efficiency is 96.71%. For
+> > + * example, for a 10 Gbps link, 10*10^9 bps * 0.9671 * (1/8) = 1208875
+> > + * kBps. With 32-bit symbols, we have 312500 kHz symbol clock. The value 1000000
+> > + * does not match the symbol clock, the port clock (not even if you think in
+> > + * terms of a byte clock), nor the data bandwidth. It only matches the link bit
+> > + * rate in units of 10000 bps.
+> > + *
+> > + * Note that protocol layers above the DPRX link level considered here can
+> > + * further limit the maximum data rate. Such layers are the MST topology (with
+> > + * limits on the link between the source and first branch device as well as on
+> > + * the whole MST path until the DPRX link) and (Thunderbolt) DP tunnels -
+> > + * which in turn can encapsulate an MST link with its own limit - with each
+> > + * SST or MST encapsulated tunnel sharing the BW of a tunnel group.
+> > + *
+> > + * TODO: Add support for querying the max data rate with the above limits as
+> > + * well.
+> > + *
+> > + * Returns the maximum data rate in kBps units.
+> > + */
+> > +int drm_dp_max_dprx_data_rate(int max_link_rate, int max_lanes)
+> > +{
+> > +	int ch_coding_efficiency =
+> > +		drm_dp_bw_channel_coding_efficiency(drm_dp_is_uhbr_rate(max_link_rate));
+> > +	int max_link_rate_kbps = max_link_rate * 10;
+> 
+> That x10 value seems rather pointless.
 
-== Series Details ==
+I suppose the point was to make the units clearer, but it could be
+clarified instead in max_link_rates' documentation, which is missing
+atm.
 
-Series: drm/i915: update eDP MSO pipe mask for newer platforms
-URL   : https://patchwork.freedesktop.org/series/129191/
-State : failure
+> > +
+> > +	/*
+> > +	 * UHBR rates always use 128b/132b channel encoding, and have
+> > +	 * 97.71% data bandwidth efficiency. Consider max_link_rate the
+> > +	 * link bit rate in units of 10000 bps.
+> > +	 */
+> > +	/*
+> > +	 * Lower than UHBR rates always use 8b/10b channel encoding, and have
+> > +	 * 80% data bandwidth efficiency for SST non-FEC. However, this turns
+> > +	 * out to be a nop by coincidence:
+> > +	 *
+> > +	 *	int max_link_rate_kbps = max_link_rate * 10;
+> > +	 *	max_link_rate_kbps = DIV_ROUND_DOWN_ULL(max_link_rate_kbps * 8, 10);
+> > +	 *	max_link_rate = max_link_rate_kbps / 8;
+> > +	 */
+> 
+> Not sure why we are repeating the nuts and bolts detils in the
+> comments so much? Doesn't drm_dp_bw_channel_coding_efficiency()
+> explain all this already?
 
-== Summary ==
+I simply copied the function, but yes in this context there is
+duplication, thanks for reading through all that. Will consolidate both
+the above and the bigger comment before the function with the existing
+docs here.
 
-CI Bug Log - changes from CI_DRM_14181 -> Patchwork_129191v1
-====================================================
-
-Summary
--------
-
-  **FAILURE**
-
-  Serious unknown changes coming with Patchwork_129191v1 absolutely need to be
-  verified manually.
-  
-  If you think the reported changes have nothing to do with the changes
-  introduced in Patchwork_129191v1, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them
-  to document this new failure mode, which will reduce false positives in CI.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_129191v1/index.html
-
-Participating hosts (37 -> 18)
-------------------------------
-
-  ERROR: It appears as if the changes made in Patchwork_129191v1 prevented too many machines from booting.
-
-  Missing    (19): fi-rkl-11600 fi-apl-guc bat-adlp-6 fi-snb-2520m fi-blb-e6850 bat-rpls-2 fi-skl-6600u fi-elk-e7500 bat-jsl-3 fi-bsw-nick fi-kbl-7567u bat-adlp-9 fi-skl-guc bat-mtlp-6 fi-tgl-1115g4 fi-cfl-guc fi-kbl-x1275 fi-cfl-8109u bat-dg2-14 
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_129191v1 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@gem_lmem_swapping@parallel-random-engines:
-    - bat-adlm-1:         NOTRUN -> [SKIP][1] ([i915#4613]) +3 other tests skip
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_129191v1/bat-adlm-1/igt@gem_lmem_swapping@parallel-random-engines.html
-
-  * igt@i915_pm_rps@basic-api:
-    - bat-adlm-1:         NOTRUN -> [SKIP][2] ([i915#6621])
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_129191v1/bat-adlm-1/igt@i915_pm_rps@basic-api.html
-
-  * igt@kms_force_connector_basic@force-load-detect:
-    - bat-adlm-1:         NOTRUN -> [SKIP][3] ([fdo#109285])
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_129191v1/bat-adlm-1/igt@kms_force_connector_basic@force-load-detect.html
-
-  * igt@kms_frontbuffer_tracking@basic:
-    - bat-adlm-1:         NOTRUN -> [SKIP][4] ([i915#1849] / [i915#4342])
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_129191v1/bat-adlm-1/igt@kms_frontbuffer_tracking@basic.html
-
-  * igt@kms_pipe_crc_basic@hang-read-crc:
-    - bat-adlm-1:         NOTRUN -> [SKIP][5] ([i915#9875] / [i915#9900]) +6 other tests skip
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_129191v1/bat-adlm-1/igt@kms_pipe_crc_basic@hang-read-crc.html
-
-  * igt@kms_pm_backlight@basic-brightness:
-    - bat-adlm-1:         NOTRUN -> [SKIP][6] ([i915#5354])
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_129191v1/bat-adlm-1/igt@kms_pm_backlight@basic-brightness.html
-
-  * igt@kms_setmode@basic-clone-single-crtc:
-    - bat-adlm-1:         NOTRUN -> [SKIP][7] ([i915#3555])
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_129191v1/bat-adlm-1/igt@kms_setmode@basic-clone-single-crtc.html
-
-  * igt@prime_vgem@basic-fence-flip:
-    - bat-adlm-1:         NOTRUN -> [SKIP][8] ([i915#3708] / [i915#9900])
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_129191v1/bat-adlm-1/igt@prime_vgem@basic-fence-flip.html
-
-  * igt@prime_vgem@basic-write:
-    - bat-adlm-1:         NOTRUN -> [SKIP][9] ([i915#3708]) +2 other tests skip
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_129191v1/bat-adlm-1/igt@prime_vgem@basic-write.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [fdo#109285]: https://bugs.freedesktop.org/show_bug.cgi?id=109285
-  [i915#1849]: https://gitlab.freedesktop.org/drm/intel/issues/1849
-  [i915#3555]: https://gitlab.freedesktop.org/drm/intel/issues/3555
-  [i915#3708]: https://gitlab.freedesktop.org/drm/intel/issues/3708
-  [i915#4342]: https://gitlab.freedesktop.org/drm/intel/issues/4342
-  [i915#4613]: https://gitlab.freedesktop.org/drm/intel/issues/4613
-  [i915#5354]: https://gitlab.freedesktop.org/drm/intel/issues/5354
-  [i915#6621]: https://gitlab.freedesktop.org/drm/intel/issues/6621
-  [i915#9673]: https://gitlab.freedesktop.org/drm/intel/issues/9673
-  [i915#9732]: https://gitlab.freedesktop.org/drm/intel/issues/9732
-  [i915#9875]: https://gitlab.freedesktop.org/drm/intel/issues/9875
-  [i915#9900]: https://gitlab.freedesktop.org/drm/intel/issues/9900
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_14181 -> Patchwork_129191v1
-
-  CI-20190529: 20190529
-  CI_DRM_14181: 6aa961ab469df8db84bee01a55606a91a6ae5d67 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_7693: f5f774ada63296536195fd381d8720f5ac7e2208 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_129191v1: 6aa961ab469df8db84bee01a55606a91a6ae5d67 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-### Linux commits
-
-8c8742f3f28c drm/i915: update eDP MSO pipe mask for newer platforms
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_129191v1/index.html
-
---===============5338665144065967496==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915: update eDP MSO pipe mask for newer platforms</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/129191/">https://patchwork.freedesktop.org/series/129191/</a></td></tr>
-<tr><td><b>State:</b></td><td>failure</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_129191v1/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_129191v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_14181 -&gt; Patchwork_129191v1</h1>
-<h2>Summary</h2>
-<p><strong>FAILURE</strong></p>
-<p>Serious unknown changes coming with Patchwork_129191v1 absolutely need to be<br />
-  verified manually.</p>
-<p>If you think the reported changes have nothing to do with the changes<br />
-  introduced in Patchwork_129191v1, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them<br />
-  to document this new failure mode, which will reduce false positives in CI.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_129191v1/index.html</p>
-<h2>Participating hosts (37 -&gt; 18)</h2>
-<p>ERROR: It appears as if the changes made in Patchwork_129191v1 prevented too many machines from booting.</p>
-<p>Missing    (19): fi-rkl-11600 fi-apl-guc bat-adlp-6 fi-snb-2520m fi-blb-e6850 bat-rpls-2 fi-skl-6600u fi-elk-e7500 bat-jsl-3 fi-bsw-nick fi-kbl-7567u bat-adlp-9 fi-skl-guc bat-mtlp-6 fi-tgl-1115g4 fi-cfl-guc fi-kbl-x1275 fi-cfl-8109u bat-dg2-14 </p>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_129191v1 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@gem_lmem_swapping@parallel-random-engines:</p>
-<ul>
-<li>bat-adlm-1:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_129191v1/bat-adlm-1/igt@gem_lmem_swapping@parallel-random-engines.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4613">i915#4613</a>) +3 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_pm_rps@basic-api:</p>
-<ul>
-<li>bat-adlm-1:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_129191v1/bat-adlm-1/igt@i915_pm_rps@basic-api.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/6621">i915#6621</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_force_connector_basic@force-load-detect:</p>
-<ul>
-<li>bat-adlm-1:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_129191v1/bat-adlm-1/igt@kms_force_connector_basic@force-load-detect.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109285">fdo#109285</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_frontbuffer_tracking@basic:</p>
-<ul>
-<li>bat-adlm-1:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_129191v1/bat-adlm-1/igt@kms_frontbuffer_tracking@basic.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1849">i915#1849</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/4342">i915#4342</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_pipe_crc_basic@hang-read-crc:</p>
-<ul>
-<li>bat-adlm-1:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_129191v1/bat-adlm-1/igt@kms_pipe_crc_basic@hang-read-crc.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/9875">i915#9875</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/9900">i915#9900</a>) +6 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_pm_backlight@basic-brightness:</p>
-<ul>
-<li>bat-adlm-1:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_129191v1/bat-adlm-1/igt@kms_pm_backlight@basic-brightness.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/5354">i915#5354</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_setmode@basic-clone-single-crtc:</p>
-<ul>
-<li>bat-adlm-1:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_129191v1/bat-adlm-1/igt@kms_setmode@basic-clone-single-crtc.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3555">i915#3555</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@prime_vgem@basic-fence-flip:</p>
-<ul>
-<li>bat-adlm-1:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_129191v1/bat-adlm-1/igt@prime_vgem@basic-fence-flip.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3708">i915#3708</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/9900">i915#9900</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@prime_vgem@basic-write:</p>
-<ul>
-<li>bat-adlm-1:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_129191v1/bat-adlm-1/igt@prime_vgem@basic-write.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3708">i915#3708</a>) +2 other tests skip</li>
-</ul>
-</li>
-</ul>
-<p>{name}: This element is suppressed. This means it is ignored when computing<br />
-          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_14181 -&gt; Patchwork_129191v1</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_14181: 6aa961ab469df8db84bee01a55606a91a6ae5d67 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_7693: f5f774ada63296536195fd381d8720f5ac7e2208 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  Patchwork_129191v1: 6aa961ab469df8db84bee01a55606a91a6ae5d67 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<h3>Linux commits</h3>
-<p>8c8742f3f28c drm/i915: update eDP MSO pipe mask for newer platforms</p>
-
-</body>
-</html>
-
---===============5338665144065967496==--
+> 
+> > +	return DIV_ROUND_DOWN_ULL(mul_u32_u32(max_link_rate_kbps * max_lanes,
+> > +					      ch_coding_efficiency),
+> > +				  1000000 * 8);
+> > +}
+> > +EXPORT_SYMBOL(drm_dp_max_dprx_data_rate);
+> > diff --git a/include/drm/display/drm_dp_helper.h b/include/drm/display/drm_dp_helper.h
+> > index 863b2e7add29e..454ae7517419a 100644
+> > --- a/include/drm/display/drm_dp_helper.h
+> > +++ b/include/drm/display/drm_dp_helper.h
+> > @@ -813,4 +813,6 @@ int drm_dp_bw_overhead(int lane_count, int hactive,
+> >  		       int bpp_x16, unsigned long flags);
+> >  int drm_dp_bw_channel_coding_efficiency(bool is_uhbr);
+> >  
+> > +int drm_dp_max_dprx_data_rate(int max_link_rate, int max_lanes);
+> > +
+> >  #endif /* _DRM_DP_HELPER_H_ */
+> > -- 
+> > 2.39.2
+> 
+> -- 
+> Ville Syrjälä
+> Intel
