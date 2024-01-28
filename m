@@ -2,53 +2,71 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id C186183F3B6
-	for <lists+intel-gfx@lfdr.de>; Sun, 28 Jan 2024 05:19:21 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 026A783F4C9
+	for <lists+intel-gfx@lfdr.de>; Sun, 28 Jan 2024 10:24:47 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5D2C710F43E;
-	Sun, 28 Jan 2024 04:19:18 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9DFE21124C7;
+	Sun, 28 Jan 2024 09:24:42 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id F10B710F43E
- for <intel-gfx@lists.freedesktop.org>; Sun, 28 Jan 2024 04:19:16 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1706415556; x=1737951556;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:in-reply-to;
- bh=mKc1JWRCEkwPh0RRo8QjWsqyo5zlUbvm69ZFmB5xFBA=;
- b=Qh3S8Ptl8HqGIenQ+1nwepTYAxhPGvQqDch5ZWj4zerXjVKYH2WfuLKF
- Xt4cubDWZTbrjbVPvV1qtcaqrWfi8wyCYAPhkVd3vwtTnFaXyu/AO44NW
- gWaIErSh5Rc3lLoiWglRxdWeL3aY5iCOi9X82M3/G6jNnhJDhQkFmy3Rk
- vVfXz6/C3+ugj0Re05xxaKTtbZmDgULi2lrPzPFhJIGxpYhAS9RxvYcXT
- GpLcnZyx5Hgf8CmMOvuAjFJliVd0J4FQdZpUnqHQCd+MQfDnGJ3dTGuS3
- sJTHOwKpy9bDOqxhRYGAIuP28PyLPMIdfuH/ualjD2Lf2NsL/sVCPIjYo g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10966"; a="393169080"
-X-IronPort-AV: E=Sophos;i="6.05,220,1701158400"; d="scan'208";a="393169080"
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
- by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Jan 2024 20:19:14 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10966"; a="821528268"
-X-IronPort-AV: E=Sophos;i="6.05,220,1701158400"; d="scan'208";a="821528268"
-Received: from lkp-server01.sh.intel.com (HELO 370188f8dc87) ([10.239.97.150])
- by orsmga001.jf.intel.com with ESMTP; 27 Jan 2024 20:19:13 -0800
-Received: from kbuild by 370188f8dc87 with local (Exim 4.96)
- (envelope-from <lkp@intel.com>) id 1rTwdT-00033q-0K;
- Sun, 28 Jan 2024 04:19:11 +0000
-Date: Sun, 28 Jan 2024 12:18:21 +0800
-From: kernel test robot <lkp@intel.com>
-To: Ville Syrjala <ville.syrjala@linux.intel.com>,
- intel-gfx@lists.freedesktop.org
-Subject: Re: [PATCH v3 12/16] drm/i915: Simplify intel_initial_plane_config()
- calling convention
-Message-ID: <202401281233.cX62UpWx-lkp@intel.com>
-References: <20240116075636.6121-13-ville.syrjala@linux.intel.com>
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 022A51124C7;
+ Sun, 28 Jan 2024 09:24:41 +0000 (UTC)
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+ by dfw.source.kernel.org (Postfix) with ESMTP id EC57960EF8;
+ Sun, 28 Jan 2024 09:24:06 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 16448C433C7;
+ Sun, 28 Jan 2024 09:24:06 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=k20201202; t=1706433846;
+ bh=vAmi5VfiuPfMgpUzWVLhzkemLp43TOQ6SblaolpCpeU=;
+ h=Date:From:To:Subject:References:In-Reply-To:From;
+ b=lMwxc7Qu0oHVJPI91GXXDLoO+fz95+HJ9gMP4NbphuEoMcrSG9m0cDtYmdaL+mc0D
+ 8ye0Pm1XOyX9C0eEm4+3RXpCD8HukjES5r/RWWVh5RBrFE1QEr34M6pLtJ6mU12Cx/
+ WxDJ9Bm8MQ+X83R1CtubiX91LIAJfvlQhQy5CByGrKE+rxGUx9bNv5cjkB8jMxb0x6
+ TXVe0Vx2dgish6qtjHNFUfU+5Ts1N8aIDd3OUWbCJaqGkgngaV+Chgypy+iQySjVXr
+ wTsOyO73lllXi3Hi1f9ROIg1cIYPW2pREtE4baRZUzOm69tHS8lo9OLj/Q4+7k6XW2
+ jONH1sldIYSlQ==
+Date: Sun, 28 Jan 2024 10:24:02 +0100
+From: Maxime Ripard <mripard@kernel.org>
+To: Jason-JH Lin =?utf-8?B?KOael+edv+elpSk=?= <Jason-JH.Lin@mediatek.com>, 
+ "manasi.d.navare@intel.com" <manasi.d.navare@intel.com>, 
+ "linux-mediatek@lists.infradead.org" <linux-mediatek@lists.infradead.org>,
+ "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>, 
+ "michel@daenzer.net" <michel@daenzer.net>, 
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
+ "chunkuang.hu@kernel.org" <chunkuang.hu@kernel.org>, 
+ "linux-arm-msm@vger.kernel.org" <linux-arm-msm@vger.kernel.org>,
+ "mikita.lipski@amd.com" <mikita.lipski@amd.com>, 
+ "dmitry.baryshkov@linaro.org" <dmitry.baryshkov@linaro.org>,
+ "tzimmermann@suse.de" <tzimmermann@suse.de>, 
+ "daniel.vetter@intel.com" <daniel.vetter@intel.com>,
+ "nicholas.kazlauskas@amd.com" <nicholas.kazlauskas@amd.com>, 
+ "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
+ "quic_abhinavk@quicinc.com" <quic_abhinavk@quicinc.com>, 
+ Project_Global_Chrome_Upstream_Group
+ <Project_Global_Chrome_Upstream_Group@mediatek.com>,
+ "lucas.demarchi@intel.com" <lucas.demarchi@intel.com>, 
+ "sean@poorly.run" <sean@poorly.run>,
+ "matthias.bgg@gmail.com" <matthias.bgg@gmail.com>, 
+ "dmitry.osipenko@collabora.com" <dmitry.osipenko@collabora.com>,
+ "fshao@chromium.org" <fshao@chromium.org>, 
+ "linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>,
+ "jani.nikula@intel.com" <jani.nikula@intel.com>, 
+ "angelogioacchino.delregno@collabora.com"
+ <angelogioacchino.delregno@collabora.com>, 
+ "freedreno@lists.freedesktop.org" <freedreno@lists.freedesktop.org>
+Subject: Re: Re: [PATCH] drm/atomic-helpers: remove legacy_cursor_update hacks
+Message-ID: <vyh5wg2ltmrtqw2mhtyj2lii6i4eccrjjlynzpfg7x63tkrav6@cxbz3sasvjjm>
+References: <20230216111214.3489223-1-daniel.vetter@ffwll.ch>
+ <20230307145613.xvhru3fpcudlpazt@houat>
+ <aac416742920953999a9ce230ac68139bf5b9790.camel@mediatek.com>
+ <ZbKlsTEvGPiGtzS3@phenom.ffwll.local>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: multipart/signed; micalg=pgp-sha512;
+ protocol="application/pgp-signature"; boundary="ogyu5zjbyc4numbu"
 Content-Disposition: inline
-In-Reply-To: <20240116075636.6121-13-ville.syrjala@linux.intel.com>
+In-Reply-To: <ZbKlsTEvGPiGtzS3@phenom.ffwll.local>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,41 +79,56 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Andrzej Hajda <andrzej.hajda@intel.com>, oe-kbuild-all@lists.linux.dev
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi Ville,
 
-kernel test robot noticed the following build warnings:
+--ogyu5zjbyc4numbu
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-[auto build test WARNING on drm-intel/for-linux-next]
-[also build test WARNING on drm-intel/for-linux-next-fixes drm-tip/drm-tip linus/master v6.8-rc1 next-20240125]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
+On Thu, Jan 25, 2024 at 07:17:21PM +0100, Daniel Vetter wrote:
+> On Tue, Jan 23, 2024 at 06:09:05AM +0000, Jason-JH Lin (=E6=9E=97=E7=9D=
+=BF=E7=A5=A5) wrote:
+> > Hi Maxime, Daniel,
+> >=20
+> > We encountered similar issue with mediatek SoCs.
+> >=20
+> > We have found that in drm_atomic_helper_commit_rpm(), when disabling
+> > the cursor plane, the old_state->legacy_cursor_update in
+> > drm_atomic_wait_for_vblank() is set to true.
+> > As the result, we are not actually waiting for a vlbank to wait for our
+> > hardware to close the cursor plane. Subsequently, the execution
+> > proceeds to drm_atomic_helper_cleanup_planes() to  free the cursor
+> > buffer. This can lead to use-after-free issues with our hardware.
+> >=20
+> > Could you please apply this patch to fix our problem?
+> > Or are there any considerations for not applying this patch?
+>=20
+> Mostly it needs someone to collect a pile of acks/tested-by and then land
+> it.
+>=20
+> I'd be _very_ happy if someone else can take care of that ...
+>=20
+> There's also the potential issue that it might slow down some of the
+> legacy X11 use-cases that really needed a non-blocking cursor, but I think
+> all the drivers where this matters have switched over to the async plane
+> update stuff meanwhile. So hopefully that's good.
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Ville-Syrjala/drm-i915-Use-struct-resource-for-memory-region-IO-as-well/20240125-222947
-base:   git://anongit.freedesktop.org/drm-intel for-linux-next
-patch link:    https://lore.kernel.org/r/20240116075636.6121-13-ville.syrjala%40linux.intel.com
-patch subject: [PATCH v3 12/16] drm/i915: Simplify intel_initial_plane_config() calling convention
-config: alpha-randconfig-r121-20240127 (https://download.01.org/0day-ci/archive/20240128/202401281233.cX62UpWx-lkp@intel.com/config)
-compiler: alpha-linux-gcc (GCC) 13.2.0
-reproduce: (https://download.01.org/0day-ci/archive/20240128/202401281233.cX62UpWx-lkp@intel.com/reproduce)
+I think there was also a regression with msm no one really figured out?
 
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202401281233.cX62UpWx-lkp@intel.com/
+Maxime
 
-sparse warnings: (new ones prefixed by >>)
->> drivers/gpu/drm/xe/display/xe_plane_initial.c:270:6: sparse: sparse: symbol 'intel_crtc_initial_plane_config' was not declared. Should it be static?
+--ogyu5zjbyc4numbu
+Content-Type: application/pgp-signature; name="signature.asc"
 
-vim +/intel_crtc_initial_plane_config +270 drivers/gpu/drm/xe/display/xe_plane_initial.c
+-----BEGIN PGP SIGNATURE-----
 
-44e694958b9539 Maarten Lankhorst 2023-08-17  269  
-44e694958b9539 Maarten Lankhorst 2023-08-17 @270  void intel_crtc_initial_plane_config(struct intel_crtc *crtc)
+iHUEABYKAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCZbYdMgAKCRDj7w1vZxhR
+xSJlAP95bsUAyxzHt1gZmvkN8tKWAggATAYm9apK9+8NFj/3MAEAnkts/Yh2y6zr
+dzc9/lsQ2HaDBNTsjGfOxrlJGX+aKwE=
+=2xdS
+-----END PGP SIGNATURE-----
 
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+--ogyu5zjbyc4numbu--
