@@ -2,28 +2,150 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 364B68408EB
-	for <lists+intel-gfx@lfdr.de>; Mon, 29 Jan 2024 15:50:04 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7AA518408E9
+	for <lists+intel-gfx@lfdr.de>; Mon, 29 Jan 2024 15:49:51 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 78C4911296F;
-	Mon, 29 Jan 2024 14:49:31 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1C69011297C;
+	Mon, 29 Jan 2024 14:49:50 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from 5338d5abeb45 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8B20F112977;
- Mon, 29 Jan 2024 14:49:30 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============5539082837663047407=="
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.15])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1792811297C;
+ Mon, 29 Jan 2024 14:49:47 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1706539789; x=1738075789;
+ h=date:from:to:cc:subject:message-id:references:
+ content-transfer-encoding:in-reply-to:mime-version;
+ bh=Vh2h3JDAP+qdf7orrFflJ41QDqUFiMQO3OVxrmvUKgA=;
+ b=OPkUgbgdue2Ek/96QPPXtigfT6BHD4dTbzBBowavcB4QubR71I5uL3ZU
+ mao1Ce4iItmqkU7Huq43ZCulvcX2DmS7bx7/L+1zmo89JV9VyOI9DDtu/
+ u6phLIAgtW78r4pSSaON4HP34ruCMvEsnaOV71LOT2Ny+1+bQSahGG4UT
+ /SFPQGBIe40rfvqwUTCADkuUgEsCYOqeDX1TiYVBVmjV1Ap5VwJbX9lTV
+ iC5H4e0bay3UHoPLHuPSRjHJj/iHtCt7vxmIhoPtbtxq4NrUf5ERsyJqN
+ sBjwmR6f1eya1e6j48x2HKc2VUoB1s59Eey6X5cg3P2Dfs2PeMIJWVMuj Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10968"; a="2831728"
+X-IronPort-AV: E=Sophos;i="6.05,227,1701158400"; 
+   d="scan'208";a="2831728"
+Received: from orsmga003.jf.intel.com ([10.7.209.27])
+ by orvoesa107.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 29 Jan 2024 06:49:45 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10968"; a="737421538"
+X-IronPort-AV: E=Sophos;i="6.05,227,1701158400"; d="scan'208";a="737421538"
+Received: from orsmsx602.amr.corp.intel.com ([10.22.229.15])
+ by orsmga003.jf.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
+ 29 Jan 2024 06:49:45 -0800
+Received: from orsmsx610.amr.corp.intel.com (10.22.229.23) by
+ ORSMSX602.amr.corp.intel.com (10.22.229.15) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.35; Mon, 29 Jan 2024 06:49:44 -0800
+Received: from ORSEDG602.ED.cps.intel.com (10.7.248.7) by
+ orsmsx610.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.35 via Frontend Transport; Mon, 29 Jan 2024 06:49:44 -0800
+Received: from NAM02-BN1-obe.outbound.protection.outlook.com (104.47.51.41) by
+ edgegateway.intel.com (134.134.137.103) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.1.2507.35; Mon, 29 Jan 2024 06:49:44 -0800
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=i9AkoqxS3Whl5Z2Xpp7nJc4GOMwzaIUWQCQ1zb7kABZ/0YE4c5VVupuET5+M3pVZP0k1LMeoJVgcKB3zOoD0f9saT8BBXfBk2ExrNcBQUh5CgOr/HUSED5LGToiFWwNhq4iMsFm+xRtWGAEyAPjNpjQk/qJGzuqkwBl5gKpyUJ/MxsQIGVamepJf0GfmZ/d9aOy9Yw5vUCecY9PFQRrFxRyX9giY38RiK30mNrRpm/lnPpGPGMWF0E/sfVE8YvP4eE6+DJa5uSvsJ0Yx4Wt0CYGp6mnDOUqbh+as6cbqz4dUGF+T4IsrZo4wlLexQgR+C0Nucy0R6GtkyGOzY/6OdA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=epICro8KSYbGRjOgwCVbyxNcdWgGSGYhykPU22kDjuE=;
+ b=D4XuVR9SxoEbjeUsC3JgaehPh/xyr8xaOHXyu8jyl/M7TNt6WZqIf30ZzsqcM25fP2S8NyKe4pANybz/FZnmqQEEvzkl9/+lf049dFpAsGp7YYoEVF34Dpdt+53PZ6Dq+G3xFughUxqw4SBEqldXpezAwDq+dHf3A4qL7nzvyRzkVhaxDV7X+nAEbum5hnv5Dz+bdRrr19y7XZCoGelXvCv+vdIO1+XiypdVa9maKhEXTYY1jKHK2oWQCdcDp+FHJfayLYrthrxr3LlDjzFv23YysiVq6O8+qr7VelOX7f6fzlf1Job9ZduMmOxWNwAx5hCu7UEpYttSPGn+r4uCkA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+Received: from CY5PR11MB6139.namprd11.prod.outlook.com (2603:10b6:930:29::17)
+ by CO1PR11MB5057.namprd11.prod.outlook.com (2603:10b6:303:6c::15)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7228.34; Mon, 29 Jan
+ 2024 14:49:37 +0000
+Received: from CY5PR11MB6139.namprd11.prod.outlook.com
+ ([fe80::9f32:ce50:1914:e954]) by CY5PR11MB6139.namprd11.prod.outlook.com
+ ([fe80::9f32:ce50:1914:e954%7]) with mapi id 15.20.7228.029; Mon, 29 Jan 2024
+ 14:49:37 +0000
+Date: Mon, 29 Jan 2024 08:49:35 -0600
+From: Lucas De Marchi <lucas.demarchi@intel.com>
+To: Yury Norov <yury.norov@gmail.com>
+Subject: Re: Re: Re: [PATCH 1/3] bits: introduce fixed-type genmasks
+Message-ID: <yro4nl7ryt6ckxpkctkaao6sd7j4533w2u66ae4kecpu6riszl@lj5sspyvapwq>
+References: <20240124050205.3646390-1-lucas.demarchi@intel.com>
+ <20240124050205.3646390-2-lucas.demarchi@intel.com>
+ <87v87jkvrx.fsf@intel.com>
+ <gvkvihpcc45275idrfukjqbvgem767evrux5sx5lnh5hofqemk@ppbkcauitvwb>
+ <ZbEsfl0tGLY+xJl0@yury-ThinkPad>
+Content-Type: text/plain; charset="utf-8"; format=flowed
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <ZbEsfl0tGLY+xJl0@yury-ThinkPad>
+X-ClientProxiedBy: BYAPR07CA0039.namprd07.prod.outlook.com
+ (2603:10b6:a03:60::16) To CY5PR11MB6139.namprd11.prod.outlook.com
+ (2603:10b6:930:29::17)
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Fi=2ECI=2EBAT=3A_success_for_drm/i915=3A_use_READ=5FONCE?=
- =?utf-8?q?=28=29_to_read_vma-=3Eiomap_in_concurrent_environment?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "linke li" <lilinke99@qq.com>
-Date: Mon, 29 Jan 2024 14:49:30 -0000
-Message-ID: <170653977056.806672.15728724744465196052@5338d5abeb45>
-X-Patchwork-Hint: ignore
-References: <tencent_1A51A82501181FD23618C68685EBC405990A@qq.com>
-In-Reply-To: <tencent_1A51A82501181FD23618C68685EBC405990A@qq.com>
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: CY5PR11MB6139:EE_|CO1PR11MB5057:EE_
+X-MS-Office365-Filtering-Correlation-Id: a0485262-0f1c-4df1-52e0-08dc20d983bc
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: 7E8dcpD6uWrSdLBVp+4hoGt/Na4sITxnDBXuMMQ+wz5K9Q/gU7nQO34lUMehvY18Lvni3P+c2JGa97Vi4YobY1rNb8vAF6mJwXfobYgEiKpeJXpg6jdzGkYw5tF1br+loQpOYUqNnJwpj0PZJdX3u8WjzXQn8sGQnh4/kk1VLph7W0xia/5S6/5fjBBSqcdW3GsMWQuItbmVAS8VPeeL3GfSQfpYDggPsB6I0vKCyKE0dPQoDYzzfy2Fp5JCCP6Msj1c5+iPz/dsqGPsuKIFDUwFto4n6Gq1J71sdMJ4vMqDwdTcu3QTlTwlsO60qlci1iulHLcvBPag+Xjd5XIvyU8ABmhvYbj3oPYPbqztltpLvnHdktgssoHx7ouAjivhqu1eXmQuYj2e/Lz3wj/C42fLQ5Nly2TNAjxbSYYj7UtdZvqELZxU+hffr7jaRpUCa8KSjzBb1IEzmfTgC+k7SxVySWdb3023DcpDonDvJ+1G0dTRM/jgRwLIxco+wWB6oNFWCkjvxQJosgNIO6+kFDUgqJORxhjzBQ8iX4XCT5Z5SsOURI0nt5VSQDoE1X0j
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:CY5PR11MB6139.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230031)(7916004)(346002)(376002)(366004)(396003)(39860400002)(136003)(230922051799003)(451199024)(1800799012)(64100799003)(186009)(83380400001)(26005)(6506007)(38100700002)(4326008)(5660300002)(8676002)(33716001)(8936002)(41300700001)(478600001)(2906002)(316002)(6486002)(66556008)(66476007)(6916009)(66946007)(9686003)(86362001)(82960400001)(6512007);
+ DIR:OUT; SFP:1102; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?a3YrTTR0T2ttZkFTVjA5MlpPcWxlSkgyaDJIN0oxUVNkOUVyRmI2NDRjb2Y0?=
+ =?utf-8?B?ang3UCtrOG40KzBHM1F6TUxDK2l6SjNSUEIwREJRdE00N0UwRWpYQnErMlV3?=
+ =?utf-8?B?bzZXaTdLR1RUQUJlaWc5UjhvZUFsMjJoZUZTRVV6VkQ0SVIyQkIzdytKRmhJ?=
+ =?utf-8?B?S0NWQUx6WnRremlmMVI2N05wVWx0VHYweDJ3U2F6RGRNcHZabEV2ekpuVGJj?=
+ =?utf-8?B?YzU3c3FuWUxOajNLdm5vRGdyVERFbGtURW9iOGhIbUNSTnJRdG0zeTZQOHhV?=
+ =?utf-8?B?ZEx5OG53WGlBVXFwVURJSWRjVDd5cWUzclQzbTFxOWpBd3gyNTZubU9nKzl1?=
+ =?utf-8?B?dTdtdmNtTXA3bm9qNitNNXNHdDJ0S2xnakxaa2I0U0xVREJUTkVTdEFrdExt?=
+ =?utf-8?B?cG9RVWJQbk1TZEVFdHhqME5WYUViWEM1MlJGT1JqWk90QS9HSHRFbndoanpZ?=
+ =?utf-8?B?TUp4bzRLd3hwN3ZTWGM2b2hqaTJwQ1ZMQzNhdUN0YjMxaTBjVXJ4RFVqQ2hD?=
+ =?utf-8?B?a2U1TUpCUXlZMlliVXZyaE0zUTNQNlFyQmxrb3lNdFBIcmpzdWg5bVpCclhz?=
+ =?utf-8?B?ZG1NQWI4OS9IWE4yQ3NWMllqeUVGNWVyQ3dOUUlCbDkyRGxMc0F5WFFTUWxi?=
+ =?utf-8?B?M3dpTnhMdldaTXhWR3EvVDFtODE1SkhmdHFqb0hoNmQvekE4cXhySEVCRjBw?=
+ =?utf-8?B?M25UbHF0YllqakZ0S2V0SW50MTBQQ3luMzRxU2s5cWtNT0I1WGttUjlEUVlH?=
+ =?utf-8?B?VzhWT0ZXcnJGajVQbC93ZUc5NU5oaWJITkxtaDdXbWQwV1l3eTZmSkZ0VXBV?=
+ =?utf-8?B?cTZYK1o4TGp5RGVwSzkwRnlMT0hISDAzZTZINStWaDFubFRkWjRkUEttUCt4?=
+ =?utf-8?B?djcya01GZDFXb1MwRURuL1J5MmZURGFDUXJ5RGhuaXBGVkp2ZDlSa2pxM3FL?=
+ =?utf-8?B?NUFoWXBYVDZxeWl4L0ZWQjdtenNHL2V4Z3Y1OWRJY1BDQ01nYWtRWVNuL1dl?=
+ =?utf-8?B?TS9kMHdZM1hxR3hkUGljcFhTQTBxOVFQZ0RxWUF2Ni9ucUpINTI2RklwWlFG?=
+ =?utf-8?B?SlpTZUNjMlljd3ozZEZLRnRBT2NQS04rb09iZ01FSjRYRmFyd0RsSnJpQ3hk?=
+ =?utf-8?B?UXRic29GVUJXU1NsMWlTOURXc2VYRTBXRU90ai9uY25uT05NSU1IU0s1YjUw?=
+ =?utf-8?B?R1NwU2ZGL24wenBKeE1hTSswQTN3dGhmeUhwL3BPWVk1UXoxbG9BVHVJNXI4?=
+ =?utf-8?B?RVhVU0dScjJ6clk0amc2ZUZwNkJHMnVXcFRjZ3c1cDdWeVRQRFBVUHdBYjBo?=
+ =?utf-8?B?QURBNjdFaTNWbGZFWFhJMUMyZyt2YzhEZmcvMndMa2gyZGxUdGdZOHRZSk5S?=
+ =?utf-8?B?S0dVMlR0aEhlUU5jQitlM0FQM1RoakNSUDR0Um0vREV3VDhZeTBIVStmcXYr?=
+ =?utf-8?B?VUUwYlF2ckhZY3dKckNZQkphcEVvSjNENXo1TEg3dmQyYmVTaXFhckxWTnlm?=
+ =?utf-8?B?RE10WE9mTys2b1pQVFF1U3ViVDQ0Q0M5QmFLeU1SeDZwVzU5d2dPOHhVT1Y0?=
+ =?utf-8?B?Rm5MdTNhSG9Yc3cybFNYUVVHb09TWXRDOENHZlVLOTJmbzZCMjZoVW1hWS9h?=
+ =?utf-8?B?VnF6TWdUTzFvSG5CVHE5TWs4bVhGelZXRnhFazBPWXZnNHdxOEpCak1oN29O?=
+ =?utf-8?B?N0I5NXZ5VVJwMVZKVWJDcW8wYTA5dTdaa0VyalFBMTRzeVFNRFhyVGVxOHd6?=
+ =?utf-8?B?QUJUVzdmd3kxZDVsTlFZM3RpdmNvNUdBeW9yMThOK1NGaUlURHd3akhmdDAv?=
+ =?utf-8?B?aHk1UWR4d29JYmVZNU5ZNmF1ck5Lcld6cTBMYkRpdytSS3lwS0J3eUhmLzRu?=
+ =?utf-8?B?dVVIa1MzNkRFOElKaHBZQVpMUXl3TG5lTFBIUVpScFZLMmFQUGV1N093MkUw?=
+ =?utf-8?B?SzdHU2dYd1QrRGdnV0FYMEszVFo4K3RWaFBsRElkUlFONEV4bTRzOWhieUUr?=
+ =?utf-8?B?MllNOG14MVJPWkxXcGFWMTRrUTZjRDFhdFlBQysyUVA4WXJjMHYxMFhMQ1Mr?=
+ =?utf-8?B?aE5lL2JjS1IwTnNNeGdsTDRYWnNjZXFkd3JsazZ2NDkrSGpwSUtDTkdvT09Y?=
+ =?utf-8?B?NENIdnRHajBhcXNYSFNabUVhU3ZsRWJPNlNUcmZseEV5Q1RidVhJczNYdkpY?=
+ =?utf-8?B?Znc9PQ==?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: a0485262-0f1c-4df1-52e0-08dc20d983bc
+X-MS-Exchange-CrossTenant-AuthSource: CY5PR11MB6139.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 29 Jan 2024 14:49:37.1773 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: ptd06JQeTmXx1egCB1eKk/h6CTSrD/0GfKskxqZfL08wV1lMGJuBhp4AvTH7wGr1677AOAGACP3UA+BiDLNh1u+dE81IacDxeti7t9RSWHk=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CO1PR11MB5057
+X-OriginatorOrg: intel.com
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,166 +158,53 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org,
+ Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+ linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
+ intel-xe@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============5539082837663047407==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+On Wed, Jan 24, 2024 at 07:27:58AM -0800, Yury Norov wrote:
+>On Wed, Jan 24, 2024 at 08:03:53AM -0600, Lucas De Marchi wrote:
+>> On Wed, Jan 24, 2024 at 09:58:26AM +0200, Jani Nikula wrote:
+>> > On Tue, 23 Jan 2024, Lucas De Marchi <lucas.demarchi@intel.com> wrote:
+>> > > From: Yury Norov <yury.norov@gmail.com>
+>> > >
+>> > > Generalize __GENMASK() to support different types, and implement
+>> > > fixed-types versions of GENMASK() based on it. The fixed-type version
+>> > > allows more strict checks to the min/max values accepted, which is
+>> > > useful for defining registers like implemented by i915 and xe drivers
+>> > > with their REG_GENMASK*() macros.
+>> >
+>> > Mmh, the commit message says the fixed-type version allows more strict
+>> > checks, but none are actually added. GENMASK_INPUT_CHECK() remains the
+>> > same.
+>> >
+>> > Compared to the i915 and xe versions, this is more lax now. You could
+>> > specify GENMASK_U32(63,32) without complaints.
+>>
+>> Doing this on top of the this series:
+>>
+>> -#define   XELPDP_PORT_M2P_COMMAND_TYPE_MASK            REG_GENMASK(30, 27)
+>> +#define   XELPDP_PORT_M2P_COMMAND_TYPE_MASK            REG_GENMASK(62, 32)
+>>
+>> and I do get a build failure:
+>>
+>> ../drivers/gpu/drm/i915/display/intel_cx0_phy.c: In function ‘__intel_cx0_read_once’:
+>> ../include/linux/bits.h:41:31: error: left shift count >= width of type [-Werror=shift-count-overflow]
+>>    41 |          (((t)~0ULL - ((t)(1) << (l)) + 1) & \
+>>       |                               ^~
+>
+>I would better include this in commit message to avoid people's
+>confusion. If it comes to v2, can you please do it and mention that
+>this trick relies on shift-count-overflow compiler check?
 
-== Series Details ==
+either that or an explicit check as it was suggested. What's your
+preference?
 
-Series: drm/i915: use READ_ONCE() to read vma->iomap in concurrent environment
-URL   : https://patchwork.freedesktop.org/series/129271/
-State : success
+Lucas De Marchi
 
-== Summary ==
-
-CI Bug Log - changes from CI_DRM_14191 -> Patchwork_129271v1
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_129271v1/index.html
-
-Participating hosts (37 -> 36)
-------------------------------
-
-  Missing    (1): fi-snb-2520m 
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_129271v1 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@gem_tiled_blits@basic:
-    - fi-pnv-d510:        [PASS][1] -> [SKIP][2] ([fdo#109271]) +1 other test skip
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14191/fi-pnv-d510/igt@gem_tiled_blits@basic.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_129271v1/fi-pnv-d510/igt@gem_tiled_blits@basic.html
-
-  * igt@i915_hangman@error-state-basic:
-    - bat-mtlp-6:         [PASS][3] -> [ABORT][4] ([i915#9414])
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14191/bat-mtlp-6/igt@i915_hangman@error-state-basic.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_129271v1/bat-mtlp-6/igt@i915_hangman@error-state-basic.html
-
-  
-#### Possible fixes ####
-
-  * igt@i915_selftest@live@gt_pm:
-    - bat-rpls-2:         [DMESG-FAIL][5] ([i915#10010]) -> [PASS][6]
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14191/bat-rpls-2/igt@i915_selftest@live@gt_pm.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_129271v1/bat-rpls-2/igt@i915_selftest@live@gt_pm.html
-
-  
-  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
-  [i915#10010]: https://gitlab.freedesktop.org/drm/intel/issues/10010
-  [i915#9414]: https://gitlab.freedesktop.org/drm/intel/issues/9414
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_14191 -> Patchwork_129271v1
-
-  CI-20190529: 20190529
-  CI_DRM_14191: 114c7e14fc8f30c4f3e0a39819b7d138ff5ef259 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_7698: af750f5e7eaad98d40d8c924eb5f05e99d3c668b @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_129271v1: 114c7e14fc8f30c4f3e0a39819b7d138ff5ef259 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-### Linux commits
-
-17a84c1a9014 drm/i915: use READ_ONCE() to read vma->iomap in concurrent environment
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_129271v1/index.html
-
---===============5539082837663047407==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915: use READ_ONCE() to read vma-&gt;iomap in concurrent environment</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/129271/">https://patchwork.freedesktop.org/series/129271/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_129271v1/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_129271v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_14191 -&gt; Patchwork_129271v1</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_129271v1/index.html</p>
-<h2>Participating hosts (37 -&gt; 36)</h2>
-<p>Missing    (1): fi-snb-2520m </p>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_129271v1 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@gem_tiled_blits@basic:</p>
-<ul>
-<li>fi-pnv-d510:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14191/fi-pnv-d510/igt@gem_tiled_blits@basic.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_129271v1/fi-pnv-d510/igt@gem_tiled_blits@basic.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +1 other test skip</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_hangman@error-state-basic:</p>
-<ul>
-<li>bat-mtlp-6:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14191/bat-mtlp-6/igt@i915_hangman@error-state-basic.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_129271v1/bat-mtlp-6/igt@i915_hangman@error-state-basic.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/9414">i915#9414</a>)</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>igt@i915_selftest@live@gt_pm:<ul>
-<li>bat-rpls-2:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14191/bat-rpls-2/igt@i915_selftest@live@gt_pm.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/10010">i915#10010</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_129271v1/bat-rpls-2/igt@i915_selftest@live@gt_pm.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_14191 -&gt; Patchwork_129271v1</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_14191: 114c7e14fc8f30c4f3e0a39819b7d138ff5ef259 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_7698: af750f5e7eaad98d40d8c924eb5f05e99d3c668b @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  Patchwork_129271v1: 114c7e14fc8f30c4f3e0a39819b7d138ff5ef259 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<h3>Linux commits</h3>
-<p>17a84c1a9014 drm/i915: use READ_ONCE() to read vma-&gt;iomap in concurrent environment</p>
-
-</body>
-</html>
-
---===============5539082837663047407==--
+>
+>Thanks,
+>Yury
