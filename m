@@ -2,29 +2,79 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 40DE7849B4F
-	for <lists+intel-gfx@lfdr.de>; Mon,  5 Feb 2024 14:03:10 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 57958849BE0
+	for <lists+intel-gfx@lfdr.de>; Mon,  5 Feb 2024 14:34:59 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 182E7112517;
-	Mon,  5 Feb 2024 13:03:07 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D490E10F9AC;
+	Mon,  5 Feb 2024 13:34:57 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="XVg6oY93";
+	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from 5338d5abeb45 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4ED48112517;
- Mon,  5 Feb 2024 13:03:06 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============8186898263698762744=="
+Received: from mail-yb1-f176.google.com (mail-yb1-f176.google.com
+ [209.85.219.176])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id ADC9810F15C;
+ Mon, 29 Jan 2024 15:12:20 +0000 (UTC)
+Received: by mail-yb1-f176.google.com with SMTP id
+ 3f1490d57ef6-dc64926af85so2204533276.0; 
+ Mon, 29 Jan 2024 07:12:20 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20230601; t=1706541080; x=1707145880; darn=lists.freedesktop.org;
+ h=in-reply-to:content-transfer-encoding:content-disposition
+ :mime-version:references:message-id:subject:cc:to:from:date:from:to
+ :cc:subject:date:message-id:reply-to;
+ bh=UyBI2+8L21ywPJPux+Uv+p4ig16OrBVzk8ATobFMmGw=;
+ b=XVg6oY93kT6+GSivGj7ybYP3z24Xusqd4gBebw7UYa+hRWXrkEXrMuh3ZNl6AJaQH5
+ h1NhlKs3El2qaYUJsDtXAWkKUViGvYeVUy3g2ZAjq6Wd8toBD98Jwwow7Ewlt7yMTJKX
+ 3MvegCZ68+XcBaG4cUV7s59+2Flg0QNRCxr64s/UyVPBp4O/x5CpH+s9FRyQu7EGU9LJ
+ wcuEpsWx/aiySoSNegvHz1T9xJFZ1eu9k2b44tv2vqxeSUjWMFdlLfPEkQ9HZrp70T57
+ 1lkBI2is37g1N83D8dKokVmNiTLaOiT9OsjzyLbO2qBbEgdX+pfvh0BcR7duHkw0vtdJ
+ aVRw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1706541080; x=1707145880;
+ h=in-reply-to:content-transfer-encoding:content-disposition
+ :mime-version:references:message-id:subject:cc:to:from:date
+ :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+ bh=UyBI2+8L21ywPJPux+Uv+p4ig16OrBVzk8ATobFMmGw=;
+ b=gc4T41gUc8m+s+1vFYWyRMj1J3enUir0ruwOolcD6PJsEGHwp5ZI5kw6ix2r2LQCLk
+ dqItm+j6pJBH9KJ4y36L4+042AnlBQzkbWP5PGrVm7jIVbK9xWM/k8Z4p29jp0s4g4jZ
+ M1gI10YLokEhaVaxrJXvQbgbkgOVI2PRxCmcg1srFpTLQKSexu35EJOFuR8A9NiFp/cX
+ 0A+9B9MgVTHRSffZtS6tUzv7g4Y9yP7usnk6U4RUeRZtZ/2DwnSn9HZR/NU0DGy8DTLA
+ OY03Ers0CAsBIVlmd/1Lqohmu5P4NDT7vqArLmnPjR6zaejim6N9meJfbZ0ZaMAttFZw
+ ntFw==
+X-Gm-Message-State: AOJu0YzdmI52JgsF9TwJxWLEJEq90TLTpbqGekFyWGxpSpQmnS0s1wDf
+ nUjF5My8bHtrG5a6s1AvHmJfXaMy6x6Bm54Hl8FcOWiTXaaGJ+Ak
+X-Google-Smtp-Source: AGHT+IH6s9vU8wXBWDMvXY5IJ1/1w2lOaFFb2+TzOnPFlDReNgorwWtIdEbPiAsxJhHbD0OsJTnBwg==
+X-Received: by 2002:a5b:87:0:b0:dc2:2b1a:7246 with SMTP id
+ b7-20020a5b0087000000b00dc22b1a7246mr2822490ybp.123.1706541078294; 
+ Mon, 29 Jan 2024 07:11:18 -0800 (PST)
+Received: from localhost ([2601:344:8301:57f0:6dcf:e3a4:263a:17d6])
+ by smtp.gmail.com with ESMTPSA id
+ u100-20020a25ab6d000000b00dc22fa579c5sm2320375ybi.45.2024.01.29.07.11.17
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Mon, 29 Jan 2024 07:11:17 -0800 (PST)
+Date: Mon, 29 Jan 2024 07:11:17 -0800
+From: Yury Norov <yury.norov@gmail.com>
+To: Lucas De Marchi <lucas.demarchi@intel.com>
+Cc: intel-gfx@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+ dri-devel@lists.freedesktop.org,
+ Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+ intel-xe@lists.freedesktop.org
+Subject: Re: Re: Re: [PATCH 1/3] bits: introduce fixed-type genmasks
+Message-ID: <ZbfAFZ4J5Gncb/xc@yury-ThinkPad>
+References: <20240124050205.3646390-1-lucas.demarchi@intel.com>
+ <20240124050205.3646390-2-lucas.demarchi@intel.com>
+ <87v87jkvrx.fsf@intel.com>
+ <gvkvihpcc45275idrfukjqbvgem767evrux5sx5lnh5hofqemk@ppbkcauitvwb>
+ <ZbEsfl0tGLY+xJl0@yury-ThinkPad>
+ <yro4nl7ryt6ckxpkctkaao6sd7j4533w2u66ae4kecpu6riszl@lj5sspyvapwq>
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=97_Fi=2ECI=2EBAT=3A_failure_for_Cursor_Fault_Fixes_=28rev4?=
- =?utf-8?q?=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Chaitanya Kumar Borah" <chaitanya.kumar.borah@intel.com>
-Cc: intel-gfx@lists.freedesktop.org
-Date: Mon, 05 Feb 2024 13:03:06 -0000
-Message-ID: <170713818632.1024297.11041376234133128218@5338d5abeb45>
-X-Patchwork-Hint: ignore
-References: <20240205101053.3698717-1-chaitanya.kumar.borah@intel.com>
-In-Reply-To: <20240205101053.3698717-1-chaitanya.kumar.borah@intel.com>
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <yro4nl7ryt6ckxpkctkaao6sd7j4533w2u66ae4kecpu6riszl@lj5sspyvapwq>
+X-Mailman-Approved-At: Mon, 05 Feb 2024 13:34:56 +0000
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -37,280 +87,62 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============8186898263698762744==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+On Mon, Jan 29, 2024 at 08:49:35AM -0600, Lucas De Marchi wrote:
+> On Wed, Jan 24, 2024 at 07:27:58AM -0800, Yury Norov wrote:
+> > On Wed, Jan 24, 2024 at 08:03:53AM -0600, Lucas De Marchi wrote:
+> > > On Wed, Jan 24, 2024 at 09:58:26AM +0200, Jani Nikula wrote:
+> > > > On Tue, 23 Jan 2024, Lucas De Marchi <lucas.demarchi@intel.com> wrote:
+> > > > > From: Yury Norov <yury.norov@gmail.com>
+> > > > >
+> > > > > Generalize __GENMASK() to support different types, and implement
+> > > > > fixed-types versions of GENMASK() based on it. The fixed-type version
+> > > > > allows more strict checks to the min/max values accepted, which is
+> > > > > useful for defining registers like implemented by i915 and xe drivers
+> > > > > with their REG_GENMASK*() macros.
+> > > >
+> > > > Mmh, the commit message says the fixed-type version allows more strict
+> > > > checks, but none are actually added. GENMASK_INPUT_CHECK() remains the
+> > > > same.
+> > > >
+> > > > Compared to the i915 and xe versions, this is more lax now. You could
+> > > > specify GENMASK_U32(63,32) without complaints.
+> > > 
+> > > Doing this on top of the this series:
+> > > 
+> > > -#define   XELPDP_PORT_M2P_COMMAND_TYPE_MASK            REG_GENMASK(30, 27)
+> > > +#define   XELPDP_PORT_M2P_COMMAND_TYPE_MASK            REG_GENMASK(62, 32)
+> > > 
+> > > and I do get a build failure:
+> > > 
+> > > ../drivers/gpu/drm/i915/display/intel_cx0_phy.c: In function ‘__intel_cx0_read_once’:
+> > > ../include/linux/bits.h:41:31: error: left shift count >= width of type [-Werror=shift-count-overflow]
+> > >    41 |          (((t)~0ULL - ((t)(1) << (l)) + 1) & \
+> > >       |                               ^~
+> > 
+> > I would better include this in commit message to avoid people's
+> > confusion. If it comes to v2, can you please do it and mention that
+> > this trick relies on shift-count-overflow compiler check?
+> 
+> either that or an explicit check as it was suggested. What's your
+> preference?
 
-== Series Details ==
+Let's put a comment in the code. An argument that shift-count-overflow
+may be disabled sounds more like a speculation unless we have a solid
+example of a build system where the error is disabled for a good sane
+reason, but possible GENMASK() overflow is still considered dangerous.
 
-Series: Cursor Fault Fixes (rev4)
-URL   : https://patchwork.freedesktop.org/series/129517/
-State : failure
+GENMASK() is all about bit shifts, so shift-related error is something
+I'd expect when using GENMASK().
 
-== Summary ==
+Also, the macro is widely used in the kernel:
 
-CI Bug Log - changes from CI_DRM_14220 -> Patchwork_129517v4
-====================================================
+        yury:linux$ git grep GENMASK | wc -l
+        26879
 
-Summary
--------
+Explicit check would add pressure on the compiler for nothing. 
 
-  **FAILURE**
-
-  Serious unknown changes coming with Patchwork_129517v4 absolutely need to be
-  verified manually.
-  
-  If you think the reported changes have nothing to do with the changes
-  introduced in Patchwork_129517v4, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them
-  to document this new failure mode, which will reduce false positives in CI.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_129517v4/index.html
-
-Participating hosts (38 -> 34)
-------------------------------
-
-  Missing    (4): bat-mtlp-8 bat-kbl-2 bat-jsl-1 bat-adlp-6 
-
-Possible new issues
--------------------
-
-  Here are the unknown changes that may have been introduced in Patchwork_129517v4:
-
-### IGT changes ###
-
-#### Possible regressions ####
-
-  * igt@kms_addfb_basic@addfb25-4-tiled:
-    - fi-apl-guc:         [PASS][1] -> [DMESG-WARN][2] +35 other tests dmesg-warn
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14220/fi-apl-guc/igt@kms_addfb_basic@addfb25-4-tiled.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_129517v4/fi-apl-guc/igt@kms_addfb_basic@addfb25-4-tiled.html
-
-  
-#### Suppressed ####
-
-  The following results come from untrusted machines, tests, or statuses.
-  They do not affect the overall result.
-
-  * igt@gem_exec_parallel@engines@contexts:
-    - {bat-arls-2}:       [PASS][3] -> [ABORT][4]
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14220/bat-arls-2/igt@gem_exec_parallel@engines@contexts.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_129517v4/bat-arls-2/igt@gem_exec_parallel@engines@contexts.html
-
-  
-Known issues
-------------
-
-  Here are the changes found in Patchwork_129517v4 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@debugfs_test@read_all_entries:
-    - fi-apl-guc:         [PASS][5] -> [DMESG-WARN][6] ([i915#8585]) +4 other tests dmesg-warn
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14220/fi-apl-guc/igt@debugfs_test@read_all_entries.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_129517v4/fi-apl-guc/igt@debugfs_test@read_all_entries.html
-
-  * igt@i915_module_load@reload:
-    - fi-apl-guc:         [PASS][7] -> [DMESG-WARN][8] ([i915#180] / [i915#1982] / [i915#8585])
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14220/fi-apl-guc/igt@i915_module_load@reload.html
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_129517v4/fi-apl-guc/igt@i915_module_load@reload.html
-
-  * igt@i915_selftest@live@hangcheck:
-    - bat-adln-1:         [PASS][9] -> [INCOMPLETE][10] ([i915#10137])
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14220/bat-adln-1/igt@i915_selftest@live@hangcheck.html
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_129517v4/bat-adln-1/igt@i915_selftest@live@hangcheck.html
-
-  * igt@kms_flip@basic-flip-vs-dpms@c-dp1:
-    - fi-apl-guc:         [PASS][11] -> [DMESG-WARN][12] ([i915#180]) +27 other tests dmesg-warn
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14220/fi-apl-guc/igt@kms_flip@basic-flip-vs-dpms@c-dp1.html
-   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_129517v4/fi-apl-guc/igt@kms_flip@basic-flip-vs-dpms@c-dp1.html
-
-  * igt@kms_flip@basic-flip-vs-wf_vblank@a-dp1:
-    - fi-apl-guc:         [PASS][13] -> [DMESG-WARN][14] ([i915#180] / [i915#1982])
-   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14220/fi-apl-guc/igt@kms_flip@basic-flip-vs-wf_vblank@a-dp1.html
-   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_129517v4/fi-apl-guc/igt@kms_flip@basic-flip-vs-wf_vblank@a-dp1.html
-
-  * igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence@pipe-c-dp-1:
-    - fi-apl-guc:         [PASS][15] -> [DMESG-WARN][16] ([i915#180] / [i915#8585]) +7 other tests dmesg-warn
-   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14220/fi-apl-guc/igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence@pipe-c-dp-1.html
-   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_129517v4/fi-apl-guc/igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence@pipe-c-dp-1.html
-
-  
-#### Warnings ####
-
-  * igt@i915_pm_rpm@module-reload:
-    - fi-apl-guc:         [DMESG-WARN][17] ([i915#180] / [i915#8585] / [i915#8703]) -> [DMESG-WARN][18] ([i915#180] / [i915#8585])
-   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14220/fi-apl-guc/igt@i915_pm_rpm@module-reload.html
-   [18]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_129517v4/fi-apl-guc/igt@i915_pm_rpm@module-reload.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [i915#10137]: https://gitlab.freedesktop.org/drm/intel/issues/10137
-  [i915#180]: https://gitlab.freedesktop.org/drm/intel/issues/180
-  [i915#1982]: https://gitlab.freedesktop.org/drm/intel/issues/1982
-  [i915#8585]: https://gitlab.freedesktop.org/drm/intel/issues/8585
-  [i915#8703]: https://gitlab.freedesktop.org/drm/intel/issues/8703
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_14220 -> Patchwork_129517v4
-
-  CI-20190529: 20190529
-  CI_DRM_14220: 8ee3084d141ef6f34235b95223a68da319b096d5 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_7703: c58c5fb6aa1cb7d3627a15e364816a7a2add9edc @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_129517v4: 8ee3084d141ef6f34235b95223a68da319b096d5 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-### Linux commits
-
-bb805e519125 drm/i915: do not defer cleanup work
-a9cdc148040f drm/i915: Add sanity check before accessing fb buffer object
-0b9fe3513eb0 drm/i915: do not destroy plane state if cursor unpin worker is scheduled
-0b79ef1ad6f0 drm/i915: Use the same vblank worker for atomic unpin
-e47fed409270 drm/i915: Use vblank worker to unpin old legacy cursor fb safely
-6372b06e32b9 drm: Add drm_vblank_work_flush_all().
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_129517v4/index.html
-
---===============8186898263698762744==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>Cursor Fault Fixes (rev4)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/129517/">https://patchwork.freedesktop.org/series/129517/</a></td></tr>
-<tr><td><b>State:</b></td><td>failure</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_129517v4/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_129517v4/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_14220 -&gt; Patchwork_129517v4</h1>
-<h2>Summary</h2>
-<p><strong>FAILURE</strong></p>
-<p>Serious unknown changes coming with Patchwork_129517v4 absolutely need to be<br />
-  verified manually.</p>
-<p>If you think the reported changes have nothing to do with the changes<br />
-  introduced in Patchwork_129517v4, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them<br />
-  to document this new failure mode, which will reduce false positives in CI.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_129517v4/index.html</p>
-<h2>Participating hosts (38 -&gt; 34)</h2>
-<p>Missing    (4): bat-mtlp-8 bat-kbl-2 bat-jsl-1 bat-adlp-6 </p>
-<h2>Possible new issues</h2>
-<p>Here are the unknown changes that may have been introduced in Patchwork_129517v4:</p>
-<h3>IGT changes</h3>
-<h4>Possible regressions</h4>
-<ul>
-<li>igt@kms_addfb_basic@addfb25-4-tiled:<ul>
-<li>fi-apl-guc:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14220/fi-apl-guc/igt@kms_addfb_basic@addfb25-4-tiled.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_129517v4/fi-apl-guc/igt@kms_addfb_basic@addfb25-4-tiled.html">DMESG-WARN</a> +35 other tests dmesg-warn</li>
-</ul>
-</li>
-</ul>
-<h4>Suppressed</h4>
-<p>The following results come from untrusted machines, tests, or statuses.<br />
-  They do not affect the overall result.</p>
-<ul>
-<li>igt@gem_exec_parallel@engines@contexts:<ul>
-<li>{bat-arls-2}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14220/bat-arls-2/igt@gem_exec_parallel@engines@contexts.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_129517v4/bat-arls-2/igt@gem_exec_parallel@engines@contexts.html">ABORT</a></li>
-</ul>
-</li>
-</ul>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_129517v4 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@debugfs_test@read_all_entries:</p>
-<ul>
-<li>fi-apl-guc:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14220/fi-apl-guc/igt@debugfs_test@read_all_entries.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_129517v4/fi-apl-guc/igt@debugfs_test@read_all_entries.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/8585">i915#8585</a>) +4 other tests dmesg-warn</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_module_load@reload:</p>
-<ul>
-<li>fi-apl-guc:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14220/fi-apl-guc/igt@i915_module_load@reload.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_129517v4/fi-apl-guc/igt@i915_module_load@reload.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/180">i915#180</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/1982">i915#1982</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/8585">i915#8585</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@hangcheck:</p>
-<ul>
-<li>bat-adln-1:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14220/bat-adln-1/igt@i915_selftest@live@hangcheck.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_129517v4/bat-adln-1/igt@i915_selftest@live@hangcheck.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/10137">i915#10137</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_flip@basic-flip-vs-dpms@c-dp1:</p>
-<ul>
-<li>fi-apl-guc:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14220/fi-apl-guc/igt@kms_flip@basic-flip-vs-dpms@c-dp1.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_129517v4/fi-apl-guc/igt@kms_flip@basic-flip-vs-dpms@c-dp1.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/180">i915#180</a>) +27 other tests dmesg-warn</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_flip@basic-flip-vs-wf_vblank@a-dp1:</p>
-<ul>
-<li>fi-apl-guc:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14220/fi-apl-guc/igt@kms_flip@basic-flip-vs-wf_vblank@a-dp1.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_129517v4/fi-apl-guc/igt@kms_flip@basic-flip-vs-wf_vblank@a-dp1.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/180">i915#180</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/1982">i915#1982</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence@pipe-c-dp-1:</p>
-<ul>
-<li>fi-apl-guc:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14220/fi-apl-guc/igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence@pipe-c-dp-1.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_129517v4/fi-apl-guc/igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence@pipe-c-dp-1.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/180">i915#180</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/8585">i915#8585</a>) +7 other tests dmesg-warn</li>
-</ul>
-</li>
-</ul>
-<h4>Warnings</h4>
-<ul>
-<li>igt@i915_pm_rpm@module-reload:<ul>
-<li>fi-apl-guc:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14220/fi-apl-guc/igt@i915_pm_rpm@module-reload.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/180">i915#180</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/8585">i915#8585</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/8703">i915#8703</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_129517v4/fi-apl-guc/igt@i915_pm_rpm@module-reload.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/180">i915#180</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/8585">i915#8585</a>)</li>
-</ul>
-</li>
-</ul>
-<p>{name}: This element is suppressed. This means it is ignored when computing<br />
-          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_14220 -&gt; Patchwork_129517v4</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_14220: 8ee3084d141ef6f34235b95223a68da319b096d5 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_7703: c58c5fb6aa1cb7d3627a15e364816a7a2add9edc @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  Patchwork_129517v4: 8ee3084d141ef6f34235b95223a68da319b096d5 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<h3>Linux commits</h3>
-<p>bb805e519125 drm/i915: do not defer cleanup work<br />
-a9cdc148040f drm/i915: Add sanity check before accessing fb buffer object<br />
-0b9fe3513eb0 drm/i915: do not destroy plane state if cursor unpin worker is scheduled<br />
-0b79ef1ad6f0 drm/i915: Use the same vblank worker for atomic unpin<br />
-e47fed409270 drm/i915: Use vblank worker to unpin old legacy cursor fb safely<br />
-6372b06e32b9 drm: Add drm_vblank_work_flush_all().</p>
-
-</body>
-</html>
-
---===============8186898263698762744==--
+Thanks,
+Yury
