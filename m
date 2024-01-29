@@ -2,71 +2,50 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 026A783F4C9
-	for <lists+intel-gfx@lfdr.de>; Sun, 28 Jan 2024 10:24:47 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 77BDB83FC02
+	for <lists+intel-gfx@lfdr.de>; Mon, 29 Jan 2024 03:07:33 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9DFE21124C7;
-	Sun, 28 Jan 2024 09:24:42 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B8FD510F526;
+	Mon, 29 Jan 2024 02:07:00 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 022A51124C7;
- Sun, 28 Jan 2024 09:24:41 +0000 (UTC)
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
- by dfw.source.kernel.org (Postfix) with ESMTP id EC57960EF8;
- Sun, 28 Jan 2024 09:24:06 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 16448C433C7;
- Sun, 28 Jan 2024 09:24:06 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1706433846;
- bh=vAmi5VfiuPfMgpUzWVLhzkemLp43TOQ6SblaolpCpeU=;
- h=Date:From:To:Subject:References:In-Reply-To:From;
- b=lMwxc7Qu0oHVJPI91GXXDLoO+fz95+HJ9gMP4NbphuEoMcrSG9m0cDtYmdaL+mc0D
- 8ye0Pm1XOyX9C0eEm4+3RXpCD8HukjES5r/RWWVh5RBrFE1QEr34M6pLtJ6mU12Cx/
- WxDJ9Bm8MQ+X83R1CtubiX91LIAJfvlQhQy5CByGrKE+rxGUx9bNv5cjkB8jMxb0x6
- TXVe0Vx2dgish6qtjHNFUfU+5Ts1N8aIDd3OUWbCJaqGkgngaV+Chgypy+iQySjVXr
- wTsOyO73lllXi3Hi1f9ROIg1cIYPW2pREtE4baRZUzOm69tHS8lo9OLj/Q4+7k6XW2
- jONH1sldIYSlQ==
-Date: Sun, 28 Jan 2024 10:24:02 +0100
-From: Maxime Ripard <mripard@kernel.org>
-To: Jason-JH Lin =?utf-8?B?KOael+edv+elpSk=?= <Jason-JH.Lin@mediatek.com>, 
- "manasi.d.navare@intel.com" <manasi.d.navare@intel.com>, 
- "linux-mediatek@lists.infradead.org" <linux-mediatek@lists.infradead.org>,
- "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>, 
- "michel@daenzer.net" <michel@daenzer.net>, 
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
- "chunkuang.hu@kernel.org" <chunkuang.hu@kernel.org>, 
- "linux-arm-msm@vger.kernel.org" <linux-arm-msm@vger.kernel.org>,
- "mikita.lipski@amd.com" <mikita.lipski@amd.com>, 
- "dmitry.baryshkov@linaro.org" <dmitry.baryshkov@linaro.org>,
- "tzimmermann@suse.de" <tzimmermann@suse.de>, 
- "daniel.vetter@intel.com" <daniel.vetter@intel.com>,
- "nicholas.kazlauskas@amd.com" <nicholas.kazlauskas@amd.com>, 
- "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
- "quic_abhinavk@quicinc.com" <quic_abhinavk@quicinc.com>, 
- Project_Global_Chrome_Upstream_Group
- <Project_Global_Chrome_Upstream_Group@mediatek.com>,
- "lucas.demarchi@intel.com" <lucas.demarchi@intel.com>, 
- "sean@poorly.run" <sean@poorly.run>,
- "matthias.bgg@gmail.com" <matthias.bgg@gmail.com>, 
- "dmitry.osipenko@collabora.com" <dmitry.osipenko@collabora.com>,
- "fshao@chromium.org" <fshao@chromium.org>, 
- "linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>,
- "jani.nikula@intel.com" <jani.nikula@intel.com>, 
- "angelogioacchino.delregno@collabora.com"
- <angelogioacchino.delregno@collabora.com>, 
- "freedreno@lists.freedesktop.org" <freedreno@lists.freedesktop.org>
-Subject: Re: Re: [PATCH] drm/atomic-helpers: remove legacy_cursor_update hacks
-Message-ID: <vyh5wg2ltmrtqw2mhtyj2lii6i4eccrjjlynzpfg7x63tkrav6@cxbz3sasvjjm>
-References: <20230216111214.3489223-1-daniel.vetter@ffwll.ch>
- <20230307145613.xvhru3fpcudlpazt@houat>
- <aac416742920953999a9ce230ac68139bf5b9790.camel@mediatek.com>
- <ZbKlsTEvGPiGtzS3@phenom.ffwll.local>
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CAFE410F524;
+ Mon, 29 Jan 2024 02:06:57 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1706494019; x=1738030019;
+ h=date:from:to:cc:subject:message-id:mime-version;
+ bh=OreHuBXkBG4VFOVG4didQY23mWqAzh19dWlc2+4rZ/c=;
+ b=oG+3QwzGE0GU+nVNjZQcM23a6Im6Z7jzaHqqVhJ84AV6gyM+QCP7DWWD
+ w52mDcO9a5LP5X6WOJQNVyGjEq3Kn0J5D10FEVWokxAjcf04mzmOEFcLC
+ BzQuSmvjBhAea5UVAPDJHP5T93gHpXJbcqzI+YXcfcQEnugXchQjnzkKV
+ fSl5YCDmy4aMoMx0uxcBUElXYarJjSjO8Owhu3FE1RMjrTt85myIFyQdA
+ ew9/gF+BAd/hA4s/zOeCNVO1YJsa17JsIto/1xt9A2OtaFZqROR4mR56K
+ Mi/URJBIepwspuCOkgKaVpPgnspacCEQulu+QEQUi8HTg1D3AyvTAlkNl g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10967"; a="9503356"
+X-IronPort-AV: E=Sophos;i="6.05,226,1701158400"; 
+   d="scan'208";a="9503356"
+Received: from fmviesa001.fm.intel.com ([10.60.135.141])
+ by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 28 Jan 2024 18:06:57 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.05,226,1701158400"; d="scan'208";a="29627460"
+Received: from lkp-server01.sh.intel.com (HELO 370188f8dc87) ([10.239.97.150])
+ by fmviesa001.fm.intel.com with ESMTP; 28 Jan 2024 18:06:55 -0800
+Received: from kbuild by 370188f8dc87 with local (Exim 4.96)
+ (envelope-from <lkp@intel.com>) id 1rUH2z-0003xE-0z;
+ Mon, 29 Jan 2024 02:06:53 +0000
+Date: Mon, 29 Jan 2024 10:06:06 +0800
+From: kernel test robot <lkp@intel.com>
+To: Zack Rusin <zack.rusin@broadcom.com>
+Subject: [drm-tip:drm-tip 1/7] drivers/gpu/drm/bridge/samsung-dsim.c:1504:3:
+ error: implicit declaration of function 'samsung_dsim_set_stop_state' is
+ invalid in C99
+Message-ID: <202401291018.WgYuxgMh-lkp@intel.com>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
- protocol="application/pgp-signature"; boundary="ogyu5zjbyc4numbu"
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <ZbKlsTEvGPiGtzS3@phenom.ffwll.local>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -79,56 +58,65 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: intel-gfx@lists.freedesktop.org, llvm@lists.linux.dev,
+ Matt Roper <matthew.d.roper@intel.com>, dri-devel@lists.freedesktop.org,
+ oe-kbuild-all@lists.linux.dev
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+tree:   git://anongit.freedesktop.org/drm/drm-tip drm-tip
+head:   0f1b42b9d395bd4097b2846230a13869dc638216
+commit: cd3a0e22e5de2867cd98b5223094a467a5b0993d [1/7] Merge remote-tracking branch 'drm-misc/drm-misc-next' into drm-tip
+config: arm-defconfig (https://download.01.org/0day-ci/archive/20240129/202401291018.WgYuxgMh-lkp@intel.com/config)
+compiler: clang version 14.0.6 (https://github.com/llvm/llvm-project.git f28c006a5895fc0e329fe15fead81e37457cb1d1)
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20240129/202401291018.WgYuxgMh-lkp@intel.com/reproduce)
 
---ogyu5zjbyc4numbu
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202401291018.WgYuxgMh-lkp@intel.com/
 
-On Thu, Jan 25, 2024 at 07:17:21PM +0100, Daniel Vetter wrote:
-> On Tue, Jan 23, 2024 at 06:09:05AM +0000, Jason-JH Lin (=E6=9E=97=E7=9D=
-=BF=E7=A5=A5) wrote:
-> > Hi Maxime, Daniel,
-> >=20
-> > We encountered similar issue with mediatek SoCs.
-> >=20
-> > We have found that in drm_atomic_helper_commit_rpm(), when disabling
-> > the cursor plane, the old_state->legacy_cursor_update in
-> > drm_atomic_wait_for_vblank() is set to true.
-> > As the result, we are not actually waiting for a vlbank to wait for our
-> > hardware to close the cursor plane. Subsequently, the execution
-> > proceeds to drm_atomic_helper_cleanup_planes() to  free the cursor
-> > buffer. This can lead to use-after-free issues with our hardware.
-> >=20
-> > Could you please apply this patch to fix our problem?
-> > Or are there any considerations for not applying this patch?
->=20
-> Mostly it needs someone to collect a pile of acks/tested-by and then land
-> it.
->=20
-> I'd be _very_ happy if someone else can take care of that ...
->=20
-> There's also the potential issue that it might slow down some of the
-> legacy X11 use-cases that really needed a non-blocking cursor, but I think
-> all the drivers where this matters have switched over to the async plane
-> update stuff meanwhile. So hopefully that's good.
+All errors (new ones prefixed by >>):
 
-I think there was also a regression with msm no one really figured out?
+>> drivers/gpu/drm/bridge/samsung-dsim.c:1504:3: error: implicit declaration of function 'samsung_dsim_set_stop_state' is invalid in C99 [-Werror,-Wimplicit-function-declaration]
+                   samsung_dsim_set_stop_state(dsi, true);
+                   ^
+   drivers/gpu/drm/bridge/samsung-dsim.c:1504:3: note: did you mean 'samsung_dsim_set_phy_ctrl'?
+   drivers/gpu/drm/bridge/samsung-dsim.c:749:13: note: 'samsung_dsim_set_phy_ctrl' declared here
+   static void samsung_dsim_set_phy_ctrl(struct samsung_dsim *dsi)
+               ^
+   drivers/gpu/drm/bridge/samsung-dsim.c:1629:22: error: use of undeclared identifier 'samsung_dsim_atomic_disable'; did you mean 'samsung_dsim_atomic_enable'?
+           .atomic_disable                 = samsung_dsim_atomic_disable,
+                                             ^~~~~~~~~~~~~~~~~~~~~~~~~~~
+                                             samsung_dsim_atomic_enable
+   drivers/gpu/drm/bridge/samsung-dsim.c:1487:13: note: 'samsung_dsim_atomic_enable' declared here
+   static void samsung_dsim_atomic_enable(struct drm_bridge *bridge,
+               ^
+   2 errors generated.
 
-Maxime
 
---ogyu5zjbyc4numbu
-Content-Type: application/pgp-signature; name="signature.asc"
+vim +/samsung_dsim_set_stop_state +1504 drivers/gpu/drm/bridge/samsung-dsim.c
 
------BEGIN PGP SIGNATURE-----
+e7447128ca4a25 Jagan Teki     2023-03-08  1497  
+e7447128ca4a25 Jagan Teki     2023-03-08  1498  static void samsung_dsim_atomic_post_disable(struct drm_bridge *bridge,
+e7447128ca4a25 Jagan Teki     2023-03-08  1499  					     struct drm_bridge_state *old_bridge_state)
+e7447128ca4a25 Jagan Teki     2023-03-08  1500  {
+e7447128ca4a25 Jagan Teki     2023-03-08  1501  	struct samsung_dsim *dsi = bridge_to_dsi(bridge);
+e7447128ca4a25 Jagan Teki     2023-03-08  1502  
+b2fe2292624ac4 Dario Binacchi 2023-12-18  1503  	if (!samsung_dsim_hw_is_exynos(dsi->plat_data->hw_type))
+b2fe2292624ac4 Dario Binacchi 2023-12-18 @1504  		samsung_dsim_set_stop_state(dsi, true);
+e7447128ca4a25 Jagan Teki     2023-03-08  1505  
+e7447128ca4a25 Jagan Teki     2023-03-08  1506  	dsi->state &= ~DSIM_STATE_ENABLED;
+e7447128ca4a25 Jagan Teki     2023-03-08  1507  	pm_runtime_put_sync(dsi->dev);
+e7447128ca4a25 Jagan Teki     2023-03-08  1508  }
+e7447128ca4a25 Jagan Teki     2023-03-08  1509  
 
-iHUEABYKAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCZbYdMgAKCRDj7w1vZxhR
-xSJlAP95bsUAyxzHt1gZmvkN8tKWAggATAYm9apK9+8NFj/3MAEAnkts/Yh2y6zr
-dzc9/lsQ2HaDBNTsjGfOxrlJGX+aKwE=
-=2xdS
------END PGP SIGNATURE-----
+:::::: The code at line 1504 was first introduced by commit
+:::::: b2fe2292624ac4fc98dcdaf76c983d3f6e8455e5 drm: bridge: samsung-dsim: enter display mode in the enable() callback
 
---ogyu5zjbyc4numbu--
+:::::: TO: Dario Binacchi <dario.binacchi@amarulasolutions.com>
+:::::: CC: Robert Foss <rfoss@kernel.org>
+
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
