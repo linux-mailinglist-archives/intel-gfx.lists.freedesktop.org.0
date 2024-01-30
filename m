@@ -2,53 +2,92 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id BD95A84269E
-	for <lists+intel-gfx@lfdr.de>; Tue, 30 Jan 2024 15:05:43 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 68D99842A42
+	for <lists+intel-gfx@lfdr.de>; Tue, 30 Jan 2024 18:02:44 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 59BB811311C;
-	Tue, 30 Jan 2024 14:05:41 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 906CA10F91E;
+	Tue, 30 Jan 2024 17:02:42 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4EB7011311C
- for <intel-gfx@lists.freedesktop.org>; Tue, 30 Jan 2024 14:05:40 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1706623540; x=1738159540;
- h=date:from:to:cc:subject:message-id:reply-to:references:
- mime-version:in-reply-to;
- bh=LiViBOHvjNPwfgGPyZyBeeimZz9I9KLdwmtymlRiWcE=;
- b=gP2reZ6ycv2I50fv37xqo0GiSuyx7Takz6ZUSfwlBX239PUX8otp4iA5
- FRsUY0jaaGsazYrQp07eoGnwiOfqmUH1YbAsZjTE+UVo3IlN9LAQzxi0V
- g5YdgQ/FySu4RbFGq6OKyQa6L44pqG5GXXRKwJXKtVY1XwzpEfOP160BZ
- JqUKSMZ58Rl4eBIUqfp4XIErUpMcZ/WykrbliYDTjU1C2FoeF49PZh7aU
- TJ+re+lZsThGUDiuReU4lndvAs/AsxqiAnHQ64hmCKJTrwzHQHJcKer7+
- cQixtOBqFlcW8UKs6k8GgSp+CdWPyzz0lsUcRTK1UBXQ0Cu6yg0cjISs4 w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10968"; a="2223554"
-X-IronPort-AV: E=Sophos;i="6.05,707,1701158400"; 
-   d="scan'208";a="2223554"
-Received: from fmsmga004.fm.intel.com ([10.253.24.48])
- by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Jan 2024 06:05:37 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10968"; a="858499520"
-X-IronPort-AV: E=Sophos;i="6.05,707,1701158400"; d="scan'208";a="858499520"
-Received: from ideak-desk.fi.intel.com ([10.237.72.78])
- by fmsmga004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Jan 2024 06:05:36 -0800
-Date: Tue, 30 Jan 2024 16:05:53 +0200
-From: Imre Deak <imre.deak@intel.com>
-To: "Nautiyal, Ankit K" <ankit.k.nautiyal@intel.com>
-Subject: Re: [PATCH 1/6] drm/i915/adlp: Add MST FEC BS jitter WA
- (Wa_14013163432)
-Message-ID: <ZbkB9NHc2cO5Te7R@ideak-desk.fi.intel.com>
-References: <20240129175533.904590-1-imre.deak@intel.com>
- <20240129175533.904590-2-imre.deak@intel.com>
- <03994206-48f4-4784-be85-fedacdded17e@intel.com>
+Received: from NAM12-MW2-obe.outbound.protection.outlook.com
+ (mail-mw2nam12on2072.outbound.protection.outlook.com [40.107.244.72])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E789810F919;
+ Tue, 30 Jan 2024 17:02:40 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=U5okwUnkRsKdTAZijTxfkLWip6qD2WFCN7lNZehJIM2zLkopq0cDTm+ajdDob6ZuzluLPcUzBWmOzKnwTSqBPQJxWeQ94GS2jEbyQ81T3d3QZbnEF+thpJR/kEHq5f90Wdj7rkS185okuBOx9DnCfglc9lQ57zEJwHnpCy8Yb8VT/CSQt6DEpM1MoNM9WTlWe180pDylKrktGpywx606ECVWmLKw3P5qHo+ReGPlAvlFqM6PkiEGsIr5uRoBvfxvt5RuekKrW3ii6QevGqk8iR4Z5uH8ybLVipJp4jAW/3uWcRTZkDlWYrEl4nQNXOG1fps7D0UNrz0BSEvyga4fsw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=BQmjaJIXrLxCBBKzHkT2ALT4cpaSb4Kkko7QDCBeNos=;
+ b=b4KLanaRyeaxQoo19YsCITasaEV3LlkWtMApjwr6h9nQy+roUYwCdIc5cyj/8iTQTK6R9WEme7x9T6DN2xGP/eqKEfihd5mU+HSd6YXeGP/TNWVheBf05Nul/IgreK/EyQjM/N1fgYBTKuAI/Xzc8RVzh7/9aAnhsGxGKe0azWhQ41dF06+UAEvcvNVeaMfwIHwfFMO78pKpG0iL/df4+AoDUnPzQlA9ze4Axkt7MGQ7ug2fhsND/tha76oXAxVKEdA8w3bI1Ee4b6zZzxqZlkXhKFifE1bV2Tn8RnLfHDQrNBt4Gr2YIhfKikQhrC2MuwEpug3xkVAlXcSx9MB62A==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
+ dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
+ header.from=amd.com; dkim=none (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=BQmjaJIXrLxCBBKzHkT2ALT4cpaSb4Kkko7QDCBeNos=;
+ b=dEywe4bw4btQC6t1luLbRuItDlxzBusC6+UhRSK/PNWE6AtrNN/AN3enqeDmltBJeaHDdrecHA5wgIIIGrT7Acd0xHj7GJ4LGf0FTZ+QmYwPPzPbMJCFkPm2f4qFlQV8Gtg024UguM/XNTb2iafSL99u9xXagEWYWWXT2WcBROk=
+Received: from CH0PR03CA0346.namprd03.prod.outlook.com (2603:10b6:610:11a::32)
+ by DM4PR12MB5360.namprd12.prod.outlook.com (2603:10b6:5:39f::24) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7249.22; Tue, 30 Jan
+ 2024 16:13:26 +0000
+Received: from DS2PEPF00003443.namprd04.prod.outlook.com
+ (2603:10b6:610:11a:cafe::f5) by CH0PR03CA0346.outlook.office365.com
+ (2603:10b6:610:11a::32) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7228.34 via Frontend
+ Transport; Tue, 30 Jan 2024 16:13:25 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
+ smtp.mailfrom=amd.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=amd.com;
+Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
+ 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
+ client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
+Received: from SATLEXMB04.amd.com (165.204.84.17) by
+ DS2PEPF00003443.mail.protection.outlook.com (10.167.17.70) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.20.7249.19 via Frontend Transport; Tue, 30 Jan 2024 16:13:25 +0000
+Received: from tr4.amd.com (10.180.168.240) by SATLEXMB04.amd.com
+ (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.34; Tue, 30 Jan
+ 2024 10:13:24 -0600
+From: Alex Deucher <alexander.deucher@amd.com>
+To: <amd-gfx@lists.freedesktop.org>, <dri-devel@lists.freedesktop.org>,
+ <intel-gfx@lists.freedesktop.org>, <intel-xe@lists.freedesktop.org>,
+ <tvrtko.ursulin@linux.intel.com>, <daniel@ffwll.ch>
+Subject: [PATCH 0/6 V3] fdinfo shared stats
+Date: Tue, 30 Jan 2024 11:12:29 -0500
+Message-ID: <20240130161235.3237122-1-alexander.deucher@amd.com>
+X-Mailer: git-send-email 2.42.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <03994206-48f4-4784-be85-fedacdded17e@intel.com>
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-Originating-IP: [10.180.168.240]
+X-ClientProxiedBy: SATLEXMB04.amd.com (10.181.40.145) To SATLEXMB04.amd.com
+ (10.181.40.145)
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: DS2PEPF00003443:EE_|DM4PR12MB5360:EE_
+X-MS-Office365-Filtering-Correlation-Id: ba84c054-b793-4d06-2f88-08dc21ae6393
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: A16hMYIp1iuGkKA9BJa9w9DohVCG9Eq29j/PnlOvjt/JAkwKGs3iMOg2AxnXu/p/MBL0Qqwofy0ruMjE/wC8rHUfvimymyWrXpbajF5OaI9LZPVeAqZQGLwFFolJni2j9uB8EEYsXtOKpg88SREk3NBUPR7FTiPWkT5z+WNqlff+9+QEjFL+RMSaxP3ohuTWobf1iOpXd3v0k8F6LYUJKBlHnF4eVpXm4lPGnHFH18VGAz49hGpALbn/Mic2YOKkFK3qGURiq0+O12KhmnCINN6UH0j2QqvfWn9ubd3c8MAOEjBAv2InZB0NRGAwpObK8nhHCVqrikx5tO0bC9TSnFJA6stbHb7WHvVDxp4oyQu3rs9G8ogzL4ee7VSbd779SH8L7wRC/zkyAlP5FWji1DzYJnlsjr8PC6GlMDc5BEQfhS6Zy3rjL72NVVQxYSRMahrBS3uDwEZaPWQjj+s7MR75stH+JRAvOcXrHpCvZPMUKjfrg2BCwltKrTF3iUp1xDFQBTUbjbJtcXQP/xUQRrtjE4eUjvt7siOE3Coz+bgm63IVZMi+Sku+BsKxXmHI/eRum7d2f5nEDGZLdmXj+jEqZ6acYUnvX/Nyt49U0A8MQ1IF2oI66g1/vO+7MrYP7pvQ9c5+rXzkXGvDNbldsh8juRX0/bzHOmwyeBsjR6QyIs6J4aT4+lTOnZpMLaDu2Ycdc8+jVEZ77lERK4bldRnHz4mBMCyohNysxHV2Qdx+Rrm2+97o4CEERSiMRsSbg24jLVyRRmgUwNlv57F6mw==
+X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
+ IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
+ SFS:(13230031)(4636009)(346002)(136003)(376002)(39860400002)(396003)(230922051799003)(64100799003)(451199024)(186009)(82310400011)(1800799012)(36840700001)(46966006)(40470700004)(83380400001)(41300700001)(36860700001)(40460700003)(40480700001)(82740400003)(47076005)(81166007)(2906002)(110136005)(8676002)(4326008)(8936002)(86362001)(70586007)(5660300002)(478600001)(316002)(70206006)(7696005)(36756003)(2616005)(1076003)(26005)(336012)(16526019)(356005)(426003)(36900700001);
+ DIR:OUT; SFP:1101; 
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 30 Jan 2024 16:13:25.7603 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: ba84c054-b793-4d06-2f88-08dc21ae6393
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
+ Helo=[SATLEXMB04.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource: DS2PEPF00003443.namprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM4PR12MB5360
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,98 +100,39 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: imre.deak@intel.com
-Cc: intel-gfx@lists.freedesktop.org
+Cc: Alex Deucher <alexander.deucher@amd.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, Jan 30, 2024 at 07:18:25PM +0530, Nautiyal, Ankit K wrote:
-> 
-> On 1/29/2024 11:25 PM, Imre Deak wrote:
-> > Add a workaround to fix BS (blank start) to BS jitter issues on MST
-> > links when FEC is enabled. Neither Bspec requires this nor Windows
-> > clears the WA when disabling the output - presumedly because
-> > CHICKEN_MISC_3 gets reset after disabling the pipe/transcoder - so
-> > follow suit.
-> > 
-> > Bspec: 50050, 55424
-> > 
-> > Signed-off-by: Imre Deak <imre.deak@intel.com>
-> > ---
-> >   drivers/gpu/drm/i915/display/intel_dp_mst.c | 24 +++++++++++++++++++++
-> >   drivers/gpu/drm/i915/i915_reg.h             |  3 +++
-> >   2 files changed, 27 insertions(+)
-> > 
-> > diff --git a/drivers/gpu/drm/i915/display/intel_dp_mst.c b/drivers/gpu/drm/i915/display/intel_dp_mst.c
-> > index 5fa25a5a36b55..22c1759f912db 100644
-> > --- a/drivers/gpu/drm/i915/display/intel_dp_mst.c
-> > +++ b/drivers/gpu/drm/i915/display/intel_dp_mst.c
-> > @@ -1106,6 +1106,28 @@ static void intel_mst_pre_enable_dp(struct intel_atomic_state *state,
-> >   	intel_ddi_set_dp_msa(pipe_config, conn_state);
-> >   }
-> > +static void enable_bs_jitter_was(const struct intel_crtc_state *crtc_state)
-> > +{
-> > +	struct drm_i915_private *i915 = to_i915(crtc_state->uapi.crtc->dev);
-> > +	u32 clear = 0;
-> > +	u32 set = 0;
-> > +
-> > +	if (!IS_ALDERLAKE_P(i915))
-> > +		return;
-> > +
-> > +	if (!IS_DISPLAY_STEP(i915, STEP_D0, STEP_FOREVER))
-> > +		return;
-> > +
-> > +	/* Wa_14013163432:adlp */
-> > +	if (crtc_state->fec_enable || intel_dp_is_uhbr(crtc_state))
-> 
-> Is this for DP MST + UHBR and DP MST + FEC?
-> 
-> From Bspec it seems this is meant only for MST+ FEC case, unless I am
-> missing something.
+We had a request to add shared buffer stats to fdinfo for amdgpu and
+while implementing that, Christian mentioned that just looking at
+the GEM handle count doesn't take into account buffers shared with other
+subsystems like V4L or RDMA.  Those subsystems don't use GEM, so it
+doesn't really matter from a GPU top perspective, but it's more
+correct if you actually want to see shared buffers.
 
-You mean not meant for UHBR? The register description is clearer than
-the modeset page, requiring it for both non-UHBR and UHBR. Windows also
-enables it for both.
+After further discussions, add a helper and update all fdinfo
+implementations to use that helper for consistency.
 
-> > +		set |= DP_MST_FEC_BS_JITTER_WA(crtc_state->cpu_transcoder);
-> > +
-> > +	if (!clear && !set)
-> > +		return;
-> > +
-> > +	intel_de_rmw(i915, CHICKEN_MISC_3, clear, set);
-> > +}
-> > +
-> >   static void intel_mst_enable_dp(struct intel_atomic_state *state,
-> >   				struct intel_encoder *encoder,
-> >   				const struct intel_crtc_state *pipe_config,
-> > @@ -1134,6 +1156,8 @@ static void intel_mst_enable_dp(struct intel_atomic_state *state,
-> >   			       TRANS_DP2_VFREQ_PIXEL_CLOCK(crtc_clock_hz & 0xffffff));
-> >   	}
-> > +	enable_bs_jitter_was(pipe_config);
-> > +
-> >   	intel_ddi_enable_transcoder_func(encoder, pipe_config);
-> >   	clear_act_sent(encoder, pipe_config);
-> > diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_reg.h
-> > index 75bc08081fce9..67b7d02ea37bf 100644
-> > --- a/drivers/gpu/drm/i915/i915_reg.h
-> > +++ b/drivers/gpu/drm/i915/i915_reg.h
-> > @@ -4555,6 +4555,9 @@
-> >   #define   GLK_CL1_PWR_DOWN		REG_BIT(11)
-> >   #define   GLK_CL0_PWR_DOWN		REG_BIT(10)
-> > +#define CHICKEN_MISC_3		_MMIO(0x42088)
-> > +#define   DP_MST_FEC_BS_JITTER_WA(trans)	REG_BIT(0 + (trans) - TRANSCODER_A)
-> 
-> 
-> Should we mention /* adlp */ here?
+Alex Deucher (6):
+  Documentation/gpu: Update documentation on drm-shared-*
+  drm: add drm_gem_object_is_shared_for_memory_stats() helper
+  drm: update drm_show_memory_stats() for dma-bufs
+  drm/amdgpu: add shared fdinfo stats
+  drm/i915: Update shared stats to use the new gem helper
+  drm/xe: Update shared stats to use the new gem helper
 
-In the register description the flag is valid for other platforms too,
-even though it's only enabled for ADLP/RPLP.
+ Documentation/gpu/drm-usage-stats.rst      |  2 +-
+ drivers/gpu/drm/amd/amdgpu/amdgpu_fdinfo.c |  4 ++++
+ drivers/gpu/drm/amd/amdgpu/amdgpu_object.c | 11 +++++++++++
+ drivers/gpu/drm/amd/amdgpu/amdgpu_object.h |  6 ++++++
+ drivers/gpu/drm/drm_file.c                 |  2 +-
+ drivers/gpu/drm/drm_gem.c                  | 16 ++++++++++++++++
+ drivers/gpu/drm/i915/i915_drm_client.c     |  2 +-
+ drivers/gpu/drm/xe/xe_drm_client.c         |  2 +-
+ include/drm/drm_gem.h                      |  1 +
+ 9 files changed, 42 insertions(+), 4 deletions(-)
 
-> Regards,
-> 
-> Ankit
-> 
-> > +
-> >   #define CHICKEN_MISC_4		_MMIO(0x4208c)
-> >   #define   CHICKEN_FBC_STRIDE_OVERRIDE	REG_BIT(13)
-> >   #define   CHICKEN_FBC_STRIDE_MASK	REG_GENMASK(12, 0)
+-- 
+2.42.0
+
