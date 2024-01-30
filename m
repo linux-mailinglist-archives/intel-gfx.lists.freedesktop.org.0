@@ -2,83 +2,85 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3EA3C841D12
-	for <lists+intel-gfx@lfdr.de>; Tue, 30 Jan 2024 08:56:36 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1332F841DC0
+	for <lists+intel-gfx@lfdr.de>; Tue, 30 Jan 2024 09:28:44 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 95B8410E5CF;
-	Tue, 30 Jan 2024 07:56:32 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9FAC310F840;
+	Tue, 30 Jan 2024 08:28:12 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D227010E5CF
- for <intel-gfx@lists.freedesktop.org>; Tue, 30 Jan 2024 07:56:30 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 713F910F83E
+ for <intel-gfx@lists.freedesktop.org>; Tue, 30 Jan 2024 08:28:11 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1706601391; x=1738137391;
- h=from:to:subject:date:message-id:reply-to:mime-version;
- bh=cZ764T38c/oefJq8Ze1Pn12QJgoCa9mrY/dOKo9pWBc=;
- b=OVmZ23Da5MJJRBJS4CAS0HN8F0yFO7xIqDCDXNX8izbqbzZlGo18h1h7
- HYfMXSWgwjBc4iR8u4+4vPpRE9c18rMUsoMagGuFCzcv0aS5rc4pmi4zz
- qlMFWAYz1vB1Qe8l0VF2FrGzu5w0vY/oid49ic9+K3ftskzF4VX0M9RxR
- fORIZB+2DeQsiW+szg14X+3DLvS7OJNqaF4EAu7Pa6IVTcinprRXjJkZS
- m8wTPaKcoma3ORdI4bXQ8XM59WsqAaoLS6JxSERdG0FiLHtMpG9iWiAZz
- r8Jy0WoFibgyZc/59IwLuOotTXB92VP+ELOLueuzhAaRJrCKsDluUwYOD g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10968"; a="9837794"
-X-IronPort-AV: E=Sophos;i="6.05,707,1701158400"; d="scan'208,217";a="9837794"
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
- by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Jan 2024 23:56:31 -0800
+ t=1706603291; x=1738139291;
+ h=from:to:subject:date:message-id:references:in-reply-to:
+ content-transfer-encoding:mime-version;
+ bh=CvSsxeSiyubYIoGMMGPnIykaqBpf29KIgc4D7L9hHz4=;
+ b=UXRul1jhG1Nu44DQU+bc2mv1NBE2Z900sAy0sXdlktAyDSQ8BjbzXfJY
+ 3nCQmC0b4rV2L3NZfPWiNQjwTZKklAEDOXnhZWRmimCDuQySp8+s3Nbd4
+ Sagtmf9PR0U0JpyxzrIHCtNhOBgZA5xaGk6BVYdu1bpjMsl+CJSmKcnCn
+ XvSgm3J9D9Qk3vMcDBM2RQTE/IG8plJgoMJDys7WS70F7wWmbGDJB52uA
+ JwwiKPKjIFKVXypuaOTRraJ5fHQsShP3SOH1cwmNqBqjfcFnr7kPIS2Ns
+ dFiDTFtpaGGztys4tibRuiKy7QZJIxTxW+e/J08F6yaGtvs7sAt0G9vdQ w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10968"; a="467463672"
+X-IronPort-AV: E=Sophos;i="6.05,707,1701158400"; d="scan'208";a="467463672"
+Received: from orviesa005.jf.intel.com ([10.64.159.145])
+ by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 30 Jan 2024 00:28:11 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10968"; a="788110886"
 X-IronPort-AV: E=Sophos;i="6.05,707,1701158400"; 
- d="scan'208,217";a="788110886"
-Received: from fmsmsx603.amr.corp.intel.com ([10.18.126.83])
- by orsmga002.jf.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
- 29 Jan 2024 23:56:30 -0800
-Received: from fmsmsx611.amr.corp.intel.com (10.18.126.91) by
- fmsmsx603.amr.corp.intel.com (10.18.126.83) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35; Mon, 29 Jan 2024 23:56:29 -0800
-Received: from fmsmsx602.amr.corp.intel.com (10.18.126.82) by
- fmsmsx611.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35; Mon, 29 Jan 2024 23:56:29 -0800
-Received: from fmsedg602.ED.cps.intel.com (10.1.192.136) by
+   d="scan'208";a="3593188"
+Received: from fmsmsx602.amr.corp.intel.com ([10.18.126.82])
+ by orviesa005.jf.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
+ 30 Jan 2024 00:28:11 -0800
+Received: from fmsmsx610.amr.corp.intel.com (10.18.126.90) by
  fmsmsx602.amr.corp.intel.com (10.18.126.82) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35 via Frontend Transport; Mon, 29 Jan 2024 23:56:28 -0800
-Received: from NAM02-BN1-obe.outbound.protection.outlook.com (104.47.51.41) by
- edgegateway.intel.com (192.55.55.71) with Microsoft SMTP Server
+ 15.1.2507.35; Tue, 30 Jan 2024 00:28:10 -0800
+Received: from fmsmsx611.amr.corp.intel.com (10.18.126.91) by
+ fmsmsx610.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.35; Tue, 30 Jan 2024 00:28:09 -0800
+Received: from FMSEDG603.ED.cps.intel.com (10.1.192.133) by
+ fmsmsx611.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.35 via Frontend Transport; Tue, 30 Jan 2024 00:28:09 -0800
+Received: from NAM10-MW2-obe.outbound.protection.outlook.com (104.47.55.101)
+ by edgegateway.intel.com (192.55.55.68) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.35; Mon, 29 Jan 2024 23:56:28 -0800
+ 15.1.2507.35; Tue, 30 Jan 2024 00:28:09 -0800
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=dpx0aByTBL5PPoQp/QagR4mKa1uXE0pfQrbHyNQNcKNJ+kiRl9M+sdVUw0KYY4FjkJAYjkrMbnFbtZ67U8kLIMWcp4wXwAmqGfBMWG2reZNDAlfoG759Rt5gYeNc9EQrVKqHC9z8v8sjpVhIzb+GIpWntThP4KWodS3HpbdGxncyCYfqnb/34Un+wDI59JA1RMuSGbQQt5ytfL0yq/acFJ4kwKEsGyLwZ2k89XWu0XsaOX2HqbGNKy46xODxFO8sfmOhqwO1rauMUCOwOs7s6vignscMHDVEJnwQTrqoFiUphZi8JTsAXNXZP5f4uP/cIhkGyKgvTIA04ehPtEFZfw==
+ b=VuATbI1WRLQtPi0g2hVH1XU1cYJUpc3276mXkuUzeOcEUIlCQoX7iGTdMCE8r7WU/njACF7lVWfk9sw0mzrP6eBIsdTbAXTzHei7P8zB5jEQI1K0L7NOVDudGBK2ErrZKRLA7xGLeoeI5CJOqYSfRcV97OIaoaH9/HZPRTh7XE0jtpAO/RwvWOViTeEHsrRRd5A9OvELMGv4XMXob16YJfYV8YdVpnAPd/7s0JN3ElkT+2YsABAv0uvoySEZXRkaLRkVjKk4lNTW7J8kveGV3eBAcPBORXd8OD37eNwnbotjK3sm56d4TZ+cRxGaMYZ2WRWjAckIu/CTx+Q0FM2M6g==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=NTS6MM4W3lhHrj/Fu23TmN/+dGWexatFHoOZpr/1vbk=;
- b=QR5wDDMHQ/uL0s8HKEdZ5cddXr/V3CoKw/PW8HmmVvc/9vlOPTtNINV9q6+cLlPH+c0kiz8CBr/l7AEmbH9/tbZg5CFV+h81/WXrfK458x+53mPB3j/FsqGTTPYXA8CaXnw6VuKecsq5mWOreBLBV7CxzT45Tp/wBeW/t11O0dsnuVH9qmxSoM0cs17bL2v6Ez2z5aC/y2YBd00OSGj5gxQUULYUyDQJvQLWz+TZxg9nFSgHLxC1H7/eQQUG5eBI4blOWIF9cdTEAsdsffOFFnCKAdpN2t80itUWAtcS4TP0p1kZJXFGZv/PpWKOrDaUWDioAVf6jJtRO1Bf5G5DjQ==
+ bh=CvSsxeSiyubYIoGMMGPnIykaqBpf29KIgc4D7L9hHz4=;
+ b=L1gmK1q+rfxyFuMq6qMxRvnzBG+zd19Tthdm/I3IaSpGpHCPwuejmGlvJ0oq2TlLAARKu+95rXtEfQSVr6GSK659EGlIYV3qMJQmPGI8KKOYD9DhQaR0DJuJ2lcZ2grArf6yx209AdQsgjvrb2qA9peV8uKWAS9K/CAG+8eOd7pDqLlssXIaEmx+7Sd7lijKlYyXlX8TbARoK/zpG9H3RYqis7N+lhsJLBKKuS+5XvI/ujdhNLSf1a9XjJ2KhW+vMGNEOm7mZ6iLjqBJl3Yv3Ce3Z2y1ny/lRadYyZL9b8NY/m+HOH0nl1ErOm7QEmC4dwgG1RX4W79xIQgJHNbqUw==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
-Received: from LV2PR11MB6024.namprd11.prod.outlook.com (2603:10b6:408:17a::16)
- by PH7PR11MB8479.namprd11.prod.outlook.com (2603:10b6:510:30c::22)
- with Microsoft SMTP Server (version=TLS1_2,
+Received: from IA0PR11MB7307.namprd11.prod.outlook.com (2603:10b6:208:437::10)
+ by DS7PR11MB6102.namprd11.prod.outlook.com (2603:10b6:8:85::18) with
+ Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7228.32; Tue, 30 Jan
- 2024 07:56:26 +0000
-Received: from LV2PR11MB6024.namprd11.prod.outlook.com
- ([fe80::444d:97a9:c0b8:5cdb]) by LV2PR11MB6024.namprd11.prod.outlook.com
- ([fe80::444d:97a9:c0b8:5cdb%7]) with mapi id 15.20.7249.017; Tue, 30 Jan 2024
- 07:56:26 +0000
-From: "Lin, Charlton" <charlton.lin@intel.com>
-To: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
-Subject: Re: [PATCH 1/2] drm/display/dp: Check for MSTM_CAP before MSTM_CTRL
- write
-Thread-Topic: Re: [PATCH 1/2] drm/display/dp: Check for MSTM_CAP before
- MSTM_CTRL write
-Thread-Index: AdpTUb9cdoJGzl/qS8+5o/uLxQsd3A==
-Date: Tue, 30 Jan 2024 07:56:26 +0000
-Message-ID: <LV2PR11MB6024F22AA5D550720E6D1C458B7D2@LV2PR11MB6024.namprd11.prod.outlook.com>
+ 2024 08:28:02 +0000
+Received: from IA0PR11MB7307.namprd11.prod.outlook.com
+ ([fe80::34a4:c9b4:7991:39b5]) by IA0PR11MB7307.namprd11.prod.outlook.com
+ ([fe80::34a4:c9b4:7991:39b5%4]) with mapi id 15.20.7249.017; Tue, 30 Jan 2024
+ 08:28:02 +0000
+From: "Murthy, Arun R" <arun.r.murthy@intel.com>
+To: "Hogander, Jouni" <jouni.hogander@intel.com>,
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
+Subject: RE: [PATCH v2 4/4] drm/i915/alpm: Alpm aux wake configuration for lnl
+Thread-Topic: [PATCH v2 4/4] drm/i915/alpm: Alpm aux wake configuration for lnl
+Thread-Index: AQHaP+GnSMXts2tU9UOANpQ5n6aZI7DyLB4Q
+Date: Tue, 30 Jan 2024 08:28:02 +0000
+Message-ID: <IA0PR11MB7307E6C8932D0FDA618DA825BA7D2@IA0PR11MB7307.namprd11.prod.outlook.com>
+References: <20240105141504.2808991-1-jouni.hogander@intel.com>
+ <20240105141504.2808991-5-jouni.hogander@intel.com>
+In-Reply-To: <20240105141504.2808991-5-jouni.hogander@intel.com>
 Accept-Language: en-US
 Content-Language: en-US
 X-MS-Has-Attach: 
@@ -86,56 +88,65 @@ X-MS-TNEF-Correlator:
 authentication-results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
 x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: LV2PR11MB6024:EE_|PH7PR11MB8479:EE_
-x-ms-office365-filtering-correlation-id: e38afddc-5b79-4eeb-6851-08dc2168f59d
+x-ms-traffictypediagnostic: IA0PR11MB7307:EE_|DS7PR11MB6102:EE_
+x-ms-office365-filtering-correlation-id: f341d046-9158-47fa-c518-08dc216d6027
 x-ms-exchange-senderadcheck: 1
 x-ms-exchange-antispam-relay: 0
 x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: IqKrwpd7Dr6WKluuZKIMyMwhGondlV7wtFfE3QXbD7IfIm+VJcAS5FgprPmNVEjHgfifLd7lBs3HSHffkMgC0Tc/q6ge5l2gv6gl/QXFYzNp+li/m7elk/M4UBGhmUmm0p5ToweqMKhmyhNJmjkFnHraIGVzAhBTNTNbcEQfCsltxU+lO3ofcqubBxIbRC058QFsKElRdJWokrDKBeBmmiQXPETEU94prlpqpIvnxwFzuz2aqFlARTnAVikV2J89q1i5OrJV1U50URFxymlMj+SVIFo1C3JWHiy7mKzdopowRVlPz+TmdV2X6QtRKZKJ3A8ikBQ2xOGDepWI4PiL4vKA1TX6IAm8cHSt/AGh2angm/y5swTCmIaObemWgLGmXU1q7+uSoQI5p0YU7l85iOvSZ33rPoiG9kW1FXi2HlSxvFKp5aRtmaeP1FF1/6ydVWaW2ozLgp04Pip1BkPtbZRYd3gjAym4oBKtmIbV6QTGxjTldVnXAk/DeVJEt78MhVr+luP/oGwAfsiFcQeP3FluSpRmHYxgzMo5Y5XYFVP8pTtJKYN99pSphew/PrsYLbzsSk9SFKM2qii67mZYJ1ZvOKlrapKuGkBDYbF625BZNuEkW8BCrM9pDsSUI8Y7
+x-microsoft-antispam-message-info: kQAcbn4G+q2Yd9JnTx4x6NFn3mg/fbEm0ZN6PsQTj0JLbhVKOL+aOnixXcXVGVmEV+WRnPGQoyksXpXUAoMUe56kkK97OJKHLsLGKKBytoFvtnBfcHcAvu9axDIUVtc9xna5GjXpEq5oe0i+0iNQy5FlvYznXjHQvUDF0xUgnz/4tqzedzeAc3l8hdF+IAWMsGo+yzjvtq8wuKegy1wLlXwBni0KkgpDzWds79ttVuZlhSDdTkSgVYUWw+RcUQRiPHmZChjMgE6fCOoi4xXyDswqvdVxlJ1iUWfEU8x/2NEo74at5wqKY0LIJTye76hY+Fmpx8XfvLfnzGWa0uZHK6uZCZDA8mGLBc92ND8r80tF3wUk6uUYEoAUDUKX8cu/cMct2aMVSJOYsvOCCfwUaNllgL5Q0RlLX1M73lrsT1rcdprPk4BDE1zmVvYrKMKqcLn6kXVS1lF/0Dmyb4TXWrhBzzMkSM95AYiHjUFWHRCZDEm89mdryYpkRU4++RZog+58QFd3R6zHPVOWo7zgSAm9mZsG2aIeirIfOl1+qi+W5D+dWP5QNKY3fKIufWI63qLUyYiZuLXBoXj58Dem8ljTfaC00wErgKGhzvsfVMK0xu13GspX/G7DcPVqJF9c
 x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:LV2PR11MB6024.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230031)(366004)(39860400002)(346002)(136003)(376002)(396003)(230922051799003)(186009)(64100799003)(451199024)(1800799012)(53546011)(83380400001)(6506007)(26005)(7696005)(55016003)(33656002)(86362001)(38070700009)(82960400001)(5660300002)(8936002)(52536014)(71200400001)(41300700001)(8676002)(38100700002)(122000001)(66556008)(66446008)(64756008)(66476007)(316002)(9686003)(6916009)(2906002)(478600001)(66946007)(8796002)(76116006);
+ IPV:NLI; SFV:NSPM; H:IA0PR11MB7307.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230031)(366004)(39860400002)(346002)(376002)(396003)(136003)(230922051799003)(1800799012)(451199024)(64100799003)(186009)(38070700009)(55016003)(7696005)(53546011)(5660300002)(71200400001)(6506007)(9686003)(2906002)(26005)(8936002)(66556008)(316002)(64756008)(8676002)(66446008)(52536014)(66946007)(66476007)(76116006)(122000001)(110136005)(41300700001)(38100700002)(83380400001)(478600001)(86362001)(33656002)(82960400001);
  DIR:OUT; SFP:1102; 
 x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?Gw0Z6op6Q23lNjRkNaqFoAWNwZPLOhzglWqwDPLQQ3vm74WhSDxMJlO0fENe?=
- =?us-ascii?Q?+/79NgtfQdx2nvHaoGb9zw5+aIm2nB/dtqozByGFYBY0JJf+7zXnWLEGxLm0?=
- =?us-ascii?Q?OEBEYu9ss1K5RNoC1OevzzUceAifeb5+FKyhkhzTywUOsgfIRVpwR2X9vbOl?=
- =?us-ascii?Q?5ORbC4Gf8DhRf42dmBA0824WqzOOTxaX6gW+17OLM9IH7L7tKH0qudAmdwfj?=
- =?us-ascii?Q?Xf1GTsaVxfeJopwxYhJZO4gsLkZtYTI5T/irtKXSNptVC/omMtDhPw/mAgtT?=
- =?us-ascii?Q?pJwDXAHlE/T/MXy4XXpOmC5I6jmmoIxDpWtRDFZjkTPG/ZL6b8+Fw26lDfg6?=
- =?us-ascii?Q?yKGl2ejVDXNfYdOb2GnY/FrZrJjUQjfGkkwL8NEgRWNTQ8KeBof7ifCq8AAi?=
- =?us-ascii?Q?BksukR88FpjLVVFztVBMiX6Zn22oNwl3kzmyi4uaGnTOa93r1zv1uDHW5MDT?=
- =?us-ascii?Q?nKksNmRCDbCBsECkSPfZ4R7UqmpNQeTAfYdY88ChWgIGkVXyvBK9JVFO+UBG?=
- =?us-ascii?Q?ugXmW87I/gn9KPd4wRXFEQT6w819kvrn99SAfHCBBh96ty2lRPNEWfAv502f?=
- =?us-ascii?Q?WgGoOZpKoxxS0NZ/9fovhTEj9KaBepbw7kcABt/jCx2JwwOUTmArWeLwiD75?=
- =?us-ascii?Q?GjTxG77uurXwL/y6ArvKyCDFWi1Sj2XtGAJabFWDTnU0294ZnSyn4D0aZSe9?=
- =?us-ascii?Q?Y5IfRmQgIOn7dd1JE/wQVWCyZFpEqinYbYYBiuyY5WE/wDKP25j+KuT1ALQu?=
- =?us-ascii?Q?5wtv/IUsF94j0cXcqm2OjzqZaW8VoHXpr7TiF2RLFLU9j9FUQwUnjRlBYTFX?=
- =?us-ascii?Q?V542jobsAplmPYxAU0b9tIYtmW0D3gzmMtwGWV93aIIGuQ2s0+gRY3I9oHOZ?=
- =?us-ascii?Q?89B79iEjcRNwVh2X9BnjfVd1Nct4usehRrgAFxiDrtyesaB+F+EvEZifNNEf?=
- =?us-ascii?Q?cpJ3vZCr0b7WV89spKwNH0FZTWpjwV8+1JNTs7mdsz6XOVXJtFXm/xraG5/N?=
- =?us-ascii?Q?y3IhssNgKKyFZgPlvE6c0qJuUIM8zOxgfyOAQnYzfflByJuUnn+bJ8zkf+6f?=
- =?us-ascii?Q?CUvxWedUxrJ5KwMP8ufPwAtmw7hobHr567ZnYxVyaRO0O/6thgVQs34xs8v6?=
- =?us-ascii?Q?TkMw05f5uK5l2ShbguBj+F8vK/3gzCp6UXsv97p0A8yce9tc4HB/wAkZlw+r?=
- =?us-ascii?Q?z9kkxupTbtS/M0ETD2Kq6E4EH2IjuaEFU2x7uRlAwCmHenFpMB0mHN1rq1Ry?=
- =?us-ascii?Q?I5lc9qcN1UAPi/3pIS2UW+1gFl7REh8JZj9H0EhAuBfZyui7QsIpvbjb9Aw0?=
- =?us-ascii?Q?P3EkNi1yyjEJZzOKEmlXEXpu6aOrZZtUqWcnxXma9+ZORwJaYgRc04/l/phE?=
- =?us-ascii?Q?GspI8GSa1xG0k5i4qow3kqxzmpEkIXQTYghvrOdqxYwyR6TjYvYNWfV5R0va?=
- =?us-ascii?Q?5jXgW3Y5KkZXoUvlZOvNQ+81C+dbvhF/UiQBtgPxJk4odERa7wF2ySp2xKb9?=
- =?us-ascii?Q?hN6Flk+4moUU8F//rf5QIKLxBSrA0qNbn/kdGvWTnWqk9k5qUofCTevvvw3e?=
- =?us-ascii?Q?e3aFtzEAzNXRcJQcgO+NgidHlLQ82El/gJ6JMqh5?=
-Content-Type: multipart/alternative;
- boundary="_000_LV2PR11MB6024F22AA5D550720E6D1C458B7D2LV2PR11MB6024namp_"
+x-ms-exchange-antispam-messagedata-0: =?utf-8?B?YWxQUnJpYVpQblBiTXBZMk9waXFGSEZnRkdUbDhIeFQ0L21LbDVkK1dScjh1?=
+ =?utf-8?B?UE9EZDlkNGdOSGEyUVFybkV6d2V2WTFMQ1dRTHdVbTVEQ1ZKTGJQTkxxNDhm?=
+ =?utf-8?B?Z1F3ZnEvODJ5RHlHblVwVFpNOVNnejdEU3p6S3BuUG9SQWRxR01vbUx6Mzh2?=
+ =?utf-8?B?azU0OFpGQkNOZFpnSVJXMHRxL284V3E4U0NCeDIzd0U1enlCRlFqblc2T3pm?=
+ =?utf-8?B?alY3UHRxTE1zMWl3MDI2MWVpUjRvS0FaaGpianY2VThhcUJwaXVjOHY4YWV4?=
+ =?utf-8?B?WHhHRCtaZElUeDIyVVMrYmt0d1pZc0JXcFRyZjJIb21WZzJlM0lwRGJDUGl2?=
+ =?utf-8?B?azlYNkdNYnZzQ3UwaDFydGR4Q3V6UFRjMHdyRzE1bXMxNTJ0WGdsL2Rlb2tk?=
+ =?utf-8?B?ZzZEc0Y2RWs2K1dNUE05ZXFyNi9qMDJkdUpFZ3NCNjZ1czZVQ0oxRlBidjQy?=
+ =?utf-8?B?RkVUbHFxWURveDFhU0RsRWNCWWdnNHRNV09MTmttcWo1cEpmeE9BbDY3ZFZn?=
+ =?utf-8?B?cTQ2aE5MditDMlpNUk9PTG1lVHhBc2U1UXVhTVlYWmZJMnVQY3YyUjFnQ0ZL?=
+ =?utf-8?B?Wm0raE5IbHIxSWY4NDVKMVpoYXFqeXFkK1pmWVpjampFRkZGZUR1RW1BVndK?=
+ =?utf-8?B?QU5ieEdhbjVWdUhZbXlhZ2wzU2piOGl4Y1pteUJ1aGVXb3dsRGlpZjd2TWdn?=
+ =?utf-8?B?cmdpd3JQdXJwMTJtWFpMYnR1T2htU0dqbW5BNHJvdlhnZ05zMUdSVFpXbGty?=
+ =?utf-8?B?elFOZGJZNjA4U2diSlhCMjBNZEdxQW5nTkJINnhYVnFIVVJCMzdZWTRmOWJy?=
+ =?utf-8?B?RnpKcG1FandkaVp6eDVYdHNFS3hXaFExbWkxSGVPQUdwenlGejh6R25obkZy?=
+ =?utf-8?B?V1R2QWtUUnBBTzRvb2hiVzQ0T1J6RUVTR3l6MlJSMVJVZXVkVVNxT2Q3aWxS?=
+ =?utf-8?B?c1hZbzNsUVV3SHRtb28rWVI4V2RrLzZ2NWtsNlFKZk1ZYTZBQ0UzZWhXUXdn?=
+ =?utf-8?B?UHR3VEJ6bDBaVGdXN1RKM0JQWE5uM283ZDNWMVN4c2RIOXFaTGxRVHZHNXFZ?=
+ =?utf-8?B?NjI3amZsQmVONW5wSUdNNGZsdzJZYTJhWXVYa3AvMGVWOTltVWVPRkE1MFJD?=
+ =?utf-8?B?dEJxRURuV2U4a3pQRlpnaTZJTTV4LzB6WnM4RUh1dGM5VERONERyMW5QaDFK?=
+ =?utf-8?B?OTNvbVVMdlJWajVmeE9OdFhoY29hZG9HWmdSRXJCRExZVk5DemppdkNUTUFJ?=
+ =?utf-8?B?QnU4ckhRTjJmN1FGM3BJU0o3emdYTEZDWWx3ZVJncUNtcjF2UEdUazVUNjVa?=
+ =?utf-8?B?V1MzeWZubmZrelN6YWZ6V1dtc00xemZyLy80OHh4MlNxQmxGV3hBWU92QlBk?=
+ =?utf-8?B?T29YNHFZMUV6dE5sVlFWdnhIK00yQ2tkUkhUd3pKaTJLS1ExbkpGWlM4YWRH?=
+ =?utf-8?B?NHA4Y1lVdkFJN3ZaeUxHeFR2V0wvNmxNWU9KWG5mTkxJUE5iUVozek04QXY1?=
+ =?utf-8?B?NDhSOVJ5RC9CaWFvUTU1TGVaRmVRVFRvbHJ4ai9EQVhURFZkVS9DekV6S2Fj?=
+ =?utf-8?B?TVQzMngxZXlNTE9CcjNpVEZpSTJFWVBjbklkdmNocnlCSUVSa0d2dmNDdmRM?=
+ =?utf-8?B?TU9vUFJOMEpMNFFPOUdkUUc0TU1qN04yVGE1dk1mb1hLOWZVbzQzTnBoZjZp?=
+ =?utf-8?B?MmJTNXQ2d0ZZaG5hZFFRWTRsa1hMMmRMZFpQMGRVZ0ZpOEptSzE3TXlXY2N5?=
+ =?utf-8?B?a3BqSHNjd1NyZzdFaVFYQnBlL1J6dFVLbWcrVklmangxckE5VEN1Sm10allP?=
+ =?utf-8?B?RHNpTXM1bVhvZGFha3hXV0lNbTZCVmJSaEhLd3J1THpacHB1c3BiMDhFbHVp?=
+ =?utf-8?B?L055ZmVHUXQwMVJPYU5MRGl3QURlSmdqcWVzODBXVlJ4K2t3K2QvWllwUWI4?=
+ =?utf-8?B?Y0NMTGhQSld1aHhJYWd5ZFM3UjZpOG1xdklhQ2kwdEJSbHZ1cmVVakRobDhy?=
+ =?utf-8?B?ajluVitRQU9BU1M0MmJQQ1pmTDF5MWtWTFlub3puQ1E4a1cwQ0VCMmljOE8r?=
+ =?utf-8?B?KzBqTXVXekVDaENLL1ZqellpTkQxN3ZQUFlBQXpkRXMwdU9MTitHM1RuNkZM?=
+ =?utf-8?Q?Rt4mTcJ2ZyfIyMkAfGXzBsa+I?=
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 MIME-Version: 1.0
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: LV2PR11MB6024.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: e38afddc-5b79-4eeb-6851-08dc2168f59d
-X-MS-Exchange-CrossTenant-originalarrivaltime: 30 Jan 2024 07:56:26.0227 (UTC)
+X-MS-Exchange-CrossTenant-AuthSource: IA0PR11MB7307.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: f341d046-9158-47fa-c518-08dc216d6027
+X-MS-Exchange-CrossTenant-originalarrivaltime: 30 Jan 2024 08:28:02.8119 (UTC)
 X-MS-Exchange-CrossTenant-fromentityheader: Hosted
 X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: lewdoHuSjWHippp1TwYC4PW/m7FXt7epfcwN78yvTutYR/8+EfvEwDXc7XmSylR2zjtOf/fOiPNFW1oX0TyH0w==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH7PR11MB8479
+X-MS-Exchange-CrossTenant-userprincipalname: 6ZTlCz7DOnGYqBAPpDoslV11iHTKZDXbOzlZW75GEKn34oIzDuwI8LuJD3SXzHSeeFpQAWkbErFl/HbTQI5yXw==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS7PR11MB6102
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -149,416 +160,43 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: "20240127063627.1369883-1-arun.r.murthy@intel.com"
- <20240127063627.1369883-1-arun.r.murthy@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---_000_LV2PR11MB6024F22AA5D550720E6D1C458B7D2LV2PR11MB6024namp_
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
-
-On 1/27/2024 12:06 PM, Arun R Murthy wrote:
-> With DP2.1, multistream packetization and the underneth MST protocol
-> will be required for SST. So check for MSTM_CAP to see if MST is really
-> required and skip the MSTM_CTRL write so that we ensure that only the
-> underneth protocol and the multistream packetization will be enabled and
-> sink will not be confused by a corresponding dpcd write.
->
-> Signed-off-by: Arun R Murthy <arun.r.murthy@intel.com>
-> ---
->  drivers/gpu/drm/display/drm_dp_mst_topology.c | 26 +++++++++++--------
->  1 file changed, 15 insertions(+), 11 deletions(-)
->
-> diff --git a/drivers/gpu/drm/display/drm_dp_mst_topology.c b/drivers/gpu/=
-drm/display/drm_dp_mst_topology.c
-> index 8ca01a6bf645..22d81732a978 100644
-> --- a/drivers/gpu/drm/display/drm_dp_mst_topology.c
-> +++ b/drivers/gpu/drm/display/drm_dp_mst_topology.c
-> @@ -3666,10 +3666,11 @@ int drm_dp_mst_topology_mgr_set_mst(struct drm_dp=
-_mst_topology_mgr *mgr, bool ms
->                           mgr->mst_primary =3D mstb;
->                           drm_dp_mst_topology_get_mstb(mgr->mst_primary);
->
-> -                        ret =3D drm_dp_dpcd_writeb(mgr->aux, DP_MSTM_CTR=
-L,
-> -                                                                   DP_MS=
-T_EN |
-> -                                                                   DP_UP=
-_REQ_EN |
-> -                                                                   DP_UP=
-STREAM_IS_SRC);
-> +                       if (drm_dp_read_mst_cap(mgr->aux, mgr->dpcd))
-> +                                      ret =3D drm_dp_dpcd_writeb(mgr->au=
-x, DP_MSTM_CTRL,
-> +                                                                        =
-         DP_MST_EN |
-> +                                                                        =
-         DP_UP_REQ_EN |
-> +                                                                        =
-         DP_UPSTREAM_IS_SRC);
->                           if (ret < 0)
->                                         goto out_unlock;
->
-> @@ -3684,7 +3685,8 @@ int drm_dp_mst_topology_mgr_set_mst(struct drm_dp_m=
-st_topology_mgr *mgr, bool ms
->                           mstb =3D mgr->mst_primary;
->                           mgr->mst_primary =3D NULL;
->                           /* this can fail if the device is gone */
-> -                        drm_dp_dpcd_writeb(mgr->aux, DP_MSTM_CTRL, 0);
-> +                       if (drm_dp_read_mst_cap(mgr->aux, mgr->dpcd))
-> +                                      drm_dp_dpcd_writeb(mgr->aux, DP_MS=
-TM_CTRL, 0);
->                           ret =3D 0;
->                           mgr->payload_id_table_cleared =3D false;
->
-> @@ -3724,8 +3726,9 @@ drm_dp_mst_topology_mgr_invalidate_mstb(struct drm_=
-dp_mst_branch *mstb)
->  void drm_dp_mst_topology_mgr_suspend(struct drm_dp_mst_topology_mgr *mgr=
-)
->  {
->            mutex_lock(&mgr->lock);
-> -          drm_dp_dpcd_writeb(mgr->aux, DP_MSTM_CTRL,
-> -                                          DP_MST_EN | DP_UPSTREAM_IS_SRC=
-);
-> +         if (drm_dp_read_mst_cap(mgr->aux, mgr->dpcd))
-> +                       drm_dp_dpcd_writeb(mgr->aux, DP_MSTM_CTRL,
-> +                                                       DP_MST_EN | DP_UP=
-STREAM_IS_SRC);
->            mutex_unlock(&mgr->lock);
->            flush_work(&mgr->up_req_work);
->            flush_work(&mgr->work);
-> @@ -3773,10 +3776,11 @@ int drm_dp_mst_topology_mgr_resume(struct drm_dp_=
-mst_topology_mgr *mgr,
->                           goto out_fail;
->            }
->
-> -          ret =3D drm_dp_dpcd_writeb(mgr->aux, DP_MSTM_CTRL,
-> -                                                     DP_MST_EN |
-> -                                                     DP_UP_REQ_EN |
-> -                                                     DP_UPSTREAM_IS_SRC)=
-;
-> +         if (drm_dp_read_mst_cap(mgr->aux, mgr->dpcd))
-> +                       ret =3D drm_dp_dpcd_writeb(mgr->aux, DP_MSTM_CTRL=
-,
-
-This did not compile in Chrome dev environemnt due to uninitialized variabl=
-e ret.
-
-> +                                                                   DP_MS=
-T_EN |
-> +                                                                   DP_UP=
-_REQ_EN |
-> +                                                                   DP_UP=
-STREAM_IS_SRC);
->            if (ret < 0) {
->                           drm_dbg_kms(mgr->dev, "mst write failed - undoc=
-ked during suspend?\n");
->                           goto out_fail;
-
-Tested-by: Charlton Lin <charlton.lin@intel.com>
-
-Regards,
-Charlton Lin
-
---_000_LV2PR11MB6024F22AA5D550720E6D1C458B7D2LV2PR11MB6024namp_
-Content-Type: text/html; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
-
-<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
-osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
-xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
-//www.w3.org/TR/REC-html40">
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
->
-<meta name=3D"Generator" content=3D"Microsoft Word 15 (filtered medium)">
-<style><!--
-/* Font Definitions */
-@font-face
-	{font-family:PMingLiU;
-	panose-1:2 1 6 1 0 1 1 1 1 1;}
-@font-face
-	{font-family:"Cambria Math";
-	panose-1:2 4 5 3 5 4 6 3 2 4;}
-@font-face
-	{font-family:Calibri;
-	panose-1:2 15 5 2 2 2 4 3 2 4;}
-@font-face
-	{font-family:"\@PMingLiU";
-	panose-1:2 1 6 1 0 1 1 1 1 1;}
-/* Style Definitions */
-p.MsoNormal, li.MsoNormal, div.MsoNormal
-	{margin:0in;
-	font-size:11.0pt;
-	font-family:"Calibri",sans-serif;}
-span.EmailStyle17
-	{mso-style-type:personal-compose;
-	font-family:"Calibri",sans-serif;
-	color:windowtext;}
-.MsoChpDefault
-	{mso-style-type:export-only;
-	font-family:"Calibri",sans-serif;
-	mso-ligatures:none;}
-@page WordSection1
-	{size:8.5in 11.0in;
-	margin:1.0in 1.0in 1.0in 1.0in;}
-div.WordSection1
-	{page:WordSection1;}
---></style><!--[if gte mso 9]><xml>
-<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
-</xml><![endif]--><!--[if gte mso 9]><xml>
-<o:shapelayout v:ext=3D"edit">
-<o:idmap v:ext=3D"edit" data=3D"1" />
-</o:shapelayout></xml><![endif]-->
-</head>
-<body lang=3D"EN-US" link=3D"#0563C1" vlink=3D"#954F72" style=3D"word-wrap:=
-break-word">
-<div class=3D"WordSection1">
-<p class=3D"MsoNormal">On 1/27/2024 12:06 PM, Arun R Murthy wrote:<o:p></o:=
-p></p>
-<p class=3D"MsoNormal">&gt; With DP2.1, multistream packetization and the u=
-nderneth MST protocol<o:p></o:p></p>
-<p class=3D"MsoNormal">&gt; will be required for SST. So check for MSTM_CAP=
- to see if MST is really<o:p></o:p></p>
-<p class=3D"MsoNormal">&gt; required and skip the MSTM_CTRL write so that w=
-e ensure that only the<o:p></o:p></p>
-<p class=3D"MsoNormal">&gt; underneth protocol and the multistream packetiz=
-ation will be enabled and<o:p></o:p></p>
-<p class=3D"MsoNormal">&gt; sink will not be confused by a corresponding dp=
-cd write.<o:p></o:p></p>
-<p class=3D"MsoNormal">&gt; <o:p></o:p></p>
-<p class=3D"MsoNormal">&gt; Signed-off-by: Arun R Murthy &lt;arun.r.murthy@=
-intel.com&gt;<o:p></o:p></p>
-<p class=3D"MsoNormal">&gt; ---<o:p></o:p></p>
-<p class=3D"MsoNormal">&gt;&nbsp; drivers/gpu/drm/display/drm_dp_mst_topolo=
-gy.c | 26 +++++++++++--------<o:p></o:p></p>
-<p class=3D"MsoNormal">&gt;&nbsp; 1 file changed, 15 insertions(+), 11 dele=
-tions(-)<o:p></o:p></p>
-<p class=3D"MsoNormal">&gt; <o:p></o:p></p>
-<p class=3D"MsoNormal">&gt; diff --git a/drivers/gpu/drm/display/drm_dp_mst=
-_topology.c b/drivers/gpu/drm/display/drm_dp_mst_topology.c<o:p></o:p></p>
-<p class=3D"MsoNormal">&gt; index 8ca01a6bf645..22d81732a978 100644<o:p></o=
-:p></p>
-<p class=3D"MsoNormal">&gt; --- a/drivers/gpu/drm/display/drm_dp_mst_topolo=
-gy.c<o:p></o:p></p>
-<p class=3D"MsoNormal">&gt; +++ b/drivers/gpu/drm/display/drm_dp_mst_topolo=
-gy.c<o:p></o:p></p>
-<p class=3D"MsoNormal">&gt; @@ -3666,10 +3666,11 @@ int drm_dp_mst_topology=
-_mgr_set_mst(struct drm_dp_mst_topology_mgr *mgr, bool ms<o:p></o:p></p>
-<p class=3D"MsoNormal">&gt;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
-;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
-bsp;&nbsp;&nbsp;&nbsp;&nbsp; mgr-&gt;mst_primary =3D mstb;<o:p></o:p></p>
-<p class=3D"MsoNormal">&gt;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
-;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
-bsp;&nbsp;&nbsp;&nbsp;&nbsp; drm_dp_mst_topology_get_mstb(mgr-&gt;mst_prima=
-ry);<o:p></o:p></p>
-<p class=3D"MsoNormal">&gt; <o:p></o:p></p>
-<p class=3D"MsoNormal">&gt; -&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
-p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
-nbsp;&nbsp;&nbsp; ret =3D drm_dp_dpcd_writeb(mgr-&gt;aux, DP_MSTM_CTRL,<o:p=
-></o:p></p>
-<p class=3D"MsoNormal">&gt; -&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
-p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
-nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
-p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
-nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
-p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; DP_MST_EN |<o:p></o:p></=
-p>
-<p class=3D"MsoNormal">&gt; -&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
-p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
-nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
-p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
-nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
-p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; DP_UP_REQ_EN |<o:p></o:p=
-></p>
-<p class=3D"MsoNormal">&gt; -&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
-p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
-nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
-p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
-nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
-p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; DP_UPSTREAM_IS_SRC);<o:p=
-></o:p></p>
-<p class=3D"MsoNormal">&gt; +&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
-p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
-nbsp;&nbsp; if (drm_dp_read_mst_cap(mgr-&gt;aux, mgr-&gt;dpcd))<o:p></o:p><=
-/p>
-<p class=3D"MsoNormal">&gt; +&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
-p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
-nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
-p;&nbsp;&nbsp;&nbsp;&nbsp; ret =3D drm_dp_dpcd_writeb(mgr-&gt;aux, DP_MSTM_=
-CTRL,<o:p></o:p></p>
-<p class=3D"MsoNormal">&gt; +&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
-p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
-nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
-p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
-nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
-p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
-nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; DP_MST_EN |<o:p=
-></o:p></p>
-<p class=3D"MsoNormal">&gt; +&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
-p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
-nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
-p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
-nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
-p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
-nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; DP_UP_REQ_EN |<=
-o:p></o:p></p>
-<p class=3D"MsoNormal">&gt; +&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
-p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
-nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
-p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
-nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
-p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
-nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; DP_UPSTREAM_IS_=
-SRC);<o:p></o:p></p>
-<p class=3D"MsoNormal">&gt;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
-;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
-bsp;&nbsp;&nbsp;&nbsp;&nbsp; if (ret &lt; 0)<o:p></o:p></p>
-<p class=3D"MsoNormal">&gt;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
-;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
-bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
-;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; goto out_unlock;<o:p></o:p></p>
-<p class=3D"MsoNormal">&gt; <o:p></o:p></p>
-<p class=3D"MsoNormal">&gt; @@ -3684,7 +3685,8 @@ int drm_dp_mst_topology_m=
-gr_set_mst(struct drm_dp_mst_topology_mgr *mgr, bool ms<o:p></o:p></p>
-<p class=3D"MsoNormal">&gt;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
-;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
-bsp;&nbsp;&nbsp;&nbsp;&nbsp; mstb =3D mgr-&gt;mst_primary;<o:p></o:p></p>
-<p class=3D"MsoNormal">&gt;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
-;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
-bsp;&nbsp;&nbsp;&nbsp;&nbsp; mgr-&gt;mst_primary =3D NULL;<o:p></o:p></p>
-<p class=3D"MsoNormal">&gt;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
-;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
-bsp;&nbsp;&nbsp;&nbsp;&nbsp; /* this can fail if the device is gone */<o:p>=
-</o:p></p>
-<p class=3D"MsoNormal">&gt; -&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
-p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
-nbsp;&nbsp;&nbsp; drm_dp_dpcd_writeb(mgr-&gt;aux, DP_MSTM_CTRL, 0);<o:p></o=
-:p></p>
-<p class=3D"MsoNormal">&gt; +&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
-p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
-nbsp;&nbsp; if (drm_dp_read_mst_cap(mgr-&gt;aux, mgr-&gt;dpcd))<o:p></o:p><=
-/p>
-<p class=3D"MsoNormal">&gt; +&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
-p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
-nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
-p;&nbsp;&nbsp;&nbsp;&nbsp; drm_dp_dpcd_writeb(mgr-&gt;aux, DP_MSTM_CTRL, 0)=
-;<o:p></o:p></p>
-<p class=3D"MsoNormal">&gt;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
-;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
-bsp;&nbsp;&nbsp;&nbsp;&nbsp; ret =3D 0;<o:p></o:p></p>
-<p class=3D"MsoNormal">&gt;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
-;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
-bsp;&nbsp;&nbsp;&nbsp;&nbsp; mgr-&gt;payload_id_table_cleared =3D false;<o:=
-p></o:p></p>
-<p class=3D"MsoNormal">&gt; <o:p></o:p></p>
-<p class=3D"MsoNormal">&gt; @@ -3724,8 +3726,9 @@ drm_dp_mst_topology_mgr_i=
-nvalidate_mstb(struct drm_dp_mst_branch *mstb)<o:p></o:p></p>
-<p class=3D"MsoNormal">&gt;&nbsp; void drm_dp_mst_topology_mgr_suspend(stru=
-ct drm_dp_mst_topology_mgr *mgr)<o:p></o:p></p>
-<p class=3D"MsoNormal">&gt;&nbsp; {<o:p></o:p></p>
-<p class=3D"MsoNormal">&gt;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
-;&nbsp;&nbsp; mutex_lock(&amp;mgr-&gt;lock);<o:p></o:p></p>
-<p class=3D"MsoNormal">&gt; -&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
-p;&nbsp; drm_dp_dpcd_writeb(mgr-&gt;aux, DP_MSTM_CTRL,<o:p></o:p></p>
-<p class=3D"MsoNormal">&gt; -&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
-p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
-nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
-p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp; DP_MST_EN | DP_UPSTREAM_IS_SR=
-C);<o:p></o:p></p>
-<p class=3D"MsoNormal">&gt; +&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
-p; if (drm_dp_read_mst_cap(mgr-&gt;aux, mgr-&gt;dpcd))<o:p></o:p></p>
-<p class=3D"MsoNormal">&gt; +&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
-p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
-nbsp;&nbsp; drm_dp_dpcd_writeb(mgr-&gt;aux, DP_MSTM_CTRL,<o:p></o:p></p>
-<p class=3D"MsoNormal">&gt; +&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
-p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
-nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
-p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
-nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp; DP_MST_EN | DP_UPSTREAM_IS=
-_SRC);<o:p></o:p></p>
-<p class=3D"MsoNormal">&gt;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
-;&nbsp;&nbsp; mutex_unlock(&amp;mgr-&gt;lock);<o:p></o:p></p>
-<p class=3D"MsoNormal">&gt;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
-;&nbsp;&nbsp; flush_work(&amp;mgr-&gt;up_req_work);<o:p></o:p></p>
-<p class=3D"MsoNormal">&gt;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
-;&nbsp;&nbsp; flush_work(&amp;mgr-&gt;work);<o:p></o:p></p>
-<p class=3D"MsoNormal">&gt; @@ -3773,10 +3776,11 @@ int drm_dp_mst_topology=
-_mgr_resume(struct drm_dp_mst_topology_mgr *mgr,<o:p></o:p></p>
-<p class=3D"MsoNormal">&gt;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
-;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
-bsp;&nbsp;&nbsp;&nbsp;&nbsp; goto out_fail;<o:p></o:p></p>
-<p class=3D"MsoNormal">&gt;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
-;&nbsp;&nbsp; }<o:p></o:p></p>
-<p class=3D"MsoNormal">&gt; <o:p></o:p></p>
-<p class=3D"MsoNormal">&gt; -&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
-p;&nbsp; ret =3D drm_dp_dpcd_writeb(mgr-&gt;aux, DP_MSTM_CTRL,<o:p></o:p></=
-p>
-<p class=3D"MsoNormal">&gt; -&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
-p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
-nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
-p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
-nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; DP_MST_EN |<o:p></o:p></p>
-<p class=3D"MsoNormal">&gt; -&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
-p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
-nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
-p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
-nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; DP_UP_REQ_EN |<o:p></o:p></p>
-<p class=3D"MsoNormal">&gt; -&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
-p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
-nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
-p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
-nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; DP_UPSTREAM_IS_SRC);<o:p></o:p></=
-p>
-<p class=3D"MsoNormal">&gt; +&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
-p; if (drm_dp_read_mst_cap(mgr-&gt;aux, mgr-&gt;dpcd))<o:p></o:p></p>
-<p class=3D"MsoNormal">&gt; +&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
-p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
-nbsp;&nbsp; ret =3D drm_dp_dpcd_writeb(mgr-&gt;aux, DP_MSTM_CTRL,<o:p></o:p=
-></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">This did not compile in Chrome dev environemnt due t=
-o uninitialized variable ret.<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">&gt; +&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
-p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
-nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
-p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
-nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
-p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; DP_MST_EN |<o:p></o:p></=
-p>
-<p class=3D"MsoNormal">&gt; +&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
-p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
-nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
-p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
-nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
-p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; DP_UP_REQ_EN |<o:p></o:p=
-></p>
-<p class=3D"MsoNormal">&gt; +&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
-p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
-nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
-p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
-nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
-p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; DP_UPSTREAM_IS_SRC);<o:p=
-></o:p></p>
-<p class=3D"MsoNormal">&gt;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
-;&nbsp;&nbsp; if (ret &lt; 0) {<o:p></o:p></p>
-<p class=3D"MsoNormal">&gt;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
-;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
-bsp;&nbsp;&nbsp;&nbsp;&nbsp; drm_dbg_kms(mgr-&gt;dev, &quot;mst write faile=
-d - undocked during suspend?\n&quot;);<o:p></o:p></p>
-<p class=3D"MsoNormal">&gt;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
-;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
-bsp;&nbsp;&nbsp;&nbsp;&nbsp; goto out_fail;<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">Tested-by: Charlton Lin &lt;charlton.lin@intel.com&g=
-t;<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">Regards,<o:p></o:p></p>
-<p class=3D"MsoNormal">Charlton Lin<o:p></o:p></p>
-</div>
-</body>
-</html>
-
---_000_LV2PR11MB6024F22AA5D550720E6D1C458B7D2LV2PR11MB6024namp_--
+DQoNCj4gLS0tLS1PcmlnaW5hbCBNZXNzYWdlLS0tLS0NCj4gRnJvbTogSW50ZWwtZ2Z4IDxpbnRl
+bC1nZngtYm91bmNlc0BsaXN0cy5mcmVlZGVza3RvcC5vcmc+IE9uIEJlaGFsZiBPZiBKb3VuaQ0K
+PiBIw7ZnYW5kZXINCj4gU2VudDogRnJpZGF5LCBKYW51YXJ5IDUsIDIwMjQgNzo0NSBQTQ0KPiBU
+bzogaW50ZWwtZ2Z4QGxpc3RzLmZyZWVkZXNrdG9wLm9yZw0KPiBTdWJqZWN0OiBbUEFUQ0ggdjIg
+NC80XSBkcm0vaTkxNS9hbHBtOiBBbHBtIGF1eCB3YWtlIGNvbmZpZ3VyYXRpb24gZm9yIGxubA0K
+PiANCj4gTHVuYXJsYWtlIGhhcyBzb21lIGNvbmZpZ3VyYXRpb25zIGluIEFMUE1fQ1RMIHJlZ2lz
+dGVyIGZvciBsZWdhY3kgQUxQTSBhcw0KPiB3ZWxsLiBXcml0ZSB0aGVzZS4NCj4gDQo+IEJzcGVj
+OiA3MTQ3Nw0KPiANCj4gU2lnbmVkLW9mZi1ieTogSm91bmkgSMO2Z2FuZGVyIDxqb3VuaS5ob2dh
+bmRlckBpbnRlbC5jb20+DQo+IC0tLQ0KPiAgZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9p
+bnRlbF9wc3IuYyB8IDE1ICsrKysrKysrKysrKysrKw0KPiAgMSBmaWxlIGNoYW5nZWQsIDE1IGlu
+c2VydGlvbnMoKykNCj4gDQo+IGRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNw
+bGF5L2ludGVsX3Bzci5jDQo+IGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9w
+c3IuYw0KPiBpbmRleCA3ZmJkMThmMjFjM2IuLjA5ZDQ5NmQ3ZGNlZSAxMDA2NDQNCj4gLS0tIGEv
+ZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9wc3IuYw0KPiArKysgYi9kcml2ZXJz
+L2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX3Bzci5jDQo+IEBAIC0xNTI3LDYgKzE1MjcsMTgg
+QEAgc3RhdGljIHZvaWQgd21fb3B0aW1pemF0aW9uX3dhKHN0cnVjdCBpbnRlbF9kcA0KPiAqaW50
+ZWxfZHAsDQo+ICAJCQkgICAgIHdhXzE2MDEzODM1NDY4X2JpdF9nZXQoaW50ZWxfZHApLCAwKTsg
+IH0NCj4gDQo+ICtzdGF0aWMgdm9pZCBsbmxfYWxwbV9jb25maWd1cmUoc3RydWN0IGludGVsX2Rw
+ICppbnRlbF9kcCkgew0KPiArCXN0cnVjdCBkcm1faTkxNV9wcml2YXRlICpkZXZfcHJpdiA9IGRw
+X3RvX2k5MTUoaW50ZWxfZHApOw0KPiArCWVudW0gdHJhbnNjb2RlciBjcHVfdHJhbnNjb2RlciA9
+IGludGVsX2RwLT5wc3IudHJhbnNjb2RlcjsNCj4gKwlzdHJ1Y3QgYWxwbV9wYXJhbWV0ZXJzICph
+bHBtX3BhcmFtcyA9ICZpbnRlbF9kcC0+cHNyLmFscG1fcGFyYW1zOw0KPiArDQo+ICsJaW50ZWxf
+ZGVfd3JpdGUoZGV2X3ByaXYsIEFMUE1fQ1RMKGNwdV90cmFuc2NvZGVyKSwNCg0KRG8gd2UgbmVl
+ZCBpbnRlbF9kZV9ybXcoKQ0KDQo+ICsJCSAgICAgICBBTFBNX0NUTF9FWFRFTkRFRF9GQVNUX1dB
+S0VfRU5BQkxFIHwNCj4gKwkJICAgICAgIEFMUE1fQ1RMX0FMUE1fRU5UUllfQ0hFQ0soYWxwbV9w
+YXJhbXMtDQo+ID5jaGVja19lbnRyeV9saW5lcykgfA0KPiArDQo+ICtBTFBNX0NUTF9FWFRFTkRF
+RF9GQVNUX1dBS0VfVElNRShhbHBtX3BhcmFtcy0+ZmFzdF93YWtlX2xpbmVzKSk7DQo+ICt9DQo+
+ICsNCj4gIHN0YXRpYyB2b2lkIGludGVsX3Bzcl9lbmFibGVfc291cmNlKHN0cnVjdCBpbnRlbF9k
+cCAqaW50ZWxfZHAsDQo+ICAJCQkJICAgIGNvbnN0IHN0cnVjdCBpbnRlbF9jcnRjX3N0YXRlICpj
+cnRjX3N0YXRlKSAgew0KPiBAQCAtMTU4Miw2ICsxNTk0LDkgQEAgc3RhdGljIHZvaWQgaW50ZWxf
+cHNyX2VuYWJsZV9zb3VyY2Uoc3RydWN0IGludGVsX2RwDQo+ICppbnRlbF9kcCwNCj4gIAkJCSAg
+ICAgaW50ZWxfZHAtPnBzci5wc3IyX3NlbF9mZXRjaF9lbmFibGVkID8NCj4gIAkJCSAgICAgSUdO
+T1JFX1BTUjJfSFdfVFJBQ0tJTkcgOiAwKTsNCj4gDQo+ICsJaWYgKERJU1BMQVlfVkVSKGRldl9w
+cml2KSA+PSAyMCkNCj4gKwkJbG5sX2FscG1fY29uZmlndXJlKGludGVsX2RwKTsNCj4gKw0KPiAg
+CS8qDQo+ICAJICogV2FfMTYwMTM4MzU0NjgNCj4gIAkgKiBXYV8xNDAxNTY0ODAwNg0KPiAtLQ0K
+PiAyLjM0LjENCg0KVGhhbmtzIGFuZCBSZWdhcmRzLA0KQXJ1biBSIE11cnRoeQ0KLS0tLS0tLS0t
+LS0tLS0tLS0tLS0NCg0K
