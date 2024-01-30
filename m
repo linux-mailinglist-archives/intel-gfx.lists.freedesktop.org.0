@@ -2,65 +2,66 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 144E7843135
-	for <lists+intel-gfx@lfdr.de>; Wed, 31 Jan 2024 00:27:22 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 25BAF84313F
+	for <lists+intel-gfx@lfdr.de>; Wed, 31 Jan 2024 00:28:29 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B7C8011371D;
-	Tue, 30 Jan 2024 23:27:20 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B6341113724;
+	Tue, 30 Jan 2024 23:28:27 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-qv1-f44.google.com (mail-qv1-f44.google.com
- [209.85.219.44])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C42B311371D
- for <intel-gfx@lists.freedesktop.org>; Tue, 30 Jan 2024 23:27:19 +0000 (UTC)
-Received: by mail-qv1-f44.google.com with SMTP id
- 6a1803df08f44-6860ff3951aso31128666d6.1
- for <intel-gfx@lists.freedesktop.org>; Tue, 30 Jan 2024 15:27:19 -0800 (PST)
+Received: from mail-qv1-f54.google.com (mail-qv1-f54.google.com
+ [209.85.219.54])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 05C39113724
+ for <intel-gfx@lists.freedesktop.org>; Tue, 30 Jan 2024 23:28:27 +0000 (UTC)
+Received: by mail-qv1-f54.google.com with SMTP id
+ 6a1803df08f44-6818a9fe380so33987546d6.2
+ for <intel-gfx@lists.freedesktop.org>; Tue, 30 Jan 2024 15:28:26 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=chromium.org; s=google; t=1706657179; x=1707261979;
+ d=chromium.org; s=google; t=1706657246; x=1707262046;
  darn=lists.freedesktop.org; 
  h=in-reply-to:content-transfer-encoding:content-disposition
  :mime-version:references:message-id:subject:cc:to:from:date:from:to
  :cc:subject:date:message-id:reply-to;
- bh=Br+8O9gnbn+KJi7WJEuKAFUPU4SixkvxnmfwdBzHEKo=;
- b=PvaxHgcAcMHKUKfstKhIa2Os82s2pWvZ6c91KD3EQFUhUaB2zlXqBdZvMUZwBF/8oY
- k0X6qqARzo47LEZRbpVALtKZ3ardG3i2HwQdvrBElrNkjBbMap8ZmNXSQMbYt6TfOfya
- S+t9dlEGy2dTX45yo7vQBrhij5mrNFIhPevio=
+ bh=HKS1x0+G1bcghb8XKyGon9Y/lzNST22DPeEtLmCzP/M=;
+ b=RKhx0s6z5+IqChsiqYI2M4v3ZbMHUL6w3a+GLI7PT38GuAbQm4iMUtlp59kPTxY52k
+ FlGm6Lh5rYLwTNXu7lXRkWChFg3AIOO1srbufMypv1qmfPTs3kk68lVAxxOLf/dZu6DP
+ z34k5VIC/xqfF9fx7UQYzG0jtUsSCLeYszZJ8=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1706657179; x=1707261979;
+ d=1e100.net; s=20230601; t=1706657246; x=1707262046;
  h=in-reply-to:content-transfer-encoding:content-disposition
  :mime-version:references:message-id:subject:cc:to:from:date
  :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
- bh=Br+8O9gnbn+KJi7WJEuKAFUPU4SixkvxnmfwdBzHEKo=;
- b=Gu54LlXival0Ww9ScMym3LqVlT2PN8cyH+7oAqt/LUB6VDxwkFL0qJi93lWDQv7Ijn
- 41pxB4VTewJRSBrvM6rRjSptqysj0gzWc9HIbGou0lJqqNSXLN0MlmehfoiPT1nOx02W
- zlCufuAmHbRH02SzSW4HnWKKgMNFB8/6/anSak9EH9DmqKNukYAyooHXjIA3W0rf3V5X
- XwFxEaCWFUOBiC9ZWEerYcpfedeZpisA/913waxxRAmx5EeryWjKQzbSAfh/iOUTWxmI
- yh5JRLrGRcEsV0kK+TNVrjpgwmaHi9PBRiqxT6DaZZhPy75jEKpY6TzXfWl/xyKVqMoM
- LIYg==
-X-Gm-Message-State: AOJu0YzxogVgAM0JESxuIzABpeNx5WVsNVfYUxrr4veriiuD+pB6t2iK
- Ro8WezuDYCrTHj07foAJpqBOhq0/ntEtHOIg9CHnAbFnrWnGWjFAUVTW4lDkMg==
-X-Google-Smtp-Source: AGHT+IG8WWaCfnFqMMiPN4+tJvsedjEAGwHmj40IbR5+8Rq1VeXSYG6UBoWxlLqle0DvFVXY6AL2Hg==
-X-Received: by 2002:ad4:524a:0:b0:68c:6701:b11e with SMTP id
- s10-20020ad4524a000000b0068c6701b11emr22435qvq.49.1706657179029; 
- Tue, 30 Jan 2024 15:26:19 -0800 (PST)
+ bh=HKS1x0+G1bcghb8XKyGon9Y/lzNST22DPeEtLmCzP/M=;
+ b=OamAPqTYF/8idvju8svinfgBw3GAIqKVUEMHif/r4RCPMdabJ9dzEomgQa7qgxewBd
+ Y6sRfjJEbKirmBEBIrrvU0kRVEpWhCyhuqLG6jQ4eAV6C0VF1Nfs6ByHHgvBwYwMZl9X
+ QdlVfg0rLM0ZbaEGARGQD5g6y+4OHj8iou2b4kKEklIwwXFhyAeD+xftQuaMX3BgqsET
+ QsFh5DWpYdKSAz1yPcEaUVAFvrYqbE6Mn5R6FVx7mZ0npzgRWLO6k8ewdhj93jl2EQxY
+ IUOy6EcXrkZE6sorN39fl7P41z4PcsYckjwP6jiS2SNb4v1POLnfGlUsFLGCg8aAYS/R
+ Ubqg==
+X-Gm-Message-State: AOJu0YzaHA/CHVTTsftC5Vo21bVYCjcEbykjkLbZk4yOAgerIVmmse+W
+ 5LJvNRJYOexAoPMzI9oRzcyrTC+YAsYYWHQUayEb5Y4OcuQGvWGhjOceu9A3Yw==
+X-Google-Smtp-Source: AGHT+IGaeIkoDY65LtZoY3KvxR22cD89ik55994MM8rbOfNcbNRpue5ns92Ps2VEQ2FV5zacMZFFnw==
+X-Received: by 2002:a05:6214:f0e:b0:68c:4fac:930e with SMTP id
+ gw14-20020a0562140f0e00b0068c4fac930emr1235qvb.54.1706657246200; 
+ Tue, 30 Jan 2024 15:27:26 -0800 (PST)
 Received: from google.com (240.157.150.34.bc.googleusercontent.com.
  [34.150.157.240]) by smtp.gmail.com with ESMTPSA id
- pi12-20020a0562144a8c00b00681785c95e0sm276266qvb.46.2024.01.30.15.26.18
+ b17-20020a0cbf51000000b0068109717d02sm4939060qvj.54.2024.01.30.15.27.25
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Tue, 30 Jan 2024 15:26:18 -0800 (PST)
-Date: Tue, 30 Jan 2024 23:26:17 +0000
+ Tue, 30 Jan 2024 15:27:25 -0800 (PST)
+Date: Tue, 30 Jan 2024 23:27:24 +0000
 From: Paz Zcharya <pazz@chromium.org>
 To: Ville Syrjala <ville.syrjala@linux.intel.com>
-Subject: Re: [PATCH v3 14/16] drm/i915: Tweak BIOS fb reuse check
-Message-ID: <ZbmFmRSKVsNETZsQ@google.com>
+Subject: Re: [PATCH v3 15/16] drm/i915: Try to relocate the BIOS fb to the
+ start of ggtt
+Message-ID: <ZbmF3IeyAyb-QERO@google.com>
 References: <20240116075636.6121-1-ville.syrjala@linux.intel.com>
- <20240116075636.6121-15-ville.syrjala@linux.intel.com>
+ <20240116075636.6121-16-ville.syrjala@linux.intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20240116075636.6121-15-ville.syrjala@linux.intel.com>
+In-Reply-To: <20240116075636.6121-16-ville.syrjala@linux.intel.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -77,22 +78,44 @@ Cc: intel-gfx@lists.freedesktop.org, Andrzej Hajda <andrzej.hajda@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, Jan 16, 2024 at 09:56:34AM +0200, Ville Syrjala wrote:
+On Tue, Jan 16, 2024 at 09:56:35AM +0200, Ville Syrjala wrote:
 > From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 > 
-> Currently we assume that we bind the BIOS fb exactly into the same
-> ggtt address where the BIOS left it. That is about to change, and
-> in order to keep intel_reuse_initial_plane_obj() working as intended
-> we need to compare the original ggtt offset (called 'base' here)
-> as opposed to the actual vma ggtt offset we selected. Otherwise
-> the first plane could change the ggtt offset, and then subsequent
-> planes would no longer notice that they are in fact using the same
-> ggtt offset that the first plane was already using. Thus the reuse
-> check will fail and we proceed to turn off these subsequent planes.
+> On MTL the GOP (for whatever reason) likes to bind its framebuffer
+> high up in the ggtt address space. This can conflict with whatever
+> ggtt_reserve_guc_top() is trying to do, and the result is that
+> ggtt_reserve_guc_top() fails and then we proceed to explode when
+> trying to tear down the driver. Thus far I haven't analyzed what
+> causes the actual fireworks, but it's not super important as even
+> if it didn't explode we'd still fail the driver load and the user
+> would be left with an unusable GPU.
 > 
-> TODO: would probably make more sense to do the pure readout first
-> for all the planes, then check for fb reuse, and only then proceed
-> to pin the object into the final location in the ggtt...
+> To remedy this (without having to figure out exactly what
+> ggtt_reserve_guc_top() is trying to achieve) we can attempt to
+> relocate the BIOS framebuffer to a lower ggtt address. We can do
+> this at this early point in driver init because nothing else is
+> supposed to be clobbering the ggtt yet. So we simply change where
+> in the ggtt we pin the vma, the original PTEs will be left as is,
+> and the new PTEs will get written with the same dma addresses.
+> The plane will keep on scanning out from the original PTEs until
+> we are done with the whole process, and at that point we rewrite
+> the plane's surface address register to point at the new ggtt
+> address.
+> 
+> Since we don't need a specific ggtt address for the plane
+> (apart from needing it to land in the mappable region for
+> normal stolen objects) we'll just try to pin it without a fixed
+> offset first. It should end up at the lowest available address
+> (which really should be 0 at this point in the driver init).
+> If that fails we'll fall back to just pinning it exactly to the
+> origianal address.
+> 
+> To make sure we don't accidentlally pin it partially over the
+> original ggtt range (as that would corrupt the original PTEs)
+> we reserve the original range temporarily during this process.
+> 
+> v2: Try to pin explicitly to ggtt offset 0 as otherwise DG2 puts it
+>     even higher (atm we have no PIN_LOW flag to force it low)
 > 
 > Cc: Paz Zcharya <pazz@chromium.org>
 > Reviewed-by: Andrzej Hajda <andrzej.hajda@intel.com>
@@ -109,3 +132,4 @@ I tested it on two different devices with Meteor Lake and it worked perfectly:
 no i915 errors, no flickers or observable issues.
 
 Tested-by: Paz Zcharya <pazz@chromium.org>
+
