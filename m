@@ -2,54 +2,53 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id AC6CE84268D
-	for <lists+intel-gfx@lfdr.de>; Tue, 30 Jan 2024 15:01:49 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id BD95A84269E
+	for <lists+intel-gfx@lfdr.de>; Tue, 30 Jan 2024 15:05:43 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4FF8D10EDE5;
-	Tue, 30 Jan 2024 14:01:48 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 59BB811311C;
+	Tue, 30 Jan 2024 14:05:41 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 12A8210F8F7
- for <intel-gfx@lists.freedesktop.org>; Tue, 30 Jan 2024 14:01:47 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.13])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4EB7011311C
+ for <intel-gfx@lists.freedesktop.org>; Tue, 30 Jan 2024 14:05:40 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1706623307; x=1738159307;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=MnP1vN6izmXxUGzlD0LFZ5wnLFbYXwWf6We0GYyS96I=;
- b=nuEG6jxWQiHqkAaxD77uWroCbgwLA3U2gZ7D/ELlRMJv4kFsKlKQ5qiK
- OqxfXCvwxLneRYrPrtLJvXjigHA4TeZbZUP8ocndngUIUN63Z0BQQFz7c
- 536/xHJw93b9va8ACJlcOr3BPXrFQLUvQgcpGMhPRZsrnmU41zsK7Q/ag
- RjjfLWx+rjvCrdEcwswtRQLMUK6dvjoAqvUXmYcrYB3MKQRPzA1049tfi
- Awepqr3N/n/9WUkDiHNIjCu6cI5WcnL/dXC1imyP7GEmrtXTVmzkhqSAN
- ds8kMBNDnux9tvlCk3wxb+gcti5uMyJIsCuIgHRjPivHJ1CDTXYAxQ+kE g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10968"; a="16667112"
-X-IronPort-AV: E=Sophos;i="6.05,707,1701158400"; d="scan'208";a="16667112"
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
- by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Jan 2024 06:01:47 -0800
+ t=1706623540; x=1738159540;
+ h=date:from:to:cc:subject:message-id:reply-to:references:
+ mime-version:in-reply-to;
+ bh=LiViBOHvjNPwfgGPyZyBeeimZz9I9KLdwmtymlRiWcE=;
+ b=gP2reZ6ycv2I50fv37xqo0GiSuyx7Takz6ZUSfwlBX239PUX8otp4iA5
+ FRsUY0jaaGsazYrQp07eoGnwiOfqmUH1YbAsZjTE+UVo3IlN9LAQzxi0V
+ g5YdgQ/FySu4RbFGq6OKyQa6L44pqG5GXXRKwJXKtVY1XwzpEfOP160BZ
+ JqUKSMZ58Rl4eBIUqfp4XIErUpMcZ/WykrbliYDTjU1C2FoeF49PZh7aU
+ TJ+re+lZsThGUDiuReU4lndvAs/AsxqiAnHQ64hmCKJTrwzHQHJcKer7+
+ cQixtOBqFlcW8UKs6k8GgSp+CdWPyzz0lsUcRTK1UBXQ0Cu6yg0cjISs4 w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10968"; a="2223554"
+X-IronPort-AV: E=Sophos;i="6.05,707,1701158400"; 
+   d="scan'208";a="2223554"
+Received: from fmsmga004.fm.intel.com ([10.253.24.48])
+ by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 30 Jan 2024 06:05:37 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10968"; a="822210621"
-X-IronPort-AV: E=Sophos;i="6.05,707,1701158400"; d="scan'208";a="822210621"
-Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.74])
- by orsmga001.jf.intel.com with SMTP; 30 Jan 2024 06:01:27 -0800
-Received: by stinkbox (sSMTP sendmail emulation);
- Tue, 30 Jan 2024 16:01:26 +0200
-Date: Tue, 30 Jan 2024 16:01:26 +0200
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: "20240127063627.1369883-1-arun.r.murthy@intel.com"
- <20240127063627.1369883-1-arun.r.murthy@intel.com>
-Subject: Re: [PATCH 1/2] drm/display/dp: Check for MSTM_CAP before MSTM_CTRL
- write
-Message-ID: <ZbkBNs7XC6TFWlfQ@intel.com>
-References: <LV2PR11MB6024F22AA5D550720E6D1C458B7D2@LV2PR11MB6024.namprd11.prod.outlook.com>
+X-IronPort-AV: E=McAfee;i="6600,9927,10968"; a="858499520"
+X-IronPort-AV: E=Sophos;i="6.05,707,1701158400"; d="scan'208";a="858499520"
+Received: from ideak-desk.fi.intel.com ([10.237.72.78])
+ by fmsmga004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 30 Jan 2024 06:05:36 -0800
+Date: Tue, 30 Jan 2024 16:05:53 +0200
+From: Imre Deak <imre.deak@intel.com>
+To: "Nautiyal, Ankit K" <ankit.k.nautiyal@intel.com>
+Subject: Re: [PATCH 1/6] drm/i915/adlp: Add MST FEC BS jitter WA
+ (Wa_14013163432)
+Message-ID: <ZbkB9NHc2cO5Te7R@ideak-desk.fi.intel.com>
+References: <20240129175533.904590-1-imre.deak@intel.com>
+ <20240129175533.904590-2-imre.deak@intel.com>
+ <03994206-48f4-4784-be85-fedacdded17e@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <LV2PR11MB6024F22AA5D550720E6D1C458B7D2@LV2PR11MB6024.namprd11.prod.outlook.com>
-X-Patchwork-Hint: comment
+In-Reply-To: <03994206-48f4-4784-be85-fedacdded17e@intel.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -62,91 +61,98 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
+Reply-To: imre.deak@intel.com
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, Jan 30, 2024 at 07:56:26AM +0000, Lin, Charlton wrote:
-> On 1/27/2024 12:06 PM, Arun R Murthy wrote:
-> > With DP2.1, multistream packetization and the underneth MST protocol
-> > will be required for SST. So check for MSTM_CAP to see if MST is really
-> > required and skip the MSTM_CTRL write so that we ensure that only the
-> > underneth protocol and the multistream packetization will be enabled and
-> > sink will not be confused by a corresponding dpcd write.
-> >
-> > Signed-off-by: Arun R Murthy <arun.r.murthy@intel.com>
+On Tue, Jan 30, 2024 at 07:18:25PM +0530, Nautiyal, Ankit K wrote:
+> 
+> On 1/29/2024 11:25 PM, Imre Deak wrote:
+> > Add a workaround to fix BS (blank start) to BS jitter issues on MST
+> > links when FEC is enabled. Neither Bspec requires this nor Windows
+> > clears the WA when disabling the output - presumedly because
+> > CHICKEN_MISC_3 gets reset after disabling the pipe/transcoder - so
+> > follow suit.
+> > 
+> > Bspec: 50050, 55424
+> > 
+> > Signed-off-by: Imre Deak <imre.deak@intel.com>
 > > ---
-> >  drivers/gpu/drm/display/drm_dp_mst_topology.c | 26 +++++++++++--------
-> >  1 file changed, 15 insertions(+), 11 deletions(-)
-> >
-> > diff --git a/drivers/gpu/drm/display/drm_dp_mst_topology.c b/drivers/gpu/drm/display/drm_dp_mst_topology.c
-> > index 8ca01a6bf645..22d81732a978 100644
-> > --- a/drivers/gpu/drm/display/drm_dp_mst_topology.c
-> > +++ b/drivers/gpu/drm/display/drm_dp_mst_topology.c
-> > @@ -3666,10 +3666,11 @@ int drm_dp_mst_topology_mgr_set_mst(struct drm_dp_mst_topology_mgr *mgr, bool ms
-> >                           mgr->mst_primary = mstb;
-> >                           drm_dp_mst_topology_get_mstb(mgr->mst_primary);
-> >
-> > -                        ret = drm_dp_dpcd_writeb(mgr->aux, DP_MSTM_CTRL,
-> > -                                                                   DP_MST_EN |
-> > -                                                                   DP_UP_REQ_EN |
-> > -                                                                   DP_UPSTREAM_IS_SRC);
-> > +                       if (drm_dp_read_mst_cap(mgr->aux, mgr->dpcd))
-> > +                                      ret = drm_dp_dpcd_writeb(mgr->aux, DP_MSTM_CTRL,
-> > +                                                                                 DP_MST_EN |
-> > +                                                                                 DP_UP_REQ_EN |
-> > +                                                                                 DP_UPSTREAM_IS_SRC);
-> >                           if (ret < 0)
-> >                                         goto out_unlock;
-> >
-> > @@ -3684,7 +3685,8 @@ int drm_dp_mst_topology_mgr_set_mst(struct drm_dp_mst_topology_mgr *mgr, bool ms
-> >                           mstb = mgr->mst_primary;
-> >                           mgr->mst_primary = NULL;
-> >                           /* this can fail if the device is gone */
-> > -                        drm_dp_dpcd_writeb(mgr->aux, DP_MSTM_CTRL, 0);
-> > +                       if (drm_dp_read_mst_cap(mgr->aux, mgr->dpcd))
-> > +                                      drm_dp_dpcd_writeb(mgr->aux, DP_MSTM_CTRL, 0);
-> >                           ret = 0;
-> >                           mgr->payload_id_table_cleared = false;
-> >
-> > @@ -3724,8 +3726,9 @@ drm_dp_mst_topology_mgr_invalidate_mstb(struct drm_dp_mst_branch *mstb)
-> >  void drm_dp_mst_topology_mgr_suspend(struct drm_dp_mst_topology_mgr *mgr)
-> >  {
-> >            mutex_lock(&mgr->lock);
-> > -          drm_dp_dpcd_writeb(mgr->aux, DP_MSTM_CTRL,
-> > -                                          DP_MST_EN | DP_UPSTREAM_IS_SRC);
-> > +         if (drm_dp_read_mst_cap(mgr->aux, mgr->dpcd))
-> > +                       drm_dp_dpcd_writeb(mgr->aux, DP_MSTM_CTRL,
-> > +                                                       DP_MST_EN | DP_UPSTREAM_IS_SRC);
-> >            mutex_unlock(&mgr->lock);
-> >            flush_work(&mgr->up_req_work);
-> >            flush_work(&mgr->work);
-> > @@ -3773,10 +3776,11 @@ int drm_dp_mst_topology_mgr_resume(struct drm_dp_mst_topology_mgr *mgr,
-> >                           goto out_fail;
-> >            }
-> >
-> > -          ret = drm_dp_dpcd_writeb(mgr->aux, DP_MSTM_CTRL,
-> > -                                                     DP_MST_EN |
-> > -                                                     DP_UP_REQ_EN |
-> > -                                                     DP_UPSTREAM_IS_SRC);
-> > +         if (drm_dp_read_mst_cap(mgr->aux, mgr->dpcd))
-> > +                       ret = drm_dp_dpcd_writeb(mgr->aux, DP_MSTM_CTRL,
+> >   drivers/gpu/drm/i915/display/intel_dp_mst.c | 24 +++++++++++++++++++++
+> >   drivers/gpu/drm/i915/i915_reg.h             |  3 +++
+> >   2 files changed, 27 insertions(+)
+> > 
+> > diff --git a/drivers/gpu/drm/i915/display/intel_dp_mst.c b/drivers/gpu/drm/i915/display/intel_dp_mst.c
+> > index 5fa25a5a36b55..22c1759f912db 100644
+> > --- a/drivers/gpu/drm/i915/display/intel_dp_mst.c
+> > +++ b/drivers/gpu/drm/i915/display/intel_dp_mst.c
+> > @@ -1106,6 +1106,28 @@ static void intel_mst_pre_enable_dp(struct intel_atomic_state *state,
+> >   	intel_ddi_set_dp_msa(pipe_config, conn_state);
+> >   }
+> > +static void enable_bs_jitter_was(const struct intel_crtc_state *crtc_state)
+> > +{
+> > +	struct drm_i915_private *i915 = to_i915(crtc_state->uapi.crtc->dev);
+> > +	u32 clear = 0;
+> > +	u32 set = 0;
+> > +
+> > +	if (!IS_ALDERLAKE_P(i915))
+> > +		return;
+> > +
+> > +	if (!IS_DISPLAY_STEP(i915, STEP_D0, STEP_FOREVER))
+> > +		return;
+> > +
+> > +	/* Wa_14013163432:adlp */
+> > +	if (crtc_state->fec_enable || intel_dp_is_uhbr(crtc_state))
 > 
-> This did not compile in Chrome dev environemnt due to uninitialized variable ret.
+> Is this for DP MST + UHBR and DP MST + FEC?
 > 
-> > +                                                                   DP_MST_EN |
-> > +                                                                   DP_UP_REQ_EN |
-> > +                                                                   DP_UPSTREAM_IS_SRC);
-> >            if (ret < 0) {
-> >                           drm_dbg_kms(mgr->dev, "mst write failed - undocked during suspend?\n");
-> >                           goto out_fail;
-> 
-> Tested-by: Charlton Lin <charlton.lin@intel.com>
+> From Bspec it seems this is meant only for MST+ FEC case, unless I am
+> missing something.
 
-The mst code does the whole toplogy discovery over sideband,
-so if we don't enable that we should not even get a connector
-registered. How is anything at all working with this?
+You mean not meant for UHBR? The register description is clearer than
+the modeset page, requiring it for both non-UHBR and UHBR. Windows also
+enables it for both.
 
--- 
-Ville Syrjälä
-Intel
+> > +		set |= DP_MST_FEC_BS_JITTER_WA(crtc_state->cpu_transcoder);
+> > +
+> > +	if (!clear && !set)
+> > +		return;
+> > +
+> > +	intel_de_rmw(i915, CHICKEN_MISC_3, clear, set);
+> > +}
+> > +
+> >   static void intel_mst_enable_dp(struct intel_atomic_state *state,
+> >   				struct intel_encoder *encoder,
+> >   				const struct intel_crtc_state *pipe_config,
+> > @@ -1134,6 +1156,8 @@ static void intel_mst_enable_dp(struct intel_atomic_state *state,
+> >   			       TRANS_DP2_VFREQ_PIXEL_CLOCK(crtc_clock_hz & 0xffffff));
+> >   	}
+> > +	enable_bs_jitter_was(pipe_config);
+> > +
+> >   	intel_ddi_enable_transcoder_func(encoder, pipe_config);
+> >   	clear_act_sent(encoder, pipe_config);
+> > diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_reg.h
+> > index 75bc08081fce9..67b7d02ea37bf 100644
+> > --- a/drivers/gpu/drm/i915/i915_reg.h
+> > +++ b/drivers/gpu/drm/i915/i915_reg.h
+> > @@ -4555,6 +4555,9 @@
+> >   #define   GLK_CL1_PWR_DOWN		REG_BIT(11)
+> >   #define   GLK_CL0_PWR_DOWN		REG_BIT(10)
+> > +#define CHICKEN_MISC_3		_MMIO(0x42088)
+> > +#define   DP_MST_FEC_BS_JITTER_WA(trans)	REG_BIT(0 + (trans) - TRANSCODER_A)
+> 
+> 
+> Should we mention /* adlp */ here?
+
+In the register description the flag is valid for other platforms too,
+even though it's only enabled for ADLP/RPLP.
+
+> Regards,
+> 
+> Ankit
+> 
+> > +
+> >   #define CHICKEN_MISC_4		_MMIO(0x4208c)
+> >   #define   CHICKEN_FBC_STRIDE_OVERRIDE	REG_BIT(13)
+> >   #define   CHICKEN_FBC_STRIDE_MASK	REG_GENMASK(12, 0)
