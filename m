@@ -2,61 +2,61 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id CA08E842D05
-	for <lists+intel-gfx@lfdr.de>; Tue, 30 Jan 2024 20:38:13 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4AEDB842D06
+	for <lists+intel-gfx@lfdr.de>; Tue, 30 Jan 2024 20:38:15 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B7C4E1134A5;
-	Tue, 30 Jan 2024 19:38:11 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 28BE51134A6;
+	Tue, 30 Jan 2024 19:38:12 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-lf1-f46.google.com (mail-lf1-f46.google.com
- [209.85.167.46])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 37E221134E1;
+Received: from mail-lf1-f47.google.com (mail-lf1-f47.google.com
+ [209.85.167.47])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BE4EC1134E4;
  Tue, 30 Jan 2024 19:38:09 +0000 (UTC)
-Received: by mail-lf1-f46.google.com with SMTP id
- 2adb3069b0e04-51121c08535so401331e87.3; 
+Received: by mail-lf1-f47.google.com with SMTP id
+ 2adb3069b0e04-5100cb238bcso7920089e87.3; 
  Tue, 30 Jan 2024 11:38:09 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=gmail.com; s=20230601; t=1706643427; x=1707248227; darn=lists.freedesktop.org;
  h=content-transfer-encoding:mime-version:references:in-reply-to
  :message-id:date:subject:cc:to:from:from:to:cc:subject:date
  :message-id:reply-to;
- bh=hFA0DrqTuqm001TG+v9NT8zlguShxjXq5qUzbTrLKjs=;
- b=NBcVUYN9EE8VIUUWzMNzws0SagoIQYxT6KZMEoMsEktYKY2o4qfLbXiXviNRsosGGV
- Vyb19QbHSU7PlcAQKNpYzyXYxWM7ZjLCQKzVdgDdv2Kxo9h1T57908Kl1RYMZjShjc/P
- gkQMYpcwQl/BomU0LLw9PpNrXgzlJdeQZDVv82wwG5ktnkYnFI04hElsSJh+HdLirBmH
- jwsjIUFMmD1fym5wpRgcefJY31QszMeOttpgkCcRG4Ww/rxynOZiUU1Nn02oMw9bO55e
- P/ZlqDshZlHYfg4Gpx22UsZmmYsxjy6Lo2WBZIwrOc9rtoy/o0ewOGFc8Xgmy9XeObvN
- Ujig==
+ bh=eSRHuBol9STNc0CUQ1W+HEfksc5fCCWLKNHB2VgEpCQ=;
+ b=TYM5VjyS4auJGebIkYodR/IQrnlNVpwIYEbsOkoF4hGKCGIWyagKFiKorcUah0qzDG
+ bPyjBoGuHXTFM2BMtRVF0Y80pnOzt978/KIotU95NiOjQxy1MzzUg+Rn8xdebEAk2DMl
+ qiDLg7h/Fif+vApu3fGP+RpSPZsZD8oQAvXeFqZokMh5HpbhtT6WZks0bf9G+SVlcXTh
+ ETuBL0l1WiI+y/GXyOZ/gB1/si2QG32dIOvfC5IWnLYbzB4Jx1f2J1F1bfnvzYdD0VAv
+ Enj6s77cUycIRTMdKKwZTKNB7p9V5emoG2ShiY+mMi1OPHHz9kHfbPeY7SD5Eyw4iR7j
+ 9+uw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20230601; t=1706643427; x=1707248227;
  h=content-transfer-encoding:mime-version:references:in-reply-to
  :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
  :subject:date:message-id:reply-to;
- bh=hFA0DrqTuqm001TG+v9NT8zlguShxjXq5qUzbTrLKjs=;
- b=a7HWoT23MTBPQEudKg9X2XZeZ4bZwilw6SoXGCrZ3qXtfpOuQt1XRwjbuWA5vYqNYt
- r/r7jGavBmkMuyFJn2Yd/ttzWyiPjg0UvZE5WJu4j3brOBUVUauQS9ugLszFtc8F2EPr
- /8TgLPdRQphgGpPPdNvGxSD8m1xlSQ69NXee6UZ+wx11ppS4er6lrcdOGErUjbFfBSm7
- FttYG2cqVPLGfRppdAZLk1ANBX9vO6uqURWPBSDH8RIK4xjWjfNjG8q+WHddfOO25ga4
- /mg4W8LnNySgrkEqDbvj1IyWhUj0zYDGwVWQb753lTf7NjppD2fWB7Mgt9eZcXcz4egf
- 41aA==
-X-Gm-Message-State: AOJu0YwHlTvn3wFgT9hvP3v6xLa7K2CJ+B5RpCH6xtbo3evMjjs+2pRO
- U3+jrj2CXMtxmYNw4scgkv0+2rtAB8c4aw5ajw73zxuXbkziQocB2MPkpbzrxvA=
-X-Google-Smtp-Source: AGHT+IFL/4CTFcvm1ETL5Wo6IbpxT8Ysbv/QNulOpGur6/FpArTVf0X2Db+lOfb3dV2riNTCELKUBQ==
-X-Received: by 2002:ac2:4651:0:b0:50e:6c1d:5dec with SMTP id
- s17-20020ac24651000000b0050e6c1d5decmr6153543lfo.23.1706643426678; 
- Tue, 30 Jan 2024 11:37:06 -0800 (PST)
+ bh=eSRHuBol9STNc0CUQ1W+HEfksc5fCCWLKNHB2VgEpCQ=;
+ b=JsNEqeM+N1oNDPRGu5J9XlcWk6u6CYXEltK2tj362hSWFhGtFIcApRKkOsz1zH4V0h
+ Xvc/NZQIXTd2uHsGgqKASuJI/5lAGMVvslxPXmTCNPj/MbDqBDz0FUcgqugW2Ym6TcOl
+ N7/YVN7MeNGMbU4ct9FSNvbDO0e6BVQaN36X4Z6hStC/K5g06YAoOJINYp6yoZrwOQvX
+ /bdVZ06UOjJOuAsYor6UOkjQ5aXLQfi3Rbel3q1O0rFVoyld3V6mmtmGSj24COknlsxb
+ yxWX3NUHqD9AyBEaRr+kKguQC/gRDJ01+7iF9vpAvXSvnVnK/d9uzw85rprSa/yVLiF7
+ Vw0w==
+X-Gm-Message-State: AOJu0YxDDaTMjERLfGQt+u2H+1Q2i16p0W4A/DWIRfGCBTTovCczwL7E
+ 23f+E1tWvS0zcj6nSev4sIJbXdC0Kl7Ql9XfJcHC182oWxTKkQHfVZpUg+ST840=
+X-Google-Smtp-Source: AGHT+IE1rYq2mQrwt/gyxPjy8dG9LC1ehJ5u4ziW3QcI18pIyUp4eKP5acm7i7NtsC1RwH7YTHWeVQ==
+X-Received: by 2002:ac2:4a79:0:b0:510:247a:d5a7 with SMTP id
+ q25-20020ac24a79000000b00510247ad5a7mr5690101lfp.36.1706643427520; 
+ Tue, 30 Jan 2024 11:37:07 -0800 (PST)
 Received: from jheikkil-mobl1.. (91-156-196-125.elisa-laajakaista.fi.
  [91.156.196.125]) by smtp.gmail.com with ESMTPSA id
  w30-20020a05651204de00b00510187749besm1558863lfq.80.2024.01.30.11.37.06
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Tue, 30 Jan 2024 11:37:06 -0800 (PST)
+ Tue, 30 Jan 2024 11:37:07 -0800 (PST)
 From: Juha-Pekka Heikkila <juhapekka.heikkila@gmail.com>
 To: intel-xe@lists.freedesktop.org,
 	intel-gfx@lists.freedesktop.org
-Subject: [PATCH 2/4] drm/xe: add bind time pat index to xe_bo structure
-Date: Tue, 30 Jan 2024 21:36:50 +0200
-Message-Id: <20240130193652.374270-3-juhapekka.heikkila@gmail.com>
+Subject: [PATCH 3/4] drm/xe/xe2: Limit ccs framebuffers to tile4 only
+Date: Tue, 30 Jan 2024 21:36:51 +0200
+Message-Id: <20240130193652.374270-4-juhapekka.heikkila@gmail.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20240130193652.374270-1-juhapekka.heikkila@gmail.com>
 References: <20240130193652.374270-1-juhapekka.heikkila@gmail.com>
@@ -77,89 +77,72 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Add BO bind time pat index member to xe_bo structure and store
-pat index from xe_vma to xe_bo.
+Display engine support ccs only with tile4, prevent other modifiers
+from using compressed memory.
 
 Signed-off-by: Juha-Pekka Heikkila <juhapekka.heikkila@gmail.com>
 ---
- drivers/gpu/drm/xe/xe_bo_types.h | 12 ++++++++++++
- drivers/gpu/drm/xe/xe_pt.c       | 22 ++++++++++++++++++----
- 2 files changed, 30 insertions(+), 4 deletions(-)
+ drivers/gpu/drm/xe/display/xe_fb_pin.c | 23 +++++++++++++++++++++++
+ 1 file changed, 23 insertions(+)
 
-diff --git a/drivers/gpu/drm/xe/xe_bo_types.h b/drivers/gpu/drm/xe/xe_bo_types.h
-index 14ef13b7b421..6d599f1e846b 100644
---- a/drivers/gpu/drm/xe/xe_bo_types.h
-+++ b/drivers/gpu/drm/xe/xe_bo_types.h
-@@ -91,6 +91,18 @@ struct xe_bo {
+diff --git a/drivers/gpu/drm/xe/display/xe_fb_pin.c b/drivers/gpu/drm/xe/display/xe_fb_pin.c
+index 722c84a56607..fab0871f0cdf 100644
+--- a/drivers/gpu/drm/xe/display/xe_fb_pin.c
++++ b/drivers/gpu/drm/xe/display/xe_fb_pin.c
+@@ -10,9 +10,18 @@
+ #include "intel_fb_pin.h"
+ #include "xe_ggtt.h"
+ #include "xe_gt.h"
++#include "xe_pat.h"
  
- 	/** @vram_userfault_link: Link into @mem_access.vram_userfault.list */
- 		struct list_head vram_userfault_link;
+ #include <drm/ttm/ttm_bo.h>
+ 
++static bool is_compressed(const struct drm_framebuffer *fb)
++{
++	struct xe_bo *bo = intel_fb_obj(fb);
++	struct xe_device *xe = to_xe_device(to_intel_framebuffer(fb)->base.dev);
 +
-+	/**
-+	 * @pat_index: The pat index requested when bind this BO
-+	 */
-+	u16 pat_index;
++	return xe_pat_index_has_compression(xe, bo->pat_index);
++}
 +
-+	/**
-+	 * @has_sealed_pat_index: The pat index is sealed because this BO is
-+	 * pinned as framebuffer. This is to prevent flipping compression
-+	 * on/off from framebuffers while in use.
-+	 */
-+	bool has_sealed_pat_index;
- };
+ static void
+ write_dpt_rotated(struct xe_bo *bo, struct iosys_map *map, u32 *dpt_ofs, u32 bo_ofs,
+ 		  u32 width, u32 height, u32 src_stride, u32 dst_stride)
+@@ -283,6 +292,17 @@ static struct i915_vma *__xe_pin_fb_vma(struct intel_framebuffer *fb,
+ 	if (ret)
+ 		goto err;
  
- #define intel_bo_to_drm_bo(bo) (&(bo)->ttm.base)
-diff --git a/drivers/gpu/drm/xe/xe_pt.c b/drivers/gpu/drm/xe/xe_pt.c
-index de1030a47588..c72cb75d993c 100644
---- a/drivers/gpu/drm/xe/xe_pt.c
-+++ b/drivers/gpu/drm/xe/xe_pt.c
-@@ -1208,10 +1208,11 @@ __xe_pt_bind_vma(struct xe_tile *tile, struct xe_vma *vma, struct xe_exec_queue
- 	struct dma_fence *fence;
- 	struct invalidation_fence *ifence = NULL;
- 	struct xe_range_fence *rfence;
-+	struct xe_bo *bo = xe_vma_bo(vma);
- 	int err;
- 
- 	bind_pt_update.locked = false;
--	xe_bo_assert_held(xe_vma_bo(vma));
-+	xe_bo_assert_held(bo);
- 	xe_vm_assert_held(vm);
- 
- 	vm_dbg(&xe_vma_vm(vma)->xe->drm,
-@@ -1252,8 +1253,21 @@ __xe_pt_bind_vma(struct xe_tile *tile, struct xe_vma *vma, struct xe_exec_queue
- 		return ERR_PTR(-ENOMEM);
- 	}
- 
-+	/*
-+	 * On Xe2 BO which was pinned as framebuffer before with different
-+	 * PAT index cannot be bound with different PAT index. This is
-+	 * to prevent switching CCS on/off from framebuffers on the fly
-+	 * with Xe2.
-+	 */
-+	if (bo) {
-+		if (bo->has_sealed_pat_index && bo->pat_index != vma->pat_index)
-+			return ERR_PTR(-EINVAL);
-+
-+		bo->pat_index = vma->pat_index;
++	if (GRAPHICS_VER(xe) >= 20) {
++		if (fb->base.modifier != I915_FORMAT_MOD_4_TILED &&
++		    is_compressed(&fb->base)) {
++			drm_warn(&xe->drm, "Cannot create ccs framebuffer with other than tile4 mofifier\n");
++			ttm_bo_unreserve(&bo->ttm);
++			ret = -EINVAL;
++			goto err;
++		}
++		bo->has_sealed_pat_index = true;
 +	}
 +
- 	fence = xe_migrate_update_pgtables(tile->migrate,
--					   vm, xe_vma_bo(vma), q,
-+					   vm, bo, q,
- 					   entries, num_entries,
- 					   syncs, num_syncs,
- 					   &bind_pt_update.base);
-@@ -1287,8 +1301,8 @@ __xe_pt_bind_vma(struct xe_tile *tile, struct xe_vma *vma, struct xe_exec_queue
- 				   DMA_RESV_USAGE_KERNEL :
- 				   DMA_RESV_USAGE_BOOKKEEP);
+ 	if (IS_DGFX(xe))
+ 		ret = xe_bo_migrate(bo, XE_PL_VRAM0);
+ 	else
+@@ -308,6 +328,7 @@ static struct i915_vma *__xe_pin_fb_vma(struct intel_framebuffer *fb,
+ 	ttm_bo_unpin(&bo->ttm);
+ 	ttm_bo_unreserve(&bo->ttm);
+ err:
++	bo->has_sealed_pat_index = false;
+ 	kfree(vma);
+ 	return ERR_PTR(ret);
+ }
+@@ -323,6 +344,8 @@ static void __xe_unpin_fb_vma(struct i915_vma *vma)
+ 		 vma->bo->ggtt_node.start != vma->node.start)
+ 		xe_ggtt_remove_node(ggtt, &vma->node);
  
--		if (!xe_vma_has_no_bo(vma) && !xe_vma_bo(vma)->vm)
--			dma_resv_add_fence(xe_vma_bo(vma)->ttm.base.resv, fence,
-+		if (!xe_vma_has_no_bo(vma) && !bo->vm)
-+			dma_resv_add_fence(bo->ttm.base.resv, fence,
- 					   DMA_RESV_USAGE_BOOKKEEP);
- 		xe_pt_commit_bind(vma, entries, num_entries, rebind,
- 				  bind_pt_update.locked ? &deferred : NULL);
++	vma->bo->has_sealed_pat_index = false;
++
+ 	ttm_bo_reserve(&vma->bo->ttm, false, false, NULL);
+ 	ttm_bo_unpin(&vma->bo->ttm);
+ 	ttm_bo_unreserve(&vma->bo->ttm);
 -- 
 2.25.1
 
