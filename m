@@ -2,120 +2,71 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id A3C55842A89
-	for <lists+intel-gfx@lfdr.de>; Tue, 30 Jan 2024 18:11:17 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2ADBC842C7D
+	for <lists+intel-gfx@lfdr.de>; Tue, 30 Jan 2024 20:18:03 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 861731131D2;
-	Tue, 30 Jan 2024 17:11:15 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9FAC010E2E1;
+	Tue, 30 Jan 2024 19:17:31 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from NAM12-BN8-obe.outbound.protection.outlook.com
- (mail-bn8nam12on2050.outbound.protection.outlook.com [40.107.237.50])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E85E21131D2;
- Tue, 30 Jan 2024 17:11:14 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=IYUHGmg/x2Mcc/nESIx4YD7gmCcNDpuW8QUSgzwD4YOglbiSprorL+ByXejWT+hTuHyGMeH4b2rPWwysGMYXlIyZA+qlFE9VS74vuLE9MykNpdoTT3qQl5kDjKUMLz0Xdiq9wJlxI7XRLuLW1BH8w62VsflKR73yIJUu1BZTScTcDzkqWMzpnqWEQc272HYth+xfZno5pNuv1eX8fyCOcESGzOLXo71TUY3XL3euB2f7WUKXxGca2jkwGabENpcSc5qJqs2CzPvaetm8PYM3BQtcUM2+oS9zxyKUvoikl60RUwzDWA3m82sud57myF8RySyG3LWGyXwrbQ1mbtdg+g==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=VLduJzD5k+0ZEqlPnd8PrXyv5Dlq6kz+3kGK6SQv7Q4=;
- b=DprLtVA2JWDGvuRy79Kcjiv9J21YEfEFUdbPHfleaeigJpG3GeBewPh3bEfVrkKIWojrPCsFSIh3v28zFdFT52fHcFXxv3IJfxDErw7HQFoVzXMjHj+42P4tWJqz4cgUR27ZcoQWI5vkxHqK5fGMeO0m7rMLIhk9th7h3UKdBbFIXDAQsXAri7LxyTnCSQVdebn/WYsx390dYtqskpFNvtFf49k5Gk0f/kkkO6xW0ekfo+DIbzriM31NWKoovfD1Bs0Lmwo03i+5L21enZt0SXBDRuBK0L9QugsPlgbze6Rq4PeUq2KVUwsEu/qxnf0h6X4MH/efXs8wMLmCt+fAdg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
- header.d=amd.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=VLduJzD5k+0ZEqlPnd8PrXyv5Dlq6kz+3kGK6SQv7Q4=;
- b=0AD7g69z5l6OPp/cW9AeJazYTvdAH7vP6PWgmjQ2MCaOrzYQLwUWz72yNoldPakgjPF5lNUHKg/80IQbejLoVCi33+sYforsvJLvm7mTU37vWgnmJlEraWa19BAIwVnCQzss1/TBmGbv6MzXT3DBkMd+qMwKwWCav7FrGprMnyY=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=amd.com;
-Received: from DM4PR12MB6280.namprd12.prod.outlook.com (2603:10b6:8:a2::11) by
- IA1PR12MB6308.namprd12.prod.outlook.com (2603:10b6:208:3e4::14) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7249.22; Tue, 30 Jan
- 2024 17:11:11 +0000
-Received: from DM4PR12MB6280.namprd12.prod.outlook.com
- ([fe80::c64d:9152:25d4:c658]) by DM4PR12MB6280.namprd12.prod.outlook.com
- ([fe80::c64d:9152:25d4:c658%4]) with mapi id 15.20.7228.035; Tue, 30 Jan 2024
- 17:11:11 +0000
-Message-ID: <03d7040c-7b77-4498-8d5f-aa928c83aa23@amd.com>
-Date: Tue, 30 Jan 2024 12:11:08 -0500
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/6] drm: add drm_gem_object_is_shared_for_memory_stats()
- helper
-Content-Language: en-US
-To: Alex Deucher <alexander.deucher@amd.com>, amd-gfx@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
- intel-xe@lists.freedesktop.org, tvrtko.ursulin@linux.intel.com,
- daniel@ffwll.ch
-References: <20240130161235.3237122-1-alexander.deucher@amd.com>
- <20240130161235.3237122-3-alexander.deucher@amd.com>
-From: Hamza Mahfooz <hamza.mahfooz@amd.com>
-In-Reply-To: <20240130161235.3237122-3-alexander.deucher@amd.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: YQZPR01CA0035.CANPRD01.PROD.OUTLOOK.COM
- (2603:10b6:c01:86::6) To DM4PR12MB6280.namprd12.prod.outlook.com
- (2603:10b6:8:a2::11)
+Received: from mail-wm1-f42.google.com (mail-wm1-f42.google.com
+ [209.85.128.42])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C438810E2E1;
+ Tue, 30 Jan 2024 19:17:29 +0000 (UTC)
+Received: by mail-wm1-f42.google.com with SMTP id
+ 5b1f17b1804b1-40eebe7767cso34922125e9.1; 
+ Tue, 30 Jan 2024 11:17:29 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20230601; t=1706642188; x=1707246988; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:in-reply-to:from:references:to
+ :content-language:subject:reply-to:user-agent:mime-version:date
+ :message-id:from:to:cc:subject:date:message-id:reply-to;
+ bh=ExRDT7/oR0J/rvv0ANX+Lo9wQs3XVo3wEzukFRbiWzA=;
+ b=WBPtplJzrab1/mQT3jzSmEQhyxPX62Db6vciQEq+vTincAh9fYTb1k+vhtlyFvo1Kq
+ 2/BF8WUYC1tHS0XCZdxxvqAZE+SHFRbsvC2Tnb8derCab8TThE7IRmNbMhYIqdaCMCiD
+ KJgGzPzyLADsGtGkVmU4JurXdyQ6+wsbGMmePP25ebCD8h9tZQn34b677r5fWU+FRySf
+ /qrQyss/OlwR9p8cLNMmpgdhLGIAolqQVRgSF4Urbs4XufEGhhIiojEvwODM/wPpYIyL
+ CIqGalKBWay6KfYAgzbJvipTfs+u7D8tuyiUc0nrjK3/YNVo+QWdI/QSGTCAnhm7t5ak
+ uE+g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1706642188; x=1707246988;
+ h=content-transfer-encoding:in-reply-to:from:references:to
+ :content-language:subject:reply-to:user-agent:mime-version:date
+ :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
+ :reply-to;
+ bh=ExRDT7/oR0J/rvv0ANX+Lo9wQs3XVo3wEzukFRbiWzA=;
+ b=jdZ+V94IBlQV3S4iyOTWENoQVJUb3AVMR4pQK8C6iKNpiX4ucqWRNscz6OmtuEe/+n
+ fpAUgabCWTeC8AHcHsIvPp8WraNcoJ9eoTMDqQPn9ANS5AM4gK3YcrqXrX3h8j66RnK5
+ c8AizsZarAFWcWUsFIwRN+UQAPVhqxCM6sRfTOQ39NuVgBMStNZQ8UOaZchQt5HQGw3g
+ Rdv5QOl3Gr6CZg8W+ri4ZQ8zZyx0jGXbdtAUqKvMZjc1xm9Jk1c1uYFhlAdNBfzoOnzo
+ +N9no3jMzVBasZTkNK80lCb23jaxKfe1UwPRiLJ0HU+oThyJK5IPGTlSHLIZr2N/6Q0g
+ Slsw==
+X-Gm-Message-State: AOJu0Yyo0qOlk21rhfntAAjcPJK/KtHReipAq+cxUgB/1ifoXpVw0ohw
+ bUNxQav31iJCaNuGCdpftIXtb8jxreOW+xBQCiOxG3DNHFjulIwO
+X-Google-Smtp-Source: AGHT+IGPkzTLaZe+PbljW4CIQKoagC0ZtgGak/vFUKSmBtdepqHaSvELylSr4tZ9f/4h/IEdQrG/Sg==
+X-Received: by 2002:a05:600c:310b:b0:40e:fa04:92fc with SMTP id
+ g11-20020a05600c310b00b0040efa0492fcmr4464945wmo.32.1706642187786; 
+ Tue, 30 Jan 2024 11:16:27 -0800 (PST)
+Received: from [0.0.0.0] ([134.134.137.89])
+ by smtp.googlemail.com with ESMTPSA id
+ b6-20020a05600003c600b0033aed4e3b55sm6343326wrg.102.2024.01.30.11.16.25
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Tue, 30 Jan 2024 11:16:27 -0800 (PST)
+Message-ID: <1c8cce00-8f43-4a19-97a7-760f0525a197@gmail.com>
+Date: Tue, 30 Jan 2024 21:16:10 +0200
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DM4PR12MB6280:EE_|IA1PR12MB6308:EE_
-X-MS-Office365-Filtering-Correlation-Id: 43f40169-f845-43ac-2c36-08dc21b674ee
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: 15fWVGf5zraC64ErlnnkYPuGrfeZkEMJNgElntKaoq/WN9+AxuxuQzMY7jH6Odq7N3CIWBNe9IRztpZw4AG0zoa4WEdkiGzeTEtgcnP6nrak9hXaf/DQLvgAsr12d7tMFK8V1pqkuHklcqT/N34W729+oG68upqQkaTak9cTz2sow1tlFJn+ytTnfbY/j1yLiN6lTlnRb4pl7iDOuEfbZ0eyIIMGtDGwpSKiWUqaiAbv1WJSDL3c0x6hzl9sCaQGcuPapX1ayHq/QWrcC0oTZwR0x+V/t/tpuMvnIIDtoIkzD9+vfsxTC+HsxVWbuEjcXk+RJTELy7MbOZrbJeT9WclMMUyvJhNCFTKz7FC1Iw606OwbvEcUSbWRjC0xh1QfNaWIgldG0+x5bTrT8QtydienG+y2baz+jYy2qCkMz55Y4T9dMUO9TW8/8MFukjnTT178azh4G7ELe5Rr2TtX86POq4eqfs22BnyqYIGuV6/Lp+4yeTWcH8I8y93uFkjqegT41cmDi7rCoaEhaBsuadBPX1E4rheFAs/y9q/+gjFqGEnHEMDMCd24FN3GOj0/KylAO9fyg2SZlyFYEHUHqk3773NEUztIi0VXN6q4UP9y2ZMOS1TtOaq2O1X5mIhtQ7ssOQE1fOyuwDqTkZy7Ow==
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:DM4PR12MB6280.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230031)(366004)(376002)(136003)(396003)(39860400002)(346002)(230922051799003)(451199024)(64100799003)(186009)(1800799012)(26005)(2616005)(41300700001)(31686004)(966005)(66476007)(36756003)(316002)(6512007)(478600001)(6486002)(53546011)(6506007)(6666004)(83380400001)(38100700002)(2906002)(31696002)(86362001)(66556008)(66946007)(5660300002)(8676002)(44832011)(8936002)(43740500002)(45980500001);
- DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?djFHTU5qUURkUWpYYnMvcnRpZ0ZpZDRPR29oZS81WmNBZ0kwQmM0K0F3bHpG?=
- =?utf-8?B?d1dEcm5NV2daWnNyNjFoSVI0c3RkYmtHQUh1TFRyOWM3UzhzeG9TOTZhanZW?=
- =?utf-8?B?NjJoNVFkNUl6M1dBVmgrZ3hFdjcrcXU0N1cxQ0pacVFRYlUxam5Vbk1FV3BW?=
- =?utf-8?B?b0xWSDloSkZCRHlWR2pwcm5XTllraHpmeVJGdmFFVjdDWDNlSkI4U3pzMHd6?=
- =?utf-8?B?c21LbXhFemlWYTVNOUtXRDRYbXRjaHdWMnYxNGd2elM5ZW1WMEh6Umw1cS9u?=
- =?utf-8?B?OTRMRzEwME1SbmhMNkQvRmxYV0lLL01ta1FTeDBwL1F4ZURUMkNjM3JiNmRX?=
- =?utf-8?B?K21ZY01Fd1NMamplb2hkZ3o1TUJFdDBPdXdhZzB1cGN2QUsyOHZNbDNKOGJE?=
- =?utf-8?B?L1NUenNMMnlMWWpWeXRxTnhBSFF3aGFIejNORVMzdnRBZFhkV0VaUFd3dFkr?=
- =?utf-8?B?Z2ZHYVYydmpBTUtLK3d3dlhoWUdEQUovbFZiUkQxa093WXRydEsrZjZZcm40?=
- =?utf-8?B?akFGRmZPQm5WQ1FteVdkK05jTnNWQVAwSlg3akVyMWp1dTdmWERjZjh5Tm1t?=
- =?utf-8?B?U3dyN2dWMUJTL3BKd2RaNVdKa1BtWk96V2diRWRkSjRZVnF6R2E0L2FId2x0?=
- =?utf-8?B?S0JSTi9yV2kyZG1DeDJNQ2NlWFUxUnZoZ25GbkE4TWJYWEtzVGx0MHY3SzVy?=
- =?utf-8?B?VFZHbmVwY0ordEQvcUlYK2NVKzFRZkRUNU43NTl6M1V1dlFBeldVVFovWW1K?=
- =?utf-8?B?SURTa0o3SURuaHZXN2dCTHpSS3B1MlRVVDROeHBCbFpxUlROMWxOdFBZTDEz?=
- =?utf-8?B?UnhkUE1oMzRkbXFtS2V2bFdaZENJOWtpWDd3STZVWlpFYmwzSitPdkIzZ3FG?=
- =?utf-8?B?RGIwYTd5VklGM1VSTmsrSjMzZnFBOGlUMU8zZGlGRHE4TlBrdTJiekpuZEUx?=
- =?utf-8?B?NEpKanRjYmlEUUc0eE9sWkZXcW9ac0dHbnUrQzFQSDdPcVFJdVJXcTdyOWdu?=
- =?utf-8?B?aGJKeUEyT20xSWhCNWtvZzFFRUJ0ekZHZWx5SUJlWkZSemE1bkxaVDFRMG5O?=
- =?utf-8?B?RXYyOXdyTkcwVjVnb1hWbi9JaHFudHBKTlorNXpCaWZwb29iU1J4TE9OdFI5?=
- =?utf-8?B?S3pYWmNyRzdPYmJmbTRjejMvZ0NZT0RUbXhrZlEydytCZURib09vTWVhL3Bl?=
- =?utf-8?B?Z09lV1hERFdMdlF0akVodmlNZi9BWmJXYXQwNEgwbmNBTWdaYVJKbGJCQWJK?=
- =?utf-8?B?TTljNWJNTkFpSG95b1RRN0NNQ0NTNWpTS2I0ajJGZHdhWHhnRTRRa0t6K2wx?=
- =?utf-8?B?ZGgzKzRnalNUSGVRRk9ZN1BZZWNpdk4xWnBGbHhCNnBmZHpaMTZpSGg1UTg4?=
- =?utf-8?B?SmZhdUJvdzhBa241ekdySVRINVdvS3pFc3k0RE1xeTVydGsvODhiemVFRllB?=
- =?utf-8?B?NDJibzFhcVpMNHFNK1lLSDBOME5IdFZDcG5kT25SbVY0eFNaNXZxQ0owQW9V?=
- =?utf-8?B?Q2pRL3pMQmg2NWJZTktpTUNpRHE2dFdKaVB4OENpU1lDUmdUUkoyOEF2eGJt?=
- =?utf-8?B?Y3hNa2FrbTE5VGJWNS9CTkFkdDRRUVV1M2FmMHkwaEpDQ3NLUFgyUTFWVGJS?=
- =?utf-8?B?a3ZiS2RmVkJ0TFJ3NjVsKzZEaGV0TDdvVEkvRTNUaFZmOTNHTG5QSmVRai9F?=
- =?utf-8?B?enVpb2JuanJ0OExlbHRBakJvVVM0Tm1hNFZlSmsvT2U3SFoyV1JFM3d1WnNp?=
- =?utf-8?B?RW51QksrV0NjM1FvY3Z5K3NZRHZZRncxN2dxeHZ0KzVzRE1vcG14clYzdlRH?=
- =?utf-8?B?NXl1bnd0eVdseXVzclRJWGI4L0VDM1NZMWJiY0dPMnY4Mzl3Z1ZCbWR5U3Fn?=
- =?utf-8?B?OUx3Q25TMENCMlRLUStsb0VlN3FYYU5BSUt2MzZIM3RsZ3loMVpKVi9uaHVD?=
- =?utf-8?B?d3dFbllWbUpHaUl4WmZYNytha1R1NnRQdFZFViswQ2VYU3VWRGJRMkp1NUp1?=
- =?utf-8?B?Qkg5Rm1WV1pVUTkxd3dFb3cyVnpmU08rQXo4S0ZwYmcvL291MGhpNUMwWUpS?=
- =?utf-8?B?WWxkSjljdTdaNjQ3TC9DYlVueDlIcnB2TnRWZUFRY3BFZHNrMWoyRUlISXA3?=
- =?utf-8?Q?pq9TnHpjr75t4NxvyLkxvVY8Y?=
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 43f40169-f845-43ac-2c36-08dc21b674ee
-X-MS-Exchange-CrossTenant-AuthSource: DM4PR12MB6280.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 30 Jan 2024 17:11:11.0352 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: eL7MQqn65WcSw1pF+x/s5UMftPhJdlRnY3nJqrLxvNsrb8s7GpfPHzSTI7iRZ4mQTdNka+bjbo+ljf4hONAg8Q==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA1PR12MB6308
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 3/5] drm/xe: store bind time pat index to xe_bo
+Content-Language: en-US
+To: Matthew Auld <matthew.auld@intel.com>, intel-xe@lists.freedesktop.org,
+ intel-gfx@lists.freedesktop.org
+References: <20240126210807.320671-1-juhapekka.heikkila@gmail.com>
+ <20240126210807.320671-4-juhapekka.heikkila@gmail.com>
+ <87f6ed0b-0fe2-4cbb-ae77-bdcfdd687ccc@intel.com>
+From: Juha-Pekka Heikkila <juhapekka.heikkila@gmail.com>
+In-Reply-To: <87f6ed0b-0fe2-4cbb-ae77-bdcfdd687ccc@intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -128,66 +79,94 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: juhapekka.heikkila@gmail.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On 1/30/24 11:12, Alex Deucher wrote:
-> Add a helper so that drm drivers can consistently report
-> shared status via the fdinfo shared memory stats interface.
+On 29.1.2024 13.33, Matthew Auld wrote:
+> On 26/01/2024 21:08, Juha-Pekka Heikkila wrote:
+>> Store pat index from xe_vma to xe_bo and check if bo was pinned
+>> as framebuffer and verify pat index is not changing for pinned
+>> framebuffers.
+>>
+>> Signed-off-by: Juha-Pekka Heikkila <juhapekka.heikkila@gmail.com>
+>> ---
+>>   drivers/gpu/drm/xe/xe_pt.c | 23 +++++++++++++++++++----
+>>   1 file changed, 19 insertions(+), 4 deletions(-)
+>>
+>> diff --git a/drivers/gpu/drm/xe/xe_pt.c b/drivers/gpu/drm/xe/xe_pt.c
+>> index de1030a47588..0a5d7c7543b1 100644
+>> --- a/drivers/gpu/drm/xe/xe_pt.c
+>> +++ b/drivers/gpu/drm/xe/xe_pt.c
+>> @@ -1208,10 +1208,11 @@ __xe_pt_bind_vma(struct xe_tile *tile, struct 
+>> xe_vma *vma, struct xe_exec_queue
+>>       struct dma_fence *fence;
+>>       struct invalidation_fence *ifence = NULL;
+>>       struct xe_range_fence *rfence;
+>> +    struct xe_bo *bo = xe_vma_bo(vma);
+>>       int err;
+>>       bind_pt_update.locked = false;
+>> -    xe_bo_assert_held(xe_vma_bo(vma));
+>> +    xe_bo_assert_held(bo);
+>>       xe_vm_assert_held(vm);
+>>       vm_dbg(&xe_vma_vm(vma)->xe->drm,
+>> @@ -1252,8 +1253,22 @@ __xe_pt_bind_vma(struct xe_tile *tile, struct 
+>> xe_vma *vma, struct xe_exec_queue
+>>           return ERR_PTR(-ENOMEM);
+>>       }
+>> +    /*
+>> +     * BO which has XE_BO_SCANOUT_BIT set and was pinned as framebuffer
+>> +     * before with different PAT index cannot be bound with different 
+>> PAT
+>> +     * index. This is to prevent switching CCS on/off from framebuffers
+>> +     * on the fly.
+>> +     */
+>> +    if (bo) {
+>> +        if (bo->flags & XE_BO_SCANOUT_BIT && bo->pat_index_scanout &&
 > 
-> In addition to handle count, show buffers as shared if they
-> are shared via dma-buf as well (e.g., shared with v4l or some
-> other subsystem).
+> Note that pat_index = 0 is usually a valid index...
 > 
-> Link: https://lore.kernel.org/all/20231207180225.439482-1-alexander.deucher@amd.com/
-> Signed-off-by: Alex Deucher <alexander.deucher@amd.com>
-> ---
->   drivers/gpu/drm/drm_gem.c | 16 ++++++++++++++++
->   include/drm/drm_gem.h     |  1 +
->   2 files changed, 17 insertions(+)
+>> +            bo->pat_index_scanout != vma->pat_index)
+>> +            return ERR_PTR(-EINVAL);
+>> +
+>> +        bo->pat_index = vma->pat_index;
+>> +    }
 > 
-> diff --git a/drivers/gpu/drm/drm_gem.c b/drivers/gpu/drm/drm_gem.c
-> index 44a948b80ee1..71b5f628d828 100644
-> --- a/drivers/gpu/drm/drm_gem.c
-> +++ b/drivers/gpu/drm/drm_gem.c
-> @@ -1506,3 +1506,19 @@ int drm_gem_evict(struct drm_gem_object *obj)
->   	return 0;
->   }
->   EXPORT_SYMBOL(drm_gem_evict);
-> +
-> +/**
-> + * drm_gem_object_is_shared_for_memory_stats - helper for shared memory stats
-> + *
-> + * This helper should only be used for fdinfo shared memory stats to determine
-> + * if a GEM object is shared.
-> + *
-> + * @obj: obj in question
-> + */
-> +bool drm_gem_object_is_shared_for_memory_stats(struct drm_gem_object *obj)
-> +{
-> +	if ((obj->handle_count > 1) || obj->dma_buf)
-> +		return true;
-> +	return false;
+> ...what about something like:
+> 
+> if (bo.has_sealed_pat_index && bo.sealed_pat_index != vma->pat_index)
+>      return ERR_PTR();
+> else if (SCANOUT) {
+>      bo.has_sealed_pat_index = true;
+>      bo.sealed_pat_index = vma->pat_index;
+> }
+> 
+> Also, this and the previous patch should probably be squashed together? 
+> Other question is if we should only apply this on xe2?
 
-nit: you can simplify this to:
-	return (obj->handle_count > 1) || obj->dma_buf;
+Hi Matthew, thanks for the comments. I went ahead with making 
+has_sealed_pat_index and it did make things much more clean. It's good 
+idea, thanks. I'll soon send new version. Here I didn't go limit this to 
+xe2 as the limit is coming from framebuffer code, if there come other 
+use for this pat index sealing it doesn't need to be about xe2 on this part.
 
-(It maybe worth just inlining this to drm_gem.h).
-
-> +}
-> +EXPORT_SYMBOL(drm_gem_object_is_shared_for_memory_stats);
-> diff --git a/include/drm/drm_gem.h b/include/drm/drm_gem.h
-> index 369505447acd..86a9c696f038 100644
-> --- a/include/drm/drm_gem.h
-> +++ b/include/drm/drm_gem.h
-> @@ -552,6 +552,7 @@ unsigned long drm_gem_lru_scan(struct drm_gem_lru *lru,
->   			       bool (*shrink)(struct drm_gem_object *obj));
->   
->   int drm_gem_evict(struct drm_gem_object *obj);
-> +bool drm_gem_object_is_shared_for_memory_stats(struct drm_gem_object *obj);
->   
->   #ifdef CONFIG_LOCKDEP
->   /**
--- 
-Hamza
+> 
+>> +
+>>       fence = xe_migrate_update_pgtables(tile->migrate,
+>> -                       vm, xe_vma_bo(vma), q,
+>> +                       vm, bo, q,
+>>                          entries, num_entries,
+>>                          syncs, num_syncs,
+>>                          &bind_pt_update.base);
+>> @@ -1287,8 +1302,8 @@ __xe_pt_bind_vma(struct xe_tile *tile, struct 
+>> xe_vma *vma, struct xe_exec_queue
+>>                      DMA_RESV_USAGE_KERNEL :
+>>                      DMA_RESV_USAGE_BOOKKEEP);
+>> -        if (!xe_vma_has_no_bo(vma) && !xe_vma_bo(vma)->vm)
+>> -            dma_resv_add_fence(xe_vma_bo(vma)->ttm.base.resv, fence,
+>> +        if (!xe_vma_has_no_bo(vma) && !bo->vm)
+>> +            dma_resv_add_fence(bo->ttm.base.resv, fence,
+>>                          DMA_RESV_USAGE_BOOKKEEP);
+>>           xe_pt_commit_bind(vma, entries, num_entries, rebind,
+>>                     bind_pt_update.locked ? &deferred : NULL);
 
