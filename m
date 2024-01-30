@@ -2,61 +2,62 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4AEDB842D06
-	for <lists+intel-gfx@lfdr.de>; Tue, 30 Jan 2024 20:38:15 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8E2E6842D07
+	for <lists+intel-gfx@lfdr.de>; Tue, 30 Jan 2024 20:38:16 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 28BE51134A6;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 767AE1134BC;
 	Tue, 30 Jan 2024 19:38:12 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-lf1-f47.google.com (mail-lf1-f47.google.com
- [209.85.167.47])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BE4EC1134E4;
- Tue, 30 Jan 2024 19:38:09 +0000 (UTC)
-Received: by mail-lf1-f47.google.com with SMTP id
- 2adb3069b0e04-5100cb238bcso7920089e87.3; 
- Tue, 30 Jan 2024 11:38:09 -0800 (PST)
+Received: from mail-lj1-f182.google.com (mail-lj1-f182.google.com
+ [209.85.208.182])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7F07E1134E8;
+ Tue, 30 Jan 2024 19:38:10 +0000 (UTC)
+Received: by mail-lj1-f182.google.com with SMTP id
+ 38308e7fff4ca-2d04fb2f36bso24630691fa.2; 
+ Tue, 30 Jan 2024 11:38:10 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1706643427; x=1707248227; darn=lists.freedesktop.org;
+ d=gmail.com; s=20230601; t=1706643428; x=1707248228; darn=lists.freedesktop.org;
  h=content-transfer-encoding:mime-version:references:in-reply-to
  :message-id:date:subject:cc:to:from:from:to:cc:subject:date
  :message-id:reply-to;
- bh=eSRHuBol9STNc0CUQ1W+HEfksc5fCCWLKNHB2VgEpCQ=;
- b=TYM5VjyS4auJGebIkYodR/IQrnlNVpwIYEbsOkoF4hGKCGIWyagKFiKorcUah0qzDG
- bPyjBoGuHXTFM2BMtRVF0Y80pnOzt978/KIotU95NiOjQxy1MzzUg+Rn8xdebEAk2DMl
- qiDLg7h/Fif+vApu3fGP+RpSPZsZD8oQAvXeFqZokMh5HpbhtT6WZks0bf9G+SVlcXTh
- ETuBL0l1WiI+y/GXyOZ/gB1/si2QG32dIOvfC5IWnLYbzB4Jx1f2J1F1bfnvzYdD0VAv
- Enj6s77cUycIRTMdKKwZTKNB7p9V5emoG2ShiY+mMi1OPHHz9kHfbPeY7SD5Eyw4iR7j
- 9+uw==
+ bh=Rv71wG1vxBBHegMPvcinQkXyPZnFxEIY4+DX6mOVEto=;
+ b=l3xtYiS99VSYubDwzXKgXqAphQm1qMQ+5EHMWyiaXvsXF5ghzBB5Bk+NBIjgr00i8U
+ XpxnHFYnvC4jyQXJOc/Y9t4ddl2vD9x8tQ63stL2NF28fdV9Mi3PCetvZJfb5beOR+6K
+ r4cHc3ZfRvfMyPLeEke20S5/J1/+tA5xD6tHiZfjNNJL5Bs9FCvf60Aktp4tw57ncy0c
+ j59pEvKIZZVbNaohCcI/NLvqlUj90PwEXpaHtnrPDmbnBFKYKo2O1/tz69ehJQDkwrBt
+ 0ntmPpTYpQV8c/7pLw7waXuhXe4ceJmqUypVsd+vjfrz3Vko0cZalmW00j41n4Umbum5
+ YSrg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1706643427; x=1707248227;
+ d=1e100.net; s=20230601; t=1706643428; x=1707248228;
  h=content-transfer-encoding:mime-version:references:in-reply-to
  :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
  :subject:date:message-id:reply-to;
- bh=eSRHuBol9STNc0CUQ1W+HEfksc5fCCWLKNHB2VgEpCQ=;
- b=JsNEqeM+N1oNDPRGu5J9XlcWk6u6CYXEltK2tj362hSWFhGtFIcApRKkOsz1zH4V0h
- Xvc/NZQIXTd2uHsGgqKASuJI/5lAGMVvslxPXmTCNPj/MbDqBDz0FUcgqugW2Ym6TcOl
- N7/YVN7MeNGMbU4ct9FSNvbDO0e6BVQaN36X4Z6hStC/K5g06YAoOJINYp6yoZrwOQvX
- /bdVZ06UOjJOuAsYor6UOkjQ5aXLQfi3Rbel3q1O0rFVoyld3V6mmtmGSj24COknlsxb
- yxWX3NUHqD9AyBEaRr+kKguQC/gRDJ01+7iF9vpAvXSvnVnK/d9uzw85rprSa/yVLiF7
- Vw0w==
-X-Gm-Message-State: AOJu0YxDDaTMjERLfGQt+u2H+1Q2i16p0W4A/DWIRfGCBTTovCczwL7E
- 23f+E1tWvS0zcj6nSev4sIJbXdC0Kl7Ql9XfJcHC182oWxTKkQHfVZpUg+ST840=
-X-Google-Smtp-Source: AGHT+IE1rYq2mQrwt/gyxPjy8dG9LC1ehJ5u4ziW3QcI18pIyUp4eKP5acm7i7NtsC1RwH7YTHWeVQ==
-X-Received: by 2002:ac2:4a79:0:b0:510:247a:d5a7 with SMTP id
- q25-20020ac24a79000000b00510247ad5a7mr5690101lfp.36.1706643427520; 
- Tue, 30 Jan 2024 11:37:07 -0800 (PST)
+ bh=Rv71wG1vxBBHegMPvcinQkXyPZnFxEIY4+DX6mOVEto=;
+ b=fCwxJu33kAhUC+GyTCxNizncjs5dzbDtLOF25NUvq/yonD40AC/ajsfzmH8lFHGNEX
+ c4urhfVX2ur7t36FakVCpIzwya7XM9lf/xMLcpgK/DCBe3m3Gx+pd6wKi85w7SLfzJ26
+ 71S/3lDfOMHAXpPyG/vYq0kfwwVHjOibso7khyTSQWCIJ1wOiprhKkl9BdYsfjxJM5XK
+ /hLgpLaCDgsxxFXZuD9StgfkxvPkdixA2jW9c6a9D5pMVbaYBsR4sSnJ5E3k55tS3dyi
+ cwMsg6UEI7p2aCvtEkEubSuR23pLPn8D3SuBB8twRyJIQES5qjizJwbr/87cbpHwr0uv
+ UClg==
+X-Gm-Message-State: AOJu0YyVZZbpgeBU06DKiVVDGy160oJoIr7SJBjXqe8At964qlDMXodf
+ +irEVRUhrd4GtclvGd5jjmlEIfa3KMT2wnhDDrmAuBU6P2e0J5a4H+HYGedRj4A=
+X-Google-Smtp-Source: AGHT+IHN3EkqafQOQ+p8uxVACfrVQCH4uGqV7MRKE5WGgt+e4zMIRLSgM+aXgotOQIvQTq8fAVG80A==
+X-Received: by 2002:ac2:596c:0:b0:510:c7c:5a6a with SMTP id
+ h12-20020ac2596c000000b005100c7c5a6amr7611801lfp.61.1706643428379; 
+ Tue, 30 Jan 2024 11:37:08 -0800 (PST)
 Received: from jheikkil-mobl1.. (91-156-196-125.elisa-laajakaista.fi.
  [91.156.196.125]) by smtp.gmail.com with ESMTPSA id
- w30-20020a05651204de00b00510187749besm1558863lfq.80.2024.01.30.11.37.06
+ w30-20020a05651204de00b00510187749besm1558863lfq.80.2024.01.30.11.37.07
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
  Tue, 30 Jan 2024 11:37:07 -0800 (PST)
 From: Juha-Pekka Heikkila <juhapekka.heikkila@gmail.com>
 To: intel-xe@lists.freedesktop.org,
 	intel-gfx@lists.freedesktop.org
-Subject: [PATCH 3/4] drm/xe/xe2: Limit ccs framebuffers to tile4 only
-Date: Tue, 30 Jan 2024 21:36:51 +0200
-Message-Id: <20240130193652.374270-4-juhapekka.heikkila@gmail.com>
+Subject: [PATCH 4/4] drm/i915/display: On Xe2 always enable decompression with
+ tile4
+Date: Tue, 30 Jan 2024 21:36:52 +0200
+Message-Id: <20240130193652.374270-5-juhapekka.heikkila@gmail.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20240130193652.374270-1-juhapekka.heikkila@gmail.com>
 References: <20240130193652.374270-1-juhapekka.heikkila@gmail.com>
@@ -77,72 +78,30 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Display engine support ccs only with tile4, prevent other modifiers
-from using compressed memory.
+With Xe2 always treat tile4 as if it was using flat ccs.
 
 Signed-off-by: Juha-Pekka Heikkila <juhapekka.heikkila@gmail.com>
+Reviewed-by: Mika Kahola <mika.kahola@intel.com>
 ---
- drivers/gpu/drm/xe/display/xe_fb_pin.c | 23 +++++++++++++++++++++++
- 1 file changed, 23 insertions(+)
+ drivers/gpu/drm/i915/display/skl_universal_plane.c | 5 +++++
+ 1 file changed, 5 insertions(+)
 
-diff --git a/drivers/gpu/drm/xe/display/xe_fb_pin.c b/drivers/gpu/drm/xe/display/xe_fb_pin.c
-index 722c84a56607..fab0871f0cdf 100644
---- a/drivers/gpu/drm/xe/display/xe_fb_pin.c
-+++ b/drivers/gpu/drm/xe/display/xe_fb_pin.c
-@@ -10,9 +10,18 @@
- #include "intel_fb_pin.h"
- #include "xe_ggtt.h"
- #include "xe_gt.h"
-+#include "xe_pat.h"
+diff --git a/drivers/gpu/drm/i915/display/skl_universal_plane.c b/drivers/gpu/drm/i915/display/skl_universal_plane.c
+index 511dc1544854..43209909593f 100644
+--- a/drivers/gpu/drm/i915/display/skl_universal_plane.c
++++ b/drivers/gpu/drm/i915/display/skl_universal_plane.c
+@@ -948,6 +948,11 @@ static u32 skl_plane_ctl(const struct intel_crtc_state *crtc_state,
+ 	if (DISPLAY_VER(dev_priv) == 13)
+ 		plane_ctl |= adlp_plane_ctl_arb_slots(plane_state);
  
- #include <drm/ttm/ttm_bo.h>
- 
-+static bool is_compressed(const struct drm_framebuffer *fb)
-+{
-+	struct xe_bo *bo = intel_fb_obj(fb);
-+	struct xe_device *xe = to_xe_device(to_intel_framebuffer(fb)->base.dev);
-+
-+	return xe_pat_index_has_compression(xe, bo->pat_index);
-+}
-+
- static void
- write_dpt_rotated(struct xe_bo *bo, struct iosys_map *map, u32 *dpt_ofs, u32 bo_ofs,
- 		  u32 width, u32 height, u32 src_stride, u32 dst_stride)
-@@ -283,6 +292,17 @@ static struct i915_vma *__xe_pin_fb_vma(struct intel_framebuffer *fb,
- 	if (ret)
- 		goto err;
- 
-+	if (GRAPHICS_VER(xe) >= 20) {
-+		if (fb->base.modifier != I915_FORMAT_MOD_4_TILED &&
-+		    is_compressed(&fb->base)) {
-+			drm_warn(&xe->drm, "Cannot create ccs framebuffer with other than tile4 mofifier\n");
-+			ttm_bo_unreserve(&bo->ttm);
-+			ret = -EINVAL;
-+			goto err;
-+		}
-+		bo->has_sealed_pat_index = true;
++	if (GRAPHICS_VER(dev_priv) >= 20 &&
++	    fb->modifier == I915_FORMAT_MOD_4_TILED) {
++		plane_ctl |= PLANE_CTL_RENDER_DECOMPRESSION_ENABLE;
 +	}
 +
- 	if (IS_DGFX(xe))
- 		ret = xe_bo_migrate(bo, XE_PL_VRAM0);
- 	else
-@@ -308,6 +328,7 @@ static struct i915_vma *__xe_pin_fb_vma(struct intel_framebuffer *fb,
- 	ttm_bo_unpin(&bo->ttm);
- 	ttm_bo_unreserve(&bo->ttm);
- err:
-+	bo->has_sealed_pat_index = false;
- 	kfree(vma);
- 	return ERR_PTR(ret);
+ 	return plane_ctl;
  }
-@@ -323,6 +344,8 @@ static void __xe_unpin_fb_vma(struct i915_vma *vma)
- 		 vma->bo->ggtt_node.start != vma->node.start)
- 		xe_ggtt_remove_node(ggtt, &vma->node);
  
-+	vma->bo->has_sealed_pat_index = false;
-+
- 	ttm_bo_reserve(&vma->bo->ttm, false, false, NULL);
- 	ttm_bo_unpin(&vma->bo->ttm);
- 	ttm_bo_unreserve(&vma->bo->ttm);
 -- 
 2.25.1
 
