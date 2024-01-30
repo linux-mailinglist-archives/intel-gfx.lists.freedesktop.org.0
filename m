@@ -2,28 +2,28 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id F0DDF8421A7
-	for <lists+intel-gfx@lfdr.de>; Tue, 30 Jan 2024 11:41:58 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 72A5E84219E
+	for <lists+intel-gfx@lfdr.de>; Tue, 30 Jan 2024 11:41:21 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8C9AC10E22A;
-	Tue, 30 Jan 2024 10:41:23 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 00EA210F883;
+	Tue, 30 Jan 2024 10:41:20 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from coelho.fi (paleale.coelho.fi [176.9.41.70])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3AFCD10F88A;
- Tue, 30 Jan 2024 10:41:20 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 69FE310F883;
+ Tue, 30 Jan 2024 10:41:18 +0000 (UTC)
 Received: from 91-155-255-116.elisa-laajakaista.fi ([91.155.255.116]
  helo=RAVPPB-CIM.amr.corp.intel.com)
  by coelho.fi with esmtpsa (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
  (Exim 4.97-RC1) (envelope-from <luca@coelho.fi>)
- id 1rUl2k-00000001XyY-3P6z; Tue, 30 Jan 2024 12:08:40 +0200
-Message-ID: <a9f84affb01d06a826086cf6d515c913ab8fd872.camel@coelho.fi>
+ id 1rUl5d-00000001Xys-1gIB; Tue, 30 Jan 2024 12:11:38 +0200
+Message-ID: <af97f8a21816578b32c3be96ea5f50eea6fc8a1b.camel@coelho.fi>
 From: Luca Coelho <luca@coelho.fi>
 To: Jani Nikula <jani.nikula@intel.com>, dri-devel@lists.freedesktop.org
-Date: Tue, 30 Jan 2024 12:08:37 +0200
-In-Reply-To: <2a9cdcfc1df44568078f7c131e2e7e0f7c94e97e.1705410327.git.jani.nikula@intel.com>
+Date: Tue, 30 Jan 2024 12:11:36 +0200
+In-Reply-To: <9d105014e3c90af13a874745d768212347f68283.1705410327.git.jani.nikula@intel.com>
 References: <cover.1705410327.git.jani.nikula@intel.com>
- <2a9cdcfc1df44568078f7c131e2e7e0f7c94e97e.1705410327.git.jani.nikula@intel.com>
+ <9d105014e3c90af13a874745d768212347f68283.1705410327.git.jani.nikula@intel.com>
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 User-Agent: Evolution 3.46.4-2 
@@ -32,8 +32,8 @@ X-Spam-Checker-Version: SpamAssassin 4.0.0 (2022-12-13) on farmhouse.coelho.fi
 X-Spam-Level: 
 X-Spam-Status: No, score=-2.9 required=5.0 tests=ALL_TRUSTED,BAYES_00,
  TVD_RCVD_IP autolearn=ham autolearn_force=no version=4.0.0
-Subject: Re: [PATCH 01/10] drm/print: make drm_err_printer() device specific
- by using drm_err()
+Subject: Re: [PATCH 02/10] drm/print: move enum drm_debug_category etc.
+ earlier in drm_print.h
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -51,122 +51,239 @@ Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 On Tue, 2024-01-16 at 15:07 +0200, Jani Nikula wrote:
-> With few users for drm_err_printer(), it's still feasible to convert it
-> to be device specific. Use drm_err() under the hood.
->=20
-> While at it, make the prefix optional.
+> Avoid forward declarations in subsequent changes, but separate this
+> movement to an independent change.
 >=20
 > Signed-off-by: Jani Nikula <jani.nikula@intel.com>
 > ---
->  drivers/gpu/drm/drm_print.c                         |  7 ++++++-
->  drivers/gpu/drm/i915/gt/selftest_engine_heartbeat.c |  4 ++--
->  drivers/gpu/drm/i915/selftests/i915_active.c        |  4 ++--
->  include/drm/drm_print.h                             | 11 ++++++++---
->  4 files changed, 18 insertions(+), 8 deletions(-)
+>  include/drm/drm_print.h | 190 ++++++++++++++++++++--------------------
+>  1 file changed, 95 insertions(+), 95 deletions(-)
 >=20
-> diff --git a/drivers/gpu/drm/drm_print.c b/drivers/gpu/drm/drm_print.c
-> index 5b93c11895bb..91dbcdeaad3f 100644
-> --- a/drivers/gpu/drm/drm_print.c
-> +++ b/drivers/gpu/drm/drm_print.c
-> @@ -191,7 +191,12 @@ EXPORT_SYMBOL(__drm_printfn_debug);
-> =20
->  void __drm_printfn_err(struct drm_printer *p, struct va_format *vaf)
->  {
-> -	pr_err("*ERROR* %s %pV", p->prefix, vaf);
-> +	struct drm_device *drm =3D p->arg;
-> +
-> +	if (p->prefix)
-> +		drm_err(drm, "%s %pV", p->prefix, vaf);
-> +	else
-> +		drm_err(drm, "%pV", vaf);
->  }
->  EXPORT_SYMBOL(__drm_printfn_err);
-> =20
-> diff --git a/drivers/gpu/drm/i915/gt/selftest_engine_heartbeat.c b/driver=
-s/gpu/drm/i915/gt/selftest_engine_heartbeat.c
-> index bc441ce7b380..be827318275c 100644
-> --- a/drivers/gpu/drm/i915/gt/selftest_engine_heartbeat.c
-> +++ b/drivers/gpu/drm/i915/gt/selftest_engine_heartbeat.c
-> @@ -122,7 +122,7 @@ static int __live_idle_pulse(struct intel_engine_cs *=
-engine,
->  	GEM_BUG_ON(!llist_empty(&engine->barrier_tasks));
-> =20
->  	if (engine_sync_barrier(engine)) {
-> -		struct drm_printer m =3D drm_err_printer("pulse");
-> +		struct drm_printer m =3D drm_err_printer(&engine->i915->drm, "pulse");
-> =20
->  		pr_err("%s: no heartbeat pulse?\n", engine->name);
->  		intel_engine_dump(engine, &m, "%s", engine->name);
-> @@ -136,7 +136,7 @@ static int __live_idle_pulse(struct intel_engine_cs *=
-engine,
->  	pulse_unlock_wait(p); /* synchronize with the retirement callback */
-> =20
->  	if (!i915_active_is_idle(&p->active)) {
-> -		struct drm_printer m =3D drm_err_printer("pulse");
-> +		struct drm_printer m =3D drm_err_printer(&engine->i915->drm, "pulse");
-> =20
->  		pr_err("%s: heartbeat pulse did not flush idle tasks\n",
->  		       engine->name);
-> diff --git a/drivers/gpu/drm/i915/selftests/i915_active.c b/drivers/gpu/d=
-rm/i915/selftests/i915_active.c
-> index b61fe850e924..8886752ade63 100644
-> --- a/drivers/gpu/drm/i915/selftests/i915_active.c
-> +++ b/drivers/gpu/drm/i915/selftests/i915_active.c
-> @@ -156,7 +156,7 @@ static int live_active_wait(void *arg)
-> =20
->  	__i915_active_wait(&active->base, TASK_UNINTERRUPTIBLE);
->  	if (!READ_ONCE(active->retired)) {
-> -		struct drm_printer p =3D drm_err_printer(__func__);
-> +		struct drm_printer p =3D drm_err_printer(&i915->drm, __func__);
-> =20
->  		pr_err("i915_active not retired after waiting!\n");
->  		i915_active_print(&active->base, &p);
-> @@ -189,7 +189,7 @@ static int live_active_retire(void *arg)
->  		err =3D -EIO;
-> =20
->  	if (!READ_ONCE(active->retired)) {
-> -		struct drm_printer p =3D drm_err_printer(__func__);
-> +		struct drm_printer p =3D drm_err_printer(&i915->drm, __func__);
-> =20
->  		pr_err("i915_active not retired after flushing!\n");
->  		i915_active_print(&active->base, &p);
 > diff --git a/include/drm/drm_print.h b/include/drm/drm_print.h
-> index 5ed26a702e3e..1040213d02a4 100644
+> index 1040213d02a4..b8b4cb9bb878 100644
 > --- a/include/drm/drm_print.h
 > +++ b/include/drm/drm_print.h
-> @@ -35,6 +35,8 @@
+> @@ -69,6 +69,101 @@ extern unsigned long __drm_debug;
+>   *     }
+>   */
 > =20
->  #include <drm/drm.h>
-> =20
-> +struct drm_device;
+> +/**
+> + * enum drm_debug_category - The DRM debug categories
+> + *
+> + * Each of the DRM debug logging macros use a specific category, and the=
+ logging
+> + * is filtered by the drm.debug module parameter. This enum specifies th=
+e values
+> + * for the interface.
+> + *
+> + * Each DRM_DEBUG_<CATEGORY> macro logs to DRM_UT_<CATEGORY> category, e=
+xcept
+> + * DRM_DEBUG() logs to DRM_UT_CORE.
+> + *
+> + * Enabling verbose debug messages is done through the drm.debug paramet=
+er, each
+> + * category being enabled by a bit:
+> + *
+> + *  - drm.debug=3D0x1 will enable CORE messages
+> + *  - drm.debug=3D0x2 will enable DRIVER messages
+> + *  - drm.debug=3D0x3 will enable CORE and DRIVER messages
+> + *  - ...
+> + *  - drm.debug=3D0x1ff will enable all messages
+> + *
+> + * An interesting feature is that it's possible to enable verbose loggin=
+g at
+> + * run-time by echoing the debug value in its sysfs node::
+> + *
+> + *   # echo 0xf > /sys/module/drm/parameters/debug
+> + *
+> + */
+> +enum drm_debug_category {
+> +	/* These names must match those in DYNAMIC_DEBUG_CLASSBITS */
+> +	/**
+> +	 * @DRM_UT_CORE: Used in the generic drm code: drm_ioctl.c, drm_mm.c,
+> +	 * drm_memory.c, ...
+> +	 */
+> +	DRM_UT_CORE,
+> +	/**
+> +	 * @DRM_UT_DRIVER: Used in the vendor specific part of the driver: i915=
+,
+> +	 * radeon, ... macro.
+> +	 */
+> +	DRM_UT_DRIVER,
+> +	/**
+> +	 * @DRM_UT_KMS: Used in the modesetting code.
+> +	 */
+> +	DRM_UT_KMS,
+> +	/**
+> +	 * @DRM_UT_PRIME: Used in the prime code.
+> +	 */
+> +	DRM_UT_PRIME,
+> +	/**
+> +	 * @DRM_UT_ATOMIC: Used in the atomic code.
+> +	 */
+> +	DRM_UT_ATOMIC,
+> +	/**
+> +	 * @DRM_UT_VBL: Used for verbose debug message in the vblank code.
+> +	 */
+> +	DRM_UT_VBL,
+> +	/**
+> +	 * @DRM_UT_STATE: Used for verbose atomic state debugging.
+> +	 */
+> +	DRM_UT_STATE,
+> +	/**
+> +	 * @DRM_UT_LEASE: Used in the lease code.
+> +	 */
+> +	DRM_UT_LEASE,
+> +	/**
+> +	 * @DRM_UT_DP: Used in the DP code.
+> +	 */
+> +	DRM_UT_DP,
+> +	/**
+> +	 * @DRM_UT_DRMRES: Used in the drm managed resources code.
+> +	 */
+> +	DRM_UT_DRMRES
+> +};
 > +
->  /* Do *not* use outside of drm_print.[ch]! */
->  extern unsigned long __drm_debug;
-> =20
-> @@ -235,16 +237,19 @@ static inline struct drm_printer drm_debug_printer(=
-const char *prefix)
+> +static inline bool drm_debug_enabled_raw(enum drm_debug_category categor=
+y)
+> +{
+> +	return unlikely(__drm_debug & BIT(category));
+> +}
+> +
+> +#define drm_debug_enabled_instrumented(category)			\
+> +	({								\
+> +		pr_debug("todo: is this frequent enough to optimize ?\n"); \
+> +		drm_debug_enabled_raw(category);			\
+> +	})
+> +
+> +#if defined(CONFIG_DRM_USE_DYNAMIC_DEBUG)
+> +/*
+> + * the drm.debug API uses dyndbg, so each drm_*dbg macro/callsite gets
+> + * a descriptor, and only enabled callsites are reachable.  They use
+> + * the private macro to avoid re-testing the enable-bit.
+> + */
+> +#define __drm_debug_enabled(category)	true
+> +#define drm_debug_enabled(category)	drm_debug_enabled_instrumented(categ=
+ory)
+> +#else
+> +#define __drm_debug_enabled(category)	drm_debug_enabled_raw(category)
+> +#define drm_debug_enabled(category)	drm_debug_enabled_raw(category)
+> +#endif
+> +
+>  /**
+>   * struct drm_printer - drm output "stream"
+>   *
+> @@ -255,101 +350,6 @@ static inline struct drm_printer drm_err_printer(st=
+ruct drm_device *drm,
+>  	return p;
 >  }
 > =20
->  /**
-> - * drm_err_printer - construct a &drm_printer that outputs to pr_err()
-> - * @prefix: debug output prefix
-> + * drm_err_printer - construct a &drm_printer that outputs to drm_err()
-> + * @drm: the &struct drm_device pointer
-> + * @prefix: debug output prefix, or NULL for no prefix
+> -/**
+> - * enum drm_debug_category - The DRM debug categories
+> - *
+> - * Each of the DRM debug logging macros use a specific category, and the=
+ logging
+> - * is filtered by the drm.debug module parameter. This enum specifies th=
+e values
+> - * for the interface.
+> - *
+> - * Each DRM_DEBUG_<CATEGORY> macro logs to DRM_UT_<CATEGORY> category, e=
+xcept
+> - * DRM_DEBUG() logs to DRM_UT_CORE.
+> - *
+> - * Enabling verbose debug messages is done through the drm.debug paramet=
+er, each
+> - * category being enabled by a bit:
+> - *
+> - *  - drm.debug=3D0x1 will enable CORE messages
+> - *  - drm.debug=3D0x2 will enable DRIVER messages
+> - *  - drm.debug=3D0x3 will enable CORE and DRIVER messages
+> - *  - ...
+> - *  - drm.debug=3D0x1ff will enable all messages
+> - *
+> - * An interesting feature is that it's possible to enable verbose loggin=
+g at
+> - * run-time by echoing the debug value in its sysfs node::
+> - *
+> - *   # echo 0xf > /sys/module/drm/parameters/debug
+> - *
+> - */
+> -enum drm_debug_category {
+> -	/* These names must match those in DYNAMIC_DEBUG_CLASSBITS */
+> -	/**
+> -	 * @DRM_UT_CORE: Used in the generic drm code: drm_ioctl.c, drm_mm.c,
+> -	 * drm_memory.c, ...
+> -	 */
+> -	DRM_UT_CORE,
+> -	/**
+> -	 * @DRM_UT_DRIVER: Used in the vendor specific part of the driver: i915=
+,
+> -	 * radeon, ... macro.
+> -	 */
+> -	DRM_UT_DRIVER,
+> -	/**
+> -	 * @DRM_UT_KMS: Used in the modesetting code.
+> -	 */
+> -	DRM_UT_KMS,
+> -	/**
+> -	 * @DRM_UT_PRIME: Used in the prime code.
+> -	 */
+> -	DRM_UT_PRIME,
+> -	/**
+> -	 * @DRM_UT_ATOMIC: Used in the atomic code.
+> -	 */
+> -	DRM_UT_ATOMIC,
+> -	/**
+> -	 * @DRM_UT_VBL: Used for verbose debug message in the vblank code.
+> -	 */
+> -	DRM_UT_VBL,
+> -	/**
+> -	 * @DRM_UT_STATE: Used for verbose atomic state debugging.
+> -	 */
+> -	DRM_UT_STATE,
+> -	/**
+> -	 * @DRM_UT_LEASE: Used in the lease code.
+> -	 */
+> -	DRM_UT_LEASE,
+> -	/**
+> -	 * @DRM_UT_DP: Used in the DP code.
+> -	 */
+> -	DRM_UT_DP,
+> -	/**
+> -	 * @DRM_UT_DRMRES: Used in the drm managed resources code.
+> -	 */
+> -	DRM_UT_DRMRES
+> -};
+> -
+> -static inline bool drm_debug_enabled_raw(enum drm_debug_category categor=
+y)
+> -{
+> -	return unlikely(__drm_debug & BIT(category));
+> -}
+> -
+> -#define drm_debug_enabled_instrumented(category)			\
+> -	({								\
+> -		pr_debug("todo: is this frequent enough to optimize ?\n"); \
+> -		drm_debug_enabled_raw(category);			\
+> -	})
+> -
+> -#if defined(CONFIG_DRM_USE_DYNAMIC_DEBUG)
+> -/*
+> - * the drm.debug API uses dyndbg, so each drm_*dbg macro/callsite gets
+> - * a descriptor, and only enabled callsites are reachable.  They use
+> - * the private macro to avoid re-testing the enable-bit.
+> - */
+> -#define __drm_debug_enabled(category)	true
+> -#define drm_debug_enabled(category)	drm_debug_enabled_instrumented(categ=
+ory)
+> -#else
+> -#define __drm_debug_enabled(category)	drm_debug_enabled_raw(category)
+> -#define drm_debug_enabled(category)	drm_debug_enabled_raw(category)
+> -#endif
+> -
+>  /*
+>   * struct device based logging
 >   *
->   * RETURNS:
->   * The &drm_printer object
->   */
-> -static inline struct drm_printer drm_err_printer(const char *prefix)
-> +static inline struct drm_printer drm_err_printer(struct drm_device *drm,
-> +						 const char *prefix)
->  {
->  	struct drm_printer p =3D {
->  		.printfn =3D __drm_printfn_err,
-> +		.arg =3D drm,
->  		.prefix =3D prefix
->  	};
->  	return p;
 
 Reviewed-by: Luca Coelho <luciano.coelho@intel.com>
 
