@@ -2,66 +2,66 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id CA2E384311D
-	for <lists+intel-gfx@lfdr.de>; Wed, 31 Jan 2024 00:24:34 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 51FC384311B
+	for <lists+intel-gfx@lfdr.de>; Wed, 31 Jan 2024 00:24:21 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 40435113714;
-	Tue, 30 Jan 2024 23:24:03 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CD5F111370E;
+	Tue, 30 Jan 2024 23:24:19 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-qt1-f181.google.com (mail-qt1-f181.google.com
- [209.85.160.181])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1D701113714
- for <intel-gfx@lists.freedesktop.org>; Tue, 30 Jan 2024 23:24:02 +0000 (UTC)
-Received: by mail-qt1-f181.google.com with SMTP id
- d75a77b69052e-42ab4f6daf2so6937401cf.3
- for <intel-gfx@lists.freedesktop.org>; Tue, 30 Jan 2024 15:24:02 -0800 (PST)
+Received: from mail-qk1-f182.google.com (mail-qk1-f182.google.com
+ [209.85.222.182])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8A59111370E
+ for <intel-gfx@lists.freedesktop.org>; Tue, 30 Jan 2024 23:24:18 +0000 (UTC)
+Received: by mail-qk1-f182.google.com with SMTP id
+ af79cd13be357-783da26489aso363433085a.3
+ for <intel-gfx@lists.freedesktop.org>; Tue, 30 Jan 2024 15:24:18 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=chromium.org; s=google; t=1706656981; x=1707261781;
+ d=chromium.org; s=google; t=1706656997; x=1707261797;
  darn=lists.freedesktop.org; 
  h=in-reply-to:content-transfer-encoding:content-disposition
  :mime-version:references:message-id:subject:cc:to:from:date:from:to
  :cc:subject:date:message-id:reply-to;
- bh=zzXi3WLDubIdZK5VgYxs7pT+Jc9LusflFbc3ICsiB48=;
- b=ajyXS/8+aMomBjkhk6gDsIfUv9aGezFgmB4zelKY9AlnO1zzEI2Yk1zmkQUYNZly+G
- IV9XJbmEntfg7n+Vqd4MPQDMAE5ADKHU5Smu9/18tN6FCLsjK0dBQvMZ8b2IkyOZBrtU
- VygcOD9Z6iQ538hL5/V4OUuuI9y8wYLH4EraA=
+ bh=Yit2kuYIYBKXM0LqmAclGnIbsOfNOXs/OaVaZMjCqno=;
+ b=n4hVBr/c2QEXhonXda4s1C87qlWkxKUOGv00UGpJRAw9LCW6ANQ+7LwXWWklh+S6uT
+ bN6G1YYOiHCJY3lWSBftgLAsSoZC9E4SyRrNJCC6Hx9gZV+ArZSgYzeUDgqZfxMjgrqK
+ KNDEx/InfwP3mbOdMfCqOArsyQeSCPoW5slog=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1706656981; x=1707261781;
+ d=1e100.net; s=20230601; t=1706656997; x=1707261797;
  h=in-reply-to:content-transfer-encoding:content-disposition
  :mime-version:references:message-id:subject:cc:to:from:date
  :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
- bh=zzXi3WLDubIdZK5VgYxs7pT+Jc9LusflFbc3ICsiB48=;
- b=iupoIC9gt0w/35R5JfF8zu+/Tpsi658DttBTVF7wker3mg1mWzRXIc1CMy38giKuXV
- lE029Ajdm/DXJGTlS+NUMqP94/KcSgEVZnFl6pLJ0M3RtFHZmr5dMs2iaP3tZPsvb1pi
- p8kuRSBFYwPQYZdf5M0GQX3UaP0O+56SUU6SgyDZSvmhJWi/TqgRWJmhDsiPJmhzQTpN
- d0mFawrBOPyHUy6vtgUOoMoqnrHT5n5iMxO+r06ybtGdHisqCxZDfB+59bklKmz4agO2
- YbEeVtAXFjoZ7ZfkvzHrRIls06+wLs2h+/vWJxiv4P2TqrB+x87c3+laTu0kETIOY6Lh
- GLMQ==
-X-Gm-Message-State: AOJu0Yw8OPn/2x3DM2/tpibgJOfesu79nhFLgR2Y4O0xkAYw7n09cJ+2
- 5yjfJBvXJ4DT58k4YLAg9qrwMQnKAWaAlqZ3FPY2sorDwtpJOLIZ51pSz7veSQZ6c1QNe7sc+2h
- aKQ==
-X-Google-Smtp-Source: AGHT+IHzFSv4hQFaxvMqUMCx9F1MLB758qB10E25QSbmFlZzX6p23Bl/F/wwB/bcSdbQ9NajbKoYgg==
-X-Received: by 2002:a05:6214:2aac:b0:68c:4d33:c859 with SMTP id
- js12-20020a0562142aac00b0068c4d33c859mr10217qvb.63.1706656981285; 
- Tue, 30 Jan 2024 15:23:01 -0800 (PST)
+ bh=Yit2kuYIYBKXM0LqmAclGnIbsOfNOXs/OaVaZMjCqno=;
+ b=F8y0Gm2n7RYVQ9461tLaYCDU3Xy1JoNl+czucoS0FVgNdIiosJSzTJedSQc1IA6GIm
+ accq7+Ku2COb6bz/giF2KRvHbllNQ8O0gIYy8gBm6xXiaoIgJ3jHNQjJVZIetakwMRow
+ 86SFC6LIaaFS2iN5bB4aQCC0J+nxHwyxi+N6u/DA5fApoiMa3zgPF0E9QfmCiXFPY1a5
+ 4aSTRZTkfvaITvZZHegK1qoiAgbYG2qUO6DzsO51uSgMqzXbQCxgBB0APEo+rKMn3hdO
+ Ck9/jnnazo3zf87oVCqcay1uiqgqtDhl03i4G50wBpMkwocUvRCozR+RGIRfdq1isIz+
+ 35bQ==
+X-Gm-Message-State: AOJu0YxVXNVD49OfamkUTMpH2G19T6pXzT+JyHRwnnD3d1gTRT0l/2p3
+ t7StqUibol/boFNL0t0C1SY2ILrieyM3vQQ0Ax4zeqAHFDoOIdjVBtX+fzpDug==
+X-Google-Smtp-Source: AGHT+IFxBQMU4VhRemXhdcaS2M+vwo8NooBbMDzZuRbld48gWwqt2WtnLfopPMWFJfv5+p5HmiuHdQ==
+X-Received: by 2002:a05:620a:166c:b0:783:e3be:9ba0 with SMTP id
+ d12-20020a05620a166c00b00783e3be9ba0mr6666735qko.27.1706656997707; 
+ Tue, 30 Jan 2024 15:23:17 -0800 (PST)
 Received: from google.com (240.157.150.34.bc.googleusercontent.com.
  [34.150.157.240]) by smtp.gmail.com with ESMTPSA id
- e9-20020ad45369000000b0068c46068b09sm3253589qvv.141.2024.01.30.15.23.01
+ c8-20020a05620a11a800b00783ff37c473sm2052713qkk.103.2024.01.30.15.23.17
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Tue, 30 Jan 2024 15:23:01 -0800 (PST)
-Date: Tue, 30 Jan 2024 23:22:59 +0000
+ Tue, 30 Jan 2024 15:23:17 -0800 (PST)
+Date: Tue, 30 Jan 2024 23:23:16 +0000
 From: Paz Zcharya <pazz@chromium.org>
 To: Ville Syrjala <ville.syrjala@linux.intel.com>
-Subject: Re: [PATCH v3 10/16] drm/i915: s/phys_base/dma_addr/
-Message-ID: <ZbmE05vpWJyBu5Bh@google.com>
+Subject: Re: [PATCH v3 11/16] drm/i915: Split the smem and lmem plane readout
+ apart
+Message-ID: <ZbmE5NdOa9_AJEs4@google.com>
 References: <20240116075636.6121-1-ville.syrjala@linux.intel.com>
- <20240116075636.6121-11-ville.syrjala@linux.intel.com>
+ <20240116075636.6121-12-ville.syrjala@linux.intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20240116075636.6121-11-ville.syrjala@linux.intel.com>
+In-Reply-To: <20240116075636.6121-12-ville.syrjala@linux.intel.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -78,16 +78,18 @@ Cc: intel-gfx@lists.freedesktop.org, Andrzej Hajda <andrzej.hajda@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, Jan 16, 2024 at 09:56:30AM +0200, Ville Syrjala wrote:
+On Tue, Jan 16, 2024 at 09:56:31AM +0200, Ville Syrjala wrote:
 > From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 > 
-> The address we read from the PTE is a dma address, not a physical
-> address. Rename the variable to say so.
+> Declutter initial_plane_vma() a bit by pulling the lmem and smem
+> readout paths into their own functions.
+> 
+> TODO: the smem path should still be fixed to get and validate
+>       the dma address from the pte as well
 > 
 > Cc: Paz Zcharya <pazz@chromium.org>
 > Reviewed-by: Andrzej Hajda <andrzej.hajda@intel.com>
 > Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
-
 Hi Ville,
 
 Thank you so much for this incredible series.
@@ -102,55 +104,187 @@ no i915 errors, no flickers or observable issues.
 Tested-by: Paz Zcharya <pazz@chromium.org>
 
 > ---
->  .../gpu/drm/i915/display/intel_plane_initial.c    | 15 ++++++++-------
->  1 file changed, 8 insertions(+), 7 deletions(-)
+>  .../drm/i915/display/intel_display_types.h    |   2 +
+>  .../drm/i915/display/intel_plane_initial.c    | 145 +++++++++++-------
+>  2 files changed, 95 insertions(+), 52 deletions(-)
 > 
+> diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/drivers/gpu/drm/i915/display/intel_display_types.h
+> index ae2e8cff9d69..319ba7aed4fa 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display_types.h
+> +++ b/drivers/gpu/drm/i915/display/intel_display_types.h
+> @@ -780,6 +780,8 @@ struct intel_plane_state {
+>  
+>  struct intel_initial_plane_config {
+>  	struct intel_framebuffer *fb;
+> +	struct intel_memory_region *mem;
+> +	resource_size_t phys_base;
+>  	struct i915_vma *vma;
+>  	unsigned int tiling;
+>  	int size;
 > diff --git a/drivers/gpu/drm/i915/display/intel_plane_initial.c b/drivers/gpu/drm/i915/display/intel_plane_initial.c
-> index c72d4cacf631..48b74319f45c 100644
+> index 48b74319f45c..78bff6181ceb 100644
 > --- a/drivers/gpu/drm/i915/display/intel_plane_initial.c
 > +++ b/drivers/gpu/drm/i915/display/intel_plane_initial.c
-> @@ -61,6 +61,7 @@ initial_plane_vma(struct drm_i915_private *i915,
+> @@ -44,6 +44,93 @@ intel_reuse_initial_plane_obj(struct drm_i915_private *i915,
+>  	return false;
+>  }
+>  
+> +static bool
+> +initial_plane_phys_lmem(struct drm_i915_private *i915,
+> +			struct intel_initial_plane_config *plane_config)
+> +{
+> +	gen8_pte_t __iomem *gte = to_gt(i915)->ggtt->gsm;
+> +	struct intel_memory_region *mem;
+> +	dma_addr_t dma_addr;
+> +	gen8_pte_t pte;
+> +	u32 base;
+> +
+> +	base = round_down(plane_config->base, I915_GTT_MIN_ALIGNMENT);
+> +
+> +	gte += base / I915_GTT_PAGE_SIZE;
+> +
+> +	pte = ioread64(gte);
+> +	if (!(pte & GEN12_GGTT_PTE_LM)) {
+> +		drm_err(&i915->drm,
+> +			"Initial plane programming missing PTE_LM bit\n");
+> +		return false;
+> +	}
+> +
+> +	dma_addr = pte & GEN12_GGTT_PTE_ADDR_MASK;
+> +
+> +	if (IS_DGFX(i915))
+> +		mem = i915->mm.regions[INTEL_REGION_LMEM_0];
+> +	else
+> +		mem = i915->mm.stolen_region;
+> +	if (!mem) {
+> +		drm_dbg_kms(&i915->drm,
+> +			    "Initial plane memory region not initialized\n");
+> +		return false;
+> +	}
+> +
+> +	/*
+> +	 * On lmem we don't currently expect this to
+> +	 * ever be placed in the stolen portion.
+> +	 */
+> +	if (dma_addr < mem->region.start || dma_addr > mem->region.end) {
+> +		drm_err(&i915->drm,
+> +			"Initial plane programming using invalid range, dma_addr=%pa (%s [%pa-%pa])\n",
+> +			&dma_addr, mem->region.name, &mem->region.start, &mem->region.end);
+> +		return false;
+> +	}
+> +
+> +	drm_dbg(&i915->drm,
+> +		"Using dma_addr=%pa, based on initial plane programming\n",
+> +		&dma_addr);
+> +
+> +	plane_config->phys_base = dma_addr - mem->region.start;
+> +	plane_config->mem = mem;
+> +
+> +	return true;
+> +}
+> +
+> +static bool
+> +initial_plane_phys_smem(struct drm_i915_private *i915,
+> +			struct intel_initial_plane_config *plane_config)
+> +{
+> +	struct intel_memory_region *mem;
+> +	u32 base;
+> +
+> +	base = round_down(plane_config->base, I915_GTT_MIN_ALIGNMENT);
+> +
+> +	mem = i915->mm.stolen_region;
+> +	if (!mem) {
+> +		drm_dbg_kms(&i915->drm,
+> +			    "Initial plane memory region not initialized\n");
+> +		return false;
+> +	}
+> +
+> +	/* FIXME get and validate the dma_addr from the PTE */
+> +	plane_config->phys_base = base;
+> +	plane_config->mem = mem;
+> +
+> +	return true;
+> +}
+> +
+> +static bool
+> +initial_plane_phys(struct drm_i915_private *i915,
+> +		   struct intel_initial_plane_config *plane_config)
+> +{
+> +	if (IS_DGFX(i915) || HAS_LMEMBAR_SMEM_STOLEN(i915))
+> +		return initial_plane_phys_lmem(i915, plane_config);
+> +	else
+> +		return initial_plane_phys_smem(i915, plane_config);
+> +}
+> +
+>  static struct i915_vma *
+>  initial_plane_vma(struct drm_i915_private *i915,
+>  		  struct intel_initial_plane_config *plane_config)
+> @@ -58,59 +145,13 @@ initial_plane_vma(struct drm_i915_private *i915,
+>  	if (plane_config->size == 0)
+>  		return NULL;
+>  
+> +	if (!initial_plane_phys(i915, plane_config))
+> +		return NULL;
+> +
+> +	phys_base = plane_config->phys_base;
+> +	mem = plane_config->mem;
+> +
 >  	base = round_down(plane_config->base, I915_GTT_MIN_ALIGNMENT);
->  	if (IS_DGFX(i915) || HAS_LMEMBAR_SMEM_STOLEN(i915)) {
->  		gen8_pte_t __iomem *gte = to_gt(i915)->ggtt->gsm;
-> +		dma_addr_t dma_addr;
->  		gen8_pte_t pte;
->  
->  		gte += base / I915_GTT_PAGE_SIZE;
-> @@ -72,7 +73,7 @@ initial_plane_vma(struct drm_i915_private *i915,
->  			return NULL;
->  		}
->  
-> -		phys_base = pte & GEN12_GGTT_PTE_ADDR_MASK;
-> +		dma_addr = pte & GEN12_GGTT_PTE_ADDR_MASK;
->  
->  		if (IS_DGFX(i915))
->  			mem = i915->mm.regions[INTEL_REGION_LMEM_0];
-> @@ -88,18 +89,18 @@ initial_plane_vma(struct drm_i915_private *i915,
->  		 * On lmem we don't currently expect this to
->  		 * ever be placed in the stolen portion.
->  		 */
-> -		if (phys_base < mem->region.start || phys_base > mem->region.end) {
-> +		if (dma_addr < mem->region.start || dma_addr > mem->region.end) {
->  			drm_err(&i915->drm,
-> -				"Initial plane programming using invalid range, phys_base=%pa (%s [%pa-%pa])\n",
-> -				&phys_base, mem->region.name, &mem->region.start, &mem->region.end);
-> +				"Initial plane programming using invalid range, dma_addr=%pa (%s [%pa-%pa])\n",
-> +				&dma_addr, mem->region.name, &mem->region.start, &mem->region.end);
->  			return NULL;
->  		}
->  
->  		drm_dbg(&i915->drm,
-> -			"Using phys_base=%pa, based on initial plane programming\n",
-> -			&phys_base);
-> +			"Using dma_addr=%pa, based on initial plane programming\n",
-> +			&dma_addr);
->  
-> -		phys_base -= mem->region.start;
-> +		phys_base = dma_addr - mem->region.start;
->  	} else {
->  		phys_base = base;
->  		mem = i915->mm.stolen_region;
+> -	if (IS_DGFX(i915) || HAS_LMEMBAR_SMEM_STOLEN(i915)) {
+> -		gen8_pte_t __iomem *gte = to_gt(i915)->ggtt->gsm;
+> -		dma_addr_t dma_addr;
+> -		gen8_pte_t pte;
+> -
+> -		gte += base / I915_GTT_PAGE_SIZE;
+> -
+> -		pte = ioread64(gte);
+> -		if (!(pte & GEN12_GGTT_PTE_LM)) {
+> -			drm_err(&i915->drm,
+> -				"Initial plane programming missing PTE_LM bit\n");
+> -			return NULL;
+> -		}
+> -
+> -		dma_addr = pte & GEN12_GGTT_PTE_ADDR_MASK;
+> -
+> -		if (IS_DGFX(i915))
+> -			mem = i915->mm.regions[INTEL_REGION_LMEM_0];
+> -		else
+> -			mem = i915->mm.stolen_region;
+> -		if (!mem) {
+> -			drm_dbg_kms(&i915->drm,
+> -				    "Initial plane memory region not initialized\n");
+> -			return NULL;
+> -		}
+> -
+> -		/*
+> -		 * On lmem we don't currently expect this to
+> -		 * ever be placed in the stolen portion.
+> -		 */
+> -		if (dma_addr < mem->region.start || dma_addr > mem->region.end) {
+> -			drm_err(&i915->drm,
+> -				"Initial plane programming using invalid range, dma_addr=%pa (%s [%pa-%pa])\n",
+> -				&dma_addr, mem->region.name, &mem->region.start, &mem->region.end);
+> -			return NULL;
+> -		}
+> -
+> -		drm_dbg(&i915->drm,
+> -			"Using dma_addr=%pa, based on initial plane programming\n",
+> -			&dma_addr);
+> -
+> -		phys_base = dma_addr - mem->region.start;
+> -	} else {
+> -		phys_base = base;
+> -		mem = i915->mm.stolen_region;
+> -		if (!mem) {
+> -			drm_dbg_kms(&i915->drm,
+> -				    "Initial plane memory region not initialized\n");
+> -			return NULL;
+> -		}
+> -	}
+> -
+>  	size = round_up(plane_config->base + plane_config->size,
+>  			mem->min_page_size);
+>  	size -= base;
 > -- 
 > 2.41.0
 > 
