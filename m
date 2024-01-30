@@ -2,53 +2,28 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2F969842306
-	for <lists+intel-gfx@lfdr.de>; Tue, 30 Jan 2024 12:28:59 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 66DA284245B
+	for <lists+intel-gfx@lfdr.de>; Tue, 30 Jan 2024 13:05:03 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2D703112FB2;
-	Tue, 30 Jan 2024 11:28:21 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2F4DF112FDB;
+	Tue, 30 Jan 2024 12:04:31 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2253B10F89F;
- Tue, 30 Jan 2024 11:28:19 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1706614099; x=1738150099;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=p26BQJECcTWiyJgSsIztcnzh4ip7rv+gHoIKmYjiu4Q=;
- b=j3wiNwS+YjSxoyhNK6PccpKjXE/cZtHLeAMIYKbRtAUYNC1EJ92hvgjz
- ygC1iXHe3ivasLlU/ds0TU5XbC2/k/T6xa57sWyMKdbk7/ycBqD7GM/tV
- 06YpwVTBH+YRJNGdB3EfvrlxxMPhM5+ec2Wd4m2/MOZ9XTgJm8ZBmG/JY
- 5KKQSAQKnWTZrXAoh5OGSYjwv+0vGoqlxSvPxfYr0lIS/hl/vn7NbrgOe
- 2GvaCLIRV+O4btudQTizEv6rtqfgGpI/wMxKw1swzZAckM5yX5nCvLRXs
- MUyaBZd6Ksx5eSDYiTLQlrWvabT6C7M/ncgNdGbPepuI17fZDBs7CzfSV Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10968"; a="24727176"
-X-IronPort-AV: E=Sophos;i="6.05,707,1701158400"; d="scan'208";a="24727176"
-Received: from fmsmga003.fm.intel.com ([10.253.24.29])
- by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Jan 2024 03:28:19 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10968"; a="878410349"
-X-IronPort-AV: E=Sophos;i="6.05,707,1701158400"; d="scan'208";a="878410349"
-Received: from turnipsi.fi.intel.com (HELO kekkonen.fi.intel.com)
- ([10.237.72.44])
- by fmsmga003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Jan 2024 03:28:12 -0800
-Received: from svinhufvud.ger.corp.intel.com (localhost [IPv6:::1])
- by kekkonen.fi.intel.com (Postfix) with ESMTP id 1740011FBD1;
- Tue, 30 Jan 2024 13:28:08 +0200 (EET)
-From: Sakari Ailus <sakari.ailus@linux.intel.com>
-To: linux-pm@vger.kernel.org
-Subject: [PATCH v5 1/2] PM: runtime: Simplify pm_runtime_get_if_active() usage
-Date: Tue, 30 Jan 2024 13:28:05 +0200
-Message-Id: <20240130112805.158790-2-sakari.ailus@linux.intel.com>
-X-Mailer: git-send-email 2.39.2
-In-Reply-To: <20240130112805.158790-1-sakari.ailus@linux.intel.com>
-References: <20240130112805.158790-1-sakari.ailus@linux.intel.com>
+Received: from 5338d5abeb45 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DD039112FDB;
+ Tue, 30 Jan 2024 12:04:29 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============5462435274208041497=="
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=93_Fi=2ECI=2EBAT=3A_success_for_ALPM_AUX_Wake_Configuration?=
+ =?utf-8?q?_=28rev3=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: =?utf-8?q?Jouni_H=C3=B6gander?= <jouni.hogander@intel.com>
+Date: Tue, 30 Jan 2024 12:04:29 -0000
+Message-ID: <170661626990.823577.17964671116937201461@5338d5abeb45>
+X-Patchwork-Hint: ignore
+References: <20240130111130.3298779-1-jouni.hogander@intel.com>
+In-Reply-To: <20240130111130.3298779-1-jouni.hogander@intel.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,304 +36,422 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "Rafael J. Wysocki" <rafael@kernel.org>, linux-pci@vger.kernel.org,
- dri-devel@lists.freedesktop.org, Jaroslav Kysela <perex@perex.cz>,
- Stanislaw Gruszka <stanislaw.gruszka@linux.intel.com>,
- laurent.pinchart@ideasonboard.com, David Airlie <airlied@gmail.com>,
- Paul Elder <paul.elder@ideasonboard.com>, Bjorn Helgaas <helgaas@kernel.org>,
- linux-media@vger.kernel.org,
- =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
- intel-gfx@lists.freedesktop.org, Lucas De Marchi <lucas.demarchi@intel.com>,
- Mark Brown <broonie@kernel.org>,
- Jacek Lawrynowicz <jacek.lawrynowicz@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
- intel-xe@lists.freedesktop.org, Alex Elder <elder@kernel.org>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>, linux-sound@vger.kernel.org,
- Takashi Iwai <tiwai@suse.com>, Daniel Vetter <daniel@ffwll.ch>,
- netdev@vger.kernel.org
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-There are two ways to opportunistically increment a device's runtime PM
-usage count, calling either pm_runtime_get_if_active() or
-pm_runtime_get_if_in_use(). The former has an argument to tell whether to
-ignore the usage count or not, and the latter simply calls the former with
-ign_usage_count set to false. The other users that want to ignore the
-usage_count will have to explicitly set that argument to true which is a
-bit cumbersome.
+--===============5462435274208041497==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-To make this function more practical to use, remove the ign_usage_count
-argument from the function. The main implementation is in a static
-function called pm_runtime_get_conditional() and implementations of
-pm_runtime_get_if_active() and pm_runtime_get_if_in_use() are moved to
-runtime.c.
+== Series Details ==
 
-Signed-off-by: Sakari Ailus <sakari.ailus@linux.intel.com>
-Reviewed-by: Alex Elder <elder@linaro.org>
-Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-Acked-by: Takashi Iwai <tiwai@suse.de> # sound/
-Reviewed-by: Jacek Lawrynowicz <jacek.lawrynowicz@linux.intel.com> # drivers/accel/ivpu/
-Acked-by: Rodrigo Vivi <rodrigo.vivi@intel.com> # drivers/gpu/drm/i915/
-Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
-Acked-by: Bjorn Helgaas <bhelgaas@google.com> # drivers/pci/
----
- Documentation/power/runtime_pm.rst      |  5 ++--
- drivers/accel/ivpu/ivpu_pm.c            |  2 +-
- drivers/base/power/runtime.c            | 35 +++++++++++++++++++++++--
- drivers/gpu/drm/i915/intel_runtime_pm.c |  5 +++-
- drivers/gpu/drm/xe/xe_pm.c              |  2 +-
- drivers/media/i2c/ccs/ccs-core.c        |  2 +-
- drivers/media/i2c/ov64a40.c             |  2 +-
- drivers/media/i2c/thp7312.c             |  2 +-
- drivers/net/ipa/ipa_smp2p.c             |  2 +-
- drivers/pci/pci.c                       |  2 +-
- include/linux/pm_runtime.h              | 18 +++----------
- sound/hda/hdac_device.c                 |  2 +-
- 12 files changed, 50 insertions(+), 29 deletions(-)
+Series: ALPM AUX Wake Configuration (rev3)
+URL   : https://patchwork.freedesktop.org/series/127954/
+State : success
 
-diff --git a/Documentation/power/runtime_pm.rst b/Documentation/power/runtime_pm.rst
-index 65b86e487afe..da99379071a4 100644
---- a/Documentation/power/runtime_pm.rst
-+++ b/Documentation/power/runtime_pm.rst
-@@ -396,10 +396,9 @@ drivers/base/power/runtime.c and include/linux/pm_runtime.h:
-       nonzero, increment the counter and return 1; otherwise return 0 without
-       changing the counter
- 
--  `int pm_runtime_get_if_active(struct device *dev, bool ign_usage_count);`
-+  `int pm_runtime_get_if_active(struct device *dev);`
-     - return -EINVAL if 'power.disable_depth' is nonzero; otherwise, if the
--      runtime PM status is RPM_ACTIVE, and either ign_usage_count is true
--      or the device's usage_count is non-zero, increment the counter and
-+      runtime PM status is RPM_ACTIVE, increment the counter and
-       return 1; otherwise return 0 without changing the counter
- 
-   `void pm_runtime_put_noidle(struct device *dev);`
-diff --git a/drivers/accel/ivpu/ivpu_pm.c b/drivers/accel/ivpu/ivpu_pm.c
-index 0af8864cb3b5..c6d93c7a1c58 100644
---- a/drivers/accel/ivpu/ivpu_pm.c
-+++ b/drivers/accel/ivpu/ivpu_pm.c
-@@ -292,7 +292,7 @@ int ivpu_rpm_get_if_active(struct ivpu_device *vdev)
- {
- 	int ret;
- 
--	ret = pm_runtime_get_if_active(vdev->drm.dev, false);
-+	ret = pm_runtime_get_if_in_use(vdev->drm.dev);
- 	drm_WARN_ON(&vdev->drm, ret < 0);
- 
- 	return ret;
-diff --git a/drivers/base/power/runtime.c b/drivers/base/power/runtime.c
-index 05793c9fbb84..5275a6b2e980 100644
---- a/drivers/base/power/runtime.c
-+++ b/drivers/base/power/runtime.c
-@@ -1176,7 +1176,7 @@ int __pm_runtime_resume(struct device *dev, int rpmflags)
- EXPORT_SYMBOL_GPL(__pm_runtime_resume);
- 
- /**
-- * pm_runtime_get_if_active - Conditionally bump up device usage counter.
-+ * pm_runtime_get_conditional - Conditionally bump up device usage counter.
-  * @dev: Device to handle.
-  * @ign_usage_count: Whether or not to look at the current usage counter value.
-  *
-@@ -1197,7 +1197,7 @@ EXPORT_SYMBOL_GPL(__pm_runtime_resume);
-  * The caller is responsible for decrementing the runtime PM usage counter of
-  * @dev after this function has returned a positive value for it.
-  */
--int pm_runtime_get_if_active(struct device *dev, bool ign_usage_count)
-+static int pm_runtime_get_conditional(struct device *dev, bool ign_usage_count)
- {
- 	unsigned long flags;
- 	int retval;
-@@ -1218,8 +1218,39 @@ int pm_runtime_get_if_active(struct device *dev, bool ign_usage_count)
- 
- 	return retval;
- }
-+
-+/**
-+ * pm_runtime_get_if_active - Bump up runtime PM usage counter if the device is
-+ *			      in active state
-+ * @dev: Target device.
-+ *
-+ * Increment the runtime PM usage counter of @dev if its runtime PM status is
-+ * %RPM_ACTIVE, in which case it returns 1. If the device is in a different
-+ * state, 0 is returned. -EINVAL is returned if runtime PM is disabled for the
-+ * device, in which case also the usage_count will remain unmodified.
-+ */
-+int pm_runtime_get_if_active(struct device *dev)
-+{
-+	return pm_runtime_get_conditional(dev, true);
-+}
- EXPORT_SYMBOL_GPL(pm_runtime_get_if_active);
- 
-+/**
-+ * pm_runtime_get_if_in_use - Conditionally bump up runtime PM usage counter.
-+ * @dev: Target device.
-+ *
-+ * Increment the runtime PM usage counter of @dev if its runtime PM status is
-+ * %RPM_ACTIVE and its runtime PM usage counter is greater than 0, in which case
-+ * it returns 1. If the device is in a different state or its usage_count is 0,
-+ * 0 is returned. -EINVAL is returned if runtime PM is disabled for the device,
-+ * in which case also the usage_count will remain unmodified.
-+ */
-+int pm_runtime_get_if_in_use(struct device *dev)
-+{
-+	return pm_runtime_get_conditional(dev, false);
-+}
-+EXPORT_SYMBOL_GPL(pm_runtime_get_if_in_use);
-+
- /**
-  * __pm_runtime_set_status - Set runtime PM status of a device.
-  * @dev: Device to handle.
-diff --git a/drivers/gpu/drm/i915/intel_runtime_pm.c b/drivers/gpu/drm/i915/intel_runtime_pm.c
-index 860b51b56a92..d4e844128826 100644
---- a/drivers/gpu/drm/i915/intel_runtime_pm.c
-+++ b/drivers/gpu/drm/i915/intel_runtime_pm.c
-@@ -246,7 +246,10 @@ static intel_wakeref_t __intel_runtime_pm_get_if_active(struct intel_runtime_pm
- 		 * function, since the power state is undefined. This applies
- 		 * atm to the late/early system suspend/resume handlers.
- 		 */
--		if (pm_runtime_get_if_active(rpm->kdev, ignore_usecount) <= 0)
-+		if ((ignore_usecount &&
-+		     pm_runtime_get_if_active(rpm->kdev) <= 0) ||
-+		    (!ignore_usecount &&
-+		     pm_runtime_get_if_in_use(rpm->kdev) <= 0))
- 			return 0;
- 	}
- 
-diff --git a/drivers/gpu/drm/xe/xe_pm.c b/drivers/gpu/drm/xe/xe_pm.c
-index b429c2876a76..dd110058bf74 100644
---- a/drivers/gpu/drm/xe/xe_pm.c
-+++ b/drivers/gpu/drm/xe/xe_pm.c
-@@ -330,7 +330,7 @@ int xe_pm_runtime_put(struct xe_device *xe)
- 
- int xe_pm_runtime_get_if_active(struct xe_device *xe)
- {
--	return pm_runtime_get_if_active(xe->drm.dev, true);
-+	return pm_runtime_get_if_active(xe->drm.dev);
- }
- 
- void xe_pm_assert_unbounded_bridge(struct xe_device *xe)
-diff --git a/drivers/media/i2c/ccs/ccs-core.c b/drivers/media/i2c/ccs/ccs-core.c
-index e21287d50c15..e1ae0f9fad43 100644
---- a/drivers/media/i2c/ccs/ccs-core.c
-+++ b/drivers/media/i2c/ccs/ccs-core.c
-@@ -674,7 +674,7 @@ static int ccs_set_ctrl(struct v4l2_ctrl *ctrl)
- 		break;
- 	}
- 
--	pm_status = pm_runtime_get_if_active(&client->dev, true);
-+	pm_status = pm_runtime_get_if_active(&client->dev);
- 	if (!pm_status)
- 		return 0;
- 
-diff --git a/drivers/media/i2c/ov64a40.c b/drivers/media/i2c/ov64a40.c
-index 4fba4c2cb064..541bf74581d2 100644
---- a/drivers/media/i2c/ov64a40.c
-+++ b/drivers/media/i2c/ov64a40.c
-@@ -3287,7 +3287,7 @@ static int ov64a40_set_ctrl(struct v4l2_ctrl *ctrl)
- 					 exp_max, 1, exp_val);
- 	}
- 
--	pm_status = pm_runtime_get_if_active(ov64a40->dev, true);
-+	pm_status = pm_runtime_get_if_active(ov64a40->dev);
- 	if (!pm_status)
- 		return 0;
- 
-diff --git a/drivers/media/i2c/thp7312.c b/drivers/media/i2c/thp7312.c
-index 2806887514dc..19bd923a7315 100644
---- a/drivers/media/i2c/thp7312.c
-+++ b/drivers/media/i2c/thp7312.c
-@@ -1052,7 +1052,7 @@ static int thp7312_s_ctrl(struct v4l2_ctrl *ctrl)
- 	if (ctrl->flags & V4L2_CTRL_FLAG_INACTIVE)
- 		return -EINVAL;
- 
--	if (!pm_runtime_get_if_active(thp7312->dev, true))
-+	if (!pm_runtime_get_if_active(thp7312->dev))
- 		return 0;
- 
- 	switch (ctrl->id) {
-diff --git a/drivers/net/ipa/ipa_smp2p.c b/drivers/net/ipa/ipa_smp2p.c
-index 5620dc271fac..cbf3d4761ce3 100644
---- a/drivers/net/ipa/ipa_smp2p.c
-+++ b/drivers/net/ipa/ipa_smp2p.c
-@@ -92,7 +92,7 @@ static void ipa_smp2p_notify(struct ipa_smp2p *smp2p)
- 		return;
- 
- 	dev = &smp2p->ipa->pdev->dev;
--	smp2p->power_on = pm_runtime_get_if_active(dev, true) > 0;
-+	smp2p->power_on = pm_runtime_get_if_active(dev) > 0;
- 
- 	/* Signal whether the IPA power is enabled */
- 	mask = BIT(smp2p->enabled_bit);
-diff --git a/drivers/pci/pci.c b/drivers/pci/pci.c
-index d8f11a078924..f8293ae71389 100644
---- a/drivers/pci/pci.c
-+++ b/drivers/pci/pci.c
-@@ -2510,7 +2510,7 @@ static void pci_pme_list_scan(struct work_struct *work)
- 			 * If the device is in a low power state it
- 			 * should not be polled either.
- 			 */
--			pm_status = pm_runtime_get_if_active(dev, true);
-+			pm_status = pm_runtime_get_if_active(dev);
- 			if (!pm_status)
- 				continue;
- 
-diff --git a/include/linux/pm_runtime.h b/include/linux/pm_runtime.h
-index 7c9b35448563..436baa167498 100644
---- a/include/linux/pm_runtime.h
-+++ b/include/linux/pm_runtime.h
-@@ -72,7 +72,8 @@ extern int pm_runtime_force_resume(struct device *dev);
- extern int __pm_runtime_idle(struct device *dev, int rpmflags);
- extern int __pm_runtime_suspend(struct device *dev, int rpmflags);
- extern int __pm_runtime_resume(struct device *dev, int rpmflags);
--extern int pm_runtime_get_if_active(struct device *dev, bool ign_usage_count);
-+extern int pm_runtime_get_if_active(struct device *dev);
-+extern int pm_runtime_get_if_in_use(struct device *dev);
- extern int pm_schedule_suspend(struct device *dev, unsigned int delay);
- extern int __pm_runtime_set_status(struct device *dev, unsigned int status);
- extern int pm_runtime_barrier(struct device *dev);
-@@ -94,18 +95,6 @@ extern void pm_runtime_release_supplier(struct device_link *link);
- 
- extern int devm_pm_runtime_enable(struct device *dev);
- 
--/**
-- * pm_runtime_get_if_in_use - Conditionally bump up runtime PM usage counter.
-- * @dev: Target device.
-- *
-- * Increment the runtime PM usage counter of @dev if its runtime PM status is
-- * %RPM_ACTIVE and its runtime PM usage counter is greater than 0.
-- */
--static inline int pm_runtime_get_if_in_use(struct device *dev)
--{
--	return pm_runtime_get_if_active(dev, false);
--}
--
- /**
-  * pm_suspend_ignore_children - Set runtime PM behavior regarding children.
-  * @dev: Target device.
-@@ -275,8 +264,7 @@ static inline int pm_runtime_get_if_in_use(struct device *dev)
- {
- 	return -EINVAL;
- }
--static inline int pm_runtime_get_if_active(struct device *dev,
--					   bool ign_usage_count)
-+static inline int pm_runtime_get_if_active(struct device *dev)
- {
- 	return -EINVAL;
- }
-diff --git a/sound/hda/hdac_device.c b/sound/hda/hdac_device.c
-index 7f7b67fe1b65..068c16e52dff 100644
---- a/sound/hda/hdac_device.c
-+++ b/sound/hda/hdac_device.c
-@@ -612,7 +612,7 @@ EXPORT_SYMBOL_GPL(snd_hdac_power_up_pm);
- int snd_hdac_keep_power_up(struct hdac_device *codec)
- {
- 	if (!atomic_inc_not_zero(&codec->in_pm)) {
--		int ret = pm_runtime_get_if_active(&codec->dev, true);
-+		int ret = pm_runtime_get_if_active(&codec->dev);
- 		if (!ret)
- 			return -1;
- 		if (ret < 0)
--- 
-2.39.2
+== Summary ==
 
+CI Bug Log - changes from CI_DRM_14193 -> Patchwork_127954v3
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_127954v3/index.html
+
+Participating hosts (34 -> 36)
+------------------------------
+
+  Additional (4): bat-kbl-2 bat-atsm-1 bat-jsl-1 fi-bsw-n3050 
+  Missing    (2): bat-rpls-2 fi-snb-2520m 
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_127954v3 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@debugfs_test@basic-hwmon:
+    - bat-jsl-1:          NOTRUN -> [SKIP][1] ([i915#9318])
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_127954v3/bat-jsl-1/igt@debugfs_test@basic-hwmon.html
+
+  * igt@fbdev@info:
+    - bat-kbl-2:          NOTRUN -> [SKIP][2] ([fdo#109271] / [i915#1849])
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_127954v3/bat-kbl-2/igt@fbdev@info.html
+
+  * igt@gem_huc_copy@huc-copy:
+    - bat-jsl-1:          NOTRUN -> [SKIP][3] ([i915#2190])
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_127954v3/bat-jsl-1/igt@gem_huc_copy@huc-copy.html
+
+  * igt@gem_lmem_swapping@parallel-random-engines:
+    - bat-kbl-2:          NOTRUN -> [SKIP][4] ([fdo#109271]) +35 other tests skip
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_127954v3/bat-kbl-2/igt@gem_lmem_swapping@parallel-random-engines.html
+    - bat-jsl-1:          NOTRUN -> [SKIP][5] ([i915#4613]) +3 other tests skip
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_127954v3/bat-jsl-1/igt@gem_lmem_swapping@parallel-random-engines.html
+
+  * igt@gem_mmap@basic:
+    - bat-atsm-1:         NOTRUN -> [SKIP][6] ([i915#4083])
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_127954v3/bat-atsm-1/igt@gem_mmap@basic.html
+
+  * igt@gem_render_tiled_blits@basic:
+    - bat-atsm-1:         NOTRUN -> [SKIP][7] ([i915#4079]) +1 other test skip
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_127954v3/bat-atsm-1/igt@gem_render_tiled_blits@basic.html
+
+  * igt@gem_tiled_blits@basic:
+    - fi-bsw-n3050:       NOTRUN -> [SKIP][8] ([fdo#109271]) +15 other tests skip
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_127954v3/fi-bsw-n3050/igt@gem_tiled_blits@basic.html
+
+  * igt@gem_tiled_fence_blits@basic:
+    - bat-atsm-1:         NOTRUN -> [SKIP][9] ([i915#4077]) +2 other tests skip
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_127954v3/bat-atsm-1/igt@gem_tiled_fence_blits@basic.html
+
+  * igt@i915_hangman@error-state-basic:
+    - bat-mtlp-6:         [PASS][10] -> [ABORT][11] ([i915#9414])
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14193/bat-mtlp-6/igt@i915_hangman@error-state-basic.html
+   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_127954v3/bat-mtlp-6/igt@i915_hangman@error-state-basic.html
+
+  * igt@i915_pm_rps@basic-api:
+    - bat-atsm-1:         NOTRUN -> [SKIP][12] ([i915#6621])
+   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_127954v3/bat-atsm-1/igt@i915_pm_rps@basic-api.html
+
+  * igt@i915_selftest@live@gem_contexts:
+    - bat-atsm-1:         NOTRUN -> [INCOMPLETE][13] ([i915#10094] / [i915#10137])
+   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_127954v3/bat-atsm-1/igt@i915_selftest@live@gem_contexts.html
+
+  * igt@kms_addfb_basic@size-max:
+    - bat-atsm-1:         NOTRUN -> [SKIP][14] ([i915#6077]) +37 other tests skip
+   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_127954v3/bat-atsm-1/igt@kms_addfb_basic@size-max.html
+
+  * igt@kms_cursor_legacy@basic-busy-flip-before-cursor-legacy:
+    - bat-jsl-1:          NOTRUN -> [SKIP][15] ([i915#4103]) +1 other test skip
+   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_127954v3/bat-jsl-1/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-legacy.html
+
+  * igt@kms_cursor_legacy@basic-flip-after-cursor-atomic:
+    - bat-atsm-1:         NOTRUN -> [SKIP][16] ([i915#6078]) +17 other tests skip
+   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_127954v3/bat-atsm-1/igt@kms_cursor_legacy@basic-flip-after-cursor-atomic.html
+
+  * igt@kms_dsc@dsc-basic:
+    - bat-jsl-1:          NOTRUN -> [SKIP][17] ([i915#3555] / [i915#9886])
+   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_127954v3/bat-jsl-1/igt@kms_dsc@dsc-basic.html
+
+  * igt@kms_force_connector_basic@force-load-detect:
+    - bat-atsm-1:         NOTRUN -> [SKIP][18] ([i915#6093]) +4 other tests skip
+   [18]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_127954v3/bat-atsm-1/igt@kms_force_connector_basic@force-load-detect.html
+    - bat-jsl-1:          NOTRUN -> [SKIP][19] ([fdo#109285])
+   [19]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_127954v3/bat-jsl-1/igt@kms_force_connector_basic@force-load-detect.html
+
+  * igt@kms_pipe_crc_basic@read-crc-frame-sequence:
+    - bat-atsm-1:         NOTRUN -> [SKIP][20] ([i915#1836]) +6 other tests skip
+   [20]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_127954v3/bat-atsm-1/igt@kms_pipe_crc_basic@read-crc-frame-sequence.html
+
+  * igt@kms_prop_blob@basic:
+    - bat-atsm-1:         NOTRUN -> [SKIP][21] ([i915#7357])
+   [21]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_127954v3/bat-atsm-1/igt@kms_prop_blob@basic.html
+
+  * igt@kms_setmode@basic-clone-single-crtc:
+    - bat-atsm-1:         NOTRUN -> [SKIP][22] ([i915#6094])
+   [22]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_127954v3/bat-atsm-1/igt@kms_setmode@basic-clone-single-crtc.html
+    - bat-jsl-1:          NOTRUN -> [SKIP][23] ([i915#3555])
+   [23]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_127954v3/bat-jsl-1/igt@kms_setmode@basic-clone-single-crtc.html
+
+  * igt@prime_vgem@basic-fence-flip:
+    - bat-atsm-1:         NOTRUN -> [SKIP][24] ([fdo#109295] / [i915#6078])
+   [24]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_127954v3/bat-atsm-1/igt@prime_vgem@basic-fence-flip.html
+
+  * igt@prime_vgem@basic-gtt:
+    - bat-atsm-1:         NOTRUN -> [SKIP][25] ([fdo#109295] / [i915#4077]) +1 other test skip
+   [25]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_127954v3/bat-atsm-1/igt@prime_vgem@basic-gtt.html
+
+  * igt@prime_vgem@basic-write:
+    - bat-atsm-1:         NOTRUN -> [SKIP][26] ([fdo#109295]) +2 other tests skip
+   [26]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_127954v3/bat-atsm-1/igt@prime_vgem@basic-write.html
+
+  
+#### Possible fixes ####
+
+  * igt@gem_tiled_blits@basic:
+    - fi-pnv-d510:        [SKIP][27] ([fdo#109271]) -> [PASS][28]
+   [27]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14193/fi-pnv-d510/igt@gem_tiled_blits@basic.html
+   [28]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_127954v3/fi-pnv-d510/igt@gem_tiled_blits@basic.html
+
+  * igt@i915_selftest@live@hangcheck:
+    - fi-skl-guc:         [DMESG-FAIL][29] ([i915#10112]) -> [PASS][30]
+   [29]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14193/fi-skl-guc/igt@i915_selftest@live@hangcheck.html
+   [30]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_127954v3/fi-skl-guc/igt@i915_selftest@live@hangcheck.html
+
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
+  [fdo#109285]: https://bugs.freedesktop.org/show_bug.cgi?id=109285
+  [fdo#109295]: https://bugs.freedesktop.org/show_bug.cgi?id=109295
+  [i915#10077]: https://gitlab.freedesktop.org/drm/intel/issues/10077
+  [i915#10094]: https://gitlab.freedesktop.org/drm/intel/issues/10094
+  [i915#10112]: https://gitlab.freedesktop.org/drm/intel/issues/10112
+  [i915#10137]: https://gitlab.freedesktop.org/drm/intel/issues/10137
+  [i915#1836]: https://gitlab.freedesktop.org/drm/intel/issues/1836
+  [i915#1849]: https://gitlab.freedesktop.org/drm/intel/issues/1849
+  [i915#2190]: https://gitlab.freedesktop.org/drm/intel/issues/2190
+  [i915#3555]: https://gitlab.freedesktop.org/drm/intel/issues/3555
+  [i915#4077]: https://gitlab.freedesktop.org/drm/intel/issues/4077
+  [i915#4079]: https://gitlab.freedesktop.org/drm/intel/issues/4079
+  [i915#4083]: https://gitlab.freedesktop.org/drm/intel/issues/4083
+  [i915#4103]: https://gitlab.freedesktop.org/drm/intel/issues/4103
+  [i915#4613]: https://gitlab.freedesktop.org/drm/intel/issues/4613
+  [i915#6077]: https://gitlab.freedesktop.org/drm/intel/issues/6077
+  [i915#6078]: https://gitlab.freedesktop.org/drm/intel/issues/6078
+  [i915#6093]: https://gitlab.freedesktop.org/drm/intel/issues/6093
+  [i915#6094]: https://gitlab.freedesktop.org/drm/intel/issues/6094
+  [i915#6621]: https://gitlab.freedesktop.org/drm/intel/issues/6621
+  [i915#7357]: https://gitlab.freedesktop.org/drm/intel/issues/7357
+  [i915#9318]: https://gitlab.freedesktop.org/drm/intel/issues/9318
+  [i915#9414]: https://gitlab.freedesktop.org/drm/intel/issues/9414
+  [i915#9886]: https://gitlab.freedesktop.org/drm/intel/issues/9886
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_14193 -> Patchwork_127954v3
+
+  CI-20190529: 20190529
+  CI_DRM_14193: c655e0fd28045dbaa581d04bf7cc266eec1c3457 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_7698: af750f5e7eaad98d40d8c924eb5f05e99d3c668b @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  Patchwork_127954v3: c655e0fd28045dbaa581d04bf7cc266eec1c3457 @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+### Linux commits
+
+835ccebe70c3 drm/i915/alpm: Alpm aux wake configuration for lnl
+0e3065cb8b51 drm/i915/alpm: Calculate ALPM Entry check
+db49768897a7 drm/i915/psr: Add alpm_parameters struct
+3a83ad3407f9 drm/i915/alpm: Add ALPM register definitions
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_127954v3/index.html
+
+--===============5462435274208041497==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>ALPM AUX Wake Configuration (rev3)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/127954/">https://patchwork.freedesktop.org/series/127954/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_127954v3/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_127954v3/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_14193 -&gt; Patchwork_127954v3</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_127954v3/index.html</p>
+<h2>Participating hosts (34 -&gt; 36)</h2>
+<p>Additional (4): bat-kbl-2 bat-atsm-1 bat-jsl-1 fi-bsw-n3050 <br />
+  Missing    (2): bat-rpls-2 fi-snb-2520m </p>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_127954v3 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@debugfs_test@basic-hwmon:</p>
+<ul>
+<li>bat-jsl-1:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_127954v3/bat-jsl-1/igt@debugfs_test@basic-hwmon.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/9318">i915#9318</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@fbdev@info:</p>
+<ul>
+<li>bat-kbl-2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_127954v3/bat-kbl-2/igt@fbdev@info.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/1849">i915#1849</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@gem_huc_copy@huc-copy:</p>
+<ul>
+<li>bat-jsl-1:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_127954v3/bat-jsl-1/igt@gem_huc_copy@huc-copy.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2190">i915#2190</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@gem_lmem_swapping@parallel-random-engines:</p>
+<ul>
+<li>bat-kbl-2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_127954v3/bat-kbl-2/igt@gem_lmem_swapping@parallel-random-engines.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +35 other tests skip</li>
+<li>bat-jsl-1:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_127954v3/bat-jsl-1/igt@gem_lmem_swapping@parallel-random-engines.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4613">i915#4613</a>) +3 other tests skip</li>
+</ul>
+</li>
+<li>
+<p>igt@gem_mmap@basic:</p>
+<ul>
+<li>bat-atsm-1:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_127954v3/bat-atsm-1/igt@gem_mmap@basic.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4083">i915#4083</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@gem_render_tiled_blits@basic:</p>
+<ul>
+<li>bat-atsm-1:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_127954v3/bat-atsm-1/igt@gem_render_tiled_blits@basic.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4079">i915#4079</a>) +1 other test skip</li>
+</ul>
+</li>
+<li>
+<p>igt@gem_tiled_blits@basic:</p>
+<ul>
+<li>fi-bsw-n3050:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_127954v3/fi-bsw-n3050/igt@gem_tiled_blits@basic.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +15 other tests skip</li>
+</ul>
+</li>
+<li>
+<p>igt@gem_tiled_fence_blits@basic:</p>
+<ul>
+<li>bat-atsm-1:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_127954v3/bat-atsm-1/igt@gem_tiled_fence_blits@basic.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4077">i915#4077</a>) +2 other tests skip</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_hangman@error-state-basic:</p>
+<ul>
+<li>bat-mtlp-6:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14193/bat-mtlp-6/igt@i915_hangman@error-state-basic.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_127954v3/bat-mtlp-6/igt@i915_hangman@error-state-basic.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/9414">i915#9414</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_pm_rps@basic-api:</p>
+<ul>
+<li>bat-atsm-1:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_127954v3/bat-atsm-1/igt@i915_pm_rps@basic-api.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/6621">i915#6621</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@gem_contexts:</p>
+<ul>
+<li>bat-atsm-1:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_127954v3/bat-atsm-1/igt@i915_selftest@live@gem_contexts.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/10094">i915#10094</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/10137">i915#10137</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_addfb_basic@size-max:</p>
+<ul>
+<li>bat-atsm-1:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_127954v3/bat-atsm-1/igt@kms_addfb_basic@size-max.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/6077">i915#6077</a>) +37 other tests skip</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_cursor_legacy@basic-busy-flip-before-cursor-legacy:</p>
+<ul>
+<li>bat-jsl-1:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_127954v3/bat-jsl-1/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-legacy.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4103">i915#4103</a>) +1 other test skip</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_cursor_legacy@basic-flip-after-cursor-atomic:</p>
+<ul>
+<li>bat-atsm-1:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_127954v3/bat-atsm-1/igt@kms_cursor_legacy@basic-flip-after-cursor-atomic.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/6078">i915#6078</a>) +17 other tests skip</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_dsc@dsc-basic:</p>
+<ul>
+<li>bat-jsl-1:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_127954v3/bat-jsl-1/igt@kms_dsc@dsc-basic.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3555">i915#3555</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/9886">i915#9886</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_force_connector_basic@force-load-detect:</p>
+<ul>
+<li>bat-atsm-1:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_127954v3/bat-atsm-1/igt@kms_force_connector_basic@force-load-detect.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/6093">i915#6093</a>) +4 other tests skip</li>
+<li>bat-jsl-1:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_127954v3/bat-jsl-1/igt@kms_force_connector_basic@force-load-detect.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109285">fdo#109285</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_pipe_crc_basic@read-crc-frame-sequence:</p>
+<ul>
+<li>bat-atsm-1:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_127954v3/bat-atsm-1/igt@kms_pipe_crc_basic@read-crc-frame-sequence.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1836">i915#1836</a>) +6 other tests skip</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_prop_blob@basic:</p>
+<ul>
+<li>bat-atsm-1:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_127954v3/bat-atsm-1/igt@kms_prop_blob@basic.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/7357">i915#7357</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_setmode@basic-clone-single-crtc:</p>
+<ul>
+<li>bat-atsm-1:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_127954v3/bat-atsm-1/igt@kms_setmode@basic-clone-single-crtc.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/6094">i915#6094</a>)</li>
+<li>bat-jsl-1:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_127954v3/bat-jsl-1/igt@kms_setmode@basic-clone-single-crtc.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3555">i915#3555</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@prime_vgem@basic-fence-flip:</p>
+<ul>
+<li>bat-atsm-1:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_127954v3/bat-atsm-1/igt@prime_vgem@basic-fence-flip.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109295">fdo#109295</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/6078">i915#6078</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@prime_vgem@basic-gtt:</p>
+<ul>
+<li>bat-atsm-1:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_127954v3/bat-atsm-1/igt@prime_vgem@basic-gtt.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109295">fdo#109295</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/4077">i915#4077</a>) +1 other test skip</li>
+</ul>
+</li>
+<li>
+<p>igt@prime_vgem@basic-write:</p>
+<ul>
+<li>bat-atsm-1:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_127954v3/bat-atsm-1/igt@prime_vgem@basic-write.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109295">fdo#109295</a>) +2 other tests skip</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>
+<p>igt@gem_tiled_blits@basic:</p>
+<ul>
+<li>fi-pnv-d510:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14193/fi-pnv-d510/igt@gem_tiled_blits@basic.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_127954v3/fi-pnv-d510/igt@gem_tiled_blits@basic.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@hangcheck:</p>
+<ul>
+<li>fi-skl-guc:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14193/fi-skl-guc/igt@i915_selftest@live@hangcheck.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/10112">i915#10112</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_127954v3/fi-skl-guc/igt@i915_selftest@live@hangcheck.html">PASS</a></li>
+</ul>
+</li>
+</ul>
+<p>{name}: This element is suppressed. This means it is ignored when computing<br />
+          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_14193 -&gt; Patchwork_127954v3</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_14193: c655e0fd28045dbaa581d04bf7cc266eec1c3457 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_7698: af750f5e7eaad98d40d8c924eb5f05e99d3c668b @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  Patchwork_127954v3: c655e0fd28045dbaa581d04bf7cc266eec1c3457 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+<h3>Linux commits</h3>
+<p>835ccebe70c3 drm/i915/alpm: Alpm aux wake configuration for lnl<br />
+0e3065cb8b51 drm/i915/alpm: Calculate ALPM Entry check<br />
+db49768897a7 drm/i915/psr: Add alpm_parameters struct<br />
+3a83ad3407f9 drm/i915/alpm: Add ALPM register definitions</p>
+
+</body>
+</html>
+
+--===============5462435274208041497==--
