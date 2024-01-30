@@ -2,51 +2,50 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 72341842261
-	for <lists+intel-gfx@lfdr.de>; Tue, 30 Jan 2024 12:12:28 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3CCB2842308
+	for <lists+intel-gfx@lfdr.de>; Tue, 30 Jan 2024 12:29:00 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0A6C1112F8F;
-	Tue, 30 Jan 2024 11:11:57 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 869FB112FBE;
+	Tue, 30 Jan 2024 11:28:21 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.115])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6B0F5112F8F
- for <intel-gfx@lists.freedesktop.org>; Tue, 30 Jan 2024 11:11:55 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E16B410F619;
+ Tue, 30 Jan 2024 11:28:18 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1706613115; x=1738149115;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=AbUMNG6d+nzhdDJS5E1BXSFc98FlxovmYOuFnXGL3R8=;
- b=UTism385eeUDMt0MjfGyhp1DvyAbHTH4RHdKd70Lce3RUwtmecqanHFt
- 90Kl57nRZKjJST5KPP4vHAkeYCxlhbiPwccP148ftKNBwna00kigwq0Ru
- TiK/3bQcQSoVGLOBBDMTsUGgdNAnq1WLheKjnN29wwsahjetOdNtgU6N2
- 2o+P82S31Gl7+OWuj7RAFaMa3iOLzJyuyilPOuGZQoxcnOe6Kl5SbhfnT
- p4Dk9Wz1/2B3vtqnrteMb/7OnrPK4T1tgpTpK0dGOtqMw9dFsXJ2bbcWJ
- csx+k775IQ+ZvI7Fc88mDqlMNuVbn2DJXWrGOwL6qxOHOt1xClL6+H3JU A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10968"; a="402877199"
-X-IronPort-AV: E=Sophos;i="6.05,707,1701158400"; d="scan'208";a="402877199"
-Received: from fmsmga004.fm.intel.com ([10.253.24.48])
- by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Jan 2024 03:11:55 -0800
+ t=1706614099; x=1738150099;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=eJL/XKRz5Rj/B0GXTvlJ17kxFpJtQk9pJgOJUKAx18U=;
+ b=frNDbmMwcYNYwzcA9T2XSHv04Bwu3t7Yb6qOY78+yPQtQoEB362xzpUF
+ fVt6LwKXTdgjuhlCF+zGQCPthsFblXIdew8xcO+G9/b3qeNBeUg0StiCN
+ 8MHSivYwbp6bZBkSbZIw59RFKFJLYBVpEYngMSRQyaccwY7dF0KGKT+ld
+ 90Pb/AwzgyhLfbChoTCnlrquUveDILQB4sZyumKr5beYIoYYvr35qI1Mw
+ f5bsRP2O+ggtG8e1W6yieLaWhm53qEZmqCkhbBHUroWG4nFbTwx42pAdE
+ OTk4j90QFR+J06MIPzaIkLbCshYJie2UMQMArTAhHyM82BzXWbkMDRWJE g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10968"; a="24727167"
+X-IronPort-AV: E=Sophos;i="6.05,707,1701158400"; d="scan'208";a="24727167"
+Received: from fmsmga003.fm.intel.com ([10.253.24.29])
+ by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 30 Jan 2024 03:28:17 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10968"; a="858461258"
-X-IronPort-AV: E=Sophos;i="6.05,707,1701158400"; d="scan'208";a="858461258"
-Received: from swilyman-mobl1.ger.corp.intel.com (HELO
- jhogande-mobl1.intel.com) ([10.249.41.112])
- by fmsmga004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Jan 2024 03:11:53 -0800
-From: =?UTF-8?q?Jouni=20H=C3=B6gander?= <jouni.hogander@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Subject: [PATCH v3 4/4] drm/i915/alpm: Alpm aux wake configuration for lnl
-Date: Tue, 30 Jan 2024 13:11:30 +0200
-Message-Id: <20240130111130.3298779-5-jouni.hogander@intel.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20240130111130.3298779-1-jouni.hogander@intel.com>
-References: <20240130111130.3298779-1-jouni.hogander@intel.com>
+X-IronPort-AV: E=McAfee;i="6600,9927,10968"; a="878410341"
+X-IronPort-AV: E=Sophos;i="6.05,707,1701158400"; d="scan'208";a="878410341"
+Received: from turnipsi.fi.intel.com (HELO kekkonen.fi.intel.com)
+ ([10.237.72.44])
+ by fmsmga003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 30 Jan 2024 03:28:10 -0800
+Received: from svinhufvud.ger.corp.intel.com (localhost [IPv6:::1])
+ by kekkonen.fi.intel.com (Postfix) with ESMTP id 8512811F8D2;
+ Tue, 30 Jan 2024 13:28:05 +0200 (EET)
+From: Sakari Ailus <sakari.ailus@linux.intel.com>
+To: linux-pm@vger.kernel.org
+Subject: [PATCH v5 0/2] Small runtime PM API changes
+Date: Tue, 30 Jan 2024 13:28:04 +0200
+Message-Id: <20240130112805.158790-1-sakari.ailus@linux.intel.com>
+X-Mailer: git-send-email 2.39.2
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -60,56 +59,108 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: "Rafael J. Wysocki" <rafael@kernel.org>, linux-pci@vger.kernel.org,
+ dri-devel@lists.freedesktop.org, Jaroslav Kysela <perex@perex.cz>,
+ Stanislaw Gruszka <stanislaw.gruszka@linux.intel.com>,
+ laurent.pinchart@ideasonboard.com, David Airlie <airlied@gmail.com>,
+ Paul Elder <paul.elder@ideasonboard.com>, Bjorn Helgaas <helgaas@kernel.org>,
+ linux-media@vger.kernel.org,
+ =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
+ intel-gfx@lists.freedesktop.org, Lucas De Marchi <lucas.demarchi@intel.com>,
+ Mark Brown <broonie@kernel.org>,
+ Jacek Lawrynowicz <jacek.lawrynowicz@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+ intel-xe@lists.freedesktop.org, Alex Elder <elder@kernel.org>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>, linux-sound@vger.kernel.org,
+ Takashi Iwai <tiwai@suse.com>, Daniel Vetter <daniel@ffwll.ch>,
+ netdev@vger.kernel.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Lunarlake has some configurations in ALPM_CTL register for legacy ALPM as
-well. Write these.
+Hi folks,
 
-Bspec: 71477
+Here's a small but a different set of patches for making two relatively
+minor changes to runtime PM API. I restarted version numbering as this is
+meaningfully different from the previous set.
 
-v2: move version check to lnl_alpm_configure
+pm_runtime_get_if_active() loses its second argument as it only made sense
+to have ign_usage_count argument true.
 
-Signed-off-by: Jouni Högander <jouni.hogander@intel.com>
----
- drivers/gpu/drm/i915/display/intel_psr.c | 17 +++++++++++++++++
- 1 file changed, 17 insertions(+)
+The other change is also small but it has an effect on callers:
+pm_runtime_put_autosuspend() will, in the future, be re-purposed to
+include a call to pm_runtime_mark_last_busy() as well. Before this,
+current users of the function are moved to __pm_runtime_put_autosuspend()
+(added by this patchset) which will continue to have the current
+behaviour.
 
-diff --git a/drivers/gpu/drm/i915/display/intel_psr.c b/drivers/gpu/drm/i915/display/intel_psr.c
-index 7aedda0ca2d2..72cadad09db5 100644
---- a/drivers/gpu/drm/i915/display/intel_psr.c
-+++ b/drivers/gpu/drm/i915/display/intel_psr.c
-@@ -1554,6 +1554,21 @@ static void wm_optimization_wa(struct intel_dp *intel_dp,
- 			     wa_16013835468_bit_get(intel_dp), 0);
- }
- 
-+static void lnl_alpm_configure(struct intel_dp *intel_dp)
-+{
-+	struct drm_i915_private *dev_priv = dp_to_i915(intel_dp);
-+	enum transcoder cpu_transcoder = intel_dp->psr.transcoder;
-+	struct intel_psr *psr = &intel_dp->psr;
-+
-+	if (DISPLAY_VER(dev_priv) < 20)
-+		return;
-+
-+	intel_de_write(dev_priv, ALPM_CTL(cpu_transcoder),
-+		       ALPM_CTL_EXTENDED_FAST_WAKE_ENABLE |
-+		       ALPM_CTL_ALPM_ENTRY_CHECK(psr->alpm_parameters.check_entry_lines) |
-+		       ALPM_CTL_EXTENDED_FAST_WAKE_TIME(psr->alpm_parameters.fast_wake_lines));
-+}
-+
- static void intel_psr_enable_source(struct intel_dp *intel_dp,
- 				    const struct intel_crtc_state *crtc_state)
- {
-@@ -1619,6 +1634,8 @@ static void intel_psr_enable_source(struct intel_dp *intel_dp,
- 			     intel_dp->psr.psr2_sel_fetch_enabled ?
- 			     IGNORE_PSR2_HW_TRACKING : 0);
- 
-+	lnl_alpm_configure(intel_dp);
-+
- 	/*
- 	 * Wa_16013835468
- 	 * Wa_14015648006
+I haven't included the conversion patches in this set as I only want to do
+that once this set has been approved and merged. The tree specific patches
+can be found here, on linux-next master (there are some V4L2 patches
+there, too, please ignore them for now):
+<URL:https://git.kernel.org/pub/scm/linux/kernel/git/sailus/linux-next.git/log/?
+
+Later on, users calling pm_runtime_mark_last_busy() immediately followed
+by __pm_runtime_put_autosuspend() will be switched back to
+pm_runtime_put_autosuspend() once its behaviour change has been done (a
+patch near top of that branch). I'll provide these once the preceding ones
+have been merged.
+
+Comments are welcome.
+
+since v4:
+
+- patch 1: Squash patch 2
+  <URL:https://lists.freedesktop.org/archives/dri-devel/2024-January/438739.html>.
+
+- patch 1: Add to documentation of pm_runtime_get_if_{active,in_use} that
+  if PM runtime is disabled, an error is returned and the usage_count
+  remains unmodified.
+
+- patch 1: Fix spelling of "explicitly" in the commit message.
+
+- Use upper case "PM:" prefix in subject.
+
+since v3:
+
+- patch 1: Drop the previously added documentation on driver use of
+  pm_runtime_get_conditional().
+
+- Add a patch to make pm_runtime_get_conditional() static, including
+  switching i915 to pm_runtime_get_if_{active,in_use}.
+
+since v2:
+
+- Rebase on v6.8-rc1 (no changes).
+
+- Add Rodrigo's Reviewed-by: to the 1st patch.
+
+since v1:
+
+- patch 1: Rename __pm_runtime_get_conditional() as
+  pm_runtime_get_conditional().
+
+- patch 1: Reword documentation on driver use of
+  pm_runtime_get_conditional().
+
+Sakari Ailus (2):
+  PM: runtime: Simplify pm_runtime_get_if_active() usage
+  PM: runtime: Add pm_runtime_put_autosuspend() replacement
+
+ Documentation/power/runtime_pm.rst      | 22 +++++++++-------
+ drivers/accel/ivpu/ivpu_pm.c            |  2 +-
+ drivers/base/power/runtime.c            | 35 +++++++++++++++++++++++--
+ drivers/gpu/drm/i915/intel_runtime_pm.c |  5 +++-
+ drivers/gpu/drm/xe/xe_pm.c              |  2 +-
+ drivers/media/i2c/ccs/ccs-core.c        |  2 +-
+ drivers/media/i2c/ov64a40.c             |  2 +-
+ drivers/media/i2c/thp7312.c             |  2 +-
+ drivers/net/ipa/ipa_smp2p.c             |  2 +-
+ drivers/pci/pci.c                       |  2 +-
+ include/linux/pm_runtime.h              | 30 ++++++++++-----------
+ sound/hda/hdac_device.c                 |  2 +-
+ 12 files changed, 73 insertions(+), 35 deletions(-)
+
 -- 
-2.34.1
+2.39.2
 
