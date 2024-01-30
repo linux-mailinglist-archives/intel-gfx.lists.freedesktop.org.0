@@ -2,66 +2,67 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 25BAF84313F
-	for <lists+intel-gfx@lfdr.de>; Wed, 31 Jan 2024 00:28:29 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 60121843140
+	for <lists+intel-gfx@lfdr.de>; Wed, 31 Jan 2024 00:28:53 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B6341113724;
-	Tue, 30 Jan 2024 23:28:27 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DC8A0113723;
+	Tue, 30 Jan 2024 23:28:51 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-qv1-f54.google.com (mail-qv1-f54.google.com
- [209.85.219.54])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 05C39113724
- for <intel-gfx@lists.freedesktop.org>; Tue, 30 Jan 2024 23:28:27 +0000 (UTC)
-Received: by mail-qv1-f54.google.com with SMTP id
- 6a1803df08f44-6818a9fe380so33987546d6.2
- for <intel-gfx@lists.freedesktop.org>; Tue, 30 Jan 2024 15:28:26 -0800 (PST)
+Received: from mail-qv1-f41.google.com (mail-qv1-f41.google.com
+ [209.85.219.41])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 55F5C113723
+ for <intel-gfx@lists.freedesktop.org>; Tue, 30 Jan 2024 23:28:51 +0000 (UTC)
+Received: by mail-qv1-f41.google.com with SMTP id
+ 6a1803df08f44-6869233d472so32236196d6.2
+ for <intel-gfx@lists.freedesktop.org>; Tue, 30 Jan 2024 15:28:51 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=chromium.org; s=google; t=1706657246; x=1707262046;
+ d=chromium.org; s=google; t=1706657270; x=1707262070;
  darn=lists.freedesktop.org; 
  h=in-reply-to:content-transfer-encoding:content-disposition
  :mime-version:references:message-id:subject:cc:to:from:date:from:to
  :cc:subject:date:message-id:reply-to;
- bh=HKS1x0+G1bcghb8XKyGon9Y/lzNST22DPeEtLmCzP/M=;
- b=RKhx0s6z5+IqChsiqYI2M4v3ZbMHUL6w3a+GLI7PT38GuAbQm4iMUtlp59kPTxY52k
- FlGm6Lh5rYLwTNXu7lXRkWChFg3AIOO1srbufMypv1qmfPTs3kk68lVAxxOLf/dZu6DP
- z34k5VIC/xqfF9fx7UQYzG0jtUsSCLeYszZJ8=
+ bh=Pl0ZhX+iLz/X6gNYRyJAaFxE17vuP0ChN6QqCUewRdw=;
+ b=BvVxRyNE3XXxhNB0hOkVm3kQEJDnay0W8CGkVp2/M+cj+SSCWiryCY6WCXeCSrfT3/
+ QJ2KQCCmCG9LJEUR5fXicbYoSb+I15vvGg3rPouichlj7Zrv0ZdxWTzwjrk4epCoUprh
+ Z4slN7wlRJ3KHLeWAQKguS0jxdKGe4tqzzaLU=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1706657246; x=1707262046;
+ d=1e100.net; s=20230601; t=1706657270; x=1707262070;
  h=in-reply-to:content-transfer-encoding:content-disposition
  :mime-version:references:message-id:subject:cc:to:from:date
  :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
- bh=HKS1x0+G1bcghb8XKyGon9Y/lzNST22DPeEtLmCzP/M=;
- b=OamAPqTYF/8idvju8svinfgBw3GAIqKVUEMHif/r4RCPMdabJ9dzEomgQa7qgxewBd
- Y6sRfjJEbKirmBEBIrrvU0kRVEpWhCyhuqLG6jQ4eAV6C0VF1Nfs6ByHHgvBwYwMZl9X
- QdlVfg0rLM0ZbaEGARGQD5g6y+4OHj8iou2b4kKEklIwwXFhyAeD+xftQuaMX3BgqsET
- QsFh5DWpYdKSAz1yPcEaUVAFvrYqbE6Mn5R6FVx7mZ0npzgRWLO6k8ewdhj93jl2EQxY
- IUOy6EcXrkZE6sorN39fl7P41z4PcsYckjwP6jiS2SNb4v1POLnfGlUsFLGCg8aAYS/R
- Ubqg==
-X-Gm-Message-State: AOJu0YzaHA/CHVTTsftC5Vo21bVYCjcEbykjkLbZk4yOAgerIVmmse+W
- 5LJvNRJYOexAoPMzI9oRzcyrTC+YAsYYWHQUayEb5Y4OcuQGvWGhjOceu9A3Yw==
-X-Google-Smtp-Source: AGHT+IGaeIkoDY65LtZoY3KvxR22cD89ik55994MM8rbOfNcbNRpue5ns92Ps2VEQ2FV5zacMZFFnw==
-X-Received: by 2002:a05:6214:f0e:b0:68c:4fac:930e with SMTP id
- gw14-20020a0562140f0e00b0068c4fac930emr1235qvb.54.1706657246200; 
- Tue, 30 Jan 2024 15:27:26 -0800 (PST)
+ bh=Pl0ZhX+iLz/X6gNYRyJAaFxE17vuP0ChN6QqCUewRdw=;
+ b=FFR+OTOrLdIsCeCtROUgroufOUont6Kgb0v2uNUhu5kmcGBanppSAbrD+5/Qg/Esz+
+ fIZwWI261oeXpDlKcI/coz2TU2EwOqen4GZ53CllNYAzh/gqYvlerFdF9fwL8k58umGQ
+ Ix+NltmevDyxRVvUWFcZb/zX9o8LaJ8mo92BVbyHku2cZmOCHGOev5o3BH6XDmAQcGWl
+ lc/Oy51/DgaLIPGrPpLJ6X2r3uvxbiABNZQB8gpiV6hueTTpsAu1emiBKzi3NWmamJhZ
+ B8q/vGWYX9kCzmxUwqKrLgYXR5/Yu2X2TOaVusE1E5Oh9CVT77B0UH/PQrXb1BH5rgQi
+ XPUg==
+X-Gm-Message-State: AOJu0YzJYj1l4PC27nCML+uFAtAvMSy2kBNhYxz5BRfh1gLB3+ZxTGKQ
+ ohG/r0VGctsI8GM1HmJfLQYdDABM7dzjasOzqGRHyUpyRnWj0zUUDfdLyBn6Mw==
+X-Google-Smtp-Source: AGHT+IFc2QmiwDQPSWusNSbZHblbkOAwUWKXokltQIAFYgKp3H5P0pP638KwTCFjF2CSjp8zle0Few==
+X-Received: by 2002:a05:6214:d44:b0:685:97e7:afce with SMTP id
+ 4-20020a0562140d4400b0068597e7afcemr64951qvr.10.1706657270564; 
+ Tue, 30 Jan 2024 15:27:50 -0800 (PST)
 Received: from google.com (240.157.150.34.bc.googleusercontent.com.
  [34.150.157.240]) by smtp.gmail.com with ESMTPSA id
- b17-20020a0cbf51000000b0068109717d02sm4939060qvj.54.2024.01.30.15.27.25
+ oo29-20020a056214451d00b0068c373857edsm4515942qvb.73.2024.01.30.15.27.50
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Tue, 30 Jan 2024 15:27:25 -0800 (PST)
-Date: Tue, 30 Jan 2024 23:27:24 +0000
+ Tue, 30 Jan 2024 15:27:50 -0800 (PST)
+Date: Tue, 30 Jan 2024 23:27:49 +0000
 From: Paz Zcharya <pazz@chromium.org>
-To: Ville Syrjala <ville.syrjala@linux.intel.com>
-Subject: Re: [PATCH v3 15/16] drm/i915: Try to relocate the BIOS fb to the
- start of ggtt
-Message-ID: <ZbmF3IeyAyb-QERO@google.com>
+To: "Shankar, Uma" <uma.shankar@intel.com>
+Subject: Re: [PATCH v3 16/16] drm/i915: Annotate more of the BIOS fb takeover
+ failure paths
+Message-ID: <ZbmF9YMEDAivx6jF@google.com>
 References: <20240116075636.6121-1-ville.syrjala@linux.intel.com>
- <20240116075636.6121-16-ville.syrjala@linux.intel.com>
+ <20240116075636.6121-17-ville.syrjala@linux.intel.com>
+ <CY5PR11MB6344E9E8201862F7489FF4A6F4752@CY5PR11MB6344.namprd11.prod.outlook.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20240116075636.6121-16-ville.syrjala@linux.intel.com>
+In-Reply-To: <CY5PR11MB6344E9E8201862F7489FF4A6F4752@CY5PR11MB6344.namprd11.prod.outlook.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -74,52 +75,30 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org, Andrzej Hajda <andrzej.hajda@intel.com>
+Cc: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, Jan 16, 2024 at 09:56:35AM +0200, Ville Syrjala wrote:
-> From: Ville Syrjälä <ville.syrjala@linux.intel.com>
+On Mon, Jan 22, 2024 at 03:12:01PM +0000, Shankar, Uma wrote:
 > 
-> On MTL the GOP (for whatever reason) likes to bind its framebuffer
-> high up in the ggtt address space. This can conflict with whatever
-> ggtt_reserve_guc_top() is trying to do, and the result is that
-> ggtt_reserve_guc_top() fails and then we proceed to explode when
-> trying to tear down the driver. Thus far I haven't analyzed what
-> causes the actual fireworks, but it's not super important as even
-> if it didn't explode we'd still fail the driver load and the user
-> would be left with an unusable GPU.
 > 
-> To remedy this (without having to figure out exactly what
-> ggtt_reserve_guc_top() is trying to achieve) we can attempt to
-> relocate the BIOS framebuffer to a lower ggtt address. We can do
-> this at this early point in driver init because nothing else is
-> supposed to be clobbering the ggtt yet. So we simply change where
-> in the ggtt we pin the vma, the original PTEs will be left as is,
-> and the new PTEs will get written with the same dma addresses.
-> The plane will keep on scanning out from the original PTEs until
-> we are done with the whole process, and at that point we rewrite
-> the plane's surface address register to point at the new ggtt
-> address.
+> > -----Original Message-----
+> > From: Intel-gfx <intel-gfx-bounces@lists.freedesktop.org> On Behalf Of Ville
+> > Syrjala
+> > Sent: Tuesday, January 16, 2024 1:27 PM
+> > To: intel-gfx@lists.freedesktop.org
+> > Subject: [PATCH v3 16/16] drm/i915: Annotate more of the BIOS fb takeover
+> > failure paths
+> > 
+> > From: Ville Syrjälä <ville.syrjala@linux.intel.com>
+> > 
+> > Annotate a few more of the failure paths on the initial BIOS fb takeover to avoid
+> > having to guess why things aren't working the way we expect.
 > 
-> Since we don't need a specific ggtt address for the plane
-> (apart from needing it to land in the mappable region for
-> normal stolen objects) we'll just try to pin it without a fixed
-> offset first. It should end up at the lowest available address
-> (which really should be 0 at this point in the driver init).
-> If that fails we'll fall back to just pinning it exactly to the
-> origianal address.
+> Looks Good to me.
+> Reviewed-by: Uma Shankar <uma.shankar@intel.com>
 > 
-> To make sure we don't accidentlally pin it partially over the
-> original ggtt range (as that would corrupt the original PTEs)
-> we reserve the original range temporarily during this process.
-> 
-> v2: Try to pin explicitly to ggtt offset 0 as otherwise DG2 puts it
->     even higher (atm we have no PIN_LOW flag to force it low)
-> 
-> Cc: Paz Zcharya <pazz@chromium.org>
-> Reviewed-by: Andrzej Hajda <andrzej.hajda@intel.com>
-> Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
+> > Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 Hi Ville,
 
 Thank you so much for this incredible series.
