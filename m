@@ -2,66 +2,98 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id B1DE7843A75
-	for <lists+intel-gfx@lfdr.de>; Wed, 31 Jan 2024 10:12:01 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id BA48F843A7F
+	for <lists+intel-gfx@lfdr.de>; Wed, 31 Jan 2024 10:12:41 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E0CDA10EC71;
-	Wed, 31 Jan 2024 09:11:55 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4C9A8113A87;
+	Wed, 31 Jan 2024 09:12:10 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-lj1-f170.google.com (mail-lj1-f170.google.com
- [209.85.208.170])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A880510EC71
- for <intel-gfx@lists.freedesktop.org>; Wed, 31 Jan 2024 09:11:54 +0000 (UTC)
-Received: by mail-lj1-f170.google.com with SMTP id
- 38308e7fff4ca-2cf206e4d56so55581141fa.3
- for <intel-gfx@lists.freedesktop.org>; Wed, 31 Jan 2024 01:11:54 -0800 (PST)
+Received: from mail-ej1-f46.google.com (mail-ej1-f46.google.com
+ [209.85.218.46])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D6E7F113A87
+ for <intel-gfx@lists.freedesktop.org>; Wed, 31 Jan 2024 09:12:08 +0000 (UTC)
+Received: by mail-ej1-f46.google.com with SMTP id
+ a640c23a62f3a-a27e7b70152so186560966b.0
+ for <intel-gfx@lists.freedesktop.org>; Wed, 31 Jan 2024 01:12:08 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=linaro.org; s=google; t=1706692253; x=1707297053; darn=lists.freedesktop.org;
+ d=ffwll.ch; s=google; t=1706692267; x=1707297067; darn=lists.freedesktop.org; 
  h=in-reply-to:content-transfer-encoding:content-disposition
- :mime-version:message-id:subject:cc:to:from:date:from:to:cc:subject
- :date:message-id:reply-to;
- bh=cgExCvRH14FXNOEX2q+ieKqRx3LRFYlOhTkoQIbaOMI=;
- b=xnObgAOs0BPARPlfnINBsTDZZbQ3x24pyK43zL8DNN/Qvp8VdAu4JDyRuoJIBsQrWo
- +tuK58MGLlIaHFb9LfzlHk4VTmeCK4QL4M8ek5gGXKl6fh4kqZf64vkyPhuV05YJyd3g
- GCl1t+4w7rDKSAkyBCIFMgvl1UBkDgujPjTNg4tENbu4mtc3SD5jkQT+bq18h6jcd2pz
- lZkL7ZEzJahs2BKU42rdWJYv90iIaxHel1TN0tuS83zR7bj8i8AyJGq3mGw1PI85Hms5
- tBDqzHjimjbqVg0KGN4WMBYObUvKv3WFk2/X9bMnYODmUJemZORp6YZyNEr0338buQCy
- q/Yg==
+ :mime-version:references:mail-followup-to:message-id:subject:cc:to
+ :from:date:from:to:cc:subject:date:message-id:reply-to;
+ bh=ORBEpQ5F08UVhnCzKa+jzZ+oJJNJsZKWbQ0DCuxPaWc=;
+ b=A0Jch1DZcevK137wsPQsIkO7nyvwmSA5U1p3Fp0gr5YXAUPNCR8UJH80Fl9r+6tjIk
+ R9o3hl/8lcs/3uT62oj3sgA9LGZ1UnNV0JV/0cQjmTyDJdNIUtKbTp/2/RLueFFJ0/Qm
+ HKvWOxxigQ48YW7PduDDk5F0Gtqb5/Y/SGbSg=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1706692253; x=1707297053;
+ d=1e100.net; s=20230601; t=1706692267; x=1707297067;
  h=in-reply-to:content-transfer-encoding:content-disposition
- :mime-version:message-id:subject:cc:to:from:date:x-gm-message-state
- :from:to:cc:subject:date:message-id:reply-to;
- bh=cgExCvRH14FXNOEX2q+ieKqRx3LRFYlOhTkoQIbaOMI=;
- b=NJ2w5uP6s9mCOEpF0kCqMpO3zA9pCLZ3bFz8bO9W2rGruH/yOgYOArVL8BlGBZ1wN3
- +W0oMGXtonCNrOguhqimNSFkAJGfTXZG3Xa0MUOaVUMD3ZaBL9Mix7O4viGCS1XoDwU+
- GLtwEF89VUgxsR4Sn2hgeMZEmVsqjieGGyGuanZjRyHvL12+aGtZXAz7gCL+6sExQNXs
- 4Ukw+3jQMAavF0aqUdEtapHueqDb5S2vpaI1qs4aBQfZ+Pz8QO5YK2tXfy3AEBo6ivEm
- Z5gVkmsFnxfYJVlXu/bE9wHJKPL9vnh/VkqBtr9z6CcTHLff0TLcw3cXUWtv/UH11B/U
- pjuQ==
-X-Gm-Message-State: AOJu0YzK+1GCeUQ1SKd5aYNZX+ji1x6/tMi4vQ0S1RiXeEiNv3F1rz7y
- pXk/q239E90frluKAd/VYsZThGAXWdGwN62xphiQnYx2MGdtl8+NUDKN9RkEn8U=
-X-Google-Smtp-Source: AGHT+IEKxu+DvVmX2V+Ho9agy9CO6Vfuk9+x4uHjd6xbnu8GyTrj4nTMdMO7EM1EZ0B6gV7SKSOWQg==
-X-Received: by 2002:a05:651c:b1e:b0:2d0:6c48:95af with SMTP id
- b30-20020a05651c0b1e00b002d06c4895afmr401928ljr.50.1706692252705; 
- Wed, 31 Jan 2024 01:10:52 -0800 (PST)
-Received: from localhost ([102.140.226.10]) by smtp.gmail.com with ESMTPSA id
- s9-20020a05600c45c900b0040ef718cf81sm978022wmo.28.2024.01.31.01.10.51
+ :mime-version:references:mail-followup-to:message-id:subject:cc:to
+ :from:date:x-gm-message-state:from:to:cc:subject:date:message-id
+ :reply-to;
+ bh=ORBEpQ5F08UVhnCzKa+jzZ+oJJNJsZKWbQ0DCuxPaWc=;
+ b=aXpvtu4vCaRi6/Mq9R3VtD3WEozS2xDCMqNqkKNPZb7/5OidfV0fYBS9bADx3D+2AT
+ HVi0AT+z2/yHZ+Sjz3mRaNMATv49cgITgvquYygr3hAKdr+fBOF2eCqEG8t1IBk9tC17
+ LeQsfAWGUm+SGVFekWgkLbY1U1DBhe9K2FUL4eAqqErWUfQP5a+6gdO1AejPMQYDbYpH
+ P9bx4+UbVC/3i9zWxAsZGQDKbuKkNuXisNWfai1SPksazOERSFLL/qTDHBk6ljOhcE4A
+ p/HR9Zm2wCh7ef7rWf2k07pFataQsJwgR+8fBXigK1wvT7gNSxXzXcgHaDcgzYYgBMks
+ 6/DQ==
+X-Gm-Message-State: AOJu0YxO8jCVfThszSdpMCf5V5t2/dhEimJemr7DnB2bzmV7ETcavTar
+ jczPzFT4BaOsUK00ZWP8C0qWDj9iIuqmz3DKeSX8yfhMvZJWHFTXWxNtxlL19xE=
+X-Google-Smtp-Source: AGHT+IHHkRoncH5TZwJ2KO/1SVucsjdiD6pGPJaM5NKeKM2EzUdubU6eh2uy4dvG7OzWu32QgOh+eg==
+X-Received: by 2002:a17:906:4a52:b0:a35:b6a1:712d with SMTP id
+ a18-20020a1709064a5200b00a35b6a1712dmr697445ejv.2.1706692266392; 
+ Wed, 31 Jan 2024 01:11:06 -0800 (PST)
+Received: from phenom.ffwll.local ([2a02:168:57f4:0:efd0:b9e5:5ae6:c2fa])
+ by smtp.gmail.com with ESMTPSA id
+ j9-20020a170906254900b00a311685890csm5987876ejb.22.2024.01.31.01.11.05
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Wed, 31 Jan 2024 01:10:52 -0800 (PST)
-Date: Wed, 31 Jan 2024 12:10:48 +0300
-From: Dan Carpenter <dan.carpenter@linaro.org>
-To: oe-kbuild@lists.linux.dev,
- Juha-Pekka Heikkila <juhapekka.heikkila@gmail.com>,
- intel-xe@lists.freedesktop.org, intel-gfx@lists.freedesktop.org
-Subject: Re: [PATCH 3/5] drm/xe: store bind time pat index to xe_bo
-Message-ID: <7ae75ca8-cc58-4baa-abf3-0caaa4513f34@moroto.mountain>
+ Wed, 31 Jan 2024 01:11:05 -0800 (PST)
+Date: Wed, 31 Jan 2024 10:11:03 +0100
+From: Daniel Vetter <daniel@ffwll.ch>
+To: Jason-JH Lin =?utf-8?B?KOael+edv+elpSk=?= <Jason-JH.Lin@mediatek.com>
+Subject: Re: [PATCH] drm/atomic-helpers: remove legacy_cursor_update hacks
+Message-ID: <ZboOp7JOp5teV1Cs@phenom.ffwll.local>
+Mail-Followup-To: Jason-JH Lin =?utf-8?B?KOael+edv+elpSk=?=
+ <Jason-JH.Lin@mediatek.com>, 
+ "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+ "linux-mediatek@lists.infradead.org" <linux-mediatek@lists.infradead.org>,
+ "michel@daenzer.net" <michel@daenzer.net>,
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
+ "chunkuang.hu@kernel.org" <chunkuang.hu@kernel.org>,
+ "linux-arm-msm@vger.kernel.org" <linux-arm-msm@vger.kernel.org>,
+ "mikita.lipski@amd.com" <mikita.lipski@amd.com>,
+ "dmitry.baryshkov@linaro.org" <dmitry.baryshkov@linaro.org>,
+ "tzimmermann@suse.de" <tzimmermann@suse.de>,
+ "maxime@cerno.tech" <maxime@cerno.tech>,
+ "daniel.vetter@intel.com" <daniel.vetter@intel.com>,
+ "nicholas.kazlauskas@amd.com" <nicholas.kazlauskas@amd.com>,
+ "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
+ "quic_abhinavk@quicinc.com" <quic_abhinavk@quicinc.com>,
+ Project_Global_Chrome_Upstream_Group
+ <Project_Global_Chrome_Upstream_Group@mediatek.com>, 
+ "manasi.d.navare@intel.com" <manasi.d.navare@intel.com>,
+ "lucas.demarchi@intel.com" <lucas.demarchi@intel.com>,
+ "sean@poorly.run" <sean@poorly.run>,
+ "matthias.bgg@gmail.com" <matthias.bgg@gmail.com>,
+ "dmitry.osipenko@collabora.com" <dmitry.osipenko@collabora.com>,
+ "fshao@chromium.org" <fshao@chromium.org>,
+ "linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>, 
+ "jani.nikula@intel.com" <jani.nikula@intel.com>,
+ "angelogioacchino.delregno@collabora.com"
+ <angelogioacchino.delregno@collabora.com>, 
+ "freedreno@lists.freedesktop.org" <freedreno@lists.freedesktop.org>
+References: <20230216111214.3489223-1-daniel.vetter@ffwll.ch>
+ <20230307145613.xvhru3fpcudlpazt@houat>
+ <aac416742920953999a9ce230ac68139bf5b9790.camel@mediatek.com>
+ <ZbKlsTEvGPiGtzS3@phenom.ffwll.local>
+ <1349365de499bae53a8c868738c7270fc16813d5.camel@mediatek.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20240126210807.320671-4-juhapekka.heikkila@gmail.com>
+In-Reply-To: <1349365de499bae53a8c868738c7270fc16813d5.camel@mediatek.com>
+X-Operating-System: Linux phenom 6.6.11-amd64 
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -74,123 +106,149 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: oe-kbuild-all@lists.linux.dev
+Cc: "fshao@chromium.org" <fshao@chromium.org>,
+ "daniel.vetter@ffwll.ch" <daniel.vetter@ffwll.ch>,
+ "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
+ "daniel.vetter@intel.com" <daniel.vetter@intel.com>,
+ Project_Global_Chrome_Upstream_Group
+ <Project_Global_Chrome_Upstream_Group@mediatek.com>,
+ "dmitry.osipenko@collabora.com" <dmitry.osipenko@collabora.com>,
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
+ "chunkuang.hu@kernel.org" <chunkuang.hu@kernel.org>,
+ "daniel@ffwll.ch" <daniel@ffwll.ch>,
+ "jani.nikula@intel.com" <jani.nikula@intel.com>,
+ "linux-arm-msm@vger.kernel.org" <linux-arm-msm@vger.kernel.org>,
+ "michel@daenzer.net" <michel@daenzer.net>,
+ "lucas.demarchi@intel.com" <lucas.demarchi@intel.com>,
+ "quic_abhinavk@quicinc.com" <quic_abhinavk@quicinc.com>,
+ "linux-mediatek@lists.infradead.org" <linux-mediatek@lists.infradead.org>,
+ "maxime@cerno.tech" <maxime@cerno.tech>,
+ "matthias.bgg@gmail.com" <matthias.bgg@gmail.com>,
+ "mikita.lipski@amd.com" <mikita.lipski@amd.com>,
+ "linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>,
+ "angelogioacchino.delregno@collabora.com"
+ <angelogioacchino.delregno@collabora.com>,
+ "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+ "manasi.d.navare@intel.com" <manasi.d.navare@intel.com>,
+ "tzimmermann@suse.de" <tzimmermann@suse.de>,
+ "dmitry.baryshkov@linaro.org" <dmitry.baryshkov@linaro.org>,
+ "freedreno@lists.freedesktop.org" <freedreno@lists.freedesktop.org>,
+ "nicholas.kazlauskas@amd.com" <nicholas.kazlauskas@amd.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi Juha-Pekka,
+On Wed, Jan 31, 2024 at 05:17:08AM +0000, Jason-JH Lin (æž—ç¿ç¥¥) wrote:
+> On Thu, 2024-01-25 at 19:17 +0100, Daniel Vetter wrote:
+> >  	 
+> > External email : Please do not click links or open attachments until
+> > you have verified the sender or the content.
+> >  On Tue, Jan 23, 2024 at 06:09:05AM +0000, Jason-JH Lin (æž—ç¿ç¥¥) wrote:
+> > > Hi Maxime, Daniel,
+> > > 
+> > > We encountered similar issue with mediatek SoCs.
+> > > 
+> > > We have found that in drm_atomic_helper_commit_rpm(), when
+> > disabling
+> > > the cursor plane, the old_state->legacy_cursor_update in
+> > > drm_atomic_wait_for_vblank() is set to true.
+> > > As the result, we are not actually waiting for a vlbank to wait for
+> > our
+> > > hardware to close the cursor plane. Subsequently, the execution
+> > > proceeds to drm_atomic_helper_cleanup_planes() to  free the cursor
+> > > buffer. This can lead to use-after-free issues with our hardware.
+> > > 
+> > > Could you please apply this patch to fix our problem?
+> > > Or are there any considerations for not applying this patch?
+> > 
+> > Mostly it needs someone to collect a pile of acks/tested-by and then
+> > land
+> > it.
+> > 
+> 
+> Got it. I would add tested-by tag for mediatek SoC.
+> 
+> > I'd be _very_ happy if someone else can take care of that ...
+> > 
+> > There's also the potential issue that it might slow down some of the
+> > legacy X11 use-cases that really needed a non-blocking cursor, but I
+> > think
+> > all the drivers where this matters have switched over to the async
+> > plane
+> > update stuff meanwhile. So hopefully that's good.
+> > 
+> 
+> I think all the drivers should have switched to async plane update.
+> 
+> Can we add the checking condition to see if atomic_async_update/check
+> function are implemented?
 
-kernel test robot noticed the following build warnings:
+Pretty sure not all have done that, so really it boils down to whether we
+break a real user's use-case. Which pretty much can only be checked by
+merging the patch (hence the requirement to get as many acks as possible
+from display drivers) and then being willing to handle any fallout that's
+reported as regressions for a specific driver.
 
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
+It's a pile of work, at least when it goes south, that's why I'm looking
+for volunteers.
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Juha-Pekka-Heikkila/drm-xe-pat-annotate-pat-index-table-with-compression-information/20240127-091231
-base:   https://gitlab.freedesktop.org/drm/xe/kernel.git drm-xe-next
-patch link:    https://lore.kernel.org/r/20240126210807.320671-4-juhapekka.heikkila%40gmail.com
-patch subject: [PATCH 3/5] drm/xe: store bind time pat index to xe_bo
-config: sparc-randconfig-r081-20240128 (https://download.01.org/0day-ci/archive/20240131/202401311604.1pLlAxeK-lkp@intel.com/config)
-compiler: sparc64-linux-gcc (GCC) 13.2.0
+Note that handling the fallout doesn't mean you have to fix that specific
+driver, the only realistic option might be to reinstate the legacy cursor
+behaviour, but as an explicit opt-in that only that specific driver
+enables.
 
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Reported-by: Dan Carpenter <dan.carpenter@linaro.org>
-| Closes: https://lore.kernel.org/r/202401311604.1pLlAxeK-lkp@intel.com/
+So maybe for next round of that patch it might be good to have a 2nd patch
+which implements this fallback plan in the shared atomic modeset code?
 
-New smatch warnings:
-drivers/gpu/drm/xe/xe_pt.c:1265 __xe_pt_bind_vma() warn: possible memory leak of 'ifence'
-drivers/gpu/drm/xe/xe_pt.c:1265 __xe_pt_bind_vma() warn: possible memory leak of 'rfence'
+Cheers, Sima
 
-vim +/ifence +1265 drivers/gpu/drm/xe/xe_pt.c
-
-dd08ebf6c3525a Matthew Brost       2023-03-30  1192  struct dma_fence *
-9b9529ce379a08 Francois Dugast     2023-07-31  1193  __xe_pt_bind_vma(struct xe_tile *tile, struct xe_vma *vma, struct xe_exec_queue *q,
-dd08ebf6c3525a Matthew Brost       2023-03-30  1194  		 struct xe_sync_entry *syncs, u32 num_syncs,
-dd08ebf6c3525a Matthew Brost       2023-03-30  1195  		 bool rebind)
-dd08ebf6c3525a Matthew Brost       2023-03-30  1196  {
-dd08ebf6c3525a Matthew Brost       2023-03-30  1197  	struct xe_vm_pgtable_update entries[XE_VM_MAX_LEVEL * 2 + 1];
-dd08ebf6c3525a Matthew Brost       2023-03-30  1198  	struct xe_pt_migrate_pt_update bind_pt_update = {
-dd08ebf6c3525a Matthew Brost       2023-03-30  1199  		.base = {
-dd08ebf6c3525a Matthew Brost       2023-03-30  1200  			.ops = xe_vma_is_userptr(vma) ? &userptr_bind_ops : &bind_ops,
-dd08ebf6c3525a Matthew Brost       2023-03-30  1201  			.vma = vma,
-fd84041d094ce8 Matthew Brost       2023-07-19  1202  			.tile_id = tile->id,
-dd08ebf6c3525a Matthew Brost       2023-03-30  1203  		},
-dd08ebf6c3525a Matthew Brost       2023-03-30  1204  		.bind = true,
-dd08ebf6c3525a Matthew Brost       2023-03-30  1205  	};
-21ed3327e388c2 Matthew Brost       2023-06-22  1206  	struct xe_vm *vm = xe_vma_vm(vma);
-dd08ebf6c3525a Matthew Brost       2023-03-30  1207  	u32 num_entries;
-dd08ebf6c3525a Matthew Brost       2023-03-30  1208  	struct dma_fence *fence;
-5387e865d90e92 Matthew Brost       2023-01-27  1209  	struct invalidation_fence *ifence = NULL;
-fd84041d094ce8 Matthew Brost       2023-07-19  1210  	struct xe_range_fence *rfence;
-6fb884b76bd164 Juha-Pekka Heikkila 2024-01-26  1211  	struct xe_bo *bo = xe_vma_bo(vma);
-dd08ebf6c3525a Matthew Brost       2023-03-30  1212  	int err;
-dd08ebf6c3525a Matthew Brost       2023-03-30  1213  
-dd08ebf6c3525a Matthew Brost       2023-03-30  1214  	bind_pt_update.locked = false;
-6fb884b76bd164 Juha-Pekka Heikkila 2024-01-26  1215  	xe_bo_assert_held(bo);
-dd08ebf6c3525a Matthew Brost       2023-03-30  1216  	xe_vm_assert_held(vm);
-dd08ebf6c3525a Matthew Brost       2023-03-30  1217  
-21ed3327e388c2 Matthew Brost       2023-06-22  1218  	vm_dbg(&xe_vma_vm(vma)->xe->drm,
-dd08ebf6c3525a Matthew Brost       2023-03-30  1219  	       "Preparing bind, with range [%llx...%llx) engine %p.\n",
-0e1a234618a86c Paulo Zanoni        2023-09-29  1220  	       xe_vma_start(vma), xe_vma_end(vma), q);
-dd08ebf6c3525a Matthew Brost       2023-03-30  1221  
-876611c2b75689 Matt Roper          2023-06-01  1222  	err = xe_pt_prepare_bind(tile, vma, entries, &num_entries, rebind);
-dd08ebf6c3525a Matthew Brost       2023-03-30  1223  	if (err)
-dd08ebf6c3525a Matthew Brost       2023-03-30  1224  		goto err;
-c73acc1eeba5e3 Francois Dugast     2023-09-12  1225  	xe_tile_assert(tile, num_entries <= ARRAY_SIZE(entries));
-dd08ebf6c3525a Matthew Brost       2023-03-30  1226  
-876611c2b75689 Matt Roper          2023-06-01  1227  	xe_vm_dbg_print_entries(tile_to_xe(tile), entries, num_entries);
-fd84041d094ce8 Matthew Brost       2023-07-19  1228  	xe_pt_calc_rfence_interval(vma, &bind_pt_update, entries,
-fd84041d094ce8 Matthew Brost       2023-07-19  1229  				   num_entries);
-dd08ebf6c3525a Matthew Brost       2023-03-30  1230  
-85dbfe47d07cdd Thomas Hellström    2023-06-05  1231  	/*
-85dbfe47d07cdd Thomas Hellström    2023-06-05  1232  	 * If rebind, we have to invalidate TLB on !LR vms to invalidate
-85dbfe47d07cdd Thomas Hellström    2023-06-05  1233  	 * cached PTEs point to freed memory. on LR vms this is done
-85dbfe47d07cdd Thomas Hellström    2023-06-05  1234  	 * automatically when the context is re-enabled by the rebind worker,
-85dbfe47d07cdd Thomas Hellström    2023-06-05  1235  	 * or in fault mode it was invalidated on PTE zapping.
-85dbfe47d07cdd Thomas Hellström    2023-06-05  1236  	 *
-85dbfe47d07cdd Thomas Hellström    2023-06-05  1237  	 * If !rebind, and scratch enabled VMs, there is a chance the scratch
-85dbfe47d07cdd Thomas Hellström    2023-06-05  1238  	 * PTE is already cached in the TLB so it needs to be invalidated.
-85dbfe47d07cdd Thomas Hellström    2023-06-05  1239  	 * on !LR VMs this is done in the ring ops preceding a batch, but on
-85dbfe47d07cdd Thomas Hellström    2023-06-05  1240  	 * non-faulting LR, in particular on user-space batch buffer chaining,
-85dbfe47d07cdd Thomas Hellström    2023-06-05  1241  	 * it needs to be done here.
-85dbfe47d07cdd Thomas Hellström    2023-06-05  1242  	 */
-fdb6a05383fab3 Thomas Hellström    2023-11-27  1243  	if ((rebind && !xe_vm_in_lr_mode(vm) && !vm->batch_invalidate_tlb) ||
-06951c2ee72df2 Thomas Hellström    2023-12-09  1244  	    (!rebind && xe_vm_has_scratch(vm) && xe_vm_in_preempt_fence_mode(vm))) {
-5387e865d90e92 Matthew Brost       2023-01-27  1245  		ifence = kzalloc(sizeof(*ifence), GFP_KERNEL);
-5387e865d90e92 Matthew Brost       2023-01-27  1246  		if (!ifence)
-5387e865d90e92 Matthew Brost       2023-01-27  1247  			return ERR_PTR(-ENOMEM);
-5387e865d90e92 Matthew Brost       2023-01-27  1248  	}
-5387e865d90e92 Matthew Brost       2023-01-27  1249  
-fd84041d094ce8 Matthew Brost       2023-07-19  1250  	rfence = kzalloc(sizeof(*rfence), GFP_KERNEL);
-fd84041d094ce8 Matthew Brost       2023-07-19  1251  	if (!rfence) {
-fd84041d094ce8 Matthew Brost       2023-07-19  1252  		kfree(ifence);
-fd84041d094ce8 Matthew Brost       2023-07-19  1253  		return ERR_PTR(-ENOMEM);
-fd84041d094ce8 Matthew Brost       2023-07-19  1254  	}
-fd84041d094ce8 Matthew Brost       2023-07-19  1255  
-6fb884b76bd164 Juha-Pekka Heikkila 2024-01-26  1256  	/*
-6fb884b76bd164 Juha-Pekka Heikkila 2024-01-26  1257  	 * BO which has XE_BO_SCANOUT_BIT set and was pinned as framebuffer
-6fb884b76bd164 Juha-Pekka Heikkila 2024-01-26  1258  	 * before with different PAT index cannot be bound with different PAT
-6fb884b76bd164 Juha-Pekka Heikkila 2024-01-26  1259  	 * index. This is to prevent switching CCS on/off from framebuffers
-6fb884b76bd164 Juha-Pekka Heikkila 2024-01-26  1260  	 * on the fly.
-6fb884b76bd164 Juha-Pekka Heikkila 2024-01-26  1261  	 */
-6fb884b76bd164 Juha-Pekka Heikkila 2024-01-26 @1262  	if (bo) {
-6fb884b76bd164 Juha-Pekka Heikkila 2024-01-26  1263  		if (bo->flags & XE_BO_SCANOUT_BIT && bo->pat_index_scanout &&
-6fb884b76bd164 Juha-Pekka Heikkila 2024-01-26  1264  		    bo->pat_index_scanout != vma->pat_index)
-6fb884b76bd164 Juha-Pekka Heikkila 2024-01-26 @1265  			return ERR_PTR(-EINVAL);
-
-Smatch wants a kfree(ifence) and kfree(rfence) before the return.
-
-6fb884b76bd164 Juha-Pekka Heikkila 2024-01-26  1266  
-6fb884b76bd164 Juha-Pekka Heikkila 2024-01-26  1267  		bo->pat_index = vma->pat_index;
-6fb884b76bd164 Juha-Pekka Heikkila 2024-01-26  1268  	}
-6fb884b76bd164 Juha-Pekka Heikkila 2024-01-26  1269  
-08dea7674533cf Matt Roper          2023-06-01  1270  	fence = xe_migrate_update_pgtables(tile->migrate,
-6fb884b76bd164 Juha-Pekka Heikkila 2024-01-26  1271  					   vm, bo, q,
-dd08ebf6c3525a Matthew Brost       2023-03-30  1272  					   entries, num_entries,
-dd08ebf6c3525a Matthew Brost       2023-03-30  1273  					   syncs, num_syncs,
-dd08ebf6c3525a Matthew Brost       2023-03-30  1274  					   &bind_pt_update.base);
+> 
+> Regards,
+> Jason-JH.Lin
+> 
+> > Cheers, Sima
+> > > 
+> > > Regards,
+> > > Jason-JH.Lin
+> > > 
+> > > On Tue, 2023-03-07 at 15:56 +0100, Maxime Ripard wrote:
+> > > > Hi,
+> > > > 
+> > > > On Thu, Feb 16, 2023 at 12:12:13PM +0100, Daniel Vetter wrote:
+> > > > > The stuff never really worked, and leads to lots of fun because
+> > it
+> > > > > out-of-order frees atomic states. Which upsets KASAN, among
+> > other
+> > > > > things.
+> > > > > 
+> > > > > For async updates we now have a more solid solution with the
+> > > > > ->atomic_async_check and ->atomic_async_commit hooks. Support
+> > for
+> > > > > that
+> > > > > for msm and vc4 landed. nouveau and i915 have their own commit
+> > > > > routines, doing something similar.
+> > > > > 
+> > > > > For everyone else it's probably better to remove the use-after-
+> > free
+> > > > > bug, and encourage folks to use the async support instead. The
+> > > > > affected drivers which register a legacy cursor plane and don't
+> > > > > either
+> > > > > use the new async stuff or their own commit routine are:
+> > amdgpu,
+> > > > > atmel, mediatek, qxl, rockchip, sti, sun4i, tegra, virtio, and
+> > > > > vmwgfx.
+> > > > > 
+> > > > > Inspired by an amdgpu bug report.
+> > > > 
+> > > > Thanks for submitting that patch. It's been in the downstream RPi
+> > > > tree
+> > > > for a while, so I'd really like it to be merged eventually :)
+> > > > 
+> > > > Acked-by: Maxime Ripard <maxime@cerno.tech>
+> > > > 
+> > > > Maxime
+> > 
 
 -- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
-
+Daniel Vetter
+Software Engineer, Intel Corporation
+http://blog.ffwll.ch
