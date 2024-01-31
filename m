@@ -2,139 +2,80 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9ACCD8447A0
-	for <lists+intel-gfx@lfdr.de>; Wed, 31 Jan 2024 19:57:16 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8347A8447AE
+	for <lists+intel-gfx@lfdr.de>; Wed, 31 Jan 2024 20:01:26 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CCAD310E297;
-	Wed, 31 Jan 2024 18:56:44 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3EE5110FC29;
+	Wed, 31 Jan 2024 19:01:20 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 115B210E297;
- Wed, 31 Jan 2024 18:56:44 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1706727404; x=1738263404;
- h=date:from:to:cc:subject:message-id:references:
- in-reply-to:mime-version;
- bh=QmtyFAZtSikQr3xirsnwdpV85n0PdhHF6TVNDbhZgA8=;
- b=fy29fMAXKl8JwDOw+nZToSNL4V3Nvk5h6N9VSluBziPdm5nG1mFWqJtd
- sfVusy83vVn0C8cbap6aOJelRcpe+SXqA2/42EYeuRE14sIcTKFQ4FEUR
- ktiji+tI8nepF9yAUQHN5kOFhCqq/p7ToQdSJSma+C9Dg3RlDVWTwcnrL
- DUjZsobw94MD4IhQDc+tywiXetTKiZH+tZVdp5c+C6ozCyCsJcS78mz1/
- eEkWfjGquRqL7ssVP0TFGWw3uFXAiWl+r8Gs71mJyUtYOJluB/SDOnV+T
- KKp0TL1R8lI+zyhOI4rME6VASlFMx/5v/m9FqHDJT28cxx/TJGIvG13CG g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10969"; a="10450844"
-X-IronPort-AV: E=Sophos;i="6.05,231,1701158400"; d="scan'208";a="10450844"
-Received: from orviesa005.jf.intel.com ([10.64.159.145])
- by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 31 Jan 2024 10:56:43 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.05,231,1701158400"; 
-   d="scan'208";a="4141684"
-Received: from orsmsx603.amr.corp.intel.com ([10.22.229.16])
- by orviesa005.jf.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
- 31 Jan 2024 10:56:44 -0800
-Received: from orsmsx612.amr.corp.intel.com (10.22.229.25) by
- ORSMSX603.amr.corp.intel.com (10.22.229.16) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35; Wed, 31 Jan 2024 10:56:42 -0800
-Received: from orsmsx612.amr.corp.intel.com (10.22.229.25) by
- ORSMSX612.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35; Wed, 31 Jan 2024 10:56:42 -0800
-Received: from ORSEDG601.ED.cps.intel.com (10.7.248.6) by
- orsmsx612.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35 via Frontend Transport; Wed, 31 Jan 2024 10:56:42 -0800
-Received: from NAM04-BN8-obe.outbound.protection.outlook.com (104.47.74.40) by
- edgegateway.intel.com (134.134.137.102) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.35; Wed, 31 Jan 2024 10:56:41 -0800
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=LXHd4viQmITjziCWNzKUfzlYbHtOxQju3GD+E/qXJwsgj/VIEH3SVewFJ81z6XIVjKLxuthgN+d5VmIjfwU73tDP/zg6SicBz38/VfLgw1CMCzVKZr4EIyqIm4gsxqRVfKefg4A+1efX2F7gdIzGUgWLtXy6ZJdejWmKSmpBi1eBTrEMEBjRVNZ6v2GopT8ipjQhGFnmsqt99l7IGgMfR8EplZtYUxwN8TBNwAbMu+BmOOq8+WCqTXklVl+ot5tBCH5dtrjTJ5aKWGEqzY2XAJ7Uzsq738M+ULqW/Riey30oeu1e/Yyj5Ft9OCI70uIGLGiS+JYmvnC3y4fxpkk3EQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=2WbgOkqMy9X+5H4uHyjm8PX0tTpLI1jtFzhfWGLd0H0=;
- b=XMScR3yBgFx0grFWY14ufjicyxuc1k18+P/RmrwBBpksy0JFKgAt6AZDbxye1CUc6Fv8tGQPKA8WK1DFcxn7P1WF5qFHuU3C5DnWtTb//nbpIrl5EW9QHuYK1eEYD517QSL/b2tARzbkHzPLcacSi4UvefX2fdjkHLFlnGoNoeuWnOCDlgZVxibFJog8zk2uk0efh6/tcCRXHgNG5/oEKGhGoDBPdzAGPGCyJmdYq6gcbsEaZJcZDu4cb9L9av0oXUrd//w2LlUtAsVHl2EZZW+92cFvS9sMkRqpUoLzTeKFKYvzJx3433Gl6+MDY0xsWLGqpL7jNTtQLrOq7q71GA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from DS0PR11MB8182.namprd11.prod.outlook.com (2603:10b6:8:163::17)
- by DS0PR11MB7734.namprd11.prod.outlook.com (2603:10b6:8:df::7) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.7228.34; Wed, 31 Jan 2024 18:56:39 +0000
-Received: from DS0PR11MB8182.namprd11.prod.outlook.com
- ([fe80::2157:7433:d32c:a8e3]) by DS0PR11MB8182.namprd11.prod.outlook.com
- ([fe80::2157:7433:d32c:a8e3%4]) with mapi id 15.20.7249.024; Wed, 31 Jan 2024
- 18:56:39 +0000
-Date: Wed, 31 Jan 2024 10:56:37 -0800
-From: Matt Roper <matthew.d.roper@intel.com>
-To: Juha-Pekka Heikkila <juhapekka.heikkila@gmail.com>
-Subject: Re: [PATCH 2/4] drm/xe: add bind time pat index to xe_bo structure
-Message-ID: <20240131185637.GB5347@mdroper-desk1.amr.corp.intel.com>
-References: <20240130193652.374270-1-juhapekka.heikkila@gmail.com>
- <20240130193652.374270-3-juhapekka.heikkila@gmail.com>
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <20240130193652.374270-3-juhapekka.heikkila@gmail.com>
-X-ClientProxiedBy: BYAPR04CA0005.namprd04.prod.outlook.com
- (2603:10b6:a03:40::18) To DS0PR11MB8182.namprd11.prod.outlook.com
- (2603:10b6:8:163::17)
+Received: from us-smtp-delivery-124.mimecast.com
+ (us-smtp-delivery-124.mimecast.com [170.10.133.124])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 171D610EB01
+ for <intel-gfx@lists.freedesktop.org>; Wed, 31 Jan 2024 19:01:19 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+ s=mimecast20190719; t=1706727678;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references;
+ bh=QttKSGMrYlAP/gIIbSl5aAxKkZ0juKyP2Dpz3AfaDWk=;
+ b=QRsecpk2M0yZymEpd0k03tKdcaOFrNJWwHSepNRRAtimsG5yB+HxxZ5PhTs2xqrwagvD2k
+ ZlTvALjS9rR7EXwREjZTGl2bfsfT5CpRI0J59lz+qKehKRBt0RDn/sVwtFJLi2WAbhA19M
+ 7dKskh5SHCdU5XJwl3haksduHALYbgU=
+Received: from mail-lj1-f199.google.com (mail-lj1-f199.google.com
+ [209.85.208.199]) by relay.mimecast.com with ESMTP with STARTTLS
+ (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
+ us-mta-160-a8SMinI6NgeGM3ta25Y5Fg-1; Wed, 31 Jan 2024 14:01:16 -0500
+X-MC-Unique: a8SMinI6NgeGM3ta25Y5Fg-1
+Received: by mail-lj1-f199.google.com with SMTP id
+ 38308e7fff4ca-2cf4f468ab5so2393751fa.2
+ for <intel-gfx@lists.freedesktop.org>; Wed, 31 Jan 2024 11:01:15 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1706727674; x=1707332474;
+ h=content-transfer-encoding:in-reply-to:organization:from
+ :content-language:references:cc:to:subject:user-agent:mime-version
+ :date:message-id:x-gm-message-state:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=QttKSGMrYlAP/gIIbSl5aAxKkZ0juKyP2Dpz3AfaDWk=;
+ b=FK2aO4HLTGTMJ2Ds2mkfaFefDluYx9S/giIGN1mlA82IJO98qyrXM6KRRRx2OXPYvR
+ Pzv/T1vzUI/CgzsIDZGKvdmQMwS0UvkdzOaDL2PdiQDgv98CLp2tXHerWD1Fi7YL+pCN
+ JCEfxEp/cXF7gT0nmUHaQnkf0BmhH8xaXPi0gjYqnNWgjf6vvag/jTGd62N3YQkCPN9f
+ GJJ2GK0BtirVdwwHkcR012SexiyVw25NwXrrNkNv1fGVwB3vDQ35PFjKWtLTPOk5naoE
+ awcPNVK/uhZpG9DOyMyYj9lPvGKcPmh+qKSwgdSOBQPwils1Vrjyd6Nn94LmEnWlKzxy
+ DTGQ==
+X-Gm-Message-State: AOJu0YzR48gQD3I5WlAzK9GvWzHGaJLNB+a33HBM1Q68fkhKsEdfGV/j
+ g2v5Y8aLPmorj5oA7tV/tFro3rd87r9+PXRJxLpU7cnEji7xqZNrwWHrMfDzRxtNMgnOp5jvwP0
+ /ZrQ4/b7LLgfncMhW/WUW2rfr/PyLkiyp0hUA//0hYtQMLWFkIDsDjd2IBzsHooSAhg==
+X-Received: by 2002:a2e:6e09:0:b0:2d0:5a90:647b with SMTP id
+ j9-20020a2e6e09000000b002d05a90647bmr1669588ljc.2.1706727674661; 
+ Wed, 31 Jan 2024 11:01:14 -0800 (PST)
+X-Google-Smtp-Source: AGHT+IFfL8rdW2PTd0sP4TQvzsVo3v4EjqT1ZZlnbGUdtbTl3/LC2Y1uwwBWLtW8T8bCdEsn1mXDHg==
+X-Received: by 2002:a2e:6e09:0:b0:2d0:5a90:647b with SMTP id
+ j9-20020a2e6e09000000b002d05a90647bmr1669575ljc.2.1706727674218; 
+ Wed, 31 Jan 2024 11:01:14 -0800 (PST)
+Received: from ?IPV6:2a02:810d:4b3f:ee94:abf:b8ff:feee:998b?
+ ([2a02:810d:4b3f:ee94:abf:b8ff:feee:998b])
+ by smtp.gmail.com with ESMTPSA id
+ fd12-20020a056402388c00b00557d839727esm6123032edb.7.2024.01.31.11.01.13
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Wed, 31 Jan 2024 11:01:13 -0800 (PST)
+Message-ID: <a8b9677e-2d51-4cdd-8105-02649ec221ea@redhat.com>
+Date: Wed, 31 Jan 2024 20:01:12 +0100
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DS0PR11MB8182:EE_|DS0PR11MB7734:EE_
-X-MS-Office365-Filtering-Correlation-Id: 2138739c-522d-4dc0-dd3b-08dc228e5b62
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: yVLkAMgfv8Q2tMoxvPNng4frezh8HENdLNvKZz8h4H2in8Tx6S+Cq48QF60M4zR9zvy1sxXfXvNer4AXzw4hERka85+X51gbfFuRoaTk7mCqMtQgGEJJlmPtxyYvKVTmeELTNONtnz4mZ90rkBmR6X9yj9vK3d9SiMtlGxtmL7g9HaqIBqUApYlRLe2oLrR6MG2r9N9xLfBElROCH4CNEBxp6zlLdt+kqGJWmfxtUUWz0obPL1syJSKwNRZkNye2RekCpMb9Ba0euOZ8sTLDnBcNF6xVGINiqZozPLs72ZvEYIWcRyFdUy+LGhmxOpyOjVSCTRPFi/UFw6NZTxJ/rUsqRe4uHsOgOT4MSJ529votzd4WlEEieFJd6puMCHbUf0l4vPpopN/KgvlilXsoNGUtlnEKo43EpViNyDKsmjQtT79Gt+9S77T/R6uIrx2VRPtAJj73YXbWXT0OFiZiBYs3KVz8sCd9qCHWqolNBbWigVTVZEK4+zE4QVFGUHV//Xhf9zAzOb7HEhMOhuLGIy4HDWuDxgoqFsOtn3mHm43clCf71GbOAE0UaEPwXd3w
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:DS0PR11MB8182.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230031)(376002)(136003)(39860400002)(366004)(346002)(396003)(230922051799003)(186009)(451199024)(64100799003)(1800799012)(83380400001)(2906002)(1076003)(26005)(5660300002)(38100700002)(66556008)(6486002)(66946007)(66476007)(6506007)(4326008)(8936002)(8676002)(6512007)(316002)(478600001)(6916009)(86362001)(82960400001)(33656002)(41300700001);
- DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?3IqOBSQqfqYw6rk1Szf0+W1m1EjfcK7TQQt+F1ORpgRjzmXvm/4rKybKZCZK?=
- =?us-ascii?Q?/qztK8a/ISowZmz/lxPkeHIk1daGlDRfjge0qx9/QuJpwjSfc84npO+qc+jH?=
- =?us-ascii?Q?KNbY3J98xOq7PNLLFRPVGZHayxvaj5iKPaEpthQqcV0z6WcaWlBzv4fTmRfg?=
- =?us-ascii?Q?/vOhmlXKb+m1qJCEQC1o9UL6RzIGBp+7wt60qOMH+4YJqIYLymxJQRF+cgzT?=
- =?us-ascii?Q?ezBlO1mZIognGFp+bcnLoZz7NJz0uFfu0wOtXSAUNq/8AV41osoiEl6s+Z9B?=
- =?us-ascii?Q?vXIJeNOhIClmq5dYrkRO8PqNpi14zJsLRubZXIwd0GNH9r25iMIK5clIZlrO?=
- =?us-ascii?Q?dO2RB8qUXvuQB0X4VccmQXn6OkWa+4rY7W6soiACbyqKy1VlYxSSzeKgptCo?=
- =?us-ascii?Q?bgPAIa7JU51PEUmwb2OplI/uMVmYYFvApQt++eJuJT+iQQavsf3uMxDcYzDt?=
- =?us-ascii?Q?tFS1VxptS2CSCfXbvLZ9YPZNJx/azPh9sl+Eq26t90KyhgTS+ky6KzjN0TOk?=
- =?us-ascii?Q?UrVIst8HYu0+U++Ql/LcIsmqlUcCORzOkOf+EJEPIgCfoO1E/HDwRM8Bu4T2?=
- =?us-ascii?Q?MKHXYMUBV/8nJm/Kl0suCpCHOr0RVrWMzd8N6OH68ZiurmRAu+ZJgv6f2KeN?=
- =?us-ascii?Q?I1QAZBX0dSvxR81xayRiewCicCllNY3MMofpIy36fyl6na3RsZTLRMuFfd3B?=
- =?us-ascii?Q?IaTy0eyds87/z4yQmlVZ9vHbxG3/1DO4KJufw3SpQW1lBa5NNLd+5b1LoCDc?=
- =?us-ascii?Q?GHC2OMqIGkCG6o0WuO93F6XoSmKN+IOhsBtcnEYh68CBCTxVTQhoRcDj5FYn?=
- =?us-ascii?Q?BS2J+DxCDXB7+uSaee8EiiEKhKJa0y4UfNo5QSfaYnv3vgox+T6y+oal6Abs?=
- =?us-ascii?Q?lWiuI3MawX8SrEgsQbtYz4FyIR3+mGfaYUT7m4goQdyLK0lZcnQA4NUmxmN+?=
- =?us-ascii?Q?qMPvN9BRcSqcDPnngh8EvV3Lz8fX4+jzCRXEuZZb4fLq955xnsjn000+WvTL?=
- =?us-ascii?Q?0Mj7Zo/SQNn1eXdTtgyulrO5QXTxJBcO/YnWuDHKuigeLGm4xgBTjoTrkn6K?=
- =?us-ascii?Q?LT2X0nuv4lGQ8C1TjaG3wby2syKaOnTW+aaeGLWKHFb1wjKyLgljcSujd6U9?=
- =?us-ascii?Q?VajidpZ40FdCPguR8CWMoBaDE5SBvq8c+n3jMue2hUrI0N0I4pNckB5q2N34?=
- =?us-ascii?Q?xmitNdpDSRTgvj84mfaevLIik2ri+h62vcf1XRXGOMHX36HaplvhgOSL957l?=
- =?us-ascii?Q?A+a9ZtP8d+v9lkA1nDo3AlWK4SIqtKUK4qN4z9McsKIyHd5Jn+56YQQmOcYs?=
- =?us-ascii?Q?OwWPTW7Cmc8a9EeAPcuPCogABIZ8rM3S191IaocpGQUTpCPNd2Br/tt8Tsiu?=
- =?us-ascii?Q?3mYOx+0f3HQ8lWgDDeSAiRBqv+GhfQU4R7kDOm40hgIIr81QCPM7SGVzGq/V?=
- =?us-ascii?Q?YoPO4S/Qsly2DHmJeN0QZSvxz5foeMmZLNFdNgadhvG/k7Lqur6GlnBdKU5/?=
- =?us-ascii?Q?LSOgygCHUy8qVJD6Sct0UipfoHkjphmX1zpuRXza36RR78L/FkH7mr2n+IhV?=
- =?us-ascii?Q?R8/dpP9CLPeB9i7PbB5IQzsopndDNh1vT3IcK+Ie3CqAtWEHs/Z4fS7yYJmZ?=
- =?us-ascii?Q?Ng=3D=3D?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 2138739c-522d-4dc0-dd3b-08dc228e5b62
-X-MS-Exchange-CrossTenant-AuthSource: DS0PR11MB8182.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 31 Jan 2024 18:56:39.5478 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: +PTUI71zhoFgEt90DVjbIACWNTlgRjzDop3CyLqDIHPlmQ9KvktdLTH2bLU9bEzP5glQfG6V3NVinnNtw2fQdQNngaT3NiTOJcW0y7KTAjw=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS0PR11MB7734
-X-OriginatorOrg: intel.com
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 1/6] drm/nouveau/acr/ga102: remove unused but set variable
+To: Jani Nikula <jani.nikula@intel.com>, dri-devel@lists.freedesktop.org
+References: <cover.1704908087.git.jani.nikula@intel.com>
+ <4d9f62fa6963acfd8b7d8f623799ba3a516e347d.1704908087.git.jani.nikula@intel.com>
+From: Danilo Krummrich <dakr@redhat.com>
+Organization: RedHat
+In-Reply-To: <4d9f62fa6963acfd8b7d8f623799ba3a516e347d.1704908087.git.jani.nikula@intel.com>
+X-Mimecast-Spam-Score: 0
+X-Mimecast-Originator: redhat.com
+Content-Language: en-US
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -147,120 +88,45 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
+Cc: nouveau@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
+ Karol Herbst <kherbst@redhat.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, Jan 30, 2024 at 09:36:50PM +0200, Juha-Pekka Heikkila wrote:
-> Add BO bind time pat index member to xe_bo structure and store
-> pat index from xe_vma to xe_bo.
+On 1/10/24 18:39, Jani Nikula wrote:
+> Fix the W=1 warning -Wunused-but-set-variable.
 > 
-> Signed-off-by: Juha-Pekka Heikkila <juhapekka.heikkila@gmail.com>
+> Cc: Karol Herbst <kherbst@redhat.com>
+> Cc: Lyude Paul <lyude@redhat.com>
+> Cc: Danilo Krummrich <dakr@redhat.com>
+> Cc: nouveau@lists.freedesktop.org
+> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+
+Reviewed-by: Danilo Krummrich <dakr@redhat.com>
+
 > ---
->  drivers/gpu/drm/xe/xe_bo_types.h | 12 ++++++++++++
->  drivers/gpu/drm/xe/xe_pt.c       | 22 ++++++++++++++++++----
->  2 files changed, 30 insertions(+), 4 deletions(-)
+>   drivers/gpu/drm/nouveau/nvkm/subdev/acr/lsfw.c | 3 +--
+>   1 file changed, 1 insertion(+), 2 deletions(-)
 > 
-> diff --git a/drivers/gpu/drm/xe/xe_bo_types.h b/drivers/gpu/drm/xe/xe_bo_types.h
-> index 14ef13b7b421..6d599f1e846b 100644
-> --- a/drivers/gpu/drm/xe/xe_bo_types.h
-> +++ b/drivers/gpu/drm/xe/xe_bo_types.h
-> @@ -91,6 +91,18 @@ struct xe_bo {
->  
->  	/** @vram_userfault_link: Link into @mem_access.vram_userfault.list */
->  		struct list_head vram_userfault_link;
-> +
-> +	/**
-> +	 * @pat_index: The pat index requested when bind this BO
-> +	 */
-> +	u16 pat_index;
-> +
-> +	/**
-> +	 * @has_sealed_pat_index: The pat index is sealed because this BO is
-> +	 * pinned as framebuffer. This is to prevent flipping compression
-> +	 * on/off from framebuffers while in use.
-> +	 */
-> +	bool has_sealed_pat_index;
->  };
->  
->  #define intel_bo_to_drm_bo(bo) (&(bo)->ttm.base)
-> diff --git a/drivers/gpu/drm/xe/xe_pt.c b/drivers/gpu/drm/xe/xe_pt.c
-> index de1030a47588..c72cb75d993c 100644
-> --- a/drivers/gpu/drm/xe/xe_pt.c
-> +++ b/drivers/gpu/drm/xe/xe_pt.c
-> @@ -1208,10 +1208,11 @@ __xe_pt_bind_vma(struct xe_tile *tile, struct xe_vma *vma, struct xe_exec_queue
->  	struct dma_fence *fence;
->  	struct invalidation_fence *ifence = NULL;
->  	struct xe_range_fence *rfence;
-> +	struct xe_bo *bo = xe_vma_bo(vma);
->  	int err;
->  
->  	bind_pt_update.locked = false;
-> -	xe_bo_assert_held(xe_vma_bo(vma));
-> +	xe_bo_assert_held(bo);
->  	xe_vm_assert_held(vm);
->  
->  	vm_dbg(&xe_vma_vm(vma)->xe->drm,
-> @@ -1252,8 +1253,21 @@ __xe_pt_bind_vma(struct xe_tile *tile, struct xe_vma *vma, struct xe_exec_queue
->  		return ERR_PTR(-ENOMEM);
->  	}
->  
-> +	/*
-> +	 * On Xe2 BO which was pinned as framebuffer before with different
-> +	 * PAT index cannot be bound with different PAT index. This is
-> +	 * to prevent switching CCS on/off from framebuffers on the fly
-> +	 * with Xe2.
-> +	 */
+> diff --git a/drivers/gpu/drm/nouveau/nvkm/subdev/acr/lsfw.c b/drivers/gpu/drm/nouveau/nvkm/subdev/acr/lsfw.c
+> index f36a359d4531..bd104a030243 100644
+> --- a/drivers/gpu/drm/nouveau/nvkm/subdev/acr/lsfw.c
+> +++ b/drivers/gpu/drm/nouveau/nvkm/subdev/acr/lsfw.c
+> @@ -218,7 +218,7 @@ nvkm_acr_lsfw_load_sig_image_desc_v2(struct nvkm_subdev *subdev,
+>   		const struct firmware *hsbl;
+>   		const struct nvfw_ls_hsbl_bin_hdr *hdr;
+>   		const struct nvfw_ls_hsbl_hdr *hshdr;
+> -		u32 loc, sig, cnt, *meta;
+> +		u32 sig, cnt, *meta;
+>   
+>   		ret = nvkm_firmware_load_name(subdev, path, "hs_bl_sig", ver, &hsbl);
+>   		if (ret)
+> @@ -227,7 +227,6 @@ nvkm_acr_lsfw_load_sig_image_desc_v2(struct nvkm_subdev *subdev,
+>   		hdr = nvfw_ls_hsbl_bin_hdr(subdev, hsbl->data);
+>   		hshdr = nvfw_ls_hsbl_hdr(subdev, hsbl->data + hdr->header_offset);
+>   		meta = (u32 *)(hsbl->data + hshdr->meta_data_offset);
+> -		loc = *(u32 *)(hsbl->data + hshdr->patch_loc);
+>   		sig = *(u32 *)(hsbl->data + hshdr->patch_sig);
+>   		cnt = *(u32 *)(hsbl->data + hshdr->num_sig);
+>   
 
-I haven't been following all the discussion here, but why is switching
-it on/off a problem?  On Xe2 can't we just always turn on decompression
-(assuming they were 4-tile)?
-
-Even if a content producer puts data into the buffer using a
-non-compression PAT index, my understanding is that the FlatCCS metadata
-for that part of the buffer still gets updated appropriately (to 0000 or
-whatever the code is for "uncompressed block").  If the decompression
-bit in PLANE_CTL basically translates to "pay attention to FlatCCS" vs
-"ignore FlatCCS" it shouldn't matter whether the data is truly
-compressed or not, right?  Since the FlatCCS area that corresponds to a
-buffer is still correct even when non-compressed PAT is used (I think),
-is there a reason to turn off decompression for 4-tile?
-
-Am I overlooking something?
-
-
-Matt
-
-> +	if (bo) {
-> +		if (bo->has_sealed_pat_index && bo->pat_index != vma->pat_index)
-> +			return ERR_PTR(-EINVAL);
-> +
-> +		bo->pat_index = vma->pat_index;
-> +	}
-> +
->  	fence = xe_migrate_update_pgtables(tile->migrate,
-> -					   vm, xe_vma_bo(vma), q,
-> +					   vm, bo, q,
->  					   entries, num_entries,
->  					   syncs, num_syncs,
->  					   &bind_pt_update.base);
-> @@ -1287,8 +1301,8 @@ __xe_pt_bind_vma(struct xe_tile *tile, struct xe_vma *vma, struct xe_exec_queue
->  				   DMA_RESV_USAGE_KERNEL :
->  				   DMA_RESV_USAGE_BOOKKEEP);
->  
-> -		if (!xe_vma_has_no_bo(vma) && !xe_vma_bo(vma)->vm)
-> -			dma_resv_add_fence(xe_vma_bo(vma)->ttm.base.resv, fence,
-> +		if (!xe_vma_has_no_bo(vma) && !bo->vm)
-> +			dma_resv_add_fence(bo->ttm.base.resv, fence,
->  					   DMA_RESV_USAGE_BOOKKEEP);
->  		xe_pt_commit_bind(vma, entries, num_entries, rebind,
->  				  bind_pt_update.locked ? &deferred : NULL);
-> -- 
-> 2.25.1
-> 
-
--- 
-Matt Roper
-Graphics Software Engineer
-Linux GPU Platform Enablement
-Intel Corporation
