@@ -2,50 +2,47 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0105D843B3C
-	for <lists+intel-gfx@lfdr.de>; Wed, 31 Jan 2024 10:38:03 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id CC67E843CD3
+	for <lists+intel-gfx@lfdr.de>; Wed, 31 Jan 2024 11:34:01 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7A3A610F4D2;
-	Wed, 31 Jan 2024 09:38:01 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0EFFB113B2C;
+	Wed, 31 Jan 2024 10:33:55 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A441310F4D2;
- Wed, 31 Jan 2024 09:38:00 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.65])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A1158113B14;
+ Wed, 31 Jan 2024 10:33:53 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1706693881; x=1738229881;
- h=date:from:to:cc:subject:message-id:reply-to:mime-version;
- bh=OIorUhZBeReQVurTkeItZ8NMRYrqCLlP5LSALyijMvM=;
- b=QTuU+H+yEfvfI83DmZ9XsW7/FE3Fefdv1iUOustkDHu2+8bt+OYmnWjl
- 96rlUnEWDEZK4Ks5zRDOC97l39eV2ICc+v67yO4Q4f6q8rTKO1JbbSEUb
- ArGMT6kBdWmMGjHkyl6tcPu9+wkDOBNxyQww68ZTtKaxJk2cW4x099mkD
- N7LfozGY3pc88R+uAWuwf105R/FKSw3ubHL/srDsHD8xOlD15U53jfIu+
- N6PbRVU7npYVPSWm5HantH8X00mnXfpo5ttG+51YBxNQk9EKpba89iMZF
- i9k5Q0wDlaOP/gkUKOzTA0c19yHmS8SJt/4/zTV+aSgOIMZSSQnNYBkFO A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10969"; a="10215305"
-X-IronPort-AV: E=Sophos;i="6.05,231,1701158400"; 
- d="asc'?scan'208";a="10215305"
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
- by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 31 Jan 2024 01:38:00 -0800
+ t=1706697233; x=1738233233;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=e/LvwFxrQNVCce+zkTCrQHdg7BYgjVpv+8lXG1cOAwg=;
+ b=D+IijPV6em3fhZk1QfKMJWAJJFsy4vUkgcQWvJZn61I0LSUKNjig9PI+
+ f4gSuPuy2kE49Lg0qkSgA32ePF2vly9KB94HP3drZ8u/I1W+5W7OPMUVx
+ wf/czhO16avyG3RSF3Fnai64XPORJhICa3obFCLFx3+odB3SOFjc/9iHj
+ wZwL6YM9WHNBKcQeWoW9ev/MxYCTzgHHjzzuWwuS2Dn23ED9spN7lhHXP
+ MU7k8EUOdneqtw55euOvBEoNcczOdIvOgjosxZB1g/mdG6rEdv/FRAWOp
+ lUFHw8hp2wGSl8KTb68gHRNX+8tUqUQvzIBKCV9CsBKTVEwEvgdFnjM7U g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10969"; a="407278655"
+X-IronPort-AV: E=Sophos;i="6.05,231,1701158400"; d="scan'208";a="407278655"
+Received: from fmviesa002.fm.intel.com ([10.60.135.142])
+ by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 31 Jan 2024 02:33:52 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10969"; a="822505537"
-X-IronPort-AV: E=Sophos;i="6.05,231,1701158400"; 
- d="asc'?scan'208";a="822505537"
-Received: from debian-skl.sh.intel.com (HELO debian-skl) ([10.239.160.45])
- by orsmga001.jf.intel.com with ESMTP; 31 Jan 2024 01:37:57 -0800
-Date: Wed, 31 Jan 2024 17:38:51 +0800
-From: Zhenyu Wang <zhenyuw@linux.intel.com>
-To: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Jani Nikula <jani.nikula@intel.com>,
- "Vivi, Rodrigo" <rodrigo.vivi@intel.com>
-Subject: [PULL] gvt-fixes
-Message-ID: <ZboVK03/Eb/jt7wf@debian-scheme>
+X-IronPort-AV: E=Sophos;i="6.05,231,1701158400"; d="scan'208";a="22747025"
+Received: from srr4-3-linux-106-armuthy.iind.intel.com ([10.190.238.56])
+ by fmviesa002.fm.intel.com with ESMTP; 31 Jan 2024 02:33:50 -0800
+From: Arun R Murthy <arun.r.murthy@intel.com>
+To: dri-devel@lists.freedesktop.org,
+	intel-gfx@lists.freedesktop.org
+Subject: [PATCHv2 1/2] drm/display/dp: Check for MSTM_CAP before MSTM_CTRL
+ write
+Date: Wed, 31 Jan 2024 15:53:43 +0530
+Message-Id: <20240131102344.1671929-1-arun.r.murthy@intel.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha1;
- protocol="application/pgp-signature"; boundary="QQvuDcYg+aj5hqnK"
-Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -58,69 +55,91 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: Zhenyu Wang <zhenyuw@linux.intel.com>
-Cc: intel-gfx <intel-gfx@lists.freedesktop.org>,
- intel-gvt-dev <intel-gvt-dev@lists.freedesktop.org>, zhi.wang.linux@gmail.com
+Cc: jani.nikula@intel.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+With DP2.1, multistream packetization and the underneth MST protocol
+will be required for SST. So check for MSTM_CAP to see if MST is really
+required and skip the MSTM_CTRL write so that we ensure that only the
+underneth protocol and the multistream packetization will be enabled and
+sink will not be confused by a corresponding dpcd write.
 
---QQvuDcYg+aj5hqnK
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-
-
-Hi, Joonas
-
-Here is another gvt-fixes pull which contains fixes on doc link and
-one uninitialized variable in warning message, also update about Zhi's
-new mail address in MAINTAINERS.
-
-Thanks.
+Signed-off-by: Arun R Murthy <arun.r.murthy@intel.com>
 ---
-The following changes since commit f9f031dd21a7ce13a13862fa5281d32e1029c70f:
+ drivers/gpu/drm/display/drm_dp_mst_topology.c | 38 +++++++++++--------
+ 1 file changed, 22 insertions(+), 16 deletions(-)
 
-  drm/i915/psr: Only allow PSR in LPSP mode on HSW non-ULT (2024-01-25 10:44:13 +0200)
+diff --git a/drivers/gpu/drm/display/drm_dp_mst_topology.c b/drivers/gpu/drm/display/drm_dp_mst_topology.c
+index 8ca01a6bf645..c5b3e51ea0c9 100644
+--- a/drivers/gpu/drm/display/drm_dp_mst_topology.c
++++ b/drivers/gpu/drm/display/drm_dp_mst_topology.c
+@@ -3666,12 +3666,14 @@ int drm_dp_mst_topology_mgr_set_mst(struct drm_dp_mst_topology_mgr *mgr, bool ms
+ 		mgr->mst_primary = mstb;
+ 		drm_dp_mst_topology_get_mstb(mgr->mst_primary);
+ 
+-		ret = drm_dp_dpcd_writeb(mgr->aux, DP_MSTM_CTRL,
+-					 DP_MST_EN |
+-					 DP_UP_REQ_EN |
+-					 DP_UPSTREAM_IS_SRC);
+-		if (ret < 0)
+-			goto out_unlock;
++		if (drm_dp_read_mst_cap(mgr->aux, mgr->dpcd)) {
++			ret = drm_dp_dpcd_writeb(mgr->aux, DP_MSTM_CTRL,
++						 DP_MST_EN |
++						 DP_UP_REQ_EN |
++						 DP_UPSTREAM_IS_SRC);
++			if (ret < 0)
++				goto out_unlock;
++		}
+ 
+ 		/* Write reset payload */
+ 		drm_dp_dpcd_write_payload(mgr, 0, 0, 0x3f);
+@@ -3684,7 +3686,8 @@ int drm_dp_mst_topology_mgr_set_mst(struct drm_dp_mst_topology_mgr *mgr, bool ms
+ 		mstb = mgr->mst_primary;
+ 		mgr->mst_primary = NULL;
+ 		/* this can fail if the device is gone */
+-		drm_dp_dpcd_writeb(mgr->aux, DP_MSTM_CTRL, 0);
++		if (drm_dp_read_mst_cap(mgr->aux, mgr->dpcd))
++			drm_dp_dpcd_writeb(mgr->aux, DP_MSTM_CTRL, 0);
+ 		ret = 0;
+ 		mgr->payload_id_table_cleared = false;
+ 
+@@ -3724,8 +3727,9 @@ drm_dp_mst_topology_mgr_invalidate_mstb(struct drm_dp_mst_branch *mstb)
+ void drm_dp_mst_topology_mgr_suspend(struct drm_dp_mst_topology_mgr *mgr)
+ {
+ 	mutex_lock(&mgr->lock);
+-	drm_dp_dpcd_writeb(mgr->aux, DP_MSTM_CTRL,
+-			   DP_MST_EN | DP_UPSTREAM_IS_SRC);
++	if (drm_dp_read_mst_cap(mgr->aux, mgr->dpcd))
++		drm_dp_dpcd_writeb(mgr->aux, DP_MSTM_CTRL,
++				   DP_MST_EN | DP_UPSTREAM_IS_SRC);
+ 	mutex_unlock(&mgr->lock);
+ 	flush_work(&mgr->up_req_work);
+ 	flush_work(&mgr->work);
+@@ -3773,13 +3777,15 @@ int drm_dp_mst_topology_mgr_resume(struct drm_dp_mst_topology_mgr *mgr,
+ 		goto out_fail;
+ 	}
+ 
+-	ret = drm_dp_dpcd_writeb(mgr->aux, DP_MSTM_CTRL,
+-				 DP_MST_EN |
+-				 DP_UP_REQ_EN |
+-				 DP_UPSTREAM_IS_SRC);
+-	if (ret < 0) {
+-		drm_dbg_kms(mgr->dev, "mst write failed - undocked during suspend?\n");
+-		goto out_fail;
++	if (drm_dp_read_mst_cap(mgr->aux, mgr->dpcd)) {
++		ret = drm_dp_dpcd_writeb(mgr->aux, DP_MSTM_CTRL,
++					 DP_MST_EN |
++					 DP_UP_REQ_EN |
++					 DP_UPSTREAM_IS_SRC);
++		if (ret < 0) {
++			drm_dbg_kms(mgr->dev, "mst write failed - undocked during suspend?\n");
++			goto out_fail;
++		}
+ 	}
+ 
+ 	/* Some hubs forget their guids after they resume */
+-- 
+2.25.1
 
-are available in the Git repository at:
-
-  https://github.com/intel/gvt-linux tags/gvt-fixes-2024-01-31
-
-for you to fetch changes up to 88569fa2c3bc83d77a96580da94dd35edee0f893:
-
-  MAINTAINERS: Update Zhi Wang's email address (2024-01-31 17:19:15 +0800)
-
-----------------------------------------------------------------
-gvt-fixes-2024-01-31
-
-- Fix broken gvt doc link (Zhenyu)
-- Fix one uninitialized variable bug in warning (Dan)
-- Update Zhi's new email address in MAINTAINERS file. (Zhi)
-
-----------------------------------------------------------------
-Dan Carpenter (1):
-      drm/i915/gvt: Fix uninitialized variable in handle_mmio()
-
-Zhenyu Wang (1):
-      drm/i915: Replace dead 01.org link
-
-Zhi Wang (1):
-      MAINTAINERS: Update Zhi Wang's email address
-
- MAINTAINERS                         | 4 ++--
- drivers/gpu/drm/i915/Kconfig        | 2 +-
- drivers/gpu/drm/i915/gvt/handlers.c | 3 +--
- drivers/gpu/drm/i915/intel_gvt.c    | 2 +-
- 4 files changed, 5 insertions(+), 6 deletions(-)
-
---QQvuDcYg+aj5hqnK
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iF0EARECAB0WIQTXuabgHDW6LPt9CICxBBozTXgYJwUCZboVJAAKCRCxBBozTXgY
-J6pKAJ0SCVZXC9bPKUlu5tg6BVbSEjrqQgCeKCTPSKD5rmhfPWUTssIEHlNr72g=
-=GZlb
------END PGP SIGNATURE-----
-
---QQvuDcYg+aj5hqnK--
