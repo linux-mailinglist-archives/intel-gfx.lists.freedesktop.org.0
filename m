@@ -2,51 +2,53 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id A15B284538C
-	for <lists+intel-gfx@lfdr.de>; Thu,  1 Feb 2024 10:15:18 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 358808453BA
+	for <lists+intel-gfx@lfdr.de>; Thu,  1 Feb 2024 10:22:28 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1540910EA6F;
-	Thu,  1 Feb 2024 09:15:16 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9FE3810EAA3;
+	Thu,  1 Feb 2024 09:22:25 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AE8FA10EA6F
- for <intel-gfx@lists.freedesktop.org>; Thu,  1 Feb 2024 09:15:14 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 33BD810EAA3;
+ Thu,  1 Feb 2024 09:22:24 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1706778915; x=1738314915;
+ t=1706779344; x=1738315344;
  h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=lnIDP7mag1CVdc6dBeC/BcGs/dkcWie0X74EhQOQJUo=;
- b=IUdxNEeu0AE4V3Ds7khb5ImOokQCYAZdKViiZPk94FP33HDdUWXMxtCW
- w4J/BR+10u8R2sCxcdTEId1vlTLv5ElJ89E3BraOZKsqu910BkmBV6KnA
- QdwcG+vPvgX8haV0K5SCOPuO1nu7DPNgPqHuktJJqrfotmV9YZHKyEn8j
- NiWz4SvxesfiVtehIn4LWur2s1GtPZyf17JqpmyZeDLAliiOgdRXw/Iiq
- wJIS0IhR62zuztB9S1l7CaEyg30g1OZ5uJVyAqsG91EzZzv0vSlbTIK6a
- Wl75TvnZAqxjqUmcNE/57H3aBPH3CadJeO2lCiSDyVMe//B5fEnTixNoe Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10969"; a="22351321"
-X-IronPort-AV: E=Sophos;i="6.05,234,1701158400"; d="scan'208";a="22351321"
-Received: from fmviesa005.fm.intel.com ([10.60.135.145])
+ message-id:mime-version:content-transfer-encoding;
+ bh=m/uKLiUM+HFN71t8qYSGfgHAqnpAxXuR7KnjoXsP0JQ=;
+ b=ivdaHqKnNd3wmav0fYDuwf++fU51Ql9dZKKlPP0B3A2Vfmq/WKFfFTE3
+ h4ZMhezwXusnUKqDGHlvIBrCKGLsTlMB5iHqR3qswyl78ODdOz1X+MMIZ
+ wgBX/KYBBTZ/jrrxjoaxgxB3SEJZ3ubQatx6leCQsTAeqZPHWDLmskALC
+ hH24kQLd+AUzTj8fxxfw8mca/c0BIPgNScqHEurQbMGRlWIHbesGJRTS0
+ j2Tdjn771VJwUQKyCeZPUXDjNafUQmsX9jOwWXtddxZ31k1xeHveoE42i
+ CNxUd9M5JG/01ELVbwA2Gy0hYHFmfM0ZhzkPLafAH8kZpdBmzdlT2fSl0 g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10969"; a="22352778"
+X-IronPort-AV: E=Sophos;i="6.05,234,1701158400"; d="scan'208";a="22352778"
+Received: from fmviesa008.fm.intel.com ([10.60.135.148])
  by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Feb 2024 01:15:15 -0800
+ 01 Feb 2024 01:22:23 -0800
 X-ExtLoop1: 1
 X-IronPort-AV: E=Sophos;i="6.05,234,1701158400"; 
-   d="scan'208";a="4331259"
+   d="scan'208";a="24198"
 Received: from aragners-mobl.ger.corp.intel.com (HELO localhost)
  ([10.252.43.111])
- by fmviesa005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Feb 2024 01:15:11 -0800
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Manasi Navare <navaremanasi@chromium.org>, intel-gfx@lists.freedesktop.org
-Subject: Re: [PATCH] drm/i915/display/vdsc: Fix the macro that calculates
- DSCC_/DSCA_ PPS reg address
-In-Reply-To: <20240131211909.622419-1-navaremanasi@chromium.org>
+ by fmviesa008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 01 Feb 2024 01:22:20 -0800
+From: Jani Nikula <jani.nikula@intel.com>
+To: Paz Zcharya <pazz@chromium.org>, Jouni =?utf-8?Q?H=C3=B6gander?=
+ <jouni.hogander@intel.com>, Luca Coelho <luciano.coelho@intel.com>
+Subject: Re: [PATCH] drm/i915/display: Include debugfs.h in
+ intel_display_debugfs_params.c
+In-Reply-To: <20240131204658.795278-1-pazz@chromium.org>
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20240131211909.622419-1-navaremanasi@chromium.org>
-Date: Thu, 01 Feb 2024 11:15:08 +0200
-Message-ID: <87ttmsh7fn.fsf@intel.com>
+References: <20240131204658.795278-1-pazz@chromium.org>
+Date: Thu, 01 Feb 2024 11:22:16 +0200
+Message-ID: <87o7d0h73r.fsf@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,82 +61,54 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Drew Davenport <ddavenport@chromium.org>
+Cc: Subrata Banik <subratabanik@google.com>, intel-gfx@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
+ Sean Paul <seanpaul@chromium.org>, Marcin Wojtas <mwojtas@chromium.org>,
+ Drew Davenport <ddavenport@chromium.org>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-
-Please use "drm/i915/dsc: " as the subject prefix.
-
-On Wed, 31 Jan 2024, Manasi Navare <navaremanasi@chromium.org> wrote:
-> Patch (bd077259d0a9: drm/i915/vdsc: Add function to read any PPS register) defines
-
-Please use the usual style to refer to commits:
-
-Commit bd077259d0a9 ("drm/i915/vdsc: Add function to read any PPS register")
-
-> a new macro to calculate the DSC PPS register addresses with PPS number as an
-> input. This macro correctly calculates the addresses till PPS 11 since the
-> addresses increment by 4. So in that case the following macro works correctly
-> to give correct register address:
-> _MMIO(_DSCA_PPS_0 + (pps) * 4)
+On Wed, 31 Jan 2024, Paz Zcharya <pazz@chromium.org> wrote:
+> Commit 8015bee0bfec ("drm/i915/display: Add framework to add parameters
+> specific to display") added the file intel_display_debugfs_params.c,
+> which calls the functions "debugfs_create_{bool, ulong, str}" -- all of
+> which are defined in <linux/debugfs.h>. The missing inclusion of this
+> header file is breaking the ChromeOS build -- add an explicit include
+> to fix that.
 >
-> However after PPS 11, the register address for PPS 12 increments by 12 because
-> of RC Buffer memory allocation in between. Because of this discontinuity
-> in the address space, the macro calculates wrong addresses for PPS 12 - 16
-> resulting into incorrect DSC PPS parameter value read/writes causing DSC
-> corruption.
 
-Thanks for catching and debugging this!
+Thanks for the patch, apparently in our configs some paths lead to
+debugfs.h. Just goes on to show how interdependent the kernel headers
+are.
 
-> This patch fixes it by correcting this macro to add the offset of 12 for
-> PPS >=12.
+Out of curiousity, what value do you have for CONFIG_DEBUG_FS kconfig?
 
-Please just say "Fix it ...". Once committed, this is no longer a patch.
-
-> Bug: https://gitlab.freedesktop.org/drm/intel/-/issues/10172
-
-Closes: instead of Bug:.
-
-> Fixes: bd077259d0a9 ("drm/i915/vdsc: Add function to read any PPS register")
-> Cc: Suraj Kandpal <suraj.kandpal@intel.com>
-> Cc: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
-> Cc: Animesh Manna <animesh.manna@intel.com>
-> Cc: Jani Nikula <jani.nikula@linux.intel.com>
-> Cc: Sean Paul <sean@poorly.run>
-> Cc: Drew Davenport <ddavenport@chromium.org>
-> Signed-off-by: Manasi Navare <navaremanasi@chromium.org>
-> ---
->  drivers/gpu/drm/i915/display/intel_vdsc_regs.h | 4 ++--
->  1 file changed, 2 insertions(+), 2 deletions(-)
->
-> diff --git a/drivers/gpu/drm/i915/display/intel_vdsc_regs.h b/drivers/gpu/drm/i915/display/intel_vdsc_regs.h
-> index 64f440fdc22b..db29660b74f3 100644
-> --- a/drivers/gpu/drm/i915/display/intel_vdsc_regs.h
-> +++ b/drivers/gpu/drm/i915/display/intel_vdsc_regs.h
-> @@ -51,8 +51,8 @@
->  #define DSCC_PICTURE_PARAMETER_SET_0		_MMIO(0x6BA00)
->  #define _DSCA_PPS_0				0x6B200
->  #define _DSCC_PPS_0				0x6BA00
-> -#define DSCA_PPS(pps)				_MMIO(_DSCA_PPS_0 + (pps) * 4)
-> -#define DSCC_PPS(pps)				_MMIO(_DSCC_PPS_0 + (pps) * 4)
-> +#define DSCA_PPS(pps)				((pps < 12) ? _MMIO(_DSCA_PPS_0 + (pps) * 4):_MMIO(_DSCA_PPS_0 + (pps + 12) * 4))
-> +#define DSCC_PPS(pps)				((pps < 12) ? _MMIO(_DSCC_PPS_0 + (pps) * 4):_MMIO(_DSCC_PPS_0 + (pps + 12) * 4))
-
-There's no need to duplicate so much here, this could be just:
-
-	_MMIO(_DSCC_PPS_0 + ((pps) < 12 ? (pps) : (pps) + 12) * 4)
-
-Also the macro arguments need to be wrapped in braces.
-
-With the nitpicks fixed, LGTM.
+Fixes: 8015bee0bfec ("drm/i915/display: Add framework to add parameters spe=
+cific to display")
+Reviewed-by: Jani Nikula <jani.nikula@intel.com>
 
 BR,
 Jani.
 
->  #define _ICL_DSC0_PICTURE_PARAMETER_SET_0_PB	0x78270
->  #define _ICL_DSC1_PICTURE_PARAMETER_SET_0_PB	0x78370
->  #define _ICL_DSC0_PICTURE_PARAMETER_SET_0_PC	0x78470
 
--- 
+> Signed-off-by: Paz Zcharya <pazz@chromium.org>
+> ---
+>  drivers/gpu/drm/i915/display/intel_display_debugfs_params.c | 1 +
+>  1 file changed, 1 insertion(+)
+>
+> diff --git a/drivers/gpu/drm/i915/display/intel_display_debugfs_params.c =
+b/drivers/gpu/drm/i915/display/intel_display_debugfs_params.c
+> index b7e68eb62452..f35718748555 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display_debugfs_params.c
+> +++ b/drivers/gpu/drm/i915/display/intel_display_debugfs_params.c
+> @@ -3,6 +3,7 @@
+>   * Copyright =C2=A9 2023 Intel Corporation
+>   */
+>=20=20
+> +#include <linux/debugfs.h>
+>  #include <linux/kernel.h>
+>=20=20
+>  #include <drm/drm_drv.h>
+
+--=20
 Jani Nikula, Intel
