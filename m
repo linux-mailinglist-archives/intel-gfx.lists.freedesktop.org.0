@@ -2,49 +2,57 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id CF0A4845A76
-	for <lists+intel-gfx@lfdr.de>; Thu,  1 Feb 2024 15:43:58 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 77379845A7A
+	for <lists+intel-gfx@lfdr.de>; Thu,  1 Feb 2024 15:44:18 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0EBF810EADF;
-	Thu,  1 Feb 2024 14:43:57 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CCEDF10E10E;
+	Thu,  1 Feb 2024 14:44:15 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="tQjCBHN1";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="PaiibA03";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from sin.source.kernel.org (sin.source.kernel.org [145.40.73.55])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DB30610E6EB;
- Thu,  1 Feb 2024 14:43:55 +0000 (UTC)
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
- by sin.source.kernel.org (Postfix) with ESMTP id 4BDAFCE1E5B;
- Thu,  1 Feb 2024 14:43:50 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 36ED8C433C7;
- Thu,  1 Feb 2024 14:43:49 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1706798629;
- bh=qJLupk3NVOLjD6RhoiB7KcctkmUfIGiwOyaf9Rwmoas=;
- h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
- b=tQjCBHN1JKj5NKPOrgK4xsHRIPaHfbKopMGnO55sLSzIwGhIoxqgsXpXFgQ+qvj9j
- RJeWzm4AJuUrOdwv8gKG/cCucngHSQFMc9J9lkfpR1wy+LkOw1VzPGkEWuvw9BTcAx
- X1JHZVEyuObC1ScbefEncX4yWDcIQRhQ4WwbrgdFv7ZkUJjD97CG8KE8f0UC1UMUG4
- Qztc0ABj3LRg1x5BgNcJy+lA05Yq5/9ibI/C2A2aSPF9RT/iZ5eDRZW070p1MD21rv
- UA6Vfb7rSROlUL9eB2ML9ylC9nxR+a6nAwSrko/RehMtSsPhq2rg+eSJUtWM2nj0G1
- v5VLVae/4aq8A==
-Date: Thu, 1 Feb 2024 15:43:46 +0100
-From: Maxime Ripard <mripard@kernel.org>
-To: Jani Nikula <jani.nikula@intel.com>
-Cc: dri-devel@lists.freedesktop.org, Thomas Zimmermann <tzimmermann@suse.de>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
- intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
-Subject: Re: Re: [PATCH 00/10] drm: drm debug and error logging improvements
-Message-ID: <henxwxlna777w6fzrhqrjp7wczlgbhpf5sxqnxsb6jguynwen7@5bhi7lrce5ve>
-References: <cover.1705410327.git.jani.nikula@intel.com>
- <871q9wgxfi.fsf@intel.com>
+Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.65])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9CF6E10E10E;
+ Thu,  1 Feb 2024 14:44:13 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1706798653; x=1738334653;
+ h=mime-version:content-transfer-encoding:in-reply-to:
+ references:subject:from:to:cc:message-id:date;
+ bh=kwkqjElahgLptw271BLWcXq1t2dP4CBdSW9XpPcO6Uo=;
+ b=PaiibA03QzkH6IKu2PAoK/LYzeRCrBxKB/CbuEYmv6qUhVymJ7bcXvnW
+ t7I6L8/Zmsdd/ziAKrJuoFNxcNq3GHtcGt5XJ4pAgTSitKQyUXq/wqnUQ
+ v1TuisvzFlswlD0Lg/mH88OK+hu4L7LJ0zvkh4HTc/+oiVTZ8KQ5Un/aR
+ hTSIqXKz4O929A63/fkSXOyLm2LkTCJGE2LvsQZmJHXTrAU64zzxVuwO1
+ Noom/5/xrkpFO3cbXnN2wdgaDPT2ba6VjtgHgicDy9qXGYIrx5yKdRt5i
+ F0HT/h2DEcSd1Nnx4YqgLgVEALnq/BSlAz5gjI2YyOxMu45pVQnhKtVwt A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10969"; a="407625861"
+X-IronPort-AV: E=Sophos;i="6.05,234,1701158400"; d="scan'208";a="407625861"
+Received: from fmviesa005.fm.intel.com ([10.60.135.145])
+ by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 01 Feb 2024 06:44:11 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.05,234,1701158400"; 
+   d="scan'208";a="4402770"
+Received: from unknown (HELO localhost) ([10.245.244.3])
+ by fmviesa005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 01 Feb 2024 06:44:08 -0800
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
- protocol="application/pgp-signature"; boundary="nnsabhwerybioihq"
-Content-Disposition: inline
-In-Reply-To: <871q9wgxfi.fsf@intel.com>
+Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <ZboVK03/Eb/jt7wf@debian-scheme>
+References: <ZboVK03/Eb/jt7wf@debian-scheme>
+Subject: Re: [PULL] gvt-fixes
+From: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
+To: "Vivi, Rodrigo" <rodrigo.vivi@intel.com>,
+ Jani Nikula <jani.nikula@intel.com>, Zhenyu Wang <zhenyuw@linux.intel.com>
+Cc: intel-gfx <intel-gfx@lists.freedesktop.org>,
+ intel-gvt-dev <intel-gvt-dev@lists.freedesktop.org>, zhi.wang.linux@gmail.com
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+Message-ID: <170679864541.42939.1205060851730493621@jlahtine-mobl.ger.corp.intel.com>
+User-Agent: alot/0.8.1
+Date: Thu, 01 Feb 2024 16:44:05 +0200
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -60,35 +68,61 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+Hi Zhenyu,
 
---nnsabhwerybioihq
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+I'm getting the following:
 
-On Thu, Feb 01, 2024 at 02:51:13PM +0200, Jani Nikula wrote:
-> On Tue, 16 Jan 2024, Jani Nikula <jani.nikula@intel.com> wrote:
-> > This is resend and more patches on top of [1]. I don't think I've
-> > changed anything since then.
+dim: ff833b32ccc4 ("drm/i915: Replace dead 01.org link"): mandatory review =
+missing.
+dim: ERROR: issues in commits detected, aborting
+
+Can you fix the commit?
+
+Regards, Joonas
+
+Quoting Zhenyu Wang (2024-01-31 11:38:51)
 >=20
-> Hi drm-misc maintainers -
+> Hi, Joonas
 >=20
-> I've got R-b from Luca, but given there's no comments outside of Intel,
-> are you okay with me merging this to drm-misc?
-
-Acked-by: Maxime Ripard <mripard@kernel.org>
-
-Maxime
-
---nnsabhwerybioihq
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYKAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCZbuuFwAKCRDj7w1vZxhR
-xRaRAQDeGjyxWf9IpxcJEw7uz6GoAe2PN3VUabs9ON46SS69rQEA0Ea7I7uKzNWs
-Bn4sR0wINRKwqa7OSQ30SQaztnyXNAE=
-=XKJs
------END PGP SIGNATURE-----
-
---nnsabhwerybioihq--
+> Here is another gvt-fixes pull which contains fixes on doc link and
+> one uninitialized variable in warning message, also update about Zhi's
+> new mail address in MAINTAINERS.
+>=20
+> Thanks.
+> ---
+> The following changes since commit f9f031dd21a7ce13a13862fa5281d32e1029c7=
+0f:
+>=20
+>   drm/i915/psr: Only allow PSR in LPSP mode on HSW non-ULT (2024-01-25 10=
+:44:13 +0200)
+>=20
+> are available in the Git repository at:
+>=20
+>   https://github.com/intel/gvt-linux tags/gvt-fixes-2024-01-31
+>=20
+> for you to fetch changes up to 88569fa2c3bc83d77a96580da94dd35edee0f893:
+>=20
+>   MAINTAINERS: Update Zhi Wang's email address (2024-01-31 17:19:15 +0800)
+>=20
+> ----------------------------------------------------------------
+> gvt-fixes-2024-01-31
+>=20
+> - Fix broken gvt doc link (Zhenyu)
+> - Fix one uninitialized variable bug in warning (Dan)
+> - Update Zhi's new email address in MAINTAINERS file. (Zhi)
+>=20
+> ----------------------------------------------------------------
+> Dan Carpenter (1):
+>       drm/i915/gvt: Fix uninitialized variable in handle_mmio()
+>=20
+> Zhenyu Wang (1):
+>       drm/i915: Replace dead 01.org link
+>=20
+> Zhi Wang (1):
+>       MAINTAINERS: Update Zhi Wang's email address
+>=20
+>  MAINTAINERS                         | 4 ++--
+>  drivers/gpu/drm/i915/Kconfig        | 2 +-
+>  drivers/gpu/drm/i915/gvt/handlers.c | 3 +--
+>  drivers/gpu/drm/i915/intel_gvt.c    | 2 +-
+>  4 files changed, 5 insertions(+), 6 deletions(-)
