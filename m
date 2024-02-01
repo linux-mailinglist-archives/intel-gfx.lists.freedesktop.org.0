@@ -2,43 +2,43 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id EE96E84532E
-	for <lists+intel-gfx@lfdr.de>; Thu,  1 Feb 2024 09:55:06 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 89DD784532F
+	for <lists+intel-gfx@lfdr.de>; Thu,  1 Feb 2024 09:55:08 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 21F1110E6C6;
-	Thu,  1 Feb 2024 08:55:03 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0AD7910E6C1;
+	Thu,  1 Feb 2024 08:55:05 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DBBD110E6A8
- for <intel-gfx@lists.freedesktop.org>; Thu,  1 Feb 2024 08:55:01 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3474710E6D3
+ for <intel-gfx@lists.freedesktop.org>; Thu,  1 Feb 2024 08:55:03 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1706777702; x=1738313702;
+ t=1706777703; x=1738313703;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=gB+yngv15taudJ2ypau2RSWE9m+Sj4SOBMxXL5vR9fI=;
- b=bFlsS7Hz4Y9982A70QA7AuHlJirhqE15LghaqtPr1+JrgKJfLJx6SrW6
- MOtqppMwYMkf76zCTjyfKzCmeKgBzFEIxNuzIy1oWpqkRwOXNsXFPbwQu
- U63Z28/6+PmOJLSK7tQ+A3NJ0f0/3AWluIP2Ua0l8p0ASV2vB48B79M6H
- sp7YSHiR+eRODxWlfAM+flXpcBdpn86y67XEuk+id6xoYAe1yX6AcLJE5
- x70rURaBSF5XxuT5OTCfQzUQjImoqpU75tDmMQErGcCIL717mJ7UiHmh1
- VwP/6mfuqm6qApuHGhLnjGqQK3HmNXSFILIy+gVHQ+O3idzE5O1d7TmmB w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10969"; a="22348522"
-X-IronPort-AV: E=Sophos;i="6.05,234,1701158400"; d="scan'208";a="22348522"
+ bh=lJiqu3fHsfg34GgV4MjvnqrxQx50AflJJ+UTBeAsdRI=;
+ b=PkM8DCoFhxQj0kGEjPacYvFAF4BdtykadjBYph4q7St86mHOOUq2d7n7
+ iA6RwgFHUMibAJh8MJJ62rybrckQnQEomwvnTy20CVZEhNTDOCrMR9vZf
+ T0NyixM9SxM/EIJn7tlblzIF+4UN+kW+1KKgqgyP6VZXAE2vOSNkyGZ57
+ tbYjHj9YVFhFGl4QcJOumUvUC39XV9HVJoYnyzFvyj5erFHid+NeC5lbn
+ 6fcHgWaLXiufk9xNKOiHTUV8ON1OD3fPrYmtApy4toI1AJkxNAQmOngCZ
+ fl3BdVEC0zEHhorb0gfboZQrgtba55kT2a30dxbjIHDr7mliQI8+gHedH Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10969"; a="22348526"
+X-IronPort-AV: E=Sophos;i="6.05,234,1701158400"; d="scan'208";a="22348526"
 Received: from fmsmga002.fm.intel.com ([10.253.24.26])
  by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Feb 2024 00:55:02 -0800
+ 01 Feb 2024 00:55:03 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10969"; a="908179019"
-X-IronPort-AV: E=Sophos;i="6.05,234,1701158400"; d="scan'208";a="908179019"
+X-IronPort-AV: E=McAfee;i="6600,9927,10969"; a="908179025"
+X-IronPort-AV: E=Sophos;i="6.05,234,1701158400"; d="scan'208";a="908179025"
 Received: from kandpal-x299-ud4-pro.iind.intel.com ([10.190.239.32])
- by fmsmga002.fm.intel.com with ESMTP; 01 Feb 2024 00:55:00 -0800
+ by fmsmga002.fm.intel.com with ESMTP; 01 Feb 2024 00:55:01 -0800
 From: Suraj Kandpal <suraj.kandpal@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Subject: [PATCH 1/2] drm/i915/lnl: Add pkgc related register
-Date: Thu,  1 Feb 2024 14:21:58 +0530
-Message-Id: <20240201085158.1000285-2-suraj.kandpal@intel.com>
+Subject: [PATCH 2/2] drm/i915/lnl: Program PKGC_LATENCY register
+Date: Thu,  1 Feb 2024 14:21:59 +0530
+Message-Id: <20240201085158.1000285-3-suraj.kandpal@intel.com>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20240201085158.1000285-1-suraj.kandpal@intel.com>
 References: <20240201085158.1000285-1-suraj.kandpal@intel.com>
@@ -59,27 +59,68 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Add the register that needs to read and written onto for
-deep pkgc programming.
+Program the PKGC_LATENCY register with the highest latency from
+level 1 and above LP registers else program with all 1's.
+This is used to improve package C residency by sending the highest
+latency tolerance requirement (LTR) when the planes are done with the
+frame until the next frame programming window (set context latency,
+window 2) starts.
+Bspec: 68986
 
 Signed-off-by: Suraj Kandpal <suraj.kandpal@intel.com>
 ---
- drivers/gpu/drm/i915/display/skl_watermark_regs.h | 4 ++++
- 1 file changed, 4 insertions(+)
+ drivers/gpu/drm/i915/display/skl_watermark.c | 31 ++++++++++++++++++++
+ 1 file changed, 31 insertions(+)
 
-diff --git a/drivers/gpu/drm/i915/display/skl_watermark_regs.h b/drivers/gpu/drm/i915/display/skl_watermark_regs.h
-index 628c5920ad49..20b30c9a6613 100644
---- a/drivers/gpu/drm/i915/display/skl_watermark_regs.h
-+++ b/drivers/gpu/drm/i915/display/skl_watermark_regs.h
-@@ -157,4 +157,8 @@
- #define MTL_LATENCY_SAGV		_MMIO(0x4578c)
- #define   MTL_LATENCY_QCLK_SAGV		REG_GENMASK(12, 0)
+diff --git a/drivers/gpu/drm/i915/display/skl_watermark.c b/drivers/gpu/drm/i915/display/skl_watermark.c
+index 051a02ac01a4..c07376f37baa 100644
+--- a/drivers/gpu/drm/i915/display/skl_watermark.c
++++ b/drivers/gpu/drm/i915/display/skl_watermark.c
+@@ -3394,6 +3394,34 @@ static void skl_read_wm_latency(struct drm_i915_private *i915, u16 wm[])
+ 	adjust_wm_latency(i915, wm, num_levels, read_latency);
+ }
  
-+#define LNL_PKG_C_LATENCY		_MMIO(0x46460)
-+#define   LNL_ADDED_WAKE_TIME_MASK	REG_GENMASK(28, 16)
-+#define   LNL_PKG_C_LATENCY_MASK	REG_GENMASK(12, 0)
++/*
++ * Program PKG_C_LATENCY Pkg C with highest valid latency from
++ * watermark level1 and up and above. If watermark level 1 is
++ * invalid program it with all 1's.
++ * Program PKG_C_LATENCY Added Wake Time = 0.
++ */
++static void intel_program_pkgc_latency(struct drm_i915_private *i915,
++				       u16 wm_latency[])
++{
++	u16 max_value = 0;
++	u32 clear = 0, val = 0;
++	int max_level = i915->display.wm.num_levels, i;
 +
- #endif /* __SKL_WATERMARK_REGS_H__ */
++	for (i = 1; i <= max_level; i++) {
++		if (wm_latency[i] == 0)
++			break;
++	else if (wm_latency[i] > max_value)
++		max_value = wm_latency[i];
++	}
++
++	if (max_value == 0)
++		max_value = ~0 & LNL_PKG_C_LATENCY_MASK;
++
++	clear |= LNL_ADDED_WAKE_TIME_MASK | LNL_PKG_C_LATENCY_MASK;
++	val |= max_value;
++	intel_uncore_rmw(&i915->uncore, LNL_PKG_C_LATENCY, clear, val);
++}
++
+ static void skl_setup_wm_latency(struct drm_i915_private *i915)
+ {
+ 	if (HAS_HW_SAGV_WM(i915))
+@@ -3407,6 +3435,9 @@ static void skl_setup_wm_latency(struct drm_i915_private *i915)
+ 		skl_read_wm_latency(i915, i915->display.wm.skl_latency);
+ 
+ 	intel_print_wm_latency(i915, "Gen9 Plane", i915->display.wm.skl_latency);
++
++	if (DISPLAY_VER(i915) >= 20)
++		intel_program_pkgc_latency(i915, i915->display.wm.skl_latency);
+ }
+ 
+ static const struct intel_wm_funcs skl_wm_funcs = {
 -- 
 2.25.1
 
