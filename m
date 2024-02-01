@@ -2,53 +2,55 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 332EF84581A
-	for <lists+intel-gfx@lfdr.de>; Thu,  1 Feb 2024 13:51:23 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6FFBD84582A
+	for <lists+intel-gfx@lfdr.de>; Thu,  1 Feb 2024 13:53:03 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A553910ED52;
-	Thu,  1 Feb 2024 12:51:20 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id EC2A610ED67;
+	Thu,  1 Feb 2024 12:53:01 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="LdtaJ52h";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="MiFamANL";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.93])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6E4F910ED5C;
- Thu,  1 Feb 2024 12:51:19 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.120])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 08EDA10ED67;
+ Thu,  1 Feb 2024 12:53:01 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1706791879; x=1738327879;
+ t=1706791981; x=1738327981;
  h=from:to:cc:subject:in-reply-to:references:date:
  message-id:mime-version;
- bh=k0K7+O4E52W375QiObRrDV8/j+msM0QFKMQn2H6NoW0=;
- b=LdtaJ52hk+6ZhNfVnE+5OJFkjR+pqk/Xv2R0/Yo5bU2ApBzbpi4HNp6r
- khYlCWKJ7dXr0IS2FzC7jrT4deBo/fao7fR6wrRaviMnQFC3XDtzowYXg
- Lt8astgpD5uuUbZqFeNHDt55p34Veajsps++/1AOHwYRRzyrCuPugUKkH
- sh5DOMQF3VnTqhOxMcnMfGrE+IJDmN25KUD1VRfrMpbIH3Nb3j+8YxrEu
- pFGh2ZiWHLCh/cAK2OpXenFOn28VtbwSIZGUdGzuQM5ZvxedVvzItEoQO
- HWne6Atma7S5x02UAUkyRPEOPm0WH0W0HDEo7AVHFKUpQSXHEdAOCf6um A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10969"; a="401016433"
-X-IronPort-AV: E=Sophos;i="6.05,234,1701158400"; d="scan'208";a="401016433"
-Received: from orsmga005.jf.intel.com ([10.7.209.41])
- by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Feb 2024 04:51:18 -0800
+ bh=kM2CzdPqPhJGT/27u+FEUgiyr+hJJwWsrgc1Wu+Yw4c=;
+ b=MiFamANLT+ibF0Zk8jON8Lf+z2TDnXLVshf9mkP0R9IbamktMokwrbIy
+ fYFNqny4CV/b2BDqnCDfnHy1xh/CbS4o4uiHbuCVvLZT9PgvmF2+a+C8C
+ SGmqsUp81G3sHe3odyy/fBZcREuaA6h6ZYS4BQifsXaqhl+RipPjuRYIN
+ w/hB39Hd4qLIhnbxZ+kAa3H4++iAHAWKCJDeK6VMJg5jET13BJBP/E9IN
+ OnqzJHcUSFpAQclboseXwu9gXnbad6mxoZmnZ1X/qZh0jbVh7pg5HlyTy
+ weGpCB3HAh/fjEeuIYW4j0qmkRLVtxpumToDQLOhNPy+PoXA1695Wmxwg g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10969"; a="402730844"
+X-IronPort-AV: E=Sophos;i="6.05,234,1701158400"; d="scan'208";a="402730844"
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+ by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 01 Feb 2024 04:53:00 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10969"; a="961908437"
-X-IronPort-AV: E=Sophos;i="6.05,234,1701158400"; d="scan'208";a="961908437"
+X-IronPort-AV: E=McAfee;i="6600,9927,10969"; a="908242204"
+X-IronPort-AV: E=Sophos;i="6.05,234,1701158400"; d="scan'208";a="908242204"
 Received: from unknown (HELO localhost) ([10.237.66.162])
- by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Feb 2024 04:51:16 -0800
+ by fmsmga002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 01 Feb 2024 04:52:58 -0800
 From: Jani Nikula <jani.nikula@intel.com>
-To: dri-devel@lists.freedesktop.org, Maxime Ripard <mripard@kernel.org>,
- Thomas Zimmermann <tzimmermann@suse.de>, Maarten Lankhorst
- <maarten.lankhorst@linux.intel.com>
+To: dri-devel@lists.freedesktop.org, Lucas De Marchi
+ <lucas.demarchi@intel.com>, Thomas =?utf-8?Q?Hellstr=C3=B6m?=
+ <thomas.hellstrom@linux.intel.com>, Oded Gabbay <ogabbay@kernel.org>
 Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
-Subject: Re: [PATCH 00/10] drm: drm debug and error logging improvements
-In-Reply-To: <cover.1705410327.git.jani.nikula@intel.com>
+Subject: Re: [PATCH 09/10] drm/xe: switch from drm_debug_printer() to device
+ specific drm_dbg_printer()
+In-Reply-To: <35929b030f7ba67cd32808d42e916aa9cfb5709d.1705410327.git.jani.nikula@intel.com>
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 References: <cover.1705410327.git.jani.nikula@intel.com>
-Date: Thu, 01 Feb 2024 14:51:13 +0200
-Message-ID: <871q9wgxfi.fsf@intel.com>
+ <35929b030f7ba67cd32808d42e916aa9cfb5709d.1705410327.git.jani.nikula@intel.com>
+Date: Thu, 01 Feb 2024 14:52:55 +0200
+Message-ID: <87y1c4fis8.fsf@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain
 X-BeenThere: intel-gfx@lists.freedesktop.org
@@ -67,63 +69,70 @@ Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 On Tue, 16 Jan 2024, Jani Nikula <jani.nikula@intel.com> wrote:
-> This is resend and more patches on top of [1]. I don't think I've
-> changed anything since then.
+> Prefer the device specific debug printer.
+>
+> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
 
-Hi drm-misc maintainers -
-
-I've got R-b from Luca, but given there's no comments outside of Intel,
-are you okay with me merging this to drm-misc?
+Xe maintainers, ack for merging this via drm-misc along with the rest of
+the series?
 
 BR,
 Jani.
 
-
+> ---
+>  drivers/gpu/drm/xe/xe_gt.c          | 2 +-
+>  drivers/gpu/drm/xe/xe_gt_topology.c | 4 +++-
+>  drivers/gpu/drm/xe/xe_reg_sr.c      | 2 +-
+>  3 files changed, 5 insertions(+), 3 deletions(-)
 >
-> BR,
-> Jani.
->
-> [1] https://patchwork.freedesktop.org/series/126873/
->
->
-> Jani Nikula (10):
->   drm/print: make drm_err_printer() device specific by using drm_err()
->   drm/print: move enum drm_debug_category etc. earlier in drm_print.h
->   drm/print: add drm_dbg_printer() for drm device specific printer
->   drm/dp_mst: switch from drm_debug_printer() to device specific
->     drm_dbg_printer()
->   drm/mode: switch from drm_debug_printer() to device specific
->     drm_dbg_printer()
->   drm/dp: switch drm_dp_vsc_sdp_log() to struct drm_printer
->   drm/i915: switch from drm_debug_printer() to device specific
->     drm_dbg_printer()
->   drm/i915: use drm_printf() with the drm_err_printer intead of pr_err()
->   drm/xe: switch from drm_debug_printer() to device specific
->     drm_dbg_printer()
->   drm: remove drm_debug_printer in favor of drm_dbg_printer
->
->  drivers/gpu/drm/display/drm_dp_helper.c       |  17 +-
->  drivers/gpu/drm/display/drm_dp_mst_topology.c |  23 +-
->  drivers/gpu/drm/drm_mode_config.c             |   2 +-
->  drivers/gpu/drm/drm_modeset_lock.c            |   2 +-
->  drivers/gpu/drm/drm_print.c                   |  29 ++-
->  .../drm/i915/display/intel_crtc_state_dump.c  |   5 +-
->  drivers/gpu/drm/i915/display/intel_display.c  |  27 ++-
->  .../drm/i915/display/intel_display_driver.c   |   3 +-
->  .../gpu/drm/i915/gt/intel_engine_heartbeat.c  |   3 +-
->  drivers/gpu/drm/i915/gt/intel_reset.c         |   3 +-
->  drivers/gpu/drm/i915/gt/intel_workarounds.c   |   3 +-
->  drivers/gpu/drm/i915/gt/selftest_context.c    |   3 +-
->  .../drm/i915/gt/selftest_engine_heartbeat.c   |  10 +-
->  drivers/gpu/drm/i915/i915_driver.c            |   3 +-
->  drivers/gpu/drm/i915/selftests/i915_active.c  |   8 +-
->  drivers/gpu/drm/ttm/ttm_bo.c                  |   2 +-
->  drivers/gpu/drm/xe/xe_gt.c                    |   2 +-
->  drivers/gpu/drm/xe/xe_gt_topology.c           |   4 +-
->  drivers/gpu/drm/xe/xe_reg_sr.c                |   2 +-
->  include/drm/display/drm_dp_helper.h           |   3 +-
->  include/drm/drm_print.h                       | 220 +++++++++---------
->  21 files changed, 206 insertions(+), 168 deletions(-)
+> diff --git a/drivers/gpu/drm/xe/xe_gt.c b/drivers/gpu/drm/xe/xe_gt.c
+> index 0f2258dc4a00..16481f9b3125 100644
+> --- a/drivers/gpu/drm/xe/xe_gt.c
+> +++ b/drivers/gpu/drm/xe/xe_gt.c
+> @@ -327,7 +327,7 @@ static void dump_pat_on_error(struct xe_gt *gt)
+>  	char prefix[32];
+>  
+>  	snprintf(prefix, sizeof(prefix), "[GT%u Error]", gt->info.id);
+> -	p = drm_debug_printer(prefix);
+> +	p = drm_dbg_printer(&gt_to_xe(gt)->drm, DRM_UT_DRIVER, prefix);
+>  
+>  	xe_pat_dump(gt, &p);
+>  }
+> diff --git a/drivers/gpu/drm/xe/xe_gt_topology.c b/drivers/gpu/drm/xe/xe_gt_topology.c
+> index a8d7f272c30a..5dc62fe1be49 100644
+> --- a/drivers/gpu/drm/xe/xe_gt_topology.c
+> +++ b/drivers/gpu/drm/xe/xe_gt_topology.c
+> @@ -84,7 +84,7 @@ void
+>  xe_gt_topology_init(struct xe_gt *gt)
+>  {
+>  	struct xe_device *xe = gt_to_xe(gt);
+> -	struct drm_printer p = drm_debug_printer("GT topology");
+> +	struct drm_printer p;
+>  	int num_geometry_regs, num_compute_regs;
+>  
+>  	get_num_dss_regs(xe, &num_geometry_regs, &num_compute_regs);
+> @@ -107,6 +107,8 @@ xe_gt_topology_init(struct xe_gt *gt)
+>  		      XE2_GT_COMPUTE_DSS_2);
+>  	load_eu_mask(gt, gt->fuse_topo.eu_mask_per_dss);
+>  
+> +	p = drm_dbg_printer(&gt_to_xe(gt)->drm, DRM_UT_DRIVER, "GT topology");
+> +
+>  	xe_gt_topology_dump(gt, &p);
+>  }
+>  
+> diff --git a/drivers/gpu/drm/xe/xe_reg_sr.c b/drivers/gpu/drm/xe/xe_reg_sr.c
+> index 87adefb56024..440ac572f6e5 100644
+> --- a/drivers/gpu/drm/xe/xe_reg_sr.c
+> +++ b/drivers/gpu/drm/xe/xe_reg_sr.c
+> @@ -231,7 +231,7 @@ void xe_reg_sr_apply_whitelist(struct xe_hw_engine *hwe)
+>  	if (err)
+>  		goto err_force_wake;
+>  
+> -	p = drm_debug_printer(KBUILD_MODNAME);
+> +	p = drm_dbg_printer(&xe->drm, DRM_UT_DRIVER, NULL);
+>  	xa_for_each(&sr->xa, reg, entry) {
+>  		if (slot == RING_MAX_NONPRIV_SLOTS) {
+>  			xe_gt_err(gt,
 
 -- 
 Jani Nikula, Intel
