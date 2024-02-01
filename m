@@ -2,60 +2,51 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id A7A4B845136
-	for <lists+intel-gfx@lfdr.de>; Thu,  1 Feb 2024 07:07:31 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 70C21845288
+	for <lists+intel-gfx@lfdr.de>; Thu,  1 Feb 2024 09:17:35 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 34A7510E301;
-	Thu,  1 Feb 2024 06:07:24 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 82C1910E5EB;
+	Thu,  1 Feb 2024 08:17:28 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-yb1-f201.google.com (mail-yb1-f201.google.com
- [209.85.219.201])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1C90410E301
- for <intel-gfx@lists.freedesktop.org>; Thu,  1 Feb 2024 06:07:22 +0000 (UTC)
-Received: by mail-yb1-f201.google.com with SMTP id
- 3f1490d57ef6-dc6b267bf11so728402276.2
- for <intel-gfx@lists.freedesktop.org>; Wed, 31 Jan 2024 22:07:22 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=google.com; s=20230601; t=1706767581; x=1707372381;
- darn=lists.freedesktop.org; 
- h=cc:to:from:subject:message-id:mime-version:date:from:to:cc:subject
- :date:message-id:reply-to;
- bh=+R+QwEvKVG52HCupcuvyMyVixKSfMEwsPllchfsZTgU=;
- b=1cwXi2ndbnEkpfSbD9sG61fz5pSCOVjbDryM8uyX8c9GX55/8QPRlPWV8iMPGhu4ep
- ipFjzbahD1H94hGhXmkq3XDz4G2jc8pPJ3u5hcX4ZWLsoNMpLC3tsS0OXDVP2obzMb/i
- S+XfsBPLxeKqz63b2TXJtP6xcTljPmGQxkFt8qXxxSQjm36o8AUJLgaC9Nzs96JCJTv3
- z5y2YmWoJWhiQksXMkfkLt7OQ3mmW3D+jbhbEK9ZOHaEbpsRnTexDjReQosgI0sPbngY
- 4yleJgc3R3H1qtdSayZjENo070QaOQo7Crid62idFE2LUqVe7+EMuvCmADyUwnxFSr3B
- 6h+Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1706767581; x=1707372381;
- h=cc:to:from:subject:message-id:mime-version:date:x-gm-message-state
- :from:to:cc:subject:date:message-id:reply-to;
- bh=+R+QwEvKVG52HCupcuvyMyVixKSfMEwsPllchfsZTgU=;
- b=mE5kqEFhTF6TxFNx0GuPiIFAuRxwEDCNB2hVTAsCljcvplv00LtuMkE2e2q7o6QEAx
- ci4KKzE5HCSo3UA1bv2lOk/4d9xkaAo29EXpUT8ihaibGfrhwGC0fY9rFnVdKJursdVX
- xmnvQkyxuijcrcrL80yYMD8cWEnpFJ+Vk2niXof4t+hjs+le3E/kqcCmKg/kQ3j1dRuq
- ErDhppj0kHne4b3rYCLKqI5iKCYT5+bQ4LMPyEpWG9FkDnWy0Z73ECki0u3xv7ZOG5wE
- TtiFVbpshcLz/OOqEAWdxTY+nU9Bvwx4S2x4BCpB19Sn6MqMjqaibAxyVrdJwbXSZ8Ft
- YIew==
-X-Gm-Message-State: AOJu0Yz53kAzJj8Ph6EWJivRhyf8soFeQeW3xYZDH+/rE614r/TwxmGc
- 17BVJVFvLfUseaFR6o3QDyogYoW7NYK1V6yUEdZtrV6yhEJ7Q82i2SZWWToy25YlYBG3GlDsfgT
- 5841rFuIpdA==
-X-Google-Smtp-Source: AGHT+IH9ZcrmRVPK1BcEkoPLLW9uzYcuLK5XpwTitIVSUboPpipeCUTTfA1c8/oZ1Sjbi+UPYG3ZprHTGqrSQA==
-X-Received: from slicestar.c.googlers.com
- ([fda3:e722:ac3:cc00:4f:4b78:c0a8:20a1])
- (user=davidgow job=sendgmr) by 2002:a05:6902:1584:b0:dbe:387d:a8ef with SMTP
- id k4-20020a056902158400b00dbe387da8efmr41769ybu.1.1706767581338; Wed, 31 Jan
- 2024 22:06:21 -0800 (PST)
-Date: Thu,  1 Feb 2024 14:04:36 +0800
-Mime-Version: 1.0
-X-Mailer: git-send-email 2.43.0.429.g432eaa2c6b-goog
-Message-ID: <20240201060437.861155-2-davidgow@google.com>
-Subject: [PATCH] kunit: device: Unregister the kunit_bus on shutdown
-From: David Gow <davidgow@google.com>
-To: Rae Moar <rmoar@google.com>, Shuah Khan <skhan@linuxfoundation.org>
-Content-Type: text/plain; charset="UTF-8"
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.14])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 988E310E5EA
+ for <intel-gfx@lists.freedesktop.org>; Thu,  1 Feb 2024 08:17:27 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1706775448; x=1738311448;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=yfhmS6RLhfO8V6aDOiZ2TXhpIpppfd/o+ozWkwP/D+M=;
+ b=F9BxjLi7LFgbu4Te4OsYTi1QMmDA4yJ57S+g7uxf6dp8CMfdGt4w95Ik
+ +UXoJrEJq+mdEd3JkynbZhr2Xiz8mAzffTA4vynHxOtOMXz1ZMlV/d+X8
+ 0nmx3oS42TMlN5Qgu5E4PU/ojIFP2q+Zn/urRh5z8CUnlxlrPjJELzArC
+ 4M2UrNjWMkwM8aAkR0jb/835Z/ftXiFhvNLy+i0fAlTVzAQvBEuzT04J0
+ nKC9FTyMGksEpee+cDMJLu6B5r+keX1eN7hpBPyWWJVQum1krtr6wXvQn
+ nMtO7nlHsRFTSvWMlXgFc+PPsmNUkPTPEGN9GDH8ZVhsSeG3wOx1PGvVp A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10969"; a="3700838"
+X-IronPort-AV: E=Sophos;i="6.05,234,1701158400"; 
+   d="scan'208";a="3700838"
+Received: from fmviesa001.fm.intel.com ([10.60.135.141])
+ by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 01 Feb 2024 00:17:28 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.05,234,1701158400"; d="scan'208";a="30805423"
+Received: from unknown (HELO intel.com) ([10.237.72.65])
+ by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 01 Feb 2024 00:17:26 -0800
+Date: Thu, 1 Feb 2024 10:17:18 +0200
+From: "Lisovskiy, Stanislav" <stanislav.lisovskiy@intel.com>
+To: Ville Syrjala <ville.syrjala@linux.intel.com>
+Subject: Re: [PATCH 1/3] drm/i915: Compute use_sagv_wm differently
+Message-ID: <ZbtTYsTncs0i3H8E@intel.com>
+References: <20231219130756.25986-1-ville.syrjala@linux.intel.com>
+ <20231219130756.25986-2-ville.syrjala@linux.intel.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20231219130756.25986-2-ville.syrjala@linux.intel.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -68,93 +59,120 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Saarinen@google.com, David Gow <davidgow@google.com>,
- Matti Vaittinen <mazziesaccount@gmail.com>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- intel-gfx@lists.freedesktop.org, linux-kernel@vger.kernel.org,
- Maxime Ripard <mripard@kernel.org>,
- Brendan Higgins <brendan.higgins@linux.dev>,
- Richard Fitzgerald <rf@opensource.cirrus.com>, Borah@google.com,
- linux-kselftest@vger.kernel.org, kunit-dev@googlegroups.com
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-If KUnit is built as a module, and it's unloaded, the kunit_bus is not
-unregistered. This causes an error if it's then re-loaded later, as we
-try to re-register the bus.
+On Tue, Dec 19, 2023 at 03:07:54PM +0200, Ville Syrjala wrote:
+> From: Ville Syrjälä <ville.syrjala@linux.intel.com>
+> 
+> drm_atomic_check_only() gets upset if we try to add extra crtcs
+> to any commit that isn't flagged with DRM_MODE_ATOMIC_ALLOW_MODESET.
+> This conflicts with how SAGV watermarks work on pre-ADL as we
+> need to manually switch over the SAGV watermarks before we can
+> safely enable SAGV.
+> 
+> So in order to make SAGV usage possible we need to compute each
+> pipe's use of SAGV watermarks as if there aren't any other
+> active pipes. Ie. if the current pipe isn't the one blocking
+> SAGV then we make it use the SAGV watermarks, even if some
+> other pipe prevents SAGV from actually being used. Otherwise
+> we could end up with a pipes using the normal watermarks (but
+> not blocking SAGV), and some other pipe in parallel enabling
+> SAGV, which would likely cause underruns.
+> 
+> The alternative approach of preventing SAGV usage until all
+> pipes simultanously end up using SAGV watermarks would only
+> really work if userspace always adds all pipes to every
+> commits, which isn't the case typically.
+> 
+> The downside of this is that we will end up using the less
+> optimal SAGV watermarks even if some other pipe prevents
+> SAGV from actually being enabled. In which case the system
+> won't achieve the minimum possible power consumption.
 
-Unregister the bus and root_device on shutdown, if it looks valid.
+This is quite sad, that we have to do that, basically means
+we might end up using SAGV watermarks, which use a bit more 
+DBuf(taking into account SAGV related memory latency) just
+because we can't sync properly with drm commit architecture
+(as I understand the main problem is that crtc addition to the commit).
+This is not catastrophical of course, but we are now basically
+using the solution which we know for sure, that isn't optimal.
 
-In addition, be more specific about the value of kunit_bus_device. It
-is:
-- a valid struct device* if the kunit_bus initialised correctly.
-- an ERR_PTR if it failed to initialise.
-- NULL before initialisation and after shutdown.
+But as me personally and you probably as well, don't really 
+have time resource to spend for solving it more efficiently,
+lets use this as a solution.
 
-Fixes: d03c720e03bd ("kunit: Add APIs for managing devices")
-Signed-off-by: David Gow <davidgow@google.com>
----
+Reviewed-by: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
 
-This will hopefully resolve some of the issues linked to from:
-https://lore.kernel.org/intel-gfx/DM4PR11MB614179CB9C387842D8E8BB40B97C2@DM4PR11MB6141.namprd11.prod.outlook.com/
-
----
- lib/kunit/device-impl.h |  2 ++
- lib/kunit/device.c      | 14 ++++++++++++++
- lib/kunit/test.c        |  3 +++
- 3 files changed, 19 insertions(+)
-
-diff --git a/lib/kunit/device-impl.h b/lib/kunit/device-impl.h
-index 54bd55836405..5fcd48ff0f36 100644
---- a/lib/kunit/device-impl.h
-+++ b/lib/kunit/device-impl.h
-@@ -13,5 +13,7 @@
- 
- // For internal use only -- registers the kunit_bus.
- int kunit_bus_init(void);
-+// For internal use only -- unregisters the kunit_bus.
-+void kunit_bus_shutdown(void);
- 
- #endif //_KUNIT_DEVICE_IMPL_H
-diff --git a/lib/kunit/device.c b/lib/kunit/device.c
-index 074c6dd2e36a..644a38a1f5b1 100644
---- a/lib/kunit/device.c
-+++ b/lib/kunit/device.c
-@@ -54,6 +54,20 @@ int kunit_bus_init(void)
- 	return error;
- }
- 
-+/* Unregister the 'kunit_bus' in case the KUnit module is unloaded. */
-+void kunit_bus_shutdown(void)
-+{
-+	/* Make sure the bus exists before we unregister it. */
-+	if (IS_ERR_OR_NULL(kunit_bus_device))
-+		return;
-+
-+	bus_unregister(&kunit_bus_type);
-+
-+	root_device_unregister(kunit_bus_device);
-+
-+	kunit_bus_device = NULL;
-+}
-+
- /* Release a 'fake' KUnit device. */
- static void kunit_device_release(struct device *d)
- {
-diff --git a/lib/kunit/test.c b/lib/kunit/test.c
-index 31a5a992e646..1d1475578515 100644
---- a/lib/kunit/test.c
-+++ b/lib/kunit/test.c
-@@ -928,6 +928,9 @@ static void __exit kunit_exit(void)
- #ifdef CONFIG_MODULES
- 	unregister_module_notifier(&kunit_mod_nb);
- #endif
-+
-+	kunit_bus_shutdown();
-+
- 	kunit_debugfs_cleanup();
- }
- module_exit(kunit_exit);
--- 
-2.43.0.429.g432eaa2c6b-goog
-
+> 
+> Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
+> ---
+>  drivers/gpu/drm/i915/display/skl_watermark.c | 38 ++++++++++++--------
+>  1 file changed, 23 insertions(+), 15 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/i915/display/skl_watermark.c b/drivers/gpu/drm/i915/display/skl_watermark.c
+> index 56588d6e24ae..9cee19cbe253 100644
+> --- a/drivers/gpu/drm/i915/display/skl_watermark.c
+> +++ b/drivers/gpu/drm/i915/display/skl_watermark.c
+> @@ -443,12 +443,35 @@ static int intel_compute_sagv_mask(struct intel_atomic_state *state)
+>  
+>  	for_each_new_intel_crtc_in_state(state, crtc,
+>  					 new_crtc_state, i) {
+> +		struct skl_pipe_wm *pipe_wm = &new_crtc_state->wm.skl.optimal;
+> +
+>  		new_bw_state = intel_atomic_get_bw_state(state);
+>  		if (IS_ERR(new_bw_state))
+>  			return PTR_ERR(new_bw_state);
+>  
+>  		old_bw_state = intel_atomic_get_old_bw_state(state);
+>  
+> +		/*
+> +		 * We store use_sagv_wm in the crtc state rather than relying on
+> +		 * that bw state since we have no convenient way to get at the
+> +		 * latter from the plane commit hooks (especially in the legacy
+> +		 * cursor case).
+> +		 *
+> +		 * drm_atomic_check_only() gets upset if we pull more crtcs
+> +		 * into the state, so we have to calculate this based on the
+> +		 * individual intel_crtc_can_enable_sagv() rather than
+> +		 * the overall intel_crtc_can_enable_sagv(). Otherwise the
+> +		 * crtcs not included in the commit would not switch to the
+> +		 * SAGV watermarks when we are about to enable SAGV, and that
+> +		 * would lead to underruns. This does mean extra power draw
+> +		 * when only a subset of the crtcs are blocking SAGV as the
+> +		 * other crtcs can't be allowed to use the more optimal
+> +		 * normal (ie. non-SAGV) watermarks.
+> +		 */
+> +		pipe_wm->use_sagv_wm = !HAS_HW_SAGV_WM(i915) &&
+> +			DISPLAY_VER(i915) >= 12 &&
+> +			intel_crtc_can_enable_sagv(new_crtc_state);
+> +
+>  		if (intel_crtc_can_enable_sagv(new_crtc_state))
+>  			new_bw_state->pipe_sagv_reject &= ~BIT(crtc->pipe);
+>  		else
+> @@ -478,21 +501,6 @@ static int intel_compute_sagv_mask(struct intel_atomic_state *state)
+>  			return ret;
+>  	}
+>  
+> -	for_each_new_intel_crtc_in_state(state, crtc,
+> -					 new_crtc_state, i) {
+> -		struct skl_pipe_wm *pipe_wm = &new_crtc_state->wm.skl.optimal;
+> -
+> -		/*
+> -		 * We store use_sagv_wm in the crtc state rather than relying on
+> -		 * that bw state since we have no convenient way to get at the
+> -		 * latter from the plane commit hooks (especially in the legacy
+> -		 * cursor case)
+> -		 */
+> -		pipe_wm->use_sagv_wm = !HAS_HW_SAGV_WM(i915) &&
+> -			DISPLAY_VER(i915) >= 12 &&
+> -			intel_can_enable_sagv(i915, new_bw_state);
+> -	}
+> -
+>  	return 0;
+>  }
+>  
+> -- 
+> 2.41.0
+> 
