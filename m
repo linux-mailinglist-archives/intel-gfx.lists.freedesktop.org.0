@@ -2,53 +2,69 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id AB677845456
-	for <lists+intel-gfx@lfdr.de>; Thu,  1 Feb 2024 10:42:28 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id D74D5845492
+	for <lists+intel-gfx@lfdr.de>; Thu,  1 Feb 2024 10:52:43 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 38E7310EAE1;
-	Thu,  1 Feb 2024 09:42:27 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B67BE10EC50;
+	Thu,  1 Feb 2024 09:52:38 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B4E2410EAE1;
- Thu,  1 Feb 2024 09:42:25 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1706780546; x=1738316546;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=ldU/ZE3jpYwQ4gbc0uyFTN9HYclVkaecSlxUoMDXkxU=;
- b=A8zmFKgQGePhFWXOsoW/9U9sY/7WgOZl9EiEI2Odes9au/t8da3PGbmk
- H4tmJGXltaKa6MnXV7mkBCgd1N5HsW6wThs3xw24GhoN/KIlJ8PCa5AQS
- K1kPrYEsqSFX7R0UpUBK82GzLVHU5hLS7PABF9pE7CXgMKPp5r+uMU1ZO
- HmxIhScJoUPTYYD1XtxtD6w6MOXknMo3fQeJBmrsvfpy8+sG+MR5BDv89
- 0NnYxyRFI0IvCsz+i93WzXTjGRTitS1TO/EeRMl+sxIcMHMHJeWrPV4ti
- ujDmzj1wd+HxInlUG6CC77Y6Mw5sNI63j4RztzHQAwn2MTqmKT4Ov3/Jb g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10969"; a="3719295"
-X-IronPort-AV: E=Sophos;i="6.05,234,1701158400"; 
-   d="scan'208";a="3719295"
-Received: from fmsmga003.fm.intel.com ([10.253.24.29])
- by orvoesa107.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Feb 2024 01:42:19 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10969"; a="879060417"
-X-IronPort-AV: E=Sophos;i="6.05,234,1701158400"; d="scan'208";a="879060417"
-Received: from aragners-mobl.ger.corp.intel.com (HELO localhost)
- ([10.252.43.111])
- by fmsmga003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Feb 2024 01:42:16 -0800
-From: Jani Nikula <jani.nikula@intel.com>
-To: Danilo Krummrich <dakr@redhat.com>, dri-devel@lists.freedesktop.org
-Subject: Re: [PATCH 2/6] drm/nouveau/svm: remove unused but set variables
-In-Reply-To: <4ba66e36-f4a8-4c5e-af88-bc47157b5c03@redhat.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <cover.1704908087.git.jani.nikula@intel.com>
- <8b133e7ec0e9aef728be301ac019c5ddcb3bbf51.1704908087.git.jani.nikula@intel.com>
- <4ba66e36-f4a8-4c5e-af88-bc47157b5c03@redhat.com>
-Date: Thu, 01 Feb 2024 11:42:13 +0200
-Message-ID: <87il38h66i.fsf@intel.com>
+Received: from us-smtp-delivery-124.mimecast.com
+ (us-smtp-delivery-124.mimecast.com [170.10.129.124])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6958810EC50
+ for <intel-gfx@lists.freedesktop.org>; Thu,  1 Feb 2024 09:52:37 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+ s=mimecast20190719; t=1706781156;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type;
+ bh=/nslsHUxo4VfqrwQKm/jmwvkngfXt/wv7xqYrlV92MA=;
+ b=CdSE3p9+vb5ffksJYCO8mghIqcO6Vz3Hg1tSn7JueNEr/FuNPlyxkLEqROjmO+RgNnOAd5
+ AYKhDNumbr9P6mEOWX6Pb+ZZC6AHf4AOPWRuNSB976xa+q5zn/qgNGXTVWtL4XWpw52MMK
+ ESTQlxzC346DuJfcGRy5O+nIKpRhUEk=
+Received: from mail-wm1-f70.google.com (mail-wm1-f70.google.com
+ [209.85.128.70]) by relay.mimecast.com with ESMTP with STARTTLS
+ (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
+ us-mta-465-zCTVKQRhP4uhdIIhtjUVvg-1; Thu, 01 Feb 2024 04:52:32 -0500
+X-MC-Unique: zCTVKQRhP4uhdIIhtjUVvg-1
+Received: by mail-wm1-f70.google.com with SMTP id
+ 5b1f17b1804b1-40ef75bea80so3884555e9.1
+ for <intel-gfx@lists.freedesktop.org>; Thu, 01 Feb 2024 01:52:32 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1706781151; x=1707385951;
+ h=content-disposition:mime-version:message-id:subject:cc:to:from:date
+ :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+ bh=/nslsHUxo4VfqrwQKm/jmwvkngfXt/wv7xqYrlV92MA=;
+ b=ILJwcHPJZL7g9Fegbq9G9US54eQVspGbNMm2KGa6MjJBRmG2yLPwtlZ1lQFjyL9tnU
+ SvcRBSzj0OHERXesZtBTBp9CRWzvNZuDYMJNnmwtyJBGlaHFgZqxVfCwDNBnrfJSuTJL
+ lO7UNRYB7SCecI1J7BvDo2tQRsLPCr05nulCQ+J1myTyH+jLkrBd4gZWA+MNbtCC1ROy
+ SNTIAIMhSpOk63FnWyCJtJzLJ2AJak7X7z7dldajZ5ek6FusxbZGPPBLBFpN7lpYG7Pn
+ 9qWiTDYCdHIVRvXLOJBA5hPxROhTXQV7f2m7GVn59aTa687aMREYBwiaRDz23DibhIGG
+ OolQ==
+X-Gm-Message-State: AOJu0YwQxkz+qbU3blztyIukFWQysqYSsWkeRJ6fcHYzU64v8korBQk/
+ 7Y3JzT5UO7z8qdaPRfcV0Ny9Ye2+z16WzIN3Sjbp2VZWPMLZjGCRYpkW4dMlKIM2EpKRgOqPBkV
+ u0maMyMC2QAhvS0Z51QZRoCeV1ZwdPvBSh+tW1SpayvDR7a1wT5QIc4SoZ1BflDDbSQ==
+X-Received: by 2002:a05:600c:470f:b0:40e:cdff:8d10 with SMTP id
+ v15-20020a05600c470f00b0040ecdff8d10mr3153295wmo.6.1706781151680; 
+ Thu, 01 Feb 2024 01:52:31 -0800 (PST)
+X-Google-Smtp-Source: AGHT+IFIkBwhkOczLlPUtfjqjB1cBcFJsdjJOGJt/Mz5cQo3s6fACgPPrCAinNdyq5wPWIWvOQhBgw==
+X-Received: by 2002:a05:600c:470f:b0:40e:cdff:8d10 with SMTP id
+ v15-20020a05600c470f00b0040ecdff8d10mr3153283wmo.6.1706781151365; 
+ Thu, 01 Feb 2024 01:52:31 -0800 (PST)
+Received: from localhost ([2a01:e0a:b25:f902::ff])
+ by smtp.gmail.com with ESMTPSA id
+ t10-20020a05600c198a00b0040f22171921sm3921797wmq.3.2024.02.01.01.52.31
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Thu, 01 Feb 2024 01:52:31 -0800 (PST)
+Date: Thu, 1 Feb 2024 10:52:30 +0100
+From: Maxime Ripard <mripard@redhat.com>
+To: Dave Airlie <airlied@gmail.com>, 
+	Daniel Vetter <daniel.vetter@ffwll.ch>
+Subject: [PULL] drm-misc-fixes
+Message-ID: <obnofpccz73c3uiqfyipxmjta5fgm4cle55dmtnissgtgxfgv7@22o7kb62efri>
 MIME-Version: 1.0
-Content-Type: text/plain
+Content-Type: multipart/signed; micalg=pgp-sha512;
+ protocol="application/pgp-signature"; boundary="sxck4skgjc3bo7nu"
+Content-Disposition: inline
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,25 +77,65 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: nouveau@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
- Karol Herbst <kherbst@redhat.com>
+Cc: dim-tools@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ Thomas =?utf-8?Q?Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
+ Lucas De Marchi <lucas.demarchi@intel.com>, Oded Gabbay <ogabbay@kernel.org>,
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, 31 Jan 2024, Danilo Krummrich <dakr@redhat.com> wrote:
-> On 1/10/24 18:39, Jani Nikula wrote:
->> Fix the W=1 warning -Wunused-but-set-variable.
->> 
->> Cc: Karol Herbst <kherbst@redhat.com>
->> Cc: Lyude Paul <lyude@redhat.com>
->> Cc: Danilo Krummrich <dakr@redhat.com>
->> Cc: nouveau@lists.freedesktop.org
->> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
->
-> Reviewed-by: Danilo Krummrich <dakr@redhat.com>
 
-Thanks, pushed to drm-misc-next.
+--sxck4skgjc3bo7nu
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
+Hi!
 
--- 
-Jani Nikula, Intel
+Here's this week drm-misc-fixes PR
+
+Maxime
+
+drm-misc-fixes-2024-02-01:
+A quiet week: one fix for CMA dma-buf pages accounting, and one to
+virtio to set the segment size of the virtio_gpu device.
+The following changes since commit 27d19268cf394f2c78db732be0cb31852eeadb0a:
+
+  accel/ivpu: Improve recovery and reset support (2024-01-25 10:17:37 +0100)
+
+are available in the Git repository at:
+
+  git://anongit.freedesktop.org/drm/drm-misc tags/drm-misc-fixes-2024-02-01
+
+for you to fetch changes up to 1c1914d6e8c6edbf5b45047419ff51abdb1dce96:
+
+  dma-buf: heaps: Don't track CMA dma-buf pages under RssFile (2024-01-31 19:54:58 +0530)
+
+----------------------------------------------------------------
+A quiet week: one fix for CMA dma-buf pages accounting, and one to
+virtio to set the segment size of the virtio_gpu device.
+
+----------------------------------------------------------------
+Sebastian Ott (1):
+      drm/virtio: Set segment size for virtio_gpu device
+
+T.J. Mercier (1):
+      dma-buf: heaps: Don't track CMA dma-buf pages under RssFile
+
+ drivers/dma-buf/heaps/cma_heap.c     | 7 +++----
+ drivers/gpu/drm/virtio/virtgpu_drv.c | 1 +
+ 2 files changed, 4 insertions(+), 4 deletions(-)
+
+--sxck4skgjc3bo7nu
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYKAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCZbtp3gAKCRDj7w1vZxhR
+xQ0HAP4sZ+ttqAb4J6lJwVIvgDDtIEMYGYyeWHPzlnuA3Bu/6AD+KeArsfOFt8mI
+A5ibCjPkvznlfVJhqgsIQ0rijE4Oow4=
+=IMIn
+-----END PGP SIGNATURE-----
+
+--sxck4skgjc3bo7nu--
+
