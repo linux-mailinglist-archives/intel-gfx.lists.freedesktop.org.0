@@ -2,63 +2,29 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 39C558479C5
-	for <lists+intel-gfx@lfdr.de>; Fri,  2 Feb 2024 20:39:08 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 70D6E8479D0
+	for <lists+intel-gfx@lfdr.de>; Fri,  2 Feb 2024 20:42:28 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4021310ECC1;
-	Fri,  2 Feb 2024 19:39:06 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="EpTQTfC0";
-	dkim-atps=neutral
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2E57110F10A;
+	Fri,  2 Feb 2024 19:42:26 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from sin.source.kernel.org (sin.source.kernel.org [145.40.73.55])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2ACD010F11A
- for <intel-gfx@lists.freedesktop.org>; Fri,  2 Feb 2024 19:39:05 +0000 (UTC)
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
- by sin.source.kernel.org (Postfix) with ESMTP id 1BF31CE2C17;
- Fri,  2 Feb 2024 19:39:00 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 164E8C433F1;
- Fri,  2 Feb 2024 19:38:58 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1706902739;
- bh=j5R1CbnjIq9cAc6/8ewQm4yBAYV7V1pVH248BPO5MzA=;
- h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
- b=EpTQTfC07G2DtuWt/pDY43yFT2TH0+LudXqQrqkNnzEZTR/HN8WiBiQvQrmKoUF6q
- nVkTZKLFln2k2RkDF/Cu9qhbPp11N+ayFTvjW/edUGhaiB+2pttgX2CRGtKqRri5l7
- s/QaHQoHB5OdcPjAKPYfD8DKjfUyrfrh5uG/0TBuYp/fdCNW1pWeP2yQIq5qRBQeCn
- JQVU19TAdpDL1kiOzdgOdlR7x9+tvQfGo1iNCqqzcMU7mPka/pj7B9tJoq2DzC+yEF
- i6Oxox683tQqZhaMtd/HvZvBziBrGgjiHZA357+NWZPNu+H2OsfNiBmqmH+pSkFyio
- R49tn0PlYqi2g==
-Date: Fri, 2 Feb 2024 14:38:57 -0500
-From: Sasha Levin <sashal@kernel.org>
-To: Lucas De Marchi <lucas.demarchi@intel.com>
-Cc: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>,
- Greg KH <greg@kroah.com>, stable-commits@vger.kernel.org,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>,
- Thomas Zimmermann <tzimmermann@suse.de>,
- David Airlie <airlied@gmail.com>, intel-gfx@lists.freedesktop.org,
- Jani Nikula <jani.nikula@linux.intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
- Oded Gabbay <ogabbay@kernel.org>,
- Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>
-Subject: Re: Re: Patch "drm: Fix color LUT rounding" has been added to the
- 6.7-stable tree
-Message-ID: <Zb1E0YF0KwOTO8Vi@sashalap>
-References: <20240201170320.69864-1-sashal@kernel.org>
- <ZbvdXx7-GSUljUh1@intel.com> <2024020119-user-aviation-b3c5@gregkh>
- <ZbvkbJFs-hQ1wi4o@intel.com>
- <2024020120-unclog-junction-8a5f@gregkh>
- <Zb0d7xIFMhZpTXsW@intel.com>
- <4rfubhgx5ro6uyril7labgxoovuj26funttdts6bbcrbdfjxlj@mrwxtts657g2>
+Received: from 5338d5abeb45 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A4E1F10F10A;
+ Fri,  2 Feb 2024 19:42:24 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============5037166477395742277=="
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1; format=flowed
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <4rfubhgx5ro6uyril7labgxoovuj26funttdts6bbcrbdfjxlj@mrwxtts657g2>
+Subject: =?utf-8?q?=E2=9C=93_Fi=2ECI=2EBAT=3A_success_for_series_starting_with_=5BCI?=
+ =?utf-8?q?=2C1/3=5D_drm=3A_Add_drm=5Fvblank=5Fwork=5Fflush=5Fall=28=29=2E?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Maarten Lankhorst" <maarten.lankhorst@linux.intel.com>
+Cc: intel-gfx@lists.freedesktop.org
+Date: Fri, 02 Feb 2024 19:42:24 -0000
+Message-ID: <170690294467.953177.4056088084928796403@5338d5abeb45>
+X-Patchwork-Hint: ignore
+References: <20240202154423.834991-1-maarten.lankhorst@linux.intel.com>
+In-Reply-To: <20240202154423.834991-1-maarten.lankhorst@linux.intel.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -71,65 +37,179 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, Feb 02, 2024 at 11:35:33AM -0600, Lucas De Marchi wrote:
->On Fri, Feb 02, 2024 at 06:53:03PM +0200, Ville Syrjälä wrote:
->>On Thu, Feb 01, 2024 at 11:17:28AM -0800, Greg KH wrote:
->>>On Thu, Feb 01, 2024 at 08:35:24PM +0200, Ville Syrjälä wrote:
->>>> On Thu, Feb 01, 2024 at 10:16:48AM -0800, Greg KH wrote:
->>>> > On Thu, Feb 01, 2024 at 08:05:19PM +0200, Ville Syrjälä wrote:
->>>> > > On Thu, Feb 01, 2024 at 12:03:20PM -0500, Sasha Levin wrote:
->>>> > > > This is a note to let you know that I've just added the patch titled
->>>> > > >
->>>> > > >     drm: Fix color LUT rounding
->>>> > > >
->>>> > > > to the 6.7-stable tree which can be found at:
->>>> > > >     http://www.kernel.org/git/?p=linux/kernel/git/stable/stable-queue.git;a=summary
->>>> > > >
->>>> > > > The filename of the patch is:
->>>> > > >      drm-fix-color-lut-rounding.patch
->>>> > > > and it can be found in the queue-6.7 subdirectory.
->>>> > > >
->>>> > > > If you, or anyone else, feels it should not be added to the stable tree,
->>>> > > > please let <stable@vger.kernel.org> know about it.
->>>> > >
->>>> > > I guess I wasn't clear enough in the other mail...
->>>> > >
->>>> > > NAK for all of backports of this patch.
->>>> >
->>>> > Ok, but why?  It seems that you are fixing a real issue here, right?  If
->>>> > not, the changelog is not clear with that at all...
->>>> >
->>>> > I'll go drop it now, thanks.
->>>>
->>>> Because backporting it would require other backports that depend on
->>>> the rounding behaviour.
->>>>
->>>> Can I somehow fully opt out of these automagic backports?
->>>> If I want my stuff backported I'll ask for it.
->>>
->>>You can, just let me know what exact files should be ignored, or you can
->>>send a patch against this file:
->>>	https://git.kernel.org/pub/scm/linux/kernel/git/stable/stable-queue.git/tree/ignore_list
->>
->>I think we should add at least i915 and xe there. cc: maintainers
->
->It does feel a little wild to decide a patch needs to be backported
->based on the commit title starting with "Fix", or whatever way was used
->here. We always relied on patches being backported based on a) having a
->Fixes: trailer and  b) the commit pointed out in that trailer
->being present in that stable version. Or the others options shown
->in Documentation/process/stable-kernel-rules.rst
->
->Looking at the commit in question, c6fbb6bca10838485b820e8a26c23996f77ce580
->there's no such a trailer. Did I miss something from
->Documentation/process/stable-kernel-rules.rst?
+--===============5037166477395742277==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Where did you see anything about the Fixes: trailer in the document
-you've pointed to?
+== Series Details ==
 
--- 
-Thanks,
-Sasha
+Series: series starting with [CI,1/3] drm: Add drm_vblank_work_flush_all().
+URL   : https://patchwork.freedesktop.org/series/129478/
+State : success
+
+== Summary ==
+
+CI Bug Log - changes from CI_DRM_14212 -> Patchwork_129478v1
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_129478v1/index.html
+
+Participating hosts (38 -> 36)
+------------------------------
+
+  Additional (1): fi-bsw-n3050 
+  Missing    (3): bat-mtlp-8 fi-snb-2520m fi-pnv-d510 
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_129478v1 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@gem_lmem_swapping@random-engines:
+    - fi-bsw-n3050:       NOTRUN -> [SKIP][1] ([fdo#109271]) +15 other tests skip
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_129478v1/fi-bsw-n3050/igt@gem_lmem_swapping@random-engines.html
+
+  
+#### Possible fixes ####
+
+  * igt@i915_selftest@live@gt_pm:
+    - bat-adln-1:         [DMESG-FAIL][2] ([i915#10010]) -> [PASS][3]
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14212/bat-adln-1/igt@i915_selftest@live@gt_pm.html
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_129478v1/bat-adln-1/igt@i915_selftest@live@gt_pm.html
+
+  
+#### Warnings ####
+
+  * igt@i915_module_load@reload:
+    - fi-kbl-7567u:       [DMESG-WARN][4] ([i915#180] / [i915#8585]) -> [DMESG-WARN][5] ([i915#180] / [i915#1982] / [i915#8585])
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14212/fi-kbl-7567u/igt@i915_module_load@reload.html
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_129478v1/fi-kbl-7567u/igt@i915_module_load@reload.html
+
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
+  [i915#10010]: https://gitlab.freedesktop.org/drm/intel/issues/10010
+  [i915#180]: https://gitlab.freedesktop.org/drm/intel/issues/180
+  [i915#1982]: https://gitlab.freedesktop.org/drm/intel/issues/1982
+  [i915#8585]: https://gitlab.freedesktop.org/drm/intel/issues/8585
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_14212 -> Patchwork_129478v1
+
+  CI-20190529: 20190529
+  CI_DRM_14212: 1dd92467500a5ead3e44bbdfe15e064dd79b65ef @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_7702: bf075a74ece1956fc0e554291591b9da3eab54cf @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  Patchwork_129478v1: 1dd92467500a5ead3e44bbdfe15e064dd79b65ef @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+### Linux commits
+
+292a73b38172 drm/i915: Use the same vblank worker for atomic unpin
+12cd415a24ea drm/i915: Use vblank worker to unpin old legacy cursor fb safely
+244e94a83dbb drm: Add drm_vblank_work_flush_all().
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_129478v1/index.html
+
+--===============5037166477395742277==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>series starting with [CI,1/3] drm: Add drm_vblank_work_flush_all().</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/129478/">https://patchwork.freedesktop.org/series/129478/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_129478v1/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_129478v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_14212 -&gt; Patchwork_129478v1</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_129478v1/index.html</p>
+<h2>Participating hosts (38 -&gt; 36)</h2>
+<p>Additional (1): fi-bsw-n3050 <br />
+  Missing    (3): bat-mtlp-8 fi-snb-2520m fi-pnv-d510 </p>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_129478v1 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>igt@gem_lmem_swapping@random-engines:<ul>
+<li>fi-bsw-n3050:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_129478v1/fi-bsw-n3050/igt@gem_lmem_swapping@random-engines.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +15 other tests skip</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>igt@i915_selftest@live@gt_pm:<ul>
+<li>bat-adln-1:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14212/bat-adln-1/igt@i915_selftest@live@gt_pm.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/10010">i915#10010</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_129478v1/bat-adln-1/igt@i915_selftest@live@gt_pm.html">PASS</a></li>
+</ul>
+</li>
+</ul>
+<h4>Warnings</h4>
+<ul>
+<li>igt@i915_module_load@reload:<ul>
+<li>fi-kbl-7567u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14212/fi-kbl-7567u/igt@i915_module_load@reload.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/180">i915#180</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/8585">i915#8585</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_129478v1/fi-kbl-7567u/igt@i915_module_load@reload.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/180">i915#180</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/1982">i915#1982</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/8585">i915#8585</a>)</li>
+</ul>
+</li>
+</ul>
+<p>{name}: This element is suppressed. This means it is ignored when computing<br />
+          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_14212 -&gt; Patchwork_129478v1</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_14212: 1dd92467500a5ead3e44bbdfe15e064dd79b65ef @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_7702: bf075a74ece1956fc0e554291591b9da3eab54cf @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  Patchwork_129478v1: 1dd92467500a5ead3e44bbdfe15e064dd79b65ef @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+<h3>Linux commits</h3>
+<p>292a73b38172 drm/i915: Use the same vblank worker for atomic unpin<br />
+12cd415a24ea drm/i915: Use vblank worker to unpin old legacy cursor fb safely<br />
+244e94a83dbb drm: Add drm_vblank_work_flush_all().</p>
+
+</body>
+</html>
+
+--===============5037166477395742277==--
