@@ -2,27 +2,59 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id C0B0584739B
-	for <lists+intel-gfx@lfdr.de>; Fri,  2 Feb 2024 16:44:40 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 60A7A8473B6
+	for <lists+intel-gfx@lfdr.de>; Fri,  2 Feb 2024 16:53:37 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E2C5E10F06C;
-	Fri,  2 Feb 2024 15:44:35 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DD55110F08C;
+	Fri,  2 Feb 2024 15:53:35 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="efNQ8nXM";
+	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mblankhorst.nl (lankhorst.se [141.105.120.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6325C10EC47;
- Fri,  2 Feb 2024 15:44:31 +0000 (UTC)
-From: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-To: intel-xe@lists.freedesktop.org,
-	intel-gfx@lists.freedesktop.org
-Subject: [CI 3/3] drm/i915: Use the same vblank worker for atomic unpin
-Date: Fri,  2 Feb 2024 16:44:23 +0100
-Message-ID: <20240202154423.834991-3-maarten.lankhorst@linux.intel.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20240202154423.834991-1-maarten.lankhorst@linux.intel.com>
-References: <20240202154423.834991-1-maarten.lankhorst@linux.intel.com>
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.18])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C641F10F08C
+ for <intel-gfx@lists.freedesktop.org>; Fri,  2 Feb 2024 15:53:34 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1706889214; x=1738425214;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=a6X3r+4XgQNaw9+YCalBkz237jZyhW2vqzaq6a5Tjg8=;
+ b=efNQ8nXMZOzLOQYiBNZar3/ymHmN81YxhSQClSu+vn3Z7i+4F6hNU5/9
+ m3y9Na7UevodXnrhq/UKZnkve6M4YRu/8zPG024DogigGFJZqo2aOkhA8
+ FXa8W+NejpqkWpJ7NXslCEAo1dofGC7fo+XRkPT3u0fI+OM312Z4ObxNm
+ 4hngSui+Zj5nX4bu13ZraN/GxAdzDWXP2Pqo1Q2XVFZ3hn4bY59yQIweP
+ V2ZJzXPnRcCpGV5sNdX0eWbTfGMm5ZUKsI7rQx4bZmBiycq2b60jJ3v2r
+ K5fOi6ClWP+GMQI0raRL6mvUOVh/Xm5rMQxvswHKto+E2n9a+8JTOS2GO A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10971"; a="357414"
+X-IronPort-AV: E=Sophos;i="6.05,238,1701158400"; 
+   d="scan'208";a="357414"
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+ by orvoesa110.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 Feb 2024 07:46:28 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10971"; a="823241199"
+X-IronPort-AV: E=Sophos;i="6.05,238,1701158400"; d="scan'208";a="823241199"
+Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.74])
+ by orsmga001.jf.intel.com with SMTP; 02 Feb 2024 07:46:26 -0800
+Received: by stinkbox (sSMTP sendmail emulation);
+ Fri, 02 Feb 2024 17:46:25 +0200
+Date: Fri, 2 Feb 2024 17:46:25 +0200
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: Jani Nikula <jani.nikula@intel.com>
+Cc: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ Arun R Murthy <arun.r.murthy@intel.com>
+Subject: Re: [RFC 1/4] drm/mst: read sideband messaging cap
+Message-ID: <Zb0OUd5NPMxOwaIb@intel.com>
+References: <cover.1706882590.git.jani.nikula@intel.com>
+ <6c846638f986eed60395ce0fa8f41e21a61ce045.1706882590.git.jani.nikula@intel.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
+In-Reply-To: <6c846638f986eed60395ce0fa8f41e21a61ce045.1706882590.git.jani.nikula@intel.com>
+X-Patchwork-Hint: comment
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -38,164 +70,144 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-In case of legacy cursor update, the cursor VMA needs to be unpinned
-only after vblank. This exceeds the lifetime of the whole atomic commit.
+On Fri, Feb 02, 2024 at 04:05:31PM +0200, Jani Nikula wrote:
+> Amend drm_dp_read_mst_cap() to return an enum, indicating "none",
+> "sideband messaging", or "mst". Modify all call sites to take the new
+> return value into account.
+> 
+> Cc: Arun R Murthy <arun.r.murthy@intel.com>
+> Cc: Ville Syrjälä <ville.syrjala@linux.intel.com>
+> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+> ---
+>  drivers/gpu/drm/display/drm_dp_mst_topology.c | 20 ++++++++++------
+>  drivers/gpu/drm/i915/display/intel_dp.c       |  4 ++--
+>  drivers/gpu/drm/nouveau/nouveau_dp.c          |  2 +-
+>  include/drm/display/drm_dp_mst_helper.h       | 23 ++++++++++++++++++-
+>  4 files changed, 38 insertions(+), 11 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/display/drm_dp_mst_topology.c b/drivers/gpu/drm/display/drm_dp_mst_topology.c
+> index f7c6b60629c2..a68a6c8a2495 100644
+> --- a/drivers/gpu/drm/display/drm_dp_mst_topology.c
+> +++ b/drivers/gpu/drm/display/drm_dp_mst_topology.c
+> @@ -3603,24 +3603,30 @@ fixed20_12 drm_dp_get_vc_payload_bw(const struct drm_dp_mst_topology_mgr *mgr,
+>  EXPORT_SYMBOL(drm_dp_get_vc_payload_bw);
+>  
+>  /**
+> - * drm_dp_read_mst_cap() - check whether or not a sink supports MST
+> + * drm_dp_read_mst_cap() - Read the sink's MST mode capability
+>   * @aux: The DP AUX channel to use
+>   * @dpcd: A cached copy of the DPCD capabilities for this sink
+>   *
+> - * Returns: %True if the sink supports MST, %false otherwise
+> + * Returns: enum drm_dp_mst_mode to indicate MST mode capability
+>   */
+> -bool drm_dp_read_mst_cap(struct drm_dp_aux *aux,
+> -			 const u8 dpcd[DP_RECEIVER_CAP_SIZE])
+> +enum drm_dp_mst_mode drm_dp_read_mst_cap(struct drm_dp_aux *aux,
+> +					 const u8 dpcd[DP_RECEIVER_CAP_SIZE])
+>  {
+>  	u8 mstm_cap;
+>  
+>  	if (dpcd[DP_DPCD_REV] < DP_DPCD_REV_12)
+> -		return false;
+> +		return DP_MST_NONE;
+>  
+>  	if (drm_dp_dpcd_readb(aux, DP_MSTM_CAP, &mstm_cap) != 1)
+> -		return false;
+> +		return DP_MST_NONE;
+> +
+> +	if (mstm_cap & DP_MST_CAP)
+> +		return DP_MST_CAPABLE;
+> +
+> +	if (mstm_cap & DP_SINGLE_STREAM_SIDEBAND_MSG)
+> +		return DP_MST_SIDEBAND_MSG;
+>  
+> -	return mstm_cap & DP_MST_CAP;
+> +	return DP_MST_NONE;
+>  }
+>  EXPORT_SYMBOL(drm_dp_read_mst_cap);
+>  
+> diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
+> index ab415f41924d..7af09f2c008d 100644
+> --- a/drivers/gpu/drm/i915/display/intel_dp.c
+> +++ b/drivers/gpu/drm/i915/display/intel_dp.c
+> @@ -4011,7 +4011,7 @@ intel_dp_can_mst(struct intel_dp *intel_dp)
+>  
+>  	return i915->display.params.enable_dp_mst &&
+>  		intel_dp_mst_source_support(intel_dp) &&
+> -		drm_dp_read_mst_cap(&intel_dp->aux, intel_dp->dpcd);
+> +		drm_dp_read_mst_cap(&intel_dp->aux, intel_dp->dpcd) == DP_MST_CAPABLE;
+>  }
+>  
+>  static void
+> @@ -4020,7 +4020,7 @@ intel_dp_configure_mst(struct intel_dp *intel_dp)
+>  	struct drm_i915_private *i915 = dp_to_i915(intel_dp);
+>  	struct intel_encoder *encoder =
+>  		&dp_to_dig_port(intel_dp)->base;
+> -	bool sink_can_mst = drm_dp_read_mst_cap(&intel_dp->aux, intel_dp->dpcd);
+> +	bool sink_can_mst = drm_dp_read_mst_cap(&intel_dp->aux, intel_dp->dpcd) == DP_MST_CAPABLE;
+>  
+>  	drm_dbg_kms(&i915->drm,
+>  		    "[ENCODER:%d:%s] MST support: port: %s, sink: %s, modparam: %s\n",
+> diff --git a/drivers/gpu/drm/nouveau/nouveau_dp.c b/drivers/gpu/drm/nouveau/nouveau_dp.c
+> index 7de7707ec6a8..d180d22dbab0 100644
+> --- a/drivers/gpu/drm/nouveau/nouveau_dp.c
+> +++ b/drivers/gpu/drm/nouveau/nouveau_dp.c
+> @@ -181,7 +181,7 @@ nouveau_dp_probe_dpcd(struct nouveau_connector *nv_connector,
+>  	if (nouveau_mst) {
+>  		mstm = outp->dp.mstm;
+>  		if (mstm)
+> -			mstm->can_mst = drm_dp_read_mst_cap(aux, dpcd);
+> +			mstm->can_mst = drm_dp_read_mst_cap(aux, dpcd) == DP_MST_CAPABLE;
+>  	}
+>  
+>  	if (nouveau_dp_has_sink_count(connector, outp)) {
+> diff --git a/include/drm/display/drm_dp_mst_helper.h b/include/drm/display/drm_dp_mst_helper.h
+> index 9b19d8bd520a..db48016b2aed 100644
+> --- a/include/drm/display/drm_dp_mst_helper.h
+> +++ b/include/drm/display/drm_dp_mst_helper.h
+> @@ -818,7 +818,28 @@ int drm_dp_mst_topology_mgr_init(struct drm_dp_mst_topology_mgr *mgr,
+>  
+>  void drm_dp_mst_topology_mgr_destroy(struct drm_dp_mst_topology_mgr *mgr);
+>  
+> -bool drm_dp_read_mst_cap(struct drm_dp_aux *aux, const u8 dpcd[DP_RECEIVER_CAP_SIZE]);
+> +/**
+> + * enum drm_dp_mst_mode - sink's MST mode capability
+> + */
+> +enum drm_dp_mst_mode {
+> +	/**
+> +	 * @DP_MST_NONE: The sink does not support MST nor single stream
+> +	 * sideband messaging.
+> +	 */
+> +	DP_MST_NONE,
+> +	/**
+> +	 * @DP_MST_CAPABLE: Sink supports MST, more than one stream and single
+> +	 * stream sideband messaging.
+> +	 */
+> +	DP_MST_CAPABLE,
+> +	/**
+> +	 * @DP_MST_SIDEBAND_MSG: Sink supports only one stream and single stream
+> +	 * sideband messaging.
+> +	 */
+> +	DP_MST_SIDEBAND_MSG,
 
-Any trick I attempted to keep the atomic commit alive didn't work, as
-drm_atomic_helper_setup_commit() force throttles on any old commit that
-wasn't cleaned up.
+Maybe these should have DRM_DP_ namespace or something so we don't
+confuse them with the DP spec derived stuff?
 
-The only option remaining is to remove the plane from the atomic commit,
-and use the same path as the legacy cursor update to clean the state
-after vblank.
+Also wondering if these should rather be named like so:
+- SST
+- MST
+- SST_SIDEBAND_MSG
 
-Signed-off-by: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
----
- .../gpu/drm/i915/display/intel_atomic_plane.c | 28 ++++++++++++++++++-
- .../gpu/drm/i915/display/intel_atomic_plane.h |  2 ++
- drivers/gpu/drm/i915/display/intel_crtc.c     | 28 +++++++++++++++++++
- drivers/gpu/drm/i915/display/intel_cursor.c   |  2 +-
- drivers/gpu/drm/i915/display/intel_cursor.h   |  3 ++
- 5 files changed, 61 insertions(+), 2 deletions(-)
+> +};
+> +
+> +enum drm_dp_mst_mode drm_dp_read_mst_cap(struct drm_dp_aux *aux, const u8 dpcd[DP_RECEIVER_CAP_SIZE]);
+>  int drm_dp_mst_topology_mgr_set_mst(struct drm_dp_mst_topology_mgr *mgr, bool mst_state);
+>  
+>  int drm_dp_mst_hpd_irq_handle_event(struct drm_dp_mst_topology_mgr *mgr,
+> -- 
+> 2.39.2
 
-diff --git a/drivers/gpu/drm/i915/display/intel_atomic_plane.c b/drivers/gpu/drm/i915/display/intel_atomic_plane.c
-index 76d77d5a0409f..06c5d82624433 100644
---- a/drivers/gpu/drm/i915/display/intel_atomic_plane.c
-+++ b/drivers/gpu/drm/i915/display/intel_atomic_plane.c
-@@ -42,6 +42,7 @@
- #include "i915_reg.h"
- #include "intel_atomic_plane.h"
- #include "intel_cdclk.h"
-+#include "intel_cursor.h"
- #include "intel_display_rps.h"
- #include "intel_display_trace.h"
- #include "intel_display_types.h"
-@@ -1163,7 +1164,21 @@ intel_cleanup_plane_fb(struct drm_plane *plane,
- 
- 	intel_display_rps_mark_interactive(dev_priv, state, false);
- 
--	/* Should only be called after a successful intel_prepare_plane_fb()! */
-+	/*
-+	 * This branch can only ever be called after plane update is succesful,
-+	 * the error path will not cause unpin_work to be set.
-+	 */
-+	if (old_plane_state->unpin_work.vblank) {
-+		int i = drm_plane_index(old_plane_state->uapi.plane);
-+
-+		/*
-+		 * Remove plane from atomic commit,
-+		 * free is done from vblank worker
-+		 */
-+		memset(&state->base.planes[i], 0, sizeof(*state->base.planes));
-+		return;
-+	}
-+
- 	intel_plane_unpin_fb(old_plane_state);
- }
- 
-@@ -1176,3 +1191,14 @@ void intel_plane_helper_add(struct intel_plane *plane)
- {
- 	drm_plane_helper_add(&plane->base, &intel_plane_helper_funcs);
- }
-+
-+void intel_plane_init_cursor_vblank_work(struct intel_plane_state *old_plane_state,
-+					 struct intel_plane_state *new_plane_state)
-+{
-+	if (!old_plane_state->ggtt_vma ||
-+	    old_plane_state->ggtt_vma == new_plane_state->ggtt_vma)
-+		return;
-+
-+	drm_vblank_work_init(&old_plane_state->unpin_work, old_plane_state->uapi.crtc,
-+			     intel_cursor_unpin_work);
-+}
-diff --git a/drivers/gpu/drm/i915/display/intel_atomic_plane.h b/drivers/gpu/drm/i915/display/intel_atomic_plane.h
-index 191dad0efc8e6..5a897cf6fa021 100644
---- a/drivers/gpu/drm/i915/display/intel_atomic_plane.h
-+++ b/drivers/gpu/drm/i915/display/intel_atomic_plane.h
-@@ -66,5 +66,7 @@ int intel_plane_check_src_coordinates(struct intel_plane_state *plane_state);
- void intel_plane_set_invisible(struct intel_crtc_state *crtc_state,
- 			       struct intel_plane_state *plane_state);
- void intel_plane_helper_add(struct intel_plane *plane);
-+void intel_plane_init_cursor_vblank_work(struct intel_plane_state *old_plane_state,
-+					 struct intel_plane_state *new_plane_state);
- 
- #endif /* __INTEL_ATOMIC_PLANE_H__ */
-diff --git a/drivers/gpu/drm/i915/display/intel_crtc.c b/drivers/gpu/drm/i915/display/intel_crtc.c
-index 25593f6aae7de..cafe7e86a7feb 100644
---- a/drivers/gpu/drm/i915/display/intel_crtc.c
-+++ b/drivers/gpu/drm/i915/display/intel_crtc.c
-@@ -500,6 +500,19 @@ void intel_pipe_update_start(struct intel_atomic_state *state,
- 	if (intel_crtc_needs_vblank_work(new_crtc_state))
- 		intel_crtc_vblank_work_init(new_crtc_state);
- 
-+	if (state->base.legacy_cursor_update) {
-+		struct intel_plane *plane;
-+		struct intel_plane_state *old_plane_state, *new_plane_state;
-+		int i;
-+
-+		for_each_oldnew_intel_plane_in_state(state, plane, old_plane_state,
-+						     new_plane_state, i) {
-+			if (old_plane_state->uapi.crtc == &crtc->base)
-+				intel_plane_init_cursor_vblank_work(old_plane_state,
-+								    new_plane_state);
-+		}
-+	}
-+
- 	intel_vblank_evade_init(old_crtc_state, new_crtc_state, &evade);
- 
- 	if (drm_WARN_ON(&dev_priv->drm, drm_crtc_vblank_get(&crtc->base)))
-@@ -616,6 +629,21 @@ void intel_pipe_update_end(struct intel_atomic_state *state,
- 		new_crtc_state->uapi.event = NULL;
- 	}
- 
-+	if (state->base.legacy_cursor_update) {
-+		struct intel_plane *plane;
-+		struct intel_plane_state *old_plane_state;
-+		int i;
-+
-+		for_each_old_intel_plane_in_state(state, plane, old_plane_state, i) {
-+			if (old_plane_state->uapi.crtc == &crtc->base &&
-+			    old_plane_state->unpin_work.vblank) {
-+				drm_vblank_work_schedule(&old_plane_state->unpin_work,
-+							 drm_crtc_accurate_vblank_count(&crtc->base) + 1,
-+							 false);
-+			}
-+		}
-+	}
-+
- 	/*
- 	 * Send VRR Push to terminate Vblank. If we are already in vblank
- 	 * this has to be done _after_ sampling the frame counter, as
-diff --git a/drivers/gpu/drm/i915/display/intel_cursor.c b/drivers/gpu/drm/i915/display/intel_cursor.c
-index 9021c0c1683d6..dbb26a2128008 100644
---- a/drivers/gpu/drm/i915/display/intel_cursor.c
-+++ b/drivers/gpu/drm/i915/display/intel_cursor.c
-@@ -654,7 +654,7 @@ static bool intel_cursor_format_mod_supported(struct drm_plane *_plane,
- 	return format == DRM_FORMAT_ARGB8888;
- }
- 
--static void intel_cursor_unpin_work(struct kthread_work *base)
-+void intel_cursor_unpin_work(struct kthread_work *base)
- {
- 	struct drm_vblank_work *work = to_drm_vblank_work(base);
- 	struct intel_plane_state *plane_state =
-diff --git a/drivers/gpu/drm/i915/display/intel_cursor.h b/drivers/gpu/drm/i915/display/intel_cursor.h
-index ce333bf4c2d55..e2d9ec710a864 100644
---- a/drivers/gpu/drm/i915/display/intel_cursor.h
-+++ b/drivers/gpu/drm/i915/display/intel_cursor.h
-@@ -9,9 +9,12 @@
- enum pipe;
- struct drm_i915_private;
- struct intel_plane;
-+struct kthread_work;
- 
- struct intel_plane *
- intel_cursor_plane_create(struct drm_i915_private *dev_priv,
- 			  enum pipe pipe);
- 
-+void intel_cursor_unpin_work(struct kthread_work *base);
-+
- #endif
 -- 
-2.43.0
-
+Ville Syrjälä
+Intel
