@@ -2,56 +2,25 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id D774884732A
-	for <lists+intel-gfx@lfdr.de>; Fri,  2 Feb 2024 16:30:29 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3A5CD847399
+	for <lists+intel-gfx@lfdr.de>; Fri,  2 Feb 2024 16:44:37 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 64AA610E804;
-	Fri,  2 Feb 2024 15:30:28 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="PlTxufE+";
-	dkim-atps=neutral
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8641410ED34;
+	Fri,  2 Feb 2024 15:44:34 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6653210E813;
- Fri,  2 Feb 2024 15:30:26 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1706887826; x=1738423826;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=0mHxORDr38O9nKHM/zJWGh2u7vyAfg4btxVzicEv4Nc=;
- b=PlTxufE+7jnJ1Gt8CcGimRgpUI6LvnZSGVovL4ySmWIPEYfyjQ83XQ7F
- 3zRNkC54x3NWseXpl1AvZU+IbCpNHHqGrv/ZHzpklsQppjtn6dfhKzHwX
- ZBdCpZO7ovGJzEXx7iz70xXu6ZUcuVic5wWxYGSWsyYtwnNMJqU5lY+0L
- 7BIabA3/NpKfePLAD53m2Sxqz1J40Ox1Y44ggqWevHrGZlTNtEkRMf018
- n6hi+wDVwFDHQlng8sAqS9pdHpFA8/lsMFV4zGVWQLmZ+XCsmhQuO/8ZW
- 5K8Q9f0ikDDaxbmv6IrycOstuXjMlzr4PtmWJwLmHQ0qpufdaobXxZNx5 w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10971"; a="11276599"
-X-IronPort-AV: E=Sophos;i="6.05,238,1701158400"; d="scan'208";a="11276599"
-Received: from orviesa001.jf.intel.com ([10.64.159.141])
- by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Feb 2024 07:30:26 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.05,238,1701158400"; d="scan'208";a="37529209"
-Received: from mmermeza-mobl3.ger.corp.intel.com (HELO localhost)
- ([10.252.59.198])
- by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Feb 2024 07:30:24 -0800
-From: Jani Nikula <jani.nikula@intel.com>
-To: Arun R Murthy <arun.r.murthy@intel.com>,
- dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org
-Cc: Arun R Murthy <arun.r.murthy@intel.com>, Ville =?utf-8?B?U3lyasOkbMOk?=
- <ville.syrjala@linux.intel.com>, "Deak, Imre" <imre.deak@intel.com>
-Subject: Re: [PATCHv2 2/2] drm/i915/display/dp: 128/132b DP-capable with SST
-In-Reply-To: <20240131102344.1671929-2-arun.r.murthy@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20240131102344.1671929-1-arun.r.murthy@intel.com>
- <20240131102344.1671929-2-arun.r.murthy@intel.com>
-Date: Fri, 02 Feb 2024 17:30:20 +0200
-Message-ID: <87r0hueveb.fsf@intel.com>
+Received: from mblankhorst.nl (lankhorst.se [141.105.120.124])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 50F5510E6B7;
+ Fri,  2 Feb 2024 15:44:31 +0000 (UTC)
+From: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+To: intel-xe@lists.freedesktop.org,
+	intel-gfx@lists.freedesktop.org
+Subject: [CI 1/3] drm: Add drm_vblank_work_flush_all().
+Date: Fri,  2 Feb 2024 16:44:21 +0100
+Message-ID: <20240202154423.834991-1-maarten.lankhorst@linux.intel.com>
+X-Mailer: git-send-email 2.43.0
 MIME-Version: 1.0
-Content-Type: text/plain
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -67,65 +36,69 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, 31 Jan 2024, Arun R Murthy <arun.r.murthy@intel.com> wrote:
-> With a value of '0' read from MSTM_CAP register MST to be enabled.
-> DP2.1 SCR updates the spec for 128/132b DP capable supporting only one
-> stream and not supporting single stream sideband MSG.
-> The underlying protocol will be MST to enable use of MTP.
->
-> Signed-off-by: Arun R Murthy <arun.r.murthy@intel.com>
-> ---
->  drivers/gpu/drm/i915/display/intel_dp.c | 12 +++++++++---
->  1 file changed, 9 insertions(+), 3 deletions(-)
->
-> diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
-> index 9ff0cbd9c0df..05722f10cdd7 100644
-> --- a/drivers/gpu/drm/i915/display/intel_dp.c
-> +++ b/drivers/gpu/drm/i915/display/intel_dp.c
-> @@ -4037,9 +4037,15 @@ intel_dp_configure_mst(struct intel_dp *intel_dp)
->  
->  	if (!intel_dp_mst_source_support(intel_dp))
->  		return;
-> -
-> -	intel_dp->is_mst = sink_can_mst &&
-> -		i915->display.params.enable_dp_mst;
-> +	/*
-> +	 * Even if dpcd reg MSTM_CAP is 0, if the sink supports UHBR rates then
-> +	 * DP2.1 can be enabled with underlying protocol using MST for MTP
-> +	 * TODO: Need to accommodate MSTM_CAP bit[0]=0, bit[1]=1 condition, i.e
-> +	 * one stream with single stream sideband msg.
-> +	 */
-> +	intel_dp->is_mst = (sink_can_mst || (intel_dp->dpcd[DP_MAIN_LINK_CHANNEL_CODING] &
-> +					     DP_CAP_ANSI_128B132B)) &&
-> +			    i915->display.params.enable_dp_mst;
+From: Maarten Lankhorst <dev@lankhorst.se>
 
-Based on testing with the specific display in question, it looks like
-this works because the display, while having DP_MSTM_CAP == 0, does
-actually support sideband messaging. Which is unexpected.
+In some cases we want to flush all vblank work, right before vblank_off
+for example. Add a simple function to make this possible.
 
-This means a display that has DP_MSTM_CAP == 0 that actually does not
-support sideband messaging, which is expected, will get a black screen
-with this patch.
+Signed-off-by: Maarten Lankhorst <dev@lankhorst.se>
+---
+ drivers/gpu/drm/drm_vblank_work.c | 22 ++++++++++++++++++++++
+ include/drm/drm_vblank_work.h     |  2 ++
+ 2 files changed, 24 insertions(+)
 
-This was the conclusion when I discussed this with Ville and Imre.
-
-Related to this, I've posted a series to enable MST mode for 128b/132b
-displays that support single-stream with sideband messaging [1]. It
-obviously does not directly help here, as that requires DP_MSTM_CAP ==
-2. It might be possible to quirk the one display to use that. Maybe. The
-alternative is actually implementing 128b/132b single-stream w/o
-sideband messaging using our regular SST paths.
-
-BR,
-Jani.
-
-
-[1] https://patchwork.freedesktop.org/series/129468/
-
-
->  
->  	drm_dp_mst_topology_mgr_set_mst(&intel_dp->mst_mgr,
->  					intel_dp->is_mst);
-
+diff --git a/drivers/gpu/drm/drm_vblank_work.c b/drivers/gpu/drm/drm_vblank_work.c
+index 43cd5c0f4f6fb..ff86f2b2e052e 100644
+--- a/drivers/gpu/drm/drm_vblank_work.c
++++ b/drivers/gpu/drm/drm_vblank_work.c
+@@ -232,6 +232,28 @@ void drm_vblank_work_flush(struct drm_vblank_work *work)
+ }
+ EXPORT_SYMBOL(drm_vblank_work_flush);
+ 
++/**
++ * drm_vblank_work_flush_all - flush all currently pending vblank work on crtc.
++ * @crtc: crtc for which vblank work to flush
++ *
++ * Wait until all currently queued vblank work on @crtc
++ * has finished executing once.
++ */
++void drm_vblank_work_flush_all(struct drm_crtc *crtc)
++{
++	struct drm_device *dev = crtc->dev;
++	struct drm_vblank_crtc *vblank = &dev->vblank[drm_crtc_index(crtc)];
++
++	spin_lock_irq(&dev->event_lock);
++	wait_event_lock_irq(vblank->work_wait_queue,
++			    waitqueue_active(&vblank->work_wait_queue),
++			    dev->event_lock);
++	spin_unlock_irq(&dev->event_lock);
++
++	kthread_flush_worker(vblank->worker);
++}
++EXPORT_SYMBOL(drm_vblank_work_flush_all);
++
+ /**
+  * drm_vblank_work_init - initialize a vblank work item
+  * @work: vblank work item
+diff --git a/include/drm/drm_vblank_work.h b/include/drm/drm_vblank_work.h
+index eb41d0810c4ff..e04d436b72973 100644
+--- a/include/drm/drm_vblank_work.h
++++ b/include/drm/drm_vblank_work.h
+@@ -17,6 +17,7 @@ struct drm_crtc;
+  * drm_vblank_work_init()
+  * drm_vblank_work_cancel_sync()
+  * drm_vblank_work_flush()
++ * drm_vblank_work_flush_all()
+  */
+ struct drm_vblank_work {
+ 	/**
+@@ -67,5 +68,6 @@ void drm_vblank_work_init(struct drm_vblank_work *work, struct drm_crtc *crtc,
+ 			  void (*func)(struct kthread_work *work));
+ bool drm_vblank_work_cancel_sync(struct drm_vblank_work *work);
+ void drm_vblank_work_flush(struct drm_vblank_work *work);
++void drm_vblank_work_flush_all(struct drm_crtc *crtc);
+ 
+ #endif /* !_DRM_VBLANK_WORK_H_ */
 -- 
-Jani Nikula, Intel
+2.43.0
+
