@@ -2,52 +2,51 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0C868847C74
-	for <lists+intel-gfx@lfdr.de>; Fri,  2 Feb 2024 23:44:18 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id A9226847C75
+	for <lists+intel-gfx@lfdr.de>; Fri,  2 Feb 2024 23:44:21 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A181310F104;
-	Fri,  2 Feb 2024 22:44:16 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2A3D810F0DE;
+	Fri,  2 Feb 2024 22:44:20 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="F8XjrleP";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="dCpawOzN";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5B5F910F104
- for <intel-gfx@lists.freedesktop.org>; Fri,  2 Feb 2024 22:44:15 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0B5F310F0DE
+ for <intel-gfx@lists.freedesktop.org>; Fri,  2 Feb 2024 22:44:18 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1706913855; x=1738449855;
+ t=1706913859; x=1738449859;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=2jsFX1hQJqFgCRUHYfTNF8JFciKpOCAzttpcVZJXKK0=;
- b=F8XjrlePJtLJRN11B+mwdeg7slKSgjsDxtEVk5LnCmNQhV4OF5Cr3MlI
- Qr1S6j3Kbtr9r2+AdvLGs7r1kKT8ZIbMDwMCrRLbZ7tGgK4zEabs+y0Wr
- qV80TeGEfzBjI5uA9aOOYH7w7YxiUsDeYei/TsHTeJfdmU1THUNHAv5t2
- N3kLrFEuwGKNeWPOWB8VsmVaMvsolwoj41QSionxEHQ7dVkS1RYb4zzq9
- 65rjZGn6uMBsX5j7APlMNLYH+vOZxy1h6pLhFyLCMn3heHyKZ6PA2YkRB
- vrniIZCWIRR2ZiqCC7CJDaBR9OmHgtJKp1tbZaMf7n5e4UE+oxuCnjaJ0 g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10971"; a="153761"
+ bh=jIspaQlIti++q760cghO4jqVJVo6DiBMQ7Fp3PPvWdQ=;
+ b=dCpawOzN5XwZJt7a9GwxJWEGL0XUXF1O5WgEmmP3CuniO/CMtKEIjb6f
+ 5HIheZk04EHWfMVroITlGWuTRdlkuBlk6cOgDNs57mA+aICnkICpmrpKK
+ p71eU8JyJSnTdtBFP05SrxBI+sSrxuy09h/ISd43w1Mu/0hAXqj/ANpRX
+ jXjGUqI9n1O/z2Us52SWWmTFvif3XWFh+9xViqMaW9XVPLjOB1luUz+Yx
+ C6OTy8gA5paK5xpsEl1EZsdzeOQJRV7pq48sXv2QHZDXtPy6GSdLKE2A4
+ JeMPIBdPKDk4U3bdzz14IZlNI/6FHEaphD01+QoPchuZ7bDj3rf1vhHWa g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10971"; a="153768"
 X-IronPort-AV: E=Sophos;i="6.05,238,1701158400"; 
-   d="scan'208";a="153761"
+   d="scan'208";a="153768"
 Received: from orsmga001.jf.intel.com ([10.7.209.18])
  by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Feb 2024 14:44:15 -0800
+ 02 Feb 2024 14:44:18 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10971"; a="823332041"
-X-IronPort-AV: E=Sophos;i="6.05,238,1701158400"; d="scan'208";a="823332041"
+X-IronPort-AV: E=McAfee;i="6600,9927,10971"; a="823332046"
+X-IronPort-AV: E=Sophos;i="6.05,238,1701158400"; d="scan'208";a="823332046"
 Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.74])
- by orsmga001.jf.intel.com with SMTP; 02 Feb 2024 14:44:12 -0800
+ by orsmga001.jf.intel.com with SMTP; 02 Feb 2024 14:44:15 -0800
 Received: by stinkbox (sSMTP sendmail emulation);
- Sat, 03 Feb 2024 00:44:11 +0200
+ Sat, 03 Feb 2024 00:44:15 +0200
 From: Ville Syrjala <ville.syrjala@linux.intel.com>
 To: intel-gfx@lists.freedesktop.org
 Cc: intel-xe@lists.freedesktop.org, Uma Shankar <uma.shankar@intel.com>,
  Paz Zcharya <pazz@chromium.org>
-Subject: [PATCH v4 08/16] drm/i915: Fix region start during initial plane
- readout
-Date: Sat,  3 Feb 2024 00:43:32 +0200
-Message-ID: <20240202224340.30647-9-ville.syrjala@linux.intel.com>
+Subject: [PATCH v4 09/16] drm/i915: Fix MTL initial plane readout
+Date: Sat,  3 Feb 2024 00:43:33 +0200
+Message-ID: <20240202224340.30647-10-ville.syrjala@linux.intel.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20240202224340.30647-1-ville.syrjala@linux.intel.com>
 References: <20240202224340.30647-1-ville.syrjala@linux.intel.com>
@@ -71,55 +70,70 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-On MTL the stolen region starts at offset 8MiB from the start of
-LMEMBAR. The dma addresses are thus also offset by 8MiB. However the
-mm_node/etc. is zero based, and i915_pages_create_for_stolen() will
-add the appropriate region.start into the sg dma address. So when
-we do the readout we need to convert the dma address read from
-the PTE to be zero based as well.
-
-Note that currently we don't take this path on MTL, but we should
-and thus this needs to be fixed. For lmem this works correctly
-already as the lmem region.start==0.
-
-While at it let's also make sure the address points to somewhere within
-the memory region. We don't need to check the size as
-i915_gem_object_create_region_at() should later fail if the object size
-exceeds the region size.
+MTL stolen memory looks more like local memory, so use the
+(now fixed) lmem path when doing the initial plane readout.
 
 Reviewed-by: Uma Shankar <uma.shankar@intel.com>
 Tested-by: Paz Zcharya <pazz@chromium.org>
 Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_plane_initial.c | 8 +++++---
- 1 file changed, 5 insertions(+), 3 deletions(-)
+ .../drm/i915/display/intel_plane_initial.c    | 25 +++++++++++++------
+ 1 file changed, 18 insertions(+), 7 deletions(-)
 
 diff --git a/drivers/gpu/drm/i915/display/intel_plane_initial.c b/drivers/gpu/drm/i915/display/intel_plane_initial.c
-index ffc92b18fcf5..db594ccf0323 100644
+index db594ccf0323..c72d4cacf631 100644
 --- a/drivers/gpu/drm/i915/display/intel_plane_initial.c
 +++ b/drivers/gpu/drm/i915/display/intel_plane_initial.c
-@@ -79,16 +79,18 @@ initial_plane_vma(struct drm_i915_private *i915,
- 		 * We don't currently expect this to ever be placed in the
- 		 * stolen portion.
- 		 */
--		if (phys_base >= resource_size(&mem->region)) {
-+		if (phys_base < mem->region.start || phys_base > mem->region.end) {
- 			drm_err(&i915->drm,
--				"Initial plane programming using invalid range, phys_base=%pa\n",
--				&phys_base);
-+				"Initial plane programming using invalid range, phys_base=%pa (%s [%pa-%pa])\n",
-+				&phys_base, mem->region.name, &mem->region.start, &mem->region.end);
- 			return NULL;
+@@ -59,7 +59,7 @@ initial_plane_vma(struct drm_i915_private *i915,
+ 		return NULL;
+ 
+ 	base = round_down(plane_config->base, I915_GTT_MIN_ALIGNMENT);
+-	if (IS_DGFX(i915)) {
++	if (IS_DGFX(i915) || HAS_LMEMBAR_SMEM_STOLEN(i915)) {
+ 		gen8_pte_t __iomem *gte = to_gt(i915)->ggtt->gsm;
+ 		gen8_pte_t pte;
+ 
+@@ -73,11 +73,20 @@ initial_plane_vma(struct drm_i915_private *i915,
  		}
  
- 		drm_dbg(&i915->drm,
- 			"Using phys_base=%pa, based on initial plane programming\n",
- 			&phys_base);
+ 		phys_base = pte & GEN12_GGTT_PTE_ADDR_MASK;
+-		mem = i915->mm.regions[INTEL_REGION_LMEM_0];
 +
-+		phys_base -= mem->region.start;
++		if (IS_DGFX(i915))
++			mem = i915->mm.regions[INTEL_REGION_LMEM_0];
++		else
++			mem = i915->mm.stolen_region;
++		if (!mem) {
++			drm_dbg_kms(&i915->drm,
++				    "Initial plane memory region not initialized\n");
++			return NULL;
++		}
+ 
+ 		/*
+-		 * We don't currently expect this to ever be placed in the
+-		 * stolen portion.
++		 * On lmem we don't currently expect this to
++		 * ever be placed in the stolen portion.
+ 		 */
+ 		if (phys_base < mem->region.start || phys_base > mem->region.end) {
+ 			drm_err(&i915->drm,
+@@ -94,11 +103,13 @@ initial_plane_vma(struct drm_i915_private *i915,
  	} else {
  		phys_base = base;
  		mem = i915->mm.stolen_region;
++		if (!mem) {
++			drm_dbg_kms(&i915->drm,
++				    "Initial plane memory region not initialized\n");
++			return NULL;
++		}
+ 	}
+ 
+-	if (!mem)
+-		return NULL;
+-
+ 	size = round_up(plane_config->base + plane_config->size,
+ 			mem->min_page_size);
+ 	size -= base;
 -- 
 2.43.0
 
