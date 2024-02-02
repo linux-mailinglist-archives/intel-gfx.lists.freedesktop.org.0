@@ -2,65 +2,29 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 31595847B67
-	for <lists+intel-gfx@lfdr.de>; Fri,  2 Feb 2024 22:15:35 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 42093847B75
+	for <lists+intel-gfx@lfdr.de>; Fri,  2 Feb 2024 22:23:10 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4547C10E81A;
-	Fri,  2 Feb 2024 21:15:33 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="tlMD5sTh";
-	dkim-atps=neutral
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7912A10E843;
+	Fri,  2 Feb 2024 21:23:07 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4C94710E81A
- for <intel-gfx@lists.freedesktop.org>; Fri,  2 Feb 2024 21:15:32 +0000 (UTC)
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
- by dfw.source.kernel.org (Postfix) with ESMTP id AF47962888;
- Fri,  2 Feb 2024 21:15:31 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 32363C433F1;
- Fri,  2 Feb 2024 21:15:31 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1706908531;
- bh=qd+lGlIwYuTwQOXV9mYnAkVVxQ2f0jJ2mB8ltUbKspw=;
- h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
- b=tlMD5sThB3Mxm4lfOEYXlXMvLDwKMk1oIhpogPRXRvE/4ICI3joEcXWSN0oLaKAIo
- QS3w//0t9a5dEawuV66Swhz8b4F+C1U4pMxrnJjRCaK4tiIsV6qhwEg6Ce97DlDvKa
- iIXFENf5cjqaPH1nSxxaek2gA5MGzbVDHboj+fx9jjqvhSn8b3uafKThr8h0QTAayv
- 4eVp+A5AYw5jW8q0LQNxTBy3uv7yotjsSpPOhETLFWMEIQIBRRkEocTkVY59z1gPpc
- rrt+aOtcUnrK9mSwuNLx56aPjdNEIB9KvNsuk9JlfwYS99NDnESintK8zHT6unB8eD
- wO09QQBXvI+Qw==
-Date: Fri, 2 Feb 2024 16:15:29 -0500
-From: Sasha Levin <sashal@kernel.org>
-To: Lucas De Marchi <lucas.demarchi@intel.com>
-Cc: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>,
- Greg KH <greg@kroah.com>, stable-commits@vger.kernel.org,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>,
- Thomas Zimmermann <tzimmermann@suse.de>,
- David Airlie <airlied@gmail.com>, intel-gfx@lists.freedesktop.org,
- Jani Nikula <jani.nikula@linux.intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
- Oded Gabbay <ogabbay@kernel.org>,
- Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>
-Subject: Re: Re: Re: Patch "drm: Fix color LUT rounding" has been added to
- the 6.7-stable tree
-Message-ID: <Zb1bcXZp-3YY06AL@sashalap>
-References: <20240201170320.69864-1-sashal@kernel.org>
- <ZbvdXx7-GSUljUh1@intel.com> <2024020119-user-aviation-b3c5@gregkh>
- <ZbvkbJFs-hQ1wi4o@intel.com>
- <2024020120-unclog-junction-8a5f@gregkh>
- <Zb0d7xIFMhZpTXsW@intel.com>
- <4rfubhgx5ro6uyril7labgxoovuj26funttdts6bbcrbdfjxlj@mrwxtts657g2>
- <Zb1E0YF0KwOTO8Vi@sashalap>
- <jywz4vli3vxiq62enzeu4gfiv3adhndn5unpew4nxgitwo7zup@esnk7etqceg5>
+Received: from 5338d5abeb45 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3DC0C10E843;
+ Fri,  2 Feb 2024 21:23:06 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1; format=flowed
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <jywz4vli3vxiq62enzeu4gfiv3adhndn5unpew4nxgitwo7zup@esnk7etqceg5>
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=97_Fi=2ECI=2ECHECKPATCH=3A_warning_for_drm/i915/dsc=3A_Fix_?=
+ =?utf-8?q?the_macro_that_calculates_DSCC=5F/DSCA=5F_PPS_reg_address?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Manasi Navare" <navaremanasi@chromium.org>
+Cc: intel-gfx@lists.freedesktop.org
+Date: Fri, 02 Feb 2024 21:23:06 -0000
+Message-ID: <170690898625.953329.7551072013944718680@5338d5abeb45>
+X-Patchwork-Hint: ignore
+References: <20240202204752.1210687-1-navaremanasi@chromium.org>
+In-Reply-To: <20240202204752.1210687-1-navaremanasi@chromium.org>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -73,96 +37,58 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, Feb 02, 2024 at 02:14:40PM -0600, Lucas De Marchi wrote:
->On Fri, Feb 02, 2024 at 02:38:57PM -0500, Sasha Levin wrote:
->>On Fri, Feb 02, 2024 at 11:35:33AM -0600, Lucas De Marchi wrote:
->>>On Fri, Feb 02, 2024 at 06:53:03PM +0200, Ville Syrjälä wrote:
->>>>On Thu, Feb 01, 2024 at 11:17:28AM -0800, Greg KH wrote:
->>>>>On Thu, Feb 01, 2024 at 08:35:24PM +0200, Ville Syrjälä wrote:
->>>>>>On Thu, Feb 01, 2024 at 10:16:48AM -0800, Greg KH wrote:
->>>>>>>On Thu, Feb 01, 2024 at 08:05:19PM +0200, Ville Syrjälä wrote:
->>>>>>>> On Thu, Feb 01, 2024 at 12:03:20PM -0500, Sasha Levin wrote:
->>>>>>>> > This is a note to let you know that I've just added the patch titled
->>>>>>>> >
->>>>>>>> >     drm: Fix color LUT rounding
->>>>>>>> >
->>>>>>>> > to the 6.7-stable tree which can be found at:
->>>>>>>> >     http://www.kernel.org/git/?p=linux/kernel/git/stable/stable-queue.git;a=summary
->>>>>>>> >
->>>>>>>> > The filename of the patch is:
->>>>>>>> >      drm-fix-color-lut-rounding.patch
->>>>>>>> > and it can be found in the queue-6.7 subdirectory.
->>>>>>>> >
->>>>>>>> > If you, or anyone else, feels it should not be added to the stable tree,
->>>>>>>> > please let <stable@vger.kernel.org> know about it.
->>>>>>>>
->>>>>>>> I guess I wasn't clear enough in the other mail...
->>>>>>>>
->>>>>>>> NAK for all of backports of this patch.
->>>>>>>
->>>>>>>Ok, but why?  It seems that you are fixing a real issue here, right?  If
->>>>>>>not, the changelog is not clear with that at all...
->>>>>>>
->>>>>>>I'll go drop it now, thanks.
->>>>>>
->>>>>>Because backporting it would require other backports that depend on
->>>>>>the rounding behaviour.
->>>>>>
->>>>>>Can I somehow fully opt out of these automagic backports?
->>>>>>If I want my stuff backported I'll ask for it.
->>>>>
->>>>>You can, just let me know what exact files should be ignored, or you can
->>>>>send a patch against this file:
->>>>>	https://git.kernel.org/pub/scm/linux/kernel/git/stable/stable-queue.git/tree/ignore_list
->>>>
->>>>I think we should add at least i915 and xe there. cc: maintainers
->>>
->>>It does feel a little wild to decide a patch needs to be backported
->>>based on the commit title starting with "Fix", or whatever way was used
->>>here. We always relied on patches being backported based on a) having a
->>>Fixes: trailer and  b) the commit pointed out in that trailer
->>>being present in that stable version. Or the others options shown
->>>in Documentation/process/stable-kernel-rules.rst
->>>
->>>Looking at the commit in question, c6fbb6bca10838485b820e8a26c23996f77ce580
->>>there's no such a trailer. Did I miss something from
->>>Documentation/process/stable-kernel-rules.rst?
->>
->>Where did you see anything about the Fixes: trailer in the document
->>you've pointed to?
->
->End of "Option 1":
->
->   Note, such tagging is unnecessary if the stable team can derive the
->   appropriate versions from Fixes: tags.
+== Series Details ==
 
-Let me quote the entire section containing the sentence you've pasted
-above:
+Series: drm/i915/dsc: Fix the macro that calculates DSCC_/DSCA_ PPS reg address
+URL   : https://patchwork.freedesktop.org/series/129486/
+State : warning
 
-> * For patches that may have kernel version prerequisites specify them using
->   the following format in the sign-off area:
->
->   .. code-block:: none
->
->     Cc: <stable@vger.kernel.org> # 3.3.x
->
->   The tag has the meaning of:
->
->   .. code-block:: none
->
->     git cherry-pick <this commit>
->
->   For each "-stable" tree starting with the specified version.
->
->   Note, such tagging is unnecessary if the stable team can derive the
->   appropriate versions from Fixes: tags.
+== Summary ==
 
-Looking at the above, does the phrase "such tagging" refer to stable@
-tags in general, or to tagging of prerequisite patches?
+Error: dim checkpatch failed
+d490bac8db7c drm/i915/dsc: Fix the macro that calculates DSCC_/DSCA_ PPS reg address
+-:7: WARNING:COMMIT_LOG_LONG_LINE: Prefer a maximum 75 chars per line (possible unwrapped commit description?)
+#7: 
+Commit bd077259d0a9 ("drm/i915/vdsc: Add function to read any PPS register") defines
 
--- 
-Thanks,
-Sasha
+-:43: WARNING:LONG_LINE: line length of 104 exceeds 100 columns
+#43: FILE: drivers/gpu/drm/i915/display/intel_vdsc_regs.h:54:
++#define DSCA_PPS(pps)				_MMIO(_DSCA_PPS_0 + ((pps < 12) ? (pps):(pps + 12)) * 4)
+
+-:43: CHECK:SPACING: spaces required around that ':' (ctx:VxV)
+#43: FILE: drivers/gpu/drm/i915/display/intel_vdsc_regs.h:54:
++#define DSCA_PPS(pps)				_MMIO(_DSCA_PPS_0 + ((pps < 12) ? (pps):(pps + 12)) * 4)
+                      				                                       ^
+
+-:43: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'pps' - possible side-effects?
+#43: FILE: drivers/gpu/drm/i915/display/intel_vdsc_regs.h:54:
++#define DSCA_PPS(pps)				_MMIO(_DSCA_PPS_0 + ((pps < 12) ? (pps):(pps + 12)) * 4)
+
+-:43: CHECK:MACRO_ARG_PRECEDENCE: Macro argument 'pps' may be better as '(pps)' to avoid precedence issues
+#43: FILE: drivers/gpu/drm/i915/display/intel_vdsc_regs.h:54:
++#define DSCA_PPS(pps)				_MMIO(_DSCA_PPS_0 + ((pps < 12) ? (pps):(pps + 12)) * 4)
+
+-:44: WARNING:LONG_LINE: line length of 104 exceeds 100 columns
+#44: FILE: drivers/gpu/drm/i915/display/intel_vdsc_regs.h:55:
++#define DSCC_PPS(pps)				_MMIO(_DSCC_PPS_0 + ((pps < 12) ? (pps):(pps + 12)) * 4)
+
+-:44: CHECK:SPACING: spaces required around that ':' (ctx:VxV)
+#44: FILE: drivers/gpu/drm/i915/display/intel_vdsc_regs.h:55:
++#define DSCC_PPS(pps)				_MMIO(_DSCC_PPS_0 + ((pps < 12) ? (pps):(pps + 12)) * 4)
+                      				                                       ^
+
+-:44: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'pps' - possible side-effects?
+#44: FILE: drivers/gpu/drm/i915/display/intel_vdsc_regs.h:55:
++#define DSCC_PPS(pps)				_MMIO(_DSCC_PPS_0 + ((pps < 12) ? (pps):(pps + 12)) * 4)
+
+-:44: CHECK:MACRO_ARG_PRECEDENCE: Macro argument 'pps' may be better as '(pps)' to avoid precedence issues
+#44: FILE: drivers/gpu/drm/i915/display/intel_vdsc_regs.h:55:
++#define DSCC_PPS(pps)				_MMIO(_DSCC_PPS_0 + ((pps < 12) ? (pps):(pps + 12)) * 4)
+
+total: 0 errors, 3 warnings, 6 checks, 10 lines checked
+
+
