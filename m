@@ -2,29 +2,57 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 70D6E8479D0
-	for <lists+intel-gfx@lfdr.de>; Fri,  2 Feb 2024 20:42:28 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 72B7D847A09
+	for <lists+intel-gfx@lfdr.de>; Fri,  2 Feb 2024 20:58:45 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2E57110F10A;
-	Fri,  2 Feb 2024 19:42:26 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2994410E180;
+	Fri,  2 Feb 2024 19:58:43 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="nue9sXmn";
+	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from 5338d5abeb45 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A4E1F10F10A;
- Fri,  2 Feb 2024 19:42:24 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============5037166477395742277=="
-MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Fi=2ECI=2EBAT=3A_success_for_series_starting_with_=5BCI?=
- =?utf-8?q?=2C1/3=5D_drm=3A_Add_drm=5Fvblank=5Fwork=5Fflush=5Fall=28=29=2E?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Maarten Lankhorst" <maarten.lankhorst@linux.intel.com>
+Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2882510E180
+ for <intel-gfx@lists.freedesktop.org>; Fri,  2 Feb 2024 19:58:41 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1706903922; x=1738439922;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=tK1QJTPgdc8l7xo0s1Y6lkNGuvqy5E37zLDo68iDvi8=;
+ b=nue9sXmnfDrLOa3Ch3HdZZs4J2tTQz7eXz1c9HyT6PCcBbWCOO50eLeB
+ OyssaGzgXpPJ2UeO79ybXojKX+Dyx9yib+sm7H4hSr5TMqPwY8kL6Nfcv
+ W3X9ZrWZg9Fv5P/6mjSWT4DuWHnewk3vd5KSPE+WTHWx0dJcZjGCdCSwz
+ TJkm8Q3xfRXa9z4+lqw0kuY0R/wFk2DYpZIC8xwyDXH/+vX+phw3ZH3nz
+ 77j+rPL2xe31G3fKSfi/YGNYqKwmupL7b9EGcxsEtba6GGRPZKs3BRhC4
+ ip95QyMTKNfn5oADmzkaaGt8Ktou9MHT+XVmAav2nAEa3hqq3FIAQNBoF w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10971"; a="394660012"
+X-IronPort-AV: E=Sophos;i="6.05,238,1701158400"; d="scan'208";a="394660012"
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+ by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 Feb 2024 11:58:41 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10971"; a="823295045"
+X-IronPort-AV: E=Sophos;i="6.05,238,1701158400"; d="scan'208";a="823295045"
+Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.74])
+ by orsmga001.jf.intel.com with SMTP; 02 Feb 2024 11:58:38 -0800
+Received: by stinkbox (sSMTP sendmail emulation);
+ Fri, 02 Feb 2024 21:58:37 +0200
+Date: Fri, 2 Feb 2024 21:58:37 +0200
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: Gustavo Sousa <gustavo.sousa@intel.com>
 Cc: intel-gfx@lists.freedesktop.org
-Date: Fri, 02 Feb 2024 19:42:24 -0000
-Message-ID: <170690294467.953177.4056088084928796403@5338d5abeb45>
-X-Patchwork-Hint: ignore
-References: <20240202154423.834991-1-maarten.lankhorst@linux.intel.com>
-In-Reply-To: <20240202154423.834991-1-maarten.lankhorst@linux.intel.com>
+Subject: Re: [PATCH] drm/i915/cdclk: Rename intel_cdclk_needs_modeset to
+ intel_cdclk_params_changed
+Message-ID: <Zb1JbZlhjxXQKhTq@intel.com>
+References: <20240202131208.453298-1-gustavo.sousa@intel.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20240202131208.453298-1-gustavo.sousa@intel.com>
+X-Patchwork-Hint: comment
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -37,179 +65,81 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============5037166477395742277==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+On Fri, Feb 02, 2024 at 10:12:08AM -0300, Gustavo Sousa wrote:
+> Looks like the name and description of intel_cdclk_needs_modeset()
+> became inacurate as of commit 59f9e9cab3a1 ("drm/i915: Skip modeset for
+> cdclk changes if possible"), when it became possible to update the cdclk
+> without requiring disabling the pipes when only changing the cd2x
+> divider was enough.
+> 
+> Later on we also added the same type of support with squash and crawling
+> with commit 25e0e5ae5610 ("drm/i915/display: Do both crawl and squash
+> when changing cdclk"), commit d4a23930490d ("drm/i915: Allow cdclk
+> squasher to be reconfigured live") and commit d62686ba3b54
+> ("drm/i915/adl_p: CDCLK crawl support for ADL").
+> 
+> As such, update that function's name and documentation to something more
+> appropriate, since the real checks for requiring modeset are done
+> elsewhere.
+> 
+> Signed-off-by: Gustavo Sousa <gustavo.sousa@intel.com>
+> ---
+> 
+> One thing worth noting here is that, with this change, we are left with an
+> awkward situation where two function names related to checking changes in cdclk:
+> 
+>   intel_cdclk_params_changed() and intel_cdclk_changed()
+> 
+> ,
+> 
+> and I find it weird that we have intel_cdclk_changed(), which checks for the
+> voltage level as well. Shouldn't the voltage level be a function of cdclk and
+> ddi clock? Why do we need that?
+> 
+>  drivers/gpu/drm/i915/display/intel_cdclk.c        | 15 +++++++--------
+>  drivers/gpu/drm/i915/display/intel_cdclk.h        |  4 ++--
+>  .../drm/i915/display/intel_display_power_well.c   |  4 ++--
+>  3 files changed, 11 insertions(+), 12 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/i915/display/intel_cdclk.c b/drivers/gpu/drm/i915/display/intel_cdclk.c
+> index 26200ee3e23f..caadd880865f 100644
+> --- a/drivers/gpu/drm/i915/display/intel_cdclk.c
+> +++ b/drivers/gpu/drm/i915/display/intel_cdclk.c
+> @@ -2233,17 +2233,16 @@ static bool intel_cdclk_can_squash(struct drm_i915_private *dev_priv,
+>  }
+>  
+>  /**
+> - * intel_cdclk_needs_modeset - Determine if changong between the CDCLK
+> - *                             configurations requires a modeset on all pipes
+> + * intel_cdclk_params_changed - Check whether CDCLK parameters changed
+>   * @a: first CDCLK configuration
+>   * @b: second CDCLK configuration
+>   *
+>   * Returns:
+> - * True if changing between the two CDCLK configurations
+> - * requires all pipes to be off, false if not.
+> + * True if parameters changed in a way that requires programming the CDCLK
+> + * and False otherwise.
+>   */
+> -bool intel_cdclk_needs_modeset(const struct intel_cdclk_config *a,
+> -			       const struct intel_cdclk_config *b)
+> +bool intel_cdclk_params_changed(const struct intel_cdclk_config *a,
+> +				const struct intel_cdclk_config *b)
 
-== Series Details ==
+The new name isn't very descriptive either.
 
-Series: series starting with [CI,1/3] drm: Add drm_vblank_work_flush_all().
-URL   : https://patchwork.freedesktop.org/series/129478/
-State : success
+Outside the cd2x/crawl/squash cases we stil have to consider
+two cases:
+1. cdclk frequency/pll changes (voltage level can change or not)
+2. cdclk frequency/pll doesn't change, but voltage level needs to change
 
-== Summary ==
+And that difference is what intel_cdclk_needs_modeset() is trying
+convey. And intel_cdclk_changed() tells us whether anything at all
+is changing.
 
-CI Bug Log - changes from CI_DRM_14212 -> Patchwork_129478v1
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_129478v1/index.html
-
-Participating hosts (38 -> 36)
-------------------------------
-
-  Additional (1): fi-bsw-n3050 
-  Missing    (3): bat-mtlp-8 fi-snb-2520m fi-pnv-d510 
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_129478v1 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@gem_lmem_swapping@random-engines:
-    - fi-bsw-n3050:       NOTRUN -> [SKIP][1] ([fdo#109271]) +15 other tests skip
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_129478v1/fi-bsw-n3050/igt@gem_lmem_swapping@random-engines.html
-
-  
-#### Possible fixes ####
-
-  * igt@i915_selftest@live@gt_pm:
-    - bat-adln-1:         [DMESG-FAIL][2] ([i915#10010]) -> [PASS][3]
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14212/bat-adln-1/igt@i915_selftest@live@gt_pm.html
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_129478v1/bat-adln-1/igt@i915_selftest@live@gt_pm.html
-
-  
-#### Warnings ####
-
-  * igt@i915_module_load@reload:
-    - fi-kbl-7567u:       [DMESG-WARN][4] ([i915#180] / [i915#8585]) -> [DMESG-WARN][5] ([i915#180] / [i915#1982] / [i915#8585])
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14212/fi-kbl-7567u/igt@i915_module_load@reload.html
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_129478v1/fi-kbl-7567u/igt@i915_module_load@reload.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
-  [i915#10010]: https://gitlab.freedesktop.org/drm/intel/issues/10010
-  [i915#180]: https://gitlab.freedesktop.org/drm/intel/issues/180
-  [i915#1982]: https://gitlab.freedesktop.org/drm/intel/issues/1982
-  [i915#8585]: https://gitlab.freedesktop.org/drm/intel/issues/8585
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_14212 -> Patchwork_129478v1
-
-  CI-20190529: 20190529
-  CI_DRM_14212: 1dd92467500a5ead3e44bbdfe15e064dd79b65ef @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_7702: bf075a74ece1956fc0e554291591b9da3eab54cf @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_129478v1: 1dd92467500a5ead3e44bbdfe15e064dd79b65ef @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-### Linux commits
-
-292a73b38172 drm/i915: Use the same vblank worker for atomic unpin
-12cd415a24ea drm/i915: Use vblank worker to unpin old legacy cursor fb safely
-244e94a83dbb drm: Add drm_vblank_work_flush_all().
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_129478v1/index.html
-
---===============5037166477395742277==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>series starting with [CI,1/3] drm: Add drm_vblank_work_flush_all().</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/129478/">https://patchwork.freedesktop.org/series/129478/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_129478v1/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_129478v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_14212 -&gt; Patchwork_129478v1</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_129478v1/index.html</p>
-<h2>Participating hosts (38 -&gt; 36)</h2>
-<p>Additional (1): fi-bsw-n3050 <br />
-  Missing    (3): bat-mtlp-8 fi-snb-2520m fi-pnv-d510 </p>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_129478v1 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>igt@gem_lmem_swapping@random-engines:<ul>
-<li>fi-bsw-n3050:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_129478v1/fi-bsw-n3050/igt@gem_lmem_swapping@random-engines.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +15 other tests skip</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>igt@i915_selftest@live@gt_pm:<ul>
-<li>bat-adln-1:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14212/bat-adln-1/igt@i915_selftest@live@gt_pm.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/10010">i915#10010</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_129478v1/bat-adln-1/igt@i915_selftest@live@gt_pm.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<h4>Warnings</h4>
-<ul>
-<li>igt@i915_module_load@reload:<ul>
-<li>fi-kbl-7567u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14212/fi-kbl-7567u/igt@i915_module_load@reload.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/180">i915#180</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/8585">i915#8585</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_129478v1/fi-kbl-7567u/igt@i915_module_load@reload.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/180">i915#180</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/1982">i915#1982</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/8585">i915#8585</a>)</li>
-</ul>
-</li>
-</ul>
-<p>{name}: This element is suppressed. This means it is ignored when computing<br />
-          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_14212 -&gt; Patchwork_129478v1</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_14212: 1dd92467500a5ead3e44bbdfe15e064dd79b65ef @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_7702: bf075a74ece1956fc0e554291591b9da3eab54cf @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  Patchwork_129478v1: 1dd92467500a5ead3e44bbdfe15e064dd79b65ef @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<h3>Linux commits</h3>
-<p>292a73b38172 drm/i915: Use the same vblank worker for atomic unpin<br />
-12cd415a24ea drm/i915: Use vblank worker to unpin old legacy cursor fb safely<br />
-244e94a83dbb drm: Add drm_vblank_work_flush_all().</p>
-
-</body>
-</html>
-
---===============5037166477395742277==--
+-- 
+Ville Syrjälä
+Intel
