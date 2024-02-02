@@ -2,29 +2,55 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id BD96D847BA2
-	for <lists+intel-gfx@lfdr.de>; Fri,  2 Feb 2024 22:36:30 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id ACE0D847C6C
+	for <lists+intel-gfx@lfdr.de>; Fri,  2 Feb 2024 23:43:46 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 314F810E868;
-	Fri,  2 Feb 2024 21:36:29 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DA12910EEC3;
+	Fri,  2 Feb 2024 22:43:44 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Y0TfhXFP";
+	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from 5338d5abeb45 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3C8B310E868;
- Fri,  2 Feb 2024 21:36:28 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============0402233022867423430=="
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3A34B10EEC3
+ for <intel-gfx@lists.freedesktop.org>; Fri,  2 Feb 2024 22:43:44 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1706913824; x=1738449824;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=cJWn7qLBRIL75r5nIki4tHXyuEgZb3MWKk58f0OAVs8=;
+ b=Y0TfhXFPUV/pe6PYY42BZnHghSGzQ5hONkyaBjTFINLTqLndpIXMOYEd
+ PgaxLuMrK1yXmQ6E9ea5Shs9mRxAMTt9+nEFhUfuBzhgMaREhS6rqHZv1
+ AiH6k5B0nrW2eWMQNcCvF3jVrWakA7uu6ocNuDWwulEiRPTyrCVXhjBa9
+ t9ZoP/WDRLJefBTT4PmfeDbz3KWXihXRtxLtqWc9wdUo2RDWFN37mtKYW
+ ne2CbWHR98TEu9HnEtEUJyIdtSk4zZix234c+sqcsAZ4MiY95T4BPf2jB
+ RynMuGBtajK+BYa70BdNxnjqlyeDVK7fOMZeZjtfvp40STTep2YDOvCVj w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10971"; a="153703"
+X-IronPort-AV: E=Sophos;i="6.05,238,1701158400"; 
+   d="scan'208";a="153703"
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+ by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 Feb 2024 14:43:43 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10971"; a="823331991"
+X-IronPort-AV: E=Sophos;i="6.05,238,1701158400"; d="scan'208";a="823331991"
+Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.74])
+ by orsmga001.jf.intel.com with SMTP; 02 Feb 2024 14:43:40 -0800
+Received: by stinkbox (sSMTP sendmail emulation);
+ Sat, 03 Feb 2024 00:43:40 +0200
+From: Ville Syrjala <ville.syrjala@linux.intel.com>
+To: intel-gfx@lists.freedesktop.org
+Cc: intel-xe@lists.freedesktop.org,
+	Paz Zcharya <pazz@chromium.org>
+Subject: [PATCH v4 00/16] drm/i915: (stolen) memory region related fixes
+Date: Sat,  3 Feb 2024 00:43:24 +0200
+Message-ID: <20240202224340.30647-1-ville.syrjala@linux.intel.com>
+X-Mailer: git-send-email 2.43.0
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Fi=2ECI=2EBAT=3A_success_for_drm/i915/dsc=3A_Fix_the_mac?=
- =?utf-8?q?ro_that_calculates_DSCC=5F/DSCA=5F_PPS_reg_address?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Manasi Navare" <navaremanasi@chromium.org>
-Cc: intel-gfx@lists.freedesktop.org
-Date: Fri, 02 Feb 2024 21:36:28 -0000
-Message-ID: <170690978824.953329.11562728600281305104@5338d5abeb45>
-X-Patchwork-Hint: ignore
-References: <20240202204752.1210687-1-navaremanasi@chromium.org>
-In-Reply-To: <20240202204752.1210687-1-navaremanasi@chromium.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -37,198 +63,78 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============0402233022867423430==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-== Series Details ==
+Attempt to fix the mess around stolen memory, especially on MTL
+with it's special (and apparenly broken) not-actually-lmem stolen.
 
-Series: drm/i915/dsc: Fix the macro that calculates DSCC_/DSCA_ PPS reg address
-URL   : https://patchwork.freedesktop.org/series/129486/
-State : success
+The series is made up of roughtly three parts:
+1. General refactoring/debug improvement for mem regions
+2. Deal with the broken BAR stuff on MTL
+3. Fix initial display plane readout for MTL
 
-== Summary ==
+v2: Try to relocate the BIOS fb to start of ggtt to make
+    space for the GuC stuff at the top end of ggtt
+v3: Skip ton VM guests as they won't have access to stolen directly
+    Annotate more initial fb takeover failure paths
+    Add the w/a numbers
+v4: Check the magic pcode bit
+    Try to deal with xe fallout
 
-CI Bug Log - changes from CI_DRM_14212 -> Patchwork_129486v1
-====================================================
+Cc: Paz Zcharya <pazz@chromium.org>
 
-Summary
--------
+Ville Syrjälä (16):
+  drm/i915: Use struct resource for memory region IO as well
+  drm/i915: Print memory region info during probe
+  drm/i915: Remove ad-hoc lmem/stolen debugs
+  drm/i915: Bypass LMEMBAR/GTTMMADR for MTL stolen memory access
+  drm/i915: Disable the "binder"
+  drm/i915: Rename the DSM/GSM registers
+  drm/i915: Fix PTE decode during initial plane readout
+  drm/i915: Fix region start during initial plane readout
+  drm/i915: Fix MTL initial plane readout
+  drm/i915: s/phys_base/dma_addr/
+  drm/i915: Split the smem and lmem plane readout apart
+  drm/i915: Simplify intel_initial_plane_config() calling convention
+  drm/i915/fbdev: Fix smem_start for LMEMBAR stolen objects
+  drm/i915: Tweak BIOS fb reuse check
+  drm/i915: Try to relocate the BIOS fb to the start of ggtt
+  drm/i915: Annotate more of the BIOS fb takeover failure paths
 
-  **SUCCESS**
+ drivers/gpu/drm/i915/display/i9xx_plane.c     |  30 +++
+ drivers/gpu/drm/i915/display/i9xx_plane.h     |   7 +
+ drivers/gpu/drm/i915/display/intel_display.c  |   5 +
+ .../gpu/drm/i915/display/intel_display_core.h |   2 +
+ .../drm/i915/display/intel_display_driver.c   |   7 +-
+ .../drm/i915/display/intel_display_types.h    |   2 +
+ drivers/gpu/drm/i915/display/intel_fbdev_fb.c |   5 +-
+ .../drm/i915/display/intel_plane_initial.c    | 255 +++++++++++++-----
+ .../drm/i915/display/intel_plane_initial.h    |   4 +-
+ .../drm/i915/display/skl_universal_plane.c    |  28 ++
+ .../drm/i915/display/skl_universal_plane.h    |   2 +
+ drivers/gpu/drm/i915/gem/i915_gem_region.c    |   2 +-
+ drivers/gpu/drm/i915/gem/i915_gem_stolen.c    |  25 +-
+ drivers/gpu/drm/i915/gem/i915_gem_ttm.c       |   8 +-
+ .../drm/i915/gem/selftests/i915_gem_mman.c    |  18 +-
+ drivers/gpu/drm/i915/gt/intel_ggtt.c          |  10 +-
+ drivers/gpu/drm/i915/gt/intel_gtt.c           |   3 +-
+ drivers/gpu/drm/i915/gt/intel_region_lmem.c   |  14 +-
+ drivers/gpu/drm/i915/gt/selftest_tlb.c        |   4 +-
+ drivers/gpu/drm/i915/i915_gpu_error.c         |   2 +-
+ drivers/gpu/drm/i915/i915_query.c             |   2 +-
+ drivers/gpu/drm/i915/i915_reg.h               |  10 +-
+ drivers/gpu/drm/i915/i915_utils.c             |  17 ++
+ drivers/gpu/drm/i915/i915_utils.h             |   2 +
+ drivers/gpu/drm/i915/intel_memory_region.c    |  33 ++-
+ drivers/gpu/drm/i915/intel_memory_region.h    |   3 +-
+ drivers/gpu/drm/i915/intel_region_ttm.c       |   8 +-
+ .../drm/i915/selftests/intel_memory_region.c  |   4 +-
+ drivers/gpu/drm/xe/display/xe_plane_initial.c |  67 +++--
+ 29 files changed, 412 insertions(+), 167 deletions(-)
 
-  No regressions found.
+-- 
+2.43.0
 
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_129486v1/index.html
-
-Participating hosts (38 -> 38)
-------------------------------
-
-  Additional (1): fi-bsw-n3050 
-  Missing    (1): fi-snb-2520m 
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_129486v1 that come from known issues:
-
-### CI changes ###
-
-#### Issues hit ####
-
-  * boot:
-    - fi-bsw-n3050:       NOTRUN -> [FAIL][1] ([i915#8293])
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_129486v1/fi-bsw-n3050/boot.html
-    - bat-jsl-1:          [PASS][2] -> [FAIL][3] ([i915#8293])
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14212/bat-jsl-1/boot.html
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_129486v1/bat-jsl-1/boot.html
-
-  
-
-### IGT changes ###
-
-#### Possible fixes ####
-
-  * igt@i915_selftest@live@gt_pm:
-    - bat-adln-1:         [DMESG-FAIL][4] ([i915#10010]) -> [PASS][5]
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14212/bat-adln-1/igt@i915_selftest@live@gt_pm.html
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_129486v1/bat-adln-1/igt@i915_selftest@live@gt_pm.html
-
-  * igt@i915_selftest@live@sanitycheck:
-    - fi-kbl-7567u:       [DMESG-WARN][6] ([i915#9730]) -> [PASS][7] +36 other tests pass
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14212/fi-kbl-7567u/igt@i915_selftest@live@sanitycheck.html
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_129486v1/fi-kbl-7567u/igt@i915_selftest@live@sanitycheck.html
-
-  * igt@kms_addfb_basic@invalid-set-prop:
-    - fi-kbl-7567u:       [DMESG-WARN][8] ([i915#8585]) -> [PASS][9] +41 other tests pass
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14212/fi-kbl-7567u/igt@kms_addfb_basic@invalid-set-prop.html
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_129486v1/fi-kbl-7567u/igt@kms_addfb_basic@invalid-set-prop.html
-
-  * igt@kms_pm_rpm@basic-pci-d3-state:
-    - fi-kbl-7567u:       [DMESG-WARN][10] ([i915#180] / [i915#8585]) -> [PASS][11] +45 other tests pass
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14212/fi-kbl-7567u/igt@kms_pm_rpm@basic-pci-d3-state.html
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_129486v1/fi-kbl-7567u/igt@kms_pm_rpm@basic-pci-d3-state.html
-
-  
-  [i915#10010]: https://gitlab.freedesktop.org/drm/intel/issues/10010
-  [i915#180]: https://gitlab.freedesktop.org/drm/intel/issues/180
-  [i915#8293]: https://gitlab.freedesktop.org/drm/intel/issues/8293
-  [i915#8585]: https://gitlab.freedesktop.org/drm/intel/issues/8585
-  [i915#9730]: https://gitlab.freedesktop.org/drm/intel/issues/9730
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_14212 -> Patchwork_129486v1
-
-  CI-20190529: 20190529
-  CI_DRM_14212: 1dd92467500a5ead3e44bbdfe15e064dd79b65ef @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_7702: bf075a74ece1956fc0e554291591b9da3eab54cf @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_129486v1: 1dd92467500a5ead3e44bbdfe15e064dd79b65ef @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-### Linux commits
-
-98bc358a8265 drm/i915/dsc: Fix the macro that calculates DSCC_/DSCA_ PPS reg address
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_129486v1/index.html
-
---===============0402233022867423430==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915/dsc: Fix the macro that calculates DSCC_/DSCA_ PPS reg address</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/129486/">https://patchwork.freedesktop.org/series/129486/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_129486v1/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_129486v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_14212 -&gt; Patchwork_129486v1</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_129486v1/index.html</p>
-<h2>Participating hosts (38 -&gt; 38)</h2>
-<p>Additional (1): fi-bsw-n3050 <br />
-  Missing    (1): fi-snb-2520m </p>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_129486v1 that come from known issues:</p>
-<h3>CI changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>boot:<ul>
-<li>fi-bsw-n3050:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_129486v1/fi-bsw-n3050/boot.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/8293">i915#8293</a>)</li>
-<li>bat-jsl-1:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14212/bat-jsl-1/boot.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_129486v1/bat-jsl-1/boot.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/8293">i915#8293</a>)</li>
-</ul>
-</li>
-</ul>
-<h3>IGT changes</h3>
-<h4>Possible fixes</h4>
-<ul>
-<li>
-<p>igt@i915_selftest@live@gt_pm:</p>
-<ul>
-<li>bat-adln-1:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14212/bat-adln-1/igt@i915_selftest@live@gt_pm.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/10010">i915#10010</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_129486v1/bat-adln-1/igt@i915_selftest@live@gt_pm.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@sanitycheck:</p>
-<ul>
-<li>fi-kbl-7567u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14212/fi-kbl-7567u/igt@i915_selftest@live@sanitycheck.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/9730">i915#9730</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_129486v1/fi-kbl-7567u/igt@i915_selftest@live@sanitycheck.html">PASS</a> +36 other tests pass</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_addfb_basic@invalid-set-prop:</p>
-<ul>
-<li>fi-kbl-7567u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14212/fi-kbl-7567u/igt@kms_addfb_basic@invalid-set-prop.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/8585">i915#8585</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_129486v1/fi-kbl-7567u/igt@kms_addfb_basic@invalid-set-prop.html">PASS</a> +41 other tests pass</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_pm_rpm@basic-pci-d3-state:</p>
-<ul>
-<li>fi-kbl-7567u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14212/fi-kbl-7567u/igt@kms_pm_rpm@basic-pci-d3-state.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/180">i915#180</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/8585">i915#8585</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_129486v1/fi-kbl-7567u/igt@kms_pm_rpm@basic-pci-d3-state.html">PASS</a> +45 other tests pass</li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_14212 -&gt; Patchwork_129486v1</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_14212: 1dd92467500a5ead3e44bbdfe15e064dd79b65ef @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_7702: bf075a74ece1956fc0e554291591b9da3eab54cf @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  Patchwork_129486v1: 1dd92467500a5ead3e44bbdfe15e064dd79b65ef @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<h3>Linux commits</h3>
-<p>98bc358a8265 drm/i915/dsc: Fix the macro that calculates DSCC_/DSCA_ PPS reg address</p>
-
-</body>
-</html>
-
---===============0402233022867423430==--
