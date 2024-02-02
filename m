@@ -2,57 +2,156 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7CE77846D3C
-	for <lists+intel-gfx@lfdr.de>; Fri,  2 Feb 2024 11:02:36 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1711E846E23
+	for <lists+intel-gfx@lfdr.de>; Fri,  2 Feb 2024 11:42:41 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0150210ECDA;
-	Fri,  2 Feb 2024 10:02:35 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0E01610EFF6;
+	Fri,  2 Feb 2024 10:42:39 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="HeHWavlo";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="MVEqpn4z";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0B27410ECDA
- for <intel-gfx@lists.freedesktop.org>; Fri,  2 Feb 2024 10:02:34 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BB0D110EC42
+ for <intel-gfx@lists.freedesktop.org>; Fri,  2 Feb 2024 10:42:37 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1706868154; x=1738404154;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=qwC+GDmm/RnwsiYwgsMl3JRcLjzO+Xt4E/6NnNaxAK8=;
- b=HeHWavlopIcCuqTQvysrpl+hmHU26H4kSu9WzGp1HnaDvIfZPMgCRD7H
- 818HwxHvWk9Af3zNk8LAvH3Gz8zdArT+h9MpLMuJu4iyvEi6Q2Juz97Up
- By3gKA7X1TQibhtXEUo1BCZNfKZ3ex0rjZhgcZq5aR7IHVy0WEK+5tnAT
- GShDdCI89ZA6mxAUcd+VeuD0kySn5XCtumJh9Og8JsS8jFF4TVl1gQfg2
- OW3rBFfpvWLDKBo7NIRq2cgXiMR57MjjzgLXe04z2ZVHnbr9fhEd8WnCk
- iMMHJj6JI3AWK/YG5xtAGSUeep1KHV/ltKmBpGUcL6ZKbMftyF14Piy/Y Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10971"; a="4025574"
-X-IronPort-AV: E=Sophos;i="6.05,237,1701158400"; 
-   d="scan'208";a="4025574"
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
- by orvoesa107.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Feb 2024 02:02:34 -0800
+ t=1706870558; x=1738406558;
+ h=from:to:subject:date:message-id:references:in-reply-to:
+ content-transfer-encoding:mime-version;
+ bh=LNTIUS1IZM0nMofgXWHXXizJwV9BN+GkNt+89hSD5Rc=;
+ b=MVEqpn4z+eCve/DF0TQRSSWVMfBOFZID3IqFIotBxW/FWD56tlYuwxhR
+ 04y5R1lqMuYWVQTsBMtUYcGFoKNmvaUNBEWbx1XLn/6DFOzeDzXvsdqec
+ bi6EqYZBDuTEe8Z2XgQFyGmw6zbT65TuQq0YOaiGWaW5Ax5ShEChpz3DK
+ 9xwa4vqf7wqDglB8LGp8qd+KH39usLw5Yg25U6Kn01+QPNWk0r0aC6icN
+ yMKi1ITTbIWth9yFiVHkirKLllGzaYM8EznnTvkCwYPEKzRQVIl11FSKI
+ N49H18F/Vvqi+iNVIO0Y99UMLwSJGFbNZkeWclXtljfYsZl6GLFGi+2xf g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10971"; a="17661329"
+X-IronPort-AV: E=Sophos;i="6.05,237,1701158400"; d="scan'208";a="17661329"
+Received: from fmviesa002.fm.intel.com ([10.60.135.142])
+ by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 Feb 2024 02:42:37 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10971"; a="932432953"
-X-IronPort-AV: E=Sophos;i="6.05,237,1701158400"; d="scan'208";a="932432953"
-Received: from unknown (HELO slisovsk-Lenovo-ideapad-720S-13IKB.fi.intel.com)
- ([10.237.72.65])
- by fmsmga001.fm.intel.com with ESMTP; 02 Feb 2024 02:02:31 -0800
-From: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Cc: jani.saarinen@intel.com, Stanislav.Lisovskiy@intel.com,
- ville.syrjala@linux.intel.com
-Subject: [PATCH 3/3] Start separating pipe vs transcoder set logic for
- bigjoiner during modeset
-Date: Fri,  2 Feb 2024 12:02:30 +0200
-Message-Id: <20240202100230.4430-1-stanislav.lisovskiy@intel.com>
-X-Mailer: git-send-email 2.37.3
-In-Reply-To: <20240108120725.20057-4-stanislav.lisovskiy@intel.com>
-References: <20240108120725.20057-4-stanislav.lisovskiy@intel.com>
+X-IronPort-AV: E=Sophos;i="6.05,237,1701158400"; d="scan'208";a="23334655"
+Received: from fmsmsx602.amr.corp.intel.com ([10.18.126.82])
+ by fmviesa002.fm.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
+ 02 Feb 2024 02:42:37 -0800
+Received: from fmsmsx611.amr.corp.intel.com (10.18.126.91) by
+ fmsmsx602.amr.corp.intel.com (10.18.126.82) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.35; Fri, 2 Feb 2024 02:42:36 -0800
+Received: from fmsmsx610.amr.corp.intel.com (10.18.126.90) by
+ fmsmsx611.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.35; Fri, 2 Feb 2024 02:42:36 -0800
+Received: from fmsedg602.ED.cps.intel.com (10.1.192.136) by
+ fmsmsx610.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.35 via Frontend Transport; Fri, 2 Feb 2024 02:42:36 -0800
+Received: from NAM04-BN8-obe.outbound.protection.outlook.com (104.47.74.41) by
+ edgegateway.intel.com (192.55.55.71) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.1.2507.35; Fri, 2 Feb 2024 02:42:36 -0800
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=hzOFo7QA68bEtZjf/uOvvZyYTSHANXc78VXAByoUvIRzo3scKH8/38Rx57aCRJ6lgz+F3GE9M+9NecbtRLFimxiXYfBVXBpJ2pLIKefEkQaW27mIEe1lCorMcDItrTqqMt8PG4haHDXe5ZrXtX0fLXjNVR2JAfEAUhV09j75lokj692TGMoYXcMpQqMAuq5Pmx/neCFlfuESv0VCVuIfTUByytn+C7ra94+JWd44vzuaP5ZQIVZxpEFUOybjN4RbfHeV+YbgVr6TN4JjzLNHDnqyfSLAjiS8XTl8rNUJ+Mnk4k387Vf0lTFHQBDrrD9oPAm3bhVx7InPzvHJWfK5oQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=LNTIUS1IZM0nMofgXWHXXizJwV9BN+GkNt+89hSD5Rc=;
+ b=FJSLRHye1PVq083FQo8rGM8DjhTZECasuhbxxBdRZHk8/ADfNzYhJ0rD8sWsDlBQ7ZIw9RN8KAo9ZMvKe6Dsd4l2QQYHVHET2Dx6sVnT33Xce1fSf+5M+P2TKi/OyKaOYY17yvDvplbIpKIomj+buxlwpCZdWLg3EOEkGiw31TyfpFOV3ISrrjaho1U26BwDmigZocRoui4fcCSgSVRyG0fmrwGI57oHUhe4avI+v1FJtpY7Pr8sSeWtxQO8U/opwrXkJulMwubC6p4YvRrwJHnllgeHJWD3DMxNnKKXL/byvCrqYXXZiHodaV6QK43IcEjWY3YuFPv5P5rLWYywvg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Received: from PH7PR11MB5981.namprd11.prod.outlook.com (2603:10b6:510:1e0::15)
+ by SJ0PR11MB6718.namprd11.prod.outlook.com (2603:10b6:a03:477::16)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7249.28; Fri, 2 Feb
+ 2024 10:42:33 +0000
+Received: from PH7PR11MB5981.namprd11.prod.outlook.com
+ ([fe80::bdc0:e60:4a62:706f]) by PH7PR11MB5981.namprd11.prod.outlook.com
+ ([fe80::bdc0:e60:4a62:706f%4]) with mapi id 15.20.7249.027; Fri, 2 Feb 2024
+ 10:42:33 +0000
+From: "Manna, Animesh" <animesh.manna@intel.com>
+To: "Hogander, Jouni" <jouni.hogander@intel.com>,
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
+Subject: RE: [PATCH v3 07/21] drm/i915/psr: Do not write registers/bits not
+ applicable for panel replay
+Thread-Topic: [PATCH v3 07/21] drm/i915/psr: Do not write registers/bits not
+ applicable for panel replay
+Thread-Index: AQHaSr/U4/A/Pemiw0m60oPVTUHCFbD28x0g
+Date: Fri, 2 Feb 2024 10:42:33 +0000
+Message-ID: <PH7PR11MB598164C39DA94CEFB48BA613F9422@PH7PR11MB5981.namprd11.prod.outlook.com>
+References: <20240119101024.1060812-1-jouni.hogander@intel.com>
+ <20240119101024.1060812-8-jouni.hogander@intel.com>
+In-Reply-To: <20240119101024.1060812-8-jouni.hogander@intel.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: PH7PR11MB5981:EE_|SJ0PR11MB6718:EE_
+x-ms-office365-filtering-correlation-id: 32bb9bef-7ba2-4fc8-325c-08dc23dba9c2
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: eIYNMDWzPjtEwhK4dPYMdilC8EeRf5FmTl6rGnGCpWm+AOExefXL3+jLNxLjyIQ8GXl5xFWx/R2eOyCBw3BEDqRJMBj+FIkySyL8kczL+lat1kLBoI4J4ONUu2C+i5/4iGcAxYKAR4mkTAnEIhwyve767HnVTPHbc6MHqIVtQMW8LnDuTw+KaUFnnvB2VQRx0BK4YzX0xb32J+vd0OmkE5Si8sPE5ACqycA2ZHZzcb/3Aw7Wb2KLpUUY7f8p5ZFAdgZdfdOVtrw7xOApswluNB86XFOM+bWZi1w3q8pxTjH+Po81VvZRULBOW8gf23KtcJh75w68xrQXIlq3i5Abje2HsrlXKJnXp6zOiz6+oFJ8Wr92DBGZnvucmgA8tKnSpqGHySp2ZvVpGAdrnQ7xkYWs55cPw6Rn3MOku3SBIR4rvyHZxzAOEgebucgTNPq3jOfchJLFXg0S3B7x+GE4gFxO3dtneOg3DDfGSf8oafTBGsMEiwEUHJe1bhiOo55fXYqDcfOamt99NQ2JMHXSdPcvzBncWBMX+a5nnvMQzUiExiIbaU5Ro2BObn27ebwYrVa+RYr8mOjN02LM4yvtVRkdSb3aPdMnh/ip3ZDTCIFUr6bPQvInKODLRSRcsC5y
+x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:PH7PR11MB5981.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230031)(136003)(366004)(346002)(376002)(396003)(39860400002)(230922051799003)(186009)(451199024)(64100799003)(1800799012)(83380400001)(26005)(9686003)(122000001)(38100700002)(8936002)(52536014)(5660300002)(66476007)(8676002)(478600001)(71200400001)(53546011)(2906002)(7696005)(6506007)(110136005)(316002)(66446008)(66556008)(64756008)(66946007)(76116006)(38070700009)(41300700001)(33656002)(82960400001)(86362001)(55016003);
+ DIR:OUT; SFP:1101; 
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?utf-8?B?R3g1UUFrRDRHbDBtMllUZUd5eGFYclFIeEQxcDdVc21weXkrT2tBZHdIQXFG?=
+ =?utf-8?B?TUNhazhMYkhhNExLYzI1ZHVGajBXQ05IT3hPdkh6VndKZHAzUm4wTXVPZWkx?=
+ =?utf-8?B?Qzlhb1ZNRzFUWk9nMU0rK0c2eExRb0pwQ1A0RTIvcDVJM2tCaERGTG5pSzNB?=
+ =?utf-8?B?bkpMQUJrMk5RclpxZTZUdzZmRXBBVXNuY0taWm5yZzl3TDUzZWdZTm82SzI4?=
+ =?utf-8?B?czI4RFpYYjd1MkV4eTNvRnZ5VkIxa2JzNm15YUJPTE9JRHZjVWprZ2VZRTZY?=
+ =?utf-8?B?RlhUWEJuV1RkNzZxeHlpZDZ3UkY5VkNocDhwYStIVkNERVh4QVQyd3FKZnV3?=
+ =?utf-8?B?dEw5UWwzOXBzN3RQaG1wenRCTEcwRFgrUEpPSzRrUnppVHZRUm96eW1JL1l2?=
+ =?utf-8?B?NGxocG92R0s5dXo4cnJUaC9HU2ZWZnZ0M0RObmxKRWIzZVhSUWRkaDVGOHRW?=
+ =?utf-8?B?NDRsaWF6TWkrYWEzT0t4MTE5SWt5eDZ0SWUxdlZzKzZPcXhtSDZOTHNoQjRE?=
+ =?utf-8?B?eFMrQWFKQU1VcFlqTGsrV0xZbXFPU2gwMExEZk8yNGRacVFMUE1pQUVnK1pQ?=
+ =?utf-8?B?eVhtanBkUkYyMGpQRE9mcHVYZjhsSjZ5V3UvajQrSDk4Q0p3NGErL2ZCZGRt?=
+ =?utf-8?B?cnh4VXNXZHNLZk9mdnVaZU84RnlNMnVIS2JrbnVRbnkrdW9BTk1pN3JEVEJT?=
+ =?utf-8?B?WVhHR3JEMi9nMlZBVFVKSmM1MkVSc0JWQjJLeXI1Tm0ydHpESEMvYzFjRU9M?=
+ =?utf-8?B?ZGRnYU9OU3VENVhqMHJKL1hidUZEN3B5WllBSjBEdjZlUzRNNVpZQ2Ivd1Fq?=
+ =?utf-8?B?ZTlJdUt5OVJNZktBUHJXNHEyazVzUUdsRTZKa1UvSjcySEZLNVVsVGpmTW1M?=
+ =?utf-8?B?b1k1c0ZDWlV0RWhZWFdYSHFqeWlBTHZmQXp3dXIrUUREMkFkTnlKMlgxWVFF?=
+ =?utf-8?B?cUtvQUZKRW50ODlRbWlKTWJHVGh6KzRGUFMwZlNrR1NQcFhRWHlvTEVEVGNu?=
+ =?utf-8?B?dW5LRkY1N1ZCY0k2STFyTUhEK3Z2OGZncmNscGxyRHYrZkxSN21XRlNXbGpI?=
+ =?utf-8?B?M25VMjBkSFJTOTF2Q1FkclFTSUcxSTFJTXloaUlXQTBJTkwvUDNpQkJ2c3BJ?=
+ =?utf-8?B?VnVicGw5TDRnVHo5bW10WWh6cHBGcUxNalJJRTA1UitsVVVRNHI3bE15RG50?=
+ =?utf-8?B?K3gzTDJEenE4cTNQT1E0U3FsUlhVVXhMdmt2bFkyZFVNZWJXZGtKa3I1Vzlo?=
+ =?utf-8?B?amRGK3NWczRZZGtJcmNVUGp0MHZ3MnRDOXVzN1pSOVRBWG9uUnJOenRQVUlr?=
+ =?utf-8?B?UzhHWi81dXdjUkF3ZzVBRGZvWDFjcnhlcEFhZGE4b0xtSnhkR00zendHRndp?=
+ =?utf-8?B?Q3dpNVJCdlhEd2dUZ2tUYVgxUThxMkZMWm1yTU41ME5kUkl3eWRIU2lZSHV0?=
+ =?utf-8?B?UWpVWnVWVzUzQmRiQTVPRGVMdWt3ZU8vZWdXdmVnSDVHTDBVejRBVW9iNW0y?=
+ =?utf-8?B?dS9SRWh1UDlZeDVtYXJUZS8vUVBjSmFwVktrSHJ4azBBSlN0azBUMnRJd3lX?=
+ =?utf-8?B?ZlFrNlVsUjQyMDVKRVJUVFUvRVZzSVpMTkpKR1BIZlE2NFQwVDl1Zi8ranhY?=
+ =?utf-8?B?Tlpya1BNbjZxSHh4Z1V6WGFLY05DYmI1RjBnbWVsWjFrYUg0L2dpWmVYc0gy?=
+ =?utf-8?B?eER0ckl5bzcvaSt0VEprV2Q1WlhDVGJiemZqcUMzN2N6NVI3N004SlRySjQv?=
+ =?utf-8?B?cGVjT2NKU09teDJGc1lhcUZxUmxsQ3hSaVRxbC9DVFJxWjNQRUwxNXh2M2ZI?=
+ =?utf-8?B?YVhWN1lvcGdIRFhlaDJrUlN5aVZHMVRGb0s2WjlsblBXUkwzc2phaWtiNFZi?=
+ =?utf-8?B?WmdxU0NMT1p3NlJHVS9QeG5zak0xa1hsM2R1MGVwRmhZZ2FGY3gzWENiUGZL?=
+ =?utf-8?B?b3h2UHhoM1NlYmN1ZENlcDdxbVYvSElRYVlGL0lOTk1xbDhFSVJSTUdmR3JJ?=
+ =?utf-8?B?UkFCN2VJV3p1dkNVclBEbDZ4YVRIR1BlWHkyUHNwM2YycjZsY0IvRnEyYkhv?=
+ =?utf-8?B?WVh1TEh1ODZRYmhVRVZGQ1creHA4Ly8wV3VGajZidGVudWJhRnc5WmoyejZS?=
+ =?utf-8?Q?VNR8ANUhZeimTn8qHDOBveAD0?=
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: PH7PR11MB5981.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 32bb9bef-7ba2-4fc8-325c-08dc23dba9c2
+X-MS-Exchange-CrossTenant-originalarrivaltime: 02 Feb 2024 10:42:33.2169 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: xio70Uv36QTQaUbuMe2AmzErgGxzEZ7G+3GTjcSC4OphC2H4wKWKSFR+6Gr63yTPj6KwFSv1UZK5hXEEVs6cyA==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ0PR11MB6718
+X-OriginatorOrg: intel.com
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -68,250 +167,60 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Handle only bigjoiner masters in skl_commit_modeset_enables/disables,
-slave crtcs should be handled by master hooks. Same for encoders.
-That way we can also remove a bunch of checks like intel_crtc_is_bigjoiner_slave.
-
-v2: Get rid of master vs slave checks and separation in crtc enable/disable hooks.
-    Use unified iteration cycle for all of those, while enabling/disabling
-    transcoder only for those pipes where its needed(Ville Syrjälä)
-
-Signed-off-by: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
----
- drivers/gpu/drm/i915/display/intel_ddi.c     |   3 +-
- drivers/gpu/drm/i915/display/intel_display.c | 116 +++++++++++++------
- drivers/gpu/drm/i915/display/intel_display.h |   6 +
- 3 files changed, 86 insertions(+), 39 deletions(-)
-
-diff --git a/drivers/gpu/drm/i915/display/intel_ddi.c b/drivers/gpu/drm/i915/display/intel_ddi.c
-index 922194b957be2..6c690aefec9d1 100644
---- a/drivers/gpu/drm/i915/display/intel_ddi.c
-+++ b/drivers/gpu/drm/i915/display/intel_ddi.c
-@@ -3340,8 +3340,7 @@ static void intel_enable_ddi(struct intel_atomic_state *state,
- {
- 	drm_WARN_ON(state->base.dev, crtc_state->has_pch_encoder);
- 
--	if (!intel_crtc_is_bigjoiner_slave(crtc_state))
--		intel_ddi_enable_transcoder_func(encoder, crtc_state);
-+	intel_ddi_enable_transcoder_func(encoder, crtc_state);
- 
- 	/* Enable/Disable DP2.0 SDP split config before transcoder */
- 	intel_audio_sdp_split_update(crtc_state);
-diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
-index 616a890b2658f..8fef59d1d119f 100644
---- a/drivers/gpu/drm/i915/display/intel_display.c
-+++ b/drivers/gpu/drm/i915/display/intel_display.c
-@@ -1631,18 +1631,12 @@ static void hsw_configure_cpu_transcoder(const struct intel_crtc_state *crtc_sta
- 	hsw_set_transconf(crtc_state);
- }
- 
--static void hsw_crtc_enable(struct intel_atomic_state *state,
--			    struct intel_crtc *crtc)
-+static void hsw_crtc_enable_pre_transcoder(struct intel_atomic_state *state,
-+					   struct intel_crtc *crtc)
- {
- 	const struct intel_crtc_state *new_crtc_state =
- 		intel_atomic_get_new_crtc_state(state, crtc);
- 	struct drm_i915_private *dev_priv = to_i915(crtc->base.dev);
--	enum pipe pipe = crtc->pipe, hsw_workaround_pipe;
--	enum transcoder cpu_transcoder = new_crtc_state->cpu_transcoder;
--	bool psl_clkgate_wa;
--
--	if (drm_WARN_ON(&dev_priv->drm, crtc->active))
--		return;
- 
- 	intel_dmc_enable_pipe(dev_priv, crtc->pipe);
- 
-@@ -1665,10 +1659,16 @@ static void hsw_crtc_enable(struct intel_atomic_state *state,
- 	intel_set_pipe_src_size(new_crtc_state);
- 	if (DISPLAY_VER(dev_priv) >= 9 || IS_BROADWELL(dev_priv))
- 		bdw_set_pipe_misc(new_crtc_state);
-+}
- 
--	if (!intel_crtc_is_bigjoiner_slave(new_crtc_state) &&
--	    !transcoder_is_dsi(cpu_transcoder))
--		hsw_configure_cpu_transcoder(new_crtc_state);
-+static void hsw_crtc_enable_post_transcoder(struct intel_atomic_state *state,
-+					    struct intel_crtc *crtc)
-+{
-+	const struct intel_crtc_state *new_crtc_state =
-+		intel_atomic_get_new_crtc_state(state, crtc);
-+	struct drm_i915_private *dev_priv = to_i915(crtc->base.dev);
-+	enum pipe pipe = crtc->pipe, hsw_workaround_pipe;
-+	bool psl_clkgate_wa;
- 
- 	crtc->active = true;
- 
-@@ -1701,8 +1701,7 @@ static void hsw_crtc_enable(struct intel_atomic_state *state,
- 
- 	intel_initial_watermarks(state, crtc);
- 
--	if (intel_crtc_is_bigjoiner_slave(new_crtc_state))
--		intel_crtc_vblank_on(new_crtc_state);
-+	intel_crtc_vblank_on(new_crtc_state);
- 
- 	intel_encoders_enable(state, crtc);
- 
-@@ -1724,6 +1723,40 @@ static void hsw_crtc_enable(struct intel_atomic_state *state,
- 	}
- }
- 
-+static void hsw_crtc_enable(struct intel_atomic_state *state,
-+			    struct intel_crtc *crtc)
-+{
-+	const struct intel_crtc_state *new_crtc_state =
-+		intel_atomic_get_new_crtc_state(state, crtc);
-+	struct drm_i915_private *dev_priv = to_i915(crtc->base.dev);
-+	enum transcoder cpu_transcoder = new_crtc_state->cpu_transcoder;
-+	struct intel_crtc *_crtc;
-+	int slave_pipe_mask = intel_crtc_bigjoiner_slave_pipes(new_crtc_state);
-+	int pipe_mask = slave_pipe_mask | crtc->pipe;
-+
-+	if (drm_WARN_ON(&dev_priv->drm, crtc->active))
-+		return;
-+
-+	/*
-+	 * Use reverse iterator to go through slave pipes first.
-+	 * TODO: We might need smarter iterator here
-+	 */
-+	for_each_intel_crtc_in_pipe_mask_reverse(&dev_priv->drm, _crtc,
-+						 pipe_mask) {
-+		const struct intel_crtc_state *_new_crtc_state =
-+			intel_atomic_get_new_crtc_state(state, _crtc);
-+		bool needs_transcoder = ((slave_pipe_mask & _crtc->pipe) == 0) &&
-+					!transcoder_is_dsi(cpu_transcoder);
-+
-+		hsw_crtc_enable_pre_transcoder(state, _crtc);
-+
-+		if (needs_transcoder)
-+			hsw_configure_cpu_transcoder(_new_crtc_state);
-+
-+		hsw_crtc_enable_post_transcoder(state, _crtc);
-+	}
-+}
-+
- void ilk_pfit_disable(const struct intel_crtc_state *old_crtc_state)
- {
- 	struct intel_crtc *crtc = to_intel_crtc(old_crtc_state->uapi.crtc);
-@@ -1784,28 +1817,27 @@ static void hsw_crtc_disable(struct intel_atomic_state *state,
- 	const struct intel_crtc_state *old_crtc_state =
- 		intel_atomic_get_old_crtc_state(state, crtc);
- 	struct drm_i915_private *i915 = to_i915(crtc->base.dev);
-+	int slave_pipe_mask = intel_crtc_bigjoiner_slave_pipes(old_crtc_state);
-+	int pipe_mask = slave_pipe_mask | crtc->pipe;
-+	struct intel_crtc *_crtc;
-+
-+	for_each_intel_crtc_in_pipe_mask(&i915->drm, _crtc,
-+					 pipe_mask) {
-+		const struct intel_crtc_state *_old_crtc_state =
-+			intel_atomic_get_old_crtc_state(state, _crtc);
-+		bool needs_encoder_disable = (_crtc->pipe & slave_pipe_mask) == 0;
-+
-+		if (needs_encoder_disable) {
-+			intel_encoders_disable(state, _crtc);
-+			intel_encoders_post_disable(state, _crtc);
-+		}
- 
--	/*
--	 * FIXME collapse everything to one hook.
--	 * Need care with mst->ddi interactions.
--	 */
--	if (!intel_crtc_is_bigjoiner_slave(old_crtc_state)) {
--		intel_encoders_disable(state, crtc);
--		intel_encoders_post_disable(state, crtc);
--	}
--
--	intel_disable_shared_dpll(old_crtc_state);
--
--	if (!intel_crtc_is_bigjoiner_slave(old_crtc_state)) {
--		struct intel_crtc *slave_crtc;
--
--		intel_encoders_post_pll_disable(state, crtc);
-+		intel_disable_shared_dpll(_old_crtc_state);
- 
--		intel_dmc_disable_pipe(i915, crtc->pipe);
-+		if (needs_encoder_disable)
-+			intel_encoders_post_pll_disable(state, _crtc);
- 
--		for_each_intel_crtc_in_pipe_mask(&i915->drm, slave_crtc,
--						 intel_crtc_bigjoiner_slave_pipes(old_crtc_state))
--			intel_dmc_disable_pipe(i915, slave_crtc->pipe);
-+		intel_dmc_disable_pipe(i915, _crtc->pipe);
- 	}
- }
- 
-@@ -6797,8 +6829,10 @@ static void intel_commit_modeset_disables(struct intel_atomic_state *state)
- 		 * Slave vblanks are masked till Master Vblanks.
- 		 */
- 		if (!is_trans_port_sync_slave(old_crtc_state) &&
--		    !intel_dp_mst_is_slave_trans(old_crtc_state) &&
--		    !intel_crtc_is_bigjoiner_slave(old_crtc_state))
-+		    !intel_dp_mst_is_slave_trans(old_crtc_state))
-+			continue;
-+
-+		if (intel_crtc_is_bigjoiner_slave(old_crtc_state))
- 			continue;
- 
- 		intel_old_crtc_state_disables(state, old_crtc_state,
-@@ -6816,6 +6850,9 @@ static void intel_commit_modeset_disables(struct intel_atomic_state *state)
- 		if (!old_crtc_state->hw.active)
- 			continue;
- 
-+		if (intel_crtc_is_bigjoiner_slave(old_crtc_state))
-+			continue;
-+
- 		intel_old_crtc_state_disables(state, old_crtc_state,
- 					      new_crtc_state, crtc);
- 	}
-@@ -6928,8 +6965,10 @@ static void skl_commit_modeset_enables(struct intel_atomic_state *state)
- 			continue;
- 
- 		if (intel_dp_mst_is_slave_trans(new_crtc_state) ||
--		    is_trans_port_sync_master(new_crtc_state) ||
--		    intel_crtc_is_bigjoiner_master(new_crtc_state))
-+		    is_trans_port_sync_master(new_crtc_state))
-+			continue;
-+
-+		if (intel_crtc_is_bigjoiner_slave(new_crtc_state))
- 			continue;
- 
- 		modeset_pipes &= ~BIT(pipe);
-@@ -6939,7 +6978,7 @@ static void skl_commit_modeset_enables(struct intel_atomic_state *state)
- 
- 	/*
- 	 * Then we enable all remaining pipes that depend on other
--	 * pipes: MST slaves and port sync masters, big joiner master
-+	 * pipes: MST slaves and port sync masters
- 	 */
- 	for_each_new_intel_crtc_in_state(state, crtc, new_crtc_state, i) {
- 		enum pipe pipe = crtc->pipe;
-@@ -6947,6 +6986,9 @@ static void skl_commit_modeset_enables(struct intel_atomic_state *state)
- 		if ((modeset_pipes & BIT(pipe)) == 0)
- 			continue;
- 
-+		if (intel_crtc_is_bigjoiner_slave(new_crtc_state))
-+			continue;
-+
- 		modeset_pipes &= ~BIT(pipe);
- 
- 		intel_enable_crtc(state, crtc);
-diff --git a/drivers/gpu/drm/i915/display/intel_display.h b/drivers/gpu/drm/i915/display/intel_display.h
-index f4a0773f0fca8..e1e8d956c305e 100644
---- a/drivers/gpu/drm/i915/display/intel_display.h
-+++ b/drivers/gpu/drm/i915/display/intel_display.h
-@@ -280,6 +280,12 @@ enum phy_fia {
- 			    base.head)					\
- 		for_each_if((pipe_mask) & BIT(intel_crtc->pipe))
- 
-+#define for_each_intel_crtc_in_pipe_mask_reverse(dev, intel_crtc, pipe_mask)	\
-+	list_for_each_entry_reverse(intel_crtc,					\
-+				    &(dev)->mode_config.crtc_list,		\
-+				    base.head)					\
-+		for_each_if((pipe_mask) & BIT(intel_crtc->pipe))
-+
- #define for_each_intel_encoder(dev, intel_encoder)		\
- 	list_for_each_entry(intel_encoder,			\
- 			    &(dev)->mode_config.encoder_list,	\
--- 
-2.37.3
-
+DQoNCj4gLS0tLS1PcmlnaW5hbCBNZXNzYWdlLS0tLS0NCj4gRnJvbTogSG9nYW5kZXIsIEpvdW5p
+IDxqb3VuaS5ob2dhbmRlckBpbnRlbC5jb20+DQo+IFNlbnQ6IEZyaWRheSwgSmFudWFyeSAxOSwg
+MjAyNCAzOjQwIFBNDQo+IFRvOiBpbnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnDQo+IENj
+OiBNYW5uYSwgQW5pbWVzaCA8YW5pbWVzaC5tYW5uYUBpbnRlbC5jb20+OyBIb2dhbmRlciwgSm91
+bmkNCj4gPGpvdW5pLmhvZ2FuZGVyQGludGVsLmNvbT4NCj4gU3ViamVjdDogW1BBVENIIHYzIDA3
+LzIxXSBkcm0vaTkxNS9wc3I6IERvIG5vdCB3cml0ZSByZWdpc3RlcnMvYml0cyBub3QNCj4gYXBw
+bGljYWJsZSBmb3IgcGFuZWwgcmVwbGF5DQo+IA0KPiBGcm9tIGJzcGVjOg0KPiANCj4gQWRkaXRp
+b25hbCBwcm9ncmFtbWluZyBjb25zaWRlcmF0aW9ucyAocmVwdXJwb3NlZCBlRFAgcmVnaXN0ZXJz
+KQ0KPiANCj4gbWFzayByZWdpc3RlcjogT25seSBQU1JfTUFTS1tNYXNrIEZCQyBtb2RpZnldIGFu
+ZCBQU1JfTUFTS1tNYXNrDQo+IEhvdHBsdWddIGFyZSB1c2VkIGluIHBhbmVsIHJlcGxheSBtb2Rl
+Lg0KPiANCj4gU3RhdHVzIHJlZ2lzdGVyOiBPbmx5IFNSRF9TVEFUVVNbU1JEIHN0YXRlXSBmaWVs
+ZCBpcyB1c2VkIGluIHBhbmVsIHJlcGxheQ0KPiBtb2RlLg0KPiANCj4gRHVlIHRvIHRoaXMgc3Rv
+cCB3cml0aW5nIGFuZCByZWFkaW5nIHJlZ2lzdGVycyBhbmQgYml0cyBub3QgdXNlZCBieSBwYW5l
+bA0KPiByZXBsYXkgaWYgcGFuZWwgcmVwbGF5IGlzIHVzZWQuDQo+IA0KPiBCc3BlYzogNTMzNzAN
+Cj4gDQo+IFNpZ25lZC1vZmYtYnk6IEpvdW5pIEjDtmdhbmRlciA8am91bmkuaG9nYW5kZXJAaW50
+ZWwuY29tPg0KDQpMR1RNLg0KUmV2aWV3ZWQtYnk6IEFuaW1lc2ggTWFubmEgPGFuaW1lc2gubWFu
+bmFAaW50ZWwuY29tPg0KDQo+IC0tLQ0KPiAgZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9p
+bnRlbF9wc3IuYyB8IDIzICsrKysrKysrKysrKysrKysrKy0tLS0tDQo+ICAxIGZpbGUgY2hhbmdl
+ZCwgMTggaW5zZXJ0aW9ucygrKSwgNSBkZWxldGlvbnMoLSkNCj4gDQo+IGRpZmYgLS1naXQgYS9k
+cml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX3Bzci5jDQo+IGIvZHJpdmVycy9ncHUv
+ZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9wc3IuYw0KPiBpbmRleCA2ZDdlZjc0MjAxZDIuLjJkNWQx
+YzJjZTI0NiAxMDA2NDQNCj4gLS0tIGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRl
+bF9wc3IuYw0KPiArKysgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX3Bzci5j
+DQo+IEBAIC0zNDYsNiArMzQ2LDkgQEAgc3RhdGljIHZvaWQgcHNyX2lycV9jb250cm9sKHN0cnVj
+dCBpbnRlbF9kcCAqaW50ZWxfZHApDQo+ICAJZW51bSB0cmFuc2NvZGVyIGNwdV90cmFuc2NvZGVy
+ID0gaW50ZWxfZHAtPnBzci50cmFuc2NvZGVyOw0KPiAgCXUzMiBtYXNrOw0KPiANCj4gKwlpZiAo
+aW50ZWxfZHAtPnBzci5wYW5lbF9yZXBsYXlfZW5hYmxlZCkNCj4gKwkJcmV0dXJuOw0KPiArDQo+
+ICAJbWFzayA9IHBzcl9pcnFfcHNyX2Vycm9yX2JpdF9nZXQoaW50ZWxfZHApOw0KPiAgCWlmIChp
+bnRlbF9kcC0+cHNyLmRlYnVnICYgSTkxNV9QU1JfREVCVUdfSVJRKQ0KPiAgCQltYXNrIHw9IHBz
+cl9pcnFfcG9zdF9leGl0X2JpdF9nZXQoaW50ZWxfZHApIHwgQEAgLTE1NTksMTMNCj4gKzE1NjIs
+MTkgQEAgc3RhdGljIHZvaWQgaW50ZWxfcHNyX2VuYWJsZV9zb3VyY2Uoc3RydWN0IGludGVsX2Rw
+ICppbnRlbF9kcCwNCj4gIAkgKiBtYXNrIExQU1AgdG8gYXZvaWQgZGVwZW5kZW5jeSBvbiBvdGhl
+ciBkcml2ZXJzIHRoYXQgbWlnaHQgYmxvY2sNCj4gIAkgKiBydW50aW1lX3BtIGJlc2lkZXMgcHJl
+dmVudGluZyAgb3RoZXIgaHcgdHJhY2tpbmcgaXNzdWVzIG5vdyB3ZQ0KPiAgCSAqIGNhbiByZWx5
+IG9uIGZyb250YnVmZmVyIHRyYWNraW5nLg0KPiArCSAqDQo+ICsJICogRnJvbSBic3BlYzogT25s
+eSBQU1JfTUFTS1tNYXNrIEZCQyBtb2RpZnldIGFuZA0KPiBQU1JfTUFTS1tNYXNrIEhvdHBsdWdd
+DQo+ICsJICogYXJlIHVzZWQgaW4gcGFuZWwgcmVwbGF5IG1vZGUuDQo+ICAJICovDQo+IC0JbWFz
+ayA9IEVEUF9QU1JfREVCVUdfTUFTS19NRU1VUCB8DQo+IC0JICAgICAgIEVEUF9QU1JfREVCVUdf
+TUFTS19IUEQgfA0KPiAtCSAgICAgICBFRFBfUFNSX0RFQlVHX01BU0tfTFBTUDsNCj4gKwltYXNr
+ID0gRURQX1BTUl9ERUJVR19NQVNLX0hQRDsNCj4gDQo+IC0JaWYgKERJU1BMQVlfVkVSKGRldl9w
+cml2KSA8IDIwKQ0KPiAtCQltYXNrIHw9IEVEUF9QU1JfREVCVUdfTUFTS19NQVhfU0xFRVA7DQo+
+ICsJaWYgKCFpbnRlbF9kcC0+cHNyLnBhbmVsX3JlcGxheV9lbmFibGVkKSB7DQo+ICsJCW1hc2sg
+fD0gRURQX1BTUl9ERUJVR19NQVNLX01FTVVQIHwNCj4gKwkJCUVEUF9QU1JfREVCVUdfTUFTS19M
+UFNQOw0KPiArDQo+ICsJCWlmIChESVNQTEFZX1ZFUihkZXZfcHJpdikgPCAyMCkNCj4gKwkJCW1h
+c2sgfD0gRURQX1BTUl9ERUJVR19NQVNLX01BWF9TTEVFUDsNCj4gKwl9DQo+IA0KPiAgCS8qDQo+
+ICAJICogTm8gc2VwYXJhdGUgcGlwZSByZWcgd3JpdGUgbWFzayBvbiBoc3cvYmR3LCBzbyBoYXZl
+IHRvIHVubWFzaw0KPiBhbGwgQEAgLTE2MzQsNiArMTY0Myw5IEBAIHN0YXRpYyBib29sIHBzcl9p
+bnRlcnJ1cHRfZXJyb3JfY2hlY2soc3RydWN0DQo+IGludGVsX2RwICppbnRlbF9kcCkNCj4gIAll
+bnVtIHRyYW5zY29kZXIgY3B1X3RyYW5zY29kZXIgPSBpbnRlbF9kcC0+cHNyLnRyYW5zY29kZXI7
+DQo+ICAJdTMyIHZhbDsNCj4gDQo+ICsJaWYgKGludGVsX2RwLT5wc3IucGFuZWxfcmVwbGF5X2Vu
+YWJsZWQpDQo+ICsJCWdvdG8gbm9fZXJyOw0KPiArDQo+ICAJLyoNCj4gIAkgKiBJZiBhIFBTUiBl
+cnJvciBoYXBwZW5lZCBhbmQgdGhlIGRyaXZlciBpcyByZWxvYWRlZCwgdGhlDQo+IEVEUF9QU1Jf
+SUlSDQo+ICAJICogd2lsbCBzdGlsbCBrZWVwIHRoZSBlcnJvciBzZXQgZXZlbiBhZnRlciB0aGUg
+cmVzZXQgZG9uZSBpbiB0aGUgQEAgLQ0KPiAxNjUxLDYgKzE2NjMsNyBAQCBzdGF0aWMgYm9vbCBw
+c3JfaW50ZXJydXB0X2Vycm9yX2NoZWNrKHN0cnVjdCBpbnRlbF9kcA0KPiAqaW50ZWxfZHApDQo+
+ICAJCXJldHVybiBmYWxzZTsNCj4gIAl9DQo+IA0KPiArbm9fZXJyOg0KPiAgCXJldHVybiB0cnVl
+Ow0KPiAgfQ0KPiANCj4gLS0NCj4gMi4zNC4xDQoNCg==
