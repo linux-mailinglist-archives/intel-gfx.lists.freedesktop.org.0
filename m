@@ -2,73 +2,59 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 20DDB847294
-	for <lists+intel-gfx@lfdr.de>; Fri,  2 Feb 2024 16:06:25 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 790958472D8
+	for <lists+intel-gfx@lfdr.de>; Fri,  2 Feb 2024 16:14:47 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7845310E07F;
-	Fri,  2 Feb 2024 15:06:21 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2485310E0BF;
+	Fri,  2 Feb 2024 15:14:45 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="hBjJriXy";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="j4dtsZow";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-lf1-f41.google.com (mail-lf1-f41.google.com
- [209.85.167.41])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0ADB310E07F
- for <intel-gfx@lists.freedesktop.org>; Fri,  2 Feb 2024 15:06:21 +0000 (UTC)
-Received: by mail-lf1-f41.google.com with SMTP id
- 2adb3069b0e04-511206d1c89so3006553e87.1
- for <intel-gfx@lists.freedesktop.org>; Fri, 02 Feb 2024 07:06:20 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1706886379; x=1707491179; darn=lists.freedesktop.org;
- h=content-transfer-encoding:mime-version:references:in-reply-to
- :message-id:date:subject:cc:to:from:from:to:cc:subject:date
- :message-id:reply-to;
- bh=Rv71wG1vxBBHegMPvcinQkXyPZnFxEIY4+DX6mOVEto=;
- b=hBjJriXyNzGrEXIFRRWJpC1oeqmSG9j4JvsN3l9ThS4FKfiwaPjm//VgOzgqGVPViv
- ML6ZGzNKhvohP8Re6B6wpE2cRk2tVhGt5N8GWmHWoZMF50IdMg0ngfdl8vzumV+Jmd1N
- Z85K2CvSbYfulGLl0z4gS1HKS3rXkT6AQB6EiNERhWvVXfF/V3Posr8OhhcEDDDuUVpV
- 19d2PBLjj+3KAK5eDcaQyRpkWaAldgAFkgrJ01RHFDvNhQu1AM7IG1Xz9bIdq0SkitQ3
- IzG9WRiTE9L1XY/hdosTzDMGMG2Mt4IUIcBDROCFsON5xHn+ehl663/oFWb027JEsDzd
- XWTQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1706886379; x=1707491179;
- h=content-transfer-encoding:mime-version:references:in-reply-to
- :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
- :subject:date:message-id:reply-to;
- bh=Rv71wG1vxBBHegMPvcinQkXyPZnFxEIY4+DX6mOVEto=;
- b=Lat+kdWf7X8MLXFxDdE6HG/ZJKn3rdYHtjBEtfasPrZHLeaqhEltQxMN23E+wCi/IE
- Awt6dzqBbYYETzCc+0pQcNBRPmvVGJas6eQWMlQDk1E0GpjSjULgr2BpTytbhmSlQq6J
- jaOorKQHCFLQjNcAJ8pqarb7HUMRVJwHcmlb7+G8opXyMtPjiYoHrcufPZ4sHmWaPvZS
- O/ak0gWDUAvUAy12ZDbbc6oSprvg3Qm12LBth1D6SGVUAavaa00fUi90xOBcqs4r8tc5
- 2w3yXOYOV8Jx0Xebm8n8mvoDXMnl3+14U1DvaGJkj9ytKJ0j+RLB0c1BNGgufZFwImY1
- 7zdA==
-X-Gm-Message-State: AOJu0YzzL0r2fvYdIK0uJ5v28mZ+17/TDABy+c2Xk4ny7gAQleV928Tf
- QANUGT50P+9jf40aAr1YUhGBVdPkTsUW3A2Y+Frw5gp4u2bvG2LoMS+y/zyDPZdbnw==
-X-Google-Smtp-Source: AGHT+IHmmTfM+UPJBrWwlAoJm9HqUtJjkAUCaH6kEY0zLHsXuK8r5SgEeyMVs9u9mE5DWoaT/x7DFA==
-X-Received: by 2002:ac2:5049:0:b0:511:32f8:6ee2 with SMTP id
- a9-20020ac25049000000b0051132f86ee2mr1570285lfm.63.1706886378745; 
- Fri, 02 Feb 2024 07:06:18 -0800 (PST)
-X-Forwarded-Encrypted: i=0;
- AJvYcCXESluIGr93ETF8cLJu7EdtDgheb/LfTRueoen2fDVV9/Kh75c0Odal6zpxgBohuflxsHzKAxAd56f/0px2yS7MGFxQniY=
-Received: from jheikkil-mobl1.. ([2001:998:22:0:7cc9:771:a174:dbb9])
- by smtp.gmail.com with ESMTPSA id
- r7-20020ac24d07000000b0051021a9febdsm326931lfi.153.2024.02.02.07.06.18
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Fri, 02 Feb 2024 07:06:18 -0800 (PST)
-From: Juha-Pekka Heikkila <juhapekka.heikkila@gmail.com>
-To: intel-gfx@lists.freedesktop.org
-Cc: Juha-Pekka Heikkila <juhapekka.heikkila@gmail.com>,
- Mika Kahola <mika.kahola@intel.com>
-Subject: [PATCH 1/1] drm/i915/display: On Xe2 always enable decompression with
- tile4
-Date: Fri,  2 Feb 2024 17:06:02 +0200
-Message-Id: <20240202150602.430036-2-juhapekka.heikkila@gmail.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20240202150602.430036-1-juhapekka.heikkila@gmail.com>
-References: <20240202150602.430036-1-juhapekka.heikkila@gmail.com>
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9B8BD10E0BF
+ for <intel-gfx@lists.freedesktop.org>; Fri,  2 Feb 2024 15:14:43 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1706886884; x=1738422884;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version:content-transfer-encoding;
+ bh=Y17D/NyLpYKc7Zd4mv7NXHcDOaCeRQcDVmPIsJKoFZc=;
+ b=j4dtsZow10d8mVNqg6OL9ufSaOzjwLwfcMvtoxqLmvD2aVRfglX1t6WA
+ uLuFGaSZjMYz/6/kzoAjK0Q8ZfjZm3Jwz8p08wEJmUskUiWel+mfEdfRI
+ hKEaz6qHGTpRZz6cy+3ZkNceHlhk0MnRx7Gn1OqbAhRnJ34BDjMw1T4jt
+ TqSIC7KcP4Mk2MvlJJnnqhmUbU8kDGVzrXeWQTSFBsMCjhE7ndM9RKQaR
+ wmD8lCEyLkiytgdsapciWzL16+oOWj2chZ7hdss13yGPymGi+hSCaTz1i
+ +WUlpwl8oUzc0lTjE8ENcZrn2B1CFaihseNJ+IvQGBCV655apkjbEz8zA Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10971"; a="82615"
+X-IronPort-AV: E=Sophos;i="6.05,238,1701158400"; 
+   d="scan'208";a="82615"
+Received: from orviesa005.jf.intel.com ([10.64.159.145])
+ by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 Feb 2024 07:14:43 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.05,238,1701158400"; 
+   d="scan'208";a="4686785"
+Received: from mmermeza-mobl3.ger.corp.intel.com (HELO localhost)
+ ([10.252.59.198])
+ by orviesa005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 Feb 2024 07:14:41 -0800
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Ville Syrjala <ville.syrjala@linux.intel.com>,
+ intel-gfx@lists.freedesktop.org
+Cc: Andrzej Hajda <andrzej.hajda@intel.com>
+Subject: Re: [PATCH v3 12/16] drm/i915: Simplify
+ intel_initial_plane_config() calling convention
+In-Reply-To: <20240116075636.6121-13-ville.syrjala@linux.intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20240116075636.6121-1-ville.syrjala@linux.intel.com>
+ <20240116075636.6121-13-ville.syrjala@linux.intel.com>
+Date: Fri, 02 Feb 2024 17:14:37 +0200
+Message-ID: <87ttmqew4i.fsf@intel.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -84,30 +70,148 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-With Xe2 always treat tile4 as if it was using flat ccs.
+On Tue, 16 Jan 2024, Ville Syrjala <ville.syrjala@linux.intel.com> wrote:
+> From: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
+>
+> There's no reason the caller of intel_initial_plane_config() should
+> have to loop over the CRTCs. Pull the loop into the function to
+> make life simpler for the caller.
+>
+> Cc: Paz Zcharya <pazz@chromium.org>
+> Reviewed-by: Andrzej Hajda <andrzej.hajda@intel.com>
+> Signed-off-by: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
+> ---
+>  .../drm/i915/display/intel_display_driver.c   |  7 +---
+>  .../drm/i915/display/intel_plane_initial.c    | 40 +++++++++++--------
+>  .../drm/i915/display/intel_plane_initial.h    |  4 +-
+>  3 files changed, 26 insertions(+), 25 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/i915/display/intel_display_driver.c b/driver=
+s/gpu/drm/i915/display/intel_display_driver.c
+> index ecf9cb74734b..f3fe1743243b 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display_driver.c
+> +++ b/drivers/gpu/drm/i915/display/intel_display_driver.c
+> @@ -415,7 +415,6 @@ int intel_display_driver_probe_nogem(struct drm_i915_=
+private *i915)
+>  {
+>  	struct drm_device *dev =3D &i915->drm;
+>  	enum pipe pipe;
+> -	struct intel_crtc *crtc;
+>  	int ret;
+>=20=20
+>  	if (!HAS_DISPLAY(i915))
+> @@ -467,11 +466,7 @@ int intel_display_driver_probe_nogem(struct drm_i915=
+_private *i915)
+>  	intel_acpi_assign_connector_fwnodes(i915);
+>  	drm_modeset_unlock_all(dev);
+>=20=20
+> -	for_each_intel_crtc(dev, crtc) {
+> -		if (!to_intel_crtc_state(crtc->base.state)->uapi.active)
+> -			continue;
+> -		intel_crtc_initial_plane_config(crtc);
+> -	}
+> +	intel_initial_plane_config(i915);
+>=20=20
+>  	/*
+>  	 * Make sure hardware watermarks really match the state we read out.
+> diff --git a/drivers/gpu/drm/i915/display/intel_plane_initial.c b/drivers=
+/gpu/drm/i915/display/intel_plane_initial.c
+> index 78bff6181ceb..b7e12b60d68b 100644
+> --- a/drivers/gpu/drm/i915/display/intel_plane_initial.c
+> +++ b/drivers/gpu/drm/i915/display/intel_plane_initial.c
+> @@ -357,25 +357,31 @@ static void plane_config_fini(struct intel_initial_=
+plane_config *plane_config)
+>  		i915_vma_put(plane_config->vma);
+>  }
+>=20=20
+> -void intel_crtc_initial_plane_config(struct intel_crtc *crtc)
+> +void intel_initial_plane_config(struct drm_i915_private *i915)
 
-Signed-off-by: Juha-Pekka Heikkila <juhapekka.heikkila@gmail.com>
-Reviewed-by: Mika Kahola <mika.kahola@intel.com>
----
- drivers/gpu/drm/i915/display/skl_universal_plane.c | 5 +++++
- 1 file changed, 5 insertions(+)
+So this fails to build on CONFIG_DRM_XE=3Dm, because it has its own
+version of intel_plane_initial.c which has
+intel_crtc_initial_plane_config(), but not intel_initial_plane_config().
 
-diff --git a/drivers/gpu/drm/i915/display/skl_universal_plane.c b/drivers/gpu/drm/i915/display/skl_universal_plane.c
-index 511dc1544854..43209909593f 100644
---- a/drivers/gpu/drm/i915/display/skl_universal_plane.c
-+++ b/drivers/gpu/drm/i915/display/skl_universal_plane.c
-@@ -948,6 +948,11 @@ static u32 skl_plane_ctl(const struct intel_crtc_state *crtc_state,
- 	if (DISPLAY_VER(dev_priv) == 13)
- 		plane_ctl |= adlp_plane_ctl_arb_slots(plane_state);
- 
-+	if (GRAPHICS_VER(dev_priv) >= 20 &&
-+	    fb->modifier == I915_FORMAT_MOD_4_TILED) {
-+		plane_ctl |= PLANE_CTL_RENDER_DECOMPRESSION_ENABLE;
-+	}
-+
- 	return plane_ctl;
- }
- 
--- 
-2.25.1
+You'll get this as the first indication:
 
+  CC [M]  drivers/gpu/drm/xe/display/xe_plane_initial.o
+../drivers/gpu/drm/xe/display/xe_plane_initial.c:270:6: error: no previous =
+prototype for =E2=80=98intel_crtc_initial_plane_config=E2=80=99 [-Werror=3D=
+missing-prototypes]
+  270 | void intel_crtc_initial_plane_config(struct intel_crtc *crtc)
+      |      ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+but if you bypass that, eventually:
+
+  MODPOST Module.symvers
+ERROR: modpost: "intel_initial_plane_config" [drivers/gpu/drm/xe/xe.ko] und=
+efined!
+
+Needs to be fixed before merging.
+
+BR,
+Jani.
+
+>  {
+> -	struct drm_i915_private *dev_priv =3D to_i915(crtc->base.dev);
+> -	struct intel_initial_plane_config plane_config =3D {};
+> +	struct intel_crtc *crtc;
+>=20=20
+> -	/*
+> -	 * Note that reserving the BIOS fb up front prevents us
+> -	 * from stuffing other stolen allocations like the ring
+> -	 * on top.  This prevents some ugliness at boot time, and
+> -	 * can even allow for smooth boot transitions if the BIOS
+> -	 * fb is large enough for the active pipe configuration.
+> -	 */
+> -	dev_priv->display.funcs.display->get_initial_plane_config(crtc, &plane_=
+config);
+> +	for_each_intel_crtc(&i915->drm, crtc) {
+> +		struct intel_initial_plane_config plane_config =3D {};
+>=20=20
+> -	/*
+> -	 * If the fb is shared between multiple heads, we'll
+> -	 * just get the first one.
+> -	 */
+> -	intel_find_initial_plane_obj(crtc, &plane_config);
+> +		if (!to_intel_crtc_state(crtc->base.state)->uapi.active)
+> +			continue;
+>=20=20
+> -	plane_config_fini(&plane_config);
+> +		/*
+> +		 * Note that reserving the BIOS fb up front prevents us
+> +		 * from stuffing other stolen allocations like the ring
+> +		 * on top.  This prevents some ugliness at boot time, and
+> +		 * can even allow for smooth boot transitions if the BIOS
+> +		 * fb is large enough for the active pipe configuration.
+> +		 */
+> +		i915->display.funcs.display->get_initial_plane_config(crtc, &plane_con=
+fig);
+> +
+> +		/*
+> +		 * If the fb is shared between multiple heads, we'll
+> +		 * just get the first one.
+> +		 */
+> +		intel_find_initial_plane_obj(crtc, &plane_config);
+> +
+> +		plane_config_fini(&plane_config);
+> +	}
+>  }
+> diff --git a/drivers/gpu/drm/i915/display/intel_plane_initial.h b/drivers=
+/gpu/drm/i915/display/intel_plane_initial.h
+> index c7e35ab3182b..64ab95239cd4 100644
+> --- a/drivers/gpu/drm/i915/display/intel_plane_initial.h
+> +++ b/drivers/gpu/drm/i915/display/intel_plane_initial.h
+> @@ -6,8 +6,8 @@
+>  #ifndef __INTEL_PLANE_INITIAL_H__
+>  #define __INTEL_PLANE_INITIAL_H__
+>=20=20
+> -struct intel_crtc;
+> +struct drm_i915_private;
+>=20=20
+> -void intel_crtc_initial_plane_config(struct intel_crtc *crtc);
+> +void intel_initial_plane_config(struct drm_i915_private *i915);
+>=20=20
+>  #endif
+
+--=20
+Jani Nikula, Intel
