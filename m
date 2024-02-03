@@ -2,61 +2,29 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6A5AE847D72
-	for <lists+intel-gfx@lfdr.de>; Sat,  3 Feb 2024 01:05:51 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 21440847D6B
+	for <lists+intel-gfx@lfdr.de>; Sat,  3 Feb 2024 01:03:28 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 149ED10F1AA;
-	Sat,  3 Feb 2024 00:05:49 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="h/3E8a4+";
-	dkim-atps=neutral
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4F8A010F18F;
+	Sat,  3 Feb 2024 00:03:25 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-X-Greylist: delayed 426 seconds by postgrey-1.36 at gabe;
- Sat, 03 Feb 2024 00:05:47 UTC
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A6BF710F1AA
- for <intel-gfx@lists.freedesktop.org>; Sat,  3 Feb 2024 00:05:47 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1706918748; x=1738454748;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:in-reply-to;
- bh=MVRIQWNEhJ6IvF2kCPeZP4p5KUrthvTq7J4fcJBUdHI=;
- b=h/3E8a4+tvv3E84gh234uD+BI1BcqJCrqicg5u4IUX99URUSxkmFEGny
- 8wvi0YFBTqyxnFzBNCTje+VeCcb9ylCt1bsC/2uZnf0UiyYAbD9ayKpea
- xz9491DECBribxS3lYchujjsSuKDP01T2tNVYvR2pehD2vnI2CzL1tbdG
- AKajtOXLRxf5jSfIy11QCaBnbaXKPOY+3rs98o9ZqLXK5hoRXA1xzRllv
- t/HvDpL7MB4JiyzKI9hEa/wzYzjERZvKh6s53kSdUvshXoyd+sKKnMeaS
- e2bjWNOHtcpszDPAhJGGzRaeWysXZVoI/s+dulCoNctEfpUKkbFcjlu0H Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10971"; a="172883"
-X-IronPort-AV: E=Sophos;i="6.05,238,1701158400"; 
-   d="scan'208";a="172883"
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
- by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Feb 2024 15:58:40 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10971"; a="932625978"
-X-IronPort-AV: E=Sophos;i="6.05,238,1701158400"; d="scan'208";a="932625978"
-Received: from lkp-server02.sh.intel.com (HELO 59f4f4cd5935) ([10.239.97.151])
- by fmsmga001.fm.intel.com with ESMTP; 02 Feb 2024 15:58:38 -0800
-Received: from kbuild by 59f4f4cd5935 with local (Exim 4.96)
- (envelope-from <lkp@intel.com>) id 1rW3QZ-0004Q0-2Z;
- Fri, 02 Feb 2024 23:58:35 +0000
-Date: Sat, 3 Feb 2024 07:58:35 +0800
-From: kernel test robot <lkp@intel.com>
-To: Ville Syrjala <ville.syrjala@linux.intel.com>,
- intel-gfx@lists.freedesktop.org
-Cc: llvm@lists.linux.dev, oe-kbuild-all@lists.linux.dev,
- Andrzej Hajda <andrzej.hajda@intel.com>
-Subject: Re: [PATCH v3 12/16] drm/i915: Simplify intel_initial_plane_config()
- calling convention
-Message-ID: <202402030704.nGzOFDCt-lkp@intel.com>
-References: <20240116075636.6121-13-ville.syrjala@linux.intel.com>
+Received: from 5338d5abeb45 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BC76710F18F;
+ Sat,  3 Feb 2024 00:03:23 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240116075636.6121-13-ville.syrjala@linux.intel.com>
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=97_Fi=2ECI=2ECHECKPATCH=3A_warning_for_drm/i915=3A_=28stole?=
+ =?utf-8?q?n=29_memory_region_related_fixes_=28rev11=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Ville Syrjala" <ville.syrjala@linux.intel.com>
+Cc: intel-gfx@lists.freedesktop.org
+Date: Sat, 03 Feb 2024 00:03:23 -0000
+Message-ID: <170691860377.953177.13012751776231704915@5338d5abeb45>
+X-Patchwork-Hint: ignore
+References: <20240202224340.30647-1-ville.syrjala@linux.intel.com>
+In-Reply-To: <20240202224340.30647-1-ville.syrjala@linux.intel.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -69,55 +37,49 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi Ville,
+== Series Details ==
 
-kernel test robot noticed the following build errors:
+Series: drm/i915: (stolen) memory region related fixes (rev11)
+URL   : https://patchwork.freedesktop.org/series/127721/
+State : warning
 
-[auto build test ERROR on drm-intel/for-linux-next]
-[also build test ERROR on drm-intel/for-linux-next-fixes drm-tip/drm-tip linus/master v6.8-rc2 next-20240202]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
+== Summary ==
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Ville-Syrjala/drm-i915-Use-struct-resource-for-memory-region-IO-as-well/20240125-222947
-base:   git://anongit.freedesktop.org/drm-intel for-linux-next
-patch link:    https://lore.kernel.org/r/20240116075636.6121-13-ville.syrjala%40linux.intel.com
-patch subject: [PATCH v3 12/16] drm/i915: Simplify intel_initial_plane_config() calling convention
-config: x86_64-randconfig-076-20240202 (https://download.01.org/0day-ci/archive/20240203/202402030704.nGzOFDCt-lkp@intel.com/config)
-compiler: clang version 17.0.6 (https://github.com/llvm/llvm-project 6009708b4367171ccdbf4b5905cb6a803753fe18)
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20240203/202402030704.nGzOFDCt-lkp@intel.com/reproduce)
+Error: dim checkpatch failed
+25a51b5a5590 drm/i915: Use struct resource for memory region IO as well
+-:388: WARNING:LONG_LINE: line length of 105 exceeds 100 columns
+#388: FILE: drivers/gpu/drm/i915/intel_region_ttm.c:227:
++			if (WARN_ON(overflows_type(resource_size(&mem->io) >> PAGE_SHIFT, place.lpfn))) {
 
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202402030704.nGzOFDCt-lkp@intel.com/
+total: 0 errors, 1 warnings, 0 checks, 281 lines checked
+938924e1c043 drm/i915: Print memory region info during probe
+7448ca56e775 drm/i915: Remove ad-hoc lmem/stolen debugs
+2a184f8726f8 drm/i915: Bypass LMEMBAR/GTTMMADR for MTL stolen memory access
+e8fe0ac96967 drm/i915: Disable the "binder"
+64ab387b0397 drm/i915: Rename the DSM/GSM registers
+8ba29e15659a drm/i915: Fix PTE decode during initial plane readout
+df94a06dfc38 drm/i915: Fix region start during initial plane readout
+4926bf6a09b0 drm/i915: Fix MTL initial plane readout
+2ab4265de4be drm/i915: s/phys_base/dma_addr/
+0eaa9f3431d0 drm/i915: Split the smem and lmem plane readout apart
+33d0f2ef3181 drm/i915: Simplify intel_initial_plane_config() calling convention
+dc64283accc2 drm/i915/fbdev: Fix smem_start for LMEMBAR stolen objects
+8519938cbede drm/i915: Tweak BIOS fb reuse check
+e4fe951c20bd drm/i915: Try to relocate the BIOS fb to the start of ggtt
+-:105: CHECK:LINE_SPACING: Please use a blank line after function/struct/union/enum declarations
+#105: FILE: drivers/gpu/drm/i915/display/i9xx_plane.h:51:
+ }
++static inline bool i9xx_fixup_initial_plane_config(struct intel_crtc *crtc,
 
-All errors (new ones prefixed by >>):
+-:106: WARNING:LONG_LINE: line length of 105 exceeds 100 columns
+#106: FILE: drivers/gpu/drm/i915/display/i9xx_plane.h:52:
++						   const struct intel_initial_plane_config *plane_config)
 
->> drivers/gpu/drm/xe/display/xe_plane_initial.c:270:6: error: no previous prototype for function 'intel_crtc_initial_plane_config' [-Werror,-Wmissing-prototypes]
-     270 | void intel_crtc_initial_plane_config(struct intel_crtc *crtc)
-         |      ^
-   drivers/gpu/drm/xe/display/xe_plane_initial.c:270:1: note: declare 'static' if the function is not intended to be used outside of this translation unit
-     270 | void intel_crtc_initial_plane_config(struct intel_crtc *crtc)
-         | ^
-         | static 
-   1 error generated.
-
-Kconfig warnings: (for reference only)
-   WARNING: unmet direct dependencies detected for DRM_I915_DEBUG_GEM
-   Depends on [n]: HAS_IOMEM [=y] && DRM_I915 [=m] && EXPERT [=y] && DRM_I915_WERROR [=n]
-   Selected by [m]:
-   - DRM_I915_DEBUG [=y] && HAS_IOMEM [=y] && DRM_I915 [=m] && EXPERT [=y] && !COMPILE_TEST [=n]
+total: 0 errors, 1 warnings, 1 checks, 245 lines checked
+d44ad92e0985 drm/i915: Annotate more of the BIOS fb takeover failure paths
 
 
-vim +/intel_crtc_initial_plane_config +270 drivers/gpu/drm/xe/display/xe_plane_initial.c
-
-44e694958b9539 Maarten Lankhorst 2023-08-17  269  
-44e694958b9539 Maarten Lankhorst 2023-08-17 @270  void intel_crtc_initial_plane_config(struct intel_crtc *crtc)
-
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
