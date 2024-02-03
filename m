@@ -2,29 +2,61 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0DC5C847DB3
-	for <lists+intel-gfx@lfdr.de>; Sat,  3 Feb 2024 01:19:20 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id A771C847DFB
+	for <lists+intel-gfx@lfdr.de>; Sat,  3 Feb 2024 01:48:33 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 670B110F1E0;
-	Sat,  3 Feb 2024 00:19:17 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 990EB10EBB2;
+	Sat,  3 Feb 2024 00:48:30 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="fTx04Ist";
+	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from 5338d5abeb45 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6E79A10F1E0;
- Sat,  3 Feb 2024 00:19:16 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============2144736263650871942=="
+X-Greylist: delayed 426 seconds by postgrey-1.36 at gabe;
+ Sat, 03 Feb 2024 00:48:28 UTC
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id F310310EBB2;
+ Sat,  3 Feb 2024 00:48:28 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1706921309; x=1738457309;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:in-reply-to;
+ bh=u0wK1YtCvm0CoYsAq2vguxiPdhzRtNy1KdWTPbz5ReI=;
+ b=fTx04IstUGt+Fj4Ti02GqHG90HGiR9DMQDdA404NQLlEgiLLxC+R/M/0
+ hqhlhf77equARVqzcfBCjDOhDxRnJO2Usz3KtGMXtUVYaMJ97xFzKtpzp
+ qcCeRKUIugSbq8OmZS0ai1NQtm+6AxKPYbEi2b36crm+AW98AOA0TVkZC
+ 5ztKhhPznF9nCCYp8fF0Dz1ykyvnMiRqfDu+8RiGDglYOUFVneV1C4Eai
+ i4+x1D1RjRNtvx37agWuHyAW5Ihd6fBEtIlPVFwmQTPKcVxiwM8aDjVrX
+ vatyljpC+FgRRRzXQ9XaVB1NGfdXHa5LhxOHG48lTTNHFtdotgRp63vNj Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10971"; a="186584"
+X-IronPort-AV: E=Sophos;i="6.05,238,1701158400"; 
+   d="scan'208";a="186584"
+Received: from fmviesa009.fm.intel.com ([10.60.135.149])
+ by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 Feb 2024 16:41:22 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.05,238,1701158400"; 
+   d="scan'208";a="208785"
+Received: from lkp-server02.sh.intel.com (HELO 59f4f4cd5935) ([10.239.97.151])
+ by fmviesa009.fm.intel.com with ESMTP; 02 Feb 2024 16:41:19 -0800
+Received: from kbuild by 59f4f4cd5935 with local (Exim 4.96)
+ (envelope-from <lkp@intel.com>) id 1rW45s-0004TF-23;
+ Sat, 03 Feb 2024 00:41:16 +0000
+Date: Sat, 3 Feb 2024 08:41:10 +0800
+From: kernel test robot <lkp@intel.com>
+To: Suraj Kandpal <suraj.kandpal@intel.com>,
+ intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
+Cc: llvm@lists.linux.dev, oe-kbuild-all@lists.linux.dev,
+ daniele.ceraolospurio@intel.com, chaitanya.kumar.borah@intel.com,
+ ankit.k.nautiyal@intel.com, Suraj Kandpal <suraj.kandpal@intel.com>
+Subject: Re: [PATCH 2/3] drm/xe/hdcp: Enable HDCP for XE
+Message-ID: <202402030852.sSijMp2S-lkp@intel.com>
+References: <20240202083737.1088306-3-suraj.kandpal@intel.com>
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Fi=2ECI=2EBAT=3A_success_for_drm/i915=3A_=28stolen=29_me?=
- =?utf-8?q?mory_region_related_fixes_=28rev11=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Ville Syrjala" <ville.syrjala@linux.intel.com>
-Cc: intel-gfx@lists.freedesktop.org
-Date: Sat, 03 Feb 2024 00:19:16 -0000
-Message-ID: <170691955645.953177.14007616621200845092@5338d5abeb45>
-X-Patchwork-Hint: ignore
-References: <20240202224340.30647-1-ville.syrjala@linux.intel.com>
-In-Reply-To: <20240202224340.30647-1-ville.syrjala@linux.intel.com>
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240202083737.1088306-3-suraj.kandpal@intel.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -37,256 +69,189 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============2144736263650871942==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+Hi Suraj,
 
-== Series Details ==
+kernel test robot noticed the following build warnings:
 
-Series: drm/i915: (stolen) memory region related fixes (rev11)
-URL   : https://patchwork.freedesktop.org/series/127721/
-State : success
+[auto build test WARNING on drm-intel/for-linux-next]
+[also build test WARNING on drm-intel/for-linux-next-fixes drm-xe/drm-xe-next drm-tip/drm-tip linus/master v6.8-rc2 next-20240202]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
 
-== Summary ==
+url:    https://github.com/intel-lab-lkp/linux/commits/Suraj-Kandpal/drm-i915-hdcp-Move-intel_hdcp_gsc_message-def-away-from-header-file/20240202-164840
+base:   git://anongit.freedesktop.org/drm-intel for-linux-next
+patch link:    https://lore.kernel.org/r/20240202083737.1088306-3-suraj.kandpal%40intel.com
+patch subject: [PATCH 2/3] drm/xe/hdcp: Enable HDCP for XE
+config: s390-allmodconfig (https://download.01.org/0day-ci/archive/20240203/202402030852.sSijMp2S-lkp@intel.com/config)
+compiler: clang version 19.0.0git (https://github.com/llvm/llvm-project 7dd790db8b77c4a833c06632e903dc4f13877a64)
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20240203/202402030852.sSijMp2S-lkp@intel.com/reproduce)
 
-CI Bug Log - changes from CI_DRM_14213 -> Patchwork_127721v11
-====================================================
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202402030852.sSijMp2S-lkp@intel.com/
 
-Summary
--------
+All warnings (new ones prefixed by >>):
 
-  **SUCCESS**
-
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_127721v11/index.html
-
-Participating hosts (39 -> 37)
-------------------------------
-
-  Missing    (2): bat-mtlp-8 fi-snb-2520m 
-
-Possible new issues
--------------------
-
-  Here are the unknown changes that may have been introduced in Patchwork_127721v11:
-
-### IGT changes ###
-
-#### Suppressed ####
-
-  The following results come from untrusted machines, tests, or statuses.
-  They do not affect the overall result.
-
-  * igt@kms_cursor_legacy@basic-flip-before-cursor-varying-size:
-    - {bat-arls-1}:       [SKIP][1] ([i915#10190]) -> [SKIP][2] +23 other tests skip
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14213/bat-arls-1/igt@kms_cursor_legacy@basic-flip-before-cursor-varying-size.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_127721v11/bat-arls-1/igt@kms_cursor_legacy@basic-flip-before-cursor-varying-size.html
-
-  
-Known issues
-------------
-
-  Here are the changes found in Patchwork_127721v11 that come from known issues:
-
-### IGT changes ###
-
-#### Possible fixes ####
-
-  * igt@core_hotunplug@unbind-rebind:
-    - {bat-arls-1}:       [SKIP][3] ([i915#10076]) -> [PASS][4]
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14213/bat-arls-1/igt@core_hotunplug@unbind-rebind.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_127721v11/bat-arls-1/igt@core_hotunplug@unbind-rebind.html
-
-  * igt@i915_module_load@load:
-    - {bat-arls-1}:       [DMESG-FAIL][5] ([i915#10189]) -> [PASS][6] +1 other test pass
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14213/bat-arls-1/igt@i915_module_load@load.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_127721v11/bat-arls-1/igt@i915_module_load@load.html
-
-  * igt@kms_pm_rpm@basic-pci-d3-state:
-    - {bat-arls-1}:       [SKIP][7] ([i915#9980]) -> [PASS][8] +1 other test pass
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14213/bat-arls-1/igt@kms_pm_rpm@basic-pci-d3-state.html
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_127721v11/bat-arls-1/igt@kms_pm_rpm@basic-pci-d3-state.html
-
-  * igt@vgem_basic@dmabuf-export:
-    - {bat-arls-1}:       [SKIP][9] ([i915#10190]) -> [PASS][10] +69 other tests pass
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14213/bat-arls-1/igt@vgem_basic@dmabuf-export.html
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_127721v11/bat-arls-1/igt@vgem_basic@dmabuf-export.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [i915#10076]: https://gitlab.freedesktop.org/drm/intel/issues/10076
-  [i915#10189]: https://gitlab.freedesktop.org/drm/intel/issues/10189
-  [i915#10190]: https://gitlab.freedesktop.org/drm/intel/issues/10190
-  [i915#10194]: https://gitlab.freedesktop.org/drm/intel/issues/10194
-  [i915#10196]: https://gitlab.freedesktop.org/drm/intel/issues/10196
-  [i915#10197]: https://gitlab.freedesktop.org/drm/intel/issues/10197
-  [i915#10200]: https://gitlab.freedesktop.org/drm/intel/issues/10200
-  [i915#10206]: https://gitlab.freedesktop.org/drm/intel/issues/10206
-  [i915#10207]: https://gitlab.freedesktop.org/drm/intel/issues/10207
-  [i915#10208]: https://gitlab.freedesktop.org/drm/intel/issues/10208
-  [i915#10209]: https://gitlab.freedesktop.org/drm/intel/issues/10209
-  [i915#10211]: https://gitlab.freedesktop.org/drm/intel/issues/10211
-  [i915#10212]: https://gitlab.freedesktop.org/drm/intel/issues/10212
-  [i915#10213]: https://gitlab.freedesktop.org/drm/intel/issues/10213
-  [i915#10214]: https://gitlab.freedesktop.org/drm/intel/issues/10214
-  [i915#10215]: https://gitlab.freedesktop.org/drm/intel/issues/10215
-  [i915#10216]: https://gitlab.freedesktop.org/drm/intel/issues/10216
-  [i915#4083]: https://gitlab.freedesktop.org/drm/intel/issues/4083
-  [i915#9318]: https://gitlab.freedesktop.org/drm/intel/issues/9318
-  [i915#9643]: https://gitlab.freedesktop.org/drm/intel/issues/9643
-  [i915#9732]: https://gitlab.freedesktop.org/drm/intel/issues/9732
-  [i915#9980]: https://gitlab.freedesktop.org/drm/intel/issues/9980
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_14213 -> Patchwork_127721v11
-
-  CI-20190529: 20190529
-  CI_DRM_14213: 40994da55437acf620a48af39b0d8545e1595c42 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_7702: bf075a74ece1956fc0e554291591b9da3eab54cf @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_127721v11: 40994da55437acf620a48af39b0d8545e1595c42 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-### Linux commits
-
-c95bb44ee953 drm/i915: Annotate more of the BIOS fb takeover failure paths
-614c96bff908 drm/i915: Try to relocate the BIOS fb to the start of ggtt
-39f87572a2f7 drm/i915: Tweak BIOS fb reuse check
-17c78c16583d drm/i915/fbdev: Fix smem_start for LMEMBAR stolen objects
-a35e1f5910a6 drm/i915: Simplify intel_initial_plane_config() calling convention
-c4544c3be79f drm/i915: Split the smem and lmem plane readout apart
-1bf02e478833 drm/i915: s/phys_base/dma_addr/
-5b1020fc4b56 drm/i915: Fix MTL initial plane readout
-982e05ed0cb3 drm/i915: Fix region start during initial plane readout
-fe8c77690095 drm/i915: Fix PTE decode during initial plane readout
-8c55acda7c63 drm/i915: Rename the DSM/GSM registers
-36991aeedb77 drm/i915: Disable the "binder"
-f03fd6fc42b7 drm/i915: Bypass LMEMBAR/GTTMMADR for MTL stolen memory access
-c6a1f8172b74 drm/i915: Remove ad-hoc lmem/stolen debugs
-512967377509 drm/i915: Print memory region info during probe
-b365a82e29eb drm/i915: Use struct resource for memory region IO as well
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_127721v11/index.html
-
---===============2144736263650871942==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+   In file included from drivers/gpu/drm/xe/display/xe_hdcp_gsc.c:7:
+   In file included from drivers/gpu/drm/xe/compat-i915-headers/i915_drv.h:15:
+   In file included from drivers/gpu/drm/xe/compat-i915-headers/gem/i915_gem_object.h:11:
+   In file included from drivers/gpu/drm/xe/xe_bo.h:11:
+   In file included from drivers/gpu/drm/xe/xe_bo_types.h:9:
+   In file included from include/linux/iosys-map.h:10:
+   In file included from include/linux/io.h:13:
+   In file included from arch/s390/include/asm/io.h:78:
+   include/asm-generic/io.h:547:31: warning: performing pointer arithmetic on a null pointer has undefined behavior [-Wnull-pointer-arithmetic]
+     547 |         val = __raw_readb(PCI_IOBASE + addr);
+         |                           ~~~~~~~~~~ ^
+   include/asm-generic/io.h:560:61: warning: performing pointer arithmetic on a null pointer has undefined behavior [-Wnull-pointer-arithmetic]
+     560 |         val = __le16_to_cpu((__le16 __force)__raw_readw(PCI_IOBASE + addr));
+         |                                                         ~~~~~~~~~~ ^
+   include/uapi/linux/byteorder/big_endian.h:37:59: note: expanded from macro '__le16_to_cpu'
+      37 | #define __le16_to_cpu(x) __swab16((__force __u16)(__le16)(x))
+         |                                                           ^
+   include/uapi/linux/swab.h:102:54: note: expanded from macro '__swab16'
+     102 | #define __swab16(x) (__u16)__builtin_bswap16((__u16)(x))
+         |                                                      ^
+   In file included from drivers/gpu/drm/xe/display/xe_hdcp_gsc.c:7:
+   In file included from drivers/gpu/drm/xe/compat-i915-headers/i915_drv.h:15:
+   In file included from drivers/gpu/drm/xe/compat-i915-headers/gem/i915_gem_object.h:11:
+   In file included from drivers/gpu/drm/xe/xe_bo.h:11:
+   In file included from drivers/gpu/drm/xe/xe_bo_types.h:9:
+   In file included from include/linux/iosys-map.h:10:
+   In file included from include/linux/io.h:13:
+   In file included from arch/s390/include/asm/io.h:78:
+   include/asm-generic/io.h:573:61: warning: performing pointer arithmetic on a null pointer has undefined behavior [-Wnull-pointer-arithmetic]
+     573 |         val = __le32_to_cpu((__le32 __force)__raw_readl(PCI_IOBASE + addr));
+         |                                                         ~~~~~~~~~~ ^
+   include/uapi/linux/byteorder/big_endian.h:35:59: note: expanded from macro '__le32_to_cpu'
+      35 | #define __le32_to_cpu(x) __swab32((__force __u32)(__le32)(x))
+         |                                                           ^
+   include/uapi/linux/swab.h:115:54: note: expanded from macro '__swab32'
+     115 | #define __swab32(x) (__u32)__builtin_bswap32((__u32)(x))
+         |                                                      ^
+   In file included from drivers/gpu/drm/xe/display/xe_hdcp_gsc.c:7:
+   In file included from drivers/gpu/drm/xe/compat-i915-headers/i915_drv.h:15:
+   In file included from drivers/gpu/drm/xe/compat-i915-headers/gem/i915_gem_object.h:11:
+   In file included from drivers/gpu/drm/xe/xe_bo.h:11:
+   In file included from drivers/gpu/drm/xe/xe_bo_types.h:9:
+   In file included from include/linux/iosys-map.h:10:
+   In file included from include/linux/io.h:13:
+   In file included from arch/s390/include/asm/io.h:78:
+   include/asm-generic/io.h:584:33: warning: performing pointer arithmetic on a null pointer has undefined behavior [-Wnull-pointer-arithmetic]
+     584 |         __raw_writeb(value, PCI_IOBASE + addr);
+         |                             ~~~~~~~~~~ ^
+   include/asm-generic/io.h:594:59: warning: performing pointer arithmetic on a null pointer has undefined behavior [-Wnull-pointer-arithmetic]
+     594 |         __raw_writew((u16 __force)cpu_to_le16(value), PCI_IOBASE + addr);
+         |                                                       ~~~~~~~~~~ ^
+   include/asm-generic/io.h:604:59: warning: performing pointer arithmetic on a null pointer has undefined behavior [-Wnull-pointer-arithmetic]
+     604 |         __raw_writel((u32 __force)cpu_to_le32(value), PCI_IOBASE + addr);
+         |                                                       ~~~~~~~~~~ ^
+   include/asm-generic/io.h:692:20: warning: performing pointer arithmetic on a null pointer has undefined behavior [-Wnull-pointer-arithmetic]
+     692 |         readsb(PCI_IOBASE + addr, buffer, count);
+         |                ~~~~~~~~~~ ^
+   include/asm-generic/io.h:700:20: warning: performing pointer arithmetic on a null pointer has undefined behavior [-Wnull-pointer-arithmetic]
+     700 |         readsw(PCI_IOBASE + addr, buffer, count);
+         |                ~~~~~~~~~~ ^
+   include/asm-generic/io.h:708:20: warning: performing pointer arithmetic on a null pointer has undefined behavior [-Wnull-pointer-arithmetic]
+     708 |         readsl(PCI_IOBASE + addr, buffer, count);
+         |                ~~~~~~~~~~ ^
+   include/asm-generic/io.h:717:21: warning: performing pointer arithmetic on a null pointer has undefined behavior [-Wnull-pointer-arithmetic]
+     717 |         writesb(PCI_IOBASE + addr, buffer, count);
+         |                 ~~~~~~~~~~ ^
+   include/asm-generic/io.h:726:21: warning: performing pointer arithmetic on a null pointer has undefined behavior [-Wnull-pointer-arithmetic]
+     726 |         writesw(PCI_IOBASE + addr, buffer, count);
+         |                 ~~~~~~~~~~ ^
+   include/asm-generic/io.h:735:21: warning: performing pointer arithmetic on a null pointer has undefined behavior [-Wnull-pointer-arithmetic]
+     735 |         writesl(PCI_IOBASE + addr, buffer, count);
+         |                 ~~~~~~~~~~ ^
+>> drivers/gpu/drm/xe/display/xe_hdcp_gsc.c:53:9: warning: variable 'err' is uninitialized when used here [-Wuninitialized]
+      53 |                 ret = err;
+         |                       ^~~
+   drivers/gpu/drm/xe/display/xe_hdcp_gsc.c:41:9: note: initialize the variable 'err' to silence this warning
+      41 |         int err, ret = 0;
+         |                ^
+         |                 = 0
+   drivers/gpu/drm/xe/display/xe_hdcp_gsc.c:105:23: error: invalid application of 'sizeof' to an incomplete type 'struct i915_hdcp_arbiter'
+     105 |         data = kzalloc(sizeof(*data), GFP_KERNEL);
+         |                              ^~~~~~~
+   drivers/gpu/drm/i915/display/intel_display_core.h:37:8: note: forward declaration of 'struct i915_hdcp_arbiter'
+      37 | struct i915_hdcp_arbiter;
+         |        ^
+   drivers/gpu/drm/xe/display/xe_hdcp_gsc.c:111:28: error: incomplete definition of type 'struct i915_hdcp_arbiter'
+     111 |         i915->display.hdcp.arbiter->hdcp_dev = i915->drm.dev;
+         |         ~~~~~~~~~~~~~~~~~~~~~~~~~~^
+   drivers/gpu/drm/i915/display/intel_display_core.h:37:8: note: forward declaration of 'struct i915_hdcp_arbiter'
+      37 | struct i915_hdcp_arbiter;
+         |        ^
+   drivers/gpu/drm/xe/display/xe_hdcp_gsc.c:112:28: error: incomplete definition of type 'struct i915_hdcp_arbiter'
+     112 |         i915->display.hdcp.arbiter->ops = &gsc_hdcp_ops;
+         |         ~~~~~~~~~~~~~~~~~~~~~~~~~~^
+   drivers/gpu/drm/i915/display/intel_display_core.h:37:8: note: forward declaration of 'struct i915_hdcp_arbiter'
+      37 | struct i915_hdcp_arbiter;
+         |        ^
+   drivers/gpu/drm/xe/display/xe_hdcp_gsc.c:112:37: error: use of undeclared identifier 'gsc_hdcp_ops'
+     112 |         i915->display.hdcp.arbiter->ops = &gsc_hdcp_ops;
+         |                                            ^
+   drivers/gpu/drm/xe/display/xe_hdcp_gsc.c:153:10: error: invalid application of 'sizeof' to an incomplete type 'struct hdcp_cmd_header'
+     153 |                                      sizeof(struct hdcp_cmd_header), NULL);
+         |                                      ^     ~~~~~~~~~~~~~~~~~~~~~~~~
+   drivers/gpu/drm/xe/display/xe_hdcp_gsc.c:153:24: note: forward declaration of 'struct hdcp_cmd_header'
+     153 |                                      sizeof(struct hdcp_cmd_header), NULL);
+         |                                                    ^
+   13 warnings and 5 errors generated.
 
 
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
+vim +/err +53 drivers/gpu/drm/xe/display/xe_hdcp_gsc.c
 
+    34	
+    35	/*This function helps allocate memory for the command that we will send to gsc cs */
+    36	static int intel_hdcp_gsc_initialize_message(struct drm_i915_private *i915,
+    37						     struct intel_hdcp_gsc_message *hdcp_message)
+    38	{
+    39		struct xe_bo *bo = NULL;
+    40		u64 cmd_in, cmd_out;
+    41		int err, ret = 0;
+    42	
+    43		/* allocate object of two page for HDCP command memory and store it */
+    44	
+    45		xe_device_mem_access_get(i915);
+    46		bo = xe_bo_create_pin_map(i915, xe_device_get_root_tile(i915), NULL, PAGE_SIZE * 2,
+    47					  ttm_bo_type_kernel,
+    48					  XE_BO_CREATE_SYSTEM_BIT |
+    49					  XE_BO_CREATE_GGTT_BIT);
+    50	
+    51		if (IS_ERR(bo)) {
+    52			drm_err(&i915->drm, "Failed to allocate bo for HDCP streaming command!\n");
+  > 53			ret = err;
+    54			goto out;
+    55		}
+    56	
+    57		cmd_in = xe_bo_ggtt_addr(bo);
+    58	
+    59		if (iosys_map_is_null(&bo->vmap)) {
+    60			drm_err(&i915->drm, "Failed to map gsc message page!\n");
+    61			ret = PTR_ERR(&bo->vmap);
+    62			goto out;
+    63		}
+    64	
+    65		cmd_out = cmd_in + PAGE_SIZE;
+    66	
+    67		xe_map_memset(i915, &bo->vmap, 0, 0, bo->size);
+    68	
+    69		hdcp_message->hdcp_bo = bo;
+    70		hdcp_message->hdcp_cmd_in = cmd_in;
+    71		hdcp_message->hdcp_cmd_out = cmd_out;
+    72	out:
+    73		xe_device_mem_access_put(i915);
+    74		return ret;
+    75	}
+    76	
 
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915: (stolen) memory region related fixes (rev11)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/127721/">https://patchwork.freedesktop.org/series/127721/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_127721v11/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_127721v11/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_14213 -&gt; Patchwork_127721v11</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_127721v11/index.html</p>
-<h2>Participating hosts (39 -&gt; 37)</h2>
-<p>Missing    (2): bat-mtlp-8 fi-snb-2520m </p>
-<h2>Possible new issues</h2>
-<p>Here are the unknown changes that may have been introduced in Patchwork_127721v11:</p>
-<h3>IGT changes</h3>
-<h4>Suppressed</h4>
-<p>The following results come from untrusted machines, tests, or statuses.<br />
-  They do not affect the overall result.</p>
-<ul>
-<li>igt@kms_cursor_legacy@basic-flip-before-cursor-varying-size:<ul>
-<li>{bat-arls-1}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14213/bat-arls-1/igt@kms_cursor_legacy@basic-flip-before-cursor-varying-size.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/10190">i915#10190</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_127721v11/bat-arls-1/igt@kms_cursor_legacy@basic-flip-before-cursor-varying-size.html">SKIP</a> +23 other tests skip</li>
-</ul>
-</li>
-</ul>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_127721v11 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Possible fixes</h4>
-<ul>
-<li>
-<p>igt@core_hotunplug@unbind-rebind:</p>
-<ul>
-<li>{bat-arls-1}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14213/bat-arls-1/igt@core_hotunplug@unbind-rebind.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/10076">i915#10076</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_127721v11/bat-arls-1/igt@core_hotunplug@unbind-rebind.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@i915_module_load@load:</p>
-<ul>
-<li>{bat-arls-1}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14213/bat-arls-1/igt@i915_module_load@load.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/10189">i915#10189</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_127721v11/bat-arls-1/igt@i915_module_load@load.html">PASS</a> +1 other test pass</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_pm_rpm@basic-pci-d3-state:</p>
-<ul>
-<li>{bat-arls-1}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14213/bat-arls-1/igt@kms_pm_rpm@basic-pci-d3-state.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/9980">i915#9980</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_127721v11/bat-arls-1/igt@kms_pm_rpm@basic-pci-d3-state.html">PASS</a> +1 other test pass</li>
-</ul>
-</li>
-<li>
-<p>igt@vgem_basic@dmabuf-export:</p>
-<ul>
-<li>{bat-arls-1}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14213/bat-arls-1/igt@vgem_basic@dmabuf-export.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/10190">i915#10190</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_127721v11/bat-arls-1/igt@vgem_basic@dmabuf-export.html">PASS</a> +69 other tests pass</li>
-</ul>
-</li>
-</ul>
-<p>{name}: This element is suppressed. This means it is ignored when computing<br />
-          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_14213 -&gt; Patchwork_127721v11</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_14213: 40994da55437acf620a48af39b0d8545e1595c42 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_7702: bf075a74ece1956fc0e554291591b9da3eab54cf @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  Patchwork_127721v11: 40994da55437acf620a48af39b0d8545e1595c42 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<h3>Linux commits</h3>
-<p>c95bb44ee953 drm/i915: Annotate more of the BIOS fb takeover failure paths<br />
-614c96bff908 drm/i915: Try to relocate the BIOS fb to the start of ggtt<br />
-39f87572a2f7 drm/i915: Tweak BIOS fb reuse check<br />
-17c78c16583d drm/i915/fbdev: Fix smem_start for LMEMBAR stolen objects<br />
-a35e1f5910a6 drm/i915: Simplify intel_initial_plane_config() calling convention<br />
-c4544c3be79f drm/i915: Split the smem and lmem plane readout apart<br />
-1bf02e478833 drm/i915: s/phys_base/dma_addr/<br />
-5b1020fc4b56 drm/i915: Fix MTL initial plane readout<br />
-982e05ed0cb3 drm/i915: Fix region start during initial plane readout<br />
-fe8c77690095 drm/i915: Fix PTE decode during initial plane readout<br />
-8c55acda7c63 drm/i915: Rename the DSM/GSM registers<br />
-36991aeedb77 drm/i915: Disable the "binder"<br />
-f03fd6fc42b7 drm/i915: Bypass LMEMBAR/GTTMMADR for MTL stolen memory access<br />
-c6a1f8172b74 drm/i915: Remove ad-hoc lmem/stolen debugs<br />
-512967377509 drm/i915: Print memory region info during probe<br />
-b365a82e29eb drm/i915: Use struct resource for memory region IO as well</p>
-
-</body>
-</html>
-
---===============2144736263650871942==--
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
