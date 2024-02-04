@@ -2,49 +2,50 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 04698848BF0
+	by mail.lfdr.de (Postfix) with ESMTPS id B99D6848BF1
 	for <lists+intel-gfx@lfdr.de>; Sun,  4 Feb 2024 08:48:58 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D45EA1120FA;
-	Sun,  4 Feb 2024 07:48:53 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9D8381120F3;
+	Sun,  4 Feb 2024 07:48:55 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="NqZLRia0";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="bRoXRjQB";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E90AC1120F6
- for <intel-gfx@lists.freedesktop.org>; Sun,  4 Feb 2024 07:48:51 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 06D521120FC
+ for <intel-gfx@lists.freedesktop.org>; Sun,  4 Feb 2024 07:48:53 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1707032932; x=1738568932;
+ t=1707032934; x=1738568934;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=G/hrLaB75Ckq9Ej1RP+ipXMt4UMNt6j3G2bWZVcyWTk=;
- b=NqZLRia0p4/MeBr/4N+eMN414ryias9GqgZA2zrv/Q7kTX9SAAENuDHY
- iSUWEQddeXxmAKogmTfM5JHG28TLI1YszhpRssCOIm59dPl4mas36SMwM
- 4Ib8eFYN8Trn2Tf/PWfMDrk/OYxDRg8c7zoD8ufmip7H0zJlJ11NjIduV
- 5h7cGyqGZdO5OB3BZBC6rFGlQAf5+QkCscNsljo/+3r6Nw/8WD+FY+8zV
- QUPIvOzEMkTWzWmcBFi9JLWL5+XXQUbTxhfvy/CCZFQiqoJuU2OusZ/c5
- 3vmcPUgvuotz4Rra9kkNPJxWt38gczlm77ACk9wE5HFcDql5n1mSmmSjE A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10973"; a="279241"
+ bh=M0z68KDGq+jz4nNwvy9c8Cv0SVxQ81oIV0U6LFINNNg=;
+ b=bRoXRjQBca94iLlFnPIRtuZGNpbMJtmxtJxhRqzSO5MXokogMpkr++Bt
+ AF4MiW1RVCNQkvTnybWrBjikT1veng8glGCxbPoo+01xTrkwV5GFQMwrs
+ +Ffp3g4vcjvkX+VG8kQ8nKs2ktrrdse3vI/8LB+SQo+V7asjIjAUPNcuq
+ 7u1y09Zca4waC0lzr6StqptDOZv8/ZXd2XEfF2HHVHnrYTjmrUvUka7Zq
+ Dh7oZ+w06wBSuDuq2SkV6Z4eCvozYap53j9HmgHqwkID1dBxOsK9lyekE
+ KEMgSk3PwwNcAzJJpcGtnP+YT2iYStpzpxphZW2bQF7/m/S8U0kwP+9Ob Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10973"; a="279242"
 X-IronPort-AV: E=Sophos;i="6.05,242,1701158400"; 
-   d="scan'208";a="279241"
+   d="scan'208";a="279242"
 Received: from fmviesa004.fm.intel.com ([10.60.135.144])
  by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Feb 2024 23:41:47 -0800
+ 03 Feb 2024 23:41:49 -0800
 X-ExtLoop1: 1
 X-IronPort-AV: E=Sophos;i="6.05,242,1701158400"; 
-   d="scan'208";a="5067682"
+   d="scan'208";a="5067687"
 Received: from kandpal-x299-ud4-pro.iind.intel.com ([10.190.239.32])
- by fmviesa004.fm.intel.com with ESMTP; 03 Feb 2024 23:41:46 -0800
+ by fmviesa004.fm.intel.com with ESMTP; 03 Feb 2024 23:41:47 -0800
 From: Suraj Kandpal <suraj.kandpal@intel.com>
 To: intel-gfx@lists.freedesktop.org
 Cc: uma.shankar@intel.com, ankit.k.nautiyal@intel.com,
  Suraj Kandpal <suraj.kandpal@intel.com>
-Subject: [PATCH 06/11] drm/i915/hdcp: HDCP Capability for the downstream device
-Date: Sun,  4 Feb 2024 13:09:31 +0530
-Message-Id: <20240204073936.1135848-7-suraj.kandpal@intel.com>
+Subject: [PATCH 07/11] drm/i915/hdcp: Remove additional timing for reading mst
+ hdcp message
+Date: Sun,  4 Feb 2024 13:09:32 +0530
+Message-Id: <20240204073936.1135848-8-suraj.kandpal@intel.com>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20240204073936.1135848-1-suraj.kandpal@intel.com>
 References: <20240204073936.1135848-1-suraj.kandpal@intel.com>
@@ -65,84 +66,39 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Currently we are only checking capability of remote device and not
-immediate downstream device but during capability check we need are
-concerned with only the HDCP capability of downstream device.
-During i915_display_info reporting we need HDCP Capability for both
-the monitors and downstream branch device if any this patch adds that.
+Now that we have moved back to direct reads the additional timing
+is not required hence this can be removed.
 
 --v2
--Use MST Hub HDCP version [Ankit]
+-Add Fixes tag [Ankit]
 
---v3
--Redefined how we seprate remote and direct read to make sure HDMI
-shim functions are not touched [Ankit]
-
---v4
-- Fix the conditions so that hdcp_info with remote_req true is sent
-only when encoder is mst [Ankit]
-
+Fixes: 3974f9c17bb9 ("drm/i915/hdcp: Adjust timeout for read in DPMST Scenario")
 Signed-off-by: Suraj Kandpal <suraj.kandpal@intel.com>
+Reviewed-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
 ---
- .../drm/i915/display/intel_display_debugfs.c  | 24 +++++++++++++++----
- 1 file changed, 19 insertions(+), 5 deletions(-)
+ drivers/gpu/drm/i915/display/intel_dp_hdcp.c | 9 ++-------
+ 1 file changed, 2 insertions(+), 7 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_display_debugfs.c b/drivers/gpu/drm/i915/display/intel_display_debugfs.c
-index 6f2d13c8ccf7..a51857dc4ece 100644
---- a/drivers/gpu/drm/i915/display/intel_display_debugfs.c
-+++ b/drivers/gpu/drm/i915/display/intel_display_debugfs.c
-@@ -188,7 +188,8 @@ static void intel_panel_info(struct seq_file *m,
- }
+diff --git a/drivers/gpu/drm/i915/display/intel_dp_hdcp.c b/drivers/gpu/drm/i915/display/intel_dp_hdcp.c
+index da9094307c94..d992da10a590 100644
+--- a/drivers/gpu/drm/i915/display/intel_dp_hdcp.c
++++ b/drivers/gpu/drm/i915/display/intel_dp_hdcp.c
+@@ -549,13 +549,8 @@ int intel_dp_hdcp2_read_msg(struct intel_connector *connector,
  
- static void intel_hdcp_info(struct seq_file *m,
--			    struct intel_connector *intel_connector)
-+			    struct intel_connector *intel_connector,
-+			    bool remote_req)
- {
- 	bool hdcp_cap, hdcp2_cap;
+ 		/* Entire msg read timeout since initiate of msg read */
+ 		if (bytes_to_recv == size - 1 && hdcp2_msg_data->msg_read_timeout > 0) {
+-			if (intel_encoder_is_mst(connector->encoder))
+-				msg_end = ktime_add_ms(ktime_get_raw(),
+-						       hdcp2_msg_data->msg_read_timeout *
+-						       connector->port->parent->num_ports);
+-			else
+-				msg_end = ktime_add_ms(ktime_get_raw(),
+-						       hdcp2_msg_data->msg_read_timeout);
++			msg_end = ktime_add_ms(ktime_get_raw(),
++					       hdcp2_msg_data->msg_read_timeout);
+ 		}
  
-@@ -197,8 +198,13 @@ static void intel_hdcp_info(struct seq_file *m,
- 		goto out;
- 	}
- 
--	hdcp_cap = intel_hdcp_capable(intel_connector);
--	hdcp2_cap = intel_hdcp2_capable(intel_connector);
-+	if (remote_req) {
-+		intel_hdcp_remote_cap(intel_connector, &hdcp_cap,
-+				      &hdcp2_cap);
-+	} else {
-+		hdcp_cap = intel_hdcp_capable(intel_connector);
-+		hdcp2_cap = intel_hdcp2_capable(intel_connector);
-+	}
- 
- 	if (hdcp_cap)
- 		seq_puts(m, "HDCP1.4 ");
-@@ -285,7 +291,11 @@ static void intel_connector_info(struct seq_file *m,
- 	}
- 
- 	seq_puts(m, "\tHDCP version: ");
--	intel_hdcp_info(m, intel_connector);
-+	if (intel_encoder_is_mst(encoder)) {
-+		intel_hdcp_info(m, intel_connector, true);
-+		seq_puts(m, "\tMST Hub HDCP version: ");
-+	}
-+	intel_hdcp_info(m, intel_connector, false);
- 
- 	seq_printf(m, "\tmax bpc: %u\n", connector->display_info.bpc);
- 
-@@ -1131,7 +1141,11 @@ static int i915_hdcp_sink_capability_show(struct seq_file *m, void *data)
- 
- 	seq_printf(m, "%s:%d HDCP version: ", connector->base.name,
- 		   connector->base.base.id);
--	intel_hdcp_info(m, connector);
-+	if (intel_encoder_is_mst(connector->encoder)) {
-+		intel_hdcp_info(m, connector, true);
-+		seq_puts(m, "\tMST Hub HDCP version: ");
-+	}
-+	intel_hdcp_info(m, connector, false);
- 
- out:
- 	drm_modeset_unlock(&i915->drm.mode_config.connection_mutex);
+ 		ret = drm_dp_dpcd_read(aux, offset,
 -- 
 2.25.1
 
