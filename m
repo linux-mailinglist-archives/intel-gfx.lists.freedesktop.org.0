@@ -2,54 +2,28 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id C0C4184903C
-	for <lists+intel-gfx@lfdr.de>; Sun,  4 Feb 2024 20:59:06 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id F2AA5849046
+	for <lists+intel-gfx@lfdr.de>; Sun,  4 Feb 2024 21:05:58 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5680F10EB59;
-	Sun,  4 Feb 2024 19:59:04 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="SI3d8KgX";
-	dkim-atps=neutral
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3BA4310EDFD;
+	Sun,  4 Feb 2024 20:05:56 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1F5E810EB59
- for <intel-gfx@lists.freedesktop.org>; Sun,  4 Feb 2024 19:59:03 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1707076743; x=1738612743;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=V+OQQND8EfGszRHhG597lpXEf3IWF4ojHfZD9c5+Y7w=;
- b=SI3d8KgXVbgjK8qt5+yaSGxefmrsPfQgM9nlydTn39MqHV7FOnE3KAbu
- aXEIEd9pr1TZyPp3Bnran1D8pTJ3hs9ilwFW6FvU8DXeL9+czi9EDjqrs
- zmf3sj3lvT6jB+5TwlKcpCaXlqKGdTy1dU2LURfUMvtRvlXnPRYkpNgQl
- VdEOMQZXc00R7hfPWK39Myb80T2XQ7ZctNa7tsnBGXz+EfxKMHWXWc7K1
- Pnz0YTF71LiqTjMTXkLYu9g/auj1EM1Vknzcwtn+ebJmqV7MEkXpyRzQT
- 8SJZjmfIMZ3ha6YrMEpAHHNy1l72uwkY/NmaN4UGjejVBUOFtdmh0XK7Q Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10973"; a="311201"
-X-IronPort-AV: E=Sophos;i="6.05,242,1701158400"; 
-   d="scan'208";a="311201"
-Received: from fmviesa005.fm.intel.com ([10.60.135.145])
- by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Feb 2024 11:59:03 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.05,242,1701158400"; 
-   d="scan'208";a="5160739"
-Received: from dut-2a59.iind.intel.com ([10.190.239.113])
- by fmviesa005.fm.intel.com with ESMTP; 04 Feb 2024 11:59:01 -0800
-From: Chaitanya Kumar Borah <chaitanya.kumar.borah@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Cc: uma.shankar@intel.com, chaitanya.kumar.borah@intel.com,
- maarten.lankhorst@linux.intel.com, ville.syrjala@linux.intel.com
-Subject: [PATCH 5/5] drm/i915: do not defer cleanup work
-Date: Mon,  5 Feb 2024 01:22:07 +0530
-Message-Id: <20240204195207.3616932-6-chaitanya.kumar.borah@intel.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20240204195207.3616932-1-chaitanya.kumar.borah@intel.com>
-References: <20240204195207.3616932-1-chaitanya.kumar.borah@intel.com>
+Received: from 5338d5abeb45 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5837410EDF6;
+ Sun,  4 Feb 2024 20:05:55 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=97_Fi=2ECI=2EBUILD=3A_failure_for_Cursor_Fault_Fixes?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Chaitanya Kumar Borah" <chaitanya.kumar.borah@intel.com>
+Cc: intel-gfx@lists.freedesktop.org
+Date: Sun, 04 Feb 2024 20:05:55 -0000
+Message-ID: <170707715536.1023984.10635156911682064665@5338d5abeb45>
+X-Patchwork-Hint: ignore
+References: <20240204195207.3616932-1-chaitanya.kumar.borah@intel.com>
+In-Reply-To: <20240204195207.3616932-1-chaitanya.kumar.borah@intel.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -62,82 +36,36 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-After we move the cursor fb unpin to a vblank work, we encounter
-race conditions between the vblank work and the atomic clean up
-work leading to dump stacks[1]. Let's serialize the clean up
-to avoid theses races.
+== Series Details ==
 
-[1]
+Series: Cursor Fault Fixes
+URL   : https://patchwork.freedesktop.org/series/129517/
+State : failure
 
-   [  278.748767] Workqueue: events_highpri intel_atomic_cleanup_work [i915]
-   [  278.749115] RIP: 0010:intel_display_rps_mark_interactive+0x4/0x40 [i915]
-   [  278.749425] Code: 92 cb 20 e1 e9 49 ff ff ff 5b 48 89 ef 5d 41 5c e9 11 23 44 e1 90 90 90 90 90 90 90 90 90 90 90 90 90 90 90 90 90 66 0f 1f 00 <38> 96 a5 05 00 00 74 2a 55 48 89 f5 0f b6 f2 53 48 8b bf 40 37 00
-   [  278.749428] RSP: 0018:ffffc9000029fdc8 EFLAGS: 00010246
-   [  278.749433] RAX: 0000000000000060 RBX: 0000000000000000 RCX: 0000000000000000
-   [  278.749435] RDX: 0000000000000000 RSI: 0000000000000000 RDI: ffff888124d70000
-   [  278.749438] RBP: ffff88810394c000 R08: 0000000000000000 R09: ffffc9000029fc80
-   [  278.749441] R10: 0000000000f6d950 R11: 0000000000f6da18 R12: ffff888124d70000
-   [  278.749443] R13: ffff88814c952000 R14: ffff8881000aac05 R15: ffff8881059baf10
-   [  278.749446] FS:  0000000000000000(0000) GS:ffff88817bd80000(0000) knlGS:0000000000000000
-   [  278.749449] CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
-   [  278.749452] CR2: 00000000000005a5 CR3: 0000000104078000 CR4: 0000000000350ef0
-   [  278.749454] Call Trace:
-   [  278.749458]  <TASK>
-   [  278.749461]  ? __die_body+0x1a/0x60
-   [  278.749469]  ? page_fault_oops+0x156/0x450
-   [  278.749474]  ? do_user_addr_fault+0x65/0x9e0
-   [  278.749479]  ? exc_page_fault+0x68/0x1a0
-   [  278.749486]  ? asm_exc_page_fault+0x26/0x30
-   [  278.749494]  ? intel_display_rps_mark_interactive+0x4/0x40 [i915]
-   [  278.749802]  intel_cleanup_plane_fb+0x6f/0xc0 [i915]
-   [  278.750114]  drm_atomic_helper_cleanup_planes+0x42/0x60
-   [  278.750122]  intel_atomic_cleanup_work+0x70/0xc0 [i915]
-   [  278.750433]  ? process_scheduled_works+0x264/0x530
-   [  278.750438]  process_scheduled_works+0x2db/0x530
-   [  278.750444]  ? __pfx_worker_thread+0x10/0x10
-   [  278.750448]  worker_thread+0x18c/0x350
-   [  278.750452]  ? __pfx_worker_thread+0x10/0x10
-   [  278.750455]  kthread+0xfe/0x130
-   [  278.750460]  ? __pfx_kthread+0x10/0x10
-   [  278.750464]  ret_from_fork+0x2c/0x50
-   [  278.750468]  ? __pfx_kthread+0x10/0x10
-   [  278.750472]  ret_from_fork_asm+0x1b/0x30
+== Summary ==
 
-Signed-off-by: Chaitanya Kumar Borah <chaitanya.kumar.borah@intel.com>
----
- drivers/gpu/drm/i915/display/intel_display.c | 8 +++-----
- 1 file changed, 3 insertions(+), 5 deletions(-)
+Error: make failed
+  CALL    scripts/checksyscalls.sh
+  DESCEND objtool
+  INSTALL libsubcmd_headers
+  CC [M]  drivers/gpu/drm/i915/display/intel_display.o
+drivers/gpu/drm/i915/display/intel_display.c: In function ‘intel_commit_modeset_disables’:
+drivers/gpu/drm/i915/display/intel_display.c:6785:3: error: implicit declaration of function ‘drm_vblank_work_flush_all’; did you mean ‘drm_vblank_work_flush’? [-Werror=implicit-function-declaration]
+ 6785 |   drm_vblank_work_flush_all(&crtc->base);
+      |   ^~~~~~~~~~~~~~~~~~~~~~~~~
+      |   drm_vblank_work_flush
+cc1: all warnings being treated as errors
+make[6]: *** [scripts/Makefile.build:243: drivers/gpu/drm/i915/display/intel_display.o] Error 1
+make[5]: *** [scripts/Makefile.build:481: drivers/gpu/drm/i915] Error 2
+make[4]: *** [scripts/Makefile.build:481: drivers/gpu/drm] Error 2
+make[3]: *** [scripts/Makefile.build:481: drivers/gpu] Error 2
+make[2]: *** [scripts/Makefile.build:481: drivers] Error 2
+make[1]: *** [/home/kbuild/kernel/Makefile:1921: .] Error 2
+make: *** [Makefile:240: __sub-make] Error 2
+Build failed, no error log produced
 
-diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
-index bf684c4d1732..b0e89036508e 100644
---- a/drivers/gpu/drm/i915/display/intel_display.c
-+++ b/drivers/gpu/drm/i915/display/intel_display.c
-@@ -7006,10 +7006,8 @@ static void intel_atomic_commit_fence_wait(struct intel_atomic_state *intel_stat
- 	}
- }
- 
--static void intel_atomic_cleanup_work(struct work_struct *work)
-+static void intel_atomic_cleanup_work(struct intel_atomic_state *state)
- {
--	struct intel_atomic_state *state =
--		container_of(work, struct intel_atomic_state, base.commit_work);
- 	struct drm_i915_private *i915 = to_i915(state->base.dev);
- 	struct intel_crtc_state *old_crtc_state;
- 	struct intel_crtc *crtc;
-@@ -7283,8 +7281,8 @@ static void intel_atomic_commit_tail(struct intel_atomic_state *state)
- 	 * schedule point (cond_resched()) here anyway to keep latencies
- 	 * down.
- 	 */
--	INIT_WORK(&state->base.commit_work, intel_atomic_cleanup_work);
--	queue_work(system_highpri_wq, &state->base.commit_work);
-+
-+	intel_atomic_cleanup_work(state);
- }
- 
- static void intel_atomic_commit_work(struct work_struct *work)
--- 
-2.25.1
 
