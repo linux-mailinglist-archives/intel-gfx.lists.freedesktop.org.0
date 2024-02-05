@@ -2,54 +2,57 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0BAD384979E
-	for <lists+intel-gfx@lfdr.de>; Mon,  5 Feb 2024 11:17:55 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id E35DF8497A0
+	for <lists+intel-gfx@lfdr.de>; Mon,  5 Feb 2024 11:19:16 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 476F611249A;
-	Mon,  5 Feb 2024 10:17:53 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4DF8E10F2A6;
+	Mon,  5 Feb 2024 10:19:15 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="VnfILCRM";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="M209Hm0R";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C6693112496
- for <intel-gfx@lists.freedesktop.org>; Mon,  5 Feb 2024 10:17:51 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.16])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9A79910F2A6
+ for <intel-gfx@lists.freedesktop.org>; Mon,  5 Feb 2024 10:19:13 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1707128271; x=1738664271;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=V+OQQND8EfGszRHhG597lpXEf3IWF4ojHfZD9c5+Y7w=;
- b=VnfILCRMJHnzSvAN01nS2mxrPAMM4qDj614hhuebI1M/STqI2mcl0NV1
- 7d+8b0yoblJ25l2EeT9UWwVaELVSCj41x4ykO/wxHOzsS4XQT+X9LRw/s
- c6U9s4SCxZXvwHXdT4dRbIFApz0ctOogmzJ8oRwNkoHkiPjFRY2Ilnonc
- kcViewbXtoiDUiqL6u9tREw0PULrtCZfjXCgXYv3HnseEBYwab0YSRFx5
- KbZAcPjl+GaDgWMQHtyDkeaO6FDzasNvnfjEJI80ug7t2oufctu2wWJuQ
- DL9WHihCRfPSUdjwVXiw0x4DCzyyeTvcJ9iB0gEgxTbpMSsWT8+UYstl4 w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10974"; a="388918"
+ t=1707128354; x=1738664354;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version;
+ bh=dGgFBeoBNQdO6BoMqJlWogisPuEBXth9BrZo6VoQgI4=;
+ b=M209Hm0RiwRFPPVn7sKco84CUx2h4cTZ8FhioKmg/fn+QkqPFV7NGb7D
+ /kGmeaIiy/uZ7h2rQ/iuSEJrxpGkh+5BC8yj2rnqfKtKxIuDblgAUCEjy
+ /iBnT0qIBi6eJzfQ7/YDXdyJM7H1ppqUKFPFlUbWm8HQHs1CgdtLFmuJn
+ ji3wsDdvvPezqUJLRgNXb3N/Ht/g37O/26/vWvch2XZjvcv1rQtPidJq1
+ Chtv29eN9DB5P9CdSgbAw4l3qdNLMcpydwZcF+J14xSJjSJd+O5OGZlTj
+ KJ7cLIOG1DAoO10O6o8HxJz9XfQ+JmSyn4NaSNIrrthG5pocjGGFB4Iio w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10974"; a="662144"
 X-IronPort-AV: E=Sophos;i="6.05,245,1701158400"; 
-   d="scan'208";a="388918"
-Received: from fmviesa003.fm.intel.com ([10.60.135.143])
- by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Feb 2024 02:17:51 -0800
+   d="scan'208";a="662144"
+Received: from orviesa006.jf.intel.com ([10.64.159.146])
+ by orvoesa108.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 05 Feb 2024 02:19:14 -0800
 X-ExtLoop1: 1
 X-IronPort-AV: E=Sophos;i="6.05,245,1701158400"; 
-   d="scan'208";a="5299228"
-Received: from dut-2a59.iind.intel.com ([10.190.239.113])
- by fmviesa003.fm.intel.com with ESMTP; 05 Feb 2024 02:17:50 -0800
-From: Chaitanya Kumar Borah <chaitanya.kumar.borah@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Cc: uma.shankar@intel.com, chaitanya.kumar.borah@intel.com,
- maarten.lankhorst@linux.intel.com, ville.syrjala@linux.intel.com
-Subject: [PATCH 6/6] drm/i915: do not defer cleanup work
-Date: Mon,  5 Feb 2024 15:40:53 +0530
-Message-Id: <20240205101053.3698717-7-chaitanya.kumar.borah@intel.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20240205101053.3698717-1-chaitanya.kumar.borah@intel.com>
-References: <20240205101053.3698717-1-chaitanya.kumar.borah@intel.com>
+   d="scan'208";a="979203"
+Received: from bgrigorc-mobl1.ger.corp.intel.com (HELO localhost)
+ ([10.252.42.24])
+ by orviesa006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 05 Feb 2024 02:19:11 -0800
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Suraj Kandpal <suraj.kandpal@intel.com>, intel-gfx@lists.freedesktop.org
+Cc: Suraj Kandpal <suraj.kandpal@intel.com>, Chaitanya Kumar Borah
+ <chaitanya.kumar.borah@intel.com>
+Subject: Re: [PATCH 2/2] drm/i915/lnl: Program PKGC_LATENCY register
+In-Reply-To: <20240205080126.1159496-1-suraj.kandpal@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20240201085158.1000285-3-suraj.kandpal@intel.com>
+ <20240205080126.1159496-1-suraj.kandpal@intel.com>
+Date: Mon, 05 Feb 2024 12:19:06 +0200
+Message-ID: <87le7zdxid.fsf@intel.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -65,79 +68,90 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-After we move the cursor fb unpin to a vblank work, we encounter
-race conditions between the vblank work and the atomic clean up
-work leading to dump stacks[1]. Let's serialize the clean up
-to avoid theses races.
+On Mon, 05 Feb 2024, Suraj Kandpal <suraj.kandpal@intel.com> wrote:
+> Program the PKGC_LATENCY register with the highest latency from
+> level 1 and above LP registers else program with all 1's.
+> This is used to improve package C residency by sending the highest
+> latency tolerance requirement (LTR) when the planes are done with the
+> frame until the next frame programming window (set context latency,
+> window 2) starts.
+> Bspec: 68986
+>
+> --v2
+> -Fix indentation [Chaitanya]
+>
+> Signed-off-by: Suraj Kandpal <suraj.kandpal@intel.com>
+> Reviewed-by: Chaitanya Kumar Borah <chaitanya.kumar.borah@intel.com>
+> ---
+>  drivers/gpu/drm/i915/display/skl_watermark.c | 31 ++++++++++++++++++++
+>  1 file changed, 31 insertions(+)
+>
+> diff --git a/drivers/gpu/drm/i915/display/skl_watermark.c b/drivers/gpu/drm/i915/display/skl_watermark.c
+> index 051a02ac01a4..1ce4b33a407a 100644
+> --- a/drivers/gpu/drm/i915/display/skl_watermark.c
+> +++ b/drivers/gpu/drm/i915/display/skl_watermark.c
+> @@ -3394,6 +3394,34 @@ static void skl_read_wm_latency(struct drm_i915_private *i915, u16 wm[])
+>  	adjust_wm_latency(i915, wm, num_levels, read_latency);
+>  }
+>  
+> +/*
+> + * Program PKG_C_LATENCY Pkg C with highest valid latency from
+> + * watermark level1 and up and above. If watermark level 1 is
+> + * invalid program it with all 1's.
+> + * Program PKG_C_LATENCY Added Wake Time = 0.
+> + */
+> +static void intel_program_pkgc_latency(struct drm_i915_private *i915,
+> +				       u16 wm_latency[])
+> +{
+> +	u16 max_value = 0;
+> +	u32 clear = 0, val = 0;
+> +	int max_level = i915->display.wm.num_levels, i;
 
-[1]
+max_level seems useless, only used once.
 
-   [  278.748767] Workqueue: events_highpri intel_atomic_cleanup_work [i915]
-   [  278.749115] RIP: 0010:intel_display_rps_mark_interactive+0x4/0x40 [i915]
-   [  278.749425] Code: 92 cb 20 e1 e9 49 ff ff ff 5b 48 89 ef 5d 41 5c e9 11 23 44 e1 90 90 90 90 90 90 90 90 90 90 90 90 90 90 90 90 90 66 0f 1f 00 <38> 96 a5 05 00 00 74 2a 55 48 89 f5 0f b6 f2 53 48 8b bf 40 37 00
-   [  278.749428] RSP: 0018:ffffc9000029fdc8 EFLAGS: 00010246
-   [  278.749433] RAX: 0000000000000060 RBX: 0000000000000000 RCX: 0000000000000000
-   [  278.749435] RDX: 0000000000000000 RSI: 0000000000000000 RDI: ffff888124d70000
-   [  278.749438] RBP: ffff88810394c000 R08: 0000000000000000 R09: ffffc9000029fc80
-   [  278.749441] R10: 0000000000f6d950 R11: 0000000000f6da18 R12: ffff888124d70000
-   [  278.749443] R13: ffff88814c952000 R14: ffff8881000aac05 R15: ffff8881059baf10
-   [  278.749446] FS:  0000000000000000(0000) GS:ffff88817bd80000(0000) knlGS:0000000000000000
-   [  278.749449] CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
-   [  278.749452] CR2: 00000000000005a5 CR3: 0000000104078000 CR4: 0000000000350ef0
-   [  278.749454] Call Trace:
-   [  278.749458]  <TASK>
-   [  278.749461]  ? __die_body+0x1a/0x60
-   [  278.749469]  ? page_fault_oops+0x156/0x450
-   [  278.749474]  ? do_user_addr_fault+0x65/0x9e0
-   [  278.749479]  ? exc_page_fault+0x68/0x1a0
-   [  278.749486]  ? asm_exc_page_fault+0x26/0x30
-   [  278.749494]  ? intel_display_rps_mark_interactive+0x4/0x40 [i915]
-   [  278.749802]  intel_cleanup_plane_fb+0x6f/0xc0 [i915]
-   [  278.750114]  drm_atomic_helper_cleanup_planes+0x42/0x60
-   [  278.750122]  intel_atomic_cleanup_work+0x70/0xc0 [i915]
-   [  278.750433]  ? process_scheduled_works+0x264/0x530
-   [  278.750438]  process_scheduled_works+0x2db/0x530
-   [  278.750444]  ? __pfx_worker_thread+0x10/0x10
-   [  278.750448]  worker_thread+0x18c/0x350
-   [  278.750452]  ? __pfx_worker_thread+0x10/0x10
-   [  278.750455]  kthread+0xfe/0x130
-   [  278.750460]  ? __pfx_kthread+0x10/0x10
-   [  278.750464]  ret_from_fork+0x2c/0x50
-   [  278.750468]  ? __pfx_kthread+0x10/0x10
-   [  278.750472]  ret_from_fork_asm+0x1b/0x30
+> +
+> +	for (i = 1; i <= max_level; i++) {
 
-Signed-off-by: Chaitanya Kumar Borah <chaitanya.kumar.borah@intel.com>
----
- drivers/gpu/drm/i915/display/intel_display.c | 8 +++-----
- 1 file changed, 3 insertions(+), 5 deletions(-)
+Array access goes out of bounds. Boom.
 
-diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
-index bf684c4d1732..b0e89036508e 100644
---- a/drivers/gpu/drm/i915/display/intel_display.c
-+++ b/drivers/gpu/drm/i915/display/intel_display.c
-@@ -7006,10 +7006,8 @@ static void intel_atomic_commit_fence_wait(struct intel_atomic_state *intel_stat
- 	}
- }
- 
--static void intel_atomic_cleanup_work(struct work_struct *work)
-+static void intel_atomic_cleanup_work(struct intel_atomic_state *state)
- {
--	struct intel_atomic_state *state =
--		container_of(work, struct intel_atomic_state, base.commit_work);
- 	struct drm_i915_private *i915 = to_i915(state->base.dev);
- 	struct intel_crtc_state *old_crtc_state;
- 	struct intel_crtc *crtc;
-@@ -7283,8 +7281,8 @@ static void intel_atomic_commit_tail(struct intel_atomic_state *state)
- 	 * schedule point (cond_resched()) here anyway to keep latencies
- 	 * down.
- 	 */
--	INIT_WORK(&state->base.commit_work, intel_atomic_cleanup_work);
--	queue_work(system_highpri_wq, &state->base.commit_work);
-+
-+	intel_atomic_cleanup_work(state);
- }
- 
- static void intel_atomic_commit_work(struct work_struct *work)
+> +		if (wm_latency[i] == 0)
+> +			break;
+> +		else if (wm_latency[i] > max_value)
+> +			max_value = wm_latency[i];
+> +	}
+> +
+> +	if (max_value == 0)
+> +		max_value = ~0 & LNL_PKG_C_LATENCY_MASK;
+
+What does "~0 &" gain you here?
+
+> +
+> +	clear |= LNL_ADDED_WAKE_TIME_MASK | LNL_PKG_C_LATENCY_MASK;
+> +	val |= max_value;
+
+If you have fields defined for the register, why not use it for setting
+max value too?
+
+> +	intel_uncore_rmw(&i915->uncore, LNL_PKG_C_LATENCY, clear, val);
+> +}
+> +
+>  static void skl_setup_wm_latency(struct drm_i915_private *i915)
+>  {
+>  	if (HAS_HW_SAGV_WM(i915))
+> @@ -3407,6 +3435,9 @@ static void skl_setup_wm_latency(struct drm_i915_private *i915)
+>  		skl_read_wm_latency(i915, i915->display.wm.skl_latency);
+>  
+>  	intel_print_wm_latency(i915, "Gen9 Plane", i915->display.wm.skl_latency);
+> +
+> +	if (DISPLAY_VER(i915) >= 20)
+> +		intel_program_pkgc_latency(i915, i915->display.wm.skl_latency);
+
+Before this, nothing in the skl_wm_init() path actually writes any
+registers, it's all readout. Is this the right place to be doing this?
+
+>  }
+>  
+>  static const struct intel_wm_funcs skl_wm_funcs = {
+
 -- 
-2.25.1
-
+Jani Nikula, Intel
