@@ -2,29 +2,60 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 07C7A849D3D
-	for <lists+intel-gfx@lfdr.de>; Mon,  5 Feb 2024 15:41:49 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6D377849E5D
+	for <lists+intel-gfx@lfdr.de>; Mon,  5 Feb 2024 16:35:03 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 39B2B10FA1D;
-	Mon,  5 Feb 2024 14:41:47 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E315A10EE20;
+	Mon,  5 Feb 2024 15:35:01 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="H0/fG0LO";
+	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from 5338d5abeb45 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6584B10FA1D;
- Mon,  5 Feb 2024 14:41:46 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============2179014298302893486=="
-MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Fi=2ECI=2EBAT=3A_success_for_drm/i915/dp=3A_Fix_connecto?=
- =?utf-8?q?r_DSC_HW_state_readout?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Imre Deak" <imre.deak@intel.com>
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 31B6E10EE20
+ for <intel-gfx@lists.freedesktop.org>; Mon,  5 Feb 2024 15:35:01 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1707147301; x=1738683301;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=HI9785amhLMK1G264623OpgCdAM4ctSTD5saAgE6wug=;
+ b=H0/fG0LOgPxE55kXIO82Y10zU59PBA9fzCDe6Czn8DDlUOvHBbBoHXSt
+ YW8RAUPXwPTUDNOctFLPb0oAou67RkqRTK5TdGYSXoBdhY/L71XkJF/8t
+ eJqhWIAMudvv3lmxY0aXHpd0t+ok05ct6GJk0efjrpTp+0VsGOKdp8CGy
+ y2LDVciXXOa/iiUQ53REbMQG/9y1rgbYkZfxY21uLqKr4Ephbp0lGS6lK
+ oe7wZuDHHVx/uqolDK0IY+ec2ELpNFwxuP2YDGfRGWS1bEh9PChonX6d1
+ lebMDFTkTgWozeAaaIL04ebJVCi/38Wk3CCNxNf+IYI4O99vK9BmXrGhC g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10975"; a="692379"
+X-IronPort-AV: E=Sophos;i="6.05,245,1701158400"; 
+   d="scan'208";a="692379"
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+ by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 05 Feb 2024 07:35:01 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10975"; a="823886226"
+X-IronPort-AV: E=Sophos;i="6.05,245,1701158400"; d="scan'208";a="823886226"
+Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.74])
+ by orsmga001.jf.intel.com with SMTP; 05 Feb 2024 07:34:58 -0800
+Received: by stinkbox (sSMTP sendmail emulation);
+ Mon, 05 Feb 2024 17:34:57 +0200
+Date: Mon, 5 Feb 2024 17:34:57 +0200
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: Gustavo Sousa <gustavo.sousa@intel.com>
 Cc: intel-gfx@lists.freedesktop.org
-Date: Mon, 05 Feb 2024 14:41:46 -0000
-Message-ID: <170714410641.1024443.7083607390215285728@5338d5abeb45>
-X-Patchwork-Hint: ignore
-References: <20240205132631.1588577-1-imre.deak@intel.com>
-In-Reply-To: <20240205132631.1588577-1-imre.deak@intel.com>
+Subject: Re: [PATCH] drm/i915/cdclk: Rename intel_cdclk_needs_modeset to
+ intel_cdclk_params_changed
+Message-ID: <ZcEAIfeJyyztDa2-@intel.com>
+References: <20240202131208.453298-1-gustavo.sousa@intel.com>
+ <Zb1JbZlhjxXQKhTq@intel.com>
+ <170696671884.1816.11371833747153807417@gjsousa-mobl2>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <170696671884.1816.11371833747153807417@gjsousa-mobl2>
+X-Patchwork-Hint: comment
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -37,265 +68,101 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============2179014298302893486==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+On Sat, Feb 03, 2024 at 10:25:18AM -0300, Gustavo Sousa wrote:
+> Quoting Ville Syrjälä (2024-02-02 16:58:37-03:00)
+> >On Fri, Feb 02, 2024 at 10:12:08AM -0300, Gustavo Sousa wrote:
+> >> Looks like the name and description of intel_cdclk_needs_modeset()
+> >> became inacurate as of commit 59f9e9cab3a1 ("drm/i915: Skip modeset for
+> >> cdclk changes if possible"), when it became possible to update the cdclk
+> >> without requiring disabling the pipes when only changing the cd2x
+> >> divider was enough.
+> >> 
+> >> Later on we also added the same type of support with squash and crawling
+> >> with commit 25e0e5ae5610 ("drm/i915/display: Do both crawl and squash
+> >> when changing cdclk"), commit d4a23930490d ("drm/i915: Allow cdclk
+> >> squasher to be reconfigured live") and commit d62686ba3b54
+> >> ("drm/i915/adl_p: CDCLK crawl support for ADL").
+> >> 
+> >> As such, update that function's name and documentation to something more
+> >> appropriate, since the real checks for requiring modeset are done
+> >> elsewhere.
+> >> 
+> >> Signed-off-by: Gustavo Sousa <gustavo.sousa@intel.com>
+> >> ---
+> >> 
+> >> One thing worth noting here is that, with this change, we are left with an
+> >> awkward situation where two function names related to checking changes in cdclk:
+> >> 
+> >>   intel_cdclk_params_changed() and intel_cdclk_changed()
+> >> 
+> >> ,
+> >> 
+> >> and I find it weird that we have intel_cdclk_changed(), which checks for the
+> >> voltage level as well. Shouldn't the voltage level be a function of cdclk and
+> >> ddi clock? Why do we need that?
+> >> 
+> >>  drivers/gpu/drm/i915/display/intel_cdclk.c        | 15 +++++++--------
+> >>  drivers/gpu/drm/i915/display/intel_cdclk.h        |  4 ++--
+> >>  .../drm/i915/display/intel_display_power_well.c   |  4 ++--
+> >>  3 files changed, 11 insertions(+), 12 deletions(-)
+> >> 
+> >> diff --git a/drivers/gpu/drm/i915/display/intel_cdclk.c b/drivers/gpu/drm/i915/display/intel_cdclk.c
+> >> index 26200ee3e23f..caadd880865f 100644
+> >> --- a/drivers/gpu/drm/i915/display/intel_cdclk.c
+> >> +++ b/drivers/gpu/drm/i915/display/intel_cdclk.c
+> >> @@ -2233,17 +2233,16 @@ static bool intel_cdclk_can_squash(struct drm_i915_private *dev_priv,
+> >>  }
+> >>  
+> >>  /**
+> >> - * intel_cdclk_needs_modeset - Determine if changong between the CDCLK
+> >> - *                             configurations requires a modeset on all pipes
+> >> + * intel_cdclk_params_changed - Check whether CDCLK parameters changed
+> >>   * @a: first CDCLK configuration
+> >>   * @b: second CDCLK configuration
+> >>   *
+> >>   * Returns:
+> >> - * True if changing between the two CDCLK configurations
+> >> - * requires all pipes to be off, false if not.
+> >> + * True if parameters changed in a way that requires programming the CDCLK
+> >> + * and False otherwise.
+> >>   */
+> >> -bool intel_cdclk_needs_modeset(const struct intel_cdclk_config *a,
+> >> -                               const struct intel_cdclk_config *b)
+> >> +bool intel_cdclk_params_changed(const struct intel_cdclk_config *a,
+> >> +                                const struct intel_cdclk_config *b)
+> >
+> >The new name isn't very descriptive either.
+> 
+> Yeah... I would much rather use intel_cdclk_changed(), but that one is
+> already taken.
+> 
+> >
+> >Outside the cd2x/crawl/squash cases we stil have to consider
+> >two cases:
+> >1. cdclk frequency/pll changes (voltage level can change or not)
+> >2. cdclk frequency/pll doesn't change, but voltage level needs to change
+> >
+> >And that difference is what intel_cdclk_needs_modeset() is trying
+> >convey. And intel_cdclk_changed() tells us whether anything at all
+> >is changing.
+> 
+> I might be missing something, but, by going through the specs, it looked
+> to me that voltage level was dependent on cdclk (as well as on ddi
+> clock) and not the other way around. That's why I find it odd that we
+> need an intel_cdclk_changed() that, besides looking for changes in
+> cdclk, also checks for the voltage level.
+> 
+> In intel_set_cdclk(), we check intel_cdclk_changed() before continuing.
+> If, for example, there is a change in ddi clock that requires a change
+> in voltage level but no changes in cdclk, intel_cdclk_changed() would
+> return true, right? Wouldn't that make us unnecessarily go through
+> intel_set_cdclk()?
 
-== Series Details ==
+intel_set_cdclk() is the thing that does the voltage change.
 
-Series: drm/i915/dp: Fix connector DSC HW state readout
-URL   : https://patchwork.freedesktop.org/series/129540/
-State : success
-
-== Summary ==
-
-CI Bug Log - changes from CI_DRM_14221 -> Patchwork_129540v1
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_129540v1/index.html
-
-Participating hosts (35 -> 36)
-------------------------------
-
-  Additional (2): fi-cfl-8109u bat-adlp-6 
-  Missing    (1): bat-mtlp-8 
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_129540v1 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@debugfs_test@basic-hwmon:
-    - bat-adlp-6:         NOTRUN -> [SKIP][1] ([i915#9318])
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_129540v1/bat-adlp-6/igt@debugfs_test@basic-hwmon.html
-
-  * igt@gem_huc_copy@huc-copy:
-    - fi-cfl-8109u:       NOTRUN -> [SKIP][2] ([fdo#109271] / [i915#2190])
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_129540v1/fi-cfl-8109u/igt@gem_huc_copy@huc-copy.html
-
-  * igt@gem_lmem_swapping@random-engines:
-    - bat-adlp-6:         NOTRUN -> [SKIP][3] ([i915#4613]) +3 other tests skip
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_129540v1/bat-adlp-6/igt@gem_lmem_swapping@random-engines.html
-
-  * igt@gem_lmem_swapping@verify-random:
-    - fi-cfl-8109u:       NOTRUN -> [SKIP][4] ([fdo#109271] / [i915#4613]) +3 other tests skip
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_129540v1/fi-cfl-8109u/igt@gem_lmem_swapping@verify-random.html
-
-  * igt@gem_tiled_pread_basic:
-    - bat-adlp-6:         NOTRUN -> [SKIP][5] ([i915#3282])
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_129540v1/bat-adlp-6/igt@gem_tiled_pread_basic.html
-
-  * igt@i915_pm_rps@basic-api:
-    - bat-adlp-6:         NOTRUN -> [SKIP][6] ([i915#6621])
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_129540v1/bat-adlp-6/igt@i915_pm_rps@basic-api.html
-
-  * igt@kms_cursor_legacy@basic-busy-flip-before-cursor-legacy:
-    - bat-adlp-6:         NOTRUN -> [SKIP][7] ([i915#4103]) +1 other test skip
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_129540v1/bat-adlp-6/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-legacy.html
-
-  * igt@kms_dsc@dsc-basic:
-    - bat-adlp-6:         NOTRUN -> [SKIP][8] ([i915#3555] / [i915#3840])
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_129540v1/bat-adlp-6/igt@kms_dsc@dsc-basic.html
-
-  * igt@kms_force_connector_basic@force-load-detect:
-    - bat-adlp-6:         NOTRUN -> [SKIP][9] ([fdo#109285])
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_129540v1/bat-adlp-6/igt@kms_force_connector_basic@force-load-detect.html
-
-  * igt@kms_pm_backlight@basic-brightness:
-    - fi-cfl-8109u:       NOTRUN -> [SKIP][10] ([fdo#109271]) +7 other tests skip
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_129540v1/fi-cfl-8109u/igt@kms_pm_backlight@basic-brightness.html
-
-  * igt@kms_setmode@basic-clone-single-crtc:
-    - bat-adlp-6:         NOTRUN -> [SKIP][11] ([i915#3555])
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_129540v1/bat-adlp-6/igt@kms_setmode@basic-clone-single-crtc.html
-
-  * igt@prime_vgem@basic-fence-read:
-    - bat-adlp-6:         NOTRUN -> [SKIP][12] ([fdo#109295] / [i915#3291] / [i915#3708]) +2 other tests skip
-   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_129540v1/bat-adlp-6/igt@prime_vgem@basic-fence-read.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
-  [fdo#109285]: https://bugs.freedesktop.org/show_bug.cgi?id=109285
-  [fdo#109295]: https://bugs.freedesktop.org/show_bug.cgi?id=109295
-  [i915#2190]: https://gitlab.freedesktop.org/drm/intel/issues/2190
-  [i915#3282]: https://gitlab.freedesktop.org/drm/intel/issues/3282
-  [i915#3291]: https://gitlab.freedesktop.org/drm/intel/issues/3291
-  [i915#3555]: https://gitlab.freedesktop.org/drm/intel/issues/3555
-  [i915#3708]: https://gitlab.freedesktop.org/drm/intel/issues/3708
-  [i915#3840]: https://gitlab.freedesktop.org/drm/intel/issues/3840
-  [i915#4103]: https://gitlab.freedesktop.org/drm/intel/issues/4103
-  [i915#4613]: https://gitlab.freedesktop.org/drm/intel/issues/4613
-  [i915#6621]: https://gitlab.freedesktop.org/drm/intel/issues/6621
-  [i915#9318]: https://gitlab.freedesktop.org/drm/intel/issues/9318
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_14221 -> Patchwork_129540v1
-
-  CI-20190529: 20190529
-  CI_DRM_14221: 89404d6657779870d0d97f80a267f75a36c6744b @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_7703: c58c5fb6aa1cb7d3627a15e364816a7a2add9edc @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_129540v1: 89404d6657779870d0d97f80a267f75a36c6744b @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-### Linux commits
-
-f22d3a5ab8ad drm/i915/dp: Fix connector DSC HW state readout
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_129540v1/index.html
-
---===============2179014298302893486==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915/dp: Fix connector DSC HW state readout</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/129540/">https://patchwork.freedesktop.org/series/129540/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_129540v1/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_129540v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_14221 -&gt; Patchwork_129540v1</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_129540v1/index.html</p>
-<h2>Participating hosts (35 -&gt; 36)</h2>
-<p>Additional (2): fi-cfl-8109u bat-adlp-6 <br />
-  Missing    (1): bat-mtlp-8 </p>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_129540v1 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@debugfs_test@basic-hwmon:</p>
-<ul>
-<li>bat-adlp-6:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_129540v1/bat-adlp-6/igt@debugfs_test@basic-hwmon.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/9318">i915#9318</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_huc_copy@huc-copy:</p>
-<ul>
-<li>fi-cfl-8109u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_129540v1/fi-cfl-8109u/igt@gem_huc_copy@huc-copy.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/2190">i915#2190</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_lmem_swapping@random-engines:</p>
-<ul>
-<li>bat-adlp-6:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_129540v1/bat-adlp-6/igt@gem_lmem_swapping@random-engines.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4613">i915#4613</a>) +3 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_lmem_swapping@verify-random:</p>
-<ul>
-<li>fi-cfl-8109u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_129540v1/fi-cfl-8109u/igt@gem_lmem_swapping@verify-random.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/4613">i915#4613</a>) +3 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_tiled_pread_basic:</p>
-<ul>
-<li>bat-adlp-6:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_129540v1/bat-adlp-6/igt@gem_tiled_pread_basic.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3282">i915#3282</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_pm_rps@basic-api:</p>
-<ul>
-<li>bat-adlp-6:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_129540v1/bat-adlp-6/igt@i915_pm_rps@basic-api.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/6621">i915#6621</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_cursor_legacy@basic-busy-flip-before-cursor-legacy:</p>
-<ul>
-<li>bat-adlp-6:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_129540v1/bat-adlp-6/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-legacy.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4103">i915#4103</a>) +1 other test skip</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_dsc@dsc-basic:</p>
-<ul>
-<li>bat-adlp-6:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_129540v1/bat-adlp-6/igt@kms_dsc@dsc-basic.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3555">i915#3555</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/3840">i915#3840</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_force_connector_basic@force-load-detect:</p>
-<ul>
-<li>bat-adlp-6:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_129540v1/bat-adlp-6/igt@kms_force_connector_basic@force-load-detect.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109285">fdo#109285</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_pm_backlight@basic-brightness:</p>
-<ul>
-<li>fi-cfl-8109u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_129540v1/fi-cfl-8109u/igt@kms_pm_backlight@basic-brightness.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +7 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_setmode@basic-clone-single-crtc:</p>
-<ul>
-<li>bat-adlp-6:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_129540v1/bat-adlp-6/igt@kms_setmode@basic-clone-single-crtc.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3555">i915#3555</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@prime_vgem@basic-fence-read:</p>
-<ul>
-<li>bat-adlp-6:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_129540v1/bat-adlp-6/igt@prime_vgem@basic-fence-read.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109295">fdo#109295</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/3291">i915#3291</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/3708">i915#3708</a>) +2 other tests skip</li>
-</ul>
-</li>
-</ul>
-<p>{name}: This element is suppressed. This means it is ignored when computing<br />
-          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_14221 -&gt; Patchwork_129540v1</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_14221: 89404d6657779870d0d97f80a267f75a36c6744b @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_7703: c58c5fb6aa1cb7d3627a15e364816a7a2add9edc @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  Patchwork_129540v1: 89404d6657779870d0d97f80a267f75a36c6744b @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<h3>Linux commits</h3>
-<p>f22d3a5ab8ad drm/i915/dp: Fix connector DSC HW state readout</p>
-
-</body>
-</html>
-
---===============2179014298302893486==--
+-- 
+Ville Syrjälä
+Intel
