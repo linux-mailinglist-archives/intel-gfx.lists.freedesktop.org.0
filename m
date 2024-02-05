@@ -2,29 +2,61 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3E0F384A70F
-	for <lists+intel-gfx@lfdr.de>; Mon,  5 Feb 2024 22:22:27 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5F96D84A8FA
+	for <lists+intel-gfx@lfdr.de>; Mon,  5 Feb 2024 23:17:29 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C2DBF10F53A;
-	Mon,  5 Feb 2024 21:22:24 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1340611262E;
+	Mon,  5 Feb 2024 22:17:27 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="SzrWIzC4";
+	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from 5338d5abeb45 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8F9A910F318;
- Mon,  5 Feb 2024 21:22:23 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============2597644058698729512=="
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7219311262E;
+ Mon,  5 Feb 2024 22:17:22 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1707171445; x=1738707445;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=lSbIoKUaQP5e158WSd2mze7ziXW4IngltiltpvZPs9U=;
+ b=SzrWIzC4EaosYJzfz8WgesLm/J8CypirH7ZR5vFF/aPgqP0xuGT5LYik
+ 3Gv1ug0ISpIZ4/103Opm4Hqb3Cp+XNMTZZgnjEyFLTWrQkIdWalRjUkXc
+ OQblXdotbmL9fbwx656Xs8COxw6cys6O4I2ycUHob6Ugb1mnr9KcWFUJH
+ 5uE0a0UayB0QbNm52DZzWV2Fz8ylApsiEO9waa16CfqCI/4Y8WxvNmsTW
+ zFywXkENuW7a0idAyX47kg1isTlKbugkKxLSgHz5KG8sMisgkPkPbUxnJ
+ BQiV9Z65c9BLLV2BbcBS2Ex5tLoY5JxYgngkA2rhzwXkuwD2zdKmr5TVF A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10975"; a="11353995"
+X-IronPort-AV: E=Sophos;i="6.05,245,1701158400"; d="scan'208";a="11353995"
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+ by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 05 Feb 2024 14:17:22 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10975"; a="823984138"
+X-IronPort-AV: E=Sophos;i="6.05,245,1701158400"; d="scan'208";a="823984138"
+Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.74])
+ by orsmga001.jf.intel.com with SMTP; 05 Feb 2024 14:17:19 -0800
+Received: by stinkbox (sSMTP sendmail emulation);
+ Tue, 06 Feb 2024 00:17:18 +0200
+Date: Tue, 6 Feb 2024 00:17:18 +0200
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: Imre Deak <imre.deak@intel.com>
+Cc: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
+Subject: Re: [PATCH 02/19] drm/dp: Add support for DP tunneling
+Message-ID: <ZcFebqQ9EA5vDBDa@intel.com>
+References: <20240123102850.390126-1-imre.deak@intel.com>
+ <20240123102850.390126-3-imre.deak@intel.com>
+ <ZbpwoA1gXI_dnZAr@intel.com>
+ <ZbqWLMLHMHpj+SLX@ideak-desk.fi.intel.com>
+ <ZcEJKkLKeJyggHac@intel.com>
+ <ZcEXpYkbrOnSGILQ@ideak-desk.fi.intel.com>
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Fi=2ECI=2EBAT=3A_success_for_drm/i915/dsc=3A_Fix_the_mac?=
- =?utf-8?q?ro_that_calculates_DSCC=5F/DSCA=5F_PPS_reg_address_=28rev2=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Manasi Navare" <navaremanasi@chromium.org>
-Cc: intel-gfx@lists.freedesktop.org
-Date: Mon, 05 Feb 2024 21:22:23 -0000
-Message-ID: <170716814358.1024443.11628177103855588069@5338d5abeb45>
-X-Patchwork-Hint: ignore
-References: <20240205204619.1991673-1-navaremanasi@chromium.org>
-In-Reply-To: <20240205204619.1991673-1-navaremanasi@chromium.org>
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <ZcEXpYkbrOnSGILQ@ideak-desk.fi.intel.com>
+X-Patchwork-Hint: comment
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -37,180 +69,52 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============2597644058698729512==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+On Mon, Feb 05, 2024 at 07:15:17PM +0200, Imre Deak wrote:
+> On Mon, Feb 05, 2024 at 06:13:30PM +0200, Ville Syrjälä wrote:
+> > On Wed, Jan 31, 2024 at 08:49:16PM +0200, Imre Deak wrote:
+> > > On Wed, Jan 31, 2024 at 06:09:04PM +0200, Ville Syrjälä wrote:
+> > > > On Tue, Jan 23, 2024 at 12:28:33PM +0200, Imre Deak wrote:
+> > > > > +static void untrack_tunnel_ref(struct drm_dp_tunnel *tunnel,
+> > > > > +			       struct ref_tracker **tracker)
+> > > > > +{
+> > > > > +	ref_tracker_free(&tunnel->group->mgr->ref_tracker,
+> > > > > +			 tracker);
+> > > > > +}
+> > > > > +
+> > > > > +struct drm_dp_tunnel *
+> > > > > +drm_dp_tunnel_get_untracked(struct drm_dp_tunnel *tunnel)
+> > > > > +{
+> > > > > +	track_tunnel_ref(tunnel, NULL);
+> > > > > +
+> > > > > +	return tunnel_get(tunnel);
+> > > > > +}
+> > > > > +EXPORT_SYMBOL(drm_dp_tunnel_get_untracked);
+> > > > 
+> > > > Why do these exist?
+> > > 
+> > > They implement drm_dp_tunnel_get()/put() if
+> > > CONFIG_DRM_DISPLAY_DEBUG_DP_TUNNEL_STATE=n.
+> > 
+> > Why does that kind of irrelevant detail need to be visible
+> > in the exported api?
+> 
+> In non-debug builds the ref_tracker object isn't needed and so
+> drm_dp_tunnel_ref won't contain a pointer to it either.
 
-== Series Details ==
+Since it's just a pointer I don't see much point in making
+things more complicated by leaving it out.
 
-Series: drm/i915/dsc: Fix the macro that calculates DSCC_/DSCA_ PPS reg address (rev2)
-URL   : https://patchwork.freedesktop.org/series/129486/
-State : success
+> drm_dp_tunnel_get/put_untracked() provide a way to get/put a tunnel
+> reference without having to pass a ref_tracker pointer.
+> 
+> > 
+> > -- 
+> > Ville Syrjälä
+> > Intel
 
-== Summary ==
-
-CI Bug Log - changes from CI_DRM_14227 -> Patchwork_129486v2
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_129486v2/index.html
-
-Participating hosts (36 -> 37)
-------------------------------
-
-  Additional (2): bat-kbl-2 fi-pnv-d510 
-  Missing    (1): bat-mtlp-8 
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_129486v2 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@fbdev@info:
-    - bat-kbl-2:          NOTRUN -> [SKIP][1] ([fdo#109271] / [i915#1849])
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_129486v2/bat-kbl-2/igt@fbdev@info.html
-
-  * igt@gem_lmem_swapping@basic:
-    - fi-pnv-d510:        NOTRUN -> [SKIP][2] ([fdo#109271]) +28 other tests skip
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_129486v2/fi-pnv-d510/igt@gem_lmem_swapping@basic.html
-
-  * igt@gem_lmem_swapping@parallel-random-engines:
-    - bat-kbl-2:          NOTRUN -> [SKIP][3] ([fdo#109271]) +35 other tests skip
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_129486v2/bat-kbl-2/igt@gem_lmem_swapping@parallel-random-engines.html
-
-  
-#### Possible fixes ####
-
-  * igt@i915_selftest@live@hangcheck:
-    - {bat-adls-6}:       [DMESG-WARN][4] ([i915#5591]) -> [PASS][5]
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14227/bat-adls-6/igt@i915_selftest@live@hangcheck.html
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_129486v2/bat-adls-6/igt@i915_selftest@live@hangcheck.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
-  [i915#1849]: https://gitlab.freedesktop.org/drm/intel/issues/1849
-  [i915#5591]: https://gitlab.freedesktop.org/drm/intel/issues/5591
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_14227 -> Patchwork_129486v2
-
-  CI-20190529: 20190529
-  CI_DRM_14227: b71b753a5041cf8869006840c7577c3bac01d1cd @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_7703: c58c5fb6aa1cb7d3627a15e364816a7a2add9edc @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_129486v2: b71b753a5041cf8869006840c7577c3bac01d1cd @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-### Linux commits
-
-9f562fc2a05b drm/i915/dsc: Fix the macro that calculates DSCC_/DSCA_ PPS reg address
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_129486v2/index.html
-
---===============2597644058698729512==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915/dsc: Fix the macro that calculates DSCC_/DSCA_ PPS reg address (rev2)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/129486/">https://patchwork.freedesktop.org/series/129486/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_129486v2/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_129486v2/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_14227 -&gt; Patchwork_129486v2</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_129486v2/index.html</p>
-<h2>Participating hosts (36 -&gt; 37)</h2>
-<p>Additional (2): bat-kbl-2 fi-pnv-d510 <br />
-  Missing    (1): bat-mtlp-8 </p>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_129486v2 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@fbdev@info:</p>
-<ul>
-<li>bat-kbl-2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_129486v2/bat-kbl-2/igt@fbdev@info.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/1849">i915#1849</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_lmem_swapping@basic:</p>
-<ul>
-<li>fi-pnv-d510:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_129486v2/fi-pnv-d510/igt@gem_lmem_swapping@basic.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +28 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_lmem_swapping@parallel-random-engines:</p>
-<ul>
-<li>bat-kbl-2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_129486v2/bat-kbl-2/igt@gem_lmem_swapping@parallel-random-engines.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +35 other tests skip</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>igt@i915_selftest@live@hangcheck:<ul>
-<li>{bat-adls-6}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14227/bat-adls-6/igt@i915_selftest@live@hangcheck.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/5591">i915#5591</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_129486v2/bat-adls-6/igt@i915_selftest@live@hangcheck.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<p>{name}: This element is suppressed. This means it is ignored when computing<br />
-          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_14227 -&gt; Patchwork_129486v2</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_14227: b71b753a5041cf8869006840c7577c3bac01d1cd @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_7703: c58c5fb6aa1cb7d3627a15e364816a7a2add9edc @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  Patchwork_129486v2: b71b753a5041cf8869006840c7577c3bac01d1cd @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<h3>Linux commits</h3>
-<p>9f562fc2a05b drm/i915/dsc: Fix the macro that calculates DSCC_/DSCA_ PPS reg address</p>
-
-</body>
-</html>
-
---===============2597644058698729512==--
+-- 
+Ville Syrjälä
+Intel
