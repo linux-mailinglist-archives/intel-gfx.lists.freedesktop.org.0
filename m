@@ -2,59 +2,52 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 420678492BF
-	for <lists+intel-gfx@lfdr.de>; Mon,  5 Feb 2024 04:20:24 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 122638492F3
+	for <lists+intel-gfx@lfdr.de>; Mon,  5 Feb 2024 05:38:49 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BA4DF112301;
-	Mon,  5 Feb 2024 03:20:20 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3597A11234F;
+	Mon,  5 Feb 2024 04:38:42 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="c+z8W1OY";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="G+zzEY6l";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EDCD310F1BD;
- Mon,  5 Feb 2024 03:20:18 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BA2A411234C
+ for <intel-gfx@lists.freedesktop.org>; Mon,  5 Feb 2024 04:38:36 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1707103220; x=1738639220;
- h=date:from:to:cc:subject:message-id:reply-to:references:
- mime-version:in-reply-to;
- bh=LnHwxn7ybecushgZynobgUCDKozvidjcdFTYFGxuKQI=;
- b=c+z8W1OYQAEKgKreGtwqZDZ3U6tXNXCYQPo4mEhFrZ9WFD53L3GSgdoZ
- UTFmKY/YOkcAam/vYQQe/OwdiL2xkh5zoHXRpcT4pGfYjC1tJ2y0ZvwYS
- xCZHn0vVUHrJEGbzs14PIUbeePkkE92nmwDCNkPnZVTjdwYqzirog/sUF
- ASk8eM/pdFW2wyDW9wYqpwG86/OEFSoG9MazrLApKxFd+8MOFEuG4clNP
- XkAv3UmbJVAYOQrYswd/tWfgQAZ4v4mLSrsfeGtuJMn+F6RpQmzWwwwQe
- Bd6wYheUZbj05a5hC3H6MNwWOk96aSYyO87N6tj7+jtz3A4QCj2QEq6Ml Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10974"; a="4260454"
-X-IronPort-AV: E=Sophos;i="6.05,242,1701158400"; d="asc'?scan'208";a="4260454"
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
- by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Feb 2024 19:20:19 -0800
+ t=1707107916; x=1738643916;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=SDlBzXXmbVbRSiDU5lFLAA/up3rwHVXOhauRXQaBc6A=;
+ b=G+zzEY6lKQ3H18IDLGLdxEe3Hj9u7xO5rJ39ozARQPXcp8jZNE52/dKz
+ 8IaOBQegd36Hlp/jkE8+vcZjjBBwNtgm02Oe2TAub765f7Q2F+9yBalDd
+ RemI6Fn+kvMttfC/9wEW4UQhp65syncPIKL4jlHqUNUG2HGQmUK2ZXjXn
+ 6VxUfQenfUt22XWW6MuGJb6eNWKntv4HokUCFHf+mg9yYxe1vz2nSRY2F
+ W4U/V/+cLPlCoaMw09JpR+hBzK1CS6IzuJmeCjnLqtfN+557ok9cCYNLb
+ Uo7n69Sx7CjyYKg4ZfhxARGpKcsHdBLpv+vV6Bg5GGMD1Is+Iwdbs2ROm A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10974"; a="11186074"
+X-IronPort-AV: E=Sophos;i="6.05,242,1701158400"; d="scan'208";a="11186074"
+Received: from orviesa006.jf.intel.com ([10.64.159.146])
+ by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 04 Feb 2024 20:38:34 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10974"; a="933032975"
 X-IronPort-AV: E=Sophos;i="6.05,242,1701158400"; 
- d="asc'?scan'208";a="933032975"
-Received: from debian-skl.sh.intel.com (HELO debian-skl) ([10.239.160.45])
- by fmsmga001.fm.intel.com with ESMTP; 04 Feb 2024 19:20:16 -0800
-Date: Mon, 5 Feb 2024 11:21:18 +0800
-From: Zhenyu Wang <zhenyuw@linux.intel.com>
-To: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
-Cc: "Vivi, Rodrigo" <rodrigo.vivi@intel.com>,
- Jani Nikula <jani.nikula@intel.com>, Zhenyu Wang <zhenyuw@linux.intel.com>,
- intel-gfx <intel-gfx@lists.freedesktop.org>,
- intel-gvt-dev <intel-gvt-dev@lists.freedesktop.org>,
- zhi.wang.linux@gmail.com
-Subject: Re: [PULL] gvt-fixes
-Message-ID: <ZcBULqJAL2CWJoHh@debian-scheme>
-References: <ZboVK03/Eb/jt7wf@debian-scheme>
- <170679864541.42939.1205060851730493621@jlahtine-mobl.ger.corp.intel.com>
+   d="scan'208";a="909964"
+Received: from dut-2a59.iind.intel.com ([10.190.239.113])
+ by orviesa006.jf.intel.com with ESMTP; 04 Feb 2024 20:38:32 -0800
+From: Chaitanya Kumar Borah <chaitanya.kumar.borah@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Cc: uma.shankar@intel.com, chaitanya.kumar.borah@intel.com,
+ maarten.lankhorst@linux.intel.com, ville.syrjala@linux.intel.com
+Subject: [PATCH 0/6] Cursor Fault Fixes
+Date: Mon,  5 Feb 2024 10:01:41 +0530
+Message-Id: <20240205043147.3632165-1-chaitanya.kumar.borah@intel.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha1;
- protocol="application/pgp-signature"; boundary="i4t0hrQN2UnHyzVl"
-Content-Disposition: inline
-In-Reply-To: <170679864541.42939.1205060851730493621@jlahtine-mobl.ger.corp.intel.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -67,75 +60,47 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: Zhenyu Wang <zhenyuw@linux.intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+This series is based on top of [1] floated by Maarten.
+To fix regressions seen in CI, following changes were made on top of the
+original series.
 
---i4t0hrQN2UnHyzVl
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+1. add a check in the plane state destroy hook to not move forward if the vblank worker is scheduled.
+2. add checks before accessing frame buffer object (we are not sure yet how much this helps but we have found that this operation causes dump stacks)
+3. do not defer the intel atomic cleanup into a work queue, instead execute it at the end of atomic commit tail.
 
-On 2024.02.01 16:44:05 +0200, Joonas Lahtinen wrote:
-> Hi Zhenyu,
->=20
-> I'm getting the following:
->=20
-> dim: ff833b32ccc4 ("drm/i915: Replace dead 01.org link"): mandatory revie=
-w missing.
-> dim: ERROR: issues in commits detected, aborting
->=20
-> Can you fix the commit?
->=20
+While this series is in noway a complete or proper solution it is meant to trigger a discussion to arrive at one.
 
-Sorry, I missed to add review tag which had actually been done..
-Here's the new generated one.
+[1] https://patchwork.freedesktop.org/series/126934/
 
-The following changes since commit f9f031dd21a7ce13a13862fa5281d32e1029c70f:
+v2: Add missing patch
 
-  drm/i915/psr: Only allow PSR in LPSP mode on HSW non-ULT (2024-01-25 10:4=
-4:13 +0200)
+Chaitanya Kumar Borah (3):
+  drm/i915: do not destroy plane state if cursor unpin worker is
+    scheduled
+  drm/i915: Add sanity checks before accessing fb buffer object
+  drm/i915: do not defer cleanup work
 
-are available in the Git repository at:
+Maarten Lankhorst (2):
+  drm: Add drm_vblank_work_flush_all().
+  drm/i915: Use the same vblank worker for atomic unpin
 
-  https://github.com/intel/gvt-linux tags/gvt-fixes-2024-02-05
+Ville Syrjälä (1):
+  drm/i915: Use vblank worker to unpin old legacy cursor fb safely
 
-for you to fetch changes up to 44e4192f88978e32e4ac08b27141f3767366f79b:
+ drivers/gpu/drm/drm_vblank_work.c             | 22 ++++++++
+ .../gpu/drm/i915/display/intel_atomic_plane.c | 55 ++++++++++++++++++-
+ .../gpu/drm/i915/display/intel_atomic_plane.h |  4 ++
+ drivers/gpu/drm/i915/display/intel_crtc.c     | 27 +++++++++
+ drivers/gpu/drm/i915/display/intel_cursor.c   | 26 ++++++++-
+ drivers/gpu/drm/i915/display/intel_cursor.h   |  3 +
+ drivers/gpu/drm/i915/display/intel_display.c  | 11 ++--
+ .../drm/i915/display/intel_display_types.h    |  3 +
+ include/drm/drm_vblank_work.h                 |  2 +
+ 9 files changed, 144 insertions(+), 9 deletions(-)
 
-  MAINTAINERS: Update Zhi Wang's email address (2024-02-05 11:16:26 +0800)
+-- 
+2.25.1
 
-----------------------------------------------------------------
-gvt-fixes-2024-02-05
-
-- Fix broken gvt doc link (Zhenyu)
-- Fix one uninitialized variable bug in warning (Dan)
-- Update Zhi's new email address in MAINTAINERS file. (Zhi)
-
-----------------------------------------------------------------
-Dan Carpenter (1):
-      drm/i915/gvt: Fix uninitialized variable in handle_mmio()
-
-Zhenyu Wang (1):
-      drm/i915: Replace dead 01.org link
-
-Zhi Wang (1):
-      MAINTAINERS: Update Zhi Wang's email address
-
- MAINTAINERS                         | 4 ++--
- drivers/gpu/drm/i915/Kconfig        | 2 +-
- drivers/gpu/drm/i915/gvt/handlers.c | 3 +--
- drivers/gpu/drm/i915/intel_gvt.c    | 2 +-
- 4 files changed, 5 insertions(+), 6 deletions(-)
-
---i4t0hrQN2UnHyzVl
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iF0EARECAB0WIQTXuabgHDW6LPt9CICxBBozTXgYJwUCZcBULgAKCRCxBBozTXgY
-J+cWAJsHOXF4dBIG0eYPEkO1Gi/byWoNbgCfYJEXJKqriOAlWoqTRZL5mzEojQI=
-=M00v
------END PGP SIGNATURE-----
-
---i4t0hrQN2UnHyzVl--
