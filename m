@@ -2,48 +2,48 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8162884940C
-	for <lists+intel-gfx@lfdr.de>; Mon,  5 Feb 2024 07:55:34 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id DBB9684940D
+	for <lists+intel-gfx@lfdr.de>; Mon,  5 Feb 2024 07:55:35 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2A0461123E2;
-	Mon,  5 Feb 2024 06:55:32 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4419A10F351;
+	Mon,  5 Feb 2024 06:55:34 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="L4NzDsbE";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="jLmQ+kVK";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 20FAB1123E2
- for <intel-gfx@lists.freedesktop.org>; Mon,  5 Feb 2024 06:55:31 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 075D31123E3
+ for <intel-gfx@lists.freedesktop.org>; Mon,  5 Feb 2024 06:55:33 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1707116131; x=1738652131;
+ t=1707116133; x=1738652133;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=pREDIC8p3h4esMH7kiMi9LZNYxvYQOsucxJZZ8Q5DcA=;
- b=L4NzDsbE8V/OO16iRk2C7uamSjyanbnWkTYAlzUPVF9FMTg2JQGuwGZ5
- LW0oodJnuRBjAFXzT2PC2NaQNuMd5Qo/IeVdOMH21gy8A6WS7m+kv45ZH
- jMoDMzxXrtck3wthHb6+PeCXeHdeRzg6/ijNmlisufnal0dbP1hEu+6ES
- qyYpUJXIXK+LrglqE0IES+Ie1sTDzpFTn/mYMJy25s4jDowzDfBBxyHG3
- 5iZNBmoTWtIQj0YDPVf9hrGcgNZJRmEk6eTq7eeLiadY1dfEpvqsSLkMB
- rvcTRhu0qkqdzRd250Kio899OEQMAniYifyGJP6qYmgAs8v5EDox0Ijfe Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10974"; a="11819704"
-X-IronPort-AV: E=Sophos;i="6.05,242,1701158400"; d="scan'208";a="11819704"
+ bh=iJyuCVPR1X8NzVR47MPCtXwcbsDBL0g0BJjA6kJI9sE=;
+ b=jLmQ+kVKe7TOgVyDJ1Wqgkj1GxL9tqvMcJ9OqcQZu6kDtQGjOBQBWvjV
+ 0JyARzzxKWC05v1fxtsivEZoKoheu9UeaQE/qEGZ1F3r2S983bOje16+d
+ mfptLPkulybWnzUHYFaozZfYy/ccMJD+58xddrFUnmCaEsE1vgLRajS8z
+ nlrr55RuVv5RU5HzMQO/K6w5jnkKiowtyse5XjhJJgAlAcd0gYhzcniaT
+ 4FfBf/o729JG9E9AFrsfWNvkuB8lToC+GmKmU/mXhCFmWWD8RzG3dMUPD
+ Aa8kvsEuWNoWxwbqvp3I4jJgtKoOBtny6xOb9lSFU1dpIG4pQmrC0wdQK A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10974"; a="11819707"
+X-IronPort-AV: E=Sophos;i="6.05,242,1701158400"; d="scan'208";a="11819707"
 Received: from orviesa002.jf.intel.com ([10.64.159.142])
  by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Feb 2024 22:55:31 -0800
+ 04 Feb 2024 22:55:33 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.05,242,1701158400"; d="scan'208";a="31438002"
+X-IronPort-AV: E=Sophos;i="6.05,242,1701158400"; d="scan'208";a="31438007"
 Received: from dut-2a59.iind.intel.com ([10.190.239.113])
- by orviesa002.jf.intel.com with ESMTP; 04 Feb 2024 22:55:29 -0800
+ by orviesa002.jf.intel.com with ESMTP; 04 Feb 2024 22:55:31 -0800
 From: Chaitanya Kumar Borah <chaitanya.kumar.borah@intel.com>
 To: intel-gfx@lists.freedesktop.org
 Cc: uma.shankar@intel.com, chaitanya.kumar.borah@intel.com,
  maarten.lankhorst@linux.intel.com, ville.syrjala@linux.intel.com
-Subject: [PATCH 4/6] drm/i915: do not destroy plane state if cursor unpin
- worker is scheduled
-Date: Mon,  5 Feb 2024 12:18:34 +0530
-Message-Id: <20240205064836.3645402-5-chaitanya.kumar.borah@intel.com>
+Subject: [PATCH v2 5/6] drm/i915: Add sanity check before accessing fb buffer
+ object
+Date: Mon,  5 Feb 2024 12:18:35 +0530
+Message-Id: <20240205064836.3645402-6-chaitanya.kumar.borah@intel.com>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20240205064836.3645402-1-chaitanya.kumar.borah@intel.com>
 References: <20240205064836.3645402-1-chaitanya.kumar.borah@intel.com>
@@ -64,74 +64,39 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-The plane destroy hook can be called asynchronously even when vblank
-worker responsible for unpinning the cursor fb is scheduled. Since
-the vblank worker destroys the plane state, do not destroy the plane
-state if it is scheduled.
+Now that cursor plane fb unpinning can be deferred to vblank work
+access the fb object only when vblank unpin worker is not scheduled.
+
+v2: - Remove misleading error log
+    - Change condition for accessing fb object
 
 Signed-off-by: Chaitanya Kumar Borah <chaitanya.kumar.borah@intel.com>
 ---
- .../gpu/drm/i915/display/intel_atomic_plane.c | 19 +++++++++++++++++++
- .../gpu/drm/i915/display/intel_atomic_plane.h |  2 ++
- drivers/gpu/drm/i915/display/intel_cursor.c   |  2 +-
- 3 files changed, 22 insertions(+), 1 deletion(-)
+ drivers/gpu/drm/i915/display/intel_atomic_plane.c | 6 +++++-
+ 1 file changed, 5 insertions(+), 1 deletion(-)
 
 diff --git a/drivers/gpu/drm/i915/display/intel_atomic_plane.c b/drivers/gpu/drm/i915/display/intel_atomic_plane.c
-index 06c5d8262443..a585e4aca309 100644
+index a585e4aca309..8395cba243dd 100644
 --- a/drivers/gpu/drm/i915/display/intel_atomic_plane.c
 +++ b/drivers/gpu/drm/i915/display/intel_atomic_plane.c
-@@ -136,6 +136,25 @@ intel_plane_destroy_state(struct drm_plane *plane,
+@@ -1171,12 +1171,16 @@ static void
+ intel_cleanup_plane_fb(struct drm_plane *plane,
+ 		       struct drm_plane_state *_old_plane_state)
  {
- 	struct intel_plane_state *plane_state = to_intel_plane_state(state);
- 
-+	/* Do not proceed if vblank unpin worker is yet to be executed */
-+	if (plane_state->unpin_work.vblank)
-+		return;
++	struct drm_i915_private *i915 = to_i915(_old_plane_state->plane->dev);
+ 	struct intel_plane_state *old_plane_state =
+ 		to_intel_plane_state(_old_plane_state);
+ 	struct intel_atomic_state *state =
+ 		to_intel_atomic_state(old_plane_state->uapi.state);
+ 	struct drm_i915_private *dev_priv = to_i915(plane->dev);
+-	struct drm_i915_gem_object *obj = intel_fb_obj(old_plane_state->hw.fb);
++	struct drm_i915_gem_object *obj = NULL;
 +
-+	drm_WARN_ON(plane->dev, plane_state->ggtt_vma);
-+	drm_WARN_ON(plane->dev, plane_state->dpt_vma);
-+
-+	__drm_atomic_helper_plane_destroy_state(&plane_state->uapi);
-+	if (plane_state->hw.fb)
-+		drm_framebuffer_put(plane_state->hw.fb);
-+	kfree(plane_state);
-+}
-+
-+void
-+intel_cursor_destroy_state(struct drm_plane *plane,
-+			   struct drm_plane_state *state)
-+{
-+	struct intel_plane_state *plane_state = to_intel_plane_state(state);
-+
- 	drm_WARN_ON(plane->dev, plane_state->ggtt_vma);
- 	drm_WARN_ON(plane->dev, plane_state->dpt_vma);
++	if (!old_plane_state->unpin_work.vblank)
++		obj = intel_fb_obj(old_plane_state->hw.fb);
  
-diff --git a/drivers/gpu/drm/i915/display/intel_atomic_plane.h b/drivers/gpu/drm/i915/display/intel_atomic_plane.h
-index 5a897cf6fa02..1e165b709a80 100644
---- a/drivers/gpu/drm/i915/display/intel_atomic_plane.h
-+++ b/drivers/gpu/drm/i915/display/intel_atomic_plane.h
-@@ -45,6 +45,8 @@ void intel_plane_free(struct intel_plane *plane);
- struct drm_plane_state *intel_plane_duplicate_state(struct drm_plane *plane);
- void intel_plane_destroy_state(struct drm_plane *plane,
- 			       struct drm_plane_state *state);
-+void intel_cursor_destroy_state(struct drm_plane *plane,
-+				struct drm_plane_state *state);
- void intel_crtc_planes_update_noarm(struct intel_atomic_state *state,
- 				    struct intel_crtc *crtc);
- void intel_crtc_planes_update_arm(struct intel_atomic_state *state,
-diff --git a/drivers/gpu/drm/i915/display/intel_cursor.c b/drivers/gpu/drm/i915/display/intel_cursor.c
-index dbb26a212800..32f9bb753331 100644
---- a/drivers/gpu/drm/i915/display/intel_cursor.c
-+++ b/drivers/gpu/drm/i915/display/intel_cursor.c
-@@ -662,7 +662,7 @@ void intel_cursor_unpin_work(struct kthread_work *base)
- 	struct intel_plane *plane = to_intel_plane(plane_state->uapi.plane);
- 
- 	intel_plane_unpin_fb(plane_state);
--	intel_plane_destroy_state(&plane->base, &plane_state->uapi);
-+	intel_cursor_destroy_state(&plane->base, &plane_state->uapi);
- }
- 
- static int
+ 	if (!obj)
+ 		return;
 -- 
 2.25.1
 
