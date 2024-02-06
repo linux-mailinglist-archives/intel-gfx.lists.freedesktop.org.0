@@ -2,50 +2,52 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9D9E584B9D2
-	for <lists+intel-gfx@lfdr.de>; Tue,  6 Feb 2024 16:38:55 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id C00D784B9D3
+	for <lists+intel-gfx@lfdr.de>; Tue,  6 Feb 2024 16:38:57 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EE89610EFD6;
-	Tue,  6 Feb 2024 15:38:53 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E8EC410F085;
+	Tue,  6 Feb 2024 15:38:55 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="KUOkBvLS";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="UWB/MhaC";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 64E7110EFD6
- for <intel-gfx@lists.freedesktop.org>; Tue,  6 Feb 2024 15:38:53 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 821F310F085
+ for <intel-gfx@lists.freedesktop.org>; Tue,  6 Feb 2024 15:38:54 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1707233934; x=1738769934;
- h=from:to:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=eThw1e+mfk/O9+d/aFFiSujqObBDhjG9UKEcn1Ih4NU=;
- b=KUOkBvLS0Jm0R0K8r4JcdXUOp4kbtctCyQDpf+nsLruO3Zx9bhpghupl
- BPZnbx6FkVXQ4fsgToWdmDswIAels/jXLz8pp070rbc2XPR1kiM0GUjbn
- LQhnuE9wdJ2x1BBsJusKVmXy2GwGIT4fGDJm1pBb5fCnxFYPmWk0mjv8t
- T6KpewTwRzEXBKSgaNdd5TQS2O3p8Rn3AWERkqvNIs02cFQ5wY9lQFh8w
- H2hWZCxdwjmFmG0QDemgi23hhR96hemPvLfN1OXT0EKxp2TER0oYY049e
- tZA215oh/RDO9iFaYjOUQegYMmO75ykiAp/uqUSNaholBNqCvhrnsz5iB g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10976"; a="914702"
+ t=1707233935; x=1738769935;
+ h=from:to:subject:date:message-id:in-reply-to:references:
+ mime-version:content-transfer-encoding;
+ bh=nsE4KtMzHBAxAkTvgK7KyOWtIKYOdczXZT+EiF9Lk9g=;
+ b=UWB/MhaC650EegdiO2cc2Y60X302nnTvmsmiyhtFnWLy9XxKvyKbi9on
+ TlXv6Jk4Xq5y8/gtYolMBlEiLN/Cwy+7hLEvYYn4O58+HxqObOoNCn14V
+ Uoyd87CfgtqiIAazLOaDmCpI6HqZKtJGjsCWjxfcIrfgdUq4txpKLCA9R
+ a48bqU2Ml/4Ml5yyfJzqfJ6mrVkZMJ5Tq9iLfj0vnJ091GgyOvKh+YS8E
+ RpZ0rnxQRX2ouHqgf/kMrHi4k8qg0FzTKKa8D5v93Slzd3S7jgJq8SHWn
+ UHqWBMMOMXUVaDHAV4bZSDgZIk+Ou7cCYCmu/3MzZQVM9+6n1CwHYQtvl g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10976"; a="914707"
 X-IronPort-AV: E=Sophos;i="6.05,247,1701158400"; 
-   d="scan'208";a="914702"
+   d="scan'208";a="914707"
 Received: from orviesa005.jf.intel.com ([10.64.159.145])
  by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Feb 2024 07:38:54 -0800
+ 06 Feb 2024 07:38:55 -0800
 X-ExtLoop1: 1
 X-IronPort-AV: E=Sophos;i="6.05,247,1701158400"; 
-   d="scan'208";a="5652240"
+   d="scan'208";a="5652260"
 Received: from unknown (HELO ideak-desk.fi.intel.com) ([10.237.66.155])
  by orviesa005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Feb 2024 07:38:52 -0800
+ 06 Feb 2024 07:38:54 -0800
 From: Imre Deak <imre.deak@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Subject: [PATCH 0/2] drm/i915: Prevent HW access during init from connector
- hooks
-Date: Tue,  6 Feb 2024 17:39:08 +0200
-Message-Id: <20240206153910.1758057-1-imre.deak@intel.com>
+Subject: [PATCH 1/2] drm/i915: Prevent HW access during init from SDVO TV
+ get_modes hook
+Date: Tue,  6 Feb 2024 17:39:09 +0200
+Message-Id: <20240206153910.1758057-2-imre.deak@intel.com>
 X-Mailer: git-send-email 2.39.2
+In-Reply-To: <20240206153910.1758057-1-imre.deak@intel.com>
+References: <20240206153910.1758057-1-imre.deak@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
@@ -63,31 +65,38 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Accessing the display HW from the connector get_modes hooks should be
-prevented during driver init/shutdown similarly to how this is done in
-the encoder detect hooks and modeset as explained in the following
-commits:
+Prevent accessing the HW from the SDVO/TV get_modes connector hook.
+Returning 0 from the hook will make the caller -
+drm_helper_probe_single_connector_modes() - keep the previously detected
+mode list of the connector.
 
-drm/i915: Prevent modesets during driver init/shutdown
-drm/i915: Disable hotplug detection works during driver init/shutdown
-drm/i915: Disable hotplug detection handlers during driver init/shutdown
+Signed-off-by: Imre Deak <imre.deak@intel.com>
+---
+ drivers/gpu/drm/i915/display/intel_sdvo.c | 4 ++++
+ 1 file changed, 4 insertions(+)
 
-For the DP-SST/HDMI connectors the above is already ensured, since for
-these the required HW access - to read out the display's EDID - happens
-in the encoders' detect hook, however other connectors do a
-corresponding detection/HW access from the connector get_modes hook.
-Disable the access during init/shutdown from these hooks as well.
-
-Imre Deak (2):
-  drm/i915: Prevent HW access during init from SDVO TV get_modes hook
-  drm/i915: Prevent HW access during init from connector get_modes hooks
-
- drivers/gpu/drm/i915/display/intel_crt.c    | 7 +++++++
- drivers/gpu/drm/i915/display/intel_dp_mst.c | 4 ++++
- drivers/gpu/drm/i915/display/intel_dvo.c    | 5 +++++
- drivers/gpu/drm/i915/display/intel_sdvo.c   | 8 ++++++++
- 4 files changed, 24 insertions(+)
-
+diff --git a/drivers/gpu/drm/i915/display/intel_sdvo.c b/drivers/gpu/drm/i915/display/intel_sdvo.c
+index 2571ef5a1b211..ccea0efbd136f 100644
+--- a/drivers/gpu/drm/i915/display/intel_sdvo.c
++++ b/drivers/gpu/drm/i915/display/intel_sdvo.c
+@@ -2287,6 +2287,7 @@ static const struct drm_display_mode sdvo_tv_modes[] = {
+ static int intel_sdvo_get_tv_modes(struct drm_connector *connector)
+ {
+ 	struct intel_sdvo *intel_sdvo = intel_attached_sdvo(to_intel_connector(connector));
++	struct drm_i915_private *i915 = to_i915(intel_sdvo->base.base.dev);
+ 	struct intel_sdvo_connector *intel_sdvo_connector =
+ 		to_intel_sdvo_connector(connector);
+ 	const struct drm_connector_state *conn_state = connector->state;
+@@ -2298,6 +2299,9 @@ static int intel_sdvo_get_tv_modes(struct drm_connector *connector)
+ 	DRM_DEBUG_KMS("[CONNECTOR:%d:%s]\n",
+ 		      connector->base.id, connector->name);
+ 
++	if (!intel_display_driver_check_access(i915))
++		return 0;
++
+ 	/*
+ 	 * Read the list of supported input resolutions for the selected TV
+ 	 * format.
 -- 
 2.39.2
 
