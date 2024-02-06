@@ -2,76 +2,153 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1343584B5AF
-	for <lists+intel-gfx@lfdr.de>; Tue,  6 Feb 2024 13:56:42 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 32AF884B8D3
+	for <lists+intel-gfx@lfdr.de>; Tue,  6 Feb 2024 16:08:06 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 48EE0112BA2;
-	Tue,  6 Feb 2024 12:56:34 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 140C1112C76;
+	Tue,  6 Feb 2024 15:08:04 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="lL6onsG9";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="AgEbjMWB";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-wm1-f54.google.com (mail-wm1-f54.google.com
- [209.85.128.54])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A8448112B9C;
- Tue,  6 Feb 2024 12:56:31 +0000 (UTC)
-Received: by mail-wm1-f54.google.com with SMTP id
- 5b1f17b1804b1-40fe33fb7a1so4201805e9.2; 
- Tue, 06 Feb 2024 04:56:31 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1707224190; x=1707828990; darn=lists.freedesktop.org;
- h=content-transfer-encoding:in-reply-to:from:references:to
- :content-language:subject:user-agent:mime-version:date:message-id
- :from:to:cc:subject:date:message-id:reply-to;
- bh=cDlMUc3yO61JWG8E+u3k9CVmDsnEHJ0G60P9CRMkirQ=;
- b=lL6onsG9OlzWPX/B9/dgpl7MafwwJXAwGiF7nw8fdreKX5AmuaxFSeigqNQsD9XyvD
- i4GS1h4CrTMXldpRt/dGEBbDhqP5xiSZX2vs8WJlV3+lplt37c4HapsoUMLnpM1qJL3q
- NHX21mUPmTUVqzuQmbkh8hPhFtOKgBR5VzAyje02L4+vdKflHEl2iNwLCh78PlWZLTXG
- JHq21oO+cumahyLZ/pato8l2/yVdvbuoo1xe6ics+UwfIkpQKY7RaFzwr8FGT25OinDI
- nnhyGGbTGi7vHd17QPs4QuCvLgtySypu9/+dZHvOapjCkxdiMtWS/MNA7tGL1NLIdGwO
- j0AA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1707224190; x=1707828990;
- h=content-transfer-encoding:in-reply-to:from:references:to
- :content-language:subject:user-agent:mime-version:date:message-id
- :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
- bh=cDlMUc3yO61JWG8E+u3k9CVmDsnEHJ0G60P9CRMkirQ=;
- b=q1RgYjNW5xg5BFqwOu9yyr9HrSiRp6L6pPcwCYDiHBvsLKQ1m9CF9tanY0erAj6G68
- 2nnAlY41lwtbv6Fl523cdTIJSkqt3Nq7s27Mme3fH5R9qOCMq8Et5k7GPKDVMuHusNgl
- uuLA5sdWiddpEPbbEfwL/AAG4jbKj5QBOGGFIKZXQIViKN67rnpIg/dT/J7pnVHObBUX
- xmScTu+L+3iAXfmJf1mLjjBWYYCGYA+G6q57UY5rtpjvLLZsLlrxx4w6nsggfHyPc1/Q
- Te1M44ndbhAzmA5+PvH31/b7e4vO+RsCZVSlzBNwtAx7s7d8ZirpXlzHJqO//d39gO8w
- 5S7g==
-X-Gm-Message-State: AOJu0Yw3xmSGc7GCCuyH9ApT5cdc9JioO3C9agbnLSBqLwUyLxzojkHf
- z3n0H+ssX53dgmcLnROVSdRUmaz9eeL62qEu3NL6bZlMG1cE8JRw
-X-Google-Smtp-Source: AGHT+IE0AOSaW6FlZMECei7Wv0fyypGHIgna7g11BuxYBqwOXtfaLuyBmYNM6lEjrGB+iIv3zXY44g==
-X-Received: by 2002:a05:600c:3d8e:b0:40f:e930:9eb8 with SMTP id
- bi14-20020a05600c3d8e00b0040fe9309eb8mr845981wmb.0.1707224189774; 
- Tue, 06 Feb 2024 04:56:29 -0800 (PST)
-X-Forwarded-Encrypted: i=1;
- AJvYcCW7ZPO55moCC1VzScOT1yZGFBQehBl/y1RCnuUQM2ruQLYySl0R42hGwTdNnyO6JVssyG627N5Dh/0j1T/LbcoFhgsYBo49Pgig8fI+fUdEP9w1OMRqLxP8/UE8nhtbZy/VENP3M1juv6JNFvuTSp4xiS/NijCKm2QIP68WXYvHmB8FLav4fM4bZoqDLK10TQ==
-Received: from [10.254.108.81] (munvpn.amd.com. [165.204.72.6])
- by smtp.gmail.com with ESMTPSA id
- p7-20020a05600c358700b0040fe308ff25sm1908352wmq.24.2024.02.06.04.56.28
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Tue, 06 Feb 2024 04:56:29 -0800 (PST)
-Message-ID: <e59e4c53-7c22-4162-9ef5-cb399383782e@gmail.com>
-Date: Tue, 6 Feb 2024 13:56:27 +0100
-MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/2] drm/ttm: improve idle/busy handling v4
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6DC4D112C78
+ for <intel-gfx@lists.freedesktop.org>; Tue,  6 Feb 2024 15:07:59 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1707232080; x=1738768080;
+ h=from:to:cc:subject:date:message-id:references:
+ in-reply-to:content-transfer-encoding:mime-version;
+ bh=A2Zlk6KP0l2glhG+X+F1/9rYagYWR/Rs2Agp+MM8NkY=;
+ b=AgEbjMWBZ86h93wyTG8LhJ8177//zRl9Wji3nsoLMuUBWmuYppRKW+aY
+ Z5/1n0a7aJ5A4GdMlarkYdQ4Ogt1LQXWuzQa/Qa5QH+Fn5nVy9FK0eXUW
+ ScLSZKTFx/ULjBExe8KOsqohn7s+zM+xKf/bQhu2twcTbu/Eo82KTlNRM
+ lcrBYlLhg+0zDZmpwOkm4KEf9pR+1MkJ2XkQlEG643k00IBs08XZS7qag
+ lDt2nfpvaqfxaInz1f1sIjXJJOeiSeliZ0RZNzq8k2oiSIyITzXgF75zq
+ c+49zNWo3bS1J8qnOGz+3yuqgX4oeMcZQ5ahCKLcngBLY1kVcLwd2M3H1 A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10976"; a="1036340"
+X-IronPort-AV: E=Sophos;i="6.05,247,1701158400"; 
+   d="scan'208";a="1036340"
+Received: from orviesa007.jf.intel.com ([10.64.159.147])
+ by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 06 Feb 2024 07:07:16 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.05,247,1701158400"; 
+   d="scan'208";a="1360208"
+Received: from orsmsx602.amr.corp.intel.com ([10.22.229.15])
+ by orviesa007.jf.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
+ 06 Feb 2024 07:07:13 -0800
+Received: from orsmsx611.amr.corp.intel.com (10.22.229.24) by
+ ORSMSX602.amr.corp.intel.com (10.22.229.15) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.35; Tue, 6 Feb 2024 07:07:13 -0800
+Received: from orsmsx610.amr.corp.intel.com (10.22.229.23) by
+ ORSMSX611.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.35; Tue, 6 Feb 2024 07:07:08 -0800
+Received: from orsedg603.ED.cps.intel.com (10.7.248.4) by
+ orsmsx610.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.35 via Frontend Transport; Tue, 6 Feb 2024 07:07:08 -0800
+Received: from NAM12-BN8-obe.outbound.protection.outlook.com (104.47.55.168)
+ by edgegateway.intel.com (134.134.137.100) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.1.2507.35; Tue, 6 Feb 2024 07:06:05 -0800
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=Tpyv9YrSu2oxjXMkWKJvhuPpnYwxwqifBszNlDvYEF1X90BZuyFq5Z9pkt63GodmiIWMCK7P3IQHaw24a+9ynGnBbBuFC5v43ALs1BhAUrXKbzFSI2ZYCVwamTVxFdq3Ur8nvZCfVlyGNtmx+HuSBQtG7bJqsm7wCoNBDPnaYi+kH014EKRoVYrBz1zTkGFYFdVOyYEGPsq+nTHBd5Z0FeDhgzg/4QdwnjXZf8GtS5EQI/NfOoYaQCEtoWYXozWx/K3mobgbt+NMah/yyk8zhZBaiQ671GZ3lllKJ0eVPelr50nciYaGzALC7Ay810dPvVPYn+4u5S2bHBk4KpWENQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=uVnKr+K8EZLQGiVJ9/jHReEGueEUyRLBDU5HmkdXRBI=;
+ b=NtjkErKAKaJRIws+I9r4zl4Tc+FM28C0lGmF3bAMwK7j9mNYsZfXbDNRvV/p/sU+OGgWTy/1p/T63S37aTNnLgMdzAVki+EgAJJeS1iwvS0fM+KCFtYVgoNnwDir/SaaHd1rMzANAjWpAyIKF4tyYNuUI6LIg5VJMpORhh4P7rOp22R+MoWXI6VAQZ4mEsykvErvD17xrQ9zMnbjFQuCZ9phWq1B1LYQpO/m3jXRpMJU0lxhFbzJC71vl1x+cxxExtnGpDiMcO8Tm19APJy3XWeUuTeGJM5eEbIJF89cTqEyryHVvocn4PGJmqkyfY/wFtQ9Y/UVGV3bOBALWCxPFA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Received: from IA0PR11MB7307.namprd11.prod.outlook.com (2603:10b6:208:437::10)
+ by IA0PR11MB7912.namprd11.prod.outlook.com (2603:10b6:208:3dd::22)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7249.36; Tue, 6 Feb
+ 2024 15:06:02 +0000
+Received: from IA0PR11MB7307.namprd11.prod.outlook.com
+ ([fe80::34a4:c9b4:7991:39b5]) by IA0PR11MB7307.namprd11.prod.outlook.com
+ ([fe80::34a4:c9b4:7991:39b5%4]) with mapi id 15.20.7249.035; Tue, 6 Feb 2024
+ 15:06:02 +0000
+From: "Murthy, Arun R" <arun.r.murthy@intel.com>
+To: "Nikula, Jani" <jani.nikula@intel.com>, "intel-gfx@lists.freedesktop.org"
+ <intel-gfx@lists.freedesktop.org>
+CC: "Deak, Imre" <imre.deak@intel.com>, "Syrjala, Ville"
+ <ville.syrjala@intel.com>, "Shankar, Uma" <uma.shankar@intel.com>
+Subject: RE: [RFC 2/4] drm/i915/display/dp: Dont send hotplug event on LT
+ failure
+Thread-Topic: [RFC 2/4] drm/i915/display/dp: Dont send hotplug event on LT
+ failure
+Thread-Index: AQHaWOtqXCNYqQwHCUemvTMEbySyebD9MJUAgAA5MHA=
+Date: Tue, 6 Feb 2024 15:06:02 +0000
+Message-ID: <IA0PR11MB7307F175201A8AC01FE7EAB2BA462@IA0PR11MB7307.namprd11.prod.outlook.com>
+References: <20240206104759.2079133-1-arun.r.murthy@intel.com>
+ <20240206104759.2079133-3-arun.r.murthy@intel.com> <87ttmlddo1.fsf@intel.com>
+In-Reply-To: <87ttmlddo1.fsf@intel.com>
+Accept-Language: en-US
 Content-Language: en-US
-To: =?UTF-8?Q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
- dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
- nouveau@lists.freedesktop.org
-References: <20240126140916.1577-1-christian.koenig@amd.com>
- <20240126140916.1577-2-christian.koenig@amd.com>
- <ce167d0a18781733eeb4974b92ff5038a5241a70.camel@linux.intel.com>
-From: =?UTF-8?Q?Christian_K=C3=B6nig?= <ckoenig.leichtzumerken@gmail.com>
-In-Reply-To: <ce167d0a18781733eeb4974b92ff5038a5241a70.camel@linux.intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: IA0PR11MB7307:EE_|IA0PR11MB7912:EE_
+x-ms-office365-filtering-correlation-id: 7373fad9-800a-40b7-9b89-08dc27252288
+x-ld-processed: 46c98d88-e344-4ed4-8496-4ed7712e255d,ExtAddr
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: BR9ak6iKNSHSixhdcz201gf7gl2wripfeK+QWdeqSxXf+wwKMDeL/QiF446/MYy61qhu53uZEcGmByzazkX8OLhaIiS67ZxFYYn+qi0KzVAMPRjEpgz/uFqnfq9OXShajGBR1Q235cqOwD/Nz3GN9X+xJSSmmT4cN5MQJIDUlzJ42oGlQuwkBQ71OP2woz5KAJHguBACMKAcOsbGUUsgyeRMdIWH1+aqGW+kRmzamwTvvQQQhyxIOEXgVXxeUZ/L/9KiXhJr4Tz5dJqXxlGpOnpDx+/4wLRYolhprjVndLe/+StRVdmOWtmWM98ITjkFnFIWkDV5oVXwet24C0MqbvlDItln621TGQbjIgBKzAcYm5RaMw86ynK5IFJKmJIca6JndfVUIu2T7cBDiB/hbC0m3zqmLxfCP5NosEprNQIHjxpQKCHi4JJd6iOczDOhNVaBbb8TRKEWPaPg2QWKuBFmbRZZoYC747/6YiHkQjrUQ/yvH7nS5a0cHEQ4T4j7R+GQyXgx3R0/+SY77NsaRkJrwekeT9cQ0btAV/fOUkrWFpiVB9hAPBDARKxJNQIzounZRo99wbwMG4hadRku0pJJNAQ6HS5aUhcBlCUaeS8rmwvWujMMaqS5kcBEWxfr
+x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:IA0PR11MB7307.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230031)(136003)(39860400002)(396003)(366004)(346002)(376002)(230922051799003)(451199024)(64100799003)(1800799012)(186009)(2906002)(83380400001)(38100700002)(122000001)(82960400001)(55016003)(41300700001)(38070700009)(110136005)(54906003)(66476007)(66946007)(64756008)(66446008)(66556008)(316002)(76116006)(52536014)(86362001)(4326008)(8676002)(8936002)(53546011)(7696005)(6506007)(9686003)(33656002)(71200400001)(5660300002)(107886003)(478600001);
+ DIR:OUT; SFP:1101; 
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?YGT9UFrTucOnp+muaYZT45TAwuMocduUNY6GiYDrG44UgG+CxDTj9IBmnGfe?=
+ =?us-ascii?Q?7rh70VTFHUok3TXo06TbB7nevJnJaiVWjQgVk9NaEsimEmN7ZBmvb/jIAwdP?=
+ =?us-ascii?Q?Kf5LzzaPsmECHvZ8V3J9/MciStMdSuuq/YojNe5TiguE0FpUsvAkm5vNEJ8Y?=
+ =?us-ascii?Q?jzAqyg1pgDzK07xjysK25+ye7wdGvFb6KNOWiB+uuvWzAPypYtw7CqoCMCSK?=
+ =?us-ascii?Q?wefloEKFCBsPsox+nH3zSIMY43bICOyxt/luDRtLNY4chtoSN1qiSzFBhb4+?=
+ =?us-ascii?Q?GumTAFl5+3Zf+s5HIGYkJmqOPpQfAZ4TTYQlUgB9ssaZGzmtOkcnegkseLPI?=
+ =?us-ascii?Q?LkI8SqcTJyUNbm8+axDMV10dD5+bdaQPuXgwJ9WGalVLqx3hAqHERJ7FmPuV?=
+ =?us-ascii?Q?+57OWzoKzPrvuC/FVoi+GZBxPM5SQbxrzPfB8N3ktNtVhJB58fIFx/QGU4Bt?=
+ =?us-ascii?Q?X9rAbi2DFtcmsxYXHNc9AhYaeylPpNbrpe/IcAbzUQLKKmdeKaWA0ZvqO5Rf?=
+ =?us-ascii?Q?PIBv2T8PMSDt9nb08OMd8ZeeHB1SnXXM/o8WOymiBGXj6wfjYtG+RDzW780m?=
+ =?us-ascii?Q?M4eTbqPpHcq+24JbTknk/ysnCZ7+Qs9bVIK45Fmqi/FKBLV6SHTPZY7BdQr4?=
+ =?us-ascii?Q?uJlQ47rjrkqDJtSgC+CGU609OF4aYS3Ixepn67SSzEtDwY9vURJfgau3McO+?=
+ =?us-ascii?Q?DQTBrCnZuj/rpyrvmtYG6t1IKR+8JcyieQsA2RJjH7sXNVjiMA2vwXwSiTkU?=
+ =?us-ascii?Q?Ne6bsUXRlwY0hbBtwVjqOi/zVCOOzUGtsfnzaUdncRRZjK+Nb688Is8Q/gJB?=
+ =?us-ascii?Q?IHsZr0NuNJqpMDlnwWm8QtDC9lwLMQbzP9Y1LzGlNLTWyiLNzrYmgCljRzqi?=
+ =?us-ascii?Q?YhIC6P4BjtqOq2P4GBW8Vim/QPOgZnQlZ+3FL0UwLvEkvHrfuZWglKs5XbPR?=
+ =?us-ascii?Q?+tMkFUocSPm+GFX6Qq6+CRssAdTmhZ1stXEIfYEmQ8SwxBLk5ZF4zt0nid/3?=
+ =?us-ascii?Q?Fm12PQiMTOsNhtePskVaY7lHV+BAkQNkYStPQgrl3kqjxv0QaGy9XJ34Yfmx?=
+ =?us-ascii?Q?2B6GaZjfj//2uNTttzMKmYo1LvP3Vw3HHq4avUj5uoeSn5wJ2v1wlpUXCyqy?=
+ =?us-ascii?Q?4cZiefsYPidfg/i9u52LSpLZWBtfmcYitGgNOarD4jm8ovnKb42DU3pjQZgJ?=
+ =?us-ascii?Q?lVgy6kmztOQldJ12KXTg+HLej+tjWm4YneQDWklrAzcatAxqJRygbY8r1RGP?=
+ =?us-ascii?Q?xK6Fhayl3BpS/49TBCtuu1WypmnJgV+ho4pbAg2aWhCyVTEVTeI6JYSxGIMC?=
+ =?us-ascii?Q?jlM4oC2vzN+t8bBm7VfOs7aBOZxB4TwBA/EkKS+T0GtKabkw25GtalPoebL3?=
+ =?us-ascii?Q?LKG1SEKFXAQgHnTP6hH/BWrOpefA/2ZiOnI1VKOQVMR4J4kqA8YHT5b8wpvb?=
+ =?us-ascii?Q?MNVVfveaBUqySfF/xY2GdEdzYzcoJ13OhmsPpKOb3GMIMOZWnmSIz1aH4yRA?=
+ =?us-ascii?Q?3gKBtGUxnbzCgvsyG+19paQqzMPsQ1kVqVGQUTy6aJxOWIbrzMxV9fs84c9I?=
+ =?us-ascii?Q?bfacbDGHDirBXvoQ3DU+Qrlh5QAqIDeHFV7zinoiQGrKJOjp5p6/NuD/3ydl?=
+ =?us-ascii?Q?I9h52PZKPl5OM56HjSrArPLF/5TepCKjLGbK6ag9S4AZ?=
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+MIME-Version: 1.0
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: IA0PR11MB7307.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 7373fad9-800a-40b7-9b89-08dc27252288
+X-MS-Exchange-CrossTenant-originalarrivaltime: 06 Feb 2024 15:06:02.5998 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: cD/3Rs5sdXb1e18UX6//OEL9fcb7KhqGjLtZSVa57lS92l5cmqSi+pcTu1nVjupwoCc5rkdlAWO3wO09sAxoZw==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA0PR11MB7912
+X-OriginatorOrg: intel.com
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -87,442 +164,75 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Am 06.02.24 um 13:53 schrieb Thomas Hellström:
-> Hi, Christian,
->
-> On Fri, 2024-01-26 at 15:09 +0100, Christian König wrote:
->> Previously we would never try to move a BO into the preferred
->> placements
->> when it ever landed in a busy placement since those were considered
->> compatible.
->>
->> Rework the whole handling and finally unify the idle and busy
->> handling.
->> ttm_bo_validate() is now responsible to try idle placement first and
->> then
->> use the busy placement if that didn't worked.
->>
->> Drawback is that we now always try the idle placement first for each
->> validation which might cause some additional CPU overhead on
->> overcommit.
->>
->> v2: fix kerneldoc warning and coding style
->> v3: take care of XE as well
->> v4: keep the ttm_bo_mem_space functionality as it is for now, only
->> add
->>      new handling for ttm_bo_validate as suggested by Thomas
->>
->> Signed-off-by: Christian König <christian.koenig@amd.com>
->> Reviewed-by: Zack Rusin <zack.rusin@broadcom.com> v3
-> Sending this through xe CI, will try to review asap.
 
-Take your time. At the moment people are bombarding me with work and I 
-have only two hands and one head as well :(
+> -----Original Message-----
+> From: Nikula, Jani <jani.nikula@intel.com>
+> Sent: Tuesday, February 6, 2024 5:10 PM
+> To: Murthy, Arun R <arun.r.murthy@intel.com>; intel-gfx@lists.freedesktop=
+.org
+> Cc: Deak, Imre <imre.deak@intel.com>; Syrjala, Ville <ville.syrjala@intel=
+.com>;
+> Shankar, Uma <uma.shankar@intel.com>; Murthy, Arun R
+> <arun.r.murthy@intel.com>
+> Subject: Re: [RFC 2/4] drm/i915/display/dp: Dont send hotplug event on LT
+> failure
+>=20
+> On Tue, 06 Feb 2024, Arun R Murthy <arun.r.murthy@intel.com> wrote:
+> > On link training failure fallback sequence a hotpplu event was sent to
+> > the user, but this is not requried as we are not changing the mode and
+> > instead only changing the link rate and lane count. User has no
+> > dependency with these parameters.
+> >
+> > Signed-off-by: Arun R Murthy <arun.r.murthy@intel.com>
+> > ---
+> >  drivers/gpu/drm/i915/display/intel_dp_link_training.c | 5 +----
+> >  1 file changed, 1 insertion(+), 4 deletions(-)
+> >
+> > diff --git a/drivers/gpu/drm/i915/display/intel_dp_link_training.c
+> > b/drivers/gpu/drm/i915/display/intel_dp_link_training.c
+> > index 1abfafbbfa75..242cb08e9fc4 100644
+> > --- a/drivers/gpu/drm/i915/display/intel_dp_link_training.c
+> > +++ b/drivers/gpu/drm/i915/display/intel_dp_link_training.c
+> > @@ -1074,8 +1074,6 @@ intel_dp_link_train_phy(struct intel_dp
+> > *intel_dp,  static void intel_dp_schedule_fallback_link_training(struct=
+ intel_dp
+> *intel_dp,
+> >  						     const struct intel_crtc_state
+> *crtc_state)  {
+> > -	struct intel_connector *intel_connector =3D intel_dp-
+> >attached_connector;
+> > -	struct drm_i915_private *i915 =3D dp_to_i915(intel_dp);
+> >
+> >  	if (!intel_digital_port_connected(&dp_to_dig_port(intel_dp)->base)) {
+> >  		lt_dbg(intel_dp, DP_PHY_DPRX, "Link Training failed on
+> disconnected
+> > sink.\n"); @@ -1092,8 +1090,7 @@ static void
+> intel_dp_schedule_fallback_link_training(struct intel_dp *intel_dp,
+> >  		return;
+> >  	}
+> >
+> > -	/* Schedule a Hotplug Uevent to userspace to start modeset */
+> > -	queue_work(i915->unordered_wq, &intel_connector-
+> >modeset_retry_work);
+> > +	/* TODO: Re-visit, sending hotplug is not required. No need to
+> > +notify user as we are not changing the mode */
+>=20
+> Yeah, we're not changing the mode, we're asking the userspace to change t=
+he
+> mode.
+As far as I see mode change is not necessity. Link rate and lane count chan=
+ge is internal to KMD.
 
-Christian.
-
->
-> /Thomas
->
->
->> ---
->>   drivers/gpu/drm/ttm/ttm_bo.c       | 231 +++++++++++++--------------
->> --
->>   drivers/gpu/drm/ttm/ttm_resource.c |  16 +-
->>   include/drm/ttm/ttm_resource.h     |   3 +-
->>   3 files changed, 121 insertions(+), 129 deletions(-)
->>
->> diff --git a/drivers/gpu/drm/ttm/ttm_bo.c
->> b/drivers/gpu/drm/ttm/ttm_bo.c
->> index ba3f09e2d7e6..b12f435542a9 100644
->> --- a/drivers/gpu/drm/ttm/ttm_bo.c
->> +++ b/drivers/gpu/drm/ttm/ttm_bo.c
->> @@ -724,64 +724,36 @@ static int ttm_bo_add_move_fence(struct
->> ttm_buffer_object *bo,
->>   	return ret;
->>   }
->>   
->> -/*
->> - * Repeatedly evict memory from the LRU for @mem_type until we
->> create enough
->> - * space, or we've evicted everything and there isn't enough space.
->> - */
->> -static int ttm_bo_mem_force_space(struct ttm_buffer_object *bo,
->> -				  const struct ttm_place *place,
->> -				  struct ttm_resource **mem,
->> -				  struct ttm_operation_ctx *ctx)
->> -{
->> -	struct ttm_device *bdev = bo->bdev;
->> -	struct ttm_resource_manager *man;
->> -	struct ww_acquire_ctx *ticket;
->> -	int ret;
->> -
->> -	man = ttm_manager_type(bdev, place->mem_type);
->> -	ticket = dma_resv_locking_ctx(bo->base.resv);
->> -	do {
->> -		ret = ttm_resource_alloc(bo, place, mem);
->> -		if (likely(!ret))
->> -			break;
->> -		if (unlikely(ret != -ENOSPC))
->> -			return ret;
->> -		ret = ttm_mem_evict_first(bdev, man, place, ctx,
->> -					  ticket);
->> -		if (unlikely(ret != 0))
->> -			return ret;
->> -	} while (1);
->> -
->> -	return ttm_bo_add_move_fence(bo, man, *mem, ctx-
->>> no_wait_gpu);
->> -}
->> -
->>   /**
->> - * ttm_bo_mem_space
->> + * ttm_bo_alloc_resource - Allocate backing store for a BO
->>    *
->> - * @bo: Pointer to a struct ttm_buffer_object. the data of which
->> - * we want to allocate space for.
->> - * @placement: Proposed new placement for the buffer object.
->> - * @mem: A struct ttm_resource.
->> + * @bo: Pointer to a struct ttm_buffer_object of which we want a
->> resource for
->> + * @placement: Proposed new placement for the buffer object
->>    * @ctx: if and how to sleep, lock buffers and alloc memory
->> + * @force_space: If we should evict buffers to force space
->> + * @res: The resulting struct ttm_resource.
->>    *
->> - * Allocate memory space for the buffer object pointed to by @bo,
->> using
->> - * the placement flags in @placement, potentially evicting other
->> idle buffer objects.
->> - * This function may sleep while waiting for space to become
->> available.
->> + * Allocates a resource for the buffer object pointed to by @bo,
->> using the
->> + * placement flags in @placement, potentially evicting other buffer
->> objects when
->> + * @force_space is true.
->> + * This function may sleep while waiting for resources to become
->> available.
->>    * Returns:
->> - * -EBUSY: No space available (only if no_wait == 1).
->> + * -EBUSY: No space available (only if no_wait == true).
->>    * -ENOSPC: Could not allocate space for the buffer object, either
->> due to
->>    * fragmentation or concurrent allocators.
->>    * -ERESTARTSYS: An interruptible sleep was interrupted by a signal.
->>    */
->> -int ttm_bo_mem_space(struct ttm_buffer_object *bo,
->> -			struct ttm_placement *placement,
->> -			struct ttm_resource **mem,
->> -			struct ttm_operation_ctx *ctx)
->> +static int ttm_bo_alloc_resource(struct ttm_buffer_object *bo,
->> +				 struct ttm_placement *placement,
->> +				 struct ttm_operation_ctx *ctx,
->> +				 bool force_space,
->> +				 struct ttm_resource **res)
->>   {
->>   	struct ttm_device *bdev = bo->bdev;
->> -	bool type_found = false;
->> +	struct ww_acquire_ctx *ticket;
->>   	int i, ret;
->>   
->> +	ticket = dma_resv_locking_ctx(bo->base.resv);
->>   	ret = dma_resv_reserve_fences(bo->base.resv, 1);
->>   	if (unlikely(ret))
->>   		return ret;
->> @@ -790,98 +762,73 @@ int ttm_bo_mem_space(struct ttm_buffer_object
->> *bo,
->>   		const struct ttm_place *place = &placement-
->>> placement[i];
->>   		struct ttm_resource_manager *man;
->>   
->> -		if (place->flags & TTM_PL_FLAG_FALLBACK)
->> -			continue;
->> -
->>   		man = ttm_manager_type(bdev, place->mem_type);
->>   		if (!man || !ttm_resource_manager_used(man))
->>   			continue;
->>   
->> -		type_found = true;
->> -		ret = ttm_resource_alloc(bo, place, mem);
->> -		if (ret == -ENOSPC)
->> +		if (place->flags & (force_space ?
->> TTM_PL_FLAG_DESIRED :
->> +				    TTM_PL_FLAG_FALLBACK))
->> +			continue;
->> +
->> +		do {
->> +			ret = ttm_resource_alloc(bo, place, res);
->> +			if (unlikely(ret != -ENOSPC))
->> +				return ret;
->> +			if (likely(!ret) || !force_space)
->> +				break;
->> +
->> +			ret = ttm_mem_evict_first(bdev, man, place,
->> ctx,
->> +						  ticket);
->> +			if (unlikely(ret == -EBUSY))
->> +				break;
->> +			if (unlikely(ret))
->> +				return ret;
->> +		} while (1);
->> +		if (ret)
->>   			continue;
->> -		if (unlikely(ret))
->> -			goto error;
->>   
->> -		ret = ttm_bo_add_move_fence(bo, man, *mem, ctx-
->>> no_wait_gpu);
->> +		ret = ttm_bo_add_move_fence(bo, man, *res, ctx-
->>> no_wait_gpu);
->>   		if (unlikely(ret)) {
->> -			ttm_resource_free(bo, mem);
->> +			ttm_resource_free(bo, res);
->>   			if (ret == -EBUSY)
->>   				continue;
->>   
->> -			goto error;
->> +			return ret;
->>   		}
->>   		return 0;
->>   	}
->>   
->> -	for (i = 0; i < placement->num_placement; ++i) {
->> -		const struct ttm_place *place = &placement-
->>> placement[i];
->> -		struct ttm_resource_manager *man;
->> -
->> -		if (place->flags & TTM_PL_FLAG_DESIRED)
->> -			continue;
->> -
->> -		man = ttm_manager_type(bdev, place->mem_type);
->> -		if (!man || !ttm_resource_manager_used(man))
->> -			continue;
->> -
->> -		type_found = true;
->> -		ret = ttm_bo_mem_force_space(bo, place, mem, ctx);
->> -		if (likely(!ret))
->> -			return 0;
->> -
->> -		if (ret && ret != -EBUSY)
->> -			goto error;
->> -	}
->> -
->> -	ret = -ENOSPC;
->> -	if (!type_found) {
->> -		pr_err(TTM_PFX "No compatible memory type found\n");
->> -		ret = -EINVAL;
->> -	}
->> -
->> -error:
->> -	return ret;
->> +	return -ENOSPC;
->>   }
->> -EXPORT_SYMBOL(ttm_bo_mem_space);
->>   
->> -static int ttm_bo_move_buffer(struct ttm_buffer_object *bo,
->> -			      struct ttm_placement *placement,
->> -			      struct ttm_operation_ctx *ctx)
->> +/*
->> + * ttm_bo_mem_space - Wrapper around ttm_bo_alloc_resource
->> + *
->> + * @bo: Pointer to a struct ttm_buffer_object of which we want a
->> resource for
->> + * @placement: Proposed new placement for the buffer object
->> + * @res: The resulting struct ttm_resource.
->> + * @ctx: if and how to sleep, lock buffers and alloc memory
->> + *
->> + * Tries both idle allocation and forcefully eviction of buffers.
->> See
->> + * ttm_bo_alloc_resource for details.
->> + */
->> +int ttm_bo_mem_space(struct ttm_buffer_object *bo,
->> +		     struct ttm_placement *placement,
->> +		     struct ttm_resource **res,
->> +		     struct ttm_operation_ctx *ctx)
->>   {
->> -	struct ttm_resource *mem;
->> -	struct ttm_place hop;
->> +	bool force_space = false;
->>   	int ret;
->>   
->> -	dma_resv_assert_held(bo->base.resv);
->> +	do {
->> +		ret = ttm_bo_alloc_resource(bo, placement, ctx,
->> +					    force_space, res);
->> +		force_space = !force_space;
->> +	} while (ret == -ENOSPC && force_space);
->>   
->> -	/*
->> -	 * Determine where to move the buffer.
->> -	 *
->> -	 * If driver determines move is going to need
->> -	 * an extra step then it will return -EMULTIHOP
->> -	 * and the buffer will be moved to the temporary
->> -	 * stop and the driver will be called to make
->> -	 * the second hop.
->> -	 */
->> -	ret = ttm_bo_mem_space(bo, placement, &mem, ctx);
->> -	if (ret)
->> -		return ret;
->> -bounce:
->> -	ret = ttm_bo_handle_move_mem(bo, mem, false, ctx, &hop);
->> -	if (ret == -EMULTIHOP) {
->> -		ret = ttm_bo_bounce_temp_buffer(bo, &mem, ctx,
->> &hop);
->> -		if (ret)
->> -			goto out;
->> -		/* try and move to final place now. */
->> -		goto bounce;
->> -	}
->> -out:
->> -	if (ret)
->> -		ttm_resource_free(bo, &mem);
->>   	return ret;
->>   }
->> +EXPORT_SYMBOL(ttm_bo_mem_space);
->>   
->>   /**
->>    * ttm_bo_validate
->> @@ -902,6 +849,9 @@ int ttm_bo_validate(struct ttm_buffer_object *bo,
->>   		    struct ttm_placement *placement,
->>   		    struct ttm_operation_ctx *ctx)
->>   {
->> +	struct ttm_resource *res;
->> +	struct ttm_place hop;
->> +	bool force_space;
->>   	int ret;
->>   
->>   	dma_resv_assert_held(bo->base.resv);
->> @@ -912,20 +862,53 @@ int ttm_bo_validate(struct ttm_buffer_object
->> *bo,
->>   	if (!placement->num_placement)
->>   		return ttm_bo_pipeline_gutting(bo);
->>   
->> -	/* Check whether we need to move buffer. */
->> -	if (bo->resource && ttm_resource_compatible(bo->resource,
->> placement))
->> -		return 0;
->> +	force_space = false;
->> +	do {
->> +		/* Check whether we need to move buffer. */
->> +		if (bo->resource &&
->> +		    ttm_resource_compatible(bo->resource, placement,
->> +					    force_space))
->> +			return 0;
->>   
->> -	/* Moving of pinned BOs is forbidden */
->> -	if (bo->pin_count)
->> -		return -EINVAL;
->> +		/* Moving of pinned BOs is forbidden */
->> +		if (bo->pin_count)
->> +			return -EINVAL;
->> +
->> +		/*
->> +		 * Determine where to move the buffer.
->> +		 *
->> +		 * If driver determines move is going to need
->> +		 * an extra step then it will return -EMULTIHOP
->> +		 * and the buffer will be moved to the temporary
->> +		 * stop and the driver will be called to make
->> +		 * the second hop.
->> +		 */
->> +		ret = ttm_bo_alloc_resource(bo, placement, ctx,
->> force_space,
->> +					    &res);
->> +		force_space = !force_space;
->> +		if (ret == -ENOSPC)
->> +			continue;
->> +		if (ret)
->> +			return ret;
->> +
->> +bounce:
->> +		ret = ttm_bo_handle_move_mem(bo, res, false, ctx,
->> &hop);
->> +		if (ret == -EMULTIHOP) {
->> +			ret = ttm_bo_bounce_temp_buffer(bo, &res,
->> ctx, &hop);
->> +			/* try and move to final place now. */
->> +			if (!ret)
->> +				goto bounce;
->> +		}
->> +		if (ret) {
->> +			ttm_resource_free(bo, &res);
->> +			return ret;
->> +		}
->> +
->> +	} while (ret && force_space);
->>   
->> -	ret = ttm_bo_move_buffer(bo, placement, ctx);
->>   	/* For backward compatibility with userspace */
->>   	if (ret == -ENOSPC)
->>   		return -ENOMEM;
->> -	if (ret)
->> -		return ret;
->>   
->>   	/*
->>   	 * We might need to add a TTM.
->> diff --git a/drivers/gpu/drm/ttm/ttm_resource.c
->> b/drivers/gpu/drm/ttm/ttm_resource.c
->> index fb14f7716cf8..65155f2013ca 100644
->> --- a/drivers/gpu/drm/ttm/ttm_resource.c
->> +++ b/drivers/gpu/drm/ttm/ttm_resource.c
->> @@ -295,11 +295,13 @@ bool ttm_resource_intersects(struct ttm_device
->> *bdev,
->>    *
->>    * @res: the resource to check
->>    * @placement: the placement to check against
->> + * @evicting: true if the caller is doing evictions
->>    *
->>    * Returns true if the placement is compatible.
->>    */
->>   bool ttm_resource_compatible(struct ttm_resource *res,
->> -			     struct ttm_placement *placement)
->> +			     struct ttm_placement *placement,
->> +			     bool evicting)
->>   {
->>   	struct ttm_buffer_object *bo = res->bo;
->>   	struct ttm_device *bdev = bo->bdev;
->> @@ -315,14 +317,20 @@ bool ttm_resource_compatible(struct
->> ttm_resource *res,
->>   		if (res->mem_type != place->mem_type)
->>   			continue;
->>   
->> +		if (place->flags & (evicting ? TTM_PL_FLAG_DESIRED :
->> +				    TTM_PL_FLAG_FALLBACK))
->> +			continue;
->> +
->> +		if (place->flags & TTM_PL_FLAG_CONTIGUOUS &&
->> +		    !(res->placement & TTM_PL_FLAG_CONTIGUOUS))
->> +			continue;
->> +
->>   		man = ttm_manager_type(bdev, res->mem_type);
->>   		if (man->func->compatible &&
->>   		    !man->func->compatible(man, res, place, bo-
->>> base.size))
->>   			continue;
->>   
->> -		if ((!(place->flags & TTM_PL_FLAG_CONTIGUOUS) ||
->> -		     (res->placement & TTM_PL_FLAG_CONTIGUOUS)))
->> -			return true;
->> +		return true;
->>   	}
->>   	return false;
->>   }
->> diff --git a/include/drm/ttm/ttm_resource.h
->> b/include/drm/ttm/ttm_resource.h
->> index 1afa13f0c22b..7561023db43d 100644
->> --- a/include/drm/ttm/ttm_resource.h
->> +++ b/include/drm/ttm/ttm_resource.h
->> @@ -366,7 +366,8 @@ bool ttm_resource_intersects(struct ttm_device
->> *bdev,
->>   			     const struct ttm_place *place,
->>   			     size_t size);
->>   bool ttm_resource_compatible(struct ttm_resource *res,
->> -			     struct ttm_placement *placement);
->> +			     struct ttm_placement *placement,
->> +			     bool evicting);
->>   void ttm_resource_set_bo(struct ttm_resource *res,
->>   			 struct ttm_buffer_object *bo);
->>   
-
+Thanks and Regards,
+Arun R Murthy
+--------------------
+>=20
+> BR,
+> Jani.
+>=20
+> >  }
+> >
+> >  /* Perform the link training on all LTTPRs and the DPRX on a link. */
+>=20
+> --
+> Jani Nikula, Intel
