@@ -2,61 +2,55 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 378D884F12D
-	for <lists+intel-gfx@lfdr.de>; Fri,  9 Feb 2024 09:02:17 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4A41284F35E
+	for <lists+intel-gfx@lfdr.de>; Fri,  9 Feb 2024 11:25:48 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A6A7010ECF7;
-	Fri,  9 Feb 2024 08:02:12 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5B15410F30C;
+	Fri,  9 Feb 2024 10:25:45 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="HrrvUAvL";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="EsryKiel";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 06C9B10EC65;
- Fri,  9 Feb 2024 08:02:09 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1707465729; x=1739001729;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=8hv1yW6IbM58UJxt3tLusyVgrFws3JiyjYCrzaAsMUI=;
- b=HrrvUAvLhl8rHSwSlPlRAiGYOo2Qn0j/PJ3tFBsLXuGeLJp1Y6UJVO4p
- U6WPOjPJPwi/InHhlWAolriqp3W0o1kSAKatDJvAyzSImKwluhNxl+6Jv
- 4fLEStQW+qOei/aDIzT7Clyv5JnOpb9lacaAh7Z/nyCBe6Nc9HKtY1ETJ
- 9OSDs4f3mwyGzouqDMX2dq1Fh8uBHUNTBYcbGndiKooSgHWi4Z/+wxJQz
- v84kcRu2h1gWHFnk3JD9n5mUqQKAO1rOP2RRu0X4///TCwJIRvkrc/tTG
- TNH9+GQtkZ80m0uzeY5pkdJNx6SSLwyChe6YOIeSPZY2x7Z4yLi3IWUR1 A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10978"; a="18802459"
-X-IronPort-AV: E=Sophos;i="6.05,256,1701158400"; d="scan'208";a="18802459"
-Received: from fmviesa003.fm.intel.com ([10.60.135.143])
- by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Feb 2024 00:02:09 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.05,256,1701158400"; 
-   d="scan'208";a="6500951"
-Received: from mziotti-mobl4.ger.corp.intel.com (HELO localhost)
- ([10.252.43.29])
- by fmviesa003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Feb 2024 00:02:05 -0800
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Lucas De Marchi <lucas.demarchi@intel.com>, Andi Shyti
- <andi.shyti@linux.intel.com>
-Cc: Yury Norov <yury.norov@gmail.com>, linux-kernel@vger.kernel.org,
- dri-devel@lists.freedesktop.org, Andy Shevchenko
- <andriy.shevchenko@linux.intel.com>, intel-xe@lists.freedesktop.org,
- intel-gfx@lists.freedesktop.org
-Subject: Re: Re: [PATCH v3 2/3] bits: Introduce fixed-type BIT
-In-Reply-To: <ilppncjskpt52bijaoxlwcklawjpw5cqrndtx2g5xnwpj6bhbm@kn5yjscaha5e>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20240208074521.577076-1-lucas.demarchi@intel.com>
- <20240208074521.577076-3-lucas.demarchi@intel.com>
- <ZcUz3V56qNeTVq66@ashyti-mobl2.lan>
- <ilppncjskpt52bijaoxlwcklawjpw5cqrndtx2g5xnwpj6bhbm@kn5yjscaha5e>
-Date: Fri, 09 Feb 2024 10:01:58 +0200
-Message-ID: <87il2yaww9.fsf@intel.com>
+Received: from sin.source.kernel.org (sin.source.kernel.org [145.40.73.55])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 31611112AA9;
+ Tue,  6 Feb 2024 11:29:10 +0000 (UTC)
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+ by sin.source.kernel.org (Postfix) with ESMTP id AC961CE1305;
+ Tue,  6 Feb 2024 11:29:03 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A18D0C433C7;
+ Tue,  6 Feb 2024 11:29:00 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=k20201202; t=1707218942;
+ bh=xItSGKOsHY3nXC2qGy9xvtt+bnUbZopMnd876K04tjk=;
+ h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+ b=EsryKielTwcYBcVxuAxMAD0zvVmbPIbLkTrIBNpyeEXJDILMUGxe5VwThjhAPGnyO
+ rLKJuiVoAMk877bcSrF8uDICB52XvtgnldywkMDYIUPLZfloZfAi3SBNlqPkVA5eMU
+ rtW7cjWZGmSUlCxcZT3OUAe1pwiQ1NEcz1OoSMpGOOP/MQVUe9ovK2gd20aO9bMxUc
+ 7F6rVhcCMrxY0Lj0hbNT1tJTo6qegUW6e2CN95Dy8UeQd1tfvVavKRMi3A2Rafq7dY
+ lxatORJk8dJTp3fusXqMAzr6uJHu5gTp95RSwtKKAotz7xRo64bafcCmGPZI/JkC+R
+ 4KjRAVWhH6ezw==
 MIME-Version: 1.0
-Content-Type: text/plain
+Date: Tue, 06 Feb 2024 12:28:58 +0100
+From: Michael Walle <mwalle@kernel.org>
+To: Stephen Rothwell <sfr@canb.auug.org.au>
+Cc: Daniel Vetter <daniel.vetter@ffwll.ch>, Intel Graphics
+ <intel-gfx@lists.freedesktop.org>, DRI <dri-devel@lists.freedesktop.org>,
+ Dario Binacchi <dario.binacchi@amarulasolutions.com>, Inki Dae
+ <inki.dae@samsung.com>, Linux Kernel Mailing List
+ <linux-kernel@vger.kernel.org>, Linux Next Mailing List
+ <linux-next@vger.kernel.org>, Michael Trimarchi
+ <michael@amarulasolutions.com>, Robert Foss <rfoss@kernel.org>
+Subject: Re: linux-next: manual merge of the drm-misc tree with Linus' tree
+In-Reply-To: <20240206120643.1d30764c@canb.auug.org.au>
+References: <20240206115956.4570e9b1@canb.auug.org.au>
+ <20240206120643.1d30764c@canb.auug.org.au>
+Message-ID: <fe0b21360178348543e662e9d620af9c@kernel.org>
+X-Sender: mwalle@kernel.org
+Content-Type: text/plain; charset=US-ASCII;
+ format=flowed
+Content-Transfer-Encoding: 7bit
+X-Mailman-Approved-At: Fri, 09 Feb 2024 10:25:43 +0000
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -72,34 +66,52 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, 08 Feb 2024, Lucas De Marchi <lucas.demarchi@intel.com> wrote:
-> On Thu, Feb 08, 2024 at 09:04:45PM +0100, Andi Shyti wrote:
->>Hi Lucas,
->>
->>looks good, just one idea...
->>
->>...
->>
->>> +#define BIT_U8(b)		((u8)(BIT_INPUT_CHECK(u8, b) + BIT(b)))
->>> +#define BIT_U16(b)		((u16)(BIT_INPUT_CHECK(u16, b) + BIT(b)))
->>> +#define BIT_U32(b)		((u32)(BIT_INPUT_CHECK(u32, b) + BIT(b)))
->>> +#define BIT_U64(b)		((u64)(BIT_INPUT_CHECK(u64, b) + BIT(b)))
->>
->>considering that BIT defines are always referred to unsigned
->>types, I would just call them
->>
->>#define BIT8
->>#define BIT16
->>#define BIT32
->>#define BIT64
->>
->>what do you think?
->
-> it will clash with defines from other headers and not match the ones for
-> GENMASK  so I prefer it the other way.
+Hi Stephen and all,
 
-Agreed.
+>> Today's linux-next merge of the drm-misc tree got a conflict in:
+>> 
+>>   drivers/gpu/drm/bridge/samsung-dsim.c
+>> 
+>> between commit:
+>> 
+>>   ff3d5d04db07 ("drm: bridge: samsung-dsim: Don't use 
+>> FORCE_STOP_STATE")
+>> 
+>> from Linus' tree and commit:
+>> 
+>>   b2fe2292624a ("drm: bridge: samsung-dsim: enter display mode in the 
+>> enable() callback")
+>> 
+>> from the drm-misc tree.
+>> 
+>> I fixed it up (see below, please check) and can carry the fix as
+>> necessary. This is now fixed as far as linux-next is concerned, but 
+>> any
+>> non trivial conflicts should be mentioned to your upstream maintainer
+>> when your tree is submitted for merging.  You may also want to 
+>> consider
+>> cooperating with the maintainer of the conflicting tree to minimise 
+>> any
+>> particularly complex conflicts.
+> 
+> I changed my mind and just used the latter version of this file.
 
+Bug wise, this is the wrong solution. Because it will reintroduce the
+faulty FORCE_STOP_STATE. Also keep in mind, my fixes commit is/was 
+already
+backported to the stable series.
 
--- 
-Jani Nikula, Intel
+See also the discussion at [1]. Unfortunately, there was no conculusion 
+yet.
+I think [2] is the proper resolution, at least for the commit 
+b2fe2292624a
+("drm: bridge: samsung-dsim: enter display mode in the enable() 
+callback")
+I'm not sure in what state the drm-misc tree is.
+
+-michael
+
+[1] 
+https://lore.kernel.org/dri-devel/CAPM=9tytMB9frxNeD08hu1qsusY=wEE3bJOFmUgA1rSpabwDpg@mail.gmail.com/
+[2] 
+https://lore.kernel.org/dri-devel/31e1a38a1d012a32d6f7bc8372b6360e@kernel.org/
