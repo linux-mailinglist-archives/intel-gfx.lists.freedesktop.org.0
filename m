@@ -2,48 +2,47 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8C89684AEBE
-	for <lists+intel-gfx@lfdr.de>; Tue,  6 Feb 2024 08:16:26 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 031B784AEC0
+	for <lists+intel-gfx@lfdr.de>; Tue,  6 Feb 2024 08:16:28 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7EFF0112A12;
-	Tue,  6 Feb 2024 07:16:23 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0739E112A13;
+	Tue,  6 Feb 2024 07:16:26 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="CzCYw9ed";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="SWVOVTfW";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A7B89112A11
- for <intel-gfx@lists.freedesktop.org>; Tue,  6 Feb 2024 07:16:21 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 16CAB112A12
+ for <intel-gfx@lists.freedesktop.org>; Tue,  6 Feb 2024 07:16:23 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1707203782; x=1738739782;
+ t=1707203783; x=1738739783;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=gyMgiYzCZGeuH3iZPuF24vf+SnbtdaNyQJJTyqolhvQ=;
- b=CzCYw9edpBrZrh/qKZtRcJ35vfgp59cDySoSOVpBNInxEq9h0ut2QEua
- HgPgubbav7yN3Ae0mVeipQ5NoixOPHCT0sEWBx+Oxop4ksHKRnEgFVf4Y
- cVXewWGrTiaVRlBfy0EVMvOuP+m97W+efh13KdLDJFu0fZNb9wUqzFmOb
- ZcNUkAdbaKmTub8mjiDR675ovC3VZF0RvmbEP5DMmJAH0R/HPuIlFH+of
- C/cn5FaYkaVTOpGgD9tIDco/trlI6qYuAHWfloRhpstzUjewELk0FSZu1
- 4vsK9Yugb2fsjhpy1l2LNo5FF9l0+wl77mcube8FeozsbC/BjF9Xe5tgO g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10975"; a="12041502"
-X-IronPort-AV: E=Sophos;i="6.05,246,1701158400"; d="scan'208";a="12041502"
+ bh=g1gaamq8G+ZGtgkvFS2EOFFkPh0fjN3y+42Kr2il6Sg=;
+ b=SWVOVTfWnU+M273lVhfg0F02uGPL8tq3hgVuAL1c2No34nH8ocCCcFYT
+ 5ITTDxIuqhfwWf3Sbgw9EuSI6DfbsB7H1GyG7zNZprAaovLnb3lrTkfaS
+ szlKxjFcdg+es+rqhzcqJrKKSU4Wg7sfkLHwckaBhE8F6bL9VwlYo4pQd
+ 8dwxohL03DDTofwaxlsS4hCw4aU9Ec1HFgfiCaZ7GpS5NwvevSzvc7JhV
+ B4WOjc5Busoug/VBncNf15dN+eHl2Aa5jP+mENbaTC00CXZRxOIfvnVxc
+ VpHWwFnXAZrGeUkaLTubMj50SJxPOnIvF1EndEdC4NKVjQK4jf97F1GiD A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10975"; a="12041506"
+X-IronPort-AV: E=Sophos;i="6.05,246,1701158400"; d="scan'208";a="12041506"
 Received: from orsmga001.jf.intel.com ([10.7.209.18])
  by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Feb 2024 23:16:22 -0800
+ 05 Feb 2024 23:16:23 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10975"; a="824094099"
-X-IronPort-AV: E=Sophos;i="6.05,246,1701158400"; d="scan'208";a="824094099"
+X-IronPort-AV: E=McAfee;i="6600,9927,10975"; a="824094105"
+X-IronPort-AV: E=Sophos;i="6.05,246,1701158400"; d="scan'208";a="824094105"
 Received: from sorvi2.fi.intel.com ([10.237.72.194])
- by orsmga001.jf.intel.com with ESMTP; 05 Feb 2024 23:16:20 -0800
+ by orsmga001.jf.intel.com with ESMTP; 05 Feb 2024 23:16:21 -0800
 From: Mika Kahola <mika.kahola@intel.com>
 To: intel-gfx@lists.freedesktop.org
 Cc: Mika Kahola <mika.kahola@intel.com>
-Subject: [PATCH 1/2] Revert "drm/i915/display: Skip C10 state verification in
- case of fastset"
-Date: Tue,  6 Feb 2024 09:09:36 +0200
-Message-Id: <20240206070937.197986-2-mika.kahola@intel.com>
+Subject: [PATCH 2/2] drm/i915/display: Force full modeset for eDP
+Date: Tue,  6 Feb 2024 09:09:37 +0200
+Message-Id: <20240206070937.197986-3-mika.kahola@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20240206070937.197986-1-mika.kahola@intel.com>
 References: <20240206070937.197986-1-mika.kahola@intel.com>
@@ -64,26 +63,51 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-This reverts commit a1d91c6e989d0e66b89aa911f2cd459d7bdebbe5.
+Force full modeset for eDP when booting up. GOP programs
+PLL parameters and hence, we would be able to use fastset
+for eDP. However, with fastset we are not setting PLL values
+from the driver and rely that GOP and driver PLL values match.
+We have discovered that with some of the panels this is not
+true and hence we would need to program PLL values by the
+driver. The patch suggests a workaround as enabling full
+modeset when booting up. This way we force the driver to
+write the PLL values to the hw.
 
 Signed-off-by: Mika Kahola <mika.kahola@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_cx0_phy.c | 3 ---
- 1 file changed, 3 deletions(-)
+ drivers/gpu/drm/i915/display/intel_dp.c | 13 +++++++++++++
+ 1 file changed, 13 insertions(+)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_cx0_phy.c b/drivers/gpu/drm/i915/display/intel_cx0_phy.c
-index 288a00e083c8..5051e7f5abb1 100644
---- a/drivers/gpu/drm/i915/display/intel_cx0_phy.c
-+++ b/drivers/gpu/drm/i915/display/intel_cx0_phy.c
-@@ -3017,9 +3017,6 @@ static void intel_c10pll_state_verify(const struct intel_crtc_state *state,
- 	const struct intel_c10pll_state *mpllb_sw_state = &state->cx0pll_state.c10;
- 	int i;
+diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
+index ab415f41924d..9699ded1eb5f 100644
+--- a/drivers/gpu/drm/i915/display/intel_dp.c
++++ b/drivers/gpu/drm/i915/display/intel_dp.c
+@@ -3319,6 +3319,7 @@ bool intel_dp_initial_fastset_check(struct intel_encoder *encoder,
+ 	 * of crtc_state->dsc, we have no way to ensure reliable fastset.
+ 	 * Remove once we have readout for DSC.
+ 	 */
++
+ 	if (crtc_state->dsc.compression_enable) {
+ 		drm_dbg_kms(&i915->drm, "[ENCODER:%d:%s] Forcing full modeset due to DSC being enabled\n",
+ 			    encoder->base.base.id, encoder->base.name);
+@@ -3326,6 +3327,18 @@ bool intel_dp_initial_fastset_check(struct intel_encoder *encoder,
+ 		fastset = false;
+ 	}
  
--	if (intel_crtc_needs_fastset(state))
--		return;
--
- 	for (i = 0; i < ARRAY_SIZE(mpllb_sw_state->pll); i++) {
- 		u8 expected = mpllb_sw_state->pll[i];
++	/*
++	 * FIXME hack to force full modeset for eDP as not always BIOS written PLL
++	 * values does not match with the ones defined in the driver code
++	 */
++	if (!crtc_state->uapi.mode_changed &&
++	    intel_dp_is_edp(intel_dp)) {
++		drm_dbg_kms(&i915->drm, "Forcing full modeset for eDP\n");
++		crtc_state->uapi.mode_changed = true;
++		fastset = false;
++	}
++
++
+ 	return fastset;
+ }
  
 -- 
 2.34.1
