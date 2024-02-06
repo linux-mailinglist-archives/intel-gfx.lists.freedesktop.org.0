@@ -2,53 +2,58 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id E92A284B2EF
-	for <lists+intel-gfx@lfdr.de>; Tue,  6 Feb 2024 11:58:29 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2A7E584B3AB
+	for <lists+intel-gfx@lfdr.de>; Tue,  6 Feb 2024 12:40:09 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DE8DF10EB7D;
-	Tue,  6 Feb 2024 10:58:27 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A4DF5112AC6;
+	Tue,  6 Feb 2024 11:40:07 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Ghm9BR+3";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Cwygz7YO";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7CD7810EB7D
- for <intel-gfx@lists.freedesktop.org>; Tue,  6 Feb 2024 10:58:26 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D2B0C112AC6
+ for <intel-gfx@lists.freedesktop.org>; Tue,  6 Feb 2024 11:40:04 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1707217106; x=1738753106;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=ldOMe8fJGeZfEl9BAbKKWSUbBq/HWKbBaQF5bfbtbao=;
- b=Ghm9BR+30+KskzWaS3HPRpMb0j/QLXeJjsHeJSNJh0fys6QwDIXe/HeY
- EQ0Jny4zIhRwFa2O5Qm4GNwPTkQN1Wm+AXAYxUTrLqdzXyZMQFoztrwou
- KsNy3pvHt+c5eOGTtiYoMsRRJAOWM4TV3EST1ZlJ+sYSkZlwaPIJLDhE0
- Ii7K8V7Y4LDokROeDIYoqxxWrRNFcPErKXDRJPkdrif4NJbjwfqQusNdO
- 8iknz8ivmE07ca3AW9Bcqk+/9Tj8JFvCeSJ7oNyApzg2zM8AOFCBqThO/
- RN34+okhTtB2IM7v9qLhywADlAjBo/iuBZzD2/11O+R4YjkJZ1Z9ICptl Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10975"; a="26164536"
-X-IronPort-AV: E=Sophos;i="6.05,247,1701158400"; d="scan'208";a="26164536"
-Received: from orviesa010.jf.intel.com ([10.64.159.150])
- by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Feb 2024 02:58:26 -0800
+ t=1707219604; x=1738755604;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version;
+ bh=XGPRf0wkcNXM3TpcR8HnRhN3+LVJUGR0HD4/9lMJ5M0=;
+ b=Cwygz7YOXyG7xrP3wJ8tEVMvHpxzzXRtgh/ca9c8oSQlDQDH0HouaOPw
+ DTucv+OpIUDlBjIvK4j9ZFOk2Mcq33I2nxy+IzNQOI5MFveucIuIznbtL
+ YNQACw7dWkLu9n3L+OBLnldcuaFGlEZkHq/lF82Tc5f63x5RVDRy2oBE+
+ DiHyZ5ljjYus8toctWcyWZ9grsxA14VTRnMNrvvfvcXK8tq+z/X5R6+Xy
+ ezPnTMiGwRLzeJuCfB4pzKOVeK6ysxiecLDFBoPET+zFJ0gfjQNxvRxD1
+ DqeLTC/NLOMjCsknvx7CEXA4tK8Iy2OMLW7jSyobuTbODkTaXw0zfBgiS A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10975"; a="623803"
+X-IronPort-AV: E=Sophos;i="6.05,247,1701158400"; 
+   d="scan'208";a="623803"
+Received: from orviesa007.jf.intel.com ([10.64.159.147])
+ by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 06 Feb 2024 03:40:03 -0800
 X-ExtLoop1: 1
 X-IronPort-AV: E=Sophos;i="6.05,247,1701158400"; 
-   d="scan'208";a="1019189"
-Received: from srr4-3-linux-106-armuthy.iind.intel.com ([10.190.238.56])
- by orviesa010.jf.intel.com with ESMTP; 06 Feb 2024 02:58:25 -0800
-From: Arun R Murthy <arun.r.murthy@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Cc: jani.nikula@intel.com, imre.deak@intel.com, ville.syrjala@intel.com,
- uma.shankar@intel.com, Arun R Murthy <arun.r.murthy@intel.com>
-Subject: [RFC 4/4] drm/i915/display/dp: On LT failure retry LT
-Date: Tue,  6 Feb 2024 16:17:59 +0530
-Message-Id: <20240206104759.2079133-5-arun.r.murthy@intel.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20240206104759.2079133-1-arun.r.murthy@intel.com>
+   d="scan'208";a="1312732"
+Received: from lgrunert-mobl.ger.corp.intel.com (HELO localhost)
+ ([10.252.42.150])
+ by orviesa007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 06 Feb 2024 03:40:01 -0800
+From: Jani Nikula <jani.nikula@intel.com>
+To: Arun R Murthy <arun.r.murthy@intel.com>, intel-gfx@lists.freedesktop.org
+Cc: imre.deak@intel.com, ville.syrjala@intel.com, uma.shankar@intel.com,
+ Arun R Murthy <arun.r.murthy@intel.com>
+Subject: Re: [RFC 2/4] drm/i915/display/dp: Dont send hotplug event on LT
+ failure
+In-Reply-To: <20240206104759.2079133-3-arun.r.murthy@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 References: <20240206104759.2079133-1-arun.r.murthy@intel.com>
+ <20240206104759.2079133-3-arun.r.murthy@intel.com>
+Date: Tue, 06 Feb 2024 13:39:58 +0200
+Message-ID: <87ttmlddo1.fsf@intel.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,42 +69,47 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On link training failure retry link training with a lesser link
-rate/lane count as specified in the DP spec.
+On Tue, 06 Feb 2024, Arun R Murthy <arun.r.murthy@intel.com> wrote:
+> On link training failure fallback sequence a hotpplu event was sent to
+> the user, but this is not requried as we are not changing the mode and
+> instead only changing the link rate and lane count. User has no
+> dependency with these parameters.
+>
+> Signed-off-by: Arun R Murthy <arun.r.murthy@intel.com>
+> ---
+>  drivers/gpu/drm/i915/display/intel_dp_link_training.c | 5 +----
+>  1 file changed, 1 insertion(+), 4 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/i915/display/intel_dp_link_training.c b/drivers/gpu/drm/i915/display/intel_dp_link_training.c
+> index 1abfafbbfa75..242cb08e9fc4 100644
+> --- a/drivers/gpu/drm/i915/display/intel_dp_link_training.c
+> +++ b/drivers/gpu/drm/i915/display/intel_dp_link_training.c
+> @@ -1074,8 +1074,6 @@ intel_dp_link_train_phy(struct intel_dp *intel_dp,
+>  static void intel_dp_schedule_fallback_link_training(struct intel_dp *intel_dp,
+>  						     const struct intel_crtc_state *crtc_state)
+>  {
+> -	struct intel_connector *intel_connector = intel_dp->attached_connector;
+> -	struct drm_i915_private *i915 = dp_to_i915(intel_dp);
+>  
+>  	if (!intel_digital_port_connected(&dp_to_dig_port(intel_dp)->base)) {
+>  		lt_dbg(intel_dp, DP_PHY_DPRX, "Link Training failed on disconnected sink.\n");
+> @@ -1092,8 +1090,7 @@ static void intel_dp_schedule_fallback_link_training(struct intel_dp *intel_dp,
+>  		return;
+>  	}
+>  
+> -	/* Schedule a Hotplug Uevent to userspace to start modeset */
+> -	queue_work(i915->unordered_wq, &intel_connector->modeset_retry_work);
+> +	/* TODO: Re-visit, sending hotplug is not required. No need to notify user as we are not changing the mode */
 
-Signed-off-by: Arun R Murthy <arun.r.murthy@intel.com>
----
- drivers/gpu/drm/i915/display/intel_ddi.c | 10 +++++++++-
- 1 file changed, 9 insertions(+), 1 deletion(-)
+Yeah, we're not changing the mode, we're asking the userspace to change
+the mode.
 
-diff --git a/drivers/gpu/drm/i915/display/intel_ddi.c b/drivers/gpu/drm/i915/display/intel_ddi.c
-index ed7620e7f763..29d785a4b904 100644
---- a/drivers/gpu/drm/i915/display/intel_ddi.c
-+++ b/drivers/gpu/drm/i915/display/intel_ddi.c
-@@ -2502,6 +2502,7 @@ static void mtl_ddi_pre_enable_dp(struct intel_atomic_state *state,
- 				 crtc_state->port_clock,
- 				 crtc_state->lane_count);
- 
-+retry:
- 	/*
- 	 * We only configure what the register value will be here.  Actual
- 	 * enabling happens during link training farther down.
-@@ -2586,7 +2587,14 @@ static void mtl_ddi_pre_enable_dp(struct intel_atomic_state *state,
- 	 *     Pattern, wait for 5 idle patterns (DP_TP_STATUS Min_Idles_Sent)
- 	 *     (timeout after 800 us)
- 	 */
--	intel_dp_start_link_train(intel_dp, crtc_state);
-+	if (!intel_dp_start_link_train(intel_dp, crtc_state)) {
-+		/* Link Training failed, retain */
-+		intel_dp->link_trained = false;
-+		intel_dp_stop_link_train(intel_dp, crtc_state);
-+		encoder->post_disable(state, encoder,
-+				   crtc_state, conn_state);
-+		goto retry;
-+	}
- 
- 	/* 6.n Set DP_TP_CTL link training to Normal */
- 	if (!is_trans_port_sync_mode(crtc_state))
+BR,
+Jani.
+
+>  }
+>  
+>  /* Perform the link training on all LTTPRs and the DPRX on a link. */
+
 -- 
-2.25.1
-
+Jani Nikula, Intel
