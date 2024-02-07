@@ -2,63 +2,67 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id BA65D84C712
-	for <lists+intel-gfx@lfdr.de>; Wed,  7 Feb 2024 10:17:01 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id C555884C76D
+	for <lists+intel-gfx@lfdr.de>; Wed,  7 Feb 2024 10:33:50 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5B64D10E641;
-	Wed,  7 Feb 2024 09:16:58 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7E2F9113197;
+	Wed,  7 Feb 2024 09:33:45 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="jvjnieim";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="kvj1xyNv";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8F17610E641;
- Wed,  7 Feb 2024 09:16:56 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.88])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 74851113195;
+ Wed,  7 Feb 2024 09:33:43 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1707297417; x=1738833417;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=zQQCNmahUwZK3qO6Zo+aBo/S2P1qs/t9sW1T2X5nctU=;
- b=jvjnieimSip56EhhQbfZBClFtsraR3CVunTxY2sFGN9Nm7BjwZWRJmG1
- XLvQgfYJVTtGSlzFhImQXYOGaosIoo9j/CBbvbzaMSszytAya/vQmZXhI
- +NjQT9FTxKu0ZHk82cTB7l6fOdx1Ft6bbW3EovO9gyHMrJPMRDNcSor/I
- IW9z5MevZZZAks+NQr7g1RTivXnOkj75zmdtPGwC8Ml330tlD8XMSKujm
- YvHtSh3voa0kEXnShPSC38Yu76SRrKA12k9NjC4wAKXrrmO68AyGU2KL1
- Y7C2AEzz5XOIYYko5ZxdpU3htbGzlbDihytxBza6/DD0KWGRrFi4D1WUj g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10976"; a="11683700"
-X-IronPort-AV: E=Sophos;i="6.05,250,1701158400"; d="scan'208";a="11683700"
-Received: from fmviesa006.fm.intel.com ([10.60.135.146])
- by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Feb 2024 01:16:34 -0800
+ t=1707298423; x=1738834423;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version:content-transfer-encoding;
+ bh=JsN+70aPTg6lEAOrTx+Lx2fwdJbbiG3vSS3htAIip4A=;
+ b=kvj1xyNvu92BUmuUtWoOPnIrGfdIJOQTnhh5tFQwvaB9LNGThmUY/IAV
+ 9GVbGffsEWMM1QVI1Aq93uHYLuQea8KGyOLyzXAeRo954CuQHXz9jyhKM
+ ATySjbjubFaIJ2s9PgwF2bTI8gA+jt/uymeQ/ssXnzSJJvDdjH+dfVU+n
+ bwVDJBteTCTt0Xm6WVNkAv+2+uI4lNxlaUJ8tl1UFYkMRXnCxlMn621bp
+ LhZhqBbxphjshy+pUFgjlJC2JfUFghIR5w7wuEbaMOq7jB/ZLRAM5YSNd
+ PEebjXMoqDvUqN6tg1QOE+UbeWR1XCfJsms9rBg6yfZXknLxq7H6oJcRD w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10976"; a="436085938"
+X-IronPort-AV: E=Sophos;i="6.05,250,1701158400"; d="scan'208";a="436085938"
+Received: from orviesa007.jf.intel.com ([10.64.159.147])
+ by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 Feb 2024 01:33:42 -0800
 X-ExtLoop1: 1
 X-IronPort-AV: E=Sophos;i="6.05,250,1701158400"; 
-   d="scan'208";a="1559644"
-Received: from ahamill-mobl2.ger.corp.intel.com (HELO [10.213.228.167])
- ([10.213.228.167])
- by fmviesa006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Feb 2024 01:16:32 -0800
-Message-ID: <3c63aea1-1a04-45eb-9af1-02f52d4132e4@linux.intel.com>
-Date: Wed, 7 Feb 2024 09:16:30 +0000
+   d="scan'208";a="1601780"
+Received: from mtiebout-mobl.ger.corp.intel.com (HELO localhost)
+ ([10.252.61.65])
+ by orviesa007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 Feb 2024 01:33:37 -0800
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Thomas =?utf-8?Q?Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
+ Lucas De Marchi <lucas.demarchi@intel.com>
+Cc: Stephen Rothwell <sfr@canb.auug.org.au>, Daniel Vetter
+ <daniel.vetter@ffwll.ch>, Matthew Brost <matthew.brost@intel.com>, Rodrigo
+ Vivi <rodrigo.vivi@intel.com>, Christian =?utf-8?Q?K=C3=B6nig?=
+ <christian.koenig@amd.com>,
+ Somalapuram Amaranath <Amaranath.Somalapuram@amd.com>, Intel Graphics
+ <intel-gfx@lists.freedesktop.org>, DRI <dri-devel@lists.freedesktop.org>,
+ Linux Kernel Mailing List <linux-kernel@vger.kernel.org>, Linux Next
+ Mailing List <linux-next@vger.kernel.org>, Dave Airlie <airlied@gmail.com>,
+ intel-xe@lists.freedesktop.org
+Subject: Re: Re: linux-next: build failure after merge of the drm-misc tree
+In-Reply-To: <5b3adb702cfaa944fdaa1b49ee7f10e4d0e86b2f.camel@linux.intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20240206122822.12a2df89@canb.auug.org.au>
+ <f9a027765a3c65c69c2d49cf2964fe1155e914f4.camel@linux.intel.com>
+ <tughiv3y52m6ruczgb3g6mvvek7ihfrxaxh7ovoogzqfi6jmun@jcn6xap7vwcg>
+ <5b3adb702cfaa944fdaa1b49ee7f10e4d0e86b2f.camel@linux.intel.com>
+Date: Wed, 07 Feb 2024 11:33:34 +0200
+Message-ID: <87il30d3f5.fsf@intel.com>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] drm/i915/gt: Prevent possible NULL dereference in
- __caps_show()
-Content-Language: en-US
-To: Nikita Zhandarovich <n.zhandarovich@fintech.ru>,
- Jani Nikula <jani.nikula@linux.intel.com>
-Cc: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, David Airlie <airlied@gmail.com>,
- Daniel Vetter <daniel@ffwll.ch>, intel-gfx@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
- lvc-project@linuxtesting.org
-References: <20240206164543.46834-1-n.zhandarovich@fintech.ru>
-From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-Organization: Intel Corporation UK Plc
-In-Reply-To: <20240206164543.46834-1-n.zhandarovich@fintech.ru>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -74,76 +78,17 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+On Wed, 07 Feb 2024, Thomas Hellstr=C3=B6m <thomas.hellstrom@linux.intel.co=
+m> wrote:
+> Indeed. Not even drm-misc itself compiles with xe enabled. I'll ping
+> drm-misc maintainers.
 
-Hi,
+We'll need CONFIG_DRM_XE=3Dm enabled in drm-rerere/drm-misc-*_defconfig,
+and get people to use that.
 
-On 06/02/2024 16:45, Nikita Zhandarovich wrote:
-> After falling through the switch statement to default case 'repr' is
-> initialized with NULL, which will lead to incorrect dereference of
-> '!repr[n]' in the following loop.
-> 
-> Fix it with the help of an additional check for NULL.
-> 
-> Found by Linux Verification Center (linuxtesting.org) with static
-> analysis tool SVACE.
-> 
-> Fixes: 4ec76dbeb62b ("drm/i915/gt: Expose engine properties via sysfs")
-> Signed-off-by: Nikita Zhandarovich <n.zhandarovich@fintech.ru>
-> ---
-> P.S. The NULL-deref problem might be dealt with this way but I am
-> not certain that the rest of the __caps_show() behaviour remains
-> correct if we end up in default case. For instance, as far as I
-> can tell, buf might turn out to be w/o '\0'. I could use some
-> direction if this has to be addressed as well.
-> 
->   drivers/gpu/drm/i915/gt/sysfs_engines.c | 2 +-
->   1 file changed, 1 insertion(+), 1 deletion(-)
-> 
-> diff --git a/drivers/gpu/drm/i915/gt/sysfs_engines.c b/drivers/gpu/drm/i915/gt/sysfs_engines.c
-> index 021f51d9b456..6b130b732867 100644
-> --- a/drivers/gpu/drm/i915/gt/sysfs_engines.c
-> +++ b/drivers/gpu/drm/i915/gt/sysfs_engines.c
-> @@ -105,7 +105,7 @@ __caps_show(struct intel_engine_cs *engine,
->   
->   	len = 0;
->   	for_each_set_bit(n, &caps, show_unknown ? BITS_PER_LONG : count) {
-> -		if (n >= count || !repr[n]) {
-> +		if (n >= count || !repr || !repr[n]) {
+BR,
+Jani.
 
-There are two input combinations to this function when repr is NULL.
 
-First is show_unknown=true and caps=0, which means the for_each_set_bit 
-will not execute its body. (No bits set.)
-
-Second is show_unknown=false and caps=~0, which means count is zero so 
-for_each_set_bit will again not run. (Bitfield size input param is zero.)
-
-So unless I am missing something I do not see the null pointer dereference.
-
-What could theoretically happen is that a third input combination 
-appears, where caps is not zero in the show_unknown=true case, either 
-via a fully un-handled engine->class (switch), or a new capability bit 
-not added to the static array a bit above.
-
-That would assert during driver development here:
-
-			if (GEM_WARN_ON(show_unknown))
-
-Granted that could be after the dereference in "if (n >= count || 
-!repr[n])", but would be caught in debug builds (CI) and therefore not 
-be able to "ship" (get merge to the repo).
-
-Your second question is about empty buffer returned i.e. len=0 at the 
-end of the function? (Which is when the buffer will not be null 
-terminated - or you see another option?)
-
-That I think is safe too since it just results in a zero length read in 
-sysfs.
-
-Regards,
-
-Tvrtko
-
->   			if (GEM_WARN_ON(show_unknown))
->   				len += sysfs_emit_at(buf, len, "[%x] ", n);
->   		} else {
+--=20
+Jani Nikula, Intel
