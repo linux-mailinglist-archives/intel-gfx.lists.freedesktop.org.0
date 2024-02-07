@@ -2,49 +2,51 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id D965884C1E9
-	for <lists+intel-gfx@lfdr.de>; Wed,  7 Feb 2024 02:33:46 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5A18284C1E8
+	for <lists+intel-gfx@lfdr.de>; Wed,  7 Feb 2024 02:33:44 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 76ACF113038;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 58DE110E7D9;
 	Wed,  7 Feb 2024 01:33:42 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="NgPaL7vw";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="FzCafa/+";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0022A113038
- for <intel-gfx@lists.freedesktop.org>; Wed,  7 Feb 2024 01:33:37 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id F3CC210E7D9
+ for <intel-gfx@lists.freedesktop.org>; Wed,  7 Feb 2024 01:33:40 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1707269621; x=1738805621;
- h=from:to:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=aQ0ADIOn+uJHLD0m4Ev8pTcKFzR3LAVNUq/9nBLL2f8=;
- b=NgPaL7vwKW8Q+HCesvGl6BWnhV4e6jlkntRgsxv98Thuvu8RH6fg+CKT
- 5JcjYpjpdLX4V3FBpdiB3w/lZ/VvByN2hlPYqx4B14XWbgn6ZYBCFvplx
- 8ZL6bA9eREnShIYtgdhGgUKDGOo3NmW3c52etieYClxtv88UcB49U8EvH
- FPiRLV9XbWiLO0d5aft8ZTRhC0DsEPxNYp3T7EvCI20vlT/NDqEeuwxLF
- ByHdUx3EfMRONpXx8BhkP/nhaMp3x9eBF8P9EtErBtoaxAaea5T1Ts28Y
- 4cyOEJkHstcjUvDAdPRbfz53mhZki7n/aTUc2XVYuVKgg81Pjyvq/NiOz Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10976"; a="18399556"
-X-IronPort-AV: E=Sophos;i="6.05,248,1701158400"; d="scan'208";a="18399556"
+ h=from:to:subject:date:message-id:in-reply-to:references:
+ mime-version:content-transfer-encoding;
+ bh=hw7d60lBWupY6KnQJqJYzj3sp/KQ9oWyZfLXYAiecF0=;
+ b=FzCafa/+XId82hz/NuJ8rHal47wpADMcLxJvnyoEbxcjUWQqn4/f7Rmm
+ FwXrxPblTRrSxw9NviBfRN7ilDj6RTwXA6RQYX3bXIkzbx6+Vr4cBqvQz
+ MLKD1G6D41b2nTmjrJ+sMSVZRc+j4TRea9vhCNFWrxJNGd0KZ+PAxK/OE
+ ja/PFUJI6FLWZWXIMnHkL3D+ROzP8/vbqVhoqZ/ylvCtcYXq5R7uWAT+l
+ CQlF82L7UJCAkSK6tkEkFEVvHDrHfRONJOHHoYopGiUbjtAMqMizVAxCI
+ vTcjCw4gp9a1pFRYwX1TKepsrzXBGzJAVXqBPjfVb3ZR6FO/eWJTogX+S w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10976"; a="18399566"
+X-IronPort-AV: E=Sophos;i="6.05,248,1701158400"; d="scan'208";a="18399566"
 Received: from orsmga001.jf.intel.com ([10.7.209.18])
  by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Feb 2024 17:33:37 -0800
+ 06 Feb 2024 17:33:40 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10976"; a="824353979"
-X-IronPort-AV: E=Sophos;i="6.05,248,1701158400"; d="scan'208";a="824353979"
+X-IronPort-AV: E=McAfee;i="6600,9927,10976"; a="824353985"
+X-IronPort-AV: E=Sophos;i="6.05,248,1701158400"; d="scan'208";a="824353985"
 Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.74])
- by orsmga001.jf.intel.com with SMTP; 06 Feb 2024 17:33:34 -0800
+ by orsmga001.jf.intel.com with SMTP; 06 Feb 2024 17:33:37 -0800
 Received: by stinkbox (sSMTP sendmail emulation);
- Wed, 07 Feb 2024 03:33:34 +0200
+ Wed, 07 Feb 2024 03:33:37 +0200
 From: Ville Syrjala <ville.syrjala@linux.intel.com>
 To: intel-gfx@lists.freedesktop.org
-Subject: [PATCH 0/4] drm/i915/cdclk: More hardcoded cd2x divider nukage
-Date: Wed,  7 Feb 2024 03:33:30 +0200
-Message-ID: <20240207013334.29606-1-ville.syrjala@linux.intel.com>
+Subject: [PATCH 1/4] drm/i915/cdclk: Extract cdclk_divider()
+Date: Wed,  7 Feb 2024 03:33:31 +0200
+Message-ID: <20240207013334.29606-2-ville.syrjala@linux.intel.com>
 X-Mailer: git-send-email 2.43.0
+In-Reply-To: <20240207013334.29606-1-ville.syrjala@linux.intel.com>
+References: <20240207013334.29606-1-ville.syrjala@linux.intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
@@ -65,22 +67,85 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-I missed a couple of spots when I was nuking the cd2x divider==1
-assumptions from the squasher support. Remedy that.
+Extract the cdclk divider calculation into a helper. We'll have
+more users of this soon. We can now also get rid of the intermediate
+'unsquashed_cdclk' variable.
 
-And while I was in there I decided to pimp the docs to
-describe the CDCLK update methods we support.
+Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
+---
+ drivers/gpu/drm/i915/display/intel_cdclk.c | 31 ++++++++++++----------
+ 1 file changed, 17 insertions(+), 14 deletions(-)
 
-Ville Syrjälä (4):
-  drm/i915/cdclk: Extract cdclk_divider()
-  drm/i915/cdclk: Squash waveform is 16 bits
-  drm/i915/cdclk: Remove the hardcoded divider from
-    cdclk_compute_crawl_and_squash_midpoint()
-  drm/i915/cdclk: Document CDCLK update methods
-
- drivers/gpu/drm/i915/display/intel_cdclk.c | 60 ++++++++++++++++------
- 1 file changed, 43 insertions(+), 17 deletions(-)
-
+diff --git a/drivers/gpu/drm/i915/display/intel_cdclk.c b/drivers/gpu/drm/i915/display/intel_cdclk.c
+index 26200ee3e23f..d79485e17ed1 100644
+--- a/drivers/gpu/drm/i915/display/intel_cdclk.c
++++ b/drivers/gpu/drm/i915/display/intel_cdclk.c
+@@ -1406,6 +1406,20 @@ static const struct intel_cdclk_vals lnl_cdclk_table[] = {
+ 	{}
+ };
+ 
++static const int cdclk_squash_len = 16;
++
++static int cdclk_squash_divider(u16 waveform)
++{
++	return hweight16(waveform ?: 0xffff);
++}
++
++static int cdclk_divider(int cdclk, int vco, u16 waveform)
++{
++	/* 2 * cd2x divider */
++	return DIV_ROUND_CLOSEST(vco * cdclk_squash_divider(waveform),
++				 cdclk * cdclk_squash_len);
++}
++
+ static int bxt_calc_cdclk(struct drm_i915_private *dev_priv, int min_cdclk)
+ {
+ 	const struct intel_cdclk_vals *table = dev_priv->display.cdclk.table;
+@@ -1744,10 +1758,10 @@ static u32 bxt_cdclk_cd2x_pipe(struct drm_i915_private *dev_priv, enum pipe pipe
+ }
+ 
+ static u32 bxt_cdclk_cd2x_div_sel(struct drm_i915_private *dev_priv,
+-				  int cdclk, int vco)
++				  int cdclk, int vco, u16 waveform)
+ {
+ 	/* cdclk = vco / 2 / div{1,1.5,2,4} */
+-	switch (DIV_ROUND_CLOSEST(vco, cdclk)) {
++	switch (cdclk_divider(cdclk, vco, waveform)) {
+ 	default:
+ 		drm_WARN_ON(&dev_priv->drm,
+ 			    cdclk != dev_priv->display.cdclk.hw.bypass);
+@@ -1826,13 +1840,6 @@ static bool cdclk_pll_is_unknown(unsigned int vco)
+ 	return vco == ~0;
+ }
+ 
+-static const int cdclk_squash_len = 16;
+-
+-static int cdclk_squash_divider(u16 waveform)
+-{
+-	return hweight16(waveform ?: 0xffff);
+-}
+-
+ static bool cdclk_compute_crawl_and_squash_midpoint(struct drm_i915_private *i915,
+ 						    const struct intel_cdclk_config *old_cdclk_config,
+ 						    const struct intel_cdclk_config *new_cdclk_config,
+@@ -1906,16 +1913,12 @@ static u32 bxt_cdclk_ctl(struct drm_i915_private *i915,
+ {
+ 	int cdclk = cdclk_config->cdclk;
+ 	int vco = cdclk_config->vco;
+-	int unsquashed_cdclk;
+ 	u16 waveform;
+ 	u32 val;
+ 
+ 	waveform = cdclk_squash_waveform(i915, cdclk);
+ 
+-	unsquashed_cdclk = DIV_ROUND_CLOSEST(cdclk * cdclk_squash_len,
+-					     cdclk_squash_divider(waveform));
+-
+-	val = bxt_cdclk_cd2x_div_sel(i915, unsquashed_cdclk, vco) |
++	val = bxt_cdclk_cd2x_div_sel(i915, cdclk, vco, waveform) |
+ 		bxt_cdclk_cd2x_pipe(i915, pipe);
+ 
+ 	/*
 -- 
 2.43.0
 
