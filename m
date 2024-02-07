@@ -2,58 +2,57 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5CFA884CC74
-	for <lists+intel-gfx@lfdr.de>; Wed,  7 Feb 2024 15:16:01 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id B11D284CC9B
+	for <lists+intel-gfx@lfdr.de>; Wed,  7 Feb 2024 15:25:18 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4FC7B10E3C5;
-	Wed,  7 Feb 2024 14:15:59 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 85CA610E7B4;
+	Wed,  7 Feb 2024 14:25:13 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="dSKR0syx";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="i0VK6IWn";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7070410E3C5
- for <intel-gfx@lists.freedesktop.org>; Wed,  7 Feb 2024 14:15:57 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id F0B7410E755;
+ Wed,  7 Feb 2024 14:25:11 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1707315358; x=1738851358;
+ t=1707315912; x=1738851912;
  h=date:from:to:cc:subject:message-id:reply-to:references:
  mime-version:content-transfer-encoding:in-reply-to;
- bh=kL3+/0R0+PkOy2CURimOPRa2dTk4p3dwgLqyxfOfyTs=;
- b=dSKR0syx9VMApHZE2Hh2NtoH1sgeQ5r/csaK6cFuOmbpq55iLuwRjXWs
- GK2NEAEdwh8qas2Rxp2YGkPd6Tl5j48WkV//USCXalFs7vtIB0UD/r92F
- zSAG9wFxNWZXEFjPUikBg6xB2vU9FY/+nQS+/79VqQi9yNQvi7ZPpvC7/
- bL/2UqWjKJE/VwCYXCCAyxFDQziW2VQTZ9mcm9djfVtwb9jLkDnCC+XqG
- YvBEpZainjgFpnB5HBgphT9FdazXyltX4li4vNYvQwFLciIfCtdwqTbOo
- Nxqm9FchbR47NcFVvY1+qfo80huF+G+c+01jxSihjLxrSlWkULcauY00R g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10976"; a="1130021"
-X-IronPort-AV: E=Sophos;i="6.05,251,1701158400"; 
-   d="scan'208";a="1130021"
-Received: from fmviesa002.fm.intel.com ([10.60.135.142])
- by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Feb 2024 06:15:57 -0800
+ bh=hAxy9+qqBY0/e5/Hbii3Q9bPEnc2XYUFU5raA/qGiFs=;
+ b=i0VK6IWne5RJrGIaOoRO73AonxJi+ajzk7FFy1t4KlvKSaOJqyg62Q8w
+ PEyyLZfOXPa2XOtaOdocqYnritpj1Mt03mbsu1Z1CAIPvR92bHh5E5CjJ
+ qVmbGRKKaSWT9PYaY0D5GdjIkfTr1MjjQJzLORAqzcaGuQavhpp3xT4qW
+ Q5uaBVLs0QI/ihbEhdgbWoFoXP5kaTBXyDvVTWq5r17GGP5/N9vN4Fn54
+ wvXsAgY3XfNWCJIvdiMuBuL/P4TgMYM1Upj05N4EeTt9S5ryKqTYYIQaZ
+ rlF0fhhvJ3c8WFGGLuxPYsAtrhn0uYux2MJJM2aC2BKrailEAPFunOnBV A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10976"; a="18417779"
+X-IronPort-AV: E=Sophos;i="6.05,251,1701158400"; d="scan'208";a="18417779"
+Received: from fmviesa009.fm.intel.com ([10.60.135.149])
+ by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 Feb 2024 06:25:11 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.05,251,1701158400"; d="scan'208";a="24583796"
+X-IronPort-AV: E=Sophos;i="6.05,251,1701158400"; 
+   d="scan'208";a="1345315"
 Received: from unknown (HELO ideak-desk.fi.intel.com) ([10.237.66.155])
- by fmviesa002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Feb 2024 06:15:55 -0800
-Date: Wed, 7 Feb 2024 16:16:13 +0200
+ by fmviesa009-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 Feb 2024 06:25:09 -0800
+Date: Wed, 7 Feb 2024 16:25:27 +0200
 From: Imre Deak <imre.deak@intel.com>
-To: "Hogander, Jouni" <jouni.hogander@intel.com>
-Cc: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
-Subject: Re: [PATCH 1/2] drm/i915: Prevent HW access during init from SDVO TV
- get_modes hook
-Message-ID: <ZcOQrSdCVpZIL8xR@ideak-desk.fi.intel.com>
-References: <20240206153910.1758057-1-imre.deak@intel.com>
- <20240206153910.1758057-2-imre.deak@intel.com>
- <47fac05618fb85725f9c0cfa694fb601c82b2a7f.camel@intel.com>
- <236599ca2b3982045a2515d4eaef16a2f23cefd5.camel@intel.com>
+To: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+Cc: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
+Subject: Re: [PATCH 14/19] drm/i915/dp: Compute DP tunel BW during encoder
+ state computation
+Message-ID: <ZcOS11NTAv+NFDee@ideak-desk.fi.intel.com>
+References: <20240123102850.390126-1-imre.deak@intel.com>
+ <20240123102850.390126-15-imre.deak@intel.com>
+ <ZcK_33SsjSRhuALe@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <236599ca2b3982045a2515d4eaef16a2f23cefd5.camel@intel.com>
+In-Reply-To: <ZcK_33SsjSRhuALe@intel.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -70,78 +69,120 @@ Reply-To: imre.deak@intel.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, Feb 07, 2024 at 03:45:15PM +0200, Hogander, Jouni wrote:
-> On Wed, 2024-02-07 at 15:26 +0200, Hogander, Jouni wrote:
-> > On Tue, 2024-02-06 at 17:39 +0200, Imre Deak wrote:
-> > > Prevent accessing the HW from the SDVO/TV get_modes connector hook.
-> > > Returning 0 from the hook will make the caller -
-> > > drm_helper_probe_single_connector_modes() - keep the previously
-> > > detected
-> > > mode list of the connector.
-> >
-> > I don't see where this is done? Not sure if looking at wrong place,
-> > but
-> > I see it tries using some override edid and in case that fails as
-> > well
-> > uses drm_add_modes_noedid?
-> >
-> > >
-> > > Signed-off-by: Imre Deak <imre.deak@intel.com>
-> > > ---
-> > >  drivers/gpu/drm/i915/display/intel_sdvo.c | 4 ++++
-> > >  1 file changed, 4 insertions(+)
-> > >
-> > > diff --git a/drivers/gpu/drm/i915/display/intel_sdvo.c
-> > > b/drivers/gpu/drm/i915/display/intel_sdvo.c
-> > > index 2571ef5a1b211..ccea0efbd136f 100644
-> > > --- a/drivers/gpu/drm/i915/display/intel_sdvo.c
-> > > +++ b/drivers/gpu/drm/i915/display/intel_sdvo.c
-> > > @@ -2287,6 +2287,7 @@ static const struct drm_display_mode
-> > > sdvo_tv_modes[] = {
-> > >  static int intel_sdvo_get_tv_modes(struct drm_connector
-> > > *connector)
-> >
-> > I see intel_sdvo_get_tv_modes is called from intel_sdvo_get_modes.
-> > Why there is no need to do the same in intel_sdvo_get_lvds_modes and
-> > intel_sdvo_get_ddc_modes as well?
+On Wed, Feb 07, 2024 at 01:25:19AM +0200, Ville Syrjälä wrote:
+> On Tue, Jan 23, 2024 at 12:28:45PM +0200, Imre Deak wrote:
+> > Compute the BW required through a DP tunnel on links with such tunnels
+> > detected and add the corresponding atomic state during a modeset.
+> > 
+> > Signed-off-by: Imre Deak <imre.deak@intel.com>
+> > ---
+> >  drivers/gpu/drm/i915/display/intel_dp.c     | 16 +++++++++++++---
+> >  drivers/gpu/drm/i915/display/intel_dp_mst.c | 13 +++++++++++++
+> >  2 files changed, 26 insertions(+), 3 deletions(-)
+> > 
+> > diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
+> > index 78dfe8be6031d..6968fdb7ffcdf 100644
+> > --- a/drivers/gpu/drm/i915/display/intel_dp.c
+> > +++ b/drivers/gpu/drm/i915/display/intel_dp.c
+> > @@ -2880,6 +2880,7 @@ intel_dp_compute_config(struct intel_encoder *encoder,
+> >  			struct drm_connector_state *conn_state)
+> >  {
+> >  	struct drm_i915_private *dev_priv = to_i915(encoder->base.dev);
+> > +	struct intel_atomic_state *state = to_intel_atomic_state(conn_state->state);
+> >  	struct drm_display_mode *adjusted_mode = &pipe_config->hw.adjusted_mode;
+> >  	struct intel_dp *intel_dp = enc_to_intel_dp(encoder);
+> >  	const struct drm_display_mode *fixed_mode;
+> > @@ -2980,6 +2981,9 @@ intel_dp_compute_config(struct intel_encoder *encoder,
+> >  	intel_dp_compute_vsc_sdp(intel_dp, pipe_config, conn_state);
+> >  	intel_dp_compute_hdr_metadata_infoframe_sdp(intel_dp, pipe_config, conn_state);
+> >  
+> > +	intel_dp_tunnel_atomic_compute_stream_bw(state, intel_dp, connector,
+> > +						 pipe_config);
 > 
-> It seems you are taking care of intel_svdo_get_ddc_modes in next patch.
-> Intel_svdo_get_lvds_modes doesn't touch the hw -> nothing to do there.
+> Error handling seems awol?
 
-Yes, all the connectors that read out an EDID - vs. the TV connector
-which doesn't - is handled by the next patch. And yes, the connectors
-which don't access the HW in the get_modes hook doesn't need this check.
-Btw, I think all the connectors should work - eventually - in this way:
-access the HW only in the encoder detect hook and from the get_modes
-hook only return the detected mode list w/o accessing the HW. DP-SST and
-HDMI do already the correct thing wrt. this.
+Yes, along with checking the return from
+drm_dp_tunnel_atomic_set_stream_bw(), thanks for spotting this.
 
 > 
-> >
-> > BR,
-> >
-> > Jouni Högander
-> >
-> > >  {
-> > >         struct intel_sdvo *intel_sdvo =
-> > > intel_attached_sdvo(to_intel_connector(connector));
-> > > +       struct drm_i915_private *i915 = to_i915(intel_sdvo-
-> > > > base.base.dev);
-> > >         struct intel_sdvo_connector *intel_sdvo_connector =
-> > >                 to_intel_sdvo_connector(connector);
-> > >         const struct drm_connector_state *conn_state = connector-
-> > > > state;
-> > > @@ -2298,6 +2299,9 @@ static int intel_sdvo_get_tv_modes(struct
-> > > drm_connector *connector)
-> > >         DRM_DEBUG_KMS("[CONNECTOR:%d:%s]\n",
-> > >                       connector->base.id, connector->name);
-> > >
-> > > +       if (!intel_display_driver_check_access(i915))
-> > > +               return 0;
-> > > +
-> > >         /*
-> > >          * Read the list of supported input resolutions for the
-> > > selected TV
-> > >          * format.
-> >
+> > +
+> >  	return 0;
+> >  }
+> >  
+> > @@ -6087,6 +6091,15 @@ static int intel_dp_connector_atomic_check(struct drm_connector *conn,
+> >  			return ret;
+> >  	}
+> >  
+> > +	if (!intel_connector_needs_modeset(state, conn))
+> > +		return 0;
+> > +
+> > +	ret = intel_dp_tunnel_atomic_check_state(state,
+> > +						 intel_dp,
+> > +						 intel_conn);
+> > +	if (ret)
+> > +		return ret;
+> > +
+> >  	/*
+> >  	 * We don't enable port sync on BDW due to missing w/as and
+> >  	 * due to not having adjusted the modeset sequence appropriately.
+> > @@ -6094,9 +6107,6 @@ static int intel_dp_connector_atomic_check(struct drm_connector *conn,
+> >  	if (DISPLAY_VER(dev_priv) < 9)
+> >  		return 0;
+> >  
+> > -	if (!intel_connector_needs_modeset(state, conn))
+> > -		return 0;
+> > -
+> >  	if (conn->has_tile) {
+> >  		ret = intel_modeset_tile_group(state, conn->tile_group->id);
+> >  		if (ret)
+> > diff --git a/drivers/gpu/drm/i915/display/intel_dp_mst.c b/drivers/gpu/drm/i915/display/intel_dp_mst.c
+> > index 520393dc8b453..cbfab3173b9ef 100644
+> > --- a/drivers/gpu/drm/i915/display/intel_dp_mst.c
+> > +++ b/drivers/gpu/drm/i915/display/intel_dp_mst.c
+> > @@ -42,6 +42,7 @@
+> >  #include "intel_dp.h"
+> >  #include "intel_dp_hdcp.h"
+> >  #include "intel_dp_mst.h"
+> > +#include "intel_dp_tunnel.h"
+> >  #include "intel_dpio_phy.h"
+> >  #include "intel_hdcp.h"
+> >  #include "intel_hotplug.h"
+> > @@ -523,6 +524,7 @@ static int intel_dp_mst_compute_config(struct intel_encoder *encoder,
+> >  				       struct drm_connector_state *conn_state)
+> >  {
+> >  	struct drm_i915_private *dev_priv = to_i915(encoder->base.dev);
+> > +	struct intel_atomic_state *state = to_intel_atomic_state(conn_state->state);
+> >  	struct intel_dp_mst_encoder *intel_mst = enc_to_mst(encoder);
+> >  	struct intel_dp *intel_dp = &intel_mst->primary->dp;
+> >  	const struct intel_connector *connector =
+> > @@ -619,6 +621,9 @@ static int intel_dp_mst_compute_config(struct intel_encoder *encoder,
+> >  
+> >  	intel_psr_compute_config(intel_dp, pipe_config, conn_state);
+> >  
+> > +	intel_dp_tunnel_atomic_compute_stream_bw(state, intel_dp, connector,
+> > +						 pipe_config);
+> > +
+> >  	return 0;
+> >  }
+> >  
+> > @@ -876,6 +881,14 @@ intel_dp_mst_atomic_check(struct drm_connector *connector,
+> >  	if (ret)
+> >  		return ret;
+> >  
+> > +	if (intel_connector_needs_modeset(state, connector)) {
+> > +		ret = intel_dp_tunnel_atomic_check_state(state,
+> > +							 intel_connector->mst_port,
+> > +							 intel_connector);
+> > +		if (ret)
+> > +			return ret;
+> > +	}
+> > +
+> >  	return drm_dp_atomic_release_time_slots(&state->base,
+> >  						&intel_connector->mst_port->mst_mgr,
+> >  						intel_connector->port);
+> > -- 
+> > 2.39.2
 > 
+> -- 
+> Ville Syrjälä
+> Intel
