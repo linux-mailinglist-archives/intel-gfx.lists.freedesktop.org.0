@@ -2,50 +2,49 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id DB62A84CC5D
-	for <lists+intel-gfx@lfdr.de>; Wed,  7 Feb 2024 15:10:28 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5CFA884CC74
+	for <lists+intel-gfx@lfdr.de>; Wed,  7 Feb 2024 15:16:01 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 52D4E10E7B1;
-	Wed,  7 Feb 2024 14:10:27 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4FC7B10E3C5;
+	Wed,  7 Feb 2024 14:15:59 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="QXVHpy7N";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="dSKR0syx";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3430F10E7B1
- for <intel-gfx@lists.freedesktop.org>; Wed,  7 Feb 2024 14:10:26 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7070410E3C5
+ for <intel-gfx@lists.freedesktop.org>; Wed,  7 Feb 2024 14:15:57 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1707315026; x=1738851026;
+ t=1707315358; x=1738851358;
  h=date:from:to:cc:subject:message-id:reply-to:references:
  mime-version:content-transfer-encoding:in-reply-to;
- bh=j843jgXoR6XcCoOSu+O6Nh8qjblrrlKM20LRppKsAMk=;
- b=QXVHpy7N2QO4oW8AHp9jwBXY+gDln3gSvX5TSkduRlO4Ho3pGhXHlxxZ
- 1/3QQ9Iaive5hLTCHcTAgE82YQufPsHJY2jRk9epJnmPIbLVnyrTmiQGP
- IeWOz1s5wD+UL8zKmQmjri45BIBgixSIGv/gNpZYFh8fB/Q0drLjRnuNg
- oW5ALupz4dBBYieLBdkAsRjfroSand/2v4QdR2JmHcTo8WzkGhBmnYyon
- 3831de2qGWMxzwnPBI+n8WtbNYhZ1g7EKctOwc5gs4JObTwKyuNPzGK+K
- 4bcv2csbnyWRTytblPt3Tmvf5sKEZCMNUAwwey4A7sjVrbObP58gquc3I g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10976"; a="3982725"
+ bh=kL3+/0R0+PkOy2CURimOPRa2dTk4p3dwgLqyxfOfyTs=;
+ b=dSKR0syx9VMApHZE2Hh2NtoH1sgeQ5r/csaK6cFuOmbpq55iLuwRjXWs
+ GK2NEAEdwh8qas2Rxp2YGkPd6Tl5j48WkV//USCXalFs7vtIB0UD/r92F
+ zSAG9wFxNWZXEFjPUikBg6xB2vU9FY/+nQS+/79VqQi9yNQvi7ZPpvC7/
+ bL/2UqWjKJE/VwCYXCCAyxFDQziW2VQTZ9mcm9djfVtwb9jLkDnCC+XqG
+ YvBEpZainjgFpnB5HBgphT9FdazXyltX4li4vNYvQwFLciIfCtdwqTbOo
+ Nxqm9FchbR47NcFVvY1+qfo80huF+G+c+01jxSihjLxrSlWkULcauY00R g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10976"; a="1130021"
 X-IronPort-AV: E=Sophos;i="6.05,251,1701158400"; 
-   d="scan'208";a="3982725"
-Received: from orviesa009.jf.intel.com ([10.64.159.149])
- by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Feb 2024 06:10:25 -0800
+   d="scan'208";a="1130021"
+Received: from fmviesa002.fm.intel.com ([10.60.135.142])
+ by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 Feb 2024 06:15:57 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.05,251,1701158400"; 
-   d="scan'208";a="1337340"
+X-IronPort-AV: E=Sophos;i="6.05,251,1701158400"; d="scan'208";a="24583796"
 Received: from unknown (HELO ideak-desk.fi.intel.com) ([10.237.66.155])
- by orviesa009-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Feb 2024 06:10:23 -0800
-Date: Wed, 7 Feb 2024 16:10:28 +0200
+ by fmviesa002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 Feb 2024 06:15:55 -0800
+Date: Wed, 7 Feb 2024 16:16:13 +0200
 From: Imre Deak <imre.deak@intel.com>
 To: "Hogander, Jouni" <jouni.hogander@intel.com>
 Cc: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
 Subject: Re: [PATCH 1/2] drm/i915: Prevent HW access during init from SDVO TV
  get_modes hook
-Message-ID: <ZcOPVGlO+QAcysLP@ideak-desk.fi.intel.com>
+Message-ID: <ZcOQrSdCVpZIL8xR@ideak-desk.fi.intel.com>
 References: <20240206153910.1758057-1-imre.deak@intel.com>
  <20240206153910.1758057-2-imre.deak@intel.com>
  <47fac05618fb85725f9c0cfa694fb601c82b2a7f.camel@intel.com>
@@ -80,24 +79,11 @@ On Wed, Feb 07, 2024 at 03:45:15PM +0200, Hogander, Jouni wrote:
 > > > detected
 > > > mode list of the connector.
 > >
->
 > > I don't see where this is done? Not sure if looking at wrong place,
-> > but I see it tries using some override edid and in case that fails
-> > as well uses drm_add_modes_noedid?
-
-Some default and EDID override modes are also added to the connector
-mode list, similarly to when the HW access in intel_sdvo_get_tv_modes()
-fails (along with any modes specified via the kernel command line, which
-happens unconditionally, see drm_helper_probe_add_cmdline_mode()).
-
-All the modes detected by the encoder detect and the connector get_modes
-hooks gets added to the drm_connector::probed_modes list. From this
-__drm_helper_update_and_validate() will copy any new modes to the
-drm_connector::modes list (which will be returned to user space/kernel
-client). Thus, returning 0 from the above TV connector get_modes hook
-will preserve the list of modes on the drm_connector::modes list from an
-earlier encoder detect/connector get_modes call.
-
+> > but
+> > I see it tries using some override edid and in case that fails as
+> > well
+> > uses drm_add_modes_noedid?
 > >
 > > >
 > > > Signed-off-by: Imre Deak <imre.deak@intel.com>
@@ -116,12 +102,20 @@ earlier encoder detect/connector get_modes call.
 > > > *connector)
 > >
 > > I see intel_sdvo_get_tv_modes is called from intel_sdvo_get_modes.
-> > Why
-> > there is no need to do the same in intel_sdvo_get_lvds_modes and
+> > Why there is no need to do the same in intel_sdvo_get_lvds_modes and
 > > intel_sdvo_get_ddc_modes as well?
 > 
 > It seems you are taking care of intel_svdo_get_ddc_modes in next patch.
 > Intel_svdo_get_lvds_modes doesn't touch the hw -> nothing to do there.
+
+Yes, all the connectors that read out an EDID - vs. the TV connector
+which doesn't - is handled by the next patch. And yes, the connectors
+which don't access the HW in the get_modes hook doesn't need this check.
+Btw, I think all the connectors should work - eventually - in this way:
+access the HW only in the encoder detect hook and from the get_modes
+hook only return the detected mode list w/o accessing the HW. DP-SST and
+HDMI do already the correct thing wrt. this.
+
 > 
 > >
 > > BR,
