@@ -2,51 +2,63 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 67A8584CD36
-	for <lists+intel-gfx@lfdr.de>; Wed,  7 Feb 2024 15:49:27 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id D388884CDB7
+	for <lists+intel-gfx@lfdr.de>; Wed,  7 Feb 2024 16:10:05 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D87AF10E151;
-	Wed,  7 Feb 2024 14:49:25 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B95EE1132A3;
+	Wed,  7 Feb 2024 15:10:02 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="BEwST0CS";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="cgo3sAdH";
 	dkim-atps=neutral
-X-Original-To: intel-gfx@lists.freedesktop.org
-Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9784210E151
- for <intel-gfx@lists.freedesktop.org>; Wed,  7 Feb 2024 14:49:23 +0000 (UTC)
+X-Original-To: Intel-gfx@lists.freedesktop.org
+Delivered-To: Intel-gfx@lists.freedesktop.org
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 449971124A0;
+ Wed,  7 Feb 2024 15:10:00 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1707317363; x=1738853363;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=L7lPHDFbNzKEJ004lpDUOL5uX6Pm7knfPgl1l21fwsU=;
- b=BEwST0CSFYAPQ7AfvSi2akMbAmQPeZDJH48DUMfyjUiOHKls0cOPXDIk
- MUEnR4CKtFeEj+UXs094Ma9xy8AViju1UEBIHx3/LC1bWWvKmF54fFMxB
- XM9CwcB+lhDCZhr1B3ipH24SpkOUMADRzpNc46ZJ2QphyKaV8hcDwqiSG
- GZ1ikVullLi0MWKQ0RNXGd6BrN1bBE4PERIUeM0ocu8AuRwoB8GU5l1Iv
- hRypcCY2SZ0pJf1HlWri+uAuCEfZq7nPlQThAGq71I0KfY93pdW9wlVEn
- /oMbNhZAnYSLqcmROFuIyZNj/6ShLdsrWB9N4d3F0Myn6nSFhTzLYfaJL w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10976"; a="26445045"
-X-IronPort-AV: E=Sophos;i="6.05,251,1701158400"; d="scan'208";a="26445045"
-Received: from fmviesa004.fm.intel.com ([10.60.135.144])
- by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Feb 2024 06:49:19 -0800
+ t=1707318600; x=1738854600;
+ h=mime-version:content-transfer-encoding:in-reply-to:
+ references:subject:to:cc:from:message-id:date;
+ bh=3nKxjuLN5GZQX4lfJg/CBmW/yO3+/SCaAOBqdvLVE0k=;
+ b=cgo3sAdHzNz6Zr77lzXCjLC1944nwtndkmmSGkAR7E4ASyzw5NKgpjq5
+ MWxpYKbn2D0Y4TNzn3ykdUEkr32Qhh98XrVtnuNrSc2uUW56pUxLLPmZ0
+ 4MFEtSkqXq/2fCbZnUtI3/KYxyzV/elRItk9X73qJYo6kzGuVfVvhVj7a
+ VIaTXdrNkYWhdK9zIGyU2n2TZELjFbUa7FU/R+wx3ewEKaKr4SRDyp0Dd
+ uJAyNUl3PJqzBHzfB5qTq08HlYv0RklyKUCYEqNfJQCpjy2+ryuK7NXkc
+ COD1uYxrLjFqBX7uzINUIv1LluUTtFHhm2GrQKlLtmQB6mgJWuUbBk84o Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10977"; a="916785"
+X-IronPort-AV: E=Sophos;i="6.05,251,1701158400"; 
+   d="scan'208";a="916785"
+Received: from fmviesa010.fm.intel.com ([10.60.135.150])
+ by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 Feb 2024 07:09:58 -0800
 X-ExtLoop1: 1
 X-IronPort-AV: E=Sophos;i="6.05,251,1701158400"; 
-   d="scan'208";a="5954315"
-Received: from srr4-3-linux-101-amanna.iind.intel.com ([10.223.74.76])
- by fmviesa004.fm.intel.com with ESMTP; 07 Feb 2024 06:49:18 -0800
-From: Animesh Manna <animesh.manna@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Cc: jouni.hogander@intel.com, arun.r.murthy@intel.com,
- Animesh Manna <animesh.manna@intel.com>
-Subject: [PATCH] drm/i915/panelreplay: Panel replay workaround with VRR
-Date: Wed,  7 Feb 2024 20:05:09 +0530
-Message-Id: <20240207143509.2607428-1-animesh.manna@intel.com>
-X-Mailer: git-send-email 2.29.0
+   d="scan'208";a="1354280"
+Received: from unknown (HELO localhost) ([10.245.244.8])
+ by fmviesa010-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 Feb 2024 07:09:55 -0800
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <20240207115612.1322778-1-tvrtko.ursulin@linux.intel.com>
+References: <20240207115612.1322778-1-tvrtko.ursulin@linux.intel.com>
+Subject: Re: [RFC] drm/i915: Add GuC submission interface version query
+To: Intel-gfx@lists.freedesktop.org,
+ Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
+ dri-devel@lists.freedesktop.org
+Cc: Tvrtko Ursulin <tvrtko.ursulin@intel.com>,
+ Kenneth Graunke <kenneth@whitecape.org>, Jose Souza <jose.souza@intel.com>,
+ Sagar Ghuge <sagar.ghuge@intel.com>, Paulo Zanoni <paulo.r.zanoni@intel.com>,
+ John Harrison <John.C.Harrison@Intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, Jani Nikula <jani.nikula@intel.com>,
+ Vivaik Balasubrawmanian <vivaik.balasubrawmanian@intel.com>
+From: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+Message-ID: <170731859243.18961.9155317757969969815@jlahtine-mobl.ger.corp.intel.com>
+User-Agent: alot/0.8.1
+Date: Wed, 07 Feb 2024 17:09:52 +0200
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -62,38 +74,160 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Panel Replay VSC SDP not getting sent when VRR is enabled
-and W1 and W2 are 0. So Program Set Context Latency in
-TRANS_SET_CONTEXT_LATENCY register to at least a value of 1.
+Quoting Tvrtko Ursulin (2024-02-07 13:56:12)
+> From: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+>=20
+> Add a new query to the GuC submission interface version.
+>=20
+> Mesa intends to use this information to check for old firmware versions
+> with a known bug where using the render and compute command streamers
+> simultaneously can cause GPU hangs due issues in firmware scheduling.
+>=20
+> Based on patches from Vivaik and Joonas.
+>=20
+> There is a little bit of an open around the width required for versions.
+> While the GuC FW iface tells they are u8, i915 GuC code uses u32:
+>=20
+>  #define CSS_SW_VERSION_UC_MAJOR               (0xFF << 16)
+>  #define CSS_SW_VERSION_UC_MINOR               (0xFF << 8)
+>  #define CSS_SW_VERSION_UC_PATCH               (0xFF << 0)
+> ...
+>  struct intel_uc_fw_ver {
+>          u32 major;
+>          u32 minor;
+>          u32 patch;
+>          u32 build;
+>  };
+>=20
+> So we could make the query u8, and refactor the struct intel_uc_fw_ver
+> to use u8, or not. To avoid any doubts on why are we assigning u32 to
+> u8 I simply opted to use u64. Which avoids the need to add any padding
+> too.
 
-Signed-off-by: Animesh Manna <animesh.manna@intel.com>
----
- drivers/gpu/drm/i915/display/intel_display.c | 12 ++++++++++--
- 1 file changed, 10 insertions(+), 2 deletions(-)
+This a single-shot init time query so I guess u64 is fine too, to keep
+the code straightforward.
 
-diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
-index 1b844cac4c58..c1ec78b5b6c5 100644
---- a/drivers/gpu/drm/i915/display/intel_display.c
-+++ b/drivers/gpu/drm/i915/display/intel_display.c
-@@ -2618,8 +2618,16 @@ static void intel_set_transcoder_timings(const struct intel_crtc_state *crtc_sta
- 	 * TRANS_SET_CONTEXT_LATENCY to configure the pipe vblank start.
- 	 */
- 	if (DISPLAY_VER(dev_priv) >= 13) {
--		intel_de_write(dev_priv, TRANS_SET_CONTEXT_LATENCY(cpu_transcoder),
--			       crtc_vblank_start - crtc_vdisplay);
-+		/*
-+		 * WA: Program Set Context Latency in TRANS_SET_CONTEXT_LATENCY register
-+		 * to at least a value of 1 when Panel Replay is enabled with VRR.
-+		 */
-+		if (crtc_state->vrr.enable &&  crtc_state->has_panel_replay &&
-+		    (crtc_vblank_start == crtc_vdisplay))
-+			intel_de_write(dev_priv, TRANS_SET_CONTEXT_LATENCY(cpu_transcoder), 1);
-+		else
-+			intel_de_write(dev_priv, TRANS_SET_CONTEXT_LATENCY(cpu_transcoder),
-+				       crtc_vblank_start - crtc_vdisplay);
- 
- 		/*
- 		 * VBLANK_START not used by hw, just clear it
--- 
-2.29.0
+> Compile tested only.
 
+If Mesa folks confirm this is working for them and after you add link to
+the Mesa PR, then you can add my:
+
+Reviewed-by: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
+
+Regards, Joonas
+
+> Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+> Cc: Kenneth Graunke <kenneth@whitecape.org>
+> Cc: Jose Souza <jose.souza@intel.com>
+> Cc: Sagar Ghuge <sagar.ghuge@intel.com>
+> Cc: Paulo Zanoni <paulo.r.zanoni@intel.com>
+> Cc: John Harrison <John.C.Harrison@Intel.com>
+> Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
+> Cc: Jani Nikula <jani.nikula@intel.com>
+> Cc: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+> Cc: Vivaik Balasubrawmanian <vivaik.balasubrawmanian@intel.com>
+> ---
+>  drivers/gpu/drm/i915/i915_query.c | 32 +++++++++++++++++++++++++++++++
+>  include/uapi/drm/i915_drm.h       | 11 +++++++++++
+>  2 files changed, 43 insertions(+)
+>=20
+> diff --git a/drivers/gpu/drm/i915/i915_query.c b/drivers/gpu/drm/i915/i91=
+5_query.c
+> index 00871ef99792..999687f6a3d4 100644
+> --- a/drivers/gpu/drm/i915/i915_query.c
+> +++ b/drivers/gpu/drm/i915/i915_query.c
+> @@ -551,6 +551,37 @@ static int query_hwconfig_blob(struct drm_i915_priva=
+te *i915,
+>         return hwconfig->size;
+>  }
+> =20
+> +static int
+> +query_guc_submission_version(struct drm_i915_private *i915,
+> +                            struct drm_i915_query_item *query)
+> +{
+> +       struct drm_i915_query_guc_submission_version __user *query_ptr =3D
+> +                                           u64_to_user_ptr(query->data_p=
+tr);
+> +       struct drm_i915_query_guc_submission_version ver;
+> +       struct intel_guc *guc =3D &to_gt(i915)->uc.guc;
+> +       const size_t size =3D sizeof(ver);
+> +       int ret;
+> +
+> +       if (!intel_uc_uses_guc_submission(&to_gt(i915)->uc))
+> +               return -ENODEV;
+> +
+> +       ret =3D copy_query_item(&ver, size, size, query);
+> +       if (ret !=3D 0)
+> +               return ret;
+> +
+> +       if (ver.major || ver.minor || ver.patch)
+> +               return -EINVAL;
+> +
+> +       ver.major =3D guc->submission_version.major;
+> +       ver.minor =3D guc->submission_version.minor;
+> +       ver.patch =3D guc->submission_version.patch;
+> +
+> +       if (copy_to_user(query_ptr, &ver, size))
+> +               return -EFAULT;
+> +
+> +       return 0;
+> +}
+> +
+>  static int (* const i915_query_funcs[])(struct drm_i915_private *dev_pri=
+v,
+>                                         struct drm_i915_query_item *query=
+_item) =3D {
+>         query_topology_info,
+> @@ -559,6 +590,7 @@ static int (* const i915_query_funcs[])(struct drm_i9=
+15_private *dev_priv,
+>         query_memregion_info,
+>         query_hwconfig_blob,
+>         query_geometry_subslices,
+> +       query_guc_submission_version,
+>  };
+> =20
+>  int i915_query_ioctl(struct drm_device *dev, void *data, struct drm_file=
+ *file)
+> diff --git a/include/uapi/drm/i915_drm.h b/include/uapi/drm/i915_drm.h
+> index 550c496ce76d..d80d9b5e1eda 100644
+> --- a/include/uapi/drm/i915_drm.h
+> +++ b/include/uapi/drm/i915_drm.h
+> @@ -3038,6 +3038,7 @@ struct drm_i915_query_item {
+>          *  - %DRM_I915_QUERY_MEMORY_REGIONS (see struct drm_i915_query_m=
+emory_regions)
+>          *  - %DRM_I915_QUERY_HWCONFIG_BLOB (see `GuC HWCONFIG blob uAPI`)
+>          *  - %DRM_I915_QUERY_GEOMETRY_SUBSLICES (see struct drm_i915_que=
+ry_topology_info)
+> +        *  - %DRM_I915_QUERY_GUC_SUBMISSION_VERSION (see struct drm_i915=
+_query_guc_submission_version)
+>          */
+>         __u64 query_id;
+>  #define DRM_I915_QUERY_TOPOLOGY_INFO           1
+> @@ -3046,6 +3047,7 @@ struct drm_i915_query_item {
+>  #define DRM_I915_QUERY_MEMORY_REGIONS          4
+>  #define DRM_I915_QUERY_HWCONFIG_BLOB           5
+>  #define DRM_I915_QUERY_GEOMETRY_SUBSLICES      6
+> +#define DRM_I915_QUERY_GUC_SUBMISSION_VERSION  7
+>  /* Must be kept compact -- no holes and well documented */
+> =20
+>         /**
+> @@ -3591,6 +3593,15 @@ struct drm_i915_query_memory_regions {
+>         struct drm_i915_memory_region_info regions[];
+>  };
+> =20
+> +/**
+> +* struct drm_i915_query_guc_submission_version - query GuC submission in=
+terface version
+> +*/
+> +struct drm_i915_query_guc_submission_version {
+> +       __u64 major;
+> +       __u64 minor;
+> +       __u64 patch;
+> +};
+> +
+>  /**
+>   * DOC: GuC HWCONFIG blob uAPI
+>   *
+> --=20
+> 2.40.1
+>=20
