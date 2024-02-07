@@ -2,46 +2,54 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 195AF84F361
-	for <lists+intel-gfx@lfdr.de>; Fri,  9 Feb 2024 11:25:52 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id DA42684F360
+	for <lists+intel-gfx@lfdr.de>; Fri,  9 Feb 2024 11:25:50 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1B0A510F311;
-	Fri,  9 Feb 2024 10:25:46 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D5C3B10EC3D;
+	Fri,  9 Feb 2024 10:25:44 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="QwvHYGwo";
+	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from exchange.fintech.ru (exchange.fintech.ru [195.54.195.159])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 946D61131F4;
- Wed,  7 Feb 2024 10:27:30 +0000 (UTC)
-Received: from Ex16-01.fintech.ru (10.0.10.18) by exchange.fintech.ru
- (195.54.195.169) with Microsoft SMTP Server (TLS) id 14.3.498.0; Wed, 7 Feb
- 2024 13:27:28 +0300
-Received: from [192.168.211.130] (10.0.253.138) by Ex16-01.fintech.ru
- (10.0.10.18) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2242.4; Wed, 7 Feb 2024
- 13:27:28 +0300
-Message-ID: <6497acbb-7970-4fd5-bc47-f6896f22efc1@fintech.ru>
-Date: Wed, 7 Feb 2024 02:27:27 -0800
+X-Greylist: delayed 1477 seconds by postgrey-1.36 at gabe;
+ Wed, 07 Feb 2024 11:02:49 UTC
+Received: from fanzine2.igalia.com (fanzine2.igalia.com [213.97.179.56])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 35333113214;
+ Wed,  7 Feb 2024 11:02:49 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
+ s=20170329;
+ h=Content-Transfer-Encoding:Content-Type:To:Subject:From:
+ MIME-Version:Date:Message-ID:Sender:Reply-To:Cc:Content-ID:
+ Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+ :Resent-Message-ID:In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:
+ List-Subscribe:List-Post:List-Owner:List-Archive;
+ bh=sIHMKKv+rJ2BTWFPAnxdivnmWvcd5mEBUBD4G3KON+8=; b=QwvHYGwoHEPWIBh/7c18iiBjQK
+ F9y5XfWn3Pm9gLJraKO5cSr1im1qqFo2eA8WChoFU3F39L6OrHiqH76zyXKgRgP9M2y5ybsylo98S
+ /VraZP1Ludy7goUgMOWrf6kBwPq5ZZMJDDpK9xvAVLvfMq8Gkx4rIIIyQJY46Xu69nEqGVWanAcfV
+ I/EyjNqODHmhk6y+pEZX/YijgtOjbPpZhUnVSGt1k4zc4/Tu4vu9b6yQLG0PtSVKHO4ecS0/721ug
+ rk8pDV6WQN3quFSerxW1NgdkZ1oN5Q5KwO0W5d3bFeQiu18bKhl+6VXrG4jhUXSlTZ2s5SNXtsbwt
+ B/XeinwA==;
+Received: from c-71-59-88-35.hsd1.nj.comcast.net ([71.59.88.35]
+ helo=[192.168.1.177]) by fanzine2.igalia.com with esmtpsa 
+ (Cipher TLS1.3:ECDHE_X25519__RSA_PSS_RSAE_SHA256__AES_128_GCM:128) (Exim)
+ id 1rXfJg-00Ei61-Ru; Wed, 07 Feb 2024 11:38:09 +0100
+Message-ID: <71977053-32f0-45e9-ba0c-8eb177735c9d@igalia.com>
+Date: Wed, 7 Feb 2024 05:38:26 -0500
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] drm/i915/gt: Prevent possible NULL dereference in
- __caps_show()
 Content-Language: en-US
-To: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>, Jani Nikula
- <jani.nikula@linux.intel.com>
-CC: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>, Rodrigo Vivi
- <rodrigo.vivi@intel.com>, David Airlie <airlied@gmail.com>, Daniel Vetter
- <daniel@ffwll.ch>, <intel-gfx@lists.freedesktop.org>,
- <dri-devel@lists.freedesktop.org>, <linux-kernel@vger.kernel.org>,
- <lvc-project@linuxtesting.org>
-References: <20240206164543.46834-1-n.zhandarovich@fintech.ru>
- <3c63aea1-1a04-45eb-9af1-02f52d4132e4@linux.intel.com>
-From: Nikita Zhandarovich <n.zhandarovich@fintech.ru>
-In-Reply-To: <3c63aea1-1a04-45eb-9af1-02f52d4132e4@linux.intel.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 8bit
-X-Originating-IP: [10.0.253.138]
-X-ClientProxiedBy: Ex16-02.fintech.ru (10.0.10.19) To Ex16-01.fintech.ru
- (10.0.10.18)
+From: Christopher Michael <cmichael@igalia.com>
+Subject: 2024 X.Org Foundation Membership deadline for voting in the election
+To: events@lists.x.org, xorg-devel@lists.x.org,
+ wayland-devel@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ mesa-dev@lists.freedesktop.org, amd-gfx@lists.freedesktop.org,
+ etnaviv@lists.freedesktop.org, freedreno@lists.freedesktop.org,
+ nouveau@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
+ libre-soc-dev@lists.libre-soc.org, elections@x.org, members@x.org,
+ xorg@lists.freedesktop.org
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 X-Mailman-Approved-At: Fri, 09 Feb 2024 10:25:43 +0000
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -58,91 +66,21 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hello,
+The 2024 X.Org Foundation elections are rapidly approaching. We will be 
+forwarding the election schedule and nominating process to the 
+membership shortly.
 
-On 2/7/24 01:16, Tvrtko Ursulin wrote:
-> 
-> Hi,
-> 
-> On 06/02/2024 16:45, Nikita Zhandarovich wrote:
->> After falling through the switch statement to default case 'repr' is
->> initialized with NULL, which will lead to incorrect dereference of
->> '!repr[n]' in the following loop.
->>
->> Fix it with the help of an additional check for NULL.
->>
->> Found by Linux Verification Center (linuxtesting.org) with static
->> analysis tool SVACE.
->>
->> Fixes: 4ec76dbeb62b ("drm/i915/gt: Expose engine properties via sysfs")
->> Signed-off-by: Nikita Zhandarovich <n.zhandarovich@fintech.ru>
->> ---
->> P.S. The NULL-deref problem might be dealt with this way but I am
->> not certain that the rest of the __caps_show() behaviour remains
->> correct if we end up in default case. For instance, as far as I
->> can tell, buf might turn out to be w/o '\0'. I could use some
->> direction if this has to be addressed as well.
->>
->>   drivers/gpu/drm/i915/gt/sysfs_engines.c | 2 +-
->>   1 file changed, 1 insertion(+), 1 deletion(-)
->>
->> diff --git a/drivers/gpu/drm/i915/gt/sysfs_engines.c
->> b/drivers/gpu/drm/i915/gt/sysfs_engines.c
->> index 021f51d9b456..6b130b732867 100644
->> --- a/drivers/gpu/drm/i915/gt/sysfs_engines.c
->> +++ b/drivers/gpu/drm/i915/gt/sysfs_engines.c
->> @@ -105,7 +105,7 @@ __caps_show(struct intel_engine_cs *engine,
->>         len = 0;
->>       for_each_set_bit(n, &caps, show_unknown ? BITS_PER_LONG : count) {
->> -        if (n >= count || !repr[n]) {
->> +        if (n >= count || !repr || !repr[n]) {
-> 
-> There are two input combinations to this function when repr is NULL.
-> 
-> First is show_unknown=true and caps=0, which means the for_each_set_bit
-> will not execute its body. (No bits set.)
-> 
-> Second is show_unknown=false and caps=~0, which means count is zero so
-> for_each_set_bit will again not run. (Bitfield size input param is zero.)
-> 
-> So unless I am missing something I do not see the null pointer dereference.
-> 
-> What could theoretically happen is that a third input combination
-> appears, where caps is not zero in the show_unknown=true case, either
-> via a fully un-handled engine->class (switch), or a new capability bit
-> not added to the static array a bit above.
-> 
-> That would assert during driver development here:
-> 
->             if (GEM_WARN_ON(show_unknown))
-> 
-> Granted that could be after the dereference in "if (n >= count ||
-> !repr[n])", but would be caught in debug builds (CI) and therefore not
-> be able to "ship" (get merge to the repo).
-> 
-> Your second question is about empty buffer returned i.e. len=0 at the
-> end of the function? (Which is when the buffer will not be null
-> terminated - or you see another option?)
-> 
-> That I think is safe too since it just results in a zero length read in
-> sysfs.
-> 
-> Regards,
-> 
-> Tvrtko
-> 
->>               if (GEM_WARN_ON(show_unknown))
->>                   len += sysfs_emit_at(buf, len, "[%x] ", n);
->>           } else {
 
-Thank you for such a full response.
+Please note that only current members can vote in the upcoming election, 
+and that the deadline for new memberships or renewals to vote in the 
+upcoming election is 26 February 2024 at 23:59 UTC.
 
-I think you are right. I was under the impression that either currently
-or in the future there might be an input combination, as you mentioned,
-that may trigger the NULL dereference. If you feel it will be caught
-beforehand, I am satisfied as well. Same goes for the empty buffer stuff.
 
-I think dropping the patch is the best option then. Apologies for any
-inconvenience.
+If you are interested in joining the X.Org Foundation or in renewing 
+your membership, please visit the membership system site at: 
+https://members.x.org/
 
-Nikita
+
+
+Christopher Michael, on behalf of the X.Org elections committee
+
