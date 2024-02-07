@@ -2,156 +2,151 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id E462584C438
-	for <lists+intel-gfx@lfdr.de>; Wed,  7 Feb 2024 05:58:42 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id E1C1A84C466
+	for <lists+intel-gfx@lfdr.de>; Wed,  7 Feb 2024 06:32:00 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 38D6110E105;
-	Wed,  7 Feb 2024 04:58:41 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6C61E10E0B6;
+	Wed,  7 Feb 2024 05:31:57 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="G+8CZIxW";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="LySGRJA7";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0133B10E105
- for <intel-gfx@lists.freedesktop.org>; Wed,  7 Feb 2024 04:58:39 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7A16410E0B6
+ for <intel-gfx@lists.freedesktop.org>; Wed,  7 Feb 2024 05:31:55 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1707281920; x=1738817920;
+ t=1707283915; x=1738819915;
  h=message-id:date:subject:to:cc:references:from:
  in-reply-to:content-transfer-encoding:mime-version;
- bh=di6qYyeXDu3a1vtsVUb68oVfOLO0X49u0kQ7MQ2/vUQ=;
- b=G+8CZIxW1BMIIz/p23jFNRp3127jSBPvt44ofJa8kWW6fLZNwc2WWuNo
- 09+LAL9akdGR3QgWcKBpCF6XWiQ2l6yfiN6DP3uMOgXCl6NmTOVxm5oOA
- iv9h8vfJXlIMGH4E1HUkq9eb0fKfs6ZLYNA5ZMlIQDTr9DIDRq4FNMVTf
- TfCR4IMHBvJNm5dxY2vUYq4SAaRVHZ10z27LE8/rQP9dGMU6P4eaYB3F2
- V6lywiHb6yRpm2Kb53LnTvW5iaOYggLwIncskPF6O96a6rVMKK+u7eco7
- Q6Bv2lGpEoFYYbabfi+2K0ByWylhU9FwkPdCU8FmO3SPiUtQhnVoxD3T/ Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10976"; a="3877390"
+ bh=VpGUJiQdiwF6HYqiwdPzktebgbikTq8JbDYwghSsNFA=;
+ b=LySGRJA7ROXzS/vpnyCnVfp/VYjSfkjs+GC5dWLyGndl8+7cOp7gFY7Z
+ prV+RyqRNw64BonwIxm8tzf0VSD+oLuR5+DRI1qV47k7COC1REH+qa5bF
+ emBtP7sXHTNMpFtSQQGeRXNeudAo4OVBf/ADkw6/Q18icJaCPSHiue3tX
+ 7XyZV8u2In4+O6Q0+7lxqDqxR7WB6wlAuXswdbTf/MoOxB1D9coRGD6wN
+ YDF0XXpSad/UgxZuRH19mYOn3Zt03wrn6HvnMHjPo30p2iAgruf0n0epO
+ hAEDJdKgS6oY5qoGYxgv+c/DbLaXNX1eNwXb7BUInZCM2/K3guz44t2Y2 Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10976"; a="4697251"
 X-IronPort-AV: E=Sophos;i="6.05,250,1701158400"; 
-   d="scan'208";a="3877390"
-Received: from fmviesa005.fm.intel.com ([10.60.135.145])
- by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Feb 2024 20:58:40 -0800
+   d="scan'208";a="4697251"
+Received: from orviesa002.jf.intel.com ([10.64.159.142])
+ by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 06 Feb 2024 21:31:54 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.05,250,1701158400"; 
-   d="scan'208";a="5840124"
-Received: from fmsmsx602.amr.corp.intel.com ([10.18.126.82])
- by fmviesa005.fm.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
- 06 Feb 2024 20:58:39 -0800
+X-IronPort-AV: E=Sophos;i="6.05,250,1701158400"; d="scan'208";a="32053649"
+Received: from fmsmsx601.amr.corp.intel.com ([10.18.126.81])
+ by orviesa002.jf.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
+ 06 Feb 2024 21:31:53 -0800
 Received: from fmsmsx610.amr.corp.intel.com (10.18.126.90) by
- fmsmsx602.amr.corp.intel.com (10.18.126.82) with Microsoft SMTP Server
+ fmsmsx601.amr.corp.intel.com (10.18.126.81) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35; Tue, 6 Feb 2024 20:58:39 -0800
-Received: from fmsmsx610.amr.corp.intel.com (10.18.126.90) by
+ 15.1.2507.35; Tue, 6 Feb 2024 21:31:52 -0800
+Received: from fmsedg602.ED.cps.intel.com (10.1.192.136) by
  fmsmsx610.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35; Tue, 6 Feb 2024 20:58:38 -0800
-Received: from fmsedg601.ED.cps.intel.com (10.1.192.135) by
- fmsmsx610.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35 via Frontend Transport; Tue, 6 Feb 2024 20:58:38 -0800
-Received: from NAM10-DM6-obe.outbound.protection.outlook.com (104.47.58.100)
- by edgegateway.intel.com (192.55.55.70) with Microsoft SMTP Server
+ 15.1.2507.35 via Frontend Transport; Tue, 6 Feb 2024 21:31:52 -0800
+Received: from NAM10-BN7-obe.outbound.protection.outlook.com (104.47.70.100)
+ by edgegateway.intel.com (192.55.55.71) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.35; Tue, 6 Feb 2024 20:58:38 -0800
+ 15.1.2507.35; Tue, 6 Feb 2024 21:31:51 -0800
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=E9uOnyNz5RYIwUyEcE8n8YLp4ToBTjCoY6Rw0job72LCptvtMoAzg9PygpJtMbVobMNm40GKNl70sqGzmQAOsH9XQqpYmr8huMkeaV82vuexrREPS3zVLjg50YyUKGPbXzPQvxy+Ar+kCBNDDrtKfPng4OvVB6RO2SJzcPTqmdLIhy8HdeQyI6nNxnaxMvnzYsGqb43xcBR+t8BxG+sp492xXaV61abkjUZ5Rh4wPzPP3WDGWA3JqClVyrjZGh2lLqELbDVqvHIgur2/Y6SO1zPk30PhgsX1/hSgIIrNFYUrONz/Uywojg9NLIRcZ7i2TnQpFxydCNsfb3YhR0GSiQ==
+ b=Ir1sVlzsx8JzHhfxSwDn0+8RzT/JmelxRJJQ86xpGjrfrOzIzHrzH6Y+ZYjtxR3pOlbgaQIsYPO7vMNiOb+aeS+Jq6M1lSsEiXYSVAQ8nRrIr8Ep7UOgt56CG37w0k2gyMOTai6q4XQei5Slj0y0lcUDJL7KAG2unCBUMg/xVroLCLWBsF0lVMYVsQZJbux1PM7ZRIsB5taCt185Gtj+qCK48xWqhPVAQGS0zEkqdm/nTwuiswOAHoKGEWtJA033vYLGn7KAHXzAnSADY7CN+o9OEpPWx4nosb33i3LegMXDZsyu/FpYDe/dnD8T93s3Ij0iM9zhzG0PF/Kn8kZPxg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=LBUoGB3GMdYhYQUJPL0Ke6TErHvg6BlNn9x5PVTGhDk=;
- b=YuLr5LDIraTGgkeAEsvvfST/23MU3HxkCy/2XlKycxSxJqVdZDrwFeJ8HdtaDEMeQtG9PYH6YjisDrve0KSj59+1FVTM+qV91+RZkFe0YQxiUWvZliJuYmP2A/DmpixWy5OtNQ/ERUkDipHPMG5g+zDuFwT63uVrEbeQYLBMWzx3zyvdz06CzvKZjWzSCmpRFxqMsVsTU5qVFyjQLzfTZ5wxaw6efNEHA68507jU0p/lvv3qmPIlwyabMCod5CUiSRAQd7HrX5r52VRJnuYujco4Ri1W2P8byIDR1riKZ3j/yJlXTs8kNjZEC8MfJddE9FKS2eiRkGSztIang08ZBQ==
+ bh=6nYGZaowS7WseLU2w3gstfe5BA1E2ZxXn5wp+mAJEsE=;
+ b=V7rNMW6Gp9hiFtWnOoi5i3M3gKc+no6TVSDPVNtgpPzwvb+BWXKJWulq/xMp1ohXclsJXq93n8bv/9xlcQD+7w6n3dqMRsIzwRjIqByBDB3ZFrhI33MTUrIxjsQrNHJB8Q3MDVfVvJIXONnxFG3aYmA3CWgD/7tWs5/pUDl66gVnE5Y4YihLEoswtSltJ6GZrR89FLKBCItTV7ghIGim3+R57ENAOqKyhwwPq/NuwAS8uiAIp6rEdvwbCGx75eOoTv5wT9xgp8IUXnXTDr7t3E86Cnk9rXqo0LnhuM9EbIQnVynhnz8uLXdwgweGItUpVIsbPa8wsJyTGrIW7AvjDQ==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
 Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
 Received: from DM4PR11MB5341.namprd11.prod.outlook.com (2603:10b6:5:390::22)
- by PH0PR11MB5644.namprd11.prod.outlook.com (2603:10b6:510:ef::5) with
+ by SJ2PR11MB7476.namprd11.prod.outlook.com (2603:10b6:a03:4c4::16) with
  Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7249.36; Wed, 7 Feb
- 2024 04:58:35 +0000
+ 2024 05:31:49 +0000
 Received: from DM4PR11MB5341.namprd11.prod.outlook.com
  ([fe80::ee74:40f:fb96:34f5]) by DM4PR11MB5341.namprd11.prod.outlook.com
  ([fe80::ee74:40f:fb96:34f5%4]) with mapi id 15.20.7249.035; Wed, 7 Feb 2024
- 04:58:34 +0000
-Message-ID: <2ccbfd41-6a2f-4fa1-832b-9aa67d4b29bb@intel.com>
-Date: Wed, 7 Feb 2024 10:28:28 +0530
+ 05:31:48 +0000
+Message-ID: <d0fa2710-05fc-4724-9a14-a239f8705ee1@intel.com>
+Date: Wed, 7 Feb 2024 11:01:41 +0530
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 05/11] drm/i915/hdcp: Add new remote capability check shim
- function
+Subject: Re: [PATCH 06/11] drm/i915/hdcp: HDCP Capability for the downstream
+ device
+Content-Language: en-US
 To: Suraj Kandpal <suraj.kandpal@intel.com>, <intel-gfx@lists.freedesktop.org>
 CC: <uma.shankar@intel.com>
 References: <20240204142505.1157146-1-suraj.kandpal@intel.com>
- <20240204142505.1157146-6-suraj.kandpal@intel.com>
-Content-Language: en-US
+ <20240204142505.1157146-7-suraj.kandpal@intel.com>
 From: "Nautiyal, Ankit K" <ankit.k.nautiyal@intel.com>
-In-Reply-To: <20240204142505.1157146-6-suraj.kandpal@intel.com>
+In-Reply-To: <20240204142505.1157146-7-suraj.kandpal@intel.com>
 Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: PN3PR01CA0003.INDPRD01.PROD.OUTLOOK.COM
- (2603:1096:c01:95::14) To DM4PR11MB5341.namprd11.prod.outlook.com
+X-ClientProxiedBy: PN2PR01CA0199.INDPRD01.PROD.OUTLOOK.COM
+ (2603:1096:c01:e9::9) To DM4PR11MB5341.namprd11.prod.outlook.com
  (2603:10b6:5:390::22)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DM4PR11MB5341:EE_|PH0PR11MB5644:EE_
-X-MS-Office365-Filtering-Correlation-Id: 0a5a4c18-d47b-48ab-5d1b-08dc27997018
+X-MS-TrafficTypeDiagnostic: DM4PR11MB5341:EE_|SJ2PR11MB7476:EE_
+X-MS-Office365-Filtering-Correlation-Id: 260ed8ee-78cb-4efc-2af3-08dc279e1472
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: 75pcgVDx6alu0AazB+X2IhUgQfID98fbJT1GFwePm7NIdfitdd/+3hwjCjQLh1Lkal0EkUyrkVqju5XVhRJUfCsG3hi/gRbjVnrC7VYHoM/HzyBYoPHVcuA8FVZe+7VsVdytnI+Ro4k22G+0nSBSeA0ZGR84QvkzgDwfSlkvx7thN5V/qomyh7R3h3X4JYgvuJcBLYYVzsOVmZXZsdGMcEdWBtMetKgGDFU161IoAvb56obpn1xoAyfDF3dxdap5pbylcSs1wTkDlfvXFFvtb6RLNU+objycX2DgdJqaBYWLS0/62S1ARHM/wIX0LTL7SBr8v5p7RsqJAwlMn93eysKDdz6m5Wc6v9mI6cxE9/jkfn8o6O04Hd7JyDiv2R8eatcAsSmQDvxiaVm4nT9v3opOXvrHn+euNoFNcdFGOWwtzrxlKNEp4/GhSUf30a0i9tdE3QnZ6smzLfR2SBcuM1P+9iIFZD3G54ajkvsoAOnKxDOEVhILuwTpdtemucYcfNnaDkZ+pmNYcJ6V5cuTHntXn+UNAYzCRH+Hm0NPrN4qm86l0xMG7z9BRqTxzF9gAVtdE9hvP0o085koPbdnFtNf9BiyNrySnz9M/TSsvOJq8eoepcExbYBAEgyTW5Oam6LwYK2nJEj20JODLbogkw==
+X-Microsoft-Antispam-Message-Info: MEiO58dkDe8a1zf6AfOjhPm/s7UYQMbYe9kv1jRUSmW4ZD/uf1j1k0jLhJlQ+txvSE74aD0rVmDD2HS26f9qfmaYF30L4rZviVDsNwu4x/Ed+bfbwytckTVLtma7z7eandOzCt8OuzoCtPnvF8CxSG28K2cn2hxYnGdWXomxk//EEZlS6ooLNdC3R006V6RPy4FT1kCUxN3GmaaIsrbmmtdH4thYaliMs63rhWk5FfXiXtajVvWRCrqcrx8kxTuOOQBak66e+9zU0IZDrL0LyWRRucjSZR4Ta0lVUtIq52DFFZ/0pGX00EaR2IYWdqHBOQOJKF3DcbCFql4v/YXj/Cdm4fTlx6zS5MJpIKOcOQb8GdD3u0GGSHIuiABrJZFxxfODXcHoLnh7cFiy9fQt3G8+GWCg8mxqMsAv+W7HmsQX/cN0VSCww9OVY95E1pby4K+t1jphyavb/1XbU4ZWFE+7XhZjosdI8M+W/LR9+XlWrhM+WKDakJ5Acl4I9Tsj9c9gyc0IzBs7Co/S9n8TsJuOjgW/fOvmbuZ/n8KsZXgCKwut+XMSwhYpCG6KzqRigsfCYrW2EArKL4CHMzmURDfIwrXyHxHjXSnReco1Mh+iC36UDzOYATt4Rcnxde+pW6gQdenXGHcnRTD2JvEd2A==
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:DM4PR11MB5341.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230031)(376002)(396003)(346002)(136003)(366004)(39860400002)(230922051799003)(186009)(64100799003)(1800799012)(451199024)(31686004)(2906002)(41300700001)(36756003)(86362001)(31696002)(6486002)(478600001)(38100700002)(83380400001)(5660300002)(82960400001)(6506007)(2616005)(4326008)(6666004)(8676002)(107886003)(8936002)(53546011)(66556008)(6512007)(26005)(66946007)(316002)(66476007)(43740500002)(45980500001);
+ SFS:(13230031)(376002)(39860400002)(396003)(136003)(366004)(346002)(230922051799003)(64100799003)(1800799012)(186009)(451199024)(31696002)(82960400001)(38100700002)(31686004)(83380400001)(66556008)(41300700001)(6666004)(2616005)(6506007)(66476007)(6486002)(478600001)(6512007)(53546011)(66946007)(107886003)(26005)(86362001)(36756003)(8936002)(5660300002)(316002)(8676002)(2906002)(4326008)(45980500001)(43740500002);
  DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?Zjcwd3o4UmZXck1jQURmOFhzUkJ6MnpYK0M1eVZSNTdYV0NvdWt0c1lMQVl2?=
- =?utf-8?B?RUxKaUFsUlhJZnBTRVFpM2krM2hsZHZpZjlyN2pQS0JRVmdQeXpwVnhZSVMz?=
- =?utf-8?B?WURiczdmYmpyaVdrZ2NEcXErTlhpL21kSlloaURyZW51UkoreDNzQ2VINCti?=
- =?utf-8?B?N0luVll0a1VrTHEzaTByVFVkSEtTL1dNWWVRK21pNjM5ZnZPSUU4eFVQb3hu?=
- =?utf-8?B?d2hmSWpidUw1LzRRQlAzQnpwQ2lEMFVSRUtINjlEa0VEL1JndHJQUnNZRDBD?=
- =?utf-8?B?dk1NTWZHV211cjF3WWpHV2JJNFczbGRYYWxEbytBYWxqdkYzSmFmVlhpVWtu?=
- =?utf-8?B?NVVsUmQwMjFva0pGTjlDSnlIZmM2enEyZTF5NU9EYmIybVhOUDFFQVp0bTBP?=
- =?utf-8?B?NnJGMG5zbUhIdDBaZGNnb0kwYWsvcElyc1lLTUpXL0lrRzJua25KNGtEQVRq?=
- =?utf-8?B?OEdHazRSSUNTUlBQVXY3YUlnV2RydGNWK016SGV5TkRPeFJycFVjSEg4UzRu?=
- =?utf-8?B?dUJUTVU2dHJIeERZQ3I3UU1xdGZZS1BWeU5KZG5GOVhoQS8zK2s5UkZaeVZs?=
- =?utf-8?B?V1FtZmZwUEtNKzZXZVluRWM5TldLS3FjNTJiVi93T3dnOFovZE5iZzFPNm5B?=
- =?utf-8?B?WjVUWURHR24vZ1ZuREZ3OW9xcjFKTEE5RXc3c1B1aCtnQUJKREViRDMya3cw?=
- =?utf-8?B?cUpha1hUMytqVFNIYTVOZFFpcWpLS3VPSXNrcDZZdDAyN1dXZS95MlJaNnFQ?=
- =?utf-8?B?b2JNYmxDem9zLzZQYXJabXErZldyakVJYTJTK2hvWlJTcmtCRHMyQ3ZvNnNu?=
- =?utf-8?B?MDBaNncwWThiZmZaYXg1K3drdWFxbitYeTRtNHZLcjltRzlNbXpJMTJKM0di?=
- =?utf-8?B?TUhPcHFUUEltMFEvM2p1OVpXTFIrcC81eHJSWlBWQ1ZnMVlydWd5WGQ5bTFo?=
- =?utf-8?B?RHF3U1drY3VHZ01zd3AybzZNanZwdHlYL0dBVFpaQ0xPVzFaRVJ5K2pUTllo?=
- =?utf-8?B?VW0rYzZlZFBYdGlxYnl4ejMyTzU4dyt4b2VGWlAySDhCTEZ5R3VObldQUmNC?=
- =?utf-8?B?c25pNTZZN1ZiRFBIeFpzOXlQeURrTERPK2t1eWE5MVFJUmFWUVF2WS9pMXZC?=
- =?utf-8?B?VmF1V1gvWWhnd1V6OHVpTVMrQW8zWjRTb015Z2haL2xNSVhwMzFDM3o2Y1Ro?=
- =?utf-8?B?amlZSm0rbmRqZmV2TkgzTU13U052cjlkYVBLRVBTR2duaXVxMzRwbEhUR1Jv?=
- =?utf-8?B?SjNXTCtQUG9veHNMWkhqRW5IazhvcDdTVDZBK25LSUN4Ykg0bGU0eUNyTnRk?=
- =?utf-8?B?TW1mTzZueHkrU3YvcFE1UUpVS0RQb0hsL2xpTGZsd1YxM2JGczhCb2dnMWxt?=
- =?utf-8?B?dW1MajBPbnNpUUFJeVNrbGJSVUt4dEtsTWVHcmQySHZ6QUFoVEFvZTVsT1dW?=
- =?utf-8?B?NG1wdWVUKzM1RElhK2xlS3ZVVlZ2amVIeGRiOWltVUV3bno3VERncmVmNjZX?=
- =?utf-8?B?ckI1MmdaVHlDYWdSWjhVZGYweDdVTEdiSWdhRkRQaE5CNHhyWkM1b1hOcUcx?=
- =?utf-8?B?RXhPNUJ0RDA0NDRrNENTSi9NYkJmN0tuWFZpc045SjVBYVFDY3NUY09LeDV5?=
- =?utf-8?B?S21pS0JSa2xyUXVrbXoxL2p2RS9kdWlKZDZaT3pac0dTNWdQY2lVQmVNdlcr?=
- =?utf-8?B?NnpOTUZLNk1oYURzdXVLU29DMUE2YmVhVW0wWTQvYWdZSUJlT0owTWJ5Nlhj?=
- =?utf-8?B?WFRRbHlSalFmcFJmMitFcnF5dU54RjFEaEgwUW9wdG8zRUpZTmJiVWI2UStx?=
- =?utf-8?B?U2lid2lNSFFjeHRXYmNPb0ZPVWhRZDlsWnpETWQxSTI4ZjRxTndWR3ZlUHR5?=
- =?utf-8?B?S0FML1VJTGdWV1RUTjBzRzVHbUltNy8zME1ja0pZajZaZ0pjU0ZNcnpVTVFO?=
- =?utf-8?B?Mk9RcWhjMEQ1QXNaRS9oWERKa3pEU01la1huSUNnWnR4RFN5MlpnQmxoNlMz?=
- =?utf-8?B?SkRCQkZYL2IwTzBEaENoZk11RnZhMXFyRnEwTjJ3TjF5ckVaQWJVUEJjTTA2?=
- =?utf-8?B?Slh5YUIzcW1FdUZybUZReEZoS2c2Y1Y5TWJsWjFBS1U4dE5RczRFZ2F6SEVF?=
- =?utf-8?B?ZjRQYnc0REphTHRmZmpoZEU1Ym1VcHViMDYzTmpKNUlUQUtVNjlGZWFHYTEz?=
- =?utf-8?B?MkE9PQ==?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 0a5a4c18-d47b-48ab-5d1b-08dc27997018
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?YUlNbHJ4MzA1dEtaREZ4czNxTTBzelM4dzZzaEhhejk1MkxIQm1jamNRd2J5?=
+ =?utf-8?B?aHBaaGhMa2pOU0cxT3BScXYrL0gwWjVhZy9TaGFDakZzN0oyQVFVS2xMa0Iw?=
+ =?utf-8?B?RVZxVkdNSmU1VHZvR3RSUkxMbEcxTGluNStobDF6T1MrZXEvaENzaGQ0L1lm?=
+ =?utf-8?B?cmc2bUMraUVpQ05EKzdNZkxBNlVTTXVmcjhZNENTdGFWMmUxeEFGSXQ1MzVZ?=
+ =?utf-8?B?MDN0bzRoNjh1QTdhREprSjFHcGtTeWNhemlrK2xQdkE3SmFUTjMzOWN0THJV?=
+ =?utf-8?B?QzZ4WVpCUGd1UldzMUczSVQ3WWU3NldwbWdLZFBHVU5kUGt3RlI0ZnFUdmVa?=
+ =?utf-8?B?UGFaNkQ5OXoyRWMrY25QN2c0YXpMc3pycDd6NFovTlJDT0xrcDlhUnBUSnMv?=
+ =?utf-8?B?S2RZV3VGaVVVNEEwQkgwdk1RdTBmLzAzNExyUkVTVjNTQjlNUkFEU20wOVc5?=
+ =?utf-8?B?REJLLzlYakJ6eS93ZzAyQWRXKzh6OWRna3QraGNMSER0Z1JRanlhUHlTY05H?=
+ =?utf-8?B?YzRwamRoR2tRUFNpdjdkS0ZMcDhCQ2VPWmQxUjV3Y2VEbFQrK0t2THZhRlhX?=
+ =?utf-8?B?QjBNNFdDVk91V0t5Zk1CeTMzWlB0UklWNU1sL01ZSFFXeGtLZVRIOVArdEZk?=
+ =?utf-8?B?Sm5JVXdpS3VDWHB4TndDZzJJQTYyb2Iwd04xc281U1dxZ3h5MEtoVkJ2R2p6?=
+ =?utf-8?B?N0phMXpxVlFqa014cjgyNUxiMTJVY2RCSURETmZjbkkyZmpTYkNBU3NnTStj?=
+ =?utf-8?B?S0QzRFQ5TkxjZWQ4V3RzeXptZStES0xOK3RpWXE1Y0g0RlVHejNNMisrMkxQ?=
+ =?utf-8?B?dTE5WXMwUUI0WEZQK3Bsa1JKZk91SGRmUXNZTXYwQlBPMkNTeFZmOVJlTy9S?=
+ =?utf-8?B?bmZxSGtQVisxR2M5N0EzQ1dsaU5CZUhrYU45NmFIUXUxYnRHak16dDVQOFdt?=
+ =?utf-8?B?dDJ4eWs2bWc1WXZWUXM3cjFxMThwdXRXQTh3TkJ1aVd4dThHUDZFb1IreHM2?=
+ =?utf-8?B?c0UzV2ZpbG9KU1VxZk5QaStJWVNxUUNaUWxuVkhwM2hLWVNhaEMwSTZZU3dL?=
+ =?utf-8?B?WW5RWit1Q0Q5OHhDTmY5M2I3dkhQT3dlbm1sc0tWZFFtTTVPaVVQTC9IQ0dP?=
+ =?utf-8?B?ZnNLM081ZVlaTUNPRzRRajJVSzdkQ1cvU3FhMUNsUTRlNWVUVm1XU1hUWkNv?=
+ =?utf-8?B?dFhETi9iWVNZaE5YYStFU0l4WitMcmp6NndwdCt4R1pncCtYNThUT2k5cjNK?=
+ =?utf-8?B?WGszamt5bzdsWG54eWljM2tzTndqNXJBMzBteTlSYzBFaE5KTHgreFczNzZV?=
+ =?utf-8?B?ZjUxVWdrS1hlMGk0RWY0VjE0SWZKNWJPd0R5WDFCeFkvRnI5dzFYY25NUUZQ?=
+ =?utf-8?B?NFVIRU1jbnlEaTZYbFV2V3pwcVJTeHJwb3hvMXJMbFI1Z1VLWEZPem8wNEY1?=
+ =?utf-8?B?M2pWV0ZGeWFRellOUkQ4VC9CRWUvS1VTSzlxbEYxRFo2TE9iUnQxMU5qNFpj?=
+ =?utf-8?B?ZTRyZlh1Qm4xQlNQV2p4TlkxYjQrVVJqYytGZGZYeURWTHZZVjlmOVkrNlNK?=
+ =?utf-8?B?Z2hLbTNubFYwUE93OXNaOTR0Zm4vZHUrQ3ZwWm1VRGhOYURwUzJReThvY0s0?=
+ =?utf-8?B?YlNiSUc4SHdQNXdVZ1RrSlNGb0Y0ci9ma3M3UGFHM09TWWo0cWJyZ0UzTFN5?=
+ =?utf-8?B?RlFJaXR2MXNvWjREbk9MbGdHSHR3dnZvYTBlMGQwWTdmdkRaMWU1NnJ2MHhE?=
+ =?utf-8?B?MFRiY09ibW4vTU9NcGM4SnlDdDUrTjRndFAvUStwT1pWME9HMTYvWWgwY3lU?=
+ =?utf-8?B?K2E5cFcydSs2ckVMdXFnalVwcFJBRzRBL1NKZENON3JIcG9XMVVDZnlmb3J5?=
+ =?utf-8?B?a3BkYm5uOXZYUVVNT2hmQUNLbDFyY2tsQnllL2w4c21KdmtwY3VSUWcyZjdO?=
+ =?utf-8?B?QXpna0xlLzFyRVB4ZzZnMUlRYjJMT1JmT3BKVSt3cFcrTkk5OGlWK1hMRkZh?=
+ =?utf-8?B?TlVmOW9nQjIxdDNmSmxVaFFVaXkxeFZJOFEzaTFnZ1Q0S3QxRjlxbzZITEw3?=
+ =?utf-8?B?Y3p6aGk1bDRuVzYrVHJsWkhhcjRGREdBOUt5THFLZThOTW9vZitKeEJOendu?=
+ =?utf-8?B?R2h6ZkpDSE1qdVlqa3pnQU5mYkQvUC94aEE1U3NSV3VqREhDc1I3eDRHTmpX?=
+ =?utf-8?B?cWc9PQ==?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: 260ed8ee-78cb-4efc-2af3-08dc279e1472
 X-MS-Exchange-CrossTenant-AuthSource: DM4PR11MB5341.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 07 Feb 2024 04:58:34.5050 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 07 Feb 2024 05:31:48.5601 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: B5wrPmdAxPyrMnjkyfawreWn32sOUafKRMj6cJXsjffktH6xoHhBXGAnlaHs/o1hPbknG6SAKs+jN9xagcmvOJEGj0XETYU9tq5UrUWdNLk=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH0PR11MB5644
+X-MS-Exchange-CrossTenant-UserPrincipalName: h1IXKFBdLTQu/pykyyIWIytO1G6Py8ZLEA4ngZMPsvXSWqI4Ma8V8dEiJ1jN9eSrQ3ZV8mwy5gr3UfP9eeO426pdCBPoxZT3KTAExkwdV/g=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ2PR11MB7476
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -169,127 +164,97 @@ Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 
-On 2/4/2024 7:54 PM, Suraj Kandpal wrote:
-> Create a remote HDCP capability shim function which can read the
-> remote monitor HDCP capability when in MST configuration.
+On 2/4/2024 7:55 PM, Suraj Kandpal wrote:
+> Currently we are only checking capability of remote device and not
+> immediate downstream device but during capability check we need are
+> concerned with only the HDCP capability of downstream device.
+> During i915_display_info reporting we need HDCP Capability for both
+> the monitors and downstream branch device if any this patch adds that.
 >
 > --v2
-> -Add an assertion to make sure only mst encoder call this remote_cap
-> function [Ankit]
+> -Use MST Hub HDCP version [Ankit]
+>
+> --v3
+> -Redefined how we seprate remote and direct read to make sure HDMI
+> shim functions are not touched [Ankit]
+>
+> --v4
+> - Fix the conditions so that hdcp_info with remote_req true is sent
+> only when encoder is mst [Ankit]
 >
 > Signed-off-by: Suraj Kandpal <suraj.kandpal@intel.com>
 > ---
->   .../drm/i915/display/intel_display_types.h    |  4 +++
->   drivers/gpu/drm/i915/display/intel_dp_hdcp.c  | 26 +++++++++++++++++++
->   drivers/gpu/drm/i915/display/intel_hdcp.c     | 16 ++++++++++++
->   drivers/gpu/drm/i915/display/intel_hdcp.h     |  3 +++
->   4 files changed, 49 insertions(+)
+>   .../drm/i915/display/intel_display_debugfs.c  | 24 +++++++++++++++----
+>   1 file changed, 19 insertions(+), 5 deletions(-)
 >
-> diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/drivers/gpu/drm/i915/display/intel_display_types.h
-> index ae2e8cff9d69..7e7a370a3b30 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display_types.h
-> +++ b/drivers/gpu/drm/i915/display/intel_display_types.h
-> @@ -532,6 +532,10 @@ struct intel_hdcp_shim {
->   	/* HDCP2.2 Link Integrity Check */
->   	int (*check_2_2_link)(struct intel_digital_port *dig_port,
->   			      struct intel_connector *connector);
-> +
-> +	/* HDCP remote sink cap */
-> +	int (*remote_hdcp_cap)(struct intel_connector *connector,
-> +			       bool *hdcp_capable, bool *hdcp2_capable);
->   };
->   
->   struct intel_hdcp {
-> diff --git a/drivers/gpu/drm/i915/display/intel_dp_hdcp.c b/drivers/gpu/drm/i915/display/intel_dp_hdcp.c
-> index ef1a4c90c225..ccd274200f92 100644
-> --- a/drivers/gpu/drm/i915/display/intel_dp_hdcp.c
-> +++ b/drivers/gpu/drm/i915/display/intel_dp_hdcp.c
-> @@ -668,6 +668,31 @@ int intel_dp_hdcp2_capable(struct intel_connector *connector,
->   	return _intel_dp_hdcp2_capable(aux, capable);
+> diff --git a/drivers/gpu/drm/i915/display/intel_display_debugfs.c b/drivers/gpu/drm/i915/display/intel_display_debugfs.c
+> index 6f2d13c8ccf7..a51857dc4ece 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display_debugfs.c
+> +++ b/drivers/gpu/drm/i915/display/intel_display_debugfs.c
+> @@ -188,7 +188,8 @@ static void intel_panel_info(struct seq_file *m,
 >   }
 >   
-> +static
-> +int intel_dp_hdcp_remote_cap(struct intel_connector *connector,
-> +			     bool *hdcp_capable, bool *hdcp2_capable)
-> +{
-> +	struct drm_i915_private *i915 = to_i915(connector->base.dev);
-> +	struct drm_dp_aux *aux = &connector->port->aux;
-> +	u8 bcaps;
-> +	int ret;
-> +
-> +	if (!intel_encoder_is_mst(connector->encoder))
-> +		return -EINVAL;
-> +
-> +	ret =  _intel_dp_hdcp2_capable(aux, hdcp2_capable);
-> +	if (ret)
-> +		return ret;
-> +
-> +	ret = intel_dp_hdcp_read_bcaps(aux, i915, &bcaps);
-> +	if (ret)
-> +		return ret;
-> +
-> +	*hdcp_capable = bcaps & DP_BCAPS_HDCP_CAPABLE;
-> +
-> +	return 0;
-> +}
-> +
->   static const struct intel_hdcp_shim intel_dp_hdcp_shim = {
->   	.write_an_aksv = intel_dp_hdcp_write_an_aksv,
->   	.read_bksv = intel_dp_hdcp_read_bksv,
-> @@ -685,6 +710,7 @@ static const struct intel_hdcp_shim intel_dp_hdcp_shim = {
->   	.config_stream_type = intel_dp_hdcp2_config_stream_type,
->   	.check_2_2_link = intel_dp_hdcp2_check_link,
->   	.hdcp_2_2_capable = intel_dp_hdcp2_capable,
-> +	.remote_hdcp_cap = intel_dp_hdcp_remote_cap,
->   	.protocol = HDCP_PROTOCOL_DP,
->   };
+>   static void intel_hdcp_info(struct seq_file *m,
+> -			    struct intel_connector *intel_connector)
+> +			    struct intel_connector *intel_connector,
+> +			    bool remote_req)
+>   {
+>   	bool hdcp_cap, hdcp2_cap;
 >   
-> diff --git a/drivers/gpu/drm/i915/display/intel_hdcp.c b/drivers/gpu/drm/i915/display/intel_hdcp.c
-> index 4593ac10e2fa..2b739249b60c 100644
-> --- a/drivers/gpu/drm/i915/display/intel_hdcp.c
-> +++ b/drivers/gpu/drm/i915/display/intel_hdcp.c
-> @@ -205,6 +205,22 @@ bool intel_hdcp2_capable(struct intel_connector *connector)
->   	return capable;
->   }
+> @@ -197,8 +198,13 @@ static void intel_hdcp_info(struct seq_file *m,
+>   		goto out;
+>   	}
 >   
-> +void intel_hdcp_remote_cap(struct intel_connector *connector,
-> +			   bool *hdcp_capable,
-> +			   bool *hdcp2_capable)
-> +{
-> +	struct intel_hdcp *hdcp = &connector->hdcp;
-> +
-> +	/* Remote Sink's capability for HDCP */
+> -	hdcp_cap = intel_hdcp_capable(intel_connector);
+> -	hdcp2_cap = intel_hdcp2_capable(intel_connector);
+> +	if (remote_req) {
+> +		intel_hdcp_remote_cap(intel_connector, &hdcp_cap,
+> +				      &hdcp2_cap);
+> +	} else {
+> +		hdcp_cap = intel_hdcp_capable(intel_connector);
+> +		hdcp2_cap = intel_hdcp2_capable(intel_connector);
+> +	}
+>   
+>   	if (hdcp_cap)
+>   		seq_puts(m, "HDCP1.4 ");
+> @@ -285,7 +291,11 @@ static void intel_connector_info(struct seq_file *m,
+>   	}
+>   
+>   	seq_puts(m, "\tHDCP version: ");
+> -	intel_hdcp_info(m, intel_connector);
+> +	if (intel_encoder_is_mst(encoder)) {
+> +		intel_hdcp_info(m, intel_connector, true);
+> +		seq_puts(m, "\tMST Hub HDCP version: ");
+> +	}
+> +	intel_hdcp_info(m, intel_connector, false);
+>   
+>   	seq_printf(m, "\tmax bpc: %u\n", connector->display_info.bpc);
+>   
+> @@ -1131,7 +1141,11 @@ static int i915_hdcp_sink_capability_show(struct seq_file *m, void *data)
+>   
+>   	seq_printf(m, "%s:%d HDCP version: ", connector->base.name,
+>   		   connector->base.base.id);
+> -	intel_hdcp_info(m, connector);
+> +	if (intel_encoder_is_mst(connector->encoder)) {
+> +		intel_hdcp_info(m, connector, true);
+> +		seq_puts(m, "\tMST Hub HDCP version: ");
+> +	}
+> +	intel_hdcp_info(m, connector, false);
 
-I think we can do away with this comment.
 
-Otherwise looks good to me.
+Lets not add this for i915_hdcp_sink_capability_show, as this is used by 
+kms_content_protection test which just search for HDCP1.4 and HDCP2.2.
+
+With this change, the test also needs to be modified. So lets have this 
+and the change in kms_content_protection separately.
+
+Otherwise the patch looks good to me.
+
+With the removed, this is:
 
 Reviewed-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
 
 
-> +	if (!hdcp->shim->remote_hdcp_cap)
-> +		return;
-> +
-> +	hdcp->shim->remote_hdcp_cap(connector, hdcp_capable, hdcp2_capable);
-> +
-> +	if (intel_hdcp2_prerequisite(connector))
-> +		*hdcp2_capable = false;
-> +}
-> +
->   static bool intel_hdcp_in_use(struct drm_i915_private *i915,
->   			      enum transcoder cpu_transcoder, enum port port)
->   {
-> diff --git a/drivers/gpu/drm/i915/display/intel_hdcp.h b/drivers/gpu/drm/i915/display/intel_hdcp.h
-> index a9c784fd9ba5..213d286ca3fa 100644
-> --- a/drivers/gpu/drm/i915/display/intel_hdcp.h
-> +++ b/drivers/gpu/drm/i915/display/intel_hdcp.h
-> @@ -40,6 +40,9 @@ void intel_hdcp_update_pipe(struct intel_atomic_state *state,
->   bool is_hdcp_supported(struct drm_i915_private *i915, enum port port);
->   bool intel_hdcp_capable(struct intel_connector *connector);
->   bool intel_hdcp2_capable(struct intel_connector *connector);
-> +void intel_hdcp_remote_cap(struct intel_connector *connector,
-> +			   bool *hdcp_capable,
-> +			   bool *hdcp2_capable);
->   void intel_hdcp_component_init(struct drm_i915_private *i915);
->   void intel_hdcp_component_fini(struct drm_i915_private *i915);
->   void intel_hdcp_cleanup(struct intel_connector *connector);
+>   
+>   out:
+>   	drm_modeset_unlock(&i915->drm.mode_config.connection_mutex);
