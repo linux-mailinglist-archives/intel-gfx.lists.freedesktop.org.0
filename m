@@ -2,43 +2,44 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id E651384E951
-	for <lists+intel-gfx@lfdr.de>; Thu,  8 Feb 2024 21:05:05 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9F09484E95D
+	for <lists+intel-gfx@lfdr.de>; Thu,  8 Feb 2024 21:07:46 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 494C210EC7F;
-	Thu,  8 Feb 2024 20:05:04 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2D2BA10ECC2;
+	Thu,  8 Feb 2024 20:07:40 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="lbcHun+K";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="UeqvQWG0";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7564810EC7F;
- Thu,  8 Feb 2024 20:05:02 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7558A10ECB7;
+ Thu,  8 Feb 2024 20:07:38 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1707422703; x=1738958703;
+ t=1707422859; x=1738958859;
  h=date:from:to:cc:subject:message-id:references:
  mime-version:in-reply-to;
- bh=3z64KEFV+ywZgeTSGpLc92WSDJ22y1rSBk7p5RJceio=;
- b=lbcHun+KqOxSh+sR4Xi5LH8jiRNrr6QccqpedN6rV8HmCbPxgAmrYogY
- qZ3BQckelKu5kcjRBIqBznKyo+civSe+l6tik0q3p/0QJG1kf3Qh143Qo
- R7YdpBSjFlSKfI6pCCe0Ecg/wzs81CPHBV2k21T0GLYMKDM9/+JQr5rVT
- bMVWZ7Cd30VPS+E5LJlLkwe7fjr/Avg9jb6KshuhTcdeUbo65iUX1bOqP
- ODQpffDsKOmHgGR46gzUNOWCQ/WHgxL5hodX/eajKJVGP2VK/h48qnxyU
- qtYRi3SIKiTmDy/6zFzEZndve9Ixx+SBfy6m4Gj/Ylx2JY97hYRI5Xchy Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10978"; a="12675170"
-X-IronPort-AV: E=Sophos;i="6.05,254,1701158400"; d="scan'208";a="12675170"
-Received: from orviesa003.jf.intel.com ([10.64.159.143])
- by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Feb 2024 12:04:53 -0800
+ bh=jEFILA4AOQFKP5N74g+wybLTvwBqH/t+DpqAbP4ze7w=;
+ b=UeqvQWG0s+88VLr9PLHkm7S/0TB/sqYnyj6uNIrFYwapIOSfP4f69q6/
+ 4/VIOkV1hBZmZwiihtHinnWG31qCifqVX3HjeMgbXDMvARWy4LToe34U3
+ xAvZE29yrcXEzsAPVHaJxYJcXTfyzQZvw5R8JPNJlbc6cS+E3PRRnsmIo
+ o8tBSH9yErF+8HhIV1bPNlFQPtPMrBtgKN0WOWv9zwAP9BI5m258+EBvj
+ BcxsUEsES17LkBurlfnyJE+XD7lDyhKpoE0XvImjkO6NGABw4sAZNBXtk
+ MyYAhaq/mvLlphh/HIDgliiZIuuPFSxpUNibjAQJIwYPjWPi4QzBdFZlL A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10978"; a="1463071"
+X-IronPort-AV: E=Sophos;i="6.05,254,1701158400"; 
+   d="scan'208";a="1463071"
+Received: from fmviesa004.fm.intel.com ([10.60.135.144])
+ by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 Feb 2024 12:07:38 -0800
 X-ExtLoop1: 1
 X-IronPort-AV: E=Sophos;i="6.05,254,1701158400"; 
-   d="scan'208";a="6409306"
+   d="scan'208";a="6388559"
 Received: from udig-mobl1.ger.corp.intel.com (HELO intel.com) ([10.246.32.229])
- by ORVIESA003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Feb 2024 12:04:48 -0800
-Date: Thu, 8 Feb 2024 21:04:45 +0100
+ by fmviesa004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 Feb 2024 12:07:35 -0800
+Date: Thu, 8 Feb 2024 21:07:32 +0100
 From: Andi Shyti <andi.shyti@linux.intel.com>
 To: Lucas De Marchi <lucas.demarchi@intel.com>
 Cc: Yury Norov <yury.norov@gmail.com>, linux-kernel@vger.kernel.org,
@@ -47,14 +48,15 @@ Cc: Yury Norov <yury.norov@gmail.com>, linux-kernel@vger.kernel.org,
  Jani Nikula <jani.nikula@linux.intel.com>,
  intel-xe@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
  Jani Nikula <jani.nikula@intel.com>
-Subject: Re: [PATCH v3 2/3] bits: Introduce fixed-type BIT
-Message-ID: <ZcUz3V56qNeTVq66@ashyti-mobl2.lan>
+Subject: Re: [PATCH v3 3/3] drm/i915: Convert REG_GENMASK* to fixed-width
+ GENMASK_*
+Message-ID: <ZcU0hDSPOmhX76pq@ashyti-mobl2.lan>
 References: <20240208074521.577076-1-lucas.demarchi@intel.com>
- <20240208074521.577076-3-lucas.demarchi@intel.com>
+ <20240208074521.577076-4-lucas.demarchi@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20240208074521.577076-3-lucas.demarchi@intel.com>
+In-Reply-To: <20240208074521.577076-4-lucas.demarchi@intel.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -72,23 +74,13 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 Hi Lucas,
 
-looks good, just one idea...
-
 ...
 
-> +#define BIT_U8(b)		((u8)(BIT_INPUT_CHECK(u8, b) + BIT(b)))
-> +#define BIT_U16(b)		((u16)(BIT_INPUT_CHECK(u16, b) + BIT(b)))
-> +#define BIT_U32(b)		((u32)(BIT_INPUT_CHECK(u32, b) + BIT(b)))
-> +#define BIT_U64(b)		((u64)(BIT_INPUT_CHECK(u64, b) + BIT(b)))
+> +#define REG_GENMASK(__high, __low)	GENMASK_U32(__high, __low)
+> +#define REG_GENMASK64(__high, __low)	GENMASK_U64(__high, __low)
+> +#define REG_GENMASK16(__high, __low)	GENMASK_U16(__high, __low)
+> +#define REG_GENMASK8(__high, __low)	GENMASK_U8(__high, __low)
 
-considering that BIT defines are always referred to unsigned
-types, I would just call them
-
-#define BIT8
-#define BIT16
-#define BIT32
-#define BIT64
-
-what do you think?
+I was hoping to use directly GENMASK_U*() functions.
 
 Andi
