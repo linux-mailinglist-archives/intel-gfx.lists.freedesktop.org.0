@@ -2,54 +2,67 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id DA42684F360
-	for <lists+intel-gfx@lfdr.de>; Fri,  9 Feb 2024 11:25:50 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9F8DC84F35C
+	for <lists+intel-gfx@lfdr.de>; Fri,  9 Feb 2024 11:25:46 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D5C3B10EC3D;
+	by gabe.freedesktop.org (Postfix) with ESMTP id D8FDE10F30B;
 	Fri,  9 Feb 2024 10:25:44 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="QwvHYGwo";
+	dkim=pass (2048-bit key; secure) header.d=gmx.com header.i=erick.archer@gmx.com header.b="rTP+FBzJ";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-X-Greylist: delayed 1477 seconds by postgrey-1.36 at gabe;
- Wed, 07 Feb 2024 11:02:49 UTC
-Received: from fanzine2.igalia.com (fanzine2.igalia.com [213.97.179.56])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 35333113214;
- Wed,  7 Feb 2024 11:02:49 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
- s=20170329;
- h=Content-Transfer-Encoding:Content-Type:To:Subject:From:
- MIME-Version:Date:Message-ID:Sender:Reply-To:Cc:Content-ID:
- Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
- :Resent-Message-ID:In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:
- List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=sIHMKKv+rJ2BTWFPAnxdivnmWvcd5mEBUBD4G3KON+8=; b=QwvHYGwoHEPWIBh/7c18iiBjQK
- F9y5XfWn3Pm9gLJraKO5cSr1im1qqFo2eA8WChoFU3F39L6OrHiqH76zyXKgRgP9M2y5ybsylo98S
- /VraZP1Ludy7goUgMOWrf6kBwPq5ZZMJDDpK9xvAVLvfMq8Gkx4rIIIyQJY46Xu69nEqGVWanAcfV
- I/EyjNqODHmhk6y+pEZX/YijgtOjbPpZhUnVSGt1k4zc4/Tu4vu9b6yQLG0PtSVKHO4ecS0/721ug
- rk8pDV6WQN3quFSerxW1NgdkZ1oN5Q5KwO0W5d3bFeQiu18bKhl+6VXrG4jhUXSlTZ2s5SNXtsbwt
- B/XeinwA==;
-Received: from c-71-59-88-35.hsd1.nj.comcast.net ([71.59.88.35]
- helo=[192.168.1.177]) by fanzine2.igalia.com with esmtpsa 
- (Cipher TLS1.3:ECDHE_X25519__RSA_PSS_RSAE_SHA256__AES_128_GCM:128) (Exim)
- id 1rXfJg-00Ei61-Ru; Wed, 07 Feb 2024 11:38:09 +0100
-Message-ID: <71977053-32f0-45e9-ba0c-8eb177735c9d@igalia.com>
-Date: Wed, 7 Feb 2024 05:38:26 -0500
+Received: from mout.gmx.net (mout.gmx.net [212.227.15.15])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 09FB110E28B;
+ Thu,  8 Feb 2024 18:19:13 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=gmx.com;
+ s=s31663417; t=1707416351; x=1708021151; i=erick.archer@gmx.com;
+ bh=ysgMn0ZRWUYT/Hge0FlA9uwr6TJWomFtNilVmXv2T/w=;
+ h=X-UI-Sender-Class:From:To:Cc:Subject:Date;
+ b=rTP+FBzJf6c9vHHT+97TkSG/Uvm8g90FqR4Mntv4D4A8H3TAYyI200beD81+vMSD
+ P15SPBwMoO6vN2Vum+oCuRrsL+yqG1yrDgU3qxZK3QhFLycMjU4q4P7vrLNXKJWIR
+ AcdNj1t1+EUHpxlmKnurOg56N5JOfXAaX9ilmI5boKITFbzs66EMftYvAoPA+1G17
+ 55sSMvJtp10q+Yxmsmgbsg8UV6bEueUx0wKXCYOv2R5IntpRJ81O15bsJJ0okP2vA
+ 7yYAKrjOalqbFHHFzgGH/eBG85bSKRO0WCgsUsqS89qOnCZz1F+JZdqPbFBhWLUJF
+ ABOfgyHz/HgpUQG7Lg==
+X-UI-Sender-Class: 724b4f7f-cbec-4199-ad4e-598c01a50d3a
+Received: from localhost.localdomain ([79.157.194.183]) by mail.gmx.net
+ (mrgmx004 [212.227.17.184]) with ESMTPSA (Nemesis) id
+ 1M7b6l-1rdLQw2iQn-0081qr; Thu, 08 Feb 2024 19:13:35 +0100
+From: Erick Archer <erick.archer@gmx.com>
+To: Jani Nikula <jani.nikula@linux.intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
+ David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
+ "Gustavo A. R. Silva" <gustavoars@kernel.org>
+Cc: Erick Archer <erick.archer@gmx.com>, intel-gfx@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+ linux-hardening@vger.kernel.org
+Subject: [PATCH] drm/i915: Add flex arrays to struct i915_syncmap
+Date: Thu,  8 Feb 2024 19:13:18 +0100
+Message-Id: <20240208181318.4259-1-erick.archer@gmx.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Content-Language: en-US
-From: Christopher Michael <cmichael@igalia.com>
-Subject: 2024 X.Org Foundation Membership deadline for voting in the election
-To: events@lists.x.org, xorg-devel@lists.x.org,
- wayland-devel@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- mesa-dev@lists.freedesktop.org, amd-gfx@lists.freedesktop.org,
- etnaviv@lists.freedesktop.org, freedreno@lists.freedesktop.org,
- nouveau@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
- libre-soc-dev@lists.libre-soc.org, elections@x.org, members@x.org,
- xorg@lists.freedesktop.org
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: quoted-printable
+X-Provags-ID: V03:K1:pfHdlpNnJigTy8aCxrOPtJDMrJKf0ixBybkrQ5Vv5mXAzAOCOce
+ kE/56VgSJ24fEWyckAkZBiWw31er/4+LJmrLfiKbxBq0xz8Hfrzpel9d0ON3gwuUpxPyHbE
+ rdS3TQvdJZV2shpo3dlarUHJyNmnOMWYszl8ojPossp4pbrgBMG/j9ZA3TOBvkYMcVXSjOq
+ g75Q7z0uPqbDs2hAyGnmQ==
+X-Spam-Flag: NO
+UI-OutboundReport: notjunk:1;M01:P0:7eioEc7nG0c=;qtwKIX5gPG/Y57aHU7UDVkHMFaE
+ JToO/0XCCcuVFGqULSXsSgP6ptQExfCebO6YXHofeQKSA5VTH3Rx0BPdQ/Jo+sylF13EPbI0T
+ Izh6uiCVr2BeFMb8Mo7ptlutk0GaiuTXhSwPkjMW2B8o5Dc085jjAUMWeB3aQUr8ibqBQO5jZ
+ XHRnAklzfh+g+TOE6RVXLDpqaGMBFNWvkkb7n93+fL/ZGG1GCFSIqWDR7O3FU4gyx0u9cxI2v
+ VKBafIfiDpkzamqgGhBrNA5dBUtqs7+b0MxELAUjjVtkPS9T5LCAA+EaztiioPdaxtDVW/70/
+ +D+579XV0ikBVQipN8Orbe3Cl3wLYyiQ44pDnIzYNc8WAX1mQzvah3tUv89lbMW0BZmpxVX5a
+ 5TG0A6y3sM/WpIuReX/L1EW3P3Xp3E85EIJE9PAbMmEjB+92stmRLuQfsY04ODHTdpoU4crn1
+ Njr+fvCDsoFFu/11gu4og/beC9d/kOrZTyQi7Gjc/mc0XK6TMa8ScEMyvstVIwrFooLiO33Ng
+ bFuGdjFbKoO9cfwt04+XDJ6hWuQF7COASscQ/jtY7AY6eqdsT57r2wXSKUMQArGSm7r4giTRQ
+ Qsnkb5KDaNeKDM5G1EvS0JJ7jcJW+ivpF1VFxshFi1DEDMpa0Q0SWvpRAKMivN9K6RtEh13gs
+ OpoWE3Lu8gIkvo6AdmTPA42MhlEFREt2H/sGt2VLV9+oSMV0kbsrinJQBjPEYscChsW1yIIxo
+ WpkG5/liHV1D7yWyYkWlaKkCv+MkkPM5r7UUu+1Hz7yYdzIbozc/YNZo+V7OPP102kyAZhBle
+ Ez3i3irdlHSE0lnZqSUdAgW7tybDatbHXq7POenIjwzBc=
 X-Mailman-Approved-At: Fri, 09 Feb 2024 10:25:43 +0000
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -66,21 +79,91 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-The 2024 X.Org Foundation elections are rapidly approaching. We will be 
-forwarding the election schedule and nominating process to the 
-membership shortly.
+The "struct i915_syncmap" uses a dynamically sized set of trailing
+elements. It can use an "u32" array or a "struct i915_syncmap *"
+array.
 
+So, use the preferred way in the kernel declaring flexible arrays [1].
+Because there are two possibilities for the trailing arrays, it is
+necessary to declare a union and use the DECLARE_FLEX_ARRAY macro.
 
-Please note that only current members can vote in the upcoming election, 
-and that the deadline for new memberships or renewals to vote in the 
-upcoming election is 26 February 2024 at 23:59 UTC.
+The comment can be removed as the union is now clear enough.
 
+Also, avoid the open-coded arithmetic in the memory allocator functions
+[2] using the "struct_size" macro.
 
-If you are interested in joining the X.Org Foundation or in renewing 
-your membership, please visit the membership system site at: 
-https://members.x.org/
+Moreover, refactor the "__sync_seqno" and "__sync_child" functions due
+to now it is possible to use the union members added to the structure.
+This way, it is also possible to avoid the open-coded arithmetic in
+pointers.
 
+Link: https://www.kernel.org/doc/html/next/process/deprecated.html#zero-le=
+ngth-and-one-element-arrays [1]
+Link: https://www.kernel.org/doc/html/next/process/deprecated.html#open-co=
+ded-arithmetic-in-allocator-arguments [2]
+Signed-off-by: Erick Archer <erick.archer@gmx.com>
+=2D--
+ drivers/gpu/drm/i915/i915_syncmap.c | 19 ++++++++-----------
+ 1 file changed, 8 insertions(+), 11 deletions(-)
 
+diff --git a/drivers/gpu/drm/i915/i915_syncmap.c b/drivers/gpu/drm/i915/i9=
+15_syncmap.c
+index 60404dbb2e9f..df6437c37373 100644
+=2D-- a/drivers/gpu/drm/i915/i915_syncmap.c
++++ b/drivers/gpu/drm/i915/i915_syncmap.c
+@@ -75,13 +75,10 @@ struct i915_syncmap {
+ 	unsigned int height;
+ 	unsigned int bitmap;
+ 	struct i915_syncmap *parent;
+-	/*
+-	 * Following this header is an array of either seqno or child pointers:
+-	 * union {
+-	 *	u32 seqno[KSYNCMAP];
+-	 *	struct i915_syncmap *child[KSYNCMAP];
+-	 * };
+-	 */
++	union {
++		DECLARE_FLEX_ARRAY(u32, seqno);
++		DECLARE_FLEX_ARRAY(struct i915_syncmap *, child);
++	};
+ };
 
-Christopher Michael, on behalf of the X.Org elections committee
+ /**
+@@ -99,13 +96,13 @@ void i915_syncmap_init(struct i915_syncmap **root)
+ static inline u32 *__sync_seqno(struct i915_syncmap *p)
+ {
+ 	GEM_BUG_ON(p->height);
+-	return (u32 *)(p + 1);
++	return p->seqno;
+ }
+
+ static inline struct i915_syncmap **__sync_child(struct i915_syncmap *p)
+ {
+ 	GEM_BUG_ON(!p->height);
+-	return (struct i915_syncmap **)(p + 1);
++	return p->child;
+ }
+
+ static inline unsigned int
+@@ -200,7 +197,7 @@ __sync_alloc_leaf(struct i915_syncmap *parent, u64 id)
+ {
+ 	struct i915_syncmap *p;
+
+-	p =3D kmalloc(sizeof(*p) + KSYNCMAP * sizeof(u32), GFP_KERNEL);
++	p =3D kmalloc(struct_size(p, seqno, KSYNCMAP), GFP_KERNEL);
+ 	if (unlikely(!p))
+ 		return NULL;
+
+@@ -282,7 +279,7 @@ static noinline int __sync_set(struct i915_syncmap **r=
+oot, u64 id, u32 seqno)
+ 			unsigned int above;
+
+ 			/* Insert a join above the current layer */
+-			next =3D kzalloc(sizeof(*next) + KSYNCMAP * sizeof(next),
++			next =3D kzalloc(struct_size(next, child, KSYNCMAP),
+ 				       GFP_KERNEL);
+ 			if (unlikely(!next))
+ 				return -ENOMEM;
+=2D-
+2.25.1
 
