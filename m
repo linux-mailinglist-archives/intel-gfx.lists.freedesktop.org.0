@@ -2,62 +2,29 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 07A8D84DB7C
-	for <lists+intel-gfx@lfdr.de>; Thu,  8 Feb 2024 09:33:28 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9D07884DB7B
+	for <lists+intel-gfx@lfdr.de>; Thu,  8 Feb 2024 09:33:27 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C0BA810E132;
-	Thu,  8 Feb 2024 08:25:20 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="U+FW7tUe";
-	dkim-atps=neutral
-X-Original-To: Intel-gfx@lists.freedesktop.org
-Delivered-To: Intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DD07810E0E9;
- Thu,  8 Feb 2024 08:25:19 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1707380720; x=1738916720;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=cs01kBDHpaG8Xn5x30JihMfv89H+OFPZEG/wuq90F7c=;
- b=U+FW7tUezErfh9bjAmmfaqhmo3Y4UnZUsemrBhZxymu9iS80I1EEHTff
- WJxoR2FSW/q4t2HI1ujeLvZhQnkFZEcP7Pg55IJFOujgHWUcUbtddKeDU
- ctm/iYC5nrTTcxBaHk12jXUT3m4Q6GQysEgJePySqCSt9ykWA0WDNXa7/
- KxBDBFPnzgVcq2qQCRP42hybP528wM90RWGhV5fIHZNiD7hDIobJB2cog
- QL4COal5NQEkJAIsBu/COQann/RLkCFtyCERip+NF22dqs0gkeV6M8XqA
- 6WrFwdFki9IbajJ+cjiN0vSzYepi7Tjwa80i6/wf0iOtkz2wRL8ZFiFe7 Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10977"; a="18593998"
-X-IronPort-AV: E=Sophos;i="6.05,253,1701158400"; d="scan'208";a="18593998"
-Received: from orviesa009.jf.intel.com ([10.64.159.149])
- by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Feb 2024 00:25:19 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.05,253,1701158400"; 
-   d="scan'208";a="1582280"
-Received: from waoconno-mobl1.ger.corp.intel.com (HELO localhost.localdomain)
- ([10.213.211.200])
- by orviesa009-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Feb 2024 00:25:16 -0800
-From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-To: Intel-gfx@lists.freedesktop.org,
-	dri-devel@lists.freedesktop.org
-Cc: Tvrtko Ursulin <tvrtko.ursulin@intel.com>,
- Kenneth Graunke <kenneth@whitecape.org>, Jose Souza <jose.souza@intel.com>,
- Sagar Ghuge <sagar.ghuge@intel.com>,
- Paulo Zanoni <paulo.r.zanoni@intel.com>,
- John Harrison <John.C.Harrison@Intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, Jani Nikula <jani.nikula@intel.com>,
- Vivaik Balasubrawmanian <vivaik.balasubrawmanian@intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
-Subject: [PATCH v2] drm/i915: Add GuC submission interface version query
-Date: Thu,  8 Feb 2024 08:25:10 +0000
-Message-Id: <20240208082510.1363268-1-tvrtko.ursulin@linux.intel.com>
-X-Mailer: git-send-email 2.40.1
-In-Reply-To: <20240207115612.1322778-1-tvrtko.ursulin@linux.intel.com>
-References: <20240207115612.1322778-1-tvrtko.ursulin@linux.intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0788010E258;
+	Thu,  8 Feb 2024 08:25:44 +0000 (UTC)
+X-Original-To: intel-gfx@lists.freedesktop.org
+Delivered-To: intel-gfx@lists.freedesktop.org
+Received: from 5338d5abeb45 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B6FF210E284;
+ Thu,  8 Feb 2024 08:25:42 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=97_Fi=2ECI=2ECHECKPATCH=3A_warning_for_Fixed-type_GENMASK/B?=
+ =?utf-8?q?IT_=28rev2=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Lucas De Marchi" <lucas.demarchi@intel.com>
+Cc: intel-gfx@lists.freedesktop.org
+Date: Thu, 08 Feb 2024 08:25:42 -0000
+Message-ID: <170738074275.1092524.1314513572189759647@5338d5abeb45>
+X-Patchwork-Hint: ignore
+References: <20240208074521.577076-1-lucas.demarchi@intel.com>
+In-Reply-To: <20240208074521.577076-1-lucas.demarchi@intel.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -70,128 +37,66 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-From: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+== Series Details ==
 
-Add a new query to the GuC submission interface version.
+Series: Fixed-type GENMASK/BIT (rev2)
+URL   : https://patchwork.freedesktop.org/series/129116/
+State : warning
 
-Mesa intends to use this information to check for old firmware versions
-with a known bug where using the render and compute command streamers
-simultaneously can cause GPU hangs due issues in firmware scheduling.
+== Summary ==
 
-Based on patches from Vivaik and Joonas.
+Error: dim checkpatch failed
+0a7165f6a0f1 bits: introduce fixed-type genmasks
+-:72: CHECK:MACRO_ARG_REUSE: Macro argument reuse 't' - possible side-effects?
+#72: FILE: include/linux/bits.h:45:
++#define __GENMASK(t, h, l) \
++	(GENMASK_INPUT_CHECK(h, l) + \
++	 (((t)~0ULL - ((t)(1) << (l)) + 1) & \
++	 ((t)~0ULL >> (BITS_PER_TYPE(t) - 1 - (h)))))
 
-Compile tested only.
+-:72: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'h' - possible side-effects?
+#72: FILE: include/linux/bits.h:45:
++#define __GENMASK(t, h, l) \
++	(GENMASK_INPUT_CHECK(h, l) + \
++	 (((t)~0ULL - ((t)(1) << (l)) + 1) & \
++	 ((t)~0ULL >> (BITS_PER_TYPE(t) - 1 - (h)))))
 
-v2:
- * Added branch version.
+-:72: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'l' - possible side-effects?
+#72: FILE: include/linux/bits.h:45:
++#define __GENMASK(t, h, l) \
++	(GENMASK_INPUT_CHECK(h, l) + \
++	 (((t)~0ULL - ((t)(1) << (l)) + 1) & \
++	 ((t)~0ULL >> (BITS_PER_TYPE(t) - 1 - (h)))))
 
-Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
-Cc: Kenneth Graunke <kenneth@whitecape.org>
-Cc: Jose Souza <jose.souza@intel.com>
-Cc: Sagar Ghuge <sagar.ghuge@intel.com>
-Cc: Paulo Zanoni <paulo.r.zanoni@intel.com>
-Cc: John Harrison <John.C.Harrison@Intel.com>
-Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
-Cc: Jani Nikula <jani.nikula@intel.com>
-Cc: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
-Cc: Vivaik Balasubrawmanian <vivaik.balasubrawmanian@intel.com>
-Cc: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
----
- drivers/gpu/drm/i915/i915_query.c | 33 +++++++++++++++++++++++++++++++
- include/uapi/drm/i915_drm.h       | 12 +++++++++++
- 2 files changed, 45 insertions(+)
+total: 0 errors, 0 warnings, 3 checks, 51 lines checked
+e4ae97c3eede bits: Introduce fixed-type BIT
+-:20: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'b' - possible side-effects?
+#20: FILE: include/linux/bits.h:27:
++#define BIT_INPUT_CHECK(type, b) \
++	((BUILD_BUG_ON_ZERO(__builtin_choose_expr( \
++		__is_constexpr(b), (b) >= BITS_PER_TYPE(type), 0))))
 
-diff --git a/drivers/gpu/drm/i915/i915_query.c b/drivers/gpu/drm/i915/i915_query.c
-index 00871ef99792..d4dba1240b40 100644
---- a/drivers/gpu/drm/i915/i915_query.c
-+++ b/drivers/gpu/drm/i915/i915_query.c
-@@ -551,6 +551,38 @@ static int query_hwconfig_blob(struct drm_i915_private *i915,
- 	return hwconfig->size;
- }
- 
-+static int
-+query_guc_submission_version(struct drm_i915_private *i915,
-+			     struct drm_i915_query_item *query)
-+{
-+	struct drm_i915_query_guc_submission_version __user *query_ptr =
-+					    u64_to_user_ptr(query->data_ptr);
-+	struct drm_i915_query_guc_submission_version ver;
-+	struct intel_guc *guc = &to_gt(i915)->uc.guc;
-+	const size_t size = sizeof(ver);
-+	int ret;
-+
-+	if (!intel_uc_uses_guc_submission(&to_gt(i915)->uc))
-+		return -ENODEV;
-+
-+	ret = copy_query_item(&ver, size, size, query);
-+	if (ret != 0)
-+		return ret;
-+
-+	if (ver.branch || ver.major || ver.minor || ver.patch)
-+		return -EINVAL;
-+
-+	ver.branch = 0;
-+	ver.major = guc->submission_version.major;
-+	ver.minor = guc->submission_version.minor;
-+	ver.patch = guc->submission_version.patch;
-+
-+	if (copy_to_user(query_ptr, &ver, size))
-+		return -EFAULT;
-+
-+	return 0;
-+}
-+
- static int (* const i915_query_funcs[])(struct drm_i915_private *dev_priv,
- 					struct drm_i915_query_item *query_item) = {
- 	query_topology_info,
-@@ -559,6 +591,7 @@ static int (* const i915_query_funcs[])(struct drm_i915_private *dev_priv,
- 	query_memregion_info,
- 	query_hwconfig_blob,
- 	query_geometry_subslices,
-+	query_guc_submission_version,
- };
- 
- int i915_query_ioctl(struct drm_device *dev, void *data, struct drm_file *file)
-diff --git a/include/uapi/drm/i915_drm.h b/include/uapi/drm/i915_drm.h
-index 550c496ce76d..84fb7f7ea834 100644
---- a/include/uapi/drm/i915_drm.h
-+++ b/include/uapi/drm/i915_drm.h
-@@ -3038,6 +3038,7 @@ struct drm_i915_query_item {
- 	 *  - %DRM_I915_QUERY_MEMORY_REGIONS (see struct drm_i915_query_memory_regions)
- 	 *  - %DRM_I915_QUERY_HWCONFIG_BLOB (see `GuC HWCONFIG blob uAPI`)
- 	 *  - %DRM_I915_QUERY_GEOMETRY_SUBSLICES (see struct drm_i915_query_topology_info)
-+	 *  - %DRM_I915_QUERY_GUC_SUBMISSION_VERSION (see struct drm_i915_query_guc_submission_version)
- 	 */
- 	__u64 query_id;
- #define DRM_I915_QUERY_TOPOLOGY_INFO		1
-@@ -3046,6 +3047,7 @@ struct drm_i915_query_item {
- #define DRM_I915_QUERY_MEMORY_REGIONS		4
- #define DRM_I915_QUERY_HWCONFIG_BLOB		5
- #define DRM_I915_QUERY_GEOMETRY_SUBSLICES	6
-+#define DRM_I915_QUERY_GUC_SUBMISSION_VERSION	7
- /* Must be kept compact -- no holes and well documented */
- 
- 	/**
-@@ -3591,6 +3593,16 @@ struct drm_i915_query_memory_regions {
- 	struct drm_i915_memory_region_info regions[];
- };
- 
-+/**
-+* struct drm_i915_query_guc_submission_version - query GuC submission interface version
-+*/
-+struct drm_i915_query_guc_submission_version {
-+	__u32 branch;
-+	__u32 major;
-+	__u32 minor;
-+	__u32 patch;
-+};
-+
- /**
-  * DOC: GuC HWCONFIG blob uAPI
-  *
--- 
-2.40.1
+-:45: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'b' - possible side-effects?
+#45: FILE: include/linux/bits.h:69:
++#define BIT_U8(b)		((u8)(BIT_INPUT_CHECK(u8, b) + BIT(b)))
+
+-:46: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'b' - possible side-effects?
+#46: FILE: include/linux/bits.h:70:
++#define BIT_U16(b)		((u16)(BIT_INPUT_CHECK(u16, b) + BIT(b)))
+
+-:47: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'b' - possible side-effects?
+#47: FILE: include/linux/bits.h:71:
++#define BIT_U32(b)		((u32)(BIT_INPUT_CHECK(u32, b) + BIT(b)))
+
+-:48: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'b' - possible side-effects?
+#48: FILE: include/linux/bits.h:72:
++#define BIT_U64(b)		((u64)(BIT_INPUT_CHECK(u64, b) + BIT(b)))
+
+total: 0 errors, 0 warnings, 5 checks, 33 lines checked
+079bece4e2e7 drm/i915: Convert REG_GENMASK* to fixed-width GENMASK_*
+
 
