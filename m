@@ -2,57 +2,61 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id DC63E84DD7D
-	for <lists+intel-gfx@lfdr.de>; Thu,  8 Feb 2024 11:00:34 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id B056C84DF59
+	for <lists+intel-gfx@lfdr.de>; Thu,  8 Feb 2024 12:09:03 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1457410E597;
-	Thu,  8 Feb 2024 10:00:33 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D5EE810E64D;
+	Thu,  8 Feb 2024 11:09:01 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="k6Fw84Xb";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="DIrqQ72r";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EC6A510E597
- for <intel-gfx@lists.freedesktop.org>; Thu,  8 Feb 2024 10:00:30 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5188010E63E;
+ Thu,  8 Feb 2024 11:09:00 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1707386431; x=1738922431;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=ixwVGnvn+OzWE8uL7ijTHkX8F6/CyEB4CJ6/+5pjSOQ=;
- b=k6Fw84XbBH8K6ZY85wWssQJkf5+jxgW7EsuW6ezTyTvW9LRWVlSen/qF
- BVoc3NHDXWrnHfjGxy+m5ALKu/9i8MxLwqgvAaCBOgum8wvLR+aJHvvDe
- 62luhoN3zR9Z20itn0e27CRjQs/eOftbG00ilMZVkemWi8DBpp+EGMA57
- uZ/3r/sXzWQFRSbv9D3tXk+N0zF8k+u+G8WC50/Qx52/+7aX6PW891X/b
- 5UdchtkO/hUG3m63uGs4axXaeArKj6HL5gzZsuOkJy0OSCnhI2S/Oxe/3
- Aa+mIeiDCA5vaECgyp5+zRbnsWW+yD7dSfcZ6jGDUym3Bckgm8MKP+5Ci g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10977"; a="26628406"
-X-IronPort-AV: E=Sophos;i="6.05,253,1701158400"; d="scan'208";a="26628406"
-Received: from fmviesa001.fm.intel.com ([10.60.135.141])
- by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Feb 2024 02:00:28 -0800
+ t=1707390541; x=1738926541;
+ h=date:from:to:cc:subject:message-id:mime-version;
+ bh=Jz5fnD+jREj51S11/azW+TZ3mNwy4PtiPm9X6xYtW/4=;
+ b=DIrqQ72rZTUH3XLKXbllNmeoDNh9H9M9jKaatvCQkJudehlBFv8dinzb
+ d93pp0MbK3TavFGucV2VmNVc5psD7I9lCtcBJzMR7Lqo8V4+AE6JsMg63
+ cfFSbm33eujW5W3g186Rx8KwLKw5emK12RxIyLvJm/Q9tZF8eyL9qT8Ux
+ yF7Ctm93BWYVA2XlJRYfoQe3d3GKPvouw0CTVs0xFqnunJJ/Z58ifX3DB
+ Sa76Y1R1E7gLZvz0HB1PNQGgq23o2uFKUa4jwV4MBYu1DA/Bnxux5zpXd
+ IG+ishdYlDSVDO4qEi00WfYq4TMkCcMXGnG/M8y81hpmD8eK0327Jduu9 g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10977"; a="23675561"
+X-IronPort-AV: E=Sophos;i="6.05,253,1701158400"; d="scan'208";a="23675561"
+Received: from fmviesa002.fm.intel.com ([10.60.135.142])
+ by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 Feb 2024 03:08:59 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.05,253,1701158400"; d="scan'208";a="32677659"
-Received: from aavzirov-mobl.ger.corp.intel.com (HELO localhost)
- ([10.252.61.13])
- by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Feb 2024 02:00:25 -0800
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Manasi Navare <navaremanasi@chromium.org>, intel-gfx@lists.freedesktop.org
-Cc: Manasi Navare <navaremanasi@chromium.org>, Suraj Kandpal
- <suraj.kandpal@intel.com>, Ankit Nautiyal <ankit.k.nautiyal@intel.com>,
- Animesh Manna <animesh.manna@intel.com>, Sean Paul <sean@poorly.run>, Drew
- Davenport <ddavenport@chromium.org>
-Subject: Re: [PATCH v3] drm/i915/dsc: Fix the macro that calculates
- DSCC_/DSCA_ PPS reg address
-In-Reply-To: <20240205204619.1991673-1-navaremanasi@chromium.org>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20240205204619.1991673-1-navaremanasi@chromium.org>
-Date: Thu, 08 Feb 2024 12:00:21 +0200
-Message-ID: <87v86zb7ii.fsf@intel.com>
+X-IronPort-AV: E=Sophos;i="6.05,253,1701158400"; d="scan'208";a="24872336"
+Received: from pplotits-mobl2.ccr.corp.intel.com (HELO fedora)
+ ([10.249.254.149])
+ by fmviesa002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 Feb 2024 03:08:55 -0800
+Date: Thu, 8 Feb 2024 12:08:30 +0100
+From: Thomas Hellstrom <thomas.hellstrom@linux.intel.com>
+To: Dave Airlie <airlied@gmail.com>, Daniel Vetter <daniel.vetter@ffwll.ch>
+Cc: Jani Nikula <jani.nikula@linux.intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Thomas Zimmermann <tzimmermann@suse.de>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>,
+ Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>,
+ Oded Gabbay <ogabbay@kernel.org>,
+ Lucas De Marchi <lucas.demarchi@intel.com>,
+ dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
+ dim-tools@lists.freedesktop.org, intel-xe@lists.freedesktop.org
+Subject: [PULL] drm-xe-fixes
+Message-ID: <ZcS2LllawGifubsk@fedora>
 MIME-Version: 1.0
-Content-Type: text/plain
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -68,60 +72,75 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, 05 Feb 2024, Manasi Navare <navaremanasi@chromium.org> wrote:
-> Commit bd077259d0a9 ("drm/i915/vdsc: Add function to read any PPS register") defines
-> a new macro to calculate the DSC PPS register addresses with PPS number as an
-> input. This macro correctly calculates the addresses till PPS 11 since the
-> addresses increment by 4. So in that case the following macro works correctly
-> to give correct register address:
-> _MMIO(_DSCA_PPS_0 + (pps) * 4)
->
-> However after PPS 11, the register address for PPS 12 increments by 12 because
-> of RC Buffer memory allocation in between. Because of this discontinuity
-> in the address space, the macro calculates wrong addresses for PPS 12 - 16
-> resulting into incorrect DSC PPS parameter value read/writes causing DSC
-> corruption.
->
-> This fixes it by correcting this macro to add the offset of 12 for
-> PPS >=12.
->
-> v3: Add correct paranthesis for pps argument (Jani Nikula)
->
-> Closes: https://gitlab.freedesktop.org/drm/intel/-/issues/10172
-> Fixes: bd077259d0a9 ("drm/i915/vdsc: Add function to read any PPS register")
-> Cc: Suraj Kandpal <suraj.kandpal@intel.com>
-> Cc: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
-> Cc: Animesh Manna <animesh.manna@intel.com>
-> Cc: Jani Nikula <jani.nikula@linux.intel.com>
-> Cc: Sean Paul <sean@poorly.run>
-> Cc: Drew Davenport <ddavenport@chromium.org>
-> Signed-off-by: Manasi Navare <navaremanasi@chromium.org>
-> ---
->  drivers/gpu/drm/i915/display/intel_vdsc_regs.h | 4 ++--
->  1 file changed, 2 insertions(+), 2 deletions(-)
->
-> diff --git a/drivers/gpu/drm/i915/display/intel_vdsc_regs.h b/drivers/gpu/drm/i915/display/intel_vdsc_regs.h
-> index 64f440fdc22b..7c50d1c31f74 100644
-> --- a/drivers/gpu/drm/i915/display/intel_vdsc_regs.h
-> +++ b/drivers/gpu/drm/i915/display/intel_vdsc_regs.h
-> @@ -51,8 +51,8 @@
->  #define DSCC_PICTURE_PARAMETER_SET_0		_MMIO(0x6BA00)
->  #define _DSCA_PPS_0				0x6B200
->  #define _DSCC_PPS_0				0x6BA00
-> -#define DSCA_PPS(pps)				_MMIO(_DSCA_PPS_0 + (pps) * 4)
-> -#define DSCC_PPS(pps)				_MMIO(_DSCC_PPS_0 + (pps) * 4)
-> +#define DSCA_PPS(pps)				_MMIO(_DSCA_PPS_0 + ((pps) < 12 ? (pps):(pps) + 12) * 4)
-> +#define DSCC_PPS(pps)				_MMIO(_DSCC_PPS_0 + ((pps) < 12 ? (pps):(pps) + 12) * 4)
+Dave, Sima
 
-Thanks for the patch. Pushed with the spaces added around ":" while
-applying.
+The drm-xe-fixes pull for -rc4.
 
-BR,
-Jani.
+Thanks,
+Thomas
 
->  #define _ICL_DSC0_PICTURE_PARAMETER_SET_0_PB	0x78270
->  #define _ICL_DSC1_PICTURE_PARAMETER_SET_0_PB	0x78370
->  #define _ICL_DSC0_PICTURE_PARAMETER_SET_0_PC	0x78470
+drm-xe-fixes-2024-02-08:
+Driver Changes:
+- Fix a loop in an error path
+- Fix a missing dma-fence reference
+- Fix a retry path on userptr REMAP
+- Workaround for a false gcc warning
+- Fix missing map of the usm batch buffer
+  in the migrate vm.
+- Fix a memory leak.
+- Fix a bad assumption of used page size
+- Fix hitting a BUG() due to zero pages to map.
+- Remove some leftover async bind queue relics
+The following changes since commit 54be6c6c5ae8e0d93a6c4641cb7528eb0b6ba478:
 
--- 
-Jani Nikula, Intel
+  Linux 6.8-rc3 (2024-02-04 12:20:36 +0000)
+
+are available in the Git repository at:
+
+  https://gitlab.freedesktop.org/drm/xe/kernel.git tags/drm-xe-fixes-2024-02-08
+
+for you to fetch changes up to bf4c27b8267d7848bb81fd41e6aa07aa662f07fb:
+
+  drm/xe: Remove TEST_VM_ASYNC_OPS_ERROR (2024-02-08 09:51:19 +0100)
+
+----------------------------------------------------------------
+Driver Changes:
+- Fix a loop in an error path
+- Fix a missing dma-fence reference
+- Fix a retry path on userptr REMAP
+- Workaround for a false gcc warning
+- Fix missing map of the usm batch buffer
+  in the migrate vm.
+- Fix a memory leak.
+- Fix a bad assumption of used page size
+- Fix hitting a BUG() due to zero pages to map.
+- Remove some leftover async bind queue relics
+
+----------------------------------------------------------------
+Arnd Bergmann (1):
+      drm/xe: circumvent bogus stringop-overflow warning
+
+Matthew Auld (1):
+      drm/xe/vm: don't ignore error when in_kthread
+
+Matthew Brost (6):
+      drm/xe: Fix loop in vm_bind_ioctl_ops_unwind
+      drm/xe: Take a reference in xe_exec_queue_last_fence_get()
+      drm/xe: Pick correct userptr VMA to repin on REMAP op failure
+      drm/xe: Map both mem.kernel_bb_pool and usm.bb_pool
+      drm/xe: Assume large page size if VMA not yet bound
+      drm/xe: Remove TEST_VM_ASYNC_OPS_ERROR
+
+Xiaoming Wang (1):
+      drm/xe/display: Fix memleak in display initialization
+
+ drivers/gpu/drm/xe/xe_display.c      |  6 ----
+ drivers/gpu/drm/xe/xe_exec_queue.c   |  8 +++--
+ drivers/gpu/drm/xe/xe_gt.c           |  5 ++-
+ drivers/gpu/drm/xe/xe_gt_pagefault.c |  2 +-
+ drivers/gpu/drm/xe/xe_migrate.c      | 28 ++++++++++++----
+ drivers/gpu/drm/xe/xe_sched_job.c    |  1 -
+ drivers/gpu/drm/xe/xe_sync.c         |  2 --
+ drivers/gpu/drm/xe/xe_vm.c           | 62 ++++++++++++++----------------------
+ drivers/gpu/drm/xe/xe_vm_types.h     |  8 -----
+ 9 files changed, 57 insertions(+), 65 deletions(-)
