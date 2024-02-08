@@ -2,92 +2,29 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 339E084E7F7
-	for <lists+intel-gfx@lfdr.de>; Thu,  8 Feb 2024 19:47:07 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3B5D084E8EB
+	for <lists+intel-gfx@lfdr.de>; Thu,  8 Feb 2024 20:26:59 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8D8E910EA15;
-	Thu,  8 Feb 2024 18:47:03 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=embeddedor.com header.i=@embeddedor.com header.b="BGxokrw4";
-	dkim-atps=neutral
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0422A10E292;
+	Thu,  8 Feb 2024 19:26:56 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-X-Greylist: delayed 427 seconds by postgrey-1.36 at gabe;
- Thu, 08 Feb 2024 18:47:02 UTC
-Received: from omta38.uswest2.a.cloudfilter.net
- (omta38.uswest2.a.cloudfilter.net [35.89.44.37])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3C94010EA15
- for <intel-gfx@lists.freedesktop.org>; Thu,  8 Feb 2024 18:47:02 +0000 (UTC)
-Received: from eig-obgw-6007a.ext.cloudfilter.net ([10.0.30.247])
- by cmsmtp with ESMTPS
- id Y6CBrZzbArh9zY9JJruBqd; Thu, 08 Feb 2024 18:39:45 +0000
-Received: from gator4166.hostgator.com ([108.167.133.22]) by cmsmtp with ESMTPS
- id Y9JIrGRvPlWE7Y9JIrGqus; Thu, 08 Feb 2024 18:39:44 +0000
-X-Authority-Analysis: v=2.4 cv=TptFhyXh c=1 sm=1 tr=0 ts=65c51ff0
- a=1YbLdUo/zbTtOZ3uB5T3HA==:117 a=WzbPXH4gqzPVN0x6HrNMNA==:17
- a=IkcTkHD0fZMA:10 a=k7vzHIieQBIA:10 a=wYkD_t78qR0A:10 a=VwQbUJbxAAAA:8
- a=7YfXLusrAAAA:8 a=T15muJCMmG92BHH_wWsA:9 a=QEXdDO2ut3YA:10 a=9cHFzqQdt-sA:10
- a=PUnBvhIW4WwA:10 a=AjGcO6oz07-iQ99wixmX:22 a=SLz71HocmBbuEhFRYD3r:22
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=embeddedor.com; s=default; h=Content-Transfer-Encoding:Content-Type:
- In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:Message-ID:Sender
- :Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
- Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:
- List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=5xlR+PchHqlP/opq6mXiFMNRonuQZr3pt2zbgzQpycs=; b=BGxokrw4FW8DcMHK4jGi7CMrdL
- J8+Qy8SmgTyBsDsIiFqT2RNVrmqOVPE6ovpC/3s9S0dOq52p4MFSXU9cvy3nhqcVNZhebJURVylwc
- LhwcpL23/WedIYeMqT1g+S8lPRtOQ2dawlrMDKwIFG02sDRJfYQrI4KBDMUlVzJtk2J4+LUtZ1yZl
- 1WtkZaT6LEkD2MWikvIQNkbc/3pkxuNkP/J1bLdgaYv+nsupDznhTZ1mZHh8CxDKB6Hm9FDk8Fs3V
- AktZpXttMw3E7NlajwisQoiW3HfzW+cPHAPwMERYxWGw0S7/puyujrR2L4UeIRvSrqhH8RPw+Lf11
- VDmbW0ow==;
-Received: from 187-162-21-192.static.axtel.net ([187.162.21.192]:56476
- helo=[192.168.15.10])
- by gator4166.hostgator.com with esmtpsa (TLS1.2) tls
- TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256 (Exim 4.96.2)
- (envelope-from <gustavo@embeddedor.com>) id 1rY9JH-003Uke-1E;
- Thu, 08 Feb 2024 12:39:43 -0600
-Message-ID: <cd710b96-d295-4b2e-8af7-58b5d3f3c1f1@embeddedor.com>
-Date: Thu, 8 Feb 2024 12:39:41 -0600
+Received: from 5338d5abeb45 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6F60610E1D0;
+ Thu,  8 Feb 2024 19:26:54 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] drm/i915: Add flex arrays to struct i915_syncmap
-Content-Language: en-US
-To: Erick Archer <erick.archer@gmx.com>,
- Jani Nikula <jani.nikula@linux.intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
- David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
- "Gustavo A. R. Silva" <gustavoars@kernel.org>
-Cc: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- linux-kernel@vger.kernel.org, linux-hardening@vger.kernel.org
-References: <20240208181318.4259-1-erick.archer@gmx.com>
-From: "Gustavo A. R. Silva" <gustavo@embeddedor.com>
-In-Reply-To: <20240208181318.4259-1-erick.archer@gmx.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-X-AntiAbuse: This header was added to track abuse,
- please include it with any abuse report
-X-AntiAbuse: Primary Hostname - gator4166.hostgator.com
-X-AntiAbuse: Original Domain - lists.freedesktop.org
-X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
-X-AntiAbuse: Sender Address Domain - embeddedor.com
-X-BWhitelist: no
-X-Source-IP: 187.162.21.192
-X-Source-L: No
-X-Exim-ID: 1rY9JH-003Uke-1E
-X-Source: 
-X-Source-Args: 
-X-Source-Dir: 
-X-Source-Sender: 187-162-21-192.static.axtel.net ([192.168.15.10])
- [187.162.21.192]:56476
-X-Source-Auth: gustavo@embeddedor.com
-X-Email-Count: 4
-X-Org: HG=hgshared;ORG=hostgator;
-X-Source-Cap: Z3V6aWRpbmU7Z3V6aWRpbmU7Z2F0b3I0MTY2Lmhvc3RnYXRvci5jb20=
-X-Local-Domain: yes
-X-CMAE-Envelope: MS4xfNEPkAeWiszNLgWXq3lXCdDuubtXb0xtGyXBh4oHcCaa6fz+a1Gubicnw0yTkSr7Hwq7r5d8bLQ+Eav4cAAHIMT1p0d4C2uTZ6kHrxBZLvZRKO6OMuEA
- k8iVS3A2Ig4nP8vyuHXTcP3VyihvkZxDWQE/BcUeGJX6JnB0rmsQlwm7ZS6bRDel4IGnj3evcQKm1cjzfnmtZ4cxAcavHjbD5VMs6ddLzDWtKffSMnSQcPd7
+Subject: =?utf-8?q?=E2=9C=97_Fi=2ECI=2ECHECKPATCH=3A_warning_for_drm/i915=3A_Prevent_?=
+ =?utf-8?q?HW_access_during_init_from_connector_hooks_=28rev2=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Imre Deak" <imre.deak@intel.com>
+Cc: intel-gfx@lists.freedesktop.org
+Date: Thu, 08 Feb 2024 19:26:54 -0000
+Message-ID: <170742041445.1109599.15891805291444382429@5338d5abeb45>
+X-Patchwork-Hint: ignore
+References: <20240206153910.1758057-1-imre.deak@intel.com>
+In-Reply-To: <20240206153910.1758057-1-imre.deak@intel.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -100,105 +37,25 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+== Series Details ==
+
+Series: drm/i915: Prevent HW access during init from connector hooks (rev2)
+URL   : https://patchwork.freedesktop.org/series/129584/
+State : warning
+
+== Summary ==
+
+Error: dim checkpatch failed
+2691a2787eb6 drm/i915: Prevent HW access during init from SDVO TV get_modes hook
+-:17: WARNING:COMMIT_LOG_LONG_LINE: Prefer a maximum 75 chars per line (possible unwrapped commit description?)
+#17: 
+v2: Clarify the commit message wrt. which modes get_modes() returns. (Jouni)
+
+total: 0 errors, 1 warnings, 0 checks, 16 lines checked
+35214d2c5a5d drm/i915: Prevent HW access during init from connector get_modes hooks
 
 
-On 2/8/24 12:13, Erick Archer wrote:
-> The "struct i915_syncmap" uses a dynamically sized set of trailing
-> elements. It can use an "u32" array or a "struct i915_syncmap *"
-> array.
-> 
-> So, use the preferred way in the kernel declaring flexible arrays [1].
-> Because there are two possibilities for the trailing arrays, it is
-> necessary to declare a union and use the DECLARE_FLEX_ARRAY macro.
-> 
-> The comment can be removed as the union is now clear enough.
-> 
-> Also, avoid the open-coded arithmetic in the memory allocator functions
-> [2] using the "struct_size" macro.
-> 
-> Moreover, refactor the "__sync_seqno" and "__sync_child" functions due
-> to now it is possible to use the union members added to the structure.
-> This way, it is also possible to avoid the open-coded arithmetic in
-> pointers.
-> 
-> Link: https://www.kernel.org/doc/html/next/process/deprecated.html#zero-length-and-one-element-arrays [1]
-> Link: https://www.kernel.org/doc/html/next/process/deprecated.html#open-coded-arithmetic-in-allocator-arguments [2]
-> Signed-off-by: Erick Archer <erick.archer@gmx.com>
-
-Nice transformation!
-
-LGTM:
-
-Reviewed-by: Gustavo A. R. Silva <gustavoars@kernel.org>
-
-Thanks
---
-Gustavo
-
-> ---
->   drivers/gpu/drm/i915/i915_syncmap.c | 19 ++++++++-----------
->   1 file changed, 8 insertions(+), 11 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/i915/i915_syncmap.c b/drivers/gpu/drm/i915/i915_syncmap.c
-> index 60404dbb2e9f..df6437c37373 100644
-> --- a/drivers/gpu/drm/i915/i915_syncmap.c
-> +++ b/drivers/gpu/drm/i915/i915_syncmap.c
-> @@ -75,13 +75,10 @@ struct i915_syncmap {
->   	unsigned int height;
->   	unsigned int bitmap;
->   	struct i915_syncmap *parent;
-> -	/*
-> -	 * Following this header is an array of either seqno or child pointers:
-> -	 * union {
-> -	 *	u32 seqno[KSYNCMAP];
-> -	 *	struct i915_syncmap *child[KSYNCMAP];
-> -	 * };
-> -	 */
-> +	union {
-> +		DECLARE_FLEX_ARRAY(u32, seqno);
-> +		DECLARE_FLEX_ARRAY(struct i915_syncmap *, child);
-> +	};
->   };
-> 
->   /**
-> @@ -99,13 +96,13 @@ void i915_syncmap_init(struct i915_syncmap **root)
->   static inline u32 *__sync_seqno(struct i915_syncmap *p)
->   {
->   	GEM_BUG_ON(p->height);
-> -	return (u32 *)(p + 1);
-> +	return p->seqno;
->   }
-> 
->   static inline struct i915_syncmap **__sync_child(struct i915_syncmap *p)
->   {
->   	GEM_BUG_ON(!p->height);
-> -	return (struct i915_syncmap **)(p + 1);
-> +	return p->child;
->   }
-> 
->   static inline unsigned int
-> @@ -200,7 +197,7 @@ __sync_alloc_leaf(struct i915_syncmap *parent, u64 id)
->   {
->   	struct i915_syncmap *p;
-> 
-> -	p = kmalloc(sizeof(*p) + KSYNCMAP * sizeof(u32), GFP_KERNEL);
-> +	p = kmalloc(struct_size(p, seqno, KSYNCMAP), GFP_KERNEL);
->   	if (unlikely(!p))
->   		return NULL;
-> 
-> @@ -282,7 +279,7 @@ static noinline int __sync_set(struct i915_syncmap **root, u64 id, u32 seqno)
->   			unsigned int above;
-> 
->   			/* Insert a join above the current layer */
-> -			next = kzalloc(sizeof(*next) + KSYNCMAP * sizeof(next),
-> +			next = kzalloc(struct_size(next, child, KSYNCMAP),
->   				       GFP_KERNEL);
->   			if (unlikely(!next))
->   				return -ENOMEM;
-> --
-> 2.25.1
-> 
-> 
