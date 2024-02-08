@@ -2,52 +2,53 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id B27AD84E469
-	for <lists+intel-gfx@lfdr.de>; Thu,  8 Feb 2024 16:52:52 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7F80684E476
+	for <lists+intel-gfx@lfdr.de>; Thu,  8 Feb 2024 16:56:12 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id ECD2710E94F;
-	Thu,  8 Feb 2024 15:52:50 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C719710E0B1;
+	Thu,  8 Feb 2024 15:56:10 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="XMcuVdOW";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="NywdskQ3";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A31DC10E96A
- for <intel-gfx@lists.freedesktop.org>; Thu,  8 Feb 2024 15:52:46 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.18])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BFB8110E0B1
+ for <intel-gfx@lists.freedesktop.org>; Thu,  8 Feb 2024 15:56:09 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1707407566; x=1738943566;
- h=from:to:subject:in-reply-to:references:date:message-id:
- mime-version:content-transfer-encoding;
- bh=xuUjOAS6Vs3CGakVnE7QuZJufgdLmfaidwambVkgJfI=;
- b=XMcuVdOWeE1fr8D9UwYl8ejU2le80dqcppltwzuuPOZMH3Rlxi2vJMoN
- ihqVMzT9qXGB/Wv5TwWXXZewXdjYjM2/7XIbunuwWvzeQ9T7wXmuzWUal
- gAWtpddQEmv9WCXca64K1irGRoAZ07L3lL9cWeG4VvtnKA+/JEJKWfsK9
- P7FdNOq/F3BmZ2JKU7Sl5fE2/bhwLmOqZxiQFfWONKhMDpj589IXFbvER
- rfglVhTdZXrMERog3ZmLSjiTzXsr2SlAO3f6xaNmvH/UHojaihOp6vRL2
- CQ/KWV8zyKb2R0VEeBsh11o7cz0W3Tzar88e8iEapWTNCCYlOUsnYcMti A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10978"; a="1151396"
+ t=1707407769; x=1738943769;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version:content-transfer-encoding;
+ bh=lAwzNKO/gag6aJ20qqU1kWN6RLF7uPPEhVquuaSE/MQ=;
+ b=NywdskQ3WCMw8qel9GMEq2BCIVK5I09IqOX3/cGdTdpCXrDsBk6Nc331
+ Te8BzyLjPiHorlsbZCnAwat67RdozC8r47MDmZbsLkJFKGGjigDMyCi/B
+ J6amQRW44o6Vh4CydvzPCy7V3AOktS0JkUkmE1dpkeRmaXCcDOy6Vfzob
+ QuHi7NeU/cfCjlgOGs2nXu2svuQQ9SiwfHzdsmXNsIIyLap9v0nHGjVjj
+ orErouwHSHUYjytd0TJsSujh8120woimV2SOwXBY8Mprt+mNU75e2R3JL
+ 7jP1X7zwK9g8bOI7g+0UMaTgCLhC/ew8z+hktT76HLKmpcA76s2zHFi43 g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10978"; a="1384716"
 X-IronPort-AV: E=Sophos;i="6.05,254,1701158400"; 
-   d="scan'208";a="1151396"
-Received: from fmviesa010.fm.intel.com ([10.60.135.150])
- by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Feb 2024 07:52:45 -0800
+   d="scan'208";a="1384716"
+Received: from orviesa009.jf.intel.com ([10.64.159.149])
+ by orvoesa110.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 Feb 2024 07:56:01 -0800
 X-ExtLoop1: 1
 X-IronPort-AV: E=Sophos;i="6.05,254,1701158400"; 
-   d="scan'208";a="1670276"
+   d="scan'208";a="1682539"
 Received: from unknown (HELO localhost) ([10.237.66.162])
- by fmviesa010-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Feb 2024 07:52:44 -0800
+ by orviesa009-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 Feb 2024 07:56:00 -0800
 From: Jani Nikula <jani.nikula@linux.intel.com>
 To: Ville Syrjala <ville.syrjala@linux.intel.com>,
  intel-gfx@lists.freedesktop.org
-Subject: Re: [PATCH 00/13] drm/i915: drm_dbg_kms() conversions and cleanups
-In-Reply-To: <20240208151720.7866-1-ville.syrjala@linux.intel.com>
+Cc: stable@vger.kernel.org
+Subject: Re: [PATCH] drm/i915/dp: Limit SST link rate to <=8.1Gbps
+In-Reply-To: <20240208154552.14545-1-ville.syrjala@linux.intel.com>
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20240208151720.7866-1-ville.syrjala@linux.intel.com>
-Date: Thu, 08 Feb 2024 17:52:38 +0200
-Message-ID: <87o7crar7d.fsf@intel.com>
+References: <20240208154552.14545-1-ville.syrjala@linux.intel.com>
+Date: Thu, 08 Feb 2024 17:55:53 +0200
+Message-ID: <87le7var1y.fsf@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
@@ -69,51 +70,40 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 On Thu, 08 Feb 2024, Ville Syrjala <ville.syrjala@linux.intel.com> wrote:
 > From: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
 >
-> Convert a bunch of lingering DRM_DEBUG_KMS() & co. to the
-> per-device drm_dbg_kms() variants. The stuff remining after this
-> are DVO encoder drivers, DMI match functions, and ACPI/DSM stuff.
+> Limit the link rate to HBR3 or below (<=3D8.1Gbps) in SST mode.
+> UHBR (10Gbps+) link rates require 128b/132b channel encoding
+> which we have not yet hooked up into the SST/no-sideband codepaths.
 >
-> And also include a bit of other house cleaning I spotted.
->
-> Ville Syrj=C3=A4l=C3=A4 (13):
->   drm/i915: Correct for_each_old_global_obj_in_state() arguments
->   drm/i915/sdvo: Convert to per-device debugs
->   drm/i915/sdvo: Fix up code alignment
->   drm/i915/color: Use per-device debugs
->   drm/i915/fb: Use per-device debugs
->   drm/i915/bios: Switch to kms debugs
->   drm/i915/bios: Use per-device debugs for VBT related stuff
->   drm/i915/hdcp: Use per-device debugs
->   drm/i915/wm: Pass the whole i916 to intel_get_cxsr_latency()
+> Cc: stable@vger.kernel.org
+> Signed-off-by: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
 
-Off by one in the subject there. ;)
+My bad.
 
-Other than that, the series is
+I guess this is the smallest most isolated fix for stable.
 
 Reviewed-by: Jani Nikula <jani.nikula@intel.com>
 
 
->   drm/i915/wm: Use per-device debugs in pre-ilk wm code
->   drm/i915/wm: Use per-device debugs ilk wm code
->   drm/i915/dvo/ns2501: Nuke pointless casts
->   drm/i915/dvo: Use sizeof(*variable) instead of sizeof(type)
+
+> ---
+>  drivers/gpu/drm/i915/display/intel_dp.c | 3 +++
+>  1 file changed, 3 insertions(+)
 >
->  drivers/gpu/drm/i915/display/dvo_ch7017.c     |   2 +-
->  drivers/gpu/drm/i915/display/dvo_ch7xxx.c     |   2 +-
->  drivers/gpu/drm/i915/display/dvo_ivch.c       |   2 +-
->  drivers/gpu/drm/i915/display/dvo_ns2501.c     |   6 +-
->  drivers/gpu/drm/i915/display/dvo_sil164.c     |   2 +-
->  drivers/gpu/drm/i915/display/dvo_tfp410.c     |   2 +-
->  drivers/gpu/drm/i915/display/i9xx_wm.c        |  81 +++----
->  drivers/gpu/drm/i915/display/intel_bios.c     |  73 +++---
->  drivers/gpu/drm/i915/display/intel_bios.h     |   3 +-
->  drivers/gpu/drm/i915/display/intel_color.c    |  11 +-
->  drivers/gpu/drm/i915/display/intel_dp_hdcp.c  |  12 +-
->  drivers/gpu/drm/i915/display/intel_fb.c       |   7 +-
->  .../gpu/drm/i915/display/intel_global_state.h |   4 +-
->  drivers/gpu/drm/i915/display/intel_opregion.c |   6 +-
->  drivers/gpu/drm/i915/display/intel_sdvo.c     | 217 ++++++++++--------
->  15 files changed, 233 insertions(+), 197 deletions(-)
+> diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i9=
+15/display/intel_dp.c
+> index ab415f41924d..5045c34a16be 100644
+> --- a/drivers/gpu/drm/i915/display/intel_dp.c
+> +++ b/drivers/gpu/drm/i915/display/intel_dp.c
+> @@ -2356,6 +2356,9 @@ intel_dp_compute_config_limits(struct intel_dp *int=
+el_dp,
+>  	limits->min_rate =3D intel_dp_common_rate(intel_dp, 0);
+>  	limits->max_rate =3D intel_dp_max_link_rate(intel_dp);
+>=20=20
+> +	/* FIXME 128b/132b SST support missing */
+> +	limits->max_rate =3D min(limits->max_rate, 810000);
+> +
+>  	limits->min_lane_count =3D 1;
+>  	limits->max_lane_count =3D intel_dp_max_lane_count(intel_dp);
 
 --=20
 Jani Nikula, Intel
