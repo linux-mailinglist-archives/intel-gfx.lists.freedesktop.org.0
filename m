@@ -2,71 +2,52 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5A97884E3AE
-	for <lists+intel-gfx@lfdr.de>; Thu,  8 Feb 2024 16:06:19 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id EADE384E3CB
+	for <lists+intel-gfx@lfdr.de>; Thu,  8 Feb 2024 16:17:28 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AA49D10E88E;
-	Thu,  8 Feb 2024 15:06:17 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DC63D10E884;
+	Thu,  8 Feb 2024 15:17:25 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="gppuMxFO";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="iI6fUKmK";
 	dkim-atps=neutral
-X-Original-To: Intel-gfx@lists.freedesktop.org
-Delivered-To: Intel-gfx@lists.freedesktop.org
-X-Greylist: delayed 427 seconds by postgrey-1.36 at gabe;
- Thu, 08 Feb 2024 15:06:17 UTC
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4CB3810E878;
- Thu,  8 Feb 2024 15:06:17 +0000 (UTC)
+X-Original-To: intel-gfx@lists.freedesktop.org
+Delivered-To: intel-gfx@lists.freedesktop.org
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.13])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 58B2310E883
+ for <intel-gfx@lists.freedesktop.org>; Thu,  8 Feb 2024 15:17:24 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1707404777; x=1738940777;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=qjemyYTH1yJ69yHtj+7sgaziduff9Sx9Cu6/jk2+BJw=;
- b=gppuMxFOP7zaTS/J8zgFsqy7DzhPZ4rCbZd31UNYLsXvbZUV7Lcc5mAA
- yzKasf2bCx7LeJy/nsa4OwN2zAyQlOVeCJC0CEVoYIfhP/MtPfJ4mFgb6
- Ltl4JNlrrX+fsRC9YQVhI1tQcTq0R0hnmE9YvtmD+Zvhhy7xwLP9Vh4WC
- LozbPKTpoVrUB3Rp/K7qOcHFN07xCatN69sNkFJA/BwR25njVA+OIMim0
- tTwk7kziOBbtH/lCEZRwS/IM86R8JDAoGDSrCe2o2cADRq05bR77fhxJW
- mdE+m0lYH4rVos/mPlTS3RMPGkV9/JTq5ymtcO6OOuWnWAXSpJ3uv+Lav A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10978"; a="1100110"
+ t=1707405444; x=1738941444;
+ h=from:to:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=1R9NVdGqswSqNPr+Ni47cZkvvA54c3rgYxcBJJEmi6c=;
+ b=iI6fUKmKbGIBcBgcgHajNibL/xpYwPalXBZ9rc0KQ9rKsDoLL8s93aNH
+ XR0dZpxvjo8xpf39xDEKfX37n8UKjleJzZkwruJ/2RBtdmavvkVPy24yh
+ 1BTAT6Qhn4ZZLiQhTxsvI7J9uFhuurDDHy+EeXSAZ2jtO8YH/SxWvY/K1
+ 3vrp7v/+xA12oS+rsP3YoB3uMoW4TeoOqO9Ju0/9PUfXungQ+xpObce4P
+ Ojeja2uOVZJMAx+BevJTsxUncHWHxPL933mDzsdV5wWTjm8z5U4ntUo/H
+ YGXm4M08BxHt7y/PErophLnAeiPn8+GPoGIr9kwHg+cyQOtg0zwCqOLLO g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10978"; a="4219133"
 X-IronPort-AV: E=Sophos;i="6.05,254,1701158400"; 
-   d="scan'208";a="1100110"
-Received: from fmviesa003.fm.intel.com ([10.60.135.143])
- by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Feb 2024 06:59:09 -0800
+   d="scan'208";a="4219133"
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+ by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 Feb 2024 07:17:23 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.05,254,1701158400"; 
-   d="scan'208";a="6286910"
-Received: from waoconno-mobl1.ger.corp.intel.com (HELO [10.213.211.200])
- ([10.213.211.200])
- by fmviesa003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Feb 2024 06:59:07 -0800
-Message-ID: <db762e07-a5e1-4c47-b1b6-85742ce6498b@linux.intel.com>
-Date: Thu, 8 Feb 2024 14:59:04 +0000
+X-IronPort-AV: E=McAfee;i="6600,9927,10978"; a="824863644"
+X-IronPort-AV: E=Sophos;i="6.05,254,1701158400"; d="scan'208";a="824863644"
+Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.74])
+ by orsmga001.jf.intel.com with SMTP; 08 Feb 2024 07:17:21 -0800
+Received: by stinkbox (sSMTP sendmail emulation);
+ Thu, 08 Feb 2024 17:17:20 +0200
+From: Ville Syrjala <ville.syrjala@linux.intel.com>
+To: intel-gfx@lists.freedesktop.org
+Subject: [PATCH 00/13] drm/i915: drm_dbg_kms() conversions and cleanups
+Date: Thu,  8 Feb 2024 17:17:07 +0200
+Message-ID: <20240208151720.7866-1-ville.syrjala@linux.intel.com>
+X-Mailer: git-send-email 2.43.0
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2] drm/i915: Add GuC submission interface version query
-Content-Language: en-US
-To: "Souza, Jose" <jose.souza@intel.com>,
- "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
- "Intel-gfx@lists.freedesktop.org" <Intel-gfx@lists.freedesktop.org>
-Cc: "kenneth@whitecape.org" <kenneth@whitecape.org>,
- "Zanoni, Paulo R" <paulo.r.zanoni@intel.com>,
- "Vivi, Rodrigo" <rodrigo.vivi@intel.com>,
- "Ghuge, Sagar" <sagar.ghuge@intel.com>,
- "Balasubrawmanian, Vivaik" <vivaik.balasubrawmanian@intel.com>,
- "Nikula, Jani" <jani.nikula@intel.com>,
- "joonas.lahtinen@linux.intel.com" <joonas.lahtinen@linux.intel.com>,
- "Ursulin, Tvrtko" <tvrtko.ursulin@intel.com>,
- "Harrison, John C" <john.c.harrison@intel.com>
-References: <20240207115612.1322778-1-tvrtko.ursulin@linux.intel.com>
- <20240208082510.1363268-1-tvrtko.ursulin@linux.intel.com>
- <8a0a964cc1312e5fcccf0850d72e6374bb578943.camel@intel.com>
-From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-Organization: Intel Corporation UK Plc
-In-Reply-To: <8a0a964cc1312e5fcccf0850d72e6374bb578943.camel@intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -83,139 +64,46 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-On 08/02/2024 14:30, Souza, Jose wrote:
-> On Thu, 2024-02-08 at 08:25 +0000, Tvrtko Ursulin wrote:
->> From: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
->>
->> Add a new query to the GuC submission interface version.
->>
->> Mesa intends to use this information to check for old firmware versions
->> with a known bug where using the render and compute command streamers
->> simultaneously can cause GPU hangs due issues in firmware scheduling.
->>
->> Based on patches from Vivaik and Joonas.
->>
->> Compile tested only.
->>
->> v2:
->>   * Added branch version.
-> 
-> Reviewed-by: José Roberto de Souza <jose.souza@intel.com>
-> Tested-by: José Roberto de Souza <jose.souza@intel.com>
-> UMD: https://gitlab.freedesktop.org/mesa/mesa/-/merge_requests/25233
+Convert a bunch of lingering DRM_DEBUG_KMS() & co. to the
+per-device drm_dbg_kms() variants. The stuff remining after this
+are DVO encoder drivers, DMI match functions, and ACPI/DSM stuff.
 
-Thanks, but please we also need to close down on the branch number 
-situation. I.e. be sure what is the failure mode in shipping Mesa with 
-the change as it stands in the MR linked. What platforms could start 
-failing and when, depending on GuC FW release eventualities.
+And also include a bit of other house cleaning I spotted.
 
-Regards,
+Ville Syrjälä (13):
+  drm/i915: Correct for_each_old_global_obj_in_state() arguments
+  drm/i915/sdvo: Convert to per-device debugs
+  drm/i915/sdvo: Fix up code alignment
+  drm/i915/color: Use per-device debugs
+  drm/i915/fb: Use per-device debugs
+  drm/i915/bios: Switch to kms debugs
+  drm/i915/bios: Use per-device debugs for VBT related stuff
+  drm/i915/hdcp: Use per-device debugs
+  drm/i915/wm: Pass the whole i916 to intel_get_cxsr_latency()
+  drm/i915/wm: Use per-device debugs in pre-ilk wm code
+  drm/i915/wm: Use per-device debugs ilk wm code
+  drm/i915/dvo/ns2501: Nuke pointless casts
+  drm/i915/dvo: Use sizeof(*variable) instead of sizeof(type)
 
-Tvrtko
+ drivers/gpu/drm/i915/display/dvo_ch7017.c     |   2 +-
+ drivers/gpu/drm/i915/display/dvo_ch7xxx.c     |   2 +-
+ drivers/gpu/drm/i915/display/dvo_ivch.c       |   2 +-
+ drivers/gpu/drm/i915/display/dvo_ns2501.c     |   6 +-
+ drivers/gpu/drm/i915/display/dvo_sil164.c     |   2 +-
+ drivers/gpu/drm/i915/display/dvo_tfp410.c     |   2 +-
+ drivers/gpu/drm/i915/display/i9xx_wm.c        |  81 +++----
+ drivers/gpu/drm/i915/display/intel_bios.c     |  73 +++---
+ drivers/gpu/drm/i915/display/intel_bios.h     |   3 +-
+ drivers/gpu/drm/i915/display/intel_color.c    |  11 +-
+ drivers/gpu/drm/i915/display/intel_dp_hdcp.c  |  12 +-
+ drivers/gpu/drm/i915/display/intel_fb.c       |   7 +-
+ .../gpu/drm/i915/display/intel_global_state.h |   4 +-
+ drivers/gpu/drm/i915/display/intel_opregion.c |   6 +-
+ drivers/gpu/drm/i915/display/intel_sdvo.c     | 217 ++++++++++--------
+ 15 files changed, 233 insertions(+), 197 deletions(-)
 
->> Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
->> Cc: Kenneth Graunke <kenneth@whitecape.org>
->> Cc: Jose Souza <jose.souza@intel.com>
->> Cc: Sagar Ghuge <sagar.ghuge@intel.com>
->> Cc: Paulo Zanoni <paulo.r.zanoni@intel.com>
->> Cc: John Harrison <John.C.Harrison@Intel.com>
->> Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
->> Cc: Jani Nikula <jani.nikula@intel.com>
->> Cc: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
->> Cc: Vivaik Balasubrawmanian <vivaik.balasubrawmanian@intel.com>
->> Cc: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
->> ---
->>   drivers/gpu/drm/i915/i915_query.c | 33 +++++++++++++++++++++++++++++++
->>   include/uapi/drm/i915_drm.h       | 12 +++++++++++
->>   2 files changed, 45 insertions(+)
->>
->> diff --git a/drivers/gpu/drm/i915/i915_query.c b/drivers/gpu/drm/i915/i915_query.c
->> index 00871ef99792..d4dba1240b40 100644
->> --- a/drivers/gpu/drm/i915/i915_query.c
->> +++ b/drivers/gpu/drm/i915/i915_query.c
->> @@ -551,6 +551,38 @@ static int query_hwconfig_blob(struct drm_i915_private *i915,
->>   	return hwconfig->size;
->>   }
->>   
->> +static int
->> +query_guc_submission_version(struct drm_i915_private *i915,
->> +			     struct drm_i915_query_item *query)
->> +{
->> +	struct drm_i915_query_guc_submission_version __user *query_ptr =
->> +					    u64_to_user_ptr(query->data_ptr);
->> +	struct drm_i915_query_guc_submission_version ver;
->> +	struct intel_guc *guc = &to_gt(i915)->uc.guc;
->> +	const size_t size = sizeof(ver);
->> +	int ret;
->> +
->> +	if (!intel_uc_uses_guc_submission(&to_gt(i915)->uc))
->> +		return -ENODEV;
->> +
->> +	ret = copy_query_item(&ver, size, size, query);
->> +	if (ret != 0)
->> +		return ret;
->> +
->> +	if (ver.branch || ver.major || ver.minor || ver.patch)
->> +		return -EINVAL;
->> +
->> +	ver.branch = 0;
->> +	ver.major = guc->submission_version.major;
->> +	ver.minor = guc->submission_version.minor;
->> +	ver.patch = guc->submission_version.patch;
->> +
->> +	if (copy_to_user(query_ptr, &ver, size))
->> +		return -EFAULT;
->> +
->> +	return 0;
->> +}
->> +
->>   static int (* const i915_query_funcs[])(struct drm_i915_private *dev_priv,
->>   					struct drm_i915_query_item *query_item) = {
->>   	query_topology_info,
->> @@ -559,6 +591,7 @@ static int (* const i915_query_funcs[])(struct drm_i915_private *dev_priv,
->>   	query_memregion_info,
->>   	query_hwconfig_blob,
->>   	query_geometry_subslices,
->> +	query_guc_submission_version,
->>   };
->>   
->>   int i915_query_ioctl(struct drm_device *dev, void *data, struct drm_file *file)
->> diff --git a/include/uapi/drm/i915_drm.h b/include/uapi/drm/i915_drm.h
->> index 550c496ce76d..84fb7f7ea834 100644
->> --- a/include/uapi/drm/i915_drm.h
->> +++ b/include/uapi/drm/i915_drm.h
->> @@ -3038,6 +3038,7 @@ struct drm_i915_query_item {
->>   	 *  - %DRM_I915_QUERY_MEMORY_REGIONS (see struct drm_i915_query_memory_regions)
->>   	 *  - %DRM_I915_QUERY_HWCONFIG_BLOB (see `GuC HWCONFIG blob uAPI`)
->>   	 *  - %DRM_I915_QUERY_GEOMETRY_SUBSLICES (see struct drm_i915_query_topology_info)
->> +	 *  - %DRM_I915_QUERY_GUC_SUBMISSION_VERSION (see struct drm_i915_query_guc_submission_version)
->>   	 */
->>   	__u64 query_id;
->>   #define DRM_I915_QUERY_TOPOLOGY_INFO		1
->> @@ -3046,6 +3047,7 @@ struct drm_i915_query_item {
->>   #define DRM_I915_QUERY_MEMORY_REGIONS		4
->>   #define DRM_I915_QUERY_HWCONFIG_BLOB		5
->>   #define DRM_I915_QUERY_GEOMETRY_SUBSLICES	6
->> +#define DRM_I915_QUERY_GUC_SUBMISSION_VERSION	7
->>   /* Must be kept compact -- no holes and well documented */
->>   
->>   	/**
->> @@ -3591,6 +3593,16 @@ struct drm_i915_query_memory_regions {
->>   	struct drm_i915_memory_region_info regions[];
->>   };
->>   
->> +/**
->> +* struct drm_i915_query_guc_submission_version - query GuC submission interface version
->> +*/
->> +struct drm_i915_query_guc_submission_version {
->> +	__u32 branch;
->> +	__u32 major;
->> +	__u32 minor;
->> +	__u32 patch;
->> +};
->> +
->>   /**
->>    * DOC: GuC HWCONFIG blob uAPI
->>    *
-> 
+-- 
+2.43.0
+
