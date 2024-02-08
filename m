@@ -2,86 +2,124 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2B60284E041
-	for <lists+intel-gfx@lfdr.de>; Thu,  8 Feb 2024 13:02:56 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id D3F9584E05C
+	for <lists+intel-gfx@lfdr.de>; Thu,  8 Feb 2024 13:07:12 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D299810E53A;
-	Thu,  8 Feb 2024 12:02:48 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5719210E69F;
+	Thu,  8 Feb 2024 12:07:08 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=redhat.com header.i=@redhat.com header.b="h05aaDrR";
+	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="bhnZAHK/";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from us-smtp-delivery-124.mimecast.com
- (us-smtp-delivery-124.mimecast.com [170.10.129.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A90D010E4C2
- for <intel-gfx@lists.freedesktop.org>; Thu,  8 Feb 2024 12:02:47 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1707393766;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type;
- bh=qt0xTWZTGxMel02Jx+enJDas7HHcyXht473odqIDNEE=;
- b=h05aaDrRcpJPTWZ+n3ndLYzPq0da7xEpdDDFbHlhsKQpFHg/wHJ+gCrKDqMMpPONFE+LL/
- QqZxkUb5UTse+dhOxt0/mI5VOWNXE3lfeIRhjHFD2CjxLqJVTseuIk21p+sjLF8EfvfxtX
- bkmSwYV0WDFoGd94qXiGFDcMjwL4jHk=
-Received: from mail-wm1-f72.google.com (mail-wm1-f72.google.com
- [209.85.128.72]) by relay.mimecast.com with ESMTP with STARTTLS
- (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
- us-mta-663-qeCO3TLwNimn-FbyiBZjHA-1; Thu, 08 Feb 2024 07:02:43 -0500
-X-MC-Unique: qeCO3TLwNimn-FbyiBZjHA-1
-Received: by mail-wm1-f72.google.com with SMTP id
- 5b1f17b1804b1-4103c3c4f7fso2530195e9.0
- for <intel-gfx@lists.freedesktop.org>; Thu, 08 Feb 2024 04:02:43 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1707393762; x=1707998562;
- h=content-disposition:mime-version:message-id:subject:cc:to:from:date
- :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
- bh=qt0xTWZTGxMel02Jx+enJDas7HHcyXht473odqIDNEE=;
- b=kiG+462pQ8c/CnC/4K6ZwARSPj37oht2uVVLXagfRNaN2BciiMp/nedT97AUf9fgIi
- 6/sSu569ymF52iPg9WeFqzcO2aV19eiOFoQbwFgrEm76AAOj6DOTeTh9VB78hMyNo5D+
- YDBBPmN1VihxZFFwZi8AqxR8gwNs0ID4iqsLqDlrlWzLP/0QWggDja6L+F7kzbjtnJ8I
- 9LDdqTzoGD04iCMM49Np66u4GEy/zqY78nQuegmyzWIKkh+jkG0tjhu3SdmnrGBBTEDY
- 3p5pb4FBPYn85cyO2LblHGx3Pj84Q4H256G+hM6Wd00GHhh3Tlx1nhBAA8kEMOodAfhH
- 9y5A==
-X-Forwarded-Encrypted: i=1;
- AJvYcCXxT4Rzxe4h8q8xQewtu0c+5dTC+T0dnW/RS3N7cct1cxKyC8Unh5Lm+yK3yM51R0IhLUhUWVOhN9Z0LsoYPmcWpjXovQ6hnh/AoWYYAigS
-X-Gm-Message-State: AOJu0YzjoMz0y0FKIG604z1lL0niGqCEl5TpM9xjIvdA35YylAHyeoiQ
- pcJFhvochinYt91lEq80ZfD1LRXFMnpjcc1G3jvb9HL8z9vC4iACtJ+qf6vH9k0U04L2OZh6ABV
- tjcpBV2h+Em6a6BbLHg0AIoYuWR9azd9BDwQl0sTp25KpPG/0Zs3G7RaDadv+lmKOLQ==
-X-Received: by 2002:a05:600c:5612:b0:40f:d3b3:b6d2 with SMTP id
- jr18-20020a05600c561200b0040fd3b3b6d2mr6683771wmb.14.1707393762176; 
- Thu, 08 Feb 2024 04:02:42 -0800 (PST)
-X-Google-Smtp-Source: AGHT+IG+IG92maavjEnM2WGQ4VZKc2moJ7Le5ftZz1XagH4i+r126dROY8wfezRF+LdNQceq4I0G0g==
-X-Received: by 2002:a05:600c:5612:b0:40f:d3b3:b6d2 with SMTP id
- jr18-20020a05600c561200b0040fd3b3b6d2mr6683755wmb.14.1707393761809; 
- Thu, 08 Feb 2024 04:02:41 -0800 (PST)
-X-Forwarded-Encrypted: i=1;
- AJvYcCWjdQ5CRsXvR2Gwis5Tx3VMjDeZ3YcldUtz5jj/XrfnAK7cgG0IGHOrc/tFCtqLz4lZ+EL8pTOCs5qb3YYfTO/DLtqsBrMeWe5Vet7DxrQNQVvRqjNDyk9K9CNGPXie4gvrQUuHipgY/zkHXBt+yvtnj4BKSRGhI7Xcva4cDKR/Jx1mPRbH0mmLO4v6evVS7esoiAsGK7Gk9T662UlDyrterJL7H7L+E7P8GZRZDXp/+HPYeLKObl0OOUmPQCofaNkDIT1d9qq0jh0inRYNMIeB4mhY//SnQ9Q7LZZvUNerpudaezJT+YYLYERFwC7b2h2RriahZh455FZnGIEVTR9qCDvB52vpPByptaUcbSeVoEUQTnRtqr4Y6GT1In38tgQ0gHFX1/8YwEEa3/2cY6nhw3xsq7IqTWL6LqpnfPMx3Zv/kg8tC0/IfIhTNQpStGnNi2lFZHjbAe28mnY161+ZKPJUH9cCyFLcKcD48OCgshnPpTRX2zGAg01EhqsoYA+XmsHp7trTY+sWbij3+Gmnz9SoG2MvGYAQJKwsBZM=
-Received: from localhost ([2a01:e0a:b25:f902::ff])
- by smtp.gmail.com with ESMTPSA id
- je3-20020a05600c1f8300b004101bdae3a0sm1427711wmb.38.2024.02.08.04.02.41
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Thu, 08 Feb 2024 04:02:41 -0800 (PST)
-Date: Thu, 8 Feb 2024 13:02:40 +0100
-From: Maxime Ripard <mripard@redhat.com>
-To: Dave Airlie <airlied@gmail.com>, 
-	Daniel Vetter <daniel.vetter@ffwll.ch>
-Cc: Jani Nikula <jani.nikula@linux.intel.com>, 
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>, 
- Rodrigo Vivi <rodrigo.vivi@intel.com>, Thomas Zimmermann <tzimmermann@suse.de>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, 
- Thomas =?utf-8?Q?Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
- Oded Gabbay <ogabbay@kernel.org>, 
- Lucas De Marchi <lucas.demarchi@intel.com>, dri-devel@lists.freedesktop.org,
- intel-gfx@lists.freedesktop.org, dim-tools@lists.freedesktop.org
-Subject: [PULL] drm-misc-fixes
-Message-ID: <4wsi2i6kgkqdu7nzp4g7hxasbswnrmc5cakgf5zzvnix53u7lr@4rmp7hwblow3>
+Received: from NAM11-CO1-obe.outbound.protection.outlook.com
+ (mail-co1nam11on2043.outbound.protection.outlook.com [40.107.220.43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 79EAF10E62A;
+ Thu,  8 Feb 2024 12:07:06 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=kTX7y+B/GKslQ9zdp55uMnIoEZlBJHiffk0Oq7bGRUV7TQYrDf91iLUM568eah7RcmiI+OgaEwa6G75XploRPtRCDVe+gUCLx++SVrsg1RRzA/ugwSfZRy8YDd3b6kP2RdI2IdNphJadSjSRdIrHb9JVvodOw+2KNtjkWdiFqDdmXgHiLYDfWjQS4p/GBgHyihZQXOWWlXM3ZB4KA9t25sEa7qYltMZMnyEFISGAjDxM/8+bF0cU3wzhLArBZuRIErQokb+ke/72l/P/AY0ubyW79IaSKk1ju55+8uk8pq/9qWoYG19FNzkZli34x7RrbwguZHvSPFzt1c+IR6wr3g==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=irxKAIabGC/19cZEO3YxRrxz9U7Qv1Yfhv5Bh2s/W9M=;
+ b=BnKacKzOy8Q83gFSvdtIKOlWcoxjrvJBQuuHiWk4vM456S0K2kzqcEVP0KInIAO2rcGNeMlqrk8AqFmSrb0rYhKGDuxgAtr3PKmImBj2Hh3mHjoBENuitSuk1JKNFUHNK9vap/lzO/P7YiX+Bssl0mp6cRygJu9puylEhfc0/yf6jdMCYCZhCVycCnUR4YC93gc9aFyoa0F6kJLcSQbclIdBtlegVASKwHYreLmV2ctLoIrcSCNG6ZLXT3/uapAQcqwl4V5v6cAIw4kn1oiLt51S6NDCCFC5nCeVnPKx+0LWzg4mEQXMKVvBe3hISkAJ66pptL0XjxuwX1kR8+9zNw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
+ header.d=amd.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=irxKAIabGC/19cZEO3YxRrxz9U7Qv1Yfhv5Bh2s/W9M=;
+ b=bhnZAHK/FWAV1/wEdVHu48NratvNq4XAtv3ELL8y+23KcONKUh/SJemN+N8ISit07AG/2cJOYS5SdFXB2n9S/rSLax/R+jYaAuhDeiFdMXbzdfkLR+ROE8/c0mhOuBqbSdRave21B9WS4Zyj5EDBfvVruw6+HjG97SqtuwubTS4=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=amd.com;
+Received: from MN2PR12MB4342.namprd12.prod.outlook.com (2603:10b6:208:264::7)
+ by MW6PR12MB7085.namprd12.prod.outlook.com (2603:10b6:303:238::9)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7270.17; Thu, 8 Feb
+ 2024 12:07:04 +0000
+Received: from MN2PR12MB4342.namprd12.prod.outlook.com
+ ([fe80::795e:efcc:ad1b:aafe]) by MN2PR12MB4342.namprd12.prod.outlook.com
+ ([fe80::795e:efcc:ad1b:aafe%4]) with mapi id 15.20.7270.016; Thu, 8 Feb 2024
+ 12:07:04 +0000
+Message-ID: <86b5d704-9e0d-b989-1469-665e41d9b342@amd.com>
+Date: Thu, 8 Feb 2024 17:36:55 +0530
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.8.0
+Subject: Re: [PATCH] drm/buddy: Fix alloc_range() error handling code
+To: =?UTF-8?Q?Christian_K=c3=b6nig?= <christian.koenig@amd.com>,
+ dri-devel@lists.freedesktop.org, amd-gfx@lists.freedesktop.org,
+ intel-gfx@lists.freedesktop.org
+Cc: alexander.deucher@amd.com, matthew.auld@intel.com,
+ mario.limonciello@amd.com
+References: <20240207174456.341121-1-Arunpravin.PaneerSelvam@amd.com>
+ <07ed1fee-cb73-49ba-bef6-ca16b4c808e4@amd.com>
+Content-Language: en-US
+From: Arunpravin Paneer Selvam <arunpravin.paneerselvam@amd.com>
+In-Reply-To: <07ed1fee-cb73-49ba-bef6-ca16b4c808e4@amd.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: PN3PR01CA0111.INDPRD01.PROD.OUTLOOK.COM
+ (2603:1096:c01:96::10) To MN2PR12MB4342.namprd12.prod.outlook.com
+ (2603:10b6:208:264::7)
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
- protocol="application/pgp-signature"; boundary="hlshk4u374335pug"
-Content-Disposition: inline
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: MN2PR12MB4342:EE_|MW6PR12MB7085:EE_
+X-MS-Office365-Filtering-Correlation-Id: 91f0680d-ace0-4f56-52bc-08dc289e7668
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: i2xVXO4oziN/u+emF+LUvJJWXOHJ+F6fyl2p+R01MBrTh4xGrd3sZYqv5g6mNaTeXMj7UYQj1ziN9djwnOFtx3X2D7QrZgXtLM5ATvsjCQqxU4JxyK3hJYZWHbNf0kWDq16ctX8Ce+lcQoR2Xl2yBUlSj78pwujrpg4JRNCQslEEVbHLYFSp6cjSVBRdOgBXMNzXe6OpGH+8vHCVygpfKYlj+puEr0OvtT6iSJIeISRtNZ/B+5/jIhDVFINGlHVdVH8f1jiWKjgD+XWnHFmqhFsCWc2d0KKdSqMOX/rVtYgq1wr/5MPnDduIRIxDpfrFZfcYS62xc0fsEJ2DrU3kSvX4Nn3KOf+WGpvJJ62XH6l2BowjDXGAsehKjye7vKyv3Fy2TN+zS4R5yiiTOP/JQUF1bi9h7bgC+CGPMiFQqnPfbOGZs+gREI4fDVpxvJJfM4IfOoQnzeakTIYtMQ01CPzrGNZtJsB70VBOuegAaEc5TXfvdIV1P48xGTjezO+CK9odJDknUQ1BMWHarjYK8TTJGSayXj1djPTZxQ4LmRU=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:MN2PR12MB4342.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230031)(346002)(366004)(39860400002)(376002)(396003)(136003)(230922051799003)(186009)(451199024)(1800799012)(64100799003)(38100700002)(26005)(83380400001)(6666004)(66574015)(31686004)(6506007)(66946007)(41300700001)(86362001)(316002)(66476007)(2906002)(5660300002)(478600001)(2616005)(6512007)(31696002)(4326008)(966005)(66556008)(53546011)(8936002)(6486002)(8676002)(36756003);
+ DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?MFhkbjQxY0RIL0RlVUh0czFSSnJKK1NRNStsaWp0djFBMFlPbldaV1NFRVBh?=
+ =?utf-8?B?Qy9ObXpBMEdvMGIyemZlaGVTSlZybU01SVRhUVFNeC9JZEE2UURlYW5CQ3A0?=
+ =?utf-8?B?OUpmc0RlSlBKUWhhdU1EMUNGWHdRUXdacnJzYXg4SGRhZnZYTVZNZjdsZ2t5?=
+ =?utf-8?B?cnpjZ2kybWJhaklPQ0tQaFRGbXpGbzY3L3pVWVRkaE5MWTl2eUtVcUJ6SER0?=
+ =?utf-8?B?ajZmMTlWak54M2NFbnN4cVNlK2U1WmxCRDZXOE9TdFVVWWYwMDhZaUN4b2hp?=
+ =?utf-8?B?S2Y2ZlZYWHZMdE4xT3VYUXVOdjVuMjlUOERZSksvT3pxYmFMbG1jamIrcm9N?=
+ =?utf-8?B?MHBlSE5MMUZvQXoxaTlwZ1p1clZFaUdiSGhLd2JaVXdJWGhKTWhRRUIyYk0w?=
+ =?utf-8?B?Ymk2MytERUVNOUtlbnR0eVloaFpOOTY0ODkzemhLSXRnYTU1RzByRjdxTXYv?=
+ =?utf-8?B?ZytpQXE4VDFLSlRsSzVLcDIyVlo4SW92ajdjTW96UEZCK0llUmtndXg5RWx1?=
+ =?utf-8?B?NGpPdHkzdElIRE1Jbk44WFB2N2wyRkkzb2VGUGRiQmw1TVc4dVN3eFhTZk1s?=
+ =?utf-8?B?WTQydlRXZ1V1ckVEZHpaZ05rLy93Rjd1Z1dLbmZFVk5LTk9WZ2hJQ3RyeG5r?=
+ =?utf-8?B?b3pGSWdrQXNIUlR2ZWVlSnRHTWM4cFFHZUcvakFuSGNvRytkcXR0ZVNsS0E3?=
+ =?utf-8?B?blF5bmZNUW8rand3SVlqV0dGZFRtSXFKRzl4MkdCYlR5OGdnTUZEUitLUjYv?=
+ =?utf-8?B?U3ZhMTNxcm4xZm4zT0ZTaytuRkRSMjVBcFg5MllRenJNT01kMGlwK0w4UElF?=
+ =?utf-8?B?TGdnd3BLS3RuY1hMZENzSXFzV2lLSnlMbjg5bnJGbTZZOURSVXdEMzYzRnZH?=
+ =?utf-8?B?TG54elpOWUY0NjA1alF4cVJHeDhSU291V2UzYlE0WlNBSE03OThPTmc4eHFY?=
+ =?utf-8?B?YjVrWWtWRFc5RCtjSGxWNng1aExlWUNzWlVrQzNibEU5dENlZ3RvZVNwdEpD?=
+ =?utf-8?B?U2hBVGViMnZmNHdyYWh5Vy9ueTV0eE1WWk8rWkNOOXdiejZ3MExhTkFJUzZE?=
+ =?utf-8?B?ckdWOU0rWTU2cGdsUVVUSlJobHBpYWd3MEVsOURSNU91dnl5WlVMVEJXaWFr?=
+ =?utf-8?B?b00rcDNhTzhHbXh6SDdseSs4eUJsMkUzOCt3WmlmUFBJdW5QS1JQcU92UzNG?=
+ =?utf-8?B?OXVwd0pzcVZuMnYzMEdyT0VYMThMSkhJMk5BdnVlTmIwdnA5Vkc1K1RyaDB6?=
+ =?utf-8?B?V096VUJ3TVV3NkRJdnpnbDVUdldJQWZGeTNVSi81ZlU5UklZMG1ZUnlENGt0?=
+ =?utf-8?B?NVRrN2JPWmJYS3JSUHNJaHAvQ2NWRlVzU3BZUHg2anF2R0thdDV3SnRibDlW?=
+ =?utf-8?B?NjFVMGsrcTdaL1pzVElhNGZ0TlRaWXo0N011enFDcWl5RmttMjNSbGZHai91?=
+ =?utf-8?B?ZlYzTkxiNE9Fc1Avc256MkVVcXNQTWp4eSszVVd3bXZxeFBsUDk0S3BZSVFF?=
+ =?utf-8?B?WVUvYitZaXJMdVR5ZHVQOUJnSHB0OGIzSkorcFlLL09GQTQ0bEx1WFA1THYv?=
+ =?utf-8?B?YUtDMnlWaVY3V2JoclNVbVVRTVJtMTRzREE4dTVpc05RRWNwaENtNGdQL1Jk?=
+ =?utf-8?B?dHJmNSswRHJnTVVxSFVORjBXU291K0QxL2QvOUlXU0NrSU5CVFBNRWtiU0Jh?=
+ =?utf-8?B?M2h6R2ZDRjhIT01pd3VCbnUwTFBmekwwZldjWlFNNnY2Z3lXdDJtYzR0MUhy?=
+ =?utf-8?B?dTNGayt1YzA1R2hMRk1ONERIVStPOTh0TDZCZTI0T0hiK1h2cXluYldEcCtq?=
+ =?utf-8?B?MTFTQkk5ZjRFSnZNWWlHZlZZSVV1b3FjSUs4U2lDTy83SS84YjF6V1F5U0tN?=
+ =?utf-8?B?dkFCTmdOL0hSdW5jOHoxT3B5N3BTV1E1eUpTQ1dzeE5nTGVlaUdtcFNLemZV?=
+ =?utf-8?B?R01nM2FLckNuQnBWY0t0NGJMK01VYjIzSCtPNkFQUTB2dUppRTc2ekUyL2Zq?=
+ =?utf-8?B?VVhiV3BCM29HcU9BYXdNU2cyRno2YWJMbkgrVGFFVVVuMWF4YS9PdkxBQjdN?=
+ =?utf-8?B?SHVZMjh0bTN5WDhuQmwxVmVmTXVNTXJLK0xQMWJUTHVpSnN3K011S0w5STdS?=
+ =?utf-8?Q?q2t6e7xKVSLNV5/hfoefmifvN?=
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 91f0680d-ace0-4f56-52bc-08dc289e7668
+X-MS-Exchange-CrossTenant-AuthSource: MN2PR12MB4342.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 08 Feb 2024 12:07:03.9866 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: Yxm9+d4NHWl0iCiLgw9n6GCLTW056gqI6tCOk1uzhQZTqcJ4vDT9+ulWUWgjF5FMH+8CsQiYC4Aw9OHL0iCEiw==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MW6PR12MB7085
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -97,88 +135,53 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+Hi Christian,
 
---hlshk4u374335pug
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+On 2/8/2024 12:27 PM, Christian König wrote:
+> Am 07.02.24 um 18:44 schrieb Arunpravin Paneer Selvam:
+>> Few users have observed display corruption when they boot
+>> the machine to KDE Plasma or playing games. We have root
+>> caused the problem that whenever alloc_range() couldn't
+>> find the required memory blocks the function was returning
+>> SUCCESS in some of the corner cases.
+>>
+>> The right approach would be if the total allocated size
+>> is less than the required size, the function should
+>> return -ENOSPC.
+>>
+>> Gitlab ticket link - 
+>> https://gitlab.freedesktop.org/drm/amd/-/issues/3097
+>> Fixes: 0a1844bf0b53 ("drm/buddy: Improve contiguous memory allocation")
+>> Signed-off-by: Arunpravin Paneer Selvam 
+>> <Arunpravin.PaneerSelvam@amd.com>
+>> Tested-by: Mario Limonciello <mario.limonciello@amd.com>
+>
+> Acked-by: Christian König <christian.koenig@amd.com>
+>
+> CC: stable.. ?
+I will check and add the stable kernel version.
 
-Hi,
-
-Here's this week drm-misc-fixes PR
-
-Maxime
-
-drm-misc-fixes-2024-02-08:
-A null pointer dereference fix for v3d, a TTM pool initialization fix,
-several fixes for nouveau around register size, DMA buffer leaks and API
-consistency, a multiple fixes for ivpu around MMU setup, initialization
-and firmware interactions.
-The following changes since commit 1c1914d6e8c6edbf5b45047419ff51abdb1dce96:
-
-  dma-buf: heaps: Don't track CMA dma-buf pages under RssFile (2024-01-31 19:54:58 +0530)
-
-are available in the Git repository at:
-
-  git://anongit.freedesktop.org/drm/drm-misc tags/drm-misc-fixes-2024-02-08
-
-for you to fetch changes up to 5f8408aca66772d3aa9b4831577b2ac5ec41bcd9:
-
-  accel/ivpu: Add job status for jobs aborted by the driver (2024-02-06 13:37:34 +0100)
-
-----------------------------------------------------------------
-A null pointer dereference fix for v3d, a TTM pool initialization fix,
-several fixes for nouveau around register size, DMA buffer leaks and API
-consistency, a multiple fixes for ivpu around MMU setup, initialization
-and firmware interactions.
-
-----------------------------------------------------------------
-Dave Airlie (1):
-      nouveau/gsp: use correct size for registry rpc.
-
-Grzegorz Trzebiatowski (1):
-      accel/ivpu: Add job status for jobs aborted by the driver
-
-Jacek Lawrynowicz (1):
-      accel/ivpu: Disable d3hot_delay on all NPU generations
-
-Krystian Pradzynski (2):
-      accel/ivpu/40xx: Enable D0i3 message
-      accel/ivpu/40xx: Stop passing SKU boot parameters to FW
-
-Maxime Ripard (1):
-      Merge drm-misc-next-fixes-2024-01-19 into drm-misc-fixes
-
-Timur Tabi (2):
-      drm/nouveau: fix several DMA buffer leaks
-      drm/nouveau: nvkm_gsp_radix3_sg() should use nvkm_gsp_mem_ctor()
-
-Wachowski, Karol (2):
-      accel/ivpu: Force snooping for MMU writes
-      accel/ivpu: Correct MMU queue size checking functions
-
- drivers/accel/ivpu/ivpu_drv.c                     |  5 +-
- drivers/accel/ivpu/ivpu_fw.c                      |  1 -
- drivers/accel/ivpu/ivpu_hw_37xx.c                 |  2 +-
- drivers/accel/ivpu/ivpu_hw_40xx.c                 |  7 +-
- drivers/accel/ivpu/ivpu_job.c                     |  4 +-
- drivers/accel/ivpu/ivpu_mmu.c                     | 36 +++++++----
- drivers/gpu/drm/nouveau/include/nvkm/subdev/gsp.h |  2 +-
- drivers/gpu/drm/nouveau/nvkm/subdev/gsp/r535.c    | 79 ++++++++++++++---------
- drivers/gpu/drm/ttm/ttm_device.c                  |  9 ++-
- drivers/gpu/drm/v3d/v3d_submit.c                  | 35 ++++++++--
- include/uapi/drm/ivpu_accel.h                     |  1 +
- 11 files changed, 113 insertions(+), 68 deletions(-)
-
---hlshk4u374335pug
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYKAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCZcTC4AAKCRDj7w1vZxhR
-xd6uAQCxKfe7H2ZTGOrDjFMKjgVp63c4z5qdcc6ZLNlE/VUYdAD/UEpiZwNo4AoH
-c7JM3wHx51RXLI1Ily9gR9upYBnEwgs=
-=hwHj
------END PGP SIGNATURE-----
-
---hlshk4u374335pug--
+Thanks,
+Arun.
+>
+>> ---
+>>   drivers/gpu/drm/drm_buddy.c | 6 ++++++
+>>   1 file changed, 6 insertions(+)
+>>
+>> diff --git a/drivers/gpu/drm/drm_buddy.c b/drivers/gpu/drm/drm_buddy.c
+>> index f57e6d74fb0e..c1a99bf4dffd 100644
+>> --- a/drivers/gpu/drm/drm_buddy.c
+>> +++ b/drivers/gpu/drm/drm_buddy.c
+>> @@ -539,6 +539,12 @@ static int __alloc_range(struct drm_buddy *mm,
+>>       } while (1);
+>>         list_splice_tail(&allocated, blocks);
+>> +
+>> +    if (total_allocated < size) {
+>> +        err = -ENOSPC;
+>> +        goto err_free;
+>> +    }
+>> +
+>>       return 0;
+>>     err_undo:
+>
 
