@@ -2,56 +2,62 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id B123284E3D8
-	for <lists+intel-gfx@lfdr.de>; Thu,  8 Feb 2024 16:18:06 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7104584E3DC
+	for <lists+intel-gfx@lfdr.de>; Thu,  8 Feb 2024 16:18:37 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2472010E8BD;
-	Thu,  8 Feb 2024 15:18:05 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C146210E867;
+	Thu,  8 Feb 2024 15:18:33 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="j4j/DNpt";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="gYjDeyBS";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A4BF810E8B8
- for <intel-gfx@lists.freedesktop.org>; Thu,  8 Feb 2024 15:18:03 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6AAD010E864;
+ Thu,  8 Feb 2024 15:18:32 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1707405483; x=1738941483;
- h=from:to:subject:date:message-id:in-reply-to:references:
- mime-version:content-transfer-encoding;
- bh=t114UlIcOriGSDoW2pg/bAFmDjD+8JD2fgixMfKfOXs=;
- b=j4j/DNptqLx+on7PSHTuTjVGV45NfZG7n48o7zGf1YOS/2JB3wgRKmbR
- ufgEY8IwzNbCttgw0U1o0iDmLhi3gWQg3E1/pnTIzwYLJO918k87jBjba
- +C3nNOs9RC8rlaAF0klBgOQhf/QhEd0IKJ3sMzejaM0nJUmt5yHjz3Lzj
- 6C5dLjgAGR5FAvL0/xY14lEg2KaAQoTDg0k/OAZjTkO+oyG6E6jo/KcMV
- kcad+E5yt8MwPmYheUDZofIlyKp7jr3u6hlpn76HRZOzZt7rYKOnmTiwB
- Qch4BKQZSqbbMPCFv4Z1atiGz6P8djABF7WOKeDt8tTMVss29ymlJwUsi w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10978"; a="4219289"
+ t=1707405512; x=1738941512;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=JME/C0EeXRQRbOsRrDc04RQxGLlUKW8cb8oWVwsFIQk=;
+ b=gYjDeyBSNBCHIpJ1xOL2L7BRlPv+3PcKBpzcZZqOA7ZQjzefbF8KhP1z
+ 1idWRDjD38wxY095zMxCD00ECK6hGyB3I84yEGHPexoBKSyQafEixjqae
+ iTHfrGjNgnG8BLgKWfBAls4ssMQtkix3pB63LC+qyYTq5Tk9Wqa1UupRG
+ LERQoWycadz37eGLo1Mrp7v9fynOK+tpqTPbTL91FJo5vXx7cbUkUInOR
+ 0i35b64NZz/Xocoz14vwBZnQkEbK2+8UPZqoaAlv5VQrG/wUPLwjP28cG
+ LxjRJpxZ3LB9bFD4cOAvrBYfFLAuiiNUvHH+B0FAEHAHsOglgdWsg9ry4 w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10978"; a="4219418"
 X-IronPort-AV: E=Sophos;i="6.05,254,1701158400"; 
-   d="scan'208";a="4219289"
+   d="scan'208";a="4219418"
 Received: from orsmga001.jf.intel.com ([10.7.209.18])
  by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Feb 2024 07:18:03 -0800
+ 08 Feb 2024 07:18:31 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10978"; a="824863679"
-X-IronPort-AV: E=Sophos;i="6.05,254,1701158400"; d="scan'208";a="824863679"
+X-IronPort-AV: E=McAfee;i="6600,9927,10978"; a="824863713"
+X-IronPort-AV: E=Sophos;i="6.05,254,1701158400"; d="scan'208";a="824863713"
 Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.74])
- by orsmga001.jf.intel.com with SMTP; 08 Feb 2024 07:18:01 -0800
+ by orsmga001.jf.intel.com with SMTP; 08 Feb 2024 07:18:29 -0800
 Received: by stinkbox (sSMTP sendmail emulation);
- Thu, 08 Feb 2024 17:18:00 +0200
-From: Ville Syrjala <ville.syrjala@linux.intel.com>
-To: intel-gfx@lists.freedesktop.org
-Subject: [PATCH 13/13] drm/i915/dvo: Use sizeof(*variable) instead of
- sizeof(type)
-Date: Thu,  8 Feb 2024 17:17:20 +0200
-Message-ID: <20240208151720.7866-14-ville.syrjala@linux.intel.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20240208151720.7866-1-ville.syrjala@linux.intel.com>
-References: <20240208151720.7866-1-ville.syrjala@linux.intel.com>
+ Thu, 08 Feb 2024 17:18:28 +0200
+Date: Thu, 8 Feb 2024 17:18:28 +0200
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: Imre Deak <imre.deak@intel.com>
+Cc: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ Mika Westerberg <mika.westerberg@linux.intel.com>
+Subject: Re: [PATCH 02/19] drm/dp: Add support for DP tunneling
+Message-ID: <ZcTwxOziN3v_3mDK@intel.com>
+References: <20240123102850.390126-1-imre.deak@intel.com>
+ <20240123102850.390126-3-imre.deak@intel.com>
+ <ZcPhyk1RbE5bXcCv@intel.com>
+ <ZcPsq2WdP7oJQ4Ep@ideak-desk.fi.intel.com>
+ <ZcPv4+0uMpJhcySu@ideak-desk.fi.intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
+In-Reply-To: <ZcPv4+0uMpJhcySu@ideak-desk.fi.intel.com>
+X-Patchwork-Hint: comment
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -67,99 +73,68 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-From: Ville Syrj√§l√§ <ville.syrjala@linux.intel.com>
+On Wed, Feb 07, 2024 at 11:02:27PM +0200, Imre Deak wrote:
+> On Wed, Feb 07, 2024 at 10:48:53PM +0200, Imre Deak wrote:
+> > On Wed, Feb 07, 2024 at 10:02:18PM +0200, Ville Syrj‰l‰ wrote:
+> > > > [...]
+> > > > +static int
+> > > > +drm_dp_tunnel_atomic_check_group_bw(struct drm_dp_tunnel_group_state *new_group_state,
+> > > > +				    u32 *failed_stream_mask)
+> > > > +{
+> > > > +	struct drm_dp_tunnel_group *group = to_group(new_group_state->base.obj);
+> > > > +	struct drm_dp_tunnel_state *new_tunnel_state;
+> > > > +	u32 group_stream_mask = 0;
+> > > > +	int group_bw = 0;
+> > > > +
+> > > > +	for_each_tunnel_state(new_group_state, new_tunnel_state) {
+> > > > +		struct drm_dp_tunnel *tunnel = new_tunnel_state->tunnel_ref.tunnel;
+> > > > +		int max_dprx_bw = get_max_dprx_bw(tunnel);
+> > > > +		int tunnel_bw = drm_dp_tunnel_atomic_get_tunnel_bw(new_tunnel_state);
+> > > > +
+> > > > +		tun_dbg(tunnel,
+> > > > +			"%sRequired %d/%d Mb/s total for tunnel.\n",
+> > > > +			tunnel_bw > max_dprx_bw ? "Not enough BW: " : "",
+> > > > +			DPTUN_BW_ARG(tunnel_bw),
+> > > > +			DPTUN_BW_ARG(max_dprx_bw));
+> > > > +
+> > > > +		if (tunnel_bw > max_dprx_bw) {
+> > > 
+> > > I'm a bit confused why we're checking this here. Aren't we already
+> > > checking this somewhere else?
+> > 
+> > Ah, yes this should be checked already by the encoder compute config +
+> > the MST link BW check. It can be removed, thanks.
+> 
+> Though neither of that is guaranteed for drivers in general, so
+> shouldn't it be here still?
 
-Prefer sizeof(*variable) to sizeof(type) to make it a bit
-harder to screw things up.
+I suppose there isn't any real harm in doing it here too.
 
-Signed-off-by: Ville Syrj√§l√§ <ville.syrjala@linux.intel.com>
----
- drivers/gpu/drm/i915/display/dvo_ch7017.c | 2 +-
- drivers/gpu/drm/i915/display/dvo_ch7xxx.c | 2 +-
- drivers/gpu/drm/i915/display/dvo_ivch.c   | 2 +-
- drivers/gpu/drm/i915/display/dvo_ns2501.c | 2 +-
- drivers/gpu/drm/i915/display/dvo_sil164.c | 2 +-
- drivers/gpu/drm/i915/display/dvo_tfp410.c | 2 +-
- 6 files changed, 6 insertions(+), 6 deletions(-)
+> 
+> > > > +			*failed_stream_mask = new_tunnel_state->stream_mask;
+> > > > +			return -ENOSPC;
+> > > > +		}
+> > > > +
+> > > > +		group_bw += min(roundup(tunnel_bw, tunnel->bw_granularity),
+> > > > +				max_dprx_bw);
+> > > > +		group_stream_mask |= new_tunnel_state->stream_mask;
+> > > > +	}
+> > > > +
+> > > > +	tun_grp_dbg(group,
+> > > > +		    "%sRequired %d/%d Mb/s total for tunnel group.\n",
+> > > > +		    group_bw > group->available_bw ? "Not enough BW: " : "",
+> > > > +		    DPTUN_BW_ARG(group_bw),
+> > > > +		    DPTUN_BW_ARG(group->available_bw));
+> > > > +
+> > > > +	if (group_bw > group->available_bw) {
+> > > > +		*failed_stream_mask = group_stream_mask;
+> > > > +		return -ENOSPC;
+> > > > +	}
+> > > > +
+> > > > +	return 0;
+> > > > +}
+> > > > +
 
-diff --git a/drivers/gpu/drm/i915/display/dvo_ch7017.c b/drivers/gpu/drm/i915/display/dvo_ch7017.c
-index 0589994dde11..d0c3880d7f80 100644
---- a/drivers/gpu/drm/i915/display/dvo_ch7017.c
-+++ b/drivers/gpu/drm/i915/display/dvo_ch7017.c
-@@ -205,7 +205,7 @@ static bool ch7017_init(struct intel_dvo_device *dvo,
- 	const char *str;
- 	u8 val;
- 
--	priv = kzalloc(sizeof(struct ch7017_priv), GFP_KERNEL);
-+	priv = kzalloc(sizeof(*priv), GFP_KERNEL);
- 	if (priv == NULL)
- 		return false;
- 
-diff --git a/drivers/gpu/drm/i915/display/dvo_ch7xxx.c b/drivers/gpu/drm/i915/display/dvo_ch7xxx.c
-index 6d948520e9a6..2e8e85da5a40 100644
---- a/drivers/gpu/drm/i915/display/dvo_ch7xxx.c
-+++ b/drivers/gpu/drm/i915/display/dvo_ch7xxx.c
-@@ -216,7 +216,7 @@ static bool ch7xxx_init(struct intel_dvo_device *dvo,
- 	u8 vendor, device;
- 	char *name, *devid;
- 
--	ch7xxx = kzalloc(sizeof(struct ch7xxx_priv), GFP_KERNEL);
-+	ch7xxx = kzalloc(sizeof(*ch7xxx), GFP_KERNEL);
- 	if (ch7xxx == NULL)
- 		return false;
- 
-diff --git a/drivers/gpu/drm/i915/display/dvo_ivch.c b/drivers/gpu/drm/i915/display/dvo_ivch.c
-index f43d8c610d3f..eef72bb3b767 100644
---- a/drivers/gpu/drm/i915/display/dvo_ivch.c
-+++ b/drivers/gpu/drm/i915/display/dvo_ivch.c
-@@ -267,7 +267,7 @@ static bool ivch_init(struct intel_dvo_device *dvo,
- 	u16 temp;
- 	int i;
- 
--	priv = kzalloc(sizeof(struct ivch_priv), GFP_KERNEL);
-+	priv = kzalloc(sizeof(*priv), GFP_KERNEL);
- 	if (priv == NULL)
- 		return false;
- 
-diff --git a/drivers/gpu/drm/i915/display/dvo_ns2501.c b/drivers/gpu/drm/i915/display/dvo_ns2501.c
-index 32fd4aa27598..1df212fb000e 100644
---- a/drivers/gpu/drm/i915/display/dvo_ns2501.c
-+++ b/drivers/gpu/drm/i915/display/dvo_ns2501.c
-@@ -476,7 +476,7 @@ static bool ns2501_init(struct intel_dvo_device *dvo,
- 	struct ns2501_priv *ns;
- 	unsigned char ch;
- 
--	ns = kzalloc(sizeof(struct ns2501_priv), GFP_KERNEL);
-+	ns = kzalloc(sizeof(*ns), GFP_KERNEL);
- 	if (ns == NULL)
- 		return false;
- 
-diff --git a/drivers/gpu/drm/i915/display/dvo_sil164.c b/drivers/gpu/drm/i915/display/dvo_sil164.c
-index 4acc8ce29c0b..6c461024c8e3 100644
---- a/drivers/gpu/drm/i915/display/dvo_sil164.c
-+++ b/drivers/gpu/drm/i915/display/dvo_sil164.c
-@@ -141,7 +141,7 @@ static bool sil164_init(struct intel_dvo_device *dvo,
- 	struct sil164_priv *sil;
- 	unsigned char ch;
- 
--	sil = kzalloc(sizeof(struct sil164_priv), GFP_KERNEL);
-+	sil = kzalloc(sizeof(*sil), GFP_KERNEL);
- 	if (sil == NULL)
- 		return false;
- 
-diff --git a/drivers/gpu/drm/i915/display/dvo_tfp410.c b/drivers/gpu/drm/i915/display/dvo_tfp410.c
-index 009d65b0f3e9..0939e097f4f9 100644
---- a/drivers/gpu/drm/i915/display/dvo_tfp410.c
-+++ b/drivers/gpu/drm/i915/display/dvo_tfp410.c
-@@ -173,7 +173,7 @@ static bool tfp410_init(struct intel_dvo_device *dvo,
- 	struct tfp410_priv *tfp;
- 	int id;
- 
--	tfp = kzalloc(sizeof(struct tfp410_priv), GFP_KERNEL);
-+	tfp = kzalloc(sizeof(*tfp), GFP_KERNEL);
- 	if (tfp == NULL)
- 		return false;
- 
 -- 
-2.43.0
-
+Ville Syrj‰l‰
+Intel
