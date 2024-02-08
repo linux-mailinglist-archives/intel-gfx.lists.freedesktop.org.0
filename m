@@ -2,62 +2,122 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 101BD84D7AE
-	for <lists+intel-gfx@lfdr.de>; Thu,  8 Feb 2024 02:56:53 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 424A584DA6E
+	for <lists+intel-gfx@lfdr.de>; Thu,  8 Feb 2024 07:57:18 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2099410E1A2;
-	Thu,  8 Feb 2024 01:56:42 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2E2FF10E17D;
+	Thu,  8 Feb 2024 06:57:15 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=linux-foundation.org header.i=@linux-foundation.org header.b="yUDDt+mZ";
+	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="JiS9/G0H";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
- by gabe.freedesktop.org (Postfix) with ESMTPS id F2AC410E06B;
- Thu,  8 Feb 2024 01:56:33 +0000 (UTC)
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
- by dfw.source.kernel.org (Postfix) with ESMTP id E43C061B23;
- Thu,  8 Feb 2024 01:56:23 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3F693C433F1;
- Thu,  8 Feb 2024 01:56:22 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linux-foundation.org;
- s=korg; t=1707357383;
- bh=rVThkiSRe3KkWzz8wgEgHLkSR8j9heMzqKF037jczOY=;
- h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
- b=yUDDt+mZSSrAsObYnTUAk/OhxeX96BaLr5Y8tpQe4YqaooWEd4/eS7dpuHp1vkn13
- DGZrF4kxSizzi9e75I5QE0hdsAWZ78TzvC+YzBw9U0qq+uVOGPIEnVyjBDv+JhmoOC
- 7FIzeR1kkM2mME9zqctRaKkRB8AxLyxqsRcDLtyE=
-Date: Wed, 7 Feb 2024 17:56:21 -0800
-From: Andrew Morton <akpm@linux-foundation.org>
-To: "Darrick J. Wong" <djwong@kernel.org>
-Cc: Matthew Wilcox <willy@infradead.org>, Christoph Hellwig <hch@lst.de>,
- Hugh Dickins <hughd@google.com>, Chandan Babu R <chandan.babu@oracle.com>,
- David Howells <dhowells@redhat.com>, Jarkko Sakkinen <jarkko@kernel.org>,
- Dave Hansen <dave.hansen@linux.intel.com>, Maarten Lankhorst
- <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>,
- Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>,
- Daniel Vetter <daniel@ffwll.ch>, Christian Koenig
- <christian.koenig@amd.com>, Huang Rui <ray.huang@amd.com>, Jani Nikula
- <jani.nikula@linux.intel.com>, Joonas Lahtinen
- <joonas.lahtinen@linux.intel.com>, Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
- intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- x86@kernel.org, linux-sgx@vger.kernel.org, linux-mm@kvack.org,
- linux-fsdevel@vger.kernel.org, keyrings@vger.kernel.org
-Subject: Re: [PATCH 2/2] xfs: disable large folio support in xfile_create
-Message-Id: <20240207175621.dd773204e7928dbeee7a92bf@linux-foundation.org>
-In-Reply-To: <20240112022250.GU723010@frogsfrogsfrogs>
-References: <20240110092109.1950011-1-hch@lst.de>
- <20240110092109.1950011-3-hch@lst.de>
- <20240110175515.GA722950@frogsfrogsfrogs>
- <20240110200451.GB722950@frogsfrogsfrogs>
- <20240111140053.51948fb3ed10e06d8e389d2e@linux-foundation.org>
- <ZaBvoWCCChU5wHDp@casper.infradead.org>
- <20240112022250.GU723010@frogsfrogsfrogs>
-X-Mailer: Sylpheed 3.8.0beta1 (GTK+ 2.24.33; x86_64-pc-linux-gnu)
-Mime-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+Received: from NAM12-MW2-obe.outbound.protection.outlook.com
+ (mail-mw2nam12on2049.outbound.protection.outlook.com [40.107.244.49])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6FF8510E17D;
+ Thu,  8 Feb 2024 06:57:12 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=kWf65VX/z520r+iBztHhqvJaTzi0Anze2gpb/VpmftoryAZjxc1GOWYLO19BcGSQK4P7rjhaKp19/mNsSvaIa/s7bRm6UwfpmBoSoWqFoHJ4+PSQMPb5/QwKBxCrOwWKXjs7a7BD9xesWKntVU1YjHbj7N10zIbhYerd8O7TvHVY4ZFD+I7mHhqbc9elhHSYmb0WFZSjBM/ekeITO7CBAvVZB8DTsPEEVZxa6MeJq8v8OJ2maaj1ajj+q9l2LUGCGtcTuClwcrskPWZCpRm6S9UzDMJTdsQNAqz73F9gx88nwngtaSqVHWFZJEobN6mxq5UJ8X/ljh6oayd7k5SHyw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=cKch8FCC8ZHqVqJwfO+j8DrW2teSSf5g17jZgokfox4=;
+ b=ETAuCJamM+h2oSNKAXLDvVgiI3EL37xkROG7y7PUTZT9kWBO0WTsQuPdSFXIjP4qy+BzGSHDYwA2kNoM2JDNYwql3t76AE37djvbp6/+IbDtCLP9PnRJ0CzaAAYiegcIlbf3LWQJ4BEyMqTKYOqCR4sjettqFK1fLuNtv0O886oA2M/L5+JB0WGgBwQ4h4wlYXdXpi4UeTfusAh/1/u8Y1OtwVfHEbgfT05MnQDlM3mB62tDkC6fJQj9CeKFRneQNLfkNnTj+LmurI29yNIWjurAv+8NuTC8diAGiSLOYoNrcbhs3bsTmkdgAtpEORJ8MT4yIRsDZjhapE1LwfgRfg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
+ header.d=amd.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=cKch8FCC8ZHqVqJwfO+j8DrW2teSSf5g17jZgokfox4=;
+ b=JiS9/G0Hwt3z0pksDKTCrOyUU8rbFw+0dDkE5kr6DXnc7VK35O/n5o1selhNHMzNhnrWtSqbk0SBnlZdwGWQgpth6RLbs9o9ABebR5tjTSeNJA8gZbsjrOBV7z9d/6OdEfk7r7lQxAZi2DAJwqI8jw/mSxfItDKNWM8iLSzqt40=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=amd.com;
+Received: from PH7PR12MB5685.namprd12.prod.outlook.com (2603:10b6:510:13c::22)
+ by BN9PR12MB5227.namprd12.prod.outlook.com (2603:10b6:408:100::6)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7270.17; Thu, 8 Feb
+ 2024 06:57:09 +0000
+Received: from PH7PR12MB5685.namprd12.prod.outlook.com
+ ([fe80::e1fb:4123:48b1:653]) by PH7PR12MB5685.namprd12.prod.outlook.com
+ ([fe80::e1fb:4123:48b1:653%4]) with mapi id 15.20.7270.016; Thu, 8 Feb 2024
+ 06:57:09 +0000
+Message-ID: <07ed1fee-cb73-49ba-bef6-ca16b4c808e4@amd.com>
+Date: Thu, 8 Feb 2024 07:57:04 +0100
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] drm/buddy: Fix alloc_range() error handling code
+Content-Language: en-US
+To: Arunpravin Paneer Selvam <Arunpravin.PaneerSelvam@amd.com>,
+ dri-devel@lists.freedesktop.org, amd-gfx@lists.freedesktop.org,
+ intel-gfx@lists.freedesktop.org
+Cc: alexander.deucher@amd.com, matthew.auld@intel.com,
+ mario.limonciello@amd.com
+References: <20240207174456.341121-1-Arunpravin.PaneerSelvam@amd.com>
+From: =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>
+In-Reply-To: <20240207174456.341121-1-Arunpravin.PaneerSelvam@amd.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: FR3P281CA0019.DEUP281.PROD.OUTLOOK.COM
+ (2603:10a6:d10:1c::6) To PH7PR12MB5685.namprd12.prod.outlook.com
+ (2603:10b6:510:13c::22)
+MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: PH7PR12MB5685:EE_|BN9PR12MB5227:EE_
+X-MS-Office365-Filtering-Correlation-Id: 5ae49fc6-5ae0-4cda-8c7f-08dc28732b06
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: 8I+Mbu0fA4FLuJ6IIN9iah2LcJTY5tQNr+GzHVUZMvVh981g5R1bNuZWda6YaltFgnrMtDAA0I6m1QeIMRxYcpV1C4XqxW7hQxgwGaK9f+j0eRV9tjNJtcJAZclFA1wBBDJlc0v4eJo1exUDKjKI8TAUC8eEgRaWjP2JXdCSg7UHnt/StF7CZIKr98So+V6gXfc2Au53otBZMDaoKaGKaYanb+1BY2THBNaF6FWDccE303THQaziwJwO6Bn6VF/WOlwL867j+CxniuVuX7pdscdA2J/Zgi4PX4DIt1fEVwADo2Xo6sPvfU/Mm5Rw5SyuppYpu4rkveq5NsglRWjL8Z5cm38pd6CWuG/dnAoYLOG/JBkcWPwVsP2MILzHJQup+rOK7JnM7z2Wz7iMoyreUsZXB0Z/v93+Hi9XQOuy0qnq5KlkdnNKQ5x5MDs/6WAu60R8mVlqcxK+nJG1tjHTjoKQywDX4JL4xZYepeMNeAs/Wm4pd5dHJByKUGiEd1TxU6jfd+mqCkNS3kX/ex90qTeBo9Q3z5/TRkPt8bhrzmY=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:PH7PR12MB5685.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230031)(346002)(136003)(39860400002)(396003)(376002)(366004)(230922051799003)(186009)(1800799012)(64100799003)(451199024)(66946007)(66556008)(66476007)(83380400001)(36756003)(316002)(31696002)(38100700002)(66574015)(26005)(31686004)(86362001)(6512007)(41300700001)(6486002)(966005)(478600001)(5660300002)(2906002)(4326008)(2616005)(8936002)(8676002)(6506007)(6666004);
+ DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?RjNGUnk4aWxDeEszL1kyd1UrTWNlbjNqNFpOS1hOTzlwRGp6SWlCbnNHWmg3?=
+ =?utf-8?B?YVlJYTVXS1p0SjZmajRPN3FvWSt3NWtFTjlpbWFnemVkZVFhUk9sM05zNjd4?=
+ =?utf-8?B?dE5CaTBtcXNtb25GME9qbWQrcm1qRklvWHlqN28vbzlHVFQzM2ErcVhTQW9h?=
+ =?utf-8?B?MHJTVjZsREJjRTlLWktyaHc2Qm96eE5HcEhWYjRPV3lDNkFFSHRLbHJMbjly?=
+ =?utf-8?B?RnJmSEc2Q3BrMHZLSUxES2VVOUhGaXlRdDJrTE9uTzYySHBJZTVtY1JHUld3?=
+ =?utf-8?B?N0wvc1hqSXE1UXB5bGVLc3RKS1A0emJUSWM3OTRmckd2TVYvN3NpNS9uUjc5?=
+ =?utf-8?B?WEh4dE5KRjNINHVPRlBQSkoxcU41clVBblQrWDB2eDkvNXlsUDZrckpvekEv?=
+ =?utf-8?B?bndUSFE0Y3dUVXBpckFNTDgrQmNmSE9Va1FRZnRrRzlkQmtnSGlXbDBQRDRQ?=
+ =?utf-8?B?N1d4bEgzRXliNlZqVXRXRFJkcjdFQzRuMTRUK241YnJlMTRwOXpsV2gyeGxX?=
+ =?utf-8?B?QjllTGpJbzNyNGxLc1hZRldweHhEcG4wNVZwZ1ZuWUZYRGdrQmcrV3QvcklO?=
+ =?utf-8?B?eUJHWXZvOSs4NjBUQmpmYlo2SjVkRjg0dlJCbnBKMDZQdlJEVjd5dWZ5OW1R?=
+ =?utf-8?B?VncreU1JdFFxTmFITDlHd1FFWG44RkxHbGhrM2I0QTJhTmlxcDdQaVdjOU9N?=
+ =?utf-8?B?U24xbVhQQmtpclF1c284NjBaYllnaWl4UXdUV0QzT09WTXR5MTI0QUFXNUlW?=
+ =?utf-8?B?aW5BSC8zSmNUT1d5d1NmcDJiTUxLeld6em1XTGpqaGRHZWhCWVlNRWxaQjZo?=
+ =?utf-8?B?QklPY2ZiSmhaaHN1RTI0aWNXOXNKODBZQ3FYVURITnozTkRhVHprKzNRL2M2?=
+ =?utf-8?B?OTJMMGRSMjBxMGJIVjlFLzl3STNMeVpMREYwRHRSN21FOWtWaWpZbkpDTmlS?=
+ =?utf-8?B?Qjg5d1BOWlZwV0lGQkpyUUZnTElpKzFpVU5SbnJDQU1aQ0l1MkRZS1BuL3Vs?=
+ =?utf-8?B?MDBoNW1VRklqbHUzRUdkdlNiVERDV3RKT2FqSjh0Y041UU44K2JyTVZWOFRs?=
+ =?utf-8?B?WDdHK0NjSXVaZFNUWGZ4ZU5lUW14WWhRaUQvRFhxU3BvZGUrYlVHeElXTHRC?=
+ =?utf-8?B?eDc5TTB4U0FObEhFN0ZKKzdObUxIZWt2V2xVZDFCRWFvZHFZNW1tT3B3Nkp2?=
+ =?utf-8?B?ZUE5ZFJGbFBsS09nNWNYc3Z3azdOakozSHJ5Q0JvSkxIQ3FCY1d6T2hoMVE1?=
+ =?utf-8?B?MGhVbE0wbW44Y0Rab3kreGpFbHpvNWxGN001OTgzT1VqSGVDcHovQVE0WGRk?=
+ =?utf-8?B?RlF2YUd4czQ1ZG9xMEdDNkI5Q090VDFkbkFIQmJWZkMyUE1rbTEzK1ZWM21H?=
+ =?utf-8?B?Kzl5YTcvRVNRVFl5SDdiSCswY28vQ3ZTZ0J5cm4vWVhabUYrL1dBamR5a2JJ?=
+ =?utf-8?B?WFBpejIwVEN2a09BZE16U2xFVjVaeDF5VmREaFVoWE9BdXBNcmpIZi9XQml3?=
+ =?utf-8?B?dWdtallBdTZoMC9MMTBjNHVJWGhYUCt4amYvNTcyeE4zRVc4YTdxYVB3MTdn?=
+ =?utf-8?B?dlBxcE5DeTJoNjRFa1R4dkZBbXlORmNFaUhweHVvTUJJVmtnTllHK2lJVUhu?=
+ =?utf-8?B?emNPb3daQi9QbGRyd3ZMTmhsY3Fwck0wTTExVWxnbFZHN3N0Z2R2L3NIMi9X?=
+ =?utf-8?B?TWVXNVBiQ1Bvb3dYamRUdXp2MkNYTW9Rak5yOVpaakNSblNmY0REYmw5cUYz?=
+ =?utf-8?B?MHpHQW9IL1VGcHlLVDFVcnk5UitscFd4Q1M1SnlkRy9wb1JFSXFING5nMVN0?=
+ =?utf-8?B?aEtFdjM2dEIxZlN3N3YybG9mc25DWmEreDBiUnlMeTA2SGpPWlNiWEpMTE93?=
+ =?utf-8?B?blhkVEoyaTNoVFdqQ0N2TG5XNG54K2pCUk5EVitmMkVGNUtvWHhFbVpmNDUz?=
+ =?utf-8?B?UU5wck0yaGZmU3Flbzh1clg0YkZUMlZ4d01uNkk2SndaOThKK0xHYnJRSFIw?=
+ =?utf-8?B?MXV6ZDNNenFKdHNnSGU0bktsMnd2LzZXdUR1NXh0a1IwZCtiNEwzLzhoNHQr?=
+ =?utf-8?B?Z2pwZDZzTERyTGk2dHREc3BOQmhlcFFQYlBRZ0lpb01ZS3dZN3FqVE4ySURN?=
+ =?utf-8?Q?jpy7f9Y7GAa4WbVOsmvfF7N7x?=
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 5ae49fc6-5ae0-4cda-8c7f-08dc28732b06
+X-MS-Exchange-CrossTenant-AuthSource: PH7PR12MB5685.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 08 Feb 2024 06:57:09.0719 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: LgKtWS2YDogIgbG3tJNMwbnDmquiOTOC0INohMDABzcMCDvZSLnCZK42Vvo+0mzm
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BN9PR12MB5227
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -73,41 +133,45 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, 11 Jan 2024 18:22:50 -0800 "Darrick J. Wong" <djwong@kernel.org> wrote:
+Am 07.02.24 um 18:44 schrieb Arunpravin Paneer Selvam:
+> Few users have observed display corruption when they boot
+> the machine to KDE Plasma or playing games. We have root
+> caused the problem that whenever alloc_range() couldn't
+> find the required memory blocks the function was returning
+> SUCCESS in some of the corner cases.
+>
+> The right approach would be if the total allocated size
+> is less than the required size, the function should
+> return -ENOSPC.
+>
+> Gitlab ticket link - https://gitlab.freedesktop.org/drm/amd/-/issues/3097
+> Fixes: 0a1844bf0b53 ("drm/buddy: Improve contiguous memory allocation")
+> Signed-off-by: Arunpravin Paneer Selvam <Arunpravin.PaneerSelvam@amd.com>
+> Tested-by: Mario Limonciello <mario.limonciello@amd.com>
 
-> On Thu, Jan 11, 2024 at 10:45:53PM +0000, Matthew Wilcox wrote:
-> > On Thu, Jan 11, 2024 at 02:00:53PM -0800, Andrew Morton wrote:
-> > > On Wed, 10 Jan 2024 12:04:51 -0800 "Darrick J. Wong" <djwong@kernel.org> wrote:
-> > > 
-> > > > > > Fixing this will require a bit of an API change, and prefeably sorting out
-> > > > > > the hwpoison story for pages vs folio and where it is placed in the shmem
-> > > > > > API.  For now use this one liner to disable large folios.
-> > > > > > 
-> > > > > > Reported-by: Darrick J. Wong <djwong@kernel.org>
-> > > > > > Signed-off-by: Christoph Hellwig <hch@lst.de>
-> > > > > 
-> > > > > Can someone who knows more about shmem.c than I do please review
-> > > > > https://lore.kernel.org/linux-xfs/20240103084126.513354-4-hch@lst.de/
-> > > > > so that I can feel slightly more confident as hch and I sort through the
-> > > > > xfile.c issues?
-> > > > > 
-> > > > > For this patch,
-> > > > > Reviewed-by: Darrick J. Wong <djwong@kernel.org>
-> > > > 
-> > > > ...except that I'm still getting 2M THPs even with this enabled, so I
-> > > > guess either we get to fix it now, or create our own private tmpfs mount
-> > > > so that we can pass in huge=never, similar to what i915 does. :(
-> > > 
-> > > What is "this"?  Are you saying that $Subject doesn't work, or that the
-> > > above-linked please-review patch doesn't work?
-> > 
-> > shmem pays no attention to the mapping_large_folio_support() flag,
-> > so the proposed fix doesn't work.  It ought to, but it has its own way
-> > of doing it that predates mapping_large_folio_support existing.
-> 
-> Yep.  It turned out to be easier to fix xfile.c to deal with large
-> folios than I thought it would be.  Or so I think.  We'll see what
-> happens on fstestscloud overnight.
+Acked-by: Christian König <christian.koenig@amd.com>
 
-Where do we stand with this?  Should I merge these two patches into
-6.8-rcX, cc:stable?
+CC: stable.. ?
+
+> ---
+>   drivers/gpu/drm/drm_buddy.c | 6 ++++++
+>   1 file changed, 6 insertions(+)
+>
+> diff --git a/drivers/gpu/drm/drm_buddy.c b/drivers/gpu/drm/drm_buddy.c
+> index f57e6d74fb0e..c1a99bf4dffd 100644
+> --- a/drivers/gpu/drm/drm_buddy.c
+> +++ b/drivers/gpu/drm/drm_buddy.c
+> @@ -539,6 +539,12 @@ static int __alloc_range(struct drm_buddy *mm,
+>   	} while (1);
+>   
+>   	list_splice_tail(&allocated, blocks);
+> +
+> +	if (total_allocated < size) {
+> +		err = -ENOSPC;
+> +		goto err_free;
+> +	}
+> +
+>   	return 0;
+>   
+>   err_undo:
+
