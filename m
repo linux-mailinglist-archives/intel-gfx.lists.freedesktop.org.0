@@ -2,29 +2,67 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0B69F84DB74
-	for <lists+intel-gfx@lfdr.de>; Thu,  8 Feb 2024 09:31:35 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6886384DB9A
+	for <lists+intel-gfx@lfdr.de>; Thu,  8 Feb 2024 09:42:06 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6A7EE10E364;
-	Thu,  8 Feb 2024 08:31:28 +0000 (UTC)
-X-Original-To: intel-gfx@lists.freedesktop.org
-Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from 5338d5abeb45 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 087E110E364;
- Thu,  8 Feb 2024 08:31:27 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============1031398383026451034=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id 90E2810E376;
+	Thu,  8 Feb 2024 08:42:04 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="W12n/EWk";
+	dkim-atps=neutral
+X-Original-To: Intel-gfx@lists.freedesktop.org
+Delivered-To: Intel-gfx@lists.freedesktop.org
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.13])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1923310E51E;
+ Thu,  8 Feb 2024 08:42:03 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1707381723; x=1738917723;
+ h=message-id:date:mime-version:subject:to:cc:references:
+ from:in-reply-to:content-transfer-encoding;
+ bh=bgyy3x8w6e7qrmWAidfU/tEQwZkvzu6arv+fKXQHIyQ=;
+ b=W12n/EWkD0idXfasBVtNJ1jvIfRebDSn8ifpYnNVZXQTyiBucyVE+ZUf
+ heA/GPQZ9EKso/2gh6PPIossWT2L60g1yzHasUZ1GWdaxM6xRyFOINc/C
+ 5m0+2BQSxE315GQPkhLDaFHEVKBpZ72kTwwOYE0GvazdZqJHXMiiy+XVE
+ cP8JEGn9qGZ6T002Cr7aM+wo6iDf8sIwxxBMpN5t5btUZNny06ysm8Sx+
+ dZSytf1Y9/JfvpA22ammdJUEvFvGZd7k88eyy8bCrNqhDz3NFU5jhg4Dz
+ VRIz+o2OgP7D9h9N8AWsDaXZqfM9Cmme9SZSfma/J6T8PBZ43k7gs12LV A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10977"; a="4156066"
+X-IronPort-AV: E=Sophos;i="6.05,253,1701158400"; 
+   d="scan'208";a="4156066"
+Received: from orviesa003.jf.intel.com ([10.64.159.143])
+ by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 Feb 2024 00:42:02 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.05,253,1701158400"; 
+   d="scan'208";a="6256400"
+Received: from waoconno-mobl1.ger.corp.intel.com (HELO [10.213.211.200])
+ ([10.213.211.200])
+ by ORVIESA003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 Feb 2024 00:42:00 -0800
+Message-ID: <c70e4b09-4e2a-4369-82f4-2eb13771f217@linux.intel.com>
+Date: Thu, 8 Feb 2024 08:41:57 +0000
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Fi=2ECI=2EBAT=3A_success_for_Fixed-type_GENMASK/BIT_=28r?=
- =?utf-8?q?ev2=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Lucas De Marchi" <lucas.demarchi@intel.com>
-Cc: intel-gfx@lists.freedesktop.org
-Date: Thu, 08 Feb 2024 08:31:27 -0000
-Message-ID: <170738108703.1092524.12614335320143003812@5338d5abeb45>
-X-Patchwork-Hint: ignore
-References: <20240208074521.577076-1-lucas.demarchi@intel.com>
-In-Reply-To: <20240208074521.577076-1-lucas.demarchi@intel.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [RFC] drm/i915: Add GuC submission interface version query
+Content-Language: en-US
+To: John Harrison <john.c.harrison@intel.com>,
+ Intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
+Cc: Tvrtko Ursulin <tvrtko.ursulin@intel.com>,
+ Kenneth Graunke <kenneth@whitecape.org>, Jose Souza <jose.souza@intel.com>,
+ Sagar Ghuge <sagar.ghuge@intel.com>, Paulo Zanoni
+ <paulo.r.zanoni@intel.com>, Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Jani Nikula <jani.nikula@intel.com>,
+ Vivaik Balasubrawmanian <vivaik.balasubrawmanian@intel.com>
+References: <20240207115612.1322778-1-tvrtko.ursulin@linux.intel.com>
+ <32d9d60b-1cfc-4201-8817-d293abe1b39d@intel.com>
+ <82ac1c74-5aa1-484d-9132-9b023c0e7a33@linux.intel.com>
+ <1efb4711-80e7-4e22-a2e3-a7190bad69eb@intel.com>
+From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+Organization: Intel Corporation UK Plc
+In-Reply-To: <1efb4711-80e7-4e22-a2e3-a7190bad69eb@intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -37,240 +75,276 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============1031398383026451034==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
 
-== Series Details ==
+On 07/02/2024 19:34, John Harrison wrote:
+> On 2/7/2024 10:49, Tvrtko Ursulin wrote:
+>> On 07/02/2024 18:12, John Harrison wrote:
+>>> On 2/7/2024 03:56, Tvrtko Ursulin wrote:
+>>>> From: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+>>>>
+>>>> Add a new query to the GuC submission interface version.
+>>>>
+>>>> Mesa intends to use this information to check for old firmware versions
+>>>> with a known bug where using the render and compute command streamers
+>>>> simultaneously can cause GPU hangs due issues in firmware scheduling.
+>>>>
+>>>> Based on patches from Vivaik and Joonas.
+>>>>
+>>>> There is a little bit of an open around the width required for 
+>>>> versions.
+>>>> While the GuC FW iface tells they are u8, i915 GuC code uses u32:
+>>>>
+>>>>   #define CSS_SW_VERSION_UC_MAJOR               (0xFF << 16)
+>>>>   #define CSS_SW_VERSION_UC_MINOR               (0xFF << 8)
+>>>>   #define CSS_SW_VERSION_UC_PATCH               (0xFF << 0)
+>>>> ...
+>>>>   struct intel_uc_fw_ver {
+>>>>           u32 major;
+>>>>           u32 minor;
+>>>>           u32 patch;
+>>>>           u32 build;
+>>>>   };
+>>> This is copied from generic code which supports firmwares other than 
+>>> GuC. Only GuC promises to use 8-bit version components. Other 
+>>> firmwares very definitely do not. There is no open.
+>>
+>> Ack.
+>>
+>>>>
+>>>> So we could make the query u8, and refactor the struct intel_uc_fw_ver
+>>>> to use u8, or not. To avoid any doubts on why are we assigning u32 to
+>>>> u8 I simply opted to use u64. Which avoids the need to add any padding
+>>>> too.
+>>> I don't follow how potential 8 vs 32 confusion means jump to 64?!
+>>
+>> Suggestion was to use u8 in the uapi in order to align with GuC FW ABI 
+>> (or however it's called), in which case there would be:
+>>
+>>    ver.major = guc->submission_version.major;
+>>
+>> which would be:
+>>
+>>    (u8) = (u32)
+>>
+>> And I was anticipating someone not liking that either. Using too wide 
+>> u64 simply avoids the need to add a padding element to the uapi struct.
+>>
+>> If you are positive we need to include a branch number, even though it 
+>> does not seem to be implemented in the code even(*) then I can make 
+>> uapi 4x u32 and achieve the same.
+> It's not implemented in the code because we've never had to, and it is 
+> yet another train wreck waiting to happen. There are a bunch of issues 
+> at different levels that need to be resolved. But that is all in the 
+> kernel and/or firmware and so can be added by a later kernel update when 
+> necessary. However, if the UMDs are not already taking it into account 
+> or its not even in the UAPI, then we can't back fill in the kernel 
+> later, we are just broken.
+> 
+>>
+>> (*)
+>> static void uc_unpack_css_version(struct intel_uc_fw_ver *ver, u32 
+>> css_value)
+>> {
+>>     /* Get version numbers from the CSS header */
+>>     ver->major = FIELD_GET(CSS_SW_VERSION_UC_MAJOR, css_value);
+>>     ver->minor = FIELD_GET(CSS_SW_VERSION_UC_MINOR, css_value);
+>>     ver->patch = FIELD_GET(CSS_SW_VERSION_UC_PATCH, css_value);
+>> }
+>>
+>> No branch field in the CSS header?
+> I think there is, it's just not officially implemented yet.
+> 
+>>
+>> And Why is UMD supposed to reject a non-zero branch? Like how would 
+>> 1.1.3.0 be fine and 1.1.3.1 be bad? I don't get it. But anyway, I can 
+>> respin if you definitely confirm.
+> Because that is backwards. The branch number goes at the front.
+> 
+> So, for example (using made up numbers, I don't recall offhand what 
+> versions we have where) say we currently have 0.1.3.0 in tip and 0.1.1.0 
+> in the last LTS. We then need to ship a critical security fix and back 
+> port it to the LTS. Tip becomes 0.1.3.1 but the LTS can't become 0.1.1.1 
+> because that version already exists in the history of tip and does not 
+> contain the fix. So the LTS gets branched to 1.1.0.0. We then have both 
+> branches potentially moving forwards with completely independent 
+> versioning.
+> 
+> Exactly the same as 5.8.x, 5.9,y, 6.0.z, etc in the Linux kernel 
+> versioning. You cannot make any assumptions about what might be in 
+> 1.4.5.6 compared to 0.1.2.3. 1.4.5.6 could actually 0.1.0.3 with a stack 
+> of security fixes but none of the features, workarounds or bug fixes 
+> that are in 0.1.2.3.
+> 
+> Hence, if the branch number changes then all bets are off. You have to 
+> start over and reject anything you do not explicitly know about.
+> 
+> This is why we were saying that exposing version numbers to UMDs breaks 
+> down horribly as soon as we have to start branching. There is no clean 
+> or simple way to do this.
 
-Series: Fixed-type GENMASK/BIT (rev2)
-URL   : https://patchwork.freedesktop.org/series/129116/
-State : success
+Right, thank you, I know we talked about the challenges with version 
+numbers in the past and fully agreed. I just did not think to idea is to 
+conceptually put the branch number first.
 
-== Summary ==
+(It is called build btw in the i915 struct if that needs cleanup at some 
+point. Or maybe name depends on the firmware type.)
 
-CI Bug Log - changes from CI_DRM_14241 -> Patchwork_129116v2
-====================================================
+But as the plan to piggy back on the existing semaphore capability flag 
+has failed and i915 definitely does not want to keep a database of 
+version branches to bugs fixes, and Mesa is immovable that they cannot 
+ship without something, agreement was to let them have it that 
+something. At least from the pretend level one can say it makes sense to 
+expose the version and don't care what people are doing with it. Even if 
+in practice it potentially never manages to see any old firmware.
 
-Summary
--------
+Hmmm although now I can imagine that if the policy needs to be reject 
+unknown branch numbers, it will make a "nice" maintenance burden to Mesa 
+to ship updates synchronized with the firmware releases, in order to 
+keep the feature active i.e. not inadvertently revert to disabled when 
+say 0.1.1.3 goes to 1.1.1.3 (or 1.1.1.4) to unrelated fix getting added.
 
-  **SUCCESS**
+Jose could you double check that angle please? Will it just work or will 
+it need constant Mesa updates in this situation otherwise we are back at 
+square one - silently not exposing maximum performance.
 
-  No regressions found.
+Anyways, I've sent v2 with the branch included and fields shrunk to u32 
+since as mentioned before four fields now align to quad-word nicely.
 
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_129116v2/index.html
+Regards,
 
-Participating hosts (36 -> 36)
-------------------------------
-
-  Additional (3): bat-kbl-2 bat-arls-2 fi-apl-guc 
-  Missing    (3): bat-mtlp-8 fi-snb-2520m fi-pnv-d510 
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_129116v2 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@debugfs_test@read_all_entries:
-    - fi-kbl-7567u:       [PASS][1] -> [ABORT][2] ([i915#8913])
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14241/fi-kbl-7567u/igt@debugfs_test@read_all_entries.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_129116v2/fi-kbl-7567u/igt@debugfs_test@read_all_entries.html
-
-  * igt@fbdev@info:
-    - bat-kbl-2:          NOTRUN -> [SKIP][3] ([fdo#109271] / [i915#1849])
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_129116v2/bat-kbl-2/igt@fbdev@info.html
-
-  * igt@gem_lmem_swapping@basic:
-    - fi-apl-guc:         NOTRUN -> [SKIP][4] ([fdo#109271] / [i915#4613]) +3 other tests skip
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_129116v2/fi-apl-guc/igt@gem_lmem_swapping@basic.html
-
-  * igt@gem_lmem_swapping@parallel-random-engines:
-    - bat-kbl-2:          NOTRUN -> [SKIP][5] ([fdo#109271]) +35 other tests skip
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_129116v2/bat-kbl-2/igt@gem_lmem_swapping@parallel-random-engines.html
-
-  * igt@i915_selftest@live@execlists:
-    - fi-bsw-nick:        [PASS][6] -> [ABORT][7] ([i915#7911])
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14241/fi-bsw-nick/igt@i915_selftest@live@execlists.html
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_129116v2/fi-bsw-nick/igt@i915_selftest@live@execlists.html
-
-  * igt@kms_hdmi_inject@inject-audio:
-    - fi-apl-guc:         NOTRUN -> [SKIP][8] ([fdo#109271]) +13 other tests skip
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_129116v2/fi-apl-guc/igt@kms_hdmi_inject@inject-audio.html
-
-  
-#### Possible fixes ####
-
-  * igt@gem_exec_fence@basic-busy@ccs0:
-    - {bat-arls-1}:       [DMESG-WARN][9] ([i915#10194]) -> [PASS][10]
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14241/bat-arls-1/igt@gem_exec_fence@basic-busy@ccs0.html
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_129116v2/bat-arls-1/igt@gem_exec_fence@basic-busy@ccs0.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
-  [i915#10194]: https://gitlab.freedesktop.org/drm/intel/issues/10194
-  [i915#10196]: https://gitlab.freedesktop.org/drm/intel/issues/10196
-  [i915#10197]: https://gitlab.freedesktop.org/drm/intel/issues/10197
-  [i915#10200]: https://gitlab.freedesktop.org/drm/intel/issues/10200
-  [i915#10202]: https://gitlab.freedesktop.org/drm/intel/issues/10202
-  [i915#10206]: https://gitlab.freedesktop.org/drm/intel/issues/10206
-  [i915#10207]: https://gitlab.freedesktop.org/drm/intel/issues/10207
-  [i915#10208]: https://gitlab.freedesktop.org/drm/intel/issues/10208
-  [i915#10209]: https://gitlab.freedesktop.org/drm/intel/issues/10209
-  [i915#10211]: https://gitlab.freedesktop.org/drm/intel/issues/10211
-  [i915#10212]: https://gitlab.freedesktop.org/drm/intel/issues/10212
-  [i915#10213]: https://gitlab.freedesktop.org/drm/intel/issues/10213
-  [i915#10214]: https://gitlab.freedesktop.org/drm/intel/issues/10214
-  [i915#10215]: https://gitlab.freedesktop.org/drm/intel/issues/10215
-  [i915#10216]: https://gitlab.freedesktop.org/drm/intel/issues/10216
-  [i915#1849]: https://gitlab.freedesktop.org/drm/intel/issues/1849
-  [i915#3708]: https://gitlab.freedesktop.org/drm/intel/issues/3708
-  [i915#4077]: https://gitlab.freedesktop.org/drm/intel/issues/4077
-  [i915#4083]: https://gitlab.freedesktop.org/drm/intel/issues/4083
-  [i915#4613]: https://gitlab.freedesktop.org/drm/intel/issues/4613
-  [i915#7911]: https://gitlab.freedesktop.org/drm/intel/issues/7911
-  [i915#8809]: https://gitlab.freedesktop.org/drm/intel/issues/8809
-  [i915#8913]: https://gitlab.freedesktop.org/drm/intel/issues/8913
-  [i915#9318]: https://gitlab.freedesktop.org/drm/intel/issues/9318
-  [i915#9688]: https://gitlab.freedesktop.org/drm/intel/issues/9688
-  [i915#9886]: https://gitlab.freedesktop.org/drm/intel/issues/9886
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_14241 -> Patchwork_129116v2
-
-  CI-20190529: 20190529
-  CI_DRM_14241: a942be9b4f39a05326a5fc3fd774fb143b4d9507 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_7705: 45aef708b65772e54ee9a68b1f3885fa25140fdf @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_129116v2: a942be9b4f39a05326a5fc3fd774fb143b4d9507 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-### Linux commits
-
-44e04c42b99f drm/i915: Convert REG_GENMASK* to fixed-width GENMASK_*
-ce6bc2b583ea bits: Introduce fixed-type BIT
-2a20efb60c55 bits: introduce fixed-type genmasks
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_129116v2/index.html
-
---===============1031398383026451034==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
+Tvrtko
 
 
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>Fixed-type GENMASK/BIT (rev2)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/129116/">https://patchwork.freedesktop.org/series/129116/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_129116v2/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_129116v2/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_14241 -&gt; Patchwork_129116v2</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_129116v2/index.html</p>
-<h2>Participating hosts (36 -&gt; 36)</h2>
-<p>Additional (3): bat-kbl-2 bat-arls-2 fi-apl-guc <br />
-  Missing    (3): bat-mtlp-8 fi-snb-2520m fi-pnv-d510 </p>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_129116v2 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@debugfs_test@read_all_entries:</p>
-<ul>
-<li>fi-kbl-7567u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14241/fi-kbl-7567u/igt@debugfs_test@read_all_entries.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_129116v2/fi-kbl-7567u/igt@debugfs_test@read_all_entries.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/8913">i915#8913</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@fbdev@info:</p>
-<ul>
-<li>bat-kbl-2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_129116v2/bat-kbl-2/igt@fbdev@info.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/1849">i915#1849</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_lmem_swapping@basic:</p>
-<ul>
-<li>fi-apl-guc:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_129116v2/fi-apl-guc/igt@gem_lmem_swapping@basic.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/4613">i915#4613</a>) +3 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_lmem_swapping@parallel-random-engines:</p>
-<ul>
-<li>bat-kbl-2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_129116v2/bat-kbl-2/igt@gem_lmem_swapping@parallel-random-engines.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +35 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@execlists:</p>
-<ul>
-<li>fi-bsw-nick:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14241/fi-bsw-nick/igt@i915_selftest@live@execlists.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_129116v2/fi-bsw-nick/igt@i915_selftest@live@execlists.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/7911">i915#7911</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_hdmi_inject@inject-audio:</p>
-<ul>
-<li>fi-apl-guc:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_129116v2/fi-apl-guc/igt@kms_hdmi_inject@inject-audio.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +13 other tests skip</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>igt@gem_exec_fence@basic-busy@ccs0:<ul>
-<li>{bat-arls-1}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14241/bat-arls-1/igt@gem_exec_fence@basic-busy@ccs0.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/10194">i915#10194</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_129116v2/bat-arls-1/igt@gem_exec_fence@basic-busy@ccs0.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<p>{name}: This element is suppressed. This means it is ignored when computing<br />
-          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_14241 -&gt; Patchwork_129116v2</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_14241: a942be9b4f39a05326a5fc3fd774fb143b4d9507 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_7705: 45aef708b65772e54ee9a68b1f3885fa25140fdf @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  Patchwork_129116v2: a942be9b4f39a05326a5fc3fd774fb143b4d9507 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<h3>Linux commits</h3>
-<p>44e04c42b99f drm/i915: Convert REG_GENMASK<em> to fixed-width GENMASK_</em><br />
-ce6bc2b583ea bits: Introduce fixed-type BIT<br />
-2a20efb60c55 bits: introduce fixed-type genmasks</p>
-
-</body>
-</html>
-
---===============1031398383026451034==--
+> 
+> John.
+> 
+> 
+>>
+>> Regards,
+>>
+>> Tvrtko
+>>
+>>>>
+>>>> Compile tested only.
+>>>>
+>>>> Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+>>>> Cc: Kenneth Graunke <kenneth@whitecape.org>
+>>>> Cc: Jose Souza <jose.souza@intel.com>
+>>>> Cc: Sagar Ghuge <sagar.ghuge@intel.com>
+>>>> Cc: Paulo Zanoni <paulo.r.zanoni@intel.com>
+>>>> Cc: John Harrison <John.C.Harrison@Intel.com>
+>>>> Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
+>>>> Cc: Jani Nikula <jani.nikula@intel.com>
+>>>> Cc: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+>>>> Cc: Vivaik Balasubrawmanian <vivaik.balasubrawmanian@intel.com>
+>>>> ---
+>>>>   drivers/gpu/drm/i915/i915_query.c | 32 
+>>>> +++++++++++++++++++++++++++++++
+>>>>   include/uapi/drm/i915_drm.h       | 11 +++++++++++
+>>>>   2 files changed, 43 insertions(+)
+>>>>
+>>>> diff --git a/drivers/gpu/drm/i915/i915_query.c 
+>>>> b/drivers/gpu/drm/i915/i915_query.c
+>>>> index 00871ef99792..999687f6a3d4 100644
+>>>> --- a/drivers/gpu/drm/i915/i915_query.c
+>>>> +++ b/drivers/gpu/drm/i915/i915_query.c
+>>>> @@ -551,6 +551,37 @@ static int query_hwconfig_blob(struct 
+>>>> drm_i915_private *i915,
+>>>>       return hwconfig->size;
+>>>>   }
+>>>> +static int
+>>>> +query_guc_submission_version(struct drm_i915_private *i915,
+>>>> +                 struct drm_i915_query_item *query)
+>>>> +{
+>>>> +    struct drm_i915_query_guc_submission_version __user *query_ptr =
+>>>> +                        u64_to_user_ptr(query->data_ptr);
+>>>> +    struct drm_i915_query_guc_submission_version ver;
+>>>> +    struct intel_guc *guc = &to_gt(i915)->uc.guc;
+>>>> +    const size_t size = sizeof(ver);
+>>>> +    int ret;
+>>>> +
+>>>> +    if (!intel_uc_uses_guc_submission(&to_gt(i915)->uc))
+>>>> +        return -ENODEV;
+>>>> +
+>>>> +    ret = copy_query_item(&ver, size, size, query);
+>>>> +    if (ret != 0)
+>>>> +        return ret;
+>>>> +
+>>>> +    if (ver.major || ver.minor || ver.patch)
+>>>> +        return -EINVAL;
+>>>> +
+>>>> +    ver.major = guc->submission_version.major;
+>>>> +    ver.minor = guc->submission_version.minor;
+>>>> +    ver.patch = guc->submission_version.patch;
+>>> This needs to include the branch version (currently set to zero) in 
+>>> the definition. And the UMD needs to barf if branch comes back as 
+>>> non-zero. I.e. there is no guarantee that a branched version will 
+>>> have the w/a + fix that they are wanting.
+>>>
+>>> John.
+>>>
+>>>
+>>>> +
+>>>> +    if (copy_to_user(query_ptr, &ver, size))
+>>>> +        return -EFAULT;
+>>>> +
+>>>> +    return 0;
+>>>> +}
+>>>> +
+>>>>   static int (* const i915_query_funcs[])(struct drm_i915_private 
+>>>> *dev_priv,
+>>>>                       struct drm_i915_query_item *query_item) = {
+>>>>       query_topology_info,
+>>>> @@ -559,6 +590,7 @@ static int (* const i915_query_funcs[])(struct 
+>>>> drm_i915_private *dev_priv,
+>>>>       query_memregion_info,
+>>>>       query_hwconfig_blob,
+>>>>       query_geometry_subslices,
+>>>> +    query_guc_submission_version,
+>>>>   };
+>>>>   int i915_query_ioctl(struct drm_device *dev, void *data, struct 
+>>>> drm_file *file)
+>>>> diff --git a/include/uapi/drm/i915_drm.h b/include/uapi/drm/i915_drm.h
+>>>> index 550c496ce76d..d80d9b5e1eda 100644
+>>>> --- a/include/uapi/drm/i915_drm.h
+>>>> +++ b/include/uapi/drm/i915_drm.h
+>>>> @@ -3038,6 +3038,7 @@ struct drm_i915_query_item {
+>>>>        *  - %DRM_I915_QUERY_MEMORY_REGIONS (see struct 
+>>>> drm_i915_query_memory_regions)
+>>>>        *  - %DRM_I915_QUERY_HWCONFIG_BLOB (see `GuC HWCONFIG blob 
+>>>> uAPI`)
+>>>>        *  - %DRM_I915_QUERY_GEOMETRY_SUBSLICES (see struct 
+>>>> drm_i915_query_topology_info)
+>>>> +     *  - %DRM_I915_QUERY_GUC_SUBMISSION_VERSION (see struct 
+>>>> drm_i915_query_guc_submission_version)
+>>>>        */
+>>>>       __u64 query_id;
+>>>>   #define DRM_I915_QUERY_TOPOLOGY_INFO        1
+>>>> @@ -3046,6 +3047,7 @@ struct drm_i915_query_item {
+>>>>   #define DRM_I915_QUERY_MEMORY_REGIONS        4
+>>>>   #define DRM_I915_QUERY_HWCONFIG_BLOB        5
+>>>>   #define DRM_I915_QUERY_GEOMETRY_SUBSLICES    6
+>>>> +#define DRM_I915_QUERY_GUC_SUBMISSION_VERSION    7
+>>>>   /* Must be kept compact -- no holes and well documented */
+>>>>       /**
+>>>> @@ -3591,6 +3593,15 @@ struct drm_i915_query_memory_regions {
+>>>>       struct drm_i915_memory_region_info regions[];
+>>>>   };
+>>>> +/**
+>>>> +* struct drm_i915_query_guc_submission_version - query GuC 
+>>>> submission interface version
+>>>> +*/
+>>>> +struct drm_i915_query_guc_submission_version {
+>>>> +    __u64 major;
+>>>> +    __u64 minor;
+>>>> +    __u64 patch;
+>>>> +};
+>>>> +
+>>>>   /**
+>>>>    * DOC: GuC HWCONFIG blob uAPI
+>>>>    *
+>>>
+> 
