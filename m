@@ -2,61 +2,58 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id B056C84DF59
-	for <lists+intel-gfx@lfdr.de>; Thu,  8 Feb 2024 12:09:03 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id E6C3B84DF94
+	for <lists+intel-gfx@lfdr.de>; Thu,  8 Feb 2024 12:25:35 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D5EE810E64D;
-	Thu,  8 Feb 2024 11:09:01 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8611810E2EA;
+	Thu,  8 Feb 2024 11:25:31 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="DIrqQ72r";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="QgitEEuV";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5188010E63E;
- Thu,  8 Feb 2024 11:09:00 +0000 (UTC)
+X-Greylist: delayed 426 seconds by postgrey-1.36 at gabe;
+ Thu, 08 Feb 2024 11:25:28 UTC
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id F040110E2EA
+ for <intel-gfx@lists.freedesktop.org>; Thu,  8 Feb 2024 11:25:28 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1707390541; x=1738926541;
- h=date:from:to:cc:subject:message-id:mime-version;
- bh=Jz5fnD+jREj51S11/azW+TZ3mNwy4PtiPm9X6xYtW/4=;
- b=DIrqQ72rZTUH3XLKXbllNmeoDNh9H9M9jKaatvCQkJudehlBFv8dinzb
- d93pp0MbK3TavFGucV2VmNVc5psD7I9lCtcBJzMR7Lqo8V4+AE6JsMg63
- cfFSbm33eujW5W3g186Rx8KwLKw5emK12RxIyLvJm/Q9tZF8eyL9qT8Ux
- yF7Ctm93BWYVA2XlJRYfoQe3d3GKPvouw0CTVs0xFqnunJJ/Z58ifX3DB
- Sa76Y1R1E7gLZvz0HB1PNQGgq23o2uFKUa4jwV4MBYu1DA/Bnxux5zpXd
- IG+ishdYlDSVDO4qEi00WfYq4TMkCcMXGnG/M8y81hpmD8eK0327Jduu9 g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10977"; a="23675561"
-X-IronPort-AV: E=Sophos;i="6.05,253,1701158400"; d="scan'208";a="23675561"
-Received: from fmviesa002.fm.intel.com ([10.60.135.142])
- by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Feb 2024 03:08:59 -0800
+ t=1707391529; x=1738927529;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=S4BjbjfSUEk2yEmx+2h59LPoWzgExpJMeer9dSMwQow=;
+ b=QgitEEuVRBcy9mpbIWczCkQkOuKXdczcrF3XeSJLsIfRbmHQ+1dZt+gJ
+ ORJcFVnouxWi/EcOKS4Iyp3D1RZy00LXXUwsFCs5VNEs3Dz8crzfkFCol
+ 0PMY+wlataDQRuUEofBeMNAlbFqvga/161esJyo9uZOBZ2qf2c0xVi1G6
+ zt53ATCn83GJtPG2aVn0jUgq6m56I6B/z5fysOTVmvKZZ6abOW6oQNH4s
+ RWatUsQfv8wBThvpu5tHh3Mfjqjr5Sp2qB9a43NVFUxKn53BAlwJMkac7
+ k7R3Fll6rpRZ/lWF/r3ygcr7eMsw926U+ONtlpRYd1z4YenMGZZl6ql+G A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10977"; a="1096149"
+X-IronPort-AV: E=Sophos;i="6.05,253,1701158400"; 
+   d="scan'208";a="1096149"
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+ by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 Feb 2024 03:18:22 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.05,253,1701158400"; d="scan'208";a="24872336"
-Received: from pplotits-mobl2.ccr.corp.intel.com (HELO fedora)
- ([10.249.254.149])
- by fmviesa002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Feb 2024 03:08:55 -0800
-Date: Thu, 8 Feb 2024 12:08:30 +0100
-From: Thomas Hellstrom <thomas.hellstrom@linux.intel.com>
-To: Dave Airlie <airlied@gmail.com>, Daniel Vetter <daniel.vetter@ffwll.ch>
-Cc: Jani Nikula <jani.nikula@linux.intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Thomas Zimmermann <tzimmermann@suse.de>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>,
- Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>,
- Oded Gabbay <ogabbay@kernel.org>,
- Lucas De Marchi <lucas.demarchi@intel.com>,
- dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
- dim-tools@lists.freedesktop.org, intel-xe@lists.freedesktop.org
-Subject: [PULL] drm-xe-fixes
-Message-ID: <ZcS2LllawGifubsk@fedora>
+X-IronPort-AV: E=McAfee;i="6600,9927,10977"; a="824804064"
+X-IronPort-AV: E=Sophos;i="6.05,253,1701158400"; d="scan'208";a="824804064"
+Received: from unknown (HELO ideak-desk.fi.intel.com) ([10.237.66.155])
+ by orsmga001-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 Feb 2024 03:18:20 -0800
+From: Imre Deak <imre.deak@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Cc: =?UTF-8?q?Jouni=20H=C3=B6gander?= <jouni.hogander@intel.com>
+Subject: [PATCH v2 1/2] drm/i915: Prevent HW access during init from SDVO TV
+ get_modes hook
+Date: Thu,  8 Feb 2024 13:18:38 +0200
+Message-Id: <20240208111838.1950411-1-imre.deak@intel.com>
+X-Mailer: git-send-email 2.39.2
+In-Reply-To: <20240206153910.1758057-2-imre.deak@intel.com>
+References: <20240206153910.1758057-2-imre.deak@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -72,75 +69,43 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Dave, Sima
+Prevent accessing the HW from the SDVO/TV get_modes connector hook.
+Returning 0 from the hook will make the caller -
+drm_helper_probe_single_connector_modes() - return a default/EDID
+override mode list to users. This matches the case where
+intel_sdvo_get_tv_modes() fails to retrieve the current mode list due to
+a HW access failure.
 
-The drm-xe-fixes pull for -rc4.
+v2: Clarify the commit message wrt. which modes get_modes() returns. (Jouni)
 
-Thanks,
-Thomas
+Signed-off-by: Imre Deak <imre.deak@intel.com>
+Reviewed-by: Jouni Högander <jouni.hogander@intel.com>
+---
+ drivers/gpu/drm/i915/display/intel_sdvo.c | 4 ++++
+ 1 file changed, 4 insertions(+)
 
-drm-xe-fixes-2024-02-08:
-Driver Changes:
-- Fix a loop in an error path
-- Fix a missing dma-fence reference
-- Fix a retry path on userptr REMAP
-- Workaround for a false gcc warning
-- Fix missing map of the usm batch buffer
-  in the migrate vm.
-- Fix a memory leak.
-- Fix a bad assumption of used page size
-- Fix hitting a BUG() due to zero pages to map.
-- Remove some leftover async bind queue relics
-The following changes since commit 54be6c6c5ae8e0d93a6c4641cb7528eb0b6ba478:
+diff --git a/drivers/gpu/drm/i915/display/intel_sdvo.c b/drivers/gpu/drm/i915/display/intel_sdvo.c
+index 2571ef5a1b211..ccea0efbd136f 100644
+--- a/drivers/gpu/drm/i915/display/intel_sdvo.c
++++ b/drivers/gpu/drm/i915/display/intel_sdvo.c
+@@ -2287,6 +2287,7 @@ static const struct drm_display_mode sdvo_tv_modes[] = {
+ static int intel_sdvo_get_tv_modes(struct drm_connector *connector)
+ {
+ 	struct intel_sdvo *intel_sdvo = intel_attached_sdvo(to_intel_connector(connector));
++	struct drm_i915_private *i915 = to_i915(intel_sdvo->base.base.dev);
+ 	struct intel_sdvo_connector *intel_sdvo_connector =
+ 		to_intel_sdvo_connector(connector);
+ 	const struct drm_connector_state *conn_state = connector->state;
+@@ -2298,6 +2299,9 @@ static int intel_sdvo_get_tv_modes(struct drm_connector *connector)
+ 	DRM_DEBUG_KMS("[CONNECTOR:%d:%s]\n",
+ 		      connector->base.id, connector->name);
+ 
++	if (!intel_display_driver_check_access(i915))
++		return 0;
++
+ 	/*
+ 	 * Read the list of supported input resolutions for the selected TV
+ 	 * format.
+-- 
+2.39.2
 
-  Linux 6.8-rc3 (2024-02-04 12:20:36 +0000)
-
-are available in the Git repository at:
-
-  https://gitlab.freedesktop.org/drm/xe/kernel.git tags/drm-xe-fixes-2024-02-08
-
-for you to fetch changes up to bf4c27b8267d7848bb81fd41e6aa07aa662f07fb:
-
-  drm/xe: Remove TEST_VM_ASYNC_OPS_ERROR (2024-02-08 09:51:19 +0100)
-
-----------------------------------------------------------------
-Driver Changes:
-- Fix a loop in an error path
-- Fix a missing dma-fence reference
-- Fix a retry path on userptr REMAP
-- Workaround for a false gcc warning
-- Fix missing map of the usm batch buffer
-  in the migrate vm.
-- Fix a memory leak.
-- Fix a bad assumption of used page size
-- Fix hitting a BUG() due to zero pages to map.
-- Remove some leftover async bind queue relics
-
-----------------------------------------------------------------
-Arnd Bergmann (1):
-      drm/xe: circumvent bogus stringop-overflow warning
-
-Matthew Auld (1):
-      drm/xe/vm: don't ignore error when in_kthread
-
-Matthew Brost (6):
-      drm/xe: Fix loop in vm_bind_ioctl_ops_unwind
-      drm/xe: Take a reference in xe_exec_queue_last_fence_get()
-      drm/xe: Pick correct userptr VMA to repin on REMAP op failure
-      drm/xe: Map both mem.kernel_bb_pool and usm.bb_pool
-      drm/xe: Assume large page size if VMA not yet bound
-      drm/xe: Remove TEST_VM_ASYNC_OPS_ERROR
-
-Xiaoming Wang (1):
-      drm/xe/display: Fix memleak in display initialization
-
- drivers/gpu/drm/xe/xe_display.c      |  6 ----
- drivers/gpu/drm/xe/xe_exec_queue.c   |  8 +++--
- drivers/gpu/drm/xe/xe_gt.c           |  5 ++-
- drivers/gpu/drm/xe/xe_gt_pagefault.c |  2 +-
- drivers/gpu/drm/xe/xe_migrate.c      | 28 ++++++++++++----
- drivers/gpu/drm/xe/xe_sched_job.c    |  1 -
- drivers/gpu/drm/xe/xe_sync.c         |  2 --
- drivers/gpu/drm/xe/xe_vm.c           | 62 ++++++++++++++----------------------
- drivers/gpu/drm/xe/xe_vm_types.h     |  8 -----
- 9 files changed, 57 insertions(+), 65 deletions(-)
