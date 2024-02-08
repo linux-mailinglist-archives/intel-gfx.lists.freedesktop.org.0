@@ -2,49 +2,49 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id D1F5F84E3CE
-	for <lists+intel-gfx@lfdr.de>; Thu,  8 Feb 2024 16:17:35 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id D89BF84E3CF
+	for <lists+intel-gfx@lfdr.de>; Thu,  8 Feb 2024 16:17:38 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 449C210E893;
-	Thu,  8 Feb 2024 15:17:34 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 593EA10E894;
+	Thu,  8 Feb 2024 15:17:37 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ULxs5zS3";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="bC8YoVU1";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0133210E893
- for <intel-gfx@lists.freedesktop.org>; Thu,  8 Feb 2024 15:17:32 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0741510E894
+ for <intel-gfx@lists.freedesktop.org>; Thu,  8 Feb 2024 15:17:36 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1707405453; x=1738941453;
+ t=1707405456; x=1738941456;
  h=from:to:subject:date:message-id:in-reply-to:references:
  mime-version:content-transfer-encoding;
- bh=0V/oOHqiCxYqfjRspKqDd/IiB66DRSmXa+jNPk3TKr8=;
- b=ULxs5zS3UnnGHRQkTBkkQpzOyMLydgmvoEYkXzlHoZvPEV4LOpbxfgJ+
- JoxHePGUNmo8eQJDwBNHn4jA19pv5vc8TUrFZ1Tez5+uxnI0yFPgbizRq
- CkWaMyMrYKamUs9aGlAIrIu8hStp+EQZrTqUoxU7IycB5B9S4L4wc2j0s
- MojrWYnngFrgurKRXuAdvIz6ILhTFCnjX+HDqekAN0YrbJLHdOkZ2fQWw
- Jpv+j5uKxSY1TC8t2sFnxXOy+anuvELAli6CaJpfi2OsR6x+zNQ7PYLXo
- XJG24T9rFnHP5ZKOcE/u6SZbbtn5pgj4Bd1dpTY4D3ROVvy4q9kCjCgi/ g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10978"; a="4219193"
+ bh=M7LcN7AwhDxNVLpBqCkoaXamwzYAUTiGObWAPwAImzc=;
+ b=bC8YoVU1JcDQEDg496wWEzb1skKYrY2Yy0sTfoKaCusevg5yqHmsaA4Y
+ JYqCX7QmgxoOaGYoOS8PjTTtMjxq33OgmdmTTE6w5cCGV4fIB/POYeHhs
+ 01NynXfHDAb/ow5jw6iM+Rga0yKLV9yMyNQxPu0jBDDUGCFTjM4I52ofq
+ +YkBYEKh9Zhl6r1+S93TTnXGvLhqudIGyvT8UVmAYRaYYjmGp2lnaol2l
+ wgtn3TfNWe9T/zvNV7iUaegkQ4O9VhTRT4cmP1nmr20aR6/yfT2pIiu+B
+ BkAZSaN9twWxo4LEihnYOcBgpGuIFzQGWNFp+5Xjtbd5lUPo1GLoMzF6I A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10978"; a="4219219"
 X-IronPort-AV: E=Sophos;i="6.05,254,1701158400"; 
-   d="scan'208";a="4219193"
+   d="scan'208";a="4219219"
 Received: from orsmga001.jf.intel.com ([10.7.209.18])
  by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Feb 2024 07:17:32 -0800
+ 08 Feb 2024 07:17:35 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10978"; a="824863654"
-X-IronPort-AV: E=Sophos;i="6.05,254,1701158400"; d="scan'208";a="824863654"
+X-IronPort-AV: E=McAfee;i="6600,9927,10978"; a="824863656"
+X-IronPort-AV: E=Sophos;i="6.05,254,1701158400"; d="scan'208";a="824863656"
 Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.74])
- by orsmga001.jf.intel.com with SMTP; 08 Feb 2024 07:17:30 -0800
+ by orsmga001.jf.intel.com with SMTP; 08 Feb 2024 07:17:33 -0800
 Received: by stinkbox (sSMTP sendmail emulation);
- Thu, 08 Feb 2024 17:17:30 +0200
+ Thu, 08 Feb 2024 17:17:33 +0200
 From: Ville Syrjala <ville.syrjala@linux.intel.com>
 To: intel-gfx@lists.freedesktop.org
-Subject: [PATCH 03/13] drm/i915/sdvo: Fix up code alignment
-Date: Thu,  8 Feb 2024 17:17:10 +0200
-Message-ID: <20240208151720.7866-4-ville.syrjala@linux.intel.com>
+Subject: [PATCH 04/13] drm/i915/color: Use per-device debugs
+Date: Thu,  8 Feb 2024 17:17:11 +0200
+Message-ID: <20240208151720.7866-5-ville.syrjala@linux.intel.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20240208151720.7866-1-ville.syrjala@linux.intel.com>
 References: <20240208151720.7866-1-ville.syrjala@linux.intel.com>
@@ -68,195 +68,51 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-Realign a bunch of code that has become messy.
+Switch to drm_dbg_kms() in the LUT validation code so we see
+which device generated the debugs. Need to plumb i915 a bit
+deeper to make that happen.
 
 Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_sdvo.c | 104 +++++++++++-----------
- 1 file changed, 52 insertions(+), 52 deletions(-)
+ drivers/gpu/drm/i915/display/intel_color.c | 11 ++++++-----
+ 1 file changed, 6 insertions(+), 5 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_sdvo.c b/drivers/gpu/drm/i915/display/intel_sdvo.c
-index a6724447ca17..412c15d32f07 100644
---- a/drivers/gpu/drm/i915/display/intel_sdvo.c
-+++ b/drivers/gpu/drm/i915/display/intel_sdvo.c
-@@ -762,7 +762,7 @@ static bool intel_sdvo_get_timing(struct intel_sdvo *intel_sdvo, u8 cmd,
+diff --git a/drivers/gpu/drm/i915/display/intel_color.c b/drivers/gpu/drm/i915/display/intel_color.c
+index c5092b7e87d5..ca7112b32cb3 100644
+--- a/drivers/gpu/drm/i915/display/intel_color.c
++++ b/drivers/gpu/drm/i915/display/intel_color.c
+@@ -2111,7 +2111,8 @@ static u32 intel_degamma_lut_size(const struct intel_crtc_state *crtc_state)
+ 	return DISPLAY_INFO(i915)->color.degamma_lut_size;
  }
  
- static bool intel_sdvo_set_input_timing(struct intel_sdvo *intel_sdvo,
--					 struct intel_sdvo_dtd *dtd)
-+					struct intel_sdvo_dtd *dtd)
+-static int check_lut_size(const struct drm_property_blob *lut, int expected)
++static int check_lut_size(struct drm_i915_private *i915,
++			  const struct drm_property_blob *lut, int expected)
  {
- 	return intel_sdvo_set_timing(intel_sdvo,
- 				     SDVO_CMD_SET_INPUT_TIMINGS_PART1, dtd);
-@@ -930,8 +930,8 @@ static bool intel_sdvo_check_supp_encode(struct intel_sdvo *intel_sdvo)
+ 	int len;
  
- 	BUILD_BUG_ON(sizeof(encode) != 2);
- 	return intel_sdvo_get_value(intel_sdvo,
--				  SDVO_CMD_GET_SUPP_ENCODE,
--				  &encode, sizeof(encode));
-+				    SDVO_CMD_GET_SUPP_ENCODE,
-+				    &encode, sizeof(encode));
- }
+@@ -2120,8 +2121,8 @@ static int check_lut_size(const struct drm_property_blob *lut, int expected)
  
- static bool intel_sdvo_set_encode(struct intel_sdvo *intel_sdvo,
-@@ -1995,30 +1995,30 @@ static bool intel_sdvo_get_capabilities(struct intel_sdvo *intel_sdvo, struct in
- 		return false;
- 
- 	drm_dbg_kms(&i915->drm, "SDVO capabilities:\n"
--		      "  vendor_id: %d\n"
--		      "  device_id: %d\n"
--		      "  device_rev_id: %d\n"
--		      "  sdvo_version_major: %d\n"
--		      "  sdvo_version_minor: %d\n"
--		      "  sdvo_num_inputs: %d\n"
--		      "  smooth_scaling: %d\n"
--		      "  sharp_scaling: %d\n"
--		      "  up_scaling: %d\n"
--		      "  down_scaling: %d\n"
--		      "  stall_support: %d\n"
--		      "  output_flags: %d\n",
--		      caps->vendor_id,
--		      caps->device_id,
--		      caps->device_rev_id,
--		      caps->sdvo_version_major,
--		      caps->sdvo_version_minor,
--		      caps->sdvo_num_inputs,
--		      caps->smooth_scaling,
--		      caps->sharp_scaling,
--		      caps->up_scaling,
--		      caps->down_scaling,
--		      caps->stall_support,
--		      caps->output_flags);
-+		    "  vendor_id: %d\n"
-+		    "  device_id: %d\n"
-+		    "  device_rev_id: %d\n"
-+		    "  sdvo_version_major: %d\n"
-+		    "  sdvo_version_minor: %d\n"
-+		    "  sdvo_num_inputs: %d\n"
-+		    "  smooth_scaling: %d\n"
-+		    "  sharp_scaling: %d\n"
-+		    "  up_scaling: %d\n"
-+		    "  down_scaling: %d\n"
-+		    "  stall_support: %d\n"
-+		    "  output_flags: %d\n",
-+		    caps->vendor_id,
-+		    caps->device_id,
-+		    caps->device_rev_id,
-+		    caps->sdvo_version_major,
-+		    caps->sdvo_version_minor,
-+		    caps->sdvo_num_inputs,
-+		    caps->smooth_scaling,
-+		    caps->sharp_scaling,
-+		    caps->up_scaling,
-+		    caps->down_scaling,
-+		    caps->stall_support,
-+		    caps->output_flags);
- 
- 	return true;
- }
-@@ -2050,7 +2050,7 @@ static u16 intel_sdvo_get_hotplug_support(struct intel_sdvo *intel_sdvo)
- 		return 0;
- 
- 	if (!intel_sdvo_get_value(intel_sdvo, SDVO_CMD_GET_HOT_PLUG_SUPPORT,
--					&hotplug, sizeof(hotplug)))
-+				  &hotplug, sizeof(hotplug)))
- 		return 0;
- 
- 	return hotplug;
-@@ -2812,7 +2812,7 @@ intel_sdvo_dvi_init(struct intel_sdvo *intel_sdvo, u16 type)
- 	intel_connector = &intel_sdvo_connector->base;
- 	connector = &intel_connector->base;
- 	if (intel_sdvo_get_hotplug_support(intel_sdvo) &
--		intel_sdvo_connector->output_flag) {
-+	    intel_sdvo_connector->output_flag) {
- 		intel_sdvo->hotplug_active |= intel_sdvo_connector->output_flag;
- 		/*
- 		 * Some SDVO devices have one-shot hotplug interrupts.
-@@ -3092,8 +3092,8 @@ static bool intel_sdvo_tv_create_property(struct intel_sdvo *intel_sdvo,
- 
- 
- 	intel_sdvo_connector->tv_format =
--			drm_property_create(dev, DRM_MODE_PROP_ENUM,
--					    "mode", intel_sdvo_connector->format_supported_num);
-+		drm_property_create(dev, DRM_MODE_PROP_ENUM,
-+				    "mode", intel_sdvo_connector->format_supported_num);
- 	if (!intel_sdvo_connector->tv_format)
- 		return false;
- 
-@@ -3168,7 +3168,7 @@ intel_sdvo_create_enhance_property_tv(struct intel_sdvo *intel_sdvo,
- 			return false;
- 
- 		drm_object_attach_property(&connector->base,
--					      intel_sdvo_connector->right, 0);
-+					   intel_sdvo_connector->right, 0);
- 		drm_dbg_kms(&i915->drm, "h_overscan: max %d, default %d, current %d\n",
- 			    data_value[0], data_value[1], response);
+ 	len = drm_color_lut_size(lut);
+ 	if (len != expected) {
+-		DRM_DEBUG_KMS("Invalid LUT size; got %d, expected %d\n",
+-			      len, expected);
++		drm_dbg_kms(&i915->drm, "Invalid LUT size; got %d, expected %d\n",
++			    len, expected);
+ 		return -EINVAL;
  	}
-@@ -3189,7 +3189,7 @@ intel_sdvo_create_enhance_property_tv(struct intel_sdvo *intel_sdvo,
- 		intel_sdvo_connector->max_vscan = data_value[0];
- 		intel_sdvo_connector->top =
- 			drm_property_create_range(dev, 0,
--					    "top_margin", 0, data_value[0]);
-+						  "top_margin", 0, data_value[0]);
- 		if (!intel_sdvo_connector->top)
- 			return false;
  
-@@ -3198,12 +3198,12 @@ intel_sdvo_create_enhance_property_tv(struct intel_sdvo *intel_sdvo,
+@@ -2146,8 +2147,8 @@ static int _check_luts(const struct intel_crtc_state *crtc_state,
+ 	degamma_length = intel_degamma_lut_size(crtc_state);
+ 	gamma_length = intel_gamma_lut_size(crtc_state);
  
- 		intel_sdvo_connector->bottom =
- 			drm_property_create_range(dev, 0,
--					    "bottom_margin", 0, data_value[0]);
-+						  "bottom_margin", 0, data_value[0]);
- 		if (!intel_sdvo_connector->bottom)
- 			return false;
+-	if (check_lut_size(degamma_lut, degamma_length) ||
+-	    check_lut_size(gamma_lut, gamma_length))
++	if (check_lut_size(i915, degamma_lut, degamma_length) ||
++	    check_lut_size(i915, gamma_lut, gamma_length))
+ 		return -EINVAL;
  
- 		drm_object_attach_property(&connector->base,
--					      intel_sdvo_connector->bottom, 0);
-+					   intel_sdvo_connector->bottom, 0);
- 		drm_dbg_kms(&i915->drm, "v_overscan: max %d, default %d, current %d\n",
- 			    data_value[0], data_value[1], response);
- 	}
-@@ -3490,23 +3490,23 @@ bool intel_sdvo_init(struct drm_i915_private *dev_priv,
- 		goto err_output;
- 
- 	drm_dbg_kms(&dev_priv->drm, "%s device VID/DID: %02X:%02X.%02X, "
--			"clock range %dMHz - %dMHz, "
--			"num inputs: %d, "
--			"output 1: %c, output 2: %c\n",
--			SDVO_NAME(intel_sdvo),
--			intel_sdvo->caps.vendor_id, intel_sdvo->caps.device_id,
--			intel_sdvo->caps.device_rev_id,
--			intel_sdvo->pixel_clock_min / 1000,
--			intel_sdvo->pixel_clock_max / 1000,
--			intel_sdvo->caps.sdvo_num_inputs,
--			/* check currently supported outputs */
--			intel_sdvo->caps.output_flags &
--			(SDVO_OUTPUT_TMDS0 | SDVO_OUTPUT_RGB0 |
--			 SDVO_OUTPUT_LVDS0 | SDVO_OUTPUT_SVID0 |
--			 SDVO_OUTPUT_CVBS0 | SDVO_OUTPUT_YPRPB0) ? 'Y' : 'N',
--			intel_sdvo->caps.output_flags &
--			(SDVO_OUTPUT_TMDS1 | SDVO_OUTPUT_RGB1 |
--			 SDVO_OUTPUT_LVDS1) ? 'Y' : 'N');
-+		    "clock range %dMHz - %dMHz, "
-+		    "num inputs: %d, "
-+		    "output 1: %c, output 2: %c\n",
-+		    SDVO_NAME(intel_sdvo),
-+		    intel_sdvo->caps.vendor_id, intel_sdvo->caps.device_id,
-+		    intel_sdvo->caps.device_rev_id,
-+		    intel_sdvo->pixel_clock_min / 1000,
-+		    intel_sdvo->pixel_clock_max / 1000,
-+		    intel_sdvo->caps.sdvo_num_inputs,
-+		    /* check currently supported outputs */
-+		    intel_sdvo->caps.output_flags &
-+		    (SDVO_OUTPUT_TMDS0 | SDVO_OUTPUT_RGB0 |
-+		     SDVO_OUTPUT_LVDS0 | SDVO_OUTPUT_SVID0 |
-+		     SDVO_OUTPUT_CVBS0 | SDVO_OUTPUT_YPRPB0) ? 'Y' : 'N',
-+		    intel_sdvo->caps.output_flags &
-+		    (SDVO_OUTPUT_TMDS1 | SDVO_OUTPUT_RGB1 |
-+		     SDVO_OUTPUT_LVDS1) ? 'Y' : 'N');
- 	return true;
- 
- err_output:
+ 	if (drm_color_lut_check(degamma_lut, degamma_tests) ||
 -- 
 2.43.0
 
