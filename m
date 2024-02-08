@@ -2,61 +2,29 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 918D184DBD7
-	for <lists+intel-gfx@lfdr.de>; Thu,  8 Feb 2024 09:50:13 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 105DF84DBF9
+	for <lists+intel-gfx@lfdr.de>; Thu,  8 Feb 2024 09:53:08 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E4FBF10E496;
-	Thu,  8 Feb 2024 08:50:11 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="bsxYhPQ8";
-	dkim-atps=neutral
+	by gabe.freedesktop.org (Postfix) with ESMTP id 53F7A10E46D;
+	Thu,  8 Feb 2024 08:53:06 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8E16210E46D;
- Thu,  8 Feb 2024 08:50:10 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1707382210; x=1738918210;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=0lR0Js2Ta6ESjjgeXWYiaIlClzCWLnCunSK0HHuu9dE=;
- b=bsxYhPQ8B0HIHBmtXJUfd3EQmabp/9VLavTByvCHcOdIwjo1Dby9qBoI
- PDM632/DYDRN0oUcyuhvGxlRtyf4TFuaRvDxA2ktteWNVhmU33IoVTV1A
- vlJc/MHINGeMul1a9TZzgne8aYQMoWHHTSjmDfrozqcusAUc4M9/+B9uL
- uAzBuVBcCzL7YlWx/iFmsNoJEBykflVnoDzQ+//iRo0r50Z88J9pWCbdB
- j1QshcWyO/EOwSnh2alwoycuKjEIkMw9bD6yP9zVZlTkf0aDl4AF2qD9n
- 0tbW2pq9SExYHK5404HACTQFluEcFHNOuDtEASL6eltbZwEZuYhB0gieB g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10977"; a="1071739"
-X-IronPort-AV: E=Sophos;i="6.05,253,1701158400"; 
-   d="scan'208";a="1071739"
-Received: from fmviesa008.fm.intel.com ([10.60.135.148])
- by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Feb 2024 00:50:09 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.05,253,1701158400"; 
-   d="scan'208";a="1837099"
-Received: from aavzirov-mobl.ger.corp.intel.com (HELO localhost)
- ([10.252.61.13])
- by fmviesa008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Feb 2024 00:50:04 -0800
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Lucas De Marchi <lucas.demarchi@intel.com>, Yury Norov
- <yury.norov@gmail.com>
-Cc: linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org, Andy
- Shevchenko <andriy.shevchenko@linux.intel.com>,
- intel-xe@lists.freedesktop.org, intel-gfx@lists.freedesktop.org, Lucas De
- Marchi <lucas.demarchi@intel.com>
-Subject: Re: [PATCH v3 3/3] drm/i915: Convert REG_GENMASK* to fixed-width
- GENMASK_*
-In-Reply-To: <20240208074521.577076-4-lucas.demarchi@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20240208074521.577076-1-lucas.demarchi@intel.com>
- <20240208074521.577076-4-lucas.demarchi@intel.com>
-Date: Thu, 08 Feb 2024 10:49:58 +0200
-Message-ID: <875xyzcpc9.fsf@intel.com>
+Received: from 5338d5abeb45 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id ADCD810E46D;
+ Thu,  8 Feb 2024 08:53:04 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: text/plain
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=97_Fi=2ECI=2ECHECKPATCH=3A_warning_for_drm/i915=3A_Add_GuC_?=
+ =?utf-8?q?submission_interface_version_query_=28rev2=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Tvrtko Ursulin" <tvrtko.ursulin@linux.intel.com>
+Cc: intel-gfx@lists.freedesktop.org
+Date: Thu, 08 Feb 2024 08:53:04 -0000
+Message-ID: <170738238471.1106275.11892718630924524082@5338d5abeb45>
+X-Patchwork-Hint: ignore
+References: <20240207115612.1322778-1-tvrtko.ursulin@linux.intel.com>
+In-Reply-To: <20240207115612.1322778-1-tvrtko.ursulin@linux.intel.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -69,27 +37,29 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, 07 Feb 2024, Lucas De Marchi <lucas.demarchi@intel.com> wrote:
-> Now that include/linux/bits.h implements fixed-width GENMASK_*, use them
-> to implement the i915/xe specific macros. Converting each driver to use
-> the generic macros are left for later, when/if other driver-specific
-> macros are also generalized.
->
-> Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
-> Acked-by: Jani Nikula <jani.nikula@intel.com>
+== Series Details ==
 
-Thanks for doing this!
+Series: drm/i915: Add GuC submission interface version query (rev2)
+URL   : https://patchwork.freedesktop.org/series/129627/
+State : warning
 
-This is fine to merge via whichever tree you find best. The i915 parts
-have very little conflict potential, there haven't been changes here in
-a while.
+== Summary ==
 
-BR,
-Jani.
+Error: dim checkpatch failed
+ce49f663d199 drm/i915: Add GuC submission interface version query
+-:90: WARNING:LONG_LINE_COMMENT: line length of 103 exceeds 100 columns
+#90: FILE: include/uapi/drm/i915_drm.h:3016:
++	 *  - %DRM_I915_QUERY_GUC_SUBMISSION_VERSION (see struct drm_i915_query_guc_submission_version)
+
+-:107: WARNING:BLOCK_COMMENT_STYLE: Block comments should align the * on each line
+#107: FILE: include/uapi/drm/i915_drm.h:3572:
++/**
++* struct drm_i915_query_guc_submission_version - query GuC submission interface version
+
+total: 0 errors, 2 warnings, 0 checks, 75 lines checked
 
 
--- 
-Jani Nikula, Intel
