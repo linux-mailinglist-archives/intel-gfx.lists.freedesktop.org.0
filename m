@@ -2,57 +2,53 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id E6C3B84DF94
-	for <lists+intel-gfx@lfdr.de>; Thu,  8 Feb 2024 12:25:35 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 93FF784DF93
+	for <lists+intel-gfx@lfdr.de>; Thu,  8 Feb 2024 12:25:33 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8611810E2EA;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3E86010E1AB;
 	Thu,  8 Feb 2024 11:25:31 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="QgitEEuV";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Ja76NIUp";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-X-Greylist: delayed 426 seconds by postgrey-1.36 at gabe;
- Thu, 08 Feb 2024 11:25:28 UTC
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id F040110E2EA
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.15])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 312F210E1AB
  for <intel-gfx@lists.freedesktop.org>; Thu,  8 Feb 2024 11:25:28 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1707391529; x=1738927529;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=S4BjbjfSUEk2yEmx+2h59LPoWzgExpJMeer9dSMwQow=;
- b=QgitEEuVRBcy9mpbIWczCkQkOuKXdczcrF3XeSJLsIfRbmHQ+1dZt+gJ
- ORJcFVnouxWi/EcOKS4Iyp3D1RZy00LXXUwsFCs5VNEs3Dz8crzfkFCol
- 0PMY+wlataDQRuUEofBeMNAlbFqvga/161esJyo9uZOBZ2qf2c0xVi1G6
- zt53ATCn83GJtPG2aVn0jUgq6m56I6B/z5fysOTVmvKZZ6abOW6oQNH4s
- RWatUsQfv8wBThvpu5tHh3Mfjqjr5Sp2qB9a43NVFUxKn53BAlwJMkac7
- k7R3Fll6rpRZ/lWF/r3ygcr7eMsw926U+ONtlpRYd1z4YenMGZZl6ql+G A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10977"; a="1096149"
+ t=1707391528; x=1738927528;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=8Q1G+CP4zY6oi/rwU77R1l+uPfXONani8lEIgrRCPgo=;
+ b=Ja76NIUpobAKwY+cXttQowzkOeVUo4+xHIbHt8415SiX/FeL5xR6fEtN
+ liIvZeWrhvOep8edDjH9KzMY6Drl0c0VwMZrPsnZKK7sltGBXcmY853Am
+ qxTBrcuxzjGTI63FH/NC9wGKKWKyd9kZhO3QV2seVrw07trRCqnJyJOFQ
+ Vm0ft5TIN9feItuFkaNSCaHIR5HfFrr+U4u9tyGIP68+XSSzDibwtURjs
+ T7K67W1jTNB8cRFP+C+tkZQHTy1axm4Gs4DkzdCKqz+rzwyNRG4WA4xM0
+ EqFr37Wam7R89QOhVKGwTnvXhPnFGrmWbx8kM5/Vmr2TseFpA04a0HQMZ A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10977"; a="5061121"
 X-IronPort-AV: E=Sophos;i="6.05,253,1701158400"; 
-   d="scan'208";a="1096149"
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
- by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Feb 2024 03:18:22 -0800
+   d="scan'208";a="5061121"
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+ by orvoesa107.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 Feb 2024 03:25:27 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10977"; a="824804064"
-X-IronPort-AV: E=Sophos;i="6.05,253,1701158400"; d="scan'208";a="824804064"
-Received: from unknown (HELO ideak-desk.fi.intel.com) ([10.237.66.155])
- by orsmga001-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Feb 2024 03:18:20 -0800
-From: Imre Deak <imre.deak@intel.com>
+X-IronPort-AV: E=McAfee;i="6600,9927,10977"; a="910333649"
+X-IronPort-AV: E=Sophos;i="6.05,253,1701158400"; d="scan'208";a="910333649"
+Received: from sinjan-super-server.iind.intel.com ([10.145.169.153])
+ by fmsmga002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 Feb 2024 03:25:24 -0800
+From: Sk Anirban <sk.anirban@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Cc: =?UTF-8?q?Jouni=20H=C3=B6gander?= <jouni.hogander@intel.com>
-Subject: [PATCH v2 1/2] drm/i915: Prevent HW access during init from SDVO TV
- get_modes hook
-Date: Thu,  8 Feb 2024 13:18:38 +0200
-Message-Id: <20240208111838.1950411-1-imre.deak@intel.com>
-X-Mailer: git-send-email 2.39.2
-In-Reply-To: <20240206153910.1758057-2-imre.deak@intel.com>
-References: <20240206153910.1758057-2-imre.deak@intel.com>
+Cc: anshuman.gupta@intel.com, karthik.poosa@intel.com,
+ Anirban Sk <sk.anirban@intel.com>
+Subject: [PATCH] drm/i915/selftests: Increasing the sleep time for
+ live_rc6_manual
+Date: Thu,  8 Feb 2024 17:04:20 +0530
+Message-Id: <20240208113420.489967-1-sk.anirban@intel.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -69,43 +65,35 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Prevent accessing the HW from the SDVO/TV get_modes connector hook.
-Returning 0 from the hook will make the caller -
-drm_helper_probe_single_connector_modes() - return a default/EDID
-override mode list to users. This matches the case where
-intel_sdvo_get_tv_modes() fails to retrieve the current mode list due to
-a HW access failure.
+From: Anirban Sk <sk.anirban@intel.com>
 
-v2: Clarify the commit message wrt. which modes get_modes() returns. (Jouni)
+To rule out the sporadic failure, updating the sleep time (time period
+to measure the power).
 
-Signed-off-by: Imre Deak <imre.deak@intel.com>
-Reviewed-by: Jouni Högander <jouni.hogander@intel.com>
+Signed-off-by: Anirban Sk <sk.anirban@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_sdvo.c | 4 ++++
- 1 file changed, 4 insertions(+)
+ drivers/gpu/drm/i915/gt/selftest_rc6.c | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_sdvo.c b/drivers/gpu/drm/i915/display/intel_sdvo.c
-index 2571ef5a1b211..ccea0efbd136f 100644
---- a/drivers/gpu/drm/i915/display/intel_sdvo.c
-+++ b/drivers/gpu/drm/i915/display/intel_sdvo.c
-@@ -2287,6 +2287,7 @@ static const struct drm_display_mode sdvo_tv_modes[] = {
- static int intel_sdvo_get_tv_modes(struct drm_connector *connector)
- {
- 	struct intel_sdvo *intel_sdvo = intel_attached_sdvo(to_intel_connector(connector));
-+	struct drm_i915_private *i915 = to_i915(intel_sdvo->base.base.dev);
- 	struct intel_sdvo_connector *intel_sdvo_connector =
- 		to_intel_sdvo_connector(connector);
- 	const struct drm_connector_state *conn_state = connector->state;
-@@ -2298,6 +2299,9 @@ static int intel_sdvo_get_tv_modes(struct drm_connector *connector)
- 	DRM_DEBUG_KMS("[CONNECTOR:%d:%s]\n",
- 		      connector->base.id, connector->name);
+diff --git a/drivers/gpu/drm/i915/gt/selftest_rc6.c b/drivers/gpu/drm/i915/gt/selftest_rc6.c
+index a7189c2d660c..1aa1446c8fb0 100644
+--- a/drivers/gpu/drm/i915/gt/selftest_rc6.c
++++ b/drivers/gpu/drm/i915/gt/selftest_rc6.c
+@@ -62,12 +62,12 @@ int live_rc6_manual(void *arg)
  
-+	if (!intel_display_driver_check_access(i915))
-+		return 0;
-+
- 	/*
- 	 * Read the list of supported input resolutions for the selected TV
- 	 * format.
+ 	dt = ktime_get();
+ 	rc0_power = librapl_energy_uJ();
+-	msleep(250);
++	msleep(1000);
+ 	rc0_power = librapl_energy_uJ() - rc0_power;
+ 	dt = ktime_sub(ktime_get(), dt);
+ 	res[1] = rc6_residency(rc6);
+ 	if ((res[1] - res[0]) >> 10) {
+-		pr_err("RC6 residency increased by %lldus while disabled for 250ms!\n",
++		pr_err("RC6 residency increased by %lldus while disabled for 1000ms!\n",
+ 		       (res[1] - res[0]) >> 10);
+ 		err = -EINVAL;
+ 		goto out_unlock;
 -- 
-2.39.2
+2.25.1
 
