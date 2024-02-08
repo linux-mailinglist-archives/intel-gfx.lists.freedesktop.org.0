@@ -2,49 +2,50 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4215284E3D7
-	for <lists+intel-gfx@lfdr.de>; Thu,  8 Feb 2024 16:18:03 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id B123284E3D8
+	for <lists+intel-gfx@lfdr.de>; Thu,  8 Feb 2024 16:18:06 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A36C110E8D1;
-	Thu,  8 Feb 2024 15:18:01 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2472010E8BD;
+	Thu,  8 Feb 2024 15:18:05 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="TBHcqmE5";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="j4j/DNpt";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7BF3E10E8D1
- for <intel-gfx@lists.freedesktop.org>; Thu,  8 Feb 2024 15:18:00 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A4BF810E8B8
+ for <intel-gfx@lists.freedesktop.org>; Thu,  8 Feb 2024 15:18:03 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1707405480; x=1738941480;
+ t=1707405483; x=1738941483;
  h=from:to:subject:date:message-id:in-reply-to:references:
  mime-version:content-transfer-encoding;
- bh=NYnSofws3Kg8ALTgRNj1VakbZDoDN0sGz3EbtHlAAs0=;
- b=TBHcqmE54mcZjV1qHtP5a/+fnU36FrUDv12Kw09Zd8bJFzkx6bk+kqcE
- H0xUVL/B6rZzKMBfYpBT0d09zmGPvGXq+B6EE6haGeNXW6zYU6kZs2Zfb
- o7YNdcaeIThEAnF29Ti2VYjoQaq48sU4/vXp4rGgVuywMNoKytmegI05h
- vuglmugWRsuJmsED7hxS2k48LiDt4jAHAoG0hChgcBvT8Yy9X8eZUY1n8
- UAhOLgBWjagWMTSoaIasK7X/iPGnH31yqo/O9SsNrlxs6jgTf2mL1gEpg
- 3HlMCQz3+ZFvHjF3BmGzdXxhU9zyfLFEXCuleodKXOfZPmvyoNkH6ZKu0 A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10978"; a="4219282"
+ bh=t114UlIcOriGSDoW2pg/bAFmDjD+8JD2fgixMfKfOXs=;
+ b=j4j/DNptqLx+on7PSHTuTjVGV45NfZG7n48o7zGf1YOS/2JB3wgRKmbR
+ ufgEY8IwzNbCttgw0U1o0iDmLhi3gWQg3E1/pnTIzwYLJO918k87jBjba
+ +C3nNOs9RC8rlaAF0klBgOQhf/QhEd0IKJ3sMzejaM0nJUmt5yHjz3Lzj
+ 6C5dLjgAGR5FAvL0/xY14lEg2KaAQoTDg0k/OAZjTkO+oyG6E6jo/KcMV
+ kcad+E5yt8MwPmYheUDZofIlyKp7jr3u6hlpn76HRZOzZt7rYKOnmTiwB
+ Qch4BKQZSqbbMPCFv4Z1atiGz6P8djABF7WOKeDt8tTMVss29ymlJwUsi w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10978"; a="4219289"
 X-IronPort-AV: E=Sophos;i="6.05,254,1701158400"; 
-   d="scan'208";a="4219282"
+   d="scan'208";a="4219289"
 Received: from orsmga001.jf.intel.com ([10.7.209.18])
  by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Feb 2024 07:18:00 -0800
+ 08 Feb 2024 07:18:03 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10978"; a="824863677"
-X-IronPort-AV: E=Sophos;i="6.05,254,1701158400"; d="scan'208";a="824863677"
+X-IronPort-AV: E=McAfee;i="6600,9927,10978"; a="824863679"
+X-IronPort-AV: E=Sophos;i="6.05,254,1701158400"; d="scan'208";a="824863679"
 Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.74])
- by orsmga001.jf.intel.com with SMTP; 08 Feb 2024 07:17:58 -0800
+ by orsmga001.jf.intel.com with SMTP; 08 Feb 2024 07:18:01 -0800
 Received: by stinkbox (sSMTP sendmail emulation);
- Thu, 08 Feb 2024 17:17:57 +0200
+ Thu, 08 Feb 2024 17:18:00 +0200
 From: Ville Syrjala <ville.syrjala@linux.intel.com>
 To: intel-gfx@lists.freedesktop.org
-Subject: [PATCH 12/13] drm/i915/dvo/ns2501: Nuke pointless casts
-Date: Thu,  8 Feb 2024 17:17:19 +0200
-Message-ID: <20240208151720.7866-13-ville.syrjala@linux.intel.com>
+Subject: [PATCH 13/13] drm/i915/dvo: Use sizeof(*variable) instead of
+ sizeof(type)
+Date: Thu,  8 Feb 2024 17:17:20 +0200
+Message-ID: <20240208151720.7866-14-ville.syrjala@linux.intel.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20240208151720.7866-1-ville.syrjala@linux.intel.com>
 References: <20240208151720.7866-1-ville.syrjala@linux.intel.com>
@@ -68,34 +69,96 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-The dvo 'dev_priv' is void* so no need for and explicit cast.
+Prefer sizeof(*variable) to sizeof(type) to make it a bit
+harder to screw things up.
 
 Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 ---
- drivers/gpu/drm/i915/display/dvo_ns2501.c | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+ drivers/gpu/drm/i915/display/dvo_ch7017.c | 2 +-
+ drivers/gpu/drm/i915/display/dvo_ch7xxx.c | 2 +-
+ drivers/gpu/drm/i915/display/dvo_ivch.c   | 2 +-
+ drivers/gpu/drm/i915/display/dvo_ns2501.c | 2 +-
+ drivers/gpu/drm/i915/display/dvo_sil164.c | 2 +-
+ drivers/gpu/drm/i915/display/dvo_tfp410.c | 2 +-
+ 6 files changed, 6 insertions(+), 6 deletions(-)
 
+diff --git a/drivers/gpu/drm/i915/display/dvo_ch7017.c b/drivers/gpu/drm/i915/display/dvo_ch7017.c
+index 0589994dde11..d0c3880d7f80 100644
+--- a/drivers/gpu/drm/i915/display/dvo_ch7017.c
++++ b/drivers/gpu/drm/i915/display/dvo_ch7017.c
+@@ -205,7 +205,7 @@ static bool ch7017_init(struct intel_dvo_device *dvo,
+ 	const char *str;
+ 	u8 val;
+ 
+-	priv = kzalloc(sizeof(struct ch7017_priv), GFP_KERNEL);
++	priv = kzalloc(sizeof(*priv), GFP_KERNEL);
+ 	if (priv == NULL)
+ 		return false;
+ 
+diff --git a/drivers/gpu/drm/i915/display/dvo_ch7xxx.c b/drivers/gpu/drm/i915/display/dvo_ch7xxx.c
+index 6d948520e9a6..2e8e85da5a40 100644
+--- a/drivers/gpu/drm/i915/display/dvo_ch7xxx.c
++++ b/drivers/gpu/drm/i915/display/dvo_ch7xxx.c
+@@ -216,7 +216,7 @@ static bool ch7xxx_init(struct intel_dvo_device *dvo,
+ 	u8 vendor, device;
+ 	char *name, *devid;
+ 
+-	ch7xxx = kzalloc(sizeof(struct ch7xxx_priv), GFP_KERNEL);
++	ch7xxx = kzalloc(sizeof(*ch7xxx), GFP_KERNEL);
+ 	if (ch7xxx == NULL)
+ 		return false;
+ 
+diff --git a/drivers/gpu/drm/i915/display/dvo_ivch.c b/drivers/gpu/drm/i915/display/dvo_ivch.c
+index f43d8c610d3f..eef72bb3b767 100644
+--- a/drivers/gpu/drm/i915/display/dvo_ivch.c
++++ b/drivers/gpu/drm/i915/display/dvo_ivch.c
+@@ -267,7 +267,7 @@ static bool ivch_init(struct intel_dvo_device *dvo,
+ 	u16 temp;
+ 	int i;
+ 
+-	priv = kzalloc(sizeof(struct ivch_priv), GFP_KERNEL);
++	priv = kzalloc(sizeof(*priv), GFP_KERNEL);
+ 	if (priv == NULL)
+ 		return false;
+ 
 diff --git a/drivers/gpu/drm/i915/display/dvo_ns2501.c b/drivers/gpu/drm/i915/display/dvo_ns2501.c
-index a724a8755673..32fd4aa27598 100644
+index 32fd4aa27598..1df212fb000e 100644
 --- a/drivers/gpu/drm/i915/display/dvo_ns2501.c
 +++ b/drivers/gpu/drm/i915/display/dvo_ns2501.c
-@@ -551,7 +551,7 @@ static void ns2501_mode_set(struct intel_dvo_device *dvo,
- 			    const struct drm_display_mode *adjusted_mode)
- {
- 	const struct ns2501_configuration *conf;
--	struct ns2501_priv *ns = (struct ns2501_priv *)(dvo->dev_priv);
-+	struct ns2501_priv *ns = dvo->dev_priv;
- 	int mode_idx, i;
+@@ -476,7 +476,7 @@ static bool ns2501_init(struct intel_dvo_device *dvo,
+ 	struct ns2501_priv *ns;
+ 	unsigned char ch;
  
- 	DRM_DEBUG_KMS
-@@ -655,7 +655,7 @@ static bool ns2501_get_hw_state(struct intel_dvo_device *dvo)
- /* set the NS2501 power state */
- static void ns2501_dpms(struct intel_dvo_device *dvo, bool enable)
- {
--	struct ns2501_priv *ns = (struct ns2501_priv *)(dvo->dev_priv);
-+	struct ns2501_priv *ns = dvo->dev_priv;
+-	ns = kzalloc(sizeof(struct ns2501_priv), GFP_KERNEL);
++	ns = kzalloc(sizeof(*ns), GFP_KERNEL);
+ 	if (ns == NULL)
+ 		return false;
  
- 	DRM_DEBUG_KMS("Trying set the dpms of the DVO to %i\n", enable);
+diff --git a/drivers/gpu/drm/i915/display/dvo_sil164.c b/drivers/gpu/drm/i915/display/dvo_sil164.c
+index 4acc8ce29c0b..6c461024c8e3 100644
+--- a/drivers/gpu/drm/i915/display/dvo_sil164.c
++++ b/drivers/gpu/drm/i915/display/dvo_sil164.c
+@@ -141,7 +141,7 @@ static bool sil164_init(struct intel_dvo_device *dvo,
+ 	struct sil164_priv *sil;
+ 	unsigned char ch;
+ 
+-	sil = kzalloc(sizeof(struct sil164_priv), GFP_KERNEL);
++	sil = kzalloc(sizeof(*sil), GFP_KERNEL);
+ 	if (sil == NULL)
+ 		return false;
+ 
+diff --git a/drivers/gpu/drm/i915/display/dvo_tfp410.c b/drivers/gpu/drm/i915/display/dvo_tfp410.c
+index 009d65b0f3e9..0939e097f4f9 100644
+--- a/drivers/gpu/drm/i915/display/dvo_tfp410.c
++++ b/drivers/gpu/drm/i915/display/dvo_tfp410.c
+@@ -173,7 +173,7 @@ static bool tfp410_init(struct intel_dvo_device *dvo,
+ 	struct tfp410_priv *tfp;
+ 	int id;
+ 
+-	tfp = kzalloc(sizeof(struct tfp410_priv), GFP_KERNEL);
++	tfp = kzalloc(sizeof(*tfp), GFP_KERNEL);
+ 	if (tfp == NULL)
+ 		return false;
  
 -- 
 2.43.0
