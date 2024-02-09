@@ -2,57 +2,57 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id C29B184FB42
-	for <lists+intel-gfx@lfdr.de>; Fri,  9 Feb 2024 18:48:58 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1C13A84FB45
+	for <lists+intel-gfx@lfdr.de>; Fri,  9 Feb 2024 18:50:40 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1F88710F880;
-	Fri,  9 Feb 2024 17:48:57 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 77B2B10F889;
+	Fri,  9 Feb 2024 17:50:38 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="nuuUS7H6";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="aGDoMT8M";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0FABD10F880;
- Fri,  9 Feb 2024 17:48:56 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A7C0910F887;
+ Fri,  9 Feb 2024 17:50:37 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1707500936; x=1739036936;
- h=date:from:to:subject:message-id:reply-to:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=jPrJ8Uo6Z6OdB00QwV1rXBsosGoBMR2Z+xjr2FOYWh0=;
- b=nuuUS7H6zXSOvrwTDKhiN5gRjSUaMzSKlk2WifM08/H/c9uM3cuuxk7e
- LiV/XqqGsGmepCyKT0huXNUs5JVVH3NClvZq3v/qH+Q12kiWRIS95LvC9
- wfEu/LtDCFyB7vmjW3LHWzc6c6VoSpfnzOuXe9dOdKHu7DKg7QYA2p/WC
- Jz1kx1GMQE7RRRNkoHt0W84MRe/byHzaovKaHVZiLwVJCuiOZhtUWZQHH
- 5wDKMlbaVyxVTLyox2VLv6Dw3IYTTQ3W3d46x5HRM2uA9Jn54wgqZNN0w
- rxFFJr10/I5g8f8OjXoYtHsAt7FiY9IQtNPjKUgPPDIdSNUbikReihMNY g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10979"; a="1626456"
-X-IronPort-AV: E=Sophos;i="6.05,257,1701158400"; 
-   d="scan'208";a="1626456"
-Received: from orviesa003.jf.intel.com ([10.64.159.143])
- by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Feb 2024 09:48:56 -0800
+ t=1707501038; x=1739037038;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:in-reply-to;
+ bh=1laTTHCgygcPfanCnT37plaDmSda/Mn+foyUMPP2B1c=;
+ b=aGDoMT8M2WP1UBvdI8mIyVgh2BsoKkMpExZ7baOz7G4taGezLZSic+ny
+ ES1x/Mgd9CrKzdH8ZO0xafX+sHZqzOlQdYKryV2QDvkK+245rWCITyZGe
+ Po21/7R5SnRP4iOIWP4ORCELHvq9mmnnHbavFbeCcFNWGvShGO9chkaZZ
+ jxmuUzaYezaNKLXYXUErgKWQWmVgHdqtb2ss6MtdPeP3iBQHRqVtlKu7W
+ cWwMTFJJxr7H0Fb7UzuBENpqLItb2EJZIXxsF5V8Puxj1rUwmm/N8sp3T
+ hABOvkESl1A5tCHdhPYkCdagJPbKV13rJpuIFMHrr22XT4deDPnsUvmKI Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10979"; a="12117975"
+X-IronPort-AV: E=Sophos;i="6.05,257,1701158400"; d="scan'208";a="12117975"
+Received: from fmviesa005.fm.intel.com ([10.60.135.145])
+ by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 Feb 2024 09:50:37 -0800
 X-ExtLoop1: 1
 X-IronPort-AV: E=Sophos;i="6.05,257,1701158400"; 
-   d="scan'208";a="6637862"
-Received: from unknown (HELO ideak-desk.fi.intel.com) ([10.237.66.155])
- by ORVIESA003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Feb 2024 09:48:54 -0800
-Date: Fri, 9 Feb 2024 19:48:46 +0200
-From: Imre Deak <imre.deak@intel.com>
-To: intel-gfx@lists.freedesktop.org, I915-ci-infra@lists.freedesktop.org
-Subject: Re: =?utf-8?B?4pyXIEZpLkNJLkJVSUxEOiBmYWls?=
- =?utf-8?Q?ure_for_series_starting_with_=5Bv3=2C1=2F2=5D_drm=2Fi915?=
- =?utf-8?Q?=3A?= Prevent HW access during init from SDVO TV get_modes hook
-Message-ID: <ZcZlfpL29640umQM@ideak-desk.fi.intel.com>
-References: <20240209160316.2160747-1-imre.deak@intel.com>
- <170749938843.1129907.10081916788868767063@5338d5abeb45>
+   d="scan'208";a="6641136"
+Received: from lkp-server01.sh.intel.com (HELO 01f0647817ea) ([10.239.97.150])
+ by fmviesa005.fm.intel.com with ESMTP; 09 Feb 2024 09:50:35 -0800
+Received: from kbuild by 01f0647817ea with local (Exim 4.96)
+ (envelope-from <lkp@intel.com>) id 1rYV1F-0004zC-24;
+ Fri, 09 Feb 2024 17:50:33 +0000
+Date: Sat, 10 Feb 2024 01:50:10 +0800
+From: kernel test robot <lkp@intel.com>
+To: Suraj Kandpal <suraj.kandpal@intel.com>,
+ intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
+Cc: oe-kbuild-all@lists.linux.dev, daniele.ceraolospurio@intel.com,
+ Suraj Kandpal <suraj.kandpal@intel.com>
+Subject: Re: [PATCH 4/5] drm/xe/hdcp: Enable HDCP for XE
+Message-ID: <202402100132.XIP3zz5i-lkp@intel.com>
+References: <20240209101412.1326176-5-suraj.kandpal@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <170749938843.1129907.10081916788868767063@5338d5abeb45>
+In-Reply-To: <20240209101412.1326176-5-suraj.kandpal@intel.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -65,63 +65,57 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: imre.deak@intel.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, Feb 09, 2024 at 05:23:08PM +0000, Patchwork wrote:
-> == Series Details ==
-> 
-> Series: series starting with [v3,1/2] drm/i915: Prevent HW access during init from SDVO TV get_modes hook
-> URL   : https://patchwork.freedesktop.org/series/129727/
-> State : failure
-> 
-> == Summary ==
-> 
-> Error: make failed
->   CALL    scripts/checksyscalls.sh
->   DESCEND objtool
->   INSTALL libsubcmd_headers
->   CC [M]  drivers/gpu/drm/i915/display/intel_sdvo.o
-> drivers/gpu/drm/i915/display/intel_sdvo.c: In function ‘intel_sdvo_get_tv_modes’:
-> drivers/gpu/drm/i915/display/intel_sdvo.c:2305:41: error: ‘i915’ undeclared (first use in this function); did you mean ‘I915’?
->  2305 |  if (!intel_display_driver_check_access(i915))
->       |                                         ^~~~
->       |                                         I915
-> drivers/gpu/drm/i915/display/intel_sdvo.c:2305:41: note: each undeclared identifier is reported only once for each function it appears in
-> make[6]: *** [scripts/Makefile.build:243: drivers/gpu/drm/i915/display/intel_sdvo.o] Error 1
-> make[5]: *** [scripts/Makefile.build:481: drivers/gpu/drm/i915] Error 2
-> make[4]: *** [scripts/Makefile.build:481: drivers/gpu/drm] Error 2
-> make[3]: *** [scripts/Makefile.build:481: drivers/gpu] Error 2
-> make[2]: *** [scripts/Makefile.build:481: drivers] Error 2
-> make[1]: *** [/home/kbuild2/kernel/Makefile:1921: .] Error 2
-> make: *** [Makefile:240: __sub-make] Error 2
-> Build failed, no error log produced
+Hi Suraj,
 
-Not sure why this fails, on latest drm-tip I get a different result, see
-below.
+kernel test robot noticed the following build warnings:
 
-Looks like an old tree is used as the base, could someone from the CI
-team check this?
+[auto build test WARNING on drm-xe/drm-xe-next]
+[also build test WARNING on drm-tip/drm-tip]
+[cannot apply to drm-intel/for-linux-next drm-intel/for-linux-next-fixes linus/master v6.8-rc3 next-20240209]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
 
-$ git fetch drm-tip
-$ git reset --hard drm-tip/drm-tip
-HEAD is now at 2aceb3c0b9c8c drm-tip: 2024y-02m-09d-12h-48m-25s UTC integration manifest
-$ git am ~/imre.mbox
-Applying: drm/i915: Prevent HW access during init from SDVO TV get_modes hook
-Applying: drm/i915: Prevent HW access during init from connector get_modes hooks
-$ make
-  CALL    scripts/checksyscalls.sh
-  DESCEND objtool
-  INSTALL libsubcmd_headers
-  CC [M]  drivers/gpu/drm/i915/display/intel_crt.o
-  CC [M]  drivers/gpu/drm/i915/display/intel_dp_mst.o
-  CC [M]  drivers/gpu/drm/i915/display/intel_dvo.o
-  CC [M]  drivers/gpu/drm/i915/display/intel_sdvo.o
-  LD [M]  drivers/gpu/drm/i915/i915.o
-  CC [M]  drivers/gpu/drm/xe/i915-display/intel_dp_mst.o
-  LD [M]  drivers/gpu/drm/xe/xe.o
-  MODPOST Module.symvers
-Kernel: arch/x86/boot/bzImage is ready  (#1476)
-  LD [M]  drivers/gpu/drm/i915/i915.ko
-  LD [M]  drivers/gpu/drm/xe/xe.ko
+url:    https://github.com/intel-lab-lkp/linux/commits/Suraj-Kandpal/drm-i915-hdcp-Move-intel_hdcp_gsc_message-def-away-from-header-file/20240209-181915
+base:   https://gitlab.freedesktop.org/drm/xe/kernel.git drm-xe-next
+patch link:    https://lore.kernel.org/r/20240209101412.1326176-5-suraj.kandpal%40intel.com
+patch subject: [PATCH 4/5] drm/xe/hdcp: Enable HDCP for XE
+config: loongarch-allmodconfig (https://download.01.org/0day-ci/archive/20240210/202402100132.XIP3zz5i-lkp@intel.com/config)
+compiler: loongarch64-linux-gcc (GCC) 13.2.0
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20240210/202402100132.XIP3zz5i-lkp@intel.com/reproduce)
+
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202402100132.XIP3zz5i-lkp@intel.com/
+
+All warnings (new ones prefixed by >>):
+
+>> drivers/gpu/drm/xe/xe_gsc_submit.c:50: warning: expecting prototype for xe_gsc_get_host_session_id(). Prototype was for xe_gsc_create_host_session_id() instead
+
+
+vim +50 drivers/gpu/drm/xe/xe_gsc_submit.c
+
+    42	
+    43	/**
+    44	 * xe_gsc_get_host_session_id - Creates a random 64 bit host_session id with
+    45	 * bits 56-63 masked.
+    46	 *
+    47	 * Returns: random host_session_id which can be used to send messages to gsc cs
+    48	 */
+    49	u64 xe_gsc_create_host_session_id(void)
+  > 50	{
+    51		u64 host_session_id;
+    52	
+    53		get_random_bytes(&host_session_id, sizeof(u64));
+    54		host_session_id &= ~HOST_SESSION_CLIENT_MASK;
+    55		return host_session_id;
+    56	}
+    57	
+
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
