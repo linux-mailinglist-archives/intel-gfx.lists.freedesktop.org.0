@@ -2,29 +2,65 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9B99684F557
-	for <lists+intel-gfx@lfdr.de>; Fri,  9 Feb 2024 13:44:52 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7A5EE84F56C
+	for <lists+intel-gfx@lfdr.de>; Fri,  9 Feb 2024 13:49:23 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1C7EB10F391;
-	Fri,  9 Feb 2024 12:44:51 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 343CF10F39A;
+	Fri,  9 Feb 2024 12:49:21 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="H7PQVdHH";
+	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from 5338d5abeb45 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B636C10F390;
- Fri,  9 Feb 2024 12:44:49 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============7076126988128072840=="
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3BCF210F39A
+ for <intel-gfx@lists.freedesktop.org>; Fri,  9 Feb 2024 12:49:19 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1707482960; x=1739018960;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=omJA9OzEvoysLcuvOlAQNJaxEQygIoEW+XbaxrJ3AHc=;
+ b=H7PQVdHH+3t1yY3lBLkLI7x0pJA1fXbakDDjRkhEceG1SNILmieec4qc
+ RvGCopjSuCuCXed4HgeaJvB53eH5jtWkymD3DHltTLIQ2Irc/+VhHweLE
+ UFVaFzEbRx6NMc/KQiNRB7UjCDS9DzrUHg2KHxTKbYKbA8+O5u8KCIErh
+ vokrRhVt3HgWsjyPlZDG3SlmmXlBp2y8kY8MxS66SCcRP9ugKPijibEro
+ GjJjbv+B/vlQiy4mOmia8j/4RN8D9/oYi1Ejs5bezml2AQ72fKJSaExC1
+ +Cp1QMH/X58Oe6lTbzUhLE+UiJdXm7FAg4FWA60zAh7lKgzOSTpIZRuIV w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10978"; a="1327243"
+X-IronPort-AV: E=Sophos;i="6.05,256,1701158400"; 
+   d="scan'208";a="1327243"
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+ by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 Feb 2024 04:49:16 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10978"; a="825133867"
+X-IronPort-AV: E=Sophos;i="6.05,256,1701158400"; d="scan'208";a="825133867"
+Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.74])
+ by orsmga001.jf.intel.com with SMTP; 09 Feb 2024 04:49:12 -0800
+Received: by stinkbox (sSMTP sendmail emulation);
+ Fri, 09 Feb 2024 14:49:11 +0200
+Date: Fri, 9 Feb 2024 14:49:11 +0200
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: "Kahola, Mika" <mika.kahola@intel.com>
+Cc: Jani Nikula <jani.nikula@linux.intel.com>,
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
+Subject: Re: [PATCH 2/2] drm/i915/display: Force full modeset for eDP
+Message-ID: <ZcYfR4HCUxd_R3fS@intel.com>
+References: <20240206070937.197986-1-mika.kahola@intel.com>
+ <20240206070937.197986-3-mika.kahola@intel.com>
+ <87a5oaatws.fsf@intel.com>
+ <MW4PR11MB7054254B4B9C319878D99FCBEF4B2@MW4PR11MB7054.namprd11.prod.outlook.com>
+ <ZcYVTcvE4Z3mo88U@intel.com>
+ <MW4PR11MB7054E5C5391F47516CA1B31BEF4B2@MW4PR11MB7054.namprd11.prod.outlook.com>
+ <ZcYYHw85Kasgr48A@intel.com>
+ <MW4PR11MB70543D7803720609215D5A5AEF4B2@MW4PR11MB7054.namprd11.prod.outlook.com>
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Fi=2ECI=2EBAT=3A_success_for_drm/i915=3A_Add_flex_arrays?=
- =?utf-8?q?_to_struct_i915=5Fsyncmap?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Erick Archer" <erick.archer@gmx.com>
-Cc: intel-gfx@lists.freedesktop.org
-Date: Fri, 09 Feb 2024 12:44:49 -0000
-Message-ID: <170748268974.1129552.16057917642614721975@5338d5abeb45>
-X-Patchwork-Hint: ignore
-References: <20240208181318.4259-1-erick.archer@gmx.com>
-In-Reply-To: <20240208181318.4259-1-erick.archer@gmx.com>
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <MW4PR11MB70543D7803720609215D5A5AEF4B2@MW4PR11MB7054.namprd11.prod.outlook.com>
+X-Patchwork-Hint: comment
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -37,193 +73,138 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============7076126988128072840==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+On Fri, Feb 09, 2024 at 12:33:20PM +0000, Kahola, Mika wrote:
+> > -----Original Message-----
+> > From: Ville Syrjälä <ville.syrjala@linux.intel.com>
+> > Sent: Friday, February 9, 2024 2:19 PM
+> > To: Kahola, Mika <mika.kahola@intel.com>
+> > Cc: Jani Nikula <jani.nikula@linux.intel.com>; intel-gfx@lists.freedesktop.org
+> > Subject: Re: [PATCH 2/2] drm/i915/display: Force full modeset for eDP
+> > 
+> > On Fri, Feb 09, 2024 at 12:13:02PM +0000, Kahola, Mika wrote:
+> > > > -----Original Message-----
+> > > > From: Ville Syrjälä <ville.syrjala@linux.intel.com>
+> > > > Sent: Friday, February 9, 2024 2:07 PM
+> > > > To: Kahola, Mika <mika.kahola@intel.com>
+> > > > Cc: Jani Nikula <jani.nikula@linux.intel.com>;
+> > > > intel-gfx@lists.freedesktop.org
+> > > > Subject: Re: [PATCH 2/2] drm/i915/display: Force full modeset for
+> > > > eDP
+> > > >
+> > > > On Fri, Feb 09, 2024 at 11:55:58AM +0000, Kahola, Mika wrote:
+> > > > > > -----Original Message-----
+> > > > > > From: Jani Nikula <jani.nikula@linux.intel.com>
+> > > > > > Sent: Friday, February 9, 2024 11:06 AM
+> > > > > > To: Kahola, Mika <mika.kahola@intel.com>;
+> > > > > > intel-gfx@lists.freedesktop.org
+> > > > > > Cc: Kahola, Mika <mika.kahola@intel.com>
+> > > > > > Subject: Re: [PATCH 2/2] drm/i915/display: Force full modeset
+> > > > > > for eDP
+> > > > > >
+> > > > > > On Tue, 06 Feb 2024, Mika Kahola <mika.kahola@intel.com> wrote:
+> > > > > > > Force full modeset for eDP when booting up. GOP programs PLL
+> > > > > > > parameters and hence, we would be able to use fastset for eDP.
+> > > > > > > However, with fastset we are not setting PLL values from the
+> > > > > > > driver and rely that GOP and driver PLL values match.
+> > > > > > > We have discovered that with some of the panels this is not
+> > > > > > > true and hence we would need to program PLL values by the
+> > > > > > > driver. The patch suggests a workaround as enabling full
+> > > > > > > modeset when booting up. This way we force the driver to write the PLL values to the hw.
+> > > > > >
+> > > > > > No. We want to avoid full modesets if possible, both in general and at probe.
+> > > > > >
+> > > > > > And when we do end up with modesets, the decision needs to be
+> > > > > > based on changes in the state that we can't write to the hardware without a modeset.
+> > > > > >
+> > > > > > We can't unconditionally force a modeset on eDP panels at probe.
+> > > > >
+> > > > > Thanks! Just wondering what the options here might be? With
+> > > > > fastest we end up having a mismatch with one PLL value with a
+> > > > few panels.
+> > > >
+> > > > You seem to be stuck in some infinite loop. If your PLL parameters
+> > > > are mismatching that should prevent the fastset, but then I guess
+> > > > you added some hack to allow the fastset despite the mismatch, and now you're trying to undo that hack by blindly forcing a
+> > full modeset?
+> > >
+> > > That's right, I found myself to be between a rock and a hard place. I did discard the fastest but found out that we cannot do that.
+> > 
+> > If you discarded it then why are you not already getting the full modeset you want?
+> > 
+> Poor choice of words, I guess. What I meant that I discarded the state verification in case of fastest. This way the mismatch is hidden under the carpet.
 
-== Series Details ==
+Right. So just add the state verification back and it'll just work (tm).
 
-Series: drm/i915: Add flex arrays to struct i915_syncmap
-URL   : https://patchwork.freedesktop.org/series/129706/
-State : success
+> 
+> 
+> > > Here, another hack is introduced to force the full modeset to ensure that the driver programs these PLL values. As Jani already
+> > mentioned,  this is a no go option as well.
+> > >
+> > > >
+> > > > >
+> > > > > Should we try identify the panels and setup some sort of quirks for these problematic panels or what would be the best
+> > solution?
+> > > > >
+> > > > > -Mika-
+> > > > >
+> > > > > >
+> > > > > >
+> > > > > > BR,
+> > > > > > Jani.
+> > > > > >
+> > > > > > >
+> > > > > > > Signed-off-by: Mika Kahola <mika.kahola@intel.com>
+> > > > > > > ---
+> > > > > > >  drivers/gpu/drm/i915/display/intel_dp.c | 13 +++++++++++++
+> > > > > > >  1 file changed, 13 insertions(+)
+> > > > > > >
+> > > > > > > diff --git a/drivers/gpu/drm/i915/display/intel_dp.c
+> > > > > > > b/drivers/gpu/drm/i915/display/intel_dp.c
+> > > > > > > index ab415f41924d..9699ded1eb5f 100644
+> > > > > > > --- a/drivers/gpu/drm/i915/display/intel_dp.c
+> > > > > > > +++ b/drivers/gpu/drm/i915/display/intel_dp.c
+> > > > > > > @@ -3319,6 +3319,7 @@ bool intel_dp_initial_fastset_check(struct intel_encoder *encoder,
+> > > > > > >  	 * of crtc_state->dsc, we have no way to ensure reliable fastset.
+> > > > > > >  	 * Remove once we have readout for DSC.
+> > > > > > >  	 */
+> > > > > > > +
+> > > > > > >  	if (crtc_state->dsc.compression_enable) {
+> > > > > > >  		drm_dbg_kms(&i915->drm, "[ENCODER:%d:%s] Forcing full modeset due to DSC being enabled\n",
+> > > > > > >  			    encoder->base.base.id, encoder->base.name); @@ -3326,6
+> > > > > > > +3327,18 @@ bool intel_dp_initial_fastset_check(struct
+> > > > > > > +intel_encoder *encoder,
+> > > > > > >  		fastset = false;
+> > > > > > >  	}
+> > > > > > >
+> > > > > > > +	/*
+> > > > > > > +	 * FIXME hack to force full modeset for eDP as not always BIOS written PLL
+> > > > > > > +	 * values does not match with the ones defined in the driver code
+> > > > > > > +	 */
+> > > > > > > +	if (!crtc_state->uapi.mode_changed &&
+> > > > > > > +	    intel_dp_is_edp(intel_dp)) {
+> > > > > > > +		drm_dbg_kms(&i915->drm, "Forcing full modeset for eDP\n");
+> > > > > > > +		crtc_state->uapi.mode_changed = true;
+> > > > > > > +		fastset = false;
+> > > > > > > +	}
+> > > > > > > +
+> > > > > > > +
+> > > > > > >  	return fastset;
+> > > > > > >  }
+> > > > > >
+> > > > > > --
+> > > > > > Jani Nikula, Intel
+> > > >
+> > > > --
+> > > > Ville Syrjälä
+> > > > Intel
+> > 
+> > --
+> > Ville Syrjälä
+> > Intel
 
-== Summary ==
-
-CI Bug Log - changes from CI_DRM_14248 -> Patchwork_129706v1
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_129706v1/index.html
-
-Participating hosts (36 -> 35)
-------------------------------
-
-  Additional (1): fi-apl-guc 
-  Missing    (2): bat-mtlp-8 fi-snb-2520m 
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_129706v1 that come from known issues:
-
-### CI changes ###
-
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@gem_lmem_swapping@basic:
-    - fi-apl-guc:         NOTRUN -> [SKIP][1] ([fdo#109271] / [i915#4613]) +3 other tests skip
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_129706v1/fi-apl-guc/igt@gem_lmem_swapping@basic.html
-
-  * igt@kms_hdmi_inject@inject-audio:
-    - fi-apl-guc:         NOTRUN -> [SKIP][2] ([fdo#109271]) +13 other tests skip
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_129706v1/fi-apl-guc/igt@kms_hdmi_inject@inject-audio.html
-
-  
-#### Possible fixes ####
-
-  * igt@gem_exec_fence@basic-busy@ccs0:
-    - {bat-arls-1}:       [DMESG-WARN][3] ([i915#10194]) -> [PASS][4]
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14248/bat-arls-1/igt@gem_exec_fence@basic-busy@ccs0.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_129706v1/bat-arls-1/igt@gem_exec_fence@basic-busy@ccs0.html
-
-  * igt@i915_selftest@live@gt_pm:
-    - bat-adln-1:         [DMESG-FAIL][5] ([i915#10010]) -> [PASS][6]
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14248/bat-adln-1/igt@i915_selftest@live@gt_pm.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_129706v1/bat-adln-1/igt@i915_selftest@live@gt_pm.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
-  [i915#10010]: https://gitlab.freedesktop.org/drm/intel/issues/10010
-  [i915#10194]: https://gitlab.freedesktop.org/drm/intel/issues/10194
-  [i915#10197]: https://gitlab.freedesktop.org/drm/intel/issues/10197
-  [i915#10206]: https://gitlab.freedesktop.org/drm/intel/issues/10206
-  [i915#10211]: https://gitlab.freedesktop.org/drm/intel/issues/10211
-  [i915#10234]: https://gitlab.freedesktop.org/drm/intel/issues/10234
-  [i915#4079]: https://gitlab.freedesktop.org/drm/intel/issues/4079
-  [i915#4613]: https://gitlab.freedesktop.org/drm/intel/issues/4613
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_14248 -> Patchwork_129706v1
-
-  CI-20190529: 20190529
-  CI_DRM_14248: c7d234dd2d329f223f56699636248a609dbe2267 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_7708: c2ecf4ba307d3342682745de6f608d307a06782c @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_129706v1: c7d234dd2d329f223f56699636248a609dbe2267 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-### Linux commits
-
-bc318fe64b90 drm/i915: Add flex arrays to struct i915_syncmap
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_129706v1/index.html
-
---===============7076126988128072840==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915: Add flex arrays to struct i915_syncmap</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/129706/">https://patchwork.freedesktop.org/series/129706/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_129706v1/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_129706v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_14248 -&gt; Patchwork_129706v1</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_129706v1/index.html</p>
-<h2>Participating hosts (36 -&gt; 35)</h2>
-<p>Additional (1): fi-apl-guc <br />
-  Missing    (2): bat-mtlp-8 fi-snb-2520m </p>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_129706v1 that come from known issues:</p>
-<h3>CI changes</h3>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@gem_lmem_swapping@basic:</p>
-<ul>
-<li>fi-apl-guc:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_129706v1/fi-apl-guc/igt@gem_lmem_swapping@basic.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/4613">i915#4613</a>) +3 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_hdmi_inject@inject-audio:</p>
-<ul>
-<li>fi-apl-guc:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_129706v1/fi-apl-guc/igt@kms_hdmi_inject@inject-audio.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +13 other tests skip</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>
-<p>igt@gem_exec_fence@basic-busy@ccs0:</p>
-<ul>
-<li>{bat-arls-1}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14248/bat-arls-1/igt@gem_exec_fence@basic-busy@ccs0.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/10194">i915#10194</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_129706v1/bat-arls-1/igt@gem_exec_fence@basic-busy@ccs0.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@gt_pm:</p>
-<ul>
-<li>bat-adln-1:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14248/bat-adln-1/igt@i915_selftest@live@gt_pm.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/10010">i915#10010</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_129706v1/bat-adln-1/igt@i915_selftest@live@gt_pm.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<p>{name}: This element is suppressed. This means it is ignored when computing<br />
-          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_14248 -&gt; Patchwork_129706v1</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_14248: c7d234dd2d329f223f56699636248a609dbe2267 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_7708: c2ecf4ba307d3342682745de6f608d307a06782c @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  Patchwork_129706v1: c7d234dd2d329f223f56699636248a609dbe2267 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<h3>Linux commits</h3>
-<p>bc318fe64b90 drm/i915: Add flex arrays to struct i915_syncmap</p>
-
-</body>
-</html>
-
---===============7076126988128072840==--
+-- 
+Ville Syrjälä
+Intel
