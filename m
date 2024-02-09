@@ -2,72 +2,55 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6AE0A84F1E3
-	for <lists+intel-gfx@lfdr.de>; Fri,  9 Feb 2024 10:06:22 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id C494684F1EC
+	for <lists+intel-gfx@lfdr.de>; Fri,  9 Feb 2024 10:06:34 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E15C910F188;
-	Fri,  9 Feb 2024 09:06:19 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0522E10F27D;
+	Fri,  9 Feb 2024 09:06:33 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="kAmN4shs";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ntQu8K6S";
 	dkim-atps=neutral
-X-Original-To: Intel-gfx@lists.freedesktop.org
-Delivered-To: Intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 055AF10F188;
- Fri,  9 Feb 2024 09:06:19 +0000 (UTC)
+X-Original-To: intel-gfx@lists.freedesktop.org
+Delivered-To: intel-gfx@lists.freedesktop.org
+Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.88])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2707910F27D
+ for <intel-gfx@lists.freedesktop.org>; Fri,  9 Feb 2024 09:06:32 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1707469579; x=1739005579;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=LgrIekI59rJ+3xll66kHLeJv56pI9Nj+0WcY/pMIpZE=;
- b=kAmN4shsrSdKWByUeYoYmZeHb9DU5mZG3V8f1CVfHHrXAk24P6IsDHlA
- xsBMyjhRGFSIRgpU6U90ZRakhg+rrNfdY/+4AZSsNObOBHsUX0g3F6hYs
- Wk6EvXbYroC6tYSogVykI2zofv9iWV2sEdGnvpYotWY6kQGTsny3aJFz1
- LFwk3NhBH60e3KoyKWUQi/zzkY3K1qAAH0uhajb+pHbxrgXzCTUj7XORG
- BCVM6/bZF0JeXl94I5iSRzDy09DEFro5DXOQ6jhxHcveexcv4c23Dufke
- d8QiKWHGBRK901BYw0dL7R1faMsufM9C5/tbL91WCuyG5aSWKizYBpY+S g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10978"; a="12474572"
-X-IronPort-AV: E=Sophos;i="6.05,256,1701158400"; d="scan'208";a="12474572"
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
- by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Feb 2024 01:06:19 -0800
+ t=1707469592; x=1739005592;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version;
+ bh=J8RNCZy7ZzzH+oJh1M0Dn1jLt9i4KcpS6N0IoPqLhw8=;
+ b=ntQu8K6SrRS/yw07k+tlQNVTEGV5r83TYcracc3FUlE8WsUFcPrTfln1
+ tkMB3NA7YwaiMtfFsRgtKTTPmmpaVd/oZDfilUzDbXf6yMYmW2nzpWc+J
+ 8GnO0E3Vu9rEc9iilIIegvah+GYatcicvCYKD5o+Q4igp5xRD4gaesOS3
+ gzmVkmGvqP6E11JAw62Z9DsCJvoGq722LL6B8B+V0MfKsn8MHppp4lgfp
+ tAUIUjd6e/Qe4Mz1Sy0PQYLu1j31Tyl1s4kYO7OmWyP7N+z2zMrmSE4dl
+ NsY0joTJfcTzceC22TWlFQBjxr6fHJYnjMly6BQezrseXpExTJt++aZXd A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10978"; a="436531016"
+X-IronPort-AV: E=Sophos;i="6.05,256,1701158400"; d="scan'208";a="436531016"
+Received: from fmviesa005.fm.intel.com ([10.60.135.145])
+ by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 Feb 2024 01:06:31 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10978"; a="825090076"
-X-IronPort-AV: E=Sophos;i="6.05,256,1701158400"; d="scan'208";a="825090076"
-Received: from alodhi-mobl.ger.corp.intel.com (HELO [10.213.201.150])
- ([10.213.201.150])
- by orsmga001-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Feb 2024 01:06:15 -0800
-Message-ID: <fbc915a2-5fc2-4a4b-adf7-ade2f5ceffa6@linux.intel.com>
-Date: Fri, 9 Feb 2024 09:06:14 +0000
+X-IronPort-AV: E=Sophos;i="6.05,256,1701158400"; 
+   d="scan'208";a="6544843"
+Received: from dfischbe-mobl.ger.corp.intel.com (HELO localhost)
+ ([10.252.62.64])
+ by fmviesa005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 Feb 2024 01:06:30 -0800
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Mika Kahola <mika.kahola@intel.com>, intel-gfx@lists.freedesktop.org
+Cc: Mika Kahola <mika.kahola@intel.com>
+Subject: Re: [PATCH 2/2] drm/i915/display: Force full modeset for eDP
+In-Reply-To: <20240206070937.197986-3-mika.kahola@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20240206070937.197986-1-mika.kahola@intel.com>
+ <20240206070937.197986-3-mika.kahola@intel.com>
+Date: Fri, 09 Feb 2024 11:06:27 +0200
+Message-ID: <87a5oaatws.fsf@intel.com>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2] drm/i915: Add GuC submission interface version query
-Content-Language: en-US
-To: "Souza, Jose" <jose.souza@intel.com>,
- "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
- "Intel-gfx@lists.freedesktop.org" <Intel-gfx@lists.freedesktop.org>
-Cc: "Nikula, Jani" <jani.nikula@intel.com>,
- "Zanoni, Paulo R" <paulo.r.zanoni@intel.com>,
- "Vivi, Rodrigo" <rodrigo.vivi@intel.com>,
- "Ursulin, Tvrtko" <tvrtko.ursulin@intel.com>,
- "Ghuge, Sagar" <sagar.ghuge@intel.com>,
- "Balasubrawmanian, Vivaik" <vivaik.balasubrawmanian@intel.com>,
- "kenneth@whitecape.org" <kenneth@whitecape.org>,
- "joonas.lahtinen@linux.intel.com" <joonas.lahtinen@linux.intel.com>,
- "Harrison, John C" <john.c.harrison@intel.com>
-References: <20240207115612.1322778-1-tvrtko.ursulin@linux.intel.com>
- <20240208082510.1363268-1-tvrtko.ursulin@linux.intel.com>
- <8a0a964cc1312e5fcccf0850d72e6374bb578943.camel@intel.com>
- <db762e07-a5e1-4c47-b1b6-85742ce6498b@linux.intel.com>
- <5daf0215abaf92d9b34fef732d1be010d59bd69c.camel@intel.com>
- <0c282ce6fd922ef2cad2bbf84b51214bb66a0411.camel@intel.com>
-From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-Organization: Intel Corporation UK Plc
-In-Reply-To: <0c282ce6fd922ef2cad2bbf84b51214bb66a0411.camel@intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -83,161 +66,66 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+On Tue, 06 Feb 2024, Mika Kahola <mika.kahola@intel.com> wrote:
+> Force full modeset for eDP when booting up. GOP programs
+> PLL parameters and hence, we would be able to use fastset
+> for eDP. However, with fastset we are not setting PLL values
+> from the driver and rely that GOP and driver PLL values match.
+> We have discovered that with some of the panels this is not
+> true and hence we would need to program PLL values by the
+> driver. The patch suggests a workaround as enabling full
+> modeset when booting up. This way we force the driver to
+> write the PLL values to the hw.
 
-On 08/02/2024 17:55, Souza, Jose wrote:
-> On Thu, 2024-02-08 at 07:19 -0800, José Roberto de Souza wrote:
->> On Thu, 2024-02-08 at 14:59 +0000, Tvrtko Ursulin wrote:
->>> On 08/02/2024 14:30, Souza, Jose wrote:
->>>> On Thu, 2024-02-08 at 08:25 +0000, Tvrtko Ursulin wrote:
->>>>> From: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
->>>>>
->>>>> Add a new query to the GuC submission interface version.
->>>>>
->>>>> Mesa intends to use this information to check for old firmware versions
->>>>> with a known bug where using the render and compute command streamers
->>>>> simultaneously can cause GPU hangs due issues in firmware scheduling.
->>>>>
->>>>> Based on patches from Vivaik and Joonas.
->>>>>
->>>>> Compile tested only.
->>>>>
->>>>> v2:
->>>>>    * Added branch version.
->>>>
->>>> Reviewed-by: José Roberto de Souza <jose.souza@intel.com>
->>>> Tested-by: José Roberto de Souza <jose.souza@intel.com>
->>>> UMD: https://gitlab.freedesktop.org/mesa/mesa/-/merge_requests/25233
->>>
->>> Thanks, but please we also need to close down on the branch number
->>> situation. I.e. be sure what is the failure mode in shipping Mesa with
->>> the change as it stands in the MR linked. What platforms could start
->>> failing and when, depending on GuC FW release eventualities.
->>
->> yes, I have asked John Harrison for a documentation link about the firmware versioning.
-> 
-> Got the documentation link, MR updated.
-> Will ask for reviews in Mesa side.
+No. We want to avoid full modesets if possible, both in general and at
+probe.
 
-Is it then understood and accepted that should GuC ever update the 
-branch number on any given platform, that platform, for all deployed 
-Mesa's in the field, will automatically revert to no async queues and so 
-cause a silent performance regression?
+And when we do end up with modesets, the decision needs to be based on
+changes in the state that we can't write to the hardware without a
+modeset.
 
-Regards,
+We can't unconditionally force a modeset on eDP panels at probe.
 
-Tvrtko
 
-> 
->>
->>>
->>> Regards,
->>>
->>> Tvrtko
->>>
->>>>> Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
->>>>> Cc: Kenneth Graunke <kenneth@whitecape.org>
->>>>> Cc: Jose Souza <jose.souza@intel.com>
->>>>> Cc: Sagar Ghuge <sagar.ghuge@intel.com>
->>>>> Cc: Paulo Zanoni <paulo.r.zanoni@intel.com>
->>>>> Cc: John Harrison <John.C.Harrison@Intel.com>
->>>>> Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
->>>>> Cc: Jani Nikula <jani.nikula@intel.com>
->>>>> Cc: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
->>>>> Cc: Vivaik Balasubrawmanian <vivaik.balasubrawmanian@intel.com>
->>>>> Cc: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
->>>>> ---
->>>>>    drivers/gpu/drm/i915/i915_query.c | 33 +++++++++++++++++++++++++++++++
->>>>>    include/uapi/drm/i915_drm.h       | 12 +++++++++++
->>>>>    2 files changed, 45 insertions(+)
->>>>>
->>>>> diff --git a/drivers/gpu/drm/i915/i915_query.c b/drivers/gpu/drm/i915/i915_query.c
->>>>> index 00871ef99792..d4dba1240b40 100644
->>>>> --- a/drivers/gpu/drm/i915/i915_query.c
->>>>> +++ b/drivers/gpu/drm/i915/i915_query.c
->>>>> @@ -551,6 +551,38 @@ static int query_hwconfig_blob(struct drm_i915_private *i915,
->>>>>    	return hwconfig->size;
->>>>>    }
->>>>>    
->>>>> +static int
->>>>> +query_guc_submission_version(struct drm_i915_private *i915,
->>>>> +			     struct drm_i915_query_item *query)
->>>>> +{
->>>>> +	struct drm_i915_query_guc_submission_version __user *query_ptr =
->>>>> +					    u64_to_user_ptr(query->data_ptr);
->>>>> +	struct drm_i915_query_guc_submission_version ver;
->>>>> +	struct intel_guc *guc = &to_gt(i915)->uc.guc;
->>>>> +	const size_t size = sizeof(ver);
->>>>> +	int ret;
->>>>> +
->>>>> +	if (!intel_uc_uses_guc_submission(&to_gt(i915)->uc))
->>>>> +		return -ENODEV;
->>>>> +
->>>>> +	ret = copy_query_item(&ver, size, size, query);
->>>>> +	if (ret != 0)
->>>>> +		return ret;
->>>>> +
->>>>> +	if (ver.branch || ver.major || ver.minor || ver.patch)
->>>>> +		return -EINVAL;
->>>>> +
->>>>> +	ver.branch = 0;
->>>>> +	ver.major = guc->submission_version.major;
->>>>> +	ver.minor = guc->submission_version.minor;
->>>>> +	ver.patch = guc->submission_version.patch;
->>>>> +
->>>>> +	if (copy_to_user(query_ptr, &ver, size))
->>>>> +		return -EFAULT;
->>>>> +
->>>>> +	return 0;
->>>>> +}
->>>>> +
->>>>>    static int (* const i915_query_funcs[])(struct drm_i915_private *dev_priv,
->>>>>    					struct drm_i915_query_item *query_item) = {
->>>>>    	query_topology_info,
->>>>> @@ -559,6 +591,7 @@ static int (* const i915_query_funcs[])(struct drm_i915_private *dev_priv,
->>>>>    	query_memregion_info,
->>>>>    	query_hwconfig_blob,
->>>>>    	query_geometry_subslices,
->>>>> +	query_guc_submission_version,
->>>>>    };
->>>>>    
->>>>>    int i915_query_ioctl(struct drm_device *dev, void *data, struct drm_file *file)
->>>>> diff --git a/include/uapi/drm/i915_drm.h b/include/uapi/drm/i915_drm.h
->>>>> index 550c496ce76d..84fb7f7ea834 100644
->>>>> --- a/include/uapi/drm/i915_drm.h
->>>>> +++ b/include/uapi/drm/i915_drm.h
->>>>> @@ -3038,6 +3038,7 @@ struct drm_i915_query_item {
->>>>>    	 *  - %DRM_I915_QUERY_MEMORY_REGIONS (see struct drm_i915_query_memory_regions)
->>>>>    	 *  - %DRM_I915_QUERY_HWCONFIG_BLOB (see `GuC HWCONFIG blob uAPI`)
->>>>>    	 *  - %DRM_I915_QUERY_GEOMETRY_SUBSLICES (see struct drm_i915_query_topology_info)
->>>>> +	 *  - %DRM_I915_QUERY_GUC_SUBMISSION_VERSION (see struct drm_i915_query_guc_submission_version)
->>>>>    	 */
->>>>>    	__u64 query_id;
->>>>>    #define DRM_I915_QUERY_TOPOLOGY_INFO		1
->>>>> @@ -3046,6 +3047,7 @@ struct drm_i915_query_item {
->>>>>    #define DRM_I915_QUERY_MEMORY_REGIONS		4
->>>>>    #define DRM_I915_QUERY_HWCONFIG_BLOB		5
->>>>>    #define DRM_I915_QUERY_GEOMETRY_SUBSLICES	6
->>>>> +#define DRM_I915_QUERY_GUC_SUBMISSION_VERSION	7
->>>>>    /* Must be kept compact -- no holes and well documented */
->>>>>    
->>>>>    	/**
->>>>> @@ -3591,6 +3593,16 @@ struct drm_i915_query_memory_regions {
->>>>>    	struct drm_i915_memory_region_info regions[];
->>>>>    };
->>>>>    
->>>>> +/**
->>>>> +* struct drm_i915_query_guc_submission_version - query GuC submission interface version
->>>>> +*/
->>>>> +struct drm_i915_query_guc_submission_version {
->>>>> +	__u32 branch;
->>>>> +	__u32 major;
->>>>> +	__u32 minor;
->>>>> +	__u32 patch;
->>>>> +};
->>>>> +
->>>>>    /**
->>>>>     * DOC: GuC HWCONFIG blob uAPI
->>>>>     *
->>>>
->>
-> 
+BR,
+Jani.
+
+>
+> Signed-off-by: Mika Kahola <mika.kahola@intel.com>
+> ---
+>  drivers/gpu/drm/i915/display/intel_dp.c | 13 +++++++++++++
+>  1 file changed, 13 insertions(+)
+>
+> diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
+> index ab415f41924d..9699ded1eb5f 100644
+> --- a/drivers/gpu/drm/i915/display/intel_dp.c
+> +++ b/drivers/gpu/drm/i915/display/intel_dp.c
+> @@ -3319,6 +3319,7 @@ bool intel_dp_initial_fastset_check(struct intel_encoder *encoder,
+>  	 * of crtc_state->dsc, we have no way to ensure reliable fastset.
+>  	 * Remove once we have readout for DSC.
+>  	 */
+> +
+>  	if (crtc_state->dsc.compression_enable) {
+>  		drm_dbg_kms(&i915->drm, "[ENCODER:%d:%s] Forcing full modeset due to DSC being enabled\n",
+>  			    encoder->base.base.id, encoder->base.name);
+> @@ -3326,6 +3327,18 @@ bool intel_dp_initial_fastset_check(struct intel_encoder *encoder,
+>  		fastset = false;
+>  	}
+>  
+> +	/*
+> +	 * FIXME hack to force full modeset for eDP as not always BIOS written PLL
+> +	 * values does not match with the ones defined in the driver code
+> +	 */
+> +	if (!crtc_state->uapi.mode_changed &&
+> +	    intel_dp_is_edp(intel_dp)) {
+> +		drm_dbg_kms(&i915->drm, "Forcing full modeset for eDP\n");
+> +		crtc_state->uapi.mode_changed = true;
+> +		fastset = false;
+> +	}
+> +
+> +
+>  	return fastset;
+>  }
+
+-- 
+Jani Nikula, Intel
