@@ -2,154 +2,154 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id EB9BB84EE72
-	for <lists+intel-gfx@lfdr.de>; Fri,  9 Feb 2024 01:51:16 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4BE6584EE88
+	for <lists+intel-gfx@lfdr.de>; Fri,  9 Feb 2024 02:11:21 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2D0D310F0CB;
-	Fri,  9 Feb 2024 00:51:14 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A827410F0FD;
+	Fri,  9 Feb 2024 01:11:19 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="B5sJSj7o";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="EhRycPCM";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BBAA410F0CB;
- Fri,  9 Feb 2024 00:51:12 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.88])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5896E10F0F9;
+ Fri,  9 Feb 2024 01:11:15 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1707439873; x=1738975873;
+ t=1707441075; x=1738977075;
  h=message-id:date:subject:to:references:from:in-reply-to:
  content-transfer-encoding:mime-version;
- bh=5WPnCEWoxqFi0xWiF6GETzNTRSNeVkg68F58tfje2Dg=;
- b=B5sJSj7odCWKixp4j5CVD+1TZWtHPgeBTfb3Z3P/tMaVG5X8k4v7Ge5+
- qlHfPkRbPjyuSO7Kx1IIGaGS48AuN00x+ZsMuO4QjTeZULOcjbViaBNup
- BuvcNbdNFpIaGUYt0BkfQCYBXEgLDg2CRO3/gIBGqM1259UK2flPNm42h
- R2iez+bFL0SySN2u7okB7hryJMML/8kdwl+NZ6NEEmxPWq9XrvBDxe1xw
- B894xUI58lfb9gsEBa7eWl6cUEeKX46LkED92BTu9FHIInPyoAxL4kurz
- +O/mTv5Z5E/ixmthpkWVhuVYJR57n/WFU2ideG5yw4xlHhvW22eNo2Kdu Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10978"; a="11999793"
-X-IronPort-AV: E=Sophos;i="6.05,255,1701158400"; d="scan'208";a="11999793"
-Received: from orviesa005.jf.intel.com ([10.64.159.145])
- by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Feb 2024 16:51:12 -0800
+ bh=o5sOlMM2wRzi914RuuJMcuv7bW9y+wp9230zmdJaNhg=;
+ b=EhRycPCM/f2ffkvzdK9Dufk2+Ah+1VsBsN+qdY/NOfhpV8w8exkD0OJT
+ lMbOctA6v10gf1/esP1Dvjn8n/4wDnoKUbeR+kr1zVLzeJfJdf5Yx1UPa
+ FXPhQ5EdRti+cwyi1g0KdNubR07KfOdLkuvSOWl6ue9Rps2ZEZv93RzOH
+ FWuADetMhv2QAsQnxULzocONIq8/r/VKUTBZIBktYByfCBJsk+fDw2Djd
+ zOrYupcRtybbUuq2T0/oy1gIzfuEjaCsVjD/pw9hwQkr/be11JhTrXGY7
+ UtOp4/Rk8EnKR199GnaXO33HcRV5G/4oz/C0wgla3TxhJcfTQ6NUA8yeu w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10978"; a="436485569"
+X-IronPort-AV: E=Sophos;i="6.05,255,1701158400"; d="scan'208";a="436485569"
+Received: from fmviesa003.fm.intel.com ([10.60.135.143])
+ by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 Feb 2024 17:11:13 -0800
 X-ExtLoop1: 1
 X-IronPort-AV: E=Sophos;i="6.05,255,1701158400"; 
-   d="scan'208";a="6438390"
-Received: from orsmsx603.amr.corp.intel.com ([10.22.229.16])
- by orviesa005.jf.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
- 08 Feb 2024 16:51:12 -0800
+   d="scan'208";a="6426324"
+Received: from orsmsx602.amr.corp.intel.com ([10.22.229.15])
+ by fmviesa003.fm.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
+ 08 Feb 2024 17:11:14 -0800
 Received: from orsmsx611.amr.corp.intel.com (10.22.229.24) by
- ORSMSX603.amr.corp.intel.com (10.22.229.16) with Microsoft SMTP Server
+ ORSMSX602.amr.corp.intel.com (10.22.229.15) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35; Thu, 8 Feb 2024 16:51:11 -0800
-Received: from orsmsx603.amr.corp.intel.com (10.22.229.16) by
+ 15.1.2507.35; Thu, 8 Feb 2024 17:11:13 -0800
+Received: from orsmsx610.amr.corp.intel.com (10.22.229.23) by
  ORSMSX611.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35; Thu, 8 Feb 2024 16:51:10 -0800
+ 15.1.2507.35; Thu, 8 Feb 2024 17:11:12 -0800
 Received: from orsedg603.ED.cps.intel.com (10.7.248.4) by
- orsmsx603.amr.corp.intel.com (10.22.229.16) with Microsoft SMTP Server
+ orsmsx610.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35 via Frontend Transport; Thu, 8 Feb 2024 16:51:10 -0800
-Received: from NAM10-DM6-obe.outbound.protection.outlook.com (104.47.58.100)
- by edgegateway.intel.com (134.134.137.100) with Microsoft SMTP Server
+ 15.1.2507.35 via Frontend Transport; Thu, 8 Feb 2024 17:11:12 -0800
+Received: from NAM12-MW2-obe.outbound.protection.outlook.com (104.47.66.41) by
+ edgegateway.intel.com (134.134.137.100) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.35; Thu, 8 Feb 2024 16:51:10 -0800
+ 15.1.2507.35; Thu, 8 Feb 2024 17:11:12 -0800
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=GqcQfTXjUSOB14S4pw8O2Vqf1SvFqmFMh7OQ8ltsBB0QRXVEnDakALYjVs7PLvKf9Tc0UhpYY7ACVvTM0YuVY69BbR4fGmrVuLrhZLINMjWXqMr1Fiaco1Cia8kW+YiLRdedo8ikd7MEyDQpIwxTphWzeAFNstHCz78ghhFuSCfRj3pYuShoNWFvTc3GzVMBJ8DvAk6TmQii1wwgX5KUNZ/FU9ntxvO8JxOhOfeL5yGX2vHttpYX6Olak2rBMWcWmO9kANG5Xh6pQBR/uiAOSXs71xp2IigHaoFhW17hoo7abZyyg0kiyIa7JXYVV9QCUMISoyAmuYlDxJUaMN2GRg==
+ b=HIAhhZjOpFXAUj9MXHVfSysfyYrQUztTlK8bUAbUmMSnQsjT5qEhz32EoTvjijsXlac9+U+0b4qHjJWswFlolzgclgBfPjo2Mlza1Yrmog9tk5g5zwDsC3DIt8lNK8fxPdTJxZ+H9KTWV4lAhMpBa0Tl0gHAw6UuXJHgsobzd5zqZDqo/RlKdPWw52hhdQCwndnTXMKbSjXeOWnc6bJHoC1A5d4c+ZoHP1pmvVjT2XCSoRj0gNa/vL7RLLoK0TARtPP/nGqOeTVHU+2srk76QPVeXdpwFR202EMKnryDYnI0eEKIam/rIYU6L644zfvhZxWhC9s9gaks5s/7BxSxFg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=UcX4Qa8vSOcYlx5GLdy0s2BB1hwpPOHb+z9OKYBR+XQ=;
- b=NY0yXHOSq5HvD8Mjdarwrw3AHjI9/XtM9/24YPH9BeVrqgd1rr/j8HFTGjdudIds3iRI6deCFlgANi9QVpbzEuQSVaH6U2Yew8wikHktZnReNv25IIZi0FJVGPcPnirs3r1/BBNlSZ0IzCfu21QLk143vOjpLKjul7OaXlay0/QbSGSQMNl+N51b4xVpx4SbYMClh348ru4/3EePwrxPO+gghftHA5Dfc4Egu0PErOFuCsNYyH5eP/XaxxHDWHCVjwyepVDVMDoApA2lZSFj99CpzE6vvUQux+ozszAawb5/eBgxCex5+yOxahktkmbHtHaR1LapDY0XTPx0JiETjg==
+ bh=oLbsIHDvAi8X7mx+ftZxrnlJSsjI0RhKIlfAChSU8i8=;
+ b=EWCloP3f9cvlTexALtWuspOBe9eEiaYMdyvyEni7mEkS21J/TYtk2qc1Tim1UBqC7skPxuSMaBDYnwKZtO3j0d5burMR46R0m3XXJ9elSfYqMY7N0oPl9EOJ/n5HEMs3HfwdNbVH/T3VvpQ137nZQ2NCfAK2jqdGmOjHh3NY6lq6fWcAzYfGKjP0nxNv4qS+MYd5qeECrGcodMDlDrybnPByU1J75/EiKAROVu51r9n6r7em2sLBO0CSFFJ9PHJRBWc2m2es6CK8JeqxRBnKqmzTgfYWmR6vziV5PGFPSO8rOCmXBG6fYRaHY/vX/TUY5+dOHSQc4Q3gtJgcAFn5LQ==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
 Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
 Received: from PH7PR11MB7605.namprd11.prod.outlook.com (2603:10b6:510:277::5)
- by SJ1PR11MB6250.namprd11.prod.outlook.com (2603:10b6:a03:459::17)
+ by SJ0PR11MB7701.namprd11.prod.outlook.com (2603:10b6:a03:4e4::5)
  with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7270.24; Fri, 9 Feb
- 2024 00:51:09 +0000
+ 2024 01:11:10 +0000
 Received: from PH7PR11MB7605.namprd11.prod.outlook.com
  ([fe80::c138:faf0:9fa7:8a03]) by PH7PR11MB7605.namprd11.prod.outlook.com
  ([fe80::c138:faf0:9fa7:8a03%7]) with mapi id 15.20.7270.024; Fri, 9 Feb 2024
- 00:51:08 +0000
-Message-ID: <db011053-eba5-4925-8e67-a052c0145f27@intel.com>
-Date: Thu, 8 Feb 2024 16:51:06 -0800
+ 01:11:10 +0000
+Message-ID: <6d67e612-f1ca-470f-bf79-4adf08e884c6@intel.com>
+Date: Thu, 8 Feb 2024 17:11:09 -0800
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/4] drm/xe: Use gsc_proxy_init_done to check proxy status
+Subject: Re: [PATCH 3/4] drm/xe/hdcp: Enable HDCP for XE
 Content-Language: en-US
 To: Suraj Kandpal <suraj.kandpal@intel.com>,
  <intel-gfx@lists.freedesktop.org>, <intel-xe@lists.freedesktop.org>
 References: <20240207113531.1265801-1-suraj.kandpal@intel.com>
- <20240207113531.1265801-3-suraj.kandpal@intel.com>
+ <20240207113531.1265801-4-suraj.kandpal@intel.com>
 From: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
-In-Reply-To: <20240207113531.1265801-3-suraj.kandpal@intel.com>
+In-Reply-To: <20240207113531.1265801-4-suraj.kandpal@intel.com>
 Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: SJ0PR05CA0063.namprd05.prod.outlook.com
- (2603:10b6:a03:332::8) To PH7PR11MB7605.namprd11.prod.outlook.com
+X-ClientProxiedBy: SJ0PR03CA0288.namprd03.prod.outlook.com
+ (2603:10b6:a03:39e::23) To PH7PR11MB7605.namprd11.prod.outlook.com
  (2603:10b6:510:277::5)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PH7PR11MB7605:EE_|SJ1PR11MB6250:EE_
-X-MS-Office365-Filtering-Correlation-Id: df30bf6e-a282-4ee5-335b-08dc29093409
+X-MS-TrafficTypeDiagnostic: PH7PR11MB7605:EE_|SJ0PR11MB7701:EE_
+X-MS-Office365-Filtering-Correlation-Id: 075cb0f6-c162-4b6b-26d9-08dc290c006a
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: mCehJOuPujOjzMnAcbUa4TqXZIcUdgzh67MtIt8DVq1EJfWagADqyGPzgsC2KpsjGiOTnitJw/UlzI4WGegvrNhCqnUzsY4QDVTMvEAhZD36HAZokzbM6qwCf8jwrZwscFlu6c3vGhWj1wP7jVCDEwZ4WNz5I0d7Cep/v+xTqG/faTfYBLdaQWE8gSDsWSprf182hHmDDMrSfmcH3y3RxLFTGVFL68GBLdg/HmfM1HlZm5efTJv5jdkZ0PxO/vck8nlg6u09lIy6RXqmo/Brk9QktTik6jhEfePR8+CqXq6FfpDkLSwzcKEKXwVRFLcFpmTozrqgKxLLOwa/uCFI2Kc67RW9iLXYExMvq4663Uxsx8owQA3TOEOlt7bzLeB5YmyUQ/cLOxdPNT2pbs1FeJ55JkiNRxcgtAnjxLYdeJh36sFhfbZ3j9Ds4lr0XJJ3ZaaMKvuqzOQb1A/4LdrXNEnHMzgJIN0ImYHxBR1LltvUGhwLxkH03/O+pHhpU2hAQawivLPx7hG16Ty6zwqWB8sge684FS0+lQlCM6nr8fYSUDNh4S9obdj6QLyg5KQE
+X-Microsoft-Antispam-Message-Info: ZBL2BUDwGhP4uIHeIyv2/Kvg9tK/iF7A43FSLRq0o68Wh4X97JI2Rz2qerBYPuNAb8XsILOLJXsxwvkLSIbFLUGR0BHVnWyKvu7jzRpCEBINbUnZVdJZtNcyCPief3/taeVtIDAXUrN1WUJj9P6rwxkDOgSzgB4IyOwRhdg/09Nmrnc1ijpwULR+fwV+LAqA5rhw77Qpolx+5rsIvQHG1UnQmb5eEh3mGP48QcFObbVan24jPsPG6gtOhCGwhxfMWEAukKW31vxEe1oV1mPlm9Ok6C8pn2LBHRo8edDpBp/A1MX0eBhL1AomX3p0OwjVMx40Pnuk1jDNlDweSOARdLCwwrax8QeIjgsWIpSoi3sWlCyxx/Lb9gMlk+hmiOSj7XDsqVpTDlshrZHWTtAPG6+jLTtSYcBgM7GiPMk7MKGKHTizIbjHJPI9AY+eGYVUYG54Knfmc7a146MIjL3/cAPNbtrTm8o5gfJUu5jBOoR8GN0oRkoATnuRZNJ+MYJp7UDtHhSRfbVCkh1c3hEl//MNoayPHcWGbyhMS94mbEkzkqFjIISbTDEt+1csSEPV
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:PH7PR11MB7605.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230031)(346002)(39860400002)(366004)(376002)(136003)(396003)(230922051799003)(451199024)(1800799012)(186009)(64100799003)(83380400001)(2616005)(26005)(8676002)(2906002)(82960400001)(38100700002)(316002)(5660300002)(53546011)(36756003)(66556008)(66946007)(450100002)(41300700001)(86362001)(31696002)(6512007)(6506007)(6486002)(8936002)(66476007)(478600001)(31686004);
+ SFS:(13230031)(346002)(136003)(376002)(396003)(366004)(39860400002)(230922051799003)(186009)(64100799003)(1800799012)(451199024)(31686004)(41300700001)(478600001)(5660300002)(6486002)(6512007)(6506007)(53546011)(26005)(30864003)(2616005)(2906002)(83380400001)(38100700002)(36756003)(82960400001)(316002)(8936002)(66476007)(450100002)(8676002)(66556008)(66946007)(86362001)(31696002);
  DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?TEUxd3FBZUpJdDhiYUdTUFJhYS9nZ3RwRHoyZzdSYjZ5a0l4VzRna2NzUi9U?=
- =?utf-8?B?WGR1OUhHeW1RZmJBS1JFazNsbDlRdjQ4RlBtcEcxZ2wxRjdiakFuT2RyekZW?=
- =?utf-8?B?UHNIMUhzWG1qSzNBSCtJd3BTclNldVFlWjdMT2RQSkdjY1NON3lhUlFjUXhj?=
- =?utf-8?B?MmdwdVQzQklKZmZYSUFNT2pvSXZpWXQvSG9yVzlvZW1QaHcyNFRlaEdlT1pX?=
- =?utf-8?B?dGxZMlQxVWJWTytIRWx0N0RUeHlOQWRPakkvTGZsZWx6TkpEOUlaQ0xJVWxj?=
- =?utf-8?B?TkhTWE1zMi96TzRRcGN6bXRlWTBzSDdMMmY3ZmZ2UjBVVGFrR1hhcldUc2w0?=
- =?utf-8?B?OGNNL2RnL1Z0dU41YmEwU2JNUldNaU1TNW0wTyswVHFyeXlHd2NWejIzOEs1?=
- =?utf-8?B?czVrWW5vN2J0TW9Wa2g5YmZFbVZYNjFKV1RhdGRSaTZ0WEdwODZRR0dDbjRV?=
- =?utf-8?B?U2ppMjh1MTM4bzIyWHNhM2N2VVZXeHRObldBaGM2N1BzeUVNVTVFSVR0N1Yv?=
- =?utf-8?B?SkZHRENuQTFSYjRtWW1YWUdmNHFGNEVhbVZoTHJ3VEI0MmZIWGM3S1hndDNO?=
- =?utf-8?B?YmZjMURIcjZrZWc5QzNVQWNxejhRam1haDl5aUZ1bU9XY0k4Y1dzQjJOeUZ0?=
- =?utf-8?B?QXpCSnVPTnI4KzdoR1lkY203T0dSQ2RCWlorcjFlb1RRMDFYTHplekxlNGtQ?=
- =?utf-8?B?K0VKNjM4SS85MmRTQjhWQVdzcGJweHYxb3M1WVNHaitXNW1rZko2NGVaR1Nj?=
- =?utf-8?B?RTNTRExsV2NBbG41elhEUkNaVHgwZXh5NzlSTVVySUxMZGhwWjBxeXpuK2pU?=
- =?utf-8?B?Y2tCQnJWSjFEamZ2aFNkN3l6LzkvQXlMcGx2VGVaZ1hySEZZN3VLRXdKaHk3?=
- =?utf-8?B?c1ZTTFQ0YkkvMWtXWkF4cTA5WG93MHMyVjJHNklBcEx2SnowZXhteFFiU0hP?=
- =?utf-8?B?UGtENlJKMXJyQUFaUWF5UWQycWpSTGdBSTZ3Z05MV2NwWXNnYk50VGlZd3VV?=
- =?utf-8?B?OHhTZTRES0RuWkUwc2IvQmlWYlBpYnBVQi9lSWh6cTJYbkdZUUg3TWJuTEEr?=
- =?utf-8?B?eHQ4M1VHZm9yYzc4ZnQ5M1huWWFRWER3UU5WTTgwRVU0QmtraDNGS21vd29k?=
- =?utf-8?B?NWFRMStWQ2xZWXNsY2xPMU9hM0syMkN1Rk9xeDh1SGI0NXVmMGNBTloyUWxy?=
- =?utf-8?B?bWcrMExMbEJOZkdnSFUvOUphRk9TcHJ1dnVRcFNvOW5Ga2cxSFZham5ZSCsv?=
- =?utf-8?B?UTZzU29vMU1OOWVROVVxMUFDWHArejBOUjhEUnFCM2FsZWp3bEprbmpGdGNi?=
- =?utf-8?B?QWdkNWRkaThoS0FzV3dOTFNVTENncTRpNG8vOFNsaHpTaXhHTmpvWFhZTUZ0?=
- =?utf-8?B?aHhZWjIyazZ6cWo4UE1lQ1lkWDF4bjRRaEJGY0FQOGJFNkE3MENjcmNtdnVu?=
- =?utf-8?B?dGhqdnZ0QXlUdmdkM0ozbWFEbk5vRlJCQkJRZUdiczdqUjEyUk96Ly95SnRa?=
- =?utf-8?B?U3JxaTAwblZBR29zeGo3aFFyWGk3MkVrWjdSQmg4UHZ4ZW9BelJuWDB4ajRi?=
- =?utf-8?B?eWhGMTF6VE9IU1Y0S3hYM2F4Ry9oYmtVYnJRRDBEUE1GOG5meVhmSjVxMFRp?=
- =?utf-8?B?RE9EaUg0OUkwdkZRaWo3dUdtTEZuMXJJaVU0bkZGcHlFRGgrTXRUbk5ZUjBv?=
- =?utf-8?B?cVhKL0VubkY2bmZPcmZQb3MxZ296Nkd1YWhwOTN3eEdCbTN0NWE4RGZXZHlK?=
- =?utf-8?B?elNwb3RCekkzekpkSGhlVFE3R1Erc3huaFppZDNoT25DU1hDZHpEK0F6YlU3?=
- =?utf-8?B?cmhkcy8xdWExbXJ4bTBZbFV1YVhzcGVhNHAvdTlJa3NwZE5JQ1gxb2UyTFVJ?=
- =?utf-8?B?TmNjdUZUVzEzWlowNlZLbEJIbFFDcFBqMCt5R2V1dFQyR3dLOTFtNlVFQ0VK?=
- =?utf-8?B?Nmt4Mk5YeHFQM3dUMStacEROSWxuSjE1QmFnenNrUjl6Q3ZFaTRIUytOd1lv?=
- =?utf-8?B?WkUxQjlnUUg3U2lJWktDSXB6dXpMVElBT2tWN2NtaWhvVGQ5d0FmT1dNWGlI?=
- =?utf-8?B?RERUbEo3b0hiWExHaGpnN1pmaTRhTkg2cHI4RU1neTVNTTBpcUNGR3FDQlJU?=
- =?utf-8?B?eUNJTnNPMzUrSFMvM1pFZGtMRDdUUDErTHQ2TFRsYzlvV1FseHlGTXEySytT?=
- =?utf-8?Q?rWaxvK4n8chEP7IUOWim3dI=3D?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: df30bf6e-a282-4ee5-335b-08dc29093409
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?WCt5QWtEYTl2eU4xTW9veEpybjAxV1l1SUxPK1NKQjZuMGtHMlFvSlI0b0w3?=
+ =?utf-8?B?UnJTMWFlaHRleTlvQ2JyKyt6b21CTmludjdQQi9OeU9IampLN0FpUG43NVh3?=
+ =?utf-8?B?VjN3WWJhbXJOR3dIWkhKZVFoY1c0SEJweTIwSnA5RWc5UUpvSkROREc2VUZ0?=
+ =?utf-8?B?OFJOMWsxRUxJQVR0K1BzZm84YU9nQmhJaDBkQ29LWWZNL0VaV2FXZllUY3p5?=
+ =?utf-8?B?K2R0V2JVWnJqUklOQm5wRUF0WUNlbFYvdTJJWnViVUFmbU5nWmgvTU1kaWI0?=
+ =?utf-8?B?eG9CM2hwQ2J3N1haOXY5UVhybldqb1l2NkFoMDVnZDhiQlRuTUR0SjZ2T3lI?=
+ =?utf-8?B?d0dpTFJNeVhuYjNHNXlNYnpUcit0d05PVCtlb2l0M2dXUFNVRUd6RUV1OG9R?=
+ =?utf-8?B?bXZhY09YYlJIODYyZmNVNEp5K1EzSWhVUXlKWERzMWRGSEU0d3dJenhYUmRO?=
+ =?utf-8?B?QjYycWlRMFF0OE5kNHZXOFZXM1E4WW52azRqc1JYb1Vua01wa2pCb3NNVyth?=
+ =?utf-8?B?c2ViWjZYSTVWcURuQmlRd2ZkU3NHZ3FDT0xtWDgxcWx3bFlhNmpFbFBINjho?=
+ =?utf-8?B?YzU4SkdrSlQraDRuKzZyU2hXZ3dxeDRMVEgvUHIxaGxSSDNCbHcyaFFVWWRW?=
+ =?utf-8?B?amRRWEh5a0NwT1kvNjkwZGp0ZVdTZ09kNFlWNnQ4WjZzUGlUbHFSQTFvRVVs?=
+ =?utf-8?B?enRSQ215MnlZRnJETUR4RG8wU2w4Y1NUT3hLQXJhcDh1dm1LMVFFVVJsTS9Q?=
+ =?utf-8?B?Rkd3VkdiWVh6WGJ2dzlrdENCT0xJRDMvU3NQbGorNU52V2pLQU0xbUdQNUc1?=
+ =?utf-8?B?RXBDdXo2T2M4SXU1T2MvaVAvZ0tIOFhrMHlSK3ZzRE9lUzIzeVF5bktBdFUw?=
+ =?utf-8?B?V3ZrOVRublVZcm5MKy9pN3NSdGdsYi8wVGtoV1JkeXRRYlcwNWt6UHN3RWV1?=
+ =?utf-8?B?WUJvZUtSVk1Ob2RpeW9qdUxpa1ZjdjVBS2dCZUJPT2pIYk8ybkdMVmFiaTUv?=
+ =?utf-8?B?Tk9ZVkxBT21la2ZKWWt5aWdsTXpuUXNiTGZhL1czMEF0aTJRTWkzVkszNnNo?=
+ =?utf-8?B?N1hsZGtwUHdQYUN4eC9ZSUc4TnkxUnhIUXU3QVJ6L01QYmRsamx2OGVlUFAr?=
+ =?utf-8?B?a0tVRHZiVGFVa3RjSG1saXo3NnA1SjNQMnJtNTEwMzlXTXl5c0svcm0reG5T?=
+ =?utf-8?B?Z1dxTytCbldQSFhGbFlkN0lORFdOMEFub1l4KzByNzMrWTN2WEV3MGdRRUIz?=
+ =?utf-8?B?L3QvWEdGK0ZBRVBGbEpTZXo0MmFTLzM5RnFrbGFtODZSV1BubTRDbkhSYnY1?=
+ =?utf-8?B?OWlxQ0w0enF2bFkrVWUzM1lTTyt0cWtTSFBkZjFZN3c1V0p5YjFwdHVXWFda?=
+ =?utf-8?B?TWdBUWlzMFRMd1V0ckQ4SldMaVkwSlBzOGdWMldlRzcxVElXY0hLVllhdEly?=
+ =?utf-8?B?eWIyQ3k3bjFscFZ6eUV4aG4xUmg2OW93TUswbEhISGJDZUdGMkZmMmFrdURK?=
+ =?utf-8?B?NkUyRXVXSmpTeUxSNHlGOWlGUlhJeVpYSzdwbFNiR0lhemlpVmlzdnlTM1ZH?=
+ =?utf-8?B?TVpsSm4xcUxISTRCVjdTNXJwNk42S1BaV1VVRkliQlpJdnhyYVpzNjcwanRo?=
+ =?utf-8?B?M1hYZnNNTFhkY0xTUzdnc21pNjZzUzZhZXlOQWpmUTN4cGJCNGMyMmUxUVRY?=
+ =?utf-8?B?TnhsaTNBSFo2VjdpMVNlcjFaTkVOK2RUZWdIOWlJMkQzNFA5SjRqbEVCaXZ2?=
+ =?utf-8?B?NGxjQ1hJc2E2aDQ3VFlIc0xPWmFZWm9STVVDcytlV2x4Q3JKbEdCV2R3YWRB?=
+ =?utf-8?B?T1dGa0lLc1hPMzZLR2d3b1dDdU9mNy80NWlUY1g1VUxKak5kbWNYRllCd0FJ?=
+ =?utf-8?B?K3dvSFdaMC9ER3VxV0IwM25iZ0x6VjUvRzVjRXcydVZkWVhJSXdYL1VxRUVz?=
+ =?utf-8?B?ajR4TFB6UTdNVkFOZHgrV0FyQlpYam1qZWJLS3d6OHN2aXdQRjNNa2V4RnhE?=
+ =?utf-8?B?SDMrdEhFWDJHVDJFcFlYNVJoVGU4c1VzVUFPVVNXa2J1ZHEzL01jNldYMjVr?=
+ =?utf-8?B?OFIyVzdESjN3V2dmYTdKc2tlamh6RjJIQU5tVUpaSnZZbG1BREdhL0dYTnZI?=
+ =?utf-8?B?Ym10eWZkYlpnRHBiWWVCUCtvM2l2bUs2VHE2VlBVbEUxdEJsakVPbDJHQmx6?=
+ =?utf-8?Q?BhIdoz5PDFRgeERELtCXnf4=3D?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: 075cb0f6-c162-4b6b-26d9-08dc290c006a
 X-MS-Exchange-CrossTenant-AuthSource: PH7PR11MB7605.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 09 Feb 2024 00:51:08.5333 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 09 Feb 2024 01:11:10.4328 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: VIERznhhultuwaERoazCZHILL0T1igpbafH0MJdwiPdikHJme1S8rCMSsMuJIkPDYoCuu7ysg7+PyA/9gJi3ScYcdI7zMEPej4NPxu4/qk8=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ1PR11MB6250
+X-MS-Exchange-CrossTenant-UserPrincipalName: GNoDUD2OumtwqfJ5QdEuh60hTM0n+CznrYBBnkjGlr9izR3uwc9r+WhUlZx1f72liYyDhDyBM3qHCWVdD5PXwgXhkWS0QUUQs9uaXvcvw+c=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ0PR11MB7701
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -169,106 +169,362 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 
 On 2/7/2024 3:35 AM, Suraj Kandpal wrote:
-> Expose gsc_proxy_init_done so that we can check if gsc proxy has
-> been initialized or not.
+> Enable HDCP for Xe by defining functions which take care of
+> interaction of HDCP as a client with the GSC CS interface.
+>
+> --v2
+> -add kfree at appropriate place [Daniele]
+> -forward declare drm_i915_private [Daniele]
+
+I don't see the forward declaration, just the switch to xe_device (which 
+is better).
+
+> -remove useless define [Daniele]
+> -move host session logic to xe_gsc_submit.c [Daniele]
+> -call xe_gsc_check_and_update_pending directly in an if condition
+> [Daniele]
+> -use xe_device instead of drm_i915_private [Daniele]
 >
 > Signed-off-by: Suraj Kandpal <suraj.kandpal@intel.com>
 > ---
->   drivers/gpu/drm/xe/display/xe_hdcp_gsc.c | 25 ++++++++++++++++++++++--
->   drivers/gpu/drm/xe/xe_gsc_proxy.c        |  2 +-
->   drivers/gpu/drm/xe/xe_gsc_proxy.h        |  1 +
->   3 files changed, 25 insertions(+), 3 deletions(-)
+>   drivers/gpu/drm/i915/display/intel_hdcp_gsc.c |   4 +-
+>   .../gpu/drm/xe/abi/gsc_command_header_abi.h   |   2 +
+>   drivers/gpu/drm/xe/display/xe_hdcp_gsc.c      | 184 +++++++++++++++++-
+>   drivers/gpu/drm/xe/xe_gsc_submit.c            |  19 ++
+>   drivers/gpu/drm/xe/xe_gsc_submit.h            |   1 +
+>   5 files changed, 202 insertions(+), 8 deletions(-)
 >
+> diff --git a/drivers/gpu/drm/i915/display/intel_hdcp_gsc.c b/drivers/gpu/drm/i915/display/intel_hdcp_gsc.c
+> index e44f60f00e8b..9e895f714f90 100644
+> --- a/drivers/gpu/drm/i915/display/intel_hdcp_gsc.c
+> +++ b/drivers/gpu/drm/i915/display/intel_hdcp_gsc.c
+> @@ -123,8 +123,10 @@ static int intel_hdcp_gsc_hdcp2_init(struct drm_i915_private *i915)
+>   	i915->display.hdcp.hdcp_message = hdcp_message;
+>   	ret = intel_hdcp_gsc_initialize_message(i915, hdcp_message);
+>   
+> -	if (ret)
+> +	if (ret) {
+>   		drm_err(&i915->drm, "Could not initialize hdcp_message\n");
+> +		kfree(hdcp_message);
+> +	}
+
+AFAIU intel_hdcp_gsc.c is not used in Xe, so IMO you should send this 
+change as an i915 patch.
+
+>   
+>   	return ret;
+>   }
+> diff --git a/drivers/gpu/drm/xe/abi/gsc_command_header_abi.h b/drivers/gpu/drm/xe/abi/gsc_command_header_abi.h
+> index a4c2646803b5..d2fbf71439be 100644
+> --- a/drivers/gpu/drm/xe/abi/gsc_command_header_abi.h
+> +++ b/drivers/gpu/drm/xe/abi/gsc_command_header_abi.h
+> @@ -21,6 +21,8 @@ struct intel_gsc_mtl_header {
+>   
+>   	/* FW allows host to decide host_session handle as it sees fit. */
+>   	u64 host_session_handle;
+> +#define HECI_MEADDRESS_PXP 17
+> +#define HECI_MEADDRESS_HDCP 18
+
+This was purposely not defined here, and the PXP definition already 
+exists in the separate header for the PXP stuff. The idea is that each 
+client should have its own header with its own definitions.
+
+>   
+>   	/* handle generated by FW for messages that need to be re-submitted */
+>   	u64 gsc_message_handle;
 > diff --git a/drivers/gpu/drm/xe/display/xe_hdcp_gsc.c b/drivers/gpu/drm/xe/display/xe_hdcp_gsc.c
-> index 0f11a39333e2..ca17dfbc3fe9 100644
+> index ca17dfbc3fe9..d95c1b3b2d9c 100644
 > --- a/drivers/gpu/drm/xe/display/xe_hdcp_gsc.c
 > +++ b/drivers/gpu/drm/xe/display/xe_hdcp_gsc.c
-> @@ -5,15 +5,36 @@
+> @@ -3,11 +3,26 @@
+>    * Copyright 2023, Intel Corporation.
+>    */
 >   
->   #include "i915_drv.h"
+> -#include "i915_drv.h"
+> +#include <linux/delay.h>
+> +
+> +#include "abi/gsc_command_header_abi.h"
 >   #include "intel_hdcp_gsc.h"
-> +#include "xe_gt.h"
-> +#include "xe_gsc_proxy.h"
-> +#include "xe_pm.h"
+>   #include "xe_gt.h"
+>   #include "xe_gsc_proxy.h"
+>   #include "xe_pm.h"
+> +#include "xe_bo.h"
+> +#include "xe_map.h"
+> +#include "xe_gsc_submit.h"
+> +
+> +#define HECI_MEADDRESS_HDCP 18
+> +
+> +struct intel_hdcp_gsc_message {
+> +	struct xe_bo *hdcp_bo;
+> +	u64 hdcp_cmd_in;
+> +	u64 hdcp_cmd_out;
+> +};
+> +
+> +#define HDCP_GSC_HEADER_SIZE sizeof(struct intel_gsc_mtl_header)
 >   
 >   bool intel_hdcp_gsc_cs_required(struct drm_i915_private *i915)
 >   {
->   	return true;
+> @@ -37,19 +52,174 @@ bool intel_hdcp_gsc_check_status(struct xe_device *xe)
+>   	return ret;
 >   }
 >   
-> -bool intel_hdcp_gsc_check_status(struct drm_i915_private *i915)
-> +bool intel_hdcp_gsc_check_status(struct xe_device *xe)
-
-I think it'd be nice to have a prep patch to convert all the 
-drm_i915_private in this file to xe_device and drop i915_drv.h, so we 
-don't have the changes sprinkled through the patches.
-
->   {
-> -	return false;
-> +	struct xe_tile *tile = xe_device_get_root_tile(xe);
-> +	struct xe_gt *gt = tile->media_gt;
-> +	int ret = true;
-
-why are you initializing this integer to true?
-
+> -int intel_hdcp_gsc_init(struct drm_i915_private *i915)
+> +/*This function helps allocate memory for the command that we will send to gsc cs */
+> +static int intel_hdcp_gsc_initialize_message(struct xe_device *xe,
+> +					     struct intel_hdcp_gsc_message *hdcp_message)
+> +{
+> +	struct xe_bo *bo = NULL;
+> +	u64 cmd_in, cmd_out;
+> +	int err, ret = 0;
 > +
-> +	xe_pm_runtime_get(xe);
-> +	ret = xe_force_wake_get(gt_to_fw(gt), XE_FW_GSC);
-> +	if (ret) {
-> +		drm_dbg_kms(&xe->drm, "failed to get forcewake to disable GSC interrupts\n");
+> +	/* allocate object of two page for HDCP command memory and store it */
+> +	xe_device_mem_access_get(xe);
+> +	bo = xe_bo_create_pin_map(xe, xe_device_get_root_tile(xe), NULL, PAGE_SIZE * 2,
+> +				  ttm_bo_type_kernel,
+> +				  XE_BO_CREATE_SYSTEM_BIT |
+> +				  XE_BO_CREATE_GGTT_BIT);
+> +
+> +	if (IS_ERR(bo)) {
+> +		drm_err(&xe->drm, "Failed to allocate bo for HDCP streaming command!\n");
+> +		ret = err;
 
-incorrect message, this has nothing to do with interrupts.
+err is unset here.
 
-> +		return false;
+> +		goto out;
 > +	}
 > +
-> +	if (!gsc_proxy_init_done(&gt->uc.gsc))
-> +		ret = false;
+> +	cmd_in = xe_bo_ggtt_addr(bo);
+> +	cmd_out = cmd_in + PAGE_SIZE;
+> +	xe_map_memset(xe, &bo->vmap, 0, 0, bo->size);
 > +
-> +	if (!ret)
-> +		xe_force_wake_put(gt_to_fw(gt), XE_FW_GSC);
+> +	hdcp_message->hdcp_bo = bo;
+> +	hdcp_message->hdcp_cmd_in = cmd_in;
+> +	hdcp_message->hdcp_cmd_out = cmd_out;
+> +out:
+> +	xe_device_mem_access_put(xe);
+> +	return ret;
+> +}
+> +
+> +static int intel_hdcp_gsc_hdcp2_init(struct xe_device *xe)
+> +{
+> +	struct intel_hdcp_gsc_message *hdcp_message;
+> +	int ret;
+> +
+> +	hdcp_message = kzalloc(sizeof(*hdcp_message), GFP_KERNEL);
+> +
+> +	if (!hdcp_message)
+> +		return -ENOMEM;
+> +
+> +	/*
+> +	 * NOTE: No need to lock the comp mutex here as it is already
+> +	 * going to be taken before this function called
+> +	 */
+> +	xe->display.hdcp.hdcp_message = hdcp_message;
 
-Why is this conditional on !ret? you can't reach here if the _get fails 
-and also you overwrite ret in the if above, so you can't use it as a 
-condition here. This looks like it should just be an unconditional put.
+might be worth moving this assignment to after the init, so we can skip 
+it in case of errors
 
-> +	xe_pm_runtime_get(xe);
+> +	ret = intel_hdcp_gsc_initialize_message(xe, hdcp_message);
+> +
+> +	if (ret)
+> +		drm_err(&xe->drm, "Could not initialize hdcp_message\n");
+> +
+> +	return ret;
 
-this should be a put
+still missing the kfree(hdcp_message) in case of error?
 
+> +}
+> +
+> +int intel_hdcp_gsc_init(struct xe_device *xe)
+> +{
+> +	struct i915_hdcp_arbiter *data;
+> +	int ret;
+> +
+> +	data = kzalloc(sizeof(*data), GFP_KERNEL);
+> +	if (!data)
+> +		return -ENOMEM;
+> +
+> +	mutex_lock(&xe->display.hdcp.hdcp_mutex);
+> +	xe->display.hdcp.arbiter = data;
+> +	xe->display.hdcp.arbiter->hdcp_dev = xe->drm.dev;
+> +	xe->display.hdcp.arbiter->ops = &gsc_hdcp_ops;
+> +	ret = intel_hdcp_gsc_hdcp2_init(xe);
+> +	if (ret)
+> +		kfree(data);
+> +
+> +	mutex_unlock(&xe->display.hdcp.hdcp_mutex);
+> +
+> +	return ret;
+> +}
+> +
+> +void intel_hdcp_gsc_fini(struct xe_device *xe)
+>   {
+> -	drm_info(&i915->drm, "HDCP support not yet implemented\n");
+> -	return -ENODEV;
+> +	struct intel_hdcp_gsc_message *hdcp_message =
+> +					xe->display.hdcp.hdcp_message;
+> +
+
+Should we check for hdcp_message != NULL ? in case we hit an error in 
+the init path.
+
+> +	xe_bo_unpin_map_no_vm(hdcp_message->hdcp_bo);
+> +	kfree(hdcp_message);
+> +
+>   }
+>   
+> -void intel_hdcp_gsc_fini(struct drm_i915_private *i915)
+> +static int xe_gsc_send_sync(struct xe_device *xe,
+> +			    struct intel_hdcp_gsc_message *hdcp_message,
+> +			    u32 msg_size_in, u32 msg_size_out,
+> +			    u32 addr_out_off)
+>   {
+> +	struct xe_gt *gt = hdcp_message->hdcp_bo->tile->media_gt;
+> +	struct iosys_map *map = &hdcp_message->hdcp_bo->vmap;
+> +	struct xe_gsc *gsc = &gt->uc.gsc;
+> +	int ret;
+> +
+> +	ret = xe_gsc_pkt_submit_kernel(gsc, hdcp_message->hdcp_cmd_in, msg_size_in,
+> +				       hdcp_message->hdcp_cmd_out, msg_size_out);
+> +	if (ret) {
+> +		drm_err(&xe->drm, "failed to send gsc HDCP msg (%d)\n", ret);
+> +		return ret;
+> +	}
+> +
+> +	if (xe_gsc_check_and_update_pending(xe, map, 0, map, addr_out_off))
+> +		return -EAGAIN;
+> +
+> +	ret = xe_gsc_read_out_header(xe, map, addr_out_off,
+> +				     sizeof(struct hdcp_cmd_header), NULL);
 > +
 > +	return ret;
 >   }
 >   
->   int intel_hdcp_gsc_init(struct drm_i915_private *i915)
-> diff --git a/drivers/gpu/drm/xe/xe_gsc_proxy.c b/drivers/gpu/drm/xe/xe_gsc_proxy.c
-> index 309ef80e3b95..f37f18a36209 100644
-> --- a/drivers/gpu/drm/xe/xe_gsc_proxy.c
-> +++ b/drivers/gpu/drm/xe/xe_gsc_proxy.c
-> @@ -66,7 +66,7 @@ static inline struct xe_device *kdev_to_xe(struct device *kdev)
->   	return dev_get_drvdata(kdev);
+> -ssize_t intel_hdcp_gsc_msg_send(struct drm_i915_private *i915, u8 *msg_in,
+> +ssize_t intel_hdcp_gsc_msg_send(struct xe_device *xe, u8 *msg_in,
+>   				size_t msg_in_len, u8 *msg_out,
+>   				size_t msg_out_len)
+>   {
+> -	return -ENODEV;
+> +	const size_t max_msg_size = PAGE_SIZE - HDCP_GSC_HEADER_SIZE;
+> +	struct intel_hdcp_gsc_message *hdcp_message;
+> +	u64 host_session_id;
+> +	u32 msg_size_in, msg_size_out, addr_in_wr_off = 0, addr_out_off;
+
+I think we try to avoid too many variables on one line, especially if 
+only some of them are initialized.
+
+
+> +	int ret, tries = 0;
+> +
+> +	if (msg_in_len > max_msg_size || msg_out_len > max_msg_size) {
+> +		ret = -ENOSPC;
+> +		goto out;
+> +	}
+> +
+> +	msg_size_in = msg_in_len + HDCP_GSC_HEADER_SIZE;
+> +	msg_size_out = msg_out_len + HDCP_GSC_HEADER_SIZE;
+> +	hdcp_message = xe->display.hdcp.hdcp_message;
+> +	addr_out_off = PAGE_SIZE;
+> +
+> +	get_random_bytes(&host_session_id, sizeof(u64));
+> +	host_session_id = xe_gsc_get_host_session_id(HECI_MEADDRESS_HDCP);
+
+You added a function for this, shouldn't you call that?
+
+> +	xe_device_mem_access_get(xe);
+> +	addr_in_wr_off = xe_gsc_emit_header(xe, &hdcp_message->hdcp_bo->vmap,
+> +					    addr_in_wr_off, HECI_MEADDRESS_HDCP,
+> +					    host_session_id, msg_in_len);
+> +	xe_map_memcpy_to(xe, &hdcp_message->hdcp_bo->vmap, addr_in_wr_off,
+> +			 msg_in, msg_in_len);
+> +	/*
+> +	 * Keep sending request in case the pending bit is set no need to add
+> +	 * message handle as we are using same address hence loc. of header is
+> +	 * same and it will contain the message handle. we will send the message
+> +	 * 20 times each message 50 ms apart
+> +	 */
+> +	do {
+> +		ret = xe_gsc_send_sync(xe, hdcp_message, msg_size_in, msg_size_out,
+> +				       addr_out_off);
+> +
+> +		/* Only try again if gsc says so */
+> +		if (ret != -EAGAIN)
+> +			break;
+> +
+> +		msleep(50);
+> +
+> +	} while (++tries < 20);
+> +
+> +	if (ret)
+> +		goto out;
+> +
+
+If you move xe_gsc_read_out_header here, you can use the returned offset 
+instead of "addr_out_off + HDCP_GSC_HEADER_SIZE" that you have below. 
+Not a blocker.
+
+> +	xe_map_memcpy_from(xe, msg_out, &hdcp_message->hdcp_bo->vmap,
+> +			   addr_out_off + HDCP_GSC_HEADER_SIZE,
+> +			   msg_out_len);
+> +
+> +out:
+> +	xe_device_mem_access_put(xe);
+> +	return ret;
+>   }
+> diff --git a/drivers/gpu/drm/xe/xe_gsc_submit.c b/drivers/gpu/drm/xe/xe_gsc_submit.c
+> index 348994b271be..57793b0acfc3 100644
+> --- a/drivers/gpu/drm/xe/xe_gsc_submit.c
+> +++ b/drivers/gpu/drm/xe/xe_gsc_submit.c
+> @@ -33,6 +33,7 @@
+>    * include the client id in the top 8 bits of the handle.
+>    */
+>   #define HOST_SESSION_CLIENT_MASK GENMASK_ULL(63, 56)
+> +#define HOST_SESSION_PXP_SINGLE BIT_ULL(60)
+
+this PXP_SINGLE is not needed
+
+>   
+>   static struct xe_gt *
+>   gsc_to_gt(struct xe_gsc *gsc)
+> @@ -40,6 +41,24 @@ gsc_to_gt(struct xe_gsc *gsc)
+>   	return container_of(gsc, struct xe_gt, uc.gsc);
 >   }
 >   
-> -static bool gsc_proxy_init_done(struct xe_gsc *gsc)
-> +bool gsc_proxy_init_done(struct xe_gsc *gsc)
+> +/**
+> + * xe_gsc_get_host_session_id - Create host session id based on HECI
+> + * client address
+> + * @heci_client_id: client id identifying the type of command (see abi for values)
+> + *
+> + * Returns: random host_session_id which can be used to send messages to gsc cs
+> + */
+> +u64 xe_gsc_get_host_session_id(u8 heci_client_id)
+> +{
+> +	u64 host_session_id;
+> +
+> +	get_random_bytes(&host_session_id, sizeof(u64));
+> +	host_session_id &= ~HOST_SESSION_CLIENT_MASK;
+> +	if (host_session_id && heci_client_id == HECI_MEADDRESS_PXP)
+> +		host_session_id |= HOST_SESSION_PXP_SINGLE;
 
-this needs an xe_ prefix now that it is exposed.
+same here, this PXP exception is not needed
 
 Daniele
 
->   {
->   	struct xe_gt *gt = gsc_to_gt(gsc);
->   	u32 fwsts1 = xe_mmio_read32(gt, HECI_FWSTS1(MTL_GSC_HECI1_BASE));
-> diff --git a/drivers/gpu/drm/xe/xe_gsc_proxy.h b/drivers/gpu/drm/xe/xe_gsc_proxy.h
-> index 908f9441f093..10de5359fbb8 100644
-> --- a/drivers/gpu/drm/xe/xe_gsc_proxy.h
-> +++ b/drivers/gpu/drm/xe/xe_gsc_proxy.h
-> @@ -11,6 +11,7 @@
->   struct xe_gsc;
+> +	return host_session_id;
+> +};
+> +
+>   /**
+>    * xe_gsc_emit_header - write the MTL GSC header in memory
+>    * @xe: the Xe device
+> diff --git a/drivers/gpu/drm/xe/xe_gsc_submit.h b/drivers/gpu/drm/xe/xe_gsc_submit.h
+> index 1939855031a6..f3359b6659b8 100644
+> --- a/drivers/gpu/drm/xe/xe_gsc_submit.h
+> +++ b/drivers/gpu/drm/xe/xe_gsc_submit.h
+> @@ -28,4 +28,5 @@ int xe_gsc_read_out_header(struct xe_device *xe,
+>   int xe_gsc_pkt_submit_kernel(struct xe_gsc *gsc, u64 addr_in, u32 size_in,
+>   			     u64 addr_out, u32 size_out);
 >   
->   int xe_gsc_proxy_init(struct xe_gsc *gsc);
-> +bool gsc_proxy_init_done(struct xe_gsc *gsc);
->   void xe_gsc_proxy_remove(struct xe_gsc *gsc);
->   int xe_gsc_proxy_start(struct xe_gsc *gsc);
->   
+> +u64 xe_gsc_get_host_session_id(u8 heci_client_id);
+>   #endif
 
