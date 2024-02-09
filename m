@@ -2,63 +2,75 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 42E8F851063
-	for <lists+intel-gfx@lfdr.de>; Mon, 12 Feb 2024 11:13:52 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 20D418513F8
+	for <lists+intel-gfx@lfdr.de>; Mon, 12 Feb 2024 14:01:27 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9739810E0F6;
-	Mon, 12 Feb 2024 10:13:49 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8E7C710E725;
+	Mon, 12 Feb 2024 13:01:25 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="fo9DNKFn";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="Vu974V3H";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A130010E0F6;
- Mon, 12 Feb 2024 10:13:46 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1707732826; x=1739268826;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=b5yCS+oa4RLidNsPnjoIz0El0jlSvCjtFpTobsF8c/k=;
- b=fo9DNKFnhdrevyyYcYHqoj7WGzop9KU2liawJ5LI2AIU2d9GW9XRFGk6
- o8E9y8aa1K001wuIgkAgPiUZDcydgq0yvqO30VxoZDaoKsCuLEP0g2WCq
- W+nD4NPDDt6ij14Zz8EgnaMGuaKm22NDc9BJFdK+2S+xZ794zs/9tlVE3
- b07b/pfqc9d6mWqB3/iab1dwkUUCrfzs+mb1P+UKhikzzaodd2SABLoJ3
- O67e9MDS2HXf4Stoc64RFckdrqoisvXFO73CkIru2dT8Snhk4El9rZjHt
- eoYrF6Uii8G/PpQbx1D4RYN+JT83tH1doExaDmsVrBi1bJaD5OECYEqby Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10981"; a="1581053"
-X-IronPort-AV: E=Sophos;i="6.05,262,1701158400"; 
-   d="scan'208";a="1581053"
-Received: from orviesa004.jf.intel.com ([10.64.159.144])
- by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Feb 2024 02:13:44 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.05,262,1701158400"; 
-   d="scan'208";a="7296805"
-Received: from belyakov-mobl.ccr.corp.intel.com (HELO localhost)
- ([10.252.63.91])
- by orviesa004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Feb 2024 02:13:39 -0800
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Abhinav Kumar <quic_abhinavk@quicinc.com>,
- dri-devel@lists.freedesktop.org, Maarten Lankhorst
- <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>,
- Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>,
- Daniel Vetter <daniel@ffwll.ch>
-Cc: Paloma Arellano <quic_parellan@quicinc.com>, robdclark@gmail.com,
- freedreno@lists.freedesktop.org, dmitry.baryshkov@linaro.org,
- intel-gfx@lists.freedesktop.org, ville.syrjala@linux.intel.com,
- quic_jesszhan@quicinc.com, Abhinav Kumar <quic_abhinavk@quicinc.com>,
- linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v3] drm/dp: add an API to indicate if sink supports VSC SDP
-In-Reply-To: <20240210202704.977303-1-quic_abhinavk@quicinc.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20240210202704.977303-1-quic_abhinavk@quicinc.com>
-Date: Mon, 12 Feb 2024 12:13:34 +0200
-Message-ID: <87il2u9ei9.fsf@intel.com>
+Received: from mail-yw1-f170.google.com (mail-yw1-f170.google.com
+ [209.85.128.170])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2730A10F786;
+ Fri,  9 Feb 2024 16:48:34 +0000 (UTC)
+Received: by mail-yw1-f170.google.com with SMTP id
+ 00721157ae682-604b23fc6a7so12891447b3.0; 
+ Fri, 09 Feb 2024 08:48:34 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20230601; t=1707497313; x=1708102113; darn=lists.freedesktop.org;
+ h=in-reply-to:content-disposition:mime-version:references:message-id
+ :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+ bh=BDoPqGVOIDy3+wcfjHtZEb4REQzExwRWYroEz4tWuME=;
+ b=Vu974V3HCtdEeH/aoFcxboQFnOncTBg/2Olr42WNTYAYBUU+AeLgIa4BlXDS3nYE29
+ 0m3kw0dicYTgK3gBlvPGnKFhI3dOgZ80eofzyq8myv5IfH1aW4Uh9K0BzYhPMsYWW76X
+ 2DQL8DnW83zNv8Jvcr5i8UO/SndYWjUJl/qraY5g7EYilitdHO9aMSglOc+h14qUY6XX
+ SJJEmBgY7E5oMIwyXNnC7m2llGhhFmlZjmZEXDTIpq8RYWownOekrg5ddcKyNuhVAPfE
+ AX1Cdrz/yGJClmgjdEbEiaUHKPgLhlByoA979/cbr7XNbJjxA25owXScf2PBODbx8HMt
+ 39jg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1707497313; x=1708102113;
+ h=in-reply-to:content-disposition:mime-version:references:message-id
+ :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=BDoPqGVOIDy3+wcfjHtZEb4REQzExwRWYroEz4tWuME=;
+ b=Q+Gg4FtlmlBBjLQO85L6LzkotavCvbODlUmP+tSjHg1oUSKnfwIyPe5CKIyVXkjr4z
+ R48lSbG7+NSWUxiiAGAcCCn75DWdMsoSt4iM7ZbFdQdIHrWQyyWQPP4OmCF2jDbfGiDD
+ I2rf2XGylf8PvDEJBP03MtgPaKVN9uExb1hlAz1Z3JF9fYdXWOcOYavLziRBOid1KiP2
+ 603e4Tx6wlJc27WBzMB8st0UND1dgobABiEAO1du/lpy3U4hOnNydG+QcIlTJcmjiJIq
+ JtMtNt4t34YLn/sHdoMGXlZudTo0q4e26/5WXsGvZZCvFg3zL5R+jhIRdvhBXZYxAL0l
+ xiIA==
+X-Gm-Message-State: AOJu0Yz7umDjltqDVmbeuDcB4qlCCsL7oTrImD3AbSycxy7+9F60SMPf
+ 3v47BYfvtT7saQpFdctF4cmQ2Dz6a/PJ9RRchlAzPp3QGfnY7obE
+X-Google-Smtp-Source: AGHT+IGHAnv5j3jjPmcR0JvcThZ6kL5WrGr+U2/FCDlRiQcke87L3mDwYTKNqb9aPzjJNAz1t/g7uw==
+X-Received: by 2002:a25:8686:0:b0:dc6:e622:f52 with SMTP id
+ z6-20020a258686000000b00dc6e6220f52mr1943504ybk.31.1707497313092; 
+ Fri, 09 Feb 2024 08:48:33 -0800 (PST)
+X-Forwarded-Encrypted: i=1;
+ AJvYcCW1a/+E+9DbNMri1t+AZUcIPf+wUz5mu1p6q31+fZg7aHGQ+BTynXWQVqxWa3/iQqp4U4MVW5MrWnWSm0WmQ19DldbgQ2tEZz0/3YNdMdDlGtqViDcAmRH0VWc4bxs6hnQkMMNvvq0rm+gf7lWdpRehASNNnUAzTj6o6TglEqnf1ukaIx5e0mn0UwNjf9xuEOzBnRYhMW86aYSk8C0HYiIx2RyurvnbhgYV3SDQcBKaIghNqJcXnKTZGkIMNNe2eUf/lA73dsI65yIvzp2tnUCZ
+Received: from localhost ([2601:344:8301:57f0:be3a:6fd4:1110:3284])
+ by smtp.gmail.com with ESMTPSA id
+ l12-20020a5b0b8c000000b00dc74ac54f5fsm217643ybq.63.2024.02.09.08.48.32
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Fri, 09 Feb 2024 08:48:32 -0800 (PST)
+Date: Fri, 9 Feb 2024 08:48:31 -0800
+From: Yury Norov <yury.norov@gmail.com>
+To: Lucas De Marchi <lucas.demarchi@intel.com>
+Cc: linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
+ Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+ Jani Nikula <jani.nikula@linux.intel.com>,
+ intel-xe@lists.freedesktop.org, intel-gfx@lists.freedesktop.org
+Subject: Re: [PATCH 2/3] bits: Introduce fixed-type BIT
+Message-ID: <ZcZXXzEBxvyH470g@yury-ThinkPad>
+References: <20240124050205.3646390-1-lucas.demarchi@intel.com>
+ <20240124050205.3646390-3-lucas.demarchi@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240124050205.3646390-3-lucas.demarchi@intel.com>
+X-Mailman-Approved-At: Mon, 12 Feb 2024 13:01:24 +0000
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -74,84 +86,48 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Sat, 10 Feb 2024, Abhinav Kumar <quic_abhinavk@quicinc.com> wrote:
-> From: Paloma Arellano <quic_parellan@quicinc.com>
->
-> YUV420 format is supported only in the VSC SDP packet and not through
-> MSA. Hence add an API which indicates the sink support which can be used
-> by the rest of the DP programming.
->
-> changes in v3:
-> 	- fix the commit title prefix to drm/dp
-> 	- get rid of redundant !!
-> 	- break out this change from series [1] to get acks from drm core
-> 	  maintainers
->
-> Changes in v2:
-> 	- Move VSC SDP support check API from dp_panel.c to
-> 	  drm_dp_helper.c
->
-> [1]: https://patchwork.freedesktop.org/series/129180/
->
-> Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-> Signed-off-by: Paloma Arellano <quic_parellan@quicinc.com>
-> Signed-off-by: Abhinav Kumar <quic_abhinavk@quicinc.com>
+On Tue, Jan 23, 2024 at 09:02:04PM -0800, Lucas De Marchi wrote:
+> Implement fixed-type BIT() to help drivers add stricter checks, like was
+> done for GENMASK.
+> 
+> Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
+
+Reviewed-by: Yury Norov <yury.norov@gmail.com>
+
 > ---
->  drivers/gpu/drm/display/drm_dp_helper.c | 21 +++++++++++++++++++++
->  include/drm/display/drm_dp_helper.h     |  1 +
->  2 files changed, 22 insertions(+)
->
-> diff --git a/drivers/gpu/drm/display/drm_dp_helper.c b/drivers/gpu/drm/display/drm_dp_helper.c
-> index b1ca3a1100da..7a851f92b249 100644
-> --- a/drivers/gpu/drm/display/drm_dp_helper.c
-> +++ b/drivers/gpu/drm/display/drm_dp_helper.c
-> @@ -2916,6 +2916,27 @@ void drm_dp_vsc_sdp_log(const char *level, struct device *dev,
->  }
->  EXPORT_SYMBOL(drm_dp_vsc_sdp_log);
+>  include/linux/bits.h | 9 +++++++++
+>  1 file changed, 9 insertions(+)
+> 
+> diff --git a/include/linux/bits.h b/include/linux/bits.h
+> index cb94128171b2..5754a1251078 100644
+> --- a/include/linux/bits.h
+> +++ b/include/linux/bits.h
+> @@ -24,12 +24,16 @@
+>  #define GENMASK_INPUT_CHECK(h, l) \
+>  	(BUILD_BUG_ON_ZERO(__builtin_choose_expr( \
+>  		__is_constexpr((l) > (h)), (l) > (h), 0)))
+> +#define BIT_INPUT_CHECK(type, b) \
+> +	((BUILD_BUG_ON_ZERO(__builtin_choose_expr( \
+> +		__is_constexpr(b), (b) >= BITS_PER_TYPE(type), 0))))
+>  #else
+>  /*
+>   * BUILD_BUG_ON_ZERO is not available in h files included from asm files,
+>   * disable the input check if that is the case.
+>   */
+>  #define GENMASK_INPUT_CHECK(h, l) 0
+> +#define BIT_INPUT_CHECK(type, b) 0
+>  #endif
 >  
-> +/**
-> + * drm_dp_vsc_sdp_supported() - check if vsc sdp is supported
-> + * @aux: DisplayPort AUX channel
-> + * @dpcd: DisplayPort configuration data
-> + *
-> + * Returns true if vsc sdp is supported, else returns false
-> + */
-> +bool drm_dp_vsc_sdp_supported(struct drm_dp_aux *aux, const u8 dpcd[DP_RECEIVER_CAP_SIZE])
-> +{
-> +	u8 rx_feature;
-> +
-> +	if (drm_dp_dpcd_readb(aux, DP_DPRX_FEATURE_ENUMERATION_LIST, &rx_feature) != 1) {
-> +		drm_dbg_dp(aux->drm_dev, "failed to read DP_DPRX_FEATURE_ENUMERATION_LIST\n");
-> +		return false;
-> +	}
-> +
-> +	return (dpcd[DP_DPCD_REV] >= DP_DPCD_REV_13) &&
-> +		(rx_feature & DP_VSC_SDP_EXT_FOR_COLORIMETRY_SUPPORTED);
-
-I guess you could bail out early without further dpcd access with the
-dpcd rev check?
-
-BR,
-Jani.
-
-
-> +}
-> +EXPORT_SYMBOL(drm_dp_vsc_sdp_supported);
-> +
->  /**
->   * drm_dp_get_pcon_max_frl_bw() - maximum frl supported by PCON
->   * @dpcd: DisplayPort configuration data
-> diff --git a/include/drm/display/drm_dp_helper.h b/include/drm/display/drm_dp_helper.h
-> index 863b2e7add29..948381b2b0b1 100644
-> --- a/include/drm/display/drm_dp_helper.h
-> +++ b/include/drm/display/drm_dp_helper.h
-> @@ -100,6 +100,7 @@ struct drm_dp_vsc_sdp {
+>  #define __GENMASK(t, h, l) \
+> @@ -44,4 +48,9 @@
+>  #define GENMASK_U32(h, l)	__GENMASK(u32, h, l)
+>  #define GENMASK_U64(h, l)	__GENMASK(u64, h, l)
 >  
->  void drm_dp_vsc_sdp_log(const char *level, struct device *dev,
->  			const struct drm_dp_vsc_sdp *vsc);
-> +bool drm_dp_vsc_sdp_supported(struct drm_dp_aux *aux, const u8 dpcd[DP_RECEIVER_CAP_SIZE]);
->  
->  int drm_dp_psr_setup_time(const u8 psr_cap[EDP_PSR_RECEIVER_CAP_SIZE]);
-
--- 
-Jani Nikula, Intel
+> +#define BIT_U8(b)		((u8)(BIT_INPUT_CHECK(u8, b) + BIT(b)))
+> +#define BIT_U16(b)		((u16)(BIT_INPUT_CHECK(u16, b) + BIT(b)))
+> +#define BIT_U32(b)		((u32)(BIT_INPUT_CHECK(u32, b) + BIT(b)))
+> +#define BIT_U64(b)		((u64)(BIT_INPUT_CHECK(u64, b) + BIT(b)))
+> +
+>  #endif	/* __LINUX_BITS_H */
+> -- 
+> 2.43.0
