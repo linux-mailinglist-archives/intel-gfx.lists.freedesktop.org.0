@@ -2,68 +2,72 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9F8DC84F35C
-	for <lists+intel-gfx@lfdr.de>; Fri,  9 Feb 2024 11:25:46 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6AE0A84F1E3
+	for <lists+intel-gfx@lfdr.de>; Fri,  9 Feb 2024 10:06:22 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D8FDE10F30B;
-	Fri,  9 Feb 2024 10:25:44 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E15C910F188;
+	Fri,  9 Feb 2024 09:06:19 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; secure) header.d=gmx.com header.i=erick.archer@gmx.com header.b="rTP+FBzJ";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="kAmN4shs";
 	dkim-atps=neutral
-X-Original-To: intel-gfx@lists.freedesktop.org
-Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mout.gmx.net (mout.gmx.net [212.227.15.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 09FB110E28B;
- Thu,  8 Feb 2024 18:19:13 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=gmx.com;
- s=s31663417; t=1707416351; x=1708021151; i=erick.archer@gmx.com;
- bh=ysgMn0ZRWUYT/Hge0FlA9uwr6TJWomFtNilVmXv2T/w=;
- h=X-UI-Sender-Class:From:To:Cc:Subject:Date;
- b=rTP+FBzJf6c9vHHT+97TkSG/Uvm8g90FqR4Mntv4D4A8H3TAYyI200beD81+vMSD
- P15SPBwMoO6vN2Vum+oCuRrsL+yqG1yrDgU3qxZK3QhFLycMjU4q4P7vrLNXKJWIR
- AcdNj1t1+EUHpxlmKnurOg56N5JOfXAaX9ilmI5boKITFbzs66EMftYvAoPA+1G17
- 55sSMvJtp10q+Yxmsmgbsg8UV6bEueUx0wKXCYOv2R5IntpRJ81O15bsJJ0okP2vA
- 7yYAKrjOalqbFHHFzgGH/eBG85bSKRO0WCgsUsqS89qOnCZz1F+JZdqPbFBhWLUJF
- ABOfgyHz/HgpUQG7Lg==
-X-UI-Sender-Class: 724b4f7f-cbec-4199-ad4e-598c01a50d3a
-Received: from localhost.localdomain ([79.157.194.183]) by mail.gmx.net
- (mrgmx004 [212.227.17.184]) with ESMTPSA (Nemesis) id
- 1M7b6l-1rdLQw2iQn-0081qr; Thu, 08 Feb 2024 19:13:35 +0100
-From: Erick Archer <erick.archer@gmx.com>
-To: Jani Nikula <jani.nikula@linux.intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
- David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
- "Gustavo A. R. Silva" <gustavoars@kernel.org>
-Cc: Erick Archer <erick.archer@gmx.com>, intel-gfx@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
- linux-hardening@vger.kernel.org
-Subject: [PATCH] drm/i915: Add flex arrays to struct i915_syncmap
-Date: Thu,  8 Feb 2024 19:13:18 +0100
-Message-Id: <20240208181318.4259-1-erick.archer@gmx.com>
-X-Mailer: git-send-email 2.25.1
+X-Original-To: Intel-gfx@lists.freedesktop.org
+Delivered-To: Intel-gfx@lists.freedesktop.org
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 055AF10F188;
+ Fri,  9 Feb 2024 09:06:19 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1707469579; x=1739005579;
+ h=message-id:date:mime-version:subject:to:cc:references:
+ from:in-reply-to:content-transfer-encoding;
+ bh=LgrIekI59rJ+3xll66kHLeJv56pI9Nj+0WcY/pMIpZE=;
+ b=kAmN4shsrSdKWByUeYoYmZeHb9DU5mZG3V8f1CVfHHrXAk24P6IsDHlA
+ xsBMyjhRGFSIRgpU6U90ZRakhg+rrNfdY/+4AZSsNObOBHsUX0g3F6hYs
+ Wk6EvXbYroC6tYSogVykI2zofv9iWV2sEdGnvpYotWY6kQGTsny3aJFz1
+ LFwk3NhBH60e3KoyKWUQi/zzkY3K1qAAH0uhajb+pHbxrgXzCTUj7XORG
+ BCVM6/bZF0JeXl94I5iSRzDy09DEFro5DXOQ6jhxHcveexcv4c23Dufke
+ d8QiKWHGBRK901BYw0dL7R1faMsufM9C5/tbL91WCuyG5aSWKizYBpY+S g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10978"; a="12474572"
+X-IronPort-AV: E=Sophos;i="6.05,256,1701158400"; d="scan'208";a="12474572"
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+ by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 Feb 2024 01:06:19 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10978"; a="825090076"
+X-IronPort-AV: E=Sophos;i="6.05,256,1701158400"; d="scan'208";a="825090076"
+Received: from alodhi-mobl.ger.corp.intel.com (HELO [10.213.201.150])
+ ([10.213.201.150])
+ by orsmga001-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 Feb 2024 01:06:15 -0800
+Message-ID: <fbc915a2-5fc2-4a4b-adf7-ade2f5ceffa6@linux.intel.com>
+Date: Fri, 9 Feb 2024 09:06:14 +0000
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-X-Provags-ID: V03:K1:pfHdlpNnJigTy8aCxrOPtJDMrJKf0ixBybkrQ5Vv5mXAzAOCOce
- kE/56VgSJ24fEWyckAkZBiWw31er/4+LJmrLfiKbxBq0xz8Hfrzpel9d0ON3gwuUpxPyHbE
- rdS3TQvdJZV2shpo3dlarUHJyNmnOMWYszl8ojPossp4pbrgBMG/j9ZA3TOBvkYMcVXSjOq
- g75Q7z0uPqbDs2hAyGnmQ==
-X-Spam-Flag: NO
-UI-OutboundReport: notjunk:1;M01:P0:7eioEc7nG0c=;qtwKIX5gPG/Y57aHU7UDVkHMFaE
- JToO/0XCCcuVFGqULSXsSgP6ptQExfCebO6YXHofeQKSA5VTH3Rx0BPdQ/Jo+sylF13EPbI0T
- Izh6uiCVr2BeFMb8Mo7ptlutk0GaiuTXhSwPkjMW2B8o5Dc085jjAUMWeB3aQUr8ibqBQO5jZ
- XHRnAklzfh+g+TOE6RVXLDpqaGMBFNWvkkb7n93+fL/ZGG1GCFSIqWDR7O3FU4gyx0u9cxI2v
- VKBafIfiDpkzamqgGhBrNA5dBUtqs7+b0MxELAUjjVtkPS9T5LCAA+EaztiioPdaxtDVW/70/
- +D+579XV0ikBVQipN8Orbe3Cl3wLYyiQ44pDnIzYNc8WAX1mQzvah3tUv89lbMW0BZmpxVX5a
- 5TG0A6y3sM/WpIuReX/L1EW3P3Xp3E85EIJE9PAbMmEjB+92stmRLuQfsY04ODHTdpoU4crn1
- Njr+fvCDsoFFu/11gu4og/beC9d/kOrZTyQi7Gjc/mc0XK6TMa8ScEMyvstVIwrFooLiO33Ng
- bFuGdjFbKoO9cfwt04+XDJ6hWuQF7COASscQ/jtY7AY6eqdsT57r2wXSKUMQArGSm7r4giTRQ
- Qsnkb5KDaNeKDM5G1EvS0JJ7jcJW+ivpF1VFxshFi1DEDMpa0Q0SWvpRAKMivN9K6RtEh13gs
- OpoWE3Lu8gIkvo6AdmTPA42MhlEFREt2H/sGt2VLV9+oSMV0kbsrinJQBjPEYscChsW1yIIxo
- WpkG5/liHV1D7yWyYkWlaKkCv+MkkPM5r7UUu+1Hz7yYdzIbozc/YNZo+V7OPP102kyAZhBle
- Ez3i3irdlHSE0lnZqSUdAgW7tybDatbHXq7POenIjwzBc=
-X-Mailman-Approved-At: Fri, 09 Feb 2024 10:25:43 +0000
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2] drm/i915: Add GuC submission interface version query
+Content-Language: en-US
+To: "Souza, Jose" <jose.souza@intel.com>,
+ "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
+ "Intel-gfx@lists.freedesktop.org" <Intel-gfx@lists.freedesktop.org>
+Cc: "Nikula, Jani" <jani.nikula@intel.com>,
+ "Zanoni, Paulo R" <paulo.r.zanoni@intel.com>,
+ "Vivi, Rodrigo" <rodrigo.vivi@intel.com>,
+ "Ursulin, Tvrtko" <tvrtko.ursulin@intel.com>,
+ "Ghuge, Sagar" <sagar.ghuge@intel.com>,
+ "Balasubrawmanian, Vivaik" <vivaik.balasubrawmanian@intel.com>,
+ "kenneth@whitecape.org" <kenneth@whitecape.org>,
+ "joonas.lahtinen@linux.intel.com" <joonas.lahtinen@linux.intel.com>,
+ "Harrison, John C" <john.c.harrison@intel.com>
+References: <20240207115612.1322778-1-tvrtko.ursulin@linux.intel.com>
+ <20240208082510.1363268-1-tvrtko.ursulin@linux.intel.com>
+ <8a0a964cc1312e5fcccf0850d72e6374bb578943.camel@intel.com>
+ <db762e07-a5e1-4c47-b1b6-85742ce6498b@linux.intel.com>
+ <5daf0215abaf92d9b34fef732d1be010d59bd69c.camel@intel.com>
+ <0c282ce6fd922ef2cad2bbf84b51214bb66a0411.camel@intel.com>
+From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+Organization: Intel Corporation UK Plc
+In-Reply-To: <0c282ce6fd922ef2cad2bbf84b51214bb66a0411.camel@intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -79,91 +83,161 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-The "struct i915_syncmap" uses a dynamically sized set of trailing
-elements. It can use an "u32" array or a "struct i915_syncmap *"
-array.
 
-So, use the preferred way in the kernel declaring flexible arrays [1].
-Because there are two possibilities for the trailing arrays, it is
-necessary to declare a union and use the DECLARE_FLEX_ARRAY macro.
+On 08/02/2024 17:55, Souza, Jose wrote:
+> On Thu, 2024-02-08 at 07:19 -0800, José Roberto de Souza wrote:
+>> On Thu, 2024-02-08 at 14:59 +0000, Tvrtko Ursulin wrote:
+>>> On 08/02/2024 14:30, Souza, Jose wrote:
+>>>> On Thu, 2024-02-08 at 08:25 +0000, Tvrtko Ursulin wrote:
+>>>>> From: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+>>>>>
+>>>>> Add a new query to the GuC submission interface version.
+>>>>>
+>>>>> Mesa intends to use this information to check for old firmware versions
+>>>>> with a known bug where using the render and compute command streamers
+>>>>> simultaneously can cause GPU hangs due issues in firmware scheduling.
+>>>>>
+>>>>> Based on patches from Vivaik and Joonas.
+>>>>>
+>>>>> Compile tested only.
+>>>>>
+>>>>> v2:
+>>>>>    * Added branch version.
+>>>>
+>>>> Reviewed-by: José Roberto de Souza <jose.souza@intel.com>
+>>>> Tested-by: José Roberto de Souza <jose.souza@intel.com>
+>>>> UMD: https://gitlab.freedesktop.org/mesa/mesa/-/merge_requests/25233
+>>>
+>>> Thanks, but please we also need to close down on the branch number
+>>> situation. I.e. be sure what is the failure mode in shipping Mesa with
+>>> the change as it stands in the MR linked. What platforms could start
+>>> failing and when, depending on GuC FW release eventualities.
+>>
+>> yes, I have asked John Harrison for a documentation link about the firmware versioning.
+> 
+> Got the documentation link, MR updated.
+> Will ask for reviews in Mesa side.
 
-The comment can be removed as the union is now clear enough.
+Is it then understood and accepted that should GuC ever update the 
+branch number on any given platform, that platform, for all deployed 
+Mesa's in the field, will automatically revert to no async queues and so 
+cause a silent performance regression?
 
-Also, avoid the open-coded arithmetic in the memory allocator functions
-[2] using the "struct_size" macro.
+Regards,
 
-Moreover, refactor the "__sync_seqno" and "__sync_child" functions due
-to now it is possible to use the union members added to the structure.
-This way, it is also possible to avoid the open-coded arithmetic in
-pointers.
+Tvrtko
 
-Link: https://www.kernel.org/doc/html/next/process/deprecated.html#zero-le=
-ngth-and-one-element-arrays [1]
-Link: https://www.kernel.org/doc/html/next/process/deprecated.html#open-co=
-ded-arithmetic-in-allocator-arguments [2]
-Signed-off-by: Erick Archer <erick.archer@gmx.com>
-=2D--
- drivers/gpu/drm/i915/i915_syncmap.c | 19 ++++++++-----------
- 1 file changed, 8 insertions(+), 11 deletions(-)
-
-diff --git a/drivers/gpu/drm/i915/i915_syncmap.c b/drivers/gpu/drm/i915/i9=
-15_syncmap.c
-index 60404dbb2e9f..df6437c37373 100644
-=2D-- a/drivers/gpu/drm/i915/i915_syncmap.c
-+++ b/drivers/gpu/drm/i915/i915_syncmap.c
-@@ -75,13 +75,10 @@ struct i915_syncmap {
- 	unsigned int height;
- 	unsigned int bitmap;
- 	struct i915_syncmap *parent;
--	/*
--	 * Following this header is an array of either seqno or child pointers:
--	 * union {
--	 *	u32 seqno[KSYNCMAP];
--	 *	struct i915_syncmap *child[KSYNCMAP];
--	 * };
--	 */
-+	union {
-+		DECLARE_FLEX_ARRAY(u32, seqno);
-+		DECLARE_FLEX_ARRAY(struct i915_syncmap *, child);
-+	};
- };
-
- /**
-@@ -99,13 +96,13 @@ void i915_syncmap_init(struct i915_syncmap **root)
- static inline u32 *__sync_seqno(struct i915_syncmap *p)
- {
- 	GEM_BUG_ON(p->height);
--	return (u32 *)(p + 1);
-+	return p->seqno;
- }
-
- static inline struct i915_syncmap **__sync_child(struct i915_syncmap *p)
- {
- 	GEM_BUG_ON(!p->height);
--	return (struct i915_syncmap **)(p + 1);
-+	return p->child;
- }
-
- static inline unsigned int
-@@ -200,7 +197,7 @@ __sync_alloc_leaf(struct i915_syncmap *parent, u64 id)
- {
- 	struct i915_syncmap *p;
-
--	p =3D kmalloc(sizeof(*p) + KSYNCMAP * sizeof(u32), GFP_KERNEL);
-+	p =3D kmalloc(struct_size(p, seqno, KSYNCMAP), GFP_KERNEL);
- 	if (unlikely(!p))
- 		return NULL;
-
-@@ -282,7 +279,7 @@ static noinline int __sync_set(struct i915_syncmap **r=
-oot, u64 id, u32 seqno)
- 			unsigned int above;
-
- 			/* Insert a join above the current layer */
--			next =3D kzalloc(sizeof(*next) + KSYNCMAP * sizeof(next),
-+			next =3D kzalloc(struct_size(next, child, KSYNCMAP),
- 				       GFP_KERNEL);
- 			if (unlikely(!next))
- 				return -ENOMEM;
-=2D-
-2.25.1
-
+> 
+>>
+>>>
+>>> Regards,
+>>>
+>>> Tvrtko
+>>>
+>>>>> Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+>>>>> Cc: Kenneth Graunke <kenneth@whitecape.org>
+>>>>> Cc: Jose Souza <jose.souza@intel.com>
+>>>>> Cc: Sagar Ghuge <sagar.ghuge@intel.com>
+>>>>> Cc: Paulo Zanoni <paulo.r.zanoni@intel.com>
+>>>>> Cc: John Harrison <John.C.Harrison@Intel.com>
+>>>>> Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
+>>>>> Cc: Jani Nikula <jani.nikula@intel.com>
+>>>>> Cc: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+>>>>> Cc: Vivaik Balasubrawmanian <vivaik.balasubrawmanian@intel.com>
+>>>>> Cc: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
+>>>>> ---
+>>>>>    drivers/gpu/drm/i915/i915_query.c | 33 +++++++++++++++++++++++++++++++
+>>>>>    include/uapi/drm/i915_drm.h       | 12 +++++++++++
+>>>>>    2 files changed, 45 insertions(+)
+>>>>>
+>>>>> diff --git a/drivers/gpu/drm/i915/i915_query.c b/drivers/gpu/drm/i915/i915_query.c
+>>>>> index 00871ef99792..d4dba1240b40 100644
+>>>>> --- a/drivers/gpu/drm/i915/i915_query.c
+>>>>> +++ b/drivers/gpu/drm/i915/i915_query.c
+>>>>> @@ -551,6 +551,38 @@ static int query_hwconfig_blob(struct drm_i915_private *i915,
+>>>>>    	return hwconfig->size;
+>>>>>    }
+>>>>>    
+>>>>> +static int
+>>>>> +query_guc_submission_version(struct drm_i915_private *i915,
+>>>>> +			     struct drm_i915_query_item *query)
+>>>>> +{
+>>>>> +	struct drm_i915_query_guc_submission_version __user *query_ptr =
+>>>>> +					    u64_to_user_ptr(query->data_ptr);
+>>>>> +	struct drm_i915_query_guc_submission_version ver;
+>>>>> +	struct intel_guc *guc = &to_gt(i915)->uc.guc;
+>>>>> +	const size_t size = sizeof(ver);
+>>>>> +	int ret;
+>>>>> +
+>>>>> +	if (!intel_uc_uses_guc_submission(&to_gt(i915)->uc))
+>>>>> +		return -ENODEV;
+>>>>> +
+>>>>> +	ret = copy_query_item(&ver, size, size, query);
+>>>>> +	if (ret != 0)
+>>>>> +		return ret;
+>>>>> +
+>>>>> +	if (ver.branch || ver.major || ver.minor || ver.patch)
+>>>>> +		return -EINVAL;
+>>>>> +
+>>>>> +	ver.branch = 0;
+>>>>> +	ver.major = guc->submission_version.major;
+>>>>> +	ver.minor = guc->submission_version.minor;
+>>>>> +	ver.patch = guc->submission_version.patch;
+>>>>> +
+>>>>> +	if (copy_to_user(query_ptr, &ver, size))
+>>>>> +		return -EFAULT;
+>>>>> +
+>>>>> +	return 0;
+>>>>> +}
+>>>>> +
+>>>>>    static int (* const i915_query_funcs[])(struct drm_i915_private *dev_priv,
+>>>>>    					struct drm_i915_query_item *query_item) = {
+>>>>>    	query_topology_info,
+>>>>> @@ -559,6 +591,7 @@ static int (* const i915_query_funcs[])(struct drm_i915_private *dev_priv,
+>>>>>    	query_memregion_info,
+>>>>>    	query_hwconfig_blob,
+>>>>>    	query_geometry_subslices,
+>>>>> +	query_guc_submission_version,
+>>>>>    };
+>>>>>    
+>>>>>    int i915_query_ioctl(struct drm_device *dev, void *data, struct drm_file *file)
+>>>>> diff --git a/include/uapi/drm/i915_drm.h b/include/uapi/drm/i915_drm.h
+>>>>> index 550c496ce76d..84fb7f7ea834 100644
+>>>>> --- a/include/uapi/drm/i915_drm.h
+>>>>> +++ b/include/uapi/drm/i915_drm.h
+>>>>> @@ -3038,6 +3038,7 @@ struct drm_i915_query_item {
+>>>>>    	 *  - %DRM_I915_QUERY_MEMORY_REGIONS (see struct drm_i915_query_memory_regions)
+>>>>>    	 *  - %DRM_I915_QUERY_HWCONFIG_BLOB (see `GuC HWCONFIG blob uAPI`)
+>>>>>    	 *  - %DRM_I915_QUERY_GEOMETRY_SUBSLICES (see struct drm_i915_query_topology_info)
+>>>>> +	 *  - %DRM_I915_QUERY_GUC_SUBMISSION_VERSION (see struct drm_i915_query_guc_submission_version)
+>>>>>    	 */
+>>>>>    	__u64 query_id;
+>>>>>    #define DRM_I915_QUERY_TOPOLOGY_INFO		1
+>>>>> @@ -3046,6 +3047,7 @@ struct drm_i915_query_item {
+>>>>>    #define DRM_I915_QUERY_MEMORY_REGIONS		4
+>>>>>    #define DRM_I915_QUERY_HWCONFIG_BLOB		5
+>>>>>    #define DRM_I915_QUERY_GEOMETRY_SUBSLICES	6
+>>>>> +#define DRM_I915_QUERY_GUC_SUBMISSION_VERSION	7
+>>>>>    /* Must be kept compact -- no holes and well documented */
+>>>>>    
+>>>>>    	/**
+>>>>> @@ -3591,6 +3593,16 @@ struct drm_i915_query_memory_regions {
+>>>>>    	struct drm_i915_memory_region_info regions[];
+>>>>>    };
+>>>>>    
+>>>>> +/**
+>>>>> +* struct drm_i915_query_guc_submission_version - query GuC submission interface version
+>>>>> +*/
+>>>>> +struct drm_i915_query_guc_submission_version {
+>>>>> +	__u32 branch;
+>>>>> +	__u32 major;
+>>>>> +	__u32 minor;
+>>>>> +	__u32 patch;
+>>>>> +};
+>>>>> +
+>>>>>    /**
+>>>>>     * DOC: GuC HWCONFIG blob uAPI
+>>>>>     *
+>>>>
+>>
+> 
