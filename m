@@ -2,48 +2,48 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3B36E84FC06
-	for <lists+intel-gfx@lfdr.de>; Fri,  9 Feb 2024 19:38:28 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 719A784FC08
+	for <lists+intel-gfx@lfdr.de>; Fri,  9 Feb 2024 19:38:30 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A1F3310F295;
-	Fri,  9 Feb 2024 18:38:26 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CF79A10FA0D;
+	Fri,  9 Feb 2024 18:38:28 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="nLTy26k4";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="WZGzvXKv";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CD3F910F9F3
- for <intel-gfx@lists.freedesktop.org>; Fri,  9 Feb 2024 18:38:24 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D24A610FA09
+ for <intel-gfx@lists.freedesktop.org>; Fri,  9 Feb 2024 18:38:27 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1707503905; x=1739039905;
+ t=1707503908; x=1739039908;
  h=from:to:subject:date:message-id:in-reply-to:references:
  mime-version:content-transfer-encoding;
- bh=vx1qEeMMRIJPE5dMIgWWbWl521wwcPfAW87mYBzc0PM=;
- b=nLTy26k4FgwHHQupxxXY5mbN6XKRzXgYUed42uWXoRpNYvF87mzJybsn
- l9S/DCEGK3EwaDTqqSTPGqP/e8ftDNS9t5vwNaMY1WNklCQGYk/NlIUGH
- N+tG0e03n/Qe2NpRNKl+ehZPzQcO5+eZp+saG2wnnldHs3zqcrqeFimcu
- leos5TK2GA+gPhJTi7JWy2VbbMgNTkSlE1ms7gklpqcv+1mXb9Wri2/Rs
- 8cZLFnvYCl6LL5t5oTF0SsWKFQsfA9GvbP2Dk7ZosrfvgtxnQ327BmhRp
- JlwVn9E6iiDmFWrUGolIeCQLAPgc3XQGadzRfHO9/O1RpUDW+w9OreB6H Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10979"; a="23956524"
-X-IronPort-AV: E=Sophos;i="6.05,257,1701158400"; d="scan'208";a="23956524"
+ bh=u8s+TJ7rEwG8gqoZu4zqTVHPP8ukP/jBnIDw7acEWlg=;
+ b=WZGzvXKv/1PlJ0mIQIkoVPmIJWlDohr99vDqZYdPV1J0bhygu8YYSwnc
+ 4U1ompV3I7/amsfvepuhoVYxaq/RAMm5SHzStcKm9s8lJtKCpvW95si65
+ lyEA34hCaWD/JB9rUO0BwiNlI2PpPq5UVRrBGAwzsEiHgEq5xOfhXGySd
+ ImCOucah+/iV3aRbVi7hGfDE/4WAaIufaKigp8bHKZ21Jnpc0wncb3tWM
+ LR5Ea2myzIIyooOJY8Qo7O39iYgXvOZcKI4T4VYC0bNfL4sgd+oDYUq/b
+ n/SgxXaxJXgXJ0/hUZXoxEVmHfFPz65dVxkCoMcO4ghHwk1eEYYq4mbQP A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10979"; a="23956534"
+X-IronPort-AV: E=Sophos;i="6.05,257,1701158400"; d="scan'208";a="23956534"
 Received: from orsmga001.jf.intel.com ([10.7.209.18])
  by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Feb 2024 10:38:25 -0800
+ 09 Feb 2024 10:38:28 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10979"; a="825204183"
-X-IronPort-AV: E=Sophos;i="6.05,257,1701158400"; d="scan'208";a="825204183"
+X-IronPort-AV: E=McAfee;i="6600,9927,10979"; a="825204223"
+X-IronPort-AV: E=Sophos;i="6.05,257,1701158400"; d="scan'208";a="825204223"
 Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.74])
- by orsmga001.jf.intel.com with SMTP; 09 Feb 2024 10:38:22 -0800
+ by orsmga001.jf.intel.com with SMTP; 09 Feb 2024 10:38:25 -0800
 Received: by stinkbox (sSMTP sendmail emulation);
- Fri, 09 Feb 2024 20:38:22 +0200
+ Fri, 09 Feb 2024 20:38:25 +0200
 From: Ville Syrjala <ville.syrjala@linux.intel.com>
 To: intel-gfx@lists.freedesktop.org
-Subject: [PATCH 4/5] drm/i915: Add PLL .compare_hw_state() vfunc
-Date: Fri,  9 Feb 2024 20:38:08 +0200
-Message-ID: <20240209183809.16887-5-ville.syrjala@linux.intel.com>
+Subject: [PATCH 5/5] drm/i915: Enable fastboot across the board
+Date: Fri,  9 Feb 2024 20:38:09 +0200
+Message-ID: <20240209183809.16887-6-ville.syrjala@linux.intel.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20240209183809.16887-1-ville.syrjala@linux.intel.com>
 References: <20240209183809.16887-1-ville.syrjala@linux.intel.com>
@@ -67,360 +67,60 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-Chunk up the humenguous dpll_hw_state comparison check into per-platform
-variants, implemented in the dpll_mgr. This is step one in allowing
-each platform (or perhaps even PLL) type to have a custom hw state
-structure instead of having to smash it all into one.
+There's nothing magical about vlv+ platforms vs. fastboot.
+If it works somewhere it should work everywhere, assuming
+we've not missed any crucial state checks. That seems unlikely
+on older platforms with less state to check anyway.
+
+Just enable fastboot across the board, and the remove the
+remnants of the optional stuff (we already removed the
+modparam for fastboot anyway).
 
 Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_display.c  | 78 ++++++++-------
- drivers/gpu/drm/i915/display/intel_dpll_mgr.c | 95 +++++++++++++++++++
- drivers/gpu/drm/i915/display/intel_dpll_mgr.h |  3 +
- 3 files changed, 141 insertions(+), 35 deletions(-)
+ drivers/gpu/drm/i915/display/intel_display.c | 22 --------------------
+ 1 file changed, 22 deletions(-)
 
 diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
-index 1d381fa96c84..66ee6749fdae 100644
+index 66ee6749fdae..00ac65a14029 100644
 --- a/drivers/gpu/drm/i915/display/intel_display.c
 +++ b/drivers/gpu/drm/i915/display/intel_display.c
-@@ -4907,6 +4907,36 @@ pipe_config_mismatch(bool fastset, const struct intel_crtc *crtc,
- 	va_end(args);
- }
- 
-+static void
-+pipe_config_pll_mismatch(bool fastset,
-+			 const struct intel_crtc *crtc,
-+			 const char *name,
-+			 const struct intel_dpll_hw_state *a,
-+			 const struct intel_dpll_hw_state *b)
-+{
-+	struct drm_i915_private *i915 = to_i915(crtc->base.dev);
-+
-+	if (fastset) {
-+		if (!drm_debug_enabled(DRM_UT_KMS))
-+			return;
-+
-+		drm_dbg_kms(&i915->drm,
-+			    "[CRTC:%d:%s] fastset requirement not met in %s\n",
-+			    crtc->base.base.id, crtc->base.name, name);
-+		drm_dbg_kms(&i915->drm, "expected:\n");
-+		intel_dpll_dump_hw_state(i915, a);
-+		drm_dbg_kms(&i915->drm, "found:\n");
-+		intel_dpll_dump_hw_state(i915, b);
-+	} else {
-+		drm_err(&i915->drm, "[CRTC:%d:%s] mismatch in %s buffer\n",
-+			crtc->base.base.id, crtc->base.name, name);
-+		drm_err(&i915->drm, "expected:\n");
-+		intel_dpll_dump_hw_state(i915, a);
-+		drm_err(&i915->drm, "found:\n");
-+		intel_dpll_dump_hw_state(i915, b);
-+	}
-+}
-+
- static bool fastboot_enabled(struct drm_i915_private *dev_priv)
- {
- 	/* Enable fastboot by default on Skylake and newer */
-@@ -5016,7 +5046,17 @@ intel_pipe_config_compare(const struct intel_crtc_state *current_config,
- 	} \
- } while (0)
- 
--#define PIPE_CONF_CHECK_TIMINGS(name) do { \
-+#define PIPE_CONF_CHECK_PLL(name) do { \
-+	if (!intel_dpll_compare_hw_state(dev_priv, &current_config->name, \
-+					 &pipe_config->name)) { \
-+		pipe_config_pll_mismatch(fastset, crtc, __stringify(name), \
-+					 &current_config->name, \
-+					 &pipe_config->name); \
-+		ret = false; \
-+	} \
-+} while (0)
-+
-+#define PIPE_CONF_CHECK_TIMINGS(name) do {     \
- 	PIPE_CONF_CHECK_I(name.crtc_hdisplay); \
- 	PIPE_CONF_CHECK_I(name.crtc_htotal); \
- 	PIPE_CONF_CHECK_I(name.crtc_hblank_start); \
-@@ -5223,40 +5263,8 @@ intel_pipe_config_compare(const struct intel_crtc_state *current_config,
- 		PIPE_CONF_CHECK_P(shared_dpll);
- 
- 	/* FIXME convert everything over the dpll_mgr */
--	if (dev_priv->display.dpll.mgr || HAS_GMCH(dev_priv)) {
--		PIPE_CONF_CHECK_X(dpll_hw_state.dpll);
--		PIPE_CONF_CHECK_X(dpll_hw_state.dpll_md);
--		PIPE_CONF_CHECK_X(dpll_hw_state.fp0);
--		PIPE_CONF_CHECK_X(dpll_hw_state.fp1);
--		PIPE_CONF_CHECK_X(dpll_hw_state.wrpll);
--		PIPE_CONF_CHECK_X(dpll_hw_state.spll);
--		PIPE_CONF_CHECK_X(dpll_hw_state.ctrl1);
--		PIPE_CONF_CHECK_X(dpll_hw_state.cfgcr1);
--		PIPE_CONF_CHECK_X(dpll_hw_state.cfgcr2);
--		PIPE_CONF_CHECK_X(dpll_hw_state.cfgcr0);
--		PIPE_CONF_CHECK_X(dpll_hw_state.div0);
--		PIPE_CONF_CHECK_X(dpll_hw_state.ebb0);
--		PIPE_CONF_CHECK_X(dpll_hw_state.ebb4);
--		PIPE_CONF_CHECK_X(dpll_hw_state.pll0);
--		PIPE_CONF_CHECK_X(dpll_hw_state.pll1);
--		PIPE_CONF_CHECK_X(dpll_hw_state.pll2);
--		PIPE_CONF_CHECK_X(dpll_hw_state.pll3);
--		PIPE_CONF_CHECK_X(dpll_hw_state.pll6);
--		PIPE_CONF_CHECK_X(dpll_hw_state.pll8);
--		PIPE_CONF_CHECK_X(dpll_hw_state.pll9);
--		PIPE_CONF_CHECK_X(dpll_hw_state.pll10);
--		PIPE_CONF_CHECK_X(dpll_hw_state.pcsdw12);
--		PIPE_CONF_CHECK_X(dpll_hw_state.mg_refclkin_ctl);
--		PIPE_CONF_CHECK_X(dpll_hw_state.mg_clktop2_coreclkctl1);
--		PIPE_CONF_CHECK_X(dpll_hw_state.mg_clktop2_hsclkctl);
--		PIPE_CONF_CHECK_X(dpll_hw_state.mg_pll_div0);
--		PIPE_CONF_CHECK_X(dpll_hw_state.mg_pll_div1);
--		PIPE_CONF_CHECK_X(dpll_hw_state.mg_pll_lf);
--		PIPE_CONF_CHECK_X(dpll_hw_state.mg_pll_frac_lock);
--		PIPE_CONF_CHECK_X(dpll_hw_state.mg_pll_ssc);
--		PIPE_CONF_CHECK_X(dpll_hw_state.mg_pll_bias);
--		PIPE_CONF_CHECK_X(dpll_hw_state.mg_pll_tdc_coldst_bias);
--	}
-+	if (dev_priv->display.dpll.mgr || HAS_GMCH(dev_priv))
-+		PIPE_CONF_CHECK_PLL(dpll_hw_state);
- 
- 	PIPE_CONF_CHECK_X(dsi_pll.ctrl);
- 	PIPE_CONF_CHECK_X(dsi_pll.div);
-diff --git a/drivers/gpu/drm/i915/display/intel_dpll_mgr.c b/drivers/gpu/drm/i915/display/intel_dpll_mgr.c
-index c6cc7465b92c..ff480f171f75 100644
---- a/drivers/gpu/drm/i915/display/intel_dpll_mgr.c
-+++ b/drivers/gpu/drm/i915/display/intel_dpll_mgr.c
-@@ -109,6 +109,8 @@ struct intel_dpll_mgr {
- 	void (*update_ref_clks)(struct drm_i915_private *i915);
- 	void (*dump_hw_state)(struct drm_i915_private *i915,
- 			      const struct intel_dpll_hw_state *hw_state);
-+	bool (*compare_hw_state)(const struct intel_dpll_hw_state *a,
-+				 const struct intel_dpll_hw_state *b);
- };
- 
- static void
-@@ -644,6 +646,15 @@ static void ibx_dump_hw_state(struct drm_i915_private *i915,
- 		    hw_state->fp1);
- }
- 
-+static bool ibx_compare_hw_state(const struct intel_dpll_hw_state *a,
-+				 const struct intel_dpll_hw_state *b)
-+{
-+	return a->dpll == b->dpll &&
-+		a->dpll_md == b->dpll_md &&
-+		a->fp0 == b->fp0 &&
-+		a->fp1 == b->fp1;
-+}
-+
- static const struct intel_shared_dpll_funcs ibx_pch_dpll_funcs = {
- 	.enable = ibx_pch_dpll_enable,
- 	.disable = ibx_pch_dpll_disable,
-@@ -662,6 +673,7 @@ static const struct intel_dpll_mgr pch_pll_mgr = {
- 	.get_dplls = ibx_get_dpll,
- 	.put_dplls = intel_put_dpll,
- 	.dump_hw_state = ibx_dump_hw_state,
-+	.compare_hw_state = ibx_compare_hw_state,
- };
- 
- static void hsw_ddi_wrpll_enable(struct drm_i915_private *i915,
-@@ -1220,6 +1232,13 @@ static void hsw_dump_hw_state(struct drm_i915_private *i915,
- 		    hw_state->wrpll, hw_state->spll);
- }
- 
-+static bool hsw_compare_hw_state(const struct intel_dpll_hw_state *a,
-+				 const struct intel_dpll_hw_state *b)
-+{
-+	return a->wrpll == b->wrpll &&
-+		a->spll == b->spll;
-+}
-+
- static const struct intel_shared_dpll_funcs hsw_ddi_wrpll_funcs = {
- 	.enable = hsw_ddi_wrpll_enable,
- 	.disable = hsw_ddi_wrpll_disable,
-@@ -1278,6 +1297,7 @@ static const struct intel_dpll_mgr hsw_pll_mgr = {
- 	.put_dplls = intel_put_dpll,
- 	.update_ref_clks = hsw_update_dpll_ref_clks,
- 	.dump_hw_state = hsw_dump_hw_state,
-+	.compare_hw_state = hsw_compare_hw_state,
- };
- 
- struct skl_dpll_regs {
-@@ -1929,6 +1949,14 @@ static void skl_dump_hw_state(struct drm_i915_private *i915,
- 		      hw_state->cfgcr2);
- }
- 
-+static bool skl_compare_hw_state(const struct intel_dpll_hw_state *a,
-+				 const struct intel_dpll_hw_state *b)
-+{
-+	return a->ctrl1 == b->ctrl1 &&
-+		a->cfgcr1 == b->cfgcr1 &&
-+		a->cfgcr2 == b->cfgcr2;
-+}
-+
- static const struct intel_shared_dpll_funcs skl_ddi_pll_funcs = {
- 	.enable = skl_ddi_pll_enable,
- 	.disable = skl_ddi_pll_disable,
-@@ -1959,6 +1987,7 @@ static const struct intel_dpll_mgr skl_pll_mgr = {
- 	.put_dplls = intel_put_dpll,
- 	.update_ref_clks = skl_update_dpll_ref_clks,
- 	.dump_hw_state = skl_dump_hw_state,
-+	.compare_hw_state = skl_compare_hw_state,
- };
- 
- static void bxt_ddi_pll_enable(struct drm_i915_private *i915,
-@@ -2392,6 +2421,21 @@ static void bxt_dump_hw_state(struct drm_i915_private *i915,
- 		    hw_state->pcsdw12);
- }
- 
-+static bool bxt_compare_hw_state(const struct intel_dpll_hw_state *a,
-+				 const struct intel_dpll_hw_state *b)
-+{
-+	return a->ebb0 == b->ebb0 &&
-+		a->ebb4 == b->ebb4 &&
-+		a->pll0 == b->pll0 &&
-+		a->pll1 == b->pll1 &&
-+		a->pll2 == b->pll2 &&
-+		a->pll3 == b->pll3 &&
-+		a->pll6 == b->pll6 &&
-+		a->pll8 == b->pll8 &&
-+		a->pll10 == b->pll10 &&
-+		a->pcsdw12 == b->pcsdw12;
-+}
-+
- static const struct intel_shared_dpll_funcs bxt_ddi_pll_funcs = {
- 	.enable = bxt_ddi_pll_enable,
- 	.disable = bxt_ddi_pll_disable,
-@@ -2413,6 +2457,7 @@ static const struct intel_dpll_mgr bxt_pll_mgr = {
- 	.put_dplls = intel_put_dpll,
- 	.update_ref_clks = bxt_update_dpll_ref_clks,
- 	.dump_hw_state = bxt_dump_hw_state,
-+	.compare_hw_state = bxt_compare_hw_state,
- };
- 
- static void icl_wrpll_get_multipliers(int bestdiv, int *pdiv,
-@@ -4005,6 +4050,25 @@ static void icl_dump_hw_state(struct drm_i915_private *i915,
- 		    hw_state->mg_pll_tdc_coldst_bias);
- }
- 
-+static bool icl_compare_hw_state(const struct intel_dpll_hw_state *a,
-+				 const struct intel_dpll_hw_state *b)
-+{
-+	/* FIXME split combo vs. mg more thoroughly */
-+	return a->cfgcr0 == b->cfgcr0 &&
-+		a->cfgcr1 == b->cfgcr1 &&
-+		a->div0 == b->div0 &&
-+		a->mg_refclkin_ctl == b->mg_refclkin_ctl &&
-+		a->mg_clktop2_coreclkctl1 == b->mg_clktop2_coreclkctl1 &&
-+		a->mg_clktop2_hsclkctl == b->mg_clktop2_hsclkctl &&
-+		a->mg_pll_div0 == b->mg_pll_div0 &&
-+		a->mg_pll_div1 == b->mg_pll_div1 &&
-+		a->mg_pll_lf == b->mg_pll_lf &&
-+		a->mg_pll_frac_lock == b->mg_pll_frac_lock &&
-+		a->mg_pll_ssc == b->mg_pll_ssc &&
-+		a->mg_pll_bias == b->mg_pll_bias &&
-+		a->mg_pll_tdc_coldst_bias == b->mg_pll_tdc_coldst_bias;
-+}
-+
- static const struct intel_shared_dpll_funcs combo_pll_funcs = {
- 	.enable = combo_pll_enable,
- 	.disable = combo_pll_disable,
-@@ -4046,6 +4110,7 @@ static const struct intel_dpll_mgr icl_pll_mgr = {
- 	.update_active_dpll = icl_update_active_dpll,
- 	.update_ref_clks = icl_update_dpll_ref_clks,
- 	.dump_hw_state = icl_dump_hw_state,
-+	.compare_hw_state = icl_compare_hw_state,
- };
- 
- static const struct dpll_info ehl_plls[] = {
-@@ -4063,6 +4128,7 @@ static const struct intel_dpll_mgr ehl_pll_mgr = {
- 	.put_dplls = icl_put_dplls,
- 	.update_ref_clks = icl_update_dpll_ref_clks,
- 	.dump_hw_state = icl_dump_hw_state,
-+	.compare_hw_state = icl_compare_hw_state,
- };
- 
- static const struct intel_shared_dpll_funcs dkl_pll_funcs = {
-@@ -4094,6 +4160,7 @@ static const struct intel_dpll_mgr tgl_pll_mgr = {
- 	.update_active_dpll = icl_update_active_dpll,
- 	.update_ref_clks = icl_update_dpll_ref_clks,
- 	.dump_hw_state = icl_dump_hw_state,
-+	.compare_hw_state = icl_compare_hw_state,
- };
- 
- static const struct dpll_info rkl_plls[] = {
-@@ -4110,6 +4177,7 @@ static const struct intel_dpll_mgr rkl_pll_mgr = {
- 	.put_dplls = icl_put_dplls,
- 	.update_ref_clks = icl_update_dpll_ref_clks,
- 	.dump_hw_state = icl_dump_hw_state,
-+	.compare_hw_state = icl_compare_hw_state,
- };
- 
- static const struct dpll_info dg1_plls[] = {
-@@ -4127,6 +4195,7 @@ static const struct intel_dpll_mgr dg1_pll_mgr = {
- 	.put_dplls = icl_put_dplls,
- 	.update_ref_clks = icl_update_dpll_ref_clks,
- 	.dump_hw_state = icl_dump_hw_state,
-+	.compare_hw_state = icl_compare_hw_state,
- };
- 
- static const struct dpll_info adls_plls[] = {
-@@ -4144,6 +4213,7 @@ static const struct intel_dpll_mgr adls_pll_mgr = {
- 	.put_dplls = icl_put_dplls,
- 	.update_ref_clks = icl_update_dpll_ref_clks,
- 	.dump_hw_state = icl_dump_hw_state,
-+	.compare_hw_state = icl_compare_hw_state,
- };
- 
- static const struct dpll_info adlp_plls[] = {
-@@ -4166,6 +4236,7 @@ static const struct intel_dpll_mgr adlp_pll_mgr = {
- 	.update_active_dpll = icl_update_active_dpll,
- 	.update_ref_clks = icl_update_dpll_ref_clks,
- 	.dump_hw_state = icl_dump_hw_state,
-+	.compare_hw_state = icl_compare_hw_state,
- };
- 
- /**
-@@ -4462,6 +4533,30 @@ void intel_dpll_dump_hw_state(struct drm_i915_private *i915,
+@@ -4937,20 +4937,6 @@ pipe_config_pll_mismatch(bool fastset,
  	}
  }
  
-+/**
-+ * intel_dpll_compare_hw_state - compare the two states
-+ * @i915: i915 drm device
-+ * @a: first DPLL hw state
-+ * @b: second DPLL hw state
-+ *
-+ * Compare DPLL hw states @a and @b.
-+ *
-+ * Returns: true if the states are equal, false if the differ
-+ */
-+bool intel_dpll_compare_hw_state(struct drm_i915_private *i915,
-+				 const struct intel_dpll_hw_state *a,
-+				 const struct intel_dpll_hw_state *b)
-+{
-+	if (i915->display.dpll.mgr) {
-+		return i915->display.dpll.mgr->compare_hw_state(a, b);
-+	} else {
-+		/* fallback for platforms that don't use the shared dpll
-+		 * infrastructure
-+		 */
-+		return ibx_compare_hw_state(a, b);
-+	}
-+}
-+
- static void
- verify_single_dpll_state(struct drm_i915_private *i915,
- 			 struct intel_shared_dpll *pll,
-diff --git a/drivers/gpu/drm/i915/display/intel_dpll_mgr.h b/drivers/gpu/drm/i915/display/intel_dpll_mgr.h
-index 616afe861b46..cc0e1386309d 100644
---- a/drivers/gpu/drm/i915/display/intel_dpll_mgr.h
-+++ b/drivers/gpu/drm/i915/display/intel_dpll_mgr.h
-@@ -378,6 +378,9 @@ void intel_dpll_sanitize_state(struct drm_i915_private *i915);
+-static bool fastboot_enabled(struct drm_i915_private *dev_priv)
+-{
+-	/* Enable fastboot by default on Skylake and newer */
+-	if (DISPLAY_VER(dev_priv) >= 9)
+-		return true;
+-
+-	/* Enable fastboot by default on VLV and CHV */
+-	if (IS_VALLEYVIEW(dev_priv) || IS_CHERRYVIEW(dev_priv))
+-		return true;
+-
+-	/* Disabled by default on all others */
+-	return false;
+-}
+-
+ bool
+ intel_pipe_config_compare(const struct intel_crtc_state *current_config,
+ 			  const struct intel_crtc_state *pipe_config,
+@@ -4959,14 +4945,6 @@ intel_pipe_config_compare(const struct intel_crtc_state *current_config,
+ 	struct drm_i915_private *dev_priv = to_i915(current_config->uapi.crtc->dev);
+ 	struct intel_crtc *crtc = to_intel_crtc(pipe_config->uapi.crtc);
+ 	bool ret = true;
+-	bool fixup_inherited = fastset &&
+-		current_config->inherited && !pipe_config->inherited;
+-
+-	if (fixup_inherited && !fastboot_enabled(dev_priv)) {
+-		drm_dbg_kms(&dev_priv->drm,
+-			    "initial modeset and fastboot not set\n");
+-		ret = false;
+-	}
  
- void intel_dpll_dump_hw_state(struct drm_i915_private *i915,
- 			      const struct intel_dpll_hw_state *hw_state);
-+bool intel_dpll_compare_hw_state(struct drm_i915_private *i915,
-+				 const struct intel_dpll_hw_state *a,
-+				 const struct intel_dpll_hw_state *b);
- enum intel_dpll_id icl_tc_port_to_pll_id(enum tc_port tc_port);
- bool intel_dpll_is_combophy(enum intel_dpll_id id);
- 
+ #define PIPE_CONF_CHECK_X(name) do { \
+ 	if (current_config->name != pipe_config->name) { \
 -- 
 2.43.0
 
