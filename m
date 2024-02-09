@@ -2,47 +2,61 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9263F84F0EA
-	for <lists+intel-gfx@lfdr.de>; Fri,  9 Feb 2024 08:42:24 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 378D884F12D
+	for <lists+intel-gfx@lfdr.de>; Fri,  9 Feb 2024 09:02:17 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7FFF310E7C9;
-	Fri,  9 Feb 2024 07:42:22 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A6A7010ECF7;
+	Fri,  9 Feb 2024 08:02:12 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; secure) header.d=pm.me header.i=@pm.me header.b="nBLTGeEQ";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="HrrvUAvL";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-X-Greylist: delayed 171739 seconds by postgrey-1.36 at gabe;
- Fri, 09 Feb 2024 07:42:17 UTC
-Received: from mail-40134.protonmail.ch (mail-40134.protonmail.ch
- [185.70.40.134])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 47A2410E718
- for <intel-gfx@lists.freedesktop.org>; Fri,  9 Feb 2024 07:42:17 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=pm.me;
- s=protonmail3; t=1707464535; x=1707723735;
- bh=AI7I9uIvqFweE8/UvKHpUBOR5WZWtrHzZjFa30oCj2U=;
- h=Date:To:From:Cc:Subject:Message-ID:In-Reply-To:References:
- Feedback-ID:From:To:Cc:Date:Subject:Reply-To:Feedback-ID:
- Message-ID:BIMI-Selector;
- b=nBLTGeEQkshTdeKSZmadI0+Ik54MZ262KmMmcDAuimhnDdrMgq0qXQvukHsXVrtTE
- UFGz+dJpOHS9EYbavrNL4LQUoJcKS3EMWRJf55R5JTSgiyZ74P/lO7DDfXBLVNPppD
- MBYZ9tzw9lEXPOaJemTYIjNfOOcJMU5GgrsqqhIVDxWUy2A3PJevMr6rCEkhxZL9xp
- G+t2ThQk+Uqhy6STxn2VWnGv55jE9Md1r1CgjDZYZQOfZMiZ8XueVXdnF41ugCRNer
- TjK+OGQ8LTidwk54jrHxpS07vnQ+ZNJ0+Yft49q5v5z7FIC11V6sCwumDpddT4B/xS
- 6gkzh7Q/CYWGw==
-Date: Fri, 09 Feb 2024 07:42:10 +0000
-To: John Harrison <john.c.harrison@intel.com>
-From: natur.produkt@pm.me
-Cc: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
-Subject: Re: GuC issue
-Message-ID: <dRxB0peDhbOHBqsX5rpWZN-qZtPdwWItk-L1ZAZm8RH8LQYpNBGa9qghm3dOCuM4fqbzOsNAFEafiu2zSrQNbnH6oCrlBb1fiAm5AhJQr64=@pm.me>
-In-Reply-To: <af232621-ed88-466e-9162-7698b5583503@intel.com>
-References: <mpy7oR29BN-ZuXsGo_DrVjgvt7tZXStYEkdhwHKRFqzjB6DkbATG6i8qLYaNq2fAsXIUiYXJ6HBXTurfBaLHuwcxeggLjtKQHdxwVWdsO04=@pm.me>
- <af232621-ed88-466e-9162-7698b5583503@intel.com>
-Feedback-ID: 51504226:user:proton
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 06C9B10EC65;
+ Fri,  9 Feb 2024 08:02:09 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1707465729; x=1739001729;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version;
+ bh=8hv1yW6IbM58UJxt3tLusyVgrFws3JiyjYCrzaAsMUI=;
+ b=HrrvUAvLhl8rHSwSlPlRAiGYOo2Qn0j/PJ3tFBsLXuGeLJp1Y6UJVO4p
+ U6WPOjPJPwi/InHhlWAolriqp3W0o1kSAKatDJvAyzSImKwluhNxl+6Jv
+ 4fLEStQW+qOei/aDIzT7Clyv5JnOpb9lacaAh7Z/nyCBe6Nc9HKtY1ETJ
+ 9OSDs4f3mwyGzouqDMX2dq1Fh8uBHUNTBYcbGndiKooSgHWi4Z/+wxJQz
+ v84kcRu2h1gWHFnk3JD9n5mUqQKAO1rOP2RRu0X4///TCwJIRvkrc/tTG
+ TNH9+GQtkZ80m0uzeY5pkdJNx6SSLwyChe6YOIeSPZY2x7Z4yLi3IWUR1 A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10978"; a="18802459"
+X-IronPort-AV: E=Sophos;i="6.05,256,1701158400"; d="scan'208";a="18802459"
+Received: from fmviesa003.fm.intel.com ([10.60.135.143])
+ by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 Feb 2024 00:02:09 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.05,256,1701158400"; 
+   d="scan'208";a="6500951"
+Received: from mziotti-mobl4.ger.corp.intel.com (HELO localhost)
+ ([10.252.43.29])
+ by fmviesa003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 Feb 2024 00:02:05 -0800
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Lucas De Marchi <lucas.demarchi@intel.com>, Andi Shyti
+ <andi.shyti@linux.intel.com>
+Cc: Yury Norov <yury.norov@gmail.com>, linux-kernel@vger.kernel.org,
+ dri-devel@lists.freedesktop.org, Andy Shevchenko
+ <andriy.shevchenko@linux.intel.com>, intel-xe@lists.freedesktop.org,
+ intel-gfx@lists.freedesktop.org
+Subject: Re: Re: [PATCH v3 2/3] bits: Introduce fixed-type BIT
+In-Reply-To: <ilppncjskpt52bijaoxlwcklawjpw5cqrndtx2g5xnwpj6bhbm@kn5yjscaha5e>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20240208074521.577076-1-lucas.demarchi@intel.com>
+ <20240208074521.577076-3-lucas.demarchi@intel.com>
+ <ZcUz3V56qNeTVq66@ashyti-mobl2.lan>
+ <ilppncjskpt52bijaoxlwcklawjpw5cqrndtx2g5xnwpj6bhbm@kn5yjscaha5e>
+Date: Fri, 09 Feb 2024 10:01:58 +0200
+Message-ID: <87il2yaww9.fsf@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -58,79 +72,34 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hello,
+On Thu, 08 Feb 2024, Lucas De Marchi <lucas.demarchi@intel.com> wrote:
+> On Thu, Feb 08, 2024 at 09:04:45PM +0100, Andi Shyti wrote:
+>>Hi Lucas,
+>>
+>>looks good, just one idea...
+>>
+>>...
+>>
+>>> +#define BIT_U8(b)		((u8)(BIT_INPUT_CHECK(u8, b) + BIT(b)))
+>>> +#define BIT_U16(b)		((u16)(BIT_INPUT_CHECK(u16, b) + BIT(b)))
+>>> +#define BIT_U32(b)		((u32)(BIT_INPUT_CHECK(u32, b) + BIT(b)))
+>>> +#define BIT_U64(b)		((u64)(BIT_INPUT_CHECK(u64, b) + BIT(b)))
+>>
+>>considering that BIT defines are always referred to unsigned
+>>types, I would just call them
+>>
+>>#define BIT8
+>>#define BIT16
+>>#define BIT32
+>>#define BIT64
+>>
+>>what do you think?
+>
+> it will clash with defines from other headers and not match the ones for
+> GENMASK  so I prefer it the other way.
 
-Please see my comments below.
+Agreed.
 
-pi=C4=85tek, 9 lutego 2024 2:45 AM, John Harrison <john.c.harrison@intel.co=
-m> napisa=C5=82(a):
 
->=20
->=20
-> Hello,
->=20
-> What platform is this on? And which GuC firmware version are you using?
-
-It's TGL. I'm using tgl_guc_70.1.1.bin firmware blob.
-
->=20
-> One thing you made need to do is force maximum GT frequency during GuC
-> load. That is something the i915 driver does. If the system decides the
-> GPU is idle and drops the frequency to minimum then it can take multiple
-> seconds for the GuC initialisation to complete.
-
-Thanks for the hint. I'm not doing that at all in my code. How am I suppose=
-d to do this? Is there a specific register for that?
-
->=20
-> Did the status change at all during that second of waiting? Or was it
-> still reading LAPIC_DONE?
-
-It's always LAPIC_DONE.
-
->=20
-> For ADS documentation, I'm afraid that the best we currently have
-> publicly available is the i915 driver code. If you are not intending to
-> use GuC submission then most of the ADS can be ignored.
-
-Ok, that great. Which part of ADS is must-have then?
-
->=20
-> If you can share the GuC log, that might provide some clues as to what
-> is happening. For just logging the boot process, you shouldn't need to
-> allocate a large log. The default size of i915 for release builds is
-> 64KB. That should be plenty.
-
-I'll collect GuC log as soon as possible. Is it something that can be under=
-stood without a knowledge of GuC internals? Or is it simply hex dumps?
-
->=20
-> John.
->=20
->=20
-> On 2/6/2024 23:59, natur.produkt@pm.me wrote:
->=20
-> > Hi,
-> >=20
-> > I'm currently implementing GuC/HuC firmware support in one Safety Criti=
-cal OS.
-> > I'm following i915 code and I implemented all paths (I don't want GuC s=
-ubmission or SLPC features). I need GuC to authenticate HuC firmware blob.
-> >=20
-> > I mirrored GuC implementation in my code.
-> >=20
-> > After GuC DMA transfer succeeds, I'm reading GUC_STATUS register.
-> > HW returns INTEL_BOOTROM_STATUS_JUMP_PASSED as bootrom status and INTEL=
-_GUC_LOAD_STATUS_LAPIC_DONE as GuC load status.
-> >=20
-> > Unfortunately, after one second of waiting, the status didn't get chang=
-ed to INTEL_GUC_LOAD_STATUS_READY at all.
-> >=20
-> > What is a potential issue here?
-> > Could you please help me?
-> >=20
-> > In addition to this, could you please point out some documentation abou=
-t GuC's ADS struct?
-> >=20
-> > Thanks,
-> > Maksym
+-- 
+Jani Nikula, Intel
