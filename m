@@ -2,77 +2,29 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id B48A5850346
-	for <lists+intel-gfx@lfdr.de>; Sat, 10 Feb 2024 08:25:23 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 66AED850483
+	for <lists+intel-gfx@lfdr.de>; Sat, 10 Feb 2024 14:32:23 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7B4CF1123C8;
-	Sat, 10 Feb 2024 07:25:21 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=chromium.org header.i=@chromium.org header.b="cc/gVFhq";
-	dkim-atps=neutral
+	by gabe.freedesktop.org (Postfix) with ESMTP id BBB1810E60D;
+	Sat, 10 Feb 2024 13:32:20 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-ot1-f52.google.com (mail-ot1-f52.google.com
- [209.85.210.52])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2D5B11123CA
- for <intel-gfx@lists.freedesktop.org>; Sat, 10 Feb 2024 07:25:18 +0000 (UTC)
-Received: by mail-ot1-f52.google.com with SMTP id
- 46e09a7af769-6dc36e501e1so1129605a34.1
- for <intel-gfx@lists.freedesktop.org>; Fri, 09 Feb 2024 23:25:18 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=chromium.org; s=google; t=1707549917; x=1708154717;
- darn=lists.freedesktop.org; 
- h=in-reply-to:content-disposition:mime-version:references:message-id
- :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
- bh=8m8phvJbCBaUpR//XQr5m++ylbpQ4FZPXh/gWEIh+SE=;
- b=cc/gVFhqMeyBYcCHyOt97hBMHB3UBTgUdIsr0gFRCPByu/1sG3zHcSl8c23VV8Mycx
- nnl8dWi7mvvnKmpnBYR5Fp2dS3eNi/2UWdQ4fLSWiAvh9n1rQ3RYzdHgYJZWyq28LtkE
- +HIEUKmQxhoBfKMtSQxpcXHWRcQn/4ftdM/qg=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1707549917; x=1708154717;
- h=in-reply-to:content-disposition:mime-version:references:message-id
- :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
- :message-id:reply-to;
- bh=8m8phvJbCBaUpR//XQr5m++ylbpQ4FZPXh/gWEIh+SE=;
- b=shfcdtlpcC3rCTkWms04xH/0+Vefb/BEYPzXzhv1k1Ex3qOZA6AgDT01y6ES7jWJKT
- l3mlCqjgQSEYcPlvrUzg0BkZLrMxIT92vlvBVjRCqcD8gWDTzuuDxcaDOHM9dWoeVxGp
- tTw0NuGghbvYimxHnC1iKkpkGiRdhgKxQ1XB8ZA02xCJ5ggtFrjagGOytIVcmpKC4BRR
- +HiYfMT6MCAa0Y5WoKpMhaebjxYWHSVMIwssb3cdvsO1pCsfim0jSycLPDAjo6OeOIBS
- BEChlGWN6uSvcJbDNAVM+Liq+6DRFjDkTV60NCdPJVV8Rjoh2DuxEaxLWNbu99MJuRvu
- 3K1Q==
-X-Forwarded-Encrypted: i=1;
- AJvYcCXa/WJJTv+g7nKTTqp1wB28Dxgrq+aFO5y6t//hCJKPRHw1AOJIZEXyekNZGAto4kmA8Or554UdXEP5ztM0H9F6yJROLv2pjYadhSlMz5yk
-X-Gm-Message-State: AOJu0Ywv7ipO0M0uS2m+lupxrPWMfAr/JcXmKYSNXTvayTWSZBPJklSR
- fV9SyBEGk17q76BxEU5wkpkvvz4hJI6sTAbczu+hq/tgVPTHNXeDcZwEfcpE5g==
-X-Google-Smtp-Source: AGHT+IElngRtfqOH7jE59C2E77px2P+jsgE2ilQV5OGTU5uO/TGyfz9K4uKnQQ8sPYMnkLE7+Gwnww==
-X-Received: by 2002:a9d:6c4d:0:b0:6e2:b26f:82d4 with SMTP id
- g13-20020a9d6c4d000000b006e2b26f82d4mr1634235otq.23.1707549917218; 
- Fri, 09 Feb 2024 23:25:17 -0800 (PST)
-X-Forwarded-Encrypted: i=1;
- AJvYcCXWI+Qtz60dxMswupBxoATcUXayLu78VKmIYUB1WV7w5wAxJbzvFP5mOZyvKdqJTtivs97R3xpPqAcG6vl0W3hrjqBLJ4abTYwk+uFosaNu9NdJAdot9OanBEGqJvAYdugjCCKGmU3qXq3nHO6ohvfy9z/1wmNye7lW0R82vCupE6IcNGcmvVnS992QdBjh6V2xzVuTC3KBjMuGsM8KMF6iTUNlj9uiU/ZC5CFyoOU2FD701MXJ+2OabJHC8M1bcn+tks2vNmnOpfZ6wsrgBtWP5KLzxwcSLinuPpDj8Kr38lYK4rLetIFt3Rk9JInWt3sexODtvyg7pr3a9fmWNh95LflZZhHTXIcEEYWdOwb6MZLNXl/zTJmrmqUPQ/3eibOXfibW7jArw5x0i5Poqd+OuYu7gax/GbQ9Se9v2sVd4WYblg==
-Received: from www.outflux.net ([198.0.35.241])
- by smtp.gmail.com with ESMTPSA id
- y20-20020a62b514000000b006ddb0dde293sm1669384pfe.65.2024.02.09.23.25.16
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Fri, 09 Feb 2024 23:25:16 -0800 (PST)
-Date: Fri, 9 Feb 2024 23:25:16 -0800
-From: Kees Cook <keescook@chromium.org>
-To: Erick Archer <erick.archer@gmx.com>
-Cc: Jani Nikula <jani.nikula@linux.intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
- David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
- "Gustavo A. R. Silva" <gustavoars@kernel.org>,
- intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- linux-kernel@vger.kernel.org, linux-hardening@vger.kernel.org
-Subject: Re: [PATCH] drm/i915: Add flex arrays to struct i915_syncmap
-Message-ID: <202402092322.09287B8@keescook>
-References: <20240208181318.4259-1-erick.archer@gmx.com>
+Received: from 5338d5abeb45 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 934DE10E60D;
+ Sat, 10 Feb 2024 13:32:19 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240208181318.4259-1-erick.archer@gmx.com>
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=97_Fi=2ECI=2ECHECKPATCH=3A_warning_for_drm/i915=3A_PLL_stat?=
+ =?utf-8?q?e_check_stuff_=28rev2=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Ville Syrjala" <ville.syrjala@linux.intel.com>
+Cc: intel-gfx@lists.freedesktop.org
+Date: Sat, 10 Feb 2024 13:32:19 -0000
+Message-ID: <170757193960.1129907.2438565134985903681@5338d5abeb45>
+X-Patchwork-Hint: ignore
+References: <20240209183809.16887-1-ville.syrjala@linux.intel.com>
+In-Reply-To: <20240209183809.16887-1-ville.syrjala@linux.intel.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -85,62 +37,60 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, Feb 08, 2024 at 07:13:18PM +0100, Erick Archer wrote:
-> The "struct i915_syncmap" uses a dynamically sized set of trailing
-> elements. It can use an "u32" array or a "struct i915_syncmap *"
-> array.
-> 
-> So, use the preferred way in the kernel declaring flexible arrays [1].
-> Because there are two possibilities for the trailing arrays, it is
-> necessary to declare a union and use the DECLARE_FLEX_ARRAY macro.
-> 
-> The comment can be removed as the union is now clear enough.
-> 
-> Also, avoid the open-coded arithmetic in the memory allocator functions
-> [2] using the "struct_size" macro.
-> 
-> Moreover, refactor the "__sync_seqno" and "__sync_child" functions due
-> to now it is possible to use the union members added to the structure.
-> This way, it is also possible to avoid the open-coded arithmetic in
-> pointers.
-> 
-> Link: https://www.kernel.org/doc/html/next/process/deprecated.html#zero-length-and-one-element-arrays [1]
-> Link: https://www.kernel.org/doc/html/next/process/deprecated.html#open-coded-arithmetic-in-allocator-arguments [2]
-> Signed-off-by: Erick Archer <erick.archer@gmx.com>
-> ---
->  drivers/gpu/drm/i915/i915_syncmap.c | 19 ++++++++-----------
->  1 file changed, 8 insertions(+), 11 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/i915/i915_syncmap.c b/drivers/gpu/drm/i915/i915_syncmap.c
-> index 60404dbb2e9f..df6437c37373 100644
-> --- a/drivers/gpu/drm/i915/i915_syncmap.c
-> +++ b/drivers/gpu/drm/i915/i915_syncmap.c
-> @@ -75,13 +75,10 @@ struct i915_syncmap {
->  	unsigned int height;
->  	unsigned int bitmap;
->  	struct i915_syncmap *parent;
-> -	/*
-> -	 * Following this header is an array of either seqno or child pointers:
-> -	 * union {
-> -	 *	u32 seqno[KSYNCMAP];
-> -	 *	struct i915_syncmap *child[KSYNCMAP];
-> -	 * };
-> -	 */
-> +	union {
-> +		DECLARE_FLEX_ARRAY(u32, seqno);
-> +		DECLARE_FLEX_ARRAY(struct i915_syncmap *, child);
-> +	};
+== Series Details ==
 
-This is a new code pattern for me! Trailing arrays of different element
-sizes but with a fixed element count. :)
+Series: drm/i915: PLL state check stuff (rev2)
+URL   : https://patchwork.freedesktop.org/series/129735/
+State : warning
 
-I hope when __counted_by is expanded to take expressions we can add a
-literal. :)
+== Summary ==
 
-Reviewed-by: Kees Cook <keescook@chromium.org>
+Error: dim checkpatch failed
+6787bc9cd454 drm/i915: Fix PLL state check for gmch platforms
+987dac5d8550 drm/i915: Include the CRTC name in the ELD buffer mismatch
+69f42808f533 drm/i915: Reuse ibx_dump_hw_state() for gmch platforms
+5c9498f06b0e drm/i915: Add PLL .compare_hw_state() vfunc
+-:62: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'name' - possible side-effects?
+#62: FILE: drivers/gpu/drm/i915/display/intel_display.c:5050:
++#define PIPE_CONF_CHECK_PLL(name) do { \
++	if (!intel_dpll_compare_hw_state(dev_priv, &current_config->name, \
++					 &pipe_config->name)) { \
++		pipe_config_pll_mismatch(fastset, crtc, __stringify(name), \
++					 &current_config->name, \
++					 &pipe_config->name); \
++		ret = false; \
++	} \
++} while (0)
 
--- 
-Kees Cook
+-:62: CHECK:MACRO_ARG_PRECEDENCE: Macro argument 'name' may be better as '(name)' to avoid precedence issues
+#62: FILE: drivers/gpu/drm/i915/display/intel_display.c:5050:
++#define PIPE_CONF_CHECK_PLL(name) do { \
++	if (!intel_dpll_compare_hw_state(dev_priv, &current_config->name, \
++					 &pipe_config->name)) { \
++		pipe_config_pll_mismatch(fastset, crtc, __stringify(name), \
++					 &current_config->name, \
++					 &pipe_config->name); \
++		ret = false; \
++	} \
++} while (0)
+
+-:72: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'name' - possible side-effects?
+#72: FILE: drivers/gpu/drm/i915/display/intel_display.c:5060:
++#define PIPE_CONF_CHECK_TIMINGS(name) do {     \
+ 	PIPE_CONF_CHECK_I(name.crtc_hdisplay); \
+ 	PIPE_CONF_CHECK_I(name.crtc_htotal); \
+ 	PIPE_CONF_CHECK_I(name.crtc_hblank_start); \
+
+-:333: WARNING:UNNECESSARY_ELSE: else is not generally useful after a break or return
+#333: FILE: drivers/gpu/drm/i915/display/intel_dpll_mgr.c:4552:
++		return i915->display.dpll.mgr->compare_hw_state(a, b);
++	} else {
+
+total: 0 errors, 1 warnings, 3 checks, 308 lines checked
+54a518629e96 drm/i915: Enable fastboot across the board
+
+
