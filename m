@@ -2,76 +2,63 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 166158513F9
-	for <lists+intel-gfx@lfdr.de>; Mon, 12 Feb 2024 14:01:29 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8B68B8512DF
+	for <lists+intel-gfx@lfdr.de>; Mon, 12 Feb 2024 13:01:56 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id ED6E910E716;
-	Mon, 12 Feb 2024 13:01:26 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0424110E5D2;
+	Mon, 12 Feb 2024 12:01:53 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="RQMmyu93";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="bJjVrxZr";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-yw1-f170.google.com (mail-yw1-f170.google.com
- [209.85.128.170])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2018F10F78D;
- Fri,  9 Feb 2024 16:53:27 +0000 (UTC)
-Received: by mail-yw1-f170.google.com with SMTP id
- 00721157ae682-604aaf2d047so13073677b3.0; 
- Fri, 09 Feb 2024 08:53:27 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1707497606; x=1708102406; darn=lists.freedesktop.org;
- h=in-reply-to:content-disposition:mime-version:references:message-id
- :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
- bh=0YeJ1Scdeu8JC0fSedQWunMCPmGv7Rv5FN5QxfX78yE=;
- b=RQMmyu932mXBR8UEGtnJJ+Vej3txoRerIYuntJcGhCaIBb4EvVpt5N0uVEqjVHxbgO
- SycmZ3etpD5olN+z+iAqONouvQdpc2s5OmfEWaquZttPBp2OC9CvgtTbcw5BlDnRi5t3
- nnYP7VyCp6MxnBx+Bhs63tuud41j/x2gitzODlsqJw0yxatFMZbbFRNsJA4H7d6ARgt4
- z0dZJfsnElHNtGVreKfwWKSjoVV5o9Bgsqv+68UwR3CA4B3N3TIpd4mqGkLbPKc0rlqt
- mID9OBSLU9A6pBUVqB7sOPcL69GPUd9xqGdqOI3GAt432ZfheVtbkz3PO3cm9DUNkpMA
- uvUw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1707497606; x=1708102406;
- h=in-reply-to:content-disposition:mime-version:references:message-id
- :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
- :message-id:reply-to;
- bh=0YeJ1Scdeu8JC0fSedQWunMCPmGv7Rv5FN5QxfX78yE=;
- b=lGRQuN2hU4ElnHQWDyIxRI01fdZJQSTIWy4P270t3kdPhqGBgoCB3Mh4Po6kn5CVzt
- BmuxqfsbyINQzEGbRdcv6kHWoypPkHsy+qpFtx00q6KjOb+xFXKXj7GFhVQ4r4PC4mFH
- dZVnwexDKd/5wTi1+jemJAtqKY7LDSeUYIo2w0Taa5qH2tyyTmi946fF63FieiGsBACV
- jQ1s6sQfzdDyIes+o+bk/K9vweGFu9hqiGNJuoDOTGDluOk46v8xtwTORcQIc/e3q3g5
- CNxieHadLb8Y4qJuidp3iif8VRpwVXfTVmzBEIJPJ+PKiWy+HIamkKjXfWgTHDdS6iSU
- PAjg==
-X-Gm-Message-State: AOJu0YzIQR7votQ3YHpzsgg2HVfYnRJElxRZE9VsoNWGHfDQBm4iJ0tx
- GISNtZRaFcE2KggsUVDTCNRxWex5Q8bAJ6SiDmkgH1oRBLeAdxXuC08rcB8/l4c=
-X-Google-Smtp-Source: AGHT+IHrF/8wgQd8JNTUcMtQGIGtbwT7TsJq0XQLER+HELEUGnHbgwEyGR8OSowd2xtSlMfgTxJ8oA==
-X-Received: by 2002:a81:8541:0:b0:604:aaac:99f7 with SMTP id
- v62-20020a818541000000b00604aaac99f7mr1933729ywf.37.1707497606183; 
- Fri, 09 Feb 2024 08:53:26 -0800 (PST)
-X-Forwarded-Encrypted: i=1;
- AJvYcCUm/ZAq2lpYcT7dz8z8nZVu6F1n/rO1gEfLAC5EvkaTQlVEvagzv67AwSjqvZ2iBWBS6mgBykFYKG5VO7aeJhbTvhEuFSLJJ6q2ZyizC2xlwYJSNYNlTqR8rFAuxG2r71EiJu4fl2YHgkcKSORZ5MZ+U/t5ozjwe8m2eDJjwQAWIFy6XhRCB22wMTK5oeEcsJoSXFwITHJmf7AFR3Vnnqnm3Kdhkyd8G5XqPvv+cHpTcegoufYgIzK2Wg1+h95DlLusLABVfgwftTwwTkrrZNH5okindowqDagtKUTQReqod4NiM52SmLw=
-Received: from localhost ([2601:344:8301:57f0:be3a:6fd4:1110:3284])
- by smtp.gmail.com with ESMTPSA id
- x7-20020a814a07000000b006040a13db84sm384525ywa.48.2024.02.09.08.53.25
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Fri, 09 Feb 2024 08:53:25 -0800 (PST)
-Date: Fri, 9 Feb 2024 08:53:25 -0800
-From: Yury Norov <yury.norov@gmail.com>
-To: Lucas De Marchi <lucas.demarchi@intel.com>
-Cc: linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
- Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
- Jani Nikula <jani.nikula@linux.intel.com>,
- intel-xe@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
- Jani Nikula <jani.nikula@intel.com>
-Subject: Re: [PATCH v3 2/3] bits: Introduce fixed-type BIT
-Message-ID: <ZcZYhZbLyzSXX8PU@yury-ThinkPad>
-References: <20240208074521.577076-1-lucas.demarchi@intel.com>
- <20240208074521.577076-3-lucas.demarchi@intel.com>
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 03D2F10E4A7;
+ Mon, 12 Feb 2024 12:01:49 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1707739310; x=1739275310;
+ h=message-id:date:mime-version:subject:to:cc:references:
+ from:in-reply-to:content-transfer-encoding;
+ bh=Zbm7OvR5CTMJxI3KIhd7PWN3VnpiSouivKvRc06eL7M=;
+ b=bJjVrxZrcKuayAKBR646Bg8JiIDtlBpd4fZtrdlCXvSWOd1prGMjZrQk
+ Ja8XOWBaxXnJD7BWP6Q8aJTPnUgPD2OF3LiqpxOutMS4czGF0wi91LKdG
+ Wfb550+q7to5uoQbTIgYZZK2D05frWkBqIHr7AfCU/eqpUahbZt+FcA0t
+ rXiQaxB46i/obSGSRhscBGejyRpxKu3s/wkVT/QdMnYtsz4GTCU/Ux/pR
+ Vlw1RjQPgdYlGWK8Tt+UbVwEUV6BRAzK/oiYBrOirxO3u85yJ0AhdzQEH
+ QlqTRr54f58L740DmfkqImCzIKwgJ7wbXoiZ/V8+sUAdtr8papmymTHgZ g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10981"; a="19124902"
+X-IronPort-AV: E=Sophos;i="6.06,263,1705392000"; d="scan'208";a="19124902"
+Received: from orviesa003.jf.intel.com ([10.64.159.143])
+ by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 12 Feb 2024 04:01:49 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.06,263,1705392000"; 
+   d="scan'208";a="7228547"
+Received: from hadjchai-mobl.ger.corp.intel.com (HELO [10.213.230.110])
+ ([10.213.230.110])
+ by ORVIESA003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 12 Feb 2024 04:01:46 -0800
+Message-ID: <c470ce0e-f52c-4240-9d5f-c1dfd9b46675@linux.intel.com>
+Date: Mon, 12 Feb 2024 12:01:43 +0000
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240208074521.577076-3-lucas.demarchi@intel.com>
-X-Mailman-Approved-At: Mon, 12 Feb 2024 13:01:24 +0000
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] drm/i915: Add flex arrays to struct i915_syncmap
+Content-Language: en-US
+To: Erick Archer <erick.archer@gmx.com>,
+ Jani Nikula <jani.nikula@linux.intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, David Airlie <airlied@gmail.com>,
+ Daniel Vetter <daniel@ffwll.ch>, "Gustavo A. R. Silva"
+ <gustavoars@kernel.org>
+Cc: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org, linux-hardening@vger.kernel.org
+References: <20240208181318.4259-1-erick.archer@gmx.com>
+From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+Organization: Intel Corporation UK Plc
+In-Reply-To: <20240208181318.4259-1-erick.archer@gmx.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -87,61 +74,96 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, Feb 07, 2024 at 11:45:20PM -0800, Lucas De Marchi wrote:
-> Implement fixed-type BIT() to help drivers add stricter checks, like was
-> done for GENMASK.
+
+On 08/02/2024 18:13, Erick Archer wrote:
+> The "struct i915_syncmap" uses a dynamically sized set of trailing
+> elements. It can use an "u32" array or a "struct i915_syncmap *"
+> array.
 > 
-> Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
-> Acked-by: Jani Nikula <jani.nikula@intel.com>
+> So, use the preferred way in the kernel declaring flexible arrays [1].
+> Because there are two possibilities for the trailing arrays, it is
+> necessary to declare a union and use the DECLARE_FLEX_ARRAY macro.
+> 
+> The comment can be removed as the union is now clear enough.
+> 
+> Also, avoid the open-coded arithmetic in the memory allocator functions
+> [2] using the "struct_size" macro.
+> 
+> Moreover, refactor the "__sync_seqno" and "__sync_child" functions due
+> to now it is possible to use the union members added to the structure.
+> This way, it is also possible to avoid the open-coded arithmetic in
+> pointers.
+> 
+> Link: https://www.kernel.org/doc/html/next/process/deprecated.html#zero-length-and-one-element-arrays [1]
+> Link: https://www.kernel.org/doc/html/next/process/deprecated.html#open-coded-arithmetic-in-allocator-arguments [2]
+> Signed-off-by: Erick Archer <erick.archer@gmx.com>
 
-So I get v1 from Jan.23 in my mailbox, and this one is v3. Did I miss
-a v2? Anyways, please bear my reviewed-by from v1 for this patch.
+Looks good to me too so I've pushed it to drm-intel-gt-next, thanks!
 
-Thanks,
-Yury
+Regards,
+
+Tvrtko
 
 > ---
->  include/linux/bits.h | 17 +++++++++++++++++
->  1 file changed, 17 insertions(+)
+>   drivers/gpu/drm/i915/i915_syncmap.c | 19 ++++++++-----------
+>   1 file changed, 8 insertions(+), 11 deletions(-)
 > 
-> diff --git a/include/linux/bits.h b/include/linux/bits.h
-> index bd56f32de44e..811846ce110e 100644
-> --- a/include/linux/bits.h
-> +++ b/include/linux/bits.h
-> @@ -24,12 +24,16 @@
->  #define GENMASK_INPUT_CHECK(h, l) \
->  	(BUILD_BUG_ON_ZERO(__builtin_choose_expr( \
->  		__is_constexpr((l) > (h)), (l) > (h), 0)))
-> +#define BIT_INPUT_CHECK(type, b) \
-> +	((BUILD_BUG_ON_ZERO(__builtin_choose_expr( \
-> +		__is_constexpr(b), (b) >= BITS_PER_TYPE(type), 0))))
->  #else
->  /*
->   * BUILD_BUG_ON_ZERO is not available in h files included from asm files,
->   * disable the input check if that is the case.
->   */
->  #define GENMASK_INPUT_CHECK(h, l) 0
-> +#define BIT_INPUT_CHECK(type, b) 0
->  #endif
->  
->  /*
-> @@ -54,4 +58,17 @@
->  #define GENMASK_U32(h, l)	__GENMASK(u32, h, l)
->  #define GENMASK_U64(h, l)	__GENMASK(u64, h, l)
->  
-> +/*
-> + * Fixed-type variants of BIT(), with additional checks like __GENMASK().  The
-> + * following examples generate compiler warnings due to shift-count-overflow:
-> + *
-> + * - BIT_U8(8)
-> + * - BIT_U32(-1)
-> + * - BIT_U32(40)
-> + */
-> +#define BIT_U8(b)		((u8)(BIT_INPUT_CHECK(u8, b) + BIT(b)))
-> +#define BIT_U16(b)		((u16)(BIT_INPUT_CHECK(u16, b) + BIT(b)))
-> +#define BIT_U32(b)		((u32)(BIT_INPUT_CHECK(u32, b) + BIT(b)))
-> +#define BIT_U64(b)		((u64)(BIT_INPUT_CHECK(u64, b) + BIT(b)))
-> +
->  #endif	/* __LINUX_BITS_H */
-> -- 
-> 2.43.0
+> diff --git a/drivers/gpu/drm/i915/i915_syncmap.c b/drivers/gpu/drm/i915/i915_syncmap.c
+> index 60404dbb2e9f..df6437c37373 100644
+> --- a/drivers/gpu/drm/i915/i915_syncmap.c
+> +++ b/drivers/gpu/drm/i915/i915_syncmap.c
+> @@ -75,13 +75,10 @@ struct i915_syncmap {
+>   	unsigned int height;
+>   	unsigned int bitmap;
+>   	struct i915_syncmap *parent;
+> -	/*
+> -	 * Following this header is an array of either seqno or child pointers:
+> -	 * union {
+> -	 *	u32 seqno[KSYNCMAP];
+> -	 *	struct i915_syncmap *child[KSYNCMAP];
+> -	 * };
+> -	 */
+> +	union {
+> +		DECLARE_FLEX_ARRAY(u32, seqno);
+> +		DECLARE_FLEX_ARRAY(struct i915_syncmap *, child);
+> +	};
+>   };
+> 
+>   /**
+> @@ -99,13 +96,13 @@ void i915_syncmap_init(struct i915_syncmap **root)
+>   static inline u32 *__sync_seqno(struct i915_syncmap *p)
+>   {
+>   	GEM_BUG_ON(p->height);
+> -	return (u32 *)(p + 1);
+> +	return p->seqno;
+>   }
+> 
+>   static inline struct i915_syncmap **__sync_child(struct i915_syncmap *p)
+>   {
+>   	GEM_BUG_ON(!p->height);
+> -	return (struct i915_syncmap **)(p + 1);
+> +	return p->child;
+>   }
+> 
+>   static inline unsigned int
+> @@ -200,7 +197,7 @@ __sync_alloc_leaf(struct i915_syncmap *parent, u64 id)
+>   {
+>   	struct i915_syncmap *p;
+> 
+> -	p = kmalloc(sizeof(*p) + KSYNCMAP * sizeof(u32), GFP_KERNEL);
+> +	p = kmalloc(struct_size(p, seqno, KSYNCMAP), GFP_KERNEL);
+>   	if (unlikely(!p))
+>   		return NULL;
+> 
+> @@ -282,7 +279,7 @@ static noinline int __sync_set(struct i915_syncmap **root, u64 id, u32 seqno)
+>   			unsigned int above;
+> 
+>   			/* Insert a join above the current layer */
+> -			next = kzalloc(sizeof(*next) + KSYNCMAP * sizeof(next),
+> +			next = kzalloc(struct_size(next, child, KSYNCMAP),
+>   				       GFP_KERNEL);
+>   			if (unlikely(!next))
+>   				return -ENOMEM;
+> --
+> 2.25.1
+> 
