@@ -2,56 +2,144 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7CAE9851A06
-	for <lists+intel-gfx@lfdr.de>; Mon, 12 Feb 2024 17:50:28 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 342D58519DA
+	for <lists+intel-gfx@lfdr.de>; Mon, 12 Feb 2024 17:44:59 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 861E110EE01;
-	Mon, 12 Feb 2024 16:50:26 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7FFB110E9EB;
+	Mon, 12 Feb 2024 16:44:57 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="bQCoqoth";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Z6DZIhuh";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 26F4610EDFE
- for <intel-gfx@lists.freedesktop.org>; Mon, 12 Feb 2024 16:50:25 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4D15C10E9EB
+ for <intel-gfx@lists.freedesktop.org>; Mon, 12 Feb 2024 16:44:56 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1707756625; x=1739292625;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=oMktAjid2HXvIh4qt5x16IfiujYAqv3REt/pyGpEQhQ=;
- b=bQCoqothPOh/BShABhTBrUBFUfw+LsQvitEEUBc61WrovGDucLTiK2JU
- L3Zw+kIi+RPMWjLKjEsNY3K/g9QzZX7BG+6ermrRLMBkaKNkqCOMwvv2m
- 49xIBMeSQBf862bsp7DNXDU07859Ih2QvtIQBbrDMiDcvAUJsLUsuadBC
- L9cP36zX45d/ER922RRrS1BVW91J63t7Z5aLg16+J7coaJSH/QDt+TNAh
- R6G9Zd/WvWlrc/vXwwpdXHV5NMrZLIO3v6WCGcnxDZholJG6y5iGYSPqZ
- zx02e56XkTo8GbmVEBbuDSJTC1Mrc92mRar+tGFCxjCV9a56MYmATHXQF A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10982"; a="1886017"
-X-IronPort-AV: E=Sophos;i="6.06,264,1705392000"; 
-   d="scan'208";a="1886017"
-Received: from orviesa006.jf.intel.com ([10.64.159.146])
- by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Feb 2024 08:50:25 -0800
+ t=1707756296; x=1739292296;
+ h=date:from:to:cc:subject:message-id:references:
+ in-reply-to:mime-version;
+ bh=Kp6ueQVcMjBgK/F/XUGvzwltd9aysF/AT1DyvqxreSA=;
+ b=Z6DZIhuhd6k4Gqp+EukuhU1Ve+TeA0m4SPhvxD93/K8+lgmk+wlc/ngf
+ 0+8psimRmkxKZOphAOrFDJUGE7ojoy4+RxaVpINMTzRTu4IPEaho++rHm
+ dXy4JfWF83TXyscRvirb7+ztD0FFcDMtT07MaBG1Ab13A4oE57XJqtr2Z
+ kZslf935yullsOkfC2jp7I5PBr9s35m7htQgwIV1bLzhhfzrQeNgKi6xq
+ cdFyKyD+A+X3GcfKdpuEq+JrUTywW1zfILXwPs+WQ+uqTginN3BaEyY1y
+ DMTbKCFfZrnhuhw5olYJEgsKOzWXLM+KfT6liX6aVtM1FHA4hmp7ssDVc w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10982"; a="19246706"
+X-IronPort-AV: E=Sophos;i="6.06,264,1705392000"; d="scan'208";a="19246706"
+Received: from fmviesa010.fm.intel.com ([10.60.135.150])
+ by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 12 Feb 2024 08:44:51 -0800
 X-ExtLoop1: 1
 X-IronPort-AV: E=Sophos;i="6.06,264,1705392000"; 
-   d="scan'208";a="2980131"
-Received: from mgolanimitul-x299-ud4-pro.iind.intel.com ([10.190.239.114])
- by orviesa006.jf.intel.com with ESMTP; 12 Feb 2024 08:50:23 -0800
-From: Mitul Golani <mitulkumar.ajitkumar.golani@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Cc: ankit.k.nautiyal@intel.com,
- Mitul Golani <mitulkumar.ajitkumar.golani@intel.com>, jani.nikula@intel.com
-Subject: [1/3] drm: Add Adaptive Sync SDP logging
-Date: Mon, 12 Feb 2024 22:13:16 +0530
-Message-Id: <20231219085343.1211864-2-mitulkumar.ajitkumar.golani@intel.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20240212164316.1411230-1-mitulkumar.ajitkumar.golani@intel.com>
-References: <20240212164316.1411230-1-mitulkumar.ajitkumar.golani@intel.com>
-Content-Type: text/plain; charset="utf-8"
+   d="scan'208";a="2606142"
+Received: from orsmsx602.amr.corp.intel.com ([10.22.229.15])
+ by fmviesa010.fm.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
+ 12 Feb 2024 08:44:51 -0800
+Received: from orsmsx611.amr.corp.intel.com (10.22.229.24) by
+ ORSMSX602.amr.corp.intel.com (10.22.229.15) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.35; Mon, 12 Feb 2024 08:44:50 -0800
+Received: from orsmsx610.amr.corp.intel.com (10.22.229.23) by
+ ORSMSX611.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.35; Mon, 12 Feb 2024 08:44:50 -0800
+Received: from ORSEDG602.ED.cps.intel.com (10.7.248.7) by
+ orsmsx610.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.35 via Frontend Transport; Mon, 12 Feb 2024 08:44:50 -0800
+Received: from NAM10-MW2-obe.outbound.protection.outlook.com (104.47.55.101)
+ by edgegateway.intel.com (134.134.137.103) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.1.2507.35; Mon, 12 Feb 2024 08:44:24 -0800
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=Rk0SJGH0O33inqOALUuLRB2509rPCPPxYX/fELKDZisI+W4x+kTteABFJ1u/fTjmTLeUZUZngRh4PKV6bSu6pM6GUH7Ur4/kyoGNvQQz5eqCIzJ1ezb25WM1ud+euYOA+TQO4ejO8MchbfWvkJ45p9+vU8gTFpI1FdDxhNnplOaulBYA7nFGB2U+tlBUTzwU66spima/BwP9RJ5oW9X05TS8ZlbHB0wYy6eV66rKlZPSkCavGMP+XL474Uux/6gXd2WjoET6tamQqHZDI1bu5I4UUy9kMerU+hX9uLFreH6EZ8VyKVN4hXKT0+TVy+SPHfwA0ZC+pHtlg2NEkX3yeA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=p1334ldyO2FTQ1IrbtO2w54odkODB7NoTB2rupFxrH4=;
+ b=OTiawWNRuORY4MyfnQqf/Jnf5O7c6MtWoLA/dyBAknlSW3n+XSlvfPc1aJC+/IAquMpt+8HivHRrV4rNSrxzoDrFsi2AcD0CSUfUtLLdRqjRflle5ESf9FvbqqRTCiepTna5oquV2PiLLYE3nOBfEsnirqvFmdRuEcOLFXGAecEa9VMFnNydck+CBJ8xFrCrUZtf9n68e5shDsaAlQJ4u662j9Jnlou0gwcLOnRK2ovjqQ2TXd4w6RP9VlComJ4TLs1K9agwHJQ1hPGotzAd6AKavRaZdlsLdrAErvNNOdHuhVGDhfecY89vp4WirotdAl7G1mYilNYHkee7r0o9TQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+Received: from DS0PR11MB8182.namprd11.prod.outlook.com (2603:10b6:8:163::17)
+ by SA0PR11MB4752.namprd11.prod.outlook.com (2603:10b6:806:99::24) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7270.38; Mon, 12 Feb
+ 2024 16:44:23 +0000
+Received: from DS0PR11MB8182.namprd11.prod.outlook.com
+ ([fe80::2157:7433:d32c:a8e3]) by DS0PR11MB8182.namprd11.prod.outlook.com
+ ([fe80::2157:7433:d32c:a8e3%4]) with mapi id 15.20.7270.036; Mon, 12 Feb 2024
+ 16:44:23 +0000
+Date: Mon, 12 Feb 2024 08:44:20 -0800
+From: Matt Roper <matthew.d.roper@intel.com>
+To: Jani Nikula <jani.nikula@intel.com>
+CC: <intel-gfx@lists.freedesktop.org>
+Subject: Re: [PATCH 1/3] drm/i915/bios: bump expected child device size
+Message-ID: <20240212164420.GC718896@mdroper-desk1.amr.corp.intel.com>
+References: <20240131184841.872487-1-jani.nikula@intel.com>
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+In-Reply-To: <20240131184841.872487-1-jani.nikula@intel.com>
+X-ClientProxiedBy: BYAPR04CA0025.namprd04.prod.outlook.com
+ (2603:10b6:a03:40::38) To DS0PR11MB8182.namprd11.prod.outlook.com
+ (2603:10b6:8:163::17)
 MIME-Version: 1.0
-X-Patchwork-Id: 572507
-Content-Transfer-Encoding: 8bit
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: DS0PR11MB8182:EE_|SA0PR11MB4752:EE_
+X-MS-Office365-Filtering-Correlation-Id: 20f7edde-7d13-4c9c-4752-08dc2be9ddd3
+X-LD-Processed: 46c98d88-e344-4ed4-8496-4ed7712e255d,ExtAddr
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: NB/n/pOYdKJxZykAvOfkJm2a4HgdXPlIStFSZAP7crQqlkS8ztyTW1BvsGdPLAmvmqKGEEH9CkPqN5kkNACdMfRtuBCSr+U0DhIBDzKNTkUOfe58SUAzf8sGPh1wIHAS9reo/3voo9ueUo7FxSLJnGF3+ySbFF3v13noXqekmlclsTlrkJiaOzZMMaBooI4Df2WnDXEveX4e3x6GBKsdeTxE510qhPdY98aRNxy2qxmoQE//JbiOTDJDRsNR5V7YOGia7nlorj0bmdhAmtqIhuO74/DqM2Jha+l7+hFmTKwM/AQ22sufiH1/QKyPIT6wkqJx5X+ezaVDxNlv8x60phJLl6zoG/3c3SyGOYST7PlH5mbKsj+QeCO4SfbqzfTpdk2b4bTwh/cYB0+RilhyHXq4oxaPL3Yen2ZGQRvFqO/eswyNoSHaBqOYTvgVEG5k27bwv2bgxN+RJOZEm2h87q6GybpxwejRTEjkXUWHBuhYwDKvGZMfzMq75MvlH8SC658qfxc7ewh94++5uw6U2uhE75wxHqtBVRM3gTokyThRk079ipuqf7RmRCuKfuTx
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:DS0PR11MB8182.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230031)(39860400002)(346002)(366004)(136003)(376002)(396003)(230922051799003)(1800799012)(451199024)(186009)(64100799003)(33656002)(6506007)(6486002)(478600001)(26005)(1076003)(6512007)(2906002)(4326008)(5660300002)(66556008)(66476007)(66946007)(6862004)(6636002)(8676002)(8936002)(316002)(86362001)(83380400001)(82960400001)(38100700002)(41300700001);
+ DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?W52kDpUVb9apom6is8sntxCqKJh/dw4rRFbsotiWNM7HQNaBhMdtCr/iBTmq?=
+ =?us-ascii?Q?cSOQEZ8JChW32XduDvnXEkAT0BXKHDXRu8lG873NcBbzJTOTBcdIu4GUn7c8?=
+ =?us-ascii?Q?OgDy0qjPW+bUGiyBuCWexzxW49aT285aDc/bNvUPwgM+mhg+QY9sRqt2Nmxi?=
+ =?us-ascii?Q?VWeAfZsUkEdWRxIhrIH/lE0+AM+k1e0qcRKY3YogYgDSZakaEiRivnE/fkCv?=
+ =?us-ascii?Q?ho+eSjRmikdZCL8li/SXzyuKFu5TJhKfk98iLVtcuVvo7b0FYodTqDwlejXJ?=
+ =?us-ascii?Q?d9xyeqWjo2OhPM7dcjfjH5cz9kEXs5jROvRzSzvGGpGcc2xEg01iYRMFKiAp?=
+ =?us-ascii?Q?pXT3fdfDwdFT9wlrtUFsg1LBhR38EJzSWXRFt3NfUpENani0Aj4dUix69Juz?=
+ =?us-ascii?Q?S67ZitooOj1gxag1EAfvF9RI41z6DTR8uclOT1Hd6PsmDiQcSRY5YwEZTsMV?=
+ =?us-ascii?Q?ist0MZzxm1PwSJywwAykY0aoqHQvW+lgTpI/J50igW0AFlrpIo73Zbhr3nIE?=
+ =?us-ascii?Q?I1Zp32829KQk/Q54VLXSdiG+zRl8Iv5ymTFOnGrsuzYIrmfMPGJL5RC2Hn4t?=
+ =?us-ascii?Q?Iqj/JcPGaJvSQUOQNxT1OiRJKz8dicop8Ua4t4uyvtSP873IJhUPIr2pB1NP?=
+ =?us-ascii?Q?366SGh1R42xK8ZEbVXqXK16A/t1kJbOB5iNj8ADuVG1ro5/9I6ht+zF9Q0V1?=
+ =?us-ascii?Q?m/a5WR22FI1cv44SvW7u9TtAMjTmLKaqCbzrRxsJCFBngr6OjUXNV9t9nvhA?=
+ =?us-ascii?Q?xMqRbvAt/8FWVvXmaBD5YeQe+yCU0YYQzmaHS25Mq5AE+VYV8QgUIgnESFr0?=
+ =?us-ascii?Q?p4oU/YG740xQt/ZD2GHsc1RRHJyOBz6BD0Mizf3gWHU1R6RkN1n3qtKQEAKs?=
+ =?us-ascii?Q?SRwfiW0pHOOK/ky4eWeRWwBLnqAA9nHyu9ecoTxW18p8sg4TKQl8fQ+ZKCSS?=
+ =?us-ascii?Q?EaZAOLYvTtJNuBWEpsD69rm+aNsjcz1gpm+tWRDktvKV17N18W2FcYXgoRpV?=
+ =?us-ascii?Q?KqZpRoEGMmrPtKVsCCF+Tdx9tHsjxSNtVbb1mcKH0I6qQ5eEQRu8BUqKQBd5?=
+ =?us-ascii?Q?TETvlVkpSP/mYTOIV+gUceYoMq+dPB2luR7ocZXIiCwnKErMJvqDJkgn46CR?=
+ =?us-ascii?Q?UVx2IOBfPIhQ8j9w5r8rhuXg2zyQu8YFiFH7Anjc911pxctRJ+a8+dTEfvOz?=
+ =?us-ascii?Q?okVPML2fTx3swi4IEyqq1RlUAVqU//swCXgTsM5SF1snAvkSL+TgVWoxjYNH?=
+ =?us-ascii?Q?r7r+wKT6CS5tmL/6L02ERb2I2oo9b0gRxfyF5wQjJeARTuyZZu9Q6V0iOqSs?=
+ =?us-ascii?Q?XGMf1mMG8X+sePCUeJqrEAdT21mrWdxkUs0nHZpdtbd7vckUAIfHr+5fBikv?=
+ =?us-ascii?Q?wTe8ziiDVtFYURixgbEoxCFJseTlJi+qdbVW1wlWPbMOHWjnQAf1CGnE144O?=
+ =?us-ascii?Q?WuBA4/Bz80BixC8CHfyIfSU/jqJDz+tZkyMC6wisDg5l/9J+xj9aGrKsQ5vJ?=
+ =?us-ascii?Q?1OqWz3x96sDRAWU3kIi/+Fwhk1VBkjWPdlHwcynwb12rAdwST0vp9DMys3B2?=
+ =?us-ascii?Q?BY22KnEmeM6EhGCI7SXXI7r9AnY2YD444sGU5kflsHGkAdWy26aC8gC0H44i?=
+ =?us-ascii?Q?Lw=3D=3D?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: 20f7edde-7d13-4c9c-4752-08dc2be9ddd3
+X-MS-Exchange-CrossTenant-AuthSource: DS0PR11MB8182.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 12 Feb 2024 16:44:22.9786 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: X759MnO7UJq1+JfwksZbXAoRfKQ3Tr14MfAboNESRg9g7hmSeVspvdQb22e2hHJ19t2hbrddoONosVbruT4qS46xt2iztFc45dcFWEUlQ9k=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA0PR11MB4752
+X-OriginatorOrg: intel.com
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -67,543 +155,55 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Add structure representing Adaptive Sync Secondary Data
-Packet (AS SDP). Also, add Adaptive Sync SDP logging in
-drm_dp_helper.c to facilitate debugging.
+On Wed, Jan 31, 2024 at 08:48:39PM +0200, Jani Nikula wrote:
+> VBT versions since 256 have an extra byte for EFP index.
+> 
+> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+> ---
+>  drivers/gpu/drm/i915/display/intel_bios.c     | 4 +++-
+>  drivers/gpu/drm/i915/display/intel_vbt_defs.h | 1 +
+>  2 files changed, 4 insertions(+), 1 deletion(-)
+> 
+> diff --git a/drivers/gpu/drm/i915/display/intel_bios.c b/drivers/gpu/drm/i915/display/intel_bios.c
+> index 5f04e495fd27..2805ad701fe4 100644
+> --- a/drivers/gpu/drm/i915/display/intel_bios.c
+> +++ b/drivers/gpu/drm/i915/display/intel_bios.c
+> @@ -2736,8 +2736,10 @@ parse_general_definitions(struct drm_i915_private *i915)
+>  		expected_size = 37;
+>  	} else if (i915->display.vbt.version <= 215) {
+>  		expected_size = 38;
+> -	} else if (i915->display.vbt.version <= 250) {
+> +	} else if (i915->display.vbt.version <= 255) {
+>  		expected_size = 39;
+> +	} else if (i915->display.vbt.version <= 256) {
+> +		expected_size = 40;
+>  	} else {
+>  		expected_size = sizeof(*child);
+>  		BUILD_BUG_ON(sizeof(*child) < 39);
 
---v2:
-- Update logging. [Jani, Ankit]
-- use as_sdp instead of async [Ankit]
-- Correct define placeholders to where it is being actually used. [Jani]
-- Update members in as_sdp structure and make it uniform. [Jani]
+Should this size be updated as well?
 
-Signed-off-by: Mitul Golani <mitulkumar.ajitkumar.golani@intel.com>
----
- drivers/gpu/drm/display/drm_dp_helper.c       | 12 ++++++++
- .../drm/i915/display/intel_crtc_state_dump.c  | 12 ++++++++
- .../drm/i915/display/intel_display_types.h    |  1 +
- include/drm/display/drm_dp.h                  |  2 ++
- include/drm/display/drm_dp_helper.h           | 30 +++++++++++++++++++
- 5 files changed, 57 insertions(+)
 
-diff --git a/drivers/gpu/drm/display/drm_dp_helper.c b/drivers/gpu/drm/display/drm_dp_helper.c
-index d72b6f9a352c..8edd328b6bb8 100644
---- a/drivers/gpu/drm/display/drm_dp_helper.c
-+++ b/drivers/gpu/drm/display/drm_dp_helper.c
-@@ -2917,6 +2917,18 @@ void drm_dp_vsc_sdp_log(const char *level, struct device *dev,
- }
- EXPORT_SYMBOL(drm_dp_vsc_sdp_log);
- 
-+void drm_dp_as_sdp_log(struct drm_printer *p, const struct drm_dp_as_sdp *as_sdp)
-+{
-+	drm_printf(p, "DP SDP: AS_SDP, revision %u, length %u\n",
-+		   as_sdp->revision, as_sdp->length);
-+	drm_printf(p, "	vtotal: %d\n", as_sdp->vtotal);
-+	drm_printf(p, "    target_rr: %d\n", as_sdp->target_rr);
-+	drm_printf(p, "    duration_incr_ms: %d\n", as_sdp->duration_incr_ms);
-+	drm_printf(p, "    duration_decr_ms: %d\n", as_sdp->duration_decr_ms);
-+	drm_printf(p, "    operation_mode: %d\n", as_sdp->operation_mode);
-+}
-+EXPORT_SYMBOL(drm_dp_as_sdp_log);
-+
- /**
-  * drm_dp_get_pcon_max_frl_bw() - maximum frl supported by PCON
-  * @dpcd: DisplayPort configuration data
-diff --git a/drivers/gpu/drm/i915/display/intel_crtc_state_dump.c b/drivers/gpu/drm/i915/display/intel_crtc_state_dump.c
-index 49fd100ec98a..2b40dee19bfb 100644
---- a/drivers/gpu/drm/i915/display/intel_crtc_state_dump.c
-+++ b/drivers/gpu/drm/i915/display/intel_crtc_state_dump.c
-@@ -61,6 +61,15 @@ intel_dump_dp_vsc_sdp(struct drm_i915_private *i915,
- 	drm_dp_vsc_sdp_log(KERN_DEBUG, i915->drm.dev, vsc);
- }
- 
-+static void
-+intel_dump_dp_as_sdp(struct drm_i915_private *i915,
-+		     const struct drm_dp_as_sdp *as_sdp)
-+{
-+	struct drm_printer p = drm_debug_printer("AS_SDP");
-+
-+	drm_dp_as_sdp_log(&p, as_sdp);
-+}
-+
- static void
- intel_dump_buffer(struct drm_i915_private *i915,
- 		  const char *prefix, const u8 *buf, size_t len)
-@@ -300,6 +309,9 @@ void intel_crtc_state_dump(const struct intel_crtc_state *pipe_config,
- 	if (pipe_config->infoframes.enable &
- 	    intel_hdmi_infoframe_enable(HDMI_PACKET_TYPE_GAMUT_METADATA))
- 		intel_dump_infoframe(i915, &pipe_config->infoframes.drm);
-+	if (pipe_config->infoframes.enable &
-+	    intel_hdmi_infoframe_enable(DP_SDP_ADAPTIVE_SYNC))
-+		intel_dump_dp_as_sdp(i915, &pipe_config->infoframes.as_sdp);
- 	if (pipe_config->infoframes.enable &
- 	    intel_hdmi_infoframe_enable(DP_SDP_VSC))
- 		intel_dump_dp_vsc_sdp(i915, &pipe_config->infoframes.vsc);
-diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/drivers/gpu/drm/i915/display/intel_display_types.h
-index b3e942f2eeb0..0c430baefbeb 100644
---- a/drivers/gpu/drm/i915/display/intel_display_types.h
-+++ b/drivers/gpu/drm/i915/display/intel_display_types.h
-@@ -1331,6 +1331,7 @@ struct intel_crtc_state {
- 		union hdmi_infoframe hdmi;
- 		union hdmi_infoframe drm;
- 		struct drm_dp_vsc_sdp vsc;
-+		struct drm_dp_as_sdp as_sdp;
- 	} infoframes;
- 
- 	u8 eld[MAX_ELD_BYTES];
-diff --git a/include/drm/display/drm_dp.h b/include/drm/display/drm_dp.h
-index 3731828825bd..051f75e09920 100644
---- a/include/drm/display/drm_dp.h
-+++ b/include/drm/display/drm_dp.h
-@@ -1577,10 +1577,12 @@ enum drm_dp_phy {
- #define DP_SDP_AUDIO_COPYMANAGEMENT	0x05 /* DP 1.2 */
- #define DP_SDP_ISRC			0x06 /* DP 1.2 */
- #define DP_SDP_VSC			0x07 /* DP 1.2 */
-+#define DP_SDP_ADAPTIVE_SYNC    0x22 /* DP 1.4 */
- #define DP_SDP_CAMERA_GENERIC(i)	(0x08 + (i)) /* 0-7, DP 1.3 */
- #define DP_SDP_PPS			0x10 /* DP 1.4 */
- #define DP_SDP_VSC_EXT_VESA		0x20 /* DP 1.4 */
- #define DP_SDP_VSC_EXT_CEA		0x21 /* DP 1.4 */
-+
- /* 0x80+ CEA-861 infoframe types */
- 
- #define DP_SDP_AUDIO_INFOFRAME_HB2	0x1b
-diff --git a/include/drm/display/drm_dp_helper.h b/include/drm/display/drm_dp_helper.h
-index 863b2e7add29..ab75b421fdf8 100644
---- a/include/drm/display/drm_dp_helper.h
-+++ b/include/drm/display/drm_dp_helper.h
-@@ -98,6 +98,36 @@ struct drm_dp_vsc_sdp {
- 	enum dp_content_type content_type;
- };
- 
-+/**
-+ * struct drm_dp_as_sdp - drm DP Adaptive Sync SDP
-+ *
-+ * This structure represents a DP AS SDP of drm
-+ * It is based on DP 2.1 spec [Table 2-126:  Adaptive-Sync SDP Header Bytes] and
-+ * [Table 2-127: Adaptive-Sync SDP Payload for DB0 through DB8]
-+ *
-+ * @sdp_type: secondary-data packet type
-+ * @length: number of valid data bytes
-+ * @vmin: minimum vtotal
-+ * @vmax: maximum vtotal
-+ * @duration_incr_ms: Successive frame duration increase
-+ * @duration_decr_ms: Successive frame duration decrease
-+ * @operation_mode: Adaptive Sync Operation Mode
-+ */
-+
-+struct drm_dp_as_sdp {
-+	unsigned char sdp_type;
-+	unsigned char revision;
-+	unsigned char length;
-+	int vtotal;
-+	int target_rr;
-+	int duration_incr_ms;
-+	int duration_decr_ms;
-+	int operation_mode;
-+};
-+
-+void drm_dp_as_sdp_log(struct drm_printer *p,
-+		       const struct drm_dp_as_sdp *as_sdp);
-+
- void drm_dp_vsc_sdp_log(const char *level, struct device *dev,
- 			const struct drm_dp_vsc_sdp *vsc);
- 
+Matt
 
-From patchwork Tue Dec 19 08:53:42 2023
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Subject: [2/3] drm/i915/dp: Add Read/Write support for Adaptive Sync SDP
-From: Mitul Golani <mitulkumar.ajitkumar.golani@intel.com>
-X-Patchwork-Id: 572508
-Message-Id: <20231219085343.1211864-3-mitulkumar.ajitkumar.golani@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Cc: jani.nikula@intel.com
-Date: Tue, 19 Dec 2023 14:23:42 +0530
+> diff --git a/drivers/gpu/drm/i915/display/intel_vbt_defs.h b/drivers/gpu/drm/i915/display/intel_vbt_defs.h
+> index a9f44abfc9fc..648934fcd123 100644
+> --- a/drivers/gpu/drm/i915/display/intel_vbt_defs.h
+> +++ b/drivers/gpu/drm/i915/display/intel_vbt_defs.h
+> @@ -485,6 +485,7 @@ struct child_device_config {
+>  	u8 hdmi_iboost_level:4;					/* 196+ */
+>  	u8 dp_max_link_rate:3;					/* 216+ */
+>  	u8 dp_max_link_rate_reserved:5;				/* 216+ */
+> +	u8 efp_index;						/* 256+ */
+>  } __packed;
+>  
+>  struct bdb_general_definitions {
+> -- 
+> 2.39.2
+> 
 
-Add the necessary structures and functions to handle reading and
-unpacking Adaptive Sync Secondary Data Packets. Also add support
-to write and pack AS SDP.
-
---v2:
-- Correct use of REG_BIT and REG_GENMASK. [Jani]
-- Use as_sdp instead of async. [Jani]
-- Remove unrelated comments and changes. [Jani]
-- Correct code indent. [Jani]
-
-Signed-off-by: Mitul Golani <mitulkumar.ajitkumar.golani@intel.com>
----
- drivers/gpu/drm/i915/display/intel_dp.c   | 95 ++++++++++++++++++++++-
- drivers/gpu/drm/i915/display/intel_hdmi.c | 12 ++-
- drivers/gpu/drm/i915/i915_reg.h           |  6 ++
- include/drm/display/drm_dp_helper.h       |  3 +
- 4 files changed, 112 insertions(+), 4 deletions(-)
-
-diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
-index 3b2482bf683f..5dee50f812c6 100644
---- a/drivers/gpu/drm/i915/display/intel_dp.c
-+++ b/drivers/gpu/drm/i915/display/intel_dp.c
-@@ -94,7 +94,6 @@
- #define INTEL_DP_RESOLUTION_STANDARD	(2 << INTEL_DP_RESOLUTION_SHIFT_MASK)
- #define INTEL_DP_RESOLUTION_FAILSAFE	(3 << INTEL_DP_RESOLUTION_SHIFT_MASK)
- 
--
- /* Constants for DP DSC configurations */
- static const u8 valid_dsc_bpp[] = {6, 8, 10, 12, 15};
- 
-@@ -4110,6 +4109,34 @@ intel_dp_needs_vsc_sdp(const struct intel_crtc_state *crtc_state,
- 	return false;
- }
- 
-+static ssize_t intel_dp_as_sdp_pack(const struct drm_dp_as_sdp *as_sdp,
-+				    struct dp_sdp *sdp, size_t size)
-+{
-+	size_t length = sizeof(struct dp_sdp);
-+
-+	if (size < length)
-+		return -ENOSPC;
-+
-+	memset(sdp, 0, size);
-+
-+	/* Prepare AS (Adaptive Sync) SDP Header */
-+	sdp->sdp_header.HB0 = 0;
-+	sdp->sdp_header.HB1 = as_sdp->sdp_type;
-+	sdp->sdp_header.HB2 = 0x02;
-+	sdp->sdp_header.HB3 = as_sdp->length;
-+
-+	/* Fill AS (Adaptive Sync) SDP Payload */
-+	sdp->db[1] = 0x0;
-+	sdp->db[1] = as_sdp->vtotal & 0xFF;
-+	sdp->db[2] = (as_sdp->vtotal >> 8) & 0xF;
-+	sdp->db[3] = 0x0;
-+	sdp->db[4] = 0x0;
-+	sdp->db[7] = 0x0;
-+	sdp->db[8] = 0x0;
-+
-+	return length;
-+}
-+
- static ssize_t intel_dp_vsc_sdp_pack(const struct drm_dp_vsc_sdp *vsc,
- 				     struct dp_sdp *sdp, size_t size)
- {
-@@ -4277,6 +4304,10 @@ static void intel_write_dp_sdp(struct intel_encoder *encoder,
- 							       &crtc_state->infoframes.drm.drm,
- 							       &sdp, sizeof(sdp));
- 		break;
-+	case DP_SDP_ADAPTIVE_SYNC:
-+		len = intel_dp_as_sdp_pack(&crtc_state->infoframes.as_sdp, &sdp,
-+					   sizeof(sdp));
-+		break;
- 	default:
- 		MISSING_CASE(type);
- 		return;
-@@ -4315,7 +4346,8 @@ void intel_dp_set_infoframes(struct intel_encoder *encoder,
- 	i915_reg_t reg = HSW_TVIDEO_DIP_CTL(crtc_state->cpu_transcoder);
- 	u32 dip_enable = VIDEO_DIP_ENABLE_AVI_HSW | VIDEO_DIP_ENABLE_GCP_HSW |
- 			 VIDEO_DIP_ENABLE_VS_HSW | VIDEO_DIP_ENABLE_GMP_HSW |
--			 VIDEO_DIP_ENABLE_SPD_HSW | VIDEO_DIP_ENABLE_DRM_GLK;
-+			 VIDEO_DIP_ENABLE_SPD_HSW | VIDEO_DIP_ENABLE_DRM_GLK |
-+			 VIDEO_DIP_ENABLE_AS_HSW;
- 	u32 val = intel_de_read(dev_priv, reg) & ~dip_enable;
- 
- 	/* TODO: Sanitize DSC enabling wrt. intel_dsc_dp_pps_write(). */
-@@ -4339,6 +4371,40 @@ void intel_dp_set_infoframes(struct intel_encoder *encoder,
- 	intel_write_dp_sdp(encoder, crtc_state, HDMI_PACKET_TYPE_GAMUT_METADATA);
- }
- 
-+static
-+int intel_dp_as_sdp_unpack(struct drm_dp_as_sdp *as_sdp,
-+			   const void *buffer, size_t size)
-+{
-+	const struct dp_sdp *sdp = buffer;
-+
-+	if (size < sizeof(struct dp_sdp))
-+		return -EINVAL;
-+
-+	memset(as_sdp, 0, sizeof(*as_sdp));
-+
-+	if (sdp->sdp_header.HB0 != 0)
-+		return -EINVAL;
-+
-+	if (sdp->sdp_header.HB1 != DP_SDP_ADAPTIVE_SYNC)
-+		return -EINVAL;
-+
-+	if (sdp->sdp_header.HB2 != 0x02)
-+		return -EINVAL;
-+
-+	if ((sdp->sdp_header.HB3 & 0x3F) != 9)
-+		return -EINVAL;
-+
-+	if ((sdp->db[0] & AS_SDP_OP_MODE) != 0x0)
-+		return -EINVAL;
-+
-+	as_sdp->vtotal = ((u64)sdp->db[2] << 32) | (u64)sdp->db[1];
-+	as_sdp->target_rr = 0;
-+	as_sdp->duration_incr_ms = 0;
-+	as_sdp->duration_decr_ms = 0;
-+
-+	return 0;
-+}
-+
- static int intel_dp_vsc_sdp_unpack(struct drm_dp_vsc_sdp *vsc,
- 				   const void *buffer, size_t size)
- {
-@@ -4409,6 +4475,27 @@ static int intel_dp_vsc_sdp_unpack(struct drm_dp_vsc_sdp *vsc,
- 	return 0;
- }
- 
-+static int
-+intel_read_dp_metadata_infoframe_as_sdp(struct intel_encoder *encoder,
-+					struct intel_crtc_state *crtc_state,
-+					struct drm_dp_as_sdp *as_sdp)
-+{
-+	struct intel_digital_port *dig_port = enc_to_dig_port(encoder);
-+	struct drm_i915_private *dev_priv = to_i915(encoder->base.dev);
-+	unsigned int type = DP_SDP_ADAPTIVE_SYNC;
-+	struct dp_sdp sdp = {};
-+	int ret;
-+
-+	dig_port->read_infoframe(encoder, crtc_state, type, &sdp,
-+				 sizeof(sdp));
-+
-+	ret = intel_dp_as_sdp_unpack(as_sdp, &sdp, sizeof(sdp));
-+	if (ret)
-+		drm_dbg_kms(&dev_priv->drm, "Failed to unpack DP AS SDP\n");
-+
-+	return ret;
-+}
-+
- static int
- intel_dp_hdr_metadata_infoframe_sdp_unpack(struct hdmi_drm_infoframe *drm_infoframe,
- 					   const void *buffer, size_t size)
-@@ -4519,6 +4606,10 @@ void intel_read_dp_sdp(struct intel_encoder *encoder,
- 		intel_read_dp_hdr_metadata_infoframe_sdp(encoder, crtc_state,
- 							 &crtc_state->infoframes.drm.drm);
- 		break;
-+	case DP_SDP_ADAPTIVE_SYNC:
-+		intel_read_dp_metadata_infoframe_as_sdp(encoder, crtc_state,
-+							&crtc_state->infoframes.as_sdp);
-+		break;
- 	default:
- 		MISSING_CASE(type);
- 		break;
-diff --git a/drivers/gpu/drm/i915/display/intel_hdmi.c b/drivers/gpu/drm/i915/display/intel_hdmi.c
-index 39e4f5f7c817..ebc12ec102f0 100644
---- a/drivers/gpu/drm/i915/display/intel_hdmi.c
-+++ b/drivers/gpu/drm/i915/display/intel_hdmi.c
-@@ -136,6 +136,8 @@ static u32 hsw_infoframe_enable(unsigned int type)
- 		return VIDEO_DIP_ENABLE_GMP_HSW;
- 	case DP_SDP_VSC:
- 		return VIDEO_DIP_ENABLE_VSC_HSW;
-+	case DP_SDP_ADAPTIVE_SYNC:
-+		return VIDEO_DIP_ENABLE_AS_HSW;
- 	case DP_SDP_PPS:
- 		return VDIP_ENABLE_PPS;
- 	case HDMI_INFOFRAME_TYPE_AVI:
-@@ -163,6 +165,8 @@ hsw_dip_data_reg(struct drm_i915_private *dev_priv,
- 		return HSW_TVIDEO_DIP_GMP_DATA(cpu_transcoder, i);
- 	case DP_SDP_VSC:
- 		return HSW_TVIDEO_DIP_VSC_DATA(cpu_transcoder, i);
-+	case DP_SDP_ADAPTIVE_SYNC:
-+		return HSW_TVIDEO_DIP_AS_SDP_DATA(cpu_transcoder, i);
- 	case DP_SDP_PPS:
- 		return ICL_VIDEO_DIP_PPS_DATA(cpu_transcoder, i);
- 	case HDMI_INFOFRAME_TYPE_AVI:
-@@ -185,6 +189,8 @@ static int hsw_dip_data_size(struct drm_i915_private *dev_priv,
- 	switch (type) {
- 	case DP_SDP_VSC:
- 		return VIDEO_DIP_VSC_DATA_SIZE;
-+	case DP_SDP_ADAPTIVE_SYNC:
-+		return VIDEO_DIP_ASYNC_DATA_SIZE;
- 	case DP_SDP_PPS:
- 		return VIDEO_DIP_PPS_DATA_SIZE;
- 	case HDMI_PACKET_TYPE_GAMUT_METADATA:
-@@ -555,7 +561,8 @@ static u32 hsw_infoframes_enabled(struct intel_encoder *encoder,
- 
- 	mask = (VIDEO_DIP_ENABLE_VSC_HSW | VIDEO_DIP_ENABLE_AVI_HSW |
- 		VIDEO_DIP_ENABLE_GCP_HSW | VIDEO_DIP_ENABLE_VS_HSW |
--		VIDEO_DIP_ENABLE_GMP_HSW | VIDEO_DIP_ENABLE_SPD_HSW);
-+		VIDEO_DIP_ENABLE_GMP_HSW | VIDEO_DIP_ENABLE_SPD_HSW |
-+		VIDEO_DIP_ENABLE_AS_HSW);
- 
- 	if (DISPLAY_VER(dev_priv) >= 10)
- 		mask |= VIDEO_DIP_ENABLE_DRM_GLK;
-@@ -567,6 +574,7 @@ static const u8 infoframe_type_to_idx[] = {
- 	HDMI_PACKET_TYPE_GENERAL_CONTROL,
- 	HDMI_PACKET_TYPE_GAMUT_METADATA,
- 	DP_SDP_VSC,
-+	DP_SDP_ADAPTIVE_SYNC,
- 	HDMI_INFOFRAME_TYPE_AVI,
- 	HDMI_INFOFRAME_TYPE_SPD,
- 	HDMI_INFOFRAME_TYPE_VENDOR,
-@@ -1209,7 +1217,7 @@ static void hsw_set_infoframes(struct intel_encoder *encoder,
- 	val &= ~(VIDEO_DIP_ENABLE_VSC_HSW | VIDEO_DIP_ENABLE_AVI_HSW |
- 		 VIDEO_DIP_ENABLE_GCP_HSW | VIDEO_DIP_ENABLE_VS_HSW |
- 		 VIDEO_DIP_ENABLE_GMP_HSW | VIDEO_DIP_ENABLE_SPD_HSW |
--		 VIDEO_DIP_ENABLE_DRM_GLK);
-+		 VIDEO_DIP_ENABLE_DRM_GLK | VIDEO_DIP_ENABLE_AS_HSW);
- 
- 	if (!enable) {
- 		intel_de_write(dev_priv, reg, val);
-diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_reg.h
-index 27dc903f0553..b13cddc0f09d 100644
---- a/drivers/gpu/drm/i915/i915_reg.h
-+++ b/drivers/gpu/drm/i915/i915_reg.h
-@@ -2312,6 +2312,7 @@
-  * (Haswell and newer) to see which VIDEO_DIP_DATA byte corresponds to each byte
-  * of the infoframe structure specified by CEA-861. */
- #define   VIDEO_DIP_DATA_SIZE	32
-+#define   VIDEO_DIP_ASYNC_DATA_SIZE	36
- #define   VIDEO_DIP_GMP_DATA_SIZE	36
- #define   VIDEO_DIP_VSC_DATA_SIZE	36
- #define   VIDEO_DIP_PPS_DATA_SIZE	132
-@@ -2344,6 +2345,7 @@
- #define   VSC_DIP_HW_DATA_SW_HEA	(2 << 25)
- #define   VSC_DIP_SW_HEA_DATA		(3 << 25)
- #define   VDIP_ENABLE_PPS		(1 << 24)
-+#define   VIDEO_DIP_ENABLE_AS_HSW	REG_BIT(23)
- #define   VIDEO_DIP_ENABLE_VSC_HSW	(1 << 20)
- #define   VIDEO_DIP_ENABLE_GCP_HSW	(1 << 16)
- #define   VIDEO_DIP_ENABLE_AVI_HSW	(1 << 12)
-@@ -5038,6 +5040,7 @@
- #define _HSW_VIDEO_DIP_SPD_DATA_A	0x602A0
- #define _HSW_VIDEO_DIP_GMP_DATA_A	0x602E0
- #define _HSW_VIDEO_DIP_VSC_DATA_A	0x60320
-+#define	_HSW_VIDEO_DIP_ASYNC_DATA_A	0x60484
- #define _GLK_VIDEO_DIP_DRM_DATA_A	0x60440
- #define _HSW_VIDEO_DIP_AVI_ECC_A	0x60240
- #define _HSW_VIDEO_DIP_VS_ECC_A		0x60280
-@@ -5052,6 +5055,7 @@
- #define _HSW_VIDEO_DIP_SPD_DATA_B	0x612A0
- #define _HSW_VIDEO_DIP_GMP_DATA_B	0x612E0
- #define _HSW_VIDEO_DIP_VSC_DATA_B	0x61320
-+#define	_HSW_VIDEO_DIP_ASYNC_DATA_B	0x61484
- #define _GLK_VIDEO_DIP_DRM_DATA_B	0x61440
- #define _HSW_VIDEO_DIP_BVI_ECC_B	0x61240
- #define _HSW_VIDEO_DIP_VS_ECC_B		0x61280
-@@ -5078,6 +5082,8 @@
- #define HSW_TVIDEO_DIP_SPD_DATA(trans, i)	_MMIO_TRANS2(trans, _HSW_VIDEO_DIP_SPD_DATA_A + (i) * 4)
- #define HSW_TVIDEO_DIP_GMP_DATA(trans, i)	_MMIO_TRANS2(trans, _HSW_VIDEO_DIP_GMP_DATA_A + (i) * 4)
- #define HSW_TVIDEO_DIP_VSC_DATA(trans, i)	_MMIO_TRANS2(trans, _HSW_VIDEO_DIP_VSC_DATA_A + (i) * 4)
-+#define HSW_TVIDEO_DIP_AS_SDP_DATA(trans, i)	_MMIO_TRANS2(trans,\
-+							     _HSW_VIDEO_DIP_ASYNC_DATA_A + (i) * 4)
- #define GLK_TVIDEO_DIP_DRM_DATA(trans, i)	_MMIO_TRANS2(trans, _GLK_VIDEO_DIP_DRM_DATA_A + (i) * 4)
- #define ICL_VIDEO_DIP_PPS_DATA(trans, i)	_MMIO_TRANS2(trans, _ICL_VIDEO_DIP_PPS_DATA_A + (i) * 4)
- #define ICL_VIDEO_DIP_PPS_ECC(trans, i)		_MMIO_TRANS2(trans, _ICL_VIDEO_DIP_PPS_ECC_A + (i) * 4)
-diff --git a/include/drm/display/drm_dp_helper.h b/include/drm/display/drm_dp_helper.h
-index ab75b421fdf8..076c4aa6a5f3 100644
---- a/include/drm/display/drm_dp_helper.h
-+++ b/include/drm/display/drm_dp_helper.h
-@@ -838,6 +838,9 @@ int drm_dp_pcon_convert_rgb_to_ycbcr(struct drm_dp_aux *aux, u8 color_spc);
- #define DRM_DP_BW_OVERHEAD_FEC		BIT(3)
- #define DRM_DP_BW_OVERHEAD_DSC		BIT(4)
- 
-+#define AS_SDP_ENABLE				BIT(2)
-+#define AS_SDP_OP_MODE				GENMASK(1, 0)
-+
- int drm_dp_bw_overhead(int lane_count, int hactive,
- 		       int dsc_slice_count,
- 		       int bpp_x16, unsigned long flags);
-
-From patchwork Tue Dec 19 08:53:43 2023
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Subject: [3/3] drm/i915/display: Compute and Enable AS SDP
-From: Mitul Golani <mitulkumar.ajitkumar.golani@intel.com>
-X-Patchwork-Id: 572509
-Message-Id: <20231219085343.1211864-4-mitulkumar.ajitkumar.golani@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Cc: jani.nikula@intel.com
-Date: Tue, 19 Dec 2023 14:23:43 +0530
-
-Add necessary functions definitions to enable
-and compute AS SDP data. The new `intel_dp_compute_as_sdp`
-function computes AS SDP values based on the display
-configuration, ensuring proper handling of Variable Refresh
-Rate (VRR).
-
---v2:
-- Add DP_SDP_ADAPTIVE_SYNC to infoframe_type_to_idx().[Ankit]
-- separate patch for intel_read/write_dp_sdp [Ankit].
-- _HSW_VIDEO_DIP_ASYNC_DATA_A should be from ADL onward [Ankit]
-- To fix indentation [Ankit]
-
---v3:
-- Add VIDEO_DIP_ENABLE_AS_HSW flag to intel_dp_set_infoframes.
-
---v4:
-- Add HAS_VRR check before write as sdp.
-
---v5:
-- Add missed HAS_VRR check before read as sdp.
-
-Signed-off-by: Mitul Golani <mitulkumar.ajitkumar.golani@intel.com>
----
- drivers/gpu/drm/i915/display/intel_ddi.c |  3 +++
- drivers/gpu/drm/i915/display/intel_dp.c  | 23 +++++++++++++++++++++++
- 2 files changed, 26 insertions(+)
-
-diff --git a/drivers/gpu/drm/i915/display/intel_ddi.c b/drivers/gpu/drm/i915/display/intel_ddi.c
-index 38f28c480b38..ed5afaa0ce5d 100644
---- a/drivers/gpu/drm/i915/display/intel_ddi.c
-+++ b/drivers/gpu/drm/i915/display/intel_ddi.c
-@@ -3918,6 +3918,9 @@ static void intel_ddi_get_config(struct intel_encoder *encoder,
- 	intel_read_dp_sdp(encoder, pipe_config, HDMI_PACKET_TYPE_GAMUT_METADATA);
- 	intel_read_dp_sdp(encoder, pipe_config, DP_SDP_VSC);
- 
-+	if ((DISPLAY_VER(dev_priv) >= 13) && HAS_VRR(dev_priv))
-+		intel_read_dp_sdp(encoder, pipe_config, DP_SDP_ADAPTIVE_SYNC);
-+
- 	intel_psr_get_config(encoder, pipe_config);
- 
- 	intel_audio_codec_get_config(encoder, pipe_config);
-diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
-index 5dee50f812c6..0747b5bda5c8 100644
---- a/drivers/gpu/drm/i915/display/intel_dp.c
-+++ b/drivers/gpu/drm/i915/display/intel_dp.c
-@@ -2630,6 +2630,25 @@ static void intel_dp_compute_vsc_sdp(struct intel_dp *intel_dp,
- 					 &crtc_state->infoframes.vsc);
- }
- 
-+static void intel_dp_compute_as_sdp(struct intel_dp *intel_dp,
-+				    struct intel_crtc_state *crtc_state,
-+				    const struct drm_connector_state *conn_state)
-+{
-+	struct drm_dp_as_sdp *as_sdp = &crtc_state->infoframes.as_sdp;
-+	struct intel_connector *connector = intel_dp->attached_connector;
-+	const struct drm_display_mode *adjusted_mode =
-+		&crtc_state->hw.adjusted_mode;
-+	int vrefresh = drm_mode_vrefresh(adjusted_mode);
-+
-+	if (!intel_vrr_is_in_range(connector, vrefresh))
-+		return;
-+
-+	crtc_state->infoframes.enable |= intel_hdmi_infoframe_enable(DP_SDP_ADAPTIVE_SYNC);
-+	as_sdp->sdp_type = DP_SDP_ADAPTIVE_SYNC;
-+	as_sdp->length = 0x9;
-+	as_sdp->vtotal = adjusted_mode->vtotal;
-+}
-+
- void intel_dp_compute_psr_vsc_sdp(struct intel_dp *intel_dp,
- 				  const struct intel_crtc_state *crtc_state,
- 				  const struct drm_connector_state *conn_state,
-@@ -2956,6 +2975,7 @@ intel_dp_compute_config(struct intel_encoder *encoder,
- 		g4x_dp_set_clock(encoder, pipe_config);
- 
- 	intel_vrr_compute_config(pipe_config, conn_state);
-+	intel_dp_compute_as_sdp(intel_dp, pipe_config, conn_state);
- 	intel_psr_compute_config(intel_dp, pipe_config, conn_state);
- 	intel_dp_drrs_compute_config(connector, pipe_config, link_bpp_x16);
- 	intel_dp_compute_vsc_sdp(intel_dp, pipe_config, conn_state);
-@@ -4368,6 +4388,9 @@ void intel_dp_set_infoframes(struct intel_encoder *encoder,
- 	if (!crtc_state->has_psr)
- 		intel_write_dp_sdp(encoder, crtc_state, DP_SDP_VSC);
- 
-+	if ((DISPLAY_VER(dev_priv) >= 13) && HAS_VRR(dev_priv))
-+		intel_write_dp_sdp(encoder, crtc_state, DP_SDP_ADAPTIVE_SYNC);
-+
- 	intel_write_dp_sdp(encoder, crtc_state, HDMI_PACKET_TYPE_GAMUT_METADATA);
- }
- 
+-- 
+Matt Roper
+Graphics Software Engineer
+Linux GPU Platform Enablement
+Intel Corporation
