@@ -2,48 +2,53 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 48C79850C96
-	for <lists+intel-gfx@lfdr.de>; Mon, 12 Feb 2024 02:26:58 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 317FA850D47
+	for <lists+intel-gfx@lfdr.de>; Mon, 12 Feb 2024 05:58:28 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E457410E95D;
-	Mon, 12 Feb 2024 01:26:55 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 86FE610E6B4;
+	Mon, 12 Feb 2024 04:58:24 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; secure) header.d=canb.auug.org.au header.i=@canb.auug.org.au header.b="uPvcybLy";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="F5eOCrvG";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from gandalf.ozlabs.org (gandalf.ozlabs.org [150.107.74.76])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EB71510E950;
- Mon, 12 Feb 2024 01:26:54 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canb.auug.org.au;
- s=201702; t=1707701213;
- bh=c1V4UZpnkpJEnpxJR1UunCWkI7w4Qm3h7J75TTX31co=;
- h=Date:From:To:Cc:Subject:From;
- b=uPvcybLyD/abO7VVspmzRmsFWwdXWM8P+wCqGlaKKb1xUaOPzGe4l0MgFKb1lHzpw
- gXHf4uQaTKOLs0BiafO5Kas/TP8DxE5LFRUSIcWoCDGu5fnek8DZpKiTctt4wnO7a2
- vs4FlsYvDH6dmpTJprW9P8xrzyHaSqLaeJiSGSAaR1zAAqoqGQCUGVno647kuNPZQG
- 6zfIVWRlQHsPYXP/RQISASNgJTPXBSwe7R+dJ6gm9hJ02d045OsN3RfiETZHAYcBTX
- jWcZLibvBN8Lh3a2MJOpB57BxvbIWIInuILj3lpK49wnXlW0mz3LOrEJJ87gcbkBbB
- z+vmZ6ZljLqBQ==
-Received: from authenticated.ozlabs.org (localhost [127.0.0.1])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
- (No client certificate requested)
- by mail.ozlabs.org (Postfix) with ESMTPSA id 4TY6Hw6s7Qz4wcH;
- Mon, 12 Feb 2024 12:26:52 +1100 (AEDT)
-Date: Mon, 12 Feb 2024 12:26:52 +1100
-From: Stephen Rothwell <sfr@canb.auug.org.au>
-To: Daniel Vetter <daniel.vetter@ffwll.ch>
-Cc: Jani Nikula <jani.nikula@intel.com>, Dave Airlie <airlied@redhat.com>,
- Intel Graphics <intel-gfx@lists.freedesktop.org>, DRI
- <dri-devel@lists.freedesktop.org>, Linux Kernel Mailing List
- <linux-kernel@vger.kernel.org>, Linux Next Mailing List
- <linux-next@vger.kernel.org>
-Subject: linux-next: build failure after merge of the drm-misc tree
-Message-ID: <20240212122652.0961dc7c@canb.auug.org.au>
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 041D310E6B4
+ for <intel-gfx@lists.freedesktop.org>; Mon, 12 Feb 2024 04:58:21 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1707713902; x=1739249902;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=RFJtXhLAfFu0sOmS19jV/8esFNnbrnCJw6a1NM2DbBo=;
+ b=F5eOCrvG2biMyInGwLDc+3FFjKfIx1TNYZ0c75lzDrcyVzkJzwjjClp0
+ uUCTbEtP+E2ukKYGHsuaTsG9T8jR++/4W6VFRhvt/KZJeX7D9FS/X6HdV
+ 9wGrJ/ziKyX4fPxA1jctfBtib/1DwbJdSqNrzvK1z93Bni0AzHoBpvwJF
+ WjgOdYb1P1nGk0vLHS98DwjaftSw3x9BlM+YGUBC3JIV0pEKj+swnd8j7
+ 69kboCXQpOWM9brGRj2YmUd9+POcZPZIyWi+Ngh5ncPuCL0Fbq5O8FTSJ
+ xStyfK/kjouG/60O8A6SGHXMn2kgB1Yn4Y4YHYl22WDve+ljSA2HURCF9 w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10981"; a="27119000"
+X-IronPort-AV: E=Sophos;i="6.05,262,1701158400"; d="scan'208";a="27119000"
+Received: from orviesa004.jf.intel.com ([10.64.159.144])
+ by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 Feb 2024 20:58:20 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.05,262,1701158400"; 
+   d="scan'208";a="7245612"
+Received: from sinjan-super-server.iind.intel.com ([10.145.169.153])
+ by orviesa004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 Feb 2024 20:58:19 -0800
+From: Sk Anirban <sk.anirban@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Cc: anshuman.gupta@intel.com, karthik.poosa@intel.com,
+ Anirban Sk <sk.anirban@intel.com>
+Subject: [PATCH v3] drm/i915/selftests: Increasing the sleep time for
+ live_rc6_manual
+Date: Mon, 12 Feb 2024 10:37:38 +0530
+Message-Id: <20240212050738.1162198-1-sk.anirban@intel.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Type: multipart/signed; boundary="Sig_/eFcTj/wAxAvOE7aVXOUTEDZ";
- protocol="application/pgp-signature"; micalg=pgp-sha256
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,49 +64,39 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---Sig_/eFcTj/wAxAvOE7aVXOUTEDZ
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: quoted-printable
+From: Anirban Sk <sk.anirban@intel.com>
 
-Hi all,
+Sometimes gt_pm live_rc6_manual selftest fails due to no power being
+measured for the rc6 disabled period. Therefore increasing the rc6 disable
+period from 250ms to 1000ms to rule out such sporadic failure.
 
-After merging the drm-misc tree, today's linux-next build (x86_64
-allmodconfig) failed like this:
+v3 : More descriptive and improved commit message (Anshuman)
 
-drivers/gpu/drm/tests/drm_mm_test.c: In function 'drm_test_mm_debug':
-drivers/gpu/drm/tests/drm_mm_test.c:191:32: error: implicit declaration of =
-function 'drm_debug_printer'; did you mean 'drm_dbg_printer'? [-Werror=3Dim=
-plicit-function-declaration]
-  191 |         struct drm_printer p =3D drm_debug_printer(test->name);
-      |                                ^~~~~~~~~~~~~~~~~
-      |                                drm_dbg_printer
-drivers/gpu/drm/tests/drm_mm_test.c:191:32: error: invalid initializer
-cc1: all warnings being treated as errors
+Signed-off-by: Anirban Sk <sk.anirban@intel.com>
+Reviewed-by: Anshuman Gupta <anshuman.gupta@intel.com>
+---
+ drivers/gpu/drm/i915/gt/selftest_rc6.c | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-Caused by commit
+diff --git a/drivers/gpu/drm/i915/gt/selftest_rc6.c b/drivers/gpu/drm/i915/gt/selftest_rc6.c
+index a7189c2d660c..1aa1446c8fb0 100644
+--- a/drivers/gpu/drm/i915/gt/selftest_rc6.c
++++ b/drivers/gpu/drm/i915/gt/selftest_rc6.c
+@@ -62,12 +62,12 @@ int live_rc6_manual(void *arg)
+ 
+ 	dt = ktime_get();
+ 	rc0_power = librapl_energy_uJ();
+-	msleep(250);
++	msleep(1000);
+ 	rc0_power = librapl_energy_uJ() - rc0_power;
+ 	dt = ktime_sub(ktime_get(), dt);
+ 	res[1] = rc6_residency(rc6);
+ 	if ((res[1] - res[0]) >> 10) {
+-		pr_err("RC6 residency increased by %lldus while disabled for 250ms!\n",
++		pr_err("RC6 residency increased by %lldus while disabled for 1000ms!\n",
+ 		       (res[1] - res[0]) >> 10);
+ 		err = -EINVAL;
+ 		goto out_unlock;
+-- 
+2.25.1
 
-  e154c4fc7bf2 ("drm: remove drm_debug_printer in favor of drm_dbg_printer")
-
-I have used the drm-misc tree from next-20240209 for today.
-
---=20
-Cheers,
-Stephen Rothwell
-
---Sig_/eFcTj/wAxAvOE7aVXOUTEDZ
-Content-Type: application/pgp-signature
-Content-Description: OpenPGP digital signature
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAEBCAAdFiEENIC96giZ81tWdLgKAVBC80lX0GwFAmXJc9wACgkQAVBC80lX
-0Gz6pAf+NHxW65EDQac00DilG4U3sGl8cumRDWWGwm1q9bliw+IeN/8bmbPVx7W9
-ct+yUcZtez7TUdirEqyMl/I/m1TNZkiIPQQu59v/KFP+AUBYRrbbHySIxaKT4osI
-S/g5hbwlyROP6tY0afZAbgQSv+EneMa0JzoAeF2oLcTButaIq5Aoo4s7fvfcWHmv
-YEqMLiVS2VAG/oG60N7veEtw7u2BR9zMvXZ32CZ7xNP69YpRWgEnArJddJcNIrHj
-JCjhNvP0z5954qh1hMu5w3qjVYGn/4gtj0DrjkJxjbwBNpUDeImzb3jUgIBD1cIQ
-ezgYJ/CPaS7jM7gYgqTUyKueVvT/RA==
-=mWi8
------END PGP SIGNATURE-----
-
---Sig_/eFcTj/wAxAvOE7aVXOUTEDZ--
