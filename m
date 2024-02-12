@@ -2,53 +2,52 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id AC27E851BDD
-	for <lists+intel-gfx@lfdr.de>; Mon, 12 Feb 2024 18:43:33 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6CDD3851C16
+	for <lists+intel-gfx@lfdr.de>; Mon, 12 Feb 2024 18:52:22 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3470110EE19;
-	Mon, 12 Feb 2024 17:43:32 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9BB0510EE4E;
+	Mon, 12 Feb 2024 17:52:20 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="cHm82Bl7";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="cppbbcEj";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 63E6410EC7D
- for <intel-gfx@lists.freedesktop.org>; Mon, 12 Feb 2024 17:43:28 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 57A8410EE4F
+ for <intel-gfx@lists.freedesktop.org>; Mon, 12 Feb 2024 17:52:19 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1707759808; x=1739295808;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=N7qAhk5wI1WxcwJ3/BXNXcw83SfwxY52ahBUDq3zye0=;
- b=cHm82Bl7vTEWBLvMsMIPAup/hTz06C+UO/m2LOilZP4MPjVxL7gnTIoi
- u3gq3MZPzYtSRUsnWWwksIR1tPEzf2ar9nzAFGlpt7QU452ps+wOtFAJ6
- g0gRg9MtChqX5V6IqesDrklvRgSd5sPLxzm8Fs+iRIjrBgU/5nf7XqvUO
- mYjWi9mgpVrUNqaoXnrFfVmvYOiZRbSM3Dq8yff0rYFVmHJoPRx7ASKgQ
- /6hJmZAoDWY/p4VH5qr7v3lQ/X4WlJUSGCfwTW0QEaCC75GtJOet1H4wP
- CAtVD7ivxzc9/VlbbD7f4W2nRSuYV6DUjO5VV6xHQ7R1Rcu5GEO2pI+oU Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10982"; a="1872008"
+ t=1707760339; x=1739296339;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=jlxElih44f68Z4AkfTT0DGgBRk1/DCNyAD+0SNMsZrA=;
+ b=cppbbcEj+yjp+2tSl7Nvfz+s+Mb3kPXMhjicdDTj6lGoQlZIiDuojJaN
+ xoYwkLV1d/I9nm0TJ/Ca2gjMGEb8wFFfmW2jYOqRgBs7+7FEjpRxpYlJ2
+ ZVmAJdK3pdiqvvhMSkVXuODVEZavRxb0a9j+ZKgdigrc111iIEdaTnRVo
+ 8e/hXOJLjZnu0WIWWUH7xuEIsKjkPP3bQCuOFHer4wpg5IOZ9KnP6jJjf
+ KQzGiP/vON6jTNNH0K7ZNLCzkvXXI//tCodYufZ1WMVBIOD+DOaQ1eRlL
+ tZwp/hSFuMv8z8J9geuP1MmepEY6JufdRnSygIBq5OIiD2ubEi/ptlUFh w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10982"; a="1629532"
 X-IronPort-AV: E=Sophos;i="6.06,155,1705392000"; 
-   d="scan'208";a="1872008"
-Received: from fmviesa007.fm.intel.com ([10.60.135.147])
- by fmvoesa109.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Feb 2024 09:43:28 -0800
+   d="scan'208";a="1629532"
+Received: from orviesa001.jf.intel.com ([10.64.159.141])
+ by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 12 Feb 2024 09:52:19 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.06,155,1705392000"; 
-   d="scan'208";a="2595410"
-Received: from mgolanimitul-x299-ud4-pro.iind.intel.com ([10.190.239.114])
- by fmviesa007.fm.intel.com with ESMTP; 12 Feb 2024 09:43:27 -0800
-From: Mitul Golani <mitulkumar.ajitkumar.golani@intel.com>
+X-IronPort-AV: E=Sophos;i="6.06,155,1705392000"; d="scan'208";a="40114733"
+Received: from ideak-desk.fi.intel.com ([10.237.72.78])
+ by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 12 Feb 2024 09:52:18 -0800
+From: Imre Deak <imre.deak@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Cc: ankit.k.nautiyal@intel.com,
- Mitul Golani <mitulkumar.ajitkumar.golani@intel.com>
-Subject: [PATCH 4/4] drm/i915/display: Compute and Enable AS SDP
-Date: Mon, 12 Feb 2024 23:06:23 +0530
-Message-Id: <20240212173623.1464540-5-mitulkumar.ajitkumar.golani@intel.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20240212173623.1464540-1-mitulkumar.ajitkumar.golani@intel.com>
-References: <20240212173623.1464540-1-mitulkumar.ajitkumar.golani@intel.com>
+Cc: =?UTF-8?q?Jouni=20H=C3=B6gander?= <jouni.hogander@intel.com>
+Subject: [CI 1/2] drm/i915: Prevent HW access during init from SDVO TV
+ get_modes hook
+Date: Mon, 12 Feb 2024 19:52:36 +0200
+Message-Id: <20240212175237.2625812-1-imre.deak@intel.com>
+X-Mailer: git-send-email 2.39.2
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -65,95 +64,35 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Add necessary functions definitions to enable
-and compute AS SDP data. The new `intel_dp_compute_as_sdp`
-function computes AS SDP values based on the display
-configuration, ensuring proper handling of Variable Refresh
-Rate (VRR).
+Prevent accessing the HW from the SDVO/TV get_modes connector hook.
+Returning 0 from the hook will make the caller -
+drm_helper_probe_single_connector_modes() - return a default/EDID
+override mode list to users. This matches the case where
+intel_sdvo_get_tv_modes() fails to retrieve the current mode list due to
+a HW access failure.
 
---v2:
-- Add DP_SDP_ADAPTIVE_SYNC to infoframe_type_to_idx().[Ankit]
-- separate patch for intel_read/write_dp_sdp [Ankit].
-- _HSW_VIDEO_DIP_ASYNC_DATA_A should be from ADL onward [Ankit]
-- To fix indentation [Ankit]
+v2: Clarify the commit message wrt. which modes get_modes() returns. (Jouni)
 
---v3:
-- Add VIDEO_DIP_ENABLE_AS_HSW flag to intel_dp_set_infoframes.
-
---v4:
-- Add HAS_VRR check before write as sdp.
-
---v5:
-- Add missed HAS_VRR check before read as sdp.
-
-Signed-off-by: Mitul Golani <mitulkumar.ajitkumar.golani@intel.com>
+Signed-off-by: Imre Deak <imre.deak@intel.com>
+Reviewed-by: Jouni Högander <jouni.hogander@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_ddi.c |  3 +++
- drivers/gpu/drm/i915/display/intel_dp.c  | 23 +++++++++++++++++++++++
- 2 files changed, 26 insertions(+)
+ drivers/gpu/drm/i915/display/intel_sdvo.c | 3 +++
+ 1 file changed, 3 insertions(+)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_ddi.c b/drivers/gpu/drm/i915/display/intel_ddi.c
-index bea441590204..47dfe727e98a 100644
---- a/drivers/gpu/drm/i915/display/intel_ddi.c
-+++ b/drivers/gpu/drm/i915/display/intel_ddi.c
-@@ -3972,6 +3972,9 @@ static void intel_ddi_get_config(struct intel_encoder *encoder,
- 	intel_read_dp_sdp(encoder, pipe_config, HDMI_PACKET_TYPE_GAMUT_METADATA);
- 	intel_read_dp_sdp(encoder, pipe_config, DP_SDP_VSC);
+diff --git a/drivers/gpu/drm/i915/display/intel_sdvo.c b/drivers/gpu/drm/i915/display/intel_sdvo.c
+index 412c15d32f07e..c67605059aa3e 100644
+--- a/drivers/gpu/drm/i915/display/intel_sdvo.c
++++ b/drivers/gpu/drm/i915/display/intel_sdvo.c
+@@ -2312,6 +2312,9 @@ static int intel_sdvo_get_tv_modes(struct drm_connector *connector)
+ 	drm_dbg_kms(&i915->drm, "[CONNECTOR:%d:%s]\n",
+ 		    connector->base.id, connector->name);
  
-+	if ((DISPLAY_VER(dev_priv) >= 13) && HAS_VRR(dev_priv))
-+		intel_read_dp_sdp(encoder, pipe_config, DP_SDP_ADAPTIVE_SYNC);
++	if (!intel_display_driver_check_access(i915))
++		return 0;
 +
- 	intel_audio_codec_get_config(encoder, pipe_config);
- }
- 
-diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
-index 6e9180ce069a..7ecbe9f48847 100644
---- a/drivers/gpu/drm/i915/display/intel_dp.c
-+++ b/drivers/gpu/drm/i915/display/intel_dp.c
-@@ -2615,6 +2615,25 @@ static void intel_dp_compute_vsc_colorimetry(const struct intel_crtc_state *crtc
- 	vsc->content_type = DP_CONTENT_TYPE_NOT_DEFINED;
- }
- 
-+static void intel_dp_compute_as_sdp(struct intel_dp *intel_dp,
-+				    struct intel_crtc_state *crtc_state,
-+				    const struct drm_connector_state *conn_state)
-+{
-+	struct drm_dp_as_sdp *as_sdp = &crtc_state->infoframes.as_sdp;
-+	struct intel_connector *connector = intel_dp->attached_connector;
-+	const struct drm_display_mode *adjusted_mode =
-+		&crtc_state->hw.adjusted_mode;
-+	int vrefresh = drm_mode_vrefresh(adjusted_mode);
-+
-+	if (!intel_vrr_is_in_range(connector, vrefresh))
-+		return;
-+
-+	crtc_state->infoframes.enable |= intel_hdmi_infoframe_enable(DP_SDP_ADAPTIVE_SYNC);
-+	as_sdp->sdp_type = DP_SDP_ADAPTIVE_SYNC;
-+	as_sdp->length = 0x9;
-+	as_sdp->vtotal = adjusted_mode->vtotal;
-+}
-+
- static void intel_dp_compute_vsc_sdp(struct intel_dp *intel_dp,
- 				     struct intel_crtc_state *crtc_state,
- 				     const struct drm_connector_state *conn_state)
-@@ -2940,6 +2959,7 @@ intel_dp_compute_config(struct intel_encoder *encoder,
- 		g4x_dp_set_clock(encoder, pipe_config);
- 
- 	intel_vrr_compute_config(pipe_config, conn_state);
-+	intel_dp_compute_as_sdp(intel_dp, pipe_config, conn_state);
- 	intel_psr_compute_config(intel_dp, pipe_config, conn_state);
- 	intel_dp_drrs_compute_config(connector, pipe_config, link_bpp_x16);
- 	intel_dp_compute_vsc_sdp(intel_dp, pipe_config, conn_state);
-@@ -4325,6 +4345,9 @@ void intel_dp_set_infoframes(struct intel_encoder *encoder,
- 
- 	intel_write_dp_sdp(encoder, crtc_state, DP_SDP_VSC);
- 
-+	if ((DISPLAY_VER(dev_priv) >= 13) && HAS_VRR(dev_priv))
-+		intel_write_dp_sdp(encoder, crtc_state, DP_SDP_ADAPTIVE_SYNC);
-+
- 	intel_write_dp_sdp(encoder, crtc_state, HDMI_PACKET_TYPE_GAMUT_METADATA);
- }
- 
+ 	/*
+ 	 * Read the list of supported input resolutions for the selected TV
+ 	 * format.
 -- 
-2.25.1
+2.39.2
 
