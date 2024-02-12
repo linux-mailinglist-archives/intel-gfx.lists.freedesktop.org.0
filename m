@@ -2,50 +2,52 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 232AA851BD8
-	for <lists+intel-gfx@lfdr.de>; Mon, 12 Feb 2024 18:43:25 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6288A851BD9
+	for <lists+intel-gfx@lfdr.de>; Mon, 12 Feb 2024 18:43:27 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7E2C510EE74;
-	Mon, 12 Feb 2024 17:43:23 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id F3E6310EE40;
+	Mon, 12 Feb 2024 17:43:24 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ROo80omF";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="C9eUqwt8";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2EEA110EE40
- for <intel-gfx@lists.freedesktop.org>; Mon, 12 Feb 2024 17:43:22 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7349010EE40
+ for <intel-gfx@lists.freedesktop.org>; Mon, 12 Feb 2024 17:43:23 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1707759802; x=1739295802;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=XusGmkrZw7Vqc6du3HBES1k3OpnBKe62nwm7ysTXhaQ=;
- b=ROo80omF2Ss/pas3PwJfyl5zxYzcTCPYQINnM0go5irx8U2fF2hO1cj5
- /yQqsf54yrCO2dHQHCEz3+LFgCNl1doNygFw2GTHf0RU0ChaqqUtQ2gsr
- Vma0oqWUIZ+SviZh3/fRtXgjGFnLdGjvG0174vD6ZQqf3w1hxXx3FsxJr
- MIkH15cZJsvIXtHtAFllWx2GWKaEIJwFef4QicnSjwUBEQ8/wlFfx89CC
- UotmoESrbhJdix8y03teWfbpv/QANuM63ONZkuuvD6MZyBw+lSpnFD1tx
- /fSQlhbiRGZLYOZrVHDsqu5VZWsJ7Q80mfDwFZW9IbhhJ0khC3TPKMHoq Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10982"; a="1871992"
+ t=1707759803; x=1739295803;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=v1T6PbwdBf9VJTop3t5eH3TNB8RF+ffn3GeVXFTmYnA=;
+ b=C9eUqwt8V7DcjCPw7xMgzNJvzSa0NFmrELW5XzfoyrjAcr59HphTRid8
+ zuYY2t4KzguLZI5wH++hoLhkiurIDcp2bAijR6aF9WIT3TZ9Z7Q2yjLwq
+ DIzbR1HPAfU7YIJhMVQT+nAexHegH4oMnL3mNfBCYebGF4bAp/jqS61AI
+ jqAYh1940p3N5RaRurIFqh/8NVVDFM/lzC7cqBJTEJxoDrwg38q1DrqHD
+ gi9YDAA7g3vhnWIxClE5lLFR4eJxN71p/YtFx1S4jJz6HWaAtgV/arhzQ
+ INBHQpwGfR8cyz6FgMeCcsyckW9YaPSfuGcWpmylk5Q5GudhN/bPGizJA Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10982"; a="1871996"
 X-IronPort-AV: E=Sophos;i="6.06,155,1705392000"; 
-   d="scan'208";a="1871992"
+   d="scan'208";a="1871996"
 Received: from fmviesa007.fm.intel.com ([10.60.135.147])
  by fmvoesa109.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Feb 2024 09:43:21 -0800
+ 12 Feb 2024 09:43:23 -0800
 X-ExtLoop1: 1
 X-IronPort-AV: E=Sophos;i="6.06,155,1705392000"; 
-   d="scan'208";a="2595375"
+   d="scan'208";a="2595382"
 Received: from mgolanimitul-x299-ud4-pro.iind.intel.com ([10.190.239.114])
- by fmviesa007.fm.intel.com with ESMTP; 12 Feb 2024 09:43:21 -0800
+ by fmviesa007.fm.intel.com with ESMTP; 12 Feb 2024 09:43:22 -0800
 From: Mitul Golani <mitulkumar.ajitkumar.golani@intel.com>
 To: intel-gfx@lists.freedesktop.org
 Cc: ankit.k.nautiyal@intel.com,
  Mitul Golani <mitulkumar.ajitkumar.golani@intel.com>
-Subject: [PATCH 0/4] Enable Adaptive Sync SDP Support for DP
-Date: Mon, 12 Feb 2024 23:06:19 +0530
-Message-Id: <20240212173623.1464540-1-mitulkumar.ajitkumar.golani@intel.com>
+Subject: [PATCH 1/4] drm/i915/display: Compute TRANS_VRR_VSYNC
+Date: Mon, 12 Feb 2024 23:06:20 +0530
+Message-Id: <20240212173623.1464540-2-mitulkumar.ajitkumar.golani@intel.com>
 X-Mailer: git-send-email 2.25.1
+In-Reply-To: <20240212173623.1464540-1-mitulkumar.ajitkumar.golani@intel.com>
+References: <20240212173623.1464540-1-mitulkumar.ajitkumar.golani@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
@@ -63,63 +65,68 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-An Adaptive Sync SDP allows a DP protocol converter to
-forward Adaptive Sync video with minimal buffering overhead
-within the converter. An Adaptive-Sync-capable DP protocol
-converter indicates its support by setting the related bit
-in the DPCD register.
+Compute TRANS_VRR_VSYNC which sets the position
+for hardware to send the Vsync at a fixed position
+relative to the end of the Vblank.
+---
+ drivers/gpu/drm/i915/display/intel_display_types.h | 1 +
+ drivers/gpu/drm/i915/display/intel_vrr.c           | 9 +++++++++
+ drivers/gpu/drm/i915/i915_reg.h                    | 2 ++
+ 3 files changed, 12 insertions(+)
 
-Computes AS SDP values based on the display configuration,
-ensuring proper handling of Variable Refresh Rate (VRR)
-in the context of Adaptive Sync.
-
---v2:
-- Update logging to Patch-1
-- use as_sdp instead of async
-- Put definitions to correct placeholders from where it is defined.
-- Update member types of as_sdp for uniformity.
-- Correct use of REG_BIT and REG_GENMASK.
-- Remove unrelated comments and changes.
-- Correct code indents.
-- separate out patch changes for intel_read/write_dp_sdp.
-
---v3:
-- Add VIDEO_DIP_ASYNC_DATA_SIZE definition and comment in as_sdp_pack
-  function to patch 2 as originally used there. [Patch 2].
-- Add VIDEO_DIP_ENABLE_AS_HSW flag to intel_dp_set_infoframes [Patch 3].
-
---v4:
-- Add check for HAS_VRR before writing AS SDP. [Patch 3].
-
---v5:
-- Add missing check for HAS_VRR before reading AS SDP as well [Patch 3].
-
---v6:
-- Rebase all patches.
-- Compute TRANS_VRR_VSYNC.
-
--v7:
-- Move vrr_vsync_start/end to compute config.
-- Use correct function for drm_debug_printer.
-
-Mitul Golani (4):
-  drm/i915/display: Compute TRANS_VRR_VSYNC
-  drm: Add Adaptive Sync SDP logging
-  drm/i915/dp: Add Read/Write support for Adaptive Sync SDP
-  drm/i915/display: Compute and Enable AS SDP
-
- drivers/gpu/drm/display/drm_dp_helper.c       |  12 ++
- .../drm/i915/display/intel_crtc_state_dump.c  |  12 ++
- drivers/gpu/drm/i915/display/intel_ddi.c      |   3 +
- .../drm/i915/display/intel_display_types.h    |   2 +
- drivers/gpu/drm/i915/display/intel_dp.c       | 118 +++++++++++++++++-
- drivers/gpu/drm/i915/display/intel_hdmi.c     |  12 +-
- drivers/gpu/drm/i915/display/intel_vrr.c      |   9 ++
- drivers/gpu/drm/i915/i915_reg.h               |   8 ++
- include/drm/display/drm_dp.h                  |   2 +
- include/drm/display/drm_dp_helper.h           |  33 +++++
- 10 files changed, 207 insertions(+), 4 deletions(-)
-
+diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/drivers/gpu/drm/i915/display/intel_display_types.h
+index 01eb6e4e6049..c73a0037f6c8 100644
+--- a/drivers/gpu/drm/i915/display/intel_display_types.h
++++ b/drivers/gpu/drm/i915/display/intel_display_types.h
+@@ -1411,6 +1411,7 @@ struct intel_crtc_state {
+ 		bool enable, in_range;
+ 		u8 pipeline_full;
+ 		u16 flipline, vmin, vmax, guardband;
++		u32 vsync_end, vsync_start;
+ 	} vrr;
+ 
+ 	/* Stream Splitter for eDP MSO */
+diff --git a/drivers/gpu/drm/i915/display/intel_vrr.c b/drivers/gpu/drm/i915/display/intel_vrr.c
+index 5d905f932cb4..59628c360a78 100644
+--- a/drivers/gpu/drm/i915/display/intel_vrr.c
++++ b/drivers/gpu/drm/i915/display/intel_vrr.c
+@@ -149,6 +149,13 @@ intel_vrr_compute_config(struct intel_crtc_state *crtc_state,
+ 
+ 	crtc_state->vrr.flipline = crtc_state->vrr.vmin + 1;
+ 
++	crtc_state->vrr.vsync_start =
++			(crtc_state->hw.adjusted_mode.crtc_vtotal -
++			VSYNC_START(crtc_state->hw.adjusted_mode.vsync_start));
++	crtc_state->vrr.vsync_end =
++			(crtc_state->hw.adjusted_mode.crtc_vtotal -
++			(VSYNC_END(crtc_state->hw.adjusted_mode.vsync_end) >> 16));
++
+ 	/*
+ 	 * For XE_LPD+, we use guardband and pipeline override
+ 	 * is deprecated.
+@@ -201,6 +208,8 @@ void intel_vrr_set_transcoder_timings(const struct intel_crtc_state *crtc_state)
+ 
+ 	intel_de_write(dev_priv, TRANS_VRR_VMIN(cpu_transcoder), crtc_state->vrr.vmin - 1);
+ 	intel_de_write(dev_priv, TRANS_VRR_VMAX(cpu_transcoder), crtc_state->vrr.vmax - 1);
++	intel_de_write(dev_priv, TRANS_VRR_VSYNC(cpu_transcoder),
++				   crtc_state->vrr.vsync_end << 16 | crtc_state->vrr.vsync_start);
+ 	intel_de_write(dev_priv, TRANS_VRR_CTL(cpu_transcoder), trans_vrr_ctl(crtc_state));
+ 	intel_de_write(dev_priv, TRANS_VRR_FLIPLINE(cpu_transcoder), crtc_state->vrr.flipline - 1);
+ }
+diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_reg.h
+index e00557e1a57f..3449e65fdf1b 100644
+--- a/drivers/gpu/drm/i915/i915_reg.h
++++ b/drivers/gpu/drm/i915/i915_reg.h
+@@ -2007,7 +2007,9 @@
+ #define _TRANS_VRR_CTL_B		0x61420
+ #define _TRANS_VRR_CTL_C		0x62420
+ #define _TRANS_VRR_CTL_D		0x63420
++#define _TRANS_VRR_VSYNC_A		0x60078
+ #define TRANS_VRR_CTL(trans)			_MMIO_TRANS2(trans, _TRANS_VRR_CTL_A)
++#define TRANS_VRR_VSYNC(trans)			_MMIO_TRANS2(trans, _TRANS_VRR_VSYNC_A)
+ #define   VRR_CTL_VRR_ENABLE			REG_BIT(31)
+ #define   VRR_CTL_IGN_MAX_SHIFT			REG_BIT(30)
+ #define   VRR_CTL_FLIP_LINE_EN			REG_BIT(29)
 -- 
 2.25.1
 
