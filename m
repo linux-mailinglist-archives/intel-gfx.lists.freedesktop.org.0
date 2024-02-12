@@ -2,81 +2,52 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 61D64851B97
-	for <lists+intel-gfx@lfdr.de>; Mon, 12 Feb 2024 18:34:27 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 232AA851BD8
+	for <lists+intel-gfx@lfdr.de>; Mon, 12 Feb 2024 18:43:25 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B595910E881;
-	Mon, 12 Feb 2024 17:34:23 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7E2C510EE74;
+	Mon, 12 Feb 2024 17:43:23 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=quicinc.com header.i=@quicinc.com header.b="oV93OjvV";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ROo80omF";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com
- [205.220.180.131])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BBDAB10E881;
- Mon, 12 Feb 2024 17:34:20 +0000 (UTC)
-Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
- by mx0a-0031df01.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id
- 41CExrak009925; Mon, 12 Feb 2024 17:34:06 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
- from:to:cc:subject:date:message-id:mime-version
- :content-transfer-encoding:content-type; s=qcppdkim1; bh=M48vkdZ
- 0s2Pyp9OxRZ4mN+0EZPXt65Mq0CLdaBP2Bag=; b=oV93OjvVOEBir3PASs91FQ8
- vr1jwuS5B5FziIhrj11H+JET01w8AIIe4PMEii8EC+Zel3WhV6vvnPQYxn/P6KeG
- OBGCY8dx/4dCku6ICS73732PK3M6oRg/RcMaBmzW3X7zRl0lXFTTZfymxoMrbLTW
- d8NJD2p6TFFpqHOZkouGldrVWDslpJYyirsjpBckMV8EKEyE6cs9HRFrYnu2H/i8
- OVnUz4CZmQ/DhJ856/nfWHu6fj7GwQ3YS0cH1xGKDEmoBgoUiCQcs62veVjPaakP
- u5KfmZqEoTiDh7U1NpKteXEusdZe+f/8yoGxfMHm4+2YakU+1oOhz6EGHiUQZ9w=
- =
-Received: from nalasppmta01.qualcomm.com (Global_NAT1.qualcomm.com
- [129.46.96.20])
- by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3w7nk90bp1-1
- (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
- Mon, 12 Feb 2024 17:34:06 +0000 (GMT)
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com
- [10.47.209.196])
- by NALASPPMTA01.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 41CHY5Zo021330
- (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
- Mon, 12 Feb 2024 17:34:05 GMT
-Received: from abhinavk-linux1.qualcomm.com (10.80.80.8) by
- nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1118.40; Mon, 12 Feb 2024 09:34:04 -0800
-From: Abhinav Kumar <quic_abhinavk@quicinc.com>
-To: <dri-devel@lists.freedesktop.org>, Maarten Lankhorst
- <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>,
- Thomas Zimmermann <tzimmermann@suse.de>,
- David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>
-CC: Paloma Arellano <quic_parellan@quicinc.com>, <robdclark@gmail.com>,
- <freedreno@lists.freedesktop.org>, <dmitry.baryshkov@linaro.org>,
- <intel-gfx@lists.freedesktop.org>, <jani.nikula@linux.intel.com>,
- <ville.syrjala@linux.intel.com>, <quic_jesszhan@quicinc.com>, Abhinav Kumar
- <quic_abhinavk@quicinc.com>, <linux-kernel@vger.kernel.org>
-Subject: [PATCH v4] drm/dp: add an API to indicate if sink supports VSC SDP
-Date: Mon, 12 Feb 2024 09:33:55 -0800
-Message-ID: <20240212173355.1857757-1-quic_abhinavk@quicinc.com>
-X-Mailer: git-send-email 2.34.1
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.15])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2EEA110EE40
+ for <intel-gfx@lists.freedesktop.org>; Mon, 12 Feb 2024 17:43:22 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1707759802; x=1739295802;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=XusGmkrZw7Vqc6du3HBES1k3OpnBKe62nwm7ysTXhaQ=;
+ b=ROo80omF2Ss/pas3PwJfyl5zxYzcTCPYQINnM0go5irx8U2fF2hO1cj5
+ /yQqsf54yrCO2dHQHCEz3+LFgCNl1doNygFw2GTHf0RU0ChaqqUtQ2gsr
+ Vma0oqWUIZ+SviZh3/fRtXgjGFnLdGjvG0174vD6ZQqf3w1hxXx3FsxJr
+ MIkH15cZJsvIXtHtAFllWx2GWKaEIJwFef4QicnSjwUBEQ8/wlFfx89CC
+ UotmoESrbhJdix8y03teWfbpv/QANuM63ONZkuuvD6MZyBw+lSpnFD1tx
+ /fSQlhbiRGZLYOZrVHDsqu5VZWsJ7Q80mfDwFZW9IbhhJ0khC3TPKMHoq Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10982"; a="1871992"
+X-IronPort-AV: E=Sophos;i="6.06,155,1705392000"; 
+   d="scan'208";a="1871992"
+Received: from fmviesa007.fm.intel.com ([10.60.135.147])
+ by fmvoesa109.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 12 Feb 2024 09:43:21 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.06,155,1705392000"; 
+   d="scan'208";a="2595375"
+Received: from mgolanimitul-x299-ud4-pro.iind.intel.com ([10.190.239.114])
+ by fmviesa007.fm.intel.com with ESMTP; 12 Feb 2024 09:43:21 -0800
+From: Mitul Golani <mitulkumar.ajitkumar.golani@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Cc: ankit.k.nautiyal@intel.com,
+ Mitul Golani <mitulkumar.ajitkumar.golani@intel.com>
+Subject: [PATCH 0/4] Enable Adaptive Sync SDP Support for DP
+Date: Mon, 12 Feb 2024 23:06:19 +0530
+Message-Id: <20240212173623.1464540-1-mitulkumar.ajitkumar.golani@intel.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800
- signatures=585085
-X-Proofpoint-GUID: P8GmQe4ttF1H-u5Kesrhqz8l7SQF7vzY
-X-Proofpoint-ORIG-GUID: P8GmQe4ttF1H-u5Kesrhqz8l7SQF7vzY
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.272,Aquarius:18.0.1011,Hydra:6.0.619,FMLib:17.11.176.26
- definitions=2024-02-12_14,2024-02-12_03,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- phishscore=0
- lowpriorityscore=0 adultscore=0 spamscore=0 malwarescore=0 mlxscore=0
- bulkscore=0 priorityscore=1501 mlxlogscore=999 impostorscore=0
- clxscore=1015 suspectscore=0 classifier=spam adjust=0 reason=mlx
- scancount=1 engine=8.19.0-2401310000 definitions=main-2402120133
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -92,81 +63,63 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-From: Paloma Arellano <quic_parellan@quicinc.com>
+An Adaptive Sync SDP allows a DP protocol converter to
+forward Adaptive Sync video with minimal buffering overhead
+within the converter. An Adaptive-Sync-capable DP protocol
+converter indicates its support by setting the related bit
+in the DPCD register.
 
-YUV420 format is supported only in the VSC SDP packet and not through
-MSA. Hence add an API which indicates the sink support which can be used
-by the rest of the DP programming.
+Computes AS SDP values based on the display configuration,
+ensuring proper handling of Variable Refresh Rate (VRR)
+in the context of Adaptive Sync.
 
-changes in v4:
-	- bail out early if dpcd rev check fails
+--v2:
+- Update logging to Patch-1
+- use as_sdp instead of async
+- Put definitions to correct placeholders from where it is defined.
+- Update member types of as_sdp for uniformity.
+- Correct use of REG_BIT and REG_GENMASK.
+- Remove unrelated comments and changes.
+- Correct code indents.
+- separate out patch changes for intel_read/write_dp_sdp.
 
-changes in v3:
-	- fix the commit title prefix to drm/dp
-	- get rid of redundant !!
-	- break out this change from series [1] to get acks from drm core
-	  maintainers
+--v3:
+- Add VIDEO_DIP_ASYNC_DATA_SIZE definition and comment in as_sdp_pack
+  function to patch 2 as originally used there. [Patch 2].
+- Add VIDEO_DIP_ENABLE_AS_HSW flag to intel_dp_set_infoframes [Patch 3].
 
-Changes in v2:
-	- Move VSC SDP support check API from dp_panel.c to
-	  drm_dp_helper.c
+--v4:
+- Add check for HAS_VRR before writing AS SDP. [Patch 3].
 
-[1]: https://patchwork.freedesktop.org/series/129180/
+--v5:
+- Add missing check for HAS_VRR before reading AS SDP as well [Patch 3].
 
-Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Signed-off-by: Paloma Arellano <quic_parellan@quicinc.com>
-Signed-off-by: Abhinav Kumar <quic_abhinavk@quicinc.com>
----
- drivers/gpu/drm/display/drm_dp_helper.c | 23 +++++++++++++++++++++++
- include/drm/display/drm_dp_helper.h     |  1 +
- 2 files changed, 24 insertions(+)
+--v6:
+- Rebase all patches.
+- Compute TRANS_VRR_VSYNC.
 
-diff --git a/drivers/gpu/drm/display/drm_dp_helper.c b/drivers/gpu/drm/display/drm_dp_helper.c
-index b1ca3a1100da..b10fb2be837e 100644
---- a/drivers/gpu/drm/display/drm_dp_helper.c
-+++ b/drivers/gpu/drm/display/drm_dp_helper.c
-@@ -2916,6 +2916,29 @@ void drm_dp_vsc_sdp_log(const char *level, struct device *dev,
- }
- EXPORT_SYMBOL(drm_dp_vsc_sdp_log);
- 
-+/**
-+ * drm_dp_vsc_sdp_supported() - check if vsc sdp is supported
-+ * @aux: DisplayPort AUX channel
-+ * @dpcd: DisplayPort configuration data
-+ *
-+ * Returns true if vsc sdp is supported, else returns false
-+ */
-+bool drm_dp_vsc_sdp_supported(struct drm_dp_aux *aux, const u8 dpcd[DP_RECEIVER_CAP_SIZE])
-+{
-+	u8 rx_feature;
-+
-+	if (dpcd[DP_DPCD_REV] < DP_DPCD_REV_13)
-+		return false;
-+
-+	if (drm_dp_dpcd_readb(aux, DP_DPRX_FEATURE_ENUMERATION_LIST, &rx_feature) != 1) {
-+		drm_dbg_dp(aux->drm_dev, "failed to read DP_DPRX_FEATURE_ENUMERATION_LIST\n");
-+		return false;
-+	}
-+
-+	return (rx_feature & DP_VSC_SDP_EXT_FOR_COLORIMETRY_SUPPORTED);
-+}
-+EXPORT_SYMBOL(drm_dp_vsc_sdp_supported);
-+
- /**
-  * drm_dp_get_pcon_max_frl_bw() - maximum frl supported by PCON
-  * @dpcd: DisplayPort configuration data
-diff --git a/include/drm/display/drm_dp_helper.h b/include/drm/display/drm_dp_helper.h
-index 863b2e7add29..948381b2b0b1 100644
---- a/include/drm/display/drm_dp_helper.h
-+++ b/include/drm/display/drm_dp_helper.h
-@@ -100,6 +100,7 @@ struct drm_dp_vsc_sdp {
- 
- void drm_dp_vsc_sdp_log(const char *level, struct device *dev,
- 			const struct drm_dp_vsc_sdp *vsc);
-+bool drm_dp_vsc_sdp_supported(struct drm_dp_aux *aux, const u8 dpcd[DP_RECEIVER_CAP_SIZE]);
- 
- int drm_dp_psr_setup_time(const u8 psr_cap[EDP_PSR_RECEIVER_CAP_SIZE]);
- 
+-v7:
+- Move vrr_vsync_start/end to compute config.
+- Use correct function for drm_debug_printer.
+
+Mitul Golani (4):
+  drm/i915/display: Compute TRANS_VRR_VSYNC
+  drm: Add Adaptive Sync SDP logging
+  drm/i915/dp: Add Read/Write support for Adaptive Sync SDP
+  drm/i915/display: Compute and Enable AS SDP
+
+ drivers/gpu/drm/display/drm_dp_helper.c       |  12 ++
+ .../drm/i915/display/intel_crtc_state_dump.c  |  12 ++
+ drivers/gpu/drm/i915/display/intel_ddi.c      |   3 +
+ .../drm/i915/display/intel_display_types.h    |   2 +
+ drivers/gpu/drm/i915/display/intel_dp.c       | 118 +++++++++++++++++-
+ drivers/gpu/drm/i915/display/intel_hdmi.c     |  12 +-
+ drivers/gpu/drm/i915/display/intel_vrr.c      |   9 ++
+ drivers/gpu/drm/i915/i915_reg.h               |   8 ++
+ include/drm/display/drm_dp.h                  |   2 +
+ include/drm/display/drm_dp_helper.h           |  33 +++++
+ 10 files changed, 207 insertions(+), 4 deletions(-)
+
 -- 
-2.34.1
+2.25.1
 
