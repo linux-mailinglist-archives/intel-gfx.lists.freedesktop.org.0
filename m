@@ -2,70 +2,55 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 372A6852C49
-	for <lists+intel-gfx@lfdr.de>; Tue, 13 Feb 2024 10:32:58 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 453E1852C2E
+	for <lists+intel-gfx@lfdr.de>; Tue, 13 Feb 2024 10:21:40 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 872C210E197;
-	Tue, 13 Feb 2024 09:32:49 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9BF1D10E03F;
+	Tue, 13 Feb 2024 09:21:38 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=haloniitty.fi header.i=@haloniitty.fi header.b="nJYVuhP4";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="dM4Z/Bf3";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from whm50.louhi.net (whm50.louhi.net [77.240.19.51])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7B49210E197
- for <intel-gfx@lists.freedesktop.org>; Tue, 13 Feb 2024 09:32:48 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=haloniitty.fi; s=default; h=Content-Type:MIME-Version:References:
- In-Reply-To:Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:
- Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
- Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
- List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=Xx7rNXGoKTHU3cZOeF+a9Cra/ph/Z16+DbxgoWB7MI0=; b=nJYVuhP4XHZ6QikCG22EgW9HCx
- TJTUsk4XkaT1Dgc8JxYMgV5EbZnhHaclDGEFP39RsRXhijRZ1YcAPsKtZuHMZZFxCjxvkkRG42f96
- 6Y0Mtd++FYYU+8Kh/dqs+Dqu/et7jYH7nu6hRiNyuIuVJi/vfLhzK2R3kfZ8ldJuoALVc7jyyen0J
- vNRBufFO4YsdX9JMTDjiduY51vFycRFfEMnj0hFZV/98kdzn+2mWSqYhC8aGCsYCJenkBFdOz6/R4
- JXRhMhANvI5PiTJOyHIEqny83rmSPEI0XEDV8YP613Itwd1CII60eyIKUDnAolVkEpJJdClk6L11D
- ObEU+y2Q==;
-Received: from [194.136.85.206] (port=34208 helo=eldfell)
- by whm50.louhi.net with esmtpsa (TLS1.2) tls
- TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (Exim 4.96.2)
- (envelope-from <pekka.paalanen@haloniitty.fi>) id 1rZot0-0002vU-2L;
- Tue, 13 Feb 2024 11:15:30 +0200
-Date: Tue, 13 Feb 2024 11:15:27 +0200
-From: Pekka Paalanen <pekka.paalanen@haloniitty.fi>
-To: Uma Shankar <uma.shankar@intel.com>
-Cc: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- ville.syrjala@linux.intel.com, contact@emersion.fr, harry.wentland@amd.com,
- mwen@igalia.com, jadahl@redhat.com, sebastian.wick@redhat.com,
- shashank.sharma@amd.com, agoins@nvidia.com, joshua@froggi.es,
- mdaenzer@redhat.com, aleixpol@kde.org, xaver.hugl@gmail.com,
- victoria@system76.com, daniel@ffwll.ch, quic_naseer@quicinc.com,
- quic_cbraga@quicinc.com, quic_abhinavk@quicinc.com,
- arthurgrillo@riseup.net, marcan@marcan.st, Liviu.Dudau@arm.com,
- sashamcintosh@google.com, sean@poorly.run, Chaitanya Kumar Borah
- <chaitanya.kumar.borah@intel.com>
-Subject: Re: [PATCH 05/28] drm: Add support for 3x3 CTM
-Message-ID: <20240213111527.33ffc75b@eldfell>
-In-Reply-To: <20240213064835.139464-6-uma.shankar@intel.com>
-References: <20240213064835.139464-1-uma.shankar@intel.com>
- <20240213064835.139464-6-uma.shankar@intel.com>
-X-Mailer: Claws Mail 4.1.1 (GTK 3.24.38; x86_64-pc-linux-gnu)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0B98D10E03F
+ for <intel-gfx@lists.freedesktop.org>; Tue, 13 Feb 2024 09:21:36 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1707816096; x=1739352096;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version:content-transfer-encoding;
+ bh=4y9cCw1Rhvu4POEc2EgQGLt23T/23hbcN3dwvLfY7ro=;
+ b=dM4Z/Bf3TknoARcc+9HaNLMiXu7rnMBaNj7rn2pozweqaVVIfqv/Pt4N
+ 6oQxyK6k8UcANWpJX3H6mn61ovMYGX+qeqkWfKWjSVLAFBTJnRA3FH5BR
+ baLmlLWK4S5XUcgbxQuY/Ai1K0nQCDPlEKwB/qXPqZROIxnuJfBBp0cKp
+ w8bZKi7KyIv7kLZ3DSc5c0uwQZSJTdDk0tQVmNoyoNElvLIWqLV4BYUxD
+ mVx2mWgsxzRZbLNcoBTGcPzvFDDe6dkuxfk0STtzPTksuqNseTChNMHF3
+ Laj1T12LJIfDY518JXQIzebXIgVcQv4IUECLGs0JjFNeMC4QZPDZ2zUdd g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10982"; a="19228166"
+X-IronPort-AV: E=Sophos;i="6.06,156,1705392000"; d="scan'208";a="19228166"
+Received: from orviesa008.jf.intel.com ([10.64.159.148])
+ by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 Feb 2024 01:21:33 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.06,156,1705392000"; 
+   d="scan'208";a="3209372"
+Received: from snasibli-mobl2.ccr.corp.intel.com (HELO localhost)
+ ([10.252.44.50])
+ by orviesa008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 Feb 2024 01:21:31 -0800
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Uma Shankar <uma.shankar@intel.com>, intel-gfx@lists.freedesktop.org
+Cc: stanislav.lisovskiy@intel.com, ville.syrjala@linux.intel.com
+Subject: Re: [PATCH] drm/i915: Add bigjoiner force enable option to debugfs
+In-Reply-To: <20240212125011.66174-1-uma.shankar@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20240212125011.66174-1-uma.shankar@intel.com>
+Date: Tue, 13 Feb 2024 11:21:28 +0200
+Message-ID: <87mss490tj.fsf@intel.com>
 MIME-Version: 1.0
-Content-Type: multipart/signed; boundary="Sig_/7xLLH4/_gr5gAiwz1a+SE3m";
- protocol="application/pgp-signature"; micalg=pgp-sha256
-X-AntiAbuse: This header was added to track abuse,
- please include it with any abuse report
-X-AntiAbuse: Primary Hostname - whm50.louhi.net
-X-AntiAbuse: Original Domain - lists.freedesktop.org
-X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
-X-AntiAbuse: Sender Address Domain - haloniitty.fi
-X-Get-Message-Sender-Via: whm50.louhi.net: authenticated_id:
- pekka.paalanen@haloniitty.fi
-X-Authenticated-Sender: whm50.louhi.net: pekka.paalanen@haloniitty.fi
-X-Source: 
-X-Source-Args: 
-X-Source-Dir: 
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -81,97 +66,174 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---Sig_/7xLLH4/_gr5gAiwz1a+SE3m
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: quoted-printable
+On Mon, 12 Feb 2024, Uma Shankar <uma.shankar@intel.com> wrote:
+> From: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
+>
+> For validation purposes, it might be useful to be able to
+> force Bigjoiner mode, even if current dotclock/resolution
+> do not require that.
+> Lets add such to option to debugfs.
+>
+> v2: - Apparently intel_dp_need_bigjoiner can't be used, when
+>       debugfs entry is created so lets just check manually
+>       the DISPLAY_VER.
+>
+> v3: - Switch to intel_connector from drm_connector(Jani Nikula)
+>     - Remove redundant modeset lock(Jani Nikula)
+>     - Use kstrtobool_from_user for boolean value(Jani Nikula)
+>
+> v4: - Apply the changes to proper function(Jani Nikula)
+>
+> v5: - Removed unnecessary check from i915_bigjoiner_enable_show
+>       (Ville Syrj=C3=A4l=C3=A4)
+>     - Added eDP connector check to intel_connector_debugfs_add
+>       (Ville Syrj=C3=A4l=C3=A4)
+>     - Removed debug message in order to prevent dmesg flooding
+>       (Ville Syrj=C3=A4l=C3=A4)
+>
+> v6: - Assume now always that m->private is intel_connector
+>     - Fixed other similar conflicts
+>
+> v7: - Move bigjoiner force option to intel_connector(Ville Syrj=C3=A4l=C3=
+=A4)
+>     - Use DEFINE_SHOW_STORE_ATTRIBUTE instead of defining fops
+>       manually.(Ville Syrj=C3=A4l=C3=A4)
+>
+> v8: - Pass intel_connector to debugfs_create_file, instead of drm_connect=
+or.
+>       (Jani Nikula)
+>
+> Signed-off-by: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
 
-On Tue, 13 Feb 2024 12:18:12 +0530
-Uma Shankar <uma.shankar@intel.com> wrote:
+Acked-by: Jani Nikula <jani.nikula@intel.com>
 
-> From: Chaitanya Kumar Borah <chaitanya.kumar.borah@intel.com>
->=20
-> Add support for 3x3 Color Transformation Matrices in Color Pipeline.
->=20
-> Signed-off-by: Chaitanya Kumar Borah <chaitanya.kumar.borah@intel.com>
-> Signed-off-by: Uma Shankar <uma.shankar@intel.com>
+
 > ---
->  drivers/gpu/drm/drm_atomic_uapi.c | 3 +++
->  drivers/gpu/drm/drm_colorop.c     | 2 +-
->  include/uapi/drm/drm_mode.h       | 1 +
->  3 files changed, 5 insertions(+), 1 deletion(-)
->=20
-> diff --git a/drivers/gpu/drm/drm_atomic_uapi.c b/drivers/gpu/drm/drm_atom=
-ic_uapi.c
-> index e7bf1fb054af..c54b0d6c133e 100644
-> --- a/drivers/gpu/drm/drm_atomic_uapi.c
-> +++ b/drivers/gpu/drm/drm_atomic_uapi.c
-> @@ -716,6 +716,9 @@ static int drm_atomic_color_set_data_property(struct =
-drm_colorop *colorop,
->  	case DRM_COLOROP_CTM_3X4:
->  		size =3D sizeof(struct drm_color_ctm_3x4);
->  		break;
-> +	case DRM_COLOROP_CTM_3X3:
-> +		size =3D sizeof(struct drm_color_ctm);
-> +		break;
->  	default:
->  		/* should never get here */
->  		return -EINVAL;
-> diff --git a/drivers/gpu/drm/drm_colorop.c b/drivers/gpu/drm/drm_colorop.c
-> index 462ffec42cdf..6bae6dc8e54b 100644
-> --- a/drivers/gpu/drm/drm_colorop.c
-> +++ b/drivers/gpu/drm/drm_colorop.c
-> @@ -107,7 +107,7 @@ int drm_colorop_init(struct drm_device *dev, struct d=
-rm_colorop *colorop,
->  				   0);
-> =20
->  	/* data */
-> -	if (type =3D=3D DRM_COLOROP_CTM_3X4) {
-> +	if (type =3D=3D DRM_COLOROP_CTM_3X4 || type =3D=3D DRM_COLOROP_CTM_3X3)=
- {
->  		prop =3D drm_property_create(dev, DRM_MODE_PROP_ATOMIC | DRM_MODE_PROP=
-_BLOB,
->  					   "DATA", 0);
->  		if (!prop)
-> diff --git a/include/uapi/drm/drm_mode.h b/include/uapi/drm/drm_mode.h
-> index f16318f1785f..68696253867e 100644
-> --- a/include/uapi/drm/drm_mode.h
-> +++ b/include/uapi/drm/drm_mode.h
-> @@ -868,6 +868,7 @@ struct drm_color_lut {
-> =20
->  enum drm_colorop_type {
->  	DRM_COLOROP_1D_CURVE,
-> +	DRM_COLOROP_CTM_3X3,
->  	DRM_COLOROP_CTM_3X4,
+>  .../drm/i915/display/intel_display_debugfs.c  | 47 +++++++++++++++++++
+>  .../drm/i915/display/intel_display_types.h    |  2 +
+>  drivers/gpu/drm/i915/display/intel_dp.c       |  4 +-
+>  3 files changed, 52 insertions(+), 1 deletion(-)
+>
+> diff --git a/drivers/gpu/drm/i915/display/intel_display_debugfs.c b/drive=
+rs/gpu/drm/i915/display/intel_display_debugfs.c
+> index 6f2d13c8ccf7..a962b48bcf13 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display_debugfs.c
+> +++ b/drivers/gpu/drm/i915/display/intel_display_debugfs.c
+> @@ -1391,6 +1391,20 @@ out:	drm_modeset_unlock(&i915->drm.mode_config.con=
+nection_mutex);
+>  	return ret;
+>  }
+>=20=20
+> +static int i915_bigjoiner_enable_show(struct seq_file *m, void *data)
+> +{
+> +	struct intel_connector *connector =3D m->private;
+> +	struct drm_crtc *crtc;
+> +
+> +	crtc =3D connector->base.state->crtc;
+> +	if (connector->base.status !=3D connector_status_connected || !crtc)
+> +		return -ENODEV;
+> +
+> +	seq_printf(m, "Bigjoiner enable: %d\n", connector->force_bigjoiner_enab=
+le);
+> +
+> +	return 0;
+> +}
+> +
+>  static ssize_t i915_dsc_output_format_write(struct file *file,
+>  					    const char __user *ubuf,
+>  					    size_t len, loff_t *offp)
+> @@ -1412,6 +1426,30 @@ static ssize_t i915_dsc_output_format_write(struct=
+ file *file,
+>  	return len;
+>  }
+>=20=20
+> +static ssize_t i915_bigjoiner_enable_write(struct file *file,
+> +					   const char __user *ubuf,
+> +					   size_t len, loff_t *offp)
+> +{
+> +	struct seq_file *m =3D file->private_data;
+> +	struct intel_connector *connector =3D m->private;
+> +	struct drm_crtc *crtc;
+> +	bool bigjoiner_en =3D 0;
+> +	int ret;
+> +
+> +	crtc =3D connector->base.state->crtc;
+> +	if (connector->base.status !=3D connector_status_connected || !crtc)
+> +		return -ENODEV;
+> +
+> +	ret =3D kstrtobool_from_user(ubuf, len, &bigjoiner_en);
+> +	if (ret < 0)
+> +		return ret;
+> +
+> +	connector->force_bigjoiner_enable =3D bigjoiner_en;
+> +	*offp +=3D len;
+> +
+> +	return len;
+> +}
+> +
+>  static int i915_dsc_output_format_open(struct inode *inode,
+>  				       struct file *file)
+>  {
+> @@ -1505,6 +1543,8 @@ static const struct file_operations i915_dsc_fracti=
+onal_bpp_fops =3D {
+>  	.write =3D i915_dsc_fractional_bpp_write
 >  };
-> =20
+>=20=20
+> +DEFINE_SHOW_STORE_ATTRIBUTE(i915_bigjoiner_enable);
+> +
+>  /*
+>   * Returns the Current CRTC's bpc.
+>   * Example usage: cat /sys/kernel/debug/dri/0/crtc-0/i915_current_bpc
+> @@ -1586,6 +1626,13 @@ void intel_connector_debugfs_add(struct intel_conn=
+ector *connector)
+>  				    connector, &i915_dsc_fractional_bpp_fops);
+>  	}
+>=20=20
+> +	if (DISPLAY_VER(i915) >=3D 11 &&
+> +	    (connector_type =3D=3D DRM_MODE_CONNECTOR_DisplayPort ||
+> +	     connector_type =3D=3D DRM_MODE_CONNECTOR_eDP)) {
+> +		debugfs_create_file("i915_bigjoiner_force_enable", 0644, root,
+> +				    connector, &i915_bigjoiner_enable_fops);
+> +	}
+> +
+>  	if (connector_type =3D=3D DRM_MODE_CONNECTOR_DSI ||
+>  	    connector_type =3D=3D DRM_MODE_CONNECTOR_eDP ||
+>  	    connector_type =3D=3D DRM_MODE_CONNECTOR_DisplayPort ||
+> diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/drivers=
+/gpu/drm/i915/display/intel_display_types.h
+> index 01eb6e4e6049..0d4012097db1 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display_types.h
+> +++ b/drivers/gpu/drm/i915/display/intel_display_types.h
+> @@ -626,6 +626,8 @@ struct intel_connector {
+>=20=20
+>  	struct intel_dp *mst_port;
+>=20=20
+> +	bool force_bigjoiner_enable;
+> +
+>  	struct {
+>  		struct drm_dp_aux *dsc_decompression_aux;
+>  		u8 dsc_dpcd[DP_DSC_RECEIVER_CAP_SIZE];
+> diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i9=
+15/display/intel_dp.c
+> index 5045c34a16be..217196196e50 100644
+> --- a/drivers/gpu/drm/i915/display/intel_dp.c
+> +++ b/drivers/gpu/drm/i915/display/intel_dp.c
+> @@ -1205,11 +1205,13 @@ bool intel_dp_need_bigjoiner(struct intel_dp *int=
+el_dp,
+>  			     int hdisplay, int clock)
+>  {
+>  	struct drm_i915_private *i915 =3D dp_to_i915(intel_dp);
+> +	struct intel_connector *connector =3D intel_dp->attached_connector;
+>=20=20
+>  	if (!intel_dp_can_bigjoiner(intel_dp))
+>  		return false;
+>=20=20
+> -	return clock > i915->max_dotclk_freq || hdisplay > 5120;
+> +	return clock > i915->max_dotclk_freq || hdisplay > 5120 ||
+> +	       connector->force_bigjoiner_enable;
+>  }
+>=20=20
+>  static enum drm_mode_status
 
-Hi,
-
-where are the docs for DRM_COLOROP_CTM_3X3?
-
-
-Thanks,
-pq
-
---Sig_/7xLLH4/_gr5gAiwz1a+SE3m
-Content-Type: application/pgp-signature
-Content-Description: OpenPGP digital signature
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAEBCAAdFiEEJQjwWQChkWOYOIONI1/ltBGqqqcFAmXLMy8ACgkQI1/ltBGq
-qqeHRBAAhiZ13am9DpqcknUnFzez8Yh75d20SxPhKyFdUQBESnAS/AwygjHbBZgO
-OnslAKBXlZVeYNqzAqgsRFQvohU23sa9+mrg0QmZLutQODRHeuENwrQvHyOFQ+7K
-fsSQR30v+B7Gl5Q1REba+hPBavL6g6/e1ABXz9LWc7qsvvfbFWnL0Q74HojVTUbA
-GTMyh6UkT64Utmu25b8mTCDH5kHdSdLm18UkvyYVhHyVAzT79vkjreU8vMUZXXlH
-CJkg0mvjl8Z/F49mY6fC3w/Jk7Zt0kgSPjzEzxEcNglgp4RLKpQdH6FeWxpSrpZL
-pRKmWzdeISzUCn6NYr7NMcUggiwEO1gEeyAVpjf6wKqDJWo9FTNGZwp9GcSbg7XS
-r00B/kSfCspxwFvvd0k0etayi0T4aPXSuWX1ufj3p63QtCAc4j4luLFfSV0NNYQT
-4vo1KWgrkBOEWzl33k0jz97KxPgGALapwUGmVPUZ/1UUHQnLkMMg0YF7X6emstBP
-KY0z39N+K7+DUsygLluescCGIYzuq5GYmp8ValzzmE+E+Bm9x4TJaaSxLZCUIoHy
-38gqQ/NjwEGRvIOcROVsBt7IV9NmK319SJW6dQME0dILzXsMjrRWLuhqpv9GUbYG
-bAHh9UcDaMqprg0UClSF03bVDz3YYLdYgV25MHdPcoY6OAgqEPI=
-=08HT
------END PGP SIGNATURE-----
-
---Sig_/7xLLH4/_gr5gAiwz1a+SE3m--
+--=20
+Jani Nikula, Intel
