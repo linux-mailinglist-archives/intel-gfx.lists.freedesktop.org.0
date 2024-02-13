@@ -2,55 +2,149 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9668085395D
-	for <lists+intel-gfx@lfdr.de>; Tue, 13 Feb 2024 19:03:20 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 696F3853963
+	for <lists+intel-gfx@lfdr.de>; Tue, 13 Feb 2024 19:04:11 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 34B6910E575;
-	Tue, 13 Feb 2024 18:03:17 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D5C3F10E61C;
+	Tue, 13 Feb 2024 18:04:09 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="j1Shu+OE";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="lf4sZSyw";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A803B10E604
- for <intel-gfx@lists.freedesktop.org>; Tue, 13 Feb 2024 18:03:16 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3B48610E64B
+ for <intel-gfx@lists.freedesktop.org>; Tue, 13 Feb 2024 18:04:08 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1707847397; x=1739383397;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=xvW9KQM9m6yH9Qo/uAP/g7pA5BOMcdlZP5qhdt1oh3k=;
- b=j1Shu+OEUgpjoZG/ZwOZsKOJxTXNtbN6YcU31czqUkwDKev3rSjAfNzu
- rDfbAb4JMtmIGYO2B96xd+WgpARTTHLxcQ/RMrAZ+aKB1jWeHaZ/hCJ6d
- dCohRaPZuAwW3KtcksB9lV+7fnIHZCT1eIEcU6k1KTQRn2K48TWpGzr4O
- kQHCfga8gR1RPYjfcUmEMAXdNs21Regi3x2ruLXRNgNgVZ3RNtq0m+J9g
- GE3UHxPPY0qwnin8v7sWFUMVuTwe76QqMLNoqm83tbb+v00N0gUxnXlV5
- DzCshEaV+cSAqDHl85tpu1MWo1cEItIkROlD9rD6x1+wZvd756m6ICaGo g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10982"; a="5689391"
+ t=1707847448; x=1739383448;
+ h=date:from:to:cc:subject:message-id:references:
+ in-reply-to:mime-version;
+ bh=HAtQO9MMy/5B89RxNM7ZthnFsN8D0hIuqKAksK/2xQY=;
+ b=lf4sZSywsihXKTZ4emtBTe35JIr+6v4JOmSjLTqlh/LpZaMDhHm+LhEw
+ 3ehU8nDE3dkXHmJAM40wT+RefXWC8TL5daB7W5DXO5E6utxXKRp78pa2N
+ 0PG51Leu4HKpjJ2lGnnXUPweUChmSkOIUH6nQVdACmLaXoEa8qS0Ofvv9
+ 8mxcquVvAPprRH53jPWNb1omHngKVH2tLzdNz1yH0pP8Y8bAGCUVD2Coc
+ XPg6FwwN7k32Mn5Po8gaU8I/PpD0tr/SZiLz0ByYqYTycZ+FcnT6/hdkM
+ kIrOF53VRCrcpqod/OF0KrniSNVupE48feeBbVcuM1pW0F1BjWglq8nJC w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10982"; a="2010098"
 X-IronPort-AV: E=Sophos;i="6.06,157,1705392000"; 
-   d="scan'208";a="5689391"
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
- by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Feb 2024 10:03:17 -0800
+   d="scan'208";a="2010098"
+Received: from orviesa009.jf.intel.com ([10.64.159.149])
+ by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 Feb 2024 10:04:08 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10982"; a="911852946"
-X-IronPort-AV: E=Sophos;i="6.06,157,1705392000"; d="scan'208";a="911852946"
-Received: from dut7231atsm.jf.intel.com ([10.98.51.28])
- by fmsmga002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Feb 2024 10:03:15 -0800
+X-IronPort-AV: E=Sophos;i="6.06,157,1705392000"; 
+   d="scan'208";a="2929324"
+Received: from fmsmsx601.amr.corp.intel.com ([10.18.126.81])
+ by orviesa009.jf.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
+ 13 Feb 2024 10:04:09 -0800
+Received: from fmsmsx602.amr.corp.intel.com (10.18.126.82) by
+ fmsmsx601.amr.corp.intel.com (10.18.126.81) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.35; Tue, 13 Feb 2024 10:04:07 -0800
+Received: from FMSEDG603.ED.cps.intel.com (10.1.192.133) by
+ fmsmsx602.amr.corp.intel.com (10.18.126.82) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.35 via Frontend Transport; Tue, 13 Feb 2024 10:04:07 -0800
+Received: from NAM11-CO1-obe.outbound.protection.outlook.com (104.47.56.169)
+ by edgegateway.intel.com (192.55.55.68) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.1.2507.35; Tue, 13 Feb 2024 10:04:06 -0800
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=ZU3NkKCEh3c6DJqJg5y4Hco42RJF0njSFre7dhx84K3OvQCpDMLpT9Km+E/oPFdpUise83YEhXSCQ1MkupVcmZ1DC9nNNjnaBcSPIUicv/aD6CjkiBGJjo8kefhQwecpgdb1clXjyVvVLd8+RfCSvNubgSwCnTADyhZtj9rhzWEGVNjZGkFLNIvLVGZ3nr/patvhtrruJ954yAG70G2HCnSoDyPaenTuXo/BOyIUd95OWt05EFObA21sopF7mbTnNyDsmup1VtoKvnMoGip02HnoRUO1vWPkmhjNGSIYdsTVQOewlelh2Odm72WJzCRqne807xJTcSEjzCu70wfd/g==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=3fyK33wByfWvvWKPnZbDyXFiHnbbmA4Y3ZE9mIoeUec=;
+ b=lqaZjtu8lF4yhWOMOVsQEcKPRzzLGwxNZYolfcAu2FHBAEahmobCZEt3Fxzlnm6+/Z9AW33dQ7g4u6FlBJBvCM4z/S5Qla2x0mZEyvCfDbn4aprfA9fsoZZahlfgoOF+76baitN2RdA30gQpSOzDqDumWhABH+xz9gHKejjMSaY++0GdolUn9WAawYAvn0HymO+Amf0i9kGaygLbPbkH7rCZ5WfI7xKLdEHTYPUMF6LbBInFPAJro9yvxzrSFUUCTCHc+4N8mju2E11WKJicqZgzUXELWbUjevDfxrgI28WL2CRU1w2ODOU+DfVPSjZjiaO+dIf4tkblI6GGu5xAhw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+Received: from DS0PR11MB7408.namprd11.prod.outlook.com (2603:10b6:8:136::15)
+ by SJ2PR11MB8450.namprd11.prod.outlook.com (2603:10b6:a03:578::13) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7270.39; Tue, 13 Feb
+ 2024 18:04:05 +0000
+Received: from DS0PR11MB7408.namprd11.prod.outlook.com
+ ([fe80::152d:16f5:ab9a:7c6e]) by DS0PR11MB7408.namprd11.prod.outlook.com
+ ([fe80::152d:16f5:ab9a:7c6e%7]) with mapi id 15.20.7270.036; Tue, 13 Feb 2024
+ 18:04:05 +0000
+Date: Tue, 13 Feb 2024 10:04:03 -0800
 From: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Cc: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-Subject: [PATCH 2/2] i915/pmu: Cleanup pending events on unbind
-Date: Tue, 13 Feb 2024 10:03:02 -0800
-Message-Id: <20240213180302.47266-3-umesh.nerlige.ramappa@intel.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20240213180302.47266-1-umesh.nerlige.ramappa@intel.com>
-References: <20240213180302.47266-1-umesh.nerlige.ramappa@intel.com>
+To: <intel-gfx@lists.freedesktop.org>
+CC: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+Subject: Re: [PATCH 0/2] Fix crash due to open pmu events during unbind
+Message-ID: <ZcuvEzE0ItDKw7lN@unerlige-ril>
+References: <20240213064650.45051-1-umesh.nerlige.ramappa@intel.com>
+Content-Type: text/plain; charset="utf-8"; format=flowed
+Content-Disposition: inline
+In-Reply-To: <20240213064650.45051-1-umesh.nerlige.ramappa@intel.com>
+X-ClientProxiedBy: SJ0P220CA0029.NAMP220.PROD.OUTLOOK.COM
+ (2603:10b6:a03:41b::13) To DS0PR11MB7408.namprd11.prod.outlook.com
+ (2603:10b6:8:136::15)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: 8bit
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: DS0PR11MB7408:EE_|SJ2PR11MB8450:EE_
+X-MS-Office365-Filtering-Correlation-Id: f8e7fb41-6e9c-4b71-93e0-08dc2cbe2aa0
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: A62Rd0uqoSPPA/Ohg+LnTvXVnqE0Ent82wu/jhT/q6h0fnBSfqc7mpyWa+th4YsUBD+DqxWtmByO1S4J9NwHmHKNFFlOySULYkH0+a31uvcx0crXLumIYSj1pHdi1ylnPZIqKHK5dm1X7p3eBCbKRnYzo7fI6eNPCta/FOMbP5iNZm6WB19z1hSfFox6sXyU7wtucEOmNtRWwdFoRvqUSnFZwYVLLPUZ0Dv4qVW/d/Mlh7kvxbLRFLZ+3ak2nEUImKbH4uNsxAm+Ucsjtl+97CTfSp1s/PXb+m0o8Qdk2C8HKqdRdZHwL0Npz02WJtCCSCI4Q9A5mTDqmyYMc0P4IQa/JspLsc+yBFWk18w8O1eTdo9w9UTw6tlGO+4hLWKsbasJM3bsWKY5/U+Y0VIXqOP82gen7L3rIeifEAjuE0m3a1zWR6cyGc71dxCd/0UlYdbphkPe+zlFFkMJ4OWzHjRgufcLBJpuwqh/OWdJ3RaRY1bnWSBYyEtRMzOsvpzwC2Gr5VyvivOLwrJ3tK96EwhHq/kmjgr4y+5kwlDWkSjT3e/bpFq3VrfJySrkd06v
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:DS0PR11MB7408.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230031)(7916004)(376002)(136003)(346002)(396003)(39860400002)(366004)(230922051799003)(64100799003)(186009)(1800799012)(451199024)(66946007)(6486002)(41300700001)(2906002)(5660300002)(316002)(66476007)(66556008)(83380400001)(33716001)(8936002)(4326008)(8676002)(86362001)(6916009)(26005)(6506007)(6512007)(9686003)(38100700002)(478600001)(82960400001);
+ DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?YVpJelBkaXJnSjkyOTJFdCtMbFcySFZIYXBPY1R0dVpCcXBoMTI4RkVMSTZ0?=
+ =?utf-8?B?cnVwL0JwL3AvUXVlUkFPZDh3SE01VGNjK0hsNmtER2F5RVBnN0RyTk1BbzBz?=
+ =?utf-8?B?VllLaVMrZnJPc2JwWDZweXJUdlBoZDNGOW9talo4ZkdvV0RJaldsOTQ1UzZm?=
+ =?utf-8?B?M1gwZS8rUGs0YlRQUGdhRC9XUDkrSW5ZWVdTWXhQVHBmNWx2eWkyck9TSkFB?=
+ =?utf-8?B?TjNxZDMvcTUrZW1KZWt3VklDVzRxRnNxMCtOcDJjMklsMUsya29GOGRPT3E4?=
+ =?utf-8?B?dWhqdzdpc09mYnhVOThhL09iOHpybFhCRWxHelZ4aUhaU2pEMk5LSGk0RFAv?=
+ =?utf-8?B?Vm0remRFMFpMNUt5VEc0b1BQQVRTZ3U4cDNxcXZkbWxkdzVTaFJZRVdLbk5R?=
+ =?utf-8?B?OTNwSy9qMEt3bWFBV0Rzd291cFUzU2FPaDRaZGxBOGRXdURnRjhpQlo2eGdI?=
+ =?utf-8?B?QjdnTHFKL3Q4bWVCRWlHUG1BSUxoZFRGN2IySlFRYUxWZXpzNU9xYTVxd09D?=
+ =?utf-8?B?K040clpVdi9Rdi82ZFczdzdTUUxlVTF3RkQvYlhKRWNmSVR2VFA4aUJhdUdj?=
+ =?utf-8?B?Y0VXMzZaVzUwVmI5ZDFoSmdQNU5qdUxnNUVZSnJTaElqblg0aHNvNDVhZ3Ju?=
+ =?utf-8?B?UFNrdXRWcVBPTnJWOVpFdGd4bDJwMWdiSGlEbmdEaFhvZWVsOXlzdDdrRGRv?=
+ =?utf-8?B?SkkxM3RTY0ZMQmNHT0JpUEc3NHQ5UlU5S1NwanZtaTZkTjNmamRtTThvTS81?=
+ =?utf-8?B?bUQ2dlcxYm9uQVpneWV3NDhqVXFQRGlDV2Z1WXBNMzI3ejcrR2dVdHhyck90?=
+ =?utf-8?B?YlZzZDBqWnNsVEtYRHozRHpiM0JwdDdtYklxSVBmMUVYUmtib253QUs0RTBN?=
+ =?utf-8?B?QjUyZ1FOMm1Wbm1CdVY4a1pPelFHRktKamhuWGpwNkN2WEo2YXk1c1hhTysw?=
+ =?utf-8?B?RERremhOVk9KaDlzajBZbS9iblVrTVl6cm5vNjZqYlFkbW5CUEczc2MzS3hj?=
+ =?utf-8?B?N1J2OTc1ODZLTGQrZUhsRDlNUFhPZlQ4WnJvT2VXbVBzenF0WDdhK0s3ZnJy?=
+ =?utf-8?B?TUt2VnZ1R0Q4WWU5c1B0dHVmeHYrc1dQR3lYVXRlN2h2QWYyREIrWWhkK2Jk?=
+ =?utf-8?B?VElkdHF4SUFrbFNIVzdtMmJ4Ymp1SnQrM2xSaktpNlBCeGRxS1ZlRXFQcHg4?=
+ =?utf-8?B?L1Z3ODN4Nzk1VGJsV2crYXRlRUlLdmRQYkYyZjBSMFREUTA3VFE4N0lRK3pF?=
+ =?utf-8?B?K2RCcWRmNG4vOWhVaHBqSTRhdktuN0tSM1NmalRidDJHRXArZUN5azNnY2R2?=
+ =?utf-8?B?ZGJuVk1mTmg0Zm5DdmhuakUxWmJYTmRGY0YyY3JkK3dmVkFUNW5hS0FaUXF5?=
+ =?utf-8?B?VGFINUorek9hOGwwLzU3T1JpVU9Va1crTk03M0xMdEpRYk9FRWZzb2RlMlVu?=
+ =?utf-8?B?ZW5ZTFRvanl6VUQreE9YdUovbVRzWTU0RzNZQkZJdnBwWVJwYmZBTlhmclpV?=
+ =?utf-8?B?dUlWdGtTSVBQOTZIYjZNaW9iSUNaUG1vMFNDMDFmS1ZTM3JUMGN3bWlBOGxa?=
+ =?utf-8?B?MjJ1cG9sc3ZxYm8zTUpSekxXd1dTQ2Y1RzFYbC8vM2dlOW1IMi9ncE1tWjBq?=
+ =?utf-8?B?R1JpRDJjaEQ2WEdwUzh6NWJZRWovQXNXWFhmQ1pWK052RFVsQ2NCK1p3L2Zq?=
+ =?utf-8?B?OEdtQWJrNXN5WU93dDVVeGxybzJYTzJVc3NweWRwN1ZUSXZsYldOUTlvZkk3?=
+ =?utf-8?B?cVlPalVuV29LbGc4Ykd2NUNxcUIwU0dKUTMxOXFjRzVnQTlFTmQ1K21heDE3?=
+ =?utf-8?B?Y0lJQW9XclNDMkc3bjdjSmRsMVltQUhwQXFIODE4cC9xTUJwVlBFQm5NYm5N?=
+ =?utf-8?B?UFpUY0JXbnloeTJ4eVhSVkdHMEVnb1lGd21Lb0hiNHV3b25IVFkrRUZZQlp3?=
+ =?utf-8?B?Z3JVdHNla3JlUW5tSS9tS0wzQ2RxcGt4UVd6YnhJaEk4RHMvMjU0OUFSSmNI?=
+ =?utf-8?B?TmZPd1Nxd2V0b1NMc1BZaU9jd0F3YUpRYUJlZFRZNjQ5RXpwdDgzOVhKdi9p?=
+ =?utf-8?B?ZDNUZmx4ZDh5b28rSkpUZTJueEJhY0pPWCtBNVJ4c045eGtvc0pKcUw2S1ZT?=
+ =?utf-8?B?bm5DRG5ORlhLaUdabmNyaEY4MHcxekhGcFB5MWZQZU15MEdFY1Y0SWNOcnpM?=
+ =?utf-8?Q?70AZyjRj8QUjgG4G9ilmrp8=3D?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: f8e7fb41-6e9c-4b71-93e0-08dc2cbe2aa0
+X-MS-Exchange-CrossTenant-AuthSource: DS0PR11MB7408.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 13 Feb 2024 18:04:05.1723 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: gXyTnY7dvWP1Qm5N5oxRECOIIp04Iyr6YF2JYxKHjI2pj/LYpEfnOW+uVe0VIwovKu455ak0MdgVgRUOhV3yfFpZXy5Zl3c3s7jW3JfuWsc=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ2PR11MB8450
+X-OriginatorOrg: intel.com
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -66,250 +160,34 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Once a user opens an fd for a perf event, if the driver undergoes a
-function level reset (FLR), the resources are not cleaned up as
-expected. For this discussion FLR is defined as a PCI unbind followed by
-a bind. perf_pmu_unregister() would cleanup everything, but when the user
-closes the perf fd, perf_release is executed and we encounter null
-pointer dereferences and/or list corruption in that path which require a
-reboot to recover.
+Resending to include patch 2/2. Please ignore this series.
 
-The only approach that worked to resolve this was to close the file
-associated with the event such that the relevant cleanup happens w.r.t.
-the open file. To do so, use the event->owner task and find the file
-relevant to the event and close it. This relies on the
-file->private_data matching the event object.
-
-Note:
-- Closing the event file is a delayed work that gets queued to system_wq.
-The close is seen to happen when kernel returns to user space following
-the unbind.
-
-- perf framework will access the pmu object after the last event has
-been destroyed. The drm device is refcounted in the init and destroy
-hooks, so this causes a use after free if we are releasing the drm
-device reference after unbind has been called. To work around this, we
-take an extra reference in the unbind path and release it using a
-delayed work in the destroy patch. The delayed work is queued to
-system_wq.
-
-Ref: https://lore.kernel.org/lkml/20240115170120.662220-1-tvrtko.ursulin@linux.intel.com/T/#me72abfa2771e6fc94b167ce47efdbf391cc313ab
-
-Opens:
-- Synchronization may be needed between i915_pmu_unregister and
-i915_pmu_event_destroy to avoid any races.
-
-- If unbind and bind happen from the same process the event fd is closed
-after bind completes. This means that the cleanup would not happen
-until bind completes. In this case, i915 loads fine, but pmu
-registration fails with an error that the sysfs entries are already
-present. There is no solution feasible here. Since this is not a fatal
-error (reloading i915 works fine) and the usual case is to have bind and
-unbind in separate processes, there is no intention to solve this.
-
-Other solutions/aspects tried:
-- Call perf_event_disable() followed by perf_event_release_kernel() in
-the unbind path to clean up the events. This still causes issues when
-user closes the fd since perf_event_release_kernel() is called again and
-fails requiring reboot.
-
-- Close all event fds in unbind and wait for the close to complete by
-checking if list is empty. This wait does not work since the files
-are actually closed when unbind returns to user space.
-
-Testing:
-- New IGT tests have been added for this and are run with KASAN and
-  kmemleak enabled.
-
-Signed-off-by: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
----
- drivers/gpu/drm/i915/i915_pmu.c | 96 ++++++++++++++++++++++++++++++++-
- drivers/gpu/drm/i915/i915_pmu.h | 15 ++++++
- 2 files changed, 110 insertions(+), 1 deletion(-)
-
-diff --git a/drivers/gpu/drm/i915/i915_pmu.c b/drivers/gpu/drm/i915/i915_pmu.c
-index 4d2a289f848a..2f365c7f5db7 100644
---- a/drivers/gpu/drm/i915/i915_pmu.c
-+++ b/drivers/gpu/drm/i915/i915_pmu.c
-@@ -4,6 +4,8 @@
-  * Copyright © 2017-2018 Intel Corporation
-  */
- 
-+#include <linux/fdtable.h>
-+#include <linux/fs.h>
- #include <linux/pm_runtime.h>
- 
- #include "gt/intel_engine.h"
-@@ -573,9 +575,21 @@ static void i915_pmu_event_destroy(struct perf_event *event)
- {
- 	struct i915_pmu *pmu = event_to_pmu(event);
- 	struct drm_i915_private *i915 = pmu_to_i915(pmu);
-+	struct i915_event *e = event->pmu_private;
- 
- 	drm_WARN_ON(&i915->drm, event->parent);
- 
-+	if (e) {
-+		event->pmu_private = NULL;
-+		list_del(&e->link);
-+		kfree(e);
-+	}
-+
-+	if (i915->pmu.closed && list_empty(&i915->pmu.initialized_events)) {
-+		pmu_teardown(&i915->pmu);
-+		mod_delayed_work(system_wq, &i915->pmu.work, 50);
-+	}
-+
- 	drm_dev_put(&i915->drm);
- }
- 
-@@ -684,6 +698,14 @@ static int i915_pmu_event_init(struct perf_event *event)
- 		return ret;
- 
- 	if (!event->parent) {
-+		struct i915_event *e = kzalloc(sizeof(*e), GFP_KERNEL);
-+
-+		if (!e)
-+			return -ENOMEM;
-+
-+		e->event = event;
-+		list_add(&e->link, &pmu->initialized_events);
-+		event->pmu_private = e;
- 		drm_dev_get(&i915->drm);
- 		event->destroy = i915_pmu_event_destroy;
- 	}
-@@ -1256,6 +1278,14 @@ void i915_pmu_exit(void)
- 		cpuhp_remove_multi_state(cpuhp_slot);
- }
- 
-+static void i915_pmu_release(struct work_struct *work)
-+{
-+	struct i915_pmu *pmu = container_of(work, typeof(*pmu), work.work);
-+	struct drm_i915_private *i915 = container_of(pmu, typeof(*i915), pmu);
-+
-+	drm_dev_put(&i915->drm);
-+}
-+
- void i915_pmu_register(struct drm_i915_private *i915)
- {
- 	struct i915_pmu *pmu = &i915->pmu;
-@@ -1313,6 +1343,9 @@ void i915_pmu_register(struct drm_i915_private *i915)
- 	pmu->base.read		= i915_pmu_event_read;
- 	pmu->base.event_idx	= i915_pmu_event_event_idx;
- 
-+	INIT_LIST_HEAD(&pmu->initialized_events);
-+	INIT_DELAYED_WORK(&pmu->work, i915_pmu_release);
-+
- 	ret = perf_pmu_register(&pmu->base, pmu->name, -1);
- 	if (ret)
- 		goto err_groups;
-@@ -1337,6 +1370,64 @@ void i915_pmu_register(struct drm_i915_private *i915)
- 	drm_notice(&i915->drm, "Failed to register PMU!\n");
- }
- 
-+/* Ref: close_fd() */
-+static unsigned int __open_files(struct fdtable *fdt)
-+{
-+	unsigned int size = fdt->max_fds;
-+	unsigned int i;
-+
-+	for (i = size / BITS_PER_LONG; i > 0; ) {
-+		if (fdt->open_fds[--i])
-+			break;
-+	}
-+	return (i + 1) * BITS_PER_LONG;
-+}
-+
-+static void close_event_file(struct perf_event *event)
-+{
-+	unsigned int max_open_fds, fd;
-+	struct files_struct *files;
-+	struct task_struct *task;
-+	struct fdtable *fdt;
-+
-+	task = event->owner;
-+	if (!task)
-+		return;
-+
-+	files = task->files;
-+	if (!files)
-+		return;
-+
-+	spin_lock(&files->file_lock);
-+	fdt = files_fdtable(files);
-+	max_open_fds = __open_files(fdt);
-+	for (fd = 0; fd < max_open_fds; fd++) {
-+		struct file *file = fdt->fd[fd];
-+
-+		if (!file || file->private_data != event)
-+			continue;
-+
-+		rcu_assign_pointer(fdt->fd[fd], NULL);
-+		__clear_bit(fd, fdt->open_fds);
-+		__clear_bit(fd / BITS_PER_LONG, fdt->full_fds_bits);
-+		if (fd < files->next_fd)
-+			files->next_fd = fd;
-+		filp_close(file, files);
-+		break;
-+	}
-+	spin_unlock(&files->file_lock);
-+}
-+
-+static void cleanup_events(struct i915_pmu *pmu)
-+{
-+	struct drm_i915_private *i915 = container_of(pmu, typeof(*i915), pmu);
-+	struct i915_event *e, *tmp;
-+
-+	drm_dev_get(&i915->drm);
-+	list_for_each_entry_safe(e, tmp, &pmu->initialized_events, link)
-+		close_event_file(e->event);
-+}
-+
- void i915_pmu_unregister(struct drm_i915_private *i915)
- {
- 	struct i915_pmu *pmu = &i915->pmu;
-@@ -1354,5 +1445,8 @@ void i915_pmu_unregister(struct drm_i915_private *i915)
- 
- 	hrtimer_cancel(&pmu->timer);
- 
--	pmu_teardown(pmu);
-+	if (list_empty(&pmu->initialized_events))
-+		pmu_teardown(pmu);
-+	else
-+		cleanup_events(pmu);
- }
-diff --git a/drivers/gpu/drm/i915/i915_pmu.h b/drivers/gpu/drm/i915/i915_pmu.h
-index 41af038c3738..6f62e820f34d 100644
---- a/drivers/gpu/drm/i915/i915_pmu.h
-+++ b/drivers/gpu/drm/i915/i915_pmu.h
-@@ -55,6 +55,11 @@ struct i915_pmu_sample {
- 	u64 cur;
- };
- 
-+struct i915_event {
-+	struct perf_event *event;
-+	struct list_head link;
-+};
-+
- struct i915_pmu {
- 	/**
- 	 * @cpuhp: Struct used for CPU hotplug handling.
-@@ -152,6 +157,16 @@ struct i915_pmu {
- 	 * @pmu_attr: Memory block holding device attributes.
- 	 */
- 	void *pmu_attr;
-+
-+	/**
-+	 * @initialized_events: List of initialized events
-+	 */
-+	struct list_head initialized_events;
-+
-+	/**
-+	 * @work: worker to delay release of drm device reference 
-+	 */
-+	struct delayed_work work;
- };
- 
- #ifdef CONFIG_PERF_EVENTS
--- 
-2.34.1
-
+On Mon, Feb 12, 2024 at 10:46:48PM -0800, Umesh Nerlige Ramappa wrote:
+>Once a user opens an fd for a perf event, if the driver undergoes a
+>function level reset (FLR), the resources are not cleaned up as
+>expected. For this discussion FLR is defined as a PCI unbind followed by
+>a bind. perf_pmu_unregister() would cleanup everything, but when the
+>user closes the perf fd much later, perf_release() is called and we
+>encounter null pointer dereferences and/or list corruption in that path
+>which require a reboot to recover.
+>
+>The only approach that worked to resolve this was to close the file
+>associated with the event such that the relevant cleanup happens w.r.t.
+>the open file. To do so, use the event->owner task and find the file
+>relevant to the event and close it. This relies on the
+>file->private_data matching the event object.
+>
+>Test-with: 20240213062948.32735-1-umesh.nerlige.ramappa@intel.com
+>Signed-off-by: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
+>
+>Umesh Nerlige Ramappa (2):
+>  i915/pmu: Add pmu_teardown helper
+>  INTEL_DII: i915/pmu: Cleanup pending events on unbind
+>
+> drivers/gpu/drm/i915/i915_pmu.c | 192 ++++++++++++++++++++++++--------
+> drivers/gpu/drm/i915/i915_pmu.h |  15 +++
+> 2 files changed, 161 insertions(+), 46 deletions(-)
+>
+>-- 
+>2.34.1
+>
