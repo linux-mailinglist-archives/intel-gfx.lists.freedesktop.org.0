@@ -2,57 +2,69 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0A2F3852DFC
-	for <lists+intel-gfx@lfdr.de>; Tue, 13 Feb 2024 11:35:56 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id EE26D852EAB
+	for <lists+intel-gfx@lfdr.de>; Tue, 13 Feb 2024 12:02:16 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 71A8B10E137;
-	Tue, 13 Feb 2024 10:35:54 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7C51410E449;
+	Tue, 13 Feb 2024 11:02:09 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="cIqhjY88";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=haloniitty.fi header.i=@haloniitty.fi header.b="YCqn2/XI";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D09C810E137
- for <intel-gfx@lists.freedesktop.org>; Tue, 13 Feb 2024 10:35:53 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1707820554; x=1739356554;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=uIwZxw8u2UehLFLiy0TMrIQn+HzDl7IR4mMQNPzSNzM=;
- b=cIqhjY88FdJEvE5VEy5onBZ4KMATvriegBRfFvzFll2ChhzTs/1PZF9c
- EV42VcKEg0DzqMabuZnMXfjFeUgmwZ+tmArAL5HVlw6s6suedS69uJJ9I
- GhMZfv+LFSSkgXzPs9mz0EW9k4CCI4nvjVvDYllj8YDjbN6Tfcp+FN2le
- 30FyvIadAsOK9o0DuURqYmmCgLBP5eYUVg5TomTafUUmR6FPixLfdsqMv
- ++e6w37qa9bsvl0oNw43QUiEZT2zLm25wmuIJwt/8i1rNJryt3t8fBCvI
- yk6DrjYqIn2khLme5jWcH1SrxUJ2HU1D+Paw1+cqS04IPAi8wSzQEeVV+ g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10982"; a="1696724"
-X-IronPort-AV: E=Sophos;i="6.06,156,1705392000"; 
-   d="scan'208";a="1696724"
-Received: from fmviesa006.fm.intel.com ([10.60.135.146])
- by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Feb 2024 02:35:54 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.06,156,1705392000"; 
-   d="scan'208";a="3151102"
-Received: from unknown (HELO slisovsk-Lenovo-ideapad-720S-13IKB.fi.intel.com)
- ([10.237.72.65])
- by fmviesa006.fm.intel.com with ESMTP; 13 Feb 2024 02:35:51 -0800
-From: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Cc: jani.saarinen@intel.com, Stanislav.Lisovskiy@intel.com,
- ville.syrjala@linux.intel.com
-Subject: [PATCH 3/3] Start separating pipe vs transcoder set logic for
- bigjoiner during modeset
-Date: Tue, 13 Feb 2024 12:35:50 +0200
-Message-Id: <20240213103550.8853-1-stanislav.lisovskiy@intel.com>
-X-Mailer: git-send-email 2.37.3
-In-Reply-To: <20240202100230.4430-1-stanislav.lisovskiy@intel.com>
-References: <20240202100230.4430-1-stanislav.lisovskiy@intel.com>
+Received: from whm50.louhi.net (whm50.louhi.net [77.240.19.51])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 42ED610E3C9;
+ Tue, 13 Feb 2024 11:02:08 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+ d=haloniitty.fi; s=default; h=Content-Type:MIME-Version:References:
+ In-Reply-To:Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:
+ Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+ Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
+ List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
+ bh=Ob1mtidG8pZSQE72m6TU3tU6SUifhLcJBQ3wzyQ+5LQ=; b=YCqn2/XIxy6XDYAkqt+UOOgLd3
+ WKcElGzPWUnB1idvaRCVFfv52kX53ZXcGwkqjVnaRJCE8rpJUPZ3DmxlUtzZPVBxIU6OWwNDvzIPZ
+ l2DnCtXWwPXK0zwkkhdupTepUZzEMPPbWfhXAAHmgwDfbVf1IZ2hAtwVSjvJsAEXLEPYKZURVahy/
+ 6H/hKljN4vGvyIQzHRzwIBSGn99YjX+G8T5TbTWiPub9Z1czrWNPAvxN08k8PVyVfOfEdJjFd5l9u
+ 5srI6hbplL4anzrsxurNq4kAbqfK6GPOEWYsaskanFBQeVRc4z0nL7mSQEyUW1rnu4F5dmaV1GKjS
+ W9wh/yMQ==;
+Received: from [194.136.85.206] (port=51198 helo=eldfell)
+ by whm50.louhi.net with esmtpsa (TLS1.2) tls
+ TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (Exim 4.96.2)
+ (envelope-from <pekka.paalanen@haloniitty.fi>) id 1rZqYA-0005XE-1m;
+ Tue, 13 Feb 2024 13:02:06 +0200
+Date: Tue, 13 Feb 2024 13:01:52 +0200
+From: Pekka Paalanen <pekka.paalanen@haloniitty.fi>
+To: Uma Shankar <uma.shankar@intel.com>
+Cc: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ ville.syrjala@linux.intel.com, contact@emersion.fr, harry.wentland@amd.com,
+ mwen@igalia.com, jadahl@redhat.com, sebastian.wick@redhat.com,
+ shashank.sharma@amd.com, agoins@nvidia.com, joshua@froggi.es,
+ mdaenzer@redhat.com, aleixpol@kde.org, xaver.hugl@gmail.com,
+ victoria@system76.com, daniel@ffwll.ch, quic_naseer@quicinc.com,
+ quic_cbraga@quicinc.com, quic_abhinavk@quicinc.com,
+ arthurgrillo@riseup.net, marcan@marcan.st, Liviu.Dudau@arm.com,
+ sashamcintosh@google.com, sean@poorly.run, Chaitanya Kumar Borah
+ <chaitanya.kumar.borah@intel.com>
+Subject: Re: [PATCH 00/28] Plane Color Pipeline support for Intel platforms
+Message-ID: <20240213130152.3ad4ae50@eldfell>
+In-Reply-To: <20240213064835.139464-1-uma.shankar@intel.com>
+References: <20240213064835.139464-1-uma.shankar@intel.com>
+X-Mailer: Claws Mail 4.1.1 (GTK 3.24.38; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Type: multipart/signed; boundary="Sig_/UBaGp2JONr96V4co.7aS80g";
+ protocol="application/pgp-signature"; micalg=pgp-sha256
+X-AntiAbuse: This header was added to track abuse,
+ please include it with any abuse report
+X-AntiAbuse: Primary Hostname - whm50.louhi.net
+X-AntiAbuse: Original Domain - lists.freedesktop.org
+X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
+X-AntiAbuse: Sender Address Domain - haloniitty.fi
+X-Get-Message-Sender-Via: whm50.louhi.net: authenticated_id:
+ pekka.paalanen@haloniitty.fi
+X-Authenticated-Sender: whm50.louhi.net: pekka.paalanen@haloniitty.fi
+X-Source: 
+X-Source-Args: 
+X-Source-Dir: 
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -68,320 +80,155 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Handle only bigjoiner masters in skl_commit_modeset_enables/disables,
-slave crtcs should be handled by master hooks. Same for encoders.
-That way we can also remove a bunch of checks like intel_crtc_is_bigjoiner_slave.
+--Sig_/UBaGp2JONr96V4co.7aS80g
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: quoted-printable
 
-v2: Get rid of master vs slave checks and separation in crtc enable/disable hooks.
-    Use unified iteration cycle for all of those, while enabling/disabling
-    transcoder only for those pipes where its needed(Ville Syrjälä)
+On Tue, 13 Feb 2024 12:18:07 +0530
+Uma Shankar <uma.shankar@intel.com> wrote:
 
-v3: Move all the intel_encoder_* calls under transcoder code path(Ville Syrjälä)
+> This series intends to add support for Plane Color Management for
+> Intel platforms. This is based on the design which has been agreed
+> upon by the community. Series implementing the design for generic
+> DRM core has been sent out by Harry Wentland and is under review
+> below:
+> https://patchwork.freedesktop.org/series/123446/
+>=20
+> The base work of above series is squashed under 1 patch and support
+> for Intel platform is added on top of it.
+> Any reviews on the original core design is expected to be done in=20
+> Harry's series to avoid any forking of the discussion.
+>=20
+> We have added some changes/fixes to the Harry's core DRM changes,
+> being put up as separate patches on top of squashed patch. These are
+> expected to get included in the main series from Harry once agreed upon.
+>=20
+> Changes added on core design:
+> 1. Below patches implement some fixes on original series
+> drm: Add missing function declarations
+> drm: handle NULL next colorop in drm_colorop_set_next_property
+> drm: Fix error logging in set Color Pipeline
+>=20
+> 2. Implemented a HW capability property to expose segmented luts.
+> drm: Add Color lut range attributes
+> drm: Add Color ops capability property
+> drm: Define helper to create color ops capability property
+> drm: Define helper for adding capability property for 1D LUT
+>=20
+> This helps in generically defining the hardware lut capabilities,
+> lut distribution, precision, segmented or PWL LUTS.
+>=20
+> 3. Added support for enhanced prescision, 3x3 matrix and 1d LUT:
+> drm: Add Enhanced LUT precision structure
+> drm: Add support for 3x3 CTM
+> drm: Add 1D LUT color op
+>=20
+> On top of this base work for DRM core plane color pipeline design,
+> implementation is done for Intel hardware platforms. Below patches
+> include the same:
+>=20
+> drm/i915: Add identifiers for intel color blocks
+> drm/i915: Add intel_color_op
+> drm/i915/color: Add helper to allocate intel colorop
+> drm/i915/color: Add helper to create intel colorop
+> drm/i915/color: Create a transfer function color pipeline
+> drm/i915/color: Add and attach COLORPIPELINE plane property
+> drm/i915/color: Add framework to set colorop
+> drm/i915/color: Add callbacks to set plane CTM
+> drm/i915/color: Add framework to program PRE/POST CSC LUT
+> FIXME: force disable legacy plane color properties for TGL and beyond
+> drm/i915/color: Enable Plane Color Pipelines
+> drm/i915: Define segmented Lut and add capabilities to colorop
+> drm/i915/color: Add plane CTM callback for TGL and beyond
+> drm/i915: Add register definitions for Plane Degamma
+> drm/i915: Add register definitions for Plane Post CSC
+> drm/i915/color: Program Pre-CSC registers
+> drm/i915/xelpd: Program Plane Post CSC Registers
+>=20
+> Bhanu from Intel will be sending out the igt changes to help test the
+> color pipeline implementation based on the current igt changes sent out
+> by Harry.
+> https://patchwork.freedesktop.org/series/123448/
+>=20
+> Planned Next Steps:
+> 1. Work with Harry and community and get DRM core changes for color
+> pipeline merged.
+> 2. Implement pipe color management (post blending) based on the current
+> color pipeline design.
+> 3. Work with compositor maintainers to get color processing implemented
+> using display hardware, thereby avoid any GL or GPU shaders.
+>=20
+> Thanks to all the community maintainers and contributors who have helped
+> to get this support in upstream Linux. Looking forward to collaborate,
+> work together and get this merged.
+>=20
 
-Signed-off-by: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
----
- drivers/gpu/drm/i915/display/intel_ddi.c     |   3 +-
- drivers/gpu/drm/i915/display/intel_display.c | 183 ++++++++++++-------
- drivers/gpu/drm/i915/display/intel_display.h |   6 +
- 3 files changed, 121 insertions(+), 71 deletions(-)
+...
 
-diff --git a/drivers/gpu/drm/i915/display/intel_ddi.c b/drivers/gpu/drm/i915/display/intel_ddi.c
-index 922194b957be2..6c690aefec9d1 100644
---- a/drivers/gpu/drm/i915/display/intel_ddi.c
-+++ b/drivers/gpu/drm/i915/display/intel_ddi.c
-@@ -3340,8 +3340,7 @@ static void intel_enable_ddi(struct intel_atomic_state *state,
- {
- 	drm_WARN_ON(state->base.dev, crtc_state->has_pch_encoder);
- 
--	if (!intel_crtc_is_bigjoiner_slave(crtc_state))
--		intel_ddi_enable_transcoder_func(encoder, crtc_state);
-+	intel_ddi_enable_transcoder_func(encoder, crtc_state);
- 
- 	/* Enable/Disable DP2.0 SDP split config before transcoder */
- 	intel_audio_sdp_split_update(crtc_state);
-diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
-index 616a890b2658f..8ef2f38b8ed96 100644
---- a/drivers/gpu/drm/i915/display/intel_display.c
-+++ b/drivers/gpu/drm/i915/display/intel_display.c
-@@ -1631,31 +1631,12 @@ static void hsw_configure_cpu_transcoder(const struct intel_crtc_state *crtc_sta
- 	hsw_set_transconf(crtc_state);
- }
- 
--static void hsw_crtc_enable(struct intel_atomic_state *state,
--			    struct intel_crtc *crtc)
-+static void hsw_crtc_enable_pre_transcoder(struct intel_atomic_state *state,
-+					   struct intel_crtc *crtc)
- {
- 	const struct intel_crtc_state *new_crtc_state =
- 		intel_atomic_get_new_crtc_state(state, crtc);
- 	struct drm_i915_private *dev_priv = to_i915(crtc->base.dev);
--	enum pipe pipe = crtc->pipe, hsw_workaround_pipe;
--	enum transcoder cpu_transcoder = new_crtc_state->cpu_transcoder;
--	bool psl_clkgate_wa;
--
--	if (drm_WARN_ON(&dev_priv->drm, crtc->active))
--		return;
--
--	intel_dmc_enable_pipe(dev_priv, crtc->pipe);
--
--	if (!new_crtc_state->bigjoiner_pipes) {
--		intel_encoders_pre_pll_enable(state, crtc);
--
--		if (new_crtc_state->shared_dpll)
--			intel_enable_shared_dpll(new_crtc_state);
--
--		intel_encoders_pre_enable(state, crtc);
--	} else {
--		icl_ddi_bigjoiner_pre_enable(state, new_crtc_state);
--	}
- 
- 	intel_dsc_enable(new_crtc_state);
- 
-@@ -1665,19 +1646,17 @@ static void hsw_crtc_enable(struct intel_atomic_state *state,
- 	intel_set_pipe_src_size(new_crtc_state);
- 	if (DISPLAY_VER(dev_priv) >= 9 || IS_BROADWELL(dev_priv))
- 		bdw_set_pipe_misc(new_crtc_state);
-+}
- 
--	if (!intel_crtc_is_bigjoiner_slave(new_crtc_state) &&
--	    !transcoder_is_dsi(cpu_transcoder))
--		hsw_configure_cpu_transcoder(new_crtc_state);
-+static void hsw_crtc_enable_post_transcoder(struct intel_atomic_state *state,
-+					    struct intel_crtc *crtc)
-+{
-+	const struct intel_crtc_state *new_crtc_state =
-+		intel_atomic_get_new_crtc_state(state, crtc);
-+	struct drm_i915_private *dev_priv = to_i915(crtc->base.dev);
- 
- 	crtc->active = true;
- 
--	/* Display WA #1180: WaDisableScalarClockGating: glk */
--	psl_clkgate_wa = DISPLAY_VER(dev_priv) == 10 &&
--		new_crtc_state->pch_pfit.enabled;
--	if (psl_clkgate_wa)
--		glk_pipe_scaler_clock_gating_wa(dev_priv, pipe, true);
--
- 	if (DISPLAY_VER(dev_priv) >= 9)
- 		skl_pfit_enable(new_crtc_state);
- 	else
-@@ -1701,26 +1680,83 @@ static void hsw_crtc_enable(struct intel_atomic_state *state,
- 
- 	intel_initial_watermarks(state, crtc);
- 
--	if (intel_crtc_is_bigjoiner_slave(new_crtc_state))
--		intel_crtc_vblank_on(new_crtc_state);
-+	intel_crtc_vblank_on(new_crtc_state);
-+}
- 
--	intel_encoders_enable(state, crtc);
-+static void hsw_crtc_enable(struct intel_atomic_state *state,
-+			    struct intel_crtc *crtc)
-+{
-+	const struct intel_crtc_state *new_crtc_state =
-+		intel_atomic_get_new_crtc_state(state, crtc);
-+	struct drm_i915_private *dev_priv = to_i915(crtc->base.dev);
-+	enum transcoder cpu_transcoder = new_crtc_state->cpu_transcoder;
-+	struct intel_crtc *_crtc;
-+	int slave_pipe_mask = intel_crtc_bigjoiner_slave_pipes(new_crtc_state);
-+	int pipe_mask = slave_pipe_mask | crtc->pipe;
-+	bool psl_clkgate_wa;
-+	enum pipe pipe = crtc->pipe, hsw_workaround_pipe;
- 
--	if (psl_clkgate_wa) {
--		intel_crtc_wait_for_next_vblank(crtc);
--		glk_pipe_scaler_clock_gating_wa(dev_priv, pipe, false);
--	}
-+	if (drm_WARN_ON(&dev_priv->drm, crtc->active))
-+		return;
-+
-+	/*
-+	 * Use reverse iterator to go through slave pipes first.
-+	 * TODO: We might need smarter iterator here
-+	 */
-+	for_each_intel_crtc_in_pipe_mask_reverse(&dev_priv->drm, _crtc,
-+						 pipe_mask) {
-+		const struct intel_crtc_state *_new_crtc_state =
-+			intel_atomic_get_new_crtc_state(state, _crtc);
-+		bool needs_transcoder = ((slave_pipe_mask & _crtc->pipe) == 0) &&
-+					!transcoder_is_dsi(cpu_transcoder);
-+
-+		intel_dmc_enable_pipe(dev_priv, crtc->pipe);
-+
-+		if (!new_crtc_state->bigjoiner_pipes) {
-+			if (needs_transcoder)
-+				intel_encoders_pre_pll_enable(state, crtc);
-+
-+			if (new_crtc_state->shared_dpll)
-+				intel_enable_shared_dpll(new_crtc_state);
-+
-+			if (needs_transcoder)
-+				intel_encoders_pre_enable(state, crtc);
-+		} else {
-+			icl_ddi_bigjoiner_pre_enable(state, new_crtc_state);
-+		}
-+
-+		hsw_crtc_enable_pre_transcoder(state, _crtc);
-+
-+		if (needs_transcoder)
-+			hsw_configure_cpu_transcoder(_new_crtc_state);
-+
-+		/* Display WA #1180: WaDisableScalarClockGating: glk */
-+		psl_clkgate_wa = DISPLAY_VER(dev_priv) == 10 &&
-+			new_crtc_state->pch_pfit.enabled;
-+		if (psl_clkgate_wa)
-+			glk_pipe_scaler_clock_gating_wa(dev_priv, pipe, true);
-+
-+		hsw_crtc_enable_post_transcoder(state, _crtc);
-+
-+		if (needs_transcoder)
-+			intel_encoders_enable(state, crtc);
-+
-+		if (psl_clkgate_wa) {
-+			intel_crtc_wait_for_next_vblank(crtc);
-+			glk_pipe_scaler_clock_gating_wa(dev_priv, pipe, false);
-+		}
- 
--	/* If we change the relative order between pipe/planes enabling, we need
--	 * to change the workaround. */
--	hsw_workaround_pipe = new_crtc_state->hsw_workaround_pipe;
--	if (IS_HASWELL(dev_priv) && hsw_workaround_pipe != INVALID_PIPE) {
--		struct intel_crtc *wa_crtc;
-+		/* If we change the relative order between pipe/planes enabling, we need
-+		 * to change the workaround. */
-+		hsw_workaround_pipe = new_crtc_state->hsw_workaround_pipe;
-+		if (IS_HASWELL(dev_priv) && hsw_workaround_pipe != INVALID_PIPE) {
-+			struct intel_crtc *wa_crtc;
- 
--		wa_crtc = intel_crtc_for_pipe(dev_priv, hsw_workaround_pipe);
-+			wa_crtc = intel_crtc_for_pipe(dev_priv, hsw_workaround_pipe);
- 
--		intel_crtc_wait_for_next_vblank(wa_crtc);
--		intel_crtc_wait_for_next_vblank(wa_crtc);
-+			intel_crtc_wait_for_next_vblank(wa_crtc);
-+			intel_crtc_wait_for_next_vblank(wa_crtc);
-+		}
- 	}
- }
- 
-@@ -1784,28 +1820,27 @@ static void hsw_crtc_disable(struct intel_atomic_state *state,
- 	const struct intel_crtc_state *old_crtc_state =
- 		intel_atomic_get_old_crtc_state(state, crtc);
- 	struct drm_i915_private *i915 = to_i915(crtc->base.dev);
-+	int slave_pipe_mask = intel_crtc_bigjoiner_slave_pipes(old_crtc_state);
-+	int pipe_mask = slave_pipe_mask | crtc->pipe;
-+	struct intel_crtc *_crtc;
-+
-+	for_each_intel_crtc_in_pipe_mask(&i915->drm, _crtc,
-+					 pipe_mask) {
-+		const struct intel_crtc_state *_old_crtc_state =
-+			intel_atomic_get_old_crtc_state(state, _crtc);
-+		bool needs_encoder_disable = (_crtc->pipe & slave_pipe_mask) == 0;
-+
-+		if (needs_encoder_disable) {
-+			intel_encoders_disable(state, _crtc);
-+			intel_encoders_post_disable(state, _crtc);
-+		}
- 
--	/*
--	 * FIXME collapse everything to one hook.
--	 * Need care with mst->ddi interactions.
--	 */
--	if (!intel_crtc_is_bigjoiner_slave(old_crtc_state)) {
--		intel_encoders_disable(state, crtc);
--		intel_encoders_post_disable(state, crtc);
--	}
--
--	intel_disable_shared_dpll(old_crtc_state);
--
--	if (!intel_crtc_is_bigjoiner_slave(old_crtc_state)) {
--		struct intel_crtc *slave_crtc;
--
--		intel_encoders_post_pll_disable(state, crtc);
-+		intel_disable_shared_dpll(_old_crtc_state);
- 
--		intel_dmc_disable_pipe(i915, crtc->pipe);
-+		if (needs_encoder_disable)
-+			intel_encoders_post_pll_disable(state, _crtc);
- 
--		for_each_intel_crtc_in_pipe_mask(&i915->drm, slave_crtc,
--						 intel_crtc_bigjoiner_slave_pipes(old_crtc_state))
--			intel_dmc_disable_pipe(i915, slave_crtc->pipe);
-+		intel_dmc_disable_pipe(i915, _crtc->pipe);
- 	}
- }
- 
-@@ -6797,8 +6832,10 @@ static void intel_commit_modeset_disables(struct intel_atomic_state *state)
- 		 * Slave vblanks are masked till Master Vblanks.
- 		 */
- 		if (!is_trans_port_sync_slave(old_crtc_state) &&
--		    !intel_dp_mst_is_slave_trans(old_crtc_state) &&
--		    !intel_crtc_is_bigjoiner_slave(old_crtc_state))
-+		    !intel_dp_mst_is_slave_trans(old_crtc_state))
-+			continue;
-+
-+		if (intel_crtc_is_bigjoiner_slave(old_crtc_state))
- 			continue;
- 
- 		intel_old_crtc_state_disables(state, old_crtc_state,
-@@ -6816,6 +6853,9 @@ static void intel_commit_modeset_disables(struct intel_atomic_state *state)
- 		if (!old_crtc_state->hw.active)
- 			continue;
- 
-+		if (intel_crtc_is_bigjoiner_slave(old_crtc_state))
-+			continue;
-+
- 		intel_old_crtc_state_disables(state, old_crtc_state,
- 					      new_crtc_state, crtc);
- 	}
-@@ -6928,8 +6968,10 @@ static void skl_commit_modeset_enables(struct intel_atomic_state *state)
- 			continue;
- 
- 		if (intel_dp_mst_is_slave_trans(new_crtc_state) ||
--		    is_trans_port_sync_master(new_crtc_state) ||
--		    intel_crtc_is_bigjoiner_master(new_crtc_state))
-+		    is_trans_port_sync_master(new_crtc_state))
-+			continue;
-+
-+		if (intel_crtc_is_bigjoiner_slave(new_crtc_state))
- 			continue;
- 
- 		modeset_pipes &= ~BIT(pipe);
-@@ -6939,7 +6981,7 @@ static void skl_commit_modeset_enables(struct intel_atomic_state *state)
- 
- 	/*
- 	 * Then we enable all remaining pipes that depend on other
--	 * pipes: MST slaves and port sync masters, big joiner master
-+	 * pipes: MST slaves and port sync masters
- 	 */
- 	for_each_new_intel_crtc_in_state(state, crtc, new_crtc_state, i) {
- 		enum pipe pipe = crtc->pipe;
-@@ -6947,6 +6989,9 @@ static void skl_commit_modeset_enables(struct intel_atomic_state *state)
- 		if ((modeset_pipes & BIT(pipe)) == 0)
- 			continue;
- 
-+		if (intel_crtc_is_bigjoiner_slave(new_crtc_state))
-+			continue;
-+
- 		modeset_pipes &= ~BIT(pipe);
- 
- 		intel_enable_crtc(state, crtc);
-diff --git a/drivers/gpu/drm/i915/display/intel_display.h b/drivers/gpu/drm/i915/display/intel_display.h
-index f4a0773f0fca8..e1e8d956c305e 100644
---- a/drivers/gpu/drm/i915/display/intel_display.h
-+++ b/drivers/gpu/drm/i915/display/intel_display.h
-@@ -280,6 +280,12 @@ enum phy_fia {
- 			    base.head)					\
- 		for_each_if((pipe_mask) & BIT(intel_crtc->pipe))
- 
-+#define for_each_intel_crtc_in_pipe_mask_reverse(dev, intel_crtc, pipe_mask)	\
-+	list_for_each_entry_reverse(intel_crtc,					\
-+				    &(dev)->mode_config.crtc_list,		\
-+				    base.head)					\
-+		for_each_if((pipe_mask) & BIT(intel_crtc->pipe))
-+
- #define for_each_intel_encoder(dev, intel_encoder)		\
- 	list_for_each_entry(intel_encoder,			\
- 			    &(dev)->mode_config.encoder_list,	\
--- 
-2.37.3
+> Chaitanya Kumar Borah (16):
+>   drm: Add missing function declarations
+>   drm: handle NULL next colorop in drm_colorop_set_next_property
+>   drm: Fix error logging in set Color Pipeline
+>   drm: Add support for 3x3 CTM
+>   drm: Add 1D LUT color op
+>   drm/i915: Add identifiers for intel color blocks
+>   drm/i915: Add intel_color_op
+>   drm/i915/color: Add helper to allocate intel colorop
+>   drm/i915/color: Add helper to create intel colorop
+>   drm/i915/color: Create a transfer function color pipeline
+>   drm/i915/color: Add and attach COLORPIPELINE plane property
+>   drm/i915/color: Add framework to set colorop
+>   drm/i915/color: Add callbacks to set plane CTM
+>   drm/i915/color: Add framework to program PRE/POST CSC LUT
+>   FIXME: force disable legacy plane color properties for TGL and beyond
+>   drm/i915/color: Enable Plane Color Pipelines
+>=20
+> Harry Wentland (1):
+>   [NOT FOR REVIEW] drm: color pipeline base work
+>=20
+> Uma Shankar (11):
+>   drm: Add Enhanced LUT precision structure
+>   drm: Add Color lut range attributes
+>   drm: Add Color ops capability property
+>   drm: Define helper to create color ops capability property
+>   drm: Define helper for adding capability property for 1D LUT
+>   drm/i915: Define segmented Lut and add capabilities to colorop
+>   drm/i915/color: Add plane CTM callback for TGL and beyond
+>   drm/i915: Add register definitions for Plane Degamma
+>   drm/i915: Add register definitions for Plane Post CSC
+>   drm/i915/color: Program Pre-CSC registers
+>   drm/i915/xelpd: Program Plane Post CSC Registers
 
+
+Hi Uma,
+
+it is really hard for me to get a good picture of what this would result
+in from userspace perspective, which properties will exist with what
+values, but I didn't spot any fundamental UAPI design problems so far.
+
+
+Thanks,
+pq
+
+--Sig_/UBaGp2JONr96V4co.7aS80g
+Content-Type: application/pgp-signature
+Content-Description: OpenPGP digital signature
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAEBCAAdFiEEJQjwWQChkWOYOIONI1/ltBGqqqcFAmXLTCAACgkQI1/ltBGq
+qqdcERAAol0emPwzzd2B9+gElkbl4PjTD0m7+xd+uSPToMU47rhoYEHIANwlTPd+
+nL23V4i2OtEMGIvkAvM2g8ZZqGXesKwHjwTwyT3YS9y5sFQkQ+k43TABjdHLeThu
+g1tzB+ia9SGgo61WP66y1oTwHuqvPt1u/sLasBMcF89beZXrmY8N4Mm/0c/kG21G
+IUujcyZadPMkONeLgC95vCcL0Gv0LyFlzIAdZjGIDVBeaSugw/f3QT4XhQDo/W+P
+mteckTAMXlBNwtiKrCfq7CRmj8GRZX7opZCRUflj9RNodOT+SnTlhPEkqPv+3o36
+eF79VZf3wPqEhXi8i/Ku1ofMzuAf6jo3+HgdXqJHa4KFTT4pClbcvDHTKEDlwwgi
+Yf+05BCiOACwjybZHLapbk/L6qTyXhhv2Z0ub6UBOo+RSveGaVzP1pnSG/lX4l0C
+I1GQfr2yKIJU2gUQwB73d6QUmsyI1zk/9nxIL3JLjdPWXbRKdvx/r+9A+59wQrkg
+ip5BfpCxcxhH2D2FPdebGMz1f9rItVMmZDPOgBMkxHAMap7xoEKpjrDjvhc2Nax6
+Q1qiqVGOT7iq0GrjIpaLKOTnpnNN4JdXlMwWU6Ux4UYifZAh5RBSp/XEVy+uEaNk
+XYl7OCUsDCjRA5FPgzEkw86POWL8YKuoMpzuzSQC+s++y9VNH20=
+=p1CV
+-----END PGP SIGNATURE-----
+
+--Sig_/UBaGp2JONr96V4co.7aS80g--
