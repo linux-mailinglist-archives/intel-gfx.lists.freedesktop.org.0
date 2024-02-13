@@ -2,29 +2,65 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4F02F853C57
-	for <lists+intel-gfx@lfdr.de>; Tue, 13 Feb 2024 21:39:23 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 90CFA853CD4
+	for <lists+intel-gfx@lfdr.de>; Tue, 13 Feb 2024 22:16:32 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C873810E4CD;
-	Tue, 13 Feb 2024 20:39:21 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D7CB610E5D6;
+	Tue, 13 Feb 2024 21:16:23 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="VMuCoP2A";
+	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from 5338d5abeb45 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DD8E510E36E;
- Tue, 13 Feb 2024 20:39:20 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============2286490939984260028=="
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1A45710E4E7;
+ Tue, 13 Feb 2024 21:16:19 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1707858983; x=1739394983;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:in-reply-to;
+ bh=70aOWZb2as+h/oFF9yERAyk5l+enGnLqVYb+kh+qAx4=;
+ b=VMuCoP2Awu9TGWpJzLGJv9OYDgXUsE71Q1gV9I+KRTLYJ/0y1nlE1sDT
+ BBs/K8wM+8ymusSW1Wdl5+02VcKOli61XWXRfd4xtqnucNTX6e1YmkqYQ
+ s2r80cUjeN7gOtZTq0Ioz41MeXgcVA2ONdSuM0UKHHGPwrH8k5qxZCz+s
+ d1OTFsHZS2yFZOEKaMec8ANqpSjhEMmP/HkehFn5e6ThtQSbYvz/JK3FD
+ ATTX8JefdyO7eQZgvV5tcrLkX9F7ezSVjIyXobdUUZl9kv38GJ1+kfgU9
+ aA8cE+LQdSAUW2NivqPivUhr+S5VZghjCg66HLgwiBWRPfgfd8F7DDu4h w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10982"; a="19300552"
+X-IronPort-AV: E=Sophos;i="6.06,158,1705392000"; d="scan'208";a="19300552"
+Received: from fmviesa003.fm.intel.com ([10.60.135.143])
+ by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 Feb 2024 13:16:20 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.06,158,1705392000"; 
+   d="scan'208";a="7576918"
+Received: from lkp-server01.sh.intel.com (HELO 01f0647817ea) ([10.239.97.150])
+ by fmviesa003.fm.intel.com with ESMTP; 13 Feb 2024 13:16:13 -0800
+Received: from kbuild by 01f0647817ea with local (Exim 4.96)
+ (envelope-from <lkp@intel.com>) id 1ra08R-00083s-0R;
+ Tue, 13 Feb 2024 21:16:11 +0000
+Date: Wed, 14 Feb 2024 05:15:51 +0800
+From: kernel test robot <lkp@intel.com>
+To: Uma Shankar <uma.shankar@intel.com>, intel-gfx@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org
+Cc: oe-kbuild-all@lists.linux.dev, ville.syrjala@linux.intel.com,
+ pekka.paalanen@collabora.com, contact@emersion.fr,
+ harry.wentland@amd.com, mwen@igalia.com, jadahl@redhat.com,
+ sebastian.wick@redhat.com, shashank.sharma@amd.com,
+ agoins@nvidia.com, joshua@froggi.es, mdaenzer@redhat.com,
+ aleixpol@kde.org, xaver.hugl@gmail.com, victoria@system76.com,
+ daniel@ffwll.ch, quic_naseer@quicinc.com, quic_cbraga@quicinc.com,
+ quic_abhinavk@quicinc.com, arthurgrillo@riseup.net,
+ marcan@marcan.st, Liviu.Dudau@arm.com, sashamcintosh@google.com,
+ sean@poorly.run, Uma Shankar <uma.shankar@intel.com>
+Subject: Re: [PATCH 01/28] [NOT FOR REVIEW] drm: color pipeline base work
+Message-ID: <202402140432.nUFiOWYE-lkp@intel.com>
+References: <20240213064835.139464-2-uma.shankar@intel.com>
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Fi=2ECI=2EBAT=3A_success_for_series_starting_with_=5B1/2?=
- =?utf-8?q?=5D_drm/buddy=3A_Fix_alloc=5Frange=28=29_error_handling_code?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Arunpravin Paneer Selvam" <arunpravin.paneerselvam@amd.com>
-Cc: intel-gfx@lists.freedesktop.org
-Date: Tue, 13 Feb 2024 20:39:20 -0000
-Message-ID: <170785676089.1218995.6009530541487399238@5338d5abeb45>
-X-Patchwork-Hint: ignore
-References: <20240213135203.348050-1-Arunpravin.PaneerSelvam@amd.com>
-In-Reply-To: <20240213135203.348050-1-Arunpravin.PaneerSelvam@amd.com>
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240213064835.139464-2-uma.shankar@intel.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -37,127 +73,58 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============2286490939984260028==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+Hi Uma,
 
-== Series Details ==
+kernel test robot noticed the following build warnings:
 
-Series: series starting with [1/2] drm/buddy: Fix alloc_range() error handling code
-URL   : https://patchwork.freedesktop.org/series/129835/
-State : success
+[auto build test WARNING on drm-misc/drm-misc-next]
+[also build test WARNING on drm/drm-next next-20240213]
+[cannot apply to drm-intel/for-linux-next drm-intel/for-linux-next-fixes linus/master v6.8-rc4]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
 
-== Summary ==
+url:    https://github.com/intel-lab-lkp/linux/commits/Uma-Shankar/drm-color-pipeline-base-work/20240213-144544
+base:   git://anongit.freedesktop.org/drm/drm-misc drm-misc-next
+patch link:    https://lore.kernel.org/r/20240213064835.139464-2-uma.shankar%40intel.com
+patch subject: [PATCH 01/28] [NOT FOR REVIEW] drm: color pipeline base work
+config: x86_64-defconfig (https://download.01.org/0day-ci/archive/20240214/202402140432.nUFiOWYE-lkp@intel.com/config)
+compiler: gcc-11 (Debian 11.3.0-12) 11.3.0
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20240214/202402140432.nUFiOWYE-lkp@intel.com/reproduce)
 
-CI Bug Log - changes from CI_DRM_14266 -> Patchwork_129835v1
-====================================================
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202402140432.nUFiOWYE-lkp@intel.com/
 
-Summary
--------
+All warnings (new ones prefixed by >>):
 
-  **SUCCESS**
-
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_129835v1/index.html
-
-Participating hosts (38 -> 35)
-------------------------------
-
-  Missing    (3): bat-jsl-1 fi-snb-2520m fi-bsw-n3050 
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_129835v1 that come from known issues:
-
-### IGT changes ###
-
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [i915#10194]: https://gitlab.freedesktop.org/drm/intel/issues/10194
+>> drivers/gpu/drm/drm_colorop.c:268: warning: Function parameter or struct member 'type' not described in 'drm_get_colorop_curve_1d_type_name'
+   drivers/gpu/drm/drm_colorop.c:268: warning: Excess function parameter 'range' description in 'drm_get_colorop_curve_1d_type_name'
 
 
-Build changes
--------------
+vim +268 drivers/gpu/drm/drm_colorop.c
 
-  * Linux: CI_DRM_14266 -> Patchwork_129835v1
+   259	
+   260	/**
+   261	 * drm_get_colorop_curve_1d_type_name - return a string for 1D curve type
+   262	 * @range: 1d curve type to compute name of
+   263	 *
+   264	 * In contrast to the other drm_get_*_name functions this one here returns a
+   265	 * const pointer and hence is threadsafe.
+   266	 */
+   267	const char *drm_get_colorop_curve_1d_type_name(enum drm_colorop_curve_1d_type type)
+ > 268	{
+   269		if (WARN_ON(type >= ARRAY_SIZE(colorop_curve_1d_type_name)))
+   270			return "unknown";
+   271	
+   272		return colorop_curve_1d_type_name[type];
+   273	}
+   274	
 
-  CI-20190529: 20190529
-  CI_DRM_14266: f16ab0ed5e0f1f8d26a88cab8854ed609283906e @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_7711: 7711
-  Patchwork_129835v1: f16ab0ed5e0f1f8d26a88cab8854ed609283906e @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-### Linux commits
-
-7176e61dff99 drm/tests/drm_buddy: add alloc_contiguous test
-5f26c4e06ea9 drm/buddy: Fix alloc_range() error handling code
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_129835v1/index.html
-
---===============2286490939984260028==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>series starting with [1/2] drm/buddy: Fix alloc_range() error handling code</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/129835/">https://patchwork.freedesktop.org/series/129835/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_129835v1/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_129835v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_14266 -&gt; Patchwork_129835v1</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_129835v1/index.html</p>
-<h2>Participating hosts (38 -&gt; 35)</h2>
-<p>Missing    (3): bat-jsl-1 fi-snb-2520m fi-bsw-n3050 </p>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_129835v1 that come from known issues:</p>
-<h3>IGT changes</h3>
-<p>{name}: This element is suppressed. This means it is ignored when computing<br />
-          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_14266 -&gt; Patchwork_129835v1</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_14266: f16ab0ed5e0f1f8d26a88cab8854ed609283906e @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_7711: 7711<br />
-  Patchwork_129835v1: f16ab0ed5e0f1f8d26a88cab8854ed609283906e @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<h3>Linux commits</h3>
-<p>7176e61dff99 drm/tests/drm_buddy: add alloc_contiguous test<br />
-5f26c4e06ea9 drm/buddy: Fix alloc_range() error handling code</p>
-
-</body>
-</html>
-
---===============2286490939984260028==--
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
