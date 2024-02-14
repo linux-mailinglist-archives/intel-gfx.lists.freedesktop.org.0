@@ -2,155 +2,82 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8B2FF854477
-	for <lists+intel-gfx@lfdr.de>; Wed, 14 Feb 2024 09:59:12 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6B4A8854488
+	for <lists+intel-gfx@lfdr.de>; Wed, 14 Feb 2024 10:04:07 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0B27F10E216;
-	Wed, 14 Feb 2024 08:59:11 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A105010E637;
+	Wed, 14 Feb 2024 09:04:04 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="fgNF/P4H";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=haloniitty.fi header.i=@haloniitty.fi header.b="fllSPZxA";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9D57410E216
- for <intel-gfx@lists.freedesktop.org>; Wed, 14 Feb 2024 08:59:09 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1707901150; x=1739437150;
- h=from:to:subject:date:message-id:references:in-reply-to:
- content-transfer-encoding:mime-version;
- bh=DRtwLWv/qd+NZ1cy1vshFuWfmB5MBy3YmhMrfANPmck=;
- b=fgNF/P4Hw46p0fSjDC382o+TGaUXIN64F9Nc7gJXSleHA0knamhaTK6k
- uamhadNwLZsHsy8WUIkeKsiZvYG4JwOth/meraIDqhrA9Q5OMd+XZEmRB
- fsgk05UCKbOgB2MQ+PN0QUvkADaX34yT5auuGoEh7xHCRrqh4d1MKKKKW
- /vqY7kjqQMoIS+lM/E8ZInVtiehsKHAY3j10azBW2q62rp33xRGgXaZeG
- 8JA1xHHo1vFXjNuD6JOYCynI4Z8dBXKnmg5tY0mhM9Xu7SvWuR4L/PkJn
- WLGE4TBwN8BplrCFFmHuNmedhPasZdQ6AhSMNECZ8/Omgu7nnPnKI3dwF g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10982"; a="19447759"
-X-IronPort-AV: E=Sophos;i="6.06,159,1705392000"; d="scan'208";a="19447759"
-Received: from orviesa004.jf.intel.com ([10.64.159.144])
- by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Feb 2024 00:59:09 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.06,159,1705392000"; 
-   d="scan'208";a="7877436"
-Received: from fmsmsx601.amr.corp.intel.com ([10.18.126.81])
- by orviesa004.jf.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
- 14 Feb 2024 00:59:08 -0800
-Received: from fmsmsx612.amr.corp.intel.com (10.18.126.92) by
- fmsmsx601.amr.corp.intel.com (10.18.126.81) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35; Wed, 14 Feb 2024 00:59:08 -0800
-Received: from fmsmsx610.amr.corp.intel.com (10.18.126.90) by
- fmsmsx612.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35; Wed, 14 Feb 2024 00:59:07 -0800
-Received: from fmsedg601.ED.cps.intel.com (10.1.192.135) by
- fmsmsx610.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35 via Frontend Transport; Wed, 14 Feb 2024 00:59:07 -0800
-Received: from NAM11-DM6-obe.outbound.protection.outlook.com (104.47.57.169)
- by edgegateway.intel.com (192.55.55.70) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.35; Wed, 14 Feb 2024 00:59:07 -0800
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=WOMJtsHlggoxQ7mN7RYQCOy6uFmu+KctFSNAljM3/4DGlQeTHWCMs+GbBPT5b/a87JiYCtPcKXVo2ZsZZK3UWhFW72ENIbk8sp5138PJLoEka0AAcMOHgB20SB07waAztUBwwtbf9ryUoT9O5FXT7pXf+ZI5Ay9ettflnZGwObszWtc6RaoHDO/uASPjFc3EgiEFNWDjLgLhBEYnD+Fkhqfl7rpxr3fPASMI0f/N6/q0Di2JES+6otqX+N8TGj3k7e12BI0DD6Zy3FAynArWjf8QP6/LIAuatDboCy+oQ5QHtv8KzHdwvM8mFK9qzpH0thLt8LGud6dn+mhigX29NQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=DRtwLWv/qd+NZ1cy1vshFuWfmB5MBy3YmhMrfANPmck=;
- b=Z7OrGH/Fp1OzpqU7MB46PAFhc+H9tmwH4Aq6aDKS6MbDknSVFwoD97/q+Q6Cq7SctWexufYSwBIWucuKldff4XBBVGdBIk+9W8RRlB4aBiC5u+WqwNmQHd88fJMIXn8j/egB94pnuUHtRvoaylIRbQ6SqrNKdYoqlAtPIPWWbwX2Ku7a5gzTf3BgiTpEhs+u/xnCr45V0LEerMO69qNSXVzTcippJasAuN/tUpdN+lRy9NpwYkgabKQxJG/AOeXpeuHHFfB5Ec3wTIZVfBw5YjWI3TH9ZCEhoA3Fi3EnBxcbui4FT9QAp5m1doMi2XbBbP3Cf6hHqD8hwyieJu+5Sg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Received: from MW4PR11MB7054.namprd11.prod.outlook.com (2603:10b6:303:219::20)
- by PH7PR11MB6954.namprd11.prod.outlook.com (2603:10b6:510:205::8)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7270.39; Wed, 14 Feb
- 2024 08:58:59 +0000
-Received: from MW4PR11MB7054.namprd11.prod.outlook.com
- ([fe80::ca1a:739f:f7d4:866d]) by MW4PR11MB7054.namprd11.prod.outlook.com
- ([fe80::ca1a:739f:f7d4:866d%3]) with mapi id 15.20.7292.027; Wed, 14 Feb 2024
- 08:58:59 +0000
-From: "Kahola, Mika" <mika.kahola@intel.com>
-To: Ville Syrjala <ville.syrjala@linux.intel.com>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
-Subject: RE: [PATCH 5/5] drm/i915: Enable fastboot across the board
-Thread-Topic: [PATCH 5/5] drm/i915: Enable fastboot across the board
-Thread-Index: AQHaW4c2FxWq4syXVki5agE0glyBVbEJkNfw
-Date: Wed, 14 Feb 2024 08:58:59 +0000
-Message-ID: <MW4PR11MB70546583E358C426675CBF81EF4E2@MW4PR11MB7054.namprd11.prod.outlook.com>
-References: <20240209183809.16887-1-ville.syrjala@linux.intel.com>
- <20240209183809.16887-6-ville.syrjala@linux.intel.com>
-In-Reply-To: <20240209183809.16887-6-ville.syrjala@linux.intel.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: MW4PR11MB7054:EE_|PH7PR11MB6954:EE_
-x-ms-office365-filtering-correlation-id: 9088129e-6c6b-419c-cff3-08dc2d3b2f45
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: Knn3txKU4GkCUq/S8iyPXgKZ5E1X5kLQ8z3aM+bUFF8OzHOMke2JOXKbVppxbQgqKqSaXKVFAFR4Y8n1/hW14JtxDlSMER/eaGG4rJ+WrxK/phPVM+MrzTOCiEL+vuua6xreVZq4V8XS4Mvazqmnfg+FkhQcK5yTPno3T/WuOqwPHuMZbMbt+1le7C9L58S9W4h/x6L20/9DMwy3BIFVLTLX+PxVqk8vbTUgNI+cxHwzCbG5Q3G7HFpwAyMsqB9N/EALMYQugegZJRA8PS6qI8ITbwKQF26WRrFZmqqsVS1M8A3FAD5u5xG2A9jm5mnQMCgpEsS8ZkdWZuz0+uyRY09vVKWaWQmQInBwa4C7ONxxG/49eIt+MqMyCVwpiJVIfGwp87afS13WZOrmd9Z6y4LT3Adi2O2Mjs6N5M6oRcm8xgBwOXm9BoadCJ3LFgTFp6hoPLs3dWlhxh1Gx862ffv/Gvz2H9DpRuqIfJJqrpmMMC+Phwn7XI0An5c/0E6tI47oCqkuCVrTH1G8swyLiII/OX2509/+UatseqmyrEGbx97IGW7hHX89l4C5GBRbp4Y+XIKQ5K1uxlOxBh5aajlXhiqdSqoVG55RQQjEIf4/soP5JVq4tdo1IFm2C3BE
-x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:MW4PR11MB7054.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230031)(136003)(39860400002)(376002)(366004)(396003)(346002)(230922051799003)(1800799012)(186009)(64100799003)(451199024)(33656002)(7696005)(38070700009)(41300700001)(478600001)(83380400001)(26005)(66574015)(53546011)(76116006)(9686003)(5660300002)(8936002)(52536014)(66556008)(66476007)(64756008)(66946007)(66446008)(8676002)(110136005)(316002)(71200400001)(86362001)(82960400001)(38100700002)(122000001)(6506007)(55016003)(2906002);
- DIR:OUT; SFP:1101; 
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?utf-8?B?RUFybU5wdnJYWFhmTlhHUUR1aVUvQWl4Y0FXVi9SRUplUjh5eHVnM3pjUUxz?=
- =?utf-8?B?d3RFYWtrZm5ZWVNGdnJrcGY4ZEZCOUdDQ0lUNnFMaTI5OWMzNCtuTFdSMmU2?=
- =?utf-8?B?dW9yQ1NwR0oxZW5HcjhoR29DQjFZM2tuOHlSS0wxQk5UN3lFR0sydnNEWVN0?=
- =?utf-8?B?V2dCNWZZSHN3dUxnMU53cnFzakhFNG5wRDR0VmN4ZVJ4bkhORzZlZjB5MHU1?=
- =?utf-8?B?OExMZTl3d2g4UUhuMlJGdWJ3aXlQQW5yS21kbHZ5cTNvV0NOaW1aWkNqRWpa?=
- =?utf-8?B?TVVYU2pCSFVHTTlaVnpxNXVDdWg5c29LbldxeHI1L1AxVlhwcld4STlCTks5?=
- =?utf-8?B?Q0w4bzI5K3lFRGIyVC9NNCtOY1crQit4Mm5telVLQzRZLzh0b09OUVVEdmN6?=
- =?utf-8?B?TmNMQ2J0NEN1Vzg3OWxWRURhL0M4TnJKaWVIa1JrZnVpY1h6SVE5cHd3RWFC?=
- =?utf-8?B?YUVGYThSN0tLeGo5UnhKQWFaVnpxREt1K3pTYUQyUVhLK09zcHBiZStTYWpX?=
- =?utf-8?B?MTdxaXFEUDRiTVRnNS9PUHVtclV3UHBjRUVGQlpWL2phd3Z5em5iUEJHdGlX?=
- =?utf-8?B?TkpwYlZjcFRHV3ZrQlRrcjFuWlBBWG5CbUh3ZzMxRENVd2lYMHhKdmZUT21t?=
- =?utf-8?B?Y1UyVWw0NXRid2t0emJFME5tMFYzK0NVQ0JCZHpUVWV5b3ptckpQSkhORWl4?=
- =?utf-8?B?NW1YdmxqUllFVTE3VUorT0ZSTDZ1S0prMXhrMGR6YkdmbThLdVR2bGlVVEps?=
- =?utf-8?B?Mkw0TWgwQWtOODEvK3RDOHRKc0I5c08xOEk2eFNITXpKdEtFay9CNXhEOW96?=
- =?utf-8?B?dzNjeGNWSFNRODJWTDZqeDhkbzNFSUZJaXRYK0VWU2FjSFcvMU1pditOUjZ2?=
- =?utf-8?B?ckR3MCtEdXhjU2VlQncxb1ZRMjFhbUwvbXEzdzFNb2RuV0FXWll0R0VMbkt1?=
- =?utf-8?B?Y3dtcnRpV3B3OWo5aWJMODdiU2pqbVlQK0E0amRxMk9lUmdIekJ3dUk4bk55?=
- =?utf-8?B?MHdmT3NZM0ExQzJOMy9WcmNEZStSMUluT0xOZ0l4NGwySFU0b3Nad3FOblZQ?=
- =?utf-8?B?bTU2c2liSm5qUEFUZ1ZrQXBhalNZdDVoVzBEVnVieU1ETEhRV0UrRDF3cENv?=
- =?utf-8?B?QkJ6V0JIMGU1SUdOTURiRm8rcGJsZVlwYWZlYklhNXRUdHN3VjUrM0h2VERO?=
- =?utf-8?B?RmVCUlJqVzBScFdjeFVzSVhOK0lHL09JWWFKcEtlQXE1VUorKzZxSEh3MVhM?=
- =?utf-8?B?M3lDZGVad2FNTjBqbmNVUklMYzFKdjZHZUs3NmVFSndYMVlLYXBiZ3pqVzBE?=
- =?utf-8?B?WTZjcklMVmFsQjg5YjJrSDEvblFnbHFFbW10QWRsTGdUME9uMmtlNTBsVUtI?=
- =?utf-8?B?eDh3QTZBUmR0MnBvRWpXcWU4UHRBWTBNUUJyajExUytZUU1La3FEQTJ1RXRs?=
- =?utf-8?B?Nm85d1NpdEMzMms4ZWFkaDFLeTRpejBVb3p2Y2wvQUkrQ2dlYTQwTTNBMHI5?=
- =?utf-8?B?OFA0NVFPRmVadkNpSEI3VXg0NWhuOE1TeUJGUFNMU3RackJ1Rnh4OUtoNURr?=
- =?utf-8?B?UHVaYW05K3AwaXIzZklkWXFZV1p3dzRXa3FLYTMvQnpKWHFwblp6UXFGWWdH?=
- =?utf-8?B?RWlHU0wyaDFOUFRQV3JybnpqZXJRSWVFVzFNaGphZ0RsK242VWhJdFdFRDJm?=
- =?utf-8?B?eXB4TVA1M3FKMEI1Vll1MjNqTXV6M0l0MDZDWG5VMGdyWWIrbHlEVGtIcWZ0?=
- =?utf-8?B?b3R0U3ROd21Ta1ZuT2dBVEdxa3l6TVk3YVlITlJ1Ukd0ay9mZ29rNEVkMHZv?=
- =?utf-8?B?NGVoLzVHSHpUMjRCdFFIeklqaDJFUkxUcWZRYlh5bDRGYVg2QjdoaTBHQm1R?=
- =?utf-8?B?VG11OHdPa09jWEx3amdFaUFhVXI3Z25ESklZc09QbjJhTURRUUhQTVBBQTNv?=
- =?utf-8?B?dmxheXl2QVJZQTlaenV0R2ZIY05Pb0VaMy8yaHRzL1duTHQzTUJSZWVLdXd0?=
- =?utf-8?B?ZG9GemMxSDN6QVA0QzNmWUN0VXFnZkREOTVXaVptZnBmVzFrN0VMQW1PeVZH?=
- =?utf-8?B?UU9xbVl2a1Rvc0l0d0daQ2ExVW1DcVhMUTc2Qm85NW4zNitKV3pOTFJyWXdy?=
- =?utf-8?Q?1nR55lFKlFGrrUEtbm8L1TcEf?=
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Received: from whm50.louhi.net (whm50.louhi.net [77.240.19.51])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 839E210E41F;
+ Wed, 14 Feb 2024 09:03:55 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+ d=haloniitty.fi; s=default; h=Content-Type:MIME-Version:References:
+ In-Reply-To:Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:
+ Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+ Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
+ List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
+ bh=UypCRKYR1lxWXCiQVwTKw0V7iqeRFCfB3PHUsGDAa+4=; b=fllSPZxAQHd2GOqwel0j/EtPHW
+ s3xQhbxQ5Y+M8yK8in5pMTLZrZuvfYPnhk8X1sYPD922xCPLzBY8YY05h/qB/BejcRXtTqV+mkxIO
+ fiyUQys/tGcDF6yJbqm3+pw/C9ppocEklF2pjVUsvoGBbzCghFecxggQM4VrKEMTHHPN5cJygKRxp
+ QijTlEv2smNpGdXLHAr/i1cCygtjiLApB2hk+A2lr6wi9TUJUbxVGBTSI9sH09B81t74OWsYp1RfY
+ Di0igX0kI9oVTKNnThYJacWaZaupbwsyTOqgyphHuSD2W9o8/1ncjIT2IOKttKSUvHSnhZ2qqerqV
+ ZReVuvnw==;
+Received: from [194.136.85.206] (port=50172 helo=eldfell)
+ by whm50.louhi.net with esmtpsa (TLS1.2) tls
+ TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (Exim 4.96.2)
+ (envelope-from <pekka.paalanen@haloniitty.fi>) id 1raBBI-0004mS-2v;
+ Wed, 14 Feb 2024 11:03:52 +0200
+Date: Wed, 14 Feb 2024 11:03:40 +0200
+From: Pekka Paalanen <pekka.paalanen@haloniitty.fi>
+To: "Shankar, Uma" <uma.shankar@intel.com>
+Cc: "ville.syrjala@linux.intel.com" <ville.syrjala@linux.intel.com>,
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
+ "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
+ "contact@emersion.fr" <contact@emersion.fr>, "harry.wentland@amd.com"
+ <harry.wentland@amd.com>, "mwen@igalia.com" <mwen@igalia.com>,
+ "jadahl@redhat.com" <jadahl@redhat.com>, "sebastian.wick@redhat.com"
+ <sebastian.wick@redhat.com>, "shashank.sharma@amd.com"
+ <shashank.sharma@amd.com>, "agoins@nvidia.com" <agoins@nvidia.com>,
+ "joshua@froggi.es" <joshua@froggi.es>, "mdaenzer@redhat.com"
+ <mdaenzer@redhat.com>, "aleixpol@kde.org" <aleixpol@kde.org>,
+ "xaver.hugl@gmail.com" <xaver.hugl@gmail.com>, "victoria@system76.com"
+ <victoria@system76.com>, "daniel@ffwll.ch" <daniel@ffwll.ch>,
+ "quic_naseer@quicinc.com" <quic_naseer@quicinc.com>,
+ "quic_cbraga@quicinc.com" <quic_cbraga@quicinc.com>,
+ "quic_abhinavk@quicinc.com" <quic_abhinavk@quicinc.com>,
+ "arthurgrillo@riseup.net" <arthurgrillo@riseup.net>, "marcan@marcan.st"
+ <marcan@marcan.st>, "Liviu.Dudau@arm.com" <Liviu.Dudau@arm.com>,
+ "sashamcintosh@google.com" <sashamcintosh@google.com>, "sean@poorly.run"
+ <sean@poorly.run>
+Subject: Re: [PATCH 17/28] drm/i915: Define segmented Lut and add
+ capabilities to colorop
+Message-ID: <20240214110340.477e9df3@eldfell>
+In-Reply-To: <DM4PR11MB636037556D1EF1ACC2A70629F44E2@DM4PR11MB6360.namprd11.prod.outlook.com>
+References: <20240213064835.139464-1-uma.shankar@intel.com>
+ <20240213064835.139464-18-uma.shankar@intel.com>
+ <20240213113727.22f9c8e5@eldfell>
+ <DM4PR11MB636037556D1EF1ACC2A70629F44E2@DM4PR11MB6360.namprd11.prod.outlook.com>
+X-Mailer: Claws Mail 4.1.1 (GTK 3.24.38; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: MW4PR11MB7054.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 9088129e-6c6b-419c-cff3-08dc2d3b2f45
-X-MS-Exchange-CrossTenant-originalarrivaltime: 14 Feb 2024 08:58:59.8684 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: cXzgkV1vP5jMUACy+IYbOZmlYglYyAwr2rAwjFEzAfayln1q4DbAN8ThjPek3NAJFy5PCF+8I19mD9DpVxA98w==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH7PR11MB6954
-X-OriginatorOrg: intel.com
+Content-Type: multipart/signed; boundary="Sig_/2o/cM10kVjboRV1FW3+7Xxc";
+ protocol="application/pgp-signature"; micalg=pgp-sha256
+X-AntiAbuse: This header was added to track abuse,
+ please include it with any abuse report
+X-AntiAbuse: Primary Hostname - whm50.louhi.net
+X-AntiAbuse: Original Domain - lists.freedesktop.org
+X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
+X-AntiAbuse: Sender Address Domain - haloniitty.fi
+X-Get-Message-Sender-Via: whm50.louhi.net: authenticated_id:
+ pekka.paalanen@haloniitty.fi
+X-Authenticated-Sender: whm50.louhi.net: pekka.paalanen@haloniitty.fi
+X-Source: 
+X-Source-Args: 
+X-Source-Dir: 
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -166,48 +93,313 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-PiAtLS0tLU9yaWdpbmFsIE1lc3NhZ2UtLS0tLQ0KPiBGcm9tOiBJbnRlbC1nZnggPGludGVsLWdm
-eC1ib3VuY2VzQGxpc3RzLmZyZWVkZXNrdG9wLm9yZz4gT24gQmVoYWxmIE9mIFZpbGxlIFN5cmph
-bGENCj4gU2VudDogRnJpZGF5LCBGZWJydWFyeSA5LCAyMDI0IDg6MzggUE0NCj4gVG86IGludGVs
-LWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmcNCj4gU3ViamVjdDogW1BBVENIIDUvNV0gZHJtL2k5
-MTU6IEVuYWJsZSBmYXN0Ym9vdCBhY3Jvc3MgdGhlIGJvYXJkDQo+IA0KPiBGcm9tOiBWaWxsZSBT
-eXJqw6Rsw6QgPHZpbGxlLnN5cmphbGFAbGludXguaW50ZWwuY29tPg0KPiANCj4gVGhlcmUncyBu
-b3RoaW5nIG1hZ2ljYWwgYWJvdXQgdmx2KyBwbGF0Zm9ybXMgdnMuIGZhc3Rib290Lg0KPiBJZiBp
-dCB3b3JrcyBzb21ld2hlcmUgaXQgc2hvdWxkIHdvcmsgZXZlcnl3aGVyZSwgYXNzdW1pbmcgd2Un
-dmUgbm90IG1pc3NlZCBhbnkgY3J1Y2lhbCBzdGF0ZSBjaGVja3MuIFRoYXQgc2VlbXMgdW5saWtl
-bHkgb24NCj4gb2xkZXIgcGxhdGZvcm1zIHdpdGggbGVzcyBzdGF0ZSB0byBjaGVjayBhbnl3YXku
-DQo+IA0KPiBKdXN0IGVuYWJsZSBmYXN0Ym9vdCBhY3Jvc3MgdGhlIGJvYXJkLCBhbmQgdGhlIHJl
-bW92ZSB0aGUgcmVtbmFudHMgb2YgdGhlIG9wdGlvbmFsIHN0dWZmICh3ZSBhbHJlYWR5IHJlbW92
-ZWQgdGhlIG1vZHBhcmFtIGZvcg0KPiBmYXN0Ym9vdCBhbnl3YXkpLg0KPg0KDQpSZXZpZXdlZC1i
-eTogTWlrYSBLYWhvbGEgPG1pa2Eua2Fob2xhQGludGVsLmNvbT4NCiANCj4gU2lnbmVkLW9mZi1i
-eTogVmlsbGUgU3lyasOkbMOkIDx2aWxsZS5zeXJqYWxhQGxpbnV4LmludGVsLmNvbT4NCj4gLS0t
-DQo+ICBkcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2Rpc3BsYXkuYyB8IDIyIC0t
-LS0tLS0tLS0tLS0tLS0tLS0tDQo+ICAxIGZpbGUgY2hhbmdlZCwgMjIgZGVsZXRpb25zKC0pDQo+
-IA0KPiBkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kaXNw
-bGF5LmMgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2Rpc3BsYXkuYw0KPiBp
-bmRleCA2NmVlNjc0OWZkYWUuLjAwYWM2NWExNDAyOSAxMDA2NDQNCj4gLS0tIGEvZHJpdmVycy9n
-cHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kaXNwbGF5LmMNCj4gKysrIGIvZHJpdmVycy9ncHUv
-ZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kaXNwbGF5LmMNCj4gQEAgLTQ5MzcsMjAgKzQ5MzcsNiBA
-QCBwaXBlX2NvbmZpZ19wbGxfbWlzbWF0Y2goYm9vbCBmYXN0c2V0LA0KPiAgCX0NCj4gIH0NCj4g
-DQo+IC1zdGF0aWMgYm9vbCBmYXN0Ym9vdF9lbmFibGVkKHN0cnVjdCBkcm1faTkxNV9wcml2YXRl
-ICpkZXZfcHJpdikgLXsNCj4gLQkvKiBFbmFibGUgZmFzdGJvb3QgYnkgZGVmYXVsdCBvbiBTa3ls
-YWtlIGFuZCBuZXdlciAqLw0KPiAtCWlmIChESVNQTEFZX1ZFUihkZXZfcHJpdikgPj0gOSkNCj4g
-LQkJcmV0dXJuIHRydWU7DQo+IC0NCj4gLQkvKiBFbmFibGUgZmFzdGJvb3QgYnkgZGVmYXVsdCBv
-biBWTFYgYW5kIENIViAqLw0KPiAtCWlmIChJU19WQUxMRVlWSUVXKGRldl9wcml2KSB8fCBJU19D
-SEVSUllWSUVXKGRldl9wcml2KSkNCj4gLQkJcmV0dXJuIHRydWU7DQo+IC0NCj4gLQkvKiBEaXNh
-YmxlZCBieSBkZWZhdWx0IG9uIGFsbCBvdGhlcnMgKi8NCj4gLQlyZXR1cm4gZmFsc2U7DQo+IC19
-DQo+IC0NCj4gIGJvb2wNCj4gIGludGVsX3BpcGVfY29uZmlnX2NvbXBhcmUoY29uc3Qgc3RydWN0
-IGludGVsX2NydGNfc3RhdGUgKmN1cnJlbnRfY29uZmlnLA0KPiAgCQkJICBjb25zdCBzdHJ1Y3Qg
-aW50ZWxfY3J0Y19zdGF0ZSAqcGlwZV9jb25maWcsIEBAIC00OTU5LDE0ICs0OTQ1LDYgQEAgaW50
-ZWxfcGlwZV9jb25maWdfY29tcGFyZShjb25zdA0KPiBzdHJ1Y3QgaW50ZWxfY3J0Y19zdGF0ZSAq
-Y3VycmVudF9jb25maWcsDQo+ICAJc3RydWN0IGRybV9pOTE1X3ByaXZhdGUgKmRldl9wcml2ID0g
-dG9faTkxNShjdXJyZW50X2NvbmZpZy0+dWFwaS5jcnRjLT5kZXYpOw0KPiAgCXN0cnVjdCBpbnRl
-bF9jcnRjICpjcnRjID0gdG9faW50ZWxfY3J0YyhwaXBlX2NvbmZpZy0+dWFwaS5jcnRjKTsNCj4g
-IAlib29sIHJldCA9IHRydWU7DQo+IC0JYm9vbCBmaXh1cF9pbmhlcml0ZWQgPSBmYXN0c2V0ICYm
-DQo+IC0JCWN1cnJlbnRfY29uZmlnLT5pbmhlcml0ZWQgJiYgIXBpcGVfY29uZmlnLT5pbmhlcml0
-ZWQ7DQo+IC0NCj4gLQlpZiAoZml4dXBfaW5oZXJpdGVkICYmICFmYXN0Ym9vdF9lbmFibGVkKGRl
-dl9wcml2KSkgew0KPiAtCQlkcm1fZGJnX2ttcygmZGV2X3ByaXYtPmRybSwNCj4gLQkJCSAgICAi
-aW5pdGlhbCBtb2Rlc2V0IGFuZCBmYXN0Ym9vdCBub3Qgc2V0XG4iKTsNCj4gLQkJcmV0ID0gZmFs
-c2U7DQo+IC0JfQ0KPiANCj4gICNkZWZpbmUgUElQRV9DT05GX0NIRUNLX1gobmFtZSkgZG8geyBc
-DQo+ICAJaWYgKGN1cnJlbnRfY29uZmlnLT5uYW1lICE9IHBpcGVfY29uZmlnLT5uYW1lKSB7IFwN
-Cj4gLS0NCj4gMi40My4wDQoNCg==
+--Sig_/2o/cM10kVjboRV1FW3+7Xxc
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: quoted-printable
+
+On Wed, 14 Feb 2024 07:28:37 +0000
+"Shankar, Uma" <uma.shankar@intel.com> wrote:
+
+> > -----Original Message-----
+> > From: dri-devel <dri-devel-bounces@lists.freedesktop.org> On Behalf Of =
+Pekka
+> > Paalanen
+> > Sent: Tuesday, February 13, 2024 3:07 PM
+> > To: Shankar, Uma <uma.shankar@intel.com>
+> > Cc: intel-gfx@lists.freedesktop.org; dri-devel@lists.freedesktop.org;
+> > ville.syrjala@linux.intel.com; contact@emersion.fr; harry.wentland@amd.=
+com;
+> > mwen@igalia.com; jadahl@redhat.com; sebastian.wick@redhat.com;
+> > shashank.sharma@amd.com; agoins@nvidia.com; joshua@froggi.es;
+> > mdaenzer@redhat.com; aleixpol@kde.org; xaver.hugl@gmail.com;
+> > victoria@system76.com; daniel@ffwll.ch; quic_naseer@quicinc.com;
+> > quic_cbraga@quicinc.com; quic_abhinavk@quicinc.com; arthurgrillo@riseup=
+.net;
+> > marcan@marcan.st; Liviu.Dudau@arm.com; sashamcintosh@google.com;
+> > sean@poorly.run
+> > Subject: Re: [PATCH 17/28] drm/i915: Define segmented Lut and add capab=
+ilities
+> > to colorop
+> >=20
+> > On Tue, 13 Feb 2024 12:18:24 +0530
+> > Uma Shankar <uma.shankar@intel.com> wrote:
+> >  =20
+> > > This defines the lut segments and create the color pipeline
+> > >
+> > > Signed-off-by: Uma Shankar <uma.shankar@intel.com>
+> > > Signed-off-by: Chaitanya Kumar Borah <chaitanya.kumar.borah@intel.com>
+> > > ---
+> > >  drivers/gpu/drm/i915/display/intel_color.c | 109
+> > > +++++++++++++++++++++
+> > >  1 file changed, 109 insertions(+)
+> > >
+> > > diff --git a/drivers/gpu/drm/i915/display/intel_color.c
+> > > b/drivers/gpu/drm/i915/display/intel_color.c
+> > > index e223edbe4c13..223cd1ff7291 100644
+> > > --- a/drivers/gpu/drm/i915/display/intel_color.c
+> > > +++ b/drivers/gpu/drm/i915/display/intel_color.c
+> > > @@ -3811,6 +3811,105 @@ static const struct intel_color_funcs =20
+> > ilk_color_funcs =3D { =20
+> > >  	.get_config =3D ilk_get_config,
+> > >  };
+> > >
+> > > +static const struct drm_color_lut_range xelpd_degamma_hdr[] =3D {
+> > > +	/* segment 1 */
+> > > +	{
+> > > +		.flags =3D (DRM_MODE_LUT_REFLECT_NEGATIVE |
+> > > +				DRM_MODE_LUT_INTERPOLATE |
+> > > +				DRM_MODE_LUT_NON_DECREASING), =20
+> >=20
+> > Hi Uma,
+> >=20
+> > is it a good idea to have these flags per-segment?
+> >=20
+> > I would find it very strange, unusable really, if REFLECT_NEGATIVE appl=
+ied on
+> > some but not all segments, for example. Is such flexibility really nece=
+ssary in the
+> > hardware description? =20
+>=20
+> Hi Pekka,
+> Idea to have these flags is to just have some option in case there are so=
+me differences
+> across segments. Most cases this should not be the case, just helps to fu=
+ture proof
+> the implementation.
+>=20
+> Based on how the community feels on the usability of it, we can take a ca=
+ll on the flags
+> and the expected interpretation for the same. We are open for suggestions=
+ on the same.
+>=20
+> >  =20
+> > > +		.count =3D 128,
+> > > +		.input_bpc =3D 24, .output_bpc =3D 16, =20
+> >=20
+> > The same question about input_bpc and output_bpc. =20
+>=20
+> Same for these as well, userspace can just ignore these if no usage. Howe=
+ver, for some clients
+> it may help in Lut computations.
+> The original idea for the structure came from Ville (missed to mention th=
+at in cover letter, will get that
+> updated in next version).
+>=20
+> @ville.syrjala@linux.intel.com Please share your inputs on the usability =
+of these attributes.
+
+Userspace will always need to evaluate whether each segment is good
+enough individually, so maybe it's not that big deal.
+
+Ignoring these is not an option for userspace, because that would mean
+userspace does not know what it is getting. If UAPI contains a
+parameter, then the onus is on userspace to ensure the value is
+acceptable.
+
+> > > +		.start =3D 0, .end =3D (1 << 24) - 1,
+> > > +		.min =3D 0, .max =3D (1 << 24) - 1,
+> > > +	},
+> > > +	/* segment 2 */
+> > > +	{
+> > > +		.flags =3D (DRM_MODE_LUT_REFLECT_NEGATIVE |
+> > > +				DRM_MODE_LUT_INTERPOLATE |
+> > > +				DRM_MODE_LUT_REUSE_LAST |
+> > > +				DRM_MODE_LUT_NON_DECREASING),
+> > > +		.count =3D 1,
+> > > +		.input_bpc =3D 24, .output_bpc =3D 16,
+> > > +		.start =3D (1 << 24) - 1, .end =3D 1 << 24, =20
+> >=20
+> > What if there is a gap or overlap between the previous segment .end and=
+ the next
+> > segment .start? Is it forbidden? Will the kernel common code verify tha=
+t drivers
+> > don't make mistakes? Or IGT? =20
+>=20
+> This is just to help give some reference to userspace.  As of now, driver=
+ trusts the values
+> coming from userspace if it sends wrong values its on him and driver can'=
+t help much.
+> However, we surely can have some sanity check like non decreasing luts et=
+c. to driver.
+
+But what will guarantee that the driver provided values are consistent?
+That they actually describe a template of a well-formed sampled
+curve? If they are not consistent, userspace cannot use the colorop.
+Whose responsibility is it to ensure the consistency?
+
+We have a few examples of drivers getting descriptive values like
+these simply wrong until DRM common code started sanity-checking them,
+the bitmasks of possible_clones and possible_crtcs for example.
+
+There should also be DRM common code to verify that userspace provided
+data matches the segmented LUT description rather than drivers just
+trusting it. If it doesn't match, the atomic commit must fail rather
+than silently malfunction. The same with programming hardware: if
+hardware does not produce the intended result from a given segmented
+LUT configuration, the atomic commit must fail instead of malfunction.
+
+>=20
+> Ideally LUT values should not overlap, but we can indicate this explicitl=
+y with flag to
+> hint the userspace (for overlap or otherwise) and also get a check in dri=
+ver for the same.
+
+Sorry? How could overlapping segments ever work? Or segments with a gap
+between them?
+
+If segments overlap, what's the rule for choosing which segment to use
+for an input value hitting both? The segments can disagree on the
+result.
+
+If there are gaps, what is the rule how to handle an input value
+hitting a gap?
+
+
+Thanks,
+pq
+
+>=20
+> Regards,
+> Uma Shankar
+>=20
+> >=20
+> > Thanks,
+> > pq
+> >  =20
+> > > +		.min =3D 0, .max =3D (1 << 27) - 1,
+> > > +	},
+> > > +	/* Segment 3 */
+> > > +	{
+> > > +		.flags =3D (DRM_MODE_LUT_REFLECT_NEGATIVE |
+> > > +				DRM_MODE_LUT_INTERPOLATE |
+> > > +				DRM_MODE_LUT_REUSE_LAST |
+> > > +				DRM_MODE_LUT_NON_DECREASING),
+> > > +		.count =3D 1,
+> > > +		.input_bpc =3D 24, .output_bpc =3D 16,
+> > > +		.start =3D 1 << 24, .end =3D 3 << 24,
+> > > +		.min =3D 0, .max =3D (1 << 27) - 1,
+> > > +	},
+> > > +	/* Segment 4 */
+> > > +	{
+> > > +		.flags =3D (DRM_MODE_LUT_REFLECT_NEGATIVE |
+> > > +				DRM_MODE_LUT_INTERPOLATE |
+> > > +				DRM_MODE_LUT_REUSE_LAST |
+> > > +				DRM_MODE_LUT_NON_DECREASING),
+> > > +		.count =3D 1,
+> > > +		.input_bpc =3D 24, .output_bpc =3D 16,
+> > > +		.start =3D 3 << 24, .end =3D 7 << 24,
+> > > +		.min =3D 0, .max =3D (1 << 27) - 1,
+> > > +	}
+> > > +};
+> > > +
+> > > +/* FIXME input bpc? */
+> > > +static const struct drm_color_lut_range xelpd_gamma_hdr[] =3D {
+> > > +	/*
+> > > +	 * ToDo: Add Segment 1
+> > > +	 * There is an optional fine segment added with 9 lut values
+> > > +	 * Will be added later
+> > > +	 */
+> > > +
+> > > +	/* segment 2 */
+> > > +	{
+> > > +		.flags =3D (DRM_MODE_LUT_REFLECT_NEGATIVE |
+> > > +				DRM_MODE_LUT_INTERPOLATE |
+> > > +				DRM_MODE_LUT_NON_DECREASING),
+> > > +		.count =3D 32,
+> > > +		.input_bpc =3D 24, .output_bpc =3D 16,
+> > > +		.start =3D 0, .end =3D (1 << 24) - 1,
+> > > +		.min =3D 0, .max =3D (1 << 24) - 1,
+> > > +	},
+> > > +	/* segment 3 */
+> > > +	{
+> > > +		.flags =3D (DRM_MODE_LUT_REFLECT_NEGATIVE |
+> > > +				DRM_MODE_LUT_INTERPOLATE |
+> > > +				DRM_MODE_LUT_REUSE_LAST |
+> > > +				DRM_MODE_LUT_NON_DECREASING),
+> > > +		.count =3D 1,
+> > > +		.input_bpc =3D 24, .output_bpc =3D 16,
+> > > +		.start =3D (1 << 24) - 1, .end =3D 1 << 24,
+> > > +		.min =3D 0, .max =3D 1 << 24,
+> > > +	},
+> > > +	/* Segment 4 */
+> > > +	{
+> > > +		.flags =3D (DRM_MODE_LUT_REFLECT_NEGATIVE |
+> > > +				DRM_MODE_LUT_INTERPOLATE |
+> > > +				DRM_MODE_LUT_REUSE_LAST |
+> > > +				DRM_MODE_LUT_NON_DECREASING),
+> > > +		.count =3D 1,
+> > > +		.input_bpc =3D 24, .output_bpc =3D 16,
+> > > +		.start =3D 1 << 24, .end =3D 3 << 24,
+> > > +		.min =3D 0, .max =3D (3 << 24),
+> > > +	},
+> > > +	/* Segment 5 */
+> > > +	{
+> > > +		.flags =3D (DRM_MODE_LUT_REFLECT_NEGATIVE |
+> > > +				DRM_MODE_LUT_INTERPOLATE |
+> > > +				DRM_MODE_LUT_REUSE_LAST |
+> > > +				DRM_MODE_LUT_NON_DECREASING),
+> > > +		.count =3D 1,
+> > > +		.input_bpc =3D 24, .output_bpc =3D 16,
+> > > +		.start =3D 3 << 24, .end =3D 7 << 24,
+> > > +		.min =3D 0, .max =3D (7 << 24),
+> > > +	},
+> > > +};
+> > > +
+> > >  /* TODO: Move to another file */
+> > >  struct intel_plane_colorop *intel_colorop_alloc(void)  { @@ -3865,6
+> > > +3964,11 @@ int intel_plane_tf_pipeline_init(struct drm_plane *plane,=
+ struct =20
+> > drm_prop_enum_l =20
+> > >  	if (ret)
+> > >  		return ret;
+> > >
+> > > +	if (icl_is_hdr_plane(i915, to_intel_plane(plane)->id)) {
+> > > +		drm_colorop_lutcaps_init(&colorop->base, plane, =20
+> > xelpd_degamma_hdr, =20
+> > > +					 sizeof(xelpd_degamma_hdr));
+> > > +	}
+> > > +
+> > >  	list->type =3D colorop->base.base.id;
+> > >  	list->name =3D kasprintf(GFP_KERNEL, "Color Pipeline %d",
+> > > colorop->base.base.id);
+> > >
+> > > @@ -3886,6 +3990,11 @@ int intel_plane_tf_pipeline_init(struct drm_pl=
+ane =20
+> > *plane, struct drm_prop_enum_l =20
+> > >  	if (ret)
+> > >  		return ret;
+> > >
+> > > +	if (icl_is_hdr_plane(i915, to_intel_plane(plane)->id)) {
+> > > +		drm_colorop_lutcaps_init(&colorop->base, plane, =20
+> > xelpd_gamma_hdr, =20
+> > > +					 sizeof(xelpd_gamma_hdr));
+> > > +	}
+> > > +
+> > >  	drm_colorop_set_next_property(prev_op, &colorop->base);
+> > >
+> > >  	return 0; =20
+>=20
+
+
+--Sig_/2o/cM10kVjboRV1FW3+7Xxc
+Content-Type: application/pgp-signature
+Content-Description: OpenPGP digital signature
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAEBCAAdFiEEJQjwWQChkWOYOIONI1/ltBGqqqcFAmXMgewACgkQI1/ltBGq
+qqctmhAAjI3rllMznnsJGPJM+ujBYUjr4K13jbD1mlIEalAPRZIHWl3mLeenjpUv
+WIdDwZSp7jqb5sMFiCthXA8uejBc6ZlwAEAVpL4Bd14uajsRvvixY7MedlGbsHeG
+cgWFVPKtEdlR5gVHZnQ5LUmJQYhLPnBjky4mtKTIheWgABXYeHJJb/C96y+pGtzH
+YndJFs9/dwdn7JU3H3LPameiXTQN3G711L2dxvZihzyHMi45vcXW+nIK6gGK4Tva
+N68Zpy+mtNnbu8owwKiRoAwyA+SogNQSKstza/v4RhkuttEWEoWT8lxubFXwrqDx
+ebz8T7XyA2SpFvf/893DuQ5aYl/yLc64A22EZDieCNW5E1llswxwGlwQBFFoU6+l
+4AA6JxLljxksP/qeqKG+T1PNh6zfIsaJKEKENcGwblOVT1aFA4KcwnCeVJQp6jLX
+bNqnaTBYN2MBGCKcoA4xeLRFpCJR6IouW3PZTKQX7dDLxR3jHikJUP/mtBA3dZTs
+sJgI7lvjHv9p6QYlNgQaRNNzs6Ath0d1Cpwxk9j0qsEWmUw24QycnGDUPz/y1Nve
+Vx0xLI6ksyIYpb8dPQV6WBE4TWanm6xiAFM+Iz8l0LtEPp92z3o3/vKefADAcAvI
+OK+bbT7I9VLdwQsD+kXXm7YfoHrAXczu15SK+2f3Cl2VmLeRh7w=
+=aF3V
+-----END PGP SIGNATURE-----
+
+--Sig_/2o/cM10kVjboRV1FW3+7Xxc--
