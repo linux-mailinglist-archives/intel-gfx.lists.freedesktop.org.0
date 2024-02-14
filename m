@@ -2,66 +2,64 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2D46C854E85
-	for <lists+intel-gfx@lfdr.de>; Wed, 14 Feb 2024 17:33:01 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id D8C14854F22
+	for <lists+intel-gfx@lfdr.de>; Wed, 14 Feb 2024 17:52:25 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id F354E10E209;
-	Wed, 14 Feb 2024 16:32:56 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5EB9B10E48B;
+	Wed, 14 Feb 2024 16:52:23 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="jOXPvFMU";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="KYLRaC+G";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3648410E209
- for <intel-gfx@lists.freedesktop.org>; Wed, 14 Feb 2024 16:32:55 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9C4AF10E402
+ for <intel-gfx@lists.freedesktop.org>; Wed, 14 Feb 2024 16:52:20 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1707928374; x=1739464374;
+ t=1707929540; x=1739465540;
  h=date:from:to:cc:subject:message-id:references:
  mime-version:content-transfer-encoding:in-reply-to;
- bh=LUzQlXjN/vVhCToOoFjIhiAnoR7hj+f2LoWuSONuvSE=;
- b=jOXPvFMU5arrbysG3dy9sFOJyVBwfveoRN/+26HqMnG1eg7ajq4cMrMw
- S8edOqpm+srcEE5E5ya5+irpew1Dt4dxBmO3q/pBQMa/YQ+sAQU7Wb6Jb
- h3ylSri8Y54B60G58y2V2aoFDroc8hXAtYRpCEcV3fj4WeVDjSbaNGbqG
- nkqKdEovoXDacvNZFxOOrmWvBkZrwqyfBNVVJD6bOZ8YczvjHcXCdfeRF
- YbWZNlzk4Czvu6A1St3qyY5RQufWZJAKU+6SRgodS4bHHxCMdetdZXUu9
- zM2ScpRKgL9mH/knVZIpRSTFl+gVNwqwPxIMMJfnWt6yXvNvS4yTeft1X w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10984"; a="2362802"
+ bh=n3P4Gro7XHCUFD6bYiMwN04jMjgK2JNMpNpa/Z57WOA=;
+ b=KYLRaC+Gge4dOXRUlx64kRlWXQhqdhUDriclUBn19/QCACexy6nBu0pv
+ Abpymplr2r48hhEyI9Gl3eHaz69/C4kAF2btHnnuPnSd0b9imgzGqJ3nS
+ pnCtWboTVX+yJFIFqKOhoVHNDRoBKVDrKCb3osgB2eLgxOjdrsGsuq5oH
+ Qx3/qrwhk5F6XDBhs+6H7/xTh0YU1jwCoq1VpmCKpl6VXSflGsPIX22PP
+ b7c9Wasji5fNPWwZ69cP/YssGsGc/0n+5bYOFnRK1ys2Rk4iuY5fR8tyW
+ o7CfnXMjQJ7VYgx/3/us+9Jpz2KocOR1qgrCUC8Uyk6EKxd6Bx+MSH1H4 A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10984"; a="2365483"
 X-IronPort-AV: E=Sophos;i="6.06,159,1705392000"; 
-   d="scan'208";a="2362802"
+   d="scan'208";a="2365483"
 Received: from orsmga001.jf.intel.com ([10.7.209.18])
  by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Feb 2024 08:32:50 -0800
+ 14 Feb 2024 08:52:18 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10984"; a="826369629"
-X-IronPort-AV: E=Sophos;i="6.06,159,1705392000"; d="scan'208";a="826369629"
+X-IronPort-AV: E=McAfee;i="6600,9927,10984"; a="826369637"
+X-IronPort-AV: E=Sophos;i="6.06,159,1705392000"; d="scan'208";a="826369637"
 Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.74])
- by orsmga001.jf.intel.com with SMTP; 14 Feb 2024 08:32:47 -0800
+ by orsmga001.jf.intel.com with SMTP; 14 Feb 2024 08:52:15 -0800
 Received: by stinkbox (sSMTP sendmail emulation);
- Wed, 14 Feb 2024 18:32:46 +0200
-Date: Wed, 14 Feb 2024 18:32:46 +0200
+ Wed, 14 Feb 2024 18:52:14 +0200
+Date: Wed, 14 Feb 2024 18:52:14 +0200
 From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: "Murthy, Arun R" <arun.r.murthy@intel.com>
-Cc: "Nikula, Jani" <jani.nikula@intel.com>,
+To: Jani Nikula <jani.nikula@intel.com>
+Cc: "Murthy, Arun R" <arun.r.murthy@intel.com>,
  "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
  "Deak, Imre" <imre.deak@intel.com>,
  "Syrjala, Ville" <ville.syrjala@intel.com>,
  "Shankar, Uma" <uma.shankar@intel.com>
-Subject: Re: [RFC 3/4] drm/i915/dp: use link rate and lane count in intel_dp
- struct
-Message-ID: <ZczrLmhaczNIAK9Z@intel.com>
+Subject: Re: [RFC 1/4] drm/i915/display/dp: Add DP fallback on LT
+Message-ID: <ZczvvjUHa5rNrWBh@intel.com>
 References: <20240206104759.2079133-1-arun.r.murthy@intel.com>
- <20240206104759.2079133-4-arun.r.murthy@intel.com>
- <87y1bo6xmi.fsf@intel.com>
- <IA0PR11MB7307ABD8E940873FF0A01685BA4E2@IA0PR11MB7307.namprd11.prod.outlook.com>
- <87frxv6zwb.fsf@intel.com>
- <IA0PR11MB730700222743D0BB541AA4A1BA4E2@IA0PR11MB7307.namprd11.prod.outlook.com>
+ <20240206104759.2079133-2-arun.r.murthy@intel.com>
+ <871q9g8cac.fsf@intel.com>
+ <IA0PR11MB7307A5B0207F5C72F5D5DCC4BA4E2@IA0PR11MB7307.namprd11.prod.outlook.com>
+ <87le7n70ht.fsf@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <IA0PR11MB730700222743D0BB541AA4A1BA4E2@IA0PR11MB7307.namprd11.prod.outlook.com>
+In-Reply-To: <87le7n70ht.fsf@intel.com>
 X-Patchwork-Hint: comment
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -78,967 +76,245 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, Feb 14, 2024 at 02:30:35PM +0000, Murthy, Arun R wrote:
+On Wed, Feb 14, 2024 at 01:23:42PM +0200, Jani Nikula wrote:
+> On Wed, 14 Feb 2024, "Murthy, Arun R" <arun.r.murthy@intel.com> wrote:
+> >> -----Original Message-----
+> >> From: Nikula, Jani <jani.nikula@intel.com>
+> >> Sent: Tuesday, February 13, 2024 11:41 PM
+> >> To: Murthy, Arun R <arun.r.murthy@intel.com>; intel-gfx@lists.freedesktop.org
+> >> Cc: Deak, Imre <imre.deak@intel.com>; Syrjala, Ville <ville.syrjala@intel.com>;
+> >> Shankar, Uma <uma.shankar@intel.com>; Murthy, Arun R
+> >> <arun.r.murthy@intel.com>
+> >> Subject: Re: [RFC 1/4] drm/i915/display/dp: Add DP fallback on LT
+> >>
+> >> On Tue, 06 Feb 2024, Arun R Murthy <arun.r.murthy@intel.com> wrote:
+> >> > Fallback mandates on DP link training failure. This patch just covers
+> >> > the DP2.0 fallback sequence.
+> >> >
+> >> > TODO: Need to implement the DP1.4 fallback.
+> >> >
+> >> > Signed-off-by: Arun R Murthy <arun.r.murthy@intel.com>
+> >> > ---
+> >> >  drivers/gpu/drm/i915/display/intel_dp.c | 92
+> >> > ++++++++++++++++++++++---
+> >> >  1 file changed, 82 insertions(+), 10 deletions(-)
+> >> >
+> >> > diff --git a/drivers/gpu/drm/i915/display/intel_dp.c
+> >> > b/drivers/gpu/drm/i915/display/intel_dp.c
+> >> > index 10ec231acd98..82d354a6b0cd 100644
+> >> > --- a/drivers/gpu/drm/i915/display/intel_dp.c
+> >> > +++ b/drivers/gpu/drm/i915/display/intel_dp.c
+> >> > @@ -104,6 +104,50 @@ static const u8 valid_dsc_bpp[] = {6, 8, 10, 12, 15};
+> >> >   */
+> >> >  static const u8 valid_dsc_slicecount[] = {1, 2, 4};
+> >> >
+> >> > +/* DL Link Rates */
+> >> > +#define UHBR20             2000000
+> >> > +#define UHBR13P5   1350000
+> >> > +#define UHBR10             1000000
+> >> > +#define HBR3               810000
+> >> > +#define HBR2               540000
+> >> > +#define HBR                270000
+> >> > +#define RBR                162000
+> >> > +
+> >> > +/* DP Lane Count */
+> >> > +#define LANE_COUNT_4       4
+> >> > +#define LANE_COUNT_2       2
+> >> > +#define LANE_COUNT_1       1
+> >> > +
+> >> > +/* DP2.0 fallback values */
+> >> > +struct dp_fallback {
+> >> > +   u32 link_rate;
+> >> > +   u8 lane_count;
+> >> > +};
+> >> > +
+> >> > +struct dp_fallback dp2dot0_fallback[] = {
+> >> > +   {UHBR20, LANE_COUNT_4},
+> >> > +   {UHBR13P5, LANE_COUNT_4},
+> >> > +   {UHBR20, LANE_COUNT_2},
+> >> > +   {UHBR10, LANE_COUNT_4},
+> >> > +   {UHBR13P5, LANE_COUNT_2},
+> >> > +   {HBR3, LANE_COUNT_4},
+> >> > +   {UHBR20, LANE_COUNT_1},
+> >> > +   {UHBR10, LANE_COUNT_2},
+> >> > +   {HBR2, LANE_COUNT_4},
+> >> > +   {UHBR13P5, LANE_COUNT_1},
+> >> > +   {HBR3, LANE_COUNT_2},
+> >> > +   {UHBR10, LANE_COUNT_1},
+> >> > +   {HBR2, LANE_COUNT_2},
+> >> > +   {HBR, LANE_COUNT_4},
+> >> > +   {HBR3, LANE_COUNT_1},
+> >> > +   {RBR, LANE_COUNT_4},
+> >> > +   {HBR2, LANE_COUNT_1},
+> >> > +   {HBR, LANE_COUNT_2},
+> >> > +   {RBR, LANE_COUNT_2},
+> >> > +   {HBR, LANE_COUNT_1},
+> >> > +   {RBR, LANE_COUNT_1},
+> >> > +};
+> >> > +
+> >> >  /**
+> >> >   * intel_dp_is_edp - is the given port attached to an eDP panel (either CPU or
+> >> PCH)
+> >> >   * @intel_dp: DP struct
+> >> > @@ -299,6 +343,19 @@ static int intel_dp_common_len_rate_limit(const
+> >> struct intel_dp *intel_dp,
+> >> >                                    intel_dp->num_common_rates, max_rate);
+> >> }
+> >> >
+> >> > +static bool intel_dp_link_rate_supported(struct intel_dp *intel_dp,
+> >> > +u32 link_rate) {
+> >> > +   u8 i;
+> >> > +
+> >> > +   for (i = 0; i < ARRAY_SIZE(intel_dp->common_rates); i++) {
+> >> > +           if (intel_dp->common_rates[i] == link_rate)
+> >> > +                   return true;
+> >> > +           else
+> >> > +                   continue;
+> >> > +   }
+> >> > +   return false;
+> >> > +}
+> >> > +
+> >> >  static int intel_dp_common_rate(struct intel_dp *intel_dp, int index)
+> >> > {
+> >> >     if (drm_WARN_ON(&dp_to_i915(intel_dp)->drm,
+> >> > @@ -671,15 +728,6 @@ int intel_dp_get_link_train_fallback_values(struct
+> >> intel_dp *intel_dp,
+> >> >     struct drm_i915_private *i915 = dp_to_i915(intel_dp);
+> >> >     int index;
+> >> >
+> >> > -   /*
+> >> > -    * TODO: Enable fallback on MST links once MST link compute can
+> >> handle
+> >> > -    * the fallback params.
+> >> > -    */
+> >> > -   if (intel_dp->is_mst) {
+> >> > -           drm_err(&i915->drm, "Link Training Unsuccessful\n");
+> >> > -           return -1;
+> >> > -   }
+> >> > -
+> >>
+> >> By removing this, the claim is both 8b/10b and 128b/132b DP MST link training
+> >> fallbacks work...
+> > Yes! This series focuses on the fallback mandates mentioned in DP2.1 spec and doesn't fallback from MST to SST or vicecersa.
+> > Hence if it is MST the fallback will be within MST and if its SST the fallback will be within SST.
+> >
+> >>
+> >> >     if (intel_dp_is_edp(intel_dp) && !intel_dp->use_max_params) {
+> >> >             drm_dbg_kms(&i915->drm,
+> >> >                         "Retrying Link training for eDP with max
+> >> parameters\n"); @@
+> >> > -687,6 +735,31 @@ int intel_dp_get_link_train_fallback_values(struct
+> >> intel_dp *intel_dp,
+> >> >             return 0;
+> >> >     }
+> >> >
+> >> > +   /* DP fallback values */
+> >> > +   if (intel_dp->dpcd[DP_MAIN_LINK_CHANNEL_CODING] &
+> >> > +DP_CAP_ANSI_128B132B) {
+> >>
+> >> ...but this only addresses 128b/132b, and the 8b/10b MST drops to the existing
+> >> SST fallback path.
+> > Yes! As said above this fallback is based on fallback mandates mentioned in DP2.1 spec in Table 3.31 and Figure 3-52 which focuses on reducing the link rate/lance count and nothing to with MST/SST
+> >
+> >>
+> >> And with the current code, DP_CAP_ANSI_128B132B does not decide whether
+> >> we use DP MST or not. So this will also cover 8b/10b fallback for displays that
+> >> support 128b/132b but have DP_MSTM_CAP == 0.
+> >
+> > Yes, the series doent depend on MST and SST and doest fallback from MST to SST or viceversa.
 > 
-> > -----Original Message-----
-> > From: Nikula, Jani <jani.nikula@intel.com>
-> > Sent: Wednesday, February 14, 2024 5:07 PM
-> > To: Murthy, Arun R <arun.r.murthy@intel.com>; intel-gfx@lists.freedesktop.org
-> > Cc: Deak, Imre <imre.deak@intel.com>; Syrjala, Ville <ville.syrjala@intel.com>;
-> > Shankar, Uma <uma.shankar@intel.com>
-> > Subject: RE: [RFC 3/4] drm/i915/dp: use link rate and lane count in intel_dp
-> > struct
-> > 
-> > On Wed, 14 Feb 2024, "Murthy, Arun R" <arun.r.murthy@intel.com> wrote:
-> > >> -----Original Message-----
-> > >> From: Nikula, Jani <jani.nikula@intel.com>
-> > >> Sent: Tuesday, February 13, 2024 11:43 PM
-> > >> To: Murthy, Arun R <arun.r.murthy@intel.com>;
-> > >> intel-gfx@lists.freedesktop.org
-> > >> Cc: Deak, Imre <imre.deak@intel.com>; Syrjala, Ville
-> > >> <ville.syrjala@intel.com>; Shankar, Uma <uma.shankar@intel.com>;
-> > >> Murthy, Arun R <arun.r.murthy@intel.com>
-> > >> Subject: Re: [RFC 3/4] drm/i915/dp: use link rate and lane count in
-> > >> intel_dp struct
-> > >>
-> > >> On Tue, 06 Feb 2024, Arun R Murthy <arun.r.murthy@intel.com> wrote:
-> > >> > The link rate and lane count are now part of the intel_crtc_state
-> > >> > structure. These two parameters are nothing to do with the crtc and
-> > >> > are more confined to DP.
-> > >>
-> > >> As said offline, the parameters were specifically added to crtc state
-> > >> for both atomic and the state checker.
-> > >>
-> > > I am a bit lost as to from where we need this in atomic and state checker for
-> > link rate and lane count as none of these parameters are coming from user nor
-> > does it change in modeset. On driver init the link rate and lane count value is
-> > fetched from the table and thereafter its constant, but used in many places for
-> > configuration/calculation purpose for which the same in intel_dp struct would
-> > do.
-> > 
-> > Compute config chooses the link rate and lane count to use.
-> > 
-> > Compute config may only modify crtc state, nothing else.
-> > 
-> > State checker reads out the state from the hardware, and it must only read it to
-> > the crtc state, nowhere else.
-> > 
-> > State checker must only compare two crtc states, one from software and one
-> > read from the hardware.
-> > 
-> > Having the link rate and lane count in struct intel_dp does not satisfy these
-> > conditions.
-> > 
-> > See also 90a6b7b052b1 ("drm/i915: Move intel_dp->lane_count into
-> > pipe_config").
-> > 
-> This link rate and lane count computation is done in dp_detect and nothing to be done in compute.
+> What I'm saying is, this changes the way 8b/10b link training fallback
+> is handled.
+> 
+> First, it starts handling 8b/10b MST link training fallback.
+> 
+> Second, it changes the way 8b/10b *and* 128b/132b *and* SST *and* MST
+> link training fallback is handled for all displays that support
+> 128b/132b channel coding.
+> 
+> That's *wildly* too much in one patch.
+> 
+> It also duplicates the existing code in the same function, with a
+> different mechanism. We don't want to have two different ways to do
+> this, and of all things based on sink's 128b/132b cap. Just one.
+> 
+> >
+> >>
+> >> > +           for(index = 0; index < ARRAY_SIZE(dp2dot0_fallback); index++)
+> >> {
+> >> > +                   if (link_rate == dp2dot0_fallback[index].link_rate &&
+> >> > +                           lane_count ==
+> >> dp2dot0_fallback[index].lane_count) {
+> >> > +                           for(index += 1; index <
+> >> ARRAY_SIZE(dp2dot0_fallback); index++) {
+> >>
+> >> I honestly do not understand the double looping here, and how index is
+> >> managed.
+> > The first loop is to find the present link rate and lane count in the fallback table. Once we find this, we will have to traverse from that index below to get the next fallback link rate and lane count. The second loop is now to traverse from this index to see the supported link rate and lane count.
+> > For ex: if the link rate is 10Gbps and lane count is 4. First loop is to find this in the fallback table, index would be 3. Then next loop is to traverse from this index 3 to find the fallback values. This would essentially be UHBR13P5 lane count 2. But MTL doesn' support this. Hence will have to move index by 1 to get UHBR10 lane count 2. This second loop will be used for this purpose.
+> 
+> Needs abstractions i.e. more functions instead of trying to make it all
+> happen in one loop.
+> 
+> >
+> >>
+> >> > +                                   if
+> >> (intel_dp_link_rate_supported(intel_dp,
+> >> > +
+> >>       dp2dot0_fallback[index].link_rate)) {
+> >> > +
+> >>       intel_dp_set_link_params(intel_dp,
+> >> > +
+> >> dp2dot0_fallback[index].link_rate,
+> >> > +
+> >> dp2dot0_fallback[index].lane_count);
+> >>
+> >> intel_dp_set_link_params() is supposed to be called in the DP encoder (pre-
+> >> )enable paths to set the link rates. If you do it here, the subsequent enable will
+> >> just overwrite whatever you did here.
+> > This is taken care of so as to not override and retain this fallback value.
+> 
+> I don't understand.
+> 
+> >
+> >>
+> >> The mechanism in this function should be to to adjust intel_dp->max_link_rate
+> >> and intel_dp->max_link_lane_count, and then the caller will send an uevent to
+> >> have the userspace do everything again, but with reduced max values.
+> >>
+> > If falling back within UHBR rate, so with a mode that supports the new fallback link rate then we don't essentially have to send uevent to user and new modeset may not be required.
+> > For Ex: the link rate is 20Gbps with mode 6k, Link training fails. So with the new fallback linkrate falling within UHBR need not do a modeset. Only if the fallback link rate falls to HBR rate for which 6k is not supported, only then uevent will be sent to user.
+> 
+> For SST paths we'll always choose the optimal link parameters, and the
+> mode will not fit if we have to reduce the parameters. And as I just
+> explained, your changes impact SST paths as well.
+> 
+> For MST we'll start with max parameters, so yeah there's a possibility
+> we could reduce the link parameters without having to reduce the
+> mode. However, I'm inclined to always go through userspace here, using
+> the same tested paths for link training failures. This will also give
+> userspace some form of transparency into what is going on, and why an
+> additional MST stream might not fit when it should.
 
-No. Detect only fills the limits. The actual parameters are
-selected during compute_config().
+Sudden loss of link -> try a blind retrain:
 
-> Also for this reason having every variable in intel_crtc would eventually make intel_crtc_state the way i915 device private moved. I felt link_rate and lane_count can be confined to intel_dp without modifying the existing code flow.
-> 
-> As commented in the other patch if for each and every fallback we need to send uevent to the user is recommended, then this discussion doesn't arise. If this is really required I am *open* to take this change and float the patch.
-> 
-> Thanks and Regards,
-> Arun R Murthy
-> -------------------
-> 
-> > 
-> > BR,
-> > Jani.
-> > 
-> > 
-> > >
-> > > On link training failure, the link rate and lane count tends to change and new
-> > value is initialized in intel_dp struct.
-> > >
-> > > Thanks and Regards,
-> > > Arun R Murthy
-> > > --------------------
-> > >
-> > >> No go.
-> > >>
-> > >>
-> > >> BR,
-> > >> Jani.
-> > >>
-> > >> >
-> > >> > TODO: Need to still seperate out the use of link rate and port
-> > >> > clock which is in intel_dp and intel_crtc_state structure.
-> > >> >
-> > >> > Signed-off-by: Arun R Murthy <arun.r.murthy@intel.com>
-> > >> > ---
-> > >> >  drivers/gpu/drm/i915/display/intel_cx0_phy.c  | 16 ++--
-> > >> >  drivers/gpu/drm/i915/display/intel_ddi.c      | 21 ++---
-> > >> >  .../drm/i915/display/intel_ddi_buf_trans.c    |  7 +-
-> > >> >  drivers/gpu/drm/i915/display/intel_dp.c       |  8 +-
-> > >> >  drivers/gpu/drm/i915/display/intel_dp.h       |  2 +-
-> > >> >  .../drm/i915/display/intel_dp_link_training.c | 81
-> > >> > ++++++++++---------  .../drm/i915/display/intel_dp_link_training.h
-> > >> > ++++++++++|  2 +-
-> > >> >  drivers/gpu/drm/i915/display/intel_dp_mst.c   | 29 ++++---
-> > >> >  8 files changed, 92 insertions(+), 74 deletions(-)
-> > >> >
-> > >> > diff --git a/drivers/gpu/drm/i915/display/intel_cx0_phy.c
-> > >> > b/drivers/gpu/drm/i915/display/intel_cx0_phy.c
-> > >> > index 288a00e083c8..cde8f26ba26b 100644
-> > >> > --- a/drivers/gpu/drm/i915/display/intel_cx0_phy.c
-> > >> > +++ b/drivers/gpu/drm/i915/display/intel_cx0_phy.c
-> > >> > @@ -414,6 +414,7 @@ void intel_cx0_phy_set_signal_levels(struct
-> > >> > intel_encoder *encoder,  {
-> > >> >     struct drm_i915_private *i915 = to_i915(encoder->base.dev);
-> > >> >     const struct intel_ddi_buf_trans *trans;
-> > >> > +   struct intel_dp *intel_dp = enc_to_intel_dp(encoder);
-> > >> >     enum phy phy = intel_port_to_phy(i915, encoder->port);
-> > >> >     u8 owned_lane_mask;
-> > >> >     intel_wakeref_t wakeref;
-> > >> > @@ -446,7 +447,7 @@ void intel_cx0_phy_set_signal_levels(struct
-> > >> intel_encoder *encoder,
-> > >> >                           MB_WRITE_COMMITTED);
-> > >> >     }
-> > >> >
-> > >> > -   for (ln = 0; ln < crtc_state->lane_count; ln++) {
-> > >> > +   for (ln = 0; ln < intel_dp->lane_count; ln++) {
-> > >> >             int level = intel_ddi_level(encoder, crtc_state, ln);
-> > >> >             int lane = ln / 2;
-> > >> >             int tx = ln % 2;
-> > >> > @@ -2327,10 +2328,11 @@ static void intel_c20_pll_program(struct
-> > >> drm_i915_private *i915,
-> > >> >                               const struct intel_crtc_state *crtc_state,
-> > >> >                               struct intel_encoder *encoder)  {
-> > >> > +   struct intel_dp *intel_dp = enc_to_intel_dp(encoder);
-> > >> >     const struct intel_c20pll_state *pll_state = &crtc_state-
-> > >> >cx0pll_state.c20;
-> > >> >     bool dp = false;
-> > >> > -   int lane = crtc_state->lane_count > 2 ? INTEL_CX0_BOTH_LANES :
-> > >> INTEL_CX0_LANE0;
-> > >> > -   u32 clock = crtc_state->port_clock;
-> > >> > +   int lane = intel_dp->lane_count > 2 ? INTEL_CX0_BOTH_LANES :
-> > >> INTEL_CX0_LANE0;
-> > >> > +   u32 clock = intel_dp->link_rate;
-> > >> >     bool cntx;
-> > >> >     int i;
-> > >> >
-> > >> > @@ -2455,6 +2457,7 @@ static void
-> > >> > intel_program_port_clock_ctl(struct
-> > >> intel_encoder *encoder,
-> > >> >                                      const struct intel_crtc_state
-> > >> *crtc_state,
-> > >> >                                      bool lane_reversal)  {
-> > >> > +   struct intel_dp *intel_dp = enc_to_intel_dp(encoder);
-> > >> >     struct drm_i915_private *i915 = to_i915(encoder->base.dev);
-> > >> >     u32 val = 0;
-> > >> >
-> > >> > @@ -2475,7 +2478,7 @@ static void
-> > >> > intel_program_port_clock_ctl(struct
-> > >> > intel_encoder *encoder,
-> > >> >
-> > >> >     /* TODO: HDMI FRL */
-> > >> >     /* DP2.0 10G and 20G rates enable MPLLA*/
-> > >> > -   if (crtc_state->port_clock == 1000000 || crtc_state->port_clock ==
-> > >> 2000000)
-> > >> > +   if (intel_dp->link_rate == 1000000 || intel_dp->link_rate ==
-> > >> > +2000000)
-> > >> >             val |= crtc_state->cx0pll_state.ssc_enabled ?
-> > >> XELPDP_SSC_ENABLE_PLLA : 0;
-> > >> >     else
-> > >> >             val |= crtc_state->cx0pll_state.ssc_enabled ?
-> > >> > XELPDP_SSC_ENABLE_PLLB : 0; @@ -2705,6 +2708,7 @@ static void
-> > >> intel_cx0pll_enable(struct intel_encoder *encoder,
-> > >> >                             const struct intel_crtc_state *crtc_state)  {
-> > >> >     struct drm_i915_private *i915 = to_i915(encoder->base.dev);
-> > >> > +   struct intel_dp *intel_dp = enc_to_intel_dp(encoder);
-> > >> >     enum phy phy = intel_port_to_phy(i915, encoder->port);
-> > >> >     struct intel_digital_port *dig_port = enc_to_dig_port(encoder);
-> > >> >     bool lane_reversal = dig_port->saved_port_bits &
-> > >> > DDI_BUF_PORT_REVERSAL; @@ -2744,7 +2748,7 @@ static void
-> > >> intel_cx0pll_enable(struct intel_encoder *encoder,
-> > >> >      * 6. Program the enabled and disabled owned PHY lane
-> > >> >      * transmitters over message bus
-> > >> >      */
-> > >> > -   intel_cx0_program_phy_lane(i915, encoder, crtc_state->lane_count,
-> > >> lane_reversal);
-> > >> > +   intel_cx0_program_phy_lane(i915, encoder, intel_dp->lane_count,
-> > >> > +lane_reversal);
-> > >> >
-> > >> >     /*
-> > >> >      * 7. Follow the Display Voltage Frequency Switching - Sequence
-> > >> > @@
-> > >> > -2756,7 +2760,7 @@ static void intel_cx0pll_enable(struct
-> > >> > intel_encoder
-> > >> *encoder,
-> > >> >      * clock frequency.
-> > >> >      */
-> > >> >     intel_de_write(i915, DDI_CLK_VALFREQ(encoder->port),
-> > >> > -                  crtc_state->port_clock);
-> > >> > +                  intel_dp->link_rate);
-> > >> >
-> > >> >     /*
-> > >> >      * 9. Set PORT_CLOCK_CTL register PCLK PLL Request diff --git
-> > >> > a/drivers/gpu/drm/i915/display/intel_ddi.c
-> > >> > b/drivers/gpu/drm/i915/display/intel_ddi.c
-> > >> > index bea441590204..ed7620e7f763 100644
-> > >> > --- a/drivers/gpu/drm/i915/display/intel_ddi.c
-> > >> > +++ b/drivers/gpu/drm/i915/display/intel_ddi.c
-> > >> > @@ -334,18 +334,18 @@ static void intel_ddi_init_dp_buf_reg(struct
-> > >> > intel_encoder *encoder,
-> > >> >
-> > >> >     /* DDI_BUF_CTL_ENABLE will be set by
-> > >> intel_ddi_prepare_link_retrain() later */
-> > >> >     intel_dp->DP = dig_port->saved_port_bits |
-> > >> > -           DDI_PORT_WIDTH(crtc_state->lane_count) |
-> > >> > +           DDI_PORT_WIDTH(intel_dp->lane_count) |
-> > >> >             DDI_BUF_TRANS_SELECT(0);
-> > >> >
-> > >> >     if (DISPLAY_VER(i915) >= 14) {
-> > >> > -           if (intel_dp_is_uhbr(crtc_state))
-> > >> > +           if (intel_dp_is_uhbr(intel_dp))
-> > >> >                     intel_dp->DP |= DDI_BUF_PORT_DATA_40BIT;
-> > >> >             else
-> > >> >                     intel_dp->DP |= DDI_BUF_PORT_DATA_10BIT;
-> > >> >     }
-> > >> >
-> > >> >     if (IS_ALDERLAKE_P(i915) && intel_phy_is_tc(i915, phy)) {
-> > >> > -           intel_dp->DP |= ddi_buf_phy_link_rate(crtc_state->port_clock);
-> > >> > +           intel_dp->DP |=
-> > >> > + ddi_buf_phy_link_rate(intel_dp->link_rate);
-> > >> >             if (!intel_tc_port_in_tbt_alt_mode(dig_port))
-> > >> >                     intel_dp->DP |= DDI_BUF_CTL_TC_PHY_OWNERSHIP;
-> > >> >     }
-> > >> > @@ -456,10 +456,11 @@ intel_ddi_config_transcoder_dp2(struct
-> > >> intel_encoder *encoder,
-> > >> >                             const struct intel_crtc_state *crtc_state)  {
-> > >> >     struct drm_i915_private *i915 = to_i915(encoder->base.dev);
-> > >> > +   struct intel_dp *intel_dp = enc_to_intel_dp(encoder);
-> > >> >     enum transcoder cpu_transcoder = crtc_state->cpu_transcoder;
-> > >> >     u32 val = 0;
-> > >> >
-> > >> > -   if (intel_dp_is_uhbr(crtc_state))
-> > >> > +   if (intel_dp_is_uhbr(intel_dp))
-> > >> >             val = TRANS_DP2_128B132B_CHANNEL_CODING;
-> > >> >
-> > >> >     intel_de_write(i915, TRANS_DP2_CTL(cpu_transcoder), val); @@ -
-> > >> 477,6
-> > >> > +478,7 @@ intel_ddi_transcoder_func_reg_val_get(struct
-> > >> > +intel_encoder
-> > >> > *encoder,  {
-> > >> >     struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
-> > >> >     struct drm_i915_private *dev_priv = to_i915(crtc->base.dev);
-> > >> > +   struct intel_dp *intel_dp = enc_to_intel_dp(encoder);
-> > >> >     enum pipe pipe = crtc->pipe;
-> > >> >     enum transcoder cpu_transcoder = crtc_state->cpu_transcoder;
-> > >> >     enum port port = encoder->port; @@ -552,11 +554,11 @@
-> > >> > intel_ddi_transcoder_func_reg_val_get(struct
-> > >> intel_encoder *encoder,
-> > >> >             temp |= TRANS_DDI_MODE_SELECT_FDI_OR_128B132B;
-> > >> >             temp |= (crtc_state->fdi_lanes - 1) << 1;
-> > >> >     } else if (intel_crtc_has_type(crtc_state, INTEL_OUTPUT_DP_MST)) {
-> > >> > -           if (intel_dp_is_uhbr(crtc_state))
-> > >> > +           if (intel_dp_is_uhbr(intel_dp))
-> > >> >                     temp |=
-> > >> TRANS_DDI_MODE_SELECT_FDI_OR_128B132B;
-> > >> >             else
-> > >> >                     temp |= TRANS_DDI_MODE_SELECT_DP_MST;
-> > >> > -           temp |= DDI_PORT_WIDTH(crtc_state->lane_count);
-> > >> > +           temp |= DDI_PORT_WIDTH(intel_dp->lane_count);
-> > >> >
-> > >> >             if (DISPLAY_VER(dev_priv) >= 12) {
-> > >> >                     enum transcoder master; @@ -1414,7 +1416,7 @@
-> > >> > static int intel_ddi_dp_level(struct intel_dp *intel_dp,  {
-> > >> >     u8 train_set = intel_dp->train_set[lane];
-> > >> >
-> > >> > -   if (intel_dp_is_uhbr(crtc_state)) {
-> > >> > +   if (intel_dp_is_uhbr(intel_dp)) {
-> > >> >             return train_set & DP_TX_FFE_PRESET_VALUE_MASK;
-> > >> >     } else {
-> > >> >             u8 signal_levels = train_set &
-> > >> (DP_TRAIN_VOLTAGE_SWING_MASK | @@
-> > >> > -2456,15 +2458,16 @@ static void mtl_port_buf_ctl_program(struct
-> > >> > intel_encoder *encoder,  {
-> > >> >     struct drm_i915_private *i915 = to_i915(encoder->base.dev);
-> > >> >     struct intel_digital_port *dig_port = enc_to_dig_port(encoder);
-> > >> > +   struct intel_dp *intel_dp = enc_to_intel_dp(encoder);
-> > >> >     enum port port = encoder->port;
-> > >> >     u32 val;
-> > >> >
-> > >> >     val = intel_de_read(i915, XELPDP_PORT_BUF_CTL1(i915, port));
-> > >> >     val &= ~XELPDP_PORT_WIDTH_MASK;
-> > >> > -   val |= XELPDP_PORT_WIDTH(mtl_get_port_width(crtc_state-
-> > >> >lane_count));
-> > >> > +   val |= XELPDP_PORT_WIDTH(mtl_get_port_width(intel_dp-
-> > >> >lane_count));
-> > >> >
-> > >> >     val &= ~XELPDP_PORT_BUF_PORT_DATA_WIDTH_MASK;
-> > >> > -   if (intel_dp_is_uhbr(crtc_state))
-> > >> > +   if (intel_dp_is_uhbr(intel_dp))
-> > >> >             val |= XELPDP_PORT_BUF_PORT_DATA_40BIT;
-> > >> >     else
-> > >> >             val |= XELPDP_PORT_BUF_PORT_DATA_10BIT; diff --git
-> > >> > a/drivers/gpu/drm/i915/display/intel_ddi_buf_trans.c
-> > >> > b/drivers/gpu/drm/i915/display/intel_ddi_buf_trans.c
-> > >> > index de809e2d9cac..e490bffd3e49 100644
-> > >> > --- a/drivers/gpu/drm/i915/display/intel_ddi_buf_trans.c
-> > >> > +++ b/drivers/gpu/drm/i915/display/intel_ddi_buf_trans.c
-> > >> > @@ -1679,8 +1679,10 @@ dg2_get_snps_buf_trans(struct intel_encoder
-> > >> *encoder,
-> > >> >                    const struct intel_crtc_state *crtc_state,
-> > >> >                    int *n_entries)
-> > >> >  {
-> > >> > +   struct intel_dp *intel_dp = enc_to_intel_dp(encoder);
-> > >> > +
-> > >> >     if (intel_crtc_has_dp_encoder(crtc_state) &&
-> > >> > -       intel_dp_is_uhbr(crtc_state))
-> > >> > +       intel_dp_is_uhbr(intel_dp))
-> > >> >             return intel_get_buf_trans(&dg2_snps_trans_uhbr, n_entries);
-> > >> >     else
-> > >> >             return intel_get_buf_trans(&dg2_snps_trans, n_entries);
-> > >> > @@ -
-> > >> 1692,9
-> > >> > +1694,10 @@ mtl_get_cx0_buf_trans(struct intel_encoder *encoder,
-> > >> >                   int *n_entries)
-> > >> >  {
-> > >> >     struct drm_i915_private *i915 = to_i915(encoder->base.dev);
-> > >> > +   struct intel_dp *intel_dp = enc_to_intel_dp(encoder);
-> > >> >     enum phy phy = intel_port_to_phy(i915, encoder->port);
-> > >> >
-> > >> > -   if (intel_crtc_has_dp_encoder(crtc_state) && crtc_state->port_clock >=
-> > >> 1000000)
-> > >> > +   if (intel_crtc_has_dp_encoder(crtc_state) &&
-> > >> > +intel_dp_is_uhbr(intel_dp))
-> > >> >             return intel_get_buf_trans(&mtl_c20_trans_uhbr, n_entries);
-> > >> >     else if (intel_crtc_has_type(crtc_state, INTEL_OUTPUT_HDMI) &&
-> > >> !(intel_is_c10phy(i915, phy)))
-> > >> >             return intel_get_buf_trans(&mtl_c20_trans_hdmi,
-> > >> > n_entries);
-> > >> diff
-> > >> > --git a/drivers/gpu/drm/i915/display/intel_dp.c
-> > >> > b/drivers/gpu/drm/i915/display/intel_dp.c
-> > >> > index 82d354a6b0cd..ba3c8201c0ef 100644
-> > >> > --- a/drivers/gpu/drm/i915/display/intel_dp.c
-> > >> > +++ b/drivers/gpu/drm/i915/display/intel_dp.c
-> > >> > @@ -167,9 +167,9 @@ bool intel_dp_is_edp(struct intel_dp *intel_dp)
-> > >> > static void intel_dp_unset_edid(struct intel_dp *intel_dp);
-> > >> >
-> > >> >  /* Is link rate UHBR and thus 128b/132b? */ -bool
-> > >> > intel_dp_is_uhbr(const struct intel_crtc_state *crtc_state)
-> > >> > +bool intel_dp_is_uhbr(struct intel_dp *intel_dp)
-> > >> >  {
-> > >> > -   return drm_dp_is_uhbr_rate(crtc_state->port_clock);
-> > >> > +   return drm_dp_is_uhbr_rate(intel_dp->link_rate);
-> > >> >  }
-> > >> >
-> > >> >  /**
-> > >> > @@ -2901,12 +2901,14 @@ intel_dp_audio_compute_config(struct
-> > >> intel_encoder *encoder,
-> > >> >                           struct intel_crtc_state *pipe_config,
-> > >> >                           struct drm_connector_state *conn_state)
-> > >> > {
-> > >> > +   struct intel_dp *intel_dp = enc_to_intel_dp(encoder);
-> > >> > +
-> > >> >     pipe_config->has_audio =
-> > >> >             intel_dp_has_audio(encoder, pipe_config, conn_state) &&
-> > >> >             intel_audio_compute_config(encoder, pipe_config,
-> > >> > conn_state);
-> > >> >
-> > >> >     pipe_config->sdp_split_enable = pipe_config->has_audio &&
-> > >> > -                                   intel_dp_is_uhbr(pipe_config);
-> > >> > +                                   intel_dp_is_uhbr(intel_dp);
-> > >> >  }
-> > >> >
-> > >> >  int
-> > >> > diff --git a/drivers/gpu/drm/i915/display/intel_dp.h
-> > >> > b/drivers/gpu/drm/i915/display/intel_dp.h
-> > >> > index 530cc97bc42f..cc93c244a2f9 100644
-> > >> > --- a/drivers/gpu/drm/i915/display/intel_dp.h
-> > >> > +++ b/drivers/gpu/drm/i915/display/intel_dp.h
-> > >> > @@ -80,7 +80,7 @@ void intel_dp_audio_compute_config(struct
-> > >> intel_encoder *encoder,
-> > >> >                                struct drm_connector_state
-> > >> > *conn_state);
-> > >> bool
-> > >> > intel_dp_has_hdmi_sink(struct intel_dp *intel_dp);  bool
-> > >> > intel_dp_is_edp(struct intel_dp *intel_dp); -bool
-> > >> > intel_dp_is_uhbr(const struct intel_crtc_state *crtc_state);
-> > >> > +bool intel_dp_is_uhbr(struct intel_dp *intel_dp);
-> > >> >  int intel_dp_link_symbol_size(int rate);  int
-> > >> > intel_dp_link_symbol_clock(int rate);  bool
-> > >> > intel_dp_is_port_edp(struct drm_i915_private *dev_priv, enum port
-> > >> > port); diff --git
-> > >> > a/drivers/gpu/drm/i915/display/intel_dp_link_training.c
-> > >> > b/drivers/gpu/drm/i915/display/intel_dp_link_training.c
-> > >> > index 242cb08e9fc4..eb25b59a4eb3 100644
-> > >> > --- a/drivers/gpu/drm/i915/display/intel_dp_link_training.c
-> > >> > +++ b/drivers/gpu/drm/i915/display/intel_dp_link_training.c
-> > >> > @@ -355,7 +355,7 @@ static u8
-> > >> intel_dp_get_lane_adjust_vswing_preemph(struct intel_dp *intel_dp,
-> > >> >             v = drm_dp_get_adjust_request_voltage(link_status, lane);
-> > >> >             p = drm_dp_get_adjust_request_pre_emphasis(link_status,
-> > >> lane);
-> > >> >     } else {
-> > >> > -           for (lane = 0; lane < crtc_state->lane_count; lane++) {
-> > >> > +           for (lane = 0; lane < intel_dp->lane_count; lane++) {
-> > >> >                     v = max(v,
-> > >> drm_dp_get_adjust_request_voltage(link_status, lane));
-> > >> >                     p = max(p,
-> > >> drm_dp_get_adjust_request_pre_emphasis(link_status, lane));
-> > >> >             }
-> > >> > @@ -380,7 +380,7 @@ static u8 intel_dp_get_lane_adjust_train(struct
-> > >> intel_dp *intel_dp,
-> > >> >                                      const u8
-> > >> link_status[DP_LINK_STATUS_SIZE],
-> > >> >                                      int lane)  {
-> > >> > -   if (intel_dp_is_uhbr(crtc_state))
-> > >> > +   if (intel_dp_is_uhbr(intel_dp))
-> > >> >             return intel_dp_get_lane_adjust_tx_ffe_preset(intel_dp,
-> > >> crtc_state,
-> > >> >                                                           dp_phy,
-> > >> link_status, lane);
-> > >> >     else
-> > >> > @@ -419,18 +419,18 @@ intel_dp_get_adjust_train(struct intel_dp
-> > >> > *intel_dp,  {
-> > >> >     int lane;
-> > >> >
-> > >> > -   if (intel_dp_is_uhbr(crtc_state)) {
-> > >> > +   if (intel_dp_is_uhbr(intel_dp)) {
-> > >> >             lt_dbg(intel_dp, dp_phy,
-> > >> >                    "128b/132b, lanes: %d, "
-> > >> >                    "TX FFE request: " TRAIN_REQ_FMT "\n",
-> > >> > -                  crtc_state->lane_count,
-> > >> > +                  intel_dp->lane_count,
-> > >> >                    TRAIN_REQ_TX_FFE_ARGS(link_status));
-> > >> >     } else {
-> > >> >             lt_dbg(intel_dp, dp_phy,
-> > >> >                    "8b/10b, lanes: %d, "
-> > >> >                    "vswing request: " TRAIN_REQ_FMT ", "
-> > >> >                    "pre-emphasis request: " TRAIN_REQ_FMT "\n",
-> > >> > -                  crtc_state->lane_count,
-> > >> > +                  intel_dp->lane_count,
-> > >> >                    TRAIN_REQ_VSWING_ARGS(link_status),
-> > >> >                    TRAIN_REQ_PREEMPH_ARGS(link_status));
-> > >> >     }
-> > >> > @@ -464,7 +464,7 @@ intel_dp_set_link_train(struct intel_dp
-> > >> > *intel_dp,
-> > >> >
-> > >> >     buf[0] = dp_train_pat;
-> > >> >     /* DP_TRAINING_LANEx_SET follow DP_TRAINING_PATTERN_SET */
-> > >> > -   memcpy(buf + 1, intel_dp->train_set, crtc_state->lane_count);
-> > >> > +   memcpy(buf + 1, intel_dp->train_set, intel_dp->lane_count);
-> > >> >     len = crtc_state->lane_count + 1;
-> > >> >
-> > >> >     return drm_dp_dpcd_write(&intel_dp->aux, reg, buf, len) == len;
-> > >> > @@
-> > >> > -531,18 +531,18 @@ void intel_dp_set_signal_levels(struct intel_dp
-> > >> > *intel_dp,  {
-> > >> >     struct intel_encoder *encoder =
-> > >> > &dp_to_dig_port(intel_dp)->base;
-> > >> >
-> > >> > -   if (intel_dp_is_uhbr(crtc_state)) {
-> > >> > +   if (intel_dp_is_uhbr(intel_dp)){
-> > >> >             lt_dbg(intel_dp, dp_phy,
-> > >> >                    "128b/132b, lanes: %d, "
-> > >> >                    "TX FFE presets: " TRAIN_SET_FMT "\n",
-> > >> > -                  crtc_state->lane_count,
-> > >> > +                  intel_dp->lane_count,
-> > >> >                    TRAIN_SET_TX_FFE_ARGS(intel_dp->train_set));
-> > >> >     } else {
-> > >> >             lt_dbg(intel_dp, dp_phy,
-> > >> >                    "8b/10b, lanes: %d, "
-> > >> >                    "vswing levels: " TRAIN_SET_FMT ", "
-> > >> >                    "pre-emphasis levels: " TRAIN_SET_FMT "\n",
-> > >> > -                  crtc_state->lane_count,
-> > >> > +                  intel_dp->lane_count,
-> > >> >                    TRAIN_SET_VSWING_ARGS(intel_dp->train_set),
-> > >> >                    TRAIN_SET_PREEMPH_ARGS(intel_dp->train_set));
-> > >> >     }
-> > >> > @@ -575,9 +575,9 @@ intel_dp_update_link_train(struct intel_dp
-> > *intel_dp,
-> > >> >     intel_dp_set_signal_levels(intel_dp, crtc_state, dp_phy);
-> > >> >
-> > >> >     ret = drm_dp_dpcd_write(&intel_dp->aux, reg,
-> > >> > -                           intel_dp->train_set, crtc_state->lane_count);
-> > >> > +                           intel_dp->train_set,
-> > >> > + intel_dp->lane_count);
-> > >> >
-> > >> > -   return ret == crtc_state->lane_count;
-> > >> > +   return ret == intel_dp->lane_count;
-> > >> >  }
-> > >> >
-> > >> >  /* 128b/132b */
-> > >> > @@ -618,10 +618,10 @@ static bool
-> > >> > intel_dp_link_max_vswing_reached(struct intel_dp *intel_dp,  {
-> > >> >     int lane;
-> > >> >
-> > >> > -   for (lane = 0; lane < crtc_state->lane_count; lane++) {
-> > >> > +   for (lane = 0; lane < intel_dp->lane_count; lane++) {
-> > >> >             u8 train_set_lane = intel_dp->train_set[lane];
-> > >> >
-> > >> > -           if (intel_dp_is_uhbr(crtc_state)) {
-> > >> > +           if (intel_dp_is_uhbr(intel_dp)) {
-> > >> >                     if (!intel_dp_lane_max_tx_ffe_reached(train_set_lane))
-> > >> >                             return false;
-> > >> >             } else {
-> > >> > @@ -640,7 +640,7 @@ intel_dp_update_downspread_ctrl(struct intel_dp
-> > >> *intel_dp,
-> > >> >     u8 link_config[2];
-> > >> >
-> > >> >     link_config[0] = crtc_state->vrr.flipline ?
-> > >> DP_MSA_TIMING_PAR_IGNORE_EN : 0;
-> > >> > -   link_config[1] = intel_dp_is_uhbr(crtc_state) ?
-> > >> > +   link_config[1] = intel_dp_is_uhbr(intel_dp) ?
-> > >> >                      DP_SET_ANSI_128B132B : DP_SET_ANSI_8B10B;
-> > >> >     drm_dp_dpcd_write(&intel_dp->aux, DP_DOWNSPREAD_CTRL,
-> > >> link_config,
-> > >> > 2);  } @@ -650,7 +650,7 @@ intel_dp_update_link_bw_set(struct
-> > >> > intel_dp *intel_dp,
-> > >> >                         const struct intel_crtc_state *crtc_state,
-> > >> >                         u8 link_bw, u8 rate_select)  {
-> > >> > -   u8 lane_count = crtc_state->lane_count;
-> > >> > +   u8 lane_count = intel_dp->lane_count;
-> > >> >
-> > >> >     if (crtc_state->enhanced_framing)
-> > >> >             lane_count |= DP_LANE_COUNT_ENHANCED_FRAME_EN; @@
-> > >> -689,7 +689,7 @@
-> > >> > intel_dp_prepare_link_train(struct intel_dp *intel_dp,
-> > >> >     if (intel_dp->prepare_link_retrain)
-> > >> >             intel_dp->prepare_link_retrain(intel_dp, crtc_state);
-> > >> >
-> > >> > -   intel_dp_compute_rate(intel_dp, crtc_state->port_clock,
-> > >> > +   intel_dp_compute_rate(intel_dp, intel_dp->link_rate,
-> > >> >                           &link_bw, &rate_select);
-> > >> >
-> > >> >     /*
-> > >> > @@ -730,16 +730,16 @@ intel_dp_prepare_link_train(struct intel_dp
-> > >> *intel_dp,
-> > >> >     return true;
-> > >> >  }
-> > >> >
-> > >> > -static bool intel_dp_adjust_request_changed(const struct
-> > >> > intel_crtc_state *crtc_state,
-> > >> > +static bool intel_dp_adjust_request_changed(struct intel_dp
-> > >> > +*intel_dp,
-> > >> >                                         const u8
-> > >> old_link_status[DP_LINK_STATUS_SIZE],
-> > >> >                                         const u8
-> > >> new_link_status[DP_LINK_STATUS_SIZE])
-> > >> >  {
-> > >> >     int lane;
-> > >> >
-> > >> > -   for (lane = 0; lane < crtc_state->lane_count; lane++) {
-> > >> > +   for (lane = 0; lane < intel_dp->lane_count; lane++) {
-> > >> >             u8 old, new;
-> > >> >
-> > >> > -           if (intel_dp_is_uhbr(crtc_state)) {
-> > >> > +           if (intel_dp_is_uhbr(intel_dp)) {
-> > >> >                     old =
-> > >> drm_dp_get_adjust_tx_ffe_preset(old_link_status, lane);
-> > >> >                     new =
-> > >> drm_dp_get_adjust_tx_ffe_preset(new_link_status, lane);
-> > >> >             } else {
-> > >> > @@ -783,7 +783,7 @@ intel_dp_link_training_clock_recovery(struct
-> > >> > intel_dp *intel_dp,
-> > >> >
-> > >> >     delay_us = drm_dp_read_clock_recovery_delay(&intel_dp->aux,
-> > >> >                                                 intel_dp->dpcd,
-> > >> > dp_phy,
-> > >> > -
-> > >> intel_dp_is_uhbr(crtc_state));
-> > >> > +
-> > >> > + intel_dp_is_uhbr(intel_dp));
-> > >> >
-> > >> >     /* clock recovery */
-> > >> >     if (!intel_dp_reset_link_train(intel_dp, crtc_state, dp_phy, @@
-> > >> > -816,7 +816,7 @@ intel_dp_link_training_clock_recovery(struct
-> > >> > intel_dp
-> > >> *intel_dp,
-> > >> >                     return false;
-> > >> >             }
-> > >> >
-> > >> > -           if (drm_dp_clock_recovery_ok(link_status, crtc_state-
-> > >> >lane_count)) {
-> > >> > +           if (drm_dp_clock_recovery_ok(link_status, intel_dp-
-> > >> >lane_count)) {
-> > >> >                     lt_dbg(intel_dp, dp_phy, "Clock recovery OK\n");
-> > >> >                     return true;
-> > >> >             }
-> > >> > @@ -841,7 +841,7 @@ intel_dp_link_training_clock_recovery(struct
-> > >> >intel_dp
-> > >> *intel_dp,
-> > >> >                     return false;
-> > >> >             }
-> > >> >
-> > >> > -           if (!intel_dp_adjust_request_changed(crtc_state,
-> > >> old_link_status, link_status))
-> > >> > +           if (!intel_dp_adjust_request_changed(intel_dp,
-> > >> > +old_link_status,
-> > >> > +link_status))
-> > >> >                     ++voltage_tries;
-> > >> >             else
-> > >> >                     voltage_tries = 1; @@ -872,7 +872,7 @@ static
-> > >> > u32 intel_dp_training_pattern(struct intel_dp
-> > >> *intel_dp,
-> > >> >     bool source_tps3, sink_tps3, source_tps4, sink_tps4;
-> > >> >
-> > >> >     /* UHBR+ use separate 128b/132b TPS2 */
-> > >> > -   if (intel_dp_is_uhbr(crtc_state))
-> > >> > +   if (intel_dp_is_uhbr(intel_dp))
-> > >> >             return DP_TRAINING_PATTERN_2;
-> > >> >
-> > >> >     /*
-> > >> > @@ -886,7 +886,7 @@ static u32 intel_dp_training_pattern(struct
-> > >> > intel_dp
-> > >> *intel_dp,
-> > >> >                 drm_dp_tps4_supported(intel_dp->dpcd);
-> > >> >     if (source_tps4 && sink_tps4) {
-> > >> >             return DP_TRAINING_PATTERN_4;
-> > >> > -   } else if (crtc_state->port_clock == 810000) {
-> > >> > +   } else if (intel_dp->link_rate == 810000) {
-> > >> >             if (!source_tps4)
-> > >> >                     lt_dbg(intel_dp, dp_phy,
-> > >> >                            "8.1 Gbps link rate without source TPS4
-> > >> support\n"); @@
-> > >> > -904,7 +904,7 @@ static u32 intel_dp_training_pattern(struct
-> > >> > intel_dp
-> > >> *intel_dp,
-> > >> >                 drm_dp_tps3_supported(intel_dp->dpcd);
-> > >> >     if (source_tps3 && sink_tps3) {
-> > >> >             return  DP_TRAINING_PATTERN_3;
-> > >> > -   } else if (crtc_state->port_clock >= 540000) {
-> > >> > +   } else if (intel_dp->link_rate >= 540000) {
-> > >> >             if (!source_tps3)
-> > >> >                     lt_dbg(intel_dp, dp_phy,
-> > >> >                            ">=5.4/6.48 Gbps link rate without
-> > >> > source TPS3
-> > >> support\n");
-> > >> > @@ -934,7 +934,7 @@
-> > >> > intel_dp_link_training_channel_equalization(struct
-> > >> > intel_dp *intel_dp,
-> > >> >
-> > >> >     delay_us = drm_dp_read_channel_eq_delay(&intel_dp->aux,
-> > >> >                                             intel_dp->dpcd, dp_phy,
-> > >> > -                                           intel_dp_is_uhbr(crtc_state));
-> > >> > +
-> > >> > + intel_dp_is_uhbr(intel_dp));
-> > >> >
-> > >> >     training_pattern = intel_dp_training_pattern(intel_dp,
-> > >> > crtc_state,
-> > >> dp_phy);
-> > >> >     /* Scrambling is disabled for TPS2/3 and enabled for TPS4 */ @@
-> > >> > -959,7 +959,7 @@ intel_dp_link_training_channel_equalization(struct
-> > >> > intel_dp *intel_dp,
-> > >> >
-> > >> >             /* Make sure clock is still ok */
-> > >> >             if (!drm_dp_clock_recovery_ok(link_status,
-> > >> > -                                         crtc_state->lane_count)) {
-> > >> > +                                         intel_dp->lane_count)) {
-> > >> >                     intel_dp_dump_link_status(intel_dp, dp_phy,
-> > >> link_status);
-> > >> >                     lt_dbg(intel_dp, dp_phy,
-> > >> >                            "Clock recovery check failed, cannot
-> > >> > continue
-> > >> channel
-> > >> > equalization\n"); @@ -967,7 +967,7 @@
-> > >> intel_dp_link_training_channel_equalization(struct intel_dp
-> > >> *intel_dp,
-> > >> >             }
-> > >> >
-> > >> >             if (drm_dp_channel_eq_ok(link_status,
-> > >> > -                                    crtc_state->lane_count)) {
-> > >> > +                                    intel_dp->lane_count)) {
-> > >> >                     channel_eq = true;
-> > >> >                     lt_dbg(intel_dp, dp_phy, "Channel EQ done. DP
-> > >> Training successful\n");
-> > >> >                     break;
-> > >> > @@ -1041,7 +1041,7 @@ void intel_dp_stop_link_train(struct intel_dp
-> > >> *intel_dp,
-> > >> >     intel_dp_program_link_training_pattern(intel_dp, crtc_state,
-> > >> DP_PHY_DPRX,
-> > >> >
-> > >> DP_TRAINING_PATTERN_DISABLE);
-> > >> >
-> > >> > -   if (intel_dp_is_uhbr(crtc_state) &&
-> > >> > +   if (intel_dp_is_uhbr(intel_dp) &&
-> > >> >         wait_for(intel_dp_128b132b_intra_hop(intel_dp, crtc_state)
-> > >> > == 0,
-> > >> 500)) {
-> > >> >             lt_dbg(intel_dp, DP_PHY_DPRX, "128b/132b intra-hop not
-> > >> clearing\n");
-> > >> >     }
-> > >> > @@ -1066,7 +1066,7 @@ intel_dp_link_train_phy(struct intel_dp
-> > *intel_dp,
-> > >> >     lt_dbg(intel_dp, dp_phy,
-> > >> >            "Link Training %s at link rate = %d, lane count = %d\n",
-> > >> >            ret ? "passed" : "failed",
-> > >> > -          crtc_state->port_clock, crtc_state->lane_count);
-> > >> > +          intel_dp->link_rate, intel_dp->lane_count);
-> > >> >
-> > >> >     return ret;
-> > >> >  }
-> > >> > @@ -1085,8 +1085,8 @@ static void
-> > >> intel_dp_schedule_fallback_link_training(struct intel_dp *intel_dp,
-> > >> >                    "Link Training failed with HOBL active, not
-> > >> > enabling it from
-> > >> now on\n");
-> > >> >             intel_dp->hobl_failed = true;
-> > >> >     } else if (intel_dp_get_link_train_fallback_values(intel_dp,
-> > >> > -                                                      crtc_state-
-> > >> >port_clock,
-> > >> > -                                                      crtc_state-
-> > >> >lane_count)) {
-> > >> > +                                                      intel_dp->link_rate,
-> > >> > +                                                      intel_dp-
-> > >> >lane_count)) {
-> > >> >             return;
-> > >> >     }
-> > >> >
-> > >> > @@ -1192,7 +1192,7 @@ intel_dp_128b132b_lane_eq(struct intel_dp
-> > >> *intel_dp,
-> > >> >                     return false;
-> > >> >             }
-> > >> >
-> > >> > -           if (drm_dp_128b132b_lane_channel_eq_done(link_status,
-> > >> crtc_state->lane_count)) {
-> > >> > +           if (drm_dp_128b132b_lane_channel_eq_done(link_status,
-> > >> > +intel_dp->lane_count)) {
-> > >> >                     lt_dbg(intel_dp, DP_PHY_DPRX, "Lane channel eq
-> > >> done\n");
-> > >> >                     break;
-> > >> >             }
-> > >> > @@ -1287,7 +1287,7 @@ intel_dp_128b132b_lane_cds(struct intel_dp
-> > >> > *intel_dp,
-> > >> >
-> > >> >             if
-> > >> > (drm_dp_128b132b_eq_interlane_align_done(link_status)
-> > >> &&
-> > >> >
-> > >> > drm_dp_128b132b_cds_interlane_align_done(link_status)
-> > >> &&
-> > >> > -               drm_dp_128b132b_lane_symbol_locked(link_status,
-> > >> crtc_state->lane_count)) {
-> > >> > +               drm_dp_128b132b_lane_symbol_locked(link_status,
-> > >> > +intel_dp->lane_count)) {
-> > >> >                     lt_dbg(intel_dp, DP_PHY_DPRX, "CDS interlane
-> > >> > align
-> > >> done\n");
-> > >> >                     break;
-> > >> >             }
-> > >> > @@ -1330,7 +1330,7 @@ intel_dp_128b132b_link_train(struct intel_dp
-> > >> *intel_dp,
-> > >> >     lt_dbg(intel_dp, DP_PHY_DPRX,
-> > >> >            "128b/132b Link Training %s at link rate = %d, lane count = %d\n",
-> > >> >            passed ? "passed" : "failed",
-> > >> > -          crtc_state->port_clock, crtc_state->lane_count);
-> > >> > +          intel_dp->link_rate, intel_dp->lane_count);
-> > >> >
-> > >> >     return passed;
-> > >> >  }
-> > >> > @@ -1344,8 +1344,9 @@ intel_dp_128b132b_link_train(struct intel_dp
-> > >> *intel_dp,
-> > >> >   * retraining with reduced link rate/lane parameters if the link training
-> > >> >   * fails.
-> > >> >   * After calling this function intel_dp_stop_link_train() must be called.
-> > >> > + * Return: Link trained status success/failure.
-> > >> >   */
-> > >> > -void intel_dp_start_link_train(struct intel_dp *intel_dp,
-> > >> > +bool intel_dp_start_link_train(struct intel_dp *intel_dp,
-> > >> >                            const struct intel_crtc_state *crtc_state)  {
-> > >> >     struct drm_i915_private *i915 = dp_to_i915(intel_dp); @@
-> > >> > -1363,7
-> > >> > +1364,7 @@ void intel_dp_start_link_train(struct intel_dp
-> > >> > +*intel_dp,
-> > >> >
-> > >> >     intel_dp_prepare_link_train(intel_dp, crtc_state);
-> > >> >
-> > >> > -   if (intel_dp_is_uhbr(crtc_state))
-> > >> > +   if (intel_dp_is_uhbr(intel_dp))
-> > >> >             passed = intel_dp_128b132b_link_train(intel_dp,
-> > >> > crtc_state,
-> > >> lttpr_count);
-> > >> >     else
-> > >> >             passed = intel_dp_link_train_all_phys(intel_dp,
-> > >> > crtc_state, lttpr_count); @@ -1382,11 +1383,13 @@ void
-> > >> intel_dp_start_link_train(struct intel_dp *intel_dp,
-> > >> >      */
-> > >> >     if (!passed && i915->display.hotplug.ignore_long_hpd) {
-> > >> >             lt_dbg(intel_dp, DP_PHY_DPRX, "Ignore the link failure\n");
-> > >> > -           return;
-> > >> > +           return true;
-> > >> >     }
-> > >> >
-> > >> >     if (!passed)
-> > >> >             intel_dp_schedule_fallback_link_training(intel_dp,
-> > >> > crtc_state);
-> > >> > +
-> > >> > +   return passed;
-> > >> >  }
-> > >> >
-> > >> >  void intel_dp_128b132b_sdp_crc16(struct intel_dp *intel_dp, @@
-> > >> > -1398,7 +1401,7 @@ void intel_dp_128b132b_sdp_crc16(struct intel_dp
-> > >> *intel_dp,
-> > >> >      * Default value of bit 31 is '0' hence discarding the write
-> > >> >      * TODO: Corrective actions on SDP corruption yet to be defined
-> > >> >      */
-> > >> > -   if (!intel_dp_is_uhbr(crtc_state))
-> > >> > +   if (!intel_dp_is_uhbr(intel_dp))
-> > >> >             return;
-> > >> >
-> > >> >     /* DP v2.0 SCR on SDP CRC16 for 128b/132b Link Layer */ diff
-> > >> > --git a/drivers/gpu/drm/i915/display/intel_dp_link_training.h
-> > >> > b/drivers/gpu/drm/i915/display/intel_dp_link_training.h
-> > >> > index 2c8f2775891b..601f7e80476e 100644
-> > >> > --- a/drivers/gpu/drm/i915/display/intel_dp_link_training.h
-> > >> > +++ b/drivers/gpu/drm/i915/display/intel_dp_link_training.h
-> > >> > @@ -24,7 +24,7 @@ void
-> > >> > intel_dp_program_link_training_pattern(struct
-> > >> > intel_dp *intel_dp,  void intel_dp_set_signal_levels(struct intel_dp
-> > *intel_dp,
-> > >> >                             const struct intel_crtc_state *crtc_state,
-> > >> >                             enum drm_dp_phy dp_phy); -void
-> > >> > intel_dp_start_link_train(struct intel_dp *intel_dp,
-> > >> > +bool intel_dp_start_link_train(struct intel_dp *intel_dp,
-> > >> >                            const struct intel_crtc_state
-> > >> > *crtc_state);  void intel_dp_stop_link_train(struct intel_dp *intel_dp,
-> > >> >                           const struct intel_crtc_state
-> > >> > *crtc_state); diff --git
-> > >> > a/drivers/gpu/drm/i915/display/intel_dp_mst.c
-> > >> > b/drivers/gpu/drm/i915/display/intel_dp_mst.c
-> > >> > index 5fa25a5a36b5..27994a3b568c 100644
-> > >> > --- a/drivers/gpu/drm/i915/display/intel_dp_mst.c
-> > >> > +++ b/drivers/gpu/drm/i915/display/intel_dp_mst.c
-> > >> > @@ -52,13 +52,13 @@
-> > >> >
-> > >> >  static int intel_dp_mst_check_constraints(struct drm_i915_private
-> > >> > *i915, int
-> > >> bpp,
-> > >> >                                       const struct drm_display_mode
-> > >> *adjusted_mode,
-> > >> > -                                     struct intel_crtc_state *crtc_state,
-> > >> > +                                     struct intel_dp *intel_dp,
-> > >> >                                       bool dsc)  {
-> > >> > -   if (intel_dp_is_uhbr(crtc_state) && DISPLAY_VER(i915) < 14 && dsc) {
-> > >> > +   if (intel_dp_is_uhbr(intel_dp) && DISPLAY_VER(i915) < 14 &&
-> > >> > + dsc) {
-> > >> >             int output_bpp = bpp;
-> > >> >             /* DisplayPort 2 128b/132b, bits per lane is always 32 */
-> > >> > -           int symbol_clock = crtc_state->port_clock / 32;
-> > >> > +           int symbol_clock = intel_dp->link_rate / 32;
-> > >> >
-> > >> >             if (output_bpp * adjusted_mode->crtc_clock >=
-> > >> >                 symbol_clock * 72) { @@ -71,7 +71,8 @@ static int
-> > >> > intel_dp_mst_check_constraints(struct
-> > >> drm_i915_private *i915, int bpp
-> > >> >     return 0;
-> > >> >  }
-> > >> >
-> > >> > -static int intel_dp_mst_bw_overhead(const struct intel_crtc_state
-> > >> > *crtc_state,
-> > >> > +static int intel_dp_mst_bw_overhead(struct intel_dp *intel_dp,
-> > >> > +                               const struct intel_crtc_state
-> > >> > +*crtc_state,
-> > >> >                                 const struct intel_connector *connector,
-> > >> >                                 bool ssc, bool dsc, int bpp_x16)  {
-> > >> > @@ -81,7
-> > >> +82,7 @@ static
-> > >> > int intel_dp_mst_bw_overhead(const struct intel_crtc_state *crtc_state,
-> > >> >     int dsc_slice_count = 0;
-> > >> >     int overhead;
-> > >> >
-> > >> > -   flags |= intel_dp_is_uhbr(crtc_state) ? DRM_DP_BW_OVERHEAD_UHBR
-> > >> : 0;
-> > >> > +   flags |= intel_dp_is_uhbr(intel_dp) ? DRM_DP_BW_OVERHEAD_UHBR :
-> > >> 0;
-> > >> >     flags |= ssc ? DRM_DP_BW_OVERHEAD_SSC_REF_CLK : 0;
-> > >> >     flags |= crtc_state->fec_enable ? DRM_DP_BW_OVERHEAD_FEC : 0;
-> > >> >
-> > >> > @@ -170,12 +171,12 @@ static int
-> > >> intel_dp_mst_find_vcpi_slots_for_bpp(struct intel_encoder *encoder,
-> > >> >             if (!intel_dp_supports_fec(intel_dp, connector, crtc_state))
-> > >> >                     return -EINVAL;
-> > >> >
-> > >> > -           crtc_state->fec_enable = !intel_dp_is_uhbr(crtc_state);
-> > >> > +           crtc_state->fec_enable = !intel_dp_is_uhbr(intel_dp);
-> > >> >     }
-> > >> >
-> > >> >     mst_state->pbn_div = drm_dp_get_vc_payload_bw(&intel_dp-
-> > >> >mst_mgr,
-> > >> > -                                                 crtc_state->port_clock,
-> > >> > -                                                 crtc_state->lane_count);
-> > >> > +                                                 intel_dp->link_rate,
-> > >> > +
-> > >> > + intel_dp->lane_count);
-> > >> >
-> > >> >     drm_dbg_kms(&i915->drm, "Looking for slots in range min bpp %d
-> > >> > max
-> > >> bpp %d\n",
-> > >> >                 min_bpp, max_bpp);
-> > >> > @@ -188,16 +189,18 @@ static int
-> > >> > intel_dp_mst_find_vcpi_slots_for_bpp(struct intel_encoder *encoder,
-> > >> >
-> > >> >             drm_dbg_kms(&i915->drm, "Trying bpp %d\n", bpp);
-> > >> >
-> > >> > -           ret = intel_dp_mst_check_constraints(i915, bpp,
-> > >> adjusted_mode, crtc_state, dsc);
-> > >> > +           ret = intel_dp_mst_check_constraints(i915, bpp,
-> > >> adjusted_mode,
-> > >> > +intel_dp, dsc);
-> > >> >             if (ret)
-> > >> >                     continue;
-> > >> >
-> > >> >             link_bpp_x16 = to_bpp_x16(dsc ? bpp :
-> > >> >
-> > >> >intel_dp_output_bpp(crtc_state- output_format, bpp));
-> > >> >
-> > >> > -           local_bw_overhead = intel_dp_mst_bw_overhead(crtc_state,
-> > >> connector,
-> > >> > +           local_bw_overhead = intel_dp_mst_bw_overhead(intel_dp,
-> > >> > +
-> > >> > + crtc_state,
-> > >> connector,
-> > >> >                                                          false,
-> > >> > dsc,
-> > >> link_bpp_x16);
-> > >> > -           remote_bw_overhead = intel_dp_mst_bw_overhead(crtc_state,
-> > >> connector,
-> > >> > +           remote_bw_overhead = intel_dp_mst_bw_overhead(intel_dp,
-> > >> > +
-> > >> > + crtc_state,
-> > >> connector,
-> > >> >                                                           true,
-> > >> > dsc,
-> > >> link_bpp_x16);
-> > >> >
-> > >> >             intel_dp_mst_compute_m_n(crtc_state, connector, @@
-> > >> > -368,7
-> > >> +371,7 @@
-> > >> > static int intel_dp_mst_update_slots(struct intel_encoder *encoder,
-> > >> >     struct intel_dp *intel_dp = &intel_mst->primary->dp;
-> > >> >     struct drm_dp_mst_topology_mgr *mgr = &intel_dp->mst_mgr;
-> > >> >     struct drm_dp_mst_topology_state *topology_state;
-> > >> > -   u8 link_coding_cap = intel_dp_is_uhbr(crtc_state) ?
-> > >> > +   u8 link_coding_cap = intel_dp_is_uhbr(intel_dp) ?
-> > >> >             DP_CAP_ANSI_128B132B : DP_CAP_ANSI_8B10B;
-> > >> >
-> > >> >     topology_state =
-> > >> > drm_atomic_get_mst_topology_state(conn_state->state, mgr); @@
-> > >> > -1123,7
-> > >> > +1126,7 @@ static void intel_mst_enable_dp(struct
-> > >> > +intel_atomic_state
-> > >> > *state,
-> > >> >
-> > >> >     drm_WARN_ON(&dev_priv->drm, pipe_config->has_pch_encoder);
-> > >> >
-> > >> > -   if (intel_dp_is_uhbr(pipe_config)) {
-> > >> > +   if (intel_dp_is_uhbr(intel_dp)) {
-> > >> >             const struct drm_display_mode *adjusted_mode =
-> > >> >                     &pipe_config->hw.adjusted_mode;
-> > >> >             u64 crtc_clock_hz = KHz(adjusted_mode->crtc_clock);
-> > >>
-> > >> --
-> > >> Jani Nikula, Intel
-> > 
-> > --
-> > Jani Nikula, Intel
+   This is rather sketchy as we don't go through the full modeset
+   sequence. Probably should replace this by either just always
+   punting to userspace, or by just doing a proper atomic commit with
+   the current parameters from a work. I'm not sure all userspace/fb-helper
+   handle everything correctly so might still want to keep this in kernel...
+
+If link training fails then reduce link parms and punt to userspace:
+
+   This could in theory also try a blind modeset in kernel first and
+   if that fails then punt to userspace. Again the concern might be
+   that not all userspace is perhaps very good, but I might be wrong
+   about that.
+
+Anyways all of that is kinda orthogonal stuff to just getting MST
+to reduce its link rate. For that I think we should just need:
+ a) remove the MST check from the fallback stuff
+ b) handle all the MST connectors on the same link in the retry work
 
 -- 
 Ville Syrjälä
