@@ -2,62 +2,142 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id A60E5854C1E
-	for <lists+intel-gfx@lfdr.de>; Wed, 14 Feb 2024 16:02:54 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 00C39854C28
+	for <lists+intel-gfx@lfdr.de>; Wed, 14 Feb 2024 16:05:51 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 697D610E262;
-	Wed, 14 Feb 2024 15:02:51 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4D6F910E36F;
+	Wed, 14 Feb 2024 15:05:49 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="LCRKWG+w";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="SsZHImwD";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 50F8610E262
- for <intel-gfx@lists.freedesktop.org>; Wed, 14 Feb 2024 15:02:50 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4F47310E36F
+ for <intel-gfx@lists.freedesktop.org>; Wed, 14 Feb 2024 15:05:48 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1707922970; x=1739458970;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=94NVNAeN6QCNLkkhKBcAJ2GyFdt8Y29Rhtftok8oNm8=;
- b=LCRKWG+wO9HbZ23oeF9MP67p8TPp/7FCAjEQRPdpolPcnNGGU6W2jymm
- oJsVak4mE//jqv/x67ARc9xqSJEd0JdnmRaFo2xyv3vHYRdbaQayOtSAF
- kOFgV6COB/qfWfK2uNqLWKuUllB/N9KZPXqgNRBMwnFc1LrjFvFowYy3y
- kVU/XYHZgOaCJzHZ0LK/UqUIbEnKPgw2yVkuYIos2yF/WYcXsh2h/5rXH
- 0x8nRf6Xfa3Ip4tub4DfPCDSWal1DjpQRmCe01yLEotBLnAK64fOM0oX0
- ugDZFjfJp4HRecrFfYMwTkUiMXAeJCxJExH0YeTuSoqh3eopBH2X4xkUo A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10982"; a="1839085"
+ t=1707923148; x=1739459148;
+ h=from:to:subject:date:message-id:references:in-reply-to:
+ content-transfer-encoding:mime-version;
+ bh=lPArumevyGpTeoHq3zH3tSDRR8VTBAZvm2s9czs1IHo=;
+ b=SsZHImwDpGKb00aS2faPCXS+flMVf+YDUEEeYghnfUFcBOs9CxpVMM01
+ UcfVhBZdHzDeBvh/B6F+0sLYdx9xmCAxKqEHW++8qts9YtMMROHfQ47vs
+ UgHQ+fAsqarOb+74GiTipvxj+PvAwyy8BOcfWxwG+dsVoPunr5TmMaBkn
+ Lt7icoi5kKKnPaDt/zgQjVlrb5jvNRPOfl2P4l66pEHFncoOFaArJ6aMS
+ cC5gAP7EYFA8RxiKBrxxH7jgXL0NnbBcwSsw6EVf6yO4XEBmiyF53hhhm
+ dcL4aDk45IZCbH92Z4TerNsHUF6q74O8gfh1Ls8hj1XbFI5kQUIzAT66i Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10982"; a="1879747"
 X-IronPort-AV: E=Sophos;i="6.06,159,1705392000"; 
-   d="scan'208";a="1839085"
-Received: from orviesa006.jf.intel.com ([10.64.159.146])
- by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Feb 2024 07:02:48 -0800
+   d="scan'208";a="1879747"
+Received: from fmviesa001.fm.intel.com ([10.60.135.141])
+ by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 14 Feb 2024 07:05:48 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.06,159,1705392000"; 
-   d="scan'208";a="3559447"
-Received: from kwszolek-mobl1.ger.corp.intel.com (HELO localhost)
- ([10.252.63.190])
- by orviesa006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Feb 2024 07:02:44 -0800
-From: Jani Nikula <jani.nikula@intel.com>
-To: "Murthy, Arun R" <arun.r.murthy@intel.com>,
+X-IronPort-AV: E=Sophos;i="6.06,159,1705392000"; d="scan'208";a="34274098"
+Received: from orsmsx602.amr.corp.intel.com ([10.22.229.15])
+ by fmviesa001.fm.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
+ 14 Feb 2024 07:05:48 -0800
+Received: from orsmsx610.amr.corp.intel.com (10.22.229.23) by
+ ORSMSX602.amr.corp.intel.com (10.22.229.15) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.35; Wed, 14 Feb 2024 07:05:46 -0800
+Received: from orsedg603.ED.cps.intel.com (10.7.248.4) by
+ orsmsx610.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.35 via Frontend Transport; Wed, 14 Feb 2024 07:05:46 -0800
+Received: from NAM12-BN8-obe.outbound.protection.outlook.com (104.47.55.168)
+ by edgegateway.intel.com (134.134.137.100) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.1.2507.35; Wed, 14 Feb 2024 07:05:46 -0800
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=ltNUC1M/ahrNZG8UCR9XghFGSe71QlhICe6au7fQZ3aYXoYRUeEqVNLyiX+hLXMiX5ZG9LAwsSIWgcmJtxgUK2vnG8S7f60mFZ8mGzc8Q1TRME65942Sb2IH+Pit3KmmtJU8ABON0y0Xd/zclv3hxlWFWQrYhOcRxmBaYO3VT56hzI/NV/37SM6YzB1fN9DsdbXTFVXo02CFH3UK8Zt3+F/nqT7SQLhFt5IBwLUN11+H66cLPUkGusQr9br96dLxBlkNKXGOM7F6NcK3+vjgzJdgHuOCtLGJP1E4HdfFr8ZSxOFJJIpGZVCfeApq4IDD7cyuHiLoZG0ZGyu5VltEYQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=Vdh7c9uYieI8SeWiO0vcYJda3ccJ6EnZmsp0VUfIuh4=;
+ b=gFf8yeDbIfBxhZX5GXzvrhlBb6peb0bm2JKVlYK5NLYA8I6HvzScmy5TOrLJ0AUrkhTlurAss+QpO8BfUYmWEN+zuqpVEuWlzDniZjqh2fMNQMfMrt+VRejeDPpcc1eHV111AyBiKqttduIwoFAFRCZYy6lk3qpdHsS/IWhlRFxepgFdS3YqZHudgH9FcC2LYdbXfUjKfv+Yp70tcK689UE32tbYc7Tc8+9UGlwboskkoVB0SIZAkyOifRiyoSBVEQZKe5sc8sDwDKOx3xvgaKR6koy5VBCqaNSjeHadvckGRVDPWNZQIJ2/NrbYV5WfS5tPmnhWyoI356pjV0JM5Q==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Received: from IA1PR11MB6266.namprd11.prod.outlook.com (2603:10b6:208:3e6::12)
+ by IA0PR11MB7356.namprd11.prod.outlook.com (2603:10b6:208:432::6)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7270.39; Wed, 14 Feb
+ 2024 15:05:42 +0000
+Received: from IA1PR11MB6266.namprd11.prod.outlook.com
+ ([fe80::39ce:3349:9acb:2619]) by IA1PR11MB6266.namprd11.prod.outlook.com
+ ([fe80::39ce:3349:9acb:2619%4]) with mapi id 15.20.7270.033; Wed, 14 Feb 2024
+ 15:05:42 +0000
+From: "Bhadane, Dnyaneshwar" <dnyaneshwar.bhadane@intel.com>
+To: "Sousa, Gustavo" <gustavo.sousa@intel.com>,
  "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
-Cc: "Deak, Imre" <imre.deak@intel.com>, "Syrjala, Ville"
- <ville.syrjala@intel.com>, "Shankar, Uma" <uma.shankar@intel.com>
-Subject: RE: [RFC 1/4] drm/i915/display/dp: Add DP fallback on LT
-In-Reply-To: <IA0PR11MB730746959160978F412BAC19BA4E2@IA0PR11MB7307.namprd11.prod.outlook.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20240206104759.2079133-1-arun.r.murthy@intel.com>
- <20240206104759.2079133-2-arun.r.murthy@intel.com>
- <871q9g8cac.fsf@intel.com>
- <IA0PR11MB7307A5B0207F5C72F5D5DCC4BA4E2@IA0PR11MB7307.namprd11.prod.outlook.com>
- <87le7n70ht.fsf@intel.com>
- <IA0PR11MB730746959160978F412BAC19BA4E2@IA0PR11MB7307.namprd11.prod.outlook.com>
-Date: Wed, 14 Feb 2024 17:02:41 +0200
-Message-ID: <874jeb6qcu.fsf@intel.com>
+Subject: RE: [PATCH] drm/i915: Update ADL-N PCI IDs
+Thread-Topic: [PATCH] drm/i915: Update ADL-N PCI IDs
+Thread-Index: AQHaX1S9IorG62bTJUyyFW+1hhu/F7EJ72kA
+Date: Wed, 14 Feb 2024 15:05:42 +0000
+Message-ID: <IA1PR11MB6266F88D19883164CBF08FC2E24E2@IA1PR11MB6266.namprd11.prod.outlook.com>
+References: <20240214144629.106702-2-gustavo.sousa@intel.com>
+In-Reply-To: <20240214144629.106702-2-gustavo.sousa@intel.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: IA1PR11MB6266:EE_|IA0PR11MB7356:EE_
+x-ms-office365-filtering-correlation-id: 887c6bd3-e0c5-4007-7855-08dc2d6e699f
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: Y5mfpj1J6XMFOvVT/taMajJO7eA2Z4cBGaJ6+/OgMC0i771eUKqL5wSgA85Rma/t7j82PQdwJaLP8+6aGIzhF2lsWOPSpGH30H/924oxzrfAxK29y6qr6P7o7Ab3YdnrViVWpXoSU/AWUg5JoNMIyrdDDJ6cB7xi9MXCdwMmiJwjBMqlAcn10osop9KUU2GtbQY5Qn8BLiyp5H4TpDnvzEysevRr5T/V6A85niaErjcrQtX//OfjQBRNyEPhf2fpqG5LqKOE2090FeZ9Iczvh2ZSPc+2GyEwGfm2l8MuukLK60G/ZaaC2OAuvN45VEcsayQ4DDLL398xIhA3kd9s2iyyf1Fn7rgtF9i4f05rTpBLfnYQKMPjgLukZUO6n/Sibc3xExz/qESJLmmq3jGCepG1VHP0SOi67/D6tz4ptolaWAfJkfj8zMKmA8if8tkPQ+l3gssPdb6AovbHdMdb+H0TZza9pywPSXzjdPb0Xe/w0CIatNxV0RvK93De2c4ds4+xvxeEQNu9CoLTYbhAcFtXGbq+yEKIlKLiczXBwf4kNljfTgDdjK142RjnXoGbwyHY3Gdtp83pB3akWr3FYuEIjxOtLBH4lQztmDKSnclRkyE/hGJg6lzlePSkKTq3
+x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:IA1PR11MB6266.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230031)(396003)(376002)(346002)(136003)(366004)(39860400002)(230922051799003)(451199024)(64100799003)(186009)(1800799012)(38070700009)(55016003)(71200400001)(52536014)(9686003)(86362001)(55236004)(8676002)(15650500001)(8936002)(6506007)(5660300002)(7696005)(2906002)(53546011)(478600001)(38100700002)(33656002)(122000001)(110136005)(316002)(82960400001)(66446008)(76116006)(66476007)(66556008)(66946007)(26005)(64756008)(41300700001)(83380400001);
+ DIR:OUT; SFP:1101; 
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?y1afcxMLY/ua3U6kFqQlubwA87n+SFIUq9w0TgthGMKa/cJsnO33m+VtiM/g?=
+ =?us-ascii?Q?vCUfFTTneoEvbLF0VdyaodMLpp+oXahzRymnEn/5zSilo5fA52N68ARJUbIx?=
+ =?us-ascii?Q?1oDSSRwcrK3gMvjIRJAOE1C1bSBhIHPGmDIV8cbWVt8wA0k1cN+yFtUaq9bs?=
+ =?us-ascii?Q?ExB8YtF9xzWpqt5WnwzJjnuD6PsZpumVXTDl13d/1NDL0YjOBKhqDnXCmSQ9?=
+ =?us-ascii?Q?HMtolCYOhgHneklSC+v8BfhjN9v1mMp1djmpyenIMaVjXD1pTokKDDfo2xXN?=
+ =?us-ascii?Q?HCp1faVo9kE61KpbB5updHJZ4rF3f76bvuREN2bDyFJQ18N8l5hRcrqpbt/c?=
+ =?us-ascii?Q?Y//onufcFby38TmddQRrek8YdhOE+8c+z6RGq0FPA2QC4siYQeiOj6R7lShQ?=
+ =?us-ascii?Q?rHsUMKEwLVsNeseDLp2H8qruHIniLYXRXBxG3k6b/Cb8SYaDekTzgIbUh5pe?=
+ =?us-ascii?Q?bH5yXYt8E/8HsM4/7z6ezVt08f8GLk7e2JPO3UnYM3ZA78xm5opJ25RjOpHv?=
+ =?us-ascii?Q?yv3EqcYlC9iNudSjkvffwyB1lLplDKcxfqcqOHBSdYCzWlgh2uKf8BzQYqwT?=
+ =?us-ascii?Q?BWMR+gvt8SNoX9TZAxWOMmPzcJeCmCpZ95Kzes3SIRGtoSNXzfRW9iUBLP1x?=
+ =?us-ascii?Q?3emURONNh5aeh5DgNMs9lRLWNEYdydjPoBbLirX9tD3IOURol+bVlBCQ4Xi5?=
+ =?us-ascii?Q?XW/oqZ7EnNuf6DxaE1T377MXtzx/LqaveQ4VE4sI09appmDxfDIsnOfUYnne?=
+ =?us-ascii?Q?pPF+fNQT/KGsC0hjDmd2SPf6ipObFv3DsZWK0l8cis0MyJAtXb6ki7RWi9+1?=
+ =?us-ascii?Q?AhLMK4PWgoPxI6+nzCfbbR1UR29gcSm7lFekkT1wxErsvgJDpbLUFje+L++P?=
+ =?us-ascii?Q?GA0oN4W0JtmgUN0I721Uzu/xtINGSoD5Ple7ERSl0VN6oHKzgabbZvBFlT6v?=
+ =?us-ascii?Q?dPycJ+HyOBNrt92k48kKYI0OnjJJ/wLNp3foJt1x6/ZXBqvd1CSSS08YlVNZ?=
+ =?us-ascii?Q?qHYoMjGXNQu7BQGCXvxZ8hJq8TD16gR9HC/7MRsl1JYwFXlMzehfkZbt9KhB?=
+ =?us-ascii?Q?RBqrvxy/KKQU66jJc+ucoq9YXbge8UIaLxOvEd6Sqo91NhVJJCioWKup6+/T?=
+ =?us-ascii?Q?pDax+QsXTPHTyyxbX9dh70gS9MOHeFXVVfHWiU44bwB1vM7SVmEegXGQ4vPP?=
+ =?us-ascii?Q?GX4rqz/vtRbt0noTBwKLZYvptnagmLQjqH9EkQP2pt2hyRB8R9iml6KPdiwi?=
+ =?us-ascii?Q?Y/PB38sa4wCbi5wPzAe+RG7J5gI0G3kIiQHMgD/Eslsnp6rzO4QefDAShaXc?=
+ =?us-ascii?Q?hg4/s+PhLycEOYWQHjltgsaioXY/D+ZeRMd2lQr9GJ9ezsl6DetGnxOlR5fT?=
+ =?us-ascii?Q?pNIV+OhKtTP0JniMbaO8ebAyl348Q3WaMe90YbGiwqF+BbkO1G8YE/DqLoOr?=
+ =?us-ascii?Q?fLiaaad8+uD12d3dfKkY7KUPrTW0YJBLzlyHFEMJX8lLoPq8q6Ldu53ExGrh?=
+ =?us-ascii?Q?ajtRsfWUcF4139FMeD220ZPl787C1Z2oqFwrjUqXnwcIkNPPDUhdSTciRozu?=
+ =?us-ascii?Q?EeP9GCqJJRo+8h6SdBJP4WphzoRqvHnD00MYOGyRyXHs2uvdZDpKLVhKdhcy?=
+ =?us-ascii?Q?eg=3D=3D?=
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 MIME-Version: 1.0
-Content-Type: text/plain
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: IA1PR11MB6266.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 887c6bd3-e0c5-4007-7855-08dc2d6e699f
+X-MS-Exchange-CrossTenant-originalarrivaltime: 14 Feb 2024 15:05:42.1157 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: aZL/jHOqNC1NGmJhM3qGHdp5aLjLm5T5k/QsmYd4lZIIQrCHAZBSYltToV/jT3OY7Fv9lE6Kfnh+efC4zR7cdrK/vTM9nMxD4G3f02arFDY=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA0PR11MB7356
+X-OriginatorOrg: intel.com
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -73,59 +153,45 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, 14 Feb 2024, "Murthy, Arun R" <arun.r.murthy@intel.com> wrote:
->> >> And with the current code, DP_CAP_ANSI_128B132B does not decide
->> >> whether we use DP MST or not. So this will also cover 8b/10b fallback
->> >> for displays that support 128b/132b but have DP_MSTM_CAP == 0.
->> >
->> > Yes, the series doent depend on MST and SST and doest fallback from MST to
->> SST or viceversa.
->>
->> What I'm saying is, this changes the way 8b/10b link training fallback is
->> handled.
->>
-> The first loop has a if condition for 128/132b and is executed only if its 128/132b and if not falls to the existing code. i.e 8/10b link training fallback sequence.
 
-You check for sink 128b/132b capability. Please take the time to
-consider what this means. I've tried to explain this a few times now.
 
->> First, it starts handling 8b/10b MST link training fallback.
->>
-> As far as I see, at the entry of this function 128/132b is checked and link training fallback values for this obtained and if not link training fallback values for 8/10b is obtained. Have taken care as to not modify the existing 8/10b fallback.
+> -----Original Message-----
+> From: Intel-gfx <intel-gfx-bounces@lists.freedesktop.org> On Behalf Of
+> Gustavo Sousa
+> Sent: Wednesday, February 14, 2024 8:17 PM
+> To: intel-gfx@lists.freedesktop.org
+> Subject: [PATCH] drm/i915: Update ADL-N PCI IDs
+>=20
+> Extend the list of ADL-N PCI IDs to contain two new entries.
+>=20
+> Bspec: 68397
+> Signed-off-by: Gustavo Sousa <gustavo.sousa@intel.com>
 
-Same as above.
+Looks good to me,
+Thanks for the patch.
 
->> Second, it changes the way 8b/10b *and* 128b/132b *and* SST *and* MST link
->> training fallback is handled for all displays that support 128b/132b channel
->> coding.
->>
-> MST/SST configuration and then the link training happens. This link training by writing to dpcd registers is done over here by sending certain patterns. The fallback in this RFC is done only in this small link training sequence. On failure the handler doesn't return back instead retry from starting of link training is done. MST/SST configuration is not touched upon, if any required for this as part of fallback can be taken up in the next step.
-> This RFC is aiming to achieve fallback for the link training sequence only.
+Reviewed-by: Dnyaneshwar Bhadane <dnyaneshwar.bhadane@intel.com>
 
-To be clear, I don't want to change the way link training failure
-fallback is handled in general. It should go via userspace. Please let's
-just not go there, at all. Changing it does not help us right now, it
-just adds another complication, and another code path to test.
+Dnyaneshwar
+> ---
+>  include/drm/i915_pciids.h | 4 +++-
+>  1 file changed, 3 insertions(+), 1 deletion(-)
+>=20
+> diff --git a/include/drm/i915_pciids.h b/include/drm/i915_pciids.h index
+> 07779a11758e..28a96aa1e08f 100644
+> --- a/include/drm/i915_pciids.h
+> +++ b/include/drm/i915_pciids.h
+> @@ -672,7 +672,9 @@
+>  #define INTEL_ADLN_IDS(info) \
+>  	INTEL_VGA_DEVICE(0x46D0, info), \
+>  	INTEL_VGA_DEVICE(0x46D1, info), \
+> -	INTEL_VGA_DEVICE(0x46D2, info)
+> +	INTEL_VGA_DEVICE(0x46D2, info), \
+> +	INTEL_VGA_DEVICE(0x46D3, info), \
+> +	INTEL_VGA_DEVICE(0x46D4, info)
+>=20
+>  /* RPL-S */
+>  #define INTEL_RPLS_IDS(info) \
+> --
+> 2.43.0
 
-But regardless of that, I don't think you rightly appreciate what
-implications your changes actually have. The code does not do what you
-claim it does. I don't know what else to say.
-
->> >> intel_dp_set_link_params() is supposed to be called in the DP encoder
->> >> (pre- )enable paths to set the link rates. If you do it here, the
->> >> subsequent enable will just overwrite whatever you did here.
->> > This is taken care of so as to not override and retain this fallback value.
->>
->> I don't understand.
->>
-> With the existing code the driver sends uevent and a new modeset along with dp_init is done and the values will be overwritten. In this RFC we don't send uevent for all the fallback values instead re-iterate only the link training part without touching the dp enable sequence.
-
-I any patch series, no matter what you're working on, each patch in the
-series must stand on its own merits. Patches can't depend on something
-that may or may not be done later in subsequent patches.
-
-BR,
-Jani.
-
--- 
-Jani Nikula, Intel
