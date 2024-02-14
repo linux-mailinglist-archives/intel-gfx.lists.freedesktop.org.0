@@ -2,93 +2,89 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6E1CE854B13
-	for <lists+intel-gfx@lfdr.de>; Wed, 14 Feb 2024 15:06:48 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2A31E854B34
+	for <lists+intel-gfx@lfdr.de>; Wed, 14 Feb 2024 15:17:10 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D7C6D10E260;
-	Wed, 14 Feb 2024 14:06:40 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6DBF110E271;
+	Wed, 14 Feb 2024 14:17:08 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="RQmMbfJZ";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="QUg93539";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0811E10E28F
- for <intel-gfx@lists.freedesktop.org>; Wed, 14 Feb 2024 14:06:39 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.13])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9BAAA10E271
+ for <intel-gfx@lists.freedesktop.org>; Wed, 14 Feb 2024 14:17:06 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1707919599; x=1739455599;
+ t=1707920226; x=1739456226;
  h=from:to:cc:subject:date:message-id:references:
  in-reply-to:content-transfer-encoding:mime-version;
- bh=akNiBxNLga2mn2ppG4lY6SlkxKY1v0o55SLIpVlOoZw=;
- b=RQmMbfJZIRKUl0jp1ts54Z3Dj0U1PsjSHaL10KlUojQNJu/AETm2DcUk
- TnELogRD7FWCOzaVcoD4bJW1437EYovYEhceewon14FXcOd2kEHbLw+UR
- 3a6IUW2QEJZWBos6fD50GSPoGulX+RcdiHbtehNh5ktRYc+MVzOYaaA7Y
- ROLMTfOg9+EXR+T2NCSM3/SR3NbwU0wO+bb6l1Gf/3ZppYmeBlbtrYWER
- TFriDfmHjjWQdv83Kg0a3hlgVD2ANl17gND8jypRktRskSg5LiSmSdPsK
- 9woKo1gsxbPYlUWXIcahzsBcKpjq4Pi6oY+NObK8TRTbO5ZpGQK4HhV/u A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10982"; a="2087502"
+ bh=PjTcWAsxAg+eGaZw7uQudqhbeGnHmpYa+W6fxHmLEWc=;
+ b=QUg93539WDnjvs8Kp8jqh1o3o8j4wx7+QNwlzxYkHuqm2K136qsv2HVJ
+ OUUkSYi5D+2CX5xKg7/tbZzsMF7Cw+awI1pGP5h/ul+YRSX3NjsrZRyoc
+ zbU1NvozAzr4OQIxudPdLqxn9QvSw9ZTVnS5ms9kNaXllBMv950UTJkYd
+ Ch5TlM2av4v5WVMGHRi5fZjH48QP/4H1iuYkJhIfuIFDFpBsSufnZNRoi
+ o1h28CdWBfVliNIsZMoSsu07MudRSVrnhV1+bnAujOZRwWRO/r6PhDX4m
+ 3h3vggin1GHi1ofwboT8LD67RL5utX8yTk+gOWhTi6DHSjiI+cgJlgCKY w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10982"; a="4929883"
 X-IronPort-AV: E=Sophos;i="6.06,159,1705392000"; 
-   d="scan'208";a="2087502"
-Received: from orviesa010.jf.intel.com ([10.64.159.150])
- by fmvoesa109.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Feb 2024 06:06:29 -0800
+   d="scan'208";a="4929883"
+Received: from fmviesa008.fm.intel.com ([10.60.135.148])
+ by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 14 Feb 2024 06:17:06 -0800
 X-ExtLoop1: 1
 X-IronPort-AV: E=Sophos;i="6.06,159,1705392000"; 
-   d="scan'208";a="3265367"
-Received: from orsmsx601.amr.corp.intel.com ([10.22.229.14])
- by orviesa010.jf.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
- 14 Feb 2024 06:06:29 -0800
-Received: from orsmsx611.amr.corp.intel.com (10.22.229.24) by
- ORSMSX601.amr.corp.intel.com (10.22.229.14) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35; Wed, 14 Feb 2024 06:06:28 -0800
+   d="scan'208";a="3353198"
+Received: from orsmsx602.amr.corp.intel.com ([10.22.229.15])
+ by fmviesa008.fm.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
+ 14 Feb 2024 06:17:06 -0800
 Received: from orsmsx610.amr.corp.intel.com (10.22.229.23) by
- ORSMSX611.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
+ ORSMSX602.amr.corp.intel.com (10.22.229.15) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35; Wed, 14 Feb 2024 06:06:28 -0800
+ 15.1.2507.35; Wed, 14 Feb 2024 06:17:05 -0800
 Received: from ORSEDG601.ED.cps.intel.com (10.7.248.6) by
  orsmsx610.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35 via Frontend Transport; Wed, 14 Feb 2024 06:06:28 -0800
-Received: from NAM11-BN8-obe.outbound.protection.outlook.com (104.47.58.168)
+ 15.1.2507.35 via Frontend Transport; Wed, 14 Feb 2024 06:17:05 -0800
+Received: from NAM12-DM6-obe.outbound.protection.outlook.com (104.47.59.169)
  by edgegateway.intel.com (134.134.137.102) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.35; Wed, 14 Feb 2024 06:06:27 -0800
+ 15.1.2507.35; Wed, 14 Feb 2024 06:17:05 -0800
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=akWgeGreKCMJEbZZWQ2P2gfzJvwD14c551GQSF0VV3kLBiM0IxifDOrEkuGD9wdaZnQXTeTAim8dkbL0ABpdgIRlwVW4LkRWKMGZ3vQ9EqPP01BwItTzEwBKE1M+n0Pg/Hjj8HHueaT/7izong46LxVwBB6Dzk4XkU8YfDpNeqMLgKygIRdXjPcmpjft8AlIXZcvLhQordLw7/wWiGHIDDsFegWPDDInlhBo5B1OsSIUNlTk/pMLLDo/p5TrVqCt7Pxixy1GFJ2HaalmcsVHhPFFTtlNf8wUwSGziDL6LyTlFEjHSoQOqJnDN4z5KMVJHgKITYpoM17f0kLieyecQg==
+ b=adZyLzIvu20eusO5g93azbTK0yc2lPHlJk3WgkU6iTKNc7hIR1PHh63TE1AHE4DWTCnmE7QAP54bQJyoMdLV7chDpvd0wEXiCvlQwz0tyGj06lk4DzlDmXKlA4Hv1dh2i8R5cCFpPE8Miikme+wdtFS5j4Ff38kmGzQNk9nlWpIC/goyqcal4i+/gpjXwnc7FsHINl8rt5dirPB0bKsai3lwG95wYtH+rc0ukJk0gtXyHQPvtMCNLJkB0t2IpECIYzQnbHuEBhh9l6zfldyf1eyM5aC/vOoTN4ISURSqT0ySAsqRxnq83scmHjuoIX1KiaXdjEqSI5mudf7cGBcEXg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=7IWQeXaSAICQ7oADZkIjw3qYY05u4L+DuO67bFMEC+4=;
- b=gg3vWXltevLPrN/A+8gEUle0YcnWG831pa1i7CCSao/MFQoH9C3BiIhzfMrsfVwAOBjQZ7kMJt6UwtSmLgVOQ2NZbkHETnCPKOxi9CX2s+CaAbKwFtag5C4nbQFRkzvodWxOUjmBtvxgMmbqumwsvo2ABfua/EEwOrZpNQXrrqQWjaywEoQYOfg1bBUG1RF+tVW7Tv/3an0PNGa7685WHJAtWWY/0WF8/D9x9keY1oJhr4GdorAbmuXLY3YcYmikGXpuff8fOey1+9J8Ze1ICEUlypojCH6mTBJcq+s5QXU7g6PRKa0AzEV1xDP4TWvEL0uoJHmPE3LbQVA4HC7wzQ==
+ bh=POrV/bTAidpJSCzKwY6Me72OFAoM0YaE01LHAb6c8bw=;
+ b=PGRRTe0tid3JnK3lDOXQh9hDT5ipBBRysogdjFUqwaUaTrKswiaegJjZJyM2dDNzJWaAhleASkeJIGIOS5Lgh2x0dVzIebJLPecyzPNO2TK+6xDpYPhzI2J9gWtbbbmXBwbi9sXfbnKrJ0+zgmJF9tamlrMkfM3TS5Jcf6Krce+qVrVlkCCNifGQ3ZOV/RLD0agXmstM35wuXhCuutEhvy0ImZJnPyX/3rKlfQ0U/5SK9UnQ5bOnDwJ1tCt9ONiPq1HKj5qisMA6eLVyr5PwW8qyqHCaiCZPJhiDz1KoHu4UJWu0ky7749aKQeryG5Hz+OxQd/gnLncnNWvRVwKnWA==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
 Received: from IA0PR11MB7307.namprd11.prod.outlook.com (2603:10b6:208:437::10)
- by PH7PR11MB5941.namprd11.prod.outlook.com (2603:10b6:510:13d::20)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7270.41; Wed, 14 Feb
- 2024 14:06:24 +0000
+ by DS0PR11MB8205.namprd11.prod.outlook.com (2603:10b6:8:162::17) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7270.39; Wed, 14 Feb
+ 2024 14:17:01 +0000
 Received: from IA0PR11MB7307.namprd11.prod.outlook.com
  ([fe80::34a4:c9b4:7991:39b5]) by IA0PR11MB7307.namprd11.prod.outlook.com
  ([fe80::34a4:c9b4:7991:39b5%4]) with mapi id 15.20.7270.036; Wed, 14 Feb 2024
- 14:06:24 +0000
+ 14:17:01 +0000
 From: "Murthy, Arun R" <arun.r.murthy@intel.com>
 To: "Nikula, Jani" <jani.nikula@intel.com>, "intel-gfx@lists.freedesktop.org"
  <intel-gfx@lists.freedesktop.org>
 CC: "Deak, Imre" <imre.deak@intel.com>, "Syrjala, Ville"
  <ville.syrjala@intel.com>, "Shankar, Uma" <uma.shankar@intel.com>
-Subject: RE: [RFC 1/4] drm/i915/display/dp: Add DP fallback on LT
-Thread-Topic: [RFC 1/4] drm/i915/display/dp: Add DP fallback on LT
-Thread-Index: AQHaWOtnHbs4/LtqAEeOiG/7Dqlos7EInkOAgACkuECAAHu1AIAAJoMA
-Date: Wed, 14 Feb 2024 14:06:24 +0000
-Message-ID: <IA0PR11MB730746959160978F412BAC19BA4E2@IA0PR11MB7307.namprd11.prod.outlook.com>
+Subject: RE: [RFC 4/4] drm/i915/display/dp: On LT failure retry LT
+Thread-Topic: [RFC 4/4] drm/i915/display/dp: On LT failure retry LT
+Thread-Index: AQHaWOtsMN1zvveYmUyeE7uDkTOiqrEIn0sAgAC4N9CAAGkwgIAAK34g
+Date: Wed, 14 Feb 2024 14:17:01 +0000
+Message-ID: <IA0PR11MB7307E0ABFCF8EFCDB8074239BA4E2@IA0PR11MB7307.namprd11.prod.outlook.com>
 References: <20240206104759.2079133-1-arun.r.murthy@intel.com>
- <20240206104759.2079133-2-arun.r.murthy@intel.com> <871q9g8cac.fsf@intel.com>
- <IA0PR11MB7307A5B0207F5C72F5D5DCC4BA4E2@IA0PR11MB7307.namprd11.prod.outlook.com>
- <87le7n70ht.fsf@intel.com>
-In-Reply-To: <87le7n70ht.fsf@intel.com>
+ <20240206104759.2079133-5-arun.r.murthy@intel.com> <87v86s6xjr.fsf@intel.com>
+ <IA0PR11MB730783C40D327B26EEEA8EC7BA4E2@IA0PR11MB7307.namprd11.prod.outlook.com>
+ <87il2r705u.fsf@intel.com>
+In-Reply-To: <87il2r705u.fsf@intel.com>
 Accept-Language: en-US
 Content-Language: en-US
 X-MS-Has-Attach: 
@@ -96,58 +92,58 @@ X-MS-TNEF-Correlator:
 authentication-results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
 x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: IA0PR11MB7307:EE_|PH7PR11MB5941:EE_
-x-ms-office365-filtering-correlation-id: 148977bc-afd3-4fd3-d78b-08dc2d66213e
+x-ms-traffictypediagnostic: IA0PR11MB7307:EE_|DS0PR11MB8205:EE_
+x-ms-office365-filtering-correlation-id: 780dbd05-73c3-4ca4-75ad-08dc2d679cb0
 x-ld-processed: 46c98d88-e344-4ed4-8496-4ed7712e255d,ExtAddr
 x-ms-exchange-senderadcheck: 1
 x-ms-exchange-antispam-relay: 0
 x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: 4FY03FlWAXnD/2Nzo7me8c+HEt2zzSZBDgEaWut2iiPgEx1LJomQ0flrsuzT+/YxxrWjfYJ45W1SCxolfixW1IBeMqvS4fPisFUzrMPzQBhy5CqnDU2ZZ6xN0K8ZUDp8K6PqBTIVC0GxeQVhTqLFFD97NE8Q6fQPiRI6zlFIbJ5WkIEFgBo9l/poylSI+9/vDI0AyP9NFAw8nnbjAx28q5GsmjGfE5PhY0LmUUks00bZUjD9sl6G3LDXJRX3Ads18nwEwBqe5puPHxxA66v86jpp7FLgCA7TIxMcOoCtpgrHsvQOR8eMwsMyfnSyJH8JDx9zYJcQaCUCBuh6JhaQi4d2cOalWG9o54zQXpMN91OJTzdkEGaFtKfLci5lD25UAqDwOXD4AkDOwmFY9HEWd6xFxGpymHHtZ/IpzL8M0Qe9QGMR/fb3KB4aSh733n6z0d7uT2kF2T0wB7kCCWAoEbmxzrLT+oeILYobU4Doy52pFkzT104FGoznio8rPJvlqia1Folou42dkpAvw+LTNCh+Y0z4/Agc7HenCW1FIX8IlC4xpQpTIbBeiwNPdV0wwNr7zwL9bwoFmI6PSLYuLf+9wZjwZewRsSHkCew/xEcRydIKDWLYNKBPiyGFTLKV
+x-microsoft-antispam-message-info: RD3NhNfrqSQjGorZ+Yt85UZIel5g1zLLCbzyAfFJXHK8GTaqnvpFg88u7YzB7iZp5hpNLYzhQ6756+OdlcSRGxZ43v5/1GnnWn01cToWNJf1r7tNEGAYVyv9u4OjgO99MzGadX/1xEfttBgWaRrBjxXN665bu4/BHZgk7q1zw9WAS7Fz8qXFXZnzzEwfjGnY1mVbHlI0nas4/1p2oLS6rljoY2rW7wGFWcF3VlDdhmVqG9sVhLfl0vhDBFBfCbnP33t5jsxHs5yUrxLpbYkKUjH7eFOxgP7M33kdhXL/clw1HCoVefHSBzatv65yNoyAn4Y3oD5zYQmCMgd7XZ27rI7SPxnKzrQep+mJ0FF8CLOwTY//p/1UWoShXLqKzap5q7Qyz/b3trXlca7WlaH0xUiOUA+mbYa73ZMSN4lXrFfx31la/wBcvjuK1xguDPwT9G8wb0ZQS9k1JlNdJU119OYAbLW/qTDZXS7jlARrNS+GFyAiBFKMERRRt/6zXgbr2NbR6Z7agE2wwmbGSt+JfxjhOxT81U0cb6zCbws8L4q9Z6GEnMG6Fk/v5fvEDWpKvxEO3DC9QrfJzqLDzvkY1uqjMRlvcXjbl+lMCh8MZoib8/p0R08qaTsdetJ1PVQ4
 x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:IA0PR11MB7307.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230031)(136003)(396003)(366004)(39860400002)(376002)(346002)(230922051799003)(451199024)(1800799012)(186009)(64100799003)(86362001)(33656002)(55016003)(66946007)(66476007)(5660300002)(8936002)(8676002)(64756008)(66446008)(478600001)(52536014)(76116006)(66556008)(30864003)(4326008)(2906002)(7696005)(6506007)(9686003)(82960400001)(107886003)(38100700002)(83380400001)(122000001)(54906003)(316002)(53546011)(41300700001)(71200400001)(38070700009)(110136005);
+ SFS:(13230031)(39860400002)(376002)(346002)(396003)(366004)(136003)(230922051799003)(1800799012)(186009)(64100799003)(451199024)(33656002)(9686003)(38070700009)(83380400001)(41300700001)(107886003)(76116006)(53546011)(66946007)(66556008)(7696005)(8676002)(64756008)(8936002)(66476007)(4326008)(5660300002)(66446008)(71200400001)(110136005)(54906003)(316002)(6506007)(38100700002)(86362001)(82960400001)(478600001)(122000001)(52536014)(55016003)(2906002);
  DIR:OUT; SFP:1101; 
 x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?HmX+Jq1iX5qcVtkXGBiTU8ryzN9noQttD5LJMEfL8FoKnXuPuMHh9DLeTDzm?=
- =?us-ascii?Q?IpGlXOP0rnfrGYuLMU8DsbG2DVPswR8OZOg+PT32dnM3+UobfRRG2ZnMVqkW?=
- =?us-ascii?Q?k/FJbCuJxnHjZM4kTt5VuzNw75dR9B6LB2gFTVsZ9lVRVdCkbc7/i4lt3BhV?=
- =?us-ascii?Q?E3PKvbofbtxgUphEGfaY6Lgu6bBW4KIURGBgaG7Pk5l+NqhhdlfaQCYbD8ig?=
- =?us-ascii?Q?DlHFN/hO7xV9zhF34lCigfwnwWHobRRkymI9w4p+LkGhiYlSezprBsWXmXXM?=
- =?us-ascii?Q?ze4DNh+/tGHyEcj+BhGbaNbiVJX9yPuSVLIB5avMFWzYIgNJ1d3fLIkxxz2m?=
- =?us-ascii?Q?7EtF6tSAz8LicD9yiV66qoAK65bbiQhVlkE/i1FZTg5uMZ6+SINU4ymDux3x?=
- =?us-ascii?Q?gozvBxG838vQIDpwURS5sQfPRJ0nqxci3x1MgNR5Q6DkyEe7PHWupxzsmfQy?=
- =?us-ascii?Q?UOkK2FV7YiMVLQUaIy0NmWW5gbo6sVlQM4hwHkr+FOxBN7V8/hW8ycc00YRk?=
- =?us-ascii?Q?QxNuSRSfwqti9X2cAjzjxihbt71YGuQLWXAW05XimW5LrIpX7J3gN0KyQAsm?=
- =?us-ascii?Q?jjN9VasO+gWSZb73cAXiV6QCiVSQTO+eKuE3FMxNgbzBx694E27GdOHFkhqi?=
- =?us-ascii?Q?ioP+L6i/3JFFzEZwdNEsSUq+kHf7Xri78KNY5SmuwM0ciCSOfoOJAxab096r?=
- =?us-ascii?Q?FnGmpwlfuL3xaHv5lzScHYROxL7MZ6AcEgFocnEFRLH+40jwn3A2UcdNVnar?=
- =?us-ascii?Q?E6CCGiqDqlv1LVq4tkFoNzf44p4RFv9c96SpRQTotNRtgo09oiu/l0c2YwdV?=
- =?us-ascii?Q?gq5bcm0wR6l744TQlkj5tkQvRX9RG/1SlIpKJplLuDtCy6biM51nt9O9zX7r?=
- =?us-ascii?Q?OeiQ1+MQXJIn1i3Oe15FrYpLOnYBFEYDYP2CwnnsjYUff6iiHGpKTI3n/cKE?=
- =?us-ascii?Q?Sjk7xNGUSHuwfocAMNjvsfOoTQOg1y8ZYXY0eTjFlanJbHMhOGOi6Qburt6I?=
- =?us-ascii?Q?gZX90TrMGqE5AyfMrVxbcJJ1U2MbEQBxvJr+P83mrdJ2baSQ+WF5r821jM1c?=
- =?us-ascii?Q?bFLmBqQ95JwU6Un3SktcOPLN1QwJ9J8uohPQdFCoVMjqpoUtguu50Ip4SylB?=
- =?us-ascii?Q?POSwD80BMM3HGdzuOHpPlaSuX6BDFw7UCTQkKHjjQKvEZ7hmjAna63+fdI69?=
- =?us-ascii?Q?rxN+3VwjvxE3kY3q3ZHBFVT3XCtXd2DTuQ1p89bagiXMkNIng9Wtamk3sdh/?=
- =?us-ascii?Q?PVWq4XoZhGlVD5t1qOWI8DvlgNoYJ6a8OmeBT91Ccimik2yA+MFqEWoruBxV?=
- =?us-ascii?Q?DOVD6rbHE0/5WIOiYUa8iU1VjSeM+SRFKDkSle9+KOzQjnim7zM5tAOEUVPQ?=
- =?us-ascii?Q?HXfY/Wpq/onww53kNPOZz5pNdL9BOmMKEocgVwCuHL88hki4Qsyybrp4OBEC?=
- =?us-ascii?Q?KGxkDh7hGZgqIs6sJLwk+MAgbUgKca4oSSmMKpLj85JhA0iE6NQE7wy5QCeQ?=
- =?us-ascii?Q?4m3fsGSb5/87MAR5/HJigrPLPgcFULlXP+N2pDfbbIj8DXj+5lKfKQzdrwvB?=
- =?us-ascii?Q?XoZr4JXcUyiNKPk/MSKpf0ogrXeZsReV9iH18hyNeflYNeRJBTlQ+1BQUG1A?=
- =?us-ascii?Q?xd4jVgRsvhla5ttUFH+vfbXDwdt2W6vuEp2qPsirdXYm?=
+x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?Jm2zryjMBtMEfnfK31YkfgjL+w2aXgQ84Jk7XN0w+oNeH+yOedk0GopWMEl1?=
+ =?us-ascii?Q?+6Iot7HrJC4j6RvcaaXxCsizkFyYlKWjvc4LOchkGRoLnHLukAPnlH3mTdlH?=
+ =?us-ascii?Q?EYH7PLQA4bcHwjsUp/EGiF7FM/XXNAg2+vxEhgoZ9sv0q7CnOLrLq6boT2nQ?=
+ =?us-ascii?Q?czUu8Ai3IQUUUlMHuhiIE2xPk+N3UEFsqd2OCPzVEFS7v6aAA5uLh6zqACw2?=
+ =?us-ascii?Q?MrJdZi8O+z7mn5oYWb3bl32+mG+6WL/9ZPW1dnYEZXl/zc+nxZTgpxP2tXrv?=
+ =?us-ascii?Q?0vAIR3hrLLHiIE0v4Zz2s4sMNUqXFeY+WKvGxdZCYo8oR45/LJzUB5rJrbOL?=
+ =?us-ascii?Q?BEtaGedp4aWNL/DradG6XgtzRT1sLDNBGLaIUB8z2qqFNjCGg8KJCJAoh99N?=
+ =?us-ascii?Q?t0F++S/4aua8M7tE0fzpHhTLt7+AUceeCEY6J+SgJ/9fi00qJ2ZUIM6tuHrj?=
+ =?us-ascii?Q?lcHrdzqCl9N4yOmXhm22m5LtggNbcUoiUX/119VGQcOirI68+aZfl6QmKn2u?=
+ =?us-ascii?Q?jfcPZx6NKZqx+BiGKlRcuOXmF0Ov7L+YpUhl3e+LSbLmDM+Fu3JqQUhJXzly?=
+ =?us-ascii?Q?3JH13lhE9pFZmxVmjMyYgU67JIYhvYfb86dLCJp83dzLYXfmMn+yfuAyhTi0?=
+ =?us-ascii?Q?JSq2IGaa7MtqBvt1qL47dzRtIuxUWzPWpLJSmONJ2jk+rrRzvpZ0vM4GYWWz?=
+ =?us-ascii?Q?yR+6d2FCyliiTHSIGKHBnBh8dM8h+K0PAqQWzSzPKWsZxOktwZMluO09Pa96?=
+ =?us-ascii?Q?e1pvFOKSeAPn+6me8lblJSbT2r4e/P0DGmLV5AnnFJXgH9MpxnjrREiAhjdU?=
+ =?us-ascii?Q?6dZsvlzbntETVANRZIjJaso69Jx2wIRMVUb6NzdsSNWwDrgYIDHSxcuWe5tc?=
+ =?us-ascii?Q?Y0kP0iSnBsRnn821RCYHeVduKktQojDpikZxCaRQ+rsiTE1DCDuLsV0PuZA9?=
+ =?us-ascii?Q?bQRcHDbWlc7Axg/sc3GDaThjNuXBdQIPWyfF50oqQL4BOkwSymf73PSy7CK5?=
+ =?us-ascii?Q?N1fCxdCVcb98o1Ei8/IW0ByMEyTOjNLdfxBYy+hjhpF+HGMiZh0TOszcqfQC?=
+ =?us-ascii?Q?vhh8gG6nMtUumujWI52RPdWw0KEqh8UfGwLa8YUiIY7lDjTRoFjijonQb0VF?=
+ =?us-ascii?Q?Ky1r+uQ/xdtZvrSZpR1K/HjVm6TMGx+HjUR0+Bt28Fu5+rHwSzLG4KaxYUPl?=
+ =?us-ascii?Q?tG3bAph37urWp5O0BmQo3tT9m1mm8Xc+CDsDQhbA5fKS5duIystCI2uuMIhu?=
+ =?us-ascii?Q?OjrSAImOqW/WjxZzU+z3bWhW2FSY+KR3neKVJBbSJiymCIaVaw0Uhk/EBMBY?=
+ =?us-ascii?Q?oDJHdMrQ3PwpHra38QYJrNFwmWthRNnzpJngoYB7qsJcK/vGqJpzq3MBFbti?=
+ =?us-ascii?Q?IQ01ycdU7qVtU4iqxaMKDHcq2VZjAXQBO+2FOMXMtbZ4b7VXK/j5pLLPNFwq?=
+ =?us-ascii?Q?XV+Hy585ruPZi10BUvclT69XkryDoBSCoVXZyL8oVtjhmnvFqxiA5mu2IkdA?=
+ =?us-ascii?Q?p4qFBF9uqIHHZaLAgZNRuVncXZ6khboLJX30CE9mf9JAwAwGnYIQIAMFE1fo?=
+ =?us-ascii?Q?zL9UFmKiVUPJ1sDgnWEbqNFpEoaxTj8Fjx/WAB3pyeDEtW/IiAj8YT4LbClE?=
+ =?us-ascii?Q?RHHApogT9QBg5BUTH1Ovhdrs2DV3JzcqGLl43rGFNSb3?=
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 MIME-Version: 1.0
 X-MS-Exchange-CrossTenant-AuthAs: Internal
 X-MS-Exchange-CrossTenant-AuthSource: IA0PR11MB7307.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 148977bc-afd3-4fd3-d78b-08dc2d66213e
-X-MS-Exchange-CrossTenant-originalarrivaltime: 14 Feb 2024 14:06:24.7356 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 780dbd05-73c3-4ca4-75ad-08dc2d679cb0
+X-MS-Exchange-CrossTenant-originalarrivaltime: 14 Feb 2024 14:17:01.3166 (UTC)
 X-MS-Exchange-CrossTenant-fromentityheader: Hosted
 X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: A0N9FUvaR0E6HCG9qj2jJOEkoqEtI9xVpcLUh8YygaTSAPifar4rWHQYXJRQ6+wO7Urj7acr8nodogufAuReuw==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH7PR11MB5941
+X-MS-Exchange-CrossTenant-userprincipalname: ZT9zPFYi/VA5ih38r4tw3RQkDPOvbMRtKEDlZOzFbE2sgEs9WGa1zUVh4i0kNfisJBgrx5GNiUuwH2CapgIUqw==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS0PR11MB8205
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -167,345 +163,126 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 > -----Original Message-----
 > From: Nikula, Jani <jani.nikula@intel.com>
-> Sent: Wednesday, February 14, 2024 4:54 PM
+> Sent: Wednesday, February 14, 2024 5:01 PM
 > To: Murthy, Arun R <arun.r.murthy@intel.com>; intel-gfx@lists.freedesktop=
 .org
 > Cc: Deak, Imre <imre.deak@intel.com>; Syrjala, Ville <ville.syrjala@intel=
 .com>;
 > Shankar, Uma <uma.shankar@intel.com>
-> Subject: RE: [RFC 1/4] drm/i915/display/dp: Add DP fallback on LT
+> Subject: RE: [RFC 4/4] drm/i915/display/dp: On LT failure retry LT
 >=20
 > On Wed, 14 Feb 2024, "Murthy, Arun R" <arun.r.murthy@intel.com> wrote:
 > >> -----Original Message-----
 > >> From: Nikula, Jani <jani.nikula@intel.com>
-> >> Sent: Tuesday, February 13, 2024 11:41 PM
+> >> Sent: Tuesday, February 13, 2024 11:45 PM
 > >> To: Murthy, Arun R <arun.r.murthy@intel.com>;
 > >> intel-gfx@lists.freedesktop.org
 > >> Cc: Deak, Imre <imre.deak@intel.com>; Syrjala, Ville
 > >> <ville.syrjala@intel.com>; Shankar, Uma <uma.shankar@intel.com>;
 > >> Murthy, Arun R <arun.r.murthy@intel.com>
-> >> Subject: Re: [RFC 1/4] drm/i915/display/dp: Add DP fallback on LT
+> >> Subject: Re: [RFC 4/4] drm/i915/display/dp: On LT failure retry LT
 > >>
 > >> On Tue, 06 Feb 2024, Arun R Murthy <arun.r.murthy@intel.com> wrote:
-> >> > Fallback mandates on DP link training failure. This patch just
-> >> > covers the DP2.0 fallback sequence.
-> >> >
-> >> > TODO: Need to implement the DP1.4 fallback.
+> >> > On link training failure retry link training with a lesser link
+> >> > rate/lane count as specified in the DP spec.
 > >> >
 > >> > Signed-off-by: Arun R Murthy <arun.r.murthy@intel.com>
 > >> > ---
-> >> >  drivers/gpu/drm/i915/display/intel_dp.c | 92
-> >> > ++++++++++++++++++++++---
-> >> >  1 file changed, 82 insertions(+), 10 deletions(-)
+> >> >  drivers/gpu/drm/i915/display/intel_ddi.c | 10 +++++++++-
+> >> >  1 file changed, 9 insertions(+), 1 deletion(-)
 > >> >
-> >> > diff --git a/drivers/gpu/drm/i915/display/intel_dp.c
-> >> > b/drivers/gpu/drm/i915/display/intel_dp.c
-> >> > index 10ec231acd98..82d354a6b0cd 100644
-> >> > --- a/drivers/gpu/drm/i915/display/intel_dp.c
-> >> > +++ b/drivers/gpu/drm/i915/display/intel_dp.c
-> >> > @@ -104,6 +104,50 @@ static const u8 valid_dsc_bpp[] =3D {6, 8, 10, =
-12,
-> 15};
-> >> >   */
-> >> >  static const u8 valid_dsc_slicecount[] =3D {1, 2, 4};
+> >> > diff --git a/drivers/gpu/drm/i915/display/intel_ddi.c
+> >> > b/drivers/gpu/drm/i915/display/intel_ddi.c
+> >> > index ed7620e7f763..29d785a4b904 100644
+> >> > --- a/drivers/gpu/drm/i915/display/intel_ddi.c
+> >> > +++ b/drivers/gpu/drm/i915/display/intel_ddi.c
+> >> > @@ -2502,6 +2502,7 @@ static void mtl_ddi_pre_enable_dp(struct
+> >> intel_atomic_state *state,
+> >> >                              crtc_state->port_clock,
+> >> >                              crtc_state->lane_count);
 > >> >
-> >> > +/* DL Link Rates */
-> >> > +#define UHBR20             2000000
-> >> > +#define UHBR13P5   1350000
-> >> > +#define UHBR10             1000000
-> >> > +#define HBR3               810000
-> >> > +#define HBR2               540000
-> >> > +#define HBR                270000
-> >> > +#define RBR                162000
-> >> > +
-> >> > +/* DP Lane Count */
-> >> > +#define LANE_COUNT_4       4
-> >> > +#define LANE_COUNT_2       2
-> >> > +#define LANE_COUNT_1       1
-> >> > +
-> >> > +/* DP2.0 fallback values */
-> >> > +struct dp_fallback {
-> >> > +   u32 link_rate;
-> >> > +   u8 lane_count;
-> >> > +};
-> >> > +
-> >> > +struct dp_fallback dp2dot0_fallback[] =3D {
-> >> > +   {UHBR20, LANE_COUNT_4},
-> >> > +   {UHBR13P5, LANE_COUNT_4},
-> >> > +   {UHBR20, LANE_COUNT_2},
-> >> > +   {UHBR10, LANE_COUNT_4},
-> >> > +   {UHBR13P5, LANE_COUNT_2},
-> >> > +   {HBR3, LANE_COUNT_4},
-> >> > +   {UHBR20, LANE_COUNT_1},
-> >> > +   {UHBR10, LANE_COUNT_2},
-> >> > +   {HBR2, LANE_COUNT_4},
-> >> > +   {UHBR13P5, LANE_COUNT_1},
-> >> > +   {HBR3, LANE_COUNT_2},
-> >> > +   {UHBR10, LANE_COUNT_1},
-> >> > +   {HBR2, LANE_COUNT_2},
-> >> > +   {HBR, LANE_COUNT_4},
-> >> > +   {HBR3, LANE_COUNT_1},
-> >> > +   {RBR, LANE_COUNT_4},
-> >> > +   {HBR2, LANE_COUNT_1},
-> >> > +   {HBR, LANE_COUNT_2},
-> >> > +   {RBR, LANE_COUNT_2},
-> >> > +   {HBR, LANE_COUNT_1},
-> >> > +   {RBR, LANE_COUNT_1},
-> >> > +};
-> >> > +
-> >> >  /**
-> >> >   * intel_dp_is_edp - is the given port attached to an eDP panel
-> >> > (either CPU or
-> >> PCH)
-> >> >   * @intel_dp: DP struct
-> >> > @@ -299,6 +343,19 @@ static int
-> >> > intel_dp_common_len_rate_limit(const
-> >> struct intel_dp *intel_dp,
-> >> >                                    intel_dp->num_common_rates,
-> >> > max_rate);
-> >> }
-> >> >
-> >> > +static bool intel_dp_link_rate_supported(struct intel_dp
-> >> > +*intel_dp,
-> >> > +u32 link_rate) {
-> >> > +   u8 i;
-> >> > +
-> >> > +   for (i =3D 0; i < ARRAY_SIZE(intel_dp->common_rates); i++) {
-> >> > +           if (intel_dp->common_rates[i] =3D=3D link_rate)
-> >> > +                   return true;
-> >> > +           else
-> >> > +                   continue;
+> >> > +retry:
+> >> >     /*
+> >> >      * We only configure what the register value will be here.  Actu=
+al
+> >> >      * enabling happens during link training farther down.
+> >> > @@ -2586,7 +2587,14 @@ static void mtl_ddi_pre_enable_dp(struct
+> >> intel_atomic_state *state,
+> >> >      *     Pattern, wait for 5 idle patterns (DP_TP_STATUS Min_Idles=
+_Sent)
+> >> >      *     (timeout after 800 us)
+> >> >      */
+> >> > -   intel_dp_start_link_train(intel_dp, crtc_state);
+> >> > +   if (!intel_dp_start_link_train(intel_dp, crtc_state)) {
+> >> > +           /* Link Training failed, retain */
+> >> > +           intel_dp->link_trained =3D false;
+> >> > +           intel_dp_stop_link_train(intel_dp, crtc_state);
+> >> > +           encoder->post_disable(state, encoder,
+> >> > +                              crtc_state, conn_state);
+> >> > +           goto retry;
 > >> > +   }
-> >> > +   return false;
-> >> > +}
-> >> > +
-> >> >  static int intel_dp_common_rate(struct intel_dp *intel_dp, int
-> >> > index) {
-> >> >     if (drm_WARN_ON(&dp_to_i915(intel_dp)->drm,
-> >> > @@ -671,15 +728,6 @@ int
-> >> > intel_dp_get_link_train_fallback_values(struct
-> >> intel_dp *intel_dp,
-> >> >     struct drm_i915_private *i915 =3D dp_to_i915(intel_dp);
-> >> >     int index;
-> >> >
-> >> > -   /*
-> >> > -    * TODO: Enable fallback on MST links once MST link compute can
-> >> handle
-> >> > -    * the fallback params.
-> >> > -    */
-> >> > -   if (intel_dp->is_mst) {
-> >> > -           drm_err(&i915->drm, "Link Training Unsuccessful\n");
-> >> > -           return -1;
-> >> > -   }
-> >> > -
 > >>
-> >> By removing this, the claim is both 8b/10b and 128b/132b DP MST link
-> >> training fallbacks work...
-> > Yes! This series focuses on the fallback mandates mentioned in DP2.1 sp=
-ec and
-> doesn't fallback from MST to SST or vicecersa.
-> > Hence if it is MST the fallback will be within MST and if its SST the f=
-allback
-> will be within SST.
+> >> As said, the retry needs to go via userspace.
 > >
-> >>
-> >> >     if (intel_dp_is_edp(intel_dp) && !intel_dp->use_max_params) {
-> >> >             drm_dbg_kms(&i915->drm,
-> >> >                         "Retrying Link training for eDP with max
-> >> parameters\n"); @@
-> >> > -687,6 +735,31 @@ int
-> >> > intel_dp_get_link_train_fallback_values(struct
-> >> intel_dp *intel_dp,
-> >> >             return 0;
-> >> >     }
-> >> >
-> >> > +   /* DP fallback values */
-> >> > +   if (intel_dp->dpcd[DP_MAIN_LINK_CHANNEL_CODING] &
-> >> > +DP_CAP_ANSI_128B132B) {
-> >>
-> >> ...but this only addresses 128b/132b, and the 8b/10b MST drops to the
-> >> existing SST fallback path.
-> > Yes! As said above this fallback is based on fallback mandates
-> > mentioned in DP2.1 spec in Table 3.31 and Figure 3-52 which focuses on
-> > reducing the link rate/lance count and nothing to with MST/SST
+> > If within the supported mode range then also do we need to send uevent =
+to
+> user and should it come via userspace?
+> > The fallback mandates in DP2.1 spec does this fallback in a loop.
 > >
-> >>
-> >> And with the current code, DP_CAP_ANSI_128B132B does not decide
-> >> whether we use DP MST or not. So this will also cover 8b/10b fallback
-> >> for displays that support 128b/132b but have DP_MSTM_CAP =3D=3D 0.
+> > The present fallback structure
+> > Struct dp_fallback {
+> >         U32 link rate;
+> >         U8 lane_count;
+> >         U32 resolution;
+> > }
 > >
-> > Yes, the series doent depend on MST and SST and doest fallback from MST=
- to
-> SST or viceversa.
+> > In the same fallback code, the present mode will be verified to see if =
+its less
+> than or equal to the resolution in dp_fallback. If so proceed within the =
+fallback
+> loop else set the max link_rate/lane count values and sent uevent.
 >=20
-> What I'm saying is, this changes the way 8b/10b link training fallback is
-> handled.
+> I think I'll want *all* the link training fallbacks to go via userspace.
 >=20
-The first loop has a if condition for 128/132b and is executed only if its =
-128/132b and if not falls to the existing code. i.e 8/10b link training fal=
-lback sequence.
+Wouldn't this be an optimized way of handling the fallback values.
+Figure 3-52 of the DP2.1 spec also says to restart from the beginning of li=
+nk training.
 
-> First, it starts handling 8b/10b MST link training fallback.
+> Trying to sometimes do it in kernel is a premature optimization for a rar=
+e case,
+> and it just complicates matters. We'll need the path via uevent and users=
+pace
+> retry anyway, for when the mode doesn't fit, so use it always. Let's not =
+add
+> multiple ways to do things, everything around this is already quite compl=
+icated.
 >=20
-As far as I see, at the entry of this function 128/132b is checked and link=
- training fallback values for this obtained and if not link training fallba=
-ck values for 8/10b is obtained. Have taken care as to not modify the exist=
-ing 8/10b fallback.
+When a mode change required due to limitation of the new fallback link rate=
+, will use the existing path of sending uevent.
+I felt taking would approach would an optimal way of handling fallback.
+I am open to remove this optimization and take the uevent path always if *r=
+equired*.
 
-> Second, it changes the way 8b/10b *and* 128b/132b *and* SST *and* MST lin=
-k
-> training fallback is handled for all displays that support 128b/132b chan=
-nel
-> coding.
->=20
-MST/SST configuration and then the link training happens. This link trainin=
-g by writing to dpcd registers is done over here by sending certain pattern=
-s. The fallback in this RFC is done only in this small link training sequen=
-ce. On failure the handler doesn't return back instead retry from starting =
-of link training is done. MST/SST configuration is not touched upon, if any=
- required for this as part of fallback can be taken up in the next step.
-This RFC is aiming to achieve fallback for the link training sequence only.
-
-> That's *wildly* too much in one patch.
->=20
-Will surely break this into multiple patches based on the functionality.
-
-> It also duplicates the existing code in the same function, with a differe=
-nt
-> mechanism. We don't want to have two different ways to do this, and of al=
-l
-> things based on sink's 128b/132b cap. Just one.
->=20
-
-The way for obtaining link training fallback values for 128/132b is done an=
-d the same code will be utilized for 8/10b as well but with a different tab=
-le.
-If the RFC is approved then will work on getting this done in a cleaner and=
- optimized way.
-
-> >
-> >>
-> >> > +           for(index =3D 0; index < ARRAY_SIZE(dp2dot0_fallback);
-> >> > + index++)
-> >> {
-> >> > +                   if (link_rate =3D=3D dp2dot0_fallback[index].lin=
-k_rate &&
-> >> > +                           lane_count =3D=3D
-> >> dp2dot0_fallback[index].lane_count) {
-> >> > +                           for(index +=3D 1; index <
-> >> ARRAY_SIZE(dp2dot0_fallback); index++) {
-> >>
-> >> I honestly do not understand the double looping here, and how index
-> >> is managed.
-> > The first loop is to find the present link rate and lane count in the f=
-allback
-> table. Once we find this, we will have to traverse from that index below =
-to get
-> the next fallback link rate and lane count. The second loop is now to tra=
-verse
-> from this index to see the supported link rate and lane count.
-> > For ex: if the link rate is 10Gbps and lane count is 4. First loop is t=
-o find this in
-> the fallback table, index would be 3. Then next loop is to traverse from =
-this
-> index 3 to find the fallback values. This would essentially be UHBR13P5 l=
-ane
-> count 2. But MTL doesn' support this. Hence will have to move index by 1 =
-to get
-> UHBR10 lane count 2. This second loop will be used for this purpose.
->=20
-> Needs abstractions i.e. more functions instead of trying to make it all h=
-appen in
-> one loop.
-
-Sure will work on this and will float the patch.
-
->=20
-> >
-> >>
-> >> > +                                   if
-> >> (intel_dp_link_rate_supported(intel_dp,
-> >> > +
-> >>       dp2dot0_fallback[index].link_rate)) {
-> >> > +
-> >>       intel_dp_set_link_params(intel_dp,
-> >> > +
-> >> dp2dot0_fallback[index].link_rate,
-> >> > +
-> >> dp2dot0_fallback[index].lane_count);
-> >>
-> >> intel_dp_set_link_params() is supposed to be called in the DP encoder
-> >> (pre- )enable paths to set the link rates. If you do it here, the
-> >> subsequent enable will just overwrite whatever you did here.
-> > This is taken care of so as to not override and retain this fallback va=
-lue.
->=20
-> I don't understand.
->=20
-With the existing code the driver sends uevent and a new modeset along with=
- dp_init is done and the values will be overwritten. In this RFC we don't s=
-end uevent for all the fallback values instead re-iterate only the link tra=
-ining part without touching the dp enable sequence.
-
-> >
-> >>
-> >> The mechanism in this function should be to to adjust
-> >> intel_dp->max_link_rate and intel_dp->max_link_lane_count, and then
-> >> the caller will send an uevent to have the userspace do everything aga=
-in, but
-> with reduced max values.
-> >>
-> > If falling back within UHBR rate, so with a mode that supports the new
-> fallback link rate then we don't essentially have to send uevent to user =
-and new
-> modeset may not be required.
-> > For Ex: the link rate is 20Gbps with mode 6k, Link training fails. So w=
-ith the
-> new fallback linkrate falling within UHBR need not do a modeset. Only if =
-the
-> fallback link rate falls to HBR rate for which 6k is not supported, only =
-then
-> uevent will be sent to user.
->=20
-> For SST paths we'll always choose the optimal link parameters, and the mo=
-de
-> will not fit if we have to reduce the parameters. And as I just explained=
-, your
-> changes impact SST paths as well.
->=20
-> For MST we'll start with max parameters, so yeah there's a possibility we=
- could
-> reduce the link parameters without having to reduce the mode. However, I'=
-m
-> inclined to always go through userspace here, using the same tested paths=
- for
-> link training failures. This will also give userspace some form of transp=
-arency
-> into what is going on, and why an additional MST stream might not fit whe=
-n it
-> should.
->=20
-> >> This is all very convoluted. And I admit the existing code is also
-> >> complex, but this makes it *much* harder to understand.
-> >>
-> > Hopefully upon cleaning up some redundant code and re-arranging this
-> implementation with a formal patch traversing the fallback code might bec=
-ome
-> a little simple.
->=20
-> If we want to use a list for the parameters, I think the first step shoul=
-d be to
-> modify the existing code to use the list. No additional changes, no funct=
-ional
-> changes.
->=20
-Sure will ensure that would be the first patch in this series before touchi=
-ng upon anything on the 128/132b fallback.
+> And as said, the uevent does give userspace some inkling that something f=
+ishy
+> is going on, and could use that info to inform the user that a degraded
+> experience may be expected. Again, adding a new stream to MST at a later =
+time
+> might not fit because of the reduced parameters, and it'll be surprising =
+to the
+> user if it used to work in the past (when full param link training succee=
+ded).
+This FRC is not targeting to have fallback of MST streams. Its targeting on=
+ly the link training for a particular stream only.
+As said above if no *optimization* is required and uevent path to be taken =
+always for any fallback  value I am open to remove this optimization and im=
+plement the way you suggest.
 
 Thanks and Regards,
 Arun R Murthy
 -------------------
 
+>=20
 > BR,
 > Jani.
 >=20
@@ -513,38 +290,14 @@ Arun R Murthy
 > > Thanks and Regards,
 > > Arun R Murthy
 > > --------------------
+> >>
 > >> BR,
 > >> Jani.
 > >>
-> >> > +                                           drm_dbg_kms(&i915->drm,
-> >> > +                                                       "Retrying
-> >> > + Link
-> >> training with link rate %d and lane count %d\n",
-> >> > +
-> >> dp2dot0_fallback[index].link_rate,
-> >> > +
-> >> dp2dot0_fallback[index].lane_count);
-> >> > +                                           return 0;
-> >> > +                                   }
-> >> > +                           }
-> >> > +                   }
-> >> > +           }
-> >> > +           /* Report failure and fail link training */
-> >> > +           drm_err(&i915->drm, "Link Training Unsuccessful\n");
-> >> > +           return -1;
-> >> > +   }
-> >> > +
-> >> >     index =3D intel_dp_rate_index(intel_dp->common_rates,
-> >> >                                 intel_dp->num_common_rates,
-> >> >                                 link_rate); @@ -716,7 +789,6 @@ int
-> >> > intel_dp_get_link_train_fallback_values(struct
-> >> intel_dp *intel_dp,
-> >> >             drm_err(&i915->drm, "Link Training Unsuccessful\n");
-> >> >             return -1;
-> >> >     }
-> >> > -
-> >> >     return 0;
-> >> >  }
+> >>
+> >> >
+> >> >     /* 6.n Set DP_TP_CTL link training to Normal */
+> >> >     if (!is_trans_port_sync_mode(crtc_state))
 > >>
 > >> --
 > >> Jani Nikula, Intel
