@@ -2,49 +2,51 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id EE03C854445
-	for <lists+intel-gfx@lfdr.de>; Wed, 14 Feb 2024 09:50:11 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id CC78A854446
+	for <lists+intel-gfx@lfdr.de>; Wed, 14 Feb 2024 09:50:14 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4FE6410E2FD;
-	Wed, 14 Feb 2024 08:50:10 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4BB6210E351;
+	Wed, 14 Feb 2024 08:50:12 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="eDS+bsrr";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="e5vYDJWB";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B2AF210E2FD
- for <intel-gfx@lists.freedesktop.org>; Wed, 14 Feb 2024 08:50:08 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 66FD010E351
+ for <intel-gfx@lists.freedesktop.org>; Wed, 14 Feb 2024 08:50:10 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1707900609; x=1739436609;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=Zopu31PlPjDViM2fpOL6sqNAg4Ux5YkDjYhV80ktpDU=;
- b=eDS+bsrr9slSv++Az7CC4QHvIt02rCVQXLLe6zqjHf2/RsK907eUVTGl
- MlzxNkAniYlcs2Rclj5ZeD1zSawuCd1NHOm6NkRfDQ3XrpKvzFHb17cz7
- g0rbp9A8224crRgLOFjoN8kgGw9wadApfXbl2onkZSgle0zckgbOExNbN
- 2tJU1ISSHLv6o2hV8N5hEDpX7lJjhTX5txUT7rndmPw/rVumQJryEyyJG
- 3Xc1i+3qXAIwCpLK0QaTw2QWOiUGXZsBjJ0H6s/MrYovImSeMb8KOyPIx
- FHjnv1mN550W9f+ihfMIu5ALVusMRj+7Ngpk/9WMitHxKFEqLP43p7eVZ w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10982"; a="13323605"
-X-IronPort-AV: E=Sophos;i="6.06,159,1705392000"; d="scan'208";a="13323605"
+ t=1707900610; x=1739436610;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=HHNqQmpgNPG5po9xJpfWXOxe7pXF5h86aUav4mcEBAs=;
+ b=e5vYDJWBiLRjrvUzWM6gtgeo8ua8gqdNZg1VzNNAIdAEtdb0yi+iNWiI
+ y2oTnMBAkg49j3yAFuN/McAoBr5UTUwnBvUzU6GIli4yFJnAHNTQ09k2M
+ v5iI5FwJBO8dAEIUstxTlHsQ42vOdgLXM4e5TmQT850bM+ofcMmcpqUzJ
+ JAfY+eOrW5RWs8qzVCrUytkRMywzbkIpjhK93xwUlYl2u2g+lfeVxHFUm
+ 5uic722MGEpA6wghW7fc1pP87fyVSnqbhSa0Y8fOmFLaPSJFens57ta6M
+ Xi74ZAoeKE3SkwVlJzj+175qHJdMZF9L0UQYJpykSMVskTP1jDRWYhFYN A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10982"; a="13323611"
+X-IronPort-AV: E=Sophos;i="6.06,159,1705392000"; d="scan'208";a="13323611"
 Received: from fmviesa008.fm.intel.com ([10.60.135.148])
  by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Feb 2024 00:50:08 -0800
+ 14 Feb 2024 00:50:10 -0800
 X-ExtLoop1: 1
 X-IronPort-AV: E=Sophos;i="6.06,159,1705392000"; 
-   d="scan'208";a="3295622"
+   d="scan'208";a="3295630"
 Received: from kandpal-x299-ud4-pro.iind.intel.com ([10.190.239.32])
- by fmviesa008.fm.intel.com with ESMTP; 14 Feb 2024 00:50:07 -0800
+ by fmviesa008.fm.intel.com with ESMTP; 14 Feb 2024 00:50:09 -0800
 From: Suraj Kandpal <suraj.kandpal@intel.com>
 To: intel-gfx@lists.freedesktop.org
 Cc: uma.shankar@intel.com, ankit.k.nautiyal@intel.com,
  Suraj Kandpal <suraj.kandpal@intel.com>
-Subject: [PATCH 00/12] HDCP Type1 MST fixes
-Date: Wed, 14 Feb 2024 14:17:58 +0530
-Message-Id: <20240214084810.1417186-1-suraj.kandpal@intel.com>
+Subject: [PATCH 01/12] drm/i915/hdcp: Move to direct reads for HDCP
+Date: Wed, 14 Feb 2024 14:17:59 +0530
+Message-Id: <20240214084810.1417186-2-suraj.kandpal@intel.com>
 X-Mailer: git-send-email 2.25.1
+In-Reply-To: <20240214084810.1417186-1-suraj.kandpal@intel.com>
+References: <20240214084810.1417186-1-suraj.kandpal@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
@@ -62,43 +64,115 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-We were seeing a blank screen whenever Type1 content was played.
-This was due to extra timing which was taken as we had moved to
-remote read and writes previously for MST scenario, which in turn
-was done as we were not able to do direct read and writes to the
-immediate downstream device.
-The correct flow should be that we talk only to the immediate
-downstream device and the rest needs to be taken care by that device.
-With this patch series we move back to direct reads and writes,
-fix the fastset setting because of which direct reads and writes to
-HDCP related DPCD register stopped working, derive hdcp structure
-correctly and increase robustability if rxcaps HDCP capability
-reporting.
+Even for MST scenarios we need to do direct reads only on the
+immediate downstream device the rest of the authentication is taken
+care by that device. Remote reads will only be used to check
+capability of the monitors in MST topology.
 
+--v2
+-Add fixes tag [Ankit]
+-Derive aux where needed rather than through a function [Ankit]
+
+Fixes: ae4f902bb344 ("drm/i915/hdcp: Send the correct aux for DPMST HDCP scenario")
 Signed-off-by: Suraj Kandpal <suraj.kandpal@intel.com>
+Reviewed-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+---
+ drivers/gpu/drm/i915/display/intel_dp_hdcp.c | 31 ++++++--------------
+ 1 file changed, 9 insertions(+), 22 deletions(-)
 
-Suraj Kandpal (12):
-  drm/i915/hdcp: Move to direct reads for HDCP
-  drm/i915/hdcp: Move source hdcp2 checks into its own function
-  drm/i915/hdcp: Refactor intel_dp_hdcp2_capable
-  drm/i915/hdcp: Pass drm_dp_aux to read_bcaps function
-  drm/i915/hdcp: Rename hdcp capable functions
-  drm/i915/hdcp: Add new remote capability check shim function
-  drm/i915/hdcp: HDCP Capability for the downstream device
-  drm/i915/hdcp: Remove additional timing for reading mst hdcp message
-  drm/i915/hdcp: Extract hdcp structure from correct connector
-  drm/i915/hdcp: Don't enable HDCP directly from check_link
-  drm/i915/hdcp: Allocate stream id after HDCP AKE stage
-  drm/i915/hdcp: Read Rxcaps for robustibility
-
- .../drm/i915/display/intel_display_debugfs.c  |  25 ++-
- .../drm/i915/display/intel_display_types.h    |  12 +-
- drivers/gpu/drm/i915/display/intel_dp_hdcp.c  | 137 +++++++-----
- drivers/gpu/drm/i915/display/intel_hdcp.c     | 208 +++++++++---------
- drivers/gpu/drm/i915/display/intel_hdcp.h     |   7 +-
- drivers/gpu/drm/i915/display/intel_hdmi.c     |   6 +-
- 6 files changed, 227 insertions(+), 168 deletions(-)
-
+diff --git a/drivers/gpu/drm/i915/display/intel_dp_hdcp.c b/drivers/gpu/drm/i915/display/intel_dp_hdcp.c
+index 3a595cd433d4..defc90936317 100644
+--- a/drivers/gpu/drm/i915/display/intel_dp_hdcp.c
++++ b/drivers/gpu/drm/i915/display/intel_dp_hdcp.c
+@@ -330,23 +330,13 @@ static const struct hdcp2_dp_msg_data hdcp2_dp_msg_data[] = {
+ 	  0, 0 },
+ };
+ 
+-static struct drm_dp_aux *
+-intel_dp_hdcp_get_aux(struct intel_connector *connector)
+-{
+-	struct intel_digital_port *dig_port = intel_attached_dig_port(connector);
+-
+-	if (intel_encoder_is_mst(connector->encoder))
+-		return &connector->port->aux;
+-	else
+-		return &dig_port->dp.aux;
+-}
+-
+ static int
+ intel_dp_hdcp2_read_rx_status(struct intel_connector *connector,
+ 			      u8 *rx_status)
+ {
+ 	struct drm_i915_private *i915 = to_i915(connector->base.dev);
+-	struct drm_dp_aux *aux = intel_dp_hdcp_get_aux(connector);
++	struct intel_digital_port *dig_port = intel_attached_dig_port(connector);
++	struct drm_dp_aux *aux = &dig_port->dp.aux;
+ 	ssize_t ret;
+ 
+ 	ret = drm_dp_dpcd_read(aux,
+@@ -454,8 +444,9 @@ int intel_dp_hdcp2_write_msg(struct intel_connector *connector,
+ 	unsigned int offset;
+ 	u8 *byte = buf;
+ 	ssize_t ret, bytes_to_write, len;
++	struct intel_digital_port *dig_port = intel_attached_dig_port(connector);
++	struct drm_dp_aux *aux = &dig_port->dp.aux;
+ 	const struct hdcp2_dp_msg_data *hdcp2_msg_data;
+-	struct drm_dp_aux *aux;
+ 
+ 	hdcp2_msg_data = get_hdcp2_dp_msg_data(*byte);
+ 	if (!hdcp2_msg_data)
+@@ -463,8 +454,6 @@ int intel_dp_hdcp2_write_msg(struct intel_connector *connector,
+ 
+ 	offset = hdcp2_msg_data->offset;
+ 
+-	aux = intel_dp_hdcp_get_aux(connector);
+-
+ 	/* No msg_id in DP HDCP2.2 msgs */
+ 	bytes_to_write = size - 1;
+ 	byte++;
+@@ -490,7 +479,8 @@ static
+ ssize_t get_receiver_id_list_rx_info(struct intel_connector *connector,
+ 				     u32 *dev_cnt, u8 *byte)
+ {
+-	struct drm_dp_aux *aux = intel_dp_hdcp_get_aux(connector);
++	struct intel_digital_port *dig_port = intel_attached_dig_port(connector);
++	struct drm_dp_aux *aux = &dig_port->dp.aux;
+ 	ssize_t ret;
+ 	u8 *rx_info = byte;
+ 
+@@ -516,7 +506,7 @@ int intel_dp_hdcp2_read_msg(struct intel_connector *connector,
+ 	struct intel_digital_port *dig_port = intel_attached_dig_port(connector);
+ 	struct drm_i915_private *i915 = to_i915(dig_port->base.base.dev);
+ 	struct intel_hdcp *hdcp = &connector->hdcp;
+-	struct drm_dp_aux *aux;
++	struct drm_dp_aux *aux = &dig_port->dp.aux;
+ 	unsigned int offset;
+ 	u8 *byte = buf;
+ 	ssize_t ret, bytes_to_recv, len;
+@@ -530,8 +520,6 @@ int intel_dp_hdcp2_read_msg(struct intel_connector *connector,
+ 		return -EINVAL;
+ 	offset = hdcp2_msg_data->offset;
+ 
+-	aux = intel_dp_hdcp_get_aux(connector);
+-
+ 	ret = intel_dp_hdcp2_wait_for_msg(connector, hdcp2_msg_data);
+ 	if (ret < 0)
+ 		return ret;
+@@ -651,12 +639,11 @@ static
+ int intel_dp_hdcp2_capable(struct intel_connector *connector,
+ 			   bool *capable)
+ {
+-	struct drm_dp_aux *aux;
++	struct intel_digital_port *dig_port = intel_attached_dig_port(connector);
++	struct drm_dp_aux *aux = &dig_port->dp.aux;
+ 	u8 rx_caps[3];
+ 	int ret;
+ 
+-	aux = intel_dp_hdcp_get_aux(connector);
+-
+ 	*capable = false;
+ 	ret = drm_dp_dpcd_read(aux,
+ 			       DP_HDCP_2_2_REG_RX_CAPS_OFFSET,
 -- 
 2.25.1
 
