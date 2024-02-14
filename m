@@ -2,58 +2,58 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id E365E8551F2
-	for <lists+intel-gfx@lfdr.de>; Wed, 14 Feb 2024 19:18:59 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 41997855232
+	for <lists+intel-gfx@lfdr.de>; Wed, 14 Feb 2024 19:34:09 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5FDF410E985;
-	Wed, 14 Feb 2024 18:18:56 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BAD4710E10B;
+	Wed, 14 Feb 2024 18:34:06 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="jNyN2wuG";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="EQAS4Tcx";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EFFCD10E82F;
- Wed, 14 Feb 2024 18:18:53 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B6D7D10E10B;
+ Wed, 14 Feb 2024 18:34:05 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1707934735; x=1739470735;
+ t=1707935646; x=1739471646;
  h=date:from:to:cc:subject:message-id:references:
  mime-version:content-transfer-encoding:in-reply-to;
- bh=zzz5QDvUUuiwjPTpBwpYHVvlb27jwk55O4hi7xY3/Ro=;
- b=jNyN2wuGGr7GUBInKjkFa99DfDj2B8xG6xCwpFqH3+KYnk2gccM0I9T7
- NgSU9+MFP1YIdF89pXYMPJmXCNpyDJiqaxWLsMG3PQFauQqSO1Y0cSS01
- jOI3pSd6G0QNZ50GmGhSgTmgvW6j6aMj2V9t1Vc/xLdyhBrRZsV+TznpH
- 6grqwUCUKtFrzGv3UoEN+CHWhRtOUXG4oPfwWatrkADbZrv3rULEiAWmg
- Q8uZmuprnE53zQPB+q+avUZnRfPIwKMTFzBkN5sxFDwEU/Dz6rink8gh/
- ABwbCEDWB4oN6GGix0IPdC/7TylXoqzqCgI4lG6IJ1p02IXbX1cGqYcOK g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10984"; a="5813343"
+ bh=EQ0xDwuo/RkXpGN9r1rKB4Vc6sneeedzoXvTR9OBMWg=;
+ b=EQAS4Tcx2Dgqiu3m3hhFZ6I27jDM8duscUHPji/1QUfidNG6TwGEOC94
+ 3piOFKmEjH4aS5w5xzNNHdsjrIAjxKXsmhiIzmBDrvN1iQD+HVQxWqveM
+ XSk2JiCcZquwfyYEs7WuVoYmk/rejfzIaPfCgiPLinGSYVb50iWiWjka3
+ jN6+Qz5F8J3csVUKrky+5uyw0xhLX2eKnckaSAr7ud7pSsHEhGm0dskTx
+ vA6sh97rpO6pl8B9xUEL8L+ayXnngrw6kBXNyYt/6Zcg9b4YpdqolEY4P
+ kwQHyhISIxm44oAPvohuDqAShmaILSHDYCDXSqAmzec4c9ONLv8TsU/qD w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10984"; a="1872573"
 X-IronPort-AV: E=Sophos;i="6.06,160,1705392000"; 
-   d="scan'208";a="5813343"
+   d="scan'208";a="1872573"
 Received: from orsmga001.jf.intel.com ([10.7.209.18])
- by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Feb 2024 10:18:54 -0800
+ by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 14 Feb 2024 10:34:05 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10984"; a="826369696"
-X-IronPort-AV: E=Sophos;i="6.06,160,1705392000"; d="scan'208";a="826369696"
+X-IronPort-AV: E=McAfee;i="6600,9927,10984"; a="826369704"
+X-IronPort-AV: E=Sophos;i="6.06,160,1705392000"; d="scan'208";a="826369704"
 Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.74])
- by orsmga001.jf.intel.com with SMTP; 14 Feb 2024 10:18:50 -0800
+ by orsmga001.jf.intel.com with SMTP; 14 Feb 2024 10:34:02 -0800
 Received: by stinkbox (sSMTP sendmail emulation);
- Wed, 14 Feb 2024 20:18:50 +0200
-Date: Wed, 14 Feb 2024 20:18:50 +0200
+ Wed, 14 Feb 2024 20:34:01 +0200
+Date: Wed, 14 Feb 2024 20:34:01 +0200
 From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
 To: Jani Nikula <jani.nikula@intel.com>
 Cc: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
  intel-xe@lists.freedesktop.org, Arun R Murthy <arun.r.murthy@intel.com>
-Subject: Re: [PATCH v2 3/6] drm/i915/mst: abstract choosing the MST mode to use
-Message-ID: <Zc0ECnWNsxulLjE-@intel.com>
+Subject: Re: [PATCH v2 4/6] drm/i915/mst: use the MST mode detected previously
+Message-ID: <Zc0HmRxIj4ePnh4I@intel.com>
 References: <cover.1707823736.git.jani.nikula@intel.com>
- <7c54416835620ae497cb8e0d2c62d124eeb5efeb.1707823736.git.jani.nikula@intel.com>
+ <4fb849117a31940a3fbc26287c09ee3928e91991.1707823736.git.jani.nikula@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <7c54416835620ae497cb8e0d2c62d124eeb5efeb.1707823736.git.jani.nikula@intel.com>
+In-Reply-To: <4fb849117a31940a3fbc26287c09ee3928e91991.1707823736.git.jani.nikula@intel.com>
 X-Patchwork-Hint: comment
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -70,64 +70,105 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, Feb 13, 2024 at 01:30:58PM +0200, Jani Nikula wrote:
-> Clarify the conditions for choosing the MST mode to use by adding a new
-> function intel_dp_mst_mode_choose(). This also prepares for being able
-> to extend the MST modes to single-stream sideband messaging.
+On Tue, Feb 13, 2024 at 01:30:59PM +0200, Jani Nikula wrote:
+> Drop the duplicate read of DP_MSTM_CAP DPCD register, and the duplicate
+> logic for choosing MST mode, and store the chosen mode in struct
+> intel_dp. Rename intel_dp_configure_mst() to intel_dp_mst_configure()
+> while at it.
 > 
 > Cc: Arun R Murthy <arun.r.murthy@intel.com>
 > Cc: Ville Syrjälä <ville.syrjala@linux.intel.com>
 > Signed-off-by: Jani Nikula <jani.nikula@intel.com>
-
-Reviewed-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
-
 > ---
->  drivers/gpu/drm/i915/display/intel_dp.c | 25 +++++++++++++++++++------
->  1 file changed, 19 insertions(+), 6 deletions(-)
+>  .../drm/i915/display/intel_display_types.h    |  1 +
+>  drivers/gpu/drm/i915/display/intel_dp.c       | 23 ++++++++-----------
+>  2 files changed, 11 insertions(+), 13 deletions(-)
 > 
+> diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/drivers/gpu/drm/i915/display/intel_display_types.h
+> index 01eb6e4e6049..4a8440a3a812 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display_types.h
+> +++ b/drivers/gpu/drm/i915/display/intel_display_types.h
+> @@ -1780,6 +1780,7 @@ struct intel_dp {
+>  
+>  	bool is_mst;
+>  	int active_mst_links;
+> +	enum drm_dp_mst_mode mst_detect;
+>  
+>  	/* connector directly attached - won't be use for modeset in mst world */
+>  	struct intel_connector *attached_connector;
 > diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
-> index 944f566525dd..007cb2a04e38 100644
+> index 007cb2a04e38..72e91322e310 100644
 > --- a/drivers/gpu/drm/i915/display/intel_dp.c
 > +++ b/drivers/gpu/drm/i915/display/intel_dp.c
-> @@ -4015,6 +4015,24 @@ static const char *intel_dp_mst_mode_str(enum drm_dp_mst_mode mst_mode)
->  		return str_yes_no(mst_mode == DRM_DP_MST);
->  }
->  
-> +static enum drm_dp_mst_mode
-> +intel_dp_mst_mode_choose(struct intel_dp *intel_dp,
-> +			 enum drm_dp_mst_mode sink_mst_mode)
-> +{
-> +	struct drm_i915_private *i915 = dp_to_i915(intel_dp);
-> +
-> +	if (!i915->display.params.enable_dp_mst)
-> +		return DRM_DP_SST;
-> +
-> +	if (!intel_dp_mst_source_support(intel_dp))
-> +		return DRM_DP_SST;
-> +
-> +	if (sink_mst_mode == DRM_DP_SST_SIDEBAND_MSG)
-> +		return DRM_DP_SST;
-> +
-> +	return sink_mst_mode;
-> +}
-> +
->  static bool
->  intel_dp_mst_detect(struct intel_dp *intel_dp)
->  {
-> @@ -4025,12 +4043,7 @@ intel_dp_mst_detect(struct intel_dp *intel_dp)
+> @@ -4039,11 +4039,10 @@ intel_dp_mst_detect(struct intel_dp *intel_dp)
+>  	struct drm_i915_private *i915 = dp_to_i915(intel_dp);
+>  	struct intel_encoder *encoder = &dp_to_dig_port(intel_dp)->base;
+>  	enum drm_dp_mst_mode sink_mst_mode;
+> -	enum drm_dp_mst_mode mst_detect;
 >  
 >  	sink_mst_mode = drm_dp_read_mst_cap(&intel_dp->aux, intel_dp->dpcd);
 >  
-> -	if (i915->display.params.enable_dp_mst &&
-> -	    intel_dp_mst_source_support(intel_dp) &&
-> -	    sink_mst_mode == DRM_DP_MST)
-> -		mst_detect = DRM_DP_MST;
-> -	else
-> -		mst_detect = DRM_DP_SST;
-> +	mst_detect = intel_dp_mst_mode_choose(intel_dp, sink_mst_mode);
+> -	mst_detect = intel_dp_mst_mode_choose(intel_dp, sink_mst_mode);
+> +	intel_dp->mst_detect = intel_dp_mst_mode_choose(intel_dp, sink_mst_mode);
 >  
 >  	drm_dbg_kms(&i915->drm,
 >  		    "[ENCODER:%d:%s] MST support: port: %s, sink: %s, modparam: %s -> enable: %s\n",
+> @@ -4051,25 +4050,23 @@ intel_dp_mst_detect(struct intel_dp *intel_dp)
+>  		    str_yes_no(intel_dp_mst_source_support(intel_dp)),
+>  		    intel_dp_mst_mode_str(sink_mst_mode),
+>  		    str_yes_no(i915->display.params.enable_dp_mst),
+> -		    intel_dp_mst_mode_str(mst_detect));
+> +		    intel_dp_mst_mode_str(intel_dp->mst_detect));
+>  
+> -	return mst_detect != DRM_DP_SST;
+> +	return intel_dp->mst_detect != DRM_DP_SST;
+>  }
+>  
+>  static void
+> -intel_dp_configure_mst(struct intel_dp *intel_dp)
+> +intel_dp_mst_configure(struct intel_dp *intel_dp)
+>  {
+> -	struct drm_i915_private *i915 = dp_to_i915(intel_dp);
+> -	bool sink_can_mst = drm_dp_read_mst_cap(&intel_dp->aux, intel_dp->dpcd) == DRM_DP_MST;
+> -
+>  	if (!intel_dp_mst_source_support(intel_dp))
+>  		return;
+
+I was wondering if we even need that, but it looks to be just a
+check to see if we actually initialized the mst_mgt or not.
+We should probably rename it or something... Or perhaps we could
+tweak the topology manager a bit so we wouldn't need to check...
+
+>  
+> -	intel_dp->is_mst = sink_can_mst &&
+> -		i915->display.params.enable_dp_mst;
+> +	intel_dp->is_mst = intel_dp->mst_detect != DRM_DP_SST;
+> +
+> +	drm_dp_mst_topology_mgr_set_mst(&intel_dp->mst_mgr, intel_dp->is_mst);
+>  
+> -	drm_dp_mst_topology_mgr_set_mst(&intel_dp->mst_mgr,
+> -					intel_dp->is_mst);
+> +	/* Avoid stale info on the next detect cycle. */
+> +	intel_dp->mst_detect = DRM_DP_SST;
+
+Hmm. Not sure I like having ephemeral stuff like this in intel_dp,
+but I guess the alternative would be plumb it up from detect_dpcd()
+by hand, which might not be super pretty either. Oh well.
+
+Reviewed-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
+
+>  }
+>  
+>  static bool
+> @@ -5739,7 +5736,7 @@ intel_dp_detect(struct drm_connector *connector,
+>  
+>  	intel_dp_detect_dsc_caps(intel_dp, intel_connector);
+>  
+> -	intel_dp_configure_mst(intel_dp);
+> +	intel_dp_mst_configure(intel_dp);
+>  
+>  	/*
+>  	 * TODO: Reset link params when switching to MST mode, until MST
 > -- 
 > 2.39.2
 
