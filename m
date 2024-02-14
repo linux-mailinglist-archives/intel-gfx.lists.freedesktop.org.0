@@ -2,54 +2,60 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id C07A985484E
-	for <lists+intel-gfx@lfdr.de>; Wed, 14 Feb 2024 12:28:26 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6A61C854861
+	for <lists+intel-gfx@lfdr.de>; Wed, 14 Feb 2024 12:31:02 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3C1DA10E5BA;
-	Wed, 14 Feb 2024 11:28:25 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CB23010E429;
+	Wed, 14 Feb 2024 11:30:59 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="IswvESQ4";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="UIWc1Dv6";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1FD6310E5BA;
- Wed, 14 Feb 2024 11:28:24 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B5BF410E429
+ for <intel-gfx@lists.freedesktop.org>; Wed, 14 Feb 2024 11:30:58 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1707910104; x=1739446104;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=2+YCJ/335IYb7jjbpPtlbGueH+MNrByAn8mrcTnD3iE=;
- b=IswvESQ4RjhcuxpeAL/8BAbK6GElxIUVqOMO5XeScuM6637vZGHL7liM
- BGa+zXQUUNfgCsjej4PEYwUJMZoFm9KcBtoaLK4JC73QWW1H0re9vs8JS
- VX+7srCblNN10/tuADCNbSJNz6sMdDKNSQQS4tZG2CR46x4i01uxFjNjZ
- WMWa2Qgb9wLbxC5/K/0mYzWpQL4BvXoZ/LzG+HgDCYTqmkjIwObLE6HZy
- dMlab+5QU1EbPevg7W4j37qz7CQNZI68r5Ydpz06tiSFmlevaQprOiNEg
- kQZHlgd+/N0l/Is9PhJt1N2VScaRR+JXC9s0kD4yq2rd+yqaubGwEZMAI A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10982"; a="1826974"
+ t=1707910259; x=1739446259;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version;
+ bh=A9fUYSbTvscfbrAR7PPb2aAiudrcYv3TLXRuihUa1w4=;
+ b=UIWc1Dv6mqjDnsCfGk8pCJPPBd+qpxwRPFVob9utKMkBx3HRaw4GQeQT
+ eKHHx+98HR73VAEFQaPstXOhRw71K1K+LFDKkdM8mnlSniwrMFkW43VJ0
+ ad5OcKKvf/z4MB+8m2AG/2GeLGkVZl3M2Iovye9s8Lj3JM7S99TDbsvOh
+ 3/DVCearr8Y2T1TpgOLPhwpWUX25iXa+gLAWteDOSysl63rOqUjZbbpGV
+ 8Lmu/0dcm9fJLJ5AzSpnKKH0fU+dAiSg6KjXFDPh0zecSjUIUsbqFxS82
+ I5Zfaz8gZIiggu5apfjrA7H1s9dUexAyUJ8Q5ZIsku/zZCZyyYWUaSsBR Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10982"; a="1818369"
 X-IronPort-AV: E=Sophos;i="6.06,159,1705392000"; 
-   d="scan'208";a="1826974"
-Received: from orviesa003.jf.intel.com ([10.64.159.143])
- by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Feb 2024 03:28:23 -0800
+   d="scan'208";a="1818369"
+Received: from fmviesa010.fm.intel.com ([10.60.135.150])
+ by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 14 Feb 2024 03:30:59 -0800
 X-ExtLoop1: 1
 X-IronPort-AV: E=Sophos;i="6.06,159,1705392000"; 
-   d="scan'208";a="7828059"
-Received: from nemesa.iind.intel.com ([10.190.239.22])
- by orviesa003.jf.intel.com with ESMTP; 14 Feb 2024 03:28:22 -0800
-From: Nemesa Garg <nemesa.garg@intel.com>
-To: intel-gfx@lists.freedesktop.org,
-	dri-devel@lists.freedesktop.org
-Cc: Nemesa Garg <nemesa.garg@intel.com>
-Subject: [RFC 5/5] drm/i915/display: Load the lut values and enable sharpness
-Date: Wed, 14 Feb 2024 16:54:57 +0530
-Message-Id: <20240214112457.3734871-6-nemesa.garg@intel.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20240214112457.3734871-1-nemesa.garg@intel.com>
-References: <20240214112457.3734871-1-nemesa.garg@intel.com>
+   d="scan'208";a="3142065"
+Received: from kwszolek-mobl1.ger.corp.intel.com (HELO localhost)
+ ([10.252.63.190])
+ by fmviesa010-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 14 Feb 2024 03:30:56 -0800
+From: Jani Nikula <jani.nikula@intel.com>
+To: "Murthy, Arun R" <arun.r.murthy@intel.com>,
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
+Cc: "Deak, Imre" <imre.deak@intel.com>, "Syrjala, Ville"
+ <ville.syrjala@intel.com>, "Shankar, Uma" <uma.shankar@intel.com>
+Subject: RE: [RFC 4/4] drm/i915/display/dp: On LT failure retry LT
+In-Reply-To: <IA0PR11MB730783C40D327B26EEEA8EC7BA4E2@IA0PR11MB7307.namprd11.prod.outlook.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20240206104759.2079133-1-arun.r.murthy@intel.com>
+ <20240206104759.2079133-5-arun.r.murthy@intel.com>
+ <87v86s6xjr.fsf@intel.com>
+ <IA0PR11MB730783C40D327B26EEEA8EC7BA4E2@IA0PR11MB7307.namprd11.prod.outlook.com>
+Date: Wed, 14 Feb 2024 13:30:53 +0200
+Message-ID: <87il2r705u.fsf@intel.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -65,96 +71,101 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Load the lut values during pipe enable.
+On Wed, 14 Feb 2024, "Murthy, Arun R" <arun.r.murthy@intel.com> wrote:
+>> -----Original Message-----
+>> From: Nikula, Jani <jani.nikula@intel.com>
+>> Sent: Tuesday, February 13, 2024 11:45 PM
+>> To: Murthy, Arun R <arun.r.murthy@intel.com>; intel-gfx@lists.freedesktop.org
+>> Cc: Deak, Imre <imre.deak@intel.com>; Syrjala, Ville <ville.syrjala@intel.com>;
+>> Shankar, Uma <uma.shankar@intel.com>; Murthy, Arun R
+>> <arun.r.murthy@intel.com>
+>> Subject: Re: [RFC 4/4] drm/i915/display/dp: On LT failure retry LT
+>>
+>> On Tue, 06 Feb 2024, Arun R Murthy <arun.r.murthy@intel.com> wrote:
+>> > On link training failure retry link training with a lesser link
+>> > rate/lane count as specified in the DP spec.
+>> >
+>> > Signed-off-by: Arun R Murthy <arun.r.murthy@intel.com>
+>> > ---
+>> >  drivers/gpu/drm/i915/display/intel_ddi.c | 10 +++++++++-
+>> >  1 file changed, 9 insertions(+), 1 deletion(-)
+>> >
+>> > diff --git a/drivers/gpu/drm/i915/display/intel_ddi.c
+>> > b/drivers/gpu/drm/i915/display/intel_ddi.c
+>> > index ed7620e7f763..29d785a4b904 100644
+>> > --- a/drivers/gpu/drm/i915/display/intel_ddi.c
+>> > +++ b/drivers/gpu/drm/i915/display/intel_ddi.c
+>> > @@ -2502,6 +2502,7 @@ static void mtl_ddi_pre_enable_dp(struct
+>> intel_atomic_state *state,
+>> >                              crtc_state->port_clock,
+>> >                              crtc_state->lane_count);
+>> >
+>> > +retry:
+>> >     /*
+>> >      * We only configure what the register value will be here.  Actual
+>> >      * enabling happens during link training farther down.
+>> > @@ -2586,7 +2587,14 @@ static void mtl_ddi_pre_enable_dp(struct
+>> intel_atomic_state *state,
+>> >      *     Pattern, wait for 5 idle patterns (DP_TP_STATUS Min_Idles_Sent)
+>> >      *     (timeout after 800 us)
+>> >      */
+>> > -   intel_dp_start_link_train(intel_dp, crtc_state);
+>> > +   if (!intel_dp_start_link_train(intel_dp, crtc_state)) {
+>> > +           /* Link Training failed, retain */
+>> > +           intel_dp->link_trained = false;
+>> > +           intel_dp_stop_link_train(intel_dp, crtc_state);
+>> > +           encoder->post_disable(state, encoder,
+>> > +                              crtc_state, conn_state);
+>> > +           goto retry;
+>> > +   }
+>>
+>> As said, the retry needs to go via userspace.
+>
+> If within the supported mode range then also do we need to send uevent to user and should it come via userspace?
+> The fallback mandates in DP2.1 spec does this fallback in a loop.
+>
+> The present fallback structure
+> Struct dp_fallback {
+>         U32 link rate;
+>         U8 lane_count;
+>         U32 resolution;
+> }
+>
+> In the same fallback code, the present mode will be verified to see if its less than or equal to the resolution in dp_fallback. If so proceed within the fallback loop else set the max link_rate/lane count values and sent uevent.
 
-Signed-off-by: Nemesa Garg <nemesa.garg@intel.com>
----
- drivers/gpu/drm/i915/display/intel_crtc.c    |  3 +++
- drivers/gpu/drm/i915/display/intel_display.c | 12 +++++++++++-
- drivers/gpu/drm/i915/display/skl_scaler.c    | 11 ++++++++++-
- 3 files changed, 24 insertions(+), 2 deletions(-)
+I think I'll want *all* the link training fallbacks to go via userspace.
 
-diff --git a/drivers/gpu/drm/i915/display/intel_crtc.c b/drivers/gpu/drm/i915/display/intel_crtc.c
-index 25593f6aae7d..74c498733283 100644
---- a/drivers/gpu/drm/i915/display/intel_crtc.c
-+++ b/drivers/gpu/drm/i915/display/intel_crtc.c
-@@ -383,6 +383,9 @@ int intel_crtc_init(struct drm_i915_private *dev_priv, enum pipe pipe)
- 
- 	drm_WARN_ON(&dev_priv->drm, drm_crtc_index(&crtc->base) != crtc->pipe);
- 
-+	if (DISPLAY_VER(dev_priv) >= 20)
-+		drm_crtc_create_sharpening_strength_property(&crtc->base);
-+
- 	return 0;
- 
- fail:
-diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
-index 3d05bd203ca8..e8bd615e6977 100644
---- a/drivers/gpu/drm/i915/display/intel_display.c
-+++ b/drivers/gpu/drm/i915/display/intel_display.c
-@@ -1722,6 +1722,9 @@ static void hsw_crtc_enable(struct intel_atomic_state *state,
- 		intel_crtc_wait_for_next_vblank(wa_crtc);
- 		intel_crtc_wait_for_next_vblank(wa_crtc);
- 	}
-+
-+	if (new_crtc_state->hw.casf_params.strength_changed)
-+		intel_filter_lut_load(crtc, new_crtc_state);
- }
- 
- void ilk_pfit_disable(const struct intel_crtc_state *old_crtc_state)
-@@ -2444,8 +2447,12 @@ static int intel_crtc_compute_config(struct intel_atomic_state *state,
- 	if (crtc_state->has_pch_encoder)
- 		return ilk_fdi_compute_config(crtc, crtc_state);
- 
--	if (crtc_state->hw.casf_params.strength_changed)
-+	intel_sharpen_strength_changed(state);
-+
-+	if (crtc_state->hw.casf_params.strength_changed) {
- 		intel_sharpness_scaler_compute_config(crtc_state);
-+		intel_filter_compute_config(crtc_state);
-+	}
- 
- 	return 0;
- }
-@@ -6744,6 +6751,9 @@ static void intel_update_crtc(struct intel_atomic_state *state,
- 	if (intel_crtc_needs_fastset(new_crtc_state) &&
- 	    old_crtc_state->inherited)
- 		intel_crtc_arm_fifo_underrun(crtc, new_crtc_state);
-+
-+	if (new_crtc_state->hw.casf_params.strength_changed)
-+		intel_sharpen_filter_enable(new_crtc_state);
- }
- 
- static void intel_old_crtc_state_disables(struct intel_atomic_state *state,
-diff --git a/drivers/gpu/drm/i915/display/skl_scaler.c b/drivers/gpu/drm/i915/display/skl_scaler.c
-index be61a6ebd7e3..cb828b3880b2 100644
---- a/drivers/gpu/drm/i915/display/skl_scaler.c
-+++ b/drivers/gpu/drm/i915/display/skl_scaler.c
-@@ -925,7 +925,7 @@ void skl_scaler_get_config(struct intel_crtc_state *crtc_state)
- 
- 	/* find scaler attached to this pipe */
- 	for (i = 0; i < crtc->num_scalers; i++) {
--		u32 ctl, pos, size;
-+		u32 ctl, pos, size, sharp;
- 
- 		ctl = intel_de_read(dev_priv, SKL_PS_CTRL(crtc->pipe, i));
- 		if ((ctl & (PS_SCALER_EN | PS_BINDING_MASK)) != (PS_SCALER_EN | PS_BINDING_PIPE))
-@@ -933,6 +933,15 @@ void skl_scaler_get_config(struct intel_crtc_state *crtc_state)
- 
- 		id = i;
- 
-+		sharp = intel_de_read(dev_priv, SHARPNESS_CTL(crtc->pipe));
-+		if (sharp & FILTER_EN) {
-+			crtc_state->hw.casf_params.strength =
-+				REG_FIELD_GET(FILTER_STRENGTH_MASK, sharp) - 16;
-+			crtc_state->hw.casf_params.need_scaler = true;
-+			crtc_state->hw.casf_params.win_size =
-+				REG_FIELD_GET(FILTER_SIZE_MASK, sharp);
-+		}
-+
- 		if (!crtc_state->hw.casf_params.need_scaler)
- 			crtc_state->pch_pfit.enabled = true;
- 
+Trying to sometimes do it in kernel is a premature optimization for a
+rare case, and it just complicates matters. We'll need the path via
+uevent and userspace retry anyway, for when the mode doesn't fit, so use
+it always. Let's not add multiple ways to do things, everything around
+this is already quite complicated.
+
+And as said, the uevent does give userspace some inkling that something
+fishy is going on, and could use that info to inform the user that a
+degraded experience may be expected. Again, adding a new stream to MST
+at a later time might not fit because of the reduced parameters, and
+it'll be surprising to the user if it used to work in the past (when
+full param link training succeeded).
+
+BR,
+Jani.
+
+>
+> Thanks and Regards,
+> Arun R Murthy
+> --------------------
+>>
+>> BR,
+>> Jani.
+>>
+>>
+>> >
+>> >     /* 6.n Set DP_TP_CTL link training to Normal */
+>> >     if (!is_trans_port_sync_mode(crtc_state))
+>>
+>> --
+>> Jani Nikula, Intel
+
 -- 
-2.25.1
-
+Jani Nikula, Intel
