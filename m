@@ -2,29 +2,76 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id F3A628543AA
-	for <lists+intel-gfx@lfdr.de>; Wed, 14 Feb 2024 08:54:09 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 081C08543E6
+	for <lists+intel-gfx@lfdr.de>; Wed, 14 Feb 2024 09:15:54 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4B03910E19F;
-	Wed, 14 Feb 2024 07:54:08 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0A91A10E51D;
+	Wed, 14 Feb 2024 08:15:48 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=linaro.org header.i=@linaro.org header.b="xZ3uOlr8";
+	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from 5338d5abeb45 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 277B310E315;
- Wed, 14 Feb 2024 07:54:07 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============3114127850447245577=="
+Received: from mail-yb1-f177.google.com (mail-yb1-f177.google.com
+ [209.85.219.177])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8E38B10E32F
+ for <intel-gfx@lists.freedesktop.org>; Wed, 14 Feb 2024 08:15:38 +0000 (UTC)
+Received: by mail-yb1-f177.google.com with SMTP id
+ 3f1490d57ef6-dcd7c526cc0so834024276.1
+ for <intel-gfx@lists.freedesktop.org>; Wed, 14 Feb 2024 00:15:38 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=linaro.org; s=google; t=1707898538; x=1708503338; darn=lists.freedesktop.org;
+ h=cc:to:subject:message-id:date:from:in-reply-to:references
+ :mime-version:from:to:cc:subject:date:message-id:reply-to;
+ bh=EKXGtE0o7nACfq6pe512roREe48CDHHUhw9NIs9DgqY=;
+ b=xZ3uOlr8GM+Qp7uGyglB+XlL4GsUz3k0hefFBVNf/Si73TG8c8MU48EWuNTOUKIl9T
+ L44HsKktvM+1/Q3T2lJgL5f0BQx+xT1ukUyXMKDILZbNfGmqiXdOrW+NTJZetfrcV5j7
+ P64Rz/Zl8njNpt+vOXJjAQiQgjB/dDukSZdJs2BKeN4J05WutknzjDDYOoylTRhb9qAW
+ UlIEK9tuKaBQrt8fo5tKxdUnP6Anrm/XVvOGiXx7EuqchIrKk1Zr756H7H2Sz4/Yl34t
+ XgwSYam0kVKuqnDqs4n1KZmanQsup/iifAoPRpeQNx+DckQ4XHtfYBDaxpsTWvOP8wBN
+ WY+A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1707898538; x=1708503338;
+ h=cc:to:subject:message-id:date:from:in-reply-to:references
+ :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+ :reply-to;
+ bh=EKXGtE0o7nACfq6pe512roREe48CDHHUhw9NIs9DgqY=;
+ b=D4m4KkB41N+5svagXTxcEzZQXmriwJYMWVVAO6/VxFg8YYEIqBMWONRFm9E7OZq5PC
+ ElkVx68tswcShxnmOMCi6jr64Y65R3RJhq8wEtrewmuiN+U1WC/qoFMjW5aJZUoSteGF
+ uDz5JqLgUmonJwYG1MJiePihKLrfGQQ5Qc0whgyUtRpXPtfuWgfA9kaIT/FhYlWOgMrf
+ 1fOyrySw0VCNUufgzhIeURbq+rKHyuWXRqg3xTHiNY4rJzeXxtmvzw1lKA9JqiSWlhzP
+ iKg01+uOxGC9ChNcO/3t4x3IkGHedgNyaH1qbqJ2UUz0tTJkLqAzQq4xRVxCizMRBvVw
+ RWhg==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCWPfBSdI8DAxawT8FGSVJ/5yjKVPeNcmkU5XsrbgjSdseWTjy3pIaVyDEOhz+q2ZrMVBM4Y0tkNlt7ZBAf663kb1h8zpxwifyJExGis5MMj
+X-Gm-Message-State: AOJu0YxUpXHVuv6yE/gEna7sH+DUduftw13FrazgIIp4mk347mrczyTK
+ NgJPmHiqpDKeP5rPTTnpFDldtSq/IM8XilKY+xzwtYnEJWBC6u3fDfC4bxBnc63SKf4E/Jz0e7r
+ sbYDtFNs2jWPjPP3cwdQDRG2sxK+AXat5FNCxjg==
+X-Google-Smtp-Source: AGHT+IFI6XgUc51w44SGa4dFJZmddk/Aj01+ufuewKBsrzYVS9b+Kup4A4AKPQTJHjDr+FyB9b7AIUFcQMO+GV9FPR8=
+X-Received: by 2002:a5b:dc6:0:b0:dcd:36c1:ecb7 with SMTP id
+ t6-20020a5b0dc6000000b00dcd36c1ecb7mr1383363ybr.54.1707898537795; Wed, 14 Feb
+ 2024 00:15:37 -0800 (PST)
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Fi=2ECI=2EBAT=3A_success_for_drm/i915/display=3A_update_?=
- =?utf-8?q?pll_values_in_sync_with_Bspec_for_MTL_=28rev2=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Ravi Kumar Vodapalli" <ravi.kumar.vodapalli@intel.com>
-Cc: intel-gfx@lists.freedesktop.org
-Date: Wed, 14 Feb 2024 07:54:07 -0000
-Message-ID: <170789724716.1218995.9804128805174438410@5338d5abeb45>
-X-Patchwork-Hint: ignore
-References: <20240214070930.1028456-1-ravi.kumar.vodapalli@intel.com>
-In-Reply-To: <20240214070930.1028456-1-ravi.kumar.vodapalli@intel.com>
+References: <20240213234513.2411604-1-quic_abhinavk@quicinc.com>
+In-Reply-To: <20240213234513.2411604-1-quic_abhinavk@quicinc.com>
+From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Date: Wed, 14 Feb 2024 10:15:27 +0200
+Message-ID: <CAA8EJpo0yeLyCkVvLFX7wUEV4+i+ORbaCB2qxN0izaWLdFqCrA@mail.gmail.com>
+Subject: Re: [PATCH] drm/dp: move intel_dp_vsc_sdp_pack() to generic helper
+To: Abhinav Kumar <quic_abhinavk@quicinc.com>
+Cc: dri-devel@lists.freedesktop.org, 
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, 
+ Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>,
+ Daniel Vetter <daniel@ffwll.ch>, 
+ Jani Nikula <jani.nikula@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, 
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>, 
+ Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>, robdclark@gmail.com, 
+ freedreno@lists.freedesktop.org, intel-gfx@lists.freedesktop.org, 
+ ville.syrjala@linux.intel.com, quic_jesszhan@quicinc.com, 
+ linux-kernel@vger.kernel.org, intel-xe@lists.freedesktop.org
+Content-Type: text/plain; charset="UTF-8"
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -37,326 +84,236 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============3114127850447245577==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+On Wed, 14 Feb 2024 at 01:45, Abhinav Kumar <quic_abhinavk@quicinc.com> wrote:
+>
+> intel_dp_vsc_sdp_pack() can be re-used by other DRM drivers as well.
+> Lets move this to drm_dp_helper to achieve this.
+>
+> Signed-off-by: Abhinav Kumar <quic_abhinavk@quicinc.com>
 
-== Series Details ==
+My preference would be to have packing functions in
+drivers/video/hdmi.c, as we already have
+hdmi_audio_infoframe_pack_for_dp() there.
 
-Series: drm/i915/display: update pll values in sync with Bspec for MTL (rev2)
-URL   : https://patchwork.freedesktop.org/series/129878/
-State : success
+> ---
+>  drivers/gpu/drm/display/drm_dp_helper.c | 78 +++++++++++++++++++++++++
+>  drivers/gpu/drm/i915/display/intel_dp.c | 73 +----------------------
+>  include/drm/display/drm_dp_helper.h     |  3 +
+>  3 files changed, 84 insertions(+), 70 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/display/drm_dp_helper.c b/drivers/gpu/drm/display/drm_dp_helper.c
+> index b1ca3a1100da..066cfbbf7a91 100644
+> --- a/drivers/gpu/drm/display/drm_dp_helper.c
+> +++ b/drivers/gpu/drm/display/drm_dp_helper.c
+> @@ -2916,6 +2916,84 @@ void drm_dp_vsc_sdp_log(const char *level, struct device *dev,
+>  }
+>  EXPORT_SYMBOL(drm_dp_vsc_sdp_log);
+>
+> +/**
+> + * drm_dp_vsc_sdp_pack() - pack a given vsc sdp into generic dp_sdp
+> + * @vsc: vsc sdp initialized according to its purpose as defined in
+> + *       table 2-118 - table 2-120 in DP 1.4a specification
+> + * @sdp: valid handle to the generic dp_sdp which will be packed
+> + * @size: valid size of the passed sdp handle
+> + *
+> + * Returns length of sdp on success and error code on failure
+> + */
+> +ssize_t drm_dp_vsc_sdp_pack(const struct drm_dp_vsc_sdp *vsc,
+> +                           struct dp_sdp *sdp, size_t size)
 
-== Summary ==
+I know that you are just moving the function. Maybe there can be
+patch#2, which drops the size argument? The struct dp_sdp already has
+a defined size. The i915 driver just passes sizeof(sdp), which is more
+or less useless.
 
-CI Bug Log - changes from CI_DRM_14268 -> Patchwork_129878v2
-====================================================
+> +{
+> +       size_t length = sizeof(struct dp_sdp);
+> +
+> +       if (size < length)
+> +               return -ENOSPC;
+> +
+> +       memset(sdp, 0, size);
+> +
+> +       /*
+> +        * Prepare VSC Header for SU as per DP 1.4a spec, Table 2-119
+> +        * VSC SDP Header Bytes
+> +        */
+> +       sdp->sdp_header.HB0 = 0; /* Secondary-Data Packet ID = 0 */
+> +       sdp->sdp_header.HB1 = vsc->sdp_type; /* Secondary-data Packet Type */
+> +       sdp->sdp_header.HB2 = vsc->revision; /* Revision Number */
+> +       sdp->sdp_header.HB3 = vsc->length; /* Number of Valid Data Bytes */
+> +
+> +       if (vsc->revision == 0x6) {
+> +               sdp->db[0] = 1;
+> +               sdp->db[3] = 1;
+> +       }
+> +
+> +       /*
+> +        * Revision 0x5 and revision 0x7 supports Pixel Encoding/Colorimetry
+> +        * Format as per DP 1.4a spec and DP 2.0 respectively.
+> +        */
+> +       if (!(vsc->revision == 0x5 || vsc->revision == 0x7))
+> +               goto out;
+> +
+> +       /* VSC SDP Payload for DB16 through DB18 */
+> +       /* Pixel Encoding and Colorimetry Formats  */
+> +       sdp->db[16] = (vsc->pixelformat & 0xf) << 4; /* DB16[7:4] */
+> +       sdp->db[16] |= vsc->colorimetry & 0xf; /* DB16[3:0] */
+> +
+> +       switch (vsc->bpc) {
+> +       case 6:
+> +               /* 6bpc: 0x0 */
+> +               break;
+> +       case 8:
+> +               sdp->db[17] = 0x1; /* DB17[3:0] */
+> +               break;
+> +       case 10:
+> +               sdp->db[17] = 0x2;
+> +               break;
+> +       case 12:
+> +               sdp->db[17] = 0x3;
+> +               break;
+> +       case 16:
+> +               sdp->db[17] = 0x4;
+> +               break;
+> +       default:
+> +               WARN(1, "Missing case %d\n", vsc->bpc);
+> +               return -EINVAL;
+> +       }
+> +
+> +       /* Dynamic Range and Component Bit Depth */
+> +       if (vsc->dynamic_range == DP_DYNAMIC_RANGE_CTA)
+> +               sdp->db[17] |= 0x80;  /* DB17[7] */
+> +
+> +       /* Content Type */
+> +       sdp->db[18] = vsc->content_type & 0x7;
+> +
+> +out:
+> +       return length;
+> +}
+> +EXPORT_SYMBOL(drm_dp_vsc_sdp_pack);
+> +
+>  /**
+>   * drm_dp_get_pcon_max_frl_bw() - maximum frl supported by PCON
+>   * @dpcd: DisplayPort configuration data
+> diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
+> index f5ef95da5534..e94db51aeeb7 100644
+> --- a/drivers/gpu/drm/i915/display/intel_dp.c
+> +++ b/drivers/gpu/drm/i915/display/intel_dp.c
+> @@ -4110,73 +4110,6 @@ intel_dp_needs_vsc_sdp(const struct intel_crtc_state *crtc_state,
+>         return false;
+>  }
+>
+> -static ssize_t intel_dp_vsc_sdp_pack(const struct drm_dp_vsc_sdp *vsc,
+> -                                    struct dp_sdp *sdp, size_t size)
+> -{
+> -       size_t length = sizeof(struct dp_sdp);
+> -
+> -       if (size < length)
+> -               return -ENOSPC;
+> -
+> -       memset(sdp, 0, size);
+> -
+> -       /*
+> -        * Prepare VSC Header for SU as per DP 1.4a spec, Table 2-119
+> -        * VSC SDP Header Bytes
+> -        */
+> -       sdp->sdp_header.HB0 = 0; /* Secondary-Data Packet ID = 0 */
+> -       sdp->sdp_header.HB1 = vsc->sdp_type; /* Secondary-data Packet Type */
+> -       sdp->sdp_header.HB2 = vsc->revision; /* Revision Number */
+> -       sdp->sdp_header.HB3 = vsc->length; /* Number of Valid Data Bytes */
+> -
+> -       if (vsc->revision == 0x6) {
+> -               sdp->db[0] = 1;
+> -               sdp->db[3] = 1;
+> -       }
+> -
+> -       /*
+> -        * Revision 0x5 and revision 0x7 supports Pixel Encoding/Colorimetry
+> -        * Format as per DP 1.4a spec and DP 2.0 respectively.
+> -        */
+> -       if (!(vsc->revision == 0x5 || vsc->revision == 0x7))
+> -               goto out;
+> -
+> -       /* VSC SDP Payload for DB16 through DB18 */
+> -       /* Pixel Encoding and Colorimetry Formats  */
+> -       sdp->db[16] = (vsc->pixelformat & 0xf) << 4; /* DB16[7:4] */
+> -       sdp->db[16] |= vsc->colorimetry & 0xf; /* DB16[3:0] */
+> -
+> -       switch (vsc->bpc) {
+> -       case 6:
+> -               /* 6bpc: 0x0 */
+> -               break;
+> -       case 8:
+> -               sdp->db[17] = 0x1; /* DB17[3:0] */
+> -               break;
+> -       case 10:
+> -               sdp->db[17] = 0x2;
+> -               break;
+> -       case 12:
+> -               sdp->db[17] = 0x3;
+> -               break;
+> -       case 16:
+> -               sdp->db[17] = 0x4;
+> -               break;
+> -       default:
+> -               MISSING_CASE(vsc->bpc);
+> -               break;
+> -       }
+> -       /* Dynamic Range and Component Bit Depth */
+> -       if (vsc->dynamic_range == DP_DYNAMIC_RANGE_CTA)
+> -               sdp->db[17] |= 0x80;  /* DB17[7] */
+> -
+> -       /* Content Type */
+> -       sdp->db[18] = vsc->content_type & 0x7;
+> -
+> -out:
+> -       return length;
+> -}
+> -
+>  static ssize_t
+>  intel_dp_hdr_metadata_infoframe_sdp_pack(struct drm_i915_private *i915,
+>                                          const struct hdmi_drm_infoframe *drm_infoframe,
+> @@ -4269,8 +4202,8 @@ static void intel_write_dp_sdp(struct intel_encoder *encoder,
+>
+>         switch (type) {
+>         case DP_SDP_VSC:
+> -               len = intel_dp_vsc_sdp_pack(&crtc_state->infoframes.vsc, &sdp,
+> -                                           sizeof(sdp));
+> +               len = drm_dp_vsc_sdp_pack(&crtc_state->infoframes.vsc, &sdp,
+> +                                         sizeof(sdp));
+>                 break;
+>         case HDMI_PACKET_TYPE_GAMUT_METADATA:
+>                 len = intel_dp_hdr_metadata_infoframe_sdp_pack(dev_priv,
+> @@ -4297,7 +4230,7 @@ void intel_write_dp_vsc_sdp(struct intel_encoder *encoder,
+>         struct dp_sdp sdp = {};
+>         ssize_t len;
+>
+> -       len = intel_dp_vsc_sdp_pack(vsc, &sdp, sizeof(sdp));
+> +       len = drm_dp_vsc_sdp_pack(vsc, &sdp, sizeof(sdp));
+>
+>         if (drm_WARN_ON(&dev_priv->drm, len < 0))
+>                 return;
+> diff --git a/include/drm/display/drm_dp_helper.h b/include/drm/display/drm_dp_helper.h
+> index 863b2e7add29..f8db34a2f7a5 100644
+> --- a/include/drm/display/drm_dp_helper.h
+> +++ b/include/drm/display/drm_dp_helper.h
+> @@ -813,4 +813,7 @@ int drm_dp_bw_overhead(int lane_count, int hactive,
+>                        int bpp_x16, unsigned long flags);
+>  int drm_dp_bw_channel_coding_efficiency(bool is_uhbr);
+>
+> +ssize_t drm_dp_vsc_sdp_pack(const struct drm_dp_vsc_sdp *vsc,
+> +                           struct dp_sdp *sdp, size_t size);
+> +
+>  #endif /* _DRM_DP_HELPER_H_ */
+> --
+> 2.34.1
+>
 
-Summary
--------
 
-  **SUCCESS**
-
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_129878v2/index.html
-
-Participating hosts (38 -> 35)
-------------------------------
-
-  Missing    (3): bat-arls-2 fi-snb-2520m fi-bsw-n3050 
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_129878v2 that come from known issues:
-
-### CI changes ###
-
-#### Possible fixes ####
-
-  * boot:
-    - fi-cfl-8109u:       [FAIL][1] ([i915#8293]) -> [PASS][2]
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14268/fi-cfl-8109u/boot.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_129878v2/fi-cfl-8109u/boot.html
-
-  
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@gem_huc_copy@huc-copy:
-    - fi-cfl-8109u:       NOTRUN -> [SKIP][3] ([fdo#109271] / [i915#2190])
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_129878v2/fi-cfl-8109u/igt@gem_huc_copy@huc-copy.html
-
-  * igt@gem_lmem_swapping@parallel-random-engines:
-    - bat-adlm-1:         NOTRUN -> [SKIP][4] ([i915#4613]) +3 other tests skip
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_129878v2/bat-adlm-1/igt@gem_lmem_swapping@parallel-random-engines.html
-
-  * igt@gem_lmem_swapping@verify-random:
-    - fi-cfl-8109u:       NOTRUN -> [SKIP][5] ([fdo#109271] / [i915#4613]) +3 other tests skip
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_129878v2/fi-cfl-8109u/igt@gem_lmem_swapping@verify-random.html
-
-  * igt@gem_tiled_pread_basic:
-    - bat-adlm-1:         NOTRUN -> [SKIP][6] ([i915#3282])
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_129878v2/bat-adlm-1/igt@gem_tiled_pread_basic.html
-
-  * igt@i915_pm_rps@basic-api:
-    - bat-adlm-1:         NOTRUN -> [SKIP][7] ([i915#6621])
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_129878v2/bat-adlm-1/igt@i915_pm_rps@basic-api.html
-
-  * igt@kms_cursor_legacy@basic-flip-after-cursor-varying-size:
-    - bat-adlm-1:         NOTRUN -> [SKIP][8] ([i915#9875] / [i915#9900]) +16 other tests skip
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_129878v2/bat-adlm-1/igt@kms_cursor_legacy@basic-flip-after-cursor-varying-size.html
-
-  * igt@kms_flip@basic-plain-flip:
-    - bat-adlm-1:         NOTRUN -> [SKIP][9] ([i915#3637]) +3 other tests skip
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_129878v2/bat-adlm-1/igt@kms_flip@basic-plain-flip.html
-
-  * igt@kms_force_connector_basic@force-load-detect:
-    - bat-adlm-1:         NOTRUN -> [SKIP][10] ([fdo#109285])
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_129878v2/bat-adlm-1/igt@kms_force_connector_basic@force-load-detect.html
-
-  * igt@kms_frontbuffer_tracking@basic:
-    - bat-adlm-1:         NOTRUN -> [SKIP][11] ([i915#1849] / [i915#4342])
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_129878v2/bat-adlm-1/igt@kms_frontbuffer_tracking@basic.html
-
-  * igt@kms_pipe_crc_basic@nonblocking-crc:
-    - bat-dg2-11:         NOTRUN -> [SKIP][12] ([i915#9197])
-   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_129878v2/bat-dg2-11/igt@kms_pipe_crc_basic@nonblocking-crc.html
-
-  * igt@kms_pm_backlight@basic-brightness:
-    - fi-cfl-8109u:       NOTRUN -> [SKIP][13] ([fdo#109271]) +7 other tests skip
-   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_129878v2/fi-cfl-8109u/igt@kms_pm_backlight@basic-brightness.html
-    - bat-adlm-1:         NOTRUN -> [SKIP][14] ([i915#5354])
-   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_129878v2/bat-adlm-1/igt@kms_pm_backlight@basic-brightness.html
-
-  * igt@kms_setmode@basic-clone-single-crtc:
-    - bat-adlm-1:         NOTRUN -> [SKIP][15] ([i915#3555])
-   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_129878v2/bat-adlm-1/igt@kms_setmode@basic-clone-single-crtc.html
-
-  * igt@prime_vgem@basic-fence-flip:
-    - bat-adlm-1:         NOTRUN -> [SKIP][16] ([i915#3708] / [i915#9900])
-   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_129878v2/bat-adlm-1/igt@prime_vgem@basic-fence-flip.html
-
-  * igt@prime_vgem@basic-write:
-    - bat-adlm-1:         NOTRUN -> [SKIP][17] ([i915#3708]) +2 other tests skip
-   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_129878v2/bat-adlm-1/igt@prime_vgem@basic-write.html
-
-  
-#### Possible fixes ####
-
-  * igt@gem_exec_parallel@engines@fds:
-    - bat-adlm-1:         [INCOMPLETE][18] ([i915#10264]) -> [PASS][19]
-   [18]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14268/bat-adlm-1/igt@gem_exec_parallel@engines@fds.html
-   [19]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_129878v2/bat-adlm-1/igt@gem_exec_parallel@engines@fds.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
-  [fdo#109285]: https://bugs.freedesktop.org/show_bug.cgi?id=109285
-  [i915#10264]: https://gitlab.freedesktop.org/drm/intel/issues/10264
-  [i915#1849]: https://gitlab.freedesktop.org/drm/intel/issues/1849
-  [i915#2190]: https://gitlab.freedesktop.org/drm/intel/issues/2190
-  [i915#3282]: https://gitlab.freedesktop.org/drm/intel/issues/3282
-  [i915#3555]: https://gitlab.freedesktop.org/drm/intel/issues/3555
-  [i915#3637]: https://gitlab.freedesktop.org/drm/intel/issues/3637
-  [i915#3708]: https://gitlab.freedesktop.org/drm/intel/issues/3708
-  [i915#4342]: https://gitlab.freedesktop.org/drm/intel/issues/4342
-  [i915#4613]: https://gitlab.freedesktop.org/drm/intel/issues/4613
-  [i915#5354]: https://gitlab.freedesktop.org/drm/intel/issues/5354
-  [i915#6621]: https://gitlab.freedesktop.org/drm/intel/issues/6621
-  [i915#8293]: https://gitlab.freedesktop.org/drm/intel/issues/8293
-  [i915#9197]: https://gitlab.freedesktop.org/drm/intel/issues/9197
-  [i915#9673]: https://gitlab.freedesktop.org/drm/intel/issues/9673
-  [i915#9732]: https://gitlab.freedesktop.org/drm/intel/issues/9732
-  [i915#9875]: https://gitlab.freedesktop.org/drm/intel/issues/9875
-  [i915#9900]: https://gitlab.freedesktop.org/drm/intel/issues/9900
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_14268 -> Patchwork_129878v2
-
-  CI-20190529: 20190529
-  CI_DRM_14268: e3e6421a490e14b441f0ace4fe3cf45f70aa5c11 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_7711: 7711
-  Patchwork_129878v2: e3e6421a490e14b441f0ace4fe3cf45f70aa5c11 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-### Linux commits
-
-c3757eccaa83 drm/i915/display: update pll values in sync with Bspec for MTL
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_129878v2/index.html
-
---===============3114127850447245577==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915/display: update pll values in sync with Bspec for MTL (rev2)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/129878/">https://patchwork.freedesktop.org/series/129878/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_129878v2/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_129878v2/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_14268 -&gt; Patchwork_129878v2</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_129878v2/index.html</p>
-<h2>Participating hosts (38 -&gt; 35)</h2>
-<p>Missing    (3): bat-arls-2 fi-snb-2520m fi-bsw-n3050 </p>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_129878v2 that come from known issues:</p>
-<h3>CI changes</h3>
-<h4>Possible fixes</h4>
-<ul>
-<li>boot:<ul>
-<li>fi-cfl-8109u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14268/fi-cfl-8109u/boot.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/8293">i915#8293</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_129878v2/fi-cfl-8109u/boot.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@gem_huc_copy@huc-copy:</p>
-<ul>
-<li>fi-cfl-8109u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_129878v2/fi-cfl-8109u/igt@gem_huc_copy@huc-copy.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/2190">i915#2190</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_lmem_swapping@parallel-random-engines:</p>
-<ul>
-<li>bat-adlm-1:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_129878v2/bat-adlm-1/igt@gem_lmem_swapping@parallel-random-engines.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4613">i915#4613</a>) +3 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_lmem_swapping@verify-random:</p>
-<ul>
-<li>fi-cfl-8109u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_129878v2/fi-cfl-8109u/igt@gem_lmem_swapping@verify-random.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/4613">i915#4613</a>) +3 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_tiled_pread_basic:</p>
-<ul>
-<li>bat-adlm-1:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_129878v2/bat-adlm-1/igt@gem_tiled_pread_basic.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3282">i915#3282</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_pm_rps@basic-api:</p>
-<ul>
-<li>bat-adlm-1:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_129878v2/bat-adlm-1/igt@i915_pm_rps@basic-api.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/6621">i915#6621</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_cursor_legacy@basic-flip-after-cursor-varying-size:</p>
-<ul>
-<li>bat-adlm-1:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_129878v2/bat-adlm-1/igt@kms_cursor_legacy@basic-flip-after-cursor-varying-size.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/9875">i915#9875</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/9900">i915#9900</a>) +16 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_flip@basic-plain-flip:</p>
-<ul>
-<li>bat-adlm-1:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_129878v2/bat-adlm-1/igt@kms_flip@basic-plain-flip.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3637">i915#3637</a>) +3 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_force_connector_basic@force-load-detect:</p>
-<ul>
-<li>bat-adlm-1:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_129878v2/bat-adlm-1/igt@kms_force_connector_basic@force-load-detect.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109285">fdo#109285</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_frontbuffer_tracking@basic:</p>
-<ul>
-<li>bat-adlm-1:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_129878v2/bat-adlm-1/igt@kms_frontbuffer_tracking@basic.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1849">i915#1849</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/4342">i915#4342</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_pipe_crc_basic@nonblocking-crc:</p>
-<ul>
-<li>bat-dg2-11:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_129878v2/bat-dg2-11/igt@kms_pipe_crc_basic@nonblocking-crc.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/9197">i915#9197</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_pm_backlight@basic-brightness:</p>
-<ul>
-<li>fi-cfl-8109u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_129878v2/fi-cfl-8109u/igt@kms_pm_backlight@basic-brightness.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +7 other tests skip</li>
-<li>bat-adlm-1:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_129878v2/bat-adlm-1/igt@kms_pm_backlight@basic-brightness.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/5354">i915#5354</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_setmode@basic-clone-single-crtc:</p>
-<ul>
-<li>bat-adlm-1:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_129878v2/bat-adlm-1/igt@kms_setmode@basic-clone-single-crtc.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3555">i915#3555</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@prime_vgem@basic-fence-flip:</p>
-<ul>
-<li>bat-adlm-1:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_129878v2/bat-adlm-1/igt@prime_vgem@basic-fence-flip.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3708">i915#3708</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/9900">i915#9900</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@prime_vgem@basic-write:</p>
-<ul>
-<li>bat-adlm-1:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_129878v2/bat-adlm-1/igt@prime_vgem@basic-write.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3708">i915#3708</a>) +2 other tests skip</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>igt@gem_exec_parallel@engines@fds:<ul>
-<li>bat-adlm-1:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14268/bat-adlm-1/igt@gem_exec_parallel@engines@fds.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/10264">i915#10264</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_129878v2/bat-adlm-1/igt@gem_exec_parallel@engines@fds.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<p>{name}: This element is suppressed. This means it is ignored when computing<br />
-          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_14268 -&gt; Patchwork_129878v2</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_14268: e3e6421a490e14b441f0ace4fe3cf45f70aa5c11 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_7711: 7711<br />
-  Patchwork_129878v2: e3e6421a490e14b441f0ace4fe3cf45f70aa5c11 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<h3>Linux commits</h3>
-<p>c3757eccaa83 drm/i915/display: update pll values in sync with Bspec for MTL</p>
-
-</body>
-</html>
-
---===============3114127850447245577==--
+-- 
+With best wishes
+Dmitry
