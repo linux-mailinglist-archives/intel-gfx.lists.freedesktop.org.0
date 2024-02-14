@@ -2,57 +2,82 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3274A855262
-	for <lists+intel-gfx@lfdr.de>; Wed, 14 Feb 2024 19:41:28 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id AA89A8552F6
+	for <lists+intel-gfx@lfdr.de>; Wed, 14 Feb 2024 20:10:45 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8AB4C10E3F4;
-	Wed, 14 Feb 2024 18:41:26 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3707C10E194;
+	Wed, 14 Feb 2024 19:10:44 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Iih6pa8E";
+	dkim=pass (2048-bit key; unprotected) header.d=linaro.org header.i=@linaro.org header.b="bTZPDRYP";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3063310E3F4;
- Wed, 14 Feb 2024 18:41:25 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1707936085; x=1739472085;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version:content-transfer-encoding;
- bh=InTT6bYSM0w+PF/r5zeveMuJFdQywHuVLtuRMFh/qQI=;
- b=Iih6pa8EjqDoWmPqTVVHaXzJ5caRRj8N9rAP5MPiKCaJ5S+CeZR5rpT9
- qlAfsYaNZuL6YEbQP+aRWcBz/3Tn+EAOtRG8CAlXVfmlxbJ04ctGSAurF
- vuO6TxNehfVmvBrg3ObMYEWnseTI8XW8U8qby080QiYA71F0xC1ABvyc9
- +imvt1Mk/jY4CFRhgK3jnHU3wuv4MpSTlNfZL+ruAyBiSXnpbCUU7cit3
- tI0Og8KAGFkiXEWQc+1Yk8iZ2J1ilm1Dc9jhA5ezXmBXaGLVuDgKTs02A
- Eehi2pF5ccOrNFf5eLWT2SVRnJFK4i9NlQ7f34Aoi2Ph72dAvMjscdbnZ g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10984"; a="13387697"
-X-IronPort-AV: E=Sophos;i="6.06,160,1705392000"; d="scan'208";a="13387697"
-Received: from orviesa010.jf.intel.com ([10.64.159.150])
- by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Feb 2024 10:41:25 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.06,160,1705392000"; 
-   d="scan'208";a="3352533"
-Received: from kwszolek-mobl1.ger.corp.intel.com (HELO localhost)
- ([10.252.63.190])
- by orviesa010-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Feb 2024 10:41:22 -0800
-From: Jani Nikula <jani.nikula@intel.com>
-To: Ville =?utf-8?B?U3lyasOkbMOk?= <ville.syrjala@linux.intel.com>
-Cc: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- intel-xe@lists.freedesktop.org, Arun R Murthy <arun.r.murthy@intel.com>
-Subject: Re: [PATCH v2 4/6] drm/i915/mst: use the MST mode detected previously
-In-Reply-To: <Zc0HmRxIj4ePnh4I@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <cover.1707823736.git.jani.nikula@intel.com>
- <4fb849117a31940a3fbc26287c09ee3928e91991.1707823736.git.jani.nikula@intel.com>
- <Zc0HmRxIj4ePnh4I@intel.com>
-Date: Wed, 14 Feb 2024 20:41:19 +0200
-Message-ID: <87v86q6g8g.fsf@intel.com>
+Received: from mail-yb1-f180.google.com (mail-yb1-f180.google.com
+ [209.85.219.180])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B42E810E0FB
+ for <intel-gfx@lists.freedesktop.org>; Wed, 14 Feb 2024 19:10:36 +0000 (UTC)
+Received: by mail-yb1-f180.google.com with SMTP id
+ 3f1490d57ef6-dcbc00f6c04so2918508276.3
+ for <intel-gfx@lists.freedesktop.org>; Wed, 14 Feb 2024 11:10:36 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=linaro.org; s=google; t=1707937836; x=1708542636; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=Uq831+oypzfGO9lO95Fszd/4mrvaWFJLcRrSZ1YqWm8=;
+ b=bTZPDRYPjYBqCNRhnf8d7we8w1ERzIk31tvOD2cuF8EuUYhXIMva/KmofOeo9hVgHX
+ JKbfonA1wUNIYL1j1O8busQYoWcWTgAviOJgoO01iEnrAiwn8VW5ORVpnBdJ2H+Zl4Ue
+ M1ceewVLJED2uQSz5L5u4bMtMdeCw0s6WKKgaYZW7lv2SxAca7jzSCSDzcdjgRVrgEgi
+ yp+tl+rXwNsIeglcQy5bwgPDqaRksq33cSonRoluhqcbZmpl5Qoo359f1p8zS1UtCvE/
+ zbYNCg+pLToXSROIcyxTkNk8VetUUJD+B9K36NrIo4DbRxOmFylss/mJfDCW7TXHAhHG
+ sEaw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1707937836; x=1708542636;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+ :subject:date:message-id:reply-to;
+ bh=Uq831+oypzfGO9lO95Fszd/4mrvaWFJLcRrSZ1YqWm8=;
+ b=TQVIVugHaciSoekRSyUH5ZRpRaKiRTHAbB9u0kVm0QwAFeVPtllDc2vpPQHY3YKov9
+ K6FFfyMZEcF13dUXGfGI8unhs2FCx/HTbOKDn/pDmRi2mU7pXgetXGjD5rMHZN69NgLI
+ ATIiVJwTEIh0qSQO7aAk/J01px/q4Qlq2W3mr0LLPbJ+soavpUmVB65QNPpri6LyZV1J
+ GyMdNyNRkUxH1pvft6kimcmJlFvcAz2rvdV8g/3X0cV1PLw6ZeH/87sLLpuIC4W1qor3
+ Rns9HFhivw9GmPvkVXEkAgHyCCK7uGR50M2EdagofnOr64sY1qOAnrnLRqnsMKNvCTA3
+ qMDg==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCX1EA7egYwEEV53JCpazXWWAbqKNQnEOEggryMS84c84cjhkedrToAf1FM1z6hc7L9Guyfl9zy1h9++Yfpg9AGFbnAnJ4cOBzxRctCBlzPf
+X-Gm-Message-State: AOJu0YxaqGBXHRvOQVDEUPqsouwlBZO7Vo5OezjKQtg45swERUYPtHle
+ FD1q4QLt05l7y2eEYrR18582/vzqYNQvcC94WGjZ3hGRzuwOJ1AHg80KUSNopHjxcDzD3UA9B9a
+ tFKVQW3S6w6a9rrLHagbKuUGpN28eiNRhZ7mVJg==
+X-Google-Smtp-Source: AGHT+IFmsVR2aJSFUOiWSYzFcUYy50TjKK+2YxD61ipvFBAbBI+bFm3GfY2tdB3QV5bM1o3Q0AKeikm65DKhHmKecag=
+X-Received: by 2002:a25:83cf:0:b0:dcd:5c7:8466 with SMTP id
+ v15-20020a2583cf000000b00dcd05c78466mr3316434ybm.44.1707937835898; Wed, 14
+ Feb 2024 11:10:35 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+References: <20240213234513.2411604-1-quic_abhinavk@quicinc.com>
+ <CAA8EJpo0yeLyCkVvLFX7wUEV4+i+ORbaCB2qxN0izaWLdFqCrA@mail.gmail.com>
+ <eb8b3bac-5f97-8efd-721e-08e9544be3f8@quicinc.com>
+ <Zc0AR6pdLzDjCrAB@intel.com>
+ <fa63e9c1-3cec-41df-c643-33950346b76c@quicinc.com>
+In-Reply-To: <fa63e9c1-3cec-41df-c643-33950346b76c@quicinc.com>
+From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Date: Wed, 14 Feb 2024 21:10:24 +0200
+Message-ID: <CAA8EJppqMZFG=wN3kdn75Mx6zYX58LDJHV6Vv3Zuk=bw-h3mRg@mail.gmail.com>
+Subject: Re: [PATCH] drm/dp: move intel_dp_vsc_sdp_pack() to generic helper
+To: Abhinav Kumar <quic_abhinavk@quicinc.com>
+Cc: =?UTF-8?B?VmlsbGUgU3lyasOkbMOk?= <ville.syrjala@linux.intel.com>, 
+ dri-devel@lists.freedesktop.org, 
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, 
+ Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>,
+ Daniel Vetter <daniel@ffwll.ch>, 
+ Jani Nikula <jani.nikula@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, 
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>, 
+ Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>, robdclark@gmail.com, 
+ freedreno@lists.freedesktop.org, intel-gfx@lists.freedesktop.org, 
+ quic_jesszhan@quicinc.com, linux-kernel@vger.kernel.org, 
+ intel-xe@lists.freedesktop.org
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -69,128 +94,117 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, 14 Feb 2024, Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com=
-> wrote:
-> On Tue, Feb 13, 2024 at 01:30:59PM +0200, Jani Nikula wrote:
->> Drop the duplicate read of DP_MSTM_CAP DPCD register, and the duplicate
->> logic for choosing MST mode, and store the chosen mode in struct
->> intel_dp. Rename intel_dp_configure_mst() to intel_dp_mst_configure()
->> while at it.
->>=20
->> Cc: Arun R Murthy <arun.r.murthy@intel.com>
->> Cc: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
->> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
->> ---
->>  .../drm/i915/display/intel_display_types.h    |  1 +
->>  drivers/gpu/drm/i915/display/intel_dp.c       | 23 ++++++++-----------
->>  2 files changed, 11 insertions(+), 13 deletions(-)
->>=20
->> diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/driver=
-s/gpu/drm/i915/display/intel_display_types.h
->> index 01eb6e4e6049..4a8440a3a812 100644
->> --- a/drivers/gpu/drm/i915/display/intel_display_types.h
->> +++ b/drivers/gpu/drm/i915/display/intel_display_types.h
->> @@ -1780,6 +1780,7 @@ struct intel_dp {
->>=20=20
->>  	bool is_mst;
->>  	int active_mst_links;
->> +	enum drm_dp_mst_mode mst_detect;
->>=20=20
->>  	/* connector directly attached - won't be use for modeset in mst world=
- */
->>  	struct intel_connector *attached_connector;
->> diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i=
-915/display/intel_dp.c
->> index 007cb2a04e38..72e91322e310 100644
->> --- a/drivers/gpu/drm/i915/display/intel_dp.c
->> +++ b/drivers/gpu/drm/i915/display/intel_dp.c
->> @@ -4039,11 +4039,10 @@ intel_dp_mst_detect(struct intel_dp *intel_dp)
->>  	struct drm_i915_private *i915 =3D dp_to_i915(intel_dp);
->>  	struct intel_encoder *encoder =3D &dp_to_dig_port(intel_dp)->base;
->>  	enum drm_dp_mst_mode sink_mst_mode;
->> -	enum drm_dp_mst_mode mst_detect;
->>=20=20
->>  	sink_mst_mode =3D drm_dp_read_mst_cap(&intel_dp->aux, intel_dp->dpcd);
->>=20=20
->> -	mst_detect =3D intel_dp_mst_mode_choose(intel_dp, sink_mst_mode);
->> +	intel_dp->mst_detect =3D intel_dp_mst_mode_choose(intel_dp, sink_mst_m=
-ode);
->>=20=20
->>  	drm_dbg_kms(&i915->drm,
->>  		    "[ENCODER:%d:%s] MST support: port: %s, sink: %s, modparam: %s ->=
- enable: %s\n",
->> @@ -4051,25 +4050,23 @@ intel_dp_mst_detect(struct intel_dp *intel_dp)
->>  		    str_yes_no(intel_dp_mst_source_support(intel_dp)),
->>  		    intel_dp_mst_mode_str(sink_mst_mode),
->>  		    str_yes_no(i915->display.params.enable_dp_mst),
->> -		    intel_dp_mst_mode_str(mst_detect));
->> +		    intel_dp_mst_mode_str(intel_dp->mst_detect));
->>=20=20
->> -	return mst_detect !=3D DRM_DP_SST;
->> +	return intel_dp->mst_detect !=3D DRM_DP_SST;
->>  }
->>=20=20
->>  static void
->> -intel_dp_configure_mst(struct intel_dp *intel_dp)
->> +intel_dp_mst_configure(struct intel_dp *intel_dp)
->>  {
->> -	struct drm_i915_private *i915 =3D dp_to_i915(intel_dp);
->> -	bool sink_can_mst =3D drm_dp_read_mst_cap(&intel_dp->aux, intel_dp->dp=
-cd) =3D=3D DRM_DP_MST;
->> -
->>  	if (!intel_dp_mst_source_support(intel_dp))
->>  		return;
+On Wed, 14 Feb 2024 at 20:08, Abhinav Kumar <quic_abhinavk@quicinc.com> wro=
+te:
 >
-> I was wondering if we even need that, but it looks to be just a
-> check to see if we actually initialized the mst_mgt or not.
-> We should probably rename it or something... Or perhaps we could
-> tweak the topology manager a bit so we wouldn't need to check...
-
-Yeah, I figured we should address this in
-follow-up. intel_dp_mst_suspend() and intel_dp_mst_resume() would
-benefit too.
-
 >
->>=20=20
->> -	intel_dp->is_mst =3D sink_can_mst &&
->> -		i915->display.params.enable_dp_mst;
->> +	intel_dp->is_mst =3D intel_dp->mst_detect !=3D DRM_DP_SST;
->> +
->> +	drm_dp_mst_topology_mgr_set_mst(&intel_dp->mst_mgr, intel_dp->is_mst);
->>=20=20
->> -	drm_dp_mst_topology_mgr_set_mst(&intel_dp->mst_mgr,
->> -					intel_dp->is_mst);
->> +	/* Avoid stale info on the next detect cycle. */
->> +	intel_dp->mst_detect =3D DRM_DP_SST;
 >
-> Hmm. Not sure I like having ephemeral stuff like this in intel_dp,
-> but I guess the alternative would be plumb it up from detect_dpcd()
-> by hand, which might not be super pretty either. Oh well.
-
-Trust me, I went back and forth with this, and this felt least ugly. The
-main reason for resetting it back here was to ensure nobody tries to use
-it for anything else, and to ensure it gets reset.
-
+> On 2/14/2024 10:02 AM, Ville Syrj=C3=A4l=C3=A4 wrote:
+> > On Wed, Feb 14, 2024 at 09:17:34AM -0800, Abhinav Kumar wrote:
+> >>
+> >>
+> >> On 2/14/2024 12:15 AM, Dmitry Baryshkov wrote:
+> >>> On Wed, 14 Feb 2024 at 01:45, Abhinav Kumar <quic_abhinavk@quicinc.co=
+m> wrote:
+> >>>>
+> >>>> intel_dp_vsc_sdp_pack() can be re-used by other DRM drivers as well.
+> >>>> Lets move this to drm_dp_helper to achieve this.
+> >>>>
+> >>>> Signed-off-by: Abhinav Kumar <quic_abhinavk@quicinc.com>
+> >>>
+> >>> My preference would be to have packing functions in
+> >>> drivers/video/hdmi.c, as we already have
+> >>> hdmi_audio_infoframe_pack_for_dp() there.
+> >>>
+> >>
+> >> My preference is drm_dp_helper because it already has some VSC SDP stu=
+ff
+> >> and after discussion with Ville on IRC, I decided to post it this way.
+> >>
+> >> hdmi_audio_infoframe_pack_for_dp() is an exception from my PoV as the
+> >> hdmi audio infoframe fields were re-used and packed into a DP SDP
+> >> thereby re-using the existing struct hdmi_audio_infoframe .
+> >>
+> >> This is not like that. Here we pack from struct drm_dp_vsc_sdp to stru=
+ct
+> >> dp_sdp both of which had prior usages already in this file.
+> >>
+> >> So it all adds up and makes sense to me to be in this file.
+> >>
+> >> I will let the other DRM core maintainers comment on this.
+> >>
+> >> Ville, Jani?
+> >
+> > Yeah, I'm not sure bloating the (poorly named) hdmi.c with all
+> > SDP stuff is a great idea. Since other related stuff already
+> > lives in the drm_dp_helper.c that seems reasonable to me at this
+> > time. And if we get a decent amount of this then probably all
+> > DP SDP stuff should be extracted into its own file.
+> >
 >
-> Reviewed-by: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
-
-Thanks!
-
+> Yes, thanks.
 >
->>  }
->>=20=20
->>  static bool
->> @@ -5739,7 +5736,7 @@ intel_dp_detect(struct drm_connector *connector,
->>=20=20
->>  	intel_dp_detect_dsc_caps(intel_dp, intel_connector);
->>=20=20
->> -	intel_dp_configure_mst(intel_dp);
->> +	intel_dp_mst_configure(intel_dp);
->>=20=20
->>  	/*
->>  	 * TODO: Reset link params when switching to MST mode, until MST
->> --=20
->> 2.39.2
+> > There are of course a few overlaps here andthere (the audio SDP
+> > I guess, and the CTA infoframe SDP). But I'm not sure that actually
+> > needs any SDP specific stuff in hdmi.c, or could we just let hdmi.c
+> > deal with the actual CTA-861 stuff and then have the DP SDP code
+> > wrap that up in its own thing externally? Dunno, haven't really
+> > looked at the details.
+> >
+>
+> Thats a good way to look at it. this packing is from DP spec and not CTA
+> so makes more sense to be in this file.
+>
+> In that case, R-b?
+>
+> >>
+> >>>> ---
+> >>>>    drivers/gpu/drm/display/drm_dp_helper.c | 78 ++++++++++++++++++++=
++++++
+> >>>>    drivers/gpu/drm/i915/display/intel_dp.c | 73 +-------------------=
+---
+> >>>>    include/drm/display/drm_dp_helper.h     |  3 +
+> >>>>    3 files changed, 84 insertions(+), 70 deletions(-)
+> >>>>
+> >>>> diff --git a/drivers/gpu/drm/display/drm_dp_helper.c b/drivers/gpu/d=
+rm/display/drm_dp_helper.c
+> >>>> index b1ca3a1100da..066cfbbf7a91 100644
+> >>>> --- a/drivers/gpu/drm/display/drm_dp_helper.c
+> >>>> +++ b/drivers/gpu/drm/display/drm_dp_helper.c
+> >>>> @@ -2916,6 +2916,84 @@ void drm_dp_vsc_sdp_log(const char *level, st=
+ruct device *dev,
+> >>>>    }
+> >>>>    EXPORT_SYMBOL(drm_dp_vsc_sdp_log);
+> >>>>
+> >>>> +/**
+> >>>> + * drm_dp_vsc_sdp_pack() - pack a given vsc sdp into generic dp_sdp
+> >>>> + * @vsc: vsc sdp initialized according to its purpose as defined in
+> >>>> + *       table 2-118 - table 2-120 in DP 1.4a specification
+> >>>> + * @sdp: valid handle to the generic dp_sdp which will be packed
+> >>>> + * @size: valid size of the passed sdp handle
+> >>>> + *
+> >>>> + * Returns length of sdp on success and error code on failure
+> >>>> + */
+> >>>> +ssize_t drm_dp_vsc_sdp_pack(const struct drm_dp_vsc_sdp *vsc,
+> >>>> +                           struct dp_sdp *sdp, size_t size)
+> >>>
+> >>> I know that you are just moving the function. Maybe there can be
+> >>> patch#2, which drops the size argument? The struct dp_sdp already has
+> >>> a defined size. The i915 driver just passes sizeof(sdp), which is mor=
+e
+> >>> or less useless.
+> >>>
+> >>
+> >> Yes this is a valid point, I also noticed this. I can post it on top o=
+f
+> >> this once we get an agreement and ack on this patch first.
+> >>
+
+From my side, with the promise of the size fixup.
+
+Acked-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+
 
 --=20
-Jani Nikula, Intel
+With best wishes
+Dmitry
