@@ -2,51 +2,49 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 54DD7854331
-	for <lists+intel-gfx@lfdr.de>; Wed, 14 Feb 2024 08:03:36 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 27EFB854341
+	for <lists+intel-gfx@lfdr.de>; Wed, 14 Feb 2024 08:05:46 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CC87210E3FE;
-	Wed, 14 Feb 2024 07:03:33 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E926510E372;
+	Wed, 14 Feb 2024 07:05:43 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="jblLWsn2";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="CYdXePqy";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A52FD10E491
- for <intel-gfx@lists.freedesktop.org>; Wed, 14 Feb 2024 07:03:32 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0940E10E372
+ for <intel-gfx@lists.freedesktop.org>; Wed, 14 Feb 2024 07:05:42 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1707894213; x=1739430213;
+ t=1707894343; x=1739430343;
  h=from:to:cc:subject:date:message-id:mime-version:
  content-transfer-encoding;
  bh=1YOjAvIZuN+Xkw5BYlpD3/qGTGy/sxi+KwmRgKG7YIg=;
- b=jblLWsn2bd7S/ggGQzGMMKyUC7RFMu77Kbvfp8PgVEZ/OjvCTfNQLFRL
- dXCbzulyIA0pyZ1oz4GOoL0Q8mBpyO58/PMsbGAGmlhXnlE1tIbZuNmR6
- A1ltfTzIAsrFM5E4w7XaxYX4UApp9N2KD3aeeQnXv2I66B0NB8wyypw0y
- Y4/CkWIi30fdBtCJRakz9GAd4V2kfVeWzeK0gZLbVY99sqIahOOlaaqLI
- GCa7t9CRQpJsjFmnUew+3Gt1XsRR8SNBAw8KexjxnNpQpG08g7HaVW7d9
- y0u4TcncG0NZ25+AqFNrHW2+MsJIIcBpG/evJbSlPe0zbOKlgVh9zzolT A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10982"; a="12647060"
-X-IronPort-AV: E=Sophos;i="6.06,159,1705392000"; d="scan'208";a="12647060"
-Received: from orviesa007.jf.intel.com ([10.64.159.147])
- by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Feb 2024 23:03:28 -0800
+ b=CYdXePqybSFMFJzCnVgkojKa6wO4gMwpFc2BzmsvktwRb3RgLL2timvu
+ S3gJjYKGMrYgGxIbfnb7tNahfaNZEiaiAOqjRJjN/m4RFx5abMGba1gkd
+ aR0hrVTNSji43llVnrR1yWrRetmcSmu68MSYkYjwZF+had1tA7ONc31gd
+ xGqC/nb8hB5P/0AttPA1KsnUgvrcy30qH4GWTjcdpkEJlKRmsxDk2jEgn
+ GHWVygMqhoAxfVpAchcxA4agYnupIOhb29gfOQZQEkY9Z1iMBBjcXAgpM
+ V7T4ZcQzhsPYTYsoapSDu+hw//DlQO/cN3IKyl0kti1F5/uA4RMid4cr2 w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10982"; a="2290597"
+X-IronPort-AV: E=Sophos;i="6.06,159,1705392000"; 
+   d="scan'208";a="2290597"
+Received: from orviesa004.jf.intel.com ([10.64.159.144])
+ by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 Feb 2024 23:05:42 -0800
 X-ExtLoop1: 1
 X-IronPort-AV: E=Sophos;i="6.06,159,1705392000"; 
-   d="scan'208";a="3430505"
+   d="scan'208";a="7860952"
 Received: from rvodapal-desk.iind.intel.com ([10.145.162.163])
- by orviesa007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Feb 2024 23:03:26 -0800
+ by orviesa004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 Feb 2024 23:05:40 -0800
 From: Ravi Kumar Vodapalli <ravi.kumar.vodapalli@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Cc: matthew.d.roper@intel.com, balasubramani.vivekanandan@intel.com,
- lucas.demarchi@intel.com, clinton.a.taylor@intel.com,
- haridhar.kalvala@intel.com, radhakrishna.sripada@intel.com,
- matthew.s.atwood@intel.com, dnyaneshwar.bhadane@intel.com
+Cc: shekhar.chauhan@intel.com
 Subject: [PATCH] drm/i915/display: update pll values in sync with Bspec for MTL
-Date: Wed, 14 Feb 2024 12:37:13 +0530
-Message-Id: <20240214070713.1028297-1-ravi.kumar.vodapalli@intel.com>
+Date: Wed, 14 Feb 2024 12:39:30 +0530
+Message-Id: <20240214070930.1028456-1-ravi.kumar.vodapalli@intel.com>
 X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
