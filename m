@@ -2,57 +2,147 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 16D7B854ABC
-	for <lists+intel-gfx@lfdr.de>; Wed, 14 Feb 2024 14:51:24 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id AB567854ABD
+	for <lists+intel-gfx@lfdr.de>; Wed, 14 Feb 2024 14:51:54 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 432E410E247;
-	Wed, 14 Feb 2024 13:50:56 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C88CE10E268;
+	Wed, 14 Feb 2024 13:51:41 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="l+P3EC02";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="O8YG++oo";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6A43410E247
- for <intel-gfx@lists.freedesktop.org>; Wed, 14 Feb 2024 13:50:54 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0CCB410E268
+ for <intel-gfx@lists.freedesktop.org>; Wed, 14 Feb 2024 13:51:40 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1707918654; x=1739454654;
- h=from:to:subject:in-reply-to:references:date:message-id:
- mime-version:content-transfer-encoding;
- bh=9Jqw7Wf8iHMqumV0dD9cWGC/T9y0cuzHWgsuAN0owDs=;
- b=l+P3EC02iPLy7xmiwdpRstYxlgqfe4/IPTt7N4lIeHmoLhaPCaxGh4DE
- 7zY07GpOYctlRGk7+f9zwWQHQgcm1zYfgmwss3SFQ1vIWESkx9fjPIDka
- oxgg3hEdgb8QWnFSHQB29KqScEX6YES0tUc2z0rL8hRJd4LWudDpbjpT9
- tup15T/j0mbTP/7zn61HPy1hIsDgHGry5pV3qvHQkVrQAJo+Tvz5MBnO5
- 3vwa+iEQkVO+gmis/VNiACEDEP1mMm8jhApYM6VumZcS4zjzjBOZiHo+6
- ym3CQR143NmkuDGElB9BwMfrc0NBo0jCOBpDlScAaC1Edby2wA/cg9A54 g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10982"; a="1835194"
+ t=1707918700; x=1739454700;
+ h=date:from:to:cc:subject:message-id:references:
+ content-transfer-encoding:in-reply-to:mime-version;
+ bh=9LiPhjFV3EbEQecTvAcGm4T7iv3AUeRMFDdre6Zhx7g=;
+ b=O8YG++oo9GppvUJo828mlq6VYyXPttgHCWdqgzzmYAglWUsPEAL9C9YZ
+ 8tV4CDu7VPzEUC1729nWNQ9vuPMShjMd36LwL3pWYicZ2g4WhQh16AIEv
+ eULtrT9RgykQuSMuQZAItSN6jqfNKUlLdltsHQr3GeigV64RzJ5MFAoF+
+ 0wZUcE14EeNkHdf4gEfEr/FGfOS/Z+iwpFZBY0qrLIaCQSIKYu70c+xE4
+ CT4TKtiqR6jR5nA9uSIDRERTWZ/D2n1crcEMRYJneBeL0YfWjuxBDHpMG
+ yvBxwQH+ULrpLoEq0JuRXGJVQyHoJ6UGRoTZsAZb33ceoUUwSEygZiX5Z A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10982"; a="5738051"
 X-IronPort-AV: E=Sophos;i="6.06,159,1705392000"; 
-   d="scan'208";a="1835194"
-Received: from fmviesa010.fm.intel.com ([10.60.135.150])
- by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Feb 2024 05:50:54 -0800
+   d="scan'208";a="5738051"
+Received: from fmviesa001.fm.intel.com ([10.60.135.141])
+ by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 14 Feb 2024 05:51:39 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.06,159,1705392000"; 
-   d="scan'208";a="3165420"
-Received: from kwszolek-mobl1.ger.corp.intel.com (HELO localhost)
- ([10.252.63.190])
- by fmviesa010-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Feb 2024 05:50:53 -0800
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Ville Syrjala <ville.syrjala@linux.intel.com>,
- intel-gfx@lists.freedesktop.org
-Subject: Re: [PATCH 4/5] drm/i915: Add PLL .compare_hw_state() vfunc
-In-Reply-To: <20240209183809.16887-5-ville.syrjala@linux.intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20240209183809.16887-1-ville.syrjala@linux.intel.com>
- <20240209183809.16887-5-ville.syrjala@linux.intel.com>
-Date: Wed, 14 Feb 2024 15:50:49 +0200
-Message-ID: <87a5o36tom.fsf@intel.com>
+X-IronPort-AV: E=Sophos;i="6.06,159,1705392000"; d="scan'208";a="34252818"
+Received: from fmsmsx601.amr.corp.intel.com ([10.18.126.81])
+ by fmviesa001.fm.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
+ 14 Feb 2024 05:51:39 -0800
+Received: from fmsmsx601.amr.corp.intel.com (10.18.126.81) by
+ fmsmsx601.amr.corp.intel.com (10.18.126.81) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.35; Wed, 14 Feb 2024 05:51:37 -0800
+Received: from fmsedg602.ED.cps.intel.com (10.1.192.136) by
+ fmsmsx601.amr.corp.intel.com (10.18.126.81) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.35 via Frontend Transport; Wed, 14 Feb 2024 05:51:37 -0800
+Received: from NAM04-MW2-obe.outbound.protection.outlook.com (104.47.73.168)
+ by edgegateway.intel.com (192.55.55.71) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.1.2507.35; Wed, 14 Feb 2024 05:51:37 -0800
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=eAOhgvEeibdipsTAyzzQKsxLsYEUf7uKKUHIgfH8PhuwDZY9gkwvhRlOvbdq2WJFLgpWS0bd/sTsasXWYXQyM1VHARi0Q14+RysVKG0qRweunxwazXmYSn+mAU3U5wpQWEwlSw4Q98FGm9DqvuQTBW0aCLyB9wBEb9Jsg0u3OLjVi6ar73FiCM+yledjhLcSmFt+SGfvlVo3WqJ+zM1BZjKtwupO59tvu1ltcznFCJakcDuSSULKxrjxDT5/ffNzgERlRZCfyCkgKBP+AL+k3cKY1ncxyL/sdeAw/LBIl+e7fGdEcsUek6DsclHAwNsdxhB7xVnk6zAUIeDiaSlryA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=V+HrkiUAn+kFPpsQfQ8dL6AeJwzU6FXBl7hbL6CCFHo=;
+ b=Vho6R8dulL4j6Ft0y40nEzU/bHic5y38I+dj2eh1jRpJgi7SvMRv7swUQPNgRYjJkUof9ZzOiX2MxyuF7+WaKL3phlW1BsD0J8IGALU4PHmwrJUM/kI1rKm/aQlrQqZMiB+lP5GBciF5gp4wysetPEkgX2B2gRoINuf/1sqj2AEXAm3KYhsFsWZo2hjFEPrRYgd1cYbVABk53GHHY/zIgtIBDy5iCoKK+8g0+Q/vUq9/ZCimfKpMqML4e4UlPRN3mmznNCdQ6DYpg5HD3dO5GLys1RuxF52bj5xH7nhf9Da3Xulv6fWxa1REF0slxenyLMaU/wcSSVu0SqGmYU/DjA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+Received: from MN0PR11MB6059.namprd11.prod.outlook.com (2603:10b6:208:377::9)
+ by MN2PR11MB4581.namprd11.prod.outlook.com (2603:10b6:208:26c::22)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7292.26; Wed, 14 Feb
+ 2024 13:51:35 +0000
+Received: from MN0PR11MB6059.namprd11.prod.outlook.com
+ ([fe80::a7f1:384c:5d93:1d1d]) by MN0PR11MB6059.namprd11.prod.outlook.com
+ ([fe80::a7f1:384c:5d93:1d1d%4]) with mapi id 15.20.7270.036; Wed, 14 Feb 2024
+ 13:51:35 +0000
+Date: Wed, 14 Feb 2024 08:51:31 -0500
+From: Rodrigo Vivi <rodrigo.vivi@intel.com>
+To: "Lisovskiy, Stanislav" <stanislav.lisovskiy@intel.com>
+CC: "Shankar, Uma" <uma.shankar@intel.com>, "intel-gfx@lists.freedesktop.org"
+ <intel-gfx@lists.freedesktop.org>, "ville.syrjala@linux.intel.com"
+ <ville.syrjala@linux.intel.com>, "jani.nikula@linux.intel.com"
+ <jani.nikula@linux.intel.com>
+Subject: Re: [PATCH] drm/i915: Add bigjoiner force enable option to debugfs
+Message-ID: <ZczFY-wd7oSVlESa@intel.com>
+References: <20240212125011.66174-1-uma.shankar@intel.com>
+ <ZcuC56_5pZerqAV0@intel.com>
+ <DM4PR11MB6360DD7D7B6557C5D0AEAE97F44F2@DM4PR11MB6360.namprd11.prod.outlook.com>
+ <ZcuI9vcmQEy+kvpR@intel.com> <ZcuL5K-NtXXHkuUq@intel.com>
+ <ZcyOOj1twhuoKTPj@intel.com>
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <ZcyOOj1twhuoKTPj@intel.com>
+X-ClientProxiedBy: SJ0PR03CA0015.namprd03.prod.outlook.com
+ (2603:10b6:a03:33a::20) To MN0PR11MB6059.namprd11.prod.outlook.com
+ (2603:10b6:208:377::9)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: MN0PR11MB6059:EE_|MN2PR11MB4581:EE_
+X-MS-Office365-Filtering-Correlation-Id: aa34e541-e55c-4469-7fed-08dc2d640f13
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: 1JpAEUQuA2RDV0wGa64yCOs00F3Wpxf15bS7cMY3PcakvgcnFidA+OEhJ4+wIHs9o5RHgpvKlbgB+Rn6JjCGlZpcUMByCSrYIGRfWQW88kYBwuU4DDO6TMpVyYwOCAPlPIb8nHGjKDLp17c/dLPU0At7T8Dd1nqgRWzYBjMyQsdjTRcZtW4r7rqU7db9ldmQ6zkr55QSQ2c0njpLoRUd12DNVXTXHcFFKmE65UjCmtzt4VIxtUJT9aE1MJRo+7bKFqzL7ebxtPXbdFuWWgDsAd8tE/la+GFK3iVIuqwJy/UlX/gnPikXq3B9wrV5J41IPVIJerSEKFmEzNyUUN886pgS3lSW31nqY6+ao42eLgO/xzZjhWi3fe+tU3rOw3WyjzYiNxNyKkO52kzoulV1GF7wpXRVYHIj1GS99l+tQ3yR3Nr+Nnxmgx8Ads6MWbOlYbSSOGriHVIOQ7cQljjJpLxbLIE+w8hFrU81mJonQovObCWtgrBehmT60SsVkiuYrLcUVW6SyjHPvaWlG5e8gEEqAbxmQPX3zxaWCWaynzthfL9bQ8SGShAcBQC2rN0P
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:MN0PR11MB6059.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230031)(346002)(366004)(136003)(376002)(396003)(39860400002)(230922051799003)(1800799012)(451199024)(64100799003)(186009)(5660300002)(44832011)(8936002)(6862004)(8676002)(4326008)(66556008)(66946007)(66476007)(30864003)(2906002)(83380400001)(66574015)(26005)(82960400001)(36756003)(38100700002)(86362001)(6636002)(54906003)(316002)(37006003)(6666004)(2616005)(41300700001)(6512007)(478600001)(53546011)(6506007)(6486002);
+ DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?iso-8859-1?Q?/jjFUip3+BSH5MrOcZuuAaRUiS61xkNcG5+h7evt6S8yWFbhyc9fVUuCC5?=
+ =?iso-8859-1?Q?SHd4t0eVhMmcKoe5rlEMqp94aXDGCYJxJEbJqdMFx39VjK8bTlnOWNos5f?=
+ =?iso-8859-1?Q?YhjTGe1fDs5PHhJVRfBWe9M8MR6mdT3g7RhAavX5o/DtoBz6x9ufkQsHwA?=
+ =?iso-8859-1?Q?yyLu4QpZOYrZqToYqxqHs2Y9wJZYibZu7uzmdotQBURNgqDlw9V1tojv+g?=
+ =?iso-8859-1?Q?fJQHyAP4nHnjzEzGF72PRbzuSegwXxhfO70opunEDZuaMrpgFuGQvbHfHB?=
+ =?iso-8859-1?Q?QO7SvkJ7ABi+6n3a5g9Wu170MkVs/c7y3FoBKoL9K01g9Jzed1UPa4j/qf?=
+ =?iso-8859-1?Q?oYG2tHqsDmHPxeeRLFUQ7EPaR5mhHDjmBjh9EcZT0XwBKw+jf9qL1O+XtM?=
+ =?iso-8859-1?Q?VIgnuBUMF5byN81qS6wOut+09NAeoWwDVmX2EAHqtWmUzFKCbeF1HV8IEK?=
+ =?iso-8859-1?Q?PUFffVBWpn27jnh1mxoTToWIrmbT9OlHtvOvuTvccwxY/+ALLk9JnLWgGh?=
+ =?iso-8859-1?Q?YbuvOFqbwKitoKRVk/kWJYLM8GWlzKT/T7z+tZGJ/3eQm8d0ZcNQaNNDb4?=
+ =?iso-8859-1?Q?qQvwWLewoqqCfnoHCQX+oDojFa8wndYe8Uxt0hCzbdjmt2+2NG6Vgiu70A?=
+ =?iso-8859-1?Q?SPGcdPoZVcKv0W25bAgwgL/J2VokU3Ay0sJAhmK3LLFYGDLa1wAtpVlnd7?=
+ =?iso-8859-1?Q?E5Fxp2dtdt9gjGuWnWiIk/OvMaanJU2hi1ohSSp56nhM9dprNyd329TCnu?=
+ =?iso-8859-1?Q?b8NGwZCj/7bVtVEWhhhwYMU8rMCuPTX7VgerpGfdp+XH1+4QTyvQ6pVyNW?=
+ =?iso-8859-1?Q?2fSD8ABLHB1W3tkRQqFUvnaKe8YSzVAeonB97ifPPcXweBnTzsw/fjWr5g?=
+ =?iso-8859-1?Q?q2Z6xGNqMCXt5sBd4Dz5bCGELmh/Qik30X9I+IiQqF8UNTEvpPX8r+34gW?=
+ =?iso-8859-1?Q?x35wV0s25aVHFTEFN5Z3kxhUXMrnh8AIKuDu+ipU1I+DfWuslZfpzR1gOv?=
+ =?iso-8859-1?Q?kv3SIyPXQTk8Ih0sMy+ZepHLhzzYGMfAm+re5/LXDQUaOOh8uVGcge7EqC?=
+ =?iso-8859-1?Q?jXon/NbWLE3DPPjpvdUeZtlTtbAoo6Z2OxDrActEJd/MdAUocbOzzYuRcI?=
+ =?iso-8859-1?Q?rnacA6R8+HOlgZJ5xnSFhaAkbGuUT+zdpiVCt7+You+VNMIpsaWI+lstwN?=
+ =?iso-8859-1?Q?DjPyz8u9kzAUtUyVT0WsMZKnbQxbaQLYBusIAiq4O1sHaPMIsqoXXAzT1U?=
+ =?iso-8859-1?Q?1r4umrXX/qPfpCS1WVj8GNsNeuPPOcctXoAMGLwkWGky5qZrlvNUdUWeYi?=
+ =?iso-8859-1?Q?wHhtW+mRj2nbux8yAT6445ZrdBB58R7H0kQR7VCA/ZWr0120YqBh3Kdlsw?=
+ =?iso-8859-1?Q?icXhhrC1WAbzukmENbCu5QNcIhpWtb9SrVdPoC7d8Sfv3wzS4hACRv6Ik2?=
+ =?iso-8859-1?Q?MxrmnQQaN4LavwtO5UYe7deeIWjZmpPWlwA0VBd94gHPNLsUfYJZnecO0a?=
+ =?iso-8859-1?Q?2MYMVnvIsC8tejf6TX1Dra9OlCDGn6j2ZUetXl6Q55hGsEWkQM/OSyLYP+?=
+ =?iso-8859-1?Q?s0uuoORqMpmzjhOLmDarAbOMSSUlvCI0ywUPBHj4TqBq1/XoA8BbrOKqhu?=
+ =?iso-8859-1?Q?xmwMMO9on1mCZXwQt8GrnMJ1Qv4DXtHwYd?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: aa34e541-e55c-4469-7fed-08dc2d640f13
+X-MS-Exchange-CrossTenant-AuthSource: MN0PR11MB6059.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 14 Feb 2024 13:51:35.5235 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: R1crYVMZaE1LwMoirBfwQdDzTdkzcdI93cUGTiLqtH/MK1JSWUWnGKrvdvEhAbv/9w5RfnIReJIC/yeAvFKU2w==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN2PR11MB4581
+X-OriginatorOrg: intel.com
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -68,385 +158,281 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, 09 Feb 2024, Ville Syrjala <ville.syrjala@linux.intel.com> wrote:
-> From: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
->
-> Chunk up the humenguous dpll_hw_state comparison check into per-platform
-> variants, implemented in the dpll_mgr. This is step one in allowing
-> each platform (or perhaps even PLL) type to have a custom hw state
-> structure instead of having to smash it all into one.
->
-> Signed-off-by: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
-> ---
->  drivers/gpu/drm/i915/display/intel_display.c  | 78 ++++++++-------
->  drivers/gpu/drm/i915/display/intel_dpll_mgr.c | 95 +++++++++++++++++++
->  drivers/gpu/drm/i915/display/intel_dpll_mgr.h |  3 +
->  3 files changed, 141 insertions(+), 35 deletions(-)
->
-> diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/d=
-rm/i915/display/intel_display.c
-> index 1d381fa96c84..66ee6749fdae 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display.c
-> +++ b/drivers/gpu/drm/i915/display/intel_display.c
-> @@ -4907,6 +4907,36 @@ pipe_config_mismatch(bool fastset, const struct in=
-tel_crtc *crtc,
->  	va_end(args);
->  }
->=20=20
-> +static void
-> +pipe_config_pll_mismatch(bool fastset,
-> +			 const struct intel_crtc *crtc,
-> +			 const char *name,
-> +			 const struct intel_dpll_hw_state *a,
-> +			 const struct intel_dpll_hw_state *b)
-> +{
-> +	struct drm_i915_private *i915 =3D to_i915(crtc->base.dev);
-> +
-> +	if (fastset) {
-> +		if (!drm_debug_enabled(DRM_UT_KMS))
-> +			return;
-> +
-> +		drm_dbg_kms(&i915->drm,
-> +			    "[CRTC:%d:%s] fastset requirement not met in %s\n",
-> +			    crtc->base.base.id, crtc->base.name, name);
-> +		drm_dbg_kms(&i915->drm, "expected:\n");
-> +		intel_dpll_dump_hw_state(i915, a);
-> +		drm_dbg_kms(&i915->drm, "found:\n");
-> +		intel_dpll_dump_hw_state(i915, b);
-> +	} else {
-> +		drm_err(&i915->drm, "[CRTC:%d:%s] mismatch in %s buffer\n",
-> +			crtc->base.base.id, crtc->base.name, name);
-> +		drm_err(&i915->drm, "expected:\n");
-> +		intel_dpll_dump_hw_state(i915, a);
-> +		drm_err(&i915->drm, "found:\n");
-> +		intel_dpll_dump_hw_state(i915, b);
-> +	}
-> +}
+On Wed, Feb 14, 2024 at 11:56:10AM +0200, Lisovskiy, Stanislav wrote:
+> On Tue, Feb 13, 2024 at 10:33:56AM -0500, Rodrigo Vivi wrote:
+> > On Tue, Feb 13, 2024 at 05:21:26PM +0200, Lisovskiy, Stanislav wrote:
+> > > On Tue, Feb 13, 2024 at 05:11:37PM +0200, Shankar, Uma wrote:
+> > > > 
+> > > > 
+> > > > > -----Original Message-----
+> > > > > From: Rodrigo Vivi <rodrigo.vivi@intel.com>
+> > > > > Sent: Tuesday, February 13, 2024 8:26 PM
+> > > > > To: Shankar, Uma <uma.shankar@intel.com>
+> > > > > Cc: intel-gfx@lists.freedesktop.org; Lisovskiy, Stanislav
+> > > > > <stanislav.lisovskiy@intel.com>; ville.syrjala@linux.intel.com;
+> > > > > jani.nikula@linux.intel.com
+> > > > > Subject: Re: [PATCH] drm/i915: Add bigjoiner force enable option to debugfs
+> > > > > 
+> > > > > On Mon, Feb 12, 2024 at 06:20:11PM +0530, Uma Shankar wrote:
+> > > > > > From: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
+> > > > > >
+> > > > > > For validation purposes, it might be useful to be able to force
+> > > > > > Bigjoiner mode, even if current dotclock/resolution do not require
+> > > > > > that.
+> > > > > > Lets add such to option to debugfs.
+> > > > > >
+> > > > > > v2: - Apparently intel_dp_need_bigjoiner can't be used, when
+> > > > > >       debugfs entry is created so lets just check manually
+> > > > > >       the DISPLAY_VER.
+> > > > > >
+> > > > > > v3: - Switch to intel_connector from drm_connector(Jani Nikula)
+> > > > > >     - Remove redundant modeset lock(Jani Nikula)
+> > > > > >     - Use kstrtobool_from_user for boolean value(Jani Nikula)
+> > > > > >
+> > > > > > v4: - Apply the changes to proper function(Jani Nikula)
+> > > > > >
+> > > > > > v5: - Removed unnecessary check from i915_bigjoiner_enable_show
+> > > > > >       (Ville Syrjälä)
+> > > > > >     - Added eDP connector check to intel_connector_debugfs_add
+> > > > > >       (Ville Syrjälä)
+> > > > > >     - Removed debug message in order to prevent dmesg flooding
+> > > > > >       (Ville Syrjälä)
+> > > > > >
+> > > > > > v6: - Assume now always that m->private is intel_connector
+> > > > > >     - Fixed other similar conflicts
+> > > > > >
+> > > > > > v7: - Move bigjoiner force option to intel_connector(Ville Syrjälä)
+> > > > > >     - Use DEFINE_SHOW_STORE_ATTRIBUTE instead of defining fops
+> > > > > >       manually.(Ville Syrjälä)
+> > > > > >
+> > > > > > v8: - Pass intel_connector to debugfs_create_file, instead of drm_connector.
+> > > > > >       (Jani Nikula)
+> > > > > >
+> > > > > > Signed-off-by: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
+> > > > > 
+> > > > > please remind to sign-off when sending someone else's patch.
+> > > > 
+> > > > Oh yeah, sorry missed it. Was filling in for Stan while he was OOO.
+> > > > @Lisovskiy, Stanislav Please address rest of the comments raised by Rodrigo.
+> > > 
+> > > Sorry, had that pushed already in the morning, since it was Acked and I was asked
+> > > to do it asap.
+> > 
+> > no worries. if you are confident that the _show function magically works I trust
+> > your tests more then my eyes and greps.
+> 
+> Well _definitely_ it should not be about trust, confidence or beliefs :)
+> 
+> See:
+> 
+> #define DEFINE_SHOW_STORE_ATTRIBUTE(__name)				\
+> static int __name ## _open(struct inode *inode, struct file *file)	\
+> {									\
+> 	return single_open(file, __name ## _show, inode->i_private);	\
 
-As follow-up, would be great to see this move towards drm_printer based
-approach, similar to pipe_config_dp_vsc_sdp_mismatch(). Reduces
-duplication.
+                                           ^
+this was the part that I was missing! Thanks for pointing that out.
+I was looking the definition below, but was missing the jump from the
+_open to _show... I hate macro indirections.
 
-BR,
-Jani.
+Thanks pointing that out.
 
+> }									\
+> 									\
+> static const struct file_operations __name ## _fops = {			\
+> 	.owner		= THIS_MODULE,					\
+> 	.open		= __name ## _open,				\
+> 	.read		= seq_read,					\
+> 	.write		= __name ## _write,				\
+> 	.llseek		= seq_lseek,					\
+> 	.release	= single_release,				\
+> }
+> 
+> In the patch:
+> 
+> +DEFINE_SHOW_STORE_ATTRIBUTE(i915_bigjoiner_enable);
 > +
->  static bool fastboot_enabled(struct drm_i915_private *dev_priv)
->  {
->  	/* Enable fastboot by default on Skylake and newer */
-> @@ -5016,7 +5046,17 @@ intel_pipe_config_compare(const struct intel_crtc_=
-state *current_config,
->  	} \
->  } while (0)
->=20=20
-> -#define PIPE_CONF_CHECK_TIMINGS(name) do { \
-> +#define PIPE_CONF_CHECK_PLL(name) do { \
-> +	if (!intel_dpll_compare_hw_state(dev_priv, &current_config->name, \
-> +					 &pipe_config->name)) { \
-> +		pipe_config_pll_mismatch(fastset, crtc, __stringify(name), \
-> +					 &current_config->name, \
-> +					 &pipe_config->name); \
-> +		ret =3D false; \
-> +	} \
-> +} while (0)
-> +
-> +#define PIPE_CONF_CHECK_TIMINGS(name) do {     \
->  	PIPE_CONF_CHECK_I(name.crtc_hdisplay); \
->  	PIPE_CONF_CHECK_I(name.crtc_htotal); \
->  	PIPE_CONF_CHECK_I(name.crtc_hblank_start); \
-> @@ -5223,40 +5263,8 @@ intel_pipe_config_compare(const struct intel_crtc_=
-state *current_config,
->  		PIPE_CONF_CHECK_P(shared_dpll);
->=20=20
->  	/* FIXME convert everything over the dpll_mgr */
-> -	if (dev_priv->display.dpll.mgr || HAS_GMCH(dev_priv)) {
-> -		PIPE_CONF_CHECK_X(dpll_hw_state.dpll);
-> -		PIPE_CONF_CHECK_X(dpll_hw_state.dpll_md);
-> -		PIPE_CONF_CHECK_X(dpll_hw_state.fp0);
-> -		PIPE_CONF_CHECK_X(dpll_hw_state.fp1);
-> -		PIPE_CONF_CHECK_X(dpll_hw_state.wrpll);
-> -		PIPE_CONF_CHECK_X(dpll_hw_state.spll);
-> -		PIPE_CONF_CHECK_X(dpll_hw_state.ctrl1);
-> -		PIPE_CONF_CHECK_X(dpll_hw_state.cfgcr1);
-> -		PIPE_CONF_CHECK_X(dpll_hw_state.cfgcr2);
-> -		PIPE_CONF_CHECK_X(dpll_hw_state.cfgcr0);
-> -		PIPE_CONF_CHECK_X(dpll_hw_state.div0);
-> -		PIPE_CONF_CHECK_X(dpll_hw_state.ebb0);
-> -		PIPE_CONF_CHECK_X(dpll_hw_state.ebb4);
-> -		PIPE_CONF_CHECK_X(dpll_hw_state.pll0);
-> -		PIPE_CONF_CHECK_X(dpll_hw_state.pll1);
-> -		PIPE_CONF_CHECK_X(dpll_hw_state.pll2);
-> -		PIPE_CONF_CHECK_X(dpll_hw_state.pll3);
-> -		PIPE_CONF_CHECK_X(dpll_hw_state.pll6);
-> -		PIPE_CONF_CHECK_X(dpll_hw_state.pll8);
-> -		PIPE_CONF_CHECK_X(dpll_hw_state.pll9);
-> -		PIPE_CONF_CHECK_X(dpll_hw_state.pll10);
-> -		PIPE_CONF_CHECK_X(dpll_hw_state.pcsdw12);
-> -		PIPE_CONF_CHECK_X(dpll_hw_state.mg_refclkin_ctl);
-> -		PIPE_CONF_CHECK_X(dpll_hw_state.mg_clktop2_coreclkctl1);
-> -		PIPE_CONF_CHECK_X(dpll_hw_state.mg_clktop2_hsclkctl);
-> -		PIPE_CONF_CHECK_X(dpll_hw_state.mg_pll_div0);
-> -		PIPE_CONF_CHECK_X(dpll_hw_state.mg_pll_div1);
-> -		PIPE_CONF_CHECK_X(dpll_hw_state.mg_pll_lf);
-> -		PIPE_CONF_CHECK_X(dpll_hw_state.mg_pll_frac_lock);
-> -		PIPE_CONF_CHECK_X(dpll_hw_state.mg_pll_ssc);
-> -		PIPE_CONF_CHECK_X(dpll_hw_state.mg_pll_bias);
-> -		PIPE_CONF_CHECK_X(dpll_hw_state.mg_pll_tdc_coldst_bias);
-> -	}
-> +	if (dev_priv->display.dpll.mgr || HAS_GMCH(dev_priv))
-> +		PIPE_CONF_CHECK_PLL(dpll_hw_state);
->=20=20
->  	PIPE_CONF_CHECK_X(dsi_pll.ctrl);
->  	PIPE_CONF_CHECK_X(dsi_pll.div);
-> diff --git a/drivers/gpu/drm/i915/display/intel_dpll_mgr.c b/drivers/gpu/=
-drm/i915/display/intel_dpll_mgr.c
-> index c6cc7465b92c..ff480f171f75 100644
-> --- a/drivers/gpu/drm/i915/display/intel_dpll_mgr.c
-> +++ b/drivers/gpu/drm/i915/display/intel_dpll_mgr.c
-> @@ -109,6 +109,8 @@ struct intel_dpll_mgr {
->  	void (*update_ref_clks)(struct drm_i915_private *i915);
->  	void (*dump_hw_state)(struct drm_i915_private *i915,
->  			      const struct intel_dpll_hw_state *hw_state);
-> +	bool (*compare_hw_state)(const struct intel_dpll_hw_state *a,
-> +				 const struct intel_dpll_hw_state *b);
->  };
->=20=20
->  static void
-> @@ -644,6 +646,15 @@ static void ibx_dump_hw_state(struct drm_i915_privat=
-e *i915,
->  		    hw_state->fp1);
->  }
->=20=20
-> +static bool ibx_compare_hw_state(const struct intel_dpll_hw_state *a,
-> +				 const struct intel_dpll_hw_state *b)
+> 
+> means it will use i915_bigjoiner_enable_show function.
+> 
+> which is defined just as it expects in the patch:
+> 
+> +static int i915_bigjoiner_enable_show(struct seq_file *m, void *data)
 > +{
-> +	return a->dpll =3D=3D b->dpll &&
-> +		a->dpll_md =3D=3D b->dpll_md &&
-> +		a->fp0 =3D=3D b->fp0 &&
-> +		a->fp1 =3D=3D b->fp1;
+> +	struct intel_connector *connector = m->private;
+> +	struct drm_crtc *crtc;
+> +
+> +	crtc = connector->base.state->crtc;
+> +	if (connector->base.status != connector_status_connected || !crtc)
+> +		return -ENODEV;
+> +
+> +	seq_printf(m, "Bigjoiner enable: %d\n", connector->force_bigjoiner_enable);
+> +
+> +	return 0;
 > +}
 > +
->  static const struct intel_shared_dpll_funcs ibx_pch_dpll_funcs =3D {
->  	.enable =3D ibx_pch_dpll_enable,
->  	.disable =3D ibx_pch_dpll_disable,
-> @@ -662,6 +673,7 @@ static const struct intel_dpll_mgr pch_pll_mgr =3D {
->  	.get_dplls =3D ibx_get_dpll,
->  	.put_dplls =3D intel_put_dpll,
->  	.dump_hw_state =3D ibx_dump_hw_state,
-> +	.compare_hw_state =3D ibx_compare_hw_state,
->  };
->=20=20
->  static void hsw_ddi_wrpll_enable(struct drm_i915_private *i915,
-> @@ -1220,6 +1232,13 @@ static void hsw_dump_hw_state(struct drm_i915_priv=
-ate *i915,
->  		    hw_state->wrpll, hw_state->spll);
->  }
->=20=20
-> +static bool hsw_compare_hw_state(const struct intel_dpll_hw_state *a,
-> +				 const struct intel_dpll_hw_state *b)
-> +{
-> +	return a->wrpll =3D=3D b->wrpll &&
-> +		a->spll =3D=3D b->spll;
-> +}
-> +
->  static const struct intel_shared_dpll_funcs hsw_ddi_wrpll_funcs =3D {
->  	.enable =3D hsw_ddi_wrpll_enable,
->  	.disable =3D hsw_ddi_wrpll_disable,
-> @@ -1278,6 +1297,7 @@ static const struct intel_dpll_mgr hsw_pll_mgr =3D {
->  	.put_dplls =3D intel_put_dpll,
->  	.update_ref_clks =3D hsw_update_dpll_ref_clks,
->  	.dump_hw_state =3D hsw_dump_hw_state,
-> +	.compare_hw_state =3D hsw_compare_hw_state,
->  };
->=20=20
->  struct skl_dpll_regs {
-> @@ -1929,6 +1949,14 @@ static void skl_dump_hw_state(struct drm_i915_priv=
-ate *i915,
->  		      hw_state->cfgcr2);
->  }
->=20=20
-> +static bool skl_compare_hw_state(const struct intel_dpll_hw_state *a,
-> +				 const struct intel_dpll_hw_state *b)
-> +{
-> +	return a->ctrl1 =3D=3D b->ctrl1 &&
-> +		a->cfgcr1 =3D=3D b->cfgcr1 &&
-> +		a->cfgcr2 =3D=3D b->cfgcr2;
-> +}
-> +
->  static const struct intel_shared_dpll_funcs skl_ddi_pll_funcs =3D {
->  	.enable =3D skl_ddi_pll_enable,
->  	.disable =3D skl_ddi_pll_disable,
-> @@ -1959,6 +1987,7 @@ static const struct intel_dpll_mgr skl_pll_mgr =3D {
->  	.put_dplls =3D intel_put_dpll,
->  	.update_ref_clks =3D skl_update_dpll_ref_clks,
->  	.dump_hw_state =3D skl_dump_hw_state,
-> +	.compare_hw_state =3D skl_compare_hw_state,
->  };
->=20=20
->  static void bxt_ddi_pll_enable(struct drm_i915_private *i915,
-> @@ -2392,6 +2421,21 @@ static void bxt_dump_hw_state(struct drm_i915_priv=
-ate *i915,
->  		    hw_state->pcsdw12);
->  }
->=20=20
-> +static bool bxt_compare_hw_state(const struct intel_dpll_hw_state *a,
-> +				 const struct intel_dpll_hw_state *b)
-> +{
-> +	return a->ebb0 =3D=3D b->ebb0 &&
-> +		a->ebb4 =3D=3D b->ebb4 &&
-> +		a->pll0 =3D=3D b->pll0 &&
-> +		a->pll1 =3D=3D b->pll1 &&
-> +		a->pll2 =3D=3D b->pll2 &&
-> +		a->pll3 =3D=3D b->pll3 &&
-> +		a->pll6 =3D=3D b->pll6 &&
-> +		a->pll8 =3D=3D b->pll8 &&
-> +		a->pll10 =3D=3D b->pll10 &&
-> +		a->pcsdw12 =3D=3D b->pcsdw12;
-> +}
-> +
->  static const struct intel_shared_dpll_funcs bxt_ddi_pll_funcs =3D {
->  	.enable =3D bxt_ddi_pll_enable,
->  	.disable =3D bxt_ddi_pll_disable,
-> @@ -2413,6 +2457,7 @@ static const struct intel_dpll_mgr bxt_pll_mgr =3D {
->  	.put_dplls =3D intel_put_dpll,
->  	.update_ref_clks =3D bxt_update_dpll_ref_clks,
->  	.dump_hw_state =3D bxt_dump_hw_state,
-> +	.compare_hw_state =3D bxt_compare_hw_state,
->  };
->=20=20
->  static void icl_wrpll_get_multipliers(int bestdiv, int *pdiv,
-> @@ -4005,6 +4050,25 @@ static void icl_dump_hw_state(struct drm_i915_priv=
-ate *i915,
->  		    hw_state->mg_pll_tdc_coldst_bias);
->  }
->=20=20
-> +static bool icl_compare_hw_state(const struct intel_dpll_hw_state *a,
-> +				 const struct intel_dpll_hw_state *b)
-> +{
-> +	/* FIXME split combo vs. mg more thoroughly */
-> +	return a->cfgcr0 =3D=3D b->cfgcr0 &&
-> +		a->cfgcr1 =3D=3D b->cfgcr1 &&
-> +		a->div0 =3D=3D b->div0 &&
-> +		a->mg_refclkin_ctl =3D=3D b->mg_refclkin_ctl &&
-> +		a->mg_clktop2_coreclkctl1 =3D=3D b->mg_clktop2_coreclkctl1 &&
-> +		a->mg_clktop2_hsclkctl =3D=3D b->mg_clktop2_hsclkctl &&
-> +		a->mg_pll_div0 =3D=3D b->mg_pll_div0 &&
-> +		a->mg_pll_div1 =3D=3D b->mg_pll_div1 &&
-> +		a->mg_pll_lf =3D=3D b->mg_pll_lf &&
-> +		a->mg_pll_frac_lock =3D=3D b->mg_pll_frac_lock &&
-> +		a->mg_pll_ssc =3D=3D b->mg_pll_ssc &&
-> +		a->mg_pll_bias =3D=3D b->mg_pll_bias &&
-> +		a->mg_pll_tdc_coldst_bias =3D=3D b->mg_pll_tdc_coldst_bias;
-> +}
-> +
->  static const struct intel_shared_dpll_funcs combo_pll_funcs =3D {
->  	.enable =3D combo_pll_enable,
->  	.disable =3D combo_pll_disable,
-> @@ -4046,6 +4110,7 @@ static const struct intel_dpll_mgr icl_pll_mgr =3D {
->  	.update_active_dpll =3D icl_update_active_dpll,
->  	.update_ref_clks =3D icl_update_dpll_ref_clks,
->  	.dump_hw_state =3D icl_dump_hw_state,
-> +	.compare_hw_state =3D icl_compare_hw_state,
->  };
->=20=20
->  static const struct dpll_info ehl_plls[] =3D {
-> @@ -4063,6 +4128,7 @@ static const struct intel_dpll_mgr ehl_pll_mgr =3D {
->  	.put_dplls =3D icl_put_dplls,
->  	.update_ref_clks =3D icl_update_dpll_ref_clks,
->  	.dump_hw_state =3D icl_dump_hw_state,
-> +	.compare_hw_state =3D icl_compare_hw_state,
->  };
->=20=20
->  static const struct intel_shared_dpll_funcs dkl_pll_funcs =3D {
-> @@ -4094,6 +4160,7 @@ static const struct intel_dpll_mgr tgl_pll_mgr =3D {
->  	.update_active_dpll =3D icl_update_active_dpll,
->  	.update_ref_clks =3D icl_update_dpll_ref_clks,
->  	.dump_hw_state =3D icl_dump_hw_state,
-> +	.compare_hw_state =3D icl_compare_hw_state,
->  };
->=20=20
->  static const struct dpll_info rkl_plls[] =3D {
-> @@ -4110,6 +4177,7 @@ static const struct intel_dpll_mgr rkl_pll_mgr =3D {
->  	.put_dplls =3D icl_put_dplls,
->  	.update_ref_clks =3D icl_update_dpll_ref_clks,
->  	.dump_hw_state =3D icl_dump_hw_state,
-> +	.compare_hw_state =3D icl_compare_hw_state,
->  };
->=20=20
->  static const struct dpll_info dg1_plls[] =3D {
-> @@ -4127,6 +4195,7 @@ static const struct intel_dpll_mgr dg1_pll_mgr =3D {
->  	.put_dplls =3D icl_put_dplls,
->  	.update_ref_clks =3D icl_update_dpll_ref_clks,
->  	.dump_hw_state =3D icl_dump_hw_state,
-> +	.compare_hw_state =3D icl_compare_hw_state,
->  };
->=20=20
->  static const struct dpll_info adls_plls[] =3D {
-> @@ -4144,6 +4213,7 @@ static const struct intel_dpll_mgr adls_pll_mgr =3D=
- {
->  	.put_dplls =3D icl_put_dplls,
->  	.update_ref_clks =3D icl_update_dpll_ref_clks,
->  	.dump_hw_state =3D icl_dump_hw_state,
-> +	.compare_hw_state =3D icl_compare_hw_state,
->  };
->=20=20
->  static const struct dpll_info adlp_plls[] =3D {
-> @@ -4166,6 +4236,7 @@ static const struct intel_dpll_mgr adlp_pll_mgr =3D=
- {
->  	.update_active_dpll =3D icl_update_active_dpll,
->  	.update_ref_clks =3D icl_update_dpll_ref_clks,
->  	.dump_hw_state =3D icl_dump_hw_state,
-> +	.compare_hw_state =3D icl_compare_hw_state,
->  };
->=20=20
->  /**
-> @@ -4462,6 +4533,30 @@ void intel_dpll_dump_hw_state(struct drm_i915_priv=
-ate *i915,
->  	}
->  }
->=20=20
-> +/**
-> + * intel_dpll_compare_hw_state - compare the two states
-> + * @i915: i915 drm device
-> + * @a: first DPLL hw state
-> + * @b: second DPLL hw state
-> + *
-> + * Compare DPLL hw states @a and @b.
-> + *
-> + * Returns: true if the states are equal, false if the differ
-> + */
-> +bool intel_dpll_compare_hw_state(struct drm_i915_private *i915,
-> +				 const struct intel_dpll_hw_state *a,
-> +				 const struct intel_dpll_hw_state *b)
-> +{
-> +	if (i915->display.dpll.mgr) {
-> +		return i915->display.dpll.mgr->compare_hw_state(a, b);
-> +	} else {
-> +		/* fallback for platforms that don't use the shared dpll
-> +		 * infrastructure
-> +		 */
-> +		return ibx_compare_hw_state(a, b);
-> +	}
-> +}
-> +
->  static void
->  verify_single_dpll_state(struct drm_i915_private *i915,
->  			 struct intel_shared_dpll *pll,
-> diff --git a/drivers/gpu/drm/i915/display/intel_dpll_mgr.h b/drivers/gpu/=
-drm/i915/display/intel_dpll_mgr.h
-> index 616afe861b46..cc0e1386309d 100644
-> --- a/drivers/gpu/drm/i915/display/intel_dpll_mgr.h
-> +++ b/drivers/gpu/drm/i915/display/intel_dpll_mgr.h
-> @@ -378,6 +378,9 @@ void intel_dpll_sanitize_state(struct drm_i915_privat=
-e *i915);
->=20=20
->  void intel_dpll_dump_hw_state(struct drm_i915_private *i915,
->  			      const struct intel_dpll_hw_state *hw_state);
-> +bool intel_dpll_compare_hw_state(struct drm_i915_private *i915,
-> +				 const struct intel_dpll_hw_state *a,
-> +				 const struct intel_dpll_hw_state *b);
->  enum intel_dpll_id icl_tc_port_to_pll_id(enum tc_port tc_port);
->  bool intel_dpll_is_combophy(enum intel_dpll_id id);
-
---=20
-Jani Nikula, Intel
+> 
+> 
+> So I don't see any reason here, why it shouldn't work.
+> If you do, please tell - we need to fix this then.
+> 
+> Stan
+> 
+> 
+> > 
+> > > 
+> > > Stan
+> > > 
+> > > > 
+> > > > Regards,
+> > > > Uma Shankar
+> > > > 
+> > > > > > ---
+> > > > > >  .../drm/i915/display/intel_display_debugfs.c  | 47 +++++++++++++++++++
+> > > > > >  .../drm/i915/display/intel_display_types.h    |  2 +
+> > > > > >  drivers/gpu/drm/i915/display/intel_dp.c       |  4 +-
+> > > > > >  3 files changed, 52 insertions(+), 1 deletion(-)
+> > > > > >
+> > > > > > diff --git a/drivers/gpu/drm/i915/display/intel_display_debugfs.c
+> > > > > > b/drivers/gpu/drm/i915/display/intel_display_debugfs.c
+> > > > > > index 6f2d13c8ccf7..a962b48bcf13 100644
+> > > > > > --- a/drivers/gpu/drm/i915/display/intel_display_debugfs.c
+> > > > > > +++ b/drivers/gpu/drm/i915/display/intel_display_debugfs.c
+> > > > > > @@ -1391,6 +1391,20 @@ out:	drm_modeset_unlock(&i915-
+> > > > > >drm.mode_config.connection_mutex);
+> > > > > >  	return ret;
+> > > > > >  }
+> > > > > >
+> > > > > > +static int i915_bigjoiner_enable_show(struct seq_file *m, void *data)
+> > > > > > +{
+> > > > > > +	struct intel_connector *connector = m->private;
+> > > > > > +	struct drm_crtc *crtc;
+> > > > > > +
+> > > > > > +	crtc = connector->base.state->crtc;
+> > > > > > +	if (connector->base.status != connector_status_connected || !crtc)
+> > > > > > +		return -ENODEV;
+> > > > > > +
+> > > > > > +	seq_printf(m, "Bigjoiner enable: %d\n",
+> > > > > > +connector->force_bigjoiner_enable);
+> > > > > 
+> > > > > probably better with a yes_or_no string?
+> > > > > 
+> > > > > > +
+> > > > > > +	return 0;
+> > > > > > +}
+> > > > > > +
+> > > > > >  static ssize_t i915_dsc_output_format_write(struct file *file,
+> > > > > >  					    const char __user *ubuf,
+> > > > > >  					    size_t len, loff_t *offp)
+> > > > > > @@ -1412,6 +1426,30 @@ static ssize_t i915_dsc_output_format_write(struct
+> > > > > file *file,
+> > > > > >  	return len;
+> > > > > >  }
+> > > > > >
+> > > > > > +static ssize_t i915_bigjoiner_enable_write(struct file *file,
+> > > > > > +					   const char __user *ubuf,
+> > > > > > +					   size_t len, loff_t *offp)
+> > > > > > +{
+> > > > > > +	struct seq_file *m = file->private_data;
+> > > > > > +	struct intel_connector *connector = m->private;
+> > > > > > +	struct drm_crtc *crtc;
+> > > > > > +	bool bigjoiner_en = 0;
+> > > > > > +	int ret;
+> > > > > > +
+> > > > > > +	crtc = connector->base.state->crtc;
+> > > > > > +	if (connector->base.status != connector_status_connected || !crtc)
+> > > > > > +		return -ENODEV;
+> > > > > > +
+> > > > > > +	ret = kstrtobool_from_user(ubuf, len, &bigjoiner_en);
+> > > > > > +	if (ret < 0)
+> > > > > > +		return ret;
+> > > > > > +
+> > > > > > +	connector->force_bigjoiner_enable = bigjoiner_en;
+> > > > > > +	*offp += len;
+> > > > > > +
+> > > > > > +	return len;
+> > > > > > +}
+> > > > > > +
+> > > > > >  static int i915_dsc_output_format_open(struct inode *inode,
+> > > > > >  				       struct file *file)
+> > > > > >  {
+> > > > > > @@ -1505,6 +1543,8 @@ static const struct file_operations
+> > > > > i915_dsc_fractional_bpp_fops = {
+> > > > > >  	.write = i915_dsc_fractional_bpp_write  };
+> > > > > >
+> > > > > > +DEFINE_SHOW_STORE_ATTRIBUTE(i915_bigjoiner_enable);
+> > > > > 
+> > > > > I don't believe this macro here is using the defined _show function, but maybe I'm
+> > > > > not following that very well since this macro is not widely used.
+> > > > > 
+> > > > > What about using DEFINE_SIMPLE_ATTRIBUTE instead?
+> > > > > 
+> > > > > > +
+> > > > > >  /*
+> > > > > >   * Returns the Current CRTC's bpc.
+> > > > > >   * Example usage: cat /sys/kernel/debug/dri/0/crtc-0/i915_current_bpc
+> > > > > > @@ -1586,6 +1626,13 @@ void intel_connector_debugfs_add(struct
+> > > > > intel_connector *connector)
+> > > > > >  				    connector, &i915_dsc_fractional_bpp_fops);
+> > > > > >  	}
+> > > > > >
+> > > > > > +	if (DISPLAY_VER(i915) >= 11 &&
+> > > > > > +	    (connector_type == DRM_MODE_CONNECTOR_DisplayPort ||
+> > > > > > +	     connector_type == DRM_MODE_CONNECTOR_eDP)) {
+> > > > > 
+> > > > > I wish we had a simpler check, but I couldn't find. :/
+> > > > > 
+> > > > > > +		debugfs_create_file("i915_bigjoiner_force_enable", 0644, root,
+> > > > > > +				    connector, &i915_bigjoiner_enable_fops);
+> > > > > > +	}
+> > > > > > +
+> > > > > >  	if (connector_type == DRM_MODE_CONNECTOR_DSI ||
+> > > > > >  	    connector_type == DRM_MODE_CONNECTOR_eDP ||
+> > > > > >  	    connector_type == DRM_MODE_CONNECTOR_DisplayPort || diff --git
+> > > > > > a/drivers/gpu/drm/i915/display/intel_display_types.h
+> > > > > > b/drivers/gpu/drm/i915/display/intel_display_types.h
+> > > > > > index 01eb6e4e6049..0d4012097db1 100644
+> > > > > > --- a/drivers/gpu/drm/i915/display/intel_display_types.h
+> > > > > > +++ b/drivers/gpu/drm/i915/display/intel_display_types.h
+> > > > > > @@ -626,6 +626,8 @@ struct intel_connector {
+> > > > > >
+> > > > > >  	struct intel_dp *mst_port;
+> > > > > >
+> > > > > > +	bool force_bigjoiner_enable;
+> > > > > > +
+> > > > > >  	struct {
+> > > > > >  		struct drm_dp_aux *dsc_decompression_aux;
+> > > > > >  		u8 dsc_dpcd[DP_DSC_RECEIVER_CAP_SIZE];
+> > > > > > diff --git a/drivers/gpu/drm/i915/display/intel_dp.c
+> > > > > > b/drivers/gpu/drm/i915/display/intel_dp.c
+> > > > > > index 5045c34a16be..217196196e50 100644
+> > > > > > --- a/drivers/gpu/drm/i915/display/intel_dp.c
+> > > > > > +++ b/drivers/gpu/drm/i915/display/intel_dp.c
+> > > > > > @@ -1205,11 +1205,13 @@ bool intel_dp_need_bigjoiner(struct intel_dp
+> > > > > *intel_dp,
+> > > > > >  			     int hdisplay, int clock)
+> > > > > >  {
+> > > > > >  	struct drm_i915_private *i915 = dp_to_i915(intel_dp);
+> > > > > > +	struct intel_connector *connector = intel_dp->attached_connector;
+> > > > > >
+> > > > > >  	if (!intel_dp_can_bigjoiner(intel_dp))
+> > > > > >  		return false;
+> > > > > >
+> > > > > > -	return clock > i915->max_dotclk_freq || hdisplay > 5120;
+> > > > > > +	return clock > i915->max_dotclk_freq || hdisplay > 5120 ||
+> > > > > > +	       connector->force_bigjoiner_enable;
+> > > > > 
+> > > > > I'm just not comfortable with the magic _show of that macro and would prefer a
+> > > > > more simple and straight forward and widely used version.
+> > > > > 
+> > > > > Other then that everything else looks good to me.
+> > > > > 
+> > > > > Thanks,
+> > > > > Rodrigo.
+> > > > > 
+> > > > > >  }
+> > > > > >
+> > > > > >  static enum drm_mode_status
+> > > > > > --
+> > > > > > 2.42.0
+> > > > > >
