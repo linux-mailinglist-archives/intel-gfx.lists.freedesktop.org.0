@@ -2,145 +2,104 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id C4DF0855479
-	for <lists+intel-gfx@lfdr.de>; Wed, 14 Feb 2024 22:02:52 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id B239B85553A
+	for <lists+intel-gfx@lfdr.de>; Wed, 14 Feb 2024 22:58:41 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 65C1C10E144;
-	Wed, 14 Feb 2024 21:02:50 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 101AE10E1E0;
+	Wed, 14 Feb 2024 21:58:32 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="mKzRCiEY";
+	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="m5YUhAvp";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AB70410E144
- for <intel-gfx@lists.freedesktop.org>; Wed, 14 Feb 2024 21:02:47 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1707944568; x=1739480568;
- h=date:from:to:cc:subject:message-id:references:
- in-reply-to:mime-version;
- bh=ga2SPbExoB0MH8ZCInSmcQDsmSKZjSrXjgM96M+fTgg=;
- b=mKzRCiEYQWhYJiS7bWZKpYBNLx1te7xcHR7j+5FV9J/zWut97/HEPrPM
- 3n8ef5lnOAF0QvXGx2jp+xX620tReWY01aFygrMuKcMv6XFjfEM2FH/3w
- 9VZyf79FMKLGerpEu1hPAgo3AFsod+fysgCLUQWA8x2sCSNXTDHJBHHan
- lcDOw+hc+s+F/OHlTx3BV2LLCJj2OrQzrYBar5rlu+U2hRGj5a4IkIGw7
- LhGfJ1DBzxPqSMKWng+kYqSh2CvLo76y1Q9VdjzhDknUlPycDlWP/9Ynn
- XF7qJrHvgX7Mnt1CqRF0jhxHjSPw6ndw2qqKlq43DUcoEQYGkSYnMPjc0 w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10984"; a="1887872"
-X-IronPort-AV: E=Sophos;i="6.06,160,1705392000"; 
-   d="scan'208";a="1887872"
-Received: from orviesa002.jf.intel.com ([10.64.159.142])
- by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Feb 2024 13:02:32 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.06,160,1705392000"; d="scan'208";a="34130075"
-Received: from orsmsx602.amr.corp.intel.com ([10.22.229.15])
- by orviesa002.jf.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
- 14 Feb 2024 13:02:31 -0800
-Received: from orsmsx611.amr.corp.intel.com (10.22.229.24) by
- ORSMSX602.amr.corp.intel.com (10.22.229.15) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35; Wed, 14 Feb 2024 13:02:31 -0800
-Received: from orsmsx610.amr.corp.intel.com (10.22.229.23) by
- ORSMSX611.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35; Wed, 14 Feb 2024 13:02:31 -0800
-Received: from ORSEDG602.ED.cps.intel.com (10.7.248.7) by
- orsmsx610.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35 via Frontend Transport; Wed, 14 Feb 2024 13:02:31 -0800
-Received: from NAM10-MW2-obe.outbound.protection.outlook.com (104.47.55.100)
- by edgegateway.intel.com (134.134.137.103) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.35; Wed, 14 Feb 2024 13:02:30 -0800
+Received: from NAM10-DM6-obe.outbound.protection.outlook.com
+ (mail-dm6nam10on2083.outbound.protection.outlook.com [40.107.93.83])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9D5CF10E09A;
+ Wed, 14 Feb 2024 21:58:30 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=VCmRegN+a2aIzhADhfWGYu4rEtKfrza8FK64fs4l8tA0/ZBJzMrwCrEoJDPUqzIUheFeqFBxeQns7fnFh66OyNIesS38MxPlG359a47TwNexQWGAHbvEp6JWEJ9ca440BfHADY253ArNkNOg1uHl0kLYI17idtFswOM9RfaI0Yis6cKoaKF0ZfczgpNtfXpBrdVsiGoTTgHQud6hvkwEcXoZWSIfSyOmFZrNoY63CAxA7IX7p4P2u4XRBeNTy7b2L+tWP76IiKw9vyHkdtf8TYc7t5DiVqju8z3iHwq58sryND/P785z8eF42QItLYMuf4MIgaOq3dpvfTI9q9Fokw==
+ b=Vxr66pRLJeieSgqxFjVs4NN330sXRuzS9iiOwnMjkParg763oTEogTtp8aKfMBQpQCkR6h/9FnLRvG/Ao3UZLeo4k+B4Hs7k37R4zUaJ58wZCkKjk8uQrTaccuw5W0OLIlJ78XyJZvodjxBJx6bYShe1CvwKxo5n8GOAYvCTmNbcamWH22YCtx60+LzYE+UZ1CXO/RtAoivt9RzVuwUX5y/A9AWX9zreA2+DVl94w6XlCPGU1EOzTg7dwncf4o2ActcljH8lJLZh/O7bZUQRUUcTS92xOAe1uus+1M9zj3G9VIIWzFVhyxYXOp3VMg4zhwmhtSBkNWXcYZobOuum6g==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=aC8LJRJMZCVeF7EKwbTf3ev4yeBPI/gS3Vkpt3yKysI=;
- b=gTX7Kfgs6yv1Ln2gb9PB1EsQ8d3wruwtFnh5ZN/s1xiDaobOya9bYFBThKMCawwnYgK6/TXDbx26gKKpAnvAvehKM3fNdKlnysXLLI0Dq2Eq61E3S/mC468Ng9MrpM02JVneXH7vDRY0xbDwAaEBumlevc3oGc+hDO89Pmiv7MfKBjZ8k4MWK+pAxlK4COo1zHhHnhZCTAF0whXqGCrMuHca5oXwIoxWQXF1Zrev4oRKSzuw/yo5RwPQDx+72XOQYRqEDXCBRAN38yCeJdmAwFekuE82UuDJE9kcdhspTyauIebtYAFdtbEjIorYZMkGaVgqOME0fxurd8z9SgTB6A==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from DS0PR11MB8182.namprd11.prod.outlook.com (2603:10b6:8:163::17)
- by PH0PR11MB5000.namprd11.prod.outlook.com (2603:10b6:510:41::19) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7292.27; Wed, 14 Feb
- 2024 21:02:29 +0000
-Received: from DS0PR11MB8182.namprd11.prod.outlook.com
- ([fe80::e8bb:5354:3889:6092]) by DS0PR11MB8182.namprd11.prod.outlook.com
- ([fe80::e8bb:5354:3889:6092%3]) with mapi id 15.20.7292.026; Wed, 14 Feb 2024
- 21:02:29 +0000
-Date: Wed, 14 Feb 2024 13:02:27 -0800
-From: Matt Roper <matthew.d.roper@intel.com>
-To: "Bhadane, Dnyaneshwar" <dnyaneshwar.bhadane@intel.com>
-CC: "Sousa, Gustavo" <gustavo.sousa@intel.com>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
-Subject: Re: [PATCH] drm/i915: Update ADL-N PCI IDs
-Message-ID: <20240214210227.GD5347@mdroper-desk1.amr.corp.intel.com>
-References: <20240214144629.106702-2-gustavo.sousa@intel.com>
- <IA1PR11MB6266F88D19883164CBF08FC2E24E2@IA1PR11MB6266.namprd11.prod.outlook.com>
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <IA1PR11MB6266F88D19883164CBF08FC2E24E2@IA1PR11MB6266.namprd11.prod.outlook.com>
-X-ClientProxiedBy: SJ0PR05CA0012.namprd05.prod.outlook.com
- (2603:10b6:a03:33b::17) To DS0PR11MB8182.namprd11.prod.outlook.com
- (2603:10b6:8:163::17)
+ bh=2qqdtiNgAqw0BO6nbf/U2/XD22JRWHwjPHFynBAaKHo=;
+ b=K9BtPOftv3qpKt0knAhgpoKUHU1lJO09yaWfE1Iy2B+2ryKPxh6nXOE2RxQgdpYNuHvfyEqjn7yQ+N7de6I1BNfsznNYlrFBH0Ebzy0ZiwfAbFDhev/Nj0PXKwp+xLlSOE4eUARmXR8lUQF53aZ8l28MmsOjmky5Gs8FJl+G6O0MqQ8789SJDZg5oFBjq+hFcLSX8vzQoYP2LSsbycV/zm1X1GzqxMX8olr12IDRj0CCVYvlPG55wO6Xbu0UuIOiI9Q7sBAybg8uLVU8rFtBYADoaJA62fT9rzSkr2bYSiOdek+aWokLZ4ZCX/63eZbZ7w97pl6nNv7GP4m8b2EmxQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 165.204.84.17) smtp.rcpttodomain=ffwll.ch smtp.mailfrom=amd.com; dmarc=pass
+ (p=quarantine sp=quarantine pct=100) action=none header.from=amd.com;
+ dkim=none (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=2qqdtiNgAqw0BO6nbf/U2/XD22JRWHwjPHFynBAaKHo=;
+ b=m5YUhAvp5IsxSQXmHPMQLQEGpSi0wuVML9zsO2y2A9nPOOAwBNzYU1KtnLKlQ/zxdpxcVvd4QzSjOBJK0WRJPoluTcmhRTD/q4Ms0o3saq0Jgux7nr9KSGiO7UvkxvbyIUiSSOB5S+JBNVjqIzftSY6fpuTfNXxSP6jWNm6U1Ew=
+Received: from BL0PR1501CA0004.namprd15.prod.outlook.com
+ (2603:10b6:207:17::17) by MW4PR12MB8612.namprd12.prod.outlook.com
+ (2603:10b6:303:1ec::13) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7292.25; Wed, 14 Feb
+ 2024 21:58:27 +0000
+Received: from MN1PEPF0000ECD9.namprd02.prod.outlook.com
+ (2603:10b6:207:17:cafe::df) by BL0PR1501CA0004.outlook.office365.com
+ (2603:10b6:207:17::17) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7270.41 via Frontend
+ Transport; Wed, 14 Feb 2024 21:58:27 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
+ smtp.mailfrom=amd.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=amd.com;
+Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
+ 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
+ client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
+Received: from SATLEXMB04.amd.com (165.204.84.17) by
+ MN1PEPF0000ECD9.mail.protection.outlook.com (10.167.242.138) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.20.7292.25 via Frontend Transport; Wed, 14 Feb 2024 21:58:26 +0000
+Received: from AUS-P9-MLIMONCI.amd.com (10.180.168.240) by SATLEXMB04.amd.com
+ (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.35; Wed, 14 Feb
+ 2024 15:58:25 -0600
+From: Mario Limonciello <mario.limonciello@amd.com>
+To: Daniel Vetter <daniel@ffwll.ch>, Jani Nikula
+ <jani.nikula@linux.intel.com>, Alex Deucher <alexander.deucher@amd.com>,
+ "Hans de Goede" <hdegoede@redhat.com>, "open list:DRM DRIVERS"
+ <dri-devel@lists.freedesktop.org>
+CC: <amd-gfx@lists.freedesktop.org>, "open list:USB SUBSYSTEM"
+ <linux-usb@vger.kernel.org>, <linux-fbdev@vger.kernel.org>,
+ <nouveau@lists.freedesktop.org>, <intel-gfx@lists.freedesktop.org>,
+ <platform-driver-x86@vger.kernel.org>, <intel-xe@lists.freedesktop.org>,
+ <linux-renesas-soc@vger.kernel.org>, "open list:ACPI"
+ <linux-acpi@vger.kernel.org>, open list <linux-kernel@vger.kernel.org>,
+ Melissa Wen <mwen@igalia.com>, Mark Pearson <mpearson-lenovo@squebb.ca>,
+ Mario Limonciello <mario.limonciello@amd.com>
+Subject: [PATCH v6 0/5] Add support for getting EDID over ACPI to DRM
+Date: Wed, 14 Feb 2024 15:57:51 -0600
+Message-ID: <20240214215756.6530-1-mario.limonciello@amd.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-Originating-IP: [10.180.168.240]
+X-ClientProxiedBy: SATLEXMB04.amd.com (10.181.40.145) To SATLEXMB04.amd.com
+ (10.181.40.145)
+X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DS0PR11MB8182:EE_|PH0PR11MB5000:EE_
-X-MS-Office365-Filtering-Correlation-Id: 7b402d08-c56c-4672-f9bb-08dc2da04135
+X-MS-TrafficTypeDiagnostic: MN1PEPF0000ECD9:EE_|MW4PR12MB8612:EE_
+X-MS-Office365-Filtering-Correlation-Id: d3b2eb89-dbc3-4b06-2218-08dc2da8128f
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: S5daxzrIj20LZdpN59XfAmpDb81IqrzE5g8dgyQA/t4K2f2OOWDgJXkHoADx7EKHCcxnJCu3nJVkYr5Buk3NMdaMrZ5t2p5EyjiqRVH/iasl4GtOPOxG0KcoS/zNxIvx9LnJGHQqAHtsuAUnH4oLkaNxbkwth3PmkKnkQGEaF+Z2/g/Lg3+vlqQ8mfEsU3N4qefTOl90I3D2QhE5y1PRLmK/u13yQbBZermVMtVpmYmzr71+nxMc15FZoWKKcI7DgHXuYBhLw8Hcz5R9izBSP8I1GC1dR5TSRxENOvTxw9n2Kb01g1kqZv8n3Cq6SD5ZMJCASAX7akMnSEBN1xZcK+Z88AGraJHqZ1fn7DobRhprIupatTTXNBcrw17JqIiCNQ1o6tllsqq3HZTg0JLA6ldrLIxCGS9BSn75Rl7dIy8fyLi/+ilaSt46b2D5RrJGtSepV18CjoWmz8mEhjzNBCfmoBoNOD7BamHoPVhvMPrifT+J2np54v2gnP0zULCAkGeLG5udqMMS7GjWBc+6SJutBYlM635wkgSPS/HG4MrqtTpgR5tnRbMuMfWrAXFE
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:DS0PR11MB8182.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230031)(346002)(396003)(366004)(136003)(39860400002)(376002)(230922051799003)(186009)(451199024)(64100799003)(1800799012)(5660300002)(2906002)(15650500001)(6486002)(53546011)(54906003)(316002)(478600001)(6512007)(6506007)(6636002)(1076003)(26005)(66476007)(66556008)(66946007)(6862004)(8936002)(4326008)(8676002)(41300700001)(83380400001)(86362001)(33656002)(38100700002)(82960400001);
+X-Microsoft-Antispam-Message-Info: eom7XwadlHEUd1nPgW4D5bqUip9Obx2DPHKyPiuHbnKwzsRorK4GwE5+R60EuJfk6Llzk/okwTUmlRhMNvDox5VSkBsTDjXmJk3bko8FBoffWmVkFoB+SGMf4kNUYwrRlzgMOSlfEuXSK3GLfP3Y60pTy0t3b4he9gpCfYZ4CqNiX1+bNFH50/fSsp4rm3PLVbUUTiNP3R1iVCnrog7hkB4dkeUN02H27CXwHAdjKOCnvN52Tu6hMAZjlsB+wWATJ0scBn2Xg8bPUz7ycgLgYFY7MEIt/3gZsucW2D8lkP8NUg+0fwDRvc/1HOxJFfoPwB5eSVpJVVxjNTTcjfoZHOss7ylftGTJv5x9nG+hHPbqtkZy7Y1uUfRw4gdg4rFQ97vnifo1sMpZojO9pAYVM3smMKyufoTGnVNkWVFBR0WOiptLatAhlXfBZKJ17dWzPzC4UQ7/EeLQfqAzc6YvtoaoWoT95MiP/jFxFqI4CQTvyyTfwRNd+qsZG9Lobvm6g5EGpwGOdLIDTq/Lb0s1Of/RDcT/eQlcmJSK6qXuYnqTEXSCsk+N5Gm/bYJ9YQcvRuBWJQU6pmbHmb9ADjG17wZkY42wyl/QhNTRelRAd3vbTpYwGSgOBeC8tQr5DaV16oMcAyyvS+PK/nDvV/G8LwDKx+f3Blk1Wg5O7q+zsiY=
+X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
+ IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
+ SFS:(13230031)(4636009)(396003)(39860400002)(376002)(136003)(346002)(230922051799003)(1800799012)(64100799003)(451199024)(36860700004)(82310400011)(186009)(46966006)(40470700004)(6666004)(86362001)(41300700001)(36756003)(7696005)(83380400001)(4326008)(70206006)(8936002)(70586007)(8676002)(54906003)(1076003)(110136005)(2616005)(316002)(16526019)(2906002)(26005)(44832011)(7416002)(336012)(478600001)(426003)(5660300002)(82740400003)(81166007)(356005);
  DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?G+lElWN69ogNmidBRlXv/jMcsX8mCtskQZR30Tc0mAAN0hw1+2ZwxTgmMxY5?=
- =?us-ascii?Q?4CamzrY41RfaWqkCVOh1Pa6sWK/qOgeV2USOtiFrOovWhOjTRBnWkIn+Bu+h?=
- =?us-ascii?Q?LMHmliVcyRl7Dlnb1FmkAc+l4ywMCkrzGj2Q4QP8yc49LgvcTOt5YhBeWsC2?=
- =?us-ascii?Q?P8poRAtVn7R04vvd7tjdgn8WGreo9U6gQ7CNfJdS377FpLCNkU6r3PAXjqeE?=
- =?us-ascii?Q?+/Jk+3v7ZVkPhS5VOfiFRsLg++69AmeYrK0EOWthYa0VRYpjgCTUl3073Y+9?=
- =?us-ascii?Q?DNsKZo3vSGycKGfqaiGjq/nPmaV1RBgSL3q3tjwlH8CsVTEOLyKa4UOZ161e?=
- =?us-ascii?Q?aOkaMToMYbt/0+GSs2CvIEvFiFNWz+Y6oWpyChZU4T0dzC/JWD5LpwSNLP4n?=
- =?us-ascii?Q?WXpUxo/AD1X+afUtf4ZPglRlppOZf7myQjajjahcmkQ8QxXdnqRKM3Wzy5eA?=
- =?us-ascii?Q?KAjHuk1vg9cWqKxqW76f5RkW09EkEONv0BH+WXyokZh1Czbxg50GmB6lBtdW?=
- =?us-ascii?Q?jL7IqiYQU65jETFeJeUsobzmJTUpcN7qzKTJls8xkHyd/xygU2UaTH2RC3l7?=
- =?us-ascii?Q?ES7TWbzqpE9uaN3UOSpXbRH68hoLW8iQaqQ/F458DrgBgADZJI4v8qqhc7Z0?=
- =?us-ascii?Q?KPaYPtbnNlEViy0e6iVFKcXYiJGjTlSGKrAROT7Qr6W4Jmfyxzaip4H+1crv?=
- =?us-ascii?Q?hOzw8tjYGcl2RuFWC3eTa67mO8+vbEqtyjtTVovsh4PBt/uubE/jN8JwDh5J?=
- =?us-ascii?Q?0Vm/ArbjiYD7kGPBi60FlNlvTrW/qol4poOLWRStwBS2xgA8uw6sWVjOk2HH?=
- =?us-ascii?Q?RNb43Lz6/MDF3cmKdemLFsNwd2zuqDlzTKJlM2/YlPo3aXjtumXH0o0A0oQr?=
- =?us-ascii?Q?iC9rTrjIUgbM9MwN/O62X5xYr+eB7VljdRGGrtA+e4xOUnW4aVKVo83Cl569?=
- =?us-ascii?Q?lgKGMbZSgTdBJpRyD04ZawO42Fs0mTso9UlBkrKHixx/tGBJWFAazwQd49jr?=
- =?us-ascii?Q?dV0eYrzZ28DmFF18Jfu6d32fTykCQtKxg3/ijFnYeYpSKFPi98BKhT7U7ip3?=
- =?us-ascii?Q?mtrEYwe7vBOU4XzZ9eap0w74JkL3XOmIf9iUkuKgh72Wraj0bQL/25/de/M2?=
- =?us-ascii?Q?YsvEiXnB6y7tuXQ0znHYQniN6R0DrfuZSlzLUWaexCx5WOfAJlcWJkAinC5X?=
- =?us-ascii?Q?q4ff23rPx9J5y/oc+dWNHDSjYJmbmvIdQrvZcw6hnIYh88Ss8MQYVcl8Jo2l?=
- =?us-ascii?Q?mCHox3EZ0SAPqI1nXK0tFd2bzZS8CGUcZIl/Q4xanML4fOJotbSv97m9uUNy?=
- =?us-ascii?Q?rCx7VH5iSdGVdi40Ui3hORFyuBMbboQGEMR5YIff/AXumyJ9xx6tyKPC9aHX?=
- =?us-ascii?Q?F3JcvjB5DWNLdEW7TI6aP5ocsiAxAsCJoOI3u+lxqd4y8KzOQzQs1T00dePM?=
- =?us-ascii?Q?HFJ1iT5PPV/RmT9MIMx5wtCWxw/2g4iRcA0SxTbmP4RNIDWqME2tnGuqFs3w?=
- =?us-ascii?Q?O6I8pEYeUdAUJu4icUB7IsJALD/0v6n+CaMKsPzDKl0Y/IebXxyqFKsw1YF3?=
- =?us-ascii?Q?eQZglkUdiljWQqqDmTd/aIMUtaiQbsVfagTPCuvWEPhwhM6AZjpKfSD8jyhN?=
- =?us-ascii?Q?sQ=3D=3D?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 7b402d08-c56c-4672-f9bb-08dc2da04135
-X-MS-Exchange-CrossTenant-AuthSource: DS0PR11MB8182.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 14 Feb 2024 21:02:29.3740 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: hxA8fvza2UlSOLPTvLxNgwbaWKFGlSFZNRXXqeZ15bWITgV51dxia3UgkX0lv574gVzUUUTHow9SzwmwYUmyiwpOuME5IK0HJNEqdNyFJC0=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH0PR11MB5000
-X-OriginatorOrg: intel.com
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 14 Feb 2024 21:58:26.8424 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: d3b2eb89-dbc3-4b06-2218-08dc2da8128f
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
+ Helo=[SATLEXMB04.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource: MN1PEPF0000ECD9.namprd02.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MW4PR12MB8612
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -156,58 +115,51 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, Feb 14, 2024 at 03:05:42PM +0000, Bhadane, Dnyaneshwar wrote:
-> 
-> 
-> > -----Original Message-----
-> > From: Intel-gfx <intel-gfx-bounces@lists.freedesktop.org> On Behalf Of
-> > Gustavo Sousa
-> > Sent: Wednesday, February 14, 2024 8:17 PM
-> > To: intel-gfx@lists.freedesktop.org
-> > Subject: [PATCH] drm/i915: Update ADL-N PCI IDs
-> > 
-> > Extend the list of ADL-N PCI IDs to contain two new entries.
-> > 
-> > Bspec: 68397
-> > Signed-off-by: Gustavo Sousa <gustavo.sousa@intel.com>
-> 
-> Looks good to me,
-> Thanks for the patch.
-> 
-> Reviewed-by: Dnyaneshwar Bhadane <dnyaneshwar.bhadane@intel.com>
+This series adds the ability to fetch the EDID through ACPI for laptop
+panels. Drivers need to opt into the behavior.
 
-Applied to drm-intel-next.  Thanks for the patch and review.
+In this series it's enabled by default for all eDP or LVDS panels with
+AMDGPU and certain panels for Nouveau.
 
+Mario Limonciello (5):
+  drm: Stop using `select ACPI_VIDEO` in all drivers
+  drm: Stop using `select BACKLIGHT_CLASS_DEVICE`
+  drm: Add support to get EDID from ACPI
+  drm/amd: Fetch the EDID from _DDC if available for eDP
+  drm/nouveau: Use drm_edid_read_acpi() helper
 
-Matt
-
-> 
-> Dnyaneshwar
-> > ---
-> >  include/drm/i915_pciids.h | 4 +++-
-> >  1 file changed, 3 insertions(+), 1 deletion(-)
-> > 
-> > diff --git a/include/drm/i915_pciids.h b/include/drm/i915_pciids.h index
-> > 07779a11758e..28a96aa1e08f 100644
-> > --- a/include/drm/i915_pciids.h
-> > +++ b/include/drm/i915_pciids.h
-> > @@ -672,7 +672,9 @@
-> >  #define INTEL_ADLN_IDS(info) \
-> >  	INTEL_VGA_DEVICE(0x46D0, info), \
-> >  	INTEL_VGA_DEVICE(0x46D1, info), \
-> > -	INTEL_VGA_DEVICE(0x46D2, info)
-> > +	INTEL_VGA_DEVICE(0x46D2, info), \
-> > +	INTEL_VGA_DEVICE(0x46D3, info), \
-> > +	INTEL_VGA_DEVICE(0x46D4, info)
-> > 
-> >  /* RPL-S */
-> >  #define INTEL_RPLS_IDS(info) \
-> > --
-> > 2.43.0
-> 
+ drivers/gpu/drm/Kconfig                       |   1 +
+ drivers/gpu/drm/amd/amdgpu/Kconfig            |   9 +-
+ drivers/gpu/drm/amd/amdgpu/amdgpu.h           |   1 +
+ .../gpu/drm/amd/amdgpu/amdgpu_connectors.c    |   3 +
+ drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c       |   8 ++
+ .../gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c |   4 +-
+ .../amd/display/amdgpu_dm/amdgpu_dm_helpers.c |   2 +
+ drivers/gpu/drm/bridge/Kconfig                |   2 +-
+ drivers/gpu/drm/drm_edid.c                    | 109 ++++++++++++++++--
+ drivers/gpu/drm/fsl-dcu/Kconfig               |   2 +-
+ drivers/gpu/drm/gma500/Kconfig                |   7 +-
+ drivers/gpu/drm/gud/Kconfig                   |   2 +-
+ drivers/gpu/drm/i915/Kconfig                  |   9 +-
+ drivers/gpu/drm/nouveau/Kconfig               |   9 +-
+ drivers/gpu/drm/nouveau/nouveau_acpi.c        |  27 -----
+ drivers/gpu/drm/nouveau/nouveau_acpi.h        |   2 -
+ drivers/gpu/drm/nouveau/nouveau_connector.c   |  35 +++---
+ drivers/gpu/drm/radeon/Kconfig                |   9 +-
+ drivers/gpu/drm/renesas/shmobile/Kconfig      |   2 +-
+ drivers/gpu/drm/solomon/Kconfig               |   2 +-
+ drivers/gpu/drm/tilcdc/Kconfig                |   2 +-
+ drivers/gpu/drm/tiny/Kconfig                  |  14 +--
+ drivers/gpu/drm/xe/Kconfig                    |   8 +-
+ drivers/platform/loongarch/Kconfig            |   2 +-
+ drivers/platform/x86/Kconfig                  |   4 +-
+ drivers/staging/olpc_dcon/Kconfig             |   2 +-
+ drivers/usb/misc/Kconfig                      |   2 +-
+ drivers/video/fbdev/core/Kconfig              |   2 +-
+ include/drm/drm_connector.h                   |   6 +
+ include/drm/drm_edid.h                        |   1 +
+ 30 files changed, 165 insertions(+), 123 deletions(-)
 
 -- 
-Matt Roper
-Graphics Software Engineer
-Linux GPU Platform Enablement
-Intel Corporation
+2.34.1
+
