@@ -2,63 +2,28 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6F5DB856233
-	for <lists+intel-gfx@lfdr.de>; Thu, 15 Feb 2024 12:54:14 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8A7FB856236
+	for <lists+intel-gfx@lfdr.de>; Thu, 15 Feb 2024 12:54:19 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8181710E43D;
-	Thu, 15 Feb 2024 11:54:12 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="OXf7svyh";
-	dkim-atps=neutral
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2223910E4F6;
+	Thu, 15 Feb 2024 11:54:14 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 31BD010E23C;
- Thu, 15 Feb 2024 11:54:11 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1707998051; x=1739534051;
- h=date:from:to:cc:subject:message-id:mime-version:
- content-transfer-encoding;
- bh=BVFqaFOd9FBPVh8+Wv/UlyHZJ6YiKiastl7z2hh+lhY=;
- b=OXf7svyh9fZNxXYJ0mIFtihKvT2bsPWqorrSCSuaqBD2RCvTS1pDUuuv
- K00Q8HBMAr1iIPWcSF8+FOa3TzAmXZd+grSEcs0pESmjP5iaU9QDNJcS0
- qTuU4AhwYoHo9wJ4JLI4EDuKdS59TqB6/vJGwoA2Elxz7CPvIqM5HDC7U
- 3IZHvb/FcvrHP1F+LdtOcXR+sDNlXNW28lCV+DlurDKqm8uEM48C2fu3V
- /WwoUc1thRcKSs9qq4/NWUyh4okBacoU32cYxGuEvFUsgANihP/UW24AD
- B/BRX30RpqTybvHmODYitVaSjrwf58nAn/5/TFmcIdmDuAFHwxefQkRj0 A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10984"; a="13470033"
-X-IronPort-AV: E=Sophos;i="6.06,161,1705392000"; d="scan'208";a="13470033"
-Received: from orviesa008.jf.intel.com ([10.64.159.148])
- by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Feb 2024 03:54:11 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.06,161,1705392000"; 
-   d="scan'208";a="3898776"
-Received: from unknown (HELO localhost) ([10.245.244.16])
- by orviesa008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Feb 2024 03:54:06 -0800
-Date: Thu, 15 Feb 2024 13:54:03 +0200
-From: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
-To: Dave Airlie <airlied@gmail.com>, Daniel Vetter <daniel.vetter@ffwll.ch>
-Cc: Jani Nikula <jani.nikula@linux.intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Thomas Zimmermann <tzimmermann@suse.de>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>,
- Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>,
- Oded Gabbay <ogabbay@kernel.org>,
- Lucas De Marchi <lucas.demarchi@intel.com>,
- dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
- dim-tools@lists.freedesktop.org
-Subject: [PULL] drm-intel-fixes
-Message-ID: <Zc37W27F5OvoeSkG@jlahtine-mobl.ger.corp.intel.com>
+Received: from 8e613ede5ea5 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6ECC710E36D;
+ Thu, 15 Feb 2024 11:54:12 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============2518556556338002837=="
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=93_Fi=2ECI=2EBAT=3A_success_for_ALPM_AUX-Less?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: =?utf-8?q?Jouni_H=C3=B6gander?= <jouni.hogander@intel.com>
+Cc: intel-gfx@lists.freedesktop.org
+Date: Thu, 15 Feb 2024 11:54:12 -0000
+Message-ID: <170799805245.925.14862972474404966322@8e613ede5ea5>
+X-Patchwork-Hint: ignore
+References: <20240215104934.2395239-1-jouni.hogander@intel.com>
+In-Reply-To: <20240215104934.2395239-1-jouni.hogander@intel.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -71,46 +36,204 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi Dave & Sima,
+--===============2518556556338002837==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Here goes drm-intel-fixes towards v6.8-rc5. Two fixes.
+== Series Details ==
 
-Fix for #10172 (blank screen on JSL Chromebooks) and limiting SST link
-rate within supported range.
+Series: ALPM AUX-Less
+URL   : https://patchwork.freedesktop.org/series/129938/
+State : success
 
-Best Regards, Joonas
+== Summary ==
 
-***
+CI Bug Log - changes from CI_DRM_14277 -> Patchwork_129938v1
+====================================================
 
-drm-intel-fixes-2024-02-15:
+Summary
+-------
 
-Fix for #10172: Blank screen on JSL Chromebooks. Stable fix to limit DP SST link rate to <=8.1Gbps.
+  **SUCCESS**
 
-The following changes since commit 841c35169323cd833294798e58b9bf63fa4fa1de:
+  No regressions found.
 
-  Linux 6.8-rc4 (2024-02-11 12:18:13 -0800)
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_129938v1/index.html
 
-are available in the Git repository at:
+Participating hosts (35 -> 34)
+------------------------------
 
-  git://anongit.freedesktop.org/drm/drm-intel tags/drm-intel-fixes-2024-02-15
+  Missing    (1): fi-snb-2520m 
 
-for you to fetch changes up to ad26d56d080780bbfcc1696ca0c0cce3e2124ef6:
+Known issues
+------------
 
-  drm/i915/dp: Limit SST link rate to <=8.1Gbps (2024-02-12 11:39:19 +0200)
+  Here are the changes found in Patchwork_129938v1 that come from known issues:
 
-----------------------------------------------------------------
-Fix for #10172: Blank screen on JSL Chromebooks. Stable fix to limit DP SST link rate to <=8.1Gbps.
+### CI changes ###
 
-----------------------------------------------------------------
-Manasi Navare (1):
-      drm/i915/dsc: Fix the macro that calculates DSCC_/DSCA_ PPS reg address
+#### Possible fixes ####
 
-Ville Syrjälä (1):
-      drm/i915/dp: Limit SST link rate to <=8.1Gbps
+  * boot:
+    - fi-cfl-8109u:       [FAIL][1] ([i915#8293]) -> [PASS][2]
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14277/fi-cfl-8109u/boot.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_129938v1/fi-cfl-8109u/boot.html
 
- drivers/gpu/drm/i915/display/intel_dp.c        | 3 +++
- drivers/gpu/drm/i915/display/intel_vdsc_regs.h | 4 ++--
- 2 files changed, 5 insertions(+), 2 deletions(-)
+  
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@gem_huc_copy@huc-copy:
+    - fi-cfl-8109u:       NOTRUN -> [SKIP][3] ([fdo#109271] / [i915#2190])
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_129938v1/fi-cfl-8109u/igt@gem_huc_copy@huc-copy.html
+
+  * igt@gem_lmem_swapping@verify-random:
+    - fi-cfl-8109u:       NOTRUN -> [SKIP][4] ([fdo#109271] / [i915#4613]) +3 other tests skip
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_129938v1/fi-cfl-8109u/igt@gem_lmem_swapping@verify-random.html
+
+  * igt@kms_pipe_crc_basic@nonblocking-crc:
+    - bat-dg2-11:         NOTRUN -> [SKIP][5] ([i915#9197])
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_129938v1/bat-dg2-11/igt@kms_pipe_crc_basic@nonblocking-crc.html
+
+  * igt@kms_pm_backlight@basic-brightness:
+    - fi-cfl-8109u:       NOTRUN -> [SKIP][6] ([fdo#109271]) +7 other tests skip
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_129938v1/fi-cfl-8109u/igt@kms_pm_backlight@basic-brightness.html
+
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
+  [i915#2190]: https://gitlab.freedesktop.org/drm/intel/issues/2190
+  [i915#4613]: https://gitlab.freedesktop.org/drm/intel/issues/4613
+  [i915#8293]: https://gitlab.freedesktop.org/drm/intel/issues/8293
+  [i915#9197]: https://gitlab.freedesktop.org/drm/intel/issues/9197
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_14277 -> Patchwork_129938v1
+
+  CI-20190529: 20190529
+  CI_DRM_14277: 0b36e01cb22c6d9d541f379253b4b2ab0c805646 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_7714: 7714
+  Patchwork_129938v1: 0b36e01cb22c6d9d541f379253b4b2ab0c805646 @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+### Linux commits
+
+8bbfc8eb7528 drm/i915/psr: Enable ALPM for eDP Panel replay
+01a62a4b1959 drm/i915/psr: Add missing ALPM AUX-Less register defintions
+0c6014822948 drm/i915/psr: Silence period and lfps half cycle
+6320d1ce02a1 drm/i915/psr: Calculate aux less switch to active latency
+831a3465fb0a drm/i915/psr: Calculate aux less wake time
+3bcdf3f36909 drm/display: Add missing aux less alpm wake related bits
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_129938v1/index.html
+
+--===============2518556556338002837==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>ALPM AUX-Less</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/129938/">https://patchwork.freedesktop.org/series/129938/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_129938v1/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_129938v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_14277 -&gt; Patchwork_129938v1</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_129938v1/index.html</p>
+<h2>Participating hosts (35 -&gt; 34)</h2>
+<p>Missing    (1): fi-snb-2520m </p>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_129938v1 that come from known issues:</p>
+<h3>CI changes</h3>
+<h4>Possible fixes</h4>
+<ul>
+<li>boot:<ul>
+<li>fi-cfl-8109u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14277/fi-cfl-8109u/boot.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/8293">i915#8293</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_129938v1/fi-cfl-8109u/boot.html">PASS</a></li>
+</ul>
+</li>
+</ul>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@gem_huc_copy@huc-copy:</p>
+<ul>
+<li>fi-cfl-8109u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_129938v1/fi-cfl-8109u/igt@gem_huc_copy@huc-copy.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/2190">i915#2190</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@gem_lmem_swapping@verify-random:</p>
+<ul>
+<li>fi-cfl-8109u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_129938v1/fi-cfl-8109u/igt@gem_lmem_swapping@verify-random.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/4613">i915#4613</a>) +3 other tests skip</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_pipe_crc_basic@nonblocking-crc:</p>
+<ul>
+<li>bat-dg2-11:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_129938v1/bat-dg2-11/igt@kms_pipe_crc_basic@nonblocking-crc.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/9197">i915#9197</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_pm_backlight@basic-brightness:</p>
+<ul>
+<li>fi-cfl-8109u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_129938v1/fi-cfl-8109u/igt@kms_pm_backlight@basic-brightness.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +7 other tests skip</li>
+</ul>
+</li>
+</ul>
+<p>{name}: This element is suppressed. This means it is ignored when computing<br />
+          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_14277 -&gt; Patchwork_129938v1</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_14277: 0b36e01cb22c6d9d541f379253b4b2ab0c805646 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_7714: 7714<br />
+  Patchwork_129938v1: 0b36e01cb22c6d9d541f379253b4b2ab0c805646 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+<h3>Linux commits</h3>
+<p>8bbfc8eb7528 drm/i915/psr: Enable ALPM for eDP Panel replay<br />
+01a62a4b1959 drm/i915/psr: Add missing ALPM AUX-Less register defintions<br />
+0c6014822948 drm/i915/psr: Silence period and lfps half cycle<br />
+6320d1ce02a1 drm/i915/psr: Calculate aux less switch to active latency<br />
+831a3465fb0a drm/i915/psr: Calculate aux less wake time<br />
+3bcdf3f36909 drm/display: Add missing aux less alpm wake related bits</p>
+
+</body>
+</html>
+
+--===============2518556556338002837==--
