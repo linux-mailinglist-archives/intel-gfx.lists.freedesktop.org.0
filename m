@@ -2,83 +2,61 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id AAF05855CD5
-	for <lists+intel-gfx@lfdr.de>; Thu, 15 Feb 2024 09:50:09 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 010CC855EC0
+	for <lists+intel-gfx@lfdr.de>; Thu, 15 Feb 2024 11:07:04 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E5F8410E299;
-	Thu, 15 Feb 2024 08:50:04 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D1AFD10E4E0;
+	Thu, 15 Feb 2024 10:06:56 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=redhat.com header.i=@redhat.com header.b="MHgn7VXr";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="fFUr2Clt";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from us-smtp-delivery-124.mimecast.com
- (us-smtp-delivery-124.mimecast.com [170.10.133.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CE46910E21A
- for <intel-gfx@lists.freedesktop.org>; Thu, 15 Feb 2024 08:50:03 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1707987002;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type;
- bh=sX3oVMyy9XRTy9yx5EbbzgkZnCPKuMcmoALywqbasxE=;
- b=MHgn7VXrKHzxquys6MBXNzqZLrVsFNYpJvBFZX6DE+v7Ec1s6mZLZD+v1BHIwgtYdy49dV
- K7yLV6Fuxf2Vw6pVWMXDIFvB2HEfoFtbRTp92AmcDeH6T/c22DZoYpX+COl0mtUs96gJQW
- zBnNSlTqKFOLYQwqTxSXCMTIIewzr1o=
-Received: from mail-qt1-f198.google.com (mail-qt1-f198.google.com
- [209.85.160.198]) by relay.mimecast.com with ESMTP with STARTTLS
- (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
- us-mta-56-cXS8FI83Nw--EyZIBKY1Lg-1; Thu, 15 Feb 2024 03:49:59 -0500
-X-MC-Unique: cXS8FI83Nw--EyZIBKY1Lg-1
-Received: by mail-qt1-f198.google.com with SMTP id
- d75a77b69052e-42c95f83ce0so5699561cf.1
- for <intel-gfx@lists.freedesktop.org>; Thu, 15 Feb 2024 00:49:59 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1707986999; x=1708591799;
- h=content-disposition:mime-version:message-id:subject:cc:to:from:date
- :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
- bh=sX3oVMyy9XRTy9yx5EbbzgkZnCPKuMcmoALywqbasxE=;
- b=S511YHhU9MJkH9lAIr5uwxsiiizg6jVD4jWs42xE20qi+Jnh1vVAa2u4PhjXkoJZ6j
- b0pt4DyRFLhCobvBFX19GwGfn8pZiwjD/nd33Q+3al1EY9BHPynJLL6zx9jhnDuQQ9wx
- rDxdr7+6vEmG/fzLCdZirn+X91VN+xXvYqjUxyjJ++zAlDd5xSuW42KntqgHC0lvxKx1
- TSR1cz37NiHAoZnz0ezvmaLt/ZQJ7EYEq1TIf5qSZAUbVOpCGw+ByxA7SG2i6uSautNT
- V6VdyWj1ZvY34YL+z5/0kH7SobLG+UjmeOarXEoqcA7+ZRV0O4qQB566ZzF/LxsJVF6+
- ImaA==
-X-Forwarded-Encrypted: i=1;
- AJvYcCV19ObE+wszYnGe1BHNEK+G9d4rx+3p4873nDowztIX5vMCiQsRX2RJQVKzhuHLRnDYcZzD3C1Zy9GCEgqWZwBjJyPpjZ8uZiyOGjb5ddGT
-X-Gm-Message-State: AOJu0YzQ561b9M30KyFzQRH1qbETEYf6sy8nzfVmD56E6Lg+stRxm/Lu
- CRtUdYUw33fBOA5emymECfIxUPKSzr1mOD5D8PQHPajnErsfhDfu1P7qmtrb/h+FUR5g6oJ59QG
- MLtrOy+DQYCP9dXLir39rvTblTNQOwCxwo1TEcqA4gTHSaNs3fMU9XZOYHwoEs3s6xg==
-X-Received: by 2002:ac8:6b54:0:b0:42d:cff1:7bb7 with SMTP id
- x20-20020ac86b54000000b0042dcff17bb7mr639525qts.15.1707986998899; 
- Thu, 15 Feb 2024 00:49:58 -0800 (PST)
-X-Google-Smtp-Source: AGHT+IE3B9fZ09ND00SBjtT6N26t6zEKQ5EZUvT+XzYQCT6zkY+YvFMumJXRAkJRqaoOsMt2NE0/7A==
-X-Received: by 2002:ac8:6b54:0:b0:42d:cff1:7bb7 with SMTP id
- x20-20020ac86b54000000b0042dcff17bb7mr639506qts.15.1707986998591; 
- Thu, 15 Feb 2024 00:49:58 -0800 (PST)
-Received: from localhost ([2a01:e0a:b25:f902::ff])
- by smtp.gmail.com with ESMTPSA id
- d22-20020a05622a15d600b0042dbcf23a64sm390258qty.1.2024.02.15.00.49.57
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Thu, 15 Feb 2024 00:49:58 -0800 (PST)
-Date: Thu, 15 Feb 2024 09:49:56 +0100
-From: Maxime Ripard <mripard@redhat.com>
-To: Dave Airlie <airlied@gmail.com>, 
-	Daniel Vetter <daniel.vetter@ffwll.ch>
-Cc: Jani Nikula <jani.nikula@linux.intel.com>, 
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8489610E055;
+ Thu, 15 Feb 2024 10:06:54 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1707991615; x=1739527615;
+ h=date:from:to:cc:subject:message-id:mime-version;
+ bh=CW9pPXVDJQvIPYtn5PdKUZ8LPZWXwe6GSl76Esrm9PU=;
+ b=fFUr2Clt3YAoUcEqdX7T3mwT2inQOqClDvPt5zAldJmg4zdQixs5wYfo
+ uvuTdYZWeeCPicGh5Z9PQ7WAjB2vqcqJVyBSBtk7XwkSychVJkw4P2wRA
+ 3ujtgV+dY7ais6g24trXYrTzbXh6fVLS2Be2h+2+smAHZpWXReoB0eXKg
+ tw0OKfYCatoHMoFWKHIlSl0YC847Ybt/fYC0WNce58Dl4ZnXJtZqBU4B9
+ 8Xukct2cMNVJf8GkWlec9WOKfG9FT7RSHpv6eA12ywTji0HReoeynYXWx
+ wo+wAC48PWPD4myu3NQSRQZmdKtu2wcGD17Uwi42swPXk+TeFXATmJCeW Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10984"; a="12700280"
+X-IronPort-AV: E=Sophos;i="6.06,161,1705392000"; d="scan'208";a="12700280"
+Received: from orviesa006.jf.intel.com ([10.64.159.146])
+ by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 Feb 2024 02:06:54 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.06,161,1705392000"; 
+   d="scan'208";a="3831849"
+Received: from dvigder-mobl2.ger.corp.intel.com (HELO localhost)
+ ([10.213.231.37])
+ by orviesa006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 Feb 2024 02:06:50 -0800
+Date: Thu, 15 Feb 2024 10:06:48 +0000
+From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+To: Dave Airlie <airlied@gmail.com>, Daniel Vetter <daniel.vetter@ffwll.ch>
+Cc: Jani Nikula <jani.nikula@linux.intel.com>,
  Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>, 
- Rodrigo Vivi <rodrigo.vivi@intel.com>, Thomas Zimmermann <tzimmermann@suse.de>,
+ Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Thomas Zimmermann <tzimmermann@suse.de>,
  Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, 
- Thomas =?utf-8?Q?Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
- Oded Gabbay <ogabbay@kernel.org>, 
- Lucas De Marchi <lucas.demarchi@intel.com>, dri-devel@lists.freedesktop.org,
- intel-gfx@lists.freedesktop.org, dim-tools@lists.freedesktop.org
-Subject: [PULL] drm-misc-fixes
-Message-ID: <b4ffqzigtfh6cgzdpwuk6jlrv3dnk4hu6etiizgvibysqgtl2p@42n2gdfdd5eu>
+ Maxime Ripard <mripard@kernel.org>,
+ Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>,
+ Oded Gabbay <ogabbay@kernel.org>,
+ Lucas De Marchi <lucas.demarchi@intel.com>,
+ dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
+ dim-tools@lists.freedesktop.org
+Subject: [PULL] drm-intel-gt-next
+Message-ID: <Zc3iIVsiAwo+bu10@tursulin-desk>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
- protocol="application/pgp-signature"; boundary="iqzyv4n4wkdriy45"
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -95,94 +73,184 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+Hi Dave, Daniel,
 
---iqzyv4n4wkdriy45
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+First pull request for 6.9 with probably one more coming in one to two
+weeks.
 
-Hi,
+Nothing to interesting in this one, mostly a sprinkle of small fixes in
+GuC, HuC, Perf/OA, a tiny bit of prep work for future platforms and some
+code cleanups.
 
-Here's this week drm-misc-fixes PR
+One new uapi in the form of a GuC submission version query which Mesa
+wants for implementing Vulkan async compute queues.
 
-Maxime
+Regards,
 
-drm-misc-fixes-2024-02-15:
-A suspend/resume error fix for ivpu, a couple of scheduler fixes for
-nouveau, a patch to support large page arrays in prime, a uninitialized
-variable fix in crtc, a locking fix in rockchip/vop2 and a buddy
-allocator error reporting fix.
-The following changes since commit 5f8408aca66772d3aa9b4831577b2ac5ec41bcd9:
+Tvrtko
 
-  accel/ivpu: Add job status for jobs aborted by the driver (2024-02-06 13:37:34 +0100)
+drm-intel-gt-next-2024-02-15:
+UAPI Changes:
+
+- Add GuC submission interface version query (Tvrtko Ursulin)
+
+Driver Changes:
+
+Fixes/improvements/new stuff:
+
+- Atomically invalidate userptr on mmu-notifier (Jonathan Cavitt)
+- Update handling of MMIO triggered reports (Umesh Nerlige Ramappa)
+- Don't make assumptions about intel_wakeref_t type (Jani Nikula)
+- Add workaround 14019877138 [xelpg] (Tejas Upadhyay)
+- Allow for very slow HuC loading [huc] (John Harrison)
+- Flush context destruction worker at suspend [guc] (Alan Previn)
+- Close deregister-context race against CT-loss [guc] (Alan Previn)
+- Avoid circular locking issue on busyness flush [guc] (John Harrison)
+- Use rc6.supported flag from intel_gt for rc6_enable sysfs (Juan Escamilla)
+- Reflect the true and current status of rc6_enable (Juan Escamilla)
+- Wake GT before sending H2G message [mtl] (Vinay Belgaumkar)
+- Restart the heartbeat timer when forcing a pulse (John Harrison)
+
+Future platform enablement:
+
+- Extend driver code of Xe_LPG to Xe_LPG+ [xelpg] (Harish Chegondi)
+- Extend some workarounds/tuning to gfx version 12.74 [xelpg] (Matt Roper)
+
+Miscellaneous:
+
+- Reconcile Excess struct member kernel-doc warnings (Randy Dunlap)
+- Change wa and EU_PERF_CNTL registers to MCR type [guc] (Shuicheng Lin)
+- Add flex arrays to struct i915_syncmap (Erick Archer)
+- Increasing the sleep time for live_rc6_manual [selftests] (Anirban Sk)
+The following changes since commit 31accc37eaee98a90b25809ed58c6ee4956ab642:
+
+  drm/i915: Use kmap_local_page() in gem/i915_gem_execbuffer.c (2023-12-15 09:34:31 +0000)
 
 are available in the Git repository at:
 
-  git://anongit.freedesktop.org/drm/drm-misc tags/drm-misc-fixes-2024-02-15
+  git://anongit.freedesktop.org/drm/drm-intel tags/drm-intel-gt-next-2024-02-15
 
-for you to fetch changes up to a64056bb5a3215bd31c8ce17d609ba0f4d5c55ea:
+for you to fetch changes up to eb927f01dfb6309c8a184593c2c0618c4000c481:
 
-  drm/tests/drm_buddy: add alloc_contiguous test (2024-02-14 15:22:21 +0100)
-
-----------------------------------------------------------------
-A suspend/resume error fix for ivpu, a couple of scheduler fixes for
-nouveau, a patch to support large page arrays in prime, a uninitialized
-variable fix in crtc, a locking fix in rockchip/vop2 and a buddy
-allocator error reporting fix.
+  drm/i915/gt: Restart the heartbeat timer when forcing a pulse (2024-02-14 17:17:35 -0800)
 
 ----------------------------------------------------------------
-Arnd Bergmann (1):
-      nouveau/svm: fix kvcalloc() argument order
+UAPI Changes:
 
-Arunpravin Paneer Selvam (1):
-      drm/buddy: Fix alloc_range() error handling code
+- Add GuC submission interface version query (Tvrtko Ursulin)
 
-Danilo Krummrich (2):
-      drm/nouveau: don't fini scheduler if not initialized
-      drm/nouveau: omit to create schedulers using the legacy uAPI
+Driver Changes:
 
-Harshit Mogalapalli (1):
-      drm/rockchip: vop2: add a missing unlock in vop2_crtc_atomic_enable()
+Fixes/improvements/new stuff:
 
-Jacek Lawrynowicz (1):
-      accel/ivpu: Fix DevTLB errors on suspend/resume and recovery
+- Atomically invalidate userptr on mmu-notifier (Jonathan Cavitt)
+- Update handling of MMIO triggered reports (Umesh Nerlige Ramappa)
+- Don't make assumptions about intel_wakeref_t type (Jani Nikula)
+- Add workaround 14019877138 [xelpg] (Tejas Upadhyay)
+- Allow for very slow HuC loading [huc] (John Harrison)
+- Flush context destruction worker at suspend [guc] (Alan Previn)
+- Close deregister-context race against CT-loss [guc] (Alan Previn)
+- Avoid circular locking issue on busyness flush [guc] (John Harrison)
+- Use rc6.supported flag from intel_gt for rc6_enable sysfs (Juan Escamilla)
+- Reflect the true and current status of rc6_enable (Juan Escamilla)
+- Wake GT before sending H2G message [mtl] (Vinay Belgaumkar)
+- Restart the heartbeat timer when forcing a pulse (John Harrison)
 
-Matthew Auld (1):
-      drm/tests/drm_buddy: add alloc_contiguous test
+Future platform enablement:
 
-Philip Yang (1):
-      drm/prime: Support page array >= 4GB
+- Extend driver code of Xe_LPG to Xe_LPG+ [xelpg] (Harish Chegondi)
+- Extend some workarounds/tuning to gfx version 12.74 [xelpg] (Matt Roper)
 
-Rob Clark (1):
-      drm/crtc: fix uninitialized variable use even harder
+Miscellaneous:
 
- drivers/accel/ivpu/ivpu_hw_37xx.c            | 44 ++++++++++----
- drivers/accel/ivpu/ivpu_pm.c                 | 39 ++++++------
- drivers/gpu/drm/drm_buddy.c                  |  6 ++
- drivers/gpu/drm/drm_crtc.c                   |  1 +
- drivers/gpu/drm/drm_prime.c                  |  2 +-
- drivers/gpu/drm/nouveau/nouveau_abi16.c      | 20 +++++--
- drivers/gpu/drm/nouveau/nouveau_abi16.h      |  2 +-
- drivers/gpu/drm/nouveau/nouveau_drm.c        |  7 ++-
- drivers/gpu/drm/nouveau/nouveau_drv.h        |  2 +-
- drivers/gpu/drm/nouveau/nouveau_exec.c       |  2 +-
- drivers/gpu/drm/nouveau/nouveau_sched.c      | 38 +++++++++++-
- drivers/gpu/drm/nouveau/nouveau_sched.h      |  6 +-
- drivers/gpu/drm/nouveau/nouveau_svm.c        |  2 +-
- drivers/gpu/drm/nouveau/nouveau_uvmm.c       |  2 +-
- drivers/gpu/drm/rockchip/rockchip_drm_vop2.c |  4 +-
- drivers/gpu/drm/tests/drm_buddy_test.c       | 89 ++++++++++++++++++++++++++++
- 16 files changed, 216 insertions(+), 50 deletions(-)
+- Reconcile Excess struct member kernel-doc warnings (Randy Dunlap)
+- Change wa and EU_PERF_CNTL registers to MCR type [guc] (Shuicheng Lin)
+- Add flex arrays to struct i915_syncmap (Erick Archer)
+- Increasing the sleep time for live_rc6_manual [selftests] (Anirban Sk)
 
---iqzyv4n4wkdriy45
-Content-Type: application/pgp-signature; name="signature.asc"
+----------------------------------------------------------------
+Alan Previn (2):
+      drm/i915/guc: Flush context destruction worker at suspend
+      drm/i915/guc: Close deregister-context race against CT-loss
 
------BEGIN PGP SIGNATURE-----
+Anirban Sk (1):
+      drm/i915/selftests: Increasing the sleep time for live_rc6_manual
 
-iHUEABYKAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCZc3QMwAKCRDj7w1vZxhR
-xRZAAQC1+lM9MSha6mE5SXxoPZ4TxfLFiO1UB8coWlOMMZo0jQD8CLKKSFmarIZU
-afZUz6ljN/nYUxdsvWWGUEUIG7wBtwg=
-=Ku2g
------END PGP SIGNATURE-----
+Erick Archer (1):
+      drm/i915: Add flex arrays to struct i915_syncmap
 
---iqzyv4n4wkdriy45--
+Harish Chegondi (1):
+      drm/i915/xelpg: Extend driver code of Xe_LPG to Xe_LPG+
 
+Jani Nikula (1):
+      drm/i915: don't make assumptions about intel_wakeref_t type
+
+John Harrison (3):
+      drm/i915/huc: Allow for very slow HuC loading
+      drm/i915/guc: Avoid circular locking issue on busyness flush
+      drm/i915/gt: Restart the heartbeat timer when forcing a pulse
+
+Jonathan Cavitt (1):
+      drm/i915/gem: Atomically invalidate userptr on mmu-notifier
+
+Juan Escamilla (2):
+      drm/i915/gt: Use rc6.supported flag from intel_gt for rc6_enable sysfs
+      drm/i915/gt: Reflect the true and current status of rc6_enable
+
+Matt Roper (1):
+      drm/i915/xelpg: Extend some workarounds/tuning to gfx version 12.74
+
+Randy Dunlap (4):
+      drm/i915/gem: reconcile Excess struct member kernel-doc warnings
+      drm/i915/gt: reconcile Excess struct member kernel-doc warnings
+      drm/i915/guc: reconcile Excess struct member kernel-doc warnings
+      drm/i915/perf: reconcile Excess struct member kernel-doc warnings
+
+Shuicheng Lin (1):
+      drm/i915/guc: Change wa and EU_PERF_CNTL registers to MCR type
+
+Tejas Upadhyay (1):
+      drm/i915/xelpg: Add workaround 14019877138
+
+Tvrtko Ursulin (1):
+      drm/i915: Add GuC submission interface version query
+
+Umesh Nerlige Ramappa (1):
+      drm/i915/perf: Update handling of MMIO triggered reports
+
+Vinay Belgaumkar (1):
+      drm/i915/mtl: Wake GT before sending H2G message
+
+ drivers/gpu/drm/i915/display/intel_display_power.c |   4 +-
+ drivers/gpu/drm/i915/gem/i915_gem_context_types.h  |   4 +-
+ drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c     |   8 --
+ drivers/gpu/drm/i915/gem/i915_gem_pm.c             |  10 ++
+ drivers/gpu/drm/i915/gem/i915_gem_userptr.c        |  42 -------
+ drivers/gpu/drm/i915/gem/i915_gem_userptr.h        |  14 ---
+ drivers/gpu/drm/i915/gt/gen8_engine_cs.c           |   4 +-
+ drivers/gpu/drm/i915/gt/intel_engine_cs.c          |   3 +-
+ drivers/gpu/drm/i915/gt/intel_engine_heartbeat.c   |   3 +
+ drivers/gpu/drm/i915/gt/intel_gsc.h                |   7 +-
+ drivers/gpu/drm/i915/gt/intel_gt_sysfs_pm.c        |  18 +--
+ drivers/gpu/drm/i915/gt/intel_mocs.c               |   2 +-
+ drivers/gpu/drm/i915/gt/intel_rc6.c                |   2 +-
+ drivers/gpu/drm/i915/gt/intel_workarounds.c        |  27 +++--
+ drivers/gpu/drm/i915/gt/selftest_rc6.c             |   4 +-
+ drivers/gpu/drm/i915/gt/uc/intel_guc.h             |  75 ++++++------
+ drivers/gpu/drm/i915/gt/uc/intel_guc_ads.c         |  21 ++--
+ drivers/gpu/drm/i915/gt/uc/intel_guc_fw.c          |  10 +-
+ drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c  | 126 ++++++++++++++++++++-
+ drivers/gpu/drm/i915/gt/uc/intel_guc_submission.h  |   2 +
+ drivers/gpu/drm/i915/gt/uc/intel_huc.c             |  64 ++++++++++-
+ drivers/gpu/drm/i915/gt/uc/intel_uc.c              |   4 +-
+ drivers/gpu/drm/i915/i915_debugfs.c                |   2 +-
+ drivers/gpu/drm/i915/i915_drv.h                    |   8 --
+ drivers/gpu/drm/i915/i915_gem.c                    |   5 -
+ drivers/gpu/drm/i915/i915_perf.c                   |  41 ++++++-
+ drivers/gpu/drm/i915/i915_perf_types.h             |   9 +-
+ drivers/gpu/drm/i915/i915_query.c                  |  33 ++++++
+ drivers/gpu/drm/i915/i915_syncmap.c                |  19 ++--
+ drivers/gpu/drm/i915/intel_uncore.c                |   5 +-
+ include/uapi/drm/i915_drm.h                        |  12 ++
+ 31 files changed, 392 insertions(+), 196 deletions(-)
+ delete mode 100644 drivers/gpu/drm/i915/gem/i915_gem_userptr.h
