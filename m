@@ -2,50 +2,57 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2A39685585E
-	for <lists+intel-gfx@lfdr.de>; Thu, 15 Feb 2024 01:42:23 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id BC58F8558FC
+	for <lists+intel-gfx@lfdr.de>; Thu, 15 Feb 2024 03:48:43 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 059A110E057;
-	Thu, 15 Feb 2024 00:42:20 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A838589FF7;
+	Thu, 15 Feb 2024 02:48:40 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="UDjd+gn9";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="nezW9irr";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6599510E057
- for <intel-gfx@lists.freedesktop.org>; Thu, 15 Feb 2024 00:42:17 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A00BE89FF7
+ for <intel-gfx@lists.freedesktop.org>; Thu, 15 Feb 2024 02:48:37 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1707957737; x=1739493737;
- h=from:to:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=ooX46XakzeT3yg/dDAX5eZDJjD+ezujrMds1Kbz36mQ=;
- b=UDjd+gn9v/6eP4dvMuoaqj4A9JZj0Alf8sa+tG/a5q6lkEdUFolvGzMz
- dGzYFoXxsh6eWLD0NZ4OsEnOInTq05naBIslCy1K0upGucOcshSt0mGwJ
- xG4FpClWewkj9Dqeae4ijFRyHl8Gwqk1xiodf7UZKPKuSHE483Zix9FYe
- OMd3upNHBwmBLqQpynxj3EVvsaypbIiXFpe+y9gl1O3cx2igQacNrPbd0
- DGuz9PBmpErHPVMLJLDraw9LVuyNTWh4a8JX5M+vSHvU/yFiQI9FAOBGq
- K/Mt4IkJrajZtc3nE7bPdkG39pf4Vdq5Dd9+1GGL1eRiICM7ueAXeT7tL A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10984"; a="1907172"
-X-IronPort-AV: E=Sophos;i="6.06,161,1705392000"; 
-   d="scan'208";a="1907172"
-Received: from fmviesa006.fm.intel.com ([10.60.135.146])
- by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Feb 2024 16:42:14 -0800
+ t=1707965317; x=1739501317;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:in-reply-to;
+ bh=7uJhrxJ/DEPPnLSqNKo9KHA/8c1+XjytCpx1Lv34FKg=;
+ b=nezW9irrH7qpafKihb+jDDWkBxXt9bGbbw1bi13ojXjZBcifU2Mtj6Zj
+ +PXBuu2cqEfAJNNbHPAGr6uVBujkxIQhCSR2r7F16ikZn4i2kWc1KOq6+
+ RYxPaECHXwrO9T3g7tk5w9FwXKMoIpGgnPVARBv8AcIed04e/CYeNzLM6
+ rSck//7EEdoEEUIYvzNrscewTvMYDRIs0oCvt9B/0QWPeFPaj/3RlQiPv
+ 9eONz90F9l1juVMIcS3udmX7Gf/sIjApgnzNoPzMK4HQl6hWoYWmD7qcZ
+ FVhAjwKxGO3/jek5srLuYVMS+kgXhRPd9pG8KQ965/bIJgMYxUN0ARToC w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10984"; a="12758302"
+X-IronPort-AV: E=Sophos;i="6.06,161,1705392000"; d="scan'208";a="12758302"
+Received: from orviesa009.jf.intel.com ([10.64.159.149])
+ by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 14 Feb 2024 18:48:35 -0800
 X-ExtLoop1: 1
 X-IronPort-AV: E=Sophos;i="6.06,161,1705392000"; 
-   d="scan'208";a="3654714"
-Received: from relo-linux-5.jf.intel.com ([10.165.21.152])
- by fmviesa006.fm.intel.com with ESMTP; 14 Feb 2024 16:42:14 -0800
-From: John.C.Harrison@Intel.com
-To: intel-gfx@lists.freedesktop.org
-Subject: [CI] PR for new GuC v70.20.0
-Date: Wed, 14 Feb 2024 16:39:52 -0800
-Message-ID: <20240215003952.114072-1-John.C.Harrison@Intel.com>
-X-Mailer: git-send-email 2.43.0
+   d="scan'208";a="3413022"
+Received: from lkp-server02.sh.intel.com (HELO 94d82249bd8f) ([10.239.97.151])
+ by orviesa009.jf.intel.com with ESMTP; 14 Feb 2024 18:48:34 -0800
+Received: from kbuild by 94d82249bd8f with local (Exim 4.96)
+ (envelope-from <lkp@intel.com>) id 1raRna-00006i-1h;
+ Thu, 15 Feb 2024 02:48:30 +0000
+Date: Thu, 15 Feb 2024 10:48:22 +0800
+From: kernel test robot <lkp@intel.com>
+To: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>,
+ intel-gfx@lists.freedesktop.org
+Cc: oe-kbuild-all@lists.linux.dev,
+ Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+Subject: Re: [PATCH 2/2] i915/pmu: Cleanup pending events on unbind
+Message-ID: <202402151001.pZIUj91O-lkp@intel.com>
+References: <20240213180302.47266-3-umesh.nerlige.ramappa@intel.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240213180302.47266-3-umesh.nerlige.ramappa@intel.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,36 +68,75 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-The following changes since commit fbef4d381e3d0143427e1a8c924be8e738c0fc2d:
+Hi Umesh,
 
-  Merge branch 'main' into 'main' (2024-02-08 12:24:01 +0000)
+kernel test robot noticed the following build warnings:
 
-are available in the Git repository at:
+[auto build test WARNING on drm-intel/for-linux-next]
+[also build test WARNING on drm-intel/for-linux-next-fixes drm-tip/drm-tip linus/master v6.8-rc4 next-20240214]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
 
-  git://anongit.freedesktop.org/drm/drm-firmware guc_70.20.0_with_pvc
+url:    https://github.com/intel-lab-lkp/linux/commits/Umesh-Nerlige-Ramappa/i915-pmu-Add-pmu_teardown-helper/20240214-020605
+base:   git://anongit.freedesktop.org/drm-intel for-linux-next
+patch link:    https://lore.kernel.org/r/20240213180302.47266-3-umesh.nerlige.ramappa%40intel.com
+patch subject: [PATCH 2/2] i915/pmu: Cleanup pending events on unbind
+config: x86_64-randconfig-121-20240214 (https://download.01.org/0day-ci/archive/20240215/202402151001.pZIUj91O-lkp@intel.com/config)
+compiler: gcc-12 (Debian 12.2.0-14) 12.2.0
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20240215/202402151001.pZIUj91O-lkp@intel.com/reproduce)
 
-for you to fetch changes up to 609c1c4654f7f5f0c96f737679a823a29e44ca1e:
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202402151001.pZIUj91O-lkp@intel.com/
 
-  xe: Add GuC 70.20.0 for PVC (2024-02-14 16:34:11 -0800)
+sparse warnings: (new ones prefixed by >>)
+>> drivers/gpu/drm/i915/i915_pmu.c:1405:44: sparse: sparse: incorrect type in initializer (different address spaces) @@     expected struct file *file @@     got struct file [noderef] __rcu * @@
+   drivers/gpu/drm/i915/i915_pmu.c:1405:44: sparse:     expected struct file *file
+   drivers/gpu/drm/i915/i915_pmu.c:1405:44: sparse:     got struct file [noderef] __rcu *
+   drivers/gpu/drm/i915/i915_pmu.c: note: in included file (through include/linux/preempt.h, include/linux/spinlock.h, include/linux/fdtable.h):
+   include/linux/list.h:83:21: sparse: sparse: self-comparison always evaluates to true
 
-----------------------------------------------------------------
-Daniele Ceraolo Spurio (1):
-      xe: Add GuC 70.20.0 for PVC
+vim +1405 drivers/gpu/drm/i915/i915_pmu.c
 
-John Harrison (2):
-      i915: Add GuC v70.20.0 for ADL-P, DG1, DG2, MTL and TGL
-      xe: First GuC release for LNL and Xe
+  1385	
+  1386	static void close_event_file(struct perf_event *event)
+  1387	{
+  1388		unsigned int max_open_fds, fd;
+  1389		struct files_struct *files;
+  1390		struct task_struct *task;
+  1391		struct fdtable *fdt;
+  1392	
+  1393		task = event->owner;
+  1394		if (!task)
+  1395			return;
+  1396	
+  1397		files = task->files;
+  1398		if (!files)
+  1399			return;
+  1400	
+  1401		spin_lock(&files->file_lock);
+  1402		fdt = files_fdtable(files);
+  1403		max_open_fds = __open_files(fdt);
+  1404		for (fd = 0; fd < max_open_fds; fd++) {
+> 1405			struct file *file = fdt->fd[fd];
+  1406	
+  1407			if (!file || file->private_data != event)
+  1408				continue;
+  1409	
+  1410			rcu_assign_pointer(fdt->fd[fd], NULL);
+  1411			__clear_bit(fd, fdt->open_fds);
+  1412			__clear_bit(fd / BITS_PER_LONG, fdt->full_fds_bits);
+  1413			if (fd < files->next_fd)
+  1414				files->next_fd = fd;
+  1415			filp_close(file, files);
+  1416			break;
+  1417		}
+  1418		spin_unlock(&files->file_lock);
+  1419	}
+  1420	
 
- LICENSE.xe             |  39 +++++++++++++++++++++++++++++++++++++++
- WHENCE                 |  23 +++++++++++++++++------
- i915/adlp_guc_70.bin   | Bin 342848 -> 347584 bytes
- i915/dg1_guc_70.bin    | Bin 272512 -> 321472 bytes
- i915/dg2_guc_70.bin    | Bin 443200 -> 410368 bytes
- i915/mtl_guc_70.bin    | Bin 365376 -> 332544 bytes
- i915/tgl_guc_70.bin    | Bin 330304 -> 335168 bytes
- xe/lnl_guc_70.bin      | Bin 0 -> 336640 bytes
- xe/pvc_guc_70.20.0.bin | Bin 0 -> 553728 bytes
- 9 files changed, 56 insertions(+), 6 deletions(-)
- create mode 100644 LICENSE.xe
- create mode 100644 xe/lnl_guc_70.bin
- create mode 100644 xe/pvc_guc_70.20.0.bin
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
