@@ -2,57 +2,64 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id AC61F85790D
-	for <lists+intel-gfx@lfdr.de>; Fri, 16 Feb 2024 10:41:56 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 63C8C857958
+	for <lists+intel-gfx@lfdr.de>; Fri, 16 Feb 2024 10:52:09 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B5BEB10EACC;
-	Fri, 16 Feb 2024 09:41:53 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 94D5610E3EE;
+	Fri, 16 Feb 2024 09:52:06 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="A9q/0V9F";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="c9JY2yn4";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7874F10EACA;
- Fri, 16 Feb 2024 09:41:52 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4EBF210E187;
+ Fri, 16 Feb 2024 09:52:04 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1708076512; x=1739612512;
- h=mime-version:content-transfer-encoding:in-reply-to:
- references:cc:subject:from:to:message-id:date;
- bh=NQU9/lbKTmq6eTu4WCedhrcGkkEFuIXk/ao62+Zwlq0=;
- b=A9q/0V9FL3u0Dv8D5zi4eWnaGXj3NiflRxVVS7j5V58QQ8Izvj0MdliE
- b81tPhCiENIO8YSTNelTJgdp+ter1sJnZx+wvAmn2l9KAbHr/7KO1puaI
- fvpD6TwyTPjJWMHO35PA3qHdbBzrdulXZlGyLQNdTiMleDCzAVIqRCn+b
- 9VFie65X25BYX3+5WZkmnlp5/fkli1fLH+w1uDcTJqPLRaM7QbB62hVLr
- z4098IRR+5E2gnvBjIRhH+vpbcQHd1GKWkMnwh3zzRxhstMUJJAu0iHIQ
- KvI2G9A8RTkeqSt8M4BaGmUTro6M2zQGiKj+IyCr+tV+oSD9kypIdypMx A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10985"; a="2349696"
-X-IronPort-AV: E=Sophos;i="6.06,164,1705392000"; 
-   d="scan'208";a="2349696"
-Received: from orviesa001.jf.intel.com ([10.64.159.141])
- by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Feb 2024 01:41:52 -0800
+ t=1708077124; x=1739613124;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version;
+ bh=1DmYPShGc1WqUllF/gBgHGJAcAVWQWXf2YSAvLKPay0=;
+ b=c9JY2yn4aIqQXuMhK47puFQnbOrYO7GPCZliex8X34k7QMZ+ypIMo7xQ
+ HR0ifF53J9uQDmXMJCjl3DINRTTD3QGZW+QzU8RuUGlqmq4E9TebCs+6z
+ mwUhQZjWeEVbMFKG47hq5t4Xo4ESCkfgEv/TfOsUCMiH7ZSNY2r0qqLnA
+ eZoEYiHC1UuLQ3GAfbev2ONpGDdoMuJzPgCEvtMCndAAXVlZpR/OL8Is5
+ lblJKPTF0OfAjd6dyxOMHrWy20s8NnP/7O42TBJT2YKG1O9jmY8zzyrMU
+ NwmnneuZ9RlBuGwGTKo1g6Po2SX8kV6ddKeDtLI9aIRyxDdu7k+apxV36 A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10985"; a="13305123"
+X-IronPort-AV: E=Sophos;i="6.06,164,1705392000"; d="scan'208";a="13305123"
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+ by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 16 Feb 2024 01:52:04 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.06,164,1705392000"; d="scan'208";a="41286244"
-Received: from unknown (HELO localhost) ([10.245.244.17])
- by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Feb 2024 01:41:48 -0800
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <CAPM=9twPjYvnAZQKEWrc2zvjTC4W2rfn9TWsHE8_QSgVUiPbOg@mail.gmail.com>
-References: <Zc3iIVsiAwo+bu10@tursulin-desk>
- <CAPM=9twPjYvnAZQKEWrc2zvjTC4W2rfn9TWsHE8_QSgVUiPbOg@mail.gmail.com>
-Cc: Daniel Vetter <daniel.vetter@ffwll.ch>, Jani Nikula <jani.nikula@linux.intel.com>, Rodrigo Vivi <rodrigo.vivi@intel.com>, Thomas Zimmermann <tzimmermann@suse.de>, Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>, Thomas Hellström <thomas.hellstrom@linux.intel.com>, Oded Gabbay <ogabbay@kernel.org>, Lucas De Marchi <lucas.demarchi@intel.com>, dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org, dim-tools@lists.freedesktop.org, Jonathan Cavitt <jonathan.cavitt@intel.com>
-Subject: Re: [PULL] drm-intel-gt-next
-From: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
-To: Dave Airlie <airlied@gmail.com>,
- Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+X-IronPort-AV: E=McAfee;i="6600,9927,10985"; a="935815479"
+X-IronPort-AV: E=Sophos;i="6.06,164,1705392000"; d="scan'208";a="935815479"
+Received: from pshishpo-mobl1.ger.corp.intel.com (HELO localhost)
+ ([10.252.48.79])
+ by fmsmga001-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 16 Feb 2024 01:51:57 -0800
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Abhinav Kumar <quic_abhinavk@quicinc.com>,
+ dri-devel@lists.freedesktop.org, Maarten Lankhorst
+ <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>,
+ Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>,
+ Daniel Vetter <daniel@ffwll.ch>, Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>, Tvrtko Ursulin
+ <tvrtko.ursulin@linux.intel.com>
+Cc: Abhinav Kumar <quic_abhinavk@quicinc.com>, robdclark@gmail.com,
+ freedreno@lists.freedesktop.org, dmitry.baryshkov@linaro.org,
+ intel-gfx@lists.freedesktop.org, ville.syrjala@linux.intel.com,
+ quic_jesszhan@quicinc.com, linux-kernel@vger.kernel.org,
+ intel-xe@lists.freedesktop.org
+Subject: Re: [PATCH v2] drm/dp: move intel_dp_vsc_sdp_pack() to generic helper
+In-Reply-To: <20240215190834.3222812-1-quic_abhinavk@quicinc.com>
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-Message-ID: <170807650415.7927.1096375337645578148@jlahtine-mobl.ger.corp.intel.com>
-User-Agent: alot/0.8.1
-Date: Fri, 16 Feb 2024 11:41:44 +0200
+References: <20240215190834.3222812-1-quic_abhinavk@quicinc.com>
+Date: Fri, 16 Feb 2024 11:51:54 +0200
+Message-ID: <87eddc4tz9.fsf@intel.com>
+MIME-Version: 1.0
+Content-Type: text/plain
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -68,74 +75,214 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-(+ Jonathan)
+On Thu, 15 Feb 2024, Abhinav Kumar <quic_abhinavk@quicinc.com> wrote:
+> intel_dp_vsc_sdp_pack() can be re-used by other DRM drivers as well.
+> Lets move this to drm_dp_helper to achieve this.
+>
+> changes in v2:
+> 	- rebased on top of drm-tip
+>
+> Acked-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+> Signed-off-by: Abhinav Kumar <quic_abhinavk@quicinc.com>
 
-Quoting Dave Airlie (2024-02-16 04:58:03)
-> On Thu, 15 Feb 2024 at 20:06, Tvrtko Ursulin
-> <tvrtko.ursulin@linux.intel.com> wrote:
-> >
-> > Hi Dave, Daniel,
-> >
-> > First pull request for 6.9 with probably one more coming in one to two
-> > weeks.
-> >
-> > Nothing to interesting in this one, mostly a sprinkle of small fixes in
-> > GuC, HuC, Perf/OA, a tiny bit of prep work for future platforms and some
-> > code cleanups.
-> >
-> > One new uapi in the form of a GuC submission version query which Mesa
-> > wants for implementing Vulkan async compute queues.
-> >
-> > Regards,
-> >
-> > Tvrtko
-> >
-> > drm-intel-gt-next-2024-02-15:
-> > UAPI Changes:
-> >
-> > - Add GuC submission interface version query (Tvrtko Ursulin)
-> >
-> > Driver Changes:
-> >
-> > Fixes/improvements/new stuff:
-> >
-> > - Atomically invalidate userptr on mmu-notifier (Jonathan Cavitt)
->=20
-> I've pulled this, but the above patch is triggering my this seems
-> wrong spider sense.
->=20
-> This and probably the preceeding patch that this references seem to
-> move i915 to a long term pinning of userptr in memory with what I can
-> see no accounting, and away from what the desired behaviour for
-> drivers should be.
+Acked-by: Jani Nikula <jani.nikula@intel.com>
 
-I asked Thomas to take a more detailed look. Jonathan, Thomas really should
-have been Cc'd in the original patch as the patch was explicitly referred
-in the text even.
+> ---
+>  drivers/gpu/drm/display/drm_dp_helper.c | 78 +++++++++++++++++++++++++
+>  drivers/gpu/drm/i915/display/intel_dp.c | 71 +---------------------
+>  include/drm/display/drm_dp_helper.h     |  3 +
+>  3 files changed, 83 insertions(+), 69 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/display/drm_dp_helper.c b/drivers/gpu/drm/display/drm_dp_helper.c
+> index 8d6ce46471ae..6c91f400ecb1 100644
+> --- a/drivers/gpu/drm/display/drm_dp_helper.c
+> +++ b/drivers/gpu/drm/display/drm_dp_helper.c
+> @@ -2913,6 +2913,84 @@ void drm_dp_vsc_sdp_log(struct drm_printer *p, const struct drm_dp_vsc_sdp *vsc)
+>  }
+>  EXPORT_SYMBOL(drm_dp_vsc_sdp_log);
+>  
+> +/**
+> + * drm_dp_vsc_sdp_pack() - pack a given vsc sdp into generic dp_sdp
+> + * @vsc: vsc sdp initialized according to its purpose as defined in
+> + *       table 2-118 - table 2-120 in DP 1.4a specification
+> + * @sdp: valid handle to the generic dp_sdp which will be packed
+> + * @size: valid size of the passed sdp handle
+> + *
+> + * Returns length of sdp on success and error code on failure
+> + */
+> +ssize_t drm_dp_vsc_sdp_pack(const struct drm_dp_vsc_sdp *vsc,
+> +			    struct dp_sdp *sdp, size_t size)
+> +{
+> +	size_t length = sizeof(struct dp_sdp);
+> +
+> +	if (size < length)
+> +		return -ENOSPC;
+> +
+> +	memset(sdp, 0, size);
+> +
+> +	/*
+> +	 * Prepare VSC Header for SU as per DP 1.4a spec, Table 2-119
+> +	 * VSC SDP Header Bytes
+> +	 */
+> +	sdp->sdp_header.HB0 = 0; /* Secondary-Data Packet ID = 0 */
+> +	sdp->sdp_header.HB1 = vsc->sdp_type; /* Secondary-data Packet Type */
+> +	sdp->sdp_header.HB2 = vsc->revision; /* Revision Number */
+> +	sdp->sdp_header.HB3 = vsc->length; /* Number of Valid Data Bytes */
+> +
+> +	if (vsc->revision == 0x6) {
+> +		sdp->db[0] = 1;
+> +		sdp->db[3] = 1;
+> +	}
+> +
+> +	/*
+> +	 * Revision 0x5 and revision 0x7 supports Pixel Encoding/Colorimetry
+> +	 * Format as per DP 1.4a spec and DP 2.0 respectively.
+> +	 */
+> +	if (!(vsc->revision == 0x5 || vsc->revision == 0x7))
+> +		goto out;
+> +
+> +	/* VSC SDP Payload for DB16 through DB18 */
+> +	/* Pixel Encoding and Colorimetry Formats  */
+> +	sdp->db[16] = (vsc->pixelformat & 0xf) << 4; /* DB16[7:4] */
+> +	sdp->db[16] |= vsc->colorimetry & 0xf; /* DB16[3:0] */
+> +
+> +	switch (vsc->bpc) {
+> +	case 6:
+> +		/* 6bpc: 0x0 */
+> +		break;
+> +	case 8:
+> +		sdp->db[17] = 0x1; /* DB17[3:0] */
+> +		break;
+> +	case 10:
+> +		sdp->db[17] = 0x2;
+> +		break;
+> +	case 12:
+> +		sdp->db[17] = 0x3;
+> +		break;
+> +	case 16:
+> +		sdp->db[17] = 0x4;
+> +		break;
+> +	default:
+> +		WARN(1, "Missing case %d\n", vsc->bpc);
+> +		return -EINVAL;
+> +	}
+> +
+> +	/* Dynamic Range and Component Bit Depth */
+> +	if (vsc->dynamic_range == DP_DYNAMIC_RANGE_CTA)
+> +		sdp->db[17] |= 0x80;  /* DB17[7] */
+> +
+> +	/* Content Type */
+> +	sdp->db[18] = vsc->content_type & 0x7;
+> +
+> +out:
+> +	return length;
+> +}
+> +EXPORT_SYMBOL(drm_dp_vsc_sdp_pack);
+> +
+>  /**
+>   * drm_dp_get_pcon_max_frl_bw() - maximum frl supported by PCON
+>   * @dpcd: DisplayPort configuration data
+> diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
+> index 217196196e50..a9458df475e2 100644
+> --- a/drivers/gpu/drm/i915/display/intel_dp.c
+> +++ b/drivers/gpu/drm/i915/display/intel_dp.c
+> @@ -4089,73 +4089,6 @@ intel_dp_needs_vsc_sdp(const struct intel_crtc_state *crtc_state,
+>  	return false;
+>  }
+>  
+> -static ssize_t intel_dp_vsc_sdp_pack(const struct drm_dp_vsc_sdp *vsc,
+> -				     struct dp_sdp *sdp, size_t size)
+> -{
+> -	size_t length = sizeof(struct dp_sdp);
+> -
+> -	if (size < length)
+> -		return -ENOSPC;
+> -
+> -	memset(sdp, 0, size);
+> -
+> -	/*
+> -	 * Prepare VSC Header for SU as per DP 1.4a spec, Table 2-119
+> -	 * VSC SDP Header Bytes
+> -	 */
+> -	sdp->sdp_header.HB0 = 0; /* Secondary-Data Packet ID = 0 */
+> -	sdp->sdp_header.HB1 = vsc->sdp_type; /* Secondary-data Packet Type */
+> -	sdp->sdp_header.HB2 = vsc->revision; /* Revision Number */
+> -	sdp->sdp_header.HB3 = vsc->length; /* Number of Valid Data Bytes */
+> -
+> -	if (vsc->revision == 0x6) {
+> -		sdp->db[0] = 1;
+> -		sdp->db[3] = 1;
+> -	}
+> -
+> -	/*
+> -	 * Revision 0x5 and revision 0x7 supports Pixel Encoding/Colorimetry
+> -	 * Format as per DP 1.4a spec and DP 2.0 respectively.
+> -	 */
+> -	if (!(vsc->revision == 0x5 || vsc->revision == 0x7))
+> -		goto out;
+> -
+> -	/* VSC SDP Payload for DB16 through DB18 */
+> -	/* Pixel Encoding and Colorimetry Formats  */
+> -	sdp->db[16] = (vsc->pixelformat & 0xf) << 4; /* DB16[7:4] */
+> -	sdp->db[16] |= vsc->colorimetry & 0xf; /* DB16[3:0] */
+> -
+> -	switch (vsc->bpc) {
+> -	case 6:
+> -		/* 6bpc: 0x0 */
+> -		break;
+> -	case 8:
+> -		sdp->db[17] = 0x1; /* DB17[3:0] */
+> -		break;
+> -	case 10:
+> -		sdp->db[17] = 0x2;
+> -		break;
+> -	case 12:
+> -		sdp->db[17] = 0x3;
+> -		break;
+> -	case 16:
+> -		sdp->db[17] = 0x4;
+> -		break;
+> -	default:
+> -		MISSING_CASE(vsc->bpc);
+> -		break;
+> -	}
+> -	/* Dynamic Range and Component Bit Depth */
+> -	if (vsc->dynamic_range == DP_DYNAMIC_RANGE_CTA)
+> -		sdp->db[17] |= 0x80;  /* DB17[7] */
+> -
+> -	/* Content Type */
+> -	sdp->db[18] = vsc->content_type & 0x7;
+> -
+> -out:
+> -	return length;
+> -}
+> -
+>  static ssize_t
+>  intel_dp_hdr_metadata_infoframe_sdp_pack(struct drm_i915_private *i915,
+>  					 const struct hdmi_drm_infoframe *drm_infoframe,
+> @@ -4248,8 +4181,8 @@ static void intel_write_dp_sdp(struct intel_encoder *encoder,
+>  
+>  	switch (type) {
+>  	case DP_SDP_VSC:
+> -		len = intel_dp_vsc_sdp_pack(&crtc_state->infoframes.vsc, &sdp,
+> -					    sizeof(sdp));
+> +		len = drm_dp_vsc_sdp_pack(&crtc_state->infoframes.vsc, &sdp,
+> +					  sizeof(sdp));
+>  		break;
+>  	case HDMI_PACKET_TYPE_GAMUT_METADATA:
+>  		len = intel_dp_hdr_metadata_infoframe_sdp_pack(dev_priv,
+> diff --git a/include/drm/display/drm_dp_helper.h b/include/drm/display/drm_dp_helper.h
+> index d02014a87f12..8474504d4c88 100644
+> --- a/include/drm/display/drm_dp_helper.h
+> +++ b/include/drm/display/drm_dp_helper.h
+> @@ -812,4 +812,7 @@ int drm_dp_bw_overhead(int lane_count, int hactive,
+>  		       int bpp_x16, unsigned long flags);
+>  int drm_dp_bw_channel_coding_efficiency(bool is_uhbr);
+>  
+> +ssize_t drm_dp_vsc_sdp_pack(const struct drm_dp_vsc_sdp *vsc,
+> +			    struct dp_sdp *sdp, size_t size);
+> +
+>  #endif /* _DRM_DP_HELPER_H_ */
 
-> It also feels like the authorship on this might be lies which also worrie=
-s me.
-
-Fear not. This can probably be blamed on the i915 maintainers.
-
-When we have an internal patch which has many revisions and is then
-essentially rewritten for upstreaming, we specifically asked NOT to keep
-the "From:" line intact, but instead swap in person who rewrote the patch[1=
-].
-
-To document credits/involvement of the original author we've recommended
-to keep the Signed-off-by line however. "Co-developed-by" does not really
-express the situation correctly. "Based on patch by" style pure textual
-credit reference was also discussed but is hard to grep.
-
-Discussed with Sima who suggested if we should consider something like
-"Original-patch-by:" tag to better express this situation?
-
-Regards, Joonas
-
-[1] If the "From: " line is not updated, it sometimes leads to
-situation where you can see a patch with "From:" pointing to you, that
-doesn't contain a single unmodified line anymore.
-
->=20
-> Dave.
+-- 
+Jani Nikula, Intel
