@@ -2,64 +2,60 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id F177C8577C3
-	for <lists+intel-gfx@lfdr.de>; Fri, 16 Feb 2024 09:36:31 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 627498577FC
+	for <lists+intel-gfx@lfdr.de>; Fri, 16 Feb 2024 09:51:33 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 46F1010E411;
-	Fri, 16 Feb 2024 08:36:24 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id ACA3C10E4B8;
+	Fri, 16 Feb 2024 08:51:31 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=haloniitty.fi header.i=@haloniitty.fi header.b="CcmsHjWh";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="lMPcuylG";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from whm50.louhi.net (whm50.louhi.net [77.240.19.51])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CEBA210E411;
- Fri, 16 Feb 2024 08:36:22 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=haloniitty.fi; s=default; h=Content-Type:MIME-Version:References:
- In-Reply-To:Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:
- Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
- Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
- List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=7Fbzp3gSvOknwiKu5ZEsEJYpJCaCvuMggAeqwHbLDew=; b=CcmsHjWhdx/TI1JhuigqDhMjrq
- ENg+Y1XhxmQCrVadjnh7X0Iw+M0EzR5FwggP3trCeWvBXBby1J5asN33528ctLa81KuEiE89iENvE
- wCbV1gjs1QKLNVsP/EvuZ3kX4NNfozDo75mVRtaC4wFBHyrPG/8Qca2T2QL17St5D3G/EXJxWNQ+9
- oEhmvoVSyjgExQpOOCo4VPfM/OEOOCx9hGIsAd9X2kxXNlYP6NTvLC80OW3ZOSAdNLxefGzuD/8ii
- tb4xH88OVTOry6QjYq60IJONGpFsPznYMB63ZvC+A9SZPbqJhMRy+LBVtzL1bUu/TisohEcN9GZi1
- RhEcrIog==;
-Received: from [194.136.85.206] (port=38292 helo=eldfell)
- by whm50.louhi.net with esmtpsa (TLS1.2) tls
- TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (Exim 4.96.2)
- (envelope-from <pekka.paalanen@haloniitty.fi>) id 1rathl-0006fq-0d;
- Fri, 16 Feb 2024 10:36:21 +0200
-Date: Fri, 16 Feb 2024 10:36:20 +0200
-From: Pekka Paalanen <pekka.paalanen@haloniitty.fi>
-To: "Garg, Nemesa" <nemesa.garg@intel.com>
-Cc: Simon Ser <contact@emersion.fr>, "intel-gfx@lists.freedesktop.org"
- <intel-gfx@lists.freedesktop.org>, "dri-devel@lists.freedesktop.org"
- <dri-devel@lists.freedesktop.org>, "G M, Adarsh" <adarsh.g.m@intel.com>
-Subject: Re: [RFC 0/5]  Introduce drm sharpening property
-Message-ID: <20240216103620.33deabb1@eldfell>
-In-Reply-To: <IA1PR11MB6467A91412978DE0FFCAB50FE34C2@IA1PR11MB6467.namprd11.prod.outlook.com>
-References: <20240214112457.3734871-1-nemesa.garg@intel.com>
- <8Ma-GlU3bFAuSPpFhGbYYuXQ8OeeDjMK9WiWO6KP-4pPO41fLnLrgABkRfhjHY6XlIh5u67vcEbD8ejDq7-zo5BXf-too0Pt7oTDhWCOPlU=@emersion.fr>
- <IA1PR11MB6467A91412978DE0FFCAB50FE34C2@IA1PR11MB6467.namprd11.prod.outlook.com>
-X-Mailer: Claws Mail 4.1.1 (GTK 3.24.38; x86_64-pc-linux-gnu)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.15])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CEDAF10E40E;
+ Fri, 16 Feb 2024 08:51:29 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1708073490; x=1739609490;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version;
+ bh=tldO0oAElb0EM3Jm2vnWyFrp/x3ZCudlzcDdQgwDE3c=;
+ b=lMPcuylG7M7h6rmwqz7cY3EgLGoFHzm0jv9pbLhZmLIllnt/2yfW7Enb
+ LKb4f6EBsQMYnrPVueU7HszffC4zgZPzGQ58BL/XBhIaqxoPBLYhSZT8O
+ LW7fiJfTRrDAy0INeh8hFJakwjNPTVUcKSiC9ZFY83bHFmZ+vrTYpVzmH
+ 8R8WRxPunWjzoR1BavqAqm4a/Z7jyPUsiVq6bkZp9jX96wLBZLjAGiqPW
+ 96+8ZzcVDl434PmnYPI9EKUeBwdaphh85NuPktsJwCy6XAJvUmQWCKNja
+ lVB5cz1eIQMW/xdrbFny96Gi8Z8yW3OTaIQwkLuALUv1X3DwXVT4gfCa8 Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10985"; a="6025301"
+X-IronPort-AV: E=Sophos;i="6.06,164,1705392000"; 
+   d="scan'208";a="6025301"
+Received: from fmviesa004.fm.intel.com ([10.60.135.144])
+ by orvoesa107.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 16 Feb 2024 00:51:27 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.06,164,1705392000"; 
+   d="scan'208";a="8428450"
+Received: from pshishpo-mobl1.ger.corp.intel.com (HELO localhost)
+ ([10.252.48.79])
+ by fmviesa004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 16 Feb 2024 00:51:23 -0800
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: "Jiri Slaby (SUSE)" <jirislaby@kernel.org>
+Cc: linux-kernel@vger.kernel.org, "Jiri Slaby (SUSE)"
+ <jirislaby@kernel.org>, intel-gfx@lists.freedesktop.org, Joonas Lahtinen
+ <joonas.lahtinen@linux.intel.com>, Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>, Zhenyu Wang
+ <zhenyuw@linux.intel.com>, Zhi Wang <zhi.wang.linux@gmail.com>,
+ intel-gvt-dev@lists.freedesktop.org
+Subject: Re: [PATCH 00/21] drm/i915: remove unused structure members
+In-Reply-To: <20240216065326.6910-1-jirislaby@kernel.org>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20240216065326.6910-1-jirislaby@kernel.org>
+Date: Fri, 16 Feb 2024 10:51:20 +0200
+Message-ID: <87plww4ws7.fsf@intel.com>
 MIME-Version: 1.0
-Content-Type: multipart/signed; boundary="Sig_/cZ7.UGIY1.XAE0XM6h4znm5";
- protocol="application/pgp-signature"; micalg=pgp-sha256
-X-AntiAbuse: This header was added to track abuse,
- please include it with any abuse report
-X-AntiAbuse: Primary Hostname - whm50.louhi.net
-X-AntiAbuse: Original Domain - lists.freedesktop.org
-X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
-X-AntiAbuse: Sender Address Domain - haloniitty.fi
-X-Get-Message-Sender-Via: whm50.louhi.net: authenticated_id:
- pekka.paalanen@haloniitty.fi
-X-Authenticated-Sender: whm50.louhi.net: pekka.paalanen@haloniitty.fi
-X-Source: 
-X-Source-Args: 
-X-Source-Dir: 
+Content-Type: text/plain
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -75,93 +71,73 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---Sig_/cZ7.UGIY1.XAE0XM6h4znm5
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: quoted-printable
+On Fri, 16 Feb 2024, "Jiri Slaby (SUSE)" <jirislaby@kernel.org> wrote:
+> this series removes unused i915 structure members as found by
+> clang-struct (and manually checked by me).
 
-On Fri, 16 Feb 2024 04:28:41 +0000
-"Garg, Nemesa" <nemesa.garg@intel.com> wrote:
+Thanks Jiri, good stuff!
 
-> It is not intel specific and the goal is to have a generic API for
-> configuring Sharpness, accessible to various vendors. Intel currently
-> offers sharpness support through the Display Engine, while other
-> vendors seem to support Sharpness through the GPU using GL shaders
-> (Vulcan/Open GL based).=20
+Acked-by: Jani Nikula <jani.nikula@intel.com>
 
-Do you mean that all vendors use the exact same mathematical algorithm
-(with only differences in operation precision at most)?
+However, you may have overlooked that drivers/gpu/drm/i915/gvt/ is
+maintained separately.
 
-If yes, good.
-
-If not, then we need to know where exactly in the virtual KMS color
-pipeline the operation happens, whether this can be generic or not.
-
-Does this also work the same regardless of pixel formats, dynamic
-range, color gamut, transfer functions etc. on both plane input and
-connector output configurations?
-
-> In terms of sharpness intensity adjustment, the plan is to provide
-> users with the ability to customize and regulate sharpness levels. We
-> suggest setting a minimum and maximum strength range from 1 to 255,
-> where a value of 0 signifies that the sharpness feature is disabled,
-> indicated by a u8 data type. For now we have mapped the strength
-> value 0.0 to 14.9375 to 0-239 but as the datatype is u8 user can give
-> value upto 255 which is gets clamped to 239.
-
-Naturally you will need to document all that, so that all drivers and
-vendors do the exact same thing.
-
-I did not see any actual documentation in the patch series yet, e.g. a
-reference to a specific algorithm.
-
-As Ville pointed out, there was also no specification at which point of
-the virtual color pipeline this operation will apply. Before/after
-DEGAMMA/CTM/GAMMA/scaling in plane/blending/CRTC?
-
-Is the property being added to the list in
-https://dri.freedesktop.org/docs/drm/gpu/drm-kms.html#standard-crtc-propert=
-ies
-or where-ever it belongs?
+Cc: Zhenyu, Zhi, how do you want the gvt patches in this series handled?
 
 
-Thanks,
-pq
-
-> We are also open to have alternative scales, such as 1-100 or 1-10,
-> as long as a general consensus is reached within the community
-> comprising OEMs and vendors.
->=20
-> > -----Original Message-----
-> > From: Simon Ser <contact@emersion.fr>
-> > Sent: Thursday, February 15, 2024 2:03 PM
-> > To: Garg, Nemesa <nemesa.garg@intel.com>
-> > Cc: intel-gfx@lists.freedesktop.org; dri-devel@lists.freedesktop.org
-> > Subject: Re: [RFC 0/5] Introduce drm sharpening property
-> >=20
-> > How much of this is Intel-specific? Are there any hardware vendors
-> > with a similar feature? How much is the "sharpness" knob tied to
-> > Intel hardware? =20
+BR,
+Jani.
 
 
---Sig_/cZ7.UGIY1.XAE0XM6h4znm5
-Content-Type: application/pgp-signature
-Content-Description: OpenPGP digital signature
+>
+> Cc: intel-gfx@lists.freedesktop.org
+> Cc: Jani Nikula <jani.nikula@linux.intel.com>
+> Cc: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
+> Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
+> Cc: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+>
+> Jiri Slaby (SUSE) (21):
+>   drm/i915: remove unused intel_dvo_dev_ops hooks
+>   drm/i915: remove structs intel_vgpu_pipe_format and
+>     intel_vgpu_fb_format
+>   drm/i915: remove intel_dsi::{port_bits,hs}
+>   drm/i915: remove
+>     intel_gvt_gtt::{mm_alloc_page_table,mm_free_page_table}
+>   drm/i915: remove intel_gvt_mmio_info::{device,addr_range}
+>   drm/i915: remove intel_vgpu_workload::{ring_context,restore_inhibit}
+>   drm/i915: remove intel_vbt_panel_data::edp::initialized
+>   drm/i915: remove intel_guc::ads_engine_usage_size
+>   drm/i915: remove i915_drm_client::id
+>   drm/i915: remove i915_perf_stream::size_exponent
+>   drm/i915: remove intel_vgpu_gtt::active_ppgtt_mm_bitmap
+>   drm/i915: remove intel_vgpu_fence::base
+>   drm/i915: remove intel_vgpu_opregion::mapped
+>   drm/i915: remove intel_vgpu::intx_trigger
+>   drm/i915: remove gvt_mmio_block::device
+>   drm/i915: remove intel_gvt_irq_info::warned
+>   drm/i915: remove intel_gvt_event_info::policy
+>   drm/i915: remove intel_gvt_irq::pending_events
+>   drm/i915: remove execute_cb::signal
+>   drm/i915: remove i915_vma::obj_hash
+>   drm/i915: remove intel_memory_region_ops::flags
+>
+>  .../drm/i915/display/intel_display_types.h    |  1 -
+>  drivers/gpu/drm/i915/display/intel_dsi.h      |  4 ---
+>  drivers/gpu/drm/i915/display/intel_dvo_dev.h  | 25 -------------------
+>  drivers/gpu/drm/i915/gt/uc/intel_guc.h        |  2 --
+>  drivers/gpu/drm/i915/gvt/fb_decoder.h         | 11 --------
+>  drivers/gpu/drm/i915/gvt/gtt.h                |  3 ---
+>  drivers/gpu/drm/i915/gvt/gvt.h                |  5 ----
+>  drivers/gpu/drm/i915/gvt/interrupt.c          |  1 -
+>  drivers/gpu/drm/i915/gvt/interrupt.h          |  2 --
+>  drivers/gpu/drm/i915/gvt/mmio.h               |  2 --
+>  drivers/gpu/drm/i915/gvt/scheduler.h          |  2 --
+>  drivers/gpu/drm/i915/i915_drm_client.h        |  2 --
+>  drivers/gpu/drm/i915/i915_perf_types.h        |  1 -
+>  drivers/gpu/drm/i915/i915_request.c           |  1 -
+>  drivers/gpu/drm/i915/i915_vma_types.h         |  1 -
+>  drivers/gpu/drm/i915/intel_memory_region.h    |  2 --
+>  16 files changed, 65 deletions(-)
 
------BEGIN PGP SIGNATURE-----
-
-iQIzBAEBCAAdFiEEJQjwWQChkWOYOIONI1/ltBGqqqcFAmXPHoQACgkQI1/ltBGq
-qqdijxAAlNioQxoeVqHpBPu147ymVB7UnfY/U5gSvff/16qEk7J+L1kAGQgURcPT
-vbv4TqHKFIAMgDKY6pzd+OF3t54b9jcMDoEsFxHwVdp37dJLaq+F9yaWLWDYg3UP
-V8MRJXBxoWa0zjlSdCSBf1JubisMr/HiMdShpKqt3TzPQGjU7aLP6qu5YFYPEDQC
-ZNKZyw38jjsnANK8vcBKytF3+kK5VLybrXLRbjFTdAl3VjS9QfvczrK2pZ27HOxe
-wVAKWmqRKKr4VLsJGCfXgWtH8zG2WeGYhCOLoIZ23SJoi1aZXhXv0vH4o6kf4xhq
-c56OiGRJrMJMt6MzhPG23CSWmwD3/drWiP0Pd2sfjPXvf5QlDi2LTffQbF+b1H3J
-FByYHpPo/X6z7dF1SIXLlLyiGovqFbQWuS3TCrWkxgSO9ck3Top0yTMUnBU8I8WL
-0eaiMMANwp/pE8YA7ktxDdUe8rMCYmh8IVbiGctq3AE9HddX/bg48DL9TBhfJ2Hb
-WZBDwF/3S46NrxImBlDlROI8UW0TkEkithSFriJtfGI581vCB6XcX13qw5u8UYIZ
-8LVu/Z93DE6vV25X3oqxKrCgVxh/ZyCkM5g/7VNzTFQiDyaajT6wtOBqoO75iHtC
-1+j09x0cDc9xn4UGJtdENz8SLvSli8J4p90sh4atnfkh7cEv/0s=
-=LWXR
------END PGP SIGNATURE-----
-
---Sig_/cZ7.UGIY1.XAE0XM6h4znm5--
+-- 
+Jani Nikula, Intel
