@@ -2,156 +2,61 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id DF456857C66
-	for <lists+intel-gfx@lfdr.de>; Fri, 16 Feb 2024 13:16:55 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 096C2857C7A
+	for <lists+intel-gfx@lfdr.de>; Fri, 16 Feb 2024 13:23:47 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 257B810E616;
-	Fri, 16 Feb 2024 12:16:50 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5009310E7DB;
+	Fri, 16 Feb 2024 12:23:38 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="b005jCgf";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="TLohVyJg";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E934A10E616
- for <intel-gfx@lists.freedesktop.org>; Fri, 16 Feb 2024 12:16:48 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E2C0910E2E0;
+ Fri, 16 Feb 2024 12:23:35 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1708085809; x=1739621809;
- h=content-transfer-encoding:in-reply-to:references:subject:
- from:to:date:message-id:mime-version;
- bh=7zcJoKuuDXzKQnKfM2uTI2k/OfvZsAYdcYxyfMTyQzw=;
- b=b005jCgfIE7CURTfKdBxs1fB6wT+6FjQsTCup6maS/EsAk01NCicSvJt
- 8m8s5dxKrNoXvR+lEGQBdSDhdUTyyKFekhSJKzoh+v0IKUJ1u3Pk/Tt4A
- dkq9XyGCTl6WzWdBAsw2cb34agbAs7a7Yte8oeeBQC2zThIAFjdje7zoG
- 9qQxZEW2waRrT5q5z/lIw+zBgjJIEIaZD2R3RlaLYuL4yCeHSWKOBg8ep
- cCfz1LHXFuz50UjlQWvMUPVVYVi0c4tQ5JUk7aBGfQ+LPEpY0f87462yt
- 9bJzCS5SXYQIA9a6sAwlo5o+eUByvpe7iCLp+FvdBhjKyvh5oqFv4K8Gr Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10985"; a="2343943"
+ t=1708086216; x=1739622216;
+ h=message-id:date:mime-version:subject:to:cc:references:
+ from:in-reply-to:content-transfer-encoding;
+ bh=GVz4vskNutUmwAIAsWOWy6Lj3SbNewc+xr4L2WeQE6A=;
+ b=TLohVyJgMHn0nzR1o1pv/Rt1K+orUneASFr08DTkbSlV+uBgcokbfha5
+ RrsuuJjLGwYqUlVfLcSWXbbvgJXgCJnwBlp1rAOVdbiIp5NFne4RD1fgc
+ BOZ8Xs/odb8qQFuTHt9NqksUyFPphxGsRCNL3kx+f/jXAeQJnUIRsfsv8
+ bXavOD+Rl8ooCahOfuHZ9bKpht/+ELA9fSnV8PCzGPOoD4tK8WM1fU1zq
+ j1KxQsqqRAVbaidOmCGZcr+yRvVOdp9PkunLoMQeDmxz04SKGXtJKpA5Z
+ uoGaVLs/HpNYgRlS2mQKimUuK+BLXtAqbsuRLWEByP9v8SOvBmfTsQCsl A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10985"; a="2362365"
 X-IronPort-AV: E=Sophos;i="6.06,164,1705392000"; 
-   d="scan'208";a="2343943"
-Received: from orviesa009.jf.intel.com ([10.64.159.149])
- by fmvoesa109.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Feb 2024 04:16:48 -0800
+   d="scan'208";a="2362365"
+Received: from orviesa007.jf.intel.com ([10.64.159.147])
+ by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 16 Feb 2024 04:23:34 -0800
 X-ExtLoop1: 1
 X-IronPort-AV: E=Sophos;i="6.06,164,1705392000"; 
-   d="scan'208";a="3849838"
-Received: from orsmsx602.amr.corp.intel.com ([10.22.229.15])
- by orviesa009.jf.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
- 16 Feb 2024 04:16:48 -0800
-Received: from orsmsx611.amr.corp.intel.com (10.22.229.24) by
- ORSMSX602.amr.corp.intel.com (10.22.229.15) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35; Fri, 16 Feb 2024 04:16:47 -0800
-Received: from orsmsx610.amr.corp.intel.com (10.22.229.23) by
- ORSMSX611.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35; Fri, 16 Feb 2024 04:16:47 -0800
-Received: from ORSEDG602.ED.cps.intel.com (10.7.248.7) by
- orsmsx610.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35 via Frontend Transport; Fri, 16 Feb 2024 04:16:47 -0800
-Received: from NAM04-DM6-obe.outbound.protection.outlook.com (104.47.73.41) by
- edgegateway.intel.com (134.134.137.103) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.35; Fri, 16 Feb 2024 04:16:47 -0800
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=jgfwxUuVtdk1t1rLpGrdowHkLcSKX6XEdpHltCIhvTrMJzh1Rl8E9QlY9vUlhYa738uGTxfRvvMihRRltsBx5DANaWDmKR4tLN0w4ULadIXck9hHo3fwvur8V3fX2RKeDlPOTjt2alp4MOtyM40tZDsWRFbemdtbFFQJmgxZRwwKyMVKmU1vQm/nyIBrEwjpOw/1IkYi/37URWgmixlk+D7bIyHMmH1PxkCUwV6T7yLZvKycqElsk7JYipUKf9cV7QJDn614AhaL+LRog42CTXHarJkIIKn308GWzAp1TahuofmR1D1ajXxZAH8f17VDKv6AD5m7jVsIclZSaAUfVw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=mBGjnErn4LV033cDT6vBuhv+Xg9PSrI9dy8GLiVPEUU=;
- b=iuC2Yp+9m3A4cqf00K/cCbdHg/4zmij9bCc06gAi0vrQ0a6LAhu0T6InpsGVbY83R0duiRxLGwIqrd+71ZTcJCjXbBkG0WC0gvjMGhMRP4vvMWg2jxLbfBTXLusTRmjIz169JEmbdW8vnx8utCjlxNZbdg47AtH3GTVaPKc+Zk9YrgiYiQGNOHzdF8fJ5XS46D+KtiqFzrRR6htVhi/J/GJdak7EH18FF9xRl5I54QMXfSE91uv0Q+ybyRDVk86nFDxCnOYJnC7WN5VL34ynB0VLTGdWDADCVxcXgTQZNxLJUjND3+TqJSe991nu2i135iWzcmwLWfj59AJyKUVtXQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from PH8PR11MB8287.namprd11.prod.outlook.com (2603:10b6:510:1c7::14)
- by MW3PR11MB4764.namprd11.prod.outlook.com (2603:10b6:303:5a::16)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7292.31; Fri, 16 Feb
- 2024 12:16:45 +0000
-Received: from PH8PR11MB8287.namprd11.prod.outlook.com
- ([fe80::64e6:ee24:79f8:efa]) by PH8PR11MB8287.namprd11.prod.outlook.com
- ([fe80::64e6:ee24:79f8:efa%4]) with mapi id 15.20.7292.029; Fri, 16 Feb 2024
- 12:16:45 +0000
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <20240207013334.29606-4-ville.syrjala@linux.intel.com>
-References: <20240207013334.29606-1-ville.syrjala@linux.intel.com>
- <20240207013334.29606-4-ville.syrjala@linux.intel.com>
-Subject: Re: [PATCH 3/4] drm/i915/cdclk: Remove the hardcoded divider from
- cdclk_compute_crawl_and_squash_midpoint()
-From: Gustavo Sousa <gustavo.sousa@intel.com>
-To: Ville Syrjala <ville.syrjala@linux.intel.com>,
- <intel-gfx@lists.freedesktop.org>
-Date: Fri, 16 Feb 2024 09:16:41 -0300
-Message-ID: <170808580111.10917.5861102353295435557@gjsousa-mobl2>
-User-Agent: alot/0.10
-X-ClientProxiedBy: MW4PR03CA0094.namprd03.prod.outlook.com
- (2603:10b6:303:b7::9) To PH8PR11MB8287.namprd11.prod.outlook.com
- (2603:10b6:510:1c7::14)
+   d="scan'208";a="4144135"
+Received: from fcrowe-mobl2.ger.corp.intel.com (HELO [10.252.21.243])
+ ([10.252.21.243])
+ by orviesa007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 16 Feb 2024 04:23:32 -0800
+Message-ID: <af43196c-d926-454b-8914-c5753f5d3799@intel.com>
+Date: Fri, 16 Feb 2024 12:23:29 +0000
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PH8PR11MB8287:EE_|MW3PR11MB4764:EE_
-X-MS-Office365-Filtering-Correlation-Id: 097ddab1-c5be-4466-babc-08dc2ee92425
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: XQ2B2BIy7E45NEgqxxcRCvj5StUUlBFNIR0XosOpJLOvxC//TaTyP6Hdc2znBY3qfpWNc/ij4nubI+rk2KKqUxkYlQz1PBow9aTLvpxcIPl1SB6j5VASx4HjTOuHaf0FlJca8gEBPdOJg8ET8KmskAM+RPFmYjEXmsD+BGbt//4GyORol+cZAZiXlNIVLXmCzcq6Ys7dORgkt3PiDNH7CKI+rrTPj6jPNk9+NBvWFoJG/yCR5fCuIr3xzqNDg6+l63YPZcOU2IH83s6oOmxE17nkmezaYfY606jvmMChC+IH/ypafEGEQ0jbTbcAnVacDr0nbDS4IIahO31N5qWHyPpfqZsz7wl53qJwTrK2jaE3uS0wDC35gXPwuRMJ1SwrDe3vomLw/cHdlnUH0W9WjqrvtvvP/0ybP38duoMZdWTxMVXEjZeiacUu3G/V/4Y3w+Zw2lLz494DzNzDRgl5lbYWpD8TimV9vy8VQEvjiPSwQkN8MC3rOGrPGspHjXh16pMIWDsDytysi2R/0LJ0avzboNAMoPJ4MhYdC6Hv4Q7QjBsPqCIiFJM8FHKqYuZGw8RLeknp9jFqkxJWiU8yzF/giCnO1hH6UCJA8YD9HiYUjZ2Vl/2bBGbOFB8fvRy+
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:PH8PR11MB8287.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230031)(7916004)(39860400002)(376002)(366004)(346002)(136003)(396003)(230922051799003)(64100799003)(451199024)(186009)(1800799012)(86362001)(16122699003)(33716001)(8936002)(8676002)(82960400001)(66476007)(66556008)(66946007)(41300700001)(5660300002)(2906002)(38100700002)(44832011)(83380400001)(6666004)(316002)(478600001)(26005)(6506007)(9686003)(6512007)(6486002);
- DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?SGlxY2FudDk4NnowRDJyd3A4cFdrZWNtR3NGbVVMbnc3TG5xNlVaTlBrMk1h?=
- =?utf-8?B?bCtsMEpLcXN3QUpmWlVzSHh4TDVqNkMwOEJCOTg3MUdtdUxaUjMzQkUzRGkr?=
- =?utf-8?B?eTgzNkNvT1E5RWRFTFRhYU5aRDdGUkJWVG45bHluajdVV291cHBQbG5oQUIx?=
- =?utf-8?B?YzFVQnJNYnlaaHZwZUs1aUJnTlpBY0tkckliUUxFS1ZTNUxqOTZ5b25wL1M2?=
- =?utf-8?B?dGNFQThqM3BoNXJ4MUxWTXp4cW1IUXNLTGRJU1hUdEtOVkNuTjViQng2L0lB?=
- =?utf-8?B?aWJVN0Z3Q3RPM3lWTWk5dGtvWVdUaHEwSVBELzZWejcydGYxbVFqTy9nTzRr?=
- =?utf-8?B?dFZWbkZzV01DK2NBeFQwbjRBWUlFU3QyWk04ak80UkVZU3FGSG1IQjJmMzlZ?=
- =?utf-8?B?TUtieDhONjFmT2ljUDZRaVRvb3pmeDhiR2dQcE9QeWxabThUUEE3dUt1YUtR?=
- =?utf-8?B?Y2FjQXdtQ0cvSnhvaHdGVXpWS2toSktDcTRhSlhBOFY3S21zWlNKeDNLVmg4?=
- =?utf-8?B?ajNRYTlXUnczV1B3bmxFRTJFbFVLWnBIVTNOTHV6VzJnUE5Lam1rd0k3SDVE?=
- =?utf-8?B?RUZRdUJYMmdrVm0zY3cyWDU3eW1DSGZpbm9sQkg5YzV6RmZzdkN3NG9ta1hH?=
- =?utf-8?B?NEQzRHh3ak5rQUkzMU5rWW9TZHB5aWtEVVpCQnVRVUJSSmJjazNxbTU2Uzlr?=
- =?utf-8?B?MG1MYVIzN1BoMnMyYi9SSFV5TzROUjRYU3hvTVVxTXY2dHFTZzJ1SHpHLzE3?=
- =?utf-8?B?eE1aaXVSVlpnVFg0MC95enYzUDJZQnc2bzlYdEE4c2VwV25KMWpmNitDTHRo?=
- =?utf-8?B?eWpsVld3QVVCTndlckFWRjRSWGtBa25od1ZwRFV4ZmozZENBUXRrUVF3aGF3?=
- =?utf-8?B?bTlJUkl6Qm5CYmF2UVdEbVVjeVNGa2tvNjdVZ2VzaDlIVXEyQ2pQMzg4L1hk?=
- =?utf-8?B?RGJGZXptTHhJS3R3cHBLVllId2lHbHIvdlpXSlMySTdsY3VJZG9kVHd4Rmlr?=
- =?utf-8?B?R2E5dndETlhWUGpTZ0FXUDFpaE9yeFhpWmI3ZkpaZFhUZDAwd0tBRlFUaUlP?=
- =?utf-8?B?RWltK3h2aWwxcHlScmlDNFNPYWpabTJwS2FYQUx4Zmt0TUxBbFZHdHFHaG8z?=
- =?utf-8?B?V0ZLSjFTcE1IRGRWbnhPNTZlYWIvRTlsUXVDZ0Q1dFZOYU9xblNyMlo3UXl3?=
- =?utf-8?B?YWFBVWI3NE9vWUhZeEhUbDhlS3VmM0lucGpvLzZsRHljYWw0YlNtMHFMMG1X?=
- =?utf-8?B?dHNzOGEyWjJxTmlVRllHQ1Y0dG8rdThzRmxMVnpIdDB3aGk4Y0FKYmFhWUtW?=
- =?utf-8?B?ZjZXbFowdWM0d1hMUFhJYTJtdmVzM0RqbkZwVVNNeFJCR05lSWxmOEZJSHkx?=
- =?utf-8?B?YzJpTDMra1ZpdlU1VkVIY3VTZUc1VVJCQ1d4d1dSaVpHS1VNVjljcXNJbWt6?=
- =?utf-8?B?dkNrZy9JSndvVElnNjlJZ2t6bE12czE1WVJORjZTcFA1Y0JUVDlpMzZQTHRF?=
- =?utf-8?B?ZlpsMjdHalM5aXI4TG8vTElMbTE4ekZWTEY0R1FqbGVjQWdMbjBRNUlFTVZ1?=
- =?utf-8?B?RHZqeHlyb1k1c2ZPTVlLVjVtaW41UVlJSTRhLzl3Ulh0aEVjZ2hqdTlZWHNs?=
- =?utf-8?B?bUcrZVJ6RFFIYS9pUTh6L3ZQZVI4TUdiNWtTcmJ6eXh1ajdHdCszUWRGSnow?=
- =?utf-8?B?NmlQeWRvTXB2L0Y4bS9OelNGaUJIUlg0dUxQNFBzNWYxT2NKTDNJVzBjeHlX?=
- =?utf-8?B?NW56U2tkM1pUVkV6N3ExUU02MFphWFBDUSs2K3Fwdjcyam50aGlmVlJBL0g5?=
- =?utf-8?B?RCtaL2ZIZitsbUJPZHdPUnZ0WFNTbDlIVm9zakRZZEpjSFA1TXZjNE5vL1ZR?=
- =?utf-8?B?U29DZW1JOU1ZeXk2T2N5dDNMRXp6eW5KRktGa1B5bHd4d3d4dEN3dy9mZ2VF?=
- =?utf-8?B?SXlHVnJ4Zkp3S3hMcm1RV0UveVBXRzY4bWFSZitMbVcvb283UE5IMGVMbUx1?=
- =?utf-8?B?N1V5VlNDT1lNdDVkVTJBSjVrTlFCSExFSVI2UFZXalRGN3FQVUVlM3F4LzRw?=
- =?utf-8?B?VnhYdFpYa2ZKdk1RbytsRE1uaXlOVVRGTTBiUGMrcjdpM05LZExGT21CdFU3?=
- =?utf-8?B?Wm14ODR6bURzV3JMcEZGeG1WQTduUURnSEZGSnhLR2RPYnlpUkdYWWo1TUd1?=
- =?utf-8?B?aVE9PQ==?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 097ddab1-c5be-4466-babc-08dc2ee92425
-X-MS-Exchange-CrossTenant-AuthSource: PH8PR11MB8287.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 16 Feb 2024 12:16:45.0265 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: BgyToveHMYEjz9NgFzMEf+8FkVKEaQzlrk/B/U5oJ3rNWU5nRTXOdtJ64dTupX+uhIv/7KGlIxXm9d5mYq1UZA==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MW3PR11MB4764
-X-OriginatorOrg: intel.com
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v6 3/3] drm/buddy: Add defragmentation support
+Content-Language: en-GB
+To: Arunpravin Paneer Selvam <Arunpravin.PaneerSelvam@amd.com>,
+ dri-devel@lists.freedesktop.org, amd-gfx@lists.freedesktop.org,
+ intel-gfx@lists.freedesktop.org
+Cc: christian.koenig@amd.com, alexander.deucher@amd.com,
+ felix.kuehling@amd.com, mario.limonciello@amd.com
+References: <20240208155000.339325-1-Arunpravin.PaneerSelvam@amd.com>
+ <20240208155000.339325-3-Arunpravin.PaneerSelvam@amd.com>
+From: Matthew Auld <matthew.auld@intel.com>
+In-Reply-To: <20240208155000.339325-3-Arunpravin.PaneerSelvam@amd.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -167,96 +72,174 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Quoting Ville Syrjala (2024-02-06 22:33:33-03:00)
->From: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
->
->cdclk_compute_crawl_and_squash_midpoint() was still assuming
->that cd2x divider =3D=3D 1 (ie. full divider =3D=3D 2). Remove that
->assumption by computing the dividers properly.
->
->We'll also toss in a WARN in case the divider someone ends
+On 08/02/2024 15:50, Arunpravin Paneer Selvam wrote:
+> Add a function to support defragmentation.
+> 
+> v1: Defragment the memory beginning from min_order
+>      till the required memory space is available.
+> 
+> Signed-off-by: Arunpravin Paneer Selvam <Arunpravin.PaneerSelvam@amd.com>
+> Suggested-by: Matthew Auld <matthew.auld@intel.com>
+> ---
+>   drivers/gpu/drm/drm_buddy.c | 67 +++++++++++++++++++++++++++++++------
+>   include/drm/drm_buddy.h     |  3 ++
 
-s/someone/somehow/ ?
+No users?
 
->up different between the old and new cdclk configs. That should
->never happen given we have div=3D=3D2 in all the cdclk table entries
->for the affected platforms.
->
->If in the future we need a config where the divider also needs
->to be changed then we likely need to add an extra step into the
->cdclk programming sequence to make sure things stay within
->legal limits throughout the process.
->
->Signed-off-by: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
+>   2 files changed, 59 insertions(+), 11 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/drm_buddy.c b/drivers/gpu/drm/drm_buddy.c
+> index 33ad0cfbd54c..fac423d2cb73 100644
+> --- a/drivers/gpu/drm/drm_buddy.c
+> +++ b/drivers/gpu/drm/drm_buddy.c
+> @@ -276,10 +276,12 @@ drm_get_buddy(struct drm_buddy_block *block)
+>   }
+>   EXPORT_SYMBOL(drm_get_buddy);
+>   
+> -static void __drm_buddy_free(struct drm_buddy *mm,
+> -			     struct drm_buddy_block *block)
+> +static unsigned int __drm_buddy_free(struct drm_buddy *mm,
+> +				     struct drm_buddy_block *block,
+> +				     bool defrag)
+>   {
+>   	struct drm_buddy_block *parent;
+> +	unsigned int order;
+>   
+>   	while ((parent = block->parent)) {
+>   		struct drm_buddy_block *buddy;
+> @@ -289,12 +291,14 @@ static void __drm_buddy_free(struct drm_buddy *mm,
+>   		if (!drm_buddy_block_is_free(buddy))
+>   			break;
+>   
+> -		if (drm_buddy_block_is_clear(block) !=
+> -		    drm_buddy_block_is_clear(buddy))
+> -			break;
+> +		if (!defrag) {
+> +			if (drm_buddy_block_is_clear(block) !=
+> +			    drm_buddy_block_is_clear(buddy))
+> +				break;
+>   
+> -		if (drm_buddy_block_is_clear(block))
+> -			mark_cleared(parent);
+> +			if (drm_buddy_block_is_clear(block))
+> +				mark_cleared(parent);
+> +		}
 
-Reviewed-by: Gustavo Sousa <gustavo.sousa@intel.com>
+Maybe check if the two blocks are incompatible and chuck a warn if they 
+are not? Main thing is not to hide issues with split blocks that should 
+have been merged before.
 
->---
-> drivers/gpu/drm/i915/display/intel_cdclk.c | 18 ++++++++++++++++--
-> 1 file changed, 16 insertions(+), 2 deletions(-)
->
->diff --git a/drivers/gpu/drm/i915/display/intel_cdclk.c b/drivers/gpu/drm/=
-i915/display/intel_cdclk.c
->index a0013e37d53c..ca00586fdbc8 100644
->--- a/drivers/gpu/drm/i915/display/intel_cdclk.c
->+++ b/drivers/gpu/drm/i915/display/intel_cdclk.c
->@@ -1846,7 +1846,7 @@ static bool cdclk_compute_crawl_and_squash_midpoint(=
-struct drm_i915_private *i91
->                                                     struct intel_cdclk_co=
-nfig *mid_cdclk_config)
-> {
->         u16 old_waveform, new_waveform, mid_waveform;
->-        int div =3D 2;
->+        int old_div, new_div, mid_div;
->=20
->         /* Return if PLL is in an unknown state, force a complete disable=
- and re-enable. */
->         if (cdclk_pll_is_unknown(old_cdclk_config->vco))
->@@ -1865,6 +1865,18 @@ static bool cdclk_compute_crawl_and_squash_midpoint=
-(struct drm_i915_private *i91
->             old_waveform =3D=3D new_waveform)
->                 return false;
->=20
->+        old_div =3D cdclk_divider(old_cdclk_config->cdclk,
->+                                old_cdclk_config->vco, old_waveform);
->+        new_div =3D cdclk_divider(new_cdclk_config->cdclk,
->+                                new_cdclk_config->vco, new_waveform);
->+
->+        /*
->+         * Should not happen currently. We might need more midpoint
->+         * transitions if we need to also change the cd2x divider.
->+         */
->+        if (drm_WARN_ON(&i915->drm, old_div !=3D new_div))
->+                return false;
->+
->         *mid_cdclk_config =3D *new_cdclk_config;
->=20
->         /*
->@@ -1877,15 +1889,17 @@ static bool cdclk_compute_crawl_and_squash_midpoin=
-t(struct drm_i915_private *i91
->=20
->         if (cdclk_squash_divider(new_waveform) > cdclk_squash_divider(old=
-_waveform)) {
->                 mid_cdclk_config->vco =3D old_cdclk_config->vco;
->+                mid_div =3D old_div;
->                 mid_waveform =3D new_waveform;
->         } else {
->                 mid_cdclk_config->vco =3D new_cdclk_config->vco;
->+                mid_div =3D new_div;
->                 mid_waveform =3D old_waveform;
->         }
->=20
->         mid_cdclk_config->cdclk =3D DIV_ROUND_CLOSEST(cdclk_squash_divide=
-r(mid_waveform) *
->                                                     mid_cdclk_config->vco=
-,
->-                                                    cdclk_squash_len * di=
-v);
->+                                                    cdclk_squash_len * mi=
-d_div);
->=20
->         /* make sure the mid clock came out sane */
->=20
->--=20
->2.43.0
->
+>   
+>   		list_del(&buddy->link);
+>   
+> @@ -304,8 +308,49 @@ static void __drm_buddy_free(struct drm_buddy *mm,
+>   		block = parent;
+>   	}
+>   
+> +	order = drm_buddy_block_order(block);
+>   	mark_free(mm, block);
+> +
+> +	return order;
+> +}
+> +
+> +/**
+> + * drm_buddy_defrag - Defragmentation routine
+> + *
+> + * @mm: DRM buddy manager
+> + * @min_order: minimum order in the freelist to begin
+> + * the defragmentation process
+> + *
+> + * Driver calls the defragmentation function when the
+> + * requested memory allocation returns -ENOSPC.
+> + */
+> +void drm_buddy_defrag(struct drm_buddy *mm,
+> +		      unsigned int min_order)
+
+Just wondering if we need "full defag" also? We would probably need to 
+call this at fini() anyway.
+
+> +{
+> +	struct drm_buddy_block *block;
+> +	struct list_head *list;
+> +	unsigned int order;
+> +	int i;
+> +
+> +	if (min_order > mm->max_order)
+> +		return;
+> +
+> +	for (i = min_order - 1; i >= 0; i--) {
+
+Need to be careful with min_order = 0 ?
+
+> +		list = &mm->free_list[i];
+> +		if (list_empty(list))
+> +			continue;
+> +
+> +		list_for_each_entry_reverse(block, list, link) {
+
+Don't we need the safe_reverse() variant here, since this is removing 
+from the list?
+
+> +			if (!block->parent)
+> +				continue;
+> +
+> +			order = __drm_buddy_free(mm, block, 1);
+> +			if (order >= min_order)
+> +				return;
+> +		}
+> +	}
+>   }
+> +EXPORT_SYMBOL(drm_buddy_defrag);
+>   
+>   /**
+>    * drm_buddy_free_block - free a block
+> @@ -321,7 +366,7 @@ void drm_buddy_free_block(struct drm_buddy *mm,
+>   	if (drm_buddy_block_is_clear(block))
+>   		mm->clear_avail += drm_buddy_block_size(mm, block);
+>   
+> -	__drm_buddy_free(mm, block);
+> +	__drm_buddy_free(mm, block, 0);
+>   }
+>   EXPORT_SYMBOL(drm_buddy_free_block);
+>   
+> @@ -470,7 +515,7 @@ __alloc_range_bias(struct drm_buddy *mm,
+>   	if (buddy &&
+>   	    (drm_buddy_block_is_free(block) &&
+>   	     drm_buddy_block_is_free(buddy)))
+> -		__drm_buddy_free(mm, block);
+> +		__drm_buddy_free(mm, block, 0);
+>   	return ERR_PTR(err);
+>   }
+>   
+> @@ -588,7 +633,7 @@ alloc_from_freelist(struct drm_buddy *mm,
+>   
+>   err_undo:
+>   	if (tmp != order)
+> -		__drm_buddy_free(mm, block);
+> +		__drm_buddy_free(mm, block, 0);
+>   	return ERR_PTR(err);
+>   }
+>   
+> @@ -668,7 +713,7 @@ static int __alloc_range(struct drm_buddy *mm,
+>   	if (buddy &&
+>   	    (drm_buddy_block_is_free(block) &&
+>   	     drm_buddy_block_is_free(buddy)))
+> -		__drm_buddy_free(mm, block);
+> +		__drm_buddy_free(mm, block, 0);
+>   
+>   err_free:
+>   	if (err == -ENOSPC && total_allocated_on_err) {
+> diff --git a/include/drm/drm_buddy.h b/include/drm/drm_buddy.h
+> index d81c596dfa38..d0f63e7b5915 100644
+> --- a/include/drm/drm_buddy.h
+> +++ b/include/drm/drm_buddy.h
+> @@ -166,6 +166,9 @@ void drm_buddy_free_list(struct drm_buddy *mm,
+>   			 struct list_head *objects,
+>   			 unsigned int flags);
+>   
+> +void drm_buddy_defrag(struct drm_buddy *mm,
+> +		      unsigned int min_order);
+> +
+>   void drm_buddy_print(struct drm_buddy *mm, struct drm_printer *p);
+>   void drm_buddy_block_print(struct drm_buddy *mm,
+>   			   struct drm_buddy_block *block,
