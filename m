@@ -2,34 +2,34 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 18C6085762A
-	for <lists+intel-gfx@lfdr.de>; Fri, 16 Feb 2024 07:53:58 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5EE2D85762B
+	for <lists+intel-gfx@lfdr.de>; Fri, 16 Feb 2024 07:54:01 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8A1E110E432;
-	Fri, 16 Feb 2024 06:53:56 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D17FD10EA9B;
+	Fri, 16 Feb 2024 06:53:59 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="M/L6YYR8";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="X7EaO9HR";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 30BB610E432
- for <intel-gfx@lists.freedesktop.org>; Fri, 16 Feb 2024 06:53:55 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D324C10E433
+ for <intel-gfx@lists.freedesktop.org>; Fri, 16 Feb 2024 06:53:58 +0000 (UTC)
 Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
- by dfw.source.kernel.org (Postfix) with ESMTP id 9986061F0C;
+ by dfw.source.kernel.org (Postfix) with ESMTP id 47C3261EF4;
+ Fri, 16 Feb 2024 06:53:58 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D1FF7C433C7;
  Fri, 16 Feb 2024 06:53:54 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1638AC433C7;
- Fri, 16 Feb 2024 06:53:51 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1708066434;
- bh=OMwiUGzZhHIC9yKcus+0Ro/4xBOBkZGCI2WykwcHxec=;
+ s=k20201202; t=1708066438;
+ bh=xAhGbARzs83EneUXBDZflPwViGnccMXkpjIP1CYeQhA=;
  h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
- b=M/L6YYR8D3lmY2K9Pmpzprip1CG/noGquvl9fgyT0V71zUn97O8v6rljtSk+IB6+U
- I6MTnvOhmBybARhB1manPvdvX8CtCUXLKkouXx/66VqqGWwKhofjSM4HmVxm0SASjK
- 0o/AbW2l+iWAo1n1e1s1qUp5WqKnjl7mFUQG787geHYKWyyFp7T8xYgDSNjBDZKS34
- rCyGoBCD6K2FeRfef2OBdrTBvhEJOdy+nhwxClQUssTqziUTPx6gmGXiW+WRXpMkIo
- URd4BsUqbJsoKZstUGmrXFEwBHvS8LDAMe91AO2SQeRsMo2LyLC1b+uBhFe9/Nq4o/
- 79nI9WRxWH2fQ==
+ b=X7EaO9HRGWuJT9OQFFjFHOAEGCSPJNOQSEQW0OotFJMCh7gKgYIKkMgYhYMzAWg9v
+ qfpU8ExWaTf2OiwDh6c53Ac7/1HYTXPhh8A4fkDq/nCoduEvxlSW5EwGNsEq5J8nZx
+ 2qpItkKEWsQ+JyzTFRXoPRNjaX061QSbmI4gQ7YKSR6YwV0Ex3jI3HNSIyEmJuFnL+
+ B+mbyNcy95vWmTcsE140ztEKmi/9iquKXznkR58v1/wo+m7TpRalI4f/dqHyYkdMwk
+ P8jXM54QskG/ecIOS/wDcQFhiw2xjKEM7sC2BYuIdwyRGOg02R29XGzsgOGMKQag2p
+ 8pfD4dIju9SlA==
 From: "Jiri Slaby (SUSE)" <jirislaby@kernel.org>
 To: jani.nikula@linux.intel.com
 Cc: linux-kernel@vger.kernel.org, "Jiri Slaby (SUSE)" <jirislaby@kernel.org>,
@@ -37,9 +37,9 @@ Cc: linux-kernel@vger.kernel.org, "Jiri Slaby (SUSE)" <jirislaby@kernel.org>,
  Rodrigo Vivi <rodrigo.vivi@intel.com>,
  Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
  intel-gfx@lists.freedesktop.org
-Subject: [PATCH 07/21] drm/i915: remove intel_vbt_panel_data::edp::initialized
-Date: Fri, 16 Feb 2024 07:53:12 +0100
-Message-ID: <20240216065326.6910-8-jirislaby@kernel.org>
+Subject: [PATCH 08/21] drm/i915: remove intel_guc::ads_engine_usage_size
+Date: Fri, 16 Feb 2024 07:53:13 +0100
+Message-ID: <20240216065326.6910-9-jirislaby@kernel.org>
 X-Mailer: git-send-email 2.43.1
 In-Reply-To: <20240216065326.6910-1-jirislaby@kernel.org>
 References: <20240216065326.6910-1-jirislaby@kernel.org>
@@ -60,9 +60,9 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-intel_vbt_panel_data::edp::initialized is not used since commit
-9f0e7ff4b366 (drm/i915: fetch eDP configuration data from the VBT).
-Drop it.
+intel_guc::ads_engine_usage_size was never used since its addition in
+commit 77cdd054dd2c (drm/i915/pmu: Connect engine busyness stats from
+GuC to pmu). Drop it.
 
 Found by https://github.com/jirislaby/clang-struct.
 
@@ -73,21 +73,22 @@ Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
 Cc: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
 Cc: intel-gfx@lists.freedesktop.org
 ---
- drivers/gpu/drm/i915/display/intel_display_types.h | 1 -
- 1 file changed, 1 deletion(-)
+ drivers/gpu/drm/i915/gt/uc/intel_guc.h | 2 --
+ 1 file changed, 2 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/drivers/gpu/drm/i915/display/intel_display_types.h
-index 01eb6e4e6049..e0d291dd7d2d 100644
---- a/drivers/gpu/drm/i915/display/intel_display_types.h
-+++ b/drivers/gpu/drm/i915/display/intel_display_types.h
-@@ -327,7 +327,6 @@ struct intel_vbt_panel_data {
- 		struct edp_power_seq pps;
- 		u8 drrs_msa_timing_delay;
- 		bool low_vswing;
--		bool initialized;
- 		bool hobl;
- 	} edp;
+diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc.h b/drivers/gpu/drm/i915/gt/uc/intel_guc.h
+index 813cc888e6fa..be70c46604b4 100644
+--- a/drivers/gpu/drm/i915/gt/uc/intel_guc.h
++++ b/drivers/gpu/drm/i915/gt/uc/intel_guc.h
+@@ -206,8 +206,6 @@ struct intel_guc {
+ 	u32 ads_golden_ctxt_size;
+ 	/** @ads_capture_size: size of register lists in the ADS used for error capture */
+ 	u32 ads_capture_size;
+-	/** @ads_engine_usage_size: size of engine usage in the ADS */
+-	u32 ads_engine_usage_size;
  
+ 	/** @lrc_desc_pool_v69: object allocated to hold the GuC LRC descriptor pool */
+ 	struct i915_vma *lrc_desc_pool_v69;
 -- 
 2.43.1
 
