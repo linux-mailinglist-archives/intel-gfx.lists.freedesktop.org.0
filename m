@@ -2,26 +2,26 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 87F6F85881F
-	for <lists+intel-gfx@lfdr.de>; Fri, 16 Feb 2024 22:40:39 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 12338858820
+	for <lists+intel-gfx@lfdr.de>; Fri, 16 Feb 2024 22:40:42 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 94A6B10E5E3;
-	Fri, 16 Feb 2024 21:40:37 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E149A10E6A0;
+	Fri, 16 Feb 2024 21:40:39 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from 8e613ede5ea5 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0CF6810E5E3;
- Fri, 16 Feb 2024 21:40:36 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D428610E6A0;
+ Fri, 16 Feb 2024 21:40:38 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=97_Fi=2ECI=2ECHECKPATCH=3A_warning_for_TTM_unlockable_resta?=
- =?utf-8?q?rtable_LRU_list_iteration?=
+Subject: =?utf-8?q?=E2=9C=97_Fi=2ECI=2ESPARSE=3A_warning_for_TTM_unlockable_restartab?=
+ =?utf-8?q?le_LRU_list_iteration?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: =?utf-8?q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
 Cc: intel-gfx@lists.freedesktop.org
-Date: Fri, 16 Feb 2024 21:40:36 -0000
-Message-ID: <170811963605.54115.17167640834849055506@8e613ede5ea5>
+Date: Fri, 16 Feb 2024 21:40:38 -0000
+Message-ID: <170811963885.54115.1418926845388202540@8e613ede5ea5>
 X-Patchwork-Hint: ignore
 References: <20240216131446.101961-1-thomas.hellstrom@linux.intel.com>
 In-Reply-To: <20240216131446.101961-1-thomas.hellstrom@linux.intel.com>
@@ -49,6 +49,8 @@ State : warning
 
 == Summary ==
 
-Error: patch https://patchwork.freedesktop.org/api/1.0/series/130001/revisions/1/mbox/ not found
+Error: dim sparse failed
+Sparse version: v0.6.2
+Fast mode used, each commit won't be checked separately.
 
 
