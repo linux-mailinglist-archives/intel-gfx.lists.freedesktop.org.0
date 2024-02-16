@@ -2,34 +2,34 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id D284A85762F
-	for <lists+intel-gfx@lfdr.de>; Fri, 16 Feb 2024 07:54:09 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 99AB9857631
+	for <lists+intel-gfx@lfdr.de>; Fri, 16 Feb 2024 07:54:19 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3708C10EAA0;
-	Fri, 16 Feb 2024 06:54:08 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 05B3F10E3CF;
+	Fri, 16 Feb 2024 06:54:18 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="bcPOWQoE";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="KDfx5flm";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3A3AA10EAA0
- for <intel-gfx@lists.freedesktop.org>; Fri, 16 Feb 2024 06:54:07 +0000 (UTC)
+Received: from sin.source.kernel.org (sin.source.kernel.org [145.40.73.55])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4562210E3CF
+ for <intel-gfx@lists.freedesktop.org>; Fri, 16 Feb 2024 06:54:16 +0000 (UTC)
 Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
- by dfw.source.kernel.org (Postfix) with ESMTP id AD37261EF7;
+ by sin.source.kernel.org (Postfix) with ESMTP id 5ACBECE1A97;
+ Fri, 16 Feb 2024 06:54:10 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1434FC433C7;
  Fri, 16 Feb 2024 06:54:06 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A2D78C433F1;
- Fri, 16 Feb 2024 06:54:03 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1708066446;
- bh=D1UVKTUwrumNB4hwYMCCqn17XRjRd4Butj96fqO0Ms8=;
+ s=k20201202; t=1708066449;
+ bh=8o0wvfgtp9sQfzOgFfW8t1yUu/RnxbOaOuDmpI5A5qk=;
  h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
- b=bcPOWQoEz23Zw9RUcbqEyl8B6I+N8c2+TNF+litP20oTavcBUp4OMcqgSikxs9hIy
- GBUv8uCuIGafuExHqqNKSGSexCkHq2tZl+4NTqRLuUSAQlAquRvyKfMh9ZEaDuWvYi
- 7Hwo0cJmbybLTXpfvhEU97F+owLSUn0nfuVr44SNOC4FBO5CBz3XdlAS87pPXo73RY
- YiUpVcKDF0HlR+Bii/IWPxg6+qMa7l4kjVr+djNQCMxDkEYj0v1QAnshCedXfLqx5M
- N68b3v8f0aCn+Hu6mL/eovXey2vuAviuiC0HezrAYj6ivjaPf2ow46KWtVaYYTAJRK
- uRSTpcFUqEYNA==
+ b=KDfx5flmsaTtfTYf4Irng/CnPwsgJzJ+dCaPmXn2In2KJowAOIDfk3S4a8EZN8Wci
+ BNHEy6+fHdkUEo33XX5p8tlaEut0C49KaVhNLaHht/oPG2DVLypJecnoYueC81JbXi
+ V0HMdYliYRfKvpOuoGFohYyUEurgXau3BOqP80MA+a6fFF2OrIEUmbWa6oaOlOC/I9
+ l6Py+6hUpe5SiWWTWl///JzRTnAmmSkRN2KvUepgwDllHeTf1tMrfqLy5uFFpg1g6y
+ H+/gIlTcFRsYy4ZdCjDqRfIxjzk/y2rYHqBZoql1212DKkabX918XDQfNWKRkEzMzb
+ xNGpHrnT1crUQ==
 From: "Jiri Slaby (SUSE)" <jirislaby@kernel.org>
 To: jani.nikula@linux.intel.com
 Cc: linux-kernel@vger.kernel.org, "Jiri Slaby (SUSE)" <jirislaby@kernel.org>,
@@ -37,9 +37,9 @@ Cc: linux-kernel@vger.kernel.org, "Jiri Slaby (SUSE)" <jirislaby@kernel.org>,
  Rodrigo Vivi <rodrigo.vivi@intel.com>,
  Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
  intel-gfx@lists.freedesktop.org
-Subject: [PATCH 11/21] drm/i915: remove intel_vgpu_gtt::active_ppgtt_mm_bitmap
-Date: Fri, 16 Feb 2024 07:53:16 +0100
-Message-ID: <20240216065326.6910-12-jirislaby@kernel.org>
+Subject: [PATCH 12/21] drm/i915: remove intel_vgpu_fence::base
+Date: Fri, 16 Feb 2024 07:53:17 +0100
+Message-ID: <20240216065326.6910-13-jirislaby@kernel.org>
 X-Mailer: git-send-email 2.43.1
 In-Reply-To: <20240216065326.6910-1-jirislaby@kernel.org>
 References: <20240216065326.6910-1-jirislaby@kernel.org>
@@ -60,9 +60,8 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-intel_vgpu_gtt::active_ppgtt_mm_bitmap was never used since its
-addition in commit 2707e4446688 (drm/i915/gvt: vGPU graphics memory
-virtualization). Drop it.
+intel_vgpu_fence::base was never used since its addition in commit
+28a60dee2ce6 (drm/i915/gvt: vGPU HW resource management). Drop it.
 
 Found by https://github.com/jirislaby/clang-struct.
 
@@ -73,21 +72,29 @@ Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
 Cc: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
 Cc: intel-gfx@lists.freedesktop.org
 ---
- drivers/gpu/drm/i915/gvt/gtt.h | 1 -
- 1 file changed, 1 deletion(-)
+ drivers/gpu/drm/i915/gvt/gvt.h | 2 --
+ 1 file changed, 2 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/gvt/gtt.h b/drivers/gpu/drm/i915/gvt/gtt.h
-index fb96ea454fd1..cb50700e6cc9 100644
---- a/drivers/gpu/drm/i915/gvt/gtt.h
-+++ b/drivers/gpu/drm/i915/gvt/gtt.h
-@@ -208,7 +208,6 @@ struct intel_vgpu_scratch_pt {
+diff --git a/drivers/gpu/drm/i915/gvt/gvt.h b/drivers/gpu/drm/i915/gvt/gvt.h
+index c57aba09091f..b6fe17f1a16f 100644
+--- a/drivers/gpu/drm/i915/gvt/gvt.h
++++ b/drivers/gpu/drm/i915/gvt/gvt.h
+@@ -89,7 +89,6 @@ struct intel_vgpu_gm {
+ /* Fences owned by a vGPU */
+ struct intel_vgpu_fence {
+ 	struct i915_fence_reg *regs[INTEL_GVT_MAX_NUM_FENCES];
+-	u32 base;
+ 	u32 size;
+ };
  
- struct intel_vgpu_gtt {
- 	struct intel_vgpu_mm *ggtt_mm;
--	unsigned long active_ppgtt_mm_bitmap;
- 	struct list_head ppgtt_mm_list_head;
- 	struct radix_tree_root spt_tree;
- 	struct list_head oos_page_list_head;
+@@ -444,7 +443,6 @@ int intel_gvt_load_firmware(struct intel_gvt *gvt);
+ #define vgpu_hidden_gmadr_end(vgpu) \
+ 	(vgpu_hidden_gmadr_base(vgpu) + vgpu_hidden_sz(vgpu) - 1)
+ 
+-#define vgpu_fence_base(vgpu) (vgpu->fence.base)
+ #define vgpu_fence_sz(vgpu) (vgpu->fence.size)
+ 
+ /* ring context size i.e. the first 0x50 dwords*/
 -- 
 2.43.1
 
