@@ -2,77 +2,78 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id C3BD4857CD9
-	for <lists+intel-gfx@lfdr.de>; Fri, 16 Feb 2024 13:40:51 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id EBAB2857CE1
+	for <lists+intel-gfx@lfdr.de>; Fri, 16 Feb 2024 13:45:38 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 96E3E10E94C;
-	Fri, 16 Feb 2024 12:40:47 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id F03E610E90E;
+	Fri, 16 Feb 2024 12:45:34 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="d+Ir+pN9";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="R6LacRUc";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-lf1-f46.google.com (mail-lf1-f46.google.com
- [209.85.167.46])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8D90310E8D4;
- Fri, 16 Feb 2024 12:40:44 +0000 (UTC)
-Received: by mail-lf1-f46.google.com with SMTP id
- 2adb3069b0e04-5114a21176cso538002e87.1; 
- Fri, 16 Feb 2024 04:40:44 -0800 (PST)
+Received: from mail-lj1-f171.google.com (mail-lj1-f171.google.com
+ [209.85.208.171])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8C37910E899;
+ Fri, 16 Feb 2024 12:45:31 +0000 (UTC)
+Received: by mail-lj1-f171.google.com with SMTP id
+ 38308e7fff4ca-2d0e520362cso20273701fa.2; 
+ Fri, 16 Feb 2024 04:45:31 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1708087243; x=1708692043; darn=lists.freedesktop.org;
- h=content-transfer-encoding:mime-version:references:in-reply-to
- :message-id:subject:cc:to:from:date:from:to:cc:subject:date
- :message-id:reply-to;
- bh=c/BEPC0f21cX8+pFxjO9Xj6ogm+sj9UMJhy8cDHL9rc=;
- b=d+Ir+pN9AZXd6lacFT0PXFf/TDqacHeX1TlPY4P1trWOhjKI6NXAx9yqkVJ4pCLS5G
- F4VQ75+gdlBDEKV9uHBcctdMAnznQI58sniJI0ruULtKH73ixwHJrMgmUKICu84H2x5w
- tNyBVE5+Ek3dVfkzgXpIDkYercaMmxVNarDA5XDvC2R/9I0iqCI+TZN5sDqn43YWdP/H
- z+a2vJB2d/IoVeLhkv4B7QLMZb8C9K6pHznVlnrh54gFpKxDlzNlEBOvI/1BlKQO5Tm2
- fOo6ah8xl355gsljRxA144cP0zdQ5j4b9L+bQXuxEowrjLgbMxbkVuLf1CXi/R1UvIL6
- d57Q==
+ d=gmail.com; s=20230601; t=1708087530; x=1708692330; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:in-reply-to:from:references:cc:to
+ :content-language:subject:user-agent:mime-version:date:message-id
+ :from:to:cc:subject:date:message-id:reply-to;
+ bh=Z21o86oZ2POmZsD5ofKWQxDd0NBUibTeXuOHb4VWv3M=;
+ b=R6LacRUcSpJjs3XqMRPf+WLW+YU5BHuasmFazuhvF5nyz8tH6UPeC88aGu4ZnItx71
+ miEjfsYKuH4iYSS1AU9eNB9tsHPJQFjIk9rUbmlmj3+RCcs9jEhBrTIFP5B/bkHuyabq
+ eVatlS77R47pt38mEKu2YCrOnxHW4KPlRmVa5BiLizg8KcAc28TPlN0WeVFp7U9Hz2mE
+ rM7Yc1EErQTy3OHZnYzIV4/zUvCnAcq/1d7vfOGTAVPoLYkadCwJpCN6PpciL5/Se1XM
+ CP+rZGlzp3RGEphlbYFXe/+uz8LycAGdhAj6hpCEdzYv80y4O6LPgbjtCFTRelCl6MM0
+ JC/w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1708087243; x=1708692043;
- h=content-transfer-encoding:mime-version:references:in-reply-to
- :message-id:subject:cc:to:from:date:x-gm-message-state:from:to:cc
- :subject:date:message-id:reply-to;
- bh=c/BEPC0f21cX8+pFxjO9Xj6ogm+sj9UMJhy8cDHL9rc=;
- b=m0cbwhFxKnNfJ6Bu+5yEucoUJYpUTSrv8+NMpzB/O05AWPITlyWWaAJaE8umvyYqxk
- wZ6tuHiRawAkuDnQ2o8P5yXCtPQwkw1YlngEKmIkkMrWJzsqlr1O4GNo4mQlx8K9W36z
- jptj9PGHI9tAKxAQHXL6FhwXc3y5JJ8VHGcxul7pLk4jlkJnFEMYAVklLZLBDrvGfrkE
- Scu21kcHhma1MViTn3s3QqtjFHSwu1Y0XVF0e9jiKX+jhUbjgew05kFCoERwJAS1E0H2
- gzKrqRkJz7RvoOKgkugHWvnc1HGKPe1FEpDEMbQB8dEErR8vZqyvvdnvjSKRsow9lKrZ
- 5pNw==
+ d=1e100.net; s=20230601; t=1708087530; x=1708692330;
+ h=content-transfer-encoding:in-reply-to:from:references:cc:to
+ :content-language:subject:user-agent:mime-version:date:message-id
+ :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+ bh=Z21o86oZ2POmZsD5ofKWQxDd0NBUibTeXuOHb4VWv3M=;
+ b=MZXlmuXAEKfTllo0w+lWqu1nskEYis5yyggi2PgCfcx9gfONvRqOCpjoxB/WKj6gUR
+ nMnAWjxt6IZpix/IvSpRg+RT+NoXVXQ2MfSwet7x+6lcFvKnoXe/5rxq8npVoxkyv4gW
+ LPP4wtG4vIOj7RFXYe1/xmWUaaUfouG2PnwCTM5xH8y+zdaKo17iT8Y/gJbaAKWM/CS8
+ IOPz7OrVcTo6ysi4MnRFFILWItuGyFHg0O12csG4xyY+v/ppGGuTzCfcFCWapvEkHKpM
+ CPFVVBF8IhEreXP0mjikyuJ/9NFus+8hNjCTWa1R1l+sm23jaPqGaLTFW0UxKw0y8AjA
+ MISg==
 X-Forwarded-Encrypted: i=1;
- AJvYcCWa3wIy8A8VCPr2lLaIT7I41AsQpgSTQf/MSmgP37ZI0Br/2JC/gb4/EUOLYDAtVXu4xlzbIlzO0+sFGyueFk3esJZlQSMxOb4V7eSgq0TyDLPJP7cm7Cuz1gBOCreTGDDAiJJhZaWFQbgBNPkUgHOwjamqFw==
-X-Gm-Message-State: AOJu0Ywt9TQCJovzGy6UX1de+cPqk+aGjlEwTQd3x5S0ViqUZ3PDpp1d
- Yi8wLu3ymgJWDjoE5Nvqn3Z8W/ohSkvc28kwoSjPOGgJYFpjY4cH
-X-Google-Smtp-Source: AGHT+IFRSaMnjw8+3knZoCRYoJ3YhOgeltpJKK6FMRHJWpFVSx03+fMwDDJJ9ib7uI6P0LQYFOzXgg==
-X-Received: by 2002:a05:6512:249:b0:511:8e03:c9a3 with SMTP id
- b9-20020a056512024900b005118e03c9a3mr1302245lfo.2.1708087242403; 
- Fri, 16 Feb 2024 04:40:42 -0800 (PST)
-Received: from localhost (88-115-160-21.elisa-laajakaista.fi. [88.115.160.21])
+ AJvYcCWEsLjqt76b/OUO4/3GJDZVLvhN8xUVvQWYreTRPpo1yqBAvDVFQ1vA6LG09A0lpjLgJXdjmGYclxH/QjhZyRPrcnXrKVF3qTCoKein+52cLdPI7FuAsl+YtxQs1Nwfg9EWYnkIsKCpuah4H5p0gApHn18+YAI60EqbOQoG6iYwPer+1kdOt+9KsJWBp/Qh9Y6lm0hNx5fdX0LD7u6rftjhoOPA7mRRylzDIXTPyybN
+X-Gm-Message-State: AOJu0Yy9Ls3qHsjFUiOBHQG3cY5EixiRnxO2qwucawdoIv4GadqKOvOX
+ FuKdz5rHBfAE77SIQ6oz1AJ1E/W1jcZlrdigRVJlKDDKvO5KJtAk
+X-Google-Smtp-Source: AGHT+IGyVMz/0Xs8YGS+0Is6rqroqbgJJL0ly2ndoIEMALtAiS2mU/opMyiec2MQdlc/y84MBPNn5Q==
+X-Received: by 2002:a2e:b059:0:b0:2d2:1da5:385 with SMTP id
+ d25-20020a2eb059000000b002d21da50385mr637592ljl.47.1708087529841; 
+ Fri, 16 Feb 2024 04:45:29 -0800 (PST)
+Received: from [10.254.108.81] (munvpn.amd.com. [165.204.72.6])
  by smtp.gmail.com with ESMTPSA id
- x17-20020ac259d1000000b005129c9758e0sm6230lfn.306.2024.02.16.04.40.41
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Fri, 16 Feb 2024 04:40:42 -0800 (PST)
-Date: Fri, 16 Feb 2024 14:40:26 +0200
-From: Zhi Wang <zhi.wang.linux@gmail.com>
-To: Jani Nikula <jani.nikula@linux.intel.com>
-Cc: "Jiri Slaby (SUSE)" <jirislaby@kernel.org>,
- linux-kernel@vger.kernel.org, intel-gfx@lists.freedesktop.org, Joonas
- Lahtinen <joonas.lahtinen@linux.intel.com>, Rodrigo Vivi
- <rodrigo.vivi@intel.com>, Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
- Zhenyu Wang <zhenyuw@linux.intel.com>, intel-gvt-dev@lists.freedesktop.org
-Subject: Re: [PATCH 00/21] drm/i915: remove unused structure members
-Message-ID: <20240216144026.00005144.zhi.wang.linux@gmail.com>
-In-Reply-To: <87plww4ws7.fsf@intel.com>
-References: <20240216065326.6910-1-jirislaby@kernel.org>
- <87plww4ws7.fsf@intel.com>
-X-Mailer: Claws Mail 4.1.1 (GTK 3.24.34; x86_64-w64-mingw32)
+ b4-20020a05600003c400b0033d22852483sm859650wrg.62.2024.02.16.04.45.28
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Fri, 16 Feb 2024 04:45:29 -0800 (PST)
+Message-ID: <c3563341-bfcb-4df9-a6c0-f983835a4e2e@gmail.com>
+Date: Fri, 16 Feb 2024 13:45:27 +0100
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 0/6 V4] fdinfo shared stats
+Content-Language: en-US
+To: Alex Deucher <alexdeucher@gmail.com>
+Cc: Alex Deucher <alexander.deucher@amd.com>, amd-gfx@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
+ intel-xe@lists.freedesktop.org, tvrtko.ursulin@linux.intel.com,
+ daniel@ffwll.ch
+References: <20240212210428.851952-1-alexander.deucher@amd.com>
+ <b883e82e-9042-4656-b152-065ed31a81de@gmail.com>
+ <CADnq5_MwEB_=2uySBmiOu3mBcA=uRDvsoA_jT9umHNnwLELWZQ@mail.gmail.com>
+From: =?UTF-8?Q?Christian_K=C3=B6nig?= <ckoenig.leichtzumerken@gmail.com>
+In-Reply-To: <CADnq5_MwEB_=2uySBmiOu3mBcA=uRDvsoA_jT9umHNnwLELWZQ@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -88,83 +89,63 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, 16 Feb 2024 10:51:20 +0200
-Jani Nikula <jani.nikula@linux.intel.com> wrote:
+Am 15.02.24 um 15:20 schrieb Alex Deucher:
+> On Thu, Feb 15, 2024 at 9:18 AM Christian König
+> <ckoenig.leichtzumerken@gmail.com> wrote:
+>> Am 12.02.24 um 22:04 schrieb Alex Deucher:
+>>> We had a request to add shared buffer stats to fdinfo for amdgpu and
+>>> while implementing that, Christian mentioned that just looking at
+>>> the GEM handle count doesn't take into account buffers shared with other
+>>> subsystems like V4L or RDMA.  Those subsystems don't use GEM, so it
+>>> doesn't really matter from a GPU top perspective, but it's more
+>>> correct if you actually want to see shared buffers.
+>>>
+>>> After further discussions, add a helper and update all fdinfo
+>>> implementations to use that helper for consistency.
+>>>
+>>> v4: switch drm_gem_object_is_shared_for_memory_stats() to an inline function
+>> I'm still not sure if looking at the actual handle count is the right
+>> approach, but it's certainly better than before.
+> Well, it's consistent across drivers.
 
-> On Fri, 16 Feb 2024, "Jiri Slaby (SUSE)" <jirislaby@kernel.org> wrote:
-> > this series removes unused i915 structure members as found by
-> > clang-struct (and manually checked by me).
-> 
-> Thanks Jiri, good stuff!
-> 
-> Acked-by: Jani Nikula <jani.nikula@intel.com>
-> 
-> However, you may have overlooked that drivers/gpu/drm/i915/gvt/ is
-> maintained separately.
-> 
-> Cc: Zhenyu, Zhi, how do you want the gvt patches in this series
-> handled?
-> 
+Yeah, which makes it easy to change if we find something better.
 
-Many thanks for the clean-up patch Jiri! Jani, it would be easier
-for us that you can help to apply the patches through i915.
+>
+>> So Reviewed-by: Christian König <christian.koenig@amd.com> for the
+>> entire series.
+>>
+>> Should I take this through drm-misc-next?
+> Yes, please.
 
-Thanks,
-Zhi.
+Done.
 
-> 
-> BR,
-> Jani.
-> 
-> 
-> >
-> > Cc: intel-gfx@lists.freedesktop.org
-> > Cc: Jani Nikula <jani.nikula@linux.intel.com>
-> > Cc: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
-> > Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
-> > Cc: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-> >
-> > Jiri Slaby (SUSE) (21):
-> >   drm/i915: remove unused intel_dvo_dev_ops hooks
-> >   drm/i915: remove structs intel_vgpu_pipe_format and
-> >     intel_vgpu_fb_format
-> >   drm/i915: remove intel_dsi::{port_bits,hs}
-> >   drm/i915: remove
-> >     intel_gvt_gtt::{mm_alloc_page_table,mm_free_page_table}
-> >   drm/i915: remove intel_gvt_mmio_info::{device,addr_range}
-> >   drm/i915: remove
-> > intel_vgpu_workload::{ring_context,restore_inhibit} drm/i915:
-> > remove intel_vbt_panel_data::edp::initialized drm/i915: remove
-> > intel_guc::ads_engine_usage_size drm/i915: remove
-> > i915_drm_client::id drm/i915: remove i915_perf_stream::size_exponent
-> >   drm/i915: remove intel_vgpu_gtt::active_ppgtt_mm_bitmap
-> >   drm/i915: remove intel_vgpu_fence::base
-> >   drm/i915: remove intel_vgpu_opregion::mapped
-> >   drm/i915: remove intel_vgpu::intx_trigger
-> >   drm/i915: remove gvt_mmio_block::device
-> >   drm/i915: remove intel_gvt_irq_info::warned
-> >   drm/i915: remove intel_gvt_event_info::policy
-> >   drm/i915: remove intel_gvt_irq::pending_events
-> >   drm/i915: remove execute_cb::signal
-> >   drm/i915: remove i915_vma::obj_hash
-> >   drm/i915: remove intel_memory_region_ops::flags
-> >
-> >  .../drm/i915/display/intel_display_types.h    |  1 -
-> >  drivers/gpu/drm/i915/display/intel_dsi.h      |  4 ---
-> >  drivers/gpu/drm/i915/display/intel_dvo_dev.h  | 25
-> > ------------------- drivers/gpu/drm/i915/gt/uc/intel_guc.h        |
-> >  2 -- drivers/gpu/drm/i915/gvt/fb_decoder.h         | 11 --------
-> >  drivers/gpu/drm/i915/gvt/gtt.h                |  3 ---
-> >  drivers/gpu/drm/i915/gvt/gvt.h                |  5 ----
-> >  drivers/gpu/drm/i915/gvt/interrupt.c          |  1 -
-> >  drivers/gpu/drm/i915/gvt/interrupt.h          |  2 --
-> >  drivers/gpu/drm/i915/gvt/mmio.h               |  2 --
-> >  drivers/gpu/drm/i915/gvt/scheduler.h          |  2 --
-> >  drivers/gpu/drm/i915/i915_drm_client.h        |  2 --
-> >  drivers/gpu/drm/i915/i915_perf_types.h        |  1 -
-> >  drivers/gpu/drm/i915/i915_request.c           |  1 -
-> >  drivers/gpu/drm/i915/i915_vma_types.h         |  1 -
-> >  drivers/gpu/drm/i915/intel_memory_region.h    |  2 --
-> >  16 files changed, 65 deletions(-)
-> 
+Regards,
+Christian.
+
+>
+> Thanks,
+>
+> Alex
+>
+>> Regards,
+>> Christian.
+>>
+>>> Alex Deucher (6):
+>>>     Documentation/gpu: Update documentation on drm-shared-*
+>>>     drm: add drm_gem_object_is_shared_for_memory_stats() helper
+>>>     drm: update drm_show_memory_stats() for dma-bufs
+>>>     drm/amdgpu: add shared fdinfo stats
+>>>     drm/i915: Update shared stats to use the new gem helper
+>>>     drm/xe: Update shared stats to use the new gem helper
+>>>
+>>>    Documentation/gpu/drm-usage-stats.rst      |  2 +-
+>>>    drivers/gpu/drm/amd/amdgpu/amdgpu_fdinfo.c |  4 ++++
+>>>    drivers/gpu/drm/amd/amdgpu/amdgpu_object.c | 11 +++++++++++
+>>>    drivers/gpu/drm/amd/amdgpu/amdgpu_object.h |  6 ++++++
+>>>    drivers/gpu/drm/drm_file.c                 |  2 +-
+>>>    drivers/gpu/drm/i915/i915_drm_client.c     |  2 +-
+>>>    drivers/gpu/drm/xe/xe_drm_client.c         |  2 +-
+>>>    include/drm/drm_gem.h                      | 13 +++++++++++++
+>>>    8 files changed, 38 insertions(+), 4 deletions(-)
+>>>
 
