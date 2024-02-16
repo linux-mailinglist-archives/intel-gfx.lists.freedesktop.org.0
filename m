@@ -2,78 +2,149 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id EBAB2857CE1
-	for <lists+intel-gfx@lfdr.de>; Fri, 16 Feb 2024 13:45:38 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 22CEC857CF3
+	for <lists+intel-gfx@lfdr.de>; Fri, 16 Feb 2024 13:51:48 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id F03E610E90E;
-	Fri, 16 Feb 2024 12:45:34 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3E20310E900;
+	Fri, 16 Feb 2024 12:51:46 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="R6LacRUc";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="VphCMTZk";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-lj1-f171.google.com (mail-lj1-f171.google.com
- [209.85.208.171])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8C37910E899;
- Fri, 16 Feb 2024 12:45:31 +0000 (UTC)
-Received: by mail-lj1-f171.google.com with SMTP id
- 38308e7fff4ca-2d0e520362cso20273701fa.2; 
- Fri, 16 Feb 2024 04:45:31 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1708087530; x=1708692330; darn=lists.freedesktop.org;
- h=content-transfer-encoding:in-reply-to:from:references:cc:to
- :content-language:subject:user-agent:mime-version:date:message-id
- :from:to:cc:subject:date:message-id:reply-to;
- bh=Z21o86oZ2POmZsD5ofKWQxDd0NBUibTeXuOHb4VWv3M=;
- b=R6LacRUcSpJjs3XqMRPf+WLW+YU5BHuasmFazuhvF5nyz8tH6UPeC88aGu4ZnItx71
- miEjfsYKuH4iYSS1AU9eNB9tsHPJQFjIk9rUbmlmj3+RCcs9jEhBrTIFP5B/bkHuyabq
- eVatlS77R47pt38mEKu2YCrOnxHW4KPlRmVa5BiLizg8KcAc28TPlN0WeVFp7U9Hz2mE
- rM7Yc1EErQTy3OHZnYzIV4/zUvCnAcq/1d7vfOGTAVPoLYkadCwJpCN6PpciL5/Se1XM
- CP+rZGlzp3RGEphlbYFXe/+uz8LycAGdhAj6hpCEdzYv80y4O6LPgbjtCFTRelCl6MM0
- JC/w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1708087530; x=1708692330;
- h=content-transfer-encoding:in-reply-to:from:references:cc:to
- :content-language:subject:user-agent:mime-version:date:message-id
- :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
- bh=Z21o86oZ2POmZsD5ofKWQxDd0NBUibTeXuOHb4VWv3M=;
- b=MZXlmuXAEKfTllo0w+lWqu1nskEYis5yyggi2PgCfcx9gfONvRqOCpjoxB/WKj6gUR
- nMnAWjxt6IZpix/IvSpRg+RT+NoXVXQ2MfSwet7x+6lcFvKnoXe/5rxq8npVoxkyv4gW
- LPP4wtG4vIOj7RFXYe1/xmWUaaUfouG2PnwCTM5xH8y+zdaKo17iT8Y/gJbaAKWM/CS8
- IOPz7OrVcTo6ysi4MnRFFILWItuGyFHg0O12csG4xyY+v/ppGGuTzCfcFCWapvEkHKpM
- CPFVVBF8IhEreXP0mjikyuJ/9NFus+8hNjCTWa1R1l+sm23jaPqGaLTFW0UxKw0y8AjA
- MISg==
-X-Forwarded-Encrypted: i=1;
- AJvYcCWEsLjqt76b/OUO4/3GJDZVLvhN8xUVvQWYreTRPpo1yqBAvDVFQ1vA6LG09A0lpjLgJXdjmGYclxH/QjhZyRPrcnXrKVF3qTCoKein+52cLdPI7FuAsl+YtxQs1Nwfg9EWYnkIsKCpuah4H5p0gApHn18+YAI60EqbOQoG6iYwPer+1kdOt+9KsJWBp/Qh9Y6lm0hNx5fdX0LD7u6rftjhoOPA7mRRylzDIXTPyybN
-X-Gm-Message-State: AOJu0Yy9Ls3qHsjFUiOBHQG3cY5EixiRnxO2qwucawdoIv4GadqKOvOX
- FuKdz5rHBfAE77SIQ6oz1AJ1E/W1jcZlrdigRVJlKDDKvO5KJtAk
-X-Google-Smtp-Source: AGHT+IGyVMz/0Xs8YGS+0Is6rqroqbgJJL0ly2ndoIEMALtAiS2mU/opMyiec2MQdlc/y84MBPNn5Q==
-X-Received: by 2002:a2e:b059:0:b0:2d2:1da5:385 with SMTP id
- d25-20020a2eb059000000b002d21da50385mr637592ljl.47.1708087529841; 
- Fri, 16 Feb 2024 04:45:29 -0800 (PST)
-Received: from [10.254.108.81] (munvpn.amd.com. [165.204.72.6])
- by smtp.gmail.com with ESMTPSA id
- b4-20020a05600003c400b0033d22852483sm859650wrg.62.2024.02.16.04.45.28
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Fri, 16 Feb 2024 04:45:29 -0800 (PST)
-Message-ID: <c3563341-bfcb-4df9-a6c0-f983835a4e2e@gmail.com>
-Date: Fri, 16 Feb 2024 13:45:27 +0100
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 55FCE10E900
+ for <intel-gfx@lists.freedesktop.org>; Fri, 16 Feb 2024 12:51:44 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1708087904; x=1739623904;
+ h=content-transfer-encoding:in-reply-to:references:subject:
+ from:to:date:message-id:mime-version;
+ bh=Nmb2iOFEYiQmgYstKhtVFOuHRUecvFUNesx0TyOV+3Q=;
+ b=VphCMTZkhRzpALYGdXDeA6rick/LLcpaLcQig39LJER4uCl3QJ0MMzAq
+ HrEJiddT+pVhYCjPI07m3jpLVIFW+X/VzFpj2yEK/mLUjYC5zDZuICOJ2
+ 6uPu4D0ZK9cz3c0/zxcv3UAxK3R0Mw0uGuxEkKTv7HRfsnnFX31A8oY+E
+ XEosVbbdYEDBlokwpx/yBuWJXeOYBSabLW7ABj3CKiF2yUzmZY3R3i9+8
+ FL7A/BkO8+sfd2toLmQ+fCFp+DPTd3mCLkOlAMAH8k//juISOossYbfn5
+ 9ZC93uCbFL6kkm/kBdNmr4hnF2w5P8ol2qieEShGZ8KD2w6gw9NNHWrY2 g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10985"; a="24676412"
+X-IronPort-AV: E=Sophos;i="6.06,164,1705392000"; d="scan'208";a="24676412"
+Received: from orviesa002.jf.intel.com ([10.64.159.142])
+ by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 16 Feb 2024 04:51:44 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.06,164,1705392000"; d="scan'208";a="34614519"
+Received: from orsmsx602.amr.corp.intel.com ([10.22.229.15])
+ by orviesa002.jf.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
+ 16 Feb 2024 04:51:45 -0800
+Received: from orsmsx610.amr.corp.intel.com (10.22.229.23) by
+ ORSMSX602.amr.corp.intel.com (10.22.229.15) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.35; Fri, 16 Feb 2024 04:51:43 -0800
+Received: from ORSEDG602.ED.cps.intel.com (10.7.248.7) by
+ orsmsx610.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.35 via Frontend Transport; Fri, 16 Feb 2024 04:51:43 -0800
+Received: from NAM11-BN8-obe.outbound.protection.outlook.com (104.47.58.169)
+ by edgegateway.intel.com (134.134.137.103) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.1.2507.35; Fri, 16 Feb 2024 04:51:43 -0800
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=J/Jd/Ag3vt7YWejtGAQLvi1T8xRl7sT5F1r6jwiMY26Xpaw0VfJuGdB5kRV3I/d3uG+J6ouY2X28Mc4KWifQQjfqbPYRET6ZTi6Ua/oUWaCOiz6gJgXYjFm73PaSzotboUkwfZP626CRyjGtqW+x2KReAqGqXG6wLQy95yImXJsNfH7TGIwXTWn1PmFS1DQ26A4vz9QaPRMSUxD/xNIZeBuIg02Vua+7dcyOgFAdGRyAHSH/p8RQOKO3Yc5e747fLJHO3J/o55qCrV6BdIl9MNd0mhxw60wSLUPmFsuVg8JKpbjxoRrRAfObLAmen9RszvnAexP8Y2Lxc5xOOWnCqg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=lHLs/8dztixEcRZDrGVAQRReOO9xFWCR1us6KdRTemo=;
+ b=SmR3gAT7ZElkrNX456Wl6agwMZ619UHyscX5mS4/BICe/qJohDTA6IcjehYar03ebpIR9GFIcot7ZO34mb1wcEAsOdBxYJ5YiT8YWCMsQMBIb7OKTHq9uTGw6Vna/T7jBuEnARGiO21cgqfmw8moc5dQoMsD80lKsd9Nqn05VlAJGp+cYK8Nghy2wh5XvqHzZwouJJJQcnbln0wBtWmweV/rhxfEm2X6kpGgf51TPzkAHRIj+ryfdVvGNcasCEg8duKc9I5YtI0rErR/ccbsqRku4NALS/acuFphF13WX2+x3bdnzSNM4HSF2mzzUmrYNLe0/+DaPwsozuCqIGuEwQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+Received: from PH8PR11MB8287.namprd11.prod.outlook.com (2603:10b6:510:1c7::14)
+ by MW3PR11MB4586.namprd11.prod.outlook.com (2603:10b6:303:5e::15)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7292.31; Fri, 16 Feb
+ 2024 12:51:41 +0000
+Received: from PH8PR11MB8287.namprd11.prod.outlook.com
+ ([fe80::64e6:ee24:79f8:efa]) by PH8PR11MB8287.namprd11.prod.outlook.com
+ ([fe80::64e6:ee24:79f8:efa%4]) with mapi id 15.20.7292.029; Fri, 16 Feb 2024
+ 12:51:40 +0000
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <20240207013334.29606-5-ville.syrjala@linux.intel.com>
+References: <20240207013334.29606-1-ville.syrjala@linux.intel.com>
+ <20240207013334.29606-5-ville.syrjala@linux.intel.com>
+Subject: Re: [PATCH 4/4] drm/i915/cdclk: Document CDCLK update methods
+From: Gustavo Sousa <gustavo.sousa@intel.com>
+To: Ville Syrjala <ville.syrjala@linux.intel.com>,
+ <intel-gfx@lists.freedesktop.org>
+Date: Fri, 16 Feb 2024 09:51:36 -0300
+Message-ID: <170808789627.10917.12293971835741985062@gjsousa-mobl2>
+User-Agent: alot/0.10
+X-ClientProxiedBy: MW4PR04CA0334.namprd04.prod.outlook.com
+ (2603:10b6:303:8a::9) To PH8PR11MB8287.namprd11.prod.outlook.com
+ (2603:10b6:510:1c7::14)
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 0/6 V4] fdinfo shared stats
-Content-Language: en-US
-To: Alex Deucher <alexdeucher@gmail.com>
-Cc: Alex Deucher <alexander.deucher@amd.com>, amd-gfx@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
- intel-xe@lists.freedesktop.org, tvrtko.ursulin@linux.intel.com,
- daniel@ffwll.ch
-References: <20240212210428.851952-1-alexander.deucher@amd.com>
- <b883e82e-9042-4656-b152-065ed31a81de@gmail.com>
- <CADnq5_MwEB_=2uySBmiOu3mBcA=uRDvsoA_jT9umHNnwLELWZQ@mail.gmail.com>
-From: =?UTF-8?Q?Christian_K=C3=B6nig?= <ckoenig.leichtzumerken@gmail.com>
-In-Reply-To: <CADnq5_MwEB_=2uySBmiOu3mBcA=uRDvsoA_jT9umHNnwLELWZQ@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: PH8PR11MB8287:EE_|MW3PR11MB4586:EE_
+X-MS-Office365-Filtering-Correlation-Id: 0dba02f0-a1eb-4296-75b4-08dc2eee0512
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: HfuDvzZ/QmpdY+fo3qVRrRhlrNB5AzDYSH25NHvf+r5nlCcJ+zgDOP5gmcubmzZ4i8Na53XRcj07VYuJMUF3PCjogwNmNOyV2224ySBv0jM5pHtoqX6LoXywOk95mXS8lczO9kSvP1PzzWDNuKlb4WFhkAXXVOcydIdiwR+q1c9/YHtr67INjA8Cx2vgdWIXEY4GncLvrEpd0Zesc8G4h7xYuK6Bu5uItIv1tiZj3NznLamy48Lke/1KZLsIUujOOKruf3T+by+cHPFPDAZgR3FXA/wzVqe/bhyp/lVpNqktrwN2ZXtZHzheNbmrufe6u0RAmCyYfU7D2flWme66bFdK0B2afA/LQQofDmdS4WmU7ToOCKZWNjsbAXiuY09fSYJklMUn8PUhYpcvS1/6u9jQ2z9ykjZz47cw0wjX7Pz3/DCupNxR1NTfuzcsOV7vF4O8MZCiXQl3eToZm9BInp4fRk6Y26b8jUmfr60e7C5wuRGZeKJPp/AzLCdMIeOTE8iR4KWWswQHjkAcueGzqxXYlsYoIqbrJNdx37aJIgs+pNE0+CBxyMr4zNVZja4T
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:PH8PR11MB8287.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230031)(7916004)(396003)(39860400002)(136003)(346002)(376002)(366004)(230922051799003)(451199024)(1800799012)(186009)(64100799003)(6666004)(8676002)(8936002)(66476007)(66556008)(66946007)(66574015)(83380400001)(86362001)(38100700002)(82960400001)(478600001)(6512007)(26005)(6486002)(9686003)(6506007)(2906002)(316002)(5660300002)(41300700001)(33716001)(15650500001)(44832011);
+ DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?a0MrRlpWejlnRHU0b0ZVSUtHU21DaUp2TzJhTEhPaDhHMm5BSFhreDNrRGJa?=
+ =?utf-8?B?UzVhYW8wVm12SllqSSsvUVhMU2hsTGNJbjJucnlVNU82MjkxSmJFMkdpTGFX?=
+ =?utf-8?B?ZzFQVzkrVjJaVGZ0b1F1OVNRQmdVemtHR3d5S09HSmdJZWVoTVk5Z2VMQkVj?=
+ =?utf-8?B?M2l5cjVXQVpDdFl0U2xWZEZlOEZENjlZVUs1VDNmeTlMODZaWWdaN1l4NFhD?=
+ =?utf-8?B?cXBDTnI1bG5vU044ZkpQbzd4QjMzUmxCU0hxMW1FTmcwVXJwcFNkOHRKQU0r?=
+ =?utf-8?B?ajR2RnBMYjBaSGZTSjl3ZWhDWXhNOHZpa3h6QmZFOGJ2R1I5T1FIZzM4UEtC?=
+ =?utf-8?B?K0xGeGoza0h5aHZvUGg5OS9TNS9GLzA4UjFlR1B0cGFiR3lacXU5a21iY1dn?=
+ =?utf-8?B?MHhLMXFEaDZaKzhaMzdkTkZ2OVl0R3dsb09CcHJJMURRYjdFS2Zpa0Nwb0Rv?=
+ =?utf-8?B?Y3VXYjZKbWVWMlZzUTVRV1kzNDhwSnQ5My9hbG9mdDlrWCt6TnEwVERQSWpl?=
+ =?utf-8?B?V0VNeDVCUEp2NDNlc2llS0hYVk5UZ2F3cklqK21qY2hQOCs3aFdtRTFkeW56?=
+ =?utf-8?B?ak5pWXNhak1UQnRONWZ0SEhQZmpGTWZ5TnR3TmpKNDMzNDcwdE9ZZE1UYTJa?=
+ =?utf-8?B?RVdwUzBKcWpPc0c4YnJ3VjZLWVBQbXJVUnE3d2pMWXNQdlZ5aFR6ZTUxRWlj?=
+ =?utf-8?B?NTkwYlRET3U3TmZqY3VxcEVXR0pxTk5mMFQxRSthZ3M5Q3NzRmthUlBmSmp1?=
+ =?utf-8?B?cVQrclJEQUlESEdrN1dNbURSa25ZSHM4Mm1nc0lTaUwxYU0rQldSdE80N3Ix?=
+ =?utf-8?B?dFpBcnl3S0JNTEMzRHpvdDZYaGJlTjQ4VDhZWEJzaUdoY2tRcmY3VWd2bG9o?=
+ =?utf-8?B?a3Jvajl3K0NuYzJEckdoNlR3K0ZUelBoQkxGV29VTnZDMndKbDE1WGpqK1g5?=
+ =?utf-8?B?eUxzU1lPWk1Dc2E5ZXMxaTVDS1lvYmJOV1g0ZFdyTTN1dWhMUjJUcEorOTNU?=
+ =?utf-8?B?WngydFdsOFVSK21pcTJKa3NwNTFQNmZHenMwL09lTVJZVGFNTk5OSmEwMkda?=
+ =?utf-8?B?M0VjWFZ6cFZBeHpOZVhJY0Q2SEgrOXVCbklNWXZyWHdsZmMxQlF3SXU5Q3pa?=
+ =?utf-8?B?azkvL1lSOEFoZ0gxaFZGNUlOY25DWmg5eGVWU0kyL3pLRHc5dTJNQm16cGFT?=
+ =?utf-8?B?VUFQYU9mRllta2IvaDhoMWVzbXF3SE9NL2VidHlXY0RuN0U5cUs1QkdFTFhy?=
+ =?utf-8?B?MWtDTmwzK09FZEJ2RUlTdzRpeXNYLzYwL09PR2RjRFVJQ09yWTRPTnZHd3Fw?=
+ =?utf-8?B?L3dSRVJRTHovZm5JYzgrbjIrczFxSFlCTTN6Y3QzVXhhcmJSV2o2RnM0VkEw?=
+ =?utf-8?B?TzBPa0tXWExtNlI4SmNybkFiYWNMdHIvTzlHUXRtZnVIQVlaTVZPWlgzVUpF?=
+ =?utf-8?B?NXl2SnR3Ry9XQjd3L3lLelp5WGNveWhrV2I5WlFFZ1FCeXdjR3ZBS1FBdXg5?=
+ =?utf-8?B?bEkwRFh0Rm9mcVY0OXpIVDloZTFsRUd6RjZMOFVHN0lnR3RSMFQyc1pRaUJW?=
+ =?utf-8?B?NW10azF3S2dFRjZPbEFxWjNqWUc2Y2lSd25hTHJFRTUvZ1d2VTRWQnloTTFE?=
+ =?utf-8?B?M0Z3K3dpVmVmcWxVZXhHT0MrUzF0NDdmcC8vSldlMWJldE1EbnIzRWhJNk9H?=
+ =?utf-8?B?NnNxdFN4b21rZWY1UVE4NWNyV3pHd0lESTNGLys5ZmdMcjZmZE1pNnZGSkJL?=
+ =?utf-8?B?NUVVNWFYVURoRFBzVjVTRHZaZnJnNVowVTdrWFpwcjVaUUQwWk1KTFRobWV3?=
+ =?utf-8?B?anB5ZlMrT3NCQ3gyaUZFWUgxc1pmYmxPeEh3RUorRXB4TUprTE5say9OWmR4?=
+ =?utf-8?B?TTBlQThKOXBVbFFQRm44WEhkOGYxVWQrK2Q4QzQrcTBkQW8vN2dCWXJqVmNu?=
+ =?utf-8?B?bHJjK1I2dHYyZWU3MGJoYjNmNUtpM09xaXNVeFh2VE1hRXhyRVB1NlAxSzF1?=
+ =?utf-8?B?NUpIdS9kMkNIUlZvbEhGenc2QjVQd0FmWFRrc2FySW5EOGR3dU45aFBXa2Ju?=
+ =?utf-8?B?eG1nbG5xY3hxOWNjOFFqa3BselhyUmp2bG5wd3JwSkFCQXpvNGJNMGxmcVZM?=
+ =?utf-8?B?em1IWlJlZFJEblIzWjNhY1RzOFNqWTE0NWg5dzVNZW1idXZHWFl5KzNMMkRS?=
+ =?utf-8?B?YXc9PQ==?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: 0dba02f0-a1eb-4296-75b4-08dc2eee0512
+X-MS-Exchange-CrossTenant-AuthSource: PH8PR11MB8287.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 16 Feb 2024 12:51:40.4071 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: LVB3yTqQ+HnXjDAJcYygD4Sw0CorBEc3W4vfWGLxz0v+tSzE7tuK5MSC5wnYeRajKftlG0DWO34JIUcDvUK5SA==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MW3PR11MB4586
+X-OriginatorOrg: intel.com
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -89,63 +160,84 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Am 15.02.24 um 15:20 schrieb Alex Deucher:
-> On Thu, Feb 15, 2024 at 9:18 AM Christian König
-> <ckoenig.leichtzumerken@gmail.com> wrote:
->> Am 12.02.24 um 22:04 schrieb Alex Deucher:
->>> We had a request to add shared buffer stats to fdinfo for amdgpu and
->>> while implementing that, Christian mentioned that just looking at
->>> the GEM handle count doesn't take into account buffers shared with other
->>> subsystems like V4L or RDMA.  Those subsystems don't use GEM, so it
->>> doesn't really matter from a GPU top perspective, but it's more
->>> correct if you actually want to see shared buffers.
->>>
->>> After further discussions, add a helper and update all fdinfo
->>> implementations to use that helper for consistency.
->>>
->>> v4: switch drm_gem_object_is_shared_for_memory_stats() to an inline function
->> I'm still not sure if looking at the actual handle count is the right
->> approach, but it's certainly better than before.
-> Well, it's consistent across drivers.
-
-Yeah, which makes it easy to change if we find something better.
-
+Quoting Ville Syrjala (2024-02-06 22:33:34-03:00)
+>From: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
 >
->> So Reviewed-by: Christian König <christian.koenig@amd.com> for the
->> entire series.
->>
->> Should I take this through drm-misc-next?
-> Yes, please.
-
-Done.
-
-Regards,
-Christian.
-
+>Add a bit of documentation to briefly explain the methods
+>by which we can change the CDCLK frequency.
 >
-> Thanks,
+>Signed-off-by: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
+>---
+> drivers/gpu/drm/i915/display/intel_cdclk.c | 9 +++++++++
+> 1 file changed, 9 insertions(+)
 >
-> Alex
->
->> Regards,
->> Christian.
->>
->>> Alex Deucher (6):
->>>     Documentation/gpu: Update documentation on drm-shared-*
->>>     drm: add drm_gem_object_is_shared_for_memory_stats() helper
->>>     drm: update drm_show_memory_stats() for dma-bufs
->>>     drm/amdgpu: add shared fdinfo stats
->>>     drm/i915: Update shared stats to use the new gem helper
->>>     drm/xe: Update shared stats to use the new gem helper
->>>
->>>    Documentation/gpu/drm-usage-stats.rst      |  2 +-
->>>    drivers/gpu/drm/amd/amdgpu/amdgpu_fdinfo.c |  4 ++++
->>>    drivers/gpu/drm/amd/amdgpu/amdgpu_object.c | 11 +++++++++++
->>>    drivers/gpu/drm/amd/amdgpu/amdgpu_object.h |  6 ++++++
->>>    drivers/gpu/drm/drm_file.c                 |  2 +-
->>>    drivers/gpu/drm/i915/i915_drm_client.c     |  2 +-
->>>    drivers/gpu/drm/xe/xe_drm_client.c         |  2 +-
->>>    include/drm/drm_gem.h                      | 13 +++++++++++++
->>>    8 files changed, 38 insertions(+), 4 deletions(-)
->>>
+>diff --git a/drivers/gpu/drm/i915/display/intel_cdclk.c b/drivers/gpu/drm/=
+i915/display/intel_cdclk.c
+>index ca00586fdbc8..30dae4fef6cb 100644
+>--- a/drivers/gpu/drm/i915/display/intel_cdclk.c
+>+++ b/drivers/gpu/drm/i915/display/intel_cdclk.c
+>@@ -63,6 +63,15 @@
+>  * DMC will not change the active CDCLK frequency however, so that part
+>  * will still be performed by the driver directly.
+>  *
+>+ * Several methods exist to change the CDCLK frequency, which ones are
+>+ * supported depends on the platform:
+>+ * - Full PLL disable + re-enable with new VCO frequency. Pipes must be i=
+nactive.
+>+ * - CD2X divider update. Single pipe can be active as the divider update
+>+ *   can be synchronized with the pipe's start of vblank.
+>+ * - Crawl the PLL smoothly to the new VCO frequency. Pipes can be active=
+.
+>+ * - Squash waveform update. Pipes can be active.
+>+ * - Crawl and squash can also be done back to back. Pipes can be active.
+>+ *
 
+Reviewed-by: Gustavo Sousa <gustavo.sousa@intel.com>
+
+I think it would also be nice to have some explanation of the components
+involved in the generation of the CDCLK. I would prepend this paragraph
+with something like:
+
+    The are multiple components involved in the generation of the CDCLK
+    frequency:
+
+    - We have the CDCLK PLL, which generates an output clock
+      based on a reference clock.
+
+    - The CD2X Divider, which divides the output of the PLL based on a
+      divisor selected from a set of pre-defined choices.
+
+    - The CD2X Squasher, which further divides the output based on a
+      waveform represented as a sequence of bits where each zero
+      "squashes out" a clock cycle.
+
+    - And finally a fixed divider that divides the output frequency by
+      2.
+
+    As such, the resulting CDCLK frequency can be calculated with the
+    following formula:
+
+        cdclk =3D vco / cd2x_div / (sq_len / sq_div) / 2
+
+    , where vco is the frequency output from the PLL; cd2x_div
+    represents the CD2X Divider; sq_len and sq_div are the bit length
+    and the number of high bits for the CD2X Squasher waveform; and 2
+    represents the fixed divider.
+
+    Note that some older platforms do not contain the CD2X Divider
+    and/or CD2X Squasher, in which case we can ignore their respective
+    factors in the formula above.
+
+In case you like it, we could either add it to this patch or I could send a=
+s
+a separate patch. Your call.
+
+--
+Gustavo Sousa
+
+>  * RAWCLK is a fixed frequency clock, often used by various auxiliary
+>  * blocks such as AUX CH or backlight PWM. Hence the only thing we
+>  * really need to know about RAWCLK is its frequency so that various
+>--=20
+>2.43.0
+>
