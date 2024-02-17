@@ -2,57 +2,66 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 28A4185912E
-	for <lists+intel-gfx@lfdr.de>; Sat, 17 Feb 2024 17:46:32 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 903B685913D
+	for <lists+intel-gfx@lfdr.de>; Sat, 17 Feb 2024 17:56:48 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A8EF310E388;
-	Sat, 17 Feb 2024 16:46:28 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9109F10E3D8;
+	Sat, 17 Feb 2024 16:56:40 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ctuY9ubF";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="e4Vff+K7";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3B96610E388
- for <intel-gfx@lists.freedesktop.org>; Sat, 17 Feb 2024 16:46:26 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 610C310E0BF;
+ Sat, 17 Feb 2024 16:56:38 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1708188386; x=1739724386;
+ t=1708188998; x=1739724998;
  h=date:from:to:cc:subject:message-id:references:
  mime-version:in-reply-to;
- bh=6PI9C2RgxjhPtQNa4x+Pp7TbpLFrr6ObD0mpCDOcbAQ=;
- b=ctuY9ubFyq+OBSiHtmI0BGgt5yp9YUGVeVIAYQ+mfzaHpbPYl6zTFBOp
- 53nsRFre05vADkU3/LNpT1QPnXbKVKfwLlqQH5YwHUb5HF3FeHXn2ILaB
- ArrF9pgxGGVu6Fz8JvMDz0+dlGUt/ku8G8BUrQwaHcT6MpT4eNk0i3ytQ
- 8knTSWYrrYdAblj/3lettod6/PSFE1UL4EgKonIgMJOcde52OQB6JxX2V
- RgEDZ/wFJR8NLJpDL/ay9TOWzLLOCOVYcZS/hKzGpGfI8vM5gu3KyrMlx
- QB+CBT6z5TZhNnTPFpK/DFrHElwgcz39SbrwB11r3GdLwOuxtT0I/wg3G A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10987"; a="19830657"
-X-IronPort-AV: E=Sophos;i="6.06,166,1705392000"; d="scan'208";a="19830657"
-Received: from fmviesa008.fm.intel.com ([10.60.135.148])
- by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Feb 2024 08:46:25 -0800
+ bh=hHHwDi6AfO5jRRRPcJuMu5ugy9TlN2ID1venVAURWGc=;
+ b=e4Vff+K7VoCM9eidjOxNcoOs7P8zBwYdKEaHDb0ogZC5qllAKhQ8BPJh
+ /tmEJWmOy+W30gQyv8mzSAAahDrz7oSMC+Cc5OgUEygmQ/MaVn792ipX1
+ CXvTQIhQqj02vB4UZ+WyHL5Kf3EdAIzb2antVnzq0R/C3yJ+8UOOAjXMP
+ ySXMO2egtzUus3WUGNDiHr09R44v+t15Hz2ejfbhzsnyhUfUTG8eqlAri
+ RVlUjb9z/fgOIzXUV4ElGUPOrsIC1UAO2Zrjx2Jlvqop5Jlf4dfojWnEE
+ V/kvCYGvTV1WfdJqGbjLN9p774zYvRqaaBQz6kh5on990wMEINyp5zUFV Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10987"; a="2174285"
+X-IronPort-AV: E=Sophos;i="6.06,166,1705392000"; 
+   d="scan'208";a="2174285"
+Received: from orviesa010.jf.intel.com ([10.64.159.150])
+ by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 17 Feb 2024 08:56:37 -0800
 X-ExtLoop1: 1
 X-IronPort-AV: E=Sophos;i="6.06,166,1705392000"; 
-   d="scan'208";a="4260197"
+   d="scan'208";a="4165471"
 Received: from lkp-server02.sh.intel.com (HELO 3c78fa4d504c) ([10.239.97.151])
- by fmviesa008.fm.intel.com with ESMTP; 17 Feb 2024 08:46:24 -0800
+ by orviesa010.jf.intel.com with ESMTP; 17 Feb 2024 08:56:31 -0800
 Received: from kbuild by 3c78fa4d504c with local (Exim 4.96)
- (envelope-from <lkp@intel.com>) id 1rbNpV-0002He-2D;
- Sat, 17 Feb 2024 16:46:21 +0000
-Date: Sun, 18 Feb 2024 00:45:30 +0800
+ (envelope-from <lkp@intel.com>) id 1rbNzI-0002I9-1i;
+ Sat, 17 Feb 2024 16:56:28 +0000
+Date: Sun, 18 Feb 2024 00:56:07 +0800
 From: kernel test robot <lkp@intel.com>
-To: Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>,
- intel-gfx@lists.freedesktop.org
-Cc: oe-kbuild-all@lists.linux.dev
-Subject: Re: [PATCH 3/4] drm/ttm: Consider hitch moves within bulk sublist
- moves
-Message-ID: <202402180043.xVwOJQs2-lkp@intel.com>
-References: <20240216131446.101961-4-thomas.hellstrom@linux.intel.com>
+To: Uma Shankar <uma.shankar@intel.com>, intel-gfx@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org
+Cc: oe-kbuild-all@lists.linux.dev, ville.syrjala@linux.intel.com,
+ pekka.paalanen@collabora.com, contact@emersion.fr,
+ harry.wentland@amd.com, mwen@igalia.com, jadahl@redhat.com,
+ sebastian.wick@redhat.com, shashank.sharma@amd.com,
+ agoins@nvidia.com, joshua@froggi.es, mdaenzer@redhat.com,
+ aleixpol@kde.org, xaver.hugl@gmail.com, victoria@system76.com,
+ daniel@ffwll.ch, quic_naseer@quicinc.com, quic_cbraga@quicinc.com,
+ quic_abhinavk@quicinc.com, arthurgrillo@riseup.net,
+ marcan@marcan.st, Liviu.Dudau@arm.com, sashamcintosh@google.com,
+ sean@poorly.run, Uma Shankar <uma.shankar@intel.com>
+Subject: Re: [PATCH 01/28] [NOT FOR REVIEW] drm: color pipeline base work
+Message-ID: <202402180051.37wkwgMx-lkp@intel.com>
+References: <20240213064835.139464-2-uma.shankar@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20240216131446.101961-4-thomas.hellstrom@linux.intel.com>
+In-Reply-To: <20240213064835.139464-2-uma.shankar@intel.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -68,101 +77,69 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi Thomas,
+Hi Uma,
 
 kernel test robot noticed the following build warnings:
 
 [auto build test WARNING on drm-misc/drm-misc-next]
-[also build test WARNING on drm-tip/drm-tip next-20240216]
+[also build test WARNING on drm/drm-next next-20240216]
 [cannot apply to drm-intel/for-linux-next drm-intel/for-linux-next-fixes linus/master v6.8-rc4]
 [If your patch is applied to the wrong git tree, kindly drop us a note.
 And when submitting patch, we suggest to use '--base' as documented in
 https://git-scm.com/docs/git-format-patch#_base_tree_information]
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Thomas-Hellstr-m/drm-ttm-Allow-TTM-LRU-list-nodes-of-different-types/20240216-211801
+url:    https://github.com/intel-lab-lkp/linux/commits/Uma-Shankar/drm-color-pipeline-base-work/20240213-144544
 base:   git://anongit.freedesktop.org/drm/drm-misc drm-misc-next
-patch link:    https://lore.kernel.org/r/20240216131446.101961-4-thomas.hellstrom%40linux.intel.com
-patch subject: [PATCH 3/4] drm/ttm: Consider hitch moves within bulk sublist moves
-config: x86_64-randconfig-121-20240217 (https://download.01.org/0day-ci/archive/20240218/202402180043.xVwOJQs2-lkp@intel.com/config)
+patch link:    https://lore.kernel.org/r/20240213064835.139464-2-uma.shankar%40intel.com
+patch subject: [PATCH 01/28] [NOT FOR REVIEW] drm: color pipeline base work
+config: x86_64-randconfig-161-20240213 (https://download.01.org/0day-ci/archive/20240218/202402180051.37wkwgMx-lkp@intel.com/config)
 compiler: gcc-12 (Debian 12.2.0-14) 12.2.0
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20240218/202402180043.xVwOJQs2-lkp@intel.com/reproduce)
 
 If you fix the issue in a separate patch/commit (i.e. not just a new version of
 the same patch/commit), kindly add following tags
 | Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202402180043.xVwOJQs2-lkp@intel.com/
+| Closes: https://lore.kernel.org/oe-kbuild-all/202402180051.37wkwgMx-lkp@intel.com/
 
-sparse warnings: (new ones prefixed by >>)
->> drivers/gpu/drm/ttm/ttm_resource.c:545:34: sparse: sparse: incorrect type in assignment (different base types) @@     expected unsigned long long [usertype] bulk_age @@     got unsigned long long * @@
-   drivers/gpu/drm/ttm/ttm_resource.c:545:34: sparse:     expected unsigned long long [usertype] bulk_age
-   drivers/gpu/drm/ttm/ttm_resource.c:545:34: sparse:     got unsigned long long *
->> drivers/gpu/drm/ttm/ttm_resource.c:551:30: sparse: sparse: incompatible types for operation (==):
-   drivers/gpu/drm/ttm/ttm_resource.c:551:30: sparse:    unsigned long long [usertype] bulk_age
-   drivers/gpu/drm/ttm/ttm_resource.c:551:30: sparse:    unsigned long long *
-   drivers/gpu/drm/ttm/ttm_resource.c: note: in included file (through include/linux/fwnode.h, include/linux/logic_pio.h, include/asm-generic/io.h, ...):
-   include/linux/list.h:83:21: sparse: sparse: self-comparison always evaluates to true
-   include/linux/list.h:83:21: sparse: sparse: self-comparison always evaluates to true
-   include/linux/list.h:83:21: sparse: sparse: self-comparison always evaluates to true
-   include/linux/list.h:83:21: sparse: sparse: self-comparison always evaluates to true
-   include/linux/list.h:83:21: sparse: sparse: self-comparison always evaluates to true
-   include/linux/list.h:83:21: sparse: sparse: self-comparison always evaluates to true
-   include/linux/list.h:83:21: sparse: sparse: self-comparison always evaluates to true
-   include/linux/list.h:83:21: sparse: sparse: self-comparison always evaluates to true
-   include/linux/list.h:83:21: sparse: sparse: self-comparison always evaluates to true
-   include/linux/list.h:83:21: sparse: sparse: self-comparison always evaluates to true
-   include/linux/list.h:83:21: sparse: sparse: self-comparison always evaluates to true
+smatch warnings:
+drivers/gpu/drm/drm_atomic.c:825 drm_atomic_plane_print_state() warn: inconsistent indenting
 
-vim +545 drivers/gpu/drm/ttm/ttm_resource.c
+vim +825 drivers/gpu/drm/drm_atomic.c
 
-   517	
-   518	/* Adjust to a bulk sublist being bumped while traversing it.*/
-   519	static bool
-   520	ttm_resource_cursor_check_bulk(struct ttm_resource_cursor *cursor,
-   521				       struct ttm_lru_item *next_lru)
-   522	{
-   523		struct ttm_resource *next = ttm_lru_item_to_res(next_lru);
-   524		struct ttm_lru_bulk_move *bulk = NULL;
-   525		struct ttm_buffer_object *bo = next->bo;
-   526	
-   527		lockdep_assert_held(&cursor->man->bdev->lru_lock);
-   528		if (bo && bo->resource == next)
-   529			bulk = bo->bulk_move;
-   530	
-   531		if (!bulk) {
-   532			ttm_resource_cursor_clear_bulk(cursor);
-   533			return false;
-   534		}
-   535	
-   536		/*
-   537		 * We encountered a bulk sublist. Record its age and
-   538		 * set a hitch after the sublist.
-   539		 */
-   540		if (cursor->bulk != bulk) {
-   541			struct ttm_lru_bulk_move_pos *pos =
-   542				ttm_lru_bulk_move_pos(bulk, next);
-   543	
-   544			cursor->bulk = bulk;
- > 545			cursor->bulk_age = &bulk->age;
-   546			list_move(&cursor->bulk_hitch.link, &pos->last->lru.link);
-   547			return false;
-   548		}
-   549	
-   550		/* Continue iterating down the bulk sublist */
- > 551		if (cursor->bulk_age == &bulk->age)
-   552			return false;
-   553	
-   554		/*
-   555		 * The bulk sublist in which we had a hitch has moved and the
-   556		 * hitch moved with it. Restart iteration from a previously
-   557		 * set hitch after the bulk_move, and remove that backup
-   558		 * hitch.
-   559		 */
-   560		list_move(&cursor->hitch.link, &cursor->bulk_hitch.link);
-   561		ttm_resource_cursor_clear_bulk(cursor);
-   562	
-   563		return true;
-   564	}
-   565	
+   799	
+   800	static void drm_atomic_plane_print_state(struct drm_printer *p,
+   801			const struct drm_plane_state *state)
+   802	{
+   803		struct drm_plane *plane = state->plane;
+   804		struct drm_rect src  = drm_plane_state_src(state);
+   805		struct drm_rect dest = drm_plane_state_dest(state);
+   806	
+   807		drm_printf(p, "plane[%u]: %s\n", plane->base.id, plane->name);
+   808		drm_printf(p, "\tcrtc=%s\n", state->crtc ? state->crtc->name : "(null)");
+   809		drm_printf(p, "\tfb=%u\n", state->fb ? state->fb->base.id : 0);
+   810		if (state->fb)
+   811			drm_framebuffer_print_info(p, 2, state->fb);
+   812		drm_printf(p, "\tcrtc-pos=" DRM_RECT_FMT "\n", DRM_RECT_ARG(&dest));
+   813		drm_printf(p, "\tsrc-pos=" DRM_RECT_FP_FMT "\n", DRM_RECT_FP_ARG(&src));
+   814		drm_printf(p, "\trotation=%x\n", state->rotation);
+   815		drm_printf(p, "\tnormalized-zpos=%x\n", state->normalized_zpos);
+   816		drm_printf(p, "\tcolor-encoding=%s\n",
+   817			   drm_get_color_encoding_name(state->color_encoding));
+   818		drm_printf(p, "\tcolor-range=%s\n",
+   819			   drm_get_color_range_name(state->color_range));
+   820		drm_printf(p, "\tcolor_mgmt_changed=%d\n", state->color_mgmt_changed);
+   821	#if 0
+   822	       drm_printf(p, "\tcolor-pipeline=%s\n",
+   823	                  drm_get_color_pipeline_name(state->color_pipeline));
+   824	#else
+ > 825	       drm_printf(p, "\tcolor-pipeline=%d\n",
+   826	                  state->color_pipeline ? state->color_pipeline->base.id : 0);
+   827	#endif
+   828	
+   829	
+   830		if (plane->funcs->atomic_print_state)
+   831			plane->funcs->atomic_print_state(p, state);
+   832	}
+   833	
 
 -- 
 0-DAY CI Kernel Test Service
