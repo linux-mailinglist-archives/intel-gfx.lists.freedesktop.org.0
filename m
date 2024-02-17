@@ -2,29 +2,70 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id CE001858BF8
-	for <lists+intel-gfx@lfdr.de>; Sat, 17 Feb 2024 01:42:49 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9E199858CCA
+	for <lists+intel-gfx@lfdr.de>; Sat, 17 Feb 2024 02:35:43 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B50A410ECF2;
-	Sat, 17 Feb 2024 00:42:45 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1032B10ED27;
+	Sat, 17 Feb 2024 01:35:37 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Ulq3KcMm";
+	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from 8e613ede5ea5 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 09EA610ECF2;
- Sat, 17 Feb 2024 00:42:44 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============9143567837475209887=="
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 44F0E10ED13;
+ Sat, 17 Feb 2024 01:35:33 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1708133734; x=1739669734;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:in-reply-to;
+ bh=tJeR/H25Fovx8yHdDib038WHOER0afSpQWRaKY3w+iE=;
+ b=Ulq3KcMmk95gLvjEWKpy/rGKnBxv/B7l+bx42KJ9BTpCbzeHuo4gGZOu
+ H+4r8G0g7vfREmd6yg8FVPMwpnNZ8+lVvGZL5O0ObBiBq3sUyKfWm3PT3
+ PnyT/F888Z6VW1Y9LS5pMwNFUsUmt7dRHW6fh5l9XBuqr40bvsghJ//Fl
+ oW9aDk2hu0xTkKbYTGnlft/iABDdzo1JIt8J7VKOZa4HrdoKPpLXVAtms
+ DW2R3Q0f7B4+BHI2abs6HOuqeVYTv0a1eT/+XFg7wqv2cIUT5Lu/Le5AS
+ hnNkTLP5vDnS3BT4aWuo2h7Oj+BNRv3PlYgL9Q0mYMLdPZMODIfO5ZB2j w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10986"; a="19803083"
+X-IronPort-AV: E=Sophos;i="6.06,165,1705392000"; d="scan'208";a="19803083"
+Received: from orviesa008.jf.intel.com ([10.64.159.148])
+ by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 16 Feb 2024 17:35:32 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.06,165,1705392000"; 
+   d="scan'208";a="4378886"
+Received: from lkp-server02.sh.intel.com (HELO 3c78fa4d504c) ([10.239.97.151])
+ by orviesa008.jf.intel.com with ESMTP; 16 Feb 2024 17:35:27 -0800
+Received: from kbuild by 3c78fa4d504c with local (Exim 4.96)
+ (envelope-from <lkp@intel.com>) id 1rb9bu-0001kB-1k;
+ Sat, 17 Feb 2024 01:35:23 +0000
+Date: Sat, 17 Feb 2024 09:34:54 +0800
+From: kernel test robot <lkp@intel.com>
+To: Mario Limonciello <mario.limonciello@amd.com>,
+ Daniel Vetter <daniel@ffwll.ch>, Jani Nikula <jani.nikula@linux.intel.com>,
+ Alex Deucher <alexander.deucher@amd.com>,
+ Hans de Goede <hdegoede@redhat.com>,
+ "open list:DRM DRIVERS" <dri-devel@lists.freedesktop.org>
+Cc: Paul Gazzillo <paul@pgazz.com>,
+ Necip Fazil Yildiran <fazilyildiran@gmail.com>,
+ oe-kbuild-all@lists.linux.dev, amd-gfx@lists.freedesktop.org,
+ "open list:USB SUBSYSTEM" <linux-usb@vger.kernel.org>,
+ linux-fbdev@vger.kernel.org, nouveau@lists.freedesktop.org,
+ intel-gfx@lists.freedesktop.org,
+ platform-driver-x86@vger.kernel.org, intel-xe@lists.freedesktop.org,
+ linux-renesas-soc@vger.kernel.org,
+ "open list:ACPI" <linux-acpi@vger.kernel.org>,
+ open list <linux-kernel@vger.kernel.org>, Melissa Wen <mwen@igalia.com>,
+ Mark Pearson <mpearson-lenovo@squebb.ca>,
+ Mario Limonciello <mario.limonciello@amd.com>
+Subject: Re: [PATCH v6 1/5] drm: Stop using `select ACPI_VIDEO` in all drivers
+Message-ID: <202402170903.pSlAhO5F-lkp@intel.com>
+References: <20240214215756.6530-2-mario.limonciello@amd.com>
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Fi=2ECI=2EBAT=3A_success_for_drm/i915/guc=3A_Simplify/ex?=
- =?utf-8?q?tend_platform_check_for_Wa=5F14018913170?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: john.c.harrison@intel.com
-Cc: intel-gfx@lists.freedesktop.org
-Date: Sat, 17 Feb 2024 00:42:44 -0000
-Message-ID: <170813056403.54115.10963391667995525896@8e613ede5ea5>
-X-Patchwork-Hint: ignore
-References: <20240216183841.497768-1-John.C.Harrison@Intel.com>
-In-Reply-To: <20240216183841.497768-1-John.C.Harrison@Intel.com>
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240214215756.6530-2-mario.limonciello@amd.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -37,279 +78,134 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============9143567837475209887==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+Hi Mario,
 
-== Series Details ==
+kernel test robot noticed the following build warnings:
 
-Series: drm/i915/guc: Simplify/extend platform check for Wa_14018913170
-URL   : https://patchwork.freedesktop.org/series/130022/
-State : success
+[auto build test WARNING on drm-misc/drm-misc-next]
+[also build test WARNING on drm-intel/for-linux-next-fixes drm-tip/drm-tip linus/master v6.8-rc4 next-20240216]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
 
-== Summary ==
+url:    https://github.com/intel-lab-lkp/linux/commits/Mario-Limonciello/drm-Stop-using-select-ACPI_VIDEO-in-all-drivers/20240215-055936
+base:   git://anongit.freedesktop.org/drm/drm-misc drm-misc-next
+patch link:    https://lore.kernel.org/r/20240214215756.6530-2-mario.limonciello%40amd.com
+patch subject: [PATCH v6 1/5] drm: Stop using `select ACPI_VIDEO` in all drivers
+config: alpha-kismet-CONFIG_FB_BACKLIGHT-CONFIG_FB_SSD1307-0-0 (https://download.01.org/0day-ci/archive/20240217/202402170903.pSlAhO5F-lkp@intel.com/config)
+reproduce: (https://download.01.org/0day-ci/archive/20240217/202402170903.pSlAhO5F-lkp@intel.com/reproduce)
 
-CI Bug Log - changes from CI_DRM_14287 -> Patchwork_130022v1
-====================================================
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202402170903.pSlAhO5F-lkp@intel.com/
 
-Summary
--------
+kismet warnings: (new ones prefixed by >>)
+>> kismet: WARNING: unmet direct dependencies detected for FB_BACKLIGHT when selected by FB_SSD1307
+   .config:254:warning: symbol value 'n' invalid for SATA_MOBILE_LPM_POLICY
+   .config:268:warning: symbol value 'n' invalid for INPUT_MOUSEDEV_SCREEN_Y
+   .config:441:warning: symbol value 'n' invalid for KFENCE_SAMPLE_INTERVAL
+   .config:460:warning: symbol value 'n' invalid for AIC79XX_DEBUG_MASK
+   .config:610:warning: symbol value 'n' invalid for USB_GADGET_STORAGE_NUM_BUFFERS
+   .config:619:warning: symbol value 'n' invalid for DRM_XE_JOB_TIMEOUT_MIN
+   .config:645:warning: symbol value 'n' invalid for CRYPTO_DEV_QCE_SW_MAX_LEN
+   .config:757:warning: symbol value 'n' invalid for PANEL_LCD_CHARSET
+   .config:758:warning: symbol value 'n' invalid for SERIAL_ALTERA_UART_BAUDRATE
+   .config:800:warning: symbol value 'n' invalid for SND_AC97_POWER_SAVE_DEFAULT
+   .config:834:warning: symbol value 'n' invalid for DUMMY_CONSOLE_ROWS
+   .config:844:warning: symbol value 'n' invalid for MAGIC_SYSRQ_DEFAULT_ENABLE
+   .config:858:warning: symbol value 'n' invalid for DRM_I915_MAX_REQUEST_BUSYWAIT
+   .config:882:warning: symbol value 'n' invalid for AIC79XX_CMDS_PER_DEVICE
+   .config:894:warning: symbol value 'n' invalid for SND_AT73C213_TARGET_BITRATE
+   .config:903:warning: symbol value 'n' invalid for DRM_XE_PREEMPT_TIMEOUT_MIN
+   .config:915:warning: symbol value 'n' invalid for NET_EMATCH_STACK
+   .config:917:warning: symbol value 'n' invalid for VMCP_CMA_SIZE
+   .config:942:warning: symbol value 'n' invalid for PANEL_LCD_PIN_SDA
+   .config:1062:warning: symbol value 'n' invalid for PANEL_LCD_PIN_E
+   .config:1143:warning: symbol value 'n' invalid for RCU_CPU_STALL_TIMEOUT
+   .config:1173:warning: symbol value 'n' invalid for MTDRAM_ERASE_SIZE
+   .config:1281:warning: symbol value 'n' invalid for SERIAL_UARTLITE_NR_UARTS
+   .config:1324:warning: symbol value 'n' invalid for VERBOSE_MCHECK_ON
+   .config:1453:warning: symbol value 'n' invalid for LEGACY_PTY_COUNT
+   .config:1605:warning: symbol value 'n' invalid for AIC7XXX_RESET_DELAY_MS
+   .config:1659:warning: symbol value 'n' invalid for XEN_MEMORY_HOTPLUG_LIMIT
+   .config:1755:warning: symbol value 'n' invalid for IBM_EMAC_POLL_WEIGHT
+   .config:1881:warning: symbol value 'n' invalid for DRM_I915_STOP_TIMEOUT
+   .config:2135:warning: symbol value 'n' invalid for AIC79XX_RESET_DELAY_MS
+   .config:2155:warning: symbol value 'n' invalid for KCOV_IRQ_AREA_SIZE
+   .config:2172:warning: symbol value 'n' invalid for RCU_FANOUT_LEAF
+   .config:2315:warning: symbol value 'n' invalid for DRM_XE_TIMESLICE_MAX
+   .config:2317:warning: symbol value 'n' invalid for PANEL_LCD_BWIDTH
+   .config:2557:warning: symbol value 'n' invalid for PANEL_PARPORT
+   .config:2643:warning: symbol value 'n' invalid for NOUVEAU_DEBUG_DEFAULT
+   .config:2791:warning: symbol value 'n' invalid for SND_SOC_SOF_DEBUG_IPC_FLOOD_TEST_NUM
+   .config:2831:warning: symbol value 'n' invalid for KCSAN_REPORT_ONCE_IN_MS
+   .config:2932:warning: symbol value 'n' invalid for KCSAN_UDELAY_INTERRUPT
+   .config:2954:warning: symbol value 'n' invalid for PANEL_LCD_PIN_BL
+   .config:2972:warning: symbol value 'n' invalid for DEBUG_OBJECTS_ENABLE_DEFAULT
+   .config:2978:warning: symbol value 'n' invalid for INITRAMFS_ROOT_GID
+   .config:3082:warning: symbol value 'n' invalid for ATM_FORE200E_TX_RETRY
+   .config:3119:warning: symbol value 'n' invalid for FB_OMAP2_DSS_MIN_FCK_PER_PCK
+   .config:3212:warning: symbol value 'n' invalid for PSTORE_BLK_CONSOLE_SIZE
+   .config:3341:warning: symbol value 'n' invalid for BOOKE_WDT_DEFAULT_TIMEOUT
+   .config:3400:warning: symbol value 'n' invalid for KCSAN_UDELAY_TASK
+   .config:3454:warning: symbol value 'n' invalid for MMC_BLOCK_MINORS
+   .config:3457:warning: symbol value 'n' invalid for INET_TABLE_PERTURB_ORDER
+   .config:3497:warning: symbol value 'n' invalid for SCSI_NCR53C8XX_SYNC
+   .config:3617:warning: symbol value 'n' invalid for UCLAMP_BUCKETS_COUNT
+   .config:3726:warning: symbol value 'n' invalid for SERIAL_MCF_BAUDRATE
+   .config:3797:warning: symbol value 'n' invalid for DE2104X_DSL
+   .config:3808:warning: symbol value 'n' invalid for BLK_DEV_RAM_COUNT
+   .config:3841:warning: symbol value 'n' invalid for FTRACE_RECORD_RECURSION_SIZE
+   .config:3941:warning: symbol value 'n' invalid for STACK_MAX_DEFAULT_SIZE_MB
+   .config:4058:warning: symbol value 'n' invalid for IP_VS_SH_TAB_BITS
+   .config:4147:warning: symbol value 'n' invalid for CMA_AREAS
+   .config:4204:warning: symbol value 'n' invalid for INPUT_MOUSEDEV_SCREEN_X
+   .config:4206:warning: symbol value 'n' invalid for USBIP_VHCI_HC_PORTS
+   .config:4318:warning: symbol value 'n' invalid for RIONET_RX_SIZE
+   .config:4534:warning: symbol value 'n' invalid for RADIO_TYPHOON_PORT
+   .config:4541:warning: symbol value 'n' invalid for IP_VS_MH_TAB_INDEX
+   .config:4625:warning: symbol value 'n' invalid for IBM_EMAC_TXB
+   .config:4651:warning: symbol value 'n' invalid for SERIAL_TXX9_NR_UARTS
+   .config:5011:warning: symbol value 'n' invalid for ARCH_MMAP_RND_BITS
+   .config:5062:warning: symbol value 'n' invalid for PANEL_LCD_PIN_RW
+   .config:5094:warning: symbol value 'n' invalid for DRM_I915_FENCE_TIMEOUT
+   .config:5116:warning: symbol value 'n' invalid for TTY_PRINTK_LEVEL
+   .config:5272:warning: symbol value 'n' invalid for MIPS_EJTAG_FDC_KGDB_CHAN
+   .config:5365:warning: symbol value 'n' invalid for KDB_DEFAULT_ENABLE
+   .config:5381:warning: symbol value 'n' invalid for SERIAL_ALTERA_UART_MAXPORTS
+   .config:5516:warning: symbol value 'n' invalid for PPC_EARLY_DEBUG_EHV_BC_HANDLE
+   .config:5649:warning: symbol value 'n' invalid for PANEL_LCD_HWIDTH
+   .config:5678:warning: symbol value 'n' invalid for LOCKDEP_CHAINS_BITS
+   .config:5764:warning: symbol value 'n' invalid for DRM_I915_HEARTBEAT_INTERVAL
+   .config:5773:warning: symbol value 'n' invalid for KCSAN_SKIP_WATCH
+   .config:5798:warning: symbol value 'n' invalid for RCU_BOOST_DELAY
+   .config:5814:warning: symbol value 'n' invalid for CRYPTO_DEV_FSL_CAAM_INTC_TIME_THLD
+   .config:6093:warning: symbol value 'n' invalid for ARCH_MMAP_RND_COMPAT_BITS
+   .config:6259:warning: symbol value 'n' invalid for RADIO_TRUST_PORT
+   .config:6263:warning: symbol value 'n' invalid for DRM_XE_PREEMPT_TIMEOUT_MAX
+   .config:6639:warning: symbol value 'n' invalid for CMA_SIZE_PERCENTAGE
+   .config:6767:warning: symbol value 'n' invalid for SCSI_SYM53C8XX_MAX_TAGS
+   .config:6786:warning: symbol value 'n' invalid for DRM_XE_TIMESLICE_MIN
+   .config:6896:warning: symbol value 'n' invalid for DVB_MAX_ADAPTERS
+   .config:6900:warning: symbol value 'n' invalid for SCSI_NCR53C8XX_MAX_TAGS
+   .config:6903:warning: symbol value 'n' invalid for RIONET_TX_SIZE
+   .config:6912:warning: symbol value 'n' invalid for SCSI_SYM53C8XX_DMA_ADDRESSING_MODE
+   .config:7200:warning: symbol value 'n' invalid for ZSMALLOC_CHAIN_SIZE
+   .config:7232:warning: symbol value 'n' invalid for OMAP2_DSS_MIN_FCK_PER_PCK
+   .config:7250:warning: symbol value 'n' invalid for SERIAL_ARC_NR_PORTS
+   .config:7278:warning: symbol value 'n' invalid for IBM_EMAC_RXB
+   .config:7421:warning: symbol value 'n' invalid for LOCKDEP_BITS
+   .config:7426:warning: symbol value 'n' invalid for SCSI_MPT3SAS_MAX_SGE
+   .config:7604:warning: symbol value 'n' invalid for RCU_FANOUT
+   .config:7657:warning: symbol value 'n' invalid for PANEL_LCD
+   .config:7780:warning: symbol value 'n' invalid for KDB_CONTINUE_CATASTROPHIC
+   .config:7944:warning: symbol value 'n' invalid for CRYPTO_DEV_FSL_CAAM_RINGSIZE
+   .config:8034:warning: symbol value 'n' invalid for MTDRAM_TOTAL_SIZE
 
-  **SUCCESS**
-
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130022v1/index.html
-
-Participating hosts (36 -> 36)
-------------------------------
-
-  Additional (1): bat-kbl-2 
-  Missing    (1): fi-snb-2520m 
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_130022v1 that come from known issues:
-
-### CI changes ###
-
-#### Possible fixes ####
-
-  * boot:
-    - bat-jsl-1:          [FAIL][1] ([i915#8293]) -> [PASS][2]
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14287/bat-jsl-1/boot.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130022v1/bat-jsl-1/boot.html
-
-  
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@debugfs_test@basic-hwmon:
-    - bat-jsl-1:          NOTRUN -> [SKIP][3] ([i915#9318])
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130022v1/bat-jsl-1/igt@debugfs_test@basic-hwmon.html
-
-  * igt@fbdev@info:
-    - bat-kbl-2:          NOTRUN -> [SKIP][4] ([fdo#109271] / [i915#1849])
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130022v1/bat-kbl-2/igt@fbdev@info.html
-
-  * igt@gem_huc_copy@huc-copy:
-    - bat-jsl-1:          NOTRUN -> [SKIP][5] ([i915#2190])
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130022v1/bat-jsl-1/igt@gem_huc_copy@huc-copy.html
-
-  * igt@gem_lmem_swapping@parallel-random-engines:
-    - bat-kbl-2:          NOTRUN -> [SKIP][6] ([fdo#109271]) +35 other tests skip
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130022v1/bat-kbl-2/igt@gem_lmem_swapping@parallel-random-engines.html
-
-  * igt@gem_lmem_swapping@verify-random:
-    - bat-jsl-1:          NOTRUN -> [SKIP][7] ([i915#4613]) +3 other tests skip
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130022v1/bat-jsl-1/igt@gem_lmem_swapping@verify-random.html
-
-  * igt@i915_selftest@live@execlists:
-    - fi-bsw-nick:        [PASS][8] -> [ABORT][9] ([i915#7911])
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14287/fi-bsw-nick/igt@i915_selftest@live@execlists.html
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130022v1/fi-bsw-nick/igt@i915_selftest@live@execlists.html
-
-  * igt@i915_selftest@live@requests:
-    - bat-mtlp-8:         [PASS][10] -> [INCOMPLETE][11] ([i915#9527])
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14287/bat-mtlp-8/igt@i915_selftest@live@requests.html
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130022v1/bat-mtlp-8/igt@i915_selftest@live@requests.html
-
-  * igt@kms_cursor_legacy@basic-busy-flip-before-cursor-legacy:
-    - bat-jsl-1:          NOTRUN -> [SKIP][12] ([i915#4103]) +1 other test skip
-   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130022v1/bat-jsl-1/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-legacy.html
-
-  * igt@kms_dsc@dsc-basic:
-    - bat-jsl-1:          NOTRUN -> [SKIP][13] ([i915#3555] / [i915#9886])
-   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130022v1/bat-jsl-1/igt@kms_dsc@dsc-basic.html
-
-  * igt@kms_force_connector_basic@force-load-detect:
-    - bat-jsl-1:          NOTRUN -> [SKIP][14] ([fdo#109285])
-   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130022v1/bat-jsl-1/igt@kms_force_connector_basic@force-load-detect.html
-
-  * igt@kms_setmode@basic-clone-single-crtc:
-    - bat-jsl-1:          NOTRUN -> [SKIP][15] ([i915#3555])
-   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130022v1/bat-jsl-1/igt@kms_setmode@basic-clone-single-crtc.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
-  [fdo#109285]: https://bugs.freedesktop.org/show_bug.cgi?id=109285
-  [i915#10194]: https://gitlab.freedesktop.org/drm/intel/issues/10194
-  [i915#10213]: https://gitlab.freedesktop.org/drm/intel/issues/10213
-  [i915#10215]: https://gitlab.freedesktop.org/drm/intel/issues/10215
-  [i915#10237]: https://gitlab.freedesktop.org/drm/intel/issues/10237
-  [i915#1849]: https://gitlab.freedesktop.org/drm/intel/issues/1849
-  [i915#2190]: https://gitlab.freedesktop.org/drm/intel/issues/2190
-  [i915#3555]: https://gitlab.freedesktop.org/drm/intel/issues/3555
-  [i915#4103]: https://gitlab.freedesktop.org/drm/intel/issues/4103
-  [i915#4613]: https://gitlab.freedesktop.org/drm/intel/issues/4613
-  [i915#7911]: https://gitlab.freedesktop.org/drm/intel/issues/7911
-  [i915#8293]: https://gitlab.freedesktop.org/drm/intel/issues/8293
-  [i915#9318]: https://gitlab.freedesktop.org/drm/intel/issues/9318
-  [i915#9527]: https://gitlab.freedesktop.org/drm/intel/issues/9527
-  [i915#9886]: https://gitlab.freedesktop.org/drm/intel/issues/9886
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_14287 -> Patchwork_130022v1
-
-  CI-20190529: 20190529
-  CI_DRM_14287: b09fd1bd9f8b4a8e5cd8c1de8dbba4d4eb15b4e9 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_7716: 7716
-  Patchwork_130022v1: b09fd1bd9f8b4a8e5cd8c1de8dbba4d4eb15b4e9 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-### Linux commits
-
-84a263508b08 drm/i915/guc: Simplify/extend platform check for Wa_14018913170
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130022v1/index.html
-
---===============9143567837475209887==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915/guc: Simplify/extend platform check for Wa_14018913170</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/130022/">https://patchwork.freedesktop.org/series/130022/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130022v1/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130022v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_14287 -&gt; Patchwork_130022v1</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130022v1/index.html</p>
-<h2>Participating hosts (36 -&gt; 36)</h2>
-<p>Additional (1): bat-kbl-2 <br />
-  Missing    (1): fi-snb-2520m </p>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_130022v1 that come from known issues:</p>
-<h3>CI changes</h3>
-<h4>Possible fixes</h4>
-<ul>
-<li>boot:<ul>
-<li>bat-jsl-1:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14287/bat-jsl-1/boot.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/8293">i915#8293</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130022v1/bat-jsl-1/boot.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@debugfs_test@basic-hwmon:</p>
-<ul>
-<li>bat-jsl-1:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130022v1/bat-jsl-1/igt@debugfs_test@basic-hwmon.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/9318">i915#9318</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@fbdev@info:</p>
-<ul>
-<li>bat-kbl-2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130022v1/bat-kbl-2/igt@fbdev@info.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/1849">i915#1849</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_huc_copy@huc-copy:</p>
-<ul>
-<li>bat-jsl-1:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130022v1/bat-jsl-1/igt@gem_huc_copy@huc-copy.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2190">i915#2190</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_lmem_swapping@parallel-random-engines:</p>
-<ul>
-<li>bat-kbl-2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130022v1/bat-kbl-2/igt@gem_lmem_swapping@parallel-random-engines.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +35 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_lmem_swapping@verify-random:</p>
-<ul>
-<li>bat-jsl-1:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130022v1/bat-jsl-1/igt@gem_lmem_swapping@verify-random.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4613">i915#4613</a>) +3 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@execlists:</p>
-<ul>
-<li>fi-bsw-nick:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14287/fi-bsw-nick/igt@i915_selftest@live@execlists.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130022v1/fi-bsw-nick/igt@i915_selftest@live@execlists.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/7911">i915#7911</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@requests:</p>
-<ul>
-<li>bat-mtlp-8:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14287/bat-mtlp-8/igt@i915_selftest@live@requests.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130022v1/bat-mtlp-8/igt@i915_selftest@live@requests.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/9527">i915#9527</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_cursor_legacy@basic-busy-flip-before-cursor-legacy:</p>
-<ul>
-<li>bat-jsl-1:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130022v1/bat-jsl-1/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-legacy.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4103">i915#4103</a>) +1 other test skip</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_dsc@dsc-basic:</p>
-<ul>
-<li>bat-jsl-1:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130022v1/bat-jsl-1/igt@kms_dsc@dsc-basic.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3555">i915#3555</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/9886">i915#9886</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_force_connector_basic@force-load-detect:</p>
-<ul>
-<li>bat-jsl-1:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130022v1/bat-jsl-1/igt@kms_force_connector_basic@force-load-detect.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109285">fdo#109285</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_setmode@basic-clone-single-crtc:</p>
-<ul>
-<li>bat-jsl-1:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130022v1/bat-jsl-1/igt@kms_setmode@basic-clone-single-crtc.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3555">i915#3555</a>)</li>
-</ul>
-</li>
-</ul>
-<p>{name}: This element is suppressed. This means it is ignored when computing<br />
-          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_14287 -&gt; Patchwork_130022v1</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_14287: b09fd1bd9f8b4a8e5cd8c1de8dbba4d4eb15b4e9 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_7716: 7716<br />
-  Patchwork_130022v1: b09fd1bd9f8b4a8e5cd8c1de8dbba4d4eb15b4e9 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<h3>Linux commits</h3>
-<p>84a263508b08 drm/i915/guc: Simplify/extend platform check for Wa_14018913170</p>
-
-</body>
-</html>
-
---===============9143567837475209887==--
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
