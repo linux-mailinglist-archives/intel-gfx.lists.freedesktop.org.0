@@ -2,141 +2,138 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 52ADF85ACD0
-	for <lists+intel-gfx@lfdr.de>; Mon, 19 Feb 2024 21:12:28 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id DB23285AD03
+	for <lists+intel-gfx@lfdr.de>; Mon, 19 Feb 2024 21:20:30 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C695E10E206;
-	Mon, 19 Feb 2024 20:12:26 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5BF6510E188;
+	Mon, 19 Feb 2024 20:20:29 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="VZUCbZQx";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="idHRz3u/";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 88A1510E198;
- Mon, 19 Feb 2024 20:12:24 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E926A10E188
+ for <intel-gfx@lists.freedesktop.org>; Mon, 19 Feb 2024 20:20:27 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1708373545; x=1739909545;
+ t=1708374028; x=1739910028;
  h=date:from:to:cc:subject:message-id:references:
- in-reply-to:mime-version;
- bh=ea3vXubvwWGs5KaP90TP0NRvZjX4EH41eAcXDQD0xLs=;
- b=VZUCbZQxZBUCkZBoR4yJ4+UBeJXLgCpyDHJ+Gz6StScIzcscQzPF6LbJ
- eaXGY5a/N6Hs5ls7CRvmgyKZzKBoTNeFQ2WT9YyGUBOOcic5Lo05tHwFq
- eVCA1O35jTtAIXowolbH3M2SVU0n5gLJmjxOIQSk3m0t0fIsYRAvPD7QH
- AtlZfL86RbtSt1gKPO/ea1cXboTGfmXTgCWxxgdW+61KRJjjbs+wud+rR
- xfm7bAcemGGE7B9FfZQ/FS6Y9avHU0QK42DDjBrjN7QIMkHQkl7NYDmfL
- IvVAW+ao4yLbsjURV0Ns2Tu5m0jlUBcmWawrI1P8DzLOBr0qf5OVz2QDZ w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10989"; a="2330885"
-X-IronPort-AV: E=Sophos;i="6.06,170,1705392000"; 
-   d="scan'208";a="2330885"
-Received: from orviesa002.jf.intel.com ([10.64.159.142])
- by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Feb 2024 12:12:24 -0800
+ content-transfer-encoding:in-reply-to:mime-version;
+ bh=ofYlzeGBSkBxonRFdrrw+1kwnIBYF05eKqNFBCwk6kM=;
+ b=idHRz3u/bXPjdE4ny5mTzU1QcbimTGKGBg3qC1ijfCGRe6vNZJVhzyF9
+ GG9FA9XkyBhbimyPWc3aogDTlLKc0f93HSM86o07WWIWLHnkGMfkdVGPA
+ JnXORAJrVBy/SkiDXekvU+MnZllGKxyQvhHQi7vtogBnLL9rqD//bir4U
+ YkM+/V+oni5K7aX2eDR2Nfw1l630GObQSVmo4raqGf7GyYSV1/CcrBfXt
+ QyyY+d3KxGquqvwvAAg20fq4qGVHafrNoY2j4G6L9qYlZvjpb8kJexhsq
+ QLUAC/9e+StGeUmf8H/qls5FkozEJ0QiV7y9ev55TU9dtxbYsR/zntgmM A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10989"; a="27909701"
+X-IronPort-AV: E=Sophos;i="6.06,170,1705392000"; d="scan'208";a="27909701"
+Received: from orviesa010.jf.intel.com ([10.64.159.150])
+ by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 Feb 2024 12:20:27 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.06,170,1705392000"; d="scan'208";a="35349566"
-Received: from orsmsx601.amr.corp.intel.com ([10.22.229.14])
- by orviesa002.jf.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
- 19 Feb 2024 12:12:24 -0800
-Received: from orsmsx611.amr.corp.intel.com (10.22.229.24) by
- ORSMSX601.amr.corp.intel.com (10.22.229.14) with Microsoft SMTP Server
+X-IronPort-AV: E=Sophos;i="6.06,170,1705392000"; 
+   d="scan'208";a="4613910"
+Received: from orsmsx602.amr.corp.intel.com ([10.22.229.15])
+ by orviesa010.jf.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
+ 19 Feb 2024 12:20:27 -0800
+Received: from orsmsx610.amr.corp.intel.com (10.22.229.23) by
+ ORSMSX602.amr.corp.intel.com (10.22.229.15) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35; Mon, 19 Feb 2024 12:12:24 -0800
-Received: from orsmsx612.amr.corp.intel.com (10.22.229.25) by
- ORSMSX611.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35; Mon, 19 Feb 2024 12:12:23 -0800
+ 15.1.2507.35; Mon, 19 Feb 2024 12:20:26 -0800
 Received: from orsedg603.ED.cps.intel.com (10.7.248.4) by
- orsmsx612.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
+ orsmsx610.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35 via Frontend Transport; Mon, 19 Feb 2024 12:12:23 -0800
-Received: from NAM11-CO1-obe.outbound.protection.outlook.com (104.47.56.168)
+ 15.1.2507.35 via Frontend Transport; Mon, 19 Feb 2024 12:20:26 -0800
+Received: from NAM10-BN7-obe.outbound.protection.outlook.com (104.47.70.100)
  by edgegateway.intel.com (134.134.137.100) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.35; Mon, 19 Feb 2024 12:12:23 -0800
+ 15.1.2507.35; Mon, 19 Feb 2024 12:20:26 -0800
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=VQazH+AQRriMwWNDf/+Sk0VtKzBYOdOgPRdH+hQziCGKQcrwg5Fl4pfyqH7opBtzUpZdB7EpSpGyykw5CyPPPvqfPLIv3qIHVPpDr2SnW5MaIiG80WJAxXKaQ/DadpH1W3Xvul7NmlpFINv5a085bsBrJ9lyyZzlv+hJ0AeOD+5E7VSJmSS4t+5azfPgDJ8GBT96cmZ5MHFIBagr6p9Z8sFPFdQro7IbL6MlFTDNpfUaHwRPCvrVfhT5QWEmcZWfGSfqYHnV1z641+cg8fOzKM4PkFX1OCBSHylU/KFvFy20bj0+tUTzGumECe6KleYHsUKLudgzBQ0h9a/hYt/GwQ==
+ b=nlVAFBKrgC8PousCmX6FnSo1oYpkDIHU9H1SUVfyFlzQ/HbU21JJpXm/fJI9q3dDcIgKWaOYAfsmoe/QZrwVug4v1kB7oc91c40Ns9Ls56HZeMzjkqmxDjzeUtqNvTj/FhXUSmKyzeRYpXBbJVBZy1IP+qwOCD/WfCovQe5st/yCHVsu5+Z5jFjvB9xKflC5oNQlc0jqROJChTQjGWr0FseOC3QCGsk2EgooxAGQoJzMCOF85DPlj3C5rxcZQ/K13nLpy1TBfQ1kpLNSEZvg4WlBcuL7Ig2GzkGVXr1uiz9t8wm1XeBG/lXnC7K9Cvn+vMs81otDw0VPrXcbr3ESVg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=UKjtDWPoBC1iqmAfyss+HW6Fw8rTJvdEkT8jitzYOdU=;
- b=YjQ3Q7w0lwRMyrzWCKDm2gRwgQcY8LdL13f3rK8yxO85f+dnmUI88Nz3gxz8rhtThZ1X6rByv3OWVbUaOISoTfFLn9RZrN3DmcTmSY7ReCjHlBYQu1W6s9odXkJ6s2XJT6zI9Ew5TfcBTB9gkXLDcrNOcn5aP9NAbv381r2Aj9D4SFlIocuGPtJw3loJTOjWIulEBlbNrj+/eUI0zaaBvtm+i2HcTFkJhSEVEUHp+iV7s0LaFhWEEdueeTHc/3NWbtjN5rZ88SSYXpDuFjJh/uAMHjkT+JIsDTDx0W9Rg1Sd2HWFu9BogDs1KbFEGNq6yKAFW+dcrcBewCo2LG8pNw==
+ bh=1Ht8cEqMoAlzYs/CojdTzn5hg9SVXktz5O0NZ60CMdA=;
+ b=hbwHA9thgoi4uzbFxvXjLtE1jtxn98tS/6AGYYVPnhTCVa5MIAWccDyDKveokhcyzGX6dScU7Mc2x5meSs8ODRDxuZZe6wchI/GlxTHk2y0nciHNigUME8g2cp1QDQ4W1XVqkubo3R6qKVEQaFS0+UVFK2nG3a4tSVYoZ3aVnUY9JRk8IxUTuBeX+eM+ncar0yt19ero+GGerZm9LCIyFN8ecNQVDd5C4q5mGBUvEDEopnJrHhzJmTi+TOATNgmAGJm2ful4+udhf3cgnqaInWhzUbYdFo8wFgTDTdEQKtbf4qGfieRazCs7RhJsaSbW3IkBUs339v1aw2FeEfVJRA==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
 Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
 Received: from MN0PR11MB6059.namprd11.prod.outlook.com (2603:10b6:208:377::9)
- by PH0PR11MB4919.namprd11.prod.outlook.com (2603:10b6:510:34::12)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7292.39; Mon, 19 Feb
- 2024 20:12:22 +0000
+ by DM4PR11MB5261.namprd11.prod.outlook.com (2603:10b6:5:388::13) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7292.38; Mon, 19 Feb
+ 2024 20:20:24 +0000
 Received: from MN0PR11MB6059.namprd11.prod.outlook.com
  ([fe80::a7f1:384c:5d93:1d1d]) by MN0PR11MB6059.namprd11.prod.outlook.com
  ([fe80::a7f1:384c:5d93:1d1d%4]) with mapi id 15.20.7292.036; Mon, 19 Feb 2024
- 20:12:22 +0000
-Date: Mon, 19 Feb 2024 15:12:17 -0500
+ 20:20:24 +0000
+Date: Mon, 19 Feb 2024 15:20:20 -0500
 From: Rodrigo Vivi <rodrigo.vivi@intel.com>
-To: Nirmoy Das <nirmoy.das@intel.com>
-CC: <intel-gfx@lists.freedesktop.org>, <dri-devel@lists.freedesktop.org>, Andi
- Shyti <andi.shyti@linux.intel.com>, Shawn Lee <shawn.c.lee@intel.com>
-Subject: Re: [PATCH] drm/i915: check before removing mm notifier
-Message-ID: <ZdO2IYev7Amcbtt1@intel.com>
-References: <20240219125047.28906-1-nirmoy.das@intel.com>
-Content-Type: text/plain; charset="us-ascii"
+To: Bas S <schalbroeck@gmail.com>
+CC: <intel-gfx@lists.freedesktop.org>
+Subject: Re: [PATCH] drm/i915/display: Allow tighter hblank span
+Message-ID: <ZdO4BNYXKo9ZKR9J@intel.com>
+References: <CAAuj=_fEjHCsGYzdA20LvP_292oaTHEC4PE4uNFdWHE4UkBMJw@mail.gmail.com>
+Content-Type: text/plain; charset="iso-8859-1"
 Content-Disposition: inline
-In-Reply-To: <20240219125047.28906-1-nirmoy.das@intel.com>
-X-ClientProxiedBy: BYAPR01CA0052.prod.exchangelabs.com (2603:10b6:a03:94::29)
- To MN0PR11MB6059.namprd11.prod.outlook.com
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <CAAuj=_fEjHCsGYzdA20LvP_292oaTHEC4PE4uNFdWHE4UkBMJw@mail.gmail.com>
+X-ClientProxiedBy: BYAPR04CA0029.namprd04.prod.outlook.com
+ (2603:10b6:a03:40::42) To MN0PR11MB6059.namprd11.prod.outlook.com
  (2603:10b6:208:377::9)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: MN0PR11MB6059:EE_|PH0PR11MB4919:EE_
-X-MS-Office365-Filtering-Correlation-Id: 89ec227b-7f1b-4aa6-ec76-08dc31871486
+X-MS-TrafficTypeDiagnostic: MN0PR11MB6059:EE_|DM4PR11MB5261:EE_
+X-MS-Office365-Filtering-Correlation-Id: 0b8f5de0-b5e9-4de3-0bb4-08dc31883441
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: w0x9iQK7E74t/ZRLBSa34u+MPcHPGSQpT8t16HYy/ut/npW1FE8tRVsRDEh7S7i12ZkJc6qGZ5VbBo2HJ9zWFiiI3cVudcexxCEgCtfPWYoR7UH0m2HbnJxTIoGVdElz83jNapbtQQFJjLGxB9/dVWOTnQZlmX02mEbfOq+ZYoPzPxAmBZC3gzp+ikU+FOChHvyO1q5owTYQ8lX3vj4Av1kDB4i3AF6N/Om53T3ULtnor4S/2fPk8WXxF8qP0ja8npR7MmMQLMjKBrUZnu9DKHy12V911VtuYtaDXyLTWhLcgP2qUvfmkiTyVXaxq/8+1BicnwrpD1qYma00XT2hq9GgT14SGHEdHCrMmqmbvk1qSEOXemrgj0KyOERIKroSxIX3pMiqS9yGz5/y5SXmWmnX6dsI/JKMuLKncPXC2EK81AVNKxYuSdqPMhVlITFJnSvGo8dzf7aEidCfUdto/puPu1uq6ciTj1sfOHCz5JhotbJiI/dKejsX9BCjhRuF0iMKvQbvcQnOi3OME3T+lvoBLCTq4fH16+3Xlbg+9qI=
+X-Microsoft-Antispam-Message-Info: QFIdernSsjg5hb6/UZ8KOHjtxxI+us5sgwJn77kVsjxTzisnvASNygsw8LSRdUAjMIyuM9ge0WNQWX3xjJ70pDbPW3b+h4DR+XpIyBCECQK6lrpr58kxJTSJurrnuK46JrJsLK/YR8aoN90vDR5qS/+vh4DS86pGgxMp3MX88p9PkbyjCD+pulpX0nxbdb0blS7+TR3wbtmXW6DAuS+NGUgKFe6gHLL6TS1zKGopV+Lgcn1l1gdpQ0fEw8E/gLhXT/GiWU2p2Ke8Ae5Tr32BXwhbHR5rQwktayAP151tRFi7X1LIIqrTGGumMpcHDJWhhQclXImA0XuLXKp1OkvBBbTHXhAs1BWDI3xAuIUZ29XApOFcE8+hkFcQS+avcYlgiODnfG1LaxQGhwy2ocGxKMxFWXxi+7T9TZJ2TYd8lrhmc1jZfx3MvrptqyTJLRICq1zOijTi0UVNl5jKo19C8+BmEzzMPymL7nEqAUeXMkCiLAaHQ0qfHKOsaszAfZlH+mnm4rfvNv7526bDuVBeqw==
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:MN0PR11MB6059.namprd11.prod.outlook.com; PTR:; CAT:NONE;
  SFS:(13230031); DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?s2cmcx4ipZpTdHxZFk2FEi1dYlGB/9MjSjepMCFYneHCi3St97Ya42oJIxh7?=
- =?us-ascii?Q?YoiwmOWwf/Ezkjf9NNNXGCORS3vdW0sJO3UwXsw3QeS/KriidBonlmes9Oip?=
- =?us-ascii?Q?NJWvJ3joqCl5yiU7H4ice/ts0dser/JVtxv8Ogm5QZQ5RNawSj4kdO5zE54b?=
- =?us-ascii?Q?EEZf3UghcW6oCpkXrzF/S7Y+jJdPO1H/tR7BwYhTJVivQJA0u3OAz12KhEOb?=
- =?us-ascii?Q?RpWQQoAVVmoG2Z1KM8vWf2ZHrc1tMhWKrn/JnjzIybG3L85dKq6GiBKk1yB0?=
- =?us-ascii?Q?f7vGMjLl/xR86LxKwY7cCBGEiUXi4yftdoEjAyl8AZsieChcV4tjn6tu3Q+c?=
- =?us-ascii?Q?MnZpzMt16FUkZfo63LNSiLPZIae6SyANX4cX4jh1N7MPFGuDiN0/9DAM96Yy?=
- =?us-ascii?Q?19DWJxG9Prapp/yXQkJ+TXhouc3xc/3hM5Kebf5o++gZ2AU5V4KTtKE1k5FV?=
- =?us-ascii?Q?hXZxO+R1sxDZQqQ1qZABvKw8arBP9JekjaU/N58z/dK0b/jIwoSlx8lWW5DG?=
- =?us-ascii?Q?F1xpkZecKQTrqS5ZEZr3UEDTSVbCGOKAkpzl7DEYHudOen5HwPlSSP6bX6mU?=
- =?us-ascii?Q?0cN1XRCCaZNi0s+eLZ8+TxyLYhBqwAfFhqzyHwei77qk1UuMdd85a/NZb0Ak?=
- =?us-ascii?Q?ohCUVZ5lyJpl9e1Nd08p+mUIZ2lBOIMmQXvLpWMwv74Zf/VRtPfY/iwRQ32+?=
- =?us-ascii?Q?kxBz6wfrSsCeaUVgAmUlq+WD79Hq8Hqo2InBw8HlP96lIwzuF//GQGDYmZXp?=
- =?us-ascii?Q?DpKbN4r5kVYWx/r+TJUnKXA2DCerOEFoaKQZiylBJzg/3NorJxBfhQy+vLRc?=
- =?us-ascii?Q?BGFT2RIuzBMgK90o/XEFzE0nrmRTn30g6OouNYWxuiEcUHL5s+d4OVeh4IMU?=
- =?us-ascii?Q?R1ekn35qy4dbe+Ao646fR1d2ALyWLNsZLEZcLH38gWg1vP2mUMhUb/IX6oet?=
- =?us-ascii?Q?s7sseO7MAi6XJwPwlBJGLv1OrTalletyLbe+a3j3Ky/Z0lMcbdGWXEytQAY1?=
- =?us-ascii?Q?pgLLBzcsqZme2OAxbi9uTukwDjmn39vrR1gfkVvkw21vm9s50n9HOpIvITgv?=
- =?us-ascii?Q?QIIDS1gEJpwrJ+2zN6pzKdvZ0DW5NCypjuYN1b56xNG02U4xvucWoB0er9Nv?=
- =?us-ascii?Q?Z2/R8ntaRUDCOgiCdZ6DreqUw2MoVBeBwv6+mFV+17E5RKRLHv60F2dmMrTa?=
- =?us-ascii?Q?kU65bD4UfTo+q9TqE7YZF3JNGtuWAG3F2SbHdHPRNsX/TphIm+QFuo17ngzy?=
- =?us-ascii?Q?LTNoxCTZuLVmhXNgwryG8qXHNgGUMengOMn7YoMm5WEXlbb7eXPMv7L5KvNw?=
- =?us-ascii?Q?Qf0NEd83DUhrWzMpzrbrnNt4ZTBg++mG4kjr8l6ES2R6/O439QX79K6bsBK1?=
- =?us-ascii?Q?PlhQQrUr/7kGBWx/18eVSuJGKQQrzmc/wyAKUB4pLRk1W16tXMTySiYIEmjJ?=
- =?us-ascii?Q?JfX8IVBkp5ItAIh2hAftJgzUdEob9PnP7mp6JOLvzVrFZDRcWszKQiE3uCW5?=
- =?us-ascii?Q?N6PF1Ks8sNb5faqtE1efYNWl72o+dNQgBBcLvf3WRFW4782g7swFEDhK8Kgo?=
- =?us-ascii?Q?SbN71vPMOFrFW9cR5fHQsg2AZj/vQjxjjr/INkll?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 89ec227b-7f1b-4aa6-ec76-08dc31871486
+X-MS-Exchange-AntiSpam-MessageData-0: =?iso-8859-1?Q?B89pF8xWJUEa5QsqtpOhAzk9okrq+bkpU5rpoqj93BDII1m+R48SAxCbT5?=
+ =?iso-8859-1?Q?9gyHCPjMfxFeaJrRXeupMVSqlMORu74uH5j3tEuULM8UH4bEJGe9I66Rdb?=
+ =?iso-8859-1?Q?JVo3Pyrmc9jg4OT8y4AC7V/ao6H1A/KjPWIloQkQHbNIelvdoz8rL9kF55?=
+ =?iso-8859-1?Q?mkC2uX+1FK10tRUxfnZSxSOarVroOGzpMpD6lUCIXsHoMdsrOK8QP7fO3d?=
+ =?iso-8859-1?Q?5vGiLZAGja4hD+liDNvAXPYFOILYI3yA/0Ol2X5VPJfggxC0MOHKgMnY6s?=
+ =?iso-8859-1?Q?WooFZHH9gggdxgV+1B0DVq5le+03cpegJgMBkuQMvAXlYeNVE4PmAPzsxE?=
+ =?iso-8859-1?Q?LABBTeltgILE5X0Sm5xY58eulNSfBg4YSEBqHBGAIV+kVhtvGFAVqUFPI5?=
+ =?iso-8859-1?Q?DXjtgn/DJDE3Zs6MGILC/ZbLaMfg768s6LR6eFaoCSlzkgabiaI6kyOg7m?=
+ =?iso-8859-1?Q?9tfkLfsZGQQMMA89BgpiGDTpU+CW/qE+rFZHuj6+6PNf1hbiuxbxc64IjT?=
+ =?iso-8859-1?Q?U3KhV5KzWfimtcqvhtI839Gv1vkcU7sDLR1DafdUSOcQsOxMRz79S6b/N/?=
+ =?iso-8859-1?Q?cvfSmjIRi1jd+fIx27wuYRhpE7y/AIQBeaz+w/9clDiipX4DspL24eauZ7?=
+ =?iso-8859-1?Q?FhEVdVdUl69vFrvrQGiryrE9A5yUY/hIntsqulE2BZqbb7bcnFn65opoaP?=
+ =?iso-8859-1?Q?eXQIOttyRXQ8XW/ejdOcMxBbbwZJpCI4t2BI4ElF3cZ+BVV7qeeQHEyDky?=
+ =?iso-8859-1?Q?bSofMz78qOnrnF2a33IAo6Q+50Z0euzwvQYXO9L1FUKfMZ9VNlQOjfAR/G?=
+ =?iso-8859-1?Q?kBruXceZjtKGeg/4+X/+cgOhDXBw6gh1FWQCrF8WHJ6OsCaOUvAWWQT/Jb?=
+ =?iso-8859-1?Q?8fgFInIu0RHoi2QOe+vu+uFiJvNYR/E309IMubMrWwkYyCtrUDtcZXlHgU?=
+ =?iso-8859-1?Q?RDMJ2yxQTRgoz54ZYJz/SKUPH5rjcJcQdrM1p8oz9ETS/Huf8MsSoagJU8?=
+ =?iso-8859-1?Q?DAZDCQXoQta0AV3tas7VK9/pizAsob0nuf6d5eJOtOxWZDXqXc/FJcyTSE?=
+ =?iso-8859-1?Q?7rLKpEPbX75t1QoXcF0E474FahO2QHMDKB/00igFGdLee0hKsnQwA5IdTX?=
+ =?iso-8859-1?Q?YCGrKpZ+jpINZjuY+n7GpagpHazB47AEn0DQPWIRREHGKGHd0tyY/7wvcw?=
+ =?iso-8859-1?Q?x8lZrY6K44pvfYGjeLxwTVYBW/DQrstIPFtQnO0XHyBLx+RFVXtkQp2W6i?=
+ =?iso-8859-1?Q?pQdBM42+p1SpiBtWIn+2X63aGtxAAcZaU7CV+hlimeW36xu/65uCNenEvK?=
+ =?iso-8859-1?Q?qrBEHdd1pEHxyIrP6w+bSz11wbkJjSRTxg82DRQQHKYfFsPjTRbMpG6y70?=
+ =?iso-8859-1?Q?3ppXrWBHo1WLXk+3Ta/iDNjC2QfUMdrwegr+4p/ySKW4m09HxcFDYkHQEo?=
+ =?iso-8859-1?Q?trlyb7lT+sQMJ3Fm0nM8EgaeEGxWliIg34KCt6pKLE2LShfd0I47a111ex?=
+ =?iso-8859-1?Q?1S3Dfg7oBNaW+MPssH+hQihJW9fjHPuJZxyfkVys6WPbuo8000LhKGlJp3?=
+ =?iso-8859-1?Q?dUaTzef3fUV6+DQqLDe3GLbR235hlr0iPIAiXmxQyKZ0iE1abogc8vXYo4?=
+ =?iso-8859-1?Q?QVg3rCSpOQqWfl4JEB7yLXRFybi8OX1e7E?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: 0b8f5de0-b5e9-4de3-0bb4-08dc31883441
 X-MS-Exchange-CrossTenant-AuthSource: MN0PR11MB6059.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 19 Feb 2024 20:12:21.7110 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 19 Feb 2024 20:20:24.4013 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: x3pWQzH/5ZeqiyyDI6TH7rIRTc+2rzjjvPcoQPvs1PD7qlWjTzgY6W5qTlqeu7AlUd3HLwWnZc+OB5f80O/Zvg==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH0PR11MB4919
+X-MS-Exchange-CrossTenant-UserPrincipalName: eFPcROFQv8SksYDoIBbA/RZlSZIy0R9T6UIwfdSJlcG7g3h0iidqHxANZL0oRJyiEIB1ukQdglBiZxta2vGBig==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM4PR11MB5261
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -153,44 +150,76 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, Feb 19, 2024 at 01:50:47PM +0100, Nirmoy Das wrote:
-> Error in mmu_interval_notifier_insert() can leave a NULL
-> notifier.mm pointer. Catch that and return early.
+On Sun, Feb 18, 2024 at 07:12:24PM +0100, Bas S wrote:
+>    I ran into an issue with the i915 driver not being able to drive a display   
+>    with this specific modeline:                                                 
+
+Could you please file a bug on this?
+
+https://drm.pages.freedesktop.org/intel-docs/how-to-file-i915-bugs.html
+
+The limits below are per platform/display-architecture and probably forgotten
+to get updates for newer platforms. But having more information about your
+platform would be very helpful.
+
+Thanks,
+Rodrigo.
+
+>                                                                                 
+>    [drm]] Modeline "1920x720": 60 120980 1920 1932 1936 1948 720 723 733 1035   
+>    0x48 0x9                                                                     
+>    [drm:drm_mode_prune_invalid [drm]] Not using 1920x720 mode: H_ILLEGAL        
+>                                                                                 
+>    After some investigation I found that intel_mode_valid (and in newer         
+>    kernels, intel_cpu_transcoder_mode_valid) returns MODE_H_ILLEGAL due to      
+>    (htotal - hdisplay) being lower than 32.                                     
+>    The modeline in question indeed does not satisfy this constraint, as         
+>    HTOTAL(1948) - HDISPLAY(1920) equals 28.                                     
+>    Changing the driver code to allow for a hblank span of 28 pixels or lower    
+>    resulted in the driver successfully rendering to the display.                
+>    As such I propose this patch to allow for a tighter hblank span.             
+>                                                                                 
+>    Nb: I am uncertain if the hblank span of 32 pixels has been chosen           
+>    deliberately and what the side-effects could be of lowering this value.      
+>    Any insights into this or alternative solutions would be very much           
+>    appreciated! I also considered introducing a kernel module parameter to      
+>    optionally loosen these mode constraints.                                    
+>                                                                                 
+>    The referenced modeline is present in a line of ultrawide signage displays   
+>    and has been known to work on other graphics drivers/OSes.                   
+>                                                                                 
+>    Signed-off-by: Sebastiaan Schalbroeck <[1]schalbroeck@gmail.com>             
+>    ---                                                                          
+>     drivers/gpu/drm/i915/display/intel_display.c | 4 ++--                       
+>     1 file changed, 2 insertions(+), 2 deletions(-)                             
+>                                                                                 
+>    diff --git a/drivers/gpu/drm/i915/display/intel_display.c                    
+>    b/drivers/gpu/drm/i915/display/intel_display.c                               
+>    index b10aad1..f6aba1d 100644                                                
+>    --- a/drivers/gpu/drm/i915/display/intel_display.c                           
+>    +++ b/drivers/gpu/drm/i915/display/intel_display.c                           
+>    @@ -7745,13 +7745,13 @@ enum drm_mode_status                                 
+>    intel_cpu_transcoder_mode_valid(struct drm_i915_private *de                  
+>             */                                                                  
+>            if (DISPLAY_VER(dev_priv) >= 5) {                                    
+>                    if (mode->hdisplay < 64 ||                                   
+>    -                   mode->htotal - mode->hdisplay < 32)                      
+>    +                   mode->htotal - mode->hdisplay < 28)                      
+>                            return MODE_H_ILLEGAL;                               
+>                                                                                 
+>                    if (mode->vtotal - mode->vdisplay < 5)                       
+>                            return MODE_V_ILLEGAL;                               
+>            } else {                                                             
+>    -               if (mode->htotal - mode->hdisplay < 32)                      
+>    +               if (mode->htotal - mode->hdisplay < 28)                      
+>                            return MODE_H_ILLEGAL;                               
+>                                                                                 
+>                    if (mode->vtotal - mode->vdisplay < 3)                       
+>                                                                                 
+>    --                                                                           
+>    2.39.2                                                                       
 > 
-> Cc: Andi Shyti <andi.shyti@linux.intel.com>
-> Cc: Shawn Lee <shawn.c.lee@intel.com>
-> Signed-off-by: Nirmoy Das <nirmoy.das@intel.com>
-> ---
->  drivers/gpu/drm/i915/gem/i915_gem_userptr.c | 3 +++
->  1 file changed, 3 insertions(+)
+> References
 > 
-> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_userptr.c b/drivers/gpu/drm/i915/gem/i915_gem_userptr.c
-> index 0e21ce9d3e5a..61abfb505766 100644
-> --- a/drivers/gpu/drm/i915/gem/i915_gem_userptr.c
-> +++ b/drivers/gpu/drm/i915/gem/i915_gem_userptr.c
-> @@ -349,6 +349,9 @@ i915_gem_userptr_release(struct drm_i915_gem_object *obj)
->  {
->  	GEM_WARN_ON(obj->userptr.page_ref);
->  
-> +	if (!obj->userptr.notifier.mm)
-> +		return;
-> +
-
-hmmm... right, it looks that we need this protection. But...
-
-I mean, feel free to use
-Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
-
-for this patch,
-
-but I believe that if this mmu insert failed we might have other
-deeper problems like when checking i915_gem_object_is_userptr() ?
-
-No?!
-
->  	mmu_interval_notifier_remove(&obj->userptr.notifier);
->  	obj->userptr.notifier.mm = NULL;
->  }
-> -- 
-> 2.42.0
-> 
+>    Visible links
+>    1. mailto:schalbroeck@gmail.com
