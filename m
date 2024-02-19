@@ -2,29 +2,143 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 50EBC85ACB0
-	for <lists+intel-gfx@lfdr.de>; Mon, 19 Feb 2024 21:00:25 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 57B3985ACBC
+	for <lists+intel-gfx@lfdr.de>; Mon, 19 Feb 2024 21:03:11 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 965FC10E0D2;
-	Mon, 19 Feb 2024 20:00:22 +0000 (UTC)
-X-Original-To: intel-gfx@lists.freedesktop.org
-Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from 8e613ede5ea5 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D312710E0D2;
- Mon, 19 Feb 2024 20:00:21 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============2851976776326679713=="
-MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Fi=2ECI=2EBAT=3A_success_for_drm/i915=3A_Fix_possible_nu?=
- =?utf-8?q?ll_pointer_dereference_after_drm=5Fdbg=5Fprinter_conversion?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Tvrtko Ursulin" <tvrtko.ursulin@linux.intel.com>
-Cc: intel-gfx@lists.freedesktop.org
-Date: Mon, 19 Feb 2024 20:00:21 -0000
-Message-ID: <170837282186.89494.17781548380260326025@8e613ede5ea5>
-X-Patchwork-Hint: ignore
+	by gabe.freedesktop.org (Postfix) with ESMTP id BF56C10E0FA;
+	Mon, 19 Feb 2024 20:03:08 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="WTLePPfH";
+	dkim-atps=neutral
+X-Original-To: Intel-gfx@lists.freedesktop.org
+Delivered-To: Intel-gfx@lists.freedesktop.org
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 954C210E0FA;
+ Mon, 19 Feb 2024 20:03:06 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1708372986; x=1739908986;
+ h=date:from:to:cc:subject:message-id:references:
+ in-reply-to:mime-version;
+ bh=9yCBWrvfCqjKPI3J9gaPIfNCv2QbxY8lAnm6svBOTJA=;
+ b=WTLePPfHHzvEvKAc2dNHzDd4ldS7WZBNJdaBJuTdIeF6kuBhRbLDs0hd
+ 6UrEYimgQTi+hUXetcsTofaa/bz1OqfomL45zcwSVPn9STtj0th88idoJ
+ gNm35lKo+J94JfX0LGnh5Ygq23ClQzouxXApKckQjodlvvAa2UByfG1Ag
+ xYrAapbeDd/ocg/q9RXcuuvf2ay6A92H1sbe+5eAzKmp33xEDIHpg10QH
+ E65sFAsJRykcDnYMthb7Omfj2x6kD90SmgwMutYS/Tc+GVnMe6CiAROwd
+ rh4WaeOPNP/1gQxELQrkiLdh0tcxOc+lfKNy78aj8Lk4R9xI01HsWlvPk w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10989"; a="2330404"
+X-IronPort-AV: E=Sophos;i="6.06,170,1705392000"; 
+   d="scan'208";a="2330404"
+Received: from fmviesa002.fm.intel.com ([10.60.135.142])
+ by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 Feb 2024 12:03:05 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.06,170,1705392000"; d="scan'208";a="27745528"
+Received: from orsmsx602.amr.corp.intel.com ([10.22.229.15])
+ by fmviesa002.fm.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
+ 19 Feb 2024 12:03:05 -0800
+Received: from orsmsx610.amr.corp.intel.com (10.22.229.23) by
+ ORSMSX602.amr.corp.intel.com (10.22.229.15) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.35; Mon, 19 Feb 2024 12:03:04 -0800
+Received: from orsedg603.ED.cps.intel.com (10.7.248.4) by
+ orsmsx610.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.35 via Frontend Transport; Mon, 19 Feb 2024 12:03:04 -0800
+Received: from NAM04-BN8-obe.outbound.protection.outlook.com (104.47.74.40) by
+ edgegateway.intel.com (134.134.137.100) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.1.2507.35; Mon, 19 Feb 2024 12:03:03 -0800
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=GKmYmzzxUs/r+jZ9YoEmVeNewugMdQStTagEr+gEOat2h3Gv0eq9NpV/5JD3+HUJ7zDkK/bOWmI2s5nlGklxoQv5CMS5+9eRhX0mrHWkdC/WT2Ts5hBqZ0u3/9uEpRiBMwgatiLlC+bBL8KSh29BveTV5tIVCBQguVqShEBmtOkegTjLB+gqBmCS80T1ZyHWVQ7tsIN6gTOIXw0nI+CSkR3C2lELgkjbn2Hj51it+D2wOiX89Vdgwi2W63krHKOjI7O5wkJHYuUL9X8unlWp/K3JccUyG+4LfDwqC0qX0Xmtx8cCITVWSx+GxwUvp447wuwCyvhruz2kGzZ2f5EgBQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=v3CsuNvd/vVMuTtHiXp5Fqc/mTUP4HdQY3V2pvhGrj0=;
+ b=C6zyReXmkpEGOj7FKJEbeKvOok9rEBNxjCAyhGtIs6QNS+0aMY3cujJWuCvdXnaHYXk2PbpUuZLOqzdcC7EFoOEsVraDqLChB/aedrQBvRfH5vCZ0ZV//XsPBp3iO50o36s4bzvxU9KTUfasxh3sF40Y8O+k/pyJ2oVWFseYL+Kruog4S3Mwun5qtOhV2tJ/xHaMJgulgvH2zpe6DSK8jH7rTaCMJ8n2hJJR1408eXbhCaGnDeS2hFHrnU6OJpU/V9z6k5pMnB3UeRNfMg8jD5zHDS/gRgxc/Q9rZzvEBlSakCWGXsrsL7958T405wzZlx/IHfBwAMI/b+MfR7gilg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+Received: from MN0PR11MB6059.namprd11.prod.outlook.com (2603:10b6:208:377::9)
+ by SN7PR11MB7066.namprd11.prod.outlook.com (2603:10b6:806:299::15)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7292.38; Mon, 19 Feb
+ 2024 20:03:00 +0000
+Received: from MN0PR11MB6059.namprd11.prod.outlook.com
+ ([fe80::a7f1:384c:5d93:1d1d]) by MN0PR11MB6059.namprd11.prod.outlook.com
+ ([fe80::a7f1:384c:5d93:1d1d%4]) with mapi id 15.20.7292.036; Mon, 19 Feb 2024
+ 20:03:00 +0000
+Date: Mon, 19 Feb 2024 15:02:55 -0500
+From: Rodrigo Vivi <rodrigo.vivi@intel.com>
+To: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+CC: <Intel-gfx@lists.freedesktop.org>, <dri-devel@lists.freedesktop.org>,
+ Tvrtko Ursulin <tvrtko.ursulin@intel.com>, Dan Carpenter
+ <dan.carpenter@linaro.org>, Jani Nikula <jani.nikula@intel.com>, Luca Coelho
+ <luciano.coelho@intel.com>, Maxime Ripard <mripard@kernel.org>, Jani Nikula
+ <jani.nikula@linux.intel.com>
+Subject: Re: [PATCH] drm/i915: Fix possible null pointer dereference after
+ drm_dbg_printer conversion
+Message-ID: <ZdOz78jQu-GvJuDJ@intel.com>
 References: <20240219131423.1854991-1-tvrtko.ursulin@linux.intel.com>
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
 In-Reply-To: <20240219131423.1854991-1-tvrtko.ursulin@linux.intel.com>
+X-ClientProxiedBy: BYAPR05CA0042.namprd05.prod.outlook.com
+ (2603:10b6:a03:74::19) To MN0PR11MB6059.namprd11.prod.outlook.com
+ (2603:10b6:208:377::9)
+MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: MN0PR11MB6059:EE_|SN7PR11MB7066:EE_
+X-MS-Office365-Filtering-Correlation-Id: 5d06b2ba-fa9d-44c4-b527-08dc3185c5d9
+X-LD-Processed: 46c98d88-e344-4ed4-8496-4ed7712e255d,ExtAddr
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: Jxqh8SycgzRjn08aHvTIMETpW43I/37W80gKbrCuxqvksvjzDSeXr1LAlpehB0lbf4b5po7UWbgCotYfwxNp39WsV1rb5LoYL8+aHG1bARlmVFc5flCxSJAtVIlO4+WFvoXrVC5JsWd9bseQwnT2ZO6g7x0mbbZsw8SQt5NFnrQb5boOB6/vBvwmHCAEnHXGz9rf4rwDwFFqwEqsnYCKQeNmh3E4Yu9K03dviiVxrbpYPomrCAx/7G8SKLvAs3MLFLDDWKhqawUFUofk1v03Ob5esauZhglRpEcnMVHuNs5jQ/AXaPDfJMp8KdgckhSk8scrs31VJlKU9FWYtcs7enYzvfPWxG4qKI860Btp3p5t0RVPA1UvRVRN0AcYJOAfAq659l+UqeaGrmz9Q187Mrt1ImEYlndpObh5UrXBuEcKZ46i7UZ0L61dYvtxS78QVccw9GF5WOEnvUiXUKudE+abYKFF7sGwHnD2l+TXK4/MAgNRRr5FYgEbml5ScJp5ZJWd4y8rjd+2e3O0DRO3BQ==
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:MN0PR11MB6059.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230031); DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?j1XsZb1dqQGZYnj5iBzMCjPR4vp7ol9vJ2Rur8dU8n8j3JGli+mnJE18GcYT?=
+ =?us-ascii?Q?YR7AQfb2tXKwBoCt+fO7swWdPVPgYcmy7h3ay5ae0QWlKirzn9pVfwiKrfa8?=
+ =?us-ascii?Q?DGQgBBSQYNBOX/xkXo5JKng05LDAIHbYdO+sjl5gQm9PTC0rkjqJBMZfkhGr?=
+ =?us-ascii?Q?v+GMzZNpI9G5csX00smbVsPhzMxWARyPJRb/5LTck0LQY10oTFCPZmKpA3N4?=
+ =?us-ascii?Q?+3mIUYLZZntv7P7IcwlVWtfhT1WdbBB/oXntLlZLyrb/iqAdUYLcTZT+SROG?=
+ =?us-ascii?Q?UsJjgIUG5EwuynmwE3Ovx8MxnLTIivS2bZmd7I8PetaMO6ohkYZnfWCcXZcR?=
+ =?us-ascii?Q?0SDFzFDY/Mb02t2R/HOgtfkCXSqnGE4LeToXzrybmhe7gbP9aT90daoWqAuo?=
+ =?us-ascii?Q?kvFXJPrZSOMvNl7iFuMvCitdwx09X3cvPL6VyMyiu/VCCwBF25qOLTHBK2vA?=
+ =?us-ascii?Q?eAYoKzrZdPa9e4XqwKf7cwwcFGxRXA8kwTg0oowXCT4r4elOTmiX4WVo4ySZ?=
+ =?us-ascii?Q?yyHOiKRucFcQmCiYMVa8JZHcZUmZHAY9HeRjs09SpAUnLQ0n7g2LTfxdaeR5?=
+ =?us-ascii?Q?4t/lhXTD+VSoaL7uCzUgQhV/fft/4g2Ay6eq2VYCpnjwCIy6ZqfIVTI0TxSK?=
+ =?us-ascii?Q?EFNirlkBVpxV3UdVSmigG1rLHKlUT+fZ/K3pMsq65DvHOCN76rQXE4NdEd6z?=
+ =?us-ascii?Q?JlUNJKg/xEUSM1izG5vQj4MVfD5aT+YC9ahD1FkCqgDWEcuIjN5705qhgVmX?=
+ =?us-ascii?Q?rm3c63+j9BBjxEx0/D6bdh8QRzKXHLaa3mSqTNVtO2+0g9/GU0W64lcgr0Nt?=
+ =?us-ascii?Q?xuenyFSZfHAzhA3fqWBVuL2xPiv9KU1Z/1pvV5JJ3xdmpkIoVNEv1sLN7E2a?=
+ =?us-ascii?Q?X/nEYyNSdWZb+zvgPplMD95aAPJ0/tN6gPxPdwFi1gH0aa3IG/37N2l/FIJr?=
+ =?us-ascii?Q?ErwMne1VwdJ2UNV/ADlLDEjotvezrqwFcWR4WL1BIhsCkTTM/574ufUhuI5P?=
+ =?us-ascii?Q?/qyPmPhjbOs8vUMjEpwtqs1Gc4WKal/Pv0Y2UjejzgZMUyoWl6pwEaUWlbY0?=
+ =?us-ascii?Q?l3wBUGUQOTUdw3iCGXC6KvDKZ8itEYobg18G92CoPiQReppO8hkUi827Z68y?=
+ =?us-ascii?Q?x26GLNLDiLj0iJL2fp6gynScFpvBaRBqMUWUNUn1BXMkBXTodU2ac6akaKJp?=
+ =?us-ascii?Q?TamWMv4iQjFseAudbGpxci7HsAAot50/hCGsP5C7EcCesBGQYq7GlDTkIAb9?=
+ =?us-ascii?Q?TgApAdKyKWSDTTKaNzib01HOTT6UmTqkn639iYxxIK2ugl/wJpqpboejUBYS?=
+ =?us-ascii?Q?5w/bgBn7rjr+uHJAT+GWDROMcHyqZ4OZz/zQJzKmtsEw5tGbkv8Rj78M6sOF?=
+ =?us-ascii?Q?dH8t1wYb8iCku+kL1OUZ7u4XO4Ok3t0sAqO0NMKHmJVSRrouPLosNxM4qCUJ?=
+ =?us-ascii?Q?I2DNYpi8VGDD1pAvbyhK98gkYe/NmCP7c+Kit6E7p33DEey3R6D5EUNUWNcw?=
+ =?us-ascii?Q?krhRjfDl3NrLx6uxWwlflM0+g+bwCmoeq4H/qkQCj5UsY6aDCWTFTeq3X7Zf?=
+ =?us-ascii?Q?tjpcnxIOWPURRXIQ89hgeqvOUyCVrpoahllo81gZ?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: 5d06b2ba-fa9d-44c4-b527-08dc3185c5d9
+X-MS-Exchange-CrossTenant-AuthSource: MN0PR11MB6059.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 19 Feb 2024 20:03:00.2034 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: nMzBANqvK6iHRs7D9UczQYp8j1B/OdPEVZOppjv3mVUSZg6yVX8jlbHdpkgUxJu7YPXVySM4WrGI0ydfyUzNUA==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SN7PR11MB7066
+X-OriginatorOrg: intel.com
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -37,191 +151,44 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============2851976776326679713==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+On Mon, Feb 19, 2024 at 01:14:23PM +0000, Tvrtko Ursulin wrote:
+> From: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+> 
+> Request can be NULL if no guilty request was identified so simply use
+> engine->i915 instead.
+> 
+> Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+> Fixes: d50892a9554c ("drm/i915: switch from drm_debug_printer() to device specific drm_dbg_printer()")
+> Reported-by: Dan Carpenter <dan.carpenter@linaro.org>
+> Cc: Jani Nikula <jani.nikula@intel.com>
+> Cc: Luca Coelho <luciano.coelho@intel.com>
+> Cc: Maxime Ripard <mripard@kernel.org>
+> Cc: Jani Nikula <jani.nikula@linux.intel.com>
 
-== Series Details ==
+Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
 
-Series: drm/i915: Fix possible null pointer dereference after drm_dbg_printer conversion
-URL   : https://patchwork.freedesktop.org/series/130080/
-State : success
-
-== Summary ==
-
-CI Bug Log - changes from CI_DRM_14297 -> Patchwork_130080v1
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130080v1/index.html
-
-Participating hosts (36 -> 36)
-------------------------------
-
-  Additional (1): bat-kbl-2 
-  Missing    (1): fi-snb-2520m 
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_130080v1 that come from known issues:
-
-### CI changes ###
-
-#### Issues hit ####
-
-  * boot:
-    - bat-jsl-1:          [PASS][1] -> [FAIL][2] ([i915#8293])
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14297/bat-jsl-1/boot.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130080v1/bat-jsl-1/boot.html
-    - fi-cfl-8109u:       [PASS][3] -> [FAIL][4] ([i915#8293])
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14297/fi-cfl-8109u/boot.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130080v1/fi-cfl-8109u/boot.html
-
-  
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@fbdev@info:
-    - bat-kbl-2:          NOTRUN -> [SKIP][5] ([fdo#109271] / [i915#1849])
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130080v1/bat-kbl-2/igt@fbdev@info.html
-
-  * igt@gem_lmem_swapping@parallel-random-engines:
-    - bat-kbl-2:          NOTRUN -> [SKIP][6] ([fdo#109271]) +35 other tests skip
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130080v1/bat-kbl-2/igt@gem_lmem_swapping@parallel-random-engines.html
-
-  * igt@i915_selftest@live@execlists:
-    - fi-bsw-nick:        [PASS][7] -> [ABORT][8] ([i915#7911])
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14297/fi-bsw-nick/igt@i915_selftest@live@execlists.html
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130080v1/fi-bsw-nick/igt@i915_selftest@live@execlists.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
-  [i915#10194]: https://gitlab.freedesktop.org/drm/intel/issues/10194
-  [i915#1849]: https://gitlab.freedesktop.org/drm/intel/issues/1849
-  [i915#7911]: https://gitlab.freedesktop.org/drm/intel/issues/7911
-  [i915#8293]: https://gitlab.freedesktop.org/drm/intel/issues/8293
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_14297 -> Patchwork_130080v1
-
-  CI-20190529: 20190529
-  CI_DRM_14297: 52bdc58b3b2bd7b77710f0d6710c1b9dbaee1af9 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_7718: 40e8b9122853f455c84afcfa56469a6bc9a0d564 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_130080v1: 52bdc58b3b2bd7b77710f0d6710c1b9dbaee1af9 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-### Linux commits
-
-c6715af47a3f drm/i915: Fix possible null pointer dereference after drm_dbg_printer conversion
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130080v1/index.html
-
---===============2851976776326679713==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915: Fix possible null pointer dereference after drm_dbg_printer conversion</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/130080/">https://patchwork.freedesktop.org/series/130080/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130080v1/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130080v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_14297 -&gt; Patchwork_130080v1</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130080v1/index.html</p>
-<h2>Participating hosts (36 -&gt; 36)</h2>
-<p>Additional (1): bat-kbl-2 <br />
-  Missing    (1): fi-snb-2520m </p>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_130080v1 that come from known issues:</p>
-<h3>CI changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>boot:<ul>
-<li>bat-jsl-1:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14297/bat-jsl-1/boot.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130080v1/bat-jsl-1/boot.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/8293">i915#8293</a>)</li>
-<li>fi-cfl-8109u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14297/fi-cfl-8109u/boot.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130080v1/fi-cfl-8109u/boot.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/8293">i915#8293</a>)</li>
-</ul>
-</li>
-</ul>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@fbdev@info:</p>
-<ul>
-<li>bat-kbl-2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130080v1/bat-kbl-2/igt@fbdev@info.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/1849">i915#1849</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_lmem_swapping@parallel-random-engines:</p>
-<ul>
-<li>bat-kbl-2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130080v1/bat-kbl-2/igt@gem_lmem_swapping@parallel-random-engines.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +35 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@execlists:</p>
-<ul>
-<li>fi-bsw-nick:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14297/fi-bsw-nick/igt@i915_selftest@live@execlists.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130080v1/fi-bsw-nick/igt@i915_selftest@live@execlists.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/7911">i915#7911</a>)</li>
-</ul>
-</li>
-</ul>
-<p>{name}: This element is suppressed. This means it is ignored when computing<br />
-          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_14297 -&gt; Patchwork_130080v1</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_14297: 52bdc58b3b2bd7b77710f0d6710c1b9dbaee1af9 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_7718: 40e8b9122853f455c84afcfa56469a6bc9a0d564 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  Patchwork_130080v1: 52bdc58b3b2bd7b77710f0d6710c1b9dbaee1af9 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<h3>Linux commits</h3>
-<p>c6715af47a3f drm/i915: Fix possible null pointer dereference after drm_dbg_printer conversion</p>
-
-</body>
-</html>
-
---===============2851976776326679713==--
+> ---
+>  drivers/gpu/drm/i915/gt/intel_engine_heartbeat.c | 4 ++--
+>  1 file changed, 2 insertions(+), 2 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/i915/gt/intel_engine_heartbeat.c b/drivers/gpu/drm/i915/gt/intel_engine_heartbeat.c
+> index 5f8d86e25993..8d4bb95f8424 100644
+> --- a/drivers/gpu/drm/i915/gt/intel_engine_heartbeat.c
+> +++ b/drivers/gpu/drm/i915/gt/intel_engine_heartbeat.c
+> @@ -96,8 +96,8 @@ static void heartbeat_commit(struct i915_request *rq,
+>  static void show_heartbeat(const struct i915_request *rq,
+>  			   struct intel_engine_cs *engine)
+>  {
+> -	struct drm_printer p = drm_dbg_printer(&rq->i915->drm, DRM_UT_DRIVER,
+> -					       "heartbeat");
+> +	struct drm_printer p =
+> +		drm_dbg_printer(&engine->i915->drm, DRM_UT_DRIVER, "heartbeat");
+>  
+>  	if (!rq) {
+>  		intel_engine_dump(engine, &p,
+> -- 
+> 2.40.1
+> 
