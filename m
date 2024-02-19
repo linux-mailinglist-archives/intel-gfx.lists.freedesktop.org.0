@@ -2,59 +2,55 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9D75785A3B2
-	for <lists+intel-gfx@lfdr.de>; Mon, 19 Feb 2024 13:45:25 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 64C4E85A425
+	for <lists+intel-gfx@lfdr.de>; Mon, 19 Feb 2024 14:04:26 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5633A10E408;
-	Mon, 19 Feb 2024 12:45:23 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BD0AD10E372;
+	Mon, 19 Feb 2024 13:04:24 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="q7I5AxEf";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="AUF0ansf";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 14E7810E406;
- Mon, 19 Feb 2024 12:45:22 +0000 (UTC)
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
- by dfw.source.kernel.org (Postfix) with ESMTP id 2CAA460D17;
- Mon, 19 Feb 2024 12:45:21 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D01E4C433C7;
- Mon, 19 Feb 2024 12:45:20 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1708346720;
- bh=e7mMUZWo5YhuNllD0gWdAThtgZfQ0LlGszn85q+IdWA=;
- h=References:In-Reply-To:From:Date:Subject:To:List-Id:Cc:From;
- b=q7I5AxEfybMWMtzLcv0UyKmUK/eiKX2W50PG7bd+c+3K2AhREBxkbkIwOfPTkZ+0h
- dn+MOTT2Hv8SvLZ654j7GrQH4sKxWbgTrQTTT2L8/0VXIAcqTH1UAJpD+KbvokyvUV
- Kd59dh964EQdDOJAqOMAcbtQ9NYpeiYUrVVfze7u7fS9qI1iDZEvzkhEyCFSfjaZJq
- i7BR1+dw+R/QcHQzYBnJfwSI7o+pJf2w2/LkmtEivmAxMnSFw9HYWEkjslPa0KEsVZ
- dmNwU3LNe9zObwB0QrPiV5/fmSrLAbs5FA+3/DvR43w5O9CpfMiedS9Czc0qESi6zU
- /5K1KnXLz3Uag==
-Received: by mail-yw1-f176.google.com with SMTP id
- 00721157ae682-607e54b6cf5so24163547b3.0; 
- Mon, 19 Feb 2024 04:45:20 -0800 (PST)
-X-Forwarded-Encrypted: i=1;
- AJvYcCVE2kZwyR7Mj/VGZa6chrpLRDcZSfQ4PAEcaZA7u6DaJfOn/4gDjY/DEQ3t3CVqxfFTBDaUhqrj73f4hJf7IWbESPvo6D+BH3YtzR/Jk2Nxk7oYszVXX+iLTvzYq3HlUJ3sn0o6aHgSjMfYgdBL0pg=
-X-Gm-Message-State: AOJu0Yz/W6pCHEJJYdJ+BhCNPJ1Dy05hDzvVt2TkSS8Sx8GUhdN1IWx8
- wvfrgk3iRnwssn4cwTSh6fxO4fCA0VXDs4W4gLx38Jr9Rv3LfXJEMGXF/8Rje67ogKeWvy+XiV1
- zYmXPAtm7Ylf4B4XcyDxuth9jFN8=
-X-Google-Smtp-Source: AGHT+IHAEON4SmS+VCfUEs2H9U/jtJ7Y0XtxYH/deQXiTkty4ZCsoxuXH4akdX+WS2DHCO8grV04bfm+LWTnUSEd6Ko=
-X-Received: by 2002:a81:920f:0:b0:604:de1c:5406 with SMTP id
- j15-20020a81920f000000b00604de1c5406mr7828698ywg.8.1708346720010; Mon, 19 Feb
- 2024 04:45:20 -0800 (PST)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 020D910E20F;
+ Mon, 19 Feb 2024 13:04:23 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1708347864; x=1739883864;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=eLx8SsGDcLIwXcAYcznhdvVOFyZUXADeQ6SsZ8dcwz4=;
+ b=AUF0ansfqflvCJcGLOhOtgxeHeNwg48Jgjf54LN1Hmbb8Pv9pH/Glguj
+ ILhq3avhuTamblMosN84yEKLFkOo7IgfV2hEPuK1VmOtDF+2qVmBX/u2K
+ ZOp5RNXkvmm+pGYjWPKsub9Zl48FqV9ae7yiC0HDhElRhQZGb58D1waG1
+ yO3WXYybyNCicCeazsfkWBKuwXMYDBzMa5Pej8eoFsrdWZVwzzhkuEKJs
+ oIJ1BdsuXVR5CsdFcrYpIdaPoFqldO9gl/YXjlOmVRNP0FkAfB/mHNANe
+ /TO15izyN1eC3F6y1pWQ+FIp0pY155YEhB11D8IUOHTFpn13foMbm6xLU Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10988"; a="27871574"
+X-IronPort-AV: E=Sophos;i="6.06,170,1705392000"; d="scan'208";a="27871574"
+Received: from orviesa006.jf.intel.com ([10.64.159.146])
+ by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 Feb 2024 05:04:23 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.06,170,1705392000"; 
+   d="scan'208";a="4850121"
+Received: from nirmoyda-desk.igk.intel.com ([10.102.138.190])
+ by orviesa006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 Feb 2024 05:04:21 -0800
+From: Nirmoy Das <nirmoy.das@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Cc: dri-devel@lists.freedesktop.org, Nirmoy Das <nirmoy.das@intel.com>,
+ Andi Shyti <andi.shyti@linux.intel.com>, Shawn Lee <shawn.c.lee@intel.com>
+Subject: [PATCH] drm/i915: check before removing mm notifier
+Date: Mon, 19 Feb 2024 13:50:47 +0100
+Message-ID: <20240219125047.28906-1-nirmoy.das@intel.com>
+X-Mailer: git-send-email 2.42.0
 MIME-Version: 1.0
-References: <20240216211432.519411-1-John.C.Harrison@Intel.com>
-In-Reply-To: <20240216211432.519411-1-John.C.Harrison@Intel.com>
-From: Josh Boyer <jwboyer@kernel.org>
-Date: Mon, 19 Feb 2024 07:45:09 -0500
-X-Gmail-Original-Message-ID: <CA+5PVA4HNHBpR_5LBi8KbE3artRf6WZUMFXTR_myiDhm58YXkA@mail.gmail.com>
-Message-ID: <CA+5PVA4HNHBpR_5LBi8KbE3artRf6WZUMFXTR_myiDhm58YXkA@mail.gmail.com>
-Subject: Re: PR for new GuC v70.20.0 binaries
-To: John.C.Harrison@intel.com
-Cc: linux-firmware@kernel.org, kyle@kernel.org, ben@decadent.org.uk, 
- intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Organization: Intel Deutschland GmbH, Registered Address: Am Campeon 10,
+ 85579 Neubiberg, Germany,
+ Commercial Register: Amtsgericht Muenchen HRB 186928 
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -70,41 +66,30 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, Feb 16, 2024 at 4:16=E2=80=AFPM <John.C.Harrison@intel.com> wrote:
->
-> The following changes since commit fbef4d381e3d0143427e1a8c924be8e738c0fc=
-2d:
->
->   Merge branch 'main' into 'main' (2024-02-08 12:24:01 +0000)
->
-> are available in the Git repository at:
->
->   git://anongit.freedesktop.org/drm/drm-firmware guc_70.20.0
+Error in mmu_interval_notifier_insert() can leave a NULL
+notifier.mm pointer. Catch that and return early.
 
-Merged and pushed out.
+Cc: Andi Shyti <andi.shyti@linux.intel.com>
+Cc: Shawn Lee <shawn.c.lee@intel.com>
+Signed-off-by: Nirmoy Das <nirmoy.das@intel.com>
+---
+ drivers/gpu/drm/i915/gem/i915_gem_userptr.c | 3 +++
+ 1 file changed, 3 insertions(+)
 
-https://gitlab.com/kernel-firmware/linux-firmware/-/merge_requests/156
+diff --git a/drivers/gpu/drm/i915/gem/i915_gem_userptr.c b/drivers/gpu/drm/i915/gem/i915_gem_userptr.c
+index 0e21ce9d3e5a..61abfb505766 100644
+--- a/drivers/gpu/drm/i915/gem/i915_gem_userptr.c
++++ b/drivers/gpu/drm/i915/gem/i915_gem_userptr.c
+@@ -349,6 +349,9 @@ i915_gem_userptr_release(struct drm_i915_gem_object *obj)
+ {
+ 	GEM_WARN_ON(obj->userptr.page_ref);
+ 
++	if (!obj->userptr.notifier.mm)
++		return;
++
+ 	mmu_interval_notifier_remove(&obj->userptr.notifier);
+ 	obj->userptr.notifier.mm = NULL;
+ }
+-- 
+2.42.0
 
-josh
-
->
-> for you to fetch changes up to 28c2472d37d089edb56c75e3af83511babaa756c:
->
->   xe: First GuC release for LNL and Xe (2024-02-14 16:28:32 -0800)
->
-> ----------------------------------------------------------------
-> John Harrison (2):
->       i915: Add GuC v70.20.0 for ADL-P, DG1, DG2, MTL and TGL
->       xe: First GuC release for LNL and Xe
->
->  LICENSE.xe           |  39 +++++++++++++++++++++++++++++++++++++++
->  WHENCE               |  20 ++++++++++++++------
->  i915/adlp_guc_70.bin | Bin 342848 -> 347584 bytes
->  i915/dg1_guc_70.bin  | Bin 272512 -> 321472 bytes
->  i915/dg2_guc_70.bin  | Bin 443200 -> 410368 bytes
->  i915/mtl_guc_70.bin  | Bin 365376 -> 332544 bytes
->  i915/tgl_guc_70.bin  | Bin 330304 -> 335168 bytes
->  xe/lnl_guc_70.bin    | Bin 0 -> 336640 bytes
->  8 files changed, 53 insertions(+), 6 deletions(-)
->  create mode 100644 LICENSE.xe
->  create mode 100644 xe/lnl_guc_70.bin
