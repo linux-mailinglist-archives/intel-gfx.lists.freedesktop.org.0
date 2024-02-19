@@ -2,60 +2,63 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 89B5385A28E
-	for <lists+intel-gfx@lfdr.de>; Mon, 19 Feb 2024 12:55:15 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 98B7385A1BD
+	for <lists+intel-gfx@lfdr.de>; Mon, 19 Feb 2024 12:16:37 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CB02D10E303;
-	Mon, 19 Feb 2024 11:55:13 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7EE1210E2D9;
+	Mon, 19 Feb 2024 11:16:35 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="ItgQHCCQ";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="lmRszKxJ";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-yw1-f173.google.com (mail-yw1-f173.google.com
- [209.85.128.173])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DAC0710E06A
- for <intel-gfx@lists.freedesktop.org>; Sun, 18 Feb 2024 18:12:36 +0000 (UTC)
-Received: by mail-yw1-f173.google.com with SMTP id
- 00721157ae682-607bfa4c913so33573017b3.3
- for <intel-gfx@lists.freedesktop.org>; Sun, 18 Feb 2024 10:12:36 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1708279956; x=1708884756; darn=lists.freedesktop.org;
- h=to:subject:message-id:date:from:mime-version:from:to:cc:subject
- :date:message-id:reply-to;
- bh=b7pv4fVBRv/WCzNomVZws1J8gGnSIYaMsfGJePZwJi8=;
- b=ItgQHCCQ1YipbznJoovw4UduWf61aAfuwRd7XXRTQIYyF9oM1nWR+630nrryl7C5pd
- TQqO1OUoZydAVsh6egeRBPu9p1OUqQ2pL5bPXzAZC02VzFTW3ogrUYBICj+M5pqeXvf5
- 7Q//ZKqAhxKxZyARQ5KVUb282ZWlaLSTzY2i2I6YsDntFcm3mT6uo4nP1K/Ygb2Y9b52
- qqg5M4z93iVvIkZOJIBEsjnBTrQiAydy7+xBMlUdYSzOoeOvmz/bG62/ymv4B51f//DW
- 3KlkCUkA5aAgvyzip4moIOrps1VbaV9zJ9cBQZZcdrDgId0jitK1XNJ1eOEDMM5y8cvU
- BnUw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1708279956; x=1708884756;
- h=to:subject:message-id:date:from:mime-version:x-gm-message-state
- :from:to:cc:subject:date:message-id:reply-to;
- bh=b7pv4fVBRv/WCzNomVZws1J8gGnSIYaMsfGJePZwJi8=;
- b=aK+YZeSnavzgOuLnemIRqinfC7zU84Rt5Pc54XDEXhZi7cdzM7sj0RC9JR8a0M7sSa
- aqNxMgJ97g59xtjL//dgz7mSfovMmj+u31OmmopFZxmStTTbk/CyjhnUZd/CVb8L5LPR
- uSh9VR94yc+Lk1ZW55gcz4lAhJ92IvRy6huZDMXsj9OxHGe3FhIP/0mbUDuMUwznwPiM
- sVHJSjvTyTicULrW+mbP9gnetM+tNSWkwO5Jy03xAZWRVgc65MtcsEkEEWYZ3fCfOSGd
- d4ZYIF6kOrcxAuxNqPO5CfbOCdHC71CswG4b2362gxIUdIbGEXBgJhr2gzFWqoqbyXxb
- FBHA==
-X-Gm-Message-State: AOJu0YwemWNAWduZexUz5nGnygxOUj7kt/FcgeBNKnq8eS6MHa4fktjX
- DH0Cpzej7nIrWjgpqvTl4vRtnbp3AaZFkODXf8jA9BO9v6ESzkZNVAhi0RhTApDNJ6plnln7Kag
- zVWmkKQA0+Oc9fD61G6+k8kjtpCPfapJgusU=
-X-Google-Smtp-Source: AGHT+IHYai6lTurYb0eoC3dtWLktb5EOEaz142yzPW8gY2ifsrKEWaDDOMjcOIHzLGJ538BJaEpSEdXimHPKG//K/Oc=
-X-Received: by 2002:a81:92cb:0:b0:607:eed3:510d with SMTP id
- j194-20020a8192cb000000b00607eed3510dmr8000951ywg.29.1708279955495; Sun, 18
- Feb 2024 10:12:35 -0800 (PST)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6B77B10E2D9;
+ Mon, 19 Feb 2024 11:16:34 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1708341395; x=1739877395;
+ h=message-id:date:mime-version:subject:to:cc:references:
+ from:in-reply-to:content-transfer-encoding;
+ bh=fI/xuoTrzJOxWvDHx/Gdn2cdzI4ltJbKPX1loVrgIvw=;
+ b=lmRszKxJKFZx3zzpc+N87TJjqmMfjVVwGcQUFT2eqZH9Q/nIoVKOLMb2
+ 7LaSbB6dIiyGAad/da16jkbFQhAYhO4WP4RtXjQgY8GYo++F34HjYPriQ
+ WLheVeZiuW56SSUdvXowZNwRDj7pg/8JA+P4PgGGMK8UcTQUPJXnaJ7NF
+ 0ZhXBMUOuJXU5zHB6LEGrKLPCXYIJbY4WDngPBJi0CTNZD0Fny2jAzX/r
+ NwluWmESyR1MrceW6Zs6rgGRBhjcUKSi7l8jO+WraBhzOPLyU8C2RqPQg
+ bC4Ic6NIv+qgbxFyUFN4kBDMZj0wLaSZahpRSMGrsKd+lysWteG3JpbuV g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10988"; a="2279451"
+X-IronPort-AV: E=Sophos;i="6.06,170,1705392000"; 
+   d="scan'208";a="2279451"
+Received: from orviesa002.jf.intel.com ([10.64.159.142])
+ by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 Feb 2024 03:16:34 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.06,170,1705392000"; d="scan'208";a="35238332"
+Received: from coldacre-mobl1.ger.corp.intel.com (HELO [10.213.215.68])
+ ([10.213.215.68])
+ by orviesa002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 Feb 2024 03:16:31 -0800
+Message-ID: <d61391f6-ff1d-4241-bd9e-2a3bee53c860@linux.intel.com>
+Date: Mon, 19 Feb 2024 11:16:29 +0000
 MIME-Version: 1.0
-From: Bas S <schalbroeck@gmail.com>
-Date: Sun, 18 Feb 2024 19:12:24 +0100
-Message-ID: <CAAuj=_fEjHCsGYzdA20LvP_292oaTHEC4PE4uNFdWHE4UkBMJw@mail.gmail.com>
-Subject: [PATCH] drm/i915/display: Allow tighter hblank span
-To: intel-gfx@lists.freedesktop.org
-Content-Type: multipart/alternative; boundary="000000000000ec9d950611abebcf"
-X-Mailman-Approved-At: Mon, 19 Feb 2024 11:55:12 +0000
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 2/2] drm/i915/gt: Set default CCS mode '1'
+Content-Language: en-US
+To: Andi Shyti <andi.shyti@linux.intel.com>,
+ intel-gfx <intel-gfx@lists.freedesktop.org>,
+ dri-devel <dri-devel@lists.freedesktop.org>
+Cc: Chris Wilson <chris.p.wilson@linux.intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Matt Roper <matthew.d.roper@intel.com>, stable@vger.kernel.org,
+ Andi Shyti <andi.shyti@kernel.org>
+References: <20240215135924.51705-1-andi.shyti@linux.intel.com>
+ <20240215135924.51705-3-andi.shyti@linux.intel.com>
+From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+Organization: Intel Corporation UK Plc
+In-Reply-To: <20240215135924.51705-3-andi.shyti@linux.intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -71,112 +74,139 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---000000000000ec9d950611abebcf
-Content-Type: text/plain; charset="UTF-8"
 
-I ran into an issue with the i915 driver not being able to drive a display
-with this specific modeline:
+On 15/02/2024 13:59, Andi Shyti wrote:
+> Since CCS automatic load balancing is disabled, we will impose a
+> fixed balancing policy that involves setting all the CCS engines
+> to work together on the same load.
+> 
+> Simultaneously, the user will see only 1 CCS rather than the
+> actual number. As of now, this change affects only DG2.
+> 
+> Fixes: d2eae8e98d59 ("drm/i915/dg2: Drop force_probe requirement")
+> Signed-off-by: Andi Shyti <andi.shyti@linux.intel.com>
+> Cc: Chris Wilson <chris.p.wilson@linux.intel.com>
+> Cc: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
+> Cc: Matt Roper <matthew.d.roper@intel.com>
+> Cc: <stable@vger.kernel.org> # v6.2+
+> ---
+>   drivers/gpu/drm/i915/gt/intel_gt.c      | 11 +++++++++++
+>   drivers/gpu/drm/i915/gt/intel_gt_regs.h |  2 ++
+>   drivers/gpu/drm/i915/i915_drv.h         | 17 +++++++++++++++++
+>   drivers/gpu/drm/i915/i915_query.c       |  5 +++--
+>   4 files changed, 33 insertions(+), 2 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/i915/gt/intel_gt.c b/drivers/gpu/drm/i915/gt/intel_gt.c
+> index a425db5ed3a2..e19df4ef47f6 100644
+> --- a/drivers/gpu/drm/i915/gt/intel_gt.c
+> +++ b/drivers/gpu/drm/i915/gt/intel_gt.c
+> @@ -168,6 +168,14 @@ static void init_unused_rings(struct intel_gt *gt)
+>   	}
+>   }
+>   
+> +static void intel_gt_apply_ccs_mode(struct intel_gt *gt)
+> +{
+> +	if (!IS_DG2(gt->i915))
+> +		return;
+> +
+> +	intel_uncore_write(gt->uncore, XEHP_CCS_MODE, 0);
+> +}
+> +
+>   int intel_gt_init_hw(struct intel_gt *gt)
+>   {
+>   	struct drm_i915_private *i915 = gt->i915;
+> @@ -195,6 +203,9 @@ int intel_gt_init_hw(struct intel_gt *gt)
+>   
+>   	intel_gt_init_swizzling(gt);
+>   
+> +	/* Configure CCS mode */
+> +	intel_gt_apply_ccs_mode(gt);
+> +
+>   	/*
+>   	 * At least 830 can leave some of the unused rings
+>   	 * "active" (ie. head != tail) after resume which
+> diff --git a/drivers/gpu/drm/i915/gt/intel_gt_regs.h b/drivers/gpu/drm/i915/gt/intel_gt_regs.h
+> index cf709f6c05ae..c148113770ea 100644
+> --- a/drivers/gpu/drm/i915/gt/intel_gt_regs.h
+> +++ b/drivers/gpu/drm/i915/gt/intel_gt_regs.h
+> @@ -1605,6 +1605,8 @@
+>   #define   GEN12_VOLTAGE_MASK			REG_GENMASK(10, 0)
+>   #define   GEN12_CAGF_MASK			REG_GENMASK(19, 11)
+>   
+> +#define XEHP_CCS_MODE                          _MMIO(0x14804)
+> +
+>   #define GEN11_GT_INTR_DW(x)			_MMIO(0x190018 + ((x) * 4))
+>   #define   GEN11_CSME				(31)
+>   #define   GEN12_HECI_2				(30)
+> diff --git a/drivers/gpu/drm/i915/i915_drv.h b/drivers/gpu/drm/i915/i915_drv.h
+> index e81b3b2858ac..0853ffd3cb8d 100644
+> --- a/drivers/gpu/drm/i915/i915_drv.h
+> +++ b/drivers/gpu/drm/i915/i915_drv.h
+> @@ -396,6 +396,23 @@ static inline struct intel_gt *to_gt(const struct drm_i915_private *i915)
+>   	     (engine__); \
+>   	     (engine__) = rb_to_uabi_engine(rb_next(&(engine__)->uabi_node)))
+>   
+> +/*
+> + * Exclude unavailable engines.
+> + *
+> + * Only the first CCS engine is utilized due to the disabling of CCS auto load
+> + * balancing. As a result, all CCS engines operate collectively, functioning
+> + * essentially as a single CCS engine, hence the count of active CCS engines is
+> + * considered '1'.
+> + * Currently, this applies to platforms with more than one CCS engine,
+> + * specifically DG2.
+> + */
+> +#define for_each_available_uabi_engine(engine__, i915__) \
+> +	for_each_uabi_engine(engine__, i915__) \
+> +		if ((IS_DG2(i915__)) && \
+> +		    ((engine__)->uabi_class == I915_ENGINE_CLASS_COMPUTE) && \
+> +		    ((engine__)->uabi_instance)) { } \
+> +		else
+> +
 
-[drm]] Modeline "1920x720": 60 120980 1920 1932 1936 1948 720 723 733 1035
-0x48 0x9
-[drm:drm_mode_prune_invalid [drm]] Not using 1920x720 mode: H_ILLEGAL
+If you don't want userspace to see some engines, just don't add them to 
+the uabi list in intel_engines_driver_register or thereabouts?
 
-After some investigation I found that intel_mode_valid (and in newer
-kernels, intel_cpu_transcoder_mode_valid) returns MODE_H_ILLEGAL due to
-(htotal - hdisplay) being lower than 32.
-The modeline in question indeed does not satisfy this constraint, as
-HTOTAL(1948) - HDISPLAY(1920) equals 28.
-Changing the driver code to allow for a hblank span of 28 pixels or lower
-resulted in the driver successfully rendering to the display.
-As such I propose this patch to allow for a tighter hblank span.
+Similar as we do for gsc which uses I915_NO_UABI_CLASS, although for ccs 
+you can choose a different approach, whatever is more elegant.
 
-Nb: I am uncertain if the hblank span of 32 pixels has been chosen
-deliberately and what the side-effects could be of lowering this value.
-Any insights into this or alternative solutions would be very much
-appreciated! I also considered introducing a kernel module parameter to
-optionally loosen these mode constraints.
+That is also needed for i915->engine_uabi_class_count to be right, so 
+userspace stats which rely on it are correct.
 
-The referenced modeline is present in a line of ultrawide signage displays
-and has been known to work on other graphics drivers/OSes.
+Regards,
 
-Signed-off-by: Sebastiaan Schalbroeck <schalbroeck@gmail.com>
----
- drivers/gpu/drm/i915/display/intel_display.c | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+Tvrtko
 
-diff --git a/drivers/gpu/drm/i915/display/intel_display.c
-b/drivers/gpu/drm/i915/display/intel_display.c
-index b10aad1..f6aba1d 100644
---- a/drivers/gpu/drm/i915/display/intel_display.c
-+++ b/drivers/gpu/drm/i915/display/intel_display.c
-@@ -7745,13 +7745,13 @@ enum drm_mode_status
-intel_cpu_transcoder_mode_valid(struct drm_i915_private *de
-         */
-        if (DISPLAY_VER(dev_priv) >= 5) {
-                if (mode->hdisplay < 64 ||
--                   mode->htotal - mode->hdisplay < 32)
-+                   mode->htotal - mode->hdisplay < 28)
-                        return MODE_H_ILLEGAL;
-
-                if (mode->vtotal - mode->vdisplay < 5)
-                        return MODE_V_ILLEGAL;
-        } else {
--               if (mode->htotal - mode->hdisplay < 32)
-+               if (mode->htotal - mode->hdisplay < 28)
-                        return MODE_H_ILLEGAL;
-
-                if (mode->vtotal - mode->vdisplay < 3)
-
---
-2.39.2
-
---000000000000ec9d950611abebcf
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr">I ran into an issue with the i915 driver not being able to=
- drive a display with this specific modeline:<br><br>[drm]] Modeline &quot;=
-1920x720&quot;: 60 120980 1920 1932 1936 1948 720 723 733 1035 0x48 0x9<br>=
-[drm:drm_mode_prune_invalid [drm]] Not using 1920x720 mode: H_ILLEGAL<br><b=
-r>After some investigation I found that intel_mode_valid (and in newer kern=
-els, intel_cpu_transcoder_mode_valid) return<span class=3D"gmail_default" s=
-tyle=3D"font-family:tahoma,sans-serif;color:rgb(68,68,68)">s </span>MODE_H_=
-ILLEGAL due to (htotal - hdisplay) being lower than 32.<br>The modeline in =
-question indeed does not satisfy this constraint, as HTOTAL(1948) - HDISPLA=
-Y(1920) equals 28.<br>Changing the driver code to allow for a hblank span o=
-f 28 pixels or lower resulted in the driver successfully rendering to the d=
-isplay.<br>As such I propose this patch to allow for a tighter hblank span.=
-<br><br>Nb: I am uncertain if the hblank span of 32 pixels has been chosen =
-deliberately and what the side-effects could be of lowering this value.<br>=
-Any insights into this or alternative solutions would be very much apprecia=
-ted! I also considered introducing a kernel module parameter to optionally =
-loosen these mode constraints.<br><br>The referenced modeline is present in=
- a line of ultrawide signage displays and has been known to work on other g=
-raphics drivers/OSes.<br><br>Signed-off-by: Sebastiaan Schalbroeck &lt;<a h=
-ref=3D"mailto:schalbroeck@gmail.com">schalbroeck@gmail.com</a>&gt;<br>---<b=
-r>=C2=A0drivers/gpu/drm/i915/display/intel_display.c | 4 ++--<br>=C2=A01 fi=
-le changed, 2 insertions(+), 2 deletions(-)<br><br>diff --git a/drivers/gpu=
-/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_disp=
-lay.c<br>index b10aad1..f6aba1d 100644<br>--- a/drivers/gpu/drm/i915/displa=
-y/intel_display.c<br>+++ b/drivers/gpu/drm/i915/display/intel_display.c<br>=
-@@ -7745,13 +7745,13 @@ enum drm_mode_status intel_cpu_transcoder_mode_vali=
-d(struct drm_i915_private *de<br>=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0*/<br>=
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 if (DISPLAY_VER(dev_priv) &gt;=3D 5) {<br>=C2=
-=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 if (mode-&gt;hdisplay =
-&lt; 64 ||<br>- =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 mode-&gt;htotal - mode-&gt;hdisplay &lt; 32)<br>+ =C2=A0 =C2=A0 =C2=A0 =
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 mode-&gt;htotal - mode-&gt;hdispl=
-ay &lt; 28)<br>=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 =C2=A0 =C2=A0 =C2=A0 return MODE_H_ILLEGAL;<br><br>=C2=A0 =C2=A0 =C2=A0=
- =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 if (mode-&gt;vtotal - mode-&gt;vdisplay=
- &lt; 5)<br>=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
-=C2=A0 =C2=A0 =C2=A0 return MODE_V_ILLEGAL;<br>=C2=A0 =C2=A0 =C2=A0 =C2=A0 =
-} else {<br>- =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 if (mode-&gt=
-;htotal - mode-&gt;hdisplay &lt; 32)<br>+ =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 =C2=A0 =C2=A0 if (mode-&gt;htotal - mode-&gt;hdisplay &lt; 28)<br>=C2=
-=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
-=C2=A0 return MODE_H_ILLEGAL;<br><br>=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 =C2=A0 =C2=A0 if (mode-&gt;vtotal - mode-&gt;vdisplay &lt; 3)<br><br>--=
-<br>2.39.2</div>
-
---000000000000ec9d950611abebcf--
+>   #define INTEL_INFO(i915)	((i915)->__info)
+>   #define RUNTIME_INFO(i915)	(&(i915)->__runtime)
+>   #define DRIVER_CAPS(i915)	(&(i915)->caps)
+> diff --git a/drivers/gpu/drm/i915/i915_query.c b/drivers/gpu/drm/i915/i915_query.c
+> index fa3e937ed3f5..2d41bda626a6 100644
+> --- a/drivers/gpu/drm/i915/i915_query.c
+> +++ b/drivers/gpu/drm/i915/i915_query.c
+> @@ -124,6 +124,7 @@ static int query_geometry_subslices(struct drm_i915_private *i915,
+>   	return fill_topology_info(sseu, query_item, sseu->geometry_subslice_mask);
+>   }
+>   
+> +
+>   static int
+>   query_engine_info(struct drm_i915_private *i915,
+>   		  struct drm_i915_query_item *query_item)
+> @@ -140,7 +141,7 @@ query_engine_info(struct drm_i915_private *i915,
+>   	if (query_item->flags)
+>   		return -EINVAL;
+>   
+> -	for_each_uabi_engine(engine, i915)
+> +	for_each_available_uabi_engine(engine, i915)
+>   		num_uabi_engines++;
+>   
+>   	len = struct_size(query_ptr, engines, num_uabi_engines);
+> @@ -155,7 +156,7 @@ query_engine_info(struct drm_i915_private *i915,
+>   
+>   	info_ptr = &query_ptr->engines[0];
+>   
+> -	for_each_uabi_engine(engine, i915) {
+> +	for_each_available_uabi_engine(engine, i915) {
+>   		info.engine.engine_class = engine->uabi_class;
+>   		info.engine.engine_instance = engine->uabi_instance;
+>   		info.flags = I915_ENGINE_INFO_HAS_LOGICAL_INSTANCE;
