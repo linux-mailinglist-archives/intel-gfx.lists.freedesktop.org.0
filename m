@@ -2,29 +2,86 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id D9C8E85A930
-	for <lists+intel-gfx@lfdr.de>; Mon, 19 Feb 2024 17:44:20 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 18C7285AA6F
+	for <lists+intel-gfx@lfdr.de>; Mon, 19 Feb 2024 18:55:41 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6FD4110E179;
-	Mon, 19 Feb 2024 16:44:19 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 45D2910E06E;
+	Mon, 19 Feb 2024 17:55:39 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=quicinc.com header.i=@quicinc.com header.b="byL8U/DS";
+	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from 8e613ede5ea5 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7D34710E179;
- Mon, 19 Feb 2024 16:44:17 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============0440663082976722875=="
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com
+ [205.220.180.131])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DB65310E06E;
+ Mon, 19 Feb 2024 17:55:37 +0000 (UTC)
+Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
+ by mx0a-0031df01.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id
+ 41JFErwH029986; Mon, 19 Feb 2024 17:55:30 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+ message-id:date:mime-version:subject:to:cc:references:from
+ :in-reply-to:content-type:content-transfer-encoding; s=
+ qcppdkim1; bh=NFaur2+AKSSTaUh1jwIy7KDR536evIuZN72D5jcNy1M=; b=by
+ L8U/DSsMOGfPwjBbxbdCDzh7WjecoqIUi7FZvsBkCr3O02f+lpjhcavpr6PrJQG0
+ FNLY8RFZUKHk0CpoXgFOFaRkR6lk5ibQNhVYSBnQlrLStfEl5vUkjElelUqWyVnN
+ JCt/sepaXlI6zuOnm7LfePCvTxZjWX3n97dCRZZW3emElnreq0EyAmcR7iXCh7CK
+ 6HIOmRBtREiKu/SEgABl4sp9P4xWGPIkvHwuIHYCQqjPrQoxFz2/tSJcch4VHt6z
+ l59nvUyLGBW1Tay946S746Tg+diw/kIryPeZKqqfuziEEGo9JEOCW6TOaGC6sqvB
+ 57BujAqyQZ+Q99knjQrA==
+Received: from nalasppmta05.qualcomm.com (Global_NAT1.qualcomm.com
+ [129.46.96.20])
+ by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3wc3t2s4s5-1
+ (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+ Mon, 19 Feb 2024 17:55:30 +0000 (GMT)
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com
+ [10.47.209.196])
+ by NALASPPMTA05.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 41JHtTr7028776
+ (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+ Mon, 19 Feb 2024 17:55:29 GMT
+Received: from [10.110.50.123] (10.80.80.8) by nalasex01a.na.qualcomm.com
+ (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.40; Mon, 19 Feb
+ 2024 09:55:28 -0800
+Message-ID: <525cfc94-146e-5389-753b-545a9fef2ef4@quicinc.com>
+Date: Mon, 19 Feb 2024 09:55:13 -0800
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Fi=2ECI=2EBAT=3A_success_for_drm/i915=3A_check_before_re?=
- =?utf-8?q?moving_mm_notifier_=28rev2=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Nirmoy Das" <nirmoy.das@intel.com>
-Cc: intel-gfx@lists.freedesktop.org
-Date: Mon, 19 Feb 2024 16:44:17 -0000
-Message-ID: <170836105751.89494.4056675542275451306@8e613ede5ea5>
-X-Patchwork-Hint: ignore
-References: <20240219125047.28906-1-nirmoy.das@intel.com>
-In-Reply-To: <20240219125047.28906-1-nirmoy.das@intel.com>
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.11.0
+Subject: Re: [PATCH v5] drm/dp: add an API to indicate if sink supports VSC SDP
+Content-Language: en-US
+To: <dri-devel@lists.freedesktop.org>, Maarten Lankhorst
+ <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>,
+ Thomas Zimmermann <tzimmermann@suse.de>,
+ David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
+ Jani Nikula <jani.nikula@linux.intel.com>,
+ =?UTF-8?B?VmlsbGUgU3lyasOkbMOk?= <ville.syrjala@linux.intel.com>
+CC: Paloma Arellano <quic_parellan@quicinc.com>, <robdclark@gmail.com>,
+ <freedreno@lists.freedesktop.org>, <dmitry.baryshkov@linaro.org>,
+ <intel-gfx@lists.freedesktop.org>, <quic_jesszhan@quicinc.com>,
+ <linux-kernel@vger.kernel.org>
+References: <20240215191556.3227259-1-quic_abhinavk@quicinc.com>
+From: Abhinav Kumar <quic_abhinavk@quicinc.com>
+In-Reply-To: <20240215191556.3227259-1-quic_abhinavk@quicinc.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800
+ signatures=585085
+X-Proofpoint-ORIG-GUID: m-8WQih43M6Ga5N_avK_itKu9UjiDU_r
+X-Proofpoint-GUID: m-8WQih43M6Ga5N_avK_itKu9UjiDU_r
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.272,Aquarius:18.0.1011,Hydra:6.0.619,FMLib:17.11.176.26
+ definitions=2024-02-19_15,2024-02-19_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ suspectscore=0 phishscore=0
+ mlxlogscore=999 clxscore=1015 spamscore=0 impostorscore=0
+ lowpriorityscore=0 bulkscore=0 priorityscore=1501 malwarescore=0
+ mlxscore=0 adultscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2401310000 definitions=main-2402190135
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -37,203 +94,97 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============0440663082976722875==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+Hi DRM maintainers
 
-== Series Details ==
+Gentle ping for reviews on this one.
 
-Series: drm/i915: check before removing mm notifier (rev2)
-URL   : https://patchwork.freedesktop.org/series/101170/
-State : success
+Since the dependent series is mostly complete, would like to get your 
+reviews on this one to land it.
 
-== Summary ==
+Thanks
 
-CI Bug Log - changes from CI_DRM_14296 -> Patchwork_101170v2
-====================================================
+Abhinav
 
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_101170v2/index.html
-
-Participating hosts (35 -> 36)
-------------------------------
-
-  Additional (2): fi-glk-j4005 bat-kbl-2 
-  Missing    (1): fi-snb-2520m 
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_101170v2 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@fbdev@info:
-    - bat-kbl-2:          NOTRUN -> [SKIP][1] ([fdo#109271] / [i915#1849])
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_101170v2/bat-kbl-2/igt@fbdev@info.html
-
-  * igt@gem_huc_copy@huc-copy:
-    - fi-glk-j4005:       NOTRUN -> [SKIP][2] ([fdo#109271] / [i915#2190])
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_101170v2/fi-glk-j4005/igt@gem_huc_copy@huc-copy.html
-
-  * igt@gem_lmem_swapping@basic:
-    - fi-glk-j4005:       NOTRUN -> [SKIP][3] ([fdo#109271] / [i915#4613]) +3 other tests skip
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_101170v2/fi-glk-j4005/igt@gem_lmem_swapping@basic.html
-
-  * igt@gem_lmem_swapping@parallel-random-engines:
-    - bat-kbl-2:          NOTRUN -> [SKIP][4] ([fdo#109271]) +35 other tests skip
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_101170v2/bat-kbl-2/igt@gem_lmem_swapping@parallel-random-engines.html
-
-  * igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic:
-    - fi-glk-j4005:       NOTRUN -> [SKIP][5] ([fdo#109271]) +6 other tests skip
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_101170v2/fi-glk-j4005/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html
-
-  
-#### Possible fixes ####
-
-  * igt@i915_selftest@live@gt_engines:
-    - {bat-adls-6}:       [TIMEOUT][6] ([i915#10026]) -> [PASS][7]
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14296/bat-adls-6/igt@i915_selftest@live@gt_engines.html
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_101170v2/bat-adls-6/igt@i915_selftest@live@gt_engines.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
-  [i915#10026]: https://gitlab.freedesktop.org/drm/intel/issues/10026
-  [i915#1849]: https://gitlab.freedesktop.org/drm/intel/issues/1849
-  [i915#2190]: https://gitlab.freedesktop.org/drm/intel/issues/2190
-  [i915#4613]: https://gitlab.freedesktop.org/drm/intel/issues/4613
-  [i915#5591]: https://gitlab.freedesktop.org/drm/intel/issues/5591
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_14296 -> Patchwork_101170v2
-
-  CI-20190529: 20190529
-  CI_DRM_14296: f12bce6493b6443870b55f36b1462d65e450d29d @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_7716: 7716
-  Patchwork_101170v2: f12bce6493b6443870b55f36b1462d65e450d29d @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-### Linux commits
-
-41493371cc92 drm/i915: check before removing mm notifier
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_101170v2/index.html
-
---===============0440663082976722875==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915: check before removing mm notifier (rev2)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/101170/">https://patchwork.freedesktop.org/series/101170/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_101170v2/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_101170v2/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_14296 -&gt; Patchwork_101170v2</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_101170v2/index.html</p>
-<h2>Participating hosts (35 -&gt; 36)</h2>
-<p>Additional (2): fi-glk-j4005 bat-kbl-2 <br />
-  Missing    (1): fi-snb-2520m </p>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_101170v2 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@fbdev@info:</p>
-<ul>
-<li>bat-kbl-2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_101170v2/bat-kbl-2/igt@fbdev@info.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/1849">i915#1849</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_huc_copy@huc-copy:</p>
-<ul>
-<li>fi-glk-j4005:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_101170v2/fi-glk-j4005/igt@gem_huc_copy@huc-copy.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/2190">i915#2190</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_lmem_swapping@basic:</p>
-<ul>
-<li>fi-glk-j4005:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_101170v2/fi-glk-j4005/igt@gem_lmem_swapping@basic.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/4613">i915#4613</a>) +3 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_lmem_swapping@parallel-random-engines:</p>
-<ul>
-<li>bat-kbl-2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_101170v2/bat-kbl-2/igt@gem_lmem_swapping@parallel-random-engines.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +35 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic:</p>
-<ul>
-<li>fi-glk-j4005:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_101170v2/fi-glk-j4005/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +6 other tests skip</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>igt@i915_selftest@live@gt_engines:<ul>
-<li>{bat-adls-6}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14296/bat-adls-6/igt@i915_selftest@live@gt_engines.html">TIMEOUT</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/10026">i915#10026</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_101170v2/bat-adls-6/igt@i915_selftest@live@gt_engines.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<p>{name}: This element is suppressed. This means it is ignored when computing<br />
-          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_14296 -&gt; Patchwork_101170v2</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_14296: f12bce6493b6443870b55f36b1462d65e450d29d @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_7716: 7716<br />
-  Patchwork_101170v2: f12bce6493b6443870b55f36b1462d65e450d29d @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<h3>Linux commits</h3>
-<p>41493371cc92 drm/i915: check before removing mm notifier</p>
-
-</body>
-</html>
-
---===============0440663082976722875==--
+On 2/15/2024 11:15 AM, Abhinav Kumar wrote:
+> From: Paloma Arellano <quic_parellan@quicinc.com>
+> 
+> YUV420 format is supported only in the VSC SDP packet and not through
+> MSA. Hence add an API which indicates the sink support which can be used
+> by the rest of the DP programming.
+> 
+> changes in v5:
+> 	- rebased on top of drm-tip
+> 
+> changes in v4:
+> 	- bail out early if dpcd rev check fails
+> 
+> changes in v3:
+> 	- fix the commit title prefix to drm/dp
+> 	- get rid of redundant !!
+> 	- break out this change from series [1] to get acks from drm core
+> 	  maintainers
+> 
+> Changes in v2:
+> 	- Move VSC SDP support check API from dp_panel.c to
+> 	  drm_dp_helper.c
+> 
+> [1]: https://patchwork.freedesktop.org/series/129180/
+> 
+> Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+> Signed-off-by: Paloma Arellano <quic_parellan@quicinc.com>
+> Signed-off-by: Abhinav Kumar <quic_abhinavk@quicinc.com>
+> ---
+>   drivers/gpu/drm/display/drm_dp_helper.c | 23 +++++++++++++++++++++++
+>   include/drm/display/drm_dp_helper.h     |  2 ++
+>   2 files changed, 25 insertions(+)
+> 
+> diff --git a/drivers/gpu/drm/display/drm_dp_helper.c b/drivers/gpu/drm/display/drm_dp_helper.c
+> index 8d6ce46471ae..61b11cb45245 100644
+> --- a/drivers/gpu/drm/display/drm_dp_helper.c
+> +++ b/drivers/gpu/drm/display/drm_dp_helper.c
+> @@ -2913,6 +2913,29 @@ void drm_dp_vsc_sdp_log(struct drm_printer *p, const struct drm_dp_vsc_sdp *vsc)
+>   }
+>   EXPORT_SYMBOL(drm_dp_vsc_sdp_log);
+>   
+> +/**
+> + * drm_dp_vsc_sdp_supported() - check if vsc sdp is supported
+> + * @aux: DisplayPort AUX channel
+> + * @dpcd: DisplayPort configuration data
+> + *
+> + * Returns true if vsc sdp is supported, else returns false
+> + */
+> +bool drm_dp_vsc_sdp_supported(struct drm_dp_aux *aux, const u8 dpcd[DP_RECEIVER_CAP_SIZE])
+> +{
+> +	u8 rx_feature;
+> +
+> +	if (dpcd[DP_DPCD_REV] < DP_DPCD_REV_13)
+> +		return false;
+> +
+> +	if (drm_dp_dpcd_readb(aux, DP_DPRX_FEATURE_ENUMERATION_LIST, &rx_feature) != 1) {
+> +		drm_dbg_dp(aux->drm_dev, "failed to read DP_DPRX_FEATURE_ENUMERATION_LIST\n");
+> +		return false;
+> +	}
+> +
+> +	return (rx_feature & DP_VSC_SDP_EXT_FOR_COLORIMETRY_SUPPORTED);
+> +}
+> +EXPORT_SYMBOL(drm_dp_vsc_sdp_supported);
+> +
+>   /**
+>    * drm_dp_get_pcon_max_frl_bw() - maximum frl supported by PCON
+>    * @dpcd: DisplayPort configuration data
+> diff --git a/include/drm/display/drm_dp_helper.h b/include/drm/display/drm_dp_helper.h
+> index d02014a87f12..36351f3cdba9 100644
+> --- a/include/drm/display/drm_dp_helper.h
+> +++ b/include/drm/display/drm_dp_helper.h
+> @@ -100,6 +100,8 @@ struct drm_dp_vsc_sdp {
+>   
+>   void drm_dp_vsc_sdp_log(struct drm_printer *p, const struct drm_dp_vsc_sdp *vsc);
+>   
+> +bool drm_dp_vsc_sdp_supported(struct drm_dp_aux *aux, const u8 dpcd[DP_RECEIVER_CAP_SIZE]);
+> +
+>   int drm_dp_psr_setup_time(const u8 psr_cap[EDP_PSR_RECEIVER_CAP_SIZE]);
+>   
+>   static inline int
