@@ -2,50 +2,53 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0A898859BA4
-	for <lists+intel-gfx@lfdr.de>; Mon, 19 Feb 2024 06:18:06 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id A87F0859BC8
+	for <lists+intel-gfx@lfdr.de>; Mon, 19 Feb 2024 06:59:51 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 967C810E15A;
-	Mon, 19 Feb 2024 05:17:58 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C1C2F10E12F;
+	Mon, 19 Feb 2024 05:59:48 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; secure) header.d=canb.auug.org.au header.i=@canb.auug.org.au header.b="ajimO8V5";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="YYeVTb2q";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from gandalf.ozlabs.org (gandalf.ozlabs.org [150.107.74.76])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C517710E14A;
- Mon, 19 Feb 2024 05:17:55 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canb.auug.org.au;
- s=201702; t=1708319871;
- bh=DiLQ78DkSeB+VFr6W48xH7ZI1R4cqbqoXRlZF7XqOGI=;
- h=Date:From:To:Cc:Subject:From;
- b=ajimO8V5mB2EySBWaJuCyS2mWAzEr8NrmgxZqW7bR0YTNtyXSdwBpU/wSYJFRccYF
- oW/nIupmIfD0FfF4xnyZuNd2dWGcWQ04h4Rjs3KdlAZXMiVj5uUebod+8FsvTp5L0K
- VJZuh4VvRi5z0GG9Q8EGekJXxsjuCyVREUemxZfSo2I4zNpkqM82czLKdx8/eytkH/
- vMQnB3TRG2TqhV2iwlC/r8v4vV3oM/wC9T4EquYRJw/6fTEIfx0m3QmStrAJVzNkzT
- 2rHTNWrlUkc0xJBEEonJYtbvGmIpUd18U8t5UuwLq36vz33Kw2HFID4q02M7pmurBv
- NiAvFbs1ydx0w==
-Received: from authenticated.ozlabs.org (localhost [127.0.0.1])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
- (No client certificate requested)
- by mail.ozlabs.org (Postfix) with ESMTPSA id 4TdW5941t2z4wd0;
- Mon, 19 Feb 2024 16:17:49 +1100 (AEDT)
-Date: Mon, 19 Feb 2024 16:17:47 +1100
-From: Stephen Rothwell <sfr@canb.auug.org.au>
-To: Daniel Vetter <daniel.vetter@ffwll.ch>, Jani Nikula
- <jani.nikula@linux.intel.com>, Joonas Lahtinen
- <joonas.lahtinen@linux.intel.com>, Rodrigo Vivi <rodrigo.vivi@intel.com>
-Cc: Ville =?UTF-8?B?U3lyasOkbMOk?= <ville.syrjala@linux.intel.com>, Intel
- Graphics <intel-gfx@lists.freedesktop.org>, DRI
- <dri-devel@lists.freedesktop.org>, Linux Kernel Mailing List
- <linux-kernel@vger.kernel.org>, Linux Next Mailing List
- <linux-next@vger.kernel.org>
-Subject: linux-next: build warning after merge of the drm-intel tree
-Message-ID: <20240219161747.0e867406@canb.auug.org.au>
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CB78D10E12F
+ for <intel-gfx@lists.freedesktop.org>; Mon, 19 Feb 2024 05:59:46 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1708322387; x=1739858387;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=M8/GZ7Hurtv27dR3VUlVk5cKods/y68qgk6EGnZnoZQ=;
+ b=YYeVTb2qECEfHVJeyVgFxikmclNlM8/wbgOZ8gwFswyjXycTt8E6wAyt
+ E1PmkWQBCVZ6XeFQfS96Weu4z4BgWbtea9hlR9UD9Kdet9HrsJw2eUPEg
+ kGbCFHFfRG/RAHQBFtY2r2BAWdd2CyaOs9wlKwa076Y1ztKWz0zg83fwR
+ BXEBQUO/bT9QnISq9WckxIGlfuo/dOavvnKHl4YbDvpiIn3KX+q8Xh2yE
+ dcKesAtb+AP0JpDiIGDHBFbN3YPftmCRgKslPUySot53O4n5pvJVuNoSk
+ yIT6Qv0cgRBc6zCgvEQEco1SZXtArJ7p/JLmR7NucAQPSTm99alB6fi8C w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10988"; a="2249753"
+X-IronPort-AV: E=Sophos;i="6.06,170,1705392000"; 
+   d="scan'208";a="2249753"
+Received: from orviesa003.jf.intel.com ([10.64.159.143])
+ by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 18 Feb 2024 21:59:45 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.06,170,1705392000"; 
+   d="scan'208";a="9045782"
+Received: from srr4-3-linux-103-aknautiy.iind.intel.com ([10.223.34.160])
+ by ORVIESA003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 18 Feb 2024 21:59:43 -0800
+From: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Cc: ville.syrjala@linux.intel.com
+Subject: [PATCH] drm/i915/scaler: Update Pipe src size check for DISPLAY_VER
+ >= 12
+Date: Mon, 19 Feb 2024 11:22:55 +0530
+Message-Id: <20240219055255.1099867-1-ankit.k.nautiyal@intel.com>
+X-Mailer: git-send-email 2.40.1
 MIME-Version: 1.0
-Content-Type: multipart/signed; boundary="Sig_/y.AEXD9XRXmOD3_UAne7Cho";
- protocol="application/pgp-signature"; micalg=pgp-sha256
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,40 +64,62 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---Sig_/y.AEXD9XRXmOD3_UAne7Cho
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: quoted-printable
+For Earlier platforms, the Pipe source size is 12-bits so
+max pipe source width and height is 4096. For newer platforms it is
+13-bits so theoretically max height is 8192, but maximum width
+supported on a single pipe is 5120, beyond which we need to use
+bigjoiner.
 
-Hi all,
+Currently we are using max scaler source size to make sure that the
+pipe source size is programmed within limits, before using scaler.
+This creates a problem, for MTL where scaler source size is 4096, but
+max pipe source width can be 5120.
 
-After merging the drm-intel tree, today's linux-next build (htmldocs)
-produced this warning:
+Update the check to use the aforementioned limits.
 
-Documentation/gpu/i915:222: drivers/gpu/drm/i915/display/intel_cdclk.c:69: =
-ERROR: Unexpected indentation.
+Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+---
+ drivers/gpu/drm/i915/display/skl_scaler.c | 19 +++++++++++++++----
+ 1 file changed, 15 insertions(+), 4 deletions(-)
 
-Introduced by commit
+diff --git a/drivers/gpu/drm/i915/display/skl_scaler.c b/drivers/gpu/drm/i915/display/skl_scaler.c
+index 8a934bada624..36342142efaa 100644
+--- a/drivers/gpu/drm/i915/display/skl_scaler.c
++++ b/drivers/gpu/drm/i915/display/skl_scaler.c
+@@ -115,6 +115,7 @@ skl_update_scaler(struct intel_crtc_state *crtc_state, bool force_detach,
+ 	int pipe_src_h = drm_rect_height(&crtc_state->pipe_src);
+ 	int min_src_w, min_src_h, min_dst_w, min_dst_h;
+ 	int max_src_w, max_src_h, max_dst_w, max_dst_h;
++	int max_pipe_src_w, max_pipe_src_h;
+ 
+ 	/*
+ 	 * Src coordinates are already rotated by 270 degrees for
+@@ -212,11 +213,21 @@ skl_update_scaler(struct intel_crtc_state *crtc_state, bool force_detach,
+ 	/*
+ 	 * The pipe scaler does not use all the bits of PIPESRC, at least
+ 	 * on the earlier platforms. So even when we're scaling a plane
+-	 * the *pipe* source size must not be too large. For simplicity
+-	 * we assume the limits match the scaler source size limits. Might
+-	 * not be 100% accurate on all platforms, but good enough for now.
++	 * the *pipe* source size must not be too large.
++	 *
++	 * For Earlier platforms, the Pipe source size is 12-bits so
++	 * max pipe src width and height is 4096. For newer platforms it is 13-bits.
++	 * Theoretically maximum pipe src height supported on a single pipe is 8192,
++	 * but maximum pipe src width supported on a single pipe is 5120.
+ 	 */
+-	if (pipe_src_w > max_src_w || pipe_src_h > max_src_h) {
++	if (DISPLAY_VER(dev_priv) < 12) {
++		max_pipe_src_w = 4096;
++		max_pipe_src_h = 4096;
++	} else {
++		max_pipe_src_w = 5120;
++		max_pipe_src_h = 8192;
++	}
++	if (pipe_src_w > max_pipe_src_w || pipe_src_h > max_pipe_src_h) {
+ 		drm_dbg_kms(&dev_priv->drm,
+ 			    "scaler_user index %u.%u: pipe src size %ux%u "
+ 			    "is out of scaler range\n",
+-- 
+2.40.1
 
-  79e2ea2eaaa6 ("drm/i915/cdclk: Document CDCLK update methods")
-
---=20
-Cheers,
-Stephen Rothwell
-
---Sig_/y.AEXD9XRXmOD3_UAne7Cho
-Content-Type: application/pgp-signature
-Content-Description: OpenPGP digital signature
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAEBCAAdFiEENIC96giZ81tWdLgKAVBC80lX0GwFAmXS5HsACgkQAVBC80lX
-0GyrhAf+MQM/FkWhlVWtkovGLvV9ffn3n0kyMg09Nal+PDllXMNFipnuIquyTl5B
-j+xkdITwjY8CtQZfKJjcxT8LrVu8A5WiAb4qRniJRQARIq9p9zxVTBghsKiisylZ
-0IXHh4APrqWx+fuTEpamYOskLwbQwlD8hAp94jizHuIY571RrSAkfMcLhLvK18lW
-5Usl8mUvXesTcoY4q/6xna7RW14Q5CmApw7ptCGH1pVvrlVN6ItDyZcdXl/QrCht
-gDPZjXlELGLelxjfbg+pd3akx1TVZ0m+rzUIcindrb69gIXiNTgWJCQ2B57QrK+r
-515zTyQjtLTOAwrxdvsXZaIdmZKc6w==
-=/y9I
------END PGP SIGNATURE-----
-
---Sig_/y.AEXD9XRXmOD3_UAne7Cho--
