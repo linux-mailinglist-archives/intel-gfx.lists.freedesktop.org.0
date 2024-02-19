@@ -2,67 +2,65 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 50C2E859F4F
-	for <lists+intel-gfx@lfdr.de>; Mon, 19 Feb 2024 10:09:28 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id BFB66859F53
+	for <lists+intel-gfx@lfdr.de>; Mon, 19 Feb 2024 10:11:02 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C9D9510E1CF;
-	Mon, 19 Feb 2024 09:09:25 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id ECDED10E1C6;
+	Mon, 19 Feb 2024 09:11:00 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=bootlin.com header.i=@bootlin.com header.b="ZKwoH0ud";
+	dkim=pass (2048-bit key; unprotected) header.d=linaro.org header.i=@linaro.org header.b="C1je1ZHQ";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mslow1.mail.gandi.net (mslow1.mail.gandi.net [217.70.178.240])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 600FE10E1CF
- for <intel-gfx@lists.freedesktop.org>; Mon, 19 Feb 2024 09:09:24 +0000 (UTC)
-Received: from relay1-d.mail.gandi.net (unknown [217.70.183.193])
- by mslow1.mail.gandi.net (Postfix) with ESMTP id 300FDC46D8
- for <intel-gfx@lists.freedesktop.org>; Mon, 19 Feb 2024 09:09:22 +0000 (UTC)
-Received: by mail.gandi.net (Postfix) with ESMTPSA id 39FDD240012;
- Mon, 19 Feb 2024 09:09:16 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
- t=1708333760;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=H8vWhExmV17xgBupKhlUpM5JsVzLtHrfZFnRIwxZZMw=;
- b=ZKwoH0udRomK3OIA/PKL3qQfxaieAKjDxWRt3K7eg7fBWc+ApQu62ioIdky+i8DejUz0cz
- C9yNTyPskz8oJ4diNJGQ4gSn63C+kmXFAdg49pXmTmf1GTlIH7jpzRuEojPcY6xIcQZz1X
- 1dp1uLQCLLXPqZH3XMAMo6TYDl6oW/kgsa1z7pgDHgiZzexiGUQ4B6qNGqWsDrqmhx+7B4
- DOGMFBeoRlmQbxKvxlrKuuRu0utt+SBNjbP3iPyUb6a5ivWycobTaXepaj02bhbklP3O/0
- we5hDXUX8pjx5eBDAuhOTAfi+MeeXBETTAz6/dqEB6U8URRqMQanGW60TKE0DQ==
-Date: Mon, 19 Feb 2024 10:09:15 +0100
-From: Miquel Raynal <miquel.raynal@bootlin.com>
-To: "Usyskin, Alexander" <alexander.usyskin@intel.com>
-Cc: Richard Weinberger <richard@nod.at>, Vignesh Raghavendra
- <vigneshr@ti.com>, Jani Nikula <jani.nikula@linux.intel.com>, Joonas
- Lahtinen <joonas.lahtinen@linux.intel.com>, "Vivi, Rodrigo"
- <rodrigo.vivi@intel.com>, "Lubart, Vitaly" <vitaly.lubart@intel.com>,
- "linux-mtd@lists.infradead.org" <linux-mtd@lists.infradead.org>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
- "Winkler, Tomas" <tomas.winkler@intel.com>, "De Marchi, Lucas"
- <lucas.demarchi@intel.com>, Michael Walle <michael@walle.cc>, Tudor Ambarus
- <tudor.ambarus@linaro.org>
-Subject: Re: [PATCH 06/10] drm/i915/spi: spi register with mtd
-Message-ID: <20240219100915.5a778fb9@xps-13>
-In-Reply-To: <CY5PR11MB63660FF7942CA400439B76D8ED4E2@CY5PR11MB6366.namprd11.prod.outlook.com>
-References: <20230910123949.1251964-1-alexander.usyskin@intel.com>
- <20230910123949.1251964-7-alexander.usyskin@intel.com>
- <20231016103939.67445bee@xps-13>
- <CY5PR11MB6366850CCE851BCA05A9DC2BEDD6A@CY5PR11MB6366.namprd11.prod.outlook.com>
- <20231017155544.6cceb6a6@xps-13>
- <CY5PR11MB63663DB0C17321A1A0C46FF3EDD6A@CY5PR11MB6366.namprd11.prod.outlook.com>
- <20231017164615.5b58fcc6@xps-13>
- <CY5PR11MB6366383C8C0DCA9B3D41BF63EDB2A@CY5PR11MB6366.namprd11.prod.outlook.com>
- <20231114101324.39569e96@xps-13>
- <CY5PR11MB63660FF7942CA400439B76D8ED4E2@CY5PR11MB6366.namprd11.prod.outlook.com>
-Organization: Bootlin
-X-Mailer: Claws Mail 4.0.0 (GTK+ 3.24.33; x86_64-pc-linux-gnu)
+Received: from mail-ed1-f50.google.com (mail-ed1-f50.google.com
+ [209.85.208.50])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6FC3B10E1C6
+ for <intel-gfx@lists.freedesktop.org>; Mon, 19 Feb 2024 09:10:59 +0000 (UTC)
+Received: by mail-ed1-f50.google.com with SMTP id
+ 4fb4d7f45d1cf-563e330351dso2919922a12.0
+ for <intel-gfx@lists.freedesktop.org>; Mon, 19 Feb 2024 01:10:59 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=linaro.org; s=google; t=1708333857; x=1708938657; darn=lists.freedesktop.org;
+ h=content-disposition:mime-version:message-id:subject:cc:to:from:date
+ :from:to:cc:subject:date:message-id:reply-to;
+ bh=AWqKscCHD1TAhcTFB59H1+GyIm++hMMsznHhLVzhit0=;
+ b=C1je1ZHQowNd9/nbB3b4b7TybfY5N3HA/XegjDYczFHwOTZgDM23WU2FZN5WcGRhbQ
+ Q6GzkcfLDsQNSY542QDbfJdzyJUaQorZQNoXGN2Lf2heakNmBbsE0DZL/V1/iCf0qOAL
+ 8vsH/JIkNgfv7jaELvaT0o8BqirPSy2l5E1iSu+gaGb4Oz+PWgC5GBz3yCy0zZMg/0Yt
+ u2j5WECwq25claXn5q6rUVGGbjAytH2VJu7QpWAV/9mIA2k/Fr94tOhDVzTr2TdqChFG
+ zkTSxxS/1UmLRDEOY7Pjxq4JYdVR8N6Nc/UOmUMuDBFysy3u/eFTHwAPFb1a1uD0eHu+
+ eUxg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1708333857; x=1708938657;
+ h=content-disposition:mime-version:message-id:subject:cc:to:from:date
+ :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+ bh=AWqKscCHD1TAhcTFB59H1+GyIm++hMMsznHhLVzhit0=;
+ b=JcZbVMlgEgNkZu//0NbUAYddLQZ1nb7GSashI+XIQSg1oWSBoL9V6USc4+LjWggwRG
+ wXDGAIlM7bTrl9sr6gIzqLfCZR8EbQvqHTi9Nit8hqjwRmLKEoUhr7NzEovvQCBtPVuL
+ CPZiJgJmnZdanV7LIj8g9+xpwNJjMMNgQa8RtL4HBRFB0YQKPI0UaNA8IN04B8Dgh6C/
+ 2PhocnlS0VxK7fYOlEslwyAF7JMJVzMRYI9yeQi9G5WWn/xaJng4UASLSnvX6073Koe7
+ W44/T8XGAWcQKNXDzB+JhwkevLagp2Cg7cKqTAW6nT2xvfq3ZQwrMORGUGXhqum6LfGL
+ JGxg==
+X-Gm-Message-State: AOJu0YwPg/EVz1Y6Oa54st1kH8KHQDPVrGxHuSWWQvOGsdhrZZAW1WsW
+ yaiJR+OHD897tWu7Wf61wtXzSe9bsNNJ+mkZm23Itxgcb/FuZdXQGmfox87RmjM=
+X-Google-Smtp-Source: AGHT+IG8vlpwwOaOwMvRqnBHUfPgkXhcDlBvbvq+p+2eerNmA8fCivm3x56Yq0U5p12g0XstY/ECYw==
+X-Received: by 2002:a17:906:b106:b0:a3d:dc7f:6e92 with SMTP id
+ u6-20020a170906b10600b00a3ddc7f6e92mr6072036ejy.73.1708333857654; 
+ Mon, 19 Feb 2024 01:10:57 -0800 (PST)
+Received: from localhost ([102.222.70.76]) by smtp.gmail.com with ESMTPSA id
+ ps6-20020a170906bf4600b00a3d00616e1fsm2719844ejb.193.2024.02.19.01.10.56
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Mon, 19 Feb 2024 01:10:57 -0800 (PST)
+Date: Mon, 19 Feb 2024 12:10:53 +0300
+From: Dan Carpenter <dan.carpenter@linaro.org>
+To: jani.nikula@intel.com
+Cc: intel-gfx@lists.freedesktop.org
+Subject: [bug report] drm/i915: switch from drm_debug_printer() to device
+ specific drm_dbg_printer()
+Message-ID: <2299d768-41c4-43f6-8a6d-857176232d05@moroto.mountain>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-X-GND-Sasl: miquel.raynal@bootlin.com
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -78,23 +76,27 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi Alexander,
+Hello Jani Nikula,
 
-alexander.usyskin@intel.com wrote on Wed, 14 Feb 2024 12:16:00 +0000:
+This is a semi-automatic email about new static checker warnings.
 
-> Hi Miquel
->=20
-> Intel Gfx in infinite wisdom decided to create another driver - Xe and
-> the spi driver part of this series should be moved to some common locatio=
-n.
-> Should it be drivers/mtd or drivers/spi, or some other place?
+    drivers/gpu/drm/i915/gt/intel_engine_heartbeat.c:102 show_heartbeat()
+    warn: variable dereferenced before check 'rq' (see line 99)
 
-It probably depends on the framework they decided to register into. I'm
-sorry but I interacted in this thread more than 3 months ago, I no
-longer remember most of the details.
+drivers/gpu/drm/i915/gt/intel_engine_heartbeat.c
+    98	{
+    99		struct drm_printer p = drm_dbg_printer(&rq->i915->drm, DRM_UT_DRIVER,
+                                                       ^^^^^^^^^^^^^^
+The patch adds an unchecked dereference
 
-If this is a driver for a spi controller (even a limited one) then it
-should be drivers/spi/ I guess.
+   100						       "heartbeat");
+   101	
+   102		if (!rq) {
+                    ^^^
+Previously we assumed "rq" could be NULL.
 
-Thanks,
-Miqu=C3=A8l
+   103			intel_engine_dump(engine, &p,
+   104					  "%s heartbeat not ticking\n",
+
+regards,
+dan carpenter
