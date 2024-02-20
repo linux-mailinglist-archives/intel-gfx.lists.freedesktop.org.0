@@ -2,29 +2,57 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 39B3985BB66
-	for <lists+intel-gfx@lfdr.de>; Tue, 20 Feb 2024 13:06:54 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 719D485BB7C
+	for <lists+intel-gfx@lfdr.de>; Tue, 20 Feb 2024 13:11:27 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 58CD810E360;
-	Tue, 20 Feb 2024 12:06:51 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5BCE210E36A;
+	Tue, 20 Feb 2024 12:11:25 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="kZ0wR7VW";
+	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from 8e613ede5ea5 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 60EC110E360;
- Tue, 20 Feb 2024 12:06:50 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============4960865465484570382=="
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5BE0710E229
+ for <intel-gfx@lists.freedesktop.org>; Tue, 20 Feb 2024 12:11:24 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1708431085; x=1739967085;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=30QXVxwQrvDgqlSGztILcoUOtevqiA08ECyVTtNNTrQ=;
+ b=kZ0wR7VWP45Xxy0+5QiHiPRrEf9twnnR+btCClT8OLyYgObfYamxufc8
+ YvP5gcC3hyfDtJ5e+fxgFTOJpeC91L2Jaa2UbPiqdM0jLWAe7mYLeVM0I
+ 5M60a8Nxdo57uZV2EWiKtKOQs7szarYwhBlzUHfCARQ9z/L5WXfhKA0zA
+ SZw+co5V6VZyUaHr1n4STQsSLWiqCKgKz4Data74tLC9hDZuuBxAx1kUA
+ Y10FBli/vRywE82kLQnI01hG3eC9bnPPj2IbIO8NR5u2SNaHxXctIEBWU
+ kGFlFU5jcdi2y47stP9czB2qEdAc4pwdCJ/oJSxX9IUmgZd8MIPoGEBao w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10989"; a="24987085"
+X-IronPort-AV: E=Sophos;i="6.06,172,1705392000"; d="scan'208";a="24987085"
+Received: from fmviesa004.fm.intel.com ([10.60.135.144])
+ by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 20 Feb 2024 04:11:01 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.06,172,1705392000"; 
+   d="scan'208";a="9378109"
+Received: from sbeleaga-mobl1.ger.corp.intel.com (HELO
+ jhogande-mobl1.intel.com) ([10.249.43.237])
+ by fmviesa004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 20 Feb 2024 04:10:58 -0800
+From: =?UTF-8?q?Jouni=20H=C3=B6gander?= <jouni.hogander@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Cc: =?UTF-8?q?Jouni=20H=C3=B6gander?= <jouni.hogander@intel.com>,
+ Animesh Manna <animesh.manna@intel.com>,
+ Arun R Murthy <arun.r.murthy@intel.com>,
+ =?UTF-8?q?Ville=20Syrj=C3=A4l=C3=A4?= <ville.syrjala@linux.intel.com>
+Subject: [PATCH v2 0/6] ALPM AUX-Less
+Date: Tue, 20 Feb 2024 14:10:39 +0200
+Message-Id: <20240220121045.2156004-1-jouni.hogander@intel.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Fi=2ECI=2EBAT=3A_success_for_QGV/SAGV_related_fixes_=28r?=
- =?utf-8?q?ev7=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Stanislav Lisovskiy" <stanislav.lisovskiy@intel.com>
-Cc: intel-gfx@lists.freedesktop.org
-Date: Tue, 20 Feb 2024 12:06:50 -0000
-Message-ID: <170843081039.125001.13908324053368570855@8e613ede5ea5>
-X-Patchwork-Hint: ignore
-References: <20240220093136.32181-1-stanislav.lisovskiy@intel.com>
-In-Reply-To: <20240220093136.32181-1-stanislav.lisovskiy@intel.com>
+Content-Type: text/plain; charset=UTF-8
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -37,228 +65,43 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============4960865465484570382==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+This patch set is implementing calculation of ALPM AUX-Less parameters
+for Intel HW and writing them in case of AUX-Less is enabled. It is
+also enabling ALPM AUX-Less for eDP Panel Replay. Current code is not
+allowing Panel Replay on eDP. Patches for this are coming later.
 
-== Series Details ==
+This implementation is only for Panel Replay usage. LOBF (Link Off
+Between Active Frames) usage needs more work.
 
-Series: QGV/SAGV related fixes (rev7)
-URL   : https://patchwork.freedesktop.org/series/126962/
-State : success
+Cc: Animesh Manna <animesh.manna@intel.com>
+Cc: Arun R Murthy <arun.r.murthy@intel.com>
+Cc: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-== Summary ==
+v2:
+  - use variables instead of values directly
+  - fix several max values
+  - move converting port clock to Mhz into _lnl_compute_*
+  - do not set AUX-Wake related bits for AUX-Less case
+  - do not write ALPM configuration for DP2.0 Panel Replay or PSR1.
 
-CI Bug Log - changes from CI_DRM_14300 -> Patchwork_126962v7
-====================================================
+Jouni Högander (6):
+  drm/display: Add missing aux less alpm wake related bits
+  drm/i915/psr: Calculate aux less wake time
+  drm/i915/psr: Silence period and lfps half cycle
+  drm/i915/psr: Add missing ALPM AUX-Less register definitions
+  drm/i915/psr: Enable ALPM for eDP Panel replay
+  drm/i915/psr: Do not write ALPM configuration for PSR1 or DP2.0 Panel
+    Replay
 
-Summary
--------
+ .../drm/i915/display/intel_display_types.h    |   3 +
+ drivers/gpu/drm/i915/display/intel_psr.c      | 182 +++++++++++++++++-
+ drivers/gpu/drm/i915/display/intel_psr_regs.h |  12 +-
+ include/drm/display/drm_dp.h                  |   5 +-
+ 4 files changed, 192 insertions(+), 10 deletions(-)
 
-  **SUCCESS**
+-- 
+2.34.1
 
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_126962v7/index.html
-
-Participating hosts (40 -> 38)
-------------------------------
-
-  Missing    (2): fi-glk-j4005 fi-snb-2520m 
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_126962v7 that come from known issues:
-
-### CI changes ###
-
-#### Issues hit ####
-
-  * boot:
-    - bat-jsl-1:          [PASS][1] -> [FAIL][2] ([i915#8293])
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14300/bat-jsl-1/boot.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_126962v7/bat-jsl-1/boot.html
-
-  
-#### Possible fixes ####
-
-  * boot:
-    - fi-apl-guc:         [FAIL][3] ([i915#8293]) -> [PASS][4]
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14300/fi-apl-guc/boot.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_126962v7/fi-apl-guc/boot.html
-
-  
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@gem_lmem_swapping@basic:
-    - fi-apl-guc:         NOTRUN -> [SKIP][5] ([fdo#109271] / [i915#4613]) +3 other tests skip
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_126962v7/fi-apl-guc/igt@gem_lmem_swapping@basic.html
-
-  * igt@kms_hdmi_inject@inject-audio:
-    - fi-apl-guc:         NOTRUN -> [SKIP][6] ([fdo#109271]) +13 other tests skip
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_126962v7/fi-apl-guc/igt@kms_hdmi_inject@inject-audio.html
-
-  
-#### Possible fixes ####
-
-  * igt@gem_busy@busy@all-engines:
-    - {bat-arls-2}:       [INCOMPLETE][7] ([i915#10194]) -> [PASS][8]
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14300/bat-arls-2/igt@gem_busy@busy@all-engines.html
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_126962v7/bat-arls-2/igt@gem_busy@busy@all-engines.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
-  [i915#10194]: https://gitlab.freedesktop.org/drm/intel/issues/10194
-  [i915#10196]: https://gitlab.freedesktop.org/drm/intel/issues/10196
-  [i915#10197]: https://gitlab.freedesktop.org/drm/intel/issues/10197
-  [i915#10200]: https://gitlab.freedesktop.org/drm/intel/issues/10200
-  [i915#10202]: https://gitlab.freedesktop.org/drm/intel/issues/10202
-  [i915#10206]: https://gitlab.freedesktop.org/drm/intel/issues/10206
-  [i915#10207]: https://gitlab.freedesktop.org/drm/intel/issues/10207
-  [i915#10208]: https://gitlab.freedesktop.org/drm/intel/issues/10208
-  [i915#10209]: https://gitlab.freedesktop.org/drm/intel/issues/10209
-  [i915#10211]: https://gitlab.freedesktop.org/drm/intel/issues/10211
-  [i915#10212]: https://gitlab.freedesktop.org/drm/intel/issues/10212
-  [i915#10213]: https://gitlab.freedesktop.org/drm/intel/issues/10213
-  [i915#10214]: https://gitlab.freedesktop.org/drm/intel/issues/10214
-  [i915#10215]: https://gitlab.freedesktop.org/drm/intel/issues/10215
-  [i915#10216]: https://gitlab.freedesktop.org/drm/intel/issues/10216
-  [i915#3708]: https://gitlab.freedesktop.org/drm/intel/issues/3708
-  [i915#4077]: https://gitlab.freedesktop.org/drm/intel/issues/4077
-  [i915#4079]: https://gitlab.freedesktop.org/drm/intel/issues/4079
-  [i915#4083]: https://gitlab.freedesktop.org/drm/intel/issues/4083
-  [i915#4613]: https://gitlab.freedesktop.org/drm/intel/issues/4613
-  [i915#8293]: https://gitlab.freedesktop.org/drm/intel/issues/8293
-  [i915#8809]: https://gitlab.freedesktop.org/drm/intel/issues/8809
-  [i915#9688]: https://gitlab.freedesktop.org/drm/intel/issues/9688
-  [i915#9886]: https://gitlab.freedesktop.org/drm/intel/issues/9886
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_14300 -> Patchwork_126962v7
-
-  CI-20190529: 20190529
-  CI_DRM_14300: e2b02e89746d8eff8c244f938eecd0f1db8eb805 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_7718: 40e8b9122853f455c84afcfa56469a6bc9a0d564 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_126962v7: e2b02e89746d8eff8c244f938eecd0f1db8eb805 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-### Linux commits
-
-e828415eafef drm/i915: Disable SAGV on bw init, to force QGV point recalculation
-93abc96e696d drm/i915: Extract code required to calculate max qgv/psf gv point
-2985a4ba7b24 drm/i915: Add meaningful traces for QGV point info error handling
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_126962v7/index.html
-
---===============4960865465484570382==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>QGV/SAGV related fixes (rev7)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/126962/">https://patchwork.freedesktop.org/series/126962/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_126962v7/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_126962v7/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_14300 -&gt; Patchwork_126962v7</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_126962v7/index.html</p>
-<h2>Participating hosts (40 -&gt; 38)</h2>
-<p>Missing    (2): fi-glk-j4005 fi-snb-2520m </p>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_126962v7 that come from known issues:</p>
-<h3>CI changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>boot:<ul>
-<li>bat-jsl-1:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14300/bat-jsl-1/boot.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_126962v7/bat-jsl-1/boot.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/8293">i915#8293</a>)</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>boot:<ul>
-<li>fi-apl-guc:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14300/fi-apl-guc/boot.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/8293">i915#8293</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_126962v7/fi-apl-guc/boot.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@gem_lmem_swapping@basic:</p>
-<ul>
-<li>fi-apl-guc:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_126962v7/fi-apl-guc/igt@gem_lmem_swapping@basic.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/4613">i915#4613</a>) +3 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_hdmi_inject@inject-audio:</p>
-<ul>
-<li>fi-apl-guc:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_126962v7/fi-apl-guc/igt@kms_hdmi_inject@inject-audio.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +13 other tests skip</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>igt@gem_busy@busy@all-engines:<ul>
-<li>{bat-arls-2}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14300/bat-arls-2/igt@gem_busy@busy@all-engines.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/10194">i915#10194</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_126962v7/bat-arls-2/igt@gem_busy@busy@all-engines.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<p>{name}: This element is suppressed. This means it is ignored when computing<br />
-          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_14300 -&gt; Patchwork_126962v7</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_14300: e2b02e89746d8eff8c244f938eecd0f1db8eb805 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_7718: 40e8b9122853f455c84afcfa56469a6bc9a0d564 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  Patchwork_126962v7: e2b02e89746d8eff8c244f938eecd0f1db8eb805 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<h3>Linux commits</h3>
-<p>e828415eafef drm/i915: Disable SAGV on bw init, to force QGV point recalculation<br />
-93abc96e696d drm/i915: Extract code required to calculate max qgv/psf gv point<br />
-2985a4ba7b24 drm/i915: Add meaningful traces for QGV point info error handling</p>
-
-</body>
-</html>
-
---===============4960865465484570382==--
