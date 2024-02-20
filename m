@@ -2,57 +2,29 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 74F8085BB82
-	for <lists+intel-gfx@lfdr.de>; Tue, 20 Feb 2024 13:11:34 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8EA1685BCC6
+	for <lists+intel-gfx@lfdr.de>; Tue, 20 Feb 2024 14:02:09 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6099B10E3A0;
-	Tue, 20 Feb 2024 12:11:27 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="R32Q4b+9";
-	dkim-atps=neutral
+	by gabe.freedesktop.org (Postfix) with ESMTP id A153010E0CA;
+	Tue, 20 Feb 2024 13:02:06 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E604F10E391
- for <intel-gfx@lists.freedesktop.org>; Tue, 20 Feb 2024 12:11:25 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1708431086; x=1739967086;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=hTNpEPKEePVSou+p2AgcosAh6gEACgE2tlYEXjaEH6E=;
- b=R32Q4b+9kNDWmxIdoMPahQjV/12fY24wX0bn0JrFoRLEwnJfh1+19Tuh
- QeTthwz6ti7dc66GsCOhuG+5AWLmPS7Mlu04/lbVJePiLSMO5TFvckHX8
- /gc3H05cdHj3F5z8q6Gj51jNB0chYzFMLduBkejHR11nVVHLfewjts+/T
- weszHs+yS3FqruSFjC/jbcW52uTQlRw97C6+4WuFURPIHUMQNU+p0VT8v
- ZXFfdoqshbg9WLQA6xFLHL5fIxVNI6iB9FGJeJKJWXniIljCx/I/+vDze
- gajpj0TM1gGjCFMrMMdKKIT2ECyEnPu3O4sZw/8AsDrj/VTVBuXjxcdyM A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10989"; a="24987097"
-X-IronPort-AV: E=Sophos;i="6.06,172,1705392000"; d="scan'208";a="24987097"
-Received: from fmviesa004.fm.intel.com ([10.60.135.144])
- by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Feb 2024 04:11:09 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.06,172,1705392000"; 
-   d="scan'208";a="9378175"
-Received: from sbeleaga-mobl1.ger.corp.intel.com (HELO
- jhogande-mobl1.intel.com) ([10.249.43.237])
- by fmviesa004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Feb 2024 04:11:07 -0800
-From: =?UTF-8?q?Jouni=20H=C3=B6gander?= <jouni.hogander@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Cc: =?UTF-8?q?Jouni=20H=C3=B6gander?= <jouni.hogander@intel.com>
-Subject: [PATCH v2 6/6] drm/i915/psr: Do not write ALPM configuration for PSR1
- or DP2.0 Panel Replay
-Date: Tue, 20 Feb 2024 14:10:45 +0200
-Message-Id: <20240220121045.2156004-7-jouni.hogander@intel.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20240220121045.2156004-1-jouni.hogander@intel.com>
-References: <20240220121045.2156004-1-jouni.hogander@intel.com>
+Received: from 8e613ede5ea5 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C4D9910E0CA;
+ Tue, 20 Feb 2024 13:02:05 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=97_Fi=2ECI=2ECHECKPATCH=3A_warning_for_ALPM_AUX-Less_=28rev?=
+ =?utf-8?q?2=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: =?utf-8?q?Jouni_H=C3=B6gander?= <jouni.hogander@intel.com>
+Cc: intel-gfx@lists.freedesktop.org
+Date: Tue, 20 Feb 2024 13:02:05 -0000
+Message-ID: <170843412580.125002.4435704650192055436@8e613ede5ea5>
+X-Patchwork-Hint: ignore
+References: <20240220121045.2156004-1-jouni.hogander@intel.com>
+In-Reply-To: <20240220121045.2156004-1-jouni.hogander@intel.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -65,30 +37,62 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-No need to write ALPM configuration for DP2.0 Panel Replay or PSR1.
+== Series Details ==
 
+Series: ALPM AUX-Less (rev2)
+URL   : https://patchwork.freedesktop.org/series/129938/
+State : warning
+
+== Summary ==
+
+Error: dim checkpatch failed
+ea6ececafe60 drm/display: Add missing aux less alpm wake related bits
+434fb689c399 drm/i915/psr: Calculate aux less wake time
+c2f006945429 drm/i915/psr: Silence period and lfps half cycle
+3558f2d67484 drm/i915/psr: Add missing ALPM AUX-Less register definitions
+-:31: WARNING:LONG_LINE: line length of 169 exceeds 100 columns
+#31: FILE: drivers/gpu/drm/i915/display/intel_psr_regs.h:352:
++#define  PORT_ALPM_LFPS_CTL_LFPS_CYCLE_COUNT(val)		REG_FIELD_PREP(PORT_ALPM_LFPS_CTL_LFPS_CYCLE_COUNT_MASK, (val) - PORT_ALPM_LFPS_CTL_LFPS_CYCLE_COUNT_MIN)
+
+-:33: WARNING:LONG_LINE: line length of 133 exceeds 100 columns
+#33: FILE: drivers/gpu/drm/i915/display/intel_psr_regs.h:354:
++#define  PORT_ALPM_LFPS_CTL_LFPS_HALF_CYCLE_DURATION(val)	REG_FIELD_PREP(PORT_ALPM_LFPS_CTL_LFPS_HALF_CYCLE_DURATION_MASK, val)
+
+-:35: WARNING:LONG_LINE: line length of 133 exceeds 100 columns
+#35: FILE: drivers/gpu/drm/i915/display/intel_psr_regs.h:356:
++#define  PORT_ALPM_LFPS_CTL_FIRST_LFPS_HALF_CYCLE_DURATION(val)	REG_FIELD_PREP(PORT_ALPM_LFPS_CTL_LFPS_HALF_CYCLE_DURATION_MASK, val)
+
+-:37: WARNING:LONG_LINE: line length of 133 exceeds 100 columns
+#37: FILE: drivers/gpu/drm/i915/display/intel_psr_regs.h:358:
++#define  PORT_ALPM_LFPS_CTL_LAST_LFPS_HALF_CYCLE_DURATION(val)	REG_FIELD_PREP(PORT_ALPM_LFPS_CTL_LFPS_HALF_CYCLE_DURATION_MASK, val)
+
+total: 0 errors, 4 warnings, 0 checks, 17 lines checked
+8784d6789a71 drm/i915/psr: Enable ALPM for eDP Panel replay
+-:26: WARNING:BAD_SIGN_OFF: Duplicate signature
+#26: 
 Signed-off-by: Jouni Högander <jouni.hogander@intel.com>
----
- drivers/gpu/drm/i915/display/intel_psr.c | 3 ++-
- 1 file changed, 2 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_psr.c b/drivers/gpu/drm/i915/display/intel_psr.c
-index bf410c4890f4..ed5f62f89027 100644
---- a/drivers/gpu/drm/i915/display/intel_psr.c
-+++ b/drivers/gpu/drm/i915/display/intel_psr.c
-@@ -1698,7 +1698,8 @@ static void lnl_alpm_configure(struct intel_dp *intel_dp)
- 	struct intel_psr *psr = &intel_dp->psr;
- 	u32 alpm_ctl;
- 
--	if (DISPLAY_VER(dev_priv) < 20)
-+	if (DISPLAY_VER(dev_priv) < 20 || (!intel_dp->psr.psr2_enabled &&
-+					   !intel_dp_is_edp(intel_dp)))
- 		return;
- 
- 	if (intel_dp->psr.panel_replay_enabled && intel_dp_is_edp(intel_dp)) {
--- 
-2.34.1
+-:54: CHECK:OPEN_ENDED_LINE: Lines should not end with a '('
+#54: FILE: drivers/gpu/drm/i915/display/intel_psr.c:1713:
++			       PORT_ALPM_CTL_SILENCE_PERIOD(
+
+-:59: CHECK:OPEN_ENDED_LINE: Lines should not end with a '('
+#59: FILE: drivers/gpu/drm/i915/display/intel_psr.c:1718:
++			       PORT_ALPM_LFPS_CTL_LFPS_HALF_CYCLE_DURATION(
+
+-:61: CHECK:OPEN_ENDED_LINE: Lines should not end with a '('
+#61: FILE: drivers/gpu/drm/i915/display/intel_psr.c:1720:
++			       PORT_ALPM_LFPS_CTL_FIRST_LFPS_HALF_CYCLE_DURATION(
+
+-:63: CHECK:OPEN_ENDED_LINE: Lines should not end with a '('
+#63: FILE: drivers/gpu/drm/i915/display/intel_psr.c:1722:
++			       PORT_ALPM_LFPS_CTL_LAST_LFPS_HALF_CYCLE_DURATION(
+
+total: 0 errors, 1 warnings, 4 checks, 58 lines checked
+603e13a8edad drm/i915/psr: Do not write ALPM configuration for PSR1 or DP2.0 Panel Replay
+
 
