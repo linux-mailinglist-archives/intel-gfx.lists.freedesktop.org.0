@@ -2,65 +2,29 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2F1BC85BF18
-	for <lists+intel-gfx@lfdr.de>; Tue, 20 Feb 2024 15:48:42 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4C0D185BF42
+	for <lists+intel-gfx@lfdr.de>; Tue, 20 Feb 2024 16:00:11 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CBD3F10E49B;
-	Tue, 20 Feb 2024 14:48:37 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Fa21UNJq";
-	dkim-atps=neutral
+	by gabe.freedesktop.org (Postfix) with ESMTP id C4BBC10E49E;
+	Tue, 20 Feb 2024 15:00:09 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 819DD10E498;
- Tue, 20 Feb 2024 14:48:35 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1708440515; x=1739976515;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=meXKs4nthnLwRqIeR9ozUCdxnOa2stibML1LIR1Xa/w=;
- b=Fa21UNJq73dC/5P5Tt4sCsAqoL6fmjAqm9iKZIu2h1CeofVbetSPejJs
- Q6GQl6x4CAsFAiwwxLfuO7bBaQvsiXLpNSEKCBRqCpiJWsSAFXhPm49XO
- jebBy9aJLBXDBUEv8+QBf81lUsuDd0RhswIc6Px0S+U9vkyyP5rrZY9b1
- GEElMR2qZfsujDNgSdk3vAjTyFZ3Ynj57Uz6042mydSyadqIJAhSIMMWr
- 2h2bGo83ujZWFSv9oUwy08rUNHiCwYtnOARTdc6AJUiWEpah8Sh4afwJR
- 9fZr/qDWywsKJeKPG//+qEAotp8kc3hgUrGeWQps3nhjOB/UsY3kJjb4M A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10990"; a="13252907"
-X-IronPort-AV: E=Sophos;i="6.06,174,1705392000"; d="scan'208";a="13252907"
-Received: from fmviesa003.fm.intel.com ([10.60.135.143])
- by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Feb 2024 06:48:35 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.06,174,1705392000"; 
-   d="scan'208";a="9369243"
-Received: from dunnejor-mobl2.ger.corp.intel.com (HELO [10.213.231.185])
- ([10.213.231.185])
- by fmviesa003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Feb 2024 06:48:33 -0800
-Message-ID: <af007641-9705-4259-b29c-3cb78f67fc64@linux.intel.com>
-Date: Tue, 20 Feb 2024 14:48:31 +0000
+Received: from 8e613ede5ea5 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 31B2D10E4A0;
+ Tue, 20 Feb 2024 15:00:09 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============5712702841218674440=="
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 2/2] drm/i915/gt: Enable only one CCS for compute
- workload
-Content-Language: en-US
-To: Andi Shyti <andi.shyti@linux.intel.com>,
- intel-gfx <intel-gfx@lists.freedesktop.org>,
- dri-devel <dri-devel@lists.freedesktop.org>
-Cc: Chris Wilson <chris.p.wilson@linux.intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Matt Roper <matthew.d.roper@intel.com>,
- John Harrison <John.C.Harrison@Intel.com>, stable@vger.kernel.org,
- Andi Shyti <andi.shyti@kernel.org>
-References: <20240220143526.259109-1-andi.shyti@linux.intel.com>
- <20240220143526.259109-3-andi.shyti@linux.intel.com>
-From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-Organization: Intel Corporation UK Plc
-In-Reply-To: <20240220143526.259109-3-andi.shyti@linux.intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=97_Fi=2ECI=2EBAT=3A_failure_for_Disable_automatic_load_CCS_?=
+ =?utf-8?q?load_balancing_=28rev2=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Andi Shyti" <andi.shyti@linux.intel.com>
+Cc: intel-gfx@lists.freedesktop.org
+Date: Tue, 20 Feb 2024 15:00:09 -0000
+Message-ID: <170844120920.125781.7741077527863616487@8e613ede5ea5>
+X-Patchwork-Hint: ignore
+References: <20240220142034.257370-1-andi.shyti@linux.intel.com>
+In-Reply-To: <20240220142034.257370-1-andi.shyti@linux.intel.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -73,120 +37,314 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+--===============5712702841218674440==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-On 20/02/2024 14:35, Andi Shyti wrote:
-> Enable only one CCS engine by default with all the compute sices
+== Series Details ==
 
-slices
+Series: Disable automatic load CCS load balancing (rev2)
+URL   : https://patchwork.freedesktop.org/series/129951/
+State : failure
 
-> allocated to it.
-> 
-> While generating the list of UABI engines to be exposed to the
-> user, exclude any additional CCS engines beyond the first
-> instance.
-> 
-> This change can be tested with igt i915_query.
-> 
-> Fixes: d2eae8e98d59 ("drm/i915/dg2: Drop force_probe requirement")
-> Signed-off-by: Andi Shyti <andi.shyti@linux.intel.com>
-> Cc: Chris Wilson <chris.p.wilson@linux.intel.com>
-> Cc: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
-> Cc: Matt Roper <matthew.d.roper@intel.com>
-> Cc: <stable@vger.kernel.org> # v6.2+
-> ---
->   drivers/gpu/drm/i915/gt/intel_engine_user.c |  9 +++++++++
->   drivers/gpu/drm/i915/gt/intel_gt.c          | 11 +++++++++++
->   drivers/gpu/drm/i915/gt/intel_gt_regs.h     |  2 ++
->   drivers/gpu/drm/i915/i915_query.c           |  1 +
->   4 files changed, 23 insertions(+)
-> 
-> diff --git a/drivers/gpu/drm/i915/gt/intel_engine_user.c b/drivers/gpu/drm/i915/gt/intel_engine_user.c
-> index 833987015b8b..7041acc77810 100644
-> --- a/drivers/gpu/drm/i915/gt/intel_engine_user.c
-> +++ b/drivers/gpu/drm/i915/gt/intel_engine_user.c
-> @@ -243,6 +243,15 @@ void intel_engines_driver_register(struct drm_i915_private *i915)
->   		if (engine->uabi_class == I915_NO_UABI_CLASS)
->   			continue;
->   
-> +		/*
-> +		 * Do not list and do not count CCS engines other than the first
-> +		 */
-> +		if (engine->uabi_class == I915_ENGINE_CLASS_COMPUTE &&
-> +		    engine->uabi_instance > 0) {
-> +			i915->engine_uabi_class_count[engine->uabi_class]--;
-> +			continue;
-> +		}
+== Summary ==
 
-It's a bit ugly to decrement after increment, instead of somehow 
-restructuring the loop to satisfy both cases more elegantly. And I 
-wonder if internally (in dmesg when engine name is logged) we don't end 
-up with ccs0 ccs0 ccs0 ccs0.. for all instances.
+CI Bug Log - changes from CI_DRM_14300 -> Patchwork_129951v2
+====================================================
 
-> +
->   		rb_link_node(&engine->uabi_node, prev, p);
->   		rb_insert_color(&engine->uabi_node, &i915->uabi_engines);
->   
-> diff --git a/drivers/gpu/drm/i915/gt/intel_gt.c b/drivers/gpu/drm/i915/gt/intel_gt.c
-> index a425db5ed3a2..e19df4ef47f6 100644
-> --- a/drivers/gpu/drm/i915/gt/intel_gt.c
-> +++ b/drivers/gpu/drm/i915/gt/intel_gt.c
-> @@ -168,6 +168,14 @@ static void init_unused_rings(struct intel_gt *gt)
->   	}
->   }
->   
-> +static void intel_gt_apply_ccs_mode(struct intel_gt *gt)
-> +{
-> +	if (!IS_DG2(gt->i915))
-> +		return;
-> +
-> +	intel_uncore_write(gt->uncore, XEHP_CCS_MODE, 0);
-> +}
-> +
->   int intel_gt_init_hw(struct intel_gt *gt)
->   {
->   	struct drm_i915_private *i915 = gt->i915;
-> @@ -195,6 +203,9 @@ int intel_gt_init_hw(struct intel_gt *gt)
->   
->   	intel_gt_init_swizzling(gt);
->   
-> +	/* Configure CCS mode */
-> +	intel_gt_apply_ccs_mode(gt);
-> +
->   	/*
->   	 * At least 830 can leave some of the unused rings
->   	 * "active" (ie. head != tail) after resume which
-> diff --git a/drivers/gpu/drm/i915/gt/intel_gt_regs.h b/drivers/gpu/drm/i915/gt/intel_gt_regs.h
-> index cf709f6c05ae..c148113770ea 100644
-> --- a/drivers/gpu/drm/i915/gt/intel_gt_regs.h
-> +++ b/drivers/gpu/drm/i915/gt/intel_gt_regs.h
-> @@ -1605,6 +1605,8 @@
->   #define   GEN12_VOLTAGE_MASK			REG_GENMASK(10, 0)
->   #define   GEN12_CAGF_MASK			REG_GENMASK(19, 11)
->   
-> +#define XEHP_CCS_MODE                          _MMIO(0x14804)
-> +
->   #define GEN11_GT_INTR_DW(x)			_MMIO(0x190018 + ((x) * 4))
->   #define   GEN11_CSME				(31)
->   #define   GEN12_HECI_2				(30)
-> diff --git a/drivers/gpu/drm/i915/i915_query.c b/drivers/gpu/drm/i915/i915_query.c
-> index 3baa2f54a86e..d5a5143971f5 100644
-> --- a/drivers/gpu/drm/i915/i915_query.c
-> +++ b/drivers/gpu/drm/i915/i915_query.c
-> @@ -124,6 +124,7 @@ static int query_geometry_subslices(struct drm_i915_private *i915,
->   	return fill_topology_info(sseu, query_item, sseu->geometry_subslice_mask);
->   }
->   
-> +
+Summary
+-------
 
-Zap please.
+  **FAILURE**
 
->   static int
->   query_engine_info(struct drm_i915_private *i915,
->   		  struct drm_i915_query_item *query_item)
+  Serious unknown changes coming with Patchwork_129951v2 absolutely need to be
+  verified manually.
+  
+  If you think the reported changes have nothing to do with the changes
+  introduced in Patchwork_129951v2, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them
+  to document this new failure mode, which will reduce false positives in CI.
 
-Regards,
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_129951v2/index.html
 
-Tvrtko
+Participating hosts (40 -> 38)
+------------------------------
+
+  Missing    (2): fi-glk-j4005 fi-snb-2520m 
+
+Possible new issues
+-------------------
+
+  Here are the unknown changes that may have been introduced in Patchwork_129951v2:
+
+### IGT changes ###
+
+#### Possible regressions ####
+
+  * igt@i915_module_load@load:
+    - fi-bsw-n3050:       [PASS][1] -> [ABORT][2]
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14300/fi-bsw-n3050/igt@i915_module_load@load.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_129951v2/fi-bsw-n3050/igt@i915_module_load@load.html
+    - fi-skl-6600u:       [PASS][3] -> [ABORT][4]
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14300/fi-skl-6600u/igt@i915_module_load@load.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_129951v2/fi-skl-6600u/igt@i915_module_load@load.html
+    - fi-apl-guc:         NOTRUN -> [ABORT][5]
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_129951v2/fi-apl-guc/igt@i915_module_load@load.html
+    - fi-skl-guc:         [PASS][6] -> [ABORT][7]
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14300/fi-skl-guc/igt@i915_module_load@load.html
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_129951v2/fi-skl-guc/igt@i915_module_load@load.html
+    - fi-kbl-7567u:       [PASS][8] -> [ABORT][9]
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14300/fi-kbl-7567u/igt@i915_module_load@load.html
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_129951v2/fi-kbl-7567u/igt@i915_module_load@load.html
+    - fi-cfl-8700k:       [PASS][10] -> [ABORT][11]
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14300/fi-cfl-8700k/igt@i915_module_load@load.html
+   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_129951v2/fi-cfl-8700k/igt@i915_module_load@load.html
+    - fi-bsw-nick:        [PASS][12] -> [ABORT][13]
+   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14300/fi-bsw-nick/igt@i915_module_load@load.html
+   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_129951v2/fi-bsw-nick/igt@i915_module_load@load.html
+    - bat-kbl-2:          [PASS][14] -> [ABORT][15]
+   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14300/bat-kbl-2/igt@i915_module_load@load.html
+   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_129951v2/bat-kbl-2/igt@i915_module_load@load.html
+    - fi-cfl-guc:         [PASS][16] -> [ABORT][17]
+   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14300/fi-cfl-guc/igt@i915_module_load@load.html
+   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_129951v2/fi-cfl-guc/igt@i915_module_load@load.html
+    - fi-kbl-x1275:       [PASS][18] -> [ABORT][19]
+   [18]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14300/fi-kbl-x1275/igt@i915_module_load@load.html
+   [19]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_129951v2/fi-kbl-x1275/igt@i915_module_load@load.html
+    - fi-cfl-8109u:       [PASS][20] -> [ABORT][21]
+   [20]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14300/fi-cfl-8109u/igt@i915_module_load@load.html
+   [21]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_129951v2/fi-cfl-8109u/igt@i915_module_load@load.html
+    - fi-ivb-3770:        [PASS][22] -> [ABORT][23]
+   [22]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14300/fi-ivb-3770/igt@i915_module_load@load.html
+   [23]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_129951v2/fi-ivb-3770/igt@i915_module_load@load.html
+    - fi-kbl-guc:         [PASS][24] -> [ABORT][25]
+   [24]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14300/fi-kbl-guc/igt@i915_module_load@load.html
+   [25]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_129951v2/fi-kbl-guc/igt@i915_module_load@load.html
+
+  * igt@i915_selftest@live@client:
+    - fi-elk-e7500:       [PASS][26] -> [DMESG-WARN][27] +42 other tests dmesg-warn
+   [26]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14300/fi-elk-e7500/igt@i915_selftest@live@client.html
+   [27]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_129951v2/fi-elk-e7500/igt@i915_selftest@live@client.html
+
+  * igt@i915_selftest@live@coherency:
+    - bat-jsl-3:          [PASS][28] -> [DMESG-WARN][29] +40 other tests dmesg-warn
+   [28]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14300/bat-jsl-3/igt@i915_selftest@live@coherency.html
+   [29]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_129951v2/bat-jsl-3/igt@i915_selftest@live@coherency.html
+
+  * igt@i915_selftest@live@gt_contexts:
+    - fi-ilk-650:         [PASS][30] -> [DMESG-WARN][31] +42 other tests dmesg-warn
+   [30]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14300/fi-ilk-650/igt@i915_selftest@live@gt_contexts.html
+   [31]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_129951v2/fi-ilk-650/igt@i915_selftest@live@gt_contexts.html
+
+  * igt@i915_selftest@live@gt_pm:
+    - bat-jsl-1:          [PASS][32] -> [DMESG-WARN][33] +40 other tests dmesg-warn
+   [32]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14300/bat-jsl-1/igt@i915_selftest@live@gt_pm.html
+   [33]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_129951v2/bat-jsl-1/igt@i915_selftest@live@gt_pm.html
+
+  
+#### Suppressed ####
+
+  The following results come from untrusted machines, tests, or statuses.
+  They do not affect the overall result.
+
+  * igt@runner@aborted:
+    - {bat-arls-2}:       [FAIL][34] ([i915#10237]) -> [FAIL][35]
+   [34]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14300/bat-arls-2/igt@runner@aborted.html
+   [35]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_129951v2/bat-arls-2/igt@runner@aborted.html
+
+  
+Known issues
+------------
+
+  Here are the changes found in Patchwork_129951v2 that come from known issues:
+
+### CI changes ###
+
+#### Possible fixes ####
+
+  * boot:
+    - fi-apl-guc:         [FAIL][36] ([i915#8293]) -> [PASS][37]
+   [36]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14300/fi-apl-guc/boot.html
+   [37]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_129951v2/fi-apl-guc/boot.html
+
+  
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@i915_module_load@reload:
+    - bat-jsl-3:          [PASS][38] -> [DMESG-WARN][39] ([i915#1982])
+   [38]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14300/bat-jsl-3/igt@i915_module_load@reload.html
+   [39]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_129951v2/bat-jsl-3/igt@i915_module_load@reload.html
+    - bat-jsl-1:          [PASS][40] -> [DMESG-WARN][41] ([i915#1982])
+   [40]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14300/bat-jsl-1/igt@i915_module_load@reload.html
+   [41]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_129951v2/bat-jsl-1/igt@i915_module_load@reload.html
+
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+  [i915#10237]: https://gitlab.freedesktop.org/drm/intel/issues/10237
+  [i915#1982]: https://gitlab.freedesktop.org/drm/intel/issues/1982
+  [i915#8293]: https://gitlab.freedesktop.org/drm/intel/issues/8293
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_14300 -> Patchwork_129951v2
+
+  CI-20190529: 20190529
+  CI_DRM_14300: e2b02e89746d8eff8c244f938eecd0f1db8eb805 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_7718: 40e8b9122853f455c84afcfa56469a6bc9a0d564 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  Patchwork_129951v2: e2b02e89746d8eff8c244f938eecd0f1db8eb805 @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+### Linux commits
+
+26221b83843a drm/i915/gt: Set default CCS mode '1'
+c1e3306767c1 drm/i915/gt: Disable HW load balancing for CCS
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_129951v2/index.html
+
+--===============5712702841218674440==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>Disable automatic load CCS load balancing (rev2)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/129951/">https://patchwork.freedesktop.org/series/129951/</a></td></tr>
+<tr><td><b>State:</b></td><td>failure</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_129951v2/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_129951v2/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_14300 -&gt; Patchwork_129951v2</h1>
+<h2>Summary</h2>
+<p><strong>FAILURE</strong></p>
+<p>Serious unknown changes coming with Patchwork_129951v2 absolutely need to be<br />
+  verified manually.</p>
+<p>If you think the reported changes have nothing to do with the changes<br />
+  introduced in Patchwork_129951v2, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them<br />
+  to document this new failure mode, which will reduce false positives in CI.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_129951v2/index.html</p>
+<h2>Participating hosts (40 -&gt; 38)</h2>
+<p>Missing    (2): fi-glk-j4005 fi-snb-2520m </p>
+<h2>Possible new issues</h2>
+<p>Here are the unknown changes that may have been introduced in Patchwork_129951v2:</p>
+<h3>IGT changes</h3>
+<h4>Possible regressions</h4>
+<ul>
+<li>
+<p>igt@i915_module_load@load:</p>
+<ul>
+<li>fi-bsw-n3050:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14300/fi-bsw-n3050/igt@i915_module_load@load.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_129951v2/fi-bsw-n3050/igt@i915_module_load@load.html">ABORT</a></li>
+<li>fi-skl-6600u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14300/fi-skl-6600u/igt@i915_module_load@load.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_129951v2/fi-skl-6600u/igt@i915_module_load@load.html">ABORT</a></li>
+<li>fi-apl-guc:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_129951v2/fi-apl-guc/igt@i915_module_load@load.html">ABORT</a></li>
+<li>fi-skl-guc:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14300/fi-skl-guc/igt@i915_module_load@load.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_129951v2/fi-skl-guc/igt@i915_module_load@load.html">ABORT</a></li>
+<li>fi-kbl-7567u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14300/fi-kbl-7567u/igt@i915_module_load@load.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_129951v2/fi-kbl-7567u/igt@i915_module_load@load.html">ABORT</a></li>
+<li>fi-cfl-8700k:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14300/fi-cfl-8700k/igt@i915_module_load@load.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_129951v2/fi-cfl-8700k/igt@i915_module_load@load.html">ABORT</a></li>
+<li>fi-bsw-nick:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14300/fi-bsw-nick/igt@i915_module_load@load.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_129951v2/fi-bsw-nick/igt@i915_module_load@load.html">ABORT</a></li>
+<li>bat-kbl-2:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14300/bat-kbl-2/igt@i915_module_load@load.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_129951v2/bat-kbl-2/igt@i915_module_load@load.html">ABORT</a></li>
+<li>fi-cfl-guc:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14300/fi-cfl-guc/igt@i915_module_load@load.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_129951v2/fi-cfl-guc/igt@i915_module_load@load.html">ABORT</a></li>
+<li>fi-kbl-x1275:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14300/fi-kbl-x1275/igt@i915_module_load@load.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_129951v2/fi-kbl-x1275/igt@i915_module_load@load.html">ABORT</a></li>
+<li>fi-cfl-8109u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14300/fi-cfl-8109u/igt@i915_module_load@load.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_129951v2/fi-cfl-8109u/igt@i915_module_load@load.html">ABORT</a></li>
+<li>fi-ivb-3770:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14300/fi-ivb-3770/igt@i915_module_load@load.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_129951v2/fi-ivb-3770/igt@i915_module_load@load.html">ABORT</a></li>
+<li>fi-kbl-guc:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14300/fi-kbl-guc/igt@i915_module_load@load.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_129951v2/fi-kbl-guc/igt@i915_module_load@load.html">ABORT</a></li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@client:</p>
+<ul>
+<li>fi-elk-e7500:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14300/fi-elk-e7500/igt@i915_selftest@live@client.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_129951v2/fi-elk-e7500/igt@i915_selftest@live@client.html">DMESG-WARN</a> +42 other tests dmesg-warn</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@coherency:</p>
+<ul>
+<li>bat-jsl-3:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14300/bat-jsl-3/igt@i915_selftest@live@coherency.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_129951v2/bat-jsl-3/igt@i915_selftest@live@coherency.html">DMESG-WARN</a> +40 other tests dmesg-warn</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@gt_contexts:</p>
+<ul>
+<li>fi-ilk-650:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14300/fi-ilk-650/igt@i915_selftest@live@gt_contexts.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_129951v2/fi-ilk-650/igt@i915_selftest@live@gt_contexts.html">DMESG-WARN</a> +42 other tests dmesg-warn</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@gt_pm:</p>
+<ul>
+<li>bat-jsl-1:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14300/bat-jsl-1/igt@i915_selftest@live@gt_pm.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_129951v2/bat-jsl-1/igt@i915_selftest@live@gt_pm.html">DMESG-WARN</a> +40 other tests dmesg-warn</li>
+</ul>
+</li>
+</ul>
+<h4>Suppressed</h4>
+<p>The following results come from untrusted machines, tests, or statuses.<br />
+  They do not affect the overall result.</p>
+<ul>
+<li>igt@runner@aborted:<ul>
+<li>{bat-arls-2}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14300/bat-arls-2/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/10237">i915#10237</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_129951v2/bat-arls-2/igt@runner@aborted.html">FAIL</a></li>
+</ul>
+</li>
+</ul>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_129951v2 that come from known issues:</p>
+<h3>CI changes</h3>
+<h4>Possible fixes</h4>
+<ul>
+<li>boot:<ul>
+<li>fi-apl-guc:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14300/fi-apl-guc/boot.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/8293">i915#8293</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_129951v2/fi-apl-guc/boot.html">PASS</a></li>
+</ul>
+</li>
+</ul>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>igt@i915_module_load@reload:<ul>
+<li>bat-jsl-3:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14300/bat-jsl-3/igt@i915_module_load@reload.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_129951v2/bat-jsl-3/igt@i915_module_load@reload.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1982">i915#1982</a>)</li>
+<li>bat-jsl-1:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14300/bat-jsl-1/igt@i915_module_load@reload.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_129951v2/bat-jsl-1/igt@i915_module_load@reload.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1982">i915#1982</a>)</li>
+</ul>
+</li>
+</ul>
+<p>{name}: This element is suppressed. This means it is ignored when computing<br />
+          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_14300 -&gt; Patchwork_129951v2</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_14300: e2b02e89746d8eff8c244f938eecd0f1db8eb805 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_7718: 40e8b9122853f455c84afcfa56469a6bc9a0d564 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  Patchwork_129951v2: e2b02e89746d8eff8c244f938eecd0f1db8eb805 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+<h3>Linux commits</h3>
+<p>26221b83843a drm/i915/gt: Set default CCS mode '1'<br />
+c1e3306767c1 drm/i915/gt: Disable HW load balancing for CCS</p>
+
+</body>
+</html>
+
+--===============5712702841218674440==--
