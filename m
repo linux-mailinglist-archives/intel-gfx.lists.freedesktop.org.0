@@ -2,64 +2,53 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5BA4F85B6FC
-	for <lists+intel-gfx@lfdr.de>; Tue, 20 Feb 2024 10:16:53 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0377C85B785
+	for <lists+intel-gfx@lfdr.de>; Tue, 20 Feb 2024 10:31:43 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9AF4410E26F;
-	Tue, 20 Feb 2024 09:16:51 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 53B3810E2A3;
+	Tue, 20 Feb 2024 09:31:41 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="S5VYr81o";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="QetYZXlz";
 	dkim-atps=neutral
-X-Original-To: Intel-gfx@lists.freedesktop.org
-Delivered-To: Intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 204CD10E26A;
- Tue, 20 Feb 2024 09:16:50 +0000 (UTC)
+X-Original-To: intel-gfx@lists.freedesktop.org
+Delivered-To: intel-gfx@lists.freedesktop.org
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id ADB5710E2A3
+ for <intel-gfx@lists.freedesktop.org>; Tue, 20 Feb 2024 09:31:39 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1708420611; x=1739956611;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=4zps8Ls/EQDz1Or3EX3yYsS2Kx9OQYzJ7lWfwPdUfEM=;
- b=S5VYr81o1lrxY4oOXoU9xJvsIUrivwR9alCiDQthPOtXnnxYAOq8FzC2
- ggZcMu6YiV3x0OmQNm88wGytGWfQ40gEIFIE4JWBzpJn4BB8kwKRMQ0hs
- pZurWIvmbEQCjBDxh9ZYlIE0Ye5ovEFC5Sz63Amg3zJtifT9FfPb+iZuz
- UEwZxPeSYVpgNRH1lpPob9QBIJaPTlw58deElv5oSB5chhh0I0Isji4F/
- tieB93y4Cjmd6iCsMRz1dErl0K6t3rD5RYAIwDaHxRIPL+MbDVfyCqO5p
- /o9QsiunBesWkHL0rD3pyDl/dBeQgVL2V+m2AbpwWRtQv+sZkyxXEtqx6 A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10989"; a="13629533"
-X-IronPort-AV: E=Sophos;i="6.06,172,1705392000"; d="scan'208";a="13629533"
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
- by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Feb 2024 01:16:50 -0800
+ t=1708421499; x=1739957499;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=qnqGUxLKVubyb1yzYWWMgQR9viVQA6i/nvYBlc5XYEw=;
+ b=QetYZXlzeFtLjZwgb6O4MRf74FcqOkOliZPxPtvS09mS1cwXnc01aH/2
+ 8pdjSo3gUjQWzpld4FgNbYkERZIyY4nfT9F6eH5Nwyyr5fqs5oBFrUoNg
+ G8S8ifQNmmMS0YbX2I87YyxkYQCGsAYUGTtRkVu56IQ42ZOAc5DMIeZmv
+ 4G0A+vQ+hzIpmg3/unFtf43TDHfvyCsJx+E62uy64692Hae8UdtSvzNc1
+ ZP5p/lhs8mCkHXCJHfbDVn2Ap5Kw6SVmJQFIGz6l0OsNX9oDTwLT2M2cV
+ 2FRXLSR29D9yu2g6+qTZemlO8dzLLIxfEF3KLr77i+XNQuuisX7nYq5Uu Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10989"; a="2974288"
+X-IronPort-AV: E=Sophos;i="6.06,172,1705392000"; 
+   d="scan'208";a="2974288"
+Received: from fmviesa007.fm.intel.com ([10.60.135.147])
+ by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 20 Feb 2024 01:31:38 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10989"; a="936424675"
-X-IronPort-AV: E=Sophos;i="6.06,172,1705392000"; d="scan'208";a="936424675"
-Received: from dunnejor-mobl2.ger.corp.intel.com (HELO [10.213.231.185])
- ([10.213.231.185])
- by fmsmga001-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Feb 2024 01:16:47 -0800
-Message-ID: <f8455cd2-bed6-4026-bf6e-f6dfea2f86c5@linux.intel.com>
-Date: Tue, 20 Feb 2024 09:16:43 +0000
+X-IronPort-AV: E=Sophos;i="6.06,172,1705392000"; 
+   d="scan'208";a="4631694"
+Received: from unknown (HELO slisovsk-Lenovo-ideapad-720S-13IKB.fi.intel.com)
+ ([10.237.72.65])
+ by fmviesa007.fm.intel.com with ESMTP; 20 Feb 2024 01:31:37 -0800
+From: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Cc: Stanislav.Lisovskiy@intel.com, jani.saarinen@intel.com,
+ ville.syrjala@linux.intel.com
+Subject: [PATCH 0/3] QGV/SAGV related fixes
+Date: Tue, 20 Feb 2024 11:31:33 +0200
+Message-Id: <20240220093136.32181-1-stanislav.lisovskiy@intel.com>
+X-Mailer: git-send-email 2.37.3
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] drm/i915: Fix possible null pointer dereference after
- drm_dbg_printer conversion
-Content-Language: en-US
-To: Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Thomas Zimmermann <tzimmermann@suse.de>, Maxime Ripard <mripard@kernel.org>
-Cc: Intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- Tvrtko Ursulin <tvrtko.ursulin@intel.com>,
- Dan Carpenter <dan.carpenter@linaro.org>, Jani Nikula
- <jani.nikula@intel.com>, Luca Coelho <luciano.coelho@intel.com>,
- Jani Nikula <jani.nikula@linux.intel.com>
-References: <20240219131423.1854991-1-tvrtko.ursulin@linux.intel.com>
- <ZdOz78jQu-GvJuDJ@intel.com>
-From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-Organization: Intel Corporation UK Plc
-In-Reply-To: <ZdOz78jQu-GvJuDJ@intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -75,54 +64,21 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+We have couple of customer issues, related to SAGV/QGV point
+calculation. Those patches contain fixes plus some additional
+debugs for those issues.
 
-On 19/02/2024 20:02, Rodrigo Vivi wrote:
-> On Mon, Feb 19, 2024 at 01:14:23PM +0000, Tvrtko Ursulin wrote:
->> From: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
->>
->> Request can be NULL if no guilty request was identified so simply use
->> engine->i915 instead.
->>
->> Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
->> Fixes: d50892a9554c ("drm/i915: switch from drm_debug_printer() to device specific drm_dbg_printer()")
->> Reported-by: Dan Carpenter <dan.carpenter@linaro.org>
->> Cc: Jani Nikula <jani.nikula@intel.com>
->> Cc: Luca Coelho <luciano.coelho@intel.com>
->> Cc: Maxime Ripard <mripard@kernel.org>
->> Cc: Jani Nikula <jani.nikula@linux.intel.com>
-> 
-> Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
+Stanislav Lisovskiy (3):
+  drm/i915: Add meaningful traces for QGV point info error handling
+  drm/i915: Extract code required to calculate max qgv/psf gv point
+  drm/i915: Disable SAGV on bw init, to force QGV point recalculation
 
-Thanks Rodrigo!
+ drivers/gpu/drm/i915/display/intel_bw.c      | 152 +++++++++++++++----
+ drivers/gpu/drm/i915/display/skl_watermark.c |   2 +-
+ drivers/gpu/drm/i915/display/skl_watermark.h |   1 +
+ drivers/gpu/drm/i915/soc/intel_dram.c        |   2 +
+ 4 files changed, 126 insertions(+), 31 deletions(-)
 
-Given how d50892a9554c landed via drm-misc-next, Maxime or Thomas - 
-could you take this via drm-misc-next-fixes or if there will be another 
-drm-misc-next pull request?
+-- 
+2.37.3
 
-Regards,
-
-Tvrtko
-
-> 
->> ---
->>   drivers/gpu/drm/i915/gt/intel_engine_heartbeat.c | 4 ++--
->>   1 file changed, 2 insertions(+), 2 deletions(-)
->>
->> diff --git a/drivers/gpu/drm/i915/gt/intel_engine_heartbeat.c b/drivers/gpu/drm/i915/gt/intel_engine_heartbeat.c
->> index 5f8d86e25993..8d4bb95f8424 100644
->> --- a/drivers/gpu/drm/i915/gt/intel_engine_heartbeat.c
->> +++ b/drivers/gpu/drm/i915/gt/intel_engine_heartbeat.c
->> @@ -96,8 +96,8 @@ static void heartbeat_commit(struct i915_request *rq,
->>   static void show_heartbeat(const struct i915_request *rq,
->>   			   struct intel_engine_cs *engine)
->>   {
->> -	struct drm_printer p = drm_dbg_printer(&rq->i915->drm, DRM_UT_DRIVER,
->> -					       "heartbeat");
->> +	struct drm_printer p =
->> +		drm_dbg_printer(&engine->i915->drm, DRM_UT_DRIVER, "heartbeat");
->>   
->>   	if (!rq) {
->>   		intel_engine_dump(engine, &p,
->> -- 
->> 2.40.1
->>
