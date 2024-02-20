@@ -2,57 +2,64 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 41DB585B69C
-	for <lists+intel-gfx@lfdr.de>; Tue, 20 Feb 2024 10:05:42 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5BA4F85B6FC
+	for <lists+intel-gfx@lfdr.de>; Tue, 20 Feb 2024 10:16:53 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 44C2910E241;
-	Tue, 20 Feb 2024 09:05:36 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9AF4410E26F;
+	Tue, 20 Feb 2024 09:16:51 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="PLzNP2xl";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="S5VYr81o";
 	dkim-atps=neutral
-X-Original-To: intel-gfx@lists.freedesktop.org
-Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6E85010E228;
- Tue, 20 Feb 2024 09:05:33 +0000 (UTC)
+X-Original-To: Intel-gfx@lists.freedesktop.org
+Delivered-To: Intel-gfx@lists.freedesktop.org
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 204CD10E26A;
+ Tue, 20 Feb 2024 09:16:50 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1708419934; x=1739955934;
+ t=1708420611; x=1739956611;
  h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to;
- bh=rK9FL6IDYVMVqTKSg8C6FYwyy3TTQyNND9BPOP/bnN4=;
- b=PLzNP2xlkFQW0po31KuY5yasjiPSRBE3WR8NdNFY3z3cNAu/PwDe71lR
- KUuGrfw4euKiM/28nvnk2I4Or/8Ms0vDO+CZsrwjho8+DvUNKVjfSb7rd
- yxxEjfPX6M0dCj4nvaCW3xXy+wvpK3uFtbhE3P4jLa2d9kCt5QoVuzx7T
- WzlXzK1WE+BkYbV5n4UavJO/JZXJpk/PKRzKiBYtKbP8cImsZY/G1mdKv
- RNv4UYxXK2/2y0aNQSm29wVwgri4ex6Xt+OoAtcA8JH5GoAH4dg3ydg8d
- 4jxsK5j3aG3ZE2NKffANeww8y54F45ft89DnQEMxzNpIDBIj8JPQz6cVO g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10989"; a="6328628"
-X-IronPort-AV: E=Sophos;i="6.06,172,1705392000"; d="scan'208,217";a="6328628"
-Received: from orviesa005.jf.intel.com ([10.64.159.145])
- by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Feb 2024 01:05:33 -0800
+ from:in-reply-to:content-transfer-encoding;
+ bh=4zps8Ls/EQDz1Or3EX3yYsS2Kx9OQYzJ7lWfwPdUfEM=;
+ b=S5VYr81o1lrxY4oOXoU9xJvsIUrivwR9alCiDQthPOtXnnxYAOq8FzC2
+ ggZcMu6YiV3x0OmQNm88wGytGWfQ40gEIFIE4JWBzpJn4BB8kwKRMQ0hs
+ pZurWIvmbEQCjBDxh9ZYlIE0Ye5ovEFC5Sz63Amg3zJtifT9FfPb+iZuz
+ UEwZxPeSYVpgNRH1lpPob9QBIJaPTlw58deElv5oSB5chhh0I0Isji4F/
+ tieB93y4Cjmd6iCsMRz1dErl0K6t3rD5RYAIwDaHxRIPL+MbDVfyCqO5p
+ /o9QsiunBesWkHL0rD3pyDl/dBeQgVL2V+m2AbpwWRtQv+sZkyxXEtqx6 A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10989"; a="13629533"
+X-IronPort-AV: E=Sophos;i="6.06,172,1705392000"; d="scan'208";a="13629533"
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+ by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 20 Feb 2024 01:16:50 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.06,172,1705392000"; d="scan'208,217";a="9419269"
-Received: from nirmoyda-mobl.ger.corp.intel.com (HELO [10.246.50.249])
- ([10.246.50.249])
- by orviesa005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Feb 2024 01:05:31 -0800
-Content-Type: multipart/alternative;
- boundary="------------10jooFcKQFnxlMRDcWq7DseM"
-Message-ID: <97d6c6a4-dd1c-44af-a670-4867b6ae3cab@linux.intel.com>
-Date: Tue, 20 Feb 2024 10:05:29 +0100
+X-IronPort-AV: E=McAfee;i="6600,9927,10989"; a="936424675"
+X-IronPort-AV: E=Sophos;i="6.06,172,1705392000"; d="scan'208";a="936424675"
+Received: from dunnejor-mobl2.ger.corp.intel.com (HELO [10.213.231.185])
+ ([10.213.231.185])
+ by fmsmga001-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 20 Feb 2024 01:16:47 -0800
+Message-ID: <f8455cd2-bed6-4026-bf6e-f6dfea2f86c5@linux.intel.com>
+Date: Tue, 20 Feb 2024 09:16:43 +0000
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] drm/i915: check before removing mm notifier
-To: Rodrigo Vivi <rodrigo.vivi@intel.com>, Nirmoy Das <nirmoy.das@intel.com>
-Cc: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- Andi Shyti <andi.shyti@linux.intel.com>, Shawn Lee <shawn.c.lee@intel.com>
-References: <20240219125047.28906-1-nirmoy.das@intel.com>
- <ZdO2IYev7Amcbtt1@intel.com>
+Subject: Re: [PATCH] drm/i915: Fix possible null pointer dereference after
+ drm_dbg_printer conversion
 Content-Language: en-US
-From: Nirmoy Das <nirmoy.das@linux.intel.com>
-In-Reply-To: <ZdO2IYev7Amcbtt1@intel.com>
+To: Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Thomas Zimmermann <tzimmermann@suse.de>, Maxime Ripard <mripard@kernel.org>
+Cc: Intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ Tvrtko Ursulin <tvrtko.ursulin@intel.com>,
+ Dan Carpenter <dan.carpenter@linaro.org>, Jani Nikula
+ <jani.nikula@intel.com>, Luca Coelho <luciano.coelho@intel.com>,
+ Jani Nikula <jani.nikula@linux.intel.com>
+References: <20240219131423.1854991-1-tvrtko.ursulin@linux.intel.com>
+ <ZdOz78jQu-GvJuDJ@intel.com>
+From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+Organization: Intel Corporation UK Plc
+In-Reply-To: <ZdOz78jQu-GvJuDJ@intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -68,140 +75,54 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-This is a multi-part message in MIME format.
---------------10jooFcKQFnxlMRDcWq7DseM
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
 
-Hi Rodrigo,
-
-On 2/19/2024 9:12 PM, Rodrigo Vivi wrote:
-> On Mon, Feb 19, 2024 at 01:50:47PM +0100, Nirmoy Das wrote:
->> Error in mmu_interval_notifier_insert() can leave a NULL
->> notifier.mm pointer. Catch that and return early.
+On 19/02/2024 20:02, Rodrigo Vivi wrote:
+> On Mon, Feb 19, 2024 at 01:14:23PM +0000, Tvrtko Ursulin wrote:
+>> From: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
 >>
->> Cc: Andi Shyti<andi.shyti@linux.intel.com>
->> Cc: Shawn Lee<shawn.c.lee@intel.com>
->> Signed-off-by: Nirmoy Das<nirmoy.das@intel.com>
+>> Request can be NULL if no guilty request was identified so simply use
+>> engine->i915 instead.
+>>
+>> Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+>> Fixes: d50892a9554c ("drm/i915: switch from drm_debug_printer() to device specific drm_dbg_printer()")
+>> Reported-by: Dan Carpenter <dan.carpenter@linaro.org>
+>> Cc: Jani Nikula <jani.nikula@intel.com>
+>> Cc: Luca Coelho <luciano.coelho@intel.com>
+>> Cc: Maxime Ripard <mripard@kernel.org>
+>> Cc: Jani Nikula <jani.nikula@linux.intel.com>
+> 
+> Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
+
+Thanks Rodrigo!
+
+Given how d50892a9554c landed via drm-misc-next, Maxime or Thomas - 
+could you take this via drm-misc-next-fixes or if there will be another 
+drm-misc-next pull request?
+
+Regards,
+
+Tvrtko
+
+> 
 >> ---
->>   drivers/gpu/drm/i915/gem/i915_gem_userptr.c | 3 +++
->>   1 file changed, 3 insertions(+)
+>>   drivers/gpu/drm/i915/gt/intel_engine_heartbeat.c | 4 ++--
+>>   1 file changed, 2 insertions(+), 2 deletions(-)
 >>
->> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_userptr.c b/drivers/gpu/drm/i915/gem/i915_gem_userptr.c
->> index 0e21ce9d3e5a..61abfb505766 100644
->> --- a/drivers/gpu/drm/i915/gem/i915_gem_userptr.c
->> +++ b/drivers/gpu/drm/i915/gem/i915_gem_userptr.c
->> @@ -349,6 +349,9 @@ i915_gem_userptr_release(struct drm_i915_gem_object *obj)
+>> diff --git a/drivers/gpu/drm/i915/gt/intel_engine_heartbeat.c b/drivers/gpu/drm/i915/gt/intel_engine_heartbeat.c
+>> index 5f8d86e25993..8d4bb95f8424 100644
+>> --- a/drivers/gpu/drm/i915/gt/intel_engine_heartbeat.c
+>> +++ b/drivers/gpu/drm/i915/gt/intel_engine_heartbeat.c
+>> @@ -96,8 +96,8 @@ static void heartbeat_commit(struct i915_request *rq,
+>>   static void show_heartbeat(const struct i915_request *rq,
+>>   			   struct intel_engine_cs *engine)
 >>   {
->>   	GEM_WARN_ON(obj->userptr.page_ref);
+>> -	struct drm_printer p = drm_dbg_printer(&rq->i915->drm, DRM_UT_DRIVER,
+>> -					       "heartbeat");
+>> +	struct drm_printer p =
+>> +		drm_dbg_printer(&engine->i915->drm, DRM_UT_DRIVER, "heartbeat");
 >>   
->> +	if (!obj->userptr.notifier.mm)
->> +		return;
->> +
-> hmmm... right, it looks that we need this protection. But...
->
-> I mean, feel free to use
-> Reviewed-by: Rodrigo Vivi<rodrigo.vivi@intel.com>
->
-> for this patch,
->
-> but I believe that if this mmu insert failed we might have other
-> deeper problems like when checking i915_gem_object_is_userptr() ?
->
-> No?!
-
-We are returning an error if mmu insert fails while creating a userptr 
-object  so the obj struct is only available to obj cleanup methods.
-
-As far as I see, i915_gem_object_is_userptr() should not happen on such obj struct.
-
-Thanks,
-Nirmoy
-
->>   	mmu_interval_notifier_remove(&obj->userptr.notifier);
->>   	obj->userptr.notifier.mm = NULL;
->>   }
+>>   	if (!rq) {
+>>   		intel_engine_dump(engine, &p,
 >> -- 
->> 2.42.0
+>> 2.40.1
 >>
---------------10jooFcKQFnxlMRDcWq7DseM
-Content-Type: text/html; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-  </head>
-  <body>
-    <p>Hi Rodrigo, <br>
-    </p>
-    <div class="moz-cite-prefix">On 2/19/2024 9:12 PM, Rodrigo Vivi
-      wrote:<br>
-    </div>
-    <blockquote type="cite" cite="mid:ZdO2IYev7Amcbtt1@intel.com">
-      <pre class="moz-quote-pre" wrap="">On Mon, Feb 19, 2024 at 01:50:47PM +0100, Nirmoy Das wrote:
-</pre>
-      <blockquote type="cite">
-        <pre class="moz-quote-pre" wrap="">Error in mmu_interval_notifier_insert() can leave a NULL
-notifier.mm pointer. Catch that and return early.
-
-Cc: Andi Shyti <a class="moz-txt-link-rfc2396E" href="mailto:andi.shyti@linux.intel.com">&lt;andi.shyti@linux.intel.com&gt;</a>
-Cc: Shawn Lee <a class="moz-txt-link-rfc2396E" href="mailto:shawn.c.lee@intel.com">&lt;shawn.c.lee@intel.com&gt;</a>
-Signed-off-by: Nirmoy Das <a class="moz-txt-link-rfc2396E" href="mailto:nirmoy.das@intel.com">&lt;nirmoy.das@intel.com&gt;</a>
----
- drivers/gpu/drm/i915/gem/i915_gem_userptr.c | 3 +++
- 1 file changed, 3 insertions(+)
-
-diff --git a/drivers/gpu/drm/i915/gem/i915_gem_userptr.c b/drivers/gpu/drm/i915/gem/i915_gem_userptr.c
-index 0e21ce9d3e5a..61abfb505766 100644
---- a/drivers/gpu/drm/i915/gem/i915_gem_userptr.c
-+++ b/drivers/gpu/drm/i915/gem/i915_gem_userptr.c
-@@ -349,6 +349,9 @@ i915_gem_userptr_release(struct drm_i915_gem_object *obj)
- {
- 	GEM_WARN_ON(obj-&gt;userptr.page_ref);
- 
-+	if (!obj-&gt;userptr.notifier.mm)
-+		return;
-+
-</pre>
-      </blockquote>
-      <pre class="moz-quote-pre" wrap="">
-hmmm... right, it looks that we need this protection. But...
-
-I mean, feel free to use
-Reviewed-by: Rodrigo Vivi <a class="moz-txt-link-rfc2396E" href="mailto:rodrigo.vivi@intel.com">&lt;rodrigo.vivi@intel.com&gt;</a>
-
-for this patch,
-
-but I believe that if this mmu insert failed we might have other
-deeper problems like when checking i915_gem_object_is_userptr() ?
-
-No?!
-</pre>
-    </blockquote>
-    <p>We are returning an error if mmu insert fails while creating a
-      userptr object  so the obj struct is only available to obj cleanup
-      methods.</p>
-    <pre class="moz-quote-pre" wrap="">As far as I see, i915_gem_object_is_userptr() should not happen on such obj struct.
-
-Thanks,
-Nirmoy </pre>
-    <p></p>
-    <span style="white-space: pre-wrap">
-</span>
-    <blockquote type="cite" cite="mid:ZdO2IYev7Amcbtt1@intel.com">
-      <blockquote type="cite">
-        <pre class="moz-quote-pre" wrap=""> 	mmu_interval_notifier_remove(&amp;obj-&gt;userptr.notifier);
- 	obj-&gt;userptr.notifier.mm = NULL;
- }
--- 
-2.42.0
-
-</pre>
-      </blockquote>
-    </blockquote>
-  </body>
-</html>
-
---------------10jooFcKQFnxlMRDcWq7DseM--
