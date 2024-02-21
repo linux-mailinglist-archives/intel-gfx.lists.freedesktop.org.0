@@ -2,29 +2,57 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0106285E627
-	for <lists+intel-gfx@lfdr.de>; Wed, 21 Feb 2024 19:35:08 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9B56185E64E
+	for <lists+intel-gfx@lfdr.de>; Wed, 21 Feb 2024 19:36:29 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A09F910E7A0;
-	Wed, 21 Feb 2024 18:35:05 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0B06210E79F;
+	Wed, 21 Feb 2024 18:36:28 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="amfDYwSU";
+	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from 8e613ede5ea5 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 774BB10E79F;
- Wed, 21 Feb 2024 18:35:04 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6C11110E79F
+ for <intel-gfx@lists.freedesktop.org>; Wed, 21 Feb 2024 18:36:26 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1708540586; x=1740076586;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:in-reply-to;
+ bh=7N4L3Y3cAcWAplEGy0JO21LC6UAVz5g9p7ywNrvVMKI=;
+ b=amfDYwSUOmvPLKyjK9w+NlggzSOuAKIbp962dBYMmSZLFtys4lTH7qWP
+ WW4sGekcUdPE4knt8oxr1GTcIbZJqCx197jBTEobgjP6W1mfa3ZAkd3Cl
+ WSZuMmc7RNAjcDvv3JyNyo7Q3GxPHUkJKB5rwn1VUsOsIZZQZ5DLQJ6hO
+ dK3Chjvi7Wz8gA9UP7OwWhLaf8ccB0jTHDMttLxCzei0kIBdLqPbk5HFJ
+ RCvMk+VKNYMVVlJHq6q3cUBRdSuP4IguzWCNs5EGovtdzYTDRUwXwDjcU
+ yH612Ve0NtT3iGbV2e1/YRJxboqpCj4dmY6BqszpaMwODp9BK7SLZlNIg w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10991"; a="2869301"
+X-IronPort-AV: E=Sophos;i="6.06,176,1705392000"; 
+   d="scan'208";a="2869301"
+Received: from orviesa002.jf.intel.com ([10.64.159.142])
+ by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 21 Feb 2024 10:36:25 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.06,176,1705392000"; d="scan'208";a="36013256"
+Received: from lkp-server02.sh.intel.com (HELO 3c78fa4d504c) ([10.239.97.151])
+ by orviesa002.jf.intel.com with ESMTP; 21 Feb 2024 10:36:24 -0800
+Received: from kbuild by 3c78fa4d504c with local (Exim 4.96)
+ (envelope-from <lkp@intel.com>) id 1rcrRz-0005bE-1W;
+ Wed, 21 Feb 2024 18:36:15 +0000
+Date: Thu, 22 Feb 2024 02:35:48 +0800
+From: kernel test robot <lkp@intel.com>
+To: Jouni =?iso-8859-1?Q?H=F6gander?= <jouni.hogander@intel.com>,
+ intel-gfx@lists.freedesktop.org
+Cc: llvm@lists.linux.dev, oe-kbuild-all@lists.linux.dev,
+ Jouni =?iso-8859-1?Q?H=F6gander?= <jouni.hogander@intel.com>
+Subject: Re: [PATCH v2 5/6] drm/i915/psr: Enable ALPM for eDP Panel replay
+Message-ID: <202402220225.2eViN531-lkp@intel.com>
+References: <20240220121045.2156004-6-jouni.hogander@intel.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Subject: =?utf-8?q?=E2=9C=97_Fi=2ECI=2EBUILD=3A_failure_for_series_starting_with_=5Bv?=
- =?utf-8?q?7=2C1/3=5D_drm/buddy=3A_Implement_tracking_clear_page_feature?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Paneer Selvam, Arunpravin" <arunpravin.paneerselvam@amd.com>
-Cc: intel-gfx@lists.freedesktop.org
-Date: Wed, 21 Feb 2024 18:35:04 -0000
-Message-ID: <170854050447.196549.4206613003900440697@8e613ede5ea5>
-X-Patchwork-Hint: ignore
-References: <20240221121801.3252-1-Arunpravin.PaneerSelvam@amd.com>
-In-Reply-To: <20240221121801.3252-1-Arunpravin.PaneerSelvam@amd.com>
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240220121045.2156004-6-jouni.hogander@intel.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -37,89 +65,89 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+Hi Jouni,
 
-Series: series starting with [v7,1/3] drm/buddy: Implement tracking clear page feature
-URL   : https://patchwork.freedesktop.org/series/130200/
-State : failure
+kernel test robot noticed the following build warnings:
 
-== Summary ==
+[auto build test WARNING on drm-intel/for-linux-next]
+[also build test WARNING on drm-tip/drm-tip drm/drm-next next-20240221]
+[cannot apply to drm-intel/for-linux-next-fixes linus/master v6.8-rc5]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
 
-Error: make failed
-  CALL    scripts/checksyscalls.sh
-  DESCEND objtool
-  INSTALL libsubcmd_headers
-  AR      drivers/gpu/drm/display/built-in.a
-  CC [M]  drivers/gpu/drm/display/drm_display_helper_mod.o
-  CC [M]  drivers/gpu/drm/display/drm_dp_dual_mode_helper.o
-  CC [M]  drivers/gpu/drm/display/drm_dp_helper.o
-  CC [M]  drivers/gpu/drm/display/drm_dp_mst_topology.o
-  CC [M]  drivers/gpu/drm/display/drm_dsc_helper.o
-  CC [M]  drivers/gpu/drm/display/drm_hdcp_helper.o
-  CC [M]  drivers/gpu/drm/display/drm_hdmi_helper.o
-  CC [M]  drivers/gpu/drm/display/drm_scdc_helper.o
-  CC [M]  drivers/gpu/drm/display/drm_dp_aux_dev.o
-  LD [M]  drivers/gpu/drm/display/drm_display_helper.o
-  AR      drivers/gpu/drm/renesas/rcar-du/built-in.a
-  AR      drivers/gpu/drm/renesas/rz-du/built-in.a
-  AR      drivers/gpu/drm/renesas/built-in.a
-  AR      drivers/gpu/drm/omapdrm/built-in.a
-  AR      drivers/gpu/drm/tilcdc/built-in.a
-  AR      drivers/gpu/drm/imx/built-in.a
-  AR      drivers/gpu/drm/i2c/built-in.a
-  AR      drivers/gpu/drm/panel/built-in.a
-  AR      drivers/gpu/drm/bridge/analogix/built-in.a
-  AR      drivers/gpu/drm/bridge/cadence/built-in.a
-  AR      drivers/gpu/drm/bridge/imx/built-in.a
-  AR      drivers/gpu/drm/bridge/synopsys/built-in.a
-  AR      drivers/gpu/drm/bridge/built-in.a
-  AR      drivers/gpu/drm/hisilicon/built-in.a
-  AR      drivers/gpu/drm/mxsfb/built-in.a
-  AR      drivers/gpu/drm/tiny/built-in.a
-  AR      drivers/gpu/drm/xlnx/built-in.a
-  AR      drivers/gpu/drm/gud/built-in.a
-  AR      drivers/gpu/drm/solomon/built-in.a
-  CC [M]  drivers/gpu/drm/tests/drm_buddy_test.o
-drivers/gpu/drm/tests/drm_buddy_test.c: In function ‘drm_test_buddy_alloc_contiguous’:
-drivers/gpu/drm/tests/drm_buddy_test.c:68:2: error: too few arguments to function ‘drm_buddy_free_list’
-   68 |  drm_buddy_free_list(&mm, &middle);
-      |  ^~~~~~~~~~~~~~~~~~~
-In file included from drivers/gpu/drm/tests/drm_buddy_test.c:13:
-./include/drm/drm_buddy.h:166:6: note: declared here
-  166 | void drm_buddy_free_list(struct drm_buddy *mm,
-      |      ^~~~~~~~~~~~~~~~~~~
-drivers/gpu/drm/tests/drm_buddy_test.c:78:2: error: too few arguments to function ‘drm_buddy_free_list’
-   78 |  drm_buddy_free_list(&mm, &right);
-      |  ^~~~~~~~~~~~~~~~~~~
-In file included from drivers/gpu/drm/tests/drm_buddy_test.c:13:
-./include/drm/drm_buddy.h:166:6: note: declared here
-  166 | void drm_buddy_free_list(struct drm_buddy *mm,
-      |      ^~~~~~~~~~~~~~~~~~~
-drivers/gpu/drm/tests/drm_buddy_test.c:93:2: error: too few arguments to function ‘drm_buddy_free_list’
-   93 |  drm_buddy_free_list(&mm, &left);
-      |  ^~~~~~~~~~~~~~~~~~~
-In file included from drivers/gpu/drm/tests/drm_buddy_test.c:13:
-./include/drm/drm_buddy.h:166:6: note: declared here
-  166 | void drm_buddy_free_list(struct drm_buddy *mm,
-      |      ^~~~~~~~~~~~~~~~~~~
-drivers/gpu/drm/tests/drm_buddy_test.c:105:2: error: too few arguments to function ‘drm_buddy_free_list’
-  105 |  drm_buddy_free_list(&mm, &allocated);
-      |  ^~~~~~~~~~~~~~~~~~~
-In file included from drivers/gpu/drm/tests/drm_buddy_test.c:13:
-./include/drm/drm_buddy.h:166:6: note: declared here
-  166 | void drm_buddy_free_list(struct drm_buddy *mm,
-      |      ^~~~~~~~~~~~~~~~~~~
-make[6]: *** [scripts/Makefile.build:243: drivers/gpu/drm/tests/drm_buddy_test.o] Error 1
-make[5]: *** [scripts/Makefile.build:481: drivers/gpu/drm/tests] Error 2
-make[4]: *** [scripts/Makefile.build:481: drivers/gpu/drm] Error 2
-make[3]: *** [scripts/Makefile.build:481: drivers/gpu] Error 2
-make[2]: *** [scripts/Makefile.build:481: drivers] Error 2
-make[1]: *** [/home/kbuild2/kernel/Makefile:1921: .] Error 2
-make: *** [Makefile:240: __sub-make] Error 2
-Build failed, no error log produced
+url:    https://github.com/intel-lab-lkp/linux/commits/Jouni-H-gander/drm-display-Add-missing-aux-less-alpm-wake-related-bits/20240220-201356
+base:   git://anongit.freedesktop.org/drm-intel for-linux-next
+patch link:    https://lore.kernel.org/r/20240220121045.2156004-6-jouni.hogander%40intel.com
+patch subject: [PATCH v2 5/6] drm/i915/psr: Enable ALPM for eDP Panel replay
+config: riscv-allmodconfig (https://download.01.org/0day-ci/archive/20240222/202402220225.2eViN531-lkp@intel.com/config)
+compiler: clang version 19.0.0git (https://github.com/llvm/llvm-project 36adfec155de366d722f2bac8ff9162289dcf06c)
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20240222/202402220225.2eViN531-lkp@intel.com/reproduce)
+
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202402220225.2eViN531-lkp@intel.com/
+
+All warnings (new ones prefixed by >>):
+
+>> drivers/gpu/drm/i915/display/intel_psr.c:1705:3: warning: variable 'alpm_ctl' is uninitialized when used here [-Wuninitialized]
+    1705 |                 alpm_ctl |= ALPM_CTL_ALPM_ENABLE |
+         |                 ^~~~~~~~
+   drivers/gpu/drm/i915/display/intel_psr.c:1699:14: note: initialize the variable 'alpm_ctl' to silence this warning
+    1699 |         u32 alpm_ctl;
+         |                     ^
+         |                      = 0
+   1 warning generated.
 
 
+vim +/alpm_ctl +1705 drivers/gpu/drm/i915/display/intel_psr.c
+
+  1693	
+  1694	static void lnl_alpm_configure(struct intel_dp *intel_dp)
+  1695	{
+  1696		struct drm_i915_private *dev_priv = dp_to_i915(intel_dp);
+  1697		enum transcoder cpu_transcoder = intel_dp->psr.transcoder;
+  1698		struct intel_psr *psr = &intel_dp->psr;
+  1699		u32 alpm_ctl;
+  1700	
+  1701		if (DISPLAY_VER(dev_priv) < 20)
+  1702			return;
+  1703	
+  1704		if (intel_dp->psr.panel_replay_enabled && intel_dp_is_edp(intel_dp)) {
+> 1705			alpm_ctl |= ALPM_CTL_ALPM_ENABLE |
+  1706				ALPM_CTL_ALPM_AUX_LESS_ENABLE |
+  1707				ALPM_CTL_AUX_LESS_SLEEP_HOLD_TIME_50_SYMBOLS;
+  1708	
+  1709			intel_de_write(dev_priv, PORT_ALPM_CTL(cpu_transcoder),
+  1710				       PORT_ALPM_CTL_ALPM_AUX_LESS_ENABLE |
+  1711				       PORT_ALPM_CTL_MAX_PHY_SWING_SETUP(15) |
+  1712				       PORT_ALPM_CTL_MAX_PHY_SWING_HOLD(0) |
+  1713				       PORT_ALPM_CTL_SILENCE_PERIOD(
+  1714					       psr->alpm_parameters.silence_period_sym_clocks));
+  1715	
+  1716			intel_de_write(dev_priv, PORT_ALPM_LFPS_CTL(cpu_transcoder),
+  1717				       PORT_ALPM_LFPS_CTL_LFPS_CYCLE_COUNT(10) |
+  1718				       PORT_ALPM_LFPS_CTL_LFPS_HALF_CYCLE_DURATION(
+  1719					       psr->alpm_parameters.lfps_half_cycle_num_of_syms) |
+  1720				       PORT_ALPM_LFPS_CTL_FIRST_LFPS_HALF_CYCLE_DURATION(
+  1721					       psr->alpm_parameters.lfps_half_cycle_num_of_syms) |
+  1722				       PORT_ALPM_LFPS_CTL_LAST_LFPS_HALF_CYCLE_DURATION(
+  1723					       psr->alpm_parameters.lfps_half_cycle_num_of_syms));
+  1724		} else {
+  1725			alpm_ctl = ALPM_CTL_EXTENDED_FAST_WAKE_ENABLE |
+  1726				ALPM_CTL_EXTENDED_FAST_WAKE_TIME(psr->alpm_parameters.fast_wake_lines);
+  1727		}
+  1728	
+  1729		alpm_ctl |= ALPM_CTL_ALPM_ENTRY_CHECK(psr->alpm_parameters.check_entry_lines);
+  1730	
+  1731		intel_de_write(dev_priv, ALPM_CTL(cpu_transcoder), alpm_ctl);
+  1732	}
+  1733	
+
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
