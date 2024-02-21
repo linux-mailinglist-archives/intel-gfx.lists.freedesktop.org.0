@@ -2,60 +2,29 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 39E4C85EB2E
-	for <lists+intel-gfx@lfdr.de>; Wed, 21 Feb 2024 22:45:47 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 02D7985EB5D
+	for <lists+intel-gfx@lfdr.de>; Wed, 21 Feb 2024 22:51:36 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 75BBF10E4E4;
-	Wed, 21 Feb 2024 21:45:44 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="nUILlIpI";
-	dkim-atps=neutral
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2DC6110E71F;
+	Wed, 21 Feb 2024 21:51:33 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8816D10E4E4
- for <intel-gfx@lists.freedesktop.org>; Wed, 21 Feb 2024 21:45:43 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1708551943; x=1740087943;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=7RLrh8jIiP/WP20z6y6MpPOm8iydBCedP8zKkO82Sow=;
- b=nUILlIpIuCgze6ZxHnkYSsCDidYknp2jrh8LZUAwlOJzipcxrWKzaLPv
- K+96NlXJ/rGsMduBkTpC5jwhPpjO0uT/9INJDUB7piuMV4kIMrSAzYwUw
- 9QBpjDMH8d7l4ZFbR6x+pjMw6U1ItjPMP4L6MOV4bCP2+GUEVBIiOG6VO
- JjLV3gKgp6iNbk3WcXIdEmM/sB6KZ6+aCDfeSAeazi4Eo0r8snGthf8PJ
- LXNf51FztBR6qtLF3c/UsupxG3XIMBzVqaJzbyqpmx/xtQiNCucAYeT0e
- KNeZ+lOmtJmZSUmx6vq8loK1DbUwRJdIFt5o5r8ORgkUqQ0js8VikJq62 w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10991"; a="2887601"
-X-IronPort-AV: E=Sophos;i="6.06,176,1705392000"; 
-   d="scan'208";a="2887601"
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
- by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Feb 2024 13:45:43 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10991"; a="827415006"
-X-IronPort-AV: E=Sophos;i="6.06,176,1705392000"; d="scan'208";a="827415006"
-Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.74])
- by orsmga001.jf.intel.com with SMTP; 21 Feb 2024 13:45:40 -0800
-Received: by stinkbox (sSMTP sendmail emulation);
- Wed, 21 Feb 2024 23:45:39 +0200
-Date: Wed, 21 Feb 2024 23:45:39 +0200
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Jouni =?iso-8859-1?Q?H=F6gander?= <jouni.hogander@intel.com>
-Cc: intel-gfx@lists.freedesktop.org
-Subject: Re: [PATCH 2/3] drm/i915/psr: Improve fast and IO wake lines
- calculation
-Message-ID: <ZdZvA5rs5MhPIK2g@intel.com>
-References: <20240221075322.2764209-1-jouni.hogander@intel.com>
- <20240221075322.2764209-3-jouni.hogander@intel.com>
- <ZdZJh86BvrrAazou@intel.com> <ZdZMBsxyX1m_n9yy@intel.com>
+Received: from 8e613ede5ea5 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7408E10E4AA;
+ Wed, 21 Feb 2024 21:51:32 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============0807233108351216618=="
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <ZdZMBsxyX1m_n9yy@intel.com>
-X-Patchwork-Hint: comment
+Subject: =?utf-8?q?=E2=9C=97_Fi=2ECI=2EBAT=3A_failure_for_drm/i915=3A_Fix_doc_build_i?=
+ =?utf-8?q?ssue_on_intel=5Fcdclk=2Ec_=28rev2=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Rodrigo Vivi" <rodrigo.vivi@intel.com>
+Cc: intel-gfx@lists.freedesktop.org
+Date: Wed, 21 Feb 2024 21:51:32 -0000
+Message-ID: <170855229247.196549.2354858744134652605@8e613ede5ea5>
+X-Patchwork-Hint: ignore
+References: <20240221155453.94208-1-rodrigo.vivi@intel.com>
+In-Reply-To: <20240221155453.94208-1-rodrigo.vivi@intel.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -68,126 +37,189 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, Feb 21, 2024 at 09:16:22PM +0200, Ville Syrjälä wrote:
-> On Wed, Feb 21, 2024 at 09:05:43PM +0200, Ville Syrjälä wrote:
-> > On Wed, Feb 21, 2024 at 09:53:21AM +0200, Jouni Högander wrote:
-> > > Current fast and IO wake lines calculation is assuming fast wake sync
-> > > length is 18 pulses. Let's improve this by checking the actual length.
-> > > 
-> > > Also 10 us IO buffer wake time is currently assumed. This is not the case
-> > > with LunarLake and beyond. Fix this by adding getter for IO wake time and
-> > > return values there according to Bspec.
-> > > 
-> > > Bspec: 65450
-> > > 
-> > > Signed-off-by: Jouni Högander <jouni.hogander@intel.com>
-> > > ---
-> > >  drivers/gpu/drm/i915/display/intel_psr.c | 40 +++++++++++++++++++-----
-> > >  1 file changed, 33 insertions(+), 7 deletions(-)
-> > > 
-> > > diff --git a/drivers/gpu/drm/i915/display/intel_psr.c b/drivers/gpu/drm/i915/display/intel_psr.c
-> > > index 72cadad09db5..4a1e07411716 100644
-> > > --- a/drivers/gpu/drm/i915/display/intel_psr.c
-> > > +++ b/drivers/gpu/drm/i915/display/intel_psr.c
-> > > @@ -1150,6 +1150,28 @@ static bool _lnl_compute_alpm_params(struct intel_dp *intel_dp,
-> > >  	return true;
-> > >  }
-> > >  
-> > > +/*
-> > > + * From Bspec:
-> > > + *
-> > > + * For Xe2 and beyond
-> > > + * RBR 15us, HBR1 11us, higher rates 10us
-> > > + *
-> > > + * For pre-Xe2
-> > > + * 10 us
-> > > + */
-> > > +static int get_io_wake_time(struct intel_dp *intel_dp,
-> > 
-> > No point in passing that. You can dig out the i915 from the crtc state.
-> > 
-> > > +			struct intel_crtc_state *crtc_state)
-> > 
-> > const
-> > 
-> > > +{
-> > > +	struct drm_i915_private *i915 = dp_to_i915(intel_dp);
-> > > +
-> > > +	if (DISPLAY_VER(i915) < 20 || crtc_state->port_clock > 270000)
-> > > +		return 10;
-> > > +	else if (crtc_state->port_clock > 162000)
-> > > +		return 11;
-> > > +	else
-> > > +		return 15;
-> > 
-> > The new rate dependent stuff should be a separate patch.
-> > 
-> > And looks like the 10 usec will give us 44 usec io wake time, so
-> > that should probably be a separate patch as well, to avoid
-> > any functional changes when we introduce the formula.
-> > 
-> > > +}
-> > > +
-> > >  static bool _compute_alpm_params(struct intel_dp *intel_dp,
-> > >  				 struct intel_crtc_state *crtc_state)
-> > >  {
-> > > @@ -1157,13 +1179,17 @@ static bool _compute_alpm_params(struct intel_dp *intel_dp,
-> > >  	int io_wake_lines, io_wake_time, fast_wake_lines, fast_wake_time;
-> > >  	u8 max_wake_lines;
-> > >  
-> > > -	if (DISPLAY_VER(i915) >= 12) {
-> > > -		io_wake_time = 42;
-> > > -		/*
-> > > -		 * According to Bspec it's 42us, but based on testing
-> > > -		 * it is not enough -> use 45 us.
-> > > -		 */
-> > > -		fast_wake_time = 45;
-> > > +	if (intel_dp->get_aux_fw_sync_len) {
-> > > +		int io_wake_time = get_io_wake_time(intel_dp, crtc_state);
-> > 
-> > Looks like this will shadow the variable you're trying to change.
-> > Does the compiler not complain about this?
-> > 
-> > > +		int tfw_exit_latency = 20; /* eDP spec */
-> > > +		int phy_wake = 4;	   /* eDP spec */
-> > > +		int preamble = 8;	   /* eDP spec */
-> > > +		int precharge = intel_dp->get_aux_fw_sync_len() - preamble;
-> > > +
-> > > +		io_wake_time = max(precharge, io_wake_time) + preamble +
-> > > +			phy_wake + tfw_exit_latency;
-> > > +		fast_wake_time = precharge + preamble + phy_wake +
-> > > +			tfw_exit_latency;
-> > >  
-> > >  		/* TODO: Check how we can use ALPM_CTL fast wake extended field */
-> > >  		max_wake_lines = 12;
-> > 
-> > I would also convert the older platforms to use the formula.
-> > We do need to reverse calculate the io buffer on latency since
-> > AFAICS it's not directly specified in bspec. But I think
-> > that's better than not converting it since with the formula we
-> > can't totally screw things up when eg. changing the precharge
-> > length.
-> 
-> Hmm. The older platforms are apparently using fast_wake=32
-> which implies zero precharge pulses. That definitely does
-> not match what we program into the AUX control register...
+--===============0807233108351216618==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Looks like Windows just uses:
-pre-tgl:
- fast_wake=50
- io_fast_wake=50
-tgl-mtl:
- fast_wake=42
- io_fast_wake=42
+== Series Details ==
 
-Also for pre-tgl they clamp these to 5-8 instead of using
-the min=7 we have. For tgl+ they do clamp to 7-12.
-And if the values exceed those limits they just proceed
-blindly with the clamped values, which is pretty dodgy.
+Series: drm/i915: Fix doc build issue on intel_cdclk.c (rev2)
+URL   : https://patchwork.freedesktop.org/series/130159/
+State : failure
 
--- 
-Ville Syrjälä
-Intel
+== Summary ==
+
+CI Bug Log - changes from CI_DRM_14311 -> Patchwork_130159v2
+====================================================
+
+Summary
+-------
+
+  **FAILURE**
+
+  Serious unknown changes coming with Patchwork_130159v2 absolutely need to be
+  verified manually.
+  
+  If you think the reported changes have nothing to do with the changes
+  introduced in Patchwork_130159v2, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them
+  to document this new failure mode, which will reduce false positives in CI.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130159v2/index.html
+
+Participating hosts (38 -> 36)
+------------------------------
+
+  Missing    (2): bat-kbl-2 fi-snb-2520m 
+
+Possible new issues
+-------------------
+
+  Here are the unknown changes that may have been introduced in Patchwork_130159v2:
+
+### IGT changes ###
+
+#### Possible regressions ####
+
+  * igt@i915_selftest@live@gt_mocs:
+    - bat-dg2-11:         [PASS][1] -> [DMESG-FAIL][2]
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14311/bat-dg2-11/igt@i915_selftest@live@gt_mocs.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130159v2/bat-dg2-11/igt@i915_selftest@live@gt_mocs.html
+
+  
+Known issues
+------------
+
+  Here are the changes found in Patchwork_130159v2 that come from known issues:
+
+### IGT changes ###
+
+#### Possible fixes ####
+
+  * igt@i915_pm_rpm@module-reload:
+    - fi-kbl-7567u:       [CRASH][3] ([i915#9947]) -> [PASS][4]
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14311/fi-kbl-7567u/igt@i915_pm_rpm@module-reload.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130159v2/fi-kbl-7567u/igt@i915_pm_rpm@module-reload.html
+
+  * igt@i915_selftest@live@execlists:
+    - fi-bsw-nick:        [ABORT][5] ([i915#7911]) -> [PASS][6]
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14311/fi-bsw-nick/igt@i915_selftest@live@execlists.html
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130159v2/fi-bsw-nick/igt@i915_selftest@live@execlists.html
+
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+  [i915#10194]: https://gitlab.freedesktop.org/drm/intel/issues/10194
+  [i915#7911]: https://gitlab.freedesktop.org/drm/intel/issues/7911
+  [i915#9947]: https://gitlab.freedesktop.org/drm/intel/issues/9947
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_14311 -> Patchwork_130159v2
+
+  CI-20190529: 20190529
+  CI_DRM_14311: 06b279b4fb58a00667e47fafed72bba923d032ae @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_7720: 7720
+  Patchwork_130159v2: 06b279b4fb58a00667e47fafed72bba923d032ae @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+### Linux commits
+
+7bfd299156e1 drm/i915: Fix doc build issue on intel_cdclk.c
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130159v2/index.html
+
+--===============0807233108351216618==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/i915: Fix doc build issue on intel_cdclk.c (rev2)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/130159/">https://patchwork.freedesktop.org/series/130159/</a></td></tr>
+<tr><td><b>State:</b></td><td>failure</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130159v2/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130159v2/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_14311 -&gt; Patchwork_130159v2</h1>
+<h2>Summary</h2>
+<p><strong>FAILURE</strong></p>
+<p>Serious unknown changes coming with Patchwork_130159v2 absolutely need to be<br />
+  verified manually.</p>
+<p>If you think the reported changes have nothing to do with the changes<br />
+  introduced in Patchwork_130159v2, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them<br />
+  to document this new failure mode, which will reduce false positives in CI.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130159v2/index.html</p>
+<h2>Participating hosts (38 -&gt; 36)</h2>
+<p>Missing    (2): bat-kbl-2 fi-snb-2520m </p>
+<h2>Possible new issues</h2>
+<p>Here are the unknown changes that may have been introduced in Patchwork_130159v2:</p>
+<h3>IGT changes</h3>
+<h4>Possible regressions</h4>
+<ul>
+<li>igt@i915_selftest@live@gt_mocs:<ul>
+<li>bat-dg2-11:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14311/bat-dg2-11/igt@i915_selftest@live@gt_mocs.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130159v2/bat-dg2-11/igt@i915_selftest@live@gt_mocs.html">DMESG-FAIL</a></li>
+</ul>
+</li>
+</ul>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_130159v2 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Possible fixes</h4>
+<ul>
+<li>
+<p>igt@i915_pm_rpm@module-reload:</p>
+<ul>
+<li>fi-kbl-7567u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14311/fi-kbl-7567u/igt@i915_pm_rpm@module-reload.html">CRASH</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/9947">i915#9947</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130159v2/fi-kbl-7567u/igt@i915_pm_rpm@module-reload.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@execlists:</p>
+<ul>
+<li>fi-bsw-nick:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14311/fi-bsw-nick/igt@i915_selftest@live@execlists.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/7911">i915#7911</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130159v2/fi-bsw-nick/igt@i915_selftest@live@execlists.html">PASS</a></li>
+</ul>
+</li>
+</ul>
+<p>{name}: This element is suppressed. This means it is ignored when computing<br />
+          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_14311 -&gt; Patchwork_130159v2</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_14311: 06b279b4fb58a00667e47fafed72bba923d032ae @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_7720: 7720<br />
+  Patchwork_130159v2: 06b279b4fb58a00667e47fafed72bba923d032ae @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+<h3>Linux commits</h3>
+<p>7bfd299156e1 drm/i915: Fix doc build issue on intel_cdclk.c</p>
+
+</body>
+</html>
+
+--===============0807233108351216618==--
