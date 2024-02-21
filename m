@@ -2,57 +2,55 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id A9CEC85D175
-	for <lists+intel-gfx@lfdr.de>; Wed, 21 Feb 2024 08:33:52 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 40FA185D1D2
+	for <lists+intel-gfx@lfdr.de>; Wed, 21 Feb 2024 08:53:54 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4C27E10E371;
-	Wed, 21 Feb 2024 07:33:49 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 07ABE10E432;
+	Wed, 21 Feb 2024 07:53:52 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="GCK2Hgl8";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="GhMQCIfe";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3D77110E371;
- Wed, 21 Feb 2024 07:33:48 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8273110E433
+ for <intel-gfx@lists.freedesktop.org>; Wed, 21 Feb 2024 07:53:50 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1708500828; x=1740036828;
+ t=1708502030; x=1740038030;
  h=from:to:cc:subject:date:message-id:mime-version:
  content-transfer-encoding;
- bh=WtzN/zuuF5Giq3H1uYH21SKzPx18aViDs45cU0spU+I=;
- b=GCK2Hgl8C5kEswBM44U7UDUP0KCKIIxu7xcNi+RuEvaRoAmhHWSRTaaz
- eRxyXvqEInK4RE9Canak/pXp3xb2fISPji6Afli09vfAhH+WKly1mFAFU
- xNq1/NeW6buDzMM+jlOYc67n6Pe4tQ/9K8dSpdwzfx/Tp2AWZ5eCIMuco
- maFJIzk1YLI99vWj6BCdk+gsLlFnSdPa70lVJR7uq69Y0/tMC0V5s7s6T
- nsUUyorUsjYz/H3EhfpUnKtJO9XFFu++JqT1+JsudEf5f/ClWXdZfKN+I
- m4BcRSh5Fsr4Mi8SwDLMddx7NAEvGELGWicyJOCyloYYps26H9cIYTvc6 Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10990"; a="13266417"
-X-IronPort-AV: E=Sophos;i="6.06,175,1705392000"; d="scan'208";a="13266417"
-Received: from fmviesa006.fm.intel.com ([10.60.135.146])
- by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Feb 2024 23:33:48 -0800
+ bh=kK+TmwGCvbn9+Be88dqpkD5Msc/ElZyKPJJwFnXwXkE=;
+ b=GhMQCIfe6FUtDQT4LHnhbTPD6ulst+6xPiSH+chsIecg2dqlNTo694k8
+ Y9yPTokYv6f9zNX6Tiqbx+NbQpzxnFKu+VR5lVqy3O7LvIWHgKbOzQKAX
+ L1cDMALIlHkb/OfIiUBZSq4zJFXdGN2ruwdMNobVnvoEEfhfSe11gDccO
+ z4xlUEJj+1JSSY/f54z3miib+DwVrlCvlUm7yT/DZzMhvzo2wam9c/lGD
+ jTzWZzE1BZktZybtuiNmkEVgRGRCBZWpIl9Fhr6AuAibCayUefW8/Ex/3
+ jRmVFkXHPGL+G6EsRWHVDz93Pq3PbwAC9a8p4ICINxIPN6pb+vGtxpXky Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10990"; a="20082032"
+X-IronPort-AV: E=Sophos;i="6.06,175,1705392000"; d="scan'208";a="20082032"
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+ by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 20 Feb 2024 23:53:49 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.06,175,1705392000"; 
-   d="scan'208";a="5273376"
-Received: from ahashmi-mobl.ger.corp.intel.com (HELO fedora..)
- ([10.249.254.166])
- by fmviesa006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Feb 2024 23:33:45 -0800
-From: =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
-To: intel-xe@lists.freedesktop.org,
-	intel-gfx@lists.freedesktop.org
-Cc: =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
- =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
- Dave Airlie <airlied@redhat.com>, Huang Rui <ray.huang@amd.com>,
- dri-devel@lists.freedesktop.org, stable@vger.kernel.org
-Subject: [PATCH] drm/ttm: Fix an invalid freeing on already freed page in
- error path
-Date: Wed, 21 Feb 2024 08:33:24 +0100
-Message-ID: <20240221073324.3303-1-thomas.hellstrom@linux.intel.com>
-X-Mailer: git-send-email 2.43.0
+X-IronPort-AV: E=McAfee;i="6600,9927,10990"; a="827302723"
+X-IronPort-AV: E=Sophos;i="6.06,175,1705392000"; d="scan'208";a="827302723"
+Received: from esavax-mobl.ger.corp.intel.com (HELO jhogande-mobl1.intel.com)
+ ([10.251.221.77])
+ by orsmga001-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 20 Feb 2024 23:53:47 -0800
+From: =?UTF-8?q?Jouni=20H=C3=B6gander?= <jouni.hogander@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Cc: =?UTF-8?q?Ville=20Syrj=C3=A4l=C3=A4?= <ville.syrjala@linux.intel.com>,
+ =?UTF-8?q?Jouni=20H=C3=B6gander?= <jouni.hogander@intel.com>
+Subject: [PATCH 0/3] IO and fast wake lines calculation and increase fw sync
+ length
+Date: Wed, 21 Feb 2024 09:53:19 +0200
+Message-Id: <20240221075322.2764209-1-jouni.hogander@intel.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -69,41 +67,27 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-If caching mode change fails due to, for example, OOM we
-free the allocated pages in a two-step process. First the pages
-for which the caching change has already succeeded. Secondly
-the pages for which a caching change did not succeed.
+This patch set is improving IO and fast wake lines calculation in PSR
+code:
 
-However the second step was incorrectly freeing the pages already
-freed in the first step.
+Use actual fast wake sync pulse count in calculation
+Implement getter for IO buffer wake times and use that
+Better presentation on how these are calculated
 
-Fix.
+Also number of precharge pulses is increased by 2 pulses to fix
+problems with certain panel models.
 
-Signed-off-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
-Fixes: 379989e7cbdc ("drm/ttm/pool: Fix ttm_pool_alloc error path")
-Cc: Christian König <christian.koenig@amd.com>
-Cc: Dave Airlie <airlied@redhat.com>
-Cc: Christian Koenig <christian.koenig@amd.com>
-Cc: Huang Rui <ray.huang@amd.com>
-Cc: dri-devel@lists.freedesktop.org
-Cc: <stable@vger.kernel.org> # v6.4+
----
- drivers/gpu/drm/ttm/ttm_pool.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+Jouni Högander (3):
+  drm/i915/display: Add aux function pointer for fast wake sync pulse
+    count
+  drm/i915/psr: Improve fast and IO wake lines calculation
+  drm/i915/display: Increase number of fast wake precharge pulses
 
-diff --git a/drivers/gpu/drm/ttm/ttm_pool.c b/drivers/gpu/drm/ttm/ttm_pool.c
-index b62f420a9f96..112438d965ff 100644
---- a/drivers/gpu/drm/ttm/ttm_pool.c
-+++ b/drivers/gpu/drm/ttm/ttm_pool.c
-@@ -387,7 +387,7 @@ static void ttm_pool_free_range(struct ttm_pool *pool, struct ttm_tt *tt,
- 				enum ttm_caching caching,
- 				pgoff_t start_page, pgoff_t end_page)
- {
--	struct page **pages = tt->pages;
-+	struct page **pages = &tt->pages[start_page];
- 	unsigned int order;
- 	pgoff_t i, nr;
- 
+ .../drm/i915/display/intel_display_types.h    |  6 +++
+ drivers/gpu/drm/i915/display/intel_dp_aux.c   | 12 +++---
+ drivers/gpu/drm/i915/display/intel_psr.c      | 40 +++++++++++++++----
+ 3 files changed, 46 insertions(+), 12 deletions(-)
+
 -- 
-2.43.0
+2.34.1
 
