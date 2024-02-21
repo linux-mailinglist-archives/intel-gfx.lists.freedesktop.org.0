@@ -2,57 +2,29 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9B56185E64E
-	for <lists+intel-gfx@lfdr.de>; Wed, 21 Feb 2024 19:36:29 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 35D2B85E680
+	for <lists+intel-gfx@lfdr.de>; Wed, 21 Feb 2024 19:40:48 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0B06210E79F;
-	Wed, 21 Feb 2024 18:36:28 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="amfDYwSU";
-	dkim-atps=neutral
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8041E10E7AD;
+	Wed, 21 Feb 2024 18:40:46 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6C11110E79F
- for <intel-gfx@lists.freedesktop.org>; Wed, 21 Feb 2024 18:36:26 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1708540586; x=1740076586;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:in-reply-to;
- bh=7N4L3Y3cAcWAplEGy0JO21LC6UAVz5g9p7ywNrvVMKI=;
- b=amfDYwSUOmvPLKyjK9w+NlggzSOuAKIbp962dBYMmSZLFtys4lTH7qWP
- WW4sGekcUdPE4knt8oxr1GTcIbZJqCx197jBTEobgjP6W1mfa3ZAkd3Cl
- WSZuMmc7RNAjcDvv3JyNyo7Q3GxPHUkJKB5rwn1VUsOsIZZQZ5DLQJ6hO
- dK3Chjvi7Wz8gA9UP7OwWhLaf8ccB0jTHDMttLxCzei0kIBdLqPbk5HFJ
- RCvMk+VKNYMVVlJHq6q3cUBRdSuP4IguzWCNs5EGovtdzYTDRUwXwDjcU
- yH612Ve0NtT3iGbV2e1/YRJxboqpCj4dmY6BqszpaMwODp9BK7SLZlNIg w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10991"; a="2869301"
-X-IronPort-AV: E=Sophos;i="6.06,176,1705392000"; 
-   d="scan'208";a="2869301"
-Received: from orviesa002.jf.intel.com ([10.64.159.142])
- by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Feb 2024 10:36:25 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.06,176,1705392000"; d="scan'208";a="36013256"
-Received: from lkp-server02.sh.intel.com (HELO 3c78fa4d504c) ([10.239.97.151])
- by orviesa002.jf.intel.com with ESMTP; 21 Feb 2024 10:36:24 -0800
-Received: from kbuild by 3c78fa4d504c with local (Exim 4.96)
- (envelope-from <lkp@intel.com>) id 1rcrRz-0005bE-1W;
- Wed, 21 Feb 2024 18:36:15 +0000
-Date: Thu, 22 Feb 2024 02:35:48 +0800
-From: kernel test robot <lkp@intel.com>
-To: Jouni =?iso-8859-1?Q?H=F6gander?= <jouni.hogander@intel.com>,
- intel-gfx@lists.freedesktop.org
-Cc: llvm@lists.linux.dev, oe-kbuild-all@lists.linux.dev,
- Jouni =?iso-8859-1?Q?H=F6gander?= <jouni.hogander@intel.com>
-Subject: Re: [PATCH v2 5/6] drm/i915/psr: Enable ALPM for eDP Panel replay
-Message-ID: <202402220225.2eViN531-lkp@intel.com>
-References: <20240220121045.2156004-6-jouni.hogander@intel.com>
+Received: from 8e613ede5ea5 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 06D3810E7A4;
+ Wed, 21 Feb 2024 18:40:45 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============2120630003009873410=="
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240220121045.2156004-6-jouni.hogander@intel.com>
+Subject: =?utf-8?q?=E2=9C=93_Fi=2ECI=2EBAT=3A_success_for_drm/i915/display/debugfs=3A?=
+ =?utf-8?q?_New_entry_=22DRRS_capable=22_to_i915=5Fdrrs=5Fstatus?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Bhanuprakash Modem" <bhanuprakash.modem@intel.com>
+Cc: intel-gfx@lists.freedesktop.org
+Date: Wed, 21 Feb 2024 18:40:45 -0000
+Message-ID: <170854084502.178729.1611342607562713657@8e613ede5ea5>
+X-Patchwork-Hint: ignore
+References: <20240221111223.2313692-1-bhanuprakash.modem@intel.com>
+In-Reply-To: <20240221111223.2313692-1-bhanuprakash.modem@intel.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -65,89 +37,202 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi Jouni,
+--===============2120630003009873410==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-kernel test robot noticed the following build warnings:
+== Series Details ==
 
-[auto build test WARNING on drm-intel/for-linux-next]
-[also build test WARNING on drm-tip/drm-tip drm/drm-next next-20240221]
-[cannot apply to drm-intel/for-linux-next-fixes linus/master v6.8-rc5]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
+Series: drm/i915/display/debugfs: New entry "DRRS capable" to i915_drrs_status
+URL   : https://patchwork.freedesktop.org/series/130197/
+State : success
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Jouni-H-gander/drm-display-Add-missing-aux-less-alpm-wake-related-bits/20240220-201356
-base:   git://anongit.freedesktop.org/drm-intel for-linux-next
-patch link:    https://lore.kernel.org/r/20240220121045.2156004-6-jouni.hogander%40intel.com
-patch subject: [PATCH v2 5/6] drm/i915/psr: Enable ALPM for eDP Panel replay
-config: riscv-allmodconfig (https://download.01.org/0day-ci/archive/20240222/202402220225.2eViN531-lkp@intel.com/config)
-compiler: clang version 19.0.0git (https://github.com/llvm/llvm-project 36adfec155de366d722f2bac8ff9162289dcf06c)
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20240222/202402220225.2eViN531-lkp@intel.com/reproduce)
+== Summary ==
 
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202402220225.2eViN531-lkp@intel.com/
+CI Bug Log - changes from CI_DRM_14310 -> Patchwork_130197v1
+====================================================
 
-All warnings (new ones prefixed by >>):
+Summary
+-------
 
->> drivers/gpu/drm/i915/display/intel_psr.c:1705:3: warning: variable 'alpm_ctl' is uninitialized when used here [-Wuninitialized]
-    1705 |                 alpm_ctl |= ALPM_CTL_ALPM_ENABLE |
-         |                 ^~~~~~~~
-   drivers/gpu/drm/i915/display/intel_psr.c:1699:14: note: initialize the variable 'alpm_ctl' to silence this warning
-    1699 |         u32 alpm_ctl;
-         |                     ^
-         |                      = 0
-   1 warning generated.
+  **SUCCESS**
+
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130197v1/index.html
+
+Participating hosts (37 -> 35)
+------------------------------
+
+  Missing    (2): bat-arls-1 fi-snb-2520m 
+
+Possible new issues
+-------------------
+
+  Here are the unknown changes that may have been introduced in Patchwork_130197v1:
+
+### IGT changes ###
+
+#### Suppressed ####
+
+  The following results come from untrusted machines, tests, or statuses.
+  They do not affect the overall result.
+
+  * igt@gem_ctx_create@basic-files:
+    - {bat-arls-2}:       [PASS][1] -> [TIMEOUT][2] +1 other test timeout
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14310/bat-arls-2/igt@gem_ctx_create@basic-files.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130197v1/bat-arls-2/igt@gem_ctx_create@basic-files.html
+
+  * igt@gem_exec_fence@basic-busy:
+    - {bat-arls-2}:       NOTRUN -> [TIMEOUT][3] +4 other tests timeout
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130197v1/bat-arls-2/igt@gem_exec_fence@basic-busy.html
+
+  
+Known issues
+------------
+
+  Here are the changes found in Patchwork_130197v1 that come from known issues:
+
+### CI changes ###
+
+#### Issues hit ####
+
+  * boot:
+    - bat-jsl-1:          [PASS][4] -> [FAIL][5] ([i915#8293])
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14310/bat-jsl-1/boot.html
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130197v1/bat-jsl-1/boot.html
+
+  
+
+### IGT changes ###
+
+#### Possible fixes ####
+
+  * igt@i915_selftest@live@execlists:
+    - fi-bsw-nick:        [ABORT][6] ([i915#7911]) -> [PASS][7]
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14310/fi-bsw-nick/igt@i915_selftest@live@execlists.html
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130197v1/fi-bsw-nick/igt@i915_selftest@live@execlists.html
+
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+  [i915#7911]: https://gitlab.freedesktop.org/drm/intel/issues/7911
+  [i915#8293]: https://gitlab.freedesktop.org/drm/intel/issues/8293
 
 
-vim +/alpm_ctl +1705 drivers/gpu/drm/i915/display/intel_psr.c
+Build changes
+-------------
 
-  1693	
-  1694	static void lnl_alpm_configure(struct intel_dp *intel_dp)
-  1695	{
-  1696		struct drm_i915_private *dev_priv = dp_to_i915(intel_dp);
-  1697		enum transcoder cpu_transcoder = intel_dp->psr.transcoder;
-  1698		struct intel_psr *psr = &intel_dp->psr;
-  1699		u32 alpm_ctl;
-  1700	
-  1701		if (DISPLAY_VER(dev_priv) < 20)
-  1702			return;
-  1703	
-  1704		if (intel_dp->psr.panel_replay_enabled && intel_dp_is_edp(intel_dp)) {
-> 1705			alpm_ctl |= ALPM_CTL_ALPM_ENABLE |
-  1706				ALPM_CTL_ALPM_AUX_LESS_ENABLE |
-  1707				ALPM_CTL_AUX_LESS_SLEEP_HOLD_TIME_50_SYMBOLS;
-  1708	
-  1709			intel_de_write(dev_priv, PORT_ALPM_CTL(cpu_transcoder),
-  1710				       PORT_ALPM_CTL_ALPM_AUX_LESS_ENABLE |
-  1711				       PORT_ALPM_CTL_MAX_PHY_SWING_SETUP(15) |
-  1712				       PORT_ALPM_CTL_MAX_PHY_SWING_HOLD(0) |
-  1713				       PORT_ALPM_CTL_SILENCE_PERIOD(
-  1714					       psr->alpm_parameters.silence_period_sym_clocks));
-  1715	
-  1716			intel_de_write(dev_priv, PORT_ALPM_LFPS_CTL(cpu_transcoder),
-  1717				       PORT_ALPM_LFPS_CTL_LFPS_CYCLE_COUNT(10) |
-  1718				       PORT_ALPM_LFPS_CTL_LFPS_HALF_CYCLE_DURATION(
-  1719					       psr->alpm_parameters.lfps_half_cycle_num_of_syms) |
-  1720				       PORT_ALPM_LFPS_CTL_FIRST_LFPS_HALF_CYCLE_DURATION(
-  1721					       psr->alpm_parameters.lfps_half_cycle_num_of_syms) |
-  1722				       PORT_ALPM_LFPS_CTL_LAST_LFPS_HALF_CYCLE_DURATION(
-  1723					       psr->alpm_parameters.lfps_half_cycle_num_of_syms));
-  1724		} else {
-  1725			alpm_ctl = ALPM_CTL_EXTENDED_FAST_WAKE_ENABLE |
-  1726				ALPM_CTL_EXTENDED_FAST_WAKE_TIME(psr->alpm_parameters.fast_wake_lines);
-  1727		}
-  1728	
-  1729		alpm_ctl |= ALPM_CTL_ALPM_ENTRY_CHECK(psr->alpm_parameters.check_entry_lines);
-  1730	
-  1731		intel_de_write(dev_priv, ALPM_CTL(cpu_transcoder), alpm_ctl);
-  1732	}
-  1733	
+  * Linux: CI_DRM_14310 -> Patchwork_130197v1
 
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+  CI-20190529: 20190529
+  CI_DRM_14310: 53c127ff2eda902ff59370f44526e5e8ae49dec0 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_7719: 7719
+  Patchwork_130197v1: 53c127ff2eda902ff59370f44526e5e8ae49dec0 @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+### Linux commits
+
+f7610b612b4a drm/i915/display/debugfs: New entry "DRRS capable" to i915_drrs_status
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130197v1/index.html
+
+--===============2120630003009873410==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/i915/display/debugfs: New entry &quot;DRRS capable&quot; to i915_drrs_status</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/130197/">https://patchwork.freedesktop.org/series/130197/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130197v1/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130197v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_14310 -&gt; Patchwork_130197v1</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130197v1/index.html</p>
+<h2>Participating hosts (37 -&gt; 35)</h2>
+<p>Missing    (2): bat-arls-1 fi-snb-2520m </p>
+<h2>Possible new issues</h2>
+<p>Here are the unknown changes that may have been introduced in Patchwork_130197v1:</p>
+<h3>IGT changes</h3>
+<h4>Suppressed</h4>
+<p>The following results come from untrusted machines, tests, or statuses.<br />
+  They do not affect the overall result.</p>
+<ul>
+<li>
+<p>igt@gem_ctx_create@basic-files:</p>
+<ul>
+<li>{bat-arls-2}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14310/bat-arls-2/igt@gem_ctx_create@basic-files.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130197v1/bat-arls-2/igt@gem_ctx_create@basic-files.html">TIMEOUT</a> +1 other test timeout</li>
+</ul>
+</li>
+<li>
+<p>igt@gem_exec_fence@basic-busy:</p>
+<ul>
+<li>{bat-arls-2}:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130197v1/bat-arls-2/igt@gem_exec_fence@basic-busy.html">TIMEOUT</a> +4 other tests timeout</li>
+</ul>
+</li>
+</ul>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_130197v1 that come from known issues:</p>
+<h3>CI changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>boot:<ul>
+<li>bat-jsl-1:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14310/bat-jsl-1/boot.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130197v1/bat-jsl-1/boot.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/8293">i915#8293</a>)</li>
+</ul>
+</li>
+</ul>
+<h3>IGT changes</h3>
+<h4>Possible fixes</h4>
+<ul>
+<li>igt@i915_selftest@live@execlists:<ul>
+<li>fi-bsw-nick:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14310/fi-bsw-nick/igt@i915_selftest@live@execlists.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/7911">i915#7911</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130197v1/fi-bsw-nick/igt@i915_selftest@live@execlists.html">PASS</a></li>
+</ul>
+</li>
+</ul>
+<p>{name}: This element is suppressed. This means it is ignored when computing<br />
+          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_14310 -&gt; Patchwork_130197v1</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_14310: 53c127ff2eda902ff59370f44526e5e8ae49dec0 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_7719: 7719<br />
+  Patchwork_130197v1: 53c127ff2eda902ff59370f44526e5e8ae49dec0 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+<h3>Linux commits</h3>
+<p>f7610b612b4a drm/i915/display/debugfs: New entry "DRRS capable" to i915_drrs_status</p>
+
+</body>
+</html>
+
+--===============2120630003009873410==--
