@@ -2,29 +2,52 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4138D85D596
-	for <lists+intel-gfx@lfdr.de>; Wed, 21 Feb 2024 11:32:30 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 538C585D6A2
+	for <lists+intel-gfx@lfdr.de>; Wed, 21 Feb 2024 12:18:25 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EE3A310E6D9;
-	Wed, 21 Feb 2024 10:32:27 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6B78D10E570;
+	Wed, 21 Feb 2024 11:18:22 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="PwXE7lfR";
+	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from 8e613ede5ea5 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9D6EC10E6D5;
- Wed, 21 Feb 2024 10:32:26 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============8602943938734402897=="
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.14])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3596F10E570
+ for <intel-gfx@lists.freedesktop.org>; Wed, 21 Feb 2024 11:18:21 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1708514302; x=1740050302;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=XcDYFH4OVDYigws6W+0o7iJy8XwnS7uEZV6181Nlkfw=;
+ b=PwXE7lfRXem9b7rqg1sLHIDu1pbHeaHOMrBjzO7gXh3iuO5Ot5tzmcA5
+ Q+JUUkYoDZB1o7W5sCU30hs1+f1oTVAD1ELn+DeKNcSpgPDTPs019UXAb
+ sMpbCf2AXOXP/4mEjlkFdIY2bDQd31fMvsQVaIihtE0H8CjGWl9lFUvAN
+ 1Ikyv0X8grXwPjciH+5nDEBahxnedu7zyqPY1ppe06IWakLEnZ8NorOqp
+ uFuAtG7e+0QC3/BH5xquzq7om5KcZha0bi4WXh5L4IeyD0EsR8bP4v4iE
+ Xc15bBBbpEUQfyee1Q2nagiilE/CXHkCeSrs7Z24LA7UK2ou/Wz6uBxzA Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10990"; a="6482635"
+X-IronPort-AV: E=Sophos;i="6.06,175,1705392000"; 
+   d="scan'208";a="6482635"
+Received: from orviesa002.jf.intel.com ([10.64.159.142])
+ by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 21 Feb 2024 03:18:22 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.06,175,1705392000"; d="scan'208";a="35885198"
+Received: from bhanu-nuclab.iind.intel.com ([10.145.169.172])
+ by orviesa002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 21 Feb 2024 03:18:19 -0800
+From: Bhanuprakash Modem <bhanuprakash.modem@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Cc: Bhanuprakash Modem <bhanuprakash.modem@intel.com>
+Subject: [PATCH] drm/i915/display/debugfs: New entry "DRRS capable" to
+ i915_drrs_status
+Date: Wed, 21 Feb 2024 16:42:23 +0530
+Message-ID: <20240221111223.2313692-1-bhanuprakash.modem@intel.com>
+X-Mailer: git-send-email 2.43.0
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Fi=2ECI=2EBAT=3A_success_for_IO_and_fast_wake_lines_calc?=
- =?utf-8?q?ulation_and_increase_fw_sync_length?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Hogander, Jouni" <jouni.hogander@intel.com>
-Cc: intel-gfx@lists.freedesktop.org
-Date: Wed, 21 Feb 2024 10:32:26 -0000
-Message-ID: <170851154664.178729.5190959272308171766@8e613ede5ea5>
-X-Patchwork-Hint: ignore
-References: <20240221075322.2764209-1-jouni.hogander@intel.com>
-In-Reply-To: <20240221075322.2764209-1-jouni.hogander@intel.com>
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -37,176 +60,45 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============8602943938734402897==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+If the connected panel supports both DRRS & PSR, driver gives preference
+to PSR ("DRRS enabled: no"). Even though the hardware supports DRRS,
+IGT treats ("DRRS enabled: yes") as not capable.
 
-== Series Details ==
+Introduce a new entry "DRRS capable" to debugfs i915_drrs_status, so
+that IGT will read the DRRS capability as "DRRS capable: yes".
 
-Series: IO and fast wake lines calculation and increase fw sync length
-URL   : https://patchwork.freedesktop.org/series/130173/
-State : success
+Signed-off-by: Bhanuprakash Modem <bhanuprakash.modem@intel.com>
+---
+ drivers/gpu/drm/i915/display/intel_drrs.c | 6 ++++++
+ 1 file changed, 6 insertions(+)
 
-== Summary ==
+diff --git a/drivers/gpu/drm/i915/display/intel_drrs.c b/drivers/gpu/drm/i915/display/intel_drrs.c
+index 6282ec0fc9b4..169ef38ff188 100644
+--- a/drivers/gpu/drm/i915/display/intel_drrs.c
++++ b/drivers/gpu/drm/i915/display/intel_drrs.c
+@@ -299,6 +299,7 @@ void intel_drrs_crtc_init(struct intel_crtc *crtc)
+ static int intel_drrs_debugfs_status_show(struct seq_file *m, void *unused)
+ {
+ 	struct intel_crtc *crtc = m->private;
++	struct drm_i915_private *i915 = to_i915(crtc->base.dev);
+ 	const struct intel_crtc_state *crtc_state;
+ 	int ret;
+ 
+@@ -310,6 +311,11 @@ static int intel_drrs_debugfs_status_show(struct seq_file *m, void *unused)
+ 
+ 	mutex_lock(&crtc->drrs.mutex);
+ 
++	seq_printf(m, "DRRS capable: %s\n",
++		   str_yes_no(crtc_state->has_drrs ||
++			      HAS_DOUBLE_BUFFERED_M_N(i915) ||
++			      intel_cpu_transcoder_has_m2_n2(i915, crtc_state->cpu_transcoder)));
++
+ 	seq_printf(m, "DRRS enabled: %s\n",
+ 		   str_yes_no(crtc_state->has_drrs));
+ 
+-- 
+2.43.0
 
-CI Bug Log - changes from CI_DRM_14306 -> Patchwork_130173v1
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130173v1/index.html
-
-Participating hosts (39 -> 37)
-------------------------------
-
-  Additional (1): bat-arls-3 
-  Missing    (3): bat-mtlp-8 fi-glk-j4005 fi-snb-2520m 
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_130173v1 that come from known issues:
-
-### CI changes ###
-
-#### Issues hit ####
-
-  * boot:
-    - bat-jsl-1:          [PASS][1] -> [FAIL][2] ([i915#8293])
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14306/bat-jsl-1/boot.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130173v1/bat-jsl-1/boot.html
-
-  
-
-### IGT changes ###
-
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [i915#10026]: https://gitlab.freedesktop.org/drm/intel/issues/10026
-  [i915#10194]: https://gitlab.freedesktop.org/drm/intel/issues/10194
-  [i915#10196]: https://gitlab.freedesktop.org/drm/intel/issues/10196
-  [i915#10197]: https://gitlab.freedesktop.org/drm/intel/issues/10197
-  [i915#10200]: https://gitlab.freedesktop.org/drm/intel/issues/10200
-  [i915#10202]: https://gitlab.freedesktop.org/drm/intel/issues/10202
-  [i915#10206]: https://gitlab.freedesktop.org/drm/intel/issues/10206
-  [i915#10207]: https://gitlab.freedesktop.org/drm/intel/issues/10207
-  [i915#10208]: https://gitlab.freedesktop.org/drm/intel/issues/10208
-  [i915#10209]: https://gitlab.freedesktop.org/drm/intel/issues/10209
-  [i915#10211]: https://gitlab.freedesktop.org/drm/intel/issues/10211
-  [i915#10212]: https://gitlab.freedesktop.org/drm/intel/issues/10212
-  [i915#10213]: https://gitlab.freedesktop.org/drm/intel/issues/10213
-  [i915#10214]: https://gitlab.freedesktop.org/drm/intel/issues/10214
-  [i915#10215]: https://gitlab.freedesktop.org/drm/intel/issues/10215
-  [i915#10216]: https://gitlab.freedesktop.org/drm/intel/issues/10216
-  [i915#10274]: https://gitlab.freedesktop.org/drm/intel/issues/10274
-  [i915#3708]: https://gitlab.freedesktop.org/drm/intel/issues/3708
-  [i915#4077]: https://gitlab.freedesktop.org/drm/intel/issues/4077
-  [i915#4079]: https://gitlab.freedesktop.org/drm/intel/issues/4079
-  [i915#4083]: https://gitlab.freedesktop.org/drm/intel/issues/4083
-  [i915#8293]: https://gitlab.freedesktop.org/drm/intel/issues/8293
-  [i915#8809]: https://gitlab.freedesktop.org/drm/intel/issues/8809
-  [i915#9318]: https://gitlab.freedesktop.org/drm/intel/issues/9318
-  [i915#9732]: https://gitlab.freedesktop.org/drm/intel/issues/9732
-  [i915#9812]: https://gitlab.freedesktop.org/drm/intel/issues/9812
-  [i915#9886]: https://gitlab.freedesktop.org/drm/intel/issues/9886
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_14306 -> Patchwork_130173v1
-
-  CI-20190529: 20190529
-  CI_DRM_14306: b895612a4da69e73804cd5fc2dedfa44fda1da99 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_7718: 40e8b9122853f455c84afcfa56469a6bc9a0d564 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_130173v1: b895612a4da69e73804cd5fc2dedfa44fda1da99 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-### Linux commits
-
-835c1656b4c5 drm/i915/display: Increase number of fast wake precharge pulses
-3d96e6b8f000 drm/i915/psr: Improve fast and IO wake lines calculation
-bce9d2a58826 drm/i915/display: Add aux function pointer for fast wake sync pulse count
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130173v1/index.html
-
---===============8602943938734402897==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>IO and fast wake lines calculation and increase fw sync length</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/130173/">https://patchwork.freedesktop.org/series/130173/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130173v1/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130173v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_14306 -&gt; Patchwork_130173v1</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130173v1/index.html</p>
-<h2>Participating hosts (39 -&gt; 37)</h2>
-<p>Additional (1): bat-arls-3 <br />
-  Missing    (3): bat-mtlp-8 fi-glk-j4005 fi-snb-2520m </p>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_130173v1 that come from known issues:</p>
-<h3>CI changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>boot:<ul>
-<li>bat-jsl-1:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14306/bat-jsl-1/boot.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130173v1/bat-jsl-1/boot.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/8293">i915#8293</a>)</li>
-</ul>
-</li>
-</ul>
-<h3>IGT changes</h3>
-<p>{name}: This element is suppressed. This means it is ignored when computing<br />
-          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_14306 -&gt; Patchwork_130173v1</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_14306: b895612a4da69e73804cd5fc2dedfa44fda1da99 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_7718: 40e8b9122853f455c84afcfa56469a6bc9a0d564 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  Patchwork_130173v1: b895612a4da69e73804cd5fc2dedfa44fda1da99 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<h3>Linux commits</h3>
-<p>835c1656b4c5 drm/i915/display: Increase number of fast wake precharge pulses<br />
-3d96e6b8f000 drm/i915/psr: Improve fast and IO wake lines calculation<br />
-bce9d2a58826 drm/i915/display: Add aux function pointer for fast wake sync pulse count</p>
-
-</body>
-</html>
-
---===============8602943938734402897==--
