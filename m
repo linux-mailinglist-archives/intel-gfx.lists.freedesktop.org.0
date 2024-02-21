@@ -2,61 +2,61 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5945785FA9E
-	for <lists+intel-gfx@lfdr.de>; Thu, 22 Feb 2024 15:01:17 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 34BBF85FA9B
+	for <lists+intel-gfx@lfdr.de>; Thu, 22 Feb 2024 15:01:13 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7F4CB10E94A;
-	Thu, 22 Feb 2024 14:01:08 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B3E5610E942;
+	Thu, 22 Feb 2024 14:01:07 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=metux.net header.i=info@metux.net header.b="CXTHvs+S";
+	dkim=pass (2048-bit key; unprotected) header.d=metux.net header.i=info@metux.net header.b="k2/6keyJ";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mout.kundenserver.de (mout.kundenserver.de [212.227.126.187])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6876510E77A
+Received: from mout.kundenserver.de (mout.kundenserver.de [212.227.126.135])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B809210E26B
  for <intel-gfx@lists.freedesktop.org>; Wed, 21 Feb 2024 15:12:09 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=metux.net;
- s=s1-ionos; t=1708528327; x=1709133127; i=info@metux.net;
- bh=wgnxml5mGhyNoEMaEXcmhelQmgJzpY/BgYrx+3ELbII=;
+ s=s1-ionos; t=1708528328; x=1709133128; i=info@metux.net;
+ bh=bWZL2bcZ4CZRBAoTUwUgIB5eFmzSmLTU14A5BglO0eg=;
  h=X-UI-Sender-Class:From:To:Subject:Date:In-Reply-To:References;
- b=CXTHvs+SlgMTHrccKDmkgaynelHVOiKjxHrBQrAJYLAL4l4HlIPiQnvSPk4ZpgoW
- w5nP/dR6sw6L/eQDb3XVlIsASP6/Nz4mqY0c/VdaXmFQGwLwGTQCrvw1Ivt1IBNxG
- xoX0CpcEXF/PjwI86w8D6SBELY/sPWGfHJLGdJ8QCLNHet09qeorZkp5cFjavlZrR
- TArYLa18MamZSHr/P8KtFj9ZT9pxxi7408Ubc5b1DE65FS6FjUl0oIx6m1v1xW1Cb
- /W45XHOo5Q7ZH2OC2JBNR0Jkx4UZSvm+RbwlqXOVuColdfmhLWLYDCaf/vrN51saU
- tfghFdolJlXJy6kayg==
+ b=k2/6keyJc4MwRTYpZ/dCQMl8yWiPP/0kLE8MP9QmFyT4OR38RAKfwBaUe0waWPN5
+ iple2tqg82WbtBaK7+8bxJXeWcplfR0d1HlsumEHMx/19u0LG/9UoOLyG42+f8iON
+ htXUfy4WETcxMpxCMgdDnNIIY31Ey+PsgPdcbd3HEUTzW1aMJU6xjQNSAu5T7zPNh
+ 43GtdX7hJgU/Mgbe0p1Q3wCZodiWIwux+SYGMDWP8tGQcj09Qf66yoPv2ZkGbHl0H
+ fyBLKp/W4U6dGMb8S5vVCH3W811iB/cVJMp8iL9OYbrzrOBlvJ10jU4XCeSH/fz5+
+ gC9Eqk1FDUxudlVUbw==
 X-UI-Sender-Class: 55c96926-9e95-11ee-ae09-1f7a4046a0f6
 Received: from orion.localdomain ([77.4.30.125]) by mrelayeu.kundenserver.de
  (mreue009 [212.227.15.167]) with ESMTPSA (Nemesis) id
- 1MxDgm-1qk0dU2igC-00xcan for <intel-gfx@lists.freedesktop.org>; Wed, 21 Feb
+ 1MmU9R-1rCr6X3JIH-00iSJc for <intel-gfx@lists.freedesktop.org>; Wed, 21 Feb
  2024 16:07:04 +0100
 From: "Enrico Weigelt, metux IT consult" <info@metux.net>
 To: intel-gfx@lists.freedesktop.org
-Subject: [PATCH 2/3] sna: use GCPtr instead of GC *
-Date: Wed, 21 Feb 2024 16:06:55 +0100
-Message-Id: <20240221150656.30539-3-info@metux.net>
+Subject: [PATCH 3/3] backlight: use system() instead of System()
+Date: Wed, 21 Feb 2024 16:06:56 +0100
+Message-Id: <20240221150656.30539-4-info@metux.net>
 X-Mailer: git-send-email 2.39.2
 In-Reply-To: <20240221150656.30539-1-info@metux.net>
 References: <20240221150656.30539-1-info@metux.net>
 MIME-Version: 1.0
 Content-Transfer-Encoding: quoted-printable
-X-Provags-ID: V03:K1:U5Q0oXL0lCxWK5VpYCryns59jo1aiWksjpXMYPkZWpggkOYCbfl
- mvqAredW0K8a7Zekl3t2HRvzlncs38IqSDa4L1LF2x67NKNq74bvtLnSWUOr3ewZU2QlwhE
- baDXKZdGYW6R3T/ZK0KIRz64Lhx/ulaKvsEirfl9nQN8p296Ri272r7o2pjBz8Ty1pMnZDk
- pdtDVpPMG6SRlkirncgsg==
+X-Provags-ID: V03:K1:X5Vm51ZoCVYFS1++BHs70K3zS2ybLxJ2kjqSsRRjOjf4oX7Tz8N
+ pWlDVBHls42Kuyz8PUHIk3NillbFd885YuzjUYP8st84hGDl8wH9cHs1Wx7eGqCy97p6Y+x
+ Ret3D9QXYv8lhysysW6qBnvwHNaLcgRXSp9X0wKHBYIxyKZdUvFWTMUb1VbanwZE7GFIr50
+ ESFgIoTkn4AnM80cIwf5Q==
 X-Spam-Flag: NO
-UI-OutboundReport: notjunk:1;M01:P0:aObE7MGx1IQ=;DlaP+NV0YMfCy+r6oxOYKOuMDnC
- IrXrVyBGhRxrCFepH6CQ/aTLWrwue9/S4s7FR/kiiEqYqZrdi8T+hEmKnchha39a1aLcl29pb
- rbGZuNuCmn5/INjCmm/VGb8xVdHzaoMaTG3OsDMouo6bgiP4CZRwDLZNoS8TMeMRDMkhw7YYD
- MNNEdsvzXM/e3XrS6evxKdoJXV3Qv05ZA9ITs89EC2SyDw9CMuCGrREDQWbM2ru2vqt0RoL4R
- IRJ/phf9KW28McebphRVG8snPuiw8ztE0/e3FQXPNEdgPJ1OyvQmMvZ+Ot8aHpL0wAO6Wn4Jl
- jOXOzTNeyNfZcrW9FO/dg8g38wzq60NX5Vn/h8gZe3Mmerd/uCCGH8eal8dpQ6wOVIpqX5X6W
- hRPwAg93qlWB28g20bwJPbU5vIAk6SNf7fJha8Yu+reCrtApEE1l8Ly0a20oqPkvyZr6ZkOhr
- DmfdDbseSjG7UbXYY8q4WRf3Qgyf9w56dNYoedbI+KGY6MV3WFbMc38fZErg6ijleSpYncOOR
- XDKQ1NNWXvp01YnnZXTkJouCZli7NqRIDeGs91IABlEwR73jXUnyeo+S/lGIZRl8pi19GHWK0
- E98An/sjCYMKAJbjtzZhQRBMjJ89KrRajRs83J7DjN6zbtOX6ucu+tchTr0x2LbkpzWOVq51f
- Yrn7wLBUzYET6OzvtjSUFBxO6G2AeUdgkJ4zXEws7NCxB1KWkTv4Vip5vZQ36OiexLFjzNLHW
- arxWd/IDtJSvmh3T1rFhJWZ9dwB7flp6+ZQzENhTqGXX2b2QelREVk=
+UI-OutboundReport: notjunk:1;M01:P0:vneYlQWCwXs=;4i/llP7RyTen9aKdOUg3neSqr0b
+ +VYZ/LKn757XelxujotvAzZ0iZblEY+hresuyDnMXQrWFB/FRNwgS4K66Or73fiiWmOKxEhxO
+ p6wBgYJIBEetYG3FpHLoNuNaEwwfauz56F5lc992LK+vUVviObWk4j4l9aipGRWhOoqj4+Opd
+ kWYQv6A0CQdRNZmL3Fyn6fqc+FIeM1qTHdwAkvrXYTz/O8g+gGr5SJ9nAiNFrOh9Vx7L9+cCB
+ X2VolonuDsPn6hfIM9uQ5hP6Gm/xsF88l/mRq3yEKY5XW4oF0MuX28LPcTk+XtZ8r5C7/aWyF
+ Rc7ygqGyCoyLD3wNxfr0scy73jSlaG/mhCFCOzqUhlp9CUI61hZ+iiBI6XOEvAmHePyM+3vxs
+ vkQCEXikC20/uk/CZtnJJ1DyMWMAeRS5HM+2zFNlqEIm8p5As5KKYDurOmHAzWx967CBOyli9
+ plIFbPVasqU1v0AzmelvED6VA2l2NQ8MY3CukXtEpuCjM3irGdctDfqhhXbZkcJR4J1CKHnJs
+ bxyYs+gE/XV8f0D5IbibOYtCh/CDfd9jHxp4vihrrvR4UGd6LOKiOMJKxbmS9WdzWj9SCeUAc
+ soA1H0Y+VvUxUWMcE3URVT9zrURW++rc9C6Hz62GIIalnMsCQJzCxQtcOdG50mB7HnrBejnvP
+ j5ezQ775VFPAdOvLc5wkwzte+wACfPtufeQZrVPV6L2cUvxPRzkKZZCk7yn+1dt43cTA7DAve
+ 1u96mnFw2rQj3SvURYsYsdnzThaoddg/LXzEZV3x5gqc9r8FxjktWE=
 X-Mailman-Approved-At: Thu, 22 Feb 2024 14:01:06 +0000
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -73,47 +73,40 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Xserver includes have explicit pointer types for quite all kind of structs
-(at least those used by drivers), which are used all over the Xserver.
-Thus it's much cleaner to use those everywhere.
+The Xserver's System() function is a special wrapper for calling a program
+(xkbcomp) as an unprivileged user, when the Xserver is running as suid-roo=
+t.
+(which today only needed on a few platforms, eg. Solaris). Therefore it's
+not suited for being called by arbitrary drivers.
 
-This commit also clears the road to fix a horrible nightmare of hacks just
-needed to circumvent naming clashes between Xserver and Xlib (affecting al=
-l
-DDXes that are painting on another Xserver): we can simply rename Xserver'=
-s
-own "GC" type to "GCRec" (the usual naming convention here) and so no trou=
-ble
-with Xlib's "GC" type anymore. Once this has landed, we're free to do that
-without breaking this driver.
+In this specific context it doesn't even much sense, since it's just used
+for checking whether pkexec command is present at all (and just should be
+used), while the actual exec'ing of the helper is done directly by fork()
+and exec() syscalls.
+
+Thus we can safely use standard system() call instead - clearing the road
+for dropping System() from Xserver's public/driver API.
 
 Signed-off-by: Enrico Weigelt, metux IT consult <info@metux.net>
 =2D--
- src/sna/sna_accel.c | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+ src/backlight.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/src/sna/sna_accel.c b/src/sna/sna_accel.c
-index 89b82afa..90a61ab3 100644
-=2D-- a/src/sna/sna_accel.c
-+++ b/src/sna/sna_accel.c
-@@ -14300,7 +14300,7 @@ static void
- sna_poly_fill_rect_stippled_n_box__imm(struct sna *sna,
- 				       struct kgem_bo *bo,
- 				       uint32_t br00, uint32_t br13,
--				       const GC *gc,
-+				       const GCPtr gc,
- 				       const BoxRec *box,
- 				       const DDXPointRec *origin)
- {
-@@ -14412,7 +14412,7 @@ sna_poly_fill_rect_stippled_n_box(struct sna *sna,
- 				  struct kgem_bo *bo,
- 				  struct kgem_bo **tile,
- 				  uint32_t br00, uint32_t br13,
--				  const GC *gc,
-+				  const GCPtr gc,
- 				  const BoxRec *box,
- 				  const DDXPointRec *origin)
- {
+diff --git a/src/backlight.c b/src/backlight.c
+index fcbb279f..f416f2a4 100644
+=2D-- a/src/backlight.c
++++ b/src/backlight.c
+@@ -366,7 +366,7 @@ static int __backlight_helper_init(struct backlight *b=
+, char *iface)
+ 		return 0;
+
+ 	if ((st.st_mode & (S_IFREG | S_ISUID | S_IXUSR)) !=3D (S_IFREG | S_ISUID=
+ | S_IXUSR)) {
+-		if (System("pkexec --version"))
++		if (system("pkexec --version"))
+ 			return 0;
+
+ 		use_pkexec =3D 1;
 =2D-
 2.39.2
 
