@@ -2,29 +2,57 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 398CE85E73C
-	for <lists+intel-gfx@lfdr.de>; Wed, 21 Feb 2024 20:26:29 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id A985585E87C
+	for <lists+intel-gfx@lfdr.de>; Wed, 21 Feb 2024 20:57:48 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 87B0210E0DC;
-	Wed, 21 Feb 2024 19:26:27 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1C7AE10E7CF;
+	Wed, 21 Feb 2024 19:57:46 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="D+w5sLwg";
+	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from 8e613ede5ea5 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5A19310E0DC;
- Wed, 21 Feb 2024 19:26:26 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============5021890403346598766=="
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8885810E7CF
+ for <intel-gfx@lists.freedesktop.org>; Wed, 21 Feb 2024 19:57:44 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1708545465; x=1740081465;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=3G9hmj87lsKhDjQJq9/z+GwATCqyCLCyWkIgHBeMo1M=;
+ b=D+w5sLwg++vuPszDX8AWSnczHCu+dIkPO6MOi0aWL5qmDkBhqAbgz3Al
+ JT5RTNySTjBKxuAv5mXtD4PSF/yj3F4RacdNJm97kdAnRdnmgs0HHTqez
+ oNZqPWoufh0JxlN2Md/2PjaxJ/QBblhLLt1BdLXQPY4MOFLyF5FNvPuPM
+ j0AsnG4IHzYt3Vu5VP1JZvYoSDmCbQ6JFFqYZhdtCkj2gNfs3sPhGxdf8
+ CWY+toyCambZiKwhE7Z1ngcdY3yW0uo4S+uqRmoYP7bKHxf+22bHyzrKY
+ A43FypDlQGm41ZR+DzpyK2Tsr4rH5k8AQqp4Lq9kwAJjtDOWz6txYUca8 w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10991"; a="13858964"
+X-IronPort-AV: E=Sophos;i="6.06,176,1705392000"; d="scan'208";a="13858964"
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+ by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 21 Feb 2024 11:57:44 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10991"; a="827401316"
+X-IronPort-AV: E=Sophos;i="6.06,176,1705392000"; d="scan'208";a="827401316"
+Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.74])
+ by orsmga001.jf.intel.com with SMTP; 21 Feb 2024 11:57:41 -0800
+Received: by stinkbox (sSMTP sendmail emulation);
+ Wed, 21 Feb 2024 21:57:40 +0200
+Date: Wed, 21 Feb 2024 21:57:40 +0200
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: Vivek Kasireddy <vivek.kasireddy@intel.com>
+Cc: intel-gfx@lists.freedesktop.org, Matt Roper <matthew.d.roper@intel.com>,
+ Dongwon Kim <dongwon.kim@intel.com>
+Subject: Re: [RFC v1 0/3] drm/i915: Add support for XRandR Border property
+Message-ID: <ZdZVtCZb1cJ33tQT@intel.com>
+References: <20240221085246.808287-1-vivek.kasireddy@intel.com>
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=97_Fi=2ECI=2EBAT=3A_failure_for_Enable_Adaptive_Sync_SDP_Su?=
- =?utf-8?q?pport_for_DP_=28rev9=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Mitul Golani" <mitulkumar.ajitkumar.golani@intel.com>
-Cc: intel-gfx@lists.freedesktop.org
-Date: Wed, 21 Feb 2024 19:26:26 -0000
-Message-ID: <170854358637.178729.2914289235321915159@8e613ede5ea5>
-X-Patchwork-Hint: ignore
-References: <20240221121321.2213128-1-mitulkumar.ajitkumar.golani@intel.com>
-In-Reply-To: <20240221121321.2213128-1-mitulkumar.ajitkumar.golani@intel.com>
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20240221085246.808287-1-vivek.kasireddy@intel.com>
+X-Patchwork-Hint: comment
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -37,251 +65,68 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============5021890403346598766==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+On Wed, Feb 21, 2024 at 12:47:53AM -0800, Vivek Kasireddy wrote:
+> Some customers and users have expressed interest in adding borders
+> (or margins) to certain displays in their multi-display configurations.
+> To address this need, this patchset implements the XRandR Border
+> property as defined here:
+> https://cgit.freedesktop.org/xorg/proto/randrproto/tree/randrproto.txt#n2032
+> 
+> ---
+> 
+> Patchset overview:
+> 
+> Patch 1: Create skl_program_crtc_scaler() to program scaler for crtc
+> Patch 2: Create and attach the Border property to DP and HDMI
+> Patch 3: Implement Border property by enabling crtc scalar
+> 
+> This series is tested using following method:
+> - Run the following xrandr command with different parameters:
+> xrandr --output HDMI-3 --pos 1920x0 --mode 1280x1024 --fb 3840x2160 --scale 2.11x2.11 --set "Border" 150,0,150,0
+> 
+> The following patch was also added to the modesetting driver to
+> implement the Border property:
+> https://gitlab.freedesktop.org/Vivek/xserver/-/commit/62abfc438f0d17fe7f88bf2826c9784c2b36443b
 
-== Series Details ==
+I have an old branch implementing the margin properties:
+https://github.com/vsyrjala/linux.git hdmi_margins_3
 
-Series: Enable Adaptive Sync SDP Support for DP (rev9)
-URL   : https://patchwork.freedesktop.org/series/126829/
-State : failure
+but it got stalled due to the scaler code being in a very poor state.
+I started sketching some reworks there, but that got put on the
+backburner due to other stuff:
+https://github.com/vsyrjala/linux.git scaler_rework_2
 
-== Summary ==
+I might have somehting more recent than that locally, but I'd have
+to trawl through my branches to check what's the latest state.
 
-CI Bug Log - changes from CI_DRM_14310 -> Patchwork_126829v9
-====================================================
+> 
+> Cc: Ville Syrjälä <ville.syrjala@linux.intel.com>
+> Cc: Matt Roper <matthew.d.roper@intel.com>
+> Cc: Dongwon Kim <dongwon.kim@intel.com>
+> 
+> Vivek Kasireddy (3):
+>   drm/i915: Rename skl_pfit_enable() to skl_program_crtc_scaler()
+>   drm/i915: Attach the Border property to DP and HDMI connectors
+>   drm/i915: Apply border adjustments and enable scaler on the crtc
+> 
+>  drivers/gpu/drm/i915/display/intel_atomic.c   | 29 ++++++++++-
+>  .../gpu/drm/i915/display/intel_connector.c    | 49 +++++++++++++++++++
+>  .../gpu/drm/i915/display/intel_connector.h    |  3 ++
+>  drivers/gpu/drm/i915/display/intel_display.c  | 25 ++++++++--
+>  .../gpu/drm/i915/display/intel_display_core.h |  1 +
+>  .../drm/i915/display/intel_display_types.h    |  6 +++
+>  drivers/gpu/drm/i915/display/intel_dp.c       | 11 +++++
+>  drivers/gpu/drm/i915/display/intel_hdmi.c     | 11 +++++
+>  drivers/gpu/drm/i915/display/skl_scaler.c     | 27 ++++++----
+>  drivers/gpu/drm/i915/display/skl_scaler.h     |  3 +-
+>  10 files changed, 149 insertions(+), 16 deletions(-)
+> 
+> -- 
+> 2.43.0
 
-Summary
--------
-
-  **FAILURE**
-
-  Serious unknown changes coming with Patchwork_126829v9 absolutely need to be
-  verified manually.
-  
-  If you think the reported changes have nothing to do with the changes
-  introduced in Patchwork_126829v9, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them
-  to document this new failure mode, which will reduce false positives in CI.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_126829v9/index.html
-
-Participating hosts (37 -> 36)
-------------------------------
-
-  Missing    (1): fi-snb-2520m 
-
-Possible new issues
--------------------
-
-  Here are the unknown changes that may have been introduced in Patchwork_126829v9:
-
-### IGT changes ###
-
-#### Possible regressions ####
-
-  * igt@i915_module_load@load:
-    - fi-elk-e7500:       [PASS][1] -> [INCOMPLETE][2]
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14310/fi-elk-e7500/igt@i915_module_load@load.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_126829v9/fi-elk-e7500/igt@i915_module_load@load.html
-    - fi-bsw-nick:        [PASS][3] -> [INCOMPLETE][4]
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14310/fi-bsw-nick/igt@i915_module_load@load.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_126829v9/fi-bsw-nick/igt@i915_module_load@load.html
-
-  * igt@kms_hdmi_inject@inject-audio:
-    - fi-ilk-650:         [PASS][5] -> [INCOMPLETE][6]
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14310/fi-ilk-650/igt@kms_hdmi_inject@inject-audio.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_126829v9/fi-ilk-650/igt@kms_hdmi_inject@inject-audio.html
-
-  
-Known issues
-------------
-
-  Here are the changes found in Patchwork_126829v9 that come from known issues:
-
-### CI changes ###
-
-#### Issues hit ####
-
-  * boot:
-    - fi-cfl-8109u:       [PASS][7] -> [FAIL][8] ([i915#8293])
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14310/fi-cfl-8109u/boot.html
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_126829v9/fi-cfl-8109u/boot.html
-
-  
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@i915_pm_rpm@module-reload:
-    - fi-kbl-7567u:       [PASS][9] -> [CRASH][10] ([i915#9947])
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14310/fi-kbl-7567u/igt@i915_pm_rpm@module-reload.html
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_126829v9/fi-kbl-7567u/igt@i915_pm_rpm@module-reload.html
-
-  * igt@kms_force_connector_basic@force-connector-state:
-    - bat-adlm-1:         [PASS][11] -> [ABORT][12] ([i915#9991])
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14310/bat-adlm-1/igt@kms_force_connector_basic@force-connector-state.html
-   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_126829v9/bat-adlm-1/igt@kms_force_connector_basic@force-connector-state.html
-
-  
-#### Possible fixes ####
-
-  * igt@gem_exec_create@basic@smem:
-    - {bat-arls-1}:       [DMESG-WARN][13] ([i915#10194]) -> [PASS][14]
-   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14310/bat-arls-1/igt@gem_exec_create@basic@smem.html
-   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_126829v9/bat-arls-1/igt@gem_exec_create@basic@smem.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [i915#10194]: https://gitlab.freedesktop.org/drm/intel/issues/10194
-  [i915#8293]: https://gitlab.freedesktop.org/drm/intel/issues/8293
-  [i915#9947]: https://gitlab.freedesktop.org/drm/intel/issues/9947
-  [i915#9991]: https://gitlab.freedesktop.org/drm/intel/issues/9991
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_14310 -> Patchwork_126829v9
-
-  CI-20190529: 20190529
-  CI_DRM_14310: 53c127ff2eda902ff59370f44526e5e8ae49dec0 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_7719: 7719
-  Patchwork_126829v9: 53c127ff2eda902ff59370f44526e5e8ae49dec0 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-### Linux commits
-
-51349d60491c drm/i915/display: Read/Write AS sdp only when sink/source has enabled
-5dfb5e8f4208 drm/i915/display: Compute vrr_vsync params
-90850fc75b90 drm/i915/display: Compute AS SDP parameters.
-b5e3ed41a719 drm/i915/dp: Add Read/Write support for Adaptive Sync SDP
-0c23205cf25d drm: Add Adaptive Sync SDP logging
-a84666012cc8 drm/dp: Add an support to indicate if sink supports AS SDP
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_126829v9/index.html
-
---===============5021890403346598766==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>Enable Adaptive Sync SDP Support for DP (rev9)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/126829/">https://patchwork.freedesktop.org/series/126829/</a></td></tr>
-<tr><td><b>State:</b></td><td>failure</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_126829v9/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_126829v9/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_14310 -&gt; Patchwork_126829v9</h1>
-<h2>Summary</h2>
-<p><strong>FAILURE</strong></p>
-<p>Serious unknown changes coming with Patchwork_126829v9 absolutely need to be<br />
-  verified manually.</p>
-<p>If you think the reported changes have nothing to do with the changes<br />
-  introduced in Patchwork_126829v9, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them<br />
-  to document this new failure mode, which will reduce false positives in CI.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_126829v9/index.html</p>
-<h2>Participating hosts (37 -&gt; 36)</h2>
-<p>Missing    (1): fi-snb-2520m </p>
-<h2>Possible new issues</h2>
-<p>Here are the unknown changes that may have been introduced in Patchwork_126829v9:</p>
-<h3>IGT changes</h3>
-<h4>Possible regressions</h4>
-<ul>
-<li>
-<p>igt@i915_module_load@load:</p>
-<ul>
-<li>fi-elk-e7500:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14310/fi-elk-e7500/igt@i915_module_load@load.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_126829v9/fi-elk-e7500/igt@i915_module_load@load.html">INCOMPLETE</a></li>
-<li>fi-bsw-nick:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14310/fi-bsw-nick/igt@i915_module_load@load.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_126829v9/fi-bsw-nick/igt@i915_module_load@load.html">INCOMPLETE</a></li>
-</ul>
-</li>
-<li>
-<p>igt@kms_hdmi_inject@inject-audio:</p>
-<ul>
-<li>fi-ilk-650:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14310/fi-ilk-650/igt@kms_hdmi_inject@inject-audio.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_126829v9/fi-ilk-650/igt@kms_hdmi_inject@inject-audio.html">INCOMPLETE</a></li>
-</ul>
-</li>
-</ul>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_126829v9 that come from known issues:</p>
-<h3>CI changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>boot:<ul>
-<li>fi-cfl-8109u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14310/fi-cfl-8109u/boot.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_126829v9/fi-cfl-8109u/boot.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/8293">i915#8293</a>)</li>
-</ul>
-</li>
-</ul>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@i915_pm_rpm@module-reload:</p>
-<ul>
-<li>fi-kbl-7567u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14310/fi-kbl-7567u/igt@i915_pm_rpm@module-reload.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_126829v9/fi-kbl-7567u/igt@i915_pm_rpm@module-reload.html">CRASH</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/9947">i915#9947</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_force_connector_basic@force-connector-state:</p>
-<ul>
-<li>bat-adlm-1:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14310/bat-adlm-1/igt@kms_force_connector_basic@force-connector-state.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_126829v9/bat-adlm-1/igt@kms_force_connector_basic@force-connector-state.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/9991">i915#9991</a>)</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>igt@gem_exec_create@basic@smem:<ul>
-<li>{bat-arls-1}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14310/bat-arls-1/igt@gem_exec_create@basic@smem.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/10194">i915#10194</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_126829v9/bat-arls-1/igt@gem_exec_create@basic@smem.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<p>{name}: This element is suppressed. This means it is ignored when computing<br />
-          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_14310 -&gt; Patchwork_126829v9</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_14310: 53c127ff2eda902ff59370f44526e5e8ae49dec0 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_7719: 7719<br />
-  Patchwork_126829v9: 53c127ff2eda902ff59370f44526e5e8ae49dec0 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<h3>Linux commits</h3>
-<p>51349d60491c drm/i915/display: Read/Write AS sdp only when sink/source has enabled<br />
-5dfb5e8f4208 drm/i915/display: Compute vrr_vsync params<br />
-90850fc75b90 drm/i915/display: Compute AS SDP parameters.<br />
-b5e3ed41a719 drm/i915/dp: Add Read/Write support for Adaptive Sync SDP<br />
-0c23205cf25d drm: Add Adaptive Sync SDP logging<br />
-a84666012cc8 drm/dp: Add an support to indicate if sink supports AS SDP</p>
-
-</body>
-</html>
-
---===============5021890403346598766==--
+-- 
+Ville Syrjälä
+Intel
