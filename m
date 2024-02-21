@@ -2,29 +2,29 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id A105885CD79
-	for <lists+intel-gfx@lfdr.de>; Wed, 21 Feb 2024 02:28:05 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5FB7F85CD8E
+	for <lists+intel-gfx@lfdr.de>; Wed, 21 Feb 2024 02:49:40 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 57D9F10E5CB;
-	Wed, 21 Feb 2024 01:28:02 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0399A10E428;
+	Wed, 21 Feb 2024 01:49:38 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from 8e613ede5ea5 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4E44A10E5CB;
- Wed, 21 Feb 2024 01:28:01 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============7776286206340676212=="
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 096B010E5DB;
+ Wed, 21 Feb 2024 01:49:37 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Fi=2ECI=2EBAT=3A_success_for_drivers/i915/intel=5Fbios?=
- =?utf-8?q?=3A_Fix_parsing_backlight_BDB_data?=
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=97_Fi=2ECI=2ECHECKPATCH=3A_warning_for_drm/i915=3A_Add_Disp?=
+ =?utf-8?q?lay_Port_tunnel_BW_allocation_support_=28rev2=29?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Karthikeyan Ramasubramanian" <kramasub@chromium.org>
+To: "Imre Deak" <imre.deak@intel.com>
 Cc: intel-gfx@lists.freedesktop.org
-Date: Wed, 21 Feb 2024 01:28:01 -0000
-Message-ID: <170847888131.132386.15257412499635822058@8e613ede5ea5>
+Date: Wed, 21 Feb 2024 01:49:37 -0000
+Message-ID: <170848017703.178297.1127851753127296462@8e613ede5ea5>
 X-Patchwork-Hint: ignore
-References: <20240220141256.v1.1.I0690aa3e96a83a43b3fc33f50395d334b2981826@changeid>
-In-Reply-To: <20240220141256.v1.1.I0690aa3e96a83a43b3fc33f50395d334b2981826@changeid>
+References: <20240220211841.448846-1-imre.deak@intel.com>
+In-Reply-To: <20240220211841.448846-1-imre.deak@intel.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -41,193 +41,237 @@ Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============7776286206340676212==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
 == Series Details ==
 
-Series: drivers/i915/intel_bios: Fix parsing backlight BDB data
-URL   : https://patchwork.freedesktop.org/series/130152/
-State : success
+Series: drm/i915: Add Display Port tunnel BW allocation support (rev2)
+URL   : https://patchwork.freedesktop.org/series/129082/
+State : warning
 
 == Summary ==
 
-CI Bug Log - changes from CI_DRM_14305 -> Patchwork_130152v1
-====================================================
+Error: dim checkpatch failed
+501cc0798f87 drm/dp: Add drm_dp_max_dprx_data_rate()
+14d74f578b99 drm/dp: Add support for DP tunneling
+Traceback (most recent call last):
+  File "scripts/spdxcheck.py", line 6, in <module>
+    from ply import lex, yacc
+ModuleNotFoundError: No module named 'ply'
+Traceback (most recent call last):
+  File "scripts/spdxcheck.py", line 6, in <module>
+    from ply import lex, yacc
+ModuleNotFoundError: No module named 'ply'
+-:118: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#118: 
+new file mode 100644
 
-Summary
--------
+-:148: ERROR:COMPLEX_MACRO: Macros with complex values should be enclosed in parentheses
+#148: FILE: drivers/gpu/drm/display/drm_dp_tunnel.c:26:
++#define for_each_new_group_in_state(__state, __new_group_state, __i) \
++	for ((__i) = 0; \
++	     (__i) < (__state)->num_private_objs; \
++	     (__i)++) \
++		for_each_if ((__state)->private_objs[__i].ptr && \
++			     is_dp_tunnel_private_obj((__state)->private_objs[__i].ptr) && \
++			     ((__new_group_state) = \
++				to_group_state((__state)->private_objs[__i].new_state), 1))
 
-  **SUCCESS**
+-:148: CHECK:MACRO_ARG_REUSE: Macro argument reuse '__state' - possible side-effects?
+#148: FILE: drivers/gpu/drm/display/drm_dp_tunnel.c:26:
++#define for_each_new_group_in_state(__state, __new_group_state, __i) \
++	for ((__i) = 0; \
++	     (__i) < (__state)->num_private_objs; \
++	     (__i)++) \
++		for_each_if ((__state)->private_objs[__i].ptr && \
++			     is_dp_tunnel_private_obj((__state)->private_objs[__i].ptr) && \
++			     ((__new_group_state) = \
++				to_group_state((__state)->private_objs[__i].new_state), 1))
 
-  No regressions found.
+-:148: CHECK:MACRO_ARG_REUSE: Macro argument reuse '__i' - possible side-effects?
+#148: FILE: drivers/gpu/drm/display/drm_dp_tunnel.c:26:
++#define for_each_new_group_in_state(__state, __new_group_state, __i) \
++	for ((__i) = 0; \
++	     (__i) < (__state)->num_private_objs; \
++	     (__i)++) \
++		for_each_if ((__state)->private_objs[__i].ptr && \
++			     is_dp_tunnel_private_obj((__state)->private_objs[__i].ptr) && \
++			     ((__new_group_state) = \
++				to_group_state((__state)->private_objs[__i].new_state), 1))
 
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130152v1/index.html
+-:152: WARNING:SPACING: space prohibited between function name and open parenthesis '('
+#152: FILE: drivers/gpu/drm/display/drm_dp_tunnel.c:30:
++		for_each_if ((__state)->private_objs[__i].ptr && \
 
-Participating hosts (40 -> 38)
-------------------------------
+-:157: ERROR:COMPLEX_MACRO: Macros with complex values should be enclosed in parentheses
+#157: FILE: drivers/gpu/drm/display/drm_dp_tunnel.c:35:
++#define for_each_old_group_in_state(__state, __old_group_state, __i) \
++	for ((__i) = 0; \
++	     (__i) < (__state)->num_private_objs; \
++	     (__i)++) \
++		for_each_if ((__state)->private_objs[__i].ptr && \
++			     is_dp_tunnel_private_obj((__state)->private_objs[__i].ptr) && \
++			     ((__old_group_state) = \
++				to_group_state((__state)->private_objs[__i].old_state), 1))
 
-  Missing    (2): bat-mtlp-8 fi-snb-2520m 
+-:157: CHECK:MACRO_ARG_REUSE: Macro argument reuse '__state' - possible side-effects?
+#157: FILE: drivers/gpu/drm/display/drm_dp_tunnel.c:35:
++#define for_each_old_group_in_state(__state, __old_group_state, __i) \
++	for ((__i) = 0; \
++	     (__i) < (__state)->num_private_objs; \
++	     (__i)++) \
++		for_each_if ((__state)->private_objs[__i].ptr && \
++			     is_dp_tunnel_private_obj((__state)->private_objs[__i].ptr) && \
++			     ((__old_group_state) = \
++				to_group_state((__state)->private_objs[__i].old_state), 1))
 
-Known issues
-------------
+-:157: CHECK:MACRO_ARG_REUSE: Macro argument reuse '__i' - possible side-effects?
+#157: FILE: drivers/gpu/drm/display/drm_dp_tunnel.c:35:
++#define for_each_old_group_in_state(__state, __old_group_state, __i) \
++	for ((__i) = 0; \
++	     (__i) < (__state)->num_private_objs; \
++	     (__i)++) \
++		for_each_if ((__state)->private_objs[__i].ptr && \
++			     is_dp_tunnel_private_obj((__state)->private_objs[__i].ptr) && \
++			     ((__old_group_state) = \
++				to_group_state((__state)->private_objs[__i].old_state), 1))
 
-  Here are the changes found in Patchwork_130152v1 that come from known issues:
+-:161: WARNING:SPACING: space prohibited between function name and open parenthesis '('
+#161: FILE: drivers/gpu/drm/display/drm_dp_tunnel.c:39:
++		for_each_if ((__state)->private_objs[__i].ptr && \
 
-### CI changes ###
+-:179: CHECK:MACRO_ARG_REUSE: Macro argument reuse '__bw' - possible side-effects?
+#179: FILE: drivers/gpu/drm/display/drm_dp_tunnel.c:57:
++#define DPTUN_BW_ARG(__bw) ((__bw) < 0 ? (__bw) : kbytes_to_mbits(__bw))
 
-#### Issues hit ####
+-:181: CHECK:MACRO_ARG_REUSE: Macro argument reuse '__tunnel' - possible side-effects?
+#181: FILE: drivers/gpu/drm/display/drm_dp_tunnel.c:59:
++#define __tun_prn(__tunnel, __level, __type, __fmt, ...) \
++	drm_##__level##__type((__tunnel)->group->mgr->dev, \
++			      "[DPTUN %s][%s] " __fmt, \
++			      drm_dp_tunnel_name(__tunnel), \
++			      (__tunnel)->aux->name, ## \
++			      __VA_ARGS__)
 
-  * boot:
-    - bat-jsl-1:          [PASS][1] -> [FAIL][2] ([i915#8293])
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14305/bat-jsl-1/boot.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130152v1/bat-jsl-1/boot.html
+-:191: CHECK:MACRO_ARG_REUSE: Macro argument reuse '__tunnel' - possible side-effects?
+#191: FILE: drivers/gpu/drm/display/drm_dp_tunnel.c:69:
++#define tun_dbg_stat(__tunnel, __err, __fmt, ...) do { \
++	if (__err) \
++		__tun_prn(__tunnel, dbg, _kms, __fmt " (Failed, err: %pe)\n", \
++			  ## __VA_ARGS__, ERR_PTR(__err)); \
++	else \
++		__tun_prn(__tunnel, dbg, _kms, __fmt " (Ok)\n", \
++			  ## __VA_ARGS__); \
++} while (0)
 
-  
+-:191: CHECK:MACRO_ARG_REUSE: Macro argument reuse '__err' - possible side-effects?
+#191: FILE: drivers/gpu/drm/display/drm_dp_tunnel.c:69:
++#define tun_dbg_stat(__tunnel, __err, __fmt, ...) do { \
++	if (__err) \
++		__tun_prn(__tunnel, dbg, _kms, __fmt " (Failed, err: %pe)\n", \
++			  ## __VA_ARGS__, ERR_PTR(__err)); \
++	else \
++		__tun_prn(__tunnel, dbg, _kms, __fmt " (Ok)\n", \
++			  ## __VA_ARGS__); \
++} while (0)
 
-### IGT changes ###
+-:191: CHECK:MACRO_ARG_REUSE: Macro argument reuse '__fmt' - possible side-effects?
+#191: FILE: drivers/gpu/drm/display/drm_dp_tunnel.c:69:
++#define tun_dbg_stat(__tunnel, __err, __fmt, ...) do { \
++	if (__err) \
++		__tun_prn(__tunnel, dbg, _kms, __fmt " (Failed, err: %pe)\n", \
++			  ## __VA_ARGS__, ERR_PTR(__err)); \
++	else \
++		__tun_prn(__tunnel, dbg, _kms, __fmt " (Ok)\n", \
++			  ## __VA_ARGS__); \
++} while (0)
 
-#### Issues hit ####
+-:203: CHECK:MACRO_ARG_REUSE: Macro argument reuse '__group' - possible side-effects?
+#203: FILE: drivers/gpu/drm/display/drm_dp_tunnel.c:81:
++#define tun_grp_dbg(__group, __fmt, ...) \
++	drm_dbg_kms((__group)->mgr->dev, \
++		    "[DPTUN %s] " __fmt, \
++		    drm_dp_tunnel_group_name(__group), ## \
++		    __VA_ARGS__)
 
-  * igt@i915_pm_rpm@module-reload:
-    - fi-kbl-7567u:       [PASS][3] -> [CRASH][4] ([i915#9947])
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14305/fi-kbl-7567u/igt@i915_pm_rpm@module-reload.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130152v1/fi-kbl-7567u/igt@i915_pm_rpm@module-reload.html
+-:211: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'start' - possible side-effects?
+#211: FILE: drivers/gpu/drm/display/drm_dp_tunnel.c:89:
++#define __DPTUN_REG_RANGE(start, size) \
++	GENMASK_ULL(start + size - 1, start)
 
-  
-#### Possible fixes ####
+-:211: CHECK:MACRO_ARG_PRECEDENCE: Macro argument 'start' may be better as '(start)' to avoid precedence issues
+#211: FILE: drivers/gpu/drm/display/drm_dp_tunnel.c:89:
++#define __DPTUN_REG_RANGE(start, size) \
++	GENMASK_ULL(start + size - 1, start)
 
-  * igt@vgem_basic@create:
-    - {bat-arls-2}:       [FAIL][5] -> [PASS][6] +4 other tests pass
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14305/bat-arls-2/igt@vgem_basic@create.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130152v1/bat-arls-2/igt@vgem_basic@create.html
+-:211: CHECK:MACRO_ARG_PRECEDENCE: Macro argument 'size' may be better as '(size)' to avoid precedence issues
+#211: FILE: drivers/gpu/drm/display/drm_dp_tunnel.c:89:
++#define __DPTUN_REG_RANGE(start, size) \
++	GENMASK_ULL(start + size - 1, start)
 
-  * igt@vgem_basic@dmabuf-mmap:
-    - {bat-arls-2}:       [INCOMPLETE][7] -> [PASS][8] +6 other tests pass
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14305/bat-arls-2/igt@vgem_basic@dmabuf-mmap.html
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130152v1/bat-arls-2/igt@vgem_basic@dmabuf-mmap.html
+-:334: CHECK:MACRO_ARG_REUSE: Macro argument reuse '__address' - possible side-effects?
+#334: FILE: drivers/gpu/drm/display/drm_dp_tunnel.c:212:
++#define tunnel_reg_ptr(__regs, __address) ({ \
++	WARN_ON(!test_bit((__address) - DP_TUNNELING_BASE, dptun_info_regs)); \
++	&(__regs)->buf[bitmap_weight(dptun_info_regs, (__address) - DP_TUNNELING_BASE)]; \
++})
 
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
+-:567: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#567: FILE: drivers/gpu/drm/display/drm_dp_tunnel.c:445:
++void drm_dp_tunnel_put(struct drm_dp_tunnel *tunnel,
++			 struct ref_tracker **tracker)
 
-  [i915#10194]: https://gitlab.freedesktop.org/drm/intel/issues/10194
-  [i915#10196]: https://gitlab.freedesktop.org/drm/intel/issues/10196
-  [i915#10212]: https://gitlab.freedesktop.org/drm/intel/issues/10212
-  [i915#10213]: https://gitlab.freedesktop.org/drm/intel/issues/10213
-  [i915#10214]: https://gitlab.freedesktop.org/drm/intel/issues/10214
-  [i915#10215]: https://gitlab.freedesktop.org/drm/intel/issues/10215
-  [i915#10216]: https://gitlab.freedesktop.org/drm/intel/issues/10216
-  [i915#3708]: https://gitlab.freedesktop.org/drm/intel/issues/3708
-  [i915#4077]: https://gitlab.freedesktop.org/drm/intel/issues/4077
-  [i915#8293]: https://gitlab.freedesktop.org/drm/intel/issues/8293
-  [i915#9947]: https://gitlab.freedesktop.org/drm/intel/issues/9947
+-:1893: CHECK:SPACING: spaces preferred around that '*' (ctx:ExV)
+#1893: FILE: drivers/gpu/drm/display/drm_dp_tunnel.c:1771:
++		*stream_mask |= tunnel_state->stream_mask;
+ 		^
 
+-:2373: CHECK:LINE_SPACING: Please don't use multiple blank lines
+#2373: FILE: include/drm/display/drm_dp_tunnel.h:245:
++
++
 
-Build changes
--------------
+total: 2 errors, 3 warnings, 17 checks, 2278 lines checked
+82078361838f drm/i915: Fix display bpp limit computation during system resume
+976b15a03a8c drm/i915/dp: Add support to notify MST connectors to retry modesets
+9d6981886b45 drm/i915/dp: Use drm_dp_max_dprx_data_rate()
+066e5527378f drm/i915/dp: Factor out intel_dp_config_required_rate()
+b352f0a35faf drm/i915/dp: Export intel_dp_max_common_rate/lane_count()
+47eeb30effa9 drm/i915/dp: Factor out intel_dp_update_sink_caps()
+7531c2fd6f83 drm/i915/dp: Factor out intel_dp_read_dprx_caps()
+7149929cb442 drm/i915/dp: Add intel_dp_max_link_data_rate()
+ef0a8dd54e5c drm/i915/dp: Add way to get active pipes with syncing commits
+577cf7b2cf35 drm/i915/dp: Add support for DP tunnel BW allocation
+Traceback (most recent call last):
+  File "scripts/spdxcheck.py", line 6, in <module>
+    from ply import lex, yacc
+ModuleNotFoundError: No module named 'ply'
+Traceback (most recent call last):
+  File "scripts/spdxcheck.py", line 6, in <module>
+    from ply import lex, yacc
+ModuleNotFoundError: No module named 'ply'
+-:223: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#223: 
+new file mode 100644
 
-  * Linux: CI_DRM_14305 -> Patchwork_130152v1
+-:412: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#412: FILE: drivers/gpu/drm/i915/display/intel_dp_tunnel.c:185:
++	tunnel = drm_dp_tunnel_detect(i915->display.dp_tunnel_mgr,
++					&intel_dp->aux);
 
-  CI-20190529: 20190529
-  CI_DRM_14305: 4b8a238dee9c18201f3652695414587cd2ef6d8f @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_7718: 40e8b9122853f455c84afcfa56469a6bc9a0d564 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_130152v1: 4b8a238dee9c18201f3652695414587cd2ef6d8f @ git://anongit.freedesktop.org/gfx-ci/linux
+total: 0 errors, 1 warnings, 1 checks, 1072 lines checked
+ec34759d6f26 drm/i915/dp: Add DP tunnel atomic state and check BW limit
+-:84: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#84: FILE: drivers/gpu/drm/i915/display/intel_display.c:4514:
++		drm_dp_tunnel_ref_get(master_crtc_state->dp_tunnel_ref.tunnel,
++					&slave_crtc_state->dp_tunnel_ref);
 
-
-### Linux commits
-
-1a284db2ac66 drivers/i915/intel_bios: Fix parsing backlight BDB data
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130152v1/index.html
-
---===============7776286206340676212==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drivers/i915/intel_bios: Fix parsing backlight BDB data</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/130152/">https://patchwork.freedesktop.org/series/130152/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130152v1/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130152v1/index.html</a></td></tr>
-
-</table>
+total: 0 errors, 0 warnings, 1 checks, 77 lines checked
+4fdd1af8df9e drm/i915/dp: Account for tunnel BW limit in intel_dp_max_link_data_rate()
+0cb4cb2cd6d4 drm/i915/dp: Compute DP tunnel BW during encoder state computation
+e8408bdcd57d drm/i915/dp: Allocate/free DP tunnel BW in the encoder enable/disable hooks
+0a4db8693254 drm/i915/dp: Handle DP tunnel IRQs
+d5e99925dddc drm/i915/dp: Call intel_dp_sync_state() always for DDI DP encoders
+807c117f13f2 drm/i915/dp: Suspend/resume DP tunnels
+2ad0f8709182 drm/i915/dp: Read DPRX for all long HPD pulses
+45d207ae4bbc drm/i915/dp: Enable DP tunnel BW allocation mode
 
 
-    <h1>CI Bug Log - changes from CI_DRM_14305 -&gt; Patchwork_130152v1</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130152v1/index.html</p>
-<h2>Participating hosts (40 -&gt; 38)</h2>
-<p>Missing    (2): bat-mtlp-8 fi-snb-2520m </p>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_130152v1 that come from known issues:</p>
-<h3>CI changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>boot:<ul>
-<li>bat-jsl-1:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14305/bat-jsl-1/boot.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130152v1/bat-jsl-1/boot.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/8293">i915#8293</a>)</li>
-</ul>
-</li>
-</ul>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>igt@i915_pm_rpm@module-reload:<ul>
-<li>fi-kbl-7567u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14305/fi-kbl-7567u/igt@i915_pm_rpm@module-reload.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130152v1/fi-kbl-7567u/igt@i915_pm_rpm@module-reload.html">CRASH</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/9947">i915#9947</a>)</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>
-<p>igt@vgem_basic@create:</p>
-<ul>
-<li>{bat-arls-2}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14305/bat-arls-2/igt@vgem_basic@create.html">FAIL</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130152v1/bat-arls-2/igt@vgem_basic@create.html">PASS</a> +4 other tests pass</li>
-</ul>
-</li>
-<li>
-<p>igt@vgem_basic@dmabuf-mmap:</p>
-<ul>
-<li>{bat-arls-2}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14305/bat-arls-2/igt@vgem_basic@dmabuf-mmap.html">INCOMPLETE</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130152v1/bat-arls-2/igt@vgem_basic@dmabuf-mmap.html">PASS</a> +6 other tests pass</li>
-</ul>
-</li>
-</ul>
-<p>{name}: This element is suppressed. This means it is ignored when computing<br />
-          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_14305 -&gt; Patchwork_130152v1</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_14305: 4b8a238dee9c18201f3652695414587cd2ef6d8f @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_7718: 40e8b9122853f455c84afcfa56469a6bc9a0d564 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  Patchwork_130152v1: 4b8a238dee9c18201f3652695414587cd2ef6d8f @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<h3>Linux commits</h3>
-<p>1a284db2ac66 drivers/i915/intel_bios: Fix parsing backlight BDB data</p>
-
-</body>
-</html>
-
---===============7776286206340676212==--
