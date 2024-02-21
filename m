@@ -2,60 +2,52 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4325B85E712
-	for <lists+intel-gfx@lfdr.de>; Wed, 21 Feb 2024 20:16:29 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id EC3EC85E71C
+	for <lists+intel-gfx@lfdr.de>; Wed, 21 Feb 2024 20:20:15 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CED4010E7C9;
-	Wed, 21 Feb 2024 19:16:27 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 62CD810E082;
+	Wed, 21 Feb 2024 19:20:14 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="LGh1Dzix";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="h6yI6FPK";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BC14D10E7C7
- for <intel-gfx@lists.freedesktop.org>; Wed, 21 Feb 2024 19:16:26 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 92B6110E082
+ for <intel-gfx@lists.freedesktop.org>; Wed, 21 Feb 2024 19:20:13 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1708542987; x=1740078987;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=YxVqd4Zr0xcV2CP1n1puWWzqKqOP0pBivkAVrQjYF5c=;
- b=LGh1Dzix+nDZ8ZQITQiyuXhZ1RZjg0umdUUkIM4C6S0hF4lD2BCsUYWW
- h+vAhycB+cuI1ZIc1Uk4I6nmLvfgExui10odOfda3qs82f7gUhiGI91xv
- iuTES2wkWi9n/rHzr+98w8bJnh6eSzaNc7hwpsZ2uRJPGpeuZ/nzjnX+4
- 6ZMvvgA2HN4Pd4A1198FDBJPV0YMNgCuZDJ0XtFcecqSMmw+13xBTQTVN
- GvCHjIHXPmf4QXC2TYYgMNFX12n0IW+vegWxUeCbOjn4pRYjgqwRetZ3A
- ZTDe6p0RozoWBPF+47wrsEw1UcZOyRmh/4WuzQLoF5kg2VwxAzX3MNUiF g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10991"; a="2599646"
-X-IronPort-AV: E=Sophos;i="6.06,176,1705392000"; 
-   d="scan'208";a="2599646"
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
- by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Feb 2024 11:16:26 -0800
+ t=1708543213; x=1740079213;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=OPx0wHtC5b7r+PIYTslYDroBWj/aQfNB6r2xrI9MZrU=;
+ b=h6yI6FPKMcTevtQqYQgyhzmAbpKqUPHvHgzcIdMGQjywwM1CYGdaVLWE
+ 3ZCl0msfyuR2Yc+4VJTNRjkP4jm64wQbLW7jlJbPcKKjIATeEI65+GMFe
+ lNpNPlnrKjCG70SbU/GDeTr16RT9viQrRT/wJyYYYg2debcVEyVtyiZlZ
+ SlHtFBvvU0msG+JIW1yMM3WlzfYYglZVXLX/ByFOJFbNoJ8UbuZ0npemS
+ QREMsaM/PDzr5lXPtXMk2QG2cvriT01532zz+PHKBoW5RNRcEMPe5NAFv
+ ryrtmdJQjrclekEoEPbwcC7beIE+kOcBrYA+Pxw+UScYJvXxQxBVc0pby w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10991"; a="13286342"
+X-IronPort-AV: E=Sophos;i="6.06,176,1705392000"; d="scan'208";a="13286342"
+Received: from orviesa002.jf.intel.com ([10.64.159.142])
+ by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 21 Feb 2024 11:20:13 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10991"; a="827396868"
-X-IronPort-AV: E=Sophos;i="6.06,176,1705392000"; d="scan'208";a="827396868"
-Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.74])
- by orsmga001.jf.intel.com with SMTP; 21 Feb 2024 11:16:22 -0800
-Received: by stinkbox (sSMTP sendmail emulation);
- Wed, 21 Feb 2024 21:16:22 +0200
-Date: Wed, 21 Feb 2024 21:16:22 +0200
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Jouni =?iso-8859-1?Q?H=F6gander?= <jouni.hogander@intel.com>
-Cc: intel-gfx@lists.freedesktop.org
-Subject: Re: [PATCH 2/3] drm/i915/psr: Improve fast and IO wake lines
- calculation
-Message-ID: <ZdZMBsxyX1m_n9yy@intel.com>
-References: <20240221075322.2764209-1-jouni.hogander@intel.com>
- <20240221075322.2764209-3-jouni.hogander@intel.com>
- <ZdZJh86BvrrAazou@intel.com>
+X-IronPort-AV: E=Sophos;i="6.06,176,1705392000"; d="scan'208";a="36024245"
+Received: from unknown (HELO slisovsk-Lenovo-ideapad-720S-13IKB.fi.intel.com)
+ ([10.237.72.65])
+ by orviesa002.jf.intel.com with ESMTP; 21 Feb 2024 11:20:11 -0800
+From: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Cc: Stanislav.Lisovskiy@intel.com, jani.saarinen@intel.com,
+ ville.syrjala@linux.intel.com, vidya.srinivas@intel.com
+Subject: [PATCH 0/3] Bigjoiner refactoring
+Date: Wed, 21 Feb 2024 21:20:07 +0200
+Message-Id: <20240221192010.25413-1-stanislav.lisovskiy@intel.com>
+X-Mailer: git-send-email 2.37.3
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <ZdZJh86BvrrAazou@intel.com>
-X-Patchwork-Hint: comment
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -71,109 +63,30 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, Feb 21, 2024 at 09:05:43PM +0200, Ville Syrjälä wrote:
-> On Wed, Feb 21, 2024 at 09:53:21AM +0200, Jouni Högander wrote:
-> > Current fast and IO wake lines calculation is assuming fast wake sync
-> > length is 18 pulses. Let's improve this by checking the actual length.
-> > 
-> > Also 10 us IO buffer wake time is currently assumed. This is not the case
-> > with LunarLake and beyond. Fix this by adding getter for IO wake time and
-> > return values there according to Bspec.
-> > 
-> > Bspec: 65450
-> > 
-> > Signed-off-by: Jouni Högander <jouni.hogander@intel.com>
-> > ---
-> >  drivers/gpu/drm/i915/display/intel_psr.c | 40 +++++++++++++++++++-----
-> >  1 file changed, 33 insertions(+), 7 deletions(-)
-> > 
-> > diff --git a/drivers/gpu/drm/i915/display/intel_psr.c b/drivers/gpu/drm/i915/display/intel_psr.c
-> > index 72cadad09db5..4a1e07411716 100644
-> > --- a/drivers/gpu/drm/i915/display/intel_psr.c
-> > +++ b/drivers/gpu/drm/i915/display/intel_psr.c
-> > @@ -1150,6 +1150,28 @@ static bool _lnl_compute_alpm_params(struct intel_dp *intel_dp,
-> >  	return true;
-> >  }
-> >  
-> > +/*
-> > + * From Bspec:
-> > + *
-> > + * For Xe2 and beyond
-> > + * RBR 15us, HBR1 11us, higher rates 10us
-> > + *
-> > + * For pre-Xe2
-> > + * 10 us
-> > + */
-> > +static int get_io_wake_time(struct intel_dp *intel_dp,
-> 
-> No point in passing that. You can dig out the i915 from the crtc state.
-> 
-> > +			struct intel_crtc_state *crtc_state)
-> 
-> const
-> 
-> > +{
-> > +	struct drm_i915_private *i915 = dp_to_i915(intel_dp);
-> > +
-> > +	if (DISPLAY_VER(i915) < 20 || crtc_state->port_clock > 270000)
-> > +		return 10;
-> > +	else if (crtc_state->port_clock > 162000)
-> > +		return 11;
-> > +	else
-> > +		return 15;
-> 
-> The new rate dependent stuff should be a separate patch.
-> 
-> And looks like the 10 usec will give us 44 usec io wake time, so
-> that should probably be a separate patch as well, to avoid
-> any functional changes when we introduce the formula.
-> 
-> > +}
-> > +
-> >  static bool _compute_alpm_params(struct intel_dp *intel_dp,
-> >  				 struct intel_crtc_state *crtc_state)
-> >  {
-> > @@ -1157,13 +1179,17 @@ static bool _compute_alpm_params(struct intel_dp *intel_dp,
-> >  	int io_wake_lines, io_wake_time, fast_wake_lines, fast_wake_time;
-> >  	u8 max_wake_lines;
-> >  
-> > -	if (DISPLAY_VER(i915) >= 12) {
-> > -		io_wake_time = 42;
-> > -		/*
-> > -		 * According to Bspec it's 42us, but based on testing
-> > -		 * it is not enough -> use 45 us.
-> > -		 */
-> > -		fast_wake_time = 45;
-> > +	if (intel_dp->get_aux_fw_sync_len) {
-> > +		int io_wake_time = get_io_wake_time(intel_dp, crtc_state);
-> 
-> Looks like this will shadow the variable you're trying to change.
-> Does the compiler not complain about this?
-> 
-> > +		int tfw_exit_latency = 20; /* eDP spec */
-> > +		int phy_wake = 4;	   /* eDP spec */
-> > +		int preamble = 8;	   /* eDP spec */
-> > +		int precharge = intel_dp->get_aux_fw_sync_len() - preamble;
-> > +
-> > +		io_wake_time = max(precharge, io_wake_time) + preamble +
-> > +			phy_wake + tfw_exit_latency;
-> > +		fast_wake_time = precharge + preamble + phy_wake +
-> > +			tfw_exit_latency;
-> >  
-> >  		/* TODO: Check how we can use ALPM_CTL fast wake extended field */
-> >  		max_wake_lines = 12;
-> 
-> I would also convert the older platforms to use the formula.
-> We do need to reverse calculate the io buffer on latency since
-> AFAICS it's not directly specified in bspec. But I think
-> that's better than not converting it since with the formula we
-> can't totally screw things up when eg. changing the precharge
-> length.
+There are few things we need to do for bigjoiner, in order
+to improve code maintenance and also make testing for Bigjoiner
+easier.
+Those series contain addition of bigjoiner force debugfs option,
+in order to be able to force bigjoiner even if there is no display
+support, also we refactor pipe vs transcoder logic, as currently
+it is a bit scattered between *_commit_modeset_enables/disables
+and *_crtc_enable/disable functions. Same applies to encoders.
+We made a decision to handle all the slaves in correspondent master
+hook, so slaves and slave checks no longer would be in modesetting
+level logic.
 
-Hmm. The older platforms are apparently using fast_wake=32
-which implies zero precharge pulses. That definitely does
-not match what we program into the AUX control register...
+Stanislav Lisovskiy (3):
+  drm/i915/bigjoiner: Refactor bigjoiner state readout
+  Start separating pipe vs transcoder set logic for bigjoiner during
+    modeset
+  drm/i915: Fix bigjoiner case for DP2.0
+
+ drivers/gpu/drm/i915/display/intel_ddi.c     |  21 +-
+ drivers/gpu/drm/i915/display/intel_display.c | 205 +++++++++++--------
+ drivers/gpu/drm/i915/display/intel_display.h |   6 +
+ drivers/gpu/drm/i915/display/intel_dp_mst.c  |  19 +-
+ 4 files changed, 144 insertions(+), 107 deletions(-)
 
 -- 
-Ville Syrjälä
-Intel
+2.37.3
+
