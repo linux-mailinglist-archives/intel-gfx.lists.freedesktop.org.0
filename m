@@ -2,29 +2,54 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 75AAC85D2B7
-	for <lists+intel-gfx@lfdr.de>; Wed, 21 Feb 2024 09:41:21 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3C93085D334
+	for <lists+intel-gfx@lfdr.de>; Wed, 21 Feb 2024 10:17:19 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5A58F10E109;
-	Wed, 21 Feb 2024 08:41:19 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4037210E40E;
+	Wed, 21 Feb 2024 09:17:16 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="j01n5MFb";
+	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from 8e613ede5ea5 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2B4E410E109;
- Wed, 21 Feb 2024 08:41:18 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============2032691233058063809=="
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 10B7910E683
+ for <intel-gfx@lists.freedesktop.org>; Wed, 21 Feb 2024 09:17:15 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1708507035; x=1740043035;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=r/gmTcpgbEicmAWa6nWI4pL/fucRjshHFFjomTNluzk=;
+ b=j01n5MFbRtgLwbovz5lEXEvEKcNVgVVUpT3LBRO817j1zAyhmnheLASN
+ F2sWQ5Es1Ic8ZAmtYa3MJzsVpxKqWopDqMLTWLi+cYs2HVecfGW0KjG2Y
+ esaPQrKQP6s6fmQ4knN8YdEliFoolBa6mYXwkl63Po6pfCYPQe4C30M1O
+ 4cdO+Xjvh6z7zjqacjI28/vGK0AgTOt9APF5OmtLtYz5Zm5AiQt6YvBHS
+ cTU8LBqM9YEiZRQ2sw/N/DMpdf6wbjzl6/uqFxkDjRFMXjl0zVbzoVbwq
+ jPLVzQIK0U5//zHQVs8KLNO08Apibb6evFl+552iKXd1qymRKJC3UCxzr w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10990"; a="2795801"
+X-IronPort-AV: E=Sophos;i="6.06,175,1705392000"; 
+   d="scan'208";a="2795801"
+Received: from orviesa001.jf.intel.com ([10.64.159.141])
+ by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 21 Feb 2024 01:17:14 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.06,175,1705392000"; d="scan'208";a="42554337"
+Received: from vkasired-desk2.fm.intel.com ([10.105.128.132])
+ by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 21 Feb 2024 01:17:14 -0800
+From: Vivek Kasireddy <vivek.kasireddy@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Cc: Vivek Kasireddy <vivek.kasireddy@intel.com>,
+ =?UTF-8?q?Ville=20Syrj=C3=A4l=C3=A4?= <ville.syrjala@linux.intel.com>,
+ Matt Roper <matthew.d.roper@intel.com>, Dongwon Kim <dongwon.kim@intel.com>
+Subject: [RFC v1 0/3] drm/i915: Add support for XRandR Border property
+Date: Wed, 21 Feb 2024 00:47:53 -0800
+Message-ID: <20240221085246.808287-1-vivek.kasireddy@intel.com>
+X-Mailer: git-send-email 2.43.0
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=97_Fi=2ECI=2EBAT=3A_failure_for_drm/ttm=3A_Fix_an_invalid_f?=
- =?utf-8?q?reeing_on_already_freed_page_in_error_path?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: =?utf-8?q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
-Cc: intel-gfx@lists.freedesktop.org
-Date: Wed, 21 Feb 2024 08:41:18 -0000
-Message-ID: <170850487817.178729.4489116076972795937@8e613ede5ea5>
-X-Patchwork-Hint: ignore
-References: <20240221073324.3303-1-thomas.hellstrom@linux.intel.com>
-In-Reply-To: <20240221073324.3303-1-thomas.hellstrom@linux.intel.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -37,220 +62,52 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============2032691233058063809==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+Some customers and users have expressed interest in adding borders
+(or margins) to certain displays in their multi-display configurations.
+To address this need, this patchset implements the XRandR Border
+property as defined here:
+https://cgit.freedesktop.org/xorg/proto/randrproto/tree/randrproto.txt#n2032
 
-== Series Details ==
+---
 
-Series: drm/ttm: Fix an invalid freeing on already freed page in error path
-URL   : https://patchwork.freedesktop.org/series/130170/
-State : failure
+Patchset overview:
 
-== Summary ==
+Patch 1: Create skl_program_crtc_scaler() to program scaler for crtc
+Patch 2: Create and attach the Border property to DP and HDMI
+Patch 3: Implement Border property by enabling crtc scalar
 
-CI Bug Log - changes from CI_DRM_14305 -> Patchwork_130170v1
-====================================================
+This series is tested using following method:
+- Run the following xrandr command with different parameters:
+xrandr --output HDMI-3 --pos 1920x0 --mode 1280x1024 --fb 3840x2160 --scale 2.11x2.11 --set "Border" 150,0,150,0
 
-Summary
--------
+The following patch was also added to the modesetting driver to
+implement the Border property:
+https://gitlab.freedesktop.org/Vivek/xserver/-/commit/62abfc438f0d17fe7f88bf2826c9784c2b36443b
 
-  **FAILURE**
+Cc: Ville Syrjälä <ville.syrjala@linux.intel.com>
+Cc: Matt Roper <matthew.d.roper@intel.com>
+Cc: Dongwon Kim <dongwon.kim@intel.com>
 
-  Serious unknown changes coming with Patchwork_130170v1 absolutely need to be
-  verified manually.
-  
-  If you think the reported changes have nothing to do with the changes
-  introduced in Patchwork_130170v1, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them
-  to document this new failure mode, which will reduce false positives in CI.
+Vivek Kasireddy (3):
+  drm/i915: Rename skl_pfit_enable() to skl_program_crtc_scaler()
+  drm/i915: Attach the Border property to DP and HDMI connectors
+  drm/i915: Apply border adjustments and enable scaler on the crtc
 
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130170v1/index.html
+ drivers/gpu/drm/i915/display/intel_atomic.c   | 29 ++++++++++-
+ .../gpu/drm/i915/display/intel_connector.c    | 49 +++++++++++++++++++
+ .../gpu/drm/i915/display/intel_connector.h    |  3 ++
+ drivers/gpu/drm/i915/display/intel_display.c  | 25 ++++++++--
+ .../gpu/drm/i915/display/intel_display_core.h |  1 +
+ .../drm/i915/display/intel_display_types.h    |  6 +++
+ drivers/gpu/drm/i915/display/intel_dp.c       | 11 +++++
+ drivers/gpu/drm/i915/display/intel_hdmi.c     | 11 +++++
+ drivers/gpu/drm/i915/display/skl_scaler.c     | 27 ++++++----
+ drivers/gpu/drm/i915/display/skl_scaler.h     |  3 +-
+ 10 files changed, 149 insertions(+), 16 deletions(-)
 
-Participating hosts (40 -> 37)
-------------------------------
+-- 
+2.43.0
 
-  Missing    (3): bat-mtlp-8 fi-snb-2520m fi-bsw-n3050 
-
-Possible new issues
--------------------
-
-  Here are the unknown changes that may have been introduced in Patchwork_130170v1:
-
-### IGT changes ###
-
-#### Possible regressions ####
-
-  * igt@dmabuf@all-tests@dma_fence:
-    - fi-kbl-guc:         [PASS][1] -> [DMESG-FAIL][2]
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14305/fi-kbl-guc/igt@dmabuf@all-tests@dma_fence.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130170v1/fi-kbl-guc/igt@dmabuf@all-tests@dma_fence.html
-
-  * igt@dmabuf@all-tests@sanitycheck:
-    - fi-kbl-guc:         [PASS][3] -> [ABORT][4]
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14305/fi-kbl-guc/igt@dmabuf@all-tests@sanitycheck.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130170v1/fi-kbl-guc/igt@dmabuf@all-tests@sanitycheck.html
-
-  
-Known issues
-------------
-
-  Here are the changes found in Patchwork_130170v1 that come from known issues:
-
-### IGT changes ###
-
-#### Possible fixes ####
-
-  * igt@gem_exec_create@basic@smem:
-    - {bat-arls-1}:       [DMESG-WARN][5] ([i915#10194]) -> [PASS][6]
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14305/bat-arls-1/igt@gem_exec_create@basic@smem.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130170v1/bat-arls-1/igt@gem_exec_create@basic@smem.html
-
-  * igt@vgem_basic@create:
-    - {bat-arls-2}:       [FAIL][7] ([i915#10294]) -> [PASS][8] +4 other tests pass
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14305/bat-arls-2/igt@vgem_basic@create.html
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130170v1/bat-arls-2/igt@vgem_basic@create.html
-
-  * igt@vgem_basic@dmabuf-mmap:
-    - {bat-arls-2}:       [INCOMPLETE][9] ([i915#10294]) -> [PASS][10] +6 other tests pass
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14305/bat-arls-2/igt@vgem_basic@dmabuf-mmap.html
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130170v1/bat-arls-2/igt@vgem_basic@dmabuf-mmap.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [i915#10194]: https://gitlab.freedesktop.org/drm/intel/issues/10194
-  [i915#10196]: https://gitlab.freedesktop.org/drm/intel/issues/10196
-  [i915#10212]: https://gitlab.freedesktop.org/drm/intel/issues/10212
-  [i915#10213]: https://gitlab.freedesktop.org/drm/intel/issues/10213
-  [i915#10214]: https://gitlab.freedesktop.org/drm/intel/issues/10214
-  [i915#10215]: https://gitlab.freedesktop.org/drm/intel/issues/10215
-  [i915#10216]: https://gitlab.freedesktop.org/drm/intel/issues/10216
-  [i915#10294]: https://gitlab.freedesktop.org/drm/intel/issues/10294
-  [i915#3708]: https://gitlab.freedesktop.org/drm/intel/issues/3708
-  [i915#4077]: https://gitlab.freedesktop.org/drm/intel/issues/4077
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_14305 -> Patchwork_130170v1
-
-  CI-20190529: 20190529
-  CI_DRM_14305: 4b8a238dee9c18201f3652695414587cd2ef6d8f @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_7718: 40e8b9122853f455c84afcfa56469a6bc9a0d564 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_130170v1: 4b8a238dee9c18201f3652695414587cd2ef6d8f @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-### Linux commits
-
-fd3077a5c869 drm/ttm: Fix an invalid freeing on already freed page in error path
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130170v1/index.html
-
---===============2032691233058063809==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/ttm: Fix an invalid freeing on already freed page in error path</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/130170/">https://patchwork.freedesktop.org/series/130170/</a></td></tr>
-<tr><td><b>State:</b></td><td>failure</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130170v1/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130170v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_14305 -&gt; Patchwork_130170v1</h1>
-<h2>Summary</h2>
-<p><strong>FAILURE</strong></p>
-<p>Serious unknown changes coming with Patchwork_130170v1 absolutely need to be<br />
-  verified manually.</p>
-<p>If you think the reported changes have nothing to do with the changes<br />
-  introduced in Patchwork_130170v1, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them<br />
-  to document this new failure mode, which will reduce false positives in CI.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130170v1/index.html</p>
-<h2>Participating hosts (40 -&gt; 37)</h2>
-<p>Missing    (3): bat-mtlp-8 fi-snb-2520m fi-bsw-n3050 </p>
-<h2>Possible new issues</h2>
-<p>Here are the unknown changes that may have been introduced in Patchwork_130170v1:</p>
-<h3>IGT changes</h3>
-<h4>Possible regressions</h4>
-<ul>
-<li>
-<p>igt@dmabuf@all-tests@dma_fence:</p>
-<ul>
-<li>fi-kbl-guc:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14305/fi-kbl-guc/igt@dmabuf@all-tests@dma_fence.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130170v1/fi-kbl-guc/igt@dmabuf@all-tests@dma_fence.html">DMESG-FAIL</a></li>
-</ul>
-</li>
-<li>
-<p>igt@dmabuf@all-tests@sanitycheck:</p>
-<ul>
-<li>fi-kbl-guc:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14305/fi-kbl-guc/igt@dmabuf@all-tests@sanitycheck.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130170v1/fi-kbl-guc/igt@dmabuf@all-tests@sanitycheck.html">ABORT</a></li>
-</ul>
-</li>
-</ul>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_130170v1 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Possible fixes</h4>
-<ul>
-<li>
-<p>igt@gem_exec_create@basic@smem:</p>
-<ul>
-<li>{bat-arls-1}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14305/bat-arls-1/igt@gem_exec_create@basic@smem.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/10194">i915#10194</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130170v1/bat-arls-1/igt@gem_exec_create@basic@smem.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@vgem_basic@create:</p>
-<ul>
-<li>{bat-arls-2}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14305/bat-arls-2/igt@vgem_basic@create.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/10294">i915#10294</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130170v1/bat-arls-2/igt@vgem_basic@create.html">PASS</a> +4 other tests pass</li>
-</ul>
-</li>
-<li>
-<p>igt@vgem_basic@dmabuf-mmap:</p>
-<ul>
-<li>{bat-arls-2}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14305/bat-arls-2/igt@vgem_basic@dmabuf-mmap.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/10294">i915#10294</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130170v1/bat-arls-2/igt@vgem_basic@dmabuf-mmap.html">PASS</a> +6 other tests pass</li>
-</ul>
-</li>
-</ul>
-<p>{name}: This element is suppressed. This means it is ignored when computing<br />
-          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_14305 -&gt; Patchwork_130170v1</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_14305: 4b8a238dee9c18201f3652695414587cd2ef6d8f @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_7718: 40e8b9122853f455c84afcfa56469a6bc9a0d564 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  Patchwork_130170v1: 4b8a238dee9c18201f3652695414587cd2ef6d8f @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<h3>Linux commits</h3>
-<p>fd3077a5c869 drm/ttm: Fix an invalid freeing on already freed page in error path</p>
-
-</body>
-</html>
-
---===============2032691233058063809==--
