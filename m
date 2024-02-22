@@ -2,29 +2,40 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id C927E860281
-	for <lists+intel-gfx@lfdr.de>; Thu, 22 Feb 2024 20:20:23 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1765E86029E
+	for <lists+intel-gfx@lfdr.de>; Thu, 22 Feb 2024 20:26:00 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id ACB4910EA3D;
-	Thu, 22 Feb 2024 19:20:21 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B31F510EA49;
+	Thu, 22 Feb 2024 19:25:57 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from 8e613ede5ea5 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 69AB410EA3D;
- Thu, 22 Feb 2024 19:20:20 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============3902927952597480179=="
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CAA4310EA47;
+ Thu, 22 Feb 2024 19:25:55 +0000 (UTC)
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+ by dfw.source.kernel.org (Postfix) with ESMTP id 0166161769;
+ Thu, 22 Feb 2024 19:25:55 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id AB39EC433C7;
+ Thu, 22 Feb 2024 19:25:53 +0000 (UTC)
+Date: Thu, 22 Feb 2024 14:27:44 -0500
+From: Steven Rostedt <rostedt@goodmis.org>
+To: Rodrigo Vivi <rodrigo.vivi@intel.com>
+Cc: LKML <linux-kernel@vger.kernel.org>, Linux Trace Kernel
+ <linux-trace-kernel@vger.kernel.org>, <dri-devel@lists.freedesktop.org>,
+ <intel-xe@lists.freedesktop.org>, <intel-gfx@lists.freedesktop.org>, Ville
+ =?UTF-8?B?U3lyasOkbMOk?= <ville.syrjala@linux.intel.com>, Daniel Vetter
+ <daniel@ffwll.ch>, David Airlie <airlied@gmail.com>
+Subject: Re: [PATCH] drm/i915: Add missing ; to __assign_str() macros in
+ tracepoint code
+Message-ID: <20240222142744.177cc877@gandalf.local.home>
+In-Reply-To: <ZdeatNbtahdEWMXV@intel.com>
+References: <20240222133057.2af72a19@gandalf.local.home>
+ <20240222134349.1e9a155d@gandalf.local.home>
+ <ZdeatNbtahdEWMXV@intel.com>
+X-Mailer: Claws Mail 3.19.1 (GTK+ 2.24.33; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Fi=2ECI=2EBAT=3A_success_for_IO_and_fast_wake_lines_calc?=
- =?utf-8?q?ulation_and_increase_fw_sync_length_=28rev2=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: =?utf-8?q?Jouni_H=C3=B6gander?= <jouni.hogander@intel.com>
-Cc: intel-gfx@lists.freedesktop.org
-Date: Thu, 22 Feb 2024 19:20:20 -0000
-Message-ID: <170862962043.216122.15947346406430868753@8e613ede5ea5>
-X-Patchwork-Hint: ignore
-References: <20240222115728.3371478-1-jouni.hogander@intel.com>
-In-Reply-To: <20240222115728.3371478-1-jouni.hogander@intel.com>
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -37,183 +48,22 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============3902927952597480179==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+On Thu, 22 Feb 2024 14:04:20 -0500
+Rodrigo Vivi <rodrigo.vivi@intel.com> wrote:
 
-== Series Details ==
+> > Note, I have patches that depend on this fix, so if one of the maintainers
+> > would like to just give me an "Acked-by", I'll take it through my tree. I
+> > doubt it will have any conflicts, unless you are planning on changing the
+> > given effected events.  
+> 
+> since it is not breaking builds on our side and the conflicts, if any, would
+> be minimal, feel free to take this trough your tree
+> 
+> Acked-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
 
-Series: IO and fast wake lines calculation and increase fw sync length (rev2)
-URL   : https://patchwork.freedesktop.org/series/130173/
-State : success
+Thanks, much appreciated!
 
-== Summary ==
-
-CI Bug Log - changes from CI_DRM_14319 -> Patchwork_130173v2
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130173v2/index.html
-
-Participating hosts (38 -> 37)
-------------------------------
-
-  Missing    (1): fi-snb-2520m 
-
-Possible new issues
--------------------
-
-  Here are the unknown changes that may have been introduced in Patchwork_130173v2:
-
-### IGT changes ###
-
-#### Suppressed ####
-
-  The following results come from untrusted machines, tests, or statuses.
-  They do not affect the overall result.
-
-  * igt@kms_flip@basic-flip-vs-wf_vblank@a-edp1:
-    - {bat-arls-2}:       NOTRUN -> [INCOMPLETE][1]
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130173v2/bat-arls-2/igt@kms_flip@basic-flip-vs-wf_vblank@a-edp1.html
-
-  
-Known issues
-------------
-
-  Here are the changes found in Patchwork_130173v2 that come from known issues:
-
-### IGT changes ###
-
-#### Possible fixes ####
-
-  * igt@i915_selftest@live@gt_mocs:
-    - bat-jsl-3:          [INCOMPLETE][2] -> [PASS][3]
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14319/bat-jsl-3/igt@i915_selftest@live@gt_mocs.html
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130173v2/bat-jsl-3/igt@i915_selftest@live@gt_mocs.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [i915#10196]: https://gitlab.freedesktop.org/drm/intel/issues/10196
-  [i915#10200]: https://gitlab.freedesktop.org/drm/intel/issues/10200
-  [i915#10202]: https://gitlab.freedesktop.org/drm/intel/issues/10202
-  [i915#10206]: https://gitlab.freedesktop.org/drm/intel/issues/10206
-  [i915#4077]: https://gitlab.freedesktop.org/drm/intel/issues/4077
-  [i915#4079]: https://gitlab.freedesktop.org/drm/intel/issues/4079
-  [i915#9886]: https://gitlab.freedesktop.org/drm/intel/issues/9886
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_14319 -> Patchwork_130173v2
-
-  CI-20190529: 20190529
-  CI_DRM_14319: 5dfa3c2da4803652582408bfb3c529970735f594 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_7724: a7c03f7521f88f74fdf17c744fd847a775f9951f @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_130173v2: 5dfa3c2da4803652582408bfb3c529970735f594 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-### Linux commits
-
-ed2fd861ea3d drm/i915/display: Increase number of fast wake precharge pulses
-87f1d395ab23 drm/i915/psr: Add IO buffer wake times for LunarLake and beyond
-625613f2ab96 drm/i915/psr: Calculate IO wake and fast wake lines for DISPLAY_VER < 12
-191842c19ee3 drm/i915/psr: Improve fast and IO wake lines calculation
-ec9c0186e1df drm/i915/display: Make intel_dp_aux_fw_sync_len available for PSR code
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130173v2/index.html
-
---===============3902927952597480179==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>IO and fast wake lines calculation and increase fw sync length (rev2)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/130173/">https://patchwork.freedesktop.org/series/130173/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130173v2/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130173v2/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_14319 -&gt; Patchwork_130173v2</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130173v2/index.html</p>
-<h2>Participating hosts (38 -&gt; 37)</h2>
-<p>Missing    (1): fi-snb-2520m </p>
-<h2>Possible new issues</h2>
-<p>Here are the unknown changes that may have been introduced in Patchwork_130173v2:</p>
-<h3>IGT changes</h3>
-<h4>Suppressed</h4>
-<p>The following results come from untrusted machines, tests, or statuses.<br />
-  They do not affect the overall result.</p>
-<ul>
-<li>igt@kms_flip@basic-flip-vs-wf_vblank@a-edp1:<ul>
-<li>{bat-arls-2}:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130173v2/bat-arls-2/igt@kms_flip@basic-flip-vs-wf_vblank@a-edp1.html">INCOMPLETE</a></li>
-</ul>
-</li>
-</ul>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_130173v2 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Possible fixes</h4>
-<ul>
-<li>igt@i915_selftest@live@gt_mocs:<ul>
-<li>bat-jsl-3:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14319/bat-jsl-3/igt@i915_selftest@live@gt_mocs.html">INCOMPLETE</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130173v2/bat-jsl-3/igt@i915_selftest@live@gt_mocs.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<p>{name}: This element is suppressed. This means it is ignored when computing<br />
-          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_14319 -&gt; Patchwork_130173v2</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_14319: 5dfa3c2da4803652582408bfb3c529970735f594 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_7724: a7c03f7521f88f74fdf17c744fd847a775f9951f @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  Patchwork_130173v2: 5dfa3c2da4803652582408bfb3c529970735f594 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<h3>Linux commits</h3>
-<p>ed2fd861ea3d drm/i915/display: Increase number of fast wake precharge pulses<br />
-87f1d395ab23 drm/i915/psr: Add IO buffer wake times for LunarLake and beyond<br />
-625613f2ab96 drm/i915/psr: Calculate IO wake and fast wake lines for DISPLAY_VER &lt; 12<br />
-191842c19ee3 drm/i915/psr: Improve fast and IO wake lines calculation<br />
-ec9c0186e1df drm/i915/display: Make intel_dp_aux_fw_sync_len available for PSR code</p>
-
-</body>
-</html>
-
---===============3902927952597480179==--
+-- Steve
