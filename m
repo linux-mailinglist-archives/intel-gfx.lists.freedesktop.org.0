@@ -2,48 +2,29 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6537885EEBE
-	for <lists+intel-gfx@lfdr.de>; Thu, 22 Feb 2024 02:46:20 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4F95F85EED3
+	for <lists+intel-gfx@lfdr.de>; Thu, 22 Feb 2024 03:01:50 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B602A10E83F;
-	Thu, 22 Feb 2024 01:46:17 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; secure) header.d=canb.auug.org.au header.i=@canb.auug.org.au header.b="p9xfLe9y";
-	dkim-atps=neutral
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7E15F10E84B;
+	Thu, 22 Feb 2024 02:01:47 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from gandalf.ozlabs.org (gandalf.ozlabs.org [150.107.74.76])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4D3A610E83F;
- Thu, 22 Feb 2024 01:46:15 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canb.auug.org.au;
- s=201702; t=1708566373;
- bh=kVrGOOZuytddGaVDzynxhTBC+xSsBONQgK1rFjcI04M=;
- h=Date:From:To:Cc:Subject:From;
- b=p9xfLe9y7O7o0L6JZJQ5hAr2E99eXt+g6UpwFee0zcavelR1U27Ab9wUvsmaKKl59
- FbKmXLlvHNonmahWbvcR2/LaifvRYgXsytCBd8qIsVZVV6Y/yJM2VQFxhvhgxV8QHc
- Z3vFZxaS4uEADvVKzzjrE/S2Oi6IspQprrwbMFrTTQGSH8ek8HAkg5tiLKDw8xyMrg
- oW+RF6MIM2qtJ7M86ZCzfUdR8TFK5CUkLLTdfp51YRBsdm0cvQrCB2hQJnHSpONbtJ
- LDpWqIHzldxOk705KDX8LENUsQ3/n3DLqW9sxcNFKOZiRflsMFi/NW4vWxKqbIEibV
- Y7Ody1d1q0Tpw==
-Received: from authenticated.ozlabs.org (localhost [127.0.0.1])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
- (No client certificate requested)
- by mail.ozlabs.org (Postfix) with ESMTPSA id 4TgGFc1GpTz4wb2;
- Thu, 22 Feb 2024 12:46:11 +1100 (AEDT)
-Date: Thu, 22 Feb 2024 12:46:10 +1100
-From: Stephen Rothwell <sfr@canb.auug.org.au>
-To: Daniel Vetter <daniel.vetter@ffwll.ch>
-Cc: Intel Graphics <intel-gfx@lists.freedesktop.org>, DRI
- <dri-devel@lists.freedesktop.org>, Biju Das <biju.das.jz@bp.renesas.com>,
- Maxime Ripard <mripard@kernel.org>, Linux Kernel Mailing List
- <linux-kernel@vger.kernel.org>, Linux Next Mailing List
- <linux-next@vger.kernel.org>
-Subject: linux-next: build failure after merge of the drm-misc tree
-Message-ID: <20240222124610.383e1ce3@canb.auug.org.au>
+Received: from 8e613ede5ea5 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3950310E84C;
+ Thu, 22 Feb 2024 02:01:46 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============7202219468264344896=="
 MIME-Version: 1.0
-Content-Type: multipart/signed; boundary="Sig_/E=U/0=a4mO7C/s62y_fF+mJ";
- protocol="application/pgp-signature"; micalg=pgp-sha256
+Subject: =?utf-8?q?=E2=9C=93_Fi=2ECI=2EBAT=3A_success_for_drivers/i915/intel=5Fbios?=
+ =?utf-8?q?=3A_Fix_parsing_backlight_BDB_data_=28rev2=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Karthikeyan Ramasubramanian" <kramasub@chromium.org>
+Cc: intel-gfx@lists.freedesktop.org
+Date: Thu, 22 Feb 2024 02:01:46 -0000
+Message-ID: <170856730623.196549.6515637212471328017@8e613ede5ea5>
+X-Patchwork-Hint: ignore
+References: <20240221180622.v2.1.I0690aa3e96a83a43b3fc33f50395d334b2981826@changeid>
+In-Reply-To: <20240221180622.v2.1.I0690aa3e96a83a43b3fc33f50395d334b2981826@changeid>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -56,94 +37,171 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---Sig_/E=U/0=a4mO7C/s62y_fF+mJ
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: quoted-printable
+--===============7202219468264344896==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Hi all,
+== Series Details ==
 
-After merging the drm-misc tree, today's linux-next build (x86_64
-allmodconfig) failed like this:
+Series: drivers/i915/intel_bios: Fix parsing backlight BDB data (rev2)
+URL   : https://patchwork.freedesktop.org/series/130152/
+State : success
 
-drivers/gpu/drm/renesas/rz-du/rzg2l_du_vsp.c:47:6: error: redefinition of '=
-rzg2l_du_vsp_enable'
-   47 | void rzg2l_du_vsp_enable(struct rzg2l_du_crtc *crtc)
-      |      ^~~~~~~~~~~~~~~~~~~
-In file included from drivers/gpu/drm/renesas/rz-du/rzg2l_du_drv.h:18,
-                 from drivers/gpu/drm/renesas/rz-du/rzg2l_du_vsp.c:30:
-drivers/gpu/drm/renesas/rz-du/rzg2l_du_vsp.h:72:20: note: previous definiti=
-on of 'rzg2l_du_vsp_enable' with type 'void(struct rzg2l_du_crtc *)'
-   72 | static inline void rzg2l_du_vsp_enable(struct rzg2l_du_crtc *crtc) =
-{ };
-      |                    ^~~~~~~~~~~~~~~~~~~
-drivers/gpu/drm/renesas/rz-du/rzg2l_du_vsp.c:61:6: error: redefinition of '=
-rzg2l_du_vsp_disable'
-   61 | void rzg2l_du_vsp_disable(struct rzg2l_du_crtc *crtc)
-      |      ^~~~~~~~~~~~~~~~~~~~
-drivers/gpu/drm/renesas/rz-du/rzg2l_du_vsp.h:73:20: note: previous definiti=
-on of 'rzg2l_du_vsp_disable' with type 'void(struct rzg2l_du_crtc *)'
-   73 | static inline void rzg2l_du_vsp_disable(struct rzg2l_du_crtc *crtc)=
- { };
-      |                    ^~~~~~~~~~~~~~~~~~~~
-drivers/gpu/drm/renesas/rz-du/rzg2l_du_vsp.c:66:6: error: redefinition of '=
-rzg2l_du_vsp_atomic_flush'
-   66 | void rzg2l_du_vsp_atomic_flush(struct rzg2l_du_crtc *crtc)
-      |      ^~~~~~~~~~~~~~~~~~~~~~~~~
-drivers/gpu/drm/renesas/rz-du/rzg2l_du_vsp.h:74:20: note: previous definiti=
-on of 'rzg2l_du_vsp_atomic_flush' with type 'void(struct rzg2l_du_crtc *)'
-   74 | static inline void rzg2l_du_vsp_atomic_flush(struct rzg2l_du_crtc *=
-crtc) { };
-      |                    ^~~~~~~~~~~~~~~~~~~~~~~~~
-drivers/gpu/drm/renesas/rz-du/rzg2l_du_vsp.c:76:19: error: redefinition of =
-'rzg2l_du_vsp_get_drm_plane'
-   76 | struct drm_plane *rzg2l_du_vsp_get_drm_plane(struct rzg2l_du_crtc *=
-crtc,
-      |                   ^~~~~~~~~~~~~~~~~~~~~~~~~~
-drivers/gpu/drm/renesas/rz-du/rzg2l_du_vsp.h:75:33: note: previous definiti=
-on of 'rzg2l_du_vsp_get_drm_plane' with type 'struct drm_plane *(struct rzg=
-2l_du_crtc *, unsigned int)'
-   75 | static inline struct drm_plane *rzg2l_du_vsp_get_drm_plane(struct r=
-zg2l_du_crtc *crtc,
-      |                                 ^~~~~~~~~~~~~~~~~~~~~~~~~~
-drivers/gpu/drm/renesas/rz-du/rzg2l_du_vsp.c:302:5: error: redefinition of =
-'rzg2l_du_vsp_init'
-  302 | int rzg2l_du_vsp_init(struct rzg2l_du_vsp *vsp, struct device_node =
-*np,
-      |     ^~~~~~~~~~~~~~~~~
-drivers/gpu/drm/renesas/rz-du/rzg2l_du_vsp.h:66:19: note: previous definiti=
-on of 'rzg2l_du_vsp_init' with type 'int(struct rzg2l_du_vsp *, struct devi=
-ce_node *, unsigned int)'
-   66 | static inline int rzg2l_du_vsp_init(struct rzg2l_du_vsp *vsp, struc=
-t device_node *np,
-      |                   ^~~~~~~~~~~~~~~~~
+== Summary ==
 
-Caused by commit
+CI Bug Log - changes from CI_DRM_14311 -> Patchwork_130152v2
+====================================================
 
-  768e9e61b3b9 ("drm: renesas: Add RZ/G2L DU Support")
+Summary
+-------
 
-I have used the drm-misc tree from next-20240221 for today.
+  **SUCCESS**
 
---=20
-Cheers,
-Stephen Rothwell
+  No regressions found.
 
---Sig_/E=U/0=a4mO7C/s62y_fF+mJ
-Content-Type: application/pgp-signature
-Content-Description: OpenPGP digital signature
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130152v2/index.html
 
------BEGIN PGP SIGNATURE-----
+Participating hosts (38 -> 36)
+------------------------------
 
-iQEzBAEBCAAdFiEENIC96giZ81tWdLgKAVBC80lX0GwFAmXWp2IACgkQAVBC80lX
-0GxnZwf/arzy84++smzTe8LIY0swpYvN291/uBVHEhzoDCRQ+Nca/CjO6K5G9k5k
-5ZUGFiePuEDX98lphTb9l/98ftUtXwSOzx93YGuvM9yDK0Fec6F3fhuYnbp8L0/a
-iLbZbIs1l+0W+Xodk+uUyiI/fCFmD3lmZEa0e1La2i//5do/nGdB95lOm71HJPG7
-24+Xx046XUBMqXX1TC7bE7D0qx0ZJgoMEj7vNWCf4a6SQ1gr4KcjxkoUFrZo18XK
-goLTS8Ytg9jiIE3uCOkr+kMjbP9WrhcC1AqJVK6TbgzhpFN4zqyDkaorXFol2ha3
-pwy/IyslkvihfNBmKIkqoDSwAPBk3A==
-=28hk
------END PGP SIGNATURE-----
+  Missing    (2): fi-snb-2520m bat-arls-3 
 
---Sig_/E=U/0=a4mO7C/s62y_fF+mJ--
+Known issues
+------------
+
+  Here are the changes found in Patchwork_130152v2 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@i915_selftest@live@gt_lrc:
+    - fi-tgl-1115g4:      [PASS][1] -> [DMESG-FAIL][2] ([i915#10141])
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14311/fi-tgl-1115g4/igt@i915_selftest@live@gt_lrc.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130152v2/fi-tgl-1115g4/igt@i915_selftest@live@gt_lrc.html
+
+  
+#### Possible fixes ####
+
+  * igt@i915_pm_rpm@module-reload:
+    - fi-kbl-7567u:       [CRASH][3] ([i915#9947]) -> [PASS][4]
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14311/fi-kbl-7567u/igt@i915_pm_rpm@module-reload.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130152v2/fi-kbl-7567u/igt@i915_pm_rpm@module-reload.html
+
+  * igt@i915_selftest@live@execlists:
+    - fi-bsw-nick:        [ABORT][5] ([i915#7911]) -> [PASS][6]
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14311/fi-bsw-nick/igt@i915_selftest@live@execlists.html
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130152v2/fi-bsw-nick/igt@i915_selftest@live@execlists.html
+
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+  [i915#10141]: https://gitlab.freedesktop.org/drm/intel/issues/10141
+  [i915#10194]: https://gitlab.freedesktop.org/drm/intel/issues/10194
+  [i915#7911]: https://gitlab.freedesktop.org/drm/intel/issues/7911
+  [i915#9947]: https://gitlab.freedesktop.org/drm/intel/issues/9947
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_14311 -> Patchwork_130152v2
+
+  CI-20190529: 20190529
+  CI_DRM_14311: 06b279b4fb58a00667e47fafed72bba923d032ae @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_7720: 7720
+  Patchwork_130152v2: 06b279b4fb58a00667e47fafed72bba923d032ae @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+### Linux commits
+
+fc6e0656bc50 drivers/i915/intel_bios: Fix parsing backlight BDB data
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130152v2/index.html
+
+--===============7202219468264344896==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drivers/i915/intel_bios: Fix parsing backlight BDB data (rev2)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/130152/">https://patchwork.freedesktop.org/series/130152/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130152v2/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130152v2/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_14311 -&gt; Patchwork_130152v2</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130152v2/index.html</p>
+<h2>Participating hosts (38 -&gt; 36)</h2>
+<p>Missing    (2): fi-snb-2520m bat-arls-3 </p>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_130152v2 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>igt@i915_selftest@live@gt_lrc:<ul>
+<li>fi-tgl-1115g4:      <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14311/fi-tgl-1115g4/igt@i915_selftest@live@gt_lrc.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130152v2/fi-tgl-1115g4/igt@i915_selftest@live@gt_lrc.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/10141">i915#10141</a>)</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>
+<p>igt@i915_pm_rpm@module-reload:</p>
+<ul>
+<li>fi-kbl-7567u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14311/fi-kbl-7567u/igt@i915_pm_rpm@module-reload.html">CRASH</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/9947">i915#9947</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130152v2/fi-kbl-7567u/igt@i915_pm_rpm@module-reload.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@execlists:</p>
+<ul>
+<li>fi-bsw-nick:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14311/fi-bsw-nick/igt@i915_selftest@live@execlists.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/7911">i915#7911</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130152v2/fi-bsw-nick/igt@i915_selftest@live@execlists.html">PASS</a></li>
+</ul>
+</li>
+</ul>
+<p>{name}: This element is suppressed. This means it is ignored when computing<br />
+          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_14311 -&gt; Patchwork_130152v2</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_14311: 06b279b4fb58a00667e47fafed72bba923d032ae @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_7720: 7720<br />
+  Patchwork_130152v2: 06b279b4fb58a00667e47fafed72bba923d032ae @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+<h3>Linux commits</h3>
+<p>fc6e0656bc50 drivers/i915/intel_bios: Fix parsing backlight BDB data</p>
+
+</body>
+</html>
+
+--===============7202219468264344896==--
