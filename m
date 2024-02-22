@@ -2,59 +2,76 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2926D85EE37
-	for <lists+intel-gfx@lfdr.de>; Thu, 22 Feb 2024 01:42:56 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 08F8F85EE6D
+	for <lists+intel-gfx@lfdr.de>; Thu, 22 Feb 2024 02:06:59 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 340C510E824;
-	Thu, 22 Feb 2024 00:42:53 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C6B7810E846;
+	Thu, 22 Feb 2024 01:06:56 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="JuCxrpt+";
+	dkim=pass (1024-bit key; unprotected) header.d=chromium.org header.i=@chromium.org header.b="dzgg7vhb";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6FCA810E824
- for <intel-gfx@lists.freedesktop.org>; Thu, 22 Feb 2024 00:42:51 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1708562571; x=1740098571;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:in-reply-to;
- bh=unr6Fw4Z0s4+ZYa+4poq5kOzCrgRM3YCVCVpsJdM1h8=;
- b=JuCxrpt+lk9iWcUpOV/BwEzXrF2k8GP3qWJLqBJiYZG2pgYS4FhbBFqI
- dVSifhlNb++G4533Z5gUga8t3eHonkvsV4m+KHCaZNC3m/76t79TLHY0r
- 8ZFjYSKFHDRixE2o+qQrEnHj36YCo4NT4jIulvAe3eRcKDXcXON6xuavM
- H+G0KSH78FwIPxfSTj1iEUwdFaf0KCR25i6vXb2caHxmH1ryX3T5ylwqc
- 6PPkxwOVu/5EB39VclXKtQ74uJU0dQbLXDvZGr/JIoBczcYzI3SHumhPO
- QzvLcV+Sr+bBD9B+fe4AdbJZUSnyTMbBqBAPCrTaoaKaiAEw92UqHCWnu A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10991"; a="13315817"
-X-IronPort-AV: E=Sophos;i="6.06,176,1705392000"; d="scan'208";a="13315817"
-Received: from fmviesa008.fm.intel.com ([10.60.135.148])
- by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Feb 2024 16:42:51 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.06,176,1705392000"; 
-   d="scan'208";a="5464982"
-Received: from lkp-server02.sh.intel.com (HELO 3c78fa4d504c) ([10.239.97.151])
- by fmviesa008.fm.intel.com with ESMTP; 21 Feb 2024 16:42:49 -0800
-Received: from kbuild by 3c78fa4d504c with local (Exim 4.96)
- (envelope-from <lkp@intel.com>) id 1rcxAV-0005pY-1W;
- Thu, 22 Feb 2024 00:42:39 +0000
-Date: Thu, 22 Feb 2024 08:42:05 +0800
-From: kernel test robot <lkp@intel.com>
-To: Jouni =?iso-8859-1?Q?H=F6gander?= <jouni.hogander@intel.com>,
- intel-gfx@lists.freedesktop.org
-Cc: llvm@lists.linux.dev, oe-kbuild-all@lists.linux.dev,
- Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>,
- Jouni =?iso-8859-1?Q?H=F6gander?= <jouni.hogander@intel.com>
-Subject: Re: [PATCH 2/3] drm/i915/psr: Improve fast and IO wake lines
- calculation
-Message-ID: <202402220859.K3oSmRCi-lkp@intel.com>
-References: <20240221075322.2764209-3-jouni.hogander@intel.com>
+Received: from mail-qk1-f174.google.com (mail-qk1-f174.google.com
+ [209.85.222.174])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9F8E310E847
+ for <intel-gfx@lists.freedesktop.org>; Thu, 22 Feb 2024 01:06:55 +0000 (UTC)
+Received: by mail-qk1-f174.google.com with SMTP id
+ af79cd13be357-785d57056b0so412802085a.0
+ for <intel-gfx@lists.freedesktop.org>; Wed, 21 Feb 2024 17:06:55 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=chromium.org; s=google; t=1708564014; x=1709168814;
+ darn=lists.freedesktop.org; 
+ h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+ :to:from:from:to:cc:subject:date:message-id:reply-to;
+ bh=po77JXYuDK3AKWrYAL7OCKeGjP7qQRekYB5EzyekFyU=;
+ b=dzgg7vhbxKjBJgVboadX1kQN02Z8TnzVpeVfFyGtDeTR5b9njd7RmogmUKZ3eMB/7R
+ PRwZ2oAhS9xmXB+i8w7jApRk+fHH6Y7Jv46dcQn7uH4jHwmdVyr6kwqaoLDYXe88jyqP
+ dXdLQkaTelqquruuWu8tZnLuzIFai1FcUORXw=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1708564014; x=1709168814;
+ h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+ :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+ :reply-to;
+ bh=po77JXYuDK3AKWrYAL7OCKeGjP7qQRekYB5EzyekFyU=;
+ b=ICBLByLA3iJsfTOpFwsDvoPgZtJuVM/rR1BlEBaQWF3BlNcrPfk2Q/NNfxplpjqK7G
+ d0Z6DAmmaESV+GzZMtIdigEHlTnUPO5xH2gxVEqB0c+ieIDyzmR3Xy+hRgeo6GBuUgPT
+ e004SpknEzYTdI5AYYxSzhCXHibKvyFnucbTNm7Qh6/tCCWj5GSm0i5haS35pHjNtvEQ
+ Fhze1hNa941aDtNA7YikP5AkteJAmqfPAxKQy447lFkybqTdknG8J+dqJSsmsJ93dlTZ
+ fAINHllsiQvVNIxG84GajH8TlHh5gQdn7aRLnLLtl0msu/WQR5LZepFctU80o9/+y9Qu
+ qytQ==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCXY6ROamnrqqVj3ho8IwiemKvcSG154G05WGmT61r/O8seUuYw/xFYP/yfMts7HAUIP+VSwm5VvFXjn1DGDXCktmZrVhP2KhLN7lxErdw4g
+X-Gm-Message-State: AOJu0YxDvgThqhaSZH4LuYEFQtVUQSJ9SuTrX8GuNjZ1VTpuyeWX7UBi
+ iBfE8RWMtrZjW4azQDPnbzhjZ98iZpp/T/A3VxS8Zqk/r0ZILkNV3qOSABHl9Q==
+X-Google-Smtp-Source: AGHT+IEp7Fn0i4KJjuMnYv+dMkHmf+oY47g69f2lZyjT0/QpWePXbGK3ufigwAivUZ7J5jtwbH3koA==
+X-Received: by 2002:a05:620a:167c:b0:787:1fb5:7e61 with SMTP id
+ d28-20020a05620a167c00b007871fb57e61mr21927202qko.46.1708564014394; 
+ Wed, 21 Feb 2024 17:06:54 -0800 (PST)
+Received: from kramasub2.cros.corp.google.com ([100.107.108.189])
+ by smtp.gmail.com with ESMTPSA id
+ h1-20020a05620a21c100b0078597896394sm4789415qka.51.2024.02.21.17.06.52
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Wed, 21 Feb 2024 17:06:53 -0800 (PST)
+From: Karthikeyan Ramasubramanian <kramasub@chromium.org>
+To: LKML <linux-kernel@vger.kernel.org>
+Cc: Karthikeyan Ramasubramanian <kramasub@chromium.org>,
+ stable@vger.kernel.org, Jani Nikula <jani.nikula@intel.com>,
+ =?UTF-8?q?Ville=20Syrj=C3=A4l=C3=A4?= <ville.syrjala@linux.intel.com>,
+ Daniel Vetter <daniel@ffwll.ch>, David Airlie <airlied@gmail.com>,
+ Jani Nikula <jani.nikula@linux.intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
+ dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
+ intel-xe@lists.freedesktop.org
+Subject: [PATCH v2] drivers/i915/intel_bios: Fix parsing backlight BDB data
+Date: Wed, 21 Feb 2024 18:06:24 -0700
+Message-ID: <20240221180622.v2.1.I0690aa3e96a83a43b3fc33f50395d334b2981826@changeid>
+X-Mailer: git-send-email 2.44.0.rc0.258.g7320e95886-goog
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240221075322.2764209-3-jouni.hogander@intel.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -70,199 +87,80 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi Jouni,
+Starting BDB version 239, hdr_dpcd_refresh_timeout is introduced to
+backlight BDB data. Commit 700034566d68 ("drm/i915/bios: Define more BDB
+contents") updated the backlight BDB data accordingly. This broke the
+parsing of backlight BDB data in VBT for versions 236 - 238 (both
+inclusive) and hence the backlight controls are not responding on units
+with the concerned BDB version.
 
-kernel test robot noticed the following build warnings:
+backlight_control information has been present in backlight BDB data
+from at least BDB version 191 onwards, if not before. Hence this patch
+extracts the backlight_control information for BDB version 191 or newer.
+Tested on Chromebooks using Jasperlake SoC (reports bdb->version = 236).
+Tested on Chromebooks using Raptorlake SoC (reports bdb->version = 251).
 
-[auto build test WARNING on drm-intel/for-linux-next]
-[also build test WARNING on drm-tip/drm-tip next-20240221]
-[cannot apply to drm-intel/for-linux-next-fixes linus/master v6.8-rc5]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
+Fixes: 700034566d68 ("drm/i915/bios: Define more BDB contents")
+Cc: stable@vger.kernel.org
+Cc: Jani Nikula <jani.nikula@intel.com>
+Cc: Ville Syrjälä <ville.syrjala@linux.intel.com>
+Signed-off-by: Karthikeyan Ramasubramanian <kramasub@chromium.org>
+---
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Jouni-H-gander/drm-i915-display-Add-aux-function-pointer-for-fast-wake-sync-pulse-count/20240221-160220
-base:   git://anongit.freedesktop.org/drm-intel for-linux-next
-patch link:    https://lore.kernel.org/r/20240221075322.2764209-3-jouni.hogander%40intel.com
-patch subject: [PATCH 2/3] drm/i915/psr: Improve fast and IO wake lines calculation
-config: s390-allmodconfig (https://download.01.org/0day-ci/archive/20240222/202402220859.K3oSmRCi-lkp@intel.com/config)
-compiler: clang version 19.0.0git (https://github.com/llvm/llvm-project 36adfec155de366d722f2bac8ff9162289dcf06c)
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20240222/202402220859.K3oSmRCi-lkp@intel.com/reproduce)
+Changes in v2:
+- removed checking the block size of the backlight BDB data
 
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202402220859.K3oSmRCi-lkp@intel.com/
+ drivers/gpu/drm/i915/display/intel_bios.c     | 19 ++++---------------
+ drivers/gpu/drm/i915/display/intel_vbt_defs.h |  5 -----
+ 2 files changed, 4 insertions(+), 20 deletions(-)
 
-All warnings (new ones prefixed by >>):
-
-   In file included from drivers/gpu/drm/i915/display/intel_psr.c:28:
-   In file included from drivers/gpu/drm/xe/compat-i915-headers/i915_drv.h:15:
-   In file included from drivers/gpu/drm/xe/compat-i915-headers/gem/i915_gem_object.h:11:
-   In file included from drivers/gpu/drm/xe/xe_bo.h:11:
-   In file included from drivers/gpu/drm/xe/xe_bo_types.h:9:
-   In file included from include/linux/iosys-map.h:10:
-   In file included from include/linux/io.h:13:
-   In file included from arch/s390/include/asm/io.h:78:
-   include/asm-generic/io.h:547:31: warning: performing pointer arithmetic on a null pointer has undefined behavior [-Wnull-pointer-arithmetic]
-     547 |         val = __raw_readb(PCI_IOBASE + addr);
-         |                           ~~~~~~~~~~ ^
-   include/asm-generic/io.h:560:61: warning: performing pointer arithmetic on a null pointer has undefined behavior [-Wnull-pointer-arithmetic]
-     560 |         val = __le16_to_cpu((__le16 __force)__raw_readw(PCI_IOBASE + addr));
-         |                                                         ~~~~~~~~~~ ^
-   include/uapi/linux/byteorder/big_endian.h:37:59: note: expanded from macro '__le16_to_cpu'
-      37 | #define __le16_to_cpu(x) __swab16((__force __u16)(__le16)(x))
-         |                                                           ^
-   include/uapi/linux/swab.h:102:54: note: expanded from macro '__swab16'
-     102 | #define __swab16(x) (__u16)__builtin_bswap16((__u16)(x))
-         |                                                      ^
-   In file included from drivers/gpu/drm/i915/display/intel_psr.c:28:
-   In file included from drivers/gpu/drm/xe/compat-i915-headers/i915_drv.h:15:
-   In file included from drivers/gpu/drm/xe/compat-i915-headers/gem/i915_gem_object.h:11:
-   In file included from drivers/gpu/drm/xe/xe_bo.h:11:
-   In file included from drivers/gpu/drm/xe/xe_bo_types.h:9:
-   In file included from include/linux/iosys-map.h:10:
-   In file included from include/linux/io.h:13:
-   In file included from arch/s390/include/asm/io.h:78:
-   include/asm-generic/io.h:573:61: warning: performing pointer arithmetic on a null pointer has undefined behavior [-Wnull-pointer-arithmetic]
-     573 |         val = __le32_to_cpu((__le32 __force)__raw_readl(PCI_IOBASE + addr));
-         |                                                         ~~~~~~~~~~ ^
-   include/uapi/linux/byteorder/big_endian.h:35:59: note: expanded from macro '__le32_to_cpu'
-      35 | #define __le32_to_cpu(x) __swab32((__force __u32)(__le32)(x))
-         |                                                           ^
-   include/uapi/linux/swab.h:115:54: note: expanded from macro '__swab32'
-     115 | #define __swab32(x) (__u32)__builtin_bswap32((__u32)(x))
-         |                                                      ^
-   In file included from drivers/gpu/drm/i915/display/intel_psr.c:28:
-   In file included from drivers/gpu/drm/xe/compat-i915-headers/i915_drv.h:15:
-   In file included from drivers/gpu/drm/xe/compat-i915-headers/gem/i915_gem_object.h:11:
-   In file included from drivers/gpu/drm/xe/xe_bo.h:11:
-   In file included from drivers/gpu/drm/xe/xe_bo_types.h:9:
-   In file included from include/linux/iosys-map.h:10:
-   In file included from include/linux/io.h:13:
-   In file included from arch/s390/include/asm/io.h:78:
-   include/asm-generic/io.h:584:33: warning: performing pointer arithmetic on a null pointer has undefined behavior [-Wnull-pointer-arithmetic]
-     584 |         __raw_writeb(value, PCI_IOBASE + addr);
-         |                             ~~~~~~~~~~ ^
-   include/asm-generic/io.h:594:59: warning: performing pointer arithmetic on a null pointer has undefined behavior [-Wnull-pointer-arithmetic]
-     594 |         __raw_writew((u16 __force)cpu_to_le16(value), PCI_IOBASE + addr);
-         |                                                       ~~~~~~~~~~ ^
-   include/asm-generic/io.h:604:59: warning: performing pointer arithmetic on a null pointer has undefined behavior [-Wnull-pointer-arithmetic]
-     604 |         __raw_writel((u32 __force)cpu_to_le32(value), PCI_IOBASE + addr);
-         |                                                       ~~~~~~~~~~ ^
-   include/asm-generic/io.h:692:20: warning: performing pointer arithmetic on a null pointer has undefined behavior [-Wnull-pointer-arithmetic]
-     692 |         readsb(PCI_IOBASE + addr, buffer, count);
-         |                ~~~~~~~~~~ ^
-   include/asm-generic/io.h:700:20: warning: performing pointer arithmetic on a null pointer has undefined behavior [-Wnull-pointer-arithmetic]
-     700 |         readsw(PCI_IOBASE + addr, buffer, count);
-         |                ~~~~~~~~~~ ^
-   include/asm-generic/io.h:708:20: warning: performing pointer arithmetic on a null pointer has undefined behavior [-Wnull-pointer-arithmetic]
-     708 |         readsl(PCI_IOBASE + addr, buffer, count);
-         |                ~~~~~~~~~~ ^
-   include/asm-generic/io.h:717:21: warning: performing pointer arithmetic on a null pointer has undefined behavior [-Wnull-pointer-arithmetic]
-     717 |         writesb(PCI_IOBASE + addr, buffer, count);
-         |                 ~~~~~~~~~~ ^
-   include/asm-generic/io.h:726:21: warning: performing pointer arithmetic on a null pointer has undefined behavior [-Wnull-pointer-arithmetic]
-     726 |         writesw(PCI_IOBASE + addr, buffer, count);
-         |                 ~~~~~~~~~~ ^
-   include/asm-generic/io.h:735:21: warning: performing pointer arithmetic on a null pointer has undefined behavior [-Wnull-pointer-arithmetic]
-     735 |         writesl(PCI_IOBASE + addr, buffer, count);
-         |                 ~~~~~~~~~~ ^
->> drivers/gpu/drm/i915/display/intel_psr.c:1182:6: warning: variable 'io_wake_time' is used uninitialized whenever 'if' condition is true [-Wsometimes-uninitialized]
-    1182 |         if (intel_dp->get_aux_fw_sync_len) {
-         |             ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-   drivers/gpu/drm/i915/display/intel_psr.c:1203:34: note: uninitialized use occurs here
-    1203 |                 &crtc_state->hw.adjusted_mode, io_wake_time);
-         |                                                ^~~~~~~~~~~~
-   drivers/gpu/drm/i915/display/intel_psr.c:1182:2: note: remove the 'if' if its condition is always false
-    1182 |         if (intel_dp->get_aux_fw_sync_len) {
-         |         ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-    1183 |                 int io_wake_time = get_io_wake_time(intel_dp, crtc_state);
-         |                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-    1184 |                 int tfw_exit_latency = 20; /* eDP spec */
-         |                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-    1185 |                 int phy_wake = 4;          /* eDP spec */
-         |                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-    1186 |                 int preamble = 8;          /* eDP spec */
-         |                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-    1187 |                 int precharge = intel_dp->get_aux_fw_sync_len() - preamble;
-         |                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-    1188 | 
-    1189 |                 io_wake_time = max(precharge, io_wake_time) + preamble +
-         |                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-    1190 |                         phy_wake + tfw_exit_latency;
-         |                         ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-    1191 |                 fast_wake_time = precharge + preamble + phy_wake +
-         |                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-    1192 |                         tfw_exit_latency;
-         |                         ~~~~~~~~~~~~~~~~~
-    1193 | 
-    1194 |                 /* TODO: Check how we can use ALPM_CTL fast wake extended field */
-         |                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-    1195 |                 max_wake_lines = 12;
-         |                 ~~~~~~~~~~~~~~~~~~~~
-    1196 |         } else {
-         |         ~~~~~~
-   drivers/gpu/drm/i915/display/intel_psr.c:1179:33: note: initialize the variable 'io_wake_time' to silence this warning
-    1179 |         int io_wake_lines, io_wake_time, fast_wake_lines, fast_wake_time;
-         |                                        ^
-         |                                         = 0
-   13 warnings generated.
-
-
-vim +1182 drivers/gpu/drm/i915/display/intel_psr.c
-
-  1174	
-  1175	static bool _compute_alpm_params(struct intel_dp *intel_dp,
-  1176					 struct intel_crtc_state *crtc_state)
-  1177	{
-  1178		struct drm_i915_private *i915 = dp_to_i915(intel_dp);
-  1179		int io_wake_lines, io_wake_time, fast_wake_lines, fast_wake_time;
-  1180		u8 max_wake_lines;
-  1181	
-> 1182		if (intel_dp->get_aux_fw_sync_len) {
-  1183			int io_wake_time = get_io_wake_time(intel_dp, crtc_state);
-  1184			int tfw_exit_latency = 20; /* eDP spec */
-  1185			int phy_wake = 4;	   /* eDP spec */
-  1186			int preamble = 8;	   /* eDP spec */
-  1187			int precharge = intel_dp->get_aux_fw_sync_len() - preamble;
-  1188	
-  1189			io_wake_time = max(precharge, io_wake_time) + preamble +
-  1190				phy_wake + tfw_exit_latency;
-  1191			fast_wake_time = precharge + preamble + phy_wake +
-  1192				tfw_exit_latency;
-  1193	
-  1194			/* TODO: Check how we can use ALPM_CTL fast wake extended field */
-  1195			max_wake_lines = 12;
-  1196		} else {
-  1197			io_wake_time = 50;
-  1198			fast_wake_time = 32;
-  1199			max_wake_lines = 8;
-  1200		}
-  1201	
-  1202		io_wake_lines = intel_usecs_to_scanlines(
-  1203			&crtc_state->hw.adjusted_mode, io_wake_time);
-  1204		fast_wake_lines = intel_usecs_to_scanlines(
-  1205			&crtc_state->hw.adjusted_mode, fast_wake_time);
-  1206	
-  1207		if (io_wake_lines > max_wake_lines ||
-  1208		    fast_wake_lines > max_wake_lines)
-  1209			return false;
-  1210	
-  1211		if (!_lnl_compute_alpm_params(intel_dp, crtc_state))
-  1212			return false;
-  1213	
-  1214		if (i915->display.params.psr_safest_params)
-  1215			io_wake_lines = fast_wake_lines = max_wake_lines;
-  1216	
-  1217		/* According to Bspec lower limit should be set as 7 lines. */
-  1218		intel_dp->psr.alpm_parameters.io_wake_lines = max(io_wake_lines, 7);
-  1219		intel_dp->psr.alpm_parameters.fast_wake_lines = max(fast_wake_lines, 7);
-  1220	
-  1221		return true;
-  1222	}
-  1223	
-
+diff --git a/drivers/gpu/drm/i915/display/intel_bios.c b/drivers/gpu/drm/i915/display/intel_bios.c
+index aa169b0055e97..8c1eb05fe77d2 100644
+--- a/drivers/gpu/drm/i915/display/intel_bios.c
++++ b/drivers/gpu/drm/i915/display/intel_bios.c
+@@ -1042,22 +1042,11 @@ parse_lfp_backlight(struct drm_i915_private *i915,
+ 	panel->vbt.backlight.type = INTEL_BACKLIGHT_DISPLAY_DDI;
+ 	panel->vbt.backlight.controller = 0;
+ 	if (i915->display.vbt.version >= 191) {
+-		size_t exp_size;
++		const struct lfp_backlight_control_method *method;
+ 
+-		if (i915->display.vbt.version >= 236)
+-			exp_size = sizeof(struct bdb_lfp_backlight_data);
+-		else if (i915->display.vbt.version >= 234)
+-			exp_size = EXP_BDB_LFP_BL_DATA_SIZE_REV_234;
+-		else
+-			exp_size = EXP_BDB_LFP_BL_DATA_SIZE_REV_191;
+-
+-		if (get_blocksize(backlight_data) >= exp_size) {
+-			const struct lfp_backlight_control_method *method;
+-
+-			method = &backlight_data->backlight_control[panel_type];
+-			panel->vbt.backlight.type = method->type;
+-			panel->vbt.backlight.controller = method->controller;
+-		}
++		method = &backlight_data->backlight_control[panel_type];
++		panel->vbt.backlight.type = method->type;
++		panel->vbt.backlight.controller = method->controller;
+ 	}
+ 
+ 	panel->vbt.backlight.pwm_freq_hz = entry->pwm_freq_hz;
+diff --git a/drivers/gpu/drm/i915/display/intel_vbt_defs.h b/drivers/gpu/drm/i915/display/intel_vbt_defs.h
+index a9f44abfc9fc2..b50cd0dcabda9 100644
+--- a/drivers/gpu/drm/i915/display/intel_vbt_defs.h
++++ b/drivers/gpu/drm/i915/display/intel_vbt_defs.h
+@@ -897,11 +897,6 @@ struct lfp_brightness_level {
+ 	u16 reserved;
+ } __packed;
+ 
+-#define EXP_BDB_LFP_BL_DATA_SIZE_REV_191 \
+-	offsetof(struct bdb_lfp_backlight_data, brightness_level)
+-#define EXP_BDB_LFP_BL_DATA_SIZE_REV_234 \
+-	offsetof(struct bdb_lfp_backlight_data, brightness_precision_bits)
+-
+ struct bdb_lfp_backlight_data {
+ 	u8 entry_size;
+ 	struct lfp_backlight_data_entry data[16];
 -- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+2.44.0.rc0.258.g7320e95886-goog
+
