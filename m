@@ -2,53 +2,29 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8F9C586010E
-	for <lists+intel-gfx@lfdr.de>; Thu, 22 Feb 2024 19:22:54 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 284A18600CF
+	for <lists+intel-gfx@lfdr.de>; Thu, 22 Feb 2024 19:16:37 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5FBAB10EA14;
-	Thu, 22 Feb 2024 18:22:52 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="fr97zmTx";
-	dkim-atps=neutral
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2793410EA13;
+	Thu, 22 Feb 2024 18:16:35 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A911310EA14
- for <intel-gfx@lists.freedesktop.org>; Thu, 22 Feb 2024 18:22:51 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1708626172; x=1740162172;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=zicaIXiCiWUwqlx4LxXmbxEE8hv9XTSqtXqhqFwQdZc=;
- b=fr97zmTx85ovKj82bPxhmpRC98trxFm4C3SPaDquOmpFI0yCCJqW8cTG
- 8/zH1CfTlv93/qhYrQBObAfOv5k1+MvVAB/39tgq4TaSiM+3B6A1sbIQ+
- dpkmCiXownpmWDiQAd74yIJwKbiTMXHLl73+iE8zEf5macyErxDEeldiL
- 33J1aKv8KUD6cMfCE39Ypt31x4w503hqMsJS9RVCONwmp5c71fdqvtjWi
- 1irN3AqeYb/LkLvK06XACtAd8VAAJBUTFJSVII8Ss8xBXewU3VX5nSLHJ
- uFbZfZFKe5mx072b2H3BV3FnNuLvvLV93jsK5gAvjcdSjkjWUUgdCmoQZ Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10992"; a="2753735"
-X-IronPort-AV: E=Sophos;i="6.06,179,1705392000"; 
-   d="scan'208";a="2753735"
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
- by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Feb 2024 10:22:51 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10992"; a="913567533"
-X-IronPort-AV: E=Sophos;i="6.06,179,1705392000"; d="scan'208";a="913567533"
-Received: from srr4-3-linux-101-amanna.iind.intel.com ([10.223.74.76])
- by fmsmga002.fm.intel.com with ESMTP; 22 Feb 2024 10:22:49 -0800
-From: Animesh Manna <animesh.manna@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Cc: ville.syrjala@linux.intel.com, jouni.hogander@intel.com,
- arun.r.murthy@intel.com, Animesh Manna <animesh.manna@intel.com>
-Subject: [PATCH] drm/i915/panelreplay: Move out psr_init_dpcd() from
- init_connector()
-Date: Thu, 22 Feb 2024 23:38:24 +0530
-Message-Id: <20240222180824.3634193-1-animesh.manna@intel.com>
-X-Mailer: git-send-email 2.29.0
+Received: from 8e613ede5ea5 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 158AA10EA14;
+ Thu, 22 Feb 2024 18:16:33 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============3529838512943185083=="
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=93_Fi=2ECI=2EBAT=3A_success_for_drm/i915/selftests=3A_Fix_d?=
+ =?utf-8?q?ependency_of_some_timeouts_on_HZ?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Janusz Krzysztofik" <janusz.krzysztofik@linux.intel.com>
+Cc: intel-gfx@lists.freedesktop.org
+Date: Thu, 22 Feb 2024 18:16:33 -0000
+Message-ID: <170862579303.216122.11700617512738917916@8e613ede5ea5>
+X-Patchwork-Hint: ignore
+References: <20240222113347.648945-2-janusz.krzysztofik@linux.intel.com>
+In-Reply-To: <20240222113347.648945-2-janusz.krzysztofik@linux.intel.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,46 +37,200 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Move psr_init_dpcd() from init-connector to connector-detect
-function.
+--===============3529838512943185083==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Signed-off-by: Animesh Manna <animesh.manna@intel.com>
----
- drivers/gpu/drm/i915/display/intel_dp.c  | 3 +++
- drivers/gpu/drm/i915/display/intel_psr.c | 3 ---
- 2 files changed, 3 insertions(+), 3 deletions(-)
+== Series Details ==
 
-diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
-index 217196196e50..4553e1f5f1fc 100644
---- a/drivers/gpu/drm/i915/display/intel_dp.c
-+++ b/drivers/gpu/drm/i915/display/intel_dp.c
-@@ -5709,6 +5709,9 @@ intel_dp_detect(struct drm_connector *connector,
- 		goto out;
- 	}
- 
-+	if (!intel_dp_is_edp(intel_dp))
-+		intel_psr_init_dpcd(intel_dp);
-+
- 	intel_dp_detect_dsc_caps(intel_dp, intel_connector);
- 
- 	intel_dp_configure_mst(intel_dp);
-diff --git a/drivers/gpu/drm/i915/display/intel_psr.c b/drivers/gpu/drm/i915/display/intel_psr.c
-index 72cadad09db5..6927785fd6ff 100644
---- a/drivers/gpu/drm/i915/display/intel_psr.c
-+++ b/drivers/gpu/drm/i915/display/intel_psr.c
-@@ -2883,9 +2883,6 @@ void intel_psr_init(struct intel_dp *intel_dp)
- 	if (!(HAS_PSR(dev_priv) || HAS_DP20(dev_priv)))
- 		return;
- 
--	if (!intel_dp_is_edp(intel_dp))
--		intel_psr_init_dpcd(intel_dp);
--
- 	/*
- 	 * HSW spec explicitly says PSR is tied to port A.
- 	 * BDW+ platforms have a instance of PSR registers per transcoder but
--- 
-2.29.0
+Series: drm/i915/selftests: Fix dependency of some timeouts on HZ
+URL   : https://patchwork.freedesktop.org/series/130249/
+State : success
 
+== Summary ==
+
+CI Bug Log - changes from CI_DRM_14316 -> Patchwork_130249v1
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130249v1/index.html
+
+Participating hosts (37 -> 36)
+------------------------------
+
+  Additional (1): bat-kbl-2 
+  Missing    (2): bat-mtlp-8 fi-snb-2520m 
+
+Possible new issues
+-------------------
+
+  Here are the unknown changes that may have been introduced in Patchwork_130249v1:
+
+### IGT changes ###
+
+#### Suppressed ####
+
+  The following results come from untrusted machines, tests, or statuses.
+  They do not affect the overall result.
+
+  * igt@gem_exec_parallel@engines@userptr:
+    - {bat-arls-2}:       [PASS][1] -> [ABORT][2]
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14316/bat-arls-2/igt@gem_exec_parallel@engines@userptr.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130249v1/bat-arls-2/igt@gem_exec_parallel@engines@userptr.html
+
+  
+Known issues
+------------
+
+  Here are the changes found in Patchwork_130249v1 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@fbdev@info:
+    - bat-kbl-2:          NOTRUN -> [SKIP][3] ([fdo#109271] / [i915#1849])
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130249v1/bat-kbl-2/igt@fbdev@info.html
+
+  * igt@gem_lmem_swapping@parallel-random-engines:
+    - bat-kbl-2:          NOTRUN -> [SKIP][4] ([fdo#109271]) +35 other tests skip
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130249v1/bat-kbl-2/igt@gem_lmem_swapping@parallel-random-engines.html
+
+  
+#### Possible fixes ####
+
+  * igt@i915_selftest@live@workarounds:
+    - {bat-dg2-14}:       [DMESG-FAIL][5] ([i915#9500]) -> [PASS][6]
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14316/bat-dg2-14/igt@i915_selftest@live@workarounds.html
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130249v1/bat-dg2-14/igt@i915_selftest@live@workarounds.html
+
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
+  [i915#1849]: https://gitlab.freedesktop.org/drm/intel/issues/1849
+  [i915#9500]: https://gitlab.freedesktop.org/drm/intel/issues/9500
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_14316 -> Patchwork_130249v1
+
+  CI-20190529: 20190529
+  CI_DRM_14316: ae1e283133b83b0de46f00b0ac0bca913e159216 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_7723: 7723
+  Patchwork_130249v1: ae1e283133b83b0de46f00b0ac0bca913e159216 @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+### Linux commits
+
+436b39f346d4 drm/i915/selftests: Fix dependency of some timeouts on HZ
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130249v1/index.html
+
+--===============3529838512943185083==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/i915/selftests: Fix dependency of some timeouts on HZ</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/130249/">https://patchwork.freedesktop.org/series/130249/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130249v1/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130249v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_14316 -&gt; Patchwork_130249v1</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130249v1/index.html</p>
+<h2>Participating hosts (37 -&gt; 36)</h2>
+<p>Additional (1): bat-kbl-2 <br />
+  Missing    (2): bat-mtlp-8 fi-snb-2520m </p>
+<h2>Possible new issues</h2>
+<p>Here are the unknown changes that may have been introduced in Patchwork_130249v1:</p>
+<h3>IGT changes</h3>
+<h4>Suppressed</h4>
+<p>The following results come from untrusted machines, tests, or statuses.<br />
+  They do not affect the overall result.</p>
+<ul>
+<li>igt@gem_exec_parallel@engines@userptr:<ul>
+<li>{bat-arls-2}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14316/bat-arls-2/igt@gem_exec_parallel@engines@userptr.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130249v1/bat-arls-2/igt@gem_exec_parallel@engines@userptr.html">ABORT</a></li>
+</ul>
+</li>
+</ul>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_130249v1 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@fbdev@info:</p>
+<ul>
+<li>bat-kbl-2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130249v1/bat-kbl-2/igt@fbdev@info.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/1849">i915#1849</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@gem_lmem_swapping@parallel-random-engines:</p>
+<ul>
+<li>bat-kbl-2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130249v1/bat-kbl-2/igt@gem_lmem_swapping@parallel-random-engines.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +35 other tests skip</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>igt@i915_selftest@live@workarounds:<ul>
+<li>{bat-dg2-14}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14316/bat-dg2-14/igt@i915_selftest@live@workarounds.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/9500">i915#9500</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130249v1/bat-dg2-14/igt@i915_selftest@live@workarounds.html">PASS</a></li>
+</ul>
+</li>
+</ul>
+<p>{name}: This element is suppressed. This means it is ignored when computing<br />
+          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_14316 -&gt; Patchwork_130249v1</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_14316: ae1e283133b83b0de46f00b0ac0bca913e159216 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_7723: 7723<br />
+  Patchwork_130249v1: ae1e283133b83b0de46f00b0ac0bca913e159216 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+<h3>Linux commits</h3>
+<p>436b39f346d4 drm/i915/selftests: Fix dependency of some timeouts on HZ</p>
+
+</body>
+</html>
+
+--===============3529838512943185083==--
