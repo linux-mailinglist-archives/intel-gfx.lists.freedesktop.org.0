@@ -2,76 +2,48 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 08F8F85EE6D
-	for <lists+intel-gfx@lfdr.de>; Thu, 22 Feb 2024 02:06:59 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6537885EEBE
+	for <lists+intel-gfx@lfdr.de>; Thu, 22 Feb 2024 02:46:20 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C6B7810E846;
-	Thu, 22 Feb 2024 01:06:56 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B602A10E83F;
+	Thu, 22 Feb 2024 01:46:17 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=chromium.org header.i=@chromium.org header.b="dzgg7vhb";
+	dkim=pass (2048-bit key; secure) header.d=canb.auug.org.au header.i=@canb.auug.org.au header.b="p9xfLe9y";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-qk1-f174.google.com (mail-qk1-f174.google.com
- [209.85.222.174])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9F8E310E847
- for <intel-gfx@lists.freedesktop.org>; Thu, 22 Feb 2024 01:06:55 +0000 (UTC)
-Received: by mail-qk1-f174.google.com with SMTP id
- af79cd13be357-785d57056b0so412802085a.0
- for <intel-gfx@lists.freedesktop.org>; Wed, 21 Feb 2024 17:06:55 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=chromium.org; s=google; t=1708564014; x=1709168814;
- darn=lists.freedesktop.org; 
- h=content-transfer-encoding:mime-version:message-id:date:subject:cc
- :to:from:from:to:cc:subject:date:message-id:reply-to;
- bh=po77JXYuDK3AKWrYAL7OCKeGjP7qQRekYB5EzyekFyU=;
- b=dzgg7vhbxKjBJgVboadX1kQN02Z8TnzVpeVfFyGtDeTR5b9njd7RmogmUKZ3eMB/7R
- PRwZ2oAhS9xmXB+i8w7jApRk+fHH6Y7Jv46dcQn7uH4jHwmdVyr6kwqaoLDYXe88jyqP
- dXdLQkaTelqquruuWu8tZnLuzIFai1FcUORXw=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1708564014; x=1709168814;
- h=content-transfer-encoding:mime-version:message-id:date:subject:cc
- :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
- :reply-to;
- bh=po77JXYuDK3AKWrYAL7OCKeGjP7qQRekYB5EzyekFyU=;
- b=ICBLByLA3iJsfTOpFwsDvoPgZtJuVM/rR1BlEBaQWF3BlNcrPfk2Q/NNfxplpjqK7G
- d0Z6DAmmaESV+GzZMtIdigEHlTnUPO5xH2gxVEqB0c+ieIDyzmR3Xy+hRgeo6GBuUgPT
- e004SpknEzYTdI5AYYxSzhCXHibKvyFnucbTNm7Qh6/tCCWj5GSm0i5haS35pHjNtvEQ
- Fhze1hNa941aDtNA7YikP5AkteJAmqfPAxKQy447lFkybqTdknG8J+dqJSsmsJ93dlTZ
- fAINHllsiQvVNIxG84GajH8TlHh5gQdn7aRLnLLtl0msu/WQR5LZepFctU80o9/+y9Qu
- qytQ==
-X-Forwarded-Encrypted: i=1;
- AJvYcCXY6ROamnrqqVj3ho8IwiemKvcSG154G05WGmT61r/O8seUuYw/xFYP/yfMts7HAUIP+VSwm5VvFXjn1DGDXCktmZrVhP2KhLN7lxErdw4g
-X-Gm-Message-State: AOJu0YxDvgThqhaSZH4LuYEFQtVUQSJ9SuTrX8GuNjZ1VTpuyeWX7UBi
- iBfE8RWMtrZjW4azQDPnbzhjZ98iZpp/T/A3VxS8Zqk/r0ZILkNV3qOSABHl9Q==
-X-Google-Smtp-Source: AGHT+IEp7Fn0i4KJjuMnYv+dMkHmf+oY47g69f2lZyjT0/QpWePXbGK3ufigwAivUZ7J5jtwbH3koA==
-X-Received: by 2002:a05:620a:167c:b0:787:1fb5:7e61 with SMTP id
- d28-20020a05620a167c00b007871fb57e61mr21927202qko.46.1708564014394; 
- Wed, 21 Feb 2024 17:06:54 -0800 (PST)
-Received: from kramasub2.cros.corp.google.com ([100.107.108.189])
- by smtp.gmail.com with ESMTPSA id
- h1-20020a05620a21c100b0078597896394sm4789415qka.51.2024.02.21.17.06.52
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Wed, 21 Feb 2024 17:06:53 -0800 (PST)
-From: Karthikeyan Ramasubramanian <kramasub@chromium.org>
-To: LKML <linux-kernel@vger.kernel.org>
-Cc: Karthikeyan Ramasubramanian <kramasub@chromium.org>,
- stable@vger.kernel.org, Jani Nikula <jani.nikula@intel.com>,
- =?UTF-8?q?Ville=20Syrj=C3=A4l=C3=A4?= <ville.syrjala@linux.intel.com>,
- Daniel Vetter <daniel@ffwll.ch>, David Airlie <airlied@gmail.com>,
- Jani Nikula <jani.nikula@linux.intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
- dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
- intel-xe@lists.freedesktop.org
-Subject: [PATCH v2] drivers/i915/intel_bios: Fix parsing backlight BDB data
-Date: Wed, 21 Feb 2024 18:06:24 -0700
-Message-ID: <20240221180622.v2.1.I0690aa3e96a83a43b3fc33f50395d334b2981826@changeid>
-X-Mailer: git-send-email 2.44.0.rc0.258.g7320e95886-goog
+Received: from gandalf.ozlabs.org (gandalf.ozlabs.org [150.107.74.76])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4D3A610E83F;
+ Thu, 22 Feb 2024 01:46:15 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canb.auug.org.au;
+ s=201702; t=1708566373;
+ bh=kVrGOOZuytddGaVDzynxhTBC+xSsBONQgK1rFjcI04M=;
+ h=Date:From:To:Cc:Subject:From;
+ b=p9xfLe9y7O7o0L6JZJQ5hAr2E99eXt+g6UpwFee0zcavelR1U27Ab9wUvsmaKKl59
+ FbKmXLlvHNonmahWbvcR2/LaifvRYgXsytCBd8qIsVZVV6Y/yJM2VQFxhvhgxV8QHc
+ Z3vFZxaS4uEADvVKzzjrE/S2Oi6IspQprrwbMFrTTQGSH8ek8HAkg5tiLKDw8xyMrg
+ oW+RF6MIM2qtJ7M86ZCzfUdR8TFK5CUkLLTdfp51YRBsdm0cvQrCB2hQJnHSpONbtJ
+ LDpWqIHzldxOk705KDX8LENUsQ3/n3DLqW9sxcNFKOZiRflsMFi/NW4vWxKqbIEibV
+ Y7Ody1d1q0Tpw==
+Received: from authenticated.ozlabs.org (localhost [127.0.0.1])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+ (No client certificate requested)
+ by mail.ozlabs.org (Postfix) with ESMTPSA id 4TgGFc1GpTz4wb2;
+ Thu, 22 Feb 2024 12:46:11 +1100 (AEDT)
+Date: Thu, 22 Feb 2024 12:46:10 +1100
+From: Stephen Rothwell <sfr@canb.auug.org.au>
+To: Daniel Vetter <daniel.vetter@ffwll.ch>
+Cc: Intel Graphics <intel-gfx@lists.freedesktop.org>, DRI
+ <dri-devel@lists.freedesktop.org>, Biju Das <biju.das.jz@bp.renesas.com>,
+ Maxime Ripard <mripard@kernel.org>, Linux Kernel Mailing List
+ <linux-kernel@vger.kernel.org>, Linux Next Mailing List
+ <linux-next@vger.kernel.org>
+Subject: linux-next: build failure after merge of the drm-misc tree
+Message-ID: <20240222124610.383e1ce3@canb.auug.org.au>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Type: multipart/signed; boundary="Sig_/E=U/0=a4mO7C/s62y_fF+mJ";
+ protocol="application/pgp-signature"; micalg=pgp-sha256
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -87,80 +59,91 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Starting BDB version 239, hdr_dpcd_refresh_timeout is introduced to
-backlight BDB data. Commit 700034566d68 ("drm/i915/bios: Define more BDB
-contents") updated the backlight BDB data accordingly. This broke the
-parsing of backlight BDB data in VBT for versions 236 - 238 (both
-inclusive) and hence the backlight controls are not responding on units
-with the concerned BDB version.
+--Sig_/E=U/0=a4mO7C/s62y_fF+mJ
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: quoted-printable
 
-backlight_control information has been present in backlight BDB data
-from at least BDB version 191 onwards, if not before. Hence this patch
-extracts the backlight_control information for BDB version 191 or newer.
-Tested on Chromebooks using Jasperlake SoC (reports bdb->version = 236).
-Tested on Chromebooks using Raptorlake SoC (reports bdb->version = 251).
+Hi all,
 
-Fixes: 700034566d68 ("drm/i915/bios: Define more BDB contents")
-Cc: stable@vger.kernel.org
-Cc: Jani Nikula <jani.nikula@intel.com>
-Cc: Ville Syrjälä <ville.syrjala@linux.intel.com>
-Signed-off-by: Karthikeyan Ramasubramanian <kramasub@chromium.org>
----
+After merging the drm-misc tree, today's linux-next build (x86_64
+allmodconfig) failed like this:
 
-Changes in v2:
-- removed checking the block size of the backlight BDB data
+drivers/gpu/drm/renesas/rz-du/rzg2l_du_vsp.c:47:6: error: redefinition of '=
+rzg2l_du_vsp_enable'
+   47 | void rzg2l_du_vsp_enable(struct rzg2l_du_crtc *crtc)
+      |      ^~~~~~~~~~~~~~~~~~~
+In file included from drivers/gpu/drm/renesas/rz-du/rzg2l_du_drv.h:18,
+                 from drivers/gpu/drm/renesas/rz-du/rzg2l_du_vsp.c:30:
+drivers/gpu/drm/renesas/rz-du/rzg2l_du_vsp.h:72:20: note: previous definiti=
+on of 'rzg2l_du_vsp_enable' with type 'void(struct rzg2l_du_crtc *)'
+   72 | static inline void rzg2l_du_vsp_enable(struct rzg2l_du_crtc *crtc) =
+{ };
+      |                    ^~~~~~~~~~~~~~~~~~~
+drivers/gpu/drm/renesas/rz-du/rzg2l_du_vsp.c:61:6: error: redefinition of '=
+rzg2l_du_vsp_disable'
+   61 | void rzg2l_du_vsp_disable(struct rzg2l_du_crtc *crtc)
+      |      ^~~~~~~~~~~~~~~~~~~~
+drivers/gpu/drm/renesas/rz-du/rzg2l_du_vsp.h:73:20: note: previous definiti=
+on of 'rzg2l_du_vsp_disable' with type 'void(struct rzg2l_du_crtc *)'
+   73 | static inline void rzg2l_du_vsp_disable(struct rzg2l_du_crtc *crtc)=
+ { };
+      |                    ^~~~~~~~~~~~~~~~~~~~
+drivers/gpu/drm/renesas/rz-du/rzg2l_du_vsp.c:66:6: error: redefinition of '=
+rzg2l_du_vsp_atomic_flush'
+   66 | void rzg2l_du_vsp_atomic_flush(struct rzg2l_du_crtc *crtc)
+      |      ^~~~~~~~~~~~~~~~~~~~~~~~~
+drivers/gpu/drm/renesas/rz-du/rzg2l_du_vsp.h:74:20: note: previous definiti=
+on of 'rzg2l_du_vsp_atomic_flush' with type 'void(struct rzg2l_du_crtc *)'
+   74 | static inline void rzg2l_du_vsp_atomic_flush(struct rzg2l_du_crtc *=
+crtc) { };
+      |                    ^~~~~~~~~~~~~~~~~~~~~~~~~
+drivers/gpu/drm/renesas/rz-du/rzg2l_du_vsp.c:76:19: error: redefinition of =
+'rzg2l_du_vsp_get_drm_plane'
+   76 | struct drm_plane *rzg2l_du_vsp_get_drm_plane(struct rzg2l_du_crtc *=
+crtc,
+      |                   ^~~~~~~~~~~~~~~~~~~~~~~~~~
+drivers/gpu/drm/renesas/rz-du/rzg2l_du_vsp.h:75:33: note: previous definiti=
+on of 'rzg2l_du_vsp_get_drm_plane' with type 'struct drm_plane *(struct rzg=
+2l_du_crtc *, unsigned int)'
+   75 | static inline struct drm_plane *rzg2l_du_vsp_get_drm_plane(struct r=
+zg2l_du_crtc *crtc,
+      |                                 ^~~~~~~~~~~~~~~~~~~~~~~~~~
+drivers/gpu/drm/renesas/rz-du/rzg2l_du_vsp.c:302:5: error: redefinition of =
+'rzg2l_du_vsp_init'
+  302 | int rzg2l_du_vsp_init(struct rzg2l_du_vsp *vsp, struct device_node =
+*np,
+      |     ^~~~~~~~~~~~~~~~~
+drivers/gpu/drm/renesas/rz-du/rzg2l_du_vsp.h:66:19: note: previous definiti=
+on of 'rzg2l_du_vsp_init' with type 'int(struct rzg2l_du_vsp *, struct devi=
+ce_node *, unsigned int)'
+   66 | static inline int rzg2l_du_vsp_init(struct rzg2l_du_vsp *vsp, struc=
+t device_node *np,
+      |                   ^~~~~~~~~~~~~~~~~
 
- drivers/gpu/drm/i915/display/intel_bios.c     | 19 ++++---------------
- drivers/gpu/drm/i915/display/intel_vbt_defs.h |  5 -----
- 2 files changed, 4 insertions(+), 20 deletions(-)
+Caused by commit
 
-diff --git a/drivers/gpu/drm/i915/display/intel_bios.c b/drivers/gpu/drm/i915/display/intel_bios.c
-index aa169b0055e97..8c1eb05fe77d2 100644
---- a/drivers/gpu/drm/i915/display/intel_bios.c
-+++ b/drivers/gpu/drm/i915/display/intel_bios.c
-@@ -1042,22 +1042,11 @@ parse_lfp_backlight(struct drm_i915_private *i915,
- 	panel->vbt.backlight.type = INTEL_BACKLIGHT_DISPLAY_DDI;
- 	panel->vbt.backlight.controller = 0;
- 	if (i915->display.vbt.version >= 191) {
--		size_t exp_size;
-+		const struct lfp_backlight_control_method *method;
- 
--		if (i915->display.vbt.version >= 236)
--			exp_size = sizeof(struct bdb_lfp_backlight_data);
--		else if (i915->display.vbt.version >= 234)
--			exp_size = EXP_BDB_LFP_BL_DATA_SIZE_REV_234;
--		else
--			exp_size = EXP_BDB_LFP_BL_DATA_SIZE_REV_191;
--
--		if (get_blocksize(backlight_data) >= exp_size) {
--			const struct lfp_backlight_control_method *method;
--
--			method = &backlight_data->backlight_control[panel_type];
--			panel->vbt.backlight.type = method->type;
--			panel->vbt.backlight.controller = method->controller;
--		}
-+		method = &backlight_data->backlight_control[panel_type];
-+		panel->vbt.backlight.type = method->type;
-+		panel->vbt.backlight.controller = method->controller;
- 	}
- 
- 	panel->vbt.backlight.pwm_freq_hz = entry->pwm_freq_hz;
-diff --git a/drivers/gpu/drm/i915/display/intel_vbt_defs.h b/drivers/gpu/drm/i915/display/intel_vbt_defs.h
-index a9f44abfc9fc2..b50cd0dcabda9 100644
---- a/drivers/gpu/drm/i915/display/intel_vbt_defs.h
-+++ b/drivers/gpu/drm/i915/display/intel_vbt_defs.h
-@@ -897,11 +897,6 @@ struct lfp_brightness_level {
- 	u16 reserved;
- } __packed;
- 
--#define EXP_BDB_LFP_BL_DATA_SIZE_REV_191 \
--	offsetof(struct bdb_lfp_backlight_data, brightness_level)
--#define EXP_BDB_LFP_BL_DATA_SIZE_REV_234 \
--	offsetof(struct bdb_lfp_backlight_data, brightness_precision_bits)
--
- struct bdb_lfp_backlight_data {
- 	u8 entry_size;
- 	struct lfp_backlight_data_entry data[16];
--- 
-2.44.0.rc0.258.g7320e95886-goog
+  768e9e61b3b9 ("drm: renesas: Add RZ/G2L DU Support")
 
+I have used the drm-misc tree from next-20240221 for today.
+
+--=20
+Cheers,
+Stephen Rothwell
+
+--Sig_/E=U/0=a4mO7C/s62y_fF+mJ
+Content-Type: application/pgp-signature
+Content-Description: OpenPGP digital signature
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAEBCAAdFiEENIC96giZ81tWdLgKAVBC80lX0GwFAmXWp2IACgkQAVBC80lX
+0GxnZwf/arzy84++smzTe8LIY0swpYvN291/uBVHEhzoDCRQ+Nca/CjO6K5G9k5k
+5ZUGFiePuEDX98lphTb9l/98ftUtXwSOzx93YGuvM9yDK0Fec6F3fhuYnbp8L0/a
+iLbZbIs1l+0W+Xodk+uUyiI/fCFmD3lmZEa0e1La2i//5do/nGdB95lOm71HJPG7
+24+Xx046XUBMqXX1TC7bE7D0qx0ZJgoMEj7vNWCf4a6SQ1gr4KcjxkoUFrZo18XK
+goLTS8Ytg9jiIE3uCOkr+kMjbP9WrhcC1AqJVK6TbgzhpFN4zqyDkaorXFol2ha3
+pwy/IyslkvihfNBmKIkqoDSwAPBk3A==
+=28hk
+-----END PGP SIGNATURE-----
+
+--Sig_/E=U/0=a4mO7C/s62y_fF+mJ--
