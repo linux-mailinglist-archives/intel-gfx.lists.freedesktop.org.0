@@ -2,50 +2,50 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0F4CC85F214
-	for <lists+intel-gfx@lfdr.de>; Thu, 22 Feb 2024 08:46:32 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7F35E85F216
+	for <lists+intel-gfx@lfdr.de>; Thu, 22 Feb 2024 08:46:33 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8C44A10E899;
-	Thu, 22 Feb 2024 07:46:30 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 42F7F10E89C;
+	Thu, 22 Feb 2024 07:46:31 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Z5BJ2yx5";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="fawrslyo";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0581410E73E
- for <intel-gfx@lists.freedesktop.org>; Thu, 22 Feb 2024 07:46:23 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 16DBD10E895
+ for <intel-gfx@lists.freedesktop.org>; Thu, 22 Feb 2024 07:46:24 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1708587984; x=1740123984;
+ t=1708587985; x=1740123985;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=uq6wsqD0F61lpfvaPzZAUvqpr0tiKtxG0q+o4fELVAQ=;
- b=Z5BJ2yx5b6XZjK4LMvyvx/PnAOuU+XR34h+2v3HAhh+fBUQ6uq36Ej0x
- vPidJB3/xC+6mnYd1L8vqkYPzdxLGWA/uwN5sltEa7t7FU3kfyVN6aR2z
- dv5JFdv3xRnKeRQM3VPCE6256Q8GUjgdcynWuRlqiM/k1VjGUPD4ooK25
- BUwqlsPqny+xpUryFz4RljDjec7pe1U19Ik7TslydjdADS1UsC/nHpiv+
- qiPOKjPzEhDznbOYTuIICC/0V5jvYPsfRnBiDEXEAQhEdD4z7Q+8yCQyw
- GOcyuf4Trc/JcigTNR9TqtyGS4eX5MSiDZqEI9wj1swl1531l+yXt71rL Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10991"; a="2906053"
+ bh=n3q6YPB+JteziGrzchzJxBzPAoVGAeC+iBOyXweepHA=;
+ b=fawrslyoq5sLy06n9X+w5VMOL/h+Q9YntXog/MJZQM7KJFGXTSI/ad8J
+ VMSOjsYO4z7pESzjCm8oC/sjlMXbBgUcP+wPVbEvMDdBdVzTely72U5X1
+ QBDkcXyo86Z0iChh1kNoC3MODFDxliT/9/vhopnZZhHZj9jWifu197ojF
+ FUuKCOGYk5ds1HscecQwCi272Gau5Sal5CD8nWxXOHYAPu1s+aXp/zrg5
+ ITLhRFfWVoMyLrb/oxX6H+Ndl4ntJcXbqfNjVUBMRWm2zbKKMVLANmrsz
+ nmftXmCCV3atZxupKPUVFaVBksh8leLtXyrXult8O4wa7EeQ+npqFYS6I g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10991"; a="2906060"
 X-IronPort-AV: E=Sophos;i="6.06,177,1705392000"; 
-   d="scan'208";a="2906053"
+   d="scan'208";a="2906060"
 Received: from fmviesa009.fm.intel.com ([10.60.135.149])
  by orvoesa110.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Feb 2024 23:46:10 -0800
+ 21 Feb 2024 23:46:11 -0800
 X-ExtLoop1: 1
 X-IronPort-AV: E=Sophos;i="6.06,177,1705392000"; 
-   d="scan'208";a="5354163"
+   d="scan'208";a="5354167"
 Received: from kandpal-x299-ud4-pro.iind.intel.com ([10.190.239.32])
- by fmviesa009.fm.intel.com with ESMTP; 21 Feb 2024 23:46:08 -0800
+ by fmviesa009.fm.intel.com with ESMTP; 21 Feb 2024 23:46:10 -0800
 From: Suraj Kandpal <suraj.kandpal@intel.com>
 To: intel-gfx@lists.freedesktop.org
 Cc: uma.shankar@intel.com, ankit.k.nautiyal@intel.com,
  Suraj Kandpal <suraj.kandpal@intel.com>
-Subject: [PATCH 08/13] drm/i915/hdcp: Remove additional timing for reading mst
- hdcp message
-Date: Thu, 22 Feb 2024 13:13:49 +0530
-Message-ID: <20240222074353.1568904-10-suraj.kandpal@intel.com>
+Subject: [PATCH 09/13] drm/i915/hdcp: Extract hdcp structure from correct
+ connector
+Date: Thu, 22 Feb 2024 13:13:50 +0530
+Message-ID: <20240222074353.1568904-11-suraj.kandpal@intel.com>
 X-Mailer: git-send-email 2.43.2
 In-Reply-To: <20240222074353.1568904-2-suraj.kandpal@intel.com>
 References: <20240222074353.1568904-2-suraj.kandpal@intel.com>
@@ -66,39 +66,42 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Now that we have moved back to direct reads the additional timing
-is not required hence this can be removed.
+Currently intel_hdcp is not being extracted from primary connector
+this patch fixes that.
 
---v2
--Add Fixes tag [Ankit]
-
-Fixes: 3974f9c17bb9 ("drm/i915/hdcp: Adjust timeout for read in DPMST Scenario")
+Fixes: 524240b231ea ("drm/i915/hdcp: Propagate aux info in DP HDCP functions")
 Signed-off-by: Suraj Kandpal <suraj.kandpal@intel.com>
 Reviewed-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_dp_hdcp.c | 9 ++-------
- 1 file changed, 2 insertions(+), 7 deletions(-)
+ drivers/gpu/drm/i915/display/intel_dp_hdcp.c | 7 +++++--
+ 1 file changed, 5 insertions(+), 2 deletions(-)
 
 diff --git a/drivers/gpu/drm/i915/display/intel_dp_hdcp.c b/drivers/gpu/drm/i915/display/intel_dp_hdcp.c
-index 553a88004cfb..dc5c671513c2 100644
+index dc5c671513c2..cedabbaaf615 100644
 --- a/drivers/gpu/drm/i915/display/intel_dp_hdcp.c
 +++ b/drivers/gpu/drm/i915/display/intel_dp_hdcp.c
-@@ -555,13 +555,8 @@ int intel_dp_hdcp2_read_msg(struct intel_connector *connector,
- 
- 		/* Entire msg read timeout since initiate of msg read */
- 		if (bytes_to_recv == size - 1 && hdcp2_msg_data->msg_read_timeout > 0) {
--			if (intel_encoder_is_mst(connector->encoder))
--				msg_end = ktime_add_ms(ktime_get_raw(),
--						       hdcp2_msg_data->msg_read_timeout *
--						       connector->port->parent->num_ports);
--			else
--				msg_end = ktime_add_ms(ktime_get_raw(),
--						       hdcp2_msg_data->msg_read_timeout);
-+			msg_end = ktime_add_ms(ktime_get_raw(),
-+					       hdcp2_msg_data->msg_read_timeout);
- 		}
- 
- 		ret = drm_dp_dpcd_read(aux, offset,
+@@ -395,7 +395,9 @@ intel_dp_hdcp2_wait_for_msg(struct intel_connector *connector,
+ 			    const struct hdcp2_dp_msg_data *hdcp2_msg_data)
+ {
+ 	struct drm_i915_private *i915 = to_i915(connector->base.dev);
+-	struct intel_hdcp *hdcp = &connector->hdcp;
++	struct intel_digital_port *dig_port = intel_attached_dig_port(connector);
++	struct intel_dp *dp = &dig_port->dp;
++	struct intel_hdcp *hdcp = &dp->attached_connector->hdcp;
+ 	u8 msg_id = hdcp2_msg_data->msg_id;
+ 	int ret, timeout;
+ 	bool msg_ready = false;
+@@ -511,8 +513,9 @@ int intel_dp_hdcp2_read_msg(struct intel_connector *connector,
+ {
+ 	struct intel_digital_port *dig_port = intel_attached_dig_port(connector);
+ 	struct drm_i915_private *i915 = to_i915(dig_port->base.base.dev);
+-	struct intel_hdcp *hdcp = &connector->hdcp;
+ 	struct drm_dp_aux *aux = &dig_port->dp.aux;
++	struct intel_dp *dp = &dig_port->dp;
++	struct intel_hdcp *hdcp = &dp->attached_connector->hdcp;
+ 	unsigned int offset;
+ 	u8 *byte = buf;
+ 	ssize_t ret, bytes_to_recv, len;
 -- 
 2.43.2
 
