@@ -2,29 +2,64 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id BE17185F5F3
-	for <lists+intel-gfx@lfdr.de>; Thu, 22 Feb 2024 11:45:18 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8964F85F696
+	for <lists+intel-gfx@lfdr.de>; Thu, 22 Feb 2024 12:13:25 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 88D7310E8DE;
-	Thu, 22 Feb 2024 10:45:16 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 326D910E8F4;
+	Thu, 22 Feb 2024 11:13:19 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="lb0tLQVt";
+	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from 8e613ede5ea5 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2510F10E8DE;
- Thu, 22 Feb 2024 10:45:15 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============3082317825012865538=="
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 43B0F10E25B;
+ Thu, 22 Feb 2024 11:13:17 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1708600398; x=1740136398;
+ h=date:from:to:cc:subject:message-id:mime-version:
+ content-transfer-encoding;
+ bh=6mY7amn0xbeZUMVa77tyrpin6OBztF/JoIRQ7PFk2IY=;
+ b=lb0tLQVtpLJPEGi92AOJoHheGXcY5hNztXugXjFoe7NxudGYHMus67Um
+ OQyEQS3gXfwJ4b0FxTRs2/VqE8qZQLjowrFI2P5srR1bflSe8z4Mrs1cJ
+ mHHsmTZEUrhYaMp/nCOrPnKTpVx2vpB16tj7NA8MhTYgJHxgtApC4Ir5+
+ ubsktLACpeP0IXGU36tb9ZL/Zvxx+RH/CYSCn0bzzydMRspR0KlEgDT25
+ 2G2P4X1yv120J5SWposO8H30T4DuQgDOrPufe0TBbNcyZ2EHw2YxSZ/6j
+ 3qW1QA/+gp/GtmLNZCnIdIg6aCTNKg15ZkS8Vq/G0EkGAgbLo+OOXIG0C A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10991"; a="13947580"
+X-IronPort-AV: E=Sophos;i="6.06,177,1705392000"; d="scan'208";a="13947580"
+Received: from fmviesa007.fm.intel.com ([10.60.135.147])
+ by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 Feb 2024 03:13:17 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.06,177,1705392000"; 
+   d="scan'208";a="5365803"
+Received: from binm223x-mobl2.gar.corp.intel.com (HELO fedora)
+ ([10.249.254.168])
+ by fmviesa007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 Feb 2024 03:13:12 -0800
+Date: Thu, 22 Feb 2024 12:12:54 +0100
+From: Thomas Hellstrom <thomas.hellstrom@linux.intel.com>
+To: Dave Airlie <airlied@gmail.com>, Daniel Vetter <daniel.vetter@ffwll.ch>
+Cc: Jani Nikula <jani.nikula@linux.intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Thomas Zimmermann <tzimmermann@suse.de>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>,
+ Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>,
+ Oded Gabbay <ogabbay@kernel.org>,
+ Lucas De Marchi <lucas.demarchi@intel.com>,
+ dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
+ dim-tools@lists.freedesktop.org, intel-xe@lists.freedesktop.org
+Subject: [PULL] drm-xe-fixes
+Message-ID: <ZdcsNrxdWMMM417v@fedora>
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Fi=2ECI=2EBAT=3A_success_for_HDCP_MST_Type1_fixes_=28rev?=
- =?utf-8?q?4=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Suraj Kandpal" <suraj.kandpal@intel.com>
-Cc: intel-gfx@lists.freedesktop.org
-Date: Thu, 22 Feb 2024 10:45:15 -0000
-Message-ID: <170859871515.216123.2885328132316667460@8e613ede5ea5>
-X-Patchwork-Hint: ignore
-References: <20240222074353.1568904-2-suraj.kandpal@intel.com>
-In-Reply-To: <20240222074353.1568904-2-suraj.kandpal@intel.com>
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -37,226 +72,80 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============3082317825012865538==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+Hi, Dave Sima
 
-== Series Details ==
+The Xe pull request for 6.8-rc6
+The uAPI fixes / adjustments we've been discussing
+are starting to appear, and I will hopefully have the rest
+for next week's PR. In addition two driver fixes.
 
-Series: HDCP MST Type1 fixes (rev4)
-URL   : https://patchwork.freedesktop.org/series/129925/
-State : success
+drm-xe-fixes-2024-02-22:
+UAPI Changes:
+- Remove support for persistent exec_queues
+- Drop a reduntant sysfs newline printout
 
-== Summary ==
+Cross-subsystem Changes:
 
-CI Bug Log - changes from CI_DRM_14314 -> Patchwork_129925v4
-====================================================
+Core Changes:
 
-Summary
--------
+Driver Changes:
+- A three-patch fix for a VM_BIND rebind optimization path
+- Fix a modpost warning on an xe KUNIT module
 
-  **SUCCESS**
+/Thomas
 
-  No regressions found.
+The following changes since commit b401b621758e46812da61fa58a67c3fd8d91de0d:
 
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_129925v4/index.html
+  Linux 6.8-rc5 (2024-02-18 12:56:25 -0800)
 
-Participating hosts (37 -> 37)
-------------------------------
+are available in the Git repository at:
 
-  Additional (1): bat-kbl-2 
-  Missing    (1): fi-snb-2520m 
+  https://gitlab.freedesktop.org/drm/xe/kernel.git tags/drm-xe-fixes-2024-02-22
 
-Known issues
-------------
+for you to fetch changes up to 6650d23f3e20ca00482a71a4ef900f0ea776fb15:
 
-  Here are the changes found in Patchwork_129925v4 that come from known issues:
+  drm/xe: Fix modpost warning on xe_mocs kunit module (2024-02-21 11:06:52 +0100)
 
-### IGT changes ###
+----------------------------------------------------------------
+UAPI Changes:
+- Remove support for persistent exec_queues
+- Drop a reduntant sysfs newline printout
 
-#### Issues hit ####
+Cross-subsystem Changes:
 
-  * igt@fbdev@info:
-    - bat-kbl-2:          NOTRUN -> [SKIP][1] ([fdo#109271] / [i915#1849])
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_129925v4/bat-kbl-2/igt@fbdev@info.html
+Core Changes:
 
-  * igt@gem_lmem_swapping@parallel-random-engines:
-    - bat-kbl-2:          NOTRUN -> [SKIP][2] ([fdo#109271]) +35 other tests skip
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_129925v4/bat-kbl-2/igt@gem_lmem_swapping@parallel-random-engines.html
+Driver Changes:
+- A three-patch fix for a VM_BIND rebind optimization path
+- Fix a modpost warning on an xe KUNIT module
 
-  * igt@i915_pm_rpm@module-reload:
-    - fi-kbl-7567u:       [PASS][3] -> [CRASH][4] ([i915#9947])
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14314/fi-kbl-7567u/igt@i915_pm_rpm@module-reload.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_129925v4/fi-kbl-7567u/igt@i915_pm_rpm@module-reload.html
+----------------------------------------------------------------
+Ashutosh Dixit (2):
+      drm/xe/xe_gt_idle: Drop redundant newline in name
+      drm/xe: Fix modpost warning on xe_mocs kunit module
 
-  * igt@i915_selftest@live@workarounds:
-    - bat-mtlp-6:         [PASS][5] -> [INCOMPLETE][6] ([i915#10137])
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14314/bat-mtlp-6/igt@i915_selftest@live@workarounds.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_129925v4/bat-mtlp-6/igt@i915_selftest@live@workarounds.html
-    - bat-dg2-9:          [PASS][7] -> [DMESG-FAIL][8] ([i915#9500])
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14314/bat-dg2-9/igt@i915_selftest@live@workarounds.html
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_129925v4/bat-dg2-9/igt@i915_selftest@live@workarounds.html
+Matthew Brost (3):
+      drm/xe: Fix xe_vma_set_pte_size
+      drm/xe: Add XE_VMA_PTE_64K VMA flag
+      drm/xe: Return 2MB page size for compact 64k PTEs
 
-  
-#### Possible fixes ####
+Thomas Hellström (1):
+      drm/xe/uapi: Remove support for persistent exec_queues
 
-  * igt@i915_module_load@reload:
-    - {bat-arls-2}:       [INCOMPLETE][9] -> [PASS][10]
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14314/bat-arls-2/igt@i915_module_load@reload.html
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_129925v4/bat-arls-2/igt@i915_module_load@reload.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
-  [i915#10026]: https://gitlab.freedesktop.org/drm/intel/issues/10026
-  [i915#10137]: https://gitlab.freedesktop.org/drm/intel/issues/10137
-  [i915#10194]: https://gitlab.freedesktop.org/drm/intel/issues/10194
-  [i915#10213]: https://gitlab.freedesktop.org/drm/intel/issues/10213
-  [i915#10215]: https://gitlab.freedesktop.org/drm/intel/issues/10215
-  [i915#1849]: https://gitlab.freedesktop.org/drm/intel/issues/1849
-  [i915#9500]: https://gitlab.freedesktop.org/drm/intel/issues/9500
-  [i915#9947]: https://gitlab.freedesktop.org/drm/intel/issues/9947
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_14314 -> Patchwork_129925v4
-
-  CI-20190529: 20190529
-  CI_DRM_14314: d6c1b8ab9a4dec3a52c5f53b283436f95dbd3285 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_7722: 48196ef379a77675ea6af82a82da62b2ad2d9ded @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_129925v4: d6c1b8ab9a4dec3a52c5f53b283436f95dbd3285 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-### Linux commits
-
-a9593cf5471b drm/i915/hdcp: Read Rxcaps for robustibility
-753571912608 drm/i915/hdcp: Allocate stream id after HDCP AKE stage
-65cd068c8ff2 drm/i915/hdcp: Don't enable HDCP1.4 directly from check_link
-999946564672 drm/i915/hdcp: Don't enable HDCP2.2 directly from check_link
-e80427a8094f drm/i915/hdcp: Extract hdcp structure from correct connector
-b7b6f73f2cca drm/i915/hdcp: Remove additional timing for reading mst hdcp message
-eb8be832a1e0 drm/i915/hdcp: HDCP Capability for the downstream device
-15c5527c7099 drm/i915/hdcp: Add new remote capability check shim function
-d5f0238ad04b drm/i915/hdcp: Rename hdcp capable functions
-68433a4d298c drm/i915/hdcp: Pass drm_dp_aux to read_bcaps function
-5d976ce90174 drm/i915/hdcp: Refactor intel_dp_hdcp2_capable
-38bea76bdf37 drm/i915/hdcp: Move source hdcp2 checks into its own function
-25889bd287cd drm/i915/hdcp: Move to direct reads for HDCP
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_129925v4/index.html
-
---===============3082317825012865538==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>HDCP MST Type1 fixes (rev4)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/129925/">https://patchwork.freedesktop.org/series/129925/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_129925v4/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_129925v4/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_14314 -&gt; Patchwork_129925v4</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_129925v4/index.html</p>
-<h2>Participating hosts (37 -&gt; 37)</h2>
-<p>Additional (1): bat-kbl-2 <br />
-  Missing    (1): fi-snb-2520m </p>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_129925v4 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@fbdev@info:</p>
-<ul>
-<li>bat-kbl-2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_129925v4/bat-kbl-2/igt@fbdev@info.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/1849">i915#1849</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_lmem_swapping@parallel-random-engines:</p>
-<ul>
-<li>bat-kbl-2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_129925v4/bat-kbl-2/igt@gem_lmem_swapping@parallel-random-engines.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +35 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_pm_rpm@module-reload:</p>
-<ul>
-<li>fi-kbl-7567u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14314/fi-kbl-7567u/igt@i915_pm_rpm@module-reload.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_129925v4/fi-kbl-7567u/igt@i915_pm_rpm@module-reload.html">CRASH</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/9947">i915#9947</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@workarounds:</p>
-<ul>
-<li>bat-mtlp-6:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14314/bat-mtlp-6/igt@i915_selftest@live@workarounds.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_129925v4/bat-mtlp-6/igt@i915_selftest@live@workarounds.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/10137">i915#10137</a>)</li>
-<li>bat-dg2-9:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14314/bat-dg2-9/igt@i915_selftest@live@workarounds.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_129925v4/bat-dg2-9/igt@i915_selftest@live@workarounds.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/9500">i915#9500</a>)</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>igt@i915_module_load@reload:<ul>
-<li>{bat-arls-2}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14314/bat-arls-2/igt@i915_module_load@reload.html">INCOMPLETE</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_129925v4/bat-arls-2/igt@i915_module_load@reload.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<p>{name}: This element is suppressed. This means it is ignored when computing<br />
-          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_14314 -&gt; Patchwork_129925v4</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_14314: d6c1b8ab9a4dec3a52c5f53b283436f95dbd3285 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_7722: 48196ef379a77675ea6af82a82da62b2ad2d9ded @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  Patchwork_129925v4: d6c1b8ab9a4dec3a52c5f53b283436f95dbd3285 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<h3>Linux commits</h3>
-<p>a9593cf5471b drm/i915/hdcp: Read Rxcaps for robustibility<br />
-753571912608 drm/i915/hdcp: Allocate stream id after HDCP AKE stage<br />
-65cd068c8ff2 drm/i915/hdcp: Don't enable HDCP1.4 directly from check_link<br />
-999946564672 drm/i915/hdcp: Don't enable HDCP2.2 directly from check_link<br />
-e80427a8094f drm/i915/hdcp: Extract hdcp structure from correct connector<br />
-b7b6f73f2cca drm/i915/hdcp: Remove additional timing for reading mst hdcp message<br />
-eb8be832a1e0 drm/i915/hdcp: HDCP Capability for the downstream device<br />
-15c5527c7099 drm/i915/hdcp: Add new remote capability check shim function<br />
-d5f0238ad04b drm/i915/hdcp: Rename hdcp capable functions<br />
-68433a4d298c drm/i915/hdcp: Pass drm_dp_aux to read_bcaps function<br />
-5d976ce90174 drm/i915/hdcp: Refactor intel_dp_hdcp2_capable<br />
-38bea76bdf37 drm/i915/hdcp: Move source hdcp2 checks into its own function<br />
-25889bd287cd drm/i915/hdcp: Move to direct reads for HDCP</p>
-
-</body>
-</html>
-
---===============3082317825012865538==--
+ drivers/gpu/drm/xe/tests/xe_mocs_test.c  |  1 +
+ drivers/gpu/drm/xe/xe_device.c           | 39 --------------------------------
+ drivers/gpu/drm/xe/xe_device.h           |  4 ----
+ drivers/gpu/drm/xe/xe_device_types.h     |  8 -------
+ drivers/gpu/drm/xe/xe_exec_queue.c       | 33 ++++-----------------------
+ drivers/gpu/drm/xe/xe_exec_queue_types.h | 10 --------
+ drivers/gpu/drm/xe/xe_execlist.c         |  2 --
+ drivers/gpu/drm/xe/xe_gt_idle.c          |  4 ++--
+ drivers/gpu/drm/xe/xe_guc_submit.c       |  2 --
+ drivers/gpu/drm/xe/xe_pt.c               | 11 ++++++---
+ drivers/gpu/drm/xe/xe_vm.c               | 14 ++++++++----
+ drivers/gpu/drm/xe/xe_vm_types.h         |  2 ++
+ include/uapi/drm/xe_drm.h                |  1 -
+ 13 files changed, 28 insertions(+), 103 deletions(-)
