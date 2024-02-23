@@ -2,81 +2,78 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id AD55A86771A
+	by mail.lfdr.de (Postfix) with ESMTPS id 37D5E867719
 	for <lists+intel-gfx@lfdr.de>; Mon, 26 Feb 2024 14:47:12 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 27CD710ED57;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2486610E747;
 	Mon, 26 Feb 2024 13:47:10 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="IfZOTuV9";
+	dkim=pass (2048-bit key; unprotected) header.d=quicinc.com header.i=@quicinc.com header.b="Xq9oa2sn";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-yw1-f175.google.com (mail-yw1-f175.google.com
- [209.85.128.175])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D850210EA9E;
- Thu, 22 Feb 2024 21:31:19 +0000 (UTC)
-Received: by mail-yw1-f175.google.com with SMTP id
- 00721157ae682-6083befe2a7so2626807b3.0; 
- Thu, 22 Feb 2024 13:31:19 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1708637479; x=1709242279; darn=lists.freedesktop.org;
- h=in-reply-to:content-disposition:mime-version:references:message-id
- :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
- bh=wUw2xYuDibxwJNkicWQfSsXUxs7Znk2YsGnDeUj+5YE=;
- b=IfZOTuV9M9v4Ku43bhyNKdXOtB7BIO9y/5RFds4WUa7Xwi5k/sHdSmilIt22QZRoEX
- sgrQ2ynqjLKYjS4fkcUkfZPlzX7cll1dqepeu40cy801SLqO5QozGrYe/Jm9orhoOhs+
- wTPjeOjXPOyLZAPjiJi7WBguk5txQ0ZLrCqbjP9x3OgXfU1R7d2dMuik9l28AP2JqBiY
- v35Lw21AtZuPhxHlklOv6RXquIemhTyaY8n8Yy1BaTg9WyhF+su7pPvsqNf94KdGtGOA
- xaFh8J6Oar5gB1b5wjh28/BoaDEW71RwRHjUwplOPfs1bkdHozGg/So6+5PBoODnUr3X
- ZZTg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1708637479; x=1709242279;
- h=in-reply-to:content-disposition:mime-version:references:message-id
- :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
- :message-id:reply-to;
- bh=wUw2xYuDibxwJNkicWQfSsXUxs7Znk2YsGnDeUj+5YE=;
- b=iCbOo+4CIzWTNnDEZxzjI5Cba7ztf/ia5NGdaQIbGGPVjhsXa/V2ZY3nQzwUWl+aME
- qSKZacreVRFvFMXZ5F9a9wBvbiJ6ZGTqIc4f10pzOscCm6/fYO1XuFk0ctJJBWt6UrW4
- EQuKeRUvlNte221/jH0+oajz3hAwS8caVvtMCZIfta8HcQfzIYNRdKiCjlJ9O1gtbMQY
- /yQTtgQ0uU/yHvIqvR7JcV1XhLRGqwsbZ9CdfYvoM8HQWStE6tkEdApxdkgvggYu/7cH
- zlaEiXhqVLfXy3F/+dGS4mY7f+6yZGL4QV8av2/KFpPdcnOYjzLj7SXIAW+EcLZHlR/R
- joVA==
-X-Forwarded-Encrypted: i=1;
- AJvYcCVWjIsSR6DjfdUm5xdwQC6fY5KGhKNxo+8rQT9HqFJwLrVq7aGeOCPJ5XslibgMv6AStthYLxp5hhoo0chkC3LnXrGBe29Bf4ZE1VnBGrjzxIL3KPnQFgrAo5BJwY8m9x+9zP+zokoREyRarFRrtI1gXPRVJBlWs+ZFMGbWJ2qPIGZbACaxVlJN5rQ6AVeB5AU=
-X-Gm-Message-State: AOJu0YyrUGFxnj3W/c26Tl81Kqcsn3o2JeA3zZ3rAMg7+e7NRpAnw2pD
- uHY91mTLWMI/EFYafh5xQMY2DJyu3rGHf+vuQZWz9VyNj3NQbUey
-X-Google-Smtp-Source: AGHT+IEJzEq+ITFpoFT5d2FCW0FabJu/wW6r9SFjgCowaIPDswaadHMeAEHodcDXQSdliSMncRMnMA==
-X-Received: by 2002:a81:451d:0:b0:608:b15e:4686 with SMTP id
- s29-20020a81451d000000b00608b15e4686mr380500ywa.16.1708637478751; 
- Thu, 22 Feb 2024 13:31:18 -0800 (PST)
-Received: from localhost ([2601:344:8301:57f0:6d56:5106:b1c5:46d5])
- by smtp.gmail.com with ESMTPSA id
- u129-20020a816087000000b006083c19ea91sm2041632ywb.66.2024.02.22.13.31.17
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Thu, 22 Feb 2024 13:31:18 -0800 (PST)
-Date: Thu, 22 Feb 2024 13:31:17 -0800
-From: Yury Norov <yury.norov@gmail.com>
-To: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-Cc: Lucas De Marchi <lucas.demarchi@intel.com>,
- Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
- linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
- Jani Nikula <jani.nikula@linux.intel.com>,
- intel-xe@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
- Jani Nikula <jani.nikula@intel.com>
-Subject: Re: Re: [PATCH v3 1/3] bits: introduce fixed-type genmasks
-Message-ID: <Zde9Je1C0LLbXE6z@yury-ThinkPad>
-References: <20240208074521.577076-1-lucas.demarchi@intel.com>
- <20240208074521.577076-2-lucas.demarchi@intel.com>
- <CAA8EJpprfrtOjNzT6TFhV1n6MXzLdTahanfxcRW4uVjeHaBduA@mail.gmail.com>
- <ZdZlVn9BI-0q1Xdn@smile.fi.intel.com>
- <btssirjumey2kcp5dyhe6m3embdwd5bswjz3c6swrhxfijfhld@lztxaptkegw6>
- <ZddfF7kb54o2c/QR@yury-ThinkPad>
- <Zddiav19kX8FGKY9@smile.fi.intel.com>
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com
+ [205.220.168.131])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3C38F10EC4B;
+ Fri, 23 Feb 2024 15:50:11 +0000 (UTC)
+Received: from pps.filterd (m0279865.ppops.net [127.0.0.1])
+ by mx0a-0031df01.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id
+ 41N6wkh5025091; Fri, 23 Feb 2024 15:50:09 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+ message-id:date:mime-version:to:cc:from:subject:content-type
+ :content-transfer-encoding; s=qcppdkim1; bh=3exk5qV0X1GJG2wbXB2Z
+ JX1n03Di0j+dJ8xw5YC41kY=; b=Xq9oa2snBrxmOaOMoOUGaBvPqwE+wtlNpL7A
+ jab5ddtsH2+IFMe9RUjFd4hVD6GyzU1gmY4vvQRB3P68fCHXyByMWyqDPzlCNCzN
+ Sd20jQTg3T3/7f8TOCLJ4d9hBcpvOhQBfpZSJ0WqhcmWSU4UBbakUVHmWOq22ppm
+ Qq+9NTLV6OeUMoiob9IlSYa/evLX6CTPXTgpJxu0t8lBJKM3tep27xKJwHKZ9vOG
+ BfVSlKqURpp2zF/dMeUBCj1ehKt6I7EHf1qv7Og1pX6tTU8J5FwzoOQYpSVN09zn
+ N7e+vrRBwjophQD00y8Yllrjdtp7BWvN733Pea+EBzMyHduLQQ==
+Received: from nalasppmta04.qualcomm.com (Global_NAT1.qualcomm.com
+ [129.46.96.20])
+ by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3weg88swec-1
+ (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+ Fri, 23 Feb 2024 15:50:08 +0000 (GMT)
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com
+ [10.47.209.196])
+ by NALASPPMTA04.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 41NFo8Eq032361
+ (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+ Fri, 23 Feb 2024 15:50:08 GMT
+Received: from [10.226.59.182] (10.80.80.8) by nalasex01a.na.qualcomm.com
+ (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.40; Fri, 23 Feb
+ 2024 07:50:07 -0800
+Message-ID: <fe8b2841-cbf0-775e-6e74-50476b652f9f@quicinc.com>
+Date: Fri, 23 Feb 2024 08:50:06 -0700
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <Zddiav19kX8FGKY9@smile.fi.intel.com>
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
+ Thunderbird/91.6.0
+Content-Language: en-US
+To: Jani Nikula <jani.nikula@linux.intel.com>, <rodrigo.vivi@intel.com>,
+ <joonas.lahtinen@linux.intel.com>, Tvrtko Ursulin
+ <tvrtko.ursulin@linux.intel.com>
+CC: <intel-gfx@lists.freedesktop.org>, <intel-xe@lists.freedesktop.org>, "open
+ list:DRM PANEL DRIVERS" <dri-devel@lists.freedesktop.org>
+From: Jeffrey Hugo <quic_jhugo@quicinc.com>
+Subject: i915 build error on drm-misc-next
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800
+ signatures=585085
+X-Proofpoint-ORIG-GUID: 4CyBkN13sxwokaB0aDhMkzWFlnt-n7av
+X-Proofpoint-GUID: 4CyBkN13sxwokaB0aDhMkzWFlnt-n7av
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.272,Aquarius:18.0.1011,Hydra:6.0.619,FMLib:17.11.176.26
+ definitions=2024-02-23_02,2024-02-23_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ mlxlogscore=823
+ malwarescore=0 suspectscore=0 impostorscore=0 clxscore=1011 adultscore=0
+ phishscore=0 priorityscore=1501 bulkscore=0 mlxscore=0 spamscore=0
+ lowpriorityscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2402120000 definitions=main-2402230113
 X-Mailman-Approved-At: Mon, 26 Feb 2024 13:46:52 +0000
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -93,45 +90,40 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, Feb 22, 2024 at 05:04:10PM +0200, Andy Shevchenko wrote:
-> On Thu, Feb 22, 2024 at 06:49:59AM -0800, Yury Norov wrote:
-> > On Wed, Feb 21, 2024 at 03:59:06PM -0600, Lucas De Marchi wrote:
-> 
-> ...
-> 
-> > +#define __GENMASK(t, h, l) \
-> > +	((~0 - (1 << (l)) + 1) & (~0 >> (BITS_PER_LONG - 1 - (h))))
-> 
-> What's wrong on using the UL/ULL() macros?
+With the x86_64_defconfig I see the following when building drm-misc-next:
 
-Nothing wrong except that in the !__ASSEMBLY section they all are
-useless. And having that in mind, useless macros may hurt readability.
- 
-> Also it would be really good to avoid bifurcation of the implementations of
-> __GENMASK() for both cases.
+   CC      drivers/gpu/drm/i915/display/intel_crt.o
+   CC      drivers/gpu/drm/i915/display/intel_cx0_phy.o
+   CC      drivers/gpu/drm/i915/display/intel_ddi.o
+   CC      drivers/gpu/drm/i915/display/intel_ddi_buf_trans.o
+   CC      drivers/gpu/drm/i915/display/intel_display_device.o
+   CC      drivers/gpu/drm/i915/display/intel_display_trace.o
+   CC      drivers/gpu/drm/i915/display/intel_dkl_phy.o
+   CC      drivers/gpu/drm/i915/display/intel_dp.o
+   CC      drivers/gpu/drm/i915/display/intel_dp_aux.o
+   CC      drivers/gpu/drm/i915/display/intel_dp_aux_backlight.o
+   CC      drivers/gpu/drm/i915/display/intel_dp_hdcp.o
+   CC      drivers/gpu/drm/i915/display/intel_dp_link_training.o
+   CC      drivers/gpu/drm/i915/display/intel_dp_mst.o
+   CC      drivers/gpu/drm/i915/display/intel_dsi.o
+   CC      drivers/gpu/drm/i915/display/intel_dsi_dcs_backlight.o
+   CC      drivers/gpu/drm/i915/display/intel_dsi_vbt.o
+   CC      drivers/gpu/drm/i915/display/intel_dvo.o
+   CC      drivers/gpu/drm/i915/display/intel_gmbus.o
+   CC      drivers/gpu/drm/i915/display/intel_hdmi.o
+   CC      drivers/gpu/drm/i915/display/intel_lspcon.o
+   CC      drivers/gpu/drm/i915/display/intel_lvds.o
+   CC      drivers/gpu/drm/i915/display/intel_panel.o
+   CC      drivers/gpu/drm/i915/display/intel_pps.o
+drivers/gpu/drm/i915/display/intel_dp.c: In function 
+‘intel_write_dp_vsc_sdp’:
+drivers/gpu/drm/i915/display/intel_dp.c:4232:15: error: implicit 
+declaration of function ‘intel_dp_vsc_sdp_pack’; did you mean 
+‘drm_dp_vsc_sdp_pack’? [-Werror=implicit-function-declaration]
+  4232 |         len = intel_dp_vsc_sdp_pack(vsc, &sdp, sizeof(sdp));
+       |               ^~~~~~~~~~~~~~~~~~~~~
+       |               drm_dp_vsc_sdp_pack
 
-Not exactly. It would be really good if GENMASK_XX() will share the
-implementation (and they do). The underscored helper macro is not
-intended to be used directly, and I think nobody cares.
+Is this a known issue?
 
-> ...
-> 
-> > -#define __GENMASK(h, l) \
-> > -	(((~UL(0)) - (UL(1) << (l)) + 1) & \
-> > -	 (~UL(0) >> (BITS_PER_LONG - 1 - (h))))
-> 
-> This at bare minimum can be left untouched for asm case, no?
-
-As soon as we have to have different versions for the macro depending
-on __ASSEMBLY__, I would prefer to remove all compatibility black
-magic. After all, the <linux/bits.h> machinery to me is about the same
-level of abstraction as the stuff in <linux/const.h>, and in future we
-can try to remove dependency on it.
-
-This all is not a big deal to me. I can keep the old implementation
-for the asm, if you think it's really important.
-
-What are you thinking guys?
-
-Thanks,
-Yury
+-Jeff
