@@ -2,49 +2,48 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id B8825860BFE
-	for <lists+intel-gfx@lfdr.de>; Fri, 23 Feb 2024 09:17:24 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 66F40860BF9
+	for <lists+intel-gfx@lfdr.de>; Fri, 23 Feb 2024 09:17:21 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0B87110EB2F;
-	Fri, 23 Feb 2024 08:17:21 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 89BFA10EB2A;
+	Fri, 23 Feb 2024 08:17:19 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="a5rx7eeZ";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="BbZq1HwL";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0E5E110EB2A
- for <intel-gfx@lists.freedesktop.org>; Fri, 23 Feb 2024 08:17:13 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1045910EB2A
+ for <intel-gfx@lists.freedesktop.org>; Fri, 23 Feb 2024 08:17:15 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1708676233; x=1740212233;
+ t=1708676235; x=1740212235;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=70Gv/P3pPXzPQnMy4DxSN45gwSkqOBiJwm4FdpL8tPA=;
- b=a5rx7eeZqxIWHxs1c/icVJj3tMNLOCV2RHlYaNXFHvhWlzl9TuJ52pUV
- ZZa35YcmDO/XY/bRZndfnwrzbDkt1yM9F2AYVBSCT2+dDwPst4xR7Uber
- kxHv3ivPfyTXGLzZeht2mMbDYJL9iqt8nM4893gR1ClHVCIxrOjX/ewoi
- Qxf74u2YfbP1DMSUy6W9tA+EiSBUSi1jM3/PTj2tdxOpLiMI8O/JUgnhy
- T5lx2u7KGPzkZX1/tM07sF8P9BY4NUuPyYbhS4aP02NN4A2h7cIwa/mil
- jkun9QQFNpSr1AWd0WBeM2AYZZ10KyxbUiW7YyD+hBPosSM0z5jF8R52r A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10992"; a="2830058"
+ bh=Cw/MDmsdAvMuMP6byT1DXhOq60PB6edgrnFFjQ8j09Y=;
+ b=BbZq1HwLyzwYwc+n8M8DU/CRiKZ5FRO7IvN9aaR8G8Ub62dnfmwx7GoH
+ xIoa6Jv39p5BTB1zSAfO2A0vMZiA8DW77nqZtSLpfnjml7Fg+qpuR/30Y
+ Gk2oMF3U14w8OR1zSUbFDd2cYJMUN3UPEb1Bw34YFJEtkdutJQL6/lMO6
+ mNtxzNMLjejT1JK629AA17hxySSqu7Y6p3SO2T+dVE61IfQ+bPZoRaBid
+ SOt63Lhr2282pXDohbXrrIb6r7dPl8cycwnxLPTw3r/Nz6bU5U5Dn5ktK
+ WdrgpH/GpjqvHrt5O3vHkpspzrx2PhU5+YHhCEFkMYGIpQlV2cSXyM1eX w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10992"; a="2830061"
 X-IronPort-AV: E=Sophos;i="6.06,179,1705392000"; 
-   d="scan'208";a="2830058"
+   d="scan'208";a="2830061"
 Received: from orviesa003.jf.intel.com ([10.64.159.143])
  by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Feb 2024 00:17:13 -0800
+ 23 Feb 2024 00:17:15 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.06,179,1705392000"; d="scan'208";a="10529052"
+X-IronPort-AV: E=Sophos;i="6.06,179,1705392000"; d="scan'208";a="10529099"
 Received: from kandpal-x299-ud4-pro.iind.intel.com ([10.190.239.32])
- by orviesa003.jf.intel.com with ESMTP; 23 Feb 2024 00:17:11 -0800
+ by orviesa003.jf.intel.com with ESMTP; 23 Feb 2024 00:17:13 -0800
 From: Suraj Kandpal <suraj.kandpal@intel.com>
 To: intel-gfx@lists.freedesktop.org
 Cc: uma.shankar@intel.com, ankit.k.nautiyal@intel.com,
  Suraj Kandpal <suraj.kandpal@intel.com>
-Subject: [PATCH 11/13] drm/i915/hdcp: Don't enable HDCP1.4 directly from
- check_link
-Date: Fri, 23 Feb 2024 13:44:52 +0530
-Message-ID: <20240223081453.1576918-13-suraj.kandpal@intel.com>
+Subject: [PATCH 12/13] drm/i915/hdcp: Allocate stream id after HDCP AKE stage
+Date: Fri, 23 Feb 2024 13:44:53 +0530
+Message-ID: <20240223081453.1576918-14-suraj.kandpal@intel.com>
 X-Mailer: git-send-email 2.43.2
 In-Reply-To: <20240223081453.1576918-2-suraj.kandpal@intel.com>
 References: <20240223081453.1576918-2-suraj.kandpal@intel.com>
@@ -65,41 +64,252 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Whenever LIC fails instead of moving from ENABLED to DESIRED
-CP property we directly enable HDCP1.4 without informing the userspace
-of this failure in link integrity check.
-Now we will just update the value to DESIRED send the event to
-userspace and then continue with the normal flow of HDCP enablement.
+Allocate stream id after HDCP AKE stage and not before so that it
+can also be done during link integrity check.
+Right now for MST scenarios LIC fails after hdcp enablement for this
+reason.
+
+--v2
+-no need for else block in prepare_streams function [Ankit]
+
+--v3
+-remove intel_hdcp argument from required_content_stream function
+[Ankit]
 
 Signed-off-by: Suraj Kandpal <suraj.kandpal@intel.com>
 Reviewed-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_hdcp.c | 12 +++---------
- 1 file changed, 3 insertions(+), 9 deletions(-)
+ drivers/gpu/drm/i915/display/intel_hdcp.c | 137 ++++++++++------------
+ 1 file changed, 65 insertions(+), 72 deletions(-)
 
 diff --git a/drivers/gpu/drm/i915/display/intel_hdcp.c b/drivers/gpu/drm/i915/display/intel_hdcp.c
-index 1023153ba9d4..321c6dd8dbf5 100644
+index 321c6dd8dbf5..9edac27bab26 100644
 --- a/drivers/gpu/drm/i915/display/intel_hdcp.c
 +++ b/drivers/gpu/drm/i915/display/intel_hdcp.c
-@@ -1088,15 +1088,9 @@ static int intel_hdcp_check_link(struct intel_connector *connector)
- 		goto out;
- 	}
+@@ -30,7 +30,7 @@
+ #define KEY_LOAD_TRIES	5
+ #define HDCP2_LC_RETRY_CNT			3
  
--	ret = intel_hdcp1_enable(connector);
--	if (ret) {
--		drm_err(&i915->drm, "Failed to enable hdcp (%d)\n", ret);
--		intel_hdcp_update_value(connector,
--					DRM_MODE_CONTENT_PROTECTION_DESIRED,
--					true);
--		goto out;
+-static int intel_conn_to_vcpi(struct drm_atomic_state *state,
++static int intel_conn_to_vcpi(struct intel_atomic_state *state,
+ 			      struct intel_connector *connector)
+ {
+ 	struct drm_dp_mst_topology_mgr *mgr;
+@@ -43,7 +43,7 @@ static int intel_conn_to_vcpi(struct drm_atomic_state *state,
+ 		return 0;
+ 	mgr = connector->port->mgr;
+ 
+-	drm_modeset_lock(&mgr->base.lock, state->acquire_ctx);
++	drm_modeset_lock(&mgr->base.lock, state->base.acquire_ctx);
+ 	mst_state = to_drm_dp_mst_topology_state(mgr->base.state);
+ 	payload = drm_atomic_get_mst_payload_state(mst_state, connector->port);
+ 	if (drm_WARN_ON(mgr->dev, !payload))
+@@ -68,19 +68,51 @@ static int intel_conn_to_vcpi(struct drm_atomic_state *state,
+  * DP MST topology. Though it is not compulsory, security fw should change its
+  * policy to mark different content_types for different streams.
+  */
+-static void
+-intel_hdcp_required_content_stream(struct intel_digital_port *dig_port)
++static int
++intel_hdcp_required_content_stream(struct intel_atomic_state *state,
++				   struct intel_digital_port *dig_port)
+ {
++	struct drm_connector_list_iter conn_iter;
++	struct intel_digital_port *conn_dig_port;
++	struct intel_connector *connector;
++	struct drm_i915_private *i915 = to_i915(dig_port->base.base.dev);
+ 	struct hdcp_port_data *data = &dig_port->hdcp_port_data;
+ 	bool enforce_type0 = false;
+ 	int k;
+ 
+ 	if (dig_port->hdcp_auth_status)
+-		return;
++		return 0;
++
++	data->k = 0;
+ 
+ 	if (!dig_port->hdcp_mst_type1_capable)
+ 		enforce_type0 = true;
+ 
++	drm_connector_list_iter_begin(&i915->drm, &conn_iter);
++	for_each_intel_connector_iter(connector, &conn_iter) {
++		if (connector->base.status == connector_status_disconnected)
++			continue;
++
++		if (!intel_encoder_is_mst(intel_attached_encoder(connector)))
++			continue;
++
++		conn_dig_port = intel_attached_dig_port(connector);
++		if (conn_dig_port != dig_port)
++			continue;
++
++		data->streams[data->k].stream_id =
++			intel_conn_to_vcpi(state, connector);
++		data->k++;
++
++		/* if there is only one active stream */
++		if (dig_port->dp.active_mst_links <= 1)
++			break;
++	}
++	drm_connector_list_iter_end(&conn_iter);
++
++	if (drm_WARN_ON(&i915->drm, data->k > INTEL_NUM_PIPES(i915) || data->k == 0))
++		return -EINVAL;
++
+ 	/*
+ 	 * Apply common protection level across all streams in DP MST Topology.
+ 	 * Use highest supported content type for all streams in DP MST Topology.
+@@ -88,19 +120,25 @@ intel_hdcp_required_content_stream(struct intel_digital_port *dig_port)
+ 	for (k = 0; k < data->k; k++)
+ 		data->streams[k].stream_type =
+ 			enforce_type0 ? DRM_MODE_HDCP_CONTENT_TYPE0 : DRM_MODE_HDCP_CONTENT_TYPE1;
++
++	return 0;
+ }
+ 
+-static void intel_hdcp_prepare_streams(struct intel_connector *connector)
++static int intel_hdcp_prepare_streams(struct intel_atomic_state *state,
++				      struct intel_connector *connector)
+ {
+ 	struct intel_digital_port *dig_port = intel_attached_dig_port(connector);
+ 	struct hdcp_port_data *data = &dig_port->hdcp_port_data;
+ 	struct intel_hdcp *hdcp = &connector->hdcp;
+ 
+-	if (!intel_encoder_is_mst(intel_attached_encoder(connector))) {
+-		data->streams[0].stream_type = hdcp->content_type;
+-	} else {
+-		intel_hdcp_required_content_stream(dig_port);
+-	}
++	if (intel_encoder_is_mst(intel_attached_encoder(connector)))
++		return intel_hdcp_required_content_stream(state, dig_port);
++
++	data->k = 1;
++	data->streams[0].stream_id = 0;
++	data->streams[0].stream_type = hdcp->content_type;
++
++	return 0;
+ }
+ 
+ static
+@@ -1895,7 +1933,8 @@ hdcp2_propagate_stream_management_info(struct intel_connector *connector)
+ 	return ret;
+ }
+ 
+-static int hdcp2_authenticate_and_encrypt(struct intel_connector *connector)
++static int hdcp2_authenticate_and_encrypt(struct intel_atomic_state *state,
++					  struct intel_connector *connector)
+ {
+ 	struct intel_digital_port *dig_port = intel_attached_dig_port(connector);
+ 	struct drm_i915_private *i915 = to_i915(connector->base.dev);
+@@ -1904,7 +1943,13 @@ static int hdcp2_authenticate_and_encrypt(struct intel_connector *connector)
+ 	for (i = 0; i < tries && !dig_port->hdcp_auth_status; i++) {
+ 		ret = hdcp2_authenticate_sink(connector);
+ 		if (!ret) {
+-			intel_hdcp_prepare_streams(connector);
++			ret = intel_hdcp_prepare_streams(state, connector);
++			if (ret) {
++				drm_dbg_kms(&i915->drm,
++					    "Prepare stream failed.(%d)\n",
++					    ret);
++				break;
++			}
+ 
+ 			ret = hdcp2_propagate_stream_management_info(connector);
+ 			if (ret) {
+@@ -1949,7 +1994,8 @@ static int hdcp2_authenticate_and_encrypt(struct intel_connector *connector)
+ 	return ret;
+ }
+ 
+-static int _intel_hdcp2_enable(struct intel_connector *connector)
++static int _intel_hdcp2_enable(struct intel_atomic_state *state,
++			       struct intel_connector *connector)
+ {
+ 	struct drm_i915_private *i915 = to_i915(connector->base.dev);
+ 	struct intel_hdcp *hdcp = &connector->hdcp;
+@@ -1959,7 +2005,7 @@ static int _intel_hdcp2_enable(struct intel_connector *connector)
+ 		    connector->base.base.id, connector->base.name,
+ 		    hdcp->content_type);
+ 
+-	ret = hdcp2_authenticate_and_encrypt(connector);
++	ret = hdcp2_authenticate_and_encrypt(state, connector);
+ 	if (ret) {
+ 		drm_dbg_kms(&i915->drm, "HDCP2 Type%d  Enabling Failed. (%d)\n",
+ 			    hdcp->content_type, ret);
+@@ -2287,52 +2333,6 @@ int intel_hdcp_init(struct intel_connector *connector,
+ 	return 0;
+ }
+ 
+-static int
+-intel_hdcp_set_streams(struct intel_digital_port *dig_port,
+-		       struct intel_atomic_state *state)
+-{
+-	struct drm_connector_list_iter conn_iter;
+-	struct intel_digital_port *conn_dig_port;
+-	struct intel_connector *connector;
+-	struct drm_i915_private *i915 = to_i915(dig_port->base.base.dev);
+-	struct hdcp_port_data *data = &dig_port->hdcp_port_data;
+-
+-	if (!intel_encoder_is_mst(&dig_port->base)) {
+-		data->k = 1;
+-		data->streams[0].stream_id = 0;
+-		return 0;
 -	}
 -
-+	intel_hdcp_update_value(connector,
-+				DRM_MODE_CONTENT_PROTECTION_DESIRED,
-+				true);
- out:
- 	mutex_unlock(&dig_port->hdcp_mutex);
- 	mutex_unlock(&hdcp->mutex);
+-	data->k = 0;
+-
+-	drm_connector_list_iter_begin(&i915->drm, &conn_iter);
+-	for_each_intel_connector_iter(connector, &conn_iter) {
+-		if (connector->base.status == connector_status_disconnected)
+-			continue;
+-
+-		if (!intel_encoder_is_mst(intel_attached_encoder(connector)))
+-			continue;
+-
+-		conn_dig_port = intel_attached_dig_port(connector);
+-		if (conn_dig_port != dig_port)
+-			continue;
+-
+-		data->streams[data->k].stream_id =
+-			intel_conn_to_vcpi(&state->base, connector);
+-		data->k++;
+-
+-		/* if there is only one active stream */
+-		if (dig_port->dp.active_mst_links <= 1)
+-			break;
+-	}
+-	drm_connector_list_iter_end(&conn_iter);
+-
+-	if (drm_WARN_ON(&i915->drm, data->k > INTEL_NUM_PIPES(i915) || data->k == 0))
+-		return -EINVAL;
+-
+-	return 0;
+-}
+-
+ static int _intel_hdcp_enable(struct intel_atomic_state *state,
+ 			      struct intel_encoder *encoder,
+ 			      const struct intel_crtc_state *pipe_config,
+@@ -2378,17 +2378,10 @@ static int _intel_hdcp_enable(struct intel_atomic_state *state,
+ 	 * is capable of HDCP2.2, it is preferred to use HDCP2.2.
+ 	 */
+ 	if (intel_hdcp2_get_capability(connector)) {
+-		ret = intel_hdcp_set_streams(dig_port, state);
+-		if (!ret) {
+-			ret = _intel_hdcp2_enable(connector);
+-			if (!ret)
+-				check_link_interval =
+-					DRM_HDCP2_CHECK_PERIOD_MS;
+-		} else {
+-			drm_dbg_kms(&i915->drm,
+-				    "Set content streams failed: (%d)\n",
+-				    ret);
+-		}
++		ret = _intel_hdcp2_enable(state, connector);
++		if (!ret)
++			check_link_interval =
++				DRM_HDCP2_CHECK_PERIOD_MS;
+ 	}
+ 
+ 	/*
 -- 
 2.43.2
 
