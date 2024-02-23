@@ -2,88 +2,30 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 62CA7861A5F
-	for <lists+intel-gfx@lfdr.de>; Fri, 23 Feb 2024 18:47:29 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 763E4861A7D
+	for <lists+intel-gfx@lfdr.de>; Fri, 23 Feb 2024 18:49:45 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1B58210EC77;
-	Fri, 23 Feb 2024 17:47:26 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=quicinc.com header.i=@quicinc.com header.b="OAIju6/Z";
-	dkim-atps=neutral
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1F33B10EC80;
+	Fri, 23 Feb 2024 17:49:44 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com
- [205.220.180.131])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BD34210EC75;
- Fri, 23 Feb 2024 17:47:24 +0000 (UTC)
-Received: from pps.filterd (m0279872.ppops.net [127.0.0.1])
- by mx0a-0031df01.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id
- 41NHNYom025195; Fri, 23 Feb 2024 17:47:15 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
- message-id:date:mime-version:subject:to:cc:references:from
- :in-reply-to:content-type:content-transfer-encoding; s=
- qcppdkim1; bh=xRoqTuKmOBF7JPUBA4wi7VVnck+vGevcA2k6v1yq9vw=; b=OA
- Iju6/ZhwX41Qo5tRd1FuICen7UW+2D1wz+JQeBYrdswXADkac3sVNPRfTo6y/BiS
- s08jc1jSbZM/aZEEaOmjlfj9KJMazFLf5D01FzcwZHsw+qEfV7X6CoEQomOPRaqm
- TMjrDN0tKi/TYNm6k8DBdpwm52BKEPxlKtSiuEJDsfjhyh4PN3ComJlDRq8mKZuM
- oIXdlJbuNLVgxfguwZeSILnwbb6n5DfZf+G1K19MzV/y3L6jXumdc6AXCTZkbhBX
- lOc1ch/ZOkPwKli6hJIpTVecbdBX6q1QZTLmI+LnNzk7kBf+3aRElsYTG8a6DQgz
- BRL4enju3+GvAWJYpyiA==
-Received: from nalasppmta04.qualcomm.com (Global_NAT1.qualcomm.com
- [129.46.96.20])
- by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3wesgg127q-1
- (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
- Fri, 23 Feb 2024 17:47:15 +0000 (GMT)
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com
- [10.47.209.196])
- by NALASPPMTA04.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 41NHlEoM023137
- (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
- Fri, 23 Feb 2024 17:47:14 GMT
-Received: from [10.110.76.211] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.40; Fri, 23 Feb
- 2024 09:47:13 -0800
-Message-ID: <6ee1af5a-413c-1c09-5234-ceb8d8e605ad@quicinc.com>
-Date: Fri, 23 Feb 2024 09:47:11 -0800
+Received: from 8e613ede5ea5 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5EF1E10EC8B;
+ Fri, 23 Feb 2024 17:49:43 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============3433973063338322056=="
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.11.0
-Subject: Re: i915 build error on drm-misc-next
-Content-Language: en-US
-To: Rodrigo Vivi <rodrigo.vivi@intel.com>, Jeffrey Hugo
- <quic_jhugo@quicinc.com>, =?UTF-8?Q?Jouni_H=c3=b6gander?=
- <jouni.hogander@intel.com>, Maarten Lankhorst
- <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>,
- Thomas Zimmermann <tzimmermann@suse.de>
-CC: Jani Nikula <jani.nikula@linux.intel.com>,
- <joonas.lahtinen@linux.intel.com>, Tvrtko Ursulin
- <tvrtko.ursulin@linux.intel.com>,
- <intel-gfx@lists.freedesktop.org>, <intel-xe@lists.freedesktop.org>,
- "open list:DRM PANEL DRIVERS" <dri-devel@lists.freedesktop.org>,
- Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-References: <fe8b2841-cbf0-775e-6e74-50476b652f9f@quicinc.com>
- <ZdjPRzGLfV7RAEYu@intel.com>
-From: Abhinav Kumar <quic_abhinavk@quicinc.com>
-In-Reply-To: <ZdjPRzGLfV7RAEYu@intel.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800
- signatures=585085
-X-Proofpoint-GUID: _KXp9wmnd1KV9P48YI4yyY_92wQFNuGf
-X-Proofpoint-ORIG-GUID: _KXp9wmnd1KV9P48YI4yyY_92wQFNuGf
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.272,Aquarius:18.0.1011,Hydra:6.0.619,FMLib:17.11.176.26
- definitions=2024-02-23_03,2024-02-23_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- mlxlogscore=999 bulkscore=0
- suspectscore=0 adultscore=0 spamscore=0 lowpriorityscore=0 impostorscore=0
- mlxscore=0 malwarescore=0 clxscore=1011 priorityscore=1501 phishscore=0
- classifier=spam adjust=0 reason=mlx scancount=1 engine=8.19.0-2402120000
- definitions=main-2402230129
+Subject: =?utf-8?q?=E2=9C=93_Fi=2ECI=2EBAT=3A_success_for_drm/i915/display=3A_Save_a_?=
+ =?utf-8?q?few_bytes_of_memory_in_intel=5Fbacklight=5Fdevice=5Fregister=28?=
+ =?utf-8?q?=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Christophe JAILLET" <christophe.jaillet@wanadoo.fr>
+Cc: intel-gfx@lists.freedesktop.org
+Date: Fri, 23 Feb 2024 17:49:43 -0000
+Message-ID: <170871058339.264278.4415861859172926172@8e613ede5ea5>
+X-Patchwork-Hint: ignore
+References: <ecfdb3af5005e05131e2fb93fd870830f39a8c29.1708708142.git.christophe.jaillet@wanadoo.fr>
+In-Reply-To: <ecfdb3af5005e05131e2fb93fd870830f39a8c29.1708708142.git.christophe.jaillet@wanadoo.fr>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -96,79 +38,135 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-CC Dmitry
+--===============3433973063338322056==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Hi Rodrigo
+== Series Details ==
 
-On 2/23/2024 9:00 AM, Rodrigo Vivi wrote:
-> On Fri, Feb 23, 2024 at 08:50:06AM -0700, Jeffrey Hugo wrote:
->> With the x86_64_defconfig I see the following when building drm-misc-next:
->>
->>    CC      drivers/gpu/drm/i915/display/intel_crt.o
->>    CC      drivers/gpu/drm/i915/display/intel_cx0_phy.o
->>    CC      drivers/gpu/drm/i915/display/intel_ddi.o
->>    CC      drivers/gpu/drm/i915/display/intel_ddi_buf_trans.o
->>    CC      drivers/gpu/drm/i915/display/intel_display_device.o
->>    CC      drivers/gpu/drm/i915/display/intel_display_trace.o
->>    CC      drivers/gpu/drm/i915/display/intel_dkl_phy.o
->>    CC      drivers/gpu/drm/i915/display/intel_dp.o
->>    CC      drivers/gpu/drm/i915/display/intel_dp_aux.o
->>    CC      drivers/gpu/drm/i915/display/intel_dp_aux_backlight.o
->>    CC      drivers/gpu/drm/i915/display/intel_dp_hdcp.o
->>    CC      drivers/gpu/drm/i915/display/intel_dp_link_training.o
->>    CC      drivers/gpu/drm/i915/display/intel_dp_mst.o
->>    CC      drivers/gpu/drm/i915/display/intel_dsi.o
->>    CC      drivers/gpu/drm/i915/display/intel_dsi_dcs_backlight.o
->>    CC      drivers/gpu/drm/i915/display/intel_dsi_vbt.o
->>    CC      drivers/gpu/drm/i915/display/intel_dvo.o
->>    CC      drivers/gpu/drm/i915/display/intel_gmbus.o
->>    CC      drivers/gpu/drm/i915/display/intel_hdmi.o
->>    CC      drivers/gpu/drm/i915/display/intel_lspcon.o
->>    CC      drivers/gpu/drm/i915/display/intel_lvds.o
->>    CC      drivers/gpu/drm/i915/display/intel_panel.o
->>    CC      drivers/gpu/drm/i915/display/intel_pps.o
->> drivers/gpu/drm/i915/display/intel_dp.c: In function
->> ‘intel_write_dp_vsc_sdp’:
->> drivers/gpu/drm/i915/display/intel_dp.c:4232:15: error: implicit declaration
->> of function ‘intel_dp_vsc_sdp_pack’; did you mean ‘drm_dp_vsc_sdp_pack’?
->> [-Werror=implicit-function-declaration]
->>   4232 |         len = intel_dp_vsc_sdp_pack(vsc, &sdp, sizeof(sdp));
->>        |               ^~~~~~~~~~~~~~~~~~~~~
->>        |               drm_dp_vsc_sdp_pack
->>
->> Is this a known issue?
-> 
-> o.O - what a mistery!
-> 
-> it looks that drm-misc-next has only part of the patch:
-> 31a5b6ed88c7 ("drm/i915/display: Unify VSC SPD preparation")
-> 
-> without the patch itself...
-> 
-> I couldn't even trace back to understand how the declaration is
-> gone from the drm-misc-next...
-> 
+Series: drm/i915/display: Save a few bytes of memory in intel_backlight_device_register()
+URL   : https://patchwork.freedesktop.org/series/130319/
+State : success
 
-Looks like the issue here is that the below patch which landed in 
-drm-misc-next
+== Summary ==
 
-https://patchwork.freedesktop.org/patch/579128/?series=130145&rev=1
+CI Bug Log - changes from CI_DRM_14328 -> Patchwork_130319v1
+====================================================
 
-was based on top of drm-tip because the intel CI runs on drm-tip and not 
-drm-misc-next.
+Summary
+-------
 
-But, https://patchwork.freedesktop.org/patch/572622/ is not present in 
-drm-misc-next.
+  **SUCCESS**
 
-Hence this broke the compilation.
+  No regressions found.
 
-How would you prefer to fix this? We revert 
-https://patchwork.freedesktop.org/series/130145/ from drm-misc and land 
-it through i915 tree and can you provide us a tag from the i915 tree to 
-rebase our msm-next tree on?
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130319v1/index.html
 
->>
->> -Jeff
+Participating hosts (37 -> 35)
+------------------------------
+
+  Missing    (2): fi-snb-2520m bat-arls-3 
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_130319v1 that come from known issues:
+
+### IGT changes ###
+
+#### Warnings ####
+
+  * igt@i915_selftest@live@memory_region:
+    - bat-arls-2:         [DMESG-WARN][1] ([i915#10194]) -> [ABORT][2] ([i915#10194])
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14328/bat-arls-2/igt@i915_selftest@live@memory_region.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130319v1/bat-arls-2/igt@i915_selftest@live@memory_region.html
+
+  
+  [i915#10194]: https://gitlab.freedesktop.org/drm/intel/issues/10194
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_14328 -> Patchwork_130319v1
+
+  CI-20190529: 20190529
+  CI_DRM_14328: aed3f498154b240f09098da53b8fd5639ee54ecf @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_7729: 7729
+  Patchwork_130319v1: aed3f498154b240f09098da53b8fd5639ee54ecf @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+### Linux commits
+
+ae6b78ecab42 drm/i915/display: Save a few bytes of memory in intel_backlight_device_register()
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130319v1/index.html
+
+--===============3433973063338322056==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/i915/display: Save a few bytes of memory in intel_backlight_device_register()</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/130319/">https://patchwork.freedesktop.org/series/130319/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130319v1/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130319v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_14328 -&gt; Patchwork_130319v1</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130319v1/index.html</p>
+<h2>Participating hosts (37 -&gt; 35)</h2>
+<p>Missing    (2): fi-snb-2520m bat-arls-3 </p>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_130319v1 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Warnings</h4>
+<ul>
+<li>igt@i915_selftest@live@memory_region:<ul>
+<li>bat-arls-2:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14328/bat-arls-2/igt@i915_selftest@live@memory_region.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/10194">i915#10194</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130319v1/bat-arls-2/igt@i915_selftest@live@memory_region.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/10194">i915#10194</a>)</li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_14328 -&gt; Patchwork_130319v1</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_14328: aed3f498154b240f09098da53b8fd5639ee54ecf @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_7729: 7729<br />
+  Patchwork_130319v1: aed3f498154b240f09098da53b8fd5639ee54ecf @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+<h3>Linux commits</h3>
+<p>ae6b78ecab42 drm/i915/display: Save a few bytes of memory in intel_backlight_device_register()</p>
+
+</body>
+</html>
+
+--===============3433973063338322056==--
