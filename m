@@ -2,58 +2,29 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 487928610AE
-	for <lists+intel-gfx@lfdr.de>; Fri, 23 Feb 2024 12:45:06 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id D2B558611C7
+	for <lists+intel-gfx@lfdr.de>; Fri, 23 Feb 2024 13:45:14 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AC60510E08B;
-	Fri, 23 Feb 2024 11:45:04 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="JPadYVlQ";
-	dkim-atps=neutral
+	by gabe.freedesktop.org (Postfix) with ESMTP id D79B110EBF6;
+	Fri, 23 Feb 2024 12:45:12 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EE8F610E083
- for <intel-gfx@lists.freedesktop.org>; Fri, 23 Feb 2024 11:45:03 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1708688704; x=1740224704;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=cewHMOUP9XE8f1iBRQp0XY/AtymJk2wyw8t26geqAWQ=;
- b=JPadYVlQGniku6YYYKMFA+USUhmZWXZg9bf0H0lNsEvVyMbi5qQQv6Hy
- 9HT4TZZJxGAUkLwG1ud9nARiZlkD6DprTmgJ2eC2Mc0Uai7UUc7y+DzXs
- D+te+ZZQGHHwsCwLN9z2az1GGFL2s01+f7lBE75TVMb2nmcdEfhjRV1ee
- MbVTDqGBkxJ4hmXBfnnaw7dS2WVArzHuaRGoggfNxyvRCJYsBoQSdtPQn
- KHh4Wcl8pdDYHB0ObNJmROTn4AoXiAgRbVyewe/zoOXTLrrIndfX5thmA
- RsJu0ZtZefqZHRiKV4XAkBSudfJqJKtHN5D6Y6Q/569a2SN7zIYsX4Sgo Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10992"; a="3504620"
-X-IronPort-AV: E=Sophos;i="6.06,179,1705392000"; 
-   d="scan'208";a="3504620"
-Received: from fmviesa006.fm.intel.com ([10.60.135.146])
- by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Feb 2024 03:45:04 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.06,179,1705392000"; 
-   d="scan'208";a="6092942"
-Received: from crojewsk-ctrl.igk.intel.com ([10.102.9.28])
- by fmviesa006.fm.intel.com with ESMTP; 23 Feb 2024 03:45:00 -0800
-From: Cezary Rojewski <cezary.rojewski@intel.com>
-To: broonie@kernel.org
-Cc: alsa-devel@alsa-project.org, linux-sound@vger.kernel.org, tiwai@suse.com,
- perex@perex.cz, jani.nikula@linux.intel.com,
- joonas.lahtinen@linux.intel.com, rodrigo.vivi@intel.com,
- tvrtko.ursulin@linux.intel.com, intel-gfx@lists.freedesktop.org,
- amadeuszx.slawinski@linux.intel.com, pierre-louis.bossart@linux.intel.com,
- hdegoede@redhat.com, Cezary Rojewski <cezary.rojewski@intel.com>
-Subject: [PATCH v2 4/4] ALSA: hda: Reuse for_each_pcm_streams()
-Date: Fri, 23 Feb 2024 12:46:26 +0100
-Message-Id: <20240223114626.1052784-5-cezary.rojewski@intel.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20240223114626.1052784-1-cezary.rojewski@intel.com>
-References: <20240223114626.1052784-1-cezary.rojewski@intel.com>
+Received: from 8e613ede5ea5 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5DDF710EBF6;
+ Fri, 23 Feb 2024 12:45:11 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============5952408540552193303=="
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=97_Fi=2ECI=2EBAT=3A_failure_for_ALSA/ASoC=3A_Conditionally_?=
+ =?utf-8?q?skip_i915_init_and_cleanups_=28rev2=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Cezary Rojewski" <cezary.rojewski@intel.com>
+Cc: intel-gfx@lists.freedesktop.org
+Date: Fri, 23 Feb 2024 12:45:11 -0000
+Message-ID: <170869231138.247199.8276375259346807172@8e613ede5ea5>
+X-Patchwork-Hint: ignore
+References: <20240223114626.1052784-1-cezary.rojewski@intel.com>
+In-Reply-To: <20240223114626.1052784-1-cezary.rojewski@intel.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -66,29 +37,195 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Use the macro to improve readability.
+--===============5952408540552193303==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Signed-off-by: Cezary Rojewski <cezary.rojewski@intel.com>
----
- sound/pci/hda/hda_codec.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+== Series Details ==
 
-diff --git a/sound/pci/hda/hda_codec.c b/sound/pci/hda/hda_codec.c
-index 12f02cdc9659..2cac337f5263 100644
---- a/sound/pci/hda/hda_codec.c
-+++ b/sound/pci/hda/hda_codec.c
-@@ -3313,7 +3313,7 @@ int snd_hda_codec_parse_pcms(struct hda_codec *codec)
- 	list_for_each_entry(cpcm, &codec->pcm_list_head, list) {
- 		int stream;
- 
--		for (stream = 0; stream < 2; stream++) {
-+		for_each_pcm_streams(stream) {
- 			struct hda_pcm_stream *info = &cpcm->stream[stream];
- 
- 			if (!info->substreams)
--- 
-2.25.1
+Series: ALSA/ASoC: Conditionally skip i915 init and cleanups (rev2)
+URL   : https://patchwork.freedesktop.org/series/130271/
+State : failure
 
+== Summary ==
+
+CI Bug Log - changes from CI_DRM_14325 -> Patchwork_130271v2
+====================================================
+
+Summary
+-------
+
+  **FAILURE**
+
+  Serious unknown changes coming with Patchwork_130271v2 absolutely need to be
+  verified manually.
+  
+  If you think the reported changes have nothing to do with the changes
+  introduced in Patchwork_130271v2, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them
+  to document this new failure mode, which will reduce false positives in CI.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130271v2/index.html
+
+Participating hosts (36 -> 35)
+------------------------------
+
+  Missing    (1): fi-snb-2520m 
+
+Possible new issues
+-------------------
+
+  Here are the unknown changes that may have been introduced in Patchwork_130271v2:
+
+### IGT changes ###
+
+#### Possible regressions ####
+
+  * igt@gem_exec_fence@basic-busy@vcs1:
+    - bat-arls-1:         [PASS][1] -> [DMESG-WARN][2]
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14325/bat-arls-1/igt@gem_exec_fence@basic-busy@vcs1.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130271v2/bat-arls-1/igt@gem_exec_fence@basic-busy@vcs1.html
+
+  
+Known issues
+------------
+
+  Here are the changes found in Patchwork_130271v2 that come from known issues:
+
+### IGT changes ###
+
+#### Possible fixes ####
+
+  * igt@gem_exec_create@basic@smem:
+    - bat-arls-1:         [DMESG-WARN][3] ([i915#10194]) -> [PASS][4]
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14325/bat-arls-1/igt@gem_exec_create@basic@smem.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130271v2/bat-arls-1/igt@gem_exec_create@basic@smem.html
+
+  * igt@i915_selftest@live@execlists:
+    - fi-bsw-nick:        [ABORT][5] ([i915#7911]) -> [PASS][6]
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14325/fi-bsw-nick/igt@i915_selftest@live@execlists.html
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130271v2/fi-bsw-nick/igt@i915_selftest@live@execlists.html
+
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+  [i915#10194]: https://gitlab.freedesktop.org/drm/intel/issues/10194
+  [i915#5591]: https://gitlab.freedesktop.org/drm/intel/issues/5591
+  [i915#7911]: https://gitlab.freedesktop.org/drm/intel/issues/7911
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_14325 -> Patchwork_130271v2
+
+  CI-20190529: 20190529
+  CI_DRM_14325: 115d0ed85f58e87d2d7a057426350fec5b217cc9 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_7728: 7728
+  Patchwork_130271v2: 115d0ed85f58e87d2d7a057426350fec5b217cc9 @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+### Linux commits
+
+0b83f358f4bf ALSA: hda: Reuse for_each_pcm_streams()
+aa841f78b78e ASoC: codecs: hda: Cleanup error messages
+8c5caf70cad5 ASoC: codecs: hda: Skip HDMI/DP registration if i915 is missing
+710017466247 ALSA: hda: Skip i915 initialization on CNL/LKF-based platforms
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130271v2/index.html
+
+--===============5952408540552193303==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>ALSA/ASoC: Conditionally skip i915 init and cleanups (rev2)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/130271/">https://patchwork.freedesktop.org/series/130271/</a></td></tr>
+<tr><td><b>State:</b></td><td>failure</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130271v2/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130271v2/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_14325 -&gt; Patchwork_130271v2</h1>
+<h2>Summary</h2>
+<p><strong>FAILURE</strong></p>
+<p>Serious unknown changes coming with Patchwork_130271v2 absolutely need to be<br />
+  verified manually.</p>
+<p>If you think the reported changes have nothing to do with the changes<br />
+  introduced in Patchwork_130271v2, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them<br />
+  to document this new failure mode, which will reduce false positives in CI.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130271v2/index.html</p>
+<h2>Participating hosts (36 -&gt; 35)</h2>
+<p>Missing    (1): fi-snb-2520m </p>
+<h2>Possible new issues</h2>
+<p>Here are the unknown changes that may have been introduced in Patchwork_130271v2:</p>
+<h3>IGT changes</h3>
+<h4>Possible regressions</h4>
+<ul>
+<li>igt@gem_exec_fence@basic-busy@vcs1:<ul>
+<li>bat-arls-1:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14325/bat-arls-1/igt@gem_exec_fence@basic-busy@vcs1.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130271v2/bat-arls-1/igt@gem_exec_fence@basic-busy@vcs1.html">DMESG-WARN</a></li>
+</ul>
+</li>
+</ul>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_130271v2 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Possible fixes</h4>
+<ul>
+<li>
+<p>igt@gem_exec_create@basic@smem:</p>
+<ul>
+<li>bat-arls-1:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14325/bat-arls-1/igt@gem_exec_create@basic@smem.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/10194">i915#10194</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130271v2/bat-arls-1/igt@gem_exec_create@basic@smem.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@execlists:</p>
+<ul>
+<li>fi-bsw-nick:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14325/fi-bsw-nick/igt@i915_selftest@live@execlists.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/7911">i915#7911</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130271v2/fi-bsw-nick/igt@i915_selftest@live@execlists.html">PASS</a></li>
+</ul>
+</li>
+</ul>
+<p>{name}: This element is suppressed. This means it is ignored when computing<br />
+          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_14325 -&gt; Patchwork_130271v2</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_14325: 115d0ed85f58e87d2d7a057426350fec5b217cc9 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_7728: 7728<br />
+  Patchwork_130271v2: 115d0ed85f58e87d2d7a057426350fec5b217cc9 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+<h3>Linux commits</h3>
+<p>0b83f358f4bf ALSA: hda: Reuse for_each_pcm_streams()<br />
+aa841f78b78e ASoC: codecs: hda: Cleanup error messages<br />
+8c5caf70cad5 ASoC: codecs: hda: Skip HDMI/DP registration if i915 is missing<br />
+710017466247 ALSA: hda: Skip i915 initialization on CNL/LKF-based platforms</p>
+
+</body>
+</html>
+
+--===============5952408540552193303==--
