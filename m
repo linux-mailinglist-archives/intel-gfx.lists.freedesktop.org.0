@@ -2,65 +2,30 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3C595861F74
-	for <lists+intel-gfx@lfdr.de>; Fri, 23 Feb 2024 23:14:50 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 657B9862093
+	for <lists+intel-gfx@lfdr.de>; Sat, 24 Feb 2024 00:21:19 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B1FC210E0ED;
-	Fri, 23 Feb 2024 22:14:48 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="bzO+bUTa";
-	dkim-atps=neutral
+	by gabe.freedesktop.org (Postfix) with ESMTP id 55EDC10ECEA;
+	Fri, 23 Feb 2024 23:21:16 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 00D7110E0ED;
- Fri, 23 Feb 2024 22:14:46 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1708726487; x=1740262487;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=y1miJ1WDsld69IrDRlWeuljzXQmgdNODcm8JPexiqUs=;
- b=bzO+bUTa8ks8HmDqa+SG+phDShUErINK7LCqQ536a9pstrz5DDZY94PN
- 3XWdfHHuTlwHlK8/i613194qIqf+bsoU0PN7lX9pIrKras6WfM5rlqoH/
- +XfTIwVpuqJYI/kHJDE0TgHo5KWwu3n1nS6bynQIX9yPYAktv93AZGfIW
- NUsBUbrK80+tCZZsCfKTfvpLXEV0b+Klc1HVAmqBas6b67ZE3ejMuEx1e
- dklDdtwIk+QHMNjTr2ZxqpV6EDmK2U5v/IjrazNNE+XqbqoTzetKZQfAK
- gYF79EMqHSTZDFyoPP6alYD3Povy//GKoXaBqvol3eYsN0Jtsm1oHdoie Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10993"; a="2932449"
-X-IronPort-AV: E=Sophos;i="6.06,180,1705392000"; 
-   d="scan'208";a="2932449"
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
- by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Feb 2024 14:14:47 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10993"; a="827767929"
-X-IronPort-AV: E=Sophos;i="6.06,180,1705392000"; d="scan'208";a="827767929"
-Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.74])
- by orsmga001.jf.intel.com with SMTP; 23 Feb 2024 14:14:42 -0800
-Received: by stinkbox (sSMTP sendmail emulation);
- Sat, 24 Feb 2024 00:14:41 +0200
-Date: Sat, 24 Feb 2024 00:14:41 +0200
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Imre Deak <imre.deak@intel.com>
-Cc: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- Mika Westerberg <mika.westerberg@linux.intel.com>,
- Uma Shankar <uma.shankar@intel.com>,
- Jouni =?iso-8859-1?Q?H=F6gander?= <jouni.hogander@intel.com>,
- Saranya Gopal <saranya.gopal@intel.com>,
- Rajaram Regupathy <rajaram.regupathy@intel.com>,
- Gil Fine <gil.fine@intel.com>, Naama Shachar <naamax.shachar@intel.com>,
- Pengfei Xu <pengfei.xu@intel.com>
-Subject: Re: [PATCH v2 00/21] drm/i915: Add Display Port tunnel BW allocation
- support
-Message-ID: <ZdkY0WvQ98nDaQoF@intel.com>
-References: <20240220211841.448846-1-imre.deak@intel.com>
+Received: from 8e613ede5ea5 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5ECB410ECEA;
+ Fri, 23 Feb 2024 23:21:15 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20240220211841.448846-1-imre.deak@intel.com>
-X-Patchwork-Hint: comment
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=97_Fi=2ECI=2ESPARSE=3A_warning_for_series_starting_with_=5B?=
+ =?utf-8?q?1/3=5D_drm/i915/bios=3A_bump_expected_child_device_size_=28rev3?=
+ =?utf-8?q?=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Jani Nikula" <jani.nikula@intel.com>
+Cc: intel-gfx@lists.freedesktop.org
+Date: Fri, 23 Feb 2024 23:21:15 -0000
+Message-ID: <170873047538.264278.11579215836009747489@8e613ede5ea5>
+X-Patchwork-Hint: ignore
+References: <20240131184841.872487-1-jani.nikula@intel.com>
+In-Reply-To: <20240131184841.872487-1-jani.nikula@intel.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -73,107 +38,105 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, Feb 20, 2024 at 11:18:20PM +0200, Imre Deak wrote:
-> This is v2 of [1], with the following changes:
-> 
-> - Several functional/typo/formatting fixes, detailed in the patches.
-> - Move the BW allocation from encoder hooks to
->   intel_atomic_commit_tail() fixing the allocation for MST streams
->   enabled/disabled w/o a full modeset (i.e. w/o re-enabling the master
->   stream).
-> - Fix an MST mode restore issue during system resume, which also lead
->   to a tunnel BW allocation failure. (Patch 3)
-> - Ensure a DPCD DPRX cap read as required by the TBT CM any time a long
->   HPD pulse is detected. (Patch 20)
-> - Explicitly disable the BW allocation mode during system suspend.
-> 
-> The patchset is also available at:
-> https://github.com/ideak/linux/commits/dp_tun_bw_alloc
-> 
-> Cc: Mika Westerberg <mika.westerberg@linux.intel.com>
-> Cc: Ville Syrjälä <ville.syrjala@linux.intel.com>
-> Cc: Uma Shankar <uma.shankar@intel.com>
-> Cc: Jouni Högander <jouni.hogander@intel.com>
-> Cc: Saranya Gopal <saranya.gopal@intel.com>
-> Cc: Rajaram Regupathy <rajaram.regupathy@intel.com>
-> Cc: Gil Fine <gil.fine@intel.com>
-> Cc: Naama Shachar <naamax.shachar@intel.com>
-> Cc: Pengfei Xu <pengfei.xu@intel.com>
-> 
-> [1] https://lore.kernel.org/all/20240123102850.390126-1-imre.deak@intel.com
-> 
-> Imre Deak (21):
->   drm/dp: Add drm_dp_max_dprx_data_rate()
->   drm/dp: Add support for DP tunneling
->   drm/i915: Fix display bpp limit computation during system resume
->   drm/i915/dp: Add support to notify MST connectors to retry modesets
->   drm/i915/dp: Use drm_dp_max_dprx_data_rate()
->   drm/i915/dp: Factor out intel_dp_config_required_rate()
->   drm/i915/dp: Export intel_dp_max_common_rate/lane_count()
->   drm/i915/dp: Factor out intel_dp_update_sink_caps()
->   drm/i915/dp: Factor out intel_dp_read_dprx_caps()
->   drm/i915/dp: Add intel_dp_max_link_data_rate()
->   drm/i915/dp: Add way to get active pipes with syncing commits
->   drm/i915/dp: Add support for DP tunnel BW allocation
->   drm/i915/dp: Add DP tunnel atomic state and check BW limit
->   drm/i915/dp: Account for tunnel BW limit in
->     intel_dp_max_link_data_rate()
->   drm/i915/dp: Compute DP tunnel BW during encoder state computation
->   drm/i915/dp: Allocate/free DP tunnel BW in the encoder enable/disable
->     hooks
->   drm/i915/dp: Handle DP tunnel IRQs
->   drm/i915/dp: Call intel_dp_sync_state() always for DDI DP encoders
->   drm/i915/dp: Suspend/resume DP tunnels
->   drm/i915/dp: Read DPRX for all long HPD pulses
->   drm/i915/dp: Enable DP tunnel BW allocation mode
+== Series Details ==
 
-I think I eyeballed this sufficiently now. 
+Series: series starting with [1/3] drm/i915/bios: bump expected child device size (rev3)
+URL   : https://patchwork.freedesktop.org/series/129378/
+State : warning
 
-Only a few minor issues which I pointed out already. 
-Otherwise this is:
-Reviewed-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
+== Summary ==
 
-> 
->  drivers/gpu/drm/display/Kconfig               |   21 +
->  drivers/gpu/drm/display/Makefile              |    2 +
->  drivers/gpu/drm/display/drm_dp_helper.c       |   30 +
->  drivers/gpu/drm/display/drm_dp_tunnel.c       | 1929 +++++++++++++++++
->  drivers/gpu/drm/i915/Kconfig                  |   14 +
->  drivers/gpu/drm/i915/Kconfig.debug            |    1 +
->  drivers/gpu/drm/i915/Makefile                 |    3 +
->  drivers/gpu/drm/i915/display/intel_atomic.c   |   10 +
->  drivers/gpu/drm/i915/display/intel_crtc.c     |   52 +
->  drivers/gpu/drm/i915/display/intel_crtc.h     |    2 +
->  drivers/gpu/drm/i915/display/intel_ddi.c      |    3 +-
->  drivers/gpu/drm/i915/display/intel_display.c  |   26 +-
->  .../gpu/drm/i915/display/intel_display_core.h |    1 +
->  .../drm/i915/display/intel_display_driver.c   |   20 +-
->  .../drm/i915/display/intel_display_types.h    |    9 +
->  drivers/gpu/drm/i915/display/intel_dp.c       |  292 ++-
->  drivers/gpu/drm/i915/display/intel_dp.h       |   13 +-
->  .../drm/i915/display/intel_dp_link_training.c |   33 +-
->  .../drm/i915/display/intel_dp_link_training.h |    1 +
->  drivers/gpu/drm/i915/display/intel_dp_mst.c   |   18 +-
->  .../gpu/drm/i915/display/intel_dp_tunnel.c    |  815 +++++++
->  .../gpu/drm/i915/display/intel_dp_tunnel.h    |  133 ++
->  drivers/gpu/drm/i915/display/intel_link_bw.c  |   27 +-
->  drivers/gpu/drm/i915/display/intel_link_bw.h  |    2 +-
->  drivers/gpu/drm/i915/display/intel_tc.c       |    7 +
->  include/drm/display/drm_dp.h                  |   61 +
->  include/drm/display/drm_dp_helper.h           |    2 +
->  include/drm/display/drm_dp_tunnel.h           |  248 +++
->  28 files changed, 3650 insertions(+), 125 deletions(-)
->  create mode 100644 drivers/gpu/drm/display/drm_dp_tunnel.c
->  create mode 100644 drivers/gpu/drm/i915/display/intel_dp_tunnel.c
->  create mode 100644 drivers/gpu/drm/i915/display/intel_dp_tunnel.h
->  create mode 100644 include/drm/display/drm_dp_tunnel.h
-> 
-> -- 
-> 2.39.2
+Error: dim sparse failed
+Sparse version: v0.6.2
+Fast mode used, each commit won't be checked separately.
++./arch/x86/include/asm/bitops.h:116:1: warning: unreplaced symbol 'return'
++./arch/x86/include/asm/bitops.h:147:1: warning: unreplaced symbol 'return'
++./arch/x86/include/asm/bitops.h:149:9: warning: unreplaced symbol 'oldbit'
++./arch/x86/include/asm/bitops.h:153:26: warning: unreplaced symbol 'oldbit'
++./arch/x86/include/asm/bitops.h:155:16: warning: unreplaced symbol 'oldbit'
++./arch/x86/include/asm/bitops.h:155:9: warning: unreplaced symbol 'return'
++./arch/x86/include/asm/bitops.h:173:1: warning: unreplaced symbol 'return'
++./arch/x86/include/asm/bitops.h:175:9: warning: unreplaced symbol 'oldbit'
++./arch/x86/include/asm/bitops.h:179:35: warning: unreplaced symbol 'oldbit'
++./arch/x86/include/asm/bitops.h:181:16: warning: unreplaced symbol 'oldbit'
++./arch/x86/include/asm/bitops.h:181:9: warning: unreplaced symbol 'return'
++./arch/x86/include/asm/bitops.h:185:1: warning: unreplaced symbol 'return'
++./arch/x86/include/asm/bitops.h:187:9: warning: unreplaced symbol 'oldbit'
++./arch/x86/include/asm/bitops.h:191:35: warning: unreplaced symbol 'oldbit'
++./arch/x86/include/asm/bitops.h:194:16: warning: unreplaced symbol 'oldbit'
++./arch/x86/include/asm/bitops.h:194:9: warning: unreplaced symbol 'return'
++./arch/x86/include/asm/bitops.h:236:1: warning: unreplaced symbol 'return'
++./arch/x86/include/asm/bitops.h:238:9: warning: unreplaced symbol 'return'
++./arch/x86/include/asm/bitops.h:66:1: warning: unreplaced symbol 'return'
++./arch/x86/include/asm/bitops.h:92:1: warning: unreplaced symbol 'return'
++./include/asm-generic/bitops/generic-non-atomic.h:100:17: warning: unreplaced symbol 'old'
++./include/asm-generic/bitops/generic-non-atomic.h:100:23: warning: unreplaced symbol 'mask'
++./include/asm-generic/bitops/generic-non-atomic.h:100:9: warning: unreplaced symbol 'return'
++./include/asm-generic/bitops/generic-non-atomic.h:105:1: warning: unreplaced symbol 'return'
++./include/asm-generic/bitops/generic-non-atomic.h:107:9: warning: unreplaced symbol 'mask'
++./include/asm-generic/bitops/generic-non-atomic.h:108:9: warning: unreplaced symbol 'p'
++./include/asm-generic/bitops/generic-non-atomic.h:109:9: warning: unreplaced symbol 'old'
++./include/asm-generic/bitops/generic-non-atomic.h:111:10: warning: unreplaced symbol 'p'
++./include/asm-generic/bitops/generic-non-atomic.h:111:14: warning: unreplaced symbol 'old'
++./include/asm-generic/bitops/generic-non-atomic.h:111:20: warning: unreplaced symbol 'mask'
++./include/asm-generic/bitops/generic-non-atomic.h:112:17: warning: unreplaced symbol 'old'
++./include/asm-generic/bitops/generic-non-atomic.h:112:23: warning: unreplaced symbol 'mask'
++./include/asm-generic/bitops/generic-non-atomic.h:112:9: warning: unreplaced symbol 'return'
++./include/asm-generic/bitops/generic-non-atomic.h:121:1: warning: unreplaced symbol 'return'
++./include/asm-generic/bitops/generic-non-atomic.h:128:9: warning: unreplaced symbol 'return'
++./include/asm-generic/bitops/generic-non-atomic.h:166:1: warning: unreplaced symbol 'return'
++./include/asm-generic/bitops/generic-non-atomic.h:168:9: warning: unreplaced symbol 'p'
++./include/asm-generic/bitops/generic-non-atomic.h:169:9: warning: unreplaced symbol 'mask'
++./include/asm-generic/bitops/generic-non-atomic.h:170:9: warning: unreplaced symbol 'val'
++./include/asm-generic/bitops/generic-non-atomic.h:172:19: warning: unreplaced symbol 'val'
++./include/asm-generic/bitops/generic-non-atomic.h:172:25: warning: unreplaced symbol 'mask'
++./include/asm-generic/bitops/generic-non-atomic.h:172:9: warning: unreplaced symbol 'return'
++./include/asm-generic/bitops/generic-non-atomic.h:28:1: warning: unreplaced symbol 'return'
++./include/asm-generic/bitops/generic-non-atomic.h:30:9: warning: unreplaced symbol 'mask'
++./include/asm-generic/bitops/generic-non-atomic.h:31:9: warning: unreplaced symbol 'p'
++./include/asm-generic/bitops/generic-non-atomic.h:33:10: warning: unreplaced symbol 'p'
++./include/asm-generic/bitops/generic-non-atomic.h:33:16: warning: unreplaced symbol 'mask'
++./include/asm-generic/bitops/generic-non-atomic.h:37:1: warning: unreplaced symbol 'return'
++./include/asm-generic/bitops/generic-non-atomic.h:39:9: warning: unreplaced symbol 'mask'
++./include/asm-generic/bitops/generic-non-atomic.h:40:9: warning: unreplaced symbol 'p'
++./include/asm-generic/bitops/generic-non-atomic.h:42:10: warning: unreplaced symbol 'p'
++./include/asm-generic/bitops/generic-non-atomic.h:42:16: warning: unreplaced symbol 'mask'
++./include/asm-generic/bitops/generic-non-atomic.h:55:1: warning: unreplaced symbol 'return'
++./include/asm-generic/bitops/generic-non-atomic.h:57:9: warning: unreplaced symbol 'mask'
++./include/asm-generic/bitops/generic-non-atomic.h:58:9: warning: unreplaced symbol 'p'
++./include/asm-generic/bitops/generic-non-atomic.h:60:10: warning: unreplaced symbol 'p'
++./include/asm-generic/bitops/generic-non-atomic.h:60:15: warning: unreplaced symbol 'mask'
++./include/asm-generic/bitops/generic-non-atomic.h:73:1: warning: unreplaced symbol 'return'
++./include/asm-generic/bitops/generic-non-atomic.h:75:9: warning: unreplaced symbol 'mask'
++./include/asm-generic/bitops/generic-non-atomic.h:76:9: warning: unreplaced symbol 'p'
++./include/asm-generic/bitops/generic-non-atomic.h:77:9: warning: unreplaced symbol 'old'
++./include/asm-generic/bitops/generic-non-atomic.h:79:10: warning: unreplaced symbol 'p'
++./include/asm-generic/bitops/generic-non-atomic.h:79:14: warning: unreplaced symbol 'old'
++./include/asm-generic/bitops/generic-non-atomic.h:79:20: warning: unreplaced symbol 'mask'
++./include/asm-generic/bitops/generic-non-atomic.h:80:17: warning: unreplaced symbol 'old'
++./include/asm-generic/bitops/generic-non-atomic.h:80:23: warning: unreplaced symbol 'mask'
++./include/asm-generic/bitops/generic-non-atomic.h:80:9: warning: unreplaced symbol 'return'
++./include/asm-generic/bitops/generic-non-atomic.h:93:1: warning: unreplaced symbol 'return'
++./include/asm-generic/bitops/generic-non-atomic.h:95:9: warning: unreplaced symbol 'mask'
++./include/asm-generic/bitops/generic-non-atomic.h:96:9: warning: unreplaced symbol 'p'
++./include/asm-generic/bitops/generic-non-atomic.h:97:9: warning: unreplaced symbol 'old'
++./include/asm-generic/bitops/generic-non-atomic.h:99:10: warning: unreplaced symbol 'p'
++./include/asm-generic/bitops/generic-non-atomic.h:99:14: warning: unreplaced symbol 'old'
++./include/asm-generic/bitops/generic-non-atomic.h:99:21: warning: unreplaced symbol 'mask'
++./include/asm-generic/bitops/instrumented-non-atomic.h:100:9: warning: unreplaced symbol 'return'
++./include/asm-generic/bitops/instrumented-non-atomic.h:112:1: warning: unreplaced symbol 'return'
++./include/asm-generic/bitops/instrumented-non-atomic.h:115:9: warning: unreplaced symbol 'return'
++./include/asm-generic/bitops/instrumented-non-atomic.h:127:1: warning: unreplaced symbol 'return'
++./include/asm-generic/bitops/instrumented-non-atomic.h:130:9: warning: unreplaced symbol 'return'
++./include/asm-generic/bitops/instrumented-non-atomic.h:139:1: warning: unreplaced symbol 'return'
++./include/asm-generic/bitops/instrumented-non-atomic.h:142:9: warning: unreplaced symbol 'return'
++./include/asm-generic/bitops/instrumented-non-atomic.h:26:1: warning: unreplaced symbol 'return'
++./include/asm-generic/bitops/instrumented-non-atomic.h:42:1: warning: unreplaced symbol 'return'
++./include/asm-generic/bitops/instrumented-non-atomic.h:58:1: warning: unreplaced symbol 'return'
++./include/asm-generic/bitops/instrumented-non-atomic.h:97:1: warning: unreplaced symbol 'return'
 
--- 
-Ville Syrjälä
-Intel
+
