@@ -2,29 +2,153 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 284A5860ACA
-	for <lists+intel-gfx@lfdr.de>; Fri, 23 Feb 2024 07:25:27 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5CC31860ACB
+	for <lists+intel-gfx@lfdr.de>; Fri, 23 Feb 2024 07:25:58 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2FECF10EB08;
-	Fri, 23 Feb 2024 06:25:25 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E700310EB09;
+	Fri, 23 Feb 2024 06:25:56 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="IV2+ZXRq";
+	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from 8e613ede5ea5 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B56E710EB08;
- Fri, 23 Feb 2024 06:25:23 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============5381550234137328764=="
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D78DA10EB05;
+ Fri, 23 Feb 2024 06:25:54 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1708669555; x=1740205555;
+ h=from:to:cc:subject:date:message-id:references:
+ in-reply-to:content-transfer-encoding:mime-version;
+ bh=fdTb3NFEJ0L5Un8orSB+764PWFsrz4zusGMitL3AQLE=;
+ b=IV2+ZXRqtPFnGCvPe5HIyM5srJHq9zAbeKev4484+n5JLabtgRfryMUa
+ n7+jddjmcuBaOS2a0c3CNQVdi7N0xW0+w5jYoh6vg0PTiky99GMB2SNRL
+ DaIOpMRG3Iuzl3IvejHpKCRTWZktN97/J4UR4bzCNaTyOgiomuoorh6xX
+ h3U6+lzZ8QSMXKtU33G4eqiEBx9BW050bWnqxE20PDmoOjhbZWL1jXJUk
+ U/R++o6LdcY4uIOyPOXNXanmmTcP72tmtW0x+jD148Hpv95fglzRXh7nX
+ LXd2SOunU/WQswU7ZCANoX/z7l1aLzMJSrJDUM3hHfJmKxixD6Gs1abhD g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10992"; a="2820366"
+X-IronPort-AV: E=Sophos;i="6.06,179,1705392000"; 
+   d="scan'208";a="2820366"
+Received: from orviesa005.jf.intel.com ([10.64.159.145])
+ by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 Feb 2024 22:25:54 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.06,179,1705392000"; d="scan'208";a="10572855"
+Received: from fmsmsx601.amr.corp.intel.com ([10.18.126.81])
+ by orviesa005.jf.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
+ 22 Feb 2024 22:25:48 -0800
+Received: from fmsmsx611.amr.corp.intel.com (10.18.126.91) by
+ fmsmsx601.amr.corp.intel.com (10.18.126.81) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.35; Thu, 22 Feb 2024 22:25:42 -0800
+Received: from fmsedg602.ED.cps.intel.com (10.1.192.136) by
+ fmsmsx611.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.35 via Frontend Transport; Thu, 22 Feb 2024 22:25:42 -0800
+Received: from NAM11-BN8-obe.outbound.protection.outlook.com (104.47.58.169)
+ by edgegateway.intel.com (192.55.55.71) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.1.2507.35; Thu, 22 Feb 2024 22:25:42 -0800
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=JqFSyniAppe68woxfvMtlArEH6BaNZ1n7lVVrTVPDtsxEdIlE/pMjAy9vYk3gNyNEWDo4Qqe5j3n9sFM5YpY0gj8P4ikeMfu0ndqg8LoDBMIgG7qTZFHXyRy80s+bck1Ss7kVwpE5+nhxbkTUZK80ThZFqj+RxjzuasCdYu0uAIr4nNckOhwlAZtBgKO8h2WCxHny2WlWjHnBSzMGMILh0v+4W2CgLp8SXvdvvd5kB6ai86oNUYinQQiIAMdLAHwoo7yihu9KvCtLLhQ8LMXOiHuVaRUP4aIV7Zh762b1NAw8ZdMVSUwRGewkgN26k1ff5Vaz1DLxmYKGp5OV2UT4g==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=fdTb3NFEJ0L5Un8orSB+764PWFsrz4zusGMitL3AQLE=;
+ b=Gau8mCzarWfRRwD629ooeOQqJ4p8GsphFkqqFb8/N2Nxl7fUqnki7C/KzzTCKXwLQpejlX9slnYWYxzkIJqDU0I+Mpm2yMnhKQyGzcJcNn71aWeXIjq4+NGlwW3tOgLHxtbTIxguBxphHYc7XGFqs+Nm1O0+YuN8YmUNOfGy8oVpNSZzyg4AqZh7KUldjfSs8d3F+L1KZEcjJuLpqxREa7stTns8BoZXwrdqHAW6OFqsetw6xEBt1odjthWM1sGZ27tq44gynBNTctUoEZHTHs/5c2TmFLq4KtrUNZI6Wg88XxJaiOU61lxjSANFFpEB/JfmsagmISrptZDMdoPzvA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Received: from DM4PR11MB6360.namprd11.prod.outlook.com (2603:10b6:8:bd::12) by
+ DM6PR11MB4609.namprd11.prod.outlook.com (2603:10b6:5:28f::15) with
+ Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.7339.8; Fri, 23 Feb 2024 06:25:39 +0000
+Received: from DM4PR11MB6360.namprd11.prod.outlook.com
+ ([fe80::590:38d5:5c7c:3e4d]) by DM4PR11MB6360.namprd11.prod.outlook.com
+ ([fe80::590:38d5:5c7c:3e4d%7]) with mapi id 15.20.7316.018; Fri, 23 Feb 2024
+ 06:25:39 +0000
+From: "Shankar, Uma" <uma.shankar@intel.com>
+To: "Deak, Imre" <imre.deak@intel.com>, "intel-gfx@lists.freedesktop.org"
+ <intel-gfx@lists.freedesktop.org>, "dri-devel@lists.freedesktop.org"
+ <dri-devel@lists.freedesktop.org>
+CC: =?utf-8?B?VmlsbGUgU3lyasOkbMOk?= <ville.syrjala@linux.intel.com>
+Subject: RE: [PATCH v2 02/21] drm/dp: Add support for DP tunneling
+Thread-Topic: [PATCH v2 02/21] drm/dp: Add support for DP tunneling
+Thread-Index: AQHaZEJvBZlpeLY+XkWmQ5BSTR0EnLEXa6rg
+Date: Fri, 23 Feb 2024 06:25:38 +0000
+Message-ID: <DM4PR11MB63606B27F3B003294D7D742EF4552@DM4PR11MB6360.namprd11.prod.outlook.com>
+References: <20240220211841.448846-1-imre.deak@intel.com>
+ <20240220211841.448846-3-imre.deak@intel.com>
+In-Reply-To: <20240220211841.448846-3-imre.deak@intel.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: DM4PR11MB6360:EE_|DM6PR11MB4609:EE_
+x-ms-office365-filtering-correlation-id: ecfd97ec-1281-43b1-f08c-08dc343840c8
+x-ld-processed: 46c98d88-e344-4ed4-8496-4ed7712e255d,ExtAddr
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: J+RfH+h8ohTk3IXcawmBuRulabIp2kwcSqSG4y0PnD1w8RVr9D2sz4kghlthveyzAMuCaolWUmvnKe1Gkh5rHLofMJmB9YoGvnXs+UQ4s6ei+u2Ivrt9xZD2r2ihq75RHa0Kz4PYGyt4JRZAX5upvDSFGom/5P7FEXiXtEjYchBkSSarAc7GR2bH0I68FuryIWbGqqjyNYO9cPteNi2yrsBWJK1KdOsaUfU5pBUrvNpojkmbvOzYiepFpkILMR3A1qhRZ53KutoWTqFG/1kJ/V3R/VYoXhTRYpvy4XK5O7nIqhNOe16udvva0OqNMcGDapc51pidbXost27iYnTQ2DRZ9XRUH+rBIC3j5MommVItz5lhat8urTI6h0jW74+4SZDo0Ye7b42eKwxdHERYhoKOSever/y4jO6Mcazz6Caw7IgimDfAd+xn7lWy9yHswEwE6vcHEopWxOmWxIpW3OKqCIGjSpLAdsFXeiIKUIalfSDD4Gk+Tk0kAsMnx8BW2Yc7DLJ8fZYaJEucHW1VqYJXiP9GW7BY+REx9vYxLSZHFRk8zavhJHLLXUCvRr8UlR1wMlu1B7axxNrUJX86GZKDUE7YZ80Mkg9bIih+XfbPv0rlB1mDVhSK2ABfPq/r
+x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:DM4PR11MB6360.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230031)(38070700009); DIR:OUT; SFP:1101; 
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?utf-8?B?ZHR2RmwwV3p4RHNneEZaa29VV1lxZ0VqWWl3TVdwZm1yNHZYWjlTdU03V3Jx?=
+ =?utf-8?B?b1JXYlFNdUxBdHhsWkZEQTh5emNza1BkNTQvTDZmbk1FclQwdkhaeWJpUFNk?=
+ =?utf-8?B?SW5KaDZ0R0tvYlpwei9EeFFEWEZTZFJWUDV1QXFFdFcxR0EvaUNGdUdlRmox?=
+ =?utf-8?B?b1BpWFlsOUxDY0plZHYvdEhjeVZJaXAzUHdXQkg0K0dXdFUyQWJMbGpZZmlK?=
+ =?utf-8?B?VDhvU1o3Y05tVmlrVENRaTdzN2V2RlBXRk9zYVdvUE5PeEJySzNKSVlwL0ZW?=
+ =?utf-8?B?YnBadEVCZThMOVpOdmY4YVM3am0waFNoTnFueFdwQlZOZHhlY0NTSWsyVVBx?=
+ =?utf-8?B?dVhnbk9sanIrVm9uN2lWa01YSmFtRW1qTlFOTGkzWHdHdGh5NHkwOUE3LzFL?=
+ =?utf-8?B?YkZ2WXRmYW43YkVINCsxR2ZHQmtmQ2pxOWJUNTluMUM0MVJHcjdJOHdpSjcv?=
+ =?utf-8?B?VDdKQTdNaDhwb1pydUpaNUhBZmU4cjBoMUVxUVVSaW1uTXBQSGkrN1k3NWZv?=
+ =?utf-8?B?eUd1U1BYVjdxOU1ZZWhRUHV6bDVqbUo5anBXSkdYZFJmWlJxQXlzenl6WWp6?=
+ =?utf-8?B?SDJzN3FkYzZ4cnpYOStaa0pVL1JiWTFyQk5jd1gzUVMvNzVkeFBDMnd3MndH?=
+ =?utf-8?B?ano5VnRmRURXdjlCWFpiajMwN2tZQ2lqN092UzlFemYxSlVETjcvTmppdjZ0?=
+ =?utf-8?B?c1EzVFJvWWRXcVVyeTJtcW9Hc1N6NjFrQTRteHZqc3F5bkVFendsc3RTMHBq?=
+ =?utf-8?B?cnUwUGdmQ3RIcG5XTUJFTm9nVUZLVXpsNzJ6ZEVGM1lGK3d2VWtpUm5BN1JG?=
+ =?utf-8?B?WFA5MnBJMmhSY1RPdUdHNzVpc3dHYmx2ejU2OFRVQVN6anduaytkZW5QSlcx?=
+ =?utf-8?B?aW5yQmI1cm1HNHdqVGE5Rkk3akh0aHl1eml4QUozby94b01Yd0thZGY5ZnU0?=
+ =?utf-8?B?dmIrUE5JZ2tFSnU0Qjg4WmxJRk94WmVXQ2FvWUFrSmRaOXpTMFdOR001TmZi?=
+ =?utf-8?B?WVJUVllMTXJiK0hOWm1QQ0ZkMGJTQklwV0VhUmJuVCttTHBlR1hXWDgrenI3?=
+ =?utf-8?B?amRiaU9mUStNT2x0MWUxY1QrNEI0Vnd1a0I2NDdSNWpUMXoxWVd3djlpMWV1?=
+ =?utf-8?B?R25TREtSNUZBTmdmTndjdEs0aFZTaEdIelZ4MHdPaEhFSngrSUN6cDRURVNG?=
+ =?utf-8?B?WWpqbFNkNzE2eGdqenRRQWt3QXQzY3ZydTkxaTE5RlVoYTJoZGU3LzZDYkVX?=
+ =?utf-8?B?cE4xOFp3NjM4N21OMHVFa1pUT1ZjRy9qaEFZVStSNzBSSDk0Vzc2MWpUMXMr?=
+ =?utf-8?B?R3Y2SW0vQ3FyRC9zbGVzQW9IR0c3YVpNVENvaFdvamIrNk5mQU5NWUpUYUVY?=
+ =?utf-8?B?ZHhNQVNKQ05PWXRMb1UwWk5PSHpVV0tPa0dhM2hCTVp2alo0RTA4b29EcmNJ?=
+ =?utf-8?B?dWFjQTQ5cC9OenBQRWs0SGRyV3dRNWk3M1B2bk00QzRvNDNyS2VJbHIwLzNG?=
+ =?utf-8?B?bWY3QWJPSm41UlJScGNSZENTRVRZRXF4dEpWSDc5bTNQL2Y0MDYwbWVnUmJN?=
+ =?utf-8?B?MzNNaXRXbis2bktIRTJtL0VVZUtNMVNKdGxoaFZBYlBGNjRZVGRQYWwwRnRB?=
+ =?utf-8?B?MFdaaG1KMm9acWs4R096TVZBS1RYc3RpSTZlOUpnNDVXdGN4alVTdHh5NnVR?=
+ =?utf-8?B?TlBUbTBOcGFzczdXK2hSb0E1clpBWnJURnR1NGx5U1BCQitLa2NZS3dnSTB0?=
+ =?utf-8?B?NytGN3hFUFdqNVg3Sk11Q0EyRzAxaXJXRzJ4VGhTaHlKNzZKb3kzMi90RXh5?=
+ =?utf-8?B?b2tPdjVxQnVCUmdOczNlUVNSUktNTjFhZlo5TEpJRnlmYnNiU0JkeXpXWVRl?=
+ =?utf-8?B?UE91eTBldFlhNmhzd0JkdHc0cDlRODlkQXlER2pYdnRRZzFkVnJvNmcyeWQ1?=
+ =?utf-8?B?TlpKWklXVGxLbjZnRnNKRFJXQXBRekVsQjE1YmNPck91ekxFV0h6R25FRFAz?=
+ =?utf-8?B?Mzkxd1ZoODB2WlBtQWpCL1NGazBtc3JTRFZhT3U0bnA2ODMzUTY3VDhnNW10?=
+ =?utf-8?B?VzVxK0k1Rml5R2FGcHJyQVQzbVFMc0lTc2NCSHArZUI1TnU0cjVUejBHb3Jq?=
+ =?utf-8?Q?Ydl33u9ud0DkdgyF3Cys+VMpW?=
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Fi=2ECI=2EIGT=3A_success_for_IO_and_fast_wake_lines_calc?=
- =?utf-8?q?ulation_and_increase_fw_sync_length_=28rev2=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: =?utf-8?q?Jouni_H=C3=B6gander?= <jouni.hogander@intel.com>
-Cc: intel-gfx@lists.freedesktop.org
-Date: Fri, 23 Feb 2024 06:25:23 -0000
-Message-ID: <170866952373.235433.6955083317135998426@8e613ede5ea5>
-X-Patchwork-Hint: ignore
-References: <20240222115728.3371478-1-jouni.hogander@intel.com>
-In-Reply-To: <20240222115728.3371478-1-jouni.hogander@intel.com>
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: DM4PR11MB6360.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: ecfd97ec-1281-43b1-f08c-08dc343840c8
+X-MS-Exchange-CrossTenant-originalarrivaltime: 23 Feb 2024 06:25:38.8878 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: 1EJjNEHC06N/gm3rc2dpaICF/lpZ3NPT8H3pXrR+6eL1n0rzz0e38LK9b+Nlh8KDeCQxrR/mrbT+khjCVwc+FQ==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM6PR11MB4609
+X-OriginatorOrg: intel.com
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -37,1935 +161,1345 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============5381550234137328764==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-== Series Details ==
-
-Series: IO and fast wake lines calculation and increase fw sync length (rev2)
-URL   : https://patchwork.freedesktop.org/series/130173/
-State : success
-
-== Summary ==
-
-CI Bug Log - changes from CI_DRM_14319_full -> Patchwork_130173v2_full
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  
-
-Participating hosts (8 -> 8)
-------------------------------
-
-  No changes in participating hosts
-
-Possible new issues
--------------------
-
-  Here are the unknown changes that may have been introduced in Patchwork_130173v2_full:
-
-### IGT changes ###
-
-#### Possible regressions ####
-
-  * {igt@kms_ccs@bad-rotation-90-y-tiled-ccs@pipe-d-hdmi-a-2} (NEW):
-    - shard-dg2:          NOTRUN -> [SKIP][1] +1 other test skip
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130173v2/shard-dg2-2/igt@kms_ccs@bad-rotation-90-y-tiled-ccs@pipe-d-hdmi-a-2.html
-
-  
-#### Suppressed ####
-
-  The following results come from untrusted machines, tests, or statuses.
-  They do not affect the overall result.
-
-  * {igt@kms_ccs@ccs-on-another-bo-4-tiled-mtl-rc-ccs@pipe-b-hdmi-a-3}:
-    - shard-dg2:          NOTRUN -> [SKIP][2] +141 other tests skip
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130173v2/shard-dg2-7/igt@kms_ccs@ccs-on-another-bo-4-tiled-mtl-rc-ccs@pipe-b-hdmi-a-3.html
-
-  
-New tests
----------
-
-  New tests have been introduced between CI_DRM_14319_full and Patchwork_130173v2_full:
-
-### New IGT tests (2) ###
-
-  * igt@kms_ccs@bad-aux-stride-y-tiled-gen12-mc-ccs@pipe-d-hdmi-a-2:
-    - Statuses : 1 skip(s)
-    - Exec time: [0.0] s
-
-  * igt@kms_ccs@bad-rotation-90-y-tiled-ccs@pipe-d-hdmi-a-2:
-    - Statuses : 1 skip(s)
-    - Exec time: [0.0] s
-
-  
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_130173v2_full that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@api_intel_bb@blit-reloc-keep-cache:
-    - shard-dg2:          NOTRUN -> [SKIP][3] ([i915#8411])
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130173v2/shard-dg2-7/igt@api_intel_bb@blit-reloc-keep-cache.html
-
-  * igt@drm_fdinfo@busy-idle-check-all@ccs3:
-    - shard-dg2:          NOTRUN -> [SKIP][4] ([i915#8414]) +10 other tests skip
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130173v2/shard-dg2-6/igt@drm_fdinfo@busy-idle-check-all@ccs3.html
-
-  * igt@drm_fdinfo@most-busy-idle-check-all@rcs0:
-    - shard-rkl:          [PASS][5] -> [FAIL][6] ([i915#7742])
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14319/shard-rkl-5/igt@drm_fdinfo@most-busy-idle-check-all@rcs0.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130173v2/shard-rkl-6/igt@drm_fdinfo@most-busy-idle-check-all@rcs0.html
-
-  * igt@gem_ccs@block-copy-compressed:
-    - shard-tglu:         NOTRUN -> [SKIP][7] ([i915#3555] / [i915#9323])
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130173v2/shard-tglu-8/igt@gem_ccs@block-copy-compressed.html
-
-  * igt@gem_ccs@suspend-resume@linear-compressed-compfmt0-smem-lmem0:
-    - shard-dg2:          [PASS][8] -> [INCOMPLETE][9] ([i915#7297])
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14319/shard-dg2-5/igt@gem_ccs@suspend-resume@linear-compressed-compfmt0-smem-lmem0.html
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130173v2/shard-dg2-2/igt@gem_ccs@suspend-resume@linear-compressed-compfmt0-smem-lmem0.html
-
-  * igt@gem_create@create-ext-set-pat:
-    - shard-tglu:         NOTRUN -> [SKIP][10] ([i915#8562])
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130173v2/shard-tglu-5/igt@gem_create@create-ext-set-pat.html
-
-  * igt@gem_ctx_param@set-priority-not-supported:
-    - shard-dg2:          NOTRUN -> [SKIP][11] ([fdo#109314])
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130173v2/shard-dg2-6/igt@gem_ctx_param@set-priority-not-supported.html
-
-  * igt@gem_ctx_persistence@heartbeat-stop:
-    - shard-dg1:          NOTRUN -> [SKIP][12] ([i915#8555])
-   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130173v2/shard-dg1-16/igt@gem_ctx_persistence@heartbeat-stop.html
-    - shard-mtlp:         NOTRUN -> [SKIP][13] ([i915#8555])
-   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130173v2/shard-mtlp-7/igt@gem_ctx_persistence@heartbeat-stop.html
-
-  * igt@gem_ctx_persistence@legacy-engines-hostile:
-    - shard-snb:          NOTRUN -> [SKIP][14] ([fdo#109271] / [i915#1099])
-   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130173v2/shard-snb1/igt@gem_ctx_persistence@legacy-engines-hostile.html
-
-  * igt@gem_exec_balancer@bonded-sync:
-    - shard-dg2:          NOTRUN -> [SKIP][15] ([i915#4771])
-   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130173v2/shard-dg2-7/igt@gem_exec_balancer@bonded-sync.html
-
-  * igt@gem_exec_capture@many-4k-zero:
-    - shard-glk:          NOTRUN -> [FAIL][16] ([i915#9606])
-   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130173v2/shard-glk9/igt@gem_exec_capture@many-4k-zero.html
-
-  * igt@gem_exec_fair@basic-none:
-    - shard-snb:          NOTRUN -> [SKIP][17] ([fdo#109271]) +14 other tests skip
-   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130173v2/shard-snb1/igt@gem_exec_fair@basic-none.html
-    - shard-dg1:          NOTRUN -> [SKIP][18] ([i915#3539] / [i915#4852])
-   [18]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130173v2/shard-dg1-16/igt@gem_exec_fair@basic-none.html
-    - shard-mtlp:         NOTRUN -> [SKIP][19] ([i915#4473] / [i915#4771])
-   [19]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130173v2/shard-mtlp-7/igt@gem_exec_fair@basic-none.html
-
-  * igt@gem_exec_fair@basic-none-share:
-    - shard-dg2:          NOTRUN -> [SKIP][20] ([i915#3539] / [i915#4852]) +4 other tests skip
-   [20]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130173v2/shard-dg2-7/igt@gem_exec_fair@basic-none-share.html
-
-  * igt@gem_exec_fair@basic-pace-solo@rcs0:
-    - shard-glk:          NOTRUN -> [FAIL][21] ([i915#2842])
-   [21]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130173v2/shard-glk3/igt@gem_exec_fair@basic-pace-solo@rcs0.html
-
-  * igt@gem_exec_fair@basic-pace@bcs0:
-    - shard-rkl:          [PASS][22] -> [FAIL][23] ([i915#2842]) +1 other test fail
-   [22]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14319/shard-rkl-5/igt@gem_exec_fair@basic-pace@bcs0.html
-   [23]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130173v2/shard-rkl-1/igt@gem_exec_fair@basic-pace@bcs0.html
-
-  * igt@gem_exec_fair@basic-sync:
-    - shard-dg2:          NOTRUN -> [SKIP][24] ([i915#3539]) +1 other test skip
-   [24]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130173v2/shard-dg2-7/igt@gem_exec_fair@basic-sync.html
-
-  * igt@gem_exec_reloc@basic-write-gtt:
-    - shard-dg2:          NOTRUN -> [SKIP][25] ([i915#3281]) +6 other tests skip
-   [25]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130173v2/shard-dg2-6/igt@gem_exec_reloc@basic-write-gtt.html
-
-  * igt@gem_exec_schedule@preempt-queue-chain:
-    - shard-mtlp:         NOTRUN -> [SKIP][26] ([i915#4537] / [i915#4812])
-   [26]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130173v2/shard-mtlp-7/igt@gem_exec_schedule@preempt-queue-chain.html
-    - shard-dg1:          NOTRUN -> [SKIP][27] ([i915#4812])
-   [27]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130173v2/shard-dg1-16/igt@gem_exec_schedule@preempt-queue-chain.html
-
-  * igt@gem_exec_suspend@basic-s0@lmem0:
-    - shard-dg2:          [PASS][28] -> [INCOMPLETE][29] ([i915#9275])
-   [28]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14319/shard-dg2-10/igt@gem_exec_suspend@basic-s0@lmem0.html
-   [29]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130173v2/shard-dg2-6/igt@gem_exec_suspend@basic-s0@lmem0.html
-
-  * igt@gem_fenced_exec_thrash@2-spare-fences:
-    - shard-dg2:          NOTRUN -> [SKIP][30] ([i915#4860])
-   [30]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130173v2/shard-dg2-6/igt@gem_fenced_exec_thrash@2-spare-fences.html
-
-  * igt@gem_lmem_swapping@heavy-verify-random-ccs:
-    - shard-glk:          NOTRUN -> [SKIP][31] ([fdo#109271] / [i915#4613]) +4 other tests skip
-   [31]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130173v2/shard-glk1/igt@gem_lmem_swapping@heavy-verify-random-ccs.html
-
-  * igt@gem_mmap_gtt@hang:
-    - shard-dg2:          NOTRUN -> [SKIP][32] ([i915#4077]) +4 other tests skip
-   [32]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130173v2/shard-dg2-6/igt@gem_mmap_gtt@hang.html
-
-  * igt@gem_mmap_wc@close:
-    - shard-dg2:          NOTRUN -> [SKIP][33] ([i915#4083])
-   [33]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130173v2/shard-dg2-7/igt@gem_mmap_wc@close.html
-
-  * igt@gem_pwrite_snooped:
-    - shard-dg2:          NOTRUN -> [SKIP][34] ([i915#3282])
-   [34]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130173v2/shard-dg2-6/igt@gem_pwrite_snooped.html
-
-  * igt@gem_pxp@create-valid-protected-context:
-    - shard-dg2:          NOTRUN -> [SKIP][35] ([i915#4270]) +2 other tests skip
-   [35]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130173v2/shard-dg2-7/igt@gem_pxp@create-valid-protected-context.html
-
-  * igt@gem_render_copy@y-tiled:
-    - shard-mtlp:         NOTRUN -> [SKIP][36] ([i915#8428]) +1 other test skip
-   [36]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130173v2/shard-mtlp-7/igt@gem_render_copy@y-tiled.html
-
-  * igt@gem_render_copy@yf-tiled-mc-ccs-to-vebox-y-tiled:
-    - shard-dg2:          NOTRUN -> [SKIP][37] ([i915#5190]) +4 other tests skip
-   [37]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130173v2/shard-dg2-7/igt@gem_render_copy@yf-tiled-mc-ccs-to-vebox-y-tiled.html
-
-  * igt@gem_set_tiling_vs_gtt:
-    - shard-dg2:          NOTRUN -> [SKIP][38] ([i915#4079]) +1 other test skip
-   [38]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130173v2/shard-dg2-7/igt@gem_set_tiling_vs_gtt.html
-
-  * igt@gem_userptr_blits@create-destroy-unsync:
-    - shard-dg2:          NOTRUN -> [SKIP][39] ([i915#3297])
-   [39]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130173v2/shard-dg2-6/igt@gem_userptr_blits@create-destroy-unsync.html
-
-  * igt@gem_userptr_blits@dmabuf-sync:
-    - shard-glk:          NOTRUN -> [SKIP][40] ([fdo#109271] / [i915#3323])
-   [40]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130173v2/shard-glk3/igt@gem_userptr_blits@dmabuf-sync.html
-
-  * igt@gen3_render_tiledx_blits:
-    - shard-rkl:          NOTRUN -> [SKIP][41] ([fdo#109289])
-   [41]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130173v2/shard-rkl-4/igt@gen3_render_tiledx_blits.html
-
-  * igt@gen9_exec_parse@allowed-single:
-    - shard-tglu:         NOTRUN -> [SKIP][42] ([i915#2527] / [i915#2856])
-   [42]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130173v2/shard-tglu-5/igt@gen9_exec_parse@allowed-single.html
-
-  * igt@gen9_exec_parse@batch-zero-length:
-    - shard-dg2:          NOTRUN -> [SKIP][43] ([i915#2856]) +1 other test skip
-   [43]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130173v2/shard-dg2-6/igt@gen9_exec_parse@batch-zero-length.html
-
-  * igt@i915_fb_tiling:
-    - shard-dg2:          NOTRUN -> [SKIP][44] ([i915#4881])
-   [44]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130173v2/shard-dg2-7/igt@i915_fb_tiling.html
-
-  * igt@i915_module_load@reload-with-fault-injection:
-    - shard-rkl:          NOTRUN -> [INCOMPLETE][45] ([i915#10137] / [i915#9820] / [i915#9849])
-   [45]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130173v2/shard-rkl-4/igt@i915_module_load@reload-with-fault-injection.html
-
-  * igt@i915_pm_freq_api@freq-suspend@gt0:
-    - shard-dg2:          [PASS][46] -> [INCOMPLETE][47] ([i915#9407])
-   [46]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14319/shard-dg2-2/igt@i915_pm_freq_api@freq-suspend@gt0.html
-   [47]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130173v2/shard-dg2-10/igt@i915_pm_freq_api@freq-suspend@gt0.html
-
-  * igt@i915_pm_rc6_residency@rc6-idle@gt0-vcs0:
-    - shard-dg1:          NOTRUN -> [FAIL][48] ([i915#3591]) +1 other test fail
-   [48]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130173v2/shard-dg1-16/igt@i915_pm_rc6_residency@rc6-idle@gt0-vcs0.html
-
-  * igt@i915_pm_rps@basic-api:
-    - shard-dg2:          NOTRUN -> [SKIP][49] ([i915#6621])
-   [49]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130173v2/shard-dg2-7/igt@i915_pm_rps@basic-api.html
-
-  * igt@i915_pm_sseu@full-enable:
-    - shard-dg2:          NOTRUN -> [SKIP][50] ([i915#4387])
-   [50]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130173v2/shard-dg2-6/igt@i915_pm_sseu@full-enable.html
-
-  * igt@i915_suspend@basic-s3-without-i915:
-    - shard-rkl:          [PASS][51] -> [FAIL][52] ([i915#10031])
-   [51]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14319/shard-rkl-7/igt@i915_suspend@basic-s3-without-i915.html
-   [52]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130173v2/shard-rkl-6/igt@i915_suspend@basic-s3-without-i915.html
-
-  * igt@kms_async_flips@async-flip-with-page-flip-events@pipe-a-hdmi-a-3-y-rc-ccs:
-    - shard-dg1:          NOTRUN -> [SKIP][53] ([i915#8709]) +7 other tests skip
-   [53]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130173v2/shard-dg1-13/igt@kms_async_flips@async-flip-with-page-flip-events@pipe-a-hdmi-a-3-y-rc-ccs.html
-
-  * igt@kms_async_flips@async-flip-with-page-flip-events@pipe-b-hdmi-a-1-y-rc-ccs:
-    - shard-tglu:         NOTRUN -> [SKIP][54] ([i915#8709]) +7 other tests skip
-   [54]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130173v2/shard-tglu-5/igt@kms_async_flips@async-flip-with-page-flip-events@pipe-b-hdmi-a-1-y-rc-ccs.html
-
-  * igt@kms_atomic_transition@plane-all-modeset-transition-internal-panels:
-    - shard-tglu:         NOTRUN -> [SKIP][55] ([i915#1769] / [i915#3555])
-   [55]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130173v2/shard-tglu-5/igt@kms_atomic_transition@plane-all-modeset-transition-internal-panels.html
-
-  * igt@kms_big_fb@4-tiled-max-hw-stride-32bpp-rotate-0-hflip:
-    - shard-tglu:         NOTRUN -> [SKIP][56] ([fdo#111615] / [i915#5286]) +2 other tests skip
-   [56]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130173v2/shard-tglu-8/igt@kms_big_fb@4-tiled-max-hw-stride-32bpp-rotate-0-hflip.html
-
-  * igt@kms_big_fb@linear-64bpp-rotate-90:
-    - shard-rkl:          NOTRUN -> [SKIP][57] ([fdo#111614] / [i915#3638])
-   [57]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130173v2/shard-rkl-4/igt@kms_big_fb@linear-64bpp-rotate-90.html
-
-  * igt@kms_big_fb@x-tiled-32bpp-rotate-270:
-    - shard-dg2:          NOTRUN -> [SKIP][58] ([fdo#111614]) +1 other test skip
-   [58]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130173v2/shard-dg2-6/igt@kms_big_fb@x-tiled-32bpp-rotate-270.html
-
-  * igt@kms_big_fb@x-tiled-max-hw-stride-32bpp-rotate-0-async-flip:
-    - shard-tglu:         [PASS][59] -> [FAIL][60] ([i915#3743]) +2 other tests fail
-   [59]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14319/shard-tglu-5/igt@kms_big_fb@x-tiled-max-hw-stride-32bpp-rotate-0-async-flip.html
-   [60]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130173v2/shard-tglu-7/igt@kms_big_fb@x-tiled-max-hw-stride-32bpp-rotate-0-async-flip.html
-
-  * igt@kms_big_fb@y-tiled-8bpp-rotate-180:
-    - shard-dg2:          NOTRUN -> [SKIP][61] ([i915#4538] / [i915#5190]) +4 other tests skip
-   [61]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130173v2/shard-dg2-7/igt@kms_big_fb@y-tiled-8bpp-rotate-180.html
-
-  * igt@kms_big_fb@yf-tiled-64bpp-rotate-180:
-    - shard-tglu:         NOTRUN -> [SKIP][62] ([fdo#111615])
-   [62]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130173v2/shard-tglu-8/igt@kms_big_fb@yf-tiled-64bpp-rotate-180.html
-
-  * igt@kms_big_fb@yf-tiled-max-hw-stride-64bpp-rotate-0-hflip-async-flip:
-    - shard-dg1:          NOTRUN -> [SKIP][63] ([i915#4538])
-   [63]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130173v2/shard-dg1-16/igt@kms_big_fb@yf-tiled-max-hw-stride-64bpp-rotate-0-hflip-async-flip.html
-    - shard-mtlp:         NOTRUN -> [SKIP][64] ([fdo#111615])
-   [64]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130173v2/shard-mtlp-7/igt@kms_big_fb@yf-tiled-max-hw-stride-64bpp-rotate-0-hflip-async-flip.html
-
-  * igt@kms_big_joiner@2x-modeset:
-    - shard-tglu:         NOTRUN -> [SKIP][65] ([i915#2705])
-   [65]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130173v2/shard-tglu-5/igt@kms_big_joiner@2x-modeset.html
-
-  * igt@kms_cdclk@mode-transition:
-    - shard-glk:          NOTRUN -> [SKIP][66] ([fdo#109271]) +191 other tests skip
-   [66]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130173v2/shard-glk1/igt@kms_cdclk@mode-transition.html
-
-  * igt@kms_cdclk@mode-transition-all-outputs:
-    - shard-tglu:         NOTRUN -> [SKIP][67] ([i915#3742])
-   [67]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130173v2/shard-tglu-8/igt@kms_cdclk@mode-transition-all-outputs.html
-
-  * igt@kms_cdclk@mode-transition@pipe-b-hdmi-a-2:
-    - shard-dg2:          NOTRUN -> [SKIP][68] ([i915#7213]) +3 other tests skip
-   [68]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130173v2/shard-dg2-2/igt@kms_cdclk@mode-transition@pipe-b-hdmi-a-2.html
-
-  * igt@kms_cdclk@plane-scaling@pipe-d-hdmi-a-2:
-    - shard-dg2:          NOTRUN -> [SKIP][69] ([i915#4087]) +3 other tests skip
-   [69]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130173v2/shard-dg2-2/igt@kms_cdclk@plane-scaling@pipe-d-hdmi-a-2.html
-
-  * igt@kms_chamelium_edid@dp-edid-stress-resolution-non-4k:
-    - shard-rkl:          NOTRUN -> [SKIP][70] ([i915#7828])
-   [70]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130173v2/shard-rkl-4/igt@kms_chamelium_edid@dp-edid-stress-resolution-non-4k.html
-
-  * igt@kms_chamelium_frames@hdmi-crc-fast:
-    - shard-dg2:          NOTRUN -> [SKIP][71] ([i915#7828]) +4 other tests skip
-   [71]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130173v2/shard-dg2-6/igt@kms_chamelium_frames@hdmi-crc-fast.html
-
-  * igt@kms_chamelium_hpd@dp-hpd-fast:
-    - shard-tglu:         NOTRUN -> [SKIP][72] ([i915#7828]) +2 other tests skip
-   [72]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130173v2/shard-tglu-8/igt@kms_chamelium_hpd@dp-hpd-fast.html
-
-  * igt@kms_content_protection@content-type-change:
-    - shard-dg2:          NOTRUN -> [SKIP][73] ([i915#9424])
-   [73]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130173v2/shard-dg2-7/igt@kms_content_protection@content-type-change.html
-
-  * igt@kms_content_protection@dp-mst-type-0:
-    - shard-tglu:         NOTRUN -> [SKIP][74] ([i915#3116] / [i915#3299])
-   [74]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130173v2/shard-tglu-8/igt@kms_content_protection@dp-mst-type-0.html
-
-  * igt@kms_content_protection@srm:
-    - shard-dg2:          NOTRUN -> [SKIP][75] ([i915#7118])
-   [75]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130173v2/shard-dg2-7/igt@kms_content_protection@srm.html
-
-  * igt@kms_cursor_crc@cursor-onscreen-max-size:
-    - shard-rkl:          NOTRUN -> [SKIP][76] ([i915#3555])
-   [76]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130173v2/shard-rkl-4/igt@kms_cursor_crc@cursor-onscreen-max-size.html
-
-  * igt@kms_cursor_crc@cursor-sliding-32x10:
-    - shard-dg2:          NOTRUN -> [SKIP][77] ([i915#3555]) +1 other test skip
-   [77]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130173v2/shard-dg2-6/igt@kms_cursor_crc@cursor-sliding-32x10.html
-
-  * igt@kms_cursor_legacy@2x-flip-vs-cursor-atomic:
-    - shard-snb:          [PASS][78] -> [SKIP][79] ([fdo#109271] / [fdo#111767])
-   [78]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14319/shard-snb7/igt@kms_cursor_legacy@2x-flip-vs-cursor-atomic.html
-   [79]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130173v2/shard-snb5/igt@kms_cursor_legacy@2x-flip-vs-cursor-atomic.html
-
-  * igt@kms_cursor_legacy@cursorb-vs-flipb-atomic:
-    - shard-dg2:          NOTRUN -> [SKIP][80] ([fdo#109274] / [i915#5354])
-   [80]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130173v2/shard-dg2-7/igt@kms_cursor_legacy@cursorb-vs-flipb-atomic.html
-
-  * igt@kms_cursor_legacy@cursorb-vs-flipb-atomic-transitions:
-    - shard-mtlp:         NOTRUN -> [SKIP][81] ([fdo#111767])
-   [81]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130173v2/shard-mtlp-7/igt@kms_cursor_legacy@cursorb-vs-flipb-atomic-transitions.html
-    - shard-dg1:          NOTRUN -> [SKIP][82] ([fdo#111767] / [fdo#111825])
-   [82]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130173v2/shard-dg1-16/igt@kms_cursor_legacy@cursorb-vs-flipb-atomic-transitions.html
-    - shard-snb:          NOTRUN -> [SKIP][83] ([fdo#109271] / [fdo#111767])
-   [83]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130173v2/shard-snb1/igt@kms_cursor_legacy@cursorb-vs-flipb-atomic-transitions.html
-
-  * igt@kms_cursor_legacy@flip-vs-cursor-atomic-transitions-varying-size:
-    - shard-glk:          NOTRUN -> [FAIL][84] ([i915#2346])
-   [84]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130173v2/shard-glk9/igt@kms_cursor_legacy@flip-vs-cursor-atomic-transitions-varying-size.html
-
-  * igt@kms_dirtyfb@fbc-dirtyfb-ioctl@a-hdmi-a-2:
-    - shard-rkl:          NOTRUN -> [SKIP][85] ([fdo#110189] / [i915#9723])
-   [85]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130173v2/shard-rkl-6/igt@kms_dirtyfb@fbc-dirtyfb-ioctl@a-hdmi-a-2.html
-
-  * igt@kms_dirtyfb@fbc-dirtyfb-ioctl@a-hdmi-a-4:
-    - shard-dg1:          NOTRUN -> [SKIP][86] ([fdo#110189] / [i915#9723])
-   [86]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130173v2/shard-dg1-17/igt@kms_dirtyfb@fbc-dirtyfb-ioctl@a-hdmi-a-4.html
-
-  * igt@kms_dirtyfb@psr-dirtyfb-ioctl:
-    - shard-dg2:          NOTRUN -> [SKIP][87] ([i915#9833])
-   [87]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130173v2/shard-dg2-6/igt@kms_dirtyfb@psr-dirtyfb-ioctl.html
-
-  * igt@kms_dp_aux_dev:
-    - shard-tglu:         NOTRUN -> [SKIP][88] ([i915#1257])
-   [88]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130173v2/shard-tglu-5/igt@kms_dp_aux_dev.html
-
-  * igt@kms_dsc@dsc-with-bpc:
-    - shard-dg2:          NOTRUN -> [SKIP][89] ([i915#3555] / [i915#3840])
-   [89]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130173v2/shard-dg2-7/igt@kms_dsc@dsc-with-bpc.html
-
-  * igt@kms_dsc@dsc-with-output-formats:
-    - shard-tglu:         NOTRUN -> [SKIP][90] ([i915#3555] / [i915#3840])
-   [90]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130173v2/shard-tglu-8/igt@kms_dsc@dsc-with-output-formats.html
-
-  * igt@kms_feature_discovery@display-4x:
-    - shard-tglu:         NOTRUN -> [SKIP][91] ([i915#1839])
-   [91]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130173v2/shard-tglu-5/igt@kms_feature_discovery@display-4x.html
-
-  * igt@kms_feature_discovery@psr1:
-    - shard-rkl:          NOTRUN -> [SKIP][92] ([i915#658])
-   [92]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130173v2/shard-rkl-4/igt@kms_feature_discovery@psr1.html
-
-  * igt@kms_flip@2x-blocking-absolute-wf_vblank:
-    - shard-mtlp:         NOTRUN -> [SKIP][93] ([i915#3637])
-   [93]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130173v2/shard-mtlp-7/igt@kms_flip@2x-blocking-absolute-wf_vblank.html
-    - shard-dg1:          NOTRUN -> [SKIP][94] ([fdo#111825] / [i915#9934])
-   [94]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130173v2/shard-dg1-16/igt@kms_flip@2x-blocking-absolute-wf_vblank.html
-
-  * igt@kms_flip@2x-flip-vs-blocking-wf-vblank:
-    - shard-dg2:          NOTRUN -> [SKIP][95] ([fdo#109274] / [fdo#111767])
-   [95]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130173v2/shard-dg2-6/igt@kms_flip@2x-flip-vs-blocking-wf-vblank.html
-
-  * igt@kms_flip@2x-plain-flip-interruptible:
-    - shard-tglu:         NOTRUN -> [SKIP][96] ([fdo#109274] / [i915#3637]) +1 other test skip
-   [96]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130173v2/shard-tglu-5/igt@kms_flip@2x-plain-flip-interruptible.html
-
-  * igt@kms_flip@2x-single-buffer-flip-vs-dpms-off-vs-modeset-interruptible:
-    - shard-dg2:          NOTRUN -> [SKIP][97] ([fdo#109274]) +3 other tests skip
-   [97]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130173v2/shard-dg2-6/igt@kms_flip@2x-single-buffer-flip-vs-dpms-off-vs-modeset-interruptible.html
-
-  * igt@kms_flip_scaled_crc@flip-32bpp-ytile-to-32bpp-ytilegen12rcccs-downscaling@pipe-a-valid-mode:
-    - shard-dg2:          NOTRUN -> [SKIP][98] ([i915#2672]) +1 other test skip
-   [98]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130173v2/shard-dg2-7/igt@kms_flip_scaled_crc@flip-32bpp-ytile-to-32bpp-ytilegen12rcccs-downscaling@pipe-a-valid-mode.html
-
-  * igt@kms_flip_scaled_crc@flip-32bpp-ytileccs-to-64bpp-ytile-downscaling@pipe-a-valid-mode:
-    - shard-rkl:          NOTRUN -> [SKIP][99] ([i915#2672])
-   [99]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130173v2/shard-rkl-4/igt@kms_flip_scaled_crc@flip-32bpp-ytileccs-to-64bpp-ytile-downscaling@pipe-a-valid-mode.html
-
-  * igt@kms_flip_scaled_crc@flip-64bpp-4tile-to-32bpp-4tile-upscaling@pipe-a-valid-mode:
-    - shard-tglu:         NOTRUN -> [SKIP][100] ([i915#2587] / [i915#2672]) +2 other tests skip
-   [100]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130173v2/shard-tglu-5/igt@kms_flip_scaled_crc@flip-64bpp-4tile-to-32bpp-4tile-upscaling@pipe-a-valid-mode.html
-
-  * igt@kms_flip_scaled_crc@flip-64bpp-ytile-to-32bpp-ytilegen12rcccs-upscaling@pipe-a-default-mode:
-    - shard-mtlp:         NOTRUN -> [SKIP][101] ([i915#2672] / [i915#3555])
-   [101]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130173v2/shard-mtlp-7/igt@kms_flip_scaled_crc@flip-64bpp-ytile-to-32bpp-ytilegen12rcccs-upscaling@pipe-a-default-mode.html
-
-  * igt@kms_frontbuffer_tracking@fbc-1p-primscrn-pri-indfb-draw-mmap-cpu:
-    - shard-dg2:          [PASS][102] -> [FAIL][103] ([i915#6880])
-   [102]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14319/shard-dg2-5/igt@kms_frontbuffer_tracking@fbc-1p-primscrn-pri-indfb-draw-mmap-cpu.html
-   [103]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130173v2/shard-dg2-5/igt@kms_frontbuffer_tracking@fbc-1p-primscrn-pri-indfb-draw-mmap-cpu.html
-
-  * igt@kms_frontbuffer_tracking@fbc-2p-primscrn-pri-shrfb-draw-mmap-cpu:
-    - shard-snb:          [PASS][104] -> [SKIP][105] ([fdo#109271]) +8 other tests skip
-   [104]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14319/shard-snb7/igt@kms_frontbuffer_tracking@fbc-2p-primscrn-pri-shrfb-draw-mmap-cpu.html
-   [105]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130173v2/shard-snb5/igt@kms_frontbuffer_tracking@fbc-2p-primscrn-pri-shrfb-draw-mmap-cpu.html
-
-  * igt@kms_frontbuffer_tracking@fbc-2p-scndscrn-pri-indfb-draw-render:
-    - shard-mtlp:         NOTRUN -> [SKIP][106] ([i915#1825])
-   [106]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130173v2/shard-mtlp-7/igt@kms_frontbuffer_tracking@fbc-2p-scndscrn-pri-indfb-draw-render.html
-    - shard-dg1:          NOTRUN -> [SKIP][107] ([fdo#111825])
-   [107]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130173v2/shard-dg1-16/igt@kms_frontbuffer_tracking@fbc-2p-scndscrn-pri-indfb-draw-render.html
-
-  * igt@kms_frontbuffer_tracking@fbcpsr-1p-indfb-fliptrack-mmap-gtt:
-    - shard-dg2:          NOTRUN -> [SKIP][108] ([i915#8708]) +7 other tests skip
-   [108]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130173v2/shard-dg2-7/igt@kms_frontbuffer_tracking@fbcpsr-1p-indfb-fliptrack-mmap-gtt.html
-
-  * igt@kms_frontbuffer_tracking@fbcpsr-2p-primscrn-shrfb-plflip-blt:
-    - shard-dg2:          NOTRUN -> [SKIP][109] ([i915#5354]) +10 other tests skip
-   [109]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130173v2/shard-dg2-7/igt@kms_frontbuffer_tracking@fbcpsr-2p-primscrn-shrfb-plflip-blt.html
-
-  * igt@kms_frontbuffer_tracking@fbcpsr-2p-scndscrn-cur-indfb-draw-pwrite:
-    - shard-rkl:          NOTRUN -> [SKIP][110] ([fdo#111825] / [i915#1825]) +2 other tests skip
-   [110]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130173v2/shard-rkl-4/igt@kms_frontbuffer_tracking@fbcpsr-2p-scndscrn-cur-indfb-draw-pwrite.html
-
-  * igt@kms_frontbuffer_tracking@fbcpsr-2p-scndscrn-spr-indfb-fullscreen:
-    - shard-tglu:         NOTRUN -> [SKIP][111] ([fdo#109280]) +11 other tests skip
-   [111]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130173v2/shard-tglu-8/igt@kms_frontbuffer_tracking@fbcpsr-2p-scndscrn-spr-indfb-fullscreen.html
-
-  * igt@kms_frontbuffer_tracking@psr-1p-primscrn-cur-indfb-move:
-    - shard-dg2:          NOTRUN -> [SKIP][112] ([i915#3458]) +11 other tests skip
-   [112]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130173v2/shard-dg2-6/igt@kms_frontbuffer_tracking@psr-1p-primscrn-cur-indfb-move.html
-
-  * igt@kms_frontbuffer_tracking@psr-1p-primscrn-indfb-msflip-blt:
-    - shard-dg1:          NOTRUN -> [SKIP][113] ([i915#3458])
-   [113]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130173v2/shard-dg1-16/igt@kms_frontbuffer_tracking@psr-1p-primscrn-indfb-msflip-blt.html
-
-  * igt@kms_frontbuffer_tracking@psr-1p-primscrn-pri-indfb-draw-pwrite:
-    - shard-tglu:         NOTRUN -> [SKIP][114] ([fdo#110189]) +10 other tests skip
-   [114]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130173v2/shard-tglu-5/igt@kms_frontbuffer_tracking@psr-1p-primscrn-pri-indfb-draw-pwrite.html
-
-  * igt@kms_frontbuffer_tracking@psr-2p-scndscrn-cur-indfb-draw-render:
-    - shard-tglu:         NOTRUN -> [SKIP][115] ([fdo#109280] / [fdo#111767]) +1 other test skip
-   [115]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130173v2/shard-tglu-5/igt@kms_frontbuffer_tracking@psr-2p-scndscrn-cur-indfb-draw-render.html
-
-  * igt@kms_hdr@bpc-switch-dpms:
-    - shard-tglu:         NOTRUN -> [SKIP][116] ([i915#3555] / [i915#8228]) +1 other test skip
-   [116]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130173v2/shard-tglu-5/igt@kms_hdr@bpc-switch-dpms.html
-
-  * igt@kms_hdr@invalid-metadata-sizes:
-    - shard-dg2:          NOTRUN -> [SKIP][117] ([i915#3555] / [i915#8228]) +1 other test skip
-   [117]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130173v2/shard-dg2-6/igt@kms_hdr@invalid-metadata-sizes.html
-
-  * igt@kms_pipe_b_c_ivb@pipe-b-dpms-off-modeset-pipe-c:
-    - shard-dg2:          NOTRUN -> [SKIP][118] ([fdo#109289])
-   [118]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130173v2/shard-dg2-6/igt@kms_pipe_b_c_ivb@pipe-b-dpms-off-modeset-pipe-c.html
-
-  * igt@kms_plane_scaling@intel-max-src-size:
-    - shard-dg2:          NOTRUN -> [SKIP][119] ([i915#6953] / [i915#9423])
-   [119]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130173v2/shard-dg2-6/igt@kms_plane_scaling@intel-max-src-size.html
-
-  * igt@kms_plane_scaling@intel-max-src-size@pipe-a-hdmi-a-2:
-    - shard-rkl:          NOTRUN -> [FAIL][120] ([i915#8292])
-   [120]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130173v2/shard-rkl-1/igt@kms_plane_scaling@intel-max-src-size@pipe-a-hdmi-a-2.html
-
-  * igt@kms_plane_scaling@plane-downscale-factor-0-25-with-modifiers@pipe-a-hdmi-a-2:
-    - shard-dg2:          NOTRUN -> [SKIP][121] ([i915#9423]) +7 other tests skip
-   [121]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130173v2/shard-dg2-2/igt@kms_plane_scaling@plane-downscale-factor-0-25-with-modifiers@pipe-a-hdmi-a-2.html
-
-  * igt@kms_plane_scaling@plane-downscale-factor-0-25-with-pixel-format@pipe-a-hdmi-a-1:
-    - shard-rkl:          NOTRUN -> [SKIP][122] ([i915#9423]) +5 other tests skip
-   [122]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130173v2/shard-rkl-4/igt@kms_plane_scaling@plane-downscale-factor-0-25-with-pixel-format@pipe-a-hdmi-a-1.html
-
-  * igt@kms_plane_scaling@plane-downscale-factor-0-25-with-rotation@pipe-c-hdmi-a-3:
-    - shard-dg1:          NOTRUN -> [SKIP][123] ([i915#9423]) +19 other tests skip
-   [123]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130173v2/shard-dg1-12/igt@kms_plane_scaling@plane-downscale-factor-0-25-with-rotation@pipe-c-hdmi-a-3.html
-
-  * igt@kms_plane_scaling@plane-scaler-with-clipping-clamping-rotation@pipe-a-hdmi-a-3:
-    - shard-dg1:          NOTRUN -> [SKIP][124] ([i915#5176] / [i915#9423]) +3 other tests skip
-   [124]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130173v2/shard-dg1-13/igt@kms_plane_scaling@plane-scaler-with-clipping-clamping-rotation@pipe-a-hdmi-a-3.html
-
-  * igt@kms_plane_scaling@plane-scaler-with-clipping-clamping-rotation@pipe-b-hdmi-a-1:
-    - shard-tglu:         NOTRUN -> [SKIP][125] ([i915#5176] / [i915#9423]) +3 other tests skip
-   [125]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130173v2/shard-tglu-5/igt@kms_plane_scaling@plane-scaler-with-clipping-clamping-rotation@pipe-b-hdmi-a-1.html
-
-  * igt@kms_plane_scaling@planes-downscale-factor-0-25-upscale-20x20@pipe-d-hdmi-a-1:
-    - shard-tglu:         NOTRUN -> [SKIP][126] ([i915#5235]) +3 other tests skip
-   [126]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130173v2/shard-tglu-8/igt@kms_plane_scaling@planes-downscale-factor-0-25-upscale-20x20@pipe-d-hdmi-a-1.html
-
-  * igt@kms_plane_scaling@planes-downscale-factor-0-25-upscale-factor-0-25@pipe-b-hdmi-a-1:
-    - shard-rkl:          NOTRUN -> [SKIP][127] ([i915#5235]) +5 other tests skip
-   [127]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130173v2/shard-rkl-4/igt@kms_plane_scaling@planes-downscale-factor-0-25-upscale-factor-0-25@pipe-b-hdmi-a-1.html
-
-  * igt@kms_plane_scaling@planes-downscale-factor-0-25@pipe-c-hdmi-a-4:
-    - shard-dg1:          NOTRUN -> [SKIP][128] ([i915#5235]) +7 other tests skip
-   [128]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130173v2/shard-dg1-15/igt@kms_plane_scaling@planes-downscale-factor-0-25@pipe-c-hdmi-a-4.html
-
-  * igt@kms_plane_scaling@planes-unity-scaling-downscale-factor-0-25@pipe-a-hdmi-a-2:
-    - shard-dg2:          NOTRUN -> [SKIP][129] ([i915#5235] / [i915#9423]) +7 other tests skip
-   [129]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130173v2/shard-dg2-2/igt@kms_plane_scaling@planes-unity-scaling-downscale-factor-0-25@pipe-a-hdmi-a-2.html
-
-  * igt@kms_pm_backlight@fade:
-    - shard-rkl:          NOTRUN -> [SKIP][130] ([i915#5354])
-   [130]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130173v2/shard-rkl-4/igt@kms_pm_backlight@fade.html
-
-  * igt@kms_pm_dc@dc6-psr:
-    - shard-tglu:         NOTRUN -> [SKIP][131] ([i915#9685])
-   [131]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130173v2/shard-tglu-8/igt@kms_pm_dc@dc6-psr.html
-
-  * igt@kms_pm_dc@dc9-dpms:
-    - shard-tglu:         NOTRUN -> [SKIP][132] ([i915#4281])
-   [132]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130173v2/shard-tglu-5/igt@kms_pm_dc@dc9-dpms.html
-
-  * igt@kms_pm_rpm@modeset-non-lpsp:
-    - shard-tglu:         NOTRUN -> [SKIP][133] ([i915#9519]) +1 other test skip
-   [133]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130173v2/shard-tglu-8/igt@kms_pm_rpm@modeset-non-lpsp.html
-    - shard-dg2:          [PASS][134] -> [SKIP][135] ([i915#9519]) +1 other test skip
-   [134]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14319/shard-dg2-6/igt@kms_pm_rpm@modeset-non-lpsp.html
-   [135]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130173v2/shard-dg2-10/igt@kms_pm_rpm@modeset-non-lpsp.html
-
-  * igt@kms_pm_rpm@modeset-non-lpsp-stress-no-wait:
-    - shard-rkl:          [PASS][136] -> [SKIP][137] ([i915#9519])
-   [136]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14319/shard-rkl-1/igt@kms_pm_rpm@modeset-non-lpsp-stress-no-wait.html
-   [137]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130173v2/shard-rkl-7/igt@kms_pm_rpm@modeset-non-lpsp-stress-no-wait.html
-
-  * igt@kms_prime@basic-crc-hybrid:
-    - shard-dg2:          NOTRUN -> [SKIP][138] ([i915#6524] / [i915#6805]) +1 other test skip
-   [138]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130173v2/shard-dg2-6/igt@kms_prime@basic-crc-hybrid.html
-
-  * igt@kms_psr2_sf@overlay-plane-update-continuous-sf:
-    - shard-glk:          NOTRUN -> [SKIP][139] ([fdo#109271] / [fdo#110189]) +2 other tests skip
-   [139]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130173v2/shard-glk1/igt@kms_psr2_sf@overlay-plane-update-continuous-sf.html
-
-  * igt@kms_psr2_sf@overlay-primary-update-sf-dmg-area:
-    - shard-dg2:          NOTRUN -> [SKIP][140] ([fdo#110189]) +1 other test skip
-   [140]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130173v2/shard-dg2-6/igt@kms_psr2_sf@overlay-primary-update-sf-dmg-area.html
-
-  * igt@kms_rotation_crc@sprite-rotation-90:
-    - shard-dg2:          NOTRUN -> [SKIP][141] ([i915#4235])
-   [141]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130173v2/shard-dg2-7/igt@kms_rotation_crc@sprite-rotation-90.html
-
-  * igt@kms_scaling_modes@scaling-mode-full:
-    - shard-dg1:          NOTRUN -> [SKIP][142] ([i915#3555])
-   [142]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130173v2/shard-dg1-16/igt@kms_scaling_modes@scaling-mode-full.html
-
-  * igt@kms_setmode@basic-clone-single-crtc:
-    - shard-tglu:         NOTRUN -> [SKIP][143] ([i915#3555]) +3 other tests skip
-   [143]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130173v2/shard-tglu-8/igt@kms_setmode@basic-clone-single-crtc.html
-
-  * igt@kms_setmode@basic@pipe-a-vga-1-pipe-b-hdmi-a-1:
-    - shard-snb:          NOTRUN -> [FAIL][144] ([i915#5465]) +3 other tests fail
-   [144]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130173v2/shard-snb7/igt@kms_setmode@basic@pipe-a-vga-1-pipe-b-hdmi-a-1.html
-
-  * igt@kms_universal_plane@cursor-fb-leak@pipe-b-hdmi-a-4:
-    - shard-dg1:          [PASS][145] -> [FAIL][146] ([i915#9196])
-   [145]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14319/shard-dg1-19/igt@kms_universal_plane@cursor-fb-leak@pipe-b-hdmi-a-4.html
-   [146]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130173v2/shard-dg1-17/igt@kms_universal_plane@cursor-fb-leak@pipe-b-hdmi-a-4.html
-
-  * igt@kms_universal_plane@cursor-fb-leak@pipe-d-hdmi-a-1:
-    - shard-tglu:         [PASS][147] -> [FAIL][148] ([i915#9196]) +1 other test fail
-   [147]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14319/shard-tglu-8/igt@kms_universal_plane@cursor-fb-leak@pipe-d-hdmi-a-1.html
-   [148]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130173v2/shard-tglu-4/igt@kms_universal_plane@cursor-fb-leak@pipe-d-hdmi-a-1.html
-
-  * igt@kms_writeback@writeback-fb-id-xrgb2101010:
-    - shard-tglu:         NOTRUN -> [SKIP][149] ([i915#2437] / [i915#9412])
-   [149]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130173v2/shard-tglu-8/igt@kms_writeback@writeback-fb-id-xrgb2101010.html
-    - shard-glk:          NOTRUN -> [SKIP][150] ([fdo#109271] / [i915#2437]) +1 other test skip
-   [150]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130173v2/shard-glk3/igt@kms_writeback@writeback-fb-id-xrgb2101010.html
-
-  * igt@perf_pmu@busy-double-start@ccs0:
-    - shard-mtlp:         [PASS][151] -> [FAIL][152] ([i915#4349])
-   [151]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14319/shard-mtlp-5/igt@perf_pmu@busy-double-start@ccs0.html
-   [152]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130173v2/shard-mtlp-1/igt@perf_pmu@busy-double-start@ccs0.html
-
-  * igt@perf_pmu@frequency@gt0:
-    - shard-dg2:          NOTRUN -> [FAIL][153] ([i915#6806])
-   [153]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130173v2/shard-dg2-7/igt@perf_pmu@frequency@gt0.html
-
-  * igt@prime_udl:
-    - shard-tglu:         NOTRUN -> [SKIP][154] ([fdo#109291])
-   [154]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130173v2/shard-tglu-8/igt@prime_udl.html
-
-  * igt@prime_vgem@coherency-gtt:
-    - shard-dg2:          NOTRUN -> [SKIP][155] ([i915#3708] / [i915#4077])
-   [155]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130173v2/shard-dg2-6/igt@prime_vgem@coherency-gtt.html
-
-  * igt@sriov_basic@enable-vfs-bind-unbind-each:
-    - shard-dg2:          NOTRUN -> [SKIP][156] ([i915#9917])
-   [156]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130173v2/shard-dg2-7/igt@sriov_basic@enable-vfs-bind-unbind-each.html
-
-  * igt@v3d/v3d_get_bo_offset@get-bad-handle:
-    - shard-dg2:          NOTRUN -> [SKIP][157] ([i915#2575]) +4 other tests skip
-   [157]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130173v2/shard-dg2-7/igt@v3d/v3d_get_bo_offset@get-bad-handle.html
-
-  * igt@v3d/v3d_submit_cl@bad-pad:
-    - shard-rkl:          NOTRUN -> [SKIP][158] ([fdo#109315])
-   [158]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130173v2/shard-rkl-4/igt@v3d/v3d_submit_cl@bad-pad.html
-
-  * igt@v3d/v3d_wait_bo@bad-pad:
-    - shard-tglu:         NOTRUN -> [SKIP][159] ([fdo#109315] / [i915#2575]) +5 other tests skip
-   [159]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130173v2/shard-tglu-5/igt@v3d/v3d_wait_bo@bad-pad.html
-
-  * igt@v3d/v3d_wait_bo@used-bo-0ns:
-    - shard-mtlp:         NOTRUN -> [SKIP][160] ([i915#2575])
-   [160]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130173v2/shard-mtlp-7/igt@v3d/v3d_wait_bo@used-bo-0ns.html
-    - shard-dg1:          NOTRUN -> [SKIP][161] ([i915#2575])
-   [161]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130173v2/shard-dg1-16/igt@v3d/v3d_wait_bo@used-bo-0ns.html
-
-  * igt@vc4/vc4_mmap@mmap-bad-handle:
-    - shard-dg1:          NOTRUN -> [SKIP][162] ([i915#7711])
-   [162]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130173v2/shard-dg1-16/igt@vc4/vc4_mmap@mmap-bad-handle.html
-    - shard-mtlp:         NOTRUN -> [SKIP][163] ([i915#7711])
-   [163]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130173v2/shard-mtlp-7/igt@vc4/vc4_mmap@mmap-bad-handle.html
-
-  * igt@vc4/vc4_purgeable_bo@mark-purgeable:
-    - shard-tglu:         NOTRUN -> [SKIP][164] ([i915#2575])
-   [164]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130173v2/shard-tglu-5/igt@vc4/vc4_purgeable_bo@mark-purgeable.html
-
-  * igt@vc4/vc4_purgeable_bo@mark-unpurgeable-check-retained:
-    - shard-dg2:          NOTRUN -> [SKIP][165] ([i915#7711]) +3 other tests skip
-   [165]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130173v2/shard-dg2-7/igt@vc4/vc4_purgeable_bo@mark-unpurgeable-check-retained.html
-
-  
-#### Possible fixes ####
-
-  * igt@gem_exec_fair@basic-throttle@rcs0:
-    - shard-glk:          [FAIL][166] ([i915#2842]) -> [PASS][167] +1 other test pass
-   [166]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14319/shard-glk2/igt@gem_exec_fair@basic-throttle@rcs0.html
-   [167]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130173v2/shard-glk9/igt@gem_exec_fair@basic-throttle@rcs0.html
-
-  * igt@i915_hangman@gt-engine-error@rcs0:
-    - shard-tglu:         [TIMEOUT][168] -> [PASS][169]
-   [168]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14319/shard-tglu-7/igt@i915_hangman@gt-engine-error@rcs0.html
-   [169]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130173v2/shard-tglu-8/igt@i915_hangman@gt-engine-error@rcs0.html
-
-  * igt@i915_module_load@reload-with-fault-injection:
-    - shard-snb:          [INCOMPLETE][170] ([i915#10137] / [i915#9200] / [i915#9849]) -> [PASS][171]
-   [170]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14319/shard-snb4/igt@i915_module_load@reload-with-fault-injection.html
-   [171]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130173v2/shard-snb1/igt@i915_module_load@reload-with-fault-injection.html
-    - shard-mtlp:         [ABORT][172] ([i915#10131] / [i915#9697]) -> [PASS][173]
-   [172]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14319/shard-mtlp-1/igt@i915_module_load@reload-with-fault-injection.html
-   [173]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130173v2/shard-mtlp-7/igt@i915_module_load@reload-with-fault-injection.html
-
-  * igt@i915_pm_rpm@gem-idle:
-    - shard-tglu:         [SKIP][174] -> [PASS][175]
-   [174]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14319/shard-tglu-7/igt@i915_pm_rpm@gem-idle.html
-   [175]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130173v2/shard-tglu-8/igt@i915_pm_rpm@gem-idle.html
-
-  * igt@kms_big_fb@4-tiled-max-hw-stride-64bpp-rotate-0:
-    - shard-mtlp:         [FAIL][176] ([i915#5138]) -> [PASS][177]
-   [176]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14319/shard-mtlp-5/igt@kms_big_fb@4-tiled-max-hw-stride-64bpp-rotate-0.html
-   [177]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130173v2/shard-mtlp-7/igt@kms_big_fb@4-tiled-max-hw-stride-64bpp-rotate-0.html
-
-  * igt@kms_big_fb@y-tiled-max-hw-stride-64bpp-rotate-0-hflip-async-flip:
-    - shard-tglu:         [FAIL][178] ([i915#3743]) -> [PASS][179] +1 other test pass
-   [178]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14319/shard-tglu-7/igt@kms_big_fb@y-tiled-max-hw-stride-64bpp-rotate-0-hflip-async-flip.html
-   [179]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130173v2/shard-tglu-8/igt@kms_big_fb@y-tiled-max-hw-stride-64bpp-rotate-0-hflip-async-flip.html
-
-  * igt@kms_cursor_legacy@flip-vs-cursor-atomic-transitions:
-    - shard-glk:          [FAIL][180] ([i915#2346]) -> [PASS][181]
-   [180]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14319/shard-glk3/igt@kms_cursor_legacy@flip-vs-cursor-atomic-transitions.html
-   [181]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130173v2/shard-glk4/igt@kms_cursor_legacy@flip-vs-cursor-atomic-transitions.html
-
-  * igt@kms_frontbuffer_tracking@fbc-2p-rte:
-    - shard-snb:          [SKIP][182] ([fdo#109271]) -> [PASS][183] +6 other tests pass
-   [182]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14319/shard-snb4/igt@kms_frontbuffer_tracking@fbc-2p-rte.html
-   [183]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130173v2/shard-snb7/igt@kms_frontbuffer_tracking@fbc-2p-rte.html
-
-  * igt@kms_frontbuffer_tracking@fbc-2p-scndscrn-pri-indfb-draw-mmap-gtt:
-    - shard-snb:          [SKIP][184] ([fdo#109271] / [fdo#111767]) -> [PASS][185]
-   [184]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14319/shard-snb5/igt@kms_frontbuffer_tracking@fbc-2p-scndscrn-pri-indfb-draw-mmap-gtt.html
-   [185]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130173v2/shard-snb7/igt@kms_frontbuffer_tracking@fbc-2p-scndscrn-pri-indfb-draw-mmap-gtt.html
-
-  * igt@kms_rotation_crc@primary-y-tiled-reflect-x-180:
-    - shard-rkl:          [INCOMPLETE][186] ([i915#8875] / [i915#9569]) -> [PASS][187]
-   [186]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14319/shard-rkl-1/igt@kms_rotation_crc@primary-y-tiled-reflect-x-180.html
-   [187]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130173v2/shard-rkl-4/igt@kms_rotation_crc@primary-y-tiled-reflect-x-180.html
-
-  * igt@kms_universal_plane@cursor-fb-leak@pipe-a-hdmi-a-1:
-    - shard-snb:          [FAIL][188] ([i915#9196]) -> [PASS][189]
-   [188]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14319/shard-snb1/igt@kms_universal_plane@cursor-fb-leak@pipe-a-hdmi-a-1.html
-   [189]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130173v2/shard-snb1/igt@kms_universal_plane@cursor-fb-leak@pipe-a-hdmi-a-1.html
-
-  
-#### Warnings ####
-
-  * igt@i915_module_load@reload-with-fault-injection:
-    - shard-dg1:          [ABORT][190] ([i915#9820]) -> [DMESG-WARN][191] ([i915#4391] / [i915#4423])
-   [190]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14319/shard-dg1-13/igt@i915_module_load@reload-with-fault-injection.html
-   [191]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130173v2/shard-dg1-16/igt@i915_module_load@reload-with-fault-injection.html
-    - shard-dg2:          [ABORT][192] ([i915#9820]) -> [INCOMPLETE][193] ([i915#10137] / [i915#9820] / [i915#9849])
-   [192]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14319/shard-dg2-7/igt@i915_module_load@reload-with-fault-injection.html
-   [193]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130173v2/shard-dg2-5/igt@i915_module_load@reload-with-fault-injection.html
-
-  * igt@kms_big_fb@linear-16bpp-rotate-90:
-    - shard-tglu:         [TIMEOUT][194] -> [SKIP][195] ([fdo#111614])
-   [194]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14319/shard-tglu-7/igt@kms_big_fb@linear-16bpp-rotate-90.html
-   [195]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130173v2/shard-tglu-8/igt@kms_big_fb@linear-16bpp-rotate-90.html
-
-  * igt@kms_content_protection@srm:
-    - shard-snb:          [INCOMPLETE][196] ([i915#8816]) -> [SKIP][197] ([fdo#109271]) +1 other test skip
-   [196]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14319/shard-snb7/igt@kms_content_protection@srm.html
-   [197]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130173v2/shard-snb2/igt@kms_content_protection@srm.html
-
-  * igt@kms_frontbuffer_tracking@psr-2p-primscrn-indfb-plflip-blt:
-    - shard-snb:          [SKIP][198] ([fdo#109271]) -> [SKIP][199] ([fdo#109271] / [fdo#111767])
-   [198]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14319/shard-snb7/igt@kms_frontbuffer_tracking@psr-2p-primscrn-indfb-plflip-blt.html
-   [199]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130173v2/shard-snb5/igt@kms_frontbuffer_tracking@psr-2p-primscrn-indfb-plflip-blt.html
-
-  * igt@kms_pm_dc@dc6-dpms:
-    - shard-rkl:          [SKIP][200] ([i915#3361]) -> [FAIL][201] ([i915#9295])
-   [200]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14319/shard-rkl-6/igt@kms_pm_dc@dc6-dpms.html
-   [201]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130173v2/shard-rkl-5/igt@kms_pm_dc@dc6-dpms.html
-
-  * igt@prime_mmap@test_aperture_limit@test_aperture_limit-smem:
-    - shard-dg2:          [CRASH][202] ([i915#9351]) -> [INCOMPLETE][203] ([i915#5493])
-   [202]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14319/shard-dg2-1/igt@prime_mmap@test_aperture_limit@test_aperture_limit-smem.html
-   [203]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130173v2/shard-dg2-2/igt@prime_mmap@test_aperture_limit@test_aperture_limit-smem.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
-  [fdo#109274]: https://bugs.freedesktop.org/show_bug.cgi?id=109274
-  [fdo#109280]: https://bugs.freedesktop.org/show_bug.cgi?id=109280
-  [fdo#109289]: https://bugs.freedesktop.org/show_bug.cgi?id=109289
-  [fdo#109291]: https://bugs.freedesktop.org/show_bug.cgi?id=109291
-  [fdo#109314]: https://bugs.freedesktop.org/show_bug.cgi?id=109314
-  [fdo#109315]: https://bugs.freedesktop.org/show_bug.cgi?id=109315
-  [fdo#110189]: https://bugs.freedesktop.org/show_bug.cgi?id=110189
-  [fdo#111614]: https://bugs.freedesktop.org/show_bug.cgi?id=111614
-  [fdo#111615]: https://bugs.freedesktop.org/show_bug.cgi?id=111615
-  [fdo#111767]: https://bugs.freedesktop.org/show_bug.cgi?id=111767
-  [fdo#111825]: https://bugs.freedesktop.org/show_bug.cgi?id=111825
-  [i915#10031]: https://gitlab.freedesktop.org/drm/intel/issues/10031
-  [i915#10131]: https://gitlab.freedesktop.org/drm/intel/issues/10131
-  [i915#10137]: https://gitlab.freedesktop.org/drm/intel/issues/10137
-  [i915#1099]: https://gitlab.freedesktop.org/drm/intel/issues/1099
-  [i915#1257]: https://gitlab.freedesktop.org/drm/intel/issues/1257
-  [i915#1769]: https://gitlab.freedesktop.org/drm/intel/issues/1769
-  [i915#1825]: https://gitlab.freedesktop.org/drm/intel/issues/1825
-  [i915#1839]: https://gitlab.freedesktop.org/drm/intel/issues/1839
-  [i915#2346]: https://gitlab.freedesktop.org/drm/intel/issues/2346
-  [i915#2437]: https://gitlab.freedesktop.org/drm/intel/issues/2437
-  [i915#2527]: https://gitlab.freedesktop.org/drm/intel/issues/2527
-  [i915#2575]: https://gitlab.freedesktop.org/drm/intel/issues/2575
-  [i915#2587]: https://gitlab.freedesktop.org/drm/intel/issues/2587
-  [i915#2672]: https://gitlab.freedesktop.org/drm/intel/issues/2672
-  [i915#2705]: https://gitlab.freedesktop.org/drm/intel/issues/2705
-  [i915#2842]: https://gitlab.freedesktop.org/drm/intel/issues/2842
-  [i915#2856]: https://gitlab.freedesktop.org/drm/intel/issues/2856
-  [i915#3116]: https://gitlab.freedesktop.org/drm/intel/issues/3116
-  [i915#3281]: https://gitlab.freedesktop.org/drm/intel/issues/3281
-  [i915#3282]: https://gitlab.freedesktop.org/drm/intel/issues/3282
-  [i915#3297]: https://gitlab.freedesktop.org/drm/intel/issues/3297
-  [i915#3299]: https://gitlab.freedesktop.org/drm/intel/issues/3299
-  [i915#3323]: https://gitlab.freedesktop.org/drm/intel/issues/3323
-  [i915#3361]: https://gitlab.freedesktop.org/drm/intel/issues/3361
-  [i915#3458]: https://gitlab.freedesktop.org/drm/intel/issues/3458
-  [i915#3539]: https://gitlab.freedesktop.org/drm/intel/issues/3539
-  [i915#3555]: https://gitlab.freedesktop.org/drm/intel/issues/3555
-  [i915#3591]: https://gitlab.freedesktop.org/drm/intel/issues/3591
-  [i915#3637]: https://gitlab.freedesktop.org/drm/intel/issues/3637
-  [i915#3638]: https://gitlab.freedesktop.org/drm/intel/issues/3638
-  [i915#3708]: https://gitlab.freedesktop.org/drm/intel/issues/3708
-  [i915#3742]: https://gitlab.freedesktop.org/drm/intel/issues/3742
-  [i915#3743]: https://gitlab.freedesktop.org/drm/intel/issues/3743
-  [i915#3840]: https://gitlab.freedesktop.org/drm/intel/issues/3840
-  [i915#4077]: https://gitlab.freedesktop.org/drm/intel/issues/4077
-  [i915#4079]: https://gitlab.freedesktop.org/drm/intel/issues/4079
-  [i915#4083]: https://gitlab.freedesktop.org/drm/intel/issues/4083
-  [i915#4087]: https://gitlab.freedesktop.org/drm/intel/issues/4087
-  [i915#4235]: https://gitlab.freedesktop.org/drm/intel/issues/4235
-  [i915#4270]: https://gitlab.freedesktop.org/drm/intel/issues/4270
-  [i915#4281]: https://gitlab.freedesktop.org/drm/intel/issues/4281
-  [i915#4349]: https://gitlab.freedesktop.org/drm/intel/issues/4349
-  [i915#4387]: https://gitlab.freedesktop.org/drm/intel/issues/4387
-  [i915#4391]: https://gitlab.freedesktop.org/drm/intel/issues/4391
-  [i915#4423]: https://gitlab.freedesktop.org/drm/intel/issues/4423
-  [i915#4473]: https://gitlab.freedesktop.org/drm/intel/issues/4473
-  [i915#4537]: https://gitlab.freedesktop.org/drm/intel/issues/4537
-  [i915#4538]: https://gitlab.freedesktop.org/drm/intel/issues/4538
-  [i915#4613]: https://gitlab.freedesktop.org/drm/intel/issues/4613
-  [i915#4771]: https://gitlab.freedesktop.org/drm/intel/issues/4771
-  [i915#4812]: https://gitlab.freedesktop.org/drm/intel/issues/4812
-  [i915#4852]: https://gitlab.freedesktop.org/drm/intel/issues/4852
-  [i915#4860]: https://gitlab.freedesktop.org/drm/intel/issues/4860
-  [i915#4881]: https://gitlab.freedesktop.org/drm/intel/issues/4881
-  [i915#5138]: https://gitlab.freedesktop.org/drm/intel/issues/5138
-  [i915#5176]: https://gitlab.freedesktop.org/drm/intel/issues/5176
-  [i915#5190]: https://gitlab.freedesktop.org/drm/intel/issues/5190
-  [i915#5235]: https://gitlab.freedesktop.org/drm/intel/issues/5235
-  [i915#5286]: https://gitlab.freedesktop.org/drm/intel/issues/5286
-  [i915#5354]: https://gitlab.freedesktop.org/drm/intel/issues/5354
-  [i915#5465]: https://gitlab.freedesktop.org/drm/intel/issues/5465
-  [i915#5493]: https://gitlab.freedesktop.org/drm/intel/issues/5493
-  [i915#6095]: https://gitlab.freedesktop.org/drm/intel/issues/6095
-  [i915#6524]: https://gitlab.freedesktop.org/drm/intel/issues/6524
-  [i915#658]: https://gitlab.freedesktop.org/drm/intel/issues/658
-  [i915#6621]: https://gitlab.freedesktop.org/drm/intel/issues/6621
-  [i915#6805]: https://gitlab.freedesktop.org/drm/intel/issues/6805
-  [i915#6806]: https://gitlab.freedesktop.org/drm/intel/issues/6806
-  [i915#6880]: https://gitlab.freedesktop.org/drm/intel/issues/6880
-  [i915#6953]: https://gitlab.freedesktop.org/drm/intel/issues/6953
-  [i915#7118]: https://gitlab.freedesktop.org/drm/intel/issues/7118
-  [i915#7213]: https://gitlab.freedesktop.org/drm/intel/issues/7213
-  [i915#7297]: https://gitlab.freedesktop.org/drm/intel/issues/7297
-  [i915#7711]: https://gitlab.freedesktop.org/drm/intel/issues/7711
-  [i915#7742]: https://gitlab.freedesktop.org/drm/intel/issues/7742
-  [i915#7828]: https://gitlab.freedesktop.org/drm/intel/issues/7828
-  [i915#8228]: https://gitlab.freedesktop.org/drm/intel/issues/8228
-  [i915#8292]: https://gitlab.freedesktop.org/drm/intel/issues/8292
-  [i915#8411]: https://gitlab.freedesktop.org/drm/intel/issues/8411
-  [i915#8414]: https://gitlab.freedesktop.org/drm/intel/issues/8414
-  [i915#8428]: https://gitlab.freedesktop.org/drm/intel/issues/8428
-  [i915#8555]: https://gitlab.freedesktop.org/drm/intel/issues/8555
-  [i915#8562]: https://gitlab.freedesktop.org/drm/intel/issues/8562
-  [i915#8708]: https://gitlab.freedesktop.org/drm/intel/issues/8708
-  [i915#8709]: https://gitlab.freedesktop.org/drm/intel/issues/8709
-  [i915#8816]: https://gitlab.freedesktop.org/drm/intel/issues/8816
-  [i915#8875]: https://gitlab.freedesktop.org/drm/intel/issues/8875
-  [i915#9196]: https://gitlab.freedesktop.org/drm/intel/issues/9196
-  [i915#9200]: https://gitlab.freedesktop.org/drm/intel/issues/9200
-  [i915#9275]: https://gitlab.freedesktop.org/drm/intel/issues/9275
-  [i915#9295]: https://gitlab.freedesktop.org/drm/intel/issues/9295
-  [i915#9323]: https://gitlab.freedesktop.org/drm/intel/issues/9323
-  [i915#9351]: https://gitlab.freedesktop.org/drm/intel/issues/9351
-  [i915#9407]: https://gitlab.freedesktop.org/drm/intel/issues/9407
-  [i915#9412]: https://gitlab.freedesktop.org/drm/intel/issues/9412
-  [i915#9423]: https://gitlab.freedesktop.org/drm/intel/issues/9423
-  [i915#9424]: https://gitlab.freedesktop.org/drm/intel/issues/9424
-  [i915#9519]: https://gitlab.freedesktop.org/drm/intel/issues/9519
-  [i915#9569]: https://gitlab.freedesktop.org/drm/intel/issues/9569
-  [i915#9606]: https://gitlab.freedesktop.org/drm/intel/issues/9606
-  [i915#9685]: https://gitlab.freedesktop.org/drm/intel/issues/9685
-  [i915#9697]: https://gitlab.freedesktop.org/drm/intel/issues/9697
-  [i915#9723]: https://gitlab.freedesktop.org/drm/intel/issues/9723
-  [i915#9732]: https://gitlab.freedesktop.org/drm/intel/issues/9732
-  [i915#9820]: https://gitlab.freedesktop.org/drm/intel/issues/9820
-  [i915#9833]: https://gitlab.freedesktop.org/drm/intel/issues/9833
-  [i915#9849]: https://gitlab.freedesktop.org/drm/intel/issues/9849
-  [i915#9917]: https://gitlab.freedesktop.org/drm/intel/issues/9917
-  [i915#9934]: https://gitlab.freedesktop.org/drm/intel/issues/9934
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_14319 -> Patchwork_130173v2
-
-  CI-20190529: 20190529
-  CI_DRM_14319: 5dfa3c2da4803652582408bfb3c529970735f594 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_7724: a7c03f7521f88f74fdf17c744fd847a775f9951f @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_130173v2: 5dfa3c2da4803652582408bfb3c529970735f594 @ git://anongit.freedesktop.org/gfx-ci/linux
-  piglit_4509: fdc5a4ca11124ab8413c7988896eec4c97336694 @ git://anongit.freedesktop.org/piglit
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130173v2/index.html
-
---===============5381550234137328764==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>IO and fast wake lines calculation and increase fw sync length (rev2)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/130173/">https://patchwork.freedesktop.org/series/130173/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130173v2/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130173v2/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_14319_full -&gt; Patchwork_130173v2_full</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (8 -&gt; 8)</h2>
-<p>No changes in participating hosts</p>
-<h2>Possible new issues</h2>
-<p>Here are the unknown changes that may have been introduced in Patchwork_130173v2_full:</p>
-<h3>IGT changes</h3>
-<h4>Possible regressions</h4>
-<ul>
-<li>{igt@kms_ccs@bad-rotation-90-y-tiled-ccs@pipe-d-hdmi-a-2} (NEW):<ul>
-<li>shard-dg2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130173v2/shard-dg2-2/igt@kms_ccs@bad-rotation-90-y-tiled-ccs@pipe-d-hdmi-a-2.html">SKIP</a> +1 other test skip</li>
-</ul>
-</li>
-</ul>
-<h4>Suppressed</h4>
-<p>The following results come from untrusted machines, tests, or statuses.<br />
-  They do not affect the overall result.</p>
-<ul>
-<li>{igt@kms_ccs@ccs-on-another-bo-4-tiled-mtl-rc-ccs@pipe-b-hdmi-a-3}:<ul>
-<li>shard-dg2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130173v2/shard-dg2-7/igt@kms_ccs@ccs-on-another-bo-4-tiled-mtl-rc-ccs@pipe-b-hdmi-a-3.html">SKIP</a> +141 other tests skip</li>
-</ul>
-</li>
-</ul>
-<h2>New tests</h2>
-<p>New tests have been introduced between CI_DRM_14319_full and Patchwork_130173v2_full:</p>
-<h3>New IGT tests (2)</h3>
-<ul>
-<li>
-<p>igt@kms_ccs@bad-aux-stride-y-tiled-gen12-mc-ccs@pipe-d-hdmi-a-2:</p>
-<ul>
-<li>Statuses : 1 skip(s)</li>
-<li>Exec time: [0.0] s</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_ccs@bad-rotation-90-y-tiled-ccs@pipe-d-hdmi-a-2:</p>
-<ul>
-<li>Statuses : 1 skip(s)</li>
-<li>Exec time: [0.0] s</li>
-</ul>
-</li>
-</ul>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_130173v2_full that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@api_intel_bb@blit-reloc-keep-cache:</p>
-<ul>
-<li>shard-dg2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130173v2/shard-dg2-7/igt@api_intel_bb@blit-reloc-keep-cache.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/8411">i915#8411</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@drm_fdinfo@busy-idle-check-all@ccs3:</p>
-<ul>
-<li>shard-dg2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130173v2/shard-dg2-6/igt@drm_fdinfo@busy-idle-check-all@ccs3.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/8414">i915#8414</a>) +10 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@drm_fdinfo@most-busy-idle-check-all@rcs0:</p>
-<ul>
-<li>shard-rkl:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14319/shard-rkl-5/igt@drm_fdinfo@most-busy-idle-check-all@rcs0.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130173v2/shard-rkl-6/igt@drm_fdinfo@most-busy-idle-check-all@rcs0.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/7742">i915#7742</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_ccs@block-copy-compressed:</p>
-<ul>
-<li>shard-tglu:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130173v2/shard-tglu-8/igt@gem_ccs@block-copy-compressed.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3555">i915#3555</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/9323">i915#9323</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_ccs@suspend-resume@linear-compressed-compfmt0-smem-lmem0:</p>
-<ul>
-<li>shard-dg2:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14319/shard-dg2-5/igt@gem_ccs@suspend-resume@linear-compressed-compfmt0-smem-lmem0.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130173v2/shard-dg2-2/igt@gem_ccs@suspend-resume@linear-compressed-compfmt0-smem-lmem0.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/7297">i915#7297</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_create@create-ext-set-pat:</p>
-<ul>
-<li>shard-tglu:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130173v2/shard-tglu-5/igt@gem_create@create-ext-set-pat.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/8562">i915#8562</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_ctx_param@set-priority-not-supported:</p>
-<ul>
-<li>shard-dg2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130173v2/shard-dg2-6/igt@gem_ctx_param@set-priority-not-supported.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109314">fdo#109314</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_ctx_persistence@heartbeat-stop:</p>
-<ul>
-<li>shard-dg1:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130173v2/shard-dg1-16/igt@gem_ctx_persistence@heartbeat-stop.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/8555">i915#8555</a>)</li>
-<li>shard-mtlp:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130173v2/shard-mtlp-7/igt@gem_ctx_persistence@heartbeat-stop.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/8555">i915#8555</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_ctx_persistence@legacy-engines-hostile:</p>
-<ul>
-<li>shard-snb:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130173v2/shard-snb1/igt@gem_ctx_persistence@legacy-engines-hostile.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/1099">i915#1099</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_exec_balancer@bonded-sync:</p>
-<ul>
-<li>shard-dg2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130173v2/shard-dg2-7/igt@gem_exec_balancer@bonded-sync.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4771">i915#4771</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_exec_capture@many-4k-zero:</p>
-<ul>
-<li>shard-glk:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130173v2/shard-glk9/igt@gem_exec_capture@many-4k-zero.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/9606">i915#9606</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_exec_fair@basic-none:</p>
-<ul>
-<li>shard-snb:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130173v2/shard-snb1/igt@gem_exec_fair@basic-none.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +14 other tests skip</li>
-<li>shard-dg1:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130173v2/shard-dg1-16/igt@gem_exec_fair@basic-none.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3539">i915#3539</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/4852">i915#4852</a>)</li>
-<li>shard-mtlp:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130173v2/shard-mtlp-7/igt@gem_exec_fair@basic-none.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4473">i915#4473</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/4771">i915#4771</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_exec_fair@basic-none-share:</p>
-<ul>
-<li>shard-dg2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130173v2/shard-dg2-7/igt@gem_exec_fair@basic-none-share.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3539">i915#3539</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/4852">i915#4852</a>) +4 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_exec_fair@basic-pace-solo@rcs0:</p>
-<ul>
-<li>shard-glk:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130173v2/shard-glk3/igt@gem_exec_fair@basic-pace-solo@rcs0.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2842">i915#2842</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_exec_fair@basic-pace@bcs0:</p>
-<ul>
-<li>shard-rkl:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14319/shard-rkl-5/igt@gem_exec_fair@basic-pace@bcs0.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130173v2/shard-rkl-1/igt@gem_exec_fair@basic-pace@bcs0.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2842">i915#2842</a>) +1 other test fail</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_exec_fair@basic-sync:</p>
-<ul>
-<li>shard-dg2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130173v2/shard-dg2-7/igt@gem_exec_fair@basic-sync.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3539">i915#3539</a>) +1 other test skip</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_exec_reloc@basic-write-gtt:</p>
-<ul>
-<li>shard-dg2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130173v2/shard-dg2-6/igt@gem_exec_reloc@basic-write-gtt.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3281">i915#3281</a>) +6 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_exec_schedule@preempt-queue-chain:</p>
-<ul>
-<li>shard-mtlp:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130173v2/shard-mtlp-7/igt@gem_exec_schedule@preempt-queue-chain.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4537">i915#4537</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/4812">i915#4812</a>)</li>
-<li>shard-dg1:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130173v2/shard-dg1-16/igt@gem_exec_schedule@preempt-queue-chain.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4812">i915#4812</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_exec_suspend@basic-s0@lmem0:</p>
-<ul>
-<li>shard-dg2:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14319/shard-dg2-10/igt@gem_exec_suspend@basic-s0@lmem0.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130173v2/shard-dg2-6/igt@gem_exec_suspend@basic-s0@lmem0.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/9275">i915#9275</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_fenced_exec_thrash@2-spare-fences:</p>
-<ul>
-<li>shard-dg2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130173v2/shard-dg2-6/igt@gem_fenced_exec_thrash@2-spare-fences.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4860">i915#4860</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_lmem_swapping@heavy-verify-random-ccs:</p>
-<ul>
-<li>shard-glk:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130173v2/shard-glk1/igt@gem_lmem_swapping@heavy-verify-random-ccs.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/4613">i915#4613</a>) +4 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_mmap_gtt@hang:</p>
-<ul>
-<li>shard-dg2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130173v2/shard-dg2-6/igt@gem_mmap_gtt@hang.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4077">i915#4077</a>) +4 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_mmap_wc@close:</p>
-<ul>
-<li>shard-dg2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130173v2/shard-dg2-7/igt@gem_mmap_wc@close.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4083">i915#4083</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_pwrite_snooped:</p>
-<ul>
-<li>shard-dg2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130173v2/shard-dg2-6/igt@gem_pwrite_snooped.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3282">i915#3282</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_pxp@create-valid-protected-context:</p>
-<ul>
-<li>shard-dg2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130173v2/shard-dg2-7/igt@gem_pxp@create-valid-protected-context.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4270">i915#4270</a>) +2 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_render_copy@y-tiled:</p>
-<ul>
-<li>shard-mtlp:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130173v2/shard-mtlp-7/igt@gem_render_copy@y-tiled.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/8428">i915#8428</a>) +1 other test skip</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_render_copy@yf-tiled-mc-ccs-to-vebox-y-tiled:</p>
-<ul>
-<li>shard-dg2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130173v2/shard-dg2-7/igt@gem_render_copy@yf-tiled-mc-ccs-to-vebox-y-tiled.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/5190">i915#5190</a>) +4 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_set_tiling_vs_gtt:</p>
-<ul>
-<li>shard-dg2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130173v2/shard-dg2-7/igt@gem_set_tiling_vs_gtt.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4079">i915#4079</a>) +1 other test skip</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_userptr_blits@create-destroy-unsync:</p>
-<ul>
-<li>shard-dg2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130173v2/shard-dg2-6/igt@gem_userptr_blits@create-destroy-unsync.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3297">i915#3297</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_userptr_blits@dmabuf-sync:</p>
-<ul>
-<li>shard-glk:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130173v2/shard-glk3/igt@gem_userptr_blits@dmabuf-sync.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/3323">i915#3323</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@gen3_render_tiledx_blits:</p>
-<ul>
-<li>shard-rkl:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130173v2/shard-rkl-4/igt@gen3_render_tiledx_blits.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109289">fdo#109289</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@gen9_exec_parse@allowed-single:</p>
-<ul>
-<li>shard-tglu:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130173v2/shard-tglu-5/igt@gen9_exec_parse@allowed-single.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2527">i915#2527</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/2856">i915#2856</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@gen9_exec_parse@batch-zero-length:</p>
-<ul>
-<li>shard-dg2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130173v2/shard-dg2-6/igt@gen9_exec_parse@batch-zero-length.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2856">i915#2856</a>) +1 other test skip</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_fb_tiling:</p>
-<ul>
-<li>shard-dg2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130173v2/shard-dg2-7/igt@i915_fb_tiling.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4881">i915#4881</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_module_load@reload-with-fault-injection:</p>
-<ul>
-<li>shard-rkl:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130173v2/shard-rkl-4/igt@i915_module_load@reload-with-fault-injection.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/10137">i915#10137</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/9820">i915#9820</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/9849">i915#9849</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_pm_freq_api@freq-suspend@gt0:</p>
-<ul>
-<li>shard-dg2:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14319/shard-dg2-2/igt@i915_pm_freq_api@freq-suspend@gt0.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130173v2/shard-dg2-10/igt@i915_pm_freq_api@freq-suspend@gt0.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/9407">i915#9407</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_pm_rc6_residency@rc6-idle@gt0-vcs0:</p>
-<ul>
-<li>shard-dg1:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130173v2/shard-dg1-16/igt@i915_pm_rc6_residency@rc6-idle@gt0-vcs0.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3591">i915#3591</a>) +1 other test fail</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_pm_rps@basic-api:</p>
-<ul>
-<li>shard-dg2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130173v2/shard-dg2-7/igt@i915_pm_rps@basic-api.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/6621">i915#6621</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_pm_sseu@full-enable:</p>
-<ul>
-<li>shard-dg2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130173v2/shard-dg2-6/igt@i915_pm_sseu@full-enable.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4387">i915#4387</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_suspend@basic-s3-without-i915:</p>
-<ul>
-<li>shard-rkl:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14319/shard-rkl-7/igt@i915_suspend@basic-s3-without-i915.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130173v2/shard-rkl-6/igt@i915_suspend@basic-s3-without-i915.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/10031">i915#10031</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_async_flips@async-flip-with-page-flip-events@pipe-a-hdmi-a-3-y-rc-ccs:</p>
-<ul>
-<li>shard-dg1:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130173v2/shard-dg1-13/igt@kms_async_flips@async-flip-with-page-flip-events@pipe-a-hdmi-a-3-y-rc-ccs.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/8709">i915#8709</a>) +7 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_async_flips@async-flip-with-page-flip-events@pipe-b-hdmi-a-1-y-rc-ccs:</p>
-<ul>
-<li>shard-tglu:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130173v2/shard-tglu-5/igt@kms_async_flips@async-flip-with-page-flip-events@pipe-b-hdmi-a-1-y-rc-ccs.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/8709">i915#8709</a>) +7 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_atomic_transition@plane-all-modeset-transition-internal-panels:</p>
-<ul>
-<li>shard-tglu:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130173v2/shard-tglu-5/igt@kms_atomic_transition@plane-all-modeset-transition-internal-panels.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1769">i915#1769</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/3555">i915#3555</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_big_fb@4-tiled-max-hw-stride-32bpp-rotate-0-hflip:</p>
-<ul>
-<li>shard-tglu:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130173v2/shard-tglu-8/igt@kms_big_fb@4-tiled-max-hw-stride-32bpp-rotate-0-hflip.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=111615">fdo#111615</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/5286">i915#5286</a>) +2 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_big_fb@linear-64bpp-rotate-90:</p>
-<ul>
-<li>shard-rkl:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130173v2/shard-rkl-4/igt@kms_big_fb@linear-64bpp-rotate-90.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=111614">fdo#111614</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/3638">i915#3638</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_big_fb@x-tiled-32bpp-rotate-270:</p>
-<ul>
-<li>shard-dg2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130173v2/shard-dg2-6/igt@kms_big_fb@x-tiled-32bpp-rotate-270.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=111614">fdo#111614</a>) +1 other test skip</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_big_fb@x-tiled-max-hw-stride-32bpp-rotate-0-async-flip:</p>
-<ul>
-<li>shard-tglu:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14319/shard-tglu-5/igt@kms_big_fb@x-tiled-max-hw-stride-32bpp-rotate-0-async-flip.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130173v2/shard-tglu-7/igt@kms_big_fb@x-tiled-max-hw-stride-32bpp-rotate-0-async-flip.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3743">i915#3743</a>) +2 other tests fail</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_big_fb@y-tiled-8bpp-rotate-180:</p>
-<ul>
-<li>shard-dg2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130173v2/shard-dg2-7/igt@kms_big_fb@y-tiled-8bpp-rotate-180.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4538">i915#4538</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/5190">i915#5190</a>) +4 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_big_fb@yf-tiled-64bpp-rotate-180:</p>
-<ul>
-<li>shard-tglu:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130173v2/shard-tglu-8/igt@kms_big_fb@yf-tiled-64bpp-rotate-180.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=111615">fdo#111615</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_big_fb@yf-tiled-max-hw-stride-64bpp-rotate-0-hflip-async-flip:</p>
-<ul>
-<li>shard-dg1:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130173v2/shard-dg1-16/igt@kms_big_fb@yf-tiled-max-hw-stride-64bpp-rotate-0-hflip-async-flip.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4538">i915#4538</a>)</li>
-<li>shard-mtlp:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130173v2/shard-mtlp-7/igt@kms_big_fb@yf-tiled-max-hw-stride-64bpp-rotate-0-hflip-async-flip.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=111615">fdo#111615</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_big_joiner@2x-modeset:</p>
-<ul>
-<li>shard-tglu:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130173v2/shard-tglu-5/igt@kms_big_joiner@2x-modeset.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2705">i915#2705</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_cdclk@mode-transition:</p>
-<ul>
-<li>shard-glk:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130173v2/shard-glk1/igt@kms_cdclk@mode-transition.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +191 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_cdclk@mode-transition-all-outputs:</p>
-<ul>
-<li>shard-tglu:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130173v2/shard-tglu-8/igt@kms_cdclk@mode-transition-all-outputs.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3742">i915#3742</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_cdclk@mode-transition@pipe-b-hdmi-a-2:</p>
-<ul>
-<li>shard-dg2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130173v2/shard-dg2-2/igt@kms_cdclk@mode-transition@pipe-b-hdmi-a-2.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/7213">i915#7213</a>) +3 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_cdclk@plane-scaling@pipe-d-hdmi-a-2:</p>
-<ul>
-<li>shard-dg2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130173v2/shard-dg2-2/igt@kms_cdclk@plane-scaling@pipe-d-hdmi-a-2.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4087">i915#4087</a>) +3 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_chamelium_edid@dp-edid-stress-resolution-non-4k:</p>
-<ul>
-<li>shard-rkl:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130173v2/shard-rkl-4/igt@kms_chamelium_edid@dp-edid-stress-resolution-non-4k.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/7828">i915#7828</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_chamelium_frames@hdmi-crc-fast:</p>
-<ul>
-<li>shard-dg2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130173v2/shard-dg2-6/igt@kms_chamelium_frames@hdmi-crc-fast.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/7828">i915#7828</a>) +4 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_chamelium_hpd@dp-hpd-fast:</p>
-<ul>
-<li>shard-tglu:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130173v2/shard-tglu-8/igt@kms_chamelium_hpd@dp-hpd-fast.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/7828">i915#7828</a>) +2 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_content_protection@content-type-change:</p>
-<ul>
-<li>shard-dg2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130173v2/shard-dg2-7/igt@kms_content_protection@content-type-change.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/9424">i915#9424</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_content_protection@dp-mst-type-0:</p>
-<ul>
-<li>shard-tglu:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130173v2/shard-tglu-8/igt@kms_content_protection@dp-mst-type-0.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3116">i915#3116</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/3299">i915#3299</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_content_protection@srm:</p>
-<ul>
-<li>shard-dg2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130173v2/shard-dg2-7/igt@kms_content_protection@srm.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/7118">i915#7118</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_cursor_crc@cursor-onscreen-max-size:</p>
-<ul>
-<li>shard-rkl:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130173v2/shard-rkl-4/igt@kms_cursor_crc@cursor-onscreen-max-size.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3555">i915#3555</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_cursor_crc@cursor-sliding-32x10:</p>
-<ul>
-<li>shard-dg2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130173v2/shard-dg2-6/igt@kms_cursor_crc@cursor-sliding-32x10.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3555">i915#3555</a>) +1 other test skip</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_cursor_legacy@2x-flip-vs-cursor-atomic:</p>
-<ul>
-<li>shard-snb:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14319/shard-snb7/igt@kms_cursor_legacy@2x-flip-vs-cursor-atomic.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130173v2/shard-snb5/igt@kms_cursor_legacy@2x-flip-vs-cursor-atomic.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://bugs.freedesktop.org/show_bug.cgi?id=111767">fdo#111767</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_cursor_legacy@cursorb-vs-flipb-atomic:</p>
-<ul>
-<li>shard-dg2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130173v2/shard-dg2-7/igt@kms_cursor_legacy@cursorb-vs-flipb-atomic.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109274">fdo#109274</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/5354">i915#5354</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_cursor_legacy@cursorb-vs-flipb-atomic-transitions:</p>
-<ul>
-<li>shard-mtlp:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130173v2/shard-mtlp-7/igt@kms_cursor_legacy@cursorb-vs-flipb-atomic-transitions.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=111767">fdo#111767</a>)</li>
-<li>shard-dg1:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130173v2/shard-dg1-16/igt@kms_cursor_legacy@cursorb-vs-flipb-atomic-transitions.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=111767">fdo#111767</a> / <a href="https://bugs.freedesktop.org/show_bug.cgi?id=111825">fdo#111825</a>)</li>
-<li>shard-snb:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130173v2/shard-snb1/igt@kms_cursor_legacy@cursorb-vs-flipb-atomic-transitions.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://bugs.freedesktop.org/show_bug.cgi?id=111767">fdo#111767</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_cursor_legacy@flip-vs-cursor-atomic-transitions-varying-size:</p>
-<ul>
-<li>shard-glk:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130173v2/shard-glk9/igt@kms_cursor_legacy@flip-vs-cursor-atomic-transitions-varying-size.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2346">i915#2346</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_dirtyfb@fbc-dirtyfb-ioctl@a-hdmi-a-2:</p>
-<ul>
-<li>shard-rkl:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130173v2/shard-rkl-6/igt@kms_dirtyfb@fbc-dirtyfb-ioctl@a-hdmi-a-2.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=110189">fdo#110189</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/9723">i915#9723</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_dirtyfb@fbc-dirtyfb-ioctl@a-hdmi-a-4:</p>
-<ul>
-<li>shard-dg1:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130173v2/shard-dg1-17/igt@kms_dirtyfb@fbc-dirtyfb-ioctl@a-hdmi-a-4.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=110189">fdo#110189</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/9723">i915#9723</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_dirtyfb@psr-dirtyfb-ioctl:</p>
-<ul>
-<li>shard-dg2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130173v2/shard-dg2-6/igt@kms_dirtyfb@psr-dirtyfb-ioctl.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/9833">i915#9833</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_dp_aux_dev:</p>
-<ul>
-<li>shard-tglu:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130173v2/shard-tglu-5/igt@kms_dp_aux_dev.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1257">i915#1257</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_dsc@dsc-with-bpc:</p>
-<ul>
-<li>shard-dg2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130173v2/shard-dg2-7/igt@kms_dsc@dsc-with-bpc.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3555">i915#3555</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/3840">i915#3840</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_dsc@dsc-with-output-formats:</p>
-<ul>
-<li>shard-tglu:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130173v2/shard-tglu-8/igt@kms_dsc@dsc-with-output-formats.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3555">i915#3555</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/3840">i915#3840</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_feature_discovery@display-4x:</p>
-<ul>
-<li>shard-tglu:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130173v2/shard-tglu-5/igt@kms_feature_discovery@display-4x.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1839">i915#1839</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_feature_discovery@psr1:</p>
-<ul>
-<li>shard-rkl:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130173v2/shard-rkl-4/igt@kms_feature_discovery@psr1.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/658">i915#658</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_flip@2x-blocking-absolute-wf_vblank:</p>
-<ul>
-<li>shard-mtlp:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130173v2/shard-mtlp-7/igt@kms_flip@2x-blocking-absolute-wf_vblank.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3637">i915#3637</a>)</li>
-<li>shard-dg1:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130173v2/shard-dg1-16/igt@kms_flip@2x-blocking-absolute-wf_vblank.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=111825">fdo#111825</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/9934">i915#9934</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_flip@2x-flip-vs-blocking-wf-vblank:</p>
-<ul>
-<li>shard-dg2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130173v2/shard-dg2-6/igt@kms_flip@2x-flip-vs-blocking-wf-vblank.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109274">fdo#109274</a> / <a href="https://bugs.freedesktop.org/show_bug.cgi?id=111767">fdo#111767</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_flip@2x-plain-flip-interruptible:</p>
-<ul>
-<li>shard-tglu:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130173v2/shard-tglu-5/igt@kms_flip@2x-plain-flip-interruptible.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109274">fdo#109274</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/3637">i915#3637</a>) +1 other test skip</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_flip@2x-single-buffer-flip-vs-dpms-off-vs-modeset-interruptible:</p>
-<ul>
-<li>shard-dg2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130173v2/shard-dg2-6/igt@kms_flip@2x-single-buffer-flip-vs-dpms-off-vs-modeset-interruptible.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109274">fdo#109274</a>) +3 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_flip_scaled_crc@flip-32bpp-ytile-to-32bpp-ytilegen12rcccs-downscaling@pipe-a-valid-mode:</p>
-<ul>
-<li>shard-dg2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130173v2/shard-dg2-7/igt@kms_flip_scaled_crc@flip-32bpp-ytile-to-32bpp-ytilegen12rcccs-downscaling@pipe-a-valid-mode.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2672">i915#2672</a>) +1 other test skip</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_flip_scaled_crc@flip-32bpp-ytileccs-to-64bpp-ytile-downscaling@pipe-a-valid-mode:</p>
-<ul>
-<li>shard-rkl:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130173v2/shard-rkl-4/igt@kms_flip_scaled_crc@flip-32bpp-ytileccs-to-64bpp-ytile-downscaling@pipe-a-valid-mode.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2672">i915#2672</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_flip_scaled_crc@flip-64bpp-4tile-to-32bpp-4tile-upscaling@pipe-a-valid-mode:</p>
-<ul>
-<li>shard-tglu:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130173v2/shard-tglu-5/igt@kms_flip_scaled_crc@flip-64bpp-4tile-to-32bpp-4tile-upscaling@pipe-a-valid-mode.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2587">i915#2587</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/2672">i915#2672</a>) +2 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_flip_scaled_crc@flip-64bpp-ytile-to-32bpp-ytilegen12rcccs-upscaling@pipe-a-default-mode:</p>
-<ul>
-<li>shard-mtlp:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130173v2/shard-mtlp-7/igt@kms_flip_scaled_crc@flip-64bpp-ytile-to-32bpp-ytilegen12rcccs-upscaling@pipe-a-default-mode.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2672">i915#2672</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/3555">i915#3555</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_frontbuffer_tracking@fbc-1p-primscrn-pri-indfb-draw-mmap-cpu:</p>
-<ul>
-<li>shard-dg2:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14319/shard-dg2-5/igt@kms_frontbuffer_tracking@fbc-1p-primscrn-pri-indfb-draw-mmap-cpu.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130173v2/shard-dg2-5/igt@kms_frontbuffer_tracking@fbc-1p-primscrn-pri-indfb-draw-mmap-cpu.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/6880">i915#6880</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_frontbuffer_tracking@fbc-2p-primscrn-pri-shrfb-draw-mmap-cpu:</p>
-<ul>
-<li>shard-snb:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14319/shard-snb7/igt@kms_frontbuffer_tracking@fbc-2p-primscrn-pri-shrfb-draw-mmap-cpu.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130173v2/shard-snb5/igt@kms_frontbuffer_tracking@fbc-2p-primscrn-pri-shrfb-draw-mmap-cpu.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +8 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_frontbuffer_tracking@fbc-2p-scndscrn-pri-indfb-draw-render:</p>
-<ul>
-<li>shard-mtlp:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130173v2/shard-mtlp-7/igt@kms_frontbuffer_tracking@fbc-2p-scndscrn-pri-indfb-draw-render.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1825">i915#1825</a>)</li>
-<li>shard-dg1:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130173v2/shard-dg1-16/igt@kms_frontbuffer_tracking@fbc-2p-scndscrn-pri-indfb-draw-render.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=111825">fdo#111825</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_frontbuffer_tracking@fbcpsr-1p-indfb-fliptrack-mmap-gtt:</p>
-<ul>
-<li>shard-dg2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130173v2/shard-dg2-7/igt@kms_frontbuffer_tracking@fbcpsr-1p-indfb-fliptrack-mmap-gtt.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/8708">i915#8708</a>) +7 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_frontbuffer_tracking@fbcpsr-2p-primscrn-shrfb-plflip-blt:</p>
-<ul>
-<li>shard-dg2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130173v2/shard-dg2-7/igt@kms_frontbuffer_tracking@fbcpsr-2p-primscrn-shrfb-plflip-blt.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/5354">i915#5354</a>) +10 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_frontbuffer_tracking@fbcpsr-2p-scndscrn-cur-indfb-draw-pwrite:</p>
-<ul>
-<li>shard-rkl:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130173v2/shard-rkl-4/igt@kms_frontbuffer_tracking@fbcpsr-2p-scndscrn-cur-indfb-draw-pwrite.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=111825">fdo#111825</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/1825">i915#1825</a>) +2 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_frontbuffer_tracking@fbcpsr-2p-scndscrn-spr-indfb-fullscreen:</p>
-<ul>
-<li>shard-tglu:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130173v2/shard-tglu-8/igt@kms_frontbuffer_tracking@fbcpsr-2p-scndscrn-spr-indfb-fullscreen.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109280">fdo#109280</a>) +11 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_frontbuffer_tracking@psr-1p-primscrn-cur-indfb-move:</p>
-<ul>
-<li>shard-dg2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130173v2/shard-dg2-6/igt@kms_frontbuffer_tracking@psr-1p-primscrn-cur-indfb-move.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3458">i915#3458</a>) +11 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_frontbuffer_tracking@psr-1p-primscrn-indfb-msflip-blt:</p>
-<ul>
-<li>shard-dg1:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130173v2/shard-dg1-16/igt@kms_frontbuffer_tracking@psr-1p-primscrn-indfb-msflip-blt.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3458">i915#3458</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_frontbuffer_tracking@psr-1p-primscrn-pri-indfb-draw-pwrite:</p>
-<ul>
-<li>shard-tglu:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130173v2/shard-tglu-5/igt@kms_frontbuffer_tracking@psr-1p-primscrn-pri-indfb-draw-pwrite.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=110189">fdo#110189</a>) +10 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_frontbuffer_tracking@psr-2p-scndscrn-cur-indfb-draw-render:</p>
-<ul>
-<li>shard-tglu:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130173v2/shard-tglu-5/igt@kms_frontbuffer_tracking@psr-2p-scndscrn-cur-indfb-draw-render.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109280">fdo#109280</a> / <a href="https://bugs.freedesktop.org/show_bug.cgi?id=111767">fdo#111767</a>) +1 other test skip</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_hdr@bpc-switch-dpms:</p>
-<ul>
-<li>shard-tglu:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130173v2/shard-tglu-5/igt@kms_hdr@bpc-switch-dpms.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3555">i915#3555</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/8228">i915#8228</a>) +1 other test skip</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_hdr@invalid-metadata-sizes:</p>
-<ul>
-<li>shard-dg2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130173v2/shard-dg2-6/igt@kms_hdr@invalid-metadata-sizes.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3555">i915#3555</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/8228">i915#8228</a>) +1 other test skip</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_pipe_b_c_ivb@pipe-b-dpms-off-modeset-pipe-c:</p>
-<ul>
-<li>shard-dg2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130173v2/shard-dg2-6/igt@kms_pipe_b_c_ivb@pipe-b-dpms-off-modeset-pipe-c.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109289">fdo#109289</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_plane_scaling@intel-max-src-size:</p>
-<ul>
-<li>shard-dg2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130173v2/shard-dg2-6/igt@kms_plane_scaling@intel-max-src-size.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/6953">i915#6953</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/9423">i915#9423</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_plane_scaling@intel-max-src-size@pipe-a-hdmi-a-2:</p>
-<ul>
-<li>shard-rkl:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130173v2/shard-rkl-1/igt@kms_plane_scaling@intel-max-src-size@pipe-a-hdmi-a-2.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/8292">i915#8292</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_plane_scaling@plane-downscale-factor-0-25-with-modifiers@pipe-a-hdmi-a-2:</p>
-<ul>
-<li>shard-dg2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130173v2/shard-dg2-2/igt@kms_plane_scaling@plane-downscale-factor-0-25-with-modifiers@pipe-a-hdmi-a-2.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/9423">i915#9423</a>) +7 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_plane_scaling@plane-downscale-factor-0-25-with-pixel-format@pipe-a-hdmi-a-1:</p>
-<ul>
-<li>shard-rkl:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130173v2/shard-rkl-4/igt@kms_plane_scaling@plane-downscale-factor-0-25-with-pixel-format@pipe-a-hdmi-a-1.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/9423">i915#9423</a>) +5 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_plane_scaling@plane-downscale-factor-0-25-with-rotation@pipe-c-hdmi-a-3:</p>
-<ul>
-<li>shard-dg1:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130173v2/shard-dg1-12/igt@kms_plane_scaling@plane-downscale-factor-0-25-with-rotation@pipe-c-hdmi-a-3.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/9423">i915#9423</a>) +19 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_plane_scaling@plane-scaler-with-clipping-clamping-rotation@pipe-a-hdmi-a-3:</p>
-<ul>
-<li>shard-dg1:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130173v2/shard-dg1-13/igt@kms_plane_scaling@plane-scaler-with-clipping-clamping-rotation@pipe-a-hdmi-a-3.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/5176">i915#5176</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/9423">i915#9423</a>) +3 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_plane_scaling@plane-scaler-with-clipping-clamping-rotation@pipe-b-hdmi-a-1:</p>
-<ul>
-<li>shard-tglu:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130173v2/shard-tglu-5/igt@kms_plane_scaling@plane-scaler-with-clipping-clamping-rotation@pipe-b-hdmi-a-1.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/5176">i915#5176</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/9423">i915#9423</a>) +3 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_plane_scaling@planes-downscale-factor-0-25-upscale-20x20@pipe-d-hdmi-a-1:</p>
-<ul>
-<li>shard-tglu:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130173v2/shard-tglu-8/igt@kms_plane_scaling@planes-downscale-factor-0-25-upscale-20x20@pipe-d-hdmi-a-1.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/5235">i915#5235</a>) +3 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_plane_scaling@planes-downscale-factor-0-25-upscale-factor-0-25@pipe-b-hdmi-a-1:</p>
-<ul>
-<li>shard-rkl:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130173v2/shard-rkl-4/igt@kms_plane_scaling@planes-downscale-factor-0-25-upscale-factor-0-25@pipe-b-hdmi-a-1.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/5235">i915#5235</a>) +5 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_plane_scaling@planes-downscale-factor-0-25@pipe-c-hdmi-a-4:</p>
-<ul>
-<li>shard-dg1:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130173v2/shard-dg1-15/igt@kms_plane_scaling@planes-downscale-factor-0-25@pipe-c-hdmi-a-4.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/5235">i915#5235</a>) +7 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_plane_scaling@planes-unity-scaling-downscale-factor-0-25@pipe-a-hdmi-a-2:</p>
-<ul>
-<li>shard-dg2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130173v2/shard-dg2-2/igt@kms_plane_scaling@planes-unity-scaling-downscale-factor-0-25@pipe-a-hdmi-a-2.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/5235">i915#5235</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/9423">i915#9423</a>) +7 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_pm_backlight@fade:</p>
-<ul>
-<li>shard-rkl:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130173v2/shard-rkl-4/igt@kms_pm_backlight@fade.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/5354">i915#5354</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_pm_dc@dc6-psr:</p>
-<ul>
-<li>shard-tglu:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130173v2/shard-tglu-8/igt@kms_pm_dc@dc6-psr.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/9685">i915#9685</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_pm_dc@dc9-dpms:</p>
-<ul>
-<li>shard-tglu:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130173v2/shard-tglu-5/igt@kms_pm_dc@dc9-dpms.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4281">i915#4281</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_pm_rpm@modeset-non-lpsp:</p>
-<ul>
-<li>shard-tglu:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130173v2/shard-tglu-8/igt@kms_pm_rpm@modeset-non-lpsp.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/9519">i915#9519</a>) +1 other test skip</li>
-<li>shard-dg2:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14319/shard-dg2-6/igt@kms_pm_rpm@modeset-non-lpsp.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130173v2/shard-dg2-10/igt@kms_pm_rpm@modeset-non-lpsp.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/9519">i915#9519</a>) +1 other test skip</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_pm_rpm@modeset-non-lpsp-stress-no-wait:</p>
-<ul>
-<li>shard-rkl:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14319/shard-rkl-1/igt@kms_pm_rpm@modeset-non-lpsp-stress-no-wait.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130173v2/shard-rkl-7/igt@kms_pm_rpm@modeset-non-lpsp-stress-no-wait.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/9519">i915#9519</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_prime@basic-crc-hybrid:</p>
-<ul>
-<li>shard-dg2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130173v2/shard-dg2-6/igt@kms_prime@basic-crc-hybrid.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/6524">i915#6524</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/6805">i915#6805</a>) +1 other test skip</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_psr2_sf@overlay-plane-update-continuous-sf:</p>
-<ul>
-<li>shard-glk:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130173v2/shard-glk1/igt@kms_psr2_sf@overlay-plane-update-continuous-sf.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://bugs.freedesktop.org/show_bug.cgi?id=110189">fdo#110189</a>) +2 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_psr2_sf@overlay-primary-update-sf-dmg-area:</p>
-<ul>
-<li>shard-dg2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130173v2/shard-dg2-6/igt@kms_psr2_sf@overlay-primary-update-sf-dmg-area.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=110189">fdo#110189</a>) +1 other test skip</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_rotation_crc@sprite-rotation-90:</p>
-<ul>
-<li>shard-dg2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130173v2/shard-dg2-7/igt@kms_rotation_crc@sprite-rotation-90.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4235">i915#4235</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_scaling_modes@scaling-mode-full:</p>
-<ul>
-<li>shard-dg1:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130173v2/shard-dg1-16/igt@kms_scaling_modes@scaling-mode-full.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3555">i915#3555</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_setmode@basic-clone-single-crtc:</p>
-<ul>
-<li>shard-tglu:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130173v2/shard-tglu-8/igt@kms_setmode@basic-clone-single-crtc.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3555">i915#3555</a>) +3 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_setmode@basic@pipe-a-vga-1-pipe-b-hdmi-a-1:</p>
-<ul>
-<li>shard-snb:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130173v2/shard-snb7/igt@kms_setmode@basic@pipe-a-vga-1-pipe-b-hdmi-a-1.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/5465">i915#5465</a>) +3 other tests fail</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_universal_plane@cursor-fb-leak@pipe-b-hdmi-a-4:</p>
-<ul>
-<li>shard-dg1:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14319/shard-dg1-19/igt@kms_universal_plane@cursor-fb-leak@pipe-b-hdmi-a-4.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130173v2/shard-dg1-17/igt@kms_universal_plane@cursor-fb-leak@pipe-b-hdmi-a-4.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/9196">i915#9196</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_universal_plane@cursor-fb-leak@pipe-d-hdmi-a-1:</p>
-<ul>
-<li>shard-tglu:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14319/shard-tglu-8/igt@kms_universal_plane@cursor-fb-leak@pipe-d-hdmi-a-1.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130173v2/shard-tglu-4/igt@kms_universal_plane@cursor-fb-leak@pipe-d-hdmi-a-1.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/9196">i915#9196</a>) +1 other test fail</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_writeback@writeback-fb-id-xrgb2101010:</p>
-<ul>
-<li>shard-tglu:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130173v2/shard-tglu-8/igt@kms_writeback@writeback-fb-id-xrgb2101010.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2437">i915#2437</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/9412">i915#9412</a>)</li>
-<li>shard-glk:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130173v2/shard-glk3/igt@kms_writeback@writeback-fb-id-xrgb2101010.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/2437">i915#2437</a>) +1 other test skip</li>
-</ul>
-</li>
-<li>
-<p>igt@perf_pmu@busy-double-start@ccs0:</p>
-<ul>
-<li>shard-mtlp:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14319/shard-mtlp-5/igt@perf_pmu@busy-double-start@ccs0.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130173v2/shard-mtlp-1/igt@perf_pmu@busy-double-start@ccs0.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4349">i915#4349</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@perf_pmu@frequency@gt0:</p>
-<ul>
-<li>shard-dg2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130173v2/shard-dg2-7/igt@perf_pmu@frequency@gt0.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/6806">i915#6806</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@prime_udl:</p>
-<ul>
-<li>shard-tglu:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130173v2/shard-tglu-8/igt@prime_udl.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109291">fdo#109291</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@prime_vgem@coherency-gtt:</p>
-<ul>
-<li>shard-dg2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130173v2/shard-dg2-6/igt@prime_vgem@coherency-gtt.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3708">i915#3708</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/4077">i915#4077</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@sriov_basic@enable-vfs-bind-unbind-each:</p>
-<ul>
-<li>shard-dg2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130173v2/shard-dg2-7/igt@sriov_basic@enable-vfs-bind-unbind-each.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/9917">i915#9917</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@v3d/v3d_get_bo_offset@get-bad-handle:</p>
-<ul>
-<li>shard-dg2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130173v2/shard-dg2-7/igt@v3d/v3d_get_bo_offset@get-bad-handle.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2575">i915#2575</a>) +4 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@v3d/v3d_submit_cl@bad-pad:</p>
-<ul>
-<li>shard-rkl:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130173v2/shard-rkl-4/igt@v3d/v3d_submit_cl@bad-pad.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109315">fdo#109315</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@v3d/v3d_wait_bo@bad-pad:</p>
-<ul>
-<li>shard-tglu:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130173v2/shard-tglu-5/igt@v3d/v3d_wait_bo@bad-pad.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109315">fdo#109315</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/2575">i915#2575</a>) +5 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@v3d/v3d_wait_bo@used-bo-0ns:</p>
-<ul>
-<li>shard-mtlp:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130173v2/shard-mtlp-7/igt@v3d/v3d_wait_bo@used-bo-0ns.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2575">i915#2575</a>)</li>
-<li>shard-dg1:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130173v2/shard-dg1-16/igt@v3d/v3d_wait_bo@used-bo-0ns.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2575">i915#2575</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@vc4/vc4_mmap@mmap-bad-handle:</p>
-<ul>
-<li>shard-dg1:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130173v2/shard-dg1-16/igt@vc4/vc4_mmap@mmap-bad-handle.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/7711">i915#7711</a>)</li>
-<li>shard-mtlp:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130173v2/shard-mtlp-7/igt@vc4/vc4_mmap@mmap-bad-handle.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/7711">i915#7711</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@vc4/vc4_purgeable_bo@mark-purgeable:</p>
-<ul>
-<li>shard-tglu:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130173v2/shard-tglu-5/igt@vc4/vc4_purgeable_bo@mark-purgeable.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2575">i915#2575</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@vc4/vc4_purgeable_bo@mark-unpurgeable-check-retained:</p>
-<ul>
-<li>shard-dg2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130173v2/shard-dg2-7/igt@vc4/vc4_purgeable_bo@mark-unpurgeable-check-retained.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/7711">i915#7711</a>) +3 other tests skip</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>
-<p>igt@gem_exec_fair@basic-throttle@rcs0:</p>
-<ul>
-<li>shard-glk:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14319/shard-glk2/igt@gem_exec_fair@basic-throttle@rcs0.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2842">i915#2842</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130173v2/shard-glk9/igt@gem_exec_fair@basic-throttle@rcs0.html">PASS</a> +1 other test pass</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_hangman@gt-engine-error@rcs0:</p>
-<ul>
-<li>shard-tglu:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14319/shard-tglu-7/igt@i915_hangman@gt-engine-error@rcs0.html">TIMEOUT</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130173v2/shard-tglu-8/igt@i915_hangman@gt-engine-error@rcs0.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@i915_module_load@reload-with-fault-injection:</p>
-<ul>
-<li>shard-snb:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14319/shard-snb4/igt@i915_module_load@reload-with-fault-injection.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/10137">i915#10137</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/9200">i915#9200</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/9849">i915#9849</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130173v2/shard-snb1/igt@i915_module_load@reload-with-fault-injection.html">PASS</a></li>
-<li>shard-mtlp:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14319/shard-mtlp-1/igt@i915_module_load@reload-with-fault-injection.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/10131">i915#10131</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/9697">i915#9697</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130173v2/shard-mtlp-7/igt@i915_module_load@reload-with-fault-injection.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@i915_pm_rpm@gem-idle:</p>
-<ul>
-<li>shard-tglu:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14319/shard-tglu-7/igt@i915_pm_rpm@gem-idle.html">SKIP</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130173v2/shard-tglu-8/igt@i915_pm_rpm@gem-idle.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@kms_big_fb@4-tiled-max-hw-stride-64bpp-rotate-0:</p>
-<ul>
-<li>shard-mtlp:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14319/shard-mtlp-5/igt@kms_big_fb@4-tiled-max-hw-stride-64bpp-rotate-0.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/5138">i915#5138</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130173v2/shard-mtlp-7/igt@kms_big_fb@4-tiled-max-hw-stride-64bpp-rotate-0.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@kms_big_fb@y-tiled-max-hw-stride-64bpp-rotate-0-hflip-async-flip:</p>
-<ul>
-<li>shard-tglu:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14319/shard-tglu-7/igt@kms_big_fb@y-tiled-max-hw-stride-64bpp-rotate-0-hflip-async-flip.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3743">i915#3743</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130173v2/shard-tglu-8/igt@kms_big_fb@y-tiled-max-hw-stride-64bpp-rotate-0-hflip-async-flip.html">PASS</a> +1 other test pass</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_cursor_legacy@flip-vs-cursor-atomic-transitions:</p>
-<ul>
-<li>shard-glk:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14319/shard-glk3/igt@kms_cursor_legacy@flip-vs-cursor-atomic-transitions.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2346">i915#2346</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130173v2/shard-glk4/igt@kms_cursor_legacy@flip-vs-cursor-atomic-transitions.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@kms_frontbuffer_tracking@fbc-2p-rte:</p>
-<ul>
-<li>shard-snb:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14319/shard-snb4/igt@kms_frontbuffer_tracking@fbc-2p-rte.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130173v2/shard-snb7/igt@kms_frontbuffer_tracking@fbc-2p-rte.html">PASS</a> +6 other tests pass</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_frontbuffer_tracking@fbc-2p-scndscrn-pri-indfb-draw-mmap-gtt:</p>
-<ul>
-<li>shard-snb:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14319/shard-snb5/igt@kms_frontbuffer_tracking@fbc-2p-scndscrn-pri-indfb-draw-mmap-gtt.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://bugs.freedesktop.org/show_bug.cgi?id=111767">fdo#111767</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130173v2/shard-snb7/igt@kms_frontbuffer_tracking@fbc-2p-scndscrn-pri-indfb-draw-mmap-gtt.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@kms_rotation_crc@primary-y-tiled-reflect-x-180:</p>
-<ul>
-<li>shard-rkl:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14319/shard-rkl-1/igt@kms_rotation_crc@primary-y-tiled-reflect-x-180.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/8875">i915#8875</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/9569">i915#9569</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130173v2/shard-rkl-4/igt@kms_rotation_crc@primary-y-tiled-reflect-x-180.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@kms_universal_plane@cursor-fb-leak@pipe-a-hdmi-a-1:</p>
-<ul>
-<li>shard-snb:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14319/shard-snb1/igt@kms_universal_plane@cursor-fb-leak@pipe-a-hdmi-a-1.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/9196">i915#9196</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130173v2/shard-snb1/igt@kms_universal_plane@cursor-fb-leak@pipe-a-hdmi-a-1.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<h4>Warnings</h4>
-<ul>
-<li>
-<p>igt@i915_module_load@reload-with-fault-injection:</p>
-<ul>
-<li>shard-dg1:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14319/shard-dg1-13/igt@i915_module_load@reload-with-fault-injection.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/9820">i915#9820</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130173v2/shard-dg1-16/igt@i915_module_load@reload-with-fault-injection.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4391">i915#4391</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/4423">i915#4423</a>)</li>
-<li>shard-dg2:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14319/shard-dg2-7/igt@i915_module_load@reload-with-fault-injection.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/9820">i915#9820</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130173v2/shard-dg2-5/igt@i915_module_load@reload-with-fault-injection.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/10137">i915#10137</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/9820">i915#9820</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/9849">i915#9849</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_big_fb@linear-16bpp-rotate-90:</p>
-<ul>
-<li>shard-tglu:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14319/shard-tglu-7/igt@kms_big_fb@linear-16bpp-rotate-90.html">TIMEOUT</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130173v2/shard-tglu-8/igt@kms_big_fb@linear-16bpp-rotate-90.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=111614">fdo#111614</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_content_protection@srm:</p>
-<ul>
-<li>shard-snb:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14319/shard-snb7/igt@kms_content_protection@srm.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/8816">i915#8816</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130173v2/shard-snb2/igt@kms_content_protection@srm.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +1 other test skip</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_frontbuffer_tracking@psr-2p-primscrn-indfb-plflip-blt:</p>
-<ul>
-<li>shard-snb:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14319/shard-snb7/igt@kms_frontbuffer_tracking@psr-2p-primscrn-indfb-plflip-blt.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130173v2/shard-snb5/igt@kms_frontbuffer_tracking@psr-2p-primscrn-indfb-plflip-blt.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://bugs.freedesktop.org/show_bug.cgi?id=111767">fdo#111767</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_pm_dc@dc6-dpms:</p>
-<ul>
-<li>shard-rkl:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14319/shard-rkl-6/igt@kms_pm_dc@dc6-dpms.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3361">i915#3361</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130173v2/shard-rkl-5/igt@kms_pm_dc@dc6-dpms.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/9295">i915#9295</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@prime_mmap@test_aperture_limit@test_aperture_limit-smem:</p>
-<ul>
-<li>shard-dg2:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14319/shard-dg2-1/igt@prime_mmap@test_aperture_limit@test_aperture_limit-smem.html">CRASH</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/9351">i915#9351</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130173v2/shard-dg2-2/igt@prime_mmap@test_aperture_limit@test_aperture_limit-smem.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/5493">i915#5493</a>)</li>
-</ul>
-</li>
-</ul>
-<p>{name}: This element is suppressed. This means it is ignored when computing<br />
-          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_14319 -&gt; Patchwork_130173v2</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_14319: 5dfa3c2da4803652582408bfb3c529970735f594 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_7724: a7c03f7521f88f74fdf17c744fd847a775f9951f @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  Patchwork_130173v2: 5dfa3c2da4803652582408bfb3c529970735f594 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  piglit_4509: fdc5a4ca11124ab8413c7988896eec4c97336694 @ git://anongit.freedesktop.org/piglit</p>
-
-</body>
-</html>
-
---===============5381550234137328764==--
+DQoNCj4gLS0tLS1PcmlnaW5hbCBNZXNzYWdlLS0tLS0NCj4gRnJvbTogSW50ZWwtZ2Z4IDxpbnRl
+bC1nZngtYm91bmNlc0BsaXN0cy5mcmVlZGVza3RvcC5vcmc+IE9uIEJlaGFsZiBPZiBJbXJlDQo+
+IERlYWsNCj4gU2VudDogV2VkbmVzZGF5LCBGZWJydWFyeSAyMSwgMjAyNCAyOjQ4IEFNDQo+IFRv
+OiBpbnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnOyBkcmktZGV2ZWxAbGlzdHMuZnJlZWRl
+c2t0b3Aub3JnDQo+IENjOiBWaWxsZSBTeXJqw6Rsw6QgPHZpbGxlLnN5cmphbGFAbGludXguaW50
+ZWwuY29tPg0KPiBTdWJqZWN0OiBbUEFUQ0ggdjIgMDIvMjFdIGRybS9kcDogQWRkIHN1cHBvcnQg
+Zm9yIERQIHR1bm5lbGluZw0KPiANCj4gQWRkIHN1cHBvcnQgZm9yIERpc3BsYXkgUG9ydCB0dW5u
+ZWxpbmcuIEZvciBub3cgdGhpcyBpbmNsdWRlcyB0aGUNCj4gc3VwcG9ydCBmb3IgQmFuZHdpZHRo
+IEFsbG9jYXRpb24gTW9kZSAoQldBKSwgbGVhdmluZyBhZGRpbmcgUGFuZWwgUmVwbGF5DQo+IHN1
+cHBvcnQgZm9yIGxhdGVyLg0KPiANCj4gQldBIGFsbG93cyB1c2luZyBkaXNwbGF5cyB0aGF0IHNo
+YXJlIHRoZSBzYW1lIChUaHVuZGVyYm9sdCkgbGluayB3aXRoDQo+IHRoZWlyIG1heGltdW0gcmVz
+b2x1dGlvbi4gQXRtLCB0aGlzIG1heSBub3QgYmUgcG9zc2libGUgZHVlIHRvIHRoZQ0KPiBjb2Fy
+c2UgZ3JhbnVsYXJpdHkgb2YgcGFydGl0aW9uaW5nIHRoZSBsaW5rIEJXIGFtb25nIHRoZSBkaXNw
+bGF5cyBvbiB0aGUNCj4gbGluazogdGhlIEJXIGFsbG9jYXRpb24gcG9saWN5IGlzIGluIGEgU1cv
+RlcvSFcgY29tcG9uZW50IG9uIHRoZSBsaW5rDQo+IChvbiBUaHVuZGVyYm9sdCBpdCdzIHRoZSBT
+VyBvciBGVyBDb25uZWN0aW9uIE1hbmFnZXIpLCBpbmRlcGVuZGVudCBvZg0KPiB0aGUgZHJpdmVy
+LiBUaGlzIHBvbGljeSB3aWxsIHNldCB0aGUgRFBSWCBtYXhpbXVtIHJhdGUgYW5kIGxhbmUgY291
+bnQNCj4gRFBDRCByZWdpc3RlcnMgdGhlIEdGWCBkcml2ZXIgd2lsbCBzZWUgKDB4MDAwMDAsIDB4
+MDAwMDEsIDB4MDIyMDAsDQo+IDB4MDIyMDEpIGJhc2VkIG9uIHRoZSBhdmFpbGFibGUgbGluayBC
+Vy4NCj4gDQo+IFRoZSBncmFudWxhcml0eSBvZiB0aGUgY3VycmVudCBCVyBhbGxvY2F0aW9uIHBv
+bGljeSBpcyBjb2Fyc2UsIGJhc2VkIG9uDQo+IHRoZSByZXF1aXJlZCBsaW5rIHJhdGUgaW4gdGhl
+IDEuNjJHYnMuLjguMUdicHMgcmFuZ2UgYW5kIGl0IG1heSBwcmV2ZW50DQo+IHVzaW5nIGhpZ2hl
+ciByZXNvbHV0aW9ucyBhbGwgdG9nZXRoZXI6IHRoZSBkaXNwbGF5IGNvbm5lY3RlZCBmaXJzdCB3
+aWxsDQo+IGdldCBhIHNoYXJlIG9mIHRoZSBsaW5rIEJXIHdoaWNoIGNvcnJlc3BvbmRzIHRvIGl0
+cyBmdWxsIERQUlggY2FwYWJpbGl0eQ0KPiAocmVnYXJkbGVzcyBvZiB0aGUgYWN0dWFsIG1vZGUg
+aXQgdXNlcykuIEEgc3Vic2VxdWVudCBkaXNwbGF5IGNvbm5lY3RlZA0KPiB3aWxsIG9ubHkgZ2V0
+IHRoZSByZW1haW5pbmcgQlcsIHdoaWNoIGNvdWxkIGJlIHdlbGwgYmVsb3cgaXRzIGZ1bGwNCj4g
+Y2FwYWJpbGl0eS4NCj4gDQo+IEJXQSBzb2x2ZXMgdGhlIGFib3ZlIGNvYXJzZSBncmFudWxhcml0
+eSAocmVkdWNpbmcgaXQgdG8gYSAyNTBNYnMuLjFHcHMNCj4gcmFuZ2UpIGFuZCBmaXJzdC1jb21l
+L2ZpcnN0LXNlcnZlZCBpc3N1ZXMgYnkgbGV0dGluZyB0aGUgZHJpdmVyIHJlcXVlc3QNCj4gdGhl
+IEJXIGZvciBlYWNoIGRpc3BsYXkgb24gYSBsaW5rIHdoaWNoIHJlZmxlY3RzIHRoZSBhY3R1YWwg
+bW9kZXMgdGhlDQo+IGRpc3BsYXlzIHVzZS4NCj4gDQo+IFRoaXMgcGF0Y2ggYWRkcyB0aGUgRFJN
+IGNvcmUgaGVscGVyIGZ1bmN0aW9ucywgd2hpbGUgYSBmb2xsb3ctdXAgY2hhbmdlDQo+IGluIHRo
+ZSBwYXRjaHNldCB0YWtlcyB0aGVtIGludG8gdXNlIGluIHRoZSBpOTE1IGRyaXZlci4NCj4gDQo+
+IHYyOg0KPiAtIEZpeCBwcmVwYXJlX3RvX3dhaXQgdnMuIHdha2UtdXAgY29uZCBjaGVjayBvcmRl
+ciBpbg0KPiAgIGFsbG9jYXRlX3R1bm5lbF9idygpLiAoVmlsbGUpDQo+IC0gTW92ZSB0dW5uZWw9
+PU5VTEwgY2hlY2tzIGZyb20gY2FsbGVycyBpbiBkcml2ZXJzIHRvIGhlcmUuIChWaWxsZSkNCj4g
+LSBBdm9pZCB2YXIgaW5pdHMgaW4gZGVjbGFyYXRpb24gYmxvY2tzIHRoYXQgY2FuIGZhaWwgb3Ig
+aGF2ZQ0KPiAgIHNpZGUtZWZmZWN0cy4gKFZpbGxlKQ0KPiAtIFVzZSB1OCBmb3IgZHJpdmVyIGFu
+ZCBncm91cCBJRHMuIChWaWxsZSkNCj4gLSBTaW1wbGlmeSBBUEkgcmVtb3ZpbmcgZHJtX2RwX3R1
+bm5lbF9nZXQvcHV0X3VudHJhY2tlZCgpLiAoVmlsbGUpDQo+IC0gUmV1c2Ugc3RyX3llc19ubygp
+IGluc3RlYWQgb2YgYSBsb2NhbCB5ZXNfbm9fY2hyKCkuIChWaWxsZSkNCj4gLSBzL2RybV9kcF90
+dW5uZWxfYXRvbWljX2NsZWFyX3N0YXRlKCkvZnJlZV90dW5uZWxfc3RhdGUoKSBhbmQgdW5leHBv
+cnQNCj4gICB0aGUgZnVuY3Rpb24uIChWaWxsZSkNCj4gLSBzL2NsZWFyX3R1bm5lbF9ncm91cF9z
+dGF0ZSgpL2ZyZWVfZ3JvdXBfc3RhdGUoKSBhbmQgbW92ZSBrZnJlZSgpIHRvDQo+ICAgdGhpcyBm
+dW5jdGlvbi4gKFZpbGxlKQ0KPiAtIEFkZCBzZXBhcmF0ZSBncm91cF9mcmVlX2J3KCkgaGVscGVy
+IGFuZCBkZXNjcmliZSB3aGF0IHRoZSB0dW5uZWwNCj4gICBlc3RpbWF0ZWQgQlcgaW5jbHVkZXMu
+IChWaWxsZSkNCj4gLSBJbXByb3ZlIGhlbHAgdGV4dCBmb3IgQ09ORklHX0RSTV9ESVNQTEFZX0RQ
+X1RVTk5FTC4gKFZpbGxlKQ0KPiAtIEFkZCBjb2RlIGNvbW1lbnQgZXhwbGFpbmluZyB0aGUgcHVy
+cG9zZSBvZiBEUENEIHJlZyByZWFkIGhlbHBlcnMuDQo+ICAgKFZpbGxlKQ0KPiAtIEFkZCBjb2Rl
+IGNvbW1lbnQgZGVzY3JpYmluZyB0aGUgdHVubmVsIGdyb3VwIG5hbWUgcHJlZml4IGZvcm1hdC4N
+Cj4gICAoVmlsbGUpDQo+IC0gUmVwb3J0IHRoZSBhbGxvY2F0ZWQgQlcgYXMgdW5kZXRlcm1pbmVk
+IHVudGlsIHRoZSBmaXJzdCBhbGxvY2F0aW9uDQo+ICAgcmVxdWVzdC4NCj4gLSBTa2lwIGFsbG9j
+YXRpb24gcmVxdWVzdHMgbWF0Y2hpbmcgdGhlIHByZXZpb3VzIHJlcXVlc3QuDQo+IC0gQ2xlYXIg
+YW55IHN0YWxlIEJXIHJlcXVlc3Qgc3RhdHVzIGZsYWdzIGJlZm9yZSBhIG5ldyByZXF1ZXN0Lg0K
+PiAtIEFkZCBtaXNzaW5nIGVycm9yIHJldHVybiBjaGVjayBvZiBkcm1fZHBfdHVubmVsX2F0b21p
+Y19nZXRfZ3JvdXBfc3RhdGUoKQ0KPiAgIGluIGRybV9kcF90dW5uZWxfYXRvbWljX3NldF9zdHJl
+YW1fYncoKS4NCj4gLSBBZGQgZHJtX2RwX3R1bm5lbF9nZXRfYWxsb2NhdGVkX2J3KCkuDQo+IC0N
+Cj4gcy9kcm1fZHBfdHVubmVsX2F0b21pY19nZXRfdHVubmVsX2J3L2RybV9kcF90dW5uZWxfYXRv
+bWljX2dldF9yZXF1aXJlZF8NCj4gYncNCj4gLSBGaXggcmV0dXJuIHZhbHVlIGRlc2NyaXB0aW9u
+IGluIGZ1bmN0aW9uIGRvYyBvZiBkcm1fZHBfdHVubmVsX2RldGVjdCgpLg0KPiAtIEFkZCBmdW5j
+dGlvbiBkb2N1bWVudGF0aW9uIHRvIGFsbCBleHBvcnRlZCBmdW5jdGlvbnMuDQo+IA0KPiBDYzog
+VmlsbGUgU3lyasOkbMOkIDx2aWxsZS5zeXJqYWxhQGxpbnV4LmludGVsLmNvbT4NCj4gU2lnbmVk
+LW9mZi1ieTogSW1yZSBEZWFrIDxpbXJlLmRlYWtAaW50ZWwuY29tPg0KPiAtLS0NCj4gIGRyaXZl
+cnMvZ3B1L2RybS9kaXNwbGF5L0tjb25maWcgICAgICAgICB8ICAgMjEgKw0KPiAgZHJpdmVycy9n
+cHUvZHJtL2Rpc3BsYXkvTWFrZWZpbGUgICAgICAgIHwgICAgMiArDQo+ICBkcml2ZXJzL2dwdS9k
+cm0vZGlzcGxheS9kcm1fZHBfdHVubmVsLmMgfCAxOTI5ICsrKysrKysrKysrKysrKysrKysrKysr
+DQo+ICBpbmNsdWRlL2RybS9kaXNwbGF5L2RybV9kcC5oICAgICAgICAgICAgfCAgIDYwICsNCj4g
+IGluY2x1ZGUvZHJtL2Rpc3BsYXkvZHJtX2RwX3R1bm5lbC5oICAgICB8ICAyNDggKysrDQo+ICA1
+IGZpbGVzIGNoYW5nZWQsIDIyNjAgaW5zZXJ0aW9ucygrKQ0KPiAgY3JlYXRlIG1vZGUgMTAwNjQ0
+IGRyaXZlcnMvZ3B1L2RybS9kaXNwbGF5L2RybV9kcF90dW5uZWwuYw0KPiAgY3JlYXRlIG1vZGUg
+MTAwNjQ0IGluY2x1ZGUvZHJtL2Rpc3BsYXkvZHJtX2RwX3R1bm5lbC5oDQo+IA0KPiBkaWZmIC0t
+Z2l0IGEvZHJpdmVycy9ncHUvZHJtL2Rpc3BsYXkvS2NvbmZpZyBiL2RyaXZlcnMvZ3B1L2RybS9k
+aXNwbGF5L0tjb25maWcNCj4gaW5kZXggMDk3MTJiODhhNWI4My4uYzBmNTY4ODhjMzI4MCAxMDA2
+NDQNCj4gLS0tIGEvZHJpdmVycy9ncHUvZHJtL2Rpc3BsYXkvS2NvbmZpZw0KPiArKysgYi9kcml2
+ZXJzL2dwdS9kcm0vZGlzcGxheS9LY29uZmlnDQo+IEBAIC0xNyw2ICsxNywyNyBAQCBjb25maWcg
+RFJNX0RJU1BMQVlfRFBfSEVMUEVSDQo+ICAJaGVscA0KPiAgCSAgRFJNIGRpc3BsYXkgaGVscGVy
+cyBmb3IgRGlzcGxheVBvcnQuDQo+IA0KPiArY29uZmlnIERSTV9ESVNQTEFZX0RQX1RVTk5FTA0K
+PiArCWJvb2wNCj4gKwlzZWxlY3QgRFJNX0RJU1BMQVlfRFBfSEVMUEVSDQo+ICsJaGVscA0KPiAr
+CSAgRW5hYmxlIHN1cHBvcnQgZm9yIERpc3BsYXlQb3J0IHR1bm5lbHMuIFRoaXMgYWxsb3dzIGRy
+aXZlcnMgdG8gdXNlDQo+ICsJICBEUCB0dW5uZWwgZmVhdHVyZXMgbGlrZSB0aGUgQmFuZHdpZHRo
+IEFsbG9jYXRpb24gbW9kZSB0byBtYXhpbWl6ZSB0aGUNCj4gKwkgIEJXIHV0aWxpemF0aW9uIGZv
+ciBkaXNwbGF5IHN0cmVhbXMgb24gVGh1bmRlcmJvbHQgbGlua3MuDQo+ICsNCj4gK2NvbmZpZyBE
+Uk1fRElTUExBWV9ERUJVR19EUF9UVU5ORUxfU1RBVEUNCj4gKwlib29sICJFbmFibGUgZGVidWdn
+aW5nIHRoZSBEUCB0dW5uZWwgc3RhdGUiDQo+ICsJZGVwZW5kcyBvbiBSRUZfVFJBQ0tFUg0KPiAr
+CWRlcGVuZHMgb24gRFJNX0RJU1BMQVlfRFBfVFVOTkVMDQo+ICsJZGVwZW5kcyBvbiBERUJVR19L
+RVJORUwNCj4gKwlkZXBlbmRzIG9uIEVYUEVSVA0KPiArCWhlbHANCj4gKwkgIEVuYWJsZXMgZGVi
+dWdnaW5nIHRoZSBEUCB0dW5uZWwgbWFuYWdlcidzIHN0YXRlLCBpbmNsdWRpbmcgdGhlDQo+ICsJ
+ICBjb25zaXN0ZW5jeSBvZiBhbGwgbWFuYWdlZCB0dW5uZWxzJyByZWZlcmVuY2UgY291bnRpbmcg
+YW5kIHRoZSBzdGF0ZSBvZg0KPiArCSAgc3RyZWFtcyBjb250YWluZWQgaW4gdHVubmVscy4NCj4g
+Kw0KPiArCSAgSWYgaW4gZG91YnQsIHNheSAiTiIuDQo+ICsNCj4gIGNvbmZpZyBEUk1fRElTUExB
+WV9IRENQX0hFTFBFUg0KPiAgCWJvb2wNCj4gIAlkZXBlbmRzIG9uIERSTV9ESVNQTEFZX0hFTFBF
+Ug0KPiBkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL2Rpc3BsYXkvTWFrZWZpbGUgYi9kcml2
+ZXJzL2dwdS9kcm0vZGlzcGxheS9NYWtlZmlsZQ0KPiBpbmRleCAxN2FjNGExMDA2YTgwLi43Y2E2
+MTMzM2M2Njk2IDEwMDY0NA0KPiAtLS0gYS9kcml2ZXJzL2dwdS9kcm0vZGlzcGxheS9NYWtlZmls
+ZQ0KPiArKysgYi9kcml2ZXJzL2dwdS9kcm0vZGlzcGxheS9NYWtlZmlsZQ0KPiBAQCAtOCw2ICs4
+LDggQEAgZHJtX2Rpc3BsYXlfaGVscGVyLSQoQ09ORklHX0RSTV9ESVNQTEFZX0RQX0hFTFBFUikN
+Cj4gKz0gXA0KPiAgCWRybV9kcF9oZWxwZXIubyBcDQo+ICAJZHJtX2RwX21zdF90b3BvbG9neS5v
+IFwNCj4gIAlkcm1fZHNjX2hlbHBlci5vDQo+ICtkcm1fZGlzcGxheV9oZWxwZXItJChDT05GSUdf
+RFJNX0RJU1BMQVlfRFBfVFVOTkVMKSArPSBcDQo+ICsJZHJtX2RwX3R1bm5lbC5vDQo+ICBkcm1f
+ZGlzcGxheV9oZWxwZXItJChDT05GSUdfRFJNX0RJU1BMQVlfSERDUF9IRUxQRVIpICs9DQo+IGRy
+bV9oZGNwX2hlbHBlci5vDQo+ICBkcm1fZGlzcGxheV9oZWxwZXItJChDT05GSUdfRFJNX0RJU1BM
+QVlfSERNSV9IRUxQRVIpICs9IFwNCj4gIAlkcm1faGRtaV9oZWxwZXIubyBcDQo+IGRpZmYgLS1n
+aXQgYS9kcml2ZXJzL2dwdS9kcm0vZGlzcGxheS9kcm1fZHBfdHVubmVsLmMNCj4gYi9kcml2ZXJz
+L2dwdS9kcm0vZGlzcGxheS9kcm1fZHBfdHVubmVsLmMNCj4gbmV3IGZpbGUgbW9kZSAxMDA2NDQN
+Cj4gaW5kZXggMDAwMDAwMDAwMDAwMC4uOTE5MzM3ZWFiYjMxMw0KPiAtLS0gL2Rldi9udWxsDQo+
+ICsrKyBiL2RyaXZlcnMvZ3B1L2RybS9kaXNwbGF5L2RybV9kcF90dW5uZWwuYw0KPiBAQCAtMCww
+ICsxLDE5MjkgQEANCj4gKy8vIFNQRFgtTGljZW5zZS1JZGVudGlmaWVyOiBNSVQNCj4gKy8qDQo+
+ICsgKiBDb3B5cmlnaHQgwqkgMjAyMyBJbnRlbCBDb3Jwb3JhdGlvbg0KPiArICovDQo+ICsNCj4g
+KyNpbmNsdWRlIDxsaW51eC9yZWZfdHJhY2tlci5oPg0KPiArI2luY2x1ZGUgPGxpbnV4L3R5cGVz
+Lmg+DQo+ICsNCj4gKyNpbmNsdWRlIDxkcm0vZHJtX2F0b21pY19zdGF0ZV9oZWxwZXIuaD4NCj4g
+Kw0KPiArI2luY2x1ZGUgPGRybS9kcm1fYXRvbWljLmg+DQo+ICsjaW5jbHVkZSA8ZHJtL2RybV9w
+cmludC5oPg0KPiArI2luY2x1ZGUgPGRybS9kaXNwbGF5L2RybV9kcC5oPg0KPiArI2luY2x1ZGUg
+PGRybS9kaXNwbGF5L2RybV9kcF9oZWxwZXIuaD4NCj4gKyNpbmNsdWRlIDxkcm0vZGlzcGxheS9k
+cm1fZHBfdHVubmVsLmg+DQo+ICsNCj4gKyNkZWZpbmUgdG9fZ3JvdXAoX19wcml2YXRlX29iaikg
+XA0KPiArCWNvbnRhaW5lcl9vZihfX3ByaXZhdGVfb2JqLCBzdHJ1Y3QgZHJtX2RwX3R1bm5lbF9n
+cm91cCwgYmFzZSkNCj4gKw0KPiArI2RlZmluZSB0b19ncm91cF9zdGF0ZShfX3ByaXZhdGVfc3Rh
+dGUpIFwNCj4gKwljb250YWluZXJfb2YoX19wcml2YXRlX3N0YXRlLCBzdHJ1Y3QgZHJtX2RwX3R1
+bm5lbF9ncm91cF9zdGF0ZSwgYmFzZSkNCj4gKw0KPiArI2RlZmluZSBpc19kcF90dW5uZWxfcHJp
+dmF0ZV9vYmooX19vYmopIFwNCj4gKwkoKF9fb2JqKS0+ZnVuY3MgPT0gJnR1bm5lbF9ncm91cF9m
+dW5jcykNCj4gKw0KPiArI2RlZmluZSBmb3JfZWFjaF9uZXdfZ3JvdXBfaW5fc3RhdGUoX19zdGF0
+ZSwgX19uZXdfZ3JvdXBfc3RhdGUsIF9faSkgXA0KPiArCWZvciAoKF9faSkgPSAwOyBcDQo+ICsJ
+ICAgICAoX19pKSA8IChfX3N0YXRlKS0+bnVtX3ByaXZhdGVfb2JqczsgXA0KPiArCSAgICAgKF9f
+aSkrKykgXA0KPiArCQlmb3JfZWFjaF9pZiAoKF9fc3RhdGUpLT5wcml2YXRlX29ianNbX19pXS5w
+dHIgJiYgXA0KPiArCQkJICAgICBpc19kcF90dW5uZWxfcHJpdmF0ZV9vYmooKF9fc3RhdGUpLQ0K
+PiA+cHJpdmF0ZV9vYmpzW19faV0ucHRyKSAmJiBcDQo+ICsJCQkgICAgICgoX19uZXdfZ3JvdXBf
+c3RhdGUpID0gXA0KPiArCQkJCXRvX2dyb3VwX3N0YXRlKChfX3N0YXRlKS0NCj4gPnByaXZhdGVf
+b2Jqc1tfX2ldLm5ld19zdGF0ZSksIDEpKQ0KPiArDQo+ICsjZGVmaW5lIGZvcl9lYWNoX29sZF9n
+cm91cF9pbl9zdGF0ZShfX3N0YXRlLCBfX29sZF9ncm91cF9zdGF0ZSwgX19pKSBcDQo+ICsJZm9y
+ICgoX19pKSA9IDA7IFwNCj4gKwkgICAgIChfX2kpIDwgKF9fc3RhdGUpLT5udW1fcHJpdmF0ZV9v
+YmpzOyBcDQo+ICsJICAgICAoX19pKSsrKSBcDQo+ICsJCWZvcl9lYWNoX2lmICgoX19zdGF0ZSkt
+PnByaXZhdGVfb2Jqc1tfX2ldLnB0ciAmJiBcDQo+ICsJCQkgICAgIGlzX2RwX3R1bm5lbF9wcml2
+YXRlX29iaigoX19zdGF0ZSktDQo+ID5wcml2YXRlX29ianNbX19pXS5wdHIpICYmIFwNCj4gKwkJ
+CSAgICAgKChfX29sZF9ncm91cF9zdGF0ZSkgPSBcDQo+ICsJCQkJdG9fZ3JvdXBfc3RhdGUoKF9f
+c3RhdGUpLQ0KPiA+cHJpdmF0ZV9vYmpzW19faV0ub2xkX3N0YXRlKSwgMSkpDQo+ICsNCj4gKyNk
+ZWZpbmUgZm9yX2VhY2hfdHVubmVsX2luX2dyb3VwKF9fZ3JvdXAsIF9fdHVubmVsKSBcDQo+ICsJ
+bGlzdF9mb3JfZWFjaF9lbnRyeShfX3R1bm5lbCwgJihfX2dyb3VwKS0+dHVubmVscywgbm9kZSkN
+Cj4gKw0KPiArI2RlZmluZSBmb3JfZWFjaF90dW5uZWxfc3RhdGUoX19ncm91cF9zdGF0ZSwgX190
+dW5uZWxfc3RhdGUpIFwNCj4gKwlsaXN0X2Zvcl9lYWNoX2VudHJ5KF9fdHVubmVsX3N0YXRlLCAm
+KF9fZ3JvdXBfc3RhdGUpLT50dW5uZWxfc3RhdGVzLA0KPiBub2RlKQ0KPiArDQo+ICsjZGVmaW5l
+IGZvcl9lYWNoX3R1bm5lbF9zdGF0ZV9zYWZlKF9fZ3JvdXBfc3RhdGUsIF9fdHVubmVsX3N0YXRl
+LA0KPiBfX3R1bm5lbF9zdGF0ZV90bXApIFwNCj4gKwlsaXN0X2Zvcl9lYWNoX2VudHJ5X3NhZmUo
+X190dW5uZWxfc3RhdGUsIF9fdHVubmVsX3N0YXRlX3RtcCwgXA0KPiArCQkJCSAmKF9fZ3JvdXBf
+c3RhdGUpLT50dW5uZWxfc3RhdGVzLCBub2RlKQ0KPiArDQo+ICsjZGVmaW5lIGtieXRlc190b19t
+Yml0cyhfX2tieXRlcykgXA0KPiArCURJVl9ST1VORF9VUCgoX19rYnl0ZXMpICogOCwgMTAwMCkN
+Cj4gKw0KPiArI2RlZmluZSBEUFRVTl9CV19BUkcoX19idykgKChfX2J3KSA8IDAgPyAoX19idykg
+OiBrYnl0ZXNfdG9fbWJpdHMoX19idykpDQo+ICsNCj4gKyNkZWZpbmUgX190dW5fcHJuKF9fdHVu
+bmVsLCBfX2xldmVsLCBfX3R5cGUsIF9fZm10LCAuLi4pIFwNCj4gKwlkcm1fIyNfX2xldmVsIyNf
+X3R5cGUoKF9fdHVubmVsKS0+Z3JvdXAtPm1nci0+ZGV2LCBcDQo+ICsJCQkgICAgICAiW0RQVFVO
+ICVzXVslc10gIiBfX2ZtdCwgXA0KPiArCQkJICAgICAgZHJtX2RwX3R1bm5lbF9uYW1lKF9fdHVu
+bmVsKSwgXA0KPiArCQkJICAgICAgKF9fdHVubmVsKS0+YXV4LT5uYW1lLCAjIyBcDQo+ICsJCQkg
+ICAgICBfX1ZBX0FSR1NfXykNCj4gKw0KPiArI2RlZmluZSB0dW5fZGJnKF9fdHVubmVsLCBfX2Zt
+dCwgLi4uKSBcDQo+ICsJX190dW5fcHJuKF9fdHVubmVsLCBkYmcsIF9rbXMsIF9fZm10LCAjIyBf
+X1ZBX0FSR1NfXykNCj4gKw0KPiArI2RlZmluZSB0dW5fZGJnX3N0YXQoX190dW5uZWwsIF9fZXJy
+LCBfX2ZtdCwgLi4uKSBkbyB7IFwNCj4gKwlpZiAoX19lcnIpIFwNCj4gKwkJX190dW5fcHJuKF9f
+dHVubmVsLCBkYmcsIF9rbXMsIF9fZm10ICIgKEZhaWxlZCwgZXJyOiAlcGUpXG4iLCBcDQo+ICsJ
+CQkgICMjIF9fVkFfQVJHU19fLCBFUlJfUFRSKF9fZXJyKSk7IFwNCj4gKwllbHNlIFwNCj4gKwkJ
+X190dW5fcHJuKF9fdHVubmVsLCBkYmcsIF9rbXMsIF9fZm10ICIgKE9rKVxuIiwgXA0KPiArCQkJ
+ICAjIyBfX1ZBX0FSR1NfXyk7IFwNCj4gK30gd2hpbGUgKDApDQo+ICsNCj4gKyNkZWZpbmUgdHVu
+X2RiZ19hdG9taWMoX190dW5uZWwsIF9fZm10LCAuLi4pIFwNCj4gKwlfX3R1bl9wcm4oX190dW5u
+ZWwsIGRiZywgX2F0b21pYywgX19mbXQsICMjIF9fVkFfQVJHU19fKQ0KPiArDQo+ICsjZGVmaW5l
+IHR1bl9ncnBfZGJnKF9fZ3JvdXAsIF9fZm10LCAuLi4pIFwNCj4gKwlkcm1fZGJnX2ttcygoX19n
+cm91cCktPm1nci0+ZGV2LCBcDQo+ICsJCSAgICAiW0RQVFVOICVzXSAiIF9fZm10LCBcDQo+ICsJ
+CSAgICBkcm1fZHBfdHVubmVsX2dyb3VwX25hbWUoX19ncm91cCksICMjIFwNCj4gKwkJICAgIF9f
+VkFfQVJHU19fKQ0KPiArDQo+ICsjZGVmaW5lIERQX1RVTk5FTElOR19CQVNFIERQX1RVTk5FTElO
+R19PVUkNCj4gKw0KPiArI2RlZmluZSBfX0RQVFVOX1JFR19SQU5HRShzdGFydCwgc2l6ZSkgXA0K
+PiArCUdFTk1BU0tfVUxMKHN0YXJ0ICsgc2l6ZSAtIDEsIHN0YXJ0KQ0KPiArDQo+ICsjZGVmaW5l
+IERQVFVOX1JFR19SQU5HRShhZGRyLCBzaXplKSBcDQo+ICsJX19EUFRVTl9SRUdfUkFOR0UoKGFk
+ZHIpIC0gRFBfVFVOTkVMSU5HX0JBU0UsIHNpemUpDQo+ICsNCj4gKyNkZWZpbmUgRFBUVU5fUkVH
+KGFkZHIpIERQVFVOX1JFR19SQU5HRShhZGRyLCAxKQ0KPiArDQo+ICsjZGVmaW5lIERQVFVOX0lO
+Rk9fUkVHX01BU0sgKCBcDQo+ICsJRFBUVU5fUkVHX1JBTkdFKERQX1RVTk5FTElOR19PVUksDQo+
+IERQX1RVTk5FTElOR19PVUlfQllURVMpIHwgXA0KPiArCURQVFVOX1JFR19SQU5HRShEUF9UVU5O
+RUxJTkdfREVWX0lELA0KPiBEUF9UVU5ORUxJTkdfREVWX0lEX0JZVEVTKSB8IFwNCj4gKwlEUFRV
+Tl9SRUcoRFBfVFVOTkVMSU5HX0hXX1JFVikgfCBcDQo+ICsJRFBUVU5fUkVHKERQX1RVTk5FTElO
+R19TV19SRVZfTUFKT1IpIHwgXA0KPiArCURQVFVOX1JFRyhEUF9UVU5ORUxJTkdfU1dfUkVWX01J
+Tk9SKSB8IFwNCj4gKwlEUFRVTl9SRUcoRFBfVFVOTkVMSU5HX0NBUEFCSUxJVElFUykgfCBcDQo+
+ICsJRFBUVU5fUkVHKERQX0lOX0FEQVBURVJfSU5GTykgfCBcDQo+ICsJRFBUVU5fUkVHKERQX1VT
+QjRfRFJJVkVSX0lEKSB8IFwNCj4gKwlEUFRVTl9SRUcoRFBfVVNCNF9EUklWRVJfQldfQ0FQQUJJ
+TElUWSkgfCBcDQo+ICsJRFBUVU5fUkVHKERQX0lOX0FEQVBURVJfVFVOTkVMX0lORk9STUFUSU9O
+KSB8IFwNCj4gKwlEUFRVTl9SRUcoRFBfQldfR1JBTlVMQVJJVFkpIHwgXA0KPiArCURQVFVOX1JF
+RyhEUF9FU1RJTUFURURfQlcpIHwgXA0KPiArCURQVFVOX1JFRyhEUF9BTExPQ0FURURfQlcpIHwg
+XA0KPiArCURQVFVOX1JFRyhEUF9UVU5ORUxJTkdfTUFYX0xJTktfUkFURSkgfCBcDQo+ICsJRFBU
+VU5fUkVHKERQX1RVTk5FTElOR19NQVhfTEFORV9DT1VOVCkgfCBcDQo+ICsJRFBUVU5fUkVHKERQ
+X0RQVFhfQldfQUxMT0NBVElPTl9NT0RFX0NPTlRST0wpKQ0KPiArDQo+ICtzdGF0aWMgY29uc3Qg
+REVDTEFSRV9CSVRNQVAoZHB0dW5faW5mb19yZWdzLCA2NCkgPSB7DQo+ICsJRFBUVU5fSU5GT19S
+RUdfTUFTSyAmIC0xVUwsDQo+ICsjaWYgQklUU19QRVJfTE9ORyA9PSAzMg0KPiArCURQVFVOX0lO
+Rk9fUkVHX01BU0sgPj4gMzIsDQo+ICsjZW5kaWYNCj4gK307DQo+ICsNCj4gK3N0cnVjdCBkcm1f
+ZHBfdHVubmVsX3JlZ3Mgew0KPiArCXU4IGJ1ZltIV0VJR0hUNjQoRFBUVU5fSU5GT19SRUdfTUFT
+SyldOw0KPiArfTsNCj4gKw0KPiArc3RydWN0IGRybV9kcF90dW5uZWxfZ3JvdXA7DQo+ICsNCj4g
+K3N0cnVjdCBkcm1fZHBfdHVubmVsIHsNCj4gKwlzdHJ1Y3QgZHJtX2RwX3R1bm5lbF9ncm91cCAq
+Z3JvdXA7DQo+ICsNCj4gKwlzdHJ1Y3QgbGlzdF9oZWFkIG5vZGU7DQo+ICsNCj4gKwlzdHJ1Y3Qg
+a3JlZiBrcmVmOw0KPiArCXN0cnVjdCByZWZfdHJhY2tlciAqdHJhY2tlcjsNCj4gKwlzdHJ1Y3Qg
+ZHJtX2RwX2F1eCAqYXV4Ow0KPiArCWNoYXIgbmFtZVs4XTsNCj4gKw0KPiArCWludCBid19ncmFu
+dWxhcml0eTsNCj4gKwlpbnQgZXN0aW1hdGVkX2J3Ow0KPiArCWludCBhbGxvY2F0ZWRfYnc7DQo+
+ICsNCj4gKwlpbnQgbWF4X2RwcnhfcmF0ZTsNCj4gKwl1OCBtYXhfZHByeF9sYW5lX2NvdW50Ow0K
+PiArDQo+ICsJdTggYWRhcHRlcl9pZDsNCj4gKw0KPiArCWJvb2wgYndfYWxsb2Nfc3VwcG9ydGVk
+OjE7DQo+ICsJYm9vbCBid19hbGxvY19lbmFibGVkOjE7DQo+ICsJYm9vbCBoYXNfaW9fZXJyb3I6
+MTsNCj4gKwlib29sIGRlc3Ryb3llZDoxOw0KPiArfTsNCj4gKw0KPiArc3RydWN0IGRybV9kcF90
+dW5uZWxfZ3JvdXBfc3RhdGU7DQo+ICsNCj4gK3N0cnVjdCBkcm1fZHBfdHVubmVsX3N0YXRlIHsN
+Cj4gKwlzdHJ1Y3QgZHJtX2RwX3R1bm5lbF9ncm91cF9zdGF0ZSAqZ3JvdXBfc3RhdGU7DQo+ICsN
+Cj4gKwlzdHJ1Y3QgZHJtX2RwX3R1bm5lbF9yZWYgdHVubmVsX3JlZjsNCj4gKw0KPiArCXN0cnVj
+dCBsaXN0X2hlYWQgbm9kZTsNCj4gKw0KPiArCXUzMiBzdHJlYW1fbWFzazsNCj4gKwlpbnQgKnN0
+cmVhbV9idzsNCj4gK307DQo+ICsNCj4gK3N0cnVjdCBkcm1fZHBfdHVubmVsX2dyb3VwX3N0YXRl
+IHsNCj4gKwlzdHJ1Y3QgZHJtX3ByaXZhdGVfc3RhdGUgYmFzZTsNCj4gKw0KPiArCXN0cnVjdCBs
+aXN0X2hlYWQgdHVubmVsX3N0YXRlczsNCj4gK307DQo+ICsNCj4gK3N0cnVjdCBkcm1fZHBfdHVu
+bmVsX2dyb3VwIHsNCj4gKwlzdHJ1Y3QgZHJtX3ByaXZhdGVfb2JqIGJhc2U7DQo+ICsJc3RydWN0
+IGRybV9kcF90dW5uZWxfbWdyICptZ3I7DQo+ICsNCj4gKwlzdHJ1Y3QgbGlzdF9oZWFkIHR1bm5l
+bHM7DQo+ICsNCj4gKwkvKiBhdmFpbGFibGUgQlcgaW5jbHVkaW5nIHRoZSBhbGxvY2F0ZWRfYncg
+b2YgYWxsIHR1bm5lbHMgaW4gdGhlIGdyb3VwICovDQo+ICsJaW50IGF2YWlsYWJsZV9idzsNCj4g
+Kwl1OCBkcnZfZ3JvdXBfaWQ7DQo+ICsNCj4gKwljaGFyIG5hbWVbOF07DQo+ICsNCg0KV2UgY2Fu
+IGRyb3AgdGhlc2UgbGluZSBnYXBzLg0KDQo+ICsJYm9vbCBhY3RpdmU6MTsNCj4gK307DQo+ICsN
+Cj4gK3N0cnVjdCBkcm1fZHBfdHVubmVsX21nciB7DQo+ICsJc3RydWN0IGRybV9kZXZpY2UgKmRl
+djsNCj4gKw0KPiArCWludCBncm91cF9jb3VudDsNCj4gKwlzdHJ1Y3QgZHJtX2RwX3R1bm5lbF9n
+cm91cCAqZ3JvdXBzOw0KPiArCXdhaXRfcXVldWVfaGVhZF90IGJ3X3JlcV9xdWV1ZTsNCj4gKw0K
+PiArI2lmZGVmIENPTkZJR19EUk1fRElTUExBWV9ERUJVR19EUF9UVU5ORUxfU1RBVEUNCj4gKwlz
+dHJ1Y3QgcmVmX3RyYWNrZXJfZGlyIHJlZl90cmFja2VyOw0KPiArI2VuZGlmDQo+ICt9Ow0KPiAr
+DQo+ICsvKg0KPiArICogVGhlIGZvbGxvd2luZyBoZWxwZXJzIHByb3ZpZGUgYSB3YXkgdG8gcmVh
+ZCBvdXQgdGhlIHR1bm5lbGluZyBEUENEDQo+ICsgKiByZWdpc3RlcnMgd2l0aCBhIG1pbmltYWwg
+YW1vdW50IG9mIEFVWCB0cmFuc2ZlcnMgKDEgdHJhbnNmZXIgcGVyIGNvbnRpZ3VvdXMNCj4gKyAq
+IHJhbmdlLCBhcyBwZXJtaXR0ZWQgYnkgdGhlIDE2IGJ5dGUgcGVyIHRyYW5zZmVyIEFVWCBsaW1p
+dCksIG5vdCBhY2Nlc3NpbmcNCj4gKyAqIG90aGVyIHJlZ2lzdGVycyB0byBhdm9pZCBhbnkgcmVh
+ZCBzaWRlLWVmZmVjdHMuDQo+ICsgKi8NCj4gK3N0YXRpYyBpbnQgbmV4dF9yZWdfYXJlYShpbnQg
+Km9mZnNldCkNCj4gK3sNCj4gKwkqb2Zmc2V0ID0gZmluZF9uZXh0X2JpdChkcHR1bl9pbmZvX3Jl
+Z3MsIDY0LCAqb2Zmc2V0KTsNCj4gKw0KPiArCXJldHVybiBmaW5kX25leHRfemVyb19iaXQoZHB0
+dW5faW5mb19yZWdzLCA2NCwgKm9mZnNldCArIDEpIC0gKm9mZnNldDsNCj4gK30NCj4gKw0KPiAr
+I2RlZmluZSB0dW5uZWxfcmVnX3B0cihfX3JlZ3MsIF9fYWRkcmVzcykgKHsgXA0KPiArCVdBUk5f
+T04oIXRlc3RfYml0KChfX2FkZHJlc3MpIC0gRFBfVFVOTkVMSU5HX0JBU0UsDQo+IGRwdHVuX2lu
+Zm9fcmVncykpOyBcDQo+ICsJJihfX3JlZ3MpLT5idWZbYml0bWFwX3dlaWdodChkcHR1bl9pbmZv
+X3JlZ3MsIChfX2FkZHJlc3MpIC0NCj4gRFBfVFVOTkVMSU5HX0JBU0UpXTsgXA0KPiArfSkNCj4g
+Kw0KPiArc3RhdGljIGludCByZWFkX3R1bm5lbF9yZWdzKHN0cnVjdCBkcm1fZHBfYXV4ICphdXgs
+IHN0cnVjdCBkcm1fZHBfdHVubmVsX3JlZ3MNCj4gKnJlZ3MpDQo+ICt7DQo+ICsJaW50IG9mZnNl
+dCA9IDA7DQo+ICsJaW50IGxlbjsNCj4gKw0KPiArCXdoaWxlICgobGVuID0gbmV4dF9yZWdfYXJl
+YSgmb2Zmc2V0KSkpIHsNCj4gKwkJaW50IGFkZHJlc3MgPSBEUF9UVU5ORUxJTkdfQkFTRSArIG9m
+ZnNldDsNCj4gKw0KPiArCQlpZiAoZHJtX2RwX2RwY2RfcmVhZChhdXgsIGFkZHJlc3MsIHR1bm5l
+bF9yZWdfcHRyKHJlZ3MsDQo+IGFkZHJlc3MpLCBsZW4pIDwgMCkNCj4gKwkJCXJldHVybiAtRUlP
+Ow0KPiArDQo+ICsJCW9mZnNldCArPSBsZW47DQo+ICsJfQ0KPiArDQo+ICsJcmV0dXJuIDA7DQo+
+ICt9DQo+ICsNCj4gK3N0YXRpYyB1OCB0dW5uZWxfcmVnKGNvbnN0IHN0cnVjdCBkcm1fZHBfdHVu
+bmVsX3JlZ3MgKnJlZ3MsIGludCBhZGRyZXNzKQ0KPiArew0KPiArCXJldHVybiAqdHVubmVsX3Jl
+Z19wdHIocmVncywgYWRkcmVzcyk7DQo+ICt9DQo+ICsNCj4gK3N0YXRpYyB1OCB0dW5uZWxfcmVn
+X2Rydl9ncm91cF9pZChjb25zdCBzdHJ1Y3QgZHJtX2RwX3R1bm5lbF9yZWdzICpyZWdzKQ0KPiAr
+ew0KPiArCXU4IGRydl9pZCA9IHR1bm5lbF9yZWcocmVncywgRFBfVVNCNF9EUklWRVJfSUQpICYN
+Cj4gRFBfVVNCNF9EUklWRVJfSURfTUFTSzsNCj4gKwl1OCBncm91cF9pZCA9IHR1bm5lbF9yZWco
+cmVncywNCj4gRFBfSU5fQURBUFRFUl9UVU5ORUxfSU5GT1JNQVRJT04pICYgRFBfR1JPVVBfSURf
+TUFTSzsNCj4gKw0KPiArCWlmICghZ3JvdXBfaWQpDQo+ICsJCXJldHVybiAwOw0KPiArDQo+ICsJ
+cmV0dXJuIChkcnZfaWQgPDwgRFBfR1JPVVBfSURfQklUUykgfCBncm91cF9pZDsNCj4gK30NCj4g
+Kw0KPiArLyogUmV0dXJuIGdyYW51bGFyaXR5IGluIGtCL3MgdW5pdHMgKi8NCj4gK3N0YXRpYyBp
+bnQgdHVubmVsX3JlZ19id19ncmFudWxhcml0eShjb25zdCBzdHJ1Y3QgZHJtX2RwX3R1bm5lbF9y
+ZWdzICpyZWdzKQ0KPiArew0KPiArCWludCBnciA9IHR1bm5lbF9yZWcocmVncywgRFBfQldfR1JB
+TlVMQVJJVFkpICYNCj4gRFBfQldfR1JBTlVMQVJJVFlfTUFTSzsNCj4gKw0KPiArCVdBUk5fT04o
+Z3IgPiAyKTsNCj4gKw0KDQpJIHRoaW5rIGl0IHNob3VsZCBmYWlsIGFzIHdlbGwgYWxvbmcgd2l0
+aCBXQVJOLCA+IDIgaXMgbm90IHN1cHBvcnRlZC4NCkhvd2V2ZXIsIHRoaXMgc2l0dWF0aW9uIGlz
+IGhpZ2hseSB1bmxpa2VseSB0aG91Z2guDQoNCj4gKwlyZXR1cm4gKDI1MDAwMCA8PCBncikgLyA4
+Ow0KDQoNCj4gK30NCj4gKw0KPiArc3RhdGljIGludCB0dW5uZWxfcmVnX21heF9kcHJ4X3JhdGUo
+Y29uc3Qgc3RydWN0IGRybV9kcF90dW5uZWxfcmVncyAqcmVncykNCj4gK3sNCj4gKwl1OCBid19j
+b2RlID0gdHVubmVsX3JlZyhyZWdzLCBEUF9UVU5ORUxJTkdfTUFYX0xJTktfUkFURSk7DQo+ICsN
+Cj4gKwlyZXR1cm4gZHJtX2RwX2J3X2NvZGVfdG9fbGlua19yYXRlKGJ3X2NvZGUpOw0KPiArfQ0K
+PiArDQo+ICtzdGF0aWMgaW50IHR1bm5lbF9yZWdfbWF4X2RwcnhfbGFuZV9jb3VudChjb25zdCBz
+dHJ1Y3QgZHJtX2RwX3R1bm5lbF9yZWdzDQo+ICpyZWdzKQ0KPiArew0KPiArCXJldHVybiB0dW5u
+ZWxfcmVnKHJlZ3MsIERQX1RVTk5FTElOR19NQVhfTEFORV9DT1VOVCkgJg0KPiArCSAgICAgICBE
+UF9UVU5ORUxJTkdfTUFYX0xBTkVfQ09VTlRfTUFTSzsNCj4gK30NCj4gKw0KPiArc3RhdGljIGJv
+b2wgdHVubmVsX3JlZ19id19hbGxvY19zdXBwb3J0ZWQoY29uc3Qgc3RydWN0IGRybV9kcF90dW5u
+ZWxfcmVncw0KPiAqcmVncykNCj4gK3sNCj4gKwl1OCBjYXBfbWFzayA9IERQX1RVTk5FTElOR19T
+VVBQT1JUIHwNCj4gRFBfSU5fQldfQUxMT0NBVElPTl9NT0RFX1NVUFBPUlQ7DQo+ICsNCj4gKwlp
+ZiAoKHR1bm5lbF9yZWcocmVncywgRFBfVFVOTkVMSU5HX0NBUEFCSUxJVElFUykgJiBjYXBfbWFz
+aykgIT0NCj4gY2FwX21hc2spDQo+ICsJCXJldHVybiBmYWxzZTsNCj4gKw0KPiArCXJldHVybiB0
+dW5uZWxfcmVnKHJlZ3MsIERQX1VTQjRfRFJJVkVSX0JXX0NBUEFCSUxJVFkpICYNCj4gKwkgICAg
+ICAgRFBfVVNCNF9EUklWRVJfQldfQUxMT0NBVElPTl9NT0RFX1NVUFBPUlQ7DQo+ICt9DQo+ICsN
+Cj4gK3N0YXRpYyBib29sIHR1bm5lbF9yZWdfYndfYWxsb2NfZW5hYmxlZChjb25zdCBzdHJ1Y3Qg
+ZHJtX2RwX3R1bm5lbF9yZWdzDQo+ICpyZWdzKQ0KPiArew0KPiArCXJldHVybiB0dW5uZWxfcmVn
+KHJlZ3MsIERQX0RQVFhfQldfQUxMT0NBVElPTl9NT0RFX0NPTlRST0wpDQo+ICYNCj4gKwkgICAg
+ICAgRFBfRElTUExBWV9EUklWRVJfQldfQUxMT0NBVElPTl9NT0RFX0VOQUJMRTsNCj4gK30NCj4g
+Kw0KPiArc3RhdGljIHU4IHR1bm5lbF9ncm91cF9kcnZfaWQodTggZHJ2X2dyb3VwX2lkKQ0KPiAr
+ew0KPiArCXJldHVybiBkcnZfZ3JvdXBfaWQgPj4gRFBfR1JPVVBfSURfQklUUzsNCj4gK30NCj4g
+Kw0KPiArc3RhdGljIHU4IHR1bm5lbF9ncm91cF9pZCh1OCBkcnZfZ3JvdXBfaWQpDQo+ICt7DQo+
+ICsJcmV0dXJuIGRydl9ncm91cF9pZCAmIERQX0dST1VQX0lEX01BU0s7DQo+ICt9DQo+ICsNCj4g
+K2NvbnN0IGNoYXIgKmRybV9kcF90dW5uZWxfbmFtZShjb25zdCBzdHJ1Y3QgZHJtX2RwX3R1bm5l
+bCAqdHVubmVsKQ0KPiArew0KPiArCXJldHVybiB0dW5uZWwtPm5hbWU7DQo+ICt9DQo+ICtFWFBP
+UlRfU1lNQk9MKGRybV9kcF90dW5uZWxfbmFtZSk7DQo+ICsNCj4gK3N0YXRpYyBjb25zdCBjaGFy
+ICpkcm1fZHBfdHVubmVsX2dyb3VwX25hbWUoY29uc3Qgc3RydWN0DQo+IGRybV9kcF90dW5uZWxf
+Z3JvdXAgKmdyb3VwKQ0KPiArew0KPiArCXJldHVybiBncm91cC0+bmFtZTsNCj4gK30NCj4gKw0K
+PiArc3RhdGljIHN0cnVjdCBkcm1fZHBfdHVubmVsX2dyb3VwICoNCj4gK2xvb2t1cF9vcl9hbGxv
+Y19ncm91cChzdHJ1Y3QgZHJtX2RwX3R1bm5lbF9tZ3IgKm1nciwgdTggZHJ2X2dyb3VwX2lkKQ0K
+PiArew0KPiArCXN0cnVjdCBkcm1fZHBfdHVubmVsX2dyb3VwICpncm91cCA9IE5VTEw7DQo+ICsJ
+aW50IGk7DQo+ICsNCj4gKwlmb3IgKGkgPSAwOyBpIDwgbWdyLT5ncm91cF9jb3VudDsgaSsrKSB7
+DQo+ICsJCS8qDQo+ICsJCSAqIEEgdHVubmVsIGdyb3VwIHdpdGggMCBncm91cCBJRCBzaG91bGRu
+J3QgaGF2ZSBtb3JlIHRoYW4gb25lDQo+ICsJCSAqIHR1bm5lbHMuDQo+ICsJCSAqLw0KPiArCQlp
+ZiAodHVubmVsX2dyb3VwX2lkKGRydl9ncm91cF9pZCkgJiYNCj4gKwkJICAgIG1nci0+Z3JvdXBz
+W2ldLmRydl9ncm91cF9pZCA9PSBkcnZfZ3JvdXBfaWQpDQo+ICsJCQlyZXR1cm4gJm1nci0+Z3Jv
+dXBzW2ldOw0KPiArDQo+ICsJCWlmICghZ3JvdXAgJiYgIW1nci0+Z3JvdXBzW2ldLmFjdGl2ZSkN
+Cj4gKwkJCWdyb3VwID0gJm1nci0+Z3JvdXBzW2ldOw0KPiArCX0NCj4gKw0KPiArCWlmICghZ3Jv
+dXApIHsNCj4gKwkJZHJtX2RiZ19rbXMobWdyLT5kZXYsDQo+ICsJCQkgICAgIkRQVFVOOiBDYW4n
+dCBhbGxvY2F0ZSBtb3JlIHR1bm5lbCBncm91cHNcbiIpOw0KPiArCQlyZXR1cm4gTlVMTDsNCj4g
+Kwl9DQo+ICsNCj4gKwlncm91cC0+ZHJ2X2dyb3VwX2lkID0gZHJ2X2dyb3VwX2lkOw0KPiArCWdy
+b3VwLT5hY3RpdmUgPSB0cnVlOw0KPiArDQo+ICsJLyoNCj4gKwkgKiBUaGUgZ3JvdXAgbmFtZSBm
+b3JtYXQgaGVyZSBhbmQgZWxzZXdoZXJlOiBEcml2ZXItSUQ6R3JvdXAtSUQ6Kg0KPiArCSAqICgq
+IHN0YW5kaW5nIGZvciBhbGwgRFAtQWRhcHRlcnMvdHVubmVscyBpbiB0aGUgZ3JvdXApLg0KPiAr
+CSAqLw0KPiArCXNucHJpbnRmKGdyb3VwLT5uYW1lLCBzaXplb2YoZ3JvdXAtPm5hbWUpLCAiJWQ6
+JWQ6KiIsDQo+ICsJCSB0dW5uZWxfZ3JvdXBfZHJ2X2lkKGRydl9ncm91cF9pZCkgJiAoKDEgPDwN
+Cj4gRFBfR1JPVVBfSURfQklUUykgLSAxKSwNCj4gKwkJIHR1bm5lbF9ncm91cF9pZChkcnZfZ3Jv
+dXBfaWQpICYgKCgxIDw8DQo+IERQX1VTQjRfRFJJVkVSX0lEX0JJVFMpIC0gMSkpOw0KPiArDQo+
+ICsJcmV0dXJuIGdyb3VwOw0KPiArfQ0KPiArDQo+ICtzdGF0aWMgdm9pZCBmcmVlX2dyb3VwKHN0
+cnVjdCBkcm1fZHBfdHVubmVsX2dyb3VwICpncm91cCkNCj4gK3sNCj4gKwlzdHJ1Y3QgZHJtX2Rw
+X3R1bm5lbF9tZ3IgKm1nciA9IGdyb3VwLT5tZ3I7DQo+ICsNCj4gKwlpZiAoZHJtX1dBUk5fT04o
+bWdyLT5kZXYsICFsaXN0X2VtcHR5KCZncm91cC0+dHVubmVscykpKQ0KPiArCQlyZXR1cm47DQo+
+ICsNCj4gKwlncm91cC0+ZHJ2X2dyb3VwX2lkID0gMDsNCj4gKwlncm91cC0+YXZhaWxhYmxlX2J3
+ID0gLTE7DQo+ICsJZ3JvdXAtPmFjdGl2ZSA9IGZhbHNlOw0KPiArfQ0KPiArDQo+ICtzdGF0aWMg
+c3RydWN0IGRybV9kcF90dW5uZWwgKg0KPiArdHVubmVsX2dldChzdHJ1Y3QgZHJtX2RwX3R1bm5l
+bCAqdHVubmVsKQ0KPiArew0KPiArCWtyZWZfZ2V0KCZ0dW5uZWwtPmtyZWYpOw0KPiArDQo+ICsJ
+cmV0dXJuIHR1bm5lbDsNCj4gK30NCj4gKw0KPiArc3RhdGljIHZvaWQgZnJlZV90dW5uZWwoc3Ry
+dWN0IGtyZWYgKmtyZWYpDQo+ICt7DQo+ICsJc3RydWN0IGRybV9kcF90dW5uZWwgKnR1bm5lbCA9
+IGNvbnRhaW5lcl9vZihrcmVmLCB0eXBlb2YoKnR1bm5lbCksIGtyZWYpOw0KPiArCXN0cnVjdCBk
+cm1fZHBfdHVubmVsX2dyb3VwICpncm91cCA9IHR1bm5lbC0+Z3JvdXA7DQo+ICsNCj4gKwlsaXN0
+X2RlbCgmdHVubmVsLT5ub2RlKTsNCj4gKwlpZiAobGlzdF9lbXB0eSgmZ3JvdXAtPnR1bm5lbHMp
+KQ0KPiArCQlmcmVlX2dyb3VwKGdyb3VwKTsNCj4gKw0KPiArCWtmcmVlKHR1bm5lbCk7DQo+ICt9
+DQo+ICsNCj4gK3N0YXRpYyB2b2lkIHR1bm5lbF9wdXQoc3RydWN0IGRybV9kcF90dW5uZWwgKnR1
+bm5lbCkNCj4gK3sNCj4gKwlrcmVmX3B1dCgmdHVubmVsLT5rcmVmLCBmcmVlX3R1bm5lbCk7DQo+
+ICt9DQo+ICsNCj4gKyNpZmRlZiBDT05GSUdfRFJNX0RJU1BMQVlfREVCVUdfRFBfVFVOTkVMX1NU
+QVRFDQo+ICtzdGF0aWMgdm9pZCB0cmFja190dW5uZWxfcmVmKHN0cnVjdCBkcm1fZHBfdHVubmVs
+ICp0dW5uZWwsDQo+ICsJCQkgICAgIHN0cnVjdCByZWZfdHJhY2tlciAqKnRyYWNrZXIpDQo+ICt7
+DQo+ICsJcmVmX3RyYWNrZXJfYWxsb2MoJnR1bm5lbC0+Z3JvdXAtPm1nci0+cmVmX3RyYWNrZXIs
+DQo+ICsJCQkgIHRyYWNrZXIsIEdGUF9LRVJORUwpOw0KPiArfQ0KPiArDQo+ICtzdGF0aWMgdm9p
+ZCB1bnRyYWNrX3R1bm5lbF9yZWYoc3RydWN0IGRybV9kcF90dW5uZWwgKnR1bm5lbCwNCj4gKwkJ
+CSAgICAgICBzdHJ1Y3QgcmVmX3RyYWNrZXIgKip0cmFja2VyKQ0KPiArew0KPiArCXJlZl90cmFj
+a2VyX2ZyZWUoJnR1bm5lbC0+Z3JvdXAtPm1nci0+cmVmX3RyYWNrZXIsDQo+ICsJCQkgdHJhY2tl
+cik7DQo+ICt9DQo+ICsjZWxzZQ0KPiArc3RhdGljIHZvaWQgdHJhY2tfdHVubmVsX3JlZihzdHJ1
+Y3QgZHJtX2RwX3R1bm5lbCAqdHVubmVsLA0KPiArCQkJICAgICBzdHJ1Y3QgcmVmX3RyYWNrZXIg
+Kip0cmFja2VyKQ0KPiArew0KPiArfQ0KPiArDQo+ICtzdGF0aWMgdm9pZCB1bnRyYWNrX3R1bm5l
+bF9yZWYoc3RydWN0IGRybV9kcF90dW5uZWwgKnR1bm5lbCwNCj4gKwkJCSAgICAgICBzdHJ1Y3Qg
+cmVmX3RyYWNrZXIgKip0cmFja2VyKQ0KPiArew0KPiArfQ0KPiArI2VuZGlmDQo+ICsNCj4gKy8q
+Kg0KPiArICogZHJtX2RwX3R1bm5lbF9nZXQgLSBHZXQgYSByZWZlcmVuY2UgZm9yIGEgRFAgdHVu
+bmVsDQo+ICsgKiBAdHVubmVsOiBUdW5uZWwgb2JqZWN0DQo+ICsgKiBAdHJhY2tlcjogRGVidWcg
+dHJhY2tlciBmb3IgdGhlIHJlZmVyZW5jZQ0KPiArICoNCj4gKyAqIEdldCBhIHJlZmVyZW5jZSBm
+b3IgQHR1bm5lbCwgYWxvbmcgd2l0aCBhIGRlYnVnIHRyYWNrZXIgdG8gaGVscCBsb2NhdGluZw0K
+PiArICogdGhlIHNvdXJjZSBvZiBhIHJlZmVyZW5jZSBsZWFrL2RvdWJsZSByZWZlcmVuY2UgcHV0
+IGV0Yy4gaXNzdWUuDQo+ICsgKg0KPiArICogVGhlIHJlZmVyZW5jZSBtdXN0IGJlIGRyb3BwZWQg
+YWZ0ZXIgdXNlIGNhbGxpbmcgZHJtX2RwX3R1bm5lbF9wdXQoKQ0KPiArICogcGFzc2luZyBAdHVu
+bmVsIGFuZCAqQHRyYWNrZXIgcmV0dXJuZWQgZnJvbSBoZXJlLg0KPiArICoNCj4gKyAqIFJldHVy
+bnMgQHR1bm5lbCAtIGFzIGEgY29udmVuaWVuY2UgLSBhbG9uZyB3aXRoICpAdHJhY2tlci4NCj4g
+KyAqLw0KPiArc3RydWN0IGRybV9kcF90dW5uZWwgKg0KPiArZHJtX2RwX3R1bm5lbF9nZXQoc3Ry
+dWN0IGRybV9kcF90dW5uZWwgKnR1bm5lbCwNCj4gKwkJICBzdHJ1Y3QgcmVmX3RyYWNrZXIgKip0
+cmFja2VyKQ0KPiArew0KPiArCXRyYWNrX3R1bm5lbF9yZWYodHVubmVsLCB0cmFja2VyKTsNCj4g
+Kw0KPiArCXJldHVybiB0dW5uZWxfZ2V0KHR1bm5lbCk7DQo+ICt9DQo+ICtFWFBPUlRfU1lNQk9M
+KGRybV9kcF90dW5uZWxfZ2V0KTsNCj4gKw0KPiArLyoqDQo+ICsgKiBkcm1fZHBfdHVubmVsX3B1
+dCAtIFB1dCBhIHJlZmVyZW5jZSBmb3IgYSBEUCB0dW5uZWwNCj4gKyAqIEB0dW5uZWwgLSBUdW5u
+ZWwgb2JqZWN0DQo+ICsgKiBAdHJhY2tlciAtIERlYnVnIHRyYWNrZXIgZm9yIHRoZSByZWZlcmVu
+Y2UNCj4gKyAqDQo+ICsgKiBQdXQgYSByZWZlcmVuY2UgZm9yIEB0dW5uZWwgYWxvbmcgd2l0aCBp
+dHMgZGVidWcgKkB0cmFja2VyLCB3aGljaA0KPiArICogd2FzIG9idGFpbmVkIHdpdGggZHJtX2Rw
+X3R1bm5lbF9nZXQoKS4NCj4gKyAqLw0KPiArdm9pZCBkcm1fZHBfdHVubmVsX3B1dChzdHJ1Y3Qg
+ZHJtX2RwX3R1bm5lbCAqdHVubmVsLA0KPiArCQkJIHN0cnVjdCByZWZfdHJhY2tlciAqKnRyYWNr
+ZXIpDQo+ICt7DQo+ICsJdW50cmFja190dW5uZWxfcmVmKHR1bm5lbCwgdHJhY2tlcik7DQo+ICsN
+Cj4gKwl0dW5uZWxfcHV0KHR1bm5lbCk7DQo+ICt9DQo+ICtFWFBPUlRfU1lNQk9MKGRybV9kcF90
+dW5uZWxfcHV0KTsNCj4gKw0KPiArc3RhdGljIGJvb2wgYWRkX3R1bm5lbF90b19ncm91cChzdHJ1
+Y3QgZHJtX2RwX3R1bm5lbF9tZ3IgKm1nciwNCj4gKwkJCQl1OCBkcnZfZ3JvdXBfaWQsDQo+ICsJ
+CQkJc3RydWN0IGRybV9kcF90dW5uZWwgKnR1bm5lbCkNCj4gK3sNCj4gKwlzdHJ1Y3QgZHJtX2Rw
+X3R1bm5lbF9ncm91cCAqZ3JvdXA7DQo+ICsNCj4gKwlncm91cCA9IGxvb2t1cF9vcl9hbGxvY19n
+cm91cChtZ3IsIGRydl9ncm91cF9pZCk7DQo+ICsJaWYgKCFncm91cCkNCj4gKwkJcmV0dXJuIGZh
+bHNlOw0KPiArDQo+ICsJdHVubmVsLT5ncm91cCA9IGdyb3VwOw0KPiArCWxpc3RfYWRkKCZ0dW5u
+ZWwtPm5vZGUsICZncm91cC0+dHVubmVscyk7DQo+ICsNCj4gKwlyZXR1cm4gdHJ1ZTsNCj4gK30N
+Cj4gKw0KPiArc3RhdGljIHN0cnVjdCBkcm1fZHBfdHVubmVsICoNCj4gK2NyZWF0ZV90dW5uZWwo
+c3RydWN0IGRybV9kcF90dW5uZWxfbWdyICptZ3IsDQo+ICsJICAgICAgc3RydWN0IGRybV9kcF9h
+dXggKmF1eCwNCj4gKwkgICAgICBjb25zdCBzdHJ1Y3QgZHJtX2RwX3R1bm5lbF9yZWdzICpyZWdz
+KQ0KPiArew0KPiArCXU4IGRydl9ncm91cF9pZCA9IHR1bm5lbF9yZWdfZHJ2X2dyb3VwX2lkKHJl
+Z3MpOw0KPiArCXN0cnVjdCBkcm1fZHBfdHVubmVsICp0dW5uZWw7DQo+ICsNCj4gKwl0dW5uZWwg
+PSBremFsbG9jKHNpemVvZigqdHVubmVsKSwgR0ZQX0tFUk5FTCk7DQo+ICsJaWYgKCF0dW5uZWwp
+DQo+ICsJCXJldHVybiBOVUxMOw0KPiArDQo+ICsJSU5JVF9MSVNUX0hFQUQoJnR1bm5lbC0+bm9k
+ZSk7DQo+ICsNCj4gKwlrcmVmX2luaXQoJnR1bm5lbC0+a3JlZik7DQo+ICsNCj4gKwl0dW5uZWwt
+PmF1eCA9IGF1eDsNCj4gKw0KPiArCXR1bm5lbC0+YWRhcHRlcl9pZCA9IHR1bm5lbF9yZWcocmVn
+cywgRFBfSU5fQURBUFRFUl9JTkZPKSAmDQo+IERQX0lOX0FEQVBURVJfTlVNQkVSX01BU0s7DQo+
+ICsNCj4gKwlzbnByaW50Zih0dW5uZWwtPm5hbWUsIHNpemVvZih0dW5uZWwtPm5hbWUpLCAiJWQ6
+JWQ6JWQiLA0KPiArCQkgdHVubmVsX2dyb3VwX2Rydl9pZChkcnZfZ3JvdXBfaWQpICYgKCgxIDw8
+DQo+IERQX0dST1VQX0lEX0JJVFMpIC0gMSksDQo+ICsJCSB0dW5uZWxfZ3JvdXBfaWQoZHJ2X2dy
+b3VwX2lkKSAmICgoMSA8PA0KPiBEUF9VU0I0X0RSSVZFUl9JRF9CSVRTKSAtIDEpLA0KPiArCQkg
+dHVubmVsLT5hZGFwdGVyX2lkICYgKCgxIDw8IERQX0lOX0FEQVBURVJfTlVNQkVSX0JJVFMpIC0N
+Cj4gMSkpOw0KPiArDQo+ICsJdHVubmVsLT5id19ncmFudWxhcml0eSA9IHR1bm5lbF9yZWdfYndf
+Z3JhbnVsYXJpdHkocmVncyk7DQo+ICsJdHVubmVsLT5hbGxvY2F0ZWRfYncgPSB0dW5uZWxfcmVn
+KHJlZ3MsIERQX0FMTE9DQVRFRF9CVykgKg0KPiArCQkJICAgICAgIHR1bm5lbC0+YndfZ3JhbnVs
+YXJpdHk7DQo+ICsJLyoNCj4gKwkgKiBBbiBpbml0aWFsIGFsbG9jYXRlZCBCVyBvZiAwIGluZGlj
+YXRlcyBhbiB1bmRlZmluZWQgc3RhdGU6IHRoZQ0KPiArCSAqIGFjdHVhbCBhbGxvY2F0aW9uIGlz
+IGRldGVybWluZWQgYnkgdGhlIFRCVCBDTSwgdXN1YWxseSBmb2xsb3dpbmcgYQ0KPiArCSAqIGxl
+Z2FjeSBhbGxvY2F0aW9uIHBvbGljeSAoYmFzZWQgb24gdGhlIG1heCBEUFJYIGNhcHMpLiBGcm9t
+IHRoZQ0KPiArCSAqIGRyaXZlcidzIFBPViB0aGUgc3RhdGUgYmVjb21lcyBkZWZpbmVkIG9ubHkg
+YWZ0ZXIgdGhlIGZpcnN0DQo+ICsJICogYWxsb2NhdGlvbiByZXF1ZXN0Lg0KPiArCSAqLw0KPiAr
+CWlmICghdHVubmVsLT5hbGxvY2F0ZWRfYncpDQo+ICsJCXR1bm5lbC0+YWxsb2NhdGVkX2J3ID0g
+LTE7DQo+ICsNCj4gKwl0dW5uZWwtPmJ3X2FsbG9jX3N1cHBvcnRlZCA9IHR1bm5lbF9yZWdfYndf
+YWxsb2Nfc3VwcG9ydGVkKHJlZ3MpOw0KPiArCXR1bm5lbC0+YndfYWxsb2NfZW5hYmxlZCA9IHR1
+bm5lbF9yZWdfYndfYWxsb2NfZW5hYmxlZChyZWdzKTsNCj4gKw0KPiArCWlmICghYWRkX3R1bm5l
+bF90b19ncm91cChtZ3IsIGRydl9ncm91cF9pZCwgdHVubmVsKSkgew0KPiArCQlrZnJlZSh0dW5u
+ZWwpOw0KPiArDQo+ICsJCXJldHVybiBOVUxMOw0KPiArCX0NCj4gKw0KPiArCXRyYWNrX3R1bm5l
+bF9yZWYodHVubmVsLCAmdHVubmVsLT50cmFja2VyKTsNCj4gKw0KPiArCXJldHVybiB0dW5uZWw7
+DQo+ICt9DQo+ICsNCj4gK3N0YXRpYyB2b2lkIGRlc3Ryb3lfdHVubmVsKHN0cnVjdCBkcm1fZHBf
+dHVubmVsICp0dW5uZWwpDQo+ICt7DQo+ICsJdW50cmFja190dW5uZWxfcmVmKHR1bm5lbCwgJnR1
+bm5lbC0+dHJhY2tlcik7DQo+ICsJdHVubmVsX3B1dCh0dW5uZWwpOw0KPiArfQ0KPiArDQo+ICsv
+KioNCj4gKyAqIGRybV9kcF90dW5uZWxfc2V0X2lvX2Vycm9yIC0gU2V0IHRoZSBJTyBlcnJvciBm
+bGFnIGZvciBhIERQIHR1bm5lbA0KPiArICogQHR1bm5lbDogVHVubmVsIG9iamVjdA0KPiArICoN
+Cj4gKyAqIFNldCB0aGUgSU8gZXJyb3IgZmxhZyBmb3IgQHR1bm5lbC4gRHJpdmVycyBjYW4gY2Fs
+bCB0aGlzIGZ1bmN0aW9uIHVwb24NCj4gKyAqIGRldGVjdGluZyBhIGZhaWx1cmUgdGhhdCBhZmZl
+Y3RzIHRoZSB0dW5uZWwgZnVuY3Rpb25hbGl0eSwgZm9yIGluc3RhbmNlDQo+ICsgKiBhZnRlciBh
+IERQIEFVWCB0cmFuc2ZlciBmYWlsdXJlIG9uIHRoZSBwb3J0IEB0dW5uZWwgaXMgY29ubmVjdGVk
+IHRvLg0KPiArICoNCj4gKyAqIFRoaXMgZGlzYWJsZXMgZnVydGhlciBtYW5hZ2VtZW50IG9mIEB0
+dW5uZWwsIGluY2x1ZGluZyBhbnkgcmVsYXRlZA0KPiArICogQVVYIGFjY2Vzc2VzIGZvciB0dW5u
+ZWxpbmcgRFBDRCByZWdpc3RlcnMsIHJldHVybmluZyBlcnJvciB0byB0aGUNCj4gKyAqIGluaXRp
+YXRvcnMgb2YgdGhlc2UuIFRoZSBkcml2ZXIgaXMgc3VwcG9zZWQgdG8gZHJvcCB0aGlzIHR1bm5l
+bCBhbmQgLQ0KPiArICogb3B0aW9uYWxseSAtIHJlY3JlYXRlIGl0Lg0KPiArICovDQo+ICt2b2lk
+IGRybV9kcF90dW5uZWxfc2V0X2lvX2Vycm9yKHN0cnVjdCBkcm1fZHBfdHVubmVsICp0dW5uZWwp
+DQo+ICt7DQo+ICsJdHVubmVsLT5oYXNfaW9fZXJyb3IgPSB0cnVlOw0KPiArfQ0KPiArRVhQT1JU
+X1NZTUJPTChkcm1fZHBfdHVubmVsX3NldF9pb19lcnJvcik7DQo+ICsNCj4gKyNkZWZpbmUgU0tJ
+UF9EUFJYX0NBUFNfQ0hFQ0sJCUJJVCgwKQ0KPiArI2RlZmluZSBBTExPV19BTExPQ0FURURfQldf
+Q0hBTkdFCUJJVCgxKQ0KPiArc3RhdGljIGJvb2wgdHVubmVsX3JlZ3NfYXJlX3ZhbGlkKHN0cnVj
+dCBkcm1fZHBfdHVubmVsX21nciAqbWdyLA0KPiArCQkJCSAgY29uc3Qgc3RydWN0IGRybV9kcF90
+dW5uZWxfcmVncyAqcmVncywNCj4gKwkJCQkgIHVuc2lnbmVkIGludCBmbGFncykNCj4gK3sNCj4g
+Kwl1OCBkcnZfZ3JvdXBfaWQgPSB0dW5uZWxfcmVnX2Rydl9ncm91cF9pZChyZWdzKTsNCj4gKwli
+b29sIGNoZWNrX2RwcnggPSAhKGZsYWdzICYgU0tJUF9EUFJYX0NBUFNfQ0hFQ0spOw0KPiArCWJv
+b2wgcmV0ID0gdHJ1ZTsNCj4gKw0KPiArCWlmICghdHVubmVsX3JlZ19id19hbGxvY19zdXBwb3J0
+ZWQocmVncykpIHsNCj4gKwkJaWYgKHR1bm5lbF9ncm91cF9pZChkcnZfZ3JvdXBfaWQpKSB7DQo+
+ICsJCQlkcm1fZGJnX2ttcyhtZ3ItPmRldiwNCj4gKwkJCQkgICAgIkRQVFVOOiBBIG5vbi16ZXJv
+IGdyb3VwIElEIGlzIG9ubHkgYWxsb3dlZA0KPiB3aXRoIEJXQSBzdXBwb3J0XG4iKTsNCj4gKwkJ
+CXJldCA9IGZhbHNlOw0KPiArCQl9DQo+ICsNCj4gKwkJaWYgKHR1bm5lbF9yZWcocmVncywgRFBf
+QUxMT0NBVEVEX0JXKSkgew0KPiArCQkJZHJtX2RiZ19rbXMobWdyLT5kZXYsDQo+ICsJCQkJICAg
+ICJEUFRVTjogQlcgaXMgYWxsb2NhdGVkIHdpdGhvdXQgQldBDQo+IHN1cHBvcnRcbiIpOw0KPiAr
+CQkJcmV0ID0gZmFsc2U7DQo+ICsJCX0NCj4gKw0KPiArCQlyZXR1cm4gcmV0Ow0KPiArCX0NCj4g
+Kw0KPiArCWlmICghdHVubmVsX2dyb3VwX2lkKGRydl9ncm91cF9pZCkpIHsNCj4gKwkJZHJtX2Ri
+Z19rbXMobWdyLT5kZXYsDQo+ICsJCQkgICAgIkRQVFVOOiBCV0Egc3VwcG9ydCByZXF1aXJlcyBh
+IG5vbi16ZXJvIGdyb3VwDQo+IElEXG4iKTsNCj4gKwkJcmV0ID0gZmFsc2U7DQo+ICsJfQ0KPiAr
+DQo+ICsJaWYgKGNoZWNrX2RwcnggJiYgaHdlaWdodDgodHVubmVsX3JlZ19tYXhfZHByeF9sYW5l
+X2NvdW50KHJlZ3MpKSAhPQ0KPiAxKSB7DQo+ICsJCWRybV9kYmdfa21zKG1nci0+ZGV2LA0KPiAr
+CQkJICAgICJEUFRVTjogSW52YWxpZCBEUFJYIGxhbmUgY291bnQ6ICVkXG4iLA0KPiArCQkJICAg
+IHR1bm5lbF9yZWdfbWF4X2RwcnhfbGFuZV9jb3VudChyZWdzKSk7DQo+ICsNCj4gKwkJcmV0ID0g
+ZmFsc2U7DQo+ICsJfQ0KPiArDQo+ICsJaWYgKGNoZWNrX2RwcnggJiYgIXR1bm5lbF9yZWdfbWF4
+X2RwcnhfcmF0ZShyZWdzKSkgew0KPiArCQlkcm1fZGJnX2ttcyhtZ3ItPmRldiwNCj4gKwkJCSAg
+ICAiRFBUVU46IERQUlggcmF0ZSBpcyAwXG4iKTsNCj4gKw0KPiArCQlyZXQgPSBmYWxzZTsNCj4g
+Kwl9DQo+ICsNCj4gKwlpZiAodHVubmVsX3JlZyhyZWdzLCBEUF9BTExPQ0FURURfQlcpID4gdHVu
+bmVsX3JlZyhyZWdzLA0KPiBEUF9FU1RJTUFURURfQlcpKSB7DQo+ICsJCWRybV9kYmdfa21zKG1n
+ci0+ZGV2LA0KPiArCQkJICAgICJEUFRVTjogQWxsb2NhdGVkIEJXICVkID4gZXN0aW1hdGVkIEJX
+ICVkDQo+IE1iL3NcbiIsDQo+ICsJCQkgICAgRFBUVU5fQldfQVJHKHR1bm5lbF9yZWcocmVncywN
+Cj4gRFBfQUxMT0NBVEVEX0JXKSAqDQo+ICsJCQkJCSB0dW5uZWxfcmVnX2J3X2dyYW51bGFyaXR5
+KHJlZ3MpKSwNCj4gKwkJCSAgICBEUFRVTl9CV19BUkcodHVubmVsX3JlZyhyZWdzLA0KPiBEUF9F
+U1RJTUFURURfQlcpICoNCj4gKwkJCQkJIHR1bm5lbF9yZWdfYndfZ3JhbnVsYXJpdHkocmVncykp
+KTsNCj4gKw0KPiArCQlyZXQgPSBmYWxzZTsNCj4gKwl9DQo+ICsNCj4gKwlyZXR1cm4gcmV0Ow0K
+PiArfQ0KPiArDQo+ICtzdGF0aWMgaW50IHR1bm5lbF9hbGxvY2F0ZWRfYncoY29uc3Qgc3RydWN0
+IGRybV9kcF90dW5uZWwgKnR1bm5lbCkNCj4gK3sNCj4gKwlyZXR1cm4gbWF4KHR1bm5lbC0+YWxs
+b2NhdGVkX2J3LCAwKTsNCj4gK30NCj4gKw0KPiArc3RhdGljIGJvb2wgdHVubmVsX2luZm9fY2hh
+bmdlc19hcmVfdmFsaWQoc3RydWN0IGRybV9kcF90dW5uZWwgKnR1bm5lbCwNCj4gKwkJCQkJICBj
+b25zdCBzdHJ1Y3QgZHJtX2RwX3R1bm5lbF9yZWdzDQo+ICpyZWdzLA0KPiArCQkJCQkgIHVuc2ln
+bmVkIGludCBmbGFncykNCj4gK3sNCj4gKwl1OCBuZXdfZHJ2X2dyb3VwX2lkID0gdHVubmVsX3Jl
+Z19kcnZfZ3JvdXBfaWQocmVncyk7DQo+ICsJYm9vbCByZXQgPSB0cnVlOw0KPiArDQo+ICsJaWYg
+KHR1bm5lbC0+YndfYWxsb2Nfc3VwcG9ydGVkICE9IHR1bm5lbF9yZWdfYndfYWxsb2Nfc3VwcG9y
+dGVkKHJlZ3MpKQ0KPiB7DQo+ICsJCXR1bl9kYmcodHVubmVsLA0KPiArCQkJIkJXIGFsbG9jIHN1
+cHBvcnQgaGFzIGNoYW5nZWQgJXMgLT4gJXNcbiIsDQo+ICsJCQlzdHJfeWVzX25vKHR1bm5lbC0+
+YndfYWxsb2Nfc3VwcG9ydGVkKSwNCj4gKwkJCXN0cl95ZXNfbm8odHVubmVsX3JlZ19id19hbGxv
+Y19zdXBwb3J0ZWQocmVncykpKTsNCj4gKw0KPiArCQlyZXQgPSBmYWxzZTsNCj4gKwl9DQo+ICsN
+Cj4gKwlpZiAodHVubmVsLT5ncm91cC0+ZHJ2X2dyb3VwX2lkICE9IG5ld19kcnZfZ3JvdXBfaWQp
+IHsNCj4gKwkJdHVuX2RiZyh0dW5uZWwsDQo+ICsJCQkiRHJpdmVyL2dyb3VwIElEIGhhcyBjaGFu
+Z2VkICVkOiVkOiogLT4gJWQ6JWQ6KlxuIiwNCj4gKwkJCXR1bm5lbF9ncm91cF9kcnZfaWQodHVu
+bmVsLT5ncm91cC0+ZHJ2X2dyb3VwX2lkKSwNCj4gKwkJCXR1bm5lbF9ncm91cF9pZCh0dW5uZWwt
+Pmdyb3VwLT5kcnZfZ3JvdXBfaWQpLA0KPiArCQkJdHVubmVsX2dyb3VwX2Rydl9pZChuZXdfZHJ2
+X2dyb3VwX2lkKSwNCj4gKwkJCXR1bm5lbF9ncm91cF9pZChuZXdfZHJ2X2dyb3VwX2lkKSk7DQo+
+ICsNCj4gKwkJcmV0ID0gZmFsc2U7DQo+ICsJfQ0KPiArDQo+ICsJaWYgKCF0dW5uZWwtPmJ3X2Fs
+bG9jX3N1cHBvcnRlZCkNCj4gKwkJcmV0dXJuIHJldDsNCj4gKw0KPiArCWlmICh0dW5uZWwtPmJ3
+X2dyYW51bGFyaXR5ICE9IHR1bm5lbF9yZWdfYndfZ3JhbnVsYXJpdHkocmVncykpIHsNCj4gKwkJ
+dHVuX2RiZyh0dW5uZWwsDQo+ICsJCQkiQlcgZ3JhbnVsYXJpdHkgaGFzIGNoYW5nZWQ6ICVkIC0+
+ICVkIE1iL3NcbiIsDQo+ICsJCQlEUFRVTl9CV19BUkcodHVubmVsLT5id19ncmFudWxhcml0eSks
+DQo+ICsJCQlEUFRVTl9CV19BUkcodHVubmVsX3JlZ19id19ncmFudWxhcml0eShyZWdzKSkpOw0K
+PiArDQo+ICsJCXJldCA9IGZhbHNlOw0KPiArCX0NCj4gKw0KPiArCS8qDQo+ICsJICogT24gc29t
+ZSBkZXZpY2VzIGF0IGxlYXN0IHRoZSBCVyBhbGxvYyBtb2RlIGVuYWJsZWQgc3RhdHVzIGlzIGFs
+d2F5cw0KPiArCSAqIHJlcG9ydGVkIGFzIDAsIHNvIHNraXAgY2hlY2tpbmcgdGhhdCBoZXJlLg0K
+PiArCSAqLw0KPiArDQo+ICsJaWYgKCEoZmxhZ3MgJiBBTExPV19BTExPQ0FURURfQldfQ0hBTkdF
+KSAmJg0KPiArCSAgICB0dW5uZWxfYWxsb2NhdGVkX2J3KHR1bm5lbCkgIT0NCj4gKwkgICAgdHVu
+bmVsX3JlZyhyZWdzLCBEUF9BTExPQ0FURURfQlcpICogdHVubmVsLT5id19ncmFudWxhcml0eSkg
+ew0KPiArCQl0dW5fZGJnKHR1bm5lbCwNCj4gKwkJCSJBbGxvY2F0ZWQgQlcgaGFzIGNoYW5nZWQ6
+ICVkIC0+ICVkIE1iL3NcbiIsDQo+ICsJCQlEUFRVTl9CV19BUkcodHVubmVsLT5hbGxvY2F0ZWRf
+YncpLA0KPiArCQkJRFBUVU5fQldfQVJHKHR1bm5lbF9yZWcocmVncywgRFBfQUxMT0NBVEVEX0JX
+KQ0KPiAqIHR1bm5lbC0+YndfZ3JhbnVsYXJpdHkpKTsNCj4gKw0KPiArCQlyZXQgPSBmYWxzZTsN
+Cj4gKwl9DQo+ICsNCj4gKwlyZXR1cm4gcmV0Ow0KPiArfQ0KPiArDQo+ICtzdGF0aWMgaW50DQo+
+ICtyZWFkX2FuZF92ZXJpZnlfdHVubmVsX3JlZ3Moc3RydWN0IGRybV9kcF90dW5uZWwgKnR1bm5l
+bCwNCj4gKwkJCSAgICBzdHJ1Y3QgZHJtX2RwX3R1bm5lbF9yZWdzICpyZWdzLA0KPiArCQkJICAg
+IHVuc2lnbmVkIGludCBmbGFncykNCj4gK3sNCj4gKwlpbnQgZXJyOw0KPiArDQo+ICsJZXJyID0g
+cmVhZF90dW5uZWxfcmVncyh0dW5uZWwtPmF1eCwgcmVncyk7DQo+ICsJaWYgKGVyciA8IDApIHsN
+Cj4gKwkJZHJtX2RwX3R1bm5lbF9zZXRfaW9fZXJyb3IodHVubmVsKTsNCj4gKw0KPiArCQlyZXR1
+cm4gZXJyOw0KPiArCX0NCj4gKw0KPiArCWlmICghdHVubmVsX3JlZ3NfYXJlX3ZhbGlkKHR1bm5l
+bC0+Z3JvdXAtPm1nciwgcmVncywgZmxhZ3MpKQ0KPiArCQlyZXR1cm4gLUVJTlZBTDsNCj4gKw0K
+PiArCWlmICghdHVubmVsX2luZm9fY2hhbmdlc19hcmVfdmFsaWQodHVubmVsLCByZWdzLCBmbGFn
+cykpDQo+ICsJCXJldHVybiAtRUlOVkFMOw0KPiArDQo+ICsJcmV0dXJuIDA7DQo+ICt9DQo+ICsN
+Cj4gK3N0YXRpYyBib29sIHVwZGF0ZV9kcHJ4X2NhcHMoc3RydWN0IGRybV9kcF90dW5uZWwgKnR1
+bm5lbCwgY29uc3Qgc3RydWN0DQo+IGRybV9kcF90dW5uZWxfcmVncyAqcmVncykNCj4gK3sNCj4g
+Kwlib29sIGNoYW5nZWQgPSBmYWxzZTsNCj4gKw0KPiArCWlmICh0dW5uZWxfcmVnX21heF9kcHJ4
+X3JhdGUocmVncykgIT0gdHVubmVsLT5tYXhfZHByeF9yYXRlKSB7DQo+ICsJCXR1bm5lbC0+bWF4
+X2RwcnhfcmF0ZSA9IHR1bm5lbF9yZWdfbWF4X2RwcnhfcmF0ZShyZWdzKTsNCj4gKwkJY2hhbmdl
+ZCA9IHRydWU7DQo+ICsJfQ0KPiArDQo+ICsJaWYgKHR1bm5lbF9yZWdfbWF4X2RwcnhfbGFuZV9j
+b3VudChyZWdzKSAhPSB0dW5uZWwtDQo+ID5tYXhfZHByeF9sYW5lX2NvdW50KSB7DQo+ICsJCXR1
+bm5lbC0+bWF4X2RwcnhfbGFuZV9jb3VudCA9DQo+IHR1bm5lbF9yZWdfbWF4X2RwcnhfbGFuZV9j
+b3VudChyZWdzKTsNCj4gKwkJY2hhbmdlZCA9IHRydWU7DQo+ICsJfQ0KPiArDQo+ICsJcmV0dXJu
+IGNoYW5nZWQ7DQo+ICt9DQo+ICsNCj4gK3N0YXRpYyBpbnQgZGV2X2lkX2xlbihjb25zdCB1OCAq
+ZGV2X2lkLCBpbnQgbWF4X2xlbikNCj4gK3sNCj4gKwl3aGlsZSAobWF4X2xlbiAmJiBkZXZfaWRb
+bWF4X2xlbiAtIDFdID09ICdcMCcpDQo+ICsJCW1heF9sZW4tLTsNCj4gKw0KPiArCXJldHVybiBt
+YXhfbGVuOw0KPiArfQ0KPiArDQo+ICtzdGF0aWMgaW50IGdldF9tYXhfZHByeF9idyhjb25zdCBz
+dHJ1Y3QgZHJtX2RwX3R1bm5lbCAqdHVubmVsKQ0KPiArew0KPiArCWludCBtYXhfZHByeF9idyA9
+IGRybV9kcF9tYXhfZHByeF9kYXRhX3JhdGUodHVubmVsLQ0KPiA+bWF4X2RwcnhfcmF0ZSwNCj4g
+KwkJCQkJCSAgICB0dW5uZWwtDQo+ID5tYXhfZHByeF9sYW5lX2NvdW50KTsNCj4gKw0KPiArCS8q
+DQo+ICsJICogQSBCVyByZXF1ZXN0IG9mIHJvdW5kdXAobWF4X2RwcnhfYncsIHR1bm5lbC0+Yndf
+Z3JhbnVsYXJpdHkpDQo+IHJlc3VsdHMgaW4NCj4gKwkgKiBhbiBhbGxvY2F0aW9uIG9mIG1heF9k
+cHJ4X2J3LiBBIEJXIHJlcXVlc3QgYWJvdmUgdGhpcyByb3VuZGVkLXVwDQo+ICsJICogdmFsdWUg
+d2lsbCBmYWlsLg0KPiArCSAqLw0KPiArCXJldHVybiBtaW4ocm91bmR1cChtYXhfZHByeF9idywg
+dHVubmVsLT5id19ncmFudWxhcml0eSksDQo+ICsJCSAgIE1BWF9EUF9SRVFVRVNUX0JXICogdHVu
+bmVsLT5id19ncmFudWxhcml0eSk7DQo+ICt9DQo+ICsNCj4gK3N0YXRpYyBpbnQgZ2V0X21heF90
+dW5uZWxfYncoY29uc3Qgc3RydWN0IGRybV9kcF90dW5uZWwgKnR1bm5lbCkNCj4gK3sNCj4gKwly
+ZXR1cm4gbWluKGdldF9tYXhfZHByeF9idyh0dW5uZWwpLCB0dW5uZWwtPmdyb3VwLT5hdmFpbGFi
+bGVfYncpOw0KPiArfQ0KPiArDQo+ICsvKioNCj4gKyAqIGRybV9kcF90dW5uZWxfZGV0ZWN0IC0g
+RGV0ZWN0IERQIHR1bm5lbCBvbiB0aGUgbGluaw0KPiArICogQG1ncjogVHVubmVsIG1hbmFnZXIN
+Cj4gKyAqIEBhdXg6IERQIEFVWCBvbiB3aGljaCB0aGUgdHVubmVsIHdpbGwgYmUgZGV0ZWN0ZWQN
+Cj4gKyAqDQo+ICsgKiBEZXRlY3QgaWYgdGhlcmUgaXMgYW55IERQIHR1bm5lbCBvbiB0aGUgbGlu
+ayBhbmQgYWRkIGl0IHRvIHRoZSB0dW5uZWwNCj4gKyAqIGdyb3VwJ3MgdHVubmVsIGxpc3QuDQo+
+ICsgKg0KPiArICogUmV0dXJucyBhIHBvaW50ZXIgdG8gYSB0dW5uZWwgb24gc3VjY2Vzcywgb3Ig
+YW4gRVJSX1BUUigpIGVycm9yIG9uDQo+ICsgKiBmYWlsdXJlLg0KPiArICovDQo+ICtzdHJ1Y3Qg
+ZHJtX2RwX3R1bm5lbCAqDQo+ICtkcm1fZHBfdHVubmVsX2RldGVjdChzdHJ1Y3QgZHJtX2RwX3R1
+bm5lbF9tZ3IgKm1nciwNCj4gKwkJICAgICBzdHJ1Y3QgZHJtX2RwX2F1eCAqYXV4KQ0KPiArew0K
+PiArCXN0cnVjdCBkcm1fZHBfdHVubmVsX3JlZ3MgcmVnczsNCj4gKwlzdHJ1Y3QgZHJtX2RwX3R1
+bm5lbCAqdHVubmVsOw0KPiArCWludCBlcnI7DQo+ICsNCj4gKwllcnIgPSByZWFkX3R1bm5lbF9y
+ZWdzKGF1eCwgJnJlZ3MpOw0KPiArCWlmIChlcnIpDQo+ICsJCXJldHVybiBFUlJfUFRSKGVycik7
+DQo+ICsNCj4gKwlpZiAoISh0dW5uZWxfcmVnKCZyZWdzLCBEUF9UVU5ORUxJTkdfQ0FQQUJJTElU
+SUVTKSAmDQo+ICsJICAgICAgRFBfVFVOTkVMSU5HX1NVUFBPUlQpKQ0KPiArCQlyZXR1cm4gRVJS
+X1BUUigtRU5PREVWKTsNCj4gKw0KPiArCS8qIFRoZSBEUFJYIGNhcHMgYXJlIHZhbGlkIG9ubHkg
+YWZ0ZXIgZW5hYmxpbmcgQlcgYWxsb2MgbW9kZS4gKi8NCj4gKwlpZiAoIXR1bm5lbF9yZWdzX2Fy
+ZV92YWxpZChtZ3IsICZyZWdzLCBTS0lQX0RQUlhfQ0FQU19DSEVDSykpDQo+ICsJCXJldHVybiBF
+UlJfUFRSKC1FSU5WQUwpOw0KPiArDQo+ICsJdHVubmVsID0gY3JlYXRlX3R1bm5lbChtZ3IsIGF1
+eCwgJnJlZ3MpOw0KPiArCWlmICghdHVubmVsKQ0KPiArCQlyZXR1cm4gRVJSX1BUUigtRU5PTUVN
+KTsNCj4gKw0KPiArCXR1bl9kYmcodHVubmVsLA0KPiArCQkiT1VJOiUqcGhEIERldklEOiUqcEUg
+UmV2LUhXOiVkLiVkIFNXOiVkLiVkIFBSLVN1cDolcw0KPiBCV0EtU3VwOiVzIEJXQS1Fbjolc1xu
+IiwNCj4gKwkJRFBfVFVOTkVMSU5HX09VSV9CWVRFUywNCj4gKwkJCXR1bm5lbF9yZWdfcHRyKCZy
+ZWdzLCBEUF9UVU5ORUxJTkdfT1VJKSwNCj4gKwkJZGV2X2lkX2xlbih0dW5uZWxfcmVnX3B0cigm
+cmVncywgRFBfVFVOTkVMSU5HX0RFVl9JRCksDQo+IERQX1RVTk5FTElOR19ERVZfSURfQllURVMp
+LA0KPiArCQkJdHVubmVsX3JlZ19wdHIoJnJlZ3MsIERQX1RVTk5FTElOR19ERVZfSUQpLA0KPiAr
+CQkodHVubmVsX3JlZygmcmVncywgRFBfVFVOTkVMSU5HX0hXX1JFVikgJg0KPiBEUF9UVU5ORUxJ
+TkdfSFdfUkVWX01BSk9SX01BU0spID4+DQo+ICsJCQlEUF9UVU5ORUxJTkdfSFdfUkVWX01BSk9S
+X1NISUZULA0KPiArCQkodHVubmVsX3JlZygmcmVncywgRFBfVFVOTkVMSU5HX0hXX1JFVikgJg0K
+PiBEUF9UVU5ORUxJTkdfSFdfUkVWX01JTk9SX01BU0spID4+DQo+ICsJCQlEUF9UVU5ORUxJTkdf
+SFdfUkVWX01JTk9SX1NISUZULA0KPiArCQl0dW5uZWxfcmVnKCZyZWdzLCBEUF9UVU5ORUxJTkdf
+U1dfUkVWX01BSk9SKSwNCj4gKwkJdHVubmVsX3JlZygmcmVncywgRFBfVFVOTkVMSU5HX1NXX1JF
+Vl9NSU5PUiksDQo+ICsJCXN0cl95ZXNfbm8odHVubmVsX3JlZygmcmVncywgRFBfVFVOTkVMSU5H
+X0NBUEFCSUxJVElFUykgJg0KPiArCQkJICAgRFBfUEFORUxfUkVQTEFZX09QVElNSVpBVElPTl9T
+VVBQT1JUKSwNCj4gKwkJc3RyX3llc19ubyh0dW5uZWwtPmJ3X2FsbG9jX3N1cHBvcnRlZCksDQo+
+ICsJCXN0cl95ZXNfbm8odHVubmVsLT5id19hbGxvY19lbmFibGVkKSk7DQo+ICsNCj4gKwlyZXR1
+cm4gdHVubmVsOw0KPiArfQ0KPiArRVhQT1JUX1NZTUJPTChkcm1fZHBfdHVubmVsX2RldGVjdCk7
+DQo+ICsNCj4gKy8qKg0KPiArICogZHJtX2RwX3R1bm5lbF9kZXN0cm95IC0gRGVzdHJveSB0dW5u
+ZWwgb2JqZWN0DQo+ICsgKiBAdHVubmVsOiBUdW5uZWwgb2JqZWN0DQo+ICsgKg0KPiArICogUmVt
+b3ZlIHRoZSB0dW5uZWwgZnJvbSB0aGUgdHVubmVsIHRvcG9sb2d5IGFuZCBkZXN0cm95IGl0Lg0K
+PiArICoNCj4gKyAqIFJldHVybnMgMCBvbiBzdWNjZXNzLCAtRU5PREVWIGlmIHRoZSB0dW5uZWwg
+aGFzIGJlZW4gZGVzdHJveWVkIGFscmVhZHkuDQo+ICsgKi8NCj4gK2ludCBkcm1fZHBfdHVubmVs
+X2Rlc3Ryb3koc3RydWN0IGRybV9kcF90dW5uZWwgKnR1bm5lbCkNCj4gK3sNCj4gKwlpZiAoIXR1
+bm5lbCkNCj4gKwkJcmV0dXJuIDA7DQo+ICsNCj4gKwlpZiAoZHJtX1dBUk5fT04odHVubmVsLT5n
+cm91cC0+bWdyLT5kZXYsIHR1bm5lbC0+ZGVzdHJveWVkKSkNCj4gKwkJcmV0dXJuIC1FTk9ERVY7
+DQo+ICsNCj4gKwl0dW5fZGJnKHR1bm5lbCwgImRlc3Ryb3lpbmdcbiIpOw0KPiArDQo+ICsJdHVu
+bmVsLT5kZXN0cm95ZWQgPSB0cnVlOw0KPiArCWRlc3Ryb3lfdHVubmVsKHR1bm5lbCk7DQo+ICsN
+Cj4gKwlyZXR1cm4gMDsNCj4gK30NCj4gK0VYUE9SVF9TWU1CT0woZHJtX2RwX3R1bm5lbF9kZXN0
+cm95KTsNCj4gKw0KPiArc3RhdGljIGludCBjaGVja190dW5uZWwoY29uc3Qgc3RydWN0IGRybV9k
+cF90dW5uZWwgKnR1bm5lbCkNCj4gK3sNCj4gKwlpZiAodHVubmVsLT5kZXN0cm95ZWQpDQo+ICsJ
+CXJldHVybiAtRU5PREVWOw0KPiArDQo+ICsJaWYgKHR1bm5lbC0+aGFzX2lvX2Vycm9yKQ0KPiAr
+CQlyZXR1cm4gLUVJTzsNCj4gKw0KPiArCXJldHVybiAwOw0KPiArfQ0KPiArDQo+ICtzdGF0aWMg
+aW50IGdyb3VwX2FsbG9jYXRlZF9idyhzdHJ1Y3QgZHJtX2RwX3R1bm5lbF9ncm91cCAqZ3JvdXAp
+DQo+ICt7DQo+ICsJc3RydWN0IGRybV9kcF90dW5uZWwgKnR1bm5lbDsNCj4gKwlpbnQgZ3JvdXBf
+YWxsb2NhdGVkX2J3ID0gMDsNCj4gKw0KPiArCWZvcl9lYWNoX3R1bm5lbF9pbl9ncm91cChncm91
+cCwgdHVubmVsKSB7DQo+ICsJCWlmIChjaGVja190dW5uZWwodHVubmVsKSA9PSAwICYmDQo+ICsJ
+CSAgICB0dW5uZWwtPmJ3X2FsbG9jX2VuYWJsZWQpDQo+ICsJCQlncm91cF9hbGxvY2F0ZWRfYncg
+Kz0gdHVubmVsX2FsbG9jYXRlZF9idyh0dW5uZWwpOw0KPiArCX0NCj4gKw0KPiArCXJldHVybiBn
+cm91cF9hbGxvY2F0ZWRfYnc7DQo+ICt9DQo+ICsNCj4gKy8qDQo+ICsgKiBUaGUgZXN0aW1hdGVk
+IEJXIHJlcG9ydGVkIGJ5IHRoZSBUQlQgQ29ubmVjdGlvbiBNYW5hZ2VyIGZvciBlYWNoIHR1bm5l
+bA0KPiBpbg0KPiArICogYSBncm91cCBpbmNsdWRlcyB0aGUgQlcgYWxyZWFkeSBhbGxvY2F0ZWQg
+Zm9yIHRoZSBnaXZlbiB0dW5uZWwgYW5kIHRoZQ0KPiArICogdW5hbGxvY2F0ZWQgQlcgd2hpY2gg
+aXMgZnJlZSB0byBiZSB1c2VkIGJ5IGFueSB0dW5uZWwgaW4gdGhlIGdyb3VwLg0KPiArICovDQo+
+ICtzdGF0aWMgaW50IGdyb3VwX2ZyZWVfYncoY29uc3Qgc3RydWN0IGRybV9kcF90dW5uZWwgKnR1
+bm5lbCkNCj4gK3sNCj4gKwlyZXR1cm4gdHVubmVsLT5lc3RpbWF0ZWRfYncgLSB0dW5uZWxfYWxs
+b2NhdGVkX2J3KHR1bm5lbCk7DQo+ICt9DQo+ICsNCj4gK3N0YXRpYyBpbnQgY2FsY19ncm91cF9h
+dmFpbGFibGVfYncoY29uc3Qgc3RydWN0IGRybV9kcF90dW5uZWwgKnR1bm5lbCkNCj4gK3sNCj4g
+KwlyZXR1cm4gZ3JvdXBfYWxsb2NhdGVkX2J3KHR1bm5lbC0+Z3JvdXApICsNCj4gKwkgICAgICAg
+Z3JvdXBfZnJlZV9idyh0dW5uZWwpOw0KPiArfQ0KPiArDQo+ICtzdGF0aWMgaW50IHVwZGF0ZV9n
+cm91cF9hdmFpbGFibGVfYncoc3RydWN0IGRybV9kcF90dW5uZWwgKnR1bm5lbCwNCj4gKwkJCQkg
+ICAgIGNvbnN0IHN0cnVjdCBkcm1fZHBfdHVubmVsX3JlZ3MgKnJlZ3MpDQo+ICt7DQo+ICsJc3Ry
+dWN0IGRybV9kcF90dW5uZWwgKnR1bm5lbF9pdGVyOw0KPiArCWludCBncm91cF9hdmFpbGFibGVf
+Ync7DQo+ICsJYm9vbCBjaGFuZ2VkOw0KPiArDQo+ICsJdHVubmVsLT5lc3RpbWF0ZWRfYncgPSB0
+dW5uZWxfcmVnKHJlZ3MsIERQX0VTVElNQVRFRF9CVykgKiB0dW5uZWwtDQo+ID5id19ncmFudWxh
+cml0eTsNCj4gKw0KPiArCWlmIChjYWxjX2dyb3VwX2F2YWlsYWJsZV9idyh0dW5uZWwpID09IHR1
+bm5lbC0+Z3JvdXAtPmF2YWlsYWJsZV9idykNCj4gKwkJcmV0dXJuIDA7DQo+ICsNCj4gKwlmb3Jf
+ZWFjaF90dW5uZWxfaW5fZ3JvdXAodHVubmVsLT5ncm91cCwgdHVubmVsX2l0ZXIpIHsNCj4gKwkJ
+aW50IGVycjsNCj4gKw0KPiArCQlpZiAodHVubmVsX2l0ZXIgPT0gdHVubmVsKQ0KPiArCQkJY29u
+dGludWU7DQo+ICsNCj4gKwkJaWYgKGNoZWNrX3R1bm5lbCh0dW5uZWxfaXRlcikgIT0gMCB8fA0K
+PiArCQkgICAgIXR1bm5lbF9pdGVyLT5id19hbGxvY19lbmFibGVkKQ0KPiArCQkJY29udGludWU7
+DQo+ICsNCj4gKwkJZXJyID0gZHJtX2RwX2RwY2RfcHJvYmUodHVubmVsX2l0ZXItPmF1eCwgRFBf
+RFBDRF9SRVYpOw0KPiArCQlpZiAoZXJyKSB7DQo+ICsJCQl0dW5fZGJnKHR1bm5lbF9pdGVyLA0K
+PiArCQkJCSJQcm9iZSBmYWlsZWQsIGFzc3VtZSBkaXNjb25uZWN0ZWQgKGVycg0KPiAlcGUpXG4i
+LA0KPiArCQkJCUVSUl9QVFIoZXJyKSk7DQo+ICsJCQlkcm1fZHBfdHVubmVsX3NldF9pb19lcnJv
+cih0dW5uZWxfaXRlcik7DQo+ICsJCX0NCj4gKwl9DQo+ICsNCj4gKwlncm91cF9hdmFpbGFibGVf
+YncgPSBjYWxjX2dyb3VwX2F2YWlsYWJsZV9idyh0dW5uZWwpOw0KPiArDQo+ICsJdHVuX2RiZyh0
+dW5uZWwsICJVcGRhdGVkIGdyb3VwIGF2YWlsYWJsZSBCVzogJWQtPiVkXG4iLA0KPiArCQlEUFRV
+Tl9CV19BUkcodHVubmVsLT5ncm91cC0+YXZhaWxhYmxlX2J3KSwNCj4gKwkJRFBUVU5fQldfQVJH
+KGdyb3VwX2F2YWlsYWJsZV9idykpOw0KPiArDQo+ICsJY2hhbmdlZCA9IHR1bm5lbC0+Z3JvdXAt
+PmF2YWlsYWJsZV9idyAhPSBncm91cF9hdmFpbGFibGVfYnc7DQo+ICsNCj4gKwl0dW5uZWwtPmdy
+b3VwLT5hdmFpbGFibGVfYncgPSBncm91cF9hdmFpbGFibGVfYnc7DQo+ICsNCj4gKwlyZXR1cm4g
+Y2hhbmdlZCA/IDEgOiAwOw0KPiArfQ0KPiArDQo+ICtzdGF0aWMgaW50IHNldF9id19hbGxvY19t
+b2RlKHN0cnVjdCBkcm1fZHBfdHVubmVsICp0dW5uZWwsIGJvb2wgZW5hYmxlKQ0KPiArew0KPiAr
+CXU4IG1hc2sgPSBEUF9ESVNQTEFZX0RSSVZFUl9CV19BTExPQ0FUSU9OX01PREVfRU5BQkxFIHwN
+Cj4gRFBfVU5NQVNLX0JXX0FMTE9DQVRJT05fSVJROw0KPiArCXU4IHZhbDsNCj4gKw0KPiArCWlm
+IChkcm1fZHBfZHBjZF9yZWFkYih0dW5uZWwtPmF1eCwNCj4gRFBfRFBUWF9CV19BTExPQ0FUSU9O
+X01PREVfQ09OVFJPTCwgJnZhbCkgPCAwKQ0KPiArCQlnb3RvIG91dF9lcnI7DQo+ICsNCj4gKwlp
+ZiAoZW5hYmxlKQ0KPiArCQl2YWwgfD0gbWFzazsNCj4gKwllbHNlDQo+ICsJCXZhbCAmPSB+bWFz
+azsNCj4gKw0KPiArCWlmIChkcm1fZHBfZHBjZF93cml0ZWIodHVubmVsLT5hdXgsDQo+IERQX0RQ
+VFhfQldfQUxMT0NBVElPTl9NT0RFX0NPTlRST0wsIHZhbCkgPCAwKQ0KPiArCQlnb3RvIG91dF9l
+cnI7DQo+ICsNCj4gKwl0dW5uZWwtPmJ3X2FsbG9jX2VuYWJsZWQgPSBlbmFibGU7DQo+ICsNCj4g
+KwlyZXR1cm4gMDsNCj4gKw0KPiArb3V0X2VycjoNCj4gKwlkcm1fZHBfdHVubmVsX3NldF9pb19l
+cnJvcih0dW5uZWwpOw0KPiArDQo+ICsJcmV0dXJuIC1FSU87DQo+ICt9DQo+ICsNCj4gKy8qKg0K
+PiArICogZHJtX2RwX3R1bm5lbF9lbmFibGVfYndfYWxsb2MgLSBFbmFibGUgRFAgdHVubmVsIEJX
+IGFsbG9jYXRpb24gbW9kZQ0KPiArICogQHR1bm5lbDogVHVubmVsIG9iamVjdA0KPiArICoNCj4g
+KyAqIEVuYWJsZSB0aGUgRFAgdHVubmVsIEJXIGFsbG9jYXRpb24gbW9kZSBvbiBAdHVubmVsIGlm
+IGl0IHN1cHBvcnRzIGl0Lg0KPiArICoNCj4gKyAqIFJldHVybnMgMCBpbiBjYXNlIG9mIHN1Y2Nl
+c3MsIG5lZ2F0aXZlIGVycm9yIGNvZGUgb3RoZXJ3aXNlLg0KPiArICovDQo+ICtpbnQgZHJtX2Rw
+X3R1bm5lbF9lbmFibGVfYndfYWxsb2Moc3RydWN0IGRybV9kcF90dW5uZWwgKnR1bm5lbCkNCj4g
+K3sNCj4gKwlzdHJ1Y3QgZHJtX2RwX3R1bm5lbF9yZWdzIHJlZ3M7DQo+ICsJaW50IGVycjsNCj4g
+Kw0KPiArCWVyciA9IGNoZWNrX3R1bm5lbCh0dW5uZWwpOw0KPiArCWlmIChlcnIpDQo+ICsJCXJl
+dHVybiBlcnI7DQo+ICsNCj4gKwlpZiAoIXR1bm5lbC0+YndfYWxsb2Nfc3VwcG9ydGVkKQ0KPiAr
+CQlyZXR1cm4gLUVPUE5PVFNVUFA7DQo+ICsNCj4gKwlpZiAoIXR1bm5lbF9ncm91cF9pZCh0dW5u
+ZWwtPmdyb3VwLT5kcnZfZ3JvdXBfaWQpKQ0KPiArCQlyZXR1cm4gLUVJTlZBTDsNCj4gKw0KPiAr
+CWVyciA9IHNldF9id19hbGxvY19tb2RlKHR1bm5lbCwgdHJ1ZSk7DQo+ICsJaWYgKGVycikNCj4g
+KwkJZ290byBvdXQ7DQo+ICsNCj4gKwllcnIgPSByZWFkX2FuZF92ZXJpZnlfdHVubmVsX3JlZ3Mo
+dHVubmVsLCAmcmVncywgMCk7DQo+ICsJaWYgKGVycikgew0KPiArCQlzZXRfYndfYWxsb2NfbW9k
+ZSh0dW5uZWwsIGZhbHNlKTsNCj4gKw0KPiArCQlnb3RvIG91dDsNCj4gKwl9DQo+ICsNCj4gKwlp
+ZiAoIXR1bm5lbC0+bWF4X2RwcnhfcmF0ZSkNCj4gKwkJdXBkYXRlX2RwcnhfY2Fwcyh0dW5uZWws
+ICZyZWdzKTsNCj4gKw0KPiArCWlmICh0dW5uZWwtPmdyb3VwLT5hdmFpbGFibGVfYncgPT0gLTEp
+IHsNCj4gKwkJZXJyID0gdXBkYXRlX2dyb3VwX2F2YWlsYWJsZV9idyh0dW5uZWwsICZyZWdzKTsN
+Cj4gKwkJaWYgKGVyciA+IDApDQo+ICsJCQllcnIgPSAwOw0KPiArCX0NCj4gK291dDoNCj4gKwl0
+dW5fZGJnX3N0YXQodHVubmVsLCBlcnIsDQo+ICsJCSAgICAgIkVuYWJsaW5nIEJXIGFsbG9jIG1v
+ZGU6IERQUlg6JWR4JWQgR3JvdXAgYWxsb2M6JWQvJWQNCj4gTWIvcyIsDQo+ICsJCSAgICAgdHVu
+bmVsLT5tYXhfZHByeF9yYXRlIC8gMTAwLCB0dW5uZWwtPm1heF9kcHJ4X2xhbmVfY291bnQsDQo+
+ICsJCSAgICAgRFBUVU5fQldfQVJHKGdyb3VwX2FsbG9jYXRlZF9idyh0dW5uZWwtPmdyb3VwKSks
+DQo+ICsJCSAgICAgRFBUVU5fQldfQVJHKHR1bm5lbC0+Z3JvdXAtPmF2YWlsYWJsZV9idykpOw0K
+PiArDQo+ICsJcmV0dXJuIGVycjsNCj4gK30NCj4gK0VYUE9SVF9TWU1CT0woZHJtX2RwX3R1bm5l
+bF9lbmFibGVfYndfYWxsb2MpOw0KPiArDQo+ICsvKioNCj4gKyAqIGRybV9kcF90dW5uZWxfZGlz
+YWJsZV9id19hbGxvYyAtIERpc2FibGUgRFAgdHVubmVsIEJXIGFsbG9jYXRpb24gbW9kZQ0KPiAr
+ICogQHR1bm5lbDogVHVubmVsIG9iamVjdA0KPiArICoNCj4gKyAqIERpc2FibGUgdGhlIERQIHR1
+bm5lbCBCVyBhbGxvY2F0aW9uIG1vZGUgb24gQHR1bm5lbC4NCj4gKyAqDQo+ICsgKiBSZXR1cm5z
+IDAgaW4gY2FzZSBvZiBzdWNjZXNzLCBuZWdhdGl2ZSBlcnJvciBjb2RlIG90aGVyd2lzZS4NCj4g
+KyAqLw0KPiAraW50IGRybV9kcF90dW5uZWxfZGlzYWJsZV9id19hbGxvYyhzdHJ1Y3QgZHJtX2Rw
+X3R1bm5lbCAqdHVubmVsKQ0KPiArew0KPiArCWludCBlcnI7DQo+ICsNCj4gKwllcnIgPSBjaGVj
+a190dW5uZWwodHVubmVsKTsNCj4gKwlpZiAoZXJyKQ0KPiArCQlyZXR1cm4gZXJyOw0KPiArDQo+
+ICsJdHVubmVsLT5hbGxvY2F0ZWRfYncgPSAtMTsNCj4gKw0KPiArCWVyciA9IHNldF9id19hbGxv
+Y19tb2RlKHR1bm5lbCwgZmFsc2UpOw0KPiArDQo+ICsJdHVuX2RiZ19zdGF0KHR1bm5lbCwgZXJy
+LCAiRGlzYWJsaW5nIEJXIGFsbG9jIG1vZGUiKTsNCj4gKw0KPiArCXJldHVybiBlcnI7DQo+ICt9
+DQo+ICtFWFBPUlRfU1lNQk9MKGRybV9kcF90dW5uZWxfZGlzYWJsZV9id19hbGxvYyk7DQo+ICsN
+Cj4gKy8qKg0KPiArICogZHJtX2RwX3R1bm5lbF9id19hbGxvY19pc19lbmFibGVkIC0gUXVlcnkg
+dGhlIEJXIGFsbG9jYXRpb24gbW9kZQ0KPiBlbmFibGVkIHN0YXRlDQo+ICsgKiBAdHVubmVsOiBU
+dW5uZWwgb2JqZWN0DQo+ICsgKg0KPiArICogUXVlcnkgaWYgdGhlIEJXIGFsbG9jYXRpb24gbW9k
+ZSBpcyBlbmFibGVkIGZvciBAdHVubmVsLg0KPiArICoNCj4gKyAqIFJldHVybnMgJXRydWUgaWYg
+dGhlIEJXIGFsbG9jYXRpb24gbW9kZSBpcyBlbmFibGVkIGZvciBAdHVubmVsLg0KPiArICovDQo+
+ICtib29sIGRybV9kcF90dW5uZWxfYndfYWxsb2NfaXNfZW5hYmxlZChjb25zdCBzdHJ1Y3QgZHJt
+X2RwX3R1bm5lbCAqdHVubmVsKQ0KPiArew0KPiArCXJldHVybiB0dW5uZWwgJiYgdHVubmVsLT5i
+d19hbGxvY19lbmFibGVkOw0KPiArfQ0KPiArRVhQT1JUX1NZTUJPTChkcm1fZHBfdHVubmVsX2J3
+X2FsbG9jX2lzX2VuYWJsZWQpOw0KPiArDQo+ICtzdGF0aWMgaW50IGNsZWFyX2J3X3JlcV9zdGF0
+ZShzdHJ1Y3QgZHJtX2RwX2F1eCAqYXV4KQ0KPiArew0KPiArCXU4IGJ3X3JlcV9tYXNrID0gRFBf
+QldfUkVRVUVTVF9TVUNDRUVERUQgfA0KPiBEUF9CV19SRVFVRVNUX0ZBSUxFRDsNCj4gKw0KPiAr
+CWlmIChkcm1fZHBfZHBjZF93cml0ZWIoYXV4LCBEUF9UVU5ORUxJTkdfU1RBVFVTLCBid19yZXFf
+bWFzaykgPA0KPiAwKQ0KPiArCQlyZXR1cm4gLUVJTzsNCj4gKw0KPiArCXJldHVybiAwOw0KPiAr
+fQ0KPiArDQo+ICtzdGF0aWMgaW50IGJ3X3JlcV9jb21wbGV0ZShzdHJ1Y3QgZHJtX2RwX2F1eCAq
+YXV4LCBib29sICpzdGF0dXNfY2hhbmdlZCkNCj4gK3sNCj4gKwl1OCBid19yZXFfbWFzayA9IERQ
+X0JXX1JFUVVFU1RfU1VDQ0VFREVEIHwNCj4gRFBfQldfUkVRVUVTVF9GQUlMRUQ7DQo+ICsJdTgg
+c3RhdHVzX2NoYW5nZV9tYXNrID0gRFBfQldfQUxMT0NBVElPTl9DQVBBQklMSVRZX0NIQU5HRUQN
+Cj4gfCBEUF9FU1RJTUFURURfQldfQ0hBTkdFRDsNCj4gKwl1OCB2YWw7DQo+ICsJaW50IGVycjsN
+Cj4gKw0KPiArCWlmIChkcm1fZHBfZHBjZF9yZWFkYihhdXgsIERQX1RVTk5FTElOR19TVEFUVVMs
+ICZ2YWwpIDwgMCkNCj4gKwkJcmV0dXJuIC1FSU87DQo+ICsNCj4gKwkqc3RhdHVzX2NoYW5nZWQg
+PSB2YWwgJiBzdGF0dXNfY2hhbmdlX21hc2s7DQo+ICsNCj4gKwl2YWwgJj0gYndfcmVxX21hc2s7
+DQo+ICsNCj4gKwlpZiAoIXZhbCkNCj4gKwkJcmV0dXJuIC1FQUdBSU47DQo+ICsNCj4gKwllcnIg
+PSBjbGVhcl9id19yZXFfc3RhdGUoYXV4KTsNCj4gKwlpZiAoZXJyIDwgMCkNCj4gKwkJcmV0dXJu
+IGVycjsNCj4gKw0KPiArCXJldHVybiB2YWwgPT0gRFBfQldfUkVRVUVTVF9TVUNDRUVERUQgPyAw
+IDogLUVOT1NQQzsNCj4gK30NCj4gKw0KPiArc3RhdGljIGludCBhbGxvY2F0ZV90dW5uZWxfYnco
+c3RydWN0IGRybV9kcF90dW5uZWwgKnR1bm5lbCwgaW50IGJ3KQ0KPiArew0KPiArCXN0cnVjdCBk
+cm1fZHBfdHVubmVsX21nciAqbWdyID0gdHVubmVsLT5ncm91cC0+bWdyOw0KPiArCWludCByZXF1
+ZXN0X2J3ID0gRElWX1JPVU5EX1VQKGJ3LCB0dW5uZWwtPmJ3X2dyYW51bGFyaXR5KTsNCj4gKwlE
+RUZJTkVfV0FJVF9GVU5DKHdhaXQsIHdva2VuX3dha2VfZnVuY3Rpb24pOw0KPiArCWxvbmcgdGlt
+ZW91dDsNCj4gKwlpbnQgZXJyOw0KPiArDQo+ICsJaWYgKGJ3IDwgMCkgew0KPiArCQllcnIgPSAt
+RUlOVkFMOw0KPiArCQlnb3RvIG91dDsNCj4gKwl9DQo+ICsNCj4gKwlpZiAocmVxdWVzdF9idyAq
+IHR1bm5lbC0+YndfZ3JhbnVsYXJpdHkgPT0gdHVubmVsLT5hbGxvY2F0ZWRfYncpDQo+ICsJCXJl
+dHVybiAwOw0KPiArDQo+ICsJLyogQXRvbWljIGNoZWNrIHNob3VsZCBwcmV2ZW50IHRoZSBmb2xs
+b3dpbmcuICovDQo+ICsJaWYgKGRybV9XQVJOX09OKG1nci0+ZGV2LCByZXF1ZXN0X2J3ID4gTUFY
+X0RQX1JFUVVFU1RfQlcpKSB7DQo+ICsJCWVyciA9IC1FSU5WQUw7DQo+ICsJCWdvdG8gb3V0Ow0K
+PiArCX0NCj4gKw0KPiArCWVyciA9IGNsZWFyX2J3X3JlcV9zdGF0ZSh0dW5uZWwtPmF1eCk7DQo+
+ICsJaWYgKGVycikNCj4gKwkJZ290byBvdXQ7DQo+ICsNCj4gKwlpZiAoZHJtX2RwX2RwY2Rfd3Jp
+dGViKHR1bm5lbC0+YXV4LCBEUF9SRVFVRVNUX0JXLCByZXF1ZXN0X2J3KSA8DQo+IDApIHsNCj4g
+KwkJZXJyID0gLUVJTzsNCj4gKwkJZ290byBvdXQ7DQo+ICsJfQ0KPiArDQo+ICsJdGltZW91dCA9
+IG1zZWNzX3RvX2ppZmZpZXMoMzAwMCk7DQo+ICsJYWRkX3dhaXRfcXVldWUoJm1nci0+YndfcmVx
+X3F1ZXVlLCAmd2FpdCk7DQo+ICsNCj4gKwlmb3IgKDs7KSB7DQo+ICsJCWJvb2wgc3RhdHVzX2No
+YW5nZWQ7DQo+ICsNCj4gKwkJZXJyID0gYndfcmVxX2NvbXBsZXRlKHR1bm5lbC0+YXV4LCAmc3Rh
+dHVzX2NoYW5nZWQpOw0KPiArCQlpZiAoZXJyICE9IC1FQUdBSU4pDQo+ICsJCQlicmVhazsNCj4g
+Kw0KPiArCQlpZiAoc3RhdHVzX2NoYW5nZWQpIHsNCj4gKwkJCXN0cnVjdCBkcm1fZHBfdHVubmVs
+X3JlZ3MgcmVnczsNCj4gKw0KPiArCQkJZXJyID0gcmVhZF9hbmRfdmVyaWZ5X3R1bm5lbF9yZWdz
+KHR1bm5lbCwgJnJlZ3MsDQo+ICsNCj4gQUxMT1dfQUxMT0NBVEVEX0JXX0NIQU5HRSk7DQo+ICsJ
+CQlpZiAoZXJyKQ0KPiArCQkJCWJyZWFrOw0KPiArCQl9DQo+ICsNCj4gKwkJaWYgKCF0aW1lb3V0
+KSB7DQo+ICsJCQllcnIgPSAtRVRJTUVET1VUOw0KPiArCQkJYnJlYWs7DQo+ICsJCX0NCj4gKw0K
+PiArCQl0aW1lb3V0ID0gd2FpdF93b2tlbigmd2FpdCwgVEFTS19VTklOVEVSUlVQVElCTEUsDQo+
+IHRpbWVvdXQpOw0KPiArCX07DQo+ICsNCj4gKwlyZW1vdmVfd2FpdF9xdWV1ZSgmbWdyLT5id19y
+ZXFfcXVldWUsICZ3YWl0KTsNCj4gKw0KPiArCWlmIChlcnIpDQo+ICsJCWdvdG8gb3V0Ow0KPiAr
+DQo+ICsJdHVubmVsLT5hbGxvY2F0ZWRfYncgPSByZXF1ZXN0X2J3ICogdHVubmVsLT5id19ncmFu
+dWxhcml0eTsNCj4gKw0KPiArb3V0Og0KPiArCXR1bl9kYmdfc3RhdCh0dW5uZWwsIGVyciwgIkFs
+bG9jYXRpbmcgJWQvJWQgTWIvcyBmb3IgdHVubmVsOiBHcm91cA0KPiBhbGxvYzolZC8lZCBNYi9z
+IiwNCj4gKwkJICAgICBEUFRVTl9CV19BUkcocmVxdWVzdF9idyAqIHR1bm5lbC0+YndfZ3JhbnVs
+YXJpdHkpLA0KPiArCQkgICAgIERQVFVOX0JXX0FSRyhnZXRfbWF4X3R1bm5lbF9idyh0dW5uZWwp
+KSwNCj4gKwkJICAgICBEUFRVTl9CV19BUkcoZ3JvdXBfYWxsb2NhdGVkX2J3KHR1bm5lbC0+Z3Jv
+dXApKSwNCj4gKwkJICAgICBEUFRVTl9CV19BUkcodHVubmVsLT5ncm91cC0+YXZhaWxhYmxlX2J3
+KSk7DQo+ICsNCj4gKwlpZiAoZXJyID09IC1FSU8pDQo+ICsJCWRybV9kcF90dW5uZWxfc2V0X2lv
+X2Vycm9yKHR1bm5lbCk7DQo+ICsNCj4gKwlyZXR1cm4gZXJyOw0KPiArfQ0KPiArDQo+ICsvKioN
+Cj4gKyAqIGRybV9kcF90dW5uZWxfYWxsb2NfYncgLSBBbGxvY2F0ZSBCVyBmb3IgYSBEUCB0dW5u
+ZWwNCj4gKyAqIEB0dW5uZWw6IFR1bm5lbCBvYmplY3QNCj4gKyAqIEBidzogQlcgaW4ga0IvcyB1
+bml0cw0KPiArICoNCj4gKyAqIEFsbG9jYXRlIEBidyBrQi9zIGZvciBAdHVubmVsLiBUaGUgYWxs
+b2NhdGVkIEJXIG11c3QgYmUgZnJlZWQgYWZ0ZXIgdXNlIGJ5DQo+ICsgKiBjYWxsaW5nIHRoaXMg
+ZnVuY3Rpb24gZm9yIHRoZSBzYW1lIHR1bm5lbCBzZXR0aW5nIEBidyB0byAwLg0KPiArICoNCj4g
+KyAqIFJldHVybnMgMCBpbiBjYXNlIG9mIHN1Y2Nlc3MsIGEgbmVnYXRpdmUgZXJyb3IgY29kZSBv
+dGhlcndpc2UuDQo+ICsgKi8NCj4gK2ludCBkcm1fZHBfdHVubmVsX2FsbG9jX2J3KHN0cnVjdCBk
+cm1fZHBfdHVubmVsICp0dW5uZWwsIGludCBidykNCj4gK3sNCj4gKwlpbnQgZXJyOw0KPiArDQo+
+ICsJZXJyID0gY2hlY2tfdHVubmVsKHR1bm5lbCk7DQo+ICsJaWYgKGVycikNCj4gKwkJcmV0dXJu
+IGVycjsNCj4gKw0KPiArCXJldHVybiBhbGxvY2F0ZV90dW5uZWxfYncodHVubmVsLCBidyk7DQo+
+ICt9DQo+ICtFWFBPUlRfU1lNQk9MKGRybV9kcF90dW5uZWxfYWxsb2NfYncpOw0KPiArDQo+ICsv
+KioNCj4gKyAqIGRybV9kcF90dW5uZWxfYXRvbWljX2dldF9hbGxvY2F0ZWRfYncgLSBHZXQgdGhl
+IEJXIGFsbG9jYXRlZCBmb3IgYSBEUA0KPiB0dW5uZWwNCj4gKyAqIEB0dW5uZWw6IFR1bm5lbCBv
+YmplY3QNCj4gKyAqDQo+ICsgKiBHZXQgdGhlIGN1cnJlbnQgQlcgYWxsb2NhdGVkIGZvciBAdHVu
+bmVsLiBBZnRlciB0aGUgdHVubmVsIGlzIGNyZWF0ZWQgLw0KPiArICogcmVzdW1lZCBhbmQgdGhl
+IEJXIGFsbG9jYXRpb24gbW9kZSBpcyBlbmFibGVkIGZvciBpdCwgdGhlIGFsbG9jYXRpb24NCj4g
+KyAqIGJlY29tZXMgZGV0ZXJtaW5lZCBvbmx5IGFmdGVyIHRoZSBmaXJzdCBhbGxvY2F0aW9uIHJl
+cXVlc3QgYnkgdGhlIGRyaXZlcg0KPiArICogY2FsbGluZyBkcm1fZHBfdHVubmVsX2FsbG9jX2J3
+KCkuDQo+ICsgKg0KPiArICogUmV0dXJuIHRoZSBCVyBhbGxvY2F0ZWQgZm9yIHRoZSB0dW5uZWws
+IG9yIC0xIGlmIHRoZSBhbGxvY2F0aW9uIGlzDQo+ICsgKiB1bmRldGVybWluZWQuDQo+ICsgKi8N
+Cj4gK2ludCBkcm1fZHBfdHVubmVsX2dldF9hbGxvY2F0ZWRfYncoc3RydWN0IGRybV9kcF90dW5u
+ZWwgKnR1bm5lbCkNCj4gK3sNCj4gKwlyZXR1cm4gdHVubmVsLT5hbGxvY2F0ZWRfYnc7DQo+ICt9
+DQo+ICtFWFBPUlRfU1lNQk9MKGRybV9kcF90dW5uZWxfZ2V0X2FsbG9jYXRlZF9idyk7DQo+ICsN
+Cj4gK3N0YXRpYyBpbnQgY2hlY2tfYW5kX2NsZWFyX3N0YXR1c19jaGFuZ2Uoc3RydWN0IGRybV9k
+cF90dW5uZWwgKnR1bm5lbCkNCj4gK3sNCj4gKwl1OCBtYXNrID0gRFBfQldfQUxMT0NBVElPTl9D
+QVBBQklMSVRZX0NIQU5HRUQgfA0KPiBEUF9FU1RJTUFURURfQldfQ0hBTkdFRDsNCj4gKwl1OCB2
+YWw7DQo+ICsNCj4gKwlpZiAoZHJtX2RwX2RwY2RfcmVhZGIodHVubmVsLT5hdXgsIERQX1RVTk5F
+TElOR19TVEFUVVMsICZ2YWwpIDwgMCkNCj4gKwkJZ290byBvdXRfZXJyOw0KPiArDQo+ICsJdmFs
+ICY9IG1hc2s7DQo+ICsNCj4gKwlpZiAodmFsKSB7DQo+ICsJCWlmIChkcm1fZHBfZHBjZF93cml0
+ZWIodHVubmVsLT5hdXgsIERQX1RVTk5FTElOR19TVEFUVVMsDQo+IHZhbCkgPCAwKQ0KPiArCQkJ
+Z290byBvdXRfZXJyOw0KPiArDQo+ICsJCXJldHVybiAxOw0KDQpTZWVtcyB0aGlzIHJldHVybiB2
+YWx1ZSBpcyBub3QgY29uc2lkZXJlZCBieSB0aGUgY2FsbGVyLiANCg0KSGkgSW1yZSwNCk92ZXJh
+bGwgY2hhbmdlcyBsb29rIGdvb2QgdG8gbWUuDQpJdCB3b3VsZCBiZSBpZGVhbCBpZiB3ZSBjYW4g
+YnJlYWsgdGhpcyBwYXRjaCBkb3duLCBubyBtYWpvciBjb25jZXJuIHRob3VnaC4NCkxlYXZpbmcg
+dG8geW91ciBqdWRnbWVudC4NCg0KV2l0aCBzb21lIGFib3ZlIG1pbm9yIG5pdHMgYWRkcmVzc2Vk
+LCB0aGlzIGlzDQpSZXZpZXdlZC1ieTogVW1hIFNoYW5rYXIgPHVtYS5zaGFua2FyQGludGVsLmNv
+bT4NCg0KTm90ZTogSGF2ZSBjaGVja2VkIHRoZSByZWdpc3RlciBkZWZpbml0aW9ucy9hZGRyZXNz
+ZXMsIG9mZnNldHMuIEhhdmUgTG9naWNhbGx5IGNoZWNrZWQgdGhlIGNvZGUNCmluIGdlbmVyYWws
+IGFzIHdlbGwuIEl0IHdvdWxkIGJlIGdvb2QgaWYgdHVubmVsIG1hbmFnZXIgYW5kIHR1bm5lbCBn
+cm91cHMgcmVsYXRlZCBsb2dpYyBjYW4gYmUgZG91YmxlDQpjb25maXJtZWQgYnkgc29tZW9uZS4g
+SGF2aW5nIHNhaWQgdGhhdCwgbm8gaXNzdWUgSSBjb3VsZCBzcG90IHRoZXJlLg0KDQpSZWdhcmRz
+LA0KVW1hIFNoYW5rYXINCg0KPiArCX0NCj4gKw0KPiArCWlmICghZHJtX2RwX3R1bm5lbF9id19h
+bGxvY19pc19lbmFibGVkKHR1bm5lbCkpDQo+ICsJCXJldHVybiAwOw0KPiArDQo+ICsJLyoNCj4g
+KwkgKiBDaGVjayBmb3IgZXN0aW1hdGVkIEJXIGNoYW5nZXMgZXhwbGljaXRseSB0byBhY2NvdW50
+IGZvciBsb3N0DQo+ICsJICogQlcgY2hhbmdlIG5vdGlmaWNhdGlvbnMuDQo+ICsJICovDQo+ICsJ
+aWYgKGRybV9kcF9kcGNkX3JlYWRiKHR1bm5lbC0+YXV4LCBEUF9FU1RJTUFURURfQlcsICZ2YWwp
+IDwgMCkNCj4gKwkJZ290byBvdXRfZXJyOw0KPiArDQo+ICsJaWYgKHZhbCAqIHR1bm5lbC0+Yndf
+Z3JhbnVsYXJpdHkgIT0gdHVubmVsLT5lc3RpbWF0ZWRfYncpDQo+ICsJCXJldHVybiAxOw0KPiAr
+DQo+ICsJcmV0dXJuIDA7DQo+ICsNCj4gK291dF9lcnI6DQo+ICsJZHJtX2RwX3R1bm5lbF9zZXRf
+aW9fZXJyb3IodHVubmVsKTsNCj4gKw0KPiArCXJldHVybiAtRUlPOw0KPiArfQ0KPiArDQo+ICsv
+KioNCj4gKyAqIGRybV9kcF90dW5uZWxfdXBkYXRlX3N0YXRlIC0gVXBkYXRlIERQIHR1bm5lbCBT
+VyBzdGF0ZSB3aXRoIHRoZSBIVyBzdGF0ZQ0KPiArICogQHR1bm5lbDogVHVubmVsIG9iamVjdA0K
+PiArICoNCj4gKyAqIFVwZGF0ZSB0aGUgU1cgc3RhdGUgb2YgQHR1bm5lbCB3aXRoIHRoZSBIVyBz
+dGF0ZS4NCj4gKyAqDQo+ICsgKiBSZXR1cm5zIDAgaWYgdGhlIHN0YXRlIGhhcyBub3QgY2hhbmdl
+ZCwgMSBpZiBpdCBoYXMgY2hhbmdlZCBhbmQgZ290IHVwZGF0ZWQNCj4gKyAqIHN1Y2Nlc3NmdWxs
+eSBhbmQgYSBuZWdhdGl2ZSBlcnJvciBjb2RlIG90aGVyd2lzZS4NCj4gKyAqLw0KPiAraW50IGRy
+bV9kcF90dW5uZWxfdXBkYXRlX3N0YXRlKHN0cnVjdCBkcm1fZHBfdHVubmVsICp0dW5uZWwpDQo+
+ICt7DQo+ICsJc3RydWN0IGRybV9kcF90dW5uZWxfcmVncyByZWdzOw0KPiArCWJvb2wgY2hhbmdl
+ZCA9IGZhbHNlOw0KPiArCWludCByZXQ7DQo+ICsNCj4gKwlyZXQgPSBjaGVja190dW5uZWwodHVu
+bmVsKTsNCj4gKwlpZiAocmV0IDwgMCkNCj4gKwkJcmV0dXJuIHJldDsNCj4gKw0KPiArCXJldCA9
+IGNoZWNrX2FuZF9jbGVhcl9zdGF0dXNfY2hhbmdlKHR1bm5lbCk7DQo+ICsJaWYgKHJldCA8IDAp
+DQo+ICsJCWdvdG8gb3V0Ow0KPiArDQo+ICsJaWYgKCFyZXQpDQo+ICsJCXJldHVybiAwOw0KPiAr
+DQo+ICsJcmV0ID0gcmVhZF9hbmRfdmVyaWZ5X3R1bm5lbF9yZWdzKHR1bm5lbCwgJnJlZ3MsIDAp
+Ow0KPiArCWlmIChyZXQpDQo+ICsJCWdvdG8gb3V0Ow0KPiArDQo+ICsJaWYgKHVwZGF0ZV9kcHJ4
+X2NhcHModHVubmVsLCAmcmVncykpDQo+ICsJCWNoYW5nZWQgPSB0cnVlOw0KPiArDQo+ICsJcmV0
+ID0gdXBkYXRlX2dyb3VwX2F2YWlsYWJsZV9idyh0dW5uZWwsICZyZWdzKTsNCj4gKwlpZiAocmV0
+ID09IDEpDQo+ICsJCWNoYW5nZWQgPSB0cnVlOw0KPiArDQo+ICtvdXQ6DQo+ICsJdHVuX2RiZ19z
+dGF0KHR1bm5lbCwgcmV0IDwgMCA/IHJldCA6IDAsDQo+ICsJCSAgICAgIlN0YXRlIHVwZGF0ZTog
+Q2hhbmdlZDolcyBEUFJYOiVkeCVkIFR1bm5lbCBhbGxvYzolZC8lZA0KPiBHcm91cCBhbGxvYzol
+ZC8lZCBNYi9zIiwNCj4gKwkJICAgICBzdHJfeWVzX25vKGNoYW5nZWQpLA0KPiArCQkgICAgIHR1
+bm5lbC0+bWF4X2RwcnhfcmF0ZSAvIDEwMCwgdHVubmVsLT5tYXhfZHByeF9sYW5lX2NvdW50LA0K
+PiArCQkgICAgIERQVFVOX0JXX0FSRyh0dW5uZWwtPmFsbG9jYXRlZF9idyksDQo+ICsJCSAgICAg
+RFBUVU5fQldfQVJHKGdldF9tYXhfdHVubmVsX2J3KHR1bm5lbCkpLA0KPiArCQkgICAgIERQVFVO
+X0JXX0FSRyhncm91cF9hbGxvY2F0ZWRfYncodHVubmVsLT5ncm91cCkpLA0KPiArCQkgICAgIERQ
+VFVOX0JXX0FSRyh0dW5uZWwtPmdyb3VwLT5hdmFpbGFibGVfYncpKTsNCj4gKw0KPiArCWlmIChy
+ZXQgPCAwKQ0KPiArCQlyZXR1cm4gcmV0Ow0KPiArDQo+ICsJaWYgKGNoYW5nZWQpDQo+ICsJCXJl
+dHVybiAxOw0KPiArDQo+ICsJcmV0dXJuIDA7DQo+ICt9DQo+ICtFWFBPUlRfU1lNQk9MKGRybV9k
+cF90dW5uZWxfdXBkYXRlX3N0YXRlKTsNCj4gKw0KPiArLyoNCj4gKyAqIGRybV9kcF90dW5uZWxf
+aGFuZGxlX2lycSAtIEhhbmRsZSBEUCB0dW5uZWwgSVJRcw0KPiArICoNCj4gKyAqIEhhbmRsZSBh
+bnkgcGVuZGluZyBEUCB0dW5uZWwgSVJRcywgd2FraW5nIHVwIHdhaXRlcnMgZm9yIGEgY29tcGxl
+dGlvbg0KPiArICogZXZlbnQuDQo+ICsgKg0KPiArICogUmV0dXJucyAxIGlmIHRoZSBzdGF0ZSBv
+ZiB0aGUgdHVubmVsIGhhcyBjaGFuZ2VkIHdoaWNoIHJlcXVpcmVzIGNhbGxpbmcNCj4gKyAqIGRy
+bV9kcF90dW5uZWxfdXBkYXRlX3N0YXRlKCksIGEgbmVnYXRpdmUgZXJyb3IgY29kZSBpbiBjYXNl
+IG9mIGEgZmFpbHVyZSwNCj4gKyAqIDAgb3RoZXJ3aXNlLg0KPiArICovDQo+ICtpbnQgZHJtX2Rw
+X3R1bm5lbF9oYW5kbGVfaXJxKHN0cnVjdCBkcm1fZHBfdHVubmVsX21nciAqbWdyLCBzdHJ1Y3QN
+Cj4gZHJtX2RwX2F1eCAqYXV4KQ0KPiArew0KPiArCXU4IHZhbDsNCj4gKw0KPiArCWlmIChkcm1f
+ZHBfZHBjZF9yZWFkYihhdXgsIERQX1RVTk5FTElOR19TVEFUVVMsICZ2YWwpIDwgMCkNCj4gKwkJ
+cmV0dXJuIC1FSU87DQo+ICsNCj4gKwlpZiAodmFsICYgKERQX0JXX1JFUVVFU1RfU1VDQ0VFREVE
+IHwgRFBfQldfUkVRVUVTVF9GQUlMRUQpKQ0KPiArCQl3YWtlX3VwX2FsbCgmbWdyLT5id19yZXFf
+cXVldWUpOw0KPiArDQo+ICsJaWYgKHZhbCAmIChEUF9CV19BTExPQ0FUSU9OX0NBUEFCSUxJVFlf
+Q0hBTkdFRCB8DQo+IERQX0VTVElNQVRFRF9CV19DSEFOR0VEKSkNCj4gKwkJcmV0dXJuIDE7DQo+
+ICsNCj4gKwlyZXR1cm4gMDsNCj4gK30NCj4gK0VYUE9SVF9TWU1CT0woZHJtX2RwX3R1bm5lbF9o
+YW5kbGVfaXJxKTsNCj4gKw0KPiArLyoqDQo+ICsgKiBkcm1fZHBfdHVubmVsX21heF9kcHJ4X3Jh
+dGUgLSBRdWVyeSB0aGUgbWF4aW11bSByYXRlIG9mIHRoZSB0dW5uZWwncw0KPiBEUFJYDQo+ICsg
+KiBAdHVubmVsOiBUdW5uZWwgb2JqZWN0DQo+ICsgKg0KPiArICogVGhlIGZ1bmN0aW9uIGlzIHVz
+ZWQgdG8gcXVlcnkgdGhlIG1heGltdW0gbGluayByYXRlIG9mIHRoZSBEUFJYIGNvbm5lY3RlZA0K
+PiArICogdG8gQHR1bm5lbC4gTm90ZSB0aGF0IHRoaXMgcmF0ZSB3aWxsIG5vdCBiZSBsaW1pdGVk
+IGJ5IHRoZSBCVyBsaW1pdCBvZiB0aGUNCj4gKyAqIHR1bm5lbCwgYXMgb3Bwb3NlZCB0byB0aGUg
+c3RhbmRhcmQgYW5kIGV4dGVuZGVkIERQX01BWF9MSU5LX1JBVEUgRFBDRA0KPiArICogcmVnaXN0
+ZXJzLg0KPiArICoNCj4gKyAqIFJldHVybnMgdGhlIG1heGltdW0gbGluayByYXRlIGluIDEwIGti
+aXQvcyB1bml0cy4NCj4gKyAqLw0KPiAraW50IGRybV9kcF90dW5uZWxfbWF4X2RwcnhfcmF0ZShj
+b25zdCBzdHJ1Y3QgZHJtX2RwX3R1bm5lbCAqdHVubmVsKQ0KPiArew0KPiArCXJldHVybiB0dW5u
+ZWwtPm1heF9kcHJ4X3JhdGU7DQo+ICt9DQo+ICtFWFBPUlRfU1lNQk9MKGRybV9kcF90dW5uZWxf
+bWF4X2RwcnhfcmF0ZSk7DQo+ICsNCj4gKy8qKg0KPiArICogZHJtX2RwX3R1bm5lbF9tYXhfZHBy
+eF9sYW5lX2NvdW50IC0gUXVlcnkgdGhlIG1heGltdW0gbGFuZSBjb3VudCBvZg0KPiB0aGUgdHVu
+bmVsJ3MgRFBSWA0KPiArICogQHR1bm5lbDogVHVubmVsIG9iamVjdA0KPiArICoNCj4gKyAqIFRo
+ZSBmdW5jdGlvbiBpcyB1c2VkIHRvIHF1ZXJ5IHRoZSBtYXhpbXVtIGxhbmUgY291bnQgb2YgdGhl
+IERQUlggY29ubmVjdGVkDQo+ICsgKiB0byBAdHVubmVsLiBOb3RlIHRoYXQgdGhpcyBsYW5lIGNv
+dW50IHdpbGwgbm90IGJlIGxpbWl0ZWQgYnkgdGhlIEJXIGxpbWl0IG9mDQo+ICsgKiB0aGUgdHVu
+bmVsLCBhcyBvcHBvc2VkIHRvIHRoZSBzdGFuZGFyZCBhbmQgZXh0ZW5kZWQgRFBfTUFYX0xBTkVf
+Q09VTlQNCj4gRFBDRA0KPiArICogcmVnaXN0ZXJzLg0KPiArICoNCj4gKyAqIFJldHVybnMgdGhl
+IG1heGltdW0gbGFuZSBjb3VudC4NCj4gKyAqLw0KPiAraW50IGRybV9kcF90dW5uZWxfbWF4X2Rw
+cnhfbGFuZV9jb3VudChjb25zdCBzdHJ1Y3QgZHJtX2RwX3R1bm5lbCAqdHVubmVsKQ0KPiArew0K
+PiArCXJldHVybiB0dW5uZWwtPm1heF9kcHJ4X2xhbmVfY291bnQ7DQo+ICt9DQo+ICtFWFBPUlRf
+U1lNQk9MKGRybV9kcF90dW5uZWxfbWF4X2RwcnhfbGFuZV9jb3VudCk7DQo+ICsNCj4gKy8qKg0K
+PiArICogZHJtX2RwX3R1bm5lbF9hdmFpbGFibGVfYncgLSBRdWVyeSB0aGUgZXN0aW1hdGVkIHRv
+dGFsIGF2YWlsYWJsZSBCVyBvZiB0aGUNCj4gdHVubmVsDQo+ICsgKiBAdHVubmVsOiBUdW5uZWwg
+b2JqZWN0DQo+ICsgKg0KPiArICogVGhpcyBmdW5jdGlvbiBpcyB1c2VkIHRvIHF1ZXJ5IHRoZSBl
+c3RpbWF0ZWQgdG90YWwgYXZhaWxhYmxlIEJXIG9mIHRoZQ0KPiArICogdHVubmVsLiBUaGlzIGlu
+Y2x1ZGVzIHRoZSBjdXJyZW50bHkgYWxsb2NhdGVkIGFuZCBmcmVlIEJXIGZvciBhbGwgdGhlDQo+
+ICsgKiB0dW5uZWxzIGluIEB0dW5uZWwncyBncm91cC4gVGhlIGF2YWlsYWJsZSBCVyBpcyB2YWxp
+ZCBvbmx5IGFmdGVyIHRoZSBCVw0KPiArICogYWxsb2NhdGlvbiBtb2RlIGhhcyBiZWVuIGVuYWJs
+ZWQgZm9yIHRoZSB0dW5uZWwgYW5kIGl0cyBzdGF0ZSBnb3QgdXBkYXRlZA0KPiArICogY2FsbGlu
+ZyBkcm1fZHBfdHVubmVsX3VwZGF0ZV9zdGF0ZSgpLg0KPiArICoNCj4gKyAqIFJldHVybnMgdGhl
+IEB0dW5uZWwgZ3JvdXAncyBlc3RpbWF0ZWQgdG90YWwgYXZhaWxhYmxlIGJhbmR3aWR0aCBpbiBr
+Qi9zDQo+ICsgKiB1bml0cywgb3IgLTEgaWYgdGhlIGF2YWlsYWJsZSBCVyBpc24ndCB2YWxpZCAo
+dGhlIEJXIGFsbG9jYXRpb24gbW9kZSBpcw0KPiArICogbm90IGVuYWJsZWQgb3IgdGhlIHR1bm5l
+bCdzIHN0YXRlIGhhc24ndCBiZWVuIHVwZGF0ZWQpLg0KPiArICovDQo+ICtpbnQgZHJtX2RwX3R1
+bm5lbF9hdmFpbGFibGVfYncoY29uc3Qgc3RydWN0IGRybV9kcF90dW5uZWwgKnR1bm5lbCkNCj4g
+K3sNCj4gKwlyZXR1cm4gdHVubmVsLT5ncm91cC0+YXZhaWxhYmxlX2J3Ow0KPiArfQ0KPiArRVhQ
+T1JUX1NZTUJPTChkcm1fZHBfdHVubmVsX2F2YWlsYWJsZV9idyk7DQo+ICsNCj4gK3N0YXRpYyBz
+dHJ1Y3QgZHJtX2RwX3R1bm5lbF9ncm91cF9zdGF0ZSAqDQo+ICtkcm1fZHBfdHVubmVsX2F0b21p
+Y19nZXRfZ3JvdXBfc3RhdGUoc3RydWN0IGRybV9hdG9taWNfc3RhdGUgKnN0YXRlLA0KPiArCQkJ
+CSAgICAgY29uc3Qgc3RydWN0IGRybV9kcF90dW5uZWwgKnR1bm5lbCkNCj4gK3sNCj4gKwlyZXR1
+cm4gKHN0cnVjdCBkcm1fZHBfdHVubmVsX2dyb3VwX3N0YXRlICopDQo+ICsJCWRybV9hdG9taWNf
+Z2V0X3ByaXZhdGVfb2JqX3N0YXRlKHN0YXRlLA0KPiArCQkJCQkJICZ0dW5uZWwtPmdyb3VwLT5i
+YXNlKTsNCj4gK30NCj4gKw0KPiArc3RhdGljIHN0cnVjdCBkcm1fZHBfdHVubmVsX3N0YXRlICoN
+Cj4gK2FkZF90dW5uZWxfc3RhdGUoc3RydWN0IGRybV9kcF90dW5uZWxfZ3JvdXBfc3RhdGUgKmdy
+b3VwX3N0YXRlLA0KPiArCQkgc3RydWN0IGRybV9kcF90dW5uZWwgKnR1bm5lbCkNCj4gK3sNCj4g
+KwlzdHJ1Y3QgZHJtX2RwX3R1bm5lbF9zdGF0ZSAqdHVubmVsX3N0YXRlOw0KPiArDQo+ICsJdHVu
+X2RiZ19hdG9taWModHVubmVsLA0KPiArCQkgICAgICAgIkFkZGluZyBzdGF0ZSBmb3IgdHVubmVs
+ICVwIHRvIGdyb3VwIHN0YXRlICVwXG4iLA0KPiArCQkgICAgICAgdHVubmVsLCBncm91cF9zdGF0
+ZSk7DQo+ICsNCj4gKwl0dW5uZWxfc3RhdGUgPSBremFsbG9jKHNpemVvZigqdHVubmVsX3N0YXRl
+KSwgR0ZQX0tFUk5FTCk7DQo+ICsJaWYgKCF0dW5uZWxfc3RhdGUpDQo+ICsJCXJldHVybiBOVUxM
+Ow0KPiArDQo+ICsJdHVubmVsX3N0YXRlLT5ncm91cF9zdGF0ZSA9IGdyb3VwX3N0YXRlOw0KPiAr
+DQo+ICsJZHJtX2RwX3R1bm5lbF9yZWZfZ2V0KHR1bm5lbCwgJnR1bm5lbF9zdGF0ZS0+dHVubmVs
+X3JlZik7DQo+ICsNCj4gKwlJTklUX0xJU1RfSEVBRCgmdHVubmVsX3N0YXRlLT5ub2RlKTsNCj4g
+KwlsaXN0X2FkZCgmdHVubmVsX3N0YXRlLT5ub2RlLCAmZ3JvdXBfc3RhdGUtPnR1bm5lbF9zdGF0
+ZXMpOw0KPiArDQo+ICsJcmV0dXJuIHR1bm5lbF9zdGF0ZTsNCj4gK30NCj4gKw0KPiArc3RhdGlj
+IHZvaWQgZnJlZV90dW5uZWxfc3RhdGUoc3RydWN0IGRybV9kcF90dW5uZWxfc3RhdGUgKnR1bm5l
+bF9zdGF0ZSkNCj4gK3sNCj4gKwl0dW5fZGJnX2F0b21pYyh0dW5uZWxfc3RhdGUtPnR1bm5lbF9y
+ZWYudHVubmVsLA0KPiArCQkgICAgICAgIkZyZWVpbmcgc3RhdGUgZm9yIHR1bm5lbCAlcFxuIiwN
+Cj4gKwkJICAgICAgIHR1bm5lbF9zdGF0ZS0+dHVubmVsX3JlZi50dW5uZWwpOw0KPiArDQo+ICsJ
+bGlzdF9kZWwoJnR1bm5lbF9zdGF0ZS0+bm9kZSk7DQo+ICsNCj4gKwlrZnJlZSh0dW5uZWxfc3Rh
+dGUtPnN0cmVhbV9idyk7DQo+ICsJZHJtX2RwX3R1bm5lbF9yZWZfcHV0KCZ0dW5uZWxfc3RhdGUt
+PnR1bm5lbF9yZWYpOw0KPiArDQo+ICsJa2ZyZWUodHVubmVsX3N0YXRlKTsNCj4gK30NCj4gKw0K
+PiArc3RhdGljIHZvaWQgZnJlZV9ncm91cF9zdGF0ZShzdHJ1Y3QgZHJtX2RwX3R1bm5lbF9ncm91
+cF9zdGF0ZSAqZ3JvdXBfc3RhdGUpDQo+ICt7DQo+ICsJc3RydWN0IGRybV9kcF90dW5uZWxfc3Rh
+dGUgKnR1bm5lbF9zdGF0ZTsNCj4gKwlzdHJ1Y3QgZHJtX2RwX3R1bm5lbF9zdGF0ZSAqdHVubmVs
+X3N0YXRlX3RtcDsNCj4gKw0KPiArCWZvcl9lYWNoX3R1bm5lbF9zdGF0ZV9zYWZlKGdyb3VwX3N0
+YXRlLCB0dW5uZWxfc3RhdGUsDQo+IHR1bm5lbF9zdGF0ZV90bXApDQo+ICsJCWZyZWVfdHVubmVs
+X3N0YXRlKHR1bm5lbF9zdGF0ZSk7DQo+ICsNCj4gKwlrZnJlZShncm91cF9zdGF0ZSk7DQo+ICt9
+DQo+ICsNCj4gK3N0YXRpYyBzdHJ1Y3QgZHJtX2RwX3R1bm5lbF9zdGF0ZSAqDQo+ICtnZXRfdHVu
+bmVsX3N0YXRlKHN0cnVjdCBkcm1fZHBfdHVubmVsX2dyb3VwX3N0YXRlICpncm91cF9zdGF0ZSwN
+Cj4gKwkJIGNvbnN0IHN0cnVjdCBkcm1fZHBfdHVubmVsICp0dW5uZWwpDQo+ICt7DQo+ICsJc3Ry
+dWN0IGRybV9kcF90dW5uZWxfc3RhdGUgKnR1bm5lbF9zdGF0ZTsNCj4gKw0KPiArCWZvcl9lYWNo
+X3R1bm5lbF9zdGF0ZShncm91cF9zdGF0ZSwgdHVubmVsX3N0YXRlKQ0KPiArCQlpZiAodHVubmVs
+X3N0YXRlLT50dW5uZWxfcmVmLnR1bm5lbCA9PSB0dW5uZWwpDQo+ICsJCQlyZXR1cm4gdHVubmVs
+X3N0YXRlOw0KPiArDQo+ICsJcmV0dXJuIE5VTEw7DQo+ICt9DQo+ICsNCj4gK3N0YXRpYyBzdHJ1
+Y3QgZHJtX2RwX3R1bm5lbF9zdGF0ZSAqDQo+ICtnZXRfb3JfYWRkX3R1bm5lbF9zdGF0ZShzdHJ1
+Y3QgZHJtX2RwX3R1bm5lbF9ncm91cF9zdGF0ZSAqZ3JvdXBfc3RhdGUsDQo+ICsJCQlzdHJ1Y3Qg
+ZHJtX2RwX3R1bm5lbCAqdHVubmVsKQ0KPiArew0KPiArCXN0cnVjdCBkcm1fZHBfdHVubmVsX3N0
+YXRlICp0dW5uZWxfc3RhdGU7DQo+ICsNCj4gKwl0dW5uZWxfc3RhdGUgPSBnZXRfdHVubmVsX3N0
+YXRlKGdyb3VwX3N0YXRlLCB0dW5uZWwpOw0KPiArCWlmICh0dW5uZWxfc3RhdGUpDQo+ICsJCXJl
+dHVybiB0dW5uZWxfc3RhdGU7DQo+ICsNCj4gKwlyZXR1cm4gYWRkX3R1bm5lbF9zdGF0ZShncm91
+cF9zdGF0ZSwgdHVubmVsKTsNCj4gK30NCj4gKw0KPiArc3RhdGljIHN0cnVjdCBkcm1fcHJpdmF0
+ZV9zdGF0ZSAqDQo+ICt0dW5uZWxfZ3JvdXBfZHVwbGljYXRlX3N0YXRlKHN0cnVjdCBkcm1fcHJp
+dmF0ZV9vYmogKm9iaikNCj4gK3sNCj4gKwlzdHJ1Y3QgZHJtX2RwX3R1bm5lbF9ncm91cF9zdGF0
+ZSAqZ3JvdXBfc3RhdGU7DQo+ICsJc3RydWN0IGRybV9kcF90dW5uZWxfc3RhdGUgKnR1bm5lbF9z
+dGF0ZTsNCj4gKw0KPiArCWdyb3VwX3N0YXRlID0ga3phbGxvYyhzaXplb2YoKmdyb3VwX3N0YXRl
+KSwgR0ZQX0tFUk5FTCk7DQo+ICsJaWYgKCFncm91cF9zdGF0ZSkNCj4gKwkJcmV0dXJuIE5VTEw7
+DQo+ICsNCj4gKwlJTklUX0xJU1RfSEVBRCgmZ3JvdXBfc3RhdGUtPnR1bm5lbF9zdGF0ZXMpOw0K
+PiArDQo+ICsJX19kcm1fYXRvbWljX2hlbHBlcl9wcml2YXRlX29ial9kdXBsaWNhdGVfc3RhdGUo
+b2JqLCAmZ3JvdXBfc3RhdGUtDQo+ID5iYXNlKTsNCj4gKw0KPiArCWZvcl9lYWNoX3R1bm5lbF9z
+dGF0ZSh0b19ncm91cF9zdGF0ZShvYmotPnN0YXRlKSwgdHVubmVsX3N0YXRlKSB7DQo+ICsJCXN0
+cnVjdCBkcm1fZHBfdHVubmVsX3N0YXRlICpuZXdfdHVubmVsX3N0YXRlOw0KPiArDQo+ICsJCW5l
+d190dW5uZWxfc3RhdGUgPSBnZXRfb3JfYWRkX3R1bm5lbF9zdGF0ZShncm91cF9zdGF0ZSwNCj4g
+KwkJCQkJCQkgICB0dW5uZWxfc3RhdGUtDQo+ID50dW5uZWxfcmVmLnR1bm5lbCk7DQo+ICsJCWlm
+ICghbmV3X3R1bm5lbF9zdGF0ZSkNCj4gKwkJCWdvdG8gb3V0X2ZyZWVfc3RhdGU7DQo+ICsNCj4g
+KwkJbmV3X3R1bm5lbF9zdGF0ZS0+c3RyZWFtX21hc2sgPSB0dW5uZWxfc3RhdGUtDQo+ID5zdHJl
+YW1fbWFzazsNCj4gKwkJbmV3X3R1bm5lbF9zdGF0ZS0+c3RyZWFtX2J3ID0ga21lbWR1cCh0dW5u
+ZWxfc3RhdGUtDQo+ID5zdHJlYW1fYncsDQo+ICsJCQkJCQkgICAgICBzaXplb2YoKnR1bm5lbF9z
+dGF0ZS0NCj4gPnN0cmVhbV9idykgKg0KPiArDQo+IAlod2VpZ2h0MzIodHVubmVsX3N0YXRlLT5z
+dHJlYW1fbWFzayksDQo+ICsJCQkJCQkgICAgICBHRlBfS0VSTkVMKTsNCj4gKw0KPiArCQlpZiAo
+IW5ld190dW5uZWxfc3RhdGUtPnN0cmVhbV9idykNCj4gKwkJCWdvdG8gb3V0X2ZyZWVfc3RhdGU7
+DQo+ICsJfQ0KPiArDQo+ICsJcmV0dXJuICZncm91cF9zdGF0ZS0+YmFzZTsNCj4gKw0KPiArb3V0
+X2ZyZWVfc3RhdGU6DQo+ICsJZnJlZV9ncm91cF9zdGF0ZShncm91cF9zdGF0ZSk7DQo+ICsNCj4g
+KwlyZXR1cm4gTlVMTDsNCj4gK30NCj4gKw0KPiArc3RhdGljIHZvaWQgdHVubmVsX2dyb3VwX2Rl
+c3Ryb3lfc3RhdGUoc3RydWN0IGRybV9wcml2YXRlX29iaiAqb2JqLCBzdHJ1Y3QNCj4gZHJtX3By
+aXZhdGVfc3RhdGUgKnN0YXRlKQ0KPiArew0KPiArCWZyZWVfZ3JvdXBfc3RhdGUodG9fZ3JvdXBf
+c3RhdGUoc3RhdGUpKTsNCj4gK30NCj4gKw0KPiArc3RhdGljIGNvbnN0IHN0cnVjdCBkcm1fcHJp
+dmF0ZV9zdGF0ZV9mdW5jcyB0dW5uZWxfZ3JvdXBfZnVuY3MgPSB7DQo+ICsJLmF0b21pY19kdXBs
+aWNhdGVfc3RhdGUgPSB0dW5uZWxfZ3JvdXBfZHVwbGljYXRlX3N0YXRlLA0KPiArCS5hdG9taWNf
+ZGVzdHJveV9zdGF0ZSA9IHR1bm5lbF9ncm91cF9kZXN0cm95X3N0YXRlLA0KPiArfTsNCj4gKw0K
+PiArLyoqDQo+ICsgKiBkcm1fZHBfdHVubmVsX2F0b21pY19nZXRfc3RhdGUgLSBnZXQvYWxsb2Nh
+dGUgdGhlIG5ldyBhdG9taWMgc3RhdGUgZm9yIGENCj4gdHVubmVsDQo+ICsgKiBAc3RhdGU6IEF0
+b21pYyBzdGF0ZQ0KPiArICogQHR1bm5lbDogVHVubmVsIHRvIGdldCB0aGUgc3RhdGUgZm9yDQo+
+ICsgKg0KPiArICogR2V0IHRoZSBuZXcgYXRvbWljIHN0YXRlIGZvciBAdHVubmVsLCBkdXBsaWNh
+dGluZyBpdCBmcm9tIHRoZSBvbGQgdHVubmVsDQo+ICsgKiBzdGF0ZSBpZiBub3QgeWV0IGFsbG9j
+YXRlZC4NCj4gKyAqDQo+ICsgKiBSZXR1cm4gdGhlIHN0YXRlIG9yIGFuIEVSUl9QVFIoKSBlcnJv
+ciBvbiBmYWlsdXJlLg0KPiArICovDQo+ICtzdHJ1Y3QgZHJtX2RwX3R1bm5lbF9zdGF0ZSAqDQo+
+ICtkcm1fZHBfdHVubmVsX2F0b21pY19nZXRfc3RhdGUoc3RydWN0IGRybV9hdG9taWNfc3RhdGUg
+KnN0YXRlLA0KPiArCQkJICAgICAgIHN0cnVjdCBkcm1fZHBfdHVubmVsICp0dW5uZWwpDQo+ICt7
+DQo+ICsJc3RydWN0IGRybV9kcF90dW5uZWxfZ3JvdXBfc3RhdGUgKmdyb3VwX3N0YXRlOw0KPiAr
+CXN0cnVjdCBkcm1fZHBfdHVubmVsX3N0YXRlICp0dW5uZWxfc3RhdGU7DQo+ICsNCj4gKwlncm91
+cF9zdGF0ZSA9IGRybV9kcF90dW5uZWxfYXRvbWljX2dldF9ncm91cF9zdGF0ZShzdGF0ZSwgdHVu
+bmVsKTsNCj4gKwlpZiAoSVNfRVJSKGdyb3VwX3N0YXRlKSkNCj4gKwkJcmV0dXJuIEVSUl9DQVNU
+KGdyb3VwX3N0YXRlKTsNCj4gKw0KPiArCXR1bm5lbF9zdGF0ZSA9IGdldF9vcl9hZGRfdHVubmVs
+X3N0YXRlKGdyb3VwX3N0YXRlLCB0dW5uZWwpOw0KPiArCWlmICghdHVubmVsX3N0YXRlKQ0KPiAr
+CQlyZXR1cm4gRVJSX1BUUigtRU5PTUVNKTsNCj4gKw0KPiArCXJldHVybiB0dW5uZWxfc3RhdGU7
+DQo+ICt9DQo+ICtFWFBPUlRfU1lNQk9MKGRybV9kcF90dW5uZWxfYXRvbWljX2dldF9zdGF0ZSk7
+DQo+ICsNCj4gKy8qKg0KPiArICogZHJtX2RwX3R1bm5lbF9hdG9taWNfZ2V0X29sZF9zdGF0ZSAt
+IGdldCB0aGUgb2xkIGF0b21pYyBzdGF0ZSBmb3IgYSB0dW5uZWwNCj4gKyAqIEBzdGF0ZTogQXRv
+bWljIHN0YXRlDQo+ICsgKiBAdHVubmVsOiBUdW5uZWwgdG8gZ2V0IHRoZSBzdGF0ZSBmb3INCj4g
+KyAqDQo+ICsgKiBHZXQgdGhlIG9sZCBhdG9taWMgc3RhdGUgZm9yIEB0dW5uZWwuDQo+ICsgKg0K
+PiArICogUmV0dXJuIHRoZSBvbGQgc3RhdGUgb3IgTlVMTCBpZiB0aGUgdHVubmVsJ3MgYXRvbWlj
+IHN0YXRlIGlzIG5vdCBpbiBAc3RhdGUuDQo+ICsgKi8NCj4gK3N0cnVjdCBkcm1fZHBfdHVubmVs
+X3N0YXRlICoNCj4gK2RybV9kcF90dW5uZWxfYXRvbWljX2dldF9vbGRfc3RhdGUoc3RydWN0IGRy
+bV9hdG9taWNfc3RhdGUgKnN0YXRlLA0KPiArCQkJCSAgIGNvbnN0IHN0cnVjdCBkcm1fZHBfdHVu
+bmVsICp0dW5uZWwpDQo+ICt7DQo+ICsJc3RydWN0IGRybV9kcF90dW5uZWxfZ3JvdXBfc3RhdGUg
+Km9sZF9ncm91cF9zdGF0ZTsNCj4gKwlpbnQgaTsNCj4gKw0KPiArCWZvcl9lYWNoX29sZF9ncm91
+cF9pbl9zdGF0ZShzdGF0ZSwgb2xkX2dyb3VwX3N0YXRlLCBpKQ0KPiArCQlpZiAodG9fZ3JvdXAo
+b2xkX2dyb3VwX3N0YXRlLT5iYXNlLm9iaikgPT0gdHVubmVsLT5ncm91cCkNCj4gKwkJCXJldHVy
+biBnZXRfdHVubmVsX3N0YXRlKG9sZF9ncm91cF9zdGF0ZSwgdHVubmVsKTsNCj4gKw0KPiArCXJl
+dHVybiBOVUxMOw0KPiArfQ0KPiArRVhQT1JUX1NZTUJPTChkcm1fZHBfdHVubmVsX2F0b21pY19n
+ZXRfb2xkX3N0YXRlKTsNCj4gKw0KPiArLyoqDQo+ICsgKiBkcm1fZHBfdHVubmVsX2F0b21pY19n
+ZXRfbmV3X3N0YXRlIC0gZ2V0IHRoZSBuZXcgYXRvbWljIHN0YXRlIGZvciBhDQo+IHR1bm5lbA0K
+PiArICogQHN0YXRlOiBBdG9taWMgc3RhdGUNCj4gKyAqIEB0dW5uZWw6IFR1bm5lbCB0byBnZXQg
+dGhlIHN0YXRlIGZvcg0KPiArICoNCj4gKyAqIEdldCB0aGUgbmV3IGF0b21pYyBzdGF0ZSBmb3Ig
+QHR1bm5lbC4NCj4gKyAqDQo+ICsgKiBSZXR1cm4gdGhlIG5ldyBzdGF0ZSBvciBOVUxMIGlmIHRo
+ZSB0dW5uZWwncyBhdG9taWMgc3RhdGUgaXMgbm90IGluIEBzdGF0ZS4NCj4gKyAqLw0KPiArc3Ry
+dWN0IGRybV9kcF90dW5uZWxfc3RhdGUgKg0KPiArZHJtX2RwX3R1bm5lbF9hdG9taWNfZ2V0X25l
+d19zdGF0ZShzdHJ1Y3QgZHJtX2F0b21pY19zdGF0ZSAqc3RhdGUsDQo+ICsJCQkJICAgY29uc3Qg
+c3RydWN0IGRybV9kcF90dW5uZWwgKnR1bm5lbCkNCj4gK3sNCj4gKwlzdHJ1Y3QgZHJtX2RwX3R1
+bm5lbF9ncm91cF9zdGF0ZSAqbmV3X2dyb3VwX3N0YXRlOw0KPiArCWludCBpOw0KPiArDQo+ICsJ
+Zm9yX2VhY2hfbmV3X2dyb3VwX2luX3N0YXRlKHN0YXRlLCBuZXdfZ3JvdXBfc3RhdGUsIGkpDQo+
+ICsJCWlmICh0b19ncm91cChuZXdfZ3JvdXBfc3RhdGUtPmJhc2Uub2JqKSA9PSB0dW5uZWwtPmdy
+b3VwKQ0KPiArCQkJcmV0dXJuIGdldF90dW5uZWxfc3RhdGUobmV3X2dyb3VwX3N0YXRlLCB0dW5u
+ZWwpOw0KPiArDQo+ICsJcmV0dXJuIE5VTEw7DQo+ICt9DQo+ICtFWFBPUlRfU1lNQk9MKGRybV9k
+cF90dW5uZWxfYXRvbWljX2dldF9uZXdfc3RhdGUpOw0KPiArDQo+ICtzdGF0aWMgYm9vbCBpbml0
+X2dyb3VwKHN0cnVjdCBkcm1fZHBfdHVubmVsX21nciAqbWdyLCBzdHJ1Y3QNCj4gZHJtX2RwX3R1
+bm5lbF9ncm91cCAqZ3JvdXApDQo+ICt7DQo+ICsJc3RydWN0IGRybV9kcF90dW5uZWxfZ3JvdXBf
+c3RhdGUgKmdyb3VwX3N0YXRlOw0KPiArDQo+ICsJZ3JvdXBfc3RhdGUgPSBremFsbG9jKHNpemVv
+ZigqZ3JvdXBfc3RhdGUpLCBHRlBfS0VSTkVMKTsNCj4gKwlpZiAoIWdyb3VwX3N0YXRlKQ0KPiAr
+CQlyZXR1cm4gZmFsc2U7DQo+ICsNCj4gKwlJTklUX0xJU1RfSEVBRCgmZ3JvdXBfc3RhdGUtPnR1
+bm5lbF9zdGF0ZXMpOw0KPiArDQo+ICsJZ3JvdXAtPm1nciA9IG1ncjsNCj4gKwlncm91cC0+YXZh
+aWxhYmxlX2J3ID0gLTE7DQo+ICsJSU5JVF9MSVNUX0hFQUQoJmdyb3VwLT50dW5uZWxzKTsNCj4g
+Kw0KPiArCWRybV9hdG9taWNfcHJpdmF0ZV9vYmpfaW5pdChtZ3ItPmRldiwgJmdyb3VwLT5iYXNl
+LCAmZ3JvdXBfc3RhdGUtDQo+ID5iYXNlLA0KPiArCQkJCSAgICAmdHVubmVsX2dyb3VwX2Z1bmNz
+KTsNCj4gKw0KPiArCXJldHVybiB0cnVlOw0KPiArfQ0KPiArDQo+ICtzdGF0aWMgdm9pZCBjbGVh
+bnVwX2dyb3VwKHN0cnVjdCBkcm1fZHBfdHVubmVsX2dyb3VwICpncm91cCkNCj4gK3sNCj4gKwlk
+cm1fYXRvbWljX3ByaXZhdGVfb2JqX2ZpbmkoJmdyb3VwLT5iYXNlKTsNCj4gK30NCj4gKw0KPiAr
+I2lmZGVmIENPTkZJR19EUk1fRElTUExBWV9ERUJVR19EUF9UVU5ORUxfU1RBVEUNCj4gK3N0YXRp
+YyB2b2lkIGNoZWNrX3VuaXF1ZV9zdHJlYW1faWRzKGNvbnN0IHN0cnVjdCBkcm1fZHBfdHVubmVs
+X2dyb3VwX3N0YXRlDQo+ICpncm91cF9zdGF0ZSkNCj4gK3sNCj4gKwljb25zdCBzdHJ1Y3QgZHJt
+X2RwX3R1bm5lbF9zdGF0ZSAqdHVubmVsX3N0YXRlOw0KPiArCXUzMiBzdHJlYW1fbWFzayA9IDA7
+DQo+ICsNCj4gKwlmb3JfZWFjaF90dW5uZWxfc3RhdGUoZ3JvdXBfc3RhdGUsIHR1bm5lbF9zdGF0
+ZSkgew0KPiArCQlkcm1fV0FSTih0b19ncm91cChncm91cF9zdGF0ZS0+YmFzZS5vYmopLT5tZ3It
+PmRldiwNCj4gKwkJCSB0dW5uZWxfc3RhdGUtPnN0cmVhbV9tYXNrICYgc3RyZWFtX21hc2ssDQo+
+ICsJCQkgIltEUFRVTiAlc106IGNvbmZsaWN0aW5nIHN0cmVhbSBJRHMgJXggKElEcyBpbiBvdGhl
+cg0KPiB0dW5uZWxzICV4KVxuIiwNCj4gKwkJCSB0dW5uZWxfc3RhdGUtPnR1bm5lbF9yZWYudHVu
+bmVsLT5uYW1lLA0KPiArCQkJIHR1bm5lbF9zdGF0ZS0+c3RyZWFtX21hc2ssDQo+ICsJCQkgc3Ry
+ZWFtX21hc2spOw0KPiArDQo+ICsJCXN0cmVhbV9tYXNrIHw9IHR1bm5lbF9zdGF0ZS0+c3RyZWFt
+X21hc2s7DQo+ICsJfQ0KPiArfQ0KPiArI2Vsc2UNCj4gK3N0YXRpYyB2b2lkIGNoZWNrX3VuaXF1
+ZV9zdHJlYW1faWRzKGNvbnN0IHN0cnVjdCBkcm1fZHBfdHVubmVsX2dyb3VwX3N0YXRlDQo+ICpn
+cm91cF9zdGF0ZSkNCj4gK3sNCj4gK30NCj4gKyNlbmRpZg0KPiArDQo+ICtzdGF0aWMgaW50IHN0
+cmVhbV9pZF90b19pZHgodTMyIHN0cmVhbV9tYXNrLCB1OCBzdHJlYW1faWQpDQo+ICt7DQo+ICsJ
+cmV0dXJuIGh3ZWlnaHQzMihzdHJlYW1fbWFzayAmIChCSVQoc3RyZWFtX2lkKSAtIDEpKTsNCj4g
+K30NCj4gKw0KPiArc3RhdGljIGludCByZXNpemVfYndfYXJyYXkoc3RydWN0IGRybV9kcF90dW5u
+ZWxfc3RhdGUgKnR1bm5lbF9zdGF0ZSwNCj4gKwkJCSAgIHVuc2lnbmVkIGxvbmcgb2xkX21hc2ss
+IHVuc2lnbmVkIGxvbmcgbmV3X21hc2spDQo+ICt7DQo+ICsJdW5zaWduZWQgbG9uZyBtb3ZlX21h
+c2sgPSBvbGRfbWFzayAmIG5ld19tYXNrOw0KPiArCWludCAqbmV3X2J3cyA9IE5VTEw7DQo+ICsJ
+aW50IGlkOw0KPiArDQo+ICsJV0FSTl9PTighbmV3X21hc2spOw0KPiArDQo+ICsJaWYgKG9sZF9t
+YXNrID09IG5ld19tYXNrKQ0KPiArCQlyZXR1cm4gMDsNCj4gKw0KPiArCW5ld19id3MgPSBrY2Fs
+bG9jKGh3ZWlnaHQzMihuZXdfbWFzayksIHNpemVvZigqbmV3X2J3cyksDQo+IEdGUF9LRVJORUwp
+Ow0KPiArCWlmICghbmV3X2J3cykNCj4gKwkJcmV0dXJuIC1FTk9NRU07DQo+ICsNCj4gKwlmb3Jf
+ZWFjaF9zZXRfYml0KGlkLCAmbW92ZV9tYXNrLCBCSVRTX1BFUl9UWVBFKG1vdmVfbWFzaykpDQo+
+ICsJCW5ld19id3Nbc3RyZWFtX2lkX3RvX2lkeChuZXdfbWFzaywgaWQpXSA9DQo+ICsJCQl0dW5u
+ZWxfc3RhdGUtPnN0cmVhbV9id1tzdHJlYW1faWRfdG9faWR4KG9sZF9tYXNrLA0KPiBpZCldOw0K
+PiArDQo+ICsJa2ZyZWUodHVubmVsX3N0YXRlLT5zdHJlYW1fYncpOw0KPiArCXR1bm5lbF9zdGF0
+ZS0+c3RyZWFtX2J3ID0gbmV3X2J3czsNCj4gKwl0dW5uZWxfc3RhdGUtPnN0cmVhbV9tYXNrID0g
+bmV3X21hc2s7DQo+ICsNCj4gKwlyZXR1cm4gMDsNCj4gK30NCj4gKw0KPiArc3RhdGljIGludCBz
+ZXRfc3RyZWFtX2J3KHN0cnVjdCBkcm1fZHBfdHVubmVsX3N0YXRlICp0dW5uZWxfc3RhdGUsDQo+
+ICsJCQkgdTggc3RyZWFtX2lkLCBpbnQgYncpDQo+ICt7DQo+ICsJaW50IGVycjsNCj4gKw0KPiAr
+CWVyciA9IHJlc2l6ZV9id19hcnJheSh0dW5uZWxfc3RhdGUsDQo+ICsJCQkgICAgICB0dW5uZWxf
+c3RhdGUtPnN0cmVhbV9tYXNrLA0KPiArCQkJICAgICAgdHVubmVsX3N0YXRlLT5zdHJlYW1fbWFz
+ayB8IEJJVChzdHJlYW1faWQpKTsNCj4gKwlpZiAoZXJyKQ0KPiArCQlyZXR1cm4gZXJyOw0KPiAr
+DQo+ICsJdHVubmVsX3N0YXRlLT5zdHJlYW1fYndbc3RyZWFtX2lkX3RvX2lkeCh0dW5uZWxfc3Rh
+dGUtDQo+ID5zdHJlYW1fbWFzaywgc3RyZWFtX2lkKV0gPSBidzsNCj4gKw0KPiArCXJldHVybiAw
+Ow0KPiArfQ0KPiArDQo+ICtzdGF0aWMgaW50IGNsZWFyX3N0cmVhbV9idyhzdHJ1Y3QgZHJtX2Rw
+X3R1bm5lbF9zdGF0ZSAqdHVubmVsX3N0YXRlLA0KPiArCQkJICAgdTggc3RyZWFtX2lkKQ0KPiAr
+ew0KPiArCWlmICghKHR1bm5lbF9zdGF0ZS0+c3RyZWFtX21hc2sgJiB+QklUKHN0cmVhbV9pZCkp
+KSB7DQo+ICsJCWZyZWVfdHVubmVsX3N0YXRlKHR1bm5lbF9zdGF0ZSk7DQo+ICsJCXJldHVybiAw
+Ow0KPiArCX0NCj4gKw0KPiArCXJldHVybiByZXNpemVfYndfYXJyYXkodHVubmVsX3N0YXRlLA0K
+PiArCQkJICAgICAgIHR1bm5lbF9zdGF0ZS0+c3RyZWFtX21hc2ssDQo+ICsJCQkgICAgICAgdHVu
+bmVsX3N0YXRlLT5zdHJlYW1fbWFzayAmIH5CSVQoc3RyZWFtX2lkKSk7DQo+ICt9DQo+ICsNCj4g
+Ky8qKg0KPiArICogZHJtX2RwX3R1bm5lbF9hdG9taWNfc2V0X3N0cmVhbV9idyAtIFNldCB0aGUg
+QlcgZm9yIGEgRFAgdHVubmVsIHN0cmVhbQ0KPiArICogQHN0YXRlOiBBdG9taWMgc3RhdGUNCj4g
+KyAqIEB0dW5uZWw6IERQIHR1bm5lbCBjb250YWluaW5nIHRoZSBzdHJlYW0NCj4gKyAqIEBzdHJl
+YW1faWQ6IFN0cmVhbSBJRA0KPiArICogQGJ3OiBCVyBvZiB0aGUgc3RyZWFtDQo+ICsgKg0KPiAr
+ICogU2V0IGEgRFAgdHVubmVsIHN0cmVhbSdzIHJlcXVpcmVkIEJXIGluIHRoZSBhdG9taWMgc3Rh
+dGUuDQo+ICsgKg0KPiArICogUmV0dXJucyAwIGluIGNhc2Ugb2Ygc3VjY2VzcywgYSBuZWdhdGl2
+ZSBlcnJvciBjb2RlIG90aGVyd2lzZS4NCj4gKyAqLw0KPiAraW50IGRybV9kcF90dW5uZWxfYXRv
+bWljX3NldF9zdHJlYW1fYncoc3RydWN0IGRybV9hdG9taWNfc3RhdGUgKnN0YXRlLA0KPiArCQkJ
+CSAgICAgICBzdHJ1Y3QgZHJtX2RwX3R1bm5lbCAqdHVubmVsLA0KPiArCQkJCSAgICAgICB1OCBz
+dHJlYW1faWQsIGludCBidykNCj4gK3sNCj4gKwlzdHJ1Y3QgZHJtX2RwX3R1bm5lbF9ncm91cF9z
+dGF0ZSAqbmV3X2dyb3VwX3N0YXRlOw0KPiArCXN0cnVjdCBkcm1fZHBfdHVubmVsX3N0YXRlICp0
+dW5uZWxfc3RhdGU7DQo+ICsJaW50IGVycjsNCj4gKw0KPiArCWlmIChkcm1fV0FSTl9PTih0dW5u
+ZWwtPmdyb3VwLT5tZ3ItPmRldiwNCj4gKwkJCXN0cmVhbV9pZCA+IEJJVFNfUEVSX1RZUEUodHVu
+bmVsX3N0YXRlLQ0KPiA+c3RyZWFtX21hc2spKSkNCj4gKwkJcmV0dXJuIC1FSU5WQUw7DQo+ICsN
+Cj4gKwl0dW5fZGJnKHR1bm5lbCwNCj4gKwkJIlNldHRpbmcgJWQgTWIvcyBmb3Igc3RyZWFtICVk
+XG4iLA0KPiArCQlEUFRVTl9CV19BUkcoYncpLCBzdHJlYW1faWQpOw0KPiArDQo+ICsJbmV3X2dy
+b3VwX3N0YXRlID0gZHJtX2RwX3R1bm5lbF9hdG9taWNfZ2V0X2dyb3VwX3N0YXRlKHN0YXRlLA0K
+PiB0dW5uZWwpOw0KPiArCWlmIChJU19FUlIobmV3X2dyb3VwX3N0YXRlKSkNCj4gKwkJcmV0dXJu
+IFBUUl9FUlIobmV3X2dyb3VwX3N0YXRlKTsNCj4gKw0KPiArCWlmIChidyA9PSAwKSB7DQo+ICsJ
+CXR1bm5lbF9zdGF0ZSA9IGdldF90dW5uZWxfc3RhdGUobmV3X2dyb3VwX3N0YXRlLCB0dW5uZWwp
+Ow0KPiArCQlpZiAoIXR1bm5lbF9zdGF0ZSkNCj4gKwkJCXJldHVybiAwOw0KPiArDQo+ICsJCXJl
+dHVybiBjbGVhcl9zdHJlYW1fYncodHVubmVsX3N0YXRlLCBzdHJlYW1faWQpOw0KPiArCX0NCj4g
+Kw0KPiArCXR1bm5lbF9zdGF0ZSA9IGdldF9vcl9hZGRfdHVubmVsX3N0YXRlKG5ld19ncm91cF9z
+dGF0ZSwgdHVubmVsKTsNCj4gKwlpZiAoZHJtX1dBUk5fT04oc3RhdGUtPmRldiwgIXR1bm5lbF9z
+dGF0ZSkpDQo+ICsJCXJldHVybiAtRUlOVkFMOw0KPiArDQo+ICsJZXJyID0gc2V0X3N0cmVhbV9i
+dyh0dW5uZWxfc3RhdGUsIHN0cmVhbV9pZCwgYncpOw0KPiArCWlmIChlcnIpDQo+ICsJCXJldHVy
+biBlcnI7DQo+ICsNCj4gKwljaGVja191bmlxdWVfc3RyZWFtX2lkcyhuZXdfZ3JvdXBfc3RhdGUp
+Ow0KPiArDQo+ICsJcmV0dXJuIDA7DQo+ICt9DQo+ICtFWFBPUlRfU1lNQk9MKGRybV9kcF90dW5u
+ZWxfYXRvbWljX3NldF9zdHJlYW1fYncpOw0KPiArDQo+ICsvKioNCj4gKyAqIGRybV9kcF90dW5u
+ZWxfYXRvbWljX2dldF9yZXF1aXJlZF9idyAtIEdldCB0aGUgQlcgcmVxdWlyZWQgYnkgYSBEUA0K
+PiB0dW5uZWwNCj4gKyAqIEB0dW5uZWxfc3RhdGU6IEF0b21pYyBzdGF0ZSBvZiB0aGUgcXVlcmll
+ZCB0dW5uZWwNCj4gKyAqDQo+ICsgKiBDYWxjdWxhdGUgdGhlIEJXIHJlcXVpcmVkIGJ5IGEgdHVu
+bmVsIGFkZGluZyB1cCB0aGUgcmVxdWlyZWQgQlcgb2YgYWxsDQo+ICsgKiB0aGUgc3RyZWFtcyBp
+biB0aGUgdHVubmVsLg0KPiArICoNCj4gKyAqIFJldHVybiB0aGUgdG90YWwgQlcgcmVxdWlyZWQg
+YnkgdGhlIHR1bm5lbC4NCj4gKyAqLw0KPiAraW50IGRybV9kcF90dW5uZWxfYXRvbWljX2dldF9y
+ZXF1aXJlZF9idyhjb25zdCBzdHJ1Y3QgZHJtX2RwX3R1bm5lbF9zdGF0ZQ0KPiAqdHVubmVsX3N0
+YXRlKQ0KPiArew0KPiArCWludCB0dW5uZWxfYncgPSAwOw0KPiArCWludCBpOw0KPiArDQo+ICsJ
+aWYgKCF0dW5uZWxfc3RhdGUgfHwgIXR1bm5lbF9zdGF0ZS0+c3RyZWFtX21hc2spDQo+ICsJCXJl
+dHVybiAwOw0KPiArDQo+ICsJZm9yIChpID0gMDsgaSA8IGh3ZWlnaHQzMih0dW5uZWxfc3RhdGUt
+PnN0cmVhbV9tYXNrKTsgaSsrKQ0KPiArCQl0dW5uZWxfYncgKz0gdHVubmVsX3N0YXRlLT5zdHJl
+YW1fYndbaV07DQo+ICsNCj4gKwlyZXR1cm4gdHVubmVsX2J3Ow0KPiArfQ0KPiArRVhQT1JUX1NZ
+TUJPTChkcm1fZHBfdHVubmVsX2F0b21pY19nZXRfcmVxdWlyZWRfYncpOw0KPiArDQo+ICsvKioN
+Cj4gKyAqIGRybV9kcF90dW5uZWxfYXRvbWljX2dldF9ncm91cF9zdHJlYW1zX2luX3N0YXRlIC0g
+R2V0IG1hc2sgb2Ygc3RyZWFtDQo+IElEcyBpbiBhIGdyb3VwDQo+ICsgKiBAc3RhdGU6IEF0b21p
+YyBzdGF0ZQ0KPiArICogQHR1bm5lbDogVHVubmVsIG9iamVjdA0KPiArICogQHN0cmVhbV9tYXNr
+OiBNYXNrIG9mIHN0cmVhbXMgaW4gQHR1bm5lbCdzIGdyb3VwDQo+ICsgKg0KPiArICogR2V0IHRo
+ZSBtYXNrIG9mIGFsbCB0aGUgc3RyZWFtIElEcyBpbiB0aGUgdHVubmVsIGdyb3VwIG9mIEB0dW5u
+ZWwuDQo+ICsgKg0KPiArICogUmV0dXJuIDAgaW4gY2FzZSBvZiBzdWNjZXNzIC0gd2l0aCB0aGUg
+c3RyZWFtIElEcyBpbiBAc3RyZWFtX21hc2sgLSBvciBhDQo+ICsgKiBuZWdhdGl2ZSBlcnJvciBj
+b2RlIGluIGNhc2Ugb2YgZmFpbHVyZS4NCj4gKyAqLw0KPiAraW50IGRybV9kcF90dW5uZWxfYXRv
+bWljX2dldF9ncm91cF9zdHJlYW1zX2luX3N0YXRlKHN0cnVjdA0KPiBkcm1fYXRvbWljX3N0YXRl
+ICpzdGF0ZSwNCj4gKwkJCQkJCSAgICBjb25zdCBzdHJ1Y3QgZHJtX2RwX3R1bm5lbA0KPiAqdHVu
+bmVsLA0KPiArCQkJCQkJICAgIHUzMiAqc3RyZWFtX21hc2spDQo+ICt7DQo+ICsJc3RydWN0IGRy
+bV9kcF90dW5uZWxfZ3JvdXBfc3RhdGUgKmdyb3VwX3N0YXRlOw0KPiArCXN0cnVjdCBkcm1fZHBf
+dHVubmVsX3N0YXRlICp0dW5uZWxfc3RhdGU7DQo+ICsNCj4gKwlncm91cF9zdGF0ZSA9IGRybV9k
+cF90dW5uZWxfYXRvbWljX2dldF9ncm91cF9zdGF0ZShzdGF0ZSwgdHVubmVsKTsNCj4gKwlpZiAo
+SVNfRVJSKGdyb3VwX3N0YXRlKSkNCj4gKwkJcmV0dXJuIFBUUl9FUlIoZ3JvdXBfc3RhdGUpOw0K
+PiArDQo+ICsJKnN0cmVhbV9tYXNrID0gMDsNCj4gKwlmb3JfZWFjaF90dW5uZWxfc3RhdGUoZ3Jv
+dXBfc3RhdGUsIHR1bm5lbF9zdGF0ZSkNCj4gKwkJKnN0cmVhbV9tYXNrIHw9IHR1bm5lbF9zdGF0
+ZS0+c3RyZWFtX21hc2s7DQo+ICsNCj4gKwlyZXR1cm4gMDsNCj4gK30NCj4gK0VYUE9SVF9TWU1C
+T0woZHJtX2RwX3R1bm5lbF9hdG9taWNfZ2V0X2dyb3VwX3N0cmVhbXNfaW5fc3RhdGUpOw0KPiAr
+DQo+ICtzdGF0aWMgaW50DQo+ICtkcm1fZHBfdHVubmVsX2F0b21pY19jaGVja19ncm91cF9idyhz
+dHJ1Y3QgZHJtX2RwX3R1bm5lbF9ncm91cF9zdGF0ZQ0KPiAqbmV3X2dyb3VwX3N0YXRlLA0KPiAr
+CQkJCSAgICB1MzIgKmZhaWxlZF9zdHJlYW1fbWFzaykNCj4gK3sNCj4gKwlzdHJ1Y3QgZHJtX2Rw
+X3R1bm5lbF9ncm91cCAqZ3JvdXAgPSB0b19ncm91cChuZXdfZ3JvdXBfc3RhdGUtDQo+ID5iYXNl
+Lm9iaik7DQo+ICsJc3RydWN0IGRybV9kcF90dW5uZWxfc3RhdGUgKm5ld190dW5uZWxfc3RhdGU7
+DQo+ICsJdTMyIGdyb3VwX3N0cmVhbV9tYXNrID0gMDsNCj4gKwlpbnQgZ3JvdXBfYncgPSAwOw0K
+PiArDQo+ICsJZm9yX2VhY2hfdHVubmVsX3N0YXRlKG5ld19ncm91cF9zdGF0ZSwgbmV3X3R1bm5l
+bF9zdGF0ZSkgew0KPiArCQlzdHJ1Y3QgZHJtX2RwX3R1bm5lbCAqdHVubmVsID0gbmV3X3R1bm5l
+bF9zdGF0ZS0NCj4gPnR1bm5lbF9yZWYudHVubmVsOw0KPiArCQlpbnQgbWF4X2RwcnhfYncgPSBn
+ZXRfbWF4X2RwcnhfYncodHVubmVsKTsNCj4gKwkJaW50IHR1bm5lbF9idyA9DQo+IGRybV9kcF90
+dW5uZWxfYXRvbWljX2dldF9yZXF1aXJlZF9idyhuZXdfdHVubmVsX3N0YXRlKTsNCj4gKw0KPiAr
+CQl0dW5fZGJnKHR1bm5lbCwNCj4gKwkJCSIlc1JlcXVpcmVkICVkLyVkIE1iL3MgdG90YWwgZm9y
+IHR1bm5lbC5cbiIsDQo+ICsJCQl0dW5uZWxfYncgPiBtYXhfZHByeF9idyA/ICJOb3QgZW5vdWdo
+IEJXOiAiIDogIiIsDQo+ICsJCQlEUFRVTl9CV19BUkcodHVubmVsX2J3KSwNCj4gKwkJCURQVFVO
+X0JXX0FSRyhtYXhfZHByeF9idykpOw0KPiArDQo+ICsJCWlmICh0dW5uZWxfYncgPiBtYXhfZHBy
+eF9idykgew0KPiArCQkJKmZhaWxlZF9zdHJlYW1fbWFzayA9IG5ld190dW5uZWxfc3RhdGUtDQo+
+ID5zdHJlYW1fbWFzazsNCj4gKwkJCXJldHVybiAtRU5PU1BDOw0KPiArCQl9DQo+ICsNCj4gKwkJ
+Z3JvdXBfYncgKz0gbWluKHJvdW5kdXAodHVubmVsX2J3LCB0dW5uZWwtPmJ3X2dyYW51bGFyaXR5
+KSwNCj4gKwkJCQltYXhfZHByeF9idyk7DQo+ICsJCWdyb3VwX3N0cmVhbV9tYXNrIHw9IG5ld190
+dW5uZWxfc3RhdGUtPnN0cmVhbV9tYXNrOw0KPiArCX0NCj4gKw0KPiArCXR1bl9ncnBfZGJnKGdy
+b3VwLA0KPiArCQkgICAgIiVzUmVxdWlyZWQgJWQvJWQgTWIvcyB0b3RhbCBmb3IgdHVubmVsIGdy
+b3VwLlxuIiwNCj4gKwkJICAgIGdyb3VwX2J3ID4gZ3JvdXAtPmF2YWlsYWJsZV9idyA/ICJOb3Qg
+ZW5vdWdoIEJXOiAiIDogIiIsDQo+ICsJCSAgICBEUFRVTl9CV19BUkcoZ3JvdXBfYncpLA0KPiAr
+CQkgICAgRFBUVU5fQldfQVJHKGdyb3VwLT5hdmFpbGFibGVfYncpKTsNCj4gKw0KPiArCWlmIChn
+cm91cF9idyA+IGdyb3VwLT5hdmFpbGFibGVfYncpIHsNCj4gKwkJKmZhaWxlZF9zdHJlYW1fbWFz
+ayA9IGdyb3VwX3N0cmVhbV9tYXNrOw0KPiArCQlyZXR1cm4gLUVOT1NQQzsNCj4gKwl9DQo+ICsN
+Cj4gKwlyZXR1cm4gMDsNCj4gK30NCj4gKw0KPiArLyoqDQo+ICsgKiBkcm1fZHBfdHVubmVsX2F0
+b21pY19jaGVja19zdHJlYW1fYndzIC0gQ2hlY2sgQlcgbGltaXQgZm9yIGFsbCBzdHJlYW1zDQo+
+IGluIHN0YXRlDQo+ICsgKiBAc3RhdGU6IEF0b21pYyBzdGF0ZQ0KPiArICogQGZhaWxlZF9zdHJl
+YW1fbWFzazogTWFzayBvZiBzdHJlYW0gSURzIHdpdGggYSBCVyBsaW1pdCBmYWlsdXJlDQo+ICsg
+Kg0KPiArICogQ2hlY2sgdGhlIHJlcXVpcmVkIEJXIG9mIGVhY2ggRFAgdHVubmVsIGluIEBzdGF0
+ZSBhZ2FpbnN0IGJvdGggdGhlIERQUlgNCj4gQlcNCj4gKyAqIGxpbWl0IG9mIHRoZSB0dW5uZWwg
+YW5kIHRoZSBCVyBsaW1pdCBvZiB0aGUgdHVubmVsIGdyb3VwLiBSZXR1cm4gYSBtYXNrIG9mDQo+
+ICsgKiBzdHJlYW0gSURzIGluIEBmYWlsZWRfc3RyZWFtX21hc2sgb25jZSBhIGNoZWNrIGZhaWxz
+LiBUaGUgbWFzayB3aWxsIGNvbnRhaW4NCj4gKyAqIGVpdGhlciBhbGwgdGhlIHN0cmVhbXMgaW4g
+YSB0dW5uZWwgKGluIGNhc2UgYSBEUFJYIEJXIGxpbWl0IGNoZWNrIGZhaWxlZCkgb3INCj4gKyAq
+IGFsbCB0aGUgc3RyZWFtcyBpbiBhIHR1bm5lbCBncm91cCAoaW4gY2FzZSBhIGdyb3VwIEJXIGxp
+bWl0IGNoZWNrIGZhaWxlZCkuDQo+ICsgKg0KPiArICogUmV0dXJuIDAgaWYgYWxsIHRoZSBCVyBs
+aW1pdCBjaGVja3MgcGFzc2VkLCAtRU5PU1BDIGluIGNhc2UgYSBCVyBsaW1pdA0KPiArICogY2hl
+Y2sgZmFpbGVkIC0gd2l0aCBAZmFpbGVkX3N0cmVhbV9tYXNrIGNvbnRhaW5pbmcgdGhlIHN0cmVh
+bXMgZmFpbGluZyB0aGUNCj4gKyAqIGNoZWNrIC0gb3IgYSBuZWdhdGl2ZSBlcnJvciBjb2RlIG90
+aGVyd2lzZS4NCj4gKyAqLw0KPiAraW50IGRybV9kcF90dW5uZWxfYXRvbWljX2NoZWNrX3N0cmVh
+bV9id3Moc3RydWN0IGRybV9hdG9taWNfc3RhdGUgKnN0YXRlLA0KPiArCQkJCQkgIHUzMiAqZmFp
+bGVkX3N0cmVhbV9tYXNrKQ0KPiArew0KPiArCXN0cnVjdCBkcm1fZHBfdHVubmVsX2dyb3VwX3N0
+YXRlICpuZXdfZ3JvdXBfc3RhdGU7DQo+ICsJaW50IGk7DQo+ICsNCj4gKwlmb3JfZWFjaF9uZXdf
+Z3JvdXBfaW5fc3RhdGUoc3RhdGUsIG5ld19ncm91cF9zdGF0ZSwgaSkgew0KPiArCQlpbnQgcmV0
+Ow0KPiArDQo+ICsJCXJldCA9DQo+IGRybV9kcF90dW5uZWxfYXRvbWljX2NoZWNrX2dyb3VwX2J3
+KG5ld19ncm91cF9zdGF0ZSwNCj4gKwkJCQkJCQkgIGZhaWxlZF9zdHJlYW1fbWFzayk7DQo+ICsJ
+CWlmIChyZXQpDQo+ICsJCQlyZXR1cm4gcmV0Ow0KPiArCX0NCj4gKw0KPiArCXJldHVybiAwOw0K
+PiArfQ0KPiArRVhQT1JUX1NZTUJPTChkcm1fZHBfdHVubmVsX2F0b21pY19jaGVja19zdHJlYW1f
+YndzKTsNCj4gKw0KPiArc3RhdGljIHZvaWQgZGVzdHJveV9tZ3Ioc3RydWN0IGRybV9kcF90dW5u
+ZWxfbWdyICptZ3IpDQo+ICt7DQo+ICsJaW50IGk7DQo+ICsNCj4gKwlmb3IgKGkgPSAwOyBpIDwg
+bWdyLT5ncm91cF9jb3VudDsgaSsrKSB7DQo+ICsJCWNsZWFudXBfZ3JvdXAoJm1nci0+Z3JvdXBz
+W2ldKTsNCj4gKwkJZHJtX1dBUk5fT04obWdyLT5kZXYsICFsaXN0X2VtcHR5KCZtZ3ItDQo+ID5n
+cm91cHNbaV0udHVubmVscykpOw0KPiArCX0NCj4gKw0KPiArI2lmZGVmIENPTkZJR19EUk1fRElT
+UExBWV9ERUJVR19EUF9UVU5ORUxfU1RBVEUNCj4gKwlyZWZfdHJhY2tlcl9kaXJfZXhpdCgmbWdy
+LT5yZWZfdHJhY2tlcik7DQo+ICsjZW5kaWYNCj4gKw0KPiArCWtmcmVlKG1nci0+Z3JvdXBzKTsN
+Cj4gKwlrZnJlZShtZ3IpOw0KPiArfQ0KPiArDQo+ICsvKioNCj4gKyAqIGRybV9kcF90dW5uZWxf
+bWdyX2NyZWF0ZSAtIENyZWF0ZSBhIERQIHR1bm5lbCBtYW5hZ2VyDQo+ICsgKiBAZGV2OiBEUk0g
+ZGV2aWNlIG9iamVjdA0KPiArICoNCj4gKyAqIENyZWF0ZXMgYSBEUCB0dW5uZWwgbWFuYWdlciBm
+b3IgQGRldi4NCj4gKyAqDQo+ICsgKiBSZXR1cm5zIGEgcG9pbnRlciB0byB0aGUgdHVubmVsIG1h
+bmFnZXIgaWYgY3JlYXRlZCBzdWNjZXNzZnVsbHkgb3IgTlVMTCBpbg0KPiArICogY2FzZSBvZiBh
+biBlcnJvci4NCj4gKyAqLw0KPiArc3RydWN0IGRybV9kcF90dW5uZWxfbWdyICoNCj4gK2RybV9k
+cF90dW5uZWxfbWdyX2NyZWF0ZShzdHJ1Y3QgZHJtX2RldmljZSAqZGV2LCBpbnQgbWF4X2dyb3Vw
+X2NvdW50KQ0KPiArew0KPiArCXN0cnVjdCBkcm1fZHBfdHVubmVsX21nciAqbWdyOw0KPiArCWlu
+dCBpOw0KPiArDQo+ICsJbWdyID0ga3phbGxvYyhzaXplb2YoKm1nciksIEdGUF9LRVJORUwpOw0K
+PiArCWlmICghbWdyKQ0KPiArCQlyZXR1cm4gTlVMTDsNCj4gKw0KPiArCW1nci0+ZGV2ID0gZGV2
+Ow0KPiArCWluaXRfd2FpdHF1ZXVlX2hlYWQoJm1nci0+YndfcmVxX3F1ZXVlKTsNCj4gKw0KPiAr
+CW1nci0+Z3JvdXBzID0ga2NhbGxvYyhtYXhfZ3JvdXBfY291bnQsIHNpemVvZigqbWdyLT5ncm91
+cHMpLA0KPiBHRlBfS0VSTkVMKTsNCj4gKwlpZiAoIW1nci0+Z3JvdXBzKSB7DQo+ICsJCWtmcmVl
+KG1ncik7DQo+ICsNCj4gKwkJcmV0dXJuIE5VTEw7DQo+ICsJfQ0KPiArDQo+ICsjaWZkZWYgQ09O
+RklHX0RSTV9ESVNQTEFZX0RFQlVHX0RQX1RVTk5FTF9TVEFURQ0KPiArCXJlZl90cmFja2VyX2Rp
+cl9pbml0KCZtZ3ItPnJlZl90cmFja2VyLCAxNiwgImRwdHVuIik7DQo+ICsjZW5kaWYNCj4gKw0K
+PiArCWZvciAoaSA9IDA7IGkgPCBtYXhfZ3JvdXBfY291bnQ7IGkrKykgew0KPiArCQlpZiAoIWlu
+aXRfZ3JvdXAobWdyLCAmbWdyLT5ncm91cHNbaV0pKSB7DQo+ICsJCQlkZXN0cm95X21ncihtZ3Ip
+Ow0KPiArDQo+ICsJCQlyZXR1cm4gTlVMTDsNCj4gKwkJfQ0KPiArDQo+ICsJCW1nci0+Z3JvdXBf
+Y291bnQrKzsNCj4gKwl9DQo+ICsNCj4gKwlyZXR1cm4gbWdyOw0KPiArfQ0KPiArRVhQT1JUX1NZ
+TUJPTChkcm1fZHBfdHVubmVsX21ncl9jcmVhdGUpOw0KPiArDQo+ICsvKioNCj4gKyAqIGRybV9k
+cF90dW5uZWxfbWdyX2Rlc3Ryb3kgLSBEZXN0cm95IERQIHR1bm5lbCBtYW5hZ2VyDQo+ICsgKiBA
+bWdyOiBUdW5uZWwgbWFuYWdlciBvYmplY3QNCj4gKyAqDQo+ICsgKiBEZXN0cm95IHRoZSB0dW5u
+ZWwgbWFuYWdlci4NCj4gKyAqLw0KPiArdm9pZCBkcm1fZHBfdHVubmVsX21ncl9kZXN0cm95KHN0
+cnVjdCBkcm1fZHBfdHVubmVsX21nciAqbWdyKQ0KPiArew0KPiArCWRlc3Ryb3lfbWdyKG1ncik7
+DQo+ICt9DQo+ICtFWFBPUlRfU1lNQk9MKGRybV9kcF90dW5uZWxfbWdyX2Rlc3Ryb3kpOw0KPiBk
+aWZmIC0tZ2l0IGEvaW5jbHVkZS9kcm0vZGlzcGxheS9kcm1fZHAuaCBiL2luY2x1ZGUvZHJtL2Rp
+c3BsYXkvZHJtX2RwLmgNCj4gaW5kZXggMjgxYWZmZjZlZTRlNS4uOGJmZDVkMDA3YmU4ZCAxMDA2
+NDQNCj4gLS0tIGEvaW5jbHVkZS9kcm0vZGlzcGxheS9kcm1fZHAuaA0KPiArKysgYi9pbmNsdWRl
+L2RybS9kaXNwbGF5L2RybV9kcC5oDQo+IEBAIC0xMzgyLDYgKzEzODIsNjYgQEANCj4gICNkZWZp
+bmUgRFBfSERDUF8yXzJfUkVHX1NUUkVBTV9UWVBFX09GRlNFVAkweDY5NDk0DQo+ICAjZGVmaW5l
+IERQX0hEQ1BfMl8yX1JFR19EQkdfT0ZGU0VUCQkweDY5NTE4DQo+IA0KPiArLyogRFAtdHVubmVs
+aW5nICovDQo+ICsjZGVmaW5lIERQX1RVTk5FTElOR19PVUkJCQkJMHhlMDAwMA0KPiArI2RlZmlu
+ZSAgRFBfVFVOTkVMSU5HX09VSV9CWVRFUwkJCQkzDQo+ICsNCj4gKyNkZWZpbmUgRFBfVFVOTkVM
+SU5HX0RFVl9JRAkJCQkweGUwMDAzDQo+ICsjZGVmaW5lICBEUF9UVU5ORUxJTkdfREVWX0lEX0JZ
+VEVTCQkJNg0KPiArDQo+ICsjZGVmaW5lIERQX1RVTk5FTElOR19IV19SRVYJCQkJMHhlMDAwOQ0K
+PiArI2RlZmluZSAgRFBfVFVOTkVMSU5HX0hXX1JFVl9NQUpPUl9TSElGVAkJNA0KPiArI2RlZmlu
+ZSAgRFBfVFVOTkVMSU5HX0hXX1JFVl9NQUpPUl9NQVNLCQkJKDB4Zg0KPiA8PCBEUF9UVU5ORUxJ
+TkdfSFdfUkVWX01BSk9SX1NISUZUKQ0KPiArI2RlZmluZSAgRFBfVFVOTkVMSU5HX0hXX1JFVl9N
+SU5PUl9TSElGVAkJMA0KPiArI2RlZmluZSAgRFBfVFVOTkVMSU5HX0hXX1JFVl9NSU5PUl9NQVNL
+CQkJKDB4Zg0KPiA8PCBEUF9UVU5ORUxJTkdfSFdfUkVWX01JTk9SX1NISUZUKQ0KPiArDQo+ICsj
+ZGVmaW5lIERQX1RVTk5FTElOR19TV19SRVZfTUFKT1IJCQkweGUwMDBhDQo+ICsjZGVmaW5lIERQ
+X1RVTk5FTElOR19TV19SRVZfTUlOT1IJCQkweGUwMDBiDQo+ICsNCj4gKyNkZWZpbmUgRFBfVFVO
+TkVMSU5HX0NBUEFCSUxJVElFUwkJCTB4ZTAwMGQNCj4gKyNkZWZpbmUgIERQX0lOX0JXX0FMTE9D
+QVRJT05fTU9ERV9TVVBQT1JUCQkoMSA8PCA3KQ0KPiArI2RlZmluZSAgRFBfUEFORUxfUkVQTEFZ
+X09QVElNSVpBVElPTl9TVVBQT1JUCQkoMSA8PCA2KQ0KPiArI2RlZmluZSAgRFBfVFVOTkVMSU5H
+X1NVUFBPUlQJCQkJKDEgPDwgMCkNCj4gKw0KPiArI2RlZmluZSBEUF9JTl9BREFQVEVSX0lORk8J
+CQkJMHhlMDAwZQ0KPiArI2RlZmluZSAgRFBfSU5fQURBUFRFUl9OVU1CRVJfQklUUwkJCTcNCj4g
+KyNkZWZpbmUgIERQX0lOX0FEQVBURVJfTlVNQkVSX01BU0sJCQkoKDEgPDwNCj4gRFBfSU5fQURB
+UFRFUl9OVU1CRVJfQklUUykgLSAxKQ0KPiArDQo+ICsjZGVmaW5lIERQX1VTQjRfRFJJVkVSX0lE
+CQkJCTB4ZTAwMGYNCj4gKyNkZWZpbmUgIERQX1VTQjRfRFJJVkVSX0lEX0JJVFMJCQkJNA0KPiAr
+I2RlZmluZSAgRFBfVVNCNF9EUklWRVJfSURfTUFTSwkJCQkoKDEgPDwNCj4gRFBfVVNCNF9EUklW
+RVJfSURfQklUUykgLSAxKQ0KPiArDQo+ICsjZGVmaW5lIERQX1VTQjRfRFJJVkVSX0JXX0NBUEFC
+SUxJVFkJCQkweGUwMDIwDQo+ICsjZGVmaW5lICBEUF9VU0I0X0RSSVZFUl9CV19BTExPQ0FUSU9O
+X01PREVfU1VQUE9SVAkoMSA8PCA3KQ0KPiArDQo+ICsjZGVmaW5lIERQX0lOX0FEQVBURVJfVFVO
+TkVMX0lORk9STUFUSU9OCQkweGUwMDIxDQo+ICsjZGVmaW5lICBEUF9HUk9VUF9JRF9CSVRTCQkJ
+CTMNCj4gKyNkZWZpbmUgIERQX0dST1VQX0lEX01BU0sJCQkJKCgxIDw8DQo+IERQX0dST1VQX0lE
+X0JJVFMpIC0gMSkNCj4gKw0KPiArI2RlZmluZSBEUF9CV19HUkFOVUxBUklUWQkJCQkweGUwMDIy
+DQo+ICsjZGVmaW5lICBEUF9CV19HUkFOVUxBUklUWV9NQVNLCQkJCTB4Mw0KPiArDQo+ICsjZGVm
+aW5lIERQX0VTVElNQVRFRF9CVwkJCQkJMHhlMDAyMw0KPiArI2RlZmluZSBEUF9BTExPQ0FURURf
+QlcJCQkJCTB4ZTAwMjQNCj4gKw0KPiArI2RlZmluZSBEUF9UVU5ORUxJTkdfU1RBVFVTCQkJCTB4
+ZTAwMjUNCj4gKyNkZWZpbmUgIERQX0JXX0FMTE9DQVRJT05fQ0FQQUJJTElUWV9DSEFOR0VECQko
+MSA8PCAzKQ0KPiArI2RlZmluZSAgRFBfRVNUSU1BVEVEX0JXX0NIQU5HRUQJCQkoMSA8PCAyKQ0K
+PiArI2RlZmluZSAgRFBfQldfUkVRVUVTVF9TVUNDRUVERUQJCQkoMSA8PCAxKQ0KPiArI2RlZmlu
+ZSAgRFBfQldfUkVRVUVTVF9GQUlMRUQJCQkJKDEgPDwgMCkNCj4gKw0KPiArI2RlZmluZSBEUF9U
+VU5ORUxJTkdfTUFYX0xJTktfUkFURQkJCTB4ZTAwMjgNCj4gKw0KPiArI2RlZmluZSBEUF9UVU5O
+RUxJTkdfTUFYX0xBTkVfQ09VTlQJCQkweGUwMDI5DQo+ICsjZGVmaW5lICBEUF9UVU5ORUxJTkdf
+TUFYX0xBTkVfQ09VTlRfTUFTSwkJMHgxZg0KPiArDQo+ICsjZGVmaW5lIERQX0RQVFhfQldfQUxM
+T0NBVElPTl9NT0RFX0NPTlRST0wJCTB4ZTAwMzANCj4gKyNkZWZpbmUgIERQX0RJU1BMQVlfRFJJ
+VkVSX0JXX0FMTE9DQVRJT05fTU9ERV9FTkFCTEUJKDEgPDwNCj4gNykNCj4gKyNkZWZpbmUgIERQ
+X1VOTUFTS19CV19BTExPQ0FUSU9OX0lSUQkJCSgxIDw8IDYpDQo+ICsNCj4gKyNkZWZpbmUgRFBf
+UkVRVUVTVF9CVwkJCQkJMHhlMDAzMQ0KPiArI2RlZmluZSAgTUFYX0RQX1JFUVVFU1RfQlcJCQkJ
+MjU1DQo+ICsNCj4gIC8qIExUVFBSOiBMaW5rIFRyYWluaW5nIChMVCktdHVuYWJsZSBQSFkgUmVw
+ZWF0ZXJzICovDQo+ICAjZGVmaW5lIERQX0xUX1RVTkFCTEVfUEhZX1JFUEVBVEVSX0ZJRUxEX0RB
+VEFfU1RSVUNUVVJFX1JFVg0KPiAweGYwMDAwIC8qIDEuMyAqLw0KPiAgI2RlZmluZSBEUF9NQVhf
+TElOS19SQVRFX1BIWV9SRVBFQVRFUgkJCSAgICAweGYwMDAxIC8qDQo+IDEuNGEgKi8NCj4gZGlm
+ZiAtLWdpdCBhL2luY2x1ZGUvZHJtL2Rpc3BsYXkvZHJtX2RwX3R1bm5lbC5oDQo+IGIvaW5jbHVk
+ZS9kcm0vZGlzcGxheS9kcm1fZHBfdHVubmVsLmgNCj4gbmV3IGZpbGUgbW9kZSAxMDA2NDQNCj4g
+aW5kZXggMDAwMDAwMDAwMDAwMC4uNDc2MjUyMDIxZjE1Yw0KPiAtLS0gL2Rldi9udWxsDQo+ICsr
+KyBiL2luY2x1ZGUvZHJtL2Rpc3BsYXkvZHJtX2RwX3R1bm5lbC5oDQo+IEBAIC0wLDAgKzEsMjQ4
+IEBADQo+ICsvKiBTUERYLUxpY2Vuc2UtSWRlbnRpZmllcjogTUlUICovDQo+ICsvKg0KPiArICog
+Q29weXJpZ2h0IMKpIDIwMjMgSW50ZWwgQ29ycG9yYXRpb24NCj4gKyAqLw0KPiArDQo+ICsjaWZu
+ZGVmIF9fRFJNX0RQX1RVTk5FTF9IX18NCj4gKyNkZWZpbmUgX19EUk1fRFBfVFVOTkVMX0hfXw0K
+PiArDQo+ICsjaW5jbHVkZSA8bGludXgvZXJyLmg+DQo+ICsjaW5jbHVkZSA8bGludXgvZXJybm8u
+aD4NCj4gKyNpbmNsdWRlIDxsaW51eC90eXBlcy5oPg0KPiArDQo+ICtzdHJ1Y3QgZHJtX2RwX2F1
+eDsNCj4gKw0KPiArc3RydWN0IGRybV9kZXZpY2U7DQo+ICsNCj4gK3N0cnVjdCBkcm1fYXRvbWlj
+X3N0YXRlOw0KPiArc3RydWN0IGRybV9kcF90dW5uZWxfbWdyOw0KPiArc3RydWN0IGRybV9kcF90
+dW5uZWxfc3RhdGU7DQo+ICsNCj4gK3N0cnVjdCByZWZfdHJhY2tlcjsNCj4gKw0KPiArc3RydWN0
+IGRybV9kcF90dW5uZWxfcmVmIHsNCj4gKwlzdHJ1Y3QgZHJtX2RwX3R1bm5lbCAqdHVubmVsOw0K
+PiArCXN0cnVjdCByZWZfdHJhY2tlciAqdHJhY2tlcjsNCj4gK307DQo+ICsNCj4gKyNpZmRlZiBD
+T05GSUdfRFJNX0RJU1BMQVlfRFBfVFVOTkVMDQo+ICsNCj4gK3N0cnVjdCBkcm1fZHBfdHVubmVs
+ICoNCj4gK2RybV9kcF90dW5uZWxfZ2V0KHN0cnVjdCBkcm1fZHBfdHVubmVsICp0dW5uZWwsIHN0
+cnVjdCByZWZfdHJhY2tlcg0KPiAqKnRyYWNrZXIpOw0KPiArDQo+ICt2b2lkDQo+ICtkcm1fZHBf
+dHVubmVsX3B1dChzdHJ1Y3QgZHJtX2RwX3R1bm5lbCAqdHVubmVsLCBzdHJ1Y3QgcmVmX3RyYWNr
+ZXINCj4gKip0cmFja2VyKTsNCj4gKw0KPiArc3RhdGljIGlubGluZSB2b2lkIGRybV9kcF90dW5u
+ZWxfcmVmX2dldChzdHJ1Y3QgZHJtX2RwX3R1bm5lbCAqdHVubmVsLA0KPiArCQkJCQkgc3RydWN0
+IGRybV9kcF90dW5uZWxfcmVmICp0dW5uZWxfcmVmKQ0KPiArew0KPiArCXR1bm5lbF9yZWYtPnR1
+bm5lbCA9IGRybV9kcF90dW5uZWxfZ2V0KHR1bm5lbCwgJnR1bm5lbF9yZWYtPnRyYWNrZXIpOw0K
+PiArfQ0KPiArDQo+ICtzdGF0aWMgaW5saW5lIHZvaWQgZHJtX2RwX3R1bm5lbF9yZWZfcHV0KHN0
+cnVjdCBkcm1fZHBfdHVubmVsX3JlZiAqdHVubmVsX3JlZikNCj4gK3sNCj4gKwlkcm1fZHBfdHVu
+bmVsX3B1dCh0dW5uZWxfcmVmLT50dW5uZWwsICZ0dW5uZWxfcmVmLT50cmFja2VyKTsNCj4gK30N
+Cj4gKw0KPiArc3RydWN0IGRybV9kcF90dW5uZWwgKg0KPiArZHJtX2RwX3R1bm5lbF9kZXRlY3Qo
+c3RydWN0IGRybV9kcF90dW5uZWxfbWdyICptZ3IsDQo+ICsJCSAgICAgc3RydWN0IGRybV9kcF9h
+dXggKmF1eCk7DQo+ICtpbnQgZHJtX2RwX3R1bm5lbF9kZXN0cm95KHN0cnVjdCBkcm1fZHBfdHVu
+bmVsICp0dW5uZWwpOw0KPiArDQo+ICtpbnQgZHJtX2RwX3R1bm5lbF9lbmFibGVfYndfYWxsb2Mo
+c3RydWN0IGRybV9kcF90dW5uZWwgKnR1bm5lbCk7DQo+ICtpbnQgZHJtX2RwX3R1bm5lbF9kaXNh
+YmxlX2J3X2FsbG9jKHN0cnVjdCBkcm1fZHBfdHVubmVsICp0dW5uZWwpOw0KPiArYm9vbCBkcm1f
+ZHBfdHVubmVsX2J3X2FsbG9jX2lzX2VuYWJsZWQoY29uc3Qgc3RydWN0IGRybV9kcF90dW5uZWwN
+Cj4gKnR1bm5lbCk7DQo+ICtpbnQgZHJtX2RwX3R1bm5lbF9hbGxvY19idyhzdHJ1Y3QgZHJtX2Rw
+X3R1bm5lbCAqdHVubmVsLCBpbnQgYncpOw0KPiAraW50IGRybV9kcF90dW5uZWxfZ2V0X2FsbG9j
+YXRlZF9idyhzdHJ1Y3QgZHJtX2RwX3R1bm5lbCAqdHVubmVsKTsNCj4gK2ludCBkcm1fZHBfdHVu
+bmVsX3VwZGF0ZV9zdGF0ZShzdHJ1Y3QgZHJtX2RwX3R1bm5lbCAqdHVubmVsKTsNCj4gKw0KPiAr
+dm9pZCBkcm1fZHBfdHVubmVsX3NldF9pb19lcnJvcihzdHJ1Y3QgZHJtX2RwX3R1bm5lbCAqdHVu
+bmVsKTsNCj4gKw0KPiAraW50IGRybV9kcF90dW5uZWxfaGFuZGxlX2lycShzdHJ1Y3QgZHJtX2Rw
+X3R1bm5lbF9tZ3IgKm1nciwNCj4gKwkJCSAgICAgc3RydWN0IGRybV9kcF9hdXggKmF1eCk7DQo+
+ICsNCj4gK2ludCBkcm1fZHBfdHVubmVsX21heF9kcHJ4X3JhdGUoY29uc3Qgc3RydWN0IGRybV9k
+cF90dW5uZWwgKnR1bm5lbCk7DQo+ICtpbnQgZHJtX2RwX3R1bm5lbF9tYXhfZHByeF9sYW5lX2Nv
+dW50KGNvbnN0IHN0cnVjdCBkcm1fZHBfdHVubmVsICp0dW5uZWwpOw0KPiAraW50IGRybV9kcF90
+dW5uZWxfYXZhaWxhYmxlX2J3KGNvbnN0IHN0cnVjdCBkcm1fZHBfdHVubmVsICp0dW5uZWwpOw0K
+PiArDQo+ICtjb25zdCBjaGFyICpkcm1fZHBfdHVubmVsX25hbWUoY29uc3Qgc3RydWN0IGRybV9k
+cF90dW5uZWwgKnR1bm5lbCk7DQo+ICsNCj4gK3N0cnVjdCBkcm1fZHBfdHVubmVsX3N0YXRlICoN
+Cj4gK2RybV9kcF90dW5uZWxfYXRvbWljX2dldF9zdGF0ZShzdHJ1Y3QgZHJtX2F0b21pY19zdGF0
+ZSAqc3RhdGUsDQo+ICsJCQkgICAgICAgc3RydWN0IGRybV9kcF90dW5uZWwgKnR1bm5lbCk7DQo+
+ICsNCj4gK3N0cnVjdCBkcm1fZHBfdHVubmVsX3N0YXRlICoNCj4gK2RybV9kcF90dW5uZWxfYXRv
+bWljX2dldF9vbGRfc3RhdGUoc3RydWN0IGRybV9hdG9taWNfc3RhdGUgKnN0YXRlLA0KPiArCQkJ
+CSAgIGNvbnN0IHN0cnVjdCBkcm1fZHBfdHVubmVsICp0dW5uZWwpOw0KPiArDQo+ICtzdHJ1Y3Qg
+ZHJtX2RwX3R1bm5lbF9zdGF0ZSAqDQo+ICtkcm1fZHBfdHVubmVsX2F0b21pY19nZXRfbmV3X3N0
+YXRlKHN0cnVjdCBkcm1fYXRvbWljX3N0YXRlICpzdGF0ZSwNCj4gKwkJCQkgICBjb25zdCBzdHJ1
+Y3QgZHJtX2RwX3R1bm5lbCAqdHVubmVsKTsNCj4gKw0KPiAraW50IGRybV9kcF90dW5uZWxfYXRv
+bWljX3NldF9zdHJlYW1fYncoc3RydWN0IGRybV9hdG9taWNfc3RhdGUgKnN0YXRlLA0KPiArCQkJ
+CSAgICAgICBzdHJ1Y3QgZHJtX2RwX3R1bm5lbCAqdHVubmVsLA0KPiArCQkJCSAgICAgICB1OCBz
+dHJlYW1faWQsIGludCBidyk7DQo+ICtpbnQgZHJtX2RwX3R1bm5lbF9hdG9taWNfZ2V0X2dyb3Vw
+X3N0cmVhbXNfaW5fc3RhdGUoc3RydWN0DQo+IGRybV9hdG9taWNfc3RhdGUgKnN0YXRlLA0KPiAr
+CQkJCQkJICAgIGNvbnN0IHN0cnVjdCBkcm1fZHBfdHVubmVsDQo+ICp0dW5uZWwsDQo+ICsJCQkJ
+CQkgICAgdTMyICpzdHJlYW1fbWFzayk7DQo+ICsNCj4gK2ludCBkcm1fZHBfdHVubmVsX2F0b21p
+Y19jaGVja19zdHJlYW1fYndzKHN0cnVjdCBkcm1fYXRvbWljX3N0YXRlICpzdGF0ZSwNCj4gKwkJ
+CQkJICB1MzIgKmZhaWxlZF9zdHJlYW1fbWFzayk7DQo+ICsNCj4gK2ludCBkcm1fZHBfdHVubmVs
+X2F0b21pY19nZXRfcmVxdWlyZWRfYncoY29uc3Qgc3RydWN0IGRybV9kcF90dW5uZWxfc3RhdGUN
+Cj4gKnR1bm5lbF9zdGF0ZSk7DQo+ICsNCj4gK3N0cnVjdCBkcm1fZHBfdHVubmVsX21nciAqDQo+
+ICtkcm1fZHBfdHVubmVsX21ncl9jcmVhdGUoc3RydWN0IGRybV9kZXZpY2UgKmRldiwgaW50IG1h
+eF9ncm91cF9jb3VudCk7DQo+ICt2b2lkIGRybV9kcF90dW5uZWxfbWdyX2Rlc3Ryb3koc3RydWN0
+IGRybV9kcF90dW5uZWxfbWdyICptZ3IpOw0KPiArDQo+ICsjZWxzZQ0KPiArDQo+ICtzdGF0aWMg
+aW5saW5lIHN0cnVjdCBkcm1fZHBfdHVubmVsICoNCj4gK2RybV9kcF90dW5uZWxfZ2V0KHN0cnVj
+dCBkcm1fZHBfdHVubmVsICp0dW5uZWwsIHN0cnVjdCByZWZfdHJhY2tlciAqKnRyYWNrZXIpDQo+
+ICt7DQo+ICsJcmV0dXJuIE5VTEw7DQo+ICt9DQo+ICsNCj4gK3N0YXRpYyBpbmxpbmUgdm9pZA0K
+PiArZHJtX2RwX3R1bm5lbF9wdXQoc3RydWN0IGRybV9kcF90dW5uZWwgKnR1bm5lbCwgc3RydWN0
+IHJlZl90cmFja2VyICoqdHJhY2tlcikNCj4ge30NCj4gKw0KPiArc3RhdGljIGlubGluZSB2b2lk
+IGRybV9kcF90dW5uZWxfcmVmX2dldChzdHJ1Y3QgZHJtX2RwX3R1bm5lbCAqdHVubmVsLA0KPiAr
+CQkJCQkgc3RydWN0IGRybV9kcF90dW5uZWxfcmVmICp0dW5uZWxfcmVmKQ0KPiB7fQ0KPiArDQo+
+ICtzdGF0aWMgaW5saW5lIHZvaWQgZHJtX2RwX3R1bm5lbF9yZWZfcHV0KHN0cnVjdCBkcm1fZHBf
+dHVubmVsX3JlZiAqdHVubmVsX3JlZikNCj4ge30NCj4gKw0KPiArc3RhdGljIGlubGluZSBzdHJ1
+Y3QgZHJtX2RwX3R1bm5lbCAqDQo+ICtkcm1fZHBfdHVubmVsX2RldGVjdChzdHJ1Y3QgZHJtX2Rw
+X3R1bm5lbF9tZ3IgKm1nciwNCj4gKwkJICAgICBzdHJ1Y3QgZHJtX2RwX2F1eCAqYXV4KQ0KPiAr
+ew0KPiArCXJldHVybiBFUlJfUFRSKC1FT1BOT1RTVVBQKTsNCj4gK30NCj4gKw0KPiArc3RhdGlj
+IGlubGluZSBpbnQNCj4gK2RybV9kcF90dW5uZWxfZGVzdHJveShzdHJ1Y3QgZHJtX2RwX3R1bm5l
+bCAqdHVubmVsKQ0KPiArew0KPiArCXJldHVybiAwOw0KPiArfQ0KPiArDQo+ICtzdGF0aWMgaW5s
+aW5lIGludCBkcm1fZHBfdHVubmVsX2VuYWJsZV9id19hbGxvYyhzdHJ1Y3QgZHJtX2RwX3R1bm5l
+bCAqdHVubmVsKQ0KPiArew0KPiArCXJldHVybiAtRU9QTk9UU1VQUDsNCj4gK30NCj4gKw0KPiAr
+c3RhdGljIGlubGluZSBpbnQgZHJtX2RwX3R1bm5lbF9kaXNhYmxlX2J3X2FsbG9jKHN0cnVjdCBk
+cm1fZHBfdHVubmVsDQo+ICp0dW5uZWwpDQo+ICt7DQo+ICsJcmV0dXJuIC1FT1BOT1RTVVBQOw0K
+PiArfQ0KPiArDQo+ICtzdGF0aWMgaW5saW5lIGJvb2wgZHJtX2RwX3R1bm5lbF9id19hbGxvY19p
+c19lbmFibGVkKGNvbnN0IHN0cnVjdA0KPiBkcm1fZHBfdHVubmVsICp0dW5uZWwpDQo+ICt7DQo+
+ICsJcmV0dXJuIGZhbHNlOw0KPiArfQ0KPiArDQo+ICtzdGF0aWMgaW5saW5lIGludA0KPiArZHJt
+X2RwX3R1bm5lbF9hbGxvY19idyhzdHJ1Y3QgZHJtX2RwX3R1bm5lbCAqdHVubmVsLCBpbnQgYncp
+DQo+ICt7DQo+ICsJcmV0dXJuIC1FT1BOT1RTVVBQOw0KPiArfQ0KPiArDQo+ICtzdGF0aWMgaW5s
+aW5lIGludA0KPiArZHJtX2RwX3R1bm5lbF9nZXRfYWxsb2NhdGVkX2J3KHN0cnVjdCBkcm1fZHBf
+dHVubmVsICp0dW5uZWwpDQo+ICt7DQo+ICsJcmV0dXJuIC0xOw0KPiArfQ0KPiArDQo+ICtzdGF0
+aWMgaW5saW5lIGludA0KPiArZHJtX2RwX3R1bm5lbF91cGRhdGVfc3RhdGUoc3RydWN0IGRybV9k
+cF90dW5uZWwgKnR1bm5lbCkNCj4gK3sNCj4gKwlyZXR1cm4gLUVPUE5PVFNVUFA7DQo+ICt9DQo+
+ICsNCj4gK3N0YXRpYyBpbmxpbmUgdm9pZCBkcm1fZHBfdHVubmVsX3NldF9pb19lcnJvcihzdHJ1
+Y3QgZHJtX2RwX3R1bm5lbCAqdHVubmVsKSB7fQ0KPiArDQo+ICtzdGF0aWMgaW5saW5lIGludA0K
+PiArZHJtX2RwX3R1bm5lbF9oYW5kbGVfaXJxKHN0cnVjdCBkcm1fZHBfdHVubmVsX21nciAqbWdy
+LA0KPiArCQkJIHN0cnVjdCBkcm1fZHBfYXV4ICphdXgpDQo+ICt7DQo+ICsJcmV0dXJuIC1FT1BO
+T1RTVVBQOw0KPiArfQ0KPiArDQo+ICtzdGF0aWMgaW5saW5lIGludA0KPiArZHJtX2RwX3R1bm5l
+bF9tYXhfZHByeF9yYXRlKGNvbnN0IHN0cnVjdCBkcm1fZHBfdHVubmVsICp0dW5uZWwpDQo+ICt7
+DQo+ICsJcmV0dXJuIDA7DQo+ICt9DQo+ICsNCj4gK3N0YXRpYyBpbmxpbmUgaW50DQo+ICtkcm1f
+ZHBfdHVubmVsX21heF9kcHJ4X2xhbmVfY291bnQoY29uc3Qgc3RydWN0IGRybV9kcF90dW5uZWwg
+KnR1bm5lbCkNCj4gK3sNCj4gKwlyZXR1cm4gMDsNCj4gK30NCj4gKw0KPiArc3RhdGljIGlubGlu
+ZSBpbnQNCj4gK2RybV9kcF90dW5uZWxfYXZhaWxhYmxlX2J3KGNvbnN0IHN0cnVjdCBkcm1fZHBf
+dHVubmVsICp0dW5uZWwpDQo+ICt7DQo+ICsJcmV0dXJuIC0xOw0KPiArfQ0KPiArDQo+ICtzdGF0
+aWMgaW5saW5lIGNvbnN0IGNoYXIgKg0KPiArZHJtX2RwX3R1bm5lbF9uYW1lKGNvbnN0IHN0cnVj
+dCBkcm1fZHBfdHVubmVsICp0dW5uZWwpDQo+ICt7DQo+ICsJcmV0dXJuIE5VTEw7DQo+ICt9DQo+
+ICsNCj4gK3N0YXRpYyBpbmxpbmUgc3RydWN0IGRybV9kcF90dW5uZWxfc3RhdGUgKg0KPiArZHJt
+X2RwX3R1bm5lbF9hdG9taWNfZ2V0X3N0YXRlKHN0cnVjdCBkcm1fYXRvbWljX3N0YXRlICpzdGF0
+ZSwNCj4gKwkJCSAgICAgICBzdHJ1Y3QgZHJtX2RwX3R1bm5lbCAqdHVubmVsKQ0KPiArew0KPiAr
+CXJldHVybiBFUlJfUFRSKC1FT1BOT1RTVVBQKTsNCj4gK30NCj4gKw0KPiArc3RhdGljIGlubGlu
+ZSBzdHJ1Y3QgZHJtX2RwX3R1bm5lbF9zdGF0ZSAqDQo+ICtkcm1fZHBfdHVubmVsX2F0b21pY19n
+ZXRfbmV3X3N0YXRlKHN0cnVjdCBkcm1fYXRvbWljX3N0YXRlICpzdGF0ZSwNCj4gKwkJCQkgICBj
+b25zdCBzdHJ1Y3QgZHJtX2RwX3R1bm5lbCAqdHVubmVsKQ0KPiArew0KPiArCXJldHVybiBFUlJf
+UFRSKC1FT1BOT1RTVVBQKTsNCj4gK30NCj4gKw0KPiArc3RhdGljIGlubGluZSBpbnQNCj4gK2Ry
+bV9kcF90dW5uZWxfYXRvbWljX3NldF9zdHJlYW1fYncoc3RydWN0IGRybV9hdG9taWNfc3RhdGUg
+KnN0YXRlLA0KPiArCQkJCSAgIHN0cnVjdCBkcm1fZHBfdHVubmVsICp0dW5uZWwsDQo+ICsJCQkJ
+ICAgdTggc3RyZWFtX2lkLCBpbnQgYncpDQo+ICt7DQo+ICsJcmV0dXJuIC1FT1BOT1RTVVBQOw0K
+PiArfQ0KPiArDQo+ICtzdGF0aWMgaW5saW5lIGludA0KPiArZHJtX2RwX3R1bm5lbF9hdG9taWNf
+Z2V0X2dyb3VwX3N0cmVhbXNfaW5fc3RhdGUoc3RydWN0IGRybV9hdG9taWNfc3RhdGUNCj4gKnN0
+YXRlLA0KPiArCQkJCQkJY29uc3Qgc3RydWN0IGRybV9kcF90dW5uZWwNCj4gKnR1bm5lbCwNCj4g
+KwkJCQkJCXUzMiAqc3RyZWFtX21hc2spDQo+ICt7DQo+ICsJcmV0dXJuIC1FT1BOT1RTVVBQOw0K
+PiArfQ0KPiArDQo+ICtzdGF0aWMgaW5saW5lIGludA0KPiArZHJtX2RwX3R1bm5lbF9hdG9taWNf
+Y2hlY2tfc3RyZWFtX2J3cyhzdHJ1Y3QgZHJtX2F0b21pY19zdGF0ZSAqc3RhdGUsDQo+ICsJCQkJ
+ICAgICAgdTMyICpmYWlsZWRfc3RyZWFtX21hc2spDQo+ICt7DQo+ICsJcmV0dXJuIC1FT1BOT1RT
+VVBQOw0KPiArfQ0KPiArDQo+ICtzdGF0aWMgaW5saW5lIGludA0KPiArZHJtX2RwX3R1bm5lbF9h
+dG9taWNfZ2V0X3JlcXVpcmVkX2J3KGNvbnN0IHN0cnVjdCBkcm1fZHBfdHVubmVsX3N0YXRlDQo+
+ICp0dW5uZWxfc3RhdGUpDQo+ICt7DQo+ICsJcmV0dXJuIDA7DQo+ICt9DQo+ICsNCj4gK3N0YXRp
+YyBpbmxpbmUgc3RydWN0IGRybV9kcF90dW5uZWxfbWdyICoNCj4gK2RybV9kcF90dW5uZWxfbWdy
+X2NyZWF0ZShzdHJ1Y3QgZHJtX2RldmljZSAqZGV2LCBpbnQgbWF4X2dyb3VwX2NvdW50KQ0KPiAr
+ew0KPiArCXJldHVybiBFUlJfUFRSKC1FT1BOT1RTVVBQKTsNCj4gK30NCj4gKw0KPiArc3RhdGlj
+IGlubGluZQ0KPiArdm9pZCBkcm1fZHBfdHVubmVsX21ncl9kZXN0cm95KHN0cnVjdCBkcm1fZHBf
+dHVubmVsX21nciAqbWdyKSB7fQ0KPiArDQo+ICsNCj4gKyNlbmRpZiAvKiBDT05GSUdfRFJNX0RJ
+U1BMQVlfRFBfVFVOTkVMICovDQo+ICsNCj4gKyNlbmRpZiAvKiBfX0RSTV9EUF9UVU5ORUxfSF9f
+ICovDQo+IC0tDQo+IDIuMzkuMg0KDQo=
