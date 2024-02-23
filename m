@@ -2,58 +2,59 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 26C82861E8F
-	for <lists+intel-gfx@lfdr.de>; Fri, 23 Feb 2024 22:11:55 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 75D7B861EF5
+	for <lists+intel-gfx@lfdr.de>; Fri, 23 Feb 2024 22:25:39 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A5B0710EABC;
-	Fri, 23 Feb 2024 21:11:51 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DA65210ECDF;
+	Fri, 23 Feb 2024 21:25:37 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="dOh99ePS";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="VbBJZHvj";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 307F010EABC;
- Fri, 23 Feb 2024 21:11:49 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 75DE110ECDF;
+ Fri, 23 Feb 2024 21:25:36 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1708722709; x=1740258709;
+ t=1708723536; x=1740259536;
  h=date:from:to:cc:subject:message-id:references:
  mime-version:content-transfer-encoding:in-reply-to;
- bh=HzPhcv2vG2lhNTLh5/3hinth1a3oFTr5/HRHrlTrvRg=;
- b=dOh99ePSjN7QpK71HlLIjp7EE75xL7sBYvKmgf2//u628bTH/Q2+/URK
- Wu+NybnbRmxKyemT81WqU6WERzyjDt7LWn8YveEY97o6yiCyn1A1KUR6w
- nTCUQzSM+cirZ1RA2AvrYTyjWX44euLY63UAtxyJ9z8vQ9rMCKszUmSnG
- J0gQc7d1qpz2vdgY/OGWowvVgKbGSUtp55VuWtkZvRqq1qKVMtLAWrUck
- ULYfJ9kEdf45h2igaEGhx85LiZm4AMQN3SWdsBOBW38p5ocmz2h3Py5Cq
- 4sbA1lsblDrhqRwF/xtp/V+Y1RuN2UdD5KG+gJmLWudVBwp92Pi7yKVtA A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10993"; a="6006043"
+ bh=TspY4Q5sDhjnmmsVYFb9IH1hqnhWjR7pTCgdCJhKRYs=;
+ b=VbBJZHvj7+sMiVtECLKp5FCioymiFLGYcpQuI0SS2TNRVNkJ1VF1Ct2u
+ UlNTjdDwl1F9kZs3MeXuT59eOltOW4viprBOTUb7MbjiZqPHKLB/KJNSA
+ tr/3MOSvVCgcuZSWRFMoq/pn8FWTfoxZ3acfyiu3bMOW6+Vk8WlCSvxJ9
+ aSWHeoyqmR4yCHO5zoItV/Nwws4Hsl5zPoarWHxRHXbSfBplB3JLW98Du
+ vA3bestt3k/a+umZPpH6gBtQC6d4sM4rF233Tk5kEoaUzlCwYTNy5FsLG
+ nzS1/t29Q8ufxi1aMCu26/AzAWd1C9rYh7Bel3AMT02g5hQSh5HDoSVfl w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10993"; a="6007277"
 X-IronPort-AV: E=Sophos;i="6.06,180,1705392000"; 
-   d="scan'208";a="6006043"
+   d="scan'208";a="6007277"
 Received: from orsmga001.jf.intel.com ([10.7.209.18])
  by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Feb 2024 13:11:49 -0800
+ 23 Feb 2024 13:25:35 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10993"; a="827767894"
-X-IronPort-AV: E=Sophos;i="6.06,180,1705392000"; d="scan'208";a="827767894"
+X-IronPort-AV: E=McAfee;i="6600,9927,10993"; a="827767898"
+X-IronPort-AV: E=Sophos;i="6.06,180,1705392000"; d="scan'208";a="827767898"
 Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.74])
- by orsmga001.jf.intel.com with SMTP; 23 Feb 2024 13:11:45 -0800
+ by orsmga001.jf.intel.com with SMTP; 23 Feb 2024 13:25:32 -0800
 Received: by stinkbox (sSMTP sendmail emulation);
- Fri, 23 Feb 2024 23:11:45 +0200
-Date: Fri, 23 Feb 2024 23:11:45 +0200
+ Fri, 23 Feb 2024 23:25:32 +0200
+Date: Fri, 23 Feb 2024 23:25:32 +0200
 From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
 To: Imre Deak <imre.deak@intel.com>
-Cc: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
-Subject: Re: [PATCH v2 11/21] drm/i915/dp: Add way to get active pipes with
- syncing commits
-Message-ID: <ZdkKEcbbbVUgIOmF@intel.com>
+Cc: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ Uma Shankar <uma.shankar@intel.com>
+Subject: Re: [PATCH v2 16/21] drm/i915/dp: Allocate/free DP tunnel BW in the
+ encoder enable/disable hooks
+Message-ID: <ZdkNTH4cNs5RzMPf@intel.com>
 References: <20240220211841.448846-1-imre.deak@intel.com>
- <20240220211841.448846-12-imre.deak@intel.com>
+ <20240220211841.448846-17-imre.deak@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20240220211841.448846-12-imre.deak@intel.com>
+In-Reply-To: <20240220211841.448846-17-imre.deak@intel.com>
 X-Patchwork-Hint: comment
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -70,141 +71,49 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, Feb 20, 2024 at 11:18:31PM +0200, Imre Deak wrote:
-> Add a way to get the active pipes through a given DP port by syncing
-> against a related pending non-blocking commit. Atm
-> intel_dp_get_active_pipes() will only try to sync a given pipe and if
-> that would block ignore the pipe. A follow-up change enabling the DP
-> tunnel BW allocation mode will need to ensure that all active pipes are
-> returned.
-> 
-> This change will use intel_crtc_state::uapi.commit instead of the
-> corresponding commit in the connector state. This shouldn't make a
-> difference, since the two commit objects match for an active pipe.
-
-There is a slight difference here in that a non-modeset/fastset commit
-will not have the connector inluded in the state and thus
-connector->state.commit will be updated.
-
-I think the original idea of the code was to just skip anything that
-looks like it's already undergoing a full modeset. With this we might
-skip the retrain if there happens to be any kind of commit happening
-on the crtc. Althoguh it seems that the original code is already
-broken in the same way when there's a fastset happening in parallel.
-
-> 
-> A follow-up patchset will remove syncing during TC port reset, which
-> should reset a port/pipe even if syncing against a commit would block.
-> Syncing OTOH is not needed there, since the commit used for the reset
-> implies a sync already. For now add a TODO comment for this.
+On Tue, Feb 20, 2024 at 11:18:36PM +0200, Imre Deak wrote:
+> Allocate and free the DP tunnel BW required by a stream while
+> enabling/disabling the stream during a modeset.
 > 
 > v2:
-> - Add a separate function to try-sync the pipes. (Ville)
+> - Move the allocation up from encoder hooks to
+>   intel_atomic_commit_tail().
+
+Subject should be adjusted to match.
+
 > 
-> Cc: Ville Syrjälä <ville.syrjala@linux.intel.com>
 > Signed-off-by: Imre Deak <imre.deak@intel.com>
+> Reviewed-by: Uma Shankar <uma.shankar@intel.com> (v1)
 > ---
->  drivers/gpu/drm/i915/display/intel_crtc.c | 27 +++++++++++++++++++++++
->  drivers/gpu/drm/i915/display/intel_crtc.h |  1 +
->  drivers/gpu/drm/i915/display/intel_dp.c   |  6 ++---
->  drivers/gpu/drm/i915/display/intel_tc.c   |  7 ++++++
->  4 files changed, 37 insertions(+), 4 deletions(-)
+>  drivers/gpu/drm/i915/display/intel_ddi.c     | 1 +
+>  drivers/gpu/drm/i915/display/intel_display.c | 2 ++
+>  2 files changed, 3 insertions(+)
 > 
-> diff --git a/drivers/gpu/drm/i915/display/intel_crtc.c b/drivers/gpu/drm/i915/display/intel_crtc.c
-> index 25593f6aae7de..17ed2e62cc66a 100644
-> --- a/drivers/gpu/drm/i915/display/intel_crtc.c
-> +++ b/drivers/gpu/drm/i915/display/intel_crtc.c
-> @@ -654,3 +654,30 @@ void intel_pipe_update_end(struct intel_atomic_state *state,
->  out:
->  	intel_psr_unlock(new_crtc_state);
->  }
-> +
-> +/**
-> + * intel_crtc_try_sync_pipes - Try syncing pending commits on a set of pipes
-> + * @i915: i915 device object
-> + * @pipe_mask: Mask of pipes to sync
-> + *
-> + * Try to sync a pending non-blocking commit for the provided pipes in
-> + * @pipe_mask. The commit won't be synced if this would block.
-> + *
-> + * Return a mask of the pipes that got synced or didn't need syncing.
-> + */
-> +u32 intel_crtc_try_sync_pipes(struct drm_i915_private *i915, u32 pipe_mask)
-> +{
-> +	struct intel_crtc *crtc;
-> +	u32 synced = 0;
-> +
-> +	for_each_intel_crtc_in_pipe_mask(&i915->drm, crtc, pipe_mask) {
-> +		const struct intel_crtc_state *crtc_state =
-> +			to_intel_crtc_state(crtc->base.state);
-> +
-> +		if (!crtc_state->uapi.commit ||
-> +		    try_wait_for_completion(&crtc_state->uapi.commit->hw_done))
-> +			synced |= BIT(crtc->pipe);
-> +	}
-> +
-> +	return synced;
-> +}
-> diff --git a/drivers/gpu/drm/i915/display/intel_crtc.h b/drivers/gpu/drm/i915/display/intel_crtc.h
-> index 22d7993d1f0ba..71a5b93166da7 100644
-> --- a/drivers/gpu/drm/i915/display/intel_crtc.h
-> +++ b/drivers/gpu/drm/i915/display/intel_crtc.h
-> @@ -47,5 +47,6 @@ struct intel_crtc *intel_crtc_for_pipe(struct drm_i915_private *i915,
->  void intel_wait_for_vblank_if_active(struct drm_i915_private *i915,
->  				     enum pipe pipe);
->  void intel_crtc_wait_for_next_vblank(struct intel_crtc *crtc);
-> +u32 intel_crtc_try_sync_pipes(struct drm_i915_private *i915, u32 pipe_mask);
+> diff --git a/drivers/gpu/drm/i915/display/intel_ddi.c b/drivers/gpu/drm/i915/display/intel_ddi.c
+> index bea4415902044..ed7301808604d 100644
+> --- a/drivers/gpu/drm/i915/display/intel_ddi.c
+> +++ b/drivers/gpu/drm/i915/display/intel_ddi.c
+> @@ -54,6 +54,7 @@
+>  #include "intel_dp_aux.h"
+>  #include "intel_dp_link_training.h"
+>  #include "intel_dp_mst.h"
+> +#include "intel_dp_tunnel.h"
+>  #include "intel_dpio_phy.h"
+>  #include "intel_dsi.h"
+>  #include "intel_fdi.h"
+> diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
+> index 20647c97e86fa..445efe0087cde 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display.c
+> +++ b/drivers/gpu/drm/i915/display/intel_display.c
+> @@ -7123,6 +7123,8 @@ static void intel_atomic_commit_tail(struct intel_atomic_state *state)
 >  
->  #endif
-> diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
-> index d9e75922ff8f5..d0452d3e534a7 100644
-> --- a/drivers/gpu/drm/i915/display/intel_dp.c
-> +++ b/drivers/gpu/drm/i915/display/intel_dp.c
-> @@ -5048,10 +5048,6 @@ int intel_dp_get_active_pipes(struct intel_dp *intel_dp,
->  		if (!crtc_state->hw.active)
->  			continue;
+>  	intel_commit_modeset_disables(state);
 >  
-> -		if (conn_state->commit &&
-> -		    !try_wait_for_completion(&conn_state->commit->hw_done))
-> -			continue;
-> -
->  		*pipe_mask |= BIT(crtc->pipe);
->  	}
->  	drm_connector_list_iter_end(&conn_iter);
-> @@ -5091,6 +5087,8 @@ int intel_dp_retrain_link(struct intel_encoder *encoder,
->  	if (ret)
->  		return ret;
->  
-> +	pipe_mask &= intel_crtc_try_sync_pipes(dev_priv, pipe_mask);
+> +	intel_dp_tunnel_atomic_alloc_bw(state);
 > +
->  	if (pipe_mask == 0)
->  		return 0;
->  
-> diff --git a/drivers/gpu/drm/i915/display/intel_tc.c b/drivers/gpu/drm/i915/display/intel_tc.c
-> index 6b374d481cd9e..14d17903a81f5 100644
-> --- a/drivers/gpu/drm/i915/display/intel_tc.c
-> +++ b/drivers/gpu/drm/i915/display/intel_tc.c
-> @@ -7,6 +7,7 @@
->  #include "i915_reg.h"
->  #include "intel_atomic.h"
->  #include "intel_cx0_phy_regs.h"
-> +#include "intel_crtc.h"
->  #include "intel_ddi.h"
->  #include "intel_de.h"
->  #include "intel_display.h"
-> @@ -1663,6 +1664,12 @@ static int reset_link_commit(struct intel_tc_port *tc,
->  	if (ret)
->  		return ret;
->  
-> +	/*
-> +	 * TODO: remove the following, since an output must be reset
-> +	 * even if we had to wait for a non-blocking commit on a pipe.
-> +	 */
-> +	pipe_mask &= intel_crtc_try_sync_pipes(i915, pipe_mask);
-> +
->  	if (!pipe_mask)
->  		return 0;
->  
+>  	/* FIXME: Eventually get rid of our crtc->config pointer */
+>  	for_each_new_intel_crtc_in_state(state, crtc, new_crtc_state, i)
+>  		crtc->config = new_crtc_state;
 > -- 
 > 2.39.2
 
