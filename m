@@ -2,63 +2,90 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id C0278861D26
-	for <lists+intel-gfx@lfdr.de>; Fri, 23 Feb 2024 21:02:02 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 705F8861D58
+	for <lists+intel-gfx@lfdr.de>; Fri, 23 Feb 2024 21:18:30 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A6CA010ECB4;
-	Fri, 23 Feb 2024 20:01:57 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C890910EAC5;
+	Fri, 23 Feb 2024 20:18:28 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=quicinc.com header.i=@quicinc.com header.b="mbdSanzn";
+	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from sin.source.kernel.org (sin.source.kernel.org [145.40.73.55])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DA35110ECAE;
- Fri, 23 Feb 2024 20:01:55 +0000 (UTC)
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
- by sin.source.kernel.org (Postfix) with ESMTP id 8B5A9CE2E7B;
- Fri, 23 Feb 2024 20:01:52 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 84C71C433F1;
- Fri, 23 Feb 2024 20:01:46 +0000 (UTC)
-Date: Fri, 23 Feb 2024 15:03:39 -0500
-From: Steven Rostedt <rostedt@goodmis.org>
-To: Kent Overstreet <kent.overstreet@linux.dev>
-Cc: Jeff Johnson <quic_jjohnson@quicinc.com>, LKML
- <linux-kernel@vger.kernel.org>, Linux Trace Kernel
- <linux-trace-kernel@vger.kernel.org>, Masami Hiramatsu
- <mhiramat@kernel.org>, Mathieu Desnoyers <mathieu.desnoyers@efficios.com>,
- Linus Torvalds <torvalds@linux-foundation.org>,
- linuxppc-dev@lists.ozlabs.org, kvm@vger.kernel.org,
- linux-block@vger.kernel.org, linux-cxl@vger.kernel.org,
- linux-media@vger.kernel.org, dri-devel@lists.freedesktop.org,
- amd-gfx@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
- intel-xe@lists.freedesktop.org, linux-arm-msm@vger.kernel.org,
- freedreno@lists.freedesktop.org, virtualization@lists.linux.dev,
- linux-rdma@vger.kernel.org, linux-pm@vger.kernel.org,
- iommu@lists.linux.dev, linux-tegra@vger.kernel.org, netdev@vger.kernel.org,
- linux-hyperv@vger.kernel.org, ath10k@lists.infradead.org,
- linux-wireless@vger.kernel.org, ath11k@lists.infradead.org,
- ath12k@lists.infradead.org, brcm80211@lists.linux.dev,
- brcm80211-dev-list.pdl@broadcom.com, linux-usb@vger.kernel.org,
- linux-bcachefs@vger.kernel.org, linux-nfs@vger.kernel.org,
- ocfs2-devel@lists.linux.dev, linux-cifs@vger.kernel.org,
- linux-xfs@vger.kernel.org, linux-edac@vger.kernel.org,
- selinux@vger.kernel.org, linux-btrfs@vger.kernel.org,
- linux-erofs@lists.ozlabs.org, linux-f2fs-devel@lists.sourceforge.net,
- linux-hwmon@vger.kernel.org, io-uring@vger.kernel.org,
- linux-sound@vger.kernel.org, bpf@vger.kernel.org,
- linux-wpan@vger.kernel.org, dev@openvswitch.org,
- linux-s390@vger.kernel.org, tipc-discussion@lists.sourceforge.net, Julia
- Lawall <Julia.Lawall@inria.fr>
-Subject: Re: [FYI][PATCH] tracing/treewide: Remove second parameter of
- __assign_str()
-Message-ID: <20240223150339.2249bc95@gandalf.local.home>
-In-Reply-To: <qsksxrdinia3cxr52tfe4p3pafsy4biktnodlfn4vyzud73p2j@6ycnhrhzwsv6>
-References: <20240223125634.2888c973@gandalf.local.home>
- <0aed6cf2-17ae-45aa-b7ff-03da932ea4e0@quicinc.com>
- <20240223134653.524a5c9e@gandalf.local.home>
- <qsksxrdinia3cxr52tfe4p3pafsy4biktnodlfn4vyzud73p2j@6ycnhrhzwsv6>
-X-Mailer: Claws Mail 3.19.1 (GTK+ 2.24.33; x86_64-pc-linux-gnu)
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com
+ [205.220.168.131])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id F1BF410EAC5;
+ Fri, 23 Feb 2024 20:18:27 +0000 (UTC)
+Received: from pps.filterd (m0279867.ppops.net [127.0.0.1])
+ by mx0a-0031df01.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id
+ 41NDI2PN025134; Fri, 23 Feb 2024 20:18:22 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+ message-id:date:mime-version:subject:to:cc:references:from
+ :in-reply-to:content-type:content-transfer-encoding; s=
+ qcppdkim1; bh=89hJdAAXLVOq727D6HSvbdRIV0DkBLFgy6k3xz3BMtI=; b=mb
+ dSanznJ4cWQv5ZO23SdN+Fdb4eL84SJ86gchWx7BGLvpEDYQdYK5R4Lkc8vBGQ7A
+ 6pQzMr7WwsDFxRKlrfCLbJoybEv3FpirJb1ZgKpfeRcNCi/Wg3vNVBbMCfFzalwo
+ LPYAsZmu0VcsuKYNsYrlWBmk2JOIrgC5LQdLO+07UGJhx3T5PZjAesEaRokZ2HzG
+ yJP1ZzcXyaG9q5CSFs12hxP95C41qPxiZ12Nf9rLePwV6CTUaNrh6dBXxjeI7yeI
+ KQHOD+46cbIcZRCpetDB7ygsiVNagxb7C9auUB9PzhUG+CcwhkDhIIDUtbfRCWHd
+ R6mEAMwj2oZVfnVTEvrg==
+Received: from nalasppmta03.qualcomm.com (Global_NAT1.qualcomm.com
+ [129.46.96.20])
+ by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3wekvet0xu-1
+ (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+ Fri, 23 Feb 2024 20:18:21 +0000 (GMT)
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com
+ [10.47.209.196])
+ by NALASPPMTA03.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 41NKIKc7010274
+ (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+ Fri, 23 Feb 2024 20:18:20 GMT
+Received: from [10.110.76.211] (10.80.80.8) by nalasex01a.na.qualcomm.com
+ (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.40; Fri, 23 Feb
+ 2024 12:18:19 -0800
+Message-ID: <d99eb30f-0047-af0c-13ca-0b3d50494f8c@quicinc.com>
+Date: Fri, 23 Feb 2024 12:18:18 -0800
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.11.0
+Subject: Re: i915 build error on drm-misc-next
+Content-Language: en-US
+To: Rodrigo Vivi <rodrigo.vivi@intel.com>, Dave Airlie <airlied@gmail.com>,
+ Daniel Vetter <daniel@ffwll.ch>
+CC: Jeffrey Hugo <quic_jhugo@quicinc.com>, =?UTF-8?Q?Jouni_H=c3=b6gander?=
+ <jouni.hogander@intel.com>, Maarten Lankhorst
+ <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>,
+ Thomas Zimmermann <tzimmermann@suse.de>, Jani Nikula
+ <jani.nikula@linux.intel.com>, <joonas.lahtinen@linux.intel.com>, "Tvrtko
+ Ursulin" <tvrtko.ursulin@linux.intel.com>,
+ <intel-gfx@lists.freedesktop.org>, <intel-xe@lists.freedesktop.org>,
+ "open list:DRM PANEL DRIVERS" <dri-devel@lists.freedesktop.org>,
+ Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+References: <fe8b2841-cbf0-775e-6e74-50476b652f9f@quicinc.com>
+ <ZdjPRzGLfV7RAEYu@intel.com>
+ <6ee1af5a-413c-1c09-5234-ceb8d8e605ad@quicinc.com>
+ <ZdjzaesUVxF-V5qQ@intel.com>
+From: Abhinav Kumar <quic_abhinavk@quicinc.com>
+In-Reply-To: <ZdjzaesUVxF-V5qQ@intel.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800
+ signatures=585085
+X-Proofpoint-GUID: PuLO46i5sKkCRkvioSKe8wFSUv2zgls-
+X-Proofpoint-ORIG-GUID: PuLO46i5sKkCRkvioSKe8wFSUv2zgls-
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.272,Aquarius:18.0.1011,Hydra:6.0.619,FMLib:17.11.176.26
+ definitions=2024-02-23_06,2024-02-23_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ suspectscore=0 bulkscore=0
+ priorityscore=1501 lowpriorityscore=0 malwarescore=0 adultscore=0
+ impostorscore=0 clxscore=1015 spamscore=0 phishscore=0 mlxlogscore=999
+ mlxscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2402120000 definitions=main-2402230150
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -74,49 +101,96 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, 23 Feb 2024 14:50:49 -0500
-Kent Overstreet <kent.overstreet@linux.dev> wrote:
-
-> Tangentially related though, what would make me really happy is if we
-> could create the string with in the TP__fast_assign() section. I have to
-> have a bunch of annoying wrappers right now because the string length
-> has to be known when we invoke the tracepoint.
-
-You can use __string_len() to determine the string length in the tracepoint
-(which is executed in the TP_fast_assign() section).
-
-My clean up patches will make __assign_str_len() obsolete too (I'm working
-on them now), and you can just use __assign_str().
-
-I noticed that I don't have a string_len example in the sample code and I'm
-actually writing it now.
-
-// cutting out everything else:
-
-TRACE_EVENT(foo_bar,
-
-	TP_PROTO(const char *foo, int bar),
-
-	TP_ARGS(foo, bar),
-
-	TP_STRUCT__entry(
-		__string_len(	lstr,	foo,	bar < strlen(foo) ? bar : strlen(foo) )
-	),
-
-	TP_fast_assign(
-		__assign_str(lstr, foo);
-
-// Note, the above is with my updates, without them, you need to duplicate the logic
-
-//		__assign_str_len(lstr, foo, bar < strlen(foo) ? bar : strlen(foo));
-	),
-
-	TP_printk("%s", __get_str(lstr))
-);
 
 
-The above will allocate "bar < strlen(foo) ? bar : strlen(foo)" size on the
-ring buffer. As the size is already stored, my clean up code uses that
-instead of requiring duplicating the logic again.
+On 2/23/2024 11:35 AM, Rodrigo Vivi wrote:
+> On Fri, Feb 23, 2024 at 09:47:11AM -0800, Abhinav Kumar wrote:
+>> CC Dmitry
+>>
+>> Hi Rodrigo
+>>
+>> On 2/23/2024 9:00 AM, Rodrigo Vivi wrote:
+>>> On Fri, Feb 23, 2024 at 08:50:06AM -0700, Jeffrey Hugo wrote:
+>>>> With the x86_64_defconfig I see the following when building drm-misc-next:
+>>>>
+>>>>     CC      drivers/gpu/drm/i915/display/intel_crt.o
+>>>>     CC      drivers/gpu/drm/i915/display/intel_cx0_phy.o
+>>>>     CC      drivers/gpu/drm/i915/display/intel_ddi.o
+>>>>     CC      drivers/gpu/drm/i915/display/intel_ddi_buf_trans.o
+>>>>     CC      drivers/gpu/drm/i915/display/intel_display_device.o
+>>>>     CC      drivers/gpu/drm/i915/display/intel_display_trace.o
+>>>>     CC      drivers/gpu/drm/i915/display/intel_dkl_phy.o
+>>>>     CC      drivers/gpu/drm/i915/display/intel_dp.o
+>>>>     CC      drivers/gpu/drm/i915/display/intel_dp_aux.o
+>>>>     CC      drivers/gpu/drm/i915/display/intel_dp_aux_backlight.o
+>>>>     CC      drivers/gpu/drm/i915/display/intel_dp_hdcp.o
+>>>>     CC      drivers/gpu/drm/i915/display/intel_dp_link_training.o
+>>>>     CC      drivers/gpu/drm/i915/display/intel_dp_mst.o
+>>>>     CC      drivers/gpu/drm/i915/display/intel_dsi.o
+>>>>     CC      drivers/gpu/drm/i915/display/intel_dsi_dcs_backlight.o
+>>>>     CC      drivers/gpu/drm/i915/display/intel_dsi_vbt.o
+>>>>     CC      drivers/gpu/drm/i915/display/intel_dvo.o
+>>>>     CC      drivers/gpu/drm/i915/display/intel_gmbus.o
+>>>>     CC      drivers/gpu/drm/i915/display/intel_hdmi.o
+>>>>     CC      drivers/gpu/drm/i915/display/intel_lspcon.o
+>>>>     CC      drivers/gpu/drm/i915/display/intel_lvds.o
+>>>>     CC      drivers/gpu/drm/i915/display/intel_panel.o
+>>>>     CC      drivers/gpu/drm/i915/display/intel_pps.o
+>>>> drivers/gpu/drm/i915/display/intel_dp.c: In function
+>>>> ‘intel_write_dp_vsc_sdp’:
+>>>> drivers/gpu/drm/i915/display/intel_dp.c:4232:15: error: implicit declaration
+>>>> of function ‘intel_dp_vsc_sdp_pack’; did you mean ‘drm_dp_vsc_sdp_pack’?
+>>>> [-Werror=implicit-function-declaration]
+>>>>    4232 |         len = intel_dp_vsc_sdp_pack(vsc, &sdp, sizeof(sdp));
+>>>>         |               ^~~~~~~~~~~~~~~~~~~~~
+>>>>         |               drm_dp_vsc_sdp_pack
+>>>>
+>>>> Is this a known issue?
+>>>
+>>> o.O - what a mistery!
+>>>
+>>> it looks that drm-misc-next has only part of the patch:
+>>> 31a5b6ed88c7 ("drm/i915/display: Unify VSC SPD preparation")
+>>>
+>>> without the patch itself...
+>>>
+>>> I couldn't even trace back to understand how the declaration is
+>>> gone from the drm-misc-next...
+>>>
+>>
+>> Looks like the issue here is that the below patch which landed in
+>> drm-misc-next
+>>
+>> https://patchwork.freedesktop.org/patch/579128/?series=130145&rev=1
+>>
+>> was based on top of drm-tip because the intel CI runs on drm-tip and not
+>> drm-misc-next.
+>>
+>> But, https://patchwork.freedesktop.org/patch/572622/ is not present in
+>> drm-misc-next.
+>>
+>> Hence this broke the compilation.
+>>
+>> How would you prefer to fix this? We revert
+>> https://patchwork.freedesktop.org/series/130145/ from drm-misc and land it
+>> through i915 tree and can you provide us a tag from the i915 tree to rebase
+>> our msm-next tree on?
+> 
+> The revert from drm-misc is a possibility, then you squash
+> https://lore.kernel.org/all/20240223191548.392185-1-rodrigo.vivi@intel.com/
+> in and merge it again.
+> 
+> or if drm-misc and drm maintainers are okay we can simply add
+> https://lore.kernel.org/all/20240223191548.392185-1-rodrigo.vivi@intel.com/
+> on top of drm-misc-next
+> 
 
--- Steve
+I am totally fine with this second option. Have given my R-b.
+
+
+> and on any conflict later the resolution is simply deleting this line
+> anyway.
+> 
+>>
+>>>>
+>>>> -Jeff
