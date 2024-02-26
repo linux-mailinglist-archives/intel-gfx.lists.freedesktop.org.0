@@ -2,29 +2,61 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id F3BE28669C3
-	for <lists+intel-gfx@lfdr.de>; Mon, 26 Feb 2024 06:56:04 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id BDDCE8669ED
+	for <lists+intel-gfx@lfdr.de>; Mon, 26 Feb 2024 07:13:30 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 59EC910EE8B;
-	Mon, 26 Feb 2024 05:56:03 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 03CFB10E4E8;
+	Mon, 26 Feb 2024 06:13:28 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Kp9m4xuY";
+	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from 8e613ede5ea5 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1B64110EE8B;
- Mon, 26 Feb 2024 05:56:01 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============7255358846671661767=="
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4A40F10E4E8
+ for <intel-gfx@lists.freedesktop.org>; Mon, 26 Feb 2024 06:13:26 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1708928006; x=1740464006;
+ h=message-id:date:mime-version:cc:subject:to:references:
+ from:in-reply-to:content-transfer-encoding;
+ bh=L85jrdnuvWMYNRaKJflVjhzs3F+SyK8Kz4ffE7SFr9w=;
+ b=Kp9m4xuYdkrg0/IDNA30iempjSDeTWAN4LiyJan9OEYbcG8DzJrOXJRe
+ owsQqNt/rW08GfKLHccGWfw6u7R6cwJiPJXAKeLPrR03TyK1xd7c/+VmI
+ KTvsIHgXk9HVZB+IH5Gu30kyRhrLNAokuI4XsykY7+FQR6u7faLq10+rN
+ BfCnGkoHE+iAcw/DMTfMZC16iFD1wAoPMbgwYYXexhW2fnugDWPlfo01k
+ EjgHiq/pNBaBkVgh5tXfpn/Gr752SLLcmT/7592o6fizIpNOQIfgnmGjc
+ mWSGEWLxzI3Ofifvaf6ywK+S5ZnHg34J2gCEkOpjyw9W+RKBRPT+/Qf+d g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10995"; a="3738235"
+X-IronPort-AV: E=Sophos;i="6.06,185,1705392000"; 
+   d="scan'208";a="3738235"
+Received: from fmviesa005.fm.intel.com ([10.60.135.145])
+ by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 25 Feb 2024 22:13:26 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.06,185,1705392000"; d="scan'208";a="11129742"
+Received: from allen-box.sh.intel.com (HELO [10.239.159.127])
+ ([10.239.159.127])
+ by fmviesa005.fm.intel.com with ESMTP; 25 Feb 2024 22:13:22 -0800
+Message-ID: <b2dac6a4-3916-4a67-b7d9-8f69e5b0eb78@linux.intel.com>
+Date: Mon, 26 Feb 2024 14:07:28 +0800
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Fi=2ECI=2EBAT=3A_success_for_HDCP_MST_Type1_fixes_=28rev?=
- =?utf-8?q?6=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Suraj Kandpal" <suraj.kandpal@intel.com>
-Cc: intel-gfx@lists.freedesktop.org
-Date: Mon, 26 Feb 2024 05:56:01 -0000
-Message-ID: <170892696111.299097.1402886314611539974@8e613ede5ea5>
-X-Patchwork-Hint: ignore
-References: <20240223081453.1576918-2-suraj.kandpal@intel.com>
-In-Reply-To: <20240223081453.1576918-2-suraj.kandpal@intel.com>
+User-Agent: Mozilla Thunderbird
+Cc: baolu.lu@linux.intel.com, Jani Nikula <jani.nikula@linux.intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>, iommu@lists.linux.dev,
+ intel-gfx@lists.freedesktop.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 1/1] iommu/vt-d: Remove INTEL_IOMMU_BROKEN_GFX_WA
+Content-Language: en-US
+To: Joerg Roedel <joro@8bytes.org>, Will Deacon <will@kernel.org>,
+ Robin Murphy <robin.murphy@arm.com>, Jason Gunthorpe <jgg@ziepe.ca>,
+ Kevin Tian <kevin.tian@intel.com>
+References: <20240130060823.57990-1-baolu.lu@linux.intel.com>
+From: Baolu Lu <baolu.lu@linux.intel.com>
+In-Reply-To: <20240130060823.57990-1-baolu.lu@linux.intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -37,159 +69,32 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============7255358846671661767==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+On 1/30/24 2:08 PM, Lu Baolu wrote:
+> Commit 62edf5dc4a524 ("intel-iommu: Restore DMAR_BROKEN_GFX_WA option for
+> broken graphics drivers") was introduced 24 years ago as a temporary
+> workaround for graphics drivers that used physical addresses for DMA and
+> avoided DMA APIs. This workaround was disabled by default.
+> 
+> As 24 years have passed, it is expected that graphics driver developers
+> have migrated their drivers to use kernel DMA APIs. Therefore, this
+> workaround is no longer required and could been removed.
+> 
+> The Intel iommu driver also provides a "igfx_off" option to turn off
+> the DAM translation for the graphic dedicated IOMMU. Hence, there is
+> really no good reason to keep this config option.
+> 
+> Suggested-by: Kevin Tian<kevin.tian@intel.com>
+> Signed-off-by: Lu Baolu<baolu.lu@linux.intel.com>
+> Reviewed-by: Kevin Tian<kevin.tian@intel.com>
+> ---
+>   drivers/iommu/intel/iommu.c |  4 ----
+>   drivers/iommu/intel/Kconfig | 11 -----------
+>   2 files changed, 15 deletions(-)
 
-== Series Details ==
+I have queued this patch for v6.9.
 
-Series: HDCP MST Type1 fixes (rev6)
-URL   : https://patchwork.freedesktop.org/series/129925/
-State : success
-
-== Summary ==
-
-CI Bug Log - changes from CI_DRM_14331 -> Patchwork_129925v6
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_129925v6/index.html
-
-Participating hosts (34 -> 34)
-------------------------------
-
-  No changes in participating hosts
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_129925v6 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@i915_module_load@reload:
-    - fi-skl-6600u:       [PASS][1] -> [DMESG-WARN][2] ([i915#1982])
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14331/fi-skl-6600u/igt@i915_module_load@reload.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_129925v6/fi-skl-6600u/igt@i915_module_load@reload.html
-
-  
-  [i915#1982]: https://gitlab.freedesktop.org/drm/intel/issues/1982
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_14331 -> Patchwork_129925v6
-
-  CI-20190529: 20190529
-  CI_DRM_14331: 78f49af27723a8c6d63d6d43c12d74255123d276 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_7729: 7729
-  Patchwork_129925v6: 78f49af27723a8c6d63d6d43c12d74255123d276 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-### Linux commits
-
-26f38ce97c22 drm/i915/hdcp: Read Rxcaps for robustibility
-3e734b76065b drm/i915/hdcp: Allocate stream id after HDCP AKE stage
-a096958e2fd0 drm/i915/hdcp: Don't enable HDCP1.4 directly from check_link
-77ace8e357aa drm/i915/hdcp: Don't enable HDCP2.2 directly from check_link
-dc6329c30582 drm/i915/hdcp: Extract hdcp structure from correct connector
-e79085d01ea7 drm/i915/hdcp: Remove additional timing for reading mst hdcp message
-964c83f7c3bd drm/i915/hdcp: HDCP Capability for the downstream device
-bc6995d0f801 drm/i915/hdcp: Add new remote capability check shim function
-9b6bf88ed4c7 drm/i915/hdcp: Rename hdcp capable functions
-d7c0ad199e55 drm/i915/hdcp: Pass drm_dp_aux to read_bcaps function
-59b70709a4c3 drm/i915/hdcp: Refactor intel_dp_hdcp2_capable
-ae922fb492b3 drm/i915/hdcp: Move source hdcp2 checks into its own function
-af70d9872680 drm/i915/hdcp: Move to direct reads for HDCP
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_129925v6/index.html
-
---===============7255358846671661767==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>HDCP MST Type1 fixes (rev6)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/129925/">https://patchwork.freedesktop.org/series/129925/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_129925v6/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_129925v6/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_14331 -&gt; Patchwork_129925v6</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_129925v6/index.html</p>
-<h2>Participating hosts (34 -&gt; 34)</h2>
-<p>No changes in participating hosts</p>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_129925v6 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>igt@i915_module_load@reload:<ul>
-<li>fi-skl-6600u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14331/fi-skl-6600u/igt@i915_module_load@reload.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_129925v6/fi-skl-6600u/igt@i915_module_load@reload.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1982">i915#1982</a>)</li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_14331 -&gt; Patchwork_129925v6</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_14331: 78f49af27723a8c6d63d6d43c12d74255123d276 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_7729: 7729<br />
-  Patchwork_129925v6: 78f49af27723a8c6d63d6d43c12d74255123d276 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<h3>Linux commits</h3>
-<p>26f38ce97c22 drm/i915/hdcp: Read Rxcaps for robustibility<br />
-3e734b76065b drm/i915/hdcp: Allocate stream id after HDCP AKE stage<br />
-a096958e2fd0 drm/i915/hdcp: Don't enable HDCP1.4 directly from check_link<br />
-77ace8e357aa drm/i915/hdcp: Don't enable HDCP2.2 directly from check_link<br />
-dc6329c30582 drm/i915/hdcp: Extract hdcp structure from correct connector<br />
-e79085d01ea7 drm/i915/hdcp: Remove additional timing for reading mst hdcp message<br />
-964c83f7c3bd drm/i915/hdcp: HDCP Capability for the downstream device<br />
-bc6995d0f801 drm/i915/hdcp: Add new remote capability check shim function<br />
-9b6bf88ed4c7 drm/i915/hdcp: Rename hdcp capable functions<br />
-d7c0ad199e55 drm/i915/hdcp: Pass drm_dp_aux to read_bcaps function<br />
-59b70709a4c3 drm/i915/hdcp: Refactor intel_dp_hdcp2_capable<br />
-ae922fb492b3 drm/i915/hdcp: Move source hdcp2 checks into its own function<br />
-af70d9872680 drm/i915/hdcp: Move to direct reads for HDCP</p>
-
-</body>
-</html>
-
---===============7255358846671661767==--
+Best regards,
+baolu
