@@ -2,62 +2,38 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id CC5BB8701A6
-	for <lists+intel-gfx@lfdr.de>; Mon,  4 Mar 2024 13:36:48 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0158A8703C1
+	for <lists+intel-gfx@lfdr.de>; Mon,  4 Mar 2024 15:11:42 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9617D1120DE;
-	Mon,  4 Mar 2024 12:36:44 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="RkzrbKpc";
-	dkim-atps=neutral
+	by gabe.freedesktop.org (Postfix) with ESMTP id 05E2E1121D9;
+	Mon,  4 Mar 2024 14:11:36 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1DED31120DA;
- Mon,  4 Mar 2024 12:36:42 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1709555802; x=1741091802;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=+FtajtSxKbInVirJmin7eCfNQOWaG6cSc3qGgSAMFUQ=;
- b=RkzrbKpcHxKvsjkEQJEsmws/hqLN4K/XOzfBPwM1TxYQi0Jr3ctkFxnt
- 0Pnpfd7VqlsvlWD+4PojASTqhRR1mFClmulprgS9su9Ww9Beu0N4gE1aU
- V+yBJjUSZU1L8gtE12OWmo18FHwbAsHeeozLHp70oh/qdEaiWzYXsIJgS
- y7j55CnLSIF9N7RjYximc1J7a18VbUFpePfjpQH2bsbNo0FUvqQc06K4k
- lWTqVxHzrWE/jcSqrOC09YWrUzPtv6Jg4EOHtcTR35I+3av1JsrBRk67x
- q6ERCeVMJvE490mcgU1h0sTg0dPkuk6w/mLNoA8T/NDJ0hT0kDCe2HhNG g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,11002"; a="7854531"
-X-IronPort-AV: E=Sophos;i="6.06,203,1705392000"; 
-   d="scan'208";a="7854531"
-Received: from fmviesa010.fm.intel.com ([10.60.135.150])
- by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Mar 2024 04:36:41 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.06,203,1705392000"; 
-   d="scan'208";a="8937331"
-Received: from mshirdel-mobl.ger.corp.intel.com (HELO [10.252.23.228])
- ([10.252.23.228])
- by fmviesa010-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Mar 2024 04:36:39 -0800
-Message-ID: <0bae5cd3-2cb0-4ed2-ba49-ac991e909cbd@intel.com>
-Date: Mon, 4 Mar 2024 12:36:36 +0000
+Received: from mail-0201.mail-europe.com (mail-0201.mail-europe.com
+ [51.77.79.158])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4988710E78D
+ for <intel-gfx@lists.freedesktop.org>; Mon, 26 Feb 2024 16:31:08 +0000 (UTC)
+Date: Mon, 26 Feb 2024 16:30:52 +0000
+To: "Harrison, John C" <john.c.harrison@intel.com>
+From: maksym@wezdecki.pl
+Cc: "Wajdeczko, Michal" <Michal.Wajdeczko@intel.com>,
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
+Subject: RE: GuC issue
+Message-ID: <FJKNlVdWT4pcxEIPqrlrotvNF4LQ9IruZEgoFyoLOiuC06TeBWlw75UpxC5YGBbB3q4K2HGh34RNzJqipPPJV8DMDDQ3lY5yAYmTJezbDtg=@wezdecki.pl>
+In-Reply-To: <CH3PR11MB84410E859B484FD84ACE65E4BD562@CH3PR11MB8441.namprd11.prod.outlook.com>
+References: <mpy7oR29BN-ZuXsGo_DrVjgvt7tZXStYEkdhwHKRFqzjB6DkbATG6i8qLYaNq2fAsXIUiYXJ6HBXTurfBaLHuwcxeggLjtKQHdxwVWdsO04=@pm.me>
+ <af232621-ed88-466e-9162-7698b5583503@intel.com>
+ <dRxB0peDhbOHBqsX5rpWZN-qZtPdwWItk-L1ZAZm8RH8LQYpNBGa9qghm3dOCuM4fqbzOsNAFEafiu2zSrQNbnH6oCrlBb1fiAm5AhJQr64=@pm.me>
+ <G6cnnxkrPv0dkDZ2VYL51hau5Mm-RdGVA74E0lhunn-U3XoV3d8OwF92LK-lCbQ24yM8ksZuOh9EAEpvAgz7Td0xtfFwT-Zy7M-5KJ73qqY=@wezdecki.pl>
+ <jDjRWkHtb3G4vJFfktNDbWc_n_3WjYYvIOYbXmZHxbcITIeP3k6FnjerNyECm8NNpgs0H1DRJTaeiE5c9qYib5djHdq34VG4wOPZbNPEj-s=@wezdecki.pl>
+ <bb9bd07a-5197-46e1-8541-aeb540b421a3@intel.com>
+ <5_wII6n600vppHk7s--lu7jrLDbxtBBglPTXx8BxdhPfYS5YaArq9XZ3OhcuRnYKOfBIxSTUGk7CAz-d1KZ-_-7J9g3qVNkzxDvewTrIX-I=@wezdecki.pl>
+ <CH3PR11MB84410E859B484FD84ACE65E4BD562@CH3PR11MB8441.namprd11.prod.outlook.com>
+Feedback-ID: 47772235:user:proton
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v7 3/3] drm/buddy: Add defragmentation support
-Content-Language: en-GB
-To: "Paneer Selvam, Arunpravin" <arunpravin.paneerselvam@amd.com>,
- dri-devel@lists.freedesktop.org, amd-gfx@lists.freedesktop.org,
- intel-gfx@lists.freedesktop.org
-Cc: christian.koenig@amd.com, alexander.deucher@amd.com, felix.kuehling@amd.com
-References: <20240221121801.3252-1-Arunpravin.PaneerSelvam@amd.com>
- <20240221121801.3252-3-Arunpravin.PaneerSelvam@amd.com>
- <2c841f63-10d5-4de3-b331-6b320a92dc64@intel.com>
- <ebdc7ceb-2ec4-460c-b8a3-c90184cd800e@amd.com>
-From: Matthew Auld <matthew.auld@intel.com>
-In-Reply-To: <ebdc7ceb-2ec4-460c-b8a3-c90184cd800e@amd.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+X-Mailman-Approved-At: Mon, 04 Mar 2024 14:11:34 +0000
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -73,253 +49,176 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On 04/03/2024 12:22, Paneer Selvam, Arunpravin wrote:
-> Hi Matthew,
-> 
-> On 2/22/2024 12:12 AM, Matthew Auld wrote:
->> On 21/02/2024 12:18, Arunpravin Paneer Selvam wrote:
->>> Add a function to support defragmentation.
->>>
->>> v1:
->>>    - Defragment the memory beginning from min_order
->>>      till the required memory space is available.
->>>
->>> v2(Matthew):
->>>    - add amdgpu user for defragmentation
->>>    - add a warning if the two blocks are incompatible on
->>>      defragmentation
->>>    - call full defragmentation in the fini() function
->>>    - place a condition to test if min_order is equal to 0
->>>    - replace the list with safe_reverse() variant as we might
->>>      remove the block from the list.
->>>
->>> Signed-off-by: Arunpravin Paneer Selvam 
->>> <Arunpravin.PaneerSelvam@amd.com>
->>> Suggested-by: Matthew Auld <matthew.auld@intel.com>
->>> ---
->>>   drivers/gpu/drm/amd/amdgpu/amdgpu_vram_mgr.c | 17 +++-
->>>   drivers/gpu/drm/drm_buddy.c                  | 93 +++++++++++++++++---
->>>   include/drm/drm_buddy.h                      |  3 +
->>>   3 files changed, 97 insertions(+), 16 deletions(-)
->>>
->>> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_vram_mgr.c 
->>> b/drivers/gpu/drm/amd/amdgpu/amdgpu_vram_mgr.c
->>> index e494f5bf136a..cff8a526c622 100644
->>> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_vram_mgr.c
->>> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_vram_mgr.c
->>> @@ -533,8 +533,21 @@ static int amdgpu_vram_mgr_new(struct 
->>> ttm_resource_manager *man,
->>>                          min_block_size,
->>>                          &vres->blocks,
->>>                          vres->flags);
->>> -        if (unlikely(r))
->>> -            goto error_free_blocks;
->>> +        if (unlikely(r)) {
->>> +            if (r == -ENOSPC) {
->>> +                drm_buddy_defrag(mm, min_block_size);
->>> +                r = drm_buddy_alloc_blocks(mm, fpfn,
->>> +                               lpfn,
->>> +                               size,
->>> +                               min_block_size,
->>> +                               &vres->blocks,
->>> +                               vres->flags);
->>> +                if (unlikely(r))
->>> +                    goto error_free_blocks;
->>> +            } else {
->>> +                goto error_free_blocks;
->>> +            }
->>> +        }
->>>             if (size > remaining_size)
->>>               remaining_size = 0;
->>> diff --git a/drivers/gpu/drm/drm_buddy.c b/drivers/gpu/drm/drm_buddy.c
->>> index 18e004fa39d3..56bd1560fbcd 100644
->>> --- a/drivers/gpu/drm/drm_buddy.c
->>> +++ b/drivers/gpu/drm/drm_buddy.c
->>> @@ -203,6 +203,8 @@ void drm_buddy_fini(struct drm_buddy *mm)
->>>           drm_block_free(mm, mm->roots[i]);
->>>       }
->>>   +    drm_buddy_defrag(mm, mm->chunk_size << mm->max_order);
->>
->> I think this needs to be called higher up, otherwise we blow up with 
->> the WARN, plus we just freed the root(s). There is also the case with 
->> non-power-of-two VRAM size, in which case you get multiple roots and 
->> max_order is just the largest root and not entire address space. I 
->> guess do this in the loop above and use the root order instead?
->>
->> Also this should be done as part of the first patch and then in this 
->> patch it is just a case of exporting it. Every commit should ideally 
->> be functional by itself.
-> You mean we move the above change in drm_buddy_fini function and 
-> drm_buddy_defrag function as part of first patch.
-> And just we add export function and add amdgpu user in this patch. Is my 
-> understanding correct?
+Hello,
 
-Yeah, I think that makes sense.
+Thank you for your help.
 
-> 
-> Thanks,
-> Arun.
->>
->>> +
->>>       WARN_ON(mm->avail != mm->size);
->>>         kfree(mm->roots);
->>> @@ -276,25 +278,39 @@ drm_get_buddy(struct drm_buddy_block *block)
->>>   }
->>>   EXPORT_SYMBOL(drm_get_buddy);
->>>   -static void __drm_buddy_free(struct drm_buddy *mm,
->>> -                 struct drm_buddy_block *block)
->>> +static unsigned int __drm_buddy_free(struct drm_buddy *mm,
->>> +                     struct drm_buddy_block *block,
->>> +                     bool defrag)
->>>   {
->>> +    unsigned int order, block_order;
->>>       struct drm_buddy_block *parent;
->>>   +    block_order = drm_buddy_block_order(block);
->>> +
->>>       while ((parent = block->parent)) {
->>> -        struct drm_buddy_block *buddy;
->>> +        struct drm_buddy_block *buddy = NULL;
->>>             buddy = __get_buddy(block);
->>>             if (!drm_buddy_block_is_free(buddy))
->>>               break;
->>>   -        if (drm_buddy_block_is_clear(block) !=
->>> -            drm_buddy_block_is_clear(buddy))
->>> -            break;
->>> +        if (!defrag) {
->>> +            /*
->>> +             * Check the block and its buddy clear state and exit
->>> +             * the loop if they both have the dissimilar state.
->>> +             */
->>> +            if (drm_buddy_block_is_clear(block) !=
->>> +                drm_buddy_block_is_clear(buddy))
->>> +                break;
->>>   -        if (drm_buddy_block_is_clear(block))
->>> -            mark_cleared(parent);
->>> +            if (drm_buddy_block_is_clear(block))
->>> +                mark_cleared(parent);
->>> +        }
->>> +
->>> +        WARN_ON(defrag &&
->>> +            (drm_buddy_block_is_clear(block) ==
->>> +             drm_buddy_block_is_clear(buddy)));
->>>             list_del(&buddy->link);
->>>   @@ -304,8 +320,57 @@ static void __drm_buddy_free(struct drm_buddy 
->>> *mm,
->>>           block = parent;
->>>       }
->>>   -    mark_free(mm, block);
->>> +    order = drm_buddy_block_order(block);
->>> +    if (block_order != order)
->>> +        mark_free(mm, block);
->>> +
->>> +    return order;
->>> +}
->>> +
->>> +/**
->>> + * drm_buddy_defrag - Defragmentation routine
->>> + *
->>> + * @mm: DRM buddy manager
->>> + * @min_block_size: minimum size in bytes to begin
->>> + * the defragmentation process
->>> + *
->>> + * Driver calls the defragmentation function when the
->>> + * requested memory allocation returns -ENOSPC.
->>> + */
->>> +void drm_buddy_defrag(struct drm_buddy *mm,
->>> +              unsigned int min_block_size)
->>
->> u64 min_block_size. Most cards have 4G+ of VRAM :)
->>
->>> +{
->>> +    struct drm_buddy_block *block, *tmp;
->>> +    unsigned int order, min_order;
->>> +    struct list_head *list;
->>> +    unsigned long pages;
->>> +    int i;
->>> +
->>> +    pages = min_block_size >> ilog2(mm->chunk_size);
->>> +    min_order = fls(pages) - 1;
->>
->> I think min_block_size should be power-of-two, no?
->>
->>> +
->>> +    if (!min_order)
->>> +        return;
->>> +
->>> +    if (min_order > mm->max_order)
->>> +        return;
->>> +
->>> +    for (i = min_order - 1; i >= 0; i--) {
->>> +        list = &mm->free_list[i];
->>> +        if (list_empty(list))
->>> +            continue;
->>> +
->>> +        list_for_each_entry_safe_reverse(block, tmp, list, link) {
->>> +            if (!block->parent)
->>> +                continue;
->>> +
->>> +            order = __drm_buddy_free(mm, block, 1);
->>
->> s/1/true/
->>
->>> +            if (order >= min_order)
->>> +                return;
->>> +        }
->>> +    }
->>>   }
->>> +EXPORT_SYMBOL(drm_buddy_defrag);
->>>     /**
->>>    * drm_buddy_free_block - free a block
->>> @@ -321,7 +386,7 @@ void drm_buddy_free_block(struct drm_buddy *mm,
->>>       if (drm_buddy_block_is_clear(block))
->>>           mm->clear_avail += drm_buddy_block_size(mm, block);
->>>   -    __drm_buddy_free(mm, block);
->>> +    __drm_buddy_free(mm, block, 0);
->>>   }
->>>   EXPORT_SYMBOL(drm_buddy_free_block);
->>>   @@ -468,7 +533,7 @@ __alloc_range_bias(struct drm_buddy *mm,
->>>       if (buddy &&
->>>           (drm_buddy_block_is_free(block) &&
->>>            drm_buddy_block_is_free(buddy)))
->>> -        __drm_buddy_free(mm, block);
->>> +        __drm_buddy_free(mm, block, 0);
->>>       return ERR_PTR(err);
->>>   }
->>>   @@ -586,7 +651,7 @@ alloc_from_freelist(struct drm_buddy *mm,
->>>     err_undo:
->>>       if (tmp != order)
->>> -        __drm_buddy_free(mm, block);
->>> +        __drm_buddy_free(mm, block, 0);
->>>       return ERR_PTR(err);
->>>   }
->>>   @@ -666,7 +731,7 @@ static int __alloc_range(struct drm_buddy *mm,
->>>       if (buddy &&
->>>           (drm_buddy_block_is_free(block) &&
->>>            drm_buddy_block_is_free(buddy)))
->>> -        __drm_buddy_free(mm, block);
->>> +        __drm_buddy_free(mm, block, 0);
->>>     err_free:
->>>       if (err == -ENOSPC && total_allocated_on_err) {
->>> @@ -828,7 +893,7 @@ EXPORT_SYMBOL(drm_buddy_block_trim);
->>>    * @mm: DRM buddy manager to allocate from
->>>    * @start: start of the allowed range for this block
->>>    * @end: end of the allowed range for this block
->>> - * @size: size of the allocation
->>> + * @size: size of the allocation in bytes
->>>    * @min_block_size: alignment of the allocation
->>>    * @blocks: output list head to add allocated blocks
->>>    * @flags: DRM_BUDDY_*_ALLOCATION flags
->>> diff --git a/include/drm/drm_buddy.h b/include/drm/drm_buddy.h
->>> index 352a6364e26a..68a874846e78 100644
->>> --- a/include/drm/drm_buddy.h
->>> +++ b/include/drm/drm_buddy.h
->>> @@ -167,6 +167,9 @@ void drm_buddy_free_list(struct drm_buddy *mm,
->>>                struct list_head *objects,
->>>                unsigned int flags);
->>>   +void drm_buddy_defrag(struct drm_buddy *mm,
->>> +              unsigned int min_order);
->>> +
->>>   void drm_buddy_print(struct drm_buddy *mm, struct drm_printer *p);
->>>   void drm_buddy_block_print(struct drm_buddy *mm,
->>>                  struct drm_buddy_block *block,
-> 
+Is there a possibility to load GuC, then "unload" it and load it again with=
+out cold reset?
+By loading I mean HuC firmware upload, GuC ADS/log init, GuC firmware uploa=
+d, CT init, HuC authentication by GuC.
+
+I'm asking because I need to perform severe testing on the target for safet=
+y purposes without GPU cold reset.
+What should be done in order to "unload" the GuC? Is it __uc_sanitize() and=
+ __uc_fini()?
+
+Maksym
+
+czwartek, 22 lutego 2024 20:31, Harrison, John C <john.c.harrison@intel.com=
+> napisa=C5=82(a):
+
+>=20
+>=20
+> Hello,
+>=20
+> That worked better. The complaint is that the engine mapping table is inv=
+alid. See the i915 code in guc_mapping_table_init () in gt/uc/intel_guc_ads=
+.c for an example of how to initialise the table.
+>=20
+> John.
+>=20
+>=20
+> -----Original Message-----
+> From: maksym@wezdecki.pl maksym@wezdecki.pl
+>=20
+> Sent: Wednesday, February 21, 2024 07:15
+> To: Harrison, John C john.c.harrison@intel.com
+>=20
+> Cc: maksym@wezdecki.pl; Wajdeczko, Michal Michal.Wajdeczko@intel.com; int=
+el-gfx@lists.freedesktop.org
+>=20
+> Subject: Re: GuC issue
+>=20
+> Ah, I dumped them with Windows new line characters.
+>=20
+> Here is a new log binary dump.
+>=20
+> I moved to the newest TGL GuC firmware from linux-firmware repo.
+>=20
+>=20
+> =C5=9Broda, 21 lutego 2024 12:16 AM, John Harrison john.c.harrison@intel.=
+com napisa=C5=82(a):
+>=20
+> > Hello,
+> >=20
+> > Something is very corrupted with that GuC log. The log consists of a
+> > header page and then a stream of log entry structures. The structure
+> > is supposed to be 20 bytes long and starts with a four byte time
+> > stamp. But I am seeing what is conceivably a 32bit timestamp appearing
+> > at 21 byte increments through the log. Even more curiously, the time
+> > stamp seems to have an 0x0D, 0x0A after it. Are you doing any printf
+> > type operation in order to write the log out from memory to disk?
+> >=20
+> > INTEL_GUC_LOAD_STATUS_INIT_DATA_INVALID means that the GuC did not
+> > like the initialisation data passed in. Most likely, something in the
+> > ADS structure is not valid. If you try with the latest GuC version,
+> > that might give you more information as to what is the incorrect. More
+> > status codes have been added since 70.1.1.
+> >=20
+> > John.
+> >=20
+> > On 2/20/2024 05:03, maksym@wezdecki.pl wrote:
+> >=20
+> > > Hi,
+> > >=20
+> > > Please see GuC log attached to this email.
+> > >=20
+> > > Log size is "PAGE_SIZE+Debug Log(64KB) + Crash Log (8KB) + Capture Lo=
+g (1M)"
+> > >=20
+> > > Can anybody from Intel decode this log buffer? Thanks.
+> > >=20
+> > > What am I doing wrong?
+> > >=20
+> > > Maksym
+> > >=20
+> > > poniedzia=C5=82ek, 19 lutego 2024 09:44, maksym@wezdecki.pl maksym@we=
+zdecki.pl napisa=C5=82(a):
+> > >=20
+> > > > Hi,
+> > > >=20
+> > > > I fixed one issue in my driver. Log address was set incorrectly.
+> > > >=20
+> > > > Right now, after GuC uploading, GUC_STATUS changed.
+> > > > Right now, intel_guc_load_status is INTEL_GUC_LOAD_STATUS_INIT_DATA=
+_INVALID =3D 0x71.
+> > > >=20
+> > > > What does it mean?
+> > > > Could you please help me with this?
+> > > >=20
+> > > > Thanks,
+> > > > Maksym
+> > > >=20
+> > > > pi=C4=85tek, 9 lutego 2024 08:42, natur.produkt@pm.me natur.produkt=
+@pm.me napisa=C5=82(a):
+> > > >=20
+> > > > > Hello,
+> > > > >=20
+> > > > > Please see my comments below.
+> > > > >=20
+> > > > > pi=C4=85tek, 9 lutego 2024 2:45 AM, John Harrison john.c.harrison=
+@intel.com napisa=C5=82(a):
+> > > > >=20
+> > > > > > Hello,
+> > > > > >=20
+> > > > > > What platform is this on? And which GuC firmware version are yo=
+u using?
+> > > > > > It's TGL. I'm using tgl_guc_70.1.1.bin firmware blob.
+> > > > >=20
+> > > > > > One thing you made need to do is force maximum GT frequency
+> > > > > > during GuC load. That is something the i915 driver does. If
+> > > > > > the system decides the GPU is idle and drops the frequency to
+> > > > > > minimum then it can take multiple seconds for the GuC initialis=
+ation to complete.
+> > > > > > Thanks for the hint. I'm not doing that at all in my code. How =
+am I supposed to do this? Is there a specific register for that?
+> > > > >=20
+> > > > > > Did the status change at all during that second of waiting? Or
+> > > > > > was it still reading LAPIC_DONE?
+> > > > > > It's always LAPIC_DONE.
+> > > > >=20
+> > > > > > For ADS documentation, I'm afraid that the best we currently
+> > > > > > have publicly available is the i915 driver code. If you are
+> > > > > > not intending to use GuC submission then most of the ADS can be=
+ ignored.
+> > > > > > Ok, that great. Which part of ADS is must-have then?
+> > > > >=20
+> > > > > > If you can share the GuC log, that might provide some clues as
+> > > > > > to what is happening. For just logging the boot process, you
+> > > > > > shouldn't need to allocate a large log. The default size of
+> > > > > > i915 for release builds is 64KB. That should be plenty.
+> > > > > > I'll collect GuC log as soon as possible. Is it something that =
+can be understood without a knowledge of GuC internals? Or is it simply hex=
+ dumps?
+> > > > >=20
+> > > > > > John.
+> > > > > >=20
+> > > > > > On 2/6/2024 23:59, natur.produkt@pm.me wrote:
+> > > > > >=20
+> > > > > > > Hi,
+> > > > > > >=20
+> > > > > > > I'm currently implementing GuC/HuC firmware support in one Sa=
+fety Critical OS.
+> > > > > > > I'm following i915 code and I implemented all paths (I don't =
+want GuC submission or SLPC features). I need GuC to authenticate HuC firmw=
+are blob.
+> > > > > > >=20
+> > > > > > > I mirrored GuC implementation in my code.
+> > > > > > >=20
+> > > > > > > After GuC DMA transfer succeeds, I'm reading GUC_STATUS regis=
+ter.
+> > > > > > > HW returns INTEL_BOOTROM_STATUS_JUMP_PASSED as bootrom status=
+ and INTEL_GUC_LOAD_STATUS_LAPIC_DONE as GuC load status.
+> > > > > > >=20
+> > > > > > > Unfortunately, after one second of waiting, the status didn't=
+ get changed to INTEL_GUC_LOAD_STATUS_READY at all.
+> > > > > > >=20
+> > > > > > > What is a potential issue here?
+> > > > > > > Could you please help me?
+> > > > > > >=20
+> > > > > > > In addition to this, could you please point out some document=
+ation about GuC's ADS struct?
+> > > > > > >=20
+> > > > > > > Thanks,
+> > > > > > > Maksym
