@@ -2,50 +2,47 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 533D8867C03
-	for <lists+intel-gfx@lfdr.de>; Mon, 26 Feb 2024 17:30:36 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5F1D1867C24
+	for <lists+intel-gfx@lfdr.de>; Mon, 26 Feb 2024 17:35:28 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5DC3110E7AA;
-	Mon, 26 Feb 2024 16:30:34 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7AC5610E78F;
+	Mon, 26 Feb 2024 16:35:26 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="UP2T5gRo";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="hkGnIYJp";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B4CFC10E7B6
- for <intel-gfx@lists.freedesktop.org>; Mon, 26 Feb 2024 16:30:32 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id AB98C10E7B6
+ for <intel-gfx@lists.freedesktop.org>; Mon, 26 Feb 2024 16:35:21 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1708965033; x=1740501033;
+ t=1708965322; x=1740501322;
  h=date:from:to:cc:subject:message-id:references:
  mime-version:content-transfer-encoding:in-reply-to;
- bh=WkaRCtgixD/AVecS0IPHxFCKd9hFe12qK+vvbOWbbW0=;
- b=UP2T5gRoAKEtI03IV9PvaJjlP92WqFY5mkSvHUpVDbtTG2dDmoto+3jS
- YRsN0+dHrS6LWgLy/0OL6NplJtpHIJhWLL4Sj66PDVw2uFLaQ8AsMPLcY
- TLmX3UszKZtDORRVgCePs1GLfNcK4kNQUyCYJb/WLUUcjqtnaeKQv1yjc
- jIkuNVF6d0u31PL4yx4dIEGXwPVKQSRNHgW02Ea5nd/jZ4KQZ1+R32UtP
- PscjWjJnQttG8aenMOO8qhX5AGNWoBbS91fJXIno1tLb5tT+iZPMqr/Pa
- tULglp6mGysqZKmkzBXCgfLJ7zGxe5nzMYgk+RbgMl/FDqy6KTgd1EwJ8 g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10996"; a="3185266"
-X-IronPort-AV: E=Sophos;i="6.06,186,1705392000"; 
-   d="scan'208";a="3185266"
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
- by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Feb 2024 08:30:32 -0800
+ bh=bNDcDNc34X+9faRpf39NJUZgLUHAm/B0I0qitkCJ95A=;
+ b=hkGnIYJpaiggquvdwX+A4v0vgh5OgX1mdT7PTD2cmaihHp9ImuJc6vTx
+ ClCUwaYAY3VJyyphWhka1KVwltMCvjkBd8H6iI+PyC3y7+JJ7Ht4+ExfD
+ rBtwS2g5UHnqaR4bX8hWtHZTdmeQaGSWFsL/8SwymmQzM0K4kNJ7Kaw5Y
+ 5lYv6jv5jx08t/rw4HqwF+70ulv5eoJ3ONJnll038WgS/vdW0I80emuhG
+ zV4uzeDLOfWQU3KBkK+Fgi4Ntx4jop9w5Dam8G0OxEhOmHnnriY8whraH
+ HpNVQxardv0nimdF/qjUi2WV+YgvBW2iTmERd73Th39yooOL2Cdm54L04 Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10996"; a="20805977"
+X-IronPort-AV: E=Sophos;i="6.06,186,1705392000"; d="scan'208";a="20805977"
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+ by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 Feb 2024 08:35:21 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10996"; a="913881165"
-X-IronPort-AV: E=Sophos;i="6.06,186,1705392000"; d="scan'208";a="913881165"
-Received: from smile.fi.intel.com ([10.237.72.54])
- by fmsmga002.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Feb 2024 08:30:29 -0800
-Received: from andy by smile.fi.intel.com with local (Exim 4.97)
- (envelope-from <andriy.shevchenko@linux.intel.com>)
- id 1reds2-00000007jUm-1XIb; Mon, 26 Feb 2024 18:30:26 +0200
-Date: Mon, 26 Feb 2024 18:30:26 +0200
-From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+X-IronPort-AV: E=McAfee;i="6600,9927,10996"; a="827770449"
+X-IronPort-AV: E=Sophos;i="6.06,186,1705392000"; d="scan'208";a="827770449"
+Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.74])
+ by orsmga001.jf.intel.com with SMTP; 26 Feb 2024 08:35:16 -0800
+Received: by stinkbox (sSMTP sendmail emulation);
+ Mon, 26 Feb 2024 18:35:16 +0200
+Date: Mon, 26 Feb 2024 18:35:16 +0200
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
 To: Jani Nikula <jani.nikula@linux.intel.com>
-Cc: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>,
+Cc: Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
  Rodrigo Vivi <rodrigo.vivi@intel.com>,
  intel-gfx@lists.freedesktop.org, Petr Mladek <pmladek@suse.com>,
  Steven Rostedt <rostedt@goodmis.org>,
@@ -53,7 +50,7 @@ Cc: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>,
  Sergey Senozhatsky <senozhatsky@chromium.org>, linux-kernel@vger.kernel.org
 Subject: Re: [PATCH 01/12] drm/i915: Indicate which pipe failed the fastset
  check overall
-Message-ID: <Zdy8osVL-KnB2tV4@smile.fi.intel.com>
+Message-ID: <Zdy9xNwuwLFO4zKj@intel.com>
 References: <20240215164055.30585-1-ville.syrjala@linux.intel.com>
  <20240215164055.30585-2-ville.syrjala@linux.intel.com>
  <ZdfApN1h97GTfL1t@intel.com> <Zdj2ONs8BZ6959Xb@intel.com>
@@ -64,7 +61,7 @@ Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
 In-Reply-To: <878r37me5k.fsf@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+X-Patchwork-Hint: comment
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -85,9 +82,9 @@ On Mon, Feb 26, 2024 at 05:35:51PM +0200, Jani Nikula wrote:
 > > On Mon, Feb 26, 2024 at 04:57:58PM +0200, Jani Nikula wrote:
 > >> On Fri, 23 Feb 2024, Ville Syrjälä <ville.syrjala@linux.intel.com> wrote:
 > >> > On Thu, Feb 22, 2024 at 04:46:12PM -0500, Rodrigo Vivi wrote:
-
-...
-
+> >
+> > ...
+> >
 > >> > I think the proper solution would be to have actually
 > >> > sensible conversion specifiers in the format string.
 > >> > So instead of %<set of random characters> we'd have something
@@ -104,9 +101,7 @@ On Mon, Feb 26, 2024 at 05:35:51PM +0200, Jani Nikula wrote:
 > > which you proposed to have written as name AFAIU).
 > 
 > Thanks, I appreciate it, a lot!
-
-Oh, I meant "can" rather than "will".
-
+> 
 > But could you perhaps try to go with just clean %{name} only instead of
 > adding [:subextensions] right away, please?
 > 
@@ -119,16 +114,13 @@ Oh, I meant "can" rather than "will".
 > %{bitmap-list}. The goal here is to make them easy to remember and
 > understand, without resorting to looking up the documentation!
 
-Okay, so it seems you have something in mind, perhaps you can submit a draft
-of the list of those "names"?
-
-> >> And then we could discuss adding support for drm specific things. I
-> >> guess one downside is that the functions to do this would have to be in
-> >> vsprintf.c instead of drm. Unless we add some code in drm for this
-> >> that's always built-in.
+I was also wondering if we should have some kind of namespace
+thing in there. Eg. instead of %{drm_crtc} it could be something
+like %{drm:crtc}. Then it would be clear which subsystem (when that
+makes sense) "owns" that particular format. But I suppose using
+the C foo_ namespacing rule would also work since it should already
+be a thing for exported symbols anyway.
 
 -- 
-With Best Regards,
-Andy Shevchenko
-
-
+Ville Syrjälä
+Intel
