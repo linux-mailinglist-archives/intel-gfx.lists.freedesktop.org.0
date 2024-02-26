@@ -2,60 +2,76 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5E6EA867179
-	for <lists+intel-gfx@lfdr.de>; Mon, 26 Feb 2024 11:40:44 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id C0F048671C6
+	for <lists+intel-gfx@lfdr.de>; Mon, 26 Feb 2024 11:47:01 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E1C0A10E6D8;
-	Mon, 26 Feb 2024 10:40:42 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 44D5E10F03F;
+	Mon, 26 Feb 2024 10:46:58 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="l7pxcFAP";
+	dkim=pass (2048-bit key; unprotected) header.d=fooishbar-org.20230601.gappssmtp.com header.i=@fooishbar-org.20230601.gappssmtp.com header.b="FbiRuXCB";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 257D210E6D8
- for <intel-gfx@lists.freedesktop.org>; Mon, 26 Feb 2024 10:40:41 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1708944041; x=1740480041;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=DaawKgzre8sRBX+LnD3mVhbEc25B3Gz5fzha4m6cLRg=;
- b=l7pxcFAPCvMrBCYSAF4i6/5622Sc9M7Ds0W5/iQ+xFhMeixFz/Nr/7ia
- 8Vs0ylJm6ef6YYKxcXiFRb5fCoLl7BRLIKK3BFCl7K15amgogO7+8wSJz
- IXpt4ZgxhlJNiv/blyfgV4Ikkbgv42sUd6Lo6a12+QMczmcaYrlLWAzfc
- D1F5NScRy9UBYsPJztwZXVDQ37Tym6jiijUw97UubJAwa6LI3J1mkJvpG
- 9zPbKAjFLw4sCCRbQ4pi05INnHfP76RN6YnTuiT7+7QOVhZPTexSP+wqV
- 228Ji4hU/LhyqwtreNfoDUWr/2WbQI4N+6YvdLvhIWjF6eF/OtSAGY6m4 Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10995"; a="13772061"
-X-IronPort-AV: E=Sophos;i="6.06,185,1705392000"; d="scan'208";a="13772061"
-Received: from orviesa005.jf.intel.com ([10.64.159.145])
- by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Feb 2024 02:40:40 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.06,185,1705392000"; d="scan'208";a="11398714"
-Received: from hibeid-mobl.amr.corp.intel.com (HELO localhost)
- ([10.252.46.254])
- by orviesa005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Feb 2024 02:40:37 -0800
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Cezary Rojewski <cezary.rojewski@intel.com>, broonie@kernel.org
-Cc: alsa-devel@alsa-project.org, linux-sound@vger.kernel.org,
- tiwai@suse.com, perex@perex.cz, joonas.lahtinen@linux.intel.com,
- rodrigo.vivi@intel.com, tvrtko.ursulin@linux.intel.com,
- intel-gfx@lists.freedesktop.org, amadeuszx.slawinski@linux.intel.com,
- pierre-louis.bossart@linux.intel.com, hdegoede@redhat.com, Cezary Rojewski
- <cezary.rojewski@intel.com>
-Subject: Re: [PATCH v2 1/4] ALSA: hda: Skip i915 initialization on
- CNL/LKF-based platforms
-In-Reply-To: <20240223114626.1052784-2-cezary.rojewski@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20240223114626.1052784-1-cezary.rojewski@intel.com>
- <20240223114626.1052784-2-cezary.rojewski@intel.com>
-Date: Mon, 26 Feb 2024 12:40:34 +0200
-Message-ID: <87plwjo6e5.fsf@intel.com>
+Received: from mail-qt1-f172.google.com (mail-qt1-f172.google.com
+ [209.85.160.172])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 601A710F03F
+ for <intel-gfx@lists.freedesktop.org>; Mon, 26 Feb 2024 10:46:56 +0000 (UTC)
+Received: by mail-qt1-f172.google.com with SMTP id
+ d75a77b69052e-42a0ba5098bso17789321cf.0
+ for <intel-gfx@lists.freedesktop.org>; Mon, 26 Feb 2024 02:46:56 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=fooishbar-org.20230601.gappssmtp.com; s=20230601; t=1708944415; x=1709549215;
+ darn=lists.freedesktop.org; 
+ h=cc:to:subject:message-id:date:from:in-reply-to:references
+ :mime-version:from:to:cc:subject:date:message-id:reply-to;
+ bh=u7I7d5osDP5GRj6EQPpg79dCaRhTSCM5MDa3lXjopQg=;
+ b=FbiRuXCBzcC8KUVUifgNmqx0DQEZmxWXrnMzBU4s8xPRFHH48LGHn/KkjFDLPOU05e
+ 6fh/YQpewhpqPoanEsxSivnq7ShpoIF4V0nFdG90XebRHvMGffrHqVvxqZLROCMC6WbS
+ El1HxoRBgBNoFMnRmQStmlw8oUGUB9z4x3jYqC7NIJNX59iL1rbYpSA6R2+3PVC9lqEL
+ zfRi8nPCUK9WdWljsUDx4G47Ci9LggTXmuGjS+aUvmNdfzzXK2o919a6ebbVZc5yOKxu
+ yENVMqgb1RlethnWKUXuOpLRpH8HexVkye3pyw5LOvexDb/20nl3PCcUweqYeN53ET7n
+ vt/Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1708944415; x=1709549215;
+ h=cc:to:subject:message-id:date:from:in-reply-to:references
+ :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+ :reply-to;
+ bh=u7I7d5osDP5GRj6EQPpg79dCaRhTSCM5MDa3lXjopQg=;
+ b=hYH25dplGYfXDUJEDxWYpts7f9hrQM100I+c95MTS+hDW2Yv2iV8W5/YfryEIMjNw6
+ nNL78m0/A1iDXYDto2d+O18x0HGhDzrFbI9LGHFnptGkfq6kgb4Icb2k1MqM1g4ma7XS
+ CpXD4JdVNrtfgeh57QkJaA5GavWDTN3TTvYAXk7RFhKtfqXnhtSFKhLGHbZTIudd+ERq
+ D/egc7i1gNghpqWBR76GknwtZp7m+3zIKjzMEy3HJoR5iqjtQPqUNAIaXDp4iSaT9PPD
+ tvF6PyjyEy+0T9RfvSJ9t67BTS/UY4eOTZokXfHCP9hIc4ZLw2c9UZqJqIRz8Vfo1eAZ
+ JkbA==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCWYR5wSmWVZeZpPdPKfkddGB42YZtTEx1bue2BGS5r1TNCgxWId6A1VJeeiJsMtmilCieePB30k0xVCKurbXavDEPmu/GGIBCWwmlFWKty/
+X-Gm-Message-State: AOJu0Yxu0L0vw1QkEZps7DrK8EbfdrDYZG3PlwqqUVOOKJofVNCnmcoe
+ VVrhFqE1vO6L4DO8ba4QDdOfMcgZwjVOTFhzOnE5On5h9Ak2h2DBrwLxmhAi/He2ZUZv9rYh8EY
+ bizsh74EiH35vp5eMWupnqRE2ApKJDkHBzBkj9A==
+X-Google-Smtp-Source: AGHT+IHHrY0NvHwjigWczKb4D3QxZ41Uh3arNiqZU7ZGXj68Sf2YZkd0XuRm4u5WrHl59ZQUl9GHZR37KrV+2fw7UqU=
+X-Received: by 2002:ac8:7593:0:b0:42e:7094:90c0 with SMTP id
+ s19-20020ac87593000000b0042e709490c0mr5387408qtq.48.1708944415043; Mon, 26
+ Feb 2024 02:46:55 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain
+References: <dbdkrwmcoqqlwftuc3olbauazc3pbamj26wa34puztowsnauoh@i3zms7ut4yuw>
+In-Reply-To: <dbdkrwmcoqqlwftuc3olbauazc3pbamj26wa34puztowsnauoh@i3zms7ut4yuw>
+From: Daniel Stone <daniel@fooishbar.org>
+Date: Mon, 26 Feb 2024 10:46:43 +0000
+Message-ID: <CAPj87rO4K6QS8hVn-d6N8CEi+Uibmgo6mZ5bNGz2rZDUMshvxA@mail.gmail.com>
+Subject: Re: [PULL] drm-xe-next
+To: Lucas De Marchi <lucas.demarchi@intel.com>
+Cc: Dave Airlie <airlied@gmail.com>, Daniel Vetter <daniel.vetter@ffwll.ch>, 
+ Jani Nikula <jani.nikula@linux.intel.com>, 
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>, 
+ Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, 
+ Thomas Zimmermann <tzimmermann@suse.de>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
+ Maxime Ripard <mripard@kernel.org>,
+ =?UTF-8?Q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>, 
+ Oded Gabbay <ogabbay@kernel.org>, dri-devel@lists.freedesktop.org, 
+ intel-gfx@lists.freedesktop.org, dim-tools@lists.freedesktop.org
+Content-Type: text/plain; charset="UTF-8"
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -71,80 +87,16 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, 23 Feb 2024, Cezary Rojewski <cezary.rojewski@intel.com> wrote:
-> Commit 78f613ba1efb ("drm/i915: finish removal of CNL") and its friends
-> removed support for i915 for all CNL-based platforms. HDAudio library,
-> however, still treats such platforms as valid candidates for i915
-> binding. Update query mechanism to reflect changes made in drm tree.
->
-> At the same time, i915 support for LKF-based platforms has not been
-> provided so remove them from valid binding candidates.
->
-> Link: https://lore.kernel.org/all/20210728215946.1573015-1-lucas.demarchi@intel.com/
-> Signed-off-by: Cezary Rojewski <cezary.rojewski@intel.com>
-> ---
->  sound/hda/hdac_i915.c | 32 +++++++++++++++++++++++++++++---
->  1 file changed, 29 insertions(+), 3 deletions(-)
->
-> diff --git a/sound/hda/hdac_i915.c b/sound/hda/hdac_i915.c
-> index 365c36fdf205..afee87bd0f2e 100644
-> --- a/sound/hda/hdac_i915.c
-> +++ b/sound/hda/hdac_i915.c
-> @@ -127,15 +127,41 @@ static int i915_component_master_match(struct device *dev, int subcomponent,
->  /* check whether Intel graphics is present and reachable */
->  static int i915_gfx_present(struct pci_dev *hdac_pci)
->  {
-> +	/* List of known platforms with no i915 support. */
-> +	static struct pci_device_id denylist[] = {
+Hi,
 
-This should be const to place it in rodata, it doesn't need to be
-mutable.
+On Mon, 26 Feb 2024 at 03:21, Lucas De Marchi <lucas.demarchi@intel.com> wrote:
+> All of this should be fixed by now: dim is used for applying and pushing
+> patches, which has additional checks so that doesn't happen again. Still
+> pending confirmation from Daniel Stone if the git server hooks are ready
+> in gitlab so we properly forbid pushes without dim, like we do with the
+> git.fd.o infra.
 
-> +		/* CNL */
-> +		{ PCI_DEVICE(PCI_VENDOR_ID_INTEL, 0x5a40), 0x030000, 0xff0000 },
-> +		{ PCI_DEVICE(PCI_VENDOR_ID_INTEL, 0x5a41), 0x030000, 0xff0000 },
-> +		{ PCI_DEVICE(PCI_VENDOR_ID_INTEL, 0x5a42), 0x030000, 0xff0000 },
-> +		{ PCI_DEVICE(PCI_VENDOR_ID_INTEL, 0x5a44), 0x030000, 0xff0000 },
-> +		{ PCI_DEVICE(PCI_VENDOR_ID_INTEL, 0x5a49), 0x030000, 0xff0000 },
-> +		{ PCI_DEVICE(PCI_VENDOR_ID_INTEL, 0x5a4a), 0x030000, 0xff0000 },
-> +		{ PCI_DEVICE(PCI_VENDOR_ID_INTEL, 0x5a4c), 0x030000, 0xff0000 },
-> +		{ PCI_DEVICE(PCI_VENDOR_ID_INTEL, 0x5a50), 0x030000, 0xff0000 },
-> +		{ PCI_DEVICE(PCI_VENDOR_ID_INTEL, 0x5a51), 0x030000, 0xff0000 },
-> +		{ PCI_DEVICE(PCI_VENDOR_ID_INTEL, 0x5a52), 0x030000, 0xff0000 },
-> +		{ PCI_DEVICE(PCI_VENDOR_ID_INTEL, 0x5a54), 0x030000, 0xff0000 },
-> +		{ PCI_DEVICE(PCI_VENDOR_ID_INTEL, 0x5a59), 0x030000, 0xff0000 },
-> +		{ PCI_DEVICE(PCI_VENDOR_ID_INTEL, 0x5a5a), 0x030000, 0xff0000 },
-> +		{ PCI_DEVICE(PCI_VENDOR_ID_INTEL, 0x5a5c), 0x030000, 0xff0000 },
-> +		/* LKF */
-> +		{ PCI_DEVICE(PCI_VENDOR_ID_INTEL, 0x9840), 0x030000, 0xff0000 },
-> +		{ 0 }
+Yeah, I did that last week.
 
-Nitpick, prefer {} over { 0 }.
-
-BR,
-Jani.
-
-> +	};
->  	struct pci_dev *display_dev = NULL;
->  
->  	if (!gpu_bind || (gpu_bind < 0 && video_firmware_drivers_only()))
->  		return false;
->  
->  	for_each_pci_dev(display_dev) {
-> -		if (display_dev->vendor == PCI_VENDOR_ID_INTEL &&
-> -		    (display_dev->class >> 16) == PCI_BASE_CLASS_DISPLAY &&
-> -		    connectivity_check(display_dev, hdac_pci)) {
-> +		if (display_dev->vendor != PCI_VENDOR_ID_INTEL ||
-> +		    (display_dev->class >> 16) != PCI_BASE_CLASS_DISPLAY)
-> +			continue;
-> +
-> +		if (pci_match_id(denylist, display_dev))
-> +			continue;
-> +
-> +		if (connectivity_check(display_dev, hdac_pci)) {
->  			pci_dev_put(display_dev);
->  			return true;
->  		}
-
--- 
-Jani Nikula, Intel
+Cheers,
+Daniel
