@@ -2,41 +2,41 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 247EB867561
-	for <lists+intel-gfx@lfdr.de>; Mon, 26 Feb 2024 13:43:10 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 57A08867562
+	for <lists+intel-gfx@lfdr.de>; Mon, 26 Feb 2024 13:43:13 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9A09810E71D;
-	Mon, 26 Feb 2024 12:43:08 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B3CBA10F151;
+	Mon, 26 Feb 2024 12:43:11 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="jXwEre8t";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="BRC9Akz1";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 39CDA10F151
- for <intel-gfx@lists.freedesktop.org>; Mon, 26 Feb 2024 12:43:07 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 755AF10F151
+ for <intel-gfx@lists.freedesktop.org>; Mon, 26 Feb 2024 12:43:10 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1708951387; x=1740487387;
+ t=1708951391; x=1740487391;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=oTHR95JWcz0ap604v+zFjYvXKhk2SC2e8b03VMGFeXk=;
- b=jXwEre8tnQe4YpbceKbF4QkyvJnmiFxy/iSKZQU79bYXa1L2TYjM3mVa
- 00Xk6QYT4Oy/s9lYIyIpQWF3YcCfSifsGPHQ3j73RscpAkzG1p/NMJ6O+
- CoXIBDrbEG4d+B4BNiWhn50ScbISDtgDDQBY8QPNTfLod1VOBNGxADxS9
- x8k955PjCmNu1R/2s9UxceXctvwlW6pRBZVYk893JiJQ5gX4icdmeriCY
- YO95t/zruPnAOwSi40A9J6WV3jTENh2nR7oRPDmG7+J4qoI+sGVtQookF
- CxTTiiDduoiJwziUC+LAiXHugIlLJNEs9LBoBIHSiQlsMHBy7ZNCQbhlD A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10995"; a="28658250"
-X-IronPort-AV: E=Sophos;i="6.06,185,1705392000"; d="scan'208";a="28658250"
+ bh=HNPW3gZaSH6fjCMtquzM1dI/vEaBhFuoLxGDia1XD9A=;
+ b=BRC9Akz1jGmLw5hp/G0P4A7y6k7qu16OQGP5Vb7ifxplDZrF0fLWzh5B
+ d2WuPdO9ka5ggKnAsFCRsBsylgAGuS9fL3+aJwXYZ0+k1Aqpv+gdW0ZW+
+ 5epb10JR81TsSyD7egmbmfD24He8+C/lpxNikopwIz1A+aM/HHOO7lu0b
+ LFTr/gN0sEzYVUQ/y/icYD6gQjSL8esWmxkaGoJqtWDnefBhiq7KGKpGa
+ lV6zmQES4gdtu+j8MBms8+pok1O4pHqgQfBpcUv7gDEqUTHhCHepq8S+g
+ 2Nv+S3y1qf5819sFpKTMxqWvWmsJ0NYsudfiV79sPFkxr3AfIt94KvEjY A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10995"; a="28658260"
+X-IronPort-AV: E=Sophos;i="6.06,185,1705392000"; d="scan'208";a="28658260"
 Received: from orviesa009.jf.intel.com ([10.64.159.149])
  by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Feb 2024 04:43:07 -0800
+ 26 Feb 2024 04:43:10 -0800
 X-ExtLoop1: 1
 X-IronPort-AV: E=Sophos;i="6.06,185,1705392000"; 
-   d="scan'208";a="6688616"
+   d="scan'208";a="6688619"
 Received: from crojewsk-ctrl.igk.intel.com ([10.102.9.28])
- by orviesa009.jf.intel.com with ESMTP; 26 Feb 2024 04:43:04 -0800
+ by orviesa009.jf.intel.com with ESMTP; 26 Feb 2024 04:43:07 -0800
 From: Cezary Rojewski <cezary.rojewski@intel.com>
 To: broonie@kernel.org
 Cc: alsa-devel@alsa-project.org, linux-sound@vger.kernel.org, tiwai@suse.com,
@@ -45,10 +45,9 @@ Cc: alsa-devel@alsa-project.org, linux-sound@vger.kernel.org, tiwai@suse.com,
  tvrtko.ursulin@linux.intel.com, intel-gfx@lists.freedesktop.org,
  amadeuszx.slawinski@linux.intel.com, pierre-louis.bossart@linux.intel.com,
  hdegoede@redhat.com, Cezary Rojewski <cezary.rojewski@intel.com>
-Subject: [PATCH v3 3/5] ASoC: Intel: avs: Ignore codecs with no suppoting
- driver
-Date: Mon, 26 Feb 2024 13:44:30 +0100
-Message-Id: <20240226124432.1203798-4-cezary.rojewski@intel.com>
+Subject: [PATCH v3 4/5] ASoC: codecs: hda: Cleanup error messages
+Date: Mon, 26 Feb 2024 13:44:31 +0100
+Message-Id: <20240226124432.1203798-5-cezary.rojewski@intel.com>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20240226124432.1203798-1-cezary.rojewski@intel.com>
 References: <20240226124432.1203798-1-cezary.rojewski@intel.com>
@@ -69,49 +68,56 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-HDMI codecs which are present and functional from audio perspective lack
-i915 support on drm side what results in -ENODEV during the probing
-sequence. There is no reason to perform recovery procedure e.g.: reset
-the HDAudio controller if this is the case.
+Be cohesive and use same pattern in each error message.
 
 Signed-off-by: Cezary Rojewski <cezary.rojewski@intel.com>
 ---
- sound/soc/intel/avs/core.c | 9 +++++----
- 1 file changed, 5 insertions(+), 4 deletions(-)
+ sound/soc/codecs/hda.c | 10 +++++-----
+ 1 file changed, 5 insertions(+), 5 deletions(-)
 
-diff --git a/sound/soc/intel/avs/core.c b/sound/soc/intel/avs/core.c
-index b3e5a5012167..a61ce42b426c 100644
---- a/sound/soc/intel/avs/core.c
-+++ b/sound/soc/intel/avs/core.c
-@@ -150,7 +150,7 @@ static int probe_codec(struct hdac_bus *bus, int addr)
- 	/* configure effectively creates new ASoC component */
- 	ret = snd_hda_codec_configure(codec);
+diff --git a/sound/soc/codecs/hda.c b/sound/soc/codecs/hda.c
+index 7c6bedeceaa2..5a58723dc0e9 100644
+--- a/sound/soc/codecs/hda.c
++++ b/sound/soc/codecs/hda.c
+@@ -198,19 +198,19 @@ static int hda_codec_probe(struct snd_soc_component *component)
+ 	ret = snd_hda_codec_device_new(codec->bus, component->card->snd_card, hdev->addr, codec,
+ 				       false);
  	if (ret < 0) {
--		dev_err(bus->dev, "failed to config codec %d\n", ret);
-+		dev_warn(bus->dev, "failed to config codec #%d: %d\n", addr, ret);
- 		return ret;
+-		dev_err(&hdev->dev, "create hda codec failed: %d\n", ret);
++		dev_err(&hdev->dev, "codec create failed: %d\n", ret);
+ 		goto device_new_err;
  	}
  
-@@ -159,15 +159,16 @@ static int probe_codec(struct hdac_bus *bus, int addr)
+ 	ret = snd_hda_codec_set_name(codec, codec->preset->name);
+ 	if (ret < 0) {
+-		dev_err(&hdev->dev, "name failed %s\n", codec->preset->name);
++		dev_err(&hdev->dev, "set name: %s failed: %d\n", codec->preset->name, ret);
+ 		goto err;
+ 	}
  
- static void avs_hdac_bus_probe_codecs(struct hdac_bus *bus)
- {
--	int c;
-+	int ret, c;
+ 	ret = snd_hdac_regmap_init(&codec->core);
+ 	if (ret < 0) {
+-		dev_err(&hdev->dev, "regmap init failed\n");
++		dev_err(&hdev->dev, "regmap init failed: %d\n", ret);
+ 		goto err;
+ 	}
  
- 	/* First try to probe all given codec slots */
- 	for (c = 0; c < HDA_MAX_CODECS; c++) {
- 		if (!(bus->codec_mask & BIT(c)))
- 			continue;
+@@ -223,13 +223,13 @@ static int hda_codec_probe(struct snd_soc_component *component)
  
--		if (!probe_codec(bus, c))
--			/* success, continue probing */
-+		ret = probe_codec(bus, c);
-+		/* Ignore codecs with no supporting driver. */
-+		if (!ret || ret == -ENODEV)
- 			continue;
+ 	ret = patch(codec);
+ 	if (ret < 0) {
+-		dev_err(&hdev->dev, "patch failed %d\n", ret);
++		dev_err(&hdev->dev, "codec init failed: %d\n", ret);
+ 		goto err;
+ 	}
  
- 		/*
+ 	ret = snd_hda_codec_parse_pcms(codec);
+ 	if (ret < 0) {
+-		dev_err(&hdev->dev, "unable to map pcms to dai %d\n", ret);
++		dev_err(&hdev->dev, "unable to map pcms to dai: %d\n", ret);
+ 		goto parse_pcms_err;
+ 	}
+ 
 -- 
 2.25.1
 
