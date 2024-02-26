@@ -2,80 +2,152 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 42A32866F83
-	for <lists+intel-gfx@lfdr.de>; Mon, 26 Feb 2024 10:58:24 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id AA94D866FD2
+	for <lists+intel-gfx@lfdr.de>; Mon, 26 Feb 2024 11:04:20 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C56D910F02C;
-	Mon, 26 Feb 2024 09:58:22 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6FFE910E30D;
+	Mon, 26 Feb 2024 10:04:18 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; secure) header.d=ffwll.ch header.i=@ffwll.ch header.b="QrQ48bpz";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="hmEbQyOd";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-ed1-f41.google.com (mail-ed1-f41.google.com
- [209.85.208.41])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BFE5C10F024
- for <intel-gfx@lists.freedesktop.org>; Mon, 26 Feb 2024 09:58:20 +0000 (UTC)
-Received: by mail-ed1-f41.google.com with SMTP id
- 4fb4d7f45d1cf-5586764bd0aso1339897a12.0
- for <intel-gfx@lists.freedesktop.org>; Mon, 26 Feb 2024 01:58:20 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=ffwll.ch; s=google; t=1708941498; x=1709546298; darn=lists.freedesktop.org; 
- h=in-reply-to:content-transfer-encoding:content-disposition
- :mime-version:references:message-id:subject:cc:to:from:date:from:to
- :cc:subject:date:message-id:reply-to;
- bh=rcS2t7LCBNalmbYcg1dW6Do0NiC+nTYJyBhhZRpI0go=;
- b=QrQ48bpzmH+cf45leiH25e65tdYcAa2VAcwNGiPLLH6JzQdMQSho/yLPEp/4Lbo0KL
- wWS2iRa490fB8XClH6XRhDNOw15VmHqvgOhI3pY7xACqFhhyXgfkRjxQfxchLMHkJDAA
- 1lX5TE1SRs8/0ljtrhIqXKptyyo3nRySfLjBo=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1708941498; x=1709546298;
- h=in-reply-to:content-transfer-encoding:content-disposition
- :mime-version:references:message-id:subject:cc:to:from:date
- :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
- bh=rcS2t7LCBNalmbYcg1dW6Do0NiC+nTYJyBhhZRpI0go=;
- b=ULC6pYg+Dh8gZ6jP20Ms/jZyywHBpOwHwZ2H07bsYDqUCfrR6uBoEbsc7U+vMdqZ/j
- XFxJ4Y5X8gBXvlIirF9QBEWreYfyFwBEcde++pQHryfEN4wb8hlndySpDvxewFNWF/yv
- /B+SrHu2w3mHmrInesP1jnjDTE2N5uZa8Q3ADGVJgaLQS5HQ0QgFLWFpMcDh1d0kvyvL
- ZQlNBRR9fJigElTzowQ5HwtVOj4wqDd/ovgqER8UGFoLwjoBxOmeKWZynjwzgBszv2Ac
- +ezNW6+E7k0p8OHRRE880SwvSISJfADS4FRg3t5JQJCp1a05nxDBLLJKJAJyRNQRu79x
- 1nrg==
-X-Forwarded-Encrypted: i=1;
- AJvYcCVk0+Xd1G/RV1+5SalzWt3vKBpibcDiR3otq0W9RNS9wfybZ+ceGIMS5kLXK1MwlEboesbeqg1seCubEF3WN+/iA7pmaz8g9CBe2fJyw7pf
-X-Gm-Message-State: AOJu0YxJcIQbTGJbKwpfLTHqAfkEGR8FTLRrA/YELQ+Z7haEckjdpB5U
- TrIa0nQkrsCZnk/4nj1BwMGaT3YWgOQnJQduZnLTh2dqGypZDregJJ68jyM+OUI=
-X-Google-Smtp-Source: AGHT+IG91NbEIztvNls6Vw4OB3LvCeRV4EAsp8I65cKHT5bQfQ+32uIUM5mizErnYtP+T9RT+Ytc+A==
-X-Received: by 2002:a17:907:779a:b0:a3e:625f:246 with SMTP id
- ky26-20020a170907779a00b00a3e625f0246mr3387575ejc.3.1708941498199; 
- Mon, 26 Feb 2024 01:58:18 -0800 (PST)
-Received: from phenom.ffwll.local ([2a02:168:57f4:0:efd0:b9e5:5ae6:c2fa])
- by smtp.gmail.com with ESMTPSA id
- n22-20020a1709062bd600b00a3ec0600ddasm2270701ejg.148.2024.02.26.01.58.17
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Mon, 26 Feb 2024 01:58:17 -0800 (PST)
-Date: Mon, 26 Feb 2024 10:58:15 +0100
-From: Daniel Vetter <daniel@ffwll.ch>
-To: Lucas De Marchi <lucas.demarchi@intel.com>
-Cc: Dave Airlie <airlied@gmail.com>, Daniel Vetter <daniel.vetter@ffwll.ch>,
- Jani Nikula <jani.nikula@linux.intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Thomas Zimmermann <tzimmermann@suse.de>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>,
- Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>,
- Oded Gabbay <ogabbay@kernel.org>, dri-devel@lists.freedesktop.org,
- intel-gfx@lists.freedesktop.org, dim-tools@lists.freedesktop.org
-Subject: Re: [PULL] drm-xe-next
-Message-ID: <Zdxgt4ucDQM5Nz5N@phenom.ffwll.local>
-References: <dbdkrwmcoqqlwftuc3olbauazc3pbamj26wa34puztowsnauoh@i3zms7ut4yuw>
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 927A510E30D;
+ Mon, 26 Feb 2024 10:04:16 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1708941857; x=1740477857;
+ h=message-id:date:subject:to:cc:references:from:
+ in-reply-to:content-transfer-encoding:mime-version;
+ bh=JI2DepxFhs9mINlUq1a/dyoe2x2KkQh/+0iBDNXXz5s=;
+ b=hmEbQyOdJvwy0J2n1XLo3J3oYTNPI8EuFbt4tgL8302fK2mD9/7RBIYu
+ oIOxew1DF4wJEEySBSrqVqF8+kGKL0OH8YSr9CJLX3jZaDIR4h9EFyxOG
+ MkTdQfLHDM4kK+TI1XEV9w6tSoA+3E4waf1MET2K0dPsJn1otVzrMgh3Z
+ XRnfbFsyNcnbXRptODhl41p2Suc+WQzeJC2+w9ZYZq5+3OT2UXCJJ8XtC
+ 8uKG6uqWlvS/BlMahw+GGmeQ63aBkTEiM0KLrIxrLygSvpLaNG+O7Wh3F
+ Z1Z2dhYj170ow93K3f0ZO8tA+2NB4XjSjhyBqOKMpM/mrBpuTiumHxivn w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10995"; a="3363360"
+X-IronPort-AV: E=Sophos;i="6.06,185,1705392000"; 
+   d="scan'208";a="3363360"
+Received: from fmviesa010.fm.intel.com ([10.60.135.150])
+ by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 Feb 2024 02:04:06 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.06,185,1705392000"; 
+   d="scan'208";a="6604706"
+Received: from orsmsx603.amr.corp.intel.com ([10.22.229.16])
+ by fmviesa010.fm.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
+ 26 Feb 2024 02:04:05 -0800
+Received: from orsmsx610.amr.corp.intel.com (10.22.229.23) by
+ ORSMSX603.amr.corp.intel.com (10.22.229.16) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.35; Mon, 26 Feb 2024 02:04:05 -0800
+Received: from ORSEDG602.ED.cps.intel.com (10.7.248.7) by
+ orsmsx610.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.35 via Frontend Transport; Mon, 26 Feb 2024 02:04:05 -0800
+Received: from NAM10-MW2-obe.outbound.protection.outlook.com (104.47.55.101)
+ by edgegateway.intel.com (134.134.137.103) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.1.2507.35; Mon, 26 Feb 2024 02:04:04 -0800
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=TzHinWPQ7q9B64ohMMUrl9U9p27wesHvT0pVKaJQm69uiRcXAaH0YTk3EBfS9LPY/d58ShDfeWjw49Q7dbN4rttXWyFnp1KK7ZrsxgTibhlpeDrcl2IIEA0HTimjoSOFSedE1/Sm2MclSKlZZhIB2eKPTfdi+1H9Yk6VxutICX2HZ08GnOpUjZC8AbXB+yLy4SP/sh75KunHETNJqX/rvPmTOSPyappPOz6nQWsQGB83Bl2mVgAmDvayFRmjE/JyG5SpJhXrVVavScDQbGkHC2sRwbCZr4AaHgjmRqovJNMfUUWhZV2qUXeUqPschybd1LGVON6jbkcSydjQn+qeVw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=XDdkSxdNcbgZvelT7QQ9zlu7S2aSMpGJkwomaUS2u8c=;
+ b=j0Rnt+Ql7S/Qa4HQ3GnVt3tlP81LhwwsSGbvtk6riKmn+5KdZhM3thy33t9/SjfOhJh97g0cNZHTjJeWgTieEVSipCsFuHdMTZac/mtu+1kd6Nmq1Cjp1zRU9BJM/3+I3tg27EslVb20rase54D83gmlOGWLgt/EafCtcyVQjTO+hQ1i5bcYuNOqno81hWe0LpVyKGQPUkL4KuYRosuruiHAHC+Rs3LbKiXwCrjvZxGyosaIafh7LYS1tIu+ibXDJN5O9kSEfw/zz7hTvvQibqIEQeEnzHH/yYaq6jqlfA+lmIUsbg7zN8tENEDLWXXKsa+Jx9MFDUX72EulhH72qw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+Received: from DM4PR11MB5341.namprd11.prod.outlook.com (2603:10b6:5:390::22)
+ by IA0PR11MB7749.namprd11.prod.outlook.com (2603:10b6:208:442::7) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7339.10; Mon, 26 Feb
+ 2024 10:04:03 +0000
+Received: from DM4PR11MB5341.namprd11.prod.outlook.com
+ ([fe80::12b:4490:b758:75c2]) by DM4PR11MB5341.namprd11.prod.outlook.com
+ ([fe80::12b:4490:b758:75c2%7]) with mapi id 15.20.7339.023; Mon, 26 Feb 2024
+ 10:04:03 +0000
+Message-ID: <e026e2cf-66d6-41af-9cd6-430e9cdf9d8e@intel.com>
+Date: Mon, 26 Feb 2024 15:33:56 +0530
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 5/6] drm/i915/display: Compute vrr_vsync params
+Content-Language: en-US
+To: Mitul Golani <mitulkumar.ajitkumar.golani@intel.com>,
+ <intel-gfx@lists.freedesktop.org>
+CC: <dri-devel@lists.freedesktop.org>
+References: <20240222121223.2257958-1-mitulkumar.ajitkumar.golani@intel.com>
+ <20240222121223.2257958-6-mitulkumar.ajitkumar.golani@intel.com>
+From: "Nautiyal, Ankit K" <ankit.k.nautiyal@intel.com>
+In-Reply-To: <20240222121223.2257958-6-mitulkumar.ajitkumar.golani@intel.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: PN2PR01CA0122.INDPRD01.PROD.OUTLOOK.COM
+ (2603:1096:c01:6::7) To DM4PR11MB5341.namprd11.prod.outlook.com
+ (2603:10b6:5:390::22)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <dbdkrwmcoqqlwftuc3olbauazc3pbamj26wa34puztowsnauoh@i3zms7ut4yuw>
-X-Operating-System: Linux phenom 6.6.11-amd64 
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: DM4PR11MB5341:EE_|IA0PR11MB7749:EE_
+X-MS-Office365-Filtering-Correlation-Id: 48f0ed86-b571-4f82-b09c-08dc36b24276
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: uiFrxbHHv6leI3X4jrgcjJSxAHDkRfjwx+Rd1KDdMQ1T9LOiq+XkAoEb4e3WH2KE63h8ULGXOZxA9RruTZIZe9y2no+vlFWzLutB3HV7BrmZRzarlg6IwbNau5GC1jDpVwL/PajGE1ZCRfb/2LIsQPFlyeYHHaAJN8543UMkL4kdNCHST8Oq6+WaF5AppkLKfo1EhfKu8izOdkgDB2FbyWySu8mR02CjpJkvl8bm/ususOGbkeHyPPThEvwrR+QRQW1lq3nxgkPmg2A889NtSziMeukBtnFhfZcuvPnDtdRFgaXHh46za6Erk0onSjEuQ/XXrAQ9YlPdeBnNDuL8XlhPDOSAJpB3cw4Sl9JcLx6G8F82U/NXWaAuVydG/QtbOXsy7yMFJXnZt3TdlqI3aDV+8R4255D2RhTOH+QZHCIQ3Aoh3Yyo/bOaVljVpPJjGWaaT1vsn0d/QACVx5RdLhxZtDvjnykiVvg+7YcL7RXSxyNRApPCiS1gz3GXAvHCsQJuTr1mVn+A57fQ3Kgcm8z0q5lb4JPfZtY/6nvdceSo1I2nZCuRMjI3rxl8XmMUse1fBUVJli/k27hDz+iPUc4Q4v7MeHEAiJqVo4VXMTq0Nqj+aseLod9g2ukU6o0D
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:DM4PR11MB5341.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230031); DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?ZnhFU3N6UlNERk5CWEkyZmErM0tVNGFkS3JUSjV4aEUxOUpBWXJ6WE9NN25l?=
+ =?utf-8?B?c211QXhHM0pLWjBxUlcraVFDWWFLUGh4cTRYbjczL2VCS3lacEFYZzQwaEZu?=
+ =?utf-8?B?OHBVVDNITWlhaUxwZzJjbzRaZE9WV0ovWmhtbDVpVFpsVk9hSWZlZUpUNDJL?=
+ =?utf-8?B?b1N3RzR5SWlXM00wNVNFb3ZPMGRrb2huK3NndmlodmJPaU93NUl6MWd0Rmlk?=
+ =?utf-8?B?Z1R0elRlMXMzSDc5U2RPTThYNUp0eXNOZ2Jua2d5U2dNMksrek5jM3JEbHF0?=
+ =?utf-8?B?K3JHSE5hUEVkdnc3NHhxaWdVNE9vNDFzSExwUTBMUE9QbnR3VUsvSXQ0WEtY?=
+ =?utf-8?B?RnV0ZGlXQzlWUTY1Ync0R3JrUWtXeWtUUHg1cjc5YjNTcWxwcFdlRjhkZGVz?=
+ =?utf-8?B?bnBpRkJKekRJSGFaT25VUzB0SnFJYVFVSE85WjJla3lXUUFHL3QwdHAyOVRL?=
+ =?utf-8?B?OXRMTEVuNzgzeTRZMHpzYUhMd28zTTJsN09wVk5CamVjMGZiL1h0MlEydHhj?=
+ =?utf-8?B?b09sdkx4TkVVV0JVZzRxNlNOTFNVaFlOdnhsUUdqTEs1b3BOL2xsMkd5OUg5?=
+ =?utf-8?B?SUVMZHh0OG16VjFnWU5uNkFucnl0V05GQms0c3JsSUtjckFlT0t4d05rOXRz?=
+ =?utf-8?B?MVNLOEViNWF4ZkNJOHVQaDNxSy9OTDZBQjJYelhhMFJWa0QxclhCc05oSGpj?=
+ =?utf-8?B?SmgycEtjVEdzRUszVjRoakNyb09sQjJ4dS9QbnBySEY3ZEJhWFRMTStqV3Bj?=
+ =?utf-8?B?bDVvRkx3Qzh5RmN5bzZkbDZDQjJGZWFOOGpYVTRyTURNVmZUSC9tbzZwbnFS?=
+ =?utf-8?B?SFVaM3NBQkg3VnpWbFlPdDI2dlJkekVtUlFEcHhwSjhIVUlJUy9DVW5ybXlz?=
+ =?utf-8?B?NFR1bHEwNTg4YmdWZkJVbGVEWEFpOVA5TThUSFBIYmJIU1R3UDFpSVBsYmhC?=
+ =?utf-8?B?blA5b2hwRFR6UUp2djlzdC9FZUg0dTdndS9sU25tWm1MOTAweGNYajhNYzhI?=
+ =?utf-8?B?OWZjMXRDeWU5M09XczQyTHF3OVQyZ2NnTkZNUi93MlU2R2F4TzVBTDZueXg0?=
+ =?utf-8?B?VXhCenRoU1pLVHZQYXN5amwwbTJ1c1JXNlQ5WVVCcnVHcGdmYThoUU11elpu?=
+ =?utf-8?B?U1JJYmpKRWxHcXBJc0xMV2pud1M4bGNHME9oUnFKLzhPUWVORWlyNjBDbFJw?=
+ =?utf-8?B?WjFYWk04U1hQV05vdjU1SkZnQUJGeWllSGdXSGhWMXBVZm04dFoxSTQ4M3ZU?=
+ =?utf-8?B?bk1yb0dudHBnRzVZU21mUk1PcVBzZU1JSEVZZys0Mnl5ZWwyWHl0N2tkd0xI?=
+ =?utf-8?B?Y2ZFRFdEei9xbm1hdThzY0hlYlFyOGQ0YkQzWWd2MjhsMzdqVEN0Qyt1emZp?=
+ =?utf-8?B?VDFVS0dmY2hiNHYrZGtqeERoS041dXpSbFBLSkRHbDl5WEk1Q0czeEEyQ3By?=
+ =?utf-8?B?SnB0QnRCQ0JtSkJWcUNiY05WSVpVVFE1N0lhVGJOU08vQ1BHa1JNdnRrLzBu?=
+ =?utf-8?B?eW1WTGpHdmQ3M2hGa0NFRjVxZmxuTE1iL25VR1hkcThJbGo5QXJVRUdoUEU1?=
+ =?utf-8?B?T3ZCSTdCV0dxc3MwMk5PaG5RNEJYR0haV2Q4d01LeHBRK29Lc25wU2ViTEl0?=
+ =?utf-8?B?VTFpdHhEMFJuaC9MM1cvRnpLMi9rTTVFWStiS0dhamtPMFdrYTg2WEJrK0Rk?=
+ =?utf-8?B?cnF4TlhydllLcTNVcE05YkZ1ZFVXS3hYdStoZ21xQVd1TzUxdmpoWVI2UmRn?=
+ =?utf-8?B?T082NFFLZDFPRXIxV0E4VjV1TE9NMnJRaDF6Q1hNVkJ4QWFEU1I1c3JVUjBM?=
+ =?utf-8?B?d3FaU3ljT0dadkFtN3JZL2hkZkxCem14dzNnVVZxaTZvRHJXeWc2OE4wMVdQ?=
+ =?utf-8?B?bHBMVWhaaGlDSkd5OE14M0JVakd1TTVWSTN5bmlGV0NxekluNlFHdTY3eDFB?=
+ =?utf-8?B?amNtWXd1QUV4WVdQTTVtbGtWa2Nwa3ZBbFpDSVhBdXZHWUhqQ3BLUkhnbkpj?=
+ =?utf-8?B?aTRnb1d3QlhJNVRjSEVrT3JaM3ZKOHBlN2QwdmkwZDRJck9INFN4MEdDMmt3?=
+ =?utf-8?B?YzVKanE3UUlWYmVoVmZLVEpsSENWNWFKdHhWUTBxeFRkWnVaWHZ0YjNYK0dn?=
+ =?utf-8?B?LzVsUWxFN2xGQzVVNGJ5VTFkWDVCSWdQWWZ3Q1MwN3BkZkExQ21hbjBNejZq?=
+ =?utf-8?B?V2c9PQ==?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: 48f0ed86-b571-4f82-b09c-08dc36b24276
+X-MS-Exchange-CrossTenant-AuthSource: DM4PR11MB5341.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 26 Feb 2024 10:04:03.0486 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: zscJQUaTByg/OXK5sc90dlmO4iBBH2Q3YrsbS0MtteBv2TJ7U+erBZyH0rd5U4my9K1qZelYwhgpDPBtY7VtuAMNq4ilHrsrwY/dC5gtcnw=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA0PR11MB7749
+X-OriginatorOrg: intel.com
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -91,756 +163,118 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Sun, Feb 25, 2024 at 09:21:00PM -0600, Lucas De Marchi wrote:
-> Hi Dave and Sima,
-> 
-> Here's the PR for drm-xe-next for Linux v6.9. It's a big list of
-> changes, but it contains several fixes for things noticed throughout the
-> v6.8 cycle after being merged upstream, added to the linux-next, etc.
-> Approximately 30% are fixes already sent or on its way to v6.8.
-> 
-> First, the bad part: this still shows some issues of not being properly
-> integrated with our tooling, with this one being the worst:
-> https://lore.kernel.org/all/20240221173645.225a979d@canb.auug.org.au/.
-> Some of the committers didn't add their s-o-b while applying patches.  I
-> checked that all the affected patches do contain the s-o-b by the author
-> and come from the same company (Intel).
-> 
-> Also due to the same reason, some commits are missing a Link trailer to
-> the mailing list discussion. Often these patches were applied with bare
-> git-am or b4.
-> 
-> All of this should be fixed by now: dim is used for applying and pushing
-> patches, which has additional checks so that doesn't happen again. Still
-> pending confirmation from Daniel Stone if the git server hooks are ready
-> in gitlab so we properly forbid pushes without dim, like we do with the
-> git.fd.o infra.
-> 
-> Finally, we enabled again building for 32b, but on Friday we received
-> bug reports that it still fails with clang. There are some fixes being
-> reviewed and we should have them ready next week.
-> 
-> Summary of the changes are below.
-> 
-> drm-xe-next-2024-02-25:
-> drm/xe feature pull for v6.9:
-> 
-> UAPI Changes:
-> 
-> - New query to the GuC firmware submission version. (José Roberto de Souza)
-> - Remove unused persistent exec_queues (Thomas Hellström)
-> - Add vram frequency sysfs attributes (Sujaritha Sundaresan, Rodrigo Vivi)
-> - Add the flag XE_VM_BIND_FLAG_DUMPABLE to notify devcoredump that mapping
->   should be dumped (Maarten Lankhorst)
-> 
-> Cross-drivers Changes:
-> 
-> - Make sure intel_wakeref_t is treated as opaque type on i915-display
->   and fix its type on xe
-> 
-> Driver Changes:
-> 
-> - Drop pre-production workarounds (Matt Roper)
-> - Drop kunit tests for unsuported platforms: PVC and pre-production DG2 (Lucas De Marchi)
-> - Start pumbling SR-IOV support with memory based interrupts
->   for VF (Michal Wajdeczko)
-> - Allow to map BO in GGTT with PAT index corresponding to
->   XE_CACHE_UC to work with memory based interrupts (Michal Wajdeczko)
-> - Improve logging with GT-oriented drm_printers (Michal Wajdeczko)
-> - Add GuC Doorbells Manager as prep work SR-IOV during
->   VF provisioning ((Michal Wajdeczko)
-> - Refactor fake device handling in kunit integration ((Michal Wajdeczko)
-> - Implement additional workarounds for xe2 and MTL (Tejas Upadhyay,
->   Lucas De Marchi, Shekhar Chauhan, Karthik Poosa)
-> - Program a few registers according to perfomance guide spec for Xe2 (Shekhar Chauhan)
-> - Add error handling for non-blocking communication with GuC (Daniele Ceraolo Spurio)
-> - Fix remaining 32b build issues and enable it back (Lucas De  Marchi)
-> - Fix build with CONFIG_DEBUG_FS=n (Jani Nikula)
-> - Fix warnings from GuC ABI headers (Matthew Brost)
-> - Introduce Relay Communication for SR-IOV for VF <-> GuC <-> PF (Michal Wajdeczko)
-> - Add mocs reset kunit (Ruthuvikas Ravikumar)
-> - Fix spellings (Colin Ian King)
-> - Disable mid-thread preemption when not properly supported by hardware (Nirmoy Das)
-> - Release mmap mappings on rpm suspend (Badal Nilawar)
-> - Fix BUG_ON on xe_exec by moving fence reservation to the validate stage (Matthew Auld)
-> - Fix xe_exec by reserving extra fence slot for CPU bind (Matthew Brost)
-> - Fix xe_exec with full long running exec queue, now returning
->   -EWOULDBLOCK to userspace (Matthew Brost)
-> - Fix CT irq handler when CT is disabled (Matthew Brost)
-> - Fix VM_BIND_OP_UNMAP_ALL without any bound vmas (Thomas Hellström)
-> - Fix missing __iomem annotations (Thomas Hellström)
-> - Fix exec queue priority handling with GuC (Brian Welty)
-> - Fix setting SLPC flag to GuC when it's not supported (Vinay Belgaumkar)
-> - Fix C6 disabling without SLPC (Matt Roper)
-> - Drop -Wstringop-overflow to fix build with GCC11 (Paul E. McKenney)
-> - Circumvent bogus -Wstringop-overflow in one case (Arnd Bergmann)
-> - Refactor exec_queue user extensions handling and fix USM attributes
->   being applied too late (Brian Welty)
-> - Use circ_buf head/tail convention (Matthew Brost)
-> - Fail build if circ_buf-related defines are modified with incompatible values
->   (Matthew Brost)
-> - Fix several error paths (Dan Carpenter)
-> - Fix CCS copy for small VRAM copy chunks (Thomas Hellström)
-> - Rework driver initialization order and paths to account for driver running
->   in VF mode (Michal Wajdeczko)
-> - Initialize GuC earlier during probe to handle driver in VF mode (Michał Winiarski)
-> - Fix migration use of MI_STORE_DATA_IMM to write PTEs (Matt Roper)
-> - Fix bounds checking in __xe_bo_placement_for_flags (Brian Welty)
-> - Drop display dependency on CONFIG_EXPERT (Jani Nikula)
-> - Do not hand-roll kstrdup when creating snapshot (Michal Wajdeczko)
-> - Stop creating one kunit module per kunit suite (Lucas De Marchi)
-> - Reduce scope and constify variables (Thomas Hellström, Jani Nikula, Michal Wajdeczko)
-> - Improve and document xe_guc_ct_send_recv() (Michal Wajdeczko)
-> - Add proxy communication between CSME and GSC uC (Daniele Ceraolo Spurio)
-> - Fix size calculation when writing pgtable (Fei Yang)
-> - Make sure cfb is page size aligned in stolen memory (Vinod Govindapillai)
-> - Stop printing guc log to dmesg when waiting for GuC fails (Rodrigo Vivi)
-> - Use XE_CACHE_WB instead of XE_CACHE_NONE for cpu coherency on migration
->   (Himal Prasad Ghimiray)
-> - Fix error path in xe_vm_create (Moti Haimovski)
-> - Fix warnings in doc generation (Thomas Hellström, Badal Nilawar)
-> - Improve devcoredump content for mesa debugging (José Roberto de Souza)
-> - Fix crash in trace_dma_fence_init() (José Roberto de Souza)
-> - Improve CT state change handling (Matthew Brost)
-> - Toggle USM support for Xe2 (Lucas De Marchi)
-> - Reduces code duplication to emit PIPE_CONTROL (José Roberto de Souza)
-> - Canonicalize addresses where needed for Xe2 and add to devcoredump
->   (José Roberto de Souza)
-> - Only allow 1 ufence per exec / bind IOCTL (Matthew Brost)
-> - Move all display code to display/ (Jani Nikula)
-> - Fix sparse warnings by correctly using annotations (Thomas Hellström)
-> - Warn on job timeouts instead of using asserts (Matt Roper)
-> - Prefix macros to avoid clashes with sparc (Matthew Brost)
-> - Fix -Walloc-size by subclassing instead of allocating size smaller than struct (Thomas Hellström)
-> - Add status check during gsc header readout (Suraj Kandpal)
-> - Fix infinite loop in vm_bind_ioctl_ops_unwind() (Matthew Brost)
-> - Fix fence refcounting (Matthew Brost)
-> - Fix picking incorrect userptr VMA (Matthew Brost)
-> - Fix USM on integrated by mapping both mem.kernel_bb_pool and usm.bb_pool (Matthew Brost)
-> - Fix double initialization of display power domains (Xiaoming Wang)
-> - Check expected uC versions by major.minor.patch instead of just major.minor (John Harrison)
-> - Bump minimum GuC version to 70.19.2 for all platforms under force-probe
->   (John Harrison)
-> - Add GuC firmware loading for Lunar Lake (John Harrison)
-> - Use kzalloc() instead of hand-rolled alloc + memset (Nirmoy Das)
-> - Fix max page size of VMA during a REMAP (Matthew Brost)
-> - Don't ignore error when pinning pages in kthread (Matthew Auld)
-> - Refactor xe hwmon (Karthik Poosa)
-> - Add debug logs for D3cold (Riana Tauro)
-> - Remove broken TEST_VM_ASYNC_OPS_ERROR (Matthew Brost)
-> - Always allow to override firmware blob with module param and improve
->   log when no firmware is found (Lucas De Marchi)
-> - Fix shift-out-of-bounds due to xe_vm_prepare_vma() accepting zero fences (Thomas Hellström)
-> - Fix shift-out-of-bounds by distinguishing xe_pt/xe_pt_dir subclass (Thomas Hellström)
-> - Fail driver bind if platform supports MSIX, but fails to allocate all of them (Dani Liberman)
-> - Fix intel_fbdev thinking memory is backed by shmem (Matthew Auld)
-> - Prefer drm_dbg() over dev_dbg() (Jani Nikula)
-> - Avoid function cast warnings with clang-16 (Arnd Bergmann)
-> - Enhance xe_bo_move trace (Priyanka Dandamudi)
-> - Fix xe_vma_set_pte_size() not setting the right gpuva.flags for 4K size (Matthew Brost)
-> - Add XE_VMA_PTE_64K VMA flag (Matthew Brost)
-> - Return 2MB page size for compact 64k PTEs (Matthew Brost)
-> - Remove usage of the deprecated ida_simple_xx() API (Christophe JAILLET)
-> - Fix modpost warning on xe_mocs live kunit module (Ashutosh Dixit)
-> - Drop extra newline in from sysfs files (Ashutosh Dixit)
-> - Implement VM snapshot support for BO's and userptr (Maarten Lankhorst)
-> - Add debug logs when skipping rebinds (Matthew Brost)
-> - Fix code generation when mixing build directories (Dafna Hirschfeld)
-> - Prefer struct_size over open coded arithmetic (Erick Archer)
-> 
-> The following changes since commit 9ac4beb7578a88baa4f7e6a59eeb5be79d7b011a:
-> 
->   Merge tag 'drm-misc-next-2024-02-15' of git://anongit.freedesktop.org/drm/drm-misc into drm-next (2024-02-16 13:16:40 +1000)
-> 
-> are available in the Git repository at:
-> 
->   ssh://git@gitlab.freedesktop.org/drm/xe/kernel.git tags/drm-xe-next-2024-02-25
 
-Merged to drm-next, thanks a lot!
--Sima
+On 2/22/2024 5:42 PM, Mitul Golani wrote:
+> Compute vrr_vsync_start/end  which sets the position
+> for hardware to send the Vsync at a fixed position
+> relative to the end of the Vblank.
+>
+> --v2:
+> - Update, VSYNC_START/END macros to VRR_VSYNC_START/END.(Ankit)
+> - Update bit fields of VRR_VSYNC_START/END.(Ankit)
+>
+> Signed-off-by: Mitul Golani <mitulkumar.ajitkumar.golani@intel.com>
+> ---
+>   drivers/gpu/drm/i915/display/intel_display.c       |  1 +
+>   drivers/gpu/drm/i915/display/intel_display_types.h |  1 +
+>   drivers/gpu/drm/i915/display/intel_vrr.c           | 12 ++++++++++++
+>   drivers/gpu/drm/i915/i915_reg.h                    |  7 +++++++
+>   4 files changed, 21 insertions(+)
+>
+> diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
+> index 00ac65a14029..5994f7fcbb6a 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display.c
+> +++ b/drivers/gpu/drm/i915/display/intel_display.c
+> @@ -5321,6 +5321,7 @@ intel_pipe_config_compare(const struct intel_crtc_state *current_config,
+>   		PIPE_CONF_CHECK_I(vrr.flipline);
+>   		PIPE_CONF_CHECK_I(vrr.pipeline_full);
+>   		PIPE_CONF_CHECK_I(vrr.guardband);
+> +		PIPE_CONF_CHECK_BOOL(vrr.as_sdp_enable);
 
-> 
-> for you to fetch changes up to a7a3d73686f5837916ebffda77afa4343754e7dc:
-> 
->   drm/xe: Prefer struct_size over open coded arithmetic (2024-02-22 20:58:20 -0800)
-> 
-> ----------------------------------------------------------------
-> drm/xe feature pull for v6.9:
-> 
-> UAPI Changes:
-> 
-> - New query to the GuC firmware submission version. (José Roberto de Souza)
-> - Remove unused persistent exec_queues (Thomas Hellström)
-> - Add vram frequency sysfs attributes (Sujaritha Sundaresan, Rodrigo Vivi)
-> - Add the flag XE_VM_BIND_FLAG_DUMPABLE to notify devcoredump that mapping
->   should be dumped (Maarten Lankhorst)
-> 
-> Cross-drivers Changes:
-> 
-> - Make sure intel_wakeref_t is treated as opaque type on i915-display
->   and fix its type on xe
-> 
-> Driver Changes:
-> 
-> - Drop pre-production workarounds (Matt Roper)
-> - Drop kunit tests for unsuported platforms: PVC and pre-production DG2 (Lucas De Marchi)
-> - Start pumbling SR-IOV support with memory based interrupts
->   for VF (Michal Wajdeczko)
-> - Allow to map BO in GGTT with PAT index corresponding to
->   XE_CACHE_UC to work with memory based interrupts (Michal Wajdeczko)
-> - Improve logging with GT-oriented drm_printers (Michal Wajdeczko)
-> - Add GuC Doorbells Manager as prep work SR-IOV during
->   VF provisioning ((Michal Wajdeczko)
-> - Refactor fake device handling in kunit integration ((Michal Wajdeczko)
-> - Implement additional workarounds for xe2 and MTL (Tejas Upadhyay,
->   Lucas De Marchi, Shekhar Chauhan, Karthik Poosa)
-> - Program a few registers according to perfomance guide spec for Xe2 (Shekhar Chauhan)
-> - Add error handling for non-blocking communication with GuC (Daniele Ceraolo Spurio)
-> - Fix remaining 32b build issues and enable it back (Lucas De  Marchi)
-> - Fix build with CONFIG_DEBUG_FS=n (Jani Nikula)
-> - Fix warnings from GuC ABI headers (Matthew Brost)
-> - Introduce Relay Communication for SR-IOV for VF <-> GuC <-> PF (Michal Wajdeczko)
-> - Add mocs reset kunit (Ruthuvikas Ravikumar)
-> - Fix spellings (Colin Ian King)
-> - Disable mid-thread preemption when not properly supported by hardware (Nirmoy Das)
-> - Release mmap mappings on rpm suspend (Badal Nilawar)
-> - Fix BUG_ON on xe_exec by moving fence reservation to the validate stage (Matthew Auld)
-> - Fix xe_exec by reserving extra fence slot for CPU bind (Matthew Brost)
-> - Fix xe_exec with full long running exec queue, now returning
->   -EWOULDBLOCK to userspace (Matthew Brost)
-> - Fix CT irq handler when CT is disabled (Matthew Brost)
-> - Fix VM_BIND_OP_UNMAP_ALL without any bound vmas (Thomas Hellström)
-> - Fix missing __iomem annotations (Thomas Hellström)
-> - Fix exec queue priority handling with GuC (Brian Welty)
-> - Fix setting SLPC flag to GuC when it's not supported (Vinay Belgaumkar)
-> - Fix C6 disabling without SLPC (Matt Roper)
-> - Drop -Wstringop-overflow to fix build with GCC11 (Paul E. McKenney)
-> - Circumvent bogus -Wstringop-overflow in one case (Arnd Bergmann)
-> - Refactor exec_queue user extensions handling and fix USM attributes
->   being applied too late (Brian Welty)
-> - Use circ_buf head/tail convention (Matthew Brost)
-> - Fail build if circ_buf-related defines are modified with incompatible values
->   (Matthew Brost)
-> - Fix several error paths (Dan Carpenter)
-> - Fix CCS copy for small VRAM copy chunks (Thomas Hellström)
-> - Rework driver initialization order and paths to account for driver running
->   in VF mode (Michal Wajdeczko)
-> - Initialize GuC earlier during probe to handle driver in VF mode (Michał Winiarski)
-> - Fix migration use of MI_STORE_DATA_IMM to write PTEs (Matt Roper)
-> - Fix bounds checking in __xe_bo_placement_for_flags (Brian Welty)
-> - Drop display dependency on CONFIG_EXPERT (Jani Nikula)
-> - Do not hand-roll kstrdup when creating snapshot (Michal Wajdeczko)
-> - Stop creating one kunit module per kunit suite (Lucas De Marchi)
-> - Reduce scope and constify variables (Thomas Hellström, Jani Nikula, Michal Wajdeczko)
-> - Improve and document xe_guc_ct_send_recv() (Michal Wajdeczko)
-> - Add proxy communication between CSME and GSC uC (Daniele Ceraolo Spurio)
-> - Fix size calculation when writing pgtable (Fei Yang)
-> - Make sure cfb is page size aligned in stolen memory (Vinod Govindapillai)
-> - Stop printing guc log to dmesg when waiting for GuC fails (Rodrigo Vivi)
-> - Use XE_CACHE_WB instead of XE_CACHE_NONE for cpu coherency on migration
->   (Himal Prasad Ghimiray)
-> - Fix error path in xe_vm_create (Moti Haimovski)
-> - Fix warnings in doc generation (Thomas Hellström, Badal Nilawar)
-> - Improve devcoredump content for mesa debugging (José Roberto de Souza)
-> - Fix crash in trace_dma_fence_init() (José Roberto de Souza)
-> - Improve CT state change handling (Matthew Brost)
-> - Toggle USM support for Xe2 (Lucas De Marchi)
-> - Reduces code duplication to emit PIPE_CONTROL (José Roberto de Souza)
-> - Canonicalize addresses where needed for Xe2 and add to devcoredump
->   (José Roberto de Souza)
-> - Only allow 1 ufence per exec / bind IOCTL (Matthew Brost)
-> - Move all display code to display/ (Jani Nikula)
-> - Fix sparse warnings by correctly using annotations (Thomas Hellström)
-> - Warn on job timeouts instead of using asserts (Matt Roper)
-> - Prefix macros to avoid clashes with sparc (Matthew Brost)
-> - Fix -Walloc-size by subclassing instead of allocating size smaller than struct (Thomas Hellström)
-> - Add status check during gsc header readout (Suraj Kandpal)
-> - Fix infinite loop in vm_bind_ioctl_ops_unwind() (Matthew Brost)
-> - Fix fence refcounting (Matthew Brost)
-> - Fix picking incorrect userptr VMA (Matthew Brost)
-> - Fix USM on integrated by mapping both mem.kernel_bb_pool and usm.bb_pool (Matthew Brost)
-> - Fix double initialization of display power domains (Xiaoming Wang)
-> - Check expected uC versions by major.minor.patch instead of just major.minor (John Harrison)
-> - Bump minimum GuC version to 70.19.2 for all platforms under force-probe
->   (John Harrison)
-> - Add GuC firmware loading for Lunar Lake (John Harrison)
-> - Use kzalloc() instead of hand-rolled alloc + memset (Nirmoy Das)
-> - Fix max page size of VMA during a REMAP (Matthew Brost)
-> - Don't ignore error when pinning pages in kthread (Matthew Auld)
-> - Refactor xe hwmon (Karthik Poosa)
-> - Add debug logs for D3cold (Riana Tauro)
-> - Remove broken TEST_VM_ASYNC_OPS_ERROR (Matthew Brost)
-> - Always allow to override firmware blob with module param and improve
->   log when no firmware is found (Lucas De Marchi)
-> - Fix shift-out-of-bounds due to xe_vm_prepare_vma() accepting zero fences (Thomas Hellström)
-> - Fix shift-out-of-bounds by distinguishing xe_pt/xe_pt_dir subclass (Thomas Hellström)
-> - Fail driver bind if platform supports MSIX, but fails to allocate all of them (Dani Liberman)
-> - Fix intel_fbdev thinking memory is backed by shmem (Matthew Auld)
-> - Prefer drm_dbg() over dev_dbg() (Jani Nikula)
-> - Avoid function cast warnings with clang-16 (Arnd Bergmann)
-> - Enhance xe_bo_move trace (Priyanka Dandamudi)
-> - Fix xe_vma_set_pte_size() not setting the right gpuva.flags for 4K size (Matthew Brost)
-> - Add XE_VMA_PTE_64K VMA flag (Matthew Brost)
-> - Return 2MB page size for compact 64k PTEs (Matthew Brost)
-> - Remove usage of the deprecated ida_simple_xx() API (Christophe JAILLET)
-> - Fix modpost warning on xe_mocs live kunit module (Ashutosh Dixit)
-> - Drop extra newline in from sysfs files (Ashutosh Dixit)
-> - Implement VM snapshot support for BO's and userptr (Maarten Lankhorst)
-> - Add debug logs when skipping rebinds (Matthew Brost)
-> - Fix code generation when mixing build directories (Dafna Hirschfeld)
-> - Prefer struct_size over open coded arithmetic (Erick Archer)
-> 
-> ----------------------------------------------------------------
-> Arnd Bergmann (2):
->       drm/xe: circumvent bogus stringop-overflow warning
->       drm/xe: avoid function cast warnings
-> 
-> Ashutosh Dixit (2):
->       drm/xe/xe_gt_idle: Drop redundant newline in name
->       drm/xe: Fix modpost warning on xe_mocs kunit module
-> 
-> Badal Nilawar (3):
->       drm/xe/dgfx: Release mmap mappings on rpm suspend
->       drm/xe/xe_debugfs: Print skip_guc_pc in xe info
->       drm/hwmon: Fix abi doc warnings
-> 
-> Brian Welty (7):
->       drm/xe: Fix guc_exec_queue_set_priority
->       drm/xe: Fix modifying exec_queue priority in xe_migrate_init
->       drm/xe: Refactor __xe_exec_queue_create()
->       drm/xe: Add exec_queue.sched_props.job_timeout_ms
->       drm/xe: Finish refactoring of exec_queue_create
->       drm/xe: Remove set_job_timeout_ms() from exec_queue_ops
->       drm/xe: Fix bounds checking in __xe_bo_placement_for_flags()
-> 
-> Christophe JAILLET (1):
->       drm/xe/guc: Remove usage of the deprecated ida_simple_xx() API
-> 
-> Colin Ian King (1):
->       drm/xe: Fix spelling mistake "gueue" -> "queue"
-> 
-> Dafna Hirschfeld (1):
->       drm/xe: Do not include current dir for generated/xe_wa_oob.h
-> 
-> Dan Carpenter (3):
->       drm/xe/device: clean up on error in probe()
->       drm/xe/selftests: Fix an error pointer dereference bug
->       drm/xe: unlock on error path in xe_vm_add_compute_exec_queue()
-> 
-> Dani Liberman (1):
->       drm/xe/irq: allocate all possible msix interrupts
-> 
-> Daniele Ceraolo Spurio (3):
->       drm/xe/guc: Use FAST_REQUEST for non-blocking H2G messages
->       drm/xe/gsc: Initialize GSC proxy
->       drm/xe/gsc: add support for GSC proxy interrupt
-> 
-> Erick Archer (1):
->       drm/xe: Prefer struct_size over open coded arithmetic
-> 
-> Fei Yang (2):
->       drm/xe: correct the calculation of remaining size
->       drm/xe: correct the assertion for number of PTEs
-> 
-> Himal Prasad Ghimiray (1):
->       drm/xe/xe2: Use XE_CACHE_WB pat index
-> 
-> Jani Nikula (11):
->       drm/i915: don't make assumptions about intel_wakeref_t type
->       drm/xe: display support should not depend on EXPERT
->       drm/xe: make xe_ttm_funcs const
->       drm/xe: make heci_gsc_irq_chip const
->       drm/xe: make hwmon_info const
->       drm/xe: make gpuvm_ops const
->       drm/xe: constify engine class sysfs attributes
->       drm/xe: don't build debugfs files when CONFIG_DEBUG_FS=n
->       drm/xe: move xe_display.[ch] under display/
->       drm/xe: drop display/ subdir from include directories
->       drm/xe: use drm based debugging instead of dev
-> 
-> John Harrison (3):
->       drm/xe/uc: Include patch version in expectations
->       drm/xe/guc: Update to GuC firmware 70.19.2
->       drm/xe/guc: Add support for LNL firmware
-> 
-> José Roberto de Souza (14):
->       drm/xe/uapi: Remove DRM_XE_VM_BIND_FLAG_ASYNC comment left over
->       drm/xe: Fix definition of intel_wakeref_t
->       drm/xe: Use intel_wakeref_t in intel_runtime_pm functions
->       drm/xe: Remove double new lines in devcoredump
->       drm/xe: Change devcoredump functions parameters to xe_sched_job
->       drm/xe: Nuke xe from xe_devcoredump
->       drm/xe: Print more device information in devcoredump
->       drm/xe: Print registers spread in 2 u32 as u64
->       drm/xe: Remove additional spaces in devcoredump HW Engines section
->       drm/xe: Fix crash in trace_dma_fence_init()
->       drm/xe: Use function to emit PIPE_CONTROL
->       drm/xe: Add functions to convert regular address to canonical address and back
->       drm/xe: Add batch buffer addresses to devcoredump
->       drm/xe: Add uAPI to query GuC firmware submission version
-> 
-> Karthik Poosa (3):
->       drm/xe/guc: Enable WA 14018913170
->       drm/xe/guc: Reduce a print from warn to debug
->       drm/xe/hwmon: Refactor xe hwmon
-> 
-> Lucas De Marchi (18):
->       drm/xe: Fix warning on impossible condition
->       drm/xe: Disable 32bits build
->       drm/xe/xe2: Add workaround 16020183090
->       drm/xe/kunit: Drop xe_wa tests for pre-production DG2
->       drm/xe: Group normal kunit tests in a single module
->       drm/xe: Use _ULL for u64 division
->       drm/xe/mmio: Cast to u64 when printing
->       drm/xe/display: Avoid calling readq()
->       drm/xe: Fix cast on trace variable
->       drm/xe: Enable 32bits build
->       Merge drm/drm-next into drm-xe-next
->       drm/xe: Remove PVC from xe_wa kunit tests
->       drm/xe/xe2: Enable has_usm
->       drm/xe: Always allow to override firmware
->       drm/xe: Avoid cryptic message when there's no GuC definition
->       drm/xe: Enable 32bits build
->       Merge drm/drm-next into drm-xe-next
->       drm/xe: Use pointers in trace events
-> 
-> Maarten Lankhorst (6):
->       drm/xe/snapshot: Remove drm_err on guc alloc failures
->       drm/xe: Clear all snapshot members after deleting coredump
->       drm/xe: Add uapi for dumpable bos
->       drm/xe: Annotate each dumpable vma as such
->       drm/xe: Add vm snapshot mutex for easily taking a vm snapshot during devcoredump
->       drm/xe: Implement VM snapshot support for BO's and userptr
-> 
-> Matt Roper (5):
->       drm/xe/dg2: Drop pre-production workarounds
->       drm/xe/migrate: Cap PTEs written by MI_STORE_DATA_IMM to 510
->       drm/xe: Stash GMD_ID value in xe_gt
->       drm/xe: Grab mem_access when disabling C6 on skip_guc_pc platforms
->       drm/xe: Convert job timeouts from assert to warning
-> 
-> Matthew Auld (4):
->       drm/xe/exec: move fence reservation
->       drm/xe/exec: reserve fence slot for CPU bind
->       drm/xe/vm: don't ignore error when in_kthread
->       drm/xe/display: fix i915_gem_object_is_shmem() wrapper
-> 
-> Matthew Brost (25):
->       drm/xe: Fix UBSAN splat in add_preempt_fences()
->       drm/xe: Fix exec IOCTL long running exec queue ring full condition
->       drm/xe/guc: Only take actions in CT irq handler if CTs are enabled
->       drm/xe: Add build on bug to assert page fault queue works
->       drm/xe: Invert page fault queue head / tail
->       drm/xe: Add build on bug to assert access counter queue works
->       drm/xe: Invert access counter queue head / tail
->       drm/xe/guc: Add more GuC CT states
->       drm/xe: Move TLB invalidation reset before HW reset
->       drm/xe/guc: Flush G2H handler when turning off CTs
->       drm/xe: Only allow 1 ufence per exec / bind IOCTL
->       drm/xe: Make all GuC ABI shift values unsigned
->       drm/xe: Use LRC prefix rather than CTX prefix in lrc desc defines
->       drm/xe: Fix loop in vm_bind_ioctl_ops_unwind
->       drm/xe: Drop rebind argument from xe_pt_prepare_bind
->       drm/xe: Take a reference in xe_exec_queue_last_fence_get()
->       drm/xe: Pick correct userptr VMA to repin on REMAP op failure
->       drm/xe: Map both mem.kernel_bb_pool and usm.bb_pool
->       drm/xe: Assume large page size if VMA not yet bound
->       drm/xe: Remove TEST_VM_ASYNC_OPS_ERROR
->       drm/xe: Remove exec queue bind.fence_*
->       drm/xe: Fix xe_vma_set_pte_size
->       drm/xe: Add XE_VMA_PTE_64K VMA flag
->       drm/xe: Return 2MB page size for compact 64k PTEs
->       drm/xe: Add debug prints for skipping rebinds
-> 
-> Michal Wajdeczko (49):
->       drm/xe: Add command MI_LOAD_REGISTER_MEM
->       drm/xe: Define registers used by memory based irq processing
->       drm/xe: Update LRC context layout definitions
->       drm/xe: Update definition of GT_INTR_DW
->       drm/xe: Define IRQ offsets used by HW engines
->       drm/xe: Add XE_BO_NEEDS_UC flag to force UC mode instead WB
->       drm/xe/vf: Introduce Memory Based Interrupts Handler
->       drm/xe/vf: Update LRC with memory based interrupts data
->       drm/xe/vf: Setup memory based interrupts in GuC
->       drm/xe/vf: Add VF specific interrupt handler
->       drm/xe: Add GT oriented drm_printers
->       drm/xe: Report TLB timeout using GT oriented functions
->       drm/xe: Introduce GuC Doorbells Manager
->       drm/xe/kunit: Set SR-IOV mode of the fake device
->       drm/xe/kunit: Define helper functions to allocate fake xe device
->       drm/xe/kunit: Restore test->priv when done with fake xe device
->       drm/xe/kunit: Use xe kunit helper in RTP test
->       drm/xe/kunit: Use xe kunit helper in WA test
->       drm/xe/kunit: Enable CONFIG_LOCKDEP in tests
->       drm/xe/kunit: Add GuC Doorbells Manager tests
->       drm/xe: Allocate dedicated workqueue for SR-IOV workers
->       drm/xe: Define Virtual Function Identifier
->       drm/xe: Introduce GT-oriented SR-IOV logging macros
->       drm/xe/guc: Add helpers for HXG messages
->       drm/xe/guc: Update few GuC CTB ABI definitions
->       drm/xe/guc: Add Relay Communication ABI definitions
->       drm/xe/guc: Introduce Relay Communication for SR-IOV
->       drm/xe/kunit: Allow to replace xe_guc_ct_send_recv() with stub
->       drm/xe/kunit: Add GuC Relay kunit tests
->       drm/xe/guc: Start handling GuC Relay event messages
->       drm/xe: Fix compilation without CONFIG_KUNIT
->       drm/xe: Split GuC communication initialization
->       drm/xe/guc: Treat non-response message after BUSY as unexpected
->       drm/xe/guc: Return CTB response length
->       drm/xe/guc: Use HXG definitions on HXG messages
->       drm/xe: Allow to exclude part of GGTT from allocations
->       drm/xe: Fix potential deadlock in __fini_dbm
->       drm/xe: Use kstrdup while creating snapshot
->       drm/xe: Mark internal gmdid mappings as const
->       drm/xe/guc: Return CTB HXG response DATA0 if no buffer provided
->       drm/xe/guc: Add kernel-doc for xe_guc_ct_send_recv()
->       drm/xe/vf: Assume fixed GSM size if VF
->       drm/xe/vf: Don't try to capture engine data unavailable to VF
->       drm/xe/vf: Don't program MOCS if VF
->       drm/xe/vf: Don't initialize stolen memory manager if VF
->       drm/xe/vf: Don't check if LMEM is initialized if VF
->       drm/xe/vf: Don't enable hwmon if VF
->       drm/xe/vf: Don't program PAT if VF
->       drm/xe/vf: Don't support MCR registers if VF
-> 
-> Michał Winiarski (4):
->       drm/xe/guc: Allocate GuC data structures in system memory for initial load
->       drm/xe/huc: Realloc HuC FW in vram for post-hwconfig
->       drm/xe/guc: Move GuC power control init to "post-hwconfig"
->       drm/xe: Initialize GuC earlier during probe
-> 
-> Moti Haimovski (1):
->       drm/xe/vm: bugfix in xe_vm_create_ioctl
-> 
-> Nirmoy Das (2):
->       drm/xe/xe2: synchronise CS_CHICKEN1 with WMTP support
->       drm/xe/query: Use kzalloc for drm_xe_query_engines
-> 
-> Paul E. McKenney (1):
->       drm/xe: Fix build bug for GCC 11
-> 
-> Priyanka Dandamudi (1):
->       drm/xe/xe_bo_move: Enhance xe_bo_move trace
-> 
-> Riana Tauro (1):
->       drm/xe/pm: add debug logs for D3cold
-> 
-> Rodrigo Vivi (1):
->       drm/xe: Do not flood dmesg with guc log
-> 
-> Ruthuvikas Ravikumar (1):
->       drm/xe: Add mocs reset kunit
-> 
-> Shekhar Chauhan (2):
->       drm/xe/xe2_lpg: Add Wa_16018610683
->       drm/xe/xe2_lpg: Introduce performance guide changes
-> 
-> Sujaritha Sundaresan (2):
->       drm/xe: Add vram frequency sysfs attributes
->       drm/xe: Fix typo in vram frequency sysfs documentation
-> 
-> Suraj Kandpal (1):
->       drm/xe/gsc: Add status check during gsc header readout
-> 
-> Tejas Upadhyay (1):
->       drm/xe/xelpg: Extend Wa_14019877138 for Graphics 12.70/71
-> 
-> Thomas Hellström (15):
->       drm/xe/vm: Fix an error path
->       drm/xe: Use __iomem for the regs pointer
->       drm/xe: Annotate xe_mem_region::mapping with __iomem
->       drm/xe: Annotate multiple mmio pointers with __iomem
->       drm/xe: Annotate xe_ttm_stolen_mgr::mapping with __iomem
->       drm/xe/migrate: Fix CCS copy for small VRAM copy chunks
->       drm/xe/dmabuf: Make xe_dmabuf_ops static
->       drm/xe: Use a NULL pointer instead of 0.
->       drm/xe: Document nested struct members according to guidelines
->       drm/xe: Annotate mcr_[un]lock()
->       drm/xe: Don't use __user error pointers
->       drm/xe/vm: Subclass userptr vmas
->       drm/xe/vm: Avoid reserving zero fences
->       drm/xe/pt: Allow for stricter type- and range checking
->       drm/xe/uapi: Remove support for persistent exec_queues
-> 
-> Vinay Belgaumkar (1):
->       drm/xe: Check skip_guc_pc before setting SLPC flag
-> 
-> Vinod Govindapillai (1):
->       drm/xe: Modify the cfb size to be page size aligned for FBC
-> 
-> Xiaoming Wang (1):
->       drm/xe/display: Fix memleak in display initialization
-> 
->  drivers/gpu/drm/xe/.kunitconfig                    |   5 +
->  drivers/gpu/drm/xe/Kconfig                         |   2 +-
->  drivers/gpu/drm/xe/Makefile                        |  40 +-
->  drivers/gpu/drm/xe/abi/gsc_proxy_commands_abi.h    |  44 +
->  drivers/gpu/drm/xe/abi/guc_actions_sriov_abi.h     | 174 ++++
->  drivers/gpu/drm/xe/abi/guc_communication_ctb_abi.h |   3 +-
->  drivers/gpu/drm/xe/abi/guc_messages_abi.h          |   2 +
->  drivers/gpu/drm/xe/abi/guc_relay_actions_abi.h     |  79 ++
->  .../gpu/drm/xe/abi/guc_relay_communication_abi.h   | 118 +++
->  .../xe/compat-i915-headers/gem/i915_gem_object.h   |   2 +-
->  drivers/gpu/drm/xe/compat-i915-headers/i915_drv.h  |  10 +-
->  .../drm/xe/compat-i915-headers/i915_gem_stolen.h   |   3 +
->  drivers/gpu/drm/xe/{ => display}/xe_display.c      |   6 -
->  drivers/gpu/drm/xe/{ => display}/xe_display.h      |   0
->  drivers/gpu/drm/xe/instructions/xe_mi_commands.h   |   3 +
->  drivers/gpu/drm/xe/regs/xe_engine_regs.h           |   6 +
->  drivers/gpu/drm/xe/regs/xe_gt_regs.h               |  27 +-
->  drivers/gpu/drm/xe/regs/xe_lrc_layout.h            |   9 +
->  drivers/gpu/drm/xe/regs/xe_pcode_regs.h            |  21 +
->  drivers/gpu/drm/xe/tests/Makefile                  |   7 +-
->  drivers/gpu/drm/xe/tests/xe_guc_db_mgr_test.c      | 201 +++++
->  drivers/gpu/drm/xe/tests/xe_guc_relay_test.c       | 522 ++++++++++++
->  drivers/gpu/drm/xe/tests/xe_kunit_helpers.c        |  90 ++
->  drivers/gpu/drm/xe/tests/xe_kunit_helpers.h        |  17 +
->  drivers/gpu/drm/xe/tests/xe_mocs.c                 |  36 +
->  drivers/gpu/drm/xe/tests/xe_mocs_test.c            |   2 +
->  drivers/gpu/drm/xe/tests/xe_mocs_test.h            |   1 +
->  drivers/gpu/drm/xe/tests/xe_pci.c                  |   3 +
->  drivers/gpu/drm/xe/tests/xe_pci_test.c             |   5 -
->  drivers/gpu/drm/xe/tests/xe_pci_test.h             |   2 +
->  drivers/gpu/drm/xe/tests/xe_rtp_test.c             |  10 +-
->  drivers/gpu/drm/xe/tests/xe_test_mod.c             |  10 +
->  drivers/gpu/drm/xe/tests/xe_wa_test.c              |  16 +-
->  drivers/gpu/drm/xe/xe_bo.c                         | 101 ++-
->  drivers/gpu/drm/xe/xe_bo.h                         |   7 +-
->  drivers/gpu/drm/xe/xe_bo_types.h                   |   3 +
->  drivers/gpu/drm/xe/xe_debugfs.c                    |   1 +
->  drivers/gpu/drm/xe/xe_devcoredump.c                |  55 +-
->  drivers/gpu/drm/xe/xe_devcoredump.h                |   6 +-
->  drivers/gpu/drm/xe/xe_devcoredump_types.h          |  13 +-
->  drivers/gpu/drm/xe/xe_device.c                     | 114 ++-
->  drivers/gpu/drm/xe/xe_device.h                     |  14 +-
->  drivers/gpu/drm/xe/xe_device_types.h               | 174 ++--
->  drivers/gpu/drm/xe/xe_drm_client.c                 |  12 +-
->  drivers/gpu/drm/xe/xe_exec.c                       |  42 +-
->  drivers/gpu/drm/xe/xe_exec_queue.c                 | 168 ++--
->  drivers/gpu/drm/xe/xe_exec_queue.h                 |   3 +-
->  drivers/gpu/drm/xe/xe_exec_queue_types.h           |  59 +-
->  drivers/gpu/drm/xe/xe_execlist.c                   |  10 -
->  drivers/gpu/drm/xe/xe_ggtt.c                       |  81 +-
->  drivers/gpu/drm/xe/xe_ggtt.h                       |   3 +
->  drivers/gpu/drm/xe/xe_gsc.c                        |  71 +-
->  drivers/gpu/drm/xe/xe_gsc.h                        |   1 +
->  drivers/gpu/drm/xe/xe_gsc_proxy.c                  | 537 ++++++++++++
->  drivers/gpu/drm/xe/xe_gsc_proxy.h                  |  20 +
->  drivers/gpu/drm/xe/xe_gsc_submit.c                 |  20 +
->  drivers/gpu/drm/xe/xe_gsc_submit.h                 |   1 +
->  drivers/gpu/drm/xe/xe_gsc_types.h                  |  33 +
->  drivers/gpu/drm/xe/xe_gt.c                         |  92 +-
->  drivers/gpu/drm/xe/xe_gt.h                         |   2 +
->  drivers/gpu/drm/xe/xe_gt_idle.c                    |   4 +-
->  drivers/gpu/drm/xe/xe_gt_mcr.c                     |  17 +
->  drivers/gpu/drm/xe/xe_gt_pagefault.c               |  40 +-
->  drivers/gpu/drm/xe/xe_gt_printk.h                  |  44 +
->  drivers/gpu/drm/xe/xe_gt_sriov_printk.h            |  34 +
->  drivers/gpu/drm/xe/xe_gt_tlb_invalidation.c        |  13 +-
->  drivers/gpu/drm/xe/xe_gt_types.h                   | 118 +--
->  drivers/gpu/drm/xe/xe_guc.c                        | 115 ++-
->  drivers/gpu/drm/xe/xe_guc.h                        |   1 +
->  drivers/gpu/drm/xe/xe_guc_ads.c                    |   2 +-
->  drivers/gpu/drm/xe/xe_guc_ct.c                     | 255 ++++--
->  drivers/gpu/drm/xe/xe_guc_ct.h                     |  12 +-
->  drivers/gpu/drm/xe/xe_guc_ct_types.h               |  22 +-
->  drivers/gpu/drm/xe/xe_guc_db_mgr.c                 | 266 ++++++
->  drivers/gpu/drm/xe/xe_guc_db_mgr.h                 |  22 +
->  drivers/gpu/drm/xe/xe_guc_fwif.h                   |   1 +
->  drivers/gpu/drm/xe/xe_guc_hwconfig.c               |   2 +-
->  drivers/gpu/drm/xe/xe_guc_hxg_helpers.h            | 108 +++
->  drivers/gpu/drm/xe/xe_guc_log.c                    |   2 +-
->  drivers/gpu/drm/xe/xe_guc_pc.c                     |  19 +-
->  drivers/gpu/drm/xe/xe_guc_pc.h                     |   1 -
->  drivers/gpu/drm/xe/xe_guc_relay.c                  | 941 +++++++++++++++++++++
->  drivers/gpu/drm/xe/xe_guc_relay.h                  |  37 +
->  drivers/gpu/drm/xe/xe_guc_relay_types.h            |  36 +
->  drivers/gpu/drm/xe/xe_guc_submit.c                 |  87 +-
->  drivers/gpu/drm/xe/xe_guc_submit.h                 |   4 +-
->  drivers/gpu/drm/xe/xe_guc_submit_types.h           |  18 +-
->  drivers/gpu/drm/xe/xe_guc_types.h                  |  47 +-
->  drivers/gpu/drm/xe/xe_heci_gsc.c                   |   2 +-
->  drivers/gpu/drm/xe/xe_huc.c                        |  19 +
->  drivers/gpu/drm/xe/xe_huc.h                        |   1 +
->  drivers/gpu/drm/xe/xe_hw_engine.c                  | 144 ++--
->  drivers/gpu/drm/xe/xe_hw_engine_class_sysfs.c      |  38 +-
->  drivers/gpu/drm/xe/xe_hw_engine_types.h            |  82 +-
->  drivers/gpu/drm/xe/xe_hwmon.c                      |  32 +-
->  drivers/gpu/drm/xe/xe_irq.c                        | 136 ++-
->  drivers/gpu/drm/xe/xe_lrc.c                        |  38 +
->  drivers/gpu/drm/xe/xe_lrc_types.h                  |   6 +-
->  drivers/gpu/drm/xe/xe_memirq.c                     | 430 ++++++++++
->  drivers/gpu/drm/xe/xe_memirq.h                     |  26 +
->  drivers/gpu/drm/xe/xe_memirq_types.h               |  37 +
->  drivers/gpu/drm/xe/xe_migrate.c                    |  53 +-
->  drivers/gpu/drm/xe/xe_mmio.c                       |   9 +-
->  drivers/gpu/drm/xe/xe_mocs.c                       |  27 +-
->  drivers/gpu/drm/xe/xe_pat.c                        |   5 +
->  drivers/gpu/drm/xe/xe_pci.c                        |  10 +-
->  drivers/gpu/drm/xe/xe_pcode_api.h                  |   7 +
->  drivers/gpu/drm/xe/xe_pm.c                         |  38 +-
->  drivers/gpu/drm/xe/xe_pm.h                         |   1 +
->  drivers/gpu/drm/xe/xe_pt.c                         |  55 +-
->  drivers/gpu/drm/xe/xe_pt_walk.c                    |   2 +-
->  drivers/gpu/drm/xe/xe_pt_walk.h                    |  19 +-
->  drivers/gpu/drm/xe/xe_query.c                      |  50 +-
->  drivers/gpu/drm/xe/xe_range_fence.c                |   7 +-
->  drivers/gpu/drm/xe/xe_reg_whitelist.c              |   8 +
->  drivers/gpu/drm/xe/xe_ring_ops.c                   |  60 +-
->  drivers/gpu/drm/xe/xe_sched_job.c                  |  39 +-
->  drivers/gpu/drm/xe/xe_sched_job.h                  |   5 +
->  drivers/gpu/drm/xe/xe_sched_job_types.h            |  11 +-
->  drivers/gpu/drm/xe/xe_sriov.c                      |  32 +
->  drivers/gpu/drm/xe/xe_sriov.h                      |   1 +
->  drivers/gpu/drm/xe/xe_sriov_types.h                |  12 +
->  drivers/gpu/drm/xe/xe_sync.c                       |   2 -
->  drivers/gpu/drm/xe/xe_tile_sysfs.c                 |   3 +
->  drivers/gpu/drm/xe/xe_trace.h                      |  55 +-
->  drivers/gpu/drm/xe/xe_ttm_stolen_mgr.c             |   8 +-
->  drivers/gpu/drm/xe/xe_tuning.c                     |   9 +-
->  drivers/gpu/drm/xe/xe_uc.c                         |  33 +-
->  drivers/gpu/drm/xe/xe_uc.h                         |   1 +
->  drivers/gpu/drm/xe/xe_uc_fw.c                      |  60 +-
->  drivers/gpu/drm/xe/xe_uc_fw_types.h                |   9 +-
->  drivers/gpu/drm/xe/xe_vm.c                         | 287 ++++++-
->  drivers/gpu/drm/xe/xe_vm.h                         |   7 +-
->  drivers/gpu/drm/xe/xe_vm_types.h                   |  18 +-
->  drivers/gpu/drm/xe/xe_vram_freq.c                  | 128 +++
->  drivers/gpu/drm/xe/xe_vram_freq.h                  |  13 +
->  drivers/gpu/drm/xe/xe_wa.c                         | 191 +----
->  drivers/gpu/drm/xe/xe_wa_oob.rules                 |  12 +-
->  drivers/gpu/drm/xe/xe_wait_user_fence.c            |   2 +-
->  drivers/gpu/drm/xe/xe_wopcm_types.h                |   4 +-
->  include/uapi/drm/xe_drm.h                          |  34 +-
->  141 files changed, 6518 insertions(+), 1187 deletions(-)
->  create mode 100644 drivers/gpu/drm/xe/abi/gsc_proxy_commands_abi.h
->  create mode 100644 drivers/gpu/drm/xe/abi/guc_actions_sriov_abi.h
->  create mode 100644 drivers/gpu/drm/xe/abi/guc_relay_actions_abi.h
->  create mode 100644 drivers/gpu/drm/xe/abi/guc_relay_communication_abi.h
->  rename drivers/gpu/drm/xe/{ => display}/xe_display.c (99%)
->  rename drivers/gpu/drm/xe/{ => display}/xe_display.h (100%)
->  create mode 100644 drivers/gpu/drm/xe/regs/xe_pcode_regs.h
->  create mode 100644 drivers/gpu/drm/xe/tests/xe_guc_db_mgr_test.c
->  create mode 100644 drivers/gpu/drm/xe/tests/xe_guc_relay_test.c
->  create mode 100644 drivers/gpu/drm/xe/tests/xe_kunit_helpers.c
->  create mode 100644 drivers/gpu/drm/xe/tests/xe_kunit_helpers.h
->  create mode 100644 drivers/gpu/drm/xe/tests/xe_test_mod.c
->  create mode 100644 drivers/gpu/drm/xe/xe_gsc_proxy.c
->  create mode 100644 drivers/gpu/drm/xe/xe_gsc_proxy.h
->  create mode 100644 drivers/gpu/drm/xe/xe_gt_sriov_printk.h
->  create mode 100644 drivers/gpu/drm/xe/xe_guc_db_mgr.c
->  create mode 100644 drivers/gpu/drm/xe/xe_guc_db_mgr.h
->  create mode 100644 drivers/gpu/drm/xe/xe_guc_hxg_helpers.h
->  create mode 100644 drivers/gpu/drm/xe/xe_guc_relay.c
->  create mode 100644 drivers/gpu/drm/xe/xe_guc_relay.h
->  create mode 100644 drivers/gpu/drm/xe/xe_guc_relay_types.h
->  create mode 100644 drivers/gpu/drm/xe/xe_memirq.c
->  create mode 100644 drivers/gpu/drm/xe/xe_memirq.h
->  create mode 100644 drivers/gpu/drm/xe/xe_memirq_types.h
->  create mode 100644 drivers/gpu/drm/xe/xe_vram_freq.c
->  create mode 100644 drivers/gpu/drm/xe/xe_vram_freq.h
+Need to add PIPE_CONF_CHECK_I(vrr.vsync_start/end).
 
--- 
-Daniel Vetter
-Software Engineer, Intel Corporation
-http://blog.ffwll.ch
+
+>   	}
+>   
+>   #undef PIPE_CONF_CHECK_X
+> diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/drivers/gpu/drm/i915/display/intel_display_types.h
+> index 93b4b7dff1d0..7859e4baad4b 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display_types.h
+> +++ b/drivers/gpu/drm/i915/display/intel_display_types.h
+> @@ -1416,6 +1416,7 @@ struct intel_crtc_state {
+>   		u16 flipline, vmin, vmax, guardband;
+>   		u8 as_sdp_mode;
+>   		bool as_sdp_enable;
+> +		u32 vsync_end, vsync_start;
+>   	} vrr;
+>   
+>   	/* Stream Splitter for eDP MSO */
+> diff --git a/drivers/gpu/drm/i915/display/intel_vrr.c b/drivers/gpu/drm/i915/display/intel_vrr.c
+> index 08e3ba69bd30..29ddf504d94b 100644
+> --- a/drivers/gpu/drm/i915/display/intel_vrr.c
+> +++ b/drivers/gpu/drm/i915/display/intel_vrr.c
+> @@ -150,6 +150,13 @@ intel_vrr_compute_config(struct intel_crtc_state *crtc_state,
+>   
+>   	crtc_state->vrr.flipline = crtc_state->vrr.vmin + 1;
+>   
+> +	crtc_state->vrr.vsync_start =
+> +			(crtc_state->hw.adjusted_mode.crtc_vtotal -
+> +			VRR_VSYNC_START(crtc_state->hw.adjusted_mode.vsync_start));
+> +	crtc_state->vrr.vsync_end =
+> +			(crtc_state->hw.adjusted_mode.crtc_vtotal -
+> +			(VRR_VSYNC_END(crtc_state->hw.adjusted_mode.vsync_end) >> 16));
+
+Need to add trans_vrr_start/end also in vrr_get_config.
+
+Make sure to read/write these only when we intend to send adaptive_sync sdp.
+
+
+Regards,
+
+Ankit
+
+
+> +
+>   	/*
+>   	 * For XE_LPD+, we use guardband and pipeline override
+>   	 * is deprecated.
+> @@ -273,8 +280,13 @@ void intel_vrr_get_config(struct intel_crtc_state *crtc_state)
+>   	u32 trans_vrr_ctl;
+>   
+>   	trans_vrr_ctl = intel_de_read(dev_priv, TRANS_VRR_CTL(cpu_transcoder));
+> +	bool as_sdp_enabled =
+> +			intel_de_read(dev_priv,
+> +				      HSW_TVIDEO_DIP_CTL(cpu_transcoder));
+>   
+>   	crtc_state->vrr.enable = trans_vrr_ctl & VRR_CTL_VRR_ENABLE;
+> +	crtc_state->vrr.as_sdp_enable =
+> +			as_sdp_enabled & VIDEO_DIP_ENABLE_ADAPTIVE_SYNC;
+>   
+>   	if (DISPLAY_VER(dev_priv) >= 13)
+>   		crtc_state->vrr.guardband =
+> diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_reg.h
+> index c02ea07af4c2..3e0853458ef4 100644
+> --- a/drivers/gpu/drm/i915/i915_reg.h
+> +++ b/drivers/gpu/drm/i915/i915_reg.h
+> @@ -2007,7 +2007,9 @@
+>   #define _TRANS_VRR_CTL_B		0x61420
+>   #define _TRANS_VRR_CTL_C		0x62420
+>   #define _TRANS_VRR_CTL_D		0x63420
+> +#define _TRANS_VRR_VSYNC_A		0x60078
+>   #define TRANS_VRR_CTL(trans)			_MMIO_TRANS2(trans, _TRANS_VRR_CTL_A)
+> +#define TRANS_VRR_VSYNC(trans)			_MMIO_TRANS2(trans, _TRANS_VRR_VSYNC_A)
+>   #define   VRR_CTL_VRR_ENABLE			REG_BIT(31)
+>   #define   VRR_CTL_IGN_MAX_SHIFT			REG_BIT(30)
+>   #define   VRR_CTL_FLIP_LINE_EN			REG_BIT(29)
+> @@ -2087,6 +2089,11 @@
+>   #define TRANS_VRR_STATUS2(trans)	_MMIO_TRANS2(trans, _TRANS_VRR_STATUS2_A)
+>   #define   VRR_STATUS2_VERT_LN_CNT_MASK	REG_GENMASK(19, 0)
+>   
+> +#define   VRR_VSYNC_END_MASK		REG_GENMASK(28, 16)
+> +#define   VRR_VSYNC_END(vsync_end)	REG_FIELD_PREP(VSYNC_END_MASK, (vsync_end))
+> +#define   VRR_VSYNC_START_MASK		REG_GENMASK(12, 0)
+> +#define   VRR_VSYNC_START(vsync_start)	REG_FIELD_PREP(VSYNC_START_MASK, (vsync_start))
+> +
+>   #define _TRANS_PUSH_A			0x60A70
+>   #define _TRANS_PUSH_B			0x61A70
+>   #define _TRANS_PUSH_C			0x62A70
