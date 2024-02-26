@@ -2,52 +2,55 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id A57C486816E
-	for <lists+intel-gfx@lfdr.de>; Mon, 26 Feb 2024 20:49:08 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 39821868170
+	for <lists+intel-gfx@lfdr.de>; Mon, 26 Feb 2024 20:49:42 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 155DD10E10D;
-	Mon, 26 Feb 2024 19:49:07 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8209B10E23B;
+	Mon, 26 Feb 2024 19:49:40 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="LZ49/TGD";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="mO++1Dv7";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4584310E28C
- for <intel-gfx@lists.freedesktop.org>; Mon, 26 Feb 2024 19:49:02 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.16])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 581A610E23B
+ for <intel-gfx@lists.freedesktop.org>; Mon, 26 Feb 2024 19:49:38 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1708976944; x=1740512944;
+ t=1708976978; x=1740512978;
  h=from:to:subject:in-reply-to:references:date:message-id:
  mime-version:content-transfer-encoding;
- bh=rBI48hzwEX9TwZMhwnXYVOYbLKXcwanMA4LYG/W/Xmg=;
- b=LZ49/TGD0JIBCPDayhGJCOave7rGQbzeBLksGa8Bw/kp08iGfiwl02QY
- SZS0/BlmF53q76iRCh4Fn/ad/sWN2Sm5lxNNbRLzfT2buJ5Omlf9pjL/l
- usCoCZzPrvAHniDzWQsbhRf+R7G9F6lPun5tf0ST6cTNC+L6iJD6BSanH
- m+pBO8wenhdEwKZhkSJ7gTa9C36w04JsmxeK+Z5oZjvyhmejWY+cnQcdR
- k32RA323zWweNet6pct8icD5mG/j5c5HuzsaPhY+snnvglbyn1GeC81YY
- i0YYRx5muy2w3L5AViqzLHO6LVchAJ1+6A2JOSrTPKqmdb9HTDhuTBVqJ g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10996"; a="13997210"
-X-IronPort-AV: E=Sophos;i="6.06,186,1705392000"; d="scan'208";a="13997210"
-Received: from orviesa004.jf.intel.com ([10.64.159.144])
- by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Feb 2024 11:49:01 -0800
+ bh=p0AoTubVelP5q6mNmYo4mS4EM0C63UjavMIQkgo5mzI=;
+ b=mO++1Dv71OCRgS8kN6rFTWG3xBmvPngNwpRuXIi01haacgshUbGbw6Mr
+ dwaWIOl5IpXUxpc5wRgPHKYTj/bdGZCPHSrBQE1b+fAwNL8G/ZCk5LLMQ
+ IfldZFEdayhzXbSsiky2kj8QJmVQbop3okMJrN2ajJyJvpgKRp+y/S2Dr
+ 0BJIrREcjb5fTl2QAKaqYSjiUD9I/369tkV/qT6QlPMYt+WC9IU0UWq78
+ T1LuDz6JGybenwtYmk0i9NYKXoTbb9cCQS6b6e/bkwzg4gMKNaO7/qiL6
+ jrM81xCs2fE/GSS6Wty0KOBun5mrTLqeiXClyH9Y+lt8QZP9tB2xylBGA g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10996"; a="3415078"
+X-IronPort-AV: E=Sophos;i="6.06,186,1705392000"; 
+   d="scan'208";a="3415078"
+Received: from fmviesa008.fm.intel.com ([10.60.135.148])
+ by orvoesa108.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 Feb 2024 11:49:37 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.06,186,1705392000"; d="scan'208";a="11456071"
+X-IronPort-AV: E=Sophos;i="6.06,186,1705392000"; 
+   d="scan'208";a="6919064"
 Received: from hibeid-mobl.amr.corp.intel.com (HELO localhost)
  ([10.252.46.254])
- by orviesa004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Feb 2024 11:49:01 -0800
+ by fmviesa008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 Feb 2024 11:49:36 -0800
 From: Jani Nikula <jani.nikula@linux.intel.com>
 To: Ville Syrjala <ville.syrjala@linux.intel.com>,
  intel-gfx@lists.freedesktop.org
-Subject: Re: [PATCH 1/2] drm/i915: Stop doing double audio enable/disable on
- SDVO and g4x+ DP
-In-Reply-To: <20240226193251.29619-1-ville.syrjala@linux.intel.com>
+Subject: Re: [PATCH 2/2] drm/i915/dsi: Don't use SET_CONTEXT_LATENCY with
+ DSI transcoders
+In-Reply-To: <20240226193251.29619-2-ville.syrjala@linux.intel.com>
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 References: <20240226193251.29619-1-ville.syrjala@linux.intel.com>
-Date: Mon, 26 Feb 2024 21:49:02 +0200
-Message-ID: <87v86bknv5.fsf@intel.com>
+ <20240226193251.29619-2-ville.syrjala@linux.intel.com>
+Date: Mon, 26 Feb 2024 21:49:38 +0200
+Message-ID: <87sf1fknu5.fsf@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
@@ -69,74 +72,35 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 On Mon, 26 Feb 2024, Ville Syrjala <ville.syrjala@linux.intel.com> wrote:
 > From: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
 >
-> Looks like I misplaced a few hunks when I moved the audio
-> enable/disable out from the encoder enable/disable hooks.
-> So we are now doing a double audio enable/disable on SDVO
-> and g4x+ DP. Probably harmless as doing it twice shouldn't
-> really change anything, but let's do it just once, as intended.
+> ADL DSI transcoders do not have the new SET_CONTEXT_LATENCY
+> register. Instead they supposedly use the older TGL VBLANK_START
+> based method of defining the vblank delay.
 >
-> Fixes: cff742cc6851 ("drm/i915: Hoist the encoder->audio_{enable,disable}=
-() calls higher up")
+> Completely untested due to lack of suitable hardware.
+>
 > Signed-off-by: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
 
-Hrmh, I'll scold the reviewer next time I look in the mirror.
-
-Reviewed-by: Jani Nikula <jani.nikula@intel.com>
+Acked-by: Jani Nikula <jani.nikula@intel.com>
 
 > ---
->  drivers/gpu/drm/i915/display/g4x_dp.c     | 2 --
->  drivers/gpu/drm/i915/display/intel_sdvo.c | 4 ----
->  2 files changed, 6 deletions(-)
+>  drivers/gpu/drm/i915/display/intel_display.c | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
 >
-> diff --git a/drivers/gpu/drm/i915/display/g4x_dp.c b/drivers/gpu/drm/i915=
-/display/g4x_dp.c
-> index dfe0b07a122d..06ec04e667e3 100644
-> --- a/drivers/gpu/drm/i915/display/g4x_dp.c
-> +++ b/drivers/gpu/drm/i915/display/g4x_dp.c
-> @@ -717,7 +717,6 @@ static void g4x_enable_dp(struct intel_atomic_state *=
-state,
->  {
->  	intel_enable_dp(state, encoder, pipe_config, conn_state);
->  	intel_edp_backlight_on(pipe_config, conn_state);
-> -	encoder->audio_enable(encoder, pipe_config, conn_state);
->  }
->=20=20
->  static void vlv_enable_dp(struct intel_atomic_state *state,
-> @@ -726,7 +725,6 @@ static void vlv_enable_dp(struct intel_atomic_state *=
-state,
->  			  const struct drm_connector_state *conn_state)
->  {
->  	intel_edp_backlight_on(pipe_config, conn_state);
-> -	encoder->audio_enable(encoder, pipe_config, conn_state);
->  }
->=20=20
->  static void g4x_pre_enable_dp(struct intel_atomic_state *state,
-> diff --git a/drivers/gpu/drm/i915/display/intel_sdvo.c b/drivers/gpu/drm/=
-i915/display/intel_sdvo.c
-> index 5f9e748adc89..0cd9c183f621 100644
-> --- a/drivers/gpu/drm/i915/display/intel_sdvo.c
-> +++ b/drivers/gpu/drm/i915/display/intel_sdvo.c
-> @@ -1842,8 +1842,6 @@ static void intel_disable_sdvo(struct intel_atomic_=
-state *state,
->  	struct intel_crtc *crtc =3D to_intel_crtc(old_crtc_state->uapi.crtc);
->  	u32 temp;
->=20=20
-> -	encoder->audio_disable(encoder, old_crtc_state, conn_state);
-> -
->  	intel_sdvo_set_active_outputs(intel_sdvo, 0);
->  	if (0)
->  		intel_sdvo_set_encoder_power_state(intel_sdvo,
-> @@ -1935,8 +1933,6 @@ static void intel_enable_sdvo(struct intel_atomic_s=
-tate *state,
->  		intel_sdvo_set_encoder_power_state(intel_sdvo,
->  						   DRM_MODE_DPMS_ON);
->  	intel_sdvo_set_active_outputs(intel_sdvo, intel_sdvo_connector->output_=
-flag);
-> -
-> -	encoder->audio_enable(encoder, pipe_config, conn_state);
->  }
->=20=20
->  static enum drm_mode_status
+> diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/d=
+rm/i915/display/intel_display.c
+> index 00ac65a14029..e9c7e9b8957a 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display.c
+> +++ b/drivers/gpu/drm/i915/display/intel_display.c
+> @@ -2617,7 +2617,7 @@ static void intel_set_transcoder_timings(const stru=
+ct intel_crtc_state *crtc_sta
+>  	 * VBLANK_START no longer works on ADL+, instead we must use
+>  	 * TRANS_SET_CONTEXT_LATENCY to configure the pipe vblank start.
+>  	 */
+> -	if (DISPLAY_VER(dev_priv) >=3D 13) {
+> +	if (DISPLAY_VER(dev_priv) >=3D 13 && !transcoder_is_dsi(cpu_transcoder)=
+) {
+>  		intel_de_write(dev_priv, TRANS_SET_CONTEXT_LATENCY(cpu_transcoder),
+>  			       crtc_vblank_start - crtc_vdisplay);
 
 --=20
 Jani Nikula, Intel
