@@ -2,26 +2,26 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9F95F8684C6
-	for <lists+intel-gfx@lfdr.de>; Tue, 27 Feb 2024 00:52:13 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 94CEA8684C7
+	for <lists+intel-gfx@lfdr.de>; Tue, 27 Feb 2024 00:52:16 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D294810E828;
-	Mon, 26 Feb 2024 23:52:11 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 16E9310E82B;
+	Mon, 26 Feb 2024 23:52:15 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from 8e613ede5ea5 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E2D8810E828;
- Mon, 26 Feb 2024 23:52:10 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E5DB010E82A;
+ Mon, 26 Feb 2024 23:52:13 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=97_Fi=2ECI=2ECHECKPATCH=3A_warning_for_Enable_Wa=5F14019159?=
- =?utf-8?q?160_and_Wa=5F16019325821_for_MTL_=28rev2=29?=
+Subject: =?utf-8?q?=E2=9C=97_Fi=2ECI=2ESPARSE=3A_warning_for_Enable_Wa=5F14019159160_?=
+ =?utf-8?q?and_Wa=5F16019325821_for_MTL_=28rev2=29?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: john.c.harrison@intel.com
 Cc: intel-gfx@lists.freedesktop.org
-Date: Mon, 26 Feb 2024 23:52:10 -0000
-Message-ID: <170899153092.318338.15279249670384213307@8e613ede5ea5>
+Date: Mon, 26 Feb 2024 23:52:13 -0000
+Message-ID: <170899153393.299097.15800409101144406761@8e613ede5ea5>
 X-Patchwork-Hint: ignore
 References: <20240223205632.1621019-1-John.C.Harrison@Intel.com>
 In-Reply-To: <20240223205632.1621019-1-John.C.Harrison@Intel.com>
@@ -49,19 +49,8 @@ State : warning
 
 == Summary ==
 
-Error: dim checkpatch failed
-f8cc51578cea drm/i915: Enable Wa_16019325821
-e399c9355ad3 drm/i915/guc: Add support for w/a KLVs
--:105: WARNING:AVOID_BUG: Do not crash the kernel unless it is absolutely unavoidable--use WARN_ON_ONCE() plus recovery code (if feasible) instead of BUG() or variants
-#105: FILE: drivers/gpu/drm/i915/gt/uc/intel_guc_ads.c:829:
-+	GEM_BUG_ON(iosys_map_is_null(&guc->ads_map));
-
-total: 0 errors, 1 warnings, 0 checks, 159 lines checked
-d4a0eca51901 drm/i915/guc: Enable Wa_14019159160
--:101: WARNING:AVOID_BUG: Do not crash the kernel unless it is absolutely unavoidable--use WARN_ON_ONCE() plus recovery code (if feasible) instead of BUG() or variants
-#101: FILE: drivers/gpu/drm/i915/gt/uc/intel_guc_ads.c:830:
-+	GEM_BUG_ON(remain < size);
-
-total: 0 errors, 1 warnings, 0 checks, 99 lines checked
+Error: dim sparse failed
+Sparse version: v0.6.2
+Fast mode used, each commit won't be checked separately.
 
 
