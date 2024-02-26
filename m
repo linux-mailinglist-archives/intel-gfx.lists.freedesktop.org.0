@@ -2,161 +2,65 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5144F866CC0
-	for <lists+intel-gfx@lfdr.de>; Mon, 26 Feb 2024 09:45:41 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id D22DB866CDB
+	for <lists+intel-gfx@lfdr.de>; Mon, 26 Feb 2024 09:47:38 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7EC7810E66E;
-	Mon, 26 Feb 2024 08:45:39 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0F31C10E670;
+	Mon, 26 Feb 2024 08:47:32 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="hN6CLJeF";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="LlReinRK";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A6F2610E669;
- Mon, 26 Feb 2024 08:45:37 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7ACC010E670;
+ Mon, 26 Feb 2024 08:47:30 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1708937138; x=1740473138;
- h=from:to:cc:subject:date:message-id:references:
- in-reply-to:content-transfer-encoding:mime-version;
- bh=QKpI2t5cUTPndcn3RJjJXhxW1iBgXfCkEYcGtZBGFIo=;
- b=hN6CLJeFjjJushxIqpVaXGDkMPYTTQEJWhu/cdJnNfgg2nD6g1Zt1zij
- /f9c/sU1jdKxyUaij9myBmQ66QB/tgIb0M8Xq4ClQ4beIsQdPZN6MAo00
- BTzPqJJcjpA9GDWM7CN94HzDVqPpLAidVi3w9w4cWQyc24N3caxIqV7HC
- Uv3hSG6bShFM8M7Fs25uOO0LcziLD6ShY7tLkuz1jGWo34cBxklVXTO7H
- dqmetpL/8MeMMpuWmpBABPWkSBcIZhSXMxF9q1ULqrL5Y1ZkiKLGKUszS
- 9W1MyMTp2mtecA84seQZ1aU2HZDXDEGIPwtbxfNF63BXRpKaASxNzSOs+ A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10995"; a="6157777"
-X-IronPort-AV: E=Sophos;i="6.06,185,1705392000"; 
-   d="scan'208";a="6157777"
-Received: from orviesa009.jf.intel.com ([10.64.159.149])
- by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Feb 2024 00:45:37 -0800
+ t=1708937251; x=1740473251;
+ h=message-id:date:mime-version:subject:to:cc:references:
+ from:in-reply-to:content-transfer-encoding;
+ bh=84D2boJwhjE4Kl0ji9JnDrPwrf2XMHvI1W4rh08wKSQ=;
+ b=LlReinRKpJRywMddPyFbXd4VqYv0nYZM9W5QdP9ZFdEYLQC6klISphFz
+ +G6P5mXFZScS1DNtApJ6tbRL62HqkjKGf495n911jA+X6GFZBW/7933eh
+ yB9eW3W2oGhyUbeE/o16fc4Q4/IxNXvZs5dZkO0ltKSXopUQV83sDgde+
+ tNrDRBqB9HtA5Vn6esZcfBPWjVPO0Vb0AyWRzdc0fWak6BBUShKl9AcTr
+ SQ4okCxyUZiHkMoHsHrmKuI9Kc0o4GanrZGst5sggzYdzYN2kxeQnm3W4
+ 1XI4iStWj8OwZEcFJspV/hwk2aCe36RILjDwT62JAHvPhVkGIENNwRk41 w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10995"; a="20753821"
+X-IronPort-AV: E=Sophos;i="6.06,185,1705392000"; d="scan'208";a="20753821"
+Received: from fmviesa007.fm.intel.com ([10.60.135.147])
+ by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 Feb 2024 00:47:30 -0800
 X-ExtLoop1: 1
 X-IronPort-AV: E=Sophos;i="6.06,185,1705392000"; 
-   d="scan'208";a="6625861"
-Received: from fmsmsx603.amr.corp.intel.com ([10.18.126.83])
- by orviesa009.jf.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
- 26 Feb 2024 00:45:37 -0800
-Received: from fmsmsx612.amr.corp.intel.com (10.18.126.92) by
- fmsmsx603.amr.corp.intel.com (10.18.126.83) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35; Mon, 26 Feb 2024 00:45:35 -0800
-Received: from fmsmsx610.amr.corp.intel.com (10.18.126.90) by
- fmsmsx612.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35; Mon, 26 Feb 2024 00:45:35 -0800
-Received: from fmsedg602.ED.cps.intel.com (10.1.192.136) by
- fmsmsx610.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35 via Frontend Transport; Mon, 26 Feb 2024 00:45:35 -0800
-Received: from NAM02-SN1-obe.outbound.protection.outlook.com (104.47.57.41) by
- edgegateway.intel.com (192.55.55.71) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.35; Mon, 26 Feb 2024 00:45:34 -0800
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=T5IAKAIcUVX1/hB+WN+x1dJHcmdht81DAbcencagTSbEALpS53991hdrok2yaOdSqFTHyerNIvBIx0gOsOrM9cOFGd3Bohl9BQ/8bGlvBli5XV1g228gy4fV/iSBEqRD8LWf3uYbQ8OBCqieZv8J7CY1YpRday8bLzaNezXI5od1IIfjO7b7sYlpKW08m5hAkuIl5nTEUl5xRFOMrELA86JBRADEfcUCcv7MhvEmr0RfFOzeKdkwgtdduWPGjetrdevEkiO75xvUVZVkYJj2wfnxustmG5K8AiIj7j1YDFVFnvzX5WSLmPp/5NJksT7sUtywXjKrYCUZT9eD3P50RA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=QKpI2t5cUTPndcn3RJjJXhxW1iBgXfCkEYcGtZBGFIo=;
- b=goOiA/c0G7KhACfOqf0tu8/5YyO3klNgmUz68F4Mbcelhkue/EhFnw25B/8pnIhyrR9rOvMy4zzbujGMt8Y5MbTLwFDgJvIaLie8ZJW0yyxHY7BWwuzzqMD5Q44/3whkwHG6J4MW0kdPzLmw7M6lFFO2UKjXVvqbw/IRYFYjBJ0KhJNpAloqKwgldrDRpEFXNwG+N3tcNkk7wMd6QKuMInoBQY+ysNixshdC+VCL8kT2SL/j1ToFlQaHoRUxqvWqIF2n7cPzGGdWw9jkOJly96giRQUyWvXrqqkf6xE+cecqT6UPa4xE02Ubuwj1iRbPmJj1DPwLrmy/d0Y8ZuibEQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Received: from IA0PR11MB7307.namprd11.prod.outlook.com (2603:10b6:208:437::10)
- by SJ0PR11MB5087.namprd11.prod.outlook.com (2603:10b6:a03:2ad::22)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7339.24; Mon, 26 Feb
- 2024 08:45:32 +0000
-Received: from IA0PR11MB7307.namprd11.prod.outlook.com
- ([fe80::34a4:c9b4:7991:39b5]) by IA0PR11MB7307.namprd11.prod.outlook.com
- ([fe80::34a4:c9b4:7991:39b5%4]) with mapi id 15.20.7339.024; Mon, 26 Feb 2024
- 08:45:31 +0000
-From: "Murthy, Arun R" <arun.r.murthy@intel.com>
-To: "Kandpal, Suraj" <suraj.kandpal@intel.com>, "Ceraolo Spurio, Daniele"
- <daniele.ceraolospurio@intel.com>, "intel-gfx@lists.freedesktop.org"
- <intel-gfx@lists.freedesktop.org>, "intel-xe@lists.freedesktop.org"
- <intel-xe@lists.freedesktop.org>
-CC: "Jani Nikula (jani.nikula@linux.intel.com)" <jani.nikula@linux.intel.com>, 
- "Nautiyal, Ankit K" <ankit.k.nautiyal@intel.com>
-Subject: RE: [PATCH 2/5] drm/xe/hdcp: Use xe_device struct
-Thread-Topic: [PATCH 2/5] drm/xe/hdcp: Use xe_device struct
-Thread-Index: AQHaW0FLfM+TOIapPkeYVBZST1xMJLEI7uoAgABoTQCAEwteoA==
-Date: Mon, 26 Feb 2024 08:45:31 +0000
-Message-ID: <IA0PR11MB73073D2CF8287A6C93B95445BA5A2@IA0PR11MB7307.namprd11.prod.outlook.com>
-References: <20240209101412.1326176-1-suraj.kandpal@intel.com>
- <20240209101412.1326176-3-suraj.kandpal@intel.com>
- <e00cb734-2bab-4607-b1ac-a57d994184a0@intel.com>
- <MW4PR11MB67610BFFC64806967B0D1931E34E2@MW4PR11MB6761.namprd11.prod.outlook.com>
-In-Reply-To: <MW4PR11MB67610BFFC64806967B0D1931E34E2@MW4PR11MB6761.namprd11.prod.outlook.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: IA0PR11MB7307:EE_|SJ0PR11MB5087:EE_
-x-ms-office365-filtering-correlation-id: 31ba35fd-186e-4040-7eec-08dc36a74a80
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: Ub+cl7JWr41vG+rzig5dT+J43G7ZdSBHoYwk94SjSlmCa5T+7sf/pvxVFqzgRXK29W+TjSn+MrFc1GTum5ybmgcyh2q85s/kaTowvzkf8ma9knBd8FV4udD3RxB/6QanZMpZC2x/3mfcmLmz4wgHu6iHhKbw/2HxWiB9wLkeXMlynFPuJfn+zUHBRU82vyFycY3E+6B72oIEumR5XsMbzTqK776nKrs2S6QwBBvNDwrpV1tyFdq8hGz0+Qcfc4Zq54FawvF07JY+L8Ku1p1qzb+cu50JuZpI7a9AR6hvK92IAQh3cxCvITR6lepuk8tx0a9F/Qzt0F/bKyJV/KBe1iXCehhoinPijdWESIgFcwPDO+au7gAcUblgvW69aIeC/XcmVGfhRK6GE4uomU+FFQa7DHbGI49uhGdt7pY/pBt3CU7AkDTHkZ8Nrg0orH/lvjYl/hjztpZgLRzGRh1fcAHzK6C3j6FdprqfpKc1DY5rOxkcFwqaY87/+ZU9t8hLU2n2nIgtrW7XoDEEHJUgKIRS8TDCJadh+RD4H1fnQfwo/iqRYHQOOmLuJxDpQ6lxm0FMT2WL5U/SKi6+iZFr+jatICYCShvMOQoCbQw5KIJqirlxvBIDpZjxR+RYIXrGg9aMvaZs41m6gjL7dcDjeJjFmXbGVOQCHrGz+DgvNx5h7JZ7PEqCJBQS3fFLoQPXAUrAeJ0lbjfOkdhxu1VP6g==
-x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:IA0PR11MB7307.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230031)(38070700009); DIR:OUT; SFP:1101; 
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?utf-8?B?aFgyTFhVd0k4Uk5PcGM3NGpzUjg2UkpBeXdoajJWN0poSHNxK1VLYlozTlJy?=
- =?utf-8?B?SzhYZStUU3psc1JaeWxabklCNlhJQjdEbkVBcU1uU0hmSmg2dFVkSkptUFZy?=
- =?utf-8?B?VUVHN0hTcjR4Q2pRcE5iWFBJaWpCVkpFbHcydjVGTHgwY1ptL2NFWkxFTGsr?=
- =?utf-8?B?aEdlK2JQSzB1azBtdGM0Z2x1TGYySXYyNzgxWFZyQ0hsTlA4b1dEcnZCNVdy?=
- =?utf-8?B?QitIcE5GdUl5dytmVUxKVWU2YmhyRmlIUENBQkhBL01MaEo4YW1uQzVsTHVq?=
- =?utf-8?B?YVZnNnJmWW1CckVNOGlkNThqNUpVZkhQOVJMM0lQcmw4VGFiTjVSbDJWbmM3?=
- =?utf-8?B?UzlMZGtmenRVYUwrdGtGcHJvRWVJNG5WOWFaUXVFS1VwRW4waFlmWmw1TXdQ?=
- =?utf-8?B?ZFlJc3BPeEhXZUorMGtLOUtCN1ZxK3pBUWxVdVdnK0JZempHSUR5OW5yWlgv?=
- =?utf-8?B?SE9Nb0FPNEpuMVh3aFJQRmtvUDI2Vk43cWVIUE9lYm4wVnNUaXJRVGxWK2ZY?=
- =?utf-8?B?K3A3TFBnaDJsYVNOY0tkUzZqdklPQXZnTDhEQUl3U1VFSTYwRkMzTFk5NnUy?=
- =?utf-8?B?TFcyQjcxMWFpcVpWYnk3ZXNsRDZZQ3l5S3FyYlRKc05zOTNGVi8zTlJIMzJF?=
- =?utf-8?B?T2FhR3htVlBKVDEvcHo3WlFOTUh2REdVWkRzbFBuWWZMcDZUdkhkNlp4QnBT?=
- =?utf-8?B?R1phMzJKWUdodi84d3dIcGxUb0M2OXhPSFRNQ1hrRFlwZ3dCM3dWTWkxWTRY?=
- =?utf-8?B?azFxOXBpa2Q4UnZTVzg5dml2ZFY1OVRyZzhrYVp0ZGJqMkZjWlRBa29ibjFh?=
- =?utf-8?B?N2Vld1ZxZkhrYVkxQi9aUWJqbU4rbU83MVBwSGlPRXVWb1dkWUFhVXdmTnJw?=
- =?utf-8?B?Rll2UWJScnEvVlFPemNkRk5oYVRwSi9IOThGUXBvR1UvUWcrWGFEWXJ2bHc4?=
- =?utf-8?B?Z2pkUGdSSWFydzc5MVJzSmYxem9SOEMzRVhodG80enViVk50UWpzUU95MUFM?=
- =?utf-8?B?OGJVVVY5Y1JPYkVEY0hzOWNMKzBvc2dNTnFiaU90am1GVEZrZ21KOVVKajNB?=
- =?utf-8?B?WUhGbzJ1OVJvOVlPQnIyWlVkbGRaRzJxVnhaWUtaZmxWSkx4aHNyZFBLelZm?=
- =?utf-8?B?N3g5L2toeSt1Wk1RTGtkZU9nSm43SDZKVEsybGUwdUpac1ZsRlpHUXpLU3U0?=
- =?utf-8?B?SFZNNHBCSnpuSy9vaUozVkdoTElXYnFGZ1pWMWJleUdUMzhiVEFSdlcxb2pM?=
- =?utf-8?B?UGNlenJ3U2YxWUVTcmY4UjNLZkJxUmNvKzlyc0xmcmZ6d1VwdlVCWUIxeERB?=
- =?utf-8?B?SjJNMXZOc0ZqalA2OXhac3pBMHUreHFlU1hUUW1NbEVKTHZiaW84Vy9BeVFk?=
- =?utf-8?B?WklWWDQrbzFja2ZNRDY3NjAzUzd5bytqV3lobEFmSkRKM0dzL2crQXNmSkZQ?=
- =?utf-8?B?dE9UcmNIWlNGaGJuQ2xlYm8zT2s0RmRvRnRrRm9IRU9ZMEZ2d3lSd2tIcTNn?=
- =?utf-8?B?RXJjSGpOMWp2dFQydzNQZDVCWXg3Y1lKOGYrZTEvUC9XbmszYVE4VTVwclFr?=
- =?utf-8?B?d2VkS1Zhd2NzaDdwbG1Uem1mL1NKOHFSRDF3RXBBbUlMaUVOY1FxcFZDcEFT?=
- =?utf-8?B?NHllWnFsNjNuRHpWaU1BUEpDU3E1N1VjYSs3dURLSS9RendNQWtxYithQXdU?=
- =?utf-8?B?NmlSR0NrZlY4dXJlVkE5cVAyaSthcmsxWUhZbkEwd1drSU5HNVVqNU95a0xZ?=
- =?utf-8?B?NGJFYWE3NWk5NDdGQU1pazg2QjJKSTdwUzM4OXNLa01WeEM3bVlON2ZkKzFB?=
- =?utf-8?B?QUlEcTRIQURMV3pyMEo3R0IramdUOGk5K1ZTdnVSR1FTeDZWRXo0dnJNTjFt?=
- =?utf-8?B?N1JNVjhYNUNvWlRqUnduRHc4c0gwZG1teDdteGJVeU9teisyaDVJOUxSME4w?=
- =?utf-8?B?S0RlU293dTQ1THZQM25DQ2JkYjRHQkVzbDRDYTJXeVB3VG9ISllLZkoyczd3?=
- =?utf-8?B?UlZCL0JPNjJzVEJQSDdBVWJrZmtmdTJ5U3JEdytpRENzZUJ1SFBPWDA2Z2lZ?=
- =?utf-8?B?QlF5akdqYlptS2JyaXBvZmNkUG1yZ09OZ1hFZEZuRkJYMkVBblFSYWJxMytj?=
- =?utf-8?Q?hjS+Xbch+itb+tDOK0i9IlyV8?=
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+   d="scan'208";a="6485586"
+Received: from myakobs-mobl1.ger.corp.intel.com (HELO [10.213.232.131])
+ ([10.213.232.131])
+ by fmviesa007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 Feb 2024 00:47:28 -0800
+Message-ID: <f27a5d52-4e18-4282-b09c-6d002bad7e48@linux.intel.com>
+Date: Mon, 26 Feb 2024 08:47:26 +0000
 MIME-Version: 1.0
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: IA0PR11MB7307.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 31ba35fd-186e-4040-7eec-08dc36a74a80
-X-MS-Exchange-CrossTenant-originalarrivaltime: 26 Feb 2024 08:45:31.6605 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: vmEB70s8bDqJfO7UTEL8miA2X35StcdmZ4GPxUQAODY4seOAHChKGwPoIfqQHIAGQYqXiXZHTy/KmAQJlZJ+Iw==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ0PR11MB5087
-X-OriginatorOrg: intel.com
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] drm/i915/guc: Add Compute context hint
+Content-Language: en-US
+To: Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ "Belgaumkar, Vinay" <vinay.belgaumkar@intel.com>
+Cc: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
+References: <20240221001416.696780-1-vinay.belgaumkar@intel.com>
+ <8e03bde7-fba2-4b8b-ae33-b502cf1a8e4f@linux.intel.com>
+ <ZdZq9NH0VYbL-QV8@intel.com>
+ <50e4ed39-bc70-471c-be44-f61920405f67@linux.intel.com>
+ <166befb6-a667-4c24-85ed-efb18bd3b7d7@intel.com>
+ <9702f85a-17f2-4c45-bd17-fc0a07beb635@linux.intel.com>
+ <a3b55547-06cc-4b94-aaa9-9560bfced0db@intel.com> <ZdjxNECvZr9tDulB@intel.com>
+From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+Organization: Intel Corporation UK Plc
+In-Reply-To: <ZdjxNECvZr9tDulB@intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -172,57 +76,519 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-DQoNCj4gLS0tLS1PcmlnaW5hbCBNZXNzYWdlLS0tLS0NCj4gRnJvbTogSW50ZWwtZ2Z4IDxpbnRl
-bC1nZngtYm91bmNlc0BsaXN0cy5mcmVlZGVza3RvcC5vcmc+IE9uIEJlaGFsZiBPZg0KPiBLYW5k
-cGFsLCBTdXJhag0KPiBTZW50OiBXZWRuZXNkYXksIEZlYnJ1YXJ5IDE0LCAyMDI0IDExOjAwIEFN
-DQo+IFRvOiBDZXJhb2xvIFNwdXJpbywgRGFuaWVsZSA8ZGFuaWVsZS5jZXJhb2xvc3B1cmlvQGlu
-dGVsLmNvbT47IGludGVsLQ0KPiBnZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnOyBpbnRlbC14ZUBs
-aXN0cy5mcmVlZGVza3RvcC5vcmcNCj4gQ2M6IEphbmkgTmlrdWxhIChqYW5pLm5pa3VsYUBsaW51
-eC5pbnRlbC5jb20pIDxqYW5pLm5pa3VsYUBsaW51eC5pbnRlbC5jb20+Ow0KPiBOYXV0aXlhbCwg
-QW5raXQgSyA8YW5raXQuay5uYXV0aXlhbEBpbnRlbC5jb20+DQo+IFN1YmplY3Q6IFJFOiBbUEFU
-Q0ggMi81XSBkcm0veGUvaGRjcDogVXNlIHhlX2RldmljZSBzdHJ1Y3QNCj4gDQo+ID4NCj4gPiBP
-biAyLzkvMjAyNCAyOjE0IEFNLCBTdXJhaiBLYW5kcGFsIHdyb3RlOg0KPiA+ID4gVXNlIHhlX2Rl
-dmljZSBzdHJ1Y3QgaW5zdGVhZCBvZiBkcm1faTkxNV9wcml2YXRlIHNvIGFzIHRvIG5vdCBjYXVz
-ZQ0KPiA+ID4gY29uZnVzaW9uIGFuZCBjb21wbHkgd2l0aCBYZSBzdGFuZGFyZHMgZXZlbiB0aG91
-Z2ggeGVfZGV2aWNlIGdldHMNCj4gPiA+IHRyYW5zbGF0ZWQgdG8gZHJtX2k5MTVfcHJpdmF0ZS4N
-Cj4gPg0KPiA+IEFGQUlVIHhlX2RldmljZSBkb2VzIG5vdCBnZXQgdHJhbnNsYXRlZCB0byBkcm1f
-aTkxNV9wcml2YXRlLCBpdCdzDQo+ID4gcmVhbGx5IGFuIHhlX2RldmljZSBzdHJ1Y3QgdW5kZXIg
-dGhlIGhvb2QuDQo+ID4gVGhlIGNoYW5nZSBpdHNlbGYgbG9va3Mgb2sgdG8gbWUsIGJ1dCBJJ2xs
-IGxlYXZlIHRoZSBmaW5hbCByLWIgdG8NCj4gPiBzb21lb25lIG9uIHRoZSBkaXNwbGF5IHNpZGUg
-dG8gY29uZmlybSB0aGlzIGlzIHRoZSBjb3JyZWN0IGFwcHJvYWNoLg0KPiA+DQo+IA0KPiBUaGFu
-a3MgRGFuaWVsZSBmb3IgaGF2aW5nIGEgbG9vayBtYXliZSBKYW5pIG9yIEFua2l0IGNhbiBoZWxw
-IHdpdGggdGhlIGZpbmFsIHJiDQo+IA0KPiBSZWdhcmRzLA0KPiBTdXJhaiBLYW5kcGFsDQo+IA0K
-PiA+IERhbmllbGUNCj4gPg0KPiA+ID4NCj4gPiA+IFNpZ25lZC1vZmYtYnk6IFN1cmFqIEthbmRw
-YWwgPHN1cmFqLmthbmRwYWxAaW50ZWwuY29tPg0KPiA+ID4gLS0tDQpSZXZpZXdlZC1ieTogQXJ1
-biBSIE11cnRoeSA8YXJ1bi5yLm11cnRoeUBpbnRlbC5jb20+DQoNClRoYW5rcyBhbmQgUmVnYXJk
-cywNCkFydW4gUiBNdXJ0aHkNCi0tLS0tLS0tLS0tLS0tLS0tLS0NCj4gPiA+ICAgZHJpdmVycy9n
-cHUvZHJtL3hlL2Rpc3BsYXkveGVfaGRjcF9nc2MuYyB8IDE1ICsrKysrKysrLS0tLS0tLQ0KPiA+
-ID4gICAxIGZpbGUgY2hhbmdlZCwgOCBpbnNlcnRpb25zKCspLCA3IGRlbGV0aW9ucygtKQ0KPiA+
-ID4NCj4gPiA+IGRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0veGUvZGlzcGxheS94ZV9oZGNw
-X2dzYy5jDQo+ID4gPiBiL2RyaXZlcnMvZ3B1L2RybS94ZS9kaXNwbGF5L3hlX2hkY3BfZ3NjLmMN
-Cj4gPiA+IGluZGV4IDBmMTFhMzkzMzNlMi4uNWQxZDAwNTRiNTc4IDEwMDY0NA0KPiA+ID4gLS0t
-IGEvZHJpdmVycy9ncHUvZHJtL3hlL2Rpc3BsYXkveGVfaGRjcF9nc2MuYw0KPiA+ID4gKysrIGIv
-ZHJpdmVycy9ncHUvZHJtL3hlL2Rpc3BsYXkveGVfaGRjcF9nc2MuYw0KPiA+ID4gQEAgLTMsMzAg
-KzMsMzEgQEANCj4gPiA+ICAgICogQ29weXJpZ2h0IDIwMjMsIEludGVsIENvcnBvcmF0aW9uLg0K
-PiA+ID4gICAgKi8NCj4gPiA+DQo+ID4gPiAtI2luY2x1ZGUgImk5MTVfZHJ2LmgiDQo+ID4gPiAr
-I2luY2x1ZGUgPGRybS9kcm1fcHJpbnQuaD4NCj4gPiA+ICAgI2luY2x1ZGUgImludGVsX2hkY3Bf
-Z3NjLmgiDQo+ID4gPiArI2luY2x1ZGUgInhlX2RldmljZV90eXBlcy5oIg0KPiA+ID4NCj4gPiA+
-IC1ib29sIGludGVsX2hkY3BfZ3NjX2NzX3JlcXVpcmVkKHN0cnVjdCBkcm1faTkxNV9wcml2YXRl
-ICppOTE1KQ0KPiA+ID4gK2Jvb2wgaW50ZWxfaGRjcF9nc2NfY3NfcmVxdWlyZWQoc3RydWN0IHhl
-X2RldmljZSAqeGUpDQo+ID4gPiAgIHsNCj4gPiA+ICAgCXJldHVybiB0cnVlOw0KPiA+ID4gICB9
-DQo+ID4gPg0KPiA+ID4gLWJvb2wgaW50ZWxfaGRjcF9nc2NfY2hlY2tfc3RhdHVzKHN0cnVjdCBk
-cm1faTkxNV9wcml2YXRlICppOTE1KQ0KPiA+ID4gK2Jvb2wgaW50ZWxfaGRjcF9nc2NfY2hlY2tf
-c3RhdHVzKHN0cnVjdCB4ZV9kZXZpY2UgKnhlKQ0KPiA+ID4gICB7DQo+ID4gPiAgIAlyZXR1cm4g
-ZmFsc2U7DQo+ID4gPiAgIH0NCj4gPiA+DQo+ID4gPiAtaW50IGludGVsX2hkY3BfZ3NjX2luaXQo
-c3RydWN0IGRybV9pOTE1X3ByaXZhdGUgKmk5MTUpDQo+ID4gPiAraW50IGludGVsX2hkY3BfZ3Nj
-X2luaXQoc3RydWN0IHhlX2RldmljZSAqeGUpDQo+ID4gPiAgIHsNCj4gPiA+IC0JZHJtX2luZm8o
-Jmk5MTUtPmRybSwgIkhEQ1Agc3VwcG9ydCBub3QgeWV0IGltcGxlbWVudGVkXG4iKTsNCj4gPiA+
-ICsJZHJtX2RiZ19rbXMoJnhlLT5kcm0sICJIRENQIHN1cHBvcnQgbm90IHlldCBpbXBsZW1lbnRl
-ZFxuIik7DQo+ID4gPiAgIAlyZXR1cm4gLUVOT0RFVjsNCj4gPiA+ICAgfQ0KPiA+ID4NCj4gPiA+
-IC12b2lkIGludGVsX2hkY3BfZ3NjX2Zpbmkoc3RydWN0IGRybV9pOTE1X3ByaXZhdGUgKmk5MTUp
-DQo+ID4gPiArdm9pZCBpbnRlbF9oZGNwX2dzY19maW5pKHN0cnVjdCB4ZV9kZXZpY2UgKnhlKQ0K
-PiA+ID4gICB7DQo+ID4gPiAgIH0NCj4gPiA+DQo+ID4gPiAtc3NpemVfdCBpbnRlbF9oZGNwX2dz
-Y19tc2dfc2VuZChzdHJ1Y3QgZHJtX2k5MTVfcHJpdmF0ZSAqaTkxNSwgdTgNCj4gPiA+ICptc2df
-aW4sDQo+ID4gPiArc3NpemVfdCBpbnRlbF9oZGNwX2dzY19tc2dfc2VuZChzdHJ1Y3QgeGVfZGV2
-aWNlICp4ZSwgdTggKm1zZ19pbiwNCj4gPiA+ICAgCQkJCXNpemVfdCBtc2dfaW5fbGVuLCB1OCAq
-bXNnX291dCwNCj4gPiA+ICAgCQkJCXNpemVfdCBtc2dfb3V0X2xlbikNCj4gPiA+ICAgew0KDQo=
+
+On 23/02/2024 19:25, Rodrigo Vivi wrote:
+> On Fri, Feb 23, 2024 at 10:31:41AM -0800, Belgaumkar, Vinay wrote:
+>>
+>> On 2/23/2024 12:51 AM, Tvrtko Ursulin wrote:
+>>>
+>>> On 22/02/2024 23:31, Belgaumkar, Vinay wrote:
+>>>>
+>>>> On 2/22/2024 7:32 AM, Tvrtko Ursulin wrote:
+>>>>>
+>>>>> On 21/02/2024 21:28, Rodrigo Vivi wrote:
+>>>>>> On Wed, Feb 21, 2024 at 09:42:34AM +0000, Tvrtko Ursulin wrote:
+>>>>>>>
+>>>>>>> On 21/02/2024 00:14, Vinay Belgaumkar wrote:
+>>>>>>>> Allow user to provide a context hint. When this is set, KMD will
+>>>>>>>> send a hint to GuC which results in special handling for this
+>>>>>>>> context. SLPC will ramp the GT frequency aggressively every time
+>>>>>>>> it switches to this context. The down freq threshold will also be
+>>>>>>>> lower so GuC will ramp down the GT freq for this
+>>>>>>>> context more slowly.
+>>>>>>>> We also disable waitboost for this context as that
+>>>>>>>> will interfere with
+>>>>>>>> the strategy.
+>>>>>>>>
+>>>>>>>> We need to enable the use of Compute strategy during SLPC init, but
+>>>>>>>> it will apply only to contexts that set this bit during context
+>>>>>>>> creation.
+>>>>>>>>
+>>>>>>>> Userland can check whether this feature is supported
+>>>>>>>> using a new param-
+>>>>>>>> I915_PARAM_HAS_COMPUTE_CONTEXT. This flag is true
+>>>>>>>> for all guc submission
+>>>>>>>> enabled platforms since they use SLPC for freq management.
+>>>>>>>>
+>>>>>>>> The Mesa usage model for this flag is here -
+>>>>>>>> https://gitlab.freedesktop.org/sushmave/mesa/-/commits/compute_hint
+>>>>>>>
+>>>>>>> This allows for setting it for the whole application,
+>>>>>>> correct? Upsides,
+>>>>>>> downsides? Are there any plans for per context?
+>>>>>>
+>>>>>> Currently there's no extension on a high level API
+>>>>>> (Vulkan/OpenGL/OpenCL/etc)
+>>>>>> that would allow the application to hint for
+>>>>>> power/freq/latency. So Mesa cannot
+>>>>>> decide when to hint. So their solution was to use .drirc and
+>>>>>> make per-application
+>>>>>> decision.
+>>>>>>
+>>>>>> I would prefer a high level extension for a more granular
+>>>>>> and informative
+>>>>>> decision. We need to work with that goal, but for now I don't see any
+>>>>>> cons on this approach.
+>>>>>
+>>>>> In principle yeah I doesn't harm to have the option. I am just
+>>>>> not sure how useful this intermediate step this is with its lack
+>>>>> of intra-process granularity.
+>>>>>
+>>>>>>>> Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
+>>>>>>>> Signed-off-by: Vinay Belgaumkar <vinay.belgaumkar@intel.com>
+>>>>>>>> ---
+>>>>>>>>     drivers/gpu/drm/i915/gem/i915_gem_context.c   |  8 +++++++
+>>>>>>>>     .../gpu/drm/i915/gem/i915_gem_context_types.h |  1 +
+>>>>>>>>     drivers/gpu/drm/i915/gt/intel_rps.c           |  8 +++++++
+>>>>>>>>     .../drm/i915/gt/uc/abi/guc_actions_slpc_abi.h |
+>>>>>>>> 21 +++++++++++++++++++
+>>>>>>>>     drivers/gpu/drm/i915/gt/uc/intel_guc_slpc.c   |
+>>>>>>>> 17 +++++++++++++++
+>>>>>>>>     drivers/gpu/drm/i915/gt/uc/intel_guc_slpc.h   |  1 +
+>>>>>>>>     .../gpu/drm/i915/gt/uc/intel_guc_submission.c |  7 +++++++
+>>>>>>>>     drivers/gpu/drm/i915/i915_getparam.c          | 11 ++++++++++
+>>>>>>>>     include/uapi/drm/i915_drm.h                   | 15 +++++++++++++
+>>>>>>>>     9 files changed, 89 insertions(+)
+>>>>>>>>
+>>>>>>>> diff --git
+>>>>>>>> a/drivers/gpu/drm/i915/gem/i915_gem_context.c
+>>>>>>>> b/drivers/gpu/drm/i915/gem/i915_gem_context.c
+>>>>>>>> index dcbfe32fd30c..ceab7dbe9b47 100644
+>>>>>>>> --- a/drivers/gpu/drm/i915/gem/i915_gem_context.c
+>>>>>>>> +++ b/drivers/gpu/drm/i915/gem/i915_gem_context.c
+>>>>>>>> @@ -879,6 +879,7 @@ static int
+>>>>>>>> set_proto_ctx_param(struct drm_i915_file_private
+>>>>>>>> *fpriv,
+>>>>>>>>                        struct i915_gem_proto_context *pc,
+>>>>>>>>                        struct drm_i915_gem_context_param *args)
+>>>>>>>>     {
+>>>>>>>> +    struct drm_i915_private *i915 = fpriv->i915;
+>>>>>>>>         int ret = 0;
+>>>>>>>>         switch (args->param) {
+>>>>>>>> @@ -904,6 +905,13 @@ static int
+>>>>>>>> set_proto_ctx_param(struct drm_i915_file_private
+>>>>>>>> *fpriv,
+>>>>>>>>                 pc->user_flags &= ~BIT(UCONTEXT_BANNABLE);
+>>>>>>>>             break;
+>>>>>>>> +    case I915_CONTEXT_PARAM_IS_COMPUTE:
+>>>>>>>> +        if (!intel_uc_uses_guc_submission(&to_gt(i915)->uc))
+>>>>>>>> +            ret = -EINVAL;
+>>>>>>>> +        else
+>>>>>>>> +            pc->user_flags |= BIT(UCONTEXT_COMPUTE);
+>>>>>>>> +        break;
+>>>>>>>> +
+>>>>>>>>         case I915_CONTEXT_PARAM_RECOVERABLE:
+>>>>>>>>             if (args->size)
+>>>>>>>>                 ret = -EINVAL;
+>>>>>>>> diff --git
+>>>>>>>> a/drivers/gpu/drm/i915/gem/i915_gem_context_types.h
+>>>>>>>> b/drivers/gpu/drm/i915/gem/i915_gem_context_types.h
+>>>>>>>> index 03bc7f9d191b..db86d6f6245f 100644
+>>>>>>>> --- a/drivers/gpu/drm/i915/gem/i915_gem_context_types.h
+>>>>>>>> +++ b/drivers/gpu/drm/i915/gem/i915_gem_context_types.h
+>>>>>>>> @@ -338,6 +338,7 @@ struct i915_gem_context {
+>>>>>>>>     #define UCONTEXT_BANNABLE        2
+>>>>>>>>     #define UCONTEXT_RECOVERABLE        3
+>>>>>>>>     #define UCONTEXT_PERSISTENCE        4
+>>>>>>>> +#define UCONTEXT_COMPUTE        5
+>>>>>>>
+>>>>>>> What is the GuC behaviour when
+>>>>>>> SLPC_CTX_FREQ_REQ_IS_COMPUTE is set for
+>>>>>>> non-compute engines? Wondering if per intel_context is
+>>>>>>> what we want instead.
+>>>>>>> (Which could then be the i915_context_param_engines extension to mark
+>>>>>>> individual contexts as compute strategy.)
+>>>>>>
+>>>>>> Perhaps we should rename this? This is a freq-decision-strategy inside
+>>>>>> GuC that is there mostly targeting compute workloads that needs lower
+>>>>>> latency with short burst execution. But the engine itself
+>>>>>> doesn't matter.
+>>>>>> It can be applied to any engine.
+>>>>>
+>>>>> I have no idea if it makes sense for other engines, such as
+>>>>> video, and what would be pros and cons in terms of PnP. But in
+>>>>> the case we end up allowing it on any engine, then at least
+>>>>> userspace name shouldn't be compute. :)
+>>>> Yes, one of the suggestions from Daniele was to have something along
+>>>> the lines of UCONTEXT_HIFREQ or something along those lines so we
+>>>> don't confuse it with the Compute Engine.
+> 
+> hmm... I'm not fan of this name. GuC's compute strategy is not just about
+> high gt frequency, but also some hysteresis to keep the freq high for a
+> while and cover burst cases where the latency up and down on the frequency
+> transactions would be damaging the performance.
+> 
+> also, one might say that waitboost is already 'hifreq'.
+> 
+> But I honestly believe that no one has a real good name for this thing
+> and this is why it ended up calling 'compute' strategy in GuC, because
+> it was created with compute use cases in mind.
+> 
+> Maybe UCONTEXT_HIFREQ_LOWLATENCY?
+> maybe UCONTEXT_HIFREQ_AND_BURSTY?
+> maybe UCONTEXT_BURSTY?
+
+I like low latency.
+
+>>> Okay, but additional question is would anyone ever want to set it for
+>>> video or blitter. Would it harm, benefir, or be neutral.
+>> It would depend on the use case. SLPC will not distinguish either ways. It
+>> will aggressively ramp the GT freq when this context is active. User is
+>> making a decision to choose perf over power.
+> 
+> I agree with Vinay here. It depends on the use case and I don't see
+> any issue with that.
+> 
+> On some cases like heavy transcoder it would be neutral when compared
+> to waitboost since both are hifreq and transcoder woudn't alternate
+> fast on dropping and getting the wait boost.
+
+I am asking this question simply for a wider consideration of whether or 
+not being coarse would force some userspace into creating multiple GEM 
+contexts, and then needing to implement VM sharing on top, while 
+otherwise they would be happy with just one.
+
+The issue wouldn't apply to a library that is purely compute obviously, 
+but for something mixed use it might. Whether or not such user exists I 
+am not sure, but the main point is that with granular control one does 
+not even have to know and simply punts the decision and flexibility to 
+userspace.
+
+> In one of the cases that we have in the pipeline we need an opposite
+> flag to only disable waitboost without enabling the 'compute' strategy
+> so a video conference wouldn't waste power.
+
+And for that flag it would be the same question. While you have the 
+vaapi driver it is not a concern (one GEM context just for decode by 
+definition), but if someone wanted to implement both decode and render 
+in the same context/address space, then per intel_context control could 
+be better than per GEM context.
+
+Or for both from a different angle - what is the donwside of allowing 
+per intel_context control?
+
+>>>>> Or if we decide to call it compute and only apply to compute
+>>>>> engines, then I would strongly suggest making the uapi per
+>>>>> intel_context i.e. the set engines extension instead of the GEM
+>>>>> context param. Otherwise it would be odd that some engines get
+>>>>> it and some don't. With explicit configuration userspace gets to
+>>>>> see the clear picture of what is what.
+>>>>
+>>>> It will not be per engine, so may be better to keep it at the
+>>>
+>>> Why? Just because..
+>> Feels strange that we are giving a coarse control(per gem context) to UMD
+>> but mapping it to a finer control(per engine) on the KMD side. Anyways,
+>> hopefully we can find a way to extend this to UMD eventually as well.
+>>>
+>>>> gem_context level. Trying to percolate it to the intel_context level
+>>>> seems to be more complicated. We process the gem_context_param flags
+>>>> first and then create the intel_context per engine. Not sure if we
+>>>> want to keep 2 copies of the same flag in gem_context and
+>>>> intel_context as well.
+>>>
+>>> .. it is complicated? It is not complicated at all. There is
+>>> intel_context_set_gem which is just for uses like that.
+>>>
+>>> Once you have this, then the only difference is whether you go from GEM
+>>> context setparam to intel_context, or flag goes directly to
+>>> intel_context as they are created via custom engine maps.
+>>
+>> Yes, though intel_context_set_gem is called before we copy over the flags
+>> from the user AFAICS. Will need to somehow access the user flags in that
+>> function.
+
+That looks a trivial matter of either moving that flag assignment few 
+lines up, or passing pc->user_flags to user_engines and default_engines. 
+Either sounds preferrable to having to do the rcu_read_lock and 
+kref_get_unless_zero dance on every access.
+
+Regards,
+
+Tvrtko
+
+>>
+>> Thanks,
+>>
+>> Vinay.
+>>
+>>>
+>>> Regards,
+>>>
+>>> Tvrtko
+>>>
+>>>>>
+>>>>> Regards,
+>>>>>
+>>>>> Tvrtko
+>>>>>
+>>>>>>>>         /**
+>>>>>>>>          * @flags: small set of booleans
+>>>>>>>> diff --git a/drivers/gpu/drm/i915/gt/intel_rps.c
+>>>>>>>> b/drivers/gpu/drm/i915/gt/intel_rps.c
+>>>>>>>> index 4feef874e6d6..1ed40cd61b70 100644
+>>>>>>>> --- a/drivers/gpu/drm/i915/gt/intel_rps.c
+>>>>>>>> +++ b/drivers/gpu/drm/i915/gt/intel_rps.c
+>>>>>>>> @@ -24,6 +24,7 @@
+>>>>>>>>     #include "intel_pcode.h"
+>>>>>>>>     #include "intel_rps.h"
+>>>>>>>>     #include "vlv_sideband.h"
+>>>>>>>> +#include "../gem/i915_gem_context.h"
+>>>>>>>>     #include "../../../platform/x86/intel_ips.h"
+>>>>>>>>     #define BUSY_MAX_EI    20u /* ms */
+>>>>>>>> @@ -1018,6 +1019,13 @@ void intel_rps_boost(struct i915_request *rq)
+>>>>>>>>             struct intel_rps *rps = &READ_ONCE(rq->engine)->gt->rps;
+>>>>>>>>             if (rps_uses_slpc(rps)) {
+>>>>>>>> +            const struct i915_gem_context *ctx;
+>>>>>>>> +
+>>>>>>>> +            ctx = i915_request_gem_context(rq);
+>>>>>>>> +            if (ctx &&
+>>>>>>>> +                test_bit(UCONTEXT_COMPUTE, &ctx->user_flags))
+>>>>>>>> +                return;
+>>>>>>>> +
+>>>>>>>
+>>>>>>> I think request and intel_context do not own a strong
+>>>>>>> reference to GEM
+>>>>>>> context. So at minimum you need a local one obtained
+>>>>>>> under a RCU lock with
+>>>>>>> kref_get_unless_zero, as do some other places do.
+>>>>>>>
+>>>>>>> However.. it may be simpler to just store the flag in
+>>>>>>> intel_context->flags.
+>>>>>>> If you carry it over at the time GEM context is assigned
+>>>>>>> to intel_context,
+>>>>>>> not only you simplify runtime rules, but you get the
+>>>>>>> ability to not set the
+>>>>>>> compute flags for video etc.
+>>>>>>
+>>>>>> +1 on the intel_context->flags
+>>>>>>
+>>>>>>>
+>>>>>>> It may even make sense to add a "don't waitboost" flag
+>>>>>>> on top of the "is
+>>>>>>> compute" so this call site becomes self-documenting
+>>>>>>> (otherwise I ask to add
+>>>>>>> a comment here please). Then you could even move it out from the SLPC
+>>>>>>> special case.
+>>>>>>
+>>>>>> +1 on the dont_waitboost flag as well. might be worth for other cases
+>>>>>> like display metrics for instance.
+>>>>
+>>>> We could define another disable_waitboost flag in intel_context, but
+>>>> seems redundant if we already have this info in the gem_context. We
+>>>> don't need to check for SLPC special case, just need to check this
+>>>> flag as we won't enable it for the non-slpc case anyways.
+>>>>
+>>>> Thanks,
+>>>>
+>>>> Vinay.
+>>>>
+>>>>>>
+>>>>>>>
+>>>>>>>>                 slpc = rps_to_slpc(rps);
+>>>>>>>>                 if (slpc->min_freq_softlimit >= slpc->boost_freq)
+>>>>>>>> diff --git
+>>>>>>>> a/drivers/gpu/drm/i915/gt/uc/abi/guc_actions_slpc_abi.h
+>>>>>>>> b/drivers/gpu/drm/i915/gt/uc/abi/guc_actions_slpc_abi.h
+>>>>>>>> index 811add10c30d..c34674e797c6 100644
+>>>>>>>> --- a/drivers/gpu/drm/i915/gt/uc/abi/guc_actions_slpc_abi.h
+>>>>>>>> +++ b/drivers/gpu/drm/i915/gt/uc/abi/guc_actions_slpc_abi.h
+>>>>>>>> @@ -207,6 +207,27 @@ struct slpc_shared_data {
+>>>>>>>>         u8 reserved_mode_definition[4096];
+>>>>>>>>     } __packed;
+>>>>>>>> +struct slpc_context_frequency_request {
+>>>>>>>> +    u32 frequency_request:16;
+>>>>>>>> +    u32 reserved:12;
+>>>>>>>> +    u32 is_compute:1;
+>>>>>>>> +    u32 ignore_busyness:1;
+>>>>>>>> +    u32 is_minimum:1;
+>>>>>>>> +    u32 is_predefined:1;
+>>>>>>>> +} __packed;
+>>>>>>>> +
+>>>>>>>> +#define SLPC_CTX_FREQ_REQ_IS_COMPUTE        REG_BIT(28)
+>>>>>>>> +
+>>>>>>>> +struct slpc_optimized_strategies {
+>>>>>>>> +    u32 compute:1;
+>>>>>>>> +    u32 async_flip:1;
+>>>>>>>> +    u32 media:1;
+>>>>>>>> +    u32 vsync_flip:1;
+>>>>>>>> +    u32 reserved:28;
+>>>>>>>> +} __packed;
+>>>>>>>> +
+>>>>>>>> +#define SLPC_OPTIMIZED_STRATEGY_COMPUTE REG_BIT(0)
+>>>>>>>> +
+>>>>>>>>     /**
+>>>>>>>>      * DOC: SLPC H2G MESSAGE FORMAT
+>>>>>>>>      *
+>>>>>>>> diff --git
+>>>>>>>> a/drivers/gpu/drm/i915/gt/uc/intel_guc_slpc.c
+>>>>>>>> b/drivers/gpu/drm/i915/gt/uc/intel_guc_slpc.c
+>>>>>>>> index 3e681ab6fbf9..706fffca698b 100644
+>>>>>>>> --- a/drivers/gpu/drm/i915/gt/uc/intel_guc_slpc.c
+>>>>>>>> +++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_slpc.c
+>>>>>>>> @@ -537,6 +537,20 @@ int
+>>>>>>>> intel_guc_slpc_get_min_freq(struct intel_guc_slpc
+>>>>>>>> *slpc, u32 *val)
+>>>>>>>>         return ret;
+>>>>>>>>     }
+>>>>>>>> +int intel_guc_slpc_set_strategy(struct
+>>>>>>>> intel_guc_slpc *slpc, u32 val)
+>>>>>>>> +{
+>>>>>>>> +    struct drm_i915_private *i915 = slpc_to_i915(slpc);
+>>>>>>>> +    intel_wakeref_t wakeref;
+>>>>>>>> +    int ret = 0;
+>>>>>>>> +
+>>>>>>>> +    with_intel_runtime_pm(&i915->runtime_pm, wakeref)
+>>>>>>>> +        ret = slpc_set_param(slpc,
+>>>>>>>> +                     SLPC_PARAM_STRATEGIES,
+>>>>>>>> +                     val);
+>>>>>>>> +
+>>>>>>>> +    return ret;
+>>>>>>>> +}
+>>>>>>>> +
+>>>>>>>>     int intel_guc_slpc_set_media_ratio_mode(struct
+>>>>>>>> intel_guc_slpc *slpc, u32 val)
+>>>>>>>>     {
+>>>>>>>>         struct drm_i915_private *i915 = slpc_to_i915(slpc);
+>>>>>>>> @@ -711,6 +725,9 @@ int intel_guc_slpc_enable(struct
+>>>>>>>> intel_guc_slpc *slpc)
+>>>>>>>>         /* Set cached media freq ratio mode */
+>>>>>>>>         intel_guc_slpc_set_media_ratio_mode(slpc,
+>>>>>>>> slpc->media_ratio_mode);
+>>>>>>>> +    /* Enable SLPC Optimized Strategy for compute */
+>>>>>>>> +    intel_guc_slpc_set_strategy(slpc,
+>>>>>>>> SLPC_OPTIMIZED_STRATEGY_COMPUTE);
+>>>>>>>> +
+>>>>>>>>         return 0;
+>>>>>>>>     }
+>>>>>>>> diff --git
+>>>>>>>> a/drivers/gpu/drm/i915/gt/uc/intel_guc_slpc.h
+>>>>>>>> b/drivers/gpu/drm/i915/gt/uc/intel_guc_slpc.h
+>>>>>>>> index 6ac6503c39d4..1cb5fd44f05c 100644
+>>>>>>>> --- a/drivers/gpu/drm/i915/gt/uc/intel_guc_slpc.h
+>>>>>>>> +++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_slpc.h
+>>>>>>>> @@ -45,5 +45,6 @@ void
+>>>>>>>> intel_guc_pm_intrmsk_enable(struct intel_gt *gt);
+>>>>>>>>     void intel_guc_slpc_boost(struct intel_guc_slpc *slpc);
+>>>>>>>>     void intel_guc_slpc_dec_waiters(struct intel_guc_slpc *slpc);
+>>>>>>>>     int intel_guc_slpc_set_ignore_eff_freq(struct
+>>>>>>>> intel_guc_slpc *slpc, bool val);
+>>>>>>>> +int intel_guc_slpc_set_strategy(struct
+>>>>>>>> intel_guc_slpc *slpc, u32 val);
+>>>>>>>>     #endif
+>>>>>>>> diff --git
+>>>>>>>> a/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
+>>>>>>>> b/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
+>>>>>>>> index f3dcae4b9d45..bbabfa5532e5 100644
+>>>>>>>> --- a/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
+>>>>>>>> +++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
+>>>>>>>> @@ -2645,6 +2645,7 @@
+>>>>>>>> MAKE_CONTEXT_POLICY_ADD(execution_quantum,
+>>>>>>>> EXECUTION_QUANTUM)
+>>>>>>>>     MAKE_CONTEXT_POLICY_ADD(preemption_timeout, PREEMPTION_TIMEOUT)
+>>>>>>>>     MAKE_CONTEXT_POLICY_ADD(priority, SCHEDULING_PRIORITY)
+>>>>>>>>     MAKE_CONTEXT_POLICY_ADD(preempt_to_idle,
+>>>>>>>> PREEMPT_TO_IDLE_ON_QUANTUM_EXPIRY)
+>>>>>>>> +MAKE_CONTEXT_POLICY_ADD(slpc_ctx_freq_req, SLPM_GT_FREQUENCY)
+>>>>>>>>     #undef MAKE_CONTEXT_POLICY_ADD
+>>>>>>>> @@ -2662,8 +2663,10 @@ static int
+>>>>>>>> guc_context_policy_init_v70(struct intel_context
+>>>>>>>> *ce, bool loop)
+>>>>>>>>         struct intel_engine_cs *engine = ce->engine;
+>>>>>>>>         struct intel_guc *guc = &engine->gt->uc.guc;
+>>>>>>>>         struct context_policy policy;
+>>>>>>>> +    struct i915_gem_context *ctx =
+>>>>>>>> rcu_dereference(ce->gem_context);
+>>>>>>>>         u32 execution_quantum;
+>>>>>>>>         u32 preemption_timeout;
+>>>>>>>> +    u32 slpc_ctx_freq_req = 0;
+>>>>>>>>         unsigned long flags;
+>>>>>>>>         int ret;
+>>>>>>>> @@ -2675,11 +2678,15 @@ static int
+>>>>>>>> guc_context_policy_init_v70(struct intel_context
+>>>>>>>> *ce, bool loop)
+>>>>>>>>         execution_quantum =
+>>>>>>>> engine->props.timeslice_duration_ms * 1000;
+>>>>>>>>         preemption_timeout = engine->props.preempt_timeout_ms * 1000;
+>>>>>>>> +    if (ctx && (ctx->user_flags & BIT(UCONTEXT_COMPUTE)))
+>>>>>>>> +        slpc_ctx_freq_req |= SLPC_CTX_FREQ_REQ_IS_COMPUTE;
+>>>>>>>> +
+>>>>>>>>         __guc_context_policy_start_klv(&policy, ce->guc_id.id);
+>>>>>>>>         __guc_context_policy_add_priority(&policy,
+>>>>>>>> ce->guc_state.prio);
+>>>>>>>> __guc_context_policy_add_execution_quantum(&policy,
+>>>>>>>> execution_quantum);
+>>>>>>>> __guc_context_policy_add_preemption_timeout(&policy,
+>>>>>>>> preemption_timeout);
+>>>>>>>> +
+>>>>>>>> __guc_context_policy_add_slpc_ctx_freq_req(&policy,
+>>>>>>>> slpc_ctx_freq_req);
+>>>>>>>>         if (engine->flags & I915_ENGINE_WANT_FORCED_PREEMPTION)
+>>>>>>>> __guc_context_policy_add_preempt_to_idle(&policy, 1);
+>>>>>>>> diff --git a/drivers/gpu/drm/i915/i915_getparam.c
+>>>>>>>> b/drivers/gpu/drm/i915/i915_getparam.c
+>>>>>>>> index 5c3fec63cb4c..0f12e36b2a12 100644
+>>>>>>>> --- a/drivers/gpu/drm/i915/i915_getparam.c
+>>>>>>>> +++ b/drivers/gpu/drm/i915/i915_getparam.c
+>>>>>>>> @@ -155,6 +155,17 @@ int i915_getparam_ioctl(struct
+>>>>>>>> drm_device *dev, void *data,
+>>>>>>>>              */
+>>>>>>>>             value = 1;
+>>>>>>>>             break;
+>>>>>>>> +    case I915_PARAM_HAS_COMPUTE_CONTEXT:
+>>>>>>>> +        /* This feature has been available in GuC for a while but
+>>>>>>>> +         * a use case now required the use of this feature. We
+>>>>>>>> +         * return true now since this is now being supported from
+>>>>>>>> +         * the kernel side as well.
+>>>>>>>> +         */
+>>>>>>>
+>>>>>>> Nit - stick to the multi-line comment style i915 uses please.
+>>>>>>>
+>>>>>>> Regards,
+>>>>>>>
+>>>>>>> Tvrtko
+>>>>>>>
+>>>>>>>> +        if (intel_uc_uses_guc_submission(&to_gt(i915)->uc))
+>>>>>>>> +            value = 1;
+>>>>>>>> +        else
+>>>>>>>> +            value = -EINVAL;
+>>>>>>>> +        break;
+>>>>>>>>         case I915_PARAM_HAS_CONTEXT_ISOLATION:
+>>>>>>>>             value = intel_engines_has_context_isolation(i915);
+>>>>>>>>             break;
+>>>>>>>> diff --git a/include/uapi/drm/i915_drm.h
+>>>>>>>> b/include/uapi/drm/i915_drm.h
+>>>>>>>> index 2ee338860b7e..1bd12f536108 100644
+>>>>>>>> --- a/include/uapi/drm/i915_drm.h
+>>>>>>>> +++ b/include/uapi/drm/i915_drm.h
+>>>>>>>> @@ -806,6 +806,12 @@ typedef struct drm_i915_irq_wait {
+>>>>>>>>      */
+>>>>>>>>     #define I915_PARAM_PXP_STATUS         58
+>>>>>>>> +/*
+>>>>>>>> + * Query if kernel allows marking a context as a
+>>>>>>>> Compute context. This will
+>>>>>>>> + * result in more aggressive GT frequency ramping for this context.
+>>>>>>>> + */
+>>>>>>>> +#define I915_PARAM_HAS_COMPUTE_CONTEXT 59
+>>>>>>>> +
+>>>>>>>>     /* Must be kept compact -- no holes and well documented */
+>>>>>>>>     /**
+>>>>>>>> @@ -2148,6 +2154,15 @@ struct drm_i915_gem_context_param {
+>>>>>>>>      * -EIO: The firmware did not succeed in creating
+>>>>>>>> the protected context.
+>>>>>>>>      */
+>>>>>>>>     #define I915_CONTEXT_PARAM_PROTECTED_CONTENT    0xd
+>>>>>>>> +
+>>>>>>>> +/*
+>>>>>>>> + * I915_CONTEXT_PARAM_IS_COMPUTE:
+>>>>>>>> + *
+>>>>>>>> + * Mark this context as a Compute related workload
+>>>>>>>> which requires aggressive GT
+>>>>>>>> + * frequency scaling. Query
+>>>>>>>> I915_PARAM_HAS_CONTEXT_COMPUTE to check if the
+>>>>>>>> kernel
+>>>>>>>> + * supports this functionality.
+>>>>>>>> + */
+>>>>>>>> +#define I915_CONTEXT_PARAM_IS_COMPUTE        0xe
+>>>>>>>>     /* Must be kept compact -- no holes and well documented */
+>>>>>>>>         /** @value: Context parameter value to be set or queried */
