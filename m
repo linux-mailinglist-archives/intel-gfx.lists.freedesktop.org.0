@@ -2,41 +2,41 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id EBF7E86755D
-	for <lists+intel-gfx@lfdr.de>; Mon, 26 Feb 2024 13:43:01 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 80A0886755F
+	for <lists+intel-gfx@lfdr.de>; Mon, 26 Feb 2024 13:43:04 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 267F110E712;
-	Mon, 26 Feb 2024 12:42:59 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C3CBF10E723;
+	Mon, 26 Feb 2024 12:43:01 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="isYM/bcB";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="VpbMVisa";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 20CE210E712
- for <intel-gfx@lists.freedesktop.org>; Mon, 26 Feb 2024 12:42:57 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id AF75510E71D
+ for <intel-gfx@lists.freedesktop.org>; Mon, 26 Feb 2024 12:43:00 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1708951378; x=1740487378;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=2KdsoRdBQn0vAvJ3VTzz+IQEwwTyje5sOboncMJlplo=;
- b=isYM/bcBkEldR9wkjCmrTy3bBbaTvcz4J/bTl5wPuUs6A+yk81MeO+1p
- aioXEOZ4XGEVYOM1JKukPu32vWR4iSgo8z9J0Lp43BPWwORgbAsZx1OsL
- bmwXwh8w3ZyI8YSlvALdWQtM7kdg1y8I4vqcrzOWIJ/9LPWPz0k+FlgTe
- 1nYdkkChVKqCPByJNJYpsBo1d/IA6vUX3SJ3SO2rJQK3zAgqe4FzcZAt1
- 2yDNUaI3U2/XYWG0jMEMyVQwA2ck1zmWt/JXmy+aMMz4u/BbFsk4WEgKC
- HOLRSUy+0V/Q09KPhLiqDc6Op4xbOE7VvvI1ykvCJs9VO79ZaOLfUK5P+ w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10995"; a="28658217"
-X-IronPort-AV: E=Sophos;i="6.06,185,1705392000"; d="scan'208";a="28658217"
+ t=1708951381; x=1740487381;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=4VIPX9egWgJRNiiGEM9wm8oDiCKsOQEHw4CxYJ7Q4bE=;
+ b=VpbMVisaFx/opoPp5Pg6Jt8e34yMHuntR23pxCUakP5qHF2aEnDorMYp
+ QLsRxogoeeeQgaylpIxozxOvFdhmjXdZhPEjNistI8CHaCfBWNMsnyX43
+ MxclTMdN0rEeQhs1+8L+mUOoG0vfH5fOdNCotuNm0OOyVLb1Ij0CcK68y
+ 08RzYw4X9zctwsala7wCVoccwJyGWzK/2couHcUTbIw0OCBDHyZyoUl9v
+ OOBi6QQXaYY831QvOIDTxA4OuZ/PPwNzx7l9Ih/PjzbGcOEXCg3XbiH+F
+ juhXS9jq79hFmViAtVBcNwradQl9lXZGGy8zsnZR3Z2aYrbXirBFudx/c Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10995"; a="28658228"
+X-IronPort-AV: E=Sophos;i="6.06,185,1705392000"; d="scan'208";a="28658228"
 Received: from orviesa009.jf.intel.com ([10.64.159.149])
  by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Feb 2024 04:42:57 -0800
+ 26 Feb 2024 04:43:01 -0800
 X-ExtLoop1: 1
 X-IronPort-AV: E=Sophos;i="6.06,185,1705392000"; 
-   d="scan'208";a="6688605"
+   d="scan'208";a="6688610"
 Received: from crojewsk-ctrl.igk.intel.com ([10.102.9.28])
- by orviesa009.jf.intel.com with ESMTP; 26 Feb 2024 04:42:54 -0800
+ by orviesa009.jf.intel.com with ESMTP; 26 Feb 2024 04:42:57 -0800
 From: Cezary Rojewski <cezary.rojewski@intel.com>
 To: broonie@kernel.org
 Cc: alsa-devel@alsa-project.org, linux-sound@vger.kernel.org, tiwai@suse.com,
@@ -45,10 +45,13 @@ Cc: alsa-devel@alsa-project.org, linux-sound@vger.kernel.org, tiwai@suse.com,
  tvrtko.ursulin@linux.intel.com, intel-gfx@lists.freedesktop.org,
  amadeuszx.slawinski@linux.intel.com, pierre-louis.bossart@linux.intel.com,
  hdegoede@redhat.com, Cezary Rojewski <cezary.rojewski@intel.com>
-Subject: [PATCH v3 0/5] ALSA/ASoC: Conditionally skip i915 init and cleanups
-Date: Mon, 26 Feb 2024 13:44:27 +0100
-Message-Id: <20240226124432.1203798-1-cezary.rojewski@intel.com>
+Subject: [PATCH v3 1/5] ALSA: hda: Skip i915 initialization on CNL/LKF-based
+ platforms
+Date: Mon, 26 Feb 2024 13:44:28 +0100
+Message-Id: <20240226124432.1203798-2-cezary.rojewski@intel.com>
 X-Mailer: git-send-email 2.25.1
+In-Reply-To: <20240226124432.1203798-1-cezary.rojewski@intel.com>
+References: <20240226124432.1203798-1-cezary.rojewski@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
@@ -66,12 +69,6 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-A small set of changes to improve initialization of the audio stack on
-HDAudio devices and pair of cleanups.
-
-As the first change is the most important one here, following is the
-technical background for it:
-
 Commit 78f613ba1efb ("drm/i915: finish removal of CNL") and its friends
 removed support for i915 for all CNL-based platforms. HDAudio library,
 however, still treats such platforms as valid candidates for i915
@@ -80,34 +77,62 @@ binding. Update query mechanism to reflect changes made in drm tree.
 At the same time, i915 support for LKF-based platforms has not been
 provided so remove them from valid binding candidates.
 
-The snd_soc_hda change is a follow up for the above and the cleanup
-patches do not bring any functional changes.
+Link: https://lore.kernel.org/all/20210728215946.1573015-1-lucas.demarchi@intel.com/
+Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
+Signed-off-by: Cezary Rojewski <cezary.rojewski@intel.com>
+---
+ sound/hda/hdac_i915.c | 32 +++++++++++++++++++++++++++++---
+ 1 file changed, 29 insertions(+), 3 deletions(-)
 
-Changes in v3:
-- snd_soc_hda_codec now returns -ENODEV on attach() if i915 is not
-  present
-- denylist now const
-- added new patch for the avs-driver to address -ENODEV during
-  probe_codec()
-- note: retained reviewed-by for patch 1/4 as changes are minimal
-
-Changes in v2:
-- list of problematic VGA devices is now declared locally, no more
-  touching drm stuff
-
-Cezary Rojewski (5):
-  ALSA: hda: Skip i915 initialization on CNL/LKF-based platforms
-  ASoC: codecs: hda: Skip HDMI/DP registration if i915 is missing
-  ASoC: Intel: avs: Ignore codecs with no suppoting driver
-  ASoC: codecs: hda: Cleanup error messages
-  ALSA: hda: Reuse for_each_pcm_streams()
-
- sound/hda/hdac_i915.c      | 32 +++++++++++++++++++++++++++++---
- sound/pci/hda/hda_codec.c  |  2 +-
- sound/soc/codecs/hda.c     | 15 ++++++++++-----
- sound/soc/intel/avs/core.c |  9 +++++----
- 4 files changed, 45 insertions(+), 13 deletions(-)
-
+diff --git a/sound/hda/hdac_i915.c b/sound/hda/hdac_i915.c
+index 365c36fdf205..e9425213320e 100644
+--- a/sound/hda/hdac_i915.c
++++ b/sound/hda/hdac_i915.c
+@@ -127,15 +127,41 @@ static int i915_component_master_match(struct device *dev, int subcomponent,
+ /* check whether Intel graphics is present and reachable */
+ static int i915_gfx_present(struct pci_dev *hdac_pci)
+ {
++	/* List of known platforms with no i915 support. */
++	static const struct pci_device_id denylist[] = {
++		/* CNL */
++		{ PCI_DEVICE(PCI_VENDOR_ID_INTEL, 0x5a40), 0x030000, 0xff0000 },
++		{ PCI_DEVICE(PCI_VENDOR_ID_INTEL, 0x5a41), 0x030000, 0xff0000 },
++		{ PCI_DEVICE(PCI_VENDOR_ID_INTEL, 0x5a42), 0x030000, 0xff0000 },
++		{ PCI_DEVICE(PCI_VENDOR_ID_INTEL, 0x5a44), 0x030000, 0xff0000 },
++		{ PCI_DEVICE(PCI_VENDOR_ID_INTEL, 0x5a49), 0x030000, 0xff0000 },
++		{ PCI_DEVICE(PCI_VENDOR_ID_INTEL, 0x5a4a), 0x030000, 0xff0000 },
++		{ PCI_DEVICE(PCI_VENDOR_ID_INTEL, 0x5a4c), 0x030000, 0xff0000 },
++		{ PCI_DEVICE(PCI_VENDOR_ID_INTEL, 0x5a50), 0x030000, 0xff0000 },
++		{ PCI_DEVICE(PCI_VENDOR_ID_INTEL, 0x5a51), 0x030000, 0xff0000 },
++		{ PCI_DEVICE(PCI_VENDOR_ID_INTEL, 0x5a52), 0x030000, 0xff0000 },
++		{ PCI_DEVICE(PCI_VENDOR_ID_INTEL, 0x5a54), 0x030000, 0xff0000 },
++		{ PCI_DEVICE(PCI_VENDOR_ID_INTEL, 0x5a59), 0x030000, 0xff0000 },
++		{ PCI_DEVICE(PCI_VENDOR_ID_INTEL, 0x5a5a), 0x030000, 0xff0000 },
++		{ PCI_DEVICE(PCI_VENDOR_ID_INTEL, 0x5a5c), 0x030000, 0xff0000 },
++		/* LKF */
++		{ PCI_DEVICE(PCI_VENDOR_ID_INTEL, 0x9840), 0x030000, 0xff0000 },
++		{}
++	};
+ 	struct pci_dev *display_dev = NULL;
+ 
+ 	if (!gpu_bind || (gpu_bind < 0 && video_firmware_drivers_only()))
+ 		return false;
+ 
+ 	for_each_pci_dev(display_dev) {
+-		if (display_dev->vendor == PCI_VENDOR_ID_INTEL &&
+-		    (display_dev->class >> 16) == PCI_BASE_CLASS_DISPLAY &&
+-		    connectivity_check(display_dev, hdac_pci)) {
++		if (display_dev->vendor != PCI_VENDOR_ID_INTEL ||
++		    (display_dev->class >> 16) != PCI_BASE_CLASS_DISPLAY)
++			continue;
++
++		if (pci_match_id(denylist, display_dev))
++			continue;
++
++		if (connectivity_check(display_dev, hdac_pci)) {
+ 			pci_dev_put(display_dev);
+ 			return true;
+ 		}
 -- 
 2.25.1
 
