@@ -2,59 +2,53 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 698DD867F51
-	for <lists+intel-gfx@lfdr.de>; Mon, 26 Feb 2024 18:51:50 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 67880867F6E
+	for <lists+intel-gfx@lfdr.de>; Mon, 26 Feb 2024 18:59:01 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B7FB810E677;
-	Mon, 26 Feb 2024 17:51:46 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9923F10E6F9;
+	Mon, 26 Feb 2024 17:58:59 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ThONEYwB";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="kWhK8I+6";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9048810E677
- for <intel-gfx@lists.freedesktop.org>; Mon, 26 Feb 2024 17:51:45 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3893B10E6F9
+ for <intel-gfx@lists.freedesktop.org>; Mon, 26 Feb 2024 17:58:57 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1708969905; x=1740505905;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version:content-transfer-encoding;
- bh=b4QjFR0WlnykqW6nw6PTeHh4EMxMtl5K+tN2c1xwjhI=;
- b=ThONEYwBYXHNv3fH0aWZMK5Xw6Tg50R26x50Z9CIgvYmhd43y7GEpApZ
- WhkiSAJV4rs92tKpF1Wm8e1HmxXBJqIzdB7aBf+uAT8vKHxJSzsRuKfUA
- Ex3HuPE8k4V/u2AqUjYf5fLCV9VTV/eQVcKDsAx14g8655K19xajKtqtG
- FnuutHCkEatFjL26Sri6mZdP2CBHFcQZ9huSbKr3gzeC8pzTCpSY8S9+X
- fXhb4s3QBO6lMy+UmYw/SYHKYPXEHS7ojJlvaiTn0z/gVyxJLBTSaaRFw
- Hji2HgCd78qcbg386uTqTjWEYJrJ+TGmVQQh11aAiwFeb+qp7N0ZnkCh5 w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10996"; a="3119712"
+ t=1708970337; x=1740506337;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=atgpk9arliI6jUMoHAWaD80qLvuB19AJjGANUTms+ns=;
+ b=kWhK8I+6WE9+rKHUSOrDOJ0NZn/oSk5jCtKY/vPJPtx2r6AO/WeCHOtd
+ CE3uxAh5jqNuxalO+Y3PNBo+pZUgmEN4WoPD8VgArgJrgdtI1PVTbuUaZ
+ wmnszbuLimDRHy+1E+ln2AuIHJfTnR8Rke3Z7D3+OHx0OHi43Q9zF8v+m
+ yEJRyJHEidaTuz2V+HszAu05N+IwxBC45JE3PQ4PDmiX5+5kChSc/bqPb
+ HA/pRnyqnnlNoasNc1Ir8WVp+s8ByZQ7Pte9bpt+33Wj8+3N6pqwB/u87
+ rYC2H9i/5AEWTIyTBuGFHCFvFBY6IMGGQv6m2fO34tZ2tNEzwtPIIY9P+ Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10996"; a="3121000"
 X-IronPort-AV: E=Sophos;i="6.06,186,1705392000"; 
-   d="scan'208";a="3119712"
+   d="scan'208";a="3121000"
 Received: from orviesa003.jf.intel.com ([10.64.159.143])
  by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Feb 2024 09:51:45 -0800
+ 26 Feb 2024 09:58:56 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.06,186,1705392000"; d="scan'208";a="11485368"
+X-IronPort-AV: E=Sophos;i="6.06,186,1705392000"; d="scan'208";a="11487553"
 Received: from hibeid-mobl.amr.corp.intel.com (HELO localhost)
  ([10.252.46.254])
  by ORVIESA003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Feb 2024 09:51:43 -0800
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Jouni =?utf-8?Q?H=C3=B6gander?= <jouni.hogander@intel.com>,
- intel-gfx@lists.freedesktop.org
-Cc: Ville =?utf-8?B?U3lyasOkbMOk?= <ville.syrjala@linux.intel.com>, Jouni
- =?utf-8?Q?H=C3=B6gander?= <jouni.hogander@intel.com>
-Subject: Re: [PATCH v2 1/5] drm/i915/display: Make intel_dp_aux_fw_sync_len
- available for PSR code
-In-Reply-To: <20240222115728.3371478-2-jouni.hogander@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20240222115728.3371478-1-jouni.hogander@intel.com>
- <20240222115728.3371478-2-jouni.hogander@intel.com>
-Date: Mon, 26 Feb 2024 19:51:43 +0200
-Message-ID: <87zfvnktao.fsf@intel.com>
+ 26 Feb 2024 09:58:54 -0800
+From: Jani Nikula <jani.nikula@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Cc: jani.nikula@intel.com
+Subject: [PATCH v2 1/3] drm/i915/bios: bump expected child device size
+Date: Mon, 26 Feb 2024 19:58:52 +0200
+Message-Id: <20240226175854.287871-1-jani.nikula@intel.com>
+X-Mailer: git-send-email 2.39.2
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -70,58 +64,48 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, 22 Feb 2024, Jouni H=C3=B6gander <jouni.hogander@intel.com> wrote:
-> ALPM AUX-Wake fast wake sync pulse count is needed by PSR to calculate IO
-> wake and fast wake lines. Convert intel_dp_aux_fw_sync_len as non-static
-> to make it available for PSR code. u8 is enough for fw sync pulse length.
+VBT versions since 256 have an extra byte for EFP index.
 
-"u8 is enough" is not a good enough reason to use u8. Or any unsigned
-type.
+v2: Update BUILD_BUG_ON() (Matt)
 
-Please use int unless you have a reason not to.
+Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+---
+ drivers/gpu/drm/i915/display/intel_bios.c     | 6 ++++--
+ drivers/gpu/drm/i915/display/intel_vbt_defs.h | 1 +
+ 2 files changed, 5 insertions(+), 2 deletions(-)
 
-BR,
-Jani.
+diff --git a/drivers/gpu/drm/i915/display/intel_bios.c b/drivers/gpu/drm/i915/display/intel_bios.c
+index fe52c06271ef..f967ab406e35 100644
+--- a/drivers/gpu/drm/i915/display/intel_bios.c
++++ b/drivers/gpu/drm/i915/display/intel_bios.c
+@@ -2740,11 +2740,13 @@ parse_general_definitions(struct drm_i915_private *i915)
+ 		expected_size = 37;
+ 	} else if (i915->display.vbt.version <= 215) {
+ 		expected_size = 38;
+-	} else if (i915->display.vbt.version <= 250) {
++	} else if (i915->display.vbt.version <= 255) {
+ 		expected_size = 39;
++	} else if (i915->display.vbt.version <= 256) {
++		expected_size = 40;
+ 	} else {
+ 		expected_size = sizeof(*child);
+-		BUILD_BUG_ON(sizeof(*child) < 39);
++		BUILD_BUG_ON(sizeof(*child) < 40);
+ 		drm_dbg(&i915->drm,
+ 			"Expected child device config size for VBT version %u not known; assuming %u\n",
+ 			i915->display.vbt.version, expected_size);
+diff --git a/drivers/gpu/drm/i915/display/intel_vbt_defs.h b/drivers/gpu/drm/i915/display/intel_vbt_defs.h
+index a9f44abfc9fc..648934fcd123 100644
+--- a/drivers/gpu/drm/i915/display/intel_vbt_defs.h
++++ b/drivers/gpu/drm/i915/display/intel_vbt_defs.h
+@@ -485,6 +485,7 @@ struct child_device_config {
+ 	u8 hdmi_iboost_level:4;					/* 196+ */
+ 	u8 dp_max_link_rate:3;					/* 216+ */
+ 	u8 dp_max_link_rate_reserved:5;				/* 216+ */
++	u8 efp_index;						/* 256+ */
+ } __packed;
+ 
+ struct bdb_general_definitions {
+-- 
+2.39.2
 
->
-> Signed-off-by: Jouni H=C3=B6gander <jouni.hogander@intel.com>
-> ---
->  drivers/gpu/drm/i915/display/intel_dp_aux.c | 6 +++---
->  drivers/gpu/drm/i915/display/intel_dp_aux.h | 1 +
->  2 files changed, 4 insertions(+), 3 deletions(-)
->
-> diff --git a/drivers/gpu/drm/i915/display/intel_dp_aux.c b/drivers/gpu/dr=
-m/i915/display/intel_dp_aux.c
-> index 4f4a0e3b3114..7a5cfd77d43b 100644
-> --- a/drivers/gpu/drm/i915/display/intel_dp_aux.c
-> +++ b/drivers/gpu/drm/i915/display/intel_dp_aux.c
-> @@ -143,10 +143,10 @@ static int intel_dp_aux_sync_len(void)
->  	return precharge + preamble;
->  }
->=20=20
-> -static int intel_dp_aux_fw_sync_len(void)
-> +u8 intel_dp_aux_fw_sync_len(void)
->  {
-> -	int precharge =3D 10; /* 10-16 */
-> -	int preamble =3D 8;
-> +	u8 precharge =3D 10; /* 10-16 */
-> +	u8 preamble =3D 8;
->=20=20
->  	return precharge + preamble;
->  }
-> diff --git a/drivers/gpu/drm/i915/display/intel_dp_aux.h b/drivers/gpu/dr=
-m/i915/display/intel_dp_aux.h
-> index 8447f3e601fe..8e6a62abf01a 100644
-> --- a/drivers/gpu/drm/i915/display/intel_dp_aux.h
-> +++ b/drivers/gpu/drm/i915/display/intel_dp_aux.h
-> @@ -20,5 +20,6 @@ enum aux_ch intel_dp_aux_ch(struct intel_encoder *encod=
-er);
->=20=20
->  void intel_dp_aux_irq_handler(struct drm_i915_private *i915);
->  u32 intel_dp_aux_pack(const u8 *src, int src_bytes);
-> +u8 intel_dp_aux_fw_sync_len(void);
->=20=20
->  #endif /* __INTEL_DP_AUX_H__ */
-
---=20
-Jani Nikula, Intel
