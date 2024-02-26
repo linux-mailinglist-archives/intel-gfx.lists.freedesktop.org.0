@@ -2,152 +2,75 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id AA94D866FD2
-	for <lists+intel-gfx@lfdr.de>; Mon, 26 Feb 2024 11:04:20 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id C5ADB866FDF
+	for <lists+intel-gfx@lfdr.de>; Mon, 26 Feb 2024 11:05:13 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6FFE910E30D;
-	Mon, 26 Feb 2024 10:04:18 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5041510E697;
+	Mon, 26 Feb 2024 10:05:12 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="hmEbQyOd";
+	dkim=pass (2048-bit key; unprotected) header.d=linaro.org header.i=@linaro.org header.b="MNRBzq7f";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 927A510E30D;
- Mon, 26 Feb 2024 10:04:16 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1708941857; x=1740477857;
- h=message-id:date:subject:to:cc:references:from:
- in-reply-to:content-transfer-encoding:mime-version;
- bh=JI2DepxFhs9mINlUq1a/dyoe2x2KkQh/+0iBDNXXz5s=;
- b=hmEbQyOdJvwy0J2n1XLo3J3oYTNPI8EuFbt4tgL8302fK2mD9/7RBIYu
- oIOxew1DF4wJEEySBSrqVqF8+kGKL0OH8YSr9CJLX3jZaDIR4h9EFyxOG
- MkTdQfLHDM4kK+TI1XEV9w6tSoA+3E4waf1MET2K0dPsJn1otVzrMgh3Z
- XRnfbFsyNcnbXRptODhl41p2Suc+WQzeJC2+w9ZYZq5+3OT2UXCJJ8XtC
- 8uKG6uqWlvS/BlMahw+GGmeQ63aBkTEiM0KLrIxrLygSvpLaNG+O7Wh3F
- Z1Z2dhYj170ow93K3f0ZO8tA+2NB4XjSjhyBqOKMpM/mrBpuTiumHxivn w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10995"; a="3363360"
-X-IronPort-AV: E=Sophos;i="6.06,185,1705392000"; 
-   d="scan'208";a="3363360"
-Received: from fmviesa010.fm.intel.com ([10.60.135.150])
- by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Feb 2024 02:04:06 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.06,185,1705392000"; 
-   d="scan'208";a="6604706"
-Received: from orsmsx603.amr.corp.intel.com ([10.22.229.16])
- by fmviesa010.fm.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
- 26 Feb 2024 02:04:05 -0800
-Received: from orsmsx610.amr.corp.intel.com (10.22.229.23) by
- ORSMSX603.amr.corp.intel.com (10.22.229.16) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35; Mon, 26 Feb 2024 02:04:05 -0800
-Received: from ORSEDG602.ED.cps.intel.com (10.7.248.7) by
- orsmsx610.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35 via Frontend Transport; Mon, 26 Feb 2024 02:04:05 -0800
-Received: from NAM10-MW2-obe.outbound.protection.outlook.com (104.47.55.101)
- by edgegateway.intel.com (134.134.137.103) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.35; Mon, 26 Feb 2024 02:04:04 -0800
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=TzHinWPQ7q9B64ohMMUrl9U9p27wesHvT0pVKaJQm69uiRcXAaH0YTk3EBfS9LPY/d58ShDfeWjw49Q7dbN4rttXWyFnp1KK7ZrsxgTibhlpeDrcl2IIEA0HTimjoSOFSedE1/Sm2MclSKlZZhIB2eKPTfdi+1H9Yk6VxutICX2HZ08GnOpUjZC8AbXB+yLy4SP/sh75KunHETNJqX/rvPmTOSPyappPOz6nQWsQGB83Bl2mVgAmDvayFRmjE/JyG5SpJhXrVVavScDQbGkHC2sRwbCZr4AaHgjmRqovJNMfUUWhZV2qUXeUqPschybd1LGVON6jbkcSydjQn+qeVw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=XDdkSxdNcbgZvelT7QQ9zlu7S2aSMpGJkwomaUS2u8c=;
- b=j0Rnt+Ql7S/Qa4HQ3GnVt3tlP81LhwwsSGbvtk6riKmn+5KdZhM3thy33t9/SjfOhJh97g0cNZHTjJeWgTieEVSipCsFuHdMTZac/mtu+1kd6Nmq1Cjp1zRU9BJM/3+I3tg27EslVb20rase54D83gmlOGWLgt/EafCtcyVQjTO+hQ1i5bcYuNOqno81hWe0LpVyKGQPUkL4KuYRosuruiHAHC+Rs3LbKiXwCrjvZxGyosaIafh7LYS1tIu+ibXDJN5O9kSEfw/zz7hTvvQibqIEQeEnzHH/yYaq6jqlfA+lmIUsbg7zN8tENEDLWXXKsa+Jx9MFDUX72EulhH72qw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from DM4PR11MB5341.namprd11.prod.outlook.com (2603:10b6:5:390::22)
- by IA0PR11MB7749.namprd11.prod.outlook.com (2603:10b6:208:442::7) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7339.10; Mon, 26 Feb
- 2024 10:04:03 +0000
-Received: from DM4PR11MB5341.namprd11.prod.outlook.com
- ([fe80::12b:4490:b758:75c2]) by DM4PR11MB5341.namprd11.prod.outlook.com
- ([fe80::12b:4490:b758:75c2%7]) with mapi id 15.20.7339.023; Mon, 26 Feb 2024
- 10:04:03 +0000
-Message-ID: <e026e2cf-66d6-41af-9cd6-430e9cdf9d8e@intel.com>
-Date: Mon, 26 Feb 2024 15:33:56 +0530
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 5/6] drm/i915/display: Compute vrr_vsync params
-Content-Language: en-US
-To: Mitul Golani <mitulkumar.ajitkumar.golani@intel.com>,
- <intel-gfx@lists.freedesktop.org>
-CC: <dri-devel@lists.freedesktop.org>
-References: <20240222121223.2257958-1-mitulkumar.ajitkumar.golani@intel.com>
- <20240222121223.2257958-6-mitulkumar.ajitkumar.golani@intel.com>
-From: "Nautiyal, Ankit K" <ankit.k.nautiyal@intel.com>
-In-Reply-To: <20240222121223.2257958-6-mitulkumar.ajitkumar.golani@intel.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: PN2PR01CA0122.INDPRD01.PROD.OUTLOOK.COM
- (2603:1096:c01:6::7) To DM4PR11MB5341.namprd11.prod.outlook.com
- (2603:10b6:5:390::22)
+Received: from mail-wm1-f46.google.com (mail-wm1-f46.google.com
+ [209.85.128.46])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 46A6710E697
+ for <intel-gfx@lists.freedesktop.org>; Mon, 26 Feb 2024 10:05:11 +0000 (UTC)
+Received: by mail-wm1-f46.google.com with SMTP id
+ 5b1f17b1804b1-412a3371133so6567475e9.2
+ for <intel-gfx@lists.freedesktop.org>; Mon, 26 Feb 2024 02:05:11 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=linaro.org; s=google; t=1708941909; x=1709546709; darn=lists.freedesktop.org;
+ h=in-reply-to:content-transfer-encoding:content-disposition
+ :mime-version:message-id:subject:cc:to:from:date:from:to:cc:subject
+ :date:message-id:reply-to;
+ bh=fcBIOucMAN+S6gTpmGCOg/zW6YlSfsS7OHTd/xLQuSI=;
+ b=MNRBzq7fBdqM4WOYPCZhmmAjGBnfykMohsvfCQd08mBkPe56jPWbB4qC+SZxb+XGS3
+ IRemmw47E7t9DAyoYtZ8FIwlyn8aSjwFo1c16dqiD2QKshaLaPeE4pZVcYJ/FLltK3/p
+ H5VA/+Mid3aEcD4qBZJLMqJLf8afRmOEYx+ymEWeu6Sg847NITMhMlv//Hz7Ipch8UkF
+ XsKKjxzLH8tmTd0EVc8iG7E78rqxFUE2hlGjTOvG6auKY2fPXSrORLVw2x0EMj8rrFrc
+ rK8NqwGGf9dRQvNUr0XegWbZfzvnoxr1IbbL08UKN48UP0XejfO+74t4a6XyBRf0lc08
+ Noew==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1708941909; x=1709546709;
+ h=in-reply-to:content-transfer-encoding:content-disposition
+ :mime-version:message-id:subject:cc:to:from:date:x-gm-message-state
+ :from:to:cc:subject:date:message-id:reply-to;
+ bh=fcBIOucMAN+S6gTpmGCOg/zW6YlSfsS7OHTd/xLQuSI=;
+ b=TtiqyNY1DOzJKBCt6dx3MYQc+i3U5fU/WFZnlR/fARb3NijGm3BjcgtzcMV54ZTnxc
+ WVrieNb3N8TR2IQVu/su2Vi4Q8uR1mW4XjhPWXd2C3PP+ASc2SNTgmmagTlq3h6Wfnxp
+ gtugY1bn8NmlgE3tFAOJelG7rjhYEp1yViknvhTyScVdTo767yL4MzaQpajTGe+gn89f
+ cwUi8fImI5p2BJ+cxW6D2xELO/KgA2EhboCPxtE75OmoIuCDC0RdVLGagbmfA/3uGe++
+ K0BPVgVlubg2FjVfu62Fmu/teW1xMolmL+h/ax6fq73x2EE2Fx1W5ppCr1h6phV40coE
+ Kqfg==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCX2VhBLC83DF9I1ROkWIQOPuCAXHVJl93iBNcdR2aTDWrZHEwE4jy6JAUGR4BryZqdhZwPx7TZenraiEicrhFp2DttwP0DFIVG7VKvdhGtA
+X-Gm-Message-State: AOJu0YzJCKVviN3i/dfnpS2LqRTMcIExakX+PJ6mwibVABhDsEbQnf9q
+ GVDYXf+5rONs7zZfZ9s1CJZn6G9qNoTjwCV7BO6VwVo2fPcIgtZC2IBCyIKdDCg=
+X-Google-Smtp-Source: AGHT+IGsGKWqF0+bDTc6+hQ/DghJAVK6dro+xWXta3HaOLtgEwNx1tGcEphVsnFdTW0bSv8HEvr4Jw==
+X-Received: by 2002:a05:600c:1553:b0:412:a206:ad16 with SMTP id
+ f19-20020a05600c155300b00412a206ad16mr3104748wmg.12.1708941909322; 
+ Mon, 26 Feb 2024 02:05:09 -0800 (PST)
+Received: from localhost ([102.222.70.76]) by smtp.gmail.com with ESMTPSA id
+ f6-20020a05600c4e8600b00412a0ce903dsm5234762wmq.46.2024.02.26.02.05.08
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Mon, 26 Feb 2024 02:05:08 -0800 (PST)
+Date: Mon, 26 Feb 2024 13:05:04 +0300
+From: Dan Carpenter <dan.carpenter@linaro.org>
+To: oe-kbuild@lists.linux.dev,
+ Jouni =?iso-8859-1?Q?H=F6gander?= <jouni.hogander@intel.com>,
+ intel-gfx@lists.freedesktop.org
+Cc: lkp@intel.com, oe-kbuild-all@lists.linux.dev,
+ Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>,
+ Jouni =?iso-8859-1?Q?H=F6gander?= <jouni.hogander@intel.com>
+Subject: Re: [PATCH 2/3] drm/i915/psr: Improve fast and IO wake lines
+ calculation
+Message-ID: <88b9f039-65ed-4138-9479-50f564ac992e@moroto.mountain>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DM4PR11MB5341:EE_|IA0PR11MB7749:EE_
-X-MS-Office365-Filtering-Correlation-Id: 48f0ed86-b571-4f82-b09c-08dc36b24276
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: uiFrxbHHv6leI3X4jrgcjJSxAHDkRfjwx+Rd1KDdMQ1T9LOiq+XkAoEb4e3WH2KE63h8ULGXOZxA9RruTZIZe9y2no+vlFWzLutB3HV7BrmZRzarlg6IwbNau5GC1jDpVwL/PajGE1ZCRfb/2LIsQPFlyeYHHaAJN8543UMkL4kdNCHST8Oq6+WaF5AppkLKfo1EhfKu8izOdkgDB2FbyWySu8mR02CjpJkvl8bm/ususOGbkeHyPPThEvwrR+QRQW1lq3nxgkPmg2A889NtSziMeukBtnFhfZcuvPnDtdRFgaXHh46za6Erk0onSjEuQ/XXrAQ9YlPdeBnNDuL8XlhPDOSAJpB3cw4Sl9JcLx6G8F82U/NXWaAuVydG/QtbOXsy7yMFJXnZt3TdlqI3aDV+8R4255D2RhTOH+QZHCIQ3Aoh3Yyo/bOaVljVpPJjGWaaT1vsn0d/QACVx5RdLhxZtDvjnykiVvg+7YcL7RXSxyNRApPCiS1gz3GXAvHCsQJuTr1mVn+A57fQ3Kgcm8z0q5lb4JPfZtY/6nvdceSo1I2nZCuRMjI3rxl8XmMUse1fBUVJli/k27hDz+iPUc4Q4v7MeHEAiJqVo4VXMTq0Nqj+aseLod9g2ukU6o0D
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:DM4PR11MB5341.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230031); DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?ZnhFU3N6UlNERk5CWEkyZmErM0tVNGFkS3JUSjV4aEUxOUpBWXJ6WE9NN25l?=
- =?utf-8?B?c211QXhHM0pLWjBxUlcraVFDWWFLUGh4cTRYbjczL2VCS3lacEFYZzQwaEZu?=
- =?utf-8?B?OHBVVDNITWlhaUxwZzJjbzRaZE9WV0ovWmhtbDVpVFpsVk9hSWZlZUpUNDJL?=
- =?utf-8?B?b1N3RzR5SWlXM00wNVNFb3ZPMGRrb2huK3NndmlodmJPaU93NUl6MWd0Rmlk?=
- =?utf-8?B?Z1R0elRlMXMzSDc5U2RPTThYNUp0eXNOZ2Jua2d5U2dNMksrek5jM3JEbHF0?=
- =?utf-8?B?K3JHSE5hUEVkdnc3NHhxaWdVNE9vNDFzSExwUTBMUE9QbnR3VUsvSXQ0WEtY?=
- =?utf-8?B?RnV0ZGlXQzlWUTY1Ync0R3JrUWtXeWtUUHg1cjc5YjNTcWxwcFdlRjhkZGVz?=
- =?utf-8?B?bnBpRkJKekRJSGFaT25VUzB0SnFJYVFVSE85WjJla3lXUUFHL3QwdHAyOVRL?=
- =?utf-8?B?OXRMTEVuNzgzeTRZMHpzYUhMd28zTTJsN09wVk5CamVjMGZiL1h0MlEydHhj?=
- =?utf-8?B?b09sdkx4TkVVV0JVZzRxNlNOTFNVaFlOdnhsUUdqTEs1b3BOL2xsMkd5OUg5?=
- =?utf-8?B?SUVMZHh0OG16VjFnWU5uNkFucnl0V05GQms0c3JsSUtjckFlT0t4d05rOXRz?=
- =?utf-8?B?MVNLOEViNWF4ZkNJOHVQaDNxSy9OTDZBQjJYelhhMFJWa0QxclhCc05oSGpj?=
- =?utf-8?B?SmgycEtjVEdzRUszVjRoakNyb09sQjJ4dS9QbnBySEY3ZEJhWFRMTStqV3Bj?=
- =?utf-8?B?bDVvRkx3Qzh5RmN5bzZkbDZDQjJGZWFOOGpYVTRyTURNVmZUSC9tbzZwbnFS?=
- =?utf-8?B?SFVaM3NBQkg3VnpWbFlPdDI2dlJkekVtUlFEcHhwSjhIVUlJUy9DVW5ybXlz?=
- =?utf-8?B?NFR1bHEwNTg4YmdWZkJVbGVEWEFpOVA5TThUSFBIYmJIU1R3UDFpSVBsYmhC?=
- =?utf-8?B?blA5b2hwRFR6UUp2djlzdC9FZUg0dTdndS9sU25tWm1MOTAweGNYajhNYzhI?=
- =?utf-8?B?OWZjMXRDeWU5M09XczQyTHF3OVQyZ2NnTkZNUi93MlU2R2F4TzVBTDZueXg0?=
- =?utf-8?B?VXhCenRoU1pLVHZQYXN5amwwbTJ1c1JXNlQ5WVVCcnVHcGdmYThoUU11elpu?=
- =?utf-8?B?U1JJYmpKRWxHcXBJc0xMV2pud1M4bGNHME9oUnFKLzhPUWVORWlyNjBDbFJw?=
- =?utf-8?B?WjFYWk04U1hQV05vdjU1SkZnQUJGeWllSGdXSGhWMXBVZm04dFoxSTQ4M3ZU?=
- =?utf-8?B?bk1yb0dudHBnRzVZU21mUk1PcVBzZU1JSEVZZys0Mnl5ZWwyWHl0N2tkd0xI?=
- =?utf-8?B?Y2ZFRFdEei9xbm1hdThzY0hlYlFyOGQ0YkQzWWd2MjhsMzdqVEN0Qyt1emZp?=
- =?utf-8?B?VDFVS0dmY2hiNHYrZGtqeERoS041dXpSbFBLSkRHbDl5WEk1Q0czeEEyQ3By?=
- =?utf-8?B?SnB0QnRCQ0JtSkJWcUNiY05WSVpVVFE1N0lhVGJOU08vQ1BHa1JNdnRrLzBu?=
- =?utf-8?B?eW1WTGpHdmQ3M2hGa0NFRjVxZmxuTE1iL25VR1hkcThJbGo5QXJVRUdoUEU1?=
- =?utf-8?B?T3ZCSTdCV0dxc3MwMk5PaG5RNEJYR0haV2Q4d01LeHBRK29Lc25wU2ViTEl0?=
- =?utf-8?B?VTFpdHhEMFJuaC9MM1cvRnpLMi9rTTVFWStiS0dhamtPMFdrYTg2WEJrK0Rk?=
- =?utf-8?B?cnF4TlhydllLcTNVcE05YkZ1ZFVXS3hYdStoZ21xQVd1TzUxdmpoWVI2UmRn?=
- =?utf-8?B?T082NFFLZDFPRXIxV0E4VjV1TE9NMnJRaDF6Q1hNVkJ4QWFEU1I1c3JVUjBM?=
- =?utf-8?B?d3FaU3ljT0dadkFtN3JZL2hkZkxCem14dzNnVVZxaTZvRHJXeWc2OE4wMVdQ?=
- =?utf-8?B?bHBMVWhaaGlDSkd5OE14M0JVakd1TTVWSTN5bmlGV0NxekluNlFHdTY3eDFB?=
- =?utf-8?B?amNtWXd1QUV4WVdQTTVtbGtWa2Nwa3ZBbFpDSVhBdXZHWUhqQ3BLUkhnbkpj?=
- =?utf-8?B?aTRnb1d3QlhJNVRjSEVrT3JaM3ZKOHBlN2QwdmkwZDRJck9INFN4MEdDMmt3?=
- =?utf-8?B?YzVKanE3UUlWYmVoVmZLVEpsSENWNWFKdHhWUTBxeFRkWnVaWHZ0YjNYK0dn?=
- =?utf-8?B?LzVsUWxFN2xGQzVVNGJ5VTFkWDVCSWdQWWZ3Q1MwN3BkZkExQ21hbjBNejZq?=
- =?utf-8?B?V2c9PQ==?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 48f0ed86-b571-4f82-b09c-08dc36b24276
-X-MS-Exchange-CrossTenant-AuthSource: DM4PR11MB5341.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 26 Feb 2024 10:04:03.0486 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: zscJQUaTByg/OXK5sc90dlmO4iBBH2Q3YrsbS0MtteBv2TJ7U+erBZyH0rd5U4my9K1qZelYwhgpDPBtY7VtuAMNq4ilHrsrwY/dC5gtcnw=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA0PR11MB7749
-X-OriginatorOrg: intel.com
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20240221075322.2764209-3-jouni.hogander@intel.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -163,118 +86,89 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+Hi Jouni,
 
-On 2/22/2024 5:42 PM, Mitul Golani wrote:
-> Compute vrr_vsync_start/end  which sets the position
-> for hardware to send the Vsync at a fixed position
-> relative to the end of the Vblank.
->
-> --v2:
-> - Update, VSYNC_START/END macros to VRR_VSYNC_START/END.(Ankit)
-> - Update bit fields of VRR_VSYNC_START/END.(Ankit)
->
-> Signed-off-by: Mitul Golani <mitulkumar.ajitkumar.golani@intel.com>
-> ---
->   drivers/gpu/drm/i915/display/intel_display.c       |  1 +
->   drivers/gpu/drm/i915/display/intel_display_types.h |  1 +
->   drivers/gpu/drm/i915/display/intel_vrr.c           | 12 ++++++++++++
->   drivers/gpu/drm/i915/i915_reg.h                    |  7 +++++++
->   4 files changed, 21 insertions(+)
->
-> diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
-> index 00ac65a14029..5994f7fcbb6a 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display.c
-> +++ b/drivers/gpu/drm/i915/display/intel_display.c
-> @@ -5321,6 +5321,7 @@ intel_pipe_config_compare(const struct intel_crtc_state *current_config,
->   		PIPE_CONF_CHECK_I(vrr.flipline);
->   		PIPE_CONF_CHECK_I(vrr.pipeline_full);
->   		PIPE_CONF_CHECK_I(vrr.guardband);
-> +		PIPE_CONF_CHECK_BOOL(vrr.as_sdp_enable);
+kernel test robot noticed the following build warnings:
 
-Need to add PIPE_CONF_CHECK_I(vrr.vsync_start/end).
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
 
+url:    https://github.com/intel-lab-lkp/linux/commits/Jouni-H-gander/drm-i915-display-Add-aux-function-pointer-for-fast-wake-sync-pulse-count/20240221-160220
+base:   git://anongit.freedesktop.org/drm-intel for-linux-next
+patch link:    https://lore.kernel.org/r/20240221075322.2764209-3-jouni.hogander%40intel.com
+patch subject: [PATCH 2/3] drm/i915/psr: Improve fast and IO wake lines calculation
+config: i386-randconfig-r081-20240223 (https://download.01.org/0day-ci/archive/20240225/202402250758.KqBqXYrz-lkp@intel.com/config)
+compiler: gcc-12 (Debian 12.2.0-14) 12.2.0
 
->   	}
->   
->   #undef PIPE_CONF_CHECK_X
-> diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/drivers/gpu/drm/i915/display/intel_display_types.h
-> index 93b4b7dff1d0..7859e4baad4b 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display_types.h
-> +++ b/drivers/gpu/drm/i915/display/intel_display_types.h
-> @@ -1416,6 +1416,7 @@ struct intel_crtc_state {
->   		u16 flipline, vmin, vmax, guardband;
->   		u8 as_sdp_mode;
->   		bool as_sdp_enable;
-> +		u32 vsync_end, vsync_start;
->   	} vrr;
->   
->   	/* Stream Splitter for eDP MSO */
-> diff --git a/drivers/gpu/drm/i915/display/intel_vrr.c b/drivers/gpu/drm/i915/display/intel_vrr.c
-> index 08e3ba69bd30..29ddf504d94b 100644
-> --- a/drivers/gpu/drm/i915/display/intel_vrr.c
-> +++ b/drivers/gpu/drm/i915/display/intel_vrr.c
-> @@ -150,6 +150,13 @@ intel_vrr_compute_config(struct intel_crtc_state *crtc_state,
->   
->   	crtc_state->vrr.flipline = crtc_state->vrr.vmin + 1;
->   
-> +	crtc_state->vrr.vsync_start =
-> +			(crtc_state->hw.adjusted_mode.crtc_vtotal -
-> +			VRR_VSYNC_START(crtc_state->hw.adjusted_mode.vsync_start));
-> +	crtc_state->vrr.vsync_end =
-> +			(crtc_state->hw.adjusted_mode.crtc_vtotal -
-> +			(VRR_VSYNC_END(crtc_state->hw.adjusted_mode.vsync_end) >> 16));
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Reported-by: Dan Carpenter <dan.carpenter@linaro.org>
+| Closes: https://lore.kernel.org/r/202402250758.KqBqXYrz-lkp@intel.com/
 
-Need to add trans_vrr_start/end also in vrr_get_config.
+smatch warnings:
+drivers/gpu/drm/i915/display/intel_psr.c:1203 _compute_alpm_params() error: uninitialized symbol 'io_wake_time'.
 
-Make sure to read/write these only when we intend to send adaptive_sync sdp.
+vim +/io_wake_time +1203 drivers/gpu/drm/i915/display/intel_psr.c
 
+7903f1d36c3d97 Jouni Högander 2024-02-21  1174  
+96a24945731fe9 Jouni Högander 2024-01-30  1175  static bool _compute_alpm_params(struct intel_dp *intel_dp,
+cb42e8ede5b475 Jouni Högander 2023-02-21  1176  				 struct intel_crtc_state *crtc_state)
+cb42e8ede5b475 Jouni Högander 2023-02-21  1177  {
+cb42e8ede5b475 Jouni Högander 2023-02-21  1178  	struct drm_i915_private *i915 = dp_to_i915(intel_dp);
+cb42e8ede5b475 Jouni Högander 2023-02-21  1179  	int io_wake_lines, io_wake_time, fast_wake_lines, fast_wake_time;
+                                                                           ^^^^^^^^^^^^
 
-Regards,
+cb42e8ede5b475 Jouni Högander 2023-02-21  1180  	u8 max_wake_lines;
+cb42e8ede5b475 Jouni Högander 2023-02-21  1181  
+7903f1d36c3d97 Jouni Högander 2024-02-21  1182  	if (intel_dp->get_aux_fw_sync_len) {
+7903f1d36c3d97 Jouni Högander 2024-02-21  1183  		int io_wake_time = get_io_wake_time(intel_dp, crtc_state);
 
-Ankit
+This declaration shadows the earlier io_wake_time declaration.
 
+7903f1d36c3d97 Jouni Högander 2024-02-21  1184  		int tfw_exit_latency = 20; /* eDP spec */
+7903f1d36c3d97 Jouni Högander 2024-02-21  1185  		int phy_wake = 4;	   /* eDP spec */
+7903f1d36c3d97 Jouni Högander 2024-02-21  1186  		int preamble = 8;	   /* eDP spec */
+7903f1d36c3d97 Jouni Högander 2024-02-21  1187  		int precharge = intel_dp->get_aux_fw_sync_len() - preamble;
+7903f1d36c3d97 Jouni Högander 2024-02-21  1188  
+7903f1d36c3d97 Jouni Högander 2024-02-21  1189  		io_wake_time = max(precharge, io_wake_time) + preamble +
+7903f1d36c3d97 Jouni Högander 2024-02-21  1190  			phy_wake + tfw_exit_latency;
+7903f1d36c3d97 Jouni Högander 2024-02-21  1191  		fast_wake_time = precharge + preamble + phy_wake +
+7903f1d36c3d97 Jouni Högander 2024-02-21  1192  			tfw_exit_latency;
+29f3067a236ac5 Jouni Högander 2024-01-30  1193  
+29f3067a236ac5 Jouni Högander 2024-01-30  1194  		/* TODO: Check how we can use ALPM_CTL fast wake extended field */
+cb42e8ede5b475 Jouni Högander 2023-02-21  1195  		max_wake_lines = 12;
+cb42e8ede5b475 Jouni Högander 2023-02-21  1196  	} else {
+cb42e8ede5b475 Jouni Högander 2023-02-21  1197  		io_wake_time = 50;
+cb42e8ede5b475 Jouni Högander 2023-02-21  1198  		fast_wake_time = 32;
+cb42e8ede5b475 Jouni Högander 2023-02-21  1199  		max_wake_lines = 8;
+cb42e8ede5b475 Jouni Högander 2023-02-21  1200  	}
+cb42e8ede5b475 Jouni Högander 2023-02-21  1201  
+cb42e8ede5b475 Jouni Högander 2023-02-21  1202  	io_wake_lines = intel_usecs_to_scanlines(
+ef0af9db2a2125 Jouni Högander 2023-06-20 @1203  		&crtc_state->hw.adjusted_mode, io_wake_time);
+                                                                                               ^^^^^^^^^^^^
+Uninitialized
 
-> +
->   	/*
->   	 * For XE_LPD+, we use guardband and pipeline override
->   	 * is deprecated.
-> @@ -273,8 +280,13 @@ void intel_vrr_get_config(struct intel_crtc_state *crtc_state)
->   	u32 trans_vrr_ctl;
->   
->   	trans_vrr_ctl = intel_de_read(dev_priv, TRANS_VRR_CTL(cpu_transcoder));
-> +	bool as_sdp_enabled =
-> +			intel_de_read(dev_priv,
-> +				      HSW_TVIDEO_DIP_CTL(cpu_transcoder));
->   
->   	crtc_state->vrr.enable = trans_vrr_ctl & VRR_CTL_VRR_ENABLE;
-> +	crtc_state->vrr.as_sdp_enable =
-> +			as_sdp_enabled & VIDEO_DIP_ENABLE_ADAPTIVE_SYNC;
->   
->   	if (DISPLAY_VER(dev_priv) >= 13)
->   		crtc_state->vrr.guardband =
-> diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_reg.h
-> index c02ea07af4c2..3e0853458ef4 100644
-> --- a/drivers/gpu/drm/i915/i915_reg.h
-> +++ b/drivers/gpu/drm/i915/i915_reg.h
-> @@ -2007,7 +2007,9 @@
->   #define _TRANS_VRR_CTL_B		0x61420
->   #define _TRANS_VRR_CTL_C		0x62420
->   #define _TRANS_VRR_CTL_D		0x63420
-> +#define _TRANS_VRR_VSYNC_A		0x60078
->   #define TRANS_VRR_CTL(trans)			_MMIO_TRANS2(trans, _TRANS_VRR_CTL_A)
-> +#define TRANS_VRR_VSYNC(trans)			_MMIO_TRANS2(trans, _TRANS_VRR_VSYNC_A)
->   #define   VRR_CTL_VRR_ENABLE			REG_BIT(31)
->   #define   VRR_CTL_IGN_MAX_SHIFT			REG_BIT(30)
->   #define   VRR_CTL_FLIP_LINE_EN			REG_BIT(29)
-> @@ -2087,6 +2089,11 @@
->   #define TRANS_VRR_STATUS2(trans)	_MMIO_TRANS2(trans, _TRANS_VRR_STATUS2_A)
->   #define   VRR_STATUS2_VERT_LN_CNT_MASK	REG_GENMASK(19, 0)
->   
-> +#define   VRR_VSYNC_END_MASK		REG_GENMASK(28, 16)
-> +#define   VRR_VSYNC_END(vsync_end)	REG_FIELD_PREP(VSYNC_END_MASK, (vsync_end))
-> +#define   VRR_VSYNC_START_MASK		REG_GENMASK(12, 0)
-> +#define   VRR_VSYNC_START(vsync_start)	REG_FIELD_PREP(VSYNC_START_MASK, (vsync_start))
-> +
->   #define _TRANS_PUSH_A			0x60A70
->   #define _TRANS_PUSH_B			0x61A70
->   #define _TRANS_PUSH_C			0x62A70
+cb42e8ede5b475 Jouni Högander 2023-02-21  1204  	fast_wake_lines = intel_usecs_to_scanlines(
+ef0af9db2a2125 Jouni Högander 2023-06-20  1205  		&crtc_state->hw.adjusted_mode, fast_wake_time);
+cb42e8ede5b475 Jouni Högander 2023-02-21  1206  
+cb42e8ede5b475 Jouni Högander 2023-02-21  1207  	if (io_wake_lines > max_wake_lines ||
+cb42e8ede5b475 Jouni Högander 2023-02-21  1208  	    fast_wake_lines > max_wake_lines)
+cb42e8ede5b475 Jouni Högander 2023-02-21  1209  		return false;
+cb42e8ede5b475 Jouni Högander 2023-02-21  1210  
+29f3067a236ac5 Jouni Högander 2024-01-30  1211  	if (!_lnl_compute_alpm_params(intel_dp, crtc_state))
+29f3067a236ac5 Jouni Högander 2024-01-30  1212  		return false;
+29f3067a236ac5 Jouni Högander 2024-01-30  1213  
+942d654171bdaf Jouni Högander 2023-10-24  1214  	if (i915->display.params.psr_safest_params)
+cb42e8ede5b475 Jouni Högander 2023-02-21  1215  		io_wake_lines = fast_wake_lines = max_wake_lines;
+cb42e8ede5b475 Jouni Högander 2023-02-21  1216  
+cb42e8ede5b475 Jouni Högander 2023-02-21  1217  	/* According to Bspec lower limit should be set as 7 lines. */
+96a24945731fe9 Jouni Högander 2024-01-30  1218  	intel_dp->psr.alpm_parameters.io_wake_lines = max(io_wake_lines, 7);
+96a24945731fe9 Jouni Högander 2024-01-30  1219  	intel_dp->psr.alpm_parameters.fast_wake_lines = max(fast_wake_lines, 7);
+cb42e8ede5b475 Jouni Högander 2023-02-21  1220  
+cb42e8ede5b475 Jouni Högander 2023-02-21  1221  	return true;
+cb42e8ede5b475 Jouni Högander 2023-02-21  1222  }
+
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
+
