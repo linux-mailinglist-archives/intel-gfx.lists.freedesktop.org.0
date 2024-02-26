@@ -2,66 +2,56 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5F1D1867C24
-	for <lists+intel-gfx@lfdr.de>; Mon, 26 Feb 2024 17:35:28 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id D9FA9867F2B
+	for <lists+intel-gfx@lfdr.de>; Mon, 26 Feb 2024 18:47:33 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7AC5610E78F;
-	Mon, 26 Feb 2024 16:35:26 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2930410E494;
+	Mon, 26 Feb 2024 17:47:32 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="hkGnIYJp";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="jZUDcbKa";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AB98C10E7B6
- for <intel-gfx@lists.freedesktop.org>; Mon, 26 Feb 2024 16:35:21 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BE38410E6EB
+ for <intel-gfx@lists.freedesktop.org>; Mon, 26 Feb 2024 17:47:26 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1708965322; x=1740501322;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=bNDcDNc34X+9faRpf39NJUZgLUHAm/B0I0qitkCJ95A=;
- b=hkGnIYJpaiggquvdwX+A4v0vgh5OgX1mdT7PTD2cmaihHp9ImuJc6vTx
- ClCUwaYAY3VJyyphWhka1KVwltMCvjkBd8H6iI+PyC3y7+JJ7Ht4+ExfD
- rBtwS2g5UHnqaR4bX8hWtHZTdmeQaGSWFsL/8SwymmQzM0K4kNJ7Kaw5Y
- 5lYv6jv5jx08t/rw4HqwF+70ulv5eoJ3ONJnll038WgS/vdW0I80emuhG
- zV4uzeDLOfWQU3KBkK+Fgi4Ntx4jop9w5Dam8G0OxEhOmHnnriY8whraH
- HpNVQxardv0nimdF/qjUi2WV+YgvBW2iTmERd73Th39yooOL2Cdm54L04 Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10996"; a="20805977"
-X-IronPort-AV: E=Sophos;i="6.06,186,1705392000"; d="scan'208";a="20805977"
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
- by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Feb 2024 08:35:21 -0800
+ t=1708969646; x=1740505646;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version;
+ bh=38kMwiJDVnRDotpMt/b39f2tpbpieDCKi/lfEeD0Pec=;
+ b=jZUDcbKaRsa9wHivzp/rbVeSDUqC3ENjRdL+SRXMp7yJ5v310MnNTGFq
+ vJsayPk4GK1bXfDzl0BtA2DjqoLZBOE8Kq1VBdc2BN3GtR3hrRNX8YuSc
+ Ar7NZdHdoaEzp8VlOkw3QZc25Fjn0nxSKsl1oBj8/X2XN0p0etmZ4cuuk
+ TKyijefmtjIvGtQeJ9RxbWgGxzJqaMeB4Tg/rXLVR/eRpEVgO5XSa4NZm
+ lb1HBGB+59iMo8Zh74mOyXqcJlqHLXo2JhL92747jI74lGcN9qh2vRHl7
+ UsUBIEk1pjSYXinR8bOD9RmMbWmFzzduh3L7rB5dvWofyvbNj3fbZQ/1G g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10996"; a="3119110"
+X-IronPort-AV: E=Sophos;i="6.06,186,1705392000"; 
+   d="scan'208";a="3119110"
+Received: from orviesa003.jf.intel.com ([10.64.159.143])
+ by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 Feb 2024 09:47:25 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10996"; a="827770449"
-X-IronPort-AV: E=Sophos;i="6.06,186,1705392000"; d="scan'208";a="827770449"
-Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.74])
- by orsmga001.jf.intel.com with SMTP; 26 Feb 2024 08:35:16 -0800
-Received: by stinkbox (sSMTP sendmail emulation);
- Mon, 26 Feb 2024 18:35:16 +0200
-Date: Mon, 26 Feb 2024 18:35:16 +0200
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Jani Nikula <jani.nikula@linux.intel.com>
-Cc: Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- intel-gfx@lists.freedesktop.org, Petr Mladek <pmladek@suse.com>,
- Steven Rostedt <rostedt@goodmis.org>,
- Rasmus Villemoes <linux@rasmusvillemoes.dk>,
- Sergey Senozhatsky <senozhatsky@chromium.org>, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 01/12] drm/i915: Indicate which pipe failed the fastset
- check overall
-Message-ID: <Zdy9xNwuwLFO4zKj@intel.com>
-References: <20240215164055.30585-1-ville.syrjala@linux.intel.com>
- <20240215164055.30585-2-ville.syrjala@linux.intel.com>
- <ZdfApN1h97GTfL1t@intel.com> <Zdj2ONs8BZ6959Xb@intel.com>
- <87bk83mfwp.fsf@intel.com> <ZdyqAMfEfhyk6zm2@smile.fi.intel.com>
- <878r37me5k.fsf@intel.com>
+X-IronPort-AV: E=Sophos;i="6.06,186,1705392000"; d="scan'208";a="11484417"
+Received: from hibeid-mobl.amr.corp.intel.com (HELO localhost)
+ ([10.252.46.254])
+ by ORVIESA003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 Feb 2024 09:47:23 -0800
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Animesh Manna <animesh.manna@intel.com>, intel-gfx@lists.freedesktop.org
+Cc: ville.syrjala@linux.intel.com, jouni.hogander@intel.com,
+ arun.r.murthy@intel.com, Animesh Manna <animesh.manna@intel.com>
+Subject: Re: [PATCH] drm/i915/panelreplay: Move out psr_init_dpcd() from
+ init_connector()
+In-Reply-To: <20240222180824.3634193-1-animesh.manna@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20240222180824.3634193-1-animesh.manna@intel.com>
+Date: Mon, 26 Feb 2024 19:47:23 +0200
+Message-ID: <8734tfm82c.fsf@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <878r37me5k.fsf@intel.com>
-X-Patchwork-Hint: comment
+Content-Type: text/plain
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -77,50 +67,53 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, Feb 26, 2024 at 05:35:51PM +0200, Jani Nikula wrote:
-> On Mon, 26 Feb 2024, Andy Shevchenko <andriy.shevchenko@linux.intel.com> wrote:
-> > On Mon, Feb 26, 2024 at 04:57:58PM +0200, Jani Nikula wrote:
-> >> On Fri, 23 Feb 2024, Ville Syrjälä <ville.syrjala@linux.intel.com> wrote:
-> >> > On Thu, Feb 22, 2024 at 04:46:12PM -0500, Rodrigo Vivi wrote:
-> >
-> > ...
-> >
-> >> > I think the proper solution would be to have actually
-> >> > sensible conversion specifiers in the format string.
-> >> > So instead of %<set of random characters> we'd have something
-> >> > more like %{drm_crtc} (or whatever color you want to throw
-> >> > on that particular bikeshed).
-> >> 
-> >> Personally I suck at remembering even the standard printf conversion
-> >> specifiers, let alone all the kernel extensions. I basically have to
-> >> look them up every time. I'd really love some %{name} format for named
-> >> pointer things. And indeed preferrably without the %p. Just %{name}.
-> >
-> > It will become something like %{name[:subextensions]}, where subextensions
-> > is what we now have with different letters/numbers after %pX (X is a letter
-> > which you proposed to have written as name AFAIU).
-> 
-> Thanks, I appreciate it, a lot!
-> 
-> But could you perhaps try to go with just clean %{name} only instead of
-> adding [:subextensions] right away, please?
-> 
-> I presume the suggestion comes from an implementation detail, and I
-> guess it would be handy to reuse the current implementation for
-> subextension.
-> 
-> For example, %pb -> %{bitmap} and %pbl -> %{bitmap:l}. But really I
-> think the better option would be for the latter to become, say,
-> %{bitmap-list}. The goal here is to make them easy to remember and
-> understand, without resorting to looking up the documentation!
+On Thu, 22 Feb 2024, Animesh Manna <animesh.manna@intel.com> wrote:
+> Move psr_init_dpcd() from init-connector to connector-detect
+> function.
 
-I was also wondering if we should have some kind of namespace
-thing in there. Eg. instead of %{drm_crtc} it could be something
-like %{drm:crtc}. Then it would be clear which subsystem (when that
-makes sense) "owns" that particular format. But I suppose using
-the C foo_ namespacing rule would also work since it should already
-be a thing for exported symbols anyway.
+Why?
+
+The commit message *must* *always* answer the question why, unless the
+reason is completely and utterly obvious (e.g. don't need to say why
+typos need to be fixed).
+
+BR,
+Jani.
+
+> Signed-off-by: Animesh Manna <animesh.manna@intel.com>
+> ---
+>  drivers/gpu/drm/i915/display/intel_dp.c  | 3 +++
+>  drivers/gpu/drm/i915/display/intel_psr.c | 3 ---
+>  2 files changed, 3 insertions(+), 3 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
+> index 217196196e50..4553e1f5f1fc 100644
+> --- a/drivers/gpu/drm/i915/display/intel_dp.c
+> +++ b/drivers/gpu/drm/i915/display/intel_dp.c
+> @@ -5709,6 +5709,9 @@ intel_dp_detect(struct drm_connector *connector,
+>  		goto out;
+>  	}
+>  
+> +	if (!intel_dp_is_edp(intel_dp))
+> +		intel_psr_init_dpcd(intel_dp);
+> +
+>  	intel_dp_detect_dsc_caps(intel_dp, intel_connector);
+>  
+>  	intel_dp_configure_mst(intel_dp);
+> diff --git a/drivers/gpu/drm/i915/display/intel_psr.c b/drivers/gpu/drm/i915/display/intel_psr.c
+> index 72cadad09db5..6927785fd6ff 100644
+> --- a/drivers/gpu/drm/i915/display/intel_psr.c
+> +++ b/drivers/gpu/drm/i915/display/intel_psr.c
+> @@ -2883,9 +2883,6 @@ void intel_psr_init(struct intel_dp *intel_dp)
+>  	if (!(HAS_PSR(dev_priv) || HAS_DP20(dev_priv)))
+>  		return;
+>  
+> -	if (!intel_dp_is_edp(intel_dp))
+> -		intel_psr_init_dpcd(intel_dp);
+> -
+>  	/*
+>  	 * HSW spec explicitly says PSR is tied to port A.
+>  	 * BDW+ platforms have a instance of PSR registers per transcoder but
 
 -- 
-Ville Syrjälä
-Intel
+Jani Nikula, Intel
