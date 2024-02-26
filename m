@@ -2,54 +2,55 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9F360867F70
-	for <lists+intel-gfx@lfdr.de>; Mon, 26 Feb 2024 18:59:11 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id DED1F868011
+	for <lists+intel-gfx@lfdr.de>; Mon, 26 Feb 2024 19:52:28 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D08A210E7B8;
-	Mon, 26 Feb 2024 17:59:09 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 26AF310EE1F;
+	Mon, 26 Feb 2024 18:52:27 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="YU5WlWFx";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="P/KHBfXB";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EF97B10E7B8
- for <intel-gfx@lists.freedesktop.org>; Mon, 26 Feb 2024 17:59:05 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C5CA810E63E
+ for <intel-gfx@lists.freedesktop.org>; Mon, 26 Feb 2024 18:52:24 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1708970346; x=1740506346;
+ t=1708973545; x=1740509545;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=vJe492xYuLZzZmfzw+gLT8T/jL0ysjDdzjqEjaArfK8=;
- b=YU5WlWFx7EBXQGNGcOOP7V1QkLaoItumIzjyYddvbeLrkrMTBr6d0tc+
- XcSwRcCxaV2ngjTaWuio7NehFqz3dTysBDhENxo53VdR92PzZMSHxx/Mb
- yBk7nx7M9XT2ng7oMCgtpZ0I4FDkntobcpzPODkqjugzdKVjb9t/KfTI/
- BqqkIUm9JNuAQbh99dnuxofYRSVmYlI1Rv1u8wL09kGH5av9T2zehEPOc
- t94p0hlkpMnsE9KC7fOjwQ1qohERzODv1JkhhQ35LJLqE6ldOrElKAs2r
- Pd8gxA7fNBXTNPaJQ66zKRrPckRFRHPx5of7UWBC04z54htgB2enRIzuN w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10996"; a="14417100"
-X-IronPort-AV: E=Sophos;i="6.06,186,1705392000"; d="scan'208";a="14417100"
-Received: from fmviesa008.fm.intel.com ([10.60.135.148])
- by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Feb 2024 09:59:05 -0800
+ bh=hzvRIE4NTD6/4QxxqOYHLA6lCZpLoJ+Rke+x+InG/Dk=;
+ b=P/KHBfXB+DNmVvpO65LCOoUfNPm5TYeM/SzfH11qGuXGF0ELWMNOFZpM
+ oRyNf76/YLoAh1JVeWZzhHeNd1b/6I7ogPr2Tz/4Z1IeU+lS9ONiUCdVi
+ dBS+zTboYSZyL3vua/LuFid49aVKdU1qjLNAfSDk8cjp1L0XW88oFr7hy
+ pcnvTetA+Hjc2Rx5nT9peTraacT6atDpAXHChHh23L9rq0sFKNloQ1G5Z
+ TxxpZyKvOv91zpaFQZs8HYQpOqbAV2wCveeURFdVrC4jV0dHTG/cS5tnY
+ igUUjQa/vSg7mpWUzWue4WNmsdTVdJJ0CxYAkM/DfOD6IlUWVt37B0bfh w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10996"; a="3151297"
+X-IronPort-AV: E=Sophos;i="6.06,186,1705392000"; 
+   d="scan'208";a="3151297"
+Received: from orviesa007.jf.intel.com ([10.64.159.147])
+ by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 Feb 2024 10:52:24 -0800
 X-ExtLoop1: 1
 X-IronPort-AV: E=Sophos;i="6.06,186,1705392000"; 
-   d="scan'208";a="6898232"
-Received: from hibeid-mobl.amr.corp.intel.com (HELO localhost)
- ([10.252.46.254])
- by fmviesa008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Feb 2024 09:59:03 -0800
-From: Jani Nikula <jani.nikula@intel.com>
+   d="scan'208";a="7121041"
+Received: from ideak-desk.fi.intel.com ([10.237.72.78])
+ by orviesa007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 Feb 2024 10:52:23 -0800
+From: Imre Deak <imre.deak@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Cc: jani.nikula@intel.com
-Subject: [PATCH v2 3/3] drm/i915/bios: abstract child device expected size
-Date: Mon, 26 Feb 2024 19:58:54 +0200
-Message-Id: <20240226175854.287871-3-jani.nikula@intel.com>
+Cc: =?UTF-8?q?Ville=20Syrj=C3=A4l=C3=A4?= <ville.syrjala@linux.intel.com>,
+ Uma Shankar <uma.shankar@intel.com>
+Subject: [PATCH v3 01/21] drm/dp: Add drm_dp_max_dprx_data_rate()
+Date: Mon, 26 Feb 2024 20:52:43 +0200
+Message-Id: <20240226185246.1276018-1-imre.deak@intel.com>
 X-Mailer: git-send-email 2.39.2
-In-Reply-To: <20240226175854.287871-1-jani.nikula@intel.com>
-References: <20240226175854.287871-1-jani.nikula@intel.com>
+In-Reply-To: <20240220211841.448846-2-imre.deak@intel.com>
+References: <20240220211841.448846-2-imre.deak@intel.com>
 MIME-Version: 1.0
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -66,74 +67,80 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Add a function to return the expected child device size. Flip the if
-ladder around and use the same versions as in documentation to make it
-easier to verify. Return an error for unknown versions. No functional
-changes.
+Copy intel_dp_max_data_rate() to DRM core. It will be needed by a
+follow-up DP tunnel patch, checking the maximum rate the DPRX (sink)
+supports. Accordingly use the drm_dp_max_dprx_data_rate() name for
+clarity. This patchset will also switch calling the new DRM function
+in i915 instead of intel_dp_max_data_rate().
 
-v2: Move BUILD_BUG_ON() next to the expected sizes
+While at it simplify the function documentation/comments, removing
+parts described already by drm_dp_bw_channel_coding_efficiency().
 
-Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+v2: (Ville)
+- Remove max_link_rate_kbps.
+- Simplify the function documentation.
+v3:
+- Rebased on latest drm-tip.
+
+Cc: Ville Syrjälä <ville.syrjala@linux.intel.com>
+Reviewed-by: Uma Shankar <uma.shankar@intel.com>
+Reviewed-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
+Signed-off-by: Imre Deak <imre.deak@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_bios.c | 40 ++++++++++++++---------
- 1 file changed, 24 insertions(+), 16 deletions(-)
+ drivers/gpu/drm/display/drm_dp_helper.c | 30 +++++++++++++++++++++++++
+ include/drm/display/drm_dp_helper.h     |  1 +
+ 2 files changed, 31 insertions(+)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_bios.c b/drivers/gpu/drm/i915/display/intel_bios.c
-index c0f41bd1f946..343726de9aa7 100644
---- a/drivers/gpu/drm/i915/display/intel_bios.c
-+++ b/drivers/gpu/drm/i915/display/intel_bios.c
-@@ -2699,27 +2699,35 @@ static void parse_ddi_ports(struct drm_i915_private *i915)
- 		print_ddi_port(devdata);
+diff --git a/drivers/gpu/drm/display/drm_dp_helper.c b/drivers/gpu/drm/display/drm_dp_helper.c
+index 9ac52cf5d4d87..314509d999f14 100644
+--- a/drivers/gpu/drm/display/drm_dp_helper.c
++++ b/drivers/gpu/drm/display/drm_dp_helper.c
+@@ -4152,3 +4152,33 @@ int drm_dp_bw_channel_coding_efficiency(bool is_uhbr)
+ 		return 800000;
  }
- 
-+static int child_device_expected_size(u16 version)
+ EXPORT_SYMBOL(drm_dp_bw_channel_coding_efficiency);
++
++/**
++ * drm_dp_max_dprx_data_rate - Get the max data bandwidth of a DPRX sink
++ * @max_link_rate: max DPRX link rate in 10kbps units
++ * @max_lanes: max DPRX lane count
++ *
++ * Given a link rate and lanes, get the data bandwidth.
++ *
++ * Data bandwidth is the actual payload rate, which depends on the data
++ * bandwidth efficiency and the link rate.
++ *
++ * Note that protocol layers above the DPRX link level considered here can
++ * further limit the maximum data rate. Such layers are the MST topology (with
++ * limits on the link between the source and first branch device as well as on
++ * the whole MST path until the DPRX link) and (Thunderbolt) DP tunnels -
++ * which in turn can encapsulate an MST link with its own limit - with each
++ * SST or MST encapsulated tunnel sharing the BW of a tunnel group.
++ *
++ * Returns the maximum data rate in kBps units.
++ */
++int drm_dp_max_dprx_data_rate(int max_link_rate, int max_lanes)
 +{
-+	BUILD_BUG_ON(sizeof(struct child_device_config) < 40);
++	int ch_coding_efficiency =
++		drm_dp_bw_channel_coding_efficiency(drm_dp_is_uhbr_rate(max_link_rate));
 +
-+	if (version > 256)
-+		return -ENOENT;
-+	else if (version >= 256)
-+		return 40;
-+	else if (version >= 216)
-+		return 39;
-+	else if (version >= 196)
-+		return 38;
-+	else if (version >= 195)
-+		return 37;
-+	else if (version >= 111)
-+		return LEGACY_CHILD_DEVICE_CONFIG_SIZE;
-+	else if (version >= 106)
-+		return 27;
-+	else
-+		return 22;
++	return DIV_ROUND_DOWN_ULL(mul_u32_u32(max_link_rate * 10 * max_lanes,
++					      ch_coding_efficiency),
++				  1000000 * 8);
 +}
-+
- static bool child_device_size_valid(struct drm_i915_private *i915, int size)
- {
- 	int expected_size;
++EXPORT_SYMBOL(drm_dp_max_dprx_data_rate);
+diff --git a/include/drm/display/drm_dp_helper.h b/include/drm/display/drm_dp_helper.h
+index 0c1a4021e098e..91fb404dd5310 100644
+--- a/include/drm/display/drm_dp_helper.h
++++ b/include/drm/display/drm_dp_helper.h
+@@ -813,6 +813,7 @@ int drm_dp_bw_overhead(int lane_count, int hactive,
+ 		       int dsc_slice_count,
+ 		       int bpp_x16, unsigned long flags);
+ int drm_dp_bw_channel_coding_efficiency(bool is_uhbr);
++int drm_dp_max_dprx_data_rate(int max_link_rate, int max_lanes);
  
--	if (i915->display.vbt.version < 106) {
--		expected_size = 22;
--	} else if (i915->display.vbt.version < 111) {
--		expected_size = 27;
--	} else if (i915->display.vbt.version < 195) {
--		expected_size = LEGACY_CHILD_DEVICE_CONFIG_SIZE;
--	} else if (i915->display.vbt.version == 195) {
--		expected_size = 37;
--	} else if (i915->display.vbt.version <= 215) {
--		expected_size = 38;
--	} else if (i915->display.vbt.version <= 255) {
--		expected_size = 39;
--	} else if (i915->display.vbt.version <= 256) {
--		expected_size = 40;
--	} else {
-+	expected_size = child_device_expected_size(i915->display.vbt.version);
-+	if (expected_size < 0) {
- 		expected_size = sizeof(struct child_device_config);
--		BUILD_BUG_ON(sizeof(struct child_device_config) < 40);
- 		drm_dbg(&i915->drm,
- 			"Expected child device config size for VBT version %u not known; assuming %d\n",
- 			i915->display.vbt.version, expected_size);
+ ssize_t drm_dp_vsc_sdp_pack(const struct drm_dp_vsc_sdp *vsc, struct dp_sdp *sdp);
+ 
 -- 
 2.39.2
 
