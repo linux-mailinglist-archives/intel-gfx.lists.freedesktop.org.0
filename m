@@ -2,55 +2,154 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id BC8F38688AA
-	for <lists+intel-gfx@lfdr.de>; Tue, 27 Feb 2024 06:34:14 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id C271E8688D9
+	for <lists+intel-gfx@lfdr.de>; Tue, 27 Feb 2024 07:08:34 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 69EEA10F029;
-	Tue, 27 Feb 2024 05:34:10 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4021D10E3EB;
+	Tue, 27 Feb 2024 06:08:33 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="RPT5OSUg";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="U8sOLjP6";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0CD5010E86B;
- Tue, 27 Feb 2024 05:34:09 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.13])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CA2C810F205
+ for <intel-gfx@lists.freedesktop.org>; Tue, 27 Feb 2024 06:08:30 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1709012049; x=1740548049;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=cGg3eDfcPGqhWGkjJyVHe48AOEigrnOekTiX872w6oE=;
- b=RPT5OSUgflbJur0bpng8Q44XuYggHEqhYiCcgAfPCA8i5AJbaIkgX99b
- VCyghGOHUZvkSNXejwsB33nk/PMFaqhHVmaGw8tVSECvREPy2/qNMt074
- FW4iPedVA6jUSt2uXBGa0Ez8eW74rdzr9KqBBemgGnS/YNHhtAPU5HI/F
- OlknF/tP+6oVpjqcDpL0f0edlJKGJviMQ7MgmhFRdL1i1aVzBMVpJfB6d
- AwzqoBfUvB8Q0dhpgd9ccPmP0Dhewah29yFpOXASDZb8+qVDa2sBxV6dm
- 9XdqCMhroBSIyX/u5hNEiHQaxOh9uv9JB3GJ1/VypxsGMRRSoZZNBnpnf A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10996"; a="3182905"
+ t=1709014111; x=1740550111;
+ h=message-id:date:subject:to:references:from:in-reply-to:
+ content-transfer-encoding:mime-version;
+ bh=mISVJcXwbBca2DigYWJWFMmYdYVUXjYs1t8E8rpdVOc=;
+ b=U8sOLjP6ewnlvoaRtkIpzMhWSjByHgbn1hP+b9w9dC//iZ6kGGt/OUOH
+ zYBPDrRh7hu/g11KjM7FqezUqqXneij5UY5LPveesZaOgWPIi3xvn0yGb
+ wuGCN9xyWzN21jYUy3tJbqVW+iIfD/+W9MNX41uJC+niqhjVgLqEZaam6
+ bEDRLi/DogUWZIsnN43akA1My8nj0pBC6+DpfVZjb12eLPePk/v7iddQU
+ MILYidg6wymeWiy0Y957h8V05KSI6vGpyZWkBaDE21wEVBsKnH85QiBqp
+ OC3Npqwpfd1g4j8mMQE3ZK//3RSjfwlKYUMrn1R/usP9g6dQnTd38W5Ad g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10996"; a="6288173"
 X-IronPort-AV: E=Sophos;i="6.06,187,1705392000"; 
-   d="scan'208";a="3182905"
-Received: from fmviesa009.fm.intel.com ([10.60.135.149])
- by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Feb 2024 21:34:09 -0800
+   d="scan'208";a="6288173"
+Received: from fmviesa001.fm.intel.com ([10.60.135.141])
+ by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 Feb 2024 22:08:30 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.06,187,1705392000"; 
-   d="scan'208";a="6857604"
-Received: from kandpal-x299-ud4-pro.iind.intel.com ([10.190.239.32])
- by fmviesa009.fm.intel.com with ESMTP; 26 Feb 2024 21:34:07 -0800
-From: Suraj Kandpal <suraj.kandpal@intel.com>
-To: intel-gfx@lists.freedesktop.org,
-	intel-xe@lists.freedesktop.org
-Cc: Suraj Kandpal <suraj.kandpal@intel.com>,
- Arun R Murthy <arun.r.murthy@intel.com>
-Subject: [PATCH 4/4] drm/xe/hdcp: Enable HDCP for XE
-Date: Tue, 27 Feb 2024 11:02:04 +0530
-Message-ID: <20240227053204.1748920-5-suraj.kandpal@intel.com>
-X-Mailer: git-send-email 2.43.2
-In-Reply-To: <20240227053204.1748920-1-suraj.kandpal@intel.com>
-References: <20240227053204.1748920-1-suraj.kandpal@intel.com>
+X-IronPort-AV: E=Sophos;i="6.06,187,1705392000"; d="scan'208";a="37956311"
+Received: from orsmsx602.amr.corp.intel.com ([10.22.229.15])
+ by fmviesa001.fm.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
+ 26 Feb 2024 22:08:30 -0800
+Received: from orsmsx610.amr.corp.intel.com (10.22.229.23) by
+ ORSMSX602.amr.corp.intel.com (10.22.229.15) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.35; Mon, 26 Feb 2024 22:08:29 -0800
+Received: from orsedg603.ED.cps.intel.com (10.7.248.4) by
+ orsmsx610.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.35 via Frontend Transport; Mon, 26 Feb 2024 22:08:29 -0800
+Received: from NAM04-MW2-obe.outbound.protection.outlook.com (104.47.73.168)
+ by edgegateway.intel.com (134.134.137.100) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.1.2507.35; Mon, 26 Feb 2024 22:08:29 -0800
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=PryTSszQZ+f87YYFF8T11+5rzEcFJbIPTnkDbGm4VywCKV/V20xIN9W9EX6S+ZEWewXg6IobK+pNGlO2rCFqIUppB3AbU69en7JUMWB3Ww4lo+BpSbKPwVX7YcbvHbUbikQStuw9h43bU9eBRTksjwHUv4y3PPTmfF74CDlJXFnb8oPcqdN46O5woooU3aKSdoy+86MJZJXwhHU9i9a7kCQKpeGbAPyzPAjV22wEnQMynpAyXpKtHo+1edLZFexpwZ6Zd9XGHdgzF2ruP86FwyIRPo6HLL+WqwtKMINvAi99tUHZfi18/bWeMNpHaeuu7lrDZ2MM4kX2/Y8suzXNhA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=OIZ5/LkGAEpbj3hnYeU6hEuYNfp0SP0ohBPaEuqZhyg=;
+ b=VidJamvSvVBeI0tsh0MohqUALHxf+IC41WB4AoasN94JuTOOBPJ7/jTYymyKIKR3AD08YZccorc8Kus4+jszJHYBBoylp5pY7RaR1kohfZJdUcdSt2BrMHftoJFJCX/O4wOlI7paknnNviC1oI0qq+XbWjTQ2Fs4ONO4UhaN5r2IozkN3qtkvwi0mnKbPBspPJukJvXQSxwyIAq0/4uXF4gk0z7xj4smGioSDjFRNrge2TGooxjpx1mRbEB0VV43OPhd4xGWp5moYN+0c9xbsXSbcHUVeyeSHOwjVL4+InvTpprruooTh0ESF0t149E8lk7OVb0cgPziOUQ1KWF2bg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+Received: from DM8PR11MB5719.namprd11.prod.outlook.com (2603:10b6:8:10::6) by
+ SA2PR11MB4777.namprd11.prod.outlook.com (2603:10b6:806:115::24) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7339.25; Tue, 27 Feb
+ 2024 06:08:22 +0000
+Received: from DM8PR11MB5719.namprd11.prod.outlook.com
+ ([fe80::e763:85a4:b747:67b2]) by DM8PR11MB5719.namprd11.prod.outlook.com
+ ([fe80::e763:85a4:b747:67b2%6]) with mapi id 15.20.7339.024; Tue, 27 Feb 2024
+ 06:08:22 +0000
+Message-ID: <44cb0094-7106-47db-bd73-7b700c58c3ff@intel.com>
+Date: Tue, 27 Feb 2024 11:38:05 +0530
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] drm/i915/display/debugfs: New entry "DRRS capable" to
+ i915_drrs_status
+Content-Language: en-US
+To: Jani Nikula <jani.nikula@linux.intel.com>, "Nautiyal, Ankit K"
+ <ankit.k.nautiyal@intel.com>, "Golani, Mitulkumar Ajitkumar"
+ <mitulkumar.ajitkumar.golani@intel.com>, "intel-gfx@lists.freedesktop.org"
+ <intel-gfx@lists.freedesktop.org>
+References: <20240221111223.2313692-1-bhanuprakash.modem@intel.com>
+ <IA1PR11MB63487164DE1F2C03BDBC1C54B2562@IA1PR11MB6348.namprd11.prod.outlook.com>
+ <b8f2bb3d-30fd-42f7-b120-af851f594225@intel.com> <87edczmhn5.fsf@intel.com>
+From: "Modem, Bhanuprakash" <bhanuprakash.modem@intel.com>
+In-Reply-To: <87edczmhn5.fsf@intel.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: PN2PR01CA0161.INDPRD01.PROD.OUTLOOK.COM
+ (2603:1096:c01:26::16) To DM8PR11MB5719.namprd11.prod.outlook.com
+ (2603:10b6:8:10::6)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: DM8PR11MB5719:EE_|SA2PR11MB4777:EE_
+X-MS-Office365-Filtering-Correlation-Id: 27ea70e4-f500-4379-a4fb-08dc375a8075
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: 5sS6Tzvuaue7WSgUV9TGGdHy51TqQd3vD7bSk/S+RWWGp+7RRwDV1as7NJiLRg35HkP68YIErNPerx2QcdDKRmZCi+UrLIh8AxiKke53QLKRDSev6wrbYKF9rQcnkIqCegN3MzKPlQNdYRUQUc4M1JzYu8d3Zy/I/hz6mu0gfa6OS0Mhm8oOft+65yWtKl4urkSdR3JlCj2jCcxxHW1EsLEdzKfMcuh1RhVm7H2WtwRuhrRg22weIScEP2p8RqGezZw8bN67drUoHAYa7QpbOM9T2DicTE6E3lIJOX0kHhCLMY3QKP7hk7qWXaMswpaAh88kz1YDh6A6ELQeHOQH6fswUyrtpz8woksR0KmNZsBCJISfctSLV/9H8dh5u3ONGZRauXkh2BV8i3tqCflmAO97bi17d/oDm2VvCT1SRC2HaUOLTdBgrKRZv1hjQMA2rDine/dM8CVetfkjezge/nbAhEpt5QxsND0KX4eX/uh6/YlkvAMd4a/q8sUMz2Kt2+ccn2BdNt3N1vwNQzCBS1rrq9HxFxY3hTaHjXnGQo5U+hOZktAg1vErV2o5ig5znNn53kBajtKDt/d/r7i2/epqbb63eqnwGjRTrc5HFpuRZRlgcxOWMInu7QAHf2ge4dvadVZT1oB28WJan3ba5g==
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:DM8PR11MB5719.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230031); DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?OXJPVHBxSURLWERwQkFBUlZuNG0xbFBaSm1sRmZ6aEJQU1VocnUrb0p0bzZt?=
+ =?utf-8?B?b1FUQkxzNXc2NjBHS3hXL2lGSml4dTFxMDNSdlMxNXI0OWNjZFdnbHZBRVZl?=
+ =?utf-8?B?eDVFQnRnWU80emVLK1BwSzd0b2xMSzFjOWlWbldPRkZZRWs4MXduQS9NRnZJ?=
+ =?utf-8?B?d2JrMTJ4Q0tQK0NEQnBwejRhMGRiMjVtR1E5OS9CeEdVT1k3K2V5eWlBTjlP?=
+ =?utf-8?B?YWVTaXlieXQrTEdVRGg2KzJ1V1kzdWErWjZpQ1R0UEdVQUZTTXBVSExWMVFw?=
+ =?utf-8?B?NVRBdDFlVDNqZnpXSHpKMHJYM3RCM0l4VEk5OVBHTm9lTHo0cnZ5ZmNJelB3?=
+ =?utf-8?B?RlFKQ2VyVzQzRDJ2REkrNStXZ1dVSmMyeWlGN1RJTXEvOXRKNzVNUzY5b2R1?=
+ =?utf-8?B?bVFlb2srUFNTSjQ3UkFPS0kwZGRUYytVQ3M5NFA5WHN5MjE1Y04vRndETWlQ?=
+ =?utf-8?B?eTFpelYyV3RuMnBRRkRMRW9ETGdKYzVaQk9hdUdUM1ZKbzlaM1A2c0lvcGs1?=
+ =?utf-8?B?SFJ5dFQxaFNmTDEwcTBRK1FiNDhlQitEb0pONXdMOGE3ZDFvL01US0NoL0or?=
+ =?utf-8?B?cUZMU3pYTk82amN2MXNVRDF6VzFnUGRkRjQreE16U0ZhcUJ3TTVCT3lXVno3?=
+ =?utf-8?B?MkljVE9sRkpQcmxlQlhZNjhmNGxRV0cwQkcyTCtuUCtLL09OdUFQYkk2NFdz?=
+ =?utf-8?B?SmVRM0ZqMXluM2ZoWDRXMldSc2Y0bzBxL0tBU3UwVnNpNVVvWmVUYXNXMElW?=
+ =?utf-8?B?cDU4WDFtczcxaHhMcFROZUxSOStmTTRENDlOdlE0TFFWTEhHUy83cEhqcVda?=
+ =?utf-8?B?VGVCT29wWmN5R0RHOVNmQWZZelpWdVlCZjVSd2xNcDBOZmk3c0pLd3JzK1NV?=
+ =?utf-8?B?WEpRVWZtVXZlQUp5VXNCaWVvMFhRaGVheFdocUNITGdOZGdSbFJmS04zQjha?=
+ =?utf-8?B?UEJtMFRYR3htQmpPWG1Ta2xxdHpURDZqdTRSYjlXeEZlTlpCUjNIRzkyeXlh?=
+ =?utf-8?B?N1YzYlN2Zm5UcW9Ddlg1anFhYzBnNWpiZkxFcTRiNmVKbEJIMzZYcE8xajZS?=
+ =?utf-8?B?T0padnY3dk8vSCtBNDlSdVYxSnIzZzRvUUtWa01MNmhQYmcvREdOOHBOZnZX?=
+ =?utf-8?B?bzlnS04xbnB3RjB2Y0ZXNlhrZ0twRm9wc3VHMThOa090Qjc4bVhhemNuT0Nw?=
+ =?utf-8?B?RE5sejZFOUJMb1FrN1NBNmxxZ3YwS0J5NlUrOEQ1SEs1S2dxa3FxVDBCRCt2?=
+ =?utf-8?B?WHVNTlhRbmdFNkVwaUgxQzRZUitZTFpYOWZKajl0NmtGNnNldWtrdGUwaFBx?=
+ =?utf-8?B?UGFjU0lJS2I0UVhoN2QvUFFDeHp0Qk9oYkt3UkRDS0FlOHFPZG1XdExkNExT?=
+ =?utf-8?B?SVlaZGFUTnR2SFhrVENXVWJoWExuK3JJZldvOHZoaTFTdzlkdEJERG81aEpK?=
+ =?utf-8?B?bWNYZlpUdVVNVUtweVpoQVB1N2k1T2szRnFZQXprU3dzdTRIaUJubGJ3a2t1?=
+ =?utf-8?B?RTNHWnNYUHJLdlV1R0tNOFBTRlBZVjJYOWdCRWo2TTNOYzNtVlcyOEhyQXps?=
+ =?utf-8?B?U1lnM3hoM3ZyZlREckZNWDZ2V3E5QUd5UkhyRVlxamJGeXFGOSt6SkFTQitY?=
+ =?utf-8?B?Ry90ZDJyNVg2MTA1a0NHZEttNVlSM2tpT2l2MWhJUzVQQ1Q5VTc3N0ZiTkJ3?=
+ =?utf-8?B?ZEtuMGt6bWZSMFp6NDZTZE9LYWNsSDlyRWx1NlZwR1p2OGhQdStqOXkzSWNo?=
+ =?utf-8?B?RnB6TGNDbkRxaHNaU25pcmljZ2VZSEcyaFVGUlMvZE5ycjdhQk5nSmU3L054?=
+ =?utf-8?B?Y1YrWkFMdksyUEY3NTJTVEZNRFBIdUdvUTh3WTBCeG9Ya0t1Q3FwdHpsbDFJ?=
+ =?utf-8?B?VmRyOVBzc0lhV0h6Zk9YQVp5UW95Nk94VGNROW1HS0Z4N0ZiRmVjRUdWdFRF?=
+ =?utf-8?B?MUFzam5qOUN1U2tXc3hsTmlQNHdJOUR4VGtTdnM2T1B5cVhFZ2thQk9ERmdi?=
+ =?utf-8?B?ZS9CVWx1di9RT1ZYcmVxOVJEVTNiVCtpczRMVThDQUxISlRMMHA3TTh3N2wy?=
+ =?utf-8?B?Y2RhNUtUN094d3d1elFlWHkzMEpvVzJmUitMemM5QnhBaFBEZzNUUWN0aWt2?=
+ =?utf-8?B?QU9BWjhDWERRV055WmhOeHJNQmU2UkhkMGRaMmZHT1ZaMnQzalFaaENmcERk?=
+ =?utf-8?B?Umc9PQ==?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: 27ea70e4-f500-4379-a4fb-08dc375a8075
+X-MS-Exchange-CrossTenant-AuthSource: DM8PR11MB5719.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 27 Feb 2024 06:08:22.4870 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: +jyb9EBrBkJHNwolAvJ2/XFYlKEf7Fk7wSH69+9/zZU9gojUakBhezWV5w+ZplIE2Z+4oXnC2085zl888BTBIGbV1ahTtWBUeza6in25neE=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA2PR11MB4777
+X-OriginatorOrg: intel.com
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -66,324 +165,103 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Enable HDCP for Xe by defining functions which take care of
-interaction of HDCP as a client with the GSC CS interface.
-Add intel_hdcp_gsc_message to Makefile and add corresponding
-changes to xe_hdcp_gsc.c to make it build.
 
---v2
--add kfree at appropriate place [Daniele]
--remove useless define [Daniele]
--move host session logic to xe_gsc_submit.c [Daniele]
--call xe_gsc_check_and_update_pending directly in an if condition
-[Daniele]
--use xe_device instead of drm_i915_private [Daniele]
 
---v3
--use xe prefix for newly exposed function [Daniele]
--remove client specific defines from intel_gsc_mtl_header [Daniele]
--add missing kfree() [Daniele]
--have NULL check for hdcp_message in finish function [Daniele]
--dont have too many variable declarations in the same line [Daniele]
+On 26-02-2024 07:50 pm, Jani Nikula wrote:
+> On Mon, 26 Feb 2024, "Nautiyal, Ankit K" <ankit.k.nautiyal@intel.com> wrote:
+>> On 2/22/2024 11:27 AM, Golani, Mitulkumar Ajitkumar wrote:
+>>>
+>>>> -----Original Message-----
+>>>> From: Intel-gfx <intel-gfx-bounces@lists.freedesktop.org> On Behalf Of
+>>>> Bhanuprakash Modem
+>>>> Sent: Wednesday, February 21, 2024 4:42 PM
+>>>> To: intel-gfx@lists.freedesktop.org
+>>>> Cc: Modem, Bhanuprakash <bhanuprakash.modem@intel.com>
+>>>> Subject: [PATCH] drm/i915/display/debugfs: New entry "DRRS capable" to
+>>>> i915_drrs_status
+>>>>
+>>>> If the connected panel supports both DRRS & PSR, driver gives preference to
+>>>> PSR ("DRRS enabled: no"). Even though the hardware supports DRRS, IGT
+>>>> treats ("DRRS enabled: yes") as not capable.
+>>>>
+>>>> Introduce a new entry "DRRS capable" to debugfs i915_drrs_status, so that
+>>>> IGT will read the DRRS capability as "DRRS capable: yes".
+>>>>
+>>>> Signed-off-by: Bhanuprakash Modem <bhanuprakash.modem@intel.com>
+>>>> ---
+>>>>    drivers/gpu/drm/i915/display/intel_drrs.c | 6 ++++++
+>>>>    1 file changed, 6 insertions(+)
+>>>>
+>>>> diff --git a/drivers/gpu/drm/i915/display/intel_drrs.c
+>>>> b/drivers/gpu/drm/i915/display/intel_drrs.c
+>>>> index 6282ec0fc9b4..169ef38ff188 100644
+>>>> --- a/drivers/gpu/drm/i915/display/intel_drrs.c
+>>>> +++ b/drivers/gpu/drm/i915/display/intel_drrs.c
+>>>> @@ -299,6 +299,7 @@ void intel_drrs_crtc_init(struct intel_crtc *crtc)  static
+>>>> int intel_drrs_debugfs_status_show(struct seq_file *m, void *unused)  {
+>>>>    	struct intel_crtc *crtc = m->private;
+>>>> +	struct drm_i915_private *i915 = to_i915(crtc->base.dev);
+>>>>    	const struct intel_crtc_state *crtc_state;
+>>>>    	int ret;
+>>>>
+>>>> @@ -310,6 +311,11 @@ static int intel_drrs_debugfs_status_show(struct
+>>>> seq_file *m, void *unused)
+>>>>
+>>>>    	mutex_lock(&crtc->drrs.mutex);
+>>>>
+>>>> +	seq_printf(m, "DRRS capable: %s\n",
+>>>> +		   str_yes_no(crtc_state->has_drrs ||
+>>>> +			      HAS_DOUBLE_BUFFERED_M_N(i915) ||
+>>>> +			      intel_cpu_transcoder_has_m2_n2(i915,
+>>>> +crtc_state->cpu_transcoder)));
+> 
+> Why would "capability" look at ->has_drrs?
 
---v4
--don't point the hdcp_message structure in xe_device to anything
-until it properly gets initialized [Daniele]
+IGT interprets the platform capability as "DRRS enabled: yes", which is 
+represented by crtc_state->has_drrs.
 
---v5
--Squash commits for buildability
+However, if the connected panel supports both DRRS and PSR, the driver 
+prioritizes PSR, causing crtc_state->has_drrs to become false. This 
+leads to IGT incorrectly reading the DRRS capability as "DRRS enabled: no".
 
-Signed-off-by: Suraj Kandpal <suraj.kandpal@intel.com>
-Reviewed-by: Arun R Murthy <arun.r.murthy@intel.com>
----
- drivers/gpu/drm/xe/Makefile              |   1 +
- drivers/gpu/drm/xe/display/xe_hdcp_gsc.c | 198 ++++++++++++++++++++++-
- drivers/gpu/drm/xe/xe_gsc_submit.c       |  15 ++
- drivers/gpu/drm/xe/xe_gsc_submit.h       |   1 +
- 4 files changed, 212 insertions(+), 3 deletions(-)
+To rectify this we introduced a new entry "DRRS capable: yes/no".
 
-diff --git a/drivers/gpu/drm/xe/Makefile b/drivers/gpu/drm/xe/Makefile
-index c531210695db..2b654c908ff3 100644
---- a/drivers/gpu/drm/xe/Makefile
-+++ b/drivers/gpu/drm/xe/Makefile
-@@ -254,6 +254,7 @@ xe-$(CONFIG_DRM_XE_DISPLAY) += \
- 	i915-display/intel_global_state.o \
- 	i915-display/intel_gmbus.o \
- 	i915-display/intel_hdcp.o \
-+	i915-display/intel_hdcp_gsc_message.o \
- 	i915-display/intel_hdmi.o \
- 	i915-display/intel_hotplug.o \
- 	i915-display/intel_hotplug_irq.o \
-diff --git a/drivers/gpu/drm/xe/display/xe_hdcp_gsc.c b/drivers/gpu/drm/xe/display/xe_hdcp_gsc.c
-index 0de06e0373ef..bb3bddcd5747 100644
---- a/drivers/gpu/drm/xe/display/xe_hdcp_gsc.c
-+++ b/drivers/gpu/drm/xe/display/xe_hdcp_gsc.c
-@@ -4,14 +4,31 @@
-  */
- 
- #include <drm/drm_print.h>
-+#include <linux/delay.h>
-+#include <drm/i915_hdcp_interface.h>
- 
-+#include "abi/gsc_command_header_abi.h"
- #include "intel_hdcp_gsc.h"
-+#include "intel_hdcp_gsc_message.h"
- #include "xe_device_types.h"
- #include "xe_device.h"
- #include "xe_gt.h"
- #include "xe_gsc_proxy.h"
- #include "xe_pm.h"
- #include "xe_uc_fw.h"
-+#include "xe_bo.h"
-+#include "xe_map.h"
-+#include "xe_gsc_submit.h"
-+
-+#define HECI_MEADDRESS_HDCP 18
-+
-+struct intel_hdcp_gsc_message {
-+	struct xe_bo *hdcp_bo;
-+	u64 hdcp_cmd_in;
-+	u64 hdcp_cmd_out;
-+};
-+
-+#define HDCP_GSC_HEADER_SIZE sizeof(struct intel_gsc_mtl_header)
- 
- bool intel_hdcp_gsc_cs_required(struct xe_device *xe)
- {
-@@ -45,19 +62,194 @@ bool intel_hdcp_gsc_check_status(struct xe_device *xe)
- 	return ret;
- }
- 
-+/*This function helps allocate memory for the command that we will send to gsc cs */
-+static int intel_hdcp_gsc_initialize_message(struct xe_device *xe,
-+					     struct intel_hdcp_gsc_message *hdcp_message)
-+{
-+	struct xe_bo *bo = NULL;
-+	u64 cmd_in, cmd_out;
-+	int ret = 0;
-+
-+	/* allocate object of two page for HDCP command memory and store it */
-+	xe_device_mem_access_get(xe);
-+	bo = xe_bo_create_pin_map(xe, xe_device_get_root_tile(xe), NULL, PAGE_SIZE * 2,
-+				  ttm_bo_type_kernel,
-+				  XE_BO_CREATE_SYSTEM_BIT |
-+				  XE_BO_CREATE_GGTT_BIT);
-+
-+	if (IS_ERR(bo)) {
-+		drm_err(&xe->drm, "Failed to allocate bo for HDCP streaming command!\n");
-+		ret = PTR_ERR(bo);
-+		goto out;
-+	}
-+
-+	cmd_in = xe_bo_ggtt_addr(bo);
-+	cmd_out = cmd_in + PAGE_SIZE;
-+	xe_map_memset(xe, &bo->vmap, 0, 0, bo->size);
-+
-+	hdcp_message->hdcp_bo = bo;
-+	hdcp_message->hdcp_cmd_in = cmd_in;
-+	hdcp_message->hdcp_cmd_out = cmd_out;
-+out:
-+	xe_device_mem_access_put(xe);
-+	return ret;
-+}
-+
-+static int intel_hdcp_gsc_hdcp2_init(struct xe_device *xe)
-+{
-+	struct intel_hdcp_gsc_message *hdcp_message;
-+	int ret;
-+
-+	hdcp_message = kzalloc(sizeof(*hdcp_message), GFP_KERNEL);
-+
-+	if (!hdcp_message)
-+		return -ENOMEM;
-+
-+	/*
-+	 * NOTE: No need to lock the comp mutex here as it is already
-+	 * going to be taken before this function called
-+	 */
-+	ret = intel_hdcp_gsc_initialize_message(xe, hdcp_message);
-+	if (ret) {
-+		drm_err(&xe->drm, "Could not initialize hdcp_message\n");
-+		kfree(hdcp_message);
-+		return ret;
-+	}
-+
-+	xe->display.hdcp.hdcp_message = hdcp_message;
-+	return ret;
-+}
-+
-+static const struct i915_hdcp_ops gsc_hdcp_ops = {
-+	.initiate_hdcp2_session = intel_hdcp_gsc_initiate_session,
-+	.verify_receiver_cert_prepare_km =
-+				intel_hdcp_gsc_verify_receiver_cert_prepare_km,
-+	.verify_hprime = intel_hdcp_gsc_verify_hprime,
-+	.store_pairing_info = intel_hdcp_gsc_store_pairing_info,
-+	.initiate_locality_check = intel_hdcp_gsc_initiate_locality_check,
-+	.verify_lprime = intel_hdcp_gsc_verify_lprime,
-+	.get_session_key = intel_hdcp_gsc_get_session_key,
-+	.repeater_check_flow_prepare_ack =
-+				intel_hdcp_gsc_repeater_check_flow_prepare_ack,
-+	.verify_mprime = intel_hdcp_gsc_verify_mprime,
-+	.enable_hdcp_authentication = intel_hdcp_gsc_enable_authentication,
-+	.close_hdcp_session = intel_hdcp_gsc_close_session,
-+};
-+
- int intel_hdcp_gsc_init(struct xe_device *xe)
- {
--	drm_dbg_kms(&xe->drm, "HDCP support not yet implemented\n");
--	return -ENODEV;
-+	struct i915_hdcp_arbiter *data;
-+	int ret;
-+
-+	data = kzalloc(sizeof(*data), GFP_KERNEL);
-+	if (!data)
-+		return -ENOMEM;
-+
-+	mutex_lock(&xe->display.hdcp.hdcp_mutex);
-+	xe->display.hdcp.arbiter = data;
-+	xe->display.hdcp.arbiter->hdcp_dev = xe->drm.dev;
-+	xe->display.hdcp.arbiter->ops = &gsc_hdcp_ops;
-+	ret = intel_hdcp_gsc_hdcp2_init(xe);
-+	if (ret)
-+		kfree(data);
-+
-+	mutex_unlock(&xe->display.hdcp.hdcp_mutex);
-+
-+	return ret;
- }
- 
- void intel_hdcp_gsc_fini(struct xe_device *xe)
- {
-+	struct intel_hdcp_gsc_message *hdcp_message =
-+					xe->display.hdcp.hdcp_message;
-+
-+	if (!hdcp_message)
-+		return;
-+
-+	xe_bo_unpin_map_no_vm(hdcp_message->hdcp_bo);
-+	kfree(hdcp_message);
-+}
-+
-+static int xe_gsc_send_sync(struct xe_device *xe,
-+			    struct intel_hdcp_gsc_message *hdcp_message,
-+			    u32 msg_size_in, u32 msg_size_out,
-+			    u32 addr_out_off)
-+{
-+	struct xe_gt *gt = hdcp_message->hdcp_bo->tile->media_gt;
-+	struct iosys_map *map = &hdcp_message->hdcp_bo->vmap;
-+	struct xe_gsc *gsc = &gt->uc.gsc;
-+	int ret;
-+
-+	ret = xe_gsc_pkt_submit_kernel(gsc, hdcp_message->hdcp_cmd_in, msg_size_in,
-+				       hdcp_message->hdcp_cmd_out, msg_size_out);
-+	if (ret) {
-+		drm_err(&xe->drm, "failed to send gsc HDCP msg (%d)\n", ret);
-+		return ret;
-+	}
-+
-+	if (xe_gsc_check_and_update_pending(xe, map, 0, map, addr_out_off))
-+		return -EAGAIN;
-+
-+	ret = xe_gsc_read_out_header(xe, map, addr_out_off,
-+				     sizeof(struct hdcp_cmd_header), NULL);
-+
-+	return ret;
- }
- 
- ssize_t intel_hdcp_gsc_msg_send(struct xe_device *xe, u8 *msg_in,
- 				size_t msg_in_len, u8 *msg_out,
- 				size_t msg_out_len)
- {
--	return -ENODEV;
-+	const size_t max_msg_size = PAGE_SIZE - HDCP_GSC_HEADER_SIZE;
-+	struct intel_hdcp_gsc_message *hdcp_message;
-+	u64 host_session_id;
-+	u32 msg_size_in, msg_size_out;
-+	u32 addr_out_off, addr_in_wr_off = 0;
-+	int ret, tries = 0;
-+
-+	if (msg_in_len > max_msg_size || msg_out_len > max_msg_size) {
-+		ret = -ENOSPC;
-+		goto out;
-+	}
-+
-+	msg_size_in = msg_in_len + HDCP_GSC_HEADER_SIZE;
-+	msg_size_out = msg_out_len + HDCP_GSC_HEADER_SIZE;
-+	hdcp_message = xe->display.hdcp.hdcp_message;
-+	addr_out_off = PAGE_SIZE;
-+
-+	host_session_id = xe_gsc_create_host_session_id();
-+	xe_device_mem_access_get(xe);
-+	addr_in_wr_off = xe_gsc_emit_header(xe, &hdcp_message->hdcp_bo->vmap,
-+					    addr_in_wr_off, HECI_MEADDRESS_HDCP,
-+					    host_session_id, msg_in_len);
-+	xe_map_memcpy_to(xe, &hdcp_message->hdcp_bo->vmap, addr_in_wr_off,
-+			 msg_in, msg_in_len);
-+	/*
-+	 * Keep sending request in case the pending bit is set no need to add
-+	 * message handle as we are using same address hence loc. of header is
-+	 * same and it will contain the message handle. we will send the message
-+	 * 20 times each message 50 ms apart
-+	 */
-+	do {
-+		ret = xe_gsc_send_sync(xe, hdcp_message, msg_size_in, msg_size_out,
-+				       addr_out_off);
-+
-+		/* Only try again if gsc says so */
-+		if (ret != -EAGAIN)
-+			break;
-+
-+		msleep(50);
-+
-+	} while (++tries < 20);
-+
-+	if (ret)
-+		goto out;
-+
-+	xe_map_memcpy_from(xe, msg_out, &hdcp_message->hdcp_bo->vmap,
-+			   addr_out_off + HDCP_GSC_HEADER_SIZE,
-+			   msg_out_len);
-+
-+out:
-+	xe_device_mem_access_put(xe);
-+	return ret;
- }
-diff --git a/drivers/gpu/drm/xe/xe_gsc_submit.c b/drivers/gpu/drm/xe/xe_gsc_submit.c
-index 348994b271be..9a18f5667db3 100644
---- a/drivers/gpu/drm/xe/xe_gsc_submit.c
-+++ b/drivers/gpu/drm/xe/xe_gsc_submit.c
-@@ -40,6 +40,21 @@ gsc_to_gt(struct xe_gsc *gsc)
- 	return container_of(gsc, struct xe_gt, uc.gsc);
- }
- 
-+/**
-+ * xe_gsc_get_host_session_id - Creates a random 64 bit host_session id with
-+ * bits 56-63 masked.
-+ *
-+ * Returns: random host_session_id which can be used to send messages to gsc cs
-+ */
-+u64 xe_gsc_create_host_session_id(void)
-+{
-+	u64 host_session_id;
-+
-+	get_random_bytes(&host_session_id, sizeof(u64));
-+	host_session_id &= ~HOST_SESSION_CLIENT_MASK;
-+	return host_session_id;
-+}
-+
- /**
-  * xe_gsc_emit_header - write the MTL GSC header in memory
-  * @xe: the Xe device
-diff --git a/drivers/gpu/drm/xe/xe_gsc_submit.h b/drivers/gpu/drm/xe/xe_gsc_submit.h
-index 1939855031a6..1416b5745a4c 100644
---- a/drivers/gpu/drm/xe/xe_gsc_submit.h
-+++ b/drivers/gpu/drm/xe/xe_gsc_submit.h
-@@ -28,4 +28,5 @@ int xe_gsc_read_out_header(struct xe_device *xe,
- int xe_gsc_pkt_submit_kernel(struct xe_gsc *gsc, u64 addr_in, u32 size_in,
- 			     u64 addr_out, u32 size_out);
- 
-+u64 xe_gsc_create_host_session_id(void);
- #endif
--- 
-2.43.2
+> 
+> Why didn't anyone question the duplication of the conditions of what
+> "drrs capable" means?
+> 
+> And what *does* "drrs capable" mean here anyway? That the platform is
+> capable? But what if the display isn't capable?
 
+"DRRS capable: yes/no" is the platform capability. For display 
+capability, there is another connector specific debugfs called 
+"i915_drrs_type".
+
+- Bhanu
+
+> 
+> 
+> BR,
+> Jani.
+> 
+> 
+> 
+>>>> +
+>>> Adding DRRS capable property to debugfs.
+>>>
+>>> Change LGTM
+>>> Reviewed-by: Mitul Golani <mitulkumar.ajitkumar.golani@intel.com>
+>>
+>>
+>> Thanks for the patch and review. Pushed to drm-intel-next.
+>>
+>> Regards,
+>>
+>> Ankit
+>>
+>>>>    	seq_printf(m, "DRRS enabled: %s\n",
+>>>>    		   str_yes_no(crtc_state->has_drrs));
+>>>>
+>>>> --
+>>>> 2.43.0
+> 
