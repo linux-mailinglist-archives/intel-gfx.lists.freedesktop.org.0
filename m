@@ -2,71 +2,52 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id E8DD4869E96
-	for <lists+intel-gfx@lfdr.de>; Tue, 27 Feb 2024 19:07:44 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 902CA869F32
+	for <lists+intel-gfx@lfdr.de>; Tue, 27 Feb 2024 19:36:27 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3F46B10E3D4;
-	Tue, 27 Feb 2024 18:07:43 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0574D10E5B9;
+	Tue, 27 Feb 2024 18:36:26 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=chromium.org header.i=@chromium.org header.b="QIhQwr2R";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="edZC4ggS";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-ed1-f41.google.com (mail-ed1-f41.google.com
- [209.85.208.41])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D593910E35E
- for <intel-gfx@lists.freedesktop.org>; Tue, 27 Feb 2024 18:07:41 +0000 (UTC)
-Received: by mail-ed1-f41.google.com with SMTP id
- 4fb4d7f45d1cf-55a179f5fa1so5721495a12.0
- for <intel-gfx@lists.freedesktop.org>; Tue, 27 Feb 2024 10:07:41 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=chromium.org; s=google; t=1709057260; x=1709662060;
- darn=lists.freedesktop.org; 
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:from:to:cc:subject:date
- :message-id:reply-to;
- bh=JPvT+3t6vD0JMkx0aC5aqeVB+2dMqfEnys9VsKA/EsQ=;
- b=QIhQwr2RstVG2LT0/sy7IcTv3f8c5n59r11hDUCnWiO4D2zoctssnbxqVuBk1LmR2E
- 2PekUNuOgP0qmGbpTth8SIjfyPVlpQVZ2ZDCXd+9XhfOSsAA9qagg3n3PUce7Y2UaTxM
- I7yXneK4Eehp8v1GXq4/P36vuY7WeroMs6W9Y=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1709057260; x=1709662060;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
- :subject:date:message-id:reply-to;
- bh=JPvT+3t6vD0JMkx0aC5aqeVB+2dMqfEnys9VsKA/EsQ=;
- b=I0sfo01ljleYG/rf1SYqxjRUi94cRq9H/90OgpobI4SmSonc1BOrGO3Hh1XcyxNzJ7
- 9YXBYX2l9oqGYiz64/6wpK3+ue0Z8d7Mk2pGWFTD1+pmiP2q8g3USW9qdaHQnmwFn9C9
- 0k0rlVcGRAA9CZF2GhKj4605h8h/XxgxOwszAXleo1cVuU/mPb1JyIV9KoQPbPvPL9Lf
- 9j3193v6LlSwm97jsQyIQpkeDHxXp+RTf2SCo2ZEyzaaMlOU5+uuDobebLCMQRY4PDsg
- tn3XOxRodfwoE0i1NtFlSOvF+R/aT/NENYfGj9KBFO6C6nhWX7pfHv+ak+GTIRc1sk03
- DaKQ==
-X-Forwarded-Encrypted: i=1;
- AJvYcCVPmWSzoCfvW91C9Fkp2faqMBaDLnAHRMm4zIQhRAl6EmIWMaUB1BpABA1We+YxR+bMerToRcluSPKaKidxs5d8jIuigIbSZSniu8xCIoYk
-X-Gm-Message-State: AOJu0YzYddIHEDZ8/6bLg7D32sgapjb8PEc5yI65xv1AMqL1q9LPFLTc
- os2u2cZU5JoVyyMnb4B09aucbtL/HmhMCUH9O5G1hB1pHS3Ck6sZTR0wJb1lACdxAZ3jZ1fuvvy
- 5AIaZmMpYAA1Tw0HHq9uINUiWAxIO29Yq2Tmt
-X-Google-Smtp-Source: AGHT+IEWWcornFTkT17sd6QyKiUMgntYxdVRmsZ9HAfrkV2uu80UM0DPNBFGjwBZQN7bzfbwqs24Q9NyVSK4MU+dfcI=
-X-Received: by 2002:a17:906:3193:b0:a3f:5628:e364 with SMTP id
- 19-20020a170906319300b00a3f5628e364mr7601437ejy.24.1709057260079; Tue, 27 Feb
- 2024 10:07:40 -0800 (PST)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id AC28710E6E5
+ for <intel-gfx@lists.freedesktop.org>; Tue, 27 Feb 2024 18:36:24 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1709058985; x=1740594985;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=V9GzTNpMvyBQacuSItzrXM6mnhPjDokp4KS3Q8LyoT4=;
+ b=edZC4ggSzLRazckCZgczraMyM6qmKarx48sPeTAWzy9BLpCgD6BDO0+T
+ U1e7Mdyy8e6eqQ+UY+1czzKmDL/N6VQTXxn4+DkqqWq7jrNptMmeAnS9e
+ YsGhYMo9eRCzdpOQVZE+ggtPDrVW/jS5zxPWSCutpL/Gr8dwBIpHNvT5f
+ o/JulZCGnok6wBsbydDZOO/Lm2mXWx3OjylD/yUzZzHDm+9ypOngWUGQD
+ sL0By6qh6kmKdwMtXJzfEGLplqCu5esICPlAYtGTAhMxqkZsQsSbrDeRC
+ 0DzT7mY2vnMv/8L9v1eoBJclZQvFVNb0OB9Zu4q1a4DtKTc+fi/mP3TTD g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10996"; a="14060016"
+X-IronPort-AV: E=Sophos;i="6.06,188,1705392000"; d="scan'208";a="14060016"
+Received: from orviesa009.jf.intel.com ([10.64.159.149])
+ by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 27 Feb 2024 10:36:23 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.06,188,1705392000"; 
+   d="scan'208";a="7188123"
+Received: from vsrini4-xps-8920.iind.intel.com (HELO localhost.localdomain)
+ ([10.223.163.48])
+ by orviesa009.jf.intel.com with ESMTP; 27 Feb 2024 10:36:22 -0800
+From: Vidya Srinivas <vidya.srinivas@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Cc: khaled.almahallawy@intel.com,
+	Vidya Srinivas <vidya.srinivas@intel.com>
+Subject: [PATCH 0/2] Enable MST bigjoiner
+Date: Tue, 27 Feb 2024 23:48:47 +0530
+Message-Id: <20240227181849.22614-1-vidya.srinivas@intel.com>
+X-Mailer: git-send-email 2.33.0
 MIME-Version: 1.0
-References: <20240221192010.25413-1-stanislav.lisovskiy@intel.com>
- <20240221192010.25413-4-stanislav.lisovskiy@intel.com>
- <87o7c3knj9.fsf@intel.com>
- <Zd2lm8uC1WsjEpcO@intel.com> <87ttlujmio.fsf@intel.com>
-In-Reply-To: <87ttlujmio.fsf@intel.com>
-From: Manasi Navare <navaremanasi@chromium.org>
-Date: Tue, 27 Feb 2024 10:07:29 -0800
-Message-ID: <CAE72mNkpz5sSCVAkXb0yJ=FcBgDZHc_kwAjsuhqWnifFGwWY3Q@mail.gmail.com>
-Subject: Re: [PATCH 3/3] drm/i915: Fix bigjoiner case for DP2.0
-To: Jani Nikula <jani.nikula@linux.intel.com>
-Cc: "Lisovskiy, Stanislav" <stanislav.lisovskiy@intel.com>,
- intel-gfx@lists.freedesktop.org, 
- jani.saarinen@intel.com, ville.syrjala@linux.intel.com, 
- vidya.srinivas@intel.com
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -82,144 +63,16 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Thanks Jani for your review.
-Thanks @Lisovskiy, Stanislav  and @vidya.srinivas@intel.com for taking
-this patch forward.
+Series reverts rejection of modes on MST monitors that need bigjoiner
+and adds MST bigjoiner functionality
 
-@Jani Nikula , @Ville Syrj=C3=A4l=C3=A4 : MST bigjoiner as a feature needs =
-to be
-enabled upstream and this patch enables that feature.
-If you agree that bigjoiner refactoring patches 1 and 2 have no impact
-on enabling bigjoiner on MST, could we decouple this patch from
-bigjoiner refactoring and land this separately?
+Vidya Srinivas (2):
+  Revert "drm/i915/mst: Reject modes that require the bigjoiner"
+  drm/i915: Allow bigjoiner for MST
 
-We need the Bigjoiner to be enabled on MST feature landed asap and
-bigjoiner refactoring can follow.
+ drivers/gpu/drm/i915/display/intel_dp_mst.c | 17 +++++++++--------
+ 1 file changed, 9 insertions(+), 8 deletions(-)
 
-Regards
-Manasi
+-- 
+2.33.0
 
-On Tue, Feb 27, 2024 at 1:15=E2=80=AFAM Jani Nikula <jani.nikula@linux.inte=
-l.com> wrote:
->
-> On Tue, 27 Feb 2024, "Lisovskiy, Stanislav" <stanislav.lisovskiy@intel.co=
-m> wrote:
-> > On Mon, Feb 26, 2024 at 09:56:10PM +0200, Jani Nikula wrote:
-> >> On Wed, 21 Feb 2024, Stanislav Lisovskiy <stanislav.lisovskiy@intel.co=
-m> wrote:
-> >> > Patch calculates bigjoiner pipes in mst compute.
-> >> > Patch also passes bigjoiner bool to validate plane
-> >> > max size.
-> >>
-> >> Please use the imperative mood in commit messages, e.g. "calculate"
-> >> intead of "calculates".
-> >>
-> >> Please do not refer to "patch". We know it's a patch, until it isn't,
-> >> and then it's a commit.
-> >>
-> >> Please explain *why* the changes are being done, not just *what* is
-> >> being done.
-> >>
-> >> In the subject, what is "bigjoiner case for DP2.0"? DP 2.0 is a spec
-> >> version, and as such irrelevant for the changes being done.
-> >>
-> >> > Signed-off-by: vsrini4 <vidya.srinivas@intel.com>
-> >>
-> >> ?
-> >
-> > Hi Jani, I just added that patch from Vidya to my series, to be honest,
-> > didn't have time at all to look much into it.
-> > Looks like its me who is going to fix that.
->
-> Should the original authorship be preserved? If not, please add
-> Co-developed-by. Just having the Signed-off-by is not enough.
->
-> BR,
-> Jani.
->
->
-> >
-> >>
-> >> > Signed-off-by: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
-> >> > ---
-> >> >  drivers/gpu/drm/i915/display/intel_dp_mst.c | 19 ++++++++++++------=
--
-> >> >  1 file changed, 12 insertions(+), 7 deletions(-)
-> >> >
-> >> > diff --git a/drivers/gpu/drm/i915/display/intel_dp_mst.c b/drivers/g=
-pu/drm/i915/display/intel_dp_mst.c
-> >> > index 5307ddd4edcf5..fd27d9976c050 100644
-> >> > --- a/drivers/gpu/drm/i915/display/intel_dp_mst.c
-> >> > +++ b/drivers/gpu/drm/i915/display/intel_dp_mst.c
-> >> > @@ -523,6 +523,7 @@ static int intel_dp_mst_compute_config(struct in=
-tel_encoder *encoder,
-> >> >                                   struct drm_connector_state *conn_s=
-tate)
-> >> >  {
-> >> >    struct drm_i915_private *dev_priv =3D to_i915(encoder->base.dev);
-> >> > +  struct intel_crtc *crtc =3D to_intel_crtc(pipe_config->uapi.crtc)=
-;
-> >> >    struct intel_dp_mst_encoder *intel_mst =3D enc_to_mst(encoder);
-> >> >    struct intel_dp *intel_dp =3D &intel_mst->primary->dp;
-> >> >    const struct intel_connector *connector =3D
-> >> > @@ -540,6 +541,10 @@ static int intel_dp_mst_compute_config(struct i=
-ntel_encoder *encoder,
-> >> >    if (adjusted_mode->flags & DRM_MODE_FLAG_DBLSCAN)
-> >> >            return -EINVAL;
-> >> >
-> >> > +  if (intel_dp_need_bigjoiner(intel_dp, adjusted_mode->crtc_hdispla=
-y,
-> >> > +                              adjusted_mode->crtc_clock))
-> >> > +          pipe_config->bigjoiner_pipes =3D GENMASK(crtc->pipe + 1, =
-crtc->pipe);
-> >> > +
-> >> >    pipe_config->sink_format =3D INTEL_OUTPUT_FORMAT_RGB;
-> >> >    pipe_config->output_format =3D INTEL_OUTPUT_FORMAT_RGB;
-> >> >    pipe_config->has_pch_encoder =3D false;
-> >> > @@ -1318,12 +1323,6 @@ intel_dp_mst_mode_valid_ctx(struct drm_connec=
-tor *connector,
-> >> >     *   corresponding link capabilities of the sink) in case the
-> >> >     *   stream is uncompressed for it by the last branch device.
-> >> >     */
-> >> > -  if (mode_rate > max_rate || mode->clock > max_dotclk ||
-> >> > -      drm_dp_calc_pbn_mode(mode->clock, min_bpp << 4) > port->full_=
-pbn) {
-> >> > -          *status =3D MODE_CLOCK_HIGH;
-> >> > -          return 0;
-> >> > -  }
-> >> > -
-> >> >    if (mode->clock < 10000) {
-> >> >            *status =3D MODE_CLOCK_LOW;
-> >> >            return 0;
-> >> > @@ -1343,6 +1342,12 @@ intel_dp_mst_mode_valid_ctx(struct drm_connec=
-tor *connector,
-> >> >            return 0;
-> >> >    }
-> >> >
-> >> > +  if (mode_rate > max_rate || mode->clock > max_dotclk ||
-> >> > +      drm_dp_calc_pbn_mode(mode->clock, min_bpp << 4) > port->full_=
-pbn) {
-> >> > +          *status =3D MODE_CLOCK_HIGH;
-> >> > +          return 0;
-> >> > +  }
-> >> > +
-> >> >    if (DISPLAY_VER(dev_priv) >=3D 10 &&
-> >> >        drm_dp_sink_supports_dsc(intel_connector->dp.dsc_dpcd)) {
-> >> >            /*
-> >> > @@ -1385,7 +1390,7 @@ intel_dp_mst_mode_valid_ctx(struct drm_connect=
-or *connector,
-> >> >            return 0;
-> >> >    }
-> >> >
-> >> > -  *status =3D intel_mode_valid_max_plane_size(dev_priv, mode, false=
-);
-> >> > +  *status =3D intel_mode_valid_max_plane_size(dev_priv, mode, bigjo=
-iner);
-> >> >    return 0;
-> >> >  }
-> >>
-> >> --
-> >> Jani Nikula, Intel
->
-> --
-> Jani Nikula, Intel
