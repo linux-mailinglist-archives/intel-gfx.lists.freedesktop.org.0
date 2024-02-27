@@ -2,29 +2,49 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6F8FD86856C
-	for <lists+intel-gfx@lfdr.de>; Tue, 27 Feb 2024 02:02:23 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 38B9086857C
+	for <lists+intel-gfx@lfdr.de>; Tue, 27 Feb 2024 02:04:20 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C7C8010F0D2;
-	Tue, 27 Feb 2024 01:02:21 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8095A10E65B;
+	Tue, 27 Feb 2024 01:04:18 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=fail reason="signature verification failed" (2048-bit key; secure) header.d=infradead.org header.i=@infradead.org header.b="W3B52p5r";
+	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from 8e613ede5ea5 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9316D10F0D2;
- Tue, 27 Feb 2024 01:02:19 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+Received: from bombadil.infradead.org (bombadil.infradead.org
+ [198.137.202.133])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 18A1210E070;
+ Tue, 27 Feb 2024 01:04:07 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+ d=infradead.org; s=bombadil.20210309; h=Content-Transfer-Encoding:
+ Content-Type:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:
+ Message-ID:Sender:Reply-To:Content-ID:Content-Description;
+ bh=RVftSLZVJrorIFus3RabCSPKATUQtwl5EIiqBrEipvw=; b=W3B52p5rkWx27A4Lch5cd/W3XE
+ CQzIIB0ZeiYi3nNcKYxtf7lSJz75VbIih+2o2567cQH38ClJ82qNVUhPaiqInGBX3FSogPuWcHDoz
+ yTCc70jLDRXyxHPghUARld7Eampuhrruh5ZlEsZkO9KJ+DDYYXHsND0hN6vl992YJdvzOS+NZhcQr
+ e2HFkWFyZGf2hgGB+MTcBy9K14+qB0zxLQKn34kmdnSedR0jXmjTT66z+9B1In8Ky0pCorJxYDy2C
+ McNS5v/m+hqQigS5j2uQNlyCdr30L16vVbAJwbEIkpzTnaHGctBOi4qFdcXSfiR7pjJOt9vkE8aHY
+ Bnxcn6qw==;
+Received: from [50.53.50.0] (helo=[192.168.254.15])
+ by bombadil.infradead.org with esmtpsa (Exim 4.97.1 #2 (Red Hat Linux))
+ id 1relt6-00000003CmL-1pZM; Tue, 27 Feb 2024 01:04:04 +0000
+Message-ID: <ca59236d-4f5c-4605-b443-8f62d71da643@infradead.org>
+Date: Mon, 26 Feb 2024 17:04:04 -0800
 MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: linux-next: Tree for Feb 26 (drivers/gpu/drm/xe)
+Content-Language: en-US
+To: Stephen Rothwell <sfr@canb.auug.org.au>,
+ Linux Next Mailing List <linux-next@vger.kernel.org>
+Cc: Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+ "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
+ intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
+References: <20240226175509.37fa57da@canb.auug.org.au>
+From: Randy Dunlap <rdunlap@infradead.org>
+In-Reply-To: <20240226175509.37fa57da@canb.auug.org.au>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=97_Fi=2ECI=2ESPARSE=3A_warning_for_drm/i915=3A_Add_Display_?=
- =?utf-8?q?Port_tunnel_BW_allocation_support_=28rev6=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Imre Deak" <imre.deak@intel.com>
-Cc: intel-gfx@lists.freedesktop.org
-Date: Tue, 27 Feb 2024 01:02:19 -0000
-Message-ID: <170899573960.299097.14881567754707966238@8e613ede5ea5>
-X-Patchwork-Hint: ignore
-References: <20240220211841.448846-1-imre.deak@intel.com>
-In-Reply-To: <20240220211841.448846-1-imre.deak@intel.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -37,20 +57,25 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
-
-Series: drm/i915: Add Display Port tunnel BW allocation support (rev6)
-URL   : https://patchwork.freedesktop.org/series/129082/
-State : warning
-
-== Summary ==
-
-Error: dim sparse failed
-Sparse version: v0.6.2
-Fast mode used, each commit won't be checked separately.
 
 
+On 2/25/24 22:55, Stephen Rothwell wrote:
+> Hi all,
+> 
+> Changes since 20240223:
+> 
+
+on powerpc32 or i386:
+
+../drivers/gpu/drm/xe/xe_ggtt.c: In function 'xe_ggtt_set_pte':
+../drivers/gpu/drm/xe/xe_ggtt.c:78:9: error: implicit declaration of function 'writeq'; did you mean 'writel'? [-Werror=implicit-function-declaration]
+   78 |         writeq(pte, &ggtt->gsm[addr >> XE_PTE_SHIFT]);
+      |         ^~~~~~
+      |         writel
+
+
+-- 
+#Randy
