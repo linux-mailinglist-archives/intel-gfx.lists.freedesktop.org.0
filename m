@@ -2,58 +2,82 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2F9C4868BF6
-	for <lists+intel-gfx@lfdr.de>; Tue, 27 Feb 2024 10:15:52 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9C0F9868C05
+	for <lists+intel-gfx@lfdr.de>; Tue, 27 Feb 2024 10:18:14 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AEEE410F2C6;
-	Tue, 27 Feb 2024 09:15:50 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4CB0610F2D4;
+	Tue, 27 Feb 2024 09:18:09 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ZRwrWTdo";
+	dkim=pass (1024-bit key; unprotected) header.d=redhat.com header.i=@redhat.com header.b="AOZQ8fmO";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BD21710F2C6
- for <intel-gfx@lists.freedesktop.org>; Tue, 27 Feb 2024 09:15:49 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1709025350; x=1740561350;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=HTgM0AeUatLQMrLyirvVPv0xssurYTYs9wyfX2RyZ1w=;
- b=ZRwrWTdogq+VkhNA3xQgQFy5fMDB3UW/n7WqUW1i/iNDt7V0VvczImEK
- mkjtD5O5qU8gDYtu4VW0sEThMXsDX4bLPuzejj7BTHbGtQFxIAQO4vIZH
- Wm/TH+AjEe1PS1WCsI7BTCX7XmxT7O819eOhI/0X3JIBS41nwyCuLPCdO
- qH76ZwdX6BzcvRc6iGkmHT7+gJMa4KhzSNdQg9Mn9btfM0QbxLlqGjppS
- tslO1yJLpsmszj2615zw1gFcrc5t1H46Hf3UsQHtLkcF/NYlzXotbfODi
- 1lMzVefoDIVxUU0ydmvZtl1mc9+S2SEduZCftNsD+V6PIyS9rXZ9y97M8 w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10996"; a="3229951"
-X-IronPort-AV: E=Sophos;i="6.06,187,1705392000"; 
-   d="scan'208";a="3229951"
-Received: from fmviesa009.fm.intel.com ([10.60.135.149])
- by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Feb 2024 01:15:49 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.06,187,1705392000"; 
-   d="scan'208";a="6912397"
-Received: from bdallmer-mobl1.ger.corp.intel.com (HELO localhost)
- ([10.252.49.187])
- by fmviesa009-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Feb 2024 01:15:47 -0800
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: "Lisovskiy, Stanislav" <stanislav.lisovskiy@intel.com>
-Cc: intel-gfx@lists.freedesktop.org, jani.saarinen@intel.com,
- ville.syrjala@linux.intel.com, vidya.srinivas@intel.com
-Subject: Re: [PATCH 3/3] drm/i915: Fix bigjoiner case for DP2.0
-In-Reply-To: <Zd2lm8uC1WsjEpcO@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20240221192010.25413-1-stanislav.lisovskiy@intel.com>
- <20240221192010.25413-4-stanislav.lisovskiy@intel.com>
- <87o7c3knj9.fsf@intel.com> <Zd2lm8uC1WsjEpcO@intel.com>
-Date: Tue, 27 Feb 2024 11:15:43 +0200
-Message-ID: <87ttlujmio.fsf@intel.com>
+Received: from us-smtp-delivery-124.mimecast.com
+ (us-smtp-delivery-124.mimecast.com [170.10.129.124])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3608310F2D3
+ for <intel-gfx@lists.freedesktop.org>; Tue, 27 Feb 2024 09:18:08 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+ s=mimecast20190719; t=1709025486;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ in-reply-to:in-reply-to:references:references;
+ bh=Qek61wspXs8l98Avlozl6PXBKp/6fSu28LmXK11Qxvg=;
+ b=AOZQ8fmOKYCwOLl6UXNT4yLgzQnGUtSEn+qNaf14V2wFpWBQOUankzeuYCOu1q3MXiG0yc
+ PrPbyc9o/JtWC/pQEcHAebD/SDbqYcnTU4VTMe9qCG4dTCxNPrm51RRJYLYaTT7Y0eOshV
+ ImXws4Sh749+AAPHMF4OhTqeZ1ObEkU=
+Received: from mail-lf1-f69.google.com (mail-lf1-f69.google.com
+ [209.85.167.69]) by relay.mimecast.com with ESMTP with STARTTLS
+ (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
+ us-mta-637-qFP8U_qqN0am9kFQt5RnRw-1; Tue, 27 Feb 2024 04:18:04 -0500
+X-MC-Unique: qFP8U_qqN0am9kFQt5RnRw-1
+Received: by mail-lf1-f69.google.com with SMTP id
+ 2adb3069b0e04-51313b50f1bso83648e87.0
+ for <intel-gfx@lists.freedesktop.org>; Tue, 27 Feb 2024 01:18:03 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1709025482; x=1709630282;
+ h=in-reply-to:content-disposition:mime-version:references:message-id
+ :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=Qek61wspXs8l98Avlozl6PXBKp/6fSu28LmXK11Qxvg=;
+ b=Fn2RO/CGTMBD1A0X5FHAqBc0PPpiLuYjlaXdMxLGBAjS4eAIgkGBZ9mz3ES2snmqXS
+ Uv6b/Mx8zHi2fl3CbHkWLBNNfnsK99fFh9LSTB+AYTp0UJ6He8es8lY4R6pa9uTTuKze
+ PyJhbYhXtu/ExMdxqBHf9LepsVQB9io5MRXlYlDZYRLLqw4BOBLB1Am5aasVhp31k3gM
+ DRqCjbyoS5jkds//VgAC+g6k3fAGQlk9s+CDk4qYKgm48kDV+8RemIyE9/PjJKRSCynW
+ Ek1t3sfuGTMVZOQky0sXmobYWu9l87XvAplmE9+9m+sUYYQHwWkQDrIx7HeFYaF2ueRR
+ sKBA==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCW7qmWBTtlNBMTVQWszWhd8ByWLqRWWeK0q+U8j7V4l9Umw84mEGnb4UhLdwPFegRf3wuANC7zlvTwscrfHdnsWRiiq7o+rxKKgrCrQB2NO
+X-Gm-Message-State: AOJu0Ywzrmc6koIQ0fuVrbV1YP8l+qhuNKmpx6Eoug+beTbh3BL31wVd
+ jMJiwb4t3OYNLnbIDWWlOKgWRYZ5t+MrCsJheMau04vFazpkS3cKgc0xlofanlDz3MQifNbb0C8
+ 3tIRrlyId7Ok8Utfuz2lOTwd7pcK6WGhbNWm87qNhS4KxQ+J3IZ4VyaDM0A0pg7yyRA==
+X-Received: by 2002:a05:6512:4005:b0:512:bce9:11af with SMTP id
+ br5-20020a056512400500b00512bce911afmr8002134lfb.3.1709025482485; 
+ Tue, 27 Feb 2024 01:18:02 -0800 (PST)
+X-Google-Smtp-Source: AGHT+IG1azD3zw8/fVU6eiSFgd1n31c4ICayrJMk2lsjefwyIXZ5XohcUpf+O55ZoCeo30CKzgBAuw==
+X-Received: by 2002:a05:6512:4005:b0:512:bce9:11af with SMTP id
+ br5-20020a056512400500b00512bce911afmr8002112lfb.3.1709025482088; 
+ Tue, 27 Feb 2024 01:18:02 -0800 (PST)
+Received: from localhost ([2a01:e0a:b25:f902::ff])
+ by smtp.gmail.com with ESMTPSA id
+ bt21-20020a056000081500b0033b48190e5esm11059341wrb.67.2024.02.27.01.18.01
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Tue, 27 Feb 2024 01:18:01 -0800 (PST)
+Date: Tue, 27 Feb 2024 10:18:01 +0100
+From: Maxime Ripard <mripard@redhat.com>
+To: Jani Nikula <jani.nikula@linux.intel.com>
+Cc: dri-devel@lists.freedesktop.org, 
+ Daniel Vetter <daniel.vetter@ffwll.ch>, David Airlie <airlied@gmail.com>, 
+ Daniel Stone <daniels@collabora.com>, dim-tools@lists.freedesktop.org,
+ intel-gfx@lists.freedesktop.org
+Subject: Re: DRM Migration to Gitlab
+Message-ID: <q4imcbwr5act2iy3pswsvhojj6r5spjbo4w3wejn2mi2a34irl@c2gin24mbiwr>
+References: <k555c7lj3mcj2skzrmc2ywxzz5ndtdgfpitw7fftdlyjjpmfou@7maudk3vdxuf>
+ <87edcyl38y.fsf@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain
+Content-Type: multipart/signed; micalg=pgp-sha512;
+ protocol="application/pgp-signature"; boundary="lbjy76afh27ceari"
+Content-Disposition: inline
+In-Reply-To: <87edcyl38y.fsf@intel.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -69,107 +93,79 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, 27 Feb 2024, "Lisovskiy, Stanislav" <stanislav.lisovskiy@intel.com> wrote:
-> On Mon, Feb 26, 2024 at 09:56:10PM +0200, Jani Nikula wrote:
->> On Wed, 21 Feb 2024, Stanislav Lisovskiy <stanislav.lisovskiy@intel.com> wrote:
->> > Patch calculates bigjoiner pipes in mst compute.
->> > Patch also passes bigjoiner bool to validate plane
->> > max size.
->> 
->> Please use the imperative mood in commit messages, e.g. "calculate"
->> intead of "calculates".
->> 
->> Please do not refer to "patch". We know it's a patch, until it isn't,
->> and then it's a commit.
->> 
->> Please explain *why* the changes are being done, not just *what* is
->> being done.
->> 
->> In the subject, what is "bigjoiner case for DP2.0"? DP 2.0 is a spec
->> version, and as such irrelevant for the changes being done.
->> 
->> > Signed-off-by: vsrini4 <vidya.srinivas@intel.com>
->> 
->> ?
->
-> Hi Jani, I just added that patch from Vidya to my series, to be honest,
-> didn't have time at all to look much into it.
-> Looks like its me who is going to fix that.
 
-Should the original authorship be preserved? If not, please add
-Co-developed-by. Just having the Signed-off-by is not enough.
+--lbjy76afh27ceari
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-BR,
-Jani.
+Hi Jani,
 
+On Tue, Feb 27, 2024 at 10:29:01AM +0200, Jani Nikula wrote:
+> On Tue, 27 Feb 2024, Maxime Ripard <mripard@redhat.com> wrote:
+> > Hi,
+> >
+> > Sima, after becoming aware of the drm-misc transition to Gitlab in the
+> > next couple of weeks, to do the same for DRM today.
+> >
+> > This is now done and all the various bits (nightly.conf, MAINTAINERS,
+> > doc, etc.) should be there.
+> >
+> > If all goes well, the only thing you'll notice is that dim will complain
+> > about the drm remote not having the right URLs.
+> >
+> > Any dim user should update the URL with either one of the two following
+> > commands:
+> >
+> > git remote set-url drm ssh://git@gitlab.freedesktop.org/drm/kernel.git
+> > git remote set-url drm https://gitlab.freedesktop.org/drm/kernel.git
+> >
+> > And the rest should be transparent.
+>=20
+> Except it isn't. If you do that before updating to new nightly.conf,
+> it'll complain that the URL it sees in the old config isn't available,
+> and prompts.
+>=20
+> If you first do 'dim ub', and then do 'dim ub' again, before changing
+> the URL, it'll also prompt, but it's unable to override the existing drm
+> remote.
 
->
->> 
->> > Signed-off-by: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
->> > ---
->> >  drivers/gpu/drm/i915/display/intel_dp_mst.c | 19 ++++++++++++-------
->> >  1 file changed, 12 insertions(+), 7 deletions(-)
->> >
->> > diff --git a/drivers/gpu/drm/i915/display/intel_dp_mst.c b/drivers/gpu/drm/i915/display/intel_dp_mst.c
->> > index 5307ddd4edcf5..fd27d9976c050 100644
->> > --- a/drivers/gpu/drm/i915/display/intel_dp_mst.c
->> > +++ b/drivers/gpu/drm/i915/display/intel_dp_mst.c
->> > @@ -523,6 +523,7 @@ static int intel_dp_mst_compute_config(struct intel_encoder *encoder,
->> >  				       struct drm_connector_state *conn_state)
->> >  {
->> >  	struct drm_i915_private *dev_priv = to_i915(encoder->base.dev);
->> > +	struct intel_crtc *crtc = to_intel_crtc(pipe_config->uapi.crtc);
->> >  	struct intel_dp_mst_encoder *intel_mst = enc_to_mst(encoder);
->> >  	struct intel_dp *intel_dp = &intel_mst->primary->dp;
->> >  	const struct intel_connector *connector =
->> > @@ -540,6 +541,10 @@ static int intel_dp_mst_compute_config(struct intel_encoder *encoder,
->> >  	if (adjusted_mode->flags & DRM_MODE_FLAG_DBLSCAN)
->> >  		return -EINVAL;
->> >  
->> > +	if (intel_dp_need_bigjoiner(intel_dp, adjusted_mode->crtc_hdisplay,
->> > +				    adjusted_mode->crtc_clock))
->> > +		pipe_config->bigjoiner_pipes = GENMASK(crtc->pipe + 1, crtc->pipe);
->> > +
->> >  	pipe_config->sink_format = INTEL_OUTPUT_FORMAT_RGB;
->> >  	pipe_config->output_format = INTEL_OUTPUT_FORMAT_RGB;
->> >  	pipe_config->has_pch_encoder = false;
->> > @@ -1318,12 +1323,6 @@ intel_dp_mst_mode_valid_ctx(struct drm_connector *connector,
->> >  	 *   corresponding link capabilities of the sink) in case the
->> >  	 *   stream is uncompressed for it by the last branch device.
->> >  	 */
->> > -	if (mode_rate > max_rate || mode->clock > max_dotclk ||
->> > -	    drm_dp_calc_pbn_mode(mode->clock, min_bpp << 4) > port->full_pbn) {
->> > -		*status = MODE_CLOCK_HIGH;
->> > -		return 0;
->> > -	}
->> > -
->> >  	if (mode->clock < 10000) {
->> >  		*status = MODE_CLOCK_LOW;
->> >  		return 0;
->> > @@ -1343,6 +1342,12 @@ intel_dp_mst_mode_valid_ctx(struct drm_connector *connector,
->> >  		return 0;
->> >  	}
->> >  
->> > +	if (mode_rate > max_rate || mode->clock > max_dotclk ||
->> > +	    drm_dp_calc_pbn_mode(mode->clock, min_bpp << 4) > port->full_pbn) {
->> > +		*status = MODE_CLOCK_HIGH;
->> > +		return 0;
->> > +	}
->> > +
->> >  	if (DISPLAY_VER(dev_priv) >= 10 &&
->> >  	    drm_dp_sink_supports_dsc(intel_connector->dp.dsc_dpcd)) {
->> >  		/*
->> > @@ -1385,7 +1390,7 @@ intel_dp_mst_mode_valid_ctx(struct drm_connector *connector,
->> >  		return 0;
->> >  	}
->> >  
->> > -	*status = intel_mode_valid_max_plane_size(dev_priv, mode, false);
->> > +	*status = intel_mode_valid_max_plane_size(dev_priv, mode, bigjoiner);
->> >  	return 0;
->> >  }
->> 
->> -- 
->> Jani Nikula, Intel
+Urgh, you're right... It's also partly due to drm-tip being the last
+repo to be updated. I've overlooked that aspect since I had the local
+changes to nightly.conf.
 
--- 
-Jani Nikula, Intel
+> I think dim should be updated to handle all of this without user
+> manually doing anything other than answering a yes/no prompt.
+
+I've started to work on that, but it's probably going to take a bit of
+time to figure it out, bash isn't really my strong suit.
+
+If anyone is stuck with this, you can get unstuck manually by doing:
+
+cd $DIM_PREFIX/drm-rerere
+git checkout rerere-cache
+git pull
+
+cd $DIM_PREFIX/kernel
+git remote set-url drm ...
+
+There's been reports in private that some didn't get their branch
+updated for some time and will have to add the drm/xe repo too:
+
+git remote add drm-xe ssh://git@gitlab.freedesktop.org/drm/xe/kernel.git
+
+Maxime
+
+--lbjy76afh27ceari
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYKAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCZd2oyAAKCRDj7w1vZxhR
+xVwWAQDZZFN7/cUljlyPFonrZwjI0TQob/XdnMm2nSpu98MlrQD/UvzdI8gOW8Xs
+ejc1C2Kj2PpOqQK7Yi2/4zBu8Ep+BAw=
+=DvPh
+-----END PGP SIGNATURE-----
+
+--lbjy76afh27ceari--
+
