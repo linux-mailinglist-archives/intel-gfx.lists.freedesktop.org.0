@@ -2,62 +2,28 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id EE81386A04C
-	for <lists+intel-gfx@lfdr.de>; Tue, 27 Feb 2024 20:35:41 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 54E6386A089
+	for <lists+intel-gfx@lfdr.de>; Tue, 27 Feb 2024 20:51:31 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id ABF5B10E901;
-	Tue, 27 Feb 2024 19:35:39 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="RQNLzqgl";
-	dkim-atps=neutral
+	by gabe.freedesktop.org (Postfix) with ESMTP id F0B1110E1EE;
+	Tue, 27 Feb 2024 19:51:28 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B4A1B10E774;
- Tue, 27 Feb 2024 19:35:37 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1709062538; x=1740598538;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=wixL8hXKCRkoLQv8T4g9eHfvcYEDH8H6bntqDHWFuDY=;
- b=RQNLzqglG63ije1Gqn72Rz/QYmxb0tJCZINENSaFAS0KIJpIVn2UCz+J
- f+3EchQJ+s0GpHFsYUxTD5KGD7EJASnPKU/2CiL5+MHatn6akDNTvy74A
- YVS/hVMZL/TZw8zipVUvySmgC/GVGYWr7bDay4dBNs0drGCSy3SOFlm5v
- NtTVRAsSrJMLkg21JyJprAT0cSfvTfV5xWDyTUSJPuaBbVVH041h3tEVV
- Mu0IYvr3lY9LnYMBnmSqHdhQrJWOHAfaDA9cVKraGV3lTtOOVlRwoMzcj
- y3xmyFJwdwmLAAY/6KaZNAC8b3RGhYDCUrRYgX0IpyNfM25shJhL8b/xf g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10996"; a="6377157"
-X-IronPort-AV: E=Sophos;i="6.06,188,1705392000"; 
-   d="scan'208";a="6377157"
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
- by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Feb 2024 11:35:37 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10996"; a="827770862"
-X-IronPort-AV: E=Sophos;i="6.06,188,1705392000"; d="scan'208";a="827770862"
-Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.74])
- by orsmga001.jf.intel.com with SMTP; 27 Feb 2024 11:35:33 -0800
-Received: by stinkbox (sSMTP sendmail emulation);
- Tue, 27 Feb 2024 21:35:32 +0200
-From: Ville Syrjala <ville.syrjala@linux.intel.com>
-To: dri-devel@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org, Simon Ser <contact@emersion.fr>,
- =?UTF-8?q?Jonas=20=C3=85dahl?= <jadahl@redhat.com>,
- Daniel Stone <daniel@fooishbar.org>,
- Sameer Lattannavar <sameer.lattannavar@intel.com>,
- Sebastian Wick <sebastian.wick@redhat.com>,
- Harry Wentland <harry.wentland@amd.com>,
- Pekka Paalanen <pekka.paalanen@collabora.com>
-Subject: [PATCH v2 2/2] drm/i915: Add SIZE_HINTS property for cursors
-Date: Tue, 27 Feb 2024 21:35:23 +0200
-Message-ID: <20240227193523.5601-3-ville.syrjala@linux.intel.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20240227193523.5601-1-ville.syrjala@linux.intel.com>
-References: <20240227193523.5601-1-ville.syrjala@linux.intel.com>
+Received: from 8e613ede5ea5 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3123410E955;
+ Tue, 27 Feb 2024 19:51:27 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============4147625051173238958=="
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=93_Fi=2ECI=2EBAT=3A_success_for_Enable_MST_bigjoiner?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Srinivas, Vidya" <vidya.srinivas@intel.com>
+Cc: intel-gfx@lists.freedesktop.org
+Date: Tue, 27 Feb 2024 19:51:27 -0000
+Message-ID: <170906348720.337279.76738498175860874@8e613ede5ea5>
+X-Patchwork-Hint: ignore
+References: <20240227181849.22614-1-vidya.srinivas@intel.com>
+In-Reply-To: <20240227181849.22614-1-vidya.srinivas@intel.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -70,79 +36,187 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-From: Ville Syrjälä <ville.syrjala@linux.intel.com>
+--===============4147625051173238958==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Advertize more suitable cursor sizes via the new SIZE_HINTS
-plane property.
+== Series Details ==
 
-We can't really enumerate all supported cursor sizes on
-the platforms where the cursor height can vary freely, so
-for simplicity we'll just expose all square+POT sizes between
-each platform's min and max cursor limits.
+Series: Enable MST bigjoiner
+URL   : https://patchwork.freedesktop.org/series/130449/
+State : success
 
-Depending on the platform this will give us one of three
-results:
-- 64x64,128x128,256x256,512x512
-- 64x64,128x128,256x256
-- 64x64
+== Summary ==
 
-Cc: Simon Ser <contact@emersion.fr>
-Cc: Jonas Ådahl <jadahl@redhat.com>
-Cc: Daniel Stone <daniel@fooishbar.org>
-Cc: Sameer Lattannavar <sameer.lattannavar@intel.com>
-Cc: Sebastian Wick <sebastian.wick@redhat.com>
-Cc: Harry Wentland <harry.wentland@amd.com>
-Cc: Pekka Paalanen <pekka.paalanen@collabora.com>
-Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
----
- drivers/gpu/drm/i915/display/intel_cursor.c | 24 +++++++++++++++++++++
- 1 file changed, 24 insertions(+)
+CI Bug Log - changes from CI_DRM_14352 -> Patchwork_130449v1
+====================================================
 
-diff --git a/drivers/gpu/drm/i915/display/intel_cursor.c b/drivers/gpu/drm/i915/display/intel_cursor.c
-index f8b33999d43f..49e9b9be2235 100644
---- a/drivers/gpu/drm/i915/display/intel_cursor.c
-+++ b/drivers/gpu/drm/i915/display/intel_cursor.c
-@@ -823,6 +823,28 @@ static const struct drm_plane_funcs intel_cursor_plane_funcs = {
- 	.format_mod_supported = intel_cursor_format_mod_supported,
- };
- 
-+static void intel_cursor_add_size_hints_property(struct intel_plane *plane)
-+{
-+	struct drm_i915_private *i915 = to_i915(plane->base.dev);
-+	const struct drm_mode_config *config = &i915->drm.mode_config;
-+	struct drm_plane_size_hint hints[4];
-+	int size, max_size, num_hints = 0;
-+
-+	max_size = min(config->cursor_width, config->cursor_height);
-+
-+	/* for simplicity only enumerate the supported square+POT sizes */
-+	for (size = 64; size <= max_size; size *= 2) {
-+		if (drm_WARN_ON(&i915->drm, num_hints >= ARRAY_SIZE(hints)))
-+			break;
-+
-+		hints[num_hints].width = size;
-+		hints[num_hints].height = size;
-+		num_hints++;
-+	}
-+
-+	drm_plane_add_size_hints_property(&plane->base, hints, num_hints);
-+}
-+
- struct intel_plane *
- intel_cursor_plane_create(struct drm_i915_private *dev_priv,
- 			  enum pipe pipe)
-@@ -881,6 +903,8 @@ intel_cursor_plane_create(struct drm_i915_private *dev_priv,
- 						   DRM_MODE_ROTATE_0 |
- 						   DRM_MODE_ROTATE_180);
- 
-+	intel_cursor_add_size_hints_property(cursor);
-+
- 	zpos = DISPLAY_RUNTIME_INFO(dev_priv)->num_sprites[pipe] + 1;
- 	drm_plane_create_zpos_immutable_property(&cursor->base, zpos);
- 
--- 
-2.43.0
+Summary
+-------
 
+  **SUCCESS**
+
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130449v1/index.html
+
+Participating hosts (41 -> 40)
+------------------------------
+
+  Missing    (1): fi-snb-2520m 
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_130449v1 that come from known issues:
+
+### CI changes ###
+
+#### Issues hit ####
+
+  * boot:
+    - bat-jsl-1:          [PASS][1] -> [FAIL][2] ([i915#8293])
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14352/bat-jsl-1/boot.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130449v1/bat-jsl-1/boot.html
+    - fi-apl-guc:         [PASS][3] -> [FAIL][4] ([i915#8293])
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14352/fi-apl-guc/boot.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130449v1/fi-apl-guc/boot.html
+    - fi-cfl-8109u:       [PASS][5] -> [FAIL][6] ([i915#8293])
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14352/fi-cfl-8109u/boot.html
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130449v1/fi-cfl-8109u/boot.html
+
+  
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@i915_selftest@live@gem_contexts:
+    - bat-atsm-1:         [PASS][7] -> [INCOMPLETE][8] ([i915#10094] / [i915#10137])
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14352/bat-atsm-1/igt@i915_selftest@live@gem_contexts.html
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130449v1/bat-atsm-1/igt@i915_selftest@live@gem_contexts.html
+
+  
+#### Possible fixes ####
+
+  * igt@i915_selftest@live@hangcheck:
+    - {bat-rpls-3}:       [DMESG-WARN][9] ([i915#5591]) -> [PASS][10]
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14352/bat-rpls-3/igt@i915_selftest@live@hangcheck.html
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130449v1/bat-rpls-3/igt@i915_selftest@live@hangcheck.html
+
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+  [i915#10094]: https://gitlab.freedesktop.org/drm/intel/issues/10094
+  [i915#10137]: https://gitlab.freedesktop.org/drm/intel/issues/10137
+  [i915#5591]: https://gitlab.freedesktop.org/drm/intel/issues/5591
+  [i915#8293]: https://gitlab.freedesktop.org/drm/intel/issues/8293
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_14352 -> Patchwork_130449v1
+
+  CI-20190529: 20190529
+  CI_DRM_14352: 0d7a78693be62a8d1cd311376815b89b18de8204 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_7731: 17f897a81868fb35c6a7033a8b07256659742248 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  Patchwork_130449v1: 0d7a78693be62a8d1cd311376815b89b18de8204 @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+### Linux commits
+
+5acb6a5331f0 drm/i915: Allow bigjoiner for MST
+f7727b5ffd2d Revert "drm/i915/mst: Reject modes that require the bigjoiner"
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130449v1/index.html
+
+--===============4147625051173238958==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>Enable MST bigjoiner</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/130449/">https://patchwork.freedesktop.org/series/130449/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130449v1/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130449v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_14352 -&gt; Patchwork_130449v1</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130449v1/index.html</p>
+<h2>Participating hosts (41 -&gt; 40)</h2>
+<p>Missing    (1): fi-snb-2520m </p>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_130449v1 that come from known issues:</p>
+<h3>CI changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>boot:<ul>
+<li>bat-jsl-1:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14352/bat-jsl-1/boot.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130449v1/bat-jsl-1/boot.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/8293">i915#8293</a>)</li>
+<li>fi-apl-guc:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14352/fi-apl-guc/boot.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130449v1/fi-apl-guc/boot.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/8293">i915#8293</a>)</li>
+<li>fi-cfl-8109u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14352/fi-cfl-8109u/boot.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130449v1/fi-cfl-8109u/boot.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/8293">i915#8293</a>)</li>
+</ul>
+</li>
+</ul>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>igt@i915_selftest@live@gem_contexts:<ul>
+<li>bat-atsm-1:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14352/bat-atsm-1/igt@i915_selftest@live@gem_contexts.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130449v1/bat-atsm-1/igt@i915_selftest@live@gem_contexts.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/10094">i915#10094</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/10137">i915#10137</a>)</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>igt@i915_selftest@live@hangcheck:<ul>
+<li>{bat-rpls-3}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14352/bat-rpls-3/igt@i915_selftest@live@hangcheck.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/5591">i915#5591</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130449v1/bat-rpls-3/igt@i915_selftest@live@hangcheck.html">PASS</a></li>
+</ul>
+</li>
+</ul>
+<p>{name}: This element is suppressed. This means it is ignored when computing<br />
+          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_14352 -&gt; Patchwork_130449v1</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_14352: 0d7a78693be62a8d1cd311376815b89b18de8204 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_7731: 17f897a81868fb35c6a7033a8b07256659742248 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  Patchwork_130449v1: 0d7a78693be62a8d1cd311376815b89b18de8204 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+<h3>Linux commits</h3>
+<p>5acb6a5331f0 drm/i915: Allow bigjoiner for MST<br />
+f7727b5ffd2d Revert "drm/i915/mst: Reject modes that require the bigjoiner"</p>
+
+</body>
+</html>
+
+--===============4147625051173238958==--
