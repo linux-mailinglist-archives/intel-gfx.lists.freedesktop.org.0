@@ -2,59 +2,77 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 48150868C2E
-	for <lists+intel-gfx@lfdr.de>; Tue, 27 Feb 2024 10:26:30 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id C8DF3868C63
+	for <lists+intel-gfx@lfdr.de>; Tue, 27 Feb 2024 10:38:19 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C94D410E8B0;
-	Tue, 27 Feb 2024 09:26:27 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8FF1910E8C2;
+	Tue, 27 Feb 2024 09:38:16 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="kPfiIP2C";
+	dkim=pass (1024-bit key; unprotected) header.d=rasmusvillemoes.dk header.i=@rasmusvillemoes.dk header.b="aXB1hHab";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3A49410E8B0;
- Tue, 27 Feb 2024 09:26:27 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1709025987; x=1740561987;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=d7qvb68AxhQIcifAepC6POl/VMX++0DCVgcmzXKpFRs=;
- b=kPfiIP2CpdS4qRkn6a7hSieKfQ1PHGxpxaUkpvXrPFhl++msnbQ92PR6
- 5oCwK7OGo4mQ4H1hIRuRaEExAXOKYtaEsN0iwHy+VmukgxnzT4qCvLdEo
- N1nSAZHxkpYoC3UZBzpJQD47qRD5o0dhWPV4vYIJGeYbvN98RspMCfhdB
- s3JLCinfk4QOKr1Gw4Z/qg8Pa0L3kIjB6vWv7aE7c13cTnJ4b/rbKEhSM
- Gv8b9e//dQra/T/w+KikMDRHMjyulSjJWP+c+pyGcCepqnqnHh2X3YUyT
- LTQJWuDRQ4SNqn4EjX4NPza5zCOdI9gBet2uk7YJKQQsh9AeSxaTiFmSu w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10996"; a="25821277"
-X-IronPort-AV: E=Sophos;i="6.06,187,1705392000"; d="scan'208";a="25821277"
-Received: from fmviesa007.fm.intel.com ([10.60.135.147])
- by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Feb 2024 01:26:26 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.06,187,1705392000"; 
-   d="scan'208";a="6843722"
-Received: from nirmoyda-mobl.ger.corp.intel.com (HELO [10.94.250.221])
- ([10.94.250.221])
- by fmviesa007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Feb 2024 01:26:25 -0800
-Message-ID: <5f37d10a-d27f-4365-9411-7d5692633df6@linux.intel.com>
-Date: Tue, 27 Feb 2024 10:26:23 +0100
+Received: from mail-lj1-f176.google.com (mail-lj1-f176.google.com
+ [209.85.208.176])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2B01110E29E
+ for <intel-gfx@lists.freedesktop.org>; Tue, 27 Feb 2024 09:38:15 +0000 (UTC)
+Received: by mail-lj1-f176.google.com with SMTP id
+ 38308e7fff4ca-2d2991e8c12so4767541fa.0
+ for <intel-gfx@lists.freedesktop.org>; Tue, 27 Feb 2024 01:38:14 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=rasmusvillemoes.dk; s=google; t=1709026693; x=1709631493;
+ darn=lists.freedesktop.org; 
+ h=content-transfer-encoding:in-reply-to:from:references:cc:to
+ :content-language:subject:user-agent:mime-version:date:message-id
+ :from:to:cc:subject:date:message-id:reply-to;
+ bh=34nlE/jYLVlVaZ7lND+aFhIBs6PO2OjuB13sd0/fnLU=;
+ b=aXB1hHabqSlYB8jHnlCaFyeByCMjjhyd8gaTxteO+34x/o287QF3bQ4+484fUz2Eqm
+ A19gkfX1QvBqi5cMnb228vaqXrcv1/V8fb81IQZ47kDW6n+nbTXtz9vOCoM5JWwPLwo9
+ Gpa+0rlMDvXN3gWgnyJISUYMNc7KPDUczQjLc=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1709026693; x=1709631493;
+ h=content-transfer-encoding:in-reply-to:from:references:cc:to
+ :content-language:subject:user-agent:mime-version:date:message-id
+ :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+ bh=34nlE/jYLVlVaZ7lND+aFhIBs6PO2OjuB13sd0/fnLU=;
+ b=ZUJjewzclp1KUXhrfCqIzmnzdzMy8AowwNY8+fudtTjwPd/fQiFMNPFpZ07ac1+29w
+ 2zA8jTpTrRNUnuiW8HDpeVodHboCfcZ/YfXyHbvoyPSHCtBCiCUvRoFK6HpbtpXhfAOr
+ t6Z865ORcN5dt/LvzzcixlheNnpTj6kPvdUQM5GRrxjyc0z96moVQCiT0XBJQsQgxJjw
+ rYW1s4GKagw8p8J2HgUsg+G+fT99uV4ecHgVyMz+gPWcN9vY3bth1ixeJ5GqSTlHFiOW
+ 442i10QhRy9lRDDvdxtW1LwmOydu630bRHfGTS3qpfpAnIu0F+huqWmVcuADXd6A+SjV
+ qEsg==
+X-Gm-Message-State: AOJu0YxSHyKNUL/4ncrkn9Jl24Ozow8lahSdsTq+Y9NgaZ2cDRgvTZyR
+ 6OUyKosSNe6UO+/Uy+YNbhqDZecfqW8q/YKhkHGYkgKXXcsE1e7Fxb6j6MVeN04=
+X-Google-Smtp-Source: AGHT+IFIS3pGCJaWAL8RMc5RJT5ivWEGBl+2mS/Sffs1nscQknt84kpwUa3IyS43C3isau2OTSqjwA==
+X-Received: by 2002:a2e:a165:0:b0:2d2:3fa3:5af8 with SMTP id
+ u5-20020a2ea165000000b002d23fa35af8mr2877025ljl.3.1709026692679; 
+ Tue, 27 Feb 2024 01:38:12 -0800 (PST)
+Received: from [172.16.11.116] ([81.216.59.226])
+ by smtp.gmail.com with ESMTPSA id
+ p18-20020a2e7412000000b002d0f8b3e259sm1128939ljc.65.2024.02.27.01.38.11
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Tue, 27 Feb 2024 01:38:12 -0800 (PST)
+Message-ID: <1013ff2d-76b2-41f9-a5d4-39a567a3b0cc@rasmusvillemoes.dk>
+Date: Tue, 27 Feb 2024 10:38:10 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] drm/i915: check before removing mm notifier
-Content-Language: en-US
-To: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
- Nirmoy Das <nirmoy.das@intel.com>, intel-gfx@lists.freedesktop.org
-Cc: dri-devel@lists.freedesktop.org, Andi Shyti <andi.shyti@linux.intel.com>, 
- Shawn Lee <shawn.c.lee@intel.com>
-References: <20240219125047.28906-1-nirmoy.das@intel.com>
- <3c1a25f9-b1ee-4832-a89c-68813cc72416@linux.intel.com>
- <96eec421-090a-4420-ab94-098414334e29@linux.intel.com>
-From: Nirmoy Das <nirmoy.das@linux.intel.com>
-In-Reply-To: <96eec421-090a-4420-ab94-098414334e29@linux.intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+Subject: Re: [PATCH 01/12] drm/i915: Indicate which pipe failed the fastset
+ check overall
+Content-Language: en-US, da
+To: Jani Nikula <jani.nikula@linux.intel.com>,
+ =?UTF-8?B?VmlsbGUgU3lyasOkbMOk?= <ville.syrjala@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>
+Cc: intel-gfx@lists.freedesktop.org, Petr Mladek <pmladek@suse.com>,
+ Steven Rostedt <rostedt@goodmis.org>,
+ Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+ Sergey Senozhatsky <senozhatsky@chromium.org>, linux-kernel@vger.kernel.org
+References: <20240215164055.30585-1-ville.syrjala@linux.intel.com>
+ <20240215164055.30585-2-ville.syrjala@linux.intel.com>
+ <ZdfApN1h97GTfL1t@intel.com> <Zdj2ONs8BZ6959Xb@intel.com>
+ <87bk83mfwp.fsf@intel.com>
+From: Rasmus Villemoes <linux@rasmusvillemoes.dk>
+In-Reply-To: <87bk83mfwp.fsf@intel.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -71,55 +89,64 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi Tvrtko,
+On 26/02/2024 15.57, Jani Nikula wrote:
 
-On 2/27/2024 10:04 AM, Tvrtko Ursulin wrote:
->
-> On 21/02/2024 11:52, Nirmoy Das wrote:
->> Merged it to drm-intel-gt-next with s/check/Check
->
-> Shouldn't this have had:
->
-> Fixes: ed29c2691188 ("drm/i915: Fix userptr so we do not have to worry 
-> about obj->mm.lock, v7.")
-> Cc: <stable@vger.kernel.org> # v5.13+
->
-> ?
->
-Yes. Sorry, I missed that. Can we still the tag ?
+> Personally I suck at remembering even the standard printf conversion
+> specifiers, let alone all the kernel extensions. I basically have to
+> look them up every time. I'd really love some %{name} format for named
+> pointer things. And indeed preferrably without the %p. Just %{name}.
 
+Sorry to spoil the fun, but that's a non-starter.
 
-Thanks,
+foo.c: In function ‘foo’:
+foo.c:5:24: warning: unknown conversion type character ‘{’ in format
+[-Wformat=]
+    5 |         printf("Hello %{function} World\n", &foo);
+      |                        ^
 
-Nirmoy
+You can't start accepting stuff that -Wformat will warn about. We're not
+going to start building with Wno-format.
 
-> Regards,
->
-> Tvrtko
->
->> On 2/19/2024 1:50 PM, Nirmoy Das wrote:
->>> Error in mmu_interval_notifier_insert() can leave a NULL
->>> notifier.mm pointer. Catch that and return early.
->>>
->>> Cc: Andi Shyti <andi.shyti@linux.intel.com>
->>> Cc: Shawn Lee <shawn.c.lee@intel.com>
->>> Signed-off-by: Nirmoy Das <nirmoy.das@intel.com>
->>> ---
->>>   drivers/gpu/drm/i915/gem/i915_gem_userptr.c | 3 +++
->>>   1 file changed, 3 insertions(+)
->>>
->>> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_userptr.c 
->>> b/drivers/gpu/drm/i915/gem/i915_gem_userptr.c
->>> index 0e21ce9d3e5a..61abfb505766 100644
->>> --- a/drivers/gpu/drm/i915/gem/i915_gem_userptr.c
->>> +++ b/drivers/gpu/drm/i915/gem/i915_gem_userptr.c
->>> @@ -349,6 +349,9 @@ i915_gem_userptr_release(struct 
->>> drm_i915_gem_object *obj)
->>>   {
->>>       GEM_WARN_ON(obj->userptr.page_ref);
->>> +    if (!obj->userptr.notifier.mm)
->>> +        return;
->>> +
->>> mmu_interval_notifier_remove(&obj->userptr.notifier);
->>>       obj->userptr.notifier.mm = NULL;
->>>   }
+> And then we could discuss adding support for drm specific things. I
+> guess one downside is that the functions to do this would have to be in
+> vsprintf.c instead of drm. Unless we add some code in drm for this
+> that's always built-in.
+
+If people can be trusted to write callbacks with the proper semantics
+for snprintf [1], we could do a generic
+
+typedef char * (*printf_callback)(char *buf, char *end, void *ctx);
+
+struct printf_ext {
+  printf_callback cb;
+  void *ctx;
+};
+
+#define PRINTF_EXT(callback, context) &(struct printf_ext){ .cb =
+callback, .ctx = context }
+
+// in drm-land
+
+char* my_drm_gizmo_formatter(char *buf, char *end, void *ctx)
+{
+  struct drm_gizmo *dg = ctx;
+  ....
+  return buf;
+}
+#define pX_gizmo(dg) PRINTF_EXT(my_drm_gizmo_formatter, dg)
+
+   printk("error: gizmo %pX in wrong state!\n", pX_gizmo(dg));
+
+Then vsprintf.c doesn't need to know anything about any particular
+subsystem. And if a subsystem breaks snprintf semantics, they get to
+keep the pieces. With a little more macro magic, one might even be able
+to throw in some type safety checks.
+
+Rasmus
+
+[1] You can't sleep, you can't allocate memory, you probably can't even
+take any raw spinlocks, you must attempt to do the full formatting so
+you can tell how much room would be needed, but you must of course not
+write anything beyond end. Calling vsnprintf() to format various integer
+members is probably ok, but recursively using %pX to print full
+subobjects is likely a bad idea.
