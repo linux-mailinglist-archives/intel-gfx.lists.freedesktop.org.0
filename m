@@ -2,29 +2,60 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id C56B3869FE9
-	for <lists+intel-gfx@lfdr.de>; Tue, 27 Feb 2024 20:09:48 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id E930386A048
+	for <lists+intel-gfx@lfdr.de>; Tue, 27 Feb 2024 20:35:32 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1670310E988;
-	Tue, 27 Feb 2024 19:09:47 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 534AD10E50D;
+	Tue, 27 Feb 2024 19:35:31 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="CAWLWCPY";
+	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from 8e613ede5ea5 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 85A0010E988;
- Tue, 27 Feb 2024 19:09:46 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.13])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E918310E50D;
+ Tue, 27 Feb 2024 19:35:28 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1709062529; x=1740598529;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=EqYImp9gtBVxiVchOmb4nc3lf6aUa1fGHNdsKThCpKg=;
+ b=CAWLWCPYT6KhgwLdHUFOT9LCZBOTU7vNHtrUtmu7zZ2+DgYQLs7zJkxl
+ 9Rp+wB1Gqc60AbcamW42eHVHMfQVupHGecULvPgiiH++bkH4Fg+98hKA0
+ yb50QvQeHays86Vnar1zMBkfUeqnSgHwPRoFq1OEhNao/nhGAStaY61rd
+ ux3icEFG0bDe0loKZovuJzCMr6/o4+4f3pyP3/rn0V7Sq1/aF1eMmDt6q
+ TTV0XZgOf9OCogsZ/46BoWVWkggwaAeEXgMshNGCgUKNBgcKctv8kjRnr
+ r9Yxi5rN2ai3eyxrRCU83SfSfU5Lh2bRfch8ryVJ7swnUzJdGMJvCdcDU w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10996"; a="6377133"
+X-IronPort-AV: E=Sophos;i="6.06,188,1705392000"; 
+   d="scan'208";a="6377133"
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+ by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 27 Feb 2024 11:35:28 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10996"; a="827770856"
+X-IronPort-AV: E=Sophos;i="6.06,188,1705392000"; d="scan'208";a="827770856"
+Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.74])
+ by orsmga001.jf.intel.com with SMTP; 27 Feb 2024 11:35:24 -0800
+Received: by stinkbox (sSMTP sendmail emulation);
+ Tue, 27 Feb 2024 21:35:23 +0200
+From: Ville Syrjala <ville.syrjala@linux.intel.com>
+To: dri-devel@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org, Simon Ser <contact@emersion.fr>,
+ =?UTF-8?q?Jonas=20=C3=85dahl?= <jadahl@redhat.com>,
+ Daniel Stone <daniel@fooishbar.org>,
+ Sameer Lattannavar <sameer.lattannavar@intel.com>,
+ Sebastian Wick <sebastian.wick@redhat.com>,
+ Harry Wentland <harry.wentland@amd.com>,
+ Pekka Paalanen <pekka.paalanen@collabora.com>
+Subject: [PATCH v2 0/2] drm: Add plane SIZE_HINTS property
+Date: Tue, 27 Feb 2024 21:35:21 +0200
+Message-ID: <20240227193523.5601-1-ville.syrjala@linux.intel.com>
+X-Mailer: git-send-email 2.43.0
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=97_Fi=2ECI=2EBUILD=3A_failure_for_series_starting_with_=5B1?=
- =?utf-8?q?/3=5D_mei=3A_me=3A_add_arrow_lake_point_S_DID?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Jonathan Cavitt" <jonathan.cavitt@intel.com>
-Cc: intel-gfx@lists.freedesktop.org
-Date: Tue, 27 Feb 2024 19:09:46 -0000
-Message-ID: <170906098654.351698.2507041916937153550@8e613ede5ea5>
-X-Patchwork-Hint: ignore
-References: <20240227162633.1833550-1-jonathan.cavitt@intel.com>
-In-Reply-To: <20240227162633.1833550-1-jonathan.cavitt@intel.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -37,34 +68,55 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-Series: series starting with [1/3] mei: me: add arrow lake point S DID
-URL   : https://patchwork.freedesktop.org/series/130445/
-State : failure
+Final version for a new plane SIZE_HINTS property to
+essentially replace the cursor size caps, based on recent
+discussion in this gitlab bug:
+https://gitlab.freedesktop.org/drm/intel/-/issues/7687
 
-== Summary ==
+As for userspace, so far I only did a quick modetest
+blob decoder (mainly to verify that it looks correct):
+https://gitlab.freedesktop.org/vsyrjala/libdrm/-/commits/plane_size_hints
 
-Error: patch https://patchwork.freedesktop.org/api/1.0/series/130445/revisions/1/mbox/ not applied
-Applying: mei: me: add arrow lake point S DID
-Using index info to reconstruct a base tree...
-M	drivers/misc/mei/hw-me-regs.h
-M	drivers/misc/mei/pci-me.c
-Falling back to patching base and 3-way merge...
-Auto-merging drivers/misc/mei/pci-me.c
-CONFLICT (content): Merge conflict in drivers/misc/mei/pci-me.c
-Auto-merging drivers/misc/mei/hw-me-regs.h
-CONFLICT (content): Merge conflict in drivers/misc/mei/hw-me-regs.h
-error: Failed to merge in the changes.
-hint: Use 'git am --show-current-patch=diff' to see the failed patch
-Patch failed at 0001 mei: me: add arrow lake point S DID
-When you have resolved this problem, run "git am --continue".
-If you prefer to skip this patch, run "git am --skip" instead.
-To restore the original branch and stop patching, run "git am --abort".
-Build failed, no error log produced
+Sameer & co. have done a real mutter implementation:
+https://gitlab.gnome.org/GNOME/mutter/-/merge_requests/3165
 
+This final version follows the original idea of having
+just a list of sizes in a blob, rather than the mode
+complex "2D bitmap" approach I also proposed later.
+I think that's fair, the bitmap was probably overly
+complicated.
+
+The only difference to the previous version of this approach
+is that the documentation now states that the list is sorted
+in order of preference, and thus userspace should pick the
+first suitable size from the list. This should match the
+aforementioned mutter implementation.
+
+Cc: Simon Ser <contact@emersion.fr>
+Cc: Jonas Ådahl <jadahl@redhat.com>
+Cc: Daniel Stone <daniel@fooishbar.org>
+Cc: Sameer Lattannavar <sameer.lattannavar@intel.com>
+Cc: Sebastian Wick <sebastian.wick@redhat.com>
+Cc: Harry Wentland <harry.wentland@amd.com>
+Cc: Pekka Paalanen <pekka.paalanen@collabora.com>
+
+Ville Syrjälä (2):
+  drm: Introduce plane SIZE_HINTS property
+  drm/i915: Add SIZE_HINTS property for cursors
+
+ drivers/gpu/drm/drm_mode_config.c           |  7 +++
+ drivers/gpu/drm/drm_plane.c                 | 52 +++++++++++++++++++++
+ drivers/gpu/drm/i915/display/intel_cursor.c | 24 ++++++++++
+ include/drm/drm_mode_config.h               |  5 ++
+ include/drm/drm_plane.h                     |  4 ++
+ include/uapi/drm/drm_mode.h                 | 11 +++++
+ 6 files changed, 103 insertions(+)
+
+-- 
+2.43.0
 
