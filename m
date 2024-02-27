@@ -2,29 +2,58 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id A2C7086A0BF
-	for <lists+intel-gfx@lfdr.de>; Tue, 27 Feb 2024 21:24:22 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7CD8C86A0D3
+	for <lists+intel-gfx@lfdr.de>; Tue, 27 Feb 2024 21:26:57 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BF5A410E0DC;
-	Tue, 27 Feb 2024 20:24:20 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 106D010E994;
+	Tue, 27 Feb 2024 20:26:54 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="V9JVO8zB";
+	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from 8e613ede5ea5 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C8EC910E0DC;
- Tue, 27 Feb 2024 20:24:19 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============3185035152868080964=="
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D6E9810E992;
+ Tue, 27 Feb 2024 20:26:51 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1709065612; x=1740601612;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=rVjiJFnIz9QuGzOYqaIk0B2kID+k1JY0BTBjYB/WLLc=;
+ b=V9JVO8zBFS2NRp8b9o3m4Rewumy4kj6QhxBCT+DrVJwcRiHW0FMqwhb3
+ lIqGtNxH89BoQWTB1jj7slYCVIcLznot9aO3QLQh40CTo/hlPA2AFGiQK
+ rdmo59CViV3trKyXeFPnMh7f5bAvgXiuHTICSVhn2e97gMkbCIXYsxEYK
+ SF7QC3WH2RS5UIzQxRxvkdZjjrzcozTFs4tvtHFvviuMIot3cXtnGU/no
+ m67bLBCONOBfYlUH3uR41tO2k2IwnHXalp3TjA2Uw5BYbZqsmdLiukUkS
+ j0PAn9Hdj5YpoJahOqiBXpRwHoeTEKOc1fGniwnGJzKziEKMOyH7722oC Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10996"; a="20979214"
+X-IronPort-AV: E=Sophos;i="6.06,188,1705392000"; d="scan'208";a="20979214"
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+ by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 27 Feb 2024 12:26:50 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10996"; a="827770874"
+X-IronPort-AV: E=Sophos;i="6.06,188,1705392000"; d="scan'208";a="827770874"
+Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.74])
+ by orsmga001.jf.intel.com with SMTP; 27 Feb 2024 12:26:46 -0800
+Received: by stinkbox (sSMTP sendmail emulation);
+ Tue, 27 Feb 2024 22:26:45 +0200
+From: Ville Syrjala <ville.syrjala@linux.intel.com>
+To: intel-gfx@lists.freedesktop.org
+Cc: dri-devel@lists.freedesktop.org,
+ Somalapuram Amaranath <Amaranath.Somalapuram@amd.com>,
+ =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
+ Zack Rusin <zack.rusin@broadcom.com>,
+ Thomas Zimmermann <tzimmermann@suse.de>,
+ =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
+Subject: [PATCH] drm/i915/ttm: Fix TTM_PL_FLAG_DESIRED
+Date: Tue, 27 Feb 2024 22:26:45 +0200
+Message-ID: <20240227202645.20111-1-ville.syrjala@linux.intel.com>
+X-Mailer: git-send-email 2.43.0
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Fi=2ECI=2EBAT=3A_success_for_drm=3A_Add_plane_SIZE=5FHIN?=
- =?utf-8?q?TS_property_=28rev5=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Ville Syrjala" <ville.syrjala@linux.intel.com>
-Cc: intel-gfx@lists.freedesktop.org
-Date: Tue, 27 Feb 2024 20:24:19 -0000
-Message-ID: <170906545982.337279.17351553887460070852@8e613ede5ea5>
-X-Patchwork-Hint: ignore
-References: <20240227193523.5601-1-ville.syrjala@linux.intel.com>
-In-Reply-To: <20240227193523.5601-1-ville.syrjala@linux.intel.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -37,171 +66,54 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============3185035152868080964==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-== Series Details ==
+inlined from ‘i915_ttm_get_pages’ at ../drivers/gpu/drm/i915/gem/i915_gem_ttm.c:847:2:
+../drivers/gpu/drm/i915/gem/i915_gem_ttm.c:165:18: warning: ‘places[0].flags’ is used uninitialized [-Wuninitialized]
+  165 |         places[0].flags |= TTM_PL_FLAG_DESIRED;
+      |         ~~~~~~~~~^~~~~~
+../drivers/gpu/drm/i915/gem/i915_gem_ttm.c: In function ‘i915_ttm_get_pages’:
+../drivers/gpu/drm/i915/gem/i915_gem_ttm.c:837:26: note: ‘places’ declared here
+  837 |         struct ttm_place places[I915_TTM_MAX_PLACEMENTS + 1];
+      |                          ^~~~~~
 
-Series: drm: Add plane SIZE_HINTS property (rev5)
-URL   : https://patchwork.freedesktop.org/series/113758/
-State : success
+Furhermore we then proceed to call i915_ttm_place_from_region() which
+memset()s the whole thing back to zero anyway. So in the end we lose
+the TTM_PL_FLAG_DESIRED flag (and fortunately also whatever else stack
+garbage happened to be in the flags at this point).
 
-== Summary ==
+No idea what functional changes this will result in...
 
-CI Bug Log - changes from CI_DRM_14352 -> Patchwork_113758v5
-====================================================
+Cc: Somalapuram Amaranath <Amaranath.Somalapuram@amd.com>
+Cc: Christian König <christian.koenig@amd.com>
+Cc: Zack Rusin <zack.rusin@broadcom.com>
+Cc: Thomas Zimmermann <tzimmermann@suse.de>
+Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+Fixes: a78a8da51b36 ("drm/ttm: replace busy placement with flags v6")
+Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
+---
+ drivers/gpu/drm/i915/gem/i915_gem_ttm.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-Summary
--------
+diff --git a/drivers/gpu/drm/i915/gem/i915_gem_ttm.c b/drivers/gpu/drm/i915/gem/i915_gem_ttm.c
+index 27dcfd8a34bb..e6f177183c0f 100644
+--- a/drivers/gpu/drm/i915/gem/i915_gem_ttm.c
++++ b/drivers/gpu/drm/i915/gem/i915_gem_ttm.c
+@@ -162,10 +162,10 @@ i915_ttm_placement_from_obj(const struct drm_i915_gem_object *obj,
+ 	unsigned int flags = obj->flags;
+ 	unsigned int i;
+ 
+-	places[0].flags |= TTM_PL_FLAG_DESIRED;
+ 	i915_ttm_place_from_region(num_allowed ? obj->mm.placements[0] :
+ 				   obj->mm.region, &places[0], obj->bo_offset,
+ 				   obj->base.size, flags);
++	places[0].flags |= TTM_PL_FLAG_DESIRED;
+ 
+ 	/* Cache this on object? */
+ 	for (i = 0; i < num_allowed; ++i) {
+-- 
+2.43.0
 
-  **SUCCESS**
-
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113758v5/index.html
-
-Participating hosts (41 -> 41)
-------------------------------
-
-  Additional (1): bat-kbl-2 
-  Missing    (1): fi-snb-2520m 
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_113758v5 that come from known issues:
-
-### CI changes ###
-
-#### Issues hit ####
-
-  * boot:
-    - fi-cfl-8109u:       [PASS][1] -> [FAIL][2] ([i915#8293])
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14352/fi-cfl-8109u/boot.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113758v5/fi-cfl-8109u/boot.html
-
-  
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@fbdev@info:
-    - bat-kbl-2:          NOTRUN -> [SKIP][3] ([fdo#109271] / [i915#1849])
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113758v5/bat-kbl-2/igt@fbdev@info.html
-
-  * igt@gem_lmem_swapping@parallel-random-engines:
-    - bat-kbl-2:          NOTRUN -> [SKIP][4] ([fdo#109271]) +39 other tests skip
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113758v5/bat-kbl-2/igt@gem_lmem_swapping@parallel-random-engines.html
-
-  
-  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
-  [i915#1849]: https://gitlab.freedesktop.org/drm/intel/issues/1849
-  [i915#8293]: https://gitlab.freedesktop.org/drm/intel/issues/8293
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_14352 -> Patchwork_113758v5
-
-  CI-20190529: 20190529
-  CI_DRM_14352: 0d7a78693be62a8d1cd311376815b89b18de8204 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_7731: 17f897a81868fb35c6a7033a8b07256659742248 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_113758v5: 0d7a78693be62a8d1cd311376815b89b18de8204 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-### Linux commits
-
-207ccb475d43 drm/i915: Add SIZE_HINTS property for cursors
-cc2cd46f6ae5 drm: Introduce plane SIZE_HINTS property
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113758v5/index.html
-
---===============3185035152868080964==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm: Add plane SIZE_HINTS property (rev5)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/113758/">https://patchwork.freedesktop.org/series/113758/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113758v5/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113758v5/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_14352 -&gt; Patchwork_113758v5</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113758v5/index.html</p>
-<h2>Participating hosts (41 -&gt; 41)</h2>
-<p>Additional (1): bat-kbl-2 <br />
-  Missing    (1): fi-snb-2520m </p>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_113758v5 that come from known issues:</p>
-<h3>CI changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>boot:<ul>
-<li>fi-cfl-8109u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14352/fi-cfl-8109u/boot.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113758v5/fi-cfl-8109u/boot.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/8293">i915#8293</a>)</li>
-</ul>
-</li>
-</ul>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@fbdev@info:</p>
-<ul>
-<li>bat-kbl-2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113758v5/bat-kbl-2/igt@fbdev@info.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/1849">i915#1849</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_lmem_swapping@parallel-random-engines:</p>
-<ul>
-<li>bat-kbl-2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113758v5/bat-kbl-2/igt@gem_lmem_swapping@parallel-random-engines.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +39 other tests skip</li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_14352 -&gt; Patchwork_113758v5</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_14352: 0d7a78693be62a8d1cd311376815b89b18de8204 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_7731: 17f897a81868fb35c6a7033a8b07256659742248 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  Patchwork_113758v5: 0d7a78693be62a8d1cd311376815b89b18de8204 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<h3>Linux commits</h3>
-<p>207ccb475d43 drm/i915: Add SIZE_HINTS property for cursors<br />
-cc2cd46f6ae5 drm: Introduce plane SIZE_HINTS property</p>
-
-</body>
-</html>
-
---===============3185035152868080964==--
