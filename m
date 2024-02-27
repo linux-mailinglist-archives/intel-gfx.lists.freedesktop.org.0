@@ -2,67 +2,54 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4017286A2B2
-	for <lists+intel-gfx@lfdr.de>; Tue, 27 Feb 2024 23:41:02 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6DDB286A3FB
+	for <lists+intel-gfx@lfdr.de>; Wed, 28 Feb 2024 00:55:21 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 53F0310E9A2;
-	Tue, 27 Feb 2024 22:40:55 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A06BF10E2DB;
+	Tue, 27 Feb 2024 23:55:19 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=linaro.org header.i=@linaro.org header.b="o5B2yp8b";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="VmZx4nES";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-yw1-f182.google.com (mail-yw1-f182.google.com
- [209.85.128.182])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4DE8610E9A4
- for <intel-gfx@lists.freedesktop.org>; Tue, 27 Feb 2024 22:40:54 +0000 (UTC)
-Received: by mail-yw1-f182.google.com with SMTP id
- 00721157ae682-6092387bdd0so14712407b3.3
- for <intel-gfx@lists.freedesktop.org>; Tue, 27 Feb 2024 14:40:54 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=linaro.org; s=google; t=1709073653; x=1709678453; darn=lists.freedesktop.org;
- h=cc:to:subject:message-id:date:from:mime-version:from:to:cc:subject
- :date:message-id:reply-to;
- bh=l24av5cz46t7M7tI2luq7oGX/wa+cXf3Hc4YW3YHjSo=;
- b=o5B2yp8bTPPwBJzG94mZg7JpvSoXu7PRT2rFC4Mib5Z6Lhp+pPy2GjUvqNfqXrq8eY
- ZPsOxxhl4TTAeVlPUyb/YnwLVYutqps9TWrrwjP2hGVrTUH6S8hDbyN5JlCjIiQhJ5tm
- 06swwgNuEsmzDQhyoIwxMobimo3JP63eVz4ogw+Coyp1GtdRxFxKFseB5V4hK96CgXRX
- ZE6WHBsz7hfBJV5g7BlNu3Z21RjuVTr0aiBf+9k/sGQgB4BcKjls4bW9hwr0gGVM3KSG
- 1hTcY2A/i6wn7M3GPcr0Pym1xJqDUGRatxi7jubURKftc8vJbg2bvpfQgLyDCrYGCA5c
- CNeg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1709073653; x=1709678453;
- h=cc:to:subject:message-id:date:from:mime-version:x-gm-message-state
- :from:to:cc:subject:date:message-id:reply-to;
- bh=l24av5cz46t7M7tI2luq7oGX/wa+cXf3Hc4YW3YHjSo=;
- b=v1C9aG8J4f+VtQRS39Po/CPEzTGbt0EPdP2lGdYbQ8Vb+ANWqF72/XUbesDFFlA2aK
- c4ytex+M96ICyXBEs4xRM59Qu5zCJVhunJAfmU/T0aeswC3wIuv0br43ERqWVZLQv3nV
- /URgnd0/FtTMVuewZ/+pug0SwUGjZoPCyWjQz/MYkoJUXgfP2gMyaOHhxj3q5vvYBpgP
- 9zy9VsYLGAtszsFY26vyVLa0lq7S2ZimP3dD3P5OGTxHBFE40eSxHr2UaNcTDC8T5EYw
- XlGz+DulGrvxe6/eWfmDtWkeKwsN7Tb2fyo8vMPzq6A1xVSkiKfC3DC7el9hx4BVrEGc
- rTag==
-X-Forwarded-Encrypted: i=1;
- AJvYcCVRl4Sd972bmpOW0QNZQyguRMFFeF9WUbzTZ+zBhl76OOPN7L8DaKiFshIVgAwv7iKfEcnMf20Xc3JmgP5gBjdmaB4aJSwS3UEwUwfUflk8
-X-Gm-Message-State: AOJu0YxhknvbPh2cWlL7Xne9ybd9aW9/NFONpC5rl9X3SxpgZo+CksCp
- NiNgmNzbrQqSsVPhxWDqPafd8hGV1MvZsJ9sFo1D8NNebvPrrwUCp02vMRUQBBjysbGT7DksSA2
- sM9sbRuwMJcFl7UNKIbEMC5+GIFvCMzIn4FsxNg==
-X-Google-Smtp-Source: AGHT+IF7JmZrAwSzE5u2YUoyhCfxcW6ZoHVqg/vYI0u+8CvfTAGOQdSqPOy0FsY7FSJXpRenAcBfjlKR9Cj3074cOP4=
-X-Received: by 2002:a25:9e8d:0:b0:dcd:5bdb:4aa4 with SMTP id
- p13-20020a259e8d000000b00dcd5bdb4aa4mr830952ybq.51.1709073652982; Tue, 27 Feb
- 2024 14:40:52 -0800 (PST)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5413E10E2DB;
+ Tue, 27 Feb 2024 23:55:18 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1709078118; x=1740614118;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=irJUKq9qyjCZ5ysAMMSk1RPXQ2DkL7Qxmj7eiKK7nOs=;
+ b=VmZx4nESPTZn2Sq5PfMEClxw5KY99gfqyn9crfGEMQ0czptnnJfRuRLv
+ yFzDInoZGUfzWFafObFz33aQhmVu77sA0oi6Y1r0MoCYa1UDW7fk7KMoc
+ 1AWbHXhAqGtPv/io44b2OHpuu71a1iL/P4hz6li6DTn7x4aaWpoIUEEnJ
+ 1bqtTqq24Rlq4oFHsi8ieLQ6dg5GTZBJ2rYFhAM7lSiXlSHEpWmv4DYeH
+ KHcTJUeS5EX5zLFteQowaNfiv0A/fYmO2+gOkFj5Q7byO/FC/o/zPxHfY
+ s7kvy8hU8ANZf0fW0B0k7hB63IZJVgO0+wTunVN1ABZN2zPnMmLL4h4NR A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10996"; a="4018021"
+X-IronPort-AV: E=Sophos;i="6.06,189,1705392000"; 
+   d="scan'208";a="4018021"
+Received: from orviesa005.jf.intel.com ([10.64.159.145])
+ by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 27 Feb 2024 15:52:39 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.06,189,1705392000"; d="scan'208";a="11960260"
+Received: from vbelgaum-ubuntu.fm.intel.com ([10.1.39.141])
+ by orviesa005.jf.intel.com with ESMTP; 27 Feb 2024 15:52:39 -0800
+From: Vinay Belgaumkar <vinay.belgaumkar@intel.com>
+To: intel-gfx@lists.freedesktop.org,
+	dri-devel@lists.freedesktop.org
+Cc: Vinay Belgaumkar <vinay.belgaumkar@intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
+ Sushma Venkatesh Reddy <sushma.venkatesh.reddy@intel.com>
+Subject: [PATCH v2] drm/i915/guc: Use context hints for GT freq
+Date: Tue, 27 Feb 2024 15:51:31 -0800
+Message-Id: <20240227235131.2308656-1-vinay.belgaumkar@intel.com>
+X-Mailer: git-send-email 2.38.1
 MIME-Version: 1.0
-From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Date: Wed, 28 Feb 2024 00:40:41 +0200
-Message-ID: <CAA8EJprfbMs_3PnpebhVg=NVrO5zc23cgx=1f4HAKLnT5b9J6Q@mail.gmail.com>
-Subject: DisplayPort: handling of HPD events / link training
-To: "open list:DRM DRIVER FOR MSM ADRENO GPU"
- <dri-devel@lists.freedesktop.org>, 
- amd-gfx list <amd-gfx@lists.freedesktop.org>, nouveau@lists.freedesktop.org, 
- Intel Graphics Development <intel-gfx@lists.freedesktop.org>, 
- freedreno <freedreno@lists.freedesktop.org>
-Cc: Abhinav Kumar <quic_abhinavk@quicinc.com>,
- Kuogee Hsieh <quic_khsieh@quicinc.com>
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -78,36 +65,317 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hello,
+Allow user to provide a low latency context hint. When set, KMD
+sends a hint to GuC which results in special handling for this
+context. SLPC will ramp the GT frequency aggressively every time
+it switches to this context. The down freq threshold will also be
+lower so GuC will ramp down the GT freq for this context more slowly.
+We also disable waitboost for this context as that will interfere with
+the strategy.
 
-We are currently looking at checking and/or possibly redesigning the
-way the MSM DRM driver handles the HPD events and link training.
+We need to enable the use of SLPC Compute strategy during init, but
+it will apply only to contexts that set this bit during context
+creation.
 
-After a quick glance at the drivers implementing DP support, I noticed
-following main approaches:
-- Perform link training at the atomic_enable time, don't report
-failures (mtk, analogix, zynqmp, tegra, nouveau)
-- Perform link training at the atomic_enable time, report errors using
-link_status property (i915, mhdp8546)
-- Perform link training on the plug event (msm, it8605).
-- Perform link training from the DPMS handler, also calling it from
-the enable callback (AMDGPU, radeon).
+Userland can check whether this feature is supported using a new param-
+I915_PARAM_HAS_CONTEXT_FREQ_HINTS. This flag is true for all guc submission
+enabled platforms as they use SLPC for frequency management.
 
-It looks like the majority wins and we should move HPD to
-atomic_enable time. Is that assumption correct?
+The Mesa usage model for this flag is here -
+https://gitlab.freedesktop.org/sushmave/mesa/-/commits/compute_hint
 
-Also two related questions:
-- Is there a plan to actually make use of the link_status property?
-Intel presented it at FOSDEM 2018, but since that time it was not
-picked up by other drivers.
+v2: Rename flags as per review suggestions (Rodrigo, Tvrtko).
+Also, use flag bits in intel_context as it allows finer control for
+toggling per engine if needed (Tvrtko).
 
-- Is there any plan to create generic DP link training helpers? After
-glancing through the DP drivers there is a lot of similar code in the
-link training functions, with minor differences here and there. And
-it's those minor differences that bug me. It means that drivers might
-respond differently to similar devices. Or that there might be minor
-bugs here and there.
+Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
+Cc: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+Cc: Sushma Venkatesh Reddy <sushma.venkatesh.reddy@intel.com>
+Signed-off-by: Vinay Belgaumkar <vinay.belgaumkar@intel.com>
+---
+ drivers/gpu/drm/i915/gem/i915_gem_context.c   | 15 +++++++++++--
+ .../gpu/drm/i915/gem/i915_gem_context_types.h |  1 +
+ drivers/gpu/drm/i915/gt/intel_context_types.h |  1 +
+ drivers/gpu/drm/i915/gt/intel_rps.c           |  5 +++++
+ .../drm/i915/gt/uc/abi/guc_actions_slpc_abi.h | 21 +++++++++++++++++++
+ drivers/gpu/drm/i915/gt/uc/intel_guc_slpc.c   | 17 +++++++++++++++
+ drivers/gpu/drm/i915/gt/uc/intel_guc_slpc.h   |  1 +
+ .../gpu/drm/i915/gt/uc/intel_guc_submission.c |  6 ++++++
+ drivers/gpu/drm/i915/i915_getparam.c          | 12 +++++++++++
+ include/uapi/drm/i915_drm.h                   | 15 +++++++++++++
+ 10 files changed, 92 insertions(+), 2 deletions(-)
 
+diff --git a/drivers/gpu/drm/i915/gem/i915_gem_context.c b/drivers/gpu/drm/i915/gem/i915_gem_context.c
+index dcbfe32fd30c..0799cb0b2803 100644
+--- a/drivers/gpu/drm/i915/gem/i915_gem_context.c
++++ b/drivers/gpu/drm/i915/gem/i915_gem_context.c
+@@ -879,6 +879,7 @@ static int set_proto_ctx_param(struct drm_i915_file_private *fpriv,
+ 			       struct i915_gem_proto_context *pc,
+ 			       struct drm_i915_gem_context_param *args)
+ {
++	struct drm_i915_private *i915 = fpriv->i915;
+ 	int ret = 0;
+ 
+ 	switch (args->param) {
+@@ -904,6 +905,13 @@ static int set_proto_ctx_param(struct drm_i915_file_private *fpriv,
+ 			pc->user_flags &= ~BIT(UCONTEXT_BANNABLE);
+ 		break;
+ 
++	case I915_CONTEXT_PARAM_LOW_LATENCY:
++		if (intel_uc_uses_guc_submission(&to_gt(i915)->uc))
++			pc->user_flags |= BIT(UCONTEXT_LOW_LATENCY);
++		else
++			ret = -EINVAL;
++		break;
++
+ 	case I915_CONTEXT_PARAM_RECOVERABLE:
+ 		if (args->size)
+ 			ret = -EINVAL;
+@@ -992,6 +1000,9 @@ static int intel_context_set_gem(struct intel_context *ce,
+ 	if (sseu.slice_mask && !WARN_ON(ce->engine->class != RENDER_CLASS))
+ 		ret = intel_context_reconfigure_sseu(ce, sseu);
+ 
++	if (test_bit(UCONTEXT_LOW_LATENCY, &ctx->user_flags))
++		set_bit(CONTEXT_LOW_LATENCY, &ce->flags);
++
+ 	return ret;
+ }
+ 
+@@ -1630,6 +1641,8 @@ i915_gem_create_context(struct drm_i915_private *i915,
+ 	if (vm)
+ 		ctx->vm = vm;
+ 
++	ctx->user_flags = pc->user_flags;
++
+ 	mutex_init(&ctx->engines_mutex);
+ 	if (pc->num_user_engines >= 0) {
+ 		i915_gem_context_set_user_engines(ctx);
+@@ -1652,8 +1665,6 @@ i915_gem_create_context(struct drm_i915_private *i915,
+ 	 * is no remap info, it will be a NOP. */
+ 	ctx->remap_slice = ALL_L3_SLICES(i915);
+ 
+-	ctx->user_flags = pc->user_flags;
+-
+ 	for (i = 0; i < ARRAY_SIZE(ctx->hang_timestamp); i++)
+ 		ctx->hang_timestamp[i] = jiffies - CONTEXT_FAST_HANG_JIFFIES;
+ 
+diff --git a/drivers/gpu/drm/i915/gem/i915_gem_context_types.h b/drivers/gpu/drm/i915/gem/i915_gem_context_types.h
+index 03bc7f9d191b..b6d97da63d1f 100644
+--- a/drivers/gpu/drm/i915/gem/i915_gem_context_types.h
++++ b/drivers/gpu/drm/i915/gem/i915_gem_context_types.h
+@@ -338,6 +338,7 @@ struct i915_gem_context {
+ #define UCONTEXT_BANNABLE		2
+ #define UCONTEXT_RECOVERABLE		3
+ #define UCONTEXT_PERSISTENCE		4
++#define UCONTEXT_LOW_LATENCY		5
+ 
+ 	/**
+ 	 * @flags: small set of booleans
+diff --git a/drivers/gpu/drm/i915/gt/intel_context_types.h b/drivers/gpu/drm/i915/gt/intel_context_types.h
+index 7eccbd70d89f..ed95a7b57cbb 100644
+--- a/drivers/gpu/drm/i915/gt/intel_context_types.h
++++ b/drivers/gpu/drm/i915/gt/intel_context_types.h
+@@ -130,6 +130,7 @@ struct intel_context {
+ #define CONTEXT_PERMA_PIN		11
+ #define CONTEXT_IS_PARKING		12
+ #define CONTEXT_EXITING			13
++#define CONTEXT_LOW_LATENCY		14
+ 
+ 	struct {
+ 		u64 timeout_us;
+diff --git a/drivers/gpu/drm/i915/gt/intel_rps.c b/drivers/gpu/drm/i915/gt/intel_rps.c
+index 4feef874e6d6..3accfd8db287 100644
+--- a/drivers/gpu/drm/i915/gt/intel_rps.c
++++ b/drivers/gpu/drm/i915/gt/intel_rps.c
+@@ -24,6 +24,7 @@
+ #include "intel_pcode.h"
+ #include "intel_rps.h"
+ #include "vlv_sideband.h"
++#include "../gem/i915_gem_context.h"
+ #include "../../../platform/x86/intel_ips.h"
+ 
+ #define BUSY_MAX_EI	20u /* ms */
+@@ -1013,6 +1014,10 @@ void intel_rps_boost(struct i915_request *rq)
+ 	if (i915_request_signaled(rq) || i915_request_has_waitboost(rq))
+ 		return;
+ 
++	/* Waitboost is not needed for contexts marked with a Freq hint */
++	if (test_bit(CONTEXT_LOW_LATENCY, &rq->context->flags))
++		return;
++
+ 	/* Serializes with i915_request_retire() */
+ 	if (!test_and_set_bit(I915_FENCE_FLAG_BOOST, &rq->fence.flags)) {
+ 		struct intel_rps *rps = &READ_ONCE(rq->engine)->gt->rps;
+diff --git a/drivers/gpu/drm/i915/gt/uc/abi/guc_actions_slpc_abi.h b/drivers/gpu/drm/i915/gt/uc/abi/guc_actions_slpc_abi.h
+index 811add10c30d..c34674e797c6 100644
+--- a/drivers/gpu/drm/i915/gt/uc/abi/guc_actions_slpc_abi.h
++++ b/drivers/gpu/drm/i915/gt/uc/abi/guc_actions_slpc_abi.h
+@@ -207,6 +207,27 @@ struct slpc_shared_data {
+ 	u8 reserved_mode_definition[4096];
+ } __packed;
+ 
++struct slpc_context_frequency_request {
++	u32 frequency_request:16;
++	u32 reserved:12;
++	u32 is_compute:1;
++	u32 ignore_busyness:1;
++	u32 is_minimum:1;
++	u32 is_predefined:1;
++} __packed;
++
++#define SLPC_CTX_FREQ_REQ_IS_COMPUTE		REG_BIT(28)
++
++struct slpc_optimized_strategies {
++	u32 compute:1;
++	u32 async_flip:1;
++	u32 media:1;
++	u32 vsync_flip:1;
++	u32 reserved:28;
++} __packed;
++
++#define SLPC_OPTIMIZED_STRATEGY_COMPUTE		REG_BIT(0)
++
+ /**
+  * DOC: SLPC H2G MESSAGE FORMAT
+  *
+diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_slpc.c b/drivers/gpu/drm/i915/gt/uc/intel_guc_slpc.c
+index 3e681ab6fbf9..706fffca698b 100644
+--- a/drivers/gpu/drm/i915/gt/uc/intel_guc_slpc.c
++++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_slpc.c
+@@ -537,6 +537,20 @@ int intel_guc_slpc_get_min_freq(struct intel_guc_slpc *slpc, u32 *val)
+ 	return ret;
+ }
+ 
++int intel_guc_slpc_set_strategy(struct intel_guc_slpc *slpc, u32 val)
++{
++	struct drm_i915_private *i915 = slpc_to_i915(slpc);
++	intel_wakeref_t wakeref;
++	int ret = 0;
++
++	with_intel_runtime_pm(&i915->runtime_pm, wakeref)
++		ret = slpc_set_param(slpc,
++				     SLPC_PARAM_STRATEGIES,
++				     val);
++
++	return ret;
++}
++
+ int intel_guc_slpc_set_media_ratio_mode(struct intel_guc_slpc *slpc, u32 val)
+ {
+ 	struct drm_i915_private *i915 = slpc_to_i915(slpc);
+@@ -711,6 +725,9 @@ int intel_guc_slpc_enable(struct intel_guc_slpc *slpc)
+ 	/* Set cached media freq ratio mode */
+ 	intel_guc_slpc_set_media_ratio_mode(slpc, slpc->media_ratio_mode);
+ 
++	/* Enable SLPC Optimized Strategy for compute */
++	intel_guc_slpc_set_strategy(slpc, SLPC_OPTIMIZED_STRATEGY_COMPUTE);
++
+ 	return 0;
+ }
+ 
+diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_slpc.h b/drivers/gpu/drm/i915/gt/uc/intel_guc_slpc.h
+index 6ac6503c39d4..1cb5fd44f05c 100644
+--- a/drivers/gpu/drm/i915/gt/uc/intel_guc_slpc.h
++++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_slpc.h
+@@ -45,5 +45,6 @@ void intel_guc_pm_intrmsk_enable(struct intel_gt *gt);
+ void intel_guc_slpc_boost(struct intel_guc_slpc *slpc);
+ void intel_guc_slpc_dec_waiters(struct intel_guc_slpc *slpc);
+ int intel_guc_slpc_set_ignore_eff_freq(struct intel_guc_slpc *slpc, bool val);
++int intel_guc_slpc_set_strategy(struct intel_guc_slpc *slpc, u32 val);
+ 
+ #endif
+diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c b/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
+index f3dcae4b9d45..d6ea4898ac39 100644
+--- a/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
++++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
+@@ -2645,6 +2645,7 @@ MAKE_CONTEXT_POLICY_ADD(execution_quantum, EXECUTION_QUANTUM)
+ MAKE_CONTEXT_POLICY_ADD(preemption_timeout, PREEMPTION_TIMEOUT)
+ MAKE_CONTEXT_POLICY_ADD(priority, SCHEDULING_PRIORITY)
+ MAKE_CONTEXT_POLICY_ADD(preempt_to_idle, PREEMPT_TO_IDLE_ON_QUANTUM_EXPIRY)
++MAKE_CONTEXT_POLICY_ADD(slpc_ctx_freq_req, SLPM_GT_FREQUENCY)
+ 
+ #undef MAKE_CONTEXT_POLICY_ADD
+ 
+@@ -2664,6 +2665,7 @@ static int guc_context_policy_init_v70(struct intel_context *ce, bool loop)
+ 	struct context_policy policy;
+ 	u32 execution_quantum;
+ 	u32 preemption_timeout;
++	u32 slpc_ctx_freq_req = 0;
+ 	unsigned long flags;
+ 	int ret;
+ 
+@@ -2675,11 +2677,15 @@ static int guc_context_policy_init_v70(struct intel_context *ce, bool loop)
+ 	execution_quantum = engine->props.timeslice_duration_ms * 1000;
+ 	preemption_timeout = engine->props.preempt_timeout_ms * 1000;
+ 
++	if (ce && (ce->flags & BIT(CONTEXT_LOW_LATENCY)))
++		slpc_ctx_freq_req |= SLPC_CTX_FREQ_REQ_IS_COMPUTE;
++
+ 	__guc_context_policy_start_klv(&policy, ce->guc_id.id);
+ 
+ 	__guc_context_policy_add_priority(&policy, ce->guc_state.prio);
+ 	__guc_context_policy_add_execution_quantum(&policy, execution_quantum);
+ 	__guc_context_policy_add_preemption_timeout(&policy, preemption_timeout);
++	__guc_context_policy_add_slpc_ctx_freq_req(&policy, slpc_ctx_freq_req);
+ 
+ 	if (engine->flags & I915_ENGINE_WANT_FORCED_PREEMPTION)
+ 		__guc_context_policy_add_preempt_to_idle(&policy, 1);
+diff --git a/drivers/gpu/drm/i915/i915_getparam.c b/drivers/gpu/drm/i915/i915_getparam.c
+index 5c3fec63cb4c..4fc182fdb2e8 100644
+--- a/drivers/gpu/drm/i915/i915_getparam.c
++++ b/drivers/gpu/drm/i915/i915_getparam.c
+@@ -155,6 +155,18 @@ int i915_getparam_ioctl(struct drm_device *dev, void *data,
+ 		 */
+ 		value = 1;
+ 		break;
++	case I915_PARAM_HAS_CONTEXT_FREQ_HINT:
++		/*
++		 * This feature has been available in GuC for a while but
++		 * a use case now required the use of this feature. We
++		 * return true now since this is now being supported from
++		 * the kernel side as well.
++		 */
++		if (intel_uc_uses_guc_submission(&to_gt(i915)->uc))
++			value = 1;
++		else
++			value = -EINVAL;
++		break;
+ 	case I915_PARAM_HAS_CONTEXT_ISOLATION:
+ 		value = intel_engines_has_context_isolation(i915);
+ 		break;
+diff --git a/include/uapi/drm/i915_drm.h b/include/uapi/drm/i915_drm.h
+index 2ee338860b7e..4f69f4e117ac 100644
+--- a/include/uapi/drm/i915_drm.h
++++ b/include/uapi/drm/i915_drm.h
+@@ -806,6 +806,12 @@ typedef struct drm_i915_irq_wait {
+  */
+ #define I915_PARAM_PXP_STATUS		 58
+ 
++/*
++ * Query if kernel allows marking a context to send a Freq hint to SLPC. This
++ * will enable use of the strategies allowed by the SLPC algorithm.
++ */
++#define I915_PARAM_HAS_CONTEXT_FREQ_HINT	59
++
+ /* Must be kept compact -- no holes and well documented */
+ 
+ /**
+@@ -2148,6 +2154,15 @@ struct drm_i915_gem_context_param {
+  * -EIO: The firmware did not succeed in creating the protected context.
+  */
+ #define I915_CONTEXT_PARAM_PROTECTED_CONTENT    0xd
++
++/*
++ * I915_CONTEXT_PARAM_IS_COMPUTE:
++ *
++ * Mark this context as a Compute related workload which requires aggressive GT
++ * frequency scaling. Query I915_PARAM_HAS_CONTEXT_COMPUTE to check if the kernel
++ * supports this functionality.
++ */
++#define I915_CONTEXT_PARAM_LOW_LATENCY		0xe
+ /* Must be kept compact -- no holes and well documented */
+ 
+ 	/** @value: Context parameter value to be set or queried */
 -- 
-With best wishes
-Dmitry
+2.38.1
+
