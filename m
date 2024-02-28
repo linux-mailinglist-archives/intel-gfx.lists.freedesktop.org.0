@@ -2,64 +2,70 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id D498386B039
-	for <lists+intel-gfx@lfdr.de>; Wed, 28 Feb 2024 14:24:43 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 70AAF86B129
+	for <lists+intel-gfx@lfdr.de>; Wed, 28 Feb 2024 15:02:38 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7E4C710E347;
-	Wed, 28 Feb 2024 13:24:39 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C419210E0D5;
+	Wed, 28 Feb 2024 14:02:34 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="AnhHcWpE";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="lR+uwlQv";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5832010E347;
- Wed, 28 Feb 2024 13:24:37 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1709126677; x=1740662677;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=5ZjZziv5CVbUZkII9bTipMOjq3kA/gt03wX5KRihxUA=;
- b=AnhHcWpEmWvPVZlUBnhY9cs3n0KLJrX3KNQeqjW4pMYBhgxD/AHIN5Li
- q0dNqi/OqKxFOMVOX3b3XRsv+vsfYAbJozjCy06AfkOOTv1e6fKnfIYas
- B9dqrbIxSskNI/Mia8c+mMYPVKYlfQdFDvzkFkEwThoTGdda5TfE2ZKwQ
- 2SSws8uXUtIOpa5If0cqlXo7xN8kPGvij3ooI4bcMvl/2AFR5D/mGF83G
- quzJnAhz/Xed/FWAnDENrUpuvKBNkq1ApsCK59xoWk7WYTmyOCnLtMyHI
- rEnqQKuyRI+04C6Us7cX5nEjGbYG8IQ3TOLZoDPFfSYLF3i2YtFbwahW1 A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10996"; a="20974684"
-X-IronPort-AV: E=Sophos;i="6.06,190,1705392000"; d="scan'208";a="20974684"
-Received: from orviesa007.jf.intel.com ([10.64.159.147])
- by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Feb 2024 05:24:36 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.06,190,1705392000"; 
-   d="scan'208";a="7813025"
-Received: from mcox1-mobl1.ger.corp.intel.com (HELO [10.213.233.55])
- ([10.213.233.55])
- by orviesa007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Feb 2024 05:24:34 -0800
-Message-ID: <ab30e804-fb48-4283-b427-36278b406fb8@linux.intel.com>
-Date: Wed, 28 Feb 2024 13:24:32 +0000
+Received: from mail-lj1-f169.google.com (mail-lj1-f169.google.com
+ [209.85.208.169])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 31C9710E089;
+ Wed, 28 Feb 2024 14:02:33 +0000 (UTC)
+Received: by mail-lj1-f169.google.com with SMTP id
+ 38308e7fff4ca-2d29111272eso38033801fa.0; 
+ Wed, 28 Feb 2024 06:02:33 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20230601; t=1709128951; x=1709733751; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+ :to:from:from:to:cc:subject:date:message-id:reply-to;
+ bh=e/5nSoZsZOKBRm2GhJMpGRVuXAj2KUREZMtbjwA3Vz8=;
+ b=lR+uwlQv1RLyVMqdwhtBBXOFHJ5pQ89qtaQ4sTrj0piu9zkswypUqrLr0U/yr+Q6vz
+ XTxjFSJoUbuSQGlP4Hb3Q2BD0A/2YD95WbUHqspQJbxAhcSkT7yUwaUXER+Eu0WsN118
+ iu8ev5oaYb2zAxoFDXWkp3SMe3jpQ2VUhvlc7sWS+DmZ6ujKlYHWd1CQjrd7ZV4ERzlv
+ MD92uPyALDu4tYk2WPD/Q379Xm8h9mkrzCwsMzBH1zAuvVLYgOZYMc4gWiSkY8+G3WC2
+ x7rn/AYXX6T5js0+SE9SSof401yNfXopTIhfnZ1YiM4RgmbFThFLwMAkj7Vdf8gC4jtX
+ EROQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1709128951; x=1709733751;
+ h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+ :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+ :reply-to;
+ bh=e/5nSoZsZOKBRm2GhJMpGRVuXAj2KUREZMtbjwA3Vz8=;
+ b=c59XMfZkmDBNHb3Ve9o298f7pnyshXDgkkp1u8WN9Ie5F1eoRkdiE+2mLDACMkWZkh
+ u+Q/NsN5LRA9KQHplXzc16Zht2krGHG4JDV6crVPd76wM8Q3CHnJ8PWBB7GcgM7fJgbG
+ t8d5aR3VQrYoRw0WGyqybFlbJ5A7jBMGNZlBTX24WzcSEoyqC2D6pCV2Vv4WJdPnig6q
+ aTClOnzrMoO5Paqv2TdF/fZelH0AGcLogvb+PNmJJIOcxSO065Vxd8dYiiRE9MZh0FA9
+ xG3ZsV51BuefYeX6tgl3ONIwg/rJQe124LIvuKof6DVXjSQEQigk2XvvdIu8AAtWKwN2
+ 0tWw==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCVIe7nuPkuVxbhK5i2wVGWHBUotUcRE21ziwFiUq8VSwjeSKjLpwPibiEuSqijYmuPyLCJwoKQ/E8NLyeZKKkktoQYEjLR+9z79ipMu0tlD
+X-Gm-Message-State: AOJu0YzUGEfIIlRhBAx7eEW4RH9HLJulaM8EPtCq65Wusb21Kxp/NaUc
+ rVMkflkJ/T4bzVZ6hQSm1IVGLQd2SkaM2upadojLfBf0+M3K9SQeSb6rl0pJfEMT24Lx
+X-Google-Smtp-Source: AGHT+IHipPwBHKR/hX7IUF9eA3of6r9bs7sX6lx544iQXSRy2OQt6pigyhBpm1/U3wGpcOOHC1j5/g==
+X-Received: by 2002:a2e:868e:0:b0:2d2:79c8:838e with SMTP id
+ l14-20020a2e868e000000b002d279c8838emr7943319lji.40.1709128950403; 
+ Wed, 28 Feb 2024 06:02:30 -0800 (PST)
+Received: from jheikkil-mobl1.. ([2001:998:22:0:762f:916d:d5b8:97cd])
+ by smtp.gmail.com with ESMTPSA id
+ x8-20020a2e7c08000000b002d0a7ba3215sm1646737ljc.85.2024.02.28.06.02.29
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Wed, 28 Feb 2024 06:02:29 -0800 (PST)
+From: Juha-Pekka Heikkila <juhapekka.heikkila@gmail.com>
+To: intel-xe@lists.freedesktop.org,
+	intel-gfx@lists.freedesktop.org
+Cc: Juha-Pekka Heikkila <juhapekka.heikkila@gmail.com>,
+ "Souza, Jose" <jose.souza@intel.com>,
+ Jani Nikula <jani.nikula@linux.intel.com>
+Subject: [PATCH] drm/i915/display: Disable AuxCCS framebuffers if built for Xe
+Date: Wed, 28 Feb 2024 16:02:25 +0200
+Message-Id: <20240228140225.858145-1-juhapekka.heikkila@gmail.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] drm/i915: check before removing mm notifier
-Content-Language: en-US
-To: Nirmoy Das <nirmoy.das@linux.intel.com>, Nirmoy Das
- <nirmoy.das@intel.com>, intel-gfx@lists.freedesktop.org,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Jani Nikula <jani.nikula@linux.intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
-Cc: dri-devel@lists.freedesktop.org, Andi Shyti <andi.shyti@linux.intel.com>, 
- Shawn Lee <shawn.c.lee@intel.com>
-References: <20240219125047.28906-1-nirmoy.das@intel.com>
- <3c1a25f9-b1ee-4832-a89c-68813cc72416@linux.intel.com>
- <96eec421-090a-4420-ab94-098414334e29@linux.intel.com>
- <5f37d10a-d27f-4365-9411-7d5692633df6@linux.intel.com>
-From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-Organization: Intel Corporation UK Plc
-In-Reply-To: <5f37d10a-d27f-4365-9411-7d5692633df6@linux.intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -76,67 +82,31 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+AuxCCS framebuffers don't work on Xe driver hence disable them
+from plane capabilities until they are fixed. FlatCCS framebuffers
+work and they are left enabled. CCS is left untouched for i915
+driver.
 
-On 27/02/2024 09:26, Nirmoy Das wrote:
-> Hi Tvrtko,
-> 
-> On 2/27/2024 10:04 AM, Tvrtko Ursulin wrote:
->>
->> On 21/02/2024 11:52, Nirmoy Das wrote:
->>> Merged it to drm-intel-gt-next with s/check/Check
->>
->> Shouldn't this have had:
->>
->> Fixes: ed29c2691188 ("drm/i915: Fix userptr so we do not have to worry 
->> about obj->mm.lock, v7.")
->> Cc: <stable@vger.kernel.org> # v5.13+
->>
->> ?
->>
-> Yes. Sorry, I missed that. Can we still the tag ?
+Closes: https://gitlab.freedesktop.org/drm/xe/kernel/-/issues/933
+Signed-off-by: Juha-Pekka Heikkila <juhapekka.heikkila@gmail.com>
+---
+ drivers/gpu/drm/i915/display/skl_universal_plane.c | 3 +++
+ 1 file changed, 3 insertions(+)
 
-I've added them and force pushed the branch since commit was still at 
-the top.
+diff --git a/drivers/gpu/drm/i915/display/skl_universal_plane.c b/drivers/gpu/drm/i915/display/skl_universal_plane.c
+index e941e2e4fd14..860574d04f88 100644
+--- a/drivers/gpu/drm/i915/display/skl_universal_plane.c
++++ b/drivers/gpu/drm/i915/display/skl_universal_plane.c
+@@ -2295,6 +2295,9 @@ static u8 skl_get_plane_caps(struct drm_i915_private *i915,
+ 	if (HAS_4TILE(i915))
+ 		caps |= INTEL_PLANE_CAP_TILING_4;
+ 
++	if (!IS_ENABLED(I915) && !HAS_FLAT_CCS(i915))
++		return caps;
++
+ 	if (skl_plane_has_rc_ccs(i915, pipe, plane_id)) {
+ 		caps |= INTEL_PLANE_CAP_CCS_RC;
+ 		if (DISPLAY_VER(i915) >= 12)
+-- 
+2.25.1
 
-FYI + Jani, Joonas and Rodrigo
-
-Regards,
-
-Tvrtko
-
-> 
-> 
-> Thanks,
-> 
-> Nirmoy
-> 
->> Regards,
->>
->> Tvrtko
->>
->>> On 2/19/2024 1:50 PM, Nirmoy Das wrote:
->>>> Error in mmu_interval_notifier_insert() can leave a NULL
->>>> notifier.mm pointer. Catch that and return early.
->>>>
->>>> Cc: Andi Shyti <andi.shyti@linux.intel.com>
->>>> Cc: Shawn Lee <shawn.c.lee@intel.com>
->>>> Signed-off-by: Nirmoy Das <nirmoy.das@intel.com>
->>>> ---
->>>>   drivers/gpu/drm/i915/gem/i915_gem_userptr.c | 3 +++
->>>>   1 file changed, 3 insertions(+)
->>>>
->>>> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_userptr.c 
->>>> b/drivers/gpu/drm/i915/gem/i915_gem_userptr.c
->>>> index 0e21ce9d3e5a..61abfb505766 100644
->>>> --- a/drivers/gpu/drm/i915/gem/i915_gem_userptr.c
->>>> +++ b/drivers/gpu/drm/i915/gem/i915_gem_userptr.c
->>>> @@ -349,6 +349,9 @@ i915_gem_userptr_release(struct 
->>>> drm_i915_gem_object *obj)
->>>>   {
->>>>       GEM_WARN_ON(obj->userptr.page_ref);
->>>> +    if (!obj->userptr.notifier.mm)
->>>> +        return;
->>>> +
->>>> mmu_interval_notifier_remove(&obj->userptr.notifier);
->>>>       obj->userptr.notifier.mm = NULL;
->>>>   }
