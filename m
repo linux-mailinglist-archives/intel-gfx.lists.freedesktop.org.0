@@ -2,62 +2,63 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 97F8986B8F1
-	for <lists+intel-gfx@lfdr.de>; Wed, 28 Feb 2024 21:19:21 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4173186B8FE
+	for <lists+intel-gfx@lfdr.de>; Wed, 28 Feb 2024 21:21:30 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1D9DD10E2D8;
-	Wed, 28 Feb 2024 20:19:20 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B734F10E392;
+	Wed, 28 Feb 2024 20:21:28 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=chromium.org header.i=@chromium.org header.b="nVqVLcIa";
+	dkim=pass (1024-bit key; unprotected) header.d=chromium.org header.i=@chromium.org header.b="NAbmBHki";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-ej1-f41.google.com (mail-ej1-f41.google.com
- [209.85.218.41])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1149810E2D8
- for <intel-gfx@lists.freedesktop.org>; Wed, 28 Feb 2024 20:19:18 +0000 (UTC)
-Received: by mail-ej1-f41.google.com with SMTP id
- a640c23a62f3a-a43f922b2c5so26502066b.3
- for <intel-gfx@lists.freedesktop.org>; Wed, 28 Feb 2024 12:19:18 -0800 (PST)
+Received: from mail-ej1-f54.google.com (mail-ej1-f54.google.com
+ [209.85.218.54])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C4AB910E33A
+ for <intel-gfx@lists.freedesktop.org>; Wed, 28 Feb 2024 20:21:27 +0000 (UTC)
+Received: by mail-ej1-f54.google.com with SMTP id
+ a640c23a62f3a-a43488745bcso29921866b.3
+ for <intel-gfx@lists.freedesktop.org>; Wed, 28 Feb 2024 12:21:27 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=chromium.org; s=google; t=1709151557; x=1709756357;
+ d=chromium.org; s=google; t=1709151685; x=1709756485;
  darn=lists.freedesktop.org; 
  h=content-transfer-encoding:cc:to:subject:message-id:date:from
  :in-reply-to:references:mime-version:from:to:cc:subject:date
  :message-id:reply-to;
- bh=h0UXBjOyk9UzmKqAw8hMiXClRHfSJceceCaN2eLSNb4=;
- b=nVqVLcIayk80hbw+3XNFi8nWywMVsBc9LV2/2qk3tc1FQAWWqXRxqsx82aELHtHm7y
- AJA6OoaC1iMp6fzMShRWxiBd0PbYQVFzBEu8KJXLzzJ9YyBx3Uv+JdrJDieVo5kJswD4
- dx1MCZaTsRiVEIYsPwF6MHdG101P8riIq7x1A=
+ bh=ScN1lQQdRwhiZNzPTJkQRSfc3Y0cZ5MVrNKcLJL07Jo=;
+ b=NAbmBHkiaxsFayRb8HJF9C7xl9igqulEYi2Pl5B9/oPHQAegBtaWIYuAF4gfegdiAY
+ 2VSUuKAx9BVwX2IJP3kOtp42o5HanrKSn+bxqDa4LqUqPF7AaNroDaB3+sLOoarWD7GU
+ 4q/534m626OMOWl//buYNp06KZkDRjgNnPiU0=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1709151557; x=1709756357;
+ d=1e100.net; s=20230601; t=1709151685; x=1709756485;
  h=content-transfer-encoding:cc:to:subject:message-id:date:from
  :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
  :subject:date:message-id:reply-to;
- bh=h0UXBjOyk9UzmKqAw8hMiXClRHfSJceceCaN2eLSNb4=;
- b=Fg8QeW4ABjTN0onYcnCDV4lM6n66+lJmDfZyXmRzmBQRiNttD2a/FNn3FowDBNSJOu
- B/Dm+zJW0Aotno/IQa4S3nl7VoA4M36Y2mRUEkyJaUjEGSPKzCuIYShi/vt2t6OrjUuG
- pZfP0x+v0lrnxuFWs20p954FMU56sRzQMMkf/cSuptqBN89ZknDUU+OIVB8UAD0FtG18
- h6tOn3cyk+yJJn1xfcutsFZgKv2MA3FeoeHd9jjtuC4/Yhlr397EB73vFmLXqCG+fNyn
- Zd8xUVJTbpBByPfERV3uQBh6+wa0j0MukyNIA4CS8iUrIZQpzES2IQ3erBJTDiLzrzMO
- w3qQ==
-X-Gm-Message-State: AOJu0YwQu6zjrcUvqczshF12f8PZavuqxgkZcPcL/N10KasxF+wNfAJP
- svN8n1o7EiSwbLz89UWO1dDgEqqr4Fbg/rsaYiVyabahgD2Pg6F0KtsEKAMl4jXP1jp4WX40Mjh
- lmiTvBIDESiQ236WtHoeyhC5kd+ndrGF8XslrZHWVAweenpk=
-X-Google-Smtp-Source: AGHT+IHy8u9wTxMYTqCBVE2CTkUknxYDIKwoeT5HkjL+H7VQ6yZAj+OfotOEym8a2eCeT/5kIFTw4gBjK7LseTQv6Qo=
-X-Received: by 2002:a17:906:48b:b0:a40:46f1:7263 with SMTP id
- f11-20020a170906048b00b00a4046f17263mr33188eja.22.1709151557160; Wed, 28 Feb
- 2024 12:19:17 -0800 (PST)
+ bh=ScN1lQQdRwhiZNzPTJkQRSfc3Y0cZ5MVrNKcLJL07Jo=;
+ b=asLrK6erUZrQL3IuTxajYXIflTiYQ2SNHOvWOxQB9lmd68bYQLuvqhMz+l/01Aoaxm
+ YMrOwz0tAXNF7PfPAdYJ5EQf1OVRFcdvWv0paWI7b/gGFiMElJvopd6BuDp0YmBNHWZk
+ H1bYA0VH1xZS82Beu+VqcYp8TRE/4AlajgeAmx2FgBlxVTL+cNQBQvcuilUhDv4I/dLq
+ EeRiL8jxGrm64UUqkJz6TtL1A5dFwK2V2UI/orhOuH9iwOKQuzFWiysBmXaP3RzK3CcN
+ pKH/WGzniIRBIQkiwAcOT2aoeOFuXqf34nApO9oDiUEm4jsWz/MZfJBcsfRUmc01cyqV
+ ePzA==
+X-Gm-Message-State: AOJu0Yx1LFJAPi2aPCM5Ukm9Gg8gy9tsB+AcAM6IBJbW2ADhwmLRfloY
+ 8LvnIPkoE98QKP0ndNLRgzcMBSSvEPoJDN9agUQ3pRzyQNgwnIl0WWC0mXWyZdXsd1qHDHT0U0y
+ n1IvixtaaBRaQHunV3vnPyR71PMtInsbDkaed0iW6FwvmKPc=
+X-Google-Smtp-Source: AGHT+IGB8UpabYnnZJ3/riMfhYXWMImL7vqHb350uiGKUdFlN0lEvuaOV/iC52xQVUQUaM6l4xQEAX9w40waGvn9LRc=
+X-Received: by 2002:a17:906:c456:b0:a43:c3b1:9ed5 with SMTP id
+ ck22-20020a170906c45600b00a43c3b19ed5mr23939ejb.71.1709151685413; Wed, 28 Feb
+ 2024 12:21:25 -0800 (PST)
 MIME-Version: 1.0
-References: <20240228150436.6957-1-vidya.srinivas@intel.com>
- <20240228150436.6957-2-vidya.srinivas@intel.com>
-In-Reply-To: <20240228150436.6957-2-vidya.srinivas@intel.com>
+References: <20240226235302.41510-1-navaremanasi@chromium.org>
+In-Reply-To: <20240226235302.41510-1-navaremanasi@chromium.org>
 From: Manasi Navare <navaremanasi@chromium.org>
-Date: Wed, 28 Feb 2024 12:19:06 -0800
-Message-ID: <CAE72mNm=CHSzezK4yvh2bLkHY=WAFLSwwD66SG2QUBD2=-G2bg@mail.gmail.com>
-Subject: Re: [PATCH 1/1] drm/i915: Allow bigjoiner for MST
-To: Vidya Srinivas <vidya.srinivas@intel.com>
-Cc: intel-gfx@lists.freedesktop.org, khaled.almahallawy@intel.com
+Date: Wed, 28 Feb 2024 12:21:14 -0800
+Message-ID: <CAE72mN=AcCCW5wd_BUZmUQp0CTCvw6T8jFpfssfi03y+ioBwZQ@mail.gmail.com>
+Subject: Re: [PATCH] drm/i915: Allow for Vsync_start and Vsync_end to change
+ in LRR
+To: intel-gfx@lists.freedesktop.org
+Cc: =?UTF-8?B?VmlsbGUgU3lyasOkbMOk?= <ville.syrjala@linux.intel.com>, 
+ Sean Paul <seanpaul@chromium.org>
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 X-BeenThere: intel-gfx@lists.freedesktop.org
@@ -75,101 +76,71 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-With v2, this looks good to me,
+Hi Ville,
 
-Acked-by: Manasi Navare <navaremanasi@chromium.org)
+Could you take a peek at this patch, as per our offline discussions,
+Even if VRR does not look at the Vsync start and Vsync end, we need to
+write to those registers to keep the state checker happy.
 
 Regards
 Manasi
 
-On Wed, Feb 28, 2024 at 7:22=E2=80=AFAM Vidya Srinivas <vidya.srinivas@inte=
-l.com> wrote:
+On Mon, Feb 26, 2024 at 3:53=E2=80=AFPM Manasi Navare <navaremanasi@chromiu=
+m.org> wrote:
 >
-> We need bigjoiner support with MST functionality
-> for MST monitor resolutions > 5K to work.
-> Adding support for the same.
+> Since LRR mode requires panel to support VRR, any of the LRR mode
+> is achieved by stretching vertical front porch which also pushes
+> out Vsync_start and Vsync_end timings of the mode.
+> This allows for VSS and VSE timings to be different in case of LRR
+> to ensure semaless modeset/fastset to LRR mode.
 >
-> v2: Addressed review comments from Jani.
-> Revert rejection of MST bigjoiner modes and add
-> functionality
+> In case of VRR capable panel, it technically ignores the VSYNC because
+> we set Ignore_MSA bit for sink but reprogram the TRANS_VSYNC to keep
+> the state checker happy in case of LRR.
 >
-> Signed-off-by: Vidya Srinivas <vidya.srinivas@intel.com>
+> Cc: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
+> Cc: Sean Paul <seanpaul@chromium.org>
+> Signed-off-by: Manasi Navare <navaremanasi@chromium.org>
 > ---
->  drivers/gpu/drm/i915/display/intel_dp_mst.c | 17 +++++++++--------
->  1 file changed, 9 insertions(+), 8 deletions(-)
+>  drivers/gpu/drm/i915/display/intel_display.c | 11 +++++++++--
+>  1 file changed, 9 insertions(+), 2 deletions(-)
 >
-> diff --git a/drivers/gpu/drm/i915/display/intel_dp_mst.c b/drivers/gpu/dr=
-m/i915/display/intel_dp_mst.c
-> index db1254b036f1..c5e7293c13eb 100644
-> --- a/drivers/gpu/drm/i915/display/intel_dp_mst.c
-> +++ b/drivers/gpu/drm/i915/display/intel_dp_mst.c
-> @@ -525,6 +525,7 @@ static int intel_dp_mst_compute_config(struct intel_e=
-ncoder *encoder,
->  {
->         struct drm_i915_private *dev_priv =3D to_i915(encoder->base.dev);
->         struct intel_atomic_state *state =3D to_intel_atomic_state(conn_s=
-tate->state);
-> +       struct intel_crtc *crtc =3D to_intel_crtc(pipe_config->uapi.crtc)=
-;
->         struct intel_dp_mst_encoder *intel_mst =3D enc_to_mst(encoder);
->         struct intel_dp *intel_dp =3D &intel_mst->primary->dp;
->         const struct intel_connector *connector =3D
-> @@ -542,6 +543,10 @@ static int intel_dp_mst_compute_config(struct intel_=
-encoder *encoder,
->         if (adjusted_mode->flags & DRM_MODE_FLAG_DBLSCAN)
->                 return -EINVAL;
->
-> +       if (intel_dp_need_bigjoiner(intel_dp, adjusted_mode->crtc_hdispla=
-y,
-> +                                   adjusted_mode->crtc_clock))
-> +               pipe_config->bigjoiner_pipes =3D GENMASK(crtc->pipe + 1, =
-crtc->pipe);
-> +
->         pipe_config->sink_format =3D INTEL_OUTPUT_FORMAT_RGB;
->         pipe_config->output_format =3D INTEL_OUTPUT_FORMAT_RGB;
->         pipe_config->has_pch_encoder =3D false;
-> @@ -1330,12 +1335,6 @@ intel_dp_mst_mode_valid_ctx(struct drm_connector *=
-connector,
->          *   corresponding link capabilities of the sink) in case the
->          *   stream is uncompressed for it by the last branch device.
->          */
-> -       if (mode_rate > max_rate || mode->clock > max_dotclk ||
-> -           drm_dp_calc_pbn_mode(mode->clock, min_bpp << 4) > port->full_=
-pbn) {
-> -               *status =3D MODE_CLOCK_HIGH;
-> -               return 0;
-> -       }
-> -
->         if (mode->clock < 10000) {
->                 *status =3D MODE_CLOCK_LOW;
->                 return 0;
-> @@ -1349,8 +1348,10 @@ intel_dp_mst_mode_valid_ctx(struct drm_connector *=
-connector,
->         if (intel_dp_need_bigjoiner(intel_dp, mode->hdisplay, target_cloc=
-k)) {
->                 bigjoiner =3D true;
->                 max_dotclk *=3D 2;
-> +       }
->
-> -               /* TODO: add support for bigjoiner */
-> +       if (mode_rate > max_rate || mode->clock > max_dotclk ||
-> +           drm_dp_calc_pbn_mode(mode->clock, min_bpp << 4) > port->full_=
-pbn) {
->                 *status =3D MODE_CLOCK_HIGH;
->                 return 0;
->         }
-> @@ -1397,7 +1398,7 @@ intel_dp_mst_mode_valid_ctx(struct drm_connector *c=
-onnector,
->                 return 0;
->         }
->
-> -       *status =3D intel_mode_valid_max_plane_size(dev_priv, mode, false=
-);
-> +       *status =3D intel_mode_valid_max_plane_size(dev_priv, mode, bigjo=
-iner);
->         return 0;
->  }
+> diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/d=
+rm/i915/display/intel_display.c
+> index 00ac65a14029..cd55e8840769 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display.c
+> +++ b/drivers/gpu/drm/i915/display/intel_display.c
+> @@ -2685,6 +2685,13 @@ static void intel_set_transcoder_timings_lrr(const=
+ struct intel_crtc_state *crtc
+>         intel_de_write(dev_priv, TRANS_VBLANK(cpu_transcoder),
+>                        VBLANK_START(crtc_vblank_start - 1) |
+>                        VBLANK_END(crtc_vblank_end - 1));
+> +       /*
+> +        * HW ignores TRANS_VSYNC in VRR on DP because we set Ignore MSA =
+bit.
+> +        * But let's write this to keepthe state checker happy.
+> +        */
+> +       intel_de_write(dev_priv, TRANS_VSYNC(cpu_transcoder),
+> +                      VSYNC_START(adjusted_mode->crtc_vsync_start - 1) |
+> +                      VSYNC_END(adjusted_mode->crtc_vsync_end - 1));
+>         /*
+>          * The double buffer latch point for TRANS_VTOTAL
+>          * is the transcoder's undelayed vblank.
+> @@ -5043,11 +5050,11 @@ intel_pipe_config_compare(const struct intel_crtc=
+_state *current_config,
+>         PIPE_CONF_CHECK_I(name.crtc_hsync_end); \
+>         PIPE_CONF_CHECK_I(name.crtc_vdisplay); \
+>         PIPE_CONF_CHECK_I(name.crtc_vblank_start); \
+> -       PIPE_CONF_CHECK_I(name.crtc_vsync_start); \
+> -       PIPE_CONF_CHECK_I(name.crtc_vsync_end); \
+>         if (!fastset || !pipe_config->update_lrr) { \
+>                 PIPE_CONF_CHECK_I(name.crtc_vtotal); \
+>                 PIPE_CONF_CHECK_I(name.crtc_vblank_end); \
+> +               PIPE_CONF_CHECK_I(name.crtc_vsync_start); \
+> +               PIPE_CONF_CHECK_I(name.crtc_vsync_end); \
+>         } \
+>  } while (0)
 >
 > --
-> 2.33.0
+> 2.44.0.rc1.240.g4c46232300-goog
 >
