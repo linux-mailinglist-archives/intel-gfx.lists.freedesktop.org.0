@@ -2,51 +2,60 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2BDB286AC22
-	for <lists+intel-gfx@lfdr.de>; Wed, 28 Feb 2024 11:25:23 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id F213E86AC74
+	for <lists+intel-gfx@lfdr.de>; Wed, 28 Feb 2024 12:02:38 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A946B10E221;
-	Wed, 28 Feb 2024 10:25:21 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 135B810E4D7;
+	Wed, 28 Feb 2024 11:02:37 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="bKNm3gmN";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="mYifyglH";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5F8D910E221
- for <intel-gfx@lists.freedesktop.org>; Wed, 28 Feb 2024 10:25:20 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9380510E330;
+ Wed, 28 Feb 2024 11:02:34 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1709115920; x=1740651920;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=1fDm6vBaSivMaLoCcEOcZEar/skv3vm65I3BXV9eOs0=;
- b=bKNm3gmN9w/lKjyQ9Az7Pr+ISmqT0kZTh7x+J6eKPzbDTcsDP5Tw9xMZ
- +Ndw3cPbnEQPxRxkjZ7bKrvqd5gskLQWa4z1/lzFLn4RURgn2wF2MkINY
- jwS5i2juw56CMtiPlXPgWKCOHqic3GWukFayNYDUsvaTkmUXTgeml0JqZ
- VMeE/lNpzW9S7XaOF9eD4TllWOrpJWxR4yyvBJvB0CTsbvjLfD9sHKh+Q
- GBIv0eeRNZFH6Jl3IC223nK/ZcwiEhgzIjWJ1YbruskSH7MgGaqO3u0vg
- 0VqHog9UGSUvT9n899G65E+dznRZy6HHPyGofZPJEY6Sgu9wAS32Mu1zq Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10996"; a="28939163"
-X-IronPort-AV: E=Sophos;i="6.06,190,1705392000"; d="scan'208";a="28939163"
-Received: from orviesa003.jf.intel.com ([10.64.159.143])
- by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Feb 2024 02:25:19 -0800
+ t=1709118155; x=1740654155;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version;
+ bh=6qUCxmFbflDlJlXRfbHoHUwRdpCmzb5lDTHq3HFZwtU=;
+ b=mYifyglH1Olp1V5IhE8SolIWM959Hd/pEteIYOKlNndxugEDrxVhZov1
+ hfMGVsfjhGSDxAXvX4YSDYp3TZM2wUM3QnROSxlCUqDYTBQG24+0TYc2n
+ qIAOoiNYGJnx5bwbI3LCZtaj+lOVSCw09bPQqAYzkIkuM4TbyGOs18wxO
+ 2e+IgbuCgf3ZEgBHG45FkNoEfPpBoNWJie+k21h+dOc3cLvL9rU1rcYiA
+ nQTIp8iZnNcK3WUSYmMIFzKBTSYBJrsAnyR7SgrdMjvP4kob0Xt8GVony
+ eJBQg70HVawZ86JH11WV6N+GSDT9Q0avYKKURDhk4mVeMw6QSOHuHhUaH Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10996"; a="25976973"
+X-IronPort-AV: E=Sophos;i="6.06,190,1705392000"; d="scan'208";a="25976973"
+Received: from orviesa010.jf.intel.com ([10.64.159.150])
+ by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 28 Feb 2024 03:02:34 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.06,190,1705392000"; d="scan'208";a="12102404"
-Received: from tejas-super-server.iind.intel.com ([10.145.169.166])
- by orviesa003.jf.intel.com with ESMTP; 28 Feb 2024 02:25:17 -0800
-From: Tejas Upadhyay <tejas.upadhyay@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Cc: Matt Roper <matthew.d.roper@intel.com>,
- Andi Shyti <andi.shyti@linux.intel.com>,
- Tejas Upadhyay <tejas.upadhyay@intel.com>
-Subject: [PATCH V2] drm/i915/mtl: Update workaround 14018575942
-Date: Wed, 28 Feb 2024 16:07:38 +0530
-Message-Id: <20240228103738.2018458-1-tejas.upadhyay@intel.com>
-X-Mailer: git-send-email 2.25.1
+X-IronPort-AV: E=Sophos;i="6.06,190,1705392000"; 
+   d="scan'208";a="7336043"
+Received: from tmelzer-mobl1.ger.corp.intel.com (HELO localhost)
+ ([10.252.32.33])
+ by orviesa010-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 28 Feb 2024 03:02:29 -0800
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Colin Ian King <colin.i.king@gmail.com>, Rodrigo Vivi
+ <rodrigo.vivi@intel.com>, Joonas Lahtinen
+ <joonas.lahtinen@linux.intel.com>, Tvrtko Ursulin
+ <tvrtko.ursulin@linux.intel.com>, David Airlie <airlied@gmail.com>, Daniel
+ Vetter <daniel@ffwll.ch>, intel-gfx@lists.freedesktop.org,
+ intel-xe@lists.freedesktop.org, dri-devel@lists.freedesktop.org
+Cc: kernel-janitors@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH][next] drm/i915/dp: Fix spelling mistake "redect" ->
+ "reject"
+In-Reply-To: <20240228092042.4125617-1-colin.i.king@gmail.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20240228092042.4125617-1-colin.i.king@gmail.com>
+Date: Wed, 28 Feb 2024 13:02:26 +0200
+Message-ID: <87bk80am2l.fsf@intel.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -62,35 +71,33 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Applying WA 14018575942 only on Compute engine has impact on
-some apps like chrome. Updating this WA to apply on Render
-engine as well as it is helping with performance on Chrome.
+On Wed, 28 Feb 2024, Colin Ian King <colin.i.king@gmail.com> wrote:
+> There is a spelling mistake in a drm_dbg_kms message. Fix it.
+>
+> Signed-off-by: Colin Ian King <colin.i.king@gmail.com>
 
-Note: There is no concern from media team thus not applying
-WA on media engines. We will revisit if any issues reported
-from media team.
+Pushed to drm-intel-next, thanks for the patch.
 
-V2(Matt):
- - Use correct WA number
+BR,
+Jani.
 
-Fixes: 668f37e1ee11 ("drm/i915/mtl: Update workaround 14018778641")
-Signed-off-by: Tejas Upadhyay <tejas.upadhyay@intel.com>
----
- drivers/gpu/drm/i915/gt/intel_workarounds.c | 1 +
- 1 file changed, 1 insertion(+)
+> ---
+>  drivers/gpu/drm/i915/display/intel_dp_tunnel.c | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
+>
+> diff --git a/drivers/gpu/drm/i915/display/intel_dp_tunnel.c b/drivers/gpu/drm/i915/display/intel_dp_tunnel.c
+> index 75d76f91ecbd..6503abdc2b98 100644
+> --- a/drivers/gpu/drm/i915/display/intel_dp_tunnel.c
+> +++ b/drivers/gpu/drm/i915/display/intel_dp_tunnel.c
+> @@ -348,7 +348,7 @@ void intel_dp_tunnel_resume(struct intel_dp *intel_dp,
+>  
+>  out_err:
+>  	drm_dbg_kms(&i915->drm,
+> -		    "[DPTUN %s][CONNECTOR:%d:%s][ENCODER:%d:%s] Tunnel can't be resumed, will drop and redect it (err %pe)\n",
+> +		    "[DPTUN %s][CONNECTOR:%d:%s][ENCODER:%d:%s] Tunnel can't be resumed, will drop and reject it (err %pe)\n",
+>  		    drm_dp_tunnel_name(intel_dp->tunnel),
+>  		    connector->base.base.id, connector->base.name,
+>  		    encoder->base.base.id, encoder->base.name,
 
-diff --git a/drivers/gpu/drm/i915/gt/intel_workarounds.c b/drivers/gpu/drm/i915/gt/intel_workarounds.c
-index d67d44611c28..25413809b9dc 100644
---- a/drivers/gpu/drm/i915/gt/intel_workarounds.c
-+++ b/drivers/gpu/drm/i915/gt/intel_workarounds.c
-@@ -1653,6 +1653,7 @@ static void
- xelpg_gt_workarounds_init(struct intel_gt *gt, struct i915_wa_list *wal)
- {
- 	/* Wa_14018575942 / Wa_18018781329 */
-+	wa_mcr_write_or(wal, RENDER_MOD_CTRL, FORCE_MISS_FTLB);
- 	wa_mcr_write_or(wal, COMP_MOD_CTRL, FORCE_MISS_FTLB);
- 
- 	/* Wa_22016670082 */
 -- 
-2.25.1
-
+Jani Nikula, Intel
