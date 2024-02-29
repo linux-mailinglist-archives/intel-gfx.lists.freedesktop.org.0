@@ -2,51 +2,52 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 56C1C86CCC0
-	for <lists+intel-gfx@lfdr.de>; Thu, 29 Feb 2024 16:21:53 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 051D386CCE4
+	for <lists+intel-gfx@lfdr.de>; Thu, 29 Feb 2024 16:28:09 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B0C0F10E4B2;
-	Thu, 29 Feb 2024 15:21:51 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5E0C010E161;
+	Thu, 29 Feb 2024 15:28:07 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="FKoqlzEx";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="cVvYrp8b";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CABEE10E4B1
- for <intel-gfx@lists.freedesktop.org>; Thu, 29 Feb 2024 15:21:50 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9AC8010E1F9
+ for <intel-gfx@lists.freedesktop.org>; Thu, 29 Feb 2024 15:28:05 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1709220111; x=1740756111;
+ t=1709220486; x=1740756486;
  h=from:to:subject:in-reply-to:references:date:message-id:
  mime-version:content-transfer-encoding;
- bh=1BEKpD69YbMB9yNwoeJRrzk0xbMKkTErR30Ql7xycbw=;
- b=FKoqlzExzBwRa3axngKE2QdK2f+IzcRFE+RaIYoYoU91v0BtBno16oi4
- E1QPlsTAuOslBdmEtuDq1Akwufh3P/8Y0jediwnX7qqwVcw2obTG7b6QV
- JL9aVh3NMUv9QO/p8LMESxxguHkDMtV0j634h2T7BjxaJ33lrp0wGRcaa
- PQjQT9quTDhKdVLD4uDt+qWVNn9lTTFvaWpidVx2RniPSSgOrikLH2zPb
- rreXhL8QpFy5e9rL8XDfYhNVuBqGN76ql1JWt9XWh0NaG7kdMi4RGEPXV
- VxVvbker1zG//G4Rk1zcN1fOORRrzP2BpXtGJPZyhuXQtxRTPGZ5b6YJi A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10999"; a="29127447"
-X-IronPort-AV: E=Sophos;i="6.06,194,1705392000"; d="scan'208";a="29127447"
-Received: from orviesa004.jf.intel.com ([10.64.159.144])
- by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Feb 2024 07:21:50 -0800
+ bh=bhTvHkldX9ONS4/jIFX3hnFDRyRF1QNLiPnembSWM5Y=;
+ b=cVvYrp8blxCgwqhFNqrqzCcmCk4VT1VbpcAqNK+ZoVTBZP8DcaR0rFtS
+ 3aZWhaRGNj6QebW4MXlJ8niTYwgjHzaiq7hz2EH8HJuDsYwDLphQv347R
+ 91hQSm7x/h9LcFFfE4sU9UWJdqIy13gIP/EuCNCsebef1WfTaiUnVt9EG
+ 4U8+zj9iRblVaBV/2DbxJ3g5HBX9XC0M4z8Y7AvBOlk6uuebZA4dcHLTt
+ 77UmUo+Jne2dW6aowRNvOR6L1y3DUFtnvX8VFwSFa4nr1qYlbvOibj83F
+ CHao53HylmTvbRXTjE9cXo6KislysddUTObxu+zp3zQplRRj8WU6HoaC+ Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10999"; a="3620075"
+X-IronPort-AV: E=Sophos;i="6.06,194,1705392000"; 
+   d="scan'208";a="3620075"
+Received: from orviesa001.jf.intel.com ([10.64.159.141])
+ by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 29 Feb 2024 07:28:05 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.06,194,1705392000"; d="scan'208";a="12512239"
+X-IronPort-AV: E=Sophos;i="6.06,194,1705392000"; d="scan'208";a="45379016"
 Received: from unknown (HELO localhost) ([10.237.66.160])
- by orviesa004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Feb 2024 07:21:48 -0800
+ by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 29 Feb 2024 07:28:04 -0800
 From: Jani Nikula <jani.nikula@linux.intel.com>
 To: Ville Syrjala <ville.syrjala@linux.intel.com>,
  intel-gfx@lists.freedesktop.org
-Subject: Re: [PATCH 10/12] drm/i915: Relocate pipe_config_mismatch()
-In-Reply-To: <20240215164055.30585-11-ville.syrjala@linux.intel.com>
+Subject: Re: [PATCH 11/12] drm/i915: Reuse pipe_config_mismatch() more
+In-Reply-To: <20240215164055.30585-12-ville.syrjala@linux.intel.com>
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 References: <20240215164055.30585-1-ville.syrjala@linux.intel.com>
- <20240215164055.30585-11-ville.syrjala@linux.intel.com>
-Date: Thu, 29 Feb 2024 17:21:45 +0200
-Message-ID: <87msrj70ty.fsf@intel.com>
+ <20240215164055.30585-12-ville.syrjala@linux.intel.com>
+Date: Thu, 29 Feb 2024 17:28:00 +0200
+Message-ID: <87jzmn70jj.fsf@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
@@ -68,85 +69,130 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 On Thu, 15 Feb 2024, Ville Syrjala <ville.syrjala@linux.intel.com> wrote:
 > From: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
 >
-> Hoist pipe_config_mismatch() upwards a bit so that it can get
-> reused by the other mismatch() functions.
+> Just call pipe_config_mismatch() from all the more specialized
+> mismatch() functions instead of hand rolling the same printfs
+> all over.
 >
 > Signed-off-by: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
-
-Reviewed-by: Jani Nikula <jani.nikula@intel.com>
-
 > ---
->  drivers/gpu/drm/i915/display/intel_display.c | 46 ++++++++++----------
->  1 file changed, 23 insertions(+), 23 deletions(-)
+>  drivers/gpu/drm/i915/display/intel_display.c | 45 +++++---------------
+>  1 file changed, 10 insertions(+), 35 deletions(-)
 >
 > diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/d=
 rm/i915/display/intel_display.c
-> index d7f39ad84138..a9dd3632898c 100644
+> index a9dd3632898c..26580d4aef2d 100644
 > --- a/drivers/gpu/drm/i915/display/intel_display.c
 > +++ b/drivers/gpu/drm/i915/display/intel_display.c
-> @@ -4787,6 +4787,29 @@ intel_compare_buffer(const u8 *a, const u8 *b, siz=
-e_t len)
->  	return memcmp(a, b, len) =3D=3D 0;
->  }
+> @@ -4826,17 +4826,13 @@ pipe_config_infoframe_mismatch(bool fastset, cons=
+t struct intel_crtc *crtc,
 >=20=20
-> +static void __printf(4, 5)
-> +pipe_config_mismatch(bool fastset, const struct intel_crtc *crtc,
-> +		     const char *name, const char *format, ...)
-> +{
-> +	struct drm_i915_private *i915 =3D to_i915(crtc->base.dev);
-> +	struct va_format vaf;
-> +	va_list args;
+>  		p =3D drm_dbg_printer(&i915->drm, DRM_UT_KMS, NULL);
+>  		loglevel =3D KERN_DEBUG;
+> -
+> -		drm_printf(&p, "[CRTC:%d:%s] fastset requirement not met in %s infofra=
+me\n",
+> -			   crtc->base.base.id, crtc->base.name, name);
+>  	} else {
+>  		p =3D drm_err_printer(&i915->drm, NULL);
+>  		loglevel =3D KERN_ERR;
+> -
+> -		drm_printf(&p, "[CRTC:%d:%s] mismatch in %s infoframe\n",
+> -			   crtc->base.base.id, crtc->base.name, name);
+>  	}
+>=20=20
+> +	pipe_config_mismatch(fastset, crtc, name, "infoframe");
 > +
-> +	va_start(args, format);
-> +	vaf.fmt =3D format;
-> +	vaf.va =3D &args;
-> +
+>  	drm_printf(&p, "expected:\n");
+>  	hdmi_infoframe_log(loglevel, i915->drm.dev, a);
+>  	drm_printf(&p, "found:\n");
+> @@ -4852,17 +4848,12 @@ pipe_config_dp_vsc_sdp_mismatch(bool fastset, con=
+st struct intel_crtc *crtc,
+>  	struct drm_i915_private *i915 =3D to_i915(crtc->base.dev);
+>  	struct drm_printer p;
+>=20=20
+> -	if (fastset) {
 > +	if (fastset)
-> +		drm_dbg_kms(&i915->drm,
-> +			    "[CRTC:%d:%s] fastset requirement not met in %s %pV\n",
-> +			    crtc->base.base.id, crtc->base.name, name, &vaf);
+>  		p =3D drm_dbg_printer(&i915->drm, DRM_UT_KMS, NULL);
+> -
+> -		drm_printf(&p, "[CRTC:%d:%s] fastset requirement not met in %s dp sdp\=
+n",
+> -			   crtc->base.base.id, crtc->base.name, name);
+> -	} else {
 > +	else
-> +		drm_err(&i915->drm, "[CRTC:%d:%s] mismatch in %s %pV\n",
-> +			crtc->base.base.id, crtc->base.name, name, &vaf);
-> +
-> +	va_end(args);
-> +}
-> +
->  static void
->  pipe_config_infoframe_mismatch(bool fastset, const struct intel_crtc *cr=
-tc,
->  			       const char *name,
-> @@ -4896,29 +4919,6 @@ pipe_config_buffer_mismatch(bool fastset, const st=
-ruct intel_crtc *crtc,
->  		       16, 0, b, len, false);
->  }
+>  		p =3D drm_err_printer(&i915->drm, NULL);
 >=20=20
-> -static void __printf(4, 5)
-> -pipe_config_mismatch(bool fastset, const struct intel_crtc *crtc,
-> -		     const char *name, const char *format, ...)
-> -{
+> -		drm_printf(&p, "[CRTC:%d:%s] mismatch in %s dp sdp\n",
+> -			   crtc->base.base.id, crtc->base.name, name);
+> -	}
+> +	pipe_config_mismatch(fastset, crtc, name, "dp sdp");
+>=20=20
+>  	drm_printf(&p, "expected:\n");
+>  	drm_dp_vsc_sdp_log(&p, a);
+> @@ -4889,27 +4880,19 @@ pipe_config_buffer_mismatch(bool fastset, const s=
+truct intel_crtc *crtc,
+>  			    const char *name,
+>  			    const u8 *a, const u8 *b, size_t len)
+>  {
 > -	struct drm_i915_private *i915 =3D to_i915(crtc->base.dev);
-> -	struct va_format vaf;
-> -	va_list args;
+> -	struct drm_printer p;
+>  	const char *loglevel;
+>=20=20
+>  	if (fastset) {
+>  		if (!drm_debug_enabled(DRM_UT_KMS))
+>  			return;
+>=20=20
+> -		p =3D drm_dbg_printer(&i915->drm, DRM_UT_KMS, NULL);
+>  		loglevel =3D KERN_DEBUG;
 > -
-> -	va_start(args, format);
-> -	vaf.fmt =3D format;
-> -	vaf.va =3D &args;
+> -		drm_printf(&p, "[CRTC:%d:%s] fastset requirement not met in %s buffer\=
+n",
+> -			   crtc->base.base.id, crtc->base.name, name);
+>  	} else {
+> -		p =3D drm_err_printer(&i915->drm, NULL);
+>  		loglevel =3D KERN_ERR;
 > -
-> -	if (fastset)
-> -		drm_dbg_kms(&i915->drm,
-> -			    "[CRTC:%d:%s] fastset requirement not met in %s %pV\n",
-> -			    crtc->base.base.id, crtc->base.name, name, &vaf);
-> -	else
-> -		drm_err(&i915->drm, "[CRTC:%d:%s] mismatch in %s %pV\n",
-> -			crtc->base.base.id, crtc->base.name, name, &vaf);
+> -		drm_printf(&p, "[CRTC:%d:%s] mismatch in %s buffer\n",
+> -			   crtc->base.base.id, crtc->base.name, name);
+>  	}
+>=20=20
+> +	pipe_config_mismatch(fastset, crtc, name, "buffer");
+> +
+>  	/* only dump up to the last difference */
+>  	len =3D memcmp_diff_len(a, b, len);
+>=20=20
+> @@ -4929,20 +4912,12 @@ pipe_config_pll_mismatch(bool fastset,
+>  	struct drm_i915_private *i915 =3D to_i915(crtc->base.dev);
+>  	struct drm_printer p;
+>=20=20
+> -	if (fastset) {
+> -		if (!drm_debug_enabled(DRM_UT_KMS))
+> -			return;
+
+Removing this seems misplaced.
+
+Other than that,
+
+Reviewed-by: Jani Nikula <jani.nikula@intel.com>
+
+
 > -
-> -	va_end(args);
-> -}
+> +	if (fastset)
+>  		p =3D drm_dbg_printer(&i915->drm, DRM_UT_KMS, NULL);
 > -
->  static void
->  pipe_config_pll_mismatch(bool fastset,
->  			 const struct intel_crtc *crtc,
+> -		drm_printf(&p, "[CRTC:%d:%s] fastset requirement not met in %s\n",
+> -			   crtc->base.base.id, crtc->base.name, name);
+> -	} else {
+> +	else
+>  		p =3D drm_err_printer(&i915->drm, NULL);
+>=20=20
+> -		drm_printf(&p, "[CRTC:%d:%s] mismatch in %s\n",
+> -			   crtc->base.base.id, crtc->base.name, name);
+> -	}
+> +	pipe_config_mismatch(fastset, crtc, name, " "); /* stupid -Werror=3Dfor=
+mat-zero-length */
+>=20=20
+>  	drm_dbg_kms(&i915->drm, "expected:\n");
+>  	intel_dpll_dump_hw_state(i915, &p, a);
 
 --=20
 Jani Nikula, Intel
