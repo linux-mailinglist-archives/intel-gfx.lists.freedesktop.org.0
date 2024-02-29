@@ -2,53 +2,51 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0887286CCBE
-	for <lists+intel-gfx@lfdr.de>; Thu, 29 Feb 2024 16:21:37 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 56C1C86CCC0
+	for <lists+intel-gfx@lfdr.de>; Thu, 29 Feb 2024 16:21:53 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6FC1910E498;
-	Thu, 29 Feb 2024 15:21:35 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B0C0F10E4B2;
+	Thu, 29 Feb 2024 15:21:51 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="kmsbpiLm";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="FKoqlzEx";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 44A3110E498
- for <intel-gfx@lists.freedesktop.org>; Thu, 29 Feb 2024 15:21:34 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CABEE10E4B1
+ for <intel-gfx@lists.freedesktop.org>; Thu, 29 Feb 2024 15:21:50 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1709220094; x=1740756094;
+ t=1709220111; x=1740756111;
  h=from:to:subject:in-reply-to:references:date:message-id:
  mime-version:content-transfer-encoding;
- bh=X+ZGD21fVM9m3JGDcP22rTjZWRLJ0RLm9sp2Ekjb9oI=;
- b=kmsbpiLmp6MUkHsNEfbyNrALxF2qDeSxZGY/JvUUdlgnIZ9RpS0yGnak
- UvfMv7hKWGeD5nHecxqjsdDsRfi0WYqJeEBrBWoGstEa/UQj8enG5xb7y
- yoaZ+oNKaKLnIS5IbPrryCjs/djTumHLxtqfoZTLyC857scjyf0Ue85Eo
- 0k3+crkSDwuXRkASKhbB1Zls2PH7ADSrzpFcWIH/E3Ok65Z/5asSZtSNn
- D7mQzPettjbkVwNxZIhHvSWjDMIeM/prnB0/Z6L5bm8VHLhc31t18kM2c
- 7U1GCuryqyRnzpUcEkpS372tP/d4vd88QMY/3ww0RUADGlgtbFsdmB9ba g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10999"; a="15110299"
-X-IronPort-AV: E=Sophos;i="6.06,194,1705392000"; d="scan'208";a="15110299"
-Received: from fmviesa005.fm.intel.com ([10.60.135.145])
- by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Feb 2024 07:21:33 -0800
+ bh=1BEKpD69YbMB9yNwoeJRrzk0xbMKkTErR30Ql7xycbw=;
+ b=FKoqlzExzBwRa3axngKE2QdK2f+IzcRFE+RaIYoYoU91v0BtBno16oi4
+ E1QPlsTAuOslBdmEtuDq1Akwufh3P/8Y0jediwnX7qqwVcw2obTG7b6QV
+ JL9aVh3NMUv9QO/p8LMESxxguHkDMtV0j634h2T7BjxaJ33lrp0wGRcaa
+ PQjQT9quTDhKdVLD4uDt+qWVNn9lTTFvaWpidVx2RniPSSgOrikLH2zPb
+ rreXhL8QpFy5e9rL8XDfYhNVuBqGN76ql1JWt9XWh0NaG7kdMi4RGEPXV
+ VxVvbker1zG//G4Rk1zcN1fOORRrzP2BpXtGJPZyhuXQtxRTPGZ5b6YJi A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10999"; a="29127447"
+X-IronPort-AV: E=Sophos;i="6.06,194,1705392000"; d="scan'208";a="29127447"
+Received: from orviesa004.jf.intel.com ([10.64.159.144])
+ by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 29 Feb 2024 07:21:50 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.06,194,1705392000"; d="scan'208";a="12417761"
+X-IronPort-AV: E=Sophos;i="6.06,194,1705392000"; d="scan'208";a="12512239"
 Received: from unknown (HELO localhost) ([10.237.66.160])
- by fmviesa005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Feb 2024 07:21:32 -0800
+ by orviesa004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 29 Feb 2024 07:21:48 -0800
 From: Jani Nikula <jani.nikula@linux.intel.com>
 To: Ville Syrjala <ville.syrjala@linux.intel.com>,
  intel-gfx@lists.freedesktop.org
-Subject: Re: [PATCH 09/12] drm/i915: Skip intel_crtc_state_dump() if debugs
- aren't enabled
-In-Reply-To: <87ttlr70w0.fsf@intel.com>
+Subject: Re: [PATCH 10/12] drm/i915: Relocate pipe_config_mismatch()
+In-Reply-To: <20240215164055.30585-11-ville.syrjala@linux.intel.com>
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 References: <20240215164055.30585-1-ville.syrjala@linux.intel.com>
- <20240215164055.30585-10-ville.syrjala@linux.intel.com>
- <87ttlr70w0.fsf@intel.com>
-Date: Thu, 29 Feb 2024 17:21:29 +0200
-Message-ID: <87plwf70ue.fsf@intel.com>
+ <20240215164055.30585-11-ville.syrjala@linux.intel.com>
+Date: Thu, 29 Feb 2024 17:21:45 +0200
+Message-ID: <87msrj70ty.fsf@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
@@ -67,71 +65,88 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, 29 Feb 2024, Jani Nikula <jani.nikula@linux.intel.com> wrote:
-> On Thu, 15 Feb 2024, Ville Syrjala <ville.syrjala@linux.intel.com> wrote:
->> From: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
->>
->> intel_crtc_state_dump() does a whole boatload of string formatting
->> which is all wasted energy if the debugs aren't even enabled. Skip
->> the whole thing in that case.
+On Thu, 15 Feb 2024, Ville Syrjala <ville.syrjala@linux.intel.com> wrote:
+> From: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
 >
-> I wonder how something like this would work to skip it in a more generic
-> fashion:
-
-In the mean time,
+> Hoist pipe_config_mismatch() upwards a bit so that it can get
+> reused by the other mismatch() functions.
+>
+> Signed-off-by: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
 
 Reviewed-by: Jani Nikula <jani.nikula@intel.com>
 
-
+> ---
+>  drivers/gpu/drm/i915/display/intel_display.c | 46 ++++++++++----------
+>  1 file changed, 23 insertions(+), 23 deletions(-)
 >
-> index 9cc473e5d353..0adc8020ae4f 100644
-> --- a/include/drm/drm_print.h
-> +++ b/include/drm/drm_print.h
-> @@ -206,7 +206,8 @@ drm_vprintf(struct drm_printer *p, const char *fmt, v=
-a_list *va)
->  {
->         struct va_format vaf =3D { .fmt =3D fmt, .va =3D va };
->=20=20
-> -       p->printfn(p, &vaf);
-> +       if (p->printfn)
-> +               p->printfn(p, &vaf);
+> diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/d=
+rm/i915/display/intel_display.c
+> index d7f39ad84138..a9dd3632898c 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display.c
+> +++ b/drivers/gpu/drm/i915/display/intel_display.c
+> @@ -4787,6 +4787,29 @@ intel_compare_buffer(const u8 *a, const u8 *b, siz=
+e_t len)
+>  	return memcmp(a, b, len) =3D=3D 0;
 >  }
 >=20=20
->  /**
-> @@ -330,7 +331,7 @@ static inline struct drm_printer drm_dbg_printer(stru=
-ct drm_device *drm,
->                                                  const char *prefix)
->  {
->         struct drm_printer p =3D {
-> -               .printfn =3D __drm_printfn_dbg,
-> +               .printfn =3D drm_debug_enabled(category) ? __drm_printfn_=
-dbg : NULL,
->                 .arg =3D drm,
->                 .prefix =3D prefix,
->                 .category =3D category,
->
->>
->> Signed-off-by: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
->> ---
->>  drivers/gpu/drm/i915/display/intel_crtc_state_dump.c | 3 +++
->>  1 file changed, 3 insertions(+)
->>
->> diff --git a/drivers/gpu/drm/i915/display/intel_crtc_state_dump.c b/driv=
-ers/gpu/drm/i915/display/intel_crtc_state_dump.c
->> index b5b9b99213cf..cd78c200d483 100644
->> --- a/drivers/gpu/drm/i915/display/intel_crtc_state_dump.c
->> +++ b/drivers/gpu/drm/i915/display/intel_crtc_state_dump.c
->> @@ -192,6 +192,9 @@ void intel_crtc_state_dump(const struct intel_crtc_s=
-tate *pipe_config,
->>  	char buf[64];
->>  	int i;
->>=20=20
->> +	if (!drm_debug_enabled(DRM_UT_KMS))
->> +		return;
->> +
->>  	p =3D drm_dbg_printer(&i915->drm, DRM_UT_KMS, NULL);
->>=20=20
->>  	drm_printf(&p, "[CRTC:%d:%s] enable: %s [%s]\n",
+> +static void __printf(4, 5)
+> +pipe_config_mismatch(bool fastset, const struct intel_crtc *crtc,
+> +		     const char *name, const char *format, ...)
+> +{
+> +	struct drm_i915_private *i915 =3D to_i915(crtc->base.dev);
+> +	struct va_format vaf;
+> +	va_list args;
+> +
+> +	va_start(args, format);
+> +	vaf.fmt =3D format;
+> +	vaf.va =3D &args;
+> +
+> +	if (fastset)
+> +		drm_dbg_kms(&i915->drm,
+> +			    "[CRTC:%d:%s] fastset requirement not met in %s %pV\n",
+> +			    crtc->base.base.id, crtc->base.name, name, &vaf);
+> +	else
+> +		drm_err(&i915->drm, "[CRTC:%d:%s] mismatch in %s %pV\n",
+> +			crtc->base.base.id, crtc->base.name, name, &vaf);
+> +
+> +	va_end(args);
+> +}
+> +
+>  static void
+>  pipe_config_infoframe_mismatch(bool fastset, const struct intel_crtc *cr=
+tc,
+>  			       const char *name,
+> @@ -4896,29 +4919,6 @@ pipe_config_buffer_mismatch(bool fastset, const st=
+ruct intel_crtc *crtc,
+>  		       16, 0, b, len, false);
+>  }
+>=20=20
+> -static void __printf(4, 5)
+> -pipe_config_mismatch(bool fastset, const struct intel_crtc *crtc,
+> -		     const char *name, const char *format, ...)
+> -{
+> -	struct drm_i915_private *i915 =3D to_i915(crtc->base.dev);
+> -	struct va_format vaf;
+> -	va_list args;
+> -
+> -	va_start(args, format);
+> -	vaf.fmt =3D format;
+> -	vaf.va =3D &args;
+> -
+> -	if (fastset)
+> -		drm_dbg_kms(&i915->drm,
+> -			    "[CRTC:%d:%s] fastset requirement not met in %s %pV\n",
+> -			    crtc->base.base.id, crtc->base.name, name, &vaf);
+> -	else
+> -		drm_err(&i915->drm, "[CRTC:%d:%s] mismatch in %s %pV\n",
+> -			crtc->base.base.id, crtc->base.name, name, &vaf);
+> -
+> -	va_end(args);
+> -}
+> -
+>  static void
+>  pipe_config_pll_mismatch(bool fastset,
+>  			 const struct intel_crtc *crtc,
 
 --=20
 Jani Nikula, Intel
