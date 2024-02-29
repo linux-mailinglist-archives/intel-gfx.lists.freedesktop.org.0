@@ -2,54 +2,53 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id C719986D279
-	for <lists+intel-gfx@lfdr.de>; Thu, 29 Feb 2024 19:40:57 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id AEEB786D27F
+	for <lists+intel-gfx@lfdr.de>; Thu, 29 Feb 2024 19:42:14 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2321110E201;
-	Thu, 29 Feb 2024 18:40:56 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3BE4C10E4A3;
+	Thu, 29 Feb 2024 18:42:13 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="mdChmaUp";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="J07ei62I";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 617AF10E59D
- for <intel-gfx@lists.freedesktop.org>; Thu, 29 Feb 2024 18:40:54 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5918210E4A3
+ for <intel-gfx@lists.freedesktop.org>; Thu, 29 Feb 2024 18:42:11 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1709232054; x=1740768054;
+ t=1709232131; x=1740768131;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=lOVQOIy/HuI/FJ6tc8DOQU/IAuiJvMXhhoQ1fuOfwq8=;
- b=mdChmaUpmE7bbh8ECNGCmqn/T/xlAt+n4RAQlmjHk69mqNf4C6J38yVm
- rZOhHWJ0RMSmxaBaR235VxTxyPJgzhD1bMzH9EIADKfOded9JN0vWoQEz
- B4m88cxatmzS7nsiEX65OfLSwAR0Kd1JUbYoV3Nf0Soc7i/2coi9vUX8k
- podrrsONp3Xv3xNcn2LaVXAKMH8yRIJecBpvSgywCOskrjVQ8t6BdKgyt
- 3J4dbX7LhsShn1VuO/u28vzLxIt9QOH7B6CD40EkyAhOrAHiRsnKYKYwk
- eZCwf/C+PnDEiIWJjVjNt/Nis49Sk0wi2ieakHwylvJwiM5nwvyjxl+eB A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10999"; a="3585066"
+ bh=nu1OSSRGOCHnLGZy+z9C1gBm/oXKzl6QjuGXGTxKs6I=;
+ b=J07ei62ILlccxgPVDBB1NuWeJxZt/DPOT6SRgTq/9verEjxD+FtYHvJe
+ +LoFXsSTGMQgLPGkgHxd6/TjoVLv16l+Q3TR5vAX2021Ce6HlQrqPHHx+
+ WK3g+uyooL4//hC+ZSqbHrCP2C/zPmlq0/D8LTlht77n0g2jklFNU0pGR
+ sXo9Hsa13MBk+ixcE0C3NqUiRB6ZU2rL7HOwbJXoFmYVGwaOCFdYloSud
+ 58YY8YW450vLuEW5YaQZhknobTz8npxI0efnwnIkXdzI5XlBOOkCCsrM7
+ SwgxRMo6mzTBoglXNH3EoWO/IsNB2DBQHRhyxG8rodnzkuTgz61MnY06F Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10999"; a="3585249"
 X-IronPort-AV: E=Sophos;i="6.06,194,1705392000"; 
-   d="scan'208";a="3585066"
+   d="scan'208";a="3585249"
 Received: from orsmga001.jf.intel.com ([10.7.209.18])
  by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Feb 2024 10:40:53 -0800
+ 29 Feb 2024 10:42:11 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10999"; a="827771621"
-X-IronPort-AV: E=Sophos;i="6.06,194,1705392000"; d="scan'208";a="827771621"
+X-IronPort-AV: E=McAfee;i="6600,9927,10999"; a="827771624"
+X-IronPort-AV: E=Sophos;i="6.06,194,1705392000"; d="scan'208";a="827771624"
 Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.74])
- by orsmga001.jf.intel.com with SMTP; 29 Feb 2024 10:40:50 -0800
+ by orsmga001.jf.intel.com with SMTP; 29 Feb 2024 10:42:08 -0800
 Received: by stinkbox (sSMTP sendmail emulation);
- Thu, 29 Feb 2024 20:40:49 +0200
+ Thu, 29 Feb 2024 20:42:07 +0200
 From: Ville Syrjala <ville.syrjala@linux.intel.com>
 To: intel-gfx@lists.freedesktop.org
-Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>, Jani Nikula <jani.nikula@intel.com>
-Subject: [PATCH v2 06/12] drm/i915: Convert intel_dpll_dump_hw_state() to
- drm_printer
-Date: Thu, 29 Feb 2024 20:40:49 +0200
-Message-ID: <20240229184049.31165-1-ville.syrjala@linux.intel.com>
+Cc: Jani Nikula <jani.nikula@intel.com>
+Subject: [PATCH v2 11/12] drm/i915: Reuse pipe_config_mismatch() more
+Date: Thu, 29 Feb 2024 20:42:07 +0200
+Message-ID: <20240229184207.31233-1-ville.syrjala@linux.intel.com>
 X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20240215164055.30585-7-ville.syrjala@linux.intel.com>
-References: <20240215164055.30585-7-ville.syrjala@linux.intel.com>
+In-Reply-To: <20240215164055.30585-12-ville.syrjala@linux.intel.com>
+References: <20240215164055.30585-12-ville.syrjala@linux.intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
@@ -70,296 +69,114 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-Utilize drm_printer in pipe_config_pll_mismatch() to avoid
-a bit of code duplication.
+Just call pipe_config_mismatch() from all the more specialized
+mismatch() functions instead of hand rolling the same printfs
+all over.
 
-To achieve this we need to plumb the printer all way to the
-dpll_mgr .dump_hw_state() functions. Those are also used by
-intel_crtc_state_dump() which needs to be adjusted as well.
+v2: Eliminate the dpll drm_debug_enabled() in an earlier patch (Jani)
 
-v2: Convert a few misplaecd drm_dbg_kms() calls (Rodrigo)
-    Drop the redundant drm_debug_enabled() check here
-    instead of later (Jani)
-
-Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
-Cc: Jani Nikula <jani.nikula@intel.com>
+Reviewed-by: Jani Nikula <jani.nikula@intel.com>
 Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 ---
- .../drm/i915/display/intel_crtc_state_dump.c  |   5 +-
- drivers/gpu/drm/i915/display/intel_display.c  |  28 +++--
- drivers/gpu/drm/i915/display/intel_dpll_mgr.c | 105 ++++++++----------
- drivers/gpu/drm/i915/display/intel_dpll_mgr.h |   2 +
- 4 files changed, 66 insertions(+), 74 deletions(-)
+ drivers/gpu/drm/i915/display/intel_display.c | 42 +++++---------------
+ 1 file changed, 10 insertions(+), 32 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_crtc_state_dump.c b/drivers/gpu/drm/i915/display/intel_crtc_state_dump.c
-index 4bcf446c75f4..59d2b3d39951 100644
---- a/drivers/gpu/drm/i915/display/intel_crtc_state_dump.c
-+++ b/drivers/gpu/drm/i915/display/intel_crtc_state_dump.c
-@@ -205,9 +205,12 @@ void intel_crtc_state_dump(const struct intel_crtc_state *pipe_config,
- 	struct drm_i915_private *i915 = to_i915(crtc->base.dev);
- 	const struct intel_plane_state *plane_state;
- 	struct intel_plane *plane;
-+	struct drm_printer p;
- 	char buf[64];
- 	int i;
- 
-+	p = drm_dbg_printer(&i915->drm, DRM_UT_KMS, NULL);
-+
- 	drm_dbg_kms(&i915->drm, "[CRTC:%d:%s] enable: %s [%s]\n",
- 		    crtc->base.base.id, crtc->base.name,
- 		    str_yes_no(pipe_config->hw.enable), context);
-@@ -356,7 +359,7 @@ void intel_crtc_state_dump(const struct intel_crtc_state *pipe_config,
- 		    pipe_config->ips_enabled, pipe_config->double_wide,
- 		    pipe_config->has_drrs);
- 
--	intel_dpll_dump_hw_state(i915, &pipe_config->dpll_hw_state);
-+	intel_dpll_dump_hw_state(i915, &p, &pipe_config->dpll_hw_state);
- 
- 	if (IS_CHERRYVIEW(i915))
- 		drm_dbg_kms(&i915->drm,
 diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
-index e5010049d52e..962b640e7c74 100644
+index 68522fcfd3e4..4d5ef823c5fe 100644
 --- a/drivers/gpu/drm/i915/display/intel_display.c
 +++ b/drivers/gpu/drm/i915/display/intel_display.c
-@@ -4927,26 +4927,24 @@ pipe_config_pll_mismatch(bool fastset,
- 			 const struct intel_dpll_hw_state *b)
- {
+@@ -4826,17 +4826,13 @@ pipe_config_infoframe_mismatch(bool fastset, const struct intel_crtc *crtc,
+ 
+ 		p = drm_dbg_printer(&i915->drm, DRM_UT_KMS, NULL);
+ 		loglevel = KERN_DEBUG;
+-
+-		drm_printf(&p, "[CRTC:%d:%s] fastset requirement not met in %s infoframe\n",
+-			   crtc->base.base.id, crtc->base.name, name);
+ 	} else {
+ 		p = drm_err_printer(&i915->drm, NULL);
+ 		loglevel = KERN_ERR;
+-
+-		drm_printf(&p, "[CRTC:%d:%s] mismatch in %s infoframe\n",
+-			   crtc->base.base.id, crtc->base.name, name);
+ 	}
+ 
++	pipe_config_mismatch(fastset, crtc, name, "infoframe");
++
+ 	drm_printf(&p, "expected:\n");
+ 	hdmi_infoframe_log(loglevel, i915->drm.dev, a);
+ 	drm_printf(&p, "found:\n");
+@@ -4852,17 +4848,12 @@ pipe_config_dp_vsc_sdp_mismatch(bool fastset, const struct intel_crtc *crtc,
  	struct drm_i915_private *i915 = to_i915(crtc->base.dev);
-+	struct drm_printer p;
+ 	struct drm_printer p;
+ 
+-	if (fastset) {
++	if (fastset)
+ 		p = drm_dbg_printer(&i915->drm, DRM_UT_KMS, NULL);
+-
+-		drm_printf(&p, "[CRTC:%d:%s] fastset requirement not met in %s dp sdp\n",
+-			   crtc->base.base.id, crtc->base.name, name);
+-	} else {
++	else
+ 		p = drm_err_printer(&i915->drm, NULL);
+ 
+-		drm_printf(&p, "[CRTC:%d:%s] mismatch in %s dp sdp\n",
+-			   crtc->base.base.id, crtc->base.name, name);
+-	}
++	pipe_config_mismatch(fastset, crtc, name, "dp sdp");
+ 
+ 	drm_printf(&p, "expected:\n");
+ 	drm_dp_vsc_sdp_log(&p, a);
+@@ -4889,27 +4880,19 @@ pipe_config_buffer_mismatch(bool fastset, const struct intel_crtc *crtc,
+ 			    const char *name,
+ 			    const u8 *a, const u8 *b, size_t len)
+ {
+-	struct drm_i915_private *i915 = to_i915(crtc->base.dev);
+-	struct drm_printer p;
+ 	const char *loglevel;
  
  	if (fastset) {
--		if (!drm_debug_enabled(DRM_UT_KMS))
--			return;
-+		p = drm_dbg_printer(&i915->drm, DRM_UT_KMS, NULL);
+ 		if (!drm_debug_enabled(DRM_UT_KMS))
+ 			return;
  
--		drm_dbg_kms(&i915->drm,
--			    "[CRTC:%d:%s] fastset requirement not met in %s\n",
--			    crtc->base.base.id, crtc->base.name, name);
--		drm_dbg_kms(&i915->drm, "expected:\n");
--		intel_dpll_dump_hw_state(i915, a);
--		drm_dbg_kms(&i915->drm, "found:\n");
--		intel_dpll_dump_hw_state(i915, b);
-+		drm_printf(&p, "[CRTC:%d:%s] fastset requirement not met in %s\n",
-+			   crtc->base.base.id, crtc->base.name, name);
+-		p = drm_dbg_printer(&i915->drm, DRM_UT_KMS, NULL);
+ 		loglevel = KERN_DEBUG;
+-
+-		drm_printf(&p, "[CRTC:%d:%s] fastset requirement not met in %s buffer\n",
+-			   crtc->base.base.id, crtc->base.name, name);
  	} else {
--		drm_err(&i915->drm, "[CRTC:%d:%s] mismatch in %s buffer\n",
--			crtc->base.base.id, crtc->base.name, name);
--		drm_err(&i915->drm, "expected:\n");
--		intel_dpll_dump_hw_state(i915, a);
--		drm_err(&i915->drm, "found:\n");
--		intel_dpll_dump_hw_state(i915, b);
-+		p = drm_err_printer(&i915->drm, NULL);
-+
-+		drm_printf(&p, "[CRTC:%d:%s] mismatch in %s\n",
-+			   crtc->base.base.id, crtc->base.name, name);
+-		p = drm_err_printer(&i915->drm, NULL);
+ 		loglevel = KERN_ERR;
+-
+-		drm_printf(&p, "[CRTC:%d:%s] mismatch in %s buffer\n",
+-			   crtc->base.base.id, crtc->base.name, name);
  	}
+ 
++	pipe_config_mismatch(fastset, crtc, name, "buffer");
 +
-+	drm_printf(&p, "expected:\n");
-+	intel_dpll_dump_hw_state(i915, &p, a);
-+	drm_printf(&p, "found:\n");
-+	intel_dpll_dump_hw_state(i915, &p, b);
- }
+ 	/* only dump up to the last difference */
+ 	len = memcmp_diff_len(a, b, len);
  
- bool
-diff --git a/drivers/gpu/drm/i915/display/intel_dpll_mgr.c b/drivers/gpu/drm/i915/display/intel_dpll_mgr.c
-index ff480f171f75..9542e62186e2 100644
---- a/drivers/gpu/drm/i915/display/intel_dpll_mgr.c
-+++ b/drivers/gpu/drm/i915/display/intel_dpll_mgr.c
-@@ -107,7 +107,7 @@ struct intel_dpll_mgr {
- 				   struct intel_crtc *crtc,
- 				   struct intel_encoder *encoder);
- 	void (*update_ref_clks)(struct drm_i915_private *i915);
--	void (*dump_hw_state)(struct drm_i915_private *i915,
-+	void (*dump_hw_state)(struct drm_printer *p,
- 			      const struct intel_dpll_hw_state *hw_state);
- 	bool (*compare_hw_state)(const struct intel_dpll_hw_state *a,
- 				 const struct intel_dpll_hw_state *b);
-@@ -634,16 +634,15 @@ static int ibx_get_dpll(struct intel_atomic_state *state,
- 	return 0;
- }
+@@ -4929,17 +4912,12 @@ pipe_config_pll_mismatch(bool fastset,
+ 	struct drm_i915_private *i915 = to_i915(crtc->base.dev);
+ 	struct drm_printer p;
  
--static void ibx_dump_hw_state(struct drm_i915_private *i915,
-+static void ibx_dump_hw_state(struct drm_printer *p,
- 			      const struct intel_dpll_hw_state *hw_state)
- {
--	drm_dbg_kms(&i915->drm,
--		    "dpll_hw_state: dpll: 0x%x, dpll_md: 0x%x, "
--		    "fp0: 0x%x, fp1: 0x%x\n",
--		    hw_state->dpll,
--		    hw_state->dpll_md,
--		    hw_state->fp0,
--		    hw_state->fp1);
-+	drm_printf(p, "dpll_hw_state: dpll: 0x%x, dpll_md: 0x%x, "
-+		   "fp0: 0x%x, fp1: 0x%x\n",
-+		   hw_state->dpll,
-+		   hw_state->dpll_md,
-+		   hw_state->fp0,
-+		   hw_state->fp1);
- }
+-	if (fastset) {
++	if (fastset)
+ 		p = drm_dbg_printer(&i915->drm, DRM_UT_KMS, NULL);
+-
+-		drm_printf(&p, "[CRTC:%d:%s] fastset requirement not met in %s\n",
+-			   crtc->base.base.id, crtc->base.name, name);
+-	} else {
++	else
+ 		p = drm_err_printer(&i915->drm, NULL);
  
- static bool ibx_compare_hw_state(const struct intel_dpll_hw_state *a,
-@@ -1225,11 +1224,11 @@ static void hsw_update_dpll_ref_clks(struct drm_i915_private *i915)
- 		i915->display.dpll.ref_clks.nssc = 135000;
- }
+-		drm_printf(&p, "[CRTC:%d:%s] mismatch in %s\n",
+-			   crtc->base.base.id, crtc->base.name, name);
+-	}
++	pipe_config_mismatch(fastset, crtc, name, " "); /* stupid -Werror=format-zero-length */
  
--static void hsw_dump_hw_state(struct drm_i915_private *i915,
-+static void hsw_dump_hw_state(struct drm_printer *p,
- 			      const struct intel_dpll_hw_state *hw_state)
- {
--	drm_dbg_kms(&i915->drm, "dpll_hw_state: wrpll: 0x%x spll: 0x%x\n",
--		    hw_state->wrpll, hw_state->spll);
-+	drm_printf(p, "dpll_hw_state: wrpll: 0x%x spll: 0x%x\n",
-+		   hw_state->wrpll, hw_state->spll);
- }
- 
- static bool hsw_compare_hw_state(const struct intel_dpll_hw_state *a,
-@@ -1939,14 +1938,11 @@ static void skl_update_dpll_ref_clks(struct drm_i915_private *i915)
- 	i915->display.dpll.ref_clks.nssc = i915->display.cdclk.hw.ref;
- }
- 
--static void skl_dump_hw_state(struct drm_i915_private *i915,
-+static void skl_dump_hw_state(struct drm_printer *p,
- 			      const struct intel_dpll_hw_state *hw_state)
- {
--	drm_dbg_kms(&i915->drm, "dpll_hw_state: "
--		      "ctrl1: 0x%x, cfgcr1: 0x%x, cfgcr2: 0x%x\n",
--		      hw_state->ctrl1,
--		      hw_state->cfgcr1,
--		      hw_state->cfgcr2);
-+	drm_printf(p, "dpll_hw_state: ctrl1: 0x%x, cfgcr1: 0x%x, cfgcr2: 0x%x\n",
-+		   hw_state->ctrl1, hw_state->cfgcr1, hw_state->cfgcr2);
- }
- 
- static bool skl_compare_hw_state(const struct intel_dpll_hw_state *a,
-@@ -2402,23 +2398,16 @@ static void bxt_update_dpll_ref_clks(struct drm_i915_private *i915)
- 	/* DSI non-SSC ref 19.2MHz */
- }
- 
--static void bxt_dump_hw_state(struct drm_i915_private *i915,
-+static void bxt_dump_hw_state(struct drm_printer *p,
- 			      const struct intel_dpll_hw_state *hw_state)
- {
--	drm_dbg_kms(&i915->drm, "dpll_hw_state: ebb0: 0x%x, ebb4: 0x%x,"
--		    "pll0: 0x%x, pll1: 0x%x, pll2: 0x%x, pll3: 0x%x, "
--		    "pll6: 0x%x, pll8: 0x%x, pll9: 0x%x, pll10: 0x%x, pcsdw12: 0x%x\n",
--		    hw_state->ebb0,
--		    hw_state->ebb4,
--		    hw_state->pll0,
--		    hw_state->pll1,
--		    hw_state->pll2,
--		    hw_state->pll3,
--		    hw_state->pll6,
--		    hw_state->pll8,
--		    hw_state->pll9,
--		    hw_state->pll10,
--		    hw_state->pcsdw12);
-+	drm_printf(p, "dpll_hw_state: ebb0: 0x%x, ebb4: 0x%x,"
-+		   "pll0: 0x%x, pll1: 0x%x, pll2: 0x%x, pll3: 0x%x, "
-+		   "pll6: 0x%x, pll8: 0x%x, pll9: 0x%x, pll10: 0x%x, pcsdw12: 0x%x\n",
-+		   hw_state->ebb0, hw_state->ebb4,
-+		   hw_state->pll0, hw_state->pll1, hw_state->pll2, hw_state->pll3,
-+		   hw_state->pll6, hw_state->pll8, hw_state->pll9, hw_state->pll10,
-+		   hw_state->pcsdw12);
- }
- 
- static bool bxt_compare_hw_state(const struct intel_dpll_hw_state *a,
-@@ -4026,28 +4015,26 @@ static void icl_update_dpll_ref_clks(struct drm_i915_private *i915)
- 	i915->display.dpll.ref_clks.nssc = i915->display.cdclk.hw.ref;
- }
- 
--static void icl_dump_hw_state(struct drm_i915_private *i915,
-+static void icl_dump_hw_state(struct drm_printer *p,
- 			      const struct intel_dpll_hw_state *hw_state)
- {
--	drm_dbg_kms(&i915->drm,
--		    "dpll_hw_state: cfgcr0: 0x%x, cfgcr1: 0x%x, div0: 0x%x, "
--		    "mg_refclkin_ctl: 0x%x, hg_clktop2_coreclkctl1: 0x%x, "
--		    "mg_clktop2_hsclkctl: 0x%x, mg_pll_div0: 0x%x, "
--		    "mg_pll_div2: 0x%x, mg_pll_lf: 0x%x, "
--		    "mg_pll_frac_lock: 0x%x, mg_pll_ssc: 0x%x, "
--		    "mg_pll_bias: 0x%x, mg_pll_tdc_coldst_bias: 0x%x\n",
--		    hw_state->cfgcr0, hw_state->cfgcr1,
--		    hw_state->div0,
--		    hw_state->mg_refclkin_ctl,
--		    hw_state->mg_clktop2_coreclkctl1,
--		    hw_state->mg_clktop2_hsclkctl,
--		    hw_state->mg_pll_div0,
--		    hw_state->mg_pll_div1,
--		    hw_state->mg_pll_lf,
--		    hw_state->mg_pll_frac_lock,
--		    hw_state->mg_pll_ssc,
--		    hw_state->mg_pll_bias,
--		    hw_state->mg_pll_tdc_coldst_bias);
-+	drm_printf(p, "dpll_hw_state: cfgcr0: 0x%x, cfgcr1: 0x%x, div0: 0x%x, "
-+		   "mg_refclkin_ctl: 0x%x, hg_clktop2_coreclkctl1: 0x%x, "
-+		   "mg_clktop2_hsclkctl: 0x%x, mg_pll_div0: 0x%x, "
-+		   "mg_pll_div2: 0x%x, mg_pll_lf: 0x%x, "
-+		   "mg_pll_frac_lock: 0x%x, mg_pll_ssc: 0x%x, "
-+		   "mg_pll_bias: 0x%x, mg_pll_tdc_coldst_bias: 0x%x\n",
-+		   hw_state->cfgcr0, hw_state->cfgcr1, hw_state->div0,
-+		   hw_state->mg_refclkin_ctl,
-+		   hw_state->mg_clktop2_coreclkctl1,
-+		   hw_state->mg_clktop2_hsclkctl,
-+		   hw_state->mg_pll_div0,
-+		   hw_state->mg_pll_div1,
-+		   hw_state->mg_pll_lf,
-+		   hw_state->mg_pll_frac_lock,
-+		   hw_state->mg_pll_ssc,
-+		   hw_state->mg_pll_bias,
-+		   hw_state->mg_pll_tdc_coldst_bias);
- }
- 
- static bool icl_compare_hw_state(const struct intel_dpll_hw_state *a,
-@@ -4514,22 +4501,24 @@ void intel_dpll_sanitize_state(struct drm_i915_private *i915)
- }
- 
- /**
-- * intel_dpll_dump_hw_state - write hw_state to dmesg
-+ * intel_dpll_dump_hw_state - dump hw_state
-  * @i915: i915 drm device
-- * @hw_state: hw state to be written to the log
-+ * @p: where to print the state to
-+ * @hw_state: hw state to be dumped
-  *
-- * Write the relevant values in @hw_state to dmesg using drm_dbg_kms.
-+ * Dumo out the relevant values in @hw_state.
-  */
- void intel_dpll_dump_hw_state(struct drm_i915_private *i915,
-+			      struct drm_printer *p,
- 			      const struct intel_dpll_hw_state *hw_state)
- {
- 	if (i915->display.dpll.mgr) {
--		i915->display.dpll.mgr->dump_hw_state(i915, hw_state);
-+		i915->display.dpll.mgr->dump_hw_state(p, hw_state);
- 	} else {
- 		/* fallback for platforms that don't use the shared dpll
- 		 * infrastructure
- 		 */
--		ibx_dump_hw_state(i915, hw_state);
-+		ibx_dump_hw_state(p, hw_state);
- 	}
- }
- 
-diff --git a/drivers/gpu/drm/i915/display/intel_dpll_mgr.h b/drivers/gpu/drm/i915/display/intel_dpll_mgr.h
-index cc0e1386309d..d4d97e40440a 100644
---- a/drivers/gpu/drm/i915/display/intel_dpll_mgr.h
-+++ b/drivers/gpu/drm/i915/display/intel_dpll_mgr.h
-@@ -36,6 +36,7 @@
- 
- enum tc_port;
- struct drm_i915_private;
-+struct drm_printer;
- struct intel_atomic_state;
- struct intel_crtc;
- struct intel_crtc_state;
-@@ -377,6 +378,7 @@ void intel_dpll_readout_hw_state(struct drm_i915_private *i915);
- void intel_dpll_sanitize_state(struct drm_i915_private *i915);
- 
- void intel_dpll_dump_hw_state(struct drm_i915_private *i915,
-+			      struct drm_printer *p,
- 			      const struct intel_dpll_hw_state *hw_state);
- bool intel_dpll_compare_hw_state(struct drm_i915_private *i915,
- 				 const struct intel_dpll_hw_state *a,
+ 	drm_printf(&p, "expected:\n");
+ 	intel_dpll_dump_hw_state(i915, &p, a);
 -- 
 2.43.0
 
