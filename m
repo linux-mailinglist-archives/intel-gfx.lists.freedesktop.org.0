@@ -2,68 +2,58 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7AAC386C74A
-	for <lists+intel-gfx@lfdr.de>; Thu, 29 Feb 2024 11:50:08 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1571986C784
+	for <lists+intel-gfx@lfdr.de>; Thu, 29 Feb 2024 11:58:38 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D56BD10E045;
-	Thu, 29 Feb 2024 10:50:06 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C9A9C10E405;
+	Thu, 29 Feb 2024 10:58:33 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="N6Pv2Zeq";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="NbHhNUPq";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CA41710E33B;
- Thu, 29 Feb 2024 10:50:04 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.15])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8E96E10E405
+ for <intel-gfx@lists.freedesktop.org>; Thu, 29 Feb 2024 10:58:32 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1709203805; x=1740739805;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:in-reply-to;
- bh=0Ghs1427kpjULFuDpCFdojY0v88USn8crvkTL9I/BSk=;
- b=N6Pv2Zeq3cWfFKggCRbj1IAic3YB+s2daIHsXIjPMj7JQ8b419s8+XX7
- Uj+bDExNjhqg+7mdARsSU8uHmGJEeRT7HheLe3OD7TizapdzsUS9O9YAj
- CgZS7fJdiJb4yfQFSNRl+c0sRVCbM4KPgz67j/nwr+AfyNvQF+fCO6q8X
- MrkGsKHRsExPv0v2t62xQURPWDhX/gjSRuh9n5Qmldu4ivbjE5kqop5MH
- 4MhFCPuw5ITcEFqYDcKUr3p6UcTdEGnp6sNF2fyuDI27HEYkDAJHd4YGC
- mueG+EC/bhsx60AoyU4frKrrAIzrKe8v/xud8GhgY5WZtOhYwKEjVHVsC Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10998"; a="21121861"
-X-IronPort-AV: E=Sophos;i="6.06,194,1705392000"; d="scan'208";a="21121861"
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
- by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Feb 2024 02:50:04 -0800
+ t=1709204313; x=1740740313;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version:content-transfer-encoding;
+ bh=uzkB99g6Kc0GB83Fi5DBSNcVubhN/0z4ljLDm4ZpAVQ=;
+ b=NbHhNUPq3WG5OTvsfjrNg81UllfZj72myYnl1+85dz1lOeZsMPAUKic1
+ xXscbma4lkhWydnYjNuD8wxSHfDRw8MEzKsD2yeOn1dYh5Do+4C+l0+38
+ JLDZZGgrY3k68GdsSKuGzwSGymR29IpqrB9BBFoLmCBdCR7CI5QauCYMK
+ 7Bfe5qt2J6hycGmEBnAyArov2vo+uBXC6ptDQ/JAl0JXMfzyGb9c6OXb4
+ G3DxGrcyP0jlloFjt3NtW3IRYkjRxZluTZbkzYWISDiuBHe7ati2pj6FU
+ 11oSQ0/R/xpHM5IqljRK8/Nnc39AjPgGoD3bbmJH/kDwRb0b8NiIhL6sJ w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10998"; a="7494143"
+X-IronPort-AV: E=Sophos;i="6.06,194,1705392000"; 
+   d="scan'208";a="7494143"
+Received: from orviesa007.jf.intel.com ([10.64.159.147])
+ by orvoesa107.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 29 Feb 2024 02:58:32 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10998"; a="913978834"
-X-IronPort-AV: E=Sophos;i="6.06,194,1705392000"; d="scan'208";a="913978834"
-Received: from smile.fi.intel.com ([10.237.72.54])
- by fmsmga002.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Feb 2024 02:50:01 -0800
-Received: from andy by smile.fi.intel.com with local (Exim 4.97)
- (envelope-from <andriy.shevchenko@linux.intel.com>)
- id 1rfdzC-00000008e4b-0MBF; Thu, 29 Feb 2024 12:49:58 +0200
-Date: Thu, 29 Feb 2024 12:49:57 +0200
-From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-To: Lucas De Marchi <lucas.demarchi@intel.com>
-Cc: Yury Norov <yury.norov@gmail.com>,
- Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
- linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
- Jani Nikula <jani.nikula@linux.intel.com>,
- intel-xe@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
- Jani Nikula <jani.nikula@intel.com>
-Subject: Re: [PATCH v3 1/3] bits: introduce fixed-type genmasks
-Message-ID: <ZeBhVb__VNQCgTQk@smile.fi.intel.com>
-References: <20240208074521.577076-1-lucas.demarchi@intel.com>
- <20240208074521.577076-2-lucas.demarchi@intel.com>
- <CAA8EJpprfrtOjNzT6TFhV1n6MXzLdTahanfxcRW4uVjeHaBduA@mail.gmail.com>
- <ZdZlVn9BI-0q1Xdn@smile.fi.intel.com>
- <btssirjumey2kcp5dyhe6m3embdwd5bswjz3c6swrhxfijfhld@lztxaptkegw6>
- <ZddfF7kb54o2c/QR@yury-ThinkPad>
- <3o3nvkg76sofrhgcuogo3wuhitnz3bgus6qzle7pejng3v4s62@frdbuj46uiu7>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <3o3nvkg76sofrhgcuogo3wuhitnz3bgus6qzle7pejng3v4s62@frdbuj46uiu7>
+X-IronPort-AV: E=Sophos;i="6.06,194,1705392000"; 
+   d="scan'208";a="8147041"
+Received: from smatua-mobl.ger.corp.intel.com (HELO localhost)
+ ([10.252.47.143])
+ by orviesa007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 29 Feb 2024 02:58:30 -0800
+From: Jani Nikula <jani.nikula@intel.com>
+To: Animesh Manna <animesh.manna@intel.com>, intel-gfx@lists.freedesktop.org
+Cc: ville.syrjala@linux.intel.com, jouni.hogander@intel.com,
+ arun.r.murthy@intel.com, Animesh Manna <animesh.manna@intel.com>
+Subject: Re: [PATCH v2] drm/i915/panelreplay: Move out psr_init_dpcd() from
+ init_connector()
+In-Reply-To: <20240229043716.4065760-1-animesh.manna@intel.com>
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20240229043716.4065760-1-animesh.manna@intel.com>
+Date: Thu, 29 Feb 2024 12:58:26 +0200
+Message-ID: <87il278rl9.fsf@intel.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -79,40 +69,58 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, Feb 28, 2024 at 05:39:21PM -0600, Lucas De Marchi wrote:
-> On Thu, Feb 22, 2024 at 06:49:59AM -0800, Yury Norov wrote:
-> > On Wed, Feb 21, 2024 at 03:59:06PM -0600, Lucas De Marchi wrote:
-> > > On Wed, Feb 21, 2024 at 11:04:22PM +0200, Andy Shevchenko wrote:
-> > > > On Wed, Feb 21, 2024 at 10:30:02PM +0200, Dmitry Baryshkov wrote:
-> > > > > On Thu, 8 Feb 2024 at 09:45, Lucas De Marchi <lucas.demarchi@intel.com> wrote:
+On Thu, 29 Feb 2024, Animesh Manna <animesh.manna@intel.com> wrote:
+> Move psr_init_dpcd() from init-connector to connector-detect
+> function. The dpcd probe for checking panel replay capability
+> for external dp connector is causing delay during boot which can
+> be optimized by moving dpcd probe to connector specific detect().
+>
+> v1: Initial version.
+> v2: Add details in commit description. [Jani]
+>
+> Suggested-by: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
+> Closes: https://gitlab.freedesktop.org/drm/intel/-/issues/10284
 
-...
+Fixes: cceeaa312d39 ("drm/i915/panelreplay: Enable panel replay dpcd initia=
+lization for DP")
+Reviewed-by: Jani Nikula <jani.nikula@intel.com>
 
-> I build-tested this in x86-64, x86-32 and arm64. I didn't like much the
-> need to fork the __GENMASK() implementation on the 2 sides of the ifdef
-> since I think the GENMASK_INPUT_CHECK() should be the one covering the
-> input checks. However to make it common we'd need to solve 2 problems:
-> the casts and the sizeof. The sizeof can be passed as arg to
-> __GENMASK(), however the casts I think would need a __CAST_U8(x)
-> or the like and sprinkle it everywhere, which would hurt readability.
-> Not pretty. Or go back to the original submission and make it less
-> horrible :-/
+> Signed-off-by: Animesh Manna <animesh.manna@intel.com>
+> ---
+>  drivers/gpu/drm/i915/display/intel_dp.c  | 3 +++
+>  drivers/gpu/drm/i915/display/intel_psr.c | 3 ---
+>  2 files changed, 3 insertions(+), 3 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i9=
+15/display/intel_dp.c
+> index 6ece2c563c7a..b485ec320085 100644
+> --- a/drivers/gpu/drm/i915/display/intel_dp.c
+> +++ b/drivers/gpu/drm/i915/display/intel_dp.c
+> @@ -5709,6 +5709,9 @@ intel_dp_detect(struct drm_connector *connector,
+>  	if (ret =3D=3D 1)
+>  		intel_connector->base.epoch_counter++;
+>=20=20
+> +	if (!intel_dp_is_edp(intel_dp))
+> +		intel_psr_init_dpcd(intel_dp);
+> +
+>  	intel_dp_detect_dsc_caps(intel_dp, intel_connector);
+>=20=20
+>  	intel_dp_configure_mst(intel_dp);
+> diff --git a/drivers/gpu/drm/i915/display/intel_psr.c b/drivers/gpu/drm/i=
+915/display/intel_psr.c
+> index 72cadad09db5..6927785fd6ff 100644
+> --- a/drivers/gpu/drm/i915/display/intel_psr.c
+> +++ b/drivers/gpu/drm/i915/display/intel_psr.c
+> @@ -2883,9 +2883,6 @@ void intel_psr_init(struct intel_dp *intel_dp)
+>  	if (!(HAS_PSR(dev_priv) || HAS_DP20(dev_priv)))
+>  		return;
+>=20=20
+> -	if (!intel_dp_is_edp(intel_dp))
+> -		intel_psr_init_dpcd(intel_dp);
+> -
+>  	/*
+>  	 * HSW spec explicitly says PSR is tied to port A.
+>  	 * BDW+ platforms have a instance of PSR registers per transcoder but
 
-I'm wondering if we can use _Generic() approach here.
-
-...
-
-> > #define GENMASK_INPUT_CHECK(h, l) 0
-> > +#define __GENMASK(t, h, l) \
-> > +	((~0 - (1 << (l)) + 1) & (~0 >> (BITS_PER_LONG - 1 - (h))))
-> 
-> humn... this builds, but does it work if GENMASK_ULL() is used in
-> assembly? That BITS_PER_LONG does not match the type width.
-
-UL()/ULL() macros are not just for fun.
-
--- 
-With Best Regards,
-Andy Shevchenko
-
-
+--=20
+Jani Nikula, Intel
