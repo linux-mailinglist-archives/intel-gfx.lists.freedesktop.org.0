@@ -2,101 +2,58 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0B6B886C43D
-	for <lists+intel-gfx@lfdr.de>; Thu, 29 Feb 2024 09:53:38 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id BC36B86C60B
+	for <lists+intel-gfx@lfdr.de>; Thu, 29 Feb 2024 10:51:15 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6935610E38F;
-	Thu, 29 Feb 2024 08:53:36 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 704BC10E16D;
+	Thu, 29 Feb 2024 09:51:13 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=suse.de header.i=@suse.de header.b="M1m7sqFq";
-	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="uGuzMgmZ";
-	dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b="M1m7sqFq";
-	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="uGuzMgmZ";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="l39FK23T";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from smtp-out1.suse.de (smtp-out1.suse.de [195.135.223.130])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D6CE010E385;
- Thu, 29 Feb 2024 08:53:34 +0000 (UTC)
-Received: from imap1.dmz-prg2.suse.org (imap1.dmz-prg2.suse.org [10.150.64.97])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
- (No client certificate requested)
- by smtp-out1.suse.de (Postfix) with ESMTPS id 3F945228E4;
- Thu, 29 Feb 2024 08:53:33 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
- t=1709196813; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:content-type:content-type;
- bh=0cJH8I45VoLCuP6O+LhlP2KE+Wv6PaXjRZdZXC3fSDo=;
- b=M1m7sqFqwiPxiU0yhSOF5ZQHOiDs4nTJXKR3+uwsvnXGsnoVoH0J5uqNzJjOFX0Ql8LD7o
- wKbJjhs5WN+9n8h4OsvK2eLUmQBa4tqcB1XYtRCFOUMFmUm0BNVUksMPtjaKXzkTg3D7Dk
- Jo7HBnUnVAvADDcA2TNnjhWE+QOb8A8=
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
- s=susede2_ed25519; t=1709196813;
- h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:content-type:content-type;
- bh=0cJH8I45VoLCuP6O+LhlP2KE+Wv6PaXjRZdZXC3fSDo=;
- b=uGuzMgmZsMJIfDE826KF2BqRYn/dBiNxwCeDnWV2wnY62GDbOVg7o5a1jgXcFT0vwIUoh7
- qOg1tfYT0RynqaBQ==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
- t=1709196813; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:content-type:content-type;
- bh=0cJH8I45VoLCuP6O+LhlP2KE+Wv6PaXjRZdZXC3fSDo=;
- b=M1m7sqFqwiPxiU0yhSOF5ZQHOiDs4nTJXKR3+uwsvnXGsnoVoH0J5uqNzJjOFX0Ql8LD7o
- wKbJjhs5WN+9n8h4OsvK2eLUmQBa4tqcB1XYtRCFOUMFmUm0BNVUksMPtjaKXzkTg3D7Dk
- Jo7HBnUnVAvADDcA2TNnjhWE+QOb8A8=
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
- s=susede2_ed25519; t=1709196813;
- h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:content-type:content-type;
- bh=0cJH8I45VoLCuP6O+LhlP2KE+Wv6PaXjRZdZXC3fSDo=;
- b=uGuzMgmZsMJIfDE826KF2BqRYn/dBiNxwCeDnWV2wnY62GDbOVg7o5a1jgXcFT0vwIUoh7
- qOg1tfYT0RynqaBQ==
-Received: from imap1.dmz-prg2.suse.org (localhost [127.0.0.1])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
- (No client certificate requested)
- by imap1.dmz-prg2.suse.org (Postfix) with ESMTPS id C931513A58;
- Thu, 29 Feb 2024 08:53:32 +0000 (UTC)
-Received: from dovecot-director2.suse.de ([2a07:de40:b281:106:10:150:64:167])
- by imap1.dmz-prg2.suse.org with ESMTPSA id zRvFLwxG4GUYUQAAD6G6ig
- (envelope-from <tzimmermann@suse.de>); Thu, 29 Feb 2024 08:53:32 +0000
-Date: Thu, 29 Feb 2024 09:53:31 +0100
-From: Thomas Zimmermann <tzimmermann@suse.de>
-To: Dave Airlie <airlied@gmail.com>, Daniel Vetter <daniel.vetter@ffwll.ch>
-Cc: Jani Nikula <jani.nikula@linux.intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Thomas Zimmermann <tzimmermann@suse.de>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>,
- Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>,
- Oded Gabbay <ogabbay@kernel.org>,
- Lucas De Marchi <lucas.demarchi@intel.com>,
- dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
- intel-xe@lists.freedesktop.org, dim-tools@lists.freedesktop.org
-Subject: [PULL] drm-misc-next-fixes
-Message-ID: <20240229085331.GA25863@localhost.localdomain>
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0C52E10E16D;
+ Thu, 29 Feb 2024 09:51:11 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1709200272; x=1740736272;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version;
+ bh=P9OUq3TjFGAj7EGbVbOL7kAAVSoUr+My/iyEHR5jQ+s=;
+ b=l39FK23TpOo/d1jRCjKWAXNvuIhsba88EHDD+H+dRkqjmUKEoNgHUdH8
+ mqZDPFHmAnf87QDFgzfj3t9p7N7hOf4l4l7NEs9E8Els2oz2NSTHnai/H
+ V2DlZpISRhQhhQDGzcUJwsB975lFfFmxNfHxZJpUB4ujNj63CI+DZVcfH
+ AWqMNDa51LVg0gNoqLwI2vQj4eXjVPPc6sxzsMT3/mz54wxRVU/4hK2tu
+ /L0wOY35T1MfY5TnaTT1rDa9lPacEbb0OByoVJArG32jGenDLtsuBDe9H
+ /5Mi4oeHEjCASZDr/e/vGVWmYc5MjeZ/efmUHuua2Qk5iDQck3P7O9Hdz w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10998"; a="26122622"
+X-IronPort-AV: E=Sophos;i="6.06,194,1705392000"; d="scan'208";a="26122622"
+Received: from orviesa007.jf.intel.com ([10.64.159.147])
+ by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 29 Feb 2024 01:51:11 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.06,194,1705392000"; 
+   d="scan'208";a="8129894"
+Received: from smatua-mobl.ger.corp.intel.com (HELO localhost)
+ ([10.252.47.143])
+ by orviesa007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 29 Feb 2024 01:51:09 -0800
+From: Jani Nikula <jani.nikula@intel.com>
+To: "Golani, Mitulkumar Ajitkumar" <mitulkumar.ajitkumar.golani@intel.com>,
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
+Cc: "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
+ "Nautiyal, Ankit K" <ankit.k.nautiyal@intel.com>
+Subject: RE: [PATCH v12 0/8] Enable Adaptive Sync SDP Support for DP
+In-Reply-To: <IA1PR11MB63486AE9EC5E30EC94FE39F0B25F2@IA1PR11MB6348.namprd11.prod.outlook.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20240228143823.2762595-1-mitulkumar.ajitkumar.golani@intel.com>
+ <87wmqo8vt9.fsf@intel.com>
+ <IA1PR11MB63486AE9EC5E30EC94FE39F0B25F2@IA1PR11MB6348.namprd11.prod.outlook.com>
+Date: Thu, 29 Feb 2024 11:51:05 +0200
+Message-ID: <87ttlr8upi.fsf@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Authentication-Results: smtp-out1.suse.de;
-	none
-X-Spam-Level: 
-X-Spam-Score: -4.30
-X-Spamd-Result: default: False [-4.30 / 50.00]; ARC_NA(0.00)[];
- RCVD_VIA_SMTP_AUTH(0.00)[]; FROM_HAS_DN(0.00)[];
- TO_DN_SOME(0.00)[]; FREEMAIL_ENVRCPT(0.00)[gmail.com];
- TO_MATCH_ENVRCPT_ALL(0.00)[]; MIME_GOOD(-0.10)[text/plain];
- NEURAL_HAM_LONG(-1.00)[-1.000]; RCVD_COUNT_THREE(0.00)[3];
- DKIM_SIGNED(0.00)[suse.de:s=susede2_rsa,suse.de:s=susede2_ed25519];
- NEURAL_HAM_SHORT(-0.20)[-0.989]; RCPT_COUNT_TWELVE(0.00)[16];
- FREEMAIL_TO(0.00)[gmail.com,ffwll.ch];
- FUZZY_BLOCKED(0.00)[rspamd.com]; FROM_EQ_ENVFROM(0.00)[];
- MIME_TRACE(0.00)[0:+]; RCVD_TLS_ALL(0.00)[];
- BAYES_HAM(-3.00)[100.00%]
-X-Spam-Flag: NO
+Content-Type: text/plain
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -112,68 +69,26 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi Dave, Sima,
+On Thu, 29 Feb 2024, "Golani, Mitulkumar Ajitkumar" <mitulkumar.ajitkumar.golani@intel.com> wrote:
+>> Subject: Re: [PATCH v12 0/8] Enable Adaptive Sync SDP Support for DP
+>>
+>> On Wed, 28 Feb 2024, Mitul Golani <mitulkumar.ajitkumar.golani@intel.com>
+>> wrote:
+>> > -v12:
+>> > - Update cover letter
+>>
+>> Did you just send the entire series again within 30 minutes just to update the
+>> cover letter? You could've just replied to the cover letter...
+>
+> Sorry, I should have used git send-email --in-reply-to, will take care from next time onwards.
 
-here's the release cycle's first PR for drm-misc-next-fixes.
+I mean you can just reply to the cover letter and say what you missed,
+you don't have to send the whole thing again. It's no different from any
+email.
 
-Best regards
-Thomas
+BR,
+Jani.
 
-drm-misc-next-fixes-2024-02-29:
-Short summary of fixes pull:
-
-i915:
-- Fix NULL-pointer deref
-
-imx:
-- dcss: Fix resource-size calculation
-
-firmware:
-- sysfb: Fix returned error code
-The following changes since commit f112b68f273fb0121cb64e0c3ac06adcb91e32b8:
-
-  Merge v6.8-rc6 into drm-next (2024-02-26 11:41:07 +0100)
-
-are available in the Git repository at:
-
-  https://anongit.freedesktop.org/git/drm/drm-misc tags/drm-misc-next-fixes-2024-02-29
-
-for you to fetch changes up to 9cb3542aeeac31b3dd6b5a7d58b9b7d6fe9fd2bc:
-
-  drm/imx/dcss: fix resource size calculation (2024-02-28 09:16:59 +0000)
-
-----------------------------------------------------------------
-Short summary of fixes pull:
-
-i915:
-- Fix NULL-pointer deref
-
-imx:
-- dcss: Fix resource-size calculation
-
-firmware:
-- sysfb: Fix returned error code
-
-----------------------------------------------------------------
-Dan Carpenter (2):
-      firmware/sysfb: fix an error code in sysfb_init()
-      drm/imx/dcss: fix resource size calculation
-
-Thomas Zimmermann (1):
-      Merge drm/drm-next into drm-misc-next-fixes
-
-Tvrtko Ursulin (1):
-      drm/i915: Fix possible null pointer dereference after drm_dbg_printer conversion
-
- drivers/firmware/sysfb.c                         | 4 +++-
- drivers/gpu/drm/i915/gt/intel_engine_heartbeat.c | 4 ++--
- drivers/gpu/drm/imx/dcss/dcss-dev.c              | 4 +---
- 3 files changed, 6 insertions(+), 6 deletions(-)
 
 -- 
-Thomas Zimmermann
-Graphics Driver Developer
-SUSE Software Solutions Germany GmbH
-Frankenstrasse 146, 90461 Nuernberg, Germany
-GF: Ivo Totev, Andrew Myers, Andrew McDonald, Boudien Moerman
-HRB 36809 (AG Nuernberg)
+Jani Nikula, Intel
