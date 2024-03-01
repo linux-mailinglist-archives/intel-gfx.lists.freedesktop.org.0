@@ -2,56 +2,54 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7624B86EA8E
-	for <lists+intel-gfx@lfdr.de>; Fri,  1 Mar 2024 21:47:00 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id A246686EB9A
+	for <lists+intel-gfx@lfdr.de>; Fri,  1 Mar 2024 23:14:14 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C348410EB04;
-	Fri,  1 Mar 2024 20:46:53 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9B5F010ED1F;
+	Fri,  1 Mar 2024 22:14:12 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; secure) header.d=canb.auug.org.au header.i=@canb.auug.org.au header.b="rqDE+W0y";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="fFuDuDuL";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from gandalf.ozlabs.org (gandalf.ozlabs.org [150.107.74.76])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EB83F10E85D;
- Fri,  1 Mar 2024 20:46:50 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canb.auug.org.au;
- s=201702; t=1709326007;
- bh=oYSwxPgbH9v7ByGcfeqI5W61AWHOgbsQ3RsGAe8lHX0=;
- h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
- b=rqDE+W0yqzv2hRf6tR84f1c15tKHinaREl5sg+P4bDg4xrd1+E1xxKKYMkSB9sWQs
- A6zVR8jwGTbnCv1akO6QYwhgjuYsLp3K4hx0R65LJeBfwPH3jAMZ/4LcW8LALJbylW
- LE6dE63RjPTvLgmA2OX23doHrqg89c5Lh8v0oCNFpVIyQhCfV5nS0BVWXmCidNvjRg
- sSL+6dOtjdnMAwwvX58Rx1Pws+QeS//wCEKzyTF7C+3uQI1X21I+BMmVlj/Zyv1Jkz
- /upG4H85L4DPsNajPxYuMkvPaa5si/26gGvSv3FNuagOOR1stxbnYp580ZCr2360OT
- 3PpBt9kupq4QQ==
-Received: from authenticated.ozlabs.org (localhost [127.0.0.1])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange ECDHE (prime256v1) server-signature RSA-PSS (4096 bits)
- server-digest SHA256) (No client certificate requested)
- by mail.ozlabs.org (Postfix) with ESMTPSA id 4Tmg9x68TRz4wc4;
- Sat,  2 Mar 2024 07:46:45 +1100 (AEDT)
-Date: Sat, 2 Mar 2024 07:46:43 +1100
-From: Stephen Rothwell <sfr@canb.auug.org.au>
-To: Shuah Khan <skhan@linuxfoundation.org>
-Cc: David Gow <davidgow@google.com>, Brendan Higgins
- <brendanhiggins@google.com>, Daniel Vetter <daniel.vetter@ffwll.ch>, Intel
- Graphics <intel-gfx@lists.freedesktop.org>, DRI
- <dri-devel@lists.freedesktop.org>, Christian =?UTF-8?B?S8O2bmln?=
- <christian.koenig@amd.com>, Matthew Auld <matthew.auld@intel.com>, Linux
- Kernel Mailing List <linux-kernel@vger.kernel.org>, Linux Next Mailing List
- <linux-next@vger.kernel.org>, Dave Airlie <airlied@redhat.com>
-Subject: Re: linux-next: build failure after merge of the kunit-next tree
-Message-ID: <20240302074643.6e1086ff@canb.auug.org.au>
-In-Reply-To: <86d87830-100f-4f29-bb7f-9a612b90866a@linuxfoundation.org>
-References: <20240229152653.09ecf771@canb.auug.org.au>
- <be2e812c-3898-4be8-8a9d-e221acb837c3@linuxfoundation.org>
- <CABVgOSmAmkOcY8hFnpPSgz5WZXFkez_BDGhKjBepbWFpKykfUg@mail.gmail.com>
- <20240301214358.7fdecd66@canb.auug.org.au>
- <86d87830-100f-4f29-bb7f-9a612b90866a@linuxfoundation.org>
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.15])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A756510ED1F
+ for <intel-gfx@lists.freedesktop.org>; Fri,  1 Mar 2024 22:14:10 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1709331251; x=1740867251;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=QdTszYZZbtCKVA05XysdN0v/GYtpaW+8xCCdZczU3/Q=;
+ b=fFuDuDuLbRu8Optjjt/UaGreKKjk1MAB1hQYSFjn4baPL4UYBzkZ+BMh
+ FoM1XGF2+M8EWG2IS/j8wZu1HLV4JgEWgTOZz9JHUEbcKt2z9KTZvHD1i
+ C1Nd0TUqfg06owzsOMpjABiJXQ9sLfXWHTijPh8uOkPXb+h+nXLcwBjUd
+ kCztkpMrvtCnNWwuvH1434VctmNS+0c8chbej2m/MGQv6zl1eMndozs/B
+ +Wt/yM9pyzkWJ6yjbg00dO1UZOhgfHWSB4TXy+cM0YAOAFkzrdJcB/Z3v
+ FPd8frcOs+/kM+FJ0G4hlV0MfQ9t2a82DiHUPyxtKecCzZQDGbhEysurY w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,11000"; a="4059529"
+X-IronPort-AV: E=Sophos;i="6.06,197,1705392000"; 
+   d="scan'208";a="4059529"
+Received: from orviesa005.jf.intel.com ([10.64.159.145])
+ by fmvoesa109.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 01 Mar 2024 14:14:10 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.06,197,1705392000"; d="scan'208";a="13031361"
+Received: from invictus.jf.intel.com ([10.165.21.201])
+ by orviesa005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 01 Mar 2024 14:14:09 -0800
+From: Radhakrishna Sripada <radhakrishna.sripada@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Cc: Radhakrishna Sripada <radhakrishna.sripada@intel.com>,
+ Jani Nikula <jani.nikula@intel.com>
+Subject: [PATCH v5] drm/i915: Show bios vbt when read from firmware/spi/oprom
+Date: Fri,  1 Mar 2024 14:12:39 -0800
+Message-Id: <20240301221239.180884-1-radhakrishna.sripada@intel.com>
+X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20240301031457.2015603-1-radhakrishna.sripada@intel.com>
+References: <20240301031457.2015603-1-radhakrishna.sripada@intel.com>
 MIME-Version: 1.0
-Content-Type: multipart/signed; boundary="Sig_/hJtFnmksjMZBb0tNYJ8Tqwn";
- protocol="application/pgp-signature"; micalg=pgp-sha256
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -67,70 +65,125 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---Sig_/hJtFnmksjMZBb0tNYJ8Tqwn
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: quoted-printable
+Make debugfs vbt only shows valid vbt when read from ACPI opregion.
+Make it work when read from firmware/spi/pci oprom cases. In the cases
+where VBT needs to be read from spi/pci oprom, take the wakeref to
+prevent WARN while reading DE registers during debugfs vbt dump.
 
-Hi Shuah,
+v2: Extract getting vbt from different sources to its own function.
+    Protect sysfs write with vbt check(Jani)
+v3: Fix CI error by probing bios vbt with runtime_pm wakeref
+v4: Update commit message and skip waking up runtime while accessing
+    vbt from opregion/firmware(Jani)
 
-On Fri, 1 Mar 2024 09:05:57 -0700 Shuah Khan <skhan@linuxfoundation.org> wr=
-ote:
->
-> On 3/1/24 03:43, Stephen Rothwell wrote:
-> > Hi all,
-> >=20
-> > On Fri, 1 Mar 2024 15:15:02 +0800 David Gow <davidgow@google.com> wrote=
-: =20
-> >>
-> >> On Thu, 29 Feb 2024 at 23:07, Shuah Khan <skhan@linuxfoundation.org> w=
-rote: =20
-> >>>
-> >>> I can carry the fix through kselftest kunit if it works
-> >>> for all. =20
-> >>
-> >> I'm happy for this to go in with the KUnit changes if that's the best
-> >> way to keep all of the printk formatting fixes together.
+Cc: Jani Nikula <jani.nikula@intel.com>
+Signed-off-by: Radhakrishna Sripada <radhakrishna.sripada@intel.com>
+---
+ drivers/gpu/drm/i915/display/intel_bios.c | 62 ++++++++++++-----------
+ 1 file changed, 33 insertions(+), 29 deletions(-)
 
-Unfortunately you can't fix this in the kunit-next tree without pulling
-in Linus' tree (or the drm-fixes tree) - which seems excessive.
- =20
-> > I am pretty sure that the proper fix has been applied to the
-> > drm-fixes tree today (in the merge of the drm-misc-fixes tree).
-> >  =20
->=20
-> What's the commit id for this fix? I Would like to include the details
-> in my pull request to Linus.
+diff --git a/drivers/gpu/drm/i915/display/intel_bios.c b/drivers/gpu/drm/i915/display/intel_bios.c
+index 44c9dfe86a00..9a8c7fe381b0 100644
+--- a/drivers/gpu/drm/i915/display/intel_bios.c
++++ b/drivers/gpu/drm/i915/display/intel_bios.c
+@@ -3135,6 +3135,32 @@ static struct vbt_header *oprom_get_vbt(struct drm_i915_private *i915,
+ 	return NULL;
+ }
+ 
++static const struct vbt_header *intel_bios_get_vbt(struct drm_i915_private *i915,
++						   size_t *sizep)
++{
++	const struct vbt_header *vbt = NULL;
++	intel_wakeref_t wakeref;
++
++	vbt = firmware_get_vbt(i915, sizep);
++
++	if (!vbt)
++		vbt = intel_opregion_get_vbt(i915, sizep);
++
++	/*
++	 * If the OpRegion does not have VBT, look in SPI flash
++	 * through MMIO or PCI mapping
++	 */
++	with_intel_runtime_pm(&i915->runtime_pm, wakeref) {
++		if (!vbt && IS_DGFX(i915))
++			vbt = spi_oprom_get_vbt(i915, sizep);
++
++		if (!vbt)
++			vbt = oprom_get_vbt(i915, sizep);
++	}
++
++	return vbt;
++}
++
+ /**
+  * intel_bios_init - find VBT and initialize settings from the BIOS
+  * @i915: i915 device instance
+@@ -3146,7 +3172,6 @@ static struct vbt_header *oprom_get_vbt(struct drm_i915_private *i915,
+ void intel_bios_init(struct drm_i915_private *i915)
+ {
+ 	const struct vbt_header *vbt;
+-	struct vbt_header *oprom_vbt = NULL;
+ 	const struct bdb_header *bdb;
+ 
+ 	INIT_LIST_HEAD(&i915->display.vbt.display_devices);
+@@ -3160,27 +3185,7 @@ void intel_bios_init(struct drm_i915_private *i915)
+ 
+ 	init_vbt_defaults(i915);
+ 
+-	oprom_vbt = firmware_get_vbt(i915, NULL);
+-	vbt = oprom_vbt;
+-
+-	if (!vbt) {
+-		oprom_vbt = intel_opregion_get_vbt(i915, NULL);
+-		vbt = oprom_vbt;
+-	}
+-
+-	/*
+-	 * If the OpRegion does not have VBT, look in SPI flash through MMIO or
+-	 * PCI mapping
+-	 */
+-	if (!vbt && IS_DGFX(i915)) {
+-		oprom_vbt = spi_oprom_get_vbt(i915, NULL);
+-		vbt = oprom_vbt;
+-	}
+-
+-	if (!vbt) {
+-		oprom_vbt = oprom_get_vbt(i915, NULL);
+-		vbt = oprom_vbt;
+-	}
++	vbt = intel_bios_get_vbt(i915, NULL);
+ 
+ 	if (!vbt)
+ 		goto out;
+@@ -3213,7 +3218,7 @@ void intel_bios_init(struct drm_i915_private *i915)
+ 	parse_sdvo_device_mapping(i915);
+ 	parse_ddi_ports(i915);
+ 
+-	kfree(oprom_vbt);
++	kfree(vbt);
+ }
+ 
+ static void intel_bios_init_panel(struct drm_i915_private *i915,
+@@ -3743,13 +3748,12 @@ static int intel_bios_vbt_show(struct seq_file *m, void *unused)
+ 	const void *vbt;
+ 	size_t vbt_size;
+ 
+-	/*
+-	 * FIXME: VBT might originate from other places than opregion, and then
+-	 * this would be incorrect.
+-	 */
+-	vbt = intel_opregion_get_vbt(i915, &vbt_size);
+-	if (vbt)
++	vbt = intel_bios_get_vbt(i915, &vbt_size);
++
++	if (vbt) {
+ 		seq_write(m, vbt, vbt_size);
++		kfree(vbt);
++	}
+ 
+ 	return 0;
+ }
+-- 
+2.34.1
 
-My mistake, I misread the merge commit.  It has not been fixed in the
-drm-misc-fixes tree or the drm-fixes tree (or Linus' tree since the
-drm-fixes tree has been merged there) :-(
-
-The problem in this case is not with the format string types, but with
-a missing argument i.e. there is another argument required by the
-format string.  It really should be fixed in the drm-misc-fixes tree
-and sent to Linus post haste.
-
-At least the change in the kunit-next tree will stop this happening in
-the future.
-
---=20
-Cheers,
-Stephen Rothwell
-
---Sig_/hJtFnmksjMZBb0tNYJ8Tqwn
-Content-Type: application/pgp-signature
-Content-Description: OpenPGP digital signature
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAEBCAAdFiEENIC96giZ81tWdLgKAVBC80lX0GwFAmXiPrQACgkQAVBC80lX
-0GxuJggAoL1GOk0uMpTgsgmCng4cTme2aI6B+7oHb45TTfcoKZxWTXGVhfRdELwU
-jeg7AOe+qPKPgiSf8NtHTCLxISVCurIjDUr8l0xZpfvgRyt6uleC3WU3Tb8Fre88
-luxtLQUGMFAEhVboYUsnNy/TyLQs2/qYdhv7nLcL7bfdd2uC0HEl8ErNpf0yqL2u
-u2PC+3DYXwjXmgT7pbaSwmz7yY2nHuCZIUE2Bn0iDFQ8ObIAfJjeMG1NFKEF3TBn
-7WWY8Z63JvsaIuK7k1uJzEPk1NmspzltnJHvaIMHpIYptrROK6iOqpXWqDmuxJ3+
-XQI9vRpFLX3Xhm/lucKpII9/y8R7Lw==
-=yARD
------END PGP SIGNATURE-----
-
---Sig_/hJtFnmksjMZBb0tNYJ8Tqwn--
