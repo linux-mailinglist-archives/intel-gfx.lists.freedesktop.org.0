@@ -2,26 +2,26 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8778A86D873
-	for <lists+intel-gfx@lfdr.de>; Fri,  1 Mar 2024 01:46:27 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 05F9386D880
+	for <lists+intel-gfx@lfdr.de>; Fri,  1 Mar 2024 02:00:30 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9F35D10E79F;
-	Fri,  1 Mar 2024 00:46:24 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6C83110E79B;
+	Fri,  1 Mar 2024 01:00:28 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from 8e613ede5ea5 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 70CC610E79F;
- Fri,  1 Mar 2024 00:46:23 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6083E10E72C;
+ Fri,  1 Mar 2024 01:00:27 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============1722874775536628738=="
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=97_Fi=2ECI=2ESPARSE=3A_warning_for_drm/i915=3A_Add_missing_?=
- =?utf-8?q?doc_for_drm=5Fi915=5Freset=5Fstats_=28rev2=29?=
+Subject: =?utf-8?q?=E2=9C=93_Fi=2ECI=2EBAT=3A_success_for_drm/i915=3A_Add_missing_doc?=
+ =?utf-8?q?_for_drm=5Fi915=5Freset=5Fstats_=28rev2=29?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Nirmoy Das" <nirmoy.das@intel.com>
 Cc: intel-gfx@lists.freedesktop.org
-Date: Fri, 01 Mar 2024 00:46:23 -0000
-Message-ID: <170925398346.414517.13387557808687609322@8e613ede5ea5>
+Date: Fri, 01 Mar 2024 01:00:27 -0000
+Message-ID: <170925482739.414517.5236830563924646874@8e613ede5ea5>
 X-Patchwork-Hint: ignore
 References: <20240229132918.10205-1-nirmoy.das@intel.com>
 In-Reply-To: <20240229132918.10205-1-nirmoy.das@intel.com>
@@ -41,16 +41,197 @@ Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+--===============1722874775536628738==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
 == Series Details ==
 
 Series: drm/i915: Add missing doc for drm_i915_reset_stats (rev2)
 URL   : https://patchwork.freedesktop.org/series/130562/
-State : warning
+State : success
 
 == Summary ==
 
-Error: dim sparse failed
-Sparse version: v0.6.2
-Fast mode used, each commit won't be checked separately.
+CI Bug Log - changes from CI_DRM_14370 -> Patchwork_130562v2
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130562v2/index.html
+
+Participating hosts (43 -> 41)
+------------------------------
+
+  Missing    (2): bat-mtlp-8 fi-snb-2520m 
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_130562v2 that come from known issues:
+
+### CI changes ###
+
+#### Issues hit ####
+
+  * boot:
+    - fi-apl-guc:         [PASS][1] -> [FAIL][2] ([i915#8293])
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14370/fi-apl-guc/boot.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130562v2/fi-apl-guc/boot.html
+
+  
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@kms_chamelium_hpd@dp-hpd-fast:
+    - bat-dg2-13:         NOTRUN -> [SKIP][3] ([Intel XE#484]) +1 other test skip
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130562v2/bat-dg2-13/igt@kms_chamelium_hpd@dp-hpd-fast.html
+
+  * igt@kms_chamelium_hpd@vga-hpd-fast:
+    - bat-dg2-13:         NOTRUN -> [SKIP][4] ([Intel XE#484] / [i915#4550]) +1 other test skip
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130562v2/bat-dg2-13/igt@kms_chamelium_hpd@vga-hpd-fast.html
+
+  
+#### Possible fixes ####
+
+  * igt@i915_selftest@live@dmabuf:
+    - bat-arls-1:         [DMESG-FAIL][5] -> [PASS][6]
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14370/bat-arls-1/igt@i915_selftest@live@dmabuf.html
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130562v2/bat-arls-1/igt@i915_selftest@live@dmabuf.html
+
+  * igt@i915_selftest@live@gt_timelines:
+    - {bat-arls-4}:       [INCOMPLETE][7] -> [PASS][8]
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14370/bat-arls-4/igt@i915_selftest@live@gt_timelines.html
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130562v2/bat-arls-4/igt@i915_selftest@live@gt_timelines.html
+
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+  [Intel XE#484]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/484
+  [i915#4550]: https://gitlab.freedesktop.org/drm/intel/issues/4550
+  [i915#5591]: https://gitlab.freedesktop.org/drm/intel/issues/5591
+  [i915#8293]: https://gitlab.freedesktop.org/drm/intel/issues/8293
 
 
+Build changes
+-------------
+
+  * Linux: CI_DRM_14370 -> Patchwork_130562v2
+
+  CI-20190529: 20190529
+  CI_DRM_14370: c1a0f6caf0ffa81e77e74e04d937605a2e293774 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_7738: 7738
+  Patchwork_130562v2: c1a0f6caf0ffa81e77e74e04d937605a2e293774 @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+### Linux commits
+
+b5af018b4a07 drm/i915: Add missing doc for drm_i915_reset_stats
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130562v2/index.html
+
+--===============1722874775536628738==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/i915: Add missing doc for drm_i915_reset_stats (rev2)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/130562/">https://patchwork.freedesktop.org/series/130562/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130562v2/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130562v2/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_14370 -&gt; Patchwork_130562v2</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130562v2/index.html</p>
+<h2>Participating hosts (43 -&gt; 41)</h2>
+<p>Missing    (2): bat-mtlp-8 fi-snb-2520m </p>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_130562v2 that come from known issues:</p>
+<h3>CI changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>boot:<ul>
+<li>fi-apl-guc:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14370/fi-apl-guc/boot.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130562v2/fi-apl-guc/boot.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/8293">i915#8293</a>)</li>
+</ul>
+</li>
+</ul>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@kms_chamelium_hpd@dp-hpd-fast:</p>
+<ul>
+<li>bat-dg2-13:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130562v2/bat-dg2-13/igt@kms_chamelium_hpd@dp-hpd-fast.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/484">Intel XE#484</a>) +1 other test skip</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_chamelium_hpd@vga-hpd-fast:</p>
+<ul>
+<li>bat-dg2-13:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130562v2/bat-dg2-13/igt@kms_chamelium_hpd@vga-hpd-fast.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/484">Intel XE#484</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/4550">i915#4550</a>) +1 other test skip</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>
+<p>igt@i915_selftest@live@dmabuf:</p>
+<ul>
+<li>bat-arls-1:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14370/bat-arls-1/igt@i915_selftest@live@dmabuf.html">DMESG-FAIL</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130562v2/bat-arls-1/igt@i915_selftest@live@dmabuf.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@gt_timelines:</p>
+<ul>
+<li>{bat-arls-4}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14370/bat-arls-4/igt@i915_selftest@live@gt_timelines.html">INCOMPLETE</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130562v2/bat-arls-4/igt@i915_selftest@live@gt_timelines.html">PASS</a></li>
+</ul>
+</li>
+</ul>
+<p>{name}: This element is suppressed. This means it is ignored when computing<br />
+          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_14370 -&gt; Patchwork_130562v2</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_14370: c1a0f6caf0ffa81e77e74e04d937605a2e293774 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_7738: 7738<br />
+  Patchwork_130562v2: c1a0f6caf0ffa81e77e74e04d937605a2e293774 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+<h3>Linux commits</h3>
+<p>b5af018b4a07 drm/i915: Add missing doc for drm_i915_reset_stats</p>
+
+</body>
+</html>
+
+--===============1722874775536628738==--
