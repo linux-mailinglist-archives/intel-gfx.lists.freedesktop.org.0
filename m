@@ -2,54 +2,56 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id B901886DF82
-	for <lists+intel-gfx@lfdr.de>; Fri,  1 Mar 2024 11:44:12 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id E3EAF86E026
+	for <lists+intel-gfx@lfdr.de>; Fri,  1 Mar 2024 12:26:14 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A663C10EC85;
-	Fri,  1 Mar 2024 10:44:07 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C5E2F10ECA4;
+	Fri,  1 Mar 2024 11:26:09 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; secure) header.d=canb.auug.org.au header.i=@canb.auug.org.au header.b="MPJrHvWj";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="DbdPbgLR";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from gandalf.ozlabs.org (gandalf.ozlabs.org [150.107.74.76])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 79B7F10EC83;
- Fri,  1 Mar 2024 10:44:03 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canb.auug.org.au;
- s=201702; t=1709289841;
- bh=MUAaVbY8hAyvVomzkTkUV8mACB46mqqy2aCXtcMPy5k=;
- h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
- b=MPJrHvWj27FyYmFtlNzCAC9IF1vERym2/2E4qPc/ctFzuw/IF9LDbsFJBVYKgtMBh
- EidQ6WxQrMcY67kP7Oq2pUSHSzgh+avv+jTPbzbUMYeML6jyMtcWj9e/Ub54kD3j+8
- Zgvde3WCYXV7+qFpCJfJYneuLc/X/XjrJO4VIqAu6AmUL0ZWO9/DOc3Y2Ifx9kyqeg
- yRFlHrjqXoqBHxxODj6cSWmmnT8Db5HR7q9tJJHOI5QgSLiMXAu+59KvuAK9mSsW5q
- hBi3uA9cQ1ZAdEgNpa+QcKFIYrUx1HcbaiH/gDutgOcbJZvUUDaKdtdUTmZ7Rh9lAk
- Uu5h/zAnI2Ziw==
-Received: from authenticated.ozlabs.org (localhost [127.0.0.1])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange ECDHE (prime256v1) server-signature RSA-PSS (4096 bits)
- server-digest SHA256) (No client certificate requested)
- by mail.ozlabs.org (Postfix) with ESMTPSA id 4TmPpS1gQQz4wc6;
- Fri,  1 Mar 2024 21:44:00 +1100 (AEDT)
-Date: Fri, 1 Mar 2024 21:43:58 +1100
-From: Stephen Rothwell <sfr@canb.auug.org.au>
-To: David Gow <davidgow@google.com>
-Cc: Shuah Khan <skhan@linuxfoundation.org>, Brendan Higgins
- <brendanhiggins@google.com>, Daniel Vetter <daniel.vetter@ffwll.ch>, Intel
- Graphics <intel-gfx@lists.freedesktop.org>, DRI
- <dri-devel@lists.freedesktop.org>, Christian =?UTF-8?B?S8O2bmln?=
- <christian.koenig@amd.com>, Matthew Auld <matthew.auld@intel.com>, Linux
- Kernel Mailing List <linux-kernel@vger.kernel.org>, Linux Next Mailing List
- <linux-next@vger.kernel.org>
-Subject: Re: linux-next: build failure after merge of the kunit-next tree
-Message-ID: <20240301214358.7fdecd66@canb.auug.org.au>
-In-Reply-To: <CABVgOSmAmkOcY8hFnpPSgz5WZXFkez_BDGhKjBepbWFpKykfUg@mail.gmail.com>
-References: <20240229152653.09ecf771@canb.auug.org.au>
- <be2e812c-3898-4be8-8a9d-e221acb837c3@linuxfoundation.org>
- <CABVgOSmAmkOcY8hFnpPSgz5WZXFkez_BDGhKjBepbWFpKykfUg@mail.gmail.com>
+Received: from fanzine2.igalia.com (fanzine2.igalia.com [213.97.179.56])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6881910E2EA;
+ Fri,  1 Mar 2024 11:26:05 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
+ s=20170329;
+ h=In-Reply-To:Cc:References:To:Subject:From:MIME-Version:Date:
+ Message-ID:Content-Type:Sender:Reply-To:Content-Transfer-Encoding:Content-ID:
+ Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+ :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
+ List-Post:List-Owner:List-Archive;
+ bh=9zGj0u7K/llTIdI+zCbw5MSt0B627m1u3Gyazm8fnG0=; b=DbdPbgLRFv9Jr4Na/vkh9jkbkh
+ a2ZUqeXZMWz+dJI5mVrEl3Flq8+0yDCeOl3aMpafSme5Mn3lxL+H+sU8rxp9vx7EJ3/xhSDwGRCqg
+ 7S5tyfohr4TKlza911E06IvGnDJlfUjzTML/AuO4+ykWVRdwpgF6nzkUak7xltmf7eh0KFf3JcFvN
+ dSP+Pk+u724DmUDBLm374IABVjo0vffvBoX75YXnZthpGu6Mgu7g89dasIwRD3lPKGnvDJAvkE+C/
+ 5fjjP9wxg9OXU9m2Z6iVeS/lPS/pAfTKJK+6kCJF2aLR4Nj7KM5rh7x+CrfwRJv2WpZCA/p9jRh9H
+ TttfjN4w==;
+Received: from c-71-59-88-35.hsd1.nj.comcast.net ([71.59.88.35]
+ helo=[192.168.1.99]) by fanzine2.igalia.com with esmtpsa 
+ (Cipher TLS1.3:ECDHE_X25519__RSA_PSS_RSAE_SHA256__AES_128_GCM:128) (Exim)
+ id 1rg11b-0051OZ-0a; Fri, 01 Mar 2024 12:25:59 +0100
+Content-Type: multipart/alternative;
+ boundary="------------PdOyCBePms0bkn01b4OZdjuV"
+Message-ID: <08f8a967-25e1-4362-be38-3f1b050ec6f2@igalia.com>
+Date: Fri, 1 Mar 2024 06:25:53 -0500
 MIME-Version: 1.0
-Content-Type: multipart/signed; boundary="Sig_/+X+ZUG0wlkgfO96g6gv/m6o";
- protocol="application/pgp-signature"; micalg=pgp-sha256
+User-Agent: Mozilla Thunderbird
+From: Christopher Michael <cmichael@igalia.com>
+Subject: 2024 X.Org Board of Directors Elections timeline extended, request
+ for nominations
+To: events@lists.x.org, xorg-devel@lists.x.org,
+ wayland-devel@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ mesa-dev@lists.freedesktop.org, amd-gfx@lists.freedesktop.org,
+ etnaviv@lists.freedesktop.org, freedreno@lists.freedesktop.org,
+ nouveau@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
+ libre-soc-dev@lists.libre-soc.org, elections@x.org, members@x.org,
+ xorg@lists.freedesktop.org
+References: <0efcdfe3-ea9e-43e5-ab07-6d69dca2c04a@igalia.com>
+Content-Language: en-US
+Cc: board <board@foundation.x.org>
+In-Reply-To: <0efcdfe3-ea9e-43e5-ab07-6d69dca2c04a@igalia.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -65,44 +67,127 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---Sig_/+X+ZUG0wlkgfO96g6gv/m6o
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: quoted-printable
+This is a multi-part message in MIME format.
+--------------PdOyCBePms0bkn01b4OZdjuV
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-Hi all,
+We are seeking nominations for candidates for election to the X.org 
+Foundation Board of Directors. However, as we presently do not have 
+enough nominations to start the election - the decision has been made to 
+extend the timeline by 2 weeks. Note this is a fairly regular part of 
+the elections process.
 
-On Fri, 1 Mar 2024 15:15:02 +0800 David Gow <davidgow@google.com> wrote:
->
-> On Thu, 29 Feb 2024 at 23:07, Shuah Khan <skhan@linuxfoundation.org> wrot=
-e:
-> >
-> > I can carry the fix through kselftest kunit if it works
-> > for all. =20
->=20
-> I'm happy for this to go in with the KUnit changes if that's the best
-> way to keep all of the printk formatting fixes together.
 
-I am pretty sure that the proper fix has been applied to the drm-fixes
-tree today (in the merge of the drm-misc-fixes tree).
+The new deadline for nominations to the X.org Board of Directors is 
+23:59 UTC on 11 March 2024
 
---=20
+
+The Board consists of directors elected from the membership. Each year, 
+an election is held to bring the total number of directors to eight. The 
+four members receiving the highest vote totals will serve as directors 
+for two year terms.
+
+The directors who received two year terms starting in 2023 were 
+Arkadiusz Hiler, Christopher Michael, Lyude Paul, and Daniel Vetter. 
+They will continue to serve until their term ends in 2024. Current 
+directors whose term expires in 2024 are Emma Anholt, Mark Filion, 
+Ricardo Garcia, and Alyssa Rosenzweig.
+<https://rosenzweig.io/>
+
+A director is expected to participate in the fortnightly IRC meeting to 
+discuss current business and to attend the annual meeting of the X.Org 
+Foundation, which will be held at a location determined in advance by 
+the Board of Directors.
+
+A member may nominate themselves or any other member they feel is 
+qualified. Nominations should be sent to the Election Committee at 
+elections@x.org.
+
+Nominees shall be required to be current members of the X.Org 
+Foundation, and submit a personal statement of up to 200 words that will 
+be provided to prospective voters. The collected statements, along with 
+the statement of contribution to the X.Org Foundation in the member's 
+account page on http://members.x.org, will be made available to all 
+voters to help them make their voting decisions.
+
+Nominations and completed personal statements must be received no later 
+than 23:59 UTC on 11 March 2024.
+
+The slate of candidates will be published 18 March 2024 and candidate 
+Q&A will begin then. The deadline for Xorg membership applications and 
+renewals has also been extended 2 weeks and is now 25 March 2024.
+
+
 Cheers,
-Stephen Rothwell
 
---Sig_/+X+ZUG0wlkgfO96g6gv/m6o
-Content-Type: application/pgp-signature
-Content-Description: OpenPGP digital signature
+Christopher Michael, on behalf of the X.Org BoD
 
------BEGIN PGP SIGNATURE-----
 
-iQEzBAEBCAAdFiEENIC96giZ81tWdLgKAVBC80lX0GwFAmXhsW4ACgkQAVBC80lX
-0Gz+Bwf/X7n+m/wDZxSYLCDkltJK1RqNF4UBMU+iiqKNsABv/hmcAecGfGZlCunX
-9ASSYnaS1Mor0rsVyFmPxZwaGGcTIFhjc4NU97YDUh83F5U/CX5Sr8d4o3eHDWws
-y/4xmpH/1eEmvqdUJWu4xb9srmcZg1obZCQ6ZtlwMfgvTt03sTBDmp8PZk2rpKOy
-hnSJ1PSatQX+ABzWA5wWhDHtId3NYgZ5eLwyeCWx8DAQ+sTREXNvToHz18+ZEA9c
-EIemv6cZivH8WiauOLqmh8ED1MKApeQUenHf46aLzxBGK6EwNFZXaxIMrHDC07nN
-l41OgA40LcOAR0Kve6FwmRoeSXwKyQ==
-=jdxI
------END PGP SIGNATURE-----
+--------------PdOyCBePms0bkn01b4OZdjuV
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
---Sig_/+X+ZUG0wlkgfO96g6gv/m6o--
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  </head>
+  <body>
+    <p>We are seeking nominations for candidates for election to the
+      X.org Foundation Board of Directors. However, as we presently do
+      not have enough nominations to start the election - the decision
+      has been made to extend the timeline by 2 weeks. Note this is a
+      fairly regular part of the elections process.</p>
+    <p><br>
+    </p>
+    <p>The new deadline for nominations to the X.org Board of Directors
+      is 23:59 UTC on 11 March 2024</p>
+    <br>
+    The Board consists of directors elected from the membership. Each
+    year, an election is held to bring the total number of directors to
+    eight. The four members receiving the highest vote totals will serve
+    as directors for two year terms.
+    <p>The directors who received two year terms starting in 2023 were <span
+        class="createlink">Arkadiusz Hiler, </span><span
+        class="createlink">Christopher Michael, </span><span
+        class="createlink">Lyude Paul, and Daniel Vetter</span>. They
+      will continue to serve until their term ends in 2024. Current
+      directors whose term expires in 2024 are <span class="createlink">Emma
+        Anholt, </span><span class="createlink">Mark Filion, </span><span
+        class="createlink">Ricardo Garcia, and Alyssa Rosenzweig.</span><a
+        href="https://rosenzweig.io/"><br>
+      </a></p>
+    <p>A director is expected to participate in the fortnightly IRC
+      meeting to discuss current business and to attend the annual
+      meeting of the X.Org Foundation, which will be held at a location
+      determined in advance by the Board of Directors.</p>
+    <p>A member may nominate themselves or any other member they feel is
+      qualified. Nominations should be sent to the Election Committee at
+      <a class="moz-txt-link-abbreviated moz-txt-link-freetext"
+        href="mailto:elections@x.org">elections@x.org</a>.<br>
+    </p>
+    <p>Nominees shall be required to be current members of the X.Org
+      Foundation, and submit a personal statement of up to 200 words
+      that will be provided to prospective voters. The collected
+      statements, along with the statement of contribution to the X.Org
+      Foundation in the member's account page on <a
+        class="moz-txt-link-freetext" href="http://members.x.org">http://members.x.org</a>,
+      will be made available to all voters to help them make their
+      voting decisions.</p>
+    <p>Nominations and completed personal statements must be received no
+      later than 23:59 UTC on 11 March 2024.</p>
+    <p>The slate of candidates will be published 18 March 2024 and
+      candidate Q&amp;A will begin then. The deadline for Xorg
+      membership applications and renewals has also been extended 2
+      weeks and is now 25 March 2024.</p>
+    <p><br>
+    </p>
+    <p>Cheers,</p>
+    <p>Christopher Michael, on behalf of the X.Org BoD</p>
+    <p><br>
+    </p>
+  </body>
+</html>
+
+--------------PdOyCBePms0bkn01b4OZdjuV--
