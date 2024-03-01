@@ -2,30 +2,29 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7896086D808
-	for <lists+intel-gfx@lfdr.de>; Fri,  1 Mar 2024 00:50:00 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 986E786D829
+	for <lists+intel-gfx@lfdr.de>; Fri,  1 Mar 2024 01:11:25 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id F19EC10E3F9;
-	Thu, 29 Feb 2024 23:49:58 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D9E9810E724;
+	Fri,  1 Mar 2024 00:11:22 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from 8e613ede5ea5 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BDE8510E3F9;
- Thu, 29 Feb 2024 23:49:57 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============0060912573862004439=="
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E3B1C10E724;
+ Fri,  1 Mar 2024 00:11:21 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Fi=2ECI=2EBAT=3A_success_for_series_starting_with_=5B1/4?=
- =?utf-8?q?=5D_drm/i915=3A_Rename_ICL=5FAUX=5FANAOVRD1_to_ICL=5FPORT=5FTX=5F?=
- =?utf-8?q?DW6=5FAUX?=
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=97_Fi=2ECI=2ECHECKPATCH=3A_warning_for_Disable_automatic_lo?=
+ =?utf-8?q?ad_CCS_load_balancing_=28rev4=29?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Ville Syrjala" <ville.syrjala@linux.intel.com>
+To: "Andi Shyti" <andi.shyti@linux.intel.com>
 Cc: intel-gfx@lists.freedesktop.org
-Date: Thu, 29 Feb 2024 23:49:57 -0000
-Message-ID: <170925059777.414572.14222247300694585044@8e613ede5ea5>
+Date: Fri, 01 Mar 2024 00:11:21 -0000
+Message-ID: <170925188193.414572.5359827859936992614@8e613ede5ea5>
 X-Patchwork-Hint: ignore
-References: <20240229200357.7969-1-ville.syrjala@linux.intel.com>
-In-Reply-To: <20240229200357.7969-1-ville.syrjala@linux.intel.com>
+References: <20240229232859.70058-1-andi.shyti@linux.intel.com>
+In-Reply-To: <20240229232859.70058-1-andi.shyti@linux.intel.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -42,207 +41,37 @@ Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============0060912573862004439==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
 == Series Details ==
 
-Series: series starting with [1/4] drm/i915: Rename ICL_AUX_ANAOVRD1 to ICL_PORT_TX_DW6_AUX
-URL   : https://patchwork.freedesktop.org/series/130581/
-State : success
+Series: Disable automatic load CCS load balancing (rev4)
+URL   : https://patchwork.freedesktop.org/series/129951/
+State : warning
 
 == Summary ==
 
-CI Bug Log - changes from CI_DRM_14370 -> Patchwork_130581v1
-====================================================
+Error: dim checkpatch failed
+9d59a3a23381 drm/i915/gt: Refactor uabi engine class/instance list creation
+-:54: WARNING:AVOID_BUG: Do not crash the kernel unless it is absolutely unavoidable--use WARN_ON_ONCE() plus recovery code (if feasible) instead of BUG() or variants
+#54: FILE: drivers/gpu/drm/i915/gt/intel_engine_user.c:233:
++		GEM_BUG_ON(uabi_class >= ARRAY_SIZE(class_instance));
 
-Summary
--------
+-:70: WARNING:AVOID_BUG: Do not crash the kernel unless it is absolutely unavoidable--use WARN_ON_ONCE() plus recovery code (if feasible) instead of BUG() or variants
+#70: FILE: drivers/gpu/drm/i915/gt/intel_engine_user.c:247:
++		GEM_BUG_ON(uabi_class >=
 
-  **SUCCESS**
+total: 0 errors, 2 warnings, 0 checks, 56 lines checked
+8b2b08e3b16c drm/i915/gt: Do not exposed fused off engines.
+-:11: WARNING:COMMIT_LOG_LONG_LINE: Prefer a maximum 75 chars per line (possible unwrapped commit description?)
+#11: 
+Requires: 4e4f77d74878 ("drm/i915/gt: Refactor uabi engine class/instance list creation")
 
-  No regressions found.
+total: 0 errors, 1 warnings, 0 checks, 18 lines checked
+dcfb1f190d40 drm/i915/gt: Disable HW load balancing for CCS
+1205dac76b84 drm/i915/gt: Enable only one CCS for compute workload
+-:16: WARNING:COMMIT_LOG_LONG_LINE: Prefer a maximum 75 chars per line (possible unwrapped commit description?)
+#16: 
+Requires: 4e4f77d74878 ("drm/i915/gt: Refactor uabi engine class/instance list creation")
 
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130581v1/index.html
-
-Participating hosts (43 -> 41)
-------------------------------
-
-  Missing    (2): bat-arls-2 fi-snb-2520m 
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_130581v1 that come from known issues:
-
-### CI changes ###
-
-#### Issues hit ####
-
-  * boot:
-    - bat-arls-3:         [PASS][1] -> [FAIL][2] ([i915#10234])
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14370/bat-arls-3/boot.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130581v1/bat-arls-3/boot.html
-    - fi-cfl-8109u:       [PASS][3] -> [FAIL][4] ([i915#8293])
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14370/fi-cfl-8109u/boot.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130581v1/fi-cfl-8109u/boot.html
-
-  
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@kms_chamelium_hpd@dp-hpd-fast:
-    - bat-dg2-13:         NOTRUN -> [SKIP][5] ([Intel XE#484]) +1 other test skip
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130581v1/bat-dg2-13/igt@kms_chamelium_hpd@dp-hpd-fast.html
-
-  * igt@kms_chamelium_hpd@vga-hpd-fast:
-    - bat-dg2-13:         NOTRUN -> [SKIP][6] ([Intel XE#484] / [i915#4550]) +1 other test skip
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130581v1/bat-dg2-13/igt@kms_chamelium_hpd@vga-hpd-fast.html
-
-  
-#### Possible fixes ####
-
-  * igt@i915_selftest@live@dmabuf:
-    - bat-arls-1:         [DMESG-FAIL][7] -> [PASS][8]
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14370/bat-arls-1/igt@i915_selftest@live@dmabuf.html
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130581v1/bat-arls-1/igt@i915_selftest@live@dmabuf.html
-
-  * igt@i915_selftest@live@gt_timelines:
-    - {bat-arls-4}:       [INCOMPLETE][9] -> [PASS][10]
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14370/bat-arls-4/igt@i915_selftest@live@gt_timelines.html
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130581v1/bat-arls-4/igt@i915_selftest@live@gt_timelines.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [Intel XE#484]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/484
-  [i915#10234]: https://gitlab.freedesktop.org/drm/intel/issues/10234
-  [i915#4550]: https://gitlab.freedesktop.org/drm/intel/issues/4550
-  [i915#8293]: https://gitlab.freedesktop.org/drm/intel/issues/8293
+total: 0 errors, 1 warnings, 0 checks, 54 lines checked
 
 
-Build changes
--------------
-
-  * Linux: CI_DRM_14370 -> Patchwork_130581v1
-
-  CI-20190529: 20190529
-  CI_DRM_14370: c1a0f6caf0ffa81e77e74e04d937605a2e293774 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_7738: 7738
-  Patchwork_130581v1: c1a0f6caf0ffa81e77e74e04d937605a2e293774 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-### Linux commits
-
-0c144112a027 drm/i915: Streamline eDP handling in icl_combo_phy_aux_power_well_enable()
-0fa49ce48c9e drm/i915: Use pw_idx to derive PHY for ICL_LANE_ENABLE_AUX override
-0286bc59ff54 drm/i915: Use REG_BIT() & co. in intel_combo_phy_regs.h
-3a06bbca238d drm/i915: Rename ICL_AUX_ANAOVRD1 to ICL_PORT_TX_DW6_AUX
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130581v1/index.html
-
---===============0060912573862004439==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>series starting with [1/4] drm/i915: Rename ICL_AUX_ANAOVRD1 to ICL_PORT_TX_DW6_AUX</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/130581/">https://patchwork.freedesktop.org/series/130581/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130581v1/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130581v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_14370 -&gt; Patchwork_130581v1</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130581v1/index.html</p>
-<h2>Participating hosts (43 -&gt; 41)</h2>
-<p>Missing    (2): bat-arls-2 fi-snb-2520m </p>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_130581v1 that come from known issues:</p>
-<h3>CI changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>boot:<ul>
-<li>bat-arls-3:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14370/bat-arls-3/boot.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130581v1/bat-arls-3/boot.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/10234">i915#10234</a>)</li>
-<li>fi-cfl-8109u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14370/fi-cfl-8109u/boot.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130581v1/fi-cfl-8109u/boot.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/8293">i915#8293</a>)</li>
-</ul>
-</li>
-</ul>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@kms_chamelium_hpd@dp-hpd-fast:</p>
-<ul>
-<li>bat-dg2-13:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130581v1/bat-dg2-13/igt@kms_chamelium_hpd@dp-hpd-fast.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/484">Intel XE#484</a>) +1 other test skip</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_chamelium_hpd@vga-hpd-fast:</p>
-<ul>
-<li>bat-dg2-13:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130581v1/bat-dg2-13/igt@kms_chamelium_hpd@vga-hpd-fast.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/484">Intel XE#484</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/4550">i915#4550</a>) +1 other test skip</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>
-<p>igt@i915_selftest@live@dmabuf:</p>
-<ul>
-<li>bat-arls-1:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14370/bat-arls-1/igt@i915_selftest@live@dmabuf.html">DMESG-FAIL</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130581v1/bat-arls-1/igt@i915_selftest@live@dmabuf.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@gt_timelines:</p>
-<ul>
-<li>{bat-arls-4}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14370/bat-arls-4/igt@i915_selftest@live@gt_timelines.html">INCOMPLETE</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130581v1/bat-arls-4/igt@i915_selftest@live@gt_timelines.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<p>{name}: This element is suppressed. This means it is ignored when computing<br />
-          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_14370 -&gt; Patchwork_130581v1</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_14370: c1a0f6caf0ffa81e77e74e04d937605a2e293774 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_7738: 7738<br />
-  Patchwork_130581v1: c1a0f6caf0ffa81e77e74e04d937605a2e293774 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<h3>Linux commits</h3>
-<p>0c144112a027 drm/i915: Streamline eDP handling in icl_combo_phy_aux_power_well_enable()<br />
-0fa49ce48c9e drm/i915: Use pw_idx to derive PHY for ICL_LANE_ENABLE_AUX override<br />
-0286bc59ff54 drm/i915: Use REG_BIT() &amp; co. in intel_combo_phy_regs.h<br />
-3a06bbca238d drm/i915: Rename ICL_AUX_ANAOVRD1 to ICL_PORT_TX_DW6_AUX</p>
-
-</body>
-</html>
-
---===============0060912573862004439==--
