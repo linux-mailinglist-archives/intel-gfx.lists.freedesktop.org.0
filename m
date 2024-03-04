@@ -2,57 +2,149 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id EE99786FE33
-	for <lists+intel-gfx@lfdr.de>; Mon,  4 Mar 2024 10:59:56 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id A9E2286FE45
+	for <lists+intel-gfx@lfdr.de>; Mon,  4 Mar 2024 11:03:20 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7CCE010FF01;
-	Mon,  4 Mar 2024 09:59:55 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0750310FF0D;
+	Mon,  4 Mar 2024 10:03:19 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="g6bhRLNZ";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="cgGXwthQ";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5FD0810FF01
- for <intel-gfx@lists.freedesktop.org>; Mon,  4 Mar 2024 09:59:54 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 13AE010FF0B
+ for <intel-gfx@lists.freedesktop.org>; Mon,  4 Mar 2024 10:03:16 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1709546394; x=1741082394;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=99U9lAg6XtaD0ZqrcV1USHgNyPA5XxM0evPk6t5H+I0=;
- b=g6bhRLNZmrsOziBVfUaiIdem9OM9xfTr0en04Ps6wqNGT+bo9kOOiPIa
- FWP+rdCYtWcNI8I+ToKG8ykX7MW8vuRNQGF88mMWLLjGEr/zQMzzypg/2
- EqZx/X2r7K8mqcPxUclU2LsvfhWU9DbqFLnN/4tgASYt50lCYEn3NGpAp
- XO9j6fuqOiAauV0r8RCCvGcFbFNmemBetZZ17Hd8ILL74v1FFGQgUpNDT
- JxHg0YDPGu/Em4SISExPKf+mC41zNb2k8Rk2o90Ki9rCX0iy4RRYsb1bZ
- 6sldETAQ7Q0Gn1g0BWPj9YwEP66csIJMAk9RoKT9yc5GPVhVRqwCtDPRj g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,11002"; a="14738945"
-X-IronPort-AV: E=Sophos;i="6.06,203,1705392000"; d="scan'208";a="14738945"
-Received: from fmviesa008.fm.intel.com ([10.60.135.148])
- by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Mar 2024 01:59:53 -0800
-X-ExtLoop1: 1
+ t=1709546597; x=1741082597;
+ h=from:to:cc:subject:date:message-id:references:
+ in-reply-to:content-transfer-encoding:mime-version;
+ bh=z7cLx5cf8z1Pl5PGX3hFcd6/qzXtxT6vplX4KorwO/M=;
+ b=cgGXwthQWqNwszCahUUBYwOoB0sfXGU2Ci+jwweqd67Whl7xT3uwUsbX
+ +OONGznwf5AOuz8hACD0maU2zDEZtPpQLNuUB1ly52g+7kXM2ZzstosP7
+ Ll5yT9HqRji2je9wqE/FonGGxXemOdgjZITW4fDJoohXY8eeWv9Y9HQxo
+ Z7uJMD1vOkY+1GtSCUYn57tOn2L/zlMsHoZ/PczO05Mg5ybHG1H0buzjO
+ CpBGUbgatbwYkUCDnZZaVp6Jz1iNA8Z4AgIiUjyFCpCA83fdPhZGhRnq3
+ T5K5RWEO6LVeN6QHKxvmzZFzk3W3tmEwv/ytFjI/HmUbo1jOsw4/GMmO/ w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,11002"; a="3954420"
 X-IronPort-AV: E=Sophos;i="6.06,203,1705392000"; 
-   d="scan'208";a="9078978"
-Received: from syakovle-mobl1.ger.corp.intel.com (HELO localhost)
- ([10.252.51.3])
- by fmviesa008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Mar 2024 01:59:33 -0800
-From: Jani Nikula <jani.nikula@intel.com>
-To: Radhakrishna Sripada <radhakrishna.sripada@intel.com>,
- intel-gfx@lists.freedesktop.org
-Cc: Radhakrishna Sripada <radhakrishna.sripada@intel.com>
-Subject: Re: [PATCH v5] drm/i915: Show bios vbt when read from
- firmware/spi/oprom
-In-Reply-To: <20240301221239.180884-1-radhakrishna.sripada@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20240301031457.2015603-1-radhakrishna.sripada@intel.com>
- <20240301221239.180884-1-radhakrishna.sripada@intel.com>
-Date: Mon, 04 Mar 2024 11:59:22 +0200
-Message-ID: <87edcq5nd1.fsf@intel.com>
+   d="scan'208";a="3954420"
+Received: from orviesa001.jf.intel.com ([10.64.159.141])
+ by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 04 Mar 2024 02:03:16 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.06,203,1705392000"; d="scan'208";a="46457244"
+Received: from orsmsx601.amr.corp.intel.com ([10.22.229.14])
+ by orviesa001.jf.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
+ 04 Mar 2024 02:03:16 -0800
+Received: from orsmsx612.amr.corp.intel.com (10.22.229.25) by
+ ORSMSX601.amr.corp.intel.com (10.22.229.14) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.35; Mon, 4 Mar 2024 02:03:16 -0800
+Received: from orsmsx601.amr.corp.intel.com (10.22.229.14) by
+ ORSMSX612.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.35; Mon, 4 Mar 2024 02:03:15 -0800
+Received: from orsedg603.ED.cps.intel.com (10.7.248.4) by
+ orsmsx601.amr.corp.intel.com (10.22.229.14) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.35 via Frontend Transport; Mon, 4 Mar 2024 02:03:15 -0800
+Received: from NAM12-DM6-obe.outbound.protection.outlook.com (104.47.59.168)
+ by edgegateway.intel.com (134.134.137.100) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.1.2507.35; Mon, 4 Mar 2024 02:03:15 -0800
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=TnRkvxQSMXhVxv1tPxiuMOPTJe8QvNXIQYyJ+zdRzSHHTF5ut6r9sSOW12F1LkhjBlb5lc3iGYlhOpe+vwEEdTzVX8y9FHxK0gcAKu9p3JYoA47Oi1WGzwzXKC6Hhz/zTWJGBNt+kF1IcM4kAMhb/B4txlR8Tfc8A/gwKQTkND91HQTuQl6IciPBZS4cLqqs4qEqSV8QKivkDot05XBuzigRN03vKUJQkUBzcDHMF67R04AKibDyN9LGgutqkz35wQWomUMU/p6hlyB7cTL+4vni9fFV7YR63nvcOuaTgPoxQ04F5+vnIcpFKdriELYkCGfqTYAKjJjbdV4NOJRv1Q==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=BuGs5vy7Szwcs7nGvUbCkdH6SEM6DsW8XISiU1ieyVc=;
+ b=UoATjySc9iC9ssoH5xB00fN+x8tNTyPbfOEkMYoNEnQa0WlXpPWe3xDTTX60rPwOkT86xxbPNrCgNqKnDXilwfbfBvTYMKMxinpg7+qh+/eZXBsghlKPWD6I/iuz33mIZUVkmHJVqgoeoGHLgMTReI6NJEkAlCtpQKBe0wl2XinW7FJdwju2pzpwBo0rOU7Rj1e3r/MUEH1C/HTYSlRV0zrqzkdXsPdsluzWfRL5GSJbUX62wvSjtSiLg8AE6OYmZVpvtUAPbKL1GitcqIEE52K9yNWla0hmcqYceyXemNMIE6UAhiwtA1dt8jqW1k/zKXrkrIMm4s/737wDqFyYxg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Received: from SJ1PR11MB6129.namprd11.prod.outlook.com (2603:10b6:a03:488::12)
+ by PH8PR11MB7071.namprd11.prod.outlook.com (2603:10b6:510:215::6)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7362.22; Mon, 4 Mar
+ 2024 10:03:13 +0000
+Received: from SJ1PR11MB6129.namprd11.prod.outlook.com
+ ([fe80::86fd:8a6:5f86:104e]) by SJ1PR11MB6129.namprd11.prod.outlook.com
+ ([fe80::86fd:8a6:5f86:104e%5]) with mapi id 15.20.7362.019; Mon, 4 Mar 2024
+ 10:03:13 +0000
+From: "Borah, Chaitanya Kumar" <chaitanya.kumar.borah@intel.com>
+To: Matthew Wilcox <willy@infradead.org>
+CC: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
+ "Kurmi, Suresh Kumar" <suresh.kumar.kurmi@intel.com>, "Saarinen, Jani"
+ <jani.saarinen@intel.com>
+Subject: RE: Regression on linux-next (next-20240228)
+Thread-Topic: Regression on linux-next (next-20240228)
+Thread-Index: Adpt7cuPPMBR1f+2T1On00uzl1C9NAACv5+AAAhXahA=
+Date: Mon, 4 Mar 2024 10:03:13 +0000
+Message-ID: <SJ1PR11MB6129A8999D977A46D6E9CA4AB9232@SJ1PR11MB6129.namprd11.prod.outlook.com>
+References: <SJ1PR11MB61292145F3B79DA58ADDDA63B9232@SJ1PR11MB6129.namprd11.prod.outlook.com>
+ <ZeVis2823T4YllDg@casper.infradead.org>
+In-Reply-To: <ZeVis2823T4YllDg@casper.infradead.org>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: SJ1PR11MB6129:EE_|PH8PR11MB7071:EE_
+x-ms-office365-filtering-correlation-id: 0c2ca365-48a3-41f7-d51c-08dc3c324e01
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: GCREOAgEMOuD0nJhj5CxUg8S5ysogKfeaG94veqfNMig6F79Xoys4asy2RM7XOl1H/hTSMOCjtXg1/dRa0qvPjlQgDekST8pMWmdMiVYIrercc6t/Vc8BVtmYWSUmlO5nAbV9raGPkgkXrKHEsR/QKujk2K9W/EhtSpN9rc7J7H85SXslLkVSkGsiGKdCqq2Uiem0xKHFOay13qHboD7M2ox1kDbsqvDDjIgDv3maqUAXk9tS8cEiA2uuJNfw+nYEU6yp9l4XzVgBr0A78Vym/oWOmNfTA8i/+0q0Nhqdjhi8V+K3gy7YL1d5IqoI0ATx3PbO6sRuwel0PLv21IC3xXRXmbTNkzbtgSHd68kdH8MyEpq/oxrxTHIw8lbak30jJwTpotTRZq9So8V5rqqDb1YH8LwcJ0azjrAgyTv5BinmZb25pHuLZHgDsv6Z2Oa1wjilZkdquqMs+3AZgpXtVwr8WPZRhYK6fDzhyI3vUz4pDif1jLfD1ZKUWiJ2EsDXXWW+ep1nek5uDP3Fff+/qpnbfWmDJcdOE3OYXxWVxm5Ng1Ayn6PT+krT11msEUbA5d/cvQuLvjyJQCnwvAsI6i8L2UN2c6oxIig9cm8UQowS6q47U8Y7EBrcrzRJVjDI0NWFTN2slZSAXfVhLDVNlGBGOb4x49bkK0bwB07+OA=
+x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:SJ1PR11MB6129.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230031)(376005)(38070700009); DIR:OUT; SFP:1101; 
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?iso-8859-1?Q?nz59zL+didzgm0K5j9YyHEEcycQ+fkeoDWMEfvXmO7yA0O+n5+5ytxTNIJ?=
+ =?iso-8859-1?Q?DGTQ7y1a0XMZlWuR6wwspt6H0II1NVgnwB/iuxv1zQstY6czSH+bltaxfE?=
+ =?iso-8859-1?Q?XKoPHqE+pdNVqWdq82mPp6pwMF7EM8uWAxsjeREPJYxEMCYVAb3VeqiyAI?=
+ =?iso-8859-1?Q?Drvl3ZvyMOq4UP4tF2CIfi/JVG8pQkZHx3cwX8iePwqALJbWx9uyxFNKf1?=
+ =?iso-8859-1?Q?5JZvs1VHmw/iONqnbvUuq5gTkT1iakuwvNFf0CodpZR4I00XenCplvrDI1?=
+ =?iso-8859-1?Q?yL5uAlAex/bxhoowe6pEjQEjGGp2ieHnSmCmCNmjy7003Ewz8XRLFJg6aM?=
+ =?iso-8859-1?Q?5DmVgLueZ8OGIByOYcm9+cFNXh8+vVrok+DNTZhc/Gq/B6OA07N4qjEKcs?=
+ =?iso-8859-1?Q?WjIJ6b+JVotpviGto0q8HrEGdIWVGEle+0+YVLX+Sr2ejA0GUJqBX96puz?=
+ =?iso-8859-1?Q?rghMcyvBVrYYIsWsfDg5tDCH9lHtsD0dP0VFww+jp7C6wIklaFDYubYExb?=
+ =?iso-8859-1?Q?1C677jKrWbgjutlZx8D+Rn1mz6cNcb5LwfSgwMjN2IpqD2nB+2inNUFIkI?=
+ =?iso-8859-1?Q?m5qI1iXg5z+oiqGR+s+bYWkxd0u60D2y66Cno3scgS4w1LYQjRMkzzqxbh?=
+ =?iso-8859-1?Q?Oxr1iUoHLw64qIS5axvVtBQhJE1OSreWuElkneVeQ6E7JsPn1enUhm+O8f?=
+ =?iso-8859-1?Q?RkFVT7J6XruKgGLLG2epcnCGwFZA+8oWWgy9AnfJaQMqAiNHlbrJCg7xYY?=
+ =?iso-8859-1?Q?Di11DpUH6nxzLtJWmYWm6kFGiw1BLJDRj4MZYU0smpybd4Bvp4BJEmYJb8?=
+ =?iso-8859-1?Q?4hw+hRSSVWXKCdm0VuOu2+vMv8DZH2iPV8C1whwcLCNKbYhADyxArWt80g?=
+ =?iso-8859-1?Q?xSjn6TuBbpnVYFJdU/CE248RZRIWL/E9rxaMSIljSYnd+VVmB+qpvs8xyJ?=
+ =?iso-8859-1?Q?/R+er5zYxJ9M8pONvNKpimd9jppdXdSdYmCcTBIZpZ0RgdR7j0BPfLaZbE?=
+ =?iso-8859-1?Q?dbeMZpC/bFR63x9euHaiSJ5BPRFXguhJf0ni9Fv5QeuY+CAcM+qVjZL9s3?=
+ =?iso-8859-1?Q?kzugitypmXQLkpyPXScxX/nceYHGkovD4JVwqFbBJ4rcjyCGasJQy6ACpk?=
+ =?iso-8859-1?Q?+y9kL8R7aQwRaQnd3e1YC4BDRHPG7Rs2SPMOh4XkFzctBpvMu0tYSqvWuD?=
+ =?iso-8859-1?Q?nMt8QLhRNboLBd1Z1XCqrc04gRI6I7uZAs9S5iRveMPoTCGRXcTrWGO+et?=
+ =?iso-8859-1?Q?OkheG9m8OoOjYWgb7eu0AGwLJG7icciO1wy4onLzaqqZmJFYvpLIjU6rGY?=
+ =?iso-8859-1?Q?RmBJG/yzjia3piS11BkyxeSzX+M9zddlGFhdFRkpmy2DT6b8JWPA3C9+8y?=
+ =?iso-8859-1?Q?924PyqRyieWEsp9CVvtR+wcmmO4UghYufZjeOVKDWfa5AWHZRxG19dazxe?=
+ =?iso-8859-1?Q?PtuGO697ibsKcRuysdSkJIox7JkziK9TEQARAVpS+gezaxlTZEfRzx9bLv?=
+ =?iso-8859-1?Q?mNcn5irZoSaY5P9ioQ5fNOZkiFdSEpO4cAhPdV1MUOcYlk25b62ZKtWE/V?=
+ =?iso-8859-1?Q?5GlyMpyXOtrIjAv5TvICrhpMqWupcsQPsuqzf0vl/QWw07/a8HKaPu06wf?=
+ =?iso-8859-1?Q?WVkpueAImmMGJuYe4yAUGx6rMjC72Sc2dpZI0t+MU6yVeu5R3VnA+q8Q?=
+ =?iso-8859-1?Q?=3D=3D?=
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 MIME-Version: 1.0
-Content-Type: text/plain
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: SJ1PR11MB6129.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 0c2ca365-48a3-41f7-d51c-08dc3c324e01
+X-MS-Exchange-CrossTenant-originalarrivaltime: 04 Mar 2024 10:03:13.4281 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: nG+TstUBG0AjW7GZCrI76M6iz0x8O6ZoQ4DqiseM1YrknuObUSbk80yqzXxnDHKAkchq8BpCbbb8lWTOBw8gNf8J7JwQQc/sricyXaBV1pc=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH8PR11MB7071
+X-OriginatorOrg: intel.com
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -68,133 +160,65 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, 01 Mar 2024, Radhakrishna Sripada <radhakrishna.sripada@intel.com> wrote:
-> Make debugfs vbt only shows valid vbt when read from ACPI opregion.
-> Make it work when read from firmware/spi/pci oprom cases. In the cases
-> where VBT needs to be read from spi/pci oprom, take the wakeref to
-> prevent WARN while reading DE registers during debugfs vbt dump.
->
-> v2: Extract getting vbt from different sources to its own function.
->     Protect sysfs write with vbt check(Jani)
-> v3: Fix CI error by probing bios vbt with runtime_pm wakeref
-> v4: Update commit message and skip waking up runtime while accessing
->     vbt from opregion/firmware(Jani)
->
-> Cc: Jani Nikula <jani.nikula@intel.com>
-> Signed-off-by: Radhakrishna Sripada <radhakrishna.sripada@intel.com>
-> ---
->  drivers/gpu/drm/i915/display/intel_bios.c | 62 ++++++++++++-----------
->  1 file changed, 33 insertions(+), 29 deletions(-)
->
-> diff --git a/drivers/gpu/drm/i915/display/intel_bios.c b/drivers/gpu/drm/i915/display/intel_bios.c
-> index 44c9dfe86a00..9a8c7fe381b0 100644
-> --- a/drivers/gpu/drm/i915/display/intel_bios.c
-> +++ b/drivers/gpu/drm/i915/display/intel_bios.c
-> @@ -3135,6 +3135,32 @@ static struct vbt_header *oprom_get_vbt(struct drm_i915_private *i915,
->  	return NULL;
->  }
->  
-> +static const struct vbt_header *intel_bios_get_vbt(struct drm_i915_private *i915,
-> +						   size_t *sizep)
-> +{
-> +	const struct vbt_header *vbt = NULL;
-> +	intel_wakeref_t wakeref;
-> +
-> +	vbt = firmware_get_vbt(i915, sizep);
-> +
-> +	if (!vbt)
-> +		vbt = intel_opregion_get_vbt(i915, sizep);
-> +
-> +	/*
-> +	 * If the OpRegion does not have VBT, look in SPI flash
-> +	 * through MMIO or PCI mapping
-> +	 */
-> +	with_intel_runtime_pm(&i915->runtime_pm, wakeref) {
-> +		if (!vbt && IS_DGFX(i915))
-> +			vbt = spi_oprom_get_vbt(i915, sizep);
-> +
-> +		if (!vbt)
-> +			vbt = oprom_get_vbt(i915, sizep);
-> +	}
+Hello Mathew,
 
-This will still enable power even if intel_opregion_get_vbt() returned a
-non-NULL pointer.
+> -----Original Message-----
+> From: Matthew Wilcox <willy@infradead.org>
+> Sent: Monday, March 4, 2024 11:27 AM
+> To: Borah, Chaitanya Kumar <chaitanya.kumar.borah@intel.com>
+> Cc: intel-gfx@lists.freedesktop.org; Kurmi, Suresh Kumar
+> <suresh.kumar.kurmi@intel.com>; Saarinen, Jani <jani.saarinen@intel.com>
+> Subject: Re: Regression on linux-next (next-20240228)
+>=20
+> On Mon, Mar 04, 2024 at 04:49:47AM +0000, Borah, Chaitanya Kumar
+> wrote:
+> > After bisecting the tree, the following patch [4] seems to be the first=
+ "bad"
+> > commit
+> >
+> > ``````````````````````````````````````````````````````````````````````
+> > ```````````````````````````````````
+> > commit ac7130117e8860081be88149061b5abb654d5759
+> > Author: Matthew Wilcox (Oracle) mailto:willy@infradead.org
+> > Date:=A0=A0 Tue Feb 27 17:42:41 2024 +0000
+> >
+> > =A0=A0=A0 mm: use free_unref_folios() in put_pages_list()
+> >
+> > =A0=A0=A0 Break up the list of folios into batches here so that the fol=
+ios
+> > are more
+> > =A0=A0=A0 likely to be cache hot when doing the rest of the processing.
+> >
+> > =A0=A0=A0 Link:
+> > https://lkml.kernel.org/r/20240227174254.710559-8-willy@infradead.org
+> > =A0=A0=A0 Signed-off-by: Matthew Wilcox (Oracle) mailto:willy@infradead=
+.org
+> > ``````````````````````````````````````````````````````````````````````
+> > ```````````````````````````````````
+> >
+> > We could not revert the patch because of a build errors but resetting
+> > to the parent of the commit seems to fix the issue
+> >
+> > Could you please check why the patch causes this regression and provide=
+ a
+> fix if necessary?
+>=20
+> Could you try putting the two:
+>=20
+> -                       list_del(&folio->lru);
+>=20
+> statements back in and see if that fixes it?
 
-BR,
-Jani.
+That seems to fix it.
 
-> +
-> +	return vbt;
-> +}
-> +
->  /**
->   * intel_bios_init - find VBT and initialize settings from the BIOS
->   * @i915: i915 device instance
-> @@ -3146,7 +3172,6 @@ static struct vbt_header *oprom_get_vbt(struct drm_i915_private *i915,
->  void intel_bios_init(struct drm_i915_private *i915)
->  {
->  	const struct vbt_header *vbt;
-> -	struct vbt_header *oprom_vbt = NULL;
->  	const struct bdb_header *bdb;
->  
->  	INIT_LIST_HEAD(&i915->display.vbt.display_devices);
-> @@ -3160,27 +3185,7 @@ void intel_bios_init(struct drm_i915_private *i915)
->  
->  	init_vbt_defaults(i915);
->  
-> -	oprom_vbt = firmware_get_vbt(i915, NULL);
-> -	vbt = oprom_vbt;
-> -
-> -	if (!vbt) {
-> -		oprom_vbt = intel_opregion_get_vbt(i915, NULL);
-> -		vbt = oprom_vbt;
-> -	}
-> -
-> -	/*
-> -	 * If the OpRegion does not have VBT, look in SPI flash through MMIO or
-> -	 * PCI mapping
-> -	 */
-> -	if (!vbt && IS_DGFX(i915)) {
-> -		oprom_vbt = spi_oprom_get_vbt(i915, NULL);
-> -		vbt = oprom_vbt;
-> -	}
-> -
-> -	if (!vbt) {
-> -		oprom_vbt = oprom_get_vbt(i915, NULL);
-> -		vbt = oprom_vbt;
-> -	}
-> +	vbt = intel_bios_get_vbt(i915, NULL);
->  
->  	if (!vbt)
->  		goto out;
-> @@ -3213,7 +3218,7 @@ void intel_bios_init(struct drm_i915_private *i915)
->  	parse_sdvo_device_mapping(i915);
->  	parse_ddi_ports(i915);
->  
-> -	kfree(oprom_vbt);
-> +	kfree(vbt);
->  }
->  
->  static void intel_bios_init_panel(struct drm_i915_private *i915,
-> @@ -3743,13 +3748,12 @@ static int intel_bios_vbt_show(struct seq_file *m, void *unused)
->  	const void *vbt;
->  	size_t vbt_size;
->  
-> -	/*
-> -	 * FIXME: VBT might originate from other places than opregion, and then
-> -	 * this would be incorrect.
-> -	 */
-> -	vbt = intel_opregion_get_vbt(i915, &vbt_size);
-> -	if (vbt)
-> +	vbt = intel_bios_get_vbt(i915, &vbt_size);
-> +
-> +	if (vbt) {
->  		seq_write(m, vbt, vbt_size);
-> +		kfree(vbt);
-> +	}
->  
->  	return 0;
->  }
+                if (!folio_put_testzero(folio))
++                       list_del(&folio->lru);
+                        continue;
+                if (folio_test_large(folio)) {
+                        __folio_put_large(folio);
++                       list_del(&folio->lru);
+                        continue;
+                }
+Regards
 
--- 
-Jani Nikula, Intel
+Chaitanya
