@@ -2,148 +2,152 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id A9E2286FE45
-	for <lists+intel-gfx@lfdr.de>; Mon,  4 Mar 2024 11:03:20 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id B0DB986FE5E
+	for <lists+intel-gfx@lfdr.de>; Mon,  4 Mar 2024 11:07:35 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0750310FF0D;
-	Mon,  4 Mar 2024 10:03:19 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 09BFB10FF24;
+	Mon,  4 Mar 2024 10:07:34 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="cgGXwthQ";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="dR/Ch4H/";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 13AE010FF0B
- for <intel-gfx@lists.freedesktop.org>; Mon,  4 Mar 2024 10:03:16 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.15])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EE92410FF20;
+ Mon,  4 Mar 2024 10:07:31 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1709546597; x=1741082597;
- h=from:to:cc:subject:date:message-id:references:
+ t=1709546852; x=1741082852;
+ h=message-id:date:subject:to:cc:references:from:
  in-reply-to:content-transfer-encoding:mime-version;
- bh=z7cLx5cf8z1Pl5PGX3hFcd6/qzXtxT6vplX4KorwO/M=;
- b=cgGXwthQWqNwszCahUUBYwOoB0sfXGU2Ci+jwweqd67Whl7xT3uwUsbX
- +OONGznwf5AOuz8hACD0maU2zDEZtPpQLNuUB1ly52g+7kXM2ZzstosP7
- Ll5yT9HqRji2je9wqE/FonGGxXemOdgjZITW4fDJoohXY8eeWv9Y9HQxo
- Z7uJMD1vOkY+1GtSCUYn57tOn2L/zlMsHoZ/PczO05Mg5ybHG1H0buzjO
- CpBGUbgatbwYkUCDnZZaVp6Jz1iNA8Z4AgIiUjyFCpCA83fdPhZGhRnq3
- T5K5RWEO6LVeN6QHKxvmzZFzk3W3tmEwv/ytFjI/HmUbo1jOsw4/GMmO/ w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,11002"; a="3954420"
+ bh=jIzDNmV9naetbnGyYgoecmxLktKNQVz1YSFPeDmFBCI=;
+ b=dR/Ch4H/A4uJypnIeinzjSaViBKG7D4ZSByNfRZhke5I+KXAivDo9Qiv
+ 6mj5jbmzWJjHjv4Eldf2TJfE07ScD24OcF7sNCBARYf2twztWc9Y06dNW
+ IkYgiv/q3ikd0uiqITkvKgIlvJ9RpqmjZ7tenutjV9/wdiPaftXqVz4UN
+ BWX09LRwYmidk0jXmgFvHEanKCXh0Olo8obEr4l0UNSRPwdldXhPyF6ds
+ gz5zruSvsMZTwyHBqaunQDSujZcjsUQXIDa0l3sU+626NbyQzx3JH9Z0h
+ fjhSxZgOD1ij7FZGlkAEODaG9wRbvBZ5UznmoDbCdW/e5HRgXvXZi0NeC w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,11002"; a="4192380"
 X-IronPort-AV: E=Sophos;i="6.06,203,1705392000"; 
-   d="scan'208";a="3954420"
-Received: from orviesa001.jf.intel.com ([10.64.159.141])
- by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Mar 2024 02:03:16 -0800
+   d="scan'208";a="4192380"
+Received: from orviesa003.jf.intel.com ([10.64.159.143])
+ by fmvoesa109.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 04 Mar 2024 02:07:31 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.06,203,1705392000"; d="scan'208";a="46457244"
-Received: from orsmsx601.amr.corp.intel.com ([10.22.229.14])
- by orviesa001.jf.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
- 04 Mar 2024 02:03:16 -0800
+X-IronPort-AV: E=Sophos;i="6.06,203,1705392000"; d="scan'208";a="13608270"
+Received: from orsmsx602.amr.corp.intel.com ([10.22.229.15])
+ by orviesa003.jf.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
+ 04 Mar 2024 02:07:30 -0800
 Received: from orsmsx612.amr.corp.intel.com (10.22.229.25) by
- ORSMSX601.amr.corp.intel.com (10.22.229.14) with Microsoft SMTP Server
+ ORSMSX602.amr.corp.intel.com (10.22.229.15) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35; Mon, 4 Mar 2024 02:03:16 -0800
-Received: from orsmsx601.amr.corp.intel.com (10.22.229.14) by
- ORSMSX612.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
+ 15.1.2507.35; Mon, 4 Mar 2024 02:07:30 -0800
+Received: from ORSEDG602.ED.cps.intel.com (10.7.248.7) by
+ orsmsx612.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35; Mon, 4 Mar 2024 02:03:15 -0800
-Received: from orsedg603.ED.cps.intel.com (10.7.248.4) by
- orsmsx601.amr.corp.intel.com (10.22.229.14) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35 via Frontend Transport; Mon, 4 Mar 2024 02:03:15 -0800
-Received: from NAM12-DM6-obe.outbound.protection.outlook.com (104.47.59.168)
- by edgegateway.intel.com (134.134.137.100) with Microsoft SMTP Server
+ 15.1.2507.35 via Frontend Transport; Mon, 4 Mar 2024 02:07:30 -0800
+Received: from NAM11-CO1-obe.outbound.protection.outlook.com (104.47.56.168)
+ by edgegateway.intel.com (134.134.137.103) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.35; Mon, 4 Mar 2024 02:03:15 -0800
+ 15.1.2507.35; Mon, 4 Mar 2024 02:07:29 -0800
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=TnRkvxQSMXhVxv1tPxiuMOPTJe8QvNXIQYyJ+zdRzSHHTF5ut6r9sSOW12F1LkhjBlb5lc3iGYlhOpe+vwEEdTzVX8y9FHxK0gcAKu9p3JYoA47Oi1WGzwzXKC6Hhz/zTWJGBNt+kF1IcM4kAMhb/B4txlR8Tfc8A/gwKQTkND91HQTuQl6IciPBZS4cLqqs4qEqSV8QKivkDot05XBuzigRN03vKUJQkUBzcDHMF67R04AKibDyN9LGgutqkz35wQWomUMU/p6hlyB7cTL+4vni9fFV7YR63nvcOuaTgPoxQ04F5+vnIcpFKdriELYkCGfqTYAKjJjbdV4NOJRv1Q==
+ b=cBA2zjtuLwsy/h+ZRmc9jdwlOlyKZea1sos8aRH0BDL2V8y90ollrJ26EFJC9+uI96DoCl6MCtUoMMCzIezMFAmLqD1c/37k3Lu1xG20rUgNwXv/ceSGzm20+tEnOITVRdcU+aKl599UM6YT4fYWglwA5Dh8476mXSPSung1CaziYTAMuU8Aje7zpu2WCq86gDoYW6gJ0uv+Lyj8uwc1k630/+eqUqOkAVeTC1K4ZwQjAanG86Q2dha/p7gnBJzfQkJEfyePOy1TTNX0Q+7kK15w7h7NXne+QrHgamBwUmdfoAl+OfF+mF6h+YUcHGLxhh8yFTr7Fi62+zcWP8vWHA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=BuGs5vy7Szwcs7nGvUbCkdH6SEM6DsW8XISiU1ieyVc=;
- b=UoATjySc9iC9ssoH5xB00fN+x8tNTyPbfOEkMYoNEnQa0WlXpPWe3xDTTX60rPwOkT86xxbPNrCgNqKnDXilwfbfBvTYMKMxinpg7+qh+/eZXBsghlKPWD6I/iuz33mIZUVkmHJVqgoeoGHLgMTReI6NJEkAlCtpQKBe0wl2XinW7FJdwju2pzpwBo0rOU7Rj1e3r/MUEH1C/HTYSlRV0zrqzkdXsPdsluzWfRL5GSJbUX62wvSjtSiLg8AE6OYmZVpvtUAPbKL1GitcqIEE52K9yNWla0hmcqYceyXemNMIE6UAhiwtA1dt8jqW1k/zKXrkrIMm4s/737wDqFyYxg==
+ bh=ai5dbExSKpMztJqrrnK7/xfYainef87DFhgTYXNVW9I=;
+ b=YTDxMEKLnYneLKheW3UBajergKf8xPNcd2PG1m82ZlJUziGlBdeMs84cNYAnj2oFBlrrOpIeazxoTofr1ZWhrPy5LHZRpcbcXOf7JH/uofC2Gabgg1MZTb2a8IEEZwf7Y9fVQdyPvqYbtxa2lvKQsWlL9g3dhEBIJt4CWUfP89zaULI/ESewwRmn+K7EpcO92sAYiOTvLEvYtelVNZBaZMBq9E47+BDjhQ6TEAtgMY9hfDHKMr/4vu9wA08pP5u2KgIiP7Xtvnt7+yf3oz2hjtXy6TVfckKLMIU3VQnTWmD0pjx92dVDmRaYNLRj+12hfDQrB1CUBCpL+u/6O8Aefw==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
-Received: from SJ1PR11MB6129.namprd11.prod.outlook.com (2603:10b6:a03:488::12)
- by PH8PR11MB7071.namprd11.prod.outlook.com (2603:10b6:510:215::6)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7362.22; Mon, 4 Mar
- 2024 10:03:13 +0000
-Received: from SJ1PR11MB6129.namprd11.prod.outlook.com
- ([fe80::86fd:8a6:5f86:104e]) by SJ1PR11MB6129.namprd11.prod.outlook.com
- ([fe80::86fd:8a6:5f86:104e%5]) with mapi id 15.20.7362.019; Mon, 4 Mar 2024
- 10:03:13 +0000
-From: "Borah, Chaitanya Kumar" <chaitanya.kumar.borah@intel.com>
-To: Matthew Wilcox <willy@infradead.org>
-CC: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
- "Kurmi, Suresh Kumar" <suresh.kumar.kurmi@intel.com>, "Saarinen, Jani"
- <jani.saarinen@intel.com>
-Subject: RE: Regression on linux-next (next-20240228)
-Thread-Topic: Regression on linux-next (next-20240228)
-Thread-Index: Adpt7cuPPMBR1f+2T1On00uzl1C9NAACv5+AAAhXahA=
-Date: Mon, 4 Mar 2024 10:03:13 +0000
-Message-ID: <SJ1PR11MB6129A8999D977A46D6E9CA4AB9232@SJ1PR11MB6129.namprd11.prod.outlook.com>
-References: <SJ1PR11MB61292145F3B79DA58ADDDA63B9232@SJ1PR11MB6129.namprd11.prod.outlook.com>
- <ZeVis2823T4YllDg@casper.infradead.org>
-In-Reply-To: <ZeVis2823T4YllDg@casper.infradead.org>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: dkim=none (message not signed)
+Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: SJ1PR11MB6129:EE_|PH8PR11MB7071:EE_
-x-ms-office365-filtering-correlation-id: 0c2ca365-48a3-41f7-d51c-08dc3c324e01
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: GCREOAgEMOuD0nJhj5CxUg8S5ysogKfeaG94veqfNMig6F79Xoys4asy2RM7XOl1H/hTSMOCjtXg1/dRa0qvPjlQgDekST8pMWmdMiVYIrercc6t/Vc8BVtmYWSUmlO5nAbV9raGPkgkXrKHEsR/QKujk2K9W/EhtSpN9rc7J7H85SXslLkVSkGsiGKdCqq2Uiem0xKHFOay13qHboD7M2ox1kDbsqvDDjIgDv3maqUAXk9tS8cEiA2uuJNfw+nYEU6yp9l4XzVgBr0A78Vym/oWOmNfTA8i/+0q0Nhqdjhi8V+K3gy7YL1d5IqoI0ATx3PbO6sRuwel0PLv21IC3xXRXmbTNkzbtgSHd68kdH8MyEpq/oxrxTHIw8lbak30jJwTpotTRZq9So8V5rqqDb1YH8LwcJ0azjrAgyTv5BinmZb25pHuLZHgDsv6Z2Oa1wjilZkdquqMs+3AZgpXtVwr8WPZRhYK6fDzhyI3vUz4pDif1jLfD1ZKUWiJ2EsDXXWW+ep1nek5uDP3Fff+/qpnbfWmDJcdOE3OYXxWVxm5Ng1Ayn6PT+krT11msEUbA5d/cvQuLvjyJQCnwvAsI6i8L2UN2c6oxIig9cm8UQowS6q47U8Y7EBrcrzRJVjDI0NWFTN2slZSAXfVhLDVNlGBGOb4x49bkK0bwB07+OA=
-x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:SJ1PR11MB6129.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230031)(376005)(38070700009); DIR:OUT; SFP:1101; 
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?iso-8859-1?Q?nz59zL+didzgm0K5j9YyHEEcycQ+fkeoDWMEfvXmO7yA0O+n5+5ytxTNIJ?=
- =?iso-8859-1?Q?DGTQ7y1a0XMZlWuR6wwspt6H0II1NVgnwB/iuxv1zQstY6czSH+bltaxfE?=
- =?iso-8859-1?Q?XKoPHqE+pdNVqWdq82mPp6pwMF7EM8uWAxsjeREPJYxEMCYVAb3VeqiyAI?=
- =?iso-8859-1?Q?Drvl3ZvyMOq4UP4tF2CIfi/JVG8pQkZHx3cwX8iePwqALJbWx9uyxFNKf1?=
- =?iso-8859-1?Q?5JZvs1VHmw/iONqnbvUuq5gTkT1iakuwvNFf0CodpZR4I00XenCplvrDI1?=
- =?iso-8859-1?Q?yL5uAlAex/bxhoowe6pEjQEjGGp2ieHnSmCmCNmjy7003Ewz8XRLFJg6aM?=
- =?iso-8859-1?Q?5DmVgLueZ8OGIByOYcm9+cFNXh8+vVrok+DNTZhc/Gq/B6OA07N4qjEKcs?=
- =?iso-8859-1?Q?WjIJ6b+JVotpviGto0q8HrEGdIWVGEle+0+YVLX+Sr2ejA0GUJqBX96puz?=
- =?iso-8859-1?Q?rghMcyvBVrYYIsWsfDg5tDCH9lHtsD0dP0VFww+jp7C6wIklaFDYubYExb?=
- =?iso-8859-1?Q?1C677jKrWbgjutlZx8D+Rn1mz6cNcb5LwfSgwMjN2IpqD2nB+2inNUFIkI?=
- =?iso-8859-1?Q?m5qI1iXg5z+oiqGR+s+bYWkxd0u60D2y66Cno3scgS4w1LYQjRMkzzqxbh?=
- =?iso-8859-1?Q?Oxr1iUoHLw64qIS5axvVtBQhJE1OSreWuElkneVeQ6E7JsPn1enUhm+O8f?=
- =?iso-8859-1?Q?RkFVT7J6XruKgGLLG2epcnCGwFZA+8oWWgy9AnfJaQMqAiNHlbrJCg7xYY?=
- =?iso-8859-1?Q?Di11DpUH6nxzLtJWmYWm6kFGiw1BLJDRj4MZYU0smpybd4Bvp4BJEmYJb8?=
- =?iso-8859-1?Q?4hw+hRSSVWXKCdm0VuOu2+vMv8DZH2iPV8C1whwcLCNKbYhADyxArWt80g?=
- =?iso-8859-1?Q?xSjn6TuBbpnVYFJdU/CE248RZRIWL/E9rxaMSIljSYnd+VVmB+qpvs8xyJ?=
- =?iso-8859-1?Q?/R+er5zYxJ9M8pONvNKpimd9jppdXdSdYmCcTBIZpZ0RgdR7j0BPfLaZbE?=
- =?iso-8859-1?Q?dbeMZpC/bFR63x9euHaiSJ5BPRFXguhJf0ni9Fv5QeuY+CAcM+qVjZL9s3?=
- =?iso-8859-1?Q?kzugitypmXQLkpyPXScxX/nceYHGkovD4JVwqFbBJ4rcjyCGasJQy6ACpk?=
- =?iso-8859-1?Q?+y9kL8R7aQwRaQnd3e1YC4BDRHPG7Rs2SPMOh4XkFzctBpvMu0tYSqvWuD?=
- =?iso-8859-1?Q?nMt8QLhRNboLBd1Z1XCqrc04gRI6I7uZAs9S5iRveMPoTCGRXcTrWGO+et?=
- =?iso-8859-1?Q?OkheG9m8OoOjYWgb7eu0AGwLJG7icciO1wy4onLzaqqZmJFYvpLIjU6rGY?=
- =?iso-8859-1?Q?RmBJG/yzjia3piS11BkyxeSzX+M9zddlGFhdFRkpmy2DT6b8JWPA3C9+8y?=
- =?iso-8859-1?Q?924PyqRyieWEsp9CVvtR+wcmmO4UghYufZjeOVKDWfa5AWHZRxG19dazxe?=
- =?iso-8859-1?Q?PtuGO697ibsKcRuysdSkJIox7JkziK9TEQARAVpS+gezaxlTZEfRzx9bLv?=
- =?iso-8859-1?Q?mNcn5irZoSaY5P9ioQ5fNOZkiFdSEpO4cAhPdV1MUOcYlk25b62ZKtWE/V?=
- =?iso-8859-1?Q?5GlyMpyXOtrIjAv5TvICrhpMqWupcsQPsuqzf0vl/QWw07/a8HKaPu06wf?=
- =?iso-8859-1?Q?WVkpueAImmMGJuYe4yAUGx6rMjC72Sc2dpZI0t+MU6yVeu5R3VnA+q8Q?=
- =?iso-8859-1?Q?=3D=3D?=
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+Received: from DM4PR11MB5341.namprd11.prod.outlook.com (2603:10b6:5:390::22)
+ by CY8PR11MB6868.namprd11.prod.outlook.com (2603:10b6:930:5c::13) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7362.22; Mon, 4 Mar
+ 2024 10:07:28 +0000
+Received: from DM4PR11MB5341.namprd11.prod.outlook.com
+ ([fe80::12b:4490:b758:75c2]) by DM4PR11MB5341.namprd11.prod.outlook.com
+ ([fe80::12b:4490:b758:75c2%7]) with mapi id 15.20.7362.019; Mon, 4 Mar 2024
+ 10:07:28 +0000
+Message-ID: <e42ab36d-5cfb-439c-8f30-61f4fad747e5@intel.com>
+Date: Mon, 4 Mar 2024 15:37:20 +0530
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v15 4/9] drm/i915/dp: Add Read/Write support for Adaptive
+ Sync SDP
+Content-Language: en-US
+To: Mitul Golani <mitulkumar.ajitkumar.golani@intel.com>,
+ <intel-gfx@lists.freedesktop.org>
+CC: <dri-devel@lists.freedesktop.org>, <jani.nikula@intel.com>
+References: <20240301084503.2971826-1-mitulkumar.ajitkumar.golani@intel.com>
+ <20240301084503.2971826-5-mitulkumar.ajitkumar.golani@intel.com>
+From: "Nautiyal, Ankit K" <ankit.k.nautiyal@intel.com>
+In-Reply-To: <20240301084503.2971826-5-mitulkumar.ajitkumar.golani@intel.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: PN2PR01CA0045.INDPRD01.PROD.OUTLOOK.COM
+ (2603:1096:c01:22::20) To DM4PR11MB5341.namprd11.prod.outlook.com
+ (2603:10b6:5:390::22)
 MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: DM4PR11MB5341:EE_|CY8PR11MB6868:EE_
+X-MS-Office365-Filtering-Correlation-Id: 64ebf65d-204e-4bff-463c-08dc3c32e5af
+X-LD-Processed: 46c98d88-e344-4ed4-8496-4ed7712e255d,ExtAddr
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: /hOeDUuIYCSuhC/L2ad340X+bSPQ6+UNznETTTwUyLcuSCgTRjYG/Py7gz0nM6o7pDtkitbaSg35y9jvi3EckwoJwIVehytz1WwYl/Gke8pfP5HOVZdQCni3lR/SEMjKg4wxIovBte7oQU9RY9yT6KBKI1Hz7kQAXJjLWfLZMVWjboFzJzuynHVbTwYu0pp4gzKoqfSjn5y61CXupQEQY2aDcLFy6SCmPrGUfiP26l17ib00isGidOaimS44etz0K8IYzEtRqnQxzdoz7u+tayrxskFVPudO1PuKuunjEzlst0TlzYZ3pulqCwD+4wIcwW55uUG7oM65O4/VZC8DtE+WcsduydmNi2YnIxznYNDk0d5Xnb4QiGUoYgZhNevzZFzBypJ1knF5XD3ujmKcWrB9gdGVrNbS6qu7eMblSrkVaV4yaNquZnriVXXn4b4/WGb26tI0R6EyyX2a909L88IZS9FiWa84g1rCHTKUAevTqT01S0+QwgJCrnFQMntIlyjZlaiX7W+W0F9FOQ8cNXQyHVT+4tvxvUkC/Bp+kt6yUfqccQBa+P9x4B9TerTlMiC3t6phLucgNmjG4c68oGg8MXWa97GkP2eygxBktVWJhm192LNXkPR46mTU35WJa81XqqhuHvPxSpUELlzCCul9iEW6+Y+M4NF6PRgoOn0=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:DM4PR11MB5341.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230031)(376005); DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?TzdvZVY1ckJlMHNpZ3dYZDMwTUcwOE95cVpyMjMxMmFBeFhYTlRGb0lHU3V1?=
+ =?utf-8?B?QkdoTkVvYnRxTWtRaFdyWXE3RlhoWm0rSVkxbGtFWVhiMmNrcmZNTm5ETSto?=
+ =?utf-8?B?eFU5S0c2TGNPSU4xZ2M0aTdlV1lidmROODRaK2dIckdDVUZvVXFFNjdYSFdV?=
+ =?utf-8?B?Z0NJWStDd2p0WmVIWWNVU1FGTVYzOW15MUF1cHJkZ20xVmxPL2UxZXZBNlZX?=
+ =?utf-8?B?djNNMTdIcG1SNjJ1bTdTcmt2cjRnQXBnYVY0aVNkdmtrWnM2Mkp5RmVUcmVv?=
+ =?utf-8?B?bkFWS0JhN2poR0xaTXBBb2FZWGpjZy9hUHd4WWw0bjB6WDRTZjFKNVJKb0lH?=
+ =?utf-8?B?MTE1d3lWdFhISHBiUkJQYnBHVjhmeDFsRU0yWVE2WE9MQkZBY0lEWmpHWEND?=
+ =?utf-8?B?T2N4cHlOZHN3Tmt1eW5vYWduWVp2Q2U3a3FIenlBWXJ6YkRkY2l1ajBTYlAw?=
+ =?utf-8?B?QkdvbTRaRFJmam9iaUhscDJYMmM1MVViNVlZaHZOTGY4MURBdGcvU251U2ZK?=
+ =?utf-8?B?MnErbGdWV2dsWktRcitkM3hCNXBJMEYzRTVKMEdnOERoZVVOcDkxL04rT05i?=
+ =?utf-8?B?ZmthSS9WZXBGdEx2ZzdMbXNoRWJyd0lEOHY2Um0wVGx4KzViRktDSEVtcHpu?=
+ =?utf-8?B?S012dDNTeHF4MENVQ3kxaDBJSWtaVTE1b0hMKzF0RmZHSitWZ3lwTTRWZnFS?=
+ =?utf-8?B?dmRKc08reGpsaVBNYjhxWVFGUFlSTDFRdkRlQnVlR2RlWWRCWU1QUG55NHdR?=
+ =?utf-8?B?VytRYTJPV3hWWGpPMVdHbnZoUmI2OWwwNUVDSXczNlUzZWIxdVJnVTRNOVlx?=
+ =?utf-8?B?UUhsQTlRNkRQZkJ5OVVHYW1ubXJ1cGt4K0dNUHpta3NHaE44N1hYQURSd0pt?=
+ =?utf-8?B?eWtGSzBoNVBEZU4zalFuMkZqaEFKQkh6dGxYa0ppVkRudnliU0tjcWJLdHZr?=
+ =?utf-8?B?Mk50ZHhZZ2R5RUtOUmZwRTZNQUVoSk42T2hsckEzRTBjbm5Va2h2eGdZZkFr?=
+ =?utf-8?B?WXlqL2VldlVxYmlXS2Y0eVRBV0M5YjBySDB4bTdpM1hyTlJCRGI3VzBGempM?=
+ =?utf-8?B?NzV2MmpiSGp5Umg2TklsYkpsVzF3K2pqSGdYems5S2thRzNtaTR0SFhTenFH?=
+ =?utf-8?B?Rnk4alJoUWRmSjQ4R2FVaXp4aU51QUdOV29KaDE3cXN4eWsydDNQRWtrSzV5?=
+ =?utf-8?B?NWh0djJ3aHV1WXFCUFNrYm9RSmhmTWJjT0JyRWM5aVZQOGZlVUs5akJ2YTBR?=
+ =?utf-8?B?dkMwdml4bndmUWEvM243emExV0NadUIzbDdaZUxBUWJRRS9jK1U5RmtWRlAw?=
+ =?utf-8?B?K3BYM0IzK0ZOTnJtRE1GNWI2VFJRVTNYVEpaNzRHZGNKcWZ3TnBDczBnb0tH?=
+ =?utf-8?B?TzZaaXU3NHNuOVNlbEhteXM5OEFKdzVNWEoxSEphMStiOVNNM2lid20wam83?=
+ =?utf-8?B?aVFKT1NmejBLWU9XS0RHNFNFRXJLMXpyMi9rVWdvRS9CT0tra2hZKzJwck54?=
+ =?utf-8?B?QzYwc3V6clFmNzI0eXYxRXlkMXBrUnZQcDZrZmdOWU1LWnQ4MTV5ZTY3RlU2?=
+ =?utf-8?B?QXE4L0lldVJtWExZbSthaWlwQWlyNkgwbW50V0k5NnRMTUF5a2JKdkxxQm9F?=
+ =?utf-8?B?MU9tNU43SFl6Y2hUY25GNzJTM3cxS3ZtaE5XRVFCMms4Z3RvaStFK3g5OE4z?=
+ =?utf-8?B?YUZ1RlljYmtGYmVzVFdPa3VKZ0RZa2RQVnlRcmdDZ2lyT3FTREZHTzN5ZlNo?=
+ =?utf-8?B?TVZyTUlkOU5CRVhyb0thNVlYelFWNXpnSTFZY24yTGI2NjFxaUNtNFRvRkh6?=
+ =?utf-8?B?V3BsaDV6V0Qvdm1KTmt2N084bmJVN0dxdzNhQ1ViU3d4Q05IUWRCS2lid3p1?=
+ =?utf-8?B?NEVoNjM1Qkk0NUcvdlJCZUUxWXVmTENVK2VWeUZ4MlB0d0hrQ3JsL2FZajNI?=
+ =?utf-8?B?VEd3Vldra1lXTWx6V3Vjc3ZiZEFvVWZ2RGZHMkRSaWZlcXVGOGpTTzNsWUpj?=
+ =?utf-8?B?NnJ5ODZuSzlrdG0ySDFJb2wwQWFyK1kvSkRVMFdqL3RCTU41a2FpeW83aXlr?=
+ =?utf-8?B?RFZITFB4OElWUXovVElJT1k3NERWSTNHWm56QnFwejR5TmhtaUludTZicTd5?=
+ =?utf-8?B?U3BvSkl5NTY4QUVrbWJyaUM5aGlIM3ZrWmdHZlFHa09zQ3N1cmxweHl2THlV?=
+ =?utf-8?B?UVE9PQ==?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: 64ebf65d-204e-4bff-463c-08dc3c32e5af
+X-MS-Exchange-CrossTenant-AuthSource: DM4PR11MB5341.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: SJ1PR11MB6129.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 0c2ca365-48a3-41f7-d51c-08dc3c324e01
-X-MS-Exchange-CrossTenant-originalarrivaltime: 04 Mar 2024 10:03:13.4281 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: nG+TstUBG0AjW7GZCrI76M6iz0x8O6ZoQ4DqiseM1YrknuObUSbk80yqzXxnDHKAkchq8BpCbbb8lWTOBw8gNf8J7JwQQc/sricyXaBV1pc=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH8PR11MB7071
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 04 Mar 2024 10:07:28.0020 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: xaeYZR0vD66Fcc03w04cqy2ZvJ/P4hWMTZgJkGD6wJPSW+GDgD8DoYnUEpoMQRo2R0BXwLXis3yGl21ZpPUMbBRy4YzxSv/rBGWBzE2uyUE=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CY8PR11MB6868
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -160,65 +164,336 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hello Mathew,
 
-> -----Original Message-----
-> From: Matthew Wilcox <willy@infradead.org>
-> Sent: Monday, March 4, 2024 11:27 AM
-> To: Borah, Chaitanya Kumar <chaitanya.kumar.borah@intel.com>
-> Cc: intel-gfx@lists.freedesktop.org; Kurmi, Suresh Kumar
-> <suresh.kumar.kurmi@intel.com>; Saarinen, Jani <jani.saarinen@intel.com>
-> Subject: Re: Regression on linux-next (next-20240228)
->=20
-> On Mon, Mar 04, 2024 at 04:49:47AM +0000, Borah, Chaitanya Kumar
-> wrote:
-> > After bisecting the tree, the following patch [4] seems to be the first=
- "bad"
-> > commit
-> >
-> > ``````````````````````````````````````````````````````````````````````
-> > ```````````````````````````````````
-> > commit ac7130117e8860081be88149061b5abb654d5759
-> > Author: Matthew Wilcox (Oracle) mailto:willy@infradead.org
-> > Date:=A0=A0 Tue Feb 27 17:42:41 2024 +0000
-> >
-> > =A0=A0=A0 mm: use free_unref_folios() in put_pages_list()
-> >
-> > =A0=A0=A0 Break up the list of folios into batches here so that the fol=
-ios
-> > are more
-> > =A0=A0=A0 likely to be cache hot when doing the rest of the processing.
-> >
-> > =A0=A0=A0 Link:
-> > https://lkml.kernel.org/r/20240227174254.710559-8-willy@infradead.org
-> > =A0=A0=A0 Signed-off-by: Matthew Wilcox (Oracle) mailto:willy@infradead=
-.org
-> > ``````````````````````````````````````````````````````````````````````
-> > ```````````````````````````````````
-> >
-> > We could not revert the patch because of a build errors but resetting
-> > to the parent of the commit seems to fix the issue
-> >
-> > Could you please check why the patch causes this regression and provide=
- a
-> fix if necessary?
->=20
-> Could you try putting the two:
->=20
-> -                       list_del(&folio->lru);
->=20
-> statements back in and see if that fixes it?
+On 3/1/2024 2:14 PM, Mitul Golani wrote:
+> Add the necessary structures and functions to handle reading and
+> unpacking Adaptive Sync Secondary Data Packets. Also add support
+> to write and pack AS SDP.
+>
+> --v2:
+> - Correct use of REG_BIT and REG_GENMASK. [Jani]
+> - Use as_sdp instead of async. [Jani]
+> - Remove unrelated comments and changes. [Jani]
+> - Correct code indent. [Jani]
+>
+> --v3:
+> - Update definition names for AS SDP which are starting from
+> HSW, as these defines are applicable for ADLP+.(Ankit)
+>
+> --v4:
+> - Remove as_sdp_mode from crtc_state.
+> - Drop metadata keyword.
+> - For consistency, update ADL_ prefix or post fix as required.
+>
+> --v5:
+> - Check if AS_SDP bit is set in crtc_state->infoframes.enable. If not
+>    return.
+> - Check for HAS_AS_SDP() before setting VIDEO_DIP_ENABLE_AS_ADL mask.
+>
+> --v6:
+> - Rename intel_read_dp_infoframe_as_sdp to intel_read_dp_as_sdp.
+> -
+>
+> Signed-off-by: Mitul Golani <mitulkumar.ajitkumar.golani@intel.com>
+> ---
+>   .../drm/i915/display/intel_display_device.h   |  1 +
+>   drivers/gpu/drm/i915/display/intel_dp.c       | 91 +++++++++++++++++++
+>   drivers/gpu/drm/i915/display/intel_hdmi.c     | 14 ++-
+>   drivers/gpu/drm/i915/i915_reg.h               |  8 ++
+>   include/drm/display/drm_dp_helper.h           |  2 +-
+>   5 files changed, 114 insertions(+), 2 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/i915/display/intel_display_device.h b/drivers/gpu/drm/i915/display/intel_display_device.h
+> index fe4268813786..6399fbc6c738 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display_device.h
+> +++ b/drivers/gpu/drm/i915/display/intel_display_device.h
+> @@ -68,6 +68,7 @@ struct drm_printer;
+>   #define HAS_TRANSCODER(i915, trans)	((DISPLAY_RUNTIME_INFO(i915)->cpu_transcoder_mask & \
+>   					  BIT(trans)) != 0)
+>   #define HAS_VRR(i915)			(DISPLAY_VER(i915) >= 11)
+> +#define HAS_AS_SDP(i915)		(DISPLAY_VER(i915) >= 13)
+>   #define INTEL_NUM_PIPES(i915)		(hweight8(DISPLAY_RUNTIME_INFO(i915)->pipe_mask))
+>   #define I915_HAS_HOTPLUG(i915)		(DISPLAY_INFO(i915)->has_hotplug)
+>   #define OVERLAY_NEEDS_PHYSICAL(i915)	(DISPLAY_INFO(i915)->overlay_needs_physical)
+> diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
+> index 6ece2c563c7a..99732ac1475d 100644
+> --- a/drivers/gpu/drm/i915/display/intel_dp.c
+> +++ b/drivers/gpu/drm/i915/display/intel_dp.c
+> @@ -4127,6 +4127,32 @@ intel_dp_needs_vsc_sdp(const struct intel_crtc_state *crtc_state,
+>   	return false;
+>   }
+>   
+> +static ssize_t intel_dp_as_sdp_pack(const struct drm_dp_as_sdp *as_sdp,
+> +				    struct dp_sdp *sdp, size_t size)
+> +{
+> +	size_t length = sizeof(struct dp_sdp);
+> +
+> +	if (size < length)
+> +		return -ENOSPC;
+> +
+> +	memset(sdp, 0, size);
+> +
+> +	/* Prepare AS (Adaptive Sync) SDP Header */
+> +	sdp->sdp_header.HB0 = 0;
+> +	sdp->sdp_header.HB1 = as_sdp->sdp_type;
+> +	sdp->sdp_header.HB2 = 0x02;
+> +	sdp->sdp_header.HB3 = as_sdp->length;
+> +
+> +	/* Fill AS (Adaptive Sync) SDP Payload */
+> +	sdp->db[0] = as_sdp->mode;
+> +	sdp->db[1] = as_sdp->vtotal & 0xFF;
+> +	sdp->db[2] = (as_sdp->vtotal >> 8) & 0xFF;
+> +	sdp->db[3] = as_sdp->target_rr;
 
-That seems to fix it.
+Use as_sdp->target_rr & 0xFF;
 
-                if (!folio_put_testzero(folio))
-+                       list_del(&folio->lru);
-                        continue;
-                if (folio_test_large(folio)) {
-                        __folio_put_large(folio);
-+                       list_del(&folio->lru);
-                        continue;
-                }
-Regards
 
-Chaitanya
+> +	sdp->db[4] = (as_sdp->target_rr >> 8) & 0x3;
+> +
+> +	return length;
+> +}
+> +
+>   static ssize_t
+>   intel_dp_hdr_metadata_infoframe_sdp_pack(struct drm_i915_private *i915,
+>   					 const struct hdmi_drm_infoframe *drm_infoframe,
+> @@ -4226,6 +4252,10 @@ static void intel_write_dp_sdp(struct intel_encoder *encoder,
+>   							       &crtc_state->infoframes.drm.drm,
+>   							       &sdp, sizeof(sdp));
+>   		break;
+> +	case DP_SDP_ADAPTIVE_SYNC:
+> +		len = intel_dp_as_sdp_pack(&crtc_state->infoframes.as_sdp, &sdp,
+> +					   sizeof(sdp));
+> +		break;
+>   	default:
+>   		MISSING_CASE(type);
+>   		return;
+> @@ -4247,6 +4277,10 @@ void intel_dp_set_infoframes(struct intel_encoder *encoder,
+>   	u32 dip_enable = VIDEO_DIP_ENABLE_AVI_HSW | VIDEO_DIP_ENABLE_GCP_HSW |
+>   			 VIDEO_DIP_ENABLE_VS_HSW | VIDEO_DIP_ENABLE_GMP_HSW |
+>   			 VIDEO_DIP_ENABLE_SPD_HSW | VIDEO_DIP_ENABLE_DRM_GLK;
+> +
+> +	if (HAS_AS_SDP(dev_priv))
+> +		dip_enable |= VIDEO_DIP_ENABLE_AS_ADL;
+> +
+>   	u32 val = intel_de_read(dev_priv, reg) & ~dip_enable;
+>   
+>   	/* TODO: Sanitize DSC enabling wrt. intel_dsc_dp_pps_write(). */
+> @@ -4268,6 +4302,36 @@ void intel_dp_set_infoframes(struct intel_encoder *encoder,
+>   	intel_write_dp_sdp(encoder, crtc_state, HDMI_PACKET_TYPE_GAMUT_METADATA);
+>   }
+>   
+> +static
+> +int intel_dp_as_sdp_unpack(struct drm_dp_as_sdp *as_sdp,
+> +			   const void *buffer, size_t size)
+> +{
+> +	const struct dp_sdp *sdp = buffer;
+> +
+> +	if (size < sizeof(struct dp_sdp))
+> +		return -EINVAL;
+> +
+> +	memset(as_sdp, 0, sizeof(*as_sdp));
+> +
+> +	if (sdp->sdp_header.HB0 != 0)
+> +		return -EINVAL;
+> +
+> +	if (sdp->sdp_header.HB1 != DP_SDP_ADAPTIVE_SYNC)
+> +		return -EINVAL;
+> +
+> +	if (sdp->sdp_header.HB2 != 0x02)
+> +		return -EINVAL;
+> +
+> +	if ((sdp->sdp_header.HB3 & 0x3F) != 9)
+> +		return -EINVAL;
+> +
+> +	as_sdp->mode = sdp->db[0] & DP_ADAPTIVE_SYNC_SDP_OPERATION_MODE;
+> +	as_sdp->vtotal = ((u64)sdp->db[2] << 32) | (u64)sdp->db[1];
+
+
+Should be left shifted by 8 instead of 32, and drop casting to u64.
+
+> +	as_sdp->target_rr = (u64)sdp->db[3] | ((u64)sdp->db[4] & 0x3);
+> +
+> +	return 0;
+> +}
+> +
+>   static int intel_dp_vsc_sdp_unpack(struct drm_dp_vsc_sdp *vsc,
+>   				   const void *buffer, size_t size)
+>   {
+> @@ -4338,6 +4402,29 @@ static int intel_dp_vsc_sdp_unpack(struct drm_dp_vsc_sdp *vsc,
+>   	return 0;
+>   }
+>   
+> +static void
+> +intel_read_dp_as_sdp(struct intel_encoder *encoder,
+> +		     struct intel_crtc_state *crtc_state,
+> +		     struct drm_dp_as_sdp *as_sdp)
+> +{
+> +	struct intel_digital_port *dig_port = enc_to_dig_port(encoder);
+> +	struct drm_i915_private *dev_priv = to_i915(encoder->base.dev);
+> +	unsigned int type = DP_SDP_ADAPTIVE_SYNC;
+> +	struct dp_sdp sdp = {};
+> +	int ret;
+> +
+> +	if ((crtc_state->infoframes.enable &
+> +	     intel_hdmi_infoframe_enable(type)) == 0)
+> +		return;
+> +
+> +	dig_port->read_infoframe(encoder, crtc_state, type, &sdp,
+> +				 sizeof(sdp));
+> +
+> +	ret = intel_dp_as_sdp_unpack(as_sdp, &sdp, sizeof(sdp));
+> +	if (ret)
+> +		drm_dbg_kms(&dev_priv->drm, "Failed to unpack DP AS SDP\n");
+> +}
+> +
+>   static int
+>   intel_dp_hdr_metadata_infoframe_sdp_unpack(struct hdmi_drm_infoframe *drm_infoframe,
+>   					   const void *buffer, size_t size)
+> @@ -4444,6 +4531,10 @@ void intel_read_dp_sdp(struct intel_encoder *encoder,
+>   		intel_read_dp_hdr_metadata_infoframe_sdp(encoder, crtc_state,
+>   							 &crtc_state->infoframes.drm.drm);
+>   		break;
+> +	case DP_SDP_ADAPTIVE_SYNC:
+> +		intel_read_dp_as_sdp(encoder, crtc_state,
+> +				     &crtc_state->infoframes.as_sdp);
+> +		break;
+>   	default:
+>   		MISSING_CASE(type);
+>   		break;
+> diff --git a/drivers/gpu/drm/i915/display/intel_hdmi.c b/drivers/gpu/drm/i915/display/intel_hdmi.c
+> index 90d2236fede3..18c35dd43ecb 100644
+> --- a/drivers/gpu/drm/i915/display/intel_hdmi.c
+> +++ b/drivers/gpu/drm/i915/display/intel_hdmi.c
+> @@ -114,6 +114,8 @@ static u32 g4x_infoframe_enable(unsigned int type)
+>   		return VIDEO_DIP_ENABLE_GAMUT;
+>   	case DP_SDP_VSC:
+>   		return 0;
+> +	case DP_SDP_ADAPTIVE_SYNC:
+> +		return 0;
+>   	case HDMI_INFOFRAME_TYPE_AVI:
+>   		return VIDEO_DIP_ENABLE_AVI;
+>   	case HDMI_INFOFRAME_TYPE_SPD:
+> @@ -137,6 +139,8 @@ static u32 hsw_infoframe_enable(unsigned int type)
+>   		return VIDEO_DIP_ENABLE_GMP_HSW;
+>   	case DP_SDP_VSC:
+>   		return VIDEO_DIP_ENABLE_VSC_HSW;
+> +	case DP_SDP_ADAPTIVE_SYNC:
+> +		return VIDEO_DIP_ENABLE_AS_ADL;
+>   	case DP_SDP_PPS:
+>   		return VDIP_ENABLE_PPS;
+>   	case HDMI_INFOFRAME_TYPE_AVI:
+> @@ -164,6 +168,8 @@ hsw_dip_data_reg(struct drm_i915_private *dev_priv,
+>   		return HSW_TVIDEO_DIP_GMP_DATA(cpu_transcoder, i);
+>   	case DP_SDP_VSC:
+>   		return HSW_TVIDEO_DIP_VSC_DATA(cpu_transcoder, i);
+> +	case DP_SDP_ADAPTIVE_SYNC:
+> +		return ADL_TVIDEO_DIP_AS_SDP_DATA(cpu_transcoder, i);
+>   	case DP_SDP_PPS:
+>   		return ICL_VIDEO_DIP_PPS_DATA(cpu_transcoder, i);
+>   	case HDMI_INFOFRAME_TYPE_AVI:
+> @@ -186,6 +192,8 @@ static int hsw_dip_data_size(struct drm_i915_private *dev_priv,
+>   	switch (type) {
+>   	case DP_SDP_VSC:
+>   		return VIDEO_DIP_VSC_DATA_SIZE;
+> +	case DP_SDP_ADAPTIVE_SYNC:
+> +		return VIDEO_DIP_ASYNC_DATA_SIZE;
+>   	case DP_SDP_PPS:
+>   		return VIDEO_DIP_PPS_DATA_SIZE;
+>   	case HDMI_PACKET_TYPE_GAMUT_METADATA:
+> @@ -563,6 +571,9 @@ static u32 hsw_infoframes_enabled(struct intel_encoder *encoder,
+>   	if (DISPLAY_VER(dev_priv) >= 10)
+>   		mask |= VIDEO_DIP_ENABLE_DRM_GLK;
+>   
+> +	if (HAS_AS_SDP(dev_priv))
+> +		mask |= VIDEO_DIP_ENABLE_AS_ADL;
+> +
+>   	return val & mask;
+>   }
+>   
+> @@ -570,6 +581,7 @@ static const u8 infoframe_type_to_idx[] = {
+>   	HDMI_PACKET_TYPE_GENERAL_CONTROL,
+>   	HDMI_PACKET_TYPE_GAMUT_METADATA,
+>   	DP_SDP_VSC,
+> +	DP_SDP_ADAPTIVE_SYNC,
+>   	HDMI_INFOFRAME_TYPE_AVI,
+>   	HDMI_INFOFRAME_TYPE_SPD,
+>   	HDMI_INFOFRAME_TYPE_VENDOR,
+> @@ -1212,7 +1224,7 @@ static void hsw_set_infoframes(struct intel_encoder *encoder,
+>   	val &= ~(VIDEO_DIP_ENABLE_VSC_HSW | VIDEO_DIP_ENABLE_AVI_HSW |
+>   		 VIDEO_DIP_ENABLE_GCP_HSW | VIDEO_DIP_ENABLE_VS_HSW |
+>   		 VIDEO_DIP_ENABLE_GMP_HSW | VIDEO_DIP_ENABLE_SPD_HSW |
+> -		 VIDEO_DIP_ENABLE_DRM_GLK);
+> +		 VIDEO_DIP_ENABLE_DRM_GLK | VIDEO_DIP_ENABLE_AS_ADL);
+>   
+>   	if (!enable) {
+>   		intel_de_write(dev_priv, reg, val);
+> diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_reg.h
+> index e00557e1a57f..dce276236707 100644
+> --- a/drivers/gpu/drm/i915/i915_reg.h
+> +++ b/drivers/gpu/drm/i915/i915_reg.h
+> @@ -2312,6 +2312,7 @@
+>    * (Haswell and newer) to see which VIDEO_DIP_DATA byte corresponds to each byte
+>    * of the infoframe structure specified by CEA-861. */
+>   #define   VIDEO_DIP_DATA_SIZE	32
+> +#define   VIDEO_DIP_ASYNC_DATA_SIZE	36
+>   #define   VIDEO_DIP_GMP_DATA_SIZE	36
+>   #define   VIDEO_DIP_VSC_DATA_SIZE	36
+>   #define   VIDEO_DIP_PPS_DATA_SIZE	132
+> @@ -2350,6 +2351,8 @@
+>   #define   VIDEO_DIP_ENABLE_VS_HSW	(1 << 8)
+>   #define   VIDEO_DIP_ENABLE_GMP_HSW	(1 << 4)
+>   #define   VIDEO_DIP_ENABLE_SPD_HSW	(1 << 0)
+> +/* ADL and later: */
+> +#define   VIDEO_DIP_ENABLE_AS_ADL	REG_BIT(23)
+>   
+>   /* Panel fitting */
+>   #define PFIT_CONTROL	_MMIO(DISPLAY_MMIO_BASE(dev_priv) + 0x61230)
+> @@ -5040,6 +5043,7 @@
+>   #define _HSW_VIDEO_DIP_SPD_DATA_A	0x602A0
+>   #define _HSW_VIDEO_DIP_GMP_DATA_A	0x602E0
+>   #define _HSW_VIDEO_DIP_VSC_DATA_A	0x60320
+> +#define	_ADL_VIDEO_DIP_AS_DATA_A	0x60484
+>   #define _GLK_VIDEO_DIP_DRM_DATA_A	0x60440
+>   #define _HSW_VIDEO_DIP_AVI_ECC_A	0x60240
+>   #define _HSW_VIDEO_DIP_VS_ECC_A		0x60280
+> @@ -5054,6 +5058,7 @@
+>   #define _HSW_VIDEO_DIP_SPD_DATA_B	0x612A0
+>   #define _HSW_VIDEO_DIP_GMP_DATA_B	0x612E0
+>   #define _HSW_VIDEO_DIP_VSC_DATA_B	0x61320
+> +#define _ADL_VIDEO_DIP_AS_DATA_B	0x61484
+>   #define _GLK_VIDEO_DIP_DRM_DATA_B	0x61440
+>   #define _HSW_VIDEO_DIP_BVI_ECC_B	0x61240
+>   #define _HSW_VIDEO_DIP_VS_ECC_B		0x61280
+> @@ -5083,6 +5088,9 @@
+>   #define GLK_TVIDEO_DIP_DRM_DATA(trans, i)	_MMIO_TRANS2(trans, _GLK_VIDEO_DIP_DRM_DATA_A + (i) * 4)
+>   #define ICL_VIDEO_DIP_PPS_DATA(trans, i)	_MMIO_TRANS2(trans, _ICL_VIDEO_DIP_PPS_DATA_A + (i) * 4)
+>   #define ICL_VIDEO_DIP_PPS_ECC(trans, i)		_MMIO_TRANS2(trans, _ICL_VIDEO_DIP_PPS_ECC_A + (i) * 4)
+> +/*ADLP and later: */
+> +#define ADL_TVIDEO_DIP_AS_SDP_DATA(trans, i)	_MMIO_TRANS2(trans,\
+> +							     _ADL_VIDEO_DIP_AS_DATA_A + (i) * 4)
+>   
+>   #define _HSW_STEREO_3D_CTL_A		0x70020
+>   #define   S3D_ENABLE			(1 << 31)
+> diff --git a/include/drm/display/drm_dp_helper.h b/include/drm/display/drm_dp_helper.h
+> index 10147ae96326..fae2dbf86beb 100644
+> --- a/include/drm/display/drm_dp_helper.h
+> +++ b/include/drm/display/drm_dp_helper.h
+> @@ -130,8 +130,8 @@ void drm_dp_as_sdp_log(struct drm_printer *p,
+>   void drm_dp_vsc_sdp_log(struct drm_printer *p, const struct drm_dp_vsc_sdp *vsc);
+>   
+>   bool drm_dp_vsc_sdp_supported(struct drm_dp_aux *aux, const u8 dpcd[DP_RECEIVER_CAP_SIZE]);
+> -bool drm_dp_as_sdp_supported(struct drm_dp_aux *aux, const u8 dpcd[DP_RECEIVER_CAP_SIZE]);
+>   
+> +bool drm_dp_as_sdp_supported(struct drm_dp_aux *aux, const u8 dpcd[DP_RECEIVER_CAP_SIZE]);
+
+This change again does not belong to this patch.
+
+
+Regards,
+
+Ankit
+
+
+>   int drm_dp_psr_setup_time(const u8 psr_cap[EDP_PSR_RECEIVER_CAP_SIZE]);
+>   
+>   static inline int
