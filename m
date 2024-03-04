@@ -2,54 +2,110 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id B7A1B86FB34
-	for <lists+intel-gfx@lfdr.de>; Mon,  4 Mar 2024 08:57:53 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 026EB86FB89
+	for <lists+intel-gfx@lfdr.de>; Mon,  4 Mar 2024 09:18:55 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2E70310FDF4;
-	Mon,  4 Mar 2024 07:57:52 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D4BE210E765;
+	Mon,  4 Mar 2024 08:18:52 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="KPE4AF+T";
+	dkim=pass (1024-bit key; unprotected) header.d=suse.de header.i=@suse.de header.b="r1o4XTcn";
+	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="KttDyL/9";
+	dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b="r1o4XTcn";
+	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="KttDyL/9";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DEBB910FDF4
- for <intel-gfx@lists.freedesktop.org>; Mon,  4 Mar 2024 07:57:50 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1709539071; x=1741075071;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=sWAWy0Pk0Vuo2zYMswEQSGWb+BXUvLyrBk/WLRhRxLs=;
- b=KPE4AF+TcA+HnNq17AGa0MyNFVgSYp23bf8Lg5HoT+0GpyO403pDYiZf
- 6+VEw8trCQVt1ooO2WUqoogsJHE6SJQ5dTN3GFwXRCBysV/KpuQy/HTuS
- mZZc04dTxqROt/Whg7PijfQHSECGSelGoEuPqgfuRIXyCrUmbpKgrZ/AQ
- ssu1bwC8PrnBJP/0SzAocC/bLBpqsL6Q7ONLnJ3VB/GLA8m4L9ZZcWTB8
- 1SjBY7PGDGGIUmq4i891ASfAC9OG92pkxfpu2mKCbGPT43C4P9yyXdQsh
- qqTPLB2QDoq4yw2HO7fpvCN/fRKUCtDwuaBMhp9UpsMd0Y4IfChoyA9B0 g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,11002"; a="4139338"
-X-IronPort-AV: E=Sophos;i="6.06,203,1705392000"; 
-   d="scan'208";a="4139338"
-Received: from fmviesa008.fm.intel.com ([10.60.135.148])
- by orvoesa108.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Mar 2024 23:57:50 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.06,203,1705392000"; 
-   d="scan'208";a="9043952"
-Received: from srr4-3-linux-101-amanna.iind.intel.com ([10.223.74.76])
- by fmviesa008.fm.intel.com with ESMTP; 03 Mar 2024 23:57:49 -0800
-From: Animesh Manna <animesh.manna@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Cc: jouni.hogander@intel.com, arun.r.murthy@intel.com,
- Animesh Manna <animesh.manna@intel.com>
-Subject: [RFC 3/3] drm/i915/alpm: Enable lobf from source in ALPM_CTL
-Date: Mon,  4 Mar 2024 13:13:03 +0530
-Message-Id: <20240304074303.202882-4-animesh.manna@intel.com>
-X-Mailer: git-send-email 2.29.0
-In-Reply-To: <20240304074303.202882-1-animesh.manna@intel.com>
-References: <20240304074303.202882-1-animesh.manna@intel.com>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Received: from smtp-out2.suse.de (smtp-out2.suse.de [195.135.223.131])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EBAC010E9D4
+ for <intel-gfx@lists.freedesktop.org>; Mon,  4 Mar 2024 08:18:50 +0000 (UTC)
+Received: from imap1.dmz-prg2.suse.org (imap1.dmz-prg2.suse.org
+ [IPv6:2a07:de40:b281:104:10:150:64:97])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+ (No client certificate requested)
+ by smtp-out2.suse.de (Postfix) with ESMTPS id 7DC77687A5;
+ Mon,  4 Mar 2024 08:18:48 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
+ t=1709540328; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:content-type:content-type:
+ in-reply-to:in-reply-to:references:references;
+ bh=0GcM6Zqc7S8KzSFH/QRWGM93gGR/7+3SWwjm/qiQ8mk=;
+ b=r1o4XTcnhHzb7nMm8K7OEJ1wRWlb21LxDNMQf0r0ctNsgdS2Kp420vCKM+CJTvsmBWd55M
+ Kx4jX3skMWDuUjblZzlctHu1VEBGz3w2VZBSFCnHwhOExQbu47hSFHjO9u81LQzggkiRQs
+ rHTwrOQXkYuTSh+1/j6VPYGDh2nair8=
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
+ s=susede2_ed25519; t=1709540328;
+ h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:content-type:content-type:
+ in-reply-to:in-reply-to:references:references;
+ bh=0GcM6Zqc7S8KzSFH/QRWGM93gGR/7+3SWwjm/qiQ8mk=;
+ b=KttDyL/9tqsbQ1NkCk/c+CVu+CmQHBG/VZMUlGn01xYjL+8DRsYSwp6a46n4Rf/ZsbO9pn
+ YwSb3e3IHX7LEVDA==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
+ t=1709540328; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:content-type:content-type:
+ in-reply-to:in-reply-to:references:references;
+ bh=0GcM6Zqc7S8KzSFH/QRWGM93gGR/7+3SWwjm/qiQ8mk=;
+ b=r1o4XTcnhHzb7nMm8K7OEJ1wRWlb21LxDNMQf0r0ctNsgdS2Kp420vCKM+CJTvsmBWd55M
+ Kx4jX3skMWDuUjblZzlctHu1VEBGz3w2VZBSFCnHwhOExQbu47hSFHjO9u81LQzggkiRQs
+ rHTwrOQXkYuTSh+1/j6VPYGDh2nair8=
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
+ s=susede2_ed25519; t=1709540328;
+ h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:content-type:content-type:
+ in-reply-to:in-reply-to:references:references;
+ bh=0GcM6Zqc7S8KzSFH/QRWGM93gGR/7+3SWwjm/qiQ8mk=;
+ b=KttDyL/9tqsbQ1NkCk/c+CVu+CmQHBG/VZMUlGn01xYjL+8DRsYSwp6a46n4Rf/ZsbO9pn
+ YwSb3e3IHX7LEVDA==
+Received: from imap1.dmz-prg2.suse.org (localhost [127.0.0.1])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+ (No client certificate requested)
+ by imap1.dmz-prg2.suse.org (Postfix) with ESMTPS id 150B913A58;
+ Mon,  4 Mar 2024 08:18:48 +0000 (UTC)
+Received: from dovecot-director2.suse.de ([10.150.64.162])
+ by imap1.dmz-prg2.suse.org with ESMTPSA id KTGUA+iD5WVeagAAD6G6ig
+ (envelope-from <tiwai@suse.de>); Mon, 04 Mar 2024 08:18:48 +0000
+Date: Mon, 04 Mar 2024 09:18:47 +0100
+Message-ID: <87y1ay1kbc.wl-tiwai@suse.de>
+From: Takashi Iwai <tiwai@suse.de>
+To: Cezary Rojewski <cezary.rojewski@intel.com>
+Cc: broonie@kernel.org, alsa-devel@alsa-project.org,
+ linux-sound@vger.kernel.org, tiwai@suse.com, perex@perex.cz,
+ jani.nikula@linux.intel.com, joonas.lahtinen@linux.intel.com,
+ rodrigo.vivi@intel.com, tvrtko.ursulin@linux.intel.com,
+ intel-gfx@lists.freedesktop.org, amadeuszx.slawinski@linux.intel.com,
+ pierre-louis.bossart@linux.intel.com, hdegoede@redhat.com
+Subject: Re: [PATCH v3 0/5] ALSA/ASoC: Conditionally skip i915 init and
+ cleanups
+In-Reply-To: <20240226124432.1203798-1-cezary.rojewski@intel.com>
+References: <20240226124432.1203798-1-cezary.rojewski@intel.com>
+User-Agent: Wanderlust/2.15.9 (Almost Unreal) Emacs/27.2 Mule/6.0
+MIME-Version: 1.0 (generated by SEMI-EPG 1.14.7 - "Harue")
+Content-Type: text/plain; charset=US-ASCII
+X-Spam-Level: 
+X-Spamd-Bar: /
+Authentication-Results: smtp-out2.suse.de;
+ dkim=pass header.d=suse.de header.s=susede2_rsa header.b=r1o4XTcn;
+ dkim=pass header.d=suse.de header.s=susede2_ed25519 header.b="KttDyL/9"
+X-Rspamd-Server: rspamd2.dmz-prg2.suse.org
+X-Spamd-Result: default: False [-0.76 / 50.00]; ARC_NA(0.00)[];
+ RCVD_VIA_SMTP_AUTH(0.00)[];
+ R_DKIM_ALLOW(-0.20)[suse.de:s=susede2_rsa,suse.de:s=susede2_ed25519];
+ SPAMHAUS_XBL(0.00)[2a07:de40:b281:104:10:150:64:97:from];
+ FROM_HAS_DN(0.00)[]; TO_DN_SOME(0.00)[];
+ TO_MATCH_ENVRCPT_ALL(0.00)[]; NEURAL_HAM_LONG(-1.00)[-1.000];
+ MIME_GOOD(-0.10)[text/plain]; RCVD_COUNT_THREE(0.00)[3];
+ DKIM_SIGNED(0.00)[suse.de:s=susede2_rsa,suse.de:s=susede2_ed25519];
+ DKIM_TRACE(0.00)[suse.de:+]; MX_GOOD(-0.01)[];
+ RCPT_COUNT_TWELVE(0.00)[14]; MID_CONTAINS_FROM(1.00)[];
+ DBL_BLOCKED_OPENRESOLVER(0.00)[suse.de:dkim];
+ FUZZY_BLOCKED(0.00)[rspamd.com]; FROM_EQ_ENVFROM(0.00)[];
+ MIME_TRACE(0.00)[0:+]; NEURAL_HAM_SHORT(-0.20)[-1.000];
+ RCVD_TLS_ALL(0.00)[]; BAYES_HAM(-0.25)[73.24%]
+X-Spam-Score: -0.76
+X-Rspamd-Queue-Id: 7DC77687A5
+X-Spam-Flag: NO
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -65,42 +121,46 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Set the Link Off Between Frames Enable bit in ALPM_CTL register.
+On Mon, 26 Feb 2024 13:44:27 +0100,
+Cezary Rojewski wrote:
+> 
+> A small set of changes to improve initialization of the audio stack on
+> HDAudio devices and pair of cleanups.
+> 
+> As the first change is the most important one here, following is the
+> technical background for it:
+> 
+> Commit 78f613ba1efb ("drm/i915: finish removal of CNL") and its friends
+> removed support for i915 for all CNL-based platforms. HDAudio library,
+> however, still treats such platforms as valid candidates for i915
+> binding. Update query mechanism to reflect changes made in drm tree.
+> 
+> At the same time, i915 support for LKF-based platforms has not been
+> provided so remove them from valid binding candidates.
+> 
+> The snd_soc_hda change is a follow up for the above and the cleanup
+> patches do not bring any functional changes.
+> 
+> Changes in v3:
+> - snd_soc_hda_codec now returns -ENODEV on attach() if i915 is not
+>   present
+> - denylist now const
+> - added new patch for the avs-driver to address -ENODEV during
+>   probe_codec()
+> - note: retained reviewed-by for patch 1/4 as changes are minimal
+> 
+> Changes in v2:
+> - list of problematic VGA devices is now declared locally, no more
+>   touching drm stuff
+> 
+> Cezary Rojewski (5):
+>   ALSA: hda: Skip i915 initialization on CNL/LKF-based platforms
+>   ASoC: codecs: hda: Skip HDMI/DP registration if i915 is missing
+>   ASoC: Intel: avs: Ignore codecs with no suppoting driver
+>   ASoC: codecs: hda: Cleanup error messages
+>   ALSA: hda: Reuse for_each_pcm_streams()
 
-Signed-off-by: Animesh Manna <animesh.manna@intel.com>
----
- drivers/gpu/drm/i915/display/intel_display_types.h | 1 +
- drivers/gpu/drm/i915/display/intel_psr.c           | 5 +++++
- 2 files changed, 6 insertions(+)
+Applied to for-next branch now.  Thanks.
 
-diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/drivers/gpu/drm/i915/display/intel_display_types.h
-index 4d2161eeb686..c8e7a65df45d 100644
---- a/drivers/gpu/drm/i915/display/intel_display_types.h
-+++ b/drivers/gpu/drm/i915/display/intel_display_types.h
-@@ -1854,6 +1854,7 @@ struct intel_dp {
- 
- 	/* LOBF flags*/
- 	bool lobf_supported;
-+	bool lobf_enabled;
- };
- 
- enum lspcon_vendor {
-diff --git a/drivers/gpu/drm/i915/display/intel_psr.c b/drivers/gpu/drm/i915/display/intel_psr.c
-index c08bffc2921a..a9f8f2982b50 100644
---- a/drivers/gpu/drm/i915/display/intel_psr.c
-+++ b/drivers/gpu/drm/i915/display/intel_psr.c
-@@ -1770,6 +1770,11 @@ static void lnl_alpm_configure(struct intel_dp *intel_dp)
- 			ALPM_CTL_EXTENDED_FAST_WAKE_TIME(intel_dp->alpm_parameters.fast_wake_lines);
- 	}
- 
-+	if (intel_dp->lobf_supported) {
-+		alpm_ctl |= ALPM_CTL_LOBF_ENABLE;
-+		intel_dp->lobf_enabled = true;
-+	}
-+
- 	alpm_ctl |= ALPM_CTL_ALPM_ENTRY_CHECK(intel_dp->alpm_parameters.check_entry_lines);
- 
- 	intel_de_write(dev_priv, ALPM_CTL(cpu_transcoder), alpm_ctl);
--- 
-2.29.0
 
+Takashi
