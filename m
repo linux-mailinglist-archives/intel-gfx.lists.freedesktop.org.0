@@ -2,59 +2,68 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 667AB872590
-	for <lists+intel-gfx@lfdr.de>; Tue,  5 Mar 2024 18:22:25 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4AC1F8725D7
+	for <lists+intel-gfx@lfdr.de>; Tue,  5 Mar 2024 18:43:23 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C253510E52E;
-	Tue,  5 Mar 2024 17:22:23 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 820D810EECF;
+	Tue,  5 Mar 2024 17:43:19 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="K3aeReqU";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="XEKLb6qB";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D5FE310E52E;
- Tue,  5 Mar 2024 17:22:22 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1A79D10E24E;
+ Tue,  5 Mar 2024 17:43:18 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1709659343; x=1741195343;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:in-reply-to;
- bh=r5dRwA7cUGwvnoUKCrlo7pT9LzeqqbNLAEeDdS6w7As=;
- b=K3aeReqUPCSP+IX/EXyxS7NoDyo4S/A4aIzXbcCgaHRuzt/Jm5SOlRo2
- qJXoyN5fY1nqxegZds3sZwqt4wc1wk2DdngYNsuJekm2COEz4mBzfmnvm
- 88DVGOXdhpN94cwVDDiap1OgcqnBdVMxvhF9S8PBPP393vCENYNuiKqlf
- veWvsdwLr1EuOs1BfNC3NxWC8riKWcEopiZ0lZQ+dwPAn/Y4n1hPvpsTD
- q2FWAHwX0JjF+xLhzqmaLg82kfTyKGPwYc7+TISkDyTIv42W7Xb4AQ6f4
- SYm5AuiSpzoR2EiqGIi36q0RJJp9fYo2pcRpyxyDLf0ZMXMFx/zskcCkE Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,11003"; a="29651815"
-X-IronPort-AV: E=Sophos;i="6.06,206,1705392000"; d="scan'208";a="29651815"
+ t=1709660598; x=1741196598;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version;
+ bh=46bmXm5NdVzXD7aj/PEr900sAqVkl2XKclSLE1UzPj8=;
+ b=XEKLb6qBhJtcYXEHA+WL9hUv7fI6aHSuxqDUo9BiPWgIoV+7winE3fqw
+ wdNLszz9CF2GMunUIU/N253ZLQQTVU+8PjIeUjYsPvryGX6E5Ye8OJ7Na
+ oPdfQ3B1N0FLxmiGGAz/3drOTEkCmSsbLSguItpFWFiZ3EWhSocoJylZs
+ KrYCaCRhKTm6I3EPOnqeygNbpKboGutDenEtdVxE0ev6fUwwCKan6M+RG
+ Kv6fl4RuFa02LzoH1Z/DOTvnlKWHFchL4CQyTI2VlRP/I6bejhrau3tXo
+ b4iun6gdbvw9fXXbCivAgY+J4xeUNtgwp7601i/X3vpKfB6aIzq9rPSmM A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,11004"; a="15372085"
+X-IronPort-AV: E=Sophos;i="6.06,206,1705392000"; d="scan'208";a="15372085"
 Received: from fmviesa007.fm.intel.com ([10.60.135.147])
- by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Mar 2024 09:22:22 -0800
+ by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 05 Mar 2024 09:43:17 -0800
 X-ExtLoop1: 1
 X-IronPort-AV: E=Sophos;i="6.06,206,1705392000"; 
-   d="scan'208";a="9310967"
-Received: from unknown (HELO intel.com) ([10.247.118.75])
+   d="scan'208";a="9316216"
+Received: from omakhlou-mobl4.amr.corp.intel.com (HELO localhost)
+ ([10.252.51.143])
  by fmviesa007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Mar 2024 09:22:16 -0800
-Date: Tue, 5 Mar 2024 18:22:10 +0100
-From: Andi Shyti <andi.shyti@linux.intel.com>
-To: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
-Cc: intel-gfx@lists.freedesktop.org, Jani Nikula <jani.nikula@linux.intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
- dri-devel@lists.freedesktop.org, John Harrison <John.C.Harrison@intel.com>,
- Matthew Brost <matthew.brost@intel.com>,
- Rahul Kumar Singh <rahul.kumar.singh@intel.com>
-Subject: Re: [PATCH] drm/i915/selftests: Fix dependency of some timeouts on HZ
-Message-ID: <ZedUwtadmlo9iOFl@ashyti-mobl2.lan>
-References: <20240222113347.648945-2-janusz.krzysztofik@linux.intel.com>
+ 05 Mar 2024 09:43:10 -0800
+From: Jani Nikula <jani.nikula@intel.com>
+To: Maxime Ripard <mripard@kernel.org>
+Cc: dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
+ intel-xe@lists.freedesktop.org, Abhinav Kumar <quic_abhinavk@quicinc.com>,
+ Alex Deucher <alexander.deucher@amd.com>, Christian =?utf-8?Q?K=C3=B6nig?=
+ <christian.koenig@amd.com>, Daniel Vetter <daniel@ffwll.ch>, Danilo
+ Krummrich <dakr@redhat.com>, David Airlie <airlied@gmail.com>, Dmitry
+ Baryshkov <dmitry.baryshkov@linaro.org>, Hamza Mahfooz
+ <hamza.mahfooz@amd.com>, Javier Martinez Canillas <javierm@redhat.com>,
+ Karol Herbst <kherbst@redhat.com>, Lyude Paul <lyude@redhat.com>, Maarten
+ Lankhorst <maarten.lankhorst@linux.intel.com>, Marijn Suijten
+ <marijn.suijten@somainline.org>, Maxime Ripard <mripard@kernel.org>,
+ Xinhui.Pan@amd.com, Rob Clark <robdclark@gmail.com>, Sean Paul
+ <sean@poorly.run>, Sui Jingfeng <sui.jingfeng@linux.dev>, Thomas
+ Zimmermann <tzimmermann@suse.de>
+Subject: Re: [RESEND v3 0/2] drm: enable W=1 warnings by default across the
+ subsystem
+In-Reply-To: <0df557af4aaceeb1ef85ee3c74169ee9@kernel.org>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <cover.1709629403.git.jani.nikula@intel.com>
+ <0df557af4aaceeb1ef85ee3c74169ee9@kernel.org>
+Date: Tue, 05 Mar 2024 19:43:07 +0200
+Message-ID: <8734t41sno.fsf@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240222113347.648945-2-janusz.krzysztofik@linux.intel.com>
+Content-Type: text/plain
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -70,29 +79,23 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi Janusz,
+On Tue, 05 Mar 2024, "Maxime Ripard" <mripard@kernel.org> wrote:
+> On Tue, 5 Mar 2024 11:07:34 +0200, Jani Nikula wrote:
+>> Resend of [1] with an intent to merge after the CI results come in. This
+>> is aiming for v6.10, so we'll have maximal time to find all the issues
+>> my configs didn't catch.
+>> 
+>> I built this on x86-64 (both gcc and clang), arm and arm64, and
+>> 
+>> [ ... ]
+>
+> Acked-by: Maxime Ripard <mripard@kernel.org>
 
-On Thu, Feb 22, 2024 at 12:32:40PM +0100, Janusz Krzysztofik wrote:
-> Third argument of i915_request_wait() accepts a timeout value in jiffies.
-> Most users pass either a simple HZ based expression, or a result of
-> msecs_to_jiffies(), or MAX_SCHEDULE_TIMEOUT, or a very small number not
-> exceeding 4 if applicable as that value.  However, there is one user --
-> intel_selftest_wait_for_rq() -- that passes a WAIT_FOR_RESET_TIME symbol,
-> defined as a large constant value that most probably represents a desired
-> timeout in ms.  While that usage results in the intended value of timeout
-> on usual x86_64 kernel configurations, it is not portable across different
-> architectures and custom kernel configs.
-> 
-> Rename the symbol to clearly indicate intended units and convert it to
-> jiffies before use.
-> 
-> Fixes: 3a4bfa091c46 ("drm/i915/selftest: Fix workarounds selftest for GuC submission")
-> Signed-off-by: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
-> Cc: Rahul Kumar Singh <rahul.kumar.singh@intel.com>
-> Cc: John Harrison <John.C.Harrison@Intel.com>
-> Cc: Matthew Brost <matthew.brost@intel.com>
+Thanks everyone for acks and reviews, pushed to drm-misc-next.
 
-pushed in drm-intel-gt-next.
+BR,
+Jani.
 
-Thank you,
-Andi
+
+-- 
+Jani Nikula, Intel
