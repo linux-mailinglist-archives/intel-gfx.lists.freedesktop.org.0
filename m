@@ -2,62 +2,62 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 33CDD872189
-	for <lists+intel-gfx@lfdr.de>; Tue,  5 Mar 2024 15:34:28 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 807A387219C
+	for <lists+intel-gfx@lfdr.de>; Tue,  5 Mar 2024 15:38:17 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 89ADE10E13B;
-	Tue,  5 Mar 2024 14:34:26 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2168A112B55;
+	Tue,  5 Mar 2024 14:38:14 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="TALH68jy";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="mL0qPsn6";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D794510E13B
- for <intel-gfx@lists.freedesktop.org>; Tue,  5 Mar 2024 14:34:24 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8B2ED112B57;
+ Tue,  5 Mar 2024 14:38:12 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1709649265; x=1741185265;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=Qj3f7FW2GrtSfyELwMQpwn6AL8eB8woMjglRE/JftVI=;
- b=TALH68jyEJRoTzih5fojntpf9luMtL0vWpIu/RcdNsLq2QukYoGDfwJZ
- SoZKTkrUFz0oql/fkvQSD/upZP1F+mJtJN8kCqC2Qs4Q04fNxeWVrcoVH
- dbDUjOhsPXSEl6OW0gKZf4dYs+Nf3vAlrSscL9Yy5hfgOMYw9J6EEv/Bm
- sAvYCxO+SkBSAv1LHHxGLQHdszrD4zg52DL4Zl35lTry7A/+J30n2JXrw
- Ch1+fdKwlwhg+0MCS0bfjQuKkPiFvysAPYLOX5yTBKOc6LkJhMW3Py15W
- Gi4EN4IPudwq5qU2Wz3I6RMZT8ydWzmgAxsqfyJu2nk/f6eCOp0Co4ZTI A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,11003"; a="4367246"
-X-IronPort-AV: E=Sophos;i="6.06,205,1705392000"; 
-   d="scan'208";a="4367246"
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
- by fmvoesa109.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Mar 2024 06:34:24 -0800
+ t=1709649492; x=1741185492;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=Y008fVBLZq+njJXDlLMOOJ4wGOvMEVtctYmoMJfNaIQ=;
+ b=mL0qPsn6OKeWocwlggkZGfdCGZ6I9BVHzNXuNA7DKPPft/rLdX3v87sY
+ zGhkIT3UcCPv99gUA7rRJaHEiOBoU0hAjuvzMQ9IGPSLvWKUi9nZPDYRg
+ t5WAWQoIbUHS3FOtwx7kFFr7CpnmN1K09bEiWvcnMZBoRsZRSBo9UbxU8
+ QaredElbJ+evPxSyirJG+3igz07HM3RFDea5hGmTI9YprtZruEj9y/AcM
+ Y+pOqw2kj7LxPz+ri/EP+S1xit/rRtp8EatPTHMlN1nDWtwAL2hUsIdP9
+ B9fkzJpAboHvZrQjLOrSdffBMFUFvGmeLuguVrK1scTvAaYWX3kpX0rAG A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,11003"; a="21662431"
+X-IronPort-AV: E=Sophos;i="6.06,205,1705392000"; d="scan'208";a="21662431"
+Received: from fmviesa004.fm.intel.com ([10.60.135.144])
+ by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 05 Mar 2024 06:38:12 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,11003"; a="827773870"
-X-IronPort-AV: E=Sophos;i="6.06,205,1705392000"; d="scan'208";a="827773870"
-Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.74])
- by orsmga001.jf.intel.com with SMTP; 05 Mar 2024 06:34:21 -0800
-Received: by stinkbox (sSMTP sendmail emulation);
- Tue, 05 Mar 2024 16:34:20 +0200
-Date: Tue, 5 Mar 2024 16:34:20 +0200
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Jani Nikula <jani.nikula@linux.intel.com>
-Cc: "Lisovskiy, Stanislav" <stanislav.lisovskiy@intel.com>,
- intel-gfx@lists.freedesktop.org
-Subject: Re: [PATCH 1/8] drm/i915: Rename the crtc/crtc_states in the top
- level DDI hooks/etc
-Message-ID: <ZectbJLgYMWGARU0@intel.com>
-References: <20240301143600.1334-1-ville.syrjala@linux.intel.com>
- <20240301143600.1334-2-ville.syrjala@linux.intel.com>
- <ZebazalH8c1j1GGH@intel.com> <Zebcuecv8QHwm4AE@intel.com>
- <87sf1422mm.fsf@intel.com>
+X-IronPort-AV: E=Sophos;i="6.06,205,1705392000"; d="scan'208";a="13959908"
+Received: from jkrzyszt-mobl2.ger.corp.intel.com (HELO
+ jkrzyszt-mobl2.intranet) ([10.213.25.18])
+ by fmviesa004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 05 Mar 2024 06:38:08 -0800
+From: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
+To: intel-gfx@lists.freedesktop.org
+Cc: Jani Nikula <jani.nikula@linux.intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
+ dri-devel@lists.freedesktop.org, Andi Shyti <andi.shyti@linux.intel.com>,
+ Andrzej Hajda <andrzej.hajda@intel.com>, Nirmoy Das <nirmoy.das@intel.com>,
+ Jonathan Cavitt <jonathan.cavitt@intel.com>,
+ =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
+ Niranjana Vishwanathapura <niranjana.vishwanathapura@intel.com>,
+ Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
+Subject: [PATCH v7 0/3] drm/i915: Fix VMA UAF on destroy against deactivate
+ race
+Date: Tue,  5 Mar 2024 15:35:05 +0100
+Message-ID: <20240305143747.335367-5-janusz.krzysztofik@linux.intel.com>
+X-Mailer: git-send-email 2.43.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <87sf1422mm.fsf@intel.com>
-X-Patchwork-Hint: comment
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -73,28 +73,119 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, Mar 05, 2024 at 04:07:45PM +0200, Jani Nikula wrote:
-> On Tue, 05 Mar 2024, Ville Syrjälä <ville.syrjala@linux.intel.com> wrote:
-> > On Tue, Mar 05, 2024 at 10:41:49AM +0200, Lisovskiy, Stanislav wrote:
-> >> I also wonder whether should we really emphasize things like "master"/"slave"
-> >> in function names. I thought that one idea in our refactoring was to unify
-> >> joined pipes handling so that there are no(or at least almost no) explicit code
-> >> paths/function names for masters/slaves.
-> >
-> > There are no master vs. slave functions. The split is going to be
-> > transcoder/port vs. pipe.
-> 
-> Besides, for modern platforms the spec has already been changed to use
-> primary/secondary terminology. When renaming or refactoring stuff,
-> please switch to them instead of sticking with master/slave.
+Object debugging tools were sporadically reporting illegal attempts to
+free a still active i915 VMA object when parking a GT believed to be idle.
 
-If the spec got updated then we should probably just do a full rename
-pass over the whole codebase instead of confusing things more by
-mixing up the terminology.
+[161.359441] ODEBUG: free active (active state 0) object: ffff88811643b958 object type: i915_active hint: __i915_vma_active+0x0/0x50 [i915]
+[161.360082] WARNING: CPU: 5 PID: 276 at lib/debugobjects.c:514 debug_print_object+0x80/0xb0
+...
+[161.360304] CPU: 5 PID: 276 Comm: kworker/5:2 Not tainted 6.5.0-rc1-CI_DRM_13375-g003f860e5577+ #1
+[161.360314] Hardware name: Intel Corporation Rocket Lake Client Platform/RocketLake S UDIMM 6L RVP, BIOS RKLSFWI1.R00.3173.A03.2204210138 04/21/2022
+[161.360322] Workqueue: i915-unordered __intel_wakeref_put_work [i915]
+[161.360592] RIP: 0010:debug_print_object+0x80/0xb0
+...
+[161.361347] debug_object_free+0xeb/0x110
+[161.361362] i915_active_fini+0x14/0x130 [i915]
+[161.361866] release_references+0xfe/0x1f0 [i915]
+[161.362543] i915_vma_parked+0x1db/0x380 [i915]
+[161.363129] __gt_park+0x121/0x230 [i915]
+[161.363515] ____intel_wakeref_put_last+0x1f/0x70 [i915]
 
-Also we should probably s/bigjoiner/joiner/ to make it clear that
-all of it also applies to uncompressed joiner as well.
+That has been tracked down to be happening when another thread is
+deactivating the VMA inside __active_retire() helper, after the VMA's
+active counter has been already decremented to 0, but before deactivation
+of the VMA's object is reported to the object debugging tool.
+
+We could prevent from that race by serializing i915_active_fini() with
+__active_retire() via ref->tree_lock, but that wouldn't stop the VMA from
+being used, e.g. from __i915_vma_retire() called at the end of
+__active_retire(), after that VMA has been already freed by a concurrent
+i915_vma_destroy() on return from the i915_active_fini().  Then, we should
+rather fix the issue at the VMA level, not in i915_active.
+
+Since __i915_vma_parked() is called from __gt_park() on last put of the
+GT's wakeref, the issue could be addressed by holding the GT wakeref long
+enough for __active_retire() to complete before that wakeref is released
+and the GT parked.
+
+A VMA associated with a request doesn't acquire a GT wakeref by itself.
+Instead, it depends on a wakeref held directly by the request's active
+intel_context for a GT associated with its VM, and indirectly on that
+intel_context's engine wakeref if the engine belongs to the same GT as the
+VMA's VM.  Those wakerefs are released asynchronously to VMA deactivation.
+
+In case of single-GT platforms, at least one of those wakerefs is usually
+held long enough for the request's VMA to be deactivated on time, before
+it is destroyed on last put of its VM GT wakeref.  However, on multi-GT
+platforms, a request may use a VMA from a GT other than the one that hosts
+the request's engine, then it is protected only with the intel_context's
+VM GT wakeref.
+
+There was an attempt to fix the issue on 2-GT Meteor Lake by acquiring an
+extra wakeref for a Primary GT from i915_gem_do_execbuffer() -- see commit
+f56fe3e91787 ("drm/i915: Fix a VMA UAF for multi-gt platform").  However,
+that fix occurred insufficient -- the issue was still reported by CI.
+That wakeref was released on exit from i915_gem_do_execbuffer(), then
+potentially before completion of the request and deactivation of its
+associated VMAs.  Moreover, CI reports indicated that single-GT platforms
+also suffered sporadically from the same race.
+
+I believe the issue was introduced by commit d93939730347 ("drm/i915:
+Remove the vma refcount") which moved a call to i915_active_fini() from
+a dropped i915_vma_release(), called on last put of the removed VMA kref,
+to i915_vma_parked() processing path called on last put of a GT wakeref.
+However, its visibility to the object debugging tool was suppressed by a
+bug in i915_active that was fixed two weeks later with commit e92eb246feb9
+("drm/i915/active: Fix missing debug object activation").
+
+Fix the issue by getting a wakeref for the VMA's GT when activating it,
+and putting that wakeref only after the VMA is deactivated.  However,
+exclude global GTT from that processing path, otherwise the GPU never goes
+idle.  Since __i915_vma_retire() may be called from atomic contexts, use
+async variant of wakeref put.  Also, to avoid circular locking dependency,
+take care of acquiring the wakeref before VM mutex when both are needed.
+
+Having that fixed, stop explicitly acquiring the extra GT0 wakeref from
+inside i915_gem_do_execbuffer(), and also drop an extra call to
+i915_active_wait(), introduced by commit 7a2280e8dcd2 ("drm/i915: Wait for
+active retire before i915_active_fini()") as another insufficient fix for
+this UAF race.
+
+v7: Add inline comments with justifications for:
+    - using untracked variants of intel_gt_pm_get/put() (Nirmoy),
+    - using async variant of _put(),
+    - not getting the wakeref in case of a global GTT,
+    - always getting the first wakeref outside vm->mutex.
+v6: Since __i915_vma_active/retire() callbacks are not serialized, storing
+    a wakeref tracking handle inside struct i915_vma is not safe, and
+    there is no other good place for that.  Use untracked variants of
+    intel_gt_pm_get/put_async(),
+  - drop no longer used .wakeref_gt0 field from struct i915_execbuffer.
+v5: Replace "tile" with "GT" across commit descriptions (Rodrigo),
+  - reword commit message and description of patch 2 reusing relevant
+    chunks moved there from commit description of patch 1 (Rodrigo),
+  - explain why we take a temporary wakeref unconditionally inside
+    i915_vma_pin_ww() (Rodrigo).
+v4: Refresh on top of commit 5e4e06e4087e ("drm/i915: Track gt pm
+    wakerefs") (Andi),
+  - for more easy backporting, split out removal of former insufficient
+    workarounds and move them to separate patches (Nirmoy).
+  - clean up commit message and description a bit.
+v3: Identify root cause more precisely, and a commit to blame,
+  - identify and drop former workarounds,
+  - update commit message and description.
+v2: Get the wakeref before VM mutex to avoid circular locking dependency,
+  - drop questionable Fixes: tag.
+
+Janusz Krzysztofik (3):
+  drm/i915/vma: Fix UAF on destroy against retire race
+  drm/i915: Remove extra multi-gt pm-references
+  Revert "drm/i915: Wait for active retire before i915_active_fini()"
+
+ .../gpu/drm/i915/gem/i915_gem_execbuffer.c    | 18 -------
+ drivers/gpu/drm/i915/i915_vma.c               | 52 +++++++++++++++----
+ 2 files changed, 43 insertions(+), 27 deletions(-)
 
 -- 
-Ville Syrjälä
-Intel
+2.43.0
+
