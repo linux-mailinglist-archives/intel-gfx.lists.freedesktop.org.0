@@ -2,50 +2,71 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7FD8B8725EB
-	for <lists+intel-gfx@lfdr.de>; Tue,  5 Mar 2024 18:49:17 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6F7078725F3
+	for <lists+intel-gfx@lfdr.de>; Tue,  5 Mar 2024 18:50:18 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0A62810E189;
-	Tue,  5 Mar 2024 17:49:16 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C8CA110E5A5;
+	Tue,  5 Mar 2024 17:50:14 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; secure) header.d=infradead.org header.i=@infradead.org header.b="VYInVLCh";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="H0xqWyhf";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from casper.infradead.org (casper.infradead.org [90.155.50.34])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C983410E5A5
- for <intel-gfx@lists.freedesktop.org>; Tue,  5 Mar 2024 17:49:12 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=infradead.org; s=casper.20170209; h=In-Reply-To:Content-Type:MIME-Version:
- References:Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:
- Content-Transfer-Encoding:Content-ID:Content-Description;
- bh=+9Sm1KpDhuq0rWoH374LRl9+5kp/n2UjXdlcgW2CMHo=; b=VYInVLChjE1n2liUy/O3HY25tH
- F6N2V5vHVn7X9aIyo1ELHVqCH911aOgcaZ5SZmVLvAwhMHQJ/g1J0XhmsfJTcNCbspGbxXniZHzc2
- mgRec+b6p0x4VK3VSvb2AvaSbTONR7Hqz7ceX3HTgUwiMpqsxa6oKjhliQIlH4EPXtlIFINKfC7Tu
- WyjUsSQKHRXXaOBjNSxmyW8ha/8yOthrKU7waAdpFsqF4AOgxRc1aVhbUAOpEY0qxrrqsKkIl+eb0
- Nt+A+8Ji4qQa+QBkqFTAT5oyL8iHBObYjU9lECx8krYqrcZNZbOHlOyv57uxN8sXxv5ijw3zQYpSp
- 8amxHokA==;
-Received: from willy by casper.infradead.org with local (Exim 4.97.1 #2 (Red
- Hat Linux)) id 1rhYub-00000004vUB-3aVs;
- Tue, 05 Mar 2024 17:49:09 +0000
-Date: Tue, 5 Mar 2024 17:49:09 +0000
-From: Matthew Wilcox <willy@infradead.org>
-To: "Borah, Chaitanya Kumar" <chaitanya.kumar.borah@intel.com>
-Cc: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
- "Kurmi, Suresh Kumar" <suresh.kumar.kurmi@intel.com>,
- "Saarinen, Jani" <jani.saarinen@intel.com>
-Subject: Re: Regression on linux-next (next-20240228)
-Message-ID: <ZedbFeW3nYVTeaKW@casper.infradead.org>
-References: <SJ1PR11MB61292145F3B79DA58ADDDA63B9232@SJ1PR11MB6129.namprd11.prod.outlook.com>
- <ZeVis2823T4YllDg@casper.infradead.org>
- <SJ1PR11MB6129A8999D977A46D6E9CA4AB9232@SJ1PR11MB6129.namprd11.prod.outlook.com>
- <ZeXLAAVtjEz0mB8V@casper.infradead.org>
- <SJ1PR11MB6129E5A41D3B4FEF81C87CC7B9232@SJ1PR11MB6129.namprd11.prod.outlook.com>
- <SJ1PR11MB61299F3119D2CE9190AF92E5B9222@SJ1PR11MB6129.namprd11.prod.outlook.com>
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 539F710E4F9;
+ Tue,  5 Mar 2024 17:50:13 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1709661013; x=1741197013;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version;
+ bh=oXCspTC4fxc4lI9uLj74+Tv5/GNSN4LB8uP31e2gEzY=;
+ b=H0xqWyhfkBMEuHdLT357/yW3pRnXiW8N8Q737YMNJXVPhjGGVombjpWo
+ CkdvXOnT68MtpYH3dg4muwECsIKK9/RE3NOenMk4yZ7wkU2m22l0fyHkF
+ lNRprKEzD5GwPlqQjfd1ST2LapUMlHtQuhc2yYZPNxWJQFqyWMT+GHg/F
+ e3KEUIKkheDNcIrjSJpglJH+2IwIQpXzReANSdboDIFlaFULcSD3W/fl2
+ rogZnsZ4Ky06707lr0RFYY1DmIQl0Cq8Mvd873RMkmIaszRIfFyMSReE4
+ 4thevNGcSRrpjiyNp+BwkO4/kryl2uSMPn3fBSfo/LvR649YDuysIMDnr Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,11004"; a="4406587"
+X-IronPort-AV: E=Sophos;i="6.06,206,1705392000"; 
+   d="scan'208";a="4406587"
+Received: from orviesa009.jf.intel.com ([10.64.159.149])
+ by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 05 Mar 2024 09:50:13 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.06,206,1705392000"; 
+   d="scan'208";a="9524589"
+Received: from omakhlou-mobl4.amr.corp.intel.com (HELO localhost)
+ ([10.252.51.143])
+ by orviesa009-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 05 Mar 2024 09:50:06 -0800
+From: Jani Nikula <jani.nikula@intel.com>
+To: Lucas De Marchi <lucas.demarchi@intel.com>
+Cc: Maxime Ripard <mripard@kernel.org>, dri-devel@lists.freedesktop.org,
+ intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org, Abhinav
+ Kumar <quic_abhinavk@quicinc.com>, Alex Deucher
+ <alexander.deucher@amd.com>, Christian =?utf-8?Q?K=C3=B6nig?=
+ <christian.koenig@amd.com>,
+ Daniel Vetter <daniel@ffwll.ch>, Danilo Krummrich <dakr@redhat.com>, David
+ Airlie <airlied@gmail.com>, Dmitry Baryshkov
+ <dmitry.baryshkov@linaro.org>, Hamza
+ Mahfooz <hamza.mahfooz@amd.com>, Javier Martinez Canillas
+ <javierm@redhat.com>, Karol Herbst <kherbst@redhat.com>, Lyude Paul
+ <lyude@redhat.com>, Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Marijn Suijten <marijn.suijten@somainline.org>, Xinhui.Pan@amd.com, Rob
+ Clark <robdclark@gmail.com>, Sean Paul <sean@poorly.run>, Sui Jingfeng
+ <sui.jingfeng@linux.dev>, Thomas Zimmermann <tzimmermann@suse.de>
+Subject: Re: [RESEND v3 0/2] drm: enable W=1 warnings by default across the
+ subsystem
+In-Reply-To: <yfsm3rrqtv3z6c6xyprappevvgqtxpwgjgt5ejoe74gfvhvcia@ybmkknyulv5x>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <cover.1709629403.git.jani.nikula@intel.com>
+ <0df557af4aaceeb1ef85ee3c74169ee9@kernel.org> <8734t41sno.fsf@intel.com>
+ <yfsm3rrqtv3z6c6xyprappevvgqtxpwgjgt5ejoe74gfvhvcia@ybmkknyulv5x>
+Date: Tue, 05 Mar 2024 19:50:02 +0200
+Message-ID: <87zfvczhyt.fsf@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <SJ1PR11MB61299F3119D2CE9190AF92E5B9222@SJ1PR11MB6129.namprd11.prod.outlook.com>
+Content-Type: text/plain
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,50 +82,19 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, Mar 05, 2024 at 06:49:16AM +0000, Borah, Chaitanya Kumar wrote:
-> Issue is still seen with the following changes
-> 
-> void put_pages_list(struct list_head *pages)
->  
->         folio_batch_init(&fbatch);
->         list_for_each_entry(folio, pages, lru) {
-> -               if (!folio_put_testzero(folio))
-> +               if (!folio_put_testzero(folio)) {
-> +                       list_del(&folio->lru);
->                         continue;
-> +               }
->                 if (folio_test_large(folio)) {
->                         __folio_put_large(folio);
-> +                       list_del(&folio->lru);
->                         continue;
->                 }
+On Tue, 05 Mar 2024, Lucas De Marchi <lucas.demarchi@intel.com> wrote:
+> On Tue, Mar 05, 2024 at 07:43:07PM +0200, Jani Nikula wrote:
+>>Thanks everyone for acks and reviews, pushed to drm-misc-next.
+>
+> should we start removing the now duplicate ones in i915 and xe?
 
-Thanks for testing.  Sorry about this.  I think I figured out what
-the problem actually is.  I switched from list_for_each_entry_safe()
-to list_for_each_entry() since I was no longer deleting the entries
-from the list.  Unfortunately, I was still freeing the entries as I
-walked the list!  So it would dereference folio->lru.next after giving
-folio back to the page allocator (which probably put it on the PCP list,
-where it would point to another free folio?)
+After the drm-misc-next to drm-next merge and subsequent backmerge to
+drm-intel-next and drm-xe-next i.e. sometime after the merge window.
 
-Anyway, this should do the job, without the change I asked you to test
-above.  If this doesn't do the job by itself, you could try combining
-the two changes, but I don't think that will be necessary.
+BR,
+Jani.
 
-diff --git a/mm/swap.c b/mm/swap.c
-index a910af21ba68..1d4b7713605d 100644
---- a/mm/swap.c
-+++ b/mm/swap.c
-@@ -139,10 +139,10 @@ EXPORT_SYMBOL(__folio_put);
- void put_pages_list(struct list_head *pages)
- {
- 	struct folio_batch fbatch;
--	struct folio *folio;
-+	struct folio *folio, *next;
- 
- 	folio_batch_init(&fbatch);
--	list_for_each_entry(folio, pages, lru) {
-+	list_for_each_entry_safe(folio, next, pages, lru) {
- 		if (!folio_put_testzero(folio))
- 			continue;
- 		if (folio_test_hugetlb(folio)) {
+
+
+-- 
+Jani Nikula, Intel
