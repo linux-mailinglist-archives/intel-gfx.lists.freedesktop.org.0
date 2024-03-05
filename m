@@ -2,72 +2,57 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9720D87190B
-	for <lists+intel-gfx@lfdr.de>; Tue,  5 Mar 2024 10:08:19 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 557DD871914
+	for <lists+intel-gfx@lfdr.de>; Tue,  5 Mar 2024 10:09:04 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5E505112968;
-	Tue,  5 Mar 2024 09:08:15 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BE8F110E2FD;
+	Tue,  5 Mar 2024 09:09:02 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="bPDpcUJQ";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="kFbmAgdE";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E4265112963;
- Tue,  5 Mar 2024 09:08:13 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3F1A110E2FD
+ for <intel-gfx@lists.freedesktop.org>; Tue,  5 Mar 2024 09:09:01 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1709629694; x=1741165694;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=KA9vD+r+E9Oc8gfQpJD2ZyTu+UVAs9Ky7G88GUHLteo=;
- b=bPDpcUJQz23dbQ6e1CxSbnCRhkZVRX4+8ySuhos41AWIL5Y9goVmivWj
- Lg0mV3mimzOVbu/o8sL8XI7J3YDKXPy+WhkpgeXCCaJ91jiCpAYiLpYSM
- vsQ638FFpQBt41yXoJhauQKaW1uKrcWrOQsOQGMRVfvkqDj4+e9UE6agC
- 3XroNgVE5ovCSgxzqgd7xuZGkWjomVehmhfqO8auXIKDuik49lPjDCdNW
- DM2LEo+mmXAVkzq58XE5NV3Nq3xc3M8cKFtOj/K19pVwL3PUjxHXv6tNi
- kCIqTCRfOXI1dT8KLoSavlk9iSgm50EdRpF/872oiEbq/v3NUzlXpBkkA w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,11003"; a="4027088"
+ t=1709629741; x=1741165741;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=8HLWCgKWZ1GMi1L7Y0mfYiPXGpe1bct7hHrdqJASodU=;
+ b=kFbmAgdELPXqMzGdVVfE5EuF62w7Jltq5AXfqlzx8Ik21ZyeqNSIwG03
+ eHnSKsrmMZmwVpGaeOtzwjpxoUh3BziBrF6Dmc+P8BlgNajBQfeamZNk7
+ Hyg1suNYQ/7ahZpEB0gBiJi/p1dLSXT+USLuDs5OysKeAgRPi+BttXJ4+
+ 1HLtJVSjK9pe+zckJQEgUuEljngQRXp3JOg2e4OlvRRW1QTlbjK6cQ9Cs
+ xjnVWaxp8qv51TGDjlFqYSzg1c2QJ9rvbOPD6F+rq7dZJQF4njpfdMy+x
+ bF9o9MBY0khpgMb2ReZPMGXkPrhcSUUdIbIGaTYPWFB/vW/9eHDemqyHG A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,11003"; a="4030588"
 X-IronPort-AV: E=Sophos;i="6.06,205,1705392000"; 
-   d="scan'208";a="4027088"
-Received: from fmviesa008.fm.intel.com ([10.60.135.148])
- by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Mar 2024 01:08:12 -0800
+   d="scan'208";a="4030588"
+Received: from fmviesa001.fm.intel.com ([10.60.135.141])
+ by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 05 Mar 2024 01:09:01 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.06,205,1705392000"; 
-   d="scan'208";a="9427406"
-Received: from omakhlou-mobl4.amr.corp.intel.com (HELO localhost)
- ([10.252.51.143])
- by fmviesa008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Mar 2024 01:08:04 -0800
-From: Jani Nikula <jani.nikula@intel.com>
-To: dri-devel@lists.freedesktop.org
-Cc: Jani Nikula <jani.nikula@intel.com>, intel-gfx@lists.freedesktop.org,
- intel-xe@lists.freedesktop.org, David Airlie <airlied@gmail.com>,
- Daniel Vetter <daniel@ffwll.ch>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>,
- Thomas Zimmermann <tzimmermann@suse.de>,
- Alex Deucher <alexander.deucher@amd.com>,
- =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
- "Pan, Xinhui" <Xinhui.Pan@amd.com>, Karol Herbst <kherbst@redhat.com>,
- Lyude Paul <lyude@redhat.com>, Danilo Krummrich <dakr@redhat.com>,
- Rob Clark <robdclark@gmail.com>, Abhinav Kumar <quic_abhinavk@quicinc.com>,
- Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
- Sean Paul <sean@poorly.run>,
- Marijn Suijten <marijn.suijten@somainline.org>,
- Hamza Mahfooz <hamza.mahfooz@amd.com>,
- Javier Martinez Canillas <javierm@redhat.com>,
- Sui Jingfeng <sui.jingfeng@linux.dev>
-Subject: [RESEND v3 2/2] drm: Add CONFIG_DRM_WERROR
-Date: Tue,  5 Mar 2024 11:07:36 +0200
-Message-Id: <afe5ed943414f7ec3044c1547503b9941686a867.1709629403.git.jani.nikula@intel.com>
-X-Mailer: git-send-email 2.39.2
-In-Reply-To: <cover.1709629403.git.jani.nikula@intel.com>
-References: <cover.1709629403.git.jani.nikula@intel.com>
+X-IronPort-AV: E=Sophos;i="6.06,205,1705392000"; d="scan'208";a="40300085"
+Received: from unknown (HELO intel.com) ([10.237.72.65])
+ by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 05 Mar 2024 01:08:59 -0800
+Date: Tue, 5 Mar 2024 11:08:56 +0200
+From: "Lisovskiy, Stanislav" <stanislav.lisovskiy@intel.com>
+To: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+Cc: intel-gfx@lists.freedesktop.org
+Subject: Re: [PATCH 1/8] drm/i915: Rename the crtc/crtc_states in the top
+ level DDI hooks/etc
+Message-ID: <ZebhKDKgGPTTmWJO@intel.com>
+References: <20240301143600.1334-1-ville.syrjala@linux.intel.com>
+ <20240301143600.1334-2-ville.syrjala@linux.intel.com>
+ <ZebazalH8c1j1GGH@intel.com> <Zebcuecv8QHwm4AE@intel.com>
 MIME-Version: 1.0
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
+In-Reply-To: <Zebcuecv8QHwm4AE@intel.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -83,55 +68,54 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Add kconfig to enable -Werror subsystem wide. This is useful for
-development and CI to keep the subsystem warning free, while avoiding
-issues outside of the subsystem that kernel wide CONFIG_WERROR=y might
-hit.
+On Tue, Mar 05, 2024 at 10:50:01AM +0200, Ville Syrjälä wrote:
+> On Tue, Mar 05, 2024 at 10:41:49AM +0200, Lisovskiy, Stanislav wrote:
+> > On Fri, Mar 01, 2024 at 04:35:53PM +0200, Ville Syrjala wrote:
+> > > From: Ville Syrjälä <ville.syrjala@linux.intel.com>
+> > > 
+> > > In preparation for doing a more sensible pipe vs. transcoder
+> > > handling for bigjoiner let's rename the crtc/crtc_state in the
+> > > top level crtc_enable/disable and the DDI encoder hooks to
+> > > include "master" in the name. This way they won't collide with
+> > > the per-pipe stuff.
+> > > 
+> > > Note that at this point this is (at least partially) telling
+> > > lies as we still run through some of these for slave pipes as
+> > > well. But I wanted to get the huge rename out of the way so
+> > > it won't clutter the functional patches so much.
+> > > 
+> > > TODO: or perhaps use some other names for the per-pipe stuff instead?
+> > > 
+> > > Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
+> > 
+> > I will then review now the patches which you could merge before the bigjoiner
+> > stuff could be finished.
+> 
+> I just sent a separate series with the disable_pipes bitmask
+> stuff.
 
-v2: Don't depend on COMPILE_TEST
+I already reviewed all the patches, including that one, if there were
+no changes, I guess you can apply that r-b there as well.
 
-Reviewed-by: Hamza Mahfooz <hamza.mahfooz@amd.com> # v1
-Signed-off-by: Jani Nikula <jani.nikula@intel.com>
----
- drivers/gpu/drm/Kconfig  | 13 +++++++++++++
- drivers/gpu/drm/Makefile |  3 +++
- 2 files changed, 16 insertions(+)
+> 
+> > Checked this patch I guess, you were also talking that this renaming might
+> > be not the best idea.
+> > I also wonder whether should we really emphasize things like "master"/"slave"
+> > in function names. I thought that one idea in our refactoring was to unify
+> > joined pipes handling so that there are no(or at least almost no) explicit code
+> > paths/function names for masters/slaves.
+> 
+> There are no master vs. slave functions. The split is going to be
+> transcoder/port vs. pipe.
 
-diff --git a/drivers/gpu/drm/Kconfig b/drivers/gpu/drm/Kconfig
-index 6e853acf15da..c08e18108c2a 100644
---- a/drivers/gpu/drm/Kconfig
-+++ b/drivers/gpu/drm/Kconfig
-@@ -416,3 +416,16 @@ config DRM_LIB_RANDOM
- config DRM_PRIVACY_SCREEN
- 	bool
- 	default n
-+
-+config DRM_WERROR
-+	bool "Compile the drm subsystem with warnings as errors"
-+	depends on EXPERT
-+	default n
-+	help
-+	  A kernel build should not cause any compiler warnings, and this
-+	  enables the '-Werror' flag to enforce that rule in the drm subsystem.
-+
-+	  The drm subsystem enables more warnings than the kernel default, so
-+	  this config option is disabled by default.
-+
-+	  If in doubt, say N.
-diff --git a/drivers/gpu/drm/Makefile b/drivers/gpu/drm/Makefile
-index ea456f057e8a..a73c04d2d7a3 100644
---- a/drivers/gpu/drm/Makefile
-+++ b/drivers/gpu/drm/Makefile
-@@ -30,6 +30,9 @@ subdir-ccflags-y += -Wno-sign-compare
- endif
- # --- end copy-paste
- 
-+# Enable -Werror in CI and development
-+subdir-ccflags-$(CONFIG_DRM_WERROR) += -Werror
-+
- drm-y := \
- 	drm_aperture.o \
- 	drm_atomic.o \
--- 
-2.39.2
+In practice thats what you want to achieve, the functions which also include encoder
+programming and/or handling joined pipes you wanted to add master in the name.
 
+I think we should try to mention master/slave explicitly as less as possible.
+
+Stan
+
+> 
+> -- 
+> Ville Syrjälä
+> Intel
