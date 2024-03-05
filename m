@@ -2,82 +2,57 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id BFD598718B1
-	for <lists+intel-gfx@lfdr.de>; Tue,  5 Mar 2024 09:54:51 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0DAEA8718BB
+	for <lists+intel-gfx@lfdr.de>; Tue,  5 Mar 2024 09:59:02 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2AEAE10E116;
-	Tue,  5 Mar 2024 08:54:50 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3757A10E0EC;
+	Tue,  5 Mar 2024 08:59:00 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; secure) header.d=ffwll.ch header.i=@ffwll.ch header.b="MNkEdBId";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="FN/ATnDt";
 	dkim-atps=neutral
-X-Original-To: Intel-gfx@lists.freedesktop.org
-Delivered-To: Intel-gfx@lists.freedesktop.org
-Received: from mail-lj1-f170.google.com (mail-lj1-f170.google.com
- [209.85.208.170])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 755E110E116
- for <Intel-gfx@lists.freedesktop.org>; Tue,  5 Mar 2024 08:54:48 +0000 (UTC)
-Received: by mail-lj1-f170.google.com with SMTP id
- 38308e7fff4ca-2cd3aea2621so14000541fa.1
- for <Intel-gfx@lists.freedesktop.org>; Tue, 05 Mar 2024 00:54:48 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=ffwll.ch; s=google; t=1709628886; x=1710233686; darn=lists.freedesktop.org; 
- h=in-reply-to:content-transfer-encoding:content-disposition
- :mime-version:references:mail-followup-to:message-id:subject:cc:to
- :from:date:from:to:cc:subject:date:message-id:reply-to;
- bh=nQrdFGTzl2dweCQUPSW0EBKwoDyzx87CMamEL7rty8Y=;
- b=MNkEdBIdfXu1vABqeUt2d1oAMeXQjScihD18jCjblX8tNT3VnJ4R0x8KipmteWMdTx
- rdgQNPjht81mF7oPqkhCoJoTY3qBkO5UTxNu6P2loyFv2Na50/l5hS9YF4dAZ7JHKj0A
- bwJi03NT3XIwD4cO88rXjsyA8SMT04spDO15M=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1709628886; x=1710233686;
- h=in-reply-to:content-transfer-encoding:content-disposition
- :mime-version:references:mail-followup-to:message-id:subject:cc:to
- :from:date:x-gm-message-state:from:to:cc:subject:date:message-id
- :reply-to;
- bh=nQrdFGTzl2dweCQUPSW0EBKwoDyzx87CMamEL7rty8Y=;
- b=rs6p5bnNFDcO78A8Uqc+c51b0lJVnlSdcfieNvPsKRqw228KBJz2CF8C3j4iWbM/B/
- lw/x61+SPaDywH6jLoKi4CRxWZ215IxmdEhXkODBsgGvkvAh8frt//+UjRXFKKsMWcjF
- I8q2LIYIBtfYxymSrlifmqhgNuvyx4fXS/RcEgCM5z6knPIkbalWEwbEf1m2nMIjdee7
- iWEpjjxqk/zdeFfT0fZzz7HHBNC6QIDTVJ+g7jkqXIQq60QBMYjN4ghRbLMDu5Enz9ZR
- XHpc1rmuKN5L4w+OGpNnGZc/hugoHPFuh0qRFtPLfAyb1SxY7OCjZRbfz8ZDiwPcWkbe
- 2pzg==
-X-Gm-Message-State: AOJu0YxB3T5i4sAgOZibkifH8c040nRKvePlqajJpKAS/vT/XtkqywiL
- Bg6XmXMJEw8ZvvkXM3pnnM2RnIP844R1DlV4h4xDHbdEghtaQDzr6n7UJltZ5kY=
-X-Google-Smtp-Source: AGHT+IEZqk8YK77lULQVqIQ+W2hrIEcGi2vrmttCn5YhREmOC9fxZ2GD5irofP1qhPxrTdqpuIJiNQ==
-X-Received: by 2002:a2e:9bd8:0:b0:2d3:ed14:7e13 with SMTP id
- w24-20020a2e9bd8000000b002d3ed147e13mr1085825ljj.2.1709628886248; 
- Tue, 05 Mar 2024 00:54:46 -0800 (PST)
-Received: from phenom.ffwll.local ([2a02:168:57f4:0:efd0:b9e5:5ae6:c2fa])
- by smtp.gmail.com with ESMTPSA id
- v29-20020a50a45d000000b005649f17558bsm5832879edb.42.2024.03.05.00.54.45
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Tue, 05 Mar 2024 00:54:45 -0800 (PST)
-Date: Tue, 5 Mar 2024 09:54:43 +0100
-From: Daniel Vetter <daniel@ffwll.ch>
-To: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-Cc: Intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- linux-kernel@vger.kernel.org, Tvrtko Ursulin <tvrtko.ursulin@intel.com>,
- Daniel Vetter <daniel@ffwll.ch>, Dave Airlie <airlied@redhat.com>,
- Jani Nikula <jani.nikula@intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>
-Subject: Re: [PATCH] MAINTAINERS: Update email address for Tvrtko Ursulin
-Message-ID: <Zebd08SA4ZQ6hIzg@phenom.ffwll.local>
-Mail-Followup-To: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
- Intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- linux-kernel@vger.kernel.org,
- Tvrtko Ursulin <tvrtko.ursulin@intel.com>,
- Dave Airlie <airlied@redhat.com>,
- Jani Nikula <jani.nikula@intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>
-References: <20240228142240.2539358-1-tvrtko.ursulin@linux.intel.com>
+X-Original-To: intel-gfx@lists.freedesktop.org
+Delivered-To: intel-gfx@lists.freedesktop.org
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5C11E10E0EC
+ for <intel-gfx@lists.freedesktop.org>; Tue,  5 Mar 2024 08:58:58 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1709629138; x=1741165138;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=q0tYqbm+Zw4JKRcwcPOd6Am86IuYgzTCz5p1Q2B5oTc=;
+ b=FN/ATnDtihwv+BBTtzcCGi5NPAkyWXU2QUOiEKCXZlykbG5Zb8xwZ8zb
+ 5kpsXr5SH1AqMgIl/Q0xEPLuyt4Ejy1/iE2iwd/a2oxVTMBHpQATua0AQ
+ 9tJP9rp57i1Q5Y09SlOCGhTiXYzJrd1DdyVw+zRq9tVtROu/Co3om2TRN
+ 12Xkn6oNqNJuHfN9ET7K2EMCdslWEuE12e7gTJDp6xykwLZ8Zqqa1jl9d
+ EXSgs+yUp5pi+CS6Pxzr0elCmdQBUrd+o7hMnzAq7i1b7GLmp7TXaUxRz
+ eSJoj6vuddMOaMbK0LZqkw8wCH/+Yqt1pHgLkFbQmW3701qlJMWa6phqQ w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,11003"; a="7935893"
+X-IronPort-AV: E=Sophos;i="6.06,205,1705392000"; 
+   d="scan'208";a="7935893"
+Received: from orviesa009.jf.intel.com ([10.64.159.149])
+ by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 05 Mar 2024 00:58:58 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.06,205,1705392000"; 
+   d="scan'208";a="9369956"
+Received: from unknown (HELO intel.com) ([10.237.72.65])
+ by orviesa009-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 05 Mar 2024 00:58:57 -0800
+Date: Tue, 5 Mar 2024 10:58:53 +0200
+From: "Lisovskiy, Stanislav" <stanislav.lisovskiy@intel.com>
+To: Ville Syrjala <ville.syrjala@linux.intel.com>
+Cc: intel-gfx@lists.freedesktop.org
+Subject: Re: [PATCH 6/8] drm/i915: Disable planes more atomically during
+ modesets
+Message-ID: <ZebezWuOZNmkzqhb@intel.com>
+References: <20240301143600.1334-1-ville.syrjala@linux.intel.com>
+ <20240301143600.1334-7-ville.syrjala@linux.intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20240228142240.2539358-1-tvrtko.ursulin@linux.intel.com>
-X-Operating-System: Linux phenom 6.6.11-amd64 
+In-Reply-To: <20240301143600.1334-7-ville.syrjala@linux.intel.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -93,64 +68,57 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, Feb 28, 2024 at 02:22:40PM +0000, Tvrtko Ursulin wrote:
-> From: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+On Fri, Mar 01, 2024 at 04:35:58PM +0200, Ville Syrjala wrote:
+> From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 > 
-> I will lose access to my @.*intel.com e-mail addresses soon so let me
-> adjust the maintainers entry and update the mailmap too.
+> Follow in the footsteps of commit c610e841f19d ("drm/i915:
+> Do plane/etc. updates more atomically across pipes") and
+> do the plane disables back to back for all pipes also when
+> we are disabling pipes.
 > 
-> While at it consolidate a few other of my old emails to point to the
-> main one.
-> 
-> Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
-> Cc: Daniel Vetter <daniel@ffwll.ch>
-> Cc: Dave Airlie <airlied@redhat.com>
-> Cc: Jani Nikula <jani.nikula@intel.com>
-> Cc: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
-> Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
+> This should provide for a potentially more atomic user
+> experience, which might be especially nice when using
+> joiner or tiled displays.
 
-Directly applied to drm-fixes as requested on irc.
--Sima
+Okay, so the difference is that previously we did call 
+intel_pre_plane_update/intel_crtc_disable_planes per crtc, but
+now we first call first intel_pre_plane_update for each crtc
+and then call intel_crtc_disable_planes per crtc.
 
+So in cases when there are some cross pipe dependencies, that might be
+more proper way. Just to clarify that I understood this right.
+
+Reviewed-by: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
+
+> 
+> Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 > ---
->  .mailmap    | 5 +++++
->  MAINTAINERS | 2 +-
->  2 files changed, 6 insertions(+), 1 deletion(-)
+>  drivers/gpu/drm/i915/display/intel_display.c | 9 +++++++--
+>  1 file changed, 7 insertions(+), 2 deletions(-)
 > 
-> diff --git a/.mailmap b/.mailmap
-> index b99a238ee3bd..d67e351bce8e 100644
-> --- a/.mailmap
-> +++ b/.mailmap
-> @@ -608,6 +608,11 @@ TripleX Chung <xxx.phy@gmail.com> <triplex@zh-kernel.org>
->  TripleX Chung <xxx.phy@gmail.com> <zhongyu@18mail.cn>
->  Tsuneo Yoshioka <Tsuneo.Yoshioka@f-secure.com>
->  Tudor Ambarus <tudor.ambarus@linaro.org> <tudor.ambarus@microchip.com>
-> +Tvrtko Ursulin <tursulin@ursulin.net> <tvrtko.ursulin@intel.com>
-> +Tvrtko Ursulin <tursulin@ursulin.net> <tvrtko.ursulin@linux.intel.com>
-> +Tvrtko Ursulin <tursulin@ursulin.net> <tvrtko.ursulin@sophos.com>
-> +Tvrtko Ursulin <tursulin@ursulin.net> <tvrtko.ursulin@onelan.co.uk>
-> +Tvrtko Ursulin <tursulin@ursulin.net> <tvrtko@ursulin.net>
->  Tycho Andersen <tycho@tycho.pizza> <tycho@tycho.ws>
->  Tzung-Bi Shih <tzungbi@kernel.org> <tzungbi@google.com>
->  Uwe Kleine-König <ukleinek@informatik.uni-freiburg.de>
-> diff --git a/MAINTAINERS b/MAINTAINERS
-> index 19f6f8014f94..b940bfe2a692 100644
-> --- a/MAINTAINERS
-> +++ b/MAINTAINERS
-> @@ -10734,7 +10734,7 @@ INTEL DRM I915 DRIVER (Meteor Lake, DG2 and older excluding Poulsbo, Moorestown
->  M:	Jani Nikula <jani.nikula@linux.intel.com>
->  M:	Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
->  M:	Rodrigo Vivi <rodrigo.vivi@intel.com>
-> -M:	Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-> +M:	Tvrtko Ursulin <tursulin@ursulin.net>
->  L:	intel-gfx@lists.freedesktop.org
->  S:	Supported
->  W:	https://drm.pages.freedesktop.org/intel-docs/
+> diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
+> index 2351ee52d16e..01d7e91cb1bc 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display.c
+> +++ b/drivers/gpu/drm/i915/display/intel_display.c
+> @@ -6795,11 +6795,16 @@ static void intel_commit_modeset_disables(struct intel_atomic_state *state)
+>  		if (!old_crtc_state->hw.active)
+>  			continue;
+>  
+> -		intel_crtc_disable_planes(state, crtc);
+> -
+>  		disable_pipes |= BIT(crtc->pipe);
+>  	}
+>  
+> +	for_each_old_intel_crtc_in_state(state, crtc, old_crtc_state, i) {
+> +		if ((disable_pipes & BIT(crtc->pipe)) == 0)
+> +			continue;
+> +
+> +		intel_crtc_disable_planes(state, crtc);
+> +	}
+> +
+>  	/* Only disable port sync and MST slaves */
+>  	for_each_oldnew_intel_crtc_in_state(state, crtc, old_crtc_state,
+>  					    new_crtc_state, i) {
 > -- 
-> 2.40.1
+> 2.43.0
 > 
-
--- 
-Daniel Vetter
-Software Engineer, Intel Corporation
-http://blog.ffwll.ch
