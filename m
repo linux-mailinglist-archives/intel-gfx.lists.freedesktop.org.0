@@ -2,53 +2,55 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4623C873637
-	for <lists+intel-gfx@lfdr.de>; Wed,  6 Mar 2024 13:24:49 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id AB159873638
+	for <lists+intel-gfx@lfdr.de>; Wed,  6 Mar 2024 13:25:00 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 95A10113110;
-	Wed,  6 Mar 2024 12:24:47 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 15CC9113105;
+	Wed,  6 Mar 2024 12:24:59 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ZIfFRpm1";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="QXPrR8n6";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6F5D310FB48;
- Wed,  6 Mar 2024 12:24:45 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 50EA010FB48;
+ Wed,  6 Mar 2024 12:24:57 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1709727886; x=1741263886;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=I1I05jo2oMaaHdFHae5qNJzPD4AqvEtoTgEfA7l4/+k=;
- b=ZIfFRpm1CoNUmnWSOxrIfQ2AZcLE5ZoiSxvfpFXWuNW8Bb9QvzTaSB2Z
- SGscQR5bCJtH9sPYRuzTzrgNJU9WhagmCrmKSQJWxaV9A/6qS6vIIpjnz
- MzhtPqAT9XvSroz/PQ+x7IJabMEKaxlp4MKECsSajx0u770nv++97OdhC
- a3TXQ5n2QuqTGzlbj0lyAiXjagvXV+O0dj2Do1abmV7pZsdktY1J3DPvr
- GvXl5y+J3EbO/djASNy3zkXaYVxHxZVE5JPOdV+kqw0cys0zkZ2l+tI+y
- XVMtU0k2pZ63w2G1CSu5NOotjC7YV09s2DHm3FaXi7GRDHL4fE5sw5YRk A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,11004"; a="4200268"
+ t=1709727897; x=1741263897;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=WP2SU+kHMgAIPBzeJ4Sq2l7Y2T5Ojg9U7p4T4Txb0n4=;
+ b=QXPrR8n6YBip5aN2XaBBFgYVfj189exTAqEoAmlQp8U/mCOpiKHDxnEa
+ k2VJW7Hq4l+DmIv9hVLCfYzID3PhCJHjHgTjShy4E0d7VIQCz2+HJg6/2
+ SohkEpei6d/xK844/PlUk5LCdNXeUyiH+qhy35e4iM52QzrLrqAWiyuBS
+ KHrFwTmBK/LmrRIaWE5dpu+CiXNGDuU+Kzc3umco9kalq8WvBZCH98rw9
+ mK6pOMwlHNz660BCqMVdSjUo6i339n/2c57Nqx4B9fxsf56V7aJeSqfwK
+ XZte1kEjTX9pMMgAZ+erI/41oVO4ilqMvD0PdQt2JC5Qoi7bqO9GNXeE2 A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,11004"; a="4919419"
 X-IronPort-AV: E=Sophos;i="6.06,208,1705392000"; 
-   d="scan'208";a="4200268"
-Received: from fmviesa006.fm.intel.com ([10.60.135.146])
- by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Mar 2024 04:24:44 -0800
+   d="scan'208";a="4919419"
+Received: from orviesa005.jf.intel.com ([10.64.159.145])
+ by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 06 Mar 2024 04:24:50 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.06,208,1705392000"; 
-   d="scan'208";a="9894838"
+X-IronPort-AV: E=Sophos;i="6.06,208,1705392000"; d="scan'208";a="14415746"
 Received: from rjongalo-mobl2.ger.corp.intel.com (HELO localhost)
  ([10.252.33.211])
- by fmviesa006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Mar 2024 04:24:42 -0800
+ by orviesa005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 06 Mar 2024 04:24:48 -0800
 From: Jani Nikula <jani.nikula@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: rodrigo.vivi@intel.com, lucas.demarchi@intel.com,
  ville.syrjala@linux.intel.com, jani.nikula@intel.com
-Subject: [RFC v2 0/4] drm/i915: better high level abstraction for display
-Date: Wed,  6 Mar 2024 14:24:34 +0200
-Message-Id: <cover.1709727127.git.jani.nikula@intel.com>
+Subject: [RFC v2 1/4] drm/i915/display: ideas for further separating display
+ code from the rest
+Date: Wed,  6 Mar 2024 14:24:35 +0200
+Message-Id: <7777ff70e2be0663de4398aa6f75f0c54146cbfc.1709727127.git.jani.nikula@intel.com>
 X-Mailer: git-send-email 2.39.2
+In-Reply-To: <cover.1709727127.git.jani.nikula@intel.com>
+References: <cover.1709727127.git.jani.nikula@intel.com>
 MIME-Version: 1.0
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 Content-Transfer-Encoding: 8bit
@@ -67,58 +69,122 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-This is v2 of [1]. Improve the abstractions for display code.
+Long term goal: Separate display code from struct drm_i915_private and
+i915_drv.h, and everything in them. Ditto for xe.
 
-The main goals are:
+First step, draft some ideas how we could use struct intel_display as
+the main device structure for display, while struct drm_device remains
+in struct drm_i915_private (or, in the case of xe, in struct xe_device).
 
-1) The display code does not access struct drm_i915_private or struct
-   xe_device. It only uses its own struct intel_display instead.
+To get at struct drm_device * given a struct intel_display *, simply
+store a backpointer.
 
-2) The i915 and xe driver cores do not access struct intel_display
-   directly. It becomes an opaque pointer to them, stored in struct
-   drm_i915_private and struct xe_device, and passed to display code.
+To get at struct intel_display * given a struct drm_device *, require
+storing a struct intel_display * right after struct drm_device in
+memory. It's slightly hackish, but devm_drm_dev_alloc() facilitates
+defining the enclosing struct as we wish.
 
-This will mean a lot of churn, unfortunately. But it will better
-separate the display code from the xe and i915 driver cores, and pave
-the way for a) removing -Ddrm_i915_private=xe_device from xe Makefile,
-and b) stop building the display code twice.
+A shared named struct for this would be nice, but that would require
+changing all the i915->drm and xe->drm dereferences. The use of an
+unnamed __packed struct avoids that.
 
-What's presented here goes a long way, and could get us started. But
-there are still opens, such as:
+Users are added in follow-up patches; the patches may be squashed
+together before final submission.
 
-1) How to handle platform checks such as IS_TIGERLAKE().
+Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+---
+ drivers/gpu/drm/i915/display/intel_display_core.h |  3 +++
+ .../gpu/drm/i915/display/intel_display_device.c   | 13 +++++++++++++
+ drivers/gpu/drm/i915/i915_drv.h                   | 11 ++++++++++-
+ drivers/gpu/drm/xe/xe_device_types.h              | 15 +++++++++++++--
+ 4 files changed, 39 insertions(+), 3 deletions(-)
 
-2) How to handle access to non-display members of i915/xe, such as
-   i915->uncore.
-
-There are other similar things, but I believe those are the most
-prevalent, and are the biggest blockers for converting a lot of
-functions over from i915 -> intel_display.
-
-
-BR,
-Jani.
-
-[1] https://lore.kernel.org/r/cover.1695747484.git.jani.nikula@intel.com
-
-
-Jani Nikula (4):
-  drm/i915/display: ideas for further separating display code from the
-    rest
-  drm/i915/display: add generic to_intel_display() macro
-  drm/i915/display: accept either i915 or display for feature tests
-  drm/i915/display: test various to_intel_display() scenarios
-
- .../gpu/drm/i915/display/intel_display_core.h |  3 ++
- .../drm/i915/display/intel_display_device.c   | 13 ++++++
- .../drm/i915/display/intel_display_device.h   | 10 +++-
- .../drm/i915/display/intel_display_types.h    | 46 +++++++++++++++++++
- drivers/gpu/drm/i915/display/intel_dp.c       |  6 +--
- drivers/gpu/drm/i915/display/intel_hdmi.c     | 13 +++---
- drivers/gpu/drm/i915/i915_drv.h               | 11 ++++-
- drivers/gpu/drm/xe/xe_device_types.h          | 15 +++++-
- 8 files changed, 103 insertions(+), 14 deletions(-)
-
+diff --git a/drivers/gpu/drm/i915/display/intel_display_core.h b/drivers/gpu/drm/i915/display/intel_display_core.h
+index 2167dbee5eea..85b542bb45e6 100644
+--- a/drivers/gpu/drm/i915/display/intel_display_core.h
++++ b/drivers/gpu/drm/i915/display/intel_display_core.h
+@@ -282,6 +282,9 @@ struct intel_wm {
+ };
+ 
+ struct intel_display {
++	/* drm device backpointer */
++	struct drm_device *drm;
++
+ 	/* Display functions */
+ 	struct {
+ 		/* Top level crtc-ish functions */
+diff --git a/drivers/gpu/drm/i915/display/intel_display_device.c b/drivers/gpu/drm/i915/display/intel_display_device.c
+index c02d79b50006..63de9917e346 100644
+--- a/drivers/gpu/drm/i915/display/intel_display_device.c
++++ b/drivers/gpu/drm/i915/display/intel_display_device.c
+@@ -922,6 +922,19 @@ void intel_display_device_probe(struct drm_i915_private *i915)
+ 	const struct intel_display_device_info *info;
+ 	u16 ver, rel, step;
+ 
++	/*
++	 * These are here for now to do them as early as possible. i915 has just
++	 * been allocated, drm isn't even initialized yet, but we have the
++	 * pointer.
++	 *
++	 * Later on, the display probe would allocate struct intel_display
++	 * itself, and return the pointer to the caller, for whom struct
++	 * intel_display would be an opaque type, a cookie to be passed on to
++	 * display functions.
++	 */
++	i915->__intel_display_private = &i915->display;
++	i915->display.drm = &i915->drm;
++
+ 	if (HAS_GMD_ID(i915))
+ 		info = probe_gmdid_display(i915, &ver, &rel, &step);
+ 	else
+diff --git a/drivers/gpu/drm/i915/i915_drv.h b/drivers/gpu/drm/i915/i915_drv.h
+index e81b3b2858ac..2e80afbe7a4e 100644
+--- a/drivers/gpu/drm/i915/i915_drv.h
++++ b/drivers/gpu/drm/i915/i915_drv.h
+@@ -185,7 +185,16 @@ struct i915_selftest_stash {
+ };
+ 
+ struct drm_i915_private {
+-	struct drm_device drm;
++	struct {
++		struct drm_device drm;
++
++		/*
++		 * Display private data. Do *not* access directly. Must be
++		 * placed right after drm_device to facilitate getting to it
++		 * given a drm device pointer.
++		 */
++		struct intel_display *__intel_display_private;
++	} __packed;
+ 
+ 	struct intel_display display;
+ 
+diff --git a/drivers/gpu/drm/xe/xe_device_types.h b/drivers/gpu/drm/xe/xe_device_types.h
+index 9785eef2e5a4..0347fbc925c9 100644
+--- a/drivers/gpu/drm/xe/xe_device_types.h
++++ b/drivers/gpu/drm/xe/xe_device_types.h
+@@ -210,8 +210,19 @@ struct xe_tile {
+  * struct xe_device - Top level struct of XE device
+  */
+ struct xe_device {
+-	/** @drm: drm device */
+-	struct drm_device drm;
++	struct {
++		/** @drm: drm device */
++		struct drm_device drm;
++
++#if IS_ENABLED(CONFIG_DRM_XE_DISPLAY)
++		/**
++		 * @__intel_display_private: Display private data. Do *not*
++		 * access directly. Must be placed right after drm_device to
++		 * facilitate getting to it given a drm device pointer.
++		 */
++		struct intel_display *__intel_display_private;
++#endif
++	} __packed;
+ 
+ 	/** @devcoredump: device coredump */
+ 	struct xe_devcoredump devcoredump;
 -- 
 2.39.2
 
