@@ -2,29 +2,52 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 82AF6874060
-	for <lists+intel-gfx@lfdr.de>; Wed,  6 Mar 2024 20:28:39 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id F1E2C87407A
+	for <lists+intel-gfx@lfdr.de>; Wed,  6 Mar 2024 20:36:26 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C2DE6113002;
-	Wed,  6 Mar 2024 19:28:34 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D43811134B3;
+	Wed,  6 Mar 2024 19:36:23 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="dfZj+N6f";
+	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from 8e613ede5ea5 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7BFC6113002;
- Wed,  6 Mar 2024 19:28:33 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1F84711245D;
+ Wed,  6 Mar 2024 19:36:22 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1709753782; x=1741289782;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=2/cE0heINl0JPKHm9ChE5r+ugL6pYyc/KpPYWS8G2h0=;
+ b=dfZj+N6fT4xqHMnx+V6lVPrN9acxFj5oJUFt28b4msc1a5PIlDyD716s
+ O6QI4nDO+BtCGk3bN7tG3T3poTUCRTEpHdFTVIsYU00C/kNM5CYfDja+i
+ HYD8V0UWpiNZrFLmfiK21HCZ9NwrzH/WvDsTUV9ExT/E9bA5S6AC2dBkd
+ Lgx+5SkJPt7E7FDw55snkyoqh5UsDLw64zWDkoDsVqmyhMNhc8Yp5qmiV
+ uzYCbxZI6NZPVm+Ck7BCTO9ISuSrxZXcBD4JJSeM0XQkgMiVfonAYlsvZ
+ 8sUj4H2CfAMrMRMu6rJzQebrKyDboZJx8cbhHIHVm+NHmuXOq/cT3hyo+ g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,11005"; a="4246870"
+X-IronPort-AV: E=Sophos;i="6.06,209,1705392000"; 
+   d="scan'208";a="4246870"
+Received: from orviesa010.jf.intel.com ([10.64.159.150])
+ by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 06 Mar 2024 11:36:21 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.06,209,1705392000"; 
+   d="scan'208";a="9841798"
+Received: from lucas-s2600cw.jf.intel.com ([10.165.21.196])
+ by orviesa010-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 06 Mar 2024 11:36:22 -0800
+From: Lucas De Marchi <lucas.demarchi@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Cc: dri-devel@lists.freedesktop.org, Lucas De Marchi <lucas.demarchi@intel.com>
+Subject: [PATCH 0/5] drm/i915: cleanup dead code
+Date: Wed,  6 Mar 2024 11:36:38 -0800
+Message-ID: <20240306193643.1897026-1-lucas.demarchi@intel.com>
+X-Mailer: git-send-email 2.43.0
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=97_Fi=2ECI=2ECHECKPATCH=3A_warning_for_Disable_automatic_lo?=
- =?utf-8?q?ad_CCS_load_balancing_=28rev6=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Andi Shyti" <andi.shyti@linux.intel.com>
-Cc: intel-gfx@lists.freedesktop.org
-Date: Wed, 06 Mar 2024 19:28:33 -0000
-Message-ID: <170975331350.562293.5073695998586136596@8e613ede5ea5>
-X-Patchwork-Hint: ignore
-References: <20240306012247.246003-1-andi.shyti@linux.intel.com>
-In-Reply-To: <20240306012247.246003-1-andi.shyti@linux.intel.com>
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -37,43 +60,78 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+Remove platforms that never had their PCI IDs added to the driver and
+are of course marked with requiring force_probe. Note that most of the
+code for those platforms is actually used by subsequent ones, so it's
+not a huge amount of code being removed.
 
-Series: Disable automatic load CCS load balancing (rev6)
-URL   : https://patchwork.freedesktop.org/series/129951/
-State : warning
+drivers/gpu/drm/xe/compat-i915-headers/i915_drv.h is also changed on the
+xe side, but that should be ok: the defines are there only for compat
+reasons while building the display side (and none of these platforms
+have display, so it's build-issue only).
 
-== Summary ==
+First patch is what motivated the others and was submitted alone
+@ 20240306144723.1826977-1-lucas.demarchi@intel.com .
+While loooking at this WA I was wondering why we still had some of that
+code around.
 
-Error: dim checkpatch failed
-c4061a06af34 drm/i915/gt: Disable HW load balancing for CCS
-cb3a146b7a46 drm/i915/gt: Refactor uabi engine class/instance list creation
--:55: WARNING:AVOID_BUG: Do not crash the kernel unless it is absolutely unavoidable--use WARN_ON_ONCE() plus recovery code (if feasible) instead of BUG() or variants
-#55: FILE: drivers/gpu/drm/i915/gt/intel_engine_user.c:233:
-+		GEM_BUG_ON(uabi_class >= ARRAY_SIZE(class_instance));
+Build-tested only for now.
 
--:71: WARNING:AVOID_BUG: Do not crash the kernel unless it is absolutely unavoidable--use WARN_ON_ONCE() plus recovery code (if feasible) instead of BUG() or variants
-#71: FILE: drivers/gpu/drm/i915/gt/intel_engine_user.c:247:
-+		GEM_BUG_ON(uabi_class >=
+Lucas De Marchi (5):
+  drm/i915: Drop WA 16015675438
+  drm/i915: Drop dead code for xehpsdv
+  drm/i915: Update IP_VER(12, 50)
+  drm/i915: Drop dead code for pvc
+  drm/i915: Remove special handling for !RCS_MASK()
 
-total: 0 errors, 2 warnings, 0 checks, 56 lines checked
-ce40a44279fe drm/i915/gt: Enable only one CCS for compute workload
--:16: WARNING:COMMIT_LOG_LONG_LINE: Prefer a maximum 75 chars per line (possible unwrapped commit description?)
-#16: 
-Requires: 97aba5e46038 ("drm/i915/gt: Refactor uabi engine class/instance list creation")
+ Documentation/gpu/rfc/i915_vm_bind.h          |  11 +-
+ .../gpu/drm/i915/gem/i915_gem_object_types.h  |   2 +-
+ .../gpu/drm/i915/gem/selftests/huge_pages.c   |   4 +-
+ .../i915/gem/selftests/i915_gem_client_blt.c  |   8 +-
+ drivers/gpu/drm/i915/gt/gen8_engine_cs.c      |   5 +-
+ drivers/gpu/drm/i915/gt/gen8_ppgtt.c          |  40 ++--
+ drivers/gpu/drm/i915/gt/intel_engine_cs.c     |  43 +---
+ .../drm/i915/gt/intel_execlists_submission.c  |  10 +-
+ drivers/gpu/drm/i915/gt/intel_gsc.c           |  15 --
+ drivers/gpu/drm/i915/gt/intel_gt.c            |   4 +-
+ drivers/gpu/drm/i915/gt/intel_gt_mcr.c        |  52 +----
+ drivers/gpu/drm/i915/gt/intel_gt_mcr.h        |   2 +-
+ drivers/gpu/drm/i915/gt/intel_gt_regs.h       |  59 ------
+ drivers/gpu/drm/i915/gt/intel_gt_sysfs_pm.c   |  21 +-
+ drivers/gpu/drm/i915/gt/intel_gtt.c           |   2 +-
+ drivers/gpu/drm/i915/gt/intel_lrc.c           |  51 +----
+ drivers/gpu/drm/i915/gt/intel_migrate.c       |  22 +-
+ drivers/gpu/drm/i915/gt/intel_mocs.c          |  52 +----
+ drivers/gpu/drm/i915/gt/intel_rps.c           |   6 +-
+ drivers/gpu/drm/i915/gt/intel_sseu.c          |  13 +-
+ drivers/gpu/drm/i915/gt/intel_workarounds.c   | 193 +-----------------
+ drivers/gpu/drm/i915/gt/uc/intel_guc.c        |   6 +-
+ drivers/gpu/drm/i915/gt/uc/intel_guc_ads.c    |   4 +-
+ drivers/gpu/drm/i915/gt/uc/intel_guc_fw.c     |   2 +-
+ drivers/gpu/drm/i915/gt/uc/intel_guc_fwif.h   |   1 -
+ .../gpu/drm/i915/gt/uc/intel_guc_submission.c |   2 +-
+ drivers/gpu/drm/i915/gt/uc/intel_uc.c         |   4 -
+ drivers/gpu/drm/i915/i915_debugfs.c           |  12 --
+ drivers/gpu/drm/i915/i915_drv.h               |  13 --
+ drivers/gpu/drm/i915/i915_getparam.c          |   4 +-
+ drivers/gpu/drm/i915/i915_gpu_error.c         |   5 +-
+ drivers/gpu/drm/i915/i915_hwmon.c             |   6 -
+ drivers/gpu/drm/i915/i915_pci.c               |  61 +-----
+ drivers/gpu/drm/i915/i915_perf.c              |  19 +-
+ drivers/gpu/drm/i915/i915_query.c             |   2 +-
+ drivers/gpu/drm/i915/i915_reg.h               |   4 +-
+ drivers/gpu/drm/i915/intel_clock_gating.c     |  26 +--
+ drivers/gpu/drm/i915/intel_device_info.c      |   2 -
+ drivers/gpu/drm/i915/intel_device_info.h      |   2 -
+ drivers/gpu/drm/i915/intel_step.c             |  80 +-------
+ drivers/gpu/drm/i915/intel_uncore.c           | 159 +--------------
+ drivers/gpu/drm/i915/selftests/intel_uncore.c |   3 -
+ .../gpu/drm/xe/compat-i915-headers/i915_drv.h |   6 -
+ 43 files changed, 110 insertions(+), 928 deletions(-)
 
--:104: CHECK:MACRO_ARG_PRECEDENCE: Macro argument 'cslice' may be better as '(cslice)' to avoid precedence issues
-#104: FILE: drivers/gpu/drm/i915/gt/intel_gt_regs.h:1486:
-+#define   XEHP_CCS_MODE_CSLICE(cslice, ccs)	(ccs << (cslice * XEHP_CCS_MODE_CSLICE_WIDTH))
-
--:104: CHECK:MACRO_ARG_PRECEDENCE: Macro argument 'ccs' may be better as '(ccs)' to avoid precedence issues
-#104: FILE: drivers/gpu/drm/i915/gt/intel_gt_regs.h:1486:
-+#define   XEHP_CCS_MODE_CSLICE(cslice, ccs)	(ccs << (cslice * XEHP_CCS_MODE_CSLICE_WIDTH))
-
-total: 0 errors, 1 warnings, 2 checks, 69 lines checked
-
+-- 
+2.43.0
 
