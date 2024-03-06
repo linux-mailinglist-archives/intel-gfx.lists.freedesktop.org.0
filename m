@@ -2,55 +2,151 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id AE511872C34
-	for <lists+intel-gfx@lfdr.de>; Wed,  6 Mar 2024 02:28:19 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3B437872CC9
+	for <lists+intel-gfx@lfdr.de>; Wed,  6 Mar 2024 03:30:03 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E2650112DE1;
-	Wed,  6 Mar 2024 01:28:15 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A515F10FCD8;
+	Wed,  6 Mar 2024 02:30:01 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="XVwuWVG8";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="V1zN1qGG";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 93035112DE1;
- Wed,  6 Mar 2024 01:28:14 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 108F510FCD8
+ for <intel-gfx@lists.freedesktop.org>; Wed,  6 Mar 2024 02:29:59 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1709688495; x=1741224495;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=lCHHg8fn1LRTe1F7OabPwqwH4b26eld8e9D2CEoXsNE=;
- b=XVwuWVG8lmD9/G01dzLRMhBr29Pnq2DUAiB94x46c2GikistHq6FIOxj
- 0TmQAgvVsxZfkbvbyUwx4+1dPC/Q+oRdei6vLEkycEAXePQiWI+mx4O8b
- EUGwGAGPzooj0kc2mSQ5W8bbXFOecvQnkpcW0vvtOivCMOT8u8zyHZIGJ
- t5/MgoPDZ3nix6nu1vX2ptsAVsfODnm01zb6OJ8w4JrXcMbYMfmldPByn
- opvtT5HnonxlOjegw0cllSHBjogMuhH1cdeqre8FsWO30d1zZROvTTwoV
- +hbizmWwprbCzyF8QLi1QKwxHCt3VHMthIbWCK0QIhHnV6ZBmMNIiDT5y Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,11004"; a="4204622"
+ t=1709692200; x=1741228200;
+ h=message-id:date:subject:to:references:from:in-reply-to:
+ content-transfer-encoding:mime-version;
+ bh=BljxBbAspQSW8ydSzyByXy6HGopkVrHUvulLgqIAa2o=;
+ b=V1zN1qGGBzZpcsR5BkSDRNBuPlGCTNfZFYWWRXwyyp+YrAfuj6UN333L
+ n8qmyg+eAZQ9ZJ4KD4c3tAxz1LckBFWCmJ+RX7g3c3mQwSqAW6pB7lpRc
+ kmgLjoAhTA49Hlcbfiwc0X2FZesIR/OGcfyACC+tRw0BpHdKiFyk4Fbag
+ MIqtidVeAy2J2fhp9gCzyutxTLvv1OQnG4nCJM+qZg7RHCjIwK1A/VxtL
+ f0i3B+YLz+bczA+VPnQ/MGMxixnwhIzpXJtd6tfZf0zyWAwGPtdDEhZ1o
+ emYKGBIGUR+lKbs3W3Ob75w/OV/BdCy9Xb0JbP3/Wigx3kz1UddyG3DFo w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,11004"; a="4144095"
 X-IronPort-AV: E=Sophos;i="6.06,207,1705392000"; 
-   d="scan'208";a="4204622"
-Received: from orviesa004.jf.intel.com ([10.64.159.144])
- by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Mar 2024 17:28:14 -0800
+   d="scan'208";a="4144095"
+Received: from fmviesa003.fm.intel.com ([10.60.135.143])
+ by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 05 Mar 2024 18:29:59 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.06,207,1705392000"; d="scan'208";a="14242614"
-Received: from vbelgaum-ubuntu.fm.intel.com ([10.1.39.141])
- by orviesa004.jf.intel.com with ESMTP; 05 Mar 2024 17:28:14 -0800
-From: Vinay Belgaumkar <vinay.belgaumkar@intel.com>
-To: intel-gfx@lists.freedesktop.org,
-	dri-devel@lists.freedesktop.org
-Cc: Vinay Belgaumkar <vinay.belgaumkar@intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
- Sushma Venkatesh Reddy <sushma.venkatesh.reddy@intel.com>,
- Ivan Briano <ivan.briano@intel.com>
-Subject: [PATCH v4] drm/i915/guc: Use context hints for GT frequency
-Date: Tue,  5 Mar 2024 17:27:59 -0800
-Message-Id: <20240306012759.204938-1-vinay.belgaumkar@intel.com>
-X-Mailer: git-send-email 2.38.1
+X-IronPort-AV: E=Sophos;i="6.06,207,1705392000"; d="scan'208";a="14154584"
+Received: from orsmsx603.amr.corp.intel.com ([10.22.229.16])
+ by fmviesa003.fm.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
+ 05 Mar 2024 18:29:59 -0800
+Received: from orsmsx603.amr.corp.intel.com (10.22.229.16) by
+ ORSMSX603.amr.corp.intel.com (10.22.229.16) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.35; Tue, 5 Mar 2024 18:29:58 -0800
+Received: from ORSEDG601.ED.cps.intel.com (10.7.248.6) by
+ orsmsx603.amr.corp.intel.com (10.22.229.16) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.35 via Frontend Transport; Tue, 5 Mar 2024 18:29:58 -0800
+Received: from NAM11-BN8-obe.outbound.protection.outlook.com (104.47.58.169)
+ by edgegateway.intel.com (134.134.137.102) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.1.2507.35; Tue, 5 Mar 2024 18:29:58 -0800
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=ci/7F4zik+DKTkijRbo3g2lYIjY2gFfhSI6FqMJLO10ZsTmwfkJb2VroSCg+irHXEbksutsK2N7oVktlNxmqXxR/1XC/zPL61enZR7ZmufcWnoYLuAY/GNK5MF8+i9g84e+zdMeZHNEggPIGQvYxbjOnfBGr4Zf3Nbdt+9laNomQs/aLtOUn+q5XAdSjyXI7zx1u7wqIsaSyyQJF4QwxV97XUYW083rpjPqJr2nvnJ28yoL1pGYwjEZVkywZQh9LfoESMJUpqavRGZ/FJ6EvhXfjbhR45+Tmy/rRQJPU6foVwFkItMnawWXHhfPf56MIHaGEZW8IHCz0ziYnMHb2rA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=ypU1YW1/9eVtXtrJJRu+a2Dkvs5gbMVvRPqKoFYUlZY=;
+ b=nYESw1lYILS3VEXT5Uujn+FAr5+R8tU1H27Wxwl94ikaQquYpQTGQkRMJthByBsnbq4Iaw9bM0ZxOUYyIihjLiK0gujY/sIndT8jMZVH6mMiq/MCkolnwm6Weq0U9y438r+gqzcGDkdVX1IxE1+gYNAWle/RmqmFBm3QdDhHvDJ3I21CPxTQ3C2eTrB1epdY32C/gjuvsnI4MFv3f/pxHDLb1LzLAMJVByXQ7Tzyrn4i8k+AQrWvF01cQKjgR7X/Yyij+YKrKU68xWlxGw0Zug+xC9GeROg6Ujgex1AZrKSXj4tNhnsF9jhACCbOOPNLFzUgBb1uCqXNybEmVooS/Q==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+Received: from LV8PR11MB8607.namprd11.prod.outlook.com (2603:10b6:408:1ec::18)
+ by IA0PR11MB7884.namprd11.prod.outlook.com (2603:10b6:208:3dc::5)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7362.23; Wed, 6 Mar
+ 2024 02:29:55 +0000
+Received: from LV8PR11MB8607.namprd11.prod.outlook.com
+ ([fe80::ce60:5b9:e62f:ed8f]) by LV8PR11MB8607.namprd11.prod.outlook.com
+ ([fe80::ce60:5b9:e62f:ed8f%3]) with mapi id 15.20.7362.019; Wed, 6 Mar 2024
+ 02:29:55 +0000
+Message-ID: <2f2e1395-b44c-4ce1-93b3-e9049f19ac05@intel.com>
+Date: Wed, 6 Mar 2024 07:59:50 +0530
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 3/3] drm/i915/bios: abstract child device expected size
+To: Jani Nikula <jani.nikula@intel.com>, <intel-gfx@lists.freedesktop.org>
+References: <20240226175854.287871-1-jani.nikula@intel.com>
+ <20240226175854.287871-3-jani.nikula@intel.com>
+ <f9a638c9-86ae-4595-9d19-85b3eb66ac58@intel.com> <87cys92aoa.fsf@intel.com>
+Content-Language: en-US
+From: "Chauhan, Shekhar" <shekhar.chauhan@intel.com>
+In-Reply-To: <87cys92aoa.fsf@intel.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: PN2P287CA0003.INDP287.PROD.OUTLOOK.COM
+ (2603:1096:c01:21b::17) To LV8PR11MB8607.namprd11.prod.outlook.com
+ (2603:10b6:408:1ec::18)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: LV8PR11MB8607:EE_|IA0PR11MB7884:EE_
+X-MS-Office365-Filtering-Correlation-Id: f6d4a9fd-2808-48de-c46a-08dc3d854f9a
+X-LD-Processed: 46c98d88-e344-4ed4-8496-4ed7712e255d,ExtAddr
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: yHum4hCokVxXN9eqdSgfWBGshgGmsMv5rMrgFaw1OJ1XWnV56zdBVRF5mhDRuefAnHjTEqDfFiQQiJgbcukAeyYRdx3PkqHCbO8gm8LYYVBXXXDSOfMXwZXLn8JEVLtPQoCDei8IzPLWp+B2jPqCGCP3mmItLAnf/S3tqC2Lx9jyoCFTvPoYSd03e2OHfdscvLvO3F1JQv2iDQRpVDYekv6N6s01Zml3OAwX5QcQQW13+tp05sgESqMtUvC89JaJHQPWagKD75bcdGOtdZjkfw4Rh9OQ6ynmVBpTH4o2ErRbfcPlMHoRT6a0ZWveNehMKQc2GwXLlHk8MyfR6I59iR62maAQw7A75IWC+6/hQ9KvXd6p3q4N1IEVHQ/jamWFzxK1m4Rc2vk8XmWaY0hOtX986SaDE1kAhTJ/XOTelv96Nn7IvAm6FsmHZFN6MSKNg/j7who4Y46CURfYTqzQ7PhH275RLjZ94+uRoC+FNzMhU8/IvLcjUP21iTkjVzA90iLkffMOh2MREIgvr7d0an0aGw9BktzKTdUaEmrK7Wx+huHNjvQtfQn3ASC+itlOH17CzR/E4DscO019PUqCRhiH/1nb3oWifIjW+bt20sVPjq6ixrE8jExkxDTKSRM/6m4GEssuiMUeBxH5LkQ3gWVpCcIhlj2a2hFIY6Px8HY=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:LV8PR11MB8607.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230031)(376005); DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?R3g5UDVnSzZFOE95bGpaM25zN3cxQVlKd0F2Y2JWVmZXSjRIc3ZPajh1YnVR?=
+ =?utf-8?B?Q2t1UkY5bnVWOWZONWlJTVVGZk9wOUYyTGQrTWkxSUwzUit4QVBiTWhjZUdH?=
+ =?utf-8?B?ODlna1lsRUNKYmt6ZmFjQ2hGS3Rjb3NxVGJ4bVFiU09hRlkvWUVnV0hZT3Zk?=
+ =?utf-8?B?OHRxd1F1MUFTek9kKzFLd2xJR3pUK2ErdWNnY3VucmZMdkpJQ0E3U2FhT1lK?=
+ =?utf-8?B?UmdnZmE2amdKeHpuSHRyNTZ3cHdDcGpBNlBDeHUwc2swdVBtczFqTThQNWtE?=
+ =?utf-8?B?b2hzS0tHMXQyM1huU2kyMnhaRmdvR25zWk02SWpuMG1HTzJSNDhiaXFsbC9B?=
+ =?utf-8?B?ejFEVlNvaFlXTUM4QVo0b2xtVDdXVXBQZWFicXEzWXREbEZHOStVYjJnQzR4?=
+ =?utf-8?B?c01KTEZaSURLSkRuSWpPUENXMk9IUEFVYWdSU3pSUFRreStwdkFGQ3pCVTlx?=
+ =?utf-8?B?aW1DaUMrNncwSVdzN3UveHpTYTJDRUgzdXVKSHd1NTRjSW1ISGxSQ0k0eFp5?=
+ =?utf-8?B?WHdOT2FvUVdyRmNEblQ3bnc1K1ZBTGNSR2RwcUZnZDlmazgyZ2hyL0F4OThS?=
+ =?utf-8?B?NUo4VVE3TndndmhqTWJMc21HUms2M3NySCthZHVlWDNhNGU1KzVIaTYwam5y?=
+ =?utf-8?B?c0hST1dJYnJmUjYxWkpJZXJnY1k3cG5zOGZhVjFGWFRqN0dXdFB4cWFaQjhz?=
+ =?utf-8?B?K0NXUmZZWXZJQzNkeldsajYrbjQzQ1orNXBTRlpMSFFVZk8rZEJzZG9zS3FY?=
+ =?utf-8?B?cXkwZTBndWRFblhDRk9obmJIUUM4cmNqOXh5bWFPRktFUUJpTTZvNUVuU3Nl?=
+ =?utf-8?B?c1ROeUYycVBSVkxoelM2bGN3QzFLaG92OXNmMENkRFpabzFzbE44VnowaGt0?=
+ =?utf-8?B?L2pDR3hQMUFGS1ZHRUI2Y1o2Y1NHVC93ekJrcmc4RHNNUnRJV1NyR2c1eTJh?=
+ =?utf-8?B?ODJJcU9ZQ1hPQStiRG9mZDlRYXd5WlA5K3p5aVplUmMxNDhidTRpT0tMc3Rk?=
+ =?utf-8?B?ckk3MGRCTitsVXFoVUZCbmdFZHkvZzZaVWlSeGFUQ0NaL0I3dCtZN0NTZ01k?=
+ =?utf-8?B?cXlYM2ZmOWhsTWRIMHQzWGptbjEzdmY3aDF1czlVR0JETzlqOXFhZ29oV0tK?=
+ =?utf-8?B?c2orVTVOaGJycVpxaVArRGJQMmxFcEUyUzRQTTQra2dZV2ZwUUJwLzFvZjQ2?=
+ =?utf-8?B?YS9TK2JBQ1FHQkxjMThoVkVncmZBSWZnRTlEeDY1WkdlOCtYdklwNHFONTRo?=
+ =?utf-8?B?K2F4bWtlRDBDeThRRnBIMGdDSFByM3pYU1hqTzBZZXlaKzVjR3ZJZjROTnRM?=
+ =?utf-8?B?MGlOUUlmR1ZENy9MVjM5R0JWZndCNHptZjQ3cHQ5dzVnbDZsYVFWVnR4NHVU?=
+ =?utf-8?B?dlc4TnA4RldkRE4rVzFjS0lxMkx6ZU5mZVcvNFRiVktnaFFwMTYzU3NBWEQy?=
+ =?utf-8?B?NkhjRkd2UTNTOWpJMTR2eWdPQkVsQzU3ZXMyOFp3eUxwUFQzNWVhMjdvcG1T?=
+ =?utf-8?B?NktkYmNVMGJsVjBTbW5RVzF1MmsxZHo5a0R2RklJTWF1RVNFT1BQUUg4aEdO?=
+ =?utf-8?B?ME9ZRFhlSStpcXA1dnpZTEJncFlrZDFHNngyZlUySml3QWYwV25oWlRNU2V1?=
+ =?utf-8?B?Z0t6L1NQRC80OENSZXQybE5XRUR4TjhTY3owQ2g5Qjh0MlVoZ2xYTDhFeHgy?=
+ =?utf-8?B?YjdUNUZBOUFkQ0h5T3BlbmlLbVBpOWhCK3kyUXc0SU51aUFhZC9oVVQycHJZ?=
+ =?utf-8?B?blVpeVYwYXE4UnRBWHFmcUNKWUhwVzlQN3dpckRDRWY4QlVBdjdISkd2THgw?=
+ =?utf-8?B?bElLVHBURm5lMk40cjR0UEwvbGtJcjdwUW1yNUUyTkdWV2U4UXZqL3BrazI3?=
+ =?utf-8?B?MXkwZWUzemNVeDRoempzY2w2Qk5SMW5jZVZoQmNVczNYbUZZV0c3bVAyS1NO?=
+ =?utf-8?B?TWs1NmJuL1N4OG5yNXlIOUhQODdpYWFLUjhQVmRZbS9SZVBLNzU5UXQwRXpr?=
+ =?utf-8?B?RGZsL0hZRUJqb083U1NYaGdwVWVkb3ppL3haVVZDVlgydDBpWDRGOWd4cFo3?=
+ =?utf-8?B?ZzFoY1N3azNoSG9ORCs3MUpMcmhZZDlKWlFJYWovcmc4Vm5qNWJBeGpNeUNI?=
+ =?utf-8?B?YXNKdk50aDVnOHpFVFlqTXAwMWRTK3daMG9uUGpzZTFRNWorcHNJQmhwbWhO?=
+ =?utf-8?B?a2c9PQ==?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: f6d4a9fd-2808-48de-c46a-08dc3d854f9a
+X-MS-Exchange-CrossTenant-AuthSource: LV8PR11MB8607.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 06 Mar 2024 02:29:55.8387 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: GhkfKr4HM5aa7PaAL/6iM1PW2RCgKOgrU+i+AaTJXdPCcuwjQJ4BivsU+hDcNxbjshatWse62JbOSMEiurPuDmzcZndYsYKJcvmzd654bwQ=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA0PR11MB7884
+X-OriginatorOrg: intel.com
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -66,310 +162,109 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Allow user to provide a low latency context hint. When set, KMD
-sends a hint to GuC which results in special handling for this
-context. SLPC will ramp the GT frequency aggressively every time
-it switches to this context. The down freq threshold will also be
-lower so GuC will ramp down the GT freq for this context more slowly.
-We also disable waitboost for this context as that will interfere with
-the strategy.
 
-We need to enable the use of SLPC Compute strategy during init, but
-it will apply only to contexts that set this bit during context
-creation.
+On 3/5/2024 16:43, Jani Nikula wrote:
+> On Tue, 05 Mar 2024, "Chauhan, Shekhar" <shekhar.chauhan@intel.com> wrote:
+>> On 2/26/2024 23:28, Jani Nikula wrote:
+>>> Add a function to return the expected child device size. Flip the if
+>>> ladder around and use the same versions as in documentation to make it
+>>> easier to verify. Return an error for unknown versions. No functional
+>>> changes.
+>>>
+>>> v2: Move BUILD_BUG_ON() next to the expected sizes
+>>>
+>>> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+>>> ---
+>>>    drivers/gpu/drm/i915/display/intel_bios.c | 40 ++++++++++++++---------
+>>>    1 file changed, 24 insertions(+), 16 deletions(-)
+>>>
+>>> diff --git a/drivers/gpu/drm/i915/display/intel_bios.c b/drivers/gpu/drm/i915/display/intel_bios.c
+>>> index c0f41bd1f946..343726de9aa7 100644
+>>> --- a/drivers/gpu/drm/i915/display/intel_bios.c
+>>> +++ b/drivers/gpu/drm/i915/display/intel_bios.c
+>>> @@ -2699,27 +2699,35 @@ static void parse_ddi_ports(struct drm_i915_private *i915)
+>>>    		print_ddi_port(devdata);
+>>>    }
+>>>    
+>>> +static int child_device_expected_size(u16 version)
+>>> +{
+>>> +	BUILD_BUG_ON(sizeof(struct child_device_config) < 40);
+>>> +
+>>> +	if (version > 256)
+>>> +		return -ENOENT;
+>>> +	else if (version >= 256)
+>> Correct me if I'm wrong, but isn't version >= 256, a bit cryptic after
+>> the first check?
+>> Would it be wise to make it version > 256, return -ENOENT and if version
+>> == 256, return 40?
+> It may look so right now, but consider these future cases:
+>
+> - VBT version gets bumped, and we get the info that, say, version 270
+>    still has size 40. What needs to be changed?
+>
+> - VBT version gets bumped, and we get the info that, say, version 271
+>    has size 41. What needs to be changed?
+>
+> Note that VBT versions above are pure examples, and don't reflect the
+> spec in any way.
+>
+> We know right now that versions >= 256 will have size 40. We don't want
+> to express that in a way that requires us to modify it in the
+> future. This is the difference to the old if ladder.
+Understood. Thanks.
+>
+> Indeed, we could already bump the first if to
+>
+> 	if (version > 257)
+>
+> because we now know version 257 has size 40.
+>
+> BR,
+> Jani.
+>
+>
+>>> +		return 40;
+>>> +	else if (version >= 216)
+>>> +		return 39;
+>>> +	else if (version >= 196)
+>>> +		return 38;
+>>> +	else if (version >= 195)
+>>> +		return 37;
+>>> +	else if (version >= 111)
+>>> +		return LEGACY_CHILD_DEVICE_CONFIG_SIZE;
+>>> +	else if (version >= 106)
+>>> +		return 27;
+>>> +	else
+>>> +		return 22;
+>>> +}
+>>> +
+>>>    static bool child_device_size_valid(struct drm_i915_private *i915, int size)
+>>>    {
+>>>    	int expected_size;
+>>>    
+>>> -	if (i915->display.vbt.version < 106) {
+>>> -		expected_size = 22;
+>>> -	} else if (i915->display.vbt.version < 111) {
+>>> -		expected_size = 27;
+>>> -	} else if (i915->display.vbt.version < 195) {
+>>> -		expected_size = LEGACY_CHILD_DEVICE_CONFIG_SIZE;
+>>> -	} else if (i915->display.vbt.version == 195) {
+>>> -		expected_size = 37;
+>>> -	} else if (i915->display.vbt.version <= 215) {
+>>> -		expected_size = 38;
+>>> -	} else if (i915->display.vbt.version <= 255) {
+>>> -		expected_size = 39;
+>>> -	} else if (i915->display.vbt.version <= 256) {
+>>> -		expected_size = 40;
+>>> -	} else {
+>>> +	expected_size = child_device_expected_size(i915->display.vbt.version);
+>>> +	if (expected_size < 0) {
+>>>    		expected_size = sizeof(struct child_device_config);
+>>> -		BUILD_BUG_ON(sizeof(struct child_device_config) < 40);
+>>>    		drm_dbg(&i915->drm,
+>>>    			"Expected child device config size for VBT version %u not known; assuming %d\n",
+>>>    			i915->display.vbt.version, expected_size);
 
-Userland can check whether this feature is supported using a new param-
-I915_PARAM_HAS_CONTEXT_FREQ_HINT. This flag is true for all guc submission
-enabled platforms as they use SLPC for frequency management.
-
-The Mesa usage model for this flag is here -
-https://gitlab.freedesktop.org/sushmave/mesa/-/commits/compute_hint
-
-v2: Rename flags as per review suggestions (Rodrigo, Tvrtko).
-Also, use flag bits in intel_context as it allows finer control for
-toggling per engine if needed (Tvrtko).
-
-v3: Minor review comments (Tvrtko)
-
-v4: Update comment (Sushma)
-
-Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
-Cc: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-Cc: Sushma Venkatesh Reddy <sushma.venkatesh.reddy@intel.com>
-Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
-Acked-by: Ivan Briano <ivan.briano@intel.com>
-Signed-off-by: Vinay Belgaumkar <vinay.belgaumkar@intel.com>
----
- drivers/gpu/drm/i915/gem/i915_gem_context.c   | 16 ++++++++++++--
- .../gpu/drm/i915/gem/i915_gem_context_types.h |  1 +
- drivers/gpu/drm/i915/gt/intel_context_types.h |  1 +
- drivers/gpu/drm/i915/gt/intel_rps.c           |  4 ++++
- .../drm/i915/gt/uc/abi/guc_actions_slpc_abi.h | 21 +++++++++++++++++++
- drivers/gpu/drm/i915/gt/uc/intel_guc_slpc.c   | 17 +++++++++++++++
- drivers/gpu/drm/i915/gt/uc/intel_guc_slpc.h   |  1 +
- .../gpu/drm/i915/gt/uc/intel_guc_submission.c |  6 ++++++
- drivers/gpu/drm/i915/i915_getparam.c          |  6 ++++++
- include/uapi/drm/i915_drm.h                   | 15 +++++++++++++
- 10 files changed, 86 insertions(+), 2 deletions(-)
-
-diff --git a/drivers/gpu/drm/i915/gem/i915_gem_context.c b/drivers/gpu/drm/i915/gem/i915_gem_context.c
-index dcbfe32fd30c..81f65cab1330 100644
---- a/drivers/gpu/drm/i915/gem/i915_gem_context.c
-+++ b/drivers/gpu/drm/i915/gem/i915_gem_context.c
-@@ -879,6 +879,7 @@ static int set_proto_ctx_param(struct drm_i915_file_private *fpriv,
- 			       struct i915_gem_proto_context *pc,
- 			       struct drm_i915_gem_context_param *args)
- {
-+	struct drm_i915_private *i915 = fpriv->i915;
- 	int ret = 0;
- 
- 	switch (args->param) {
-@@ -904,6 +905,13 @@ static int set_proto_ctx_param(struct drm_i915_file_private *fpriv,
- 			pc->user_flags &= ~BIT(UCONTEXT_BANNABLE);
- 		break;
- 
-+	case I915_CONTEXT_PARAM_LOW_LATENCY:
-+		if (intel_uc_uses_guc_submission(&to_gt(i915)->uc))
-+			pc->user_flags |= BIT(UCONTEXT_LOW_LATENCY);
-+		else
-+			ret = -EINVAL;
-+		break;
-+
- 	case I915_CONTEXT_PARAM_RECOVERABLE:
- 		if (args->size)
- 			ret = -EINVAL;
-@@ -992,6 +1000,9 @@ static int intel_context_set_gem(struct intel_context *ce,
- 	if (sseu.slice_mask && !WARN_ON(ce->engine->class != RENDER_CLASS))
- 		ret = intel_context_reconfigure_sseu(ce, sseu);
- 
-+	if (test_bit(UCONTEXT_LOW_LATENCY, &ctx->user_flags))
-+		__set_bit(CONTEXT_LOW_LATENCY, &ce->flags);
-+
- 	return ret;
- }
- 
-@@ -1630,6 +1641,9 @@ i915_gem_create_context(struct drm_i915_private *i915,
- 	if (vm)
- 		ctx->vm = vm;
- 
-+	/* Assign early so intel_context_set_gem can access these flags */
-+	ctx->user_flags = pc->user_flags;
-+
- 	mutex_init(&ctx->engines_mutex);
- 	if (pc->num_user_engines >= 0) {
- 		i915_gem_context_set_user_engines(ctx);
-@@ -1652,8 +1666,6 @@ i915_gem_create_context(struct drm_i915_private *i915,
- 	 * is no remap info, it will be a NOP. */
- 	ctx->remap_slice = ALL_L3_SLICES(i915);
- 
--	ctx->user_flags = pc->user_flags;
--
- 	for (i = 0; i < ARRAY_SIZE(ctx->hang_timestamp); i++)
- 		ctx->hang_timestamp[i] = jiffies - CONTEXT_FAST_HANG_JIFFIES;
- 
-diff --git a/drivers/gpu/drm/i915/gem/i915_gem_context_types.h b/drivers/gpu/drm/i915/gem/i915_gem_context_types.h
-index 03bc7f9d191b..b6d97da63d1f 100644
---- a/drivers/gpu/drm/i915/gem/i915_gem_context_types.h
-+++ b/drivers/gpu/drm/i915/gem/i915_gem_context_types.h
-@@ -338,6 +338,7 @@ struct i915_gem_context {
- #define UCONTEXT_BANNABLE		2
- #define UCONTEXT_RECOVERABLE		3
- #define UCONTEXT_PERSISTENCE		4
-+#define UCONTEXT_LOW_LATENCY		5
- 
- 	/**
- 	 * @flags: small set of booleans
-diff --git a/drivers/gpu/drm/i915/gt/intel_context_types.h b/drivers/gpu/drm/i915/gt/intel_context_types.h
-index 7eccbd70d89f..ed95a7b57cbb 100644
---- a/drivers/gpu/drm/i915/gt/intel_context_types.h
-+++ b/drivers/gpu/drm/i915/gt/intel_context_types.h
-@@ -130,6 +130,7 @@ struct intel_context {
- #define CONTEXT_PERMA_PIN		11
- #define CONTEXT_IS_PARKING		12
- #define CONTEXT_EXITING			13
-+#define CONTEXT_LOW_LATENCY		14
- 
- 	struct {
- 		u64 timeout_us;
-diff --git a/drivers/gpu/drm/i915/gt/intel_rps.c b/drivers/gpu/drm/i915/gt/intel_rps.c
-index 9c6812257ac2..a929aa6e3c85 100644
---- a/drivers/gpu/drm/i915/gt/intel_rps.c
-+++ b/drivers/gpu/drm/i915/gt/intel_rps.c
-@@ -1013,6 +1013,10 @@ void intel_rps_boost(struct i915_request *rq)
- 	if (i915_request_signaled(rq) || i915_request_has_waitboost(rq))
- 		return;
- 
-+	/* Waitboost is not needed for contexts marked with a Freq hint */
-+	if (test_bit(CONTEXT_LOW_LATENCY, &rq->context->flags))
-+		return;
-+
- 	/* Serializes with i915_request_retire() */
- 	if (!test_and_set_bit(I915_FENCE_FLAG_BOOST, &rq->fence.flags)) {
- 		struct intel_rps *rps = &READ_ONCE(rq->engine)->gt->rps;
-diff --git a/drivers/gpu/drm/i915/gt/uc/abi/guc_actions_slpc_abi.h b/drivers/gpu/drm/i915/gt/uc/abi/guc_actions_slpc_abi.h
-index 811add10c30d..c34674e797c6 100644
---- a/drivers/gpu/drm/i915/gt/uc/abi/guc_actions_slpc_abi.h
-+++ b/drivers/gpu/drm/i915/gt/uc/abi/guc_actions_slpc_abi.h
-@@ -207,6 +207,27 @@ struct slpc_shared_data {
- 	u8 reserved_mode_definition[4096];
- } __packed;
- 
-+struct slpc_context_frequency_request {
-+	u32 frequency_request:16;
-+	u32 reserved:12;
-+	u32 is_compute:1;
-+	u32 ignore_busyness:1;
-+	u32 is_minimum:1;
-+	u32 is_predefined:1;
-+} __packed;
-+
-+#define SLPC_CTX_FREQ_REQ_IS_COMPUTE		REG_BIT(28)
-+
-+struct slpc_optimized_strategies {
-+	u32 compute:1;
-+	u32 async_flip:1;
-+	u32 media:1;
-+	u32 vsync_flip:1;
-+	u32 reserved:28;
-+} __packed;
-+
-+#define SLPC_OPTIMIZED_STRATEGY_COMPUTE		REG_BIT(0)
-+
- /**
-  * DOC: SLPC H2G MESSAGE FORMAT
-  *
-diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_slpc.c b/drivers/gpu/drm/i915/gt/uc/intel_guc_slpc.c
-index 3e681ab6fbf9..706fffca698b 100644
---- a/drivers/gpu/drm/i915/gt/uc/intel_guc_slpc.c
-+++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_slpc.c
-@@ -537,6 +537,20 @@ int intel_guc_slpc_get_min_freq(struct intel_guc_slpc *slpc, u32 *val)
- 	return ret;
- }
- 
-+int intel_guc_slpc_set_strategy(struct intel_guc_slpc *slpc, u32 val)
-+{
-+	struct drm_i915_private *i915 = slpc_to_i915(slpc);
-+	intel_wakeref_t wakeref;
-+	int ret = 0;
-+
-+	with_intel_runtime_pm(&i915->runtime_pm, wakeref)
-+		ret = slpc_set_param(slpc,
-+				     SLPC_PARAM_STRATEGIES,
-+				     val);
-+
-+	return ret;
-+}
-+
- int intel_guc_slpc_set_media_ratio_mode(struct intel_guc_slpc *slpc, u32 val)
- {
- 	struct drm_i915_private *i915 = slpc_to_i915(slpc);
-@@ -711,6 +725,9 @@ int intel_guc_slpc_enable(struct intel_guc_slpc *slpc)
- 	/* Set cached media freq ratio mode */
- 	intel_guc_slpc_set_media_ratio_mode(slpc, slpc->media_ratio_mode);
- 
-+	/* Enable SLPC Optimized Strategy for compute */
-+	intel_guc_slpc_set_strategy(slpc, SLPC_OPTIMIZED_STRATEGY_COMPUTE);
-+
- 	return 0;
- }
- 
-diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_slpc.h b/drivers/gpu/drm/i915/gt/uc/intel_guc_slpc.h
-index 6ac6503c39d4..1cb5fd44f05c 100644
---- a/drivers/gpu/drm/i915/gt/uc/intel_guc_slpc.h
-+++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_slpc.h
-@@ -45,5 +45,6 @@ void intel_guc_pm_intrmsk_enable(struct intel_gt *gt);
- void intel_guc_slpc_boost(struct intel_guc_slpc *slpc);
- void intel_guc_slpc_dec_waiters(struct intel_guc_slpc *slpc);
- int intel_guc_slpc_set_ignore_eff_freq(struct intel_guc_slpc *slpc, bool val);
-+int intel_guc_slpc_set_strategy(struct intel_guc_slpc *slpc, u32 val);
- 
- #endif
-diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c b/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
-index cc076e9302ad..e5c645137cfe 100644
---- a/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
-+++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
-@@ -2645,6 +2645,7 @@ MAKE_CONTEXT_POLICY_ADD(execution_quantum, EXECUTION_QUANTUM)
- MAKE_CONTEXT_POLICY_ADD(preemption_timeout, PREEMPTION_TIMEOUT)
- MAKE_CONTEXT_POLICY_ADD(priority, SCHEDULING_PRIORITY)
- MAKE_CONTEXT_POLICY_ADD(preempt_to_idle, PREEMPT_TO_IDLE_ON_QUANTUM_EXPIRY)
-+MAKE_CONTEXT_POLICY_ADD(slpc_ctx_freq_req, SLPM_GT_FREQUENCY)
- 
- #undef MAKE_CONTEXT_POLICY_ADD
- 
-@@ -2664,6 +2665,7 @@ static int guc_context_policy_init_v70(struct intel_context *ce, bool loop)
- 	struct context_policy policy;
- 	u32 execution_quantum;
- 	u32 preemption_timeout;
-+	u32 slpc_ctx_freq_req = 0;
- 	unsigned long flags;
- 	int ret;
- 
-@@ -2675,11 +2677,15 @@ static int guc_context_policy_init_v70(struct intel_context *ce, bool loop)
- 	execution_quantum = engine->props.timeslice_duration_ms * 1000;
- 	preemption_timeout = engine->props.preempt_timeout_ms * 1000;
- 
-+	if (ce && (ce->flags & BIT(CONTEXT_LOW_LATENCY)))
-+		slpc_ctx_freq_req |= SLPC_CTX_FREQ_REQ_IS_COMPUTE;
-+
- 	__guc_context_policy_start_klv(&policy, ce->guc_id.id);
- 
- 	__guc_context_policy_add_priority(&policy, ce->guc_state.prio);
- 	__guc_context_policy_add_execution_quantum(&policy, execution_quantum);
- 	__guc_context_policy_add_preemption_timeout(&policy, preemption_timeout);
-+	__guc_context_policy_add_slpc_ctx_freq_req(&policy, slpc_ctx_freq_req);
- 
- 	if (engine->flags & I915_ENGINE_WANT_FORCED_PREEMPTION)
- 		__guc_context_policy_add_preempt_to_idle(&policy, 1);
-diff --git a/drivers/gpu/drm/i915/i915_getparam.c b/drivers/gpu/drm/i915/i915_getparam.c
-index 5c3fec63cb4c..95c58805b2a4 100644
---- a/drivers/gpu/drm/i915/i915_getparam.c
-+++ b/drivers/gpu/drm/i915/i915_getparam.c
-@@ -155,6 +155,12 @@ int i915_getparam_ioctl(struct drm_device *dev, void *data,
- 		 */
- 		value = 1;
- 		break;
-+	case I915_PARAM_HAS_CONTEXT_FREQ_HINT:
-+		if (intel_uc_uses_guc_submission(&to_gt(i915)->uc))
-+			value = 1;
-+		else
-+			value = -EINVAL;
-+		break;
- 	case I915_PARAM_HAS_CONTEXT_ISOLATION:
- 		value = intel_engines_has_context_isolation(i915);
- 		break;
-diff --git a/include/uapi/drm/i915_drm.h b/include/uapi/drm/i915_drm.h
-index 1279a6b2bece..d4d86e566e07 100644
---- a/include/uapi/drm/i915_drm.h
-+++ b/include/uapi/drm/i915_drm.h
-@@ -806,6 +806,12 @@ typedef struct drm_i915_irq_wait {
-  */
- #define I915_PARAM_PXP_STATUS		 58
- 
-+/*
-+ * Query if kernel allows marking a context to send a Freq hint to SLPC. This
-+ * will enable use of the strategies allowed by the SLPC algorithm.
-+ */
-+#define I915_PARAM_HAS_CONTEXT_FREQ_HINT	59
-+
- /* Must be kept compact -- no holes and well documented */
- 
- /**
-@@ -2148,6 +2154,15 @@ struct drm_i915_gem_context_param {
-  * -EIO: The firmware did not succeed in creating the protected context.
-  */
- #define I915_CONTEXT_PARAM_PROTECTED_CONTENT    0xd
-+
-+/*
-+ * I915_CONTEXT_PARAM_LOW_LATENCY:
-+ *
-+ * Mark this context as a low latency workload which requires aggressive GT
-+ * frequency scaling. Use I915_PARAM_HAS_CONTEXT_FREQ_HINT to check if the kernel
-+ * supports this per context flag.
-+ */
-+#define I915_CONTEXT_PARAM_LOW_LATENCY		0xe
- /* Must be kept compact -- no holes and well documented */
- 
- 	/** @value: Context parameter value to be set or queried */
 -- 
-2.38.1
+-shekhar
 
