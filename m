@@ -2,52 +2,52 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id A3D8E87363B
-	for <lists+intel-gfx@lfdr.de>; Wed,  6 Mar 2024 13:25:08 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id B2D8787363C
+	for <lists+intel-gfx@lfdr.de>; Wed,  6 Mar 2024 13:25:13 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B67E6113113;
-	Wed,  6 Mar 2024 12:25:06 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0D940113117;
+	Wed,  6 Mar 2024 12:25:12 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="LBjEwfqn";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="nLrwWJ/W";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5AB52112F37;
- Wed,  6 Mar 2024 12:25:05 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1FC41113117;
+ Wed,  6 Mar 2024 12:25:10 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1709727905; x=1741263905;
+ t=1709727910; x=1741263910;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=yc2tlIagXXLBRNu4U5mTiHZ2itjkVkQoNBbnRj1HXyc=;
- b=LBjEwfqnZVsvGnKp74ja/uSr/3kRpvnyRYYDL8469dKVVanbO1+XFA2d
- ITWXksxGsAAxI711ovL2gSsmjbNdi1bwod5JnOxfsXnUyON1zJQWfA528
- Cvkly29zog0gb+mtgQe5GHXB05DeqGKqCxam5dezjaHLNL+WSRkXvp/BO
- JxIrz3QEKCUmXotx/sZH7HL8WMwBQV5gm72CsCeArNbLyddUYrLfxxJ43
- yd299nd4BmZ9m/NmaodUJQ2fottz1IDg1I2mtPkA8wd5fc8QX/mXPond1
- S1Fd1KCajgJtdQ86dXm7bCBVYyX4vjX2uKWhhZdvoaGpfjhKKcWkN3vZo w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,11004"; a="4919481"
+ bh=anSG/MocK/iIyxIG97PaM59GjMENjATGAmU13joIFuY=;
+ b=nLrwWJ/WJntI1PVAL+s3tbc1/K7S9WCDt4gAS9x1lVQ1u94r4gX92yfN
+ Lb2beotudSPEJbBqna9+F/+ZzbXiGQR41ogKmFpffJIDtFxwkmqGmhOhY
+ 3OiKigAX1NbE27eqggqwFsuPTwPiY7xl+qflLAp40oxsKvDJuqzePrKMF
+ 08hMNQLABWrFsSYu7u4EZl90VpcSErqDguimsmsS8O5z02n/iUBN3DSEI
+ Q9q9KJcxjMVy13bOiSC7XrAqANNpnIzGrWrLuAhUoNE65xdQfnQ+hSfVk
+ lV/Qq8PSqmJ/gErX4nB1DLlCQtQM0mzuPiKwSJOxy/6UCzVHqYmjKrzAf A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,11004"; a="4919521"
 X-IronPort-AV: E=Sophos;i="6.06,208,1705392000"; 
-   d="scan'208";a="4919481"
+   d="scan'208";a="4919521"
 Received: from orviesa005.jf.intel.com ([10.64.159.145])
  by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Mar 2024 04:25:00 -0800
+ 06 Mar 2024 04:25:05 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.06,208,1705392000"; d="scan'208";a="14415803"
+X-IronPort-AV: E=Sophos;i="6.06,208,1705392000"; d="scan'208";a="14415879"
 Received: from rjongalo-mobl2.ger.corp.intel.com (HELO localhost)
  ([10.252.33.211])
  by orviesa005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Mar 2024 04:24:58 -0800
+ 06 Mar 2024 04:25:03 -0800
 From: Jani Nikula <jani.nikula@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: rodrigo.vivi@intel.com, lucas.demarchi@intel.com,
  ville.syrjala@linux.intel.com, jani.nikula@intel.com
-Subject: [RFC v2 3/4] drm/i915/display: accept either i915 or display for
- feature tests
-Date: Wed,  6 Mar 2024 14:24:37 +0200
-Message-Id: <43e805da6002ece451c6b1df566c90d11ab27420.1709727127.git.jani.nikula@intel.com>
+Subject: [RFC v2 4/4] drm/i915/display: test various to_intel_display()
+ scenarios
+Date: Wed,  6 Mar 2024 14:24:38 +0200
+Message-Id: <1d505a515dd666cad3171e2ff9e14f70ea9c64c0.1709727127.git.jani.nikula@intel.com>
 X-Mailer: git-send-email 2.39.2
 In-Reply-To: <cover.1709727127.git.jani.nikula@intel.com>
 References: <cover.1709727127.git.jani.nikula@intel.com>
@@ -69,42 +69,87 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Use _Generic() to allow passing either struct drm_i915_private * or
-struct intel_display * to the feature test macros.
+Drafting and testing various cases for switching to struct intel_display.
 
 Signed-off-by: Jani Nikula <jani.nikula@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_display_device.h | 10 ++++++++--
- 1 file changed, 8 insertions(+), 2 deletions(-)
+ drivers/gpu/drm/i915/display/intel_dp.c   |  6 +++---
+ drivers/gpu/drm/i915/display/intel_hdmi.c | 13 +++++++------
+ 2 files changed, 10 insertions(+), 9 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_display_device.h b/drivers/gpu/drm/i915/display/intel_display_device.h
-index fe4268813786..ac52a6b27bd2 100644
---- a/drivers/gpu/drm/i915/display/intel_display_device.h
-+++ b/drivers/gpu/drm/i915/display/intel_display_device.h
-@@ -13,6 +13,12 @@
- struct drm_i915_private;
- struct drm_printer;
+diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
+index f0c3ed37b350..20eb5590c18a 100644
+--- a/drivers/gpu/drm/i915/display/intel_dp.c
++++ b/drivers/gpu/drm/i915/display/intel_dp.c
+@@ -426,12 +426,12 @@ int intel_dp_max_link_data_rate(struct intel_dp *intel_dp,
  
-+/* transitional until we have no i915 pointers */
-+#define __display(i915_or_display)					\
-+	_Generic(*i915_or_display,					\
-+		 struct drm_i915_private: (((const struct drm_i915_private *)(i915_or_display))->__intel_display_private), \
-+		 struct intel_display: (i915_or_display))
-+
- #define DEV_INFO_DISPLAY_FOR_EACH_FLAG(func) \
- 	/* Keep in alphabetical order */ \
- 	func(cursor_needs_physical); \
-@@ -98,8 +104,8 @@ struct drm_printer;
- 	(IS_DISPLAY_IP_RANGE((__i915), (ipver), (ipver)) && \
- 	 IS_DISPLAY_STEP((__i915), (from), (until)))
+ bool intel_dp_can_bigjoiner(struct intel_dp *intel_dp)
+ {
++	struct intel_display *display = to_intel_display(intel_dp);
+ 	struct intel_digital_port *intel_dig_port = dp_to_dig_port(intel_dp);
+ 	struct intel_encoder *encoder = &intel_dig_port->base;
+-	struct drm_i915_private *dev_priv = to_i915(encoder->base.dev);
  
--#define DISPLAY_INFO(i915)		((i915)->display.info.__device_info)
--#define DISPLAY_RUNTIME_INFO(i915)	(&(i915)->display.info.__runtime_info)
-+#define DISPLAY_INFO(i915)		(__display(i915)->info.__device_info)
-+#define DISPLAY_RUNTIME_INFO(i915)	(&__display(i915)->info.__runtime_info)
+-	return DISPLAY_VER(dev_priv) >= 12 ||
+-		(DISPLAY_VER(dev_priv) == 11 &&
++	return DISPLAY_VER(display) >= 12 ||
++		(DISPLAY_VER(display) == 11 &&
+ 		 encoder->port != PORT_A);
+ }
  
- #define DISPLAY_VER(i915)	(DISPLAY_RUNTIME_INFO(i915)->ip.ver)
- #define DISPLAY_VER_FULL(i915)	IP_VER(DISPLAY_RUNTIME_INFO(i915)->ip.ver, \
+diff --git a/drivers/gpu/drm/i915/display/intel_hdmi.c b/drivers/gpu/drm/i915/display/intel_hdmi.c
+index 90d2236fede3..66a15e4c3d4f 100644
+--- a/drivers/gpu/drm/i915/display/intel_hdmi.c
++++ b/drivers/gpu/drm/i915/display/intel_hdmi.c
+@@ -1242,16 +1242,16 @@ static void hsw_set_infoframes(struct intel_encoder *encoder,
+ 
+ void intel_dp_dual_mode_set_tmds_output(struct intel_hdmi *hdmi, bool enable)
+ {
+-	struct drm_i915_private *dev_priv = intel_hdmi_to_i915(hdmi);
++	struct intel_display *display = to_intel_display(hdmi);
+ 	struct i2c_adapter *ddc = hdmi->attached_connector->base.ddc;
+ 
+ 	if (hdmi->dp_dual_mode.type < DRM_DP_DUAL_MODE_TYPE2_DVI)
+ 		return;
+ 
+-	drm_dbg_kms(&dev_priv->drm, "%s DP dual mode adaptor TMDS output\n",
++	drm_dbg_kms(display->drm, "%s DP dual mode adaptor TMDS output\n",
+ 		    enable ? "Enabling" : "Disabling");
+ 
+-	drm_dp_dual_mode_set_tmds_output(&dev_priv->drm,
++	drm_dp_dual_mode_set_tmds_output(display->drm,
+ 					 hdmi->dp_dual_mode.type, ddc, enable);
+ }
+ 
+@@ -2058,6 +2058,7 @@ static bool hdmi_bpc_possible(const struct intel_crtc_state *crtc_state, int bpc
+ {
+ 	struct drm_i915_private *dev_priv =
+ 		to_i915(crtc_state->uapi.crtc->dev);
++	struct intel_display *display = to_intel_display(crtc_state);
+ 	const struct drm_display_mode *adjusted_mode =
+ 		&crtc_state->hw.adjusted_mode;
+ 
+@@ -2066,7 +2067,7 @@ static bool hdmi_bpc_possible(const struct intel_crtc_state *crtc_state, int bpc
+ 
+ 	/* Display Wa_1405510057:icl,ehl */
+ 	if (intel_hdmi_is_ycbcr420(crtc_state) &&
+-	    bpc == 10 && DISPLAY_VER(dev_priv) == 11 &&
++	    bpc == 10 && DISPLAY_VER(display) == 11 &&
+ 	    (adjusted_mode->crtc_hblank_end -
+ 	     adjusted_mode->crtc_hblank_start) % 8 == 2)
+ 		return false;
+@@ -2591,9 +2592,9 @@ static const struct drm_connector_funcs intel_hdmi_connector_funcs = {
+ static int intel_hdmi_connector_atomic_check(struct drm_connector *connector,
+ 					     struct drm_atomic_state *state)
+ {
+-	struct drm_i915_private *i915 = to_i915(state->dev);
++	struct intel_display *display = to_intel_display(state->dev);
+ 
+-	if (HAS_DDI(i915))
++	if (HAS_DDI(display))
+ 		return intel_digital_connector_atomic_check(connector, state);
+ 	else
+ 		return g4x_hdmi_connector_atomic_check(connector, state);
 -- 
 2.39.2
 
