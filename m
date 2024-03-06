@@ -2,149 +2,128 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 300E3873C53
-	for <lists+intel-gfx@lfdr.de>; Wed,  6 Mar 2024 17:33:24 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id D9EF5873C77
+	for <lists+intel-gfx@lfdr.de>; Wed,  6 Mar 2024 17:42:41 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1E2CD113329;
-	Wed,  6 Mar 2024 16:33:21 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 67CC1113338;
+	Wed,  6 Mar 2024 16:42:40 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="CXVprLnr";
+	dkim=pass (1024-bit key; unprotected) header.d=suse.de header.i=@suse.de header.b="BaWXHL4u";
+	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="C2sezJqN";
+	dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b="BaWXHL4u";
+	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="C2sezJqN";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9C13E11332B
- for <intel-gfx@lists.freedesktop.org>; Wed,  6 Mar 2024 16:33:18 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1709742799; x=1741278799;
- h=from:to:cc:subject:date:message-id:references:
- in-reply-to:content-transfer-encoding:mime-version;
- bh=j2C0kO8y5Giiz7Ra+/AftnoILvcErHhPF7x5DaSrzRI=;
- b=CXVprLnrRYbr9dLMZ2ww4HRRsOPi3vRD+ivpCBHUJGVDMHkfv3Aps70r
- QsODTduk8hw0t94dJaWRLJupXazzZSmeDHsF5Q21irRAlFO6iQ9gKyMIN
- QiSvFeftBB+6wAUQrETPggh0x7XwVezd6mDl8XT+HftCr6Pzjlr7+437s
- I63QbhdULoG+VVBuO3lGo6QZ9EBbbOK3yu5mDxfcFYBL6A9e/4vxA9UxM
- 24vY7mYadNcdB6SMzQ2tR8RCAXnsGBjwAu3Q948sl+LNY6WMemdEe+APk
- bHWp/AlWNjeM2bU63+3ScaeP+/upuiqq6YfYR8VdHdMqgMJrM9UmUqDVG Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,11005"; a="4517716"
-X-IronPort-AV: E=Sophos;i="6.06,208,1705392000"; 
-   d="scan'208";a="4517716"
-Received: from fmviesa004.fm.intel.com ([10.60.135.144])
- by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Mar 2024 08:33:15 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.06,208,1705392000"; d="scan'208";a="14375077"
-Received: from orsmsx603.amr.corp.intel.com ([10.22.229.16])
- by fmviesa004.fm.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
- 06 Mar 2024 08:32:29 -0800
-Received: from orsmsx610.amr.corp.intel.com (10.22.229.23) by
- ORSMSX603.amr.corp.intel.com (10.22.229.16) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35; Wed, 6 Mar 2024 08:32:28 -0800
-Received: from ORSEDG602.ED.cps.intel.com (10.7.248.7) by
- orsmsx610.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35 via Frontend Transport; Wed, 6 Mar 2024 08:32:28 -0800
-Received: from NAM11-CO1-obe.outbound.protection.outlook.com (104.47.56.168)
- by edgegateway.intel.com (134.134.137.103) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.35; Wed, 6 Mar 2024 08:32:28 -0800
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=b4QjA6fSrDXW7mPqIN+nslzKXS/VP9Hkoffm+vnLuNLk5QSCHpKVUk1XuvebYlv7+CIwhkPkRwVNF+HV9syF6hs3lDbnnk+TRLmUo57pT3jTdOXuEbqC6MNZpeu7+wdVzEngvB/jgbYgO+BK/CQoH3gMNr0EI3nDUQXdSFI8kCEXtMdEBZL4DwbYkWVc0jo55VhwJ2hM1ti7fvQxpN/D5ZensN+39DPpXPTR9nt7iNyQ4bWdmVDSkR2kktEmoZvBmMKmevpi3IhrmhYkAnX2aTqpI7Cc6jvjor52XIfaXFFgRhpzDs3DjVrdc4uo/nGMErtDnbiUBVEh3EgbqC50Xw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=vcsaFVam8jqMCRILSkzcRZsrm+ch81oEZyi3kIlBIrY=;
- b=YOFdkL0laPfPa8PgcJI1O1luyFwE/qHHvv7MZluZa8Un5d+nLn+puXgwCVMgP2+2RrQphUkzdZAR9d33Qut5Hi8aGCb5/zQM2R1VkfZd+MXCMKNmGLBvaODSlwj0UCYW1/8Abeyx32oCz1jvic29h8u6F24NuyeoBxtCtqJ4ntTX7gyYWaRJaoEA9Sb5kKTvofeMOpsCymcdZllmzKM+05uW8YSrUiq2J/FgaO+uU+WvpZDpJVUlYYTDNUYX340MQh3MWlosWkR9lWjDJgfAAKLXa9rQpSN05Uv7Gl0kXWHtXJdZ+of8YaZO1quh0b47pcsys3ac36V5KUkI4V+Z0w==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Received: from SJ1PR11MB6129.namprd11.prod.outlook.com (2603:10b6:a03:488::12)
- by SA1PR11MB5801.namprd11.prod.outlook.com (2603:10b6:806:23d::13)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7362.24; Wed, 6 Mar
- 2024 16:32:26 +0000
-Received: from SJ1PR11MB6129.namprd11.prod.outlook.com
- ([fe80::86fd:8a6:5f86:104e]) by SJ1PR11MB6129.namprd11.prod.outlook.com
- ([fe80::86fd:8a6:5f86:104e%5]) with mapi id 15.20.7362.019; Wed, 6 Mar 2024
- 16:32:26 +0000
-From: "Borah, Chaitanya Kumar" <chaitanya.kumar.borah@intel.com>
-To: Matthew Wilcox <willy@infradead.org>
-CC: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
- "Kurmi, Suresh Kumar" <suresh.kumar.kurmi@intel.com>, "Saarinen, Jani"
- <jani.saarinen@intel.com>
-Subject: RE: Regression on linux-next (next-20240228)
-Thread-Topic: Regression on linux-next (next-20240228)
-Thread-Index: Adpt7cuPPMBR1f+2T1On00uzl1C9NAACv5+AAAhXahAABzNYAAAC9KTwACGTokAAFxWlgAAvgUaQ
-Date: Wed, 6 Mar 2024 16:32:26 +0000
-Message-ID: <SJ1PR11MB61294003A5E4624A043AA270B9212@SJ1PR11MB6129.namprd11.prod.outlook.com>
-References: <SJ1PR11MB61292145F3B79DA58ADDDA63B9232@SJ1PR11MB6129.namprd11.prod.outlook.com>
- <ZeVis2823T4YllDg@casper.infradead.org>
- <SJ1PR11MB6129A8999D977A46D6E9CA4AB9232@SJ1PR11MB6129.namprd11.prod.outlook.com>
- <ZeXLAAVtjEz0mB8V@casper.infradead.org>
- <SJ1PR11MB6129E5A41D3B4FEF81C87CC7B9232@SJ1PR11MB6129.namprd11.prod.outlook.com>
- <SJ1PR11MB61299F3119D2CE9190AF92E5B9222@SJ1PR11MB6129.namprd11.prod.outlook.com>
- <ZedbFeW3nYVTeaKW@casper.infradead.org>
-In-Reply-To: <ZedbFeW3nYVTeaKW@casper.infradead.org>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: SJ1PR11MB6129:EE_|SA1PR11MB5801:EE_
-x-ms-office365-filtering-correlation-id: cad0b070-9352-4beb-f332-08dc3dfb0229
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: fa3xxKRr201ShADO+NahhWgukj5rzae3ZGMbSO9l/z7Yc1CDPsFrfycsBiPql/F0jR07+3rhhvRByOcovYEVmaEfvjzE36xm7dwDd2H6Q7Sgydp5YmXWVZAzeJ9v7HWTiexCt7gDOt/JnxdKqPATrU0yWTclrXNu+0/0R9Y9u+IRxV+tqq6m7oxgcqbCydt8RcQhM4ULTV9RofHokIZ7fjRHwZn6prcbDUwjdtRdH/Dpara9lKWVHnAwoc7zUOOYU8q2wLqxNas9N3fsyvb86bEfEf1bOTjwiUNz+YgrXdvKUVIEw8op1resLBxLd2rVEojQ5l2vVVDtGRJL8+sbuZz+1hj9+k1paysyxtTRoEuL0GoH/LwuYOg1P33vtgo9L8gbDFI5zTtAX9HZldcvUILOiF9Xfli6h/ddH+Yr4y3ynJ6UL0RtZMAN/S8zhwbJhiWpiTg+IYkNBAXsIe4ZehP9DZ0pGXL1F1WVyOvWjd5D/QBAgI9xkR6nFeXWqv7qsfTWT39YW9qmVOKUH03LlrFWD3lB2jLe4nRNm/0sB6q+xk46CY3nbkQdeQsA1wxQiuD9l91Ohj9ppYmmCLVkk8kec1BpU626zJ7SUGI523paaGXHwRyfgAtJZaIYmreBo12/o/nIe28QyU7x1Tp3cF4H8xNXg1nswwkMDHjUIJ95vor6+pUAu00R2sBGE3gVROlYFqRm0/1CPyZFlEoCRJzbZIT7pUSwOuH9UY1VKE0=
-x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:SJ1PR11MB6129.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230031)(376005)(38070700009); DIR:OUT; SFP:1101; 
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?NTPPRNf5PyY/dFi4ISu8UNmCSEAzeQT1yawTjDmkGMeYOX+oqPdptrTFxa1O?=
- =?us-ascii?Q?PvLMrTWKRn6VzvDjMaUVTJlPI8Y/66cvIM64rKjT2DiFisBJlQlro4mnhES7?=
- =?us-ascii?Q?J+OSkLuB7CzJsvSiN7Sjm+4RAUR7Wjng8PW8Cm1SkPEPvisfo6l4rYnbuQ0p?=
- =?us-ascii?Q?6Mx6xRcoE8O4qdYABIKpPLJhRb9Q1AhSW/oWqX0k5Juol4Mqxryvbu5G+Hxe?=
- =?us-ascii?Q?CBXuPR5janjt1Sx4oEFydddytYaDSaF9/UMkKD5Q0dMLpCN6Wse4K/TJa064?=
- =?us-ascii?Q?ARjAzEhp8TaWVnUHbpc1/m2D/07Id0BiH1ZJ0jD5wY6joqrsPwgQj7xM8Xp1?=
- =?us-ascii?Q?ecem8VUSbJtPF+EUFa1p/lNmk8TkAUJaNu+GB49gCZMW5ufj8NsLr89L78I7?=
- =?us-ascii?Q?7lnfPt1k04qYX3Kssdn96Fc7Y8uwlCZaXD++C+YCOlTFPnYbxtm8pw1Ob7qE?=
- =?us-ascii?Q?03krmklbDKWfBgVCwJtyeQ4hOegpDtP17TavN8HFaiZnVpvlY5SluHv0PDp4?=
- =?us-ascii?Q?qaNJ5jpcDvTJwAZKKdSfPi0mjjGE/Lr2SRGohPC9cmZqCe3HKHDqhpMVvLxn?=
- =?us-ascii?Q?b5B7ThEWSIeQUD3Hlds5LCgeGoImJwIvHAVyQs2feJIFyCb2jfRRvfW3nHEb?=
- =?us-ascii?Q?bwl+0SGn128RrOJcfG3aOsub2EJjfYU8evXVbxM420gGj30etP2XVcDg1l+e?=
- =?us-ascii?Q?T1OX+0HtF63zchxh+RYE7IPSacYeiXapwA6+/RmUg+mT3T77L/rDtxJ9qooA?=
- =?us-ascii?Q?FBxO3zhIGWrFEMK50gnbziGfwEHI8w966H+9jWCFSJduWyrQUQzSQk6o2qsD?=
- =?us-ascii?Q?1rIbHJvrYYG8j3/frWCwLvitXA17/7KlJft2TeMWTV37USxlz1Gj02UlSnJ1?=
- =?us-ascii?Q?63EsBTLSN/vLEKe1G1EXHWWXnD3T9X5hevpBnkNxC3it+DKYmvwuWYjc86pe?=
- =?us-ascii?Q?3nJm16r4DdPQ509GheA+mG+Ls81B61ruH/gv79+bz0TNrjey5TYe/TBqqhdc?=
- =?us-ascii?Q?jfTm8eAuhFFR2q6GWeoRD91GMFBfkydROuUgg+LapHTYU1tCSwqWzXPQd4ED?=
- =?us-ascii?Q?Sa6yDzD0vuWaC2Vz/CBOfnIus4dq2eVhckpzLyv6gRdrZlbS1pEVd+GAoFQg?=
- =?us-ascii?Q?mxocS2n8hiQnj3Wa3N+4k2VgoNP2fvP6nlrxx4XKEvEUgjSIEGAULcCR1CfM?=
- =?us-ascii?Q?eOH9aoztWEVclwOSn5fNmXmN3DxCfSCmu5Zk9VIG8cFnJxsT8npVic+QPgnO?=
- =?us-ascii?Q?4uL5Z8VU/C3BQd74cEHVbUS3dfBvig/Pm77/sjU8FLNPvwuQDkVDg+Rp63bj?=
- =?us-ascii?Q?mAcexDggM3mCtHD/guXPATTGaNRIohGlENEz6kH3cBm1K+ZF67Wxdjd7YDM/?=
- =?us-ascii?Q?GIj2bfUlZlFk8HmGa1I4+b9ZPL+UADrSBiwqt0NRPDbhaTm1Oa7uPhgNsNsB?=
- =?us-ascii?Q?MTkpwRnEGmNXiNt9zTbseYvF8simLwbQKXNvnDFlTwn+uQQIGZkp9BQuxzv1?=
- =?us-ascii?Q?hLZOQo2+1akr+OM7BXDKkhRB52ObUe+mIIGg9/J/qQONbdcjArHUEjpe4QE4?=
- =?us-ascii?Q?nWeGY5Wt2EnQgPWoxqPoHIqSM6NkkvNubAG8rN8lvPcgWheS7OFIbdTwqXZQ?=
- =?us-ascii?Q?Gw=3D=3D?=
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+Received: from smtp-out1.suse.de (smtp-out1.suse.de [195.135.223.130])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 57630113338
+ for <intel-gfx@lists.freedesktop.org>; Wed,  6 Mar 2024 16:42:38 +0000 (UTC)
+Received: from imap2.dmz-prg2.suse.org (imap2.dmz-prg2.suse.org [10.150.64.98])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+ (No client certificate requested)
+ by smtp-out1.suse.de (Postfix) with ESMTPS id 9F0F133C85
+ for <intel-gfx@lists.freedesktop.org>; Wed,  6 Mar 2024 16:42:36 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
+ t=1709743356; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:
+ mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
+ bh=qfFRdqu+piCMp0JvtgM58010/cFLg1q6aYbPfL4I+rk=;
+ b=BaWXHL4um2pIzikAO7nPMVW35rDx3dd7/37rDKjU5S9A9RhqCpkztl/ox1gTZBrLjeTeAK
+ gpPPSPZmwBYJR4biZtfpzM+I8qunk9eGavEb99y0gWCcbohVw9bl9sg+pKD7Bk0jtrR9GY
+ bA0cuQ1dFskFF7tQZEg59/PBk4uKp40=
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
+ s=susede2_ed25519; t=1709743356;
+ h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:
+ mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
+ bh=qfFRdqu+piCMp0JvtgM58010/cFLg1q6aYbPfL4I+rk=;
+ b=C2sezJqNpD8/zUTj0CUQMn37IwEPifkDx3jJn5jGdOCQXqlZ2bUWsQhixBOmLuERilFnJD
+ e5nembFQPunRSbBg==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
+ t=1709743356; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:
+ mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
+ bh=qfFRdqu+piCMp0JvtgM58010/cFLg1q6aYbPfL4I+rk=;
+ b=BaWXHL4um2pIzikAO7nPMVW35rDx3dd7/37rDKjU5S9A9RhqCpkztl/ox1gTZBrLjeTeAK
+ gpPPSPZmwBYJR4biZtfpzM+I8qunk9eGavEb99y0gWCcbohVw9bl9sg+pKD7Bk0jtrR9GY
+ bA0cuQ1dFskFF7tQZEg59/PBk4uKp40=
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
+ s=susede2_ed25519; t=1709743356;
+ h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:
+ mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
+ bh=qfFRdqu+piCMp0JvtgM58010/cFLg1q6aYbPfL4I+rk=;
+ b=C2sezJqNpD8/zUTj0CUQMn37IwEPifkDx3jJn5jGdOCQXqlZ2bUWsQhixBOmLuERilFnJD
+ e5nembFQPunRSbBg==
+Received: from imap2.dmz-prg2.suse.org (localhost [127.0.0.1])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+ (No client certificate requested)
+ by imap2.dmz-prg2.suse.org (Postfix) with ESMTPS id 8C8A21377D
+ for <intel-gfx@lists.freedesktop.org>; Wed,  6 Mar 2024 16:42:36 +0000 (UTC)
+Received: from dovecot-director2.suse.de ([2a07:de40:b281:106:10:150:64:167])
+ by imap2.dmz-prg2.suse.org with ESMTPSA id 21ezIPyc6GX+DAAAn2gu4w
+ (envelope-from <tzimmermann@suse.de>)
+ for <intel-gfx@lists.freedesktop.org>; Wed, 06 Mar 2024 16:42:36 +0000
+Message-ID: <2dd360ea-9f47-4b5a-9bc8-9deb55b5acd6@suse.de>
+Date: Wed, 6 Mar 2024 17:42:36 +0100
 MIME-Version: 1.0
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: SJ1PR11MB6129.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: cad0b070-9352-4beb-f332-08dc3dfb0229
-X-MS-Exchange-CrossTenant-originalarrivaltime: 06 Mar 2024 16:32:26.1601 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: S9oMB43iWvvvDAATQ1JY8ynvargRQbhY5Ewzc86e/rhyWCOl/IZpzNeZTDPl2rRvjMkvUNycabHEva8g8rVjdewIeFynknp0mqui6sMcIjo=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA1PR11MB5801
-X-OriginatorOrg: intel.com
+User-Agent: Mozilla Thunderbird
+Subject: =?UTF-8?B?UmU6IOKclyBGaS5DSS5CQVQ6IGZhaWx1cmUgZm9yIGRybS9pOTE1OiBD?=
+ =?UTF-8?Q?onvert_fbdev_to_DRM_client_=28rev7=29?=
+Content-Language: en-US
+To: intel-gfx@lists.freedesktop.org
+References: <20240301134448.31289-1-tzimmermann@suse.de>
+ <170931494393.452921.14428659117330493781@8e613ede5ea5>
+From: Thomas Zimmermann <tzimmermann@suse.de>
+Autocrypt: addr=tzimmermann@suse.de; keydata=
+ xsBNBFs50uABCADEHPidWt974CaxBVbrIBwqcq/WURinJ3+2WlIrKWspiP83vfZKaXhFYsdg
+ XH47fDVbPPj+d6tQrw5lPQCyqjwrCPYnq3WlIBnGPJ4/jreTL6V+qfKRDlGLWFjZcsrPJGE0
+ BeB5BbqP5erN1qylK9i3gPoQjXGhpBpQYwRrEyQyjuvk+Ev0K1Jc5tVDeJAuau3TGNgah4Yc
+ hdHm3bkPjz9EErV85RwvImQ1dptvx6s7xzwXTgGAsaYZsL8WCwDaTuqFa1d1jjlaxg6+tZsB
+ 9GluwvIhSezPgnEmimZDkGnZRRSFiGP8yjqTjjWuf0bSj5rUnTGiyLyRZRNGcXmu6hjlABEB
+ AAHNJ1Rob21hcyBaaW1tZXJtYW5uIDx0emltbWVybWFubkBzdXNlLmRlPsLAjgQTAQgAOAIb
+ AwULCQgHAgYVCgkICwIEFgIDAQIeAQIXgBYhBHIX+6yM6c9jRKFo5WgNwR1TC3ojBQJftODH
+ AAoJEGgNwR1TC3ojx1wH/0hKGWugiqDgLNXLRD/4TfHBEKmxIrmfu9Z5t7vwUKfwhFL6hqvo
+ lXPJJKQpQ2z8+X2vZm/slsLn7J1yjrOsoJhKABDi+3QWWSGkaGwRJAdPVVyJMfJRNNNIKwVb
+ U6B1BkX2XDKDGffF4TxlOpSQzdtNI/9gleOoUA8+jy8knnDYzjBNOZqLG2FuTdicBXblz0Mf
+ vg41gd9kCwYXDnD91rJU8tzylXv03E75NCaTxTM+FBXPmsAVYQ4GYhhgFt8S2UWMoaaABLDe
+ 7l5FdnLdDEcbmd8uLU2CaG4W2cLrUaI4jz2XbkcPQkqTQ3EB67hYkjiEE6Zy3ggOitiQGcqp
+ j//OwE0EWznS4AEIAMYmP4M/V+T5RY5at/g7rUdNsLhWv1APYrh9RQefODYHrNRHUE9eosYb
+ T6XMryR9hT8XlGOYRwKWwiQBoWSDiTMo/Xi29jUnn4BXfI2px2DTXwc22LKtLAgTRjP+qbU6
+ 3Y0xnQN29UGDbYgyyK51DW3H0If2a3JNsheAAK+Xc9baj0LGIc8T9uiEWHBnCH+RdhgATnWW
+ GKdDegUR5BkDfDg5O/FISymJBHx2Dyoklv5g4BzkgqTqwmaYzsl8UxZKvbaxq0zbehDda8lv
+ hFXodNFMAgTLJlLuDYOGLK2AwbrS3Sp0AEbkpdJBb44qVlGm5bApZouHeJ/+n+7r12+lqdsA
+ EQEAAcLAdgQYAQgAIAIbDBYhBHIX+6yM6c9jRKFo5WgNwR1TC3ojBQJftOH6AAoJEGgNwR1T
+ C3ojVSkIALpAPkIJPQoURPb1VWjh34l0HlglmYHvZszJWTXYwavHR8+k6Baa6H7ufXNQtThR
+ yIxJrQLW6rV5lm7TjhffEhxVCn37+cg0zZ3j7zIsSS0rx/aMwi6VhFJA5hfn3T0TtrijKP4A
+ SAQO9xD1Zk9/61JWk8OysuIh7MXkl0fxbRKWE93XeQBhIJHQfnc+YBLprdnxR446Sh8Wn/2D
+ Ya8cavuWf2zrB6cZurs048xe0UbSW5AOSo4V9M0jzYI4nZqTmPxYyXbm30Kvmz0rYVRaitYJ
+ 4kyYYMhuULvrJDMjZRvaNe52tkKAvMevcGdt38H4KSVXAylqyQOW5zvPc4/sq9c=
+In-Reply-To: <170931494393.452921.14428659117330493781@8e613ede5ea5>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+Authentication-Results: smtp-out1.suse.de;
+	none
+X-Spamd-Result: default: False [-3.09 / 50.00]; ARC_NA(0.00)[];
+ RCVD_VIA_SMTP_AUTH(0.00)[]; XM_UA_NO_VERSION(0.01)[];
+ FROM_HAS_DN(0.00)[]; TO_MATCH_ENVRCPT_ALL(0.00)[];
+ BAYES_HAM(-3.00)[100.00%]; MIME_GOOD(-0.10)[text/plain];
+ PREVIOUSLY_DELIVERED(0.00)[intel-gfx@lists.freedesktop.org];
+ TO_DN_NONE(0.00)[]; RCPT_COUNT_ONE(0.00)[1];
+ RCVD_COUNT_THREE(0.00)[3];
+ DKIM_SIGNED(0.00)[suse.de:s=susede2_rsa,suse.de:s=susede2_ed25519];
+ FUZZY_BLOCKED(0.00)[rspamd.com]; FROM_EQ_ENVFROM(0.00)[];
+ MIME_TRACE(0.00)[0:+]; RCVD_TLS_ALL(0.00)[];
+ MID_RHS_MATCH_FROM(0.00)[]
+X-Spam-Level: 
+X-Spam-Flag: NO
+X-Spam-Score: -3.09
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -160,86 +139,216 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hello Mathew,
+FYI, there's a possible regression reported here. I was not able to 
+reproduce this bug locally with neither i915 nor xe.
 
-> -----Original Message-----
-> From: Matthew Wilcox <willy@infradead.org>
-> Sent: Tuesday, March 5, 2024 11:19 PM
-> To: Borah, Chaitanya Kumar <chaitanya.kumar.borah@intel.com>
-> Cc: intel-gfx@lists.freedesktop.org; Kurmi, Suresh Kumar
-> <suresh.kumar.kurmi@intel.com>; Saarinen, Jani <jani.saarinen@intel.com>
-> Subject: Re: Regression on linux-next (next-20240228)
->=20
-> On Tue, Mar 05, 2024 at 06:49:16AM +0000, Borah, Chaitanya Kumar wrote:
-> > Issue is still seen with the following changes
-> >
-> > void put_pages_list(struct list_head *pages)
-> >
-> >         folio_batch_init(&fbatch);
-> >         list_for_each_entry(folio, pages, lru) {
-> > -               if (!folio_put_testzero(folio))
-> > +               if (!folio_put_testzero(folio)) {
-> > +                       list_del(&folio->lru);
-> >                         continue;
-> > +               }
-> >                 if (folio_test_large(folio)) {
-> >                         __folio_put_large(folio);
-> > +                       list_del(&folio->lru);
-> >                         continue;
-> >                 }
->=20
-> Thanks for testing.  Sorry about this.  I think I figured out what the pr=
-oblem
-> actually is.  I switched from list_for_each_entry_safe() to list_for_each=
-_entry()
-> since I was no longer deleting the entries from the list.  Unfortunately,=
- I was
-> still freeing the entries as I walked the list!  So it would dereference =
-folio-
-> >lru.next after giving folio back to the page allocator (which probably p=
-ut it on
-> the PCP list, where it would point to another free folio?)
->=20
-> Anyway, this should do the job, without the change I asked you to test ab=
-ove.
-> If this doesn't do the job by itself, you could try combining the two cha=
-nges,
-> but I don't think that will be necessary.
->=20
-> diff --git a/mm/swap.c b/mm/swap.c
-> index a910af21ba68..1d4b7713605d 100644
-> --- a/mm/swap.c
-> +++ b/mm/swap.c
-> @@ -139,10 +139,10 @@ EXPORT_SYMBOL(__folio_put);  void
-> put_pages_list(struct list_head *pages)  {
->  	struct folio_batch fbatch;
-> -	struct folio *folio;
-> +	struct folio *folio, *next;
->=20
->  	folio_batch_init(&fbatch);
-> -	list_for_each_entry(folio, pages, lru) {
-> +	list_for_each_entry_safe(folio, next, pages, lru) {
->  		if (!folio_put_testzero(folio))
->  			continue;
->  		if (folio_test_hugetlb(folio)) {
+Am 01.03.24 um 18:42 schrieb Patchwork:
+> Project List - Patchwork *Patch Details*
+> *Series:* 	drm/i915: Convert fbdev to DRM client (rev7)
+> *URL:* 	https://patchwork.freedesktop.org/series/115714/
+> *State:* 	failure
+> *Details:* 
+> https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115714v7/index.html
+>
+>
+>   CI Bug Log - changes from CI_DRM_14378 -> Patchwork_115714v7
+>
+>
+>     Summary
+>
+> *FAILURE*
+>
+> Serious unknown changes coming with Patchwork_115714v7 absolutely need 
+> to be
+> verified manually.
+>
+> If you think the reported changes have nothing to do with the changes
+> introduced in Patchwork_115714v7, please notify your bug team 
+> (I915-ci-infra@lists.freedesktop.org) to allow them
+> to document this new failure mode, which will reduce false positives 
+> in CI.
+>
+> External URL: 
+> https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115714v7/index.html
+>
+>
+>     Participating hosts (41 -> 40)
+>
+> Missing (1): fi-snb-2520m
+>
+>
+>     Possible new issues
+>
+> Here are the unknown changes that may have been introduced in 
+> Patchwork_115714v7:
+>
+>
+>       IGT changes
+>
+>
+>         Possible regressions
+>
+>   * igt@i915_selftest@live@gt_timelines:
+>       o bat-arls-2: PASS
+>         <https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14378/bat-arls-2/igt@i915_selftest@live@gt_timelines.html>
+>         -> ABORT
+>         <https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115714v7/bat-arls-2/igt@i915_selftest@live@gt_timelines.html>
+>
+>
+>     Known issues
+>
+> Here are the changes found in Patchwork_115714v7 that come from known 
+> issues:
+>
+>
+>       CI changes
+>
+>
+>         Issues hit
+>
+>   * boot:
+>       o fi-cfl-8109u: PASS
+>         <https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14378/fi-cfl-8109u/boot.html>
+>         -> FAIL
+>         <https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115714v7/fi-cfl-8109u/boot.html>
+>         (i915#8293 <https://gitlab.freedesktop.org/drm/intel/issues/8293>)
+>
+>
+>       IGT changes
+>
+>
+>         Issues hit
+>
+>  *
+>
+>     igt@i915_pm_rps@basic-api:
+>
+>       o bat-dg2-9: NOTRUN -> SKIP
+>         <https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115714v7/bat-dg2-9/igt@i915_pm_rps@basic-api.html>
+>         (i915#6621 <https://gitlab.freedesktop.org/drm/intel/issues/6621>)
+>  *
+>
+>     igt@kms_psr@psr-sprite-plane-onoff:
+>
+>       o bat-dg2-9: NOTRUN -> SKIP
+>         <https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115714v7/bat-dg2-9/igt@kms_psr@psr-sprite-plane-onoff.html>
+>         (i915#9673
+>         <https://gitlab.freedesktop.org/drm/intel/issues/9673> /
+>         i915#9732
+>         <https://gitlab.freedesktop.org/drm/intel/issues/9732>) +3
+>         other tests skip
+>  *
+>
+>     igt@kms_setmode@basic-clone-single-crtc:
+>
+>       o bat-dg2-9: NOTRUN -> SKIP
+>         <https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115714v7/bat-dg2-9/igt@kms_setmode@basic-clone-single-crtc.html>
+>         (i915#3555 <https://gitlab.freedesktop.org/drm/intel/issues/3555>)
+>  *
+>
+>     igt@prime_vgem@basic-fence-flip:
+>
+>       o bat-dg2-9: NOTRUN -> SKIP
+>         <https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115714v7/bat-dg2-9/igt@prime_vgem@basic-fence-flip.html>
+>         (i915#3708 <https://gitlab.freedesktop.org/drm/intel/issues/3708>)
+>  *
+>
+>     igt@prime_vgem@basic-fence-mmap:
+>
+>       o bat-dg2-9: NOTRUN -> SKIP
+>         <https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115714v7/bat-dg2-9/igt@prime_vgem@basic-fence-mmap.html>
+>         (i915#3708
+>         <https://gitlab.freedesktop.org/drm/intel/issues/3708> /
+>         i915#4077
+>         <https://gitlab.freedesktop.org/drm/intel/issues/4077>) +1
+>         other test skip
+>  *
+>
+>     igt@prime_vgem@basic-write:
+>
+>       o bat-dg2-9: NOTRUN -> SKIP
+>         <https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115714v7/bat-dg2-9/igt@prime_vgem@basic-write.html>
+>         (i915#3291
+>         <https://gitlab.freedesktop.org/drm/intel/issues/3291> /
+>         i915#3708
+>         <https://gitlab.freedesktop.org/drm/intel/issues/3708>) +2
+>         other tests skip
+>
+>
+>         Possible fixes
+>
+>  *
+>
+>     igt@i915_selftest@live@gt_lrc:
+>
+>       o bat-adln-1: INCOMPLETE
+>         <https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14378/bat-adln-1/igt@i915_selftest@live@gt_lrc.html>
+>         (i915#10241
+>         <https://gitlab.freedesktop.org/drm/intel/issues/10241> /
+>         i915#9413
+>         <https://gitlab.freedesktop.org/drm/intel/issues/9413>) ->
+>         PASS
+>         <https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115714v7/bat-adln-1/igt@i915_selftest@live@gt_lrc.html>
+>  *
+>
+>     igt@i915_selftest@live@hangcheck:
+>
+>       o {bat-adls-6}: DMESG-WARN
+>         <https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14378/bat-adls-6/igt@i915_selftest@live@hangcheck.html>
+>         (i915#5591
+>         <https://gitlab.freedesktop.org/drm/intel/issues/5591>) ->
+>         PASS
+>         <https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115714v7/bat-adls-6/igt@i915_selftest@live@hangcheck.html>
+>  *
+>
+>     igt@i915_selftest@live@perf:
+>
+>       o bat-dg2-14: ABORT
+>         <https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14378/bat-dg2-14/igt@i915_selftest@live@perf.html>
+>         -> PASS
+>         <https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115714v7/bat-dg2-14/igt@i915_selftest@live@perf.html>
+>  *
+>
+>     igt@kms_pm_rpm@basic-pci-d3-state:
+>
+>       o bat-dg2-9: ABORT
+>         <https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14378/bat-dg2-9/igt@kms_pm_rpm@basic-pci-d3-state.html>
+>         -> PASS
+>         <https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_115714v7/bat-dg2-9/igt@kms_pm_rpm@basic-pci-d3-state.html>
+>
+> {name}: This element is suppressed. This means it is ignored when 
+> computing
+> the status of the difference (SUCCESS, WARNING, or FAILURE).
+>
+>
+>     Build changes
+>
+>   * Linux: CI_DRM_14378 -> Patchwork_115714v7
+>
+> CI-20190529: 20190529
+> CI_DRM_14378: 5f60548dd58e2ad93005c933fd2633d98db60de4 @ 
+> git://anongit.freedesktop.org/gfx-ci/linux
+> IGT_7742: 7742
+> Patchwork_115714v7: 5f60548dd58e2ad93005c933fd2633d98db60de4 @ 
+> git://anongit.freedesktop.org/gfx-ci/linux
+>
+>
+>       Linux commits
+>
+> 2a2bc7f22f82 drm/i915: Implement fbdev emulation as in-kernel client
+> 3aa489abc35d drm/i915: Implement fbdev client callbacks
+> 56032934e1c0 drm/i915: Initialize fbdev DRM client with callback functions
+> 325f2c9f3e4b drm/i915: Move fbdev functions
+> 9b9c75375fd5 drm/i915: Unregister in-kernel clients
+> 8a5735e7de8a drm/client: Export drm_client_dev_unregister()
+>
 
-The following change works for us.
+-- 
+--
+Thomas Zimmermann
+Graphics Driver Developer
+SUSE Software Solutions Germany GmbH
+Frankenstrasse 146, 90461 Nuernberg, Germany
+GF: Ivo Totev, Andrew Myers, Andrew McDonald, Boudien Moerman
+HRB 36809 (AG Nuernberg)
 
-void put_pages_list(struct list_head *pages)
-{
-        struct folio_batch fbatch;
--       struct folio *folio;
-+       struct folio *folio, *next;
-=20
-        folio_batch_init(&fbatch);
--       list_for_each_entry(folio, pages, lru) {
-+       list_for_each_entry_safe(folio, next, pages, lru) {
-                if (!folio_put_testzero(folio))
-                        continue;
-                if (folio_test_large(folio)) {
-
-Thank you for the resolution. When can we expect a patch?
-
-Regards
-
-Chaitanya
