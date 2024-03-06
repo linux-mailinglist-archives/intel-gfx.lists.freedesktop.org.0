@@ -2,60 +2,29 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 52053872DA1
-	for <lists+intel-gfx@lfdr.de>; Wed,  6 Mar 2024 04:47:15 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 870B3872DB8
+	for <lists+intel-gfx@lfdr.de>; Wed,  6 Mar 2024 04:55:16 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 92251112E7C;
-	Wed,  6 Mar 2024 03:47:12 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="CNQ4QNoS";
-	dkim-atps=neutral
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0123310E68E;
+	Wed,  6 Mar 2024 03:55:15 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 78956112E7C
- for <intel-gfx@lists.freedesktop.org>; Wed,  6 Mar 2024 03:47:11 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1709696831; x=1741232831;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:in-reply-to;
- bh=2g9lpaJz+mN9jhADpSQIliscSIks4enWoICd6/ZJ3hw=;
- b=CNQ4QNoSUABzOrQeQewQKOMtRZ9Iw8viMCDGHarqp9onrulWYibTBYhj
- 375i2vqGfNIvsQyTTxeWir+EKeMP2ewKJGqQ7oskwMKypf1qTQKOjdlRz
- EzJYNzPr6njm/BtEohWBPWPvhDhqpYHRkzK0h1Nnnd1Pcz9M8J5Cglin0
- B08J2wgCK56T5uf2FzrKs7d6UKMUguf7/iu6Cvv6Frs9FAdFWg+DfAEhV
- r8UEPvsQWiSkGbEKyFNXejWZ1El779YQmGFMThuPdA2vPczoaovlj4c7u
- uF2Ju+l1xuNMvjyRUA44+3wVt+PSK9ddNp2Hz5qbbCPuLuq9SkVpa7WYE A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,11004"; a="15701625"
-X-IronPort-AV: E=Sophos;i="6.06,207,1705392000"; d="scan'208";a="15701625"
-Received: from orviesa010.jf.intel.com ([10.64.159.150])
- by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Mar 2024 19:47:11 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.06,207,1705392000"; 
-   d="scan'208";a="9585068"
-Received: from lkp-server01.sh.intel.com (HELO b21307750695) ([10.239.97.150])
- by orviesa010.jf.intel.com with ESMTP; 05 Mar 2024 19:47:09 -0800
-Received: from kbuild by b21307750695 with local (Exim 4.96)
- (envelope-from <lkp@intel.com>) id 1rhiFG-0003t3-0T;
- Wed, 06 Mar 2024 03:47:06 +0000
-Date: Wed, 6 Mar 2024 11:46:27 +0800
-From: kernel test robot <lkp@intel.com>
-To: Jouni =?iso-8859-1?Q?H=F6gander?= <jouni.hogander@intel.com>,
- intel-gfx@lists.freedesktop.org
-Cc: llvm@lists.linux.dev, oe-kbuild-all@lists.linux.dev,
- Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>,
- Jani Nikula <jani.nikula@linux.intel.com>,
- Jouni =?iso-8859-1?Q?H=F6gander?= <jouni.hogander@intel.com>
-Subject: Re: [PATCH v3 3/5] drm/i915/psr: Calculate IO wake and fast wake
- lines for DISPLAY_VER < 12
-Message-ID: <202403061144.nXW1e72o-lkp@intel.com>
-References: <20240305120458.1275218-4-jouni.hogander@intel.com>
+Received: from 8e613ede5ea5 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B2DB810E615;
+ Wed,  6 Mar 2024 03:55:13 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============0226700852657799249=="
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240305120458.1275218-4-jouni.hogander@intel.com>
+Subject: =?utf-8?q?=E2=9C=97_Fi=2ECI=2EBAT=3A_failure_for_Enable_Wa=5F14019159160_and?=
+ =?utf-8?q?_Wa=5F16019325821_for_MTL_=28rev4=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "John Harrison" <john.c.harrison@intel.com>
+Cc: intel-gfx@lists.freedesktop.org
+Date: Wed, 06 Mar 2024 03:55:13 -0000
+Message-ID: <170969731373.524258.10746163862134893714@8e613ede5ea5>
+X-Patchwork-Hint: ignore
+References: <20240223205632.1621019-1-John.C.Harrison@Intel.com>
+In-Reply-To: <20240223205632.1621019-1-John.C.Harrison@Intel.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -68,222 +37,244 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi Jouni,
+--===============0226700852657799249==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-kernel test robot noticed the following build warnings:
+== Series Details ==
 
-[auto build test WARNING on drm-intel/for-linux-next]
-[also build test WARNING on drm-tip/drm-tip next-20240305]
-[cannot apply to drm-intel/for-linux-next-fixes linus/master v6.8-rc7]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
+Series: Enable Wa_14019159160 and Wa_16019325821 for MTL (rev4)
+URL   : https://patchwork.freedesktop.org/series/130335/
+State : failure
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Jouni-H-gander/drm-i915-display-Make-intel_dp_aux_fw_sync_len-available-for-PSR-code/20240305-200753
-base:   git://anongit.freedesktop.org/drm-intel for-linux-next
-patch link:    https://lore.kernel.org/r/20240305120458.1275218-4-jouni.hogander%40intel.com
-patch subject: [PATCH v3 3/5] drm/i915/psr: Calculate IO wake and fast wake lines for DISPLAY_VER < 12
-config: s390-allmodconfig (https://download.01.org/0day-ci/archive/20240306/202403061144.nXW1e72o-lkp@intel.com/config)
-compiler: clang version 19.0.0git (https://github.com/llvm/llvm-project 325f51237252e6dab8e4e1ea1fa7acbb4faee1cd)
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20240306/202403061144.nXW1e72o-lkp@intel.com/reproduce)
+== Summary ==
 
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202403061144.nXW1e72o-lkp@intel.com/
+CI Bug Log - changes from CI_DRM_14395 -> Patchwork_130335v4
+====================================================
 
-All warnings (new ones prefixed by >>):
+Summary
+-------
 
-   In file included from include/linux/elf.h:6:
-   In file included from arch/s390/include/asm/elf.h:173:
-   In file included from arch/s390/include/asm/mmu_context.h:11:
-   In file included from arch/s390/include/asm/pgalloc.h:18:
-   In file included from include/linux/mm.h:2188:
-   include/linux/vmstat.h:508:43: warning: arithmetic between different enumeration types ('enum zone_stat_item' and 'enum numa_stat_item') [-Wenum-enum-conversion]
-     508 |         return vmstat_text[NR_VM_ZONE_STAT_ITEMS +
-         |                            ~~~~~~~~~~~~~~~~~~~~~ ^
-     509 |                            item];
-         |                            ~~~~
-   include/linux/vmstat.h:515:43: warning: arithmetic between different enumeration types ('enum zone_stat_item' and 'enum numa_stat_item') [-Wenum-enum-conversion]
-     515 |         return vmstat_text[NR_VM_ZONE_STAT_ITEMS +
-         |                            ~~~~~~~~~~~~~~~~~~~~~ ^
-     516 |                            NR_VM_NUMA_EVENT_ITEMS +
-         |                            ~~~~~~~~~~~~~~~~~~~~~~
-   include/linux/vmstat.h:522:36: warning: arithmetic between different enumeration types ('enum node_stat_item' and 'enum lru_list') [-Wenum-enum-conversion]
-     522 |         return node_stat_name(NR_LRU_BASE + lru) + 3; // skip "nr_"
-         |                               ~~~~~~~~~~~ ^ ~~~
-   include/linux/vmstat.h:527:43: warning: arithmetic between different enumeration types ('enum zone_stat_item' and 'enum numa_stat_item') [-Wenum-enum-conversion]
-     527 |         return vmstat_text[NR_VM_ZONE_STAT_ITEMS +
-         |                            ~~~~~~~~~~~~~~~~~~~~~ ^
-     528 |                            NR_VM_NUMA_EVENT_ITEMS +
-         |                            ~~~~~~~~~~~~~~~~~~~~~~
-   include/linux/vmstat.h:536:43: warning: arithmetic between different enumeration types ('enum zone_stat_item' and 'enum numa_stat_item') [-Wenum-enum-conversion]
-     536 |         return vmstat_text[NR_VM_ZONE_STAT_ITEMS +
-         |                            ~~~~~~~~~~~~~~~~~~~~~ ^
-     537 |                            NR_VM_NUMA_EVENT_ITEMS +
-         |                            ~~~~~~~~~~~~~~~~~~~~~~
-   In file included from drivers/gpu/drm/i915/display/intel_psr.c:28:
-   In file included from drivers/gpu/drm/xe/compat-i915-headers/i915_drv.h:15:
-   In file included from drivers/gpu/drm/xe/compat-i915-headers/gem/i915_gem_object.h:11:
-   In file included from drivers/gpu/drm/xe/xe_bo.h:11:
-   In file included from drivers/gpu/drm/xe/xe_bo_types.h:9:
-   In file included from include/linux/iosys-map.h:10:
-   In file included from include/linux/io.h:13:
-   In file included from arch/s390/include/asm/io.h:78:
-   include/asm-generic/io.h:547:31: warning: performing pointer arithmetic on a null pointer has undefined behavior [-Wnull-pointer-arithmetic]
-     547 |         val = __raw_readb(PCI_IOBASE + addr);
-         |                           ~~~~~~~~~~ ^
-   include/asm-generic/io.h:560:61: warning: performing pointer arithmetic on a null pointer has undefined behavior [-Wnull-pointer-arithmetic]
-     560 |         val = __le16_to_cpu((__le16 __force)__raw_readw(PCI_IOBASE + addr));
-         |                                                         ~~~~~~~~~~ ^
-   include/uapi/linux/byteorder/big_endian.h:37:59: note: expanded from macro '__le16_to_cpu'
-      37 | #define __le16_to_cpu(x) __swab16((__force __u16)(__le16)(x))
-         |                                                           ^
-   include/uapi/linux/swab.h:102:54: note: expanded from macro '__swab16'
-     102 | #define __swab16(x) (__u16)__builtin_bswap16((__u16)(x))
-         |                                                      ^
-   In file included from drivers/gpu/drm/i915/display/intel_psr.c:28:
-   In file included from drivers/gpu/drm/xe/compat-i915-headers/i915_drv.h:15:
-   In file included from drivers/gpu/drm/xe/compat-i915-headers/gem/i915_gem_object.h:11:
-   In file included from drivers/gpu/drm/xe/xe_bo.h:11:
-   In file included from drivers/gpu/drm/xe/xe_bo_types.h:9:
-   In file included from include/linux/iosys-map.h:10:
-   In file included from include/linux/io.h:13:
-   In file included from arch/s390/include/asm/io.h:78:
-   include/asm-generic/io.h:573:61: warning: performing pointer arithmetic on a null pointer has undefined behavior [-Wnull-pointer-arithmetic]
-     573 |         val = __le32_to_cpu((__le32 __force)__raw_readl(PCI_IOBASE + addr));
-         |                                                         ~~~~~~~~~~ ^
-   include/uapi/linux/byteorder/big_endian.h:35:59: note: expanded from macro '__le32_to_cpu'
-      35 | #define __le32_to_cpu(x) __swab32((__force __u32)(__le32)(x))
-         |                                                           ^
-   include/uapi/linux/swab.h:115:54: note: expanded from macro '__swab32'
-     115 | #define __swab32(x) (__u32)__builtin_bswap32((__u32)(x))
-         |                                                      ^
-   In file included from drivers/gpu/drm/i915/display/intel_psr.c:28:
-   In file included from drivers/gpu/drm/xe/compat-i915-headers/i915_drv.h:15:
-   In file included from drivers/gpu/drm/xe/compat-i915-headers/gem/i915_gem_object.h:11:
-   In file included from drivers/gpu/drm/xe/xe_bo.h:11:
-   In file included from drivers/gpu/drm/xe/xe_bo_types.h:9:
-   In file included from include/linux/iosys-map.h:10:
-   In file included from include/linux/io.h:13:
-   In file included from arch/s390/include/asm/io.h:78:
-   include/asm-generic/io.h:584:33: warning: performing pointer arithmetic on a null pointer has undefined behavior [-Wnull-pointer-arithmetic]
-     584 |         __raw_writeb(value, PCI_IOBASE + addr);
-         |                             ~~~~~~~~~~ ^
-   include/asm-generic/io.h:594:59: warning: performing pointer arithmetic on a null pointer has undefined behavior [-Wnull-pointer-arithmetic]
-     594 |         __raw_writew((u16 __force)cpu_to_le16(value), PCI_IOBASE + addr);
-         |                                                       ~~~~~~~~~~ ^
-   include/asm-generic/io.h:604:59: warning: performing pointer arithmetic on a null pointer has undefined behavior [-Wnull-pointer-arithmetic]
-     604 |         __raw_writel((u32 __force)cpu_to_le32(value), PCI_IOBASE + addr);
-         |                                                       ~~~~~~~~~~ ^
-   include/asm-generic/io.h:692:20: warning: performing pointer arithmetic on a null pointer has undefined behavior [-Wnull-pointer-arithmetic]
-     692 |         readsb(PCI_IOBASE + addr, buffer, count);
-         |                ~~~~~~~~~~ ^
-   include/asm-generic/io.h:700:20: warning: performing pointer arithmetic on a null pointer has undefined behavior [-Wnull-pointer-arithmetic]
-     700 |         readsw(PCI_IOBASE + addr, buffer, count);
-         |                ~~~~~~~~~~ ^
-   include/asm-generic/io.h:708:20: warning: performing pointer arithmetic on a null pointer has undefined behavior [-Wnull-pointer-arithmetic]
-     708 |         readsl(PCI_IOBASE + addr, buffer, count);
-         |                ~~~~~~~~~~ ^
-   include/asm-generic/io.h:717:21: warning: performing pointer arithmetic on a null pointer has undefined behavior [-Wnull-pointer-arithmetic]
-     717 |         writesb(PCI_IOBASE + addr, buffer, count);
-         |                 ~~~~~~~~~~ ^
-   include/asm-generic/io.h:726:21: warning: performing pointer arithmetic on a null pointer has undefined behavior [-Wnull-pointer-arithmetic]
-     726 |         writesw(PCI_IOBASE + addr, buffer, count);
-         |                 ~~~~~~~~~~ ^
-   include/asm-generic/io.h:735:21: warning: performing pointer arithmetic on a null pointer has undefined behavior [-Wnull-pointer-arithmetic]
-     735 |         writesl(PCI_IOBASE + addr, buffer, count);
-         |                 ~~~~~~~~~~ ^
->> drivers/gpu/drm/i915/display/intel_psr.c:1181:6: warning: variable 'io_wake_time' is used uninitialized whenever 'if' condition is false [-Wsometimes-uninitialized]
-    1181 |         if (DISPLAY_VER(i915) >= 9) {
-         |             ^~~~~~~~~~~~~~~~~~~~~~
-   drivers/gpu/drm/i915/display/intel_display_device.h:104:27: note: expanded from macro 'DISPLAY_VER'
-     104 | #define DISPLAY_VER(i915)       (DISPLAY_RUNTIME_INFO(i915)->ip.ver)
-         |                                 ^
-   drivers/gpu/drm/i915/display/intel_psr.c:1201:34: note: uninitialized use occurs here
-    1201 |                 &crtc_state->hw.adjusted_mode, io_wake_time);
-         |                                                ^~~~~~~~~~~~
-   drivers/gpu/drm/i915/display/intel_psr.c:1181:2: note: remove the 'if' if its condition is always true
-    1181 |         if (DISPLAY_VER(i915) >= 9) {
-         |         ^~~~~~~~~~~~~~~~~~~~~~~~~~~
-   drivers/gpu/drm/i915/display/intel_psr.c:1178:33: note: initialize the variable 'io_wake_time' to silence this warning
-    1178 |         int io_wake_lines, io_wake_time, fast_wake_lines, fast_wake_time;
-         |                                        ^
-         |                                         = 0
->> drivers/gpu/drm/i915/display/intel_psr.c:1181:6: warning: variable 'fast_wake_time' is used uninitialized whenever 'if' condition is false [-Wsometimes-uninitialized]
-    1181 |         if (DISPLAY_VER(i915) >= 9) {
-         |             ^~~~~~~~~~~~~~~~~~~~~~
-   drivers/gpu/drm/i915/display/intel_display_device.h:104:27: note: expanded from macro 'DISPLAY_VER'
-     104 | #define DISPLAY_VER(i915)       (DISPLAY_RUNTIME_INFO(i915)->ip.ver)
-         |                                 ^
-   drivers/gpu/drm/i915/display/intel_psr.c:1203:34: note: uninitialized use occurs here
-    1203 |                 &crtc_state->hw.adjusted_mode, fast_wake_time);
-         |                                                ^~~~~~~~~~~~~~
-   drivers/gpu/drm/i915/display/intel_psr.c:1181:2: note: remove the 'if' if its condition is always true
-    1181 |         if (DISPLAY_VER(i915) >= 9) {
-         |         ^~~~~~~~~~~~~~~~~~~~~~~~~~~
-   drivers/gpu/drm/i915/display/intel_psr.c:1178:66: note: initialize the variable 'fast_wake_time' to silence this warning
-    1178 |         int io_wake_lines, io_wake_time, fast_wake_lines, fast_wake_time;
-         |                                                                         ^
-         |                                                                          = 0
-   19 warnings generated.
+  **FAILURE**
+
+  Serious unknown changes coming with Patchwork_130335v4 absolutely need to be
+  verified manually.
+  
+  If you think the reported changes have nothing to do with the changes
+  introduced in Patchwork_130335v4, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them
+  to document this new failure mode, which will reduce false positives in CI.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130335v4/index.html
+
+Participating hosts (41 -> 37)
+------------------------------
+
+  Missing    (4): bat-mtlp-8 bat-dg1-7 fi-glk-j4005 fi-snb-2520m 
+
+Possible new issues
+-------------------
+
+  Here are the unknown changes that may have been introduced in Patchwork_130335v4:
+
+### IGT changes ###
+
+#### Possible regressions ####
+
+  * igt@i915_selftest@live@memory_region:
+    - bat-arls-2:         NOTRUN -> [DMESG-WARN][1]
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130335v4/bat-arls-2/igt@i915_selftest@live@memory_region.html
+
+  
+Known issues
+------------
+
+  Here are the changes found in Patchwork_130335v4 that come from known issues:
+
+### CI changes ###
+
+#### Issues hit ####
+
+  * boot:
+    - fi-bsw-n3050:       [PASS][2] -> [FAIL][3] ([i915#8293])
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14395/fi-bsw-n3050/boot.html
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130335v4/fi-bsw-n3050/boot.html
+    - fi-apl-guc:         [PASS][4] -> [FAIL][5] ([i915#8293])
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14395/fi-apl-guc/boot.html
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130335v4/fi-apl-guc/boot.html
+    - fi-cfl-8109u:       [PASS][6] -> [FAIL][7] ([i915#8293])
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14395/fi-cfl-8109u/boot.html
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130335v4/fi-cfl-8109u/boot.html
+
+  
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@i915_selftest@live@ring_submission:
+    - bat-arls-2:         NOTRUN -> [DMESG-FAIL][8] ([i915#10262]) +8 other tests dmesg-fail
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130335v4/bat-arls-2/igt@i915_selftest@live@ring_submission.html
+
+  
+#### Possible fixes ####
+
+  * igt@i915_selftest@live@guc_hang:
+    - bat-arls-3:         [DMESG-FAIL][9] ([i915#10262]) -> [PASS][10] +12 other tests pass
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14395/bat-arls-3/igt@i915_selftest@live@guc_hang.html
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130335v4/bat-arls-3/igt@i915_selftest@live@guc_hang.html
+
+  * igt@i915_selftest@live@hangcheck:
+    - {bat-adls-6}:       [DMESG-WARN][11] ([i915#5591]) -> [PASS][12]
+   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14395/bat-adls-6/igt@i915_selftest@live@hangcheck.html
+   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130335v4/bat-adls-6/igt@i915_selftest@live@hangcheck.html
+
+  * igt@i915_selftest@live@migrate:
+    - bat-arls-2:         [INCOMPLETE][13] -> [PASS][14]
+   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14395/bat-arls-2/igt@i915_selftest@live@migrate.html
+   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130335v4/bat-arls-2/igt@i915_selftest@live@migrate.html
+
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+  [i915#10262]: https://gitlab.freedesktop.org/drm/intel/issues/10262
+  [i915#5591]: https://gitlab.freedesktop.org/drm/intel/issues/5591
+  [i915#8293]: https://gitlab.freedesktop.org/drm/intel/issues/8293
 
 
-vim +1181 drivers/gpu/drm/i915/display/intel_psr.c
+Build changes
+-------------
 
-  1173	
-  1174	static bool _compute_alpm_params(struct intel_dp *intel_dp,
-  1175					 struct intel_crtc_state *crtc_state)
-  1176	{
-  1177		struct drm_i915_private *i915 = dp_to_i915(intel_dp);
-  1178		int io_wake_lines, io_wake_time, fast_wake_lines, fast_wake_time;
-  1179		u8 max_wake_lines;
-  1180	
-> 1181		if (DISPLAY_VER(i915) >= 9) {
-  1182			int io_buffer_wake_time = get_io_buffer_wake_time(crtc_state);
-  1183			int tfw_exit_latency = 20; /* eDP spec */
-  1184			int phy_wake = 4;	   /* eDP spec */
-  1185			int preamble = 8;	   /* eDP spec */
-  1186			int precharge = intel_dp_aux_fw_sync_len() - preamble;
-  1187	
-  1188			io_wake_time = max(precharge, io_buffer_wake_time) + preamble +
-  1189				phy_wake + tfw_exit_latency;
-  1190			fast_wake_time = precharge + preamble + phy_wake +
-  1191				tfw_exit_latency;
-  1192		}
-  1193	
-  1194		if (DISPLAY_VER(i915) >= 12)
-  1195			/* TODO: Check how we can use ALPM_CTL fast wake extended field */
-  1196			max_wake_lines = 12;
-  1197		else
-  1198			max_wake_lines = 8;
-  1199	
-  1200		io_wake_lines = intel_usecs_to_scanlines(
-  1201			&crtc_state->hw.adjusted_mode, io_wake_time);
-  1202		fast_wake_lines = intel_usecs_to_scanlines(
-  1203			&crtc_state->hw.adjusted_mode, fast_wake_time);
-  1204	
-  1205		if (io_wake_lines > max_wake_lines ||
-  1206		    fast_wake_lines > max_wake_lines)
-  1207			return false;
-  1208	
-  1209		if (!_lnl_compute_alpm_params(intel_dp, crtc_state))
-  1210			return false;
-  1211	
-  1212		if (i915->display.params.psr_safest_params)
-  1213			io_wake_lines = fast_wake_lines = max_wake_lines;
-  1214	
-  1215		/* According to Bspec lower limit should be set as 7 lines. */
-  1216		intel_dp->psr.alpm_parameters.io_wake_lines = max(io_wake_lines, 7);
-  1217		intel_dp->psr.alpm_parameters.fast_wake_lines = max(fast_wake_lines, 7);
-  1218	
-  1219		return true;
-  1220	}
-  1221	
+  * Linux: CI_DRM_14395 -> Patchwork_130335v4
 
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+  CI-20190529: 20190529
+  CI_DRM_14395: dd08fd912fdc1b72984a39852fdbee49b97b8ce4 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_7746: 7746
+  Patchwork_130335v4: dd08fd912fdc1b72984a39852fdbee49b97b8ce4 @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+### Linux commits
+
+84d0a62517b3 drm/i915/guc: Enable Wa_14019159160
+aff8e19b8f54 drm/i915/guc: Add support for w/a KLVs
+0de9177394cd drm/i915: Enable Wa_16019325821
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130335v4/index.html
+
+--===============0226700852657799249==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>Enable Wa_14019159160 and Wa_16019325821 for MTL (rev4)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/130335/">https://patchwork.freedesktop.org/series/130335/</a></td></tr>
+<tr><td><b>State:</b></td><td>failure</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130335v4/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130335v4/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_14395 -&gt; Patchwork_130335v4</h1>
+<h2>Summary</h2>
+<p><strong>FAILURE</strong></p>
+<p>Serious unknown changes coming with Patchwork_130335v4 absolutely need to be<br />
+  verified manually.</p>
+<p>If you think the reported changes have nothing to do with the changes<br />
+  introduced in Patchwork_130335v4, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them<br />
+  to document this new failure mode, which will reduce false positives in CI.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130335v4/index.html</p>
+<h2>Participating hosts (41 -&gt; 37)</h2>
+<p>Missing    (4): bat-mtlp-8 bat-dg1-7 fi-glk-j4005 fi-snb-2520m </p>
+<h2>Possible new issues</h2>
+<p>Here are the unknown changes that may have been introduced in Patchwork_130335v4:</p>
+<h3>IGT changes</h3>
+<h4>Possible regressions</h4>
+<ul>
+<li>igt@i915_selftest@live@memory_region:<ul>
+<li>bat-arls-2:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130335v4/bat-arls-2/igt@i915_selftest@live@memory_region.html">DMESG-WARN</a></li>
+</ul>
+</li>
+</ul>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_130335v4 that come from known issues:</p>
+<h3>CI changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>boot:<ul>
+<li>fi-bsw-n3050:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14395/fi-bsw-n3050/boot.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130335v4/fi-bsw-n3050/boot.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/8293">i915#8293</a>)</li>
+<li>fi-apl-guc:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14395/fi-apl-guc/boot.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130335v4/fi-apl-guc/boot.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/8293">i915#8293</a>)</li>
+<li>fi-cfl-8109u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14395/fi-cfl-8109u/boot.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130335v4/fi-cfl-8109u/boot.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/8293">i915#8293</a>)</li>
+</ul>
+</li>
+</ul>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>igt@i915_selftest@live@ring_submission:<ul>
+<li>bat-arls-2:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130335v4/bat-arls-2/igt@i915_selftest@live@ring_submission.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/10262">i915#10262</a>) +8 other tests dmesg-fail</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>
+<p>igt@i915_selftest@live@guc_hang:</p>
+<ul>
+<li>bat-arls-3:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14395/bat-arls-3/igt@i915_selftest@live@guc_hang.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/10262">i915#10262</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130335v4/bat-arls-3/igt@i915_selftest@live@guc_hang.html">PASS</a> +12 other tests pass</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@hangcheck:</p>
+<ul>
+<li>{bat-adls-6}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14395/bat-adls-6/igt@i915_selftest@live@hangcheck.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/5591">i915#5591</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130335v4/bat-adls-6/igt@i915_selftest@live@hangcheck.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@migrate:</p>
+<ul>
+<li>bat-arls-2:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14395/bat-arls-2/igt@i915_selftest@live@migrate.html">INCOMPLETE</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130335v4/bat-arls-2/igt@i915_selftest@live@migrate.html">PASS</a></li>
+</ul>
+</li>
+</ul>
+<p>{name}: This element is suppressed. This means it is ignored when computing<br />
+          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_14395 -&gt; Patchwork_130335v4</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_14395: dd08fd912fdc1b72984a39852fdbee49b97b8ce4 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_7746: 7746<br />
+  Patchwork_130335v4: dd08fd912fdc1b72984a39852fdbee49b97b8ce4 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+<h3>Linux commits</h3>
+<p>84d0a62517b3 drm/i915/guc: Enable Wa_14019159160<br />
+aff8e19b8f54 drm/i915/guc: Add support for w/a KLVs<br />
+0de9177394cd drm/i915: Enable Wa_16019325821</p>
+
+</body>
+</html>
+
+--===============0226700852657799249==--
