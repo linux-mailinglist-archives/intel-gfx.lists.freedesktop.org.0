@@ -2,26 +2,26 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id DF8BE872D8E
-	for <lists+intel-gfx@lfdr.de>; Wed,  6 Mar 2024 04:36:27 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 183CD872D8F
+	for <lists+intel-gfx@lfdr.de>; Wed,  6 Mar 2024 04:36:30 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 502FD10EA2C;
-	Wed,  6 Mar 2024 03:36:25 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id AD1B110EA2F;
+	Wed,  6 Mar 2024 03:36:27 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from 8e613ede5ea5 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1AF9C10EA2C;
- Wed,  6 Mar 2024 03:36:24 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BD29110EA2E;
+ Wed,  6 Mar 2024 03:36:26 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=97_Fi=2ECI=2ECHECKPATCH=3A_warning_for_Enable_Wa=5F14019159?=
- =?utf-8?q?160_and_Wa=5F16019325821_for_MTL_=28rev4=29?=
+Subject: =?utf-8?q?=E2=9C=97_Fi=2ECI=2ESPARSE=3A_warning_for_Enable_Wa=5F14019159160_?=
+ =?utf-8?q?and_Wa=5F16019325821_for_MTL_=28rev4=29?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "John Harrison" <john.c.harrison@intel.com>
 Cc: intel-gfx@lists.freedesktop.org
-Date: Wed, 06 Mar 2024 03:36:24 -0000
-Message-ID: <170969618411.524851.3112574174883110596@8e613ede5ea5>
+Date: Wed, 06 Mar 2024 03:36:26 -0000
+Message-ID: <170969618677.524851.16231133317641432352@8e613ede5ea5>
 X-Patchwork-Hint: ignore
 References: <20240223205632.1621019-1-John.C.Harrison@Intel.com>
 In-Reply-To: <20240223205632.1621019-1-John.C.Harrison@Intel.com>
@@ -49,19 +49,8 @@ State : warning
 
 == Summary ==
 
-Error: dim checkpatch failed
-cae3f3729701 drm/i915: Enable Wa_16019325821
-2048664461bf drm/i915/guc: Add support for w/a KLVs
--:105: WARNING:AVOID_BUG: Do not crash the kernel unless it is absolutely unavoidable--use WARN_ON_ONCE() plus recovery code (if feasible) instead of BUG() or variants
-#105: FILE: drivers/gpu/drm/i915/gt/uc/intel_guc_ads.c:829:
-+	GEM_BUG_ON(iosys_map_is_null(&guc->ads_map));
-
-total: 0 errors, 1 warnings, 0 checks, 159 lines checked
-38e0cc5f7eed drm/i915/guc: Enable Wa_14019159160
--:101: WARNING:AVOID_BUG: Do not crash the kernel unless it is absolutely unavoidable--use WARN_ON_ONCE() plus recovery code (if feasible) instead of BUG() or variants
-#101: FILE: drivers/gpu/drm/i915/gt/uc/intel_guc_ads.c:830:
-+	GEM_BUG_ON(remain < size);
-
-total: 0 errors, 1 warnings, 0 checks, 99 lines checked
+Error: dim sparse failed
+Sparse version: v0.6.2
+Fast mode used, each commit won't be checked separately.
 
 
