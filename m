@@ -2,29 +2,55 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id B4071872C0E
-	for <lists+intel-gfx@lfdr.de>; Wed,  6 Mar 2024 02:22:57 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id AE511872C34
+	for <lists+intel-gfx@lfdr.de>; Wed,  6 Mar 2024 02:28:19 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id ED12D112CE9;
-	Wed,  6 Mar 2024 01:22:54 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E2650112DE1;
+	Wed,  6 Mar 2024 01:28:15 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="XVwuWVG8";
+	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from 8e613ede5ea5 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 91ACC112CE9;
- Wed,  6 Mar 2024 01:22:53 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============2496231550822111235=="
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 93035112DE1;
+ Wed,  6 Mar 2024 01:28:14 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1709688495; x=1741224495;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=lCHHg8fn1LRTe1F7OabPwqwH4b26eld8e9D2CEoXsNE=;
+ b=XVwuWVG8lmD9/G01dzLRMhBr29Pnq2DUAiB94x46c2GikistHq6FIOxj
+ 0TmQAgvVsxZfkbvbyUwx4+1dPC/Q+oRdei6vLEkycEAXePQiWI+mx4O8b
+ EUGwGAGPzooj0kc2mSQ5W8bbXFOecvQnkpcW0vvtOivCMOT8u8zyHZIGJ
+ t5/MgoPDZ3nix6nu1vX2ptsAVsfODnm01zb6OJ8w4JrXcMbYMfmldPByn
+ opvtT5HnonxlOjegw0cllSHBjogMuhH1cdeqre8FsWO30d1zZROvTTwoV
+ +hbizmWwprbCzyF8QLi1QKwxHCt3VHMthIbWCK0QIhHnV6ZBmMNIiDT5y Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,11004"; a="4204622"
+X-IronPort-AV: E=Sophos;i="6.06,207,1705392000"; 
+   d="scan'208";a="4204622"
+Received: from orviesa004.jf.intel.com ([10.64.159.144])
+ by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 05 Mar 2024 17:28:14 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.06,207,1705392000"; d="scan'208";a="14242614"
+Received: from vbelgaum-ubuntu.fm.intel.com ([10.1.39.141])
+ by orviesa004.jf.intel.com with ESMTP; 05 Mar 2024 17:28:14 -0800
+From: Vinay Belgaumkar <vinay.belgaumkar@intel.com>
+To: intel-gfx@lists.freedesktop.org,
+	dri-devel@lists.freedesktop.org
+Cc: Vinay Belgaumkar <vinay.belgaumkar@intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
+ Sushma Venkatesh Reddy <sushma.venkatesh.reddy@intel.com>,
+ Ivan Briano <ivan.briano@intel.com>
+Subject: [PATCH v4] drm/i915/guc: Use context hints for GT frequency
+Date: Tue,  5 Mar 2024 17:27:59 -0800
+Message-Id: <20240306012759.204938-1-vinay.belgaumkar@intel.com>
+X-Mailer: git-send-email 2.38.1
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=97_Fi=2ECI=2EBAT=3A_failure_for_drm/i915=3A_Fix_VMA_UAF_on_?=
- =?utf-8?q?destroy_against_deactivate_race_=28rev5=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Janusz Krzysztofik" <janusz.krzysztofik@linux.intel.com>
-Cc: intel-gfx@lists.freedesktop.org
-Date: Wed, 06 Mar 2024 01:22:53 -0000
-Message-ID: <170968817359.524851.9245393527102041249@8e613ede5ea5>
-X-Patchwork-Hint: ignore
-References: <20240305143747.335367-5-janusz.krzysztofik@linux.intel.com>
-In-Reply-To: <20240305143747.335367-5-janusz.krzysztofik@linux.intel.com>
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -37,347 +63,313 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============2496231550822111235==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+Allow user to provide a low latency context hint. When set, KMD
+sends a hint to GuC which results in special handling for this
+context. SLPC will ramp the GT frequency aggressively every time
+it switches to this context. The down freq threshold will also be
+lower so GuC will ramp down the GT freq for this context more slowly.
+We also disable waitboost for this context as that will interfere with
+the strategy.
 
-== Series Details ==
+We need to enable the use of SLPC Compute strategy during init, but
+it will apply only to contexts that set this bit during context
+creation.
 
-Series: drm/i915: Fix VMA UAF on destroy against deactivate race (rev5)
-URL   : https://patchwork.freedesktop.org/series/129026/
-State : failure
+Userland can check whether this feature is supported using a new param-
+I915_PARAM_HAS_CONTEXT_FREQ_HINT. This flag is true for all guc submission
+enabled platforms as they use SLPC for frequency management.
 
-== Summary ==
+The Mesa usage model for this flag is here -
+https://gitlab.freedesktop.org/sushmave/mesa/-/commits/compute_hint
 
-CI Bug Log - changes from CI_DRM_14393 -> Patchwork_129026v5
-====================================================
+v2: Rename flags as per review suggestions (Rodrigo, Tvrtko).
+Also, use flag bits in intel_context as it allows finer control for
+toggling per engine if needed (Tvrtko).
 
-Summary
--------
+v3: Minor review comments (Tvrtko)
 
-  **FAILURE**
+v4: Update comment (Sushma)
 
-  Serious unknown changes coming with Patchwork_129026v5 absolutely need to be
-  verified manually.
-  
-  If you think the reported changes have nothing to do with the changes
-  introduced in Patchwork_129026v5, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them
-  to document this new failure mode, which will reduce false positives in CI.
+Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
+Cc: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+Cc: Sushma Venkatesh Reddy <sushma.venkatesh.reddy@intel.com>
+Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
+Acked-by: Ivan Briano <ivan.briano@intel.com>
+Signed-off-by: Vinay Belgaumkar <vinay.belgaumkar@intel.com>
+---
+ drivers/gpu/drm/i915/gem/i915_gem_context.c   | 16 ++++++++++++--
+ .../gpu/drm/i915/gem/i915_gem_context_types.h |  1 +
+ drivers/gpu/drm/i915/gt/intel_context_types.h |  1 +
+ drivers/gpu/drm/i915/gt/intel_rps.c           |  4 ++++
+ .../drm/i915/gt/uc/abi/guc_actions_slpc_abi.h | 21 +++++++++++++++++++
+ drivers/gpu/drm/i915/gt/uc/intel_guc_slpc.c   | 17 +++++++++++++++
+ drivers/gpu/drm/i915/gt/uc/intel_guc_slpc.h   |  1 +
+ .../gpu/drm/i915/gt/uc/intel_guc_submission.c |  6 ++++++
+ drivers/gpu/drm/i915/i915_getparam.c          |  6 ++++++
+ include/uapi/drm/i915_drm.h                   | 15 +++++++++++++
+ 10 files changed, 86 insertions(+), 2 deletions(-)
 
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_129026v5/index.html
+diff --git a/drivers/gpu/drm/i915/gem/i915_gem_context.c b/drivers/gpu/drm/i915/gem/i915_gem_context.c
+index dcbfe32fd30c..81f65cab1330 100644
+--- a/drivers/gpu/drm/i915/gem/i915_gem_context.c
++++ b/drivers/gpu/drm/i915/gem/i915_gem_context.c
+@@ -879,6 +879,7 @@ static int set_proto_ctx_param(struct drm_i915_file_private *fpriv,
+ 			       struct i915_gem_proto_context *pc,
+ 			       struct drm_i915_gem_context_param *args)
+ {
++	struct drm_i915_private *i915 = fpriv->i915;
+ 	int ret = 0;
+ 
+ 	switch (args->param) {
+@@ -904,6 +905,13 @@ static int set_proto_ctx_param(struct drm_i915_file_private *fpriv,
+ 			pc->user_flags &= ~BIT(UCONTEXT_BANNABLE);
+ 		break;
+ 
++	case I915_CONTEXT_PARAM_LOW_LATENCY:
++		if (intel_uc_uses_guc_submission(&to_gt(i915)->uc))
++			pc->user_flags |= BIT(UCONTEXT_LOW_LATENCY);
++		else
++			ret = -EINVAL;
++		break;
++
+ 	case I915_CONTEXT_PARAM_RECOVERABLE:
+ 		if (args->size)
+ 			ret = -EINVAL;
+@@ -992,6 +1000,9 @@ static int intel_context_set_gem(struct intel_context *ce,
+ 	if (sseu.slice_mask && !WARN_ON(ce->engine->class != RENDER_CLASS))
+ 		ret = intel_context_reconfigure_sseu(ce, sseu);
+ 
++	if (test_bit(UCONTEXT_LOW_LATENCY, &ctx->user_flags))
++		__set_bit(CONTEXT_LOW_LATENCY, &ce->flags);
++
+ 	return ret;
+ }
+ 
+@@ -1630,6 +1641,9 @@ i915_gem_create_context(struct drm_i915_private *i915,
+ 	if (vm)
+ 		ctx->vm = vm;
+ 
++	/* Assign early so intel_context_set_gem can access these flags */
++	ctx->user_flags = pc->user_flags;
++
+ 	mutex_init(&ctx->engines_mutex);
+ 	if (pc->num_user_engines >= 0) {
+ 		i915_gem_context_set_user_engines(ctx);
+@@ -1652,8 +1666,6 @@ i915_gem_create_context(struct drm_i915_private *i915,
+ 	 * is no remap info, it will be a NOP. */
+ 	ctx->remap_slice = ALL_L3_SLICES(i915);
+ 
+-	ctx->user_flags = pc->user_flags;
+-
+ 	for (i = 0; i < ARRAY_SIZE(ctx->hang_timestamp); i++)
+ 		ctx->hang_timestamp[i] = jiffies - CONTEXT_FAST_HANG_JIFFIES;
+ 
+diff --git a/drivers/gpu/drm/i915/gem/i915_gem_context_types.h b/drivers/gpu/drm/i915/gem/i915_gem_context_types.h
+index 03bc7f9d191b..b6d97da63d1f 100644
+--- a/drivers/gpu/drm/i915/gem/i915_gem_context_types.h
++++ b/drivers/gpu/drm/i915/gem/i915_gem_context_types.h
+@@ -338,6 +338,7 @@ struct i915_gem_context {
+ #define UCONTEXT_BANNABLE		2
+ #define UCONTEXT_RECOVERABLE		3
+ #define UCONTEXT_PERSISTENCE		4
++#define UCONTEXT_LOW_LATENCY		5
+ 
+ 	/**
+ 	 * @flags: small set of booleans
+diff --git a/drivers/gpu/drm/i915/gt/intel_context_types.h b/drivers/gpu/drm/i915/gt/intel_context_types.h
+index 7eccbd70d89f..ed95a7b57cbb 100644
+--- a/drivers/gpu/drm/i915/gt/intel_context_types.h
++++ b/drivers/gpu/drm/i915/gt/intel_context_types.h
+@@ -130,6 +130,7 @@ struct intel_context {
+ #define CONTEXT_PERMA_PIN		11
+ #define CONTEXT_IS_PARKING		12
+ #define CONTEXT_EXITING			13
++#define CONTEXT_LOW_LATENCY		14
+ 
+ 	struct {
+ 		u64 timeout_us;
+diff --git a/drivers/gpu/drm/i915/gt/intel_rps.c b/drivers/gpu/drm/i915/gt/intel_rps.c
+index 9c6812257ac2..a929aa6e3c85 100644
+--- a/drivers/gpu/drm/i915/gt/intel_rps.c
++++ b/drivers/gpu/drm/i915/gt/intel_rps.c
+@@ -1013,6 +1013,10 @@ void intel_rps_boost(struct i915_request *rq)
+ 	if (i915_request_signaled(rq) || i915_request_has_waitboost(rq))
+ 		return;
+ 
++	/* Waitboost is not needed for contexts marked with a Freq hint */
++	if (test_bit(CONTEXT_LOW_LATENCY, &rq->context->flags))
++		return;
++
+ 	/* Serializes with i915_request_retire() */
+ 	if (!test_and_set_bit(I915_FENCE_FLAG_BOOST, &rq->fence.flags)) {
+ 		struct intel_rps *rps = &READ_ONCE(rq->engine)->gt->rps;
+diff --git a/drivers/gpu/drm/i915/gt/uc/abi/guc_actions_slpc_abi.h b/drivers/gpu/drm/i915/gt/uc/abi/guc_actions_slpc_abi.h
+index 811add10c30d..c34674e797c6 100644
+--- a/drivers/gpu/drm/i915/gt/uc/abi/guc_actions_slpc_abi.h
++++ b/drivers/gpu/drm/i915/gt/uc/abi/guc_actions_slpc_abi.h
+@@ -207,6 +207,27 @@ struct slpc_shared_data {
+ 	u8 reserved_mode_definition[4096];
+ } __packed;
+ 
++struct slpc_context_frequency_request {
++	u32 frequency_request:16;
++	u32 reserved:12;
++	u32 is_compute:1;
++	u32 ignore_busyness:1;
++	u32 is_minimum:1;
++	u32 is_predefined:1;
++} __packed;
++
++#define SLPC_CTX_FREQ_REQ_IS_COMPUTE		REG_BIT(28)
++
++struct slpc_optimized_strategies {
++	u32 compute:1;
++	u32 async_flip:1;
++	u32 media:1;
++	u32 vsync_flip:1;
++	u32 reserved:28;
++} __packed;
++
++#define SLPC_OPTIMIZED_STRATEGY_COMPUTE		REG_BIT(0)
++
+ /**
+  * DOC: SLPC H2G MESSAGE FORMAT
+  *
+diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_slpc.c b/drivers/gpu/drm/i915/gt/uc/intel_guc_slpc.c
+index 3e681ab6fbf9..706fffca698b 100644
+--- a/drivers/gpu/drm/i915/gt/uc/intel_guc_slpc.c
++++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_slpc.c
+@@ -537,6 +537,20 @@ int intel_guc_slpc_get_min_freq(struct intel_guc_slpc *slpc, u32 *val)
+ 	return ret;
+ }
+ 
++int intel_guc_slpc_set_strategy(struct intel_guc_slpc *slpc, u32 val)
++{
++	struct drm_i915_private *i915 = slpc_to_i915(slpc);
++	intel_wakeref_t wakeref;
++	int ret = 0;
++
++	with_intel_runtime_pm(&i915->runtime_pm, wakeref)
++		ret = slpc_set_param(slpc,
++				     SLPC_PARAM_STRATEGIES,
++				     val);
++
++	return ret;
++}
++
+ int intel_guc_slpc_set_media_ratio_mode(struct intel_guc_slpc *slpc, u32 val)
+ {
+ 	struct drm_i915_private *i915 = slpc_to_i915(slpc);
+@@ -711,6 +725,9 @@ int intel_guc_slpc_enable(struct intel_guc_slpc *slpc)
+ 	/* Set cached media freq ratio mode */
+ 	intel_guc_slpc_set_media_ratio_mode(slpc, slpc->media_ratio_mode);
+ 
++	/* Enable SLPC Optimized Strategy for compute */
++	intel_guc_slpc_set_strategy(slpc, SLPC_OPTIMIZED_STRATEGY_COMPUTE);
++
+ 	return 0;
+ }
+ 
+diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_slpc.h b/drivers/gpu/drm/i915/gt/uc/intel_guc_slpc.h
+index 6ac6503c39d4..1cb5fd44f05c 100644
+--- a/drivers/gpu/drm/i915/gt/uc/intel_guc_slpc.h
++++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_slpc.h
+@@ -45,5 +45,6 @@ void intel_guc_pm_intrmsk_enable(struct intel_gt *gt);
+ void intel_guc_slpc_boost(struct intel_guc_slpc *slpc);
+ void intel_guc_slpc_dec_waiters(struct intel_guc_slpc *slpc);
+ int intel_guc_slpc_set_ignore_eff_freq(struct intel_guc_slpc *slpc, bool val);
++int intel_guc_slpc_set_strategy(struct intel_guc_slpc *slpc, u32 val);
+ 
+ #endif
+diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c b/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
+index cc076e9302ad..e5c645137cfe 100644
+--- a/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
++++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
+@@ -2645,6 +2645,7 @@ MAKE_CONTEXT_POLICY_ADD(execution_quantum, EXECUTION_QUANTUM)
+ MAKE_CONTEXT_POLICY_ADD(preemption_timeout, PREEMPTION_TIMEOUT)
+ MAKE_CONTEXT_POLICY_ADD(priority, SCHEDULING_PRIORITY)
+ MAKE_CONTEXT_POLICY_ADD(preempt_to_idle, PREEMPT_TO_IDLE_ON_QUANTUM_EXPIRY)
++MAKE_CONTEXT_POLICY_ADD(slpc_ctx_freq_req, SLPM_GT_FREQUENCY)
+ 
+ #undef MAKE_CONTEXT_POLICY_ADD
+ 
+@@ -2664,6 +2665,7 @@ static int guc_context_policy_init_v70(struct intel_context *ce, bool loop)
+ 	struct context_policy policy;
+ 	u32 execution_quantum;
+ 	u32 preemption_timeout;
++	u32 slpc_ctx_freq_req = 0;
+ 	unsigned long flags;
+ 	int ret;
+ 
+@@ -2675,11 +2677,15 @@ static int guc_context_policy_init_v70(struct intel_context *ce, bool loop)
+ 	execution_quantum = engine->props.timeslice_duration_ms * 1000;
+ 	preemption_timeout = engine->props.preempt_timeout_ms * 1000;
+ 
++	if (ce && (ce->flags & BIT(CONTEXT_LOW_LATENCY)))
++		slpc_ctx_freq_req |= SLPC_CTX_FREQ_REQ_IS_COMPUTE;
++
+ 	__guc_context_policy_start_klv(&policy, ce->guc_id.id);
+ 
+ 	__guc_context_policy_add_priority(&policy, ce->guc_state.prio);
+ 	__guc_context_policy_add_execution_quantum(&policy, execution_quantum);
+ 	__guc_context_policy_add_preemption_timeout(&policy, preemption_timeout);
++	__guc_context_policy_add_slpc_ctx_freq_req(&policy, slpc_ctx_freq_req);
+ 
+ 	if (engine->flags & I915_ENGINE_WANT_FORCED_PREEMPTION)
+ 		__guc_context_policy_add_preempt_to_idle(&policy, 1);
+diff --git a/drivers/gpu/drm/i915/i915_getparam.c b/drivers/gpu/drm/i915/i915_getparam.c
+index 5c3fec63cb4c..95c58805b2a4 100644
+--- a/drivers/gpu/drm/i915/i915_getparam.c
++++ b/drivers/gpu/drm/i915/i915_getparam.c
+@@ -155,6 +155,12 @@ int i915_getparam_ioctl(struct drm_device *dev, void *data,
+ 		 */
+ 		value = 1;
+ 		break;
++	case I915_PARAM_HAS_CONTEXT_FREQ_HINT:
++		if (intel_uc_uses_guc_submission(&to_gt(i915)->uc))
++			value = 1;
++		else
++			value = -EINVAL;
++		break;
+ 	case I915_PARAM_HAS_CONTEXT_ISOLATION:
+ 		value = intel_engines_has_context_isolation(i915);
+ 		break;
+diff --git a/include/uapi/drm/i915_drm.h b/include/uapi/drm/i915_drm.h
+index 1279a6b2bece..d4d86e566e07 100644
+--- a/include/uapi/drm/i915_drm.h
++++ b/include/uapi/drm/i915_drm.h
+@@ -806,6 +806,12 @@ typedef struct drm_i915_irq_wait {
+  */
+ #define I915_PARAM_PXP_STATUS		 58
+ 
++/*
++ * Query if kernel allows marking a context to send a Freq hint to SLPC. This
++ * will enable use of the strategies allowed by the SLPC algorithm.
++ */
++#define I915_PARAM_HAS_CONTEXT_FREQ_HINT	59
++
+ /* Must be kept compact -- no holes and well documented */
+ 
+ /**
+@@ -2148,6 +2154,15 @@ struct drm_i915_gem_context_param {
+  * -EIO: The firmware did not succeed in creating the protected context.
+  */
+ #define I915_CONTEXT_PARAM_PROTECTED_CONTENT    0xd
++
++/*
++ * I915_CONTEXT_PARAM_LOW_LATENCY:
++ *
++ * Mark this context as a low latency workload which requires aggressive GT
++ * frequency scaling. Use I915_PARAM_HAS_CONTEXT_FREQ_HINT to check if the kernel
++ * supports this per context flag.
++ */
++#define I915_CONTEXT_PARAM_LOW_LATENCY		0xe
+ /* Must be kept compact -- no holes and well documented */
+ 
+ 	/** @value: Context parameter value to be set or queried */
+-- 
+2.38.1
 
-Participating hosts (41 -> 38)
-------------------------------
-
-  Missing    (3): bat-mtlp-8 fi-glk-j4005 fi-snb-2520m 
-
-Possible new issues
--------------------
-
-  Here are the unknown changes that may have been introduced in Patchwork_129026v5:
-
-### IGT changes ###
-
-#### Possible regressions ####
-
-  * igt@gem_lmem_swapping@basic@lmem0:
-    - bat-dg2-11:         [PASS][1] -> [FAIL][2]
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14393/bat-dg2-11/igt@gem_lmem_swapping@basic@lmem0.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_129026v5/bat-dg2-11/igt@gem_lmem_swapping@basic@lmem0.html
-
-  
-Known issues
-------------
-
-  Here are the changes found in Patchwork_129026v5 that come from known issues:
-
-### CI changes ###
-
-#### Issues hit ####
-
-  * boot:
-    - fi-apl-guc:         [PASS][3] -> [FAIL][4] ([i915#8293])
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14393/fi-apl-guc/boot.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_129026v5/fi-apl-guc/boot.html
-    - fi-cfl-8109u:       [PASS][5] -> [FAIL][6] ([i915#8293])
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14393/fi-cfl-8109u/boot.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_129026v5/fi-cfl-8109u/boot.html
-
-  
-#### Possible fixes ####
-
-  * boot:
-    - bat-jsl-1:          [FAIL][7] ([i915#8293]) -> [PASS][8]
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14393/bat-jsl-1/boot.html
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_129026v5/bat-jsl-1/boot.html
-
-  
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@debugfs_test@basic-hwmon:
-    - bat-jsl-1:          NOTRUN -> [SKIP][9] ([i915#9318])
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_129026v5/bat-jsl-1/igt@debugfs_test@basic-hwmon.html
-
-  * igt@gem_huc_copy@huc-copy:
-    - bat-jsl-1:          NOTRUN -> [SKIP][10] ([i915#2190])
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_129026v5/bat-jsl-1/igt@gem_huc_copy@huc-copy.html
-
-  * igt@gem_lmem_swapping@verify-random:
-    - bat-jsl-1:          NOTRUN -> [SKIP][11] ([i915#4613]) +3 other tests skip
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_129026v5/bat-jsl-1/igt@gem_lmem_swapping@verify-random.html
-
-  * igt@gem_mmap@basic:
-    - bat-arls-2:         NOTRUN -> [SKIP][12] ([i915#4083])
-   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_129026v5/bat-arls-2/igt@gem_mmap@basic.html
-
-  * igt@gem_mmap_gtt@basic:
-    - bat-arls-2:         NOTRUN -> [SKIP][13] ([i915#10196] / [i915#4077])
-   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_129026v5/bat-arls-2/igt@gem_mmap_gtt@basic.html
-
-  * igt@gem_render_tiled_blits@basic:
-    - bat-arls-2:         NOTRUN -> [SKIP][14] ([i915#10197] / [i915#10211] / [i915#4079])
-   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_129026v5/bat-arls-2/igt@gem_render_tiled_blits@basic.html
-
-  * igt@gem_softpin@allocator-basic:
-    - bat-arls-2:         NOTRUN -> [ABORT][15] ([i915#10237])
-   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_129026v5/bat-arls-2/igt@gem_softpin@allocator-basic.html
-
-  * igt@kms_cursor_legacy@basic-busy-flip-before-cursor-legacy:
-    - bat-jsl-1:          NOTRUN -> [SKIP][16] ([i915#4103]) +1 other test skip
-   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_129026v5/bat-jsl-1/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-legacy.html
-
-  * igt@kms_dsc@dsc-basic:
-    - bat-jsl-1:          NOTRUN -> [SKIP][17] ([i915#3555] / [i915#9886])
-   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_129026v5/bat-jsl-1/igt@kms_dsc@dsc-basic.html
-
-  * igt@kms_force_connector_basic@force-load-detect:
-    - bat-jsl-1:          NOTRUN -> [SKIP][18] ([fdo#109285])
-   [18]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_129026v5/bat-jsl-1/igt@kms_force_connector_basic@force-load-detect.html
-
-  * igt@kms_setmode@basic-clone-single-crtc:
-    - bat-jsl-1:          NOTRUN -> [SKIP][19] ([i915#3555])
-   [19]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_129026v5/bat-jsl-1/igt@kms_setmode@basic-clone-single-crtc.html
-
-  
-#### Possible fixes ####
-
-  * igt@gem_exec_fence@basic-await@ccs0:
-    - bat-arls-2:         [ABORT][20] -> [PASS][21]
-   [20]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14393/bat-arls-2/igt@gem_exec_fence@basic-await@ccs0.html
-   [21]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_129026v5/bat-arls-2/igt@gem_exec_fence@basic-await@ccs0.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [fdo#109285]: https://bugs.freedesktop.org/show_bug.cgi?id=109285
-  [i915#10026]: https://gitlab.freedesktop.org/drm/intel/issues/10026
-  [i915#10196]: https://gitlab.freedesktop.org/drm/intel/issues/10196
-  [i915#10197]: https://gitlab.freedesktop.org/drm/intel/issues/10197
-  [i915#10211]: https://gitlab.freedesktop.org/drm/intel/issues/10211
-  [i915#10237]: https://gitlab.freedesktop.org/drm/intel/issues/10237
-  [i915#2190]: https://gitlab.freedesktop.org/drm/intel/issues/2190
-  [i915#3555]: https://gitlab.freedesktop.org/drm/intel/issues/3555
-  [i915#4077]: https://gitlab.freedesktop.org/drm/intel/issues/4077
-  [i915#4079]: https://gitlab.freedesktop.org/drm/intel/issues/4079
-  [i915#4083]: https://gitlab.freedesktop.org/drm/intel/issues/4083
-  [i915#4103]: https://gitlab.freedesktop.org/drm/intel/issues/4103
-  [i915#4613]: https://gitlab.freedesktop.org/drm/intel/issues/4613
-  [i915#8293]: https://gitlab.freedesktop.org/drm/intel/issues/8293
-  [i915#9318]: https://gitlab.freedesktop.org/drm/intel/issues/9318
-  [i915#9886]: https://gitlab.freedesktop.org/drm/intel/issues/9886
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_14393 -> Patchwork_129026v5
-
-  CI-20190529: 20190529
-  CI_DRM_14393: 8f85c978aed193f293da17e783a817844e72a569 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_7746: 7746
-  Patchwork_129026v5: 8f85c978aed193f293da17e783a817844e72a569 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-### Linux commits
-
-fcfa59aaac51 Revert "drm/i915: Wait for active retire before i915_active_fini()"
-0243f58ebb29 drm/i915: Remove extra multi-gt pm-references
-5a6b4fa2ccc4 drm/i915/vma: Fix UAF on destroy against retire race
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_129026v5/index.html
-
---===============2496231550822111235==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915: Fix VMA UAF on destroy against deactivate race (rev5)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/129026/">https://patchwork.freedesktop.org/series/129026/</a></td></tr>
-<tr><td><b>State:</b></td><td>failure</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_129026v5/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_129026v5/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_14393 -&gt; Patchwork_129026v5</h1>
-<h2>Summary</h2>
-<p><strong>FAILURE</strong></p>
-<p>Serious unknown changes coming with Patchwork_129026v5 absolutely need to be<br />
-  verified manually.</p>
-<p>If you think the reported changes have nothing to do with the changes<br />
-  introduced in Patchwork_129026v5, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them<br />
-  to document this new failure mode, which will reduce false positives in CI.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_129026v5/index.html</p>
-<h2>Participating hosts (41 -&gt; 38)</h2>
-<p>Missing    (3): bat-mtlp-8 fi-glk-j4005 fi-snb-2520m </p>
-<h2>Possible new issues</h2>
-<p>Here are the unknown changes that may have been introduced in Patchwork_129026v5:</p>
-<h3>IGT changes</h3>
-<h4>Possible regressions</h4>
-<ul>
-<li>igt@gem_lmem_swapping@basic@lmem0:<ul>
-<li>bat-dg2-11:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14393/bat-dg2-11/igt@gem_lmem_swapping@basic@lmem0.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_129026v5/bat-dg2-11/igt@gem_lmem_swapping@basic@lmem0.html">FAIL</a></li>
-</ul>
-</li>
-</ul>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_129026v5 that come from known issues:</p>
-<h3>CI changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>boot:<ul>
-<li>fi-apl-guc:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14393/fi-apl-guc/boot.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_129026v5/fi-apl-guc/boot.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/8293">i915#8293</a>)</li>
-<li>fi-cfl-8109u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14393/fi-cfl-8109u/boot.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_129026v5/fi-cfl-8109u/boot.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/8293">i915#8293</a>)</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>boot:<ul>
-<li>bat-jsl-1:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14393/bat-jsl-1/boot.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/8293">i915#8293</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_129026v5/bat-jsl-1/boot.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@debugfs_test@basic-hwmon:</p>
-<ul>
-<li>bat-jsl-1:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_129026v5/bat-jsl-1/igt@debugfs_test@basic-hwmon.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/9318">i915#9318</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_huc_copy@huc-copy:</p>
-<ul>
-<li>bat-jsl-1:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_129026v5/bat-jsl-1/igt@gem_huc_copy@huc-copy.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2190">i915#2190</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_lmem_swapping@verify-random:</p>
-<ul>
-<li>bat-jsl-1:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_129026v5/bat-jsl-1/igt@gem_lmem_swapping@verify-random.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4613">i915#4613</a>) +3 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_mmap@basic:</p>
-<ul>
-<li>bat-arls-2:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_129026v5/bat-arls-2/igt@gem_mmap@basic.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4083">i915#4083</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_mmap_gtt@basic:</p>
-<ul>
-<li>bat-arls-2:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_129026v5/bat-arls-2/igt@gem_mmap_gtt@basic.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/10196">i915#10196</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/4077">i915#4077</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_render_tiled_blits@basic:</p>
-<ul>
-<li>bat-arls-2:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_129026v5/bat-arls-2/igt@gem_render_tiled_blits@basic.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/10197">i915#10197</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/10211">i915#10211</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/4079">i915#4079</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_softpin@allocator-basic:</p>
-<ul>
-<li>bat-arls-2:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_129026v5/bat-arls-2/igt@gem_softpin@allocator-basic.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/10237">i915#10237</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_cursor_legacy@basic-busy-flip-before-cursor-legacy:</p>
-<ul>
-<li>bat-jsl-1:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_129026v5/bat-jsl-1/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-legacy.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4103">i915#4103</a>) +1 other test skip</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_dsc@dsc-basic:</p>
-<ul>
-<li>bat-jsl-1:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_129026v5/bat-jsl-1/igt@kms_dsc@dsc-basic.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3555">i915#3555</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/9886">i915#9886</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_force_connector_basic@force-load-detect:</p>
-<ul>
-<li>bat-jsl-1:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_129026v5/bat-jsl-1/igt@kms_force_connector_basic@force-load-detect.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109285">fdo#109285</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_setmode@basic-clone-single-crtc:</p>
-<ul>
-<li>bat-jsl-1:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_129026v5/bat-jsl-1/igt@kms_setmode@basic-clone-single-crtc.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3555">i915#3555</a>)</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>igt@gem_exec_fence@basic-await@ccs0:<ul>
-<li>bat-arls-2:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14393/bat-arls-2/igt@gem_exec_fence@basic-await@ccs0.html">ABORT</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_129026v5/bat-arls-2/igt@gem_exec_fence@basic-await@ccs0.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<p>{name}: This element is suppressed. This means it is ignored when computing<br />
-          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_14393 -&gt; Patchwork_129026v5</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_14393: 8f85c978aed193f293da17e783a817844e72a569 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_7746: 7746<br />
-  Patchwork_129026v5: 8f85c978aed193f293da17e783a817844e72a569 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<h3>Linux commits</h3>
-<p>fcfa59aaac51 Revert "drm/i915: Wait for active retire before i915_active_fini()"<br />
-0243f58ebb29 drm/i915: Remove extra multi-gt pm-references<br />
-5a6b4fa2ccc4 drm/i915/vma: Fix UAF on destroy against retire race</p>
-
-</body>
-</html>
-
---===============2496231550822111235==--
