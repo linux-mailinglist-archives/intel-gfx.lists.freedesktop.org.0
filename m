@@ -2,52 +2,53 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id D940A872CE9
-	for <lists+intel-gfx@lfdr.de>; Wed,  6 Mar 2024 03:45:12 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 92F56872CFD
+	for <lists+intel-gfx@lfdr.de>; Wed,  6 Mar 2024 03:49:41 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 18F59112E2F;
-	Wed,  6 Mar 2024 02:45:11 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0157C10E952;
+	Wed,  6 Mar 2024 02:49:40 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="QrRIc4DG";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Op/rb8Ip";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7C361112E2F;
- Wed,  6 Mar 2024 02:45:09 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3D28310E857;
+ Wed,  6 Mar 2024 02:49:38 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1709693109; x=1741229109;
+ t=1709693378; x=1741229378;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=alN+uPJu/8NGBqgykZe6aRp2zZCU6dU0nrxhzjYhCXM=;
- b=QrRIc4DGaJ+fBNP4GbK6EcEDWYsFYHbUZJAG9b2WM5L9lETnnr1Ou+Oc
- dVPobFGPXfsutKEWYHfqZFv0oyWESCsDMMuMSA3BReaPTuY4YZX2Caf5J
- f5hrExD0bPTbS970fCYawNmRWQxvopb0wQ63Fz270t3A5AvEW6iMlGc/v
- Hw7JHnVkVOj/afZJeC8Dl488ndaGY8qlzNXgZhonFCTXaDzsSzcDPidTc
- LLVl7UoMvYxVx5iArC7cfE24SxGQyAJ8jpJ84gbPuKw6wvtz1SMB3aUNG
- NCECtDr6qglGWhbgvLYPIyFfjFB044f1EVkYG8P/O2cZhQfMHWeZlPENQ A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,11004"; a="8050011"
-X-IronPort-AV: E=Sophos;i="6.06,207,1705392000"; 
-   d="scan'208";a="8050011"
-Received: from orviesa008.jf.intel.com ([10.64.159.148])
- by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Mar 2024 18:45:09 -0800
+ bh=V2BESAi5IBTZYNpAmGm7qoPllRzLdgAlyleL0ee44iQ=;
+ b=Op/rb8IpR2RogLVdlL9nif3z3/oRHksn0uttZdjXU9/XwrzHpaiZCn+V
+ GUcvOKXzKF+r4bN/8BN5zvOzMjOsGXi8+V2bN6ndhZeNSOxJgpqPbroId
+ KGiT1dN08180rFa09Mm6TmfJp3dsEuMC2vW3hc+MJhLYJsLHa6Zaljk20
+ FUtYSritZdNY2luPdcU5fqKkRmqxVD5qex8lwRXBrRHdJOAdJyEJjDgdY
+ MhrbxfMoA9XfQY3Oy0aJoBJtD63nFWP6boZGV52Oe8vIsCWNqvbbRTJcK
+ oSIce6Q5qvstXNk76h7lQscBR0rrWI9GZRH6pJWtUqQtDnPk7QU/Gdj6H Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,11004"; a="15709475"
+X-IronPort-AV: E=Sophos;i="6.06,207,1705392000"; d="scan'208";a="15709475"
+Received: from orviesa003.jf.intel.com ([10.64.159.143])
+ by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 05 Mar 2024 18:49:38 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.06,207,1705392000"; d="scan'208";a="10175845"
+X-IronPort-AV: E=Sophos;i="6.06,207,1705392000"; d="scan'208";a="14253831"
 Received: from kandpal-x299-ud4-pro.iind.intel.com ([10.190.239.32])
- by orviesa008.jf.intel.com with ESMTP; 05 Mar 2024 18:45:07 -0800
+ by orviesa003.jf.intel.com with ESMTP; 05 Mar 2024 18:49:36 -0800
 From: Suraj Kandpal <suraj.kandpal@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: Suraj Kandpal <suraj.kandpal@intel.com>,
- Arun R Murthy <arun.r.murthy@intel.com>
-Subject: [PATCH 4/4] drm/xe/hdcp: Enable HDCP for XE
-Date: Wed,  6 Mar 2024 08:12:48 +0530
-Message-ID: <20240306024247.1857881-6-suraj.kandpal@intel.com>
+ Arun R Murthy <arun.r.murthy@intel.com>,
+ Jani Nikula <jani.nikula@intel.com>
+Subject: [PATCH 1/4] drm/i915/hdcp: Move intel_hdcp_gsc_message def away from
+ header file
+Date: Wed,  6 Mar 2024 08:17:42 +0530
+Message-ID: <20240306024741.1858039-2-suraj.kandpal@intel.com>
 X-Mailer: git-send-email 2.43.2
-In-Reply-To: <20240306024247.1857881-2-suraj.kandpal@intel.com>
-References: <20240306024247.1857881-2-suraj.kandpal@intel.com>
+In-Reply-To: <20240306024247.1857881-3-suraj.kandpal@intel.com>
+References: <20240306024247.1857881-3-suraj.kandpal@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
@@ -65,330 +66,55 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Enable HDCP for Xe by defining functions which take care of
-interaction of HDCP as a client with the GSC CS interface.
-Add intel_hdcp_gsc_message to Makefile and add corresponding
-changes to xe_hdcp_gsc.c to make it build.
+Move intel_hdcp_gsc_message definition into intel_hdcp_gsc.c
+so that intel_hdcp_gsc_message can be redefined for xe as needed.
 
 --v2
--add kfree at appropriate place [Daniele]
--remove useless define [Daniele]
--move host session logic to xe_gsc_submit.c [Daniele]
--call xe_gsc_check_and_update_pending directly in an if condition
-[Daniele]
--use xe_device instead of drm_i915_private [Daniele]
-
---v3
--use xe prefix for newly exposed function [Daniele]
--remove client specific defines from intel_gsc_mtl_header [Daniele]
--add missing kfree() [Daniele]
--have NULL check for hdcp_message in finish function [Daniele]
--dont have too many variable declarations in the same line [Daniele]
-
---v4
--don't point the hdcp_message structure in xe_device to anything
-until it properly gets initialized [Daniele]
-
---v5
--Squash commits for buildability
-
---v6
--Order includes alphabetically [Lucas]
+-Correct commit message to reflect what patch is actually doing [Arun]
 
 Signed-off-by: Suraj Kandpal <suraj.kandpal@intel.com>
 Reviewed-by: Arun R Murthy <arun.r.murthy@intel.com>
+Acked-by: Jani Nikula <jani.nikula@intel.com>
 ---
- drivers/gpu/drm/xe/Makefile              |   1 +
- drivers/gpu/drm/xe/display/xe_hdcp_gsc.c | 202 ++++++++++++++++++++++-
- drivers/gpu/drm/xe/xe_gsc_submit.c       |  15 ++
- drivers/gpu/drm/xe/xe_gsc_submit.h       |   1 +
- 4 files changed, 214 insertions(+), 5 deletions(-)
+ drivers/gpu/drm/i915/display/intel_hdcp_gsc.c | 6 ++++++
+ drivers/gpu/drm/i915/display/intel_hdcp_gsc.h | 7 +------
+ 2 files changed, 7 insertions(+), 6 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/Makefile b/drivers/gpu/drm/xe/Makefile
-index c531210695db..2b654c908ff3 100644
---- a/drivers/gpu/drm/xe/Makefile
-+++ b/drivers/gpu/drm/xe/Makefile
-@@ -254,6 +254,7 @@ xe-$(CONFIG_DRM_XE_DISPLAY) += \
- 	i915-display/intel_global_state.o \
- 	i915-display/intel_gmbus.o \
- 	i915-display/intel_hdcp.o \
-+	i915-display/intel_hdcp_gsc_message.o \
- 	i915-display/intel_hdmi.o \
- 	i915-display/intel_hotplug.o \
- 	i915-display/intel_hotplug_irq.o \
-diff --git a/drivers/gpu/drm/xe/display/xe_hdcp_gsc.c b/drivers/gpu/drm/xe/display/xe_hdcp_gsc.c
-index 3af5a86db3aa..dcde1d0ac1f8 100644
---- a/drivers/gpu/drm/xe/display/xe_hdcp_gsc.c
-+++ b/drivers/gpu/drm/xe/display/xe_hdcp_gsc.c
-@@ -4,15 +4,32 @@
-  */
- 
- #include <drm/drm_print.h>
-+#include <drm/i915_hdcp_interface.h>
-+#include <linux/delay.h>
- 
-+#include "abi/gsc_command_header_abi.h"
+diff --git a/drivers/gpu/drm/i915/display/intel_hdcp_gsc.c b/drivers/gpu/drm/i915/display/intel_hdcp_gsc.c
+index 302bff75b06c..35823e1f65d6 100644
+--- a/drivers/gpu/drm/i915/display/intel_hdcp_gsc.c
++++ b/drivers/gpu/drm/i915/display/intel_hdcp_gsc.c
+@@ -13,6 +13,12 @@
  #include "intel_hdcp_gsc.h"
--#include "xe_device_types.h"
-+#include "intel_hdcp_gsc_message.h"
-+#include "xe_bo.h"
- #include "xe_device.h"
--#include "xe_gt.h"
-+#include "xe_device_types.h"
- #include "xe_gsc_proxy.h"
-+#include "xe_gsc_submit.h"
-+#include "xe_gt.h"
-+#include "xe_map.h"
- #include "xe_pm.h"
- #include "xe_uc_fw.h"
+ #include "intel_hdcp_gsc_message.h"
  
-+#define HECI_MEADDRESS_HDCP 18
-+
 +struct intel_hdcp_gsc_message {
-+	struct xe_bo *hdcp_bo;
-+	u64 hdcp_cmd_in;
-+	u64 hdcp_cmd_out;
++	struct i915_vma *vma;
++	void *hdcp_cmd_in;
++	void *hdcp_cmd_out;
 +};
 +
-+#define HDCP_GSC_HEADER_SIZE sizeof(struct intel_gsc_mtl_header)
-+
- bool intel_hdcp_gsc_cs_required(struct xe_device *xe)
+ bool intel_hdcp_gsc_cs_required(struct drm_i915_private *i915)
  {
- 	return true;
-@@ -44,19 +61,194 @@ bool intel_hdcp_gsc_check_status(struct xe_device *xe)
- 	return ret;
- }
+ 	return DISPLAY_VER(i915) >= 14;
+diff --git a/drivers/gpu/drm/i915/display/intel_hdcp_gsc.h b/drivers/gpu/drm/i915/display/intel_hdcp_gsc.h
+index eba2057c5a9e..5f610df61cc9 100644
+--- a/drivers/gpu/drm/i915/display/intel_hdcp_gsc.h
++++ b/drivers/gpu/drm/i915/display/intel_hdcp_gsc.h
+@@ -10,12 +10,7 @@
+ #include <linux/types.h>
  
-+/*This function helps allocate memory for the command that we will send to gsc cs */
-+static int intel_hdcp_gsc_initialize_message(struct xe_device *xe,
-+					     struct intel_hdcp_gsc_message *hdcp_message)
-+{
-+	struct xe_bo *bo = NULL;
-+	u64 cmd_in, cmd_out;
-+	int ret = 0;
-+
-+	/* allocate object of two page for HDCP command memory and store it */
-+	xe_device_mem_access_get(xe);
-+	bo = xe_bo_create_pin_map(xe, xe_device_get_root_tile(xe), NULL, PAGE_SIZE * 2,
-+				  ttm_bo_type_kernel,
-+				  XE_BO_CREATE_SYSTEM_BIT |
-+				  XE_BO_CREATE_GGTT_BIT);
-+
-+	if (IS_ERR(bo)) {
-+		drm_err(&xe->drm, "Failed to allocate bo for HDCP streaming command!\n");
-+		ret = PTR_ERR(bo);
-+		goto out;
-+	}
-+
-+	cmd_in = xe_bo_ggtt_addr(bo);
-+	cmd_out = cmd_in + PAGE_SIZE;
-+	xe_map_memset(xe, &bo->vmap, 0, 0, bo->size);
-+
-+	hdcp_message->hdcp_bo = bo;
-+	hdcp_message->hdcp_cmd_in = cmd_in;
-+	hdcp_message->hdcp_cmd_out = cmd_out;
-+out:
-+	xe_device_mem_access_put(xe);
-+	return ret;
-+}
-+
-+static int intel_hdcp_gsc_hdcp2_init(struct xe_device *xe)
-+{
-+	struct intel_hdcp_gsc_message *hdcp_message;
-+	int ret;
-+
-+	hdcp_message = kzalloc(sizeof(*hdcp_message), GFP_KERNEL);
-+
-+	if (!hdcp_message)
-+		return -ENOMEM;
-+
-+	/*
-+	 * NOTE: No need to lock the comp mutex here as it is already
-+	 * going to be taken before this function called
-+	 */
-+	ret = intel_hdcp_gsc_initialize_message(xe, hdcp_message);
-+	if (ret) {
-+		drm_err(&xe->drm, "Could not initialize hdcp_message\n");
-+		kfree(hdcp_message);
-+		return ret;
-+	}
-+
-+	xe->display.hdcp.hdcp_message = hdcp_message;
-+	return ret;
-+}
-+
-+static const struct i915_hdcp_ops gsc_hdcp_ops = {
-+	.initiate_hdcp2_session = intel_hdcp_gsc_initiate_session,
-+	.verify_receiver_cert_prepare_km =
-+				intel_hdcp_gsc_verify_receiver_cert_prepare_km,
-+	.verify_hprime = intel_hdcp_gsc_verify_hprime,
-+	.store_pairing_info = intel_hdcp_gsc_store_pairing_info,
-+	.initiate_locality_check = intel_hdcp_gsc_initiate_locality_check,
-+	.verify_lprime = intel_hdcp_gsc_verify_lprime,
-+	.get_session_key = intel_hdcp_gsc_get_session_key,
-+	.repeater_check_flow_prepare_ack =
-+				intel_hdcp_gsc_repeater_check_flow_prepare_ack,
-+	.verify_mprime = intel_hdcp_gsc_verify_mprime,
-+	.enable_hdcp_authentication = intel_hdcp_gsc_enable_authentication,
-+	.close_hdcp_session = intel_hdcp_gsc_close_session,
-+};
-+
- int intel_hdcp_gsc_init(struct xe_device *xe)
- {
--	drm_dbg_kms(&xe->drm, "HDCP support not yet implemented\n");
--	return -ENODEV;
-+	struct i915_hdcp_arbiter *data;
-+	int ret;
-+
-+	data = kzalloc(sizeof(*data), GFP_KERNEL);
-+	if (!data)
-+		return -ENOMEM;
-+
-+	mutex_lock(&xe->display.hdcp.hdcp_mutex);
-+	xe->display.hdcp.arbiter = data;
-+	xe->display.hdcp.arbiter->hdcp_dev = xe->drm.dev;
-+	xe->display.hdcp.arbiter->ops = &gsc_hdcp_ops;
-+	ret = intel_hdcp_gsc_hdcp2_init(xe);
-+	if (ret)
-+		kfree(data);
-+
-+	mutex_unlock(&xe->display.hdcp.hdcp_mutex);
-+
-+	return ret;
- }
+ struct drm_i915_private;
+-
+-struct intel_hdcp_gsc_message {
+-	struct i915_vma *vma;
+-	void *hdcp_cmd_in;
+-	void *hdcp_cmd_out;
+-};
++struct intel_hdcp_gsc_message;
  
- void intel_hdcp_gsc_fini(struct xe_device *xe)
- {
-+	struct intel_hdcp_gsc_message *hdcp_message =
-+					xe->display.hdcp.hdcp_message;
-+
-+	if (!hdcp_message)
-+		return;
-+
-+	xe_bo_unpin_map_no_vm(hdcp_message->hdcp_bo);
-+	kfree(hdcp_message);
-+}
-+
-+static int xe_gsc_send_sync(struct xe_device *xe,
-+			    struct intel_hdcp_gsc_message *hdcp_message,
-+			    u32 msg_size_in, u32 msg_size_out,
-+			    u32 addr_out_off)
-+{
-+	struct xe_gt *gt = hdcp_message->hdcp_bo->tile->media_gt;
-+	struct iosys_map *map = &hdcp_message->hdcp_bo->vmap;
-+	struct xe_gsc *gsc = &gt->uc.gsc;
-+	int ret;
-+
-+	ret = xe_gsc_pkt_submit_kernel(gsc, hdcp_message->hdcp_cmd_in, msg_size_in,
-+				       hdcp_message->hdcp_cmd_out, msg_size_out);
-+	if (ret) {
-+		drm_err(&xe->drm, "failed to send gsc HDCP msg (%d)\n", ret);
-+		return ret;
-+	}
-+
-+	if (xe_gsc_check_and_update_pending(xe, map, 0, map, addr_out_off))
-+		return -EAGAIN;
-+
-+	ret = xe_gsc_read_out_header(xe, map, addr_out_off,
-+				     sizeof(struct hdcp_cmd_header), NULL);
-+
-+	return ret;
- }
- 
- ssize_t intel_hdcp_gsc_msg_send(struct xe_device *xe, u8 *msg_in,
- 				size_t msg_in_len, u8 *msg_out,
- 				size_t msg_out_len)
- {
--	return -ENODEV;
-+	const size_t max_msg_size = PAGE_SIZE - HDCP_GSC_HEADER_SIZE;
-+	struct intel_hdcp_gsc_message *hdcp_message;
-+	u64 host_session_id;
-+	u32 msg_size_in, msg_size_out;
-+	u32 addr_out_off, addr_in_wr_off = 0;
-+	int ret, tries = 0;
-+
-+	if (msg_in_len > max_msg_size || msg_out_len > max_msg_size) {
-+		ret = -ENOSPC;
-+		goto out;
-+	}
-+
-+	msg_size_in = msg_in_len + HDCP_GSC_HEADER_SIZE;
-+	msg_size_out = msg_out_len + HDCP_GSC_HEADER_SIZE;
-+	hdcp_message = xe->display.hdcp.hdcp_message;
-+	addr_out_off = PAGE_SIZE;
-+
-+	host_session_id = xe_gsc_create_host_session_id();
-+	xe_device_mem_access_get(xe);
-+	addr_in_wr_off = xe_gsc_emit_header(xe, &hdcp_message->hdcp_bo->vmap,
-+					    addr_in_wr_off, HECI_MEADDRESS_HDCP,
-+					    host_session_id, msg_in_len);
-+	xe_map_memcpy_to(xe, &hdcp_message->hdcp_bo->vmap, addr_in_wr_off,
-+			 msg_in, msg_in_len);
-+	/*
-+	 * Keep sending request in case the pending bit is set no need to add
-+	 * message handle as we are using same address hence loc. of header is
-+	 * same and it will contain the message handle. we will send the message
-+	 * 20 times each message 50 ms apart
-+	 */
-+	do {
-+		ret = xe_gsc_send_sync(xe, hdcp_message, msg_size_in, msg_size_out,
-+				       addr_out_off);
-+
-+		/* Only try again if gsc says so */
-+		if (ret != -EAGAIN)
-+			break;
-+
-+		msleep(50);
-+
-+	} while (++tries < 20);
-+
-+	if (ret)
-+		goto out;
-+
-+	xe_map_memcpy_from(xe, msg_out, &hdcp_message->hdcp_bo->vmap,
-+			   addr_out_off + HDCP_GSC_HEADER_SIZE,
-+			   msg_out_len);
-+
-+out:
-+	xe_device_mem_access_put(xe);
-+	return ret;
- }
-diff --git a/drivers/gpu/drm/xe/xe_gsc_submit.c b/drivers/gpu/drm/xe/xe_gsc_submit.c
-index 348994b271be..9a18f5667db3 100644
---- a/drivers/gpu/drm/xe/xe_gsc_submit.c
-+++ b/drivers/gpu/drm/xe/xe_gsc_submit.c
-@@ -40,6 +40,21 @@ gsc_to_gt(struct xe_gsc *gsc)
- 	return container_of(gsc, struct xe_gt, uc.gsc);
- }
- 
-+/**
-+ * xe_gsc_get_host_session_id - Creates a random 64 bit host_session id with
-+ * bits 56-63 masked.
-+ *
-+ * Returns: random host_session_id which can be used to send messages to gsc cs
-+ */
-+u64 xe_gsc_create_host_session_id(void)
-+{
-+	u64 host_session_id;
-+
-+	get_random_bytes(&host_session_id, sizeof(u64));
-+	host_session_id &= ~HOST_SESSION_CLIENT_MASK;
-+	return host_session_id;
-+}
-+
- /**
-  * xe_gsc_emit_header - write the MTL GSC header in memory
-  * @xe: the Xe device
-diff --git a/drivers/gpu/drm/xe/xe_gsc_submit.h b/drivers/gpu/drm/xe/xe_gsc_submit.h
-index 1939855031a6..1416b5745a4c 100644
---- a/drivers/gpu/drm/xe/xe_gsc_submit.h
-+++ b/drivers/gpu/drm/xe/xe_gsc_submit.h
-@@ -28,4 +28,5 @@ int xe_gsc_read_out_header(struct xe_device *xe,
- int xe_gsc_pkt_submit_kernel(struct xe_gsc *gsc, u64 addr_in, u32 size_in,
- 			     u64 addr_out, u32 size_out);
- 
-+u64 xe_gsc_create_host_session_id(void);
- #endif
+ bool intel_hdcp_gsc_cs_required(struct drm_i915_private *i915);
+ ssize_t intel_hdcp_gsc_msg_send(struct drm_i915_private *i915, u8 *msg_in,
 -- 
 2.43.2
 
