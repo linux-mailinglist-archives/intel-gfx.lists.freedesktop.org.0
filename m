@@ -2,85 +2,126 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6D53B873AA3
-	for <lists+intel-gfx@lfdr.de>; Wed,  6 Mar 2024 16:25:57 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 62734873B13
+	for <lists+intel-gfx@lfdr.de>; Wed,  6 Mar 2024 16:46:02 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D5831113292;
-	Wed,  6 Mar 2024 15:25:55 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A29BD1132CA;
+	Wed,  6 Mar 2024 15:45:58 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=linuxfoundation.org header.i=@linuxfoundation.org header.b="Fm0gZrav";
+	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="fIaVgdIA";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-il1-f177.google.com (mail-il1-f177.google.com
- [209.85.166.177])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 45D98113293
- for <intel-gfx@lists.freedesktop.org>; Wed,  6 Mar 2024 15:25:54 +0000 (UTC)
-Received: by mail-il1-f177.google.com with SMTP id
- e9e14a558f8ab-35d374bebe3so5623055ab.1
- for <intel-gfx@lists.freedesktop.org>; Wed, 06 Mar 2024 07:25:54 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=linuxfoundation.org; s=google; t=1709738753; x=1710343553;
- darn=lists.freedesktop.org; 
- h=content-transfer-encoding:in-reply-to:from:references:cc:to
- :content-language:subject:user-agent:mime-version:date:message-id
- :from:to:cc:subject:date:message-id:reply-to;
- bh=aV64pIApxifZ5gZF6WilMYrL+2CVuzA5DFuqpWTfKAA=;
- b=Fm0gZravwlnH4GZXLr01SJQ6u1gsYIcw1cuq2SzqwPYfk3GwuG/7Gxh+LA/qzawLTr
- XMDKxWOCUZ+j9yhsRot48UF/HoT0CFnxsxHXarZ0RXc/3Qp/otyvk+aoanRqA4mS+po9
- CkQAsHsgx0p7AVfP9RwkEc6TSj65uI3/LvKvQ=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1709738753; x=1710343553;
- h=content-transfer-encoding:in-reply-to:from:references:cc:to
- :content-language:subject:user-agent:mime-version:date:message-id
- :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
- bh=aV64pIApxifZ5gZF6WilMYrL+2CVuzA5DFuqpWTfKAA=;
- b=YXo2HdclKdnS/+cLb1pL0sZbCT3QIWY7sHGRzwN8eup0DhPkTqhWVUYd5Y3yJXhTZG
- c88iNh6Sx69rSOaFuYtwKAjJQNB1WLXx25NGnKTYqxQC13QuLfCNQB3TjjMNo958XPK2
- OzX03J+sI/rs13PElqeLWr+xmptbUglQfyXFnH4XSs0K+mknAIZzltsvJBQ8hn95Q03e
- 1j7I/V71DH7LLRR+mXkeNTafVow/qCoNxgqBzW/qrEpLiThBXrJpV5i4inGYircRj5eK
- qjAKUPkLql5mrSj64rL+xqJRPbEQvubpRexWJlKywG0qY/ASYyiXziHt8erBjp+g1VnF
- kHXQ==
-X-Forwarded-Encrypted: i=1;
- AJvYcCWtiJsjBRDJ+VjBqRaLsCWdb1BNgu00hp6MDxTGKUbC+HETgzrV/GYiqjgd3MBr2/zuJcnzbDd3H1e0LaAHF+igmgNXzk2ysMeRYKU45xty
-X-Gm-Message-State: AOJu0YzPDmP9LdSBiWD/2CdRj/7s2vsr0KlJfQnwT/BEVxmQlGv6yJNa
- hnHNDdqLvnGrCC5KBZV28k10tFAjRTTz1ZMp2TClnRI7gr8rPqkiMQAvTdFq/Kg=
-X-Google-Smtp-Source: AGHT+IGHuPURq92vbA7pPIU9ILtciWhlwIdoWOWmF/y51jq1Pi4LCcaKE7vWxQuThE6DWjsqz0iZHA==
-X-Received: by 2002:a5e:da49:0:b0:7c8:7126:a44b with SMTP id
- o9-20020a5eda49000000b007c87126a44bmr3749253iop.2.1709738753241; 
- Wed, 06 Mar 2024 07:25:53 -0800 (PST)
-Received: from [192.168.1.128] ([38.175.170.29])
- by smtp.gmail.com with ESMTPSA id
- ce19-20020a05660242d300b007c845a3b858sm1148284iob.14.2024.03.06.07.25.52
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Wed, 06 Mar 2024 07:25:52 -0800 (PST)
-Message-ID: <eb5bd055-07d1-415e-92a5-27b4a6229109@linuxfoundation.org>
-Date: Wed, 6 Mar 2024 08:25:51 -0700
-MIME-Version: 1.0
+Received: from NAM11-DM6-obe.outbound.protection.outlook.com
+ (mail-dm6nam11on2073.outbound.protection.outlook.com [40.107.223.73])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7434F10FE65;
+ Wed,  6 Mar 2024 15:45:57 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=G2naY67q7dEzTPMYnI5st5s0bmjBgKR3/03EcncaPsKpxE9PXVaFh5xIUJ9Dky0C524C0JHg6O2V2O+nbkA0VOCbnlVfvFiaOrea8httfyLFo2QhlXFz5hKQsnHRmfNVarXBvY22upNAAAgLeihfnFn+oNHJ5M77BAQBeMgMHJqmjjvx7mP888G4pwZQUvMmNsH/Toew4iSguy9jvcBfeLIyyAinPJht+5bUi7+fu6oroYQxXU5npOGPPtuKC6Rz2An0qrbZkVdkELmBr4tv84x2flj7C0FfXXdaP3eTakrZf8beGE4x1ewL61eXMgfIh2xMhs1kW4LkeFp4rwrb0Q==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=8Jn9hjH7fSThWmmiCnsIgaPmPxA+/2AldDtUbL8kQ5k=;
+ b=IWdLBJnr3fdETrXLexSl1S9hs2I5hrlZ1nQ24bcB1n6WU28bRzizZS2V2EVIYo+a3t0SdCRlO/NpYKHmyAzLqOyWLX2hi0W6WVLoOZDg1VpiJRbM9ZCIQSqEFyArHr87kxp14PX0fo35pgiP6DYyN4w7mV8tD0R2kmDX8ZgKCbAhiXUIL2jtJ9MYXDdU97li1ZcIbLoPN3FFU42B9R61be1FHvGthl2Rf6GHWl+8E4lnhtrgHKQdaiybZVWfHLo5W8/ReqSolU/FrdG0jkysaShWz1n5qu+2NaijDbVQzdJKxNVues2x0ouX+GaFKsoLfLqsKy4v+xITfkdP2LThMA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
+ header.d=amd.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=8Jn9hjH7fSThWmmiCnsIgaPmPxA+/2AldDtUbL8kQ5k=;
+ b=fIaVgdIAqo1whMvH+XLgX9Cawy7+JL9D3227ti3Rli+yVsLXZZsOphL3TdmddZT6+g23R7dUPCJuko2qNobX2T6M+AHHZUJpultoDwNU2KPWdY0KGJyYwINZlLlooYUa9jIJqyOmcYGbF9Yn/USCqnNXzH8Zc87ZsStXHafUUqc=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=amd.com;
+Received: from MN2PR12MB4342.namprd12.prod.outlook.com (2603:10b6:208:264::7)
+ by SA1PR12MB8095.namprd12.prod.outlook.com (2603:10b6:806:33f::19)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7362.24; Wed, 6 Mar
+ 2024 15:45:52 +0000
+Received: from MN2PR12MB4342.namprd12.prod.outlook.com
+ ([fe80::6610:4b4b:1f3a:151b]) by MN2PR12MB4342.namprd12.prod.outlook.com
+ ([fe80::6610:4b4b:1f3a:151b%6]) with mapi id 15.20.7362.019; Wed, 6 Mar 2024
+ 15:45:52 +0000
+Message-ID: <e22182ac-485a-4f0c-b5bd-f8c89572fc72@amd.com>
+Date: Wed, 6 Mar 2024 21:15:44 +0530
 User-Agent: Mozilla Thunderbird
-Subject: Re: linux-next: build failure after merge of the kunit-next tree
+Subject: Re: [PATCH v8 3/3] drm/buddy: Add user for defragmentation
 Content-Language: en-US
-To: Stephen Rothwell <sfr@canb.auug.org.au>, David Gow <davidgow@google.com>
-Cc: Brendan Higgins <brendanhiggins@google.com>,
- Daniel Vetter <daniel.vetter@ffwll.ch>,
- Intel Graphics <intel-gfx@lists.freedesktop.org>,
- DRI <dri-devel@lists.freedesktop.org>,
- =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>,
- Matthew Auld <matthew.auld@intel.com>,
- Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
- Linux Next Mailing List <linux-next@vger.kernel.org>,
- Dave Airlie <airlied@redhat.com>, Shuah Khan <skhan@linuxfoundation.org>
-References: <20240229152653.09ecf771@canb.auug.org.au>
- <be2e812c-3898-4be8-8a9d-e221acb837c3@linuxfoundation.org>
- <CABVgOSmAmkOcY8hFnpPSgz5WZXFkez_BDGhKjBepbWFpKykfUg@mail.gmail.com>
- <20240301214358.7fdecd66@canb.auug.org.au>
- <86d87830-100f-4f29-bb7f-9a612b90866a@linuxfoundation.org>
- <20240302074643.6e1086ff@canb.auug.org.au>
- <b0abafb8-65c8-4e54-a410-8a5ac7dccee6@linuxfoundation.org>
-From: Shuah Khan <skhan@linuxfoundation.org>
-In-Reply-To: <b0abafb8-65c8-4e54-a410-8a5ac7dccee6@linuxfoundation.org>
+To: =?UTF-8?Q?Christian_K=C3=B6nig?= <ckoenig.leichtzumerken@gmail.com>,
+ dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
+ amd-gfx@lists.freedesktop.org
+Cc: christian.koenig@amd.com, alexander.deucher@amd.com,
+ matthew.auld@intel.com, felix.kuehling@amd.com, mario.limonciello@amd.com
+References: <20240304163220.3093-1-Arunpravin.PaneerSelvam@amd.com>
+ <20240304163220.3093-3-Arunpravin.PaneerSelvam@amd.com>
+ <77148946-83ef-4576-a26b-ec84f9a4c63a@gmail.com>
+ <aaf76e24-787d-4ca7-b3af-3636d065c1f6@amd.com>
+ <f0fae5dd-533b-4649-b338-935f4518036c@amd.com>
+ <db55d7ac-0811-496f-81e3-56c742a9ae56@gmail.com>
+From: "Paneer Selvam, Arunpravin" <arunpravin.paneerselvam@amd.com>
+In-Reply-To: <db55d7ac-0811-496f-81e3-56c742a9ae56@gmail.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: PN2PR01CA0187.INDPRD01.PROD.OUTLOOK.COM
+ (2603:1096:c01:e8::14) To MN2PR12MB4342.namprd12.prod.outlook.com
+ (2603:10b6:208:264::7)
+MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: MN2PR12MB4342:EE_|SA1PR12MB8095:EE_
+X-MS-Office365-Filtering-Correlation-Id: 58ff5481-8f20-4b76-5c6c-08dc3df480e8
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: RAOuYybfiHVRk3jFb3UbgHsiotKPd9HQhSEH0y5zqVwucfJWiZKle0SUZozDKS18o+Ggu/UJRJznsafoz9+3nuEf1wksZ/9a3bSbsoUAxtDaVH6QMfAynaM6r9OKcRem3g2yt15PWVCHgSdsvvrRKAyePpXt1qwCfDrGNHjcjcNtOtM851o0zA497wyCD3BUh9U8jPXY8Va3CR6N9ZSqaPFOeUd5p6JwaQJtNrIjb0Yi4Ip+H8Vt+HHoPPfQL1GG5vCQJBWxBcnVkwfK0BIqVLvZuIde3RYKuqPItW3Lzc+IZFGz+MRFTsSvXYjVjXU0zFX4sOXo+qS1vhveSuAszTyMFP6IB5RiQlIQhIVv+Ywf46BkmJT+7ZRbq7Ai6bGSY/xOmS91X2asUUh9zAorRy9Tcz6RYnyDkUvsnYwiZhg+rHWCDYe+fqWiwgWP3jWnl0LM6jkMwm3ddmPW8Weg1ZM03roZDo8kPS0VvqDXVip0IPYzOexhJC7DXDjuUcYKW/Q9FNcC4e6SKdgJwM31VpPusxqiqrtmlnnpL+A4Q+KvSirZCVttY9xIbt2e/oi+inIlM5N0JnXd/0u/rKpjfbodSY5RGd72VcobvollSRRPqdBaofvHMBda36qacEg2Lt/gV5BzMPvf1ukCBugyFibMq5JE0rymCjpZQ5nhL+Q=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:MN2PR12MB4342.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230031)(376005); DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?NXpQai9GUjVtYlJUYmNla3FNQUtVZHRUUkVpM21pRjZabGxyaldwMk5GWHhZ?=
+ =?utf-8?B?SGd5NnYxQ3Jtd2Vnbi92NGlzOHJPTW5nVWNGN2N3bmtMeVVEVVFFVjMxdzE1?=
+ =?utf-8?B?MjZzQ3RZTzNOMXdYZjlPcm1FblNQb0VNQXNrQWNKYUJyWjM5ZWc3NXVxSkxo?=
+ =?utf-8?B?a2p0Vk1RajFORzdka3pKWW5KWU1UdFNJMGRmMEtwQ1BYd0pLWk5vaDJ2M2Mw?=
+ =?utf-8?B?a05KQVd2SmhhVGRLaW50eUorNGdYOUg4WWxaTDlzalR0cXRJVlhsMGJIYWMz?=
+ =?utf-8?B?SGR0OVpCTUN5ak1VZ1lnU01XSHpnWDJmcEloeXdBRE1wUzdUMXlieEZUeDBF?=
+ =?utf-8?B?alRBdkFlYzFEVms1cHp1enJCenB6cUF3OWtqUlVBSmJVTjNjUnRUN1hVQUF4?=
+ =?utf-8?B?QTJ6a2F1ODNBMXJoQUU0VFVUWk9jRHg4eE10dlBuUk1YRW93SFQvenpGYU1m?=
+ =?utf-8?B?ZkJOUTZBbXRnMUtqR3pKbkwxdFVya0lxSEkwSCsrZGNvczJJSzVtajJuNEVn?=
+ =?utf-8?B?UWorcFFSdkFGRndka3pzOXd3U05LOTlub1FnNjQxQjc0ejdWMmlWWnlraXZS?=
+ =?utf-8?B?UGxlM2d1cmxNWWxZakh0OHRLN0ZUQ1UzRTlXUWM0MC9hSTFHUGRacjdCMXMr?=
+ =?utf-8?B?YmwxL3diZ1ZmMFJjTTg2T0UyNmNKeU1XWjE5UERwcE1vOVdLaVBRbi8vaVBy?=
+ =?utf-8?B?SkJKNWN3WmpCTUZmUVFLc0pkaWhwQlVmYU1tMVpWcG5WQU03YkxkYzNjc1Mz?=
+ =?utf-8?B?dkw2dXdPMlNndkJ1MFA4WUxFTE1DUXJ4WFVSN0xUYVp3SUs2QmZzc0ZLRnYv?=
+ =?utf-8?B?YnJXZWlIV1dDZytaOEJsMzg2VFc4R05CWldtMGlOWkVxSm4xQ0ltOHhqV25z?=
+ =?utf-8?B?MUJNT010K2c0TS84QWNpdEs2VUpXNVIrN04rN2lUUTRGRlFnRFIyNHMyaWxh?=
+ =?utf-8?B?UXVCN3N3dGJzbzVlNDVPcG9wakZHdStrRWk4Y24wUHZpaUZvaDlnYk9LZCtX?=
+ =?utf-8?B?NUx3bXRadHpJeWhOL3NoV2h4S0docWV2WURzS2RHdEZhQnpTNUJUa2VTaVBh?=
+ =?utf-8?B?ZGNCNDRDT25KR1NCUTd3bTJNeEVFcFVzM0cwa3d6RUdhVThnZG9EV05BSUd4?=
+ =?utf-8?B?T0xhS282bHk1eGJhUm5YcXpWd1ozSlh2cUVJQUtnRlN0VWlKanV1WEZBZnNu?=
+ =?utf-8?B?NFM1dFZLODRDVVF4MDBrTkVJVkNQNE5vbFFSUUIwQVBKclZ0a2ZPS2FXNEpv?=
+ =?utf-8?B?RGNyVWlsQVdaVzR5T3h0dUs0cjJLOWJ2bDJFR3J5Q0NqL2NpcWVKakY0SjZE?=
+ =?utf-8?B?R2M3OGoxRUdrYU1GcWtyZXp4aUp5S0E5cnUrMmIyeDhaNUdQOWVCcDduYzAz?=
+ =?utf-8?B?Z3luZ2xnY3E4WWkzTlN2QlFMZ2t5RHdRNi9GVG9vQng3QWUxeGpZTFpMUGtv?=
+ =?utf-8?B?MWVzZndOd0k3MC9qQUJIbENjUDllSkovVWFpM2cwVGJwbm1qS2NwdTlNTGZ4?=
+ =?utf-8?B?dmhlWUp5djNNSWtXSTk5bjNMd3dDa0tlZFc0Y2hlOTVwK3VuSnhCMkZsVlFE?=
+ =?utf-8?B?YURqRUdmc0E0QzJvdzJocnI4L1hsOHlFdzNlRTlKa1NscDlMRGMzN3lYOWNk?=
+ =?utf-8?B?Tk8yTmNjbS9GanZSbXBLcStoTXA1dCs3Y1RNWjQzeTl0VWlIcUpxREQ3NEJQ?=
+ =?utf-8?B?NUhldS9ScXVTMTJyN0lFaDdLU3AyNWVDbXF4M2c2eXNzNEJQV2lPbTdjOEhy?=
+ =?utf-8?B?Y1N5K3MxVjUwZnRTY0IvZUNzSWpjUWZyeWg2NFRrNkg0NnR6SGhtN2lLZjAz?=
+ =?utf-8?B?Rk1IY205VnpMc0xFTmJsNkUxczl5RXdjSGxSRUJUUTBlRHVJY0s4QzRhM2NK?=
+ =?utf-8?B?UGk3NVZCcjcwU2lPVXN2M3A5Nm50NnhQaHA1NUw0cG9xVzIwZFpReEE4Nktx?=
+ =?utf-8?B?R3RPVElZMEFUZ3Ywd2lBb2dEeGJYcDR4ZDlJcFFWWjlXbUxqU0gzRlZBbFZq?=
+ =?utf-8?B?aDlDR2JxSmV4ZHN5VkJCV1ZuWEdsQjRmVC92bkVoTlhBTnk3VVhlVE1oZklO?=
+ =?utf-8?B?V01HeG1kd0tPRWltSUtDOHFOMjd1aE1IRnhremplekFQMTVIWWk0ck12aEVG?=
+ =?utf-8?Q?0tA4w0pE/IzstdIcdSRxFR0FV?=
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 58ff5481-8f20-4b76-5c6c-08dc3df480e8
+X-MS-Exchange-CrossTenant-AuthSource: MN2PR12MB4342.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 06 Mar 2024 15:45:52.7127 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: Q9gWnSqMNXvK/M0I9wggCya9jZQCkr9fzxm7694nFpbmAxUhsJ92W4ChPKpHImGsgexm7VMkHKsHxfEagbMpIg==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA1PR12MB8095
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -96,60 +137,131 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi Stephen,
+Hi Christian,
 
-On 3/1/24 15:30, Shuah Khan wrote:
-> Hi Stephen,
-> 
-> On 3/1/24 13:46, Stephen Rothwell wrote:
->> Hi Shuah,
->>
->> On Fri, 1 Mar 2024 09:05:57 -0700 Shuah Khan <skhan@linuxfoundation.org> wrote:
+On 3/5/2024 5:41 PM, Christian König wrote:
+> Am 05.03.24 um 12:14 schrieb Paneer Selvam, Arunpravin:
+>> On 3/5/2024 4:33 PM, Paneer Selvam, Arunpravin wrote:
+>>> Hi Christian,
 >>>
->>> On 3/1/24 03:43, Stephen Rothwell wrote:
->>>> Hi all,
+>>> On 3/4/2024 10:09 PM, Christian König wrote:
+>>>> Am 04.03.24 um 17:32 schrieb Arunpravin Paneer Selvam:
+>>>>> Add amdgpu driver as user for the drm buddy
+>>>>> defragmentation.
+>>>>>
+>>>>> Signed-off-by: Arunpravin Paneer Selvam 
+>>>>> <Arunpravin.PaneerSelvam@amd.com>
+>>>>> ---
+>>>>>   drivers/gpu/drm/amd/amdgpu/amdgpu_vram_mgr.c | 17 +++++++++++++++--
+>>>>>   drivers/gpu/drm/drm_buddy.c                  |  1 +
+>>>>>   2 files changed, 16 insertions(+), 2 deletions(-)
+>>>>>
+>>>>> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_vram_mgr.c 
+>>>>> b/drivers/gpu/drm/amd/amdgpu/amdgpu_vram_mgr.c
+>>>>> index e494f5bf136a..cff8a526c622 100644
+>>>>> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_vram_mgr.c
+>>>>> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_vram_mgr.c
+>>>>> @@ -533,8 +533,21 @@ static int amdgpu_vram_mgr_new(struct 
+>>>>> ttm_resource_manager *man,
+>>>>>                          min_block_size,
+>>>>>                          &vres->blocks,
+>>>>>                          vres->flags);
+>>>>> -        if (unlikely(r))
+>>>>> -            goto error_free_blocks;
+>>>>> +        if (unlikely(r)) {
+>>>>> +            if (r == -ENOSPC) {
+>>>>> +                drm_buddy_defrag(mm, min_block_size);
+>>>>> +                r = drm_buddy_alloc_blocks(mm, fpfn,
+>>>>> +                               lpfn,
+>>>>> +                               size,
+>>>>> +                               min_block_size,
+>>>>> +                               &vres->blocks,
+>>>>> +                               vres->flags);
 >>>>
->>>> On Fri, 1 Mar 2024 15:15:02 +0800 David Gow <davidgow@google.com> wrote:
->>>>>
->>>>> On Thu, 29 Feb 2024 at 23:07, Shuah Khan <skhan@linuxfoundation.org> wrote:
->>>>>>
->>>>>> I can carry the fix through kselftest kunit if it works
->>>>>> for all.
->>>>>
->>>>> I'm happy for this to go in with the KUnit changes if that's the best
->>>>> way to keep all of the printk formatting fixes together.
->>
->> Unfortunately you can't fix this in the kunit-next tree without pulling
->> in Linus' tree (or the drm-fixes tree) - which seems excessive.
->>>> I am pretty sure that the proper fix has been applied to the
->>>> drm-fixes tree today (in the merge of the drm-misc-fixes tree).
+>>>> That doesn't looks like something we should do.
+>>>>
+>>>> We might fallback when contiguous memory is requested, but 
+>>>> certainly not on normal allocation failure.
+>>> yes, defrag here not useful for normal allocations. But worried 
+>>> about the bigger min_block_size normal allocations.
+>>> In such cases, I think we should move this drm_buddy_defrag() call 
+>>> into buddy allocator file. For example if the required
+>>> size is 1024KiB and if min_block_size is 256KiB, the allocator first 
+>>> tries to find the 1024KiB block, when there is no single 1024KiB block,
+>>> the allocator goes one level below in freelist and tries to search 
+>>> for two 512KiB blocks and goes on. At one point of time if we have 
+>>> less space,
+>>> we might go further levels below to search four 256KiB blocks to 
+>>> satisfy the request.
 >>>
-
-I misread your message.
-
->>> What's the commit id for this fix? I Would like to include the details
->>> in my pull request to Linus.
+>>> Assuming if the allocator cannot find the first 256KiB block, that 
+>>> time I think we might need to merge the two 128KiB blocks
+>>> through defragmentation function. And again for the second 256KiB 
+>>> block, we might need to call the defragmentation again to
+>>> merge two 128KiB blocks or four 64KiB blocks to form minimum 
+>>> alignment size of 256KiB. This goes on for the third and fourth
+>>> 256KiB blocks to complete the required size allocation of 1024KiB. 
+>>> Please let me know if my understanding is not correct.
+>
+> I don't think we should do that. We essentially have to support two 
+> different use cases:
+>
+> 1. Non contiguous allocation with 2MiB min_block_size for everything 
+> larger than 2MiB. Using a block size as large as possible is 
+> desirable, but not something we enforce.
+>
+> 2. Contiguous allocations for display, firmware etc.. Here we need to 
+> enforce a large block size and can live with the additional overhead 
+> caused by force merging.
+Thanks. I will make the changes accordingly.
+>
 >>
->> My mistake, I misread the merge commit.  It has not been fixed in the
->> drm-misc-fixes tree or the drm-fixes tree (or Linus' tree since the
->> drm-fixes tree has been merged there) :-(
+>> As you have suggested we can also rename this as force merge or some 
+>> other names.
+>
+> Yeah, but just an suggestion. You are way deeper in the code and 
+> handling than I'm, so feel free to name it whatever you think fits best.
+Sure :)
+
+Thanks,
+Arun.
+>
+> Regards,
+> Christian.
+>
+>
 >>
->> The problem in this case is not with the format string types, but with
->> a missing argument i.e. there is another argument required by the
->> format string.  It really should be fixed in the drm-misc-fixes tree
->> and sent to Linus post haste.
+>> Thanks,
+>> Arun.
+>>>
+>>> Thanks,
+>>> Arun.
+>>>>
+>>>> Regards,
+>>>> Christian.
+>>>>
+>>>>> +                if (unlikely(r))
+>>>>> +                    goto error_free_blocks;
+>>>>> +            } else {
+>>>>> +                goto error_free_blocks;
+>>>>> +            }
+>>>>> +        }
+>>>>>             if (size > remaining_size)
+>>>>>               remaining_size = 0;
+>>>>> diff --git a/drivers/gpu/drm/drm_buddy.c 
+>>>>> b/drivers/gpu/drm/drm_buddy.c
+>>>>> index 40131ed9b0cd..19440f8caec0 100644
+>>>>> --- a/drivers/gpu/drm/drm_buddy.c
+>>>>> +++ b/drivers/gpu/drm/drm_buddy.c
+>>>>> @@ -396,6 +396,7 @@ void drm_buddy_defrag(struct drm_buddy *mm,
+>>>>>           }
+>>>>>       }
+>>>>>   }
+>>>>> +EXPORT_SYMBOL(drm_buddy_defrag);
+>>>>>     /**
+>>>>>    * drm_buddy_free_block - free a block
+>>>>
+>>>
 >>
-
-Agreed.
-
->> At least the change in the kunit-next tree will stop this happening in
->> the future.
-
-I misread you message and asked David to send a fix.
-
-I will send pull request with the mention of your fix up to this error
-in your first message.
-
-thanks,
--- Shuah
+>
 
