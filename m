@@ -2,54 +2,29 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8B041872DE2
-	for <lists+intel-gfx@lfdr.de>; Wed,  6 Mar 2024 05:08:24 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id DDE86872DED
+	for <lists+intel-gfx@lfdr.de>; Wed,  6 Mar 2024 05:12:00 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0D242112E8C;
-	Wed,  6 Mar 2024 04:08:23 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="iJDvWbrk";
-	dkim-atps=neutral
+	by gabe.freedesktop.org (Postfix) with ESMTP id B2022112E93;
+	Wed,  6 Mar 2024 04:11:57 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A6F0F112E8F
- for <intel-gfx@lists.freedesktop.org>; Wed,  6 Mar 2024 04:08:21 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1709698102; x=1741234102;
- h=from:to:subject:date:message-id:in-reply-to:references:
- mime-version:content-transfer-encoding;
- bh=UcbZlS+IP+W/VeQMXmPpRsjPa6LUDfTG1WdzOOlbWuw=;
- b=iJDvWbrk4o4dsn1EOauGouRgOnzYbJvmLRFL8iXoaGj2SmJ8i8Citvbu
- VC0BXQaArqhlprT/xlYzkcSHGgYbbbI0tnwooj9fzkqMWzUNvQoEz4XSp
- wMQgOIjFXVFB9JJxfbCylgHBgbY7/qDdiwCK1khZidJqhcGTrON0cc5cq
- i4ArYr0+PFUAZqYd4qD94hLKOJX1AP88x9gN1+tN7einJV7nIYnWypoyv
- hpL7nXMIriLm1RoWvMm9F1EvJRc43GLFM0ogV2jdyoYstJ+QJqfTZgGGD
- +/8gNr0bDKqRG1/GJbz86b+qaNiNlNG2ddmsNfaZcl2v/2njFpaSgdQxc Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,11004"; a="21817376"
-X-IronPort-AV: E=Sophos;i="6.06,207,1705392000"; d="scan'208";a="21817376"
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
- by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Mar 2024 20:08:19 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,11004"; a="827774100"
-X-IronPort-AV: E=Sophos;i="6.06,207,1705392000"; d="scan'208";a="827774100"
-Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.74])
- by orsmga001.jf.intel.com with SMTP; 05 Mar 2024 20:08:16 -0800
-Received: by stinkbox (sSMTP sendmail emulation);
- Wed, 06 Mar 2024 06:08:15 +0200
-From: Ville Syrjala <ville.syrjala@linux.intel.com>
-To: intel-gfx@lists.freedesktop.org
-Subject: [PATCH 3/3] drm/i915/dsb: Always set DSB_SKIP_WAITS_EN
-Date: Wed,  6 Mar 2024 06:08:06 +0200
-Message-ID: <20240306040806.21697-4-ville.syrjala@linux.intel.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20240306040806.21697-1-ville.syrjala@linux.intel.com>
-References: <20240306040806.21697-1-ville.syrjala@linux.intel.com>
+Received: from 8e613ede5ea5 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 973EA112E93;
+ Wed,  6 Mar 2024 04:11:56 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=97_Fi=2ECI=2ECHECKPATCH=3A_warning_for_Disable_automatic_lo?=
+ =?utf-8?q?ad_CCS_load_balancing_=28rev5=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Andi Shyti" <andi.shyti@linux.intel.com>
+Cc: intel-gfx@lists.freedesktop.org
+Date: Wed, 06 Mar 2024 04:11:56 -0000
+Message-ID: <170969831662.524851.6547634054103174331@8e613ede5ea5>
+X-Patchwork-Hint: ignore
+References: <20240306012247.246003-1-andi.shyti@linux.intel.com>
+In-Reply-To: <20240306012247.246003-1-andi.shyti@linux.intel.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -62,44 +37,43 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-From: Ville Syrjälä <ville.syrjala@linux.intel.com>
+== Series Details ==
 
-Bspec asks us to always set the DSB_SKIP_WAITS_EN bit in
-DSB_CHICKEN. This seems to instruct DSB to skip vblank and
-scanline waits when PSR is entered.
+Series: Disable automatic load CCS load balancing (rev5)
+URL   : https://patchwork.freedesktop.org/series/129951/
+State : warning
 
-I don't think we have any cases currently where we would want
-to enter PSR while DSB is waiting for something, but let's
-set the bit anyway to align with Bspec's wishes.
+== Summary ==
 
-Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
----
- drivers/gpu/drm/i915/display/intel_dsb.c | 5 +++--
- 1 file changed, 3 insertions(+), 2 deletions(-)
+Error: dim checkpatch failed
+5b93f1cd8989 drm/i915/gt: Disable HW load balancing for CCS
+380b317702a8 drm/i915/gt: Refactor uabi engine class/instance list creation
+-:55: WARNING:AVOID_BUG: Do not crash the kernel unless it is absolutely unavoidable--use WARN_ON_ONCE() plus recovery code (if feasible) instead of BUG() or variants
+#55: FILE: drivers/gpu/drm/i915/gt/intel_engine_user.c:233:
++		GEM_BUG_ON(uabi_class >= ARRAY_SIZE(class_instance));
 
-diff --git a/drivers/gpu/drm/i915/display/intel_dsb.c b/drivers/gpu/drm/i915/display/intel_dsb.c
-index e4515bf92038..4baaa92ceaec 100644
---- a/drivers/gpu/drm/i915/display/intel_dsb.c
-+++ b/drivers/gpu/drm/i915/display/intel_dsb.c
-@@ -343,12 +343,13 @@ static int intel_dsb_dewake_scanline(const struct intel_crtc_state *crtc_state)
- static u32 dsb_chicken(struct intel_crtc *crtc)
- {
- 	if (crtc->mode_flags & I915_MODE_FLAG_VRR)
--		return DSB_CTRL_WAIT_SAFE_WINDOW |
-+		return DSB_SKIP_WAITS_EN |
-+			DSB_CTRL_WAIT_SAFE_WINDOW |
- 			DSB_CTRL_NO_WAIT_VBLANK |
- 			DSB_INST_WAIT_SAFE_WINDOW |
- 			DSB_INST_NO_WAIT_VBLANK;
- 	else
--		return 0;
-+		return DSB_SKIP_WAITS_EN;
- }
- 
- static void _intel_dsb_commit(struct intel_dsb *dsb, u32 ctrl,
--- 
-2.43.0
+-:71: WARNING:AVOID_BUG: Do not crash the kernel unless it is absolutely unavoidable--use WARN_ON_ONCE() plus recovery code (if feasible) instead of BUG() or variants
+#71: FILE: drivers/gpu/drm/i915/gt/intel_engine_user.c:247:
++		GEM_BUG_ON(uabi_class >=
+
+total: 0 errors, 2 warnings, 0 checks, 56 lines checked
+4cdfe2cf85b2 drm/i915/gt: Enable only one CCS for compute workload
+-:16: WARNING:COMMIT_LOG_LONG_LINE: Prefer a maximum 75 chars per line (possible unwrapped commit description?)
+#16: 
+Requires: 97aba5e46038 ("drm/i915/gt: Refactor uabi engine class/instance list creation")
+
+-:104: CHECK:MACRO_ARG_PRECEDENCE: Macro argument 'cslice' may be better as '(cslice)' to avoid precedence issues
+#104: FILE: drivers/gpu/drm/i915/gt/intel_gt_regs.h:1486:
++#define   XEHP_CCS_MODE_CSLICE(cslice, ccs)	(ccs << (cslice * XEHP_CCS_MODE_CSLICE_WIDTH))
+
+-:104: CHECK:MACRO_ARG_PRECEDENCE: Macro argument 'ccs' may be better as '(ccs)' to avoid precedence issues
+#104: FILE: drivers/gpu/drm/i915/gt/intel_gt_regs.h:1486:
++#define   XEHP_CCS_MODE_CSLICE(cslice, ccs)	(ccs << (cslice * XEHP_CCS_MODE_CSLICE_WIDTH))
+
+total: 0 errors, 1 warnings, 2 checks, 69 lines checked
+
 
