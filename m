@@ -2,29 +2,57 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9EFE6872F1F
-	for <lists+intel-gfx@lfdr.de>; Wed,  6 Mar 2024 07:58:40 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 717FA872F21
+	for <lists+intel-gfx@lfdr.de>; Wed,  6 Mar 2024 08:01:44 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 771F310E13C;
-	Wed,  6 Mar 2024 06:58:38 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9E7A9112F69;
+	Wed,  6 Mar 2024 07:01:40 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="c1LRJwBR";
+	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from 8e613ede5ea5 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4235D10E13C;
- Wed,  6 Mar 2024 06:58:37 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============3248922743288076058=="
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3C176112D88;
+ Wed,  6 Mar 2024 07:01:38 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1709708499; x=1741244499;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=cv8IgEE2bAZ2HssNjlkHruYeU7ncm7wpmqAMQS9TlWE=;
+ b=c1LRJwBRk1EBAPEfqn1wi2LGBjKHmD3B9Wfx0UcvUrKTqtFTGMaMIcmQ
+ KvDibBtuX4YgyKKjyrSnhKNkoRbyHEnyBhkruNW7OtvHHT+l5SoCc5otq
+ qTDPn5de63in9ao0kDxkkmyK+c9ahGNX1BMLUyS/sXJxY5E2w/Wrs5OZg
+ UemrtRTX6tvj394fPrEmgD4R6dyt7WuzBiBNjgjpzLfYN5OJU5cf+Nwq1
+ afQ0iOXMVkYm9dI7LCyEek+uMJbOB9YFR/0vQ7VbU4shZ1l6zrYJhlNh4
+ ZxJ6zV7EwUtJpw/oLPVdVr+ZLl84In6Uc60BAnie/mEgrt4FV7ccm0FdQ A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,11004"; a="4457464"
+X-IronPort-AV: E=Sophos;i="6.06,207,1705392000"; 
+   d="scan'208";a="4457464"
+Received: from orviesa004.jf.intel.com ([10.64.159.144])
+ by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 05 Mar 2024 23:01:38 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.06,207,1705392000"; d="scan'208";a="14314379"
+Received: from fatinf5x-mobl.gar.corp.intel.com (HELO fedora..)
+ ([10.249.254.40])
+ by orviesa004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 05 Mar 2024 23:01:37 -0800
+From: =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
+To: intel-xe@lists.freedesktop.org,
+	intel-gfx@lists.freedesktop.org
+Cc: =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
+ Somalapuram Amaranath <Amaranath.Somalapuram@amd.com>,
+ =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
+ dri-devel@lists.freedesktop.org
+Subject: [PATCH v4 0/4] TTM unlockable restartable LRU list iteration
+Date: Wed,  6 Mar 2024 08:01:21 +0100
+Message-ID: <20240306070125.27071-1-thomas.hellstrom@linux.intel.com>
+X-Mailer: git-send-email 2.44.0
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Fi=2ECI=2EBAT=3A_success_for_drm/i915/guc=3A_Use_context?=
- =?utf-8?q?_hints_for_GT_frequency_=28rev2=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Vinay Belgaumkar" <vinay.belgaumkar@intel.com>
-Cc: intel-gfx@lists.freedesktop.org
-Date: Wed, 06 Mar 2024 06:58:37 -0000
-Message-ID: <170970831727.524851.7505201264621564527@8e613ede5ea5>
-X-Patchwork-Hint: ignore
-References: <20240306012759.204938-1-vinay.belgaumkar@intel.com>
-In-Reply-To: <20240306012759.204938-1-vinay.belgaumkar@intel.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -37,184 +65,77 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============3248922743288076058==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+This patch-set is a prerequisite for a standalone TTM shrinker
+and for exhaustive TTM eviction using sleeping dma_resv locks,
+which is the motivation for it.
 
-== Series Details ==
+Currently when unlocking the TTM lru list lock, iteration needs
+to be restarted from the beginning, rather from the next LRU list
+node. This can potentially be a big problem, because if eviction
+or shrinking fails for whatever reason after unlock, restarting
+is likely to cause the same failure over and over again.
 
-Series: drm/i915/guc: Use context hints for GT frequency (rev2)
-URL   : https://patchwork.freedesktop.org/series/130698/
-State : success
+There are various schemes to be able to continue the list
+iteration from where we left off. One such scheme used by the
+GEM LRU list traversal is to pull items already considered off
+the LRU list and reinsert them when iteration is done.
+This has the drawback that concurrent list iteration doesn't see
+the complete list (which is bad for exhaustive eviction) and also
+doesn't lend itself well to bulk-move sublists since these will
+be split in the process where items from those lists are
+temporarily pulled from the list and moved to the list tail.
 
-== Summary ==
+The approach taken here is that list iterators insert themselves
+into the list next position using a special list node. Iteration
+is then using that list node as starting point when restarting.
+Concurrent iterators just skip over the special list nodes.
 
-CI Bug Log - changes from CI_DRM_14395 -> Patchwork_130698v2
-====================================================
+This is implemented in patch 1 and 2.
 
-Summary
--------
+For bulk move sublist the approach is the same, but when a bulk
+move sublist is moved to the tail, the iterator is also moved,
+causing us to skip parts of the list. That is undesirable.
+Patch 3 deals with that, and when iterator detects it is
+traversing a sublist, it registers with the ttm_lru_bulk_move
+struct using a linked list, and when that bulk move sublist
+is moved to the tail, any iterator registered with it will
+first be moved to the tail of the sublist.
+This is implemented in patch 3.
 
-  **SUCCESS**
+The restartable property is used in patch 4 to restart swapout if
+needed, but the main purpose is this paves the way for
+shrinker- and exhaustive eviction.
 
-  No regressions found.
+v2:
+- Rework patch 3 completely.
+v3:
+- Fix a NULL pointer dereference found by Xe CI.
+v4:
+- Remove some leftover code causing build problems.
 
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130698v2/index.html
+Cc: Somalapuram Amaranath <Amaranath.Somalapuram@amd.com>
+Cc: Christian König <christian.koenig@amd.com>
+Cc: <dri-devel@lists.freedesktop.org>
 
-Participating hosts (41 -> 38)
-------------------------------
+Thomas Hellström (4):
+  drm/ttm: Allow TTM LRU list nodes of different types
+  drm/ttm: Use LRU hitches
+  drm/ttm, drm/amdgpu, drm/xe: Consider hitch moves within bulk sublist
+    moves
+  drm/ttm: Allow continued swapout after -ENOSPC falure
 
-  Missing    (3): bat-mtlp-8 fi-glk-j4005 fi-snb-2520m 
+ drivers/gpu/drm/amd/amdgpu/amdgpu_vm.c |   4 +
+ drivers/gpu/drm/ttm/ttm_bo.c           |   1 +
+ drivers/gpu/drm/ttm/ttm_device.c       |  33 +++-
+ drivers/gpu/drm/ttm/ttm_resource.c     | 228 ++++++++++++++++++++-----
+ drivers/gpu/drm/xe/xe_vm.c             |   4 +
+ include/drm/ttm/ttm_device.h           |   2 +
+ include/drm/ttm/ttm_resource.h         |  96 +++++++++--
+ 7 files changed, 308 insertions(+), 60 deletions(-)
 
-Known issues
-------------
+-- 
+2.44.0
 
-  Here are the changes found in Patchwork_130698v2 that come from known issues:
-
-### CI changes ###
-
-#### Issues hit ####
-
-  * boot:
-    - bat-arls-3:         [PASS][1] -> [FAIL][2] ([i915#10234])
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14395/bat-arls-3/boot.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130698v2/bat-arls-3/boot.html
-
-  
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@i915_selftest@live@execlists:
-    - fi-bsw-n3050:       [PASS][3] -> [ABORT][4] ([i915#9662])
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14395/fi-bsw-n3050/igt@i915_selftest@live@execlists.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130698v2/fi-bsw-n3050/igt@i915_selftest@live@execlists.html
-
-  * igt@i915_selftest@live@hangcheck:
-    - bat-atsm-1:         [PASS][5] -> [ABORT][6] ([i915#10366])
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14395/bat-atsm-1/igt@i915_selftest@live@hangcheck.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130698v2/bat-atsm-1/igt@i915_selftest@live@hangcheck.html
-
-  
-#### Possible fixes ####
-
-  * igt@i915_selftest@live@migrate:
-    - bat-arls-2:         [INCOMPLETE][7] -> [PASS][8]
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14395/bat-arls-2/igt@i915_selftest@live@migrate.html
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130698v2/bat-arls-2/igt@i915_selftest@live@migrate.html
-
-  
-  [i915#10234]: https://gitlab.freedesktop.org/drm/intel/issues/10234
-  [i915#10366]: https://gitlab.freedesktop.org/drm/intel/issues/10366
-  [i915#9662]: https://gitlab.freedesktop.org/drm/intel/issues/9662
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_14395 -> Patchwork_130698v2
-
-  CI-20190529: 20190529
-  CI_DRM_14395: dd08fd912fdc1b72984a39852fdbee49b97b8ce4 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_7746: 7746
-  Patchwork_130698v2: dd08fd912fdc1b72984a39852fdbee49b97b8ce4 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-### Linux commits
-
-830deae54cb3 drm/i915/guc: Use context hints for GT frequency
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130698v2/index.html
-
---===============3248922743288076058==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915/guc: Use context hints for GT frequency (rev2)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/130698/">https://patchwork.freedesktop.org/series/130698/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130698v2/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130698v2/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_14395 -&gt; Patchwork_130698v2</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130698v2/index.html</p>
-<h2>Participating hosts (41 -&gt; 38)</h2>
-<p>Missing    (3): bat-mtlp-8 fi-glk-j4005 fi-snb-2520m </p>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_130698v2 that come from known issues:</p>
-<h3>CI changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>boot:<ul>
-<li>bat-arls-3:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14395/bat-arls-3/boot.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130698v2/bat-arls-3/boot.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/10234">i915#10234</a>)</li>
-</ul>
-</li>
-</ul>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@i915_selftest@live@execlists:</p>
-<ul>
-<li>fi-bsw-n3050:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14395/fi-bsw-n3050/igt@i915_selftest@live@execlists.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130698v2/fi-bsw-n3050/igt@i915_selftest@live@execlists.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/9662">i915#9662</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@hangcheck:</p>
-<ul>
-<li>bat-atsm-1:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14395/bat-atsm-1/igt@i915_selftest@live@hangcheck.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130698v2/bat-atsm-1/igt@i915_selftest@live@hangcheck.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/10366">i915#10366</a>)</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>igt@i915_selftest@live@migrate:<ul>
-<li>bat-arls-2:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14395/bat-arls-2/igt@i915_selftest@live@migrate.html">INCOMPLETE</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130698v2/bat-arls-2/igt@i915_selftest@live@migrate.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_14395 -&gt; Patchwork_130698v2</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_14395: dd08fd912fdc1b72984a39852fdbee49b97b8ce4 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_7746: 7746<br />
-  Patchwork_130698v2: dd08fd912fdc1b72984a39852fdbee49b97b8ce4 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<h3>Linux commits</h3>
-<p>830deae54cb3 drm/i915/guc: Use context hints for GT frequency</p>
-
-</body>
-</html>
-
---===============3248922743288076058==--
