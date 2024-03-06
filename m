@@ -2,56 +2,56 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 403ED8733E4
-	for <lists+intel-gfx@lfdr.de>; Wed,  6 Mar 2024 11:19:57 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0E81B8734AA
+	for <lists+intel-gfx@lfdr.de>; Wed,  6 Mar 2024 11:45:30 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 87EE0112864;
-	Wed,  6 Mar 2024 10:19:55 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0C8BE11303C;
+	Wed,  6 Mar 2024 10:45:28 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="elLu8Z2R";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="G/hmEHMK";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 701C210EC55
- for <intel-gfx@lists.freedesktop.org>; Wed,  6 Mar 2024 10:19:47 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 70E72112C7A
+ for <intel-gfx@lists.freedesktop.org>; Wed,  6 Mar 2024 10:45:26 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1709720387; x=1741256387;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version:content-transfer-encoding;
- bh=D/N2qwe7LgqnWfvfKhms7lA9ZvsoZAf7a2FJQVa1TVs=;
- b=elLu8Z2Ry3mwDtQByzdxy3m2RRk6t2/v5+MajxBB2bCl0WmX4DtKQSPd
- 50vQBHIp32QKHPT6MYeKznvDr+yKi94B5S2Ha+RO2XNVd3Sa18JEh3gNX
- /Awo0hgSbZFSUWlsaRN97JXTeoucbKqbMcKKKxBe9yMCZXFxEVyHrduUs
- rr3NNCWUSvlO7CWD/9jP3Ctl+fw9+SW4Qq4fhFHpf6sY7YOiQV8AZA7eV
- JscVddymBs9vN/Hvdxy1Ise8y5znLlyeeg2MGw72NnSxuGmbRPlDeceBi
- tmEK2QgitKpQnqDxam/c1hJ1nqacj/hgAi6KNblydJqYqaBcvASGEdg9s A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,11004"; a="4906977"
-X-IronPort-AV: E=Sophos;i="6.06,208,1705392000"; 
-   d="scan'208";a="4906977"
-Received: from orviesa006.jf.intel.com ([10.64.159.146])
- by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Mar 2024 02:19:46 -0800
+ t=1709721926; x=1741257926;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=U/5OQzb+m/wFFKP8S1wjV+pfxqkHZMLW7U/rtxWbEYM=;
+ b=G/hmEHMKyB47m0HicgyaA+odMhiZQeFu+kW/UN55afjMOk/bxN5hZ0vB
+ 9zfSe3BQRtzkNn62StxroI+IKF/JwEGyt/trwK2wp9XvUslKNH5Xc57Gw
+ 1K21wavsNOKpNMbeGqpzGybVGQ4TlSUB6HyHcbgpCnLAN5z/KQbjGqBnG
+ tMZB/S3IU77i278rD2c3zm3Jm+6mb0C+QesUDNPlKvPnmG4Dij5LkPOHn
+ LcDC/SioHMze5z7o7rKwGk6wPwB8Y22LHWXLIwODTrEuBYJ4t+dbwV8HL
+ vQDgLlaFyZMdcTnbYLsD4Wg/bVxpfqNIqQtbo8l7/vSdYcriRmO1BuGNn A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,11004"; a="26794715"
+X-IronPort-AV: E=Sophos;i="6.06,208,1705392000"; d="scan'208";a="26794715"
+Received: from fmviesa005.fm.intel.com ([10.60.135.145])
+ by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 06 Mar 2024 02:45:26 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.06,208,1705392000"; d="scan'208";a="10113089"
-Received: from rjongalo-mobl2.ger.corp.intel.com (HELO localhost)
- ([10.252.33.211])
- by orviesa006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Mar 2024 02:19:45 -0800
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: gareth.yu@intel.com, intel-gfx@lists.freedesktop.org
-Cc: Gareth Yu <gareth.yu@intel.com>
-Subject: Re: [PATCH] drm/i915/display: Fixed a screen flickering when
- turning on display from off
-In-Reply-To: <20240306031348.1344034-1-gareth.yu@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20240306031348.1344034-1-gareth.yu@intel.com>
-Date: Wed, 06 Mar 2024 12:19:42 +0200
-Message-ID: <87il1zzmpt.fsf@intel.com>
+X-IronPort-AV: E=Sophos;i="6.06,208,1705392000"; d="scan'208";a="14206973"
+Received: from bdallmer-mobl1.ger.corp.intel.com (HELO
+ jhogande-mobl1.intel.com) ([10.251.223.229])
+ by fmviesa005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 06 Mar 2024 02:45:24 -0800
+From: =?UTF-8?q?Jouni=20H=C3=B6gander?= <jouni.hogander@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Cc: =?UTF-8?q?Ville=20Syrj=C3=A4l=C3=A4?= <ville.syrjala@linux.intel.com>,
+ Animesh Manna <animesh.manna@intel.com>,
+ Arun R Murthy <arun.r.murthy@intel.com>,
+ =?UTF-8?q?Jouni=20H=C3=B6gander?= <jouni.hogander@intel.com>
+Subject: [PATCH v3 0/6] ALPM AUX-Less
+Date: Wed,  6 Mar 2024 12:45:07 +0200
+Message-Id: <20240306104513.2129442-1-jouni.hogander@intel.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=UTF-8
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -67,61 +67,39 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, 06 Mar 2024, gareth.yu@intel.com wrote:
-> From: Gareth Yu <gareth.yu@intel.com>
->
-> Turn on the panel from zero brightness of the last state, the panel was s=
-et
-> a maximum PWM in the flow. Once the panel initialization is completed, the
-> backlight is restored to zero brightness. There is a flckering generated.
+This patch set is implementing calculation of ALPM AUX-Less parameters
+for Intel HW and writing them in case of AUX-Less is enabled. It is
+also enabling ALPM AUX-Less for eDP Panel Replay. Current code is not
+allowing Panel Replay on eDP. Patches for this are coming later.
 
-Please be more precise in describing what exactly happens and
-when. Driver probe? Modeset? What restores backlight to zero brightness?
+This implementation is only for Panel Replay usage. LOBF (Link Off
+Between Active Frames) usage needs more work.
 
-Better yet, please file a bug at fdo gitlab, attach full dmesg with
-debugs, etc.
+v3:
+  - use definitions instead of numbers for max values
+  - do not use alpm_ctl as uninitialized variable
+v2:
+  - use variables instead of values directly
+  - fix several max values
+  - move converting port clock to Mhz into _lnl_compute_*
+  - do not set AUX-Wake related bits for AUX-Less case
+  - do not write ALPM configuration for DP2.0 Panel Replay or PSR1.
 
-Before we had the concept of minimum brightness, the minimum was always
-0. And the check was:
+Jouni Högander (6):
+  drm/display: Add missing aux less alpm wake related bits
+  drm/i915/psr: Add missing ALPM AUX-Less register definitions
+  drm/i915/psr: Calculate aux less wake time
+  drm/i915/psr: Silence period and lfps half cycle
+  drm/i915/psr: Enable ALPM for eDP Panel replay
+  drm/i915/psr: Do not write ALPM configuration for PSR1 or DP2.0 Panel
+    Replay
 
-	if (level =3D=3D 0)
-		level =3D max;
+ .../drm/i915/display/intel_display_types.h    |   3 +
+ drivers/gpu/drm/i915/display/intel_psr.c      | 183 +++++++++++++++++-
+ drivers/gpu/drm/i915/display/intel_psr_regs.h |  12 +-
+ include/drm/display/drm_dp.h                  |   5 +-
+ 4 files changed, 193 insertions(+), 10 deletions(-)
 
-Historically, the point was, if you're enabling the display and
-backlight, you don't want it to be at 0 brightness, because for most
-displays that means a black screen.
+-- 
+2.34.1
 
-BR,
-Jani.
-
-
-> Set the brightness to the minimum value when the brightness is less or eq=
-ual
-> to the minimum value to fix this flickering
->
-> Cc : Tejas Upadhyay <tejaskumarx.surendrakumar.upadhyay@intel.com>
-> Cc : Matt Roper <matthew.d.roper@intel.com>
-> Cc : Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
-> Signed-off-by: Gareth Yu <gareth.yu@intel.com>
-> ---
->  drivers/gpu/drm/i915/display/intel_backlight.c | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
->
-> diff --git a/drivers/gpu/drm/i915/display/intel_backlight.c b/drivers/gpu=
-/drm/i915/display/intel_backlight.c
-> index 3f3cd944a1c5..855d6ead905c 100644
-> --- a/drivers/gpu/drm/i915/display/intel_backlight.c
-> +++ b/drivers/gpu/drm/i915/display/intel_backlight.c
-> @@ -762,7 +762,7 @@ static void __intel_backlight_enable(const struct int=
-el_crtc_state *crtc_state,
->  	WARN_ON(panel->backlight.max =3D=3D 0);
->=20=20
->  	if (panel->backlight.level <=3D panel->backlight.min) {
-> -		panel->backlight.level =3D panel->backlight.max;
-> +		panel->backlight.level =3D panel->backlight.min;
->  		if (panel->backlight.device)
->  			panel->backlight.device->props.brightness =3D
->  				scale_hw_to_user(connector,
-
---=20
-Jani Nikula, Intel
