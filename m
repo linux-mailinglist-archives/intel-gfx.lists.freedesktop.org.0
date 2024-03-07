@@ -2,58 +2,62 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9F84F874D67
-	for <lists+intel-gfx@lfdr.de>; Thu,  7 Mar 2024 12:29:06 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id C6D3A874D6E
+	for <lists+intel-gfx@lfdr.de>; Thu,  7 Mar 2024 12:32:15 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 380B810F0BF;
-	Thu,  7 Mar 2024 11:29:04 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9AC72113781;
+	Thu,  7 Mar 2024 11:32:13 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="DvgQlbZq";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="MjUjFuYH";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DBA1A10E6E9;
- Thu,  7 Mar 2024 11:29:02 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.13])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7E970113786
+ for <intel-gfx@lists.freedesktop.org>; Thu,  7 Mar 2024 11:32:11 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1709810942; x=1741346942;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=pVRIvM56NXTl/ATD/uNvJrXmgkgP7pPzeAlnCECzs14=;
- b=DvgQlbZqyqQBjiCcQgYyrF9aHDtzu2o2yAOvNHJyKLXJtxgqIKrHVxE/
- RVBFUiNNaw6UKMF2mEx010H9tftI4RNb4MZYUR2zswe+932IEwoTc9Iow
- Z9HGY2ZQkugTrUUsNBvW85LdXRK/gw2M0FVO1RH4dVAX2PwHDURqBzvPI
- JLhV7U8NweoecWmWhYZzMgPD0PcbPzzmIrBrHn4lPAM4C1gq4c9Hk+itQ
- KwLHFw5Qxi+Ms4gR8J6oMM8MDKmkjblcRtHDtkIhGnhgMASJ+Up8fmhzC
- FlhGLs/i4O2rJAeNoySyqRKL4W7TkeSYO/mj4ZmXVZ4p46oR7yenHE+pr g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,11005"; a="8294239"
+ t=1709811131; x=1741347131;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=x5Yd7cV1gOnM6+KdaljLpjcN2V/kaNtJz9vqVv98gMo=;
+ b=MjUjFuYHYDFHfF42DTrtX/Qe4NWRTYWDgHJLtbmeixAaX8caZrUvrDZo
+ q2xaL2OP1bkkTif1HpWHsmn3x0hB8Zng5VOR4MnKErEUTE4yicVjvv/M0
+ Tl4f6uc0x/pe2xfHmpRfRSm0jFh2OayOH4roZ16SmnAhsqo5cNCGCXON4
+ yrJ/t5vxhmqwkMBMzq4n8mJHQghl9+QBtdAsfs1MhqNMnBF+YtSzZuKA4
+ Pjo44Cr7NCa55V30Dj8dZexnj/mjqjmFYQ0a+vA9nOzxWK+Mxoj9gIiz+
+ 7T3dpxOutoXLl5CjAovPrDQa8aMEELBAoMbnn5+dGsJgNfuRUOCqvnl1o g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,11005"; a="7416979"
 X-IronPort-AV: E=Sophos;i="6.07,211,1708416000"; 
-   d="scan'208";a="8294239"
-Received: from fmviesa001.fm.intel.com ([10.60.135.141])
- by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Mar 2024 03:29:02 -0800
+   d="scan'208";a="7416979"
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+ by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 Mar 2024 03:32:10 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.07,211,1708416000"; d="scan'208";a="41058972"
-Received: from tcavalax-mobl.ger.corp.intel.com (HELO localhost)
- ([10.252.33.241])
- by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Mar 2024 03:29:00 -0800
-From: Jani Nikula <jani.nikula@intel.com>
-To: Rodrigo Vivi <rodrigo.vivi@intel.com>
-Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
- lucas.demarchi@intel.com, ville.syrjala@linux.intel.com
-Subject: Re: [RFC v2 2/4] drm/i915/display: add generic to_intel_display()
- macro
-In-Reply-To: <ZeizBzI-yv_fwdmx@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <cover.1709727127.git.jani.nikula@intel.com>
- <0b9459da6c8cba0f74bf2781d69182fa6801cd97.1709727127.git.jani.nikula@intel.com>
- <ZeizBzI-yv_fwdmx@intel.com>
-Date: Thu, 07 Mar 2024 13:28:57 +0200
-Message-ID: <87zfvawa9y.fsf@intel.com>
+X-IronPort-AV: E=McAfee;i="6600,9927,11005"; a="827774650"
+X-IronPort-AV: E=Sophos;i="6.07,211,1708416000"; d="scan'208";a="827774650"
+Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.74])
+ by orsmga001.jf.intel.com with SMTP; 07 Mar 2024 03:32:07 -0800
+Received: by stinkbox (sSMTP sendmail emulation);
+ Thu, 07 Mar 2024 13:32:07 +0200
+Date: Thu, 7 Mar 2024 13:32:07 +0200
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: "Kandpal, Suraj" <suraj.kandpal@intel.com>
+Cc: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
+ "Shankar, Uma" <uma.shankar@intel.com>,
+ "Nautiyal, Ankit K" <ankit.k.nautiyal@intel.com>
+Subject: Re: [PATCH] drm/i915/dp: Enable AUX based backlight for HDR
+Message-ID: <Zemlt6Ce_C3h_p6q@intel.com>
+References: <20240305103757.1856179-1-suraj.kandpal@intel.com>
+ <20240306085915.1861083-1-suraj.kandpal@intel.com>
+ <ZehhBN-gFIfULx4H@intel.com>
+ <SN7PR11MB67503FB69128DAB24C1C6B0DE3202@SN7PR11MB6750.namprd11.prod.outlook.com>
 MIME-Version: 1.0
-Content-Type: text/plain
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <SN7PR11MB67503FB69128DAB24C1C6B0DE3202@SN7PR11MB6750.namprd11.prod.outlook.com>
+X-Patchwork-Hint: comment
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -69,119 +73,163 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, 06 Mar 2024, Rodrigo Vivi <rodrigo.vivi@intel.com> wrote:
-> On Wed, Mar 06, 2024 at 02:24:36PM +0200, Jani Nikula wrote:
->> Convert various pointers to struct intel_display * using _Generic().
->> 
->> Add some macro magic to make adding new conversions easier, and somewhat
->> abstract the need to cast each generic association. The cast is required
->> because all associations needs to compile, regardless of the type and
->> the generic selection.
->> 
->> The use of *p in the generic selection assignment expression removes the
->> need to add separate associations for const pointers.
->> 
->> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
->> ---
->>  .../drm/i915/display/intel_display_types.h    | 46 +++++++++++++++++++
->>  1 file changed, 46 insertions(+)
->> 
->> diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/drivers/gpu/drm/i915/display/intel_display_types.h
->> index e67cd5b02e84..3f63a5a74d77 100644
->> --- a/drivers/gpu/drm/i915/display/intel_display_types.h
->> +++ b/drivers/gpu/drm/i915/display/intel_display_types.h
->> @@ -2183,4 +2183,50 @@ static inline int to_bpp_x16(int bpp)
->>  	return bpp << 4;
->>  }
->>  
->> +/*
->> + * Conversion functions/macros from various pointer types to struct
->> + * intel_display pointer.
->> + */
->> +static inline struct intel_display *__drm_device_to_intel_display(const struct drm_device *drm)
->> +{
->> +	/*
->> +	 * Assume there's a pointer to struct intel_display in memory right
->> +	 * after struct drm_device.
->> +	 */
->> +	struct intel_display **p = (struct intel_display **)(drm + 1);
->
-> at least this patch and the first one should be together to help the
-> 'magic' to be understood and confirmed safe.
+On Thu, Mar 07, 2024 at 05:27:31AM +0000, Kandpal, Suraj wrote:
+> 
+> 
+> > -----Original Message-----
+> > From: Ville Syrjälä <ville.syrjala@linux.intel.com>
+> > Sent: Wednesday, March 6, 2024 5:57 PM
+> > To: Kandpal, Suraj <suraj.kandpal@intel.com>
+> > Cc: intel-gfx@lists.freedesktop.org; Shankar, Uma <uma.shankar@intel.com>;
+> > Nautiyal, Ankit K <ankit.k.nautiyal@intel.com>
+> > Subject: Re: [PATCH] drm/i915/dp: Enable AUX based backlight for HDR
+> > 
+> > On Wed, Mar 06, 2024 at 02:29:15PM +0530, Suraj Kandpal wrote:
+> > > As of now whenerver HDR is switched on we use the PWM to change the
+> > > backlight as opposed to AUX based backlight changes in terms of nits.
+> > > This patch writes to the appropriate DPCD registers to enable aux
+> > > based backlight using values in nits.
+> > >
+> > > --v2
+> > > -Fix max_cll and max_fall assignment [Jani] -Fix the size sent in
+> > > drm_dpcd_write [Jani]
+> > >
+> > > Signed-off-by: Suraj Kandpal <suraj.kandpal@intel.com>
+> > > ---
+> > >  .../drm/i915/display/intel_dp_aux_backlight.c | 30
+> > > ++++++++++++++-----
+> > >  1 file changed, 22 insertions(+), 8 deletions(-)
+> > >
+> > > diff --git a/drivers/gpu/drm/i915/display/intel_dp_aux_backlight.c
+> > > b/drivers/gpu/drm/i915/display/intel_dp_aux_backlight.c
+> > > index 4f58efdc688a..1b6f14dacf3b 100644
+> > > --- a/drivers/gpu/drm/i915/display/intel_dp_aux_backlight.c
+> > > +++ b/drivers/gpu/drm/i915/display/intel_dp_aux_backlight.c
+> > > @@ -40,11 +40,6 @@
+> > >  #include "intel_dp.h"
+> > >  #include "intel_dp_aux_backlight.h"
+> > >
+> > > -/* TODO:
+> > > - * Implement HDR, right now we just implement the bare minimum to
+> > > bring us back into SDR mode so we
+> > > - * can make people's backlights work in the mean time
+> > > - */
+> > > -
+> > >  /*
+> > >   * DP AUX registers for Intel's proprietary HDR backlight interface. We define
+> > >   * them here since we'll likely be the only driver to ever use these.
+> > > @@ -221,7 +216,7 @@ intel_dp_aux_hdr_set_backlight(const struct
+> > drm_connector_state *conn_state, u32
+> > >  	struct intel_connector *connector = to_intel_connector(conn_state-
+> > >connector);
+> > >  	struct intel_panel *panel = &connector->panel;
+> > >
+> > > -	if (panel->backlight.edp.intel.sdr_uses_aux) {
+> > > +	if (panel->backlight.edp.intel.sdr_uses_aux ||
+> > > +conn_state->hdr_output_metadata) {
+> > >  		intel_dp_aux_hdr_set_aux_backlight(conn_state, level);
+> > >  	} else {
+> > >  		const u32 pwm_level =
+> > intel_backlight_level_to_pwm(connector,
+> > > level); @@ -251,8 +246,15 @@ intel_dp_aux_hdr_enable_backlight(const
+> > struct intel_crtc_state *crtc_state,
+> > >  	}
+> > >
+> > >  	ctrl = old_ctrl;
+> > > -	if (panel->backlight.edp.intel.sdr_uses_aux) {
+> > > +	if (panel->backlight.edp.intel.sdr_uses_aux ||
+> > > +conn_state->hdr_output_metadata) {
+> > >  		ctrl |= INTEL_EDP_HDR_TCON_BRIGHTNESS_AUX_ENABLE;
+> > > +
+> > > +		if (conn_state->hdr_output_metadata) {
+> > > +			ctrl |=
+> > INTEL_EDP_HDR_TCON_SEGMENTED_BACKLIGHT_ENABLE;
+> > > +			ctrl |=
+> > INTEL_EDP_HDR_TCON_2084_DECODE_ENABLE;
+> > > +			ctrl |=
+> > INTEL_EDP_HDR_TCON_2020_GAMUT_ENABLE;
+> > > +		}
+> > 
+> > Wasn't bunch of this stuff supposed to be only used with older hw, and more
+> > recent panels were supposed to pick this up more or less automagically from
+> > the HDR metadata?
+> > 
+> > I seem to also recall that there are a bunch of capability bits we should
+> > probably be checking somewhere...
+> > 
+> 
+> Hi Ville,
+> Thanks for the review
+> You are correct I had a look into it, content luminance will will fill from the static metadata from ICL onwards will get that corrected 
+> As for capability check that was already being done in the function intel_dp_aux_supports_hdr_backlight()
 
-Yes. I just kept them separate while still juggling the whole thing.
+I meant the HDR TCON caps. I don't see us checking any of that
+currently.
 
-And it occurs to me we could make *this* the first patch in the series,
-by making the above function:
-
-static inline struct intel_display *__drm_device_to_intel_display(const struct drm_device *drm)
-{
-	return &to_i915(drm)->display;
-}
-
-Then we could only add the struct drm_device *drm backpointer in struct
-intel_display from patch 1, and proceed with patches 3-4, avoiding the
-whole magic thing for starters. It would unblock a whole lot of
-refactoring as the first step.
-
->
->> +
->> +	return *p;
->> +}
->> +
->> +#define __intel_connector_to_intel_display(p)		\
->> +	__drm_device_to_intel_display((p)->base.dev)
->> +#define __intel_crtc_to_intel_display(p)		\
->> +	__drm_device_to_intel_display((p)->base.dev)
->> +#define __intel_crtc_state_to_intel_display(p)			\
->> +	__drm_device_to_intel_display((p)->uapi.crtc->dev)
->> +#define __intel_digital_port_to_intel_display(p)		\
->> +	__drm_device_to_intel_display((p)->base.base.dev)
->> +#define __intel_encoder_to_intel_display(p)		\
->> +	__drm_device_to_intel_display((p)->base.dev)
->> +#define __intel_hdmi_to_intel_display(p)	\
->> +	__drm_device_to_intel_display(hdmi_to_dig_port(p)->base.base.dev)
->> +#define __intel_dp_to_intel_display(p)	\
->> +	__drm_device_to_intel_display(dp_to_dig_port(p)->base.base.dev)
->> +
->> +/* Helper for generic association. Map types to conversion functions/macros. */
->> +#define __assoc(type, p) \
->> +	struct type: __##type##_to_intel_display((struct type *)(p))
->> +
->> +/* Convert various pointer types to struct intel_display pointer. */
->> +#define to_intel_display(p)				\
->
-> For a moment I almost complained of this because of the generic magic,
-> but mostly because I had guc related code in mind where you can never
-> find the definition, but here it is different. the used 'to_intel_display'
-> can easily be searched by cscope/ctags and then you are able to see
-> below what are the accepted cases, so I ended up liking it.
-
-Yay!
-
-I also tried to put effort into making this easily extensible. Add a
-__<FROM-STRUCT>_to_intel_display(p) macro or function, and
-__assoc(<FROM-STRUCT>, p) in the association list below, and it just
-works.
-
-BR,
-Jani.
-
->
->> +	_Generic(*p,					\
->> +		 __assoc(intel_connector, p),		\
->> +		 __assoc(intel_crtc, p),		\
->> +		 __assoc(intel_crtc_state, p),		\
->> +		 __assoc(intel_digital_port, p),	\
->> +		 __assoc(intel_encoder, p),		\
->> +		 __assoc(intel_hdmi, p),		\
->> +		 __assoc(intel_dp, p),			\
->> +		 __assoc(drm_device, p))
->> +
->>  #endif /*  __INTEL_DISPLAY_TYPES_H__ */
->> -- 
->> 2.39.2
->> 
+> I soon send a revision with the fixes.
+> 
+> Regards,
+> Suraj Kandpal
+> > > +
+> > >  		intel_dp_aux_hdr_set_aux_backlight(conn_state, level);
+> > >  	} else {
+> > >  		u32 pwm_level = intel_backlight_level_to_pwm(connector,
+> > level); @@
+> > > -292,9 +294,11 @@ intel_dp_aux_hdr_setup_backlight(struct
+> > > intel_connector *connector, enum pipe pi  {
+> > >  	struct drm_i915_private *i915 = to_i915(connector->base.dev);
+> > >  	struct intel_panel *panel = &connector->panel;
+> > > +	struct intel_dp *intel_dp = enc_to_intel_dp(connector->encoder);
+> > >  	struct drm_luminance_range_info *luminance_range =
+> > >  		&connector->base.display_info.luminance_range;
+> > >  	int ret;
+> > > +	u8 buf[4];
+> > >
+> > >  	drm_dbg_kms(&i915->drm, "[CONNECTOR:%d:%s] SDR backlight is
+> > controlled through %s\n",
+> > >  		    connector->base.base.id, connector->base.name, @@ -
+> > 318,11
+> > > +322,21 @@ intel_dp_aux_hdr_setup_backlight(struct intel_connector
+> > *connector, enum pipe pi
+> > >  		panel->backlight.min = 0;
+> > >  	}
+> > >
+> > > +	buf[0] = connector->base.hdr_sink_metadata.hdmi_type1.max_cll &
+> > 0xFF;
+> > > +	buf[1] = (connector->base.hdr_sink_metadata.hdmi_type1.max_cll &
+> > 0xFF00) >> 8;
+> > > +	buf[2] = connector->base.hdr_sink_metadata.hdmi_type1.max_fall &
+> > 0xFF;
+> > > +	buf[3] = (connector->base.hdr_sink_metadata.hdmi_type1.max_fall
+> > &
+> > > +0xFF00) >> 8;
+> > > +
+> > > +	ret = drm_dp_dpcd_write(&intel_dp->aux,
+> > INTEL_EDP_HDR_CONTENT_LUMINANCE, buf,
+> > > +				sizeof(buf));
+> > > +	if (ret < 0)
+> > > +		drm_dbg_kms(&i915->drm,
+> > > +			    "Not able to write content luminence to DPCD
+> > register
+> > > +err:-%d\n", ret);
+> > > +
+> > >  	drm_dbg_kms(&i915->drm, "[CONNECTOR:%d:%s] Using AUX HDR
+> > interface for backlight control (range %d..%d)\n",
+> > >  		    connector->base.base.id, connector->base.name,
+> > >  		    panel->backlight.min, panel->backlight.max);
+> > >
+> > > -
+> > >  	panel->backlight.level = intel_dp_aux_hdr_get_backlight(connector,
+> > pipe);
+> > >  	panel->backlight.enabled = panel->backlight.level != 0;
+> > >
+> > > --
+> > > 2.43.2
+> > 
+> > --
+> > Ville Syrjälä
+> > Intel
 
 -- 
-Jani Nikula, Intel
+Ville Syrjälä
+Intel
