@@ -2,85 +2,132 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 54486874A01
-	for <lists+intel-gfx@lfdr.de>; Thu,  7 Mar 2024 09:44:57 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 92FB4874A29
+	for <lists+intel-gfx@lfdr.de>; Thu,  7 Mar 2024 09:55:21 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8324E113703;
-	Thu,  7 Mar 2024 08:44:55 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9F5DD11370C;
+	Thu,  7 Mar 2024 08:55:17 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=redhat.com header.i=@redhat.com header.b="HCWrfhI3";
+	dkim=pass (1024-bit key; unprotected) header.d=suse.de header.i=@suse.de header.b="YZU4zvU6";
+	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="db0e9Q/I";
+	dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b="YZU4zvU6";
+	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="db0e9Q/I";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from us-smtp-delivery-124.mimecast.com
- (us-smtp-delivery-124.mimecast.com [170.10.129.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DE69310F292
- for <intel-gfx@lists.freedesktop.org>; Thu,  7 Mar 2024 08:44:53 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1709801092;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type;
- bh=fLP6ceN1F2SyA5GtcZy36wAftn4c2iaCrgw/MFXJWTs=;
- b=HCWrfhI3Qvhy9Ilx1AoP3GvhLoA7Tfko9gqbNehmNu8FVUUf16ex2Vtd1dHaOnmitklaYy
- 0hiLmouE8Yz+uN40X4zt25/l+xDxbg2O8eT0pfwmiSGSYuGX5/s5slKgAf2IrPFm0Rs7CU
- S3n8gM/Knl+0w0biUJHUSWHK4pDegaI=
-Received: from mail-lf1-f69.google.com (mail-lf1-f69.google.com
- [209.85.167.69]) by relay.mimecast.com with ESMTP with STARTTLS
- (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
- us-mta-365-x2NotjX_NpSy0sy3e9jhQw-1; Thu, 07 Mar 2024 03:44:50 -0500
-X-MC-Unique: x2NotjX_NpSy0sy3e9jhQw-1
-Received: by mail-lf1-f69.google.com with SMTP id
- 2adb3069b0e04-51314c5a05aso451114e87.2
- for <intel-gfx@lists.freedesktop.org>; Thu, 07 Mar 2024 00:44:50 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1709801089; x=1710405889;
- h=content-disposition:mime-version:message-id:subject:cc:to:from:date
- :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
- bh=fLP6ceN1F2SyA5GtcZy36wAftn4c2iaCrgw/MFXJWTs=;
- b=phmj84WKoT7pyYSGlFCphBe7goMlOI9jjxsgkJm/0w3LTe/ruGIM92kufZni71rV1T
- 1OuliBG0CHN1PBpUpHVbG8iKdT4ezY0orWLJRLAH9TpCcXKDfUq0tolb6/7WnNduoXvQ
- 9QeZ4VIr+d7m4kOZvNxTp+Ekvj0GE3020G4Ys4A/S8uSs5wR2qw1fZyoe0yxQp6R6C+n
- CBUOVKWS1p7F8fPpOQsc8L9sR2B+SQUJ0jrPP6ySKSb/67m3hyogrBPJk5CHu7DGClne
- AfIR0I7sygTqOQkuOCKc4PJn74scffw4dsBdUmSho468gFgPgf7REL91fp2nBbnqMSqY
- xITg==
-X-Forwarded-Encrypted: i=1;
- AJvYcCUYTjNntd2bENcGIHVcOcGf8ZWIvXCXKcVZUDN8CvzSqlvj3G0ifR471nqvwAo+2+2rq6glHlQMS4yNQTan0bTTB1LiFb0Saa58FxTS73u6
-X-Gm-Message-State: AOJu0YxAXngG7JwRHMWLd9bIxOOC6xlqn7GoXcNxrMm6SQTbHUqat6cc
- 3eDY+zmkZuJXeudNDfq/0Ca4EmKWabAoxRy3cV0p3NWtCj2o5PEpVXIBNZV5GTxPcBEsl3mMC0t
- Dmo2sJv3GMu97sEqwHTyQlUsbXcM5tiZ148z0yv3xCHawNpoXcNW6Zcwtqwb5/X/aOg==
-X-Received: by 2002:a05:6512:1094:b0:513:30fb:d64 with SMTP id
- j20-20020a056512109400b0051330fb0d64mr1180218lfg.44.1709801089239; 
- Thu, 07 Mar 2024 00:44:49 -0800 (PST)
-X-Google-Smtp-Source: AGHT+IFpv4voRj54WBHwxzKpSWs2OSTl5esk+TWvuSwsvPvxTS4x0KVGxvdbWMY1r/dmx87pzb2Pbw==
-X-Received: by 2002:a05:6512:1094:b0:513:30fb:d64 with SMTP id
- j20-20020a056512109400b0051330fb0d64mr1180200lfg.44.1709801088675; 
- Thu, 07 Mar 2024 00:44:48 -0800 (PST)
-Received: from localhost ([2a01:e0a:b25:f902::ff])
- by smtp.gmail.com with ESMTPSA id
- n8-20020a05600c180800b00413011933e6sm1842810wmp.39.2024.03.07.00.44.48
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Thu, 07 Mar 2024 00:44:48 -0800 (PST)
-Date: Thu, 7 Mar 2024 09:44:48 +0100
-From: Maxime Ripard <mripard@redhat.com>
-To: Dave Airlie <airlied@gmail.com>, 
-	Daniel Vetter <daniel.vetter@ffwll.ch>
-Cc: Jani Nikula <jani.nikula@linux.intel.com>, 
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>, 
- Rodrigo Vivi <rodrigo.vivi@intel.com>, Thomas Zimmermann <tzimmermann@suse.de>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, 
- Thomas =?utf-8?Q?Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
- Oded Gabbay <ogabbay@kernel.org>, 
- Lucas De Marchi <lucas.demarchi@intel.com>, dri-devel@lists.freedesktop.org,
- intel-gfx@lists.freedesktop.org, 
- intel-xe@lists.freedesktop.org, dim-tools@lists.freedesktop.org
-Subject: [PULL] drm-misc-fixes
-Message-ID: <20240307-quizzical-auburn-starling-0ade8f@houat>
+Received: from smtp-out2.suse.de (smtp-out2.suse.de [195.135.223.131])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 178CD10F2B9;
+ Thu,  7 Mar 2024 08:55:15 +0000 (UTC)
+Received: from imap2.dmz-prg2.suse.org (imap2.dmz-prg2.suse.org [10.150.64.98])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+ (No client certificate requested)
+ by smtp-out2.suse.de (Postfix) with ESMTPS id 517F45D5D2;
+ Thu,  7 Mar 2024 08:55:14 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
+ t=1709801714; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
+ bh=PZ9c0Y9KDpByaYyZMHWV1UaYrjKmfVpJwDP5oLSqqyY=;
+ b=YZU4zvU6tAYjWrvaBHZFCz/ErnpxjZ2aFyOassizaMBRSY9WU0F1C3elPfsebDY290XYP7
+ 121ggd/oemFgfWHaYMrkOey0Os7YMmyUUyJpq5J2aH6Lhe69vx3j3nr0r8eSFbQ3EPzIuF
+ +0Halb/c/cwG8EF3eXrHIMyiOtUGi0U=
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
+ s=susede2_ed25519; t=1709801714;
+ h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
+ bh=PZ9c0Y9KDpByaYyZMHWV1UaYrjKmfVpJwDP5oLSqqyY=;
+ b=db0e9Q/IyCS0ZEtZNQsUbt85I8GDmGZGS8e7Ax6LH6JCDMARcma+wUkCMi1V8n23iJkRYs
+ SXCq1ElgWHLrtrDA==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
+ t=1709801714; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
+ bh=PZ9c0Y9KDpByaYyZMHWV1UaYrjKmfVpJwDP5oLSqqyY=;
+ b=YZU4zvU6tAYjWrvaBHZFCz/ErnpxjZ2aFyOassizaMBRSY9WU0F1C3elPfsebDY290XYP7
+ 121ggd/oemFgfWHaYMrkOey0Os7YMmyUUyJpq5J2aH6Lhe69vx3j3nr0r8eSFbQ3EPzIuF
+ +0Halb/c/cwG8EF3eXrHIMyiOtUGi0U=
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
+ s=susede2_ed25519; t=1709801714;
+ h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
+ bh=PZ9c0Y9KDpByaYyZMHWV1UaYrjKmfVpJwDP5oLSqqyY=;
+ b=db0e9Q/IyCS0ZEtZNQsUbt85I8GDmGZGS8e7Ax6LH6JCDMARcma+wUkCMi1V8n23iJkRYs
+ SXCq1ElgWHLrtrDA==
+Received: from imap2.dmz-prg2.suse.org (localhost [127.0.0.1])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+ (No client certificate requested)
+ by imap2.dmz-prg2.suse.org (Postfix) with ESMTPS id 1029A13997;
+ Thu,  7 Mar 2024 08:55:14 +0000 (UTC)
+Received: from dovecot-director2.suse.de ([2a07:de40:b281:106:10:150:64:167])
+ by imap2.dmz-prg2.suse.org with ESMTPSA id RVSLAvKA6WW4EwAAn2gu4w
+ (envelope-from <tzimmermann@suse.de>); Thu, 07 Mar 2024 08:55:14 +0000
+Message-ID: <5642828f-28a5-4f79-a96f-5ca4411163c7@suse.de>
+Date: Thu, 7 Mar 2024 09:55:13 +0100
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
- protocol="application/pgp-signature"; boundary="76xqnbxdilc4pxio"
-Content-Disposition: inline
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 00/22] drm: fix headers, add header test facility
+To: Jani Nikula <jani.nikula@intel.com>, dri-devel@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
+ David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, Masahiro Yamada <masahiroy@kernel.org>
+References: <cover.1709749576.git.jani.nikula@intel.com>
+Content-Language: en-US
+From: Thomas Zimmermann <tzimmermann@suse.de>
+Autocrypt: addr=tzimmermann@suse.de; keydata=
+ xsBNBFs50uABCADEHPidWt974CaxBVbrIBwqcq/WURinJ3+2WlIrKWspiP83vfZKaXhFYsdg
+ XH47fDVbPPj+d6tQrw5lPQCyqjwrCPYnq3WlIBnGPJ4/jreTL6V+qfKRDlGLWFjZcsrPJGE0
+ BeB5BbqP5erN1qylK9i3gPoQjXGhpBpQYwRrEyQyjuvk+Ev0K1Jc5tVDeJAuau3TGNgah4Yc
+ hdHm3bkPjz9EErV85RwvImQ1dptvx6s7xzwXTgGAsaYZsL8WCwDaTuqFa1d1jjlaxg6+tZsB
+ 9GluwvIhSezPgnEmimZDkGnZRRSFiGP8yjqTjjWuf0bSj5rUnTGiyLyRZRNGcXmu6hjlABEB
+ AAHNJ1Rob21hcyBaaW1tZXJtYW5uIDx0emltbWVybWFubkBzdXNlLmRlPsLAjgQTAQgAOAIb
+ AwULCQgHAgYVCgkICwIEFgIDAQIeAQIXgBYhBHIX+6yM6c9jRKFo5WgNwR1TC3ojBQJftODH
+ AAoJEGgNwR1TC3ojx1wH/0hKGWugiqDgLNXLRD/4TfHBEKmxIrmfu9Z5t7vwUKfwhFL6hqvo
+ lXPJJKQpQ2z8+X2vZm/slsLn7J1yjrOsoJhKABDi+3QWWSGkaGwRJAdPVVyJMfJRNNNIKwVb
+ U6B1BkX2XDKDGffF4TxlOpSQzdtNI/9gleOoUA8+jy8knnDYzjBNOZqLG2FuTdicBXblz0Mf
+ vg41gd9kCwYXDnD91rJU8tzylXv03E75NCaTxTM+FBXPmsAVYQ4GYhhgFt8S2UWMoaaABLDe
+ 7l5FdnLdDEcbmd8uLU2CaG4W2cLrUaI4jz2XbkcPQkqTQ3EB67hYkjiEE6Zy3ggOitiQGcqp
+ j//OwE0EWznS4AEIAMYmP4M/V+T5RY5at/g7rUdNsLhWv1APYrh9RQefODYHrNRHUE9eosYb
+ T6XMryR9hT8XlGOYRwKWwiQBoWSDiTMo/Xi29jUnn4BXfI2px2DTXwc22LKtLAgTRjP+qbU6
+ 3Y0xnQN29UGDbYgyyK51DW3H0If2a3JNsheAAK+Xc9baj0LGIc8T9uiEWHBnCH+RdhgATnWW
+ GKdDegUR5BkDfDg5O/FISymJBHx2Dyoklv5g4BzkgqTqwmaYzsl8UxZKvbaxq0zbehDda8lv
+ hFXodNFMAgTLJlLuDYOGLK2AwbrS3Sp0AEbkpdJBb44qVlGm5bApZouHeJ/+n+7r12+lqdsA
+ EQEAAcLAdgQYAQgAIAIbDBYhBHIX+6yM6c9jRKFo5WgNwR1TC3ojBQJftOH6AAoJEGgNwR1T
+ C3ojVSkIALpAPkIJPQoURPb1VWjh34l0HlglmYHvZszJWTXYwavHR8+k6Baa6H7ufXNQtThR
+ yIxJrQLW6rV5lm7TjhffEhxVCn37+cg0zZ3j7zIsSS0rx/aMwi6VhFJA5hfn3T0TtrijKP4A
+ SAQO9xD1Zk9/61JWk8OysuIh7MXkl0fxbRKWE93XeQBhIJHQfnc+YBLprdnxR446Sh8Wn/2D
+ Ya8cavuWf2zrB6cZurs048xe0UbSW5AOSo4V9M0jzYI4nZqTmPxYyXbm30Kvmz0rYVRaitYJ
+ 4kyYYMhuULvrJDMjZRvaNe52tkKAvMevcGdt38H4KSVXAylqyQOW5zvPc4/sq9c=
+In-Reply-To: <cover.1709749576.git.jani.nikula@intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Level: 
+Authentication-Results: smtp-out2.suse.de;
+	none
+X-Spamd-Result: default: False [-3.09 / 50.00]; ARC_NA(0.00)[];
+ RCVD_VIA_SMTP_AUTH(0.00)[]; XM_UA_NO_VERSION(0.01)[];
+ FROM_HAS_DN(0.00)[]; TO_DN_SOME(0.00)[];
+ FREEMAIL_ENVRCPT(0.00)[gmail.com];
+ TO_MATCH_ENVRCPT_ALL(0.00)[]; MIME_GOOD(-0.10)[text/plain];
+ URIBL_BLOCKED(0.00)[suse.de:email,intel.com:email,ffwll.ch:email];
+ BAYES_HAM(-3.00)[100.00%]; RCVD_COUNT_THREE(0.00)[3];
+ DKIM_SIGNED(0.00)[suse.de:s=susede2_rsa,suse.de:s=susede2_ed25519];
+ RCPT_COUNT_SEVEN(0.00)[9];
+ DBL_BLOCKED_OPENRESOLVER(0.00)[suse.de:email,intel.com:email];
+ FUZZY_BLOCKED(0.00)[rspamd.com]; FROM_EQ_ENVFROM(0.00)[];
+ MIME_TRACE(0.00)[0:+];
+ FREEMAIL_CC(0.00)[lists.freedesktop.org,gmail.com,ffwll.ch,linux.intel.com,kernel.org];
+ RCVD_TLS_ALL(0.00)[]; MID_RHS_MATCH_FROM(0.00)[]
+X-Spam-Score: -3.09
+X-Spam-Flag: NO
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -96,73 +143,107 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+Hi
 
---76xqnbxdilc4pxio
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+Am 06.03.24 um 19:31 schrieb Jani Nikula:
+> First, fix a bunch of issues in drm headers, uncovered with the last
+> patch. A few kernel-doc warnings are just brushed under the carpet for
+> now, with a FIXME comment. Otherwise, pretty straightforward stuff.
 
-Hi,
+Nice, thanks a lot. For the FIXME comments, maybe maintainers can 
+provide the docs to include in your patchset. But that wouldn't be a 
+blocker IMHO. The /* private: */ comments make kernel-doc ignore the 
+rest of the structure, right?
 
-Here's this week drm-misc-fixes PR
+With the required fixes applied, for patches 1 to 14:
 
-Maxime
+Reviewed-by: Thomas Zimmermann <tzimmermann@suse.de>
 
-drm-misc-fixes-2024-03-07:
-A connector status polling fix, a timings fix for the Himax83102-j02
-panel, a deadlock fix for nouveau, A controversial format fix for udl
-that got reverted to allow further discussion, and a build fix for the
-drm/buddy kunit tests.
-The following changes since commit c70703320e557ff30847915e6a7631a9abdda16b:
+For patches 15 to 22:
 
-  drm/tests/drm_buddy: add alloc_range_bias test (2024-02-28 08:03:29 +0100)
+Acked-by: Thomas Zimmermann <tzimmermann@suse.de>
 
-are available in the Git repository at:
+Best regards
+Thomas
 
-  https://anongit.freedesktop.org/git/drm/drm-misc tags/drm-misc-fixes-2024-03-07
+>
+> Second, add a header test facility to catch issues at build time when
+> CONFIG_DRM_HEADER_TEST=y. This is the last patch, and I think needs
+> Masahiro's ack.
+>
+> BR,
+> Jani.
+>
+>
+> Cc: David Airlie <airlied@gmail.com>
+> Cc: Daniel Vetter <daniel@ffwll.ch>
+> Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+> Cc: Maxime Ripard <mripard@kernel.org>
+> Cc: Thomas Zimmermann <tzimmermann@suse.de>
+> Cc: Masahiro Yamada <masahiroy@kernel.org>
+>
+> Jani Nikula (22):
+>    drm/crtc: make drm_crtc_internal.h self-contained
+>    drm: add missing header guards to drm_internal.h
+>    drm/kunit: fix drm_kunit_helpers.h kernel-doc
+>    drm/amdgpu: make amd_asic_type.h self-contained
+>    drm: bridge: samsung-dsim: make samsung-dsim.h self-contained
+>    drm/dp_mst: fix drm_dp_mst_helper.h kernel-doc
+>    drm/crc: make drm_debugfs_crc.h self-contained and fix kernel-doc
+>    drm/encoder: silence drm_encoder_slave.h kernel-doc
+>    drm: fix drm_format_helper.h kernel-doc warnings
+>    drm/lease: make drm_lease.h self-contained
+>    drm: fix drm_gem_vram_helper.h kernel-doc
+>    drm/of: make drm_of.h self-contained
+>    drm/i2c: silence ch7006.h and sil164.h kernel-doc warnings
+>    drm/suballoc: fix drm_suballoc.h kernel-doc
+>    drm/i915: fix i915_gsc_proxy_mei_interface.h kernel-doc
+>    drm/i915/hdcp: fix i915_hdcp_interface.h kernel-doc warnings
+>    drm/i915/pxp: fix i915_pxp_tee_interface.h kernel-doc warnings
+>    drm/ttm: fix ttm_bo.h kernel-doc warnings
+>    drm/ttm: make ttm_caching.h self-contained
+>    drm/ttm: fix ttm_execbuf_util.h kernel-doc warnings
+>    drm/ttm: fix ttm_kmap_iter.h kernel-doc warnings
+>    drm: ensure drm headers are self-contained and pass kernel-doc
+>
+>   Kbuild                                     |  1 +
+>   drivers/gpu/drm/Kconfig                    | 11 +++++++++++
+>   drivers/gpu/drm/Makefile                   | 18 ++++++++++++++++++
+>   drivers/gpu/drm/drm_crtc_internal.h        |  1 +
+>   drivers/gpu/drm/drm_internal.h             |  5 +++++
+>   include/Kbuild                             |  1 +
+>   include/drm/Makefile                       | 18 ++++++++++++++++++
+>   include/drm/amd_asic_type.h                |  3 +++
+>   include/drm/bridge/samsung-dsim.h          |  4 +++-
+>   include/drm/display/drm_dp_mst_helper.h    |  1 -
+>   include/drm/drm_debugfs_crc.h              |  8 +++++++-
+>   include/drm/drm_encoder_slave.h            |  3 +++
+>   include/drm/drm_format_helper.h            |  1 +
+>   include/drm/drm_gem_vram_helper.h          |  1 -
+>   include/drm/drm_kunit_helpers.h            |  2 +-
+>   include/drm/drm_lease.h                    |  2 ++
+>   include/drm/drm_of.h                       |  1 +
+>   include/drm/drm_suballoc.h                 |  2 +-
+>   include/drm/i2c/ch7006.h                   |  1 +
+>   include/drm/i2c/sil164.h                   |  1 +
+>   include/drm/i915_gsc_proxy_mei_interface.h |  4 ++--
+>   include/drm/i915_hdcp_interface.h          | 18 +++++++++++++-----
+>   include/drm/i915_pxp_tee_interface.h       | 19 ++++++++++++-------
+>   include/drm/ttm/ttm_bo.h                   | 18 ++++++++++++------
+>   include/drm/ttm/ttm_caching.h              |  2 ++
+>   include/drm/ttm/ttm_execbuf_util.h         |  7 +++----
+>   include/drm/ttm/ttm_kmap_iter.h            |  4 ++--
+>   27 files changed, 125 insertions(+), 32 deletions(-)
+>   create mode 100644 include/Kbuild
+>   create mode 100644 include/drm/Makefile
+>
 
-for you to fetch changes up to 4ece8fc439c370b1aec26a44b9f94fb214068d42:
-
-  drm/tests/buddy: fix print format (2024-03-07 09:28:06 +0100)
-
-----------------------------------------------------------------
-A connector status polling fix, a timings fix for the Himax83102-j02
-panel, a deadlock fix for nouveau, A controversial format fix for udl
-that got reverted to allow further discussion, and a build fix for the
-drm/buddy kunit tests.
-
-----------------------------------------------------------------
-Cong Yang (1):
-      drm/panel: boe-tv101wum-nl6: Fine tune Himax83102-j02 panel HFP and HBP (again)
-
-Douglas Anderson (2):
-      drm/udl: Add ARGB8888 as a format
-      Revert "drm/udl: Add ARGB8888 as a format"
-
-Imre Deak (1):
-      drm: Fix output poll work for drm_kms_helper_poll=n
-
-Karol Herbst (1):
-      drm/nouveau: fix stale locked mutex in nouveau_gem_ioctl_pushbuf
-
-Matthew Auld (1):
-      drm/tests/buddy: fix print format
-
- drivers/gpu/drm/drm_probe_helper.c             | 8 +++++---
- drivers/gpu/drm/nouveau/nouveau_gem.c          | 2 +-
- drivers/gpu/drm/panel/panel-boe-tv101wum-nl6.c | 8 ++++----
- drivers/gpu/drm/tests/drm_buddy_test.c         | 2 +-
- 4 files changed, 11 insertions(+), 9 deletions(-)
-
---76xqnbxdilc4pxio
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYKAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCZel+fgAKCRDj7w1vZxhR
-xSukAP4kKvDlgY3da8dezBm0+6fw59JGWuhV0LXZPOBGaN6QbQD/UcEPU29ec3Gb
-97p8AFDJCjbEyriP2DwXIllSi1wyyA0=
-=h+3+
------END PGP SIGNATURE-----
-
---76xqnbxdilc4pxio--
+-- 
+--
+Thomas Zimmermann
+Graphics Driver Developer
+SUSE Software Solutions Germany GmbH
+Frankenstrasse 146, 90461 Nuernberg, Germany
+GF: Ivo Totev, Andrew Myers, Andrew McDonald, Boudien Moerman
+HRB 36809 (AG Nuernberg)
 
