@@ -2,60 +2,58 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1F9988757CF
-	for <lists+intel-gfx@lfdr.de>; Thu,  7 Mar 2024 21:02:45 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6A046875800
+	for <lists+intel-gfx@lfdr.de>; Thu,  7 Mar 2024 21:14:03 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 74FE81126C8;
-	Thu,  7 Mar 2024 20:02:38 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9BAB510E4F7;
+	Thu,  7 Mar 2024 20:14:01 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="B5lOPuK5";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="EzEHvR+7";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2307B11381B;
- Thu,  7 Mar 2024 20:02:34 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7948E10E4F7;
+ Thu,  7 Mar 2024 20:13:49 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1709841754; x=1741377754;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:in-reply-to;
- bh=dBHrMs2pjMffipgnmu56a/VvK+7UcCZDn3xvMn1i9DY=;
- b=B5lOPuK5Wy6mg19em5h6EBNrj6QFnGBFXnyf6EzX5eDtYbu8ILSKNzsv
- dI7Nz4f4tRlALmC5kzrm//+Rrajln4jdFSRkusV2F7Rlmsz28ADddut8H
- GvH8OTbjHEIF9uKbL0Q332HUo7hDqSq1xLlO+4OB+OKB74guVP9nNw6Sf
- mu3LkepCob3AWlWPnd4zqxUumaDvz75Rxpev6IUtwnWYVlVmqsI9N8lvN
- WwNeD/wobnL/M0yC+lgswmNaBAPlc9E+r7KVwfBsyx+1VM4XVN+xHsJW3
- S/0x9D3PuvDRDwtCeAz8dq33Lpl4P1ZGEO/PoIYBB8jy1tsKa9T6Jzn0+ w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,11006"; a="15945884"
-X-IronPort-AV: E=Sophos;i="6.07,107,1708416000"; d="scan'208";a="15945884"
-Received: from orviesa007.jf.intel.com ([10.64.159.147])
- by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Mar 2024 12:02:29 -0800
+ t=1709842436; x=1741378436;
+ h=date:from:to:cc:subject:message-id:reply-to:references:
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=Me+2cUABqkmJjm+ZelE/vRdSwiXm8ntEwh24V58sBqE=;
+ b=EzEHvR+7x8TRGYpYJo8lY1pqkQ4HZIB7IUGTgvrWBwth6n7YAocgsE41
+ xvVOiLfhVP6MmYa6Dys5I0n52MlplT9zL+LG5zWoStpl5ORoQefKTxyBF
+ 3LXB+LUdIulpsL/aGS9Oq3VoGiLD2ANmg6KodJ1h+1t+HtG0sEuyiJmRd
+ DrRzQAEnp2W5W8qQ4DnnodtjNbNtlRHr15jUCW+tVN2/j9PcuUKAmkKyV
+ aDrhSFM5AiI6ChZtdkMKA6dVdb2FbkyqixORnOr6tAVPihVi9nJgbUrbY
+ 47DedI6qZpxmcAIjhR/GLElxQGwfmWNmYCxJ3eRc43XQC3IzLVOHyMMtJ Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,11006"; a="4383858"
+X-IronPort-AV: E=Sophos;i="6.07,107,1708416000"; 
+   d="scan'208";a="4383858"
+Received: from orviesa001.jf.intel.com ([10.64.159.141])
+ by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 Mar 2024 12:13:49 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.07,107,1708416000"; d="scan'208";a="10670374"
-Received: from unknown (HELO intel.com) ([10.247.118.98])
- by orviesa007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Mar 2024 12:02:24 -0800
-Date: Thu, 7 Mar 2024 21:02:17 +0100
-From: Andi Shyti <andi.shyti@linux.intel.com>
-To: Matt Roper <matthew.d.roper@intel.com>
-Cc: Andi Shyti <andi.shyti@linux.intel.com>,
- intel-gfx <intel-gfx@lists.freedesktop.org>,
- dri-devel <dri-devel@lists.freedesktop.org>,
- Chris Wilson <chris.p.wilson@linux.intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- John Harrison <John.C.Harrison@intel.com>, stable@vger.kernel.org,
- Andi Shyti <andi.shyti@kernel.org>, Tvrtko Ursulin <tursulin@ursulin.net>
-Subject: Re: [PATCH v4 1/3] drm/i915/gt: Disable HW load balancing for CCS
-Message-ID: <ZeodSUrgZXL_pjy0@ashyti-mobl2.lan>
-References: <20240306012247.246003-1-andi.shyti@linux.intel.com>
- <20240306012247.246003-2-andi.shyti@linux.intel.com>
- <20240306234609.GF718896@mdroper-desk1.amr.corp.intel.com>
+X-IronPort-AV: E=Sophos;i="6.07,107,1708416000"; d="scan'208";a="47705565"
+Received: from ideak-desk.fi.intel.com ([10.237.72.78])
+ by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 Mar 2024 12:13:47 -0800
+Date: Thu, 7 Mar 2024 22:14:12 +0200
+From: Imre Deak <imre.deak@intel.com>
+To: Rodrigo Vivi <rodrigo.vivi@intel.com>
+Cc: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>,
+ intel-xe@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
+ Matthew Auld <matthew.auld@intel.com>
+Subject: Re: [PATCH 01/10] drm/i915/display: convert inner wakeref get
+ towards get_if_in_use
+Message-ID: <ZeogFEKNw4QYTG1J@ideak-desk.fi.intel.com>
+References: <20240307001554.162153-1-rodrigo.vivi@intel.com>
+ <ZekKtpIobqZzyvDR@intel.com> <ZenTPngZUhMx5V4z@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
-In-Reply-To: <20240306234609.GF718896@mdroper-desk1.amr.corp.intel.com>
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <ZenTPngZUhMx5V4z@intel.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -68,87 +66,111 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: imre.deak@intel.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi Matt,
-
-On Wed, Mar 06, 2024 at 03:46:09PM -0800, Matt Roper wrote:
-> On Wed, Mar 06, 2024 at 02:22:45AM +0100, Andi Shyti wrote:
-> > The hardware should not dynamically balance the load between CCS
-> > engines. Wa_14019159160 recommends disabling it across all
-> > platforms.
+On Thu, Mar 07, 2024 at 09:46:22AM -0500, Rodrigo Vivi wrote:
+> On Thu, Mar 07, 2024 at 02:30:46AM +0200, Ville Syrjälä wrote:
+> > On Wed, Mar 06, 2024 at 07:15:45PM -0500, Rodrigo Vivi wrote:
+> > > This patch brings no functional change. Since at this point of
+> > > the code we are already asserting a wakeref was held, it means
+> > > that we are with runtime_pm 'in_use' and in practical terms we
+> > > are only bumping the pm_runtime usage counter and moving on.
+> > > 
+> > > However, xe driver has a lockdep annotation that warned us that
+> > > if a sync resume was actually called at this point, we could have
+> > > a deadlock because we are inside the power_domains->lock locked
+> > > area and the resume would call the irq_reset, which would also
+> > > try to get the power_domains->lock.
+> > > 
+> > > For this reason, let's convert this call to a safer option and
+> > > calm lockdep on.
+> > > 
+> > > Cc: Matthew Auld <matthew.auld@intel.com>
+> > > Signed-off-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
+> > > ---
+> > >  drivers/gpu/drm/i915/display/intel_display_power.c | 2 +-
+> > >  1 file changed, 1 insertion(+), 1 deletion(-)
+> > > 
+> > > diff --git a/drivers/gpu/drm/i915/display/intel_display_power.c b/drivers/gpu/drm/i915/display/intel_display_power.c
+> > > index 6fd4fa52253a..4c5168a5bbf4 100644
+> > > --- a/drivers/gpu/drm/i915/display/intel_display_power.c
+> > > +++ b/drivers/gpu/drm/i915/display/intel_display_power.c
+> > > @@ -646,7 +646,7 @@ release_async_put_domains(struct i915_power_domains *power_domains,
+> > >  	 * power well disabling.
+> > >  	 */
+> > >  	assert_rpm_raw_wakeref_held(rpm);
+> > > -	wakeref = intel_runtime_pm_get(rpm);
+> > > +	wakeref = intel_runtime_pm_get_if_in_use(rpm);
 > > 
-> > Fixes: d2eae8e98d59 ("drm/i915/dg2: Drop force_probe requirement")
-> > Signed-off-by: Andi Shyti <andi.shyti@linux.intel.com>
-> > Cc: Chris Wilson <chris.p.wilson@linux.intel.com>
-> > Cc: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
-> > Cc: Matt Roper <matthew.d.roper@intel.com>
-> > Cc: <stable@vger.kernel.org> # v6.2+
-> > ---
-> >  drivers/gpu/drm/i915/gt/intel_gt_regs.h     | 1 +
-> >  drivers/gpu/drm/i915/gt/intel_workarounds.c | 5 +++++
-> >  2 files changed, 6 insertions(+)
+> > On first glance that sequence looks like complete nonsense, and
+> > thus likely to be cleaned up by someone later.
+> 
+> indeed. as many other things around i915's rpm infra.
+> 
 > > 
-> > diff --git a/drivers/gpu/drm/i915/gt/intel_gt_regs.h b/drivers/gpu/drm/i915/gt/intel_gt_regs.h
-> > index 50962cfd1353..cf709f6c05ae 100644
-> > --- a/drivers/gpu/drm/i915/gt/intel_gt_regs.h
-> > +++ b/drivers/gpu/drm/i915/gt/intel_gt_regs.h
-> > @@ -1478,6 +1478,7 @@
-> >  
-> >  #define GEN12_RCU_MODE				_MMIO(0x14800)
-> >  #define   GEN12_RCU_MODE_CCS_ENABLE		REG_BIT(0)
-> > +#define   XEHP_RCU_MODE_FIXED_SLICE_CCS_MODE	REG_BIT(1)
-> >  
-> >  #define CHV_FUSE_GT				_MMIO(VLV_GUNIT_BASE + 0x2168)
-> >  #define   CHV_FGT_DISABLE_SS0			(1 << 10)
-> > diff --git a/drivers/gpu/drm/i915/gt/intel_workarounds.c b/drivers/gpu/drm/i915/gt/intel_workarounds.c
-> > index d67d44611c28..a2e78cf0b5f5 100644
-> > --- a/drivers/gpu/drm/i915/gt/intel_workarounds.c
-> > +++ b/drivers/gpu/drm/i915/gt/intel_workarounds.c
-> > @@ -2945,6 +2945,11 @@ general_render_compute_wa_init(struct intel_engine_cs *engine, struct i915_wa_li
-> >  
-> >  		/* Wa_18028616096 */
-> >  		wa_mcr_write_or(wal, LSC_CHICKEN_BIT_0_UDW, UGM_FRAGMENT_THRESHOLD_TO_3);
-> > +
-> > +		/*
-> > +		 * Wa_14019159160: disable the automatic CCS load balancing
+> > To me _noresume() would seem like the more sensible thing to use
+> > here.
 > 
-> I'm still a bit concerned that this doesn't really match what this
-> specific workaround is asking us to do.  There seems to be an agreement
-> on various internal email threads that we need to disable load
-> balancing, but there's no single specific workaround that officially
-> documents that decision.
+> well, same effect actually. we would use the _noresume if we
+> put it without checking if the usage counter was bumped.
+> However, since our put takes the 'wakeref' into consideration
+> anyway, let's use this one that is more straight forward for
+> our current code.
 > 
-> This specific workaround asks us to do a bunch of different things, and
-> the third item it asks for is to disable load balancing in very specific
-> cases (i.e., while the RCS is active at the same time as one or more CCS
-> engines).  Taking this workaround in isolation, it would be valid to
-> keep load balancing active if you were just using the CCS engines and
-> leaving the RCS idle, or if balancing was turned on/off by the GuC
-> scheduler according to engine use at the moment, as the documented
-> workaround seems to assume will be the case.
+> > And even that might still warrant a comment to explain
+> > why that one is used specifically.
 > 
-> So in general I think we do need to disable load balancing based on
-> other offline discussion, but blaming that entire change on
-> Wa_14019159160 seems a bit questionable since it's not really what this
-> specific workaround is asking us to do and someone may come back and try
-> to "correct" the implementation of this workaround in the future without
-> realizing there are other factors too.  It would be great if we could
-> get hardware teams to properly document this expectation somewhere
-> (either in a separate dedicated workaround, or in the MMIO tuning guide)
-> so that we'll have a more direct and authoritative source for such a
-> large behavioral change.
+> In general we grab this inner references when we want to ensure
+> that we have full control of the situation, i.e. ensuring that the
+> other reference which we are relying are not dropped while we still
+> have some operation to do. It is safe to have and cheap, so that's okay.
+> 
+> > 
+> > I'm also confused by the wakeref vs. wakelock stuff in the runtime pm
+> > code. Is that there just because not all places track the wakerefs?
+> > Do we still have those left?
+> 
+> yeap, those are very nasty and not documented. But looking a bit of
+> the history and the documentation about our get vs get_raw, it looks
+> like wakelock only exists so gem/gt side could ensure that gem/gt
+> side itself is holding the reference, and not relying on some reference
+> that was actually taken by display.
 
-On one had I think you are right, on the other hand I think this
-workaround has not properly developed in what we have been
-describing later.
+The difference between a wakeref (aka wakelock) and a raw-wakeref is
+that the former is required for accessing the HW, which is asserted when
+reading/writing a register. A raw-wakeref is not enough for this and is
+only taken to prevent runtime suspending, for instance held after
+dropping a display power reference, until the power well is actually
+disabled in a delayed manner. During this time any register access is
+considered invalid.
 
-Perhaps, one solution would be to create a new generic workaround
-for all platforms with more than one CCS and put everyone at
-peace. But I don't know the process.
+Both wakerefs and raw-wakerefs are tracked.
 
-Are you able to help here? Or Joonas?
-
-Thanks, Matt!
-Andi
+> One thing that crossed my mind many times already is to simply entirely
+> remove the runtime_pm from display and do like other drivers simply
+> checking for crtc connection at runtime_idle.
+> 
+> But then there are places where current display code uses the rpm
+> in use to take different code paths, and also all the possible impact
+> with the dc states transitions and other cases that I always gave up
+> on the thought very quickly.
+> 
+> But you are right, we will have to comeback and clean things up
+> one way or another.
+> 
+> But I wish we can have at least this small change in first so I don't
+> get blocked by xe's lockdep annotation and I also don't have to
+> workaround the annotation itself.
+> 
+> > 
+> > >  
+> > >  	for_each_power_domain(domain, mask) {
+> > >  		/* Clear before put, so put's sanity check is happy. */
+> > > -- 
+> > > 2.43.2
+> > 
+> > -- 
+> > Ville Syrjälä
+> > Intel
