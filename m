@@ -2,29 +2,58 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9E418874CED
-	for <lists+intel-gfx@lfdr.de>; Thu,  7 Mar 2024 12:03:30 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9F84F874D67
+	for <lists+intel-gfx@lfdr.de>; Thu,  7 Mar 2024 12:29:06 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4B59D10F3B8;
-	Thu,  7 Mar 2024 11:03:28 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 380B810F0BF;
+	Thu,  7 Mar 2024 11:29:04 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="DvgQlbZq";
+	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from 8e613ede5ea5 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 25A6210F3B8;
- Thu,  7 Mar 2024 11:03:27 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============5116817796398733182=="
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.14])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DBA1A10E6E9;
+ Thu,  7 Mar 2024 11:29:02 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1709810942; x=1741346942;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version;
+ bh=pVRIvM56NXTl/ATD/uNvJrXmgkgP7pPzeAlnCECzs14=;
+ b=DvgQlbZqyqQBjiCcQgYyrF9aHDtzu2o2yAOvNHJyKLXJtxgqIKrHVxE/
+ RVBFUiNNaw6UKMF2mEx010H9tftI4RNb4MZYUR2zswe+932IEwoTc9Iow
+ Z9HGY2ZQkugTrUUsNBvW85LdXRK/gw2M0FVO1RH4dVAX2PwHDURqBzvPI
+ JLhV7U8NweoecWmWhYZzMgPD0PcbPzzmIrBrHn4lPAM4C1gq4c9Hk+itQ
+ KwLHFw5Qxi+Ms4gR8J6oMM8MDKmkjblcRtHDtkIhGnhgMASJ+Up8fmhzC
+ FlhGLs/i4O2rJAeNoySyqRKL4W7TkeSYO/mj4ZmXVZ4p46oR7yenHE+pr g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,11005"; a="8294239"
+X-IronPort-AV: E=Sophos;i="6.07,211,1708416000"; 
+   d="scan'208";a="8294239"
+Received: from fmviesa001.fm.intel.com ([10.60.135.141])
+ by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 Mar 2024 03:29:02 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.07,211,1708416000"; d="scan'208";a="41058972"
+Received: from tcavalax-mobl.ger.corp.intel.com (HELO localhost)
+ ([10.252.33.241])
+ by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 Mar 2024 03:29:00 -0800
+From: Jani Nikula <jani.nikula@intel.com>
+To: Rodrigo Vivi <rodrigo.vivi@intel.com>
+Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
+ lucas.demarchi@intel.com, ville.syrjala@linux.intel.com
+Subject: Re: [RFC v2 2/4] drm/i915/display: add generic to_intel_display()
+ macro
+In-Reply-To: <ZeizBzI-yv_fwdmx@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <cover.1709727127.git.jani.nikula@intel.com>
+ <0b9459da6c8cba0f74bf2781d69182fa6801cd97.1709727127.git.jani.nikula@intel.com>
+ <ZeizBzI-yv_fwdmx@intel.com>
+Date: Thu, 07 Mar 2024 13:28:57 +0200
+Message-ID: <87zfvawa9y.fsf@intel.com>
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Fi=2ECI=2EBAT=3A_success_for_Introduce_drm_sharpening_pr?=
- =?utf-8?q?operty_=28rev2=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Nemesa Garg" <nemesa.garg@intel.com>
-Cc: intel-gfx@lists.freedesktop.org
-Date: Thu, 07 Mar 2024 11:03:27 -0000
-Message-ID: <170980940715.580595.15287815574453230238@8e613ede5ea5>
-X-Patchwork-Hint: ignore
-References: <20240307083237.576177-1-nemesa.garg@intel.com>
-In-Reply-To: <20240307083237.576177-1-nemesa.garg@intel.com>
+Content-Type: text/plain
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -37,220 +66,122 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============5116817796398733182==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+On Wed, 06 Mar 2024, Rodrigo Vivi <rodrigo.vivi@intel.com> wrote:
+> On Wed, Mar 06, 2024 at 02:24:36PM +0200, Jani Nikula wrote:
+>> Convert various pointers to struct intel_display * using _Generic().
+>> 
+>> Add some macro magic to make adding new conversions easier, and somewhat
+>> abstract the need to cast each generic association. The cast is required
+>> because all associations needs to compile, regardless of the type and
+>> the generic selection.
+>> 
+>> The use of *p in the generic selection assignment expression removes the
+>> need to add separate associations for const pointers.
+>> 
+>> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+>> ---
+>>  .../drm/i915/display/intel_display_types.h    | 46 +++++++++++++++++++
+>>  1 file changed, 46 insertions(+)
+>> 
+>> diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/drivers/gpu/drm/i915/display/intel_display_types.h
+>> index e67cd5b02e84..3f63a5a74d77 100644
+>> --- a/drivers/gpu/drm/i915/display/intel_display_types.h
+>> +++ b/drivers/gpu/drm/i915/display/intel_display_types.h
+>> @@ -2183,4 +2183,50 @@ static inline int to_bpp_x16(int bpp)
+>>  	return bpp << 4;
+>>  }
+>>  
+>> +/*
+>> + * Conversion functions/macros from various pointer types to struct
+>> + * intel_display pointer.
+>> + */
+>> +static inline struct intel_display *__drm_device_to_intel_display(const struct drm_device *drm)
+>> +{
+>> +	/*
+>> +	 * Assume there's a pointer to struct intel_display in memory right
+>> +	 * after struct drm_device.
+>> +	 */
+>> +	struct intel_display **p = (struct intel_display **)(drm + 1);
+>
+> at least this patch and the first one should be together to help the
+> 'magic' to be understood and confirmed safe.
 
-== Series Details ==
+Yes. I just kept them separate while still juggling the whole thing.
 
-Series: Introduce drm sharpening property (rev2)
-URL   : https://patchwork.freedesktop.org/series/129888/
-State : success
+And it occurs to me we could make *this* the first patch in the series,
+by making the above function:
 
-== Summary ==
+static inline struct intel_display *__drm_device_to_intel_display(const struct drm_device *drm)
+{
+	return &to_i915(drm)->display;
+}
 
-CI Bug Log - changes from CI_DRM_14401 -> Patchwork_129888v2
-====================================================
+Then we could only add the struct drm_device *drm backpointer in struct
+intel_display from patch 1, and proceed with patches 3-4, avoiding the
+whole magic thing for starters. It would unblock a whole lot of
+refactoring as the first step.
 
-Summary
--------
+>
+>> +
+>> +	return *p;
+>> +}
+>> +
+>> +#define __intel_connector_to_intel_display(p)		\
+>> +	__drm_device_to_intel_display((p)->base.dev)
+>> +#define __intel_crtc_to_intel_display(p)		\
+>> +	__drm_device_to_intel_display((p)->base.dev)
+>> +#define __intel_crtc_state_to_intel_display(p)			\
+>> +	__drm_device_to_intel_display((p)->uapi.crtc->dev)
+>> +#define __intel_digital_port_to_intel_display(p)		\
+>> +	__drm_device_to_intel_display((p)->base.base.dev)
+>> +#define __intel_encoder_to_intel_display(p)		\
+>> +	__drm_device_to_intel_display((p)->base.dev)
+>> +#define __intel_hdmi_to_intel_display(p)	\
+>> +	__drm_device_to_intel_display(hdmi_to_dig_port(p)->base.base.dev)
+>> +#define __intel_dp_to_intel_display(p)	\
+>> +	__drm_device_to_intel_display(dp_to_dig_port(p)->base.base.dev)
+>> +
+>> +/* Helper for generic association. Map types to conversion functions/macros. */
+>> +#define __assoc(type, p) \
+>> +	struct type: __##type##_to_intel_display((struct type *)(p))
+>> +
+>> +/* Convert various pointer types to struct intel_display pointer. */
+>> +#define to_intel_display(p)				\
+>
+> For a moment I almost complained of this because of the generic magic,
+> but mostly because I had guc related code in mind where you can never
+> find the definition, but here it is different. the used 'to_intel_display'
+> can easily be searched by cscope/ctags and then you are able to see
+> below what are the accepted cases, so I ended up liking it.
 
-  **SUCCESS**
+Yay!
 
-  No regressions found.
+I also tried to put effort into making this easily extensible. Add a
+__<FROM-STRUCT>_to_intel_display(p) macro or function, and
+__assoc(<FROM-STRUCT>, p) in the association list below, and it just
+works.
 
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_129888v2/index.html
+BR,
+Jani.
 
-Participating hosts (41 -> 39)
-------------------------------
+>
+>> +	_Generic(*p,					\
+>> +		 __assoc(intel_connector, p),		\
+>> +		 __assoc(intel_crtc, p),		\
+>> +		 __assoc(intel_crtc_state, p),		\
+>> +		 __assoc(intel_digital_port, p),	\
+>> +		 __assoc(intel_encoder, p),		\
+>> +		 __assoc(intel_hdmi, p),		\
+>> +		 __assoc(intel_dp, p),			\
+>> +		 __assoc(drm_device, p))
+>> +
+>>  #endif /*  __INTEL_DISPLAY_TYPES_H__ */
+>> -- 
+>> 2.39.2
+>> 
 
-  Missing    (2): bat-kbl-2 fi-snb-2520m 
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_129888v2 that come from known issues:
-
-### CI changes ###
-
-#### Issues hit ####
-
-  * boot:
-    - bat-arls-3:         [PASS][1] -> [FAIL][2] ([i915#10234])
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14401/bat-arls-3/boot.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_129888v2/bat-arls-3/boot.html
-    - bat-jsl-1:          [PASS][3] -> [FAIL][4] ([i915#8293])
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14401/bat-jsl-1/boot.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_129888v2/bat-jsl-1/boot.html
-    - fi-apl-guc:         [PASS][5] -> [FAIL][6] ([i915#8293])
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14401/fi-apl-guc/boot.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_129888v2/fi-apl-guc/boot.html
-
-  
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@gem_lmem_swapping@basic@lmem0:
-    - bat-dg2-14:         [PASS][7] -> [FAIL][8] ([i915#10378])
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14401/bat-dg2-14/igt@gem_lmem_swapping@basic@lmem0.html
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_129888v2/bat-dg2-14/igt@gem_lmem_swapping@basic@lmem0.html
-
-  * igt@i915_selftest@live@memory_region:
-    - bat-dg2-9:          [PASS][9] -> [ABORT][10] ([i915#10366])
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14401/bat-dg2-9/igt@i915_selftest@live@memory_region.html
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_129888v2/bat-dg2-9/igt@i915_selftest@live@memory_region.html
-
-  * igt@kms_pm_rpm@basic-pci-d3-state:
-    - bat-dg1-7:          [PASS][11] -> [ABORT][12] ([i915#10367])
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14401/bat-dg1-7/igt@kms_pm_rpm@basic-pci-d3-state.html
-   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_129888v2/bat-dg1-7/igt@kms_pm_rpm@basic-pci-d3-state.html
-
-  
-#### Possible fixes ####
-
-  * igt@i915_selftest@live@guc:
-    - bat-dg2-14:         [ABORT][13] ([i915#10366]) -> [PASS][14]
-   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14401/bat-dg2-14/igt@i915_selftest@live@guc.html
-   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_129888v2/bat-dg2-14/igt@i915_selftest@live@guc.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [i915#10026]: https://gitlab.freedesktop.org/drm/intel/issues/10026
-  [i915#10134]: https://gitlab.freedesktop.org/drm/intel/issues/10134
-  [i915#10234]: https://gitlab.freedesktop.org/drm/intel/issues/10234
-  [i915#10366]: https://gitlab.freedesktop.org/drm/intel/issues/10366
-  [i915#10367]: https://gitlab.freedesktop.org/drm/intel/issues/10367
-  [i915#10378]: https://gitlab.freedesktop.org/drm/intel/issues/10378
-  [i915#8293]: https://gitlab.freedesktop.org/drm/intel/issues/8293
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_14401 -> Patchwork_129888v2
-
-  CI-20190529: 20190529
-  CI_DRM_14401: 2e45ab4961e343a99fdef900be1e33234b8f3b73 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_7749: 2fd91b8c3cf9aa2b0bb78537a6b5e2bc3de50e0e @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_129888v2: 2e45ab4961e343a99fdef900be1e33234b8f3b73 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-### Linux commits
-
-095e597af29f drm/i915/display: Load the lut values and enable sharpness
-8db8e0d96163 drm/i915/display: Add registers and compute the strength
-d9890c4f547e drm/i915/display: Enable the second scaler
-462fa71928d0 drm/i915/display: Compute the scaler filter coefficients
-09490a1d4ca6 drm: Introduce sharpness mode property
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_129888v2/index.html
-
---===============5116817796398733182==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>Introduce drm sharpening property (rev2)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/129888/">https://patchwork.freedesktop.org/series/129888/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_129888v2/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_129888v2/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_14401 -&gt; Patchwork_129888v2</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_129888v2/index.html</p>
-<h2>Participating hosts (41 -&gt; 39)</h2>
-<p>Missing    (2): bat-kbl-2 fi-snb-2520m </p>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_129888v2 that come from known issues:</p>
-<h3>CI changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>boot:<ul>
-<li>bat-arls-3:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14401/bat-arls-3/boot.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_129888v2/bat-arls-3/boot.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/10234">i915#10234</a>)</li>
-<li>bat-jsl-1:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14401/bat-jsl-1/boot.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_129888v2/bat-jsl-1/boot.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/8293">i915#8293</a>)</li>
-<li>fi-apl-guc:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14401/fi-apl-guc/boot.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_129888v2/fi-apl-guc/boot.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/8293">i915#8293</a>)</li>
-</ul>
-</li>
-</ul>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@gem_lmem_swapping@basic@lmem0:</p>
-<ul>
-<li>bat-dg2-14:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14401/bat-dg2-14/igt@gem_lmem_swapping@basic@lmem0.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_129888v2/bat-dg2-14/igt@gem_lmem_swapping@basic@lmem0.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/10378">i915#10378</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@memory_region:</p>
-<ul>
-<li>bat-dg2-9:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14401/bat-dg2-9/igt@i915_selftest@live@memory_region.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_129888v2/bat-dg2-9/igt@i915_selftest@live@memory_region.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/10366">i915#10366</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_pm_rpm@basic-pci-d3-state:</p>
-<ul>
-<li>bat-dg1-7:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14401/bat-dg1-7/igt@kms_pm_rpm@basic-pci-d3-state.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_129888v2/bat-dg1-7/igt@kms_pm_rpm@basic-pci-d3-state.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/10367">i915#10367</a>)</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>igt@i915_selftest@live@guc:<ul>
-<li>bat-dg2-14:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14401/bat-dg2-14/igt@i915_selftest@live@guc.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/10366">i915#10366</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_129888v2/bat-dg2-14/igt@i915_selftest@live@guc.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<p>{name}: This element is suppressed. This means it is ignored when computing<br />
-          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_14401 -&gt; Patchwork_129888v2</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_14401: 2e45ab4961e343a99fdef900be1e33234b8f3b73 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_7749: 2fd91b8c3cf9aa2b0bb78537a6b5e2bc3de50e0e @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  Patchwork_129888v2: 2e45ab4961e343a99fdef900be1e33234b8f3b73 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<h3>Linux commits</h3>
-<p>095e597af29f drm/i915/display: Load the lut values and enable sharpness<br />
-8db8e0d96163 drm/i915/display: Add registers and compute the strength<br />
-d9890c4f547e drm/i915/display: Enable the second scaler<br />
-462fa71928d0 drm/i915/display: Compute the scaler filter coefficients<br />
-09490a1d4ca6 drm: Introduce sharpness mode property</p>
-
-</body>
-</html>
-
---===============5116817796398733182==--
+-- 
+Jani Nikula, Intel
