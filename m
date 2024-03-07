@@ -2,74 +2,29 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id C6536874AFE
-	for <lists+intel-gfx@lfdr.de>; Thu,  7 Mar 2024 10:37:08 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id CB04D874B0C
+	for <lists+intel-gfx@lfdr.de>; Thu,  7 Mar 2024 10:38:30 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B4735113736;
-	Thu,  7 Mar 2024 09:37:04 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4DB3A11373F;
+	Thu,  7 Mar 2024 09:38:29 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-yw1-f180.google.com (mail-yw1-f180.google.com
- [209.85.128.180])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0EA25113735;
- Thu,  7 Mar 2024 09:37:02 +0000 (UTC)
-Received: by mail-yw1-f180.google.com with SMTP id
- 00721157ae682-609eb87a9e3so5281177b3.0; 
- Thu, 07 Mar 2024 01:37:02 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1709804220; x=1710409020;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
- :subject:date:message-id:reply-to;
- bh=PojEcxi4I/RdiOARzWVwK72o2YrlsxJWpO83mdW8+30=;
- b=AKeUGR0Oq0sLr6Kli1k9KjEGaKtiH0v8jeLYtiKLvCjUcA69IK1r1d8VGZyiV2UtHH
- +UojWrAOhqLtwd97cNYKTRvmXbiM6heSqFJH7U0jYLXl+C4mHgn6emjtzdJ9potb3f+a
- 8IuAFdBc977xydXojWU67hW4qudadgH4VPqdJgLpLMV5hziIvO6t68AmO/vomT2FrBso
- hW6rX55Q3tltV5QKX38NR/IDrbGNRr7LzrNQjdmDGHZBcC1fqneV1Gi+zbRAAGKh8z6u
- tMvRVABJWpiotZONLynuqA50kiGT30DzfHMAcpwRIrvT6MevOiu7L+6DHV+C1O+RAWt6
- E44w==
-X-Forwarded-Encrypted: i=1;
- AJvYcCU4D98fZ8wQnh+3s/wNRPJ/ZhMWNLhfGzvQlV+qcmIxuiWGqGv1KH6IWARqSqsv+n07CzJ+Z2gpHs5mIGOIeSPjpMwNXM6REOXNAfXgAgeElus4goGbucFHAAZd+6UrAw/wDbOKYr78z8FQt2shaXwrZWrnCRhK4mrlvdIEmn6VLOZJQmBhGxR90dtL/X181kk=
-X-Gm-Message-State: AOJu0YwTtMSiUmZC60jVTHQCUKg+JoPaYDpmVFznYFQ74hI6W6ITsYxj
- XqJclR1c1ltPC1HOqQxV+diM7s3S4pwh2gMnw4vpPM5Z0t+qem3tiVV8nIP0eKQ=
-X-Google-Smtp-Source: AGHT+IGSKQ0uYHXueHopriuhvy/dZjuJhOcYFIndjyngJyPA+zfE+B2JjddEGOMgtVRH6R5Opl2k2w==
-X-Received: by 2002:a0d:e890:0:b0:609:cf0d:9d64 with SMTP id
- r138-20020a0de890000000b00609cf0d9d64mr544536ywe.13.1709804219083; 
- Thu, 07 Mar 2024 01:36:59 -0800 (PST)
-Received: from mail-yw1-f172.google.com (mail-yw1-f172.google.com.
- [209.85.128.172]) by smtp.gmail.com with ESMTPSA id
- u191-20020a8179c8000000b0060923196f02sm3215811ywc.13.2024.03.07.01.36.58
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Thu, 07 Mar 2024 01:36:58 -0800 (PST)
-Received: by mail-yw1-f172.google.com with SMTP id
- 00721157ae682-609eb87a9e3so5280797b3.0; 
- Thu, 07 Mar 2024 01:36:58 -0800 (PST)
-X-Forwarded-Encrypted: i=1;
- AJvYcCUepn5zyfzZS0IisSsTZ1Ro8HmaaRKfeOAvKmj6l4uaTcF37A7Ugenvl8RBpCp1ufbYOdydbeN1VZw1yvNFKtgp/ep1K1dluyAdywARMgi1mWYhYzj8RPd8hAY5GR+3TInKurYS0z9e5MWvk1hEhYqJtyJzM/kfXuw0hCxgv3BWNvmKiFG69IFS0jNoWIRg51E=
-X-Received: by 2002:a25:abce:0:b0:dcc:97c:5754 with SMTP id
- v72-20020a25abce000000b00dcc097c5754mr540534ybi.5.1709804218030; Thu, 07 Mar
- 2024 01:36:58 -0800 (PST)
+Received: from 8e613ede5ea5 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 838B811373F;
+ Thu,  7 Mar 2024 09:38:28 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-References: <e22ab28836ee1689ea4781ed53fd2e4e4f84728e.1709749576.git.jani.nikula@intel.com>
- <202403071317.uoW18ZR3-lkp@intel.com> <878r2uxwha.fsf@intel.com>
-In-Reply-To: <878r2uxwha.fsf@intel.com>
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Thu, 7 Mar 2024 10:36:45 +0100
-X-Gmail-Original-Message-ID: <CAMuHMdV+54MEdrgYr+4cXnd4oN9i3_cxrpLRhJVzuJuRoUs3Qw@mail.gmail.com>
-Message-ID: <CAMuHMdV+54MEdrgYr+4cXnd4oN9i3_cxrpLRhJVzuJuRoUs3Qw@mail.gmail.com>
-Subject: Re: [PATCH 22/22] drm: ensure drm headers are self-contained and pass
- kernel-doc
-To: Jani Nikula <jani.nikula@intel.com>
-Cc: kernel test robot <lkp@intel.com>, dri-devel@lists.freedesktop.org, 
- oe-kbuild-all@lists.linux.dev, intel-gfx@lists.freedesktop.org, 
- intel-xe@lists.freedesktop.org, Daniel Vetter <daniel@ffwll.ch>, 
- David Airlie <airlied@gmail.com>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
- Masahiro Yamada <masahiroy@kernel.org>, 
- =?UTF-8?Q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=97_Fi=2ECI=2ECHECKPATCH=3A_warning_for_drm=3A_add_missing_h?=
+ =?utf-8?q?eader_guards_to_drm=5Fcrtc=5Finternal=2Eh_=28rev2=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Jani Nikula" <jani.nikula@intel.com>
+Cc: intel-gfx@lists.freedesktop.org
+Date: Thu, 07 Mar 2024 09:38:28 -0000
+Message-ID: <170980430852.580595.7101979794784051457@8e613ede5ea5>
+X-Patchwork-Hint: ignore
+References: <cover.1709749576.git.jani.nikula@intel.com>
+In-Reply-To: <cover.1709749576.git.jani.nikula@intel.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -82,37 +37,49 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi Jani,
+== Series Details ==
 
-On Thu, Mar 7, 2024 at 9:44=E2=80=AFAM Jani Nikula <jani.nikula@intel.com> =
-wrote:
-> On Thu, 07 Mar 2024, kernel test robot <lkp@intel.com> wrote:
-> > kernel test robot noticed the following build errors:
->
-> So I'm trying to make include/drm/ttm/ttm_caching.h self-contained by
-> including <linux/pgtable.h> with [1], but it fails like below.
->
-> Cc: Thomas and Geert, better ideas for the include there? Looks like
-> include/asm-generic/pgtable-nop4d.h isn't self-contained on m68k.
+Series: drm: add missing header guards to drm_crtc_internal.h (rev2)
+URL   : https://patchwork.freedesktop.org/series/130822/
+State : warning
 
-I have sent a fix
+== Summary ==
 
-https://lore.kernel.org/r/ba359be013f379ff10f3afcea13e2f78dd9717be.17098040=
-21.git.geert@linux-m68k.org
+Error: dim checkpatch failed
+6394cb645816 drm/crtc: make drm_crtc_internal.h self-contained
+4cb3460431f8 drm: add missing header guards to drm_internal.h
+3f954fa07b03 drm/kunit: fix drm_kunit_helpers.h kernel-doc
+5be8ac36f46e drm/amdgpu: make amd_asic_type.h self-contained
+1ae8c19e8c79 drm: bridge: samsung-dsim: make samsung-dsim.h self-contained
+80b03dd3b097 drm/dp_mst: fix drm_dp_mst_helper.h kernel-doc
+216f77633704 drm/crc: make drm_debugfs_crc.h self-contained and fix kernel-doc
+284b74d93245 drm/encoder: silence drm_encoder_slave.h kernel-doc
+9089631058e7 drm: fix drm_format_helper.h kernel-doc warnings
+1f6860a8eab1 drm/lease: make drm_lease.h self-contained
+cb5bde9a1eb6 drm: fix drm_gem_vram_helper.h kernel-doc
+b38b83148335 drm/of: make drm_of.h self-contained
+938d6af9200c drm/i2c: silence ch7006.h and sil164.h kernel-doc warnings
+3c80c2d926a3 drm/suballoc: fix drm_suballoc.h kernel-doc
+9662bb932024 drm/i915: fix i915_gsc_proxy_mei_interface.h kernel-doc
+83b44e084b06 drm/i915/hdcp: fix i915_hdcp_interface.h kernel-doc warnings
+fd68c807f8dc drm/i915/pxp: fix i915_pxp_tee_interface.h kernel-doc warnings
+92d41eb32533 drm/ttm: fix ttm_bo.h kernel-doc warnings
+2c974eab6508 drm/ttm: make ttm_caching.h self-contained
+83c3a112a66e drm/ttm: fix ttm_execbuf_util.h kernel-doc warnings
+9c6acd9ee15a drm/ttm: fix ttm_kmap_iter.h kernel-doc warnings
+2bc4cf88a51e drm: ensure drm headers are self-contained and pass kernel-doc
+Traceback (most recent call last):
+  File "scripts/spdxcheck.py", line 6, in <module>
+    from ply import lex, yacc
+ModuleNotFoundError: No module named 'ply'
+-:79: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#79: 
+new file mode 100644
 
-Gr{oetje,eeting}s,
+total: 0 errors, 1 warnings, 0 checks, 58 lines checked
 
-                        Geert
 
---=20
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
-.org
-
-In personal conversations with technical people, I call myself a hacker. Bu=
-t
-when I'm talking to journalists I just say "programmer" or something like t=
-hat.
-                                -- Linus Torvalds
