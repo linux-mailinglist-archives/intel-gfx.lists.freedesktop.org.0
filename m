@@ -2,49 +2,51 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 923B38752F6
-	for <lists+intel-gfx@lfdr.de>; Thu,  7 Mar 2024 16:18:15 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id E13B78752F7
+	for <lists+intel-gfx@lfdr.de>; Thu,  7 Mar 2024 16:18:18 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2318110F478;
-	Thu,  7 Mar 2024 15:18:14 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5FB5910F495;
+	Thu,  7 Mar 2024 15:18:17 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="FUgBOSE5";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="eCbgbMC5";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7FCA710F478
- for <intel-gfx@lists.freedesktop.org>; Thu,  7 Mar 2024 15:18:13 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D3E0A10F495
+ for <intel-gfx@lists.freedesktop.org>; Thu,  7 Mar 2024 15:18:15 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1709824694; x=1741360694;
- h=from:to:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=gmnfSip29WGLG1HHbI+RuYSLR0/loqa7Un8JucF6/9M=;
- b=FUgBOSE5XU9fzGes9kMt/KtD/uDkf6oNh3EsVeW9LkY7xG6yx9ssYdva
- FpvmwN/82zaGig4qrNMge+nQtY7EFf+JCAsXx0tZ9Q7RIbItvSemC1b57
- YvKG+hjkNKHfQf1M4SI7RV9nWaSraJw0BPtbR3E8tOF8ZxLJu5ExC/csA
- HjvFlu2io85MG/qXzaKEhMgzM+M8PrITr4qi2m9vwOEXbTyXkIi45TLld
- 6ATL5r1VuCdpu1ypJPz1UGooAFze/vmKijr5Ryn/Z5bHynIV2iOsj6ON5
- AS1JeqIH4VuGpYEMMYBu/+wQSsdjqo9VDajx5uLhOrVAQy+HcUWEp3sgC A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,11006"; a="26969171"
-X-IronPort-AV: E=Sophos;i="6.07,211,1708416000"; d="scan'208";a="26969171"
+ t=1709824696; x=1741360696;
+ h=from:to:subject:date:message-id:in-reply-to:references:
+ mime-version:content-transfer-encoding;
+ bh=/vXFWGb8Eoxs2Ws6/5cuC+bA7ew6k5jyFKMjhqfy07k=;
+ b=eCbgbMC5vyW3moiPujmem9JcGByx4qjdGHIVRNKy7cRu9FBSAI8lLzKh
+ TmZT31FrUajbEioxFtRAYUorVS8xQ/hfPzTyhoneovJU8ca1XGzuUIGdM
+ IweORLrnbtV5CGkxFcaYdw1ClCJi3sDxEPDUXpx5JyoxadFt9tTW1XyR7
+ MlBIQktm24zIGQ/j3gRoFvoTxR9FQA2bcf+b0fwyGUARP2uLiKGE6KdZR
+ gCZMCRXEc0gwTFG5eZfaBz6qcZHGw7CWeVoNCnaDZbQpSLP2aVbS5C9yR
+ fV3zia39UHsx5W8R5fxVYIgxMz9kZC/OBS9x46w03WQdKCn2A7GXkgLdN w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,11006"; a="26969174"
+X-IronPort-AV: E=Sophos;i="6.07,211,1708416000"; d="scan'208";a="26969174"
 Received: from orsmga001.jf.intel.com ([10.7.209.18])
  by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Mar 2024 07:18:13 -0800
+ 07 Mar 2024 07:18:16 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,11006"; a="827774789"
-X-IronPort-AV: E=Sophos;i="6.07,211,1708416000"; d="scan'208";a="827774789"
+X-IronPort-AV: E=McAfee;i="6600,9927,11006"; a="827774790"
+X-IronPort-AV: E=Sophos;i="6.07,211,1708416000"; d="scan'208";a="827774790"
 Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.74])
- by orsmga001.jf.intel.com with SMTP; 07 Mar 2024 07:18:10 -0800
+ by orsmga001.jf.intel.com with SMTP; 07 Mar 2024 07:18:13 -0800
 Received: by stinkbox (sSMTP sendmail emulation);
- Thu, 07 Mar 2024 17:18:10 +0200
+ Thu, 07 Mar 2024 17:18:13 +0200
 From: Ville Syrjala <ville.syrjala@linux.intel.com>
 To: intel-gfx@lists.freedesktop.org
-Subject: [PATCH 0/4] drm/i915: Use container_of_const()
-Date: Thu,  7 Mar 2024 17:18:06 +0200
-Message-ID: <20240307151810.24208-1-ville.syrjala@linux.intel.com>
+Subject: [PATCH 1/4] drm/i915/dsi: Use enc_to_intel_dsi()
+Date: Thu,  7 Mar 2024 17:18:07 +0200
+Message-ID: <20240307151810.24208-2-ville.syrjala@linux.intel.com>
 X-Mailer: git-send-email 2.43.0
+In-Reply-To: <20240307151810.24208-1-ville.syrjala@linux.intel.com>
+References: <20240307151810.24208-1-ville.syrjala@linux.intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
@@ -65,26 +67,42 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-Start using container_of_const() for some extra const safety.
+Use enc_to_intel_dsi() instead hand rolling it.
 
-Ville Syrjälä (4):
-  drm/i915/dsi: Use enc_to_intel_dsi()
-  drm/i915: Don't cast away const
-  drm/i915: Use container_of_const() for states
-  drm/i915: Drop pointless (void*) cast
+Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
+---
+ drivers/gpu/drm/i915/display/icl_dsi.c | 3 +--
+ drivers/gpu/drm/i915/display/vlv_dsi.c | 3 +--
+ 2 files changed, 2 insertions(+), 4 deletions(-)
 
- drivers/gpu/drm/i915/display/icl_dsi.c             |  3 +--
- drivers/gpu/drm/i915/display/intel_atomic.c        |  2 +-
- drivers/gpu/drm/i915/display/intel_bw.h            |  3 ++-
- drivers/gpu/drm/i915/display/intel_cdclk.h         |  4 +++-
- drivers/gpu/drm/i915/display/intel_display_types.h | 14 ++++++++++----
- drivers/gpu/drm/i915/display/intel_pmdemand.h      |  5 ++---
- drivers/gpu/drm/i915/display/intel_sdvo.c          |  4 ++--
- drivers/gpu/drm/i915/display/intel_tv.c            |  3 ++-
- drivers/gpu/drm/i915/display/skl_watermark.h       |  4 +++-
- drivers/gpu/drm/i915/display/vlv_dsi.c             |  3 +--
- 10 files changed, 27 insertions(+), 18 deletions(-)
-
+diff --git a/drivers/gpu/drm/i915/display/icl_dsi.c b/drivers/gpu/drm/i915/display/icl_dsi.c
+index ac456a2275db..79ecfc339430 100644
+--- a/drivers/gpu/drm/i915/display/icl_dsi.c
++++ b/drivers/gpu/drm/i915/display/icl_dsi.c
+@@ -1616,8 +1616,7 @@ static int gen11_dsi_compute_config(struct intel_encoder *encoder,
+ 				    struct drm_connector_state *conn_state)
+ {
+ 	struct drm_i915_private *i915 = to_i915(encoder->base.dev);
+-	struct intel_dsi *intel_dsi = container_of(encoder, struct intel_dsi,
+-						   base);
++	struct intel_dsi *intel_dsi = enc_to_intel_dsi(encoder);
+ 	struct intel_connector *intel_connector = intel_dsi->attached_connector;
+ 	struct drm_display_mode *adjusted_mode =
+ 		&pipe_config->hw.adjusted_mode;
+diff --git a/drivers/gpu/drm/i915/display/vlv_dsi.c b/drivers/gpu/drm/i915/display/vlv_dsi.c
+index 9b33b8a74d64..63f4af601d15 100644
+--- a/drivers/gpu/drm/i915/display/vlv_dsi.c
++++ b/drivers/gpu/drm/i915/display/vlv_dsi.c
+@@ -273,8 +273,7 @@ static int intel_dsi_compute_config(struct intel_encoder *encoder,
+ 				    struct drm_connector_state *conn_state)
+ {
+ 	struct drm_i915_private *dev_priv = to_i915(encoder->base.dev);
+-	struct intel_dsi *intel_dsi = container_of(encoder, struct intel_dsi,
+-						   base);
++	struct intel_dsi *intel_dsi = enc_to_intel_dsi(encoder);
+ 	struct intel_connector *intel_connector = intel_dsi->attached_connector;
+ 	struct drm_display_mode *adjusted_mode = &pipe_config->hw.adjusted_mode;
+ 	int ret;
 -- 
 2.43.0
 
