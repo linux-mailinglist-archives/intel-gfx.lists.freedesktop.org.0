@@ -2,56 +2,69 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id C20988751A7
-	for <lists+intel-gfx@lfdr.de>; Thu,  7 Mar 2024 15:18:16 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5F7E38751FA
+	for <lists+intel-gfx@lfdr.de>; Thu,  7 Mar 2024 15:36:47 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2060510F9C3;
-	Thu,  7 Mar 2024 14:18:10 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B2AE311316C;
+	Thu,  7 Mar 2024 14:36:45 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=collabora.com header.i=@collabora.com header.b="KbhypRNX";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="h7EQIs8T";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from madrid.collaboradmins.com (madrid.collaboradmins.com
- [46.235.227.194])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 64C2410F75F;
- Thu,  7 Mar 2024 14:18:08 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
- s=mail; t=1709821086;
- bh=Dn57lnoeVPIi4ikb1eziAXS3zRHAGY/C1w2CfJ2RGII=;
- h=Date:Subject:From:To:Cc:References:In-Reply-To:From;
- b=KbhypRNXRGEBkNA6+Yn9VOXA9F9z8ZBGeSo1SxnOhiDY9Z42hf0L5WaqUkcidj7sx
- Czf2eHnygAIjlMdmrWgTUtMc6Uddx65Z/tao/xvdvtEA/WADl9Lh1p8I/Fq1rBlfNp
- b7RvGez5E0szPzORGg4Cnuc05s/bYrei9slOPoC4YzDcJSPQNb1T/QdXJmiLLPv1CH
- IEeVvEQ7zi+9itsufwirqc7UvHWIgNf/KpmPjn67BLGAgVV7a+nFBnbo1jAphcwLcc
- KyYG2dD9pW7aVcz8vX2DI6BbSF/B82S/AaL3yhQwQEZrnUpOQoI9z7kcbv/+YKTNnp
- eXQlnYUdxcxWg==
-Received: from [100.95.196.25] (cola.collaboradmins.com [195.201.22.229])
- (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
- key-exchange X25519 server-signature RSA-PSS (4096 bits))
- (No client certificate requested) (Authenticated sender: koike)
- by madrid.collaboradmins.com (Postfix) with ESMTPSA id ED3B737809D0;
- Thu,  7 Mar 2024 14:18:01 +0000 (UTC)
-Message-ID: <52f6475c-680c-4709-b64a-8b5be03d2343@collabora.com>
-Date: Thu, 7 Mar 2024 11:18:00 -0300
+Received: from mail-yb1-f175.google.com (mail-yb1-f175.google.com
+ [209.85.219.175])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 59647112ECD;
+ Thu,  7 Mar 2024 14:36:44 +0000 (UTC)
+Received: by mail-yb1-f175.google.com with SMTP id
+ 3f1490d57ef6-dcc80d6006aso1044258276.0; 
+ Thu, 07 Mar 2024 06:36:44 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20230601; t=1709822203; x=1710427003; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=uHybDwoUQOGEnt+QSZ4qpGKiQdZfRISLyzghHxirBk4=;
+ b=h7EQIs8TAN0ZKEIRl4D8rtR1VKmlOb4/6+JrNI6Dakr6fEiWiBJ+R7r8aTSHZTXo5o
+ DM9dnbsQHbGP2narC2C45DKdZccqzCUYqyqpRKex7Gq+mKWscTl1Cni2Ct5ecGJYtcKu
+ Kf8uOfaXCih61+OpTj+yAJGIB12Hdd/VonBlgfB5P6nMWWIjMQMRyGpRWfr/dhOVkZkD
+ PxMVEn67UsUiL5CwI2YhARAuTHudMXVrK/+vNSQSY8zLMCwsj7Scmv95jRqe7a8je1df
+ tgL9Gpq34HB1yEg9jPuieIP50XzBH0YAT7O12SwF0bGknT6eGORdCBnYN0M9/9n5KYHi
+ JN1w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1709822203; x=1710427003;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+ :subject:date:message-id:reply-to;
+ bh=uHybDwoUQOGEnt+QSZ4qpGKiQdZfRISLyzghHxirBk4=;
+ b=triaQp4WaTX6PaAEuv/684pAM5/CvC+NWD0i4QB+5EPrxbAycvXHevwWC6bLTs8j3W
+ oLFsHhfKnJ7Xb9bFXjP7NRwVkkU/DvhCo78wOjbRftQbTUaO6NcfjrSXgFgBIGl5o9NS
+ TyZhVF2um9qQmXjiHgRxXlB7FBuS1ygJkc3R+rvePLLdZjI0KG6ICrRG7g5bR46xc2Cf
+ cQGDEKk+zQnJzY1vL8w/MbiCSBly34O5Sf4Dmt7n/Sq55Jol3vy8Ld7Qo8lQuMB82/Qq
+ Tyw5i1nufshphT1urPD9jglQs9o3FG5jl3o2U1kUhTJaa20k1yxTA0++WSILaN5SwY3Z
+ 95PA==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCUXYQh3VVgVcLYiVZt6sB6O1ZfwDalAKzpYntwqEtNp065mPazsRu4NeG8kaboJrHZ+d5QbqNlJcpBqPk/8YRgXHiHi9494EWqn+ePKvnFNApRfAX+hPjL1VIMS5au8T6SSczh729DioGcsnMoD9b4=
+X-Gm-Message-State: AOJu0YwvLUcCMUX1ibxGLq+/tVEka0UGofU1Z2ED31aICt5TXAZ9TdSN
+ jmu7Aj/6/6/2O3dTBL/w4H61F8QZ9guYFe5Ww2/z4+hbOLlCVHSpy6cOfVHVSZkY2lj5N3TX/cG
+ GQ7Jx5GSusm/62LBsDY65AbDg33Y=
+X-Google-Smtp-Source: AGHT+IHqGNr5ebrqhQZaCNGX931iRI358HI2V8ahGtUjcv4saDmeLQ+WBuZgDziGoSCFNHMzUxpws4F/TTL43G3uKd4=
+X-Received: by 2002:a25:aaaf:0:b0:dcd:ef35:91d5 with SMTP id
+ t44-20020a25aaaf000000b00dcdef3591d5mr15657405ybi.2.1709822202973; Thu, 07
+ Mar 2024 06:36:42 -0800 (PST)
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3] drm/ci: update device type for volteer devices
-Content-Language: en-US
-From: Helen Koike <helen.koike@collabora.com>
-To: Vignesh Raman <vignesh.raman@collabora.com>,
- dri-devel@lists.freedesktop.org
-Cc: daniels@collabora.com, airlied@gmail.com, daniel@ffwll.ch,
- david.heidelberg@collabora.com, sergi.blanch.torne@collabora.com,
- guilherme.gallo@collabora.com, robdclark@gmail.com,
- jani.nikula@linux.intel.com, joonas.lahtinen@linux.intel.com,
- rodrigo.vivi@intel.com, tvrtko.ursulin@linux.intel.com,
- intel-gfx@lists.freedesktop.org, linux-kernel@vger.kernel.org
-References: <20240307021841.100561-1-vignesh.raman@collabora.com>
- <a8ae3ca9-67d5-4d83-90e8-2777862473d7@collabora.com>
-In-Reply-To: <a8ae3ca9-67d5-4d83-90e8-2777862473d7@collabora.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+References: <cover.1709749576.git.jani.nikula@intel.com>
+ <115327b880b69b1c8ad157e5ff7f6b419868fab0.1709749576.git.jani.nikula@intel.com>
+In-Reply-To: <115327b880b69b1c8ad157e5ff7f6b419868fab0.1709749576.git.jani.nikula@intel.com>
+From: Alex Deucher <alexdeucher@gmail.com>
+Date: Thu, 7 Mar 2024 09:36:30 -0500
+Message-ID: <CADnq5_NXUYjq1bTbK1xGW-zREfMvNxYyg=B0jxA4oytGnUoi3A@mail.gmail.com>
+Subject: Re: [PATCH 04/22] drm/amdgpu: make amd_asic_type.h self-contained
+To: Jani Nikula <jani.nikula@intel.com>
+Cc: dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org, 
+ intel-xe@lists.freedesktop.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -67,65 +80,38 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+On Wed, Mar 6, 2024 at 1:43=E2=80=AFPM Jani Nikula <jani.nikula@intel.com> =
+wrote:
+>
+> Include <linux/types.h> for u8.
+>
+> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
 
+Acked-by: Alex Deucher <alexander.deucher@amd.com>
 
-On 07/03/2024 10:21, Helen Koike wrote:
-> 
-> 
-> On 06/03/2024 23:18, Vignesh Raman wrote:
->> Volteer devices in the collabora lab are categorized under the
->> asus-cx9400-volteer device type. The majority of these units
->> has an Intel Core i5-1130G7 CPU, while some of them have a
->> Intel Core i7-1160G7 CPU instead. So due to this difference,
->> new device type template is added for the Intel Core i5-1130G7
->> and i7-1160G7 variants of the Acer Chromebook Spin 514 (CP514-2H)
->> volteer Chromebooks. So update the same in drm-ci.
->>
->> https://gitlab.collabora.com/lava/lava/-/merge_requests/149
->>
->> Fixes: 0119c894ab0d ("drm: Add initial ci/ subdirectory")
->> Reviewed-by: David Heidelberg <david.heidelberg@collabora.com>
->> Signed-off-by: Vignesh Raman <vignesh.raman@collabora.com>
-> 
-> Acked-by: Helen Koike <helen.koike@collabora.com>
+Do you want me to pick this up? Otherwise, feel free to take it via
+whatever tree makes sense.
 
-Applied to drm-misc-next.
+Alex
 
-> 
-> Thanks
-> Helen
-> 
->> ---
->>
->> v2:
->>    - Add fixes tag so change gets propagated to stable.
->>      
->> https://gitlab.freedesktop.org/vigneshraman/linux/-/pipelines/1119672
->>
->> v3:
->>    - Fix checkpatch warning.
->>      Please use correct Fixes: style 'Fixes: <12 chars of sha1> 
->> ("<title line>")'
->>
->> ---
->>   drivers/gpu/drm/ci/test.yml | 6 +++---
->>   1 file changed, 3 insertions(+), 3 deletions(-)
->>
->> diff --git a/drivers/gpu/drm/ci/test.yml b/drivers/gpu/drm/ci/test.yml
->> index 0857773e5c5f..8bc63912fddb 100644
->> --- a/drivers/gpu/drm/ci/test.yml
->> +++ b/drivers/gpu/drm/ci/test.yml
->> @@ -252,11 +252,11 @@ i915:cml:
->>   i915:tgl:
->>     extends:
->>       - .i915
->> -  parallel: 8
->> +  parallel: 5
->>     variables:
->> -    DEVICE_TYPE: asus-cx9400-volteer
->> +    DEVICE_TYPE: acer-cp514-2h-1130g7-volteer
->>       GPU_VERSION: tgl
->> -    RUNNER_TAG: mesa-ci-x86-64-lava-asus-cx9400-volteer
->> +    RUNNER_TAG: mesa-ci-x86-64-lava-acer-cp514-2h-1130g7-volteer
->>   .amdgpu:
->>     extends:
+> ---
+>  include/drm/amd_asic_type.h | 3 +++
+>  1 file changed, 3 insertions(+)
+>
+> diff --git a/include/drm/amd_asic_type.h b/include/drm/amd_asic_type.h
+> index 724c45e3e9a7..9be85b821aa6 100644
+> --- a/include/drm/amd_asic_type.h
+> +++ b/include/drm/amd_asic_type.h
+> @@ -22,6 +22,9 @@
+>
+>  #ifndef __AMD_ASIC_TYPE_H__
+>  #define __AMD_ASIC_TYPE_H__
+> +
+> +#include <linux/types.h>
+> +
+>  /*
+>   * Supported ASIC types
+>   */
+> --
+> 2.39.2
+>
