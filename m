@@ -2,51 +2,29 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id AA1F9874610
-	for <lists+intel-gfx@lfdr.de>; Thu,  7 Mar 2024 03:21:53 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2984C874623
+	for <lists+intel-gfx@lfdr.de>; Thu,  7 Mar 2024 03:37:12 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1EE561136D4;
-	Thu,  7 Mar 2024 02:21:52 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=collabora.com header.i=@collabora.com header.b="YK8gescl";
-	dkim-atps=neutral
+	by gabe.freedesktop.org (Postfix) with ESMTP id 134271122B5;
+	Thu,  7 Mar 2024 02:37:09 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from madrid.collaboradmins.com (madrid.collaboradmins.com
- [46.235.227.194])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 982E11136D1;
- Thu,  7 Mar 2024 02:21:50 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
- s=mail; t=1709778108;
- bh=wcNAje16nLUZs0HlstOnpDC5DqRaA1co8aNRDvbCu00=;
- h=From:To:Cc:Subject:Date:From;
- b=YK8gescl/5NNxDHgaHtwle1MrckketDstG9otWe59J776ReobQRKuJyYHBlD5auml
- FoHuaHArOf+ULXKFLEK1RPuyIlNmOA10LeCnrW26dP/hCG2liEf4OwIlWH6bur5iG3
- kKzTp6y9Gz1cxGnUzqhmHztC+nWiKur3rE5O8c1h8Wa3EGSrEpgCwk847kKVR9ckXb
- wzYOCJCmqI5rjgWrbe1Jpao1SFShQ3vQAi+hZTyNC0BYPnO7Zf8d57GpEUlxmH/IZ+
- oG2r/98BPG+j/eLLAM6dXMB4dSAH9C0Ho8E6Rr/onr/48o7S4MmztLM0SZEGEVw+NA
- pmhlL3t4nEsWw==
-Received: from localhost.localdomain (cola.collaboradmins.com [195.201.22.229])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
- (No client certificate requested) (Authenticated sender: vignesh)
- by madrid.collaboradmins.com (Postfix) with ESMTPSA id 95FF737820DA;
- Thu,  7 Mar 2024 02:21:45 +0000 (UTC)
-From: Vignesh Raman <vignesh.raman@collabora.com>
-To: dri-devel@lists.freedesktop.org
-Cc: daniels@collabora.com, helen.koike@collabora.com, airlied@gmail.com,
- daniel@ffwll.ch, david.heidelberg@collabora.com,
- sergi.blanch.torne@collabora.com, guilherme.gallo@collabora.com,
- robdclark@gmail.com, jani.nikula@linux.intel.com,
- joonas.lahtinen@linux.intel.com, rodrigo.vivi@intel.com,
- tvrtko.ursulin@linux.intel.com, intel-gfx@lists.freedesktop.org,
- linux-kernel@vger.kernel.org
-Subject: [PATCH v3] drm/ci: update device type for volteer devices
-Date: Thu,  7 Mar 2024 07:48:41 +0530
-Message-Id: <20240307021841.100561-1-vignesh.raman@collabora.com>
-X-Mailer: git-send-email 2.40.1
+Received: from 8e613ede5ea5 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7125C1122B5;
+ Thu,  7 Mar 2024 02:37:07 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=97_Fi=2ECI=2ESPARSE=3A_warning_for_drm/i915=3A_cleanup_dead?=
+ =?utf-8?q?_code?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Lucas De Marchi" <lucas.demarchi@intel.com>
+Cc: intel-gfx@lists.freedesktop.org
+Date: Thu, 07 Mar 2024 02:37:07 -0000
+Message-ID: <170977902746.563886.3370051887244158586@8e613ede5ea5>
+X-Patchwork-Hint: ignore
+References: <20240306193643.1897026-1-lucas.demarchi@intel.com>
+In-Reply-To: <20240306193643.1897026-1-lucas.demarchi@intel.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,55 +37,20 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Volteer devices in the collabora lab are categorized under the
-asus-cx9400-volteer device type. The majority of these units
-has an Intel Core i5-1130G7 CPU, while some of them have a
-Intel Core i7-1160G7 CPU instead. So due to this difference,
-new device type template is added for the Intel Core i5-1130G7
-and i7-1160G7 variants of the Acer Chromebook Spin 514 (CP514-2H)
-volteer Chromebooks. So update the same in drm-ci.
+== Series Details ==
 
-https://gitlab.collabora.com/lava/lava/-/merge_requests/149
+Series: drm/i915: cleanup dead code
+URL   : https://patchwork.freedesktop.org/series/130828/
+State : warning
 
-Fixes: 0119c894ab0d ("drm: Add initial ci/ subdirectory")
-Reviewed-by: David Heidelberg <david.heidelberg@collabora.com>
-Signed-off-by: Vignesh Raman <vignesh.raman@collabora.com>
----
+== Summary ==
 
-v2:
-  - Add fixes tag so change gets propagated to stable.
-    https://gitlab.freedesktop.org/vigneshraman/linux/-/pipelines/1119672
+Error: dim sparse failed
+Sparse version: v0.6.2
+Fast mode used, each commit won't be checked separately.
 
-v3:
-  - Fix checkpatch warning.
-    Please use correct Fixes: style 'Fixes: <12 chars of sha1> ("<title line>")' 
-
----
- drivers/gpu/drm/ci/test.yml | 6 +++---
- 1 file changed, 3 insertions(+), 3 deletions(-)
-
-diff --git a/drivers/gpu/drm/ci/test.yml b/drivers/gpu/drm/ci/test.yml
-index 0857773e5c5f..8bc63912fddb 100644
---- a/drivers/gpu/drm/ci/test.yml
-+++ b/drivers/gpu/drm/ci/test.yml
-@@ -252,11 +252,11 @@ i915:cml:
- i915:tgl:
-   extends:
-     - .i915
--  parallel: 8
-+  parallel: 5
-   variables:
--    DEVICE_TYPE: asus-cx9400-volteer
-+    DEVICE_TYPE: acer-cp514-2h-1130g7-volteer
-     GPU_VERSION: tgl
--    RUNNER_TAG: mesa-ci-x86-64-lava-asus-cx9400-volteer
-+    RUNNER_TAG: mesa-ci-x86-64-lava-acer-cp514-2h-1130g7-volteer
- 
- .amdgpu:
-   extends:
--- 
-2.40.1
 
