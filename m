@@ -2,61 +2,51 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 94B8B874995
-	for <lists+intel-gfx@lfdr.de>; Thu,  7 Mar 2024 09:27:47 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id E2F198749B7
+	for <lists+intel-gfx@lfdr.de>; Thu,  7 Mar 2024 09:35:22 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C7DA4113475;
-	Thu,  7 Mar 2024 08:27:40 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 76570113622;
+	Thu,  7 Mar 2024 08:35:20 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="YBd2WnFW";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="hGK6kqHi";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E2BCC10F202;
- Thu,  7 Mar 2024 08:27:38 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B525910EF12;
+ Thu,  7 Mar 2024 08:35:18 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1709800059; x=1741336059;
- h=mime-version:content-transfer-encoding:in-reply-to:
- references:to:subject:from:cc:message-id:date;
- bh=ulYlFZq32K9jOmqyoqOs/Z5jeTVGLC6Oth42YMlqJT4=;
- b=YBd2WnFWfeeQuqyAPBMXSXaeUksN3MCptiYQ4Lml9rVzBd1VO/nlFnUa
- krRtBkAQ85UPZeF7AZrVAnU01qgbzBELgIiSSupJIwYhhM2ogcaLE4s4D
- ox12NgrQCCcSHaGUia1FFLRQwQW9WNY5LGeWOLDeqCD0WP7NS5zsdvTx5
- YC264dE0McEvnCMop0NFke0Pe8yFwGq67IAFGGxAhK/yt4yxsCdI+3wFx
- KK9pW7RBp3aLjA+D86/UCMvEa2JwLHi9kFKLTRnefAqweELT6Orzq2JUH
- 14RfVA5rWp6ac2JSjMXPi2hYWQuB4OA6h3kG2O1/+BuI+NPcq/ka55Wel g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,11005"; a="26930909"
-X-IronPort-AV: E=Sophos;i="6.06,210,1705392000"; d="scan'208";a="26930909"
-Received: from fmviesa002.fm.intel.com ([10.60.135.142])
- by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Mar 2024 00:27:37 -0800
+ t=1709800518; x=1741336518;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=QbkiNvbOCkBe6g/9H9GqMUk3HmNRFCmZHlALEYofPIg=;
+ b=hGK6kqHi8m0ap+nyZFAt99mnoZUObxL/Z7NUxc5yAvBZL+BKStiYgCTU
+ m3ljFiA7uUx83h8dJTRJ7YaQFcSi5meeS+y3MAr4IDV/fsDyEWiUgkLei
+ +eEPc079fgrt9sZAvRuo/jGxRVU5F81BLnz17CmB3ENQFFSOftBJ73PBG
+ GhH8OTOf0p5OH8qhzvfgSPSu1canAnM3KZRSCZHJ/7olR8VlQg/bG54hE
+ Z7uQ5qzrzXdjXvXQvGl82Fbf4Qxwx4PY2/US+9ySII9wWD59QONGGor+K
+ IV7iKQFG/VwITm6gTYunV6dkqDPg+YZk2N/h7i0n3p/veF5nlETLuX80B Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,11005"; a="15597893"
+X-IronPort-AV: E=Sophos;i="6.06,210,1705392000"; d="scan'208";a="15597893"
+Received: from fmviesa009.fm.intel.com ([10.60.135.149])
+ by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 Mar 2024 00:35:17 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.06,210,1705392000"; d="scan'208";a="33192969"
-Received: from unknown (HELO localhost) ([10.245.244.162])
- by fmviesa002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Mar 2024 00:27:35 -0800
-Content-Type: text/plain; charset="utf-8"
+X-IronPort-AV: E=Sophos;i="6.06,210,1705392000"; 
+   d="scan'208";a="9937294"
+Received: from nemesa.iind.intel.com ([10.190.239.22])
+ by fmviesa009.fm.intel.com with ESMTP; 07 Mar 2024 00:35:15 -0800
+From: Nemesa Garg <nemesa.garg@intel.com>
+To: intel-gfx@lists.freedesktop.org,
+	dri-devel@lists.freedesktop.org
+Cc: Nemesa Garg <nemesa.garg@intel.com>
+Subject: [PATCH 0/5]  Introduce drm sharpening property
+Date: Thu,  7 Mar 2024 14:02:32 +0530
+Message-Id: <20240307083237.576177-1-nemesa.garg@intel.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <20240307131027.66be2266@canb.auug.org.au>
-References: <20240307131027.66be2266@canb.auug.org.au>
-To: Daniel Vetter <daniel.vetter@ffwll.ch>, Dave Airlie <airlied@redhat.com>,
- Jani Nikula <jani.nikula@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, Stephen Rothwell <sfr@canb.auug.org.au>
-Subject: Re: linux-next: manual merge of the drm tree with the drm-intel-fixes
- tree
-From: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
-Cc: Intel Graphics <intel-gfx@lists.freedesktop.org>,
- DRI <dri-devel@lists.freedesktop.org>, Animesh Manna <animesh.manna@intel.com>,
- Imre Deak <imre.deak@intel.com>,
- Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
- Linux Next Mailing List <linux-next@vger.kernel.org>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-Message-ID: <170980005216.6042.11359885960417882116@jlahtine-mobl.ger.corp.intel.com>
-User-Agent: alot/0.8.1
-Date: Thu, 07 Mar 2024 10:27:32 +0200
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -72,61 +62,55 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Quoting Stephen Rothwell (2024-03-07 04:10:27)
-> Hi all,
->=20
-> Today's linux-next merge of the drm tree got a conflict in:
->=20
->   drivers/gpu/drm/i915/display/intel_dp.c
->=20
-> between commit:
->=20
->   984318aaf7b6 ("drm/i915/panelreplay: Move out psr_init_dpcd() from init=
-_connector()")
->=20
-> from the drm-intel-fixes tree and commit:
->=20
->   e60cff453b82 ("drm/i915/dp: Enable DP tunnel BW allocation mode")
->=20
-> from the drm tree.
->=20
-> I fixed it up (see below) and can carry the fix as necessary. This
-> is now fixed as far as linux-next is concerned, but any non trivial
-> conflicts should be mentioned to your upstream maintainer when your tree
-> is submitted for merging.  You may also want to consider cooperating
-> with the maintainer of the conflicting tree to minimise any particularly
-> complex conflicts.
->=20
-> --=20
-> Cheers,
-> Stephen Rothwell
->=20
-> diff --cc drivers/gpu/drm/i915/display/intel_dp.c
-> index 94d2a15d8444,6ece2c563c7a..000000000000
-> --- a/drivers/gpu/drm/i915/display/intel_dp.c
-> +++ b/drivers/gpu/drm/i915/display/intel_dp.c
-> @@@ -5699,9 -5702,13 +5702,16 @@@ intel_dp_detect(struct drm_connector *c
->                 goto out;
->         }
->  =20
-> +       ret =3D intel_dp_tunnel_detect(intel_dp, ctx);
-> +       if (ret =3D=3D -EDEADLK)
-> +               return ret;
-> +=20
-> +       if (ret =3D=3D 1)
-> +               intel_connector->base.epoch_counter++;
-> +=20
->  +      if (!intel_dp_is_edp(intel_dp))
->  +              intel_psr_init_dpcd(intel_dp);
->  +
+	Many a times images are blurred or upscaled content is also not as
+crisp as original rendered image. Traditional sharpening techniques often
+apply a uniform level of enhancement across entire image, which sometimes
+result in over-sharpening of some areas and potential loss of natural details. 
 
-Hi,
+Intel has come up with Display Engine based adaptive sharpening filter 
+with minimal power and performance impact. From LNL onwards, the Display
+hardware can use one of the pipe scaler for adaptive sharpness filter.
+This can be used for both gaming and non-gaming use cases like photos,
+image viewing. It works on a region of pixels depending on the tap size.
 
-This is the right resolution, should be cleared up shortly once the
-drm-intel-fixes PR is pulled.
+This RFC is an attempt to introduce an adaptive sharpness solution which
+helps in improving the image quality. For this new CRTC property is added.
+The user can set this property with desired sharpness strength value with
+0-255. A value of 1 representing minimum sharpening strength and 255
+representing maximum sharpness strength. A strength value of 0 means no
+sharpening or sharpening feature disabled.
+It works on a region of pixels depending on the tap size. The coefficients
+are used to generate an alpha value which is used to blend the sharpened
+image to original image.
+ 
+Userspace implementation for sharpening feature and IGT implementation
+is in progress.
 
-Regards, Joonas
+Nemesa Garg (5):
+  drm: Introduce sharpness mode property
+  drm/i915/display: Compute the scaler filter coefficients
+  drm/i915/display: Enable the second scaler
+  drm/i915/display: Add registers and compute the strength
+  drm/i915/display: Load the lut values and enable sharpness
 
->         intel_dp_detect_dsc_caps(intel_dp, intel_connector);
->  =20
->         intel_dp_configure_mst(intel_dp);
+ drivers/gpu/drm/drm_atomic_uapi.c             |   4 +
+ drivers/gpu/drm/drm_crtc.c                    |  17 ++
+ drivers/gpu/drm/i915/Makefile                 |   1 +
+ drivers/gpu/drm/i915/display/intel_crtc.c     |   3 +
+ drivers/gpu/drm/i915/display/intel_display.c  |  22 +-
+ .../drm/i915/display/intel_display_types.h    |  11 +
+ .../drm/i915/display/intel_modeset_verify.c   |   1 +
+ .../drm/i915/display/intel_sharpen_filter.c   | 211 ++++++++++++++++++
+ .../drm/i915/display/intel_sharpen_filter.h   |  31 +++
+ drivers/gpu/drm/i915/display/skl_scaler.c     |  97 +++++++-
+ drivers/gpu/drm/i915/display/skl_scaler.h     |   1 +
+ drivers/gpu/drm/i915/i915_reg.h               |  19 ++
+ drivers/gpu/drm/xe/Makefile                   |   1 +
+ include/drm/drm_crtc.h                        |  17 ++
+ 14 files changed, 425 insertions(+), 11 deletions(-)
+ create mode 100644 drivers/gpu/drm/i915/display/intel_sharpen_filter.c
+ create mode 100644 drivers/gpu/drm/i915/display/intel_sharpen_filter.h
+
+-- 
+2.25.1
+
