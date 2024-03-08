@@ -2,57 +2,60 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 53311876691
-	for <lists+intel-gfx@lfdr.de>; Fri,  8 Mar 2024 15:47:04 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7FB2C8766BD
+	for <lists+intel-gfx@lfdr.de>; Fri,  8 Mar 2024 15:56:08 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BBD5310FA2E;
-	Fri,  8 Mar 2024 14:47:02 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A5BA11138DD;
+	Fri,  8 Mar 2024 14:56:06 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="gUAuiIVO";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Sb4RnSeQ";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1A9DD10F891
- for <intel-gfx@lists.freedesktop.org>; Fri,  8 Mar 2024 14:47:01 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.13])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 001991138DD
+ for <intel-gfx@lists.freedesktop.org>; Fri,  8 Mar 2024 14:56:05 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1709909221; x=1741445221;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=nabzxEN1PS9JUzBZrjbpuSG/w5qm31efipUM4ftZUUw=;
- b=gUAuiIVOBgeKGFhc+i0UCX7+12tXr46jBrAZL/b2dfOgGUeRhWDth8Xv
- VlPkO8DjguJdALrAxziqV3dJZa08rdXawqL7MD45QvgeCIY4kQA5Lh5hK
- Itg5Xg1CUGp6LyqKAWB2mWQjwy8nb+hF4RTFAL3nmjSYR9WBqN4MiYF7Y
- vyR+r5NgmzEPvElPT9P1h954ddoQKn5VrW1yyGnyon8o0vibnEISs3ehU
- +WBk1Lg5QfmsjQHZJRzf7jdgg92cwTucJytdt7jOOGD5OspaZtdmCkxnA
- Q7EOqzop1QoqoeRIEtnL94yGlaQcvkyLLMZYmcJJGRGTNsf3t9hMUw8wl g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,11006"; a="8382438"
+ t=1709909766; x=1741445766;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=HdMJ6tH65M+a6boZG2S6HfMEPzn/p5gGtttY5K6b984=;
+ b=Sb4RnSeQoFSbf+6j9de+rPyHtbur6UT88BlNdDlBhqykwV1CNNmfx3R0
+ Kd5F7PygPJiQKFeWeFVMfasBneMlDNYispjkqZAAcnjZ78+xgOlltmStm
+ V+HP2sCBTCC+ZeAuaR8dWrgmlRs+T5wPNdNIGhJSndcELN3Tpf66FkhJu
+ NKtTzBAQVK1Us/Sx6SywOMyDo68mKV043C6k2Psyai7SMZ6KYlBXhYsKR
+ aYyPOwuzzLDU3oUH7pzAfW71QYP7gIPhuODsiZ9nF9DEeWpg7Yvje/1qu
+ uTkgKYQ/2BuN6eAbf5ylSTV8M4/wPEkMJrrVUCSTKPUcDhap8o36vsw/z Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,11006"; a="7576667"
 X-IronPort-AV: E=Sophos;i="6.07,109,1708416000"; 
-   d="scan'208";a="8382438"
-Received: from orviesa005.jf.intel.com ([10.64.159.145])
- by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Mar 2024 06:47:00 -0800
+   d="scan'208";a="7576667"
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+ by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 Mar 2024 06:56:05 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.07,109,1708416000"; d="scan'208";a="15185431"
-Received: from unknown (HELO localhost) ([10.245.244.189])
- by orviesa005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Mar 2024 06:46:58 -0800
-From: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
-To: Intel graphics driver community testing & development
- <intel-gfx@lists.freedesktop.org>
-Cc: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Chris Wilson <chris.p.wilson@linux.intel.com>,
- Jani Nikula <jani.nikula@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Tvrtko Ursulin <tursulin@ursulin.net>
-Subject: [PATCH] drm/i915: Add includes for BUG_ON/BUILD_BUG_ON in
- i915_memcpy.c
-Date: Fri,  8 Mar 2024 16:46:43 +0200
-Message-ID: <20240308144643.137831-1-joonas.lahtinen@linux.intel.com>
-X-Mailer: git-send-email 2.43.2
+X-IronPort-AV: E=McAfee;i="6600,9927,11006"; a="827775257"
+X-IronPort-AV: E=Sophos;i="6.07,109,1708416000"; d="scan'208";a="827775257"
+Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.74])
+ by orsmga001.jf.intel.com with SMTP; 08 Mar 2024 06:56:02 -0800
+Received: by stinkbox (sSMTP sendmail emulation);
+ Fri, 08 Mar 2024 16:56:01 +0200
+Date: Fri, 8 Mar 2024 16:56:01 +0200
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: Jouni =?iso-8859-1?Q?H=F6gander?= <jouni.hogander@intel.com>
+Cc: intel-gfx@lists.freedesktop.org, Jani Nikula <jani.nikula@linux.intel.com>
+Subject: Re: [PATCH v5 4/5] drm/i915/psr: Add IO buffer wake times for
+ LunarLake and beyond
+Message-ID: <ZesnAUVANrVYVXwq@intel.com>
+References: <20240308110039.3900838-1-jouni.hogander@intel.com>
+ <20240308110039.3900838-5-jouni.hogander@intel.com>
+ <ZesjOx-OjJ4qT4wz@intel.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
+In-Reply-To: <ZesjOx-OjJ4qT4wz@intel.com>
+X-Patchwork-Hint: comment
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -68,31 +71,63 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Add standalone includes for BUG_ON and BUILD_BUG_ON to avoid build failure
-after linux-next include refactoring.
+On Fri, Mar 08, 2024 at 04:39:55PM +0200, Ville Syrjälä wrote:
+> On Fri, Mar 08, 2024 at 01:00:38PM +0200, Jouni Högander wrote:
+> > IO buffer wake time used for IO wake calculation is dependent on port clock
+> > on LunarLake and beyond. Take this into account in get_io_buffer_wake_time.
+> > 
+> > Bspec: 65450
+> > 
+> > v2: add own io_wake_time helper for LunarLake
+> > 
+> > Signed-off-by: Jouni Högander <jouni.hogander@intel.com>
+> > ---
+> >  drivers/gpu/drm/i915/display/intel_psr.c | 14 +++++++++++++-
+> >  1 file changed, 13 insertions(+), 1 deletion(-)
+> > 
+> > diff --git a/drivers/gpu/drm/i915/display/intel_psr.c b/drivers/gpu/drm/i915/display/intel_psr.c
+> > index 747761efa4be..e3daaf05d640 100644
+> > --- a/drivers/gpu/drm/i915/display/intel_psr.c
+> > +++ b/drivers/gpu/drm/i915/display/intel_psr.c
+> > @@ -1165,11 +1165,23 @@ static int tgl_io_buffer_wake_time(void)
+> >  	return 10;
+> >  }
+> >  
+> > +static int lnl_io_buffer_wake_time(int port_clock)
+> > +{
+> > +	if (port_clock > 270000)
+> > +		return 10;
+> > +	else if (port_clock > 162000)
+> > +		return 11;
+> > +	else
+> > +		return 15;
+> > +}
+> 
+> These numbers are only listed in the MTL section of bspec. There
+> is nothing like this in the LNL PHY power section AFAICS.
 
-Signed-off-by: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
-Cc: Chris Wilson <chris.p.wilson@linux.intel.com>
-Cc: Jani Nikula <jani.nikula@linux.intel.com>
-Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
-Cc: Tvrtko Ursulin <tursulin@ursulin.net>
----
- drivers/gpu/drm/i915/i915_memcpy.c | 2 ++
- 1 file changed, 2 insertions(+)
+Windows appears to use fixed 12us here.
 
-diff --git a/drivers/gpu/drm/i915/i915_memcpy.c b/drivers/gpu/drm/i915/i915_memcpy.c
-index ba82277254b7..cc41974cee74 100644
---- a/drivers/gpu/drm/i915/i915_memcpy.c
-+++ b/drivers/gpu/drm/i915/i915_memcpy.c
-@@ -25,6 +25,8 @@
- #include <linux/kernel.h>
- #include <linux/string.h>
- #include <linux/cpufeature.h>
-+#include <linux/bug.h>
-+#include <linux/build_bug.h>
- #include <asm/fpu/api.h>
- 
- #include "i915_memcpy.h"
+> 
+> > +
+> >  static int io_buffer_wake_time(const struct intel_crtc_state *crtc_state)
+> >  {
+> >  	struct drm_i915_private *i915 = to_i915(crtc_state->uapi.crtc->dev);
+> >  
+> > -	if (DISPLAY_VER(i915) >= 12)
+> > +	if (DISPLAY_VER(i915) >= 20)
+> > +		return lnl_io_buffer_wake_time(crtc_state->port_clock);
+> > +	else if (DISPLAY_VER(i915) >= 12)
+> >  		return tgl_io_buffer_wake_time();
+> >  	else
+> >  		return skl_io_buffer_wake_time();
+> > -- 
+> > 2.34.1
+> 
+> -- 
+> Ville Syrjälä
+> Intel
+
 -- 
-2.43.2
-
+Ville Syrjälä
+Intel
