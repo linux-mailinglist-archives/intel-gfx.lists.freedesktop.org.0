@@ -2,52 +2,29 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7B43F875C32
-	for <lists+intel-gfx@lfdr.de>; Fri,  8 Mar 2024 03:03:21 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0FC0C875C60
+	for <lists+intel-gfx@lfdr.de>; Fri,  8 Mar 2024 03:42:56 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4A40010FA05;
-	Fri,  8 Mar 2024 02:03:19 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="lDcjsq5n";
-	dkim-atps=neutral
-X-Original-To: Intel-GFX@lists.freedesktop.org
-Delivered-To: Intel-GFX@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 279F810F765;
- Fri,  8 Mar 2024 02:03:18 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1709863398; x=1741399398;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=N/ReINGNe1GlfcxvWO3VnOGkB1IBjcLiduhhLtEsG5o=;
- b=lDcjsq5ngoWS92mxSyaZZBAM/lMXDW0J8oo8USknx/IK69HeVbJoI2XW
- HlQuXAo1ouexMGVLuAwp6Cv6oMqEMe2d2GwFJWm1eNfkUubxYskGb7dBY
- 20nJmjyGdpWl1EJ83LO5U0s75SJdBpqwp+T19NKcFNjj2kIRsYkeQa94S
- rWOtQDLnV3HePuk8+VTPxnlcfSmm2qxMIXBWCKIxHXS07VO5MEr79F0Y5
- 2YPkYv0KyvKJar3+ARVYgIyeXV2lTcig1Oy5s6s/GbsGt26JxJFnuRZJV
- YTiJIGtug+ROMCiZtjZg5B6YZMZLAPZA9hQjVyKaAsKaZF3Ij9n6zU76f A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,11006"; a="7516225"
-X-IronPort-AV: E=Sophos;i="6.07,108,1708416000"; 
-   d="scan'208";a="7516225"
-Received: from orviesa008.jf.intel.com ([10.64.159.148])
- by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Mar 2024 18:03:17 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.07,108,1708416000"; d="scan'208";a="10864818"
-Received: from relo-linux-5.jf.intel.com ([10.165.21.152])
- by orviesa008.jf.intel.com with ESMTP; 07 Mar 2024 18:03:17 -0800
-From: John.C.Harrison@Intel.com
-To: Intel-GFX@Lists.FreeDesktop.Org
-Cc: DRI-Devel@Lists.FreeDesktop.Org, John Harrison <John.C.Harrison@Intel.com>
-Subject: [PATCH] drm/i915/guc: Update w/a 14019159160
-Date: Thu,  7 Mar 2024 18:01:29 -0800
-Message-ID: <20240308020129.728799-1-John.C.Harrison@Intel.com>
-X-Mailer: git-send-email 2.43.0
+	by gabe.freedesktop.org (Postfix) with ESMTP id D25AF112814;
+	Fri,  8 Mar 2024 02:42:52 +0000 (UTC)
+X-Original-To: intel-gfx@lists.freedesktop.org
+Delivered-To: intel-gfx@lists.freedesktop.org
+Received: from 8e613ede5ea5 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8AEB9112804;
+ Fri,  8 Mar 2024 02:42:51 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Organization: Intel Corporation (UK) Ltd. - Co. Reg. #1134945 - Pipers Way,
- Swindon SN3 1RJ
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=97_Fi=2ECI=2ECHECKPATCH=3A_warning_for_drm/i915/guc=3A_Upda?=
+ =?utf-8?q?te_w/a_14019159160?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: john.c.harrison@intel.com
+Cc: intel-gfx@lists.freedesktop.org
+Date: Fri, 08 Mar 2024 02:42:51 -0000
+Message-ID: <170986577156.611010.6284118617559441050@8e613ede5ea5>
+X-Patchwork-Hint: ignore
+References: <20240308020129.728799-1-John.C.Harrison@Intel.com>
+In-Reply-To: <20240308020129.728799-1-John.C.Harrison@Intel.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -60,99 +37,32 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-From: John Harrison <John.C.Harrison@Intel.com>
+== Series Details ==
 
-An existing workaround has been extended in both platforms affected
-and implementation complexity.
+Series: drm/i915/guc: Update w/a 14019159160
+URL   : https://patchwork.freedesktop.org/series/130890/
+State : warning
 
-Signed-off-by: John Harrison <John.C.Harrison@Intel.com>
----
- drivers/gpu/drm/i915/gt/uc/abi/guc_klvs_abi.h |  3 ++-
- drivers/gpu/drm/i915/gt/uc/intel_guc.c        |  3 ++-
- drivers/gpu/drm/i915/gt/uc/intel_guc_ads.c    | 21 ++++++++++---------
- 3 files changed, 15 insertions(+), 12 deletions(-)
+== Summary ==
 
-diff --git a/drivers/gpu/drm/i915/gt/uc/abi/guc_klvs_abi.h b/drivers/gpu/drm/i915/gt/uc/abi/guc_klvs_abi.h
-index bebf28e3c4794..3e7060e859794 100644
---- a/drivers/gpu/drm/i915/gt/uc/abi/guc_klvs_abi.h
-+++ b/drivers/gpu/drm/i915/gt/uc/abi/guc_klvs_abi.h
-@@ -105,7 +105,8 @@ enum {
-  * Workaround keys:
-  */
- enum {
--	GUC_WORKAROUND_KLV_SERIALIZED_RA_MODE				= 0x9001,
+Error: dim checkpatch failed
+3d8264155c79 drm/i915/guc: Update w/a 14019159160
+-:20: WARNING:LONG_LINE_COMMENT: line length of 108 exceeds 100 columns
+#20: FILE: drivers/gpu/drm/i915/gt/uc/abi/guc_klvs_abi.h:108:
 +	GUC_WORKAROUND_KLV_SERIALIZED_RA_MODE				= 0x9001,	/* Wa_14019159160 */
+
+-:21: WARNING:LONG_LINE_COMMENT: line length of 108 exceeds 100 columns
+#21: FILE: drivers/gpu/drm/i915/gt/uc/abi/guc_klvs_abi.h:109:
 +	GUC_WORKAROUND_KLV_AVOID_GFX_CLEAR_WHILE_ACTIVE			= 0x9006,	/* Wa_14019159160 */
- };
- 
- #endif /* _ABI_GUC_KLVS_ABI_H */
-diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc.c b/drivers/gpu/drm/i915/gt/uc/intel_guc.c
-index 0c67d674c94de..4c3dae98656af 100644
---- a/drivers/gpu/drm/i915/gt/uc/intel_guc.c
-+++ b/drivers/gpu/drm/i915/gt/uc/intel_guc.c
-@@ -296,7 +296,8 @@ static u32 guc_ctl_wa_flags(struct intel_guc *guc)
- 
- 	/* Wa_16019325821 */
- 	/* Wa_14019159160 */
--	if (IS_GFX_GT_IP_RANGE(gt, IP_VER(12, 70), IP_VER(12, 71)))
-+	if (IS_GFX_GT_IP_RANGE(gt, IP_VER(12, 70), IP_VER(12, 71)) ||
-+	    IS_DG2(gt->i915))
- 		flags |= GUC_WA_RCS_CCS_SWITCHOUT;
- 
- 	/*
-diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_ads.c b/drivers/gpu/drm/i915/gt/uc/intel_guc_ads.c
-index 5c9908b56616e..00fe3c21a9b1c 100644
---- a/drivers/gpu/drm/i915/gt/uc/intel_guc_ads.c
-+++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_ads.c
-@@ -815,23 +815,23 @@ guc_capture_prep_lists(struct intel_guc *guc)
- 	return PAGE_ALIGN(total_size);
- }
- 
--/* Wa_14019159160 */
--static u32 guc_waklv_ra_mode(struct intel_guc *guc, u32 offset, u32 remain)
-+static void guc_waklv_enable_simple(struct intel_guc *guc, u32 *offset, u32 *remain, u32 klv_id)
- {
- 	u32 size;
- 	u32 klv_entry[] = {
- 		/* 16:16 key/length */
--		FIELD_PREP(GUC_KLV_0_KEY, GUC_WORKAROUND_KLV_SERIALIZED_RA_MODE) |
-+		FIELD_PREP(GUC_KLV_0_KEY, klv_id) |
- 		FIELD_PREP(GUC_KLV_0_LEN, 0),
- 		/* 0 dwords data */
- 	};
- 
- 	size = sizeof(klv_entry);
--	GEM_BUG_ON(remain < size);
+
+-:62: WARNING:AVOID_BUG: Do not crash the kernel unless it is absolutely unavoidable--use WARN_ON_ONCE() plus recovery code (if feasible) instead of BUG() or variants
+#62: FILE: drivers/gpu/drm/i915/gt/uc/intel_guc_ads.c:829:
 +	GEM_BUG_ON(*remain < size);
- 
--	iosys_map_memcpy_to(&guc->ads_map, offset, klv_entry, size);
-+	iosys_map_memcpy_to(&guc->ads_map, *offset, klv_entry, size);
- 
--	return size;
-+	*offset += size;
-+	*remain -= size;
- }
- 
- static void guc_waklv_init(struct intel_guc *guc)
-@@ -850,10 +850,11 @@ static void guc_waklv_init(struct intel_guc *guc)
- 	remain = guc_ads_waklv_size(guc);
- 
- 	/* Wa_14019159160 */
--	if (IS_GFX_GT_IP_RANGE(gt, IP_VER(12, 70), IP_VER(12, 71))) {
--		size = guc_waklv_ra_mode(guc, offset, remain);
--		offset += size;
--		remain -= size;
-+	if (IS_GFX_GT_IP_RANGE(gt, IP_VER(12, 70), IP_VER(12, 71)) || IS_DG2(gt->i915)) {
-+		guc_waklv_enable_simple(guc, &offset, &remain,
-+					GUC_WORKAROUND_KLV_SERIALIZED_RA_MODE);
-+		guc_waklv_enable_simple(guc, &offset, &remain,
-+					GUC_WORKAROUND_KLV_AVOID_GFX_CLEAR_WHILE_ACTIVE);
- 	}
- 
- 	size = guc_ads_waklv_size(guc) - remain;
--- 
-2.43.0
+
+total: 0 errors, 3 warnings, 0 checks, 62 lines checked
+
 
