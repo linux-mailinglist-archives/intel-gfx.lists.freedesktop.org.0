@@ -2,81 +2,74 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3EEFB8768E2
-	for <lists+intel-gfx@lfdr.de>; Fri,  8 Mar 2024 17:52:37 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 755378769A0
+	for <lists+intel-gfx@lfdr.de>; Fri,  8 Mar 2024 18:19:53 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5DE8C113914;
-	Fri,  8 Mar 2024 16:52:30 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 59F8210ECC3;
+	Fri,  8 Mar 2024 17:19:49 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=quicinc.com header.i=@quicinc.com header.b="kOGl/9do";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="H3VB6ZJz";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com
- [205.220.180.131])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 073C611392B;
- Fri,  8 Mar 2024 16:52:27 +0000 (UTC)
-Received: from pps.filterd (m0279868.ppops.net [127.0.0.1])
- by mx0a-0031df01.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id
- 428EaMvx025654; Fri, 8 Mar 2024 16:52:23 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
- message-id:date:mime-version:subject:to:cc:references:from
- :in-reply-to:content-type:content-transfer-encoding; s=
- qcppdkim1; bh=4h1nrQ0ADPnyDAxNzGXA7guhmQW/Wg/2BTZTLzTrfME=; b=kO
- Gl/9donaWIaz988tbIl0waBPR1q5/dNV1I0gqapiy5YycaOGrUGUallwHYnjAjTO
- Fypn2TSFtCHR/fPd1OGovByWwbBI4ABG+uViYKWeq8vkO7AqzOYOXza6NLV7C59/
- zgmoOSxs+oX9llsfOCvlAnOOZAXoYvHSzxb9VpT0au5XTdq+L5KgxErfD9X8gb2F
- V1lGWTW+VZcF1ez7poKWp9/dE11Z2w40a9tHGlP++SHSbtkhFeWDbeFHNGBcNF5J
- Wr6Q7+sjUhiiKMJjOtXrxKsdqZHm8m3YHQsMMRda5dRnaulTxlJmFVpg3FdSztJi
- Sr85yOxS2BqbzZxx748w==
-Received: from nasanppmta02.qualcomm.com (i-global254.qualcomm.com
- [199.106.103.254])
- by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3wr1wj0n1n-1
- (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
- Fri, 08 Mar 2024 16:52:23 +0000 (GMT)
-Received: from nasanex01b.na.qualcomm.com (nasanex01b.na.qualcomm.com
- [10.46.141.250])
- by NASANPPMTA02.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 428GqMJF002623
- (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
- Fri, 8 Mar 2024 16:52:22 GMT
-Received: from [10.110.41.90] (10.80.80.8) by nasanex01b.na.qualcomm.com
- (10.46.141.250) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.40; Fri, 8 Mar
- 2024 08:52:21 -0800
-Message-ID: <ab68d7a0-44a0-4e6a-82ea-7d7e3e9a718e@quicinc.com>
-Date: Fri, 8 Mar 2024 08:52:09 -0800
+Received: from mail-pj1-f45.google.com (mail-pj1-f45.google.com
+ [209.85.216.45])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5D70A10E960;
+ Fri,  8 Mar 2024 17:19:47 +0000 (UTC)
+Received: by mail-pj1-f45.google.com with SMTP id
+ 98e67ed59e1d1-2997cb49711so1593548a91.3; 
+ Fri, 08 Mar 2024 09:19:47 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20230601; t=1709918387; x=1710523187; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=p5i2JD/4lXt10DsMgtgNpYdEdATY1DWU2a+p3xbr180=;
+ b=H3VB6ZJzkOdPI7YEls8ItIRiof+C1gekW8H30GBqkAJr6udtuyL6IbPrQ6B+Whk+AT
+ BN3MMR+T+4jeY48E4GKiCWLEq86rsdlhIaBAOy5vOygJVGD+FiDMVzJF28E8oUMU7kwm
+ zSZXiQrhTm8SCcOSg7umvofAhwZxdeY4AmOaEKuiQdLrawa1TNQiSWsZofVHB/15XL12
+ af6Nning+3xWj7y+hM7zwCtdxqV99sgqjdQPvEPnQfSSoKe5HXASzNRKTKTLInE2sgNs
+ NJdnOHcBh0abdgaLDU7bYzI0B525+o5PLjqlcAeKSxm8foQuIW/Cnyvx+h3hJfUbEXt3
+ 3A6g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1709918387; x=1710523187;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+ :subject:date:message-id:reply-to;
+ bh=p5i2JD/4lXt10DsMgtgNpYdEdATY1DWU2a+p3xbr180=;
+ b=RkDfw2rFsw54Bmpxc6TQm95Atvhcr+ypgJboLXKDvr9MZT3g3NzvOevawaIV9zYSTZ
+ XluryBkOl4gpl+eRMzYa9u7Ld9gKb2WfaW8tKXxsjGfzGrnteJ5U6nyADjcQV4Ha/+r4
+ yUCfjki9Gmt3cdgo2bJjJQ+oJsCb6VER4J0JvOooEubd2LkGkedIo1xtKkRSo2EmQdnB
+ 7LiOZDrm/XXnZ6cjuPD/+IcIf8/nmp+wCcwxsaByENc4ORdS+aK/gUkPPlseVQmNjAha
+ s3qNCvkSK9DzypUz70kDaBiQ9dpJsRMlwEvF7DQRle7F9ZrTLQRsNYiELs9keNSThvCF
+ AOag==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCW5htjXgxq0eN7Utfc9x/2tBbFSGO9NZ40emJ52mFz0mthOqfPOySP3NNO0BHrA1LKl2Evtaosb8nRZ8q7+o+POtlpCS8/zwdAdBCLbe5ZKvrumokRhJ5WWcRlThjZ3QyxDpBx5D8HP4gTXoadwp9A=
+X-Gm-Message-State: AOJu0YyWHYx7M4bSCY0QqiMRyW3CTZIHhQRAlkS3rQvPTI4/Hm0+J25f
+ tHwLv/cXfceB/UQQ88Jcl98ZK8TSXQz9XmCeaSO+upRMsrVQevEcLSIgYptTgfdeWAzTOD4JXmA
+ YlXMgxCxUc/8EAGB7vZNmzl80Thw=
+X-Google-Smtp-Source: AGHT+IHpLAuKB9LdSum6AVBptpr3fjwzxWFN3YLPXfjYoUqiFiZXt87u+NRs6mHMWa+plMTGanim+hD0/ZmV66BywzY=
+X-Received: by 2002:a17:90a:e38e:b0:29b:c306:11bc with SMTP id
+ b14-20020a17090ae38e00b0029bc30611bcmr372123pjz.5.1709918386656; Fri, 08 Mar
+ 2024 09:19:46 -0800 (PST)
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/8] drm/panel: do not return negative error codes from
- drm_panel_get_modes()
-To: Jani Nikula <jani.nikula@intel.com>, <dri-devel@lists.freedesktop.org>
-CC: <intel-gfx@lists.freedesktop.org>, Neil Armstrong
- <neil.armstrong@linaro.org>,
- Sam Ravnborg <sam@ravnborg.org>, <stable@vger.kernel.org>
-References: <cover.1709913674.git.jani.nikula@intel.com>
- <79f559b72d8c493940417304e222a4b04dfa19c4.1709913674.git.jani.nikula@intel.com>
-Content-Language: en-US
-From: Jessica Zhang <quic_jesszhan@quicinc.com>
-In-Reply-To: <79f559b72d8c493940417304e222a4b04dfa19c4.1709913674.git.jani.nikula@intel.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nasanex01b.na.qualcomm.com (10.46.141.250)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800
- signatures=585085
-X-Proofpoint-ORIG-GUID: gyFQ5eOq4cAxLZEH7jMfOsYt57sPU1Ol
-X-Proofpoint-GUID: gyFQ5eOq4cAxLZEH7jMfOsYt57sPU1Ol
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.272,Aquarius:18.0.1011,Hydra:6.0.619,FMLib:17.11.176.26
- definitions=2024-03-08_08,2024-03-06_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- adultscore=0 clxscore=1011
- mlxscore=0 priorityscore=1501 mlxlogscore=999 malwarescore=0
- suspectscore=0 lowpriorityscore=0 spamscore=0 impostorscore=0 bulkscore=0
- phishscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2402120000 definitions=main-2403080134
+References: <cover.1709898638.git.jani.nikula@intel.com>
+ <7ad51d9fb9c42c9901c5c1d5d16e32e857da9758.1709898638.git.jani.nikula@intel.com>
+In-Reply-To: <7ad51d9fb9c42c9901c5c1d5d16e32e857da9758.1709898638.git.jani.nikula@intel.com>
+From: Alex Deucher <alexdeucher@gmail.com>
+Date: Fri, 8 Mar 2024 12:19:34 -0500
+Message-ID: <CADnq5_MkedOutm-z-U3+HTUB5a=1susjJUcUAdvBoRPy5T8+pA@mail.gmail.com>
+Subject: Re: [PATCH v2 01/16] drm: add missing header guards to
+ drm_crtc_internal.h
+To: Jani Nikula <jani.nikula@intel.com>
+Cc: dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org, 
+ intel-xe@lists.freedesktop.org, David Airlie <airlied@gmail.com>, 
+ Daniel Vetter <daniel@ffwll.ch>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
+ Masahiro Yamada <masahiroy@kernel.org>, lucas.demarchi@intel.com
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -92,76 +85,41 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-
-
-On 3/8/2024 8:03 AM, Jani Nikula wrote:
-> None of the callers of drm_panel_get_modes() expect it to return
-> negative error codes. Either they propagate the return value in their
-> struct drm_connector_helper_funcs .get_modes() hook (which is also not
-> supposed to return negative codes), or add it to other counts leading to
-> bogus values.
-> 
-> On the other hand, many of the struct drm_panel_funcs .get_modes() hooks
-> do return negative error codes, so handle them gracefully instead of
-> propagating further.
-> 
-> Return 0 for no modes, whatever the reason.
-> 
-> Cc: Neil Armstrong <neil.armstrong@linaro.org>
-> Cc: Jessica Zhang <quic_jesszhan@quicinc.com>
-> Cc: Sam Ravnborg <sam@ravnborg.org>
-> Cc: stable@vger.kernel.org
+On Fri, Mar 8, 2024 at 7:03=E2=80=AFAM Jani Nikula <jani.nikula@intel.com> =
+wrote:
+>
+> Including the file twice can lead to errors.
+>
 > Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+
+Reviewed-by: Alex Deucher <alexander.deucher@amd.com>
+
 > ---
->   drivers/gpu/drm/drm_panel.c | 17 +++++++++++------
->   1 file changed, 11 insertions(+), 6 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/drm_panel.c b/drivers/gpu/drm/drm_panel.c
-> index e814020bbcd3..cfbe020de54e 100644
-> --- a/drivers/gpu/drm/drm_panel.c
-> +++ b/drivers/gpu/drm/drm_panel.c
-> @@ -274,19 +274,24 @@ EXPORT_SYMBOL(drm_panel_disable);
->    * The modes probed from the panel are automatically added to the connector
->    * that the panel is attached to.
->    *
-> - * Return: The number of modes available from the panel on success or a
-> - * negative error code on failure.
-> + * Return: The number of modes available from the panel on success, or 0 on
-> + * failure (no modes).
->    */
->   int drm_panel_get_modes(struct drm_panel *panel,
->   			struct drm_connector *connector)
->   {
->   	if (!panel)
-> -		return -EINVAL;
-> +		return 0;
->   
-> -	if (panel->funcs && panel->funcs->get_modes)
-> -		return panel->funcs->get_modes(panel, connector);
-> +	if (panel->funcs && panel->funcs->get_modes) {
-> +		int num;
->   
-> -	return -EOPNOTSUPP;
-> +		num = panel->funcs->get_modes(panel, connector);
-> +		if (num > 0)
-> +			return num;
-
-Hi Jani,
-
-The change LGTM:
-
-Reviewed-by: Jessica Zhang <quic_jesszhan@quicinc.com>
-
-Thanks,
-
-Jessica Zhang
-
-> +	}
+>  drivers/gpu/drm/drm_crtc_internal.h | 5 +++++
+>  1 file changed, 5 insertions(+)
+>
+> diff --git a/drivers/gpu/drm/drm_crtc_internal.h b/drivers/gpu/drm/drm_cr=
+tc_internal.h
+> index c0c5d79ed4c9..0c693229a1c9 100644
+> --- a/drivers/gpu/drm/drm_crtc_internal.h
+> +++ b/drivers/gpu/drm/drm_crtc_internal.h
+> @@ -32,6 +32,9 @@
+>   * and are not exported to drivers.
+>   */
+>
+> +#ifndef __DRM_CRTC_INTERNAL_H__
+> +#define __DRM_CRTC_INTERNAL_H__
 > +
-> +	return 0;
->   }
->   EXPORT_SYMBOL(drm_panel_get_modes);
->   
-> -- 
+>  #include <linux/err.h>
+>  #include <linux/types.h>
+>
+> @@ -305,3 +308,5 @@ drm_edid_load_firmware(struct drm_connector *connecto=
+r)
+>         return ERR_PTR(-ENOENT);
+>  }
+>  #endif
+> +
+> +#endif /* __DRM_CRTC_INTERNAL_H__ */
+> --
 > 2.39.2
-> 
+>
