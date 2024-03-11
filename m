@@ -2,74 +2,73 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id EC703877BA3
-	for <lists+intel-gfx@lfdr.de>; Mon, 11 Mar 2024 09:23:33 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id DEDCF877BAF
+	for <lists+intel-gfx@lfdr.de>; Mon, 11 Mar 2024 09:29:03 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 65FF110EEAB;
-	Mon, 11 Mar 2024 08:23:32 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 46C3B10E8D2;
+	Mon, 11 Mar 2024 08:29:02 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=linaro.org header.i=@linaro.org header.b="IlBEz50c";
+	dkim=pass (2048-bit key; unprotected) header.d=linaro.org header.i=@linaro.org header.b="MkMEiD6I";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-wm1-f47.google.com (mail-wm1-f47.google.com
- [209.85.128.47])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6F19A10F579
- for <intel-gfx@lists.freedesktop.org>; Mon, 11 Mar 2024 08:23:31 +0000 (UTC)
-Received: by mail-wm1-f47.google.com with SMTP id
- 5b1f17b1804b1-4132953e13dso3969285e9.3
- for <intel-gfx@lists.freedesktop.org>; Mon, 11 Mar 2024 01:23:31 -0700 (PDT)
+Received: from mail-wr1-f48.google.com (mail-wr1-f48.google.com
+ [209.85.221.48])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7A60B10EBE0
+ for <intel-gfx@lists.freedesktop.org>; Mon, 11 Mar 2024 08:29:01 +0000 (UTC)
+Received: by mail-wr1-f48.google.com with SMTP id
+ ffacd0b85a97d-33e8f906f3dso1181376f8f.3
+ for <intel-gfx@lists.freedesktop.org>; Mon, 11 Mar 2024 01:29:01 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=linaro.org; s=google; t=1710145409; x=1710750209; darn=lists.freedesktop.org;
+ d=linaro.org; s=google; t=1710145740; x=1710750540; darn=lists.freedesktop.org;
  h=content-transfer-encoding:in-reply-to:organization:autocrypt
- :content-language:references:cc:to:subject:reply-to:from:user-agent
+ :references:cc:to:content-language:subject:reply-to:from:user-agent
  :mime-version:date:message-id:from:to:cc:subject:date:message-id
- :reply-to; bh=AMJIYAT1aoLggdRB8puSiHOpe8FLhZyNAYzFcBUjOwA=;
- b=IlBEz50ceCci+DrWnj21VU3tyuvK/eS68XaDbW3ORwlu/6j1ML7Dg/P98AYbquCKuE
- Ferl0guqZ6ZoRfbuTDeupOFbcwlzM33eVnjyp+/BN6YX5+27UCyQ0qLDot8sWCTQ6BXL
- qnAVfFXvODg67CA2KddLJAZk/LUnNiZ/P7NqcfBFNpO5l12mZDuVKbIu9PhoZluI07ia
- xxQkz8L6WAEMgtt5G1kUhqJAq0+u8WkxI9SY/lXzo31uWDjqxBtBkrU447y0INlwLGv5
- OMBEJH4N1dEe/Rzn+gzlVV4MTdz4/72BdgzqQXa/vg6S51z2w8oLKdGkJyTfAEbbEW65
- Vj9A==
+ :reply-to; bh=zQAXL321JQwnIXqnCCeFivDaPKXAJJGBvxgE+6Zz8oU=;
+ b=MkMEiD6IlmxFV4xNZFuUj76A6JGYRyfKGxIGuvKkWe8ndxPLTfqP5tEve+jWPLfCGf
+ XcltF+9cVzLoLBE63DrtVgAOUeTq/8M+AoNQmtG0GbT0VUQQwIumh3ofyRtgYt5GPXUM
+ SbSU3UdyMy9mSxiKIKU8PpXco5CJuCuis1MpCeL555Q0qbBI4XNs0tad1cNWo6ZDL5sc
+ 6btymYV/AlcEpQp4Ngn9TZtwkGnKkbC80QcevAho58anHuZuNJEFaaKq90+I3sNuxLGK
+ Hq+SR05hioTsSj4/I2ySBdg+7VfrHpTEQUHQmHJuFAl4hF5ElJ/15dpU81OoSbysajbc
+ lB8A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1710145409; x=1710750209;
+ d=1e100.net; s=20230601; t=1710145740; x=1710750540;
  h=content-transfer-encoding:in-reply-to:organization:autocrypt
- :content-language:references:cc:to:subject:reply-to:from:user-agent
+ :references:cc:to:content-language:subject:reply-to:from:user-agent
  :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
  :date:message-id:reply-to;
- bh=AMJIYAT1aoLggdRB8puSiHOpe8FLhZyNAYzFcBUjOwA=;
- b=NCxsO0/CHfpHhMngikI4S4pGBR4UumbS5BInK9LrqiGZpYj5W2tghO3KK0zTJpylCq
- FLlxsAqherFsI/CCsL+vWNNktkLVKUXV0/fhEUYIvAG5b7tyacuWDupJ3x4i+ynzy5kr
- kjNJx5RPTeYh3ulM+T5fcBZKVycIiq3sBWVl16Qs36qepI0pbGL2aNIE2fOiCKCN3r0o
- VSn+20xWz5GzDd5fNmBhuCyAcKbBnWsL8TxBovGDs2dIqlMqWNWCYYHM7rjjlSjEnnRp
- 5709IVtDPyjG7HzxBq64M2NlE5cLEvW+mmLgs1pUXfQ6afFb1PIcCHF5CW9YOLZdVira
- wOmA==
-X-Gm-Message-State: AOJu0YzkxNg4kMUJ4VB7f2pwbsNebY2u/5xtsOvCWyszxJ+3gtUganK7
- Cyn2vzpTrGfSPx/TCoJcyOzKrS5QzC+S0ivCWHGwxyG2T+wl86bg0VhONECnErM=
-X-Google-Smtp-Source: AGHT+IGojr92IZ9JNjUk6i05tLWnB0/kzB3DppIN43i5jY2MgknDStpDu7m0C6KmkiaP5e7N7wDdDA==
-X-Received: by 2002:a05:600c:3d88:b0:413:2a07:20d3 with SMTP id
- bi8-20020a05600c3d8800b004132a0720d3mr1254967wmb.35.1710145409494; 
- Mon, 11 Mar 2024 01:23:29 -0700 (PDT)
+ bh=zQAXL321JQwnIXqnCCeFivDaPKXAJJGBvxgE+6Zz8oU=;
+ b=qsg+AUHUyZZXVvbppt994nJYlT+VKgg+IxUDwFrlFpph9fYpQm5SQyL9WaeTDRCHM4
+ ZcuAEmPb8vfeXsh1GbmPuSCUP27dzg5vaWgdmOAT1l+zNwMjBPx3o7VXs+dVd8r7IaNl
+ CJB0HpvtCOrg5Xgw/n+GuQC/dUTzp2aT37DrE2jDN/eqVl5ifhR15tejJM4LGhjl9lSQ
+ 2ULbpdwKahT7OaoZp3PEgPWZDlkIGIlGphCk25ARCgSNlQsPvf5qe95lSDbkCX3dtaiv
+ OLvB1m9OnviJJ+5836Ie+aTP8MLE2xmIToCOuXweOobHYLUH8eMOube11jimyst8+p7X
+ fP4A==
+X-Gm-Message-State: AOJu0YyTz1yJHYXHGeJyYG5azniyDBvt/OOxYxkINzmvykrXjLjTF4Kc
+ YKrkx7rA/g/XvAm5k1ovMIEmI+36Jr5kEA0hrfAroAh4IOP0LD/t3WG4VRQmh1I=
+X-Google-Smtp-Source: AGHT+IHEN3loKqI+Ct2m21UTsJhhjV14Q7edCHB7+TEqeh9C/JUqcyFDfyQ98UIohTx4OLx3X8uCeQ==
+X-Received: by 2002:adf:e389:0:b0:33e:12a2:297f with SMTP id
+ e9-20020adfe389000000b0033e12a2297fmr5113096wrm.41.1710145739483; 
+ Mon, 11 Mar 2024 01:28:59 -0700 (PDT)
 Received: from ?IPV6:2a01:e0a:982:cbb0:48be:feb9:192b:f402?
  ([2a01:e0a:982:cbb0:48be:feb9:192b:f402])
  by smtp.gmail.com with ESMTPSA id
- u12-20020a05600c19cc00b004126afe04f6sm14688429wmq.32.2024.03.11.01.23.28
+ bx27-20020a5d5b1b000000b0033e7eba040dsm2892975wrb.97.2024.03.11.01.28.58
  (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Mon, 11 Mar 2024 01:23:29 -0700 (PDT)
-Message-ID: <af099226-6644-46c5-b424-3c3a61e454c4@linaro.org>
-Date: Mon, 11 Mar 2024 09:23:28 +0100
+ Mon, 11 Mar 2024 01:28:58 -0700 (PDT)
+Message-ID: <e71f3596-65de-47e7-a23d-700111f55ee4@linaro.org>
+Date: Mon, 11 Mar 2024 09:28:58 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
 From: Neil Armstrong <neil.armstrong@linaro.org>
-Subject: Re: [PATCH 2/8] drm/panel: do not return negative error codes from
- drm_panel_get_modes()
-To: Jani Nikula <jani.nikula@intel.com>, dri-devel@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org, Jessica Zhang
- <quic_jesszhan@quicinc.com>, Sam Ravnborg <sam@ravnborg.org>,
- stable@vger.kernel.org
-References: <cover.1709913674.git.jani.nikula@intel.com>
- <79f559b72d8c493940417304e222a4b04dfa19c4.1709913674.git.jani.nikula@intel.com>
+Subject: Re: [PATCH 7/8] drm/bridge: lt9611uxc: use int for holding number of
+ modes
 Content-Language: en-US, fr
+To: Jani Nikula <jani.nikula@intel.com>, dri-devel@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org, Andrzej Hajda <andrzej.hajda@intel.com>, 
+ Robert Foss <rfoss@kernel.org>
+References: <cover.1709913674.git.jani.nikula@intel.com>
+ <ed97f4f036263cdc4f34330cef91214970f99a77.1709913674.git.jani.nikula@intel.com>
 Autocrypt: addr=neil.armstrong@linaro.org; keydata=
  xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
  GTjuhvbleoQ5Cxjr+v+1ARGCH46MxFP5DwauzPekwJUD5QKZlaw/bURTLmS2id5wWi3lqVH4
@@ -95,7 +94,7 @@ Autocrypt: addr=neil.armstrong@linaro.org; keydata=
  4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
  QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
 Organization: Linaro Developer Services
-In-Reply-To: <79f559b72d8c493940417304e222a4b04dfa19c4.1709913674.git.jani.nikula@intel.com>
+In-Reply-To: <ed97f4f036263cdc4f34330cef91214970f99a77.1709913674.git.jani.nikula@intel.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
@@ -115,61 +114,31 @@ Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 On 08/03/2024 17:03, Jani Nikula wrote:
-> None of the callers of drm_panel_get_modes() expect it to return
-> negative error codes. Either they propagate the return value in their
-> struct drm_connector_helper_funcs .get_modes() hook (which is also not
-> supposed to return negative codes), or add it to other counts leading to
-> bogus values.
+> lt9611uxc_connector_get_modes() propagates the return value of
+> drm_edid_connector_add_modes() but stores the int temporarily in an
+> unsigned int. Use the correct type.
 > 
-> On the other hand, many of the struct drm_panel_funcs .get_modes() hooks
-> do return negative error codes, so handle them gracefully instead of
-> propagating further.
-> 
-> Return 0 for no modes, whatever the reason.
-> 
+> Cc: Andrzej Hajda <andrzej.hajda@intel.com>
 > Cc: Neil Armstrong <neil.armstrong@linaro.org>
-> Cc: Jessica Zhang <quic_jesszhan@quicinc.com>
-> Cc: Sam Ravnborg <sam@ravnborg.org>
-> Cc: stable@vger.kernel.org
+> Cc: Robert Foss <rfoss@kernel.org>
 > Signed-off-by: Jani Nikula <jani.nikula@intel.com>
 > ---
->   drivers/gpu/drm/drm_panel.c | 17 +++++++++++------
->   1 file changed, 11 insertions(+), 6 deletions(-)
+>   drivers/gpu/drm/bridge/lontium-lt9611uxc.c | 2 +-
+>   1 file changed, 1 insertion(+), 1 deletion(-)
 > 
-> diff --git a/drivers/gpu/drm/drm_panel.c b/drivers/gpu/drm/drm_panel.c
-> index e814020bbcd3..cfbe020de54e 100644
-> --- a/drivers/gpu/drm/drm_panel.c
-> +++ b/drivers/gpu/drm/drm_panel.c
-> @@ -274,19 +274,24 @@ EXPORT_SYMBOL(drm_panel_disable);
->    * The modes probed from the panel are automatically added to the connector
->    * that the panel is attached to.
->    *
-> - * Return: The number of modes available from the panel on success or a
-> - * negative error code on failure.
-> + * Return: The number of modes available from the panel on success, or 0 on
-> + * failure (no modes).
->    */
->   int drm_panel_get_modes(struct drm_panel *panel,
->   			struct drm_connector *connector)
+> diff --git a/drivers/gpu/drm/bridge/lontium-lt9611uxc.c b/drivers/gpu/drm/bridge/lontium-lt9611uxc.c
+> index bcf8bccd86d6..f4f593ad8f79 100644
+> --- a/drivers/gpu/drm/bridge/lontium-lt9611uxc.c
+> +++ b/drivers/gpu/drm/bridge/lontium-lt9611uxc.c
+> @@ -294,8 +294,8 @@ static struct mipi_dsi_device *lt9611uxc_attach_dsi(struct lt9611uxc *lt9611uxc,
+>   static int lt9611uxc_connector_get_modes(struct drm_connector *connector)
 >   {
->   	if (!panel)
-> -		return -EINVAL;
-> +		return 0;
+>   	struct lt9611uxc *lt9611uxc = connector_to_lt9611uxc(connector);
+> -	unsigned int count;
+>   	const struct drm_edid *drm_edid;
+> +	int count;
 >   
-> -	if (panel->funcs && panel->funcs->get_modes)
-> -		return panel->funcs->get_modes(panel, connector);
-> +	if (panel->funcs && panel->funcs->get_modes) {
-> +		int num;
->   
-> -	return -EOPNOTSUPP;
-> +		num = panel->funcs->get_modes(panel, connector);
-> +		if (num > 0)
-> +			return num;
-> +	}
-> +
-> +	return 0;
->   }
->   EXPORT_SYMBOL(drm_panel_get_modes);
->   
+>   	drm_edid = drm_bridge_edid_read(&lt9611uxc->bridge, connector);
+>   	drm_edid_connector_update(connector, drm_edid);
 
 Reviewed-by: Neil Armstrong <neil.armstrong@linaro.org>
