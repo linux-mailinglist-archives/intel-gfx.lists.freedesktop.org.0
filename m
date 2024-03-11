@@ -2,53 +2,54 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 77099877D49
-	for <lists+intel-gfx@lfdr.de>; Mon, 11 Mar 2024 10:49:42 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id E9156877E4D
+	for <lists+intel-gfx@lfdr.de>; Mon, 11 Mar 2024 11:45:07 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 46D5410EDD7;
-	Mon, 11 Mar 2024 09:49:40 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 353C510FA31;
+	Mon, 11 Mar 2024 10:45:06 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="kbxZJ7lM";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="XwtFzzyM";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 08EC510EEB4;
- Mon, 11 Mar 2024 09:49:35 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5B0A410FF2B
+ for <intel-gfx@lists.freedesktop.org>; Mon, 11 Mar 2024 10:45:04 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1710150575; x=1741686575;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=8DXjsH+MHeHaCEonLyoEUgtf5LprbTxboFiJrs9vS9M=;
- b=kbxZJ7lMtFlNmAFbHrNrWVX3V0gwT1co4Czx2Hb7+6AMumvrtZI5vj02
- MEVGDYrag5/oHV+3Bz2fzmYaVaAK/HjWEeyoBA6tb9mC4N74hKGKV9n3V
- OZ6z4VZtTxt1BaEIBQudWoYstCPxTM2X3aijAjmm3lsgGJIWkEn0RmfdO
- jgFTPQXhvSxGuKmBB4lowvvGDcGdElJ3bPxAAnTAMaHa90IUZaqPo4fHZ
- guIuc2VDWUrEzEbMYo03w2OjM10oC/RtE/qwS9MCrLvPZh1L5fS/hGEvI
- Bl5Y1ab6AuzskvPNV3t9BF/pnr0B8ta9x7BP9cwdamVTEEOGKZxMx5vF+ Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,11009"; a="8619220"
-X-IronPort-AV: E=Sophos;i="6.07,116,1708416000"; 
-   d="scan'208";a="8619220"
-Received: from fmviesa006.fm.intel.com ([10.60.135.146])
- by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Mar 2024 02:49:35 -0700
+ t=1710153904; x=1741689904;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version;
+ bh=OJ7xETtCdiqhJ/osjeRLKRZjX+RFtfT3iXqjTPOJNc4=;
+ b=XwtFzzyMZhd0whJXu1GiT2ZZsKacnWCnp9w76795mJJT7NhZgdd0Bvmc
+ EiAauaKg5HiuLboa4P17WVeNdBDmiHfZ1PdENcmNx1ujQxZxIb1dfp8kj
+ doUVXRlYozLpfsKgm4iB3DdLIjPBCM7BFIWTKwS8Vy828G8uxgN4B94L6
+ 7LmPu9GpPfwVZbda/NfogiPEB9XKoH7/pRAiEeaazYbrTespKHpz4iCjZ
+ rz7s7Pdn0UtkWpo1AxCeXrgOMefkFpXqnB3Zo5nFddqMhNOwEXqoxODFk
+ woFCD5a9TkIadprC/GtKovrEr3xunL5mqM3aJYiOst7Bs5pJZkhUdIR8E A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,11009"; a="30247443"
+X-IronPort-AV: E=Sophos;i="6.07,116,1708416000"; d="scan'208";a="30247443"
+Received: from fmviesa009.fm.intel.com ([10.60.135.149])
+ by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 Mar 2024 03:45:04 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.07,116,1708416000"; d="scan'208";a="11198061"
-Received: from mgolanimitul-x299-ud4-pro.iind.intel.com ([10.190.239.114])
- by fmviesa006.fm.intel.com with ESMTP; 11 Mar 2024 02:49:32 -0700
-From: Mitul Golani <mitulkumar.ajitkumar.golani@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Cc: ankit.k.nautiyal@intel.com, dri-devel@lists.freedesktop.org,
- jani.nikula@intel.com, Mitul Golani <mitulkumar.ajitkumar.golani@intel.com>
-Subject: [PATCH v17 9/9] drm/i915/display: Read/Write Adaptive Sync SDP
-Date: Mon, 11 Mar 2024 15:12:38 +0530
-Message-Id: <20240311094238.3320888-10-mitulkumar.ajitkumar.golani@intel.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20240311094238.3320888-1-mitulkumar.ajitkumar.golani@intel.com>
-References: <20240311094238.3320888-1-mitulkumar.ajitkumar.golani@intel.com>
+X-IronPort-AV: E=Sophos;i="6.07,116,1708416000"; d="scan'208";a="11010599"
+Received: from tbeaumon-mobl.ger.corp.intel.com (HELO localhost)
+ ([10.252.34.24])
+ by fmviesa009-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 Mar 2024 03:45:02 -0700
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Radhakrishna Sripada <radhakrishna.sripada@intel.com>,
+ intel-gfx@lists.freedesktop.org
+Cc: Radhakrishna Sripada <radhakrishna.sripada@intel.com>
+Subject: Re: [PATCH v3 0/6] VBT read cleanup
+In-Reply-To: <20240228213235.2495611-1-radhakrishna.sripada@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20240228213235.2495611-1-radhakrishna.sripada@intel.com>
+Date: Mon, 11 Mar 2024 12:44:59 +0200
+Message-ID: <87le6pt5ck.fsf@intel.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,39 +65,39 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Add read/write calls for Adaptive Sync SDP.
+On Wed, 28 Feb 2024, Radhakrishna Sripada <radhakrishna.sripada@intel.com> wrote:
+> This series is originally based out of [1], and built on top of [2].
+>
+> The primary departure from [1] was that vbt is no longer cached. During vbt
+> show, based on the source of vbt, it would simply be re-read reducing the
+> read/cleanup complexity. With this series debugfs dump of vbt should work on
+> all the platforms that support display.
+>
+> v3 of the series extracts opregion firmware check and harmonizes the memory
+> handling of different variants viz. opregion/oprom/spi/fimrware
+>
+> 1. https://patchwork.freedesktop.org/series/128341/
+> 2. https://patchwork.freedesktop.org/series/128683/
 
-Signed-off-by: Mitul Golani <mitulkumar.ajitkumar.golani@intel.com>
-Reviewed-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
----
- drivers/gpu/drm/i915/display/intel_ddi.c | 1 +
- drivers/gpu/drm/i915/display/intel_dp.c  | 1 +
- 2 files changed, 2 insertions(+)
+Thanks for the patches, pushed to din.
 
-diff --git a/drivers/gpu/drm/i915/display/intel_ddi.c b/drivers/gpu/drm/i915/display/intel_ddi.c
-index c587a8efeafc..f164020a4773 100644
---- a/drivers/gpu/drm/i915/display/intel_ddi.c
-+++ b/drivers/gpu/drm/i915/display/intel_ddi.c
-@@ -3972,6 +3972,7 @@ static void intel_ddi_get_config(struct intel_encoder *encoder,
- 
- 	intel_read_dp_sdp(encoder, pipe_config, HDMI_PACKET_TYPE_GAMUT_METADATA);
- 	intel_read_dp_sdp(encoder, pipe_config, DP_SDP_VSC);
-+	intel_read_dp_sdp(encoder, pipe_config, DP_SDP_ADAPTIVE_SYNC);
- 
- 	intel_audio_codec_get_config(encoder, pipe_config);
- }
-diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
-index a9ed0c66ea63..3f377a743bc4 100644
---- a/drivers/gpu/drm/i915/display/intel_dp.c
-+++ b/drivers/gpu/drm/i915/display/intel_dp.c
-@@ -4322,6 +4322,7 @@ void intel_dp_set_infoframes(struct intel_encoder *encoder,
- 		return;
- 
- 	intel_write_dp_sdp(encoder, crtc_state, DP_SDP_VSC);
-+	intel_write_dp_sdp(encoder, crtc_state, DP_SDP_ADAPTIVE_SYNC);
- 
- 	intel_write_dp_sdp(encoder, crtc_state, HDMI_PACKET_TYPE_GAMUT_METADATA);
- }
+BR,
+Jani.
+
+>
+>
+> Radhakrishna Sripada (6):
+>   drm/i915: Pass size to oprom_get_vbt
+>   drm/i915: Pass size to spi_oprom_get_vbt
+>   drm/i915: Move vbt read from firmware to intel_bios.c
+>   drm/i915: Extract opregion vbt presence check
+>   drm/i915: Duplicate opregion vbt memory
+>   drm/i915: Show bios vbt when read from firmware/spi/oprom
+>
+>  drivers/gpu/drm/i915/display/intel_bios.c     | 108 +++++++++++++-----
+>  drivers/gpu/drm/i915/display/intel_opregion.c |  58 ++--------
+>  drivers/gpu/drm/i915/display/intel_opregion.h |   1 +
+>  3 files changed, 92 insertions(+), 75 deletions(-)
+
 -- 
-2.25.1
-
+Jani Nikula, Intel
