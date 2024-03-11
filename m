@@ -2,73 +2,52 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 38404877A94
-	for <lists+intel-gfx@lfdr.de>; Mon, 11 Mar 2024 06:29:38 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 877F3877AA1
+	for <lists+intel-gfx@lfdr.de>; Mon, 11 Mar 2024 06:34:08 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4F8B510E0F5;
-	Mon, 11 Mar 2024 05:29:32 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2231410E0FC;
+	Mon, 11 Mar 2024 05:34:06 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=linaro.org header.i=@linaro.org header.b="Hu/RgToO";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Yffy4k8x";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-wm1-f53.google.com (mail-wm1-f53.google.com
- [209.85.128.53])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 56C8E10E0F0
- for <intel-gfx@lists.freedesktop.org>; Mon, 11 Mar 2024 05:29:31 +0000 (UTC)
-Received: by mail-wm1-f53.google.com with SMTP id
- 5b1f17b1804b1-41329a665a8so2415025e9.3
- for <intel-gfx@lists.freedesktop.org>; Sun, 10 Mar 2024 22:29:31 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=linaro.org; s=google; t=1710134969; x=1710739769; darn=lists.freedesktop.org;
- h=content-disposition:mime-version:message-id:subject:cc:to:from:date
- :from:to:cc:subject:date:message-id:reply-to;
- bh=yXtTMiB8yTd0V/j3N7+/pDxtaVI46E/s8QpgcfA5miU=;
- b=Hu/RgToOy4/2rKT/AYTC8/nO1obmbQMCWd3lJAJKD1qxsgNgQiK9j5Ptw25K+z31If
- KEhw+8Yw9l8XZLz/ES56oYEr6IAf7WnQm1WwWpQR2+rnkkkfdzP+5Fa3QBi0CR1cgbmr
- 8nOk8+5FXSS9UTmikiBn4AJbj2LSFB5nbtcOzi9z3UciQGVf/7nv9e9Hu1eStlGHX/vg
- MPjmQ8VDq2HLJFw9PHlpVKLJ0ZPmPy8p3FDQkFvcHjvVcHe31d37IQ/RdAvahorQ0s3k
- czd/vdPx9O0zgrcUWTxINzUOHnHTxmzTRbPiSvEdQ68RV9OZtp6o5pxoGTRhWVkwStTM
- 4wyQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1710134969; x=1710739769;
- h=content-disposition:mime-version:message-id:subject:cc:to:from:date
- :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
- bh=yXtTMiB8yTd0V/j3N7+/pDxtaVI46E/s8QpgcfA5miU=;
- b=AqQq9MSRqOapiE2qaW4TcZM3/oyzKjkYk49fX2kaBwuOfkpH8ObeNL5tzV7wPCxfl4
- /qF58cbQflNu2O+DajEwYcTvnl+VC1rkrsb0+LUw7xf7qelo2v2CbSGpciVg62mmKRw4
- r2Bn4tO/mU7mdyEfIDhTn1iUns8eMEu6Hij1rCcQDkIdyaSIwHDSwRiGzwU2oIpNn0yH
- nnTRZjNNiyraqgy0JleTPNgvVLUeMLoKvK4HnVVfQGWfQBgV/0K9RMOG1zCSoBNJtXbl
- hxBgwzML2lkd7M0n/kUyt/1NUwgkyKekenjY16kwGa1NvYvfQvoBnGvJsWPnALk0IPB8
- DRHg==
-X-Forwarded-Encrypted: i=1;
- AJvYcCWwgQD04ykoE0D/giNSedqpdLAdp/7GzN+Jdz0AL0ikbHR9Ycu3Pl0uRKlDUhYOiRsX+jyG88lfa1c20s5bCqCPpC4VimABlRK+nfW0DxzC
-X-Gm-Message-State: AOJu0YxTQtp0skir2miWq5CQjVZZ01bndR++S8DbA43ha5Jc9X0CQsQb
- 885/ZhnBmIr+RTuO6wNPCj0ZUTjDupYq3Ouf2XXNU1/B7I+kWsO4m+MiwJ1gYVA=
-X-Google-Smtp-Source: AGHT+IHYUa4ArbYV8kRh62gYfLFJDZQGldanR4MfH6+U3Md4RBM8ptSDsifeiueN7QKuXmCkWJp9SA==
-X-Received: by 2002:a05:600c:5120:b0:413:2e49:3e05 with SMTP id
- o32-20020a05600c512000b004132e493e05mr920wms.12.1710134969020; 
- Sun, 10 Mar 2024 22:29:29 -0700 (PDT)
-Received: from localhost ([102.222.70.76]) by smtp.gmail.com with ESMTPSA id
- v9-20020a05600c470900b0041312e8ef2bsm7784219wmo.26.2024.03.10.22.29.28
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Sun, 10 Mar 2024 22:29:28 -0700 (PDT)
-Date: Mon, 11 Mar 2024 08:29:25 +0300
-From: Dan Carpenter <dan.carpenter@linaro.org>
-To: oe-kbuild@lists.linux.dev,
-	Vinay Belgaumkar <vinay.belgaumkar@intel.com>
-Cc: lkp@intel.com, oe-kbuild-all@lists.linux.dev,
- intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- John Harrison <John.C.Harrison@intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>
-Subject: [drm-intel:for-linux-next-gt 1/4]
- drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c:2680
- guc_context_policy_init_v70() warn: variable dereferenced before check 'ce'
- (see line 2663)
-Message-ID: <17e29db7-04a8-4894-bf4b-6773b14d113f@moroto.mountain>
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5BA6810E0FC
+ for <intel-gfx@lists.freedesktop.org>; Mon, 11 Mar 2024 05:34:03 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1710135244; x=1741671244;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=VtFUuRjUd3kn/eFzkKHJGuU+fo/kIIsAVJURnMR9usc=;
+ b=Yffy4k8xmU8oF4LRUIDemWd7dxVmItafvW8EgOmhfwEfknu4027Qs+2Y
+ PEVldNSUJ/QJ9OeKi3xfKpJB3uXPv2vYYJuWWEywo1dx6W981egnWrEtb
+ dURMCfCLnEC5yiruQpMh+jRXsEEdDHi3YFFgyeii7wZJbhUk4tpNf1TAx
+ jc9D9DtpHvaaGAIJnbd2VCmwdkIQGr3VlibjYqt8u0kD7HF40ngpp4M6J
+ Xb7APxaYXQnCE/334v6Dr6g/B4YW/+iqWG3cZj/BGEzRYMm0vldQ6YdLS
+ VFoZSwm77qjhhtyLoGVj7HMGwyJWYRTIEWlakJSmo19OGZ+dFPfiFnQDu w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,11009"; a="22303863"
+X-IronPort-AV: E=Sophos;i="6.07,115,1708416000"; d="scan'208";a="22303863"
+Received: from orviesa003.jf.intel.com ([10.64.159.143])
+ by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Mar 2024 22:34:02 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.07,115,1708416000"; d="scan'208";a="15701490"
+Received: from kandpal-x299-ud4-pro.iind.intel.com ([10.190.239.32])
+ by orviesa003.jf.intel.com with ESMTP; 10 Mar 2024 22:34:00 -0700
+From: Suraj Kandpal <suraj.kandpal@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Cc: uma.shankar@intel.com, ankit.k.nautiyal@intel.com,
+ Suraj Kandpal <suraj.kandpal@intel.com>
+Subject: [PATCH] drm/i915/dp: Enable AUX based backlight for HDR
+Date: Mon, 11 Mar 2024 11:02:12 +0530
+Message-ID: <20240311053212.1958303-1-suraj.kandpal@intel.com>
+X-Mailer: git-send-email 2.43.2
+In-Reply-To: <20240307102927.1872131-1-suraj.kandpal@intel.com>
+References: <20240307102927.1872131-1-suraj.kandpal@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -84,74 +63,148 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-tree:   git://anongit.freedesktop.org/drm-intel for-linux-next-gt
-head:   7ad6a8fae597af7fae5193efc73276609337c360
-commit: cec82816d0d018f178b9b7f88fe4bf80d66954e9 [1/4] drm/i915/guc: Use context hints for GT frequency
-config: i386-randconfig-141-20240309 (https://download.01.org/0day-ci/archive/20240310/202403101225.7AheJhZJ-lkp@intel.com/config)
-compiler: gcc-12 (Debian 12.2.0-14) 12.2.0
+As of now whenerver HDR is switched on we use the PWM to change the
+backlight as opposed to AUX based backlight changes in terms of nits.
+This patch writes to the appropriate DPCD registers to enable aux
+based backlight using values in nits.
 
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Reported-by: Dan Carpenter <dan.carpenter@linaro.org>
-| Closes: https://lore.kernel.org/r/202403101225.7AheJhZJ-lkp@intel.com/
+--v2
+-Fix max_cll and max_fall assignment [Jani]
+-Fix the size sent in drm_dpcd_write [Jani]
 
-New smatch warnings:
-drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c:2680 guc_context_policy_init_v70() warn: variable dereferenced before check 'ce' (see line 2663)
+--v3
+-Content Luminance needs to be sent only for pre-ICL after that
+it is directly picked up from hdr metadata [Ville]
 
-vim +/ce +2680 drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
+--v4
+-Add checks for HDR TCON cap bits [Ville]
+-Check eotf of hdr_output_data and sets bits base of that value.
 
-774ce1510e6ccb Daniele Ceraolo Spurio 2022-07-18  2661  static int guc_context_policy_init_v70(struct intel_context *ce, bool loop)
-2584b3549f4c40 John Harrison          2022-04-12  2662  {
-2584b3549f4c40 John Harrison          2022-04-12 @2663  	struct intel_engine_cs *engine = ce->engine;
-                                                                                                 ^^^^^^^^^^
-Unchecked dereference
+Signed-off-by: Suraj Kandpal <suraj.kandpal@intel.com>
+---
+ .../drm/i915/display/intel_display_types.h    |  3 ++
+ .../drm/i915/display/intel_dp_aux_backlight.c | 51 ++++++++++++++++---
+ 2 files changed, 46 insertions(+), 8 deletions(-)
 
-3f2f20da79b208 Andi Shyti             2023-12-29  2664  	struct intel_guc *guc = gt_to_guc(engine->gt);
-2584b3549f4c40 John Harrison          2022-04-12  2665  	struct context_policy policy;
-2584b3549f4c40 John Harrison          2022-04-12  2666  	u32 execution_quantum;
-2584b3549f4c40 John Harrison          2022-04-12  2667  	u32 preemption_timeout;
-cec82816d0d018 Vinay Belgaumkar       2024-03-05  2668  	u32 slpc_ctx_freq_req = 0;
-2584b3549f4c40 John Harrison          2022-04-12  2669  	unsigned long flags;
-2584b3549f4c40 John Harrison          2022-04-12  2670  	int ret;
-3a4bfa091c46e9 Rahul Kumar Singh      2021-07-26  2671  
-7935785240508c John Harrison          2021-07-26  2672  	/* NB: For both of these, zero means disabled. */
-568944af44e753 John Harrison          2022-10-06  2673  	GEM_BUG_ON(overflows_type(engine->props.timeslice_duration_ms * 1000,
-568944af44e753 John Harrison          2022-10-06  2674  				  execution_quantum));
-568944af44e753 John Harrison          2022-10-06  2675  	GEM_BUG_ON(overflows_type(engine->props.preempt_timeout_ms * 1000,
-568944af44e753 John Harrison          2022-10-06  2676  				  preemption_timeout));
-2584b3549f4c40 John Harrison          2022-04-12  2677  	execution_quantum = engine->props.timeslice_duration_ms * 1000;
-2584b3549f4c40 John Harrison          2022-04-12  2678  	preemption_timeout = engine->props.preempt_timeout_ms * 1000;
-2584b3549f4c40 John Harrison          2022-04-12  2679  
-cec82816d0d018 Vinay Belgaumkar       2024-03-05 @2680  	if (ce && (ce->flags & BIT(CONTEXT_LOW_LATENCY)))
-                                                                    ^^
-NULL check is too late.
-
-cec82816d0d018 Vinay Belgaumkar       2024-03-05  2681  		slpc_ctx_freq_req |= SLPC_CTX_FREQ_REQ_IS_COMPUTE;
-cec82816d0d018 Vinay Belgaumkar       2024-03-05  2682  
-2584b3549f4c40 John Harrison          2022-04-12  2683  	__guc_context_policy_start_klv(&policy, ce->guc_id.id);
-2584b3549f4c40 John Harrison          2022-04-12  2684  
-2584b3549f4c40 John Harrison          2022-04-12  2685  	__guc_context_policy_add_priority(&policy, ce->guc_state.prio);
-2584b3549f4c40 John Harrison          2022-04-12  2686  	__guc_context_policy_add_execution_quantum(&policy, execution_quantum);
-2584b3549f4c40 John Harrison          2022-04-12  2687  	__guc_context_policy_add_preemption_timeout(&policy, preemption_timeout);
-cec82816d0d018 Vinay Belgaumkar       2024-03-05  2688  	__guc_context_policy_add_slpc_ctx_freq_req(&policy, slpc_ctx_freq_req);
-2584b3549f4c40 John Harrison          2022-04-12  2689  
-2584b3549f4c40 John Harrison          2022-04-12  2690  	if (engine->flags & I915_ENGINE_WANT_FORCED_PREEMPTION)
-2584b3549f4c40 John Harrison          2022-04-12  2691  		__guc_context_policy_add_preempt_to_idle(&policy, 1);
-2584b3549f4c40 John Harrison          2022-04-12  2692  
-2584b3549f4c40 John Harrison          2022-04-12  2693  	ret = __guc_context_set_context_policies(guc, &policy, loop);
-2584b3549f4c40 John Harrison          2022-04-12  2694  
-2584b3549f4c40 John Harrison          2022-04-12  2695  	spin_lock_irqsave(&ce->guc_state.lock, flags);
-6c82c75230b87d Daniele Ceraolo Spurio 2022-07-27  2696  	if (ret != 0)
-2584b3549f4c40 John Harrison          2022-04-12  2697  		set_context_policy_required(ce);
-2584b3549f4c40 John Harrison          2022-04-12  2698  	else
-2584b3549f4c40 John Harrison          2022-04-12  2699  		clr_context_policy_required(ce);
-2584b3549f4c40 John Harrison          2022-04-12  2700  	spin_unlock_irqrestore(&ce->guc_state.lock, flags);
-2584b3549f4c40 John Harrison          2022-04-12  2701  
-2584b3549f4c40 John Harrison          2022-04-12  2702  	return ret;
-3a4cdf1982f05d Matthew Brost          2021-07-21  2703  }
-
+diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/drivers/gpu/drm/i915/display/intel_display_types.h
+index e67cd5b02e84..271bb609106d 100644
+--- a/drivers/gpu/drm/i915/display/intel_display_types.h
++++ b/drivers/gpu/drm/i915/display/intel_display_types.h
+@@ -401,6 +401,9 @@ struct intel_panel {
+ 			} vesa;
+ 			struct {
+ 				bool sdr_uses_aux;
++				bool supports_2084_decode;
++				bool supports_2020_gamut;
++				bool supports_segmented_backlight;
+ 			} intel;
+ 		} edp;
+ 
+diff --git a/drivers/gpu/drm/i915/display/intel_dp_aux_backlight.c b/drivers/gpu/drm/i915/display/intel_dp_aux_backlight.c
+index 4f58efdc688a..74270c4755e7 100644
+--- a/drivers/gpu/drm/i915/display/intel_dp_aux_backlight.c
++++ b/drivers/gpu/drm/i915/display/intel_dp_aux_backlight.c
+@@ -40,11 +40,6 @@
+ #include "intel_dp.h"
+ #include "intel_dp_aux_backlight.h"
+ 
+-/* TODO:
+- * Implement HDR, right now we just implement the bare minimum to bring us back into SDR mode so we
+- * can make people's backlights work in the mean time
+- */
+-
+ /*
+  * DP AUX registers for Intel's proprietary HDR backlight interface. We define
+  * them here since we'll likely be the only driver to ever use these.
+@@ -158,6 +153,12 @@ intel_dp_aux_supports_hdr_backlight(struct intel_connector *connector)
+ 
+ 	panel->backlight.edp.intel.sdr_uses_aux =
+ 		tcon_cap[2] & INTEL_EDP_SDR_TCON_BRIGHTNESS_AUX_CAP;
++	panel->backlight.edp.intel.supports_2084_decode =
++		tcon_cap[2] & INTEL_EDP_HDR_TCON_2084_DECODE_CAP;
++	panel->backlight.edp.intel.supports_2020_gamut =
++		tcon_cap[2] & INTEL_EDP_HDR_TCON_2020_GAMUT_CAP;
++	panel->backlight.edp.intel.supports_segmented_backlight =
++		tcon_cap[2] & INTEL_EDP_HDR_TCON_SEGMENTED_BACKLIGHT_CAP;
+ 
+ 	return true;
+ }
+@@ -221,7 +222,7 @@ intel_dp_aux_hdr_set_backlight(const struct drm_connector_state *conn_state, u32
+ 	struct intel_connector *connector = to_intel_connector(conn_state->connector);
+ 	struct intel_panel *panel = &connector->panel;
+ 
+-	if (panel->backlight.edp.intel.sdr_uses_aux) {
++	if (panel->backlight.edp.intel.sdr_uses_aux || conn_state->hdr_output_metadata) {
+ 		intel_dp_aux_hdr_set_aux_backlight(conn_state, level);
+ 	} else {
+ 		const u32 pwm_level = intel_backlight_level_to_pwm(connector, level);
+@@ -251,8 +252,27 @@ intel_dp_aux_hdr_enable_backlight(const struct intel_crtc_state *crtc_state,
+ 	}
+ 
+ 	ctrl = old_ctrl;
+-	if (panel->backlight.edp.intel.sdr_uses_aux) {
++	if (panel->backlight.edp.intel.sdr_uses_aux || conn_state->hdr_output_metadata) {
+ 		ctrl |= INTEL_EDP_HDR_TCON_BRIGHTNESS_AUX_ENABLE;
++
++		if (conn_state->hdr_output_metadata) {
++			struct hdr_output_metadata *hdr_metadata =
++				conn_state->hdr_output_metadata->data;
++
++			if (panel->backlight.edp.intel.supports_segmented_backlight &&
++			    hdr_metadata->hdmi_metadata_type1.eotf >=
++			    HDMI_EOTF_TRADITIONAL_GAMMA_HDR)
++				ctrl |= INTEL_EDP_HDR_TCON_SEGMENTED_BACKLIGHT_ENABLE;
++			if (panel->backlight.edp.intel.supports_2084_decode &&
++			    hdr_metadata->hdmi_metadata_type1.eotf ==
++			    HDMI_EOTF_SMPTE_ST2084)
++				ctrl |= INTEL_EDP_HDR_TCON_2084_DECODE_ENABLE;
++			if (panel->backlight.edp.intel.supports_2020_gamut &&
++			    hdr_metadata->hdmi_metadata_type1.eotf >=
++			    HDMI_EOTF_TRADITIONAL_GAMMA_HDR)
++				ctrl |= INTEL_EDP_HDR_TCON_2020_GAMUT_ENABLE;
++		}
++
+ 		intel_dp_aux_hdr_set_aux_backlight(conn_state, level);
+ 	} else {
+ 		u32 pwm_level = intel_backlight_level_to_pwm(connector, level);
+@@ -292,9 +312,11 @@ intel_dp_aux_hdr_setup_backlight(struct intel_connector *connector, enum pipe pi
+ {
+ 	struct drm_i915_private *i915 = to_i915(connector->base.dev);
+ 	struct intel_panel *panel = &connector->panel;
++	struct intel_dp *intel_dp = enc_to_intel_dp(connector->encoder);
+ 	struct drm_luminance_range_info *luminance_range =
+ 		&connector->base.display_info.luminance_range;
+ 	int ret;
++	u8 buf[4];
+ 
+ 	drm_dbg_kms(&i915->drm, "[CONNECTOR:%d:%s] SDR backlight is controlled through %s\n",
+ 		    connector->base.base.id, connector->base.name,
+@@ -318,11 +340,24 @@ intel_dp_aux_hdr_setup_backlight(struct intel_connector *connector, enum pipe pi
+ 		panel->backlight.min = 0;
+ 	}
+ 
++	if (DISPLAY_VER(i915) < 11) {
++		buf[0] = connector->base.hdr_sink_metadata.hdmi_type1.max_cll & 0xFF;
++		buf[1] = (connector->base.hdr_sink_metadata.hdmi_type1.max_cll & 0xFF00) >> 8;
++		buf[2] = connector->base.hdr_sink_metadata.hdmi_type1.max_fall & 0xFF;
++		buf[3] = (connector->base.hdr_sink_metadata.hdmi_type1.max_fall & 0xFF00) >> 8;
++
++		ret = drm_dp_dpcd_write(&intel_dp->aux, INTEL_EDP_HDR_CONTENT_LUMINANCE, buf,
++					sizeof(buf));
++		if (ret < 0)
++			drm_dbg_kms(&i915->drm,
++				    "Content Luminance DPCD reg write failed, err:-%d\n",
++				    ret);
++	}
++
+ 	drm_dbg_kms(&i915->drm, "[CONNECTOR:%d:%s] Using AUX HDR interface for backlight control (range %d..%d)\n",
+ 		    connector->base.base.id, connector->base.name,
+ 		    panel->backlight.min, panel->backlight.max);
+ 
+-
+ 	panel->backlight.level = intel_dp_aux_hdr_get_backlight(connector, pipe);
+ 	panel->backlight.enabled = panel->backlight.level != 0;
+ 
 -- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+2.43.2
 
