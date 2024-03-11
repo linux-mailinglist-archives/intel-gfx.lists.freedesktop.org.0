@@ -2,50 +2,61 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 877F3877AA1
-	for <lists+intel-gfx@lfdr.de>; Mon, 11 Mar 2024 06:34:08 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9F195877B82
+	for <lists+intel-gfx@lfdr.de>; Mon, 11 Mar 2024 09:07:40 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2231410E0FC;
-	Mon, 11 Mar 2024 05:34:06 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5252A10EBB5;
+	Mon, 11 Mar 2024 08:07:38 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Yffy4k8x";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="i7tOLlB9";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5BA6810E0FC
- for <intel-gfx@lists.freedesktop.org>; Mon, 11 Mar 2024 05:34:03 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7CD3410E03D;
+ Mon, 11 Mar 2024 08:07:36 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1710135244; x=1741671244;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=VtFUuRjUd3kn/eFzkKHJGuU+fo/kIIsAVJURnMR9usc=;
- b=Yffy4k8xmU8oF4LRUIDemWd7dxVmItafvW8EgOmhfwEfknu4027Qs+2Y
- PEVldNSUJ/QJ9OeKi3xfKpJB3uXPv2vYYJuWWEywo1dx6W981egnWrEtb
- dURMCfCLnEC5yiruQpMh+jRXsEEdDHi3YFFgyeii7wZJbhUk4tpNf1TAx
- jc9D9DtpHvaaGAIJnbd2VCmwdkIQGr3VlibjYqt8u0kD7HF40ngpp4M6J
- Xb7APxaYXQnCE/334v6Dr6g/B4YW/+iqWG3cZj/BGEzRYMm0vldQ6YdLS
- VFoZSwm77qjhhtyLoGVj7HMGwyJWYRTIEWlakJSmo19OGZ+dFPfiFnQDu w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,11009"; a="22303863"
-X-IronPort-AV: E=Sophos;i="6.07,115,1708416000"; d="scan'208";a="22303863"
-Received: from orviesa003.jf.intel.com ([10.64.159.143])
- by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Mar 2024 22:34:02 -0700
+ t=1710144456; x=1741680456;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=I7u9annVMHjI9g9xtP+CG+L80OiPWZVm/RFQY+6KBQE=;
+ b=i7tOLlB9Bk/LN5g1IH7LrZU2s75CyV50sExqbs9p+dy4PnBE/rdc2hHI
+ cLHun+/hEb2/vH6pOXbIhIbLgUksmmsD5V4GpMz3sk/cz+WPB9OZkUQPV
+ 4fYe1aIAT5FW1pPhOSc6zyzFrqJDgrbyxdGQzqfCgO7KzYsk+pENQ54ko
+ EmRLSVW1GCGGuzOboNaQOTloSxgjuEh0KTXlnqs2fnlmSY043EMBc64Zd
+ AaqBMCDMvzhnjiMuPK9V/k2KmK/CyRO9G4RLxxJZIyfgnjXnQM8E1kqHL
+ 5bFbb8bPF5VQqMHy53EqQbAkYNWjSuuT2LPHzsDN7ZEdTmWvKpCnkoEVt g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,11009"; a="4716568"
+X-IronPort-AV: E=Sophos;i="6.07,116,1708416000"; 
+   d="scan'208";a="4716568"
+Received: from fmviesa005.fm.intel.com ([10.60.135.145])
+ by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 Mar 2024 01:07:35 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.07,115,1708416000"; d="scan'208";a="15701490"
-Received: from kandpal-x299-ud4-pro.iind.intel.com ([10.190.239.32])
- by orviesa003.jf.intel.com with ESMTP; 10 Mar 2024 22:34:00 -0700
-From: Suraj Kandpal <suraj.kandpal@intel.com>
+X-IronPort-AV: E=Sophos;i="6.07,116,1708416000"; d="scan'208";a="15582890"
+Received: from jkrzyszt-mobl2.ger.corp.intel.com (HELO
+ jkrzyszt-mobl2.intranet) ([10.213.25.93])
+ by fmviesa005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 Mar 2024 01:07:31 -0700
+From: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
 To: intel-gfx@lists.freedesktop.org
-Cc: uma.shankar@intel.com, ankit.k.nautiyal@intel.com,
- Suraj Kandpal <suraj.kandpal@intel.com>
-Subject: [PATCH] drm/i915/dp: Enable AUX based backlight for HDR
-Date: Mon, 11 Mar 2024 11:02:12 +0530
-Message-ID: <20240311053212.1958303-1-suraj.kandpal@intel.com>
-X-Mailer: git-send-email 2.43.2
-In-Reply-To: <20240307102927.1872131-1-suraj.kandpal@intel.com>
-References: <20240307102927.1872131-1-suraj.kandpal@intel.com>
+Cc: dri-devel@lists.freedesktop.org, Jani Nikula <jani.nikula@linux.intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Tvrtko Ursulin <tursulin@ursulin.net>,
+ Ashutosh Dixit <ashutosh.dixit@intel.com>,
+ Anshuman Gupta <anshuman.gupta@intel.com>,
+ Badal Nilawar <badal.nilawar@intel.com>,
+ Guenter Roeck <linux@roeck-us.net>,
+ Dale B Stimson <dale.b.stimson@intel.com>,
+ Andi Shyti <andi.shyti@linux.intel.com>,
+ Jonathan Cavitt <jonathan.cavitt@intel.com>,
+ Nirmoy Das <nirmoy.das@intel.com>
+Subject: [PATCH] drm/i915/hwmon: Fix locking inversion in sysfs getter
+Date: Mon, 11 Mar 2024 09:06:46 +0100
+Message-ID: <20240311080717.421152-2-janusz.krzysztofik@linux.intel.com>
+X-Mailer: git-send-email 2.43.0
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
@@ -63,148 +74,94 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-As of now whenerver HDR is switched on we use the PWM to change the
-backlight as opposed to AUX based backlight changes in terms of nits.
-This patch writes to the appropriate DPCD registers to enable aux
-based backlight using values in nits.
+In i915 hwmon sysfs getter path we now take a hwmon_lock, then acquire an
+rpm wakeref.  That results in lock inversion:
 
---v2
--Fix max_cll and max_fall assignment [Jani]
--Fix the size sent in drm_dpcd_write [Jani]
+<4> [197.079335] ======================================================
+<4> [197.085473] WARNING: possible circular locking dependency detected
+<4> [197.091611] 6.8.0-rc7-Patchwork_129026v7-gc4dc92fb1152+ #1 Not tainted
+<4> [197.098096] ------------------------------------------------------
+<4> [197.104231] prometheus-node/839 is trying to acquire lock:
+<4> [197.109680] ffffffff82764d80 (fs_reclaim){+.+.}-{0:0}, at: __kmalloc+0x9a/0x350
+<4> [197.116939]
+but task is already holding lock:
+<4> [197.122730] ffff88811b772a40 (&hwmon->hwmon_lock){+.+.}-{3:3}, at: hwm_energy+0x4b/0x100 [i915]
+<4> [197.131543]
+which lock already depends on the new lock.
+...
+<4> [197.507922] Chain exists of:
+  fs_reclaim --> &gt->reset.mutex --> &hwmon->hwmon_lock
+<4> [197.518528]  Possible unsafe locking scenario:
+<4> [197.524411]        CPU0                    CPU1
+<4> [197.528916]        ----                    ----
+<4> [197.533418]   lock(&hwmon->hwmon_lock);
+<4> [197.537237]                                lock(&gt->reset.mutex);
+<4> [197.543376]                                lock(&hwmon->hwmon_lock);
+<4> [197.549682]   lock(fs_reclaim);
+...
+<4> [197.632548] Call Trace:
+<4> [197.634990]  <TASK>
+<4> [197.637088]  dump_stack_lvl+0x64/0xb0
+<4> [197.640738]  check_noncircular+0x15e/0x180
+<4> [197.652968]  check_prev_add+0xe9/0xce0
+<4> [197.656705]  __lock_acquire+0x179f/0x2300
+<4> [197.660694]  lock_acquire+0xd8/0x2d0
+<4> [197.673009]  fs_reclaim_acquire+0xa1/0xd0
+<4> [197.680478]  __kmalloc+0x9a/0x350
+<4> [197.689063]  acpi_ns_internalize_name.part.0+0x4a/0xb0
+<4> [197.694170]  acpi_ns_get_node_unlocked+0x60/0xf0
+<4> [197.720608]  acpi_ns_get_node+0x3b/0x60
+<4> [197.724428]  acpi_get_handle+0x57/0xb0
+<4> [197.728164]  acpi_has_method+0x20/0x50
+<4> [197.731896]  acpi_pci_set_power_state+0x43/0x120
+<4> [197.736485]  pci_power_up+0x24/0x1c0
+<4> [197.740047]  pci_pm_default_resume_early+0x9/0x30
+<4> [197.744725]  pci_pm_runtime_resume+0x2d/0x90
+<4> [197.753911]  __rpm_callback+0x3c/0x110
+<4> [197.762586]  rpm_callback+0x58/0x70
+<4> [197.766064]  rpm_resume+0x51e/0x730
+<4> [197.769542]  rpm_resume+0x267/0x730
+<4> [197.773020]  rpm_resume+0x267/0x730
+<4> [197.776498]  rpm_resume+0x267/0x730
+<4> [197.779974]  __pm_runtime_resume+0x49/0x90
+<4> [197.784055]  __intel_runtime_pm_get+0x19/0xa0 [i915]
+<4> [197.789070]  hwm_energy+0x55/0x100 [i915]
+<4> [197.793183]  hwm_read+0x9a/0x310 [i915]
+<4> [197.797124]  hwmon_attr_show+0x36/0x120
+<4> [197.800946]  dev_attr_show+0x15/0x60
+<4> [197.804509]  sysfs_kf_seq_show+0xb5/0x100
 
---v3
--Content Luminance needs to be sent only for pre-ICL after that
-it is directly picked up from hdr metadata [Ville]
+However, the lock is only intended to protect either a hwmon overflow
+counter or rmw hardware operations.  There is no need to hold the lock,
+only the wakeref, while reading from hardware.
 
---v4
--Add checks for HDR TCON cap bits [Ville]
--Check eotf of hdr_output_data and sets bits base of that value.
+Acquire the lock after hardware read under rpm wakeref.
 
-Signed-off-by: Suraj Kandpal <suraj.kandpal@intel.com>
+Fixes: c41b8bdcc297 ("drm/i915/hwmon: Show device level energy usage")
+Signed-off-by: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
+Cc: <stable@vger.kernel.org> # v6.2+
 ---
- .../drm/i915/display/intel_display_types.h    |  3 ++
- .../drm/i915/display/intel_dp_aux_backlight.c | 51 ++++++++++++++++---
- 2 files changed, 46 insertions(+), 8 deletions(-)
+ drivers/gpu/drm/i915/i915_hwmon.c | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/drivers/gpu/drm/i915/display/intel_display_types.h
-index e67cd5b02e84..271bb609106d 100644
---- a/drivers/gpu/drm/i915/display/intel_display_types.h
-+++ b/drivers/gpu/drm/i915/display/intel_display_types.h
-@@ -401,6 +401,9 @@ struct intel_panel {
- 			} vesa;
- 			struct {
- 				bool sdr_uses_aux;
-+				bool supports_2084_decode;
-+				bool supports_2020_gamut;
-+				bool supports_segmented_backlight;
- 			} intel;
- 		} edp;
+diff --git a/drivers/gpu/drm/i915/i915_hwmon.c b/drivers/gpu/drm/i915/i915_hwmon.c
+index 8c3f443c8347e..faf7670de6e06 100644
+--- a/drivers/gpu/drm/i915/i915_hwmon.c
++++ b/drivers/gpu/drm/i915/i915_hwmon.c
+@@ -136,11 +136,11 @@ hwm_energy(struct hwm_drvdata *ddat, long *energy)
+ 	else
+ 		rgaddr = hwmon->rg.energy_status_all;
  
-diff --git a/drivers/gpu/drm/i915/display/intel_dp_aux_backlight.c b/drivers/gpu/drm/i915/display/intel_dp_aux_backlight.c
-index 4f58efdc688a..74270c4755e7 100644
---- a/drivers/gpu/drm/i915/display/intel_dp_aux_backlight.c
-+++ b/drivers/gpu/drm/i915/display/intel_dp_aux_backlight.c
-@@ -40,11 +40,6 @@
- #include "intel_dp.h"
- #include "intel_dp_aux_backlight.h"
- 
--/* TODO:
-- * Implement HDR, right now we just implement the bare minimum to bring us back into SDR mode so we
-- * can make people's backlights work in the mean time
-- */
+-	mutex_lock(&hwmon->hwmon_lock);
 -
- /*
-  * DP AUX registers for Intel's proprietary HDR backlight interface. We define
-  * them here since we'll likely be the only driver to ever use these.
-@@ -158,6 +153,12 @@ intel_dp_aux_supports_hdr_backlight(struct intel_connector *connector)
+ 	with_intel_runtime_pm(uncore->rpm, wakeref)
+ 		reg_val = intel_uncore_read(uncore, rgaddr);
  
- 	panel->backlight.edp.intel.sdr_uses_aux =
- 		tcon_cap[2] & INTEL_EDP_SDR_TCON_BRIGHTNESS_AUX_CAP;
-+	panel->backlight.edp.intel.supports_2084_decode =
-+		tcon_cap[2] & INTEL_EDP_HDR_TCON_2084_DECODE_CAP;
-+	panel->backlight.edp.intel.supports_2020_gamut =
-+		tcon_cap[2] & INTEL_EDP_HDR_TCON_2020_GAMUT_CAP;
-+	panel->backlight.edp.intel.supports_segmented_backlight =
-+		tcon_cap[2] & INTEL_EDP_HDR_TCON_SEGMENTED_BACKLIGHT_CAP;
- 
- 	return true;
- }
-@@ -221,7 +222,7 @@ intel_dp_aux_hdr_set_backlight(const struct drm_connector_state *conn_state, u32
- 	struct intel_connector *connector = to_intel_connector(conn_state->connector);
- 	struct intel_panel *panel = &connector->panel;
- 
--	if (panel->backlight.edp.intel.sdr_uses_aux) {
-+	if (panel->backlight.edp.intel.sdr_uses_aux || conn_state->hdr_output_metadata) {
- 		intel_dp_aux_hdr_set_aux_backlight(conn_state, level);
- 	} else {
- 		const u32 pwm_level = intel_backlight_level_to_pwm(connector, level);
-@@ -251,8 +252,27 @@ intel_dp_aux_hdr_enable_backlight(const struct intel_crtc_state *crtc_state,
- 	}
- 
- 	ctrl = old_ctrl;
--	if (panel->backlight.edp.intel.sdr_uses_aux) {
-+	if (panel->backlight.edp.intel.sdr_uses_aux || conn_state->hdr_output_metadata) {
- 		ctrl |= INTEL_EDP_HDR_TCON_BRIGHTNESS_AUX_ENABLE;
++	mutex_lock(&hwmon->hwmon_lock);
 +
-+		if (conn_state->hdr_output_metadata) {
-+			struct hdr_output_metadata *hdr_metadata =
-+				conn_state->hdr_output_metadata->data;
-+
-+			if (panel->backlight.edp.intel.supports_segmented_backlight &&
-+			    hdr_metadata->hdmi_metadata_type1.eotf >=
-+			    HDMI_EOTF_TRADITIONAL_GAMMA_HDR)
-+				ctrl |= INTEL_EDP_HDR_TCON_SEGMENTED_BACKLIGHT_ENABLE;
-+			if (panel->backlight.edp.intel.supports_2084_decode &&
-+			    hdr_metadata->hdmi_metadata_type1.eotf ==
-+			    HDMI_EOTF_SMPTE_ST2084)
-+				ctrl |= INTEL_EDP_HDR_TCON_2084_DECODE_ENABLE;
-+			if (panel->backlight.edp.intel.supports_2020_gamut &&
-+			    hdr_metadata->hdmi_metadata_type1.eotf >=
-+			    HDMI_EOTF_TRADITIONAL_GAMMA_HDR)
-+				ctrl |= INTEL_EDP_HDR_TCON_2020_GAMUT_ENABLE;
-+		}
-+
- 		intel_dp_aux_hdr_set_aux_backlight(conn_state, level);
- 	} else {
- 		u32 pwm_level = intel_backlight_level_to_pwm(connector, level);
-@@ -292,9 +312,11 @@ intel_dp_aux_hdr_setup_backlight(struct intel_connector *connector, enum pipe pi
- {
- 	struct drm_i915_private *i915 = to_i915(connector->base.dev);
- 	struct intel_panel *panel = &connector->panel;
-+	struct intel_dp *intel_dp = enc_to_intel_dp(connector->encoder);
- 	struct drm_luminance_range_info *luminance_range =
- 		&connector->base.display_info.luminance_range;
- 	int ret;
-+	u8 buf[4];
- 
- 	drm_dbg_kms(&i915->drm, "[CONNECTOR:%d:%s] SDR backlight is controlled through %s\n",
- 		    connector->base.base.id, connector->base.name,
-@@ -318,11 +340,24 @@ intel_dp_aux_hdr_setup_backlight(struct intel_connector *connector, enum pipe pi
- 		panel->backlight.min = 0;
- 	}
- 
-+	if (DISPLAY_VER(i915) < 11) {
-+		buf[0] = connector->base.hdr_sink_metadata.hdmi_type1.max_cll & 0xFF;
-+		buf[1] = (connector->base.hdr_sink_metadata.hdmi_type1.max_cll & 0xFF00) >> 8;
-+		buf[2] = connector->base.hdr_sink_metadata.hdmi_type1.max_fall & 0xFF;
-+		buf[3] = (connector->base.hdr_sink_metadata.hdmi_type1.max_fall & 0xFF00) >> 8;
-+
-+		ret = drm_dp_dpcd_write(&intel_dp->aux, INTEL_EDP_HDR_CONTENT_LUMINANCE, buf,
-+					sizeof(buf));
-+		if (ret < 0)
-+			drm_dbg_kms(&i915->drm,
-+				    "Content Luminance DPCD reg write failed, err:-%d\n",
-+				    ret);
-+	}
-+
- 	drm_dbg_kms(&i915->drm, "[CONNECTOR:%d:%s] Using AUX HDR interface for backlight control (range %d..%d)\n",
- 		    connector->base.base.id, connector->base.name,
- 		    panel->backlight.min, panel->backlight.max);
- 
--
- 	panel->backlight.level = intel_dp_aux_hdr_get_backlight(connector, pipe);
- 	panel->backlight.enabled = panel->backlight.level != 0;
- 
+ 	if (reg_val >= ei->reg_val_prev)
+ 		ei->accum_energy += reg_val - ei->reg_val_prev;
+ 	else
 -- 
-2.43.2
+2.43.0
 
