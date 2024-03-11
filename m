@@ -2,62 +2,137 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 616A8878049
-	for <lists+intel-gfx@lfdr.de>; Mon, 11 Mar 2024 14:07:19 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 87445878263
+	for <lists+intel-gfx@lfdr.de>; Mon, 11 Mar 2024 15:55:10 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2164D112A5B;
-	Mon, 11 Mar 2024 13:07:17 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C298F112ADE;
+	Mon, 11 Mar 2024 14:55:07 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="E7RoZj2U";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="G/Vh4wDq";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 02A64112A59;
- Mon, 11 Mar 2024 13:07:15 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 75625112ADE
+ for <intel-gfx@lists.freedesktop.org>; Mon, 11 Mar 2024 14:55:06 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1710162436; x=1741698436;
- h=message-id:subject:from:to:cc:date:in-reply-to:
- references:content-transfer-encoding:mime-version;
- bh=q9gdu9OzzJHtm3rmIhmHGmUx8M9j4VLWcCi9yJ7uPBQ=;
- b=E7RoZj2UGWVeScHN/wZQRDSlO/xtGpKlG83BBO27WPC0I/chGL/liJ/n
- FprpS641A+SsizzeeEI7dwaWqsjkY5lAMfH8U+H8aJnW9r+yndB2g0sel
- 34D28ic6+VHfbSCZahAjFl54U1uVHvcQIdyohkeGs55Ii0LayTAtBHGZM
- JDVjZ0z1PCzIEJpsJOGa+i1+JYY1mJvsFAL4mJ19fgSsPruRzG7GDm6I0
- 6p6lfN09haOwmx2bVlkwICeNS27/PCRJtQEgw4zRAHWgBa1nLzVr/lopM
- XetGrZoEv7PKcXfpQwEI3HxlkGzkuVaj+qdGTARtFXtrWhLXbvrKAaagO w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,11009"; a="8637510"
-X-IronPort-AV: E=Sophos;i="6.07,116,1708416000"; 
-   d="scan'208";a="8637510"
+ t=1710168906; x=1741704906;
+ h=date:from:to:cc:subject:message-id:references:
+ in-reply-to:mime-version;
+ bh=5P0SzFvKass5qpWd11Zfl1b4cXZjCjAyUkuMVPcNR3s=;
+ b=G/Vh4wDqg/4IXtR4skSXRymO3XtXH6VhoK0VJBf+QoRBvdlS2XAH6dFc
+ ZwIFbUb0YX0G4LsEo5tFg4Nw5QUOQeIf+wojTJy04hXl1an6ledEkfsgO
+ SVdQb7dAGfvPNyPpsv5x0iP0tQYoK66rKMoq+p8Otn5oA7n+wcegxqvOd
+ cMRqqtfQZVTF7uyxLEGfzj9KBukc3sY6QFov+kw0jLwxE6NP6JvYpEtOe
+ dGh7J20Wnc6BxJ1iSZSp2DH0LAufzynynQGqNWZ8zd1BALbwdPdh2QJ5O
+ 2s+AahyKckH9h4qk/zolr3JtM99I5J4z9rMf9x/ixjugb1CDR9aWpVNYP Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,11009"; a="15398139"
+X-IronPort-AV: E=Sophos;i="6.07,117,1708416000"; d="scan'208";a="15398139"
 Received: from fmviesa005.fm.intel.com ([10.60.135.145])
- by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Mar 2024 06:07:15 -0700
+ by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 Mar 2024 07:55:06 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.07,116,1708416000"; d="scan'208";a="15655642"
-Received: from binis42x-mobl.gar.corp.intel.com (HELO [10.249.254.59])
- ([10.249.254.59])
- by fmviesa005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Mar 2024 06:07:13 -0700
-Message-ID: <cb473e3de479d55cb3cfb2cc0b8ce6ecfd8d5b0c.camel@linux.intel.com>
-Subject: Re: [PATCH v4 0/4] TTM unlockable restartable LRU list iteration
-From: Thomas =?ISO-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>
-To: "Somalapuram, Amaranath" <asomalap@amd.com>, 
- intel-xe@lists.freedesktop.org, intel-gfx@lists.freedesktop.org
-Cc: Somalapuram Amaranath <Amaranath.Somalapuram@amd.com>, Christian
- =?ISO-8859-1?Q?K=F6nig?=
- <christian.koenig@amd.com>, dri-devel@lists.freedesktop.org
-Date: Mon, 11 Mar 2024 14:07:11 +0100
-In-Reply-To: <13884e7d-f18c-f7a6-97d7-eb57f2bd2100@amd.com>
-References: <20240306070125.27071-1-thomas.hellstrom@linux.intel.com>
- <13884e7d-f18c-f7a6-97d7-eb57f2bd2100@amd.com>
-Autocrypt: addr=thomas.hellstrom@linux.intel.com; prefer-encrypt=mutual;
- keydata=mDMEZaWU6xYJKwYBBAHaRw8BAQdAj/We1UBCIrAm9H5t5Z7+elYJowdlhiYE8zUXgxcFz360SFRob21hcyBIZWxsc3Ryw7ZtIChJbnRlbCBMaW51eCBlbWFpbCkgPHRob21hcy5oZWxsc3Ryb21AbGludXguaW50ZWwuY29tPoiTBBMWCgA7FiEEbJFDO8NaBua8diGTuBaTVQrGBr8FAmWllOsCGwMFCwkIBwICIgIGFQoJCAsCBBYCAwECHgcCF4AACgkQuBaTVQrGBr/yQAD/Z1B+Kzy2JTuIy9LsKfC9FJmt1K/4qgaVeZMIKCAxf2UBAJhmZ5jmkDIf6YghfINZlYq6ixyWnOkWMuSLmELwOsgPuDgEZaWU6xIKKwYBBAGXVQEFAQEHQF9v/LNGegctctMWGHvmV/6oKOWWf/vd4MeqoSYTxVBTAwEIB4h4BBgWCgAgFiEEbJFDO8NaBua8diGTuBaTVQrGBr8FAmWllOsCGwwACgkQuBaTVQrGBr/P2QD9Gts6Ee91w3SzOelNjsus/DcCTBb3fRugJoqcfxjKU0gBAKIFVMvVUGbhlEi6EFTZmBZ0QIZEIzOOVfkaIgWelFEH
-Organization: Intel Sweden AB, Registration Number: 556189-6027
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.50.3 (3.50.3-1.fc39) 
+X-IronPort-AV: E=Sophos;i="6.07,117,1708416000"; d="scan'208";a="15685872"
+Received: from fmsmsx601.amr.corp.intel.com ([10.18.126.81])
+ by fmviesa005.fm.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
+ 11 Mar 2024 07:55:05 -0700
+Received: from fmsmsx610.amr.corp.intel.com (10.18.126.90) by
+ fmsmsx601.amr.corp.intel.com (10.18.126.81) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.35; Mon, 11 Mar 2024 07:55:04 -0700
+Received: from fmsedg602.ED.cps.intel.com (10.1.192.136) by
+ fmsmsx610.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.35 via Frontend Transport; Mon, 11 Mar 2024 07:55:04 -0700
+Received: from NAM10-DM6-obe.outbound.protection.outlook.com (104.47.58.101)
+ by edgegateway.intel.com (192.55.55.71) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.1.2507.35; Mon, 11 Mar 2024 07:55:04 -0700
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=iD0uy5lhajsWgJVLoeyRBmHT1XNs90McT3W/DZuAIPG8evqYhhES+E8BU8f6j/+y/GSZd2LEfF3rodkApiHpyryDEHfPq9prKaYNKHVrFdntkNDRgl2iBlVqvWh987cBdUQgSNXANzbifs9hOh0ymcIr3Yonl3qFbyAL5jwsKXmPI47CHx2FRCQsV5/pJ2jscJvmqiZQ94nXmq8uinCAp54/ZJEiCgkHx9VUJEUeW/GDAxR74aQT0N9pCSnY4mj74XEZfVQTQnRkoQvkIJWAR7QHnX7cjKhCKaQnUEJwOUv1NFpjkeycYeg7+pA/0qufeb7QGo4fLS+KRJonDzcStw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=jFKsUDxJCd8W9WobI/p6WYMJRBMXUVoIZNrjaMC6a3o=;
+ b=DVufssgKx6ZOScKUIQw1hBfFwAOWMffJyQXzEmkELpiTe8T/QkyJwsyfa2VRKNOfEcxoZHWWzPkaczCDqKmBxk6oAr+OZspUp6/vJn5DBoHNR5JNWS4v+fOZToQ1QDfISALuVMIGq20EoGixGP2Q+Psq3840eohdnDiTYacUbSD82ubDZ+RmsALCkE1P8RRCu9ZfLo14KjCGMyFbiUFbFuaLzC05AGoEi+zl+gE4sv33qasa2yhXJ40xbO4qBFOiQGItO7FUZjpcpUl9s/J9fOSIGtrR/919MoycGKXATNqaeeB9qz3Np98gDOEvAH/+LcEzK2yD5KmYpdmYSoH5bA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+Received: from MN0PR11MB6059.namprd11.prod.outlook.com (2603:10b6:208:377::9)
+ by CH3PR11MB7762.namprd11.prod.outlook.com (2603:10b6:610:151::15)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7386.16; Mon, 11 Mar
+ 2024 14:55:02 +0000
+Received: from MN0PR11MB6059.namprd11.prod.outlook.com
+ ([fe80::7607:bd60:9638:7189]) by MN0PR11MB6059.namprd11.prod.outlook.com
+ ([fe80::7607:bd60:9638:7189%4]) with mapi id 15.20.7386.016; Mon, 11 Mar 2024
+ 14:55:02 +0000
+Date: Mon, 11 Mar 2024 10:54:57 -0400
+From: Rodrigo Vivi <rodrigo.vivi@intel.com>
+To: Lucas De Marchi <lucas.demarchi@intel.com>
+CC: <intel-gfx@lists.freedesktop.org>, Mateusz Jablonski
+ <mateusz.jablonski@intel.com>, Michal Mrozek <michal.mrozek@intel.com>
+Subject: Re: [PATCH] drm/i915: Drop WA 16015675438
+Message-ID: <Ze8bQQoJStxPn8j7@intel.com>
+References: <20240306144723.1826977-1-lucas.demarchi@intel.com>
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+In-Reply-To: <20240306144723.1826977-1-lucas.demarchi@intel.com>
+X-ClientProxiedBy: SJ0PR13CA0203.namprd13.prod.outlook.com
+ (2603:10b6:a03:2c3::28) To MN0PR11MB6059.namprd11.prod.outlook.com
+ (2603:10b6:208:377::9)
 MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: MN0PR11MB6059:EE_|CH3PR11MB7762:EE_
+X-MS-Office365-Filtering-Correlation-Id: 0f08edfe-a2f3-4b29-d647-08dc41db3a58
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: g8mf85O8b/5VJVojO0Y8X44EpxPhfZ3UWLgZJin+tr+rQwRWY/d3egUgSq5ZHX/71YkQ6PkBpc2qaQzxe2NycOkJ1SuA8bLr7RQ6JtzKAjgvml6p1Dr1bL5N3+IejgvIp7MKSRqe4w4Bc21JZGemvzBUb3p2w6aeE2d5rUPwyG4UUCrXpVym7LzhwW23fKjovdRO4zZfWbEs0EsH5KmUJ4c6UU0oizLbfxDGrdmTsjojfu1dXNGgRRqJu/YevRb2kFobvMlFyTw2aqKYQpWV19PsBC8861oBXjyKr441GRGgM52d1iVMwp6qWyXhuvgpr2omUTA844uIDsIAjI7xQlHGwqi2k6YFCYFqS0sIMfamLmCIYZcVj/mWelSg001xWRP3G9rMjxbWBVgQFEtIX4c3qVweS3L7mINznHh4+Lwl+XnuDVjvrfmgGQqpa5aLbe7sFi7wtrhsFtlztmaqXDy9lLvJdzvwCOIM6ndDvPvVax6ejkmgxr/w6R44n5N5pOFwnEfoc6PzaRkir/9+qBnp3XVFtqIYQ5hULiknR7kDLDZAn0Q4NBxzpQR13d9rt6kVwn6scie4ufXsbjEtcux4FziZ3RXEOfipIxXd/wM=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:MN0PR11MB6059.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230031)(376005)(1800799015); DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?F0HTwzigawFZz3am/FhimdGd/E9+EuLtppL5HJj6oCL2na7BBJzc3E4jj25G?=
+ =?us-ascii?Q?HvZ6qDpQpNqqBKXLJigoGugp/PlxBRCgLorONE6F3SUqe7JhgHAwL/UBvDrM?=
+ =?us-ascii?Q?mWz07o2w5GpbrhnnaPWiidFqVlnwZIwl9k+kAK+xC5KsCQ1WZcIIC54Ttd0a?=
+ =?us-ascii?Q?Pk9ErEgXZmgAicONh0RThx6e4QYGPHv9oq1T9n+vb1DPKY9xiamt1o+Woftt?=
+ =?us-ascii?Q?ce0QiqZryzAEzMqEJGjcstNKD1aXUktfg/rVIg8NOklA12GNlTa1s6Al4W+S?=
+ =?us-ascii?Q?WaNRJ0UGf5T0r33FLvKgaf56mZUOZIfOPaHbVu+IfhXyXrJEFw4UZu2xYONT?=
+ =?us-ascii?Q?Eb2rUlPOoFR++iVuEUq3r5wdPamTwPOevEAY15wPoZFP4ZdSoN4jeE/6GTfO?=
+ =?us-ascii?Q?DmW8XclIYHjm6bwzUgYQ9sH+q/JrdyTCT5p7r+kuybUimH2tyNXvRhcNJ494?=
+ =?us-ascii?Q?NSViHf94qK+mw076phYiCZDxV6HeAa3tF518J8rstK0m62wIYkCWLKRfnAwr?=
+ =?us-ascii?Q?cjFcBKcHRz7y19Dh2UumXpNBJyKNAxZE8l6slv8ypXrYpdgpPvru7KSXC3lq?=
+ =?us-ascii?Q?SVOF56ABqXnapWANlkK92NM3LD2q6/KuqcdAWUm7nyODMKNeF1/Rrq6mEWkG?=
+ =?us-ascii?Q?hVu4LQGZbDvn+uluuzpLO/Y4Qciy4RNnMFn6PT1RgatqPSo4qPQY6c63Lldq?=
+ =?us-ascii?Q?+J5I9zyUazSrwx80pe9ar3vtyiu325dAhLkORAAVG+VQCtIJV6bW03bMR3oq?=
+ =?us-ascii?Q?2yK8hbDfl+8Jc51JnsFv6+M3Owo40b5PhO43bUuFOwO5P0Cpp3vpJSDE4tQV?=
+ =?us-ascii?Q?YYw5wW0giZnqejsc0vQhCJsmcnBwJejIDQuSRaHFEXxAtLDmREXNF5NyVVs9?=
+ =?us-ascii?Q?78B8osB1HORLKKONKRaBCUR3XFWe3fcRFNLWFx3UDfHSoCSdi5zZUSi9WaSv?=
+ =?us-ascii?Q?J1v/owvyamY2dCIvSDQBwoh9qWSK7bitjaGItjzd6dJTUVj4/iK/ok5jYi8q?=
+ =?us-ascii?Q?4U6Qo0C4+WBv4IEz05BGcOYEMXEJth6ZmqXmRSz07oMgby59NXn60U7vVBx+?=
+ =?us-ascii?Q?F7Ca8P+d4YB45ImDVAn1hBniCYIiWJmZPaDS8gRM2Pj9oOuJFaZuqtvd859S?=
+ =?us-ascii?Q?T/JxtOHwcngX5oGEmwrB2RvF/L4WclUMfT+0F6XURzVzTj8ZWUMUl+i3SYrV?=
+ =?us-ascii?Q?NcpHWFIp23XmdWbWBXsSGWR8Dbka03cj+kXYK+9Zqh59Fcon9FR2NnBj3a23?=
+ =?us-ascii?Q?F14++F4m/J/oboWjTeHFGFFTtBk4kGTzv37KjqcfOQ/N35N6xxv3CgSBXZzM?=
+ =?us-ascii?Q?cAWh6hTU8mGAAbAWFVlJczjsGfuJeoFW4MNhtS6Bo0odbhq9yyy45nEiR6DO?=
+ =?us-ascii?Q?3tsq7l+fVAHxO4mCDxRQF080zhb5rCuDdLbI0bC2v3x+3MAaL4K6dXKMWyqV?=
+ =?us-ascii?Q?jBIBB0678DwR4+0bGDbnVgpyJSYQKrrQATwqXSv5aDr5N8oj1xdbx6EBDlTI?=
+ =?us-ascii?Q?d4u8PoF43ki8csjilP4XrbSx5sk+ovubhblAu4UA4hKEme1NA+FLKulpAkax?=
+ =?us-ascii?Q?PtXi74u02/zuJ0HPT2yofndyj9qgzHODv0YnHJ33?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: 0f08edfe-a2f3-4b29-d647-08dc41db3a58
+X-MS-Exchange-CrossTenant-AuthSource: MN0PR11MB6059.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 11 Mar 2024 14:55:02.0258 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: SSxPcOXE6FKSe1eqznQNI//SiiH9/PJstsN4VpkCpks5HmeS6quoyqXIFPWV8d/qxHx7GVRgwc5X88IWbQn7Pw==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH3PR11MB7762
+X-OriginatorOrg: intel.com
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -73,102 +148,66 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, 2024-03-08 at 13:13 +0530, Somalapuram, Amaranath wrote:
-> Patches are tested on AMD platform.
-> Repeated stress test on Unigine Heaven, memory full (VRAM + GTT +
-> system=20
-> SWAP), then free.
-> No errors/warning in kernel log.
-> Any suggestion specific tests?
+On Wed, Mar 06, 2024 at 06:43:39AM -0800, Lucas De Marchi wrote:
+> With dynamic load-balancing disabled on the compute side, there's no
+> reason left to enable WA 16015675438. Drop it from both PVC and DG2.
+> Note that this can be done because now the driver always set a fixed
+> partition of EUs during initialization via the ccs_mode configuration.
+> 
+> The flag to GuC is still needed because of 18020744125, so update
+> the comment accordingly.
+> 
+> Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
+> Acked-by: Mateusz Jablonski <mateusz.jablonski@intel.com>
+> Acked-by: Michal Mrozek <michal.mrozek@intel.com>
+> Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
 
-We are testing locally against Intel Xe CI and Intel i915 CI which
-should give rather good coverage. If there are some amdgpu tests that
-exercise eviction / swapping also with a lot of local objects (Vulkan
-apps?) that would be great.
+Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
 
-Thanks,
-Thomas
-
-
-
->=20
-> Regards,
-> S.Amarnath
-> On 3/6/2024 12:31 PM, Thomas Hellstr=C3=B6m wrote:
-> > This patch-set is a prerequisite for a standalone TTM shrinker
-> > and for exhaustive TTM eviction using sleeping dma_resv locks,
-> > which is the motivation for it.
-> >=20
-> > Currently when unlocking the TTM lru list lock, iteration needs
-> > to be restarted from the beginning, rather from the next LRU list
-> > node. This can potentially be a big problem, because if eviction
-> > or shrinking fails for whatever reason after unlock, restarting
-> > is likely to cause the same failure over and over again.
-> >=20
-> > There are various schemes to be able to continue the list
-> > iteration from where we left off. One such scheme used by the
-> > GEM LRU list traversal is to pull items already considered off
-> > the LRU list and reinsert them when iteration is done.
-> > This has the drawback that concurrent list iteration doesn't see
-> > the complete list (which is bad for exhaustive eviction) and also
-> > doesn't lend itself well to bulk-move sublists since these will
-> > be split in the process where items from those lists are
-> > temporarily pulled from the list and moved to the list tail.
-> >=20
-> > The approach taken here is that list iterators insert themselves
-> > into the list next position using a special list node. Iteration
-> > is then using that list node as starting point when restarting.
-> > Concurrent iterators just skip over the special list nodes.
-> >=20
-> > This is implemented in patch 1 and 2.
-> >=20
-> > For bulk move sublist the approach is the same, but when a bulk
-> > move sublist is moved to the tail, the iterator is also moved,
-> > causing us to skip parts of the list. That is undesirable.
-> > Patch 3 deals with that, and when iterator detects it is
-> > traversing a sublist, it registers with the ttm_lru_bulk_move
-> > struct using a linked list, and when that bulk move sublist
-> > is moved to the tail, any iterator registered with it will
-> > first be moved to the tail of the sublist.
-> > This is implemented in patch 3.
-> >=20
-> > The restartable property is used in patch 4 to restart swapout if
-> > needed, but the main purpose is this paves the way for
-> > shrinker- and exhaustive eviction.
-> >=20
-> > v2:
-> > - Rework patch 3 completely.
-> > v3:
-> > - Fix a NULL pointer dereference found by Xe CI.
-> > v4:
-> > - Remove some leftover code causing build problems.
-> >=20
-> > Cc: Somalapuram Amaranath <Amaranath.Somalapuram@amd.com>
-> > Cc: Christian K=C3=B6nig <christian.koenig@amd.com>
-> > Cc: <dri-devel@lists.freedesktop.org>
-> >=20
-> > Thomas Hellstr=C3=B6m (4):
-> > =C2=A0=C2=A0 drm/ttm: Allow TTM LRU list nodes of different types
-> > =C2=A0=C2=A0 drm/ttm: Use LRU hitches
-> > =C2=A0=C2=A0 drm/ttm, drm/amdgpu, drm/xe: Consider hitch moves within b=
-ulk
-> > sublist
-> > =C2=A0=C2=A0=C2=A0=C2=A0 moves
-> > =C2=A0=C2=A0 drm/ttm: Allow continued swapout after -ENOSPC falure
-> >=20
-> > =C2=A0 drivers/gpu/drm/amd/amdgpu/amdgpu_vm.c |=C2=A0=C2=A0 4 +
-> > =C2=A0 drivers/gpu/drm/ttm/ttm_bo.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0=C2=A0 1 +
-> > =C2=A0 drivers/gpu/drm/ttm/ttm_device.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0 |=C2=A0 33 +++-
-> > =C2=A0 drivers/gpu/drm/ttm/ttm_resource.c=C2=A0=C2=A0=C2=A0=C2=A0 | 228
-> > ++++++++++++++++++++-----
-> > =C2=A0 drivers/gpu/drm/xe/xe_vm.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0=C2=A0 4 +
-> > =C2=A0 include/drm/ttm/ttm_device.h=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0=C2=A0 2 +
-> > =C2=A0 include/drm/ttm/ttm_resource.h=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0 |=C2=A0 96 +++++++++--
-> > =C2=A0 7 files changed, 308 insertions(+), 60 deletions(-)
-> >=20
-
+> ---
+> 
+> This is the i915 counter part. The xe version of this patch
+> (https://lore.kernel.org/intel-xe/20240304233103.1687412-1-lucas.demarchi@intel.com/)
+> was already merged in drm-xe-next. I'm keeping the acked-by as it also
+> applies the same logic in i915.
+> 
+>  drivers/gpu/drm/i915/gt/intel_workarounds.c | 6 +-----
+>  drivers/gpu/drm/i915/gt/uc/intel_guc.c      | 2 +-
+>  2 files changed, 2 insertions(+), 6 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/i915/gt/intel_workarounds.c b/drivers/gpu/drm/i915/gt/intel_workarounds.c
+> index d67d44611c28..7f812409c30a 100644
+> --- a/drivers/gpu/drm/i915/gt/intel_workarounds.c
+> +++ b/drivers/gpu/drm/i915/gt/intel_workarounds.c
+> @@ -2928,14 +2928,10 @@ general_render_compute_wa_init(struct intel_engine_cs *engine, struct i915_wa_li
+>  		wa_mcr_write_or(wal, LSC_CHICKEN_BIT_0, DISABLE_D8_D16_COASLESCE);
+>  	}
+>  
+> -	if (IS_PONTEVECCHIO(i915) || IS_DG2(i915)) {
+> +	if (IS_PONTEVECCHIO(i915) || IS_DG2(i915))
+>  		/* Wa_14015227452:dg2,pvc */
+>  		wa_mcr_masked_en(wal, GEN9_ROW_CHICKEN4, XEHP_DIS_BBL_SYSPIPE);
+>  
+> -		/* Wa_16015675438:dg2,pvc */
+> -		wa_masked_en(wal, FF_SLICE_CS_CHICKEN2, GEN12_PERF_FIX_BALANCING_CFE_DISABLE);
+> -	}
+> -
+>  	if (IS_DG2(i915)) {
+>  		/*
+>  		 * Wa_16011620976:dg2_g11
+> diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc.c b/drivers/gpu/drm/i915/gt/uc/intel_guc.c
+> index d2b7425bbdcc..c6603793af89 100644
+> --- a/drivers/gpu/drm/i915/gt/uc/intel_guc.c
+> +++ b/drivers/gpu/drm/i915/gt/uc/intel_guc.c
+> @@ -315,7 +315,7 @@ static u32 guc_ctl_wa_flags(struct intel_guc *guc)
+>  	if (IS_DG2_G11(gt->i915))
+>  		flags |= GUC_WA_CONTEXT_ISOLATION;
+>  
+> -	/* Wa_16015675438 */
+> +	/* Wa_18020744125 */
+>  	if (!RCS_MASK(gt))
+>  		flags |= GUC_WA_RCS_REGS_IN_CCS_REGS_LIST;
+>  
+> -- 
+> 2.43.0
+> 
