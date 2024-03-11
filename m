@@ -2,58 +2,57 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2ADF1877CD2
-	for <lists+intel-gfx@lfdr.de>; Mon, 11 Mar 2024 10:33:59 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id C7374877D1A
+	for <lists+intel-gfx@lfdr.de>; Mon, 11 Mar 2024 10:42:05 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2EFDC10E138;
-	Mon, 11 Mar 2024 09:33:57 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 445BA10E6F2;
+	Mon, 11 Mar 2024 09:42:04 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="TjqqdeVm";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="YWEYB1Vz";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from fanzine2.igalia.com (fanzine2.igalia.com [213.97.179.56])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 59BC210E138;
- Mon, 11 Mar 2024 09:33:55 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
- s=20170329;
- h=In-Reply-To:References:Cc:To:From:Subject:MIME-Version:Date:
- Message-ID:Content-Type:Sender:Reply-To:Content-Transfer-Encoding:Content-ID:
- Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
- :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
- List-Post:List-Owner:List-Archive;
- bh=g40y392xKIqdGa+vT+kTxJImxyl/efNeS0HftGPfc3A=; b=TjqqdeVm8WXDpewugzxiOqY3a5
- SRtG+45CmTlM2I3yM0vjIZMz+jxD+9KepEKo99FH+xLm0pNp+N4z6yP+Q1fh8tIq6e+XptQALBJb6
- v2hGyaSYaS2Jr+4y56KMcsgGq2GiR8CJ6I1rlUxMTQz4NgmJSyvTncEWxXIr+yVJLzGmjsec+yaJU
- wQXT2T02UDKnxcuP88vHbw5EV1e2DpA6gI0GFg7xQfmZ6QQouopfVyWuDtpRbFdu9rNnHCHaBRyz9
- gx7mWPhitVmztLwZ4xrDALCUFh9glqUuob/c8whA9I+RQC1Ubm6qMmm9YgEHOgQgdO7/VjLE35/Tt
- 5EHBHh8A==;
-Received: from c-71-59-88-35.hsd1.nj.comcast.net ([71.59.88.35]
- helo=[192.168.1.99]) by fanzine2.igalia.com with esmtpsa 
- (Cipher TLS1.3:ECDHE_X25519__RSA_PSS_RSAE_SHA256__AES_128_GCM:128) (Exim)
- id 1rjc2X-008oGi-67; Mon, 11 Mar 2024 10:33:49 +0100
-Content-Type: multipart/alternative;
- boundary="------------U1ylqVfCa6riox0GKTHn0D2R"
-Message-ID: <9c6b497c-5210-447a-adcf-8eb7546fa85a@igalia.com>
-Date: Mon, 11 Mar 2024 05:33:44 -0400
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D523610E6F2
+ for <intel-gfx@lists.freedesktop.org>; Mon, 11 Mar 2024 09:42:02 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1710150123; x=1741686123;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=F1cOzdO2rdNx2168rsOdXv7k35s0yG559WL3758lvi0=;
+ b=YWEYB1Vz1G6ACiEPsQqfD4KniRCwZJu18tFAZKi/oNqOOHXs72s9cEZw
+ KOZmJ5CubvgLKve7N+GzFxTHZbFZXtSQcLfp4EO91ivUts2g5yjjtHAh7
+ O2XvVRMmu614lxuJP5g0Ie0EGgt3ca4hqMhsvwWFvgEiH11gbu2MNjEPg
+ xrWAaxMAkKu4nubti+eVIAdPrqcFRvs1b79NQZt2GS709dkWKR2XdTTNU
+ r4hRZ21tpB9urTyQhggV5hydoqRkzF+bt7Ocnr0V4c8aMwVt4ncZJaG8W
+ CbEs18hVbjzHlFME3XiXu7lTYgmNCt29g9s9D3ZUFLW7XEuu01pDnrDAy w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,11009"; a="15938964"
+X-IronPort-AV: E=Sophos;i="6.07,116,1708416000"; d="scan'208";a="15938964"
+Received: from orviesa005.jf.intel.com ([10.64.159.145])
+ by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 Mar 2024 02:42:01 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.07,116,1708416000"; d="scan'208";a="15818524"
+Received: from unknown (HELO intel.com) ([10.237.72.65])
+ by orviesa005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 Mar 2024 02:42:00 -0700
+Date: Mon, 11 Mar 2024 11:41:51 +0200
+From: "Lisovskiy, Stanislav" <stanislav.lisovskiy@intel.com>
+To: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+Cc: intel-gfx@lists.freedesktop.org, jani.saarinen@intel.com
+Subject: Re: [PATCH 2/2] drm/i915: Implement vblank synchronized MBUS join
+ changes
+Message-ID: <Ze7R35ue+/OtbxO3@intel.com>
+References: <20240228080213.17441-1-stanislav.lisovskiy@intel.com>
+ <20240228080213.17441-3-stanislav.lisovskiy@intel.com>
+ <ZerjV9jnlUp-GTwP@intel.com> <ZesWB7CpU3b9X28J@intel.com>
+ <ZesqrnNp9lH2gTd8@intel.com>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: Reminder: 2024 X.Org Board of Directors Elections timeline
- extended, request for nominations
-From: Christopher Michael <cmichael@igalia.com>
-To: events@lists.x.org, xorg-devel@lists.x.org,
- wayland-devel@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- mesa-dev@lists.freedesktop.org, amd-gfx@lists.freedesktop.org,
- etnaviv@lists.freedesktop.org, freedreno@lists.freedesktop.org,
- nouveau@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
- libre-soc-dev@lists.libre-soc.org, elections@x.org, members@x.org,
- xorg@lists.freedesktop.org
-Cc: board <board@foundation.x.org>
-References: <0efcdfe3-ea9e-43e5-ab07-6d69dca2c04a@igalia.com>
- <08f8a967-25e1-4362-be38-3f1b050ec6f2@igalia.com>
- <39fac3a4-f9de-4968-b0ff-ac3bf503a4fb@igalia.com>
-Content-Language: en-US
-In-Reply-To: <39fac3a4-f9de-4968-b0ff-ac3bf503a4fb@igalia.com>
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <ZesqrnNp9lH2gTd8@intel.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -69,204 +68,188 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-This is a multi-part message in MIME format.
---------------U1ylqVfCa6riox0GKTHn0D2R
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+On Fri, Mar 08, 2024 at 05:11:42PM +0200, Ville Syrjälä wrote:
+> On Fri, Mar 08, 2024 at 03:43:35PM +0200, Lisovskiy, Stanislav wrote:
+> > On Fri, Mar 08, 2024 at 12:07:19PM +0200, Ville Syrjälä wrote:
+> > > On Wed, Feb 28, 2024 at 10:02:13AM +0200, Stanislav Lisovskiy wrote:
+> > > > Currently we can't change MBUS join status without doing a modeset,
+> > > > because we are lacking mechanism to synchronize those with vblank.
+> > > > However then this means that we can't do a fastset, if there is a need
+> > > > to change MBUS join state. Fix that by implementing such change.
+> > > > We already call correspondent check and update at pre_plane dbuf update,
+> > > > so the only thing left is to have a non-modeset version of that.
+> > > > If active pipes stay the same then fastset is possible and only MBUS
+> > > > join state/ddb allocation updates would be committed.
+> > > > 
+> > > > v2: Implement additional changes according to BSpec.
+> > > >     Vblank wait is needed after MBus/Dbuf programming in case if
+> > > >     no modeset is done and we are switching from single to multiple
+> > > >     displays, i.e mbus join state switches from "joined" to  "non-joined"
+> > > >     state. Otherwise vblank wait is not needed according to spec.
+> > > > 
+> > > > v3: Split mbus and dbox programming into to pre/post plane update parts,
+> > > >     how it should be done according to BSpec.
+> > > > 
+> > > > v4: - Place "single display to multiple displays scenario" MBUS/DBOX programming
+> > > >       after DDB reallocation, but before crtc enabling(that is where is has
+> > > >       to be according to spec).
+> > > >     - Check if crtc is still active, not only the old state.
+> > > >     - Do a vblank wait if MBUX DBOX register was modified.
+> > > >     - And of course do vblank wait only if crtc was active.
+> > > >     - Do vblank wait only if we are not doing a modeset, if we are doing
+> > > >       something before *commit_modeset_enables, because all crtcs might be
+> > > >       disabled at this moment, so we will get WARN if try waiting for vblank
+> > > >       then.
+> > > >     - Still getting FIFO underrun so try waiting for vblank in pre_plane update
+> > > >       as well.
+> > > >     - Write also pipe that we need to sync with to MBUS_CTL register.
+> > > > 
+> > > > v5: - Do vblank wait only for the first pipe, if mbus is joined
+> > > >     - Check also if new/old_dbuf_state is not NULL, before getting single pipe
+> > > >       and active pipes.
+> > > > 
+> > > > Signed-off-by: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
+> > > > ---
+> > > >  drivers/gpu/drm/i915/display/intel_display.c |  13 ++-
+> > > >  drivers/gpu/drm/i915/display/skl_watermark.c | 104 +++++++++++++++----
+> > > >  drivers/gpu/drm/i915/display/skl_watermark.h |   1 +
+> > > >  3 files changed, 96 insertions(+), 22 deletions(-)
+> > > > 
+> > > > diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
+> > > > index 00ac65a140298..989818f5d342f 100644
+> > > > --- a/drivers/gpu/drm/i915/display/intel_display.c
+> > > > +++ b/drivers/gpu/drm/i915/display/intel_display.c
+> > > > @@ -6906,6 +6906,17 @@ static void skl_commit_modeset_enables(struct intel_atomic_state *state)
+> > > >  		}
+> > > >  	}
+> > > >  
+> > > > +	/*
+> > > > +	 * Some MBUS/DBuf update scenarios(mbus join disable) require that
+> > > > +	 * changes are done _after_ DDB reallocation, but _before_ crtc enabling.
+> > > > +	 * Typically we are disabling resources in post_plane/crtc_enable hooks,
+> > > > +	 * however in that case BSpec explicitly states that this should be done
+> > > > +	 * before we enable additional displays.
+> > > > +	 * FIXME: Should we still call this also there(post_plane hook)
+> > > > +	 * for extra-safety? If so, how to make sure, we don't call it twice?
+> > > > +	 */
+> > > > +	intel_dbuf_mbus_post_ddb_update(state);
+> > > > +
+> > > >  	update_pipes = modeset_pipes;
+> > > >  
+> > > >  	/*
+> > > > @@ -7148,9 +7159,7 @@ static void intel_atomic_commit_tail(struct intel_atomic_state *state)
+> > > >  	}
+> > > >  
+> > > >  	intel_encoders_update_prepare(state);
+> > > > -
+> > > >  	intel_dbuf_pre_plane_update(state);
+> > > > -	intel_mbus_dbox_update(state);
+> > > >  
+> > > >  	for_each_new_intel_crtc_in_state(state, crtc, new_crtc_state, i) {
+> > > >  		if (new_crtc_state->do_async_flip)
+> > > > diff --git a/drivers/gpu/drm/i915/display/skl_watermark.c b/drivers/gpu/drm/i915/display/skl_watermark.c
+> > > > index 606b7ba9db9ce..f0604ede399f7 100644
+> > > > --- a/drivers/gpu/drm/i915/display/skl_watermark.c
+> > > > +++ b/drivers/gpu/drm/i915/display/skl_watermark.c
+> > > > @@ -2628,13 +2628,6 @@ skl_compute_ddb(struct intel_atomic_state *state)
+> > > >  		if (ret)
+> > > >  			return ret;
+> > > >  
+> > > > -		if (old_dbuf_state->joined_mbus != new_dbuf_state->joined_mbus) {
+> > > > -			/* TODO: Implement vblank synchronized MBUS joining changes */
+> > > > -			ret = intel_modeset_all_pipes_late(state, "MBUS joining change");
+> > > > -			if (ret)
+> > > > -				return ret;
+> > > > -		}
+> > > > -
+> > > >  		drm_dbg_kms(&i915->drm,
+> > > >  			    "Enabled dbuf slices 0x%x -> 0x%x (total dbuf slices 0x%x), mbus joined? %s->%s\n",
+> > > >  			    old_dbuf_state->enabled_slices,
+> > > > @@ -3539,8 +3532,9 @@ static void intel_dbuf_mbus_update(struct intel_atomic_state *state)
+> > > >  	struct drm_i915_private *i915 = to_i915(state->base.dev);
+> > > >  	u32 mbus_ctl, dbuf_min_tracker_val;
+> > > >  	enum dbuf_slice slice;
+> > > > -	const struct intel_dbuf_state *dbuf_state =
+> > > > +	const struct intel_dbuf_state *new_dbuf_state =
+> > > >  		intel_atomic_get_new_dbuf_state(state);
+> > > > +	enum pipe pipe = ffs(new_dbuf_state->active_pipes) - 1;
+> > > 
+> > > That pipe might not even be enabled at this point.
+> > 
+> > Which scenario do you mean?
+> > intel_dbuf_mbus_update is called in two cases:
+> > 
+> > 1) When switching from single display to multiple displays, according
+> >    to spec we should program it before enabling additional displays,
+> >    but after ddb allocation happens.
+> > 
+> > 2) When switching from multiple displays to a single display,
+> >    we program it after disabling all displays except one, but
+> >    before ddb reallocation happens.
+> 
+> You seem to call it when the number of active pipes changes.
+> That doesn't necessarily mean anything for mbus joining.
 
-This is a reminder that we are still looking for candidates for the 
-upcoming X.Org Board of Directors elections, and that today is the last 
-day to submit personal statements for nomination. X.org membership 
-renewals are still open and will be needed to vote on those elections.
+From code here:
 
++	if (!new_dbuf_state ||
++	    (new_dbuf_state->enabled_slices == old_dbuf_state->enabled_slices &&
++	     new_dbuf_state->joined_mbus == old_dbuf_state->joined_mbus))
++		return;
++
++	pipe = ffs(new_dbuf_state->active_pipes) - 1;
++	new_num_active_pipes = hweight8(new_dbuf_state->active_pipes);
++
++	if (old_dbuf_state)
++		old_num_active_pipes = hweight8(old_dbuf_state->active_pipes);
++
++	WARN_ON(!new_dbuf_state->base.changed);
++
++	/*
++	 * Switching from single to multiple display scenario
++	 */
++	if (new_num_active_pipes > old_num_active_pipes) {
 
-Please read below for more details.
+We have a check above, so if we are at this point, means that either enabled_slices
+had changed or joined_mbus state.
+If for example new active pipe count is more than old active pipe count and 
+join_mbus state had changed, I think it for sure means single => multiple switch scenario,
+since there are currently no other scenarios, when mbus_join changes and active pipe count
+increases except that one.
+For instance if old active pipe count was anything > 1 and it increases, there would have been
+no mbus_join state change.
 
+However enabled slice count may change, so I wonder if I need to may be add, some additional
+check like if ((new_num_active_pipes > old_num_active_pipes) && old_num_active_pipes == 1) to be sure.
+In fact I had it in one of previous revisions, but can't recall now, why I removed it.
 
-Cheers,
+> 
+> > Probably you mean the case when its called from intel_dbuf_pre_plane_update,
+> > because commit_modeset_enables hasn't been yet called?
+> 
+> Yes, the pipe may still be off.
+> 
+> > That would be the case of switching from multiple displays to single one,
+> > for non-modeset at least shoudln't be a problem, as I understand.
+> 
+> I don't know what the hardware does in this case. Better not
+> to ask for trouble IMO in case it turns out the hardware won't
+> like it.
+> 
+> > 
+> > But where should this be called then from? 
+> > 
+> > We always called this function from intel_dbuf_pre_plane_update.
+> 
+> As mentioned later in my mail, I think we just want a pre/post
+> ddb callsites for this stuff. Though the credit stuff (should we
+> need to account for those changing) might complicate things further...
 
-Christopher Michael, on behalf of the X.Org BoD
+Okay, I already have post ddb call site, so means I need to do the same
+for pre ddb callsite, the only thing I wonder if that change is going to 
+screw up something once again.
 
-
-
-On 3/5/24 05:49, Christopher Michael wrote:
->
-> This is a reminder that we are still looking for candidates for the 
-> upcoming X.Org Board of Directors elections, and that membership 
-> renewals are still open and will be needed to vote on those elections. 
-> Please read below for more details.
->
->
-> Cheers,
->
-> Christopher Michael, on behalf of the X.Org BoD
->
->
-> On 3/1/24 06:25, Christopher Michael wrote:
->>
->> We are seeking nominations for candidates for election to the X.org 
->> Foundation Board of Directors. However, as we presently do not have 
->> enough nominations to start the election - the decision has been made 
->> to extend the timeline by 2 weeks. Note this is a fairly regular part 
->> of the elections process.
->>
->>
->> The new deadline for nominations to the X.org Board of Directors is 
->> 23:59 UTC on 11 March 2024
->>
->>
->> The Board consists of directors elected from the membership. Each 
->> year, an election is held to bring the total number of directors to 
->> eight. The four members receiving the highest vote totals will serve 
->> as directors for two year terms.
->>
->> The directors who received two year terms starting in 2023 were 
->> Arkadiusz Hiler, Christopher Michael, Lyude Paul, and Daniel Vetter. 
->> They will continue to serve until their term ends in 2024. Current 
->> directors whose term expires in 2024 are Emma Anholt, Mark Filion, 
->> Ricardo Garcia, and Alyssa Rosenzweig.
->> <https://rosenzweig.io/>
->>
->> A director is expected to participate in the fortnightly IRC meeting 
->> to discuss current business and to attend the annual meeting of the 
->> X.Org Foundation, which will be held at a location determined in 
->> advance by the Board of Directors.
->>
->> A member may nominate themselves or any other member they feel is 
->> qualified. Nominations should be sent to the Election Committee at 
->> elections@x.org.
->>
->> Nominees shall be required to be current members of the X.Org 
->> Foundation, and submit a personal statement of up to 200 words that 
->> will be provided to prospective voters. The collected statements, 
->> along with the statement of contribution to the X.Org Foundation in 
->> the member's account page on http://members.x.org, will be made 
->> available to all voters to help them make their voting decisions.
->>
->> Nominations and completed personal statements must be received no 
->> later than 23:59 UTC on 11 March 2024.
->>
->> The slate of candidates will be published 18 March 2024 and candidate 
->> Q&A will begin then. The deadline for Xorg membership applications 
->> and renewals has also been extended 2 weeks and is now 25 March 2024.
->>
->>
->> Cheers,
->>
->> Christopher Michael, on behalf of the X.Org BoD
->>
->>
---------------U1ylqVfCa6riox0GKTHn0D2R
-Content-Type: text/html; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-  </head>
-  <body>
-    <p>This is a reminder that we are still looking for candidates for
-      the upcoming X.Org Board of Directors elections, and that today is
-      the last day to submit personal statements for nomination. X.org
-      membership renewals are still open and will be needed to vote on
-      those elections.Â </p>
-    <p><br>
-    </p>
-    <p>Please read below for more details. <br>
-    </p>
-    <p><br>
-    </p>
-    <p>Cheers,</p>
-    <p>Christopher Michael, on behalf of the X.Org BoD</p>
-    <p><br>
-    </p>
-    <p><br>
-    </p>
-    <p></p>
-    <div class="moz-cite-prefix">On 3/5/24 05:49, Christopher Michael
-      wrote:<br>
-    </div>
-    <blockquote type="cite"
-      cite="mid:39fac3a4-f9de-4968-b0ff-ac3bf503a4fb@igalia.com">
-      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-      <p>This is a reminder that we are still looking for candidates for
-        the upcoming X.Org Board of Directors elections, and that
-        membership renewals are still open and will be needed to vote on
-        those elections. Please read below for more details. <br>
-      </p>
-      <p><br>
-      </p>
-      <p>Cheers,</p>
-      <p>Christopher Michael, on behalf of the X.Org BoD</p>
-      <p><br>
-      </p>
-      <div class="moz-cite-prefix">On 3/1/24 06:25, Christopher Michael
-        wrote:<br>
-      </div>
-      <blockquote type="cite"
-        cite="mid:08f8a967-25e1-4362-be38-3f1b050ec6f2@igalia.com">
-        <meta http-equiv="Content-Type"
-          content="text/html; charset=UTF-8">
-        <p>We are seeking nominations for candidates for election to the
-          X.org Foundation Board of Directors. However, as we presently
-          do not have enough nominations to start the election - the
-          decision has been made to extend the timeline by 2 weeks. Note
-          this is a fairly regular part of the elections process.</p>
-        <p><br>
-        </p>
-        <p>The new deadline for nominations to the X.org Board of
-          Directors is 23:59 UTC on 11 March 2024</p>
-        <br>
-        The Board consists of directors elected from the membership.
-        Each year, an election is held to bring the total number of
-        directors to eight. The four members receiving the highest vote
-        totals will serve as directors for two year terms.
-        <p>The directors who received two year terms starting in 2023
-          were <span class="createlink">Arkadiusz Hiler, </span><span
-            class="createlink">Christopher Michael, </span><span
-            class="createlink">Lyude Paul, and Daniel Vetter</span>.
-          They will continue to serve until their term ends in 2024.
-          Current directors whose term expires in 2024 are <span
-            class="createlink">Emma Anholt, </span><span
-            class="createlink">Mark Filion, </span><span
-            class="createlink">Ricardo Garcia, and Alyssa Rosenzweig.</span><a
-            href="https://rosenzweig.io/" moz-do-not-send="true"><br>
-          </a></p>
-        <p>A director is expected to participate in the fortnightly IRC
-          meeting to discuss current business and to attend the annual
-          meeting of the X.Org Foundation, which will be held at a
-          location determined in advance by the Board of Directors.</p>
-        <p>A member may nominate themselves or any other member they
-          feel is qualified. Nominations should be sent to the Election
-          Committee at <a
-            class="moz-txt-link-abbreviated moz-txt-link-freetext"
-            href="mailto:elections@x.org" moz-do-not-send="true">elections@x.org</a>.<br>
-        </p>
-        <p>Nominees shall be required to be current members of the X.Org
-          Foundation, and submit a personal statement of up to 200 words
-          that will be provided to prospective voters. The collected
-          statements, along with the statement of contribution to the
-          X.Org Foundation in the member's account page on <a
-            class="moz-txt-link-freetext" href="http://members.x.org"
-            moz-do-not-send="true">http://members.x.org</a>, will be
-          made available to all voters to help them make their voting
-          decisions.</p>
-        <p>Nominations and completed personal statements must be
-          received no later than 23:59 UTC on 11 March 2024.</p>
-        <p>The slate of candidates will be published 18 March 2024 and
-          candidate Q&amp;A will begin then. The deadline for Xorg
-          membership applications and renewals has also been extended 2
-          weeks and is now 25 March 2024.</p>
-        <p><br>
-        </p>
-        <p>Cheers,</p>
-        <p>Christopher Michael, on behalf of the X.Org BoD</p>
-        <p><br>
-        </p>
-      </blockquote>
-    </blockquote>
-  </body>
-</html>
-
---------------U1ylqVfCa6riox0GKTHn0D2R--
+> 
+> -- 
+> Ville Syrjälä
+> Intel
