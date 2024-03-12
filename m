@@ -2,145 +2,143 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3D21E87995F
-	for <lists+intel-gfx@lfdr.de>; Tue, 12 Mar 2024 17:50:41 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 55A93879977
+	for <lists+intel-gfx@lfdr.de>; Tue, 12 Mar 2024 17:58:38 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7771C112F21;
-	Tue, 12 Mar 2024 16:50:39 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B990D10F39C;
+	Tue, 12 Mar 2024 16:58:32 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="jKxatCsS";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="dW6n3gpm";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E5274112F25;
- Tue, 12 Mar 2024 16:50:37 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.15])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3D55810ED64;
+ Tue, 12 Mar 2024 16:58:30 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1710262238; x=1741798238;
+ t=1710262711; x=1741798711;
  h=date:from:to:cc:subject:message-id:references:
  in-reply-to:mime-version;
- bh=J4Hq+OeuDYuCiVww0trLK77KXAGH+Ixa0zi4yR6jm7g=;
- b=jKxatCsSrBhMh1bCVc0pW2ulMHkRaedASwbW/jLrT1iUcQFhhWWseWB6
- 42WdkUtgZeYrvhn5R4Llo2FQcCoFvkhzo5zxSD+y5QteUpwrwQVX49Aqb
- R6WZXW4Rkcq2uqbvGIUoBvSxtzlQaq3LQd7PORg5g5LJPqynqO2ziAH41
- XfdCvjvfMH+F0sPKahjNUM8Wmx2G+0UI0ZcGhlEqE1UgqlYcbI7bVkyZ+
- IGsuUjkd0yCkUX704rrCCLVV88EqwCKFUu7OxL/iwvMcIifCQ07xZqKaE
- vQkyGoTtjUraYlcWKazl67+sBOicT7Z3ND76vEOfyf2n74f/kgDDm5oZL A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,11011"; a="4836419"
+ bh=bJMsIS1MTt4EdMf6Q1pnfp6qPVJWV9CkpoG7ADXjO3A=;
+ b=dW6n3gpm+kF4ZMJZ1y/5ckR2SG3y4tn1sceFtLMPGT418V5pJylUjLh1
+ OpoFgdX/bGzRko74QrG1TUzRxaAIFTpIlNx7xQsUjucFs9lnSfFOBuGNk
+ ST+sDXIomdSHv5amu2OwEwqeSR/eYLBlyvXm6x2Gu7ROJeL1QM2t4eYF1
+ 569oLvxDIOXgsjD4/8llLzkvHFksM4OHC10oaEqSUdb0wsTtdzA2VlCsn
+ ac0I7vsz2AzO+wBt8+eJcQ8gpUpW7PXtFGpBSKfHjK5r8fe1SrESsMnaV
+ xlcC7vb47ywQgNi12oePSVkIbb6fo+jOYwP3eJ5ehjFOGp2a6AqhMwN8e Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,11011"; a="8799783"
 X-IronPort-AV: E=Sophos;i="6.07,119,1708416000"; 
-   d="scan'208";a="4836419"
-Received: from fmviesa004.fm.intel.com ([10.60.135.144])
- by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Mar 2024 09:50:37 -0700
+   d="scan'208";a="8799783"
+Received: from orviesa001.jf.intel.com ([10.64.159.141])
+ by orvoesa107.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 12 Mar 2024 09:58:30 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.07,119,1708416000"; d="scan'208";a="16210122"
+X-IronPort-AV: E=Sophos;i="6.07,119,1708416000"; d="scan'208";a="49044216"
 Received: from orsmsx603.amr.corp.intel.com ([10.22.229.16])
- by fmviesa004.fm.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
- 12 Mar 2024 09:50:37 -0700
+ by orviesa001.jf.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
+ 12 Mar 2024 09:58:30 -0700
 Received: from orsmsx610.amr.corp.intel.com (10.22.229.23) by
  ORSMSX603.amr.corp.intel.com (10.22.229.16) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35; Tue, 12 Mar 2024 09:50:36 -0700
-Received: from orsmsx601.amr.corp.intel.com (10.22.229.14) by
- ORSMSX610.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
+ 15.1.2507.35; Tue, 12 Mar 2024 09:58:29 -0700
+Received: from orsedg603.ED.cps.intel.com (10.7.248.4) by
+ orsmsx610.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35; Tue, 12 Mar 2024 09:50:27 -0700
-Received: from ORSEDG602.ED.cps.intel.com (10.7.248.7) by
- orsmsx601.amr.corp.intel.com (10.22.229.14) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35 via Frontend Transport; Tue, 12 Mar 2024 09:50:27 -0700
-Received: from NAM11-CO1-obe.outbound.protection.outlook.com (104.47.56.168)
- by edgegateway.intel.com (134.134.137.103) with Microsoft SMTP Server
+ 15.1.2507.35 via Frontend Transport; Tue, 12 Mar 2024 09:58:29 -0700
+Received: from NAM10-DM6-obe.outbound.protection.outlook.com (104.47.58.100)
+ by edgegateway.intel.com (134.134.137.100) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.35; Tue, 12 Mar 2024 09:50:26 -0700
+ 15.1.2507.35; Tue, 12 Mar 2024 09:58:29 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=XlVKp0K8Cudlp5wMtC/z7iTZg0BCSKMCp1jZJrQfwf01cGMYkFY6qKaUaOOAqGUQGlzoU1DhD4Ox3tGQGagxImocJ6lfH41WQYbaC2VZ0z+4BZxfImBWRaYD6LFy3O8tVLUTpTgqvf7xMEx4qMQOLoawIQOrDLZHAkOi6Jba0oi6OL7Gn/5h8/3Le+92ndcHQanGGgzjLW0CLrF0YBHUYysAQxNItJ2ouuQG0F+BJGn4nbTCT1/TuHvy+wMyRPGdoqKQV+CfyJMIUQ/LWtdTDjRNEaNHVUH8yAmkEA05Av2K84tOo3DM2NtBKqDhfsRHXoV44fpl8SgsoUeL+U4N3g==
+ b=B4cOlHtnSK8o4yO6IwRKkN4LqRTIPgEc7nTKTPbG+Mz0duZGVHKYJkh76gQH2QiT3cSo3O0R1FDjpW5kKPhZHQTnrcrdeJRB7Aj6yG6fjgEvvSbZ/Hh26GhNdMgxd8PCfK/dftrdrOXeWsc9Jk/fpBRd8WD7pAyaFKEpu+khPmJfyGb8xjOaaSrVK/waXPcevO3KWIeY79S2JY1SemcfyTlSMUv+C2F75fivARyZcl41V7tGxi94hSUQrsSpjjvABU+mdWNNy2yt9jhnUP6Q2hy2tfapCyBsIZLVPPCK+2pZrsrgikRU1GJ4gyx9jzhFvXQj8LEysNkpcWxMzqoi6g==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=1x4cJhQLMpPP7nQNetMM9KfSwSjSod9io1DLijgl5FA=;
- b=nAImri9/A/4bXLQY65S7RU6psOcdPLhC0+s15PNHF357NMwf9yx7vxbABrzcKBtrOhvy8jR4G2997hnCikNT0k/1hY8GZ9FJKtuvmqGSE02lVWdoj7b3N2urL42QygHPcHRBZZn3r+q0HaU8zslANVhls6NraSxZhLMwM137kx0mCijY+IC10B75mMdtLM/Ep9NcesD+Bq2YqUzEfPEfatpIEZmNlpJGNlpp8l+O/OmrLJG7sVxJKRtljYgPgxJthz2uy3euUnybBr/S7CSKEDhLfWIOEODrdmidCqyPFjiWkRkrfb74rkRJYPKJyg7Qj0SuAVAE/cqRW3l8zwaYjg==
+ bh=XXJxxfJqc2qoT+S+UVL401Zkua8tnwm1977nD0u+Xfg=;
+ b=Ew7SOS70zqsaCHzk7QbQd1LqtNwDpb8sBbiDL1jTtcu1z7TBrn0357gQsmzxce7CfYLC9Iw2oVgtqTaHmaOHKW8yp14MSrO/7slol5Tub1CdCCgy3k6w0x0mKyDwQ+2UJu6CEEqpTphoKt4ulY2Pm14x7EGUPXGXUr0n25xaGUSaYqQG+7+UzXvYmikzv/Kx+Rj1X9z+4uiQQ1kaKxeoak1d07/FXby64pBcLjB4NGbtXb1I8CLBbK0vIWFH4hXg+PFcA8GzqSUE+rtT3TXudgzinN38Lpx333BAc5XsVXxvhL4tzUECReiQ2SeAiHPiN4u8hveYQ+USAZEpcwI1Pw==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
 Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
 Received: from DS0PR11MB8182.namprd11.prod.outlook.com (2603:10b6:8:163::17)
- by CYYPR11MB8408.namprd11.prod.outlook.com (2603:10b6:930:b9::17) with
+ by DM4PR11MB8227.namprd11.prod.outlook.com (2603:10b6:8:184::10) with
  Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7386.17; Tue, 12 Mar
- 2024 16:50:25 +0000
+ 2024 16:58:28 +0000
 Received: from DS0PR11MB8182.namprd11.prod.outlook.com
  ([fe80::45cf:261e:c084:9493]) by DS0PR11MB8182.namprd11.prod.outlook.com
  ([fe80::45cf:261e:c084:9493%6]) with mapi id 15.20.7386.016; Tue, 12 Mar 2024
- 16:50:25 +0000
-Date: Tue, 12 Mar 2024 09:50:22 -0700
+ 16:58:28 +0000
+Date: Tue, 12 Mar 2024 09:58:25 -0700
 From: Matt Roper <matthew.d.roper@intel.com>
-To: Gustavo Sousa <gustavo.sousa@intel.com>
-CC: <intel-gfx@lists.freedesktop.org>, <intel-xe@lists.freedesktop.org>, Lucas
- De Marchi <lucas.demarchi@intel.com>, Stanislav Lisovskiy
- <stanislav.lisovskiy@intel.com>
-Subject: Re: [PATCH v2 5/8] drm/i915: Add mdclk_cdclk_ratio to intel_dbuf_state
-Message-ID: <20240312165022.GJ718896@mdroper-desk1.amr.corp.intel.com>
-References: <20240312163639.172321-1-gustavo.sousa@intel.com>
- <20240312163639.172321-6-gustavo.sousa@intel.com>
- <171026193253.160672.4254959394542559311@gjsousa-mobl2>
+To: Andi Shyti <andi.shyti@linux.intel.com>
+CC: intel-gfx <intel-gfx@lists.freedesktop.org>, dri-devel
+ <dri-devel@lists.freedesktop.org>, Chris Wilson
+ <chris.p.wilson@linux.intel.com>, Joonas Lahtinen
+ <joonas.lahtinen@linux.intel.com>, John Harrison <John.C.Harrison@intel.com>, 
+ <stable@vger.kernel.org>, Andi Shyti <andi.shyti@kernel.org>, Tvrtko Ursulin
+ <tursulin@ursulin.net>
+Subject: Re: [PATCH v5 1/4] drm/i915/gt: Disable HW load balancing for CCS
+Message-ID: <20240312165825.GK718896@mdroper-desk1.amr.corp.intel.com>
+References: <20240308202223.406384-1-andi.shyti@linux.intel.com>
+ <20240308202223.406384-2-andi.shyti@linux.intel.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Disposition: inline
-In-Reply-To: <171026193253.160672.4254959394542559311@gjsousa-mobl2>
-X-ClientProxiedBy: BYAPR02CA0021.namprd02.prod.outlook.com
- (2603:10b6:a02:ee::34) To DS0PR11MB8182.namprd11.prod.outlook.com
+In-Reply-To: <20240308202223.406384-2-andi.shyti@linux.intel.com>
+X-ClientProxiedBy: SJ0PR13CA0202.namprd13.prod.outlook.com
+ (2603:10b6:a03:2c3::27) To DS0PR11MB8182.namprd11.prod.outlook.com
  (2603:10b6:8:163::17)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DS0PR11MB8182:EE_|CYYPR11MB8408:EE_
-X-MS-Office365-Filtering-Correlation-Id: 98db3937-0ae7-4699-4b2f-08dc42b4838c
+X-MS-TrafficTypeDiagnostic: DS0PR11MB8182:EE_|DM4PR11MB8227:EE_
+X-MS-Office365-Filtering-Correlation-Id: 91bd46b8-f373-4357-a71a-08dc42b5a36a
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: g5Hkyai0TQN4T/kVtWgrDoKcnnez2WttvzaTkZS6gcst7meKD0boeT9D77k0LB6ZqOGqDR1iQm4hqMzxFGGLahYEZKpEHTNqcvdQtqis3E6XFAFFimul7MCnO3oGIc1ZhLRN8b8gmGam6rEAul8AqxLWTisphhJLt+G02fOv4VFm5HOw8p3IaExbYxBQ1kyBowwC0sv8T2P8++6pXJC72WVk7g3on72KlRV614KCAHnzKGv/kv0ihMmR5Pdl3yVUdDWE51cxUDMmcRdx1fGVVAhfmFTaYfhcNJ1P7G7E6sTZeY1tEW38smcIqT5sJN3ptZKOkCLI/XR4fGM7C6QGc9rlysxgCyLNBLTHvcCNhzs/WD6NirBh3V9WZNemrc388PA38gctB1UgNAGLStzKAxILdL8DalS9rI/V5vFaAgAWdbFtV69Fen9ReYb0J0kMURBoWCR3TBJUYg7jAoN8rzO+IHbpndPw7czUiFyYsrpkhu4TA2qlrY6o+/p2jiqXNGMtZr7gOXLnog8L0eE7cjWHVl1jZ3f6/zKtnVtO4apKYNRE507NkNbkPW5AHYxFfiXREe4M2H8BV1RqyAPIqe8mfciCPNLG3qAfdEuHOWTtaoUzMkZyjHHsi3DIO72gD5Y/0fmLM/yKrFcqZOavEwiFsJDXFPBL8z8X+7hbzZc=
+X-Microsoft-Antispam-Message-Info: c0+msbBlMPYFVFUnzQFuC8aXoMlB6yJIEcU4AIOTpT7yfCxFZran6RE8xoEpQZSlbvWkKOu4zGNQ7UrY5QHg6Kn7NmrhRP5WG5F8acXLG5LQKYIWr1dBTBmyUwESyeSbnKTy0F6EpQIBE7fugKiSxs31owrwEnupEYmnme0VDP6fxBDRXdN8ugwzPiJO3Tl+Vuff0U5mPRwr51Dupul/8yU4XJJ8Dhrh6GbNWYiOMaHCbkYTUJN2drROdaUdES88wSA47vXS8Crrr+Orv1/WiluHb0Mbk7PuBD1E0P21XzkFBfcRybeSVbp4V1ELiayMEKFtv45mE8Nrh1msCCP9TIeM8vx6ZYEdqlEpaqvDFGxlAPTP7hOjwPA+OokqWXuzQL1Nc9MpHGnt4alnx0Z9EW61GdLkzLoHqFDE4nIB9YzJbbCWMWIrG49qcpSonsexqpNDBfXn4ghKL5OAtISNsESzBMuODngPfSZBYnDddxBLjUCc3hCow37o48qcEDOzyusCePGpcVy53J0VsCbPu3JM++uhqSUAMoDy77QQi1ymo5YCwDLLz2gzelK7NnVxLAOBiQI+pPkmHWcjGUaeaC10mz1IP+E24BH3OTJtZBZzmXnjCutSsoNXOniglAINqfOzC0XeywyUy7hHHWjkGsp9EZEFQd9mmq0QpH/NLOg=
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:DS0PR11MB8182.namprd11.prod.outlook.com; PTR:; CAT:NONE;
  SFS:(13230031)(376005)(1800799015); DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?lhHPcfNbXPOuEQi/d8ByYiZmFQMuTwPqQeH4WjZg751tyzQ9wmzrinkRMaoX?=
- =?us-ascii?Q?WnpNL4+1e/LX0FLzpn5VMXJvtLG3lOfq/zGEhStDd344RdxRb9Cg0JG44nUd?=
- =?us-ascii?Q?DHTZ3qS0P87iYrXh04NbvV+ucmUFvDFVENjBJyXFW6ePHgRPP8QR5yzitCRz?=
- =?us-ascii?Q?SeJiqiElDjc019rr8BRxCTBAaaiSjGoe/cLQtHhUkaqcisfsqF7MAEqnR+5l?=
- =?us-ascii?Q?S5nHGqbL3cywmYrE4I4kvkfhxWWL/2nIuHbfL0g1kBcP3jw9pvKkHaUR97eS?=
- =?us-ascii?Q?ruOzTL6gCyn/K5NcnZ6dsHAr+D3gIw/2z/BXrjR6pOodcuLQmMGg5nUNfw6X?=
- =?us-ascii?Q?c+muiZcSLF+1JbeV26ykBjqqCRon6cAmr7YRPsKMxcQiYnLhxgD6O1CD6qY1?=
- =?us-ascii?Q?dd8t3RqNn4UiDxbvV5I9CcpEm8jQcFCPvbaC8iHM+W0iL0gxtTfQ0VseXL7d?=
- =?us-ascii?Q?+P0907d8cwgloGOKv0xQ8PWe78Yo/i3QCdDbyUSETiKSmxOpLpYywhlNInm3?=
- =?us-ascii?Q?6XW0sijHdrXugxOIHxADkSKCzwfDnEfqidZLiCaqU8I+H/KiVe84QUmJEicj?=
- =?us-ascii?Q?qEu/dahetbnVklOHgBTVdxAuISMP6QAL/lWRNeA4eCz5a9IzggiEA2bOEsLs?=
- =?us-ascii?Q?Iqlc/1LdoDp6LmyEEQIScR3FZNxRQ79YbOoCPMo8aGG3T1pfZm7m1dgO4M4B?=
- =?us-ascii?Q?jvG6v0N540ts+TmSXNa/UNKvJdPru23qUB/7ujMP6GLclkJ7ObVKe2c8W+Lv?=
- =?us-ascii?Q?jl3Dk8qG5aueuWlCPQbUB1ag9WNK+XCYoOIXceihbM0B60JCzh/CJaern+IK?=
- =?us-ascii?Q?bbYZOtYI2lHHTaa55Wk0wcTqvebAjQwAIQKSkTWVKHWkgCfqChCZufsUaQJ2?=
- =?us-ascii?Q?vlWxEdha0s+TbL5r/tGkJwvsARJyOWT7qkzo9f70lpw1qcTCPZgpZTwycg4v?=
- =?us-ascii?Q?/vaIGFKHj+eCv6ryDs92UtxR0qfuleglfU4lPoY4s3jIjdrjY5rTtVzKx27Z?=
- =?us-ascii?Q?Yt6/EuZzAz8ln1KBSnXcnZLJ1dSxsz5cjZvU9Jzlq0lgL0VjlCZ/c53dR0B7?=
- =?us-ascii?Q?+fcaf0rmjqW/b0YKooWUM0v+4DuZpT55QbCrtjgtEsuDuSuKfzzizTNp2EhT?=
- =?us-ascii?Q?r7UO+miBKC+LKzIaST/iY1k4hkSihFUo8ga56ctPPQ01RaU94WXB7hCXJcv3?=
- =?us-ascii?Q?bSXgDs9kKcNTV06tYVTt58Zss4+2t2voJg2gB9GHhVsEiHP5yFWnUADGmU3N?=
- =?us-ascii?Q?kfFXrMlkDbGil4H1W2dZ6KgAtUvVk2WLmUNpnjMV4ID6mHNzuLgPebN+6eqZ?=
- =?us-ascii?Q?fndxnOlGzhIuRnU9voUCWj7UwAA+XdpXBEYhPv0Nd3N7bZOtGE/k/UTbDdGr?=
- =?us-ascii?Q?q3MHihvfewVNevh3aJ0E95XX7bs8k6EZUIK0k3YjxYTgFTFdUswmnTAeasbF?=
- =?us-ascii?Q?yjNgDtcREnnAgztRqyPNdMeXOc0QTjuPo5vmBefGgno+pv+pn61YeWLFj2Vh?=
- =?us-ascii?Q?gQWflwrnrPh5pAuIknGs9R47oTAbuGgAF8HRWzyT4Osd1AUYdL7BIR9KXHke?=
- =?us-ascii?Q?JsvbHHFTOJ//47kNHwqnGPmY/KecP/KZFj5SRq7hugVtN8a93ui/7X4gptQ0?=
- =?us-ascii?Q?Rw=3D=3D?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 98db3937-0ae7-4699-4b2f-08dc42b4838c
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?etfEhQC20+gjpdsMt+3CHWIt1vRuEZGyoX3vLeuPjFL2klb/FnlEQn8/SQAQ?=
+ =?us-ascii?Q?AVFj9Bo6CYCComT9AKZNWEuxHRoTzC3tPj7Efx2vZmgxdHOz6cZn/3aAeiUU?=
+ =?us-ascii?Q?PuSTOjwZbL1A7QY5CepFtZuVO+fICDyT7Ym74OlMBJkey5mJe8ysH56uWw4P?=
+ =?us-ascii?Q?O+s709bYHOr7wphA+peggYQctp+6OhxK/vw6qF2FWvX4QJAymJNyRWhR2J37?=
+ =?us-ascii?Q?NH/qbFzvM0S3jVPF869sk/ZI+tecr+911r55YHrB0eYUKD78O9Bs8CghR3T2?=
+ =?us-ascii?Q?/7AsxfWVXdbyuIZoeoRCc63yrPUw/f5DK5A1i9aUhFJJGRNwHK/WfVGnU+qw?=
+ =?us-ascii?Q?UsTQxj3xAvfOoh7XDw5LflLu1nUyVEMqAcuGofMXE4oAlz1vukkls7Rp8JnE?=
+ =?us-ascii?Q?ov12KpVE4hn/+zXkZhisDL32Q7Dv3r4T3gECovWPlUU9hCPCIJyng3VmrsjZ?=
+ =?us-ascii?Q?ZWmZaw/pzq/RKUgYR3Vg3AQ6YBcA/qqcCMYqa4rEU9nXpULPg5ixCS642Tbd?=
+ =?us-ascii?Q?xKIEFsZTQVB0V3R5qjOJomuv0ZZvSgdKy/7HPLxnyVAl4JSCcxKOOlpK/ydr?=
+ =?us-ascii?Q?lGRqs6LcmrKMy+O3CgAWwciUkOfalQH1WXMP1zhpw2fFOUcAaeHO6VciUGS7?=
+ =?us-ascii?Q?3CZbNg6hW34YM5DOZM77bL0uDDnWNwNzUcf4m3iF6OhylUQosh+uj2Udwxmj?=
+ =?us-ascii?Q?RcTmf/lpwnq7JbLv7CJ5SYefxLY4OFywT8f7mJl5vCvmaINnQU6I4pAweNZe?=
+ =?us-ascii?Q?T8UNys2j7DDrCBlmaFfamq6u2AOq8X06dGsUt4qDGYBLpO5mJU29G7o27eni?=
+ =?us-ascii?Q?yat+4HZ5+OsC11Gsar9SjcLD1o/lvZ/RDxCVgqxkjkrs3X6rzmmspYVxrFx9?=
+ =?us-ascii?Q?ffDIkHAgi1m492vcKwziGXzMTwiYPoZN+EJOztZiQI+EMU/zCsvahFhIFd92?=
+ =?us-ascii?Q?aU/fmEdM9Y8zfrwTdHNJOLeNBJrvbNQ1vDTr38vydhe9Z1PG42tz3lsS4VKx?=
+ =?us-ascii?Q?pA2Mt3iD1kx70N8ADl1vcRQ4BIBjSNlvQ0dTdAMiFriuV9T8JaSDCFZRtwiO?=
+ =?us-ascii?Q?ufoQPRD3ahtaBeqYpRtUlJc8i1YraWPcdDKzl0ChdBURBPL4TwH0aUnj9XhB?=
+ =?us-ascii?Q?CGuh6cOTOfk9EvKlOt4nihWHr4/J/pLKFU/5RYRD0zpYmRD0IXvzVDD1No3E?=
+ =?us-ascii?Q?OUSSEfgrstYQNjuK9IXDem/umNKb7ZbRNQK2wsumAl/ZCUkTMCoi2DBtXy2l?=
+ =?us-ascii?Q?CPONm0dwDUpoBFEsq8yZ7ameKgR1Ewzn/aMfLmh9IsUUsqTxmv66bWkbqKdy?=
+ =?us-ascii?Q?MpqR89KTyEu+vBa5QdoW9gOszGjtCWiRCD4hELCeG1CJKs6RDuC5C8BuuHxc?=
+ =?us-ascii?Q?Wl1TXypQrVGvtDNS6wsq5Xkwd20rrbQBIRj3Lmsk/PS/KREyPWRHLJu3LEL7?=
+ =?us-ascii?Q?mjHfxkh0uQL3oGdf/yHOGsPYJzXmyM1HB8i1G6vkNWyKqVR8X/qH64J5P258?=
+ =?us-ascii?Q?mylKXI8V9VD8eVmxvNwFOtNWzdDy5TU1trTxKlLf6Xw72d05xJQUg7TuULb5?=
+ =?us-ascii?Q?RgUD/aOkoABUvnQhUvptThm6k5CcQjE88un3woJnR27QKUftbT3jh3rVqo+r?=
+ =?us-ascii?Q?3w=3D=3D?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: 91bd46b8-f373-4357-a71a-08dc42b5a36a
 X-MS-Exchange-CrossTenant-AuthSource: DS0PR11MB8182.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 12 Mar 2024 16:50:24.9844 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 12 Mar 2024 16:58:28.0454 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: OURBdNE2ZieEVTmdhskLxT6iNmLyPcKZAXoKQvNTsLc7/0LV72MD6lcSFg8kUUAXOCAaehs0FoiM11gVZroNFqkAH4boRZAHmENybqsEdhs=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CYYPR11MB8408
+X-MS-Exchange-CrossTenant-UserPrincipalName: RawEkkMGnoOrnFaVziUXP1K0nSd8Xo6++2ZWZA8ZEPfJhiB8lMWg5nsfb/MeRFvxmHH1tOhGLH90j7VPFwt+hZwYgycY077slVGdLYImjeY=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM4PR11MB8227
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -157,177 +155,98 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, Mar 12, 2024 at 01:45:32PM -0300, Gustavo Sousa wrote:
-> Quoting Gustavo Sousa (2024-03-12 13:36:36-03:00)
-> >Xe2LPD always selects the CDCLK PLL as source for the MDCLK. Because of
-> >that, the ratio between MDCLK and CDCLK is not be constant anymore. As
-> >such, make sure to have the current ratio available in intel_dbuf_state
-> >so that it can be used during dbuf programming.
-> >
-> >Note that we write-lock the global state instead of serializing to a
-> >hardware commit because a change in the ratio should be rather handled
-> >in the CDCLK change sequence, which will need to take care of updating
-> >the necessary registers in that case. We will implement that in upcoming
-> >changes.
-> >
-> >That said, changes in the MBus joining state should be handled by the
-> >DBUF/MBUS logic, just like it is already done, but the logic will need
-> >to know the ratio to properly update the registers.
-> >
-> >v2:
-> >  - Make first sentence of commit message more intelligible. (Matt)
-> >
-> >Reviewed-by: Matt Roper <matthew.d.roper@intel.com>
-> >Signed-off-by: Gustavo Sousa <gustavo.sousa@intel.com>
-> >---
-> > drivers/gpu/drm/i915/display/intel_cdclk.c   | 20 ++++++++++++++++++++
-> > drivers/gpu/drm/i915/display/intel_cdclk.h   |  2 ++
-> > drivers/gpu/drm/i915/display/skl_watermark.c | 18 +++++++++++++++++-
-> > drivers/gpu/drm/i915/display/skl_watermark.h |  3 +++
-> > 4 files changed, 42 insertions(+), 1 deletion(-)
-> >
-> >diff --git a/drivers/gpu/drm/i915/display/intel_cdclk.c b/drivers/gpu/drm/i915/display/intel_cdclk.c
-> >index 354a9dba6440..4e143082dca1 100644
-> >--- a/drivers/gpu/drm/i915/display/intel_cdclk.c
-> >+++ b/drivers/gpu/drm/i915/display/intel_cdclk.c
-> >@@ -39,6 +39,7 @@
-> > #include "intel_pcode.h"
-> > #include "intel_psr.h"
-> > #include "intel_vdsc.h"
-> >+#include "skl_watermark.h"
-> > #include "vlv_sideband.h"
-> > 
-> > /**
-> >@@ -1889,6 +1890,16 @@ static u32 xe2lpd_mdclk_source_sel(struct drm_i915_private *i915)
-> >         return MDCLK_SOURCE_SEL_CD2XCLK;
-> > }
-> > 
-> >+u8 intel_mdclk_cdclk_ratio(struct drm_i915_private *i915,
-> >+                           const struct intel_cdclk_config *cdclk_config)
-> >+{
-> >+        if (mdclk_source_is_cdclk_pll(i915))
-> >+                return DIV_ROUND_UP(cdclk_config->vco, cdclk_config->cdclk);
-> >+
-> >+        /* Otherwise, source for MDCLK is CD2XCLK. */
-> >+        return 2;
+On Fri, Mar 08, 2024 at 09:22:16PM +0100, Andi Shyti wrote:
+> The hardware should not dynamically balance the load between CCS
+> engines. Wa_14019159160 recommends disabling it across all
+> platforms.
 > 
-> Matt, this function was updated as a result of updating the second patch
-> (now "drm/i915/cdclk: Add and use mdclk_source_is_cdclk_pll()").
+> Fixes: d2eae8e98d59 ("drm/i915/dg2: Drop force_probe requirement")
+> Signed-off-by: Andi Shyti <andi.shyti@linux.intel.com>
+> Cc: Chris Wilson <chris.p.wilson@linux.intel.com>
+> Cc: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
+> Cc: Matt Roper <matthew.d.roper@intel.com>
+> Cc: <stable@vger.kernel.org> # v6.2+
+> ---
+>  drivers/gpu/drm/i915/gt/intel_gt_regs.h     |  1 +
+>  drivers/gpu/drm/i915/gt/intel_workarounds.c | 23 +++++++++++++++++++--
+>  2 files changed, 22 insertions(+), 2 deletions(-)
 > 
-> Since the update here is functionally equivalent to v1, I took the
-> liberty of carrying your r-b over. Please let me know if you have
-> concerns here.
+> diff --git a/drivers/gpu/drm/i915/gt/intel_gt_regs.h b/drivers/gpu/drm/i915/gt/intel_gt_regs.h
+> index 50962cfd1353..cf709f6c05ae 100644
+> --- a/drivers/gpu/drm/i915/gt/intel_gt_regs.h
+> +++ b/drivers/gpu/drm/i915/gt/intel_gt_regs.h
+> @@ -1478,6 +1478,7 @@
+>  
+>  #define GEN12_RCU_MODE				_MMIO(0x14800)
+>  #define   GEN12_RCU_MODE_CCS_ENABLE		REG_BIT(0)
+> +#define   XEHP_RCU_MODE_FIXED_SLICE_CCS_MODE	REG_BIT(1)
 
-No concerns; you can keep my r-b.
+Nitpick: we usually order register bits in descending order.  Aside from
+that,
+
+Reviewed-by: Matt Roper <matthew.d.roper@intel.com>
+
+although I still hope our architects will push through a formal
+documentation update for this.
 
 
 Matt
 
+>  
+>  #define CHV_FUSE_GT				_MMIO(VLV_GUNIT_BASE + 0x2168)
+>  #define   CHV_FGT_DISABLE_SS0			(1 << 10)
+> diff --git a/drivers/gpu/drm/i915/gt/intel_workarounds.c b/drivers/gpu/drm/i915/gt/intel_workarounds.c
+> index 25413809b9dc..4865eb5ca9c9 100644
+> --- a/drivers/gpu/drm/i915/gt/intel_workarounds.c
+> +++ b/drivers/gpu/drm/i915/gt/intel_workarounds.c
+> @@ -51,7 +51,8 @@
+>   *   registers belonging to BCS, VCS or VECS should be implemented in
+>   *   xcs_engine_wa_init(). Workarounds for registers not belonging to a specific
+>   *   engine's MMIO range but that are part of of the common RCS/CCS reset domain
+> - *   should be implemented in general_render_compute_wa_init().
+> + *   should be implemented in general_render_compute_wa_init(). The settings
+> + *   about the CCS load balancing should be added in ccs_engine_wa_mode().
+>   *
+>   * - GT workarounds: the list of these WAs is applied whenever these registers
+>   *   revert to their default values: on GPU reset, suspend/resume [1]_, etc.
+> @@ -2854,6 +2855,22 @@ add_render_compute_tuning_settings(struct intel_gt *gt,
+>  		wa_write_clr(wal, GEN8_GARBCNTL, GEN12_BUS_HASH_CTL_BIT_EXC);
+>  }
+>  
+> +static void ccs_engine_wa_mode(struct intel_engine_cs *engine, struct i915_wa_list *wal)
+> +{
+> +	struct intel_gt *gt = engine->gt;
+> +
+> +	if (!IS_DG2(gt->i915))
+> +		return;
+> +
+> +	/*
+> +	 * Wa_14019159160: This workaround, along with others, leads to
+> +	 * significant challenges in utilizing load balancing among the
+> +	 * CCS slices. Consequently, an architectural decision has been
+> +	 * made to completely disable automatic CCS load balancing.
+> +	 */
+> +	wa_masked_en(wal, GEN12_RCU_MODE, XEHP_RCU_MODE_FIXED_SLICE_CCS_MODE);
+> +}
+> +
+>  /*
+>   * The workarounds in this function apply to shared registers in
+>   * the general render reset domain that aren't tied to a
+> @@ -3004,8 +3021,10 @@ engine_init_workarounds(struct intel_engine_cs *engine, struct i915_wa_list *wal
+>  	 * to a single RCS/CCS engine's workaround list since
+>  	 * they're reset as part of the general render domain reset.
+>  	 */
+> -	if (engine->flags & I915_ENGINE_FIRST_RENDER_COMPUTE)
+> +	if (engine->flags & I915_ENGINE_FIRST_RENDER_COMPUTE) {
+>  		general_render_compute_wa_init(engine, wal);
+> +		ccs_engine_wa_mode(engine, wal);
+> +	}
+>  
+>  	if (engine->class == COMPUTE_CLASS)
+>  		ccs_engine_wa_init(engine, wal);
+> -- 
+> 2.43.0
 > 
-> --
-> Gustavo Sousa
-> 
-> >+}
-> >+
-> > static bool cdclk_compute_crawl_and_squash_midpoint(struct drm_i915_private *i915,
-> >                                                     const struct intel_cdclk_config *old_cdclk_config,
-> >                                                     const struct intel_cdclk_config *new_cdclk_config,
-> >@@ -3278,6 +3289,15 @@ int intel_modeset_calc_cdclk(struct intel_atomic_state *state)
-> >                             "Modeset required for cdclk change\n");
-> >         }
-> > 
-> >+        if (intel_mdclk_cdclk_ratio(dev_priv, &old_cdclk_state->actual) !=
-> >+            intel_mdclk_cdclk_ratio(dev_priv, &new_cdclk_state->actual)) {
-> >+                u8 ratio = intel_mdclk_cdclk_ratio(dev_priv, &new_cdclk_state->actual);
-> >+
-> >+                ret = intel_dbuf_state_set_mdclk_cdclk_ratio(state, ratio);
-> >+                if (ret)
-> >+                        return ret;
-> >+        }
-> >+
-> >         drm_dbg_kms(&dev_priv->drm,
-> >                     "New cdclk calculated to be logical %u kHz, actual %u kHz\n",
-> >                     new_cdclk_state->logical.cdclk,
-> >diff --git a/drivers/gpu/drm/i915/display/intel_cdclk.h b/drivers/gpu/drm/i915/display/intel_cdclk.h
-> >index fa301495e7f1..8e6e302bd599 100644
-> >--- a/drivers/gpu/drm/i915/display/intel_cdclk.h
-> >+++ b/drivers/gpu/drm/i915/display/intel_cdclk.h
-> >@@ -62,6 +62,8 @@ void intel_update_cdclk(struct drm_i915_private *dev_priv);
-> > u32 intel_read_rawclk(struct drm_i915_private *dev_priv);
-> > bool intel_cdclk_clock_changed(const struct intel_cdclk_config *a,
-> >                                const struct intel_cdclk_config *b);
-> >+u8 intel_mdclk_cdclk_ratio(struct drm_i915_private *i915,
-> >+                           const struct intel_cdclk_config *cdclk_config);
-> > void intel_set_cdclk_pre_plane_update(struct intel_atomic_state *state);
-> > void intel_set_cdclk_post_plane_update(struct intel_atomic_state *state);
-> > void intel_cdclk_dump_config(struct drm_i915_private *i915,
-> >diff --git a/drivers/gpu/drm/i915/display/skl_watermark.c b/drivers/gpu/drm/i915/display/skl_watermark.c
-> >index d9e49cd60d3a..4410e21888ad 100644
-> >--- a/drivers/gpu/drm/i915/display/skl_watermark.c
-> >+++ b/drivers/gpu/drm/i915/display/skl_watermark.c
-> >@@ -3057,6 +3057,8 @@ static void skl_wm_get_hw_state(struct drm_i915_private *i915)
-> >         if (HAS_MBUS_JOINING(i915))
-> >                 dbuf_state->joined_mbus = intel_de_read(i915, MBUS_CTL) & MBUS_JOIN;
-> > 
-> >+        dbuf_state->mdclk_cdclk_ratio = intel_mdclk_cdclk_ratio(i915, &i915->display.cdclk.hw);
-> >+
-> >         for_each_intel_crtc(&i915->drm, crtc) {
-> >                 struct intel_crtc_state *crtc_state =
-> >                         to_intel_crtc_state(crtc->base.state);
-> >@@ -3530,6 +3532,19 @@ int intel_dbuf_init(struct drm_i915_private *i915)
-> >         return 0;
-> > }
-> > 
-> >+int intel_dbuf_state_set_mdclk_cdclk_ratio(struct intel_atomic_state *state, u8 ratio)
-> >+{
-> >+        struct intel_dbuf_state *dbuf_state;
-> >+
-> >+        dbuf_state = intel_atomic_get_dbuf_state(state);
-> >+        if (IS_ERR(dbuf_state))
-> >+                return PTR_ERR(dbuf_state);
-> >+
-> >+        dbuf_state->mdclk_cdclk_ratio = ratio;
-> >+
-> >+        return intel_atomic_lock_global_state(&dbuf_state->base);
-> >+}
-> >+
-> > static void intel_dbuf_mdclk_cdclk_ratio_update(struct drm_i915_private *i915,
-> >                                                 u8 ratio,
-> >                                                 bool joined_mbus)
-> >@@ -3574,7 +3589,8 @@ static void update_mbus_pre_enable(struct intel_atomic_state *state)
-> >                      MBUS_HASHING_MODE_MASK | MBUS_JOIN |
-> >                      MBUS_JOIN_PIPE_SELECT_MASK, mbus_ctl);
-> > 
-> >-        intel_dbuf_mdclk_cdclk_ratio_update(i915, 2, dbuf_state->joined_mbus);
-> >+        intel_dbuf_mdclk_cdclk_ratio_update(i915, dbuf_state->mdclk_cdclk_ratio,
-> >+                                            dbuf_state->joined_mbus);
-> > }
-> > 
-> > void intel_dbuf_pre_plane_update(struct intel_atomic_state *state)
-> >diff --git a/drivers/gpu/drm/i915/display/skl_watermark.h b/drivers/gpu/drm/i915/display/skl_watermark.h
-> >index e3d1d74a7b17..fed4d12df584 100644
-> >--- a/drivers/gpu/drm/i915/display/skl_watermark.h
-> >+++ b/drivers/gpu/drm/i915/display/skl_watermark.h
-> >@@ -58,6 +58,7 @@ struct intel_dbuf_state {
-> >         u8 slices[I915_MAX_PIPES];
-> >         u8 enabled_slices;
-> >         u8 active_pipes;
-> >+        u8 mdclk_cdclk_ratio;
-> >         bool joined_mbus;
-> > };
-> > 
-> >@@ -71,6 +72,8 @@ intel_atomic_get_dbuf_state(struct intel_atomic_state *state);
-> >         to_intel_dbuf_state(intel_atomic_get_new_global_obj_state(state, &to_i915(state->base.dev)->display.dbuf.obj))
-> > 
-> > int intel_dbuf_init(struct drm_i915_private *i915);
-> >+int intel_dbuf_state_set_mdclk_cdclk_ratio(struct intel_atomic_state *state, u8 ratio);
-> >+
-> > void intel_dbuf_pre_plane_update(struct intel_atomic_state *state);
-> > void intel_dbuf_post_plane_update(struct intel_atomic_state *state);
-> > void intel_mbus_dbox_update(struct intel_atomic_state *state);
-> >-- 
-> >2.44.0
-> >
 
 -- 
 Matt Roper
