@@ -2,57 +2,58 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id A6B5F879370
-	for <lists+intel-gfx@lfdr.de>; Tue, 12 Mar 2024 12:58:20 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6AD31879397
+	for <lists+intel-gfx@lfdr.de>; Tue, 12 Mar 2024 13:03:10 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E3F8510F3E4;
-	Tue, 12 Mar 2024 11:58:18 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5717510F046;
+	Tue, 12 Mar 2024 12:03:08 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Qr5ssPGI";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="hc3SyWpB";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 160FF10F3B8
- for <intel-gfx@lists.freedesktop.org>; Tue, 12 Mar 2024 11:58:16 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.14])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5EBCE10F046
+ for <intel-gfx@lists.freedesktop.org>; Tue, 12 Mar 2024 12:03:07 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1710244697; x=1741780697;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=O9255A1XEZbTGozNj2O653nv4J/0bslbyqiDemKHAJQ=;
- b=Qr5ssPGIUzgJ30VO1Hku+6UViUr8QApiF4YJTdrJ/Y7cBpnAIbop2x5X
- 2FKHTYok5Xndh/+zG6HiAhdvj+AXsUAIFVyqao71o9zteOqmQ3YsHanUE
- 9i684uOrk5tGgZmPCjKzjogIrX3EoldcCN7TaruP6FUXb5ssM3+jiZ2Oo
- U1Ew1iCjEkhiO8CpJPdImjOQkcXO29w2rA89CPWnLHPRoczRSZT3GfJcM
- JMsctZz63PN1+Zcha6a2WYUDlWe48Pg48CaEA5GJuddx8BZ12VJIXGCKG
- zs7isf7mN6UoTiUK8mENi9mPvk7UlFrnLsQY0IiM+nEEL7NCtqWGCPB/g g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,11010"; a="4803310"
+ t=1710244988; x=1741780988;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version:content-transfer-encoding;
+ bh=2+ETaapEupOqKFftf55/7meYHq4RTpwgJMF1tYaVaD0=;
+ b=hc3SyWpBiUYwNoi+fUglF7GZw4k57HtAApoWVoR7oIDKjQPwiSKaf2aD
+ BRIGq21C2BG0HChaeP+pYVlaMMz7lQQRnCR+IflFDHdj09JWQRQHVtzOE
+ AQO1DE1queizP4NQQW6EKkbqSQVeBY7EafXzxBqeR/ajEoQ83wLnf69yO
+ MQrxCLMwAfXFKiyYLvHy4jTLM8tUA4f98FwWw6WRdLjvQ0gfeH5Sg3nKq
+ GFpwDcaTe5E63s00ftsOieEo8XopAIrn5yQFfeYhh00My9+W9euijAXBA
+ hsJz6jTOR7Ny/T5uor6DO5LAetbI2C05Y4rNElbfT4bj0xUmB3C6OaCpT Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,11010"; a="8767586"
 X-IronPort-AV: E=Sophos;i="6.07,119,1708416000"; 
-   d="scan'208";a="4803310"
-Received: from orviesa004.jf.intel.com ([10.64.159.144])
- by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Mar 2024 04:58:03 -0700
+   d="scan'208";a="8767586"
+Received: from fmviesa005.fm.intel.com ([10.60.135.145])
+ by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 12 Mar 2024 05:02:05 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.07,119,1708416000"; d="scan'208";a="16169424"
+X-IronPort-AV: E=Sophos;i="6.07,119,1708416000"; d="scan'208";a="16004996"
 Received: from rfreedx-mobl.amr.corp.intel.com (HELO localhost)
  ([10.252.35.216])
- by orviesa004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Mar 2024 04:58:01 -0700
+ by fmviesa005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 12 Mar 2024 05:01:49 -0700
 From: Jani Nikula <jani.nikula@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Cc: jani.nikula@intel.com,
- =?UTF-8?q?Thomas=20Wei=C3=9Fschuh?= <thomas.weissschuh@linutronix.de>,
+To: Thomas =?utf-8?Q?Wei=C3=9Fschuh?= <thomas.weissschuh@linutronix.de>,
  Radhakrishna Sripada <radhakrishna.sripada@intel.com>
-Subject: [PATCH] drm/i915/opregion: add intel_opregion_vbt_present() stub for
- ACPI=n
-Date: Tue, 12 Mar 2024 13:57:57 +0200
-Message-Id: <20240312115757.683584-1-jani.nikula@intel.com>
-X-Mailer: git-send-email 2.39.2
-MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
+Cc: intel-gfx@lists.freedesktop.org
+Subject: Re: [PATCH v3 4/6] drm/i915: Extract opregion vbt presence check
+In-Reply-To: <20240312120240-afdb1b83-8517-434b-be79-06f41bafd71f@linutronix.de>
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-Content-Transfer-Encoding: 8bit
+References: <20240228213235.2495611-1-radhakrishna.sripada@intel.com>
+ <20240228213235.2495611-5-radhakrishna.sripada@intel.com>
+ <20240312120240-afdb1b83-8517-434b-be79-06f41bafd71f@linutronix.de>
+Date: Tue, 12 Mar 2024 14:01:45 +0200
+Message-ID: <87msr3slp2.fsf@intel.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -68,34 +69,37 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-The opregion code needs stubs for ACPI=n. Add the missing stub for
-intel_opregion_vbt_present().
+On Tue, 12 Mar 2024, Thomas Wei=C3=9Fschuh <thomas.weissschuh@linutronix.de=
+> wrote:
+> On Wed, Feb 28, 2024 at 01:32:33PM -0800, Radhakrishna Sripada wrote:
+>> We want to later change intel_opregion_get_vbt to duplicate the vbt
+>> memory if present, which would be an overkill when we just want to
+>> peek into the presence of opregion vbt. Carve out the presence check
+>> into its own function to use in places where only the presence of vbt
+>> is required.
+>
+> This doesn't compile when CONFIG_ACPI is not enabled:
+>
+>   CC [M]  drivers/gpu/drm/xe/i915-display/intel_bios.o
+> drivers/gpu/drm/i915/display/intel_bios.c: In function 'intel_bios_is_lvd=
+s_present':
+> drivers/gpu/drm/i915/display/intel_bios.c:3425:24: error: implicit declar=
+ation of function 'intel_opregion_vbt_present'; did you mean
+>  'intel_opregion_asle_present'? [-Werror=3Dimplicit-function-declaration]
+>  3425 |                 return intel_opregion_vbt_present(i915);
+>       |                        ^~~~~~~~~~~~~~~~~~~~~~~~~~
+>       |                        intel_opregion_asle_present
+> cc1: all warnings being treated as errors
+>
+> Seen on next-20240312.
 
-Reported-by: Thomas Weißschuh <thomas.weissschuh@linutronix.de>
-Closes: https://lore.kernel.org/r/20240312120240-afdb1b83-8517-434b-be79-06f41bafd71f@linutronix.de
-Fixes: 9d9bb71f3e11 ("drm/i915: Extract opregion vbt presence check")
-Cc: Radhakrishna Sripada <radhakrishna.sripada@intel.com>
-Signed-off-by: Jani Nikula <jani.nikula@intel.com>
----
- drivers/gpu/drm/i915/display/intel_opregion.h | 5 +++++
- 1 file changed, 5 insertions(+)
+Thanks for the report, fix at=20
 
-diff --git a/drivers/gpu/drm/i915/display/intel_opregion.h b/drivers/gpu/drm/i915/display/intel_opregion.h
-index 63573c38d735..4b2b8e752632 100644
---- a/drivers/gpu/drm/i915/display/intel_opregion.h
-+++ b/drivers/gpu/drm/i915/display/intel_opregion.h
-@@ -120,6 +120,11 @@ intel_opregion_get_edid(struct intel_connector *connector)
- 	return NULL;
- }
- 
-+static inline bool intel_opregion_vbt_present(struct drm_i915_private *i915)
-+{
-+	return false;
-+}
-+
- static inline const void *
- intel_opregion_get_vbt(struct drm_i915_private *i915, size_t *size)
- {
--- 
-2.39.2
+https://lore.kernel.org/r/20240312115757.683584-1-jani.nikula@intel.com
 
+BR,
+Jani.
+
+
+--=20
+Jani Nikula, Intel
