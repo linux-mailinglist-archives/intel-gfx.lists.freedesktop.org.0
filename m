@@ -2,52 +2,57 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7BE42879463
-	for <lists+intel-gfx@lfdr.de>; Tue, 12 Mar 2024 13:45:04 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2A88B879309
+	for <lists+intel-gfx@lfdr.de>; Tue, 12 Mar 2024 12:32:04 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DD63110F427;
-	Tue, 12 Mar 2024 12:45:02 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A2A6F112DBB;
+	Tue, 12 Mar 2024 11:32:02 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; secure) header.d=linutronix.de header.i=@linutronix.de header.b="tMEn09R8";
-	dkim=permerror (0-bit key) header.d=linutronix.de header.i=@linutronix.de header.b="VQrqvG7w";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="iJn0bGo3";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from galois.linutronix.de (Galois.linutronix.de [193.142.43.55])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E328F10F10B
- for <intel-gfx@lists.freedesktop.org>; Tue, 12 Mar 2024 11:05:13 +0000 (UTC)
-Date: Tue, 12 Mar 2024 12:05:11 +0100
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linutronix.de;
- s=2020; t=1710241511;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- in-reply-to:in-reply-to:references:references;
- bh=3zEEf8Oc3cGzWFwPZqQOfPaCyBPN0wnB+XnX3wOGP4Y=;
- b=tMEn09R8Jwvr8alOarzMO86xbX62TWA7rfnOLwfhnrh5wITv7DdVCHnAu/s8A/0LNjUwos
- XsJY0x1/tjN/GaURcdyrNleP4SZudMvgfiq2Yq4kSWz15EWhC6+o2r9trmBGfwlRpu9x/F
- /488vR68Cgri7hsmkA8kZoQ4TVYEtdPNzBAh7EoQrf19Cp2ZHVJiBFW8ZOFtevTEmBSIan
- NBJ/d387sJWC3qJ1yawJiq24q13QIcXhNB1AvI/YgkbaBGdO8eMQmKiQyCgMfiTrFsqhYO
- rZNh4G4a3bcZ+iSHIkjk/Uq6jiRf5bW5t+MD2qOKha/63PV/E8MtV96Sb/aMDg==
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=linutronix.de;
- s=2020e; t=1710241511;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- in-reply-to:in-reply-to:references:references;
- bh=3zEEf8Oc3cGzWFwPZqQOfPaCyBPN0wnB+XnX3wOGP4Y=;
- b=VQrqvG7wTN6WJftETQzsAJdqhxwkFXRKoW5irEMme8pUEq7VdiR9iGGlKpcTR67BuKJZ2r
- KdOyVbPOjbT9mzBQ==
-From: Thomas =?utf-8?Q?Wei=C3=9Fschuh?= <thomas.weissschuh@linutronix.de>
-To: Radhakrishna Sripada <radhakrishna.sripada@intel.com>
-Cc: intel-gfx@lists.freedesktop.org, Jani Nikula <jani.nikula@intel.com>
-Subject: Re: [PATCH v3 4/6] drm/i915: Extract opregion vbt presence check
-Message-ID: <20240312120240-afdb1b83-8517-434b-be79-06f41bafd71f@linutronix.de>
-References: <20240228213235.2495611-1-radhakrishna.sripada@intel.com>
- <20240228213235.2495611-5-radhakrishna.sripada@intel.com>
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.13])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0EAEC112DBE;
+ Tue, 12 Mar 2024 11:32:00 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1710243121; x=1741779121;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=e7os3fwmmpXoH7mUmwlV/+xeTsyev0r7sRha/9HpS/U=;
+ b=iJn0bGo3qu+z6e0r6wF/CkN6pVMzCFbXQr/PSpbx25XYab+UOnHyMFkk
+ biK6jmSPJfIQallDXbGlc0Yz9pEqyBM5dkhOGF2bVQia/c9gI8hqBLI8a
+ YEh0c5qLcKrqWYyyCt/OW//tAc7tqjbPAWDrtWfaN1jODZfOcIcOme0Pm
+ wHJklWKTZweuRMa9mv5uT5WmAjndcP07t1fsPtRoSL3KaUWMO3R1XdJbG
+ cCg9UohgkZn+RIuO/MPdkotcheprW4KZGLE/Mt3wa+cihy36mto2J6w4L
+ by4s7OesfBsY/Q/1ysbMBmPuPIs20E1lBy9wwuU+G61aQCLuD4tfg1H/e A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,11010"; a="7891553"
+X-IronPort-AV: E=Sophos;i="6.07,119,1708416000"; 
+   d="scan'208";a="7891553"
+Received: from orviesa002.jf.intel.com ([10.64.159.142])
+ by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 12 Mar 2024 04:31:59 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.07,119,1708416000"; d="scan'208";a="42437730"
+Received: from nirmoyda-desk.igk.intel.com ([10.102.138.190])
+ by orviesa002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 12 Mar 2024 04:31:58 -0700
+From: Nirmoy Das <nirmoy.das@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Cc: dri-devel@lists.freedesktop.org, Nirmoy Das <nirmoy.das@intel.com>,
+ Andi Shyti <andi.shyti@linux.intel.com>,
+ Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>,
+ Jonathan Cavitt <jonathan.cavitt@intel.com>
+Subject: [PATCH] drm/i915/selftests: Pick correct caching mode.
+Date: Tue, 12 Mar 2024 12:18:15 +0100
+Message-ID: <20240312111815.18083-1-nirmoy.das@intel.com>
+X-Mailer: git-send-email 2.42.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240228213235.2495611-5-radhakrishna.sripada@intel.com>
-X-Mailman-Approved-At: Tue, 12 Mar 2024 12:45:01 +0000
+Organization: Intel Deutschland GmbH, Registered Address: Am Campeon 10,
+ 85579 Neubiberg, Germany,
+ Commercial Register: Amtsgericht Muenchen HRB 186928 
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -63,85 +68,48 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, Feb 28, 2024 at 01:32:33PM -0800, Radhakrishna Sripada wrote:
-> We want to later change intel_opregion_get_vbt to duplicate the vbt
-> memory if present, which would be an overkill when we just want to
-> peek into the presence of opregion vbt. Carve out the presence check
-> into its own function to use in places where only the presence of vbt
-> is required.
+Caching mode is HW dependent so pick a correct one using
+intel_gt_coherent_map_type().
 
-This doesn't compile when CONFIG_ACPI is not enabled:
+Cc: Andi Shyti <andi.shyti@linux.intel.com>
+Cc: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
+Cc: Jonathan Cavitt <jonathan.cavitt@intel.com>
+Closes: https://gitlab.freedesktop.org/drm/intel/-/issues/10249
+Signed-off-by: Nirmoy Das <nirmoy.das@intel.com>
+---
+ drivers/gpu/drm/i915/gem/selftests/i915_gem_dmabuf.c | 5 ++++-
+ 1 file changed, 4 insertions(+), 1 deletion(-)
 
-  CC [M]  drivers/gpu/drm/xe/i915-display/intel_bios.o
-drivers/gpu/drm/i915/display/intel_bios.c: In function 'intel_bios_is_lvds_present':
-drivers/gpu/drm/i915/display/intel_bios.c:3425:24: error: implicit declaration of function 'intel_opregion_vbt_present'; did you mean
- 'intel_opregion_asle_present'? [-Werror=implicit-function-declaration]
- 3425 |                 return intel_opregion_vbt_present(i915);
-      |                        ^~~~~~~~~~~~~~~~~~~~~~~~~~
-      |                        intel_opregion_asle_present
-cc1: all warnings being treated as errors
+diff --git a/drivers/gpu/drm/i915/gem/selftests/i915_gem_dmabuf.c b/drivers/gpu/drm/i915/gem/selftests/i915_gem_dmabuf.c
+index d684a70f2c04..65a931ea80e9 100644
+--- a/drivers/gpu/drm/i915/gem/selftests/i915_gem_dmabuf.c
++++ b/drivers/gpu/drm/i915/gem/selftests/i915_gem_dmabuf.c
+@@ -7,6 +7,7 @@
+ #include "i915_drv.h"
+ #include "i915_selftest.h"
+ #include "gem/i915_gem_context.h"
++#include "gt/intel_gt.h"
+ 
+ #include "mock_context.h"
+ #include "mock_dmabuf.h"
+@@ -155,6 +156,7 @@ static int verify_access(struct drm_i915_private *i915,
+ 	struct file *file;
+ 	u32 *vaddr;
+ 	int err = 0, i;
++	unsigned int mode;
+ 
+ 	file = mock_file(i915);
+ 	if (IS_ERR(file))
+@@ -194,7 +196,8 @@ static int verify_access(struct drm_i915_private *i915,
+ 	if (err)
+ 		goto out_file;
+ 
+-	vaddr = i915_gem_object_pin_map_unlocked(native_obj, I915_MAP_WB);
++	mode = intel_gt_coherent_map_type(to_gt(i915), native_obj, true);
++	vaddr = i915_gem_object_pin_map_unlocked(native_obj, mode);
+ 	if (IS_ERR(vaddr)) {
+ 		err = PTR_ERR(vaddr);
+ 		goto out_file;
+-- 
+2.42.0
 
-Seen on next-20240312.
-
-> 
-> Suggested-by: Jani Nikula <jani.nikula@intel.com>
-> Signed-off-by: Radhakrishna Sripada <radhakrishna.sripada@intel.com>
-> ---
->  drivers/gpu/drm/i915/display/intel_bios.c     |  3 +--
->  drivers/gpu/drm/i915/display/intel_opregion.c | 10 ++++++++++
->  drivers/gpu/drm/i915/display/intel_opregion.h |  1 +
->  3 files changed, 12 insertions(+), 2 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/i915/display/intel_bios.c b/drivers/gpu/drm/i915/display/intel_bios.c
-> index a66fc79466bd..c283a5a07010 100644
-> --- a/drivers/gpu/drm/i915/display/intel_bios.c
-> +++ b/drivers/gpu/drm/i915/display/intel_bios.c
-> @@ -3364,8 +3364,7 @@ bool intel_bios_is_lvds_present(struct drm_i915_private *i915, u8 *i2c_pin)
->  		 * additional data.  Trust that if the VBT was written into
->  		 * the OpRegion then they have validated the LVDS's existence.
->  		 */
-> -		if (intel_opregion_get_vbt(i915, NULL))
-> -			return true;
-> +		return intel_opregion_vbt_present(i915);
->  	}
->  
->  	return false;
-> diff --git a/drivers/gpu/drm/i915/display/intel_opregion.c b/drivers/gpu/drm/i915/display/intel_opregion.c
-> index 5d07a002edaa..58dfecb617b0 100644
-> --- a/drivers/gpu/drm/i915/display/intel_opregion.c
-> +++ b/drivers/gpu/drm/i915/display/intel_opregion.c
-> @@ -1131,6 +1131,16 @@ const struct drm_edid *intel_opregion_get_edid(struct intel_connector *intel_con
->  	return drm_edid;
->  }
->  
-> +bool intel_opregion_vbt_present(struct drm_i915_private *i915)
-> +{
-> +	struct intel_opregion *opregion = i915->display.opregion;
-> +
-> +	if (!opregion || !opregion->vbt)
-> +		return false;
-> +
-> +	return true;
-> +}
-> +
->  const void *intel_opregion_get_vbt(struct drm_i915_private *i915, size_t *size)
->  {
->  	struct intel_opregion *opregion = i915->display.opregion;
-> diff --git a/drivers/gpu/drm/i915/display/intel_opregion.h b/drivers/gpu/drm/i915/display/intel_opregion.h
-> index 0bec224f711f..63573c38d735 100644
-> --- a/drivers/gpu/drm/i915/display/intel_opregion.h
-> +++ b/drivers/gpu/drm/i915/display/intel_opregion.h
-> @@ -53,6 +53,7 @@ int intel_opregion_notify_adapter(struct drm_i915_private *dev_priv,
->  int intel_opregion_get_panel_type(struct drm_i915_private *dev_priv);
->  const struct drm_edid *intel_opregion_get_edid(struct intel_connector *connector);
->  
-> +bool intel_opregion_vbt_present(struct drm_i915_private *i915);
-
-This declaration is in a #ifdef CONFIG_ACPI block.
-
->  const void *intel_opregion_get_vbt(struct drm_i915_private *i915, size_t *size);
->  
->  bool intel_opregion_headless_sku(struct drm_i915_private *i915);
-> -- 
-> 2.34.1
-> 
