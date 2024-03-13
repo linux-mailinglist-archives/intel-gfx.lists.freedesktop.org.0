@@ -2,63 +2,57 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4DB2087A786
-	for <lists+intel-gfx@lfdr.de>; Wed, 13 Mar 2024 13:26:45 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2C09587A812
+	for <lists+intel-gfx@lfdr.de>; Wed, 13 Mar 2024 14:07:28 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0DD9E10F7AE;
-	Wed, 13 Mar 2024 12:26:42 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CB5F210E8F6;
+	Wed, 13 Mar 2024 13:07:24 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Stp5tyqv";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="OXCzBLF+";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A1FE810F7AD;
- Wed, 13 Mar 2024 12:26:40 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2398510E874;
+ Wed, 13 Mar 2024 13:07:23 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1710332801; x=1741868801;
- h=message-id:subject:from:to:cc:date:in-reply-to:
- references:content-transfer-encoding:mime-version;
- bh=TTlQOuJdC70Gvg7qaRmERl0qheIF7H471k3JoFKrFT0=;
- b=Stp5tyqv4ZggJQCVZ7GBzJgFR4BsO7zqD7+tbQcCIG1HBU4QiegpYwNK
- a6XDg0oDe26W84fRmEj7EMVCz5ajxZIeLkdiGyAjS/Ze3cY2y/9xFJGzA
- K5MaVpS2Tm3JB3uONlCZVFpzYEE6PqG/HqJId19vwRfPu0h8/Dt//bbY4
- 9QwJL2nN4J76OWZvCjOGGL+SGojT51AEPa9WA1OQ3tarpfE0a/jnEr121
- 17z3hhEE0HUQQLHZXaRoHgTCO2qR1drHh3Ja35SufaHDK5UZ5VtPmdJ1e
- aQ+plopNt9e6QuaMedc8qVISgQCJhoCIMn0CIEHfIjaNzDXpt0EVOTfF3 g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,11011"; a="5215334"
-X-IronPort-AV: E=Sophos;i="6.07,122,1708416000"; 
-   d="scan'208";a="5215334"
-Received: from orviesa006.jf.intel.com ([10.64.159.146])
- by orvoesa110.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Mar 2024 05:26:40 -0700
+ t=1710335243; x=1741871243;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=5vw/ZhcovFqwR7HPA4W8i5CZC5EXQdnVD6pej2onsWY=;
+ b=OXCzBLF+VTjliGblMaDJOd4/h/JskOYISsBikUA2e8rmg4GfvQfWddBg
+ QhwryuFccuqNXI9cDYYlf3Z5Q3JZfFRpTktkVjlxtBR7u9NhYgbcWMmD0
+ dF/vqHPAa/k43QZuCYxdTjkbiIzYEMoejZSGVcCHTLRLAQ07F9+xbKQTQ
+ 7BT/xSFVcnMRPcKkEkIJlb8mCYW4eU59Dn8yRBEtitPeJFVMjCWKnmUvJ
+ ugLrLOSAinV8aWtuBj1JKQzkE3LxfPkH2QNNlw1PHcSVLev8ORJTPQJZp
+ 0UdqwJOwPXhx/pETlRjom7jP2gF61Ez+XKU8VgHKOZjFkdZxWT1padrfR A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,11011"; a="15822833"
+X-IronPort-AV: E=Sophos;i="6.07,122,1708416000"; d="scan'208";a="15822833"
+Received: from orviesa002.jf.intel.com ([10.64.159.142])
+ by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 Mar 2024 06:07:22 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.07,122,1708416000"; d="scan'208";a="12321263"
-Received: from janlundk-mobl.ger.corp.intel.com (HELO [10.249.254.162])
- ([10.249.254.162])
- by orviesa006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Mar 2024 05:26:38 -0700
-Message-ID: <0ad9e6cd1225d45fdc4e4339429537e1857c0c4b.camel@linux.intel.com>
-Subject: Re: [PATCH v4 0/4] TTM unlockable restartable LRU list iteration
-From: Thomas =?ISO-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>
-To: "Somalapuram, Amaranath" <asomalap@amd.com>, 
- intel-xe@lists.freedesktop.org, intel-gfx@lists.freedesktop.org
-Cc: Somalapuram Amaranath <Amaranath.Somalapuram@amd.com>, Christian
- =?ISO-8859-1?Q?K=F6nig?=
- <christian.koenig@amd.com>, dri-devel@lists.freedesktop.org
-Date: Wed, 13 Mar 2024 13:26:36 +0100
-In-Reply-To: <cb473e3de479d55cb3cfb2cc0b8ce6ecfd8d5b0c.camel@linux.intel.com>
-References: <20240306070125.27071-1-thomas.hellstrom@linux.intel.com>
- <13884e7d-f18c-f7a6-97d7-eb57f2bd2100@amd.com>
- <cb473e3de479d55cb3cfb2cc0b8ce6ecfd8d5b0c.camel@linux.intel.com>
-Autocrypt: addr=thomas.hellstrom@linux.intel.com; prefer-encrypt=mutual;
- keydata=mDMEZaWU6xYJKwYBBAHaRw8BAQdAj/We1UBCIrAm9H5t5Z7+elYJowdlhiYE8zUXgxcFz360SFRob21hcyBIZWxsc3Ryw7ZtIChJbnRlbCBMaW51eCBlbWFpbCkgPHRob21hcy5oZWxsc3Ryb21AbGludXguaW50ZWwuY29tPoiTBBMWCgA7FiEEbJFDO8NaBua8diGTuBaTVQrGBr8FAmWllOsCGwMFCwkIBwICIgIGFQoJCAsCBBYCAwECHgcCF4AACgkQuBaTVQrGBr/yQAD/Z1B+Kzy2JTuIy9LsKfC9FJmt1K/4qgaVeZMIKCAxf2UBAJhmZ5jmkDIf6YghfINZlYq6ixyWnOkWMuSLmELwOsgPuDgEZaWU6xIKKwYBBAGXVQEFAQEHQF9v/LNGegctctMWGHvmV/6oKOWWf/vd4MeqoSYTxVBTAwEIB4h4BBgWCgAgFiEEbJFDO8NaBua8diGTuBaTVQrGBr8FAmWllOsCGwwACgkQuBaTVQrGBr/P2QD9Gts6Ee91w3SzOelNjsus/DcCTBb3fRugJoqcfxjKU0gBAKIFVMvVUGbhlEi6EFTZmBZ0QIZEIzOOVfkaIgWelFEH
-Organization: Intel Sweden AB, Registration Number: 556189-6027
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.50.3 (3.50.3-1.fc39) 
+X-IronPort-AV: E=Sophos;i="6.07,122,1708416000"; d="scan'208";a="42852631"
+Received: from lucas-s2600cw.jf.intel.com ([10.165.21.196])
+ by orviesa002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 Mar 2024 06:07:22 -0700
+From: Lucas De Marchi <lucas.demarchi@intel.com>
+To: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
+ Gustavo Sousa <gustavo.sousa@intel.com>
+Cc: Lucas De Marchi <lucas.demarchi@intel.com>,
+ Matt Roper <matthew.d.roper@intel.com>,
+ Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>,
+ Balasubramani Vivekanandan <balasubramani.vivekanandan@intel.com>
+Subject: Re: [PATCH v2 0/8] Enable LNL display
+Date: Wed, 13 Mar 2024 06:07:53 -0700
+Message-ID: <171033513087.2584417.10361013024587941744.b4-ty@intel.com>
+X-Mailer: git-send-email 2.43.0
+In-Reply-To: <20240312163639.172321-1-gustavo.sousa@intel.com>
+References: <20240312163639.172321-1-gustavo.sousa@intel.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -74,37 +68,42 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi!
 
-On Mon, 2024-03-11 at 14:07 +0100, Thomas Hellstr=C3=B6m wrote:
-> On Fri, 2024-03-08 at 13:13 +0530, Somalapuram, Amaranath wrote:
-> > Patches are tested on AMD platform.
-> > Repeated stress test on Unigine Heaven, memory full (VRAM + GTT +
-> > system=20
-> > SWAP), then free.
-> > No errors/warning in kernel log.
-> > Any suggestion specific tests?
->=20
-> We are testing locally against Intel Xe CI and Intel i915 CI which
-> should give rather good coverage. If there are some amdgpu tests that
-> exercise eviction / swapping also with a lot of local objects (Vulkan
-> apps?) that would be great.
->=20
-> Thanks,
-> Thomas
->=20
+On Tue, 12 Mar 2024 13:36:31 -0300, Gustavo Sousa wrote:
+> This series aims at providing the remaining patches for enabling display
+> on Lunar Lake, which used Xe2LPD display IP.
+> 
+> The first set of patches contains fixes and extra stuff required for
+> supporting CDCLK on Xe2LPD:
+> 
+>     drm/i915/cdclk: Rename lnl_cdclk_table to xe2lpd_cdclk_table
+>     drm/i915/cdclk: Add and use mdclk_source_is_cdclk_pll()
+>     drm/i915/cdclk: Only compute squash waveform when necessary
+>     drm/i915: Extract intel_dbuf_mdclk_cdclk_ratio_update()
+>     drm/i915: Add mdclk_cdclk_ratio to intel_dbuf_state
+>     drm/i915/xe2lpd: Support MDCLK:CDCLK ratio changes
+> 
+> [...]
 
-Any updates on this?
+Applied all the patches to drm-intel-next. Thanks for the patches and reviews.
 
-FWIW, For patch 3, IMO after looking a bit at other solutions, IMO this
-is the preferred solution mostly because it is self-contained. In
-particular if we allow drivers to iterate over the LRU lists with this
-interface, most likely if we add semantics like "You must block any
-bulk lru bumping if unlocking the lru_lock" That becomes pretty nasty
-and will most likely end up incorrect. It might well be that we've
-traversed well into a bulk move lru sublist before we try to unlock.
+[1/8] drm/i915/cdclk: Rename lnl_cdclk_table to xe2lpd_cdclk_table
+      commit: dfdfc609bb71521ac22a2ff91f608644bf7e7b6d
+[2/8] drm/i915/cdclk: Add and use mdclk_source_is_cdclk_pll()
+      commit: 5372a54d7a3cf32c761d2896276b72b495bcb497
+[3/8] drm/i915/cdclk: Only compute squash waveform when necessary
+      commit: 452269e2f0ea180a4bc39fd4643df7fe2ea0bb8e
+[4/8] drm/i915: Extract intel_dbuf_mdclk_cdclk_ratio_update()
+      commit: 66a0e0681392420b326f00ba732e6bda099eda29
+[5/8] drm/i915: Add mdclk_cdclk_ratio to intel_dbuf_state
+      commit: 9161e31181440e4882f78e02783e40325dc82e27
+[6/8] drm/i915/xe2lpd: Support MDCLK:CDCLK ratio changes
+      commit: c834a080a0134e7bd0cb18c3a2b0dd674794d182
+[7/8] drm/i915/xe2lpd: Load DMC
+      commit: bf1a72ab5a446e383682e34347237ee5317c2185
+[8/8] drm/xe/lnl: Enable display support
+      commit: 79263e4b3f0ed5928a1622300d32ed35f7d8fc24
 
-/Thomas
-
-
-
+Best regards,
+-- 
+Lucas De Marchi <lucas.demarchi@intel.com>
