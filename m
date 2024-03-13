@@ -2,64 +2,52 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id DD4DB87A976
-	for <lists+intel-gfx@lfdr.de>; Wed, 13 Mar 2024 15:30:23 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id B863E87A9B5
+	for <lists+intel-gfx@lfdr.de>; Wed, 13 Mar 2024 15:44:56 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DB72510E739;
-	Wed, 13 Mar 2024 14:30:20 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CC5A110E0B5;
+	Wed, 13 Mar 2024 14:44:54 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="L7Ta1YI6";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="mE9zN3kq";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 42CD610E739;
- Wed, 13 Mar 2024 14:30:19 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.13])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6253010E0B5
+ for <intel-gfx@lists.freedesktop.org>; Wed, 13 Mar 2024 14:44:53 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1710340219; x=1741876219;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:in-reply-to;
- bh=f+f5XcYjsmrgzxCdlVV9KOe05mMTqwtZCfOtFzV/x0Q=;
- b=L7Ta1YI6k5NXfmeZV7sc/YQgf3qU2SdboG2F0jkxUJdWVa/gXFv2iaxW
- oKeTHzYA8mIo57slpc/cl5D2K98x/WStE2aj5AHzxK4jv0V2r4XRXz1m2
- BWBczMjEljtaHHoBU8HYXIPAgoVwaoJU06I9yKgFL3VHemlzLgsDHhfc4
- IznIf7THkA9GYyg2HzO61Qd1U37Di0a0DCuDrUYxF+WdGx8j2edW+/xYv
- x8RUoXbhZ9/brXLE7jXDmFc8SftBBiXeh//HQBoeo87Z+caX05YwRuLp2
- 90kNGjBvIbbHObVqJ1saIjrgD2GA0HlAzmgReQLfjAENfVjJOOg6cnzOO A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,11011"; a="16554291"
-X-IronPort-AV: E=Sophos;i="6.07,122,1708416000"; d="scan'208";a="16554291"
-Received: from fmviesa002.fm.intel.com ([10.60.135.142])
- by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Mar 2024 07:30:18 -0700
+ t=1710341093; x=1741877093;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=RL9bTwxh87p1BFhOleCOR6kb5G77CnHygSQb03Xs8G4=;
+ b=mE9zN3kq0PwK0pFxuCVfH136i7uSxGwX9n/2ydRDdIYk4VexS+6/GKFH
+ jBHna3PmDHXMiNbqnUtWUtGFlYEDEjtyA05rwJ2GlL3semztVLzuLFhjm
+ O6T3iBxLA3/zXh5WoY1BNmoibAaCLHUH4iYhkKB3lpXOY0kba6pFiJ0YH
+ 8zOVg0egKhAnXOYMVWey1UETTCsA3cDO3YCAuYc12qplo62hsNwG9H5rD
+ UIyPmMSBZlTcoPWOogrGEJkf2mtdekf3IiH3ndJCVZATftLc11r7yQXkz
+ EousCYLDeqCU1C8UTk5aKoEDbqBsXSmUucQ39XDyuUBOOnZ9dYwUMB6Zd Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,11011"; a="8050936"
+X-IronPort-AV: E=Sophos;i="6.07,122,1708416000"; 
+   d="scan'208";a="8050936"
+Received: from fmviesa001.fm.intel.com ([10.60.135.141])
+ by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 Mar 2024 07:44:52 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.07,122,1708416000"; d="scan'208";a="35062967"
-Received: from unknown (HELO intel.com) ([10.247.118.152])
- by fmviesa002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Mar 2024 07:30:09 -0700
-Date: Wed, 13 Mar 2024 15:30:02 +0100
-From: Andi Shyti <andi.shyti@linux.intel.com>
-To: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
-Cc: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- Jani Nikula <jani.nikula@linux.intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Tvrtko Ursulin <tursulin@ursulin.net>,
- Ashutosh Dixit <ashutosh.dixit@intel.com>,
- Anshuman Gupta <anshuman.gupta@intel.com>,
- Badal Nilawar <badal.nilawar@intel.com>,
- Guenter Roeck <linux@roeck-us.net>,
- Dale B Stimson <dale.b.stimson@intel.com>,
- Andi Shyti <andi.shyti@linux.intel.com>,
- Jonathan Cavitt <jonathan.cavitt@intel.com>,
- Nirmoy Das <nirmoy.das@intel.com>
-Subject: Re: [PATCH v2] drm/i915/hwmon: Fix locking inversion in sysfs getter
-Message-ID: <ZfG4aqW47iU1Qw50@ashyti-mobl2.lan>
-References: <20240311203500.518675-2-janusz.krzysztofik@linux.intel.com>
+X-IronPort-AV: E=Sophos;i="6.07,122,1708416000"; d="scan'208";a="42947881"
+Received: from srr4-3-linux-103-aknautiy.iind.intel.com ([10.223.34.160])
+ by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 Mar 2024 07:44:51 -0700
+From: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Cc: ville.syrjala@linux.intel.com
+Subject: [PATCH] drm/i915/scaler: Update Pipe src size check in
+ skl_update_scaler
+Date: Wed, 13 Mar 2024 20:08:25 +0530
+Message-Id: <20240313143825.3461208-1-ankit.k.nautiyal@intel.com>
+X-Mailer: git-send-email 2.40.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240311203500.518675-2-janusz.krzysztofik@linux.intel.com>
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -75,26 +63,43 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi Janusz,
+For Earlier platforms, the Pipe source size is 12-bits so
+max pipe source width and height is 4096. For newer platforms it is
+13-bits so theoretically max width/height is 8192. For few of the
+earlier platforms the scaler did not use all bits of the PIPESRC,
+so max scaler source size was used to make that the pipe source
+size is programmed within limits, before using scaler.
 
-On Mon, Mar 11, 2024 at 09:34:58PM +0100, Janusz Krzysztofik wrote:
-> In i915 hwmon sysfs getter path we now take a hwmon_lock, then acquire an
-> rpm wakeref.  That results in lock inversion:
-> 
-> <4> [197.079335] ======================================================
-> <4> [197.085473] WARNING: possible circular locking dependency detected
-> <4> [197.091611] 6.8.0-rc7-Patchwork_129026v7-gc4dc92fb1152+ #1 Not tainted
+This creates a problem, for MTL where scaler source size is 4096, but
+max pipe source width can theroretically be 8192.
 
-...
+Switch the check to use the max scaler destination size, which closely
+match the limits.
 
-> Fixes: c41b8bdcc297 ("drm/i915/hwmon: Show device level energy usage")
-> Signed-off-by: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
-> Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
-> Cc: Guenter Roeck <linux@roeck-us.net>
-> Cc: <stable@vger.kernel.org> # v6.2+
+Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+---
+ drivers/gpu/drm/i915/display/skl_scaler.c | 7 ++++---
+ 1 file changed, 4 insertions(+), 3 deletions(-)
 
-With the "Fixes:" tag changed and the stable version updated,
-pushed to drm-intel-next.
+diff --git a/drivers/gpu/drm/i915/display/skl_scaler.c b/drivers/gpu/drm/i915/display/skl_scaler.c
+index 8a934bada624..baa601d27815 100644
+--- a/drivers/gpu/drm/i915/display/skl_scaler.c
++++ b/drivers/gpu/drm/i915/display/skl_scaler.c
+@@ -213,10 +213,11 @@ skl_update_scaler(struct intel_crtc_state *crtc_state, bool force_detach,
+ 	 * The pipe scaler does not use all the bits of PIPESRC, at least
+ 	 * on the earlier platforms. So even when we're scaling a plane
+ 	 * the *pipe* source size must not be too large. For simplicity
+-	 * we assume the limits match the scaler source size limits. Might
+-	 * not be 100% accurate on all platforms, but good enough for now.
++	 * we assume the limits match the scaler destination size limits.
++	 * Might not be 100% accurate on all platforms, but good enough for
++	 * now.
+ 	 */
+-	if (pipe_src_w > max_src_w || pipe_src_h > max_src_h) {
++	if (pipe_src_w > max_dst_w || pipe_src_h > max_dst_h) {
+ 		drm_dbg_kms(&dev_priv->drm,
+ 			    "scaler_user index %u.%u: pipe src size %ux%u "
+ 			    "is out of scaler range\n",
+-- 
+2.40.1
 
-Thanks,
-Andi
