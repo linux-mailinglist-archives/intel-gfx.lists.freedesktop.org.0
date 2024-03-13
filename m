@@ -2,60 +2,60 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6F85287A271
-	for <lists+intel-gfx@lfdr.de>; Wed, 13 Mar 2024 05:45:53 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9E59187A27C
+	for <lists+intel-gfx@lfdr.de>; Wed, 13 Mar 2024 05:48:48 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E48CD10F5C1;
-	Wed, 13 Mar 2024 04:45:50 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 43D8B10EA2D;
+	Wed, 13 Mar 2024 04:48:47 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=chromium.org header.i=@chromium.org header.b="MqSEvoIx";
+	dkim=pass (1024-bit key; unprotected) header.d=chromium.org header.i=@chromium.org header.b="WPxCfQK9";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-ed1-f50.google.com (mail-ed1-f50.google.com
- [209.85.208.50])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8091710F5C1
- for <intel-gfx@lists.freedesktop.org>; Wed, 13 Mar 2024 04:45:49 +0000 (UTC)
-Received: by mail-ed1-f50.google.com with SMTP id
- 4fb4d7f45d1cf-5685d46b199so777620a12.3
- for <intel-gfx@lists.freedesktop.org>; Tue, 12 Mar 2024 21:45:49 -0700 (PDT)
+Received: from mail-ed1-f48.google.com (mail-ed1-f48.google.com
+ [209.85.208.48])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EA1BB10EA2D
+ for <intel-gfx@lists.freedesktop.org>; Wed, 13 Mar 2024 04:48:45 +0000 (UTC)
+Received: by mail-ed1-f48.google.com with SMTP id
+ 4fb4d7f45d1cf-5687feeb1feso719219a12.2
+ for <intel-gfx@lists.freedesktop.org>; Tue, 12 Mar 2024 21:48:45 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=chromium.org; s=google; t=1710305148; x=1710909948;
+ d=chromium.org; s=google; t=1710305324; x=1710910124;
  darn=lists.freedesktop.org; 
  h=content-transfer-encoding:cc:to:subject:message-id:date:from
  :in-reply-to:references:mime-version:from:to:cc:subject:date
  :message-id:reply-to;
- bh=6NsipZmwvaNGVjDOYQMy+T3a4tBYTpTvE28Ylmqr3IA=;
- b=MqSEvoIxFpmkGVfpNkcIsaQ95W0Ndn/ev0n0VN9TU+aslR5lqisDgRXzgDu+FeQ+nI
- wi6VOS1YyBE5qUiBi8JayLOm73iugAJXOTLLHeLQIhcFNK4D8LMnVIQwn5kUsVpJu3cK
- riqODjRgODS67gRE8fUM3UrweUyEYS2j/rXh4=
+ bh=4LiertQGkd7NWWymwpHIRUeK/dhOJ8R1hc5vWmDo/i8=;
+ b=WPxCfQK9mJSsB63BFPlmAyu15naH2z+2f1HvL+jSGQLswL1x1dO5nG9C87dYVNo2uJ
+ pnlA+TQglj9wj9BokyVakrwe+rIjakO9udWdk0V6aINwK0vjifb6ocx1JMrt0eELYaYN
+ FQTjJ65mvHo6+9IJi1FZrECwswGcaHLau2Rw0=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1710305148; x=1710909948;
+ d=1e100.net; s=20230601; t=1710305324; x=1710910124;
  h=content-transfer-encoding:cc:to:subject:message-id:date:from
  :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
  :subject:date:message-id:reply-to;
- bh=6NsipZmwvaNGVjDOYQMy+T3a4tBYTpTvE28Ylmqr3IA=;
- b=Bf67wGtr2fRMURbc0HXzyJQ6bmhYybTRYvT1sIuDwiSLvyS2QVnhoe8S963zLqxOQB
- Cs+GxR+pnFahMU8JoIm7gHEnrHl98WD/fasa5Si08ODYrmqIizZ9gjJV8HtyM8FoSbS4
- 5fZX33WSOAwok8uuRTUBoDKtQJNnqRTdkDoWMDzuTqFYTbb80eeZhFtMin/2UeRmpm4A
- ICfAhpVHHtHChPdTK+bqMT993gDy7URgZRdn9kvBe+lAEzecayk6TZVHUW3tVXSV3iwP
- 7jCtz+waejRHvHIgXrs+Z4Zy/BedUy2oe7pJe5X3wN8O0L4eMdM7DUiLccNpAgroMLFn
- AUSQ==
-X-Gm-Message-State: AOJu0Yx9j0cCmUDvWs0hQdHhN4SZGpr8ZqqxIK6BfOjd0a9vzEBVNVHk
- z3oryhPQRsKyrTDk0Al5JKX05+fzwB9rjNHAQMknReHtEA0iHEMDe8EHs0iyGp8vRUFDqUY1EN4
- rUsxR+m4NCvT4Vuy74pTE1Xe4uMucqPAaUxr7
-X-Google-Smtp-Source: AGHT+IGxs8X1VJhHgApDHnTDFLGog1V5PGVys+BcQD0kTFiYuNQiY2mu7i2tTyZEty6jTszJdLtAkhCondXHvLu+vDc=
-X-Received: by 2002:a17:906:408e:b0:a46:28c2:49b2 with SMTP id
- u14-20020a170906408e00b00a4628c249b2mr3755112ejj.24.1710305147011; Tue, 12
- Mar 2024 21:45:47 -0700 (PDT)
+ bh=4LiertQGkd7NWWymwpHIRUeK/dhOJ8R1hc5vWmDo/i8=;
+ b=S7TH/upTONj8DzAzDeR63DzvxlgldkEtNh3Ur6A//B31e+0zq8+deXgdZDR3eByMPW
+ 8gfdQOuQEfr1CQUVXGWPKghCVQqhZmCCG9glbsWQT3kqsJ4Yupzi42XYV48ljMppqcKj
+ ZOKWtb1TOkD7dbVKt/lw3CdsAvFMEOeES2sotSMpMoELOhUH6kqsQfj4no+m0GsoQhyG
+ mro2O8ftjVK0v+zrDu3rBhAEpybJWufErsVO9ZHo7UiQE28E9gM52KZH3wPUEUQw4Sxc
+ jj4RnBtQJf4/zXHyserXngT/3QwECQiJLbNp3WhCGKqLNciSaZ1w6MvNt8VFjmb2lwHB
+ TgIw==
+X-Gm-Message-State: AOJu0YyrLez6+jKRy4bLLikJYVp/vd0seBzdEMEFlnSpwSBI7B7YLVQO
+ U/qUihsXQc1CWslR5H49G6JNrDgS0R1zP1aRWoDkFeIL2/+OxH+CVktOJbDTpEQG9PVLNCBE0QQ
+ 8hqve6GjtGIZs+U2ozOHNwRIgX95gZRI3mI2a
+X-Google-Smtp-Source: AGHT+IFI2vFULvno/uJTtvQpHKsN0J9J2wIlb+nFd9UJgpRGeDF6PuvwtjyxaqLRwvWPB1NqX5cAi7UUn6Ysb+5LwXI=
+X-Received: by 2002:a17:907:6d03:b0:a46:300c:6280 with SMTP id
+ sa3-20020a1709076d0300b00a46300c6280mr5639725ejc.48.1710305324128; Tue, 12
+ Mar 2024 21:48:44 -0700 (PDT)
 MIME-Version: 1.0
 References: <20240308131146.32714-1-stanislav.lisovskiy@intel.com>
- <20240308131146.32714-4-stanislav.lisovskiy@intel.com>
-In-Reply-To: <20240308131146.32714-4-stanislav.lisovskiy@intel.com>
+ <20240308131146.32714-7-stanislav.lisovskiy@intel.com>
+In-Reply-To: <20240308131146.32714-7-stanislav.lisovskiy@intel.com>
 From: Manasi Navare <navaremanasi@chromium.org>
-Date: Tue, 12 Mar 2024 21:45:36 -0700
-Message-ID: <CAE72mNkYfDoJLLdZqKfTsEnPUFSKF_FC5JQ5F1cJZJF+8wM+4Q@mail.gmail.com>
-Subject: Re: [PATCH 3/6] drm/i915: Utilize intel_crtc_joined_pipe_mask() more
+Date: Tue, 12 Mar 2024 21:48:33 -0700
+Message-ID: <CAE72mNmgt3i-KiEOOWhs8uro-3O-85yRN7=MUecRVrPCuhDtcw@mail.gmail.com>
+Subject: Re: [PATCH 6/6] drm/i915: Allow bigjoiner for MST
 To: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
 Cc: intel-gfx@lists.freedesktop.org, jani.saarinen@intel.com, 
  ville.syrjala@linux.intel.com, vidya.srinivas@intel.com
@@ -76,97 +76,128 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, Mar 8, 2024 at 5:11=E2=80=AFAM Stanislav Lisovskiy
-<stanislav.lisovskiy@intel.com> wrote:
->
-> Unify the master vs. slave handling in
-> intel_ddi_post_disable_hdmi_or_sst() by looping over all the
-> pipes in one go.
-
-How will we handle looping through all joined pipes for MST case,
-does this need to be accounted for in the last patch that enables bigjoiner
-for MST now that we have separated out ddi_post_disable for hdmi/sst?
+Now when we enable bigjoiner for MST, in MST case
+intel_ddi_post_disable_hdmi_or_sst() function wont get called,
+Do we need similar changes for MST case to loop over the joined pipes
+in MST bigjoiner case?
 
 Manasi
 
+On Fri, Mar 8, 2024 at 5:12=E2=80=AFAM Stanislav Lisovskiy
+<stanislav.lisovskiy@intel.com> wrote:
 >
-> This also lets us move the intel_crtc_vblank_off() calls to
-> happen in a consistent place vs. the transcoder disable.
-> Previously we did the master vs. slaves on different sides
-> of that.
+> From: Vidya Srinivas <vidya.srinivas@intel.com>
 >
-> Signed-off-by: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
-> Signed-off-by: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
-> Credits-to: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
+> We need bigjoiner support with MST functionality
+> for MST monitor resolutions > 5K to work.
+> Adding support for the same.
+>
+> v2: Addressed review comments from Jani.
+> Revert rejection of MST bigjoiner modes and add
+> functionality
+>
+> v3: Fixed pipe_mismatch WARN for mst_master_transcoder
+> Credits-to: Manasi Navare <navaremanasi@chromium.org>
+>
+> Signed-off-by: Vidya Srinivas <vidya.srinivas@intel.com>
+> Reviewed-by: Manasi Navare <navaremanasi@chromium.org>
 > ---
->  drivers/gpu/drm/i915/display/intel_ddi.c | 34 ++++++++++++------------
->  1 file changed, 17 insertions(+), 17 deletions(-)
+>  drivers/gpu/drm/i915/display/intel_ddi.c    |  6 ++++--
+>  drivers/gpu/drm/i915/display/intel_dp_mst.c | 17 +++++++++--------
+>  2 files changed, 13 insertions(+), 10 deletions(-)
 >
 > diff --git a/drivers/gpu/drm/i915/display/intel_ddi.c b/drivers/gpu/drm/i=
 915/display/intel_ddi.c
-> index 5628a4ab608d4..15441674c6f58 100644
+> index 3756975bd561c..3bf8941107473 100644
 > --- a/drivers/gpu/drm/i915/display/intel_ddi.c
 > +++ b/drivers/gpu/drm/i915/display/intel_ddi.c
-> @@ -3097,34 +3097,34 @@ static void intel_ddi_post_disable_hdmi(struct in=
-tel_atomic_state *state,
+> @@ -3924,9 +3924,11 @@ static void intel_ddi_read_func_ctl(struct intel_e=
+ncoder *encoder,
+>                 pipe_config->lane_count =3D
+>                         ((temp & DDI_PORT_WIDTH_MASK) >> DDI_PORT_WIDTH_S=
+HIFT) + 1;
 >
->  static void intel_ddi_post_disable_hdmi_or_sst(struct intel_atomic_state=
- *state,
->                                                struct intel_encoder *enco=
-der,
-> -                                              const struct intel_crtc_st=
-ate *old_master_crtc_state,
-> +                                              const struct intel_crtc_st=
-ate *old_crtc_state,
->                                                const struct drm_connector=
-_state *old_conn_state)
+> -               if (DISPLAY_VER(dev_priv) >=3D 12)
+> -                       pipe_config->mst_master_transcoder =3D
+> +               if (DISPLAY_VER(dev_priv) >=3D 12) {
+> +                       if (!intel_crtc_is_bigjoiner_slave(pipe_config))
+> +                               pipe_config->mst_master_transcoder =3D
+>                                         REG_FIELD_GET(TRANS_DDI_MST_TRANS=
+PORT_SELECT_MASK, temp);
+> +               }
+>
+>                 intel_cpu_transcoder_get_m1_n1(crtc, cpu_transcoder,
+>                                                &pipe_config->dp_m_n);
+> diff --git a/drivers/gpu/drm/i915/display/intel_dp_mst.c b/drivers/gpu/dr=
+m/i915/display/intel_dp_mst.c
+> index 53aec023ce92f..3e6e2cd08d3ab 100644
+> --- a/drivers/gpu/drm/i915/display/intel_dp_mst.c
+> +++ b/drivers/gpu/drm/i915/display/intel_dp_mst.c
+> @@ -525,6 +525,7 @@ static int intel_dp_mst_compute_config(struct intel_e=
+ncoder *encoder,
 >  {
 >         struct drm_i915_private *dev_priv =3D to_i915(encoder->base.dev);
-> -       struct intel_crtc *slave_crtc;
-> +       u8 pipe_mask =3D intel_crtc_joined_pipe_mask(old_crtc_state);
-> +       struct intel_crtc *crtc;
-> +
-> +       for_each_intel_crtc_in_pipe_mask(&dev_priv->drm, crtc, pipe_mask)=
- {
-> +               const struct intel_crtc_state *_old_crtc_state =3D
-> +                       intel_atomic_get_old_crtc_state(state, crtc);
+>         struct intel_atomic_state *state =3D to_intel_atomic_state(conn_s=
+tate->state);
+> +       struct intel_crtc *crtc =3D to_intel_crtc(pipe_config->uapi.crtc)=
+;
+>         struct intel_dp_mst_encoder *intel_mst =3D enc_to_mst(encoder);
+>         struct intel_dp *intel_dp =3D &intel_mst->primary->dp;
+>         const struct intel_connector *connector =3D
+> @@ -542,6 +543,10 @@ static int intel_dp_mst_compute_config(struct intel_=
+encoder *encoder,
+>         if (adjusted_mode->flags & DRM_MODE_FLAG_DBLSCAN)
+>                 return -EINVAL;
 >
-> -       intel_crtc_vblank_off(old_crtc_state);
-> +               intel_crtc_vblank_off(_old_crtc_state);
+> +       if (intel_dp_need_bigjoiner(intel_dp, adjusted_mode->crtc_hdispla=
+y,
+> +                                   adjusted_mode->crtc_clock))
+> +               pipe_config->bigjoiner_pipes =3D GENMASK(crtc->pipe + 1, =
+crtc->pipe);
+> +
+>         pipe_config->sink_format =3D INTEL_OUTPUT_FORMAT_RGB;
+>         pipe_config->output_format =3D INTEL_OUTPUT_FORMAT_RGB;
+>         pipe_config->has_pch_encoder =3D false;
+> @@ -1330,12 +1335,6 @@ intel_dp_mst_mode_valid_ctx(struct drm_connector *=
+connector,
+>          *   corresponding link capabilities of the sink) in case the
+>          *   stream is uncompressed for it by the last branch device.
+>          */
+> -       if (mode_rate > max_rate || mode->clock > max_dotclk ||
+> -           drm_dp_calc_pbn_mode(mode->clock, min_bpp << 4) > port->full_=
+pbn) {
+> -               *status =3D MODE_CLOCK_HIGH;
+> -               return 0;
+> -       }
+> -
+>         if (mode->clock < 10000) {
+>                 *status =3D MODE_CLOCK_LOW;
+>                 return 0;
+> @@ -1349,8 +1348,10 @@ intel_dp_mst_mode_valid_ctx(struct drm_connector *=
+connector,
+>         if (intel_dp_need_bigjoiner(intel_dp, mode->hdisplay, target_cloc=
+k)) {
+>                 bigjoiner =3D true;
+>                 max_dotclk *=3D 2;
 > +       }
 >
->         intel_disable_transcoder(old_crtc_state);
->
->         intel_ddi_disable_transcoder_func(old_crtc_state);
->
-> -       intel_dsc_disable(old_crtc_state);
-> +       for_each_intel_crtc_in_pipe_mask(&dev_priv->drm, crtc, pipe_mask)=
- {
-> +               const struct intel_crtc_state *_old_crtc_state =3D
-> +                       intel_atomic_get_old_crtc_state(state, crtc);
->
-> -       if (DISPLAY_VER(dev_priv) >=3D 9)
-> -               skl_scaler_disable(old_crtc_state);
-> -       else
-> -               ilk_pfit_disable(old_crtc_state);
-> +               intel_dsc_disable(_old_crtc_state);
->
-> -       for_each_intel_crtc_in_pipe_mask(&dev_priv->drm, slave_crtc,
-> -                                        intel_crtc_bigjoiner_slave_pipes=
-(old_crtc_state)) {
-> -               const struct intel_crtc_state *old_slave_crtc_state =3D
-> -                       intel_atomic_get_old_crtc_state(state, slave_crtc=
-);
-> -
-> -               intel_crtc_vblank_off(old_slave_crtc_state);
-> -
-> -               intel_dsc_disable(old_slave_crtc_state);
-> -               skl_scaler_disable(old_slave_crtc_state);
-> +               if (DISPLAY_VER(dev_priv) >=3D 9)
-> +                       skl_scaler_disable(_old_crtc_state);
-> +               else
-> +                       ilk_pfit_disable(_old_crtc_state);
+> -               /* TODO: add support for bigjoiner */
+> +       if (mode_rate > max_rate || mode->clock > max_dotclk ||
+> +           drm_dp_calc_pbn_mode(mode->clock, min_bpp << 4) > port->full_=
+pbn) {
+>                 *status =3D MODE_CLOCK_HIGH;
+>                 return 0;
 >         }
+> @@ -1397,7 +1398,7 @@ intel_dp_mst_mode_valid_ctx(struct drm_connector *c=
+onnector,
+>                 return 0;
+>         }
+>
+> -       *status =3D intel_mode_valid_max_plane_size(dev_priv, mode, false=
+);
+> +       *status =3D intel_mode_valid_max_plane_size(dev_priv, mode, bigjo=
+iner);
+>         return 0;
 >  }
 >
 > --
