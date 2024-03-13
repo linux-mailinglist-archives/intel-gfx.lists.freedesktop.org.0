@@ -2,53 +2,65 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id B5D4787A229
-	for <lists+intel-gfx@lfdr.de>; Wed, 13 Mar 2024 05:03:13 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0ADDB87A25D
+	for <lists+intel-gfx@lfdr.de>; Wed, 13 Mar 2024 05:36:39 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5FBED10F006;
-	Wed, 13 Mar 2024 04:03:07 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E5B2F10ECFD;
+	Wed, 13 Mar 2024 04:36:36 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="KM7v3bTc";
+	dkim=pass (1024-bit key; unprotected) header.d=chromium.org header.i=@chromium.org header.b="jkiglAlr";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1A4E110E3BC;
- Wed, 13 Mar 2024 04:03:04 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1710302585; x=1741838585;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=2Y6WMn36B9mOdF7+0vBRQRNqoA9xF0jiI6g3BOlUqOY=;
- b=KM7v3bTcLNAz08kX+1e4xCGWvrbtV934bv1ozR2xcArBUGpAVvQA+Frd
- FMGjJGIpd5LtHvgGCk30ChVx5G+MsqYVW94gpyWaiKvcPu8iU+AAhHqUg
- KdFRHObJ+piY5PnoqZuf6z7IxWTjBd2fRB6wu7L9CcQyFXM1sd3/y4du/
- YmJ6CKTfQk7tmwHm6rcdX8lTGBi739acYD2UHoj87ZUGLgYEpTSCdtqNQ
- owRQ3xZWxVc5BhXf2Pb6g7z4Oan7j1pdyX53iltymkZAtLF3FGnX4YxQj
- HeMvWNgy96l8z7BLEHTnN7dhpYZ7QyRhG3uSt13s0oLjTxJ5QWRgstrHW A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,11011"; a="8859589"
-X-IronPort-AV: E=Sophos;i="6.07,119,1708416000"; 
-   d="scan'208";a="8859589"
-Received: from fmviesa001.fm.intel.com ([10.60.135.141])
- by orvoesa107.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Mar 2024 21:03:05 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.07,119,1708416000"; d="scan'208";a="42770690"
-Received: from mgolanimitul-x299-ud4-pro.iind.intel.com ([10.190.239.114])
- by fmviesa001.fm.intel.com with ESMTP; 12 Mar 2024 21:03:03 -0700
-From: Mitul Golani <mitulkumar.ajitkumar.golani@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Cc: dri-devel@lists.freedesktop.org,
- Mitul Golani <mitulkumar.ajitkumar.golani@intel.com>
-Subject: [PATCH v18 8/9] drm/i915/display: Compute vrr_vsync params
-Date: Wed, 13 Mar 2024 09:26:25 +0530
-Message-Id: <20240313035625.3339996-1-mitulkumar.ajitkumar.golani@intel.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20240311094238.3320888-9-mitulkumar.ajitkumar.golani@intel.com>
-References: <20240311094238.3320888-9-mitulkumar.ajitkumar.golani@intel.com>
+Received: from mail-ed1-f48.google.com (mail-ed1-f48.google.com
+ [209.85.208.48])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3936810ECFD
+ for <intel-gfx@lists.freedesktop.org>; Wed, 13 Mar 2024 04:36:35 +0000 (UTC)
+Received: by mail-ed1-f48.google.com with SMTP id
+ 4fb4d7f45d1cf-5686677bda1so895649a12.0
+ for <intel-gfx@lists.freedesktop.org>; Tue, 12 Mar 2024 21:36:35 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=chromium.org; s=google; t=1710304593; x=1710909393;
+ darn=lists.freedesktop.org; 
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=XDtol6kjGarhunSk4YMKaoCxUWx5FLsm+qsZC5aW98g=;
+ b=jkiglAlrYtaHa81qy+Z/DSf+jujORMEp13dzMJYKCOlni0go54JJzcbnjGO2XmiRiV
+ NQ2u5sdKh77hlMseEfzHA1y2URMsZBNgh1KmNKcvFLhuZI/ldcckpf8/O4qm1VJff7iH
+ BsvDbkr9lYg7KvDX971PqrQGdabiYbveATVeI=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1710304593; x=1710909393;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+ :subject:date:message-id:reply-to;
+ bh=XDtol6kjGarhunSk4YMKaoCxUWx5FLsm+qsZC5aW98g=;
+ b=WRyDVFNzlnGCXZ5Iyo6aUz+lyrSAQguj1HKoCL0927frMejgRfGQhkRsCZJG8kySWm
+ xqXPGzd1v0IuBHEQlDlehQL5zbRZuX+Q3wR+KD7PRU5K3baZRFpQs46IpwwZ3eHUTX/Y
+ vMCKeB0+VnK4gM+X8OQZC/uBFk379y+i5FILtmcG/gXOBLvJDAlv1HmqzLjxA7H/ZIud
+ Jy4QfhJKVB7DebQ7dCTwT+I8R1hIHHjq1+aOcSHXwdc8DBmPozzXO7IWWewUgxCJM28z
+ pwsWUN2Fya/rOCkaKl04MbKtYm2ZVdwPA0zqr/Liicwcmzt3QCWnJRg2uxEROIns/64q
+ o9ow==
+X-Gm-Message-State: AOJu0YxuiSKGRfkSuKYZvU9Dppkfrnfwejc76Yo7lOl0UbFCqHhLt1Mf
+ dg4aDrC+SGQClu3cXyzquHUNixw68spa9QKErSR8seYjiJ84F7l77jDyLG4ua/IAni4SyEeufDx
+ Qo7Hj6/WDyEHnbjzTsvkr5fa8D/dsMSrqN9hY
+X-Google-Smtp-Source: AGHT+IFJBLF4ao5widXfuyzXSLDFY9/OsV7rkKfzCYpe/GcoTIAvAyzBwIIzZU+A8d3tb3XtuorkBpC6yzB3ArMi9+I=
+X-Received: by 2002:a17:907:c310:b0:a45:6d38:60aa with SMTP id
+ tl16-20020a170907c31000b00a456d3860aamr1450785ejc.30.1710304593336; Tue, 12
+ Mar 2024 21:36:33 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <20240308131146.32714-1-stanislav.lisovskiy@intel.com>
+ <20240308131146.32714-3-stanislav.lisovskiy@intel.com>
+In-Reply-To: <20240308131146.32714-3-stanislav.lisovskiy@intel.com>
+From: Manasi Navare <navaremanasi@chromium.org>
+Date: Tue, 12 Mar 2024 21:36:22 -0700
+Message-ID: <CAE72mNmBWeCNig3p0y3-dAcDjvy_XELCxynYbsqP3yEMGzYkoA@mail.gmail.com>
+Subject: Re: [PATCH 2/6] drm/i915: Extract intel_ddi_post_disable_hdmi_or_sst()
+To: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
+Cc: intel-gfx@lists.freedesktop.org, jani.saarinen@intel.com, 
+ ville.syrjala@linux.intel.com, vidya.srinivas@intel.com
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,148 +76,113 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Compute vrr_vsync_start/end, which sets the position
-for hardware to send the Vsync at a fixed position
-relative to the end of the Vblank.
+Thanks Stan for the cleanup around post disable non MST case, one comment b=
+elow
 
---v2:
-- Updated VSYNC_START/END macros to VRR_VSYNC_START/END. (Ankit)
-- Updated bit fields of VRR_VSYNC_START/END. (Ankit)
+On Fri, Mar 8, 2024 at 5:11=E2=80=AFAM Stanislav Lisovskiy
+<stanislav.lisovskiy@intel.com> wrote:
+>
+> Extract the "not-MST" stuff from intel_ddi_post_disable() so that
+> the whole thing isn't so cluttered.
+>
+> The bigjoiner slave handling was outside of the !MST check,
+> but it really should have been inside it as its the counterpart
+> to the master handling inside the check. So we pull that
+> in as well. There is no functional change here as we don't
+> currently support bigjoiner+MST anyway.
 
---v3:
-- Add PIPE_CONF_CHECK_I(vrr.vsync_start/end).
-- Read/write vrr_vsync params only when we intend to send
-adaptive_sync sdp.
 
---v4:
-- Use VRR_SYNC_START/END macros correctly.
+>
+> Signed-off-by: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
+> Signed-off-by: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
+> Credits-to: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
+> ---
+>  drivers/gpu/drm/i915/display/intel_ddi.c | 37 +++++++++++++++---------
+>  1 file changed, 23 insertions(+), 14 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/i915/display/intel_ddi.c b/drivers/gpu/drm/i=
+915/display/intel_ddi.c
+> index bbce74f011d40..5628a4ab608d4 100644
+> --- a/drivers/gpu/drm/i915/display/intel_ddi.c
+> +++ b/drivers/gpu/drm/i915/display/intel_ddi.c
+> @@ -3095,28 +3095,26 @@ static void intel_ddi_post_disable_hdmi(struct in=
+tel_atomic_state *state,
+>         intel_dp_dual_mode_set_tmds_output(intel_hdmi, false);
+>  }
+>
+> -static void intel_ddi_post_disable(struct intel_atomic_state *state,
+> -                                  struct intel_encoder *encoder,
+> -                                  const struct intel_crtc_state *old_crt=
+c_state,
+> -                                  const struct drm_connector_state *old_=
+conn_state)
+> +static void intel_ddi_post_disable_hdmi_or_sst(struct intel_atomic_state=
+ *state,
+> +                                              struct intel_encoder *enco=
+der,
+> +                                              const struct intel_crtc_st=
+ate *old_master_crtc_state,
+> +                                              const struct drm_connector=
+_state *old_conn_state)
+>  {
+>         struct drm_i915_private *dev_priv =3D to_i915(encoder->base.dev);
+>         struct intel_crtc *slave_crtc;
+>
+> -       if (!intel_crtc_has_type(old_crtc_state, INTEL_OUTPUT_DP_MST)) {
+> -               intel_crtc_vblank_off(old_crtc_state);
+> +       intel_crtc_vblank_off(old_crtc_state);
+>
+> -               intel_disable_transcoder(old_crtc_state);
+> +       intel_disable_transcoder(old_crtc_state);
+>
+> -               intel_ddi_disable_transcoder_func(old_crtc_state);
+> +       intel_ddi_disable_transcoder_func(old_crtc_state);
+>
+> -               intel_dsc_disable(old_crtc_state);
+> +       intel_dsc_disable(old_crtc_state);
+>
+> -               if (DISPLAY_VER(dev_priv) >=3D 9)
+> -                       skl_scaler_disable(old_crtc_state);
+> -               else
+> -                       ilk_pfit_disable(old_crtc_state);
+> -       }
+> +       if (DISPLAY_VER(dev_priv) >=3D 9)
+> +               skl_scaler_disable(old_crtc_state);
+> +       else
+> +               ilk_pfit_disable(old_crtc_state);
+>
+>         for_each_intel_crtc_in_pipe_mask(&dev_priv->drm, slave_crtc,
+>                                          intel_crtc_bigjoiner_slave_pipes=
+(old_crtc_state)) {
 
-Signed-off-by: Mitul Golani <mitulkumar.ajitkumar.golani@intel.com>
----
- drivers/gpu/drm/i915/display/intel_display.c  |  2 ++
- .../drm/i915/display/intel_display_types.h    |  1 +
- drivers/gpu/drm/i915/display/intel_vrr.c      | 30 +++++++++++++++++--
- drivers/gpu/drm/i915/i915_reg.h               |  7 +++++
- 4 files changed, 38 insertions(+), 2 deletions(-)
+This bigjoiner slave handling for MST path will be added later to the
+intel_ddi_post_post_disable()
+when we enable bigjoiner for MST?
 
-diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
-index 8f1d948408d3..fed4ed18d53b 100644
---- a/drivers/gpu/drm/i915/display/intel_display.c
-+++ b/drivers/gpu/drm/i915/display/intel_display.c
-@@ -5377,6 +5377,8 @@ intel_pipe_config_compare(const struct intel_crtc_state *current_config,
- 		PIPE_CONF_CHECK_I(vrr.flipline);
- 		PIPE_CONF_CHECK_I(vrr.pipeline_full);
- 		PIPE_CONF_CHECK_I(vrr.guardband);
-+		PIPE_CONF_CHECK_I(vrr.vsync_start);
-+		PIPE_CONF_CHECK_I(vrr.vsync_end);
- 	}
- 
- #undef PIPE_CONF_CHECK_X
-diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/drivers/gpu/drm/i915/display/intel_display_types.h
-index 8a286751dc39..c2e08f641989 100644
---- a/drivers/gpu/drm/i915/display/intel_display_types.h
-+++ b/drivers/gpu/drm/i915/display/intel_display_types.h
-@@ -1430,6 +1430,7 @@ struct intel_crtc_state {
- 		bool enable, in_range;
- 		u8 pipeline_full;
- 		u16 flipline, vmin, vmax, guardband;
-+		u32 vsync_end, vsync_start;
- 	} vrr;
- 
- 	/* Stream Splitter for eDP MSO */
-diff --git a/drivers/gpu/drm/i915/display/intel_vrr.c b/drivers/gpu/drm/i915/display/intel_vrr.c
-index eb5bd0743902..ed38fee196b8 100644
---- a/drivers/gpu/drm/i915/display/intel_vrr.c
-+++ b/drivers/gpu/drm/i915/display/intel_vrr.c
-@@ -9,6 +9,7 @@
- #include "intel_de.h"
- #include "intel_display_types.h"
- #include "intel_vrr.h"
-+#include "intel_dp.h"
- 
- bool intel_vrr_is_capable(struct intel_connector *connector)
- {
-@@ -113,6 +114,7 @@ intel_vrr_compute_config(struct intel_crtc_state *crtc_state,
- 	struct drm_i915_private *i915 = to_i915(crtc->base.dev);
- 	struct intel_connector *connector =
- 		to_intel_connector(conn_state->connector);
-+	struct intel_dp *intel_dp = intel_attached_dp(connector);
- 	struct drm_display_mode *adjusted_mode = &crtc_state->hw.adjusted_mode;
- 	const struct drm_display_info *info = &connector->base.display_info;
- 	int vmin, vmax;
-@@ -165,6 +167,15 @@ intel_vrr_compute_config(struct intel_crtc_state *crtc_state,
- 	if (crtc_state->uapi.vrr_enabled) {
- 		crtc_state->vrr.enable = true;
- 		crtc_state->mode_flags |= I915_MODE_FLAG_VRR;
-+
-+		if (intel_dp_as_sdp_supported(intel_dp)) {
-+			crtc_state->vrr.vsync_start =
-+				(crtc_state->hw.adjusted_mode.crtc_vtotal -
-+					crtc_state->hw.adjusted_mode.vsync_start);
-+			crtc_state->vrr.vsync_end =
-+				(crtc_state->hw.adjusted_mode.crtc_vtotal -
-+					crtc_state->hw.adjusted_mode.vsync_end);
-+		}
- 	}
- }
- 
-@@ -204,6 +215,11 @@ void intel_vrr_set_transcoder_timings(const struct intel_crtc_state *crtc_state)
- 	intel_de_write(dev_priv, TRANS_VRR_VMAX(cpu_transcoder), crtc_state->vrr.vmax - 1);
- 	intel_de_write(dev_priv, TRANS_VRR_CTL(cpu_transcoder), trans_vrr_ctl(crtc_state));
- 	intel_de_write(dev_priv, TRANS_VRR_FLIPLINE(cpu_transcoder), crtc_state->vrr.flipline - 1);
-+
-+	if (crtc_state->vrr.vsync_end && crtc_state->vrr.vsync_start)
-+		intel_de_write(dev_priv, TRANS_VRR_VSYNC(cpu_transcoder),
-+			       VRR_VSYNC_END(crtc_state->hw.adjusted_mode.vsync_end) |
-+				   VRR_VSYNC_START(crtc_state->hw.adjusted_mode.vsync_start));
- }
- 
- void intel_vrr_send_push(const struct intel_crtc_state *crtc_state)
-@@ -264,7 +280,7 @@ void intel_vrr_get_config(struct intel_crtc_state *crtc_state)
- {
- 	struct drm_i915_private *dev_priv = to_i915(crtc_state->uapi.crtc->dev);
- 	enum transcoder cpu_transcoder = crtc_state->cpu_transcoder;
--	u32 trans_vrr_ctl;
-+	u32 trans_vrr_ctl, trans_vrr_vsync;
- 
- 	trans_vrr_ctl = intel_de_read(dev_priv, TRANS_VRR_CTL(cpu_transcoder));
- 
-@@ -284,6 +300,16 @@ void intel_vrr_get_config(struct intel_crtc_state *crtc_state)
- 		crtc_state->vrr.vmin = intel_de_read(dev_priv, TRANS_VRR_VMIN(cpu_transcoder)) + 1;
- 	}
- 
--	if (crtc_state->vrr.enable)
-+	if (crtc_state->vrr.enable) {
- 		crtc_state->mode_flags |= I915_MODE_FLAG_VRR;
-+
-+		if (HAS_AS_SDP(dev_priv)) {
-+			trans_vrr_vsync =
-+				intel_de_read(dev_priv, TRANS_VRR_VSYNC(cpu_transcoder));
-+			crtc_state->vrr.vsync_start =
-+				REG_FIELD_GET(VRR_VSYNC_START_MASK, trans_vrr_vsync);
-+			crtc_state->vrr.vsync_end =
-+				REG_FIELD_GET(VRR_VSYNC_END_MASK, trans_vrr_vsync);
-+		}
-+	}
- }
-diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_reg.h
-index 9bda3a24cd94..9512f4c58094 100644
---- a/drivers/gpu/drm/i915/i915_reg.h
-+++ b/drivers/gpu/drm/i915/i915_reg.h
-@@ -2095,6 +2095,13 @@
- #define   TRANS_PUSH_EN			REG_BIT(31)
- #define   TRANS_PUSH_SEND		REG_BIT(30)
- 
-+#define _TRANS_VRR_VSYNC_A		0x60078
-+#define TRANS_VRR_VSYNC(trans)		_MMIO_TRANS2(trans, _TRANS_VRR_VSYNC_A)
-+#define VRR_VSYNC_END_MASK		REG_GENMASK(28, 16)
-+#define VRR_VSYNC_END(vsync_end)	REG_FIELD_PREP(VRR_VSYNC_END_MASK, (vsync_end))
-+#define VRR_VSYNC_START_MASK		REG_GENMASK(12, 0)
-+#define VRR_VSYNC_START(vsync_start)	REG_FIELD_PREP(VRR_VSYNC_START_MASK, (vsync_start))
-+
- /* VGA port control */
- #define ADPA			_MMIO(0x61100)
- #define PCH_ADPA                _MMIO(0xe1100)
--- 
-2.25.1
+Manasi
 
+> @@ -3128,6 +3126,17 @@ static void intel_ddi_post_disable(struct intel_at=
+omic_state *state,
+>                 intel_dsc_disable(old_slave_crtc_state);
+>                 skl_scaler_disable(old_slave_crtc_state);
+>         }
+> +}
+> +
+> +static void intel_ddi_post_disable(struct intel_atomic_state *state,
+> +                                  struct intel_encoder *encoder,
+> +                                  const struct intel_crtc_state *old_crt=
+c_state,
+> +                                  const struct drm_connector_state *old_=
+conn_state)
+> +{
+> +
+> +       if (!intel_crtc_has_type(old_crtc_state, INTEL_OUTPUT_DP_MST))
+> +               intel_ddi_post_disable_hdmi_or_sst(state, encoder,
+> +                                                  old_crtc_state, old_co=
+nn_state);
+>
+>         /*
+>          * When called from DP MST code:
+> --
+> 2.37.3
+>
