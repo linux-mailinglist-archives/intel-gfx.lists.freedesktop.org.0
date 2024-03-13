@@ -2,56 +2,29 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8D64C87ADDA
-	for <lists+intel-gfx@lfdr.de>; Wed, 13 Mar 2024 18:44:54 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 400E987B1BE
+	for <lists+intel-gfx@lfdr.de>; Wed, 13 Mar 2024 20:25:26 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0421B10F690;
-	Wed, 13 Mar 2024 17:44:53 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="eTzFQs0Z";
-	dkim-atps=neutral
+	by gabe.freedesktop.org (Postfix) with ESMTP id 36FA410F850;
+	Wed, 13 Mar 2024 19:25:23 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 95E1110F690
- for <intel-gfx@lists.freedesktop.org>; Wed, 13 Mar 2024 17:44:52 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1710351893; x=1741887893;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=snurulzlDN4Ny/Eh/TcrzMw8nBsgd68TmZEwbHjyupM=;
- b=eTzFQs0Z47E2L6/lG4OkuPJwjxYlpjEOP9wKQFG9nnuXROSoloYrJMI4
- Sr23WV7lARBQ9Y7S7G7UC/7ajbtJv/LrCtj+8sbH/QtOYF3I/F6/vetZe
- D60zOYigbKjnEJVCendAAIvONUX06dHYHVi047B1/CADfsbE8X+SCA8K6
- WNB6azF1fpWJnTtD7y+4SbV8T+W6bthCdwEM+97Z1bPhUEsnUZowjRq4S
- FQsrnN382g2eCCOP+YKKfIOh2/9CR/whHywPZfOPi/swE4k/JCVXi+qti
- 2CGFyROSgEiYHPPQgOMWyfHtkP5gGLZJe8upjcYKLyKtXRActDAYGdKjA g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,11012"; a="27614270"
-X-IronPort-AV: E=Sophos;i="6.07,123,1708416000"; d="scan'208";a="27614270"
-Received: from orviesa001.jf.intel.com ([10.64.159.141])
- by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Mar 2024 10:44:52 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.07,123,1708416000"; d="scan'208";a="49432678"
-Received: from jbakowsk-mobl.ger.corp.intel.com (HELO localhost)
- ([10.252.53.28])
- by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Mar 2024 10:44:50 -0700
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Jonathon Hall <jonathon.hall@puri.sm>, linux-kernel@vger.kernel.org,
- intel-gfx@lists.freedesktop.org, joonas.lahtinen@linux.intel.com,
- rodrigo.viv@intel.com, tursulin@ursulin.net
-Cc: Jonathon Hall <jonathon.hall@puri.sm>, stable@vger.kernel.org
-Subject: Re: [PATCH] drm/i915: Do not match JSL in
- ehl_combo_pll_div_frac_wa_needed()
-In-Reply-To: <20240313135424.3731410-1-jonathon.hall@puri.sm>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20240313135424.3731410-1-jonathon.hall@puri.sm>
-Date: Wed, 13 Mar 2024 19:44:46 +0200
-Message-ID: <8734surppt.fsf@intel.com>
+Received: from 8e613ede5ea5 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D8FB210F850;
+ Wed, 13 Mar 2024 19:25:21 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============1815774014164293926=="
 MIME-Version: 1.0
-Content-Type: text/plain
+Subject: =?utf-8?q?=E2=9C=97_Fi=2ECI=2EBAT=3A_failure_for_drm/i915=3A_Rename_ICL=5FPO?=
+ =?utf-8?q?RT=5FTX=5FDW6_bits_=28rev2=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: =?utf-8?b?VmlsbGUgU3lyasOkbMOk?= <ville.syrjala@linux.intel.com>
+Cc: intel-gfx@lists.freedesktop.org
+Date: Wed, 13 Mar 2024 19:25:21 -0000
+Message-ID: <171035792188.732671.18134968190431836133@8e613ede5ea5>
+X-Patchwork-Hint: ignore
+References: <20240308072400.28918-1-ville.syrjala@linux.intel.com>
+In-Reply-To: <20240308072400.28918-1-ville.syrjala@linux.intel.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,55 +37,255 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, 13 Mar 2024, Jonathon Hall <jonathon.hall@puri.sm> wrote:
-> Since commit 0c65dc062611 ("drm/i915/jsl: s/JSL/JASPERLAKE for
-> platform/subplatform defines"), boot freezes on a Jasper Lake tablet
-> (Librem 11), usually with graphical corruption on the eDP display,
-> but sometimes just a black screen.  This commit was included in 6.6 and
-> later.
->
-> That commit was intended to refactor EHL and JSL macros, but the change
-> to ehl_combo_pll_div_frac_wa_needed() started matching JSL incorrectly
-> when it was only intended to match EHL.
->
-> It replaced:
-> 	return ((IS_PLATFORM(i915, INTEL_ELKHARTLAKE) &&
-> 		 IS_JSL_EHL_DISPLAY_STEP(i915, STEP_B0, STEP_FOREVER)) ||
-> with:
-> 	return (((IS_ELKHARTLAKE(i915) || IS_JASPERLAKE(i915)) &&
-> 		 IS_DISPLAY_STEP(i915, STEP_B0, STEP_FOREVER)) ||
->
-> Remove IS_JASPERLAKE() to fix the regression.
->
-> Signed-off-by: Jonathon Hall <jonathon.hall@puri.sm>
-> Cc: stable@vger.kernel.org
+--===============1815774014164293926==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Thanks for the patch!
+== Series Details ==
 
-Fixes: 0c65dc062611 ("drm/i915/jsl: s/JSL/JASPERLAKE for platform/subplatform defines")
-Cc: <stable@vger.kernel.org> # v6.6+
-Reviewed-by: Jani Nikula <jani.nikula@intel.com>
+Series: drm/i915: Rename ICL_PORT_TX_DW6 bits (rev2)
+URL   : https://patchwork.freedesktop.org/series/130899/
+State : failure
 
-> ---
->  drivers/gpu/drm/i915/display/intel_dpll_mgr.c | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
->
-> diff --git a/drivers/gpu/drm/i915/display/intel_dpll_mgr.c b/drivers/gpu/drm/i915/display/intel_dpll_mgr.c
-> index ef57dad1a9cb..57a97880dcb3 100644
-> --- a/drivers/gpu/drm/i915/display/intel_dpll_mgr.c
-> +++ b/drivers/gpu/drm/i915/display/intel_dpll_mgr.c
-> @@ -2509,7 +2509,7 @@ static void icl_wrpll_params_populate(struct skl_wrpll_params *params,
->  static bool
->  ehl_combo_pll_div_frac_wa_needed(struct drm_i915_private *i915)
->  {
-> -	return (((IS_ELKHARTLAKE(i915) || IS_JASPERLAKE(i915)) &&
-> +	return ((IS_ELKHARTLAKE(i915) &&
->  		 IS_DISPLAY_STEP(i915, STEP_B0, STEP_FOREVER)) ||
->  		 IS_TIGERLAKE(i915) || IS_ALDERLAKE_S(i915) || IS_ALDERLAKE_P(i915)) &&
->  		 i915->display.dpll.ref_clks.nssc == 38400;
+== Summary ==
 
--- 
-Jani Nikula, Intel
+CI Bug Log - changes from CI_DRM_14427 -> Patchwork_130899v2
+====================================================
+
+Summary
+-------
+
+  **FAILURE**
+
+  Serious unknown changes coming with Patchwork_130899v2 absolutely need to be
+  verified manually.
+  
+  If you think the reported changes have nothing to do with the changes
+  introduced in Patchwork_130899v2, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them
+  to document this new failure mode, which will reduce false positives in CI.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130899v2/index.html
+
+Participating hosts (36 -> 33)
+------------------------------
+
+  Missing    (3): fi-glk-j4005 bat-kbl-2 fi-snb-2520m 
+
+Possible new issues
+-------------------
+
+  Here are the unknown changes that may have been introduced in Patchwork_130899v2:
+
+### IGT changes ###
+
+#### Possible regressions ####
+
+  * igt@i915_module_load@load:
+    - bat-dg2-8:          [PASS][1] -> [DMESG-WARN][2]
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14427/bat-dg2-8/igt@i915_module_load@load.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130899v2/bat-dg2-8/igt@i915_module_load@load.html
+
+  * igt@i915_selftest@live@coherency:
+    - bat-arls-2:         NOTRUN -> [ABORT][3]
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130899v2/bat-arls-2/igt@i915_selftest@live@coherency.html
+
+  
+#### Suppressed ####
+
+  The following results come from untrusted machines, tests, or statuses.
+  They do not affect the overall result.
+
+  * igt@i915_pm_rpm@module-reload:
+    - {bat-mtlp-9}:       [PASS][4] -> [WARN][5]
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14427/bat-mtlp-9/igt@i915_pm_rpm@module-reload.html
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130899v2/bat-mtlp-9/igt@i915_pm_rpm@module-reload.html
+
+  
+Known issues
+------------
+
+  Here are the changes found in Patchwork_130899v2 that come from known issues:
+
+### CI changes ###
+
+#### Issues hit ####
+
+  * boot:
+    - bat-jsl-1:          [PASS][6] -> [FAIL][7] ([i915#8293])
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14427/bat-jsl-1/boot.html
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130899v2/bat-jsl-1/boot.html
+
+  
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@i915_selftest@live@execlists:
+    - fi-bsw-nick:        [PASS][8] -> [ABORT][9] ([i915#7911])
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14427/fi-bsw-nick/igt@i915_selftest@live@execlists.html
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130899v2/fi-bsw-nick/igt@i915_selftest@live@execlists.html
+
+  * igt@i915_selftest@live@memory_region:
+    - bat-dg2-9:          [PASS][10] -> [ABORT][11] ([i915#10366])
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14427/bat-dg2-9/igt@i915_selftest@live@memory_region.html
+   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130899v2/bat-dg2-9/igt@i915_selftest@live@memory_region.html
+
+  
+#### Possible fixes ####
+
+  * igt@i915_selftest@live@objects:
+    - bat-arls-2:         [ABORT][12] -> [PASS][13]
+   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14427/bat-arls-2/igt@i915_selftest@live@objects.html
+   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130899v2/bat-arls-2/igt@i915_selftest@live@objects.html
+
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+  [i915#10366]: https://gitlab.freedesktop.org/drm/intel/issues/10366
+  [i915#7911]: https://gitlab.freedesktop.org/drm/intel/issues/7911
+  [i915#8293]: https://gitlab.freedesktop.org/drm/intel/issues/8293
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_14427 -> Patchwork_130899v2
+
+  CI-20190529: 20190529
+  CI_DRM_14427: ca050304d54e3a0f96bf148053f738d6b62de43a @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_7759: 7759
+  Patchwork_130899v2: ca050304d54e3a0f96bf148053f738d6b62de43a @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+### Linux commits
+
+0eecfa28d65a drm/i915: Rename ICL_PORT_TX_DW6 bits
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130899v2/index.html
+
+--===============1815774014164293926==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/i915: Rename ICL_PORT_TX_DW6 bits (rev2)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/130899/">https://patchwork.freedesktop.org/series/130899/</a></td></tr>
+<tr><td><b>State:</b></td><td>failure</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130899v2/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130899v2/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_14427 -&gt; Patchwork_130899v2</h1>
+<h2>Summary</h2>
+<p><strong>FAILURE</strong></p>
+<p>Serious unknown changes coming with Patchwork_130899v2 absolutely need to be<br />
+  verified manually.</p>
+<p>If you think the reported changes have nothing to do with the changes<br />
+  introduced in Patchwork_130899v2, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them<br />
+  to document this new failure mode, which will reduce false positives in CI.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130899v2/index.html</p>
+<h2>Participating hosts (36 -&gt; 33)</h2>
+<p>Missing    (3): fi-glk-j4005 bat-kbl-2 fi-snb-2520m </p>
+<h2>Possible new issues</h2>
+<p>Here are the unknown changes that may have been introduced in Patchwork_130899v2:</p>
+<h3>IGT changes</h3>
+<h4>Possible regressions</h4>
+<ul>
+<li>
+<p>igt@i915_module_load@load:</p>
+<ul>
+<li>bat-dg2-8:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14427/bat-dg2-8/igt@i915_module_load@load.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130899v2/bat-dg2-8/igt@i915_module_load@load.html">DMESG-WARN</a></li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@coherency:</p>
+<ul>
+<li>bat-arls-2:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130899v2/bat-arls-2/igt@i915_selftest@live@coherency.html">ABORT</a></li>
+</ul>
+</li>
+</ul>
+<h4>Suppressed</h4>
+<p>The following results come from untrusted machines, tests, or statuses.<br />
+  They do not affect the overall result.</p>
+<ul>
+<li>igt@i915_pm_rpm@module-reload:<ul>
+<li>{bat-mtlp-9}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14427/bat-mtlp-9/igt@i915_pm_rpm@module-reload.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130899v2/bat-mtlp-9/igt@i915_pm_rpm@module-reload.html">WARN</a></li>
+</ul>
+</li>
+</ul>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_130899v2 that come from known issues:</p>
+<h3>CI changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>boot:<ul>
+<li>bat-jsl-1:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14427/bat-jsl-1/boot.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130899v2/bat-jsl-1/boot.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/8293">i915#8293</a>)</li>
+</ul>
+</li>
+</ul>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@i915_selftest@live@execlists:</p>
+<ul>
+<li>fi-bsw-nick:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14427/fi-bsw-nick/igt@i915_selftest@live@execlists.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130899v2/fi-bsw-nick/igt@i915_selftest@live@execlists.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/7911">i915#7911</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@memory_region:</p>
+<ul>
+<li>bat-dg2-9:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14427/bat-dg2-9/igt@i915_selftest@live@memory_region.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130899v2/bat-dg2-9/igt@i915_selftest@live@memory_region.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/10366">i915#10366</a>)</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>igt@i915_selftest@live@objects:<ul>
+<li>bat-arls-2:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14427/bat-arls-2/igt@i915_selftest@live@objects.html">ABORT</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130899v2/bat-arls-2/igt@i915_selftest@live@objects.html">PASS</a></li>
+</ul>
+</li>
+</ul>
+<p>{name}: This element is suppressed. This means it is ignored when computing<br />
+          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_14427 -&gt; Patchwork_130899v2</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_14427: ca050304d54e3a0f96bf148053f738d6b62de43a @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_7759: 7759<br />
+  Patchwork_130899v2: ca050304d54e3a0f96bf148053f738d6b62de43a @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+<h3>Linux commits</h3>
+<p>0eecfa28d65a drm/i915: Rename ICL_PORT_TX_DW6 bits</p>
+
+</body>
+</html>
+
+--===============1815774014164293926==--
