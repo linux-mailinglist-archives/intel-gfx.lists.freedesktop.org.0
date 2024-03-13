@@ -2,52 +2,54 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8099A87A87A
-	for <lists+intel-gfx@lfdr.de>; Wed, 13 Mar 2024 14:32:42 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 501EB87A87B
+	for <lists+intel-gfx@lfdr.de>; Wed, 13 Mar 2024 14:32:44 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C4ABC10E45D;
-	Wed, 13 Mar 2024 13:32:40 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1DF5310E1E3;
+	Wed, 13 Mar 2024 13:32:41 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="fo0RgbfU";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="AsTIbrZ8";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9036010E908
- for <intel-gfx@lists.freedesktop.org>; Wed, 13 Mar 2024 13:32:38 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 74FF110E45D
+ for <intel-gfx@lists.freedesktop.org>; Wed, 13 Mar 2024 13:32:39 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1710336759; x=1741872759;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=oWVT+3TLAdVjC2sib6DyTMRmYm1NLFyY3T3t12gk56Y=;
- b=fo0RgbfUS4L791ClGCsLjmF+tQ5FgI0CQRn68636e6MSTU2dVAYpibx6
- EYGxqPjs21OfFZyn9+on/OUzvgAynaKcu5Dxc0I7pTm4wOXwvjQwFXIys
- silQFZbKKiGfhaaVupX/6digsL95cx7U7Y3ouZum81sVI85+K7IVAp2b7
- UEfU92xbshzCSBxp7InVD9Y7dU2g+o4A0aEpKUF4c9+qMK2738io1PSrN
- QdOHKkpwsDA0YdpWHhvmDt+7lfdllHq7Gv43QlbUlY2I2MQ3Qi5ZnE0fm
- B6cbD39SVfakbDyipr+n7Sb0VjKX85Jv8cbBPlVtq/VdmAeDPxU3Jn0D5 Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,11011"; a="30537778"
-X-IronPort-AV: E=Sophos;i="6.07,122,1708416000"; d="scan'208";a="30537778"
+ t=1710336760; x=1741872760;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=jVubC4QvMl5CmJtOrF5RFRN26DjYEMh8jVLXHb0pQBE=;
+ b=AsTIbrZ8ua0mvlDVq7rIz9sS59oytvl3VRoNdfq/R769EV52bWh60/9J
+ K242gPMWpSdVIrjMEI75KYW2gufVHncYOdMD3gUAZLCHPU1ZFynLiK4u4
+ bPNkgO0jbuTDBdr5dnnYuJNAMboEChysk5G/w7WcpQ29ki3CFb9kU/1oU
+ M9SV1SwbYcYPIYSUeHCBcjW3AzTztFxhM5YwfrhZXiBcTsCajbBR1ckez
+ P5gjLLOD1tsm4WeSJpdTgfwBZTioZps4LILO0WGZdGaNWXFRiEoA/s1XK
+ H2HTDwO3q7+zTrewg0VDtDx7VetDMr22pLRS0ShPWq7ULJdTdSvuGNnby w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,11011"; a="30537780"
+X-IronPort-AV: E=Sophos;i="6.07,122,1708416000"; d="scan'208";a="30537780"
 Received: from fmviesa006.fm.intel.com ([10.60.135.146])
  by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Mar 2024 06:32:38 -0700
+ 13 Mar 2024 06:32:39 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.07,122,1708416000"; d="scan'208";a="11977906"
+X-IronPort-AV: E=Sophos;i="6.07,122,1708416000"; d="scan'208";a="11977911"
 Received: from dgaudrex-mobl.amr.corp.intel.com (HELO
  jhogande-mobl1.intel.com) ([10.251.209.14])
  by fmviesa006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Mar 2024 06:32:36 -0700
+ 13 Mar 2024 06:32:37 -0700
 From: =?UTF-8?q?Jouni=20H=C3=B6gander?= <jouni.hogander@intel.com>
 To: intel-gfx@lists.freedesktop.org
 Cc: =?UTF-8?q?Ville=20Syrj=C3=A4l=C3=A4?= <ville.syrjala@linux.intel.com>,
  Jani Nikula <jani.nikula@linux.intel.com>,
  =?UTF-8?q?Jouni=20H=C3=B6gander?= <jouni.hogander@intel.com>
-Subject: [PATCH v6 0/4] IO and fast wake lines calculation and increase fw
- sync length
-Date: Wed, 13 Mar 2024 15:32:17 +0200
-Message-Id: <20240313133221.868391-1-jouni.hogander@intel.com>
+Subject: [PATCH v6 1/4] drm/i915/display: Make intel_dp_aux_fw_sync_len
+ available for PSR code
+Date: Wed, 13 Mar 2024 15:32:18 +0200
+Message-Id: <20240313133221.868391-2-jouni.hogander@intel.com>
 X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20240313133221.868391-1-jouni.hogander@intel.com>
+References: <20240313133221.868391-1-jouni.hogander@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
@@ -67,48 +69,43 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-This patch set is improving IO and fast wake lines calculation in PSR
-code:
+ALPM AUX-Wake fast wake sync pulse count is needed by PSR to calculate IO
+wake and fast wake lines. Convert intel_dp_aux_fw_sync_len as non-static
+to make it available for PSR code.
 
-Use actual fast wake sync pulse count in calculation Implement getter
-for IO buffer wake times and use that.  Better presentation on how
-these are calculated.  Use calculation for display version < 12 as
-well.
+v2: use int instead of u8
 
-Also number of precharge pulses is increased by 2 pulses to fix
-problems with certain panel models.
+Signed-off-by: Jouni Högander <jouni.hogander@intel.com>
+Reviewed-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
+---
+ drivers/gpu/drm/i915/display/intel_dp_aux.c | 2 +-
+ drivers/gpu/drm/i915/display/intel_dp_aux.h | 1 +
+ 2 files changed, 2 insertions(+), 1 deletion(-)
 
-v6:
-  - do not add lnl_io_wake_time helper
-  - comment why pulse count is increased
-v5:
-  - s/get_io_buffer_wake_time/io_buffer_wake_time/ and use it directly in
-    calculation
-  - do not handle < 9 separately
-  - add own helpers for skl, tgl and lnl io buffer wake times
-v4:
-  - initialize io/fast_wake_time for display version < 9
-v3:
-  - keep using int in intel_dp_aux_fw_sync_len
-v2:
-  - do not add function pointer
-  - rename io_wake_time in if block to io_buffer_wake_time
-  - rename get_io_wake_time to get_io_buffer_wake_time
-  - use calculation for display version < 12 as well
-  - split LunarLake IO buffer wake times as a separate patch
-
-Jouni Högander (4):
-  drm/i915/display: Make intel_dp_aux_fw_sync_len available for PSR code
-  drm/i915/psr: Improve fast and IO wake lines calculation
-  drm/i915/psr: Calculate IO wake and fast wake lines for DISPLAY_VER <
-    12
-  drm/i915/display: Increase number of fast wake precharge pulses
-
- drivers/gpu/drm/i915/display/intel_dp_aux.c |  9 +++-
- drivers/gpu/drm/i915/display/intel_dp_aux.h |  1 +
- drivers/gpu/drm/i915/display/intel_psr.c    | 46 ++++++++++++++++-----
- 3 files changed, 43 insertions(+), 13 deletions(-)
-
+diff --git a/drivers/gpu/drm/i915/display/intel_dp_aux.c b/drivers/gpu/drm/i915/display/intel_dp_aux.c
+index 4f4a0e3b3114..7e69be100d90 100644
+--- a/drivers/gpu/drm/i915/display/intel_dp_aux.c
++++ b/drivers/gpu/drm/i915/display/intel_dp_aux.c
+@@ -143,7 +143,7 @@ static int intel_dp_aux_sync_len(void)
+ 	return precharge + preamble;
+ }
+ 
+-static int intel_dp_aux_fw_sync_len(void)
++int intel_dp_aux_fw_sync_len(void)
+ {
+ 	int precharge = 10; /* 10-16 */
+ 	int preamble = 8;
+diff --git a/drivers/gpu/drm/i915/display/intel_dp_aux.h b/drivers/gpu/drm/i915/display/intel_dp_aux.h
+index 8447f3e601fe..76d1f2ed7c2f 100644
+--- a/drivers/gpu/drm/i915/display/intel_dp_aux.h
++++ b/drivers/gpu/drm/i915/display/intel_dp_aux.h
+@@ -20,5 +20,6 @@ enum aux_ch intel_dp_aux_ch(struct intel_encoder *encoder);
+ 
+ void intel_dp_aux_irq_handler(struct drm_i915_private *i915);
+ u32 intel_dp_aux_pack(const u8 *src, int src_bytes);
++int intel_dp_aux_fw_sync_len(void);
+ 
+ #endif /* __INTEL_DP_AUX_H__ */
 -- 
 2.34.1
 
