@@ -2,29 +2,57 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 626D987B252
-	for <lists+intel-gfx@lfdr.de>; Wed, 13 Mar 2024 20:54:28 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3E79487B2BC
+	for <lists+intel-gfx@lfdr.de>; Wed, 13 Mar 2024 21:20:19 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EB0B910E436;
-	Wed, 13 Mar 2024 19:54:25 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8266710E74A;
+	Wed, 13 Mar 2024 20:20:13 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="jFyY3/oc";
+	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from 8e613ede5ea5 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E591810E436;
- Wed, 13 Mar 2024 19:54:24 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============4061790449881579555=="
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.14])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 091E110E710;
+ Wed, 13 Mar 2024 20:20:11 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1710361213; x=1741897213;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=jTJZWPto4ZZRzieeqkUXml/CzBikUEgLbp1WISYlPhU=;
+ b=jFyY3/ocgLHcfCOFgvlNI4sAbneda88v8627iwddP76aIrAUbJDDgRGD
+ eDKZpBTDmbfqYlFOV9c3wGLMv0/DLELa3VpNBtWjzw6/+SkEBsVyVPCrK
+ VrfDLYwxc3ZNjkdLZSnMz2Uv6TjAkeacAbihNtrb/IaUkQai1odTJiPkq
+ UtC2obV8bMoOoXE0pw901oo7QP/QogIz1YerQM4GxCB3+MSUQtf//Q4Zl
+ pGGbihMudjIgM2PW72ckGE3eUD0KYZQuLBa9CV61w5GGbW9bUo5tVUPJk
+ lhxi7fxESav8wQ8Q4ZyABD6JjCHmAop9t11LSUuGfNRFrwzC/VUv2ibsI A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,11012"; a="8975860"
+X-IronPort-AV: E=Sophos;i="6.07,123,1708416000"; 
+   d="scan'208";a="8975860"
+Received: from fmviesa002.fm.intel.com ([10.60.135.142])
+ by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 Mar 2024 13:20:11 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.07,123,1708416000"; d="scan'208";a="35176284"
+Received: from unknown (HELO intel.com) ([10.247.118.152])
+ by fmviesa002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 Mar 2024 13:20:04 -0700
+From: Andi Shyti <andi.shyti@linux.intel.com>
+To: intel-gfx <intel-gfx@lists.freedesktop.org>,
+ dri-devel <dri-devel@lists.freedesktop.org>
+Cc: Chris Wilson <chris.p.wilson@linux.intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Matt Roper <matthew.d.roper@intel.com>,
+ John Harrison <John.C.Harrison@Intel.com>, stable@vger.kernel.org,
+ Andi Shyti <andi.shyti@linux.intel.com>,
+ Andi Shyti <andi.shyti@kernel.org>, Tvrtko Ursulin <tursulin@ursulin.net>
+Subject: [PATCH v6 0/3] Disable automatic load CCS load balancing
+Date: Wed, 13 Mar 2024 21:19:48 +0100
+Message-ID: <20240313201955.95716-1-andi.shyti@linux.intel.com>
+X-Mailer: git-send-email 2.43.0
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Fi=2ECI=2EBAT=3A_success_for_drm/i915=3A_Use_drm=5Fprint?=
- =?utf-8?q?er_more_=28rev8=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: =?utf-8?b?VmlsbGUgU3lyasOkbMOk?= <ville.syrjala@linux.intel.com>
-Cc: intel-gfx@lists.freedesktop.org
-Date: Wed, 13 Mar 2024 19:54:24 -0000
-Message-ID: <171035966493.732671.17347445646102994906@8e613ede5ea5>
-X-Patchwork-Hint: ignore
-References: <20240215164055.30585-1-ville.syrjala@linux.intel.com>
-In-Reply-To: <20240215164055.30585-1-ville.syrjala@linux.intel.com>
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -37,157 +65,85 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============4061790449881579555==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+Hi,
 
-== Series Details ==
+this series does basically two things:
 
-Series: drm/i915: Use drm_printer more (rev8)
-URL   : https://patchwork.freedesktop.org/series/129956/
-State : success
+1. Disables automatic load balancing as adviced by the hardware
+   workaround.
 
-== Summary ==
+2. Assigns all the CCS slices to one single user engine. The user
+   will then be able to query only one CCS engine
 
-CI Bug Log - changes from CI_DRM_14427 -> Patchwork_129956v8
-====================================================
+From v5 I have created a new file, gt/intel_gt_ccs_mode.c where
+I added the intel_gt_apply_ccs_mode(). In the upcoming patches,
+this file will contain the implementation for dynamic CCS mode
+setting.
 
-Summary
--------
+Thanks Tvrtko, Matt, John and Joonas for your reviews!
 
-  **SUCCESS**
+Andi
 
-  No regressions found.
+Changelog
+=========
+v5 -> v6 (thanks Matt for the suggestions in v6)
+ - Remove the refactoring and the for_each_available_engine()
+   macro and instead do not create the intel_engine_cs structure
+   at all.
+ - In patch 1 just a trivial reordering of the bit definitions.
 
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_129956v8/index.html
+v4 -> v5
+ - Use the workaround framework to do all the CCS balancing
+   settings in order to always apply the modes also when the
+   engine resets. Put everything in its own specific function to
+   be executed for the first CCS engine encountered. (Thanks
+   Matt)
+ - Calculate the CCS ID for the CCS mode as the first available
+   CCS among all the engines (Thanks Matt)
+ - create the intel_gt_ccs_mode.c function to host the CCS
+   configuration. We will have it ready for the next series.
+ - Fix a selftest that was failing because could not set CCS2.
+ - Add the for_each_available_engine() macro to exclude CCS1+ and
+   start using it in the hangcheck selftest.
 
-Participating hosts (36 -> 32)
-------------------------------
+v3 -> v4
+ - Reword correctly the comment in the workaround
+ - Fix a buffer overflow (Thanks Joonas)
+ - Handle properly the fused engines when setting the CCS mode.
 
-  Missing    (4): bat-mtlp-8 bat-arls-2 bat-jsl-1 fi-snb-2520m 
+v2 -> v3
+ - Simplified the algorithm for creating the list of the exported
+   uabi engines. (Patch 1) (Thanks, Tvrtko)
+ - Consider the fused engines when creating the uabi engine list
+   (Patch 2) (Thanks, Matt)
+ - Patch 4 now uses a the refactoring from patch 1, in a cleaner
+   outcome.
 
-Known issues
-------------
+v1 -> v2
+ - In Patch 1 use the correct workaround number (thanks Matt).
+ - In Patch 2 do not add the extra CCS engines to the exposed
+   UABI engine list and adapt the engine counting accordingly
+   (thanks Tvrtko).
+ - Reword the commit of Patch 2 (thanks John).
 
-  Here are the changes found in Patchwork_129956v8 that come from known issues:
+Andi Shyti (3):
+  drm/i915/gt: Disable HW load balancing for CCS
+  drm/i915/gt: Do not generate the command streamer for all the CCS
+  drm/i915/gt: Enable only one CCS for compute workload
 
-### IGT changes ###
+ drivers/gpu/drm/i915/Makefile               |  1 +
+ drivers/gpu/drm/i915/gt/intel_engine_cs.c   | 20 ++++++++---
+ drivers/gpu/drm/i915/gt/intel_gt_ccs_mode.c | 39 +++++++++++++++++++++
+ drivers/gpu/drm/i915/gt/intel_gt_ccs_mode.h | 13 +++++++
+ drivers/gpu/drm/i915/gt/intel_gt_regs.h     |  6 ++++
+ drivers/gpu/drm/i915/gt/intel_workarounds.c | 30 ++++++++++++++--
+ 6 files changed, 103 insertions(+), 6 deletions(-)
+ create mode 100644 drivers/gpu/drm/i915/gt/intel_gt_ccs_mode.c
+ create mode 100644 drivers/gpu/drm/i915/gt/intel_gt_ccs_mode.h
 
-#### Possible fixes ####
+-- 
+2.43.0
 
-  * igt@i915_selftest@live@hangcheck:
-    - bat-rpls-3:         [DMESG-WARN][1] ([i915#5591]) -> [PASS][2]
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14427/bat-rpls-3/igt@i915_selftest@live@hangcheck.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_129956v8/bat-rpls-3/igt@i915_selftest@live@hangcheck.html
-
-  
-  [i915#5591]: https://gitlab.freedesktop.org/drm/intel/issues/5591
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_14427 -> Patchwork_129956v8
-
-  CI-20190529: 20190529
-  CI_DRM_14427: ca050304d54e3a0f96bf148053f738d6b62de43a @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_7759: 7759
-  Patchwork_129956v8: ca050304d54e3a0f96bf148053f738d6b62de43a @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-### Linux commits
-
-35d08f7b3483 drm/i915: Create the printer only once in intel_pipe_config_compare()
-05191b28fdd9 drm/i915: Reuse pipe_config_mismatch() more
-389867c7eb98 drm/i915: Relocate pipe_config_mismatch()
-c90afbf4b258 drm/i915: Skip intel_crtc_state_dump() if debugs aren't enabled
-8128cf631a38 drm/i915: Convert the remaining state dump to drm_printer
-75f1edd1522c drm/i915: Use drm_printer more extensively in intel_crtc_state_dump()
-95e75ee74125 drm/i915: Convert intel_dpll_dump_hw_state() to drm_printer
-b1b3a569e4a1 drm/i915: Convert pipe_config_buffer_mismatch() to drm_printer
-01ff1c63d3b1 drm/i915: Convert pipe_config_infoframe_mismatch() to drm_printer
-2d81de99c774 drm/i915: Include CRTC info in VSC SDP mismatch prints
-7d86f357df10 drm/i915: Include CRTC info in infoframe mismatch prints
-b73f4d008ef2 drm/i915: Indicate which pipe failed the fastset check overall
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_129956v8/index.html
-
---===============4061790449881579555==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915: Use drm_printer more (rev8)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/129956/">https://patchwork.freedesktop.org/series/129956/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_129956v8/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_129956v8/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_14427 -&gt; Patchwork_129956v8</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_129956v8/index.html</p>
-<h2>Participating hosts (36 -&gt; 32)</h2>
-<p>Missing    (4): bat-mtlp-8 bat-arls-2 bat-jsl-1 fi-snb-2520m </p>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_129956v8 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Possible fixes</h4>
-<ul>
-<li>igt@i915_selftest@live@hangcheck:<ul>
-<li>bat-rpls-3:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14427/bat-rpls-3/igt@i915_selftest@live@hangcheck.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/5591">i915#5591</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_129956v8/bat-rpls-3/igt@i915_selftest@live@hangcheck.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_14427 -&gt; Patchwork_129956v8</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_14427: ca050304d54e3a0f96bf148053f738d6b62de43a @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_7759: 7759<br />
-  Patchwork_129956v8: ca050304d54e3a0f96bf148053f738d6b62de43a @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<h3>Linux commits</h3>
-<p>35d08f7b3483 drm/i915: Create the printer only once in intel_pipe_config_compare()<br />
-05191b28fdd9 drm/i915: Reuse pipe_config_mismatch() more<br />
-389867c7eb98 drm/i915: Relocate pipe_config_mismatch()<br />
-c90afbf4b258 drm/i915: Skip intel_crtc_state_dump() if debugs aren't enabled<br />
-8128cf631a38 drm/i915: Convert the remaining state dump to drm_printer<br />
-75f1edd1522c drm/i915: Use drm_printer more extensively in intel_crtc_state_dump()<br />
-95e75ee74125 drm/i915: Convert intel_dpll_dump_hw_state() to drm_printer<br />
-b1b3a569e4a1 drm/i915: Convert pipe_config_buffer_mismatch() to drm_printer<br />
-01ff1c63d3b1 drm/i915: Convert pipe_config_infoframe_mismatch() to drm_printer<br />
-2d81de99c774 drm/i915: Include CRTC info in VSC SDP mismatch prints<br />
-7d86f357df10 drm/i915: Include CRTC info in infoframe mismatch prints<br />
-b73f4d008ef2 drm/i915: Indicate which pipe failed the fastset check overall</p>
-
-</body>
-</html>
-
---===============4061790449881579555==--
