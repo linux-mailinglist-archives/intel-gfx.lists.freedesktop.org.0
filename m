@@ -2,29 +2,56 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2BF4087AD5D
-	for <lists+intel-gfx@lfdr.de>; Wed, 13 Mar 2024 18:32:56 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id C3DBE87AD67
+	for <lists+intel-gfx@lfdr.de>; Wed, 13 Mar 2024 18:34:05 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C3FD610E94F;
-	Wed, 13 Mar 2024 17:32:54 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 266FE10F2C3;
+	Wed, 13 Mar 2024 17:34:04 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="j25FQqaZ";
+	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from 8e613ede5ea5 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5D24710E94F;
- Wed, 13 Mar 2024 17:32:53 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============6846706835038746191=="
-MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=97_Fi=2ECI=2EBAT=3A_failure_for_Bigjoiner_refactoring_=28re?=
- =?utf-8?q?v10=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Lisovskiy, Stanislav" <stanislav.lisovskiy@intel.com>
-Cc: intel-gfx@lists.freedesktop.org
-Date: Wed, 13 Mar 2024 17:32:53 -0000
-Message-ID: <171035117337.732671.17423258497784763230@8e613ede5ea5>
-X-Patchwork-Hint: ignore
-References: <20240313095949.6898-1-stanislav.lisovskiy@intel.com>
-In-Reply-To: <20240313095949.6898-1-stanislav.lisovskiy@intel.com>
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 53AE610F2C3;
+ Wed, 13 Mar 2024 17:34:02 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1710351243; x=1741887243;
+ h=date:from:to:cc:subject:message-id;
+ bh=9NL1iZe2rciwfl3izliToDB8kw9Da33sdvbnGahTlhs=;
+ b=j25FQqaZSN2XF8B3+uK/fQmZKGqckZMxbhhrgi/1oxAaUJ4BntqtDz3x
+ zNpcit67fbN/KsaFqCJ/WT2nxikk5LwALrb0Pl5+6oqqTD0CIbPYOuv+U
+ mPmH7WMSK4E0xiSVT4AepQnFeYc8UmERZbbUyb+jOgGhPjcdn6mwLg1oN
+ 88iClu5/VnnqPnimMNBMg8VGz4as/6kp4NSYXccsj5jKUMBxiQWe0QhpP
+ reqMVrcQabfeXbfozXJiykNRGnmGNmSQFGostkFRiqITvLnSOHlaQDsoz
+ wOd6ok5boyvzYqKIicJbQ0oki/eomE1VLOa+Mqz7rrHsTkZZT+FwZ6dDD A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,11012"; a="15772784"
+X-IronPort-AV: E=Sophos;i="6.07,123,1708416000"; d="scan'208";a="15772784"
+Received: from fmviesa002.fm.intel.com ([10.60.135.142])
+ by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 Mar 2024 10:34:01 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.07,123,1708416000"; d="scan'208";a="35132772"
+Received: from lkp-server01.sh.intel.com (HELO b21307750695) ([10.239.97.150])
+ by fmviesa002.fm.intel.com with ESMTP; 13 Mar 2024 10:33:57 -0700
+Received: from kbuild by b21307750695 with local (Exim 4.96)
+ (envelope-from <lkp@intel.com>) id 1rkSUF-000Ccl-0z;
+ Wed, 13 Mar 2024 17:33:55 +0000
+Date: Thu, 14 Mar 2024 01:33:26 +0800
+From: kernel test robot <lkp@intel.com>
+To: Andrew Morton <akpm@linux-foundation.org>
+Cc: Linux Memory Management List <linux-mm@kvack.org>,
+ bpf@vger.kernel.org, devicetree@vger.kernel.org,
+ intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
+ io-uring@vger.kernel.org, linux-fsdevel@vger.kernel.org,
+ linux-mtd@lists.infradead.org, linux-omap@vger.kernel.org,
+ linux-pm@vger.kernel.org, linux-usb@vger.kernel.org,
+ netdev@vger.kernel.org, speakup@linux-speakup.org
+Subject: [linux-next:master] BUILD REGRESSION
+ dad309222e4c3fc7f88b20ce725ce1e0eea07cc7
+Message-ID: <202403140118.SIPOZHQD-lkp@intel.com>
+User-Agent: s-nail v14.9.24
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -37,432 +64,397 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============6846706835038746191==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-== Series Details ==
-
-Series: Bigjoiner refactoring (rev10)
-URL   : https://patchwork.freedesktop.org/series/128311/
-State : failure
-
-== Summary ==
-
-CI Bug Log - changes from CI_DRM_14426 -> Patchwork_128311v10
-====================================================
-
-Summary
--------
-
-  **FAILURE**
-
-  Serious unknown changes coming with Patchwork_128311v10 absolutely need to be
-  verified manually.
-  
-  If you think the reported changes have nothing to do with the changes
-  introduced in Patchwork_128311v10, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them
-  to document this new failure mode, which will reduce false positives in CI.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_128311v10/index.html
-
-Participating hosts (35 -> 34)
-------------------------------
-
-  Additional (2): bat-kbl-2 bat-mtlp-8 
-  Missing    (3): bat-dg1-7 fi-glk-j4005 fi-snb-2520m 
-
-Possible new issues
--------------------
-
-  Here are the unknown changes that may have been introduced in Patchwork_128311v10:
-
-### IGT changes ###
-
-#### Possible regressions ####
-
-  * igt@i915_module_load@load:
-    - bat-adls-6:         [PASS][1] -> [DMESG-WARN][2]
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14426/bat-adls-6/igt@i915_module_load@load.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_128311v10/bat-adls-6/igt@i915_module_load@load.html
-
-  
-Known issues
-------------
-
-  Here are the changes found in Patchwork_128311v10 that come from known issues:
-
-### CI changes ###
-
-#### Issues hit ####
-
-  * boot:
-    - bat-jsl-1:          [PASS][3] -> [FAIL][4] ([i915#8293])
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14426/bat-jsl-1/boot.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_128311v10/bat-jsl-1/boot.html
-    - fi-cfl-8109u:       [PASS][5] -> [FAIL][6] ([i915#8293])
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14426/fi-cfl-8109u/boot.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_128311v10/fi-cfl-8109u/boot.html
-
-  
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@debugfs_test@basic-hwmon:
-    - bat-mtlp-8:         NOTRUN -> [SKIP][7] ([i915#9318])
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_128311v10/bat-mtlp-8/igt@debugfs_test@basic-hwmon.html
-
-  * igt@fbdev@info:
-    - bat-kbl-2:          NOTRUN -> [SKIP][8] ([i915#1849])
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_128311v10/bat-kbl-2/igt@fbdev@info.html
-
-  * igt@gem_lmem_swapping@parallel-random-engines:
-    - bat-kbl-2:          NOTRUN -> [SKIP][9] +39 other tests skip
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_128311v10/bat-kbl-2/igt@gem_lmem_swapping@parallel-random-engines.html
-
-  * igt@gem_lmem_swapping@verify-random:
-    - bat-mtlp-8:         NOTRUN -> [SKIP][10] ([i915#4613]) +3 other tests skip
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_128311v10/bat-mtlp-8/igt@gem_lmem_swapping@verify-random.html
-
-  * igt@gem_mmap@basic:
-    - bat-mtlp-8:         NOTRUN -> [SKIP][11] ([i915#4083])
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_128311v10/bat-mtlp-8/igt@gem_mmap@basic.html
-
-  * igt@gem_mmap_gtt@basic:
-    - bat-mtlp-8:         NOTRUN -> [SKIP][12] ([i915#4077]) +2 other tests skip
-   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_128311v10/bat-mtlp-8/igt@gem_mmap_gtt@basic.html
-
-  * igt@gem_render_tiled_blits@basic:
-    - bat-mtlp-8:         NOTRUN -> [SKIP][13] ([i915#4079]) +1 other test skip
-   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_128311v10/bat-mtlp-8/igt@gem_render_tiled_blits@basic.html
-
-  * igt@i915_pm_rps@basic-api:
-    - bat-mtlp-8:         NOTRUN -> [SKIP][14] ([i915#6621])
-   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_128311v10/bat-mtlp-8/igt@i915_pm_rps@basic-api.html
-
-  * igt@i915_selftest@live@uncore:
-    - bat-dg2-8:          [PASS][15] -> [ABORT][16] ([i915#10366])
-   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14426/bat-dg2-8/igt@i915_selftest@live@uncore.html
-   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_128311v10/bat-dg2-8/igt@i915_selftest@live@uncore.html
-
-  * igt@kms_addfb_basic@addfb25-y-tiled-small-legacy:
-    - bat-mtlp-8:         NOTRUN -> [SKIP][17] ([i915#5190])
-   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_128311v10/bat-mtlp-8/igt@kms_addfb_basic@addfb25-y-tiled-small-legacy.html
-
-  * igt@kms_addfb_basic@basic-y-tiled-legacy:
-    - bat-mtlp-8:         NOTRUN -> [SKIP][18] ([i915#4212]) +8 other tests skip
-   [18]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_128311v10/bat-mtlp-8/igt@kms_addfb_basic@basic-y-tiled-legacy.html
-
-  * igt@kms_cursor_legacy@basic-busy-flip-before-cursor-legacy:
-    - bat-mtlp-8:         NOTRUN -> [SKIP][19] ([i915#4213]) +1 other test skip
-   [19]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_128311v10/bat-mtlp-8/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-legacy.html
-
-  * igt@kms_dsc@dsc-basic:
-    - bat-mtlp-8:         NOTRUN -> [SKIP][20] ([i915#3555] / [i915#3840] / [i915#9159])
-   [20]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_128311v10/bat-mtlp-8/igt@kms_dsc@dsc-basic.html
-
-  * igt@kms_force_connector_basic@force-connector-state:
-    - bat-adlm-1:         [PASS][21] -> [ABORT][22] ([i915#9991])
-   [21]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14426/bat-adlm-1/igt@kms_force_connector_basic@force-connector-state.html
-   [22]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_128311v10/bat-adlm-1/igt@kms_force_connector_basic@force-connector-state.html
-
-  * igt@kms_force_connector_basic@force-load-detect:
-    - bat-mtlp-8:         NOTRUN -> [SKIP][23]
-   [23]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_128311v10/bat-mtlp-8/igt@kms_force_connector_basic@force-load-detect.html
-
-  * igt@kms_force_connector_basic@prune-stale-modes:
-    - bat-mtlp-8:         NOTRUN -> [SKIP][24] ([i915#5274])
-   [24]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_128311v10/bat-mtlp-8/igt@kms_force_connector_basic@prune-stale-modes.html
-
-  * igt@kms_psr@psr-primary-mmap-gtt@edp-1:
-    - bat-mtlp-8:         NOTRUN -> [SKIP][25] ([i915#4077] / [i915#9688])
-   [25]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_128311v10/bat-mtlp-8/igt@kms_psr@psr-primary-mmap-gtt@edp-1.html
-
-  * igt@kms_setmode@basic-clone-single-crtc:
-    - bat-mtlp-8:         NOTRUN -> [SKIP][26] ([i915#3555] / [i915#8809])
-   [26]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_128311v10/bat-mtlp-8/igt@kms_setmode@basic-clone-single-crtc.html
-
-  * igt@prime_vgem@basic-fence-mmap:
-    - bat-mtlp-8:         NOTRUN -> [SKIP][27] ([i915#3708] / [i915#4077]) +1 other test skip
-   [27]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_128311v10/bat-mtlp-8/igt@prime_vgem@basic-fence-mmap.html
-
-  * igt@prime_vgem@basic-fence-read:
-    - bat-mtlp-8:         NOTRUN -> [SKIP][28] ([i915#3708]) +2 other tests skip
-   [28]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_128311v10/bat-mtlp-8/igt@prime_vgem@basic-fence-read.html
-
-  
-#### Possible fixes ####
-
-  * igt@i915_selftest@live@gem_contexts:
-    - bat-arls-2:         [ABORT][29] ([i915#10233]) -> [PASS][30]
-   [29]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14426/bat-arls-2/igt@i915_selftest@live@gem_contexts.html
-   [30]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_128311v10/bat-arls-2/igt@i915_selftest@live@gem_contexts.html
-
-  
-  [i915#10233]: https://gitlab.freedesktop.org/drm/intel/issues/10233
-  [i915#10366]: https://gitlab.freedesktop.org/drm/intel/issues/10366
-  [i915#1849]: https://gitlab.freedesktop.org/drm/intel/issues/1849
-  [i915#3555]: https://gitlab.freedesktop.org/drm/intel/issues/3555
-  [i915#3708]: https://gitlab.freedesktop.org/drm/intel/issues/3708
-  [i915#3840]: https://gitlab.freedesktop.org/drm/intel/issues/3840
-  [i915#4077]: https://gitlab.freedesktop.org/drm/intel/issues/4077
-  [i915#4079]: https://gitlab.freedesktop.org/drm/intel/issues/4079
-  [i915#4083]: https://gitlab.freedesktop.org/drm/intel/issues/4083
-  [i915#4212]: https://gitlab.freedesktop.org/drm/intel/issues/4212
-  [i915#4213]: https://gitlab.freedesktop.org/drm/intel/issues/4213
-  [i915#4613]: https://gitlab.freedesktop.org/drm/intel/issues/4613
-  [i915#5190]: https://gitlab.freedesktop.org/drm/intel/issues/5190
-  [i915#5274]: https://gitlab.freedesktop.org/drm/intel/issues/5274
-  [i915#6621]: https://gitlab.freedesktop.org/drm/intel/issues/6621
-  [i915#8293]: https://gitlab.freedesktop.org/drm/intel/issues/8293
-  [i915#8809]: https://gitlab.freedesktop.org/drm/intel/issues/8809
-  [i915#9159]: https://gitlab.freedesktop.org/drm/intel/issues/9159
-  [i915#9318]: https://gitlab.freedesktop.org/drm/intel/issues/9318
-  [i915#9688]: https://gitlab.freedesktop.org/drm/intel/issues/9688
-  [i915#9991]: https://gitlab.freedesktop.org/drm/intel/issues/9991
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_14426 -> Patchwork_128311v10
-
-  CI-20190529: 20190529
-  CI_DRM_14426: 72f447f984cf5526e6ad32a6e2770124c67d59d3 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_7759: 7759
-  Patchwork_128311v10: 72f447f984cf5526e6ad32a6e2770124c67d59d3 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-### Linux commits
-
-52a59861370e drm/i915: Allow bigjoiner for MST
-3ab26b81dd72 drm/i915: Handle joined pipes inside hsw_crtc_enable()
-9c80a075989f drm/i915: Handle joined pipes inside hsw_crtc_disable()
-e324b0aea968 drm/i915: Utilize intel_crtc_joined_pipe_mask() more
-706ea237ec8d drm/i915: Extract intel_ddi_post_disable_hdmi_or_sst()
-8a5e04ac5d13 drm/i915: Add a small helper to compute the set of pipes for crtc
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_128311v10/index.html
-
---===============6846706835038746191==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>Bigjoiner refactoring (rev10)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/128311/">https://patchwork.freedesktop.org/series/128311/</a></td></tr>
-<tr><td><b>State:</b></td><td>failure</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_128311v10/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_128311v10/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_14426 -&gt; Patchwork_128311v10</h1>
-<h2>Summary</h2>
-<p><strong>FAILURE</strong></p>
-<p>Serious unknown changes coming with Patchwork_128311v10 absolutely need to be<br />
-  verified manually.</p>
-<p>If you think the reported changes have nothing to do with the changes<br />
-  introduced in Patchwork_128311v10, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them<br />
-  to document this new failure mode, which will reduce false positives in CI.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_128311v10/index.html</p>
-<h2>Participating hosts (35 -&gt; 34)</h2>
-<p>Additional (2): bat-kbl-2 bat-mtlp-8 <br />
-  Missing    (3): bat-dg1-7 fi-glk-j4005 fi-snb-2520m </p>
-<h2>Possible new issues</h2>
-<p>Here are the unknown changes that may have been introduced in Patchwork_128311v10:</p>
-<h3>IGT changes</h3>
-<h4>Possible regressions</h4>
-<ul>
-<li>igt@i915_module_load@load:<ul>
-<li>bat-adls-6:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14426/bat-adls-6/igt@i915_module_load@load.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_128311v10/bat-adls-6/igt@i915_module_load@load.html">DMESG-WARN</a></li>
-</ul>
-</li>
-</ul>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_128311v10 that come from known issues:</p>
-<h3>CI changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>boot:<ul>
-<li>bat-jsl-1:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14426/bat-jsl-1/boot.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_128311v10/bat-jsl-1/boot.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/8293">i915#8293</a>)</li>
-<li>fi-cfl-8109u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14426/fi-cfl-8109u/boot.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_128311v10/fi-cfl-8109u/boot.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/8293">i915#8293</a>)</li>
-</ul>
-</li>
-</ul>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@debugfs_test@basic-hwmon:</p>
-<ul>
-<li>bat-mtlp-8:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_128311v10/bat-mtlp-8/igt@debugfs_test@basic-hwmon.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/9318">i915#9318</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@fbdev@info:</p>
-<ul>
-<li>bat-kbl-2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_128311v10/bat-kbl-2/igt@fbdev@info.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1849">i915#1849</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_lmem_swapping@parallel-random-engines:</p>
-<ul>
-<li>bat-kbl-2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_128311v10/bat-kbl-2/igt@gem_lmem_swapping@parallel-random-engines.html">SKIP</a> +39 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_lmem_swapping@verify-random:</p>
-<ul>
-<li>bat-mtlp-8:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_128311v10/bat-mtlp-8/igt@gem_lmem_swapping@verify-random.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4613">i915#4613</a>) +3 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_mmap@basic:</p>
-<ul>
-<li>bat-mtlp-8:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_128311v10/bat-mtlp-8/igt@gem_mmap@basic.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4083">i915#4083</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_mmap_gtt@basic:</p>
-<ul>
-<li>bat-mtlp-8:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_128311v10/bat-mtlp-8/igt@gem_mmap_gtt@basic.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4077">i915#4077</a>) +2 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_render_tiled_blits@basic:</p>
-<ul>
-<li>bat-mtlp-8:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_128311v10/bat-mtlp-8/igt@gem_render_tiled_blits@basic.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4079">i915#4079</a>) +1 other test skip</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_pm_rps@basic-api:</p>
-<ul>
-<li>bat-mtlp-8:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_128311v10/bat-mtlp-8/igt@i915_pm_rps@basic-api.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/6621">i915#6621</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@uncore:</p>
-<ul>
-<li>bat-dg2-8:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14426/bat-dg2-8/igt@i915_selftest@live@uncore.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_128311v10/bat-dg2-8/igt@i915_selftest@live@uncore.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/10366">i915#10366</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_addfb_basic@addfb25-y-tiled-small-legacy:</p>
-<ul>
-<li>bat-mtlp-8:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_128311v10/bat-mtlp-8/igt@kms_addfb_basic@addfb25-y-tiled-small-legacy.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/5190">i915#5190</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_addfb_basic@basic-y-tiled-legacy:</p>
-<ul>
-<li>bat-mtlp-8:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_128311v10/bat-mtlp-8/igt@kms_addfb_basic@basic-y-tiled-legacy.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4212">i915#4212</a>) +8 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_cursor_legacy@basic-busy-flip-before-cursor-legacy:</p>
-<ul>
-<li>bat-mtlp-8:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_128311v10/bat-mtlp-8/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-legacy.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4213">i915#4213</a>) +1 other test skip</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_dsc@dsc-basic:</p>
-<ul>
-<li>bat-mtlp-8:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_128311v10/bat-mtlp-8/igt@kms_dsc@dsc-basic.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3555">i915#3555</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/3840">i915#3840</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/9159">i915#9159</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_force_connector_basic@force-connector-state:</p>
-<ul>
-<li>bat-adlm-1:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14426/bat-adlm-1/igt@kms_force_connector_basic@force-connector-state.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_128311v10/bat-adlm-1/igt@kms_force_connector_basic@force-connector-state.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/9991">i915#9991</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_force_connector_basic@force-load-detect:</p>
-<ul>
-<li>bat-mtlp-8:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_128311v10/bat-mtlp-8/igt@kms_force_connector_basic@force-load-detect.html">SKIP</a></li>
-</ul>
-</li>
-<li>
-<p>igt@kms_force_connector_basic@prune-stale-modes:</p>
-<ul>
-<li>bat-mtlp-8:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_128311v10/bat-mtlp-8/igt@kms_force_connector_basic@prune-stale-modes.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/5274">i915#5274</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_psr@psr-primary-mmap-gtt@edp-1:</p>
-<ul>
-<li>bat-mtlp-8:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_128311v10/bat-mtlp-8/igt@kms_psr@psr-primary-mmap-gtt@edp-1.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4077">i915#4077</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/9688">i915#9688</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_setmode@basic-clone-single-crtc:</p>
-<ul>
-<li>bat-mtlp-8:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_128311v10/bat-mtlp-8/igt@kms_setmode@basic-clone-single-crtc.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3555">i915#3555</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/8809">i915#8809</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@prime_vgem@basic-fence-mmap:</p>
-<ul>
-<li>bat-mtlp-8:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_128311v10/bat-mtlp-8/igt@prime_vgem@basic-fence-mmap.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3708">i915#3708</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/4077">i915#4077</a>) +1 other test skip</li>
-</ul>
-</li>
-<li>
-<p>igt@prime_vgem@basic-fence-read:</p>
-<ul>
-<li>bat-mtlp-8:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_128311v10/bat-mtlp-8/igt@prime_vgem@basic-fence-read.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3708">i915#3708</a>) +2 other tests skip</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>igt@i915_selftest@live@gem_contexts:<ul>
-<li>bat-arls-2:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14426/bat-arls-2/igt@i915_selftest@live@gem_contexts.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/10233">i915#10233</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_128311v10/bat-arls-2/igt@i915_selftest@live@gem_contexts.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_14426 -&gt; Patchwork_128311v10</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_14426: 72f447f984cf5526e6ad32a6e2770124c67d59d3 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_7759: 7759<br />
-  Patchwork_128311v10: 72f447f984cf5526e6ad32a6e2770124c67d59d3 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<h3>Linux commits</h3>
-<p>52a59861370e drm/i915: Allow bigjoiner for MST<br />
-3ab26b81dd72 drm/i915: Handle joined pipes inside hsw_crtc_enable()<br />
-9c80a075989f drm/i915: Handle joined pipes inside hsw_crtc_disable()<br />
-e324b0aea968 drm/i915: Utilize intel_crtc_joined_pipe_mask() more<br />
-706ea237ec8d drm/i915: Extract intel_ddi_post_disable_hdmi_or_sst()<br />
-8a5e04ac5d13 drm/i915: Add a small helper to compute the set of pipes for crtc</p>
-
-</body>
-</html>
-
---===============6846706835038746191==--
+tree/branch: https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git master
+branch HEAD: dad309222e4c3fc7f88b20ce725ce1e0eea07cc7  Add linux-next specific files for 20240313
+
+Error/Warning reports:
+
+https://lore.kernel.org/oe-kbuild-all/202403131859.SZdCjzFY-lkp@intel.com
+
+Error/Warning: (recently discovered and may have been fixed)
+
+ERROR: modpost: "__aeabi_uldivmod" [drivers/gpu/drm/sun4i/sun4i-drm-hdmi.ko] undefined!
+drivers/gpu/drm/xe/xe_hw_engine_class_sysfs.c:574:33: error: unused function 'pdev_to_xe_device' [-Werror,-Wunused-function]
+drivers/gpu/drm/xe/xe_hw_engine_class_sysfs.c:579:33: error: unused function 'to_xe_device' [-Werror,-Wunused-function]
+include/linux/of.h:946:(.text+0x2be): undefined reference to `__udivdi3'
+ld.lld: error: undefined symbol: __aeabi_uldivmod
+powerpc-linux-ld: warning: orphan section `.bss..Lubsan_data772' from `kernel/ptrace.o' being placed in section `.bss..Lubsan_data772'
+
+Unverified Error/Warning (likely false positive, please contact us if interested):
+
+drivers/accessibility/speakup/devsynth.c:110:1: error: label at end of compound statement
+
+Error/Warning ids grouped by kconfigs:
+
+gcc_recent_errors
+|-- alpha-allyesconfig
+|   `-- fs-ubifs-journal.c:warning:expecting-prototype-for-wake_up_reservation().-Prototype-was-for-add_or_start_queue()-instead
+|-- arc-allmodconfig
+|   |-- drivers-gpu-drm-i915-display-intel_bios.c:error:implicit-declaration-of-function-intel_opregion_vbt_present
+|   `-- fs-ubifs-journal.c:warning:expecting-prototype-for-wake_up_reservation().-Prototype-was-for-add_or_start_queue()-instead
+|-- arc-allyesconfig
+|   `-- fs-ubifs-journal.c:warning:expecting-prototype-for-wake_up_reservation().-Prototype-was-for-add_or_start_queue()-instead
+|-- arc-randconfig-002-20240313
+|   `-- fs-ubifs-journal.c:warning:expecting-prototype-for-wake_up_reservation().-Prototype-was-for-add_or_start_queue()-instead
+|-- arm-allmodconfig
+|   |-- arch-arm-mach-omap2-prm33xx.c:warning:expecting-prototype-for-am33xx_prm_global_warm_sw_reset().-Prototype-was-for-am33xx_prm_global_sw_reset()-instead
+|   |-- drivers-gpu-drm-i915-display-intel_bios.c:error:implicit-declaration-of-function-intel_opregion_vbt_present
+|   `-- fs-ubifs-journal.c:warning:expecting-prototype-for-wake_up_reservation().-Prototype-was-for-add_or_start_queue()-instead
+|-- arm-allyesconfig
+|   |-- arch-arm-mach-omap2-prm33xx.c:warning:expecting-prototype-for-am33xx_prm_global_warm_sw_reset().-Prototype-was-for-am33xx_prm_global_sw_reset()-instead
+|   `-- fs-ubifs-journal.c:warning:expecting-prototype-for-wake_up_reservation().-Prototype-was-for-add_or_start_queue()-instead
+|-- arm64-defconfig
+|   `-- fs-ubifs-journal.c:warning:expecting-prototype-for-wake_up_reservation().-Prototype-was-for-add_or_start_queue()-instead
+|-- csky-allmodconfig
+|   |-- drivers-gpu-drm-i915-display-intel_bios.c:error:implicit-declaration-of-function-intel_opregion_vbt_present
+|   `-- fs-ubifs-journal.c:warning:expecting-prototype-for-wake_up_reservation().-Prototype-was-for-add_or_start_queue()-instead
+|-- csky-allyesconfig
+|   `-- fs-ubifs-journal.c:warning:expecting-prototype-for-wake_up_reservation().-Prototype-was-for-add_or_start_queue()-instead
+|-- csky-randconfig-001-20240313
+|   `-- fs-ubifs-journal.c:warning:expecting-prototype-for-wake_up_reservation().-Prototype-was-for-add_or_start_queue()-instead
+|-- csky-randconfig-r122-20240313
+|   `-- io_uring-io_uring.c:sparse:sparse:cast-to-restricted-io_req_flags_t
+|-- i386-allmodconfig
+|   `-- fs-ubifs-journal.c:warning:expecting-prototype-for-wake_up_reservation().-Prototype-was-for-add_or_start_queue()-instead
+|-- i386-allyesconfig
+|   `-- fs-ubifs-journal.c:warning:expecting-prototype-for-wake_up_reservation().-Prototype-was-for-add_or_start_queue()-instead
+|-- i386-buildonly-randconfig-006-20240313
+|   `-- drivers-gpu-drm-i915-display-intel_bios.c:error:implicit-declaration-of-function-intel_opregion_vbt_present
+|-- i386-randconfig-141-20240313
+|   |-- drivers-mtd-devices-mchp48l640.c-mchp48l640_read_page()-warn:Please-consider-using-kzalloc-instead-of-kmalloc
+|   |-- drivers-mtd-devices-mchp48l640.c-mchp48l640_write_page()-warn:Please-consider-using-kzalloc-instead-of-kmalloc
+|   |-- drivers-usb-dwc2-hcd.c-dwc2_alloc_split_dma_aligned_buf()-warn:Please-consider-using-kmem_cache_zalloc-instead-of-kmem_cache_alloc
+|   |-- drivers-usb-typec-tcpm-tcpm.c-tcpm_pd_svdm()-error:uninitialized-symbol-modep_prime-.
+|   `-- fs-ubifs-journal.c:warning:expecting-prototype-for-wake_up_reservation().-Prototype-was-for-add_or_start_queue()-instead
+|-- loongarch-allmodconfig
+|   `-- fs-ubifs-journal.c:warning:expecting-prototype-for-wake_up_reservation().-Prototype-was-for-add_or_start_queue()-instead
+|-- loongarch-defconfig
+|   `-- fs-ubifs-journal.c:warning:expecting-prototype-for-wake_up_reservation().-Prototype-was-for-add_or_start_queue()-instead
+|-- m68k-allmodconfig
+|   `-- fs-ubifs-journal.c:warning:expecting-prototype-for-wake_up_reservation().-Prototype-was-for-add_or_start_queue()-instead
+|-- m68k-allyesconfig
+|   `-- fs-ubifs-journal.c:warning:expecting-prototype-for-wake_up_reservation().-Prototype-was-for-add_or_start_queue()-instead
+|-- microblaze-allmodconfig
+|   |-- drivers-gpu-drm-i915-display-intel_bios.c:error:implicit-declaration-of-function-intel_opregion_vbt_present
+|   `-- fs-ubifs-journal.c:warning:expecting-prototype-for-wake_up_reservation().-Prototype-was-for-add_or_start_queue()-instead
+|-- microblaze-allyesconfig
+|   `-- fs-ubifs-journal.c:warning:expecting-prototype-for-wake_up_reservation().-Prototype-was-for-add_or_start_queue()-instead
+|-- mips-allyesconfig
+|   |-- (.ref.text):relocation-truncated-to-fit:R_MIPS_26-against-start_secondary
+|   |-- (.text):relocation-truncated-to-fit:R_MIPS_26-against-kernel_entry
+|   `-- fs-ubifs-journal.c:warning:expecting-prototype-for-wake_up_reservation().-Prototype-was-for-add_or_start_queue()-instead
+|-- nios2-allmodconfig
+|   `-- fs-ubifs-journal.c:warning:expecting-prototype-for-wake_up_reservation().-Prototype-was-for-add_or_start_queue()-instead
+|-- nios2-allyesconfig
+|   `-- fs-ubifs-journal.c:warning:expecting-prototype-for-wake_up_reservation().-Prototype-was-for-add_or_start_queue()-instead
+|-- openrisc-allyesconfig
+|   |-- (.head.text):relocation-truncated-to-fit:R_OR1K_INSN_REL_26-against-no-symbol
+|   |-- (.text):relocation-truncated-to-fit:R_OR1K_INSN_REL_26-against-no-symbol
+|   |-- fs-ubifs-journal.c:warning:expecting-prototype-for-wake_up_reservation().-Prototype-was-for-add_or_start_queue()-instead
+|   `-- main.c:(.text):relocation-truncated-to-fit:R_OR1K_INSN_REL_26-against-symbol-__muldi3-defined-in-.text-section-in-..-lib-gcc-or1k-linux-..-libgcc.a(_muldi3.o)
+|-- parisc-allmodconfig
+|   |-- drivers-gpu-drm-i915-display-intel_bios.c:error:implicit-declaration-of-function-intel_opregion_vbt_present
+|   `-- fs-ubifs-journal.c:warning:expecting-prototype-for-wake_up_reservation().-Prototype-was-for-add_or_start_queue()-instead
+|-- parisc-allyesconfig
+|   `-- fs-ubifs-journal.c:warning:expecting-prototype-for-wake_up_reservation().-Prototype-was-for-add_or_start_queue()-instead
+|-- powerpc-allmodconfig
+|   |-- drivers-gpu-drm-i915-display-intel_bios.c:error:implicit-declaration-of-function-intel_opregion_vbt_present
+|   `-- fs-ubifs-journal.c:warning:expecting-prototype-for-wake_up_reservation().-Prototype-was-for-add_or_start_queue()-instead
+|-- powerpc-randconfig-r026-20220530
+|   `-- powerpc-linux-ld:warning:orphan-section-bss..Lubsan_data772-from-kernel-ptrace.o-being-placed-in-section-.bss..Lubsan_data772
+|-- s390-allyesconfig
+|   `-- fs-ubifs-journal.c:warning:expecting-prototype-for-wake_up_reservation().-Prototype-was-for-add_or_start_queue()-instead
+|-- s390-randconfig-001-20240313
+|   `-- fs-ubifs-journal.c:warning:expecting-prototype-for-wake_up_reservation().-Prototype-was-for-add_or_start_queue()-instead
+|-- s390-randconfig-r132-20240313
+|   `-- io_uring-io_uring.c:sparse:sparse:cast-to-restricted-io_req_flags_t
+|-- sh-allmodconfig
+|   `-- fs-ubifs-journal.c:warning:expecting-prototype-for-wake_up_reservation().-Prototype-was-for-add_or_start_queue()-instead
+|-- sh-allyesconfig
+|   `-- fs-ubifs-journal.c:warning:expecting-prototype-for-wake_up_reservation().-Prototype-was-for-add_or_start_queue()-instead
+|-- sparc-allmodconfig
+|   |-- drivers-gpu-drm-i915-display-intel_bios.c:error:implicit-declaration-of-function-intel_opregion_vbt_present
+|   `-- fs-ubifs-journal.c:warning:expecting-prototype-for-wake_up_reservation().-Prototype-was-for-add_or_start_queue()-instead
+|-- sparc64-allmodconfig
+|   |-- drivers-gpu-drm-i915-display-intel_bios.c:error:implicit-declaration-of-function-intel_opregion_vbt_present
+|   `-- fs-ubifs-journal.c:warning:expecting-prototype-for-wake_up_reservation().-Prototype-was-for-add_or_start_queue()-instead
+|-- sparc64-allyesconfig
+|   `-- fs-ubifs-journal.c:warning:expecting-prototype-for-wake_up_reservation().-Prototype-was-for-add_or_start_queue()-instead
+|-- sparc64-randconfig-r112-20240313
+|   `-- io_uring-io_uring.c:sparse:sparse:cast-to-restricted-io_req_flags_t
+|-- um-allyesconfig
+|   `-- fs-ubifs-journal.c:warning:expecting-prototype-for-wake_up_reservation().-Prototype-was-for-add_or_start_queue()-instead
+|-- x86_64-randconfig-002-20240313
+|   `-- fs-ubifs-journal.c:warning:expecting-prototype-for-wake_up_reservation().-Prototype-was-for-add_or_start_queue()-instead
+|-- x86_64-randconfig-004-20240313
+|   `-- fs-ubifs-journal.c:warning:expecting-prototype-for-wake_up_reservation().-Prototype-was-for-add_or_start_queue()-instead
+|-- x86_64-randconfig-015-20240313
+|   `-- fs-ubifs-journal.c:warning:expecting-prototype-for-wake_up_reservation().-Prototype-was-for-add_or_start_queue()-instead
+|-- x86_64-randconfig-102-20240313
+|   `-- drivers-accessibility-speakup-devsynth.c:error:label-at-end-of-compound-statement
+|-- x86_64-randconfig-121-20240313
+|   `-- io_uring-io_uring.c:sparse:sparse:cast-to-restricted-io_req_flags_t
+|-- x86_64-randconfig-161-20240313
+|   `-- mm-userfaultfd.c-uffd_move_lock()-error:we-previously-assumed-src_vmap-could-be-null-(see-line-)
+`-- xtensa-randconfig-r024-20220829
+    `-- include-linux-of.h:(.text):undefined-reference-to-__udivdi3
+clang_recent_errors
+|-- arm-defconfig
+|   |-- ERROR:__aeabi_uldivmod-drivers-gpu-drm-sun4i-sun4i-drm-hdmi.ko-undefined
+|   |-- arch-arm-mach-omap2-prm33xx.c:warning:expecting-prototype-for-am33xx_prm_global_warm_sw_reset().-Prototype-was-for-am33xx_prm_global_sw_reset()-instead
+|   `-- fs-ubifs-journal.c:warning:expecting-prototype-for-wake_up_reservation().-Prototype-was-for-add_or_start_queue()-instead
+|-- arm-imx_v4_v5_defconfig
+|   `-- fs-ubifs-journal.c:warning:expecting-prototype-for-wake_up_reservation().-Prototype-was-for-add_or_start_queue()-instead
+|-- arm-randconfig-002-20240313
+|   |-- fs-ubifs-journal.c:warning:expecting-prototype-for-wake_up_reservation().-Prototype-was-for-add_or_start_queue()-instead
+|   `-- kernel-bpf-bpf_struct_ops.c:warning:bitwise-operation-between-different-enumeration-types-(-enum-bpf_type_flag-and-enum-bpf_reg_type-)
+|-- arm-randconfig-004-20240313
+|   `-- ld.lld:error:undefined-symbol:__aeabi_uldivmod
+|-- arm64-allmodconfig
+|   |-- fs-ubifs-journal.c:warning:expecting-prototype-for-wake_up_reservation().-Prototype-was-for-add_or_start_queue()-instead
+|   `-- kernel-bpf-bpf_struct_ops.c:warning:bitwise-operation-between-different-enumeration-types-(-enum-bpf_type_flag-and-enum-bpf_reg_type-)
+|-- arm64-randconfig-002-20240313
+|   `-- fs-ubifs-journal.c:warning:expecting-prototype-for-wake_up_reservation().-Prototype-was-for-add_or_start_queue()-instead
+|-- arm64-randconfig-003-20240313
+|   `-- kernel-bpf-bpf_struct_ops.c:warning:bitwise-operation-between-different-enumeration-types-(-enum-bpf_type_flag-and-enum-bpf_reg_type-)
+|-- arm64-randconfig-004-20240313
+|   `-- fs-ubifs-journal.c:warning:expecting-prototype-for-wake_up_reservation().-Prototype-was-for-add_or_start_queue()-instead
+|-- hexagon-allmodconfig
+|   `-- fs-ubifs-journal.c:warning:expecting-prototype-for-wake_up_reservation().-Prototype-was-for-add_or_start_queue()-instead
+|-- hexagon-allyesconfig
+|   `-- fs-ubifs-journal.c:warning:expecting-prototype-for-wake_up_reservation().-Prototype-was-for-add_or_start_queue()-instead
+|-- hexagon-randconfig-002-20240313
+|   `-- fs-ubifs-journal.c:warning:expecting-prototype-for-wake_up_reservation().-Prototype-was-for-add_or_start_queue()-instead
+|-- hexagon-randconfig-r121-20240313
+|   |-- fs-libfs.c:sparse:sparse:Using-plain-integer-as-NULL-pointer
+|   `-- io_uring-io_uring.c:sparse:sparse:cast-to-restricted-io_req_flags_t
+|-- i386-buildonly-randconfig-004-20240313
+|   `-- fs-ubifs-journal.c:warning:expecting-prototype-for-wake_up_reservation().-Prototype-was-for-add_or_start_queue()-instead
+|-- i386-buildonly-randconfig-005-20240313
+|   |-- drivers-gpu-drm-i915-display-intel_bios.c:error:call-to-undeclared-function-intel_opregion_vbt_present-ISO-C99-and-later-do-not-support-implicit-function-declarations
+|   `-- fs-ubifs-journal.c:warning:expecting-prototype-for-wake_up_reservation().-Prototype-was-for-add_or_start_queue()-instead
+|-- i386-randconfig-061-20240313
+|   |-- io_uring-io_uring.c:sparse:sparse:cast-to-restricted-io_req_flags_t
+|   |-- kernel-power-energy_model.c:sparse:sparse:incorrect-type-in-argument-(different-address-spaces)-expected-struct-em_perf_state-table-got-struct-em_perf_state-noderef-__rcu
+|   |-- kernel-power-energy_model.c:sparse:sparse:incorrect-type-in-argument-(different-address-spaces)-expected-struct-kref-kref-got-struct-kref-noderef-__rcu
+|   |-- kernel-power-energy_model.c:sparse:sparse:incorrect-type-in-argument-(different-address-spaces)-expected-void-const-objp-got-struct-em_perf_table-noderef-__rcu-assigned-em_table
+|   `-- kernel-power-energy_model.c:sparse:sparse:incorrect-type-in-assignment-(different-address-spaces)-expected-struct-em_perf_state-new_ps-got-struct-em_perf_state-noderef-__rcu
+|-- powerpc-allyesconfig
+|   |-- fs-ubifs-journal.c:warning:expecting-prototype-for-wake_up_reservation().-Prototype-was-for-add_or_start_queue()-instead
+|   `-- kernel-bpf-bpf_struct_ops.c:warning:bitwise-operation-between-different-enumeration-types-(-enum-bpf_type_flag-and-enum-bpf_reg_type-)
+|-- powerpc64-randconfig-r111-20240313
+|   `-- io_uring-io_uring.c:sparse:sparse:cast-to-restricted-io_req_flags_t
+|-- riscv-allmodconfig
+|   |-- fs-ubifs-journal.c:warning:expecting-prototype-for-wake_up_reservation().-Prototype-was-for-add_or_start_queue()-instead
+|   `-- kernel-bpf-bpf_struct_ops.c:warning:bitwise-operation-between-different-enumeration-types-(-enum-bpf_type_flag-and-enum-bpf_reg_type-)
+|-- riscv-allyesconfig
+|   |-- fs-ubifs-journal.c:warning:expecting-prototype-for-wake_up_reservation().-Prototype-was-for-add_or_start_queue()-instead
+|   `-- kernel-bpf-bpf_struct_ops.c:warning:bitwise-operation-between-different-enumeration-types-(-enum-bpf_type_flag-and-enum-bpf_reg_type-)
+|-- s390-allmodconfig
+|   |-- drivers-gpu-drm-i915-display-intel_bios.c:error:call-to-undeclared-function-intel_opregion_vbt_present-ISO-C99-and-later-do-not-support-implicit-function-declarations
+|   |-- fs-ubifs-journal.c:warning:expecting-prototype-for-wake_up_reservation().-Prototype-was-for-add_or_start_queue()-instead
+|   `-- kernel-bpf-bpf_struct_ops.c:warning:bitwise-operation-between-different-enumeration-types-(-enum-bpf_type_flag-and-enum-bpf_reg_type-)
+|-- s390-defconfig
+|   `-- kernel-bpf-bpf_struct_ops.c:warning:bitwise-operation-between-different-enumeration-types-(-enum-bpf_type_flag-and-enum-bpf_reg_type-)
+|-- x86_64-allmodconfig
+|   `-- fs-ubifs-journal.c:warning:expecting-prototype-for-wake_up_reservation().-Prototype-was-for-add_or_start_queue()-instead
+|-- x86_64-allyesconfig
+|   `-- fs-ubifs-journal.c:warning:expecting-prototype-for-wake_up_reservation().-Prototype-was-for-add_or_start_queue()-instead
+|-- x86_64-buildonly-randconfig-003-20240313
+|   `-- fs-ubifs-journal.c:warning:expecting-prototype-for-wake_up_reservation().-Prototype-was-for-add_or_start_queue()-instead
+|-- x86_64-buildonly-randconfig-006-20240313
+|   |-- drivers-gpu-drm-i915-display-intel_bios.c:error:call-to-undeclared-function-intel_opregion_vbt_present-ISO-C99-and-later-do-not-support-implicit-function-declarations
+|   `-- fs-ubifs-journal.c:warning:expecting-prototype-for-wake_up_reservation().-Prototype-was-for-add_or_start_queue()-instead
+|-- x86_64-randconfig-001-20240313
+|   `-- fs-ubifs-journal.c:warning:expecting-prototype-for-wake_up_reservation().-Prototype-was-for-add_or_start_queue()-instead
+|-- x86_64-randconfig-012-20240313
+|   `-- fs-ubifs-journal.c:warning:expecting-prototype-for-wake_up_reservation().-Prototype-was-for-add_or_start_queue()-instead
+|-- x86_64-randconfig-075-20240313
+|   |-- drivers-gpu-drm-xe-xe_hw_engine_class_sysfs.c:error:unused-function-pdev_to_xe_device-Werror-Wunused-function
+|   |-- drivers-gpu-drm-xe-xe_hw_engine_class_sysfs.c:error:unused-function-to_xe_device-Werror-Wunused-function
+|   `-- fs-ubifs-journal.c:warning:expecting-prototype-for-wake_up_reservation().-Prototype-was-for-add_or_start_queue()-instead
+`-- x86_64-randconfig-103-20240313
+    |-- drivers-gpu-drm-xe-xe_hw_engine_class_sysfs.c:error:unused-function-pdev_to_xe_device-Werror-Wunused-function
+    `-- drivers-gpu-drm-xe-xe_hw_engine_class_sysfs.c:error:unused-function-to_xe_device-Werror-Wunused-function
+
+elapsed time: 723m
+
+configs tested: 168
+configs skipped: 3
+
+tested configs:
+alpha                             allnoconfig   gcc  
+alpha                            allyesconfig   gcc  
+alpha                               defconfig   gcc  
+arc                              allmodconfig   gcc  
+arc                               allnoconfig   gcc  
+arc                              allyesconfig   gcc  
+arc                          axs103_defconfig   gcc  
+arc                                 defconfig   gcc  
+arc                   randconfig-001-20240313   gcc  
+arc                   randconfig-002-20240313   gcc  
+arm                              allmodconfig   gcc  
+arm                               allnoconfig   clang
+arm                              allyesconfig   gcc  
+arm                                 defconfig   clang
+arm                       imx_v4_v5_defconfig   clang
+arm                   randconfig-001-20240313   gcc  
+arm                   randconfig-002-20240313   clang
+arm                   randconfig-003-20240313   gcc  
+arm                   randconfig-004-20240313   clang
+arm                          sp7021_defconfig   gcc  
+arm                        spear6xx_defconfig   clang
+arm64                            allmodconfig   clang
+arm64                             allnoconfig   gcc  
+arm64                               defconfig   gcc  
+arm64                 randconfig-001-20240313   clang
+arm64                 randconfig-002-20240313   clang
+arm64                 randconfig-003-20240313   clang
+arm64                 randconfig-004-20240313   clang
+csky                             allmodconfig   gcc  
+csky                              allnoconfig   gcc  
+csky                             allyesconfig   gcc  
+csky                                defconfig   gcc  
+csky                  randconfig-001-20240313   gcc  
+csky                  randconfig-002-20240313   gcc  
+hexagon                          allmodconfig   clang
+hexagon                           allnoconfig   clang
+hexagon                          allyesconfig   clang
+hexagon                             defconfig   clang
+hexagon               randconfig-001-20240313   clang
+hexagon               randconfig-002-20240313   clang
+i386                             allmodconfig   gcc  
+i386                              allnoconfig   gcc  
+i386                             allyesconfig   gcc  
+i386         buildonly-randconfig-001-20240313   gcc  
+i386         buildonly-randconfig-002-20240313   gcc  
+i386         buildonly-randconfig-003-20240313   clang
+i386         buildonly-randconfig-004-20240313   clang
+i386         buildonly-randconfig-005-20240313   clang
+i386         buildonly-randconfig-006-20240313   gcc  
+i386                                defconfig   clang
+i386                  randconfig-001-20240313   clang
+i386                  randconfig-002-20240313   clang
+i386                  randconfig-003-20240313   clang
+i386                  randconfig-004-20240313   gcc  
+i386                  randconfig-005-20240313   gcc  
+i386                  randconfig-006-20240313   clang
+i386                  randconfig-011-20240313   gcc  
+i386                  randconfig-012-20240313   clang
+i386                  randconfig-013-20240313   gcc  
+i386                  randconfig-014-20240313   gcc  
+loongarch                        allmodconfig   gcc  
+loongarch                         allnoconfig   gcc  
+loongarch                           defconfig   gcc  
+loongarch             randconfig-001-20240313   gcc  
+loongarch             randconfig-002-20240313   gcc  
+m68k                             allmodconfig   gcc  
+m68k                              allnoconfig   gcc  
+m68k                             allyesconfig   gcc  
+m68k                                defconfig   gcc  
+microblaze                       allmodconfig   gcc  
+microblaze                        allnoconfig   gcc  
+microblaze                       allyesconfig   gcc  
+microblaze                          defconfig   gcc  
+mips                              allnoconfig   gcc  
+mips                             allyesconfig   gcc  
+mips                      maltaaprp_defconfig   clang
+nios2                         10m50_defconfig   gcc  
+nios2                            allmodconfig   gcc  
+nios2                             allnoconfig   gcc  
+nios2                            allyesconfig   gcc  
+nios2                               defconfig   gcc  
+nios2                 randconfig-001-20240313   gcc  
+nios2                 randconfig-002-20240313   gcc  
+openrisc                          allnoconfig   gcc  
+openrisc                         allyesconfig   gcc  
+openrisc                            defconfig   gcc  
+parisc                           allmodconfig   gcc  
+parisc                            allnoconfig   gcc  
+parisc                           allyesconfig   gcc  
+parisc                              defconfig   gcc  
+parisc                randconfig-001-20240313   gcc  
+parisc                randconfig-002-20240313   gcc  
+parisc64                            defconfig   gcc  
+powerpc                          allmodconfig   gcc  
+powerpc                           allnoconfig   gcc  
+powerpc                          allyesconfig   clang
+powerpc                        cell_defconfig   gcc  
+powerpc                     ep8248e_defconfig   gcc  
+powerpc                   lite5200b_defconfig   clang
+powerpc                 mpc8313_rdb_defconfig   gcc  
+powerpc               randconfig-001-20240313   gcc  
+powerpc               randconfig-002-20240313   gcc  
+powerpc               randconfig-003-20240313   clang
+powerpc                      tqm8xx_defconfig   clang
+powerpc64                        alldefconfig   clang
+powerpc64             randconfig-001-20240313   clang
+powerpc64             randconfig-002-20240313   gcc  
+powerpc64             randconfig-003-20240313   clang
+riscv                            allmodconfig   clang
+riscv                             allnoconfig   gcc  
+riscv                            allyesconfig   clang
+riscv                               defconfig   clang
+riscv                 randconfig-001-20240313   clang
+s390                             allmodconfig   clang
+s390                              allnoconfig   clang
+s390                             allyesconfig   gcc  
+s390                                defconfig   clang
+s390                  randconfig-001-20240313   gcc  
+s390                  randconfig-002-20240313   gcc  
+sh                               allmodconfig   gcc  
+sh                                allnoconfig   gcc  
+sh                               allyesconfig   gcc  
+sh                                  defconfig   gcc  
+sh                     magicpanelr2_defconfig   gcc  
+sh                          sdk7780_defconfig   gcc  
+sh                           se7722_defconfig   gcc  
+sh                   sh7770_generic_defconfig   gcc  
+sparc                            allmodconfig   gcc  
+sparc                             allnoconfig   gcc  
+sparc                               defconfig   gcc  
+sparc64                          allmodconfig   gcc  
+sparc64                          allyesconfig   gcc  
+sparc64                             defconfig   gcc  
+um                               allmodconfig   clang
+um                                allnoconfig   clang
+um                               allyesconfig   gcc  
+um                                  defconfig   clang
+um                             i386_defconfig   gcc  
+um                           x86_64_defconfig   clang
+x86_64                            allnoconfig   clang
+x86_64                           allyesconfig   clang
+x86_64       buildonly-randconfig-001-20240313   clang
+x86_64       buildonly-randconfig-002-20240313   gcc  
+x86_64       buildonly-randconfig-003-20240313   clang
+x86_64       buildonly-randconfig-004-20240313   clang
+x86_64       buildonly-randconfig-005-20240313   gcc  
+x86_64       buildonly-randconfig-006-20240313   clang
+x86_64                              defconfig   gcc  
+x86_64                randconfig-001-20240313   clang
+x86_64                randconfig-002-20240313   gcc  
+x86_64                randconfig-003-20240313   clang
+x86_64                randconfig-004-20240313   gcc  
+x86_64                randconfig-005-20240313   gcc  
+x86_64                randconfig-006-20240313   clang
+x86_64                randconfig-011-20240313   clang
+x86_64                randconfig-012-20240313   clang
+x86_64                randconfig-013-20240313   clang
+x86_64                randconfig-014-20240313   clang
+x86_64                randconfig-015-20240313   gcc  
+x86_64                randconfig-016-20240313   gcc  
+x86_64                randconfig-071-20240313   gcc  
+x86_64                randconfig-072-20240313   clang
+x86_64                randconfig-073-20240313   clang
+x86_64                randconfig-074-20240313   gcc  
+x86_64                randconfig-075-20240313   clang
+x86_64                randconfig-076-20240313   clang
+x86_64                          rhel-8.3-rust   clang
+xtensa                            allnoconfig   gcc  
+
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
