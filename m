@@ -2,59 +2,81 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id B330787B2C6
-	for <lists+intel-gfx@lfdr.de>; Wed, 13 Mar 2024 21:20:54 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 56AC487B426
+	for <lists+intel-gfx@lfdr.de>; Wed, 13 Mar 2024 23:06:41 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2F10510EB0A;
-	Wed, 13 Mar 2024 20:20:53 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E451810EF0E;
+	Wed, 13 Mar 2024 22:06:37 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="OBuq35kF";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="bL+mXF4S";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id F1F8A10EB0A;
- Wed, 13 Mar 2024 20:20:51 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1710361252; x=1741897252;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=5y/nYFU1UFVXmpr/AP82Fd2ZowZYl/yo1Z06dMI/Dyc=;
- b=OBuq35kFOieCGEo0Rv5q/8gJzQs9dRSJwOCd6nUySi6irXYebI2tjqJD
- QCpzuKa+KhU1liysjIuQcpYc8C6dLhTXlthBZFs2oC4E1RWw167RAzjS7
- 7C9ck3zfup9aad/4+SdyWOf4pAXeMozHta9Vsmc4+kSlD8DRUaJxBRg2A
- YPlKM3nOhyqo3+LUxytBmTX2SLlLUd1r5+ALA/cOSuAuWOuaoSf3/2K0R
- EfqjA7WZl3Nqp2tneLaT/fGXTAeWaltg/LUC772qSRJe8LlewXi9lcHr2
- Y5EsOklR3rtfzOVHKEUpUIDZTYUmDzd4Kaol7TVdVoFrD4gDbVxBRiI/o Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,11012"; a="16550277"
-X-IronPort-AV: E=Sophos;i="6.07,123,1708416000"; d="scan'208";a="16550277"
-Received: from orviesa003.jf.intel.com ([10.64.159.143])
- by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Mar 2024 13:20:51 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.07,123,1708416000"; d="scan'208";a="16707376"
-Received: from unknown (HELO intel.com) ([10.247.118.152])
- by ORVIESA003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Mar 2024 13:20:44 -0700
-From: Andi Shyti <andi.shyti@linux.intel.com>
-To: intel-gfx <intel-gfx@lists.freedesktop.org>,
- dri-devel <dri-devel@lists.freedesktop.org>
-Cc: Chris Wilson <chris.p.wilson@linux.intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Matt Roper <matthew.d.roper@intel.com>,
- John Harrison <John.C.Harrison@Intel.com>, stable@vger.kernel.org,
- Andi Shyti <andi.shyti@linux.intel.com>,
- Andi Shyti <andi.shyti@kernel.org>, Tvrtko Ursulin <tursulin@ursulin.net>
-Subject: [PATCH v6 3/3] drm/i915/gt: Enable only one CCS for compute workload
-Date: Wed, 13 Mar 2024 21:19:51 +0100
-Message-ID: <20240313201955.95716-4-andi.shyti@linux.intel.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20240313201955.95716-1-andi.shyti@linux.intel.com>
-References: <20240313201955.95716-1-andi.shyti@linux.intel.com>
+Received: from mail-wm1-f41.google.com (mail-wm1-f41.google.com
+ [209.85.128.41])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id F0CDF10EED2;
+ Wed, 13 Mar 2024 22:06:35 +0000 (UTC)
+Received: by mail-wm1-f41.google.com with SMTP id
+ 5b1f17b1804b1-413eee86528so2397665e9.3; 
+ Wed, 13 Mar 2024 15:06:35 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20230601; t=1710367594; x=1710972394; darn=lists.freedesktop.org;
+ h=in-reply-to:content-transfer-encoding:content-disposition
+ :mime-version:references:message-id:subject:cc:to:from:date:from:to
+ :cc:subject:date:message-id:reply-to;
+ bh=LnbGNWvtFK9f99J5xbKu0/rD5XmUOJdP8aM+NtkIPRQ=;
+ b=bL+mXF4SZt3lvx0dC8c7hWmXJfgrEvlehAMJUA64wHwOiG0jv0LxJuNcyBybG+Et0t
+ nuP1nGrBMKgYdyW7p6DVkOuEbkY7oWlcnGFUFXK8EfMN4wY30lVp1yja+6bvh41gI2Xx
+ gMArw43Ib7IycWLVsJjwlr/+KSr9OBjiudykyaQr+LTNFQqExevBk5MRxMK2fFj1L8zs
+ nO3GUbHMiuTdTCRSqSqXcFfYYuoh47ylZC34woiZSsDDCqIBNUJ10iWQhxNgS6X6OQF3
+ d+Z3tw07LiYEcFRwHN+vRnOSjEYfFHudRmCWUF1osm0FdkwRFpvmEQcovmfiAeyBlMTT
+ 1Odg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1710367594; x=1710972394;
+ h=in-reply-to:content-transfer-encoding:content-disposition
+ :mime-version:references:message-id:subject:cc:to:from:date
+ :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+ bh=LnbGNWvtFK9f99J5xbKu0/rD5XmUOJdP8aM+NtkIPRQ=;
+ b=V70Ij13APVArdxOsj9la99U3Ye8v0xquhRd7HpMrW7YEaqlCGXD9uvsxpnkGF4qwFX
+ YDwcBVbxx7nUW4O5OdOaghU+nXgTjb/V97pR0+b+P4xrv6dzvcr6bQ0sWa+bduZtoD9e
+ UwnfyKTHwFfiaPqmyEuOjONRKBZ3lG+tOBw6/p8KuUZ47R/qA4JhGV4ekcyE6O/4yKAE
+ 0/h33wQw8v+e98GAlQAJEB2NPokMRBeUx6nPUTMgI8BfnYY+gzorUfV4totuhZUqiOUr
+ dsAC10jR2C0oKh63iQvlQBGPys/Z05TEDDTbBgvywBaZeDMG4vaIqjPb7zTww0QDLzDR
+ 1ziA==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCXnKPE90ZjIWlxYx4ew60fH5+xvLjMMu+L+8WuiR/iz7TVrT6pKY333FhHXGL33hfTdeeVC0jGHU82KdwaBFTstGA02l7Dj19d9n/8rGcptyiwikxPF15GvzGjkgupdGjkHcLeR7vspKQLeScyROUxb
+X-Gm-Message-State: AOJu0Yw6xBDsEBgJtlDF7IyNTm2EurjNSYYyuuTB/ky/ULSfeRCgDJIz
+ 14wMUdjyz576Py7W7VyVwXnTvsKJvuF+vaa8uKH4MHKTKJzMikZ1
+X-Google-Smtp-Source: AGHT+IEebb7uDP2hVlCp18rEe4EHoMP5XV2RHuOip/4RyFR3QfFUXOqClAxujeyaLphA5iz/FzYFqw==
+X-Received: by 2002:a05:600c:1d86:b0:413:ff0:7928 with SMTP id
+ p6-20020a05600c1d8600b004130ff07928mr75855wms.4.1710367594003; 
+ Wed, 13 Mar 2024 15:06:34 -0700 (PDT)
+Received: from debian.local (80-44-66-160.dynamic.dsl.as9105.com.
+ [80.44.66.160]) by smtp.gmail.com with ESMTPSA id
+ m1-20020adfe941000000b0033e42ab5114sm125804wrn.2.2024.03.13.15.06.32
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Wed, 13 Mar 2024 15:06:33 -0700 (PDT)
+Date: Wed, 13 Mar 2024 22:06:30 +0000
+From: Chris Bainbridge <chris.bainbridge@gmail.com>
+To: Imre Deak <imre.deak@intel.com>
+Cc: "Linux regression tracking (Thorsten Leemhuis)"
+ <regressions@leemhuis.info>, 
+ intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ lyude@redhat.com, ville.syrjala@linux.intel.com,
+ stanislav.lisovskiy@intel.com, mripard@kernel.org,
+ jani.nikula@linux.intel.com
+Subject: [PATCH v3] Fix divide-by-zero regression on DP MST unplug with nouveau
+Message-ID: <ZfIjZt_pn0dE9xyh@debian.local>
+References: <ZcfpqwnkSoiJxeT9@debian.local>
+ <Ze8suV5ox+43/wAC@ideak-desk.fi.intel.com>
+ <Ze8vVffBaWY9f/Mu@ideak-desk.fi.intel.com>
+ <Ze-Pf1_E-p4G8o0l@debian.local>
+ <ZfBX0rrIpWMZbmRp@ideak-desk.fi.intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <ZfBX0rrIpWMZbmRp@ideak-desk.fi.intel.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -70,148 +92,129 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Enable only one CCS engine by default with all the compute sices
-allocated to it.
+Fix a regression when using nouveau and unplugging a StarTech MSTDP122DP
+DisplayPort 1.2 MST hub (the same regression does not appear when using
+a Cable Matters DisplayPort 1.4 MST hub). Trace:
 
-While generating the list of UABI engines to be exposed to the
-user, exclude any additional CCS engines beyond the first
-instance.
+ divide error: 0000 [#1] PREEMPT SMP PTI
+ CPU: 7 PID: 2962 Comm: Xorg Not tainted 6.8.0-rc3+ #744
+ Hardware name: Razer Blade/DANA_MB, BIOS 01.01 08/31/2018
+ RIP: 0010:drm_dp_bw_overhead+0xb4/0x110 [drm_display_helper]
+ Code: c6 b8 01 00 00 00 75 61 01 c6 41 0f af f3 41 0f af f1 c1 e1 04 48 63=
+ c7 31 d2 89 ff 48 8b 5d f8 c9 48 0f af f1 48 8d 44 06 ff <48> f7 f7 31 d2 =
+31 c9 31 f6 31 ff 45 31 c0 45 31 c9 45 31 d2 45 31
+ RSP: 0018:ffffb2c5c211fa30 EFLAGS: 00010206
+ RAX: ffffffffffffffff RBX: 0000000000000000 RCX: 0000000000f59b00
+ RDX: 0000000000000000 RSI: 0000000000000000 RDI: 0000000000000000
+ RBP: ffffb2c5c211fa48 R08: 0000000000000001 R09: 0000000000000020
+ R10: 0000000000000004 R11: 0000000000000000 R12: 0000000000023b4a
+ R13: ffff91d37d165800 R14: ffff91d36fac6d80 R15: ffff91d34a764010
+ FS:  00007f4a1ca3fa80(0000) GS:ffff91d6edbc0000(0000) knlGS:00000000000000=
+00
+ CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+ CR2: 0000559491d49000 CR3: 000000011d180002 CR4: 00000000003706f0
+ Call Trace:
+  <TASK>
+  ? show_regs+0x6d/0x80
+  ? die+0x37/0xa0
+  ? do_trap+0xd4/0xf0
+  ? do_error_trap+0x71/0xb0
+  ? drm_dp_bw_overhead+0xb4/0x110 [drm_display_helper]
+  ? exc_divide_error+0x3a/0x70
+  ? drm_dp_bw_overhead+0xb4/0x110 [drm_display_helper]
+  ? asm_exc_divide_error+0x1b/0x20
+  ? drm_dp_bw_overhead+0xb4/0x110 [drm_display_helper]
+  ? drm_dp_calc_pbn_mode+0x2e/0x70 [drm_display_helper]
+  nv50_msto_atomic_check+0xda/0x120 [nouveau]
+  drm_atomic_helper_check_modeset+0xa87/0xdf0 [drm_kms_helper]
+  drm_atomic_helper_check+0x19/0xa0 [drm_kms_helper]
+  nv50_disp_atomic_check+0x13f/0x2f0 [nouveau]
+  drm_atomic_check_only+0x668/0xb20 [drm]
+  ? drm_connector_list_iter_next+0x86/0xc0 [drm]
+  drm_atomic_commit+0x58/0xd0 [drm]
+  ? __pfx___drm_printfn_info+0x10/0x10 [drm]
+  drm_atomic_connector_commit_dpms+0xd7/0x100 [drm]
+  drm_mode_obj_set_property_ioctl+0x1c5/0x450 [drm]
+  ? __pfx_drm_connector_property_set_ioctl+0x10/0x10 [drm]
+  drm_connector_property_set_ioctl+0x3b/0x60 [drm]
+  drm_ioctl_kernel+0xb9/0x120 [drm]
+  drm_ioctl+0x2d0/0x550 [drm]
+  ? __pfx_drm_connector_property_set_ioctl+0x10/0x10 [drm]
+  nouveau_drm_ioctl+0x61/0xc0 [nouveau]
+  __x64_sys_ioctl+0xa0/0xf0
+  do_syscall_64+0x76/0x140
+  ? do_syscall_64+0x85/0x140
+  ? do_syscall_64+0x85/0x140
+  entry_SYSCALL_64_after_hwframe+0x6e/0x76
+ RIP: 0033:0x7f4a1cd1a94f
+ Code: 00 48 89 44 24 18 31 c0 48 8d 44 24 60 c7 04 24 10 00 00 00 48 89 44=
+ 24 08 48 8d 44 24 20 48 89 44 24 10 b8 10 00 00 00 0f 05 <41> 89 c0 3d 00 =
+f0 ff ff 77 1f 48 8b 44 24 18 64 48 2b 04 25 28 00
+ RSP: 002b:00007ffd2f1df520 EFLAGS: 00000246 ORIG_RAX: 0000000000000010
+ RAX: ffffffffffffffda RBX: 00007ffd2f1df5b0 RCX: 00007f4a1cd1a94f
+ RDX: 00007ffd2f1df5b0 RSI: 00000000c01064ab RDI: 000000000000000f
+ RBP: 00000000c01064ab R08: 000056347932deb8 R09: 000056347a7d99c0
+ R10: 0000000000000000 R11: 0000000000000246 R12: 000056347938a220
+ R13: 000000000000000f R14: 0000563479d9f3f0 R15: 0000000000000000
+  </TASK>
+ Modules linked in: rfcomm xt_conntrack nft_chain_nat xt_MASQUERADE nf_nat =
+nf_conntrack_netlink nf_conntrack nf_defrag_ipv6 nf_defrag_ipv4 xfrm_user x=
+frm_algo xt_addrtype nft_compat nf_tables nfnetlink br_netfilter bridge stp=
+ llc ccm cmac algif_hash overlay algif_skcipher af_alg bnep binfmt_misc snd=
+_sof_pci_intel_cnl snd_sof_intel_hda_common snd_soc_hdac_hda snd_sof_pci sn=
+d_sof_xtensa_dsp snd_sof_intel_hda snd_sof snd_sof_utils snd_soc_acpi_intel=
+_match snd_soc_acpi snd_soc_core snd_compress snd_sof_intel_hda_mlink snd_h=
+da_ext_core iwlmvm intel_rapl_msr intel_rapl_common intel_tcc_cooling x86_p=
+kg_temp_thermal intel_powerclamp mac80211 coretemp kvm_intel snd_hda_codec_=
+hdmi kvm snd_hda_codec_realtek snd_hda_codec_generic uvcvideo libarc4 snd_h=
+da_intel snd_intel_dspcfg snd_hda_codec iwlwifi videobuf2_vmalloc videobuf2=
+_memops uvc irqbypass btusb videobuf2_v4l2 snd_seq_midi crct10dif_pclmul hi=
+d_multitouch crc32_pclmul snd_seq_midi_event btrtl snd_hwdep videodev polyv=
+al_clmulni polyval_generic snd_rawmidi
+  ghash_clmulni_intel aesni_intel btintel crypto_simd snd_hda_core cryptd s=
+nd_seq btbcm ee1004 8250_dw videobuf2_common btmtk rapl nls_iso8859_1 mei_h=
+dcp thunderbolt bluetooth intel_cstate wmi_bmof intel_wmi_thunderbolt cfg80=
+211 snd_pcm mc snd_seq_device i2c_i801 r8169 ecdh_generic snd_timer i2c_smb=
+us ecc snd mei_me intel_lpss_pci mei ahci intel_lpss soundcore realtek liba=
+hci idma64 intel_pch_thermal i2c_hid_acpi i2c_hid acpi_pad sch_fq_codel msr=
+ parport_pc ppdev lp parport efi_pstore ip_tables x_tables autofs4 dm_crypt=
+ raid10 raid456 libcrc32c async_raid6_recov async_memcpy async_pq async_xor=
+ xor async_tx raid6_pq raid1 raid0 joydev input_leds hid_generic usbhid hid=
+ nouveau i915 drm_ttm_helper gpu_sched drm_gpuvm drm_exec i2c_algo_bit drm_=
+buddy ttm drm_display_helper drm_kms_helper cec rc_core drm nvme nvme_core =
+mxm_wmi xhci_pci xhci_pci_renesas video wmi pinctrl_cannonlake mac_hid
+ ---[ end trace 0000000000000000 ]---
 
-This change can be tested with igt i915_query.
+Fix this by avoiding the divide if bpp is 0.
 
-Fixes: d2eae8e98d59 ("drm/i915/dg2: Drop force_probe requirement")
-Signed-off-by: Andi Shyti <andi.shyti@linux.intel.com>
-Cc: Chris Wilson <chris.p.wilson@linux.intel.com>
-Cc: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
-Cc: Matt Roper <matthew.d.roper@intel.com>
-Cc: <stable@vger.kernel.org> # v6.2+
+Fixes: c1d6a22b7219 ("drm/dp: Add helpers to calculate the link BW overhead=
+")
+Cc: stable@vger.kernel.org
+Acked-by: Imre Deak <imre.deak@intel.com>
+Signed-off-by: Chris Bainbridge <chris.bainbridge@gmail.com>
 ---
- drivers/gpu/drm/i915/Makefile               |  1 +
- drivers/gpu/drm/i915/gt/intel_gt_ccs_mode.c | 39 +++++++++++++++++++++
- drivers/gpu/drm/i915/gt/intel_gt_ccs_mode.h | 13 +++++++
- drivers/gpu/drm/i915/gt/intel_gt_regs.h     |  5 +++
- drivers/gpu/drm/i915/gt/intel_workarounds.c |  7 ++++
- 5 files changed, 65 insertions(+)
- create mode 100644 drivers/gpu/drm/i915/gt/intel_gt_ccs_mode.c
- create mode 100644 drivers/gpu/drm/i915/gt/intel_gt_ccs_mode.h
+ drivers/gpu/drm/display/drm_dp_helper.c | 6 ++++++
+ 1 file changed, 6 insertions(+)
 
-diff --git a/drivers/gpu/drm/i915/Makefile b/drivers/gpu/drm/i915/Makefile
-index 3ef6ed41e62b..a6885a1d41a1 100644
---- a/drivers/gpu/drm/i915/Makefile
-+++ b/drivers/gpu/drm/i915/Makefile
-@@ -118,6 +118,7 @@ gt-y += \
- 	gt/intel_ggtt_fencing.o \
- 	gt/intel_gt.o \
- 	gt/intel_gt_buffer_pool.o \
-+	gt/intel_gt_ccs_mode.o \
- 	gt/intel_gt_clock_utils.o \
- 	gt/intel_gt_debugfs.o \
- 	gt/intel_gt_engines_debugfs.o \
-diff --git a/drivers/gpu/drm/i915/gt/intel_gt_ccs_mode.c b/drivers/gpu/drm/i915/gt/intel_gt_ccs_mode.c
-new file mode 100644
-index 000000000000..044219c5960a
---- /dev/null
-+++ b/drivers/gpu/drm/i915/gt/intel_gt_ccs_mode.c
-@@ -0,0 +1,39 @@
-+// SPDX-License-Identifier: MIT
-+/*
-+ * Copyright © 2024 Intel Corporation
-+ */
-+
-+#include "i915_drv.h"
-+#include "intel_gt.h"
-+#include "intel_gt_ccs_mode.h"
-+#include "intel_gt_regs.h"
-+
-+void intel_gt_apply_ccs_mode(struct intel_gt *gt)
-+{
-+	int cslice;
-+	u32 mode = 0;
-+	int first_ccs = __ffs(CCS_MASK(gt));
-+
-+	if (!IS_DG2(gt->i915))
-+		return;
-+
-+	/* Build the value for the fixed CCS load balancing */
-+	for (cslice = 0; cslice < I915_MAX_CCS; cslice++) {
-+		if (CCS_MASK(gt) & BIT(cslice))
-+			/*
-+			 * If available, assign the cslice
-+			 * to the first available engine...
-+			 */
-+			mode |= XEHP_CCS_MODE_CSLICE(cslice, first_ccs);
-+
-+		else
-+			/*
-+			 * ... otherwise, mark the cslice as
-+			 * unavailable if no CCS dispatches here
-+			 */
-+			mode |= XEHP_CCS_MODE_CSLICE(cslice,
-+						     XEHP_CCS_MODE_CSLICE_MASK);
+diff --git a/drivers/gpu/drm/display/drm_dp_helper.c b/drivers/gpu/drm/disp=
+lay/drm_dp_helper.c
+index b1ca3a1100da..d51c1bcee258 100644
+--- a/drivers/gpu/drm/display/drm_dp_helper.c
++++ b/drivers/gpu/drm/display/drm_dp_helper.c
+@@ -3982,6 +3982,12 @@ int drm_dp_bw_overhead(int lane_count, int hactive,
+ 	u32 overhead =3D 1000000;
+ 	int symbol_cycles;
+=20
++	if (lane_count =3D=3D 0 || hactive =3D=3D 0 || bpp_x16 =3D=3D 0) {
++		DRM_DEBUG_KMS("Invalid BW overhead params: lane_count %d, hactive %d, bp=
+p_x16 %.04d\n",
++			      lane_count, hactive, bpp_x16);
++		return 0;
 +	}
 +
-+	intel_uncore_write(gt->uncore, XEHP_CCS_MODE, mode);
-+}
-diff --git a/drivers/gpu/drm/i915/gt/intel_gt_ccs_mode.h b/drivers/gpu/drm/i915/gt/intel_gt_ccs_mode.h
-new file mode 100644
-index 000000000000..9e5549caeb26
---- /dev/null
-+++ b/drivers/gpu/drm/i915/gt/intel_gt_ccs_mode.h
-@@ -0,0 +1,13 @@
-+/* SPDX-License-Identifier: MIT */
-+/*
-+ * Copyright © 2024 Intel Corporation
-+ */
-+
-+#ifndef __INTEL_GT_CCS_MODE_H__
-+#define __INTEL_GT_CCS_MODE_H__
-+
-+struct intel_gt;
-+
-+void intel_gt_apply_ccs_mode(struct intel_gt *gt);
-+
-+#endif /* __INTEL_GT_CCS_MODE_H__ */
-diff --git a/drivers/gpu/drm/i915/gt/intel_gt_regs.h b/drivers/gpu/drm/i915/gt/intel_gt_regs.h
-index 31b102604e3d..743fe3566722 100644
---- a/drivers/gpu/drm/i915/gt/intel_gt_regs.h
-+++ b/drivers/gpu/drm/i915/gt/intel_gt_regs.h
-@@ -1480,6 +1480,11 @@
- #define   XEHP_RCU_MODE_FIXED_SLICE_CCS_MODE	REG_BIT(1)
- #define   GEN12_RCU_MODE_CCS_ENABLE		REG_BIT(0)
- 
-+#define XEHP_CCS_MODE				_MMIO(0x14804)
-+#define   XEHP_CCS_MODE_CSLICE_MASK		REG_GENMASK(2, 0) /* CCS0-3 + rsvd */
-+#define   XEHP_CCS_MODE_CSLICE_WIDTH		ilog2(XEHP_CCS_MODE_CSLICE_MASK + 1)
-+#define   XEHP_CCS_MODE_CSLICE(cslice, ccs)	(ccs << (cslice * XEHP_CCS_MODE_CSLICE_WIDTH))
-+
- #define CHV_FUSE_GT				_MMIO(VLV_GUNIT_BASE + 0x2168)
- #define   CHV_FGT_DISABLE_SS0			(1 << 10)
- #define   CHV_FGT_DISABLE_SS1			(1 << 11)
-diff --git a/drivers/gpu/drm/i915/gt/intel_workarounds.c b/drivers/gpu/drm/i915/gt/intel_workarounds.c
-index 9963e5725ae5..8188c9f0b5ce 100644
---- a/drivers/gpu/drm/i915/gt/intel_workarounds.c
-+++ b/drivers/gpu/drm/i915/gt/intel_workarounds.c
-@@ -10,6 +10,7 @@
- #include "intel_engine_regs.h"
- #include "intel_gpu_commands.h"
- #include "intel_gt.h"
-+#include "intel_gt_ccs_mode.h"
- #include "intel_gt_mcr.h"
- #include "intel_gt_print.h"
- #include "intel_gt_regs.h"
-@@ -2869,6 +2870,12 @@ static void ccs_engine_wa_mode(struct intel_engine_cs *engine, struct i915_wa_li
- 	 * made to completely disable automatic CCS load balancing.
- 	 */
- 	wa_masked_en(wal, GEN12_RCU_MODE, XEHP_RCU_MODE_FIXED_SLICE_CCS_MODE);
-+
-+	/*
-+	 * After having disabled automatic load balancing we need to
-+	 * assign all slices to a single CCS. We will call it CCS mode 1
-+	 */
-+	intel_gt_apply_ccs_mode(gt);
- }
- 
- /*
--- 
-2.43.0
+ 	/*
+ 	 * DP Standard v2.1 2.6.4.1
+ 	 * SSC downspread and ref clock variation margin:
+--=20
+2.39.2
 
