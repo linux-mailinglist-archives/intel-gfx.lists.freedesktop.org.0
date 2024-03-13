@@ -2,26 +2,26 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2E64787B211
-	for <lists+intel-gfx@lfdr.de>; Wed, 13 Mar 2024 20:41:42 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id AF4B687B212
+	for <lists+intel-gfx@lfdr.de>; Wed, 13 Mar 2024 20:41:44 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AC70E10E5AC;
-	Wed, 13 Mar 2024 19:41:39 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B7D5C10E654;
+	Wed, 13 Mar 2024 19:41:42 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from 8e613ede5ea5 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BE2B010E5AC;
- Wed, 13 Mar 2024 19:41:38 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9ECA710E654;
+ Wed, 13 Mar 2024 19:41:41 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=97_Fi=2ECI=2ECHECKPATCH=3A_warning_for_drm/i915=3A_Use_drm?=
- =?utf-8?q?=5Fprinter_more_=28rev8=29?=
+Subject: =?utf-8?q?=E2=9C=97_Fi=2ECI=2ESPARSE=3A_warning_for_drm/i915=3A_Use_drm=5Fpr?=
+ =?utf-8?q?inter_more_=28rev8=29?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: =?utf-8?b?VmlsbGUgU3lyasOkbMOk?= <ville.syrjala@linux.intel.com>
 Cc: intel-gfx@lists.freedesktop.org
-Date: Wed, 13 Mar 2024 19:41:38 -0000
-Message-ID: <171035889877.732671.542002094804905083@8e613ede5ea5>
+Date: Wed, 13 Mar 2024 19:41:41 -0000
+Message-ID: <171035890165.732671.16225483730808396431@8e613ede5ea5>
 X-Patchwork-Hint: ignore
 References: <20240215164055.30585-1-ville.syrjala@linux.intel.com>
 In-Reply-To: <20240215164055.30585-1-ville.syrjala@linux.intel.com>
@@ -49,23 +49,8 @@ State : warning
 
 == Summary ==
 
-Error: dim checkpatch failed
-bfbc14be30be drm/i915: Indicate which pipe failed the fastset check overall
-b4f30f44c52b drm/i915: Include CRTC info in infoframe mismatch prints
-65dcf203cd3e drm/i915: Include CRTC info in VSC SDP mismatch prints
-e772a47ccf06 drm/i915: Convert pipe_config_infoframe_mismatch() to drm_printer
-8b4131c3c7b2 drm/i915: Convert pipe_config_buffer_mismatch() to drm_printer
-d6e1d200e690 drm/i915: Convert intel_dpll_dump_hw_state() to drm_printer
-7b3b1e4a972b drm/i915: Use drm_printer more extensively in intel_crtc_state_dump()
-fd9145b5f845 drm/i915: Convert the remaining state dump to drm_printer
--:128: WARNING:LONG_LINE: line length of 101 exceeds 100 columns
-#128: FILE: drivers/gpu/drm/i915/display/intel_crtc_state_dump.c:139:
-+		   plane_state->hw.rotation, plane_state->scaler_id, plane_state->hw.scaling_filter);
-
-total: 0 errors, 1 warnings, 0 checks, 236 lines checked
-aed55d8ebf25 drm/i915: Skip intel_crtc_state_dump() if debugs aren't enabled
-cc094b416eeb drm/i915: Relocate pipe_config_mismatch()
-0192506da257 drm/i915: Reuse pipe_config_mismatch() more
-872a681f7fee drm/i915: Create the printer only once in intel_pipe_config_compare()
+Error: dim sparse failed
+Sparse version: v0.6.2
+Fast mode used, each commit won't be checked separately.
 
 
