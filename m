@@ -2,49 +2,58 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id A79FE87E956
-	for <lists+intel-gfx@lfdr.de>; Mon, 18 Mar 2024 13:31:04 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id DABE787A8EC
+	for <lists+intel-gfx@lfdr.de>; Wed, 13 Mar 2024 15:01:55 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A59E410F6AE;
-	Mon, 18 Mar 2024 12:31:02 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 06BC910F319;
+	Wed, 13 Mar 2024 14:01:54 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=puri.sm header.i=@puri.sm header.b="skwZd2/F";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="FBLtO4vx";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-X-Greylist: delayed 560 seconds by postgrey-1.36 at gabe;
- Wed, 13 Mar 2024 14:06:03 UTC
-Received: from comms.puri.sm (comms.puri.sm [159.203.221.185])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BBA5E10F7D8
- for <intel-gfx@lists.freedesktop.org>; Wed, 13 Mar 2024 14:06:03 +0000 (UTC)
-Received: from localhost (localhost [127.0.0.1])
- by comms.puri.sm (Postfix) with ESMTP id 4B155E7CE6;
- Wed, 13 Mar 2024 06:56:12 -0700 (PDT)
-Received: from comms.puri.sm ([127.0.0.1])
- by localhost (comms.puri.sm [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id UKUs71YCXFd8; Wed, 13 Mar 2024 06:56:11 -0700 (PDT)
-From: Jonathon Hall <jonathon.hall@puri.sm>
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=puri.sm; s=comms;
- t=1710338171; bh=8qtHRFqFZ2rbe52sUD4by7YDRxEdBcPf5IDzrs6Gjqk=;
- h=From:To:Cc:Subject:Date:From;
- b=skwZd2/FqDgucBW9TVZI7DDHLSeEqLuS6GX+OxZWnbxS94J7b5xXqbyf4dB2LCC7t
- rkPNwVVnSTzp+Z4/DZNVjs8R4PtJ1KvjJGSf3p/p4RaVfmINKTtatBrXSmzzWB/mf9
- x8lPunfhdCNq7U39Eb8Nu0oZxfUTI1RmlHVNpvMt3JkxM6awOnjzG4k7Rwkm6vdQEB
- 7xuvk1SeePRNVBruhxrcSNvXFXTUsQRIAm3OviQ2DTyXCJfjz6LFUWg/v76egWXC5L
- 2E0CRRgWGybYV8g/A3DA+bxoWgdhJlAogbAFjhOKvYLW9SLs3OT+msma+0x8Nymt8K
- tJgmp+ZDJRI5w==
-To: linux-kernel@vger.kernel.org, intel-gfx@lists.freedesktop.org,
- jani.nikula@linux.intel.com, joonas.lahtinen@linux.intel.com,
- rodrigo.viv@intel.com, tursulin@ursulin.net
-Cc: Jonathon Hall <jonathon.hall@puri.sm>,
-	stable@vger.kernel.org
-Subject: [PATCH] drm/i915: Do not match JSL in
- ehl_combo_pll_div_frac_wa_needed()
-Date: Wed, 13 Mar 2024 09:54:25 -0400
-Message-Id: <20240313135424.3731410-1-jonathon.hall@puri.sm>
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 57D4010F319
+ for <intel-gfx@lists.freedesktop.org>; Wed, 13 Mar 2024 14:01:53 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1710338514; x=1741874514;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=VW+S61MDR02W2ff21E1hYBH3aKi8Jdr986p299SND/s=;
+ b=FBLtO4vxyZ56pdcRw5xFoiu8SIYEG+SeNYkRUq9cn9IqHp0l4YerflZL
+ qaZmiyPqD9X+1CKQqcH8WnT1sBR7M51W9itVRFtdd2t2wha/uyw8epgM3
+ +QY6WThtZUC7zRIMC9CX1bmxku68hhJ6uTPNDNhHZgHgRd35yZQDzFnCg
+ 0W15cfqo4RiSkgUV+7D+auQXCsYPZ2M8beE0dpylVHw2/mMQgzHYfQQC6
+ 12StFG+QmZmgsscjJ4rNGvczNCSgxl7u8EAY5uoUXf68x+nDJ/MnJWLrP
+ NajD/GIPL1qwpd2YVyFg7+kv7059AICI2JZIo0xgOfwqsp7g1NZ1Xsb3N Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,11011"; a="27580936"
+X-IronPort-AV: E=Sophos;i="6.07,122,1708416000"; d="scan'208";a="27580936"
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+ by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 Mar 2024 07:01:53 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,11011"; a="827779249"
+X-IronPort-AV: E=Sophos;i="6.07,122,1708416000"; d="scan'208";a="827779249"
+Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.74])
+ by orsmga001.jf.intel.com with SMTP; 13 Mar 2024 07:01:50 -0700
+Received: by stinkbox (sSMTP sendmail emulation);
+ Wed, 13 Mar 2024 16:01:49 +0200
+Date: Wed, 13 Mar 2024 16:01:49 +0200
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: Jouni =?iso-8859-1?Q?H=F6gander?= <jouni.hogander@intel.com>
+Cc: intel-gfx@lists.freedesktop.org, Jani Nikula <jani.nikula@linux.intel.com>
+Subject: Re: [PATCH v6 4/4] drm/i915/display: Increase number of fast wake
+ precharge pulses
+Message-ID: <ZfGxzYQl5GuPGM4J@intel.com>
+References: <20240313133221.868391-1-jouni.hogander@intel.com>
+ <20240313133221.868391-5-jouni.hogander@intel.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-X-Mailman-Approved-At: Mon, 18 Mar 2024 12:30:57 +0000
+In-Reply-To: <20240313133221.868391-5-jouni.hogander@intel.com>
+X-Patchwork-Hint: comment
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -60,44 +69,48 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Since commit 0c65dc062611 ("drm/i915/jsl: s/JSL/JASPERLAKE for
-platform/subplatform defines"), boot freezes on a Jasper Lake tablet
-(Librem 11), usually with graphical corruption on the eDP display,
-but sometimes just a black screen.  This commit was included in 6.6 and
-later.
+On Wed, Mar 13, 2024 at 03:32:21PM +0200, Jouni Högander wrote:
+> Increasing number of fast wake sync pulses seem to fix problems with
+> certain PSR panels. This should be ok for other panels as well as the eDP
+> specification allows 10...16 precharge pulses and we are still within that
+> range.
+> 
+> v2: add comment explaining pulse count is increased
+> 
+> Closes: https://gitlab.freedesktop.org/drm/intel/-/issues/9739
+> Signed-off-by: Jouni Högander <jouni.hogander@intel.com>
+> ---
+>  drivers/gpu/drm/i915/display/intel_dp_aux.c | 7 ++++++-
+>  1 file changed, 6 insertions(+), 1 deletion(-)
+> 
+> diff --git a/drivers/gpu/drm/i915/display/intel_dp_aux.c b/drivers/gpu/drm/i915/display/intel_dp_aux.c
+> index 7e69be100d90..3264026454b2 100644
+> --- a/drivers/gpu/drm/i915/display/intel_dp_aux.c
+> +++ b/drivers/gpu/drm/i915/display/intel_dp_aux.c
+> @@ -145,7 +145,12 @@ static int intel_dp_aux_sync_len(void)
+>  
+>  int intel_dp_aux_fw_sync_len(void)
+>  {
+> -	int precharge = 10; /* 10-16 */
+> +	/*
+> +	 * We faced some glitches on MTL with one PSR2 panel when using HW
+> +	 * default 18. Using 20 is fixing these problems with the panel. It is
+> +	 * still within range mentioned in eDP specification.
+> +	 */
 
-That commit was intended to refactor EHL and JSL macros, but the change
-to ehl_combo_pll_div_frac_wa_needed() started matching JSL incorrectly
-when it was only intended to match EHL.
+"MTL with one PSR2 panel" is super vague. Please mention the
+actual machine model here.
 
-It replaced:
-	return ((IS_PLATFORM(i915, INTEL_ELKHARTLAKE) &&
-		 IS_JSL_EHL_DISPLAY_STEP(i915, STEP_B0, STEP_FOREVER)) ||
-with:
-	return (((IS_ELKHARTLAKE(i915) || IS_JASPERLAKE(i915)) &&
-		 IS_DISPLAY_STEP(i915, STEP_B0, STEP_FOREVER)) ||
+With that 
+Acked-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-Remove IS_JASPERLAKE() to fix the regression.
+> +	int precharge = 12; /* 10-16 */
+>  	int preamble = 8;
+>  
+>  	return precharge + preamble;
+> -- 
+> 2.34.1
 
-Signed-off-by: Jonathon Hall <jonathon.hall@puri.sm>
-Cc: stable@vger.kernel.org
----
- drivers/gpu/drm/i915/display/intel_dpll_mgr.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
-
-diff --git a/drivers/gpu/drm/i915/display/intel_dpll_mgr.c b/drivers/gpu/drm/i915/display/intel_dpll_mgr.c
-index ef57dad1a9cb..57a97880dcb3 100644
---- a/drivers/gpu/drm/i915/display/intel_dpll_mgr.c
-+++ b/drivers/gpu/drm/i915/display/intel_dpll_mgr.c
-@@ -2509,7 +2509,7 @@ static void icl_wrpll_params_populate(struct skl_wrpll_params *params,
- static bool
- ehl_combo_pll_div_frac_wa_needed(struct drm_i915_private *i915)
- {
--	return (((IS_ELKHARTLAKE(i915) || IS_JASPERLAKE(i915)) &&
-+	return ((IS_ELKHARTLAKE(i915) &&
- 		 IS_DISPLAY_STEP(i915, STEP_B0, STEP_FOREVER)) ||
- 		 IS_TIGERLAKE(i915) || IS_ALDERLAKE_S(i915) || IS_ALDERLAKE_P(i915)) &&
- 		 i915->display.dpll.ref_clks.nssc == 38400;
 -- 
-2.39.2
-
+Ville Syrjälä
+Intel
