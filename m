@@ -2,30 +2,29 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id E7BB187C3A4
-	for <lists+intel-gfx@lfdr.de>; Thu, 14 Mar 2024 20:22:32 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0ABFA87C3BD
+	for <lists+intel-gfx@lfdr.de>; Thu, 14 Mar 2024 20:37:36 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6A76710F38C;
-	Thu, 14 Mar 2024 19:22:30 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 157E210E3A5;
+	Thu, 14 Mar 2024 19:37:34 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from 8e613ede5ea5 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 028A810F379;
- Thu, 14 Mar 2024 19:22:29 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============4090742857551126688=="
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E0B2910FD36;
+ Thu, 14 Mar 2024 19:37:32 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=97_Fi=2ECI=2EBAT=3A_failure_for_series_starting_with_=5B01/?=
- =?utf-8?q?11=5D_drm/xe=3A_Introduce_xe=5Fpm=5Fruntime=5Fget=5Fnoresume_for_?=
- =?utf-8?q?inner_callers?=
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=97_Fi=2ECI=2ECHECKPATCH=3A_warning_for_drm/i915=3A_cleanup_?=
+ =?utf-8?q?dead_code_=28rev2=29?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Rodrigo Vivi" <rodrigo.vivi@intel.com>
+To: "Lucas De Marchi" <lucas.demarchi@intel.com>
 Cc: intel-gfx@lists.freedesktop.org
-Date: Thu, 14 Mar 2024 19:22:29 -0000
-Message-ID: <171044414901.756215.18163194998996459318@8e613ede5ea5>
+Date: Thu, 14 Mar 2024 19:37:32 -0000
+Message-ID: <171044505292.756215.16704090343975502276@8e613ede5ea5>
 X-Patchwork-Hint: ignore
-References: <20240314141021.161009-1-rodrigo.vivi@intel.com>
-In-Reply-To: <20240314141021.161009-1-rodrigo.vivi@intel.com>
+References: <20240312235145.2443975-1-lucas.demarchi@intel.com>
+In-Reply-To: <20240312235145.2443975-1-lucas.demarchi@intel.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -42,404 +41,323 @@ Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============4090742857551126688==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
 == Series Details ==
 
-Series: series starting with [01/11] drm/xe: Introduce xe_pm_runtime_get_noresume for inner callers
-URL   : https://patchwork.freedesktop.org/series/131141/
-State : failure
+Series: drm/i915: cleanup dead code (rev2)
+URL   : https://patchwork.freedesktop.org/series/131049/
+State : warning
 
 == Summary ==
 
-CI Bug Log - changes from CI_DRM_14433 -> Patchwork_131141v1
-====================================================
+Error: dim checkpatch failed
+8c0c8bf0df8f drm/i915: Drop dead code for xehpsdv
+-:918: WARNING:LINE_CONTINUATIONS: Avoid unnecessary line continuations
+#918: FILE: drivers/gpu/drm/i915/intel_uncore.c:1538:
++		0x13400 - 0x147ff: reserved */					\
 
-Summary
--------
+-:928: WARNING:BLOCK_COMMENT_STYLE: Block comments use * on subsequent lines
+#928: FILE: drivers/gpu/drm/i915/intel_uncore.c:1544:
++	GEN_FW_RANGE(0x16e00, 0x21fff, FORCEWAKE_RENDER), /*			\
++		0x16e00 - 0x1ffff: render					\
 
-  **FAILURE**
+-:929: WARNING:LINE_CONTINUATIONS: Avoid unnecessary line continuations
+#929: FILE: drivers/gpu/drm/i915/intel_uncore.c:1545:
++		0x20000 - 0x21fff: reserved */					\
 
-  Serious unknown changes coming with Patchwork_131141v1 absolutely need to be
-  verified manually.
-  
-  If you think the reported changes have nothing to do with the changes
-  introduced in Patchwork_131141v1, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them
-  to document this new failure mode, which will reduce false positives in CI.
+total: 0 errors, 3 warnings, 0 checks, 818 lines checked
+53e7df647789 drm/i915: Remove XEHP_FWRANGES()
+-:174: WARNING:BLOCK_COMMENT_STYLE: Block comments use * on subsequent lines
+#174: FILE: drivers/gpu/drm/i915/intel_uncore.c:1476:
++	GEN_FW_RANGE(0x0, 0x1fff, 0), /*
++		  0x0 -  0xaff: reserved
 
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_131141v1/index.html
+-:175: WARNING:BLOCK_COMMENT_STYLE: Block comments use a trailing */ on a separate line
+#175: FILE: drivers/gpu/drm/i915/intel_uncore.c:1477:
++		0xb00 - 0x1fff: always on */
 
-Participating hosts (37 -> 36)
-------------------------------
+-:179: WARNING:BLOCK_COMMENT_STYLE: Block comments use * on subsequent lines
+#179: FILE: drivers/gpu/drm/i915/intel_uncore.c:1481:
++	GEN_FW_RANGE(0x4b00, 0x51ff, 0), /*
++		0x4b00 - 0x4fff: reserved
 
-  Additional (1): fi-kbl-8809g 
-  Missing    (2): bat-dg1-7 fi-snb-2520m 
+-:180: WARNING:BLOCK_COMMENT_STYLE: Block comments use a trailing */ on a separate line
+#180: FILE: drivers/gpu/drm/i915/intel_uncore.c:1482:
++		0x5000 - 0x51ff: always on */
 
-Possible new issues
--------------------
+-:185: WARNING:BLOCK_COMMENT_STYLE: Block comments use * on subsequent lines
+#185: FILE: drivers/gpu/drm/i915/intel_uncore.c:1487:
++	GEN_FW_RANGE(0x8160, 0x81ff, 0), /*
++		0x8160 - 0x817f: reserved
 
-  Here are the unknown changes that may have been introduced in Patchwork_131141v1:
+-:186: WARNING:BLOCK_COMMENT_STYLE: Block comments use a trailing */ on a separate line
+#186: FILE: drivers/gpu/drm/i915/intel_uncore.c:1488:
++		0x8180 - 0x81ff: always on */
 
-### IGT changes ###
+-:190: WARNING:BLOCK_COMMENT_STYLE: Block comments use * on subsequent lines
+#190: FILE: drivers/gpu/drm/i915/intel_uncore.c:1492:
++	GEN_FW_RANGE(0x8500, 0x8cff, FORCEWAKE_GT), /*
++		0x8500 - 0x87ff: gt
 
-#### Possible regressions ####
+-:192: WARNING:BLOCK_COMMENT_STYLE: Block comments use a trailing */ on a separate line
+#192: FILE: drivers/gpu/drm/i915/intel_uncore.c:1494:
++		0x8c80 - 0x8cff: gt (DG2 only) */
 
-  * igt@gem_busy@busy@all-engines:
-    - fi-kbl-8809g:       NOTRUN -> [ABORT][1]
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_131141v1/fi-kbl-8809g/igt@gem_busy@busy@all-engines.html
+-:194: WARNING:BLOCK_COMMENT_STYLE: Block comments use * on subsequent lines
+#194: FILE: drivers/gpu/drm/i915/intel_uncore.c:1496:
++	GEN_FW_RANGE(0x8d00, 0x8fff, FORCEWAKE_RENDER), /*
++		0x8d00 - 0x8dff: render (DG2 only)
 
-  * igt@gem_close_race@basic-process:
-    - bat-dg2-8:          [PASS][2] -> [INCOMPLETE][3]
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14433/bat-dg2-8/igt@gem_close_race@basic-process.html
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_131141v1/bat-dg2-8/igt@gem_close_race@basic-process.html
-    - bat-mtlp-6:         [PASS][4] -> [DMESG-WARN][5]
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14433/bat-mtlp-6/igt@gem_close_race@basic-process.html
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_131141v1/bat-mtlp-6/igt@gem_close_race@basic-process.html
+-:195: WARNING:BLOCK_COMMENT_STYLE: Block comments use a trailing */ on a separate line
+#195: FILE: drivers/gpu/drm/i915/intel_uncore.c:1497:
++		0x8e00 - 0x8fff: reserved */
 
-  * igt@i915_module_load@load:
-    - bat-atsm-1:         [PASS][6] -> [INCOMPLETE][7]
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14433/bat-atsm-1/igt@i915_module_load@load.html
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_131141v1/bat-atsm-1/igt@i915_module_load@load.html
-    - bat-dg2-9:          [PASS][8] -> [INCOMPLETE][9]
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14433/bat-dg2-9/igt@i915_module_load@load.html
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_131141v1/bat-dg2-9/igt@i915_module_load@load.html
-    - fi-kbl-guc:         [PASS][10] -> [ABORT][11]
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14433/fi-kbl-guc/igt@i915_module_load@load.html
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_131141v1/fi-kbl-guc/igt@i915_module_load@load.html
+-:197: WARNING:BLOCK_COMMENT_STYLE: Block comments use * on subsequent lines
+#197: FILE: drivers/gpu/drm/i915/intel_uncore.c:1499:
++	GEN_FW_RANGE(0x9000, 0x94cf, FORCEWAKE_GT), /*
++		0x9000 - 0x947f: gt
 
-  * igt@kms_busy@basic@flip:
-    - fi-pnv-d510:        [PASS][12] -> [ABORT][13]
-   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14433/fi-pnv-d510/igt@kms_busy@basic@flip.html
-   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_131141v1/fi-pnv-d510/igt@kms_busy@basic@flip.html
+-:198: WARNING:BLOCK_COMMENT_STYLE: Block comments use a trailing */ on a separate line
+#198: FILE: drivers/gpu/drm/i915/intel_uncore.c:1500:
++		0x9480 - 0x94cf: reserved */
 
-  * igt@kms_busy@basic@modeset:
-    - bat-adln-1:         [PASS][14] -> [INCOMPLETE][15]
-   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14433/bat-adln-1/igt@kms_busy@basic@modeset.html
-   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_131141v1/bat-adln-1/igt@kms_busy@basic@modeset.html
-    - bat-rplp-1:         [PASS][16] -> [INCOMPLETE][17]
-   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14433/bat-rplp-1/igt@kms_busy@basic@modeset.html
-   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_131141v1/bat-rplp-1/igt@kms_busy@basic@modeset.html
-    - fi-ivb-3770:        [PASS][18] -> [INCOMPLETE][19]
-   [18]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14433/fi-ivb-3770/igt@kms_busy@basic@modeset.html
-   [19]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_131141v1/fi-ivb-3770/igt@kms_busy@basic@modeset.html
-    - bat-adls-6:         [PASS][20] -> [ABORT][21]
-   [20]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14433/bat-adls-6/igt@kms_busy@basic@modeset.html
-   [21]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_131141v1/bat-adls-6/igt@kms_busy@basic@modeset.html
-    - fi-ilk-650:         [PASS][22] -> [INCOMPLETE][23]
-   [22]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14433/fi-ilk-650/igt@kms_busy@basic@modeset.html
-   [23]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_131141v1/fi-ilk-650/igt@kms_busy@basic@modeset.html
-    - bat-arls-1:         [PASS][24] -> [ABORT][25]
-   [24]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14433/bat-arls-1/igt@kms_busy@basic@modeset.html
-   [25]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_131141v1/bat-arls-1/igt@kms_busy@basic@modeset.html
+-:201: WARNING:BLOCK_COMMENT_STYLE: Block comments use * on subsequent lines
+#201: FILE: drivers/gpu/drm/i915/intel_uncore.c:1503:
++	GEN_FW_RANGE(0x9560, 0x967f, 0), /*
++		0x9560 - 0x95ff: always on
 
-  * igt@kms_flip@basic-flip-vs-dpms@b-dp2:
-    - bat-rpls-3:         [PASS][26] -> [ABORT][27]
-   [26]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14433/bat-rpls-3/igt@kms_flip@basic-flip-vs-dpms@b-dp2.html
-   [27]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_131141v1/bat-rpls-3/igt@kms_flip@basic-flip-vs-dpms@b-dp2.html
+-:202: WARNING:BLOCK_COMMENT_STYLE: Block comments use a trailing */ on a separate line
+#202: FILE: drivers/gpu/drm/i915/intel_uncore.c:1504:
++		0x9600 - 0x967f: reserved */
 
-  * igt@kms_flip@basic-flip-vs-dpms@b-edp1:
-    - bat-jsl-3:          [PASS][28] -> [INCOMPLETE][29]
-   [28]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14433/bat-jsl-3/igt@kms_flip@basic-flip-vs-dpms@b-edp1.html
-   [29]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_131141v1/bat-jsl-3/igt@kms_flip@basic-flip-vs-dpms@b-edp1.html
+-:204: WARNING:BLOCK_COMMENT_STYLE: Block comments use * on subsequent lines
+#204: FILE: drivers/gpu/drm/i915/intel_uncore.c:1506:
++	GEN_FW_RANGE(0x9680, 0x97ff, FORCEWAKE_RENDER), /*
++		0x9680 - 0x96ff: render
 
-  * igt@kms_flip@basic-flip-vs-dpms@b-hdmi-a1:
-    - fi-cfl-guc:         [PASS][30] -> [INCOMPLETE][31]
-   [30]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14433/fi-cfl-guc/igt@kms_flip@basic-flip-vs-dpms@b-hdmi-a1.html
-   [31]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_131141v1/fi-cfl-guc/igt@kms_flip@basic-flip-vs-dpms@b-hdmi-a1.html
-    - fi-tgl-1115g4:      [PASS][32] -> [INCOMPLETE][33]
-   [32]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14433/fi-tgl-1115g4/igt@kms_flip@basic-flip-vs-dpms@b-hdmi-a1.html
-   [33]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_131141v1/fi-tgl-1115g4/igt@kms_flip@basic-flip-vs-dpms@b-hdmi-a1.html
+-:205: WARNING:BLOCK_COMMENT_STYLE: Block comments use a trailing */ on a separate line
+#205: FILE: drivers/gpu/drm/i915/intel_uncore.c:1507:
++		0x9700 - 0x97ff: reserved */
 
-  * igt@kms_flip@basic-flip-vs-dpms@b-hdmi-a2:
-    - fi-glk-j4005:       [PASS][34] -> [INCOMPLETE][35]
-   [34]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14433/fi-glk-j4005/igt@kms_flip@basic-flip-vs-dpms@b-hdmi-a2.html
-   [35]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_131141v1/fi-glk-j4005/igt@kms_flip@basic-flip-vs-dpms@b-hdmi-a2.html
+-:207: WARNING:BLOCK_COMMENT_STYLE: Block comments use * on subsequent lines
+#207: FILE: drivers/gpu/drm/i915/intel_uncore.c:1509:
++	GEN_FW_RANGE(0x9800, 0xcfff, FORCEWAKE_GT), /*
++		0x9800 - 0xb4ff: gt
 
-  
-#### Suppressed ####
+-:209: WARNING:BLOCK_COMMENT_STYLE: Block comments use a trailing */ on a separate line
+#209: FILE: drivers/gpu/drm/i915/intel_uncore.c:1511:
++		0xc000 - 0xcfff: gt */
 
-  The following results come from untrusted machines, tests, or statuses.
-  They do not affect the overall result.
+-:215: WARNING:BLOCK_COMMENT_STYLE: Block comments use * on subsequent lines
+#215: FILE: drivers/gpu/drm/i915/intel_uncore.c:1517:
++	GEN_FW_RANGE(0xdd00, 0xde7f, FORCEWAKE_GT), /*
++		0xdd00 - 0xddff: gt
 
-  * igt@kms_busy@basic@modeset:
-    - {bat-mtlp-9}:       [PASS][36] -> [ABORT][37]
-   [36]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14433/bat-mtlp-9/igt@kms_busy@basic@modeset.html
-   [37]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_131141v1/bat-mtlp-9/igt@kms_busy@basic@modeset.html
-    - {bat-arls-4}:       [PASS][38] -> [ABORT][39]
-   [38]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14433/bat-arls-4/igt@kms_busy@basic@modeset.html
-   [39]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_131141v1/bat-arls-4/igt@kms_busy@basic@modeset.html
+-:216: WARNING:BLOCK_COMMENT_STYLE: Block comments use a trailing */ on a separate line
+#216: FILE: drivers/gpu/drm/i915/intel_uncore.c:1518:
++		0xde00 - 0xde7f: reserved */
 
-  
-Known issues
-------------
+-:218: WARNING:BLOCK_COMMENT_STYLE: Block comments use * on subsequent lines
+#218: FILE: drivers/gpu/drm/i915/intel_uncore.c:1520:
++	GEN_FW_RANGE(0xde80, 0xe8ff, FORCEWAKE_RENDER), /*
++		0xde80 - 0xdfff: render
 
-  Here are the changes found in Patchwork_131141v1 that come from known issues:
+-:220: WARNING:BLOCK_COMMENT_STYLE: Block comments use a trailing */ on a separate line
+#220: FILE: drivers/gpu/drm/i915/intel_uncore.c:1522:
++		0xe100 - 0xe8ff: render */
 
-### CI changes ###
+-:222: WARNING:BLOCK_COMMENT_STYLE: Block comments use * on subsequent lines
+#222: FILE: drivers/gpu/drm/i915/intel_uncore.c:1524:
++	GEN_FW_RANGE(0xe900, 0xffff, FORCEWAKE_GT), /*
++		0xe900 - 0xe9ff: gt
 
-#### Issues hit ####
+-:224: WARNING:BLOCK_COMMENT_STYLE: Block comments use a trailing */ on a separate line
+#224: FILE: drivers/gpu/drm/i915/intel_uncore.c:1526:
++		0xf000 - 0xffff: gt */
 
-  * boot:
-    - bat-jsl-1:          [PASS][40] -> [FAIL][41] ([i915#8293])
-   [40]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14433/bat-jsl-1/boot.html
-   [41]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_131141v1/bat-jsl-1/boot.html
-    - fi-cfl-8109u:       [PASS][42] -> [FAIL][43] ([i915#8293])
-   [42]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14433/fi-cfl-8109u/boot.html
-   [43]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_131141v1/fi-cfl-8109u/boot.html
+-:226: WARNING:BLOCK_COMMENT_STYLE: Block comments use * on subsequent lines
+#226: FILE: drivers/gpu/drm/i915/intel_uncore.c:1528:
++	GEN_FW_RANGE(0x10000, 0x12fff, 0), /*
++		0x10000 - 0x11fff: reserved
 
-  
+-:228: WARNING:BLOCK_COMMENT_STYLE: Block comments use a trailing */ on a separate line
+#228: FILE: drivers/gpu/drm/i915/intel_uncore.c:1530:
++		0x12800 - 0x12fff: reserved */
 
-### IGT changes ###
+-:231: WARNING:BLOCK_COMMENT_STYLE: Block comments use * on subsequent lines
+#231: FILE: drivers/gpu/drm/i915/intel_uncore.c:1533:
++	GEN_FW_RANGE(0x13200, 0x147ff, FORCEWAKE_MEDIA_VDBOX2), /*
++		0x13200 - 0x133ff: VD2 (DG2 only)
 
-#### Issues hit ####
+-:232: WARNING:BLOCK_COMMENT_STYLE: Block comments use a trailing */ on a separate line
+#232: FILE: drivers/gpu/drm/i915/intel_uncore.c:1534:
++		0x13400 - 0x147ff: reserved */
 
-  * igt@fbdev@eof:
-    - fi-kbl-8809g:       NOTRUN -> [SKIP][44] +4 other tests skip
-   [44]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_131141v1/fi-kbl-8809g/igt@fbdev@eof.html
+-:235: WARNING:BLOCK_COMMENT_STYLE: Block comments use * on subsequent lines
+#235: FILE: drivers/gpu/drm/i915/intel_uncore.c:1537:
++	GEN_FW_RANGE(0x15000, 0x16dff, FORCEWAKE_GT), /*
++		0x15000 - 0x15fff: gt (DG2 only)
 
-  * igt@fbdev@info:
-    - fi-kbl-8809g:       NOTRUN -> [SKIP][45] ([i915#1849])
-   [45]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_131141v1/fi-kbl-8809g/igt@fbdev@info.html
+-:236: WARNING:BLOCK_COMMENT_STYLE: Block comments use a trailing */ on a separate line
+#236: FILE: drivers/gpu/drm/i915/intel_uncore.c:1538:
++		0x16000 - 0x16dff: reserved */
 
-  * igt@kms_busy@basic@modeset:
-    - fi-apl-guc:         [PASS][46] -> [INCOMPLETE][47] ([i915#10056])
-   [46]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14433/fi-apl-guc/igt@kms_busy@basic@modeset.html
-   [47]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_131141v1/fi-apl-guc/igt@kms_busy@basic@modeset.html
-    - fi-kbl-7567u:       [PASS][48] -> [INCOMPLETE][49] ([i915#10056])
-   [48]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14433/fi-kbl-7567u/igt@kms_busy@basic@modeset.html
-   [49]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_131141v1/fi-kbl-7567u/igt@kms_busy@basic@modeset.html
-    - bat-dg2-14:         [PASS][50] -> [INCOMPLETE][51] ([i915#10056])
-   [50]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14433/bat-dg2-14/igt@kms_busy@basic@modeset.html
-   [51]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_131141v1/bat-dg2-14/igt@kms_busy@basic@modeset.html
-    - bat-mtlp-8:         [PASS][52] -> [INCOMPLETE][53] ([i915#10056])
-   [52]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14433/bat-mtlp-8/igt@kms_busy@basic@modeset.html
-   [53]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_131141v1/bat-mtlp-8/igt@kms_busy@basic@modeset.html
-    - bat-adlp-6:         [PASS][54] -> [INCOMPLETE][55] ([i915#10056])
-   [54]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14433/bat-adlp-6/igt@kms_busy@basic@modeset.html
-   [55]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_131141v1/bat-adlp-6/igt@kms_busy@basic@modeset.html
+-:238: WARNING:BLOCK_COMMENT_STYLE: Block comments use * on subsequent lines
+#238: FILE: drivers/gpu/drm/i915/intel_uncore.c:1540:
++	GEN_FW_RANGE(0x16e00, 0x21fff, FORCEWAKE_RENDER), /*
++		0x16e00 - 0x1ffff: render
 
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
+-:239: WARNING:BLOCK_COMMENT_STYLE: Block comments use a trailing */ on a separate line
+#239: FILE: drivers/gpu/drm/i915/intel_uncore.c:1541:
++		0x20000 - 0x21fff: reserved */
 
-  [i915#10056]: https://gitlab.freedesktop.org/drm/intel/issues/10056
-  [i915#1849]: https://gitlab.freedesktop.org/drm/intel/issues/1849
-  [i915#8293]: https://gitlab.freedesktop.org/drm/intel/issues/8293
+-:242: WARNING:BLOCK_COMMENT_STYLE: Block comments use * on subsequent lines
+#242: FILE: drivers/gpu/drm/i915/intel_uncore.c:1544:
++	GEN_FW_RANGE(0x24000, 0x2417f, 0), /*
++		0x24000 - 0x2407f: always on
+
+-:243: WARNING:BLOCK_COMMENT_STYLE: Block comments use a trailing */ on a separate line
+#243: FILE: drivers/gpu/drm/i915/intel_uncore.c:1545:
++		0x24080 - 0x2417f: reserved */
+
+-:245: WARNING:BLOCK_COMMENT_STYLE: Block comments use * on subsequent lines
+#245: FILE: drivers/gpu/drm/i915/intel_uncore.c:1547:
++	GEN_FW_RANGE(0x24180, 0x249ff, FORCEWAKE_GT), /*
++		0x24180 - 0x241ff: gt
+
+-:246: WARNING:BLOCK_COMMENT_STYLE: Block comments use a trailing */ on a separate line
+#246: FILE: drivers/gpu/drm/i915/intel_uncore.c:1548:
++		0x24200 - 0x249ff: reserved */
+
+-:248: WARNING:BLOCK_COMMENT_STYLE: Block comments use * on subsequent lines
+#248: FILE: drivers/gpu/drm/i915/intel_uncore.c:1550:
++	GEN_FW_RANGE(0x24a00, 0x251ff, FORCEWAKE_RENDER), /*
++		0x24a00 - 0x24a7f: render
+
+-:249: WARNING:BLOCK_COMMENT_STYLE: Block comments use a trailing */ on a separate line
+#249: FILE: drivers/gpu/drm/i915/intel_uncore.c:1551:
++		0x24a80 - 0x251ff: reserved */
+
+-:251: WARNING:BLOCK_COMMENT_STYLE: Block comments use * on subsequent lines
+#251: FILE: drivers/gpu/drm/i915/intel_uncore.c:1553:
++	GEN_FW_RANGE(0x25200, 0x25fff, FORCEWAKE_GT), /*
++		0x25200 - 0x252ff: gt
+
+-:252: WARNING:BLOCK_COMMENT_STYLE: Block comments use a trailing */ on a separate line
+#252: FILE: drivers/gpu/drm/i915/intel_uncore.c:1554:
++		0x25300 - 0x25fff: reserved */
+
+-:254: WARNING:BLOCK_COMMENT_STYLE: Block comments use * on subsequent lines
+#254: FILE: drivers/gpu/drm/i915/intel_uncore.c:1556:
++	GEN_FW_RANGE(0x26000, 0x2ffff, FORCEWAKE_RENDER), /*
++		0x26000 - 0x27fff: render
+
+-:256: WARNING:BLOCK_COMMENT_STYLE: Block comments use a trailing */ on a separate line
+#256: FILE: drivers/gpu/drm/i915/intel_uncore.c:1558:
++		0x2a000 - 0x2ffff: undocumented */
+
+-:260: WARNING:BLOCK_COMMENT_STYLE: Block comments use * on subsequent lines
+#260: FILE: drivers/gpu/drm/i915/intel_uncore.c:1562:
++	GEN_FW_RANGE(0x1c0000, 0x1c3fff, FORCEWAKE_MEDIA_VDBOX0), /*
++		0x1c0000 - 0x1c2bff: VD0
+
+-:264: WARNING:BLOCK_COMMENT_STYLE: Block comments use a trailing */ on a separate line
+#264: FILE: drivers/gpu/drm/i915/intel_uncore.c:1566:
++		0x1c3f00 - 0x1c3fff: VD0 */
+
+-:266: WARNING:BLOCK_COMMENT_STYLE: Block comments use * on subsequent lines
+#266: FILE: drivers/gpu/drm/i915/intel_uncore.c:1568:
++	GEN_FW_RANGE(0x1c4000, 0x1c7fff, FORCEWAKE_MEDIA_VDBOX1), /*
++		0x1c4000 - 0x1c6bff: VD1
+
+-:269: WARNING:BLOCK_COMMENT_STYLE: Block comments use a trailing */ on a separate line
+#269: FILE: drivers/gpu/drm/i915/intel_uncore.c:1571:
++		0x1c6e00 - 0x1c7fff: reserved */
+
+-:271: WARNING:BLOCK_COMMENT_STYLE: Block comments use * on subsequent lines
+#271: FILE: drivers/gpu/drm/i915/intel_uncore.c:1573:
++	GEN_FW_RANGE(0x1c8000, 0x1cbfff, FORCEWAKE_MEDIA_VEBOX0), /*
++		0x1c8000 - 0x1ca0ff: VE0
+
+-:272: WARNING:BLOCK_COMMENT_STYLE: Block comments use a trailing */ on a separate line
+#272: FILE: drivers/gpu/drm/i915/intel_uncore.c:1574:
++		0x1ca100 - 0x1cbfff: reserved */
+
+-:278: WARNING:BLOCK_COMMENT_STYLE: Block comments use * on subsequent lines
+#278: FILE: drivers/gpu/drm/i915/intel_uncore.c:1580:
++	GEN_FW_RANGE(0x1d0000, 0x1d3fff, FORCEWAKE_MEDIA_VDBOX2), /*
++		0x1d0000 - 0x1d2bff: VD2
+
+-:283: WARNING:BLOCK_COMMENT_STYLE: Block comments use a trailing */ on a separate line
+#283: FILE: drivers/gpu/drm/i915/intel_uncore.c:1585:
++		0x1d3f00 - 0x1d3fff: VD2 */
+
+-:285: WARNING:BLOCK_COMMENT_STYLE: Block comments use * on subsequent lines
+#285: FILE: drivers/gpu/drm/i915/intel_uncore.c:1587:
++	GEN_FW_RANGE(0x1d4000, 0x1d7fff, FORCEWAKE_MEDIA_VDBOX3), /*
++		0x1d4000 - 0x1d6bff: VD3
+
+-:288: WARNING:BLOCK_COMMENT_STYLE: Block comments use a trailing */ on a separate line
+#288: FILE: drivers/gpu/drm/i915/intel_uncore.c:1590:
++		0x1d6e00 - 0x1d7fff: reserved */
+
+-:290: WARNING:BLOCK_COMMENT_STYLE: Block comments use * on subsequent lines
+#290: FILE: drivers/gpu/drm/i915/intel_uncore.c:1592:
++	GEN_FW_RANGE(0x1d8000, 0x1dffff, FORCEWAKE_MEDIA_VEBOX1), /*
++		0x1d8000 - 0x1da0ff: VE1
+
+-:291: WARNING:BLOCK_COMMENT_STYLE: Block comments use a trailing */ on a separate line
+#291: FILE: drivers/gpu/drm/i915/intel_uncore.c:1593:
++		0x1da100 - 0x1dffff: reserved */
+
+-:293: WARNING:BLOCK_COMMENT_STYLE: Block comments use * on subsequent lines
+#293: FILE: drivers/gpu/drm/i915/intel_uncore.c:1595:
++	GEN_FW_RANGE(0x1e0000, 0x1e3fff, FORCEWAKE_MEDIA_VDBOX4), /*
++		0x1e0000 - 0x1e2bff: VD4
+
+-:297: WARNING:BLOCK_COMMENT_STYLE: Block comments use a trailing */ on a separate line
+#297: FILE: drivers/gpu/drm/i915/intel_uncore.c:1599:
++		0x1e3f00 - 0x1e3fff: VD4 */
+
+-:299: WARNING:BLOCK_COMMENT_STYLE: Block comments use * on subsequent lines
+#299: FILE: drivers/gpu/drm/i915/intel_uncore.c:1601:
++	GEN_FW_RANGE(0x1e4000, 0x1e7fff, FORCEWAKE_MEDIA_VDBOX5), /*
++		0x1e4000 - 0x1e6bff: VD5
+
+-:302: WARNING:BLOCK_COMMENT_STYLE: Block comments use a trailing */ on a separate line
+#302: FILE: drivers/gpu/drm/i915/intel_uncore.c:1604:
++		0x1e6e00 - 0x1e7fff: reserved */
+
+-:304: WARNING:BLOCK_COMMENT_STYLE: Block comments use * on subsequent lines
+#304: FILE: drivers/gpu/drm/i915/intel_uncore.c:1606:
++	GEN_FW_RANGE(0x1e8000, 0x1effff, FORCEWAKE_MEDIA_VEBOX2), /*
++		0x1e8000 - 0x1ea0ff: VE2
+
+-:305: WARNING:BLOCK_COMMENT_STYLE: Block comments use a trailing */ on a separate line
+#305: FILE: drivers/gpu/drm/i915/intel_uncore.c:1607:
++		0x1ea100 - 0x1effff: reserved */
+
+-:307: WARNING:BLOCK_COMMENT_STYLE: Block comments use * on subsequent lines
+#307: FILE: drivers/gpu/drm/i915/intel_uncore.c:1609:
++	GEN_FW_RANGE(0x1f0000, 0x1f3fff, FORCEWAKE_MEDIA_VDBOX6), /*
++		0x1f0000 - 0x1f2bff: VD6
+
+-:311: WARNING:BLOCK_COMMENT_STYLE: Block comments use a trailing */ on a separate line
+#311: FILE: drivers/gpu/drm/i915/intel_uncore.c:1613:
++		0x1f3f00 - 0x1f3fff: VD6 */
+
+-:313: WARNING:BLOCK_COMMENT_STYLE: Block comments use * on subsequent lines
+#313: FILE: drivers/gpu/drm/i915/intel_uncore.c:1615:
++	GEN_FW_RANGE(0x1f4000, 0x1f7fff, FORCEWAKE_MEDIA_VDBOX7), /*
++		0x1f4000 - 0x1f6bff: VD7
+
+-:316: WARNING:BLOCK_COMMENT_STYLE: Block comments use a trailing */ on a separate line
+#316: FILE: drivers/gpu/drm/i915/intel_uncore.c:1618:
++		0x1f6e00 - 0x1f7fff: reserved */
+
+total: 0 errors, 64 warnings, 0 checks, 304 lines checked
+9c03857255e7 drm/i915: Stop inheriting IP_VER(12, 50)
+a4c0e80ba83b drm/i915: Update IP_VER(12, 50)
+ff52e704eb5d drm/i915: Drop dead code for pvc
+9e29ae3c3f79 drm/i915: Remove special handling for !RCS_MASK()
 
 
-Build changes
--------------
-
-  * Linux: CI_DRM_14433 -> Patchwork_131141v1
-
-  CI-20190529: 20190529
-  CI_DRM_14433: f5246a1cf97dd1b9bf955148b0ca2cbf0b18d31e @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_7765: 67615901aedcc79d8d1523c6484c67c11ba0e316 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_131141v1: f5246a1cf97dd1b9bf955148b0ca2cbf0b18d31e @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-### Linux commits
-
-e69cf4d9a53b drm/xe: Kill xe_device_mem_access_{get*,put}
-61ef856ddb5c drm/xe: Ensure all the inner access are using the _noresume variant
-647d7a5b64aa drm/xe: Convert mem_access_if_ongoing to direct xe_pm_runtime_get_if_active
-3db70fccb52d drm/xe: Removing extra mem_access protection from runtime pm
-d99a6c1af946 drm/xe: Convert xe_gem_fault to use direct xe_pm_runtime calls
-ff92126792b8 drm/xe: Remove useless mem_access during probe
-1fb4ebb91fee drm/xe: Convert GSC HDCP from mem_access to direct xe_pm_runtime calls
-91f51eecc7a4 drm/xe: Move lockdep protection from mem_access to xe_pm_runtime
-98db7e114c42 drm/i915/display: convert inner wakeref get towards get_if_in_use
-d4f1b5b53f14 drm/xe: Introduce intel_runtime_pm_get_noresume at compat-i915-headers for display
-ca7a1aaa4dab drm/xe: Introduce xe_pm_runtime_get_noresume for inner callers
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_131141v1/index.html
-
---===============4090742857551126688==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>series starting with [01/11] drm/xe: Introduce xe_pm_runtime_get_noresume for inner callers</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/131141/">https://patchwork.freedesktop.org/series/131141/</a></td></tr>
-<tr><td><b>State:</b></td><td>failure</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_131141v1/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_131141v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_14433 -&gt; Patchwork_131141v1</h1>
-<h2>Summary</h2>
-<p><strong>FAILURE</strong></p>
-<p>Serious unknown changes coming with Patchwork_131141v1 absolutely need to be<br />
-  verified manually.</p>
-<p>If you think the reported changes have nothing to do with the changes<br />
-  introduced in Patchwork_131141v1, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them<br />
-  to document this new failure mode, which will reduce false positives in CI.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_131141v1/index.html</p>
-<h2>Participating hosts (37 -&gt; 36)</h2>
-<p>Additional (1): fi-kbl-8809g <br />
-  Missing    (2): bat-dg1-7 fi-snb-2520m </p>
-<h2>Possible new issues</h2>
-<p>Here are the unknown changes that may have been introduced in Patchwork_131141v1:</p>
-<h3>IGT changes</h3>
-<h4>Possible regressions</h4>
-<ul>
-<li>
-<p>igt@gem_busy@busy@all-engines:</p>
-<ul>
-<li>fi-kbl-8809g:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_131141v1/fi-kbl-8809g/igt@gem_busy@busy@all-engines.html">ABORT</a></li>
-</ul>
-</li>
-<li>
-<p>igt@gem_close_race@basic-process:</p>
-<ul>
-<li>bat-dg2-8:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14433/bat-dg2-8/igt@gem_close_race@basic-process.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_131141v1/bat-dg2-8/igt@gem_close_race@basic-process.html">INCOMPLETE</a></li>
-<li>bat-mtlp-6:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14433/bat-mtlp-6/igt@gem_close_race@basic-process.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_131141v1/bat-mtlp-6/igt@gem_close_race@basic-process.html">DMESG-WARN</a></li>
-</ul>
-</li>
-<li>
-<p>igt@i915_module_load@load:</p>
-<ul>
-<li>bat-atsm-1:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14433/bat-atsm-1/igt@i915_module_load@load.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_131141v1/bat-atsm-1/igt@i915_module_load@load.html">INCOMPLETE</a></li>
-<li>bat-dg2-9:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14433/bat-dg2-9/igt@i915_module_load@load.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_131141v1/bat-dg2-9/igt@i915_module_load@load.html">INCOMPLETE</a></li>
-<li>fi-kbl-guc:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14433/fi-kbl-guc/igt@i915_module_load@load.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_131141v1/fi-kbl-guc/igt@i915_module_load@load.html">ABORT</a></li>
-</ul>
-</li>
-<li>
-<p>igt@kms_busy@basic@flip:</p>
-<ul>
-<li>fi-pnv-d510:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14433/fi-pnv-d510/igt@kms_busy@basic@flip.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_131141v1/fi-pnv-d510/igt@kms_busy@basic@flip.html">ABORT</a></li>
-</ul>
-</li>
-<li>
-<p>igt@kms_busy@basic@modeset:</p>
-<ul>
-<li>bat-adln-1:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14433/bat-adln-1/igt@kms_busy@basic@modeset.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_131141v1/bat-adln-1/igt@kms_busy@basic@modeset.html">INCOMPLETE</a></li>
-<li>bat-rplp-1:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14433/bat-rplp-1/igt@kms_busy@basic@modeset.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_131141v1/bat-rplp-1/igt@kms_busy@basic@modeset.html">INCOMPLETE</a></li>
-<li>fi-ivb-3770:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14433/fi-ivb-3770/igt@kms_busy@basic@modeset.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_131141v1/fi-ivb-3770/igt@kms_busy@basic@modeset.html">INCOMPLETE</a></li>
-<li>bat-adls-6:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14433/bat-adls-6/igt@kms_busy@basic@modeset.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_131141v1/bat-adls-6/igt@kms_busy@basic@modeset.html">ABORT</a></li>
-<li>fi-ilk-650:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14433/fi-ilk-650/igt@kms_busy@basic@modeset.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_131141v1/fi-ilk-650/igt@kms_busy@basic@modeset.html">INCOMPLETE</a></li>
-<li>bat-arls-1:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14433/bat-arls-1/igt@kms_busy@basic@modeset.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_131141v1/bat-arls-1/igt@kms_busy@basic@modeset.html">ABORT</a></li>
-</ul>
-</li>
-<li>
-<p>igt@kms_flip@basic-flip-vs-dpms@b-dp2:</p>
-<ul>
-<li>bat-rpls-3:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14433/bat-rpls-3/igt@kms_flip@basic-flip-vs-dpms@b-dp2.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_131141v1/bat-rpls-3/igt@kms_flip@basic-flip-vs-dpms@b-dp2.html">ABORT</a></li>
-</ul>
-</li>
-<li>
-<p>igt@kms_flip@basic-flip-vs-dpms@b-edp1:</p>
-<ul>
-<li>bat-jsl-3:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14433/bat-jsl-3/igt@kms_flip@basic-flip-vs-dpms@b-edp1.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_131141v1/bat-jsl-3/igt@kms_flip@basic-flip-vs-dpms@b-edp1.html">INCOMPLETE</a></li>
-</ul>
-</li>
-<li>
-<p>igt@kms_flip@basic-flip-vs-dpms@b-hdmi-a1:</p>
-<ul>
-<li>fi-cfl-guc:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14433/fi-cfl-guc/igt@kms_flip@basic-flip-vs-dpms@b-hdmi-a1.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_131141v1/fi-cfl-guc/igt@kms_flip@basic-flip-vs-dpms@b-hdmi-a1.html">INCOMPLETE</a></li>
-<li>fi-tgl-1115g4:      <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14433/fi-tgl-1115g4/igt@kms_flip@basic-flip-vs-dpms@b-hdmi-a1.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_131141v1/fi-tgl-1115g4/igt@kms_flip@basic-flip-vs-dpms@b-hdmi-a1.html">INCOMPLETE</a></li>
-</ul>
-</li>
-<li>
-<p>igt@kms_flip@basic-flip-vs-dpms@b-hdmi-a2:</p>
-<ul>
-<li>fi-glk-j4005:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14433/fi-glk-j4005/igt@kms_flip@basic-flip-vs-dpms@b-hdmi-a2.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_131141v1/fi-glk-j4005/igt@kms_flip@basic-flip-vs-dpms@b-hdmi-a2.html">INCOMPLETE</a></li>
-</ul>
-</li>
-</ul>
-<h4>Suppressed</h4>
-<p>The following results come from untrusted machines, tests, or statuses.<br />
-  They do not affect the overall result.</p>
-<ul>
-<li>igt@kms_busy@basic@modeset:<ul>
-<li>{bat-mtlp-9}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14433/bat-mtlp-9/igt@kms_busy@basic@modeset.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_131141v1/bat-mtlp-9/igt@kms_busy@basic@modeset.html">ABORT</a></li>
-<li>{bat-arls-4}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14433/bat-arls-4/igt@kms_busy@basic@modeset.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_131141v1/bat-arls-4/igt@kms_busy@basic@modeset.html">ABORT</a></li>
-</ul>
-</li>
-</ul>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_131141v1 that come from known issues:</p>
-<h3>CI changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>boot:<ul>
-<li>bat-jsl-1:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14433/bat-jsl-1/boot.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_131141v1/bat-jsl-1/boot.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/8293">i915#8293</a>)</li>
-<li>fi-cfl-8109u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14433/fi-cfl-8109u/boot.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_131141v1/fi-cfl-8109u/boot.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/8293">i915#8293</a>)</li>
-</ul>
-</li>
-</ul>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@fbdev@eof:</p>
-<ul>
-<li>fi-kbl-8809g:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_131141v1/fi-kbl-8809g/igt@fbdev@eof.html">SKIP</a> +4 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@fbdev@info:</p>
-<ul>
-<li>fi-kbl-8809g:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_131141v1/fi-kbl-8809g/igt@fbdev@info.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1849">i915#1849</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_busy@basic@modeset:</p>
-<ul>
-<li>fi-apl-guc:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14433/fi-apl-guc/igt@kms_busy@basic@modeset.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_131141v1/fi-apl-guc/igt@kms_busy@basic@modeset.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/10056">i915#10056</a>)</li>
-<li>fi-kbl-7567u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14433/fi-kbl-7567u/igt@kms_busy@basic@modeset.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_131141v1/fi-kbl-7567u/igt@kms_busy@basic@modeset.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/10056">i915#10056</a>)</li>
-<li>bat-dg2-14:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14433/bat-dg2-14/igt@kms_busy@basic@modeset.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_131141v1/bat-dg2-14/igt@kms_busy@basic@modeset.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/10056">i915#10056</a>)</li>
-<li>bat-mtlp-8:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14433/bat-mtlp-8/igt@kms_busy@basic@modeset.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_131141v1/bat-mtlp-8/igt@kms_busy@basic@modeset.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/10056">i915#10056</a>)</li>
-<li>bat-adlp-6:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14433/bat-adlp-6/igt@kms_busy@basic@modeset.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_131141v1/bat-adlp-6/igt@kms_busy@basic@modeset.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/10056">i915#10056</a>)</li>
-</ul>
-</li>
-</ul>
-<p>{name}: This element is suppressed. This means it is ignored when computing<br />
-          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_14433 -&gt; Patchwork_131141v1</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_14433: f5246a1cf97dd1b9bf955148b0ca2cbf0b18d31e @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_7765: 67615901aedcc79d8d1523c6484c67c11ba0e316 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  Patchwork_131141v1: f5246a1cf97dd1b9bf955148b0ca2cbf0b18d31e @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<h3>Linux commits</h3>
-<p>e69cf4d9a53b drm/xe: Kill xe_device_mem_access_{get*,put}<br />
-61ef856ddb5c drm/xe: Ensure all the inner access are using the _noresume variant<br />
-647d7a5b64aa drm/xe: Convert mem_access_if_ongoing to direct xe_pm_runtime_get_if_active<br />
-3db70fccb52d drm/xe: Removing extra mem_access protection from runtime pm<br />
-d99a6c1af946 drm/xe: Convert xe_gem_fault to use direct xe_pm_runtime calls<br />
-ff92126792b8 drm/xe: Remove useless mem_access during probe<br />
-1fb4ebb91fee drm/xe: Convert GSC HDCP from mem_access to direct xe_pm_runtime calls<br />
-91f51eecc7a4 drm/xe: Move lockdep protection from mem_access to xe_pm_runtime<br />
-98db7e114c42 drm/i915/display: convert inner wakeref get towards get_if_in_use<br />
-d4f1b5b53f14 drm/xe: Introduce intel_runtime_pm_get_noresume at compat-i915-headers for display<br />
-ca7a1aaa4dab drm/xe: Introduce xe_pm_runtime_get_noresume for inner callers</p>
-
-</body>
-</html>
-
---===============4090742857551126688==--
