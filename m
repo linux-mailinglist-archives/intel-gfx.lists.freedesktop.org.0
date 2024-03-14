@@ -2,29 +2,144 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id F0C8387C454
-	for <lists+intel-gfx@lfdr.de>; Thu, 14 Mar 2024 21:34:01 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id B991A87C471
+	for <lists+intel-gfx@lfdr.de>; Thu, 14 Mar 2024 21:49:29 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7793910E8BD;
-	Thu, 14 Mar 2024 20:34:00 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 20DD910F571;
+	Thu, 14 Mar 2024 20:49:28 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="bxmvL1Rx";
+	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from 8e613ede5ea5 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A4A7610E8BD;
- Thu, 14 Mar 2024 20:33:59 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============7917364815794764529=="
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9CC6C10FDAA
+ for <intel-gfx@lists.freedesktop.org>; Thu, 14 Mar 2024 20:49:26 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1710449366; x=1741985366;
+ h=date:from:to:cc:subject:message-id:references:
+ in-reply-to:mime-version;
+ bh=PNACLYC9YvD3qvXeK26I124k9twb8Q2ds/GcehTYWXY=;
+ b=bxmvL1Rxo4zezMGVMJuwrBAuHDPdidL9JzxyOHKscAQN7H4FoWjOFUra
+ ah/fwvXFq+mQZs2igtUB6rWVCfvuPVhm7izKBpFqBUsGlQWNXyxXaexjz
+ 7lE5RzEhnG5v3kpPQgz3kWG2OzSP9IjESOvzC4icAwmNX+1sE0u0DiXJq
+ OBGgMGw5dclSpjtZPI3Hz4HObnf996oJKlInSmnX7NwK+BtT0eqC05iqp
+ V+1FyFpc8Kucd+/s9wAtyy3PwpDSwDbTgVTa2dfK6FJO4cQnsdcs6fYnt
+ A0rvqoUUNcRxaqlHSgpsOzB8+cK48SRi0FloZXqNs5m87zQa6dbxZRlSu g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,11013"; a="5428330"
+X-IronPort-AV: E=Sophos;i="6.07,126,1708416000"; 
+   d="scan'208";a="5428330"
+Received: from orviesa006.jf.intel.com ([10.64.159.146])
+ by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 14 Mar 2024 13:49:26 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.07,126,1708416000"; d="scan'208";a="12828567"
+Received: from orsmsx603.amr.corp.intel.com ([10.22.229.16])
+ by orviesa006.jf.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
+ 14 Mar 2024 13:49:27 -0700
+Received: from orsmsx611.amr.corp.intel.com (10.22.229.24) by
+ ORSMSX603.amr.corp.intel.com (10.22.229.16) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.35; Thu, 14 Mar 2024 13:49:25 -0700
+Received: from orsmsx610.amr.corp.intel.com (10.22.229.23) by
+ ORSMSX611.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.35; Thu, 14 Mar 2024 13:49:25 -0700
+Received: from ORSEDG601.ED.cps.intel.com (10.7.248.6) by
+ orsmsx610.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.35 via Frontend Transport; Thu, 14 Mar 2024 13:49:25 -0700
+Received: from NAM02-SN1-obe.outbound.protection.outlook.com (104.47.57.40) by
+ edgegateway.intel.com (134.134.137.102) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.1.2507.35; Thu, 14 Mar 2024 13:49:24 -0700
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=U6xI2ZJRz2FD9hPzMJflDyd7Ccdf19r4n34lpn8QaI38SnUyiMgO1E3EnQ4bCUEBNpceIwD3NE1+SimgSil4AR9vGJngL7K/JgSbvDQFz1zx43fJCpEX+Lyuz6CRpgfQgM0q+ns/MWbADkmYfDYHL2fSfW3t/lSk9b51bSZ1M/YrKOoTt1WxMRAzU1fB0gynMBVJD9ylTbroNjBt+HK7L4iGTy0dCdoqvj7NsN+O5T4xyGUPtubDdebVKdEeDBWGuwGo6IrcGZfPwx37/fha41vSEhO6kbJw7falWigkAMjWoGi60p3qd4c7c/S4GdKILZLl7dCsbGF8TsZrWS/i+A==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=KWdf22VA7y2ejPooYoaiiKbbyNY8hzJf0HvTTQiYflM=;
+ b=nNE4Qi/e/wsHxC4+Z+XcoM2go4nPeYDrhBSVNc+zs4kJ8t7QqWOiG1H1NZIsHRHYC/26xsp6kgeplMH6PVwHup1KgCxvL9QS45QMm4alNbkVT1MdaAv+LAKCHnkcmM6ZNaf5wtTPQCEFkIdYaB++Dcw2biFtjHP05eDLdjGNMF8e3oDvB/pHxghlB6qw7/b09/3JvZzKIjInYPHAUKiTPM/kZRSx+hTWpCt37kFm/TTIUilD8WJp+5M8OWsSuxXUsYA6MQhycCL0hcWWEcHZmlkZDEVR10DpPn5Qz6P2A/tnuVEgkYiGDPH6+XbhAXqM2OSY0J2DiMI10lklJIbpFg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+Received: from DS0PR11MB8182.namprd11.prod.outlook.com (2603:10b6:8:163::17)
+ by MW3PR11MB4714.namprd11.prod.outlook.com (2603:10b6:303:5d::15) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7386.18; Thu, 14 Mar
+ 2024 20:49:22 +0000
+Received: from DS0PR11MB8182.namprd11.prod.outlook.com
+ ([fe80::45cf:261e:c084:9493]) by DS0PR11MB8182.namprd11.prod.outlook.com
+ ([fe80::45cf:261e:c084:9493%6]) with mapi id 15.20.7386.017; Thu, 14 Mar 2024
+ 20:49:22 +0000
+Date: Thu, 14 Mar 2024 13:49:20 -0700
+From: Matt Roper <matthew.d.roper@intel.com>
+To: Lucas De Marchi <lucas.demarchi@intel.com>
+CC: <intel-gfx@lists.freedesktop.org>, Rodrigo Vivi <rodrigo.vivi@intel.com>, 
+ Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+Subject: Re: [PATCH v2 2/6] drm/i915: Remove XEHP_FWRANGES()
+Message-ID: <20240314204920.GE2837363@mdroper-desk1.amr.corp.intel.com>
+References: <20240312235145.2443975-1-lucas.demarchi@intel.com>
+ <20240312235145.2443975-3-lucas.demarchi@intel.com>
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+In-Reply-To: <20240312235145.2443975-3-lucas.demarchi@intel.com>
+X-ClientProxiedBy: BY5PR04CA0007.namprd04.prod.outlook.com
+ (2603:10b6:a03:1d0::17) To DS0PR11MB8182.namprd11.prod.outlook.com
+ (2603:10b6:8:163::17)
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=97_Fi=2ECI=2EBAT=3A_failure_for_drm/i915/gt=3A_Report_full_?=
- =?utf-8?q?vm_address_range_=28rev2=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Andi Shyti" <andi.shyti@linux.intel.com>
-Cc: intel-gfx@lists.freedesktop.org
-Date: Thu, 14 Mar 2024 20:33:59 -0000
-Message-ID: <171044843967.756190.17181977825423507791@8e613ede5ea5>
-X-Patchwork-Hint: ignore
-References: <20240313193907.95205-1-andi.shyti@linux.intel.com>
-In-Reply-To: <20240313193907.95205-1-andi.shyti@linux.intel.com>
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: DS0PR11MB8182:EE_|MW3PR11MB4714:EE_
+X-MS-Office365-Filtering-Correlation-Id: a18e47a4-538e-40dc-1c4f-08dc44683a33
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: uNhZ+vzvZ0vKxPOyraqlpxX55CrxZOawsI5vsK1KY/mpVkRRizS8HsgtYrhcXA2X2bqUwHL/uDlZpzx0Pk1iPTQUdDZz3xgnr6eJkRusFN8M1KBnBKxjLXO4Bw0XjQsLXOxJErgcqg3Skdsn4Wu0d6rJJvbGeglbxv6QvQLRt4g9JQfaAmo9N9JDXZkOos8HDNDRp0K/doFLqCwWo5rr1H+Ui8X1zeBQCuSPUIjOceOYQ1tko+du7USBo+mE/E+Wa280+fqV4aEpZ7xbHLVBCyTZLjIrx6f4frOm8/Gd7T7fGPNXDyZfuK1Ji9P3YC8HXTaPQFU6feGAifCWj1mZ6S8bFOtf7jDwcRvdgG4ESlYbtG7owzXGIyGf7s1Mqj6DAWUhJtB5/G+s0uoyYe6IqKv52cUQQaGeCvMO9bJ5Q/xbn0/CFgmzbwn03MoYWBGYd/a3oFoT8n9JnV7DLDGCfIOGzoABzi5IVytIGaWJGBR1bxMTcVrpazJ/XhrrJoKy0ySPGqK6VETem6TVfsf4+JFo4XfuB2FsdMk3e9VRXQd/EgFrTCLNTdjP3noRARJYYg1kyPjr5TypnMIkMeEgChVxA1z+Otf7kfpKpegtsJuCdvlYK7ZfXZxaZZYXjCRkMNmt0DQnuHIq3qKyVSfruA==
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:DS0PR11MB8182.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230031)(376005)(1800799015); DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?+Vv56dHfiMG1LcTNLPvRSJYQimyiVp+5IE5quTa+2hzDO6D11UtTZQ1KIjjb?=
+ =?us-ascii?Q?UDmCmxjtTa4FDK0kDy4OiUZXUDdQhVretCbfc7FPXMvIKp6Quw/xKmpWksSB?=
+ =?us-ascii?Q?Ky+Po00wSwzDrNLMtV6qYTyx95ckr2H99yOjAYmAvg+ajgDpgPM7/eg44Y1m?=
+ =?us-ascii?Q?9ncrVV8n9iqrQ2CdDM6hdxM/eQtkL8mFY7mdO1d8ihRR8TfFUa3Pwp6VlVa6?=
+ =?us-ascii?Q?s9KKjLN+DfcaQnZFqgJl1LWht1PpbL1MY7mWEQEymjCfBgy2PWNWBdotQtzb?=
+ =?us-ascii?Q?akoPVtpAQOnEIvvYj1MNf3BAq1gsLpG1i73DjtSwyJb9hBtiwvtkUs5mQqh/?=
+ =?us-ascii?Q?nXoTUXs6Kso8fcYs+nugbz7ecJv8hKKQeU+T3/TEeJxJpOkpoBlWLQnl7IE3?=
+ =?us-ascii?Q?VEcufgiLC4HyhwammWEuWswfsYK0OqOtdnu9pa0U7+C3IWrTyGy35Llj3ruv?=
+ =?us-ascii?Q?KYZgcmhXaYwqFfENKzPHSdqy4PLf5/SsFkd/ZOoNqlAynap7B1qLyMuaZ5nZ?=
+ =?us-ascii?Q?x37731Co9VFhdowHNHpis86klTWCRWFz1dDc5NKAkMK7UI5kKcvYahKzEkpt?=
+ =?us-ascii?Q?HnphxOmMgDs9Nh4usTeY1cFgUuVr/ZEOqFyw4zDJuT5Il2dRE6uBBwQHyCwY?=
+ =?us-ascii?Q?a6ujtny3wC9cF+65tNVGupR0u1/0iOSKvbG6VStdYQ2cidEtz/cjH9jcmrao?=
+ =?us-ascii?Q?mKIwQ68ZuYBI6RMydEM/L+R7xlaZTgTG/zeTPFmljmQT0Hvpaxv0ZAmKD1K5?=
+ =?us-ascii?Q?MovvSI/ZoS6V4W4XHZXa1SVPAYillJl15Tgc5En5yY551Vl1EPz0SCQ7BxxM?=
+ =?us-ascii?Q?aWrco+g4Mbvlzs1Ffh6fA7ex6Tlu5X1W+qxwQuKa8WkZlCWUdzUI+DPieT8k?=
+ =?us-ascii?Q?naldkmecybGZLmgJr0myy/TceSpbnMxhUcJjsALvQi/ywn3P7MFz0XXnTZbm?=
+ =?us-ascii?Q?Pbarp6v1a8f4iPQd9rKauxPYDZydEJo+OQbOtiXC2wZkuA7FnGGPC9sNJWL4?=
+ =?us-ascii?Q?wZS2dly+CgeiFbNr4fh04yNUntXakpSfYDuB9jPxVWxnXDPYaivGn8bRt5eb?=
+ =?us-ascii?Q?SJ75uw9szr7apvsrzhMJncpPqHmrd0QP48ofT+6X4Z3ULFihHatjzF7kn3FG?=
+ =?us-ascii?Q?P/Zwv877tpLcv3CH4ibT17qGKrNzfhP5iVh1oYoanT49DBTgrVxfUPd/15fQ?=
+ =?us-ascii?Q?pMxJfperfVWsth0larQbw+G4CtSDL7afNoqHU+CuRU1pTGdPclsAORm7NH2u?=
+ =?us-ascii?Q?Dhn5zeSVYtFPnSPyxyZGwJ5rngXpLHHSWkPBHxHObC9lD2iDP3cN7GDqQhtO?=
+ =?us-ascii?Q?z/yqnd76SZlL+GE4iVJnZ9h0/SQ9EUlnQndwvgPn7IR7qjT3uz1kUuMisJlq?=
+ =?us-ascii?Q?wiJOF73/SZdUu1rm/dQQyUKlBFOKupm12dHYyMYW7bUop1uVyCH6C+C2/j7t?=
+ =?us-ascii?Q?yfgQS6aQ/yZPEkd9uo+ZAYSSD3XyGbb2CPqxpJhunlgbWrEXcVOm8VBNByqC?=
+ =?us-ascii?Q?7f3HJBdgMmeZvu4s49kr/M1TIc/sOlyZel8oOw6LGr1GMAzLLJI31lA+M7aK?=
+ =?us-ascii?Q?ao+ifNx22LxsAPaiRZmmUN1tEj2RTVw/OfMbAuIZoEoMVsboUb1q1x5gEcbu?=
+ =?us-ascii?Q?jg=3D=3D?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: a18e47a4-538e-40dc-1c4f-08dc44683a33
+X-MS-Exchange-CrossTenant-AuthSource: DS0PR11MB8182.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 14 Mar 2024 20:49:22.5050 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: l2MCC9rJWx8Xs/bFtOL0EWtMDwb+3p+VOgeQVdras75z00ZAAde5aNgo4Y/dK/7YvJSfkG+icPtkcCPlskTd+Iap2yhVS9WwkTw44LQYt1g=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MW3PR11MB4714
+X-OriginatorOrg: intel.com
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -37,304 +152,337 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============7917364815794764529==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+On Tue, Mar 12, 2024 at 04:51:41PM -0700, Lucas De Marchi wrote:
+> Now that DG2 is the only user of this forcewake table, remove the macro
+> and use FORCEWAKE_RENDER explicitly for range 0xd800 - 0xd87f.
+> 
+> Suggested-by: Matt Roper <matthew.d.roper@intel.com>
+> Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
 
-== Series Details ==
+Reviewed-by: Matt Roper <matthew.d.roper@intel.com>
 
-Series: drm/i915/gt: Report full vm address range (rev2)
-URL   : https://patchwork.freedesktop.org/series/131095/
-State : failure
+> ---
+>  drivers/gpu/drm/i915/intel_uncore.c | 297 ++++++++++++++--------------
+>  1 file changed, 145 insertions(+), 152 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/i915/intel_uncore.c b/drivers/gpu/drm/i915/intel_uncore.c
+> index 7695bb946fff..b525318dbd53 100644
+> --- a/drivers/gpu/drm/i915/intel_uncore.c
+> +++ b/drivers/gpu/drm/i915/intel_uncore.c
+> @@ -1471,159 +1471,152 @@ static const struct intel_forcewake_range __gen12_fw_ranges[] = {
+>  		0x1d3f00 - 0x1d3fff: VD2 */
+>  };
+>  
+> -/*
+> - * Graphics IP version 12.55 brings a slight change to the 0xd800 range,
+> - * switching it from the GT domain to the render domain.
+> - */
+> -#define XEHP_FWRANGES(FW_RANGE_D800)					\
+> -	GEN_FW_RANGE(0x0, 0x1fff, 0), /*					\
+> -		  0x0 -  0xaff: reserved					\
+> -		0xb00 - 0x1fff: always on */					\
+> -	GEN_FW_RANGE(0x2000, 0x26ff, FORCEWAKE_RENDER),				\
+> -	GEN_FW_RANGE(0x2700, 0x4aff, FORCEWAKE_GT),				\
+> -	GEN_FW_RANGE(0x4b00, 0x51ff, 0), /*					\
+> -		0x4b00 - 0x4fff: reserved					\
+> -		0x5000 - 0x51ff: always on */					\
+> -	GEN_FW_RANGE(0x5200, 0x7fff, FORCEWAKE_RENDER),				\
+> -	GEN_FW_RANGE(0x8000, 0x813f, FORCEWAKE_GT),				\
+> -	GEN_FW_RANGE(0x8140, 0x815f, FORCEWAKE_RENDER),				\
+> -	GEN_FW_RANGE(0x8160, 0x81ff, 0), /*					\
+> -		0x8160 - 0x817f: reserved					\
+> -		0x8180 - 0x81ff: always on */					\
+> -	GEN_FW_RANGE(0x8200, 0x82ff, FORCEWAKE_GT),				\
+> -	GEN_FW_RANGE(0x8300, 0x84ff, FORCEWAKE_RENDER),				\
+> -	GEN_FW_RANGE(0x8500, 0x8cff, FORCEWAKE_GT), /*				\
+> -		0x8500 - 0x87ff: gt						\
+> -		0x8800 - 0x8c7f: reserved					\
+> -		0x8c80 - 0x8cff: gt (DG2 only) */				\
+> -	GEN_FW_RANGE(0x8d00, 0x8fff, FORCEWAKE_RENDER), /*			\
+> -		0x8d00 - 0x8dff: render (DG2 only)				\
+> -		0x8e00 - 0x8fff: reserved */					\
+> -	GEN_FW_RANGE(0x9000, 0x94cf, FORCEWAKE_GT), /*				\
+> -		0x9000 - 0x947f: gt						\
+> -		0x9480 - 0x94cf: reserved */					\
+> -	GEN_FW_RANGE(0x94d0, 0x955f, FORCEWAKE_RENDER),				\
+> -	GEN_FW_RANGE(0x9560, 0x967f, 0), /*					\
+> -		0x9560 - 0x95ff: always on					\
+> -		0x9600 - 0x967f: reserved */					\
+> -	GEN_FW_RANGE(0x9680, 0x97ff, FORCEWAKE_RENDER), /*			\
+> -		0x9680 - 0x96ff: render (DG2 only)				\
+> -		0x9700 - 0x97ff: reserved */					\
+> -	GEN_FW_RANGE(0x9800, 0xcfff, FORCEWAKE_GT), /*				\
+> -		0x9800 - 0xb4ff: gt						\
+> -		0xb500 - 0xbfff: reserved					\
+> -		0xc000 - 0xcfff: gt */						\
+> -	GEN_FW_RANGE(0xd000, 0xd7ff, 0),					\
+> -	GEN_FW_RANGE(0xd800, 0xd87f, FW_RANGE_D800),			\
+> -	GEN_FW_RANGE(0xd880, 0xdbff, FORCEWAKE_GT),				\
+> -	GEN_FW_RANGE(0xdc00, 0xdcff, FORCEWAKE_RENDER),				\
+> -	GEN_FW_RANGE(0xdd00, 0xde7f, FORCEWAKE_GT), /*				\
+> -		0xdd00 - 0xddff: gt						\
+> -		0xde00 - 0xde7f: reserved */					\
+> -	GEN_FW_RANGE(0xde80, 0xe8ff, FORCEWAKE_RENDER), /*			\
+> -		0xde80 - 0xdfff: render						\
+> -		0xe000 - 0xe0ff: reserved					\
+> -		0xe100 - 0xe8ff: render */					\
+> -	GEN_FW_RANGE(0xe900, 0xffff, FORCEWAKE_GT), /*				\
+> -		0xe900 - 0xe9ff: gt						\
+> -		0xea00 - 0xefff: reserved					\
+> -		0xf000 - 0xffff: gt */						\
+> -	GEN_FW_RANGE(0x10000, 0x12fff, 0), /*					\
+> -		0x10000 - 0x11fff: reserved					\
+> -		0x12000 - 0x127ff: always on					\
+> -		0x12800 - 0x12fff: reserved */					\
+> -	GEN_FW_RANGE(0x13000, 0x131ff, FORCEWAKE_MEDIA_VDBOX0), /* DG2 only */	\
+> -	GEN_FW_RANGE(0x13200, 0x147ff, FORCEWAKE_MEDIA_VDBOX2), /*		\
+> -		0x13200 - 0x133ff: VD2 (DG2 only)				\
+> -		0x13400 - 0x147ff: reserved */					\
+> -	GEN_FW_RANGE(0x14800, 0x14fff, FORCEWAKE_RENDER),			\
+> -	GEN_FW_RANGE(0x15000, 0x16dff, FORCEWAKE_GT), /*			\
+> -		0x15000 - 0x15fff: gt (DG2 only)				\
+> -		0x16000 - 0x16dff: reserved */					\
+> -	GEN_FW_RANGE(0x16e00, 0x21fff, FORCEWAKE_RENDER), /*			\
+> -		0x16e00 - 0x1ffff: render					\
+> -		0x20000 - 0x21fff: reserved */					\
+> -	GEN_FW_RANGE(0x22000, 0x23fff, FORCEWAKE_GT),				\
+> -	GEN_FW_RANGE(0x24000, 0x2417f, 0), /*					\
+> -		0x24000 - 0x2407f: always on					\
+> -		0x24080 - 0x2417f: reserved */					\
+> -	GEN_FW_RANGE(0x24180, 0x249ff, FORCEWAKE_GT), /*			\
+> -		0x24180 - 0x241ff: gt						\
+> -		0x24200 - 0x249ff: reserved */					\
+> -	GEN_FW_RANGE(0x24a00, 0x251ff, FORCEWAKE_RENDER), /*			\
+> -		0x24a00 - 0x24a7f: render					\
+> -		0x24a80 - 0x251ff: reserved */					\
+> -	GEN_FW_RANGE(0x25200, 0x25fff, FORCEWAKE_GT), /*			\
+> -		0x25200 - 0x252ff: gt						\
+> -		0x25300 - 0x25fff: reserved */					\
+> -	GEN_FW_RANGE(0x26000, 0x2ffff, FORCEWAKE_RENDER), /*			\
+> -		0x26000 - 0x27fff: render					\
+> -		0x28000 - 0x29fff: reserved					\
+> -		0x2a000 - 0x2ffff: undocumented */				\
+> -	GEN_FW_RANGE(0x30000, 0x3ffff, FORCEWAKE_GT),				\
+> -	GEN_FW_RANGE(0x40000, 0x1bffff, 0),					\
+> -	GEN_FW_RANGE(0x1c0000, 0x1c3fff, FORCEWAKE_MEDIA_VDBOX0), /*		\
+> -		0x1c0000 - 0x1c2bff: VD0					\
+> -		0x1c2c00 - 0x1c2cff: reserved					\
+> -		0x1c2d00 - 0x1c2dff: VD0					\
+> -		0x1c2e00 - 0x1c3eff: VD0 (DG2 only)				\
+> -		0x1c3f00 - 0x1c3fff: VD0 */					\
+> -	GEN_FW_RANGE(0x1c4000, 0x1c7fff, FORCEWAKE_MEDIA_VDBOX1), /*		\
+> -		0x1c4000 - 0x1c6bff: VD1					\
+> -		0x1c6c00 - 0x1c6cff: reserved					\
+> -		0x1c6d00 - 0x1c6dff: VD1					\
+> -		0x1c6e00 - 0x1c7fff: reserved */				\
+> -	GEN_FW_RANGE(0x1c8000, 0x1cbfff, FORCEWAKE_MEDIA_VEBOX0), /*		\
+> -		0x1c8000 - 0x1ca0ff: VE0					\
+> -		0x1ca100 - 0x1cbfff: reserved */				\
+> -	GEN_FW_RANGE(0x1cc000, 0x1ccfff, FORCEWAKE_MEDIA_VDBOX0),		\
+> -	GEN_FW_RANGE(0x1cd000, 0x1cdfff, FORCEWAKE_MEDIA_VDBOX2),		\
+> -	GEN_FW_RANGE(0x1ce000, 0x1cefff, FORCEWAKE_MEDIA_VDBOX4),		\
+> -	GEN_FW_RANGE(0x1cf000, 0x1cffff, FORCEWAKE_MEDIA_VDBOX6),		\
+> -	GEN_FW_RANGE(0x1d0000, 0x1d3fff, FORCEWAKE_MEDIA_VDBOX2), /*		\
+> -		0x1d0000 - 0x1d2bff: VD2					\
+> -		0x1d2c00 - 0x1d2cff: reserved					\
+> -		0x1d2d00 - 0x1d2dff: VD2					\
+> -		0x1d2e00 - 0x1d3dff: VD2 (DG2 only)				\
+> -		0x1d3e00 - 0x1d3eff: reserved					\
+> -		0x1d3f00 - 0x1d3fff: VD2 */					\
+> -	GEN_FW_RANGE(0x1d4000, 0x1d7fff, FORCEWAKE_MEDIA_VDBOX3), /*		\
+> -		0x1d4000 - 0x1d6bff: VD3					\
+> -		0x1d6c00 - 0x1d6cff: reserved					\
+> -		0x1d6d00 - 0x1d6dff: VD3					\
+> -		0x1d6e00 - 0x1d7fff: reserved */				\
+> -	GEN_FW_RANGE(0x1d8000, 0x1dffff, FORCEWAKE_MEDIA_VEBOX1), /*		\
+> -		0x1d8000 - 0x1da0ff: VE1					\
+> -		0x1da100 - 0x1dffff: reserved */				\
+> -	GEN_FW_RANGE(0x1e0000, 0x1e3fff, FORCEWAKE_MEDIA_VDBOX4), /*		\
+> -		0x1e0000 - 0x1e2bff: VD4					\
+> -		0x1e2c00 - 0x1e2cff: reserved					\
+> -		0x1e2d00 - 0x1e2dff: VD4					\
+> -		0x1e2e00 - 0x1e3eff: reserved					\
+> -		0x1e3f00 - 0x1e3fff: VD4 */					\
+> -	GEN_FW_RANGE(0x1e4000, 0x1e7fff, FORCEWAKE_MEDIA_VDBOX5), /*		\
+> -		0x1e4000 - 0x1e6bff: VD5					\
+> -		0x1e6c00 - 0x1e6cff: reserved					\
+> -		0x1e6d00 - 0x1e6dff: VD5					\
+> -		0x1e6e00 - 0x1e7fff: reserved */				\
+> -	GEN_FW_RANGE(0x1e8000, 0x1effff, FORCEWAKE_MEDIA_VEBOX2), /*		\
+> -		0x1e8000 - 0x1ea0ff: VE2					\
+> -		0x1ea100 - 0x1effff: reserved */				\
+> -	GEN_FW_RANGE(0x1f0000, 0x1f3fff, FORCEWAKE_MEDIA_VDBOX6), /*		\
+> -		0x1f0000 - 0x1f2bff: VD6					\
+> -		0x1f2c00 - 0x1f2cff: reserved					\
+> -		0x1f2d00 - 0x1f2dff: VD6					\
+> -		0x1f2e00 - 0x1f3eff: reserved					\
+> -		0x1f3f00 - 0x1f3fff: VD6 */					\
+> -	GEN_FW_RANGE(0x1f4000, 0x1f7fff, FORCEWAKE_MEDIA_VDBOX7), /*		\
+> -		0x1f4000 - 0x1f6bff: VD7					\
+> -		0x1f6c00 - 0x1f6cff: reserved					\
+> -		0x1f6d00 - 0x1f6dff: VD7					\
+> -		0x1f6e00 - 0x1f7fff: reserved */				\
+> -	GEN_FW_RANGE(0x1f8000, 0x1fa0ff, FORCEWAKE_MEDIA_VEBOX3),
+> -
+>  static const struct intel_forcewake_range __dg2_fw_ranges[] = {
+> -	XEHP_FWRANGES(FORCEWAKE_RENDER)
+> +	GEN_FW_RANGE(0x0, 0x1fff, 0), /*
+> +		  0x0 -  0xaff: reserved
+> +		0xb00 - 0x1fff: always on */
+> +	GEN_FW_RANGE(0x2000, 0x26ff, FORCEWAKE_RENDER),
+> +	GEN_FW_RANGE(0x2700, 0x4aff, FORCEWAKE_GT),
+> +	GEN_FW_RANGE(0x4b00, 0x51ff, 0), /*
+> +		0x4b00 - 0x4fff: reserved
+> +		0x5000 - 0x51ff: always on */
+> +	GEN_FW_RANGE(0x5200, 0x7fff, FORCEWAKE_RENDER),
+> +	GEN_FW_RANGE(0x8000, 0x813f, FORCEWAKE_GT),
+> +	GEN_FW_RANGE(0x8140, 0x815f, FORCEWAKE_RENDER),
+> +	GEN_FW_RANGE(0x8160, 0x81ff, 0), /*
+> +		0x8160 - 0x817f: reserved
+> +		0x8180 - 0x81ff: always on */
+> +	GEN_FW_RANGE(0x8200, 0x82ff, FORCEWAKE_GT),
+> +	GEN_FW_RANGE(0x8300, 0x84ff, FORCEWAKE_RENDER),
+> +	GEN_FW_RANGE(0x8500, 0x8cff, FORCEWAKE_GT), /*
+> +		0x8500 - 0x87ff: gt
+> +		0x8800 - 0x8c7f: reserved
+> +		0x8c80 - 0x8cff: gt (DG2 only) */
+> +	GEN_FW_RANGE(0x8d00, 0x8fff, FORCEWAKE_RENDER), /*
+> +		0x8d00 - 0x8dff: render (DG2 only)
+> +		0x8e00 - 0x8fff: reserved */
+> +	GEN_FW_RANGE(0x9000, 0x94cf, FORCEWAKE_GT), /*
+> +		0x9000 - 0x947f: gt
+> +		0x9480 - 0x94cf: reserved */
+> +	GEN_FW_RANGE(0x94d0, 0x955f, FORCEWAKE_RENDER),
+> +	GEN_FW_RANGE(0x9560, 0x967f, 0), /*
+> +		0x9560 - 0x95ff: always on
+> +		0x9600 - 0x967f: reserved */
+> +	GEN_FW_RANGE(0x9680, 0x97ff, FORCEWAKE_RENDER), /*
+> +		0x9680 - 0x96ff: render
+> +		0x9700 - 0x97ff: reserved */
+> +	GEN_FW_RANGE(0x9800, 0xcfff, FORCEWAKE_GT), /*
+> +		0x9800 - 0xb4ff: gt
+> +		0xb500 - 0xbfff: reserved
+> +		0xc000 - 0xcfff: gt */
+> +	GEN_FW_RANGE(0xd000, 0xd7ff, 0),
+> +	GEN_FW_RANGE(0xd800, 0xd87f, FORCEWAKE_RENDER),
+> +	GEN_FW_RANGE(0xd880, 0xdbff, FORCEWAKE_GT),
+> +	GEN_FW_RANGE(0xdc00, 0xdcff, FORCEWAKE_RENDER),
+> +	GEN_FW_RANGE(0xdd00, 0xde7f, FORCEWAKE_GT), /*
+> +		0xdd00 - 0xddff: gt
+> +		0xde00 - 0xde7f: reserved */
+> +	GEN_FW_RANGE(0xde80, 0xe8ff, FORCEWAKE_RENDER), /*
+> +		0xde80 - 0xdfff: render
+> +		0xe000 - 0xe0ff: reserved
+> +		0xe100 - 0xe8ff: render */
+> +	GEN_FW_RANGE(0xe900, 0xffff, FORCEWAKE_GT), /*
+> +		0xe900 - 0xe9ff: gt
+> +		0xea00 - 0xefff: reserved
+> +		0xf000 - 0xffff: gt */
+> +	GEN_FW_RANGE(0x10000, 0x12fff, 0), /*
+> +		0x10000 - 0x11fff: reserved
+> +		0x12000 - 0x127ff: always on
+> +		0x12800 - 0x12fff: reserved */
+> +	GEN_FW_RANGE(0x13000, 0x131ff, FORCEWAKE_MEDIA_VDBOX0),
+> +	GEN_FW_RANGE(0x13200, 0x147ff, FORCEWAKE_MEDIA_VDBOX2), /*
+> +		0x13200 - 0x133ff: VD2 (DG2 only)
+> +		0x13400 - 0x147ff: reserved */
+> +	GEN_FW_RANGE(0x14800, 0x14fff, FORCEWAKE_RENDER),
+> +	GEN_FW_RANGE(0x15000, 0x16dff, FORCEWAKE_GT), /*
+> +		0x15000 - 0x15fff: gt (DG2 only)
+> +		0x16000 - 0x16dff: reserved */
+> +	GEN_FW_RANGE(0x16e00, 0x21fff, FORCEWAKE_RENDER), /*
+> +		0x16e00 - 0x1ffff: render
+> +		0x20000 - 0x21fff: reserved */
+> +	GEN_FW_RANGE(0x22000, 0x23fff, FORCEWAKE_GT),
+> +	GEN_FW_RANGE(0x24000, 0x2417f, 0), /*
+> +		0x24000 - 0x2407f: always on
+> +		0x24080 - 0x2417f: reserved */
+> +	GEN_FW_RANGE(0x24180, 0x249ff, FORCEWAKE_GT), /*
+> +		0x24180 - 0x241ff: gt
+> +		0x24200 - 0x249ff: reserved */
+> +	GEN_FW_RANGE(0x24a00, 0x251ff, FORCEWAKE_RENDER), /*
+> +		0x24a00 - 0x24a7f: render
+> +		0x24a80 - 0x251ff: reserved */
+> +	GEN_FW_RANGE(0x25200, 0x25fff, FORCEWAKE_GT), /*
+> +		0x25200 - 0x252ff: gt
+> +		0x25300 - 0x25fff: reserved */
+> +	GEN_FW_RANGE(0x26000, 0x2ffff, FORCEWAKE_RENDER), /*
+> +		0x26000 - 0x27fff: render
+> +		0x28000 - 0x29fff: reserved
+> +		0x2a000 - 0x2ffff: undocumented */
+> +	GEN_FW_RANGE(0x30000, 0x3ffff, FORCEWAKE_GT),
+> +	GEN_FW_RANGE(0x40000, 0x1bffff, 0),
+> +	GEN_FW_RANGE(0x1c0000, 0x1c3fff, FORCEWAKE_MEDIA_VDBOX0), /*
+> +		0x1c0000 - 0x1c2bff: VD0
+> +		0x1c2c00 - 0x1c2cff: reserved
+> +		0x1c2d00 - 0x1c2dff: VD0
+> +		0x1c2e00 - 0x1c3eff: VD0
+> +		0x1c3f00 - 0x1c3fff: VD0 */
+> +	GEN_FW_RANGE(0x1c4000, 0x1c7fff, FORCEWAKE_MEDIA_VDBOX1), /*
+> +		0x1c4000 - 0x1c6bff: VD1
+> +		0x1c6c00 - 0x1c6cff: reserved
+> +		0x1c6d00 - 0x1c6dff: VD1
+> +		0x1c6e00 - 0x1c7fff: reserved */
+> +	GEN_FW_RANGE(0x1c8000, 0x1cbfff, FORCEWAKE_MEDIA_VEBOX0), /*
+> +		0x1c8000 - 0x1ca0ff: VE0
+> +		0x1ca100 - 0x1cbfff: reserved */
+> +	GEN_FW_RANGE(0x1cc000, 0x1ccfff, FORCEWAKE_MEDIA_VDBOX0),
+> +	GEN_FW_RANGE(0x1cd000, 0x1cdfff, FORCEWAKE_MEDIA_VDBOX2),
+> +	GEN_FW_RANGE(0x1ce000, 0x1cefff, FORCEWAKE_MEDIA_VDBOX4),
+> +	GEN_FW_RANGE(0x1cf000, 0x1cffff, FORCEWAKE_MEDIA_VDBOX6),
+> +	GEN_FW_RANGE(0x1d0000, 0x1d3fff, FORCEWAKE_MEDIA_VDBOX2), /*
+> +		0x1d0000 - 0x1d2bff: VD2
+> +		0x1d2c00 - 0x1d2cff: reserved
+> +		0x1d2d00 - 0x1d2dff: VD2
+> +		0x1d2e00 - 0x1d3dff: VD2
+> +		0x1d3e00 - 0x1d3eff: reserved
+> +		0x1d3f00 - 0x1d3fff: VD2 */
+> +	GEN_FW_RANGE(0x1d4000, 0x1d7fff, FORCEWAKE_MEDIA_VDBOX3), /*
+> +		0x1d4000 - 0x1d6bff: VD3
+> +		0x1d6c00 - 0x1d6cff: reserved
+> +		0x1d6d00 - 0x1d6dff: VD3
+> +		0x1d6e00 - 0x1d7fff: reserved */
+> +	GEN_FW_RANGE(0x1d8000, 0x1dffff, FORCEWAKE_MEDIA_VEBOX1), /*
+> +		0x1d8000 - 0x1da0ff: VE1
+> +		0x1da100 - 0x1dffff: reserved */
+> +	GEN_FW_RANGE(0x1e0000, 0x1e3fff, FORCEWAKE_MEDIA_VDBOX4), /*
+> +		0x1e0000 - 0x1e2bff: VD4
+> +		0x1e2c00 - 0x1e2cff: reserved
+> +		0x1e2d00 - 0x1e2dff: VD4
+> +		0x1e2e00 - 0x1e3eff: reserved
+> +		0x1e3f00 - 0x1e3fff: VD4 */
+> +	GEN_FW_RANGE(0x1e4000, 0x1e7fff, FORCEWAKE_MEDIA_VDBOX5), /*
+> +		0x1e4000 - 0x1e6bff: VD5
+> +		0x1e6c00 - 0x1e6cff: reserved
+> +		0x1e6d00 - 0x1e6dff: VD5
+> +		0x1e6e00 - 0x1e7fff: reserved */
+> +	GEN_FW_RANGE(0x1e8000, 0x1effff, FORCEWAKE_MEDIA_VEBOX2), /*
+> +		0x1e8000 - 0x1ea0ff: VE2
+> +		0x1ea100 - 0x1effff: reserved */
+> +	GEN_FW_RANGE(0x1f0000, 0x1f3fff, FORCEWAKE_MEDIA_VDBOX6), /*
+> +		0x1f0000 - 0x1f2bff: VD6
+> +		0x1f2c00 - 0x1f2cff: reserved
+> +		0x1f2d00 - 0x1f2dff: VD6
+> +		0x1f2e00 - 0x1f3eff: reserved
+> +		0x1f3f00 - 0x1f3fff: VD6 */
+> +	GEN_FW_RANGE(0x1f4000, 0x1f7fff, FORCEWAKE_MEDIA_VDBOX7), /*
+> +		0x1f4000 - 0x1f6bff: VD7
+> +		0x1f6c00 - 0x1f6cff: reserved
+> +		0x1f6d00 - 0x1f6dff: VD7
+> +		0x1f6e00 - 0x1f7fff: reserved */
+> +	GEN_FW_RANGE(0x1f8000, 0x1fa0ff, FORCEWAKE_MEDIA_VEBOX3),
+>  };
+>  
+>  static const struct intel_forcewake_range __pvc_fw_ranges[] = {
+> -- 
+> 2.43.0
+> 
 
-== Summary ==
-
-CI Bug Log - changes from CI_DRM_14433 -> Patchwork_131095v2
-====================================================
-
-Summary
--------
-
-  **FAILURE**
-
-  Serious unknown changes coming with Patchwork_131095v2 absolutely need to be
-  verified manually.
-  
-  If you think the reported changes have nothing to do with the changes
-  introduced in Patchwork_131095v2, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them
-  to document this new failure mode, which will reduce false positives in CI.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_131095v2/index.html
-
-Participating hosts (37 -> 34)
-------------------------------
-
-  Missing    (3): bat-dg1-7 fi-glk-j4005 fi-snb-2520m 
-
-Possible new issues
--------------------
-
-  Here are the unknown changes that may have been introduced in Patchwork_131095v2:
-
-### IGT changes ###
-
-#### Possible regressions ####
-
-  * igt@gem_softpin@allocator-basic:
-    - bat-dg2-14:         [PASS][1] -> [FAIL][2] +3 other tests fail
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14433/bat-dg2-14/igt@gem_softpin@allocator-basic.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_131095v2/bat-dg2-14/igt@gem_softpin@allocator-basic.html
-
-  * igt@gem_softpin@allocator-basic-reserve:
-    - bat-atsm-1:         [PASS][3] -> [FAIL][4] +2 other tests fail
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14433/bat-atsm-1/igt@gem_softpin@allocator-basic-reserve.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_131095v2/bat-atsm-1/igt@gem_softpin@allocator-basic-reserve.html
-    - bat-dg2-9:          [PASS][5] -> [FAIL][6] +2 other tests fail
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14433/bat-dg2-9/igt@gem_softpin@allocator-basic-reserve.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_131095v2/bat-dg2-9/igt@gem_softpin@allocator-basic-reserve.html
-    - bat-dg2-8:          [PASS][7] -> [FAIL][8] +2 other tests fail
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14433/bat-dg2-8/igt@gem_softpin@allocator-basic-reserve.html
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_131095v2/bat-dg2-8/igt@gem_softpin@allocator-basic-reserve.html
-
-  * igt@i915_selftest@live@gtt:
-    - bat-atsm-1:         [PASS][9] -> [DMESG-FAIL][10]
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14433/bat-atsm-1/igt@i915_selftest@live@gtt.html
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_131095v2/bat-atsm-1/igt@i915_selftest@live@gtt.html
-    - fi-cfl-guc:         [PASS][11] -> [DMESG-FAIL][12]
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14433/fi-cfl-guc/igt@i915_selftest@live@gtt.html
-   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_131095v2/fi-cfl-guc/igt@i915_selftest@live@gtt.html
-    - bat-jsl-3:          [PASS][13] -> [DMESG-FAIL][14]
-   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14433/bat-jsl-3/igt@i915_selftest@live@gtt.html
-   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_131095v2/bat-jsl-3/igt@i915_selftest@live@gtt.html
-    - bat-dg2-9:          [PASS][15] -> [DMESG-FAIL][16]
-   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14433/bat-dg2-9/igt@i915_selftest@live@gtt.html
-   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_131095v2/bat-dg2-9/igt@i915_selftest@live@gtt.html
-    - fi-kbl-x1275:       [PASS][17] -> [DMESG-FAIL][18]
-   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14433/fi-kbl-x1275/igt@i915_selftest@live@gtt.html
-   [18]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_131095v2/fi-kbl-x1275/igt@i915_selftest@live@gtt.html
-    - fi-cfl-8109u:       [PASS][19] -> [DMESG-FAIL][20]
-   [19]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14433/fi-cfl-8109u/igt@i915_selftest@live@gtt.html
-   [20]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_131095v2/fi-cfl-8109u/igt@i915_selftest@live@gtt.html
-    - bat-adln-1:         [PASS][21] -> [DMESG-FAIL][22]
-   [21]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14433/bat-adln-1/igt@i915_selftest@live@gtt.html
-   [22]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_131095v2/bat-adln-1/igt@i915_selftest@live@gtt.html
-    - bat-mtlp-8:         [PASS][23] -> [DMESG-FAIL][24]
-   [23]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14433/bat-mtlp-8/igt@i915_selftest@live@gtt.html
-   [24]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_131095v2/bat-mtlp-8/igt@i915_selftest@live@gtt.html
-    - bat-dg2-8:          [PASS][25] -> [DMESG-FAIL][26]
-   [25]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14433/bat-dg2-8/igt@i915_selftest@live@gtt.html
-   [26]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_131095v2/bat-dg2-8/igt@i915_selftest@live@gtt.html
-    - fi-kbl-guc:         [PASS][27] -> [DMESG-FAIL][28]
-   [27]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14433/fi-kbl-guc/igt@i915_selftest@live@gtt.html
-   [28]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_131095v2/fi-kbl-guc/igt@i915_selftest@live@gtt.html
-    - bat-adls-6:         [PASS][29] -> [DMESG-FAIL][30]
-   [29]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14433/bat-adls-6/igt@i915_selftest@live@gtt.html
-   [30]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_131095v2/bat-adls-6/igt@i915_selftest@live@gtt.html
-    - bat-adlm-1:         [PASS][31] -> [DMESG-FAIL][32]
-   [31]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14433/bat-adlm-1/igt@i915_selftest@live@gtt.html
-   [32]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_131095v2/bat-adlm-1/igt@i915_selftest@live@gtt.html
-    - bat-jsl-1:          [PASS][33] -> [DMESG-FAIL][34]
-   [33]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14433/bat-jsl-1/igt@i915_selftest@live@gtt.html
-   [34]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_131095v2/bat-jsl-1/igt@i915_selftest@live@gtt.html
-    - fi-tgl-1115g4:      [PASS][35] -> [DMESG-FAIL][36]
-   [35]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14433/fi-tgl-1115g4/igt@i915_selftest@live@gtt.html
-   [36]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_131095v2/fi-tgl-1115g4/igt@i915_selftest@live@gtt.html
-    - bat-arls-1:         [PASS][37] -> [DMESG-FAIL][38]
-   [37]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14433/bat-arls-1/igt@i915_selftest@live@gtt.html
-   [38]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_131095v2/bat-arls-1/igt@i915_selftest@live@gtt.html
-    - bat-adlp-6:         [PASS][39] -> [DMESG-FAIL][40]
-   [39]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14433/bat-adlp-6/igt@i915_selftest@live@gtt.html
-   [40]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_131095v2/bat-adlp-6/igt@i915_selftest@live@gtt.html
-    - bat-mtlp-6:         [PASS][41] -> [DMESG-FAIL][42]
-   [41]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14433/bat-mtlp-6/igt@i915_selftest@live@gtt.html
-   [42]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_131095v2/bat-mtlp-6/igt@i915_selftest@live@gtt.html
-    - bat-rpls-3:         [PASS][43] -> [DMESG-FAIL][44]
-   [43]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14433/bat-rpls-3/igt@i915_selftest@live@gtt.html
-   [44]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_131095v2/bat-rpls-3/igt@i915_selftest@live@gtt.html
-    - fi-apl-guc:         [PASS][45] -> [DMESG-FAIL][46]
-   [45]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14433/fi-apl-guc/igt@i915_selftest@live@gtt.html
-   [46]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_131095v2/fi-apl-guc/igt@i915_selftest@live@gtt.html
-    - bat-adlp-9:         [PASS][47] -> [DMESG-FAIL][48]
-   [47]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14433/bat-adlp-9/igt@i915_selftest@live@gtt.html
-   [48]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_131095v2/bat-adlp-9/igt@i915_selftest@live@gtt.html
-    - fi-kbl-7567u:       [PASS][49] -> [DMESG-FAIL][50]
-   [49]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14433/fi-kbl-7567u/igt@i915_selftest@live@gtt.html
-   [50]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_131095v2/fi-kbl-7567u/igt@i915_selftest@live@gtt.html
-    - fi-cfl-8700k:       [PASS][51] -> [DMESG-FAIL][52]
-   [51]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14433/fi-cfl-8700k/igt@i915_selftest@live@gtt.html
-   [52]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_131095v2/fi-cfl-8700k/igt@i915_selftest@live@gtt.html
-    - bat-dg2-14:         [PASS][53] -> [DMESG-FAIL][54]
-   [53]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14433/bat-dg2-14/igt@i915_selftest@live@gtt.html
-   [54]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_131095v2/bat-dg2-14/igt@i915_selftest@live@gtt.html
-    - fi-bsw-nick:        [PASS][55] -> [DMESG-FAIL][56]
-   [55]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14433/fi-bsw-nick/igt@i915_selftest@live@gtt.html
-   [56]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_131095v2/fi-bsw-nick/igt@i915_selftest@live@gtt.html
-    - bat-rplp-1:         [PASS][57] -> [DMESG-FAIL][58]
-   [57]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14433/bat-rplp-1/igt@i915_selftest@live@gtt.html
-   [58]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_131095v2/bat-rplp-1/igt@i915_selftest@live@gtt.html
-    - fi-rkl-11600:       [PASS][59] -> [DMESG-FAIL][60]
-   [59]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14433/fi-rkl-11600/igt@i915_selftest@live@gtt.html
-   [60]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_131095v2/fi-rkl-11600/igt@i915_selftest@live@gtt.html
-
-  
-#### Suppressed ####
-
-  The following results come from untrusted machines, tests, or statuses.
-  They do not affect the overall result.
-
-  * igt@i915_selftest@live@gtt:
-    - {bat-mtlp-9}:       [PASS][61] -> [DMESG-FAIL][62]
-   [61]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14433/bat-mtlp-9/igt@i915_selftest@live@gtt.html
-   [62]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_131095v2/bat-mtlp-9/igt@i915_selftest@live@gtt.html
-    - {bat-arls-4}:       [PASS][63] -> [DMESG-FAIL][64]
-   [63]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14433/bat-arls-4/igt@i915_selftest@live@gtt.html
-   [64]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_131095v2/bat-arls-4/igt@i915_selftest@live@gtt.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_14433 -> Patchwork_131095v2
-
-  CI-20190529: 20190529
-  CI_DRM_14433: f5246a1cf97dd1b9bf955148b0ca2cbf0b18d31e @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_7765: 67615901aedcc79d8d1523c6484c67c11ba0e316 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_131095v2: f5246a1cf97dd1b9bf955148b0ca2cbf0b18d31e @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-### Linux commits
-
-6a30e4d3cdad drm/i915/gt: Report full vm address range
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_131095v2/index.html
-
---===============7917364815794764529==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915/gt: Report full vm address range (rev2)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/131095/">https://patchwork.freedesktop.org/series/131095/</a></td></tr>
-<tr><td><b>State:</b></td><td>failure</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_131095v2/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_131095v2/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_14433 -&gt; Patchwork_131095v2</h1>
-<h2>Summary</h2>
-<p><strong>FAILURE</strong></p>
-<p>Serious unknown changes coming with Patchwork_131095v2 absolutely need to be<br />
-  verified manually.</p>
-<p>If you think the reported changes have nothing to do with the changes<br />
-  introduced in Patchwork_131095v2, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them<br />
-  to document this new failure mode, which will reduce false positives in CI.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_131095v2/index.html</p>
-<h2>Participating hosts (37 -&gt; 34)</h2>
-<p>Missing    (3): bat-dg1-7 fi-glk-j4005 fi-snb-2520m </p>
-<h2>Possible new issues</h2>
-<p>Here are the unknown changes that may have been introduced in Patchwork_131095v2:</p>
-<h3>IGT changes</h3>
-<h4>Possible regressions</h4>
-<ul>
-<li>
-<p>igt@gem_softpin@allocator-basic:</p>
-<ul>
-<li>bat-dg2-14:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14433/bat-dg2-14/igt@gem_softpin@allocator-basic.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_131095v2/bat-dg2-14/igt@gem_softpin@allocator-basic.html">FAIL</a> +3 other tests fail</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_softpin@allocator-basic-reserve:</p>
-<ul>
-<li>bat-atsm-1:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14433/bat-atsm-1/igt@gem_softpin@allocator-basic-reserve.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_131095v2/bat-atsm-1/igt@gem_softpin@allocator-basic-reserve.html">FAIL</a> +2 other tests fail</li>
-<li>bat-dg2-9:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14433/bat-dg2-9/igt@gem_softpin@allocator-basic-reserve.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_131095v2/bat-dg2-9/igt@gem_softpin@allocator-basic-reserve.html">FAIL</a> +2 other tests fail</li>
-<li>bat-dg2-8:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14433/bat-dg2-8/igt@gem_softpin@allocator-basic-reserve.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_131095v2/bat-dg2-8/igt@gem_softpin@allocator-basic-reserve.html">FAIL</a> +2 other tests fail</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@gtt:</p>
-<ul>
-<li>bat-atsm-1:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14433/bat-atsm-1/igt@i915_selftest@live@gtt.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_131095v2/bat-atsm-1/igt@i915_selftest@live@gtt.html">DMESG-FAIL</a></li>
-<li>fi-cfl-guc:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14433/fi-cfl-guc/igt@i915_selftest@live@gtt.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_131095v2/fi-cfl-guc/igt@i915_selftest@live@gtt.html">DMESG-FAIL</a></li>
-<li>bat-jsl-3:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14433/bat-jsl-3/igt@i915_selftest@live@gtt.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_131095v2/bat-jsl-3/igt@i915_selftest@live@gtt.html">DMESG-FAIL</a></li>
-<li>bat-dg2-9:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14433/bat-dg2-9/igt@i915_selftest@live@gtt.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_131095v2/bat-dg2-9/igt@i915_selftest@live@gtt.html">DMESG-FAIL</a></li>
-<li>fi-kbl-x1275:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14433/fi-kbl-x1275/igt@i915_selftest@live@gtt.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_131095v2/fi-kbl-x1275/igt@i915_selftest@live@gtt.html">DMESG-FAIL</a></li>
-<li>fi-cfl-8109u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14433/fi-cfl-8109u/igt@i915_selftest@live@gtt.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_131095v2/fi-cfl-8109u/igt@i915_selftest@live@gtt.html">DMESG-FAIL</a></li>
-<li>bat-adln-1:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14433/bat-adln-1/igt@i915_selftest@live@gtt.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_131095v2/bat-adln-1/igt@i915_selftest@live@gtt.html">DMESG-FAIL</a></li>
-<li>bat-mtlp-8:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14433/bat-mtlp-8/igt@i915_selftest@live@gtt.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_131095v2/bat-mtlp-8/igt@i915_selftest@live@gtt.html">DMESG-FAIL</a></li>
-<li>bat-dg2-8:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14433/bat-dg2-8/igt@i915_selftest@live@gtt.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_131095v2/bat-dg2-8/igt@i915_selftest@live@gtt.html">DMESG-FAIL</a></li>
-<li>fi-kbl-guc:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14433/fi-kbl-guc/igt@i915_selftest@live@gtt.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_131095v2/fi-kbl-guc/igt@i915_selftest@live@gtt.html">DMESG-FAIL</a></li>
-<li>bat-adls-6:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14433/bat-adls-6/igt@i915_selftest@live@gtt.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_131095v2/bat-adls-6/igt@i915_selftest@live@gtt.html">DMESG-FAIL</a></li>
-<li>bat-adlm-1:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14433/bat-adlm-1/igt@i915_selftest@live@gtt.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_131095v2/bat-adlm-1/igt@i915_selftest@live@gtt.html">DMESG-FAIL</a></li>
-<li>bat-jsl-1:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14433/bat-jsl-1/igt@i915_selftest@live@gtt.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_131095v2/bat-jsl-1/igt@i915_selftest@live@gtt.html">DMESG-FAIL</a></li>
-<li>fi-tgl-1115g4:      <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14433/fi-tgl-1115g4/igt@i915_selftest@live@gtt.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_131095v2/fi-tgl-1115g4/igt@i915_selftest@live@gtt.html">DMESG-FAIL</a></li>
-<li>bat-arls-1:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14433/bat-arls-1/igt@i915_selftest@live@gtt.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_131095v2/bat-arls-1/igt@i915_selftest@live@gtt.html">DMESG-FAIL</a></li>
-<li>bat-adlp-6:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14433/bat-adlp-6/igt@i915_selftest@live@gtt.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_131095v2/bat-adlp-6/igt@i915_selftest@live@gtt.html">DMESG-FAIL</a></li>
-<li>bat-mtlp-6:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14433/bat-mtlp-6/igt@i915_selftest@live@gtt.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_131095v2/bat-mtlp-6/igt@i915_selftest@live@gtt.html">DMESG-FAIL</a></li>
-<li>bat-rpls-3:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14433/bat-rpls-3/igt@i915_selftest@live@gtt.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_131095v2/bat-rpls-3/igt@i915_selftest@live@gtt.html">DMESG-FAIL</a></li>
-<li>fi-apl-guc:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14433/fi-apl-guc/igt@i915_selftest@live@gtt.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_131095v2/fi-apl-guc/igt@i915_selftest@live@gtt.html">DMESG-FAIL</a></li>
-<li>bat-adlp-9:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14433/bat-adlp-9/igt@i915_selftest@live@gtt.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_131095v2/bat-adlp-9/igt@i915_selftest@live@gtt.html">DMESG-FAIL</a></li>
-<li>fi-kbl-7567u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14433/fi-kbl-7567u/igt@i915_selftest@live@gtt.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_131095v2/fi-kbl-7567u/igt@i915_selftest@live@gtt.html">DMESG-FAIL</a></li>
-<li>fi-cfl-8700k:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14433/fi-cfl-8700k/igt@i915_selftest@live@gtt.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_131095v2/fi-cfl-8700k/igt@i915_selftest@live@gtt.html">DMESG-FAIL</a></li>
-<li>bat-dg2-14:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14433/bat-dg2-14/igt@i915_selftest@live@gtt.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_131095v2/bat-dg2-14/igt@i915_selftest@live@gtt.html">DMESG-FAIL</a></li>
-<li>fi-bsw-nick:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14433/fi-bsw-nick/igt@i915_selftest@live@gtt.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_131095v2/fi-bsw-nick/igt@i915_selftest@live@gtt.html">DMESG-FAIL</a></li>
-<li>bat-rplp-1:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14433/bat-rplp-1/igt@i915_selftest@live@gtt.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_131095v2/bat-rplp-1/igt@i915_selftest@live@gtt.html">DMESG-FAIL</a></li>
-<li>fi-rkl-11600:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14433/fi-rkl-11600/igt@i915_selftest@live@gtt.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_131095v2/fi-rkl-11600/igt@i915_selftest@live@gtt.html">DMESG-FAIL</a></li>
-</ul>
-</li>
-</ul>
-<h4>Suppressed</h4>
-<p>The following results come from untrusted machines, tests, or statuses.<br />
-  They do not affect the overall result.</p>
-<ul>
-<li>igt@i915_selftest@live@gtt:<ul>
-<li>{bat-mtlp-9}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14433/bat-mtlp-9/igt@i915_selftest@live@gtt.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_131095v2/bat-mtlp-9/igt@i915_selftest@live@gtt.html">DMESG-FAIL</a></li>
-<li>{bat-arls-4}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14433/bat-arls-4/igt@i915_selftest@live@gtt.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_131095v2/bat-arls-4/igt@i915_selftest@live@gtt.html">DMESG-FAIL</a></li>
-</ul>
-</li>
-</ul>
-<p>{name}: This element is suppressed. This means it is ignored when computing<br />
-          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_14433 -&gt; Patchwork_131095v2</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_14433: f5246a1cf97dd1b9bf955148b0ca2cbf0b18d31e @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_7765: 67615901aedcc79d8d1523c6484c67c11ba0e316 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  Patchwork_131095v2: f5246a1cf97dd1b9bf955148b0ca2cbf0b18d31e @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<h3>Linux commits</h3>
-<p>6a30e4d3cdad drm/i915/gt: Report full vm address range</p>
-
-</body>
-</html>
-
---===============7917364815794764529==--
+-- 
+Matt Roper
+Graphics Software Engineer
+Linux GPU Platform Enablement
+Intel Corporation
