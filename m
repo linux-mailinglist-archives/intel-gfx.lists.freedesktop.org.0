@@ -2,61 +2,58 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7650987C0EE
-	for <lists+intel-gfx@lfdr.de>; Thu, 14 Mar 2024 17:06:32 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6690987C16F
+	for <lists+intel-gfx@lfdr.de>; Thu, 14 Mar 2024 17:41:15 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 88C2610F590;
-	Thu, 14 Mar 2024 16:06:29 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 07F2510FC08;
+	Thu, 14 Mar 2024 16:41:13 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="cbzSBFrc";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="WeHS8z23";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0B1D910EF4E;
- Thu, 14 Mar 2024 16:06:27 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9F76A10FC06
+ for <intel-gfx@lists.freedesktop.org>; Thu, 14 Mar 2024 16:41:10 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1710432388; x=1741968388;
+ t=1710434471; x=1741970471;
  h=message-id:date:mime-version:subject:to:cc:references:
  from:in-reply-to:content-transfer-encoding;
- bh=xAnI8MPiFBJ2niClHFiZeOk8l5r7cL4JtmHSlGbzMXk=;
- b=cbzSBFrcMbVdesme7g2XMHwXro/aaS0pOpHOpunSiz1qKhdL4EHCKfqS
- 77VGxK/4xLM0k+6csPu5rB0Mx15WgLMEH8QSjXW6gT2fDuODxjcTwDlPR
- idIpuAR17wjSgpYzf7c3Yu+3f60Mt4Flf9XiSak/G4MBIYYKIlDXOudI7
- WqcWMBHBGVBoVoW0rr8jJrPM0XqLsymCIJD+oEfjeXNv2vcumU9XzW8ql
- c7uQSqaRfTAJfBgDYBoqVjWqrlFTD/0UDcZ1fl/Z1yX+dJOXA6GF+PmWR
- ArQf37aZ2nAHsfIUOcV9VAW1DKvmTQiRAUN1Sua5Kt7Ai/I64tIwYSrKc A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,11013"; a="16417456"
-X-IronPort-AV: E=Sophos;i="6.07,125,1708416000"; d="scan'208";a="16417456"
-Received: from orviesa002.jf.intel.com ([10.64.159.142])
- by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Mar 2024 09:05:14 -0700
+ bh=mku4u2Vz39tVHtODXtBa4irzQu3Utw7KDVbFWBeKmH4=;
+ b=WeHS8z23AvS+d5r7Hvrebs7NqDU9DLEesdRLuF9/2tIRXhuxxryH1qI5
+ BJUGi8fJ/zMfaje2mZCm2UErhsTyJFbMrBxfmf5XC9WVD+0LM7tykx5Mx
+ 2zefZQ4LDWFxcIAEy8kIEUWqYnHBvNNexyxq69pfKDoSM6H8XJbTGLfmr
+ 8MtXzdcOzpcV8CxZSSWb9S7Gg8TbcYCS3sketHXyFk55QLPCiS5cF1ROT
+ +eScu21g8cbztPTN2MphN8IIYWwDu7N3UAuqjF00I9DPk4su3CV0Q+4Gq
+ 3pEGHkbpcMuv80LOQ0icGnbK1uGt9fjEs5wVhR08fOd8V5EDLNdXsMEIh w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,11013"; a="9046039"
+X-IronPort-AV: E=Sophos;i="6.07,125,1708416000"; 
+   d="scan'208";a="9046039"
+Received: from fmviesa009.fm.intel.com ([10.60.135.149])
+ by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 14 Mar 2024 09:41:09 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.07,125,1708416000"; d="scan'208";a="43259502"
+X-IronPort-AV: E=Sophos;i="6.07,125,1708416000"; d="scan'208";a="12287831"
 Received: from nirmoyda-mobl.ger.corp.intel.com (HELO [10.246.35.115])
  ([10.246.35.115])
- by orviesa002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Mar 2024 09:05:11 -0700
-Message-ID: <35df0767-384f-49f2-806a-f83765ca7c4c@linux.intel.com>
-Date: Thu, 14 Mar 2024 17:05:08 +0100
+ by fmviesa009-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 14 Mar 2024 09:41:07 -0700
+Message-ID: <0cd869bd-9281-4595-9390-2a0dc2a99f51@linux.intel.com>
+Date: Thu, 14 Mar 2024 17:41:05 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] drm/i915/gt: Report full vm address range
+Subject: Re: [PATCH v2] drm/i915/gem: Execbuffer objects must have struct
+ pages.
 Content-Language: en-US
-To: Lionel Landwerlin <lionel.g.landwerlin@intel.com>,
- Andi Shyti <andi.shyti@linux.intel.com>,
- intel-gfx <intel-gfx@lists.freedesktop.org>,
- dri-devel <dri-devel@lists.freedesktop.org>
-Cc: Andi Shyti <andi.shyti@kernel.org>,
- Andrzej Hajda <andrzej.hajda@intel.com>,
- Chris Wilson <chris.p.wilson@linux.intel.com>,
- Michal Mrozek <michal.mrozek@intel.com>, Nirmoy Das <nirmoy.das@intel.com>,
- stable@vger.kernel.org
-References: <20240313193907.95205-1-andi.shyti@linux.intel.com>
- <46ab1d25-5d16-4610-8b8f-2ee07064ec2e@intel.com>
+To: Jonathan Cavitt <jonathan.cavitt@intel.com>,
+ intel-gfx@lists.freedesktop.org
+Cc: saurabhg.gupta@intel.com, matthew.d.roper@intel.com,
+ lionel.g.landwerlin@intel.com, chris.p.wilson@linux.intel.com,
+ brian.welty@intel.com
+References: <20240312145506.3091929-1-jonathan.cavitt@intel.com>
 From: Nirmoy Das <nirmoy.das@linux.intel.com>
-In-Reply-To: <46ab1d25-5d16-4610-8b8f-2ee07064ec2e@intel.com>
+In-Reply-To: <20240312145506.3091929-1-jonathan.cavitt@intel.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
@@ -75,68 +72,48 @@ Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 
-On 3/14/2024 3:04 PM, Lionel Landwerlin wrote:
-> Hi Andi,
+On 3/12/2024 3:55 PM, Jonathan Cavitt wrote:
+> We cannot write requests to objects without struct pages, so escape
+> early if the requests are bound to objects that lack them.
 >
-> In Mesa we've been relying on I915_CONTEXT_PARAM_GTT_SIZE so as long 
-> as that is adjusted by the kernel
+> Signed-off-by: Jonathan Cavitt <jonathan.cavitt@intel.com>
+> ---
+>
+> v2: s/vma-obj/vma->obj
+>
+>   drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c | 7 +++++++
+>   1 file changed, 7 insertions(+)
+>
+> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c b/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
+> index d3a771afb083e..adb4f9e78cb49 100644
+> --- a/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
+> +++ b/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
+> @@ -3313,6 +3313,13 @@ eb_requests_create(struct i915_execbuffer *eb, struct dma_fence *in_fence,
+>   	unsigned int i;
+>   
+>   	for_each_batch_create_order(eb, i) {
+> +		/* Do not write requests to objects without struct pages. */
+> +		if (eb->batches[i]->vma &&
+> +		    !i915_gem_object_has_struct_page(eb->batches[i]->vma->obj)) {
 
-What do you mean by adjusted by, should it be a aligned size?
+As far as I understand, motivation of this patch is to avoid doing 
+execbuf on dmabuf imported BO which are in error state of something. 
+i915_gem_object_has_struct_page()  checks "obj->mem_flags & 
+I915_BO_FLAG_STRUCT_PAGE" which is very i915 specific.
 
-I915_CONTEXT_PARAM_GTT_SIZE ioctl is returning vm->total which is 
-adjusted(reduced by a page).
-
-This patch might cause silent error as it is not removing WABB which is 
-using the reserved page to add dummy blt and if userspace is using that
-
-page then it will be overwritten.
+So I think this will not work and will cause regression in existing 
+program which are trying to do the same with valid BO. Unfortunately I 
+don't have any idea how to better detect that at this moment.
 
 
 Regards,
 
 Nirmoy
 
-> , we should be able to continue working without issues.
->
-> Acked-by: Lionel Landwerlin <lionel.g.landwerlin@intel.com>
->
-> Thanks,
->
-> -Lionel
->
-> On 13/03/2024 21:39, Andi Shyti wrote:
->> Commit 9bb66c179f50 ("drm/i915: Reserve some kernel space per
->> vm") has reserved an object for kernel space usage.
->>
->> Userspace, though, needs to know the full address range.
->>
->> Fixes: 9bb66c179f50 ("drm/i915: Reserve some kernel space per vm")
->> Signed-off-by: Andi Shyti <andi.shyti@linux.intel.com>
->> Cc: Andrzej Hajda <andrzej.hajda@intel.com>
->> Cc: Chris Wilson <chris.p.wilson@linux.intel.com>
->> Cc: Lionel Landwerlin <lionel.g.landwerlin@intel.com>
->> Cc: Michal Mrozek <michal.mrozek@intel.com>
->> Cc: Nirmoy Das <nirmoy.das@intel.com>
->> Cc: <stable@vger.kernel.org> # v6.2+
->> ---
->>   drivers/gpu/drm/i915/gt/gen8_ppgtt.c | 3 ++-
->>   1 file changed, 2 insertions(+), 1 deletion(-)
->>
->> diff --git a/drivers/gpu/drm/i915/gt/gen8_ppgtt.c 
->> b/drivers/gpu/drm/i915/gt/gen8_ppgtt.c
->> index fa46d2308b0e..d76831f50106 100644
->> --- a/drivers/gpu/drm/i915/gt/gen8_ppgtt.c
->> +++ b/drivers/gpu/drm/i915/gt/gen8_ppgtt.c
->> @@ -982,8 +982,9 @@ static int gen8_init_rsvd(struct 
->> i915_address_space *vm)
->>         vm->rsvd.vma = i915_vma_make_unshrinkable(vma);
->>       vm->rsvd.obj = obj;
->> -    vm->total -= vma->node.size;
->> +
->>       return 0;
->> +
->>   unref:
->>       i915_gem_object_put(obj);
->>       return ret;
->
->
+> +			out_fence = ERR_PTR(-EINVAL);
+> +			return out_fence;
+> +		}
+> +
+>   		/* Allocate a request for this batch buffer nice and early. */
+>   		eb->requests[i] = i915_request_create(eb_find_context(eb, i));
+>   		if (IS_ERR(eb->requests[i])) {
