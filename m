@@ -2,60 +2,58 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id CA04D87C98E
-	for <lists+intel-gfx@lfdr.de>; Fri, 15 Mar 2024 09:02:51 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 31B3487C9E9
+	for <lists+intel-gfx@lfdr.de>; Fri, 15 Mar 2024 09:27:04 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4EE9610FF99;
-	Fri, 15 Mar 2024 08:02:50 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3E06E10FFF0;
+	Fri, 15 Mar 2024 08:27:01 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="jCfUa1Uy";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="C4CvLiMC";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B891F10FF99
- for <intel-gfx@lists.freedesktop.org>; Fri, 15 Mar 2024 08:02:48 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.15])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3F97010FFF0
+ for <intel-gfx@lists.freedesktop.org>; Fri, 15 Mar 2024 08:26:58 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1710489769; x=1742025769;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=bwppbcJZKrhztvdQ71EU5MgmqmTK2RSuijcF410i6C8=;
- b=jCfUa1UyTI/0C8h9NsFR/v6gIpAsMNFfYqR6kfvEpo7YlG6GbCbAAFWJ
- S9nODpU+rUKkK9j3aHd1WdWAHSwftn3e6e/uR8LnxkMn+arKuY70z4xrl
- ktaAt/Dmk/Lwoog840DGrGq8aE3jAc0PCjDp7qbPHPuClGR/T7LscQXeM
- 2t8PkmB3796SqQYlAoPJT9ptIopZuCqyyziKtZo+t4cJ6mwDLEd187xYE
- InMvZmbVFJPZBzl59UuK/0OL9t2Prj2I4N+SFUl1/h+zRgMhmuikX75B2
- vZx/GfpbaQ71avpqmlbBHpRUkdhm4bsZJQCox/bqtupVdSTEfDoAjP7Fv Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,11013"; a="5553564"
+ t=1710491220; x=1742027220;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=3yl334xDLcTe2eliZfprwJKh+LdDF30zp6Icw3xKWqA=;
+ b=C4CvLiMCRLxlo4Hz5KXJAgu2o7bqpX7lBqtJtAB2iVd3Vp8q2mKBV+mZ
+ ElERw/NO69Up0GXdKLo/uSRjPsm3ElURrhhvGtYK3Q1uDX9UVqKI9Mn2F
+ K6mdk45BVTu5t2aS9GJuqAORtpzK1SACG9oxvschBNiVwXKerXnGLBNr2
+ 4BRBq4u4EleQDuF8uTc4YFJ1LFr52fgR/EwF0U8xS/0lA18MyawYzk0oq
+ 1m7IYcMGPVghTT2CYWWXALJixqeAADztdIZYs9VMlbxnG80ojzOH1BcQE
+ ExyfCyNnjlXxtF9cD0cgpi8vnGNbdbMBm2eN0azdPWLRtpjkpvsFaJCx1 Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,11013"; a="5535069"
 X-IronPort-AV: E=Sophos;i="6.07,127,1708416000"; 
-   d="scan'208";a="5553564"
-Received: from orviesa002.jf.intel.com ([10.64.159.142])
- by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Mar 2024 01:02:49 -0700
+   d="scan'208";a="5535069"
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+ by fmvoesa109.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 Mar 2024 01:26:57 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.07,127,1708416000"; d="scan'208";a="43485557"
-Received: from kwimmer-mobl1.amr.corp.intel.com (HELO
- jhogande-mobl1.intel.com) ([10.251.209.233])
- by orviesa002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Mar 2024 01:02:46 -0700
-From: =?UTF-8?q?Jouni=20H=C3=B6gander?= <jouni.hogander@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Cc: =?UTF-8?q?Ville=20Syrj=C3=A4l=C3=A4?= <ville.syrjala@linux.intel.com>,
- Animesh Manna <animesh.manna@intel.com>,
- Arun R Murthy <arun.r.murthy@intel.com>,
- =?UTF-8?q?Jouni=20H=C3=B6gander?= <jouni.hogander@intel.com>
-Subject: [PATCH v4 5/5] drm/i915/psr: Do not write ALPM configuration for PSR1
- or DP2.0 Panel Replay
-Date: Fri, 15 Mar 2024 10:02:22 +0200
-Message-Id: <20240315080222.72838-6-jouni.hogander@intel.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20240315080222.72838-1-jouni.hogander@intel.com>
-References: <20240315080222.72838-1-jouni.hogander@intel.com>
+X-IronPort-AV: E=McAfee;i="6600,9927,11013"; a="827780538"
+X-IronPort-AV: E=Sophos;i="6.07,127,1708416000"; d="scan'208";a="827780538"
+Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.74])
+ by orsmga001.jf.intel.com with SMTP; 15 Mar 2024 01:26:54 -0700
+Received: by stinkbox (sSMTP sendmail emulation);
+ Fri, 15 Mar 2024 10:26:53 +0200
+Date: Fri, 15 Mar 2024 10:26:53 +0200
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+Cc: intel-gfx@lists.freedesktop.org
+Subject: Re: [PATCH] drm/i915/scaler: Update Pipe src size check in
+ skl_update_scaler
+Message-ID: <ZfQGTfxuYJ0bwQ3z@intel.com>
+References: <20240313143825.3461208-1-ankit.k.nautiyal@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
+In-Reply-To: <20240313143825.3461208-1-ankit.k.nautiyal@intel.com>
+X-Patchwork-Hint: comment
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -71,27 +69,50 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-No need to write ALPM configuration for DP2.0 Panel Replay or PSR1.
+On Wed, Mar 13, 2024 at 08:08:25PM +0530, Ankit Nautiyal wrote:
+> For Earlier platforms, the Pipe source size is 12-bits so
+> max pipe source width and height is 4096. For newer platforms it is
+> 13-bits so theoretically max width/height is 8192. For few of the
+> earlier platforms the scaler did not use all bits of the PIPESRC,
+> so max scaler source size was used to make that the pipe source
+> size is programmed within limits, before using scaler.
+> 
+> This creates a problem, for MTL where scaler source size is 4096, but
+> max pipe source width can theroretically be 8192.
+> 
+> Switch the check to use the max scaler destination size, which closely
+> match the limits.
+> 
+> Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
 
-Signed-off-by: Jouni HÃ¶gander <jouni.hogander@intel.com>
----
- drivers/gpu/drm/i915/display/intel_psr.c | 3 ++-
- 1 file changed, 2 insertions(+), 1 deletion(-)
+Reviewed-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-diff --git a/drivers/gpu/drm/i915/display/intel_psr.c b/drivers/gpu/drm/i915/display/intel_psr.c
-index 05b30dc63b3d..5d83a51eda44 100644
---- a/drivers/gpu/drm/i915/display/intel_psr.c
-+++ b/drivers/gpu/drm/i915/display/intel_psr.c
-@@ -1723,7 +1723,8 @@ static void lnl_alpm_configure(struct intel_dp *intel_dp)
- 	struct intel_psr *psr = &intel_dp->psr;
- 	u32 alpm_ctl;
- 
--	if (DISPLAY_VER(dev_priv) < 20)
-+	if (DISPLAY_VER(dev_priv) < 20 || (!intel_dp->psr.psr2_enabled &&
-+					   !intel_dp_is_edp(intel_dp)))
- 		return;
- 
- 	/*
+> ---
+>  drivers/gpu/drm/i915/display/skl_scaler.c | 7 ++++---
+>  1 file changed, 4 insertions(+), 3 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/i915/display/skl_scaler.c b/drivers/gpu/drm/i915/display/skl_scaler.c
+> index 8a934bada624..baa601d27815 100644
+> --- a/drivers/gpu/drm/i915/display/skl_scaler.c
+> +++ b/drivers/gpu/drm/i915/display/skl_scaler.c
+> @@ -213,10 +213,11 @@ skl_update_scaler(struct intel_crtc_state *crtc_state, bool force_detach,
+>  	 * The pipe scaler does not use all the bits of PIPESRC, at least
+>  	 * on the earlier platforms. So even when we're scaling a plane
+>  	 * the *pipe* source size must not be too large. For simplicity
+> -	 * we assume the limits match the scaler source size limits. Might
+> -	 * not be 100% accurate on all platforms, but good enough for now.
+> +	 * we assume the limits match the scaler destination size limits.
+> +	 * Might not be 100% accurate on all platforms, but good enough for
+> +	 * now.
+>  	 */
+> -	if (pipe_src_w > max_src_w || pipe_src_h > max_src_h) {
+> +	if (pipe_src_w > max_dst_w || pipe_src_h > max_dst_h) {
+>  		drm_dbg_kms(&dev_priv->drm,
+>  			    "scaler_user index %u.%u: pipe src size %ux%u "
+>  			    "is out of scaler range\n",
+> -- 
+> 2.40.1
+
 -- 
-2.34.1
-
+Ville Syrjälä
+Intel
