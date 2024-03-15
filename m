@@ -2,58 +2,29 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 31B3487C9E9
-	for <lists+intel-gfx@lfdr.de>; Fri, 15 Mar 2024 09:27:04 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id B8F4687CA38
+	for <lists+intel-gfx@lfdr.de>; Fri, 15 Mar 2024 09:47:15 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3E06E10FFF0;
-	Fri, 15 Mar 2024 08:27:01 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="C4CvLiMC";
-	dkim-atps=neutral
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7C665112025;
+	Fri, 15 Mar 2024 08:47:13 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3F97010FFF0
- for <intel-gfx@lists.freedesktop.org>; Fri, 15 Mar 2024 08:26:58 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1710491220; x=1742027220;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=3yl334xDLcTe2eliZfprwJKh+LdDF30zp6Icw3xKWqA=;
- b=C4CvLiMCRLxlo4Hz5KXJAgu2o7bqpX7lBqtJtAB2iVd3Vp8q2mKBV+mZ
- ElERw/NO69Up0GXdKLo/uSRjPsm3ElURrhhvGtYK3Q1uDX9UVqKI9Mn2F
- K6mdk45BVTu5t2aS9GJuqAORtpzK1SACG9oxvschBNiVwXKerXnGLBNr2
- 4BRBq4u4EleQDuF8uTc4YFJ1LFr52fgR/EwF0U8xS/0lA18MyawYzk0oq
- 1m7IYcMGPVghTT2CYWWXALJixqeAADztdIZYs9VMlbxnG80ojzOH1BcQE
- ExyfCyNnjlXxtF9cD0cgpi8vnGNbdbMBm2eN0azdPWLRtpjkpvsFaJCx1 Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,11013"; a="5535069"
-X-IronPort-AV: E=Sophos;i="6.07,127,1708416000"; 
-   d="scan'208";a="5535069"
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
- by fmvoesa109.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Mar 2024 01:26:57 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,11013"; a="827780538"
-X-IronPort-AV: E=Sophos;i="6.07,127,1708416000"; d="scan'208";a="827780538"
-Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.74])
- by orsmga001.jf.intel.com with SMTP; 15 Mar 2024 01:26:54 -0700
-Received: by stinkbox (sSMTP sendmail emulation);
- Fri, 15 Mar 2024 10:26:53 +0200
-Date: Fri, 15 Mar 2024 10:26:53 +0200
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
-Cc: intel-gfx@lists.freedesktop.org
-Subject: Re: [PATCH] drm/i915/scaler: Update Pipe src size check in
- skl_update_scaler
-Message-ID: <ZfQGTfxuYJ0bwQ3z@intel.com>
-References: <20240313143825.3461208-1-ankit.k.nautiyal@intel.com>
+Received: from 8e613ede5ea5 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 87101112023;
+ Fri, 15 Mar 2024 08:47:12 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20240313143825.3461208-1-ankit.k.nautiyal@intel.com>
-X-Patchwork-Hint: comment
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=97_Fi=2ECI=2ECHECKPATCH=3A_warning_for_ALPM_AUX-Less_=28rev?=
+ =?utf-8?q?4=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: =?utf-8?q?Jouni_H=C3=B6gander?= <jouni.hogander@intel.com>
+Cc: intel-gfx@lists.freedesktop.org
+Date: Fri, 15 Mar 2024 08:47:12 -0000
+Message-ID: <171049243255.795227.12116055042441968127@8e613ede5ea5>
+X-Patchwork-Hint: ignore
+References: <20240315080222.72838-1-jouni.hogander@intel.com>
+In-Reply-To: <20240315080222.72838-1-jouni.hogander@intel.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -66,53 +37,57 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, Mar 13, 2024 at 08:08:25PM +0530, Ankit Nautiyal wrote:
-> For Earlier platforms, the Pipe source size is 12-bits so
-> max pipe source width and height is 4096. For newer platforms it is
-> 13-bits so theoretically max width/height is 8192. For few of the
-> earlier platforms the scaler did not use all bits of the PIPESRC,
-> so max scaler source size was used to make that the pipe source
-> size is programmed within limits, before using scaler.
-> 
-> This creates a problem, for MTL where scaler source size is 4096, but
-> max pipe source width can theroretically be 8192.
-> 
-> Switch the check to use the max scaler destination size, which closely
-> match the limits.
-> 
-> Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+== Series Details ==
 
-Reviewed-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
+Series: ALPM AUX-Less (rev4)
+URL   : https://patchwork.freedesktop.org/series/129938/
+State : warning
 
-> ---
->  drivers/gpu/drm/i915/display/skl_scaler.c | 7 ++++---
->  1 file changed, 4 insertions(+), 3 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/i915/display/skl_scaler.c b/drivers/gpu/drm/i915/display/skl_scaler.c
-> index 8a934bada624..baa601d27815 100644
-> --- a/drivers/gpu/drm/i915/display/skl_scaler.c
-> +++ b/drivers/gpu/drm/i915/display/skl_scaler.c
-> @@ -213,10 +213,11 @@ skl_update_scaler(struct intel_crtc_state *crtc_state, bool force_detach,
->  	 * The pipe scaler does not use all the bits of PIPESRC, at least
->  	 * on the earlier platforms. So even when we're scaling a plane
->  	 * the *pipe* source size must not be too large. For simplicity
-> -	 * we assume the limits match the scaler source size limits. Might
-> -	 * not be 100% accurate on all platforms, but good enough for now.
-> +	 * we assume the limits match the scaler destination size limits.
-> +	 * Might not be 100% accurate on all platforms, but good enough for
-> +	 * now.
->  	 */
-> -	if (pipe_src_w > max_src_w || pipe_src_h > max_src_h) {
-> +	if (pipe_src_w > max_dst_w || pipe_src_h > max_dst_h) {
->  		drm_dbg_kms(&dev_priv->drm,
->  			    "scaler_user index %u.%u: pipe src size %ux%u "
->  			    "is out of scaler range\n",
-> -- 
-> 2.40.1
+== Summary ==
 
--- 
-Ville Syrjälä
-Intel
+Error: dim checkpatch failed
+b1cf7472d2c8 drm/i915/psr: Add missing ALPM AUX-Less register definitions
+-:31: WARNING:LONG_LINE: line length of 169 exceeds 100 columns
+#31: FILE: drivers/gpu/drm/i915/display/intel_psr_regs.h:352:
++#define  PORT_ALPM_LFPS_CTL_LFPS_CYCLE_COUNT(val)		REG_FIELD_PREP(PORT_ALPM_LFPS_CTL_LFPS_CYCLE_COUNT_MASK, (val) - PORT_ALPM_LFPS_CTL_LFPS_CYCLE_COUNT_MIN)
+
+-:33: WARNING:LONG_LINE: line length of 133 exceeds 100 columns
+#33: FILE: drivers/gpu/drm/i915/display/intel_psr_regs.h:354:
++#define  PORT_ALPM_LFPS_CTL_LFPS_HALF_CYCLE_DURATION(val)	REG_FIELD_PREP(PORT_ALPM_LFPS_CTL_LFPS_HALF_CYCLE_DURATION_MASK, val)
+
+-:35: WARNING:LONG_LINE: line length of 133 exceeds 100 columns
+#35: FILE: drivers/gpu/drm/i915/display/intel_psr_regs.h:356:
++#define  PORT_ALPM_LFPS_CTL_FIRST_LFPS_HALF_CYCLE_DURATION(val)	REG_FIELD_PREP(PORT_ALPM_LFPS_CTL_LFPS_HALF_CYCLE_DURATION_MASK, val)
+
+-:37: WARNING:LONG_LINE: line length of 133 exceeds 100 columns
+#37: FILE: drivers/gpu/drm/i915/display/intel_psr_regs.h:358:
++#define  PORT_ALPM_LFPS_CTL_LAST_LFPS_HALF_CYCLE_DURATION(val)	REG_FIELD_PREP(PORT_ALPM_LFPS_CTL_LFPS_HALF_CYCLE_DURATION_MASK, val)
+
+total: 0 errors, 4 warnings, 0 checks, 17 lines checked
+d33c2c55afef drm/i915/psr: Calculate aux less wake time
+847f2b723229 drm/i915/psr: Silence period and lfps half cycle
+890411e7a79a drm/i915/psr: Enable ALPM for eDP Panel replay
+-:57: CHECK:OPEN_ENDED_LINE: Lines should not end with a '('
+#57: FILE: drivers/gpu/drm/i915/display/intel_psr.c:1742:
++			       PORT_ALPM_CTL_SILENCE_PERIOD(
+
+-:62: CHECK:OPEN_ENDED_LINE: Lines should not end with a '('
+#62: FILE: drivers/gpu/drm/i915/display/intel_psr.c:1747:
++			       PORT_ALPM_LFPS_CTL_LFPS_HALF_CYCLE_DURATION(
+
+-:64: CHECK:OPEN_ENDED_LINE: Lines should not end with a '('
+#64: FILE: drivers/gpu/drm/i915/display/intel_psr.c:1749:
++			       PORT_ALPM_LFPS_CTL_FIRST_LFPS_HALF_CYCLE_DURATION(
+
+-:66: CHECK:OPEN_ENDED_LINE: Lines should not end with a '('
+#66: FILE: drivers/gpu/drm/i915/display/intel_psr.c:1751:
++			       PORT_ALPM_LFPS_CTL_LAST_LFPS_HALF_CYCLE_DURATION(
+
+total: 0 errors, 0 warnings, 4 checks, 63 lines checked
+b680e6b533ff drm/i915/psr: Do not write ALPM configuration for PSR1 or DP2.0 Panel Replay
+
+
