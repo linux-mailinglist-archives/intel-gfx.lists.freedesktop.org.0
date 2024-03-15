@@ -2,52 +2,29 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1331587C86B
-	for <lists+intel-gfx@lfdr.de>; Fri, 15 Mar 2024 06:07:53 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 35F4E87C977
+	for <lists+intel-gfx@lfdr.de>; Fri, 15 Mar 2024 08:52:53 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5CA9F10E333;
-	Fri, 15 Mar 2024 05:07:51 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ChZaGwqH";
-	dkim-atps=neutral
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0571910FF90;
+	Fri, 15 Mar 2024 07:52:51 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1D9E210E333
- for <intel-gfx@lists.freedesktop.org>; Fri, 15 Mar 2024 05:07:49 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1710479270; x=1742015270;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=BEAY4BDNQEOQGRTmTJScIG84i+M4+YR5TjfeRzYaIYM=;
- b=ChZaGwqH28+tILuLfpfkzxzZx8DnF9DGVcUnbnclTndRb8hs65vj6TnA
- TSPUyGxKKBI9Nog9z0p8jJaOtWF15c96NzkBKShFrOBoO4RJ8sqHwEZ+b
- bQKPh3e9OsoGH/dipQRTttgI0aw6TdwZYtSA1t9pyo9MBPiU5hH7UcPDY
- FnYdHoCfEzvVIG7bYwrv4Dw9OnhkbgOR6GEimIm+0ItR+kcP5XJUMlz38
- a7nEFJsCAiY3m1iYMHRom11Rqcp2mP+1ncPavAnnC1JU+fTTGYxM/IMts
- u/9+Zgtlmyt8cH8nbcaHcZtbIfnOs7npQxvdUdZll79xm6aZl+bBaS093 g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,11013"; a="27806404"
-X-IronPort-AV: E=Sophos;i="6.07,127,1708416000"; d="scan'208";a="27806404"
-Received: from orviesa004.jf.intel.com ([10.64.159.144])
- by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Mar 2024 22:07:50 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.07,127,1708416000"; d="scan'208";a="17211051"
-Received: from kandpal-x299-ud4-pro.iind.intel.com ([10.190.239.32])
- by orviesa004.jf.intel.com with ESMTP; 14 Mar 2024 22:07:47 -0700
-From: Suraj Kandpal <suraj.kandpal@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Cc: uma.shankar@intel.com, ankit.k.nautiyal@intel.com,
- Suraj Kandpal <suraj.kandpal@intel.com>
-Subject: [PATCH] drm/i915/dp: Enable AUX based backlight for HDR
-Date: Fri, 15 Mar 2024 10:35:30 +0530
-Message-ID: <20240315050529.1987425-2-suraj.kandpal@intel.com>
-X-Mailer: git-send-email 2.43.2
-In-Reply-To: <20240311053212.1958303-1-suraj.kandpal@intel.com>
-References: <20240311053212.1958303-1-suraj.kandpal@intel.com>
+Received: from 8e613ede5ea5 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 385A710FF8E;
+ Fri, 15 Mar 2024 07:52:49 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============0688535483475935973=="
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=97_Fi=2ECI=2EBAT=3A_failure_for_drm/i915/dp=3A_Enable_AUX_b?=
+ =?utf-8?q?ased_backlight_for_HDR_=28rev5=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Suraj Kandpal" <suraj.kandpal@intel.com>
+Cc: intel-gfx@lists.freedesktop.org
+Date: Fri, 15 Mar 2024 07:52:49 -0000
+Message-ID: <171048916923.795227.10197458470931028960@8e613ede5ea5>
+X-Patchwork-Hint: ignore
+References: <20240305103757.1856179-1-suraj.kandpal@intel.com>
+In-Reply-To: <20240305103757.1856179-1-suraj.kandpal@intel.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -60,168 +37,291 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-As of now whenerver HDR is switched on we use the PWM to change the
-backlight as opposed to AUX based backlight changes in terms of nits.
-This patch writes to the appropriate DPCD registers to enable aux
-based backlight using values in nits.
+--===============0688535483475935973==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
---v2
--Fix max_cll and max_fall assignment [Jani]
--Fix the size sent in drm_dpcd_write [Jani]
+== Series Details ==
 
---v3
--Content Luminance needs to be sent only for pre-ICL after that
-it is directly picked up from hdr metadata [Ville]
+Series: drm/i915/dp: Enable AUX based backlight for HDR (rev5)
+URL   : https://patchwork.freedesktop.org/series/130729/
+State : failure
 
---v4
--Add checks for HDR TCON cap bits [Ville]
--Check eotf of hdr_output_data and sets bits base of that value.
+== Summary ==
 
---v5
--Fix capability check bits.
--Check colorspace before setting BT2020
+CI Bug Log - changes from CI_DRM_14437 -> Patchwork_130729v5
+====================================================
 
-Signed-off-by: Suraj Kandpal <suraj.kandpal@intel.com>
----
- .../drm/i915/display/intel_display_types.h    |  3 +
- .../drm/i915/display/intel_dp_aux_backlight.c | 57 ++++++++++++++++---
- 2 files changed, 52 insertions(+), 8 deletions(-)
+Summary
+-------
 
-diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/drivers/gpu/drm/i915/display/intel_display_types.h
-index e67cd5b02e84..271bb609106d 100644
---- a/drivers/gpu/drm/i915/display/intel_display_types.h
-+++ b/drivers/gpu/drm/i915/display/intel_display_types.h
-@@ -401,6 +401,9 @@ struct intel_panel {
- 			} vesa;
- 			struct {
- 				bool sdr_uses_aux;
-+				bool supports_2084_decode;
-+				bool supports_2020_gamut;
-+				bool supports_segmented_backlight;
- 			} intel;
- 		} edp;
- 
-diff --git a/drivers/gpu/drm/i915/display/intel_dp_aux_backlight.c b/drivers/gpu/drm/i915/display/intel_dp_aux_backlight.c
-index 4f58efdc688a..f927e259b540 100644
---- a/drivers/gpu/drm/i915/display/intel_dp_aux_backlight.c
-+++ b/drivers/gpu/drm/i915/display/intel_dp_aux_backlight.c
-@@ -40,11 +40,6 @@
- #include "intel_dp.h"
- #include "intel_dp_aux_backlight.h"
- 
--/* TODO:
-- * Implement HDR, right now we just implement the bare minimum to bring us back into SDR mode so we
-- * can make people's backlights work in the mean time
-- */
--
- /*
-  * DP AUX registers for Intel's proprietary HDR backlight interface. We define
-  * them here since we'll likely be the only driver to ever use these.
-@@ -158,6 +153,12 @@ intel_dp_aux_supports_hdr_backlight(struct intel_connector *connector)
- 
- 	panel->backlight.edp.intel.sdr_uses_aux =
- 		tcon_cap[2] & INTEL_EDP_SDR_TCON_BRIGHTNESS_AUX_CAP;
-+	panel->backlight.edp.intel.supports_2084_decode =
-+		tcon_cap[1] & INTEL_EDP_HDR_TCON_2084_DECODE_CAP;
-+	panel->backlight.edp.intel.supports_2020_gamut =
-+		tcon_cap[1] & INTEL_EDP_HDR_TCON_2020_GAMUT_CAP;
-+	panel->backlight.edp.intel.supports_segmented_backlight =
-+		tcon_cap[1] & INTEL_EDP_HDR_TCON_SEGMENTED_BACKLIGHT_CAP;
- 
- 	return true;
- }
-@@ -206,6 +207,9 @@ intel_dp_aux_hdr_set_aux_backlight(const struct drm_connector_state *conn_state,
- 	struct intel_dp *intel_dp = enc_to_intel_dp(connector->encoder);
- 	u8 buf[4] = {};
- 
-+	if (level < 20)
-+		level = 20;
-+
- 	buf[0] = level & 0xFF;
- 	buf[1] = (level & 0xFF00) >> 8;
- 
-@@ -221,7 +225,7 @@ intel_dp_aux_hdr_set_backlight(const struct drm_connector_state *conn_state, u32
- 	struct intel_connector *connector = to_intel_connector(conn_state->connector);
- 	struct intel_panel *panel = &connector->panel;
- 
--	if (panel->backlight.edp.intel.sdr_uses_aux) {
-+	if (panel->backlight.edp.intel.sdr_uses_aux || conn_state->hdr_output_metadata) {
- 		intel_dp_aux_hdr_set_aux_backlight(conn_state, level);
- 	} else {
- 		const u32 pwm_level = intel_backlight_level_to_pwm(connector, level);
-@@ -251,8 +255,30 @@ intel_dp_aux_hdr_enable_backlight(const struct intel_crtc_state *crtc_state,
- 	}
- 
- 	ctrl = old_ctrl;
--	if (panel->backlight.edp.intel.sdr_uses_aux) {
-+	if (panel->backlight.edp.intel.sdr_uses_aux || conn_state->hdr_output_metadata) {
- 		ctrl |= INTEL_EDP_HDR_TCON_BRIGHTNESS_AUX_ENABLE;
-+
-+		if (conn_state->hdr_output_metadata) {
-+			struct hdr_output_metadata *hdr_metadata =
-+				conn_state->hdr_output_metadata->data;
-+
-+			if (panel->backlight.edp.intel.supports_segmented_backlight &&
-+			    hdr_metadata->hdmi_metadata_type1.eotf >=
-+			    HDMI_EOTF_TRADITIONAL_GAMMA_HDR)
-+				ctrl |= INTEL_EDP_HDR_TCON_SEGMENTED_BACKLIGHT_ENABLE;
-+			if (panel->backlight.edp.intel.supports_2084_decode &&
-+			    hdr_metadata->hdmi_metadata_type1.eotf ==
-+			    HDMI_EOTF_SMPTE_ST2084)
-+				ctrl |= INTEL_EDP_HDR_TCON_2084_DECODE_ENABLE;
-+			if (panel->backlight.edp.intel.supports_2020_gamut &&
-+			    hdr_metadata->hdmi_metadata_type1.eotf >=
-+			    HDMI_EOTF_TRADITIONAL_GAMMA_HDR &&
-+			    (conn_state->colorspace == DRM_MODE_COLORIMETRY_BT2020_RGB ||
-+			    conn_state->colorspace == DRM_MODE_COLORIMETRY_BT2020_YCC ||
-+			    conn_state->colorspace == DRM_MODE_COLORIMETRY_BT2020_CYCC))
-+				ctrl |= INTEL_EDP_HDR_TCON_2020_GAMUT_ENABLE;
-+		}
-+
- 		intel_dp_aux_hdr_set_aux_backlight(conn_state, level);
- 	} else {
- 		u32 pwm_level = intel_backlight_level_to_pwm(connector, level);
-@@ -292,9 +318,11 @@ intel_dp_aux_hdr_setup_backlight(struct intel_connector *connector, enum pipe pi
- {
- 	struct drm_i915_private *i915 = to_i915(connector->base.dev);
- 	struct intel_panel *panel = &connector->panel;
-+	struct intel_dp *intel_dp = enc_to_intel_dp(connector->encoder);
- 	struct drm_luminance_range_info *luminance_range =
- 		&connector->base.display_info.luminance_range;
- 	int ret;
-+	u8 buf[4];
- 
- 	drm_dbg_kms(&i915->drm, "[CONNECTOR:%d:%s] SDR backlight is controlled through %s\n",
- 		    connector->base.base.id, connector->base.name,
-@@ -318,11 +346,24 @@ intel_dp_aux_hdr_setup_backlight(struct intel_connector *connector, enum pipe pi
- 		panel->backlight.min = 0;
- 	}
- 
-+	if (DISPLAY_VER(i915) < 11) {
-+		buf[0] = connector->base.hdr_sink_metadata.hdmi_type1.max_cll & 0xFF;
-+		buf[1] = (connector->base.hdr_sink_metadata.hdmi_type1.max_cll & 0xFF00) >> 8;
-+		buf[2] = connector->base.hdr_sink_metadata.hdmi_type1.max_fall & 0xFF;
-+		buf[3] = (connector->base.hdr_sink_metadata.hdmi_type1.max_fall & 0xFF00) >> 8;
-+
-+		ret = drm_dp_dpcd_write(&intel_dp->aux, INTEL_EDP_HDR_CONTENT_LUMINANCE, buf,
-+					sizeof(buf));
-+		if (ret < 0)
-+			drm_dbg_kms(&i915->drm,
-+				    "Content Luminance DPCD reg write failed, err:-%d\n",
-+				    ret);
-+	}
-+
- 	drm_dbg_kms(&i915->drm, "[CONNECTOR:%d:%s] Using AUX HDR interface for backlight control (range %d..%d)\n",
- 		    connector->base.base.id, connector->base.name,
- 		    panel->backlight.min, panel->backlight.max);
- 
--
- 	panel->backlight.level = intel_dp_aux_hdr_get_backlight(connector, pipe);
- 	panel->backlight.enabled = panel->backlight.level != 0;
- 
--- 
-2.43.2
+  **FAILURE**
 
+  Serious unknown changes coming with Patchwork_130729v5 absolutely need to be
+  verified manually.
+  
+  If you think the reported changes have nothing to do with the changes
+  introduced in Patchwork_130729v5, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them
+  to document this new failure mode, which will reduce false positives in CI.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130729v5/index.html
+
+Participating hosts (35 -> 36)
+------------------------------
+
+  Additional (2): fi-blb-e6850 bat-kbl-2 
+  Missing    (1): fi-snb-2520m 
+
+Possible new issues
+-------------------
+
+  Here are the unknown changes that may have been introduced in Patchwork_130729v5:
+
+### IGT changes ###
+
+#### Possible regressions ####
+
+  * igt@i915_selftest@live@ring_submission:
+    - fi-apl-guc:         [PASS][1] -> [ABORT][2]
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14437/fi-apl-guc/igt@i915_selftest@live@ring_submission.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130729v5/fi-apl-guc/igt@i915_selftest@live@ring_submission.html
+
+  
+Known issues
+------------
+
+  Here are the changes found in Patchwork_130729v5 that come from known issues:
+
+### CI changes ###
+
+#### Issues hit ####
+
+  * boot:
+    - bat-jsl-1:          [PASS][3] -> [FAIL][4] ([i915#8293])
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14437/bat-jsl-1/boot.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130729v5/bat-jsl-1/boot.html
+    - fi-kbl-8809g:       [PASS][5] -> [FAIL][6] ([i915#8293])
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14437/fi-kbl-8809g/boot.html
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130729v5/fi-kbl-8809g/boot.html
+
+  
+#### Possible fixes ####
+
+  * boot:
+    - fi-cfl-8109u:       [FAIL][7] ([i915#8293]) -> [PASS][8]
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14437/fi-cfl-8109u/boot.html
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130729v5/fi-cfl-8109u/boot.html
+
+  
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@fbdev@info:
+    - bat-kbl-2:          NOTRUN -> [SKIP][9] ([i915#1849])
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130729v5/bat-kbl-2/igt@fbdev@info.html
+
+  * igt@gem_huc_copy@huc-copy:
+    - fi-cfl-8109u:       NOTRUN -> [SKIP][10] ([i915#2190])
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130729v5/fi-cfl-8109u/igt@gem_huc_copy@huc-copy.html
+
+  * igt@gem_lmem_swapping@parallel-random-engines:
+    - bat-kbl-2:          NOTRUN -> [SKIP][11] +39 other tests skip
+   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130729v5/bat-kbl-2/igt@gem_lmem_swapping@parallel-random-engines.html
+
+  * igt@gem_lmem_swapping@verify-random:
+    - fi-cfl-8109u:       NOTRUN -> [SKIP][12] ([i915#4613]) +3 other tests skip
+   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130729v5/fi-cfl-8109u/igt@gem_lmem_swapping@verify-random.html
+
+  * igt@i915_pm_rpm@module-reload:
+    - fi-blb-e6850:       NOTRUN -> [SKIP][13] +32 other tests skip
+   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130729v5/fi-blb-e6850/igt@i915_pm_rpm@module-reload.html
+
+  * igt@i915_selftest@live@hangcheck:
+    - bat-rpls-3:         [PASS][14] -> [DMESG-WARN][15] ([i915#5591])
+   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14437/bat-rpls-3/igt@i915_selftest@live@hangcheck.html
+   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130729v5/bat-rpls-3/igt@i915_selftest@live@hangcheck.html
+
+  * igt@kms_pm_backlight@basic-brightness:
+    - fi-cfl-8109u:       NOTRUN -> [SKIP][16] +11 other tests skip
+   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130729v5/fi-cfl-8109u/igt@kms_pm_backlight@basic-brightness.html
+
+  
+#### Possible fixes ####
+
+  * igt@gem_lmem_swapping@basic@lmem0:
+    - bat-dg2-14:         [FAIL][17] ([i915#10378]) -> [PASS][18]
+   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14437/bat-dg2-14/igt@gem_lmem_swapping@basic@lmem0.html
+   [18]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130729v5/bat-dg2-14/igt@gem_lmem_swapping@basic@lmem0.html
+
+  
+  [i915#10378]: https://gitlab.freedesktop.org/drm/intel/issues/10378
+  [i915#1849]: https://gitlab.freedesktop.org/drm/intel/issues/1849
+  [i915#2190]: https://gitlab.freedesktop.org/drm/intel/issues/2190
+  [i915#4613]: https://gitlab.freedesktop.org/drm/intel/issues/4613
+  [i915#5591]: https://gitlab.freedesktop.org/drm/intel/issues/5591
+  [i915#8293]: https://gitlab.freedesktop.org/drm/intel/issues/8293
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_14437 -> Patchwork_130729v5
+
+  CI-20190529: 20190529
+  CI_DRM_14437: b7ead5c90db25002638773b1a9289220e6a36b4d @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_7766: 08cf1b2fa6b2f422f417ea74f41b12b93e91156f @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  Patchwork_130729v5: b7ead5c90db25002638773b1a9289220e6a36b4d @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+### Linux commits
+
+189d6cefdb0d drm/i915/dp: Enable AUX based backlight for HDR
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130729v5/index.html
+
+--===============0688535483475935973==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/i915/dp: Enable AUX based backlight for HDR (rev5)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/130729/">https://patchwork.freedesktop.org/series/130729/</a></td></tr>
+<tr><td><b>State:</b></td><td>failure</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130729v5/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130729v5/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_14437 -&gt; Patchwork_130729v5</h1>
+<h2>Summary</h2>
+<p><strong>FAILURE</strong></p>
+<p>Serious unknown changes coming with Patchwork_130729v5 absolutely need to be<br />
+  verified manually.</p>
+<p>If you think the reported changes have nothing to do with the changes<br />
+  introduced in Patchwork_130729v5, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them<br />
+  to document this new failure mode, which will reduce false positives in CI.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130729v5/index.html</p>
+<h2>Participating hosts (35 -&gt; 36)</h2>
+<p>Additional (2): fi-blb-e6850 bat-kbl-2 <br />
+  Missing    (1): fi-snb-2520m </p>
+<h2>Possible new issues</h2>
+<p>Here are the unknown changes that may have been introduced in Patchwork_130729v5:</p>
+<h3>IGT changes</h3>
+<h4>Possible regressions</h4>
+<ul>
+<li>igt@i915_selftest@live@ring_submission:<ul>
+<li>fi-apl-guc:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14437/fi-apl-guc/igt@i915_selftest@live@ring_submission.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130729v5/fi-apl-guc/igt@i915_selftest@live@ring_submission.html">ABORT</a></li>
+</ul>
+</li>
+</ul>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_130729v5 that come from known issues:</p>
+<h3>CI changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>boot:<ul>
+<li>bat-jsl-1:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14437/bat-jsl-1/boot.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130729v5/bat-jsl-1/boot.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/8293">i915#8293</a>)</li>
+<li>fi-kbl-8809g:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14437/fi-kbl-8809g/boot.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130729v5/fi-kbl-8809g/boot.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/8293">i915#8293</a>)</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>boot:<ul>
+<li>fi-cfl-8109u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14437/fi-cfl-8109u/boot.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/8293">i915#8293</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130729v5/fi-cfl-8109u/boot.html">PASS</a></li>
+</ul>
+</li>
+</ul>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@fbdev@info:</p>
+<ul>
+<li>bat-kbl-2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130729v5/bat-kbl-2/igt@fbdev@info.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1849">i915#1849</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@gem_huc_copy@huc-copy:</p>
+<ul>
+<li>fi-cfl-8109u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130729v5/fi-cfl-8109u/igt@gem_huc_copy@huc-copy.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2190">i915#2190</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@gem_lmem_swapping@parallel-random-engines:</p>
+<ul>
+<li>bat-kbl-2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130729v5/bat-kbl-2/igt@gem_lmem_swapping@parallel-random-engines.html">SKIP</a> +39 other tests skip</li>
+</ul>
+</li>
+<li>
+<p>igt@gem_lmem_swapping@verify-random:</p>
+<ul>
+<li>fi-cfl-8109u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130729v5/fi-cfl-8109u/igt@gem_lmem_swapping@verify-random.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4613">i915#4613</a>) +3 other tests skip</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_pm_rpm@module-reload:</p>
+<ul>
+<li>fi-blb-e6850:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130729v5/fi-blb-e6850/igt@i915_pm_rpm@module-reload.html">SKIP</a> +32 other tests skip</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@hangcheck:</p>
+<ul>
+<li>bat-rpls-3:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14437/bat-rpls-3/igt@i915_selftest@live@hangcheck.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130729v5/bat-rpls-3/igt@i915_selftest@live@hangcheck.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/5591">i915#5591</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_pm_backlight@basic-brightness:</p>
+<ul>
+<li>fi-cfl-8109u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130729v5/fi-cfl-8109u/igt@kms_pm_backlight@basic-brightness.html">SKIP</a> +11 other tests skip</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>igt@gem_lmem_swapping@basic@lmem0:<ul>
+<li>bat-dg2-14:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14437/bat-dg2-14/igt@gem_lmem_swapping@basic@lmem0.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/10378">i915#10378</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130729v5/bat-dg2-14/igt@gem_lmem_swapping@basic@lmem0.html">PASS</a></li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_14437 -&gt; Patchwork_130729v5</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_14437: b7ead5c90db25002638773b1a9289220e6a36b4d @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_7766: 08cf1b2fa6b2f422f417ea74f41b12b93e91156f @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  Patchwork_130729v5: b7ead5c90db25002638773b1a9289220e6a36b4d @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+<h3>Linux commits</h3>
+<p>189d6cefdb0d drm/i915/dp: Enable AUX based backlight for HDR</p>
+
+</body>
+</html>
+
+--===============0688535483475935973==--
