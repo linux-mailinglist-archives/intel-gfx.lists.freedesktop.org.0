@@ -2,72 +2,75 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id AF0BB87DF20
-	for <lists+intel-gfx@lfdr.de>; Sun, 17 Mar 2024 19:02:32 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9C15F87DF2B
+	for <lists+intel-gfx@lfdr.de>; Sun, 17 Mar 2024 19:13:18 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2E25710EDA1;
-	Sun, 17 Mar 2024 18:02:31 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9431110E05C;
+	Sun, 17 Mar 2024 18:13:16 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="RSi2lMBy";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="hjievgPD";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-lf1-f50.google.com (mail-lf1-f50.google.com
- [209.85.167.50])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8E1E710E226;
- Sun, 17 Mar 2024 18:02:28 +0000 (UTC)
-Received: by mail-lf1-f50.google.com with SMTP id
- 2adb3069b0e04-513a6416058so4992155e87.1; 
- Sun, 17 Mar 2024 11:02:28 -0700 (PDT)
+Received: from mail-lj1-f178.google.com (mail-lj1-f178.google.com
+ [209.85.208.178])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7645410E05C;
+ Sun, 17 Mar 2024 18:13:15 +0000 (UTC)
+Received: by mail-lj1-f178.google.com with SMTP id
+ 38308e7fff4ca-2d21cdbc85bso50139391fa.2; 
+ Sun, 17 Mar 2024 11:13:15 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1710698546; x=1711303346; darn=lists.freedesktop.org;
+ d=gmail.com; s=20230601; t=1710699193; x=1711303993; darn=lists.freedesktop.org;
  h=content-transfer-encoding:mime-version:references:in-reply-to
  :message-id:date:subject:cc:to:from:from:to:cc:subject:date
  :message-id:reply-to;
- bh=y8wp2smowMha26TyRXIyBdFC8IaxYcmjIqcsS+ZMuuc=;
- b=RSi2lMBydNcznsMWsvzKsvU40wJW3twQy4hykWsFt5QT7GVKPwxLHXcc82KbF/w5z6
- Fw0qgJd4eW3xvOhM/s+1Szewok+fnR2BY959vvVMda2dMGllkHlcRCHPRCJkSHLNEpLR
- W/4piP3I3QNQ8BEX6aRi+F09k78UdoK5plsufJu7R2QPl11SpgXPiuI5/NqhTHzz1cHj
- vcw+mEuQhC++ltvTaOkXVcBPMr0qsM9DEA4DlGefB92+bJxSVaCAGtoNzShBadzt6+24
- V3JsZl4rka7IT1gHAhJjJsVVjOSebUF6laeuYf8IV8k6D+5FK4qHHsGIfMKdwJC0Osq5
- 4KXw==
+ bh=G7LVNnL6i6/3zn/gRTdfjK6M4GpqWD7xH2ioIyRg274=;
+ b=hjievgPDh+QDYp3ndkbDS7zIT3qtdYmnf+hBtMsn/x81Rh1fUjTcap4Osx8ZHPfR1G
+ 6Nh9cxFZWk4rWgxXhdESYtIbhJhjRzOeHjoJ8j3c/ArY4E/x5llM/reb6dvivFYpH71T
+ GyUZpI83uHA0A3KRABwYq6ZzdV6bihS6wHCa4AEQq8r4rCB+LgbeHrTx6o7b6NU9ep3x
+ Uq7babU1BDLPlXO6DrHfA5AWUE7UWy+zxbmAmqGILkE+Pgv0PDWSHEPUM91OKrL4O3Ik
+ CW28a01qubv2ejgWOabvyoeOobgyVshWY7pVRbP038FEZs+UefllHXqZQas6I6vs2Nn3
+ 93zQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1710698546; x=1711303346;
+ d=1e100.net; s=20230601; t=1710699193; x=1711303993;
  h=content-transfer-encoding:mime-version:references:in-reply-to
  :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
  :subject:date:message-id:reply-to;
- bh=y8wp2smowMha26TyRXIyBdFC8IaxYcmjIqcsS+ZMuuc=;
- b=HdN9w6I6uywaJXtfQzcslez10dc1K6YlyUiEkNWwKz7L5ujmlJoCXVLVHm8nXnSuJv
- I7jfQW9cEQZzjUsr8bMJr05DO48Os7ixIp3yH1Id4V8zXHTvnoiQNCBXB72b946D6dek
- Q1smmFTYuQa0DWOfypv0kGegKoWV1SHXc9zUDwI/j0XWQrGYNd2Dbl7UlJNSTHxQbYJ8
- Q0So28kzNJCSWT67HhtgBn32I64t9aAvz1KcbFzjpu37QUlfwr0AGBc0FHn8qZyWjPj5
- n3LXwV0vQvD2EM6K5hewirvtFxblOuPLG9jhm3URXkLU93gosShP2FYq5oQC2MQaJ//u
- 7qJA==
+ bh=G7LVNnL6i6/3zn/gRTdfjK6M4GpqWD7xH2ioIyRg274=;
+ b=iNyK5v2doSrvZhMo0y5wPXMfF7ifEMd1R5W0bbvDB2n7zM/T/AUSVkTTg9mMQoUmr7
+ cAp1lMgMV3pSI9SCQSqmyLjhlQ0E68e6EIvxshYKHRneuCC1usYzaE04o2Be3F2VP52K
+ gISouy4bfsByCQETDg5i8Ivc58GQEPIc+0lElsigZABxosaJVPSVPz3y/Z+0zAU+XATx
+ OzAsabmL+KMgSsFwUG5HkdrJa2RbpXBoUB4KJGhBsq+S305zc5nTE9V+3qCZcEpflBNz
+ 1Pbw3yW/o5htQ9Lqxv3ff9EK1ToC40EiRHXgfy9GEDP1lQyBw2bFqeaTK/vdk2jS48bG
+ tB/w==
 X-Forwarded-Encrypted: i=1;
- AJvYcCXqwW6a6DlRVvYpDHvoEgik0Gt/bRsVXGeFQOOhd1orVNOwfmGAUiVoW0R8FA9wtmpDXr9BpodbbJWLOYiA6U2fIbXhSaBXqkL65yhxafT/l51ZwhJ8Sc2F771MtAsF63sF4dnktl7ocqMOidIQUvs=
-X-Gm-Message-State: AOJu0Yxj+Jiqy0Sl8xjv8CVyX6RYe6SguQZT+iTBOT8rEuqImNpKj1P7
- v6Ft5SvzwZirXO21kg7BtI90HUWkdZPv+/o1rjEOLXZEL8/Pokr3JbCKWsXIFEI=
-X-Google-Smtp-Source: AGHT+IHUgI5Sezk1PhaG2+7dJDk65J7BHCWI8DljUrvxtWv8CMT1sZFoKm99VOV2HOQpk7vxtEBCmg==
-X-Received: by 2002:a05:6512:acb:b0:513:13eb:c99b with SMTP id
- n11-20020a0565120acb00b0051313ebc99bmr10151067lfu.62.1710698546509; 
- Sun, 17 Mar 2024 11:02:26 -0700 (PDT)
+ AJvYcCXkyK8L8KWNLu+tjlOci8jPsYMlAPZyKlVA6MGs/j13cGRt7UwQimZFBnloKbZEvh06LVgQwq1AwADlrgaLOo1ZQXisn8rBSThgE7xoubmPGh4ITy3dXcygwQKl6sLNl9UKA9xthDpT9652L0k2o34=
+X-Gm-Message-State: AOJu0YzNHj1T8q6eIla8d1Lx6ZFwuwhY8+5xlOrhd4GcXTjGi+rmT1Vj
+ cdCZlR00BOk0dVUrxtWuqC6FdRMWQABRnaxbcgGFgSGV3G1EBbFRpoB9cSbH1WE=
+X-Google-Smtp-Source: AGHT+IF8ZFmPuBWIBYTBZW1A2otV1Uh+/U/dVprtMvmGl6rLftI8HvoNZDUqnnwopuBBdtqeX/oM5w==
+X-Received: by 2002:a2e:3517:0:b0:2d2:ba5a:68d0 with SMTP id
+ z23-20020a2e3517000000b002d2ba5a68d0mr6061404ljz.33.1710699193353; 
+ Sun, 17 Mar 2024 11:13:13 -0700 (PDT)
 Received: from betty.fdsoft.se (213-67-237-183-no99.tbcn.telia.com.
  [213.67.237.183]) by smtp.gmail.com with ESMTPSA id
- t13-20020a056512208d00b0051399d2418bsm1319908lfr.98.2024.03.17.11.02.26
+ g29-20020a05651c079d00b002d0acb57c89sm1225398lje.64.2024.03.17.11.13.12
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Sun, 17 Mar 2024 11:02:26 -0700 (PDT)
+ Sun, 17 Mar 2024 11:13:13 -0700 (PDT)
 Received: from ester.fdsoft.se ([192.168.1.2])
  by betty.fdsoft.se with esmtp (Exim 4.97.1)
  (envelope-from <frej.drejhammar@gmail.com>)
- id 1rluq1-000000005e0-2PMm; Sun, 17 Mar 2024 19:02:25 +0100
+ id 1rluq8-000000005e0-1qAX; Sun, 17 Mar 2024 19:02:32 +0100
 From: Frej Drejhammar <frej.drejhammar@gmail.com>
 To: dri-devel@lists.freedesktop.org
 Cc: Frej Drejhammar <frej.drejhammar@gmail.com>,
- David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
- intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
-Subject: [PATCH 06/11] drm/i915: Use drm_driver_legacy_fb_format() for fbdev
-Date: Sun, 17 Mar 2024 19:01:31 +0100
-Message-ID: <32ba43a10c7e4abc1151bba59ddcb2ca0100153f.1710698387.git.frej.drejhammar@gmail.com>
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>,
+ Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>,
+ Daniel Vetter <daniel@ffwll.ch>, intel-gfx@lists.freedesktop.org,
+ intel-xe@lists.freedesktop.org
+Subject: [PATCH 11/11] drm/xe: Use drm_driver_legacy_fb_format() for fbdev
+Date: Sun, 17 Mar 2024 19:01:36 +0100
+Message-ID: <261e48bfe34de3612ccaa1dc91ebdfd540635c24.1710698387.git.frej.drejhammar@gmail.com>
 X-Mailer: git-send-email 2.44.0
 In-Reply-To: <cover.1710698386.git.frej.drejhammar@gmail.com>
 References: <cover.1710698386.git.frej.drejhammar@gmail.com>
@@ -93,6 +96,9 @@ drm_mode_legacy_fb_format() to use the same logic as for the
 DRM_IOCTL_MODE_ADDFB ioctl when selecting a framebuffer format.
 
 Signed-off-by: Frej Drejhammar <frej.drejhammar@gmail.com>
+Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+Cc: Maxime Ripard <mripard@kernel.org>
+Cc: Thomas Zimmermann <tzimmermann@suse.de>
 Cc: David Airlie <airlied@gmail.com>
 Cc: Daniel Vetter <daniel@ffwll.ch>
 Cc: intel-gfx@lists.freedesktop.org
@@ -106,23 +112,22 @@ the suggestions of Thomas Zimmermann.
 
 [1] https://lore.kernel.org/all/20240310152803.3315-1-frej.drejhammar@gmail.com/
 ---
- drivers/gpu/drm/i915/display/intel_fbdev_fb.c | 6 ++++--
- 1 file changed, 4 insertions(+), 2 deletions(-)
+ drivers/gpu/drm/xe/display/intel_fbdev_fb.c | 5 +++--
+ 1 file changed, 3 insertions(+), 2 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_fbdev_fb.c b/drivers/gpu/drm/i915/display/intel_fbdev_fb.c
-index 0665f943f65f..1579c433c2c6 100644
---- a/drivers/gpu/drm/i915/display/intel_fbdev_fb.c
-+++ b/drivers/gpu/drm/i915/display/intel_fbdev_fb.c
-@@ -30,8 +30,10 @@ struct drm_framebuffer *intel_fbdev_fb_alloc(struct drm_fb_helper *helper,
+diff --git a/drivers/gpu/drm/xe/display/intel_fbdev_fb.c b/drivers/gpu/drm/xe/display/intel_fbdev_fb.c
+index 51ae3561fd0d..5bf0841a9f27 100644
+--- a/drivers/gpu/drm/xe/display/intel_fbdev_fb.c
++++ b/drivers/gpu/drm/xe/display/intel_fbdev_fb.c
+@@ -32,8 +32,9 @@ struct drm_framebuffer *intel_fbdev_fb_alloc(struct drm_fb_helper *helper,
  
  	mode_cmd.pitches[0] = ALIGN(mode_cmd.width *
- 				    DIV_ROUND_UP(sizes->surface_bpp, 8), 64);
+ 				    DIV_ROUND_UP(sizes->surface_bpp, 8), XE_PAGE_SIZE);
 -	mode_cmd.pixel_format = drm_mode_legacy_fb_format(sizes->surface_bpp,
 -							  sizes->surface_depth);
-+	mode_cmd.pixel_format =
-+		drm_driver_legacy_fb_format(dev,
-+					    sizes->surface_bpp,
-+					    sizes->surface_depth);
++	mode_cmd.pixel_format = drm_driver_legacy_fb_format(dev,
++							    sizes->surface_bpp,
++							    sizes->surface_depth);
  
  	size = mode_cmd.pitches[0] * mode_cmd.height;
  	size = PAGE_ALIGN(size);
