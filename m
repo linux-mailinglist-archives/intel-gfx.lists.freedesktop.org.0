@@ -2,55 +2,58 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 795CB87EA3A
-	for <lists+intel-gfx@lfdr.de>; Mon, 18 Mar 2024 14:38:35 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6056087EA4C
+	for <lists+intel-gfx@lfdr.de>; Mon, 18 Mar 2024 14:45:32 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B59E810EF0D;
-	Mon, 18 Mar 2024 13:38:33 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BFF1610F762;
+	Mon, 18 Mar 2024 13:45:25 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="GDATvsAJ";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="JW/EW996";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8483E10F74D;
- Mon, 18 Mar 2024 13:38:27 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C440610F762
+ for <intel-gfx@lists.freedesktop.org>; Mon, 18 Mar 2024 13:45:23 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1710769107; x=1742305107;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=lhF65XRkLePdsVNSatfYL0Ods1iGsHeaiNcqlrUSDGM=;
- b=GDATvsAJI+KkEVO4v1yuOb4ZnkGuuqomgYJ/JauTBSXZSpHuUUIG9bTm
- Eiww/ccRZ9MfEdH3WVzoICOHAFkLhpR1VWx2QkMpjJvXh1YBc2PpoekXb
- 0y72RJ6VBKzg273qoDcRNm0jtkFakeFkNh1JsO1Q1KBmxNEUuCu8RPeye
- JntJ06ISeyj2w+wiCmAi+kOiUUjFvllNnZNhF1osl9Mp/8yfGSycG8M/G
- 0SXCWpSUBapTu/q9VMBboYBMBvscVTTmGGmecHisMd8y7d3G9H5zojFoS
- JriP/TDfo+sZnsQwyyCoRrQsaB/MvVd+oX3Mufua2CwNTWaB0CWEHOPG9 A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,11016"; a="16218025"
-X-IronPort-AV: E=Sophos;i="6.07,134,1708416000"; d="scan'208";a="16218025"
-Received: from fmviesa006.fm.intel.com ([10.60.135.146])
- by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Mar 2024 06:38:27 -0700
+ t=1710769524; x=1742305524;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version:content-transfer-encoding;
+ bh=2u/8rVPRhORtN2Tx5We8C241DjImBaSChc9/pu/oZAA=;
+ b=JW/EW996+EKojU7B6pWpMt+9eO97QAneYRj2vTKc+qeJcoKltliG3X2o
+ Jo2U4ym8xI9RAa8fs3GQ/vlPEOZ8vTgC+Mr4q54QeZPNgoDd4HkxtN+Yc
+ R4gEMw4vRK86g8Ju0w+UC/VL3jdCWetFTkf/0qJtOgoRR70fJG3UI8VT9
+ LoTIP/J7lpiI8fL4fT1IhY/ulbmUzgI/2WMOZyZA8NuqazH+GwFn4lPUz
+ tWReSc1g9HM7cMFpTDyyxVeYl2FR8RZWbYJurE1c7I9Eg6iWw2FMsb/9x
+ dDfDlcsyVzpggFSGsoTemgpjyQm5PM4WNuIzds1C7NbZ3RCIIxI2rMmN2 A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,11016"; a="28061295"
+X-IronPort-AV: E=Sophos;i="6.07,134,1708416000"; d="scan'208";a="28061295"
+Received: from fmviesa001.fm.intel.com ([10.60.135.141])
+ by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 18 Mar 2024 06:45:23 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.07,134,1708416000"; d="scan'208";a="13570086"
-Received: from dcroitox-mobl1.ger.corp.intel.com (HELO
- hazy.ger.corp.intel.com) ([10.251.210.126])
- by fmviesa006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Mar 2024 06:38:25 -0700
-From: Luca Coelho <luciano.coelho@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Cc: intel-xe@lists.freedesktop.org, uma.shankar@intel.com,
- ville.syrjala@linux.intel.com, jani.nikula@intel.com
-Subject: [PATCH v3 4/4] drm/i915/display: tie DMC wakelock to DC5/6 state
- transitions
-Date: Mon, 18 Mar 2024 15:37:57 +0200
-Message-Id: <20240318133757.1479189-5-luciano.coelho@intel.com>
-X-Mailer: git-send-email 2.39.2
-In-Reply-To: <20240318133757.1479189-1-luciano.coelho@intel.com>
-References: <20240318133757.1479189-1-luciano.coelho@intel.com>
+X-IronPort-AV: E=Sophos;i="6.07,134,1708416000"; d="scan'208";a="44528204"
+Received: from ahmedess-mobl.ger.corp.intel.com (HELO localhost)
+ ([10.252.53.133])
+ by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 18 Mar 2024 06:45:21 -0700
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Dolan Liu <liuyong5@huaqin.corp-partner.google.com>, Ville
+ =?utf-8?B?U3lyasOkbMOk?= <ville.syrjala@linux.intel.com>
+Cc: gareth.yu@intel.com, intel-gfx@lists.freedesktop.org
+Subject: Re: [PATCH] drm/i915/display: Fixed a screen flickering when
+ turning on display from off
+In-Reply-To: <004a0b4f-a619-4989-901f-251de3de4af1@huaqin.corp-partner.google.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20240306031348.1344034-1-gareth.yu@intel.com>
+ <87il1zzmpt.fsf@intel.com> <ZfQqyLJBAAuNLKZ2@intel.com>
+ <004a0b4f-a619-4989-901f-251de3de4af1@huaqin.corp-partner.google.com>
+Date: Mon, 18 Mar 2024 15:45:18 +0200
+Message-ID: <87il1jpsb5.fsf@intel.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -66,76 +69,91 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-We only need DMC wakelocks when we allow DC5 and DC6 states.  Add the
-calls to enable and disable DMC wakelock accordingly.
+On Mon, 18 Mar 2024, Dolan Liu <liuyong5@huaqin.corp-partner.google.com> wr=
+ote:
+> this case have been there so many years, it's time to fix it if=20
+> possible. And user-space software may improved by themselves in we=20
+> didn't realize place.
+>
+> even if not,=C2=A0 for the proof user-space setting=C2=A0 0, it's better =
+to change to
+>
+>
+>  =C2=A0=C2=A0 if (level < min || level =3D=3D 0 )
+>
+>  =C2=A0=C2=A0 =C2=A0=C2=A0=C2=A0=C2=A0 level =3Dmax;
+>
+>
+> Intel default FSP will set the default min is 2% (6/255). if someone=20
+> missed the setting, it will be keep the default and level.min will be=20
+> larger than 0.
+>
+> if someone changed the default min in VBT or coreboot, the user-space=20
+> lowest level set as 0, still can go though to this logic.
+>
+>
+> whatever, we think this one should correct back, otherwise it will keep=20
+> occurring in each new kernel release on all Intel device, this is not=20
+> very friendly to all developers.
+>
+> and the only fix way is=C2=A0 hack patch to remove "level=3Dmax".
 
-Signed-off-by: Luca Coelho <luciano.coelho@intel.com>
----
- drivers/gpu/drm/i915/display/intel_display_power_well.c | 7 +++++++
- drivers/gpu/drm/i915/display/intel_dmc.c                | 4 ++++
- 2 files changed, 11 insertions(+)
+As far as the change goes, the original patch is pretty much the only
+one we should consider. I only ever asked for 1) an issue to be reported
+at fdo gitlab, and 2) a commit message properly detailing the issue.
 
-diff --git a/drivers/gpu/drm/i915/display/intel_display_power_well.c b/drivers/gpu/drm/i915/display/intel_display_power_well.c
-index 217f82f1da84..367464f5c5cd 100644
---- a/drivers/gpu/drm/i915/display/intel_display_power_well.c
-+++ b/drivers/gpu/drm/i915/display/intel_display_power_well.c
-@@ -17,6 +17,7 @@
- #include "intel_dkl_phy.h"
- #include "intel_dkl_phy_regs.h"
- #include "intel_dmc.h"
-+#include "intel_dmc_wl.h"
- #include "intel_dp_aux_regs.h"
- #include "intel_dpio_phy.h"
- #include "intel_dpll.h"
-@@ -821,6 +822,8 @@ void gen9_enable_dc5(struct drm_i915_private *dev_priv)
- 		intel_de_rmw(dev_priv, GEN8_CHICKEN_DCPR_1,
- 			     0, SKL_SELECT_ALTERNATE_DC_EXIT);
- 
-+	intel_dmc_wl_enable(dev_priv);
-+
- 	gen9_set_dc_state(dev_priv, DC_STATE_EN_UPTO_DC5);
- }
- 
-@@ -850,6 +853,8 @@ void skl_enable_dc6(struct drm_i915_private *dev_priv)
- 		intel_de_rmw(dev_priv, GEN8_CHICKEN_DCPR_1,
- 			     0, SKL_SELECT_ALTERNATE_DC_EXIT);
- 
-+	intel_dmc_wl_enable(dev_priv);
-+
- 	gen9_set_dc_state(dev_priv, DC_STATE_EN_UPTO_DC6);
- }
- 
-@@ -970,6 +975,8 @@ void gen9_disable_dc_states(struct drm_i915_private *dev_priv)
- 	if (!HAS_DISPLAY(dev_priv))
- 		return;
- 
-+	intel_dmc_wl_disable(dev_priv);
-+
- 	intel_cdclk_get_cdclk(dev_priv, &cdclk_config);
- 	/* Can't read out voltage_level so can't use intel_cdclk_changed() */
- 	drm_WARN_ON(&dev_priv->drm,
-diff --git a/drivers/gpu/drm/i915/display/intel_dmc.c b/drivers/gpu/drm/i915/display/intel_dmc.c
-index 3fa851b5c7a6..b20cc018b9a8 100644
---- a/drivers/gpu/drm/i915/display/intel_dmc.c
-+++ b/drivers/gpu/drm/i915/display/intel_dmc.c
-@@ -550,6 +550,8 @@ void intel_dmc_disable_program(struct drm_i915_private *i915)
- 	pipedmc_clock_gating_wa(i915, true);
- 	disable_all_event_handlers(i915);
- 	pipedmc_clock_gating_wa(i915, false);
-+
-+	intel_dmc_wl_disable(i915);
- }
- 
- void assert_dmc_loaded(struct drm_i915_private *i915)
-@@ -1079,6 +1081,8 @@ void intel_dmc_suspend(struct drm_i915_private *i915)
- 	if (dmc)
- 		flush_work(&dmc->work);
- 
-+	intel_dmc_wl_disable(i915);
-+
- 	/* Drop the reference held in case DMC isn't loaded. */
- 	if (!intel_dmc_has_payload(i915))
- 		intel_dmc_runtime_pm_put(i915);
--- 
-2.39.2
+I never asked for functional changes in the patch. Frankly, all the
+alternative versions are nonsense.
 
+I think we can try to go with the patch, but please understand that if
+it regresses some silly userspace, the change will be reverted instead
+of fixing that silly userspace, because that's the rule in kernel
+development.
+
+
+BR,
+Jani.
+
+
+PS. Please try to reply inline instead of top-posting in public mailing
+lists.
+
+
+
+>
+>
+> On 3/15/24 19:02, Ville Syrj=C3=A4l=C3=A4 wrote:
+>> On Wed, Mar 06, 2024 at 12:19:42PM +0200, Jani Nikula wrote:
+>>> On Wed, 06 Mar 2024, gareth.yu@intel.com wrote:
+>>>> From: Gareth Yu <gareth.yu@intel.com>
+>>>>
+>>>> Turn on the panel from zero brightness of the last state, the panel wa=
+s set
+>>>> a maximum PWM in the flow. Once the panel initialization is completed,=
+ the
+>>>> backlight is restored to zero brightness. There is a flckering generat=
+ed.
+>>> Please be more precise in describing what exactly happens and
+>>> when. Driver probe? Modeset? What restores backlight to zero brightness?
+>>>
+>>> Better yet, please file a bug at fdo gitlab, attach full dmesg with
+>>> debugs, etc.
+>>>
+>>> Before we had the concept of minimum brightness, the minimum was always
+>>> 0. And the check was:
+>>>
+>>> 	if (level =3D=3D 0)
+>>> 		level =3D max;
+>>>
+>>> Historically, the point was, if you're enabling the display and
+>>> backlight, you don't want it to be at 0 brightness, because for most
+>>> displays that means a black screen.
+>> I think that hack was originally added becaue some silly
+>> userspace thingy was setting the backlight level to 0 on
+>> suspend/etc. and then forgetting to restore it back to a
+>> sane value afterwards. Dunno if that nonsense behaviour
+>> still persists to this day.
+>>
+
+--=20
+Jani Nikula, Intel
