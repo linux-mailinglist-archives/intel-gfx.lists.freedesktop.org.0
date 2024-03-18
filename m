@@ -2,48 +2,49 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3605587E841
-	for <lists+intel-gfx@lfdr.de>; Mon, 18 Mar 2024 12:11:15 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id A08D287E861
+	for <lists+intel-gfx@lfdr.de>; Mon, 18 Mar 2024 12:18:53 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5160810EDDA;
-	Mon, 18 Mar 2024 11:11:11 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E418210F290;
+	Mon, 18 Mar 2024 11:18:51 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="P/bDbIos";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="OSj5+Vt3";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A5B5310EDDA;
- Mon, 18 Mar 2024 11:11:09 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8855310F290
+ for <intel-gfx@lists.freedesktop.org>; Mon, 18 Mar 2024 11:18:50 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1710760269; x=1742296269;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=8AvsA15UgAI0L9njipCoxWiKDQpPhGRkapasjgHJhCc=;
- b=P/bDbIosr5iiNp9sfbDWQUmSB9MhTGeM3D+SSNw8dDXuR1S8A+De1HEi
- JqgBssJpCgUnFyTc54s/QjaCtwk8h/NVzqfsLl91BNq6M9feieJtVEikl
- 2mud+v6bEXLmZLXhGU5TGCLRJ7Fjx7Wr3x3l595YxVYOyUZeFSYTQJE9J
- abFE0/dkrrtdUM4NUhewOaZ/MQv0AZ/0x/FImyDAQCJYRR4mxHGLYdug+
- cimSzHk8Nsuoj6Hf2hNO7OeSUnyfh31RDQTDwTCMw+HwveVwiV2oWLyBs
- i6MiAC/soOtUH3r3J2Hy2t8PVSEWW59w+ly3PevL3fmJOQU8jgckIZzP9 A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,11016"; a="31002312"
-X-IronPort-AV: E=Sophos;i="6.07,134,1708416000"; d="scan'208";a="31002312"
-Received: from orviesa010.jf.intel.com ([10.64.159.150])
- by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Mar 2024 04:11:09 -0700
+ t=1710760730; x=1742296730;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=wt3Xt2I8zKGtaMQlvmgY9GjH4NclDbFTqRcByLlEtWw=;
+ b=OSj5+Vt3jdAArHp0AfMUgY5B34a/3d/BgN9XggOLYM2FcOOPgryXJksV
+ 81htV1CL0UIX2f4fu2Yfjfi1yFJpJQEmzZGDIaAMVM/hL5gY0N2BML0VQ
+ OI5pqgjuMXcNtsdDeJPXb+sjvZY7n0wZRprd9jFa0VWwrKy8mNk4UxsrW
+ USGXOBjyAVIc/PMhEt6tP0o6L2EscDjaqytHNaGZvlGk9VEYzyYGzcX8C
+ /ck+dC8B7xN31I9kp7lf1xL+i3e61pQqlEIh2AEdn3lIVXWrGD2uXljrV
+ gFlbsubvz7iNSGfFRK+j644Pdo9rliaU3IwKeNZRL8vDTqIYXmjNk1Cir w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,11016"; a="16203899"
+X-IronPort-AV: E=Sophos;i="6.07,134,1708416000"; d="scan'208";a="16203899"
+Received: from orviesa005.jf.intel.com ([10.64.159.145])
+ by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 18 Mar 2024 04:18:49 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.07,134,1708416000"; d="scan'208";a="13337215"
-Received: from srr4-3-linux-106-armuthy.iind.intel.com ([10.190.238.56])
- by orviesa010.jf.intel.com with ESMTP; 18 Mar 2024 04:11:08 -0700
-From: Arun R Murthy <arun.r.murthy@intel.com>
-To: intel-gfx@lists.freedesktop.org,
-	intel-xe@lists.freedesktop.org
-Cc: Arun R Murthy <arun.r.murthy@intel.com>
-Subject: [PATCH] drm/xe/display: fix potential overflow when multiplying 2 u32
-Date: Mon, 18 Mar 2024 16:31:03 +0530
-Message-Id: <20240318110103.3872169-1-arun.r.murthy@intel.com>
+X-IronPort-AV: E=Sophos;i="6.07,134,1708416000"; d="scan'208";a="18124268"
+Received: from mgolanimitul-x299-ud4-pro.iind.intel.com ([10.190.239.114])
+ by orviesa005.jf.intel.com with ESMTP; 18 Mar 2024 04:18:48 -0700
+From: Mitul Golani <mitulkumar.ajitkumar.golani@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Cc: Mitul Golani <mitulkumar.ajitkumar.golani@intel.com>
+Subject: [PATCH v19 8/9] drm/i915/display: Compute vrr_vsync params
+Date: Mon, 18 Mar 2024 16:42:16 +0530
+Message-Id: <20240318111216.3715694-1-mitulkumar.ajitkumar.golani@intel.com>
 X-Mailer: git-send-email 2.25.1
+In-Reply-To: <20240313035625.3339996-1-mitulkumar.ajitkumar.golani@intel.com>
+References: <20240313035625.3339996-1-mitulkumar.ajitkumar.golani@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
@@ -61,61 +62,159 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Multiplying XE_PAGE_SIZE with another u32 and the product stored in
-u64 can potentially lead to overflow, use mul_u32_u32 instead.
+Compute vrr_vsync_start/end, which sets the position
+for hardware to send the Vsync at a fixed position
+relative to the end of the Vblank.
 
-Signed-off-by: Arun R Murthy <arun.r.murthy@intel.com>
+--v2:
+- Updated VSYNC_START/END macros to VRR_VSYNC_START/END. (Ankit)
+- Updated bit fields of VRR_VSYNC_START/END. (Ankit)
+
+--v3:
+- Add PIPE_CONF_CHECK_I(vrr.vsync_start/end).
+- Read/write vrr_vsync params only when we intend to send
+adaptive_sync sdp.
+
+--v4:
+- Use VRR_SYNC_START/END macros correctly.
+
+--v5:
+- Send AS SDP only when VRR is enabled.
+Signed-off-by: Mitul Golani <mitulkumar.ajitkumar.golani@intel.com>
 ---
- drivers/gpu/drm/xe/display/xe_fb_pin.c | 10 +++++-----
- 1 file changed, 5 insertions(+), 5 deletions(-)
+ drivers/gpu/drm/i915/display/intel_display.c  |  2 ++
+ .../drm/i915/display/intel_display_types.h    |  1 +
+ drivers/gpu/drm/i915/display/intel_vrr.c      | 33 +++++++++++++++++--
+ drivers/gpu/drm/i915/i915_reg.h               |  7 ++++
+ 4 files changed, 41 insertions(+), 2 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/display/xe_fb_pin.c b/drivers/gpu/drm/xe/display/xe_fb_pin.c
-index 722c84a56607..e0b511ff7eab 100644
---- a/drivers/gpu/drm/xe/display/xe_fb_pin.c
-+++ b/drivers/gpu/drm/xe/display/xe_fb_pin.c
-@@ -29,7 +29,7 @@ write_dpt_rotated(struct xe_bo *bo, struct iosys_map *map, u32 *dpt_ofs, u32 bo_
- 		u32 src_idx = src_stride * (height - 1) + column + bo_ofs;
+diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
+index 8f1d948408d3..fed4ed18d53b 100644
+--- a/drivers/gpu/drm/i915/display/intel_display.c
++++ b/drivers/gpu/drm/i915/display/intel_display.c
+@@ -5377,6 +5377,8 @@ intel_pipe_config_compare(const struct intel_crtc_state *current_config,
+ 		PIPE_CONF_CHECK_I(vrr.flipline);
+ 		PIPE_CONF_CHECK_I(vrr.pipeline_full);
+ 		PIPE_CONF_CHECK_I(vrr.guardband);
++		PIPE_CONF_CHECK_I(vrr.vsync_start);
++		PIPE_CONF_CHECK_I(vrr.vsync_end);
+ 	}
  
- 		for (row = 0; row < height; row++) {
--			u64 pte = ggtt->pt_ops->pte_encode_bo(bo, src_idx * XE_PAGE_SIZE,
-+			u64 pte = ggtt->pt_ops->pte_encode_bo(bo, mul_u32_u32(src_idx, XE_PAGE_SIZE),
- 							      xe->pat.idx[XE_CACHE_WB]);
+ #undef PIPE_CONF_CHECK_X
+diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/drivers/gpu/drm/i915/display/intel_display_types.h
+index 8a286751dc39..c2e08f641989 100644
+--- a/drivers/gpu/drm/i915/display/intel_display_types.h
++++ b/drivers/gpu/drm/i915/display/intel_display_types.h
+@@ -1430,6 +1430,7 @@ struct intel_crtc_state {
+ 		bool enable, in_range;
+ 		u8 pipeline_full;
+ 		u16 flipline, vmin, vmax, guardband;
++		u32 vsync_end, vsync_start;
+ 	} vrr;
  
- 			iosys_map_wr(map, *dpt_ofs, u64, pte);
-@@ -61,7 +61,7 @@ write_dpt_remapped(struct xe_bo *bo, struct iosys_map *map, u32 *dpt_ofs,
+ 	/* Stream Splitter for eDP MSO */
+diff --git a/drivers/gpu/drm/i915/display/intel_vrr.c b/drivers/gpu/drm/i915/display/intel_vrr.c
+index eb5bd0743902..1d53623e7e0b 100644
+--- a/drivers/gpu/drm/i915/display/intel_vrr.c
++++ b/drivers/gpu/drm/i915/display/intel_vrr.c
+@@ -9,6 +9,7 @@
+ #include "intel_de.h"
+ #include "intel_display_types.h"
+ #include "intel_vrr.h"
++#include "intel_dp.h"
  
- 		for (column = 0; column < width; column++) {
- 			iosys_map_wr(map, *dpt_ofs, u64,
--				     pte_encode_bo(bo, src_idx * XE_PAGE_SIZE,
-+				     pte_encode_bo(bo, mul_u32_u32(src_idx, XE_PAGE_SIZE),
- 				     xe->pat.idx[XE_CACHE_WB]));
- 
- 			*dpt_ofs += 8;
-@@ -118,7 +118,7 @@ static int __xe_pin_fb_vma_dpt(struct intel_framebuffer *fb,
- 		u32 x;
- 
- 		for (x = 0; x < size / XE_PAGE_SIZE; x++) {
--			u64 pte = ggtt->pt_ops->pte_encode_bo(bo, x * XE_PAGE_SIZE,
-+			u64 pte = ggtt->pt_ops->pte_encode_bo(bo, mul_u32_u32(x, XE_PAGE_SIZE),
- 							      xe->pat.idx[XE_CACHE_WB]);
- 
- 			iosys_map_wr(&dpt->vmap, x * 8, u64, pte);
-@@ -164,7 +164,7 @@ write_ggtt_rotated(struct xe_bo *bo, struct xe_ggtt *ggtt, u32 *ggtt_ofs, u32 bo
- 		u32 src_idx = src_stride * (height - 1) + column + bo_ofs;
- 
- 		for (row = 0; row < height; row++) {
--			u64 pte = ggtt->pt_ops->pte_encode_bo(bo, src_idx * XE_PAGE_SIZE,
-+			u64 pte = ggtt->pt_ops->pte_encode_bo(bo, mul_u32_u32(src_idx, XE_PAGE_SIZE),
- 							      xe->pat.idx[XE_CACHE_WB]);
- 
- 			xe_ggtt_set_pte(ggtt, *ggtt_ofs, pte);
-@@ -381,4 +381,4 @@ struct i915_address_space *intel_dpt_create(struct intel_framebuffer *fb)
- void intel_dpt_destroy(struct i915_address_space *vm)
+ bool intel_vrr_is_capable(struct intel_connector *connector)
  {
- 	return;
--}
-\ No newline at end of file
-+}
+@@ -113,6 +114,7 @@ intel_vrr_compute_config(struct intel_crtc_state *crtc_state,
+ 	struct drm_i915_private *i915 = to_i915(crtc->base.dev);
+ 	struct intel_connector *connector =
+ 		to_intel_connector(conn_state->connector);
++	struct intel_dp *intel_dp = intel_attached_dp(connector);
+ 	struct drm_display_mode *adjusted_mode = &crtc_state->hw.adjusted_mode;
+ 	const struct drm_display_info *info = &connector->base.display_info;
+ 	int vmin, vmax;
+@@ -165,6 +167,14 @@ intel_vrr_compute_config(struct intel_crtc_state *crtc_state,
+ 	if (crtc_state->uapi.vrr_enabled) {
+ 		crtc_state->vrr.enable = true;
+ 		crtc_state->mode_flags |= I915_MODE_FLAG_VRR;
++		if (intel_dp_as_sdp_supported(intel_dp)) {
++			crtc_state->vrr.vsync_start =
++				(crtc_state->hw.adjusted_mode.crtc_vtotal -
++					crtc_state->hw.adjusted_mode.vsync_start);
++			crtc_state->vrr.vsync_end =
++				(crtc_state->hw.adjusted_mode.crtc_vtotal -
++					crtc_state->hw.adjusted_mode.vsync_end);
++		}
+ 	}
+ }
+ 
+@@ -242,6 +252,12 @@ void intel_vrr_enable(const struct intel_crtc_state *crtc_state)
+ 	intel_de_write(dev_priv, TRANS_PUSH(cpu_transcoder), TRANS_PUSH_EN);
+ 	intel_de_write(dev_priv, TRANS_VRR_CTL(cpu_transcoder),
+ 		       VRR_CTL_VRR_ENABLE | trans_vrr_ctl(crtc_state));
++
++	if (HAS_AS_SDP(dev_priv)) {
++		intel_de_write(dev_priv, TRANS_VRR_VSYNC(cpu_transcoder),
++			       VRR_VSYNC_END(crtc_state->vrr.vsync_end) |
++			       VRR_VSYNC_START(crtc_state->vrr.vsync_start));
++	}
+ }
+ 
+ void intel_vrr_disable(const struct intel_crtc_state *old_crtc_state)
+@@ -258,13 +274,16 @@ void intel_vrr_disable(const struct intel_crtc_state *old_crtc_state)
+ 	intel_de_wait_for_clear(dev_priv, TRANS_VRR_STATUS(cpu_transcoder),
+ 				VRR_STATUS_VRR_EN_LIVE, 1000);
+ 	intel_de_write(dev_priv, TRANS_PUSH(cpu_transcoder), 0);
++
++	if (HAS_AS_SDP(dev_priv))
++		intel_de_write(dev_priv, TRANS_VRR_VSYNC(cpu_transcoder), 0);
+ }
+ 
+ void intel_vrr_get_config(struct intel_crtc_state *crtc_state)
+ {
+ 	struct drm_i915_private *dev_priv = to_i915(crtc_state->uapi.crtc->dev);
+ 	enum transcoder cpu_transcoder = crtc_state->cpu_transcoder;
+-	u32 trans_vrr_ctl;
++	u32 trans_vrr_ctl, trans_vrr_vsync;
+ 
+ 	trans_vrr_ctl = intel_de_read(dev_priv, TRANS_VRR_CTL(cpu_transcoder));
+ 
+@@ -284,6 +303,16 @@ void intel_vrr_get_config(struct intel_crtc_state *crtc_state)
+ 		crtc_state->vrr.vmin = intel_de_read(dev_priv, TRANS_VRR_VMIN(cpu_transcoder)) + 1;
+ 	}
+ 
+-	if (crtc_state->vrr.enable)
++	if (crtc_state->vrr.enable) {
+ 		crtc_state->mode_flags |= I915_MODE_FLAG_VRR;
++
++		if (HAS_AS_SDP(dev_priv)) {
++			trans_vrr_vsync =
++				intel_de_read(dev_priv, TRANS_VRR_VSYNC(cpu_transcoder));
++			crtc_state->vrr.vsync_start =
++				REG_FIELD_GET(VRR_VSYNC_START_MASK, trans_vrr_vsync);
++			crtc_state->vrr.vsync_end =
++				REG_FIELD_GET(VRR_VSYNC_END_MASK, trans_vrr_vsync);
++		}
++	}
+ }
+diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_reg.h
+index 3ff6a38826cb..2ede6982175c 100644
+--- a/drivers/gpu/drm/i915/i915_reg.h
++++ b/drivers/gpu/drm/i915/i915_reg.h
+@@ -2095,6 +2095,13 @@
+ #define   TRANS_PUSH_EN			REG_BIT(31)
+ #define   TRANS_PUSH_SEND		REG_BIT(30)
+ 
++#define _TRANS_VRR_VSYNC_A		0x60078
++#define TRANS_VRR_VSYNC(trans)		_MMIO_TRANS2(trans, _TRANS_VRR_VSYNC_A)
++#define VRR_VSYNC_END_MASK		REG_GENMASK(28, 16)
++#define VRR_VSYNC_END(vsync_end)	REG_FIELD_PREP(VRR_VSYNC_END_MASK, (vsync_end))
++#define VRR_VSYNC_START_MASK		REG_GENMASK(12, 0)
++#define VRR_VSYNC_START(vsync_start)	REG_FIELD_PREP(VRR_VSYNC_START_MASK, (vsync_start))
++
+ /* VGA port control */
+ #define ADPA			_MMIO(0x61100)
+ #define PCH_ADPA                _MMIO(0xe1100)
 -- 
 2.25.1
 
