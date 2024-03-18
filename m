@@ -2,42 +2,42 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 209DB87E76D
-	for <lists+intel-gfx@lfdr.de>; Mon, 18 Mar 2024 11:36:28 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0B51D87E76B
+	for <lists+intel-gfx@lfdr.de>; Mon, 18 Mar 2024 11:36:25 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 27E3010F54E;
-	Mon, 18 Mar 2024 10:36:25 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5FBEC10F54D;
+	Mon, 18 Mar 2024 10:36:23 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="JWTiNvbe";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="DSv67osK";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8BCA210F542;
- Mon, 18 Mar 2024 10:36:18 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C440C10F54D;
+ Mon, 18 Mar 2024 10:36:20 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1710758178; x=1742294178;
+ t=1710758181; x=1742294181;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=Vme7zger9lqPwSdS7rFdcLSQgdsKYwLEmpibVFiJ/qc=;
- b=JWTiNvbePNpZNZog5h/7Mt0+E8Ul1IJeoAqCiHTv6p6kT0cO9R52wxEL
- xe2SuCYcJiecN5CcNwweRojPSONXxvzJWFS2Urw0ca3x/JUrKypcBv0IJ
- KsTF0ZdWjrAeoCt+v7tzNpPDelSgNRMcvypSW7RgOqS1KMMWp2TSXzE7w
- PHLb1jK4YtutSR/KB+6rf3Cx64bdl6eOo+zhzcw0+h8IH8bq7QyONmdJu
- GoeEMczdgej6TDCNhoAn4HTrw6jVpzUVIADED+cvnMIHrqSPOuBtP1nw6
- qiXJupr6Ih7pMBEdvwGqZZdXabEdbjMJrN1xK0WLSZZ3OhV93ks5lEyJy A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,11016"; a="6168196"
+ bh=i2DNOxfCS127zn8QYpRJ1U9s+DlTDWfbWXS5vyx7TVk=;
+ b=DSv67osKSgyCSRIca0Y1Ur0b2ANwrZOE0JtYTI9mMv4biPBuGCP2gWt2
+ yRdwmTi6phDOa4EbWZDFlkj/+xhx0o7gxzeB6L+FaRZ/Xplvi3yhX3ZQW
+ bqufwoPMiBMR5V+KzJ6WdqUEwBSwyGFWnVk3WhVrzcDZPeLMn1HdPXyOz
+ 8bv/BPOi4f3qKWS9deS9K8qbVhhmYN6+gqRFzZCWJG58NsPYrOHDexNeM
+ TbHPlYoEb3O3UfGjNx5vjNftzWASCggzdHC2k6m7eu2VV3DOLi2wbF/hM
+ 1mDYf9KPgynZQWLjbL7R8f/wyw5rOEAFzZVg53zeu62ztJCVoCgmSiGf0 A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,11016"; a="6168201"
 X-IronPort-AV: E=Sophos;i="6.07,134,1708416000"; 
-   d="scan'208";a="6168196"
+   d="scan'208";a="6168201"
 Received: from fmviesa003.fm.intel.com ([10.60.135.143])
  by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Mar 2024 03:36:18 -0700
+ 18 Mar 2024 03:36:20 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.07,134,1708416000"; d="scan'208";a="18015804"
+X-IronPort-AV: E=Sophos;i="6.07,134,1708416000"; d="scan'208";a="18015809"
 Received: from jkrzyszt-mobl2.ger.corp.intel.com ([10.213.26.105])
  by fmviesa003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Mar 2024 03:36:16 -0700
+ 18 Mar 2024 03:36:19 -0700
 From: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
 To: igt-dev@lists.freedesktop.org
 Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
@@ -45,10 +45,10 @@ Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
  Mauro Carvalho Chehab <mchehab@kernel.org>,
  Jonathan Cavitt <jonathan.cavitt@intel.com>,
  Lucas De Marchi <lucas.demarchi@intel.com>
-Subject: [PATCH i-g-t v3 2/5] lib/kunit: Let igt_ktap_free() take care of
- pointer reset
-Date: Mon, 18 Mar 2024 11:13:28 +0100
-Message-ID: <20240318103534.701693-9-janusz.krzysztofik@linux.intel.com>
+Subject: [PATCH i-g-t v3 3/5] lib/kunit: Time out promptly on missing KTAP
+ report
+Date: Mon, 18 Mar 2024 11:13:29 +0100
+Message-ID: <20240318103534.701693-10-janusz.krzysztofik@linux.intel.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20240318103534.701693-7-janusz.krzysztofik@linux.intel.com>
 References: <20240318103534.701693-7-janusz.krzysztofik@linux.intel.com>
@@ -69,188 +69,70 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Users who store a pointer to struct igt_ktap_results, obtained from
-igt_ktap_alloc(), in a central location and then call igt_ktap_free() when
-no longer needed, now have to reset that pointer to NULL to avoid double
-free on final cleanup.  For their convenience, teach igt_ktap_free() to
-accept that location as an argument and reset the pointer after freeing
-the structure.
+If a test provides a subtest name that doesn't match any test suites
+provided by the requested KUnit test module then no KTAP report appears in
+dmesg, not even an empty one as one may expect.  As a consequence, we now
+loop endlessly around reading potential lines of the missing report from
+/dev/kmsg, until killed by IGT runner on timeout.
 
+When trying to collect names of test cases from a KTAP report generated in
+all skip mode, set an alarm that fires up 10 seconds after we start
+waiting for the report, interrupts blocking read() if pending, and
+terminates the subtest with SKIP result.
+
+As soon as we have collected a non-empty list of test cases, we may as
+well expect a non-empty KTAP report from actual execution of those test
+cases, assuming successful load of the KUnit test module in execution
+mode.  Then, there is no need to set up a similar timeout before we start
+to extract and parse that report.
+
+Suggested-by: Kamil Konieczny <kamil.konieczny@linux.intel.com>
 Signed-off-by: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
 ---
- lib/igt_kmod.c              | 12 +++++-------
- lib/igt_ktap.c              |  5 +++--
- lib/igt_ktap.h              |  2 +-
- lib/tests/igt_ktap_parser.c | 24 ++++++++++++------------
- 4 files changed, 21 insertions(+), 22 deletions(-)
+ lib/igt_kmod.c | 13 +++++++++++++
+ 1 file changed, 13 insertions(+)
 
 diff --git a/lib/igt_kmod.c b/lib/igt_kmod.c
-index ca20012a97..8a6824ea7e 100644
+index 8a6824ea7e..f0e4d5ec76 100644
 --- a/lib/igt_kmod.c
 +++ b/lib/igt_kmod.c
-@@ -1094,7 +1094,7 @@ static void __igt_kunit_legacy(struct igt_ktest *tst,
+@@ -1204,12 +1204,19 @@ static void __igt_kunit_legacy(struct igt_ktest *tst,
+ 	igt_skip_on_f(ret, "KTAP parser failed\n");
+ }
  
- 	if (igt_debug_on(pthread_create(&modprobe.thread, NULL,
- 					modprobe_task, &modprobe))) {
--		igt_ktap_free(ktap);
-+		igt_ktap_free(&ktap);
- 		igt_skip("Failed to create a modprobe thread\n");
- 	}
++static void kunit_get_tests_timeout(int signal)
++{
++	igt_skip("Timed out while trying to extract a list of KUnit test cases from /dev/kmsg\n");
++}
++
+ static bool kunit_get_tests(struct igt_list_head *tests,
+ 			    struct igt_ktest *tst,
+ 			    const char *suite,
+ 			    const char *opts,
+ 			    struct igt_ktap_results **ktap)
+ {
++	struct sigaction sigalrm = { .sa_handler = kunit_get_tests_timeout, },
++			 *saved;
+ 	struct igt_ktap_result *r, *rn;
+ 	unsigned long taints;
+ 	int flags, err;
+@@ -1239,10 +1246,16 @@ static bool kunit_get_tests(struct igt_list_head *tests,
+ 	*ktap = igt_ktap_alloc(tests);
+ 	igt_require(*ktap);
  
-@@ -1197,7 +1197,7 @@ static void __igt_kunit_legacy(struct igt_ktest *tst,
- 		break;
- 	}
- 
--	igt_ktap_free(ktap);
-+	igt_ktap_free(&ktap);
- 
- 	igt_skip_on(modprobe.err);
- 	igt_skip_on(igt_kernel_tainted(&taints));
-@@ -1243,8 +1243,7 @@ static bool kunit_get_tests(struct igt_list_head *tests,
++	igt_skip_on(sigaction(SIGALRM, &sigalrm, saved));
++	alarm(10);
++
+ 	do
  		err = kunit_kmsg_result_get(tests, NULL, tst->kmsg, *ktap);
  	while (err == -EINPROGRESS);
  
--	igt_ktap_free(*ktap);
--	*ktap = NULL;
-+	igt_ktap_free(ktap);
++	alarm(0);
++	igt_debug_on(sigaction(SIGALRM, saved, NULL));
++
+ 	igt_ktap_free(ktap);
  
  	igt_skip_on_f(err,
- 		      "KTAP parser failed while getting a list of test cases\n");
-@@ -1405,8 +1404,7 @@ static void __igt_kunit(struct igt_ktest *tst,
- 		}
- 	}
- 
--	igt_ktap_free(*ktap);
--	*ktap = NULL;
-+	igt_ktap_free(ktap);
- 
- 	igt_skip_on(modprobe.err);
- 	igt_skip_on(igt_kernel_tainted(&taints));
-@@ -1487,7 +1485,7 @@ void igt_kunit(const char *module_name, const char *suite, const char *opts)
- 	igt_fixture {
- 		char *suite_name = NULL, *case_name = NULL;
- 
--		igt_ktap_free(ktap);
-+		igt_ktap_free(&ktap);
- 
- 		kunit_results_free(&tests, &suite_name, &case_name);
- 
-diff --git a/lib/igt_ktap.c b/lib/igt_ktap.c
-index aa7ea84476..300fb2bb5a 100644
---- a/lib/igt_ktap.c
-+++ b/lib/igt_ktap.c
-@@ -310,7 +310,8 @@ struct igt_ktap_results *igt_ktap_alloc(struct igt_list_head *results)
- 	return ktap;
- }
- 
--void igt_ktap_free(struct igt_ktap_results *ktap)
-+void igt_ktap_free(struct igt_ktap_results **ktap)
- {
--	free(ktap);
-+	free(*ktap);
-+	*ktap = NULL;
- }
-diff --git a/lib/igt_ktap.h b/lib/igt_ktap.h
-index c422636bfc..7684e859b3 100644
---- a/lib/igt_ktap.h
-+++ b/lib/igt_ktap.h
-@@ -41,6 +41,6 @@ struct igt_ktap_results;
- 
- struct igt_ktap_results *igt_ktap_alloc(struct igt_list_head *results);
- int igt_ktap_parse(const char *buf, struct igt_ktap_results *ktap);
--void igt_ktap_free(struct igt_ktap_results *ktap);
-+void igt_ktap_free(struct igt_ktap_results **ktap);
- 
- #endif /* IGT_KTAP_H */
-diff --git a/lib/tests/igt_ktap_parser.c b/lib/tests/igt_ktap_parser.c
-index 6357bdf6a5..8c2d16080d 100644
---- a/lib/tests/igt_ktap_parser.c
-+++ b/lib/tests/igt_ktap_parser.c
-@@ -45,7 +45,7 @@ static void ktap_list(void)
- 	igt_assert_eq(igt_ktap_parse("    ok 4 test_case_4 # SKIP\n", ktap), -EINPROGRESS);
- 	igt_assert_eq(igt_ktap_parse("ok 3 test_suite_3\n", ktap), 0);
- 
--	igt_ktap_free(ktap);
-+	igt_ktap_free(&ktap);
- 
- 	igt_assert_eq(igt_list_length(&results), 8);
- 
-@@ -107,7 +107,7 @@ static void ktap_results(void)
- 	igt_assert_eq(igt_ktap_parse("    ok 1 test_case\n", ktap), -EINPROGRESS);
- 	igt_assert_eq(igt_ktap_parse("not ok 1 test_suite\n", ktap), 0);
- 
--	igt_ktap_free(ktap);
-+	igt_ktap_free(&ktap);
- 
- 	igt_assert_eq(igt_list_length(&results), 2);
- 
-@@ -162,7 +162,7 @@ static void ktap_success(void)
- 	igt_assert_eq(igt_ktap_parse("not ok 1 test_suite\n", ktap), 0);
- 	igt_assert_eq(igt_list_length(&results), 2);
- 
--	igt_ktap_free(ktap);
-+	igt_ktap_free(&ktap);
- 
- 	result = igt_list_last_entry(&results, result, link);
- 	igt_list_del(&result->link);
-@@ -186,48 +186,48 @@ static void ktap_top_version(void)
- 	ktap = igt_ktap_alloc(&results);
- 	igt_require(ktap);
- 	igt_assert_eq(igt_ktap_parse("1..1\n", ktap), -EPROTO);
--	igt_ktap_free(ktap);
-+	igt_ktap_free(&ktap);
- 
- 	ktap = igt_ktap_alloc(&results);
- 	igt_require(ktap);
- 	/* TODO: change to -EPROTO as soon as related workaround is dropped */
- 	igt_assert_eq(igt_ktap_parse("    KTAP version 1\n", ktap), -EINPROGRESS);
--	igt_ktap_free(ktap);
-+	igt_ktap_free(&ktap);
- 
- 	ktap = igt_ktap_alloc(&results);
- 	igt_require(ktap);
- 	igt_assert_eq(igt_ktap_parse("    # Subtest: test_suite\n", ktap), -EPROTO);
--	igt_ktap_free(ktap);
-+	igt_ktap_free(&ktap);
- 
- 	ktap = igt_ktap_alloc(&results);
- 	igt_require(ktap);
- 	igt_assert_eq(igt_ktap_parse("    1..1\n", ktap), -EPROTO);
--	igt_ktap_free(ktap);
-+	igt_ktap_free(&ktap);
- 
- 	ktap = igt_ktap_alloc(&results);
- 	igt_require(ktap);
- 	igt_assert_eq(igt_ktap_parse("        KTAP version 1\n", ktap), -EPROTO);
--	igt_ktap_free(ktap);
-+	igt_ktap_free(&ktap);
- 
- 	ktap = igt_ktap_alloc(&results);
- 	igt_require(ktap);
- 	igt_assert_eq(igt_ktap_parse("        # Subtest: test_case\n", ktap), -EPROTO);
--	igt_ktap_free(ktap);
-+	igt_ktap_free(&ktap);
- 
- 	ktap = igt_ktap_alloc(&results);
- 	igt_require(ktap);
- 	igt_assert_eq(igt_ktap_parse("        ok 1 parameter 1\n", ktap), -EPROTO);
--	igt_ktap_free(ktap);
-+	igt_ktap_free(&ktap);
- 
- 	ktap = igt_ktap_alloc(&results);
- 	igt_require(ktap);
- 	igt_assert_eq(igt_ktap_parse("    ok 1 test_case\n", ktap), -EPROTO);
--	igt_ktap_free(ktap);
-+	igt_ktap_free(&ktap);
- 
- 	ktap = igt_ktap_alloc(&results);
- 	igt_require(ktap);
- 	igt_assert_eq(igt_ktap_parse("ok 1 test_suite\n", ktap), -EPROTO);
--	igt_ktap_free(ktap);
-+	igt_ktap_free(&ktap);
- }
- 
- igt_main
 -- 
 2.43.0
 
