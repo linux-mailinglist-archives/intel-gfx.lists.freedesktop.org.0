@@ -2,83 +2,49 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 15A4687E7A3
-	for <lists+intel-gfx@lfdr.de>; Mon, 18 Mar 2024 11:47:07 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3605587E841
+	for <lists+intel-gfx@lfdr.de>; Mon, 18 Mar 2024 12:11:15 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 437C010F549;
-	Mon, 18 Mar 2024 10:47:05 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5160810EDDA;
+	Mon, 18 Mar 2024 11:11:11 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=redhat.com header.i=@redhat.com header.b="bSfmlwry";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="P/bDbIos";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from us-smtp-delivery-124.mimecast.com
- (us-smtp-delivery-124.mimecast.com [170.10.129.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id F07D910F55A
- for <intel-gfx@lists.freedesktop.org>; Mon, 18 Mar 2024 10:47:03 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1710758823;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=xYHXGTbV5ZKNYEpJyT4I7NZo2QLBfYEpRBWHchmPLg0=;
- b=bSfmlwrygFuILvGphPzzlqROSVKEZxQH+0RKhPBeFaHTnvBG0t1r8q2rDbRGbX+x4nTenA
- DL+nY0v/QJQrqX4DtVi0bTnjy5qB8TRLVkbhO6Z8PnLv9dRMDy+OpIAHbfUMWhHcTyj0Pb
- pAOEwYxrMeA4ICMYSoJPeysp9fLRKlo=
-Received: from mail-wm1-f70.google.com (mail-wm1-f70.google.com
- [209.85.128.70]) by relay.mimecast.com with ESMTP with STARTTLS
- (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
- us-mta-125-Tfjq82phOuuwL_K5NnpM_A-1; Mon, 18 Mar 2024 06:47:01 -0400
-X-MC-Unique: Tfjq82phOuuwL_K5NnpM_A-1
-Received: by mail-wm1-f70.google.com with SMTP id
- 5b1f17b1804b1-41413823c1bso2107985e9.1
- for <intel-gfx@lists.freedesktop.org>; Mon, 18 Mar 2024 03:47:01 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1710758820; x=1711363620;
- h=in-reply-to:content-transfer-encoding:content-disposition
- :mime-version:references:message-id:subject:cc:to:from:date
- :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
- bh=xYHXGTbV5ZKNYEpJyT4I7NZo2QLBfYEpRBWHchmPLg0=;
- b=YKdBdb5Ix1NQYCHaCX6SkiQNNQr8nDWHMPkwqgdadwK9r/3MiJI3AvfbbFlj0+3Zrg
- NVvswnVisztuIlErRpJ97/iOLNhdukSYzGisRzrRIMIOe/mvIzz6tRstP4KXS4psU/r1
- wgEAzgNM9l2h9jnFLxMmFfankWJPaeo6tCrkjJz7JdVGAJw1Hy8BMFHqR7em+pWH+iyP
- yVcu2b1CnF1qKYmRlH2K1B4I8/lLX/v8EQH3T3/IJUcGKbGN0/t6zuHdUU2rGVM1xK0q
- lL/QAmtWb4xpmEQ9diXPy5knCOfbVEtzON13qkZMWdJUGMw6RjtlkzwUEy8J43JQ/AI7
- 9X6w==
-X-Forwarded-Encrypted: i=1;
- AJvYcCW5vGnDzxgLcPL7jxEZMJB5M5AJBjRN+Z2a69w568Cs22EYMPxwLQw13YmBBorVTQOzIp+eOIsXCy9EapYH0tT/R7hfzB8jhhjxfMjeNmh9
-X-Gm-Message-State: AOJu0YzDaWAx/fMSDPZVMmsMRQs81F6Lq3Shs8xtmt7ZeveSW8HydXCx
- SqFB6mzkHyykut/NKZWLSj/VhtV7mqpHGgor9BcOlAKX41VSTDdE2O8YPVrhiNa+Apvb4E3v9c/
- Bf0H9sl7gnFYmEGe+tFdBGrjWnT3JAQ2d3o+3+rxncSyN8xSnqGwA5CeUgtidu281aQ==
-X-Received: by 2002:a05:600c:3551:b0:412:b02d:71f9 with SMTP id
- i17-20020a05600c355100b00412b02d71f9mr10801306wmq.2.1710758820413; 
- Mon, 18 Mar 2024 03:47:00 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IHKwmAry8ZmTZlDG9qfZrs4nUzArcveA5GDleIbOm4et+Xe2iZV20kXzjXlX2KDd69lZeQ0eQ==
-X-Received: by 2002:a05:600c:3551:b0:412:b02d:71f9 with SMTP id
- i17-20020a05600c355100b00412b02d71f9mr10801254wmq.2.1710758820010; 
- Mon, 18 Mar 2024 03:47:00 -0700 (PDT)
-Received: from toolbox ([2001:9e8:89a6:b300:cdbb:8c1e:2aef:a12d])
- by smtp.gmail.com with ESMTPSA id
- q13-20020a05600c46cd00b00412e5f32591sm14281976wmo.28.2024.03.18.03.46.59
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Mon, 18 Mar 2024 03:46:59 -0700 (PDT)
-Date: Mon, 18 Mar 2024 11:46:58 +0100
-From: Sebastian Wick <sebastian.wick@redhat.com>
-To: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-Cc: Suraj Kandpal <suraj.kandpal@intel.com>,
- intel-gfx@lists.freedesktop.org, uma.shankar@intel.com,
- ankit.k.nautiyal@intel.com
-Subject: Re: drm/i915/dp: Enable AUX based backlight for HDR
-Message-ID: <20240318104658.GB1004070@toolbox>
-References: <20240315050529.1987425-2-suraj.kandpal@intel.com>
- <20240315113352.GA820980@toolbox> <ZfQ3Y46jdr5QrL_v@intel.com>
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A5B5310EDDA;
+ Mon, 18 Mar 2024 11:11:09 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1710760269; x=1742296269;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=8AvsA15UgAI0L9njipCoxWiKDQpPhGRkapasjgHJhCc=;
+ b=P/bDbIosr5iiNp9sfbDWQUmSB9MhTGeM3D+SSNw8dDXuR1S8A+De1HEi
+ JqgBssJpCgUnFyTc54s/QjaCtwk8h/NVzqfsLl91BNq6M9feieJtVEikl
+ 2mud+v6bEXLmZLXhGU5TGCLRJ7Fjx7Wr3x3l595YxVYOyUZeFSYTQJE9J
+ abFE0/dkrrtdUM4NUhewOaZ/MQv0AZ/0x/FImyDAQCJYRR4mxHGLYdug+
+ cimSzHk8Nsuoj6Hf2hNO7OeSUnyfh31RDQTDwTCMw+HwveVwiV2oWLyBs
+ i6MiAC/soOtUH3r3J2Hy2t8PVSEWW59w+ly3PevL3fmJOQU8jgckIZzP9 A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,11016"; a="31002312"
+X-IronPort-AV: E=Sophos;i="6.07,134,1708416000"; d="scan'208";a="31002312"
+Received: from orviesa010.jf.intel.com ([10.64.159.150])
+ by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 18 Mar 2024 04:11:09 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.07,134,1708416000"; d="scan'208";a="13337215"
+Received: from srr4-3-linux-106-armuthy.iind.intel.com ([10.190.238.56])
+ by orviesa010.jf.intel.com with ESMTP; 18 Mar 2024 04:11:08 -0700
+From: Arun R Murthy <arun.r.murthy@intel.com>
+To: intel-gfx@lists.freedesktop.org,
+	intel-xe@lists.freedesktop.org
+Cc: Arun R Murthy <arun.r.murthy@intel.com>
+Subject: [PATCH] drm/xe/display: fix potential overflow when multiplying 2 u32
+Date: Mon, 18 Mar 2024 16:31:03 +0530
+Message-Id: <20240318110103.3872169-1-arun.r.murthy@intel.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-In-Reply-To: <ZfQ3Y46jdr5QrL_v@intel.com>
-X-Mimecast-Spam-Score: 0
-X-Mimecast-Originator: redhat.com
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -95,36 +61,61 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, Mar 15, 2024 at 01:56:19PM +0200, Ville Syrjälä wrote:
-> On Fri, Mar 15, 2024 at 12:33:52PM +0100, Sebastian Wick wrote:
-> > On Fri, Mar 15, 2024 at 10:35:30AM +0530, Suraj Kandpal wrote:
-> <snip>
-> > > @@ -318,11 +346,24 @@ intel_dp_aux_hdr_setup_backlight(struct intel_connector *connector, enum pipe pi
-> > >  		panel->backlight.min = 0;
-> > >  	}
-> > >  
-> > > +	if (DISPLAY_VER(i915) < 11) {
-> > 
-> > This should check for INTEL_EDP_HDR_TCON_SDP_COLORIMETRY_CAP instead!
-> > There is no reason to bind this to any hardware version if the hardware
-> > itself can tell you if it supports SDP signalling or needs to set it via
-> > AUX.
-> 
-> That should be OK for icl+.
-> 
-> To extend this to pre-icl hardware I think we pretty much need both checks:
-> - has_gamut_metadata_dip() -> can we actually transmit the SDP?
-> - INTEL_EDP_HDR_TCON_SDP_COLORIMETRY_CAP -> can the tcon extract the data from the SDP?
-> and if either is false then we fall back to AUX.
+Multiplying XE_PAGE_SIZE with another u32 and the product stored in
+u64 can potentially lead to overflow, use mul_u32_u32 instead.
 
-Right, that's something my patch is missing as well.
+Signed-off-by: Arun R Murthy <arun.r.murthy@intel.com>
+---
+ drivers/gpu/drm/xe/display/xe_fb_pin.c | 10 +++++-----
+ 1 file changed, 5 insertions(+), 5 deletions(-)
 
-> We should also change intel_dp_add_properties() to check
-> the tcon caps instead of relying on has_gamut_metadata_dip(),
-> 	for eDP.
-> 
-> -- 
-> Ville Syrjälä
-> Intel
-> 
+diff --git a/drivers/gpu/drm/xe/display/xe_fb_pin.c b/drivers/gpu/drm/xe/display/xe_fb_pin.c
+index 722c84a56607..e0b511ff7eab 100644
+--- a/drivers/gpu/drm/xe/display/xe_fb_pin.c
++++ b/drivers/gpu/drm/xe/display/xe_fb_pin.c
+@@ -29,7 +29,7 @@ write_dpt_rotated(struct xe_bo *bo, struct iosys_map *map, u32 *dpt_ofs, u32 bo_
+ 		u32 src_idx = src_stride * (height - 1) + column + bo_ofs;
+ 
+ 		for (row = 0; row < height; row++) {
+-			u64 pte = ggtt->pt_ops->pte_encode_bo(bo, src_idx * XE_PAGE_SIZE,
++			u64 pte = ggtt->pt_ops->pte_encode_bo(bo, mul_u32_u32(src_idx, XE_PAGE_SIZE),
+ 							      xe->pat.idx[XE_CACHE_WB]);
+ 
+ 			iosys_map_wr(map, *dpt_ofs, u64, pte);
+@@ -61,7 +61,7 @@ write_dpt_remapped(struct xe_bo *bo, struct iosys_map *map, u32 *dpt_ofs,
+ 
+ 		for (column = 0; column < width; column++) {
+ 			iosys_map_wr(map, *dpt_ofs, u64,
+-				     pte_encode_bo(bo, src_idx * XE_PAGE_SIZE,
++				     pte_encode_bo(bo, mul_u32_u32(src_idx, XE_PAGE_SIZE),
+ 				     xe->pat.idx[XE_CACHE_WB]));
+ 
+ 			*dpt_ofs += 8;
+@@ -118,7 +118,7 @@ static int __xe_pin_fb_vma_dpt(struct intel_framebuffer *fb,
+ 		u32 x;
+ 
+ 		for (x = 0; x < size / XE_PAGE_SIZE; x++) {
+-			u64 pte = ggtt->pt_ops->pte_encode_bo(bo, x * XE_PAGE_SIZE,
++			u64 pte = ggtt->pt_ops->pte_encode_bo(bo, mul_u32_u32(x, XE_PAGE_SIZE),
+ 							      xe->pat.idx[XE_CACHE_WB]);
+ 
+ 			iosys_map_wr(&dpt->vmap, x * 8, u64, pte);
+@@ -164,7 +164,7 @@ write_ggtt_rotated(struct xe_bo *bo, struct xe_ggtt *ggtt, u32 *ggtt_ofs, u32 bo
+ 		u32 src_idx = src_stride * (height - 1) + column + bo_ofs;
+ 
+ 		for (row = 0; row < height; row++) {
+-			u64 pte = ggtt->pt_ops->pte_encode_bo(bo, src_idx * XE_PAGE_SIZE,
++			u64 pte = ggtt->pt_ops->pte_encode_bo(bo, mul_u32_u32(src_idx, XE_PAGE_SIZE),
+ 							      xe->pat.idx[XE_CACHE_WB]);
+ 
+ 			xe_ggtt_set_pte(ggtt, *ggtt_ofs, pte);
+@@ -381,4 +381,4 @@ struct i915_address_space *intel_dpt_create(struct intel_framebuffer *fb)
+ void intel_dpt_destroy(struct i915_address_space *vm)
+ {
+ 	return;
+-}
+\ No newline at end of file
++}
+-- 
+2.25.1
 
