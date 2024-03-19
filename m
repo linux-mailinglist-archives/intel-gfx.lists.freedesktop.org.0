@@ -2,29 +2,57 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 151DB87FBA6
-	for <lists+intel-gfx@lfdr.de>; Tue, 19 Mar 2024 11:17:53 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0C20387FBAD
+	for <lists+intel-gfx@lfdr.de>; Tue, 19 Mar 2024 11:21:08 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8798710E652;
-	Tue, 19 Mar 2024 10:17:51 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7417510F980;
+	Tue, 19 Mar 2024 10:21:05 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Lm9ngDmc";
+	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from 8e613ede5ea5 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2C92510E652;
- Tue, 19 Mar 2024 10:17:50 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============1138342759384522352=="
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.13])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 53C4610F990
+ for <intel-gfx@lists.freedesktop.org>; Tue, 19 Mar 2024 10:21:04 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1710843664; x=1742379664;
+ h=from:to:subject:in-reply-to:references:date:message-id:
+ mime-version:content-transfer-encoding;
+ bh=DC+VtjdRZNdTlbeX6ZcDyuWuVtG1ohPRLo+nd6RrXJk=;
+ b=Lm9ngDmcB5zd3PX84vUsuG5mBrCD05yOulZdMuvaAwqrmJ7HUllyh0kH
+ YO5JZGyXvtS1JGLwKfXBSVPUvh9oUoYzvyTgAeC1Hod1eGUNE6mIIyL8v
+ Ujp22MfoGUnudbzAXGV8Ro5dX+I/wy0umfFt9FVobp1eeHtVG0hfLfEcM
+ y+73rQPWga0DCqxpLLTf4fJE11DhkwzoxmXM1O1H/2HnFrEJ4a2Bbj3Jr
+ Fb+0bwisoUCAqui/kXKrRfgHCnZsnub8UbmvZnrujpa9K0ZzXs82trw+2
+ UDEpES5U002l+XpRjHMe8qVFPxyoD+8j4ICAT8MlIgxjXFqS9moddMMtD A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,11017"; a="8644556"
+X-IronPort-AV: E=Sophos;i="6.07,136,1708416000"; 
+   d="scan'208";a="8644556"
+Received: from orviesa010.jf.intel.com ([10.64.159.150])
+ by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 Mar 2024 03:21:03 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.07,136,1708416000"; d="scan'208";a="13662389"
+Received: from rcritchl-mobl1.ger.corp.intel.com (HELO localhost)
+ ([10.252.36.139])
+ by orviesa010-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 Mar 2024 03:21:01 -0700
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Ville Syrjala <ville.syrjala@linux.intel.com>,
+ intel-gfx@lists.freedesktop.org
+Subject: Re: [PATCH 2/2] drm/i915/bios: Use the platform's port_mask when
+ there is no VBT
+In-Reply-To: <20240319092443.15769-2-ville.syrjala@linux.intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20240319092443.15769-1-ville.syrjala@linux.intel.com>
+ <20240319092443.15769-2-ville.syrjala@linux.intel.com>
+Date: Tue, 19 Mar 2024 12:20:58 +0200
+Message-ID: <87h6h2o73p.fsf@intel.com>
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Fi=2ECI=2EBAT=3A_success_for_Enable_Adaptive_Sync_SDP_Su?=
- =?utf-8?q?pport_for_DP_=28rev20=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Mitul Golani" <mitulkumar.ajitkumar.golani@intel.com>
-Cc: intel-gfx@lists.freedesktop.org
-Date: Tue, 19 Mar 2024 10:17:50 -0000
-Message-ID: <171084347018.902384.11587008737329603069@8e613ede5ea5>
-X-Patchwork-Hint: ignore
-References: <20240311094238.3320888-1-mitulkumar.ajitkumar.golani@intel.com>
-In-Reply-To: <20240311094238.3320888-1-mitulkumar.ajitkumar.golani@intel.com>
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -37,232 +65,68 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============1138342759384522352==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+On Tue, 19 Mar 2024, Ville Syrjala <ville.syrjala@linux.intel.com> wrote:
+> From: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
+>
+> When we have no VBT we currently assume ports A-F are
+> all pontially valid for every platform. That is nonsense.
+> Grab the bitmask of valid ports from the runtime info
+> instead.
+>
+> Although the defaults we actually fill here look semi-sensible
+> only for hsw-skl era hardware. Dunno if we should try to do
+> something more appropriate here for other platforms,
+> or just try to nuke the whole thing?
 
-== Series Details ==
+Seems like doing something appropriate is an endless task. We should
+never have added the defaults, but here we are. Can we remove them for
+newer platforms? There's only one way to find out...
 
-Series: Enable Adaptive Sync SDP Support for DP (rev20)
-URL   : https://patchwork.freedesktop.org/series/126829/
-State : success
+Commit 828ccb31cf41 ("drm/i915/icl: Add TypeC ports only if VBT is
+present") fails to mention if this was to address a real issue on ICL
+without VBT, or just playing it safe.
 
-== Summary ==
+> Signed-off-by: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
+> ---
+>  drivers/gpu/drm/i915/display/intel_bios.c | 3 +--
+>  1 file changed, 1 insertion(+), 2 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/i915/display/intel_bios.c b/drivers/gpu/drm/=
+i915/display/intel_bios.c
+> index c13a98431a7b..2abd2d7ceda2 100644
+> --- a/drivers/gpu/drm/i915/display/intel_bios.c
+> +++ b/drivers/gpu/drm/i915/display/intel_bios.c
+> @@ -2890,9 +2890,8 @@ init_vbt_panel_defaults(struct intel_panel *panel)
+>  static void
+>  init_vbt_missing_defaults(struct drm_i915_private *i915)
+>  {
+> +	unsigned int ports =3D DISPLAY_RUNTIME_INFO(i915)->port_mask;
+>  	enum port port;
+> -	int ports =3D BIT(PORT_A) | BIT(PORT_B) | BIT(PORT_C) |
+> -		    BIT(PORT_D) | BIT(PORT_E) | BIT(PORT_F);
 
-CI Bug Log - changes from CI_DRM_14445 -> Patchwork_126829v20
-====================================================
+I was wondering why we don't just
 
-Summary
--------
+-#define for_each_port(__port) \
+-	for ((__port) =3D PORT_A; (__port) < I915_MAX_PORTS; (__port)++)
++#define for_each_port(__i915, __port)					\
++	for_each_set_bit(__port, &DISPLAY_RUNTIME_INFO(__i915)->port_mask, sizeof=
+(DISPLAY_RUNTIME_INFO(__i915)->port_mask))
 
-  **SUCCESS**
+but then we have DSI code that relies on it returning PORT_A for DSI.
 
-  No regressions found.
+Ugh. It's all so brittle.
 
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_126829v20/index.html
+Anyway, the patch is
 
-Participating hosts (34 -> 34)
-------------------------------
+Reviewed-by: Jani Nikula <jani.nikula@intel.com>
 
-  Additional (1): bat-kbl-2 
-  Missing    (1): fi-snb-2520m 
+>=20=20
+>  	if (!HAS_DDI(i915) && !IS_CHERRYVIEW(i915))
+>  		return;
 
-Known issues
-------------
-
-  Here are the changes found in Patchwork_126829v20 that come from known issues:
-
-### CI changes ###
-
-#### Issues hit ####
-
-  * boot:
-    - bat-arls-3:         [PASS][1] -> [FAIL][2] ([i915#10234])
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14445/bat-arls-3/boot.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_126829v20/bat-arls-3/boot.html
-    - bat-jsl-1:          [PASS][3] -> [FAIL][4] ([i915#8293])
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14445/bat-jsl-1/boot.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_126829v20/bat-jsl-1/boot.html
-    - fi-apl-guc:         [PASS][5] -> [FAIL][6] ([i915#8293])
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14445/fi-apl-guc/boot.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_126829v20/fi-apl-guc/boot.html
-
-  
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@fbdev@info:
-    - bat-kbl-2:          NOTRUN -> [SKIP][7] ([i915#1849])
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_126829v20/bat-kbl-2/igt@fbdev@info.html
-
-  * igt@gem_lmem_swapping@parallel-random-engines:
-    - bat-kbl-2:          NOTRUN -> [SKIP][8] +39 other tests skip
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_126829v20/bat-kbl-2/igt@gem_lmem_swapping@parallel-random-engines.html
-
-  * igt@i915_module_load@load:
-    - bat-dg2-9:          [PASS][9] -> [DMESG-WARN][10] ([i915#10014])
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14445/bat-dg2-9/igt@i915_module_load@load.html
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_126829v20/bat-dg2-9/igt@i915_module_load@load.html
-
-  * igt@i915_selftest@live@hangcheck:
-    - bat-adls-6:         NOTRUN -> [DMESG-WARN][11] ([i915#5591])
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_126829v20/bat-adls-6/igt@i915_selftest@live@hangcheck.html
-
-  
-#### Possible fixes ####
-
-  * igt@i915_selftest@live@gt_engines:
-    - bat-adls-6:         [TIMEOUT][12] ([i915#10026]) -> [PASS][13]
-   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14445/bat-adls-6/igt@i915_selftest@live@gt_engines.html
-   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_126829v20/bat-adls-6/igt@i915_selftest@live@gt_engines.html
-
-  
-  [i915#10014]: https://gitlab.freedesktop.org/drm/intel/issues/10014
-  [i915#10026]: https://gitlab.freedesktop.org/drm/intel/issues/10026
-  [i915#10234]: https://gitlab.freedesktop.org/drm/intel/issues/10234
-  [i915#1849]: https://gitlab.freedesktop.org/drm/intel/issues/1849
-  [i915#5591]: https://gitlab.freedesktop.org/drm/intel/issues/5591
-  [i915#8293]: https://gitlab.freedesktop.org/drm/intel/issues/8293
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_14445 -> Patchwork_126829v20
-
-  CI-20190529: 20190529
-  CI_DRM_14445: 5dc888452748e07057461297746e83b1e630b226 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_7769: 7769
-  Patchwork_126829v20: 5dc888452748e07057461297746e83b1e630b226 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-### Linux commits
-
-923001805958 drm/i915/display: Read/Write Adaptive Sync SDP
-6c6f05f66ddb drm/i915/display: Compute vrr_vsync params
-282a83ceed9b drm/i915/display: Add state checker for Adaptive Sync SDP
-4231a57cad4b drm/i915/display: Compute AS SDP parameters
-c0104fba0907 drm/i915/dp: Add wrapper function to check AS SDP
-d6acb0b04f1c drm/i915/dp: Add Read/Write support for Adaptive Sync SDP
-e5873f1b4767 drm/i915/display: Add crtc state dump for Adaptive Sync SDP
-70571f7cf956 drm: Add Adaptive Sync SDP logging
-4b7ad0af9ae6 drm/dp: Add support to indicate if sink supports AS SDP
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_126829v20/index.html
-
---===============1138342759384522352==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>Enable Adaptive Sync SDP Support for DP (rev20)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/126829/">https://patchwork.freedesktop.org/series/126829/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_126829v20/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_126829v20/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_14445 -&gt; Patchwork_126829v20</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_126829v20/index.html</p>
-<h2>Participating hosts (34 -&gt; 34)</h2>
-<p>Additional (1): bat-kbl-2 <br />
-  Missing    (1): fi-snb-2520m </p>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_126829v20 that come from known issues:</p>
-<h3>CI changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>boot:<ul>
-<li>bat-arls-3:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14445/bat-arls-3/boot.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_126829v20/bat-arls-3/boot.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/10234">i915#10234</a>)</li>
-<li>bat-jsl-1:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14445/bat-jsl-1/boot.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_126829v20/bat-jsl-1/boot.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/8293">i915#8293</a>)</li>
-<li>fi-apl-guc:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14445/fi-apl-guc/boot.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_126829v20/fi-apl-guc/boot.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/8293">i915#8293</a>)</li>
-</ul>
-</li>
-</ul>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@fbdev@info:</p>
-<ul>
-<li>bat-kbl-2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_126829v20/bat-kbl-2/igt@fbdev@info.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1849">i915#1849</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_lmem_swapping@parallel-random-engines:</p>
-<ul>
-<li>bat-kbl-2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_126829v20/bat-kbl-2/igt@gem_lmem_swapping@parallel-random-engines.html">SKIP</a> +39 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_module_load@load:</p>
-<ul>
-<li>bat-dg2-9:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14445/bat-dg2-9/igt@i915_module_load@load.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_126829v20/bat-dg2-9/igt@i915_module_load@load.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/10014">i915#10014</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@hangcheck:</p>
-<ul>
-<li>bat-adls-6:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_126829v20/bat-adls-6/igt@i915_selftest@live@hangcheck.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/5591">i915#5591</a>)</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>igt@i915_selftest@live@gt_engines:<ul>
-<li>bat-adls-6:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14445/bat-adls-6/igt@i915_selftest@live@gt_engines.html">TIMEOUT</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/10026">i915#10026</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_126829v20/bat-adls-6/igt@i915_selftest@live@gt_engines.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_14445 -&gt; Patchwork_126829v20</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_14445: 5dc888452748e07057461297746e83b1e630b226 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_7769: 7769<br />
-  Patchwork_126829v20: 5dc888452748e07057461297746e83b1e630b226 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<h3>Linux commits</h3>
-<p>923001805958 drm/i915/display: Read/Write Adaptive Sync SDP<br />
-6c6f05f66ddb drm/i915/display: Compute vrr_vsync params<br />
-282a83ceed9b drm/i915/display: Add state checker for Adaptive Sync SDP<br />
-4231a57cad4b drm/i915/display: Compute AS SDP parameters<br />
-c0104fba0907 drm/i915/dp: Add wrapper function to check AS SDP<br />
-d6acb0b04f1c drm/i915/dp: Add Read/Write support for Adaptive Sync SDP<br />
-e5873f1b4767 drm/i915/display: Add crtc state dump for Adaptive Sync SDP<br />
-70571f7cf956 drm: Add Adaptive Sync SDP logging<br />
-4b7ad0af9ae6 drm/dp: Add support to indicate if sink supports AS SDP</p>
-
-</body>
-</html>
-
---===============1138342759384522352==--
+--=20
+Jani Nikula, Intel
