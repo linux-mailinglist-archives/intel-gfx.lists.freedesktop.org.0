@@ -2,29 +2,62 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5AB4687F892
-	for <lists+intel-gfx@lfdr.de>; Tue, 19 Mar 2024 08:46:18 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 347F487FA4F
+	for <lists+intel-gfx@lfdr.de>; Tue, 19 Mar 2024 10:07:13 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5D6E710F479;
-	Tue, 19 Mar 2024 07:46:16 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id ABE3610F8A4;
+	Tue, 19 Mar 2024 09:07:11 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="gHxLpeKj";
+	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from 8e613ede5ea5 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3818010F185;
- Tue, 19 Mar 2024 07:46:15 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============4933546951156543222=="
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.13])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E31D510F8A4
+ for <intel-gfx@lists.freedesktop.org>; Tue, 19 Mar 2024 09:07:10 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1710839231; x=1742375231;
+ h=mime-version:content-transfer-encoding:in-reply-to:
+ references:to:from:subject:cc:message-id:date;
+ bh=6qDaD5gVR9BBFil0216lV95S0F2TXpL71pHcjsMc9aE=;
+ b=gHxLpeKj6eIy8jJV1p0ld5AdU1/fNgR0EafOiPyEuL3kCmXUv4B+qstn
+ HfEbEKyKRV8zigkpfqBcNEvuhUGVB6/ltCOOdAn9sgiY1kD7LYtmCNSqY
+ WJOeVmVt0HE9BY8lNsMETmtzNclzljWpkDMxUrCc71/Zg6l2GUFMTSZK9
+ XFv0iNb9GA2yVYNhrxfz8StBV/l9hJ7opi/9Tanx6AI6iUayfJvn3nwAc
+ ylz9GXOCL7Bs1Wx43Wp68tSeFKLV0YaSSuy9/R3UYC+w3ZRiIWvOxa/yb
+ Q9/FAwgmir3MKxf4QCzqpIn0C5vXBgLXpcykpSadcGXb5xLIaS3WtK4uu A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,11017"; a="8636533"
+X-IronPort-AV: E=Sophos;i="6.07,136,1708416000"; 
+   d="scan'208";a="8636533"
+Received: from fmviesa008.fm.intel.com ([10.60.135.148])
+ by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 Mar 2024 02:07:10 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.07,136,1708416000"; d="scan'208";a="13784783"
+Received: from unknown (HELO localhost) ([10.245.245.23])
+ by fmviesa008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 Mar 2024 02:07:08 -0700
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=97_Fi=2ECI=2EBAT=3A_failure_for_Enable_Adaptive_Sync_SDP_Su?=
- =?utf-8?q?pport_for_DP_=28rev20=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Mitul Golani" <mitulkumar.ajitkumar.golani@intel.com>
-Cc: intel-gfx@lists.freedesktop.org
-Date: Tue, 19 Mar 2024 07:46:15 -0000
-Message-ID: <171083437522.900422.14706807271985151384@8e613ede5ea5>
-X-Patchwork-Hint: ignore
-References: <20240311094238.3320888-1-mitulkumar.ajitkumar.golani@intel.com>
-In-Reply-To: <20240311094238.3320888-1-mitulkumar.ajitkumar.golani@intel.com>
+Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <0b7482ea82d770474cb6d1cc342beab58372143d.camel@intel.com>
+References: <20240308144643.137831-1-joonas.lahtinen@linux.intel.com>
+ <ZesnfFTu3GLJVIrj@intel.com>
+ <171042049765.18343.17884019367529376664@jlahtine-mobl.ger.corp.intel.com>
+ <0b7482ea82d770474cb6d1cc342beab58372143d.camel@intel.com>
+To: "Vivi, Rodrigo" <rodrigo.vivi@intel.com>
+From: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
+Subject: Re: [PATCH] drm/i915: Add includes for BUG_ON/BUILD_BUG_ON in
+ i915_memcpy.c
+Cc: "chris.p.wilson@linux.intel.com" <chris.p.wilson@linux.intel.com>,
+ "tursulin@ursulin.net" <tursulin@ursulin.net>,
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
+ "jani.nikula@linux.intel.com" <jani.nikula@linux.intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+Message-ID: <171083922601.5991.17880071082447108987@jlahtine-mobl.ger.corp.intel.com>
+User-Agent: alot/0.8.1
+Date: Tue, 19 Mar 2024 11:07:06 +0200
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -37,254 +70,100 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============4933546951156543222==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+Pushed this, thanks for the review.
 
-== Series Details ==
+Regards, Joonas
 
-Series: Enable Adaptive Sync SDP Support for DP (rev20)
-URL   : https://patchwork.freedesktop.org/series/126829/
-State : failure
-
-== Summary ==
-
-CI Bug Log - changes from CI_DRM_14445 -> Patchwork_126829v20
-====================================================
-
-Summary
--------
-
-  **FAILURE**
-
-  Serious unknown changes coming with Patchwork_126829v20 absolutely need to be
-  verified manually.
-  
-  If you think the reported changes have nothing to do with the changes
-  introduced in Patchwork_126829v20, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them
-  to document this new failure mode, which will reduce false positives in CI.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_126829v20/index.html
-
-Participating hosts (34 -> 34)
-------------------------------
-
-  Additional (1): bat-kbl-2 
-  Missing    (1): fi-snb-2520m 
-
-Possible new issues
--------------------
-
-  Here are the unknown changes that may have been introduced in Patchwork_126829v20:
-
-### IGT changes ###
-
-#### Possible regressions ####
-
-  * igt@i915_module_load@load:
-    - bat-dg2-9:          [PASS][1] -> [DMESG-WARN][2]
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14445/bat-dg2-9/igt@i915_module_load@load.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_126829v20/bat-dg2-9/igt@i915_module_load@load.html
-
-  
-Known issues
-------------
-
-  Here are the changes found in Patchwork_126829v20 that come from known issues:
-
-### CI changes ###
-
-#### Issues hit ####
-
-  * boot:
-    - bat-arls-3:         [PASS][3] -> [FAIL][4] ([i915#10234])
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14445/bat-arls-3/boot.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_126829v20/bat-arls-3/boot.html
-    - bat-jsl-1:          [PASS][5] -> [FAIL][6] ([i915#8293])
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14445/bat-jsl-1/boot.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_126829v20/bat-jsl-1/boot.html
-    - fi-apl-guc:         [PASS][7] -> [FAIL][8] ([i915#8293])
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14445/fi-apl-guc/boot.html
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_126829v20/fi-apl-guc/boot.html
-
-  
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@fbdev@info:
-    - bat-kbl-2:          NOTRUN -> [SKIP][9] ([i915#1849])
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_126829v20/bat-kbl-2/igt@fbdev@info.html
-
-  * igt@gem_lmem_swapping@parallel-random-engines:
-    - bat-kbl-2:          NOTRUN -> [SKIP][10] +39 other tests skip
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_126829v20/bat-kbl-2/igt@gem_lmem_swapping@parallel-random-engines.html
-
-  * igt@i915_selftest@live@hangcheck:
-    - bat-adls-6:         NOTRUN -> [DMESG-WARN][11] ([i915#5591])
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_126829v20/bat-adls-6/igt@i915_selftest@live@hangcheck.html
-
-  
-#### Possible fixes ####
-
-  * igt@i915_selftest@live@gt_engines:
-    - bat-adls-6:         [TIMEOUT][12] ([i915#10026]) -> [PASS][13]
-   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14445/bat-adls-6/igt@i915_selftest@live@gt_engines.html
-   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_126829v20/bat-adls-6/igt@i915_selftest@live@gt_engines.html
-
-  
-  [i915#10026]: https://gitlab.freedesktop.org/drm/intel/issues/10026
-  [i915#10234]: https://gitlab.freedesktop.org/drm/intel/issues/10234
-  [i915#1849]: https://gitlab.freedesktop.org/drm/intel/issues/1849
-  [i915#5591]: https://gitlab.freedesktop.org/drm/intel/issues/5591
-  [i915#8293]: https://gitlab.freedesktop.org/drm/intel/issues/8293
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_14445 -> Patchwork_126829v20
-
-  CI-20190529: 20190529
-  CI_DRM_14445: 5dc888452748e07057461297746e83b1e630b226 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_7769: 7769
-  Patchwork_126829v20: 5dc888452748e07057461297746e83b1e630b226 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-### Linux commits
-
-923001805958 drm/i915/display: Read/Write Adaptive Sync SDP
-6c6f05f66ddb drm/i915/display: Compute vrr_vsync params
-282a83ceed9b drm/i915/display: Add state checker for Adaptive Sync SDP
-4231a57cad4b drm/i915/display: Compute AS SDP parameters
-c0104fba0907 drm/i915/dp: Add wrapper function to check AS SDP
-d6acb0b04f1c drm/i915/dp: Add Read/Write support for Adaptive Sync SDP
-e5873f1b4767 drm/i915/display: Add crtc state dump for Adaptive Sync SDP
-70571f7cf956 drm: Add Adaptive Sync SDP logging
-4b7ad0af9ae6 drm/dp: Add support to indicate if sink supports AS SDP
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_126829v20/index.html
-
---===============4933546951156543222==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>Enable Adaptive Sync SDP Support for DP (rev20)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/126829/">https://patchwork.freedesktop.org/series/126829/</a></td></tr>
-<tr><td><b>State:</b></td><td>failure</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_126829v20/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_126829v20/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_14445 -&gt; Patchwork_126829v20</h1>
-<h2>Summary</h2>
-<p><strong>FAILURE</strong></p>
-<p>Serious unknown changes coming with Patchwork_126829v20 absolutely need to be<br />
-  verified manually.</p>
-<p>If you think the reported changes have nothing to do with the changes<br />
-  introduced in Patchwork_126829v20, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them<br />
-  to document this new failure mode, which will reduce false positives in CI.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_126829v20/index.html</p>
-<h2>Participating hosts (34 -&gt; 34)</h2>
-<p>Additional (1): bat-kbl-2 <br />
-  Missing    (1): fi-snb-2520m </p>
-<h2>Possible new issues</h2>
-<p>Here are the unknown changes that may have been introduced in Patchwork_126829v20:</p>
-<h3>IGT changes</h3>
-<h4>Possible regressions</h4>
-<ul>
-<li>igt@i915_module_load@load:<ul>
-<li>bat-dg2-9:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14445/bat-dg2-9/igt@i915_module_load@load.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_126829v20/bat-dg2-9/igt@i915_module_load@load.html">DMESG-WARN</a></li>
-</ul>
-</li>
-</ul>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_126829v20 that come from known issues:</p>
-<h3>CI changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>boot:<ul>
-<li>bat-arls-3:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14445/bat-arls-3/boot.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_126829v20/bat-arls-3/boot.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/10234">i915#10234</a>)</li>
-<li>bat-jsl-1:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14445/bat-jsl-1/boot.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_126829v20/bat-jsl-1/boot.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/8293">i915#8293</a>)</li>
-<li>fi-apl-guc:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14445/fi-apl-guc/boot.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_126829v20/fi-apl-guc/boot.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/8293">i915#8293</a>)</li>
-</ul>
-</li>
-</ul>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@fbdev@info:</p>
-<ul>
-<li>bat-kbl-2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_126829v20/bat-kbl-2/igt@fbdev@info.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1849">i915#1849</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_lmem_swapping@parallel-random-engines:</p>
-<ul>
-<li>bat-kbl-2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_126829v20/bat-kbl-2/igt@gem_lmem_swapping@parallel-random-engines.html">SKIP</a> +39 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@hangcheck:</p>
-<ul>
-<li>bat-adls-6:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_126829v20/bat-adls-6/igt@i915_selftest@live@hangcheck.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/5591">i915#5591</a>)</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>igt@i915_selftest@live@gt_engines:<ul>
-<li>bat-adls-6:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14445/bat-adls-6/igt@i915_selftest@live@gt_engines.html">TIMEOUT</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/10026">i915#10026</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_126829v20/bat-adls-6/igt@i915_selftest@live@gt_engines.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_14445 -&gt; Patchwork_126829v20</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_14445: 5dc888452748e07057461297746e83b1e630b226 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_7769: 7769<br />
-  Patchwork_126829v20: 5dc888452748e07057461297746e83b1e630b226 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<h3>Linux commits</h3>
-<p>923001805958 drm/i915/display: Read/Write Adaptive Sync SDP<br />
-6c6f05f66ddb drm/i915/display: Compute vrr_vsync params<br />
-282a83ceed9b drm/i915/display: Add state checker for Adaptive Sync SDP<br />
-4231a57cad4b drm/i915/display: Compute AS SDP parameters<br />
-c0104fba0907 drm/i915/dp: Add wrapper function to check AS SDP<br />
-d6acb0b04f1c drm/i915/dp: Add Read/Write support for Adaptive Sync SDP<br />
-e5873f1b4767 drm/i915/display: Add crtc state dump for Adaptive Sync SDP<br />
-70571f7cf956 drm: Add Adaptive Sync SDP logging<br />
-4b7ad0af9ae6 drm/dp: Add support to indicate if sink supports AS SDP</p>
-
-</body>
-</html>
-
---===============4933546951156543222==--
+Quoting Vivi, Rodrigo (2024-03-18 14:40:56)
+> On Thu, 2024-03-14 at 14:48 +0200, Joonas Lahtinen wrote:
+> > Quoting Rodrigo Vivi (2024-03-08 16:58:04)
+> > > On Fri, Mar 08, 2024 at 04:46:43PM +0200, Joonas Lahtinen wrote:
+> > > > Add standalone includes for BUG_ON and BUILD_BUG_ON to avoid
+> > > > build failure
+> > > > after linux-next include refactoring.
+> > >=20
+> > > any lore link so we can use with a 'Closes:' tag?
+> > > and perhaps a reported-by?
+> >=20
+> > The build failure seems to have happened in intel-gfx-ci.01.org but
+> > the
+> > failing build results are not uploaded so it's only visible in the
+> > background.
+> >=20
+> > From the CI page[1] we can see next-20240304 is the last successful
+> > build[2].
+> > Failure seems to have started next-20240305 after which the results
+> > are
+> > not uploaded due to the failure.
+> >=20
+> > For future, I asked if we could improve the CI dashboard by alos
+> > showing the
+> > failing builds in the CI view.=20
+> >=20
+> > However, for now we don't have a reference, I guess.
+> >=20
+> > [1] https://intel-gfx-ci.01.org/tree/linux-next/combined-alt.html?
+> > [2] https://intel-gfx-ci.01.org/tree/linux-next/next-
+> > 20240304/filelist.html
+> >=20
+> > >=20
+> > > >=20
+> > > > Signed-off-by: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
+> > > > Cc: Chris Wilson <chris.p.wilson@linux.intel.com>
+> > > > Cc: Jani Nikula <jani.nikula@linux.intel.com>
+> > > > Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
+> > > > Cc: Tvrtko Ursulin <tursulin@ursulin.net>
+> > > > ---
+> > > > =C2=A0drivers/gpu/drm/i915/i915_memcpy.c | 2 ++
+> > > > =C2=A01 file changed, 2 insertions(+)
+> > > >=20
+> > > > diff --git a/drivers/gpu/drm/i915/i915_memcpy.c
+> > > > b/drivers/gpu/drm/i915/i915_memcpy.c
+> > > > index ba82277254b7..cc41974cee74 100644
+> > > > --- a/drivers/gpu/drm/i915/i915_memcpy.c
+> > > > +++ b/drivers/gpu/drm/i915/i915_memcpy.c
+> > > > @@ -25,6 +25,8 @@
+> > > > =C2=A0#include <linux/kernel.h>
+> > > > =C2=A0#include <linux/string.h>
+> > > > =C2=A0#include <linux/cpufeature.h>
+> > > > +#include <linux/bug.h>
+> > > > +#include <linux/build_bug.h>
+> > >=20
+> > > git grep BUILD_BUG_ON drivers/gpu/drm/i915/
+> > > output
+> > >=20
+> > > vs
+> > >=20
+> > > git grep build_bug.h drivers/gpu/drm/i915/
+> > > output
+> > >=20
+> > > tells me that we likely need this in many more files...
+> > >=20
+> > > but not opposed to move with this faster and come back later with
+> > > other fixes if this unblocks people:
+> >=20
+> > Yeah, I made the same observation.
+> >=20
+> > Are you fine to merge this with the R-b even without the reference?
+>=20
+> sorry for having missed this.
+>=20
+> yes, the rv-b can be used even without the reference, let's just get
+> this in and fix the build issue.
+>=20
+> >=20
+> > Regards, Joonas
+> >=20
+> > >=20
+> > > Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
+> > >=20
+> > > > =C2=A0#include <asm/fpu/api.h>
+> > > > =C2=A0
+> > > > =C2=A0#include "i915_memcpy.h"
+> > > > --=20
+> > > > 2.43.2
+> > > >=20
+>=20
