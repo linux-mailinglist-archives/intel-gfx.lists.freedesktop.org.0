@@ -2,57 +2,51 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id AED3687FAB3
-	for <lists+intel-gfx@lfdr.de>; Tue, 19 Mar 2024 10:29:21 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id DE31887FB09
+	for <lists+intel-gfx@lfdr.de>; Tue, 19 Mar 2024 10:46:33 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2BF5D10F8F0;
-	Tue, 19 Mar 2024 09:29:20 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B30A010F926;
+	Tue, 19 Mar 2024 09:46:27 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Nw4xmKI+";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="YDDaEL9z";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 084F010F8F0
- for <intel-gfx@lists.freedesktop.org>; Tue, 19 Mar 2024 09:29:18 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1710840560; x=1742376560;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version:content-transfer-encoding;
- bh=uaHVx0ncml+pSnJ9yO/wJZGUIiX71HnsafAiV9LPvZQ=;
- b=Nw4xmKI+SVrQ3SQo72GRPu3I3fy7bwbp8+ZFcLicqjjo0o0T5cmKW8qZ
- tDuo4gvhtfjL8bH8YaEoXnAsoCBFDyphkzIHQ/KQtakB1Lriv0bxLGyWz
- VTX+Y0dynQ+n9c7lZ5oZQHJmwIp08yiP7SsDi6uo/e5+9A2Vu+apHbNkL
- 2qFFmPrxQCd8KU1hlOrUgLCML8x+JVg7+jbDpkOWtEfS8R/SwXUK9+Uqd
- kv3j2goDqb0YtB/bI5slxe3TuRZVD1H0aE1ZZmme85eCkrWm2qlgiUdQp
- TU0S9skHOtqOwq6UPPlU708v22tjlpF5OjLpovhR2eVElddn3JoYj6gpa g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,11017"; a="9497653"
-X-IronPort-AV: E=Sophos;i="6.07,136,1708416000"; 
-   d="scan'208";a="9497653"
-Received: from fmviesa004.fm.intel.com ([10.60.135.144])
- by orvoesa107.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Mar 2024 02:29:19 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.07,136,1708416000"; d="scan'208";a="18378513"
-Received: from rcritchl-mobl1.ger.corp.intel.com (HELO localhost)
- ([10.252.36.139])
- by fmviesa004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Mar 2024 02:29:17 -0700
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Ville Syrjala <ville.syrjala@linux.intel.com>,
- intel-gfx@lists.freedesktop.org
-Cc: stable@vger.kernel.org
-Subject: Re: [PATCH 1/2] drm/i915/bios: Tolerate devdata==NULL in
- intel_bios_encoder_supports_dp_dual_mode()
-In-Reply-To: <20240319092443.15769-1-ville.syrjala@linux.intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20240319092443.15769-1-ville.syrjala@linux.intel.com>
-Date: Tue, 19 Mar 2024 11:29:14 +0200
-Message-ID: <87sf0mo9hx.fsf@intel.com>
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 637FF10F923;
+ Tue, 19 Mar 2024 09:46:26 +0000 (UTC)
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+ by dfw.source.kernel.org (Postfix) with ESMTP id 955B060E07;
+ Tue, 19 Mar 2024 09:46:25 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E2A4CC433F1;
+ Tue, 19 Mar 2024 09:46:24 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=k20201202; t=1710841585;
+ bh=Gs/E3yfXBtvhpdg1gG9CK8zs2Wlko0XsdWiUFSvf7FA=;
+ h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+ b=YDDaEL9zbY2/IYC8I9RhzVGkzkWU36Irn3AoUo2pNIx1cp2YfkSbH831dx2IHusyW
+ /A8jkRuRYnIIrErPZcE6/BHUNzrqsq6p/1V7MN85CO8PBPa4y1DH3NG9VVIORMFw1K
+ cJcEEnaGz4RJKAWGhEoFyW/jNw6iBnb5wjoDSv6Fb8kgN+oBzxOOasemb3u7f385/F
+ GkIYevsQYl3Dz5h35GwR0ffxZhW73hbw+DQqoekTVKtE5s/seh52j4DNyr6P37iLN+
+ 4WgN5IhXWUyKXetFUMSATyHpjuy4vkkgAnHOzfbPohdXV0rrkJ4jRQ+SvvKUOKr3zj
+ UYYpf6chT2FOw==
+Date: Tue, 19 Mar 2024 10:46:22 +0100
+From: Maxime Ripard <mripard@kernel.org>
+To: Jani Nikula <jani.nikula@intel.com>
+Cc: Mitul Golani <mitulkumar.ajitkumar.golani@intel.com>, 
+ intel-gfx@lists.freedesktop.org, ankit.k.nautiyal@intel.com,
+ dri-devel@lists.freedesktop.org, 
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Thomas Zimmermann <tzimmermann@suse.de>
+Subject: Re: [PATCH v17 0/9] Enable Adaptive Sync SDP Support for DP
+Message-ID: <20240319-devious-natural-rook-df5f43@houat>
+References: <20240311094238.3320888-1-mitulkumar.ajitkumar.golani@intel.com>
+ <87a5mvppvd.fsf@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
+Content-Type: multipart/signed; micalg=pgp-sha512;
+ protocol="application/pgp-signature"; boundary="rbzz2veycd7w3qju"
+Content-Disposition: inline
+In-Reply-To: <87a5mvppvd.fsf@intel.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -68,45 +62,45 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, 19 Mar 2024, Ville Syrjala <ville.syrjala@linux.intel.com> wrote:
-> From: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
->
-> If we have no VBT, or the VBT didn't declare the encoder
-> in question, we won't have the 'devdata' for the encoder.
-> Instead of oopsing just bail early.
->
-> We won't be able to tell whether the port is DP++ or not,
-> but so be it.
->
-> Cc: stable@vger.kernel.org
-> Closes: https://gitlab.freedesktop.org/drm/intel/-/issues/10464
-> Signed-off-by: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
-> ---
->  drivers/gpu/drm/i915/display/intel_bios.c | 3 +++
->  1 file changed, 3 insertions(+)
->
-> diff --git a/drivers/gpu/drm/i915/display/intel_bios.c b/drivers/gpu/drm/=
-i915/display/intel_bios.c
-> index c7841b3eede8..c13a98431a7b 100644
-> --- a/drivers/gpu/drm/i915/display/intel_bios.c
-> +++ b/drivers/gpu/drm/i915/display/intel_bios.c
-> @@ -3458,6 +3458,9 @@ bool intel_bios_encoder_supports_dp_dual_mode(const=
- struct intel_bios_encoder_da
->  {
->  	const struct child_device_config *child =3D &devdata->child;
 
-The above oopses already.
+--rbzz2veycd7w3qju
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-BR,
-Jani.
+On Mon, Mar 18, 2024 at 04:37:58PM +0200, Jani Nikula wrote:
+> On Mon, 11 Mar 2024, Mitul Golani <mitulkumar.ajitkumar.golani@intel.com>=
+ wrote:
+> >  An Adaptive-Sync-capable DP protocol converter indicates its
+> > support by setting the related bit in the DPCD register. This
+> > is valid for DP and edp as well.
+> >
+> > Computes AS SDP values based on the display configuration,
+> > ensuring proper handling of Variable Refresh Rate (VRR)
+> > in the context of Adaptive Sync.
+>=20
+> [snip]
+>=20
+> > Mitul Golani (9):
+> >   drm/dp: Add support to indicate if sink supports AS SDP
+> >   drm: Add Adaptive Sync SDP logging
+>=20
+> Maarten, Maxime, Thomas, ack for merging these two patches via
+> drm-intel-next?
 
->=20=20
-> +	if (!devdata)
-> +		return false;
-> +
->  	if (!intel_bios_encoder_supports_dp(devdata) ||
->  	    !intel_bios_encoder_supports_hdmi(devdata))
->  		return false;
+Ack
 
---=20
-Jani Nikula, Intel
+Maxime
+
+--rbzz2veycd7w3qju
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYKAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCZfle7QAKCRDj7w1vZxhR
+xbuLAQD7gJhz24uGbcpBMhdrD1VRmDPxmySRUaJNyztHY2SjfgEA9WMYVFcKFpjb
+TkgGzKrb98EyUtGA+iU/LUUjTkp1Ww0=
+=wi4b
+-----END PGP SIGNATURE-----
+
+--rbzz2veycd7w3qju--
