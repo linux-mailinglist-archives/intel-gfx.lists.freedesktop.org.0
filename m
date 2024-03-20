@@ -2,48 +2,29 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id DDF2C881377
-	for <lists+intel-gfx@lfdr.de>; Wed, 20 Mar 2024 15:39:28 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7A4B788141C
+	for <lists+intel-gfx@lfdr.de>; Wed, 20 Mar 2024 16:06:12 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0E74410EE71;
-	Wed, 20 Mar 2024 14:39:27 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=inria.fr header.i=@inria.fr header.b="Pj/vbNJv";
-	dkim-atps=neutral
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2AAE410FD30;
+	Wed, 20 Mar 2024 15:06:10 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail2-relais-roc.national.inria.fr
- (mail2-relais-roc.national.inria.fr [192.134.164.83])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E3AC210EE71
- for <intel-gfx@lists.freedesktop.org>; Wed, 20 Mar 2024 14:39:25 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=inria.fr; s=dc;
- h=date:from:to:cc:subject:in-reply-to:message-id:
- references:mime-version;
- bh=eZSDlRFHQ3Zmap8oG347uG2RENlyQO6HlbrVFRWEqd4=;
- b=Pj/vbNJvjtsHxBJNAAkA8fiqD0+V0AkbOi7xLhsnySQGClYba508LUzG
- MsmeDAkJ8L0FMlVny4fHHoWZAhGxbQjFWOF94dMvzjunV80o7GqJdkKEh
- tO8nkmiCSbuCqK9kx/Ae8RRdINz/0otGaSdKBDfGaa0KsBD+Bknkfhwnq A=;
-Authentication-Results: mail2-relais-roc.national.inria.fr;
- dkim=none (message not signed) header.i=none;
- spf=SoftFail smtp.mailfrom=julia.lawall@inria.fr;
- dmarc=fail (p=none dis=none) d=inria.fr
-X-IronPort-AV: E=Sophos;i="6.07,140,1708383600"; d="scan'208";a="157632502"
-Received: from wifi-eduroam-84-135.paris.inria.fr ([128.93.84.135])
- by mail2-relais-roc.national.inria.fr with
- ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 20 Mar 2024 15:39:24 +0100
-Date: Wed, 20 Mar 2024 15:39:23 +0100 (CET)
-From: Julia Lawall <julia.lawall@inria.fr>
-To: Jani Nikula <jani.nikula@linux.intel.com>
-cc: =?ISO-8859-15?Q?Ville_Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>, 
- cocci@systeme.lip6.fr, intel-gfx@lists.freedesktop.org
-Subject: Re: Weirdness in parsing cpp macros
-In-Reply-To: <87y1adm342.fsf@intel.com>
-Message-ID: <dd1399cc-d968-41f-b41b-7ca6d6a2d044@inria.fr>
-References: <ZfrYc_rKGETrJsE4@intel.com>
- <c22ade0-6b91-3386-a32d-19bcb8cc3d7@inria.fr> <ZfrlLw3W00-cnH1U@intel.com>
- <87y1adm342.fsf@intel.com>
+Received: from 8e613ede5ea5 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7499C10FD30;
+ Wed, 20 Mar 2024 15:06:08 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: multipart/mixed; boundary="8323329-911008355-1710945563=:37363"
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=97_Fi=2ECI=2ECHECKPATCH=3A_warning_for_drm/i915/gt=3A_Reset?=
+ =?utf-8?q?_queue=5Fpriority=5Fhint_on_parking_=28rev2=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Janusz Krzysztofik" <janusz.krzysztofik@linux.intel.com>
+Cc: intel-gfx@lists.freedesktop.org
+Date: Wed, 20 Mar 2024 15:06:08 -0000
+Message-ID: <171094716847.921419.11128037136777254168@8e613ede5ea5>
+X-Patchwork-Hint: ignore
+References: <20240318135906.716055-2-janusz.krzysztofik@linux.intel.com>
+In-Reply-To: <20240318135906.716055-2-janusz.krzysztofik@linux.intel.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -56,63 +37,24 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-  This message is in MIME format.  The first part should be readable text,
-  while the remaining parts are likely unreadable without MIME-aware tools.
+== Series Details ==
 
---8323329-911008355-1710945563=:37363
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: 8BIT
+Series: drm/i915/gt: Reset queue_priority_hint on parking (rev2)
+URL   : https://patchwork.freedesktop.org/series/131268/
+State : warning
+
+== Summary ==
+
+Error: dim checkpatch failed
+8dae724cae08 drm/i915/gt: Reset queue_priority_hint on parking
+-:19: WARNING:COMMIT_LOG_LONG_LINE: Prefer a maximum 75 chars per line (possible unwrapped commit description?)
+#19: 
+<3>[  166.210729] __engine_park:283 GEM_BUG_ON(engine->sched_engine->queue_priority_hint != (-((int)(~0U >> 1)) - 1))
+
+total: 0 errors, 1 warnings, 0 checks, 18 lines checked
 
 
-
-On Wed, 20 Mar 2024, Jani Nikula wrote:
-
-> On Wed, 20 Mar 2024, Ville Syrjälä <ville.syrjala@linux.intel.com> wrote:
-> > On Wed, Mar 20, 2024 at 02:24:08PM +0100, Julia Lawall wrote:
-> >>
-> >>
-> >> On Wed, 20 Mar 2024, Ville Syrjälä wrote:
-> >>
-> >> > Hi Julia et al,
-> >> >
-> >> > In Linux drm/i915 driver (drivers/gpu/drm/i915/display/intel_pps.[ch])
-> >> > we have a magic macro like this:
-> >> >
-> >> > #define with_intel_pps_lock(dp, wf) \
-> >>
-> >> Did you try declaring:
-> >>
-> >> iterator name with_intel_pps_lock;
-> >>
-> >> up with the metavariables?
-> >
-> > Nope, didn't know about that one.
-> >
-> > Seems to work fine with that. Thanks.
->
-> Okay, I have another one wrt macros. :)
->
-> I'm trying to add a completely new variadic macro, but it fails at
-> "...". I've tried all sorts of things, but can't seem to be able to add
-> a literal "...".
->
-> I've tested that my cocci patch works with x's:
->
-> + #define fn(p, xxx) foo(__VA_ARGS__)
->
-> but when I try to make it actually variadic like:
->
-> + #define fn(p, ...) foo(__VA_ARGS__)
->
-> it gives me error. Is there a way to escape? Even tried to use a fresh
-> identifier vararg = "..."; but cocci made them unique with numbering
-> "...0" and "...1" etc.
-
-Put 6 dots.  It's silly, but ... is a Coccinelle thing, so we had to use
-something else.
-
-julia
---8323329-911008355-1710945563=:37363--
