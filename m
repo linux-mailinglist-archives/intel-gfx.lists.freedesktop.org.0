@@ -2,62 +2,49 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6AD26881829
-	for <lists+intel-gfx@lfdr.de>; Wed, 20 Mar 2024 20:54:28 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6ED30881852
+	for <lists+intel-gfx@lfdr.de>; Wed, 20 Mar 2024 21:11:27 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6AC6A10E78B;
-	Wed, 20 Mar 2024 19:54:23 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B397910E3FB;
+	Wed, 20 Mar 2024 20:11:25 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="F6nAGP8H";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="IQTTY1y+";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7CB7210E334;
- Wed, 20 Mar 2024 19:54:21 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4603410E3C1
+ for <intel-gfx@lists.freedesktop.org>; Wed, 20 Mar 2024 20:11:24 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1710964462; x=1742500462;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=aPdtRrOUkGyuHA3RYzmYmsdMLldh4oYLNqJw/UAlAN8=;
- b=F6nAGP8HjlTOJPWJFnTcgqNTSWQzHNLcmVwxdJHyhbI7MuU8fS2yllvO
- cGLWqQsGBp40FZIASOlzPDTftGzEqClNVllVPy+wgdzBREJbYzuUAl3Qv
- mdm75EIC0CAT1pb0OKKVm1E7ir7FUc6sz4hl/CBKB/1TJwbd4nUxGl5IQ
- 54qxcu7a+f80TbHzncVVUbTbrElb5GT+eYsBLbB7184dDKP1nXAMSYf1z
- pQlcekz/BqIYIejLcvs3bBNw9nhmIs7CX9XNFkg3hfArp41WNHZ5p9mAD
- jB8UklcRyyeIKpK1fwNcvLzjMIEKUwhb5eMJbYyaWMy+iLVl8V3oa543u A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,11019"; a="17055329"
-X-IronPort-AV: E=Sophos;i="6.07,141,1708416000"; d="scan'208";a="17055329"
-Received: from fmviesa008.fm.intel.com ([10.60.135.148])
- by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Mar 2024 12:54:21 -0700
+ t=1710965484; x=1742501484;
+ h=from:to:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=dhFH0STUxXb3MFXEZCGiDWoW3ws/1Oa6fPOU1p+beVY=;
+ b=IQTTY1y+QtgfZv6ySN2VRBc2PSPHZaurZp9maBaZHA7RRTjlGUxJnplb
+ 5Mi/u1Cw+/S90Utci9SilzQZ1XMsYkArK18f5omwTk+cxCsuXnxIrpY3a
+ Wu7FFYuZfh6vyA/tv3P3EpZI/Rk6F+wvtp1G4NwghxrptR4WvIlIIOThp
+ bEo6jzkNuTgQGgFgmdOfYTdzAsxZm3G/t8TRJ2GKVzx8skxxNRMJDirMe
+ HVDm+/Lo+Sk4Fh0paMZuHuOsvcACvZjsU105CX5rghEe2kIZt3igeLTfO
+ Ib8O02DyRCqEvA+b6Gz0lRBYtzF3bnv9iBtD6RTj/Noz0tLZ82CkkUI4P w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,11019"; a="31352327"
+X-IronPort-AV: E=Sophos;i="6.07,141,1708416000"; d="scan'208";a="31352327"
+Received: from fmviesa007.fm.intel.com ([10.60.135.147])
+ by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 20 Mar 2024 13:11:23 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.07,141,1708416000"; d="scan'208";a="14332332"
-Received: from jkrzyszt-mobl2.ger.corp.intel.com ([10.213.7.80])
- by fmviesa008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Mar 2024 12:54:18 -0700
-From: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
-To: Andi Shyti <andi.shyti@linux.intel.com>
-Cc: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- Jani Nikula <jani.nikula@linux.intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, Tvrtko Ursulin <tursulin@ursulin.net>, 
- Andi Shyti <andi.shyti@linux.intel.com>,
- Chris Wilson <chris.p.wilson@linux.intel.com>,
- Mika Kuoppala <mika.kuoppala@linux.intel.com>,
- Matthew Brost <matthew.brost@intel.com>
-Subject: Re: [PATCH] drm/i915/gt: Reset queue_priority_hint on parking
-Date: Wed, 20 Mar 2024 20:54:15 +0100
-Message-ID: <1888291.AB8Y2P6tQ1@jkrzyszt-mobl2.ger.corp.intel.com>
-Organization: Intel Technology Poland sp. z o.o. - ul. Slowackiego 173,
- 80-298 Gdansk - KRS 101882 - NIP 957-07-52-316
-In-Reply-To: <Zfry5sPQzIbWeXzs@ashyti-mobl2.lan>
-References: <20240318135906.716055-2-janusz.krzysztofik@linux.intel.com>
- <Zfry5sPQzIbWeXzs@ashyti-mobl2.lan>
+X-IronPort-AV: E=Sophos;i="6.07,141,1708416000"; d="scan'208";a="14246453"
+Received: from ideak-desk.fi.intel.com ([10.237.72.78])
+ by fmviesa007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 20 Mar 2024 13:11:23 -0700
+From: Imre Deak <imre.deak@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Subject: [PATCH 00/11] drm/i915/dp: Few MTL/DSC and a UHBR monitor fix
+Date: Wed, 20 Mar 2024 22:11:40 +0200
+Message-ID: <20240320201152.3487892-1-imre.deak@intel.com>
+X-Mailer: git-send-email 2.43.3
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -73,39 +60,35 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi Andi,
+This patchset fixes a few MTL/DSC 1.2 related issues and adds a
+workaround for the native 5k@60Hz uncompressed mode on a MediaTek/Dell
+UHBR monitor, force-enabling DSC on it as required, similarly to the
+existing HBLANK expansion quirk for Synaptics hubs.
 
-On Wednesday, 20 March 2024 15:29:58 CET Andi Shyti wrote:
-> Hi Janusz,
-> 
-> ...
-> 
-> > Fixes: 22b7a426bbe1 ("drm/i915/execlists: Preempt-to-busy")
-> > Closes: https://gitlab.freedesktop.org/drm/intel/issues/10154
-> > Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
-> > Cc: Mika Kuoppala <mika.kuoppala@linux.intel.com>
-> > Signed-off-by: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
-> > Cc: Chris Wilson <chris.p.wilson@linux.intel.com>
-> > Cc: <stable@vger.kernel.org> # v5.4+
-> 
-> this tag list is a bit confusing. Let's keep all Cc's together
-> and, besides, Cc'eing the author looks a bit redundant.
+Imre Deak (11):
+  drm/i915/dp: Fix DSC line buffer depth programming
+  drm/i915/dp_mst: Fix symbol clock when calculating the DSC DPT bpp
+    limit
+  drm/i915/dp_mst: Fix BW limit check when calculating DSC DPT bpp
+  drm/i915/dp_mst: Account for channel coding efficiency in the DSC DPT
+    bpp limit
+  drm/i915/dp_mst: Account with the DSC DPT bpp limit on MTL
+  drm/i915/dp_mst: Sanitize calculating the DSC DPT bpp limit
+  drm/dp: Add drm_dp_uhbr_channel_coding_supported()
+  drm/dp_mst: Factor out drm_dp_mst_port_is_logical()
+  drm/dp_mst: Add drm_dp_mst_aux_for_parent()
+  drm/i915/dp_mst: Make HBLANK expansion quirk work for logical ports
+  drm/i915/dp_mst: Enable HBLANK expansion quirk for UHBR rates
 
-You're right, please feel free to fix that while applying.
+ drivers/gpu/drm/display/drm_dp_helper.c       |  2 +
+ drivers/gpu/drm/display/drm_dp_mst_topology.c | 22 ++++-
+ drivers/gpu/drm/i915/display/intel_dp.c       | 18 ++--
+ drivers/gpu/drm/i915/display/intel_dp_mst.c   | 87 ++++++++++++-------
+ include/drm/display/drm_dp_helper.h           |  6 ++
+ include/drm/display/drm_dp_mst_helper.h       |  7 ++
+ include/drm/display/drm_dsc.h                 |  3 -
+ 7 files changed, 98 insertions(+), 47 deletions(-)
 
-Thanks,
-Janusz
-
-> 
-> No need to resend also because I retriggered another round of
-> test.
-> 
-> Reviewed-by: Andi Shyti <andi.shyti@linux.intel.com>
-> 
-> Thanks,
-> Andi
-> 
-
-
-
+-- 
+2.43.3
 
