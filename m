@@ -2,80 +2,51 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id D0762881502
-	for <lists+intel-gfx@lfdr.de>; Wed, 20 Mar 2024 16:55:51 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2AB01881519
+	for <lists+intel-gfx@lfdr.de>; Wed, 20 Mar 2024 17:01:34 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 375B310FDC3;
-	Wed, 20 Mar 2024 15:55:50 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B9C5C10FDB8;
+	Wed, 20 Mar 2024 16:01:31 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="P+INTbc4";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="bzI3bpAu";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-lj1-f177.google.com (mail-lj1-f177.google.com
- [209.85.208.177])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DF47310FDA3
- for <intel-gfx@lists.freedesktop.org>; Wed, 20 Mar 2024 15:55:48 +0000 (UTC)
-Received: by mail-lj1-f177.google.com with SMTP id
- 38308e7fff4ca-2d27184197cso232681fa.1
- for <intel-gfx@lists.freedesktop.org>; Wed, 20 Mar 2024 08:55:48 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1710950147; x=1711554947; darn=lists.freedesktop.org;
- h=content-transfer-encoding:in-reply-to:from:references:cc:to
- :content-language:subject:reply-to:user-agent:mime-version:date
- :message-id:from:to:cc:subject:date:message-id:reply-to;
- bh=MjepncrgZV+uQa5ReqTpoguMfFHll5wKjUf+t70Bu80=;
- b=P+INTbc4JOXaCxNWRjNXcqdwuz8NANh98mGhDa1/qky7WuLstVQ3DdrBZhAVTFj5ne
- TrNWWjfxFgzOPLOIyQqwVHTd01AhqrkSf6+gnn2/Kzucws3Xz8zQjGY8BHgtrZQ7bBI3
- 4+NakyGHyG5/F/somsrDuAGD1y3wcBfGDIR3f6Q3kMZrQ55PS66Wh7MFH7FQIOcoJmED
- 3uUs0DVQ1EOhrWs6AvoCIcLWlbLnc4P11Bww8Yatq+nYupAgwjOAd8SmvJBvGIi6xgMA
- uMzYHz5hRacP7JRsRCTTKRc/cDRbUHk7wDXZDCPHPrfgORZHaW00CUpsJl+GCEu0LSML
- FKWA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1710950147; x=1711554947;
- h=content-transfer-encoding:in-reply-to:from:references:cc:to
- :content-language:subject:reply-to:user-agent:mime-version:date
- :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
- :reply-to;
- bh=MjepncrgZV+uQa5ReqTpoguMfFHll5wKjUf+t70Bu80=;
- b=HBkXVArxUMejJpQDzfkuVbkN3EtO3coCb94/2ka23vAfDjPpLWRz6KcQR/ELGewTkx
- Meq8TXSBinWXfZofMzDoud5wa9ey9NSIZw53vZFawwWXHc5XiwNdJoYbN7XQXXpZoSln
- ypWu/DFDP2UhQd9hpuXyOKheDHqd82jDYZLK7J4PXg8CQ/WYuFNYkOgmNYzCm6SWEuTk
- /ondJ0VsyT0mnPfNV5N3mQLhzerVKn9/vjncJTqWAkhibyI8/7q5/W5BVaDPKt4ngVdh
- UD/3lVPQh2KGwBVrnaLaXDFPtXfU0KQxgTCQqbjyWuym9h4HePUzhCH0zMSw7xWK44f0
- 0jBA==
-X-Forwarded-Encrypted: i=1;
- AJvYcCUEP3dKxNSQm9sh/XOroCPRM5k+WW6O42y69z2gRKG1cXMLpS/TFFUa/+YVTd9YLlXku6v0h8AA7/gPQoCxgzTwja2y+nRePi7ixS5i6wWk
-X-Gm-Message-State: AOJu0Yy/37luz2CRWVOWa/iMhPebMb+TCdgFpGKDK04mPVkVMiO2anG+
- 3LkQU/TfLQZ4+yj7+l/U/V0e4Uvc2scDgqZyljm41wMHmA6EGBjAEiCj330QJnA5oShT
-X-Google-Smtp-Source: AGHT+IF/HYJHWqBqb1x5S4unX2kBJw8xG6r3Q3wwsJ4zqKfMVGl8Xa0XHSQtUNRH1IrGhadMc+Uzvw==
-X-Received: by 2002:a2e:860a:0:b0:2d2:6ed5:e45a with SMTP id
- a10-20020a2e860a000000b002d26ed5e45amr1839712lji.12.1710950146661; 
- Wed, 20 Mar 2024 08:55:46 -0700 (PDT)
-Received: from [0.0.0.0] ([134.134.137.85])
- by smtp.googlemail.com with ESMTPSA id
- p22-20020a05600c359600b004140d326399sm619879wmq.1.2024.03.20.08.55.41
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Wed, 20 Mar 2024 08:55:46 -0700 (PDT)
-Message-ID: <fa745fb2-182a-4cb9-ad28-d18f49a95e40@gmail.com>
-Date: Wed, 20 Mar 2024 17:55:33 +0200
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EE16F10FDB8
+ for <intel-gfx@lists.freedesktop.org>; Wed, 20 Mar 2024 16:01:30 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1710950491; x=1742486491;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=dFNmJiXfOX9JGUT8PyENwevQqY8h+9WOu73xri/sz/I=;
+ b=bzI3bpAuX9EywHL8+JJsSg5lBxJU+xfwgG+wggl5ddY7osPXJlTiVELv
+ W7Q0u31vj7bA5aTWwZn0PEeeZfxIqUnPe4CVjWm4i+MCzC0NH7YUspHQs
+ YnKDTn7k5bmrkbH5YbbWOcm2LRu4PzeKDnOoo3i7NoSozn5QsOHFILvhd
+ STQTRzuynxBB6C63K9swHEgrVLXPQwsDuty5mqNDMCHYQjbL1Ff8Cm7Mv
+ 83LSnn6xQl1E47mZ9jF16EZvoYoaoi4BNYYY/DHlubn7gvAyCbQqitYEu
+ Ke+Aq8yIimIRPluGlCoKPB8jXur95xhsuIcBanSD/XRlvnSTMVlntXnMZ A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,11019"; a="31318900"
+X-IronPort-AV: E=Sophos;i="6.07,140,1708416000"; d="scan'208";a="31318900"
+Received: from orviesa008.jf.intel.com ([10.64.159.148])
+ by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 20 Mar 2024 09:01:30 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.07,140,1708416000"; d="scan'208";a="14847478"
+Received: from dmocuta-mobl2.ger.corp.intel.com (HELO localhost)
+ ([10.252.36.133])
+ by orviesa008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 20 Mar 2024 09:01:30 -0700
+From: Jani Nikula <jani.nikula@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Cc: jani.nikula@intel.com
+Subject: [PATCH 1/2] drm/i915/de: register wait function renames
+Date: Wed, 20 Mar 2024 18:01:22 +0200
+Message-Id: <20240320160123.2904609-1-jani.nikula@intel.com>
+X-Mailer: git-send-email 2.39.2
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 2/2] drm/i915: Add SIZE_HINTS property for cursors
-Content-Language: en-US
-To: Ville Syrjala <ville.syrjala@linux.intel.com>,
- intel-gfx@lists.freedesktop.org
-Cc: Simon Ser <contact@emersion.fr>, =?UTF-8?Q?Jonas_=C3=85dahl?=
- <jadahl@redhat.com>, Daniel Stone <daniel@fooishbar.org>,
- Sameer Lattannavar <sameer.lattannavar@intel.com>,
- Sebastian Wick <sebastian.wick@redhat.com>,
- Harry Wentland <harry.wentland@amd.com>,
- Pekka Paalanen <pekka.paalanen@collabora.com>
-References: <20240318204408.9687-1-ville.syrjala@linux.intel.com>
- <20240318204408.9687-3-ville.syrjala@linux.intel.com>
-From: Juha-Pekka Heikkila <juhapekka.heikkila@gmail.com>
-In-Reply-To: <20240318204408.9687-3-ville.syrjala@linux.intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -89,83 +60,329 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: juhapekka.heikkila@gmail.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-look all ok to me.
+Do some renames on the register wait functions for clarity and brevity:
 
-Reviewed-by: Juha-Pekka Heikkila <juhapekka.heikkila@gmail.com>
+intel_de_wait_for_register	-> intel_de_wait
+intel_de_wait_for_register_fw	-> intel_de_wait_fw
+__intel_de_wait_for_register	-> intel_de_wait_custom
 
-On 18.3.2024 22.44, Ville Syrjala wrote:
-> From: Ville Syrjälä <ville.syrjala@linux.intel.com>
-> 
-> Advertize more suitable cursor sizes via the new SIZE_HINTS
-> plane property.
-> 
-> We can't really enumerate all supported cursor sizes on
-> the platforms where the cursor height can vary freely, so
-> for simplicity we'll just expose all square+POT sizes between
-> each platform's min and max cursor limits.
-> 
-> Depending on the platform this will give us one of three
-> results:
-> - 64x64,128x128,256x256,512x512
-> - 64x64,128x128,256x256
-> - 64x64
-> 
-> Cc: Simon Ser <contact@emersion.fr>
-> Cc: Jonas Ådahl <jadahl@redhat.com>
-> Cc: Daniel Stone <daniel@fooishbar.org>
-> Cc: Sameer Lattannavar <sameer.lattannavar@intel.com>
-> Cc: Sebastian Wick <sebastian.wick@redhat.com>
-> Cc: Harry Wentland <harry.wentland@amd.com>
-> Cc: Pekka Paalanen <pekka.paalanen@collabora.com>
-> Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
-> ---
->   drivers/gpu/drm/i915/display/intel_cursor.c | 24 +++++++++++++++++++++
->   1 file changed, 24 insertions(+)
-> 
-> diff --git a/drivers/gpu/drm/i915/display/intel_cursor.c b/drivers/gpu/drm/i915/display/intel_cursor.c
-> index f8b33999d43f..49e9b9be2235 100644
-> --- a/drivers/gpu/drm/i915/display/intel_cursor.c
-> +++ b/drivers/gpu/drm/i915/display/intel_cursor.c
-> @@ -823,6 +823,28 @@ static const struct drm_plane_funcs intel_cursor_plane_funcs = {
->   	.format_mod_supported = intel_cursor_format_mod_supported,
->   };
->   
-> +static void intel_cursor_add_size_hints_property(struct intel_plane *plane)
-> +{
-> +	struct drm_i915_private *i915 = to_i915(plane->base.dev);
-> +	const struct drm_mode_config *config = &i915->drm.mode_config;
-> +	struct drm_plane_size_hint hints[4];
-> +	int size, max_size, num_hints = 0;
-> +
-> +	max_size = min(config->cursor_width, config->cursor_height);
-> +
-> +	/* for simplicity only enumerate the supported square+POT sizes */
-> +	for (size = 64; size <= max_size; size *= 2) {
-> +		if (drm_WARN_ON(&i915->drm, num_hints >= ARRAY_SIZE(hints)))
-> +			break;
-> +
-> +		hints[num_hints].width = size;
-> +		hints[num_hints].height = size;
-> +		num_hints++;
-> +	}
-> +
-> +	drm_plane_add_size_hints_property(&plane->base, hints, num_hints);
-> +}
-> +
->   struct intel_plane *
->   intel_cursor_plane_create(struct drm_i915_private *dev_priv,
->   			  enum pipe pipe)
-> @@ -881,6 +903,8 @@ intel_cursor_plane_create(struct drm_i915_private *dev_priv,
->   						   DRM_MODE_ROTATE_0 |
->   						   DRM_MODE_ROTATE_180);
->   
-> +	intel_cursor_add_size_hints_property(cursor);
-> +
->   	zpos = DISPLAY_RUNTIME_INFO(dev_priv)->num_sprites[pipe] + 1;
->   	drm_plane_create_zpos_immutable_property(&cursor->base, zpos);
->   
+In particular, it seemed odd to have a double-underscored function be
+called in a number of places.
+
+Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+
+---
+
+Use 'git show -w --color-words' for easy review.
+---
+ drivers/gpu/drm/i915/display/intel_cx0_phy.c  | 68 +++++++++----------
+ drivers/gpu/drm/i915/display/intel_de.h       | 20 +++---
+ drivers/gpu/drm/i915/display/intel_display.c  |  3 +-
+ .../i915/display/intel_display_power_well.c   |  4 +-
+ drivers/gpu/drm/i915/display/intel_dp_aux.c   |  5 +-
+ drivers/gpu/drm/i915/display/intel_dp_hdcp.c  | 17 ++---
+ drivers/gpu/drm/i915/display/intel_gmbus.c    |  2 +-
+ drivers/gpu/drm/i915/display/intel_pps.c      |  3 +-
+ 8 files changed, 58 insertions(+), 64 deletions(-)
+
+diff --git a/drivers/gpu/drm/i915/display/intel_cx0_phy.c b/drivers/gpu/drm/i915/display/intel_cx0_phy.c
+index 64e0f820a789..eedd1b4de943 100644
+--- a/drivers/gpu/drm/i915/display/intel_cx0_phy.c
++++ b/drivers/gpu/drm/i915/display/intel_cx0_phy.c
+@@ -143,12 +143,12 @@ static int intel_cx0_wait_for_ack(struct drm_i915_private *i915, enum port port,
+ {
+ 	enum phy phy = intel_port_to_phy(i915, port);
+ 
+-	if (__intel_de_wait_for_register(i915,
+-					 XELPDP_PORT_P2M_MSGBUS_STATUS(i915, port, lane),
+-					 XELPDP_PORT_P2M_RESPONSE_READY,
+-					 XELPDP_PORT_P2M_RESPONSE_READY,
+-					 XELPDP_MSGBUS_TIMEOUT_FAST_US,
+-					 XELPDP_MSGBUS_TIMEOUT_SLOW, val)) {
++	if (intel_de_wait_custom(i915,
++				 XELPDP_PORT_P2M_MSGBUS_STATUS(i915, port, lane),
++				 XELPDP_PORT_P2M_RESPONSE_READY,
++				 XELPDP_PORT_P2M_RESPONSE_READY,
++				 XELPDP_MSGBUS_TIMEOUT_FAST_US,
++				 XELPDP_MSGBUS_TIMEOUT_SLOW, val)) {
+ 		drm_dbg_kms(&i915->drm, "PHY %c Timeout waiting for message ACK. Status: 0x%x\n",
+ 			    phy_name(phy), *val);
+ 
+@@ -2536,9 +2536,9 @@ static void intel_cx0_powerdown_change_sequence(struct drm_i915_private *i915,
+ 		     intel_cx0_get_powerdown_update(lane_mask));
+ 
+ 	/* Update Timeout Value */
+-	if (__intel_de_wait_for_register(i915, buf_ctl2_reg,
+-					 intel_cx0_get_powerdown_update(lane_mask), 0,
+-					 XELPDP_PORT_POWERDOWN_UPDATE_TIMEOUT_US, 0, NULL))
++	if (intel_de_wait_custom(i915, buf_ctl2_reg,
++				 intel_cx0_get_powerdown_update(lane_mask), 0,
++				 XELPDP_PORT_POWERDOWN_UPDATE_TIMEOUT_US, 0, NULL))
+ 		drm_warn(&i915->drm, "PHY %c failed to bring out of Lane reset after %dus.\n",
+ 			 phy_name(phy), XELPDP_PORT_RESET_START_TIMEOUT_US);
+ }
+@@ -2593,19 +2593,19 @@ static void intel_cx0_phy_lane_reset(struct drm_i915_private *i915,
+ 					   XELPDP_LANE_PHY_CURRENT_STATUS(1))
+ 					: XELPDP_LANE_PHY_CURRENT_STATUS(0);
+ 
+-	if (__intel_de_wait_for_register(i915, XELPDP_PORT_BUF_CTL1(i915, port),
+-					 XELPDP_PORT_BUF_SOC_PHY_READY,
+-					 XELPDP_PORT_BUF_SOC_PHY_READY,
+-					 XELPDP_PORT_BUF_SOC_READY_TIMEOUT_US, 0, NULL))
++	if (intel_de_wait_custom(i915, XELPDP_PORT_BUF_CTL1(i915, port),
++				 XELPDP_PORT_BUF_SOC_PHY_READY,
++				 XELPDP_PORT_BUF_SOC_PHY_READY,
++				 XELPDP_PORT_BUF_SOC_READY_TIMEOUT_US, 0, NULL))
+ 		drm_warn(&i915->drm, "PHY %c failed to bring out of SOC reset after %dus.\n",
+ 			 phy_name(phy), XELPDP_PORT_BUF_SOC_READY_TIMEOUT_US);
+ 
+ 	intel_de_rmw(i915, XELPDP_PORT_BUF_CTL2(i915, port), lane_pipe_reset,
+ 		     lane_pipe_reset);
+ 
+-	if (__intel_de_wait_for_register(i915, XELPDP_PORT_BUF_CTL2(i915, port),
+-					 lane_phy_current_status, lane_phy_current_status,
+-					 XELPDP_PORT_RESET_START_TIMEOUT_US, 0, NULL))
++	if (intel_de_wait_custom(i915, XELPDP_PORT_BUF_CTL2(i915, port),
++				 lane_phy_current_status, lane_phy_current_status,
++				 XELPDP_PORT_RESET_START_TIMEOUT_US, 0, NULL))
+ 		drm_warn(&i915->drm, "PHY %c failed to bring out of Lane reset after %dus.\n",
+ 			 phy_name(phy), XELPDP_PORT_RESET_START_TIMEOUT_US);
+ 
+@@ -2613,10 +2613,10 @@ static void intel_cx0_phy_lane_reset(struct drm_i915_private *i915,
+ 		     intel_cx0_get_pclk_refclk_request(owned_lane_mask),
+ 		     intel_cx0_get_pclk_refclk_request(lane_mask));
+ 
+-	if (__intel_de_wait_for_register(i915, XELPDP_PORT_CLOCK_CTL(i915, port),
+-					 intel_cx0_get_pclk_refclk_ack(owned_lane_mask),
+-					 intel_cx0_get_pclk_refclk_ack(lane_mask),
+-					 XELPDP_REFCLK_ENABLE_TIMEOUT_US, 0, NULL))
++	if (intel_de_wait_custom(i915, XELPDP_PORT_CLOCK_CTL(i915, port),
++				 intel_cx0_get_pclk_refclk_ack(owned_lane_mask),
++				 intel_cx0_get_pclk_refclk_ack(lane_mask),
++				 XELPDP_REFCLK_ENABLE_TIMEOUT_US, 0, NULL))
+ 		drm_warn(&i915->drm, "PHY %c failed to request refclk after %dus.\n",
+ 			 phy_name(phy), XELPDP_REFCLK_ENABLE_TIMEOUT_US);
+ 
+@@ -2767,10 +2767,10 @@ static void intel_cx0pll_enable(struct intel_encoder *encoder,
+ 		     intel_cx0_get_pclk_pll_request(maxpclk_lane));
+ 
+ 	/* 10. Poll on PORT_CLOCK_CTL PCLK PLL Ack LN<Lane for maxPCLK> == "1". */
+-	if (__intel_de_wait_for_register(i915, XELPDP_PORT_CLOCK_CTL(i915, encoder->port),
+-					 intel_cx0_get_pclk_pll_ack(INTEL_CX0_BOTH_LANES),
+-					 intel_cx0_get_pclk_pll_ack(maxpclk_lane),
+-					 XELPDP_PCLK_PLL_ENABLE_TIMEOUT_US, 0, NULL))
++	if (intel_de_wait_custom(i915, XELPDP_PORT_CLOCK_CTL(i915, encoder->port),
++				 intel_cx0_get_pclk_pll_ack(INTEL_CX0_BOTH_LANES),
++				 intel_cx0_get_pclk_pll_ack(maxpclk_lane),
++				 XELPDP_PCLK_PLL_ENABLE_TIMEOUT_US, 0, NULL))
+ 		drm_warn(&i915->drm, "Port %c PLL not locked after %dus.\n",
+ 			 phy_name(phy), XELPDP_PCLK_PLL_ENABLE_TIMEOUT_US);
+ 
+@@ -2858,10 +2858,10 @@ static void intel_mtl_tbt_pll_enable(struct intel_encoder *encoder,
+ 	intel_de_write(i915, XELPDP_PORT_CLOCK_CTL(i915, encoder->port), val);
+ 
+ 	/* 5. Poll on PORT_CLOCK_CTL TBT CLOCK Ack == "1". */
+-	if (__intel_de_wait_for_register(i915, XELPDP_PORT_CLOCK_CTL(i915, encoder->port),
+-					 XELPDP_TBT_CLOCK_ACK,
+-					 XELPDP_TBT_CLOCK_ACK,
+-					 100, 0, NULL))
++	if (intel_de_wait_custom(i915, XELPDP_PORT_CLOCK_CTL(i915, encoder->port),
++				 XELPDP_TBT_CLOCK_ACK,
++				 XELPDP_TBT_CLOCK_ACK,
++				 100, 0, NULL))
+ 		drm_warn(&i915->drm, "[ENCODER:%d:%s][%c] PHY PLL not locked after 100us.\n",
+ 			 encoder->base.base.id, encoder->base.name, phy_name(phy));
+ 
+@@ -2920,10 +2920,10 @@ static void intel_cx0pll_disable(struct intel_encoder *encoder)
+ 	/*
+ 	 * 5. Poll on PORT_CLOCK_CTL PCLK PLL Ack LN<Lane for maxPCLK**> == "0".
+ 	 */
+-	if (__intel_de_wait_for_register(i915, XELPDP_PORT_CLOCK_CTL(i915, encoder->port),
+-					 intel_cx0_get_pclk_pll_ack(INTEL_CX0_BOTH_LANES) |
+-					 intel_cx0_get_pclk_refclk_ack(INTEL_CX0_BOTH_LANES), 0,
+-					 XELPDP_PCLK_PLL_DISABLE_TIMEOUT_US, 0, NULL))
++	if (intel_de_wait_custom(i915, XELPDP_PORT_CLOCK_CTL(i915, encoder->port),
++				 intel_cx0_get_pclk_pll_ack(INTEL_CX0_BOTH_LANES) |
++				 intel_cx0_get_pclk_refclk_ack(INTEL_CX0_BOTH_LANES), 0,
++				 XELPDP_PCLK_PLL_DISABLE_TIMEOUT_US, 0, NULL))
+ 		drm_warn(&i915->drm, "Port %c PLL not unlocked after %dus.\n",
+ 			 phy_name(phy), XELPDP_PCLK_PLL_DISABLE_TIMEOUT_US);
+ 
+@@ -2958,8 +2958,8 @@ static void intel_mtl_tbt_pll_disable(struct intel_encoder *encoder)
+ 		     XELPDP_TBT_CLOCK_REQUEST, 0);
+ 
+ 	/* 3. Poll on PORT_CLOCK_CTL TBT CLOCK Ack == "0". */
+-	if (__intel_de_wait_for_register(i915, XELPDP_PORT_CLOCK_CTL(i915, encoder->port),
+-					 XELPDP_TBT_CLOCK_ACK, 0, 10, 0, NULL))
++	if (intel_de_wait_custom(i915, XELPDP_PORT_CLOCK_CTL(i915, encoder->port),
++				 XELPDP_TBT_CLOCK_ACK, 0, 10, 0, NULL))
+ 		drm_warn(&i915->drm, "[ENCODER:%d:%s][%c] PHY PLL not unlocked after 10us.\n",
+ 			 encoder->base.base.id, encoder->base.name, phy_name(phy));
+ 
+diff --git a/drivers/gpu/drm/i915/display/intel_de.h b/drivers/gpu/drm/i915/display/intel_de.h
+index 42552d8c151e..ba7a1c6ebc2a 100644
+--- a/drivers/gpu/drm/i915/display/intel_de.h
++++ b/drivers/gpu/drm/i915/display/intel_de.h
+@@ -48,24 +48,24 @@ intel_de_rmw(struct drm_i915_private *i915, i915_reg_t reg, u32 clear, u32 set)
+ }
+ 
+ static inline int
+-intel_de_wait_for_register(struct drm_i915_private *i915, i915_reg_t reg,
+-			   u32 mask, u32 value, unsigned int timeout)
++intel_de_wait(struct drm_i915_private *i915, i915_reg_t reg,
++	      u32 mask, u32 value, unsigned int timeout)
+ {
+ 	return intel_wait_for_register(&i915->uncore, reg, mask, value, timeout);
+ }
+ 
+ static inline int
+-intel_de_wait_for_register_fw(struct drm_i915_private *i915, i915_reg_t reg,
+-			      u32 mask, u32 value, unsigned int timeout)
++intel_de_wait_fw(struct drm_i915_private *i915, i915_reg_t reg,
++		 u32 mask, u32 value, unsigned int timeout)
+ {
+ 	return intel_wait_for_register_fw(&i915->uncore, reg, mask, value, timeout);
+ }
+ 
+ static inline int
+-__intel_de_wait_for_register(struct drm_i915_private *i915, i915_reg_t reg,
+-			     u32 mask, u32 value,
+-			     unsigned int fast_timeout_us,
+-			     unsigned int slow_timeout_ms, u32 *out_value)
++intel_de_wait_custom(struct drm_i915_private *i915, i915_reg_t reg,
++		     u32 mask, u32 value,
++		     unsigned int fast_timeout_us,
++		     unsigned int slow_timeout_ms, u32 *out_value)
+ {
+ 	return __intel_wait_for_register(&i915->uncore, reg, mask, value,
+ 					 fast_timeout_us, slow_timeout_ms, out_value);
+@@ -75,14 +75,14 @@ static inline int
+ intel_de_wait_for_set(struct drm_i915_private *i915, i915_reg_t reg,
+ 		      u32 mask, unsigned int timeout)
+ {
+-	return intel_de_wait_for_register(i915, reg, mask, mask, timeout);
++	return intel_de_wait(i915, reg, mask, mask, timeout);
+ }
+ 
+ static inline int
+ intel_de_wait_for_clear(struct drm_i915_private *i915, i915_reg_t reg,
+ 			u32 mask, unsigned int timeout)
+ {
+-	return intel_de_wait_for_register(i915, reg, mask, 0, timeout);
++	return intel_de_wait(i915, reg, mask, 0, timeout);
+ }
+ 
+ /*
+diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
+index d366a103a707..38a711e2e2f4 100644
+--- a/drivers/gpu/drm/i915/display/intel_display.c
++++ b/drivers/gpu/drm/i915/display/intel_display.c
+@@ -383,8 +383,7 @@ void vlv_wait_port_ready(struct drm_i915_private *dev_priv,
+ 		break;
+ 	}
+ 
+-	if (intel_de_wait_for_register(dev_priv, dpll_reg,
+-				       port_mask, expected_mask, 1000))
++	if (intel_de_wait(dev_priv, dpll_reg, port_mask, expected_mask, 1000))
+ 		drm_WARN(&dev_priv->drm, 1,
+ 			 "timed out waiting for [ENCODER:%d:%s] port ready: got 0x%x, expected 0x%x\n",
+ 			 dig_port->base.base.base.id, dig_port->base.base.name,
+diff --git a/drivers/gpu/drm/i915/display/intel_display_power_well.c b/drivers/gpu/drm/i915/display/intel_display_power_well.c
+index 217f82f1da84..6ca92c4d8199 100644
+--- a/drivers/gpu/drm/i915/display/intel_display_power_well.c
++++ b/drivers/gpu/drm/i915/display/intel_display_power_well.c
+@@ -1390,8 +1390,8 @@ static void assert_chv_phy_status(struct drm_i915_private *dev_priv)
+ 	 * The PHY may be busy with some initial calibration and whatnot,
+ 	 * so the power state can take a while to actually change.
+ 	 */
+-	if (intel_de_wait_for_register(dev_priv, DISPLAY_PHY_STATUS,
+-				       phy_status_mask, phy_status, 10))
++	if (intel_de_wait(dev_priv, DISPLAY_PHY_STATUS,
++			  phy_status_mask, phy_status, 10))
+ 		drm_err(&dev_priv->drm,
+ 			"Unexpected PHY_STATUS 0x%08x, expected 0x%08x (PHY_CONTROL=0x%08x)\n",
+ 			intel_de_read(dev_priv, DISPLAY_PHY_STATUS) & phy_status_mask,
+diff --git a/drivers/gpu/drm/i915/display/intel_dp_aux.c b/drivers/gpu/drm/i915/display/intel_dp_aux.c
+index 8a02d9cd2ec1..b8a53bb174da 100644
+--- a/drivers/gpu/drm/i915/display/intel_dp_aux.c
++++ b/drivers/gpu/drm/i915/display/intel_dp_aux.c
+@@ -61,9 +61,8 @@ intel_dp_aux_wait_done(struct intel_dp *intel_dp)
+ 	u32 status;
+ 	int ret;
+ 
+-	ret = __intel_de_wait_for_register(i915, ch_ctl,
+-					   DP_AUX_CH_CTL_SEND_BUSY, 0,
+-					   2, timeout_ms, &status);
++	ret = intel_de_wait_custom(i915, ch_ctl, DP_AUX_CH_CTL_SEND_BUSY, 0,
++				   2, timeout_ms, &status);
+ 
+ 	if (ret == -ETIMEDOUT)
+ 		drm_err(&i915->drm,
+diff --git a/drivers/gpu/drm/i915/display/intel_dp_hdcp.c b/drivers/gpu/drm/i915/display/intel_dp_hdcp.c
+index b98a87883fef..179e754e5c30 100644
+--- a/drivers/gpu/drm/i915/display/intel_dp_hdcp.c
++++ b/drivers/gpu/drm/i915/display/intel_dp_hdcp.c
+@@ -766,11 +766,9 @@ intel_dp_mst_hdcp_stream_encryption(struct intel_connector *connector,
+ 		return -EINVAL;
+ 
+ 	/* Wait for encryption confirmation */
+-	if (intel_de_wait_for_register(i915,
+-				       HDCP_STATUS(i915, cpu_transcoder, port),
+-				       stream_enc_status,
+-				       enable ? stream_enc_status : 0,
+-				       HDCP_ENCRYPT_STATUS_CHANGE_TIMEOUT_MS)) {
++	if (intel_de_wait(i915, HDCP_STATUS(i915, cpu_transcoder, port),
++			  stream_enc_status, enable ? stream_enc_status : 0,
++			  HDCP_ENCRYPT_STATUS_CHANGE_TIMEOUT_MS)) {
+ 		drm_err(&i915->drm, "Timed out waiting for transcoder: %s stream encryption %s\n",
+ 			transcoder_name(cpu_transcoder), enable ? "enabled" : "disabled");
+ 		return -ETIMEDOUT;
+@@ -801,11 +799,10 @@ intel_dp_mst_hdcp2_stream_encryption(struct intel_connector *connector,
+ 		return ret;
+ 
+ 	/* Wait for encryption confirmation */
+-	if (intel_de_wait_for_register(i915,
+-				       HDCP2_STREAM_STATUS(i915, cpu_transcoder, pipe),
+-				       STREAM_ENCRYPTION_STATUS,
+-				       enable ? STREAM_ENCRYPTION_STATUS : 0,
+-				       HDCP_ENCRYPT_STATUS_CHANGE_TIMEOUT_MS)) {
++	if (intel_de_wait(i915, HDCP2_STREAM_STATUS(i915, cpu_transcoder, pipe),
++			  STREAM_ENCRYPTION_STATUS,
++			  enable ? STREAM_ENCRYPTION_STATUS : 0,
++			  HDCP_ENCRYPT_STATUS_CHANGE_TIMEOUT_MS)) {
+ 		drm_err(&i915->drm, "Timed out waiting for transcoder: %s stream encryption %s\n",
+ 			transcoder_name(cpu_transcoder), enable ? "enabled" : "disabled");
+ 		return -ETIMEDOUT;
+diff --git a/drivers/gpu/drm/i915/display/intel_gmbus.c b/drivers/gpu/drm/i915/display/intel_gmbus.c
+index d3e03ed5b79c..9c8e1e91ff1c 100644
+--- a/drivers/gpu/drm/i915/display/intel_gmbus.c
++++ b/drivers/gpu/drm/i915/display/intel_gmbus.c
+@@ -411,7 +411,7 @@ gmbus_wait_idle(struct drm_i915_private *i915)
+ 	add_wait_queue(&i915->display.gmbus.wait_queue, &wait);
+ 	intel_de_write_fw(i915, GMBUS4(i915), irq_enable);
+ 
+-	ret = intel_de_wait_for_register_fw(i915, GMBUS2(i915), GMBUS_ACTIVE, 0, 10);
++	ret = intel_de_wait_fw(i915, GMBUS2(i915), GMBUS_ACTIVE, 0, 10);
+ 
+ 	intel_de_write_fw(i915, GMBUS4(i915), 0);
+ 	remove_wait_queue(&i915->display.gmbus.wait_queue, &wait);
+diff --git a/drivers/gpu/drm/i915/display/intel_pps.c b/drivers/gpu/drm/i915/display/intel_pps.c
+index 2d65a538f83e..b5d9920f8341 100644
+--- a/drivers/gpu/drm/i915/display/intel_pps.c
++++ b/drivers/gpu/drm/i915/display/intel_pps.c
+@@ -605,8 +605,7 @@ static void wait_panel_status(struct intel_dp *intel_dp,
+ 		    intel_de_read(dev_priv, pp_stat_reg),
+ 		    intel_de_read(dev_priv, pp_ctrl_reg));
+ 
+-	if (intel_de_wait_for_register(dev_priv, pp_stat_reg,
+-				       mask, value, 5000))
++	if (intel_de_wait(dev_priv, pp_stat_reg, mask, value, 5000))
+ 		drm_err(&dev_priv->drm,
+ 			"[ENCODER:%d:%s] %s panel status timeout: PP_STATUS: 0x%08x PP_CONTROL: 0x%08x\n",
+ 			dig_port->base.base.base.id, dig_port->base.base.name,
+-- 
+2.39.2
 
