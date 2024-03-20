@@ -2,51 +2,51 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7C6D88814DC
-	for <lists+intel-gfx@lfdr.de>; Wed, 20 Mar 2024 16:48:28 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 41BA88814DD
+	for <lists+intel-gfx@lfdr.de>; Wed, 20 Mar 2024 16:48:32 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BB0AE10FC70;
-	Wed, 20 Mar 2024 15:48:26 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CA2DD10E451;
+	Wed, 20 Mar 2024 15:48:30 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="gF+b/pmT";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Kj3FsKlt";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0099B10E451
- for <intel-gfx@lists.freedesktop.org>; Wed, 20 Mar 2024 15:48:24 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E38C010F460
+ for <intel-gfx@lists.freedesktop.org>; Wed, 20 Mar 2024 15:48:28 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1710949705; x=1742485705;
+ t=1710949709; x=1742485709;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=JRaunn2aYzF09MqeyHIi1vEO/4dn1q4+KlBG+O3cfxI=;
- b=gF+b/pmTL5nvg9G7prAyAzj843B5J1paQ9UNZU9ZO0f8bZIPUjP58t8e
- +rizfr5Qh7yEEsA9XzCEK+X0l3K0nu9MVkPoXUp3wKvmFbcqqX0qvGqeJ
- 14fVO3Tfq/gWZ6neGFIfpN6NJRakvkCra0f9QFo3j3iHqyztvs4bvCtOD
- AO6MmZxgJF8TcEPO/iSd0kWUW53OWsl9C+nyGzD41KVVg/wsZ10YzXj++
- 0Z/1lCPCCQeiEnDVdKETeU+sYahi2tLuzQVZHiVDPvI7FjwqIFdGq/vtd
- YKAcUp32OZk+jY/9xlA1+qtugKnVJLVKA8CDCsEcYQ0B7jBDjQ6IiAStM Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,11019"; a="5728601"
+ bh=edLIzf67aZNYog/Aj5/OXFmBLJE2XZ9yZGEoxdSpz8o=;
+ b=Kj3FsKlte/MrIGpcAEqV48UFyPifiSmGBlHGUHUT+DmvRu2lY7rW+cYM
+ cotp8GRYGP32Wld9480wRlBLHjHwp/g4k9fc9Ftp87AYiILpOma0r+mRn
+ VJr7068Kk6wxgZnufSzaigkCHTxHVcIOonLpryYXGwSAOgluY1RcZJDDt
+ UoOpFqBsEu7ErKeJVparv9kGhIqttmvRwpg8OZa9f23SzstyInwI9279C
+ ZQk3bnUF17Oc3n4vdlAP7009HBbAN/42JJLbQ5a3OrmLL7ObpYLmwVHal
+ S1IwckuccQC4lxHZoR0SvW978Ebo0xTMLM/CsY7rQCO5nI8C0Uhopre7v g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,11019"; a="5728614"
 X-IronPort-AV: E=Sophos;i="6.07,140,1708416000"; 
-   d="scan'208";a="5728601"
+   d="scan'208";a="5728614"
 Received: from fmviesa002.fm.intel.com ([10.60.135.142])
  by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Mar 2024 08:48:24 -0700
+ 20 Mar 2024 08:48:29 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.07,140,1708416000"; d="scan'208";a="37308484"
+X-IronPort-AV: E=Sophos;i="6.07,140,1708416000"; d="scan'208";a="37308492"
 Received: from dmocuta-mobl2.ger.corp.intel.com (HELO localhost)
  ([10.252.36.133])
  by fmviesa002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Mar 2024 08:48:23 -0700
+ 20 Mar 2024 08:48:27 -0700
 From: Jani Nikula <jani.nikula@intel.com>
 To: intel-gfx@lists.freedesktop.org
 Cc: jani.nikula@intel.com,
 	ville.syrjala@linux.intel.com
-Subject: [CI 3/7] drm/i915/snps: pass encoder to
- intel_snps_phy_update_psr_power_state()
-Date: Wed, 20 Mar 2024 17:48:00 +0200
-Message-Id: <4711919a9834cf4a49fd665009ba9d44b4b42bc4.1710949619.git.jani.nikula@intel.com>
+Subject: [CI 4/7] drm/i915/display: add intel_encoder_is_*() and _to_*()
+ functions
+Date: Wed, 20 Mar 2024 17:48:01 +0200
+Message-Id: <7b2d350ee42883f2784030c649d16f983bd407bd.1710949619.git.jani.nikula@intel.com>
 X-Mailer: git-send-email 2.39.2
 In-Reply-To: <cover.1710949619.git.jani.nikula@intel.com>
 References: <cover.1710949619.git.jani.nikula@intel.com>
@@ -69,89 +69,163 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Pass encoder to intel_snps_phy_update_psr_power_state(). The encoder
-will be more helpful than just port in the subsequent changes.
+Add a number of encoder based functions to check if the port/phy of the
+encoder is of a certain type, or to convert to phy or tc_port. Initially
+these are just wrappers around the existing functions, but they can be
+improved to use VBT data or use some cached info in the future.
 
 Reviewed-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 Signed-off-by: Jani Nikula <jani.nikula@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_psr.c      | 7 ++-----
- drivers/gpu/drm/i915/display/intel_snps_phy.c | 6 ++++--
- drivers/gpu/drm/i915/display/intel_snps_phy.h | 4 ++--
- 3 files changed, 8 insertions(+), 9 deletions(-)
+ drivers/gpu/drm/i915/display/intel_cx0_phy.c |  9 +++++
+ drivers/gpu/drm/i915/display/intel_cx0_phy.h |  1 +
+ drivers/gpu/drm/i915/display/intel_display.c | 40 ++++++++++++++++++++
+ drivers/gpu/drm/i915/display/intel_display.h |  7 ++++
+ 4 files changed, 57 insertions(+)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_psr.c b/drivers/gpu/drm/i915/display/intel_psr.c
-index 747761efa4be..3f35572354ba 100644
---- a/drivers/gpu/drm/i915/display/intel_psr.c
-+++ b/drivers/gpu/drm/i915/display/intel_psr.c
-@@ -1724,7 +1724,6 @@ static void intel_psr_enable_locked(struct intel_dp *intel_dp,
+diff --git a/drivers/gpu/drm/i915/display/intel_cx0_phy.c b/drivers/gpu/drm/i915/display/intel_cx0_phy.c
+index 64e0f820a789..f0ae2fe70c41 100644
+--- a/drivers/gpu/drm/i915/display/intel_cx0_phy.c
++++ b/drivers/gpu/drm/i915/display/intel_cx0_phy.c
+@@ -29,6 +29,7 @@
+ #define INTEL_CX0_LANE1		BIT(1)
+ #define INTEL_CX0_BOTH_LANES	(INTEL_CX0_LANE1 | INTEL_CX0_LANE0)
+ 
++/* Prefer intel_encoder_is_c10phy() */
+ bool intel_is_c10phy(struct drm_i915_private *i915, enum phy phy)
  {
- 	struct intel_digital_port *dig_port = dp_to_dig_port(intel_dp);
- 	struct drm_i915_private *dev_priv = dp_to_i915(intel_dp);
--	enum phy phy = intel_port_to_phy(dev_priv, dig_port->base.port);
- 	u32 val;
- 
- 	drm_WARN_ON(&dev_priv->drm, intel_dp->psr.enabled);
-@@ -1752,7 +1751,7 @@ static void intel_psr_enable_locked(struct intel_dp *intel_dp,
- 		drm_dbg_kms(&dev_priv->drm, "Enabling PSR%s\n",
- 			    intel_dp->psr.psr2_enabled ? "2" : "1");
- 
--	intel_snps_phy_update_psr_power_state(dev_priv, phy, true);
-+	intel_snps_phy_update_psr_power_state(&dig_port->base, true);
- 	intel_psr_enable_sink(intel_dp);
- 	intel_psr_enable_source(intel_dp, crtc_state);
- 	intel_dp->psr.enabled = true;
-@@ -1823,8 +1822,6 @@ static void intel_psr_disable_locked(struct intel_dp *intel_dp)
- {
- 	struct drm_i915_private *dev_priv = dp_to_i915(intel_dp);
- 	enum transcoder cpu_transcoder = intel_dp->psr.transcoder;
--	enum phy phy = intel_port_to_phy(dev_priv,
--					 dp_to_dig_port(intel_dp)->base.port);
- 
- 	lockdep_assert_held(&intel_dp->psr.lock);
- 
-@@ -1859,7 +1856,7 @@ static void intel_psr_disable_locked(struct intel_dp *intel_dp)
- 				     CLKGATE_DIS_MISC_DMASC_GATING_DIS, 0);
- 	}
- 
--	intel_snps_phy_update_psr_power_state(dev_priv, phy, false);
-+	intel_snps_phy_update_psr_power_state(&dp_to_dig_port(intel_dp)->base, false);
- 
- 	/* Disable PSR on Sink */
- 	drm_dp_dpcd_writeb(&intel_dp->aux, DP_PSR_EN_CFG, 0);
-diff --git a/drivers/gpu/drm/i915/display/intel_snps_phy.c b/drivers/gpu/drm/i915/display/intel_snps_phy.c
-index bc61e736f9b3..7fc002268482 100644
---- a/drivers/gpu/drm/i915/display/intel_snps_phy.c
-+++ b/drivers/gpu/drm/i915/display/intel_snps_phy.c
-@@ -44,9 +44,11 @@ void intel_snps_phy_wait_for_calibration(struct drm_i915_private *i915)
- 	}
+ 	if ((IS_LUNARLAKE(i915) || IS_METEORLAKE(i915)) && phy < PHY_C)
+@@ -37,6 +38,14 @@ bool intel_is_c10phy(struct drm_i915_private *i915, enum phy phy)
+ 	return false;
  }
  
--void intel_snps_phy_update_psr_power_state(struct drm_i915_private *i915,
--					   enum phy phy, bool enable)
-+void intel_snps_phy_update_psr_power_state(struct intel_encoder *encoder,
-+					   bool enable)
- {
++bool intel_encoder_is_c10phy(struct intel_encoder *encoder)
++{
 +	struct drm_i915_private *i915 = to_i915(encoder->base.dev);
-+	enum phy phy = intel_port_to_phy(i915, encoder->port);
- 	u32 val;
++	enum phy phy = intel_encoder_to_phy(encoder);
++
++	return intel_is_c10phy(i915, phy);
++}
++
+ static int lane_mask_to_lane(u8 lane_mask)
+ {
+ 	if (WARN_ON((lane_mask & ~INTEL_CX0_BOTH_LANES) ||
+diff --git a/drivers/gpu/drm/i915/display/intel_cx0_phy.h b/drivers/gpu/drm/i915/display/intel_cx0_phy.h
+index c6682677253a..2be474877fdc 100644
+--- a/drivers/gpu/drm/i915/display/intel_cx0_phy.h
++++ b/drivers/gpu/drm/i915/display/intel_cx0_phy.h
+@@ -23,6 +23,7 @@ struct intel_encoder;
+ struct intel_hdmi;
  
- 	if (!intel_phy_is_snps(i915, phy))
-diff --git a/drivers/gpu/drm/i915/display/intel_snps_phy.h b/drivers/gpu/drm/i915/display/intel_snps_phy.h
-index 515abf7c5902..bc08b92a7cd9 100644
---- a/drivers/gpu/drm/i915/display/intel_snps_phy.h
-+++ b/drivers/gpu/drm/i915/display/intel_snps_phy.h
-@@ -17,8 +17,8 @@ struct intel_mpllb_state;
- enum phy;
+ bool intel_is_c10phy(struct drm_i915_private *dev_priv, enum phy phy);
++bool intel_encoder_is_c10phy(struct intel_encoder *encoder);
+ void intel_mtl_pll_enable(struct intel_encoder *encoder,
+ 			  const struct intel_crtc_state *crtc_state);
+ void intel_mtl_pll_disable(struct intel_encoder *encoder);
+diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
+index d366a103a707..c35a6a68218d 100644
+--- a/drivers/gpu/drm/i915/display/intel_display.c
++++ b/drivers/gpu/drm/i915/display/intel_display.c
+@@ -1836,6 +1836,7 @@ static void i9xx_pfit_enable(const struct intel_crtc_state *crtc_state)
+ 	intel_de_write(dev_priv, BCLRPAT(crtc->pipe), 0);
+ }
  
- void intel_snps_phy_wait_for_calibration(struct drm_i915_private *dev_priv);
--void intel_snps_phy_update_psr_power_state(struct drm_i915_private *dev_priv,
--					   enum phy phy, bool enable);
-+void intel_snps_phy_update_psr_power_state(struct intel_encoder *encoder,
-+					   bool enable);
++/* Prefer intel_encoder_is_combo() */
+ bool intel_phy_is_combo(struct drm_i915_private *dev_priv, enum phy phy)
+ {
+ 	if (phy == PHY_NONE)
+@@ -1857,6 +1858,7 @@ bool intel_phy_is_combo(struct drm_i915_private *dev_priv, enum phy phy)
+ 		return false;
+ }
  
- int intel_mpllb_calc_state(struct intel_crtc_state *crtc_state,
- 			   struct intel_encoder *encoder);
++/* Prefer intel_encoder_is_tc() */
+ bool intel_phy_is_tc(struct drm_i915_private *dev_priv, enum phy phy)
+ {
+ 	/*
+@@ -1877,6 +1879,7 @@ bool intel_phy_is_tc(struct drm_i915_private *dev_priv, enum phy phy)
+ 	return false;
+ }
+ 
++/* Prefer intel_encoder_is_snps() */
+ bool intel_phy_is_snps(struct drm_i915_private *dev_priv, enum phy phy)
+ {
+ 	/*
+@@ -1886,6 +1889,7 @@ bool intel_phy_is_snps(struct drm_i915_private *dev_priv, enum phy phy)
+ 	return IS_DG2(dev_priv) && phy > PHY_NONE && phy <= PHY_E;
+ }
+ 
++/* Prefer intel_encoder_to_phy() */
+ enum phy intel_port_to_phy(struct drm_i915_private *i915, enum port port)
+ {
+ 	if (DISPLAY_VER(i915) >= 13 && port >= PORT_D_XELPD)
+@@ -1903,6 +1907,7 @@ enum phy intel_port_to_phy(struct drm_i915_private *i915, enum port port)
+ 	return PHY_A + port - PORT_A;
+ }
+ 
++/* Prefer intel_encoder_to_tc() */
+ enum tc_port intel_port_to_tc(struct drm_i915_private *dev_priv, enum port port)
+ {
+ 	if (!intel_phy_is_tc(dev_priv, intel_port_to_phy(dev_priv, port)))
+@@ -1914,6 +1919,41 @@ enum tc_port intel_port_to_tc(struct drm_i915_private *dev_priv, enum port port)
+ 		return TC_PORT_1 + port - PORT_C;
+ }
+ 
++enum phy intel_encoder_to_phy(struct intel_encoder *encoder)
++{
++	struct drm_i915_private *i915 = to_i915(encoder->base.dev);
++
++	return intel_port_to_phy(i915, encoder->port);
++}
++
++bool intel_encoder_is_combo(struct intel_encoder *encoder)
++{
++	struct drm_i915_private *i915 = to_i915(encoder->base.dev);
++
++	return intel_phy_is_combo(i915, intel_encoder_to_phy(encoder));
++}
++
++bool intel_encoder_is_snps(struct intel_encoder *encoder)
++{
++	struct drm_i915_private *i915 = to_i915(encoder->base.dev);
++
++	return intel_phy_is_snps(i915, intel_encoder_to_phy(encoder));
++}
++
++bool intel_encoder_is_tc(struct intel_encoder *encoder)
++{
++	struct drm_i915_private *i915 = to_i915(encoder->base.dev);
++
++	return intel_phy_is_tc(i915, intel_encoder_to_phy(encoder));
++}
++
++enum tc_port intel_encoder_to_tc(struct intel_encoder *encoder)
++{
++	struct drm_i915_private *i915 = to_i915(encoder->base.dev);
++
++	return intel_port_to_tc(i915, encoder->port);
++}
++
+ enum intel_display_power_domain
+ intel_aux_power_domain(struct intel_digital_port *dig_port)
+ {
+diff --git a/drivers/gpu/drm/i915/display/intel_display.h b/drivers/gpu/drm/i915/display/intel_display.h
+index f4a0773f0fca..986ec77490de 100644
+--- a/drivers/gpu/drm/i915/display/intel_display.h
++++ b/drivers/gpu/drm/i915/display/intel_display.h
+@@ -448,6 +448,13 @@ bool intel_phy_is_tc(struct drm_i915_private *dev_priv, enum phy phy);
+ bool intel_phy_is_snps(struct drm_i915_private *dev_priv, enum phy phy);
+ enum tc_port intel_port_to_tc(struct drm_i915_private *dev_priv,
+ 			      enum port port);
++
++enum phy intel_encoder_to_phy(struct intel_encoder *encoder);
++bool intel_encoder_is_combo(struct intel_encoder *encoder);
++bool intel_encoder_is_snps(struct intel_encoder *encoder);
++bool intel_encoder_is_tc(struct intel_encoder *encoder);
++enum tc_port intel_encoder_to_tc(struct intel_encoder *encoder);
++
+ int intel_get_pipe_from_crtc_id_ioctl(struct drm_device *dev, void *data,
+ 				      struct drm_file *file_priv);
+ 
 -- 
 2.39.2
 
