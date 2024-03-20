@@ -2,59 +2,57 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 32F35881257
-	for <lists+intel-gfx@lfdr.de>; Wed, 20 Mar 2024 14:31:35 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 75FB9881274
+	for <lists+intel-gfx@lfdr.de>; Wed, 20 Mar 2024 14:42:43 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A183110FB48;
-	Wed, 20 Mar 2024 13:31:33 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5F0D710FC51;
+	Wed, 20 Mar 2024 13:42:41 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="l5uBtrLG";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="fumXDOUy";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 92E2B10FB48
- for <intel-gfx@lists.freedesktop.org>; Wed, 20 Mar 2024 13:31:31 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B50E010FC1D
+ for <intel-gfx@lists.freedesktop.org>; Wed, 20 Mar 2024 13:42:40 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1710941491; x=1742477491;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=gA4BilEVl/+EnDlsKJx1dvLdyVrB86CTZzbiPYb0c0k=;
- b=l5uBtrLGDyqwKEWXE4RDD7GTWyagVqUkzCQzuGDEBnYBE1epbTNEMBnW
- ugzZBlQykPpytYNhdcu7MsGYCuVLNCtZ9DyziF/mbFOy9o53zjaKS+CAN
- r8a67qwVZ0Qc4IeAztSuaVDlrB0DYb/gl3fkTV1BHsXGquDoPXZRzftkt
- KikuAnWSLywg35DLOvKmvcjXfRReDDHpkLIEc5OjXUJoNMRKtxriwKjFa
- i/M18HvzIs06DMiXvV36p3u/hIME3UMezWyHn5UBjbG2hEGlPZw0asqYF
- 3aKJBEiO4y5WyEPSCDAOybAeruAbSxbyEUGAurjFAaDDZKfAZMbi308AC w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,11018"; a="9633915"
+ t=1710942161; x=1742478161;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version:content-transfer-encoding;
+ bh=FZ5FEHhuMnteJhrwNWzIqVuitFF7mzV7eg6m2Z1JmnQ=;
+ b=fumXDOUyUw3u0WBG95z4z/k9jUw5JHxTCX9yevY95bB1JbHujTtY3IOW
+ 4evhxX888lBgrw4o225CaCJL2BcoqlGuKGD0AddZUO3ohlbbEelm1znF+
+ 9AJU8N0WbCzN7ZkFm049X18CDq3HoiBOg2yxWQF94bJ2oFgS9sOVT6AMR
+ z+twjlTb8Y6tNLuMBOoZEnn85PwkOVSWc2xpSIA4RXOt1Q6TY9SWezliH
+ AyhffnVlB0glvGk34N5WFixtzlkE/V4hV6VpQnUOfzJFeebw9t7lwNSWo
+ N6sM9FzqnI8g7BJwxICki/A5Kk+fHtcgqsM6G0bOkO5R73ggby30YZCfc w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,11018"; a="5702161"
 X-IronPort-AV: E=Sophos;i="6.07,140,1708416000"; 
-   d="scan'208";a="9633915"
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
- by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Mar 2024 06:31:31 -0700
+   d="scan'208";a="5702161"
+Received: from fmviesa005.fm.intel.com ([10.60.135.145])
+ by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 20 Mar 2024 06:42:40 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,11018"; a="827782559"
-X-IronPort-AV: E=Sophos;i="6.07,140,1708416000"; d="scan'208";a="827782559"
-Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.74])
- by orsmga001.jf.intel.com with SMTP; 20 Mar 2024 06:31:28 -0700
-Received: by stinkbox (sSMTP sendmail emulation);
- Wed, 20 Mar 2024 15:31:27 +0200
-Date: Wed, 20 Mar 2024 15:31:27 +0200
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Julia Lawall <julia.lawall@inria.fr>
-Cc: cocci@systeme.lip6.fr, Jani Nikula <jani.nikula@linux.intel.com>,
- intel-gfx@lists.freedesktop.org
+X-IronPort-AV: E=Sophos;i="6.07,140,1708416000"; d="scan'208";a="18626338"
+Received: from dmocuta-mobl2.ger.corp.intel.com (HELO localhost)
+ ([10.252.36.133])
+ by fmviesa005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 20 Mar 2024 06:42:36 -0700
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Ville =?utf-8?B?U3lyasOkbMOk?= <ville.syrjala@linux.intel.com>, Julia
+ Lawall <julia.lawall@inria.fr>
+Cc: cocci@systeme.lip6.fr, intel-gfx@lists.freedesktop.org
 Subject: Re: Weirdness in parsing cpp macros
-Message-ID: <ZfrlLw3W00-cnH1U@intel.com>
+In-Reply-To: <ZfrlLw3W00-cnH1U@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 References: <ZfrYc_rKGETrJsE4@intel.com>
- <c22ade0-6b91-3386-a32d-19bcb8cc3d7@inria.fr>
+ <c22ade0-6b91-3386-a32d-19bcb8cc3d7@inria.fr> <ZfrlLw3W00-cnH1U@intel.com>
+Date: Wed, 20 Mar 2024 15:42:21 +0200
+Message-ID: <87y1adm342.fsf@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <c22ade0-6b91-3386-a32d-19bcb8cc3d7@inria.fr>
-X-Patchwork-Hint: comment
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -70,66 +68,51 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, Mar 20, 2024 at 02:24:08PM +0100, Julia Lawall wrote:
-> 
-> 
-> On Wed, 20 Mar 2024, Ville Syrjälä wrote:
-> 
-> > Hi Julia et al,
-> >
-> > In Linux drm/i915 driver (drivers/gpu/drm/i915/display/intel_pps.[ch])
-> > we have a magic macro like this:
-> >
-> > #define with_intel_pps_lock(dp, wf) \
-> 
-> Did you try declaring:
-> 
-> iterator name with_intel_pps_lock;
-> 
-> up with the metavariables?
+On Wed, 20 Mar 2024, Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com=
+> wrote:
+> On Wed, Mar 20, 2024 at 02:24:08PM +0100, Julia Lawall wrote:
+>>=20
+>>=20
+>> On Wed, 20 Mar 2024, Ville Syrj=C3=A4l=C3=A4 wrote:
+>>=20
+>> > Hi Julia et al,
+>> >
+>> > In Linux drm/i915 driver (drivers/gpu/drm/i915/display/intel_pps.[ch])
+>> > we have a magic macro like this:
+>> >
+>> > #define with_intel_pps_lock(dp, wf) \
+>>=20
+>> Did you try declaring:
+>>=20
+>> iterator name with_intel_pps_lock;
+>>=20
+>> up with the metavariables?
+>
+> Nope, didn't know about that one.
+>
+> Seems to work fine with that. Thanks.
 
-Nope, didn't know about that one.
+Okay, I have another one wrt macros. :)
 
-Seems to work fine with that. Thanks.
+I'm trying to add a completely new variadic macro, but it fails at
+"...". I've tried all sorts of things, but can't seem to be able to add
+a literal "...".
 
-> 
-> julia
-> 
-> 
-> >         for ((wf) = intel_pps_lock(dp); (wf); (wf) = intel_pps_unlock((dp), (wf)))
-> >
-> >
-> > which we can then use like so:
-> > ...
-> > with_intel_pps_lock(intel_dp, wakeref)
-> > 	wait_panel_power_cycle(intel_dp);
-> > ...
-> >
-> >
-> > If I try to modify this code with eg.
-> >
-> > @@
-> > @@
-> > - wait_panel_power_cycle
-> > + _wait_panel_power_cycle
-> >
-> > spatch fails to parse the macro and won't do the changes here.
-> >
-> >
-> > While experimenting with this I discovered that
-> > I can make it work by:
-> > - moving the macro definition into intel_pps.c file from intel_pps.h
-> > - renaming the macro to contain the substring "for" (doesn't matter
-> >   where in the macro name the "for" appears)
-> >
-> > What on earth is going on here?
-> >
-> > --
-> > Ville Syrjälä
-> > Intel
-> >
+I've tested that my cocci patch works with x's:
+
++ #define fn(p, xxx) foo(__VA_ARGS__)
+
+but when I try to make it actually variadic like:
+
++ #define fn(p, ...) foo(__VA_ARGS__)
+
+it gives me error. Is there a way to escape? Even tried to use a fresh
+identifier vararg =3D "..."; but cocci made them unique with numbering
+"...0" and "...1" etc.
+
+BR,
+Jani.
 
 
--- 
-Ville Syrjälä
-Intel
+--=20
+Jani Nikula, Intel
