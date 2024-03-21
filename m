@@ -2,64 +2,159 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9F253885A2F
-	for <lists+intel-gfx@lfdr.de>; Thu, 21 Mar 2024 14:56:06 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4E4A2885AA3
+	for <lists+intel-gfx@lfdr.de>; Thu, 21 Mar 2024 15:27:14 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7784610EAA9;
-	Thu, 21 Mar 2024 13:56:03 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6CEB110EAFA;
+	Thu, 21 Mar 2024 14:27:12 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="KDGGIjce";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="cQgZG7SD";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D23DF10E94D;
- Thu, 21 Mar 2024 13:56:01 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D337210EAFA
+ for <intel-gfx@lists.freedesktop.org>; Thu, 21 Mar 2024 14:27:11 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1711029361; x=1742565361;
- h=message-id:date:mime-version:from:to:cc:subject:
- content-transfer-encoding;
- bh=5Xlqzp6PkLzd/QeYyFSWZqg555FLwjTGUfcGqIDl8UQ=;
- b=KDGGIjceJJEfiO3i2tvCqfIyPYOrZOqBoGUTj5hilWg+TafllhCTYH2T
- bhy5M7NNIhh/tCtonIU6Ntwie7oH0vqt2NJNkDT8Mq6FmvYvQ4D8jlZmI
- HB6sO4gfHpXaeAW2r9PyAOck5cFoIS6t5UeNflujYFQvdLt8bzrFTtrWE
- Qp1LJ1zoQxFJET2LjplfDQ6+Vtg0p2zl9Nu92JV8+y/E1NiDUIDAKDHPB
- Zn/EfkQLjf2uKDQ1o5Fbuq1LAbmHogKP7AWw3YOxocbyenVSi+8PzJi7o
- oAsBIPVK2TdYUj9Fk3WUqVT6JD/HYRn8axLDsRaZ0riggqQxEVAQsKK9r Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,11019"; a="6198336"
+ t=1711031232; x=1742567232;
+ h=from:to:cc:subject:date:message-id:references:
+ in-reply-to:content-id:content-transfer-encoding: mime-version;
+ bh=xFZKXYn++mjFEzuq2VYxCviboj3R9tUThV/GNQOIZ7Q=;
+ b=cQgZG7SDdLxDC9KZ22O2lxCs6GmzMXuts2QSZOAZH3TgY3TzZYzGqyY3
+ SZoE5wl/97r+7+QMpb93bimZkCvO6kqO9i00NuDgCo7poWCnltheUurUx
+ l0ANt3+K+TP14SlRhYyS/oQ+ojAdhfA9yGyxfW9M3mWZhtR+9KySPRuaC
+ jgGRJrVBBZ3oySk26VJ7TgnLKmDEwd7eQlULIOPAyqokNU31XCqtW4at/
+ k3pLNbyTaPNv/ekZu3MsjPFlZSBmg8tmmTZjB7W1LlJ5z+dJXLgWQONUC
+ e/goQwr8zGxisxeYcqbNMiZzVx6iQlCIRjhQ2AWo4Umr3vYzVFllCNPJh A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,11020"; a="5965205"
 X-IronPort-AV: E=Sophos;i="6.07,143,1708416000"; 
-   d="scan'208";a="6198336"
-Received: from orviesa002.jf.intel.com ([10.64.159.142])
- by fmvoesa109.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Mar 2024 06:56:00 -0700
+   d="scan'208";a="5965205"
+Received: from orviesa003.jf.intel.com ([10.64.159.143])
+ by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 21 Mar 2024 07:27:12 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.07,143,1708416000"; d="scan'208";a="45509599"
-Received: from jkreca-mobl.ger.corp.intel.com (HELO [10.249.32.65])
- ([10.249.32.65])
- by orviesa002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Mar 2024 06:55:56 -0700
-Message-ID: <38d38331-3848-4995-b78e-a87ecae722d5@linux.intel.com>
-Date: Thu, 21 Mar 2024 14:56:03 +0100
-MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-From: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-To: Daniel Vetter <daniel.vetter@ffwll.ch>, Dave Airlie <airlied@gmail.com>
-Cc: dim-tools@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
- intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- Lucas De Marchi <lucas.demarchi@intel.com>, Oded Gabbay
- <ogabbay@kernel.org>, =?UTF-8?Q?Thomas_Hellstr=C3=B6m?=
- <thomas.hellstrom@linux.intel.com>, Maxime Ripard <mripard@kernel.org>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Thomas Zimmermann <tzimmermann@suse.de>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Jani Nikula <jani.nikula@linux.intel.com>
-Subject: [PULL] drm-misc-next
+X-IronPort-AV: E=Sophos;i="6.07,143,1708416000"; d="scan'208";a="19231722"
+Received: from orsmsx601.amr.corp.intel.com ([10.22.229.14])
+ by orviesa003.jf.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
+ 21 Mar 2024 07:27:11 -0700
+Received: from orsmsx611.amr.corp.intel.com (10.22.229.24) by
+ ORSMSX601.amr.corp.intel.com (10.22.229.14) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.35; Thu, 21 Mar 2024 07:27:10 -0700
+Received: from orsmsx601.amr.corp.intel.com (10.22.229.14) by
+ ORSMSX611.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.35; Thu, 21 Mar 2024 07:27:10 -0700
+Received: from ORSEDG601.ED.cps.intel.com (10.7.248.6) by
+ orsmsx601.amr.corp.intel.com (10.22.229.14) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.35 via Frontend Transport; Thu, 21 Mar 2024 07:27:10 -0700
+Received: from NAM10-DM6-obe.outbound.protection.outlook.com (104.47.58.100)
+ by edgegateway.intel.com (134.134.137.102) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.1.2507.35; Thu, 21 Mar 2024 07:27:10 -0700
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=aB3TT5cDDxhgKacxMaOiIO8tIONnnPH5DuzEh2T1/h6C9+z/Z3V6KaPJzte3tihMOg9/gG8VRJ5CUN0wxtaU6iKfmv8MewF8HjmgdE2VOe6Mpl85RXoegnBPfZyKD8xIUOAdCGExFy2fzjWVuo/UJii4dtL1KtLX02subTzj4nrgrkxeLpTs8HZKD5CmrvzTo2HBhV6bh6Owmmalfnk0I1vFTzGb81u+yC5sbK3M9ttON67gw1goMC0KyPo4qLcTz6eMYE3A2mD2FEGJ/GwO4bU+HlGd/PuU3hitYByvqS9EjyhV39lFbrldlvfWTTqdZZXHciOi3z5qDRL1eHwOJA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=xFZKXYn++mjFEzuq2VYxCviboj3R9tUThV/GNQOIZ7Q=;
+ b=FPrfxMeC3leTNFpOut6+h3UAmbECba6ZgUGVEWYR6tSLoJ3NhQTwrIOgwD6+aVuh4N3diOa21eovQsp7ZhSAr/YhlykfVrrlyH1+K9gtaur6nfDIbXjoqJsAkBKLmjRG8zdGUlHKq+LuZgLY4y7w6hHKSb0YSVZmc/IlmISqmtaD6+j5UiuK+70ja3oMe4Fes1Oo5QUEmFGfoiTGqoYnXuWE2zBiQH6hCS9e51Wl4IkKI99p8Sfen2lD+nyAMAHhHWf8AovvoCdrC+/BW3UzaUkyh7/aq7o8IslHbfcy67xGgnD6KyiS5L2sOkq6fQY5C9GRpd3nrBFoA1lNNiezgg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Received: from DM4PR11MB8179.namprd11.prod.outlook.com (2603:10b6:8:18e::22)
+ by DM4PR11MB5312.namprd11.prod.outlook.com (2603:10b6:5:393::8) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7409.15; Thu, 21 Mar
+ 2024 14:27:09 +0000
+Received: from DM4PR11MB8179.namprd11.prod.outlook.com
+ ([fe80::c563:8fb8:d95:71ac]) by DM4PR11MB8179.namprd11.prod.outlook.com
+ ([fe80::c563:8fb8:d95:71ac%5]) with mapi id 15.20.7409.010; Thu, 21 Mar 2024
+ 14:27:08 +0000
+From: "Souza, Jose" <jose.souza@intel.com>
+To: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
+ "jani.nikula@linux.intel.com" <jani.nikula@linux.intel.com>
+CC: "Teres Alexis, Alan Previn" <alan.previn.teres.alexis@intel.com>
+Subject: Re: [PATCH] drm/i915: Do not print 'pxp init failed with 0' when it
+ succeed
+Thread-Topic: [PATCH] drm/i915: Do not print 'pxp init failed with 0' when it
+ succeed
+Thread-Index: AQHaewptnf3VGmZwqEe5vSDpyXU2QrFCIzgAgAAeZgA=
+Date: Thu, 21 Mar 2024 14:27:08 +0000
+Message-ID: <bd119a2a945755e7945efafbd139f5369b14d457.camel@intel.com>
+References: <20240320210547.71937-1-jose.souza@intel.com>
+ <87bk77n4jp.fsf@intel.com>
+In-Reply-To: <87bk77n4jp.fsf@intel.com>
+Accept-Language: en-US
 Content-Language: en-US
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: DM4PR11MB8179:EE_|DM4PR11MB5312:EE_
+x-ms-office365-filtering-correlation-id: 700f3a4e-84c3-40af-4b10-08dc49b2fdb3
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: mkmjbCt5LzM4hOt5gXSYRXAVsssbo1fH4hhQWvT8wlkZZlKSg03YDIST4WbFwi47s5ZDfrsagGcscNJ9xnNjbvxDSVtIfEWarbuvymQUFzWM0ZQTHYlvTqsIzuBSUJpoDSYK59BOU2XPYduVggV2/eryFYZvvoXYwI3bgyC53YL7/babHGmk+sF7lNzk1yIg8fkR/wAtaLI2xndeO6mW6qqqw0SG+hJTznnilbQkdcx+TM17smkO9yJMrXOZr1Ke46XSLPXL7s5qHVVOqDvvlXr198ujd2o75fuvgR4aX61M9GeFN4DQpm+1Px2N1KnLXPV4LIylgtZm21ikl3Go7AXrTvapyhQ/DdHWYvlNl+ycx6+2TOWB7Yw1m+hhZ5SN+EoMbXWRsJffTmlXQYTIqZuV2dMn5hY945PyY/iHVyLmzN9fBqoT30T6Nylc+fi/XHY4Xbh9NetVQNJvbvcFh63HGXJ3j0BntChsDwFNRGuQwJ65YHsVVmhiU2XyblcJzcSFjfxi1zxx7zu4XPc7eSbUuVMve6u6PqrmI1ZRZN2tidCLf+zyghTdvP36fbIKCeOhjbNIGeDPAbqxrAlLr20iDtlAK0JmUm1AOKCC5S797sLwwnhKUyxxd6USJSLecMKCg8DWzDhEzx13LCKvFVd0GimSOHWxaBCZju9nx/5kIsNK9LxZLSZ8QxARKgNvrBavLZv4eOdeDbAHSfo1vKUCvii3r6hyqmdXbvwyZtU=
+x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:DM4PR11MB8179.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230031)(376005)(1800799015)(366007)(38070700009); DIR:OUT; SFP:1101; 
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?utf-8?B?b0ZVenVrQ3lLb1NVSjBpckg3T0FkblVqa1FtR3JncUw3aWpHSXNYVjE2SHdF?=
+ =?utf-8?B?S1hOV0tHMEZrWjZDeU14Zy9vVGw4UG1YSWpsUjBtTlA3M2JPdWZyNll5Rktm?=
+ =?utf-8?B?dkZ0Q1FBbVEwbjl6TWVranphMHNJOXB1bzhXRnluVUQ1SDE5ZnZLNitXYjNE?=
+ =?utf-8?B?T1M3VkgxMHJ2NDRmeXJ4RXhUbW5TeDZHcFBzWkt5Q09iU2RwRlBBUG5DblRt?=
+ =?utf-8?B?aEIzVDlaMUN3UEtnZ0NNck01MWZLQ0ozSGlwWlRZc3U5eExQUTF1b0p0TFFX?=
+ =?utf-8?B?c3oxVGVDMkdmNFV3VWhKRzJYM2JCclg3K1FLTFEvclhsanU1SmY5ajdnaFBx?=
+ =?utf-8?B?S213ODh6RSttekRYNnlMbzc5MzlxYy84MmR6L3cxUG9KTWp0MnBtRW1rS3FM?=
+ =?utf-8?B?emQvYTl5YVdDaU43MVFRYjlvaWJORXM4aGszODFoOWY2b1k1MnZ3RHlpUHR3?=
+ =?utf-8?B?a084NDNtZXFVK0kvTTNJdWZobE9pVzhmQWVFbDBKNlR5VGJsUjF6V0RxRzIx?=
+ =?utf-8?B?NHFTVzk0Ny9sOGZuTTg0bjF5YnBUeTlOY1R6eThxMHV6U0tGcDErM0RsODJl?=
+ =?utf-8?B?ajFTM2tKQnlIa0tnazhsMmhFN0QyNnNHcWZIRlNNMVNJdjg5Z1NWeTdUcFVI?=
+ =?utf-8?B?NndBWHJ4TGRpSEZ0QzJnUlNZM3hnMHlyV0NaWEh1d1cxZks1NjNPOGhYVXlv?=
+ =?utf-8?B?RWtXZk16MVBNdnBTSndEQkY4cGdaTERkbyt1NjZPdzVWZy90V2F4Z1FkV3Rq?=
+ =?utf-8?B?TG83blpYcWgyd24rdG5KdGVRaFdhbDVZODRONWEzaTJZTFduTkZrZHNiZ29i?=
+ =?utf-8?B?WldUd25PVmZRTS8zRWlZOVg4dUVXWWI4bzVpUDZRR0cyWGNBS1lRNVUzSlZs?=
+ =?utf-8?B?U1Z1VlJtUTROdVpqNlNsSlY1aDFhZFFlQ2xWRmJTNGlRbGVkVitUcTZabWlP?=
+ =?utf-8?B?Z0hvYXQxNmxEMHc0RkhoSXdVTWI4OTVsdDVxK2JHQVlqbWtjVm5pcUtPa3Fj?=
+ =?utf-8?B?cFM0RnlIWngyMUZDdVB0Z2hHS0ZKbVE4UDBEK2c4ay9kWWdGRHMxOC8zUTRK?=
+ =?utf-8?B?WVFzczlZWUg1S1JOMGdqVHZwT2s1NE16MDFNSWZVT1BDWjZKU0wvZGY1L3ls?=
+ =?utf-8?B?K2hkS1I5Q09KRFc3a2NBNnVJWmp3aEpkZEdicXR5UGpjNHJ3OEJmV1BYcGhB?=
+ =?utf-8?B?MlNxMlZZd04wNmg3ajVYVVphQWtHNW5FR3RsNWRNVjFJRmNmNmJQMFA0Z3dG?=
+ =?utf-8?B?ZkRMUWtRRGNJVllsbHZRWC8zN3V5Z3NrOFJ5NWtPSVFwMW55dnZNWlVQVW52?=
+ =?utf-8?B?QjRqVVQrNVNPN0ZOR0MwZWlvbTBGRmsvRVViK3IwVGNEQm5pRjE2WXdieTNG?=
+ =?utf-8?B?RnpkSmZIcW0yV2tNNXErQVhuMmhnd3FFRE41b1VxdVU2S2x0ajRmRUNiZGpN?=
+ =?utf-8?B?NXVGOE8ra1hja3ZFMEUvaDlUZ21mdFhGd3lGM25rTlZSb1MyRGdSbGNvaERF?=
+ =?utf-8?B?K0dpL2RCMmFpUGNIeXd3d0RhenFvaHJZUkp2UGdYRkF6aGZTSExCdVYrdmNm?=
+ =?utf-8?B?YkNMNlRaUnQ0dmtNTmRySWhGengxRytYK1R2VGFySW1uZUE1L3o4MTRpcTM2?=
+ =?utf-8?B?Q2ZrR3I3RU9OTkIrc0cxdHhwZjhadjNJdEVrZDBBZnVSczBuLzhnQXRoN1RS?=
+ =?utf-8?B?d1hmZXZ4d1pHVlpDUUFvS1VabmozOU0yQTFFYVI5Q2d3c1U3WHRxdUtkaEdz?=
+ =?utf-8?B?RlJQZmtsN1EvOWZ0bmhrNGxQNHdDRWNZWU81dnhWM3pUWGkzK0VYaGE1d2Ft?=
+ =?utf-8?B?dmJmeUxtUWxKY2ZmajhBZno3MnBHUXZIMnV5cTdxRjg1NXoyMnp4TU51c3Qr?=
+ =?utf-8?B?bllBcWEvL0gxSWZxbW8wK0NBREY1c29TK1E0cWtNTXZFRStQN1dWUThNUHNh?=
+ =?utf-8?B?SzJyYWxyUUtQNkIyc25BZWVXWU9LUHZxMXlXTHh0MHRTSGNQUUFTREowYUhC?=
+ =?utf-8?B?OTliWXJKVFVxNDF4WmZWU0x4TUV3bnJDVHRTalBReEhtY0FRUGozSzAvWFBu?=
+ =?utf-8?B?RXk1WTIvRU5kMUZ5N1p6RHc0V1JDd25iN2VqRDdSU0hiOUk2MUcvNllNd0Jz?=
+ =?utf-8?B?ZkROK2oreVFaNmgxblZ3WWJibGZYclhCNmhtOEVQM09WNTVuYXpFb1Nsd2Fx?=
+ =?utf-8?B?bnc9PQ==?=
+Content-Type: text/plain; charset="utf-8"
+Content-ID: <B5536A5C100A314CAB407036045B3C2D@namprd11.prod.outlook.com>
+Content-Transfer-Encoding: base64
+MIME-Version: 1.0
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: DM4PR11MB8179.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 700f3a4e-84c3-40af-4b10-08dc49b2fdb3
+X-MS-Exchange-CrossTenant-originalarrivaltime: 21 Mar 2024 14:27:08.8836 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: ZS6/dP9BUT0iHPS74HhIrKqmKKB0+TpvGyWLNoujreRUkEWGfj5VFlOZgfnxAV9rjVbGt0PRYoC9iule3d1LjA==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM4PR11MB5312
+X-OriginatorOrg: intel.com
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -75,394 +170,26 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-drm-misc-next-2024-03-21-1:
-drm-misc-next for v6.10:
-
-UAPI Changes:
-- Move some nouveau magic constants to uapi.
-
-Cross-subsystem Changes:
-- Move drm-misc to gitlab and freedesktop hosting.
-- Add entries for panfrost.
-
-Core Changes:
-- Improve placement for TTM bo's in idle/busy handling.
-- Improve drm/bridge init ordering.
-- Add CONFIG_DRM_WERROR, and use W=1 for drm.
-- Assorted documentation updates.
-- Make more (drm and driver) headers self-contained and add header
-   guards.
-- Grab reservation lock in pin/unpin callbacks.
-- Fix reservation lock handling for vmap.
-- Add edp and edid panel matching, use it to fix a nearly identical
-   panel.
-
-Driver Changes:
-- Add drm/panthor driver and assorted fixes.
-- Assorted small fixes to xlnx, panel-edp, tidss, ci, nouveau,
-   panel and bridge drivers.
-- Add Samsung s6e3fa7, BOE NT116WHM-N44, CMN N116BCA-EA1,
-   CrystalClear CMT430B19N00, Startek KD050HDFIA020-C020A,
-   powertip PH128800T006-ZHC01 panels.
-- Fix console for omapdrm.
-The following changes since commit b9511c6d277c31b13d4f3128eba46f4e0733d734:
-
-   Merge tag 'drm-msm-next-2024-03-07' of 
-https://gitlab.freedesktop.org/drm/msm into drm-next (2024-03-08 
-12:45:21 +1000)
-
-are available in the Git repository at:
-
-   https://gitlab.freedesktop.org/drm/misc/kernel.git 
-tags/drm-misc-next-2024-03-21-1
-
-for you to fetch changes up to 5e842d55bad7794823a50f24fd645b58f2ef93ab:
-
-   drm/panel: atna33xc20: Fix unbalanced regulator in the case HPD 
-doesn't assert (2024-03-20 08:26:18 -0700)
-
-----------------------------------------------------------------
-drm-misc-next for v6.10:
-
-UAPI Changes:
-- Move some nouveau magic constants to uapi.
-
-Cross-subsystem Changes:
-- Move drm-misc to gitlab and freedesktop hosting.
-- Add entries for panfrost.
-
-Core Changes:
-- Improve placement for TTM bo's in idle/busy handling.
-- Improve drm/bridge init ordering.
-- Add CONFIG_DRM_WERROR, and use W=1 for drm.
-- Assorted documentation updates.
-- Make more (drm and driver) headers self-contained and add header
-   guards.
-- Grab reservation lock in pin/unpin callbacks.
-- Fix reservation lock handling for vmap.
-- Add edp and edid panel matching, use it to fix a nearly identical
-   panel.
-
-Driver Changes:
-- Add drm/panthor driver and assorted fixes.
-- Assorted small fixes to xlnx, panel-edp, tidss, ci, nouveau,
-   panel and bridge drivers.
-- Add Samsung s6e3fa7, BOE NT116WHM-N44, CMN N116BCA-EA1,
-   CrystalClear CMT430B19N00, Startek KD050HDFIA020-C020A,
-   powertip PH128800T006-ZHC01 panels.
-- Fix console for omapdrm.
-
-----------------------------------------------------------------
-Adrián Larumbe (1):
-       drm/panfrost: Replace fdinfo's profiling debugfs knob with sysfs
-
-Andrew Halaney (1):
-       drm/tidss: Use dev_err_probe() over dev_dbg() when failing to 
-probe the port
-
-Andy Shevchenko (1):
-       drm/gma500: Remove unused intel-mid.h
-
-Boris Brezillon (16):
-       drm/panthor: Add uAPI
-       drm/panthor: Add GPU register definitions
-       drm/panthor: Add the device logical block
-       drm/panthor: Add the GPU logical block
-       drm/panthor: Add GEM logical block
-       drm/panthor: Add the devfreq logical block
-       drm/panthor: Add the MMU/VM logical block
-       drm/panthor: Add the FW logical block
-       drm/panthor: Add the heap logical block
-       drm/panthor: Add the scheduler logical block
-       drm/panthor: Add the driver frontend block
-       drm/panthor: Allow driver compilation
-       drm/panthor: Add an entry to MAINTAINERS
-       drm/panthor: Fix panthor_devfreq kerneldoc
-       drm/panthor: Explicitly include mm.h for the {virt, 
-__phys)_to_pfn() defs
-       drm/panthor: Fix undefined panthor_device_suspend/resume symbol issue
-
-Christian König (3):
-       drm/ttm: improve idle/busy handling v5
-       drm/amdgpu: use GTT only as fallback for VRAM|GTT
-       drm/ttm: warn when resv objs are mixed in a bulk_move
-
-Dmitry Baryshkov (1):
-       dt-bindings: display/lvds-codec: add ti,sn65lvds94
-
-Douglas Anderson (1):
-       drm/panel: atna33xc20: Fix unbalanced regulator in the case HPD 
-doesn't assert
-
-Geert Uytterhoeven (1):
-       m68k: pgtable: Add missing #include <asm/page.h>
-
-Hsin-Yi Wang (5):
-       drm_edid: Add a function to get EDID base block
-       drm/edid: Add a function to match EDID with identity
-       drm/edid: Match edid quirks with identity
-       drm/panel-edp: Match edp_panels with panel identity
-       drm/panel-edp: Fix AUO 0x405c panel naming and add a variant
-
-Jagan Teki (2):
-       drm/bridge: Fix improper bridge init order with pre_enable_prev_first
-       drm/bridge: Document bridge init order with pre_enable_prev_first
-
-Jani Nikula (29):
-       drm: enable (most) W=1 warnings by default across the subsystem
-       drm: Add CONFIG_DRM_WERROR
-       drm/crtc: make drm_crtc_internal.h self-contained
-       drm: add missing header guards to drm_internal.h
-       drm/kunit: fix drm_kunit_helpers.h kernel-doc
-       drm/amdgpu: make amd_asic_type.h self-contained
-       drm: bridge: samsung-dsim: make samsung-dsim.h self-contained
-       drm/dp_mst: fix drm_dp_mst_helper.h kernel-doc
-       drm/crc: make drm_debugfs_crc.h self-contained and fix kernel-doc
-       drm: fix drm_format_helper.h kernel-doc warnings
-       drm/lease: make drm_lease.h self-contained
-       drm: fix drm_gem_vram_helper.h kernel-doc
-       drm/of: make drm_of.h self-contained
-       drm/suballoc: fix drm_suballoc.h kernel-doc
-       drm: add missing header guards to drm_crtc_internal.h
-       drm: add missing header guards to drm_crtc_helper_internal.h
-       drm/encoder: improve drm_encoder_slave.h kernel-doc
-       drm/i915: fix i915_gsc_proxy_mei_interface.h kernel-doc
-       drm/i915/hdcp: fix i915_hdcp_interface.h kernel-doc warnings
-       drm/i915/pxp: fix i915_pxp_tee_interface.h kernel-doc warnings
-       drm/ttm: fix ttm_bo.h kernel-doc warnings
-       drm/ttm: make ttm_caching.h self-contained
-       drm/ttm: fix ttm_execbuf_util.h kernel-doc warnings
-       drm/ttm: fix ttm_kmap_iter.h kernel-doc warnings
-       drm/ttm: make ttm_pool.h self-contained
-       drm/dp_mst: avoid includes in drm_dp_mst_topology_internal.h
-       drm: avoid includes in drm_crtc_helper_internal.h
-       Revert "drm/panthor: Fix undefined panthor_device_suspend/resume 
-symbol issue"
-       drm/i2c: silence ch7006.h and sil164.h kernel-doc warnings
-
-Jiapeng Chong (1):
-       drm/shmem-helper: Remove duplicate include
-
-Jérémie Dautheribes (3):
-       dt-bindings: Add Crystal Clear Technology vendor prefix
-       dt-bindings: display: simple: add support for Crystal Clear 
-CMT430B19N00
-       drm/panel: simple: add CMT430B19N00 LCD panel support
-
-Karol Herbst (1):
-       drm/nouveau: move more missing UAPI bits
-
-Laurent Pinchart (4):
-       dt-bindings: ili9881c: Add Startek KD050HDFIA020-C020A support
-       drm/panel: ilitek-ili9881c: Add Startek KD050HDFIA020-C020A support
-       drm/panel: ilitek-ili9881c: Fix warning with GPIO controllers 
-that sleep
-       drm: bridge: thc63lvd1024: Print error message when DT parsing fails
-
-Liviu Dudau (1):
-       dt-bindings: gpu: mali-valhall-csf: Add support for Arm Mali CSF GPUs
-
-Lyude Paul (1):
-       drm/nouveau/dp: Fix incorrect return code in r535_dp_aux_xfer()
-
-Marek Vasut (1):
-       drm/lcdif: Do not disable clocks on already suspended hardware
-
-Maxime Ripard (2):
-       MAINTAINERS: Update drm-misc.git URL
-       MAINTAINERS: Update drm-misc web page
-
-Nathan Morrisson (2):
-       dt-bindings: display: simple: Add POWERTIP PH128800T-006-ZHC01 panel
-       drm/panel: simple: Add POWERTIP PH128800T006-ZHC01 panel entry
-
-Richard Acayan (2):
-       dt-bindings: display: panel-simple-dsi: add s6e3fa7 ams559nk06 compat
-       drm/panel: add samsung s6e3fa7 panel driver
-
-Rohit Visavalia (1):
-       drm: xlnx: dp: Reset DisplayPort IP
-
-Sui Jingfeng (4):
-       drm/bridge: ite66121: Register HPD interrupt handler only when 
-'client->irq > 0'
-       drm: bridge: dw_hdmi: Switch to of_graph_get_remote_node()
-       drm/bridge: it66121: Remove a duplicated invoke of 
-of_device_is_available()
-       drm: bridge: thc63lvd1024: Switch to use of_graph_get_remote_node()
-
-Thomas Zimmermann (14):
-       Merge drm/drm-next into drm-misc-next
-       drm/gem-shmem: Acquire reservation lock in GEM pin/unpin callbacks
-       drm/gem-vram: Acquire reservation lock in GEM pin/unpin callbacks
-       drm/msm: Provide msm_gem_get_pages_locked()
-       drm/msm: Acquire reservation lock in GEM pin/unpin callback
-       drm/nouveau: Provide nouveau_bo_{pin,unpin}_locked()
-       drm/nouveau: Acquire reservation lock in GEM pin/unpin callbacks
-       drm/qxl: Provide qxl_bo_{pin,unpin}_locked()
-       drm/qxl: Acquire reservation lock in GEM pin/unpin callbacks
-       drm/gem: Acquire reservation lock in drm_gem_{pin/unpin}()
-       drm/fbdev-generic: Fix locking with drm_client_buffer_vmap_local()
-       drm/client: Pin vmap'ed GEM buffers
-       drm/gem-vram: Do not pin buffer objects for vmap
-       drm/qxl: Do not pin buffer objects for vmap
-
-Tony Lindgren (2):
-       drm/omapdrm: Fix console by implementing fb_dirty
-       drm/omapdrm: Fix console with deferred ops
-
-Vignesh Raman (1):
-       drm/ci: update device type for volteer devices
-
-Xuxin Xiong (1):
-       drm/panel-edp: Add BOE NT116WHM-N44 and CMN N116BCA-EA1
-
-Zhengqiao Xia (1):
-       drm/panel-edp: Add prepare_to_enable to 200ms for MNC207QS1-1
-
-  .../ABI/testing/sysfs-driver-panfrost-profiling    |   10 +
-  .../bindings/display/bridge/lvds-codec.yaml        |    1 +
-  .../bindings/display/panel/ilitek,ili9881c.yaml    |    1 +
-  .../bindings/display/panel/panel-simple-dsi.yaml   |    2 +
-  .../bindings/display/panel/panel-simple.yaml       |    4 +
-  .../bindings/gpu/arm,mali-valhall-csf.yaml         |  147 +
-  .../devicetree/bindings/vendor-prefixes.yaml       |    2 +
-  Documentation/gpu/driver-uapi.rst                  |    5 +
-  Documentation/gpu/panfrost.rst                     |    9 +
-  MAINTAINERS                                        |  183 +-
-  arch/m68k/include/asm/pgtable.h                    |    2 +
-  drivers/gpu/drm/Kconfig                            |   15 +
-  drivers/gpu/drm/Makefile                           |   29 +
-  drivers/gpu/drm/amd/amdgpu/amdgpu_object.c         |    6 +
-  drivers/gpu/drm/bridge/ite-it66121.c               |   25 +-
-  drivers/gpu/drm/bridge/synopsys/dw-hdmi.c          |   31 +-
-  drivers/gpu/drm/bridge/thc63lvd1024.c              |   21 +-
-  drivers/gpu/drm/ci/test.yml                        |    6 +-
-  .../gpu/drm/display/drm_dp_mst_topology_internal.h |    4 +-
-  drivers/gpu/drm/drm_bridge.c                       |   24 +-
-  drivers/gpu/drm/drm_client.c                       |   92 +-
-  drivers/gpu/drm/drm_crtc_helper_internal.h         |   15 +-
-  drivers/gpu/drm/drm_crtc_internal.h                |    7 +
-  drivers/gpu/drm/drm_edid.c                         |  147 +-
-  drivers/gpu/drm/drm_fbdev_generic.c                |    4 +-
-  drivers/gpu/drm/drm_gem.c                          |   34 +-
-  drivers/gpu/drm/drm_gem_shmem_helper.c             |    7 +-
-  drivers/gpu/drm/drm_gem_vram_helper.c              |  101 +-
-  drivers/gpu/drm/drm_internal.h                     |    7 +
-  drivers/gpu/drm/gma500/oaktrail_lvds.c             |    2 -
-  drivers/gpu/drm/loongson/lsdc_gem.c                |   13 +-
-  drivers/gpu/drm/msm/msm_gem.c                      |   20 +-
-  drivers/gpu/drm/msm/msm_gem.h                      |    4 +-
-  drivers/gpu/drm/msm/msm_gem_prime.c                |   20 +-
-  drivers/gpu/drm/mxsfb/lcdif_drv.c                  |    6 +-
-  drivers/gpu/drm/nouveau/nouveau_abi16.c            |   20 +-
-  drivers/gpu/drm/nouveau/nouveau_abi16.h            |   12 -
-  drivers/gpu/drm/nouveau/nouveau_bo.c               |   43 +-
-  drivers/gpu/drm/nouveau/nouveau_bo.h               |    2 +
-  drivers/gpu/drm/nouveau/nouveau_prime.c            |    8 +-
-  drivers/gpu/drm/nouveau/nvkm/engine/disp/r535.c    |    2 +-
-  drivers/gpu/drm/omapdrm/Kconfig                    |    2 +-
-  drivers/gpu/drm/omapdrm/omap_fbdev.c               |   40 +-
-  drivers/gpu/drm/panel/Kconfig                      |    9 +
-  drivers/gpu/drm/panel/Makefile                     |    1 +
-  drivers/gpu/drm/panel/panel-edp.c                  |   84 +-
-  drivers/gpu/drm/panel/panel-ilitek-ili9881c.c      |  228 +-
-  drivers/gpu/drm/panel/panel-samsung-atna33xc20.c   |   22 +-
-  drivers/gpu/drm/panel/panel-samsung-s6e3fa7.c      |  285 ++
-  drivers/gpu/drm/panel/panel-simple.c               |   58 +
-  drivers/gpu/drm/panfrost/Makefile                  |    2 -
-  drivers/gpu/drm/panfrost/panfrost_debugfs.c        |   21 -
-  drivers/gpu/drm/panfrost/panfrost_debugfs.h        |   14 -
-  drivers/gpu/drm/panfrost/panfrost_device.h         |    2 +-
-  drivers/gpu/drm/panfrost/panfrost_drv.c            |   40 +-
-  drivers/gpu/drm/panfrost/panfrost_job.c            |    2 +-
-  drivers/gpu/drm/panthor/Kconfig                    |   23 +
-  drivers/gpu/drm/panthor/Makefile                   |   14 +
-  drivers/gpu/drm/panthor/panthor_devfreq.c          |  283 ++
-  drivers/gpu/drm/panthor/panthor_devfreq.h          |   21 +
-  drivers/gpu/drm/panthor/panthor_device.c           |  550 +++
-  drivers/gpu/drm/panthor/panthor_device.h           |  394 +++
-  drivers/gpu/drm/panthor/panthor_drv.c              | 1473 ++++++++
-  drivers/gpu/drm/panthor/panthor_fw.c               | 1362 ++++++++
-  drivers/gpu/drm/panthor/panthor_fw.h               |  503 +++
-  drivers/gpu/drm/panthor/panthor_gem.c              |  230 ++
-  drivers/gpu/drm/panthor/panthor_gem.h              |  142 +
-  drivers/gpu/drm/panthor/panthor_gpu.c              |  482 +++
-  drivers/gpu/drm/panthor/panthor_gpu.h              |   52 +
-  drivers/gpu/drm/panthor/panthor_heap.c             |  597 ++++
-  drivers/gpu/drm/panthor/panthor_heap.h             |   39 +
-  drivers/gpu/drm/panthor/panthor_mmu.c              | 2768 ++++++++++++++++
-  drivers/gpu/drm/panthor/panthor_mmu.h              |  102 +
-  drivers/gpu/drm/panthor/panthor_regs.h             |  239 ++
-  drivers/gpu/drm/panthor/panthor_sched.c            | 3502 
-++++++++++++++++++++
-  drivers/gpu/drm/panthor/panthor_sched.h            |   50 +
-  drivers/gpu/drm/qxl/qxl_object.c                   |   26 +-
-  drivers/gpu/drm/qxl/qxl_object.h                   |    2 +
-  drivers/gpu/drm/qxl/qxl_prime.c                    |    4 +-
-  drivers/gpu/drm/radeon/radeon_prime.c              |   11 -
-  drivers/gpu/drm/renesas/rz-du/rzg2l_du_vsp.c       |    3 -
-  drivers/gpu/drm/tidss/tidss_kms.c                  |    3 +-
-  drivers/gpu/drm/ttm/ttm_bo.c                       |  231 +-
-  drivers/gpu/drm/ttm/ttm_resource.c                 |   17 +-
-  drivers/gpu/drm/vmwgfx/vmwgfx_gem.c                |   25 +-
-  drivers/gpu/drm/xlnx/zynqmp_dp.c                   |    4 +
-  drivers/video/fbdev/core/Kconfig                   |    6 +
-  include/drm/amd_asic_type.h                        |    3 +
-  include/drm/bridge/samsung-dsim.h                  |    4 +-
-  include/drm/display/drm_dp_mst_helper.h            |    1 -
-  include/drm/drm_client.h                           |   10 +
-  include/drm/drm_debugfs_crc.h                      |    8 +-
-  include/drm/drm_edid.h                             |   12 +-
-  include/drm/drm_encoder_slave.h                    |   91 +-
-  include/drm/drm_format_helper.h                    |    1 +
-  include/drm/drm_gem.h                              |    3 +
-  include/drm/drm_gem_shmem_helper.h                 |    7 +-
-  include/drm/drm_gem_vram_helper.h                  |    1 -
-  include/drm/drm_kunit_helpers.h                    |    2 +-
-  include/drm/drm_lease.h                            |    2 +
-  include/drm/drm_of.h                               |    1 +
-  include/drm/drm_suballoc.h                         |    2 +-
-  include/drm/i2c/ch7006.h                           |    1 +
-  include/drm/i2c/sil164.h                           |    1 +
-  include/drm/i915_gsc_proxy_mei_interface.h         |    4 +-
-  include/drm/i915_hdcp_interface.h                  |   18 +-
-  include/drm/i915_pxp_tee_interface.h               |   27 +-
-  include/drm/ttm/ttm_bo.h                           |   17 +-
-  include/drm/ttm/ttm_caching.h                      |    2 +
-  include/drm/ttm/ttm_execbuf_util.h                 |    7 +-
-  include/drm/ttm/ttm_kmap_iter.h                    |    4 +-
-  include/drm/ttm/ttm_pool.h                         |    5 +-
-  include/drm/ttm/ttm_resource.h                     |    6 +-
-  include/linux/fb.h                                 |    4 +
-  include/uapi/drm/nouveau_drm.h                     |   22 +
-  include/uapi/drm/panthor_drm.h                     |  945 ++++++
-  116 files changed, 15620 insertions(+), 652 deletions(-)
-  create mode 100644 
-Documentation/ABI/testing/sysfs-driver-panfrost-profiling
-  create mode 100644 
-Documentation/devicetree/bindings/gpu/arm,mali-valhall-csf.yaml
-  create mode 100644 drivers/gpu/drm/panel/panel-samsung-s6e3fa7.c
-  delete mode 100644 drivers/gpu/drm/panfrost/panfrost_debugfs.c
-  delete mode 100644 drivers/gpu/drm/panfrost/panfrost_debugfs.h
-  create mode 100644 drivers/gpu/drm/panthor/Kconfig
-  create mode 100644 drivers/gpu/drm/panthor/Makefile
-  create mode 100644 drivers/gpu/drm/panthor/panthor_devfreq.c
-  create mode 100644 drivers/gpu/drm/panthor/panthor_devfreq.h
-  create mode 100644 drivers/gpu/drm/panthor/panthor_device.c
-  create mode 100644 drivers/gpu/drm/panthor/panthor_device.h
-  create mode 100644 drivers/gpu/drm/panthor/panthor_drv.c
-  create mode 100644 drivers/gpu/drm/panthor/panthor_fw.c
-  create mode 100644 drivers/gpu/drm/panthor/panthor_fw.h
-  create mode 100644 drivers/gpu/drm/panthor/panthor_gem.c
-  create mode 100644 drivers/gpu/drm/panthor/panthor_gem.h
-  create mode 100644 drivers/gpu/drm/panthor/panthor_gpu.c
-  create mode 100644 drivers/gpu/drm/panthor/panthor_gpu.h
-  create mode 100644 drivers/gpu/drm/panthor/panthor_heap.c
-  create mode 100644 drivers/gpu/drm/panthor/panthor_heap.h
-  create mode 100644 drivers/gpu/drm/panthor/panthor_mmu.c
-  create mode 100644 drivers/gpu/drm/panthor/panthor_mmu.h
-  create mode 100644 drivers/gpu/drm/panthor/panthor_regs.h
-  create mode 100644 drivers/gpu/drm/panthor/panthor_sched.c
-  create mode 100644 drivers/gpu/drm/panthor/panthor_sched.h
-  create mode 100644 include/uapi/drm/panthor_drm.h
+T24gVGh1LCAyMDI0LTAzLTIxIGF0IDE0OjM4ICswMjAwLCBKYW5pIE5pa3VsYSB3cm90ZToNCj4g
+T24gV2VkLCAyMCBNYXIgMjAyNCwgSm9zw6kgUm9iZXJ0byBkZSBTb3V6YSA8am9zZS5zb3V6YUBp
+bnRlbC5jb20+IHdyb3RlOg0KPiA+IEl0IGlzIG1pc2xlYWRpbmcsIGlmIHRoZSBpbnRlbnRpb24g
+d2FzIHRvIGFsc28gcHJpbnQgc29tZXRoaW5nDQo+ID4gaW4gY2FzZSBpdCBzdWNjZWVkIGl0IHNo
+b3VsZCBoYXZlIGEgZGlmZmVyZW50IHN0cmluZy4NCj4gPiANCj4gPiBDYzogQWxhbiBQcmV2aW4g
+PGFsYW4ucHJldmluLnRlcmVzLmFsZXhpc0BpbnRlbC5jb20+DQo+ID4gU2lnbmVkLW9mZi1ieTog
+Sm9zw6kgUm9iZXJ0byBkZSBTb3V6YSA8am9zZS5zb3V6YUBpbnRlbC5jb20+DQo+IA0KPiBGaXhl
+czogNjk4ZTE5ZGEyOTE0ICgiZHJtL2k5MTU6IFNraXAgcHhwIGluaXQgaWYgZ3QgaXMgd2VkZ2Vk
+IikNCj4gQ2M6IDxzdGFibGVAdmdlci5rZXJuZWwub3JnPiAjIHY2LjgrDQo+IFJldmlld2VkLWJ5
+OiBKYW5pIE5pa3VsYSA8amFuaS5uaWt1bGFAaW50ZWwuY29tPg0KDQp0aGFuayB5b3UsIHB1c2hl
+ZC4NCg0KPiANCj4gPiAtLS0NCj4gPiAgZHJpdmVycy9ncHUvZHJtL2k5MTUvaTkxNV9kcml2ZXIu
+YyB8IDIgKy0NCj4gPiAgMSBmaWxlIGNoYW5nZWQsIDEgaW5zZXJ0aW9uKCspLCAxIGRlbGV0aW9u
+KC0pDQo+ID4gDQo+ID4gZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2k5MTVfZHJp
+dmVyLmMgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9pOTE1X2RyaXZlci5jDQo+ID4gaW5kZXggOWVl
+OTAyZDViNzJjNC4uNGI5MjMzYzA3YTIyYyAxMDA2NDQNCj4gPiAtLS0gYS9kcml2ZXJzL2dwdS9k
+cm0vaTkxNS9pOTE1X2RyaXZlci5jDQo+ID4gKysrIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvaTkx
+NV9kcml2ZXIuYw0KPiA+IEBAIC04MDAsNyArODAwLDcgQEAgaW50IGk5MTVfZHJpdmVyX3Byb2Jl
+KHN0cnVjdCBwY2lfZGV2ICpwZGV2LCBjb25zdCBzdHJ1Y3QgcGNpX2RldmljZV9pZCAqZW50KQ0K
+PiA+ICAJCWdvdG8gb3V0X2NsZWFudXBfbW9kZXNldDI7DQo+ID4gIA0KPiA+ICAJcmV0ID0gaW50
+ZWxfcHhwX2luaXQoaTkxNSk7DQo+ID4gLQlpZiAocmV0ICE9IC1FTk9ERVYpDQo+ID4gKwlpZiAo
+cmV0ICYmIHJldCAhPSAtRU5PREVWKQ0KPiA+ICAJCWRybV9kYmcoJmk5MTUtPmRybSwgInB4cCBp
+bml0IGZhaWxlZCB3aXRoICVkXG4iLCByZXQpOw0KPiA+ICANCj4gPiAgCXJldCA9IGludGVsX2Rp
+c3BsYXlfZHJpdmVyX3Byb2JlKGk5MTUpOw0KPiANCg0K
