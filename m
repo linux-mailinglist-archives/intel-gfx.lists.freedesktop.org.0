@@ -2,62 +2,55 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5707F88A02B
-	for <lists+intel-gfx@lfdr.de>; Mon, 25 Mar 2024 13:47:54 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1794B88570B
+	for <lists+intel-gfx@lfdr.de>; Thu, 21 Mar 2024 11:05:36 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3BE1510E82C;
-	Mon, 25 Mar 2024 12:47:45 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 984B810E573;
+	Thu, 21 Mar 2024 10:05:32 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=qq.com header.i=@qq.com header.b="YFaNDsZX";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="fXKj56xg";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-X-Greylist: delayed 5533 seconds by postgrey-1.36 at gabe;
- Thu, 21 Mar 2024 11:53:43 UTC
-Received: from xmbg7.mail.qq.com (xmbg7.mail.qq.com [101.91.43.89])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1C90210E0DA;
- Thu, 21 Mar 2024 11:53:42 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qq.com; s=s201512;
- t=1711022016; bh=CijDDPXIIKYijD0oU6bytFzYpJFbs41y0dCnEbbMEmE=;
- h=From:To:Cc:Subject:Date:In-Reply-To:References;
- b=YFaNDsZXxmKxMYKQmXv4qTnQXTQvXHQWiDof8rHF2E6zFGcI0ETk+HwdjkRMnYo/v
- vmZtwkKqkrmcobVon9tagqD/bckVvk0kYA056I+4GhC01FE1K/EbA4bidJ5LLD6X0U
- q56Slb+JSUebtp0k2/93UVfKGqauF/yhYZKdlGnE=
-Received: from localhost.localdomain ([153.3.156.52])
- by newxmesmtplogicsvrszb6-0.qq.com (NewEsmtp) with SMTP
- id C6E2A2A5; Thu, 21 Mar 2024 17:49:46 +0800
-X-QQ-mid: xmsmtpt1711014586tr1sopbsu
-Message-ID: <tencent_864C9D9720448AC02448E31A5A53C3803007@qq.com>
-X-QQ-XMAILINFO: MB5+LsFw85NoZgDWhwFckWueoxRu1QK8cEr3VHGTtrQE4542GylxBh/fqzsv+S
- VJfMmkUTBwOcG+RPggxAfE1P7MX317RESSqPGtCoSkFh8WGBhhu9TwKYU47q8P++OsGYwVuq6SoF
- DM6sllukwQd4EYBMx5Nrze1aRjJBmgyihDz248GKjI4nSi+QeBkestUgpcf8XRePeLmQ8QPHeLRC
- e3Hxfxt6CG0Ukmf4IALP3n/KL6iz3gUYOXM4/gfofZC5qYKjDU01BBICzuFPdm+J9E5caIxDfh7f
- F5YFgYgGMunjAWFe3uLXdLx3lsCkRHMdd/jluVIBSxnFzJIUb5tZ6Rf71w2ys+EXr8w/47wIE+Fa
- Xs//Ac/lrOfm3VzIxgoAIYcivCLphSsNSISKJF1O1LQw5Nj/80WZeWveRHI+9ZFLB9Brw6kEuhlS
- XtfRlt1dUFjWRLsQgGd8Jt3ndWfuAeCih8a57Z1WV3iRkhBeDUhlnlmoHdqxtjO78nnUIUUHFUDe
- ZI31E1BJyvkvSomMmebhqZBBmTDfLfUT6V1s65MEjl+4bgPrgpRVcAKBXteKWe95g1vVC6x2THwF
- 27yUhvyQ3FJbCBS+223pxKdCdwb6Pgkqj/ljpNd/jYrQErrY1E/EvVTpCKUZ60Laee9ycgagj0fd
- GYHazn9wUTom1Bk4M62GqPfdYenM8QHjY8Sh0zyjgysnx+SsZ/O4R899KkHeWdL7rjqxNIR29e3i
- c/IOmL9/JNiH3O96eFDt1ipREiMt6LkAzOFxtXV9IlnZkNrb0Q6fQpVWYXXM3FCdLlcTb+shtIII
- ahBlEGe2sk8wmp+sYIGtsKgXsAyZDZlzoHdqkD90Ao23xlSTwiBeJIthbhn0UReMywROdCXUXVTX
- 7X2zKHYoHxugiRMIOw/Ilw7lwIXUR2riPVWjmryRDq8CBCICsFnwnPXabNUCp/xlQkJY0agQM4Y/
- 3VqWwV7icg0MHvOMPbIx0N5bOa6s2e9gpA78gLcBd6LR3m747ryQcLszJR5KVStgS2AeAjKPvAfA
- OYbX3hoW354O2P3ed6s7W91/4W0Udl+qxoa4VfxA==
-X-QQ-XMRINFO: NI4Ajvh11aEj8Xl/2s1/T8w=
-From: linke li <lilinke99@qq.com>
-To: lilinke99@qq.com
-Cc: airlied@gmail.com, daniel@ffwll.ch, dri-devel@lists.freedesktop.org,
- intel-gfx@lists.freedesktop.org
-Subject: Re: [PATCH] drm/i915: use READ_ONCE() to read vma->iomap in
- concurrent environment
-Date: Thu, 21 Mar 2024 17:49:44 +0800
-X-OQ-MSGID: <20240321094944.64732-1-lilinke99@qq.com>
-X-Mailer: git-send-email 2.39.3 (Apple Git-146)
-In-Reply-To: <tencent_1A51A82501181FD23618C68685EBC405990A@qq.com>
-References: <tencent_1A51A82501181FD23618C68685EBC405990A@qq.com>
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.13])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9086D10E563;
+ Thu, 21 Mar 2024 10:05:29 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1711015530; x=1742551530;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=+HQS0s1YxBdiJOlTvFxsbvI9Au+Y7hOU5u8pjBmPvRo=;
+ b=fXKj56xg7s7XWnmFhuuR9flePOh5EU7T3vXZJo/Ne2OK+q8jJU8HQHUq
+ cU0ARE/tHOhsTQyC8/7+rDXO+E0gdwKGHr4uhAl9ncFDy3UR0Awp5fEwT
+ dKuROHX/r+srzXa+2HxSHe/HLii9Y89vJhJf7Z+MYJY5VzgI+rPENfPWj
+ kyHlWWlA2VYzKr6ELlDwlSjv3sx6j+FHAjJrNwapIsgU2xL29Jee641CV
+ qkTMCSldSya5fD5mlcxez9HpA49pzPUNxZDJSdzf98skuYoeTIH8xfcWJ
+ kdE/to1KRX5TXISNDwmryODUeBSXNNtconQ7qXkfJgr+XKYbSXhQs/FAl w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,11019"; a="8945020"
+X-IronPort-AV: E=Sophos;i="6.07,142,1708416000"; 
+   d="scan'208";a="8945020"
+Received: from orviesa004.jf.intel.com ([10.64.159.144])
+ by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 21 Mar 2024 03:05:18 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.07,142,1708416000"; d="scan'208";a="19155096"
+Received: from amaslenx-mobl.ger.corp.intel.com (HELO localhost)
+ ([10.252.54.141])
+ by orviesa004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 21 Mar 2024 03:05:16 -0700
+From: Jani Nikula <jani.nikula@intel.com>
+To: dri-devel@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org,
+	jani.nikula@intel.com
+Subject: [PATCH 0/4] drm/edid & drm/i915: vendor and product id logging
+ improvements
+Date: Thu, 21 Mar 2024 12:05:08 +0200
+Message-Id: <cover.1711015462.git.jani.nikula@intel.com>
+X-Mailer: git-send-email 2.39.2
 MIME-Version: 1.0
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 Content-Transfer-Encoding: 8bit
-X-Mailman-Approved-At: Mon, 25 Mar 2024 12:47:44 +0000
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -73,6 +66,19 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi, I want to confirm the status of this patch and whether need any
-additional information.
+
+Jani Nikula (4):
+  drm/edid: add drm_edid_get_product_id()
+  drm/edid: add drm_edid_print_product_id()
+  drm/i915/bios: switch to struct drm_edid and struct
+    drm_edid_product_id
+  drm/i915/bios: return drm_edid_product_id from get_lvds_pnp_id()
+
+ drivers/gpu/drm/drm_edid.c                | 50 +++++++++++++++++++++++
+ drivers/gpu/drm/i915/display/intel_bios.c | 49 ++++++++++------------
+ include/drm/drm_edid.h                    | 28 ++++++++++---
+ 3 files changed, 94 insertions(+), 33 deletions(-)
+
+-- 
+2.39.2
 
