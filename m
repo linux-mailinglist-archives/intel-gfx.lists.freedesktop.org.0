@@ -2,50 +2,50 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3AC50885D3E
-	for <lists+intel-gfx@lfdr.de>; Thu, 21 Mar 2024 17:18:19 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id B1BE0885D3F
+	for <lists+intel-gfx@lfdr.de>; Thu, 21 Mar 2024 17:18:22 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 87C0510ED9E;
-	Thu, 21 Mar 2024 16:18:17 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2704E10EEBF;
+	Thu, 21 Mar 2024 16:18:21 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="TLL9Gatf";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Ssu3hIPw";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 696E910ED9E
- for <intel-gfx@lists.freedesktop.org>; Thu, 21 Mar 2024 16:18:15 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4C72110EEBF
+ for <intel-gfx@lists.freedesktop.org>; Thu, 21 Mar 2024 16:18:18 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1711037896; x=1742573896;
+ t=1711037899; x=1742573899;
  h=from:to:subject:date:message-id:in-reply-to:references:
  mime-version:content-transfer-encoding;
- bh=/vCuy5tXaGNo6FstSJofvi7PjLaxusKPqF6CC0wN9+I=;
- b=TLL9GatfhPXni0IHlp1U9t7KhzfXEBOaRIyH+iSu/skp63z2Rc4xUbGM
- 94gqiMYQOqJE57JbXPTkg8pgnPRt+0GJvbSgqSIQLzA3nHd2B2KKMyg5j
- bprv+QRs64Af71As21wDlqy63IcQ6rPeL5Nx19vwKdR2F5aIE/6f+o/AT
- p++E5eN8PfJor2g7CRMUQphhReExCP0Ht9pzl5AZ+hACfvK1OJR9EugI7
- J/VQa669sVm8WkeBSJ1fC3g/yrgqPHCU4OCuqIYIEoecO5JeFHiXtdXx1
- HPKZma1mqIUmV+MBTC4Jm9qGwLLiVveIlgL+3HaCexCBtz4Y9HRp51o5S w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,11020"; a="5894186"
+ bh=9q/8ZAdF6KLTibSag4WtdJgHWzEParhSBNya/WXfPKw=;
+ b=Ssu3hIPwPh+ezV2XhgxEuZcYdAo65kB45B9nODeRAQqDvDTZ/1u/HPEJ
+ BHGYl/LijcLjKlIh2j+2bsJ9oJb+tdzCQUf/TQiO4pyhdHfk8bRjkEFac
+ 2Vc7yusSyaKWfmowGHZreSAVqs+tBmdHVjiuyLcW0lcvtcvHERCH/7qw/
+ iOqYHnnV+YsLCgbKLHhFGsMDoA5xorjWixq+hJWxAljxeUl2z0lfFqM7E
+ GRAROk3cRcVJa8zlCBZQgnZVNfyTuTLp0THicVvePyQXtVKjeztinyZ5z
+ XAnE57cXdIUfy5TvTYQ5w8mDadKmwfdC2eAtOPTjeiTuHBADx3TTMJRIj A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,11020"; a="5894193"
 X-IronPort-AV: E=Sophos;i="6.07,143,1708416000"; 
-   d="scan'208";a="5894186"
+   d="scan'208";a="5894193"
 Received: from orsmga001.jf.intel.com ([10.7.209.18])
  by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Mar 2024 09:18:15 -0700
+ 21 Mar 2024 09:18:18 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,11020"; a="827783099"
-X-IronPort-AV: E=Sophos;i="6.07,143,1708416000"; d="scan'208";a="827783099"
+X-IronPort-AV: E=McAfee;i="6600,9927,11020"; a="827783100"
+X-IronPort-AV: E=Sophos;i="6.07,143,1708416000"; d="scan'208";a="827783100"
 Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.74])
- by orsmga001.jf.intel.com with SMTP; 21 Mar 2024 09:18:13 -0700
+ by orsmga001.jf.intel.com with SMTP; 21 Mar 2024 09:18:16 -0700
 Received: by stinkbox (sSMTP sendmail emulation);
- Thu, 21 Mar 2024 18:18:12 +0200
+ Thu, 21 Mar 2024 18:18:15 +0200
 From: Ville Syrjala <ville.syrjala@linux.intel.com>
 To: intel-gfx@lists.freedesktop.org
-Subject: [PATCH 2/5] drm/i915/bios: Update VBT driver feature block version
- numbers
-Date: Thu, 21 Mar 2024 18:18:03 +0200
-Message-ID: <20240321161806.31714-3-ville.syrjala@linux.intel.com>
+Subject: [PATCH 3/5] drm/i915/bios: Add the old DPST field into VBT LFP power
+ block
+Date: Thu, 21 Mar 2024 18:18:04 +0200
+Message-ID: <20240321161806.31714-4-ville.syrjala@linux.intel.com>
 X-Mailer: git-send-email 2.43.2
 In-Reply-To: <20240321161806.31714-1-ville.syrjala@linux.intel.com>
 References: <20240321161806.31714-1-ville.syrjala@linux.intel.com>
@@ -69,55 +69,31 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-While the spec does claim that most of the driver feature flags
-start from BDB version 165, reality and some VBIOS code disagrees.
-The VBIOS code says it sart from version 159, and my ILK
-with version 162 definitely has these things already in its
-VBT. Update the version number comments to say 159+ for all
-the bits that seem relevant for pre-hsw hardware.
+According to some VBIOS sources the LFP power block used to
+have a single bit for DPST support. In version 159 that bit
+got moved into the driver features block, and then in version
+228 back into the LFP power block (but this time as a
+per-panel thing). We have definitions for the last two, but
+not the original bit. Define it as well.
 
 Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_vbt_defs.h | 20 +++++++++----------
- 1 file changed, 10 insertions(+), 10 deletions(-)
+ drivers/gpu/drm/i915/display/intel_vbt_defs.h | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
 diff --git a/drivers/gpu/drm/i915/display/intel_vbt_defs.h b/drivers/gpu/drm/i915/display/intel_vbt_defs.h
-index f2506b0be790..24583b455f2d 100644
+index 24583b455f2d..5da8ae407dfd 100644
 --- a/drivers/gpu/drm/i915/display/intel_vbt_defs.h
 +++ b/drivers/gpu/drm/i915/display/intel_vbt_defs.h
-@@ -603,22 +603,22 @@ struct bdb_driver_features {
- 	u8 custom_vbt_version;					/* 155+ */
- 
- 	/* Driver Feature Flags */
--	u16 rmpm_enabled:1;					/* 165+ */
--	u16 s2ddt_enabled:1;					/* 165+ */
--	u16 dpst_enabled:1;					/* 165-227 */
--	u16 bltclt_enabled:1;					/* 165+ */
--	u16 adb_enabled:1;					/* 165-227 */
--	u16 drrs_enabled:1;					/* 165-227 */
--	u16 grs_enabled:1;					/* 165+ */
--	u16 gpmt_enabled:1;					/* 165+ */
--	u16 tbt_enabled:1;					/* 165+ */
-+	u16 rmpm_enabled:1;					/* 159+ */
-+	u16 s2ddt_enabled:1;					/* 159+ */
-+	u16 dpst_enabled:1;					/* 159-227 */
-+	u16 bltclt_enabled:1;					/* 159+ */
-+	u16 adb_enabled:1;					/* 159-227 */
-+	u16 drrs_enabled:1;					/* 159-227 */
-+	u16 grs_enabled:1;					/* 159+ */
-+	u16 gpmt_enabled:1;					/* 159+ */
-+	u16 tbt_enabled:1;					/* 159+ */
- 	u16 psr_enabled:1;					/* 165-227 */
- 	u16 ips_enabled:1;					/* 165+ */
- 	u16 dfps_enabled:1;					/* 165+ */
- 	u16 dmrrs_enabled:1;					/* 174-227 */
- 	u16 adt_enabled:1;					/* ???-228 */
- 	u16 hpd_wake:1;						/* 201-240 */
--	u16 pc_feature_valid:1;
-+	u16 pc_feature_valid:1;					/* 159+ */
- } __packed;
- 
- /*
+@@ -918,7 +918,7 @@ struct bdb_lfp_backlight_data {
+  * Block 44 - LFP Power Conservation Features Block
+  */
+ struct lfp_power_features {
+-	u8 reserved1:1;
++	u8 dpst_support:1;						/* ???-159 */
+ 	u8 power_conservation_pref:3;
+ 	u8 reserved2:1;
+ 	u8 lace_enabled_status:1;					/* 210+ */
 -- 
 2.43.2
 
