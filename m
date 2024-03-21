@@ -2,62 +2,29 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id D8229886301
-	for <lists+intel-gfx@lfdr.de>; Thu, 21 Mar 2024 23:11:11 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 54FE088631B
+	for <lists+intel-gfx@lfdr.de>; Thu, 21 Mar 2024 23:14:18 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5368A1121BC;
-	Thu, 21 Mar 2024 22:11:08 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="j0n8hnEz";
-	dkim-atps=neutral
+	by gabe.freedesktop.org (Postfix) with ESMTP id C75151121C2;
+	Thu, 21 Mar 2024 22:14:16 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8B2261121BB;
- Thu, 21 Mar 2024 22:11:06 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1711059066; x=1742595066;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=pKjKl9i5c93gXnY/iwtL/e7AMNd9og0/gIVEjmydyD8=;
- b=j0n8hnEze0NWy97vAMWq0XF6GPPPcjiYIdRFCrLWjNs7/RgEpNFQgmRo
- W22KEOqB9LzeD4LwIy1Oo53fdJpim268Z8FQFMQDRpkpHSdphARGRtjKQ
- IXUg3C8eVQk98+OBuvOn3Oc8SJJWHSKoT2RKqqPns/+4aFeUaHOselJU3
- ZTCLfa9IXIy3x9nF/WYln2SsXFtW8HnSKlnfC7j1vMC0w21kej/CmSc1b
- 7odrF/lvncrdNNWKZoQsFynrE6VvbVne7sJ9imvCkZ2EFzOO4DoRMKgcV
- CID5xXzeoTJQqwVFdRVY5UNtYjg4otgCehG93RIVpOLDCeVcq+XL28GW3 g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,11020"; a="31525159"
-X-IronPort-AV: E=Sophos;i="6.07,144,1708416000"; d="scan'208";a="31525159"
-Received: from orviesa001.jf.intel.com ([10.64.159.141])
- by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Mar 2024 15:11:05 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.07,144,1708416000"; d="scan'208";a="52112652"
-Received: from nirmoyda-mobl.ger.corp.intel.com (HELO [10.246.36.15])
- ([10.246.36.15])
- by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Mar 2024 15:11:02 -0700
-Message-ID: <674ea24b-b7a0-477b-bd04-f951c5581d3d@linux.intel.com>
-Date: Thu, 21 Mar 2024 23:11:00 +0100
+Received: from 8e613ede5ea5 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DCBC61121C2;
+ Thu, 21 Mar 2024 22:14:15 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============5157335283221929441=="
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2] drm/i915/gt: Report full vm address range
-To: Andi Shyti <andi.shyti@linux.intel.com>,
- intel-gfx <intel-gfx@lists.freedesktop.org>,
- dri-devel <dri-devel@lists.freedesktop.org>
-Cc: Andi Shyti <andi.shyti@kernel.org>,
- Andrzej Hajda <andrzej.hajda@intel.com>,
- Chris Wilson <chris.p.wilson@linux.intel.com>,
- Lionel Landwerlin <lionel.g.landwerlin@intel.com>,
- Michal Mrozek <michal.mrozek@intel.com>, Nirmoy Das <nirmoy.das@intel.com>,
- stable@vger.kernel.org
-References: <20240321151726.207866-1-andi.shyti@linux.intel.com>
-Content-Language: en-US
-From: Nirmoy Das <nirmoy.das@linux.intel.com>
-In-Reply-To: <20240321151726.207866-1-andi.shyti@linux.intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=93_Fi=2ECI=2EBAT=3A_success_for_drm/i915/bios=3A_Pimp_some_?=
+ =?utf-8?q?VBT_definitions?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Ville Syrjala" <ville.syrjala@linux.intel.com>
+Cc: intel-gfx@lists.freedesktop.org
+Date: Thu, 21 Mar 2024 22:14:15 -0000
+Message-ID: <171105925590.940819.12701000656987670352@8e613ede5ea5>
+X-Patchwork-Hint: ignore
+References: <20240321161806.31714-1-ville.syrjala@linux.intel.com>
+In-Reply-To: <20240321161806.31714-1-ville.syrjala@linux.intel.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -70,82 +37,183 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi Andi,
+--===============5157335283221929441==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-On 3/21/2024 4:17 PM, Andi Shyti wrote:
-> Commit 9bb66c179f50 ("drm/i915: Reserve some kernel space per
-> vm") has reserved an object for kernel space usage.
->
-> Userspace, though, needs to know the full address range.
->
-> In the former patch the reserved space was substructed from the
-> total amount of the VM space. Add it back when the user requests
-> the GTT size through ioctl (I915_CONTEXT_PARAM_GTT_SIZE).
->
-> Fixes: 9bb66c179f50 ("drm/i915: Reserve some kernel space per vm")
-> Signed-off-by: Andi Shyti <andi.shyti@linux.intel.com>
-> Cc: Andrzej Hajda <andrzej.hajda@intel.com>
-> Cc: Chris Wilson <chris.p.wilson@linux.intel.com>
-> Cc: Lionel Landwerlin <lionel.g.landwerlin@intel.com>
-> Cc: Michal Mrozek <michal.mrozek@intel.com>
-> Cc: Nirmoy Das <nirmoy.das@intel.com>
-> Cc: <stable@vger.kernel.org> # v6.2+
-> Acked-by: Michal Mrozek <michal.mrozek@intel.com>
-> Acked-by: Lionel Landwerlin <lionel.g.landwerlin@intel.com>
-> ---
-> Hi,
->
-> Just proposing a different implementation that doesn't affect
-> i915 internally but provides the same result. Instead of not
-> substracting the space during the reservation, I add it back
-> during the ioctl call.
->
-> All the "vm->rsvd.vma->node.size" looks a bit ugly,
+== Series Details ==
 
-Yes, this need document and also vm->total should be vm->total and may 
-be we should have
+Series: drm/i915/bios: Pimp some VBT definitions
+URL   : https://patchwork.freedesktop.org/series/131441/
+State : success
 
-vm->usable which will be used by kernel internal and return vm->total.
+== Summary ==
 
-For me, I am fine with the kernel change as long as UMD is aware/fine of 
-side-effect if
+CI Bug Log - changes from CI_DRM_14464 -> Patchwork_131441v1
+====================================================
 
-UMD ended up using the reserved page. Basically we need to document this 
-well :)
+Summary
+-------
 
-Also may be we should limit this reserving page only on platform where 
-it is required ?
+  **SUCCESS**
+
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_131441v1/index.html
+
+Participating hosts (40 -> 37)
+------------------------------
+
+  Missing    (3): bat-mtlp-8 bat-dg1-7 fi-snb-2520m 
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_131441v1 that come from known issues:
+
+### CI changes ###
+
+#### Issues hit ####
+
+  * boot:
+    - fi-tgl-1115g4:      [PASS][1] -> [FAIL][2] ([i915#8293])
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14464/fi-tgl-1115g4/boot.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_131441v1/fi-tgl-1115g4/boot.html
+    - bat-jsl-1:          [PASS][3] -> [FAIL][4] ([i915#8293])
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14464/bat-jsl-1/boot.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_131441v1/bat-jsl-1/boot.html
+
+  
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@i915_selftest@live@hangcheck:
+    - bat-rpls-3:         [PASS][5] -> [DMESG-WARN][6] ([i915#5591])
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14464/bat-rpls-3/igt@i915_selftest@live@hangcheck.html
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_131441v1/bat-rpls-3/igt@i915_selftest@live@hangcheck.html
+
+  
+#### Possible fixes ####
+
+  * igt@i915_selftest@live@gt_mocs:
+    - bat-dg2-14:         [ABORT][7] ([i915#10366]) -> [PASS][8]
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14464/bat-dg2-14/igt@i915_selftest@live@gt_mocs.html
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_131441v1/bat-dg2-14/igt@i915_selftest@live@gt_mocs.html
+
+  
+  [i915#10366]: https://gitlab.freedesktop.org/drm/intel/issues/10366
+  [i915#5591]: https://gitlab.freedesktop.org/drm/intel/issues/5591
+  [i915#8293]: https://gitlab.freedesktop.org/drm/intel/issues/8293
 
 
-Regards,
+Build changes
+-------------
 
-Nirmoy
+  * Linux: CI_DRM_14464 -> Patchwork_131441v1
 
->   but that's
-> how it is. Maybe a comment can help to understand better why
-> there is this addition.
->
-> I kept the Ack from Michal and Lionel, because the outcome from
-> userspace perspactive doesn't really change.
->
-> Andi
->
->   drivers/gpu/drm/i915/gem/i915_gem_context.c | 2 +-
->   1 file changed, 1 insertion(+), 1 deletion(-)
->
-> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_context.c b/drivers/gpu/drm/i915/gem/i915_gem_context.c
-> index 81f65cab1330..60d9e7fe33b3 100644
-> --- a/drivers/gpu/drm/i915/gem/i915_gem_context.c
-> +++ b/drivers/gpu/drm/i915/gem/i915_gem_context.c
-> @@ -2454,7 +2454,7 @@ int i915_gem_context_getparam_ioctl(struct drm_device *dev, void *data,
->   	case I915_CONTEXT_PARAM_GTT_SIZE:
->   		args->size = 0;
->   		vm = i915_gem_context_get_eb_vm(ctx);
-> -		args->value = vm->total;
-> +		args->value = vm->total + vm->rsvd.vma->node.size;
->   		i915_vm_put(vm);
->   
->   		break;
+  CI-20190529: 20190529
+  CI_DRM_14464: ad4a10c6d0e21df4bd830c20c96b795ae2d03962 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_7775: 0ee4074685c1e184f2d3612ea6eb4d126f9a2e23 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  Patchwork_131441v1: ad4a10c6d0e21df4bd830c20c96b795ae2d03962 @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+### Linux commits
+
+25fbf709a77e drm/i915/bios: Pimp the VBT backlight data BDB version comments
+324e269c5eaa drm/i915/bios: Define the (obsolete) backlight i2c VBT stuff
+c1afa0082eef drm/i915/bios: Add the old DPST field into VBT LFP power block
+21254df883a6 drm/i915/bios: Update VBT driver feature block version numbers
+e088ada72074 drm/i915/bios: s/dpfs/dfps/
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_131441v1/index.html
+
+--===============5157335283221929441==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/i915/bios: Pimp some VBT definitions</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/131441/">https://patchwork.freedesktop.org/series/131441/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_131441v1/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_131441v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_14464 -&gt; Patchwork_131441v1</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_131441v1/index.html</p>
+<h2>Participating hosts (40 -&gt; 37)</h2>
+<p>Missing    (3): bat-mtlp-8 bat-dg1-7 fi-snb-2520m </p>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_131441v1 that come from known issues:</p>
+<h3>CI changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>boot:<ul>
+<li>fi-tgl-1115g4:      <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14464/fi-tgl-1115g4/boot.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_131441v1/fi-tgl-1115g4/boot.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/8293">i915#8293</a>)</li>
+<li>bat-jsl-1:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14464/bat-jsl-1/boot.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_131441v1/bat-jsl-1/boot.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/8293">i915#8293</a>)</li>
+</ul>
+</li>
+</ul>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>igt@i915_selftest@live@hangcheck:<ul>
+<li>bat-rpls-3:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14464/bat-rpls-3/igt@i915_selftest@live@hangcheck.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_131441v1/bat-rpls-3/igt@i915_selftest@live@hangcheck.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/5591">i915#5591</a>)</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>igt@i915_selftest@live@gt_mocs:<ul>
+<li>bat-dg2-14:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14464/bat-dg2-14/igt@i915_selftest@live@gt_mocs.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/10366">i915#10366</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_131441v1/bat-dg2-14/igt@i915_selftest@live@gt_mocs.html">PASS</a></li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_14464 -&gt; Patchwork_131441v1</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_14464: ad4a10c6d0e21df4bd830c20c96b795ae2d03962 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_7775: 0ee4074685c1e184f2d3612ea6eb4d126f9a2e23 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  Patchwork_131441v1: ad4a10c6d0e21df4bd830c20c96b795ae2d03962 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+<h3>Linux commits</h3>
+<p>25fbf709a77e drm/i915/bios: Pimp the VBT backlight data BDB version comments<br />
+324e269c5eaa drm/i915/bios: Define the (obsolete) backlight i2c VBT stuff<br />
+c1afa0082eef drm/i915/bios: Add the old DPST field into VBT LFP power block<br />
+21254df883a6 drm/i915/bios: Update VBT driver feature block version numbers<br />
+e088ada72074 drm/i915/bios: s/dpfs/dfps/</p>
+
+</body>
+</html>
+
+--===============5157335283221929441==--
