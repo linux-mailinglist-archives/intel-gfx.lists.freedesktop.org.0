@@ -2,54 +2,53 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 73AF8886A1A
-	for <lists+intel-gfx@lfdr.de>; Fri, 22 Mar 2024 11:20:24 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 43ADC886A1B
+	for <lists+intel-gfx@lfdr.de>; Fri, 22 Mar 2024 11:20:55 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C764B10F573;
-	Fri, 22 Mar 2024 10:20:22 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C0D6010F313;
+	Fri, 22 Mar 2024 10:20:53 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Qh6dHwnA";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="RPyDslm1";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 399EE10F1FE
- for <intel-gfx@lists.freedesktop.org>; Fri, 22 Mar 2024 10:20:21 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 46E3010F313
+ for <intel-gfx@lists.freedesktop.org>; Fri, 22 Mar 2024 10:20:52 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1711102822; x=1742638822;
+ t=1711102852; x=1742638852;
  h=from:to:subject:in-reply-to:references:date:message-id:
  mime-version:content-transfer-encoding;
- bh=teArZ8ty/dAprs7thuD2WAwR2jkSK29/Iwpgvl856dI=;
- b=Qh6dHwnA1YsiN0kCFSQZizeUuXcjzw/Uktzod0GdoE0OkInyK7MPubtd
- rv0DU2eYIkp8zYdRO1JiVRifO7bEAGnIwkLcE9oDiT2NtxPcDI0hsjGtq
- UhNEQ4kfmwejmGewBd9uwLIoGERsGs0akViDNXTB7XajEQSgh2ShpTDXe
- niYucyDyc9ThRjxxmokt1jAraatVHcL5vo91IPg+C5fWsGmDPQOW+Uckm
- iZyfXLh5IS82MPLgx4iiZnhFURiheCrSzhMlHb0kzC2BGuooAxLQP7DDr
- yxXEB4cn/5uNLfK2nZLv0//z+Q8hY5mkEtEMCglptpuHDuHnXoeAkgyxQ w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,11020"; a="9947477"
-X-IronPort-AV: E=Sophos;i="6.07,145,1708416000"; 
-   d="scan'208";a="9947477"
-Received: from fmviesa007.fm.intel.com ([10.60.135.147])
- by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Mar 2024 03:20:21 -0700
+ bh=ZIevq3+H6xnl3nY/E1+OUjNnRDrw17xglk8f8uO3kr0=;
+ b=RPyDslm19tGk5tMxor9XSTRJ/Y6LMeAyNBQ9Orwx0gynlRSex/WtsW+d
+ LNE+Zzw36D1QkYn5Aypif7HWOMNE1+zYU4iTkb2dplGf2YSUtiQpETiKe
+ m4E6WiiBUCNINpKM3piae+VacbCJD5LOGhz+hKH5VDmCCn73m8Pg6QtbD
+ nPQAd4Oy98eNPUyY1nxd/LD3McFKbDOfkcnur6vrIkwjBzADt7ZF7DVTe
+ Vu9LX6RDz+FlwBfKQNF2J6+SWfzVd4Jt3crbM48UJfEYX2baVF4qy+122
+ g5y4nsYWvv7+uNAqR0yiStlupCWXuwBrVXxA6PcUwOn5hBoyleLkJRgkG g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,11020"; a="16871945"
+X-IronPort-AV: E=Sophos;i="6.07,145,1708416000"; d="scan'208";a="16871945"
+Received: from fmviesa004.fm.intel.com ([10.60.135.144])
+ by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 Mar 2024 03:20:32 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.07,145,1708416000"; d="scan'208";a="14826770"
+X-IronPort-AV: E=Sophos;i="6.07,145,1708416000"; d="scan'208";a="19524207"
 Received: from ghoshsu1-mobl.ger.corp.intel.com (HELO localhost)
  ([10.252.55.6])
- by fmviesa007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Mar 2024 03:20:19 -0700
+ by fmviesa004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 Mar 2024 03:20:31 -0700
 From: Jani Nikula <jani.nikula@linux.intel.com>
 To: Ville Syrjala <ville.syrjala@linux.intel.com>,
  intel-gfx@lists.freedesktop.org
-Subject: Re: [PATCH 4/5] drm/i915/bios: Define the (obsolete) backlight i2c
- VBT stuff
-In-Reply-To: <20240321161806.31714-5-ville.syrjala@linux.intel.com>
+Subject: Re: [PATCH 5/5] drm/i915/bios: Pimp the VBT backlight data BDB
+ version comments
+In-Reply-To: <20240321161806.31714-6-ville.syrjala@linux.intel.com>
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 References: <20240321161806.31714-1-ville.syrjala@linux.intel.com>
- <20240321161806.31714-5-ville.syrjala@linux.intel.com>
-Date: Fri, 22 Mar 2024 12:20:14 +0200
-Message-ID: <87wmpuk1pd.fsf@intel.com>
+ <20240321161806.31714-6-ville.syrjala@linux.intel.com>
+Date: Fri, 22 Mar 2024 12:20:26 +0200
+Message-ID: <87ttkyk1p1.fsf@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
@@ -71,40 +70,33 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 On Thu, 21 Mar 2024, Ville Syrjala <ville.syrjala@linux.intel.com> wrote:
 > From: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
 >
-> The VBT backlight entries include various fields for i2c
-> controlled backlights. These have been obsoleted at some
-> unknown point in time, but let's define them anyway so that
-> we have a full picture of what has been in there.
+> Add the missing BDB version number information for some of
+> the backlight fields in VBT.
 >
 > Signed-off-by: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
 
 Reviewed-by: Jani Nikula <jani.nikula@intel.com>
 
 > ---
->  drivers/gpu/drm/i915/display/intel_vbt_defs.h | 7 ++++---
->  1 file changed, 4 insertions(+), 3 deletions(-)
+>  drivers/gpu/drm/i915/display/intel_vbt_defs.h | 4 ++--
+>  1 file changed, 2 insertions(+), 2 deletions(-)
 >
 > diff --git a/drivers/gpu/drm/i915/display/intel_vbt_defs.h b/drivers/gpu/=
 drm/i915/display/intel_vbt_defs.h
-> index 5da8ae407dfd..bcd1b239eb65 100644
+> index bcd1b239eb65..3815aa21d19f 100644
 > --- a/drivers/gpu/drm/i915/display/intel_vbt_defs.h
 > +++ b/drivers/gpu/drm/i915/display/intel_vbt_defs.h
-> @@ -881,11 +881,12 @@ struct bdb_lvds_lfp_data_tail {
->  struct lfp_backlight_data_entry {
->  	u8 type:2;
->  	u8 active_low_pwm:1;
-> -	u8 obsolete1:5;
-> +	u8 i2c_pin:3;						/* obsolete since ? */
-> +	u8 i2c_speed:2;						/* obsolete since ? */
->  	u16 pwm_freq_hz;
->  	u8 min_brightness;					/* ???-233 */
-> -	u8 obsolete2;
-> -	u8 obsolete3;
-> +	u8 i2c_address;						/* obsolete since ? */
-> +	u8 i2c_command;						/* obsolete since ? */
->  } __packed;
->=20=20
->  struct lfp_backlight_control_method {
+> @@ -907,8 +907,8 @@ struct lfp_brightness_level {
+>  struct bdb_lfp_backlight_data {
+>  	u8 entry_size;
+>  	struct lfp_backlight_data_entry data[16];
+> -	u8 level[16];							/* ???-233 */
+> -	struct lfp_backlight_control_method backlight_control[16];
+> +	u8 level[16];							/* 162-233 */
+> +	struct lfp_backlight_control_method backlight_control[16];	/* 191+ */
+>  	struct lfp_brightness_level brightness_level[16];		/* 234+ */
+>  	struct lfp_brightness_level brightness_min_level[16];		/* 234+ */
+>  	u8 brightness_precision_bits[16];				/* 236+ */
 
 --=20
 Jani Nikula, Intel
